@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC298210549
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2020 09:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3C2621054E
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2020 09:48:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728363AbgGAHsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jul 2020 03:48:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44658 "EHLO
+        id S1728375AbgGAHsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jul 2020 03:48:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728294AbgGAHsP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jul 2020 03:48:15 -0400
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F090CC061755
-        for <devicetree@vger.kernel.org>; Wed,  1 Jul 2020 00:48:14 -0700 (PDT)
-Received: by mail-lf1-x142.google.com with SMTP id t9so13017176lfl.5
-        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2020 00:48:14 -0700 (PDT)
+        with ESMTP id S1728327AbgGAHsu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jul 2020 03:48:50 -0400
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA6D9C061755
+        for <devicetree@vger.kernel.org>; Wed,  1 Jul 2020 00:48:49 -0700 (PDT)
+Received: by mail-lj1-x242.google.com with SMTP id t25so21203764lji.12
+        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2020 00:48:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=TjiYI/gEP169VVLakifLbvQVy48ggB6CHQLcRMroefU=;
-        b=RVyHQuQzZLBw/SQpUEi8z7UybHsmHph+B+xx4GJ8dm4Pxr+SkoiOvWF1jJUp7DQTL+
-         Eaviic01wVP9FqwpiZ96kYPmfLyATrWKc+L333nvEG6xVhOMwJOzuCYElHaq1oyNmg1z
-         NO8CcPBrA7MLBX+dExcxO6XpNStvjllUuxl9fDkjTmAYAXdTJFR55Lja6XymUvDbl9bN
-         Jppn4l+JPRuIboEqwHTt9oGCno7OFkeBawKH5nY+i0MH+LFVRzqv9Dvr2dJLbyiQR/YT
-         ceK58913bJiU0qI3nqLSCfm569894PStfpzd4k34HDglx/XrRt7bhvVpx4mR9JLMor+8
-         5new==
+        bh=uHiWeHvIRTabhJTMwa3fxsZyuvaR5uB2s6b6XKCykyI=;
+        b=lA+NKOK7zcmXa+2MC1Gn+Y/TDNNdWs07VZI26+piRmWa5IgJ6SkoLWgnui5+oh39Q6
+         JI6t0CXi/MwfxhT8vihn8/G5X/LVpEvZMEq6tZoPu3lZavZG9S0OrLs90EX1D+5GNIjW
+         sn5HxzJnDf4UXKGwZsAkmMMGh/L0sPm18+UMSMM1eLMgNI1ScSZ7avbX4Jba1HNPFR01
+         Oz9jy9C52A6E2XL5BRjrUkpECbZ+e9Z0fJBkNwYFnAHSKnD0TULcsTh24JxIR23IbQ9B
+         1wfadENgJePUvcAFAQh88V1690Yckkn/btGB8V/wCG7M9ur0RaRMuVp1qacys1YinlL/
+         Kt6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=TjiYI/gEP169VVLakifLbvQVy48ggB6CHQLcRMroefU=;
-        b=lPRtwZOJ4vIER9FSU7XO5MwT8VnJIDHFQBlow40YFAnzTl3TNDViwO9X7lo/HUneFU
-         CEYDlNleRzgDNUArVvIj9gZazuJolv8AZ25e3cuoGVBbYLlhoNcGm7ZQnT1+PpO+CS21
-         +qx035nH4Q3KDriDGOgxGKSf2TwQ9eEGuj4NPfGq3Cz5vnUyqEgcfP1fZ4CHqsej3WX8
-         Bqkf6S1yihVTl0nwzV4uM/V0bDtkpVglRFsLl+pf5GUjqLABwm6GbKBHtk8cAmj+idrr
-         hhfwE/ga9wtp4pCQOP0RPnLeEChgtBC8IjvHFZPS2S18657J9rKxtOnvHXw0HJu0IhGy
-         qKXQ==
-X-Gm-Message-State: AOAM531w11Ar2kCEeR6HZHd9CLRWkrNmIQnbdFozDeymAjgCSarDjjjM
-        pivZxwd0r5HcnEwTfJiSiKtxQYIsCMjmjmNxGfry+Q==
-X-Google-Smtp-Source: ABdhPJwV5xZYRat45bbOJ4xsC/Efdt4tNxEMd6akXvKgpkzyErWL1uwmbKlZUIZd3iRZnd8NQDpvg2racqna36gSElA=
-X-Received: by 2002:a19:ccd0:: with SMTP id c199mr14342828lfg.194.1593589693523;
- Wed, 01 Jul 2020 00:48:13 -0700 (PDT)
+        bh=uHiWeHvIRTabhJTMwa3fxsZyuvaR5uB2s6b6XKCykyI=;
+        b=megoCwFaoDdK5RvsJGULjRdcKaGheHhKw8qEjhsKuXIAtUI7YQNag0RiGSPeoNDcwe
+         u4cjg08ryQ1ltKmlmT3QcUZ4Z2jAU1v5zUasy3VJ12CWnQDcvICnFCnNtYO7SmwgQXVF
+         2zuu8iLNtLwJjhK4Hv7xDoXY2M7LYZRVs3zC1egvpVDaV3NDOjpie0C+SUowdwrWyV0t
+         SlrLmgAWlJYq/cEp/EnlRPOeANhrcCCsQoROesxNFS9jj8ZuUbILCyeUp4ldHeiAc9Bm
+         QQSjjKGpfwk8sWxtLrm06NkRsojpoWRwct78jAEpndOVQvRaDd9xEqjYMQZS4t0SKHZn
+         /nPQ==
+X-Gm-Message-State: AOAM532bTw/ABdLbmi2PhcBNehX6rR3TKAxFWI5OKX+Ump1ct1vgRJg7
+        Z8DcbU+ZOLeIMgBJseIJ2Cdd1FTQfE1o4uM/Eu/X3w==
+X-Google-Smtp-Source: ABdhPJxumtOUJ9MZZWWYdqUsVyvRBEAFzjv5D3L00fsCsWjbg4DvKg1etmzvpIC/d88ZkoLQjiDZIXHRS5fiu1kXPgs=
+X-Received: by 2002:a05:651c:112e:: with SMTP id e14mr11799081ljo.338.1593589728209;
+ Wed, 01 Jul 2020 00:48:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200626005601.241022-1-megous@megous.com> <20200626005601.241022-6-megous@megous.com>
-In-Reply-To: <20200626005601.241022-6-megous@megous.com>
+References: <20200626005601.241022-1-megous@megous.com> <20200626005601.241022-7-megous@megous.com>
+In-Reply-To: <20200626005601.241022-7-megous@megous.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 1 Jul 2020 09:48:02 +0200
-Message-ID: <CACRpkdYJbojy5JzSQ-gvQC6QqGOGCNDLz4UVmCFyw7cZ20ekBQ@mail.gmail.com>
-Subject: Re: [PATCH v5 05/13] drm/panel: st7703: Rename functions from jh057n
- prefix to st7703
+Date:   Wed, 1 Jul 2020 09:48:37 +0200
+Message-ID: <CACRpkdbWUW4AaZf3ZTvabdQ3SwwwBcdwYFOaE1ou4rbtUAUOEw@mail.gmail.com>
+Subject: Re: [PATCH v5 06/13] drm/panel: st7703: Prepare for supporting
+ multiple panels
 To:     Ondrej Jirman <megous@megous.com>
 Cc:     linux-sunxi <linux-sunxi@googlegroups.com>,
         Thierry Reding <thierry.reding@gmail.com>,
@@ -78,9 +78,8 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Fri, Jun 26, 2020 at 2:56 AM Ondrej Jirman <megous@megous.com> wrote:
 
-> This is done so that code that's not specific to a particular
-> jh057n panel is named after the controller. Functions specific
-> to the panel are kept named after the panel.
+> Parametrize the driver so that it can support more panels based
+> on st7703 controller.
 >
 > Signed-off-by: Ondrej Jirman <megous@megous.com>
 
