@@ -2,91 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9177210B52
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2020 14:51:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31414210B75
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2020 14:59:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730638AbgGAMvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jul 2020 08:51:05 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:53400 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730617AbgGAMvF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Jul 2020 08:51:05 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1jqcCZ-0006nW-7n; Wed, 01 Jul 2020 14:50:59 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Adrian Ratiu <adrian.ratiu@collabora.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Philippe CORNU <philippe.cornu@st.com>,
-        Yannick FERTRE <yannick.fertre@st.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Jonas Karlman <jonas@kwiboo.se>, linux-imx@nxp.com,
-        kernel@collabora.com, linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v9 00/11] Genericize DW MIPI DSI bridge and add i.MX 6 driver
-Date:   Wed, 01 Jul 2020 14:50:58 +0200
-Message-ID: <6400388.H4HLtoO0Qf@diego>
-In-Reply-To: <20200609174959.955926-1-adrian.ratiu@collabora.com>
-References: <20200609174959.955926-1-adrian.ratiu@collabora.com>
+        id S1730702AbgGAM7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jul 2020 08:59:36 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:59922 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1730545AbgGAM7g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jul 2020 08:59:36 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 061Cso1T018088;
+        Wed, 1 Jul 2020 14:59:22 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=zLwEj7MqWWxOTNW8GUFQe1h25GWD27n/XUQYErjbCu4=;
+ b=UuzPoqH3RADYLvym79Sc5/VufNC+mdau580qHP3eVNTE+RmuNMwhTPz71CToj3W98WMW
+ TuNKoiqvRIyIRSA5yATCiBGSANMmIb08Uac71VuOUgXXYLJ8phCqhxIDseF6cxPU3iYn
+ GnDVt4gIiAtVEiHIVNy1kghm6EOy7qdIf2yUiNfvGya4opAgUUuvZLbrS91kXZ+pnGDk
+ C6ixEGO2G/x3jTfEIiLOsqqTVypzNN9q6UvSzVxifHnEocBbHISupGqavQacWyQZYBak
+ fQxwL8/tIMEcZgtNSURRV9ep+BNKksipAs3HgQ8SoCk0PHdE9JiEdZ2l+Y9cmMHcBuGL iw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 31ww0ga2ux-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 01 Jul 2020 14:59:22 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id B9FB910002A;
+        Wed,  1 Jul 2020 14:59:21 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 851BF2B66DE;
+        Wed,  1 Jul 2020 14:59:21 +0200 (CEST)
+Received: from localhost (10.75.127.50) by SFHDAG3NODE3.st.com (10.75.127.9)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Wed, 1 Jul 2020 14:59:20
+ +0200
+From:   Benjamin Gaignard <benjamin.gaignard@st.com>
+To:     <hugues.fruchet@st.com>, <mchehab@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@st.com>,
+        <robh+dt@kernel.org>
+CC:     <linux-media@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <vincent.guittot@linaro.org>,
+        <valentin.schneider@arm.com>, <rjw@rjwysocki.net>,
+        <devicetree@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>
+Subject: [PATCH v6 0/3] DCMI set minimum cpufreq requirement
+Date:   Wed, 1 Jul 2020 14:59:15 +0200
+Message-ID: <20200701125918.30793-1-benjamin.gaignard@st.com>
+X-Mailer: git-send-email 2.15.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.50]
+X-ClientProxiedBy: SFHDAG5NODE2.st.com (10.75.127.14) To SFHDAG3NODE3.st.com
+ (10.75.127.9)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-07-01_08:2020-07-01,2020-07-01 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adrian,
+This series allow to STM32 camera interface (DCMI) to require a minimum
+frequency to the CPUs before start streaming frames from the sensor.
+The minimum frequency requirement is provided in the devide-tree node.
 
-Am Dienstag, 9. Juni 2020, 19:49:48 CEST schrieb Adrian Ratiu:
-> [Re-submitting to cc dri-devel, sorry about the noise]
-> 
-> Hello all,
-> 
-> v9 cleanly applies on top of latest next-20200609 tree.
+Setting a minimum frequency for the CPUs is needed to ensure a quick handling
+of the interrupts between two sensor frames and avoid dropping half of them.
 
-at least it doesn't apply on top of current drm-misc-next for me
-which I really don't understand.
+version 6:
+- come back to version 4 and follow Valentin's suggestions about notifier
 
-Like patch 2/11 does
+version 5:
+- add a mutex to protect dcmi_irq_notifier_notify()
+- register notifier a probe time
 
-@@ -31,6 +31,7 @@
- #include <drm/drm_probe_helper.h>
-.
- #define HWVER_131<----><------><------>0x31333100<---->/* IP version 1.31 */
-+#define HWVER_130<----><------><------>0x31333000<---->/* IP version 1.30 */
-.
- #define DSI_VERSION<--><------><------>0x00
- #define VERSION<------><------><------><------>GENMASK(31, 8)
+version 4:
+- simplify irq affinity handling by using only dcmi_irq_notifier_notify() 
 
-where the file currently looks like
+version 3:
+- add a cpumask field to track boosted CPUs
+- add irq_affinity_notify callback
+- protect cpumask field with a mutex 
 
-#include <drm/drm_atomic_helper.h>
-#include <drm/drm_bridge.h>
-#include <drm/drm_crtc.h>
-#include <drm/drm_mipi_dsi.h>
-#include <drm/drm_modes.h>
-#include <drm/drm_of.h>
-#include <drm/drm_print.h>
+Benjamin Gaignard (3):
+  dt-bindings: media: stm32-dcmi: Add DCMI min frequency property
+  media: stm32-dcmi: Set minimum cpufreq requirement
+  ARM: dts: stm32: Set DCMI frequency requirement for stm32mp15x
 
-#define HWVER_131			0x31333100	/* IP version 1.31 */
+ .../devicetree/bindings/media/st,stm32-dcmi.yaml   |   8 ++
+ arch/arm/boot/dts/stm32mp151.dtsi                  |   1 +
+ drivers/media/platform/stm32/stm32-dcmi.c          | 138 +++++++++++++++++++--
+ 3 files changed, 139 insertions(+), 8 deletions(-)
 
-#define DSI_VERSION			0x00
-#define VERSION				GENMASK(31, 8)
-
-
-even in Linux-next
-
-
-So I guess ideally rebase on top of drm-misc-next
-
-
-Thanks
-Heiko
-
+-- 
+2.15.0
 
