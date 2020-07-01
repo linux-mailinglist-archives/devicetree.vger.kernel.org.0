@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AE7B21109B
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2020 18:29:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5214C2110B6
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2020 18:30:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732407AbgGAQ3j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jul 2020 12:29:39 -0400
-Received: from vps.xff.cz ([195.181.215.36]:52352 "EHLO vps.xff.cz"
+        id S1732515AbgGAQa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jul 2020 12:30:27 -0400
+Received: from vps.xff.cz ([195.181.215.36]:52012 "EHLO vps.xff.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732391AbgGAQ3i (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Jul 2020 12:29:38 -0400
+        id S1731951AbgGAQ3f (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Jul 2020 12:29:35 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1593620974; bh=zkODNCMULY1qflHx9pXN2q3BlZBV4YZQDDm3YdTOqMc=;
+        t=1593620971; bh=V8lg3QrmlL/+ORB8+T8iagnNb4aO75aHpHs9Ov8wOuQ=;
         h=From:To:Cc:Subject:Date:References:From;
-        b=VlBBBRxm4dDrG8c8iIovoYlpXJu+hCvaSfB9J6AdHQbVWWGBO2bvdhfMmVvMC2EHw
-         Uqy0FqKroZVhout9bEXq4bvkuOj9owK0wfJTFenzrZhxZmPKIu0T/8a8tfsnZ2fgcs
-         +olWZv1pbU3QzvCoNqACDfZVI1nXZ+nC6PQW9wBo=
+        b=Dj897vDdXK7CklO+4M1+BtXOE7/f2c1/pswxonoOE/HAmHoB+FBPjOQ9bX0KT1UBM
+         LTe5yh0H1XSG6rRnvXbQ/1a7e0z/63pkWrOUSqOtiCBPd656BC2TCxvaJ7+T1yTjGT
+         fuqXRvm/sWBCx9q/Kv4jNVTjBkUllPWuA6ODQWV4=
 From:   Ondrej Jirman <megous@megous.com>
 To:     linux-sunxi@googlegroups.com,
         Thierry Reding <thierry.reding@gmail.com>,
@@ -30,15 +30,16 @@ To:     linux-sunxi@googlegroups.com,
         Chen-Yu Tsai <wens@csie.org>,
         Linus Walleij <linus.walleij@linaro.org>,
         Icenowy Zheng <icenowy@aosc.io>
-Cc:     Ondrej Jirman <megous@megous.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Samuel Holland <samuel@sholland.org>,
         Martijn Braam <martijn@brixit.nl>, Luca Weiss <luca@z3ntu.xyz>,
-        Bhushan Shah <bshah@kde.org>
-Subject: [PATCH v7 08/13] drm/panel: st7703: Move generic part of init sequence to enable callback
-Date:   Wed,  1 Jul 2020 18:29:23 +0200
-Message-Id: <20200701162928.1638874-9-megous@megous.com>
+        Bhushan Shah <bshah@kde.org>,
+        Ondrej Jirman <megous@megous.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v7 01/13] dt-bindings: vendor-prefixes: Add Xingbangda
+Date:   Wed,  1 Jul 2020 18:29:16 +0200
+Message-Id: <20200701162928.1638874-2-megous@megous.com>
 In-Reply-To: <20200701162928.1638874-1-megous@megous.com>
 References: <20200701162928.1638874-1-megous@megous.com>
 MIME-Version: 1.0
@@ -48,82 +49,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Calling sleep out and display on is a controller specific part
-of the initialization process. Move it out of the panel specific
-initialization function to the enable callback.
+From: Icenowy Zheng <icenowy@aosc.io>
 
+Shenzhen Xingbangda Display Technology Co., Ltd is a company which
+produces LCD modules. It supplies the LCD panels for the PinePhone.
+
+Add the vendor prefix of it.
+
+Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
 Signed-off-by: Ondrej Jirman <megous@megous.com>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
- drivers/gpu/drm/panel/panel-sitronix-st7703.c | 33 ++++++++++---------
- 1 file changed, 18 insertions(+), 15 deletions(-)
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7703.c b/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-index 61872f623fff..96e39ec94900 100644
---- a/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-+++ b/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-@@ -84,8 +84,6 @@ static inline struct st7703 *panel_to_st7703(struct drm_panel *panel)
- static int jh057n_init_sequence(struct st7703 *ctx)
- {
- 	struct mipi_dsi_device *dsi = to_mipi_dsi_device(ctx->dev);
--	struct device *dev = ctx->dev;
--	int ret;
- 
- 	/*
- 	 * Init sequence was supplied by the panel vendor. Most of the commands
-@@ -136,20 +134,7 @@ static int jh057n_init_sequence(struct st7703 *ctx)
- 			      0x18, 0x00, 0x09, 0x0E, 0x29, 0x2D, 0x3C, 0x41,
- 			      0x37, 0x07, 0x0B, 0x0D, 0x10, 0x11, 0x0F, 0x10,
- 			      0x11, 0x18);
--	msleep(20);
--
--	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
--	if (ret < 0) {
--		DRM_DEV_ERROR(dev, "Failed to exit sleep mode: %d\n", ret);
--		return ret;
--	}
--	/* Panel is operational 120 msec after reset */
--	msleep(60);
--	ret = mipi_dsi_dcs_set_display_on(dsi);
--	if (ret)
--		return ret;
- 
--	DRM_DEV_DEBUG_DRIVER(dev, "Panel init sequence done\n");
- 	return 0;
- }
- 
-@@ -180,6 +165,7 @@ struct st7703_panel_desc jh057n00900_panel_desc = {
- static int st7703_enable(struct drm_panel *panel)
- {
- 	struct st7703 *ctx = panel_to_st7703(panel);
-+	struct mipi_dsi_device *dsi = to_mipi_dsi_device(ctx->dev);
- 	int ret;
- 
- 	ret = ctx->desc->init_sequence(ctx);
-@@ -189,6 +175,23 @@ static int st7703_enable(struct drm_panel *panel)
- 		return ret;
- 	}
- 
-+	msleep(20);
-+
-+	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
-+	if (ret < 0) {
-+		DRM_DEV_ERROR(ctx->dev, "Failed to exit sleep mode: %d\n", ret);
-+		return ret;
-+	}
-+
-+	/* Panel is operational 120 msec after reset */
-+	msleep(60);
-+
-+	ret = mipi_dsi_dcs_set_display_on(dsi);
-+	if (ret)
-+		return ret;
-+
-+	DRM_DEV_DEBUG_DRIVER(ctx->dev, "Panel init sequence done\n");
-+
- 	return 0;
- }
- 
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 9aeab66be85f..740b116b179f 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1157,6 +1157,8 @@ patternProperties:
+     description: Xiaomi Technology Co., Ltd.
+   "^xillybus,.*":
+     description: Xillybus Ltd.
++  "^xingbangda,.*":
++    description: Shenzhen Xingbangda Display Technology Co., Ltd
+   "^xinpeng,.*":
+     description: Shenzhen Xinpeng Technology Co., Ltd
+   "^xlnx,.*":
 -- 
 2.27.0
 
