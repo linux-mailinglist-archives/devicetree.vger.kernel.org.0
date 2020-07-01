@@ -2,170 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ACCF210463
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2020 09:00:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58AA8210509
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2020 09:29:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727991AbgGAHAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jul 2020 03:00:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36948 "EHLO
+        id S1728204AbgGAH3o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jul 2020 03:29:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727988AbgGAHAH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jul 2020 03:00:07 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C31D5C03E979
-        for <devicetree@vger.kernel.org>; Wed,  1 Jul 2020 00:00:06 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id z15so11357109wrl.8
-        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2020 00:00:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=+pRKYTmuOThutSuGqfNrgAamAdWYk1YESRlVS2CO28A=;
-        b=j8Toj+Y1Sm33G/MY5KpRJO/4MLA6Xmjv5NEmZN881Y2JY1sddA5DRPZK6/0hHYYGcd
-         krHNiAHXOdRvae6EVQZAGELUQtm8CGXJ/x+SgYHM0VvPaidxeEwowx7vTVi8h37/rb9C
-         R7BfnkfDNL4HN0vdPWCRCwrMaip4v5M1lbG4IKaFHPpDzHWHhYc+HHpuyL85P/cGtTGi
-         WyANo0R3IJVjvT7gqHcbR4cXVNMm9/NoowviYuOanpFmwrhD5+xp9JMNCo9TJNFskga1
-         /lU/Kvj3kKhEUI3AAcKj3cvObXMNLBpVx5h/aEMMdxo8fGGXRH2H1kj9IBR9Z7shRmJe
-         qOpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=+pRKYTmuOThutSuGqfNrgAamAdWYk1YESRlVS2CO28A=;
-        b=MUoG3fkhcPpF4tDht1SzlQXd2LhnM7CAFdtZnFh2oxs1QAZYuPHIEmwIEZNGMqjwZw
-         eOoAMqEy4MdBlzrMQwdfCR6pxNhQfSbm5KW/WYSwgfo+JkwjdZetgo6u97zlfckL4Vpc
-         RaKXNmGe+Gp37apyyeVmtfo084KFooG7Zy59Wkc+AKgvIiHYP6RwZAGSBzefpukqqHbp
-         YM3wN8iZ6oNDhfHYQYCVD1t/qyrNUe9CmcV53ST6NxCEUp7EE6BbHHSuipEonQTQk7q6
-         8SOPw63ilnMWZ8ePGaKSGwNRFnbYbXaS9lKKiiaE0OpNlVE6QnyOZzwKUailfIwwgDiF
-         CBDw==
-X-Gm-Message-State: AOAM5317MDrmvq8Bts7GQ4f3Ts9RDDQkQYGhNJ+m/NWVIu3c311+alk/
-        M1HUIQT3qcUUkiIMPXel485ANQ==
-X-Google-Smtp-Source: ABdhPJzXAeq3ERQ5grT5ciAC17dbRoZi+Anv+tNI3+3VRZcEoztY0g+mRZPxmb9Cn/QQRsS3FfyLAQ==
-X-Received: by 2002:adf:828b:: with SMTP id 11mr27284990wrc.58.1593586805272;
-        Wed, 01 Jul 2020 00:00:05 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:54f4:a99f:ab88:bc07? ([2a01:e34:ed2f:f020:54f4:a99f:ab88:bc07])
-        by smtp.googlemail.com with ESMTPSA id o205sm6355532wme.24.2020.07.01.00.00.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Jul 2020 00:00:04 -0700 (PDT)
-Subject: Re: [PATCH v4 6/6] MAINTAINERS: Add maintainers for MIPS core drivers
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20200617223201.23259-1-Sergey.Semin@baikalelectronics.ru>
- <20200617223201.23259-7-Sergey.Semin@baikalelectronics.ru>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <e29c9643-db5c-2d89-ff56-0900091770ea@linaro.org>
-Date:   Wed, 1 Jul 2020 09:00:03 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+        with ESMTP id S1727981AbgGAH3o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jul 2020 03:29:44 -0400
+Received: from hillosipuli.retiisi.org.uk (hillosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::81:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47CB2C061755;
+        Wed,  1 Jul 2020 00:29:44 -0700 (PDT)
+Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 7BFAD634C87;
+        Wed,  1 Jul 2020 10:29:26 +0300 (EEST)
+Authentication-Results: hillosipuli.retiisi.org.uk;
+        dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="fi0aXQP+";
+        dkim-atps=neutral
+Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
+        (envelope-from <sakari.ailus@retiisi.org.uk>)
+        id 1jqXBO-0000nn-Hl; Wed, 01 Jul 2020 10:29:26 +0300
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
+        hillosipuli.localdomain
+X-Spam-Level: 
+X-Spam-Status: No, hits=-2.5 required=7.0 tests=BAYES_00=-1.9,DKIM_SIGNED=0.1,
+        DKIM_VALID=-0.1,DKIM_VALID_AU=-0.5,DKIM_VALID_EF=-0.1,SPF_FAIL=0.001,
+        URIBL_BLOCKED=0.001 autolearn=no autolearn_force=no version=3.4.2
+X-Original-To: sakke+iki@retiisi.org.uk
+Received: from javiela.iki.fi (javiela.iki.fi [185.185.170.41])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 6E168634C89
+        for <sakke+iki@retiisi.org.uk>; Wed,  1 Jul 2020 09:21:45 +0300 (EEST)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by javiela.iki.fi (8.15.2/8.15.2) with ESMTPS id 0616LvcW000268
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+        for <sakari.ailus@iki.fi>; Wed, 1 Jul 2020 09:21:59 +0300 (EEST)
+Received: from pendragon.bb.dnainternet.fi (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id F118455B;
+        Wed,  1 Jul 2020 08:21:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1593584512;
+        bh=/+m3Ksh55Q3cNYCFz7Xh4xcWcjcp+zge4slRCex/PDQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=fi0aXQP+EX4/FIhBmj2gx0bZQ9pClNeI7Coa7Qfjx5c/kpCB1TxVE1z/BdzrQEX8w
+         XwAXoYfVbkEM0lo/EC0Uj0Rt3aqAcMC741AoEOXBzSfQIFPWjUAzTsepargsO+pwKI
+         E/7n7odtylH0YQnoM4T0D+HCqKkynpZDWzcw2tFI=
+From:   Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+To:     linux-media@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Lad Prabhakar <prabhakar.csengg@gmail.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Subject: [PATCH v4 1/4] device property: Add a function to test is a fwnode is a graph endpoint
+Date:   Wed,  1 Jul 2020 09:21:37 +0300
+Message-Id: <20200701062140.12953-2-laurent.pinchart+renesas@ideasonboard.com>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20200701062140.12953-1-laurent.pinchart+renesas@ideasonboard.com>
+References: <20200701062140.12953-1-laurent.pinchart+renesas@ideasonboard.com>
 MIME-Version: 1.0
-In-Reply-To: <20200617223201.23259-7-Sergey.Semin@baikalelectronics.ru>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/06/2020 00:32, Serge Semin wrote:
-> Add Thomas and myself as maintainers of the MIPS CPU and GIC IRQchip, MIPS
-> GIC timer and MIPS CPS CPUidle drivers.
+Drivers may need to test if a fwnode is a graph endpoint. To avoid
+hand-written solutions that wouldn't work for all fwnode types, add a
+new fwnode_graph_is_endpoint() function for this purpose. We don't need
+to wire it up to different backends for OF and ACPI for now, as the
+implementation can simply be based on checkout the presence of a
+remote-endpoint property.
 
-Why will you add yourself in the MAINTAINERS file for those drivers when
-git shows just one contribution for the mips-gic-timer for the timer
-stability ?
+Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+---
+ include/linux/property.h | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-git shortlog --numbered --summary drivers/cpuidle/cpuidle-cps.c
-     4  Paul Burton
-     1  Daniel Lezcano
-     1  Marcin Nowakowski
-     1  Matt Redfearn
-     1  Thomas Gleixner
-
-git shortlog --numbered --summary drivers/clocksource/mips-gic-timer.c
-    11  Andrew Bresticker
-     4  Ezequiel Garcia
-     4  Matt Redfearn
-     4  Paul Burton
-     3  Daniel Lezcano
-     3  Thomas Gleixner
-     2  Linus Torvalds
-     1  Alex Smith
-     1  Christophe Jaillet
-     1  Felix Fietkau
-     1  Ingo Molnar
-     1  Markos Chandras
-     1  Paul Gortmaker
-     1  Rafał Miłecki
-     1  Richard Cochran
-     1  Serge Semin
-     1  Viresh Kumar
-     1  YueHaibing
-
-Also, in the cpuidle-cps.c history, there is no signed-off from Rafael,
-neither an Acked-by when it was merged. That make me think the patch
-went through another path than the linux-pm tree without a cpuidle
-framework maintainer acknowledgement.
-
-Perhaps it is a mistake and the patch was actually acked-by, but I would
-like to remind the patches have to be acked by the upper maintainers and
-being listed in the MAINTAINERS file does not give the right of override
-this rule.
-
-
-
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> Acked-by: Marc Zyngier <maz@kernel.org>
-> Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-> Cc: linux-mips@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> 
-> ---
-> 
-> Changelog v3:
-> - Keep the files list alphabetically ordered.
-> - Add Thomas as the co-maintainer of the designated drivers.
-> ---
->  MAINTAINERS | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 2926327e4976..20532e0287d7 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -11278,6 +11278,17 @@ F:	arch/mips/configs/generic/board-boston.config
->  F:	drivers/clk/imgtec/clk-boston.c
->  F:	include/dt-bindings/clock/boston-clock.h
->  
-> +MIPS CORE DRIVERS
-> +M:	Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> +M:	Serge Semin <fancer.lancer@gmail.com>
-> +L:	linux-mips@vger.kernel.org
-> +S:	Supported
-> +F:	drivers/bus/mips_cdmm.c
-> +F:	drivers/clocksource/mips-gic-timer.c
-> +F:	drivers/cpuidle/cpuidle-cps.c
-> +F:	drivers/irqchip/irq-mips-cpu.c
-> +F:	drivers/irqchip/irq-mips-gic.c
-> +
->  MIPS GENERIC PLATFORM
->  M:	Paul Burton <paulburton@kernel.org>
->  L:	linux-mips@vger.kernel.org
-> 
-
-
+diff --git a/include/linux/property.h b/include/linux/property.h
+index 10d03572f52e..9f805c442819 100644
+--- a/include/linux/property.h
++++ b/include/linux/property.h
+@@ -389,6 +389,11 @@ struct fwnode_handle *
+ fwnode_graph_get_remote_node(const struct fwnode_handle *fwnode, u32 port,
+ 			     u32 endpoint);
+ 
++static inline bool fwnode_graph_is_endpoint(struct fwnode_handle *fwnode)
++{
++	return fwnode_property_present(fwnode, "remote-endpoint");
++}
++
+ /*
+  * Fwnode lookup flags
+  *
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Regards,
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Laurent Pinchart
+
