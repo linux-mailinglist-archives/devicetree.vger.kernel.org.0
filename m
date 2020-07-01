@@ -2,112 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9BFC21082C
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2020 11:32:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1348B21084A
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2020 11:36:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729246AbgGAJcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jul 2020 05:32:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60838 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726715AbgGAJcA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jul 2020 05:32:00 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF4BDC061755;
-        Wed,  1 Jul 2020 02:31:59 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id o4so13198257lfi.7;
-        Wed, 01 Jul 2020 02:31:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=+d2SRZpUuZWr1PMsXvidGGiJQELrujV0Qtt40StTl9g=;
-        b=LPMgxzjfikH+ekjnDGlTo5HiuTopob0mrOhZ1T/TKzKtXLxS0g4zBNmRe4QQhLRWCL
-         1okLKn+Jds1VZfA9DHmyLb+y/xGtwpQBIO1ZdlkPvO9N8WeoZMnfxvq3clumZ9GHv0Q0
-         aFO8jZ+cnyzkNl2SohOvL8XiWK5dCOphinB6XKDqGxlAIn1M7x7e6vHghvsHVFjsPAQL
-         b8SqBPJiyUBnXFq4723+bDoYT32KRtFpH3swa+46WMWAEGUMygpGz0oJc09WUQJzfhKr
-         QnIXNL234ZMfeU4c+si47EQIseg4quCNPhwJ/zonjU15pu7rYi1rD+0yIPDR+3rxechB
-         6/AQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=+d2SRZpUuZWr1PMsXvidGGiJQELrujV0Qtt40StTl9g=;
-        b=dIcz8fF2JOTOS/t12dA+6VaXxZcoIsRX7ie4TOVxHBgOaLrnKGYB8zIMYMO39iZ6QR
-         fR2EYN7Fr3W+Ww090C0LrPHHHxF7vHAsmqFk3h6/wDylrmWGf0Bz9GlIhIrOio/BrR73
-         zuzfnzXzRiCyczDAXOISOHkLuNZ65NJKEpBC4xNdwX4EYHWZ9xVk+gDzqznhrLes3L59
-         C0gqBtSEbzP0uKlN4dyHhkqYhbcn1CjbJQcxa+KxnLhtR/TWWlDjfR9vi94mUfXYpBvR
-         IBhRZizCdbdGAcc4UTSIgdn+CsTjLxtHk1AaMcOql8ZnA8q3J83nBkXthn5ICbtsvX2P
-         Av9A==
-X-Gm-Message-State: AOAM530NkUFwr+bClU12xiyv8T3Ovzolv9NUdh3VaAQC9K6I4beDcgwp
-        h5tLo2JEPmxvQQD+CldbTc/iZeFjS9A=
-X-Google-Smtp-Source: ABdhPJwN/668XQNGZmBOPiKhnbVfqe8RSFARvz44SINyM2X+GeJXU84pm9ni1lENZx3wdjXS8lutaw==
-X-Received: by 2002:a05:6512:49d:: with SMTP id v29mr14700624lfq.134.1593595918072;
-        Wed, 01 Jul 2020 02:31:58 -0700 (PDT)
-Received: from [192.168.2.145] (79-139-237-54.dynamic.spd-mgts.ru. [79.139.237.54])
-        by smtp.googlemail.com with ESMTPSA id m11sm1621386ljj.122.2020.07.01.02.31.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Jul 2020 02:31:57 -0700 (PDT)
-Subject: Re: [PATCH v10 0/2] Silence missing-graph error for DRM bridges
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20200701074232.13632-1-digetx@gmail.com>
- <20200701090240.GA22218@ravnborg.org>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <f4d50b9f-06e8-b6f7-ea5c-7a71f27ae953@gmail.com>
-Date:   Wed, 1 Jul 2020 12:31:56 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        id S1729391AbgGAJgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jul 2020 05:36:03 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:33687 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1729156AbgGAJgD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jul 2020 05:36:03 -0400
+X-UUID: 334d10a69c5e4b4db150b328e848eb6a-20200701
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=JmH2i1K1LVRfQ5H7fZWEmVhisTSm9PDFTAU2k91Y8VA=;
+        b=pBU+7Id1echOHiDolArMMpizj6NcCPxHmoFQD7NiBDIZU9z67XfET3R9dBG8YMLVr2E9HR0k5fdlcI2VuJfXLTlZYo7h4Tj6eTXnsoIzq02s2Fj14zSHeGmxVWuaap+P+6RiaMciZLU7ivj3nJmKpykGTD9Q+FU0iYa5z05o9vQ=;
+X-UUID: 334d10a69c5e4b4db150b328e848eb6a-20200701
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1774990996; Wed, 01 Jul 2020 17:36:00 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 1 Jul 2020 17:35:50 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 1 Jul 2020 17:35:50 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Alexandre Courbot <acourbot@chromium.org>
+Subject: [PATCH v3, 0/2] This patchset add read-only(Ro) request for capture queue
+Date:   Wed, 1 Jul 2020 17:35:20 +0800
+Message-ID: <20200701093522.8521-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <20200701090240.GA22218@ravnborg.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 098F809224606EF2751969BA6E6369678673A6DDE0F23228BF1043BDAABBF46B2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-01.07.2020 12:02, Sam Ravnborg пишет:
-> Hi Dmitry
-> On Wed, Jul 01, 2020 at 10:42:30AM +0300, Dmitry Osipenko wrote:
->> Hi!
->>
->> This small series improves DRM bridges code by silencing a noisy error
->> coming from of-graph code for the device-trees that are missing a
->> display bridge graph.
->>
->>   graph: no port node found in ...
->>
->> One example where this error happens is an older bridge-less DTB used
->> in conjunction with a newer kernel which has a display controller driver
->> that supports DRM bridges.
->>
->> Changelog:
->>
->> v10:- Corrected doc-comment, unbroke the of_graph_get_next_endpoint() and
->>       improved commit's message in the "add of_graph_is_present()" patch.
->>       Thanks to Laurent Pinchart for spotting the problems!
->>
->> v9: - These two patches are factored out from [1] in order to ease applying
->>       of the patches.
->>
->>     - The of_graph_presents() is renamed to of_graph_is_present() like it
->>       was requested by Rob Herring in the review comment to [1].
->>
->>     - Added Rob's r-b.
->>
->>     [1] https://patchwork.ozlabs.org/project/linux-tegra/list/?series=184102
->>
->> Dmitry Osipenko (2):
->>   of_graph: add of_graph_is_present()
->>   drm/of: Make drm_of_find_panel_or_bridge() to check graph's presence
-> 
-> Thanks for your patience with these - applied to drm-misc-next now.
+SGVsbG8sDQoNClVzZXIgZHJpdmVyIG5lZWQgdG8gZ2V0IEhEUjEwKyBpbmZvcm1hdGlvbiBmb3Ig
+ZWFjaCBjYXB0dXJlIGJ1ZmZlcjsNCkZvciBzb21lIGVuY29kZXIgY2FzZXMsIHVzZXIgZHJpdmVy
+IG5lZWQgdG8gZ2V0IGVuY29kZWQgbWVzc2FnZSBmb3INCmVhY2ggZnJhbWUuIFNvIGFkZCBzdXBw
+b3J0IHJlYWQtb25seShSbykgcmVxdWVzdCBmb3IgY2FwdHVyZSBxdWV1ZS4NCg0KVGhlcmUgaXMg
+bm8gdXBzdHJlYW0gZHJpdmVyIHRvIHVzZSB0aGlzIGZlYXR1cmUgYXQgbm93LCBidXQgd2UgYXJl
+DQpkZXZlbG9waW5nIGludGVybmFsIGRyaXZlciB0byB1c2UgaXQuIElmIGl0IGlzIHJlYWR5LCB3
+ZSB3aWxsIHRyeSB0bw0KdXBzdHJlYW0gdmRlYy92ZW5jIGRyaXZlciBiYXNlZCBvbiB0aGlzIGZl
+YXR1cmUuDQoNCj09PT09PT09PT09PT09DQpJbnRyb2R1Y3Rpb24NCj09PT09PT09PT09PT09DQoN
+ClJvIHJlcXVlc3QgbWVhbiB0aGF0IHVzZXIgZHJpdmVyIGp1c3QgY2FuIGdldCBleHQgY3RybHMs
+IHNldCBleHQgY3RybHMNCmlzIG5vdCBub3QgYWxsb3dlZC4gUm8gUmVxdWVzdCBhbHNvIGNhbiBi
+ZSB1c2VkIGluIG91dHB1dCBxdWV1ZS4NCg0KQWRkIHBhcmFtIHJvX3JlcXVlc3RzIGluIHN0cnVj
+dCB2NGwyX2N0cmxfaGFuZGxlciBtZWFuIHRoYXQgYWxsIENJRCBjdHJscw0KYmVsb25nIHRvIHRo
+aXMgY3RybCBoYW5kbGVyIGlzIHJlYWQgb25seS4gQWRkIHBhcmFtIHJvX2N0cmxfaGFuZGxlciBp
+bg0Kc3RydWN0IHY0bDJfZmggdXNlZCBmb3IgUm8gcmVxdWVzdC4NCg0KQWRkIHBhcmFtIHN1cHBv
+cnRzX3JvX3JlcXVlc3RzIGluIHN0cnVjdCB2YjJfcXVldWUgcHJlc2VudCB0aGF0IGNhcHR1cmUg
+b3INCm91dHB1dCBxdWV1ZSB1c2UgUm8gcmVxdWVzdC4NCg0KV2hlbiBzZXQvZ2V0IGV4dCBjdHJs
+cywgd2lsbCBjaGVjayB3aGV0aGVyIGN1cnJlbnQgQ0lEIGN0cmxzIGlzIHJvIGN0cmxzDQpvciBu
+b3QgdXNpbmcgZnVuY3Rpb24gdjRsMl9jaGVja19yb19leHRfY3RybHMoKS4NCg0KPT09PT09PT09
+PT09PT09PQ0KQ2hhbmdlcyBpbiB2Mw0KPT09PT09PT09PT09PT09PQ0KLWNoYW5nZSBjb3Zlci1s
+ZXR0ZXIgbWVzc2FnZQ0KLWNoYW5nZSBjb21taXQgbWVzc2FnZSBmb3IgcGF0Y2ggMDIvMDINCi1h
+ZGQgc2FuaXR5IGNoZWNrIGluIHZiMl9jb3JlX3F1ZXVlX2luaXQoKQ0KDQpZdW5mZWkgRG9uZyAo
+Mik6DQogIG1lZGlhOiB2NGwgVUFQSTogYWRkIFY0TDJfQlVGX0NBUF9TVVBQT1JUU19ST19SRVFV
+RVNUUw0KICBtZWRpYTogdjRsOiBBZGQgUm8gcmVxdWVzdCBhcGkgZm9yIGNhcHR1cmUgcXVldWUN
+Cg0KIC4uLi9tZWRpYS92NGwvdmlkaW9jLXJlcWJ1ZnMucnN0ICAgICAgICAgICAgICB8ICAgNCAr
+DQogLi4uL21lZGlhL2NvbW1vbi92aWRlb2J1ZjIvdmlkZW9idWYyLWNvcmUuYyAgIHwgICAzICsN
+CiAuLi4vbWVkaWEvY29tbW9uL3ZpZGVvYnVmMi92aWRlb2J1ZjItdjRsMi5jICAgfCAgIDcgKysN
+CiBkcml2ZXJzL21lZGlhL21jL21jLXJlcXVlc3QuYyAgICAgICAgICAgICAgICAgfCAgMTAgKy0N
+CiBkcml2ZXJzL21lZGlhL3Y0bDItY29yZS92NGwyLWN0cmxzLmMgICAgICAgICAgfCAxMDcgKysr
+KysrKysrKysrKysrLS0tDQogZHJpdmVycy9tZWRpYS92NGwyLWNvcmUvdjRsMi1pb2N0bC5jICAg
+ICAgICAgIHwgIDIyICsrKysNCiBkcml2ZXJzL21lZGlhL3Y0bDItY29yZS92NGwyLW1lbTJtZW0u
+YyAgICAgICAgfCAgMTkgKystLQ0KIGluY2x1ZGUvbWVkaWEvdjRsMi1jdHJscy5oICAgICAgICAg
+ICAgICAgICAgICB8ICAyMiArKystDQogaW5jbHVkZS9tZWRpYS92NGwyLWZoLmggICAgICAgICAg
+ICAgICAgICAgICAgIHwgICAyICsNCiBpbmNsdWRlL21lZGlhL3ZpZGVvYnVmMi1jb3JlLmggICAg
+ICAgICAgICAgICAgfCAgIDIgKw0KIGluY2x1ZGUvdWFwaS9saW51eC92aWRlb2RldjIuaCAgICAg
+ICAgICAgICAgICB8ICAgMSArDQogMTEgZmlsZXMgY2hhbmdlZCwgMTYxIGluc2VydGlvbnMoKyks
+IDM4IGRlbGV0aW9ucygtKQ0KDQo=
 
-Thanks to you and Laurent!
