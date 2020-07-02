@@ -2,154 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66A0D2121D1
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 13:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A382021220B
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 13:20:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728606AbgGBLKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jul 2020 07:10:05 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:57657 "EHLO m43-7.mailgun.net"
+        id S1728477AbgGBLUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jul 2020 07:20:48 -0400
+Received: from vps.xff.cz ([195.181.215.36]:43314 "EHLO vps.xff.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728583AbgGBLKF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 2 Jul 2020 07:10:05 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1593688204; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=OKu1EM6eiLid9WUfX5EOnISzTQlacwjoK78xIqopTHw=; b=kU+s9yItt3DmUTZobthzvutD76tr3YokTUVp2XOjK63pWHWbmPCVgyCkfWP/t7W/qqjDqw62
- YdQnkaiyKB27q/fdczZkCA6Yl0Zfkg6zQtGC3lnIoAsOn5G8uNGEpeH7SCPs2Y7QgKr91z6w
- HKdh+jz+vwRZlfUFw12ZyFSF3fc=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 5efdc08a3a8a8b20b8812c4a (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 02 Jul 2020 11:10:02
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id C58F9C433B2; Thu,  2 Jul 2020 11:10:01 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8AC49C433CA;
-        Thu,  2 Jul 2020 11:09:57 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 8AC49C433CA
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=rnayak@codeaurora.org
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-To:     robdclark@gmail.com, sean@poorly.run, agross@kernel.org,
-        bjorn.andersson@linaro.org
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        id S1726805AbgGBLUs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 Jul 2020 07:20:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1593688846; bh=go0JdX7XFPhOmCWXHUyH3tuiM0ZgDTsynh7wj3EqIvg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=n4QCK53qp060EUWa35hUt80FMgydnnZkQ2XG6iuUal6kv6OKE+kXy9NaxCbtGSHNK
+         lDn0lhYMBacAfhcBrcXT1x0NMmhj2CFjX+RTlSETIPrf7spro4PSQTTh/SehdW8w9j
+         UwHNoOPrrbF9XEnStwFqsg7Fgo01vE66V1HolEwA=
+From:   Ondrej Jirman <megous@megous.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>
+Cc:     Ondrej Jirman <megous@megous.com>, Luca Weiss <luca@z3ntu.xyz>,
+        Tomas Novotny <tomas@novotny.cz>, linux-input@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mka@chromium.org, Rajendra Nayak <rnayak@codeaurora.org>
-Subject: [PATCH v2 4/4] arm64: dts: sc7180: Add DSI and MDP OPP tables and power-domains
-Date:   Thu,  2 Jul 2020 16:39:11 +0530
-Message-Id: <1593688151-22616-5-git-send-email-rnayak@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1593688151-22616-1-git-send-email-rnayak@codeaurora.org>
-References: <1593688151-22616-1-git-send-email-rnayak@codeaurora.org>
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 0/4] Add support for vibrator motor for TBS A711 Tablet
+Date:   Thu,  2 Jul 2020 13:20:37 +0200
+Message-Id: <20200702112041.1942707-1-megous@megous.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the OPP tables for DSI and MDP based on the perf state/clk
-requirements, and add the power-domains property to specify the
-scalable power domain.
+The tablet has a vibrator motor. This patch series exposes it via
+input subsystem (EV_FF).
 
-Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
----
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 49 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 49 insertions(+)
+I'd like to ask input maintainers to take the patches 1 and 2.
+Patches 3 and 4 should go via the sunxi tree.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index ad57df2..3430c33f 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -2482,6 +2482,8 @@
- 						       <19200000>,
- 						       <19200000>,
- 						       <19200000>;
-+				operating-points-v2 = <&mdp_opp_table>;
-+				power-domains = <&rpmhpd SC7180_CX>;
- 
- 				interrupt-parent = <&mdss>;
- 				interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-@@ -2499,6 +2501,31 @@
- 						};
- 					};
- 				};
-+
-+				mdp_opp_table: mdp-opp-table {
-+					compatible = "operating-points-v2";
-+
-+					opp-200000000 {
-+						opp-hz = /bits/ 64 <200000000>;
-+						required-opps = <&rpmhpd_opp_low_svs>;
-+					};
-+
-+					opp-300000000 {
-+						opp-hz = /bits/ 64 <300000000>;
-+						required-opps = <&rpmhpd_opp_svs>;
-+					};
-+
-+					opp-345000000 {
-+						opp-hz = /bits/ 64 <345000000>;
-+						required-opps = <&rpmhpd_opp_svs_l1>;
-+					};
-+
-+					opp-460000000 {
-+						opp-hz = /bits/ 64 <460000000>;
-+						required-opps = <&rpmhpd_opp_nom>;
-+					};
-+				};
-+
- 			};
- 
- 			dsi0: dsi@ae94000 {
-@@ -2522,6 +2549,9 @@
- 					      "iface",
- 					      "bus";
- 
-+				operating-points-v2 = <&dsi_opp_table>;
-+				power-domains = <&rpmhpd SC7180_CX>;
-+
- 				phys = <&dsi_phy>;
- 				phy-names = "dsi";
- 
-@@ -2547,6 +2577,25 @@
- 						};
- 					};
- 				};
-+
-+				dsi_opp_table: dsi-opp-table {
-+					compatible = "operating-points-v2";
-+
-+					opp-187500000 {
-+						opp-hz = /bits/ 64 <187500000>;
-+						required-opps = <&rpmhpd_opp_low_svs>;
-+					};
-+
-+					opp-300000000 {
-+						opp-hz = /bits/ 64 <300000000>;
-+						required-opps = <&rpmhpd_opp_svs>;
-+					};
-+
-+					opp-358000000 {
-+						opp-hz = /bits/ 64 <358000000>;
-+						required-opps = <&rpmhpd_opp_svs_l1>;
-+					};
-+				};
- 			};
- 
- 			dsi_phy: dsi-phy@ae94400 {
+The change to the vibrator driver is meant to enable toggling the
+vibrator motor just via a power supply itself. There's not additional
+gpio driven switch on this tablet between the power supply for the
+motor and the motor.
+
+Please take a look.
+
+Changes in v3:
+- Changed dt-binding to require at least one of enable/supply, dropped ack
+- Changed driver to bail out if neither supply nor gpio is given
+
+Changes in v2:
+- Added DT ack tag
+- Add more information to the commit log (re use of LDO for the power)
+
+
+thank you and regards,
+  Ondrej Jirman
+
+Ondrej Jirman (4):
+  dt-bindings: input: gpio-vibrator: Don't require enable-gpios
+  input: gpio-vibra: Allow to use vcc-supply alone to control the
+    vibrator
+  ARM: dts: sun8i-a83t-tbs-a711: Add support for the vibrator motor
+  ARM: dts: sun8i-a83t-tbs-a711: Increase voltage on the vibrator
+
+ .../devicetree/bindings/input/gpio-vibrator.yaml   |  7 ++++++-
+ arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts          |  9 +++++++--
+ drivers/input/misc/gpio-vibra.c                    | 14 ++++++++++----
+ 3 files changed, 23 insertions(+), 7 deletions(-)
+
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+2.27.0
 
