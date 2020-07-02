@@ -2,111 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6B7921201D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 11:37:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47555212092
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 12:05:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728244AbgGBJhg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jul 2020 05:37:36 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:21681 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726475AbgGBJha (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jul 2020 05:37:30 -0400
-X-UUID: eaf6688f8280499c981c850801bb6627-20200702
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=srCB5XNrPlYp3HSyZlphU1Xk3HZN3j+BE4+7DogmQy4=;
-        b=ahZe316AlRZVKQKpFx8qUSc/9KwNv7eR2m1bhZOhhjy6zwuLS5q+raAqLi/BoTImAln0PWbNIjDX7IHcp22NJbaIwMKQUVQc9J1Xz62N6T4OOMn2ow53jX8ezYmiJGQ5lCKrPDqltBkogMYronch5CCTtYAJxo+7v/X3XvqQyFQ=;
-X-UUID: eaf6688f8280499c981c850801bb6627-20200702
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <miles.chen@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1895597495; Thu, 02 Jul 2020 17:37:25 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 2 Jul 2020 17:37:20 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 2 Jul 2020 17:37:21 +0800
-From:   Miles Chen <miles.chen@mediatek.com>
-To:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
+        id S1728097AbgGBKFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jul 2020 06:05:42 -0400
+Received: from esa3.microchip.iphmx.com ([68.232.153.233]:17783 "EHLO
+        esa3.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726089AbgGBKFm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jul 2020 06:05:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1593684342; x=1625220342;
+  h=references:from:to:cc:subject:in-reply-to:date:
+   message-id:mime-version;
+  bh=RBWjTChbCjPvUe1E+aZiJAR02zh0ahhxuDu7LpVx5kc=;
+  b=PknMzdJwCv7TuAhf28UOgMZJbawmCE9ZdKQmfdWHnLKTJlHUDPfxSal1
+   ZD8igghzOqLm6ROAAvXRPQRVjKfbxgzlRFODmxwsU6tGy+yQZsODXUvcj
+   4lr61xxXjtuREXl6KeX9oPBUBvAEbk0qDwnsumR/fzyHEoslOwJgAe890
+   e7uJQXB+zg/nC2lTvTtVWTvza4fyT9XsIlZABcX9YBF+WEobj3HCZ+F4W
+   Ck7KgqVFenekofGQ8uYhfd/XFiWrESc8dFWorf69odg8QZ5VnqcQBUoDm
+   gb7hYvhp8xnwentBylyqqs6hvYrSFSFMM5a8aVvXNW35zXEX3ovEWCGDh
+   Q==;
+IronPort-SDR: VLUqmLLE5o47q9NlTPvtAiIaITBHkG8uGV4ylYG0DsMy6+P2erE9W/WtNilmUrJNwFm6GKCF53
+ wP847YZnw82CvZmjPjH+0FK9hHwyefm7ayfXUwHRQ+LWwdZE7XhLgc1J4ivuk00UfHv83Z0j5j
+ ox7fYWxHTVuhyQ6vuqwGN/Y+gG+kOYn5Zc5tM4ur/HWFTe2dCaa+5BGWqyRoUIYzoThudV4JW8
+ yQi32t+6Ag/mBPrTGipK4A8Y8pN9K4QoCYU6QYtALLZ3GmQnCnx+Qn0cjNKp7L+EZXGI2nfjmp
+ QgA=
+X-IronPort-AV: E=Sophos;i="5.75,304,1589266800"; 
+   d="scan'208";a="82368183"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Jul 2020 03:05:41 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Thu, 2 Jul 2020 03:05:17 -0700
+Received: from soft-dev15.microsemi.net.microchip.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3
+ via Frontend Transport; Thu, 2 Jul 2020 03:05:34 -0700
+References: <20200619113121.9984-1-lars.povlsen@microchip.com> <20200619113121.9984-4-lars.povlsen@microchip.com> <20200619121107.GE5396@sirena.org.uk> <87imfjxtrq.fsf@soft-dev15.microsemi.net> <20200622121706.GF4560@sirena.org.uk> <878sgddh2l.fsf@soft-dev15.microsemi.net> <20200623140815.GF5582@sirena.org.uk>
+From:   Lars Povlsen <lars.povlsen@microchip.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     Lars Povlsen <lars.povlsen@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <wsd_upstream@mediatek.com>,
-        Yong Wu <yong.wu@mediatek.com>,
-        Chao Hao <chao.hao@mediatek.com>,
-        Yingjoe Chen <yingjoe.chen@mediatek.com>,
-        Miles Chen <miles.chen@mediatek.com>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        David Hildenbrand <david@redhat.com>,
-        Christoph Hellwig <hch@lst.de>
-Subject: [PATCH 4/4] iommu/mediatek: check 4GB mode by reading infracfg
-Date:   Thu, 2 Jul 2020 17:37:20 +0800
-Message-ID: <20200702093721.6063-4-miles.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20200702093721.6063-1-miles.chen@mediatek.com>
-References: <20200702093721.6063-1-miles.chen@mediatek.com>
+        Serge Semin <fancer.lancer@gmail.com>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Peter Rosin <peda@axentia.se>
+Subject: Re: [PATCH v2 3/6] spi: dw: Add Microchip Sparx5 support
+In-Reply-To: <20200623140815.GF5582@sirena.org.uk>
+Date:   Thu, 2 Jul 2020 12:05:32 +0200
+Message-ID: <874kqqkz9v.fsf@soft-dev15.microsemi.net>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-TM-SNTS-SMTP: A048809BF75A2565D4E6E6BBA7AA1D99F242281B24CA77BCBD8A0D61FB421EA72000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SW4gcHJldmlvdXMgZGlzc2N1c2lvbiBbMV0gYW5kIFsyXSwgd2UgZm91bmQgdGhhdCBpdCBpcyBy
-aXNreSB0bw0KdXNlIG1heF9wZm4gb3IgdG90YWxyYW1fcGFnZXMgdG8gdGVsbCBpZiA0R0IgbW9k
-ZSBpcyBlbmFibGVkLg0KDQpDaGVjayA0R0IgbW9kZSBieSByZWFkaW5nIGluZnJhY2ZnIHJlZ2lz
-dGVyLCByZW1vdmUgdGhlIHVzYWdlDQpvZiB0aGUgdW5leHBvcnRlZCBzeW1ib2wgbWF4X3Bmbi4N
-Cg0KWzFdIGh0dHBzOi8vbGttbC5vcmcvbGttbC8yMDIwLzYvMy83MzMNClsyXSBodHRwczovL2xr
-bWwub3JnL2xrbWwvMjAyMC82LzQvMTM2DQoNCkNjOiBNaWtlIFJhcG9wb3J0IDxycHB0QGxpbnV4
-LmlibS5jb20+DQpDYzogRGF2aWQgSGlsZGVuYnJhbmQgPGRhdmlkQHJlZGhhdC5jb20+DQpDYzog
-WW9uZyBXdSA8eW9uZy53dUBtZWRpYXRlay5jb20+DQpDYzogWWluZ2pvZSBDaGVuIDx5aW5nam9l
-LmNoZW5AbWVkaWF0ZWsuY29tPg0KQ2M6IENocmlzdG9waCBIZWxsd2lnIDxoY2hAbHN0LmRlPg0K
-U2lnbmVkLW9mZi1ieTogTWlsZXMgQ2hlbiA8bWlsZXMuY2hlbkBtZWRpYXRlay5jb20+DQotLS0N
-CiBkcml2ZXJzL2lvbW11L210a19pb21tdS5jIHwgMjIgKysrKysrKysrKysrKysrKysrLS0tLQ0K
-IDEgZmlsZSBjaGFuZ2VkLCAxOCBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQ0KDQpkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9pb21tdS9tdGtfaW9tbXUuYyBiL2RyaXZlcnMvaW9tbXUvbXRrX2lv
-bW11LmMNCmluZGV4IDJiZTk2ZjFjZGJkMi4uMDliZTU3YmQ4ZDc0IDEwMDY0NA0KLS0tIGEvZHJp
-dmVycy9pb21tdS9tdGtfaW9tbXUuYw0KKysrIGIvZHJpdmVycy9pb21tdS9tdGtfaW9tbXUuYw0K
-QEAgLTMsNyArMyw2IEBADQogICogQ29weXJpZ2h0IChjKSAyMDE1LTIwMTYgTWVkaWFUZWsgSW5j
-Lg0KICAqIEF1dGhvcjogWW9uZyBXdSA8eW9uZy53dUBtZWRpYXRlay5jb20+DQogICovDQotI2lu
-Y2x1ZGUgPGxpbnV4L21lbWJsb2NrLmg+DQogI2luY2x1ZGUgPGxpbnV4L2J1Zy5oPg0KICNpbmNs
-dWRlIDxsaW51eC9jbGsuaD4NCiAjaW5jbHVkZSA8bGludXgvY29tcG9uZW50Lmg+DQpAQCAtMTUs
-MTEgKzE0LDEzIEBADQogI2luY2x1ZGUgPGxpbnV4L2lvbW11Lmg+DQogI2luY2x1ZGUgPGxpbnV4
-L2lvcG9sbC5oPg0KICNpbmNsdWRlIDxsaW51eC9saXN0Lmg+DQorI2luY2x1ZGUgPGxpbnV4L21m
-ZC9zeXNjb24uaD4NCiAjaW5jbHVkZSA8bGludXgvb2ZfYWRkcmVzcy5oPg0KICNpbmNsdWRlIDxs
-aW51eC9vZl9pb21tdS5oPg0KICNpbmNsdWRlIDxsaW51eC9vZl9pcnEuaD4NCiAjaW5jbHVkZSA8
-bGludXgvb2ZfcGxhdGZvcm0uaD4NCiAjaW5jbHVkZSA8bGludXgvcGxhdGZvcm1fZGV2aWNlLmg+
-DQorI2luY2x1ZGUgPGxpbnV4L3JlZ21hcC5oPg0KICNpbmNsdWRlIDxsaW51eC9zbGFiLmg+DQog
-I2luY2x1ZGUgPGxpbnV4L3NwaW5sb2NrLmg+DQogI2luY2x1ZGUgPGFzbS9iYXJyaWVyLmg+DQpA
-QCAtOTEsNiArOTIsOSBAQA0KICNkZWZpbmUgRl9NTVVfSU5UX0lEX0xBUkJfSUQoYSkJCQkoKChh
-KSA+PiA3KSAmIDB4NykNCiAjZGVmaW5lIEZfTU1VX0lOVF9JRF9QT1JUX0lEKGEpCQkJKCgoYSkg
-Pj4gMikgJiAweDFmKQ0KIA0KKyNkZWZpbmUgUkVHX0lORlJBX01JU0MJCQkJMHhmMDANCisjZGVm
-aW5lIEZfRERSXzRHQl9TVVBQT1JUX0VOCQkJQklUKDEzKQ0KKw0KICNkZWZpbmUgTVRLX1BST1RF
-Q1RfUEFfQUxJR04JCQkxMjgNCiANCiAvKg0KQEAgLTU5OSw4ICs2MDMsMTAgQEAgc3RhdGljIGlu
-dCBtdGtfaW9tbXVfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikNCiAJc3RydWN0
-IHJlc291cmNlICAgICAgICAgKnJlczsNCiAJcmVzb3VyY2Vfc2l6ZV90CQlpb2FkZHI7DQogCXN0
-cnVjdCBjb21wb25lbnRfbWF0Y2ggICptYXRjaCA9IE5VTEw7DQorCXN0cnVjdCByZWdtYXAJCSpp
-bmZyYWNmZ19yZWdtYXA7DQogCXZvaWQgICAgICAgICAgICAgICAgICAgICpwcm90ZWN0Ow0KIAlp
-bnQgICAgICAgICAgICAgICAgICAgICBpLCBsYXJiX25yLCByZXQ7DQorCXUzMgkJCXZhbDsNCiAN
-CiAJZGF0YSA9IGRldm1fa3phbGxvYyhkZXYsIHNpemVvZigqZGF0YSksIEdGUF9LRVJORUwpOw0K
-IAlpZiAoIWRhdGEpDQpAQCAtNjE0LDEwICs2MjAsMTggQEAgc3RhdGljIGludCBtdGtfaW9tbXVf
-cHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikNCiAJCXJldHVybiAtRU5PTUVNOw0K
-IAlkYXRhLT5wcm90ZWN0X2Jhc2UgPSBBTElHTih2aXJ0X3RvX3BoeXMocHJvdGVjdCksIE1US19Q
-Uk9URUNUX1BBX0FMSUdOKTsNCiANCi0JLyogV2hldGhlciB0aGUgY3VycmVudCBkcmFtIGlzIG92
-ZXIgNEdCICovDQotCWRhdGEtPmVuYWJsZV80R0IgPSAhIShtYXhfcGZuID4gKEJJVF9VTEwoMzIp
-ID4+IFBBR0VfU0hJRlQpKTsNCi0JaWYgKCFkYXRhLT5wbGF0X2RhdGEtPmhhc180Z2JfbW9kZSkN
-CisJaWYgKGRhdGEtPnBsYXRfZGF0YS0+aGFzXzRnYl9tb2RlKSB7DQorCQlpbmZyYWNmZ19yZWdt
-YXAgPSBzeXNjb25fcmVnbWFwX2xvb2t1cF9ieV9waGFuZGxlKGRldi0+b2Zfbm9kZSwNCisJCQkJ
-Im1lZGlhdGVrLGluZnJhY2ZnIik7DQorCQlpZiAoSVNfRVJSKGluZnJhY2ZnX3JlZ21hcCkpDQor
-CQkJcmV0dXJuIFBUUl9FUlIoaW5mcmFjZmdfcmVnbWFwKTsNCisJCXJldCA9IHJlZ21hcF9yZWFk
-KGluZnJhY2ZnX3JlZ21hcCwgUkVHX0lORlJBX01JU0MsICZ2YWwpOw0KKwkJaWYgKHJldCkNCisJ
-CQlyZXR1cm4gcmV0Ow0KKwkJZGF0YS0+ZW5hYmxlXzRHQiA9ICEhKHZhbCAmIEZfRERSXzRHQl9T
-VVBQT1JUX0VOKTsNCisJfSBlbHNlIHsNCiAJCWRhdGEtPmVuYWJsZV80R0IgPSBmYWxzZTsNCisJ
-fQ0KIA0KIAlyZXMgPSBwbGF0Zm9ybV9nZXRfcmVzb3VyY2UocGRldiwgSU9SRVNPVVJDRV9NRU0s
-IDApOw0KIAlkYXRhLT5iYXNlID0gZGV2bV9pb3JlbWFwX3Jlc291cmNlKGRldiwgcmVzKTsNCi0t
-IA0KMi4xOC4wDQo=
 
+Mark Brown writes:
+
+> On Tue, Jun 23, 2020 at 03:53:22PM +0200, Lars Povlsen wrote:
+> > Mark Brown writes:
+> 
+> > >If there's a mux that needs to be handled specially that mux should be
+> > >described in DT on the relevant boards, there shouldn't just be
+> > >something hard coded in the controller driver.
+> 
+> > I looked at the spi-mux driver, but that is more for muxing the CS's, as
+> > I understand - not the actual bus segment. I could use it, but it would
+> 
+> It doesn't matter that much exactly what signals get switched I think,
+> we can't really tell by the time we get back to the controller.
+> 
+> > require encoding the bus segment into the CS (double the normal
+> > range). Also, selecting the bus interface is tightly coupled to the
+> > controller - its not an externally constructed board mux.
+> 
+> It sounds like this controller should be describing a mux all the time -
+> if there's completely separate output buses that you can switch between
+> then we'll need to know about that if someone wires up a GPIO chip
+> select.
+
+Mark,
+
+I had to tinker a bit with this to get my head around it.
+
+I added the mux driver, and made the cs/bus configuration reside here -
+all well and done.
+
+For our reference config we have something like:
+
+  mux: mux-controller {
+          compatible = "microchip,sparx5-spi-mux";
+          #mux-control-cells = <0>;
+          mux@0 {
+                  reg = <0>;
+                  microchip,bus-interface = <0>;
+          };
+          mux@e {
+                  reg = <14>;
+                  microchip,bus-interface = <1>;
+          };
+  };
+
+Then I tried to use the existing spi-mux as you suggested. But I
+realized as its really designed for CS muxing I had to instantiate each
+SPI device in its own spi-mux instance, repeating the CS (as we don't
+want that to change). The result was kinda bulky.
+
+An example would be:
+
+  spi0: spi@600104000 {
+          compatible = "microchip,sparx5-spi";
+          spi@0 {
+                  compatible = "spi-mux";
+                  mux-controls = <&mux>;
+                  reg = <0>;
+                  spi-flash@0 {
+                          compatible = "jedec,spi-nor";
+                          reg = <0>;
+                  };
+          };
+          spi@e {
+                  compatible = "spi-mux";
+                  mux-controls = <&mux>;
+                  reg = <14>;
+                  spi-flash@e {
+                          compatible = "spi-nand";
+                          reg = <14>;
+                  };
+          };
+  };
+
+I then looked a bit at other users of the mux framework,
+drivers/mtd/hyperbus/hbmc-am654.c specifically.
+
+I then added direct use of a mux, by the well-established "mux-controls"
+DT property. The result was much cleaner, IMHO, and allows the spi and
+mux to be connected directly in the base sparx5 DT. Code impact was
+really small.
+
+Both examples use the same mux configuration, and as the "mux-controls"
+is established by default in the base spi0 node, this (directly) yields:
+
+&spi0 {
+	spi-flash@0 {
+		compatible = "jedec,spi-nor";
+		reg = <0>;
+	};
+	spi-flash@e {
+		compatible = "spi-nand";
+		reg = <14>;
+	};
+};
+
+I will be sending the new revision of the patches shortly. I look
+forward to your comments.
+
+I also CC'ed Peter Rosin as the MUX subsystem maintainer. Peter, sorry
+for sticking you halfway into a conversation, but I thought you might
+want to be informed. You are also on the recipient list of the v3
+patches, so now you know why...
+
+Sincerely,
+
+-- 
+Lars Povlsen,
+Microchip
