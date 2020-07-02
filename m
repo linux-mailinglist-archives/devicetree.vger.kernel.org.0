@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0B86211965
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 03:37:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F8332118BF
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 03:36:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728553AbgGBBei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jul 2020 21:34:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56388 "EHLO mail.kernel.org"
+        id S1729142AbgGBB0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jul 2020 21:26:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57560 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728189AbgGBBZa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Jul 2020 21:25:30 -0400
+        id S1729133AbgGBB0T (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Jul 2020 21:26:19 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E184D2145D;
-        Thu,  2 Jul 2020 01:25:28 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6E3F320899;
+        Thu,  2 Jul 2020 01:26:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1593653129;
-        bh=30HkcgXNjv8HHhen8WTqMInBwSDwJ9xryGRUgIxvElU=;
+        s=default; t=1593653178;
+        bh=7unQuD6RQF9evWNzPIBBNm4pqs2Zj8iAyTBFtKok13Y=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Gt2ZFrhGiR0G0khkKOEcNY6lCs7D69XLdOEK2r1XRdbhtik0gZkTuPFlA00Ib6yWo
-         Q21oCUy4iaPicit5ge0/0OEnxy73W3g7FqxFZxP/tvgmgrLy9swZ7KWZRfy/qzh3E/
-         w+gx2GmFcvOKjcmsx4mGJJLM7xdhiqp6mbsPuIwI=
+        b=nMZXpvCI3c2PeSERQiIM1IinkpuoWQWaQF8dALoINsLkpvoK9VGmFv1rFtGOcGee7
+         djAMkQy9zcDSVR81ccY0FUjZWEeFL0dgrWBuoC6w96V0jsAx+MQyWSzq4oCnfi7o6l
+         h/pMtsBUCh2soORxPJ2z/ZlHtFF1GXLui2DaW/TM=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Tony Lindgren <tony@atomide.com>, maemo-leste@lists.dyne.org,
@@ -30,12 +30,12 @@ Cc:     Tony Lindgren <tony@atomide.com>, maemo-leste@lists.dyne.org,
         Pavel Machek <pavel@ucw.cz>,
         Sebastian Reichel <sre@kernel.org>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 04/40] ARM: dts: omap4-droid4: Fix spi configuration and increase rate
-Date:   Wed,  1 Jul 2020 21:23:25 -0400
-Message-Id: <20200702012402.2701121-4-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 02/27] ARM: dts: omap4-droid4: Fix spi configuration and increase rate
+Date:   Wed,  1 Jul 2020 21:25:50 -0400
+Message-Id: <20200702012615.2701532-2-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200702012402.2701121-1-sashal@kernel.org>
-References: <20200702012402.2701121-1-sashal@kernel.org>
+In-Reply-To: <20200702012615.2701532-1-sashal@kernel.org>
+References: <20200702012615.2701532-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -74,10 +74,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm/boot/dts/motorola-cpcap-mapphone.dtsi b/arch/arm/boot/dts/motorola-cpcap-mapphone.dtsi
-index 82f7ae030600d..ab91c4ebb1463 100644
+index f57acf8f66b95..75de8134b1d1f 100644
 --- a/arch/arm/boot/dts/motorola-cpcap-mapphone.dtsi
 +++ b/arch/arm/boot/dts/motorola-cpcap-mapphone.dtsi
-@@ -13,8 +13,10 @@ cpcap: pmic@0 {
+@@ -16,8 +16,10 @@ cpcap: pmic@0 {
  		#interrupt-cells = <2>;
  		#address-cells = <1>;
  		#size-cells = <0>;
