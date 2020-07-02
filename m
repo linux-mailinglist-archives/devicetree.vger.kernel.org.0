@@ -2,190 +2,300 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58AA92120C9
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 12:15:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C290221218E
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 12:50:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727819AbgGBKPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jul 2020 06:15:23 -0400
-Received: from esa1.microchip.iphmx.com ([68.232.147.91]:55450 "EHLO
-        esa1.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728320AbgGBKO4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jul 2020 06:14:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1593684895; x=1625220895;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=yDoDZ8DYA1T1BTptNVBI6RCIZ5mnmw6dAD6Z4C4BIDY=;
-  b=SUZxIus9E3VrgmqgzwjuvZa8297WIORcfP3re1KN7Vps5ZQNblyo6xs9
-   lJJoICo5jbuTg9tku03NpBgg6Ef6YmagfLYdtVvs3aMZhuNq8nP4uy4e+
-   2kZxJfoejg4Qn3qOCPVn7Xi9SZ7ue3gX7x3yEnARZmu6RqZS5Q4dpQm2T
-   Xtive6xPMx2sFae+4uZdsr8AirgWL2mXIwRIkkUDgijZtWyKlUg7/LHam
-   MgNappg5SoCiapC21mDqfqzzbyDCzB7mwdbHkUDoVCvECSf9SAflZrhs9
-   mZiE95PlcjnCrkdIGXj6zODiRp03uWXF5Ygl6DFT1S/BHdTftvboCfOrU
-   g==;
-IronPort-SDR: jEhWsPE+LDqDVAmyQIpuCdTd4oDnF77M08tpqeObMABRJ/eP49yEeEbG8eyZxUb0Wn7U5zt0bt
- 5CRI/A/znJINmkNoeoXn4lkBhBYUXRZzHfI+E/p4qfLlkXDIqWO6D7vlZZc86N7PuOU8xkGY4a
- +lg8HCM7j98dsgoQ2jbNeo71bBY04L5r2lRe245/p74LBIlDxEX3hL270lxgW8e2Oc8zQqaSgT
- WeEjCjer9E//rZnMXRPxnCEc1J0j32hzpzxSKg4xxxH/O2yIxGQujy3noaxyj2O+ZB/ZBZ585x
- CCM=
-X-IronPort-AV: E=Sophos;i="5.75,304,1589266800"; 
-   d="scan'208";a="85979797"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Jul 2020 03:14:54 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 2 Jul 2020 03:14:54 -0700
-Received: from soft-dev15.microsemi.net (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Thu, 2 Jul 2020 03:14:31 -0700
-From:   Lars Povlsen <lars.povlsen@microchip.com>
-To:     Mark Brown <broonie@kernel.org>, Peter Rosin <peda@axentia.se>
-CC:     Lars Povlsen <lars.povlsen@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Subject: [PATCH v3 8/8] arm64: dts: sparx5: Add spi-nand devices
-Date:   Thu, 2 Jul 2020 12:13:31 +0200
-Message-ID: <20200702101331.26375-9-lars.povlsen@microchip.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200702101331.26375-1-lars.povlsen@microchip.com>
-References: <20200702101331.26375-1-lars.povlsen@microchip.com>
+        id S1728412AbgGBKt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jul 2020 06:49:59 -0400
+Received: from lb2-smtp-cloud9.xs4all.net ([194.109.24.26]:44943 "EHLO
+        lb2-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726483AbgGBKt7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jul 2020 06:49:59 -0400
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud9.xs4all.net with ESMTPA
+        id qwmtjm2Qp40yDqwmwjeA32; Thu, 02 Jul 2020 12:49:55 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s1;
+        t=1593686995; bh=Scnh+U37EXF9rAnSqwKus4gWDE4nsZdIsrRgN/+Wlxc=;
+        h=Subject:From:To:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=RFqeHtI2NYtK7fjUh7D4GK8eNjERcg7UQBkajXgeo3YNmi8gFPaNJXQLe3ywxcWvk
+         JhfhMqbtU5WsFjmgdBDcxFOS3vN0PY9nVQcNEnzMT1epczBopHlnDkNp3GrJqRt9mF
+         znvWwnpE6fJWB8DUb/XuR4XpA+qBqt3YGJWgbIj27n/Yr7jTiYYqOZVaSd8LowpmuC
+         M7uyWKFnT4+SXOdWJz/SN8aptcxPKQwbI4DwjSRjtGeqgVv10IVopRp6BAI2JWH7GN
+         2TcMGAxKC7bLqRLNKKSpYcfQs5LVZ4yaXPgYRb4BBTDWbETbaCv2azXMWgDmOJx9Se
+         OMQGX1d1xR42Q==
+Subject: Re: [RFC PATCH v2 00/18] Support for Tegra video capture from
+ external sensor
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, frankc@nvidia.com,
+        sakari.ailus@iki.fi, robh+dt@kernel.org, helen.koike@collabora.com
+Cc:     digetx@gmail.com, sboyd@kernel.org, gregkh@linuxfoundation.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org
+References: <1592358094-23459-1-git-send-email-skomatineni@nvidia.com>
+ <b3f63f3f-50b2-e818-2c59-8009c31a9825@xs4all.nl>
+ <f5c84071-46ad-aa6f-0820-1813d4a907c9@nvidia.com>
+ <a60d8f80-312d-fce3-61f5-328e7f2a7a64@xs4all.nl>
+ <72ca3b09-7ca6-7421-4a9d-98326d1af087@nvidia.com>
+ <e8a8a678-e9e8-e941-8dcb-0e747616ba59@nvidia.com>
+ <a606ac84-e0bc-aa85-5799-eeeb544d130d@nvidia.com>
+ <92f25457-f4e5-78ea-d453-2b5cf8f272e8@xs4all.nl>
+Message-ID: <7aaba7d2-56b5-8498-a677-8c59c5edc2dd@xs4all.nl>
+Date:   Thu, 2 Jul 2020 12:49:50 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
+In-Reply-To: <92f25457-f4e5-78ea-d453-2b5cf8f272e8@xs4all.nl>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-CMAE-Envelope: MS4wfNbWK1qA4R7z5gXWH76ErTbfWNbQ32boFhY4CeaxWvUqg4LEyJI4R5wl+FA1aptwrW3qiyOTML4PKJKPuy8V+LisK1QsCWg2Ph8olMJ+0diRILyhoPRw
+ EJ7FLaC2RYDqWgOoV8n4/S/lPDta79Vy9CJbm+AfOqUDDLNxq2oNaR/lBTkXgcUrShXPe+Q+4jjCF+Cx3TzwcGwa7y0Qh3NGUl/DLJqTJFbkIZOFPlNj0xNF
+ 3fW0a8DMsPYafa+5dHmeHmXj74NElngMnxrnFb5Dk5MSw5Qg3C8GA3GvGwyfM2f0WY+DL/o3XH/d9v6P3bsXHzlQS+Yu5jEu6Gccp/HzLgCSTzgvxPlwB18B
+ 7I+i2r1WUmN8ZRAFSS3/nUvhrPR04Vy8kkD+b/gzWtpJfeZDdi/x0WQplzhTp+OkEP81B4T0rjaULGmIoxTNaowMp3m/PLJ4vAryRPJIA/Z2yJAjRV6K/Aqs
+ 9SuSeC9PItZdtUs2Juw/zsLXc0QiLxCkg2GBP8L5g/LfeHC3ZF+MqPqrDvjGHBc8s8suppKFzsB3giyBygLRwozqF0oxjAjywYUKZ4UHBOV6Dsqjyxizx1yA
+ eiGdDxHuOzyasnOEKtFxp4VTu0OiYBI8Erety03m3xZg/MZONFVqZhKfGx6tUcRYJxmlvVNVBaaSziT1mzY7aMRA
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add spi-nand DT nodes to the applicable Sparx5 boards.
+On 01/07/2020 18:54, Hans Verkuil wrote:
+> On 30/06/2020 18:34, Sowjanya Komatineni wrote:
+>>
+>> On 6/30/20 9:17 AM, Sowjanya Komatineni wrote:
+>>>
+>>> On 6/30/20 8:44 AM, Sowjanya Komatineni wrote:
+>>>>
+>>>> On 6/30/20 8:13 AM, Hans Verkuil wrote:
+>>>>> On 30/06/2020 16:58, Sowjanya Komatineni wrote:
+>>>>>> On 6/30/20 2:21 AM, Hans Verkuil wrote:
+>>>>>>> On 17/06/2020 03:41, Sowjanya Komatineni wrote:
+>>>>>>>> This series adds support for video capture from external camera 
+>>>>>>>> sensor to
+>>>>>>>> Tegra video driver.
+>>>>>>>>
+>>>>>>>> Jetson TX1 has camera expansion connector and supports custom 
+>>>>>>>> camera module
+>>>>>>>> designed as per TX1 design specification.
+>>>>>>>>
+>>>>>>>> This series also enables camera capture support for Jetson Nano 
+>>>>>>>> which has
+>>>>>>>> Raspberry PI camera header.
+>>>>>>>>
+>>>>>>>> This series is tested with IMX219 camera sensor.
+>>>>>>> Which tree did you base this on? The media_tree master? Or the 
+>>>>>>> mainline kernel?
+>>>>>> These patches are with linux-next base at the time I sent them out 
+>>>>>> which
+>>>>>> are on 20200616
+>>>>>>> I now have the imx219 detected, but if I try to stream I get this:
+>>>>>>>
+>>>>>>> $ v4l2-ctl --stream-mmap
+>>>>>>> <[  512.840944] video4linux video0: MW_ACK_DONE syncpt timeout: -11
+>>>>>>> [  512.972975] video4linux video0: frame start syncpt timeout: -11
+>>>>>>> <VIDIOC_DQBUF: failed: Input/output error
+>>>>>>> [  513.180770] video4linux video0: MW_ACK_DONE syncpt timeout: -11
+>>>>>>>
+>>>>>>> And then everything hangs and I need to reset.
+>>>>>>>
+>>>>>>> I'm testing with the media_tree master with your patches on top.
+>>>>>>>
+>>>>>>> Regards,
+>>>>>>>
+>>>>>>>     Hans
+>>>>>> Are you using same device tree as I sent offline? It uses CSI A for 
+>>>>>> IMX219.
+>>>>>>
+>>>>>> Does you setup also uses CSI-A as x2 for IMX219?
+>>>>>>
+>>>>>> I tested them on Jetson Nano + IMX219 rasp PI module and also on 
+>>>>>> Jetson
+>>>>>> TX1 + IMX274.
+>>>>>>
+>>>>>> I did not see any issue and am able to capture from both.
+>>>>>>
+>>>>>> Will try again on my side with today's latest linux-next and update 
+>>>>>> result.
+>>>>> Please use the media_tree master, that's what I use as well.
+>>>>>
+>>>>> I did some more testing and there is something weird going on.
+>>>>>
+>>>>> I have a Leopard Imaging camera expansion board (LI-JTX1-MIPI-ADPT) 
+>>>>> with
+>>>>> three camera connectors. See here for the datasheet:
+>>>>>
+>>>>> https://www.leopardimaging.com/uploads/LI-TX1-KIT-IMX274M12-T_datasheet.pdf 
+>>>>>
+>>>>>
+>>>>> The first connector (with an IMX274) causes this error:
+>>>>>
+>>>>> $ v4l2-ctl -d1 --stream-mmap
+>>>>> [  599.265885] video4linux video1: MW_ACK_DONE syncpt timeout: -11
+>>>>> [  599.473883] video4linux video1: MW_ACK_DONE syncpt timeout: -11
+>>>>> [  599.681904] video4linux video1: frame start syncpt timeout: -11
+>>>>> [  599.681909] video4linux video1: MW_ACK_DONE syncpt timeout: -11
+>>>>> <VIDIOC_DQBUF: failed: Input/output error
+>>>>> [  599.897884] video4linux video1: MW_ACK_DONE syncpt timeout: -11
+>>>>>
+>>>>> Similar to the test above where I had an IMX219 connected. Except it 
+>>>>> didn't
+>>>>> hang with the IMX274 (I'm beginning to suspect a locking issue in 
+>>>>> the imx219
+>>>>> driver that is causing the hang, I'll look at that tomorrow).
+>>>>>
+>>>>> If I connect the IMX219 to the middle camera connector, then it 
+>>>>> works fine.
+>>>>> I think I tested this with the IMX274 as well, but I'm not 100% 
+>>>>> certain, also
+>>>>> something to double check tomorrow.
+>>>>>
+>>>>> If I connect the IMX219 or IMX274 to the third camera connector, 
+>>>>> then I get this:
+>>>>
+>>>> Would like to know CSI port mapping to connectors as mipi calibrate 
+>>>> pads cells need to be updated in device tree based on CSI port in use.
+>>>>
+>>>> Will see if I can find that from DS link you sent above.
+>>>>
+>>>>>
+>>>>> $ v4l2-ctl -d0 --stream-mmap
+>>>>> [  820.513866] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>>
+>>>>> [  820.525354] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>>
+>>>>> [  820.536780] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>>
+>>>>> [  820.548222] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>>
+>>>>> [  820.559639] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> <[  820.646931] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [  820.658355] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [  820.669797] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [  820.681216] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [  820.692601] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> <<<<<<<<<<<<<<< 14.50 fps
+>>>>> <<<<<<<<<<<<<<< 14.75 fps
+>>>>> <<<<<<<<<<<<<<< 14.73 fps
+>>>>> <<<<<<<<<<<<<<< 14.80 fps
+>>>>> <<<<<<<<<<<<<[ 825.517854] tegra_mc_irq: 133437 callbacks suppressed
+>>>>> [  825.517874] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [  825.534395] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [  825.545833] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [  825.557280] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [  825.579346] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [  825.590764] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [  825.602188] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [  825.613649] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [  825.625075] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> [  825.645983] tegra-mc 70019000.memory-controller: viw: write 
+>>>>> @0x00000001b5fd08c0: EMEM address decode error (EMEM decode error)
+>>>>> < 14.64 fps
+>>>>> <<<<<<<<<<<<<<<< 14.87 fps
+>>>>> <<<<<<<<<<<<<<< 14.89 fps
+>>>>>
+>>>>> Something is producing EMEM address decode errors. But it is streaming.
+>>>>
+>>>> above memory controller errors may be due to access faults and not 
+>>>> sure why these show up on your setup. I never have these with my 
+>>>> testing.
+>>>>
+>>>> Also I am using CMA alloc of 256MB and not sure if low CMA alloc size 
+>>>> is causing this. Can you try with CMA alloc size of 256MB?
+>>>>
+>>>>>
+>>>>> If I enable the TPG then everything is fine.
+>>>>>
+>>>>> So I have currently three different behaviors for three camera 
+>>>>> connectors.
+>>>>>
+>>>>> Do you have a datasheet for your Jetson TX1 camera board? It could 
+>>>>> be useful
+>>>>> to compare the two.
+>>>>
+>>>> Yeah we have and will send it offline.
+>>>>
+>>>> Also based on connector mapping to corresponding CSI port, 
+>>>> mipi-calibrate pad cell value also need to be changed.
+>>>>
+>>>> Below is for CSI-A
+>>>>
+>>>> nvidia,mipi-calibrate = <&mipi 0x001>
+>>>>> Regards,
+>>>>>
+>>>>>     Hans
+>>> Connector-1 is CSI-AB where you had timeouts.
+>>>
+>>> Connector-2 is CSI-CD and this works for you.
+>>>
+>>> Connector-3 is CSI-EF and this works for streaming from above but 
+>>> there's memory access fault errors (EMEM address decode errors)
+>>>
+>>> These EMEM decode errors are not related to connector but its just 
+>>> they showed up during connector-3 testing I believe. Can you also keep 
+>>> CMA size to 256MB and try?
+>>>
+>>> Not sure if CSI-AB issue with FS and MW_ACK sp timeouts are due to 
+>>> some HW/setup issue. Streaming should work on CSI-AB ports as well 
+>>> just like CSI-CD/EF with proper device tree change for port index and 
+>>> mipi calibrate cells for corresponding ports.
+>>>
+>>> On my setup that I tested IMX274 is on CSI-AB.
+>>>
+>>> Will update my side test results with today's linux-next
+>>
+>> Hans,
+>>
+>> We have this module as well. Will try to get this today for testing and 
+>> will update just to make sure of this combo as well on my side.
+> 
+> Sowjanya,
+> 
+> A quick update: I had to update my u-boot and I ended up reinstalling everything.
+> 
+> And now the problems I described just disappeared. Very strange.
+> 
+> I have yet to verify if the issue with the third camera connector is also solved,
+> I'll do that tomorrow.
 
-Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
----
- arch/arm64/boot/dts/microchip/sparx5.dtsi     | 20 ++++++++++++
- .../arm64/boot/dts/microchip/sparx5_nand.dtsi | 32 +++++++++++++++++++
- .../boot/dts/microchip/sparx5_pcb125.dts      |  7 ++++
- .../boot/dts/microchip/sparx5_pcb134.dts      |  1 +
- .../boot/dts/microchip/sparx5_pcb135.dts      |  1 +
- 5 files changed, 61 insertions(+)
- create mode 100644 arch/arm64/boot/dts/microchip/sparx5_nand.dtsi
+I've now verified the third camera connector with the imx274, and that too works
+fine.
 
-diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-index 2831935a489e1..21a85359d3492 100644
---- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-@@ -210,6 +210,26 @@ gpio: pinctrl@6110101e0 {
- 			interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
- 			#interrupt-cells = <2>;
- 
-+			cs1_pins: cs1-pins {
-+				pins = "GPIO_16";
-+				function = "si";
-+			};
-+
-+			cs2_pins: cs2-pins {
-+				pins = "GPIO_17";
-+				function = "si";
-+			};
-+
-+			cs3_pins: cs3-pins {
-+				pins = "GPIO_18";
-+				function = "si";
-+			};
-+
-+			si2_pins: si2-pins {
-+				pins = "GPIO_39", "GPIO_40", "GPIO_41";
-+				function = "si2";
-+			};
-+
- 			uart_pins: uart-pins {
- 				pins = "GPIO_10", "GPIO_11";
- 				function = "uart";
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_nand.dtsi b/arch/arm64/boot/dts/microchip/sparx5_nand.dtsi
-new file mode 100644
-index 0000000000000..fd9523d9efbe3
---- /dev/null
-+++ b/arch/arm64/boot/dts/microchip/sparx5_nand.dtsi
-@@ -0,0 +1,32 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
-+ */
-+
-+&gpio {
-+	cs14_pins: cs14-pins {
-+		pins = "GPIO_44";
-+		function = "si";
-+	};
-+};
-+
-+&mux {
-+	/* CS14 (NAND) is on SPI2 */
-+	mux@e {
-+		reg = <14>;
-+		microchip,bus-interface = <1>;
-+	};
-+};
-+
-+&spi0 {
-+	pinctrl-0 = <&si2_pins>;
-+	pinctrl-names = "default";
-+	spi-flash@e {
-+		compatible = "spi-nand";
-+		pinctrl-0 = <&cs14_pins>;
-+		pinctrl-names = "default";
-+		spi-max-frequency = <42000000>;
-+		reg = <14>;
-+		snps,rx-sample-delay-ns = <7>;  /* Tune for speed */
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts b/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
-index d8b5d23abfab0..94c4c3fd5a786 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
-@@ -46,6 +46,13 @@ spi-flash@0 {
- 		spi-max-frequency = <8000000>; /* input clock */
- 		reg = <0>; /* CS0 */
- 	};
-+	spi-flash@1 {
-+		compatible = "spi-nand";
-+		pinctrl-0 = <&cs1_pins>;
-+		pinctrl-names = "default";
-+		spi-max-frequency = <8000000>;
-+		reg = <1>; /* CS1 */
-+	};
- };
- 
- &i2c1 {
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb134.dts b/arch/arm64/boot/dts/microchip/sparx5_pcb134.dts
-index feee4e99ff57c..45ca1af7e8500 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb134.dts
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb134.dts
-@@ -5,6 +5,7 @@
- 
- /dts-v1/;
- #include "sparx5_pcb134_board.dtsi"
-+#include "sparx5_nand.dtsi"
- 
- / {
- 	model = "Sparx5 PCB134 Reference Board (NAND)";
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb135.dts b/arch/arm64/boot/dts/microchip/sparx5_pcb135.dts
-index 20e409a9be196..647cdb38b1130 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb135.dts
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb135.dts
-@@ -5,6 +5,7 @@
- 
- /dts-v1/;
- #include "sparx5_pcb135_board.dtsi"
-+#include "sparx5_nand.dtsi"
- 
- / {
- 	model = "Sparx5 PCB135 Reference Board (NAND)";
--- 
-2.27.0
+I did find a few compliance issues in several places, so expect to see some
+patches (mostly in the sensor drivers).
+
+It's all looking pretty good, so thank you for working on this!
+
+Regards,
+
+	Hans
+
+> 
+> But for now you don't have to take any action.
+> 
+> Regards,
+> 
+> 	Hans
+> 
 
