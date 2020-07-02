@@ -2,177 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE3CE212EDD
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 23:29:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD3B1212EF7
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 23:39:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726297AbgGBV3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jul 2020 17:29:07 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:57036 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726098AbgGBV27 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jul 2020 17:28:59 -0400
-Received: from [88.147.89.201] (port=34632 helo=melee.dev.aim)
-        by hostingweb31.netsons.net with esmtpa (Exim 4.93)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1jr6lL-000AXd-B7; Thu, 02 Jul 2020 23:28:55 +0200
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-To:     linux-clk@vger.kernel.org
-Cc:     Luca Ceresoli <luca@lucaceresoli.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Marek Vasut <marek.vasut@gmail.com>
-Subject: [PATCH 5/5] clk: vc5: optionally configure the output drive mode
-Date:   Thu,  2 Jul 2020 23:28:36 +0200
-Message-Id: <20200702212837.10657-5-luca@lucaceresoli.net>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200702212837.10657-1-luca@lucaceresoli.net>
-References: <20200702212837.10657-1-luca@lucaceresoli.net>
+        id S1726194AbgGBVj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jul 2020 17:39:27 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:37166 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725994AbgGBVj1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jul 2020 17:39:27 -0400
+Received: by mail-io1-f68.google.com with SMTP id v6so16797463iob.4;
+        Thu, 02 Jul 2020 14:39:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=cnWwGTygPTxavzAiqzY7CKnWVGYSk3pYOsuHvvBZkC4=;
+        b=tDfwzChmc4pTzqZWFNLofhX55tvv/H+HFFFVCCm26A0Cv6egEHGWJgIgHwQ15q1oGB
+         Yo10PuhJZrYV+mZrbl1tCbF0jdix/rIRXoU0Mq7vIP4AKwOxd1glUGVXRIcDET++TKKI
+         4v/LorEBJ7DFrz+lUcB8I0ks9Fk3kY4gUXdD/2ObUNVyvRyL1i9HaDD+DffbqVxfGl2g
+         MBjKuTN/nHC5AmbJ59henf6m+LDqKv1DGYEK7oP3mR6zzLmyFc3HpXff11dDhm/dyv0Z
+         qKOkvkObdX+clgE2rDnR/z5/YaBCOu4xXYZR/aebAWiFK2IfIQoQ0YyqZtUtC1GZSoMq
+         BHfw==
+X-Gm-Message-State: AOAM531nlUGqf4u+KVi1WFzRqbPDJMpS9VHnOcw4VHmkC+WvpHmB6fti
+        Xf3K9u/bek1xhhwXw5I3Gw==
+X-Google-Smtp-Source: ABdhPJz0EK4pTjFCKLhVkHQ9QaNkHSgPeH3K7fHMeNcyRu216PqAp/vuwsnj4NIgwMWaFKovnxTJ8A==
+X-Received: by 2002:a05:6602:2f0f:: with SMTP id q15mr9550599iow.23.1593725966373;
+        Thu, 02 Jul 2020 14:39:26 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id v5sm4990834ios.54.2020.07.02.14.39.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Jul 2020 14:39:25 -0700 (PDT)
+Received: (nullmailer pid 1769713 invoked by uid 1000);
+        Thu, 02 Jul 2020 21:39:24 -0000
+Date:   Thu, 2 Jul 2020 15:39:24 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: [GIT PULL] Devicetree fixes for 5.8, v2
+Message-ID: <20200702213924.GA1763915@bogus>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Versaclock chips can drive the output pins in several modes: LVDS,
-CMOS, LVPECL etc. Allow configuring the output mode from device tree.
+Linus,
 
-The configuration is optional. If not specified, the mode will not be
-configured and the drive mode will be the chip default.
+Please pull DT fixes for 5.8. I wouldn't normally update dtc at this 
+point in the cycle, but I've been waiting on fixes to land upstream for 
+a while now.
 
-Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
----
- drivers/clk/clk-versaclock5.c | 71 +++++++++++++++++++++++++++++++++++
- 1 file changed, 71 insertions(+)
+Rob
 
-diff --git a/drivers/clk/clk-versaclock5.c b/drivers/clk/clk-versaclock5.c
-index 60c7cf9acde3..eec57286fae0 100644
---- a/drivers/clk/clk-versaclock5.c
-+++ b/drivers/clk/clk-versaclock5.c
-@@ -89,6 +89,8 @@
- 
- /* Clock control register for clock 1,2 */
- #define VC5_CLK_OUTPUT_CFG(idx, n)	(0x60 + ((idx) * 0x2) + (n))
-+#define VC5_CLK_OUTPUT_CFG0_MODE_SHIFT	5
-+#define VC5_CLK_OUTPUT_CFG0_MODE_MASK	GENMASK(7, 5)
- #define VC5_CLK_OUTPUT_CFG1_EN_CLKBUF	BIT(0)
- 
- #define VC5_CLK_OE_SHDN				0x68
-@@ -117,6 +119,23 @@
- /* chip has PFD requency doubler */
- #define VC5_HAS_PFD_FREQ_DBL	BIT(1)
- 
-+/*
-+ * Output modes. Values for VC5_CLK_OUTPUT_CFG(idx,0) bits [7:5].
-+ * IDT_VC5_OUT_UNKNOWN = keep the hardware default.
-+ */
-+enum vc5_out_mode {
-+	IDT_VC5_OUT_MODE_LVPECL   = 0,
-+	IDT_VC5_OUT_MODE_CMOS     = 1,
-+	IDT_VC5_OUT_MODE_HCSL33   = 2,
-+	IDT_VC5_OUT_MODE_LVDS     = 3,
-+	IDT_VC5_OUT_MODE_CMOS2    = 4,
-+	IDT_VC5_OUT_MODE_CMOSD    = 5,
-+	IDT_VC5_OUT_MODE_HCSL25   = 6,
-+
-+	IDT_VC5_OUT_NUM_MODES,
-+	IDT_VC5_OUT_MODE_UNKNOWN  = 99,
-+};
-+
- /* Supported IDT VC5 models. */
- enum vc5_model {
- 	IDT_VC5_5P49V5923,
-@@ -149,6 +168,7 @@ struct vc5_out_data {
- 	struct clk_hw		hw;
- 	struct vc5_driver_data	*vc5;
- 	unsigned int		num;
-+	enum vc5_out_mode	mode:8;
- };
- 
- struct vc5_driver_data {
-@@ -593,6 +613,13 @@ static int vc5_clk_out_prepare(struct clk_hw *hw)
- 			return ret;
- 	}
- 
-+	/* Set output drive mode */
-+	if (hwdata->mode != IDT_VC5_OUT_MODE_UNKNOWN)
-+		regmap_update_bits(vc5->regmap,
-+				   VC5_CLK_OUTPUT_CFG(hwdata->num, 0),
-+				   VC5_CLK_OUTPUT_CFG0_MODE_MASK,
-+				   (hwdata->mode << VC5_CLK_OUTPUT_CFG0_MODE_SHIFT));
-+
- 	/* Enable the clock buffer */
- 	regmap_update_bits(vc5->regmap, VC5_CLK_OUTPUT_CFG(hwdata->num, 1),
- 			   VC5_CLK_OUTPUT_CFG1_EN_CLKBUF,
-@@ -696,6 +723,46 @@ static int vc5_map_index_to_output(const enum vc5_model model,
- 	}
- }
- 
-+static int vc5_parse_dt(struct vc5_driver_data *vc5)
-+{
-+	struct device *dev = &vc5->client->dev;
-+	struct device_node *np = dev->of_node;
-+	struct device_node *child;
-+	u32 val;
-+	int n;
-+
-+	for (n = 1; n < vc5->chip_info->clk_out_cnt; n++)
-+		vc5->clk_out[n].mode = IDT_VC5_OUT_MODE_UNKNOWN;
-+
-+	for_each_child_of_node(np, child) {
-+		if (of_property_read_u32(child, "reg", &n)) {
-+			dev_err(dev, "%pOF: missing reg property\n", child);
-+			break;
-+		}
-+
-+		if (n == 0 || n >= vc5->chip_info->clk_out_cnt) {
-+			dev_err(dev, "%pOF: invalid reg %d\n", child, n);
-+			break;
-+		}
-+
-+		if (!of_property_read_u32(child, "idt,drive-mode", &val)) {
-+			if (val >= IDT_VC5_OUT_NUM_MODES) {
-+				dev_err(dev, "%pOF: invalid idt,drive-mode %u\n",
-+					child, val);
-+				break;
-+			}
-+			vc5->clk_out[n].mode = val;
-+		}
-+	}
-+
-+	if (child) {
-+		of_node_put(child);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
- static const struct of_device_id clk_vc5_of_match[];
- 
- static int vc5_probe(struct i2c_client *client,
-@@ -723,6 +790,10 @@ static int vc5_probe(struct i2c_client *client,
- 	if (PTR_ERR(vc5->pin_clkin) == -EPROBE_DEFER)
- 		return -EPROBE_DEFER;
- 
-+	ret = vc5_parse_dt(vc5);
-+	if (ret)
-+		return ret;
-+
- 	vc5->regmap = devm_regmap_init_i2c(client, &vc5_regmap_config);
- 	if (IS_ERR(vc5->regmap)) {
- 		dev_err(&client->dev, "failed to allocate register map\n");
--- 
-2.27.0
 
+The following changes since commit b3a9e3b9622ae10064826dccb4f7a52bd88c7407:
+
+  Linux 5.8-rc1 (2020-06-14 12:45:04 -0700)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.8-2
+
+for you to fetch changes up to 0115e6c98c22f3fc7ff7da2a41480483abe95b37:
+
+  dt-bindings: clock: imx: Fix e-mail address (2020-07-01 16:29:11 -0600)
+
+----------------------------------------------------------------
+Devicetree fixes for v5.8, take 2:
+
+- Sync dtc to upstream to pick up fixes for I2C bus checks and quiet
+  warnings
+
+- Various fixes for DT binding check warnings
+
+- A couple of build fixes/improvements for binding checks
+
+- ReST formatting improvements for writing-schema.rst
+
+- Document reference fixes
+
+----------------------------------------------------------------
+Fabio Estevam (5):
+      dt-bindings: usb: aspeed: Remove the leading zeroes
+      dt-bindings: display: arm: versatile: Pass the sysreg unit name
+      dt-bindings: thermal: Remove soc unit address
+      dt-bindings: thermal: k3: Fix the reg property
+      dt-bindings: clock: imx: Fix e-mail address
+
+Flavio Suligoi (1):
+      doc: devicetree: bindings: fix spelling mistake
+
+Kangmin Park (1):
+      dt-bindings: mailbox: zynqmp_ipi: fix unit address
+
+Masahiro Yamada (4):
+      dt-bindings: bus: uniphier-system-bus: fix warning in example
+      dt-bindings: fix error in 'make clean' after 'make dt_binding_check'
+      dt-bindings: do not build processed-schema.yaml for 'make dt_binding_check'
+      dt-bindings: copy process-schema-examples.yaml to process-schema.yaml
+
+Mauro Carvalho Chehab (5):
+      dt: update a reference for reneases pcar file renamed to yaml
+      dt: fix broken links due to txt->yaml renames
+      dt: Fix broken references to renamed docs
+      dt: fix reference to olpc,xo1.75-ec.txt
+      docs: dt: minor adjustments at writing-schema.rst
+
+Rob Herring (1):
+      scripts/dtc: Update to upstream version v1.6.0-11-g9d7888cbf19c
+
+ Documentation/devicetree/bindings/Makefile         | 38 +++++++++++++++------
+ .../devicetree/bindings/arm/freescale/fsl,scu.txt  |  2 +-
+ .../bus/socionext,uniphier-system-bus.yaml         |  4 +--
+ .../devicetree/bindings/clock/imx27-clock.yaml     |  2 +-
+ .../devicetree/bindings/clock/imx31-clock.yaml     |  2 +-
+ .../devicetree/bindings/clock/imx5-clock.yaml      |  2 +-
+ .../devicetree/bindings/display/bridge/sii902x.txt |  2 +-
+ .../bindings/display/imx/fsl-imx-drm.txt           |  4 +--
+ .../devicetree/bindings/display/imx/ldb.txt        |  4 +--
+ .../display/panel/arm,versatile-tft-panel.yaml     |  2 +-
+ .../bindings/display/rockchip/rockchip-drm.yaml    |  2 +-
+ .../bindings/gpio/mediatek,mt7621-gpio.txt         |  2 +-
+ .../bindings/interrupt-controller/csky,mpintc.txt  |  2 +-
+ .../bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt   |  2 +-
+ .../devicetree/bindings/misc/olpc,xo1.75-ec.txt    |  2 +-
+ .../devicetree/bindings/net/mediatek-bluetooth.txt |  2 +-
+ .../bindings/pinctrl/renesas,pfc-pinctrl.txt       |  2 +-
+ .../devicetree/bindings/sound/audio-graph-card.txt |  2 +-
+ .../devicetree/bindings/sound/st,sti-asoc-card.txt |  2 +-
+ .../devicetree/bindings/spi/qcom,spi-geni-qcom.txt |  2 +-
+ .../bindings/thermal/thermal-sensor.yaml           |  2 +-
+ .../devicetree/bindings/thermal/thermal-zones.yaml |  2 +-
+ .../bindings/thermal/ti,am654-thermal.yaml         |  2 +-
+ .../devicetree/bindings/timer/csky,mptimer.txt     |  2 +-
+ .../devicetree/bindings/usb/aspeed,usb-vhub.yaml   |  4 +--
+ Documentation/devicetree/writing-schema.rst        |  9 +++--
+ Documentation/mips/ingenic-tcu.rst                 |  2 +-
+ MAINTAINERS                                        |  8 ++---
+ scripts/Makefile.lib                               |  7 +++-
+ scripts/dtc/checks.c                               | 39 ++++++++++++++++++++--
+ scripts/dtc/dtc.h                                  | 31 +++++++++++++++++
+ scripts/dtc/flattree.c                             |  2 +-
+ scripts/dtc/libfdt/fdt_rw.c                        |  2 +-
+ scripts/dtc/libfdt/fdt_sw.c                        |  2 +-
+ scripts/dtc/libfdt/libfdt.h                        |  8 +++++
+ scripts/dtc/treesource.c                           |  8 ++---
+ scripts/dtc/version_gen.h                          |  2 +-
+ scripts/dtc/yamltree.c                             |  6 ++--
+ 38 files changed, 159 insertions(+), 61 deletions(-)
