@@ -2,152 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A300212DB9
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 22:17:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C553B212DC6
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 22:19:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726206AbgGBURH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jul 2020 16:17:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44792 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726150AbgGBURG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jul 2020 16:17:06 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC08DC08C5DF
-        for <devicetree@vger.kernel.org>; Thu,  2 Jul 2020 13:17:05 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id n23so33909845ljh.7
-        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2020 13:17:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=gzH+omRURB7g5dnoNMP6PMHslLf/Y7F/kj6XzNA/QUw=;
-        b=mGVQsM1OHmkNMuQKfEJYsFI5quyzsuJsFTAUZWJ/6KyBegagF4WknJv8hivqEbilbd
-         0iqCOMqN0lqbLtp6iy0H6LpC2Me+ocoD+Q2lm7mfie7rwf/yhiPBDkl60nOiuIs9/1JV
-         Q6l/zKH9YBlnHxcV2R6Bp/FhIh+Jimc5V+21skqNt29/8oNAgjYRHEGBxLqlUdG9NsiB
-         842yg9EimH7LtQKfGIM2EptqxVipxSrbMkoYSSiRpUsZEUPtdud1fFvHZ6ex+csGIwai
-         TaKVOpdNjWEhMuAaqmf+XoPlc45UO6X/u9lb8TRI3aUJgBeA2CGOhduk3EnpZsnB1vc2
-         8/zQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=gzH+omRURB7g5dnoNMP6PMHslLf/Y7F/kj6XzNA/QUw=;
-        b=ahi5PcB4VKiTgymHdQu/bn1Wt5PdNMseZvrQisnXhTR2hm4MgRrh6P8ySdPeKAUxWs
-         dIL7xytJyU4CStXFFaojSqgAqo3WQLoqYqrpt/9X/tMNgW6LDopo5e+QPmq7oVgkfL6n
-         O5FWnqhdPYQ7I0yzR1LLeu/xfSZycdXfBNgX7QkW2n/CCHdwI2JMyvt1kBpvhZ+AQWXX
-         nsHv40Ttg2lebNmA/Ombb6jkKZn3a+CG3SsgrgAOBiKSXU2DU+Y9/0W7a7ifLz/oOMeX
-         /iAwsmeY9g7PdLPwGbs7tbE9zvPVgTAGiDObrlOxgWMuAOZssncDhunsglR72OBCAZ8y
-         8u+g==
-X-Gm-Message-State: AOAM532x48iVxmZ2zSuKqx9t8V8tvVvFldtLh8o09qCR7GMm7ot1093u
-        zlnnvn+iaTEqrO+XF97/qA1xXQ==
-X-Google-Smtp-Source: ABdhPJyAEBFVxmo+Nfl2SUUNGRJI1G7JcT5WyW5G2pp8pha1D7djhhHUEvpahtR9RO3iOMUzRApxJg==
-X-Received: by 2002:a2e:98d0:: with SMTP id s16mr7703772ljj.457.1593721024303;
-        Thu, 02 Jul 2020 13:17:04 -0700 (PDT)
-Received: from localhost.localdomain ([83.68.95.66])
-        by smtp.gmail.com with ESMTPSA id y2sm3320372lji.8.2020.07.02.13.17.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jul 2020 13:17:03 -0700 (PDT)
-From:   Tomasz Nowicki <tn@semihalf.com>
-To:     will@kernel.org, robin.murphy@arm.com, joro@8bytes.org,
-        gregory.clement@bootlin.com, robh+dt@kernel.org, hannah@marvell.com
-Cc:     linux-kernel@vger.kernel.org, iommu@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, catalin.marinas@arm.com,
-        nadavh@marvell.com, linux-arm-kernel@lists.infradead.org,
-        mw@semihalf.com, Tomasz Nowicki <tn@semihalf.com>
-Subject: [PATCH v3 4/4] arm64: dts: marvell: add SMMU support
-Date:   Thu,  2 Jul 2020 22:16:33 +0200
-Message-Id: <20200702201633.22693-5-tn@semihalf.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200702201633.22693-1-tn@semihalf.com>
-References: <20200702201633.22693-1-tn@semihalf.com>
+        id S1726178AbgGBUTV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jul 2020 16:19:21 -0400
+Received: from smtprelay0192.hostedemail.com ([216.40.44.192]:47470 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725937AbgGBUTU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jul 2020 16:19:20 -0400
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay01.hostedemail.com (Postfix) with ESMTP id E89C7100E7B40;
+        Thu,  2 Jul 2020 20:19:18 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 50,0,0,,d41d8cd98f00b204,joe@perches.com,,RULES_HIT:41:355:379:599:800:960:967:973:982:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1542:1593:1594:1711:1730:1747:1777:1792:2197:2199:2393:2525:2553:2561:2564:2682:2685:2828:2829:2859:2902:2933:2937:2939:2942:2945:2947:2951:2954:3022:3138:3139:3140:3141:3142:3354:3622:3653:3865:3866:3867:3868:3870:3872:3873:3874:3934:3936:3938:3941:3944:3947:3950:3953:3956:3959:4321:5007:6117:6742:6743:7903:7914:9010:9025:9040:10004:10400:10848:10967:11026:11232:11658:11914:12043:12297:12438:12679:12740:12760:12895:13095:13439:14181:14659:14721:21080:21221:21433:21451:21627:21740:21819:21881:21939:30022:30054:30062:30090:30091,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:2,LUA_SUMMARY:none
+X-HE-Tag: feast33_4f102f026e8c
+X-Filterd-Recvd-Size: 3791
+Received: from XPS-9350.home (unknown [47.151.133.149])
+        (Authenticated sender: joe@perches.com)
+        by omf11.hostedemail.com (Postfix) with ESMTPA;
+        Thu,  2 Jul 2020 20:19:14 +0000 (UTC)
+Message-ID: <66df632598aeafc48ecb15434e3d997438414e7f.camel@perches.com>
+Subject: Re: PCI: Replace lkml.org, spinics, gmane with lore.kernel.org
+From:   Joe Perches <joe@perches.com>
+To:     Jonathan Corbet <corbet@lwn.net>,
+        Bjorn Helgaas <helgaas@kernel.org>
+Cc:     "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        bhelgaas@google.com, robh+dt@kernel.org, tglx@linutronix.de,
+        mingo@redhat.com, bp@alien8.de, x86@kernel.org, hpa@zytor.com,
+        kishon@ti.com, lorenzo.pieralisi@arm.com, hongxing.zhu@nxp.com,
+        l.stach@pengutronix.de, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, m-karicheri2@ti.com, songxiaowei@hisilicon.com,
+        wangbinghui@hisilicon.com, amurray@thegoodpenguin.co.uk,
+        sathyanarayanan.kuppuswamy@linux.intel.com, hkallweit1@gmail.com,
+        rafael.j.wysocki@intel.com, rdunlap@infradead.org,
+        linux-pci@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Date:   Thu, 02 Jul 2020 13:19:12 -0700
+In-Reply-To: <707b05c95ae3292a6b9eb04e146b1f1f6d52c125.camel@perches.com>
+References: <20200627103050.71712-1-grandmaster@al2klimov.de>
+         <20200630180917.GA3455699@bjorn-Precision-5520>
+         <20200630140417.3a2dba67@lwn.net>
+         <707b05c95ae3292a6b9eb04e146b1f1f6d52c125.camel@perches.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.36.3-0ubuntu1 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcin Wojtas <mw@semihalf.com>
+On Tue, 2020-06-30 at 22:35 -0700, Joe Perches wrote:
+> On Tue, 2020-06-30 at 14:04 -0600, Jonathan Corbet wrote:
+> > On Tue, 30 Jun 2020 13:09:17 -0500
+> > Bjorn Helgaas <helgaas@kernel.org> wrote:
+> > 
+> > > PCI: Replace lkml.org, spinics, gmane with lore.kernel.org
+> > > 
+> > > The lkml.org, spinics.net, and gmane.org archives are not very reliable
+> > > and, in some cases, not even easily accessible.  Replace links to them with
+> > > links to lore.kernel.org, the archives hosted by kernel.org.
+> > > 
+> > > I found the gmane items via the Wayback Machine archive at
+> > > https://web.archive.org/.
+> > 
+> > Heh...now *that* sounds like a project that could generate a lot of churn,
+> > and perhaps even be worth it.  Settling on a consistent (and working!)
+> > email archive would improve the docs quite a bit.  I'll add that to the
+> > list...
+> 
+> At least for the lkml.org/lkml links
+> here's the current -next diff done by a
+> script that looks at the message-id of
+> each lkml.org link.
 
-Add IOMMU node for Marvell AP806 based SoCs together with platform
-and PCI device Stream ID mapping.
+btw: if you want to run the script for specific
+paths, here's the script.
 
-Signed-off-by: Marcin Wojtas <mw@semihalf.com>
-Signed-off-by: Tomasz Nowicki <tn@semihalf.com>
+You could run it using:
+
+bash convert_lkml_to_lore.sh <path>
+
 ---
- arch/arm64/boot/dts/marvell/armada-8040.dtsi  | 36 +++++++++++++++++++
- arch/arm64/boot/dts/marvell/armada-ap80x.dtsi | 17 +++++++++
- 2 files changed, 53 insertions(+)
+$ cat convert_lkml_to_lore.sh
+#!/bin/bash
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-8040.dtsi b/arch/arm64/boot/dts/marvell/armada-8040.dtsi
-index 7699b19224c2..25c1df709f72 100644
---- a/arch/arm64/boot/dts/marvell/armada-8040.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-8040.dtsi
-@@ -23,3 +23,39 @@
- &cp0_rtc {
- 	status = "disabled";
- };
-+
-+&cp0_usb3_0 {
-+	iommus = <&smmu 0x440>;
-+};
-+
-+&cp0_usb3_1 {
-+	iommus = <&smmu 0x441>;
-+};
-+
-+&cp0_sata0 {
-+	iommus = <&smmu 0x444>;
-+};
-+
-+&cp0_sdhci0 {
-+	iommus = <&smmu 0x445>;
-+};
-+
-+&cp1_sata0 {
-+	iommus = <&smmu 0x454>;
-+};
-+
-+&cp1_usb3_0 {
-+	iommus = <&smmu 0x450>;
-+};
-+
-+&cp1_usb3_1 {
-+	iommus = <&smmu 0x451>;
-+};
-+
-+&cp0_pcie0 {
-+	iommu-map =
-+		<0x0   &smmu 0x480 0x20>,
-+		<0x100 &smmu 0x4a0 0x20>,
-+		<0x200 &smmu 0x4c0 0x20>;
-+	iommu-map-mask = <0x031f>;
-+};
-diff --git a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi b/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
-index 7f9b9a647717..ded8b8082d79 100644
---- a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
-@@ -56,6 +56,23 @@
- 			compatible = "simple-bus";
- 			ranges = <0x0 0x0 0xf0000000 0x1000000>;
- 
-+			smmu: iommu@5000000 {
-+				compatible = "marvell,ap806-smmu-500", "arm,mmu-500";
-+				reg = <0x100000 0x100000>;
-+				dma-coherent;
-+				#iommu-cells = <1>;
-+				#global-interrupts = <1>;
-+				interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-+			};
-+
- 			gic: interrupt-controller@210000 {
- 				compatible = "arm,gic-400";
- 				#interrupt-cells = <3>;
--- 
-2.17.1
+cvt_lkml_to_lore ()
+{
+    tmpfile=$(mktemp ./.cvt_links.XXXXXXX)
+
+    header=$(echo $1 | sed 's@/lkml/@/lkml/headers/@')
+
+    wget -qO - $header > $tmpfile
+    if [[ $? == 0 ]] ; then 
+	link=$(grep -i '^Message-Id:' $tmpfile | head -1 | \
+		   sed -r -e 's/^\s*Message-Id:\s*<\s*//' -e  's/\s*>\s*$//' -e 's@^@https://lore.kernel.org/r/@')
+	#    echo "testlink: $link"
+	if [ -n "$link" ] ; then
+	    wget -qO - $link > /dev/null
+	    if [[ $? == 0 ]] ; then
+		echo $link
+	    fi
+	fi
+    fi
+
+    rm -f $tmpfile
+}
+
+git grep -P -o "\bhttps?://(?:www.)?lkml.org/lkml[\/\w]+" $@ |
+    while read line ; do
+	echo $line
+	file=$(echo $line | cut -f1 -d':')
+	link=$(echo $line | cut -f2- -d':')
+	newlink=$(cvt_lkml_to_lore $link)
+	if [[ -n "$newlink" ]] ; then
+	    sed -i -e "s#\b$link\b#$newlink#" $file
+	fi
+    done
+
 
