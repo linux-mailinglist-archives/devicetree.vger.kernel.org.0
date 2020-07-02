@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4AEB212DBB
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 22:17:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A300212DB9
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 22:17:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726258AbgGBURN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jul 2020 16:17:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44782 "EHLO
+        id S1726206AbgGBURH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jul 2020 16:17:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726033AbgGBURE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jul 2020 16:17:04 -0400
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBB42C08C5C1
-        for <devicetree@vger.kernel.org>; Thu,  2 Jul 2020 13:17:03 -0700 (PDT)
-Received: by mail-lf1-x144.google.com with SMTP id u25so17006747lfm.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2020 13:17:03 -0700 (PDT)
+        with ESMTP id S1726150AbgGBURG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jul 2020 16:17:06 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC08DC08C5DF
+        for <devicetree@vger.kernel.org>; Thu,  2 Jul 2020 13:17:05 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id n23so33909845ljh.7
+        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2020 13:17:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=semihalf-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=9CjV5IRbtLXef4ZCaeYQurLNNMYOTEz6UYo91B3a5us=;
-        b=k0iCN5ihLSHYr/tu3lX8IHxHRFnBO0uko2hOdV4yefDcfwPQNH0zao1tLfjU7VdtDp
-         yzwD13qE4V91Qdu1YysJEf4ruLqoH+zF7N2yhUcqHPuGZtHvijipXrXSor25eaBQRXxf
-         4WRPpyYpOACNSVtDpQgLWzOhjBj/WJMkNzUyE8OeeG/PENbRDXcJ1tK9Gl6aMe6EjGcg
-         O8BYLzwF9uBTPabqhpVVkeTZ2V7RnNpCI1ZGvgAN9J/9sxPulR8jZlF+woDcaWTtjcmv
-         5sITNIpuzVE3tV1Mv3K6AyD6plDTzYeP342sKCeOSA18wsHZ0Xcaup89hlzLtP3zFw/y
-         BT6w==
+        bh=gzH+omRURB7g5dnoNMP6PMHslLf/Y7F/kj6XzNA/QUw=;
+        b=mGVQsM1OHmkNMuQKfEJYsFI5quyzsuJsFTAUZWJ/6KyBegagF4WknJv8hivqEbilbd
+         0iqCOMqN0lqbLtp6iy0H6LpC2Me+ocoD+Q2lm7mfie7rwf/yhiPBDkl60nOiuIs9/1JV
+         Q6l/zKH9YBlnHxcV2R6Bp/FhIh+Jimc5V+21skqNt29/8oNAgjYRHEGBxLqlUdG9NsiB
+         842yg9EimH7LtQKfGIM2EptqxVipxSrbMkoYSSiRpUsZEUPtdud1fFvHZ6ex+csGIwai
+         TaKVOpdNjWEhMuAaqmf+XoPlc45UO6X/u9lb8TRI3aUJgBeA2CGOhduk3EnpZsnB1vc2
+         8/zQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=9CjV5IRbtLXef4ZCaeYQurLNNMYOTEz6UYo91B3a5us=;
-        b=jQ4POMEEPoZPx/hQIPYuFkOlBH1QMOWu8A/UfPqWcFyW3QdXRbbq3R6Wknm6UTSPIl
-         q9ZK0cJoFi92b2yapd+2ZY6Pe8zJUG23QAXhCmHCv8kyT1Uqj7pmbKxNbCHCCjHM5A2/
-         UtDIF2lgDim6uhbv1pRAcfi1mrdOEEOfI7UZY81usW31C7Cam9w0dPIojb1zU/Rl0SVM
-         rQ9u6f7FIFnJcuYwQChEJUTwwX3I2Hf+/7K0Nr1k4wiltRW1DTDE3II4TBiEC2Q6rbgy
-         Hvi1qJqsYAoEzoFfA2sCvVOzxIhARWRmLQkhlI1upS8d4xG7e6DTmhk4Zr8paaqQJQbp
-         vEug==
-X-Gm-Message-State: AOAM5334R6YD3gvQkzG8pBQbZcmr+USELIUIhB2e9GorhDB1o35I7DaM
-        Cdh5b1RFOmObQFTiMGZ/MaNEQQ==
-X-Google-Smtp-Source: ABdhPJxTvF+/sQ/1u1yKMPhEvQ5mwhQosMRjvbLgIX8F/hyPFunxwmUI84tWTJ/RmeamcAMTQWMgCQ==
-X-Received: by 2002:a05:6512:20f:: with SMTP id a15mr19339346lfo.118.1593721022420;
-        Thu, 02 Jul 2020 13:17:02 -0700 (PDT)
+        bh=gzH+omRURB7g5dnoNMP6PMHslLf/Y7F/kj6XzNA/QUw=;
+        b=ahi5PcB4VKiTgymHdQu/bn1Wt5PdNMseZvrQisnXhTR2hm4MgRrh6P8ySdPeKAUxWs
+         dIL7xytJyU4CStXFFaojSqgAqo3WQLoqYqrpt/9X/tMNgW6LDopo5e+QPmq7oVgkfL6n
+         O5FWnqhdPYQ7I0yzR1LLeu/xfSZycdXfBNgX7QkW2n/CCHdwI2JMyvt1kBpvhZ+AQWXX
+         nsHv40Ttg2lebNmA/Ombb6jkKZn3a+CG3SsgrgAOBiKSXU2DU+Y9/0W7a7ifLz/oOMeX
+         /iAwsmeY9g7PdLPwGbs7tbE9zvPVgTAGiDObrlOxgWMuAOZssncDhunsglR72OBCAZ8y
+         8u+g==
+X-Gm-Message-State: AOAM532x48iVxmZ2zSuKqx9t8V8tvVvFldtLh8o09qCR7GMm7ot1093u
+        zlnnvn+iaTEqrO+XF97/qA1xXQ==
+X-Google-Smtp-Source: ABdhPJyAEBFVxmo+Nfl2SUUNGRJI1G7JcT5WyW5G2pp8pha1D7djhhHUEvpahtR9RO3iOMUzRApxJg==
+X-Received: by 2002:a2e:98d0:: with SMTP id s16mr7703772ljj.457.1593721024303;
+        Thu, 02 Jul 2020 13:17:04 -0700 (PDT)
 Received: from localhost.localdomain ([83.68.95.66])
-        by smtp.gmail.com with ESMTPSA id y2sm3320372lji.8.2020.07.02.13.17.01
+        by smtp.gmail.com with ESMTPSA id y2sm3320372lji.8.2020.07.02.13.17.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jul 2020 13:17:01 -0700 (PDT)
+        Thu, 02 Jul 2020 13:17:03 -0700 (PDT)
 From:   Tomasz Nowicki <tn@semihalf.com>
 To:     will@kernel.org, robin.murphy@arm.com, joro@8bytes.org,
         gregory.clement@bootlin.com, robh+dt@kernel.org, hannah@marvell.com
@@ -53,9 +53,9 @@ Cc:     linux-kernel@vger.kernel.org, iommu@lists.linux-foundation.org,
         devicetree@vger.kernel.org, catalin.marinas@arm.com,
         nadavh@marvell.com, linux-arm-kernel@lists.infradead.org,
         mw@semihalf.com, Tomasz Nowicki <tn@semihalf.com>
-Subject: [PATCH v3 3/4] dt-bindings: arm-smmu: add compatible string for Marvell Armada-AP806 SMMU-500
-Date:   Thu,  2 Jul 2020 22:16:32 +0200
-Message-Id: <20200702201633.22693-4-tn@semihalf.com>
+Subject: [PATCH v3 4/4] arm64: dts: marvell: add SMMU support
+Date:   Thu,  2 Jul 2020 22:16:33 +0200
+Message-Id: <20200702201633.22693-5-tn@semihalf.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200702201633.22693-1-tn@semihalf.com>
 References: <20200702201633.22693-1-tn@semihalf.com>
@@ -64,35 +64,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add specific compatible string for Marvell usage due to errata of
-accessing 64bits registers of ARM SMMU, in AP806.
+From: Marcin Wojtas <mw@semihalf.com>
 
-AP806 SoC uses the generic ARM-MMU500, and there's no specific
-implementation of Marvell, this compatible is used for errata only.
+Add IOMMU node for Marvell AP806 based SoCs together with platform
+and PCI device Stream ID mapping.
 
-Signed-off-by: Hanna Hawa <hannah@marvell.com>
-Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+Signed-off-by: Marcin Wojtas <mw@semihalf.com>
 Signed-off-by: Tomasz Nowicki <tn@semihalf.com>
 ---
- Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/arm64/boot/dts/marvell/armada-8040.dtsi  | 36 +++++++++++++++++++
+ arch/arm64/boot/dts/marvell/armada-ap80x.dtsi | 17 +++++++++
+ 2 files changed, 53 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-index d7ceb4c34423..7beca9c00b12 100644
---- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-+++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-@@ -38,6 +38,11 @@ properties:
-               - qcom,sc7180-smmu-500
-               - qcom,sdm845-smmu-500
-           - const: arm,mmu-500
-+      - description: Marvell SoCs implementing "arm,mmu-500"
-+        items:
-+          - enum:
-+              - marvell,ap806-smmu-500
-+          - const: arm,mmu-500
-       - items:
-           - const: arm,mmu-500
-           - const: arm,smmu-v2
+diff --git a/arch/arm64/boot/dts/marvell/armada-8040.dtsi b/arch/arm64/boot/dts/marvell/armada-8040.dtsi
+index 7699b19224c2..25c1df709f72 100644
+--- a/arch/arm64/boot/dts/marvell/armada-8040.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-8040.dtsi
+@@ -23,3 +23,39 @@
+ &cp0_rtc {
+ 	status = "disabled";
+ };
++
++&cp0_usb3_0 {
++	iommus = <&smmu 0x440>;
++};
++
++&cp0_usb3_1 {
++	iommus = <&smmu 0x441>;
++};
++
++&cp0_sata0 {
++	iommus = <&smmu 0x444>;
++};
++
++&cp0_sdhci0 {
++	iommus = <&smmu 0x445>;
++};
++
++&cp1_sata0 {
++	iommus = <&smmu 0x454>;
++};
++
++&cp1_usb3_0 {
++	iommus = <&smmu 0x450>;
++};
++
++&cp1_usb3_1 {
++	iommus = <&smmu 0x451>;
++};
++
++&cp0_pcie0 {
++	iommu-map =
++		<0x0   &smmu 0x480 0x20>,
++		<0x100 &smmu 0x4a0 0x20>,
++		<0x200 &smmu 0x4c0 0x20>;
++	iommu-map-mask = <0x031f>;
++};
+diff --git a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi b/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
+index 7f9b9a647717..ded8b8082d79 100644
+--- a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
+@@ -56,6 +56,23 @@
+ 			compatible = "simple-bus";
+ 			ranges = <0x0 0x0 0xf0000000 0x1000000>;
+ 
++			smmu: iommu@5000000 {
++				compatible = "marvell,ap806-smmu-500", "arm,mmu-500";
++				reg = <0x100000 0x100000>;
++				dma-coherent;
++				#iommu-cells = <1>;
++				#global-interrupts = <1>;
++				interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
++			};
++
+ 			gic: interrupt-controller@210000 {
+ 				compatible = "arm,gic-400";
+ 				#interrupt-cells = <3>;
 -- 
 2.17.1
 
