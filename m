@@ -2,90 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59631212E82
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 23:09:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1E52212EAB
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 23:19:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726015AbgGBVJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jul 2020 17:09:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52878 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725954AbgGBVJo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jul 2020 17:09:44 -0400
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CD8FC08C5C1;
-        Thu,  2 Jul 2020 14:09:44 -0700 (PDT)
-Received: by mail-ed1-x544.google.com with SMTP id e15so25464267edr.2;
-        Thu, 02 Jul 2020 14:09:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=message-id:subject:from:reply-to:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=EkunRhJM+IkygFCZmaALMwwKbp/kSgWlsm+guHw4JbU=;
-        b=dOC6J1VcHKL5h0ZDOdlDfP/efShY2nX4Vy+8HFAKynlK3ugprnrqloghR9FDWGiORY
-         A43Ts1yJWRvMTyx0BXYPG4XiGCMToub9kNfstS3LXLqKCBm/JRxgeGJJJ7wlzUSoSY5/
-         PpP4CGZaM8HNXIsQrJF3CJCqPqwt2hyG+CDu5oWJ0uFXPkfC8mjF1uJeXtOzLqo+wUzQ
-         yBxbIye8KQ7wYm4EqiOnZfP+2R2pv56lkFlt18tQgzbPOGJr+5P6YM7e70+scy3+q0mI
-         8VTmx5oUpPRmo/tVjZhYbwufG2hE8HH6EcJb3uZ1hsD3S4HHvw0/PIx8DzISMUYIUtsT
-         Unag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:reply-to:to:cc:date
-         :in-reply-to:references:user-agent:mime-version
-         :content-transfer-encoding;
-        bh=EkunRhJM+IkygFCZmaALMwwKbp/kSgWlsm+guHw4JbU=;
-        b=D+6seRdzUspY9H2uWAeOPy+BTL3tgDaidx1Ew8xIdUo4aA3Pb7NGO14rwNVrXDh55f
-         UDZTvg8HQKBSUOt55hBIzrqD+xUR1mi5B0X/25TLWJvwG55+4oCnyROIn5mbAzVR8D6s
-         fL+EmePuFfGB7sssidbh6sYfDDq0VmT/yjkmnhA0cWS/Kpt7fDz8tO8MVZunyPCksOx8
-         zhEm1rb739qZ5NAoL3EZGKi4llH24045ZNPCsmebXvtHszgef974Emha1Cy9WdJRIjpc
-         bSnLfkSvI20zlVg/QDBYXT0gW1Uwc6g/rdtJ7HftLvjcFALoNG6jX2g6m1vW7QCEPEfo
-         x8Gg==
-X-Gm-Message-State: AOAM531uiMlxkEWblubxrNQjeatiWwFI6Mvxge8jThWXcQXZmgDlxSnL
-        lUEKLk4B3ke/f8hkGf50GsR9iFLd
-X-Google-Smtp-Source: ABdhPJyeWSXeYCuVNmTy9igyqXsTXNocb94mp7qBR8VLY897EGH+9Swx9Y4YSmQBYLvePnPP9W8czw==
-X-Received: by 2002:a50:b0a1:: with SMTP id j30mr37051783edd.387.1593724182913;
-        Thu, 02 Jul 2020 14:09:42 -0700 (PDT)
-Received: from ?IPv6:2a02:8070:bb9:bc00::fc? ([2a02:8070:bb9:bc00::fc])
-        by smtp.gmail.com with ESMTPSA id p20sm7663314ejy.107.2020.07.02.14.09.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jul 2020 14:09:42 -0700 (PDT)
-Message-ID: <7ee7829c08f45f5b6907877e0f3b11320c178867.camel@googlemail.com>
-Subject: Re: [PATCH 1/2] regulator: fan53880: Add initial support
-From:   Christoph Fritz <chf.fritz@googlemail.com>
-Reply-To: chf.fritz@googlemail.com
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Date:   Thu, 02 Jul 2020 23:09:41 +0200
-In-Reply-To: <20200701180913.GA22871@sirena.org.uk>
-References: <20200630185203.22882-1-chf.fritz@googlemail.com>
-         <20200630185203.22882-2-chf.fritz@googlemail.com>
-         <20200701180913.GA22871@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5-1.1 
+        id S1726053AbgGBVTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jul 2020 17:19:17 -0400
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:19124 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726014AbgGBVTR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jul 2020 17:19:17 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5efe4f480000>; Thu, 02 Jul 2020 14:19:04 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Thu, 02 Jul 2020 14:19:17 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Thu, 02 Jul 2020 14:19:17 -0700
+Received: from [10.2.167.4] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 2 Jul
+ 2020 21:19:16 +0000
+Subject: Re: [RFC PATCH v2 12/18] media: tegra-video: Add support for
+ selection ioctl ops
+To:     Hans Verkuil <hverkuil@xs4all.nl>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <frankc@nvidia.com>, <sakari.ailus@iki.fi>,
+        <robh+dt@kernel.org>, <helen.koike@collabora.com>
+CC:     <digetx@gmail.com>, <sboyd@kernel.org>,
+        <gregkh@linuxfoundation.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>
+References: <1592358094-23459-1-git-send-email-skomatineni@nvidia.com>
+ <1592358094-23459-13-git-send-email-skomatineni@nvidia.com>
+ <efc84cff-76d5-78a2-e84e-0342459d3756@xs4all.nl>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <c82a000a-7766-c933-fd69-24eb4885fc14@nvidia.com>
+Date:   Thu, 2 Jul 2020 14:20:59 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
+In-Reply-To: <efc84cff-76d5-78a2-e84e-0342459d3756@xs4all.nl>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1593724744; bh=m/gn6LzfNZLbZK2Es4F3qd/uO2/udwSor8bR8MoCELU=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=DF6F1yP0x+ZvpigDgkgCzzAq7ZG8eB/VmAT54tm4bGGJDnmHwESZFAWBAoxNTlkog
+         x7act8InfOZSGD0rEKomeCxuEn9T2C2yIhbgFloqcxDHdlBx/SgttuS0bQNIC2xC/I
+         icYDYmSW8LzUTMljW63ostU1/kQxr089GuPMPOgzbIU5vVeiIR3j/6mJ7fkS5xCk3W
+         ylvDIPisXGGZLBiRTA7wtC5arKBha73ngZzSjH13OBOMA177Uqh3GBzVSWx0SbIWNj
+         XC3xxyuINkGU/Od82WVzcEvhpV68DxV9JpjISAz+4YGEkTZP+aPASI8t/0u//gz+TK
+         cquvkPBJnClsQ==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2020-07-01 at 19:09 +0100, Mark Brown wrote:
-> /mnt/kernel/drivers/regulator/fan53880.c:63:2: note: in expansion of
-> macro 'FAN53880_LDO'
->   FAN53880_LDO(1, "VIN12", 2800000),
->   ^~~~~~~~~~~~
-> /mnt/kernel/include/linux/regulator/driver.h:47:2: error: field name
-> not in record or union initializer
->   .min_sel = _min_sel,     \
->   ^
-> 
-> most likely due to the conversion introduced in 60ab7f4153b6af46
-> (regulator: use linear_ranges helper).  Please rebase against current
-> code.
 
-Thanks for the hint, yeah that's it. After picking up a recent linux-
-next and adapting it works on current too.
-
-Please let me respin the patches in a v2.
-
+On 7/2/20 6:54 AM, Hans Verkuil wrote:
+> On 17/06/2020 03:41, Sowjanya Komatineni wrote:
+>> This patch adds selection v4l2 ioctl operations to allow configuring
+>> a selection rectangle in the sensor through the Tegra video device
+>> node.
+>>
+>> Some sensor drivers supporting crop uses try_crop rectangle from
+>> v4l2_subdev_pad_config during try format for computing binning.
+>>
+>> So with selection ops support, this patch also updates try format
+>> to use try crop rectangle either from subdev frame size enumeration
+>> or from subdev crop boundary.
+>>
+>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>> ---
+>>   drivers/staging/media/tegra-video/vi.c | 106 +++++++++++++++++++++++++++++++++
+>>   1 file changed, 106 insertions(+)
+>>
+>> diff --git a/drivers/staging/media/tegra-video/vi.c b/drivers/staging/media/tegra-video/vi.c
+>> index 506c263..f9eb96b 100644
+>> --- a/drivers/staging/media/tegra-video/vi.c
+>> +++ b/drivers/staging/media/tegra-video/vi.c
+>> @@ -427,6 +427,13 @@ static int __tegra_channel_try_format(struct tegra_vi_channel *chan,
+>>   	struct v4l2_subdev *subdev;
+>>   	struct v4l2_subdev_format fmt;
+>>   	struct v4l2_subdev_pad_config *pad_cfg;
+>> +	struct v4l2_subdev_frame_size_enum fse = {
+>> +		.which = V4L2_SUBDEV_FORMAT_TRY,
+>> +	};
+>> +	struct v4l2_subdev_selection sdsel = {
+>> +		.which = V4L2_SUBDEV_FORMAT_ACTIVE,
+>> +		.target = V4L2_SEL_TGT_CROP_BOUNDS,
+>> +	};
+>>   	int ret;
+>>   
+>>   	subdev = tegra_channel_get_remote_subdev(chan, true);
+>> @@ -449,6 +456,24 @@ static int __tegra_channel_try_format(struct tegra_vi_channel *chan,
+>>   	fmt.which = V4L2_SUBDEV_FORMAT_TRY;
+>>   	fmt.pad = 0;
+>>   	v4l2_fill_mbus_format(&fmt.format, pix, fmtinfo->code);
+>> +
+>> +	/*
+>> +	 * Attempt to obtain the format size from subdev.
+>> +	 * If not available, try to get crop boundary from subdev.
+>> +	 */
+>> +	fse.code = fmtinfo->code;
+>> +	ret = v4l2_subdev_call(subdev, pad, enum_frame_size, pad_cfg, &fse);
+>> +	if (ret) {
+>> +		ret = v4l2_subdev_call(subdev, pad, get_selection, NULL, &sdsel);
+>> +		if (ret)
+>> +			return -EINVAL;
+>> +		pad_cfg->try_crop.width = sdsel.r.width;
+>> +		pad_cfg->try_crop.height = sdsel.r.height;
+>> +	} else {
+>> +		pad_cfg->try_crop.width = fse.max_width;
+>> +		pad_cfg->try_crop.height = fse.max_height;
+>> +	}
+>> +
+>>   	ret = v4l2_subdev_call(subdev, pad, set_fmt, pad_cfg, &fmt);
+>>   	if (ret < 0)
+>>   		return ret;
+>> @@ -540,6 +565,85 @@ static int tegra_channel_set_subdev_active_fmt(struct tegra_vi_channel *chan)
+>>   	return 0;
+>>   }
+>>   
+>> +static int tegra_channel_g_selection(struct file *file, void *priv,
+>> +				     struct v4l2_selection *sel)
+>> +{
+>> +	struct tegra_vi_channel *chan = video_drvdata(file);
+>> +	struct v4l2_subdev *subdev;
+>> +	struct v4l2_subdev_format fmt = {
+>> +		.which = V4L2_SUBDEV_FORMAT_ACTIVE,
+>> +	};
+>> +	struct v4l2_subdev_selection sdsel = {
+>> +		.which = V4L2_SUBDEV_FORMAT_ACTIVE,
+>> +		.target = sel->target,
+>> +	};
+>> +	int ret;
+>> +
+>> +	if (IS_ENABLED(CONFIG_VIDEO_TEGRA_TPG))
+>> +		return -ENOTTY;
+>> +
+>> +	if (sel->type != V4L2_BUF_TYPE_VIDEO_CAPTURE)
+>> +		return -EINVAL;
+>> +	/*
+>> +	 * Try the get selection operation and fallback to get format if not
+>> +	 * implemented.
+>> +	 */
+>> +	subdev = tegra_channel_get_remote_subdev(chan, true);
+>> +	ret = v4l2_subdev_call(subdev, pad, get_selection, NULL, &sdsel);
+>> +	if (!ret)
+>> +		sel->r = sdsel.r;
+>> +	if (ret != -ENOIOCTLCMD)
+>> +		return ret;
+>> +
+>> +	ret = v4l2_subdev_call(subdev, pad, get_fmt, NULL, &fmt);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	sel->r.left = 0;
+>> +	sel->r.top = 0;
+>> +	sel->r.width = fmt.format.width;
+>> +	sel->r.height = fmt.format.height;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int tegra_channel_s_selection(struct file *file, void *fh,
+>> +				     struct v4l2_selection *sel)
+>> +{
+>> +	struct tegra_vi_channel *chan = video_drvdata(file);
+>> +	struct v4l2_subdev *subdev;
+>> +	int ret;
+>> +	struct v4l2_subdev_selection sdsel = {
+>> +		.which = V4L2_SUBDEV_FORMAT_ACTIVE,
+>> +		.target = sel->target,
+>> +		.flags = sel->flags,
+>> +		.r = sel->r,
+>> +	};
+>> +
+> This function doesn't check if the subdev actually supports set_selection.
+> The imx219 is one such driver: it supports get_selection, but not set_selection.
+>
+> So this code should add these lines to fix the v4l2-compliance fail:
+>
+>         subdev = tegra_channel_get_remote_subdev(chan, true);
+>
+>         if (!v4l2_subdev_has_op(subdev, pad, set_selection))
+>                 return -ENOTTY;
+>
+v4l2_subdev_call() does that check and returns -ENOIOCTLCMD when 
+specified subdev ops does not exist.
+>> +	if (IS_ENABLED(CONFIG_VIDEO_TEGRA_TPG))
+>> +		return -ENOTTY;
+>> +
+>> +	if (sel->type != V4L2_BUF_TYPE_VIDEO_CAPTURE)
+>> +		return -EINVAL;
+>> +
+>> +	if (vb2_is_busy(&chan->queue))
+>> +		return -EBUSY;
+>> +
+>> +	subdev = tegra_channel_get_remote_subdev(chan, true);
+> And this line can be dropped.
+>
+> Regards,
+>
+> 	Hans
+>
+>> +	ret = v4l2_subdev_call(subdev, pad, set_selection, NULL, &sdsel);
+>> +	if (!ret) {
+>> +		sel->r = sdsel.r;
+>> +		/*
+>> +		 * Subdev active format resolution may have changed during
+>> +		 * set selection operation. So, update channel format to
+>> +		 * the sub-device active format.
+>> +		 */
+>> +		return tegra_channel_set_subdev_active_fmt(chan);
+>> +	}
+>> +
+>> +	return ret;
+>> +}
+>> +
+>>   static int tegra_channel_enum_input(struct file *file, void *fh,
+>>   				    struct v4l2_input *inp)
+>>   {
+>> @@ -597,6 +701,8 @@ static const struct v4l2_ioctl_ops tegra_channel_ioctl_ops = {
+>>   	.vidioc_streamoff		= vb2_ioctl_streamoff,
+>>   	.vidioc_subscribe_event		= v4l2_ctrl_subscribe_event,
+>>   	.vidioc_unsubscribe_event	= v4l2_event_unsubscribe,
+>> +	.vidioc_g_selection		= tegra_channel_g_selection,
+>> +	.vidioc_s_selection		= tegra_channel_s_selection,
+>>   };
+>>   
+>>   /*
+>>
