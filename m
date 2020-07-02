@@ -2,91 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECF93211854
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 03:28:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D857211822
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 03:28:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729327AbgGBB05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jul 2020 21:26:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58486 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729292AbgGBB0w (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Jul 2020 21:26:52 -0400
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C627420748;
-        Thu,  2 Jul 2020 01:26:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1593653211;
-        bh=5eXMQNhbrRFdB6JrQi+rLl3n4tIXKH8775zN6Y2Z2N8=;
-        h=From:To:Cc:Subject:Date:From;
-        b=CsgLhQdiK55/hHXuyyIVhTwdzk6LL/F002ACwnEYZmodDW8/yu/5dKmEec70cn62r
-         RRD/JZyF5K6GcrFKiuT99F3IhBX3CDSmQKlW04MUWlaPzN6VnAvZCpza9MD7Xvpww0
-         lQQXX7NZPP6UA9C3rAApq/5+cmRCrgCktA2Kjidg=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Tony Lindgren <tony@atomide.com>, maemo-leste@lists.dyne.org,
-        Merlijn Wajer <merlijn@wizzup.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Sebastian Reichel <sre@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 01/17] ARM: dts: omap4-droid4: Fix spi configuration and increase rate
-Date:   Wed,  1 Jul 2020 21:26:33 -0400
-Message-Id: <20200702012649.2701799-1-sashal@kernel.org>
-X-Mailer: git-send-email 2.25.1
+        id S1728759AbgGBBZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jul 2020 21:25:14 -0400
+Received: from mailout2.samsung.com ([203.254.224.25]:33995 "EHLO
+        mailout2.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728485AbgGBBXt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jul 2020 21:23:49 -0400
+Received: from epcas1p1.samsung.com (unknown [182.195.41.45])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20200702012347epoutp024591b9753724e50d0a9491d548967b93~dyvwXIY-Z1216012160epoutp02i
+        for <devicetree@vger.kernel.org>; Thu,  2 Jul 2020 01:23:47 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20200702012347epoutp024591b9753724e50d0a9491d548967b93~dyvwXIY-Z1216012160epoutp02i
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1593653027;
+        bh=BIJ8exSrtpBrvnlfhORDNhW3IdqqFicMwvVZdnwAlgA=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=LfPsp3YKR8kXsQSyds2krh39VDoL1EP+twUykAj+nF2idGNOEvdoICZg3Ibt+HI37
+         QRdpFjvP1J5uO2Y1R7RNME03igxDbCUEU3oNp3krXLEC0A6OYyGkEj1mnF0zsoipcx
+         84AFSbAdkmdtgJHQzMnZL4aWaNNvmnXZqLDSThg8=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20200702012346epcas1p1c09d5dbb8bbeb1971d6ad253475d9431~dyvv5rLx41303413034epcas1p19;
+        Thu,  2 Jul 2020 01:23:46 +0000 (GMT)
+Received: from epsmges1p5.samsung.com (unknown [182.195.40.158]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 49y0jX3GSFzMqYlp; Thu,  2 Jul
+        2020 01:23:44 +0000 (GMT)
+Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
+        epsmges1p5.samsung.com (Symantec Messaging Gateway) with SMTP id
+        1D.C2.28578.0273DFE5; Thu,  2 Jul 2020 10:23:44 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20200702012343epcas1p1da44b969ce1f7e8bd846e8ad189f4a9f~dyvtKsN-g1302913029epcas1p16;
+        Thu,  2 Jul 2020 01:23:43 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20200702012343epsmtrp1866b875c83d13cc0e2f99f86f2d9dd09~dyvtJF35c1496914969epsmtrp1Q;
+        Thu,  2 Jul 2020 01:23:43 +0000 (GMT)
+X-AuditID: b6c32a39-8c9ff70000006fa2-2d-5efd37207f79
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        E5.D6.08382.F173DFE5; Thu,  2 Jul 2020 10:23:43 +0900 (KST)
+Received: from [10.113.221.102] (unknown [10.113.221.102]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20200702012343epsmtip230d85c2293146ac2c4cb517e993ff3ca~dyvs2ipBj2710327103epsmtip2z;
+        Thu,  2 Jul 2020 01:23:43 +0000 (GMT)
+Subject: Re: [PATCH v4 11/37] PM / devfreq: tegra30: Silence deferred probe
+ error
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Mikko Perttunen <cyndis@kapsi.fi>
+Cc:     =?UTF-8?B?QXJ0dXIgxZp3aWdvxYQ=?= <a.swigon@samsung.com>,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+From:   Chanwoo Choi <cw00.choi@samsung.com>
+Organization: Samsung Electronics
+Message-ID: <8e941321-5da6-e9e7-6a4e-8c0477911ebd@samsung.com>
+Date:   Thu, 2 Jul 2020 10:34:59 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
+        Thunderbird/59.0
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+In-Reply-To: <fda8aa80-04f1-af00-7a0d-f9b589cdb37e@gmail.com>
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrPJsWRmVeSWpSXmKPExsWy7bCmrq6C+d84g5/fJCzuz2tltHj36Smr
+        xfwj51gtVn98zGhx5et7NovpezexWbTMWsRicbbpDbvF5V1z2Cw+9x5htOj8MovN4uIpV4vb
+        jSvYLCatncpo0br3CLvFv2sbWSx+7prH4iDo8f5GK7vHzll32T0unfvD7LFpVSebx51re9g8
+        7ncfZ/LobX7H5tG3ZRWjx+dNcgGcUdk2GamJKalFCql5yfkpmXnptkrewfHO8aZmBoa6hpYW
+        5koKeYm5qbZKLj4Bum6ZOUC/KCmUJeaUAoUCEouLlfTtbIryS0tSFTLyi0tslVILUnIKLAv0
+        ihNzi0vz0vWS83OtDA0MjEyBChOyM843drIW7BCs2P9kOmMDYy9fFyMnh4SAicSt/vVsXYxc
+        HEICOxgllm9rYIZwPjFKnP58HyrzjVHiwOPrLDAtG4+0gtlCAnsZJV6uEoIoes8o8e7nezaQ
+        hLBAsMSx15fYQRIiAkeYJVZ3HmcEcZgFLjNKnG37AlbFJqAlsf/FDTCbX0BR4uqPx4wgNq+A
+        ncS8hk1gK1gEVCQWX5rDDGKLCoRJnNzWAlUjKHFy5hOwGk4BW4mJFzrB4swC4hK3nsxngrDl
+        JZq3zgZ7SEKgmVPiwPMDbBA/uEisWL+YEcIWlnh1fAs7hC0l8bK/Dcqullh58ggbRHMHo8SW
+        /RdYIRLGEvuXTgbawAG0QVNi/S59iLCixM7fc6GO4JN497WHFaREQoBXoqNNCKJEWeLyg7tM
+        ELakxOL2TrYJjEqzkLwzC8kLs5C8MAth2QJGllWMYqkFxbnpqcWGBabI8b2JEZzStSx3ME5/
+        +0HvECMTB+MhRgkOZiUR3tMGv+KEeFMSK6tSi/Lji0pzUosPMZoCA3gis5Rocj4wq+SVxBua
+        GhkbG1uYGJqZGhoqifM6WV+IExJITyxJzU5NLUgtgulj4uCUamBaerl4Z9jvpq//be+/qojt
+        4Pv/v2zb61szBX6t5ugRXpz3UNKa6z53V9C+6sLg7nAvwSsJJyume7yLeyvhKZaisbmv0vzC
+        sf/t57vNvk0/Wmpk+yOwYFFsgLoX91+TvxvDHNf79i44bnPJb9ltD/H8/OcP/7WXVX/drmnP
+        Ep2o8Uv9rHRjMcfp5NkX5qxeIvO24shOxwyfijnHnr18n7bW168r+vSXLzFshT7Vgu+3bngy
+        Yaa5xGP/i62N//xnX73mFtzG6N35L3azi9Kt1MZDdQdezA8NVhGc8eDbhtP3md8wPGpaJL1A
+        tXiCGmvTNZ45yhqBvQ/eHVB89/adUdzEV+KS0w5aJT6aWG7DreGrxFKckWioxVxUnAgAy4Yu
+        U3IEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Re0hTURyAOfde77YLs7ut8mShNIqalClEHntIqcEtg4qyUGp50cuU3NJt
+        ZkaBZTO3WqX0XDJzipVR4FLT8oXOma1Ml9rwkaAWQaWplT3MahuB/33n/L7v8IPDx8XthD8/
+        RaXl1Co2VUpSRHWLNHB1YNhveci0UYaGzDqAxibf+qAiW4cPujcxAlD313ESXau3kuiMyUKg
+        F6c/8tCrx4UkmjLaANJ/MZGo69lW1H/qDokK7l8BSFdv46HZ3goC/XhsJjaLmHGXjsfUmgZ5
+        jLNjBmes5XqSGeitI5mhc20YY8wZI5kLleWAmbIG7BLEUxuTuNSUo5x6TUQClfzylN4nrUZ0
+        rHH0GsgGRl8DEPAhvRZW2HSEm8X0EwD7XfHe+0XwalcrbgD8fyyBLS0aA6D+KZ8AbHozAtyO
+        hN4D7R+cPPdgPm3HodXhwNwHnH4FYI3+K+lNzBhsLCzC3QlJB8HG9y7SzfPopbDnu/cpIR0B
+        zdlWzxoEvQyWOAs9/gJ6H6wtHcG8jgi23xj1OAJ6E8zv1HtanF4BZ8xO3Mt+sG+0CPNyIMyp
+        uolfAhLTnNw0JzHNSUxzkluAKAeLuDSNUqHUhKaFqrjMYA2r1GSoFMGJR5RW4PntIFkNeFT+
+        ObgZYHzQDCAfl84XOkJ+ysXCJDbrOKc+ckidkcppmsFiPiH1E7rSi+ViWsFqucMcl8ap/08x
+        vsA/G9tWkZRU1aabWJtZZFRgZ89iWylLZ3QnahJdyhSFlQzEhftKfjVlZFkMCU9T7NIfQiUW
+        dCjKrxjJIt7Z1h/oC0iRVGGxk3Dovqw6NXo4hHGEbfiJop4/KCjVb/qV6/tNJ195Oy+bjZye
+        96dsv6wDVW9v6KECr2BE3NVSe7diduZTQ1RDgUQozlXFh1gbtmjzqcTu/HBqLOD8jg7LZecs
+        1TRgEA2vm647LNsb0R6J0d9fH2AjE+X49tiXMYPXKx07hx/uPrlKfyKDe6A4eVB7UcAtX1Jo
+        rU3Y5p8ec6fVqN2SY7kbW58XXrswLNFl74qZ8JvIjVsqU7BlPFApJTTJbGgQrtawfwFIpLrp
+        XAMAAA==
+X-CMS-MailID: 20200702012343epcas1p1da44b969ce1f7e8bd846e8ad189f4a9f
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20200609131843epcas1p3a5b06308559ff03ef1b27521f412b656
+References: <20200609131404.17523-1-digetx@gmail.com>
+        <CGME20200609131843epcas1p3a5b06308559ff03ef1b27521f412b656@epcas1p3.samsung.com>
+        <20200609131404.17523-12-digetx@gmail.com>
+        <136b430d-2097-7b2b-d7dd-b438deee8f5d@samsung.com>
+        <fda8aa80-04f1-af00-7a0d-f9b589cdb37e@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tony Lindgren <tony@atomide.com>
+On 7/2/20 10:20 AM, Dmitry Osipenko wrote:
+> 02.07.2020 03:59, Chanwoo Choi пишет:
+>> Hi,
+>>
+>> On 6/9/20 10:13 PM, Dmitry Osipenko wrote:
+>>> Tegra EMC driver was turned into a regular kernel driver, it also could
+>>> be compiled as a loadable kernel module now. Hence EMC clock isn't
+>>> guaranteed to be available and clk_get("emc") may return -EPROBE_DEFER and
+>>> there is no good reason to spam KMSG with a error about missing EMC clock
+>>> in this case, so let's silence the deferred probe error.
+>>>
+>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>>> ---
+>>>  drivers/devfreq/tegra30-devfreq.c | 9 ++++++---
+>>>  1 file changed, 6 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/drivers/devfreq/tegra30-devfreq.c b/drivers/devfreq/tegra30-devfreq.c
+>>> index e94a27804c20..423dd35c95b3 100644
+>>> --- a/drivers/devfreq/tegra30-devfreq.c
+>>> +++ b/drivers/devfreq/tegra30-devfreq.c
+>>> @@ -801,9 +801,12 @@ static int tegra_devfreq_probe(struct platform_device *pdev)
+>>>  	}
+>>>  
+>>>  	tegra->emc_clock = devm_clk_get(&pdev->dev, "emc");
+>>> -	if (IS_ERR(tegra->emc_clock)) {
+>>> -		dev_err(&pdev->dev, "Failed to get emc clock\n");
+>>> -		return PTR_ERR(tegra->emc_clock);
+>>> +	err = PTR_ERR_OR_ZERO(tegra->emc_clock);
+>>> +	if (err) {
+>>> +		if (err != -EPROBE_DEFER)
+>>> +			dev_err(&pdev->dev, "Failed to get emc clock: %d\n",
+>>> +				err);
+>>> +		return err;
+>>>  	}
+>>>  
+>>>  	err = platform_get_irq(pdev, 0);
+>>>
+>>
+>> As I commented on patch10, I recommend that you add the Tegra EMC driver
+>> commit information into patch description and Looks good to me.
+>>
+> 
+> Hello, Chanwoo!
+> 
+> This patch11 and patch10 are depending on the patches 4/5 (the Tegra EMC
+> driver patches) of *this* series, hence there is no commit information.
+> I'm expecting that this whole series will go via tegra tree once all the
+> patches will be reviewed and collect all the necessary acks from you,
+> ICC and CLK subsystem maintainers.
+> 
+> Please feel free to give yours ack to the patches 10/11 if they are good
+> to you :)
+> 
+> 
 
-[ Upstream commit 0df12a01f4857495816b05f048c4c31439446e35 ]
+OK. Looks good to me
+Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
 
-We can currently sometimes get "RXS timed out" errors and "EOT timed out"
-errors with spi transfers.
-
-These errors can be made easy to reproduce by reading the cpcap iio
-values in a loop while keeping the CPUs busy by also reading /dev/urandom.
-
-The "RXS timed out" errors we can fix by adding spi-cpol and spi-cpha
-in addition to the spi-cs-high property we already have.
-
-The "EOT timed out" errors we can fix by increasing the spi clock rate
-to 9.6 MHz. Looks similar MC13783 PMIC says it works at spi clock rates
-up to 20 MHz, so let's assume we can pick any rate up to 20 MHz also
-for cpcap.
-
-Cc: maemo-leste@lists.dyne.org
-Cc: Merlijn Wajer <merlijn@wizzup.org>
-Cc: Pavel Machek <pavel@ucw.cz>
-Cc: Sebastian Reichel <sre@kernel.org>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/motorola-cpcap-mapphone.dtsi | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/motorola-cpcap-mapphone.dtsi b/arch/arm/boot/dts/motorola-cpcap-mapphone.dtsi
-index bcced922b2807..b4779b0ece96d 100644
---- a/arch/arm/boot/dts/motorola-cpcap-mapphone.dtsi
-+++ b/arch/arm/boot/dts/motorola-cpcap-mapphone.dtsi
-@@ -16,8 +16,10 @@ cpcap: pmic@0 {
- 		#interrupt-cells = <2>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--		spi-max-frequency = <3000000>;
-+		spi-max-frequency = <9600000>;
- 		spi-cs-high;
-+		spi-cpol;
-+		spi-cpha;
- 
- 		cpcap_adc: adc {
- 			compatible = "motorola,mapphone-cpcap-adc";
 -- 
-2.25.1
-
+Best Regards,
+Chanwoo Choi
+Samsung Electronics
