@@ -2,184 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12CE1211C3B
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 08:54:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE034211C27
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2020 08:53:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727115AbgGBGyT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jul 2020 02:54:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33306 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726669AbgGBGyS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jul 2020 02:54:18 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B70C4C08C5C1
-        for <devicetree@vger.kernel.org>; Wed,  1 Jul 2020 23:54:15 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id f7so23739202wrw.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2020 23:54:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=jkGYYfe2hXwlfT92r1IHKv+smCrZ9H0RHjhvrcwG6RM=;
-        b=uue4Ct1O77dMDRlgPX47t639kQvvOkI806ekC1sY2KMQm/rN7jIHuIYUIwwRir6yGN
-         FC6aKbB50VTkvX/qj9HCtX/WgTnlI0Qp1Sfx0c+wMQI6cqxxg+h/1ZA8o9wiBgrJyKkC
-         qxQuGj0uCmb8q8EApRFYhieNgy0As6sq3kAmVyE1CRzMf4CgbINob/Ndo4KO176Y3NAF
-         PqlrE0ZpDDMIbmOI/qz+kDgDBslJmDVn9fcfn08kikjRMVB7gihB+3/zHA+GcFLp8pwE
-         PXHjdf20mEY55LmI0dUCXScOKEzMJIIIy7rBi6ouF1p15hFPiPsIQIv4OsVTLg6dk3Yy
-         dI+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=jkGYYfe2hXwlfT92r1IHKv+smCrZ9H0RHjhvrcwG6RM=;
-        b=NXy6tCkf4jtKwBtDIUMeR4tw9bbD5m1pQ5fMfVmHidftxSBSOvz7/xJ5zNLCkwfQfo
-         8rTPsFtf9Ql0YqAH/HAxii2V6AqEZRLnGqbZfMlejwi9QYhddv2l+j0Ru9GSomTG9f7X
-         ZsMW5lxXfwcMBnCtE9ccQsOPrzq91Rsf2eH9i3TWlEIwEaHCU6K/3PxuhwCYwGk8atYj
-         H07uW5NH7EtTbWQP+rox74De3eOMVv+WhbJJRPpQ5pOIZI96aw+ntpgedAb4Jr4AjdPK
-         mmgf+Of5XOF6Qq/32eSSF/s/ET+nuu4CFmLQ97HeWUNNXyMBdQIA4hmGa5e++l53WH2w
-         zp1w==
-X-Gm-Message-State: AOAM531VSLbxwggbsRLEBN5a1IIV2bnyqrkBozJhbKKk0NdhzavAbv+U
-        W4pmqIFZHhsGOiSlUCfZPtfbFw==
-X-Google-Smtp-Source: ABdhPJydX7owlhIb52/jlcBSck3LcH0Z4kO4QGJwnzYSBGCkzFe4tct2dW83VZ6L2kb1EOVAkOxFBg==
-X-Received: by 2002:adf:f20a:: with SMTP id p10mr31837380wro.41.1593672854471;
-        Wed, 01 Jul 2020 23:54:14 -0700 (PDT)
-Received: from dell ([2.27.35.144])
-        by smtp.gmail.com with ESMTPSA id k11sm10540596wrd.23.2020.07.01.23.54.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jul 2020 23:54:13 -0700 (PDT)
-Date:   Thu, 2 Jul 2020 07:54:12 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     robh+dt@kernel.org, broonie@kernel.org, gregkh@linuxfoundation.org,
-        andriy.shevchenko@linux.intel.com, devicetree@vger.kernel.org,
-        linus.walleij@linaro.org, bgolaszewski@baylibre.com, arnd@arndb.de,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/1] mfd: Add I2C based System Configuaration (SYSCON)
- access
-Message-ID: <20200702065412.GO1179328@dell>
-References: <20200622075145.1464020-1-lee.jones@linaro.org>
- <e436fd60bf0ebb6d72a76034d0fc35de@walle.cc>
- <f505c52d565ba7dbf05eef895782c410@walle.cc>
- <20200701070434.GP1179328@dell>
- <5d1d41504172d86d395b0135923f6f02@walle.cc>
+        id S1726803AbgGBGxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jul 2020 02:53:41 -0400
+Received: from mail-eopbgr70051.outbound.protection.outlook.com ([40.107.7.51]:51975
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726068AbgGBGxl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 Jul 2020 02:53:41 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ylk3bjhE74PbhRvbYq7Z9/bJJQzXlY8Bvwm/m7zf4Z+CEIlVdOXZJGqwQFNA8pJW9tYyxplFsDC07HbfRhNNbHyxcLc3xGO/5DtuitSvtqgGxkKt7P/Do10blD+8R1WiHVQKaS6e5yaZaET//NwhTfvFPiNrAu/z3Q675rMForSLn7h4ayo96N5+B5TAt0+BU75rZ/kg+1A7cNd6enHuQ5q4CqJjlhJj2YWt2qsSviLALu/DDAT2Q5NhtRJbeIkDnmMrJVL4j8LK0bExjoAsbzplTKkWgkcObOu2K6Hc3ccwwKDyDBCN8Xg7t7FOOLbUNGk8It6dIRSRyHRoYKd9pg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GEwFDhbvzw+SwNzLA57qxwzxTZmYyID+lEWSpd209Sg=;
+ b=DrGOdRGuQCFZojdk2eLS1FcrRG0+DxRlMHnNgAiOjVg7cSr2t83B1/AcYoIk7CJUHFTfvOmtBqUOiWpvPWGzEYrc9V5fTuZ4dCIY3ZP1IQo6bWPg8MFaGWK/0ymFCR0g7VDaodx/XkSIyhiC3j2Slp2Uqm3/RP8qedaH5D6fuMng2Y2j6xm+dKs0IbVkd40LgISD+oYmVdJHXjNUfBCN2i0758KMYvVt6wWd673m/m9bf1E6W0coDFxDILsIjleMM2I6DqCeYOBWEnaKXQvsk4Hqb0DppLlAwS1W2f/fxYTh9Uzd708C4pwYw1YxUwn4KCpUBzU7/xU0ev/zw39mYg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GEwFDhbvzw+SwNzLA57qxwzxTZmYyID+lEWSpd209Sg=;
+ b=aZUSyi07CDzMRupH8jzKogZ7BwUv+OmrGfbI/9/ngfbG+GA6aVBNhYm8/E0NSuUJSnx1pUF2/DhzZvucsRJssKfrszHGPf4phz8tb7ix27DyLHyJNCKkjOHqHbzysewvdsSnDCfiEBWp/U14Omd0P/KMy2hhmvldi5uEt0mZtE0=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com (2603:10a6:803:119::15)
+ by VI1PR04MB6943.eurprd04.prod.outlook.com (2603:10a6:803:13a::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3153.22; Thu, 2 Jul
+ 2020 06:53:36 +0000
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::5cc4:23a5:ca17:da7d]) by VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::5cc4:23a5:ca17:da7d%6]) with mapi id 15.20.3153.024; Thu, 2 Jul 2020
+ 06:53:36 +0000
+From:   Robin Gong <yibin.gong@nxp.com>
+To:     vkoul@kernel.org, robh+dt@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com,
+        catalin.marinas@arm.com, will@kernel.org, dan.j.williams@intel.com,
+        angelo@sysam.it
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v1 0/9] add fsl-edma3 support
+Date:   Thu,  2 Jul 2020 23:08:00 +0800
+Message-Id: <1593702489-21648-1-git-send-email-yibin.gong@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR01CA0172.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:28::28) To VE1PR04MB6638.eurprd04.prod.outlook.com
+ (2603:10a6:803:119::15)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <5d1d41504172d86d395b0135923f6f02@walle.cc>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from robin-OptiPlex-790.ap.freescale.net (119.31.174.67) by SG2PR01CA0172.apcprd01.prod.exchangelabs.com (2603:1096:4:28::28) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3153.24 via Frontend Transport; Thu, 2 Jul 2020 06:53:31 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [119.31.174.67]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 19c00ea1-79ca-4ebc-0c27-08d81e54a4cd
+X-MS-TrafficTypeDiagnostic: VI1PR04MB6943:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR04MB694352D360FCD7693F58C4D3896D0@VI1PR04MB6943.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
+X-Forefront-PRVS: 0452022BE1
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: F50p6JGoAYuKhcIQMDNWrEo+iOcpHXAIVcQREboDXRAVYcIqNpf7cLHBBR052uHPY7gIRDjmNNchiuJiTcsqjxtzHLxDTNKG1YZbpJjOl84ssA6J0pI52X2n23YjDmxLB97fqJer4KepJynEiNMBkwufrRPiFyF7c4ozbAEXO7fWBCbGvweH/ZGNf6WmU2CY8day2KmufGOVTvL/JOrUvCdxRGz5tAksDHeXsz01cLJDW7IuBxdGCZH4PZ7q8ACtmiAyIkZ8X7qSMREiZur9FEGY3WKin/M77MG7Yyc2ke+CVYr2Rl7RYqGK2ZaOLOYp6Zg8KcT/pNkhselb5hKcAQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6638.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(396003)(136003)(366004)(376002)(39860400002)(346002)(83380400001)(66476007)(6666004)(66946007)(66556008)(52116002)(36756003)(8936002)(2616005)(6486002)(956004)(6512007)(186003)(7416002)(4326008)(26005)(2906002)(8676002)(86362001)(16526019)(478600001)(6506007)(5660300002)(316002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: LTWeDXTJa+HHHOY3JzNJJaQb82g3te/SmI2L+O2MjpRHqikJeHmsap69Yh3JYfQOB9OuqY/me3D+Ywc44kfOz9qkCxOFjI2SsZ3YuppiQBAxSek0lYekm+4ZkeFqwJmxeNejLO8Pk8MAd6DFcGXBVD/vB/rXgVgqxP1LumoVg5gGMychC3e0DKRjyZMAZ7diP7Wa7vHZVBLMzKp/2Fzo2f6C5Vmt5HCeLVxTRbLAZNtruRgY7z2c2JE8GDozaSrKN39WQzJEF6FLY5Kv8bCwADy/E83Vecaf+gMeTUjojvvtB9W23hwsiMPCqlYtKJbRKbdOmmxEgR3LhXrpv1KlHL07ieMA8nlKP3F9SSTst48te0ULTBPQOl44Hsk/aUw1NLSD6uDsnu+nMhMwetPPg/iz5I/KLTE0KZA+5iGAuJ6NLIKEnFpI27wQucjImNM+pq8P7lxJ6s/SNrw/jRo+KyWZXecXYjvtD9PzHqx66E0=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 19c00ea1-79ca-4ebc-0c27-08d81e54a4cd
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6638.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jul 2020 06:53:36.6371
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OpCvgbb8u2oIwb2sOTuhDRqRgCjDCpXGpfpXXt37FRs0K6k5iTVXpMgZUY9W/SGj5CR4XWo3tZ1AXIFqonCbIg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6943
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 01 Jul 2020, Michael Walle wrote:
+This patchset enable fsl-edma3 which is used on i.mx8qxp/i.mx8qm. There
+are big changes on fsl-edma so that add indepent fsl-edma3 here:
 
-> Am 2020-07-01 09:04, schrieb Lee Jones:
-> > On Wed, 01 Jul 2020, Michael Walle wrote:
-> > 
-> > > Hi Lee,
-> > > 
-> > > Am 2020-06-30 11:16, schrieb Michael Walle:
-> > > > I'm just trying to use this for my sl28 driver. Some remarks, see below.
-> > > >
-> > > > Am 2020-06-22 09:51, schrieb Lee Jones:
-> > > > > The existing SYSCON implementation only supports MMIO (memory mapped)
-> > > > > accesses, facilitated by Regmap.  This extends support for registers
-> > > > > held behind I2C busses.
-> > > > >
-> > > > > Signed-off-by: Lee Jones <lee.jones@linaro.org>
-> > > > > ---
-> > > > > Changelog:
-> > > > >
-> > > > > v3 => v4
-> > > > >   - Add ability to provide a non-default Regmap configuration
-> > > > >
-> > > > > v2 => v3
-> > > > >   - Change 'is CONFIG' present check to include loadable modules
-> > > > >     - s/#ifdef CONFIG_MFD_SYSCON_I2C/#if
-> > > > > IS_ENABLED(CONFIG_MFD_SYSCON_I2C)/
-> > > > >
-> > > > > v1 => v2
-> > > > >   - Remove legacy references to OF
-> > > > >   - Allow building as a module (fixes h8300 0-day issue)
-> > > > >
-> > > > > drivers/mfd/Kconfig            |   7 +++
-> > > > >  drivers/mfd/Makefile           |   1 +
-> > > > >  drivers/mfd/syscon-i2c.c       | 104
-> > > > > +++++++++++++++++++++++++++++++++
-> > > > >  include/linux/mfd/syscon-i2c.h |  36 ++++++++++++
-> > > > >  4 files changed, 148 insertions(+)
-> > > > >  create mode 100644 drivers/mfd/syscon-i2c.c
-> > > > >  create mode 100644 include/linux/mfd/syscon-i2c.h
+1. split memory address for per channel, while all channels share the same
+   memory address and the same control registers CR/INT..etc.
+2. all TCD registers of channels are continuous on legacy edma but split on
+   edma3.
+3. per interrupt per channel on edma3.
+4. totally different register layer and add some register such as SBR
+5. power domain support, per domain per channel.
 
-[...]
 
-> > > > This way, (a) a driver doesn't have to use "#include <linux/i2c.h>" just
-> > > > to call to_i2c_client() (or i2c_verify_client()) and (b) you won't do it
-> > > > all over again in all sub drivers.
-> > > >
-> > > > So you could just do a
-> > > >   regmap = syscon_i2c_to_regmap(pdev->dev.parent);
-> > > >
-> > > > I've also noticed that the mmio syscon uses device_node as parameter.
-> > > > What
-> > > > was the reason to divert from that? Just curious.
-> > > 
-> > > How is this supposed to be used?
-> > > 
-> > > I had something like the following in mind:
-> > > 
-> > > &i2c {
-> > >   cpld@4a {
-> > >     compatible = "simple-mfd";
-> > >     reg = <0x4a>;
-> > > 
-> > >     gpio@4 {
-> > >       compatible = "vendor,gpio";
-> > >       reg = <0x4>;
-> > >     };
-> > >   };
-> > > };
-> > 
-> > Yes, that was the idea.
-> > 
-> > > But I think the childen are not enumerated if its an I2C device. And
-> > > the actual i2c driver is also missing.
-> > 
-> > What do you mean?  Can you elaborate?
-> 
-> There is no i2c_driver instance who would create the regmap.
+The first 4 patches are used for preparing no any function changes involed.
 
-The regmap is created by the first caller of:
+Robin Gong (9):
+  dmaengine: fsl-edma: move edma_request functions into drvdata
+  dmaengine: fsl-edma-common: add condition check for fsl_edma_chan_mux
+  dmaengine: fsl-edma-common: add fsl_chan into fsl_edma_fill_tcd
+  dmaengine: fsl-edma-common: export fsl_edma_set_tcd_regs
+  dmaengine: fsl-edma3: add fsl-edma3 driver
+  dt-bindings: dma: add fsl-edma3 yaml
+  firmware: imx: scu-pd: correct dma resource
+  arm64: dts: imx8qxp: add edma2
+  arm64: configs: defconfig: add CONFIG_FSL_EDMA3
 
- syscon_i2c_to_regmap{_config}()
-
-> If I'm
-> reading the I2C code correctly, it won't probe any i2c device of a
-> bus if there is no i2c_driver with an associated .probe() or
-> .probe_new().
-
-Why wouldn't the children be registered using i2c_driver?
-
-> And even if it is probed, its subnodes won't be
-> enumerated; the "simple-mfd" code only works for MMIO busses, right?
-> Or I'm getting something really wrong here..
-
-Then how are these I2C based devices able to call of_platform_populate()?
-
- drivers/mfd/gateworks-gsc.c
- drivers/mfd/lochnagar-i2c.c
- drivers/mfd/palmas.c
- drivers/mfd/smsc-ece1099.c
- drivers/mfd/stpmic1.c
- drivers/mfd/twl-core.c
-
-Might require some more research into where your use-case is breaking
-down.
+ .../devicetree/bindings/dma/nxp,fsl-edma3.yaml     | 129 ++++++
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi         |  38 ++
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/dma/Kconfig                                |  12 +
+ drivers/dma/Makefile                               |   1 +
+ drivers/dma/fsl-edma-common.c                      | 151 +++++--
+ drivers/dma/fsl-edma-common.h                      |  30 ++
+ drivers/dma/fsl-edma.c                             |  10 +-
+ drivers/dma/fsl-edma3.c                            | 493 +++++++++++++++++++++
+ drivers/dma/mcf-edma.c                             |   2 +
+ drivers/firmware/imx/scu-pd.c                      |   7 +-
+ 11 files changed, 844 insertions(+), 30 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dma/nxp,fsl-edma3.yaml
+ create mode 100644 drivers/dma/fsl-edma3.c
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.7.4
+
