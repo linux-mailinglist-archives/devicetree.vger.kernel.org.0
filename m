@@ -2,175 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9C28213147
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2020 04:15:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE5352131D3
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2020 04:41:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726035AbgGCCPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jul 2020 22:15:43 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:2207 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726030AbgGCCPn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jul 2020 22:15:43 -0400
-X-UUID: e4770e8de1e94a19828db6bc3c2a6353-20200703
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=6S5fL7cNWMNyVjavf1uZrRamVIgh2MpovqmKdJHBH8o=;
-        b=adKrVXFEBl4a78bR5xb8ZY2ltZ28CbDjSzzDjUvISxpWUSAfc5VpkBwpYgO+bIP29BnWzDhK3ruLsnMvbD9rI/Kko0ijrSGf9WuBiMYMD5D9EEw6uBM8AHGNslUlonDn73AMLR6kB8oRezXUx8+pVey5JbLaqRoFjWaNXY0dO2E=;
-X-UUID: e4770e8de1e94a19828db6bc3c2a6353-20200703
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <dongchun.zhu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 365824529; Fri, 03 Jul 2020 10:15:33 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 3 Jul
- 2020 10:15:32 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 3 Jul 2020 10:15:30 +0800
-Message-ID: <1593742505.17166.81.camel@mhfsdcap03>
-Subject: Re: [PATCH V12 2/2] media: i2c: ov02a10: Add OV02A10 image sensor
- driver
-From:   Dongchun Zhu <dongchun.zhu@mediatek.com>
-To:     <linus.walleij@linaro.org>, <sakari.ailus@linux.intel.com>,
-        <drinkcat@chromium.org>, <tfiga@chromium.org>
-CC:     <bgolaszewski@baylibre.com>, <mchehab@kernel.org>,
-        <andriy.shevchenko@linux.intel.com>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <matthias.bgg@gmail.com>,
-        <bingbu.cao@intel.com>, <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <sj.huang@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <louis.kuo@mediatek.com>, <shengnan.wang@mediatek.com>,
-        <dongchun.zhu@mediatek.com>
-Date:   Fri, 3 Jul 2020 10:15:05 +0800
-In-Reply-To: <20200702115223.21507-3-dongchun.zhu@mediatek.com>
-References: <20200702115223.21507-1-dongchun.zhu@mediatek.com>
-         <20200702115223.21507-3-dongchun.zhu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726053AbgGCClP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jul 2020 22:41:15 -0400
+Received: from mailout3.samsung.com ([203.254.224.33]:42504 "EHLO
+        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726032AbgGCClO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jul 2020 22:41:14 -0400
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20200703024111epoutp03d1da33fb9b4dbf90db4f65be0d18c285~eHcoY2sVr3189431894epoutp03c
+        for <devicetree@vger.kernel.org>; Fri,  3 Jul 2020 02:41:11 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20200703024111epoutp03d1da33fb9b4dbf90db4f65be0d18c285~eHcoY2sVr3189431894epoutp03c
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1593744072;
+        bh=YSw2I+nRDJfqjQfJDsK2xbkKENE3fuVKKn3Gij0/jkY=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=hv9W12d3SOXTB8rJl7kyjt4vrEiRf0pAaYtLjMSXyveFyDfSOZsPBAJ3C0ks0b+8w
+         Kc9xkkG0h4tpLXVzU77/6uFECJIuoUamRVDLNAAutSB900btRMOsf0+VjKJctxbnZW
+         T1WcQQR1n0JX/HEY6OHNyhtp3lL96NNOSw6ogW3Q=
+Received: from epsmges5p1new.samsung.com (unknown [182.195.42.73]) by
+        epcas5p2.samsung.com (KnoxPortal) with ESMTP id
+        20200703024111epcas5p2d272acbb32254c83e7204dac256d03c0~eHcnom4cR2476424764epcas5p2R;
+        Fri,  3 Jul 2020 02:41:11 +0000 (GMT)
+Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
+        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        D3.1A.09467.7CA9EFE5; Fri,  3 Jul 2020 11:41:11 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+        20200703024110epcas5p1ef8cfff90d1fcb9604613a44ee466d0b~eHcmtS6g60819808198epcas5p1T;
+        Fri,  3 Jul 2020 02:41:10 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20200703024110epsmtrp2a07fc93caaeb29c73fb439a2f27433e6~eHcmsRYsZ0790007900epsmtrp2V;
+        Fri,  3 Jul 2020 02:41:10 +0000 (GMT)
+X-AuditID: b6c32a49-a29ff700000024fb-66-5efe9ac7069b
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        BB.8D.08303.6CA9EFE5; Fri,  3 Jul 2020 11:41:10 +0900 (KST)
+Received: from Jaguar.sa.corp.samsungelectronics.net (unknown
+        [107.108.73.139]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20200703024108epsmtip11bddd1a3b4b861e7b8c6b2f11a87e6ec~eHclK306I2726127261epsmtip1-;
+        Fri,  3 Jul 2020 02:41:08 +0000 (GMT)
+From:   Alim Akhtar <alim.akhtar@samsung.com>
+To:     vkoul@kernel.org
+Cc:     robh+dt@kernel.org, krzk@kernel.org, kwmad.kim@samsung.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        kishon@ti.com, Alim Akhtar <alim.akhtar@samsung.com>
+Subject: [PATCH v11 1/2] dt-bindings: phy: Document Samsung UFS PHY bindings
+Date:   Fri,  3 Jul 2020 07:51:02 +0530
+Message-Id: <20200703022103.41849-1-alim.akhtar@samsung.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 7D9EAA1E8C099B6E5F8EA8E45985B32180308D54A52914B6B8ECCDF6DCA0DE8D2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupkleLIzCtJLcpLzFFi42LZdlhTS/f4rH9xBu3b2CwezAMS84+cY7W4
+        8LSHzeL8+Q3sFje3HGWx2PT4GqvF5V1z2CxmnN/HZNG69wi7xc47J5gduDw2repk89i8pN6j
+        b8sqRo/jN7YzeXzeJBfAGsVlk5Kak1mWWqRvl8CV0X1zKWtBp1jF18nbGBsYuwS7GDk5JARM
+        JGY8OM7UxcjFISSwm1Fi5c7XrBDOJ0aJ9R1fmCGcz4wSjev72WFapm65wgKR2MUosfbdPDYI
+        p4VJomn2YyaQKjYBbYm707eA2SICIhKrV85jBCliFvjLKLHt+kdWkISwgI/Ew4a9zCA2i4Cq
+        xMGba8FsXgEbidPvL7JCrJOXWL3hAFRcUOLkzCcsIDYzULx562yw+yQEvrJLXDlxihGiwUVi
+        betPNghbWOLV8S1Qd0tJfH63FyjOAWRnS/TsMoYI10gsnXeMBcK2lzhwZQ4LSAmzgKbE+l36
+        EKv4JHp/P2GC6OSV6GgTgqhWlWh+dxWqU1piYnc31MUeEs9WTmYHKRcSiJWYeCt4AqPcLCT3
+        z0Jy/yyEXQsYmVcxSqYWFOempxabFhjmpZbrFSfmFpfmpesl5+duYgSnFi3PHYx3H3zQO8TI
+        xMF4iFGCg1lJhDdB9V+cEG9KYmVValF+fFFpTmrxIUZpDhYlcV6lH2fihATSE0tSs1NTC1KL
+        YLJMHJxSDUw865M5nNyFrp2okvfs6TgwQW/vk/zbnhd9av6FtHGcFt21/0Wvzh33syd2BAjs
+        Lo991H/Walv16dKO6jwvBy6jVZWf961+uPGz9283YdMtl/QToyKqOc5vyUn/+Y572//ee5ba
+        3y/F9bFtKvd32M/xWPr+wrybN5lPz/iYvOvDYQbJ6/PuaUtptLX+5shu8q3kS2Y3UOGLfPBa
+        XX3t4hXq8+tmfF2WsVqu9sqN4DlMm74VTr4kcmZTVNriuqjunHcvJ949UDRdKuhfRgyHre+y
+        JGdTtaCMzWVfzl0/unrF4wtVus3773tOZX1suOQJq8aLqfcmTrY48GUz93exs43L/n2s8vpf
+        wRCxsZkjadYrJZbijERDLeai4kQAWwm295wDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrCLMWRmVeSWpSXmKPExsWy7bCSnO6xWf/iDK69YLZ4MG8bm8X8I+dY
+        LS487WGzOH9+A7vFzS1HWSw2Pb7GanF51xw2ixnn9zFZtO49wm6x884JZgcuj02rOtk8Ni+p
+        9+jbsorR4/iN7UwenzfJBbBGcdmkpOZklqUW6dslcGV031zKWtApVvF18jbGBsYuwS5GTg4J
+        AROJqVuusHQxcnEICexglGhtnswIkZCWuL5xAjuELSyx8t9zdoiiJiaJVZtfM4Mk2AS0Je5O
+        38IEYosIiEisXjmPEaSIWaCdSeL69wNgCWEBH4mHDXvBGlgEVCUO3lwLZvMK2Eicfn+RFWKD
+        vMTqDQeg4oISJ2c+ATqJA2iQusT6eUIgYWagkuats5knMPLPQlI1C6FqFpKqBYzMqxglUwuK
+        c9Nziw0LjPJSy/WKE3OLS/PS9ZLzczcxggNeS2sH455VH/QOMTJxMB5ilOBgVhLhTVD9FyfE
+        m5JYWZValB9fVJqTWnyIUZqDRUmc9+ushXFCAumJJanZqakFqUUwWSYOTqkGpt6eSQnz3Y99
+        myY3e8E6hsvxEhYn/f+onTz5MNcxjde7jrtNLuXc45wVX1uNPvzYayzpJp5bLr6iYvYzbsVl
+        C17Ut/QsnL5yQwxPXMH5rPIVGcoPW9TurTt+9pZu2LxtndqK94TzfTdJKNSuW8cibOJjttbw
+        G8vsZq7kz4GXXLr26t37rq641/P8B8mtTDFv9/FsPfZUQUMljfPxg7VCGW9mzvRu/bureibb
+        Pol+t5UpCzJ7zNYI7+fxN9Zd2X6y5l1ILPfLq6e+WzxmOzGHc9vCRJEpslZu1l5i+SlfT7kU
+        /qvj8NLfv1Xz8oU7TJfn/ff6UOqQ3O7x0uH8J9fid1FLsuqj1RtMJbx+7PBnUWIpzkg01GIu
+        Kk4EAL9SAg3nAgAA
+X-CMS-MailID: 20200703024110epcas5p1ef8cfff90d1fcb9604613a44ee466d0b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+X-CMS-RootMailID: 20200703024110epcas5p1ef8cfff90d1fcb9604613a44ee466d0b
+References: <CGME20200703024110epcas5p1ef8cfff90d1fcb9604613a44ee466d0b@epcas5p1.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIwLTA3LTAyIGF0IDE5OjUyICswODAwLCBEb25nY2h1biBaaHUgd3JvdGU6DQo+
-IEFkZCBhIFY0TDIgc3ViLWRldmljZSBkcml2ZXIgZm9yIE9WMDJBMTAgaW1hZ2Ugc2Vuc29yLg0K
-PiANCj4gUmV2aWV3ZWQtYnk6IFRvbWFzeiBGaWdhIDx0ZmlnYUBjaHJvbWl1bS5vcmc+DQo+IFNp
-Z25lZC1vZmYtYnk6IERvbmdjaHVuIFpodSA8ZG9uZ2NodW4uemh1QG1lZGlhdGVrLmNvbT4NCj4g
-LS0tDQo+ICBNQUlOVEFJTkVSUyAgICAgICAgICAgICAgICAgfCAgICAxICsNCj4gIGRyaXZlcnMv
-bWVkaWEvaTJjL0tjb25maWcgICB8ICAgMTMgKw0KPiAgZHJpdmVycy9tZWRpYS9pMmMvTWFrZWZp
-bGUgIHwgICAgMSArDQo+ICBkcml2ZXJzL21lZGlhL2kyYy9vdjAyYTEwLmMgfCAxMDUyICsrKysr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysNCj4gIDQgZmlsZXMgY2hhbmdl
-ZCwgMTA2NyBpbnNlcnRpb25zKCspDQo+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9tZWRp
-YS9pMmMvb3YwMmExMC5jDQo+IA0KDQpbc25pcF0NCg0KPiArc3RhdGljIGludCBvdjAyYTEwX3By
-b2JlKHN0cnVjdCBpMmNfY2xpZW50ICpjbGllbnQpDQo+ICt7DQo+ICsJc3RydWN0IGRldmljZSAq
-ZGV2ID0gJmNsaWVudC0+ZGV2Ow0KPiArCXN0cnVjdCBvdjAyYTEwICpvdjAyYTEwOw0KPiArCXVu
-c2lnbmVkIGludCByb3RhdGlvbjsNCj4gKwl1bnNpZ25lZCBpbnQgY2xvY2tfbGFuZV90eF9zcGVl
-ZDsNCj4gKwl1bnNpZ25lZCBpbnQgaTsNCj4gKwlpbnQgcmV0Ow0KPiArDQo+ICsJb3YwMmExMCA9
-IGRldm1fa3phbGxvYyhkZXYsIHNpemVvZigqb3YwMmExMCksIEdGUF9LRVJORUwpOw0KPiArCWlm
-ICghb3YwMmExMCkNCj4gKwkJcmV0dXJuIC1FTk9NRU07DQo+ICsNCj4gKwlyZXQgPSBvdjAyYTEw
-X2NoZWNrX2h3Y2ZnKGRldiwgb3YwMmExMCk7DQo+ICsJaWYgKHJldCkgew0KPiArCQlkZXZfZXJy
-KGRldiwgImZhaWxlZCB0byBjaGVjayBIVyBjb25maWd1cmF0aW9uOiAlZCIsIHJldCk7DQo+ICsJ
-CXJldHVybiByZXQ7DQo+ICsJfQ0KPiArDQo+ICsJdjRsMl9pMmNfc3ViZGV2X2luaXQoJm92MDJh
-MTAtPnN1YmRldiwgY2xpZW50LCAmb3YwMmExMF9zdWJkZXZfb3BzKTsNCj4gKwlvdjAyYTEwLT5t
-aXBpX2Nsb2NrX3R4X3NwZWVkID0gT1YwMkExMF9NSVBJX1RYX1NQRUVEX0RFRkFVTFQ7DQo+ICsJ
-b3YwMmExMC0+Zm10LmNvZGUgPSBNRURJQV9CVVNfRk1UX1NCR0dSMTBfMVgxMDsNCj4gKw0KPiAr
-CS8qIE9wdGlvbmFsIGluZGljYXRpb24gb2YgcGh5c2ljYWwgcm90YXRpb24gb2Ygc2Vuc29yICov
-DQo+ICsJcmV0ID0gZndub2RlX3Byb3BlcnR5X3JlYWRfdTMyKGRldl9md25vZGUoZGV2KSwgInJv
-dGF0aW9uIiwgJnJvdGF0aW9uKTsNCj4gKwlpZiAoIXJldCAmJiByb3RhdGlvbiA9PSAxODApIHsN
-Cj4gKwkJb3YwMmExMC0+dXBzaWRlX2Rvd24gPSB0cnVlOw0KPiArCQlvdjAyYTEwLT5mbXQuY29k
-ZSA9IE1FRElBX0JVU19GTVRfU1JHR0IxMF8xWDEwOw0KPiArCX0NCj4gKw0KPiArCS8qIE9wdGlv
-bmFsIGluZGljYXRpb24gb2YgbWlwaSBUWCBzcGVlZCAqLw0KPiArCXJldCA9IGZ3bm9kZV9wcm9w
-ZXJ0eV9yZWFkX3UzMihkZXZfZndub2RlKGRldiksICJvdnRpLG1pcGktdHgtc3BlZWQiLA0KPiAr
-CQkJCSAgICAgICAmY2xvY2tfbGFuZV90eF9zcGVlZCk7DQo+ICsNCj4gKwlpZiAoIXJldCkNCj4g
-KwkJb3YwMmExMC0+bWlwaV9jbG9ja190eF9zcGVlZCA9IGNsb2NrX2xhbmVfdHhfc3BlZWQ7DQo+
-ICsNCj4gKwkvKiBHZXQgc3lzdGVtIGNsb2NrIChlY2xrKSAqLw0KPiArCW92MDJhMTAtPmVjbGsg
-PSBkZXZtX2Nsa19nZXQoZGV2LCAiZWNsayIpOw0KPiArCWlmIChJU19FUlIob3YwMmExMC0+ZWNs
-aykpIHsNCj4gKwkJcmV0ID0gUFRSX0VSUihvdjAyYTEwLT5lY2xrKTsNCj4gKwkJZGV2X2Vycihk
-ZXYsICJmYWlsZWQgdG8gZ2V0IGVjbGsgJWRcbiIsIHJldCk7DQo+ICsJCXJldHVybiByZXQ7DQo+
-ICsJfQ0KPiArDQo+ICsJcmV0ID0gZndub2RlX3Byb3BlcnR5X3JlYWRfdTMyKGRldl9md25vZGUo
-ZGV2KSwgImNsb2NrLWZyZXF1ZW5jeSIsDQo+ICsJCQkJICAgICAgICZvdjAyYTEwLT5lY2xrX2Zy
-ZXEpOw0KPiArCWlmIChyZXQpIHsNCj4gKwkJZGV2X2VycihkZXYsICJmYWlsZWQgdG8gZ2V0IGVj
-bGsgZnJlcXVlbmN5XG4iKTsNCj4gKwkJcmV0dXJuIHJldDsNCj4gKwl9DQo+ICsNCj4gKwlyZXQg
-PSBjbGtfc2V0X3JhdGUob3YwMmExMC0+ZWNsaywgb3YwMmExMC0+ZWNsa19mcmVxKTsNCj4gKwlp
-ZiAocmV0KSB7DQo+ICsJCWRldl9lcnIoZGV2LCAiZmFpbGVkIHRvIHNldCBlY2xrIGZyZXF1ZW5j
-eSAoMjRNSHopXG4iKTsNCj4gKwkJcmV0dXJuIHJldDsNCj4gKwl9DQo+ICsNCj4gKwlpZiAoY2xr
-X2dldF9yYXRlKG92MDJhMTAtPmVjbGspICE9IE9WMDJBMTBfRUNMS19GUkVRKSB7DQo+ICsJCWRl
-dl93YXJuKGRldiwgIndyb25nIGVjbGsgZnJlcXVlbmN5ICVkIEh6LCBleHBlY3RlZDogJWQgSHpc
-biIsDQo+ICsJCQkgb3YwMmExMC0+ZWNsa19mcmVxLCBPVjAyQTEwX0VDTEtfRlJFUSk7DQoNCkl0
-IHNlZW1zIHRvIGhhdmUgYSBidWlsZC13YXJuaW5nIGhlcmUuDQpGaXhlZCBpbiBuZXh0IHJlbGVh
-c2UuDQoNCj4gKwkJcmV0dXJuIC1FSU5WQUw7DQo+ICsJfQ0KPiArDQo+ICsJb3YwMmExMC0+cGRf
-Z3BpbyA9IGRldm1fZ3Bpb2RfZ2V0KGRldiwgInBvd2VyZG93biIsIEdQSU9EX09VVF9ISUdIKTsN
-Cj4gKwlpZiAoSVNfRVJSKG92MDJhMTAtPnBkX2dwaW8pKSB7DQo+ICsJCXJldCA9IFBUUl9FUlIo
-b3YwMmExMC0+cGRfZ3Bpbyk7DQo+ICsJCWRldl9lcnIoZGV2LCAiZmFpbGVkIHRvIGdldCBwb3dl
-cmRvd24tZ3Bpb3MgJWRcbiIsIHJldCk7DQo+ICsJCXJldHVybiByZXQ7DQo+ICsJfQ0KPiArDQo+
-ICsJb3YwMmExMC0+cnN0X2dwaW8gPSBkZXZtX2dwaW9kX2dldChkZXYsICJyZXNldCIsIEdQSU9E
-X09VVF9ISUdIKTsNCj4gKwlpZiAoSVNfRVJSKG92MDJhMTAtPnJzdF9ncGlvKSkgew0KPiArCQly
-ZXQgPSBQVFJfRVJSKG92MDJhMTAtPnJzdF9ncGlvKTsNCj4gKwkJZGV2X2VycihkZXYsICJmYWls
-ZWQgdG8gZ2V0IHJlc2V0LWdwaW9zICVkXG4iLCByZXQpOw0KPiArCQlyZXR1cm4gcmV0Ow0KPiAr
-CX0NCj4gKw0KPiArCWZvciAoaSA9IDA7IGkgPCBBUlJBWV9TSVpFKG92MDJhMTBfc3VwcGx5X25h
-bWVzKTsgaSsrKQ0KPiArCQlvdjAyYTEwLT5zdXBwbGllc1tpXS5zdXBwbHkgPSBvdjAyYTEwX3N1
-cHBseV9uYW1lc1tpXTsNCj4gKw0KPiArCXJldCA9IGRldm1fcmVndWxhdG9yX2J1bGtfZ2V0KGRl
-diwgQVJSQVlfU0laRShvdjAyYTEwX3N1cHBseV9uYW1lcyksDQo+ICsJCQkJICAgICAgb3YwMmEx
-MC0+c3VwcGxpZXMpOw0KPiArCWlmIChyZXQpIHsNCj4gKwkJZGV2X2VycihkZXYsICJmYWlsZWQg
-dG8gZ2V0IHJlZ3VsYXRvcnNcbiIpOw0KPiArCQlyZXR1cm4gcmV0Ow0KPiArCX0NCj4gKw0KPiAr
-CW11dGV4X2luaXQoJm92MDJhMTAtPm11dGV4KTsNCj4gKwlvdjAyYTEwLT5jdXJfbW9kZSA9ICZz
-dXBwb3J0ZWRfbW9kZXNbMF07DQo+ICsNCj4gKwlyZXQgPSBvdjAyYTEwX2luaXRpYWxpemVfY29u
-dHJvbHMob3YwMmExMCk7DQo+ICsJaWYgKHJldCkgew0KPiArCQlkZXZfZXJyKGRldiwgImZhaWxl
-ZCB0byBpbml0aWFsaXplIGNvbnRyb2xzXG4iKTsNCj4gKwkJZ290byBlcnJfZGVzdHJveV9tdXRl
-eDsNCj4gKwl9DQo+ICsNCj4gKwlvdjAyYTEwLT5zdWJkZXYuZmxhZ3MgfD0gVjRMMl9TVUJERVZf
-RkxfSEFTX0RFVk5PREU7DQo+ICsJb3YwMmExMC0+c3ViZGV2LmVudGl0eS5vcHMgPSAmb3YwMmEx
-MF9zdWJkZXZfZW50aXR5X29wczsNCj4gKwlvdjAyYTEwLT5zdWJkZXYuZW50aXR5LmZ1bmN0aW9u
-ID0gTUVESUFfRU5UX0ZfQ0FNX1NFTlNPUjsNCj4gKwlvdjAyYTEwLT5wYWQuZmxhZ3MgPSBNRURJ
-QV9QQURfRkxfU09VUkNFOw0KPiArDQo+ICsJcmV0ID0gbWVkaWFfZW50aXR5X3BhZHNfaW5pdCgm
-b3YwMmExMC0+c3ViZGV2LmVudGl0eSwgMSwgJm92MDJhMTAtPnBhZCk7DQo+ICsJaWYgKHJldCA8
-IDApIHsNCj4gKwkJZGV2X2VycihkZXYsICJmYWlsZWQgdG8gaW5pdCBlbnRpdHkgcGFkczogJWQi
-LCByZXQpOw0KPiArCQlnb3RvIGVycl9mcmVlX2hhbmRsZXI7DQo+ICsJfQ0KPiArDQo+ICsJcG1f
-cnVudGltZV9lbmFibGUoZGV2KTsNCj4gKwlpZiAoIXBtX3J1bnRpbWVfZW5hYmxlZChkZXYpKSB7
-DQo+ICsJCXJldCA9IG92MDJhMTBfcG93ZXJfb24oZGV2KTsNCj4gKwkJaWYgKHJldCA8IDApIHsN
-Cj4gKwkJCWRldl9lcnIoZGV2LCAiZmFpbGVkIHRvIHBvd2VyIG9uOiAlZFxuIiwgcmV0KTsNCj4g
-KwkJCWdvdG8gZXJyX2NsZWFuX2VudGl0eTsNCj4gKwkJfQ0KPiArCX0NCj4gKw0KPiArCXJldCA9
-IHY0bDJfYXN5bmNfcmVnaXN0ZXJfc3ViZGV2KCZvdjAyYTEwLT5zdWJkZXYpOw0KPiArCWlmIChy
-ZXQpIHsNCj4gKwkJZGV2X2VycihkZXYsICJmYWlsZWQgdG8gcmVnaXN0ZXIgVjRMMiBzdWJkZXY6
-ICVkIiwgcmV0KTsNCj4gKwkJZ290byBlcnJfcG93ZXJfb2ZmOw0KPiArCX0NCj4gKw0KPiArCXJl
-dHVybiAwOw0KPiArDQo+ICtlcnJfcG93ZXJfb2ZmOg0KPiArCWlmIChwbV9ydW50aW1lX2VuYWJs
-ZWQoZGV2KSkNCj4gKwkJcG1fcnVudGltZV9kaXNhYmxlKGRldik7DQo+ICsJZWxzZQ0KPiArCQlv
-djAyYTEwX3Bvd2VyX29mZihkZXYpOw0KPiArZXJyX2NsZWFuX2VudGl0eToNCj4gKwltZWRpYV9l
-bnRpdHlfY2xlYW51cCgmb3YwMmExMC0+c3ViZGV2LmVudGl0eSk7DQo+ICtlcnJfZnJlZV9oYW5k
-bGVyOg0KPiArCXY0bDJfY3RybF9oYW5kbGVyX2ZyZWUob3YwMmExMC0+c3ViZGV2LmN0cmxfaGFu
-ZGxlcik7DQo+ICtlcnJfZGVzdHJveV9tdXRleDoNCj4gKwltdXRleF9kZXN0cm95KCZvdjAyYTEw
-LT5tdXRleCk7DQo+ICsNCj4gKwlyZXR1cm4gcmV0Ow0KPiArfQ0KPiArDQo+ICtzdGF0aWMgaW50
-IG92MDJhMTBfcmVtb3ZlKHN0cnVjdCBpMmNfY2xpZW50ICpjbGllbnQpDQo+ICt7DQo+ICsJc3Ry
-dWN0IHY0bDJfc3ViZGV2ICpzZCA9IGkyY19nZXRfY2xpZW50ZGF0YShjbGllbnQpOw0KPiArCXN0
-cnVjdCBvdjAyYTEwICpvdjAyYTEwID0gdG9fb3YwMmExMChzZCk7DQo+ICsNCj4gKwl2NGwyX2Fz
-eW5jX3VucmVnaXN0ZXJfc3ViZGV2KHNkKTsNCj4gKwltZWRpYV9lbnRpdHlfY2xlYW51cCgmc2Qt
-PmVudGl0eSk7DQo+ICsJdjRsMl9jdHJsX2hhbmRsZXJfZnJlZShzZC0+Y3RybF9oYW5kbGVyKTsN
-Cj4gKwlwbV9ydW50aW1lX2Rpc2FibGUoJmNsaWVudC0+ZGV2KTsNCj4gKwlpZiAoIXBtX3J1bnRp
-bWVfc3RhdHVzX3N1c3BlbmRlZCgmY2xpZW50LT5kZXYpKQ0KPiArCQlvdjAyYTEwX3Bvd2VyX29m
-ZigmY2xpZW50LT5kZXYpOw0KPiArCXBtX3J1bnRpbWVfc2V0X3N1c3BlbmRlZCgmY2xpZW50LT5k
-ZXYpOw0KPiArCW11dGV4X2Rlc3Ryb3koJm92MDJhMTAtPm11dGV4KTsNCj4gKw0KPiArCXJldHVy
-biAwOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCBvdjAy
-YTEwX29mX21hdGNoW10gPSB7DQo+ICsJeyAuY29tcGF0aWJsZSA9ICJvdnRpLG92MDJhMTAiIH0s
-DQo+ICsJe30NCj4gK307DQo+ICtNT0RVTEVfREVWSUNFX1RBQkxFKG9mLCBvdjAyYTEwX29mX21h
-dGNoKTsNCj4gKw0KPiArc3RhdGljIHN0cnVjdCBpMmNfZHJpdmVyIG92MDJhMTBfaTJjX2RyaXZl
-ciA9IHsNCj4gKwkuZHJpdmVyID0gew0KPiArCQkubmFtZSA9ICJvdjAyYTEwIiwNCj4gKwkJLnBt
-ID0gJm92MDJhMTBfcG1fb3BzLA0KPiArCQkub2ZfbWF0Y2hfdGFibGUgPSBvdjAyYTEwX29mX21h
-dGNoLA0KPiArCX0sDQo+ICsJLnByb2JlX25ldwk9ICZvdjAyYTEwX3Byb2JlLA0KPiArCS5yZW1v
-dmUJCT0gJm92MDJhMTBfcmVtb3ZlLA0KPiArfTsNCj4gKw0KPiArbW9kdWxlX2kyY19kcml2ZXIo
-b3YwMmExMF9pMmNfZHJpdmVyKTsNCj4gKw0KPiArTU9EVUxFX0FVVEhPUigiRG9uZ2NodW4gWmh1
-IDxkb25nY2h1bi56aHVAbWVkaWF0ZWsuY29tPiIpOw0KPiArTU9EVUxFX0RFU0NSSVBUSU9OKCJP
-bW5pVmlzaW9uIE9WMDJBMTAgc2Vuc29yIGRyaXZlciIpOw0KPiArTU9EVUxFX0xJQ0VOU0UoIkdQ
-TCB2MiIpOw0KPiArDQoNCldoZW4gYXBwbHlpbmcgdGhlIHBhdGNoIHdpdGggZ2l0IGFtLCB0aGVy
-ZSB3b3VsZCBiZSBhIHdhcm5pbmcgaGVyZS4NCi0tLS0tLS0tLS0tLS0tLS0tODwtLS0tLS0tLS0t
-LS0tLS0tLS0tDQpbbXRrMTUwMTNAbWhmc2RjbHgxMTYgbWVkaWF0ZWtdJGdpdCBhbSAtcw0Kfi9i
-YWsvbWVkaWEtaTJjLUFkZC1zdXBwb3J0LWZvci1PVjAyQTEwLXNlbnNvci5wYXRjaA0KQXBwbHlp
-bmc6IG1lZGlhOiBkdC1iaW5kaW5nczogbWVkaWE6IGkyYzogRG9jdW1lbnQgT1YwMkExMCBiaW5k
-aW5ncw0KQXBwbHlpbmc6IG1lZGlhOiBpMmM6IG92MDJhMTA6IEFkZCBPVjAyQTEwIGltYWdlIHNl
-bnNvciBkcml2ZXINCi5naXQvcmViYXNlLWFwcGx5L3BhdGNoOjExMTQ6IG5ldyBibGFuayBsaW5l
-IGF0IEVPRi4NCisNCndhcm5pbmc6IDEgbGluZSBhZGRzIHdoaXRlc3BhY2UgZXJyb3JzLg0KLS0t
-LS0tLS0tLS0tLS0tLS04PC0tLS0tLS0tLS0tLS0tLS0tLS0NCg0KRml4ZWQgaW4gbmV4dCByZWxl
-YXNlLg0K
+This patch documents Samsung UFS PHY device tree bindings
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
+Tested-by: Paweł Chmiel <pawel.mikolaj.chmiel@gmail.com>
+---
+ .../bindings/phy/samsung,ufs-phy.yaml         | 75 +++++++++++++++++++
+ 1 file changed, 75 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
+
+diff --git a/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
+new file mode 100644
+index 000000000000..636cc501b54f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
+@@ -0,0 +1,75 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/samsung,ufs-phy.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Samsung SoC series UFS PHY Device Tree Bindings
++
++maintainers:
++  - Alim Akhtar <alim.akhtar@samsung.com>
++
++properties:
++  "#phy-cells":
++    const: 0
++
++  compatible:
++    enum:
++      - samsung,exynos7-ufs-phy
++
++  reg:
++    maxItems: 1
++
++  reg-names:
++    items:
++      - const: phy-pma
++
++  clocks:
++    items:
++      - description: PLL reference clock
++      - description: symbol clock for input symbol ( rx0-ch0 symbol clock)
++      - description: symbol clock for input symbol ( rx1-ch1 symbol clock)
++      - description: symbol clock for output symbol ( tx0 symbol clock)
++
++  clock-names:
++    items:
++      - const: ref_clk
++      - const: rx1_symbol_clk
++      - const: rx0_symbol_clk
++      - const: tx0_symbol_clk
++
++  samsung,pmu-syscon:
++    $ref: '/schemas/types.yaml#/definitions/phandle'
++    description: phandle for PMU system controller interface, used to
++                 control pmu registers bits for ufs m-phy
++
++required:
++  - "#phy-cells"
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++  - clock-names
++  - samsung,pmu-syscon
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/exynos7-clk.h>
++
++    ufs_phy: ufs-phy@15571800 {
++        compatible = "samsung,exynos7-ufs-phy";
++        reg = <0x15571800 0x240>;
++        reg-names = "phy-pma";
++        samsung,pmu-syscon = <&pmu_system_controller>;
++        #phy-cells = <0>;
++        clocks = <&clock_fsys1 SCLK_COMBO_PHY_EMBEDDED_26M>,
++                 <&clock_fsys1 PHYCLK_UFS20_RX1_SYMBOL_USER>,
++                 <&clock_fsys1 PHYCLK_UFS20_RX0_SYMBOL_USER>,
++                 <&clock_fsys1 PHYCLK_UFS20_TX0_SYMBOL_USER>;
++        clock-names = "ref_clk", "rx1_symbol_clk",
++                      "rx0_symbol_clk", "tx0_symbol_clk";
++
++    };
++...
+
+base-commit: aab2003999e78bbf2058dae1e661c44ede1d9766
+-- 
+2.17.1
 
