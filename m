@@ -2,100 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A24E4213E20
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2020 19:06:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2F09213E23
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2020 19:06:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726794AbgGCRFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jul 2020 13:05:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38746 "EHLO
+        id S1726792AbgGCRFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jul 2020 13:05:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727104AbgGCRFY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jul 2020 13:05:24 -0400
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41A8FC061794;
-        Fri,  3 Jul 2020 10:05:24 -0700 (PDT)
-Received: by mail-ej1-x641.google.com with SMTP id y10so34959985eje.1;
-        Fri, 03 Jul 2020 10:05:24 -0700 (PDT)
+        with ESMTP id S1726775AbgGCRFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jul 2020 13:05:54 -0400
+Received: from mail-qv1-xf41.google.com (mail-qv1-xf41.google.com [IPv6:2607:f8b0:4864:20::f41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8E45C08C5DE
+        for <devicetree@vger.kernel.org>; Fri,  3 Jul 2020 10:05:53 -0700 (PDT)
+Received: by mail-qv1-xf41.google.com with SMTP id di5so9597043qvb.11
+        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2020 10:05:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=C/UWxzVDvwTfW/F7gJ0+araj1vhoMccjRG9HH4mrlsE=;
-        b=QsuoDq6um/kA+PYzNdRYnkSK/ma9zRfY4lNMHvhHvnqvCqn+mSz5vBUrrUDPyFZV2A
-         z5WDAO1mqIL5Bs/vRi9eSJAVhoWk/KsgiBtbjvQaU8d+Sp7EVgANG8kalehZSlnJ2AGF
-         QSf5fm9ms55AQV2wwteA7ZpBojv5fIaB5rFacJ95ydfUWQCjWSjJP5pCfEmkiOEpqUEn
-         yWmbK5sqxmzz2xyqwobIaS6UQkE6LM+x4MfYDl+GJRvsrDHBGHqrSy2SNYDKngz6yKrB
-         N1cRy0MM6yYQX2efE+fZjNA7oOAcXbjDwqcejGNLd3puass84+m3GmAaD7n4WbWjKrMR
-         9bDQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uOxIRzqV33cwYiOayyd2WFVo6gUD/TXwDz0UDM2FxKs=;
+        b=KwXmSjzk/in70DsvZW/OqlJVbh7RjTtMHjUSsmmNvyH5aE7ZNj6NcWsyaamq+b+79b
+         VgSghhNlE0KbRfmk9RYQYiMvyqWl1/fsjdD9sIrMxJIJ007fdJxPuKPyqvtAYdQ5lMjA
+         NYCDxzvIrgOcaa0SRN+rU+dDlfqeeWRrAGsLe6tS2ojOxffdNA0NFJb9Dkd4gpfYNGpF
+         S1Dmd5e//uzU3TSzYsXNe+EnbbVjC9Zy2i322fansr6nSoSKGwqOYRum47dWPnJci6lN
+         +SNCJvdrTxsGybqIIbnSrud4z1YtiSwB6SlWOqx4pg5j/eFpO+uVgGDNJnA4nRCPA5xp
+         sruA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=C/UWxzVDvwTfW/F7gJ0+araj1vhoMccjRG9HH4mrlsE=;
-        b=TQvbs4+NFKN2u9RYoEabdXaCGOZLW3TS8I3kRn1vD5Sf0Cw4IwvOfFZ9XMthtvU+kI
-         clpRNhd3iNfFzDMOplyfppkuGQ8Ruah1D3UN7AAjGPJxJZOoYGt16fy4IkpD0BXItRl3
-         mWGT19o2Oyblh4oJR98dfiqctvw8nhaGTIevi5qMHLLs44rE8mhG9A1mjvLy/gABEvWZ
-         eWkGFyNk8C1Epjc41Prb9ViDZZdwNLBh+8NQOhpLQuS9bhCo+/8P0guyaXzAkIIgAx4o
-         3TBgibC0ggO1bvFO4QBP1RBIDTUC1IamB+tD3cjudNc3TWNifD5/eqv4T+pLEMeeYdwV
-         JQGg==
-X-Gm-Message-State: AOAM532h/QuEMOFSYwmYKq1FRj4L1ttznTenLETzPN3W/yK0FZ9PT2Sg
-        hL/Z2vCiLarmFII897ljTX2IUDnOZuU=
-X-Google-Smtp-Source: ABdhPJxcEO/i7pQNO4/24cr20ggEZvLGQNx2bKIyHv0PMOyYojz+7xnQeV+l+krumVA4mBwfBykytQ==
-X-Received: by 2002:a17:907:20b4:: with SMTP id pw20mr34380818ejb.225.1593795923051;
-        Fri, 03 Jul 2020 10:05:23 -0700 (PDT)
-Received: from localhost.localdomain ([188.24.137.55])
-        by smtp.gmail.com with ESMTPSA id dg8sm14342272edb.56.2020.07.03.10.05.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jul 2020 10:05:22 -0700 (PDT)
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Stephen Boyd <sboyd@kernel.org>,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-actions@lists.infradead.org
-Subject: [PATCH v3 6/6] MAINTAINERS: Add reset binding entry for Actions Semi Owl SoCs
-Date:   Fri,  3 Jul 2020 20:05:12 +0300
-Message-Id: <78d63d97e3a8a8f7a9048b6eec74a9d158578833.1593788312.git.cristian.ciocaltea@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <cover.1593788312.git.cristian.ciocaltea@gmail.com>
-References: <cover.1593788312.git.cristian.ciocaltea@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uOxIRzqV33cwYiOayyd2WFVo6gUD/TXwDz0UDM2FxKs=;
+        b=MMG8u8NyJRbP5A8UwtIxzgFkq1dwtZ+bTLwZwscmDY4HHh0O6ZAkNaBvE22vNRK2oV
+         x3Hfm2SNgFO2NUUzx2ncObCnmQ1VPbpRKvk0nqJw+lJe1rlQdqUvU7XUxU12NT3dAOtG
+         40xdDo+tq10LvWpou7jo7SslW39jEfEy3od/rC3tUXevQb8rkjijsUaYI9BeGinU7+oa
+         8Npb3NmVDdAKlkoq2boF696biEO4jhkuflz5UOtNkPP5cr8MXSSTG2fESle5kQqCkMzl
+         /u9zYeGBDd2S26lBznZsk+d1ZBED9wlpOyLq0ApxR2JZoadrTVkm6dmknkWFcobRcEDz
+         1CtQ==
+X-Gm-Message-State: AOAM531kKmaz259AarlxQVyveJQdzUPEGANDy+ccgebtyJtcT2hgadsA
+        wnbvd0dC3WLz7gnlsdOBOinRf5Qv0TC8ZUx5Esxjdw==
+X-Google-Smtp-Source: ABdhPJwmiuz2Y+CJRbdyQtdd6dbeRQNgpQTJtM4808f8jP39qAVc6vY+XdPGcwSFBZ91+L4uKjouCHEW2eXs8kWDPCA=
+X-Received: by 2002:a0c:b315:: with SMTP id s21mr35952885qve.53.1593795952915;
+ Fri, 03 Jul 2020 10:05:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1593699479-1445-1-git-send-email-grzegorz.jaszczyk@linaro.org>
+ <1593699479-1445-6-git-send-email-grzegorz.jaszczyk@linaro.org> <d1b232c6f33a629117a2ecbd440622d0@kernel.org>
+In-Reply-To: <d1b232c6f33a629117a2ecbd440622d0@kernel.org>
+From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+Date:   Fri, 3 Jul 2020 19:05:41 +0200
+Message-ID: <CAMxfBF5p3kh-E-vUxo60a+QTuqQXbsSVYSTc_qYvN8ZckLPKzA@mail.gmail.com>
+Subject: Re: [PATCHv3 5/6] irqchip/irq-pruss-intc: Add support for ICSSG INTC
+ on K3 SoCs
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     tglx@linutronix.de, jason@lakedaemon.net,
+        "Anna, Suman" <s-anna@ti.com>, robh+dt@kernel.org,
+        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, david@lechnology.com,
+        "Mills, William" <wmills@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a reset binding entry to match all members of Actions Semi Owl SoCs.
+On Thu, 2 Jul 2020 at 19:59, Marc Zyngier <maz@kernel.org> wrote:
+>
+> On 2020-07-02 15:17, Grzegorz Jaszczyk wrote:
+> > From: Suman Anna <s-anna@ti.com>
+> >
+> > The K3 AM65x and J721E SoCs have the next generation of the PRU-ICSS
+> > IP,
+> > commonly called ICSSG. The PRUSS INTC present within the ICSSG supports
+> > more System Events (160 vs 64), more Interrupt Channels and Host
+> > Interrupts
+> > (20 vs 10) compared to the previous generation PRUSS INTC instances.
+> > The
+> > first 2 and the last 10 of these host interrupt lines are used by the
+> > PRU and other auxiliary cores and sub-modules within the ICSSG, with 8
+> > host interrupts connected to MPU. The host interrupts 5, 6, 7 are also
+> > connected to the other ICSSG instances within the SoC and can be
+> > partitioned as per system integration through the board dts files.
+> >
+> > Enhance the PRUSS INTC driver to add support for this ICSSG INTC
+> > instance. This support is added using specific compatible and match
+> > data and updating the code to use this data instead of the current
+> > hard-coded macros. The INTC config structure is updated to use the
+> > higher events and channels on all SoCs, while limiting the actual
+> > processing to only the relevant number of events/channels/interrupts.
+> >
+> > Signed-off-by: Suman Anna <s-anna@ti.com>
+> > Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> > ---
+> > v2->v3:
+> > - Change patch order: use it directly after "irqchip/irq-pruss-intc:
+> >   Implement irq_{get,set}_irqchip_state ops" and before new
+> >   "irqchip/irq-pruss-intc: Add event mapping support" in order to
+> > reduce
+> >   diff.
+>
+> The diff would be even smaller if you introduced a variable number of
+> inputs the first place, i.e. in patch #2. Most if this patch just
+> retrofits it. Please squash these changes into that initial patch,
+> and only add the platform stuff here.
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
----
-Changes in v3:
- - Removed the "-reset.h" suffix from the binding entry, as suggested
-   by Mani
+Sure I will do that.
 
-Changes in v2:
- - None
-
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 496fd4eafb68..5033de342f31 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1533,6 +1533,7 @@ F:	drivers/mmc/host/owl-mmc.c
- F:	drivers/pinctrl/actions/*
- F:	drivers/soc/actions/
- F:	include/dt-bindings/power/owl-*
-+F:	include/dt-bindings/reset/actions,*
- F:	include/linux/soc/actions/
- N:	owl
- 
--- 
-2.27.0
-
+Thank you,
+Grzegorz
