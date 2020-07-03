@@ -2,118 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46E75213278
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2020 05:57:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54CA92132F3
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2020 06:42:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726236AbgGCD5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jul 2020 23:57:32 -0400
-Received: from server-x.ipv4.hkg02.ds.network ([27.111.83.178]:51992 "EHLO
-        mail.gtsys.com.hk" rhost-flags-OK-FAIL-OK-OK) by vger.kernel.org
-        with ESMTP id S1725915AbgGCD5U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jul 2020 23:57:20 -0400
-X-Greylist: delayed 494 seconds by postgrey-1.27 at vger.kernel.org; Thu, 02 Jul 2020 23:57:19 EDT
-Received: from localhost (localhost [127.0.0.1])
-        by mail.gtsys.com.hk (Postfix) with ESMTP id 3C55B2015B70;
-        Fri,  3 Jul 2020 11:49:08 +0800 (HKT)
-X-Virus-Scanned: Debian amavisd-new at gtsys.com.hk
-Received: from mail.gtsys.com.hk ([127.0.0.1])
-        by localhost (mail.gtsys.com.hk [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id qtIOi6QXlNpH; Fri,  3 Jul 2020 11:49:08 +0800 (HKT)
-Received: from s01.gtsys.com.hk (unknown [10.128.4.2])
-        by mail.gtsys.com.hk (Postfix) with ESMTP id 23A982039367;
-        Fri,  3 Jul 2020 11:49:08 +0800 (HKT)
-Received: from armhf2.gtsys.com.hk (unknown [10.128.4.15])
-        by s01.gtsys.com.hk (Postfix) with ESMTP id 1C349C01B7B;
-        Fri,  3 Jul 2020 11:49:08 +0800 (HKT)
-Received: by armhf2.gtsys.com.hk (Postfix, from userid 1000)
-        id 18CC62002E9; Fri,  3 Jul 2020 11:49:08 +0800 (HKT)
-From:   Chris Ruehl <chris.ruehl@gtsys.com.hk>
-To:     Chris Ruehl <chris.ruehl@gtsys.com.hk>
-Cc:     Jack Lo <jack.lo@gtsys.com.hk>, devicetree@vger.kernel.org,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] devicetree: hwmon: shtc1: Add sensirion,shtc1.yaml
-Date:   Fri,  3 Jul 2020 11:48:55 +0800
-Message-Id: <20200703034856.12846-3-chris.ruehl@gtsys.com.hk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200703034856.12846-1-chris.ruehl@gtsys.com.hk>
-References: <20200703034856.12846-1-chris.ruehl@gtsys.com.hk>
+        id S1726121AbgGCEmr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jul 2020 00:42:47 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:18438 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725764AbgGCEmq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jul 2020 00:42:46 -0400
+X-UUID: 45ba3959e2f342d1a181344edd2741a5-20200703
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=fOIE/14eP5QaMvpr+A/0WJuqIjmfhZZCLzsc96MbxFk=;
+        b=ZjT78N6ixAU4ZbgDzhdJuF4w9u3mwOYxJboOCzv1EGJeF3ZqEJz1L0tiCU4EQ6cZyb0qt0KO7j2WJ+Nj6VxDZVEEioyHv2MAhT/Jiy7d5YZ9V8LwJIm1K+TTRctdi7tljk8yNmeYtD86fDc8r3uYwt0LEaeEOAxs0pIG4uwOQaI=;
+X-UUID: 45ba3959e2f342d1a181344edd2741a5-20200703
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <chao.hao@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1942315213; Fri, 03 Jul 2020 12:42:42 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 3 Jul 2020 12:42:37 +0800
+Received: from localhost.localdomain (10.15.20.246) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 3 Jul 2020 12:42:33 +0800
+From:   Chao Hao <chao.hao@mediatek.com>
+To:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <wsd_upstream@mediatek.com>,
+        Chao Hao <chao.hao@mediatek.com>,
+        FY Yang <fy.yang@mediatek.com>, Yong Wu <yong.wu@mediatek.com>,
+        TH Yang <th.yang@mediatek.com>
+Subject: [PATCH v6 00/10] MT6779 IOMMU SUPPORT
+Date:   Fri, 3 Jul 2020 12:41:17 +0800
+Message-ID: <20200703044127.27438-1-chao.hao@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-SNTS-SMTP: E4EE501486CFE45934E76861F54A424896840F7B4C9AC2ECB55F96F8AE402C6E2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for the newly added DTS support in the shtc1 driver.
-
-Signed-off-by: Chris Ruehl <chris.ruehl@gtsys.com.hk>
----
- .../bindings/hwmon/sensirion,shtc1.yaml       | 53 +++++++++++++++++++
- 1 file changed, 53 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml
-
-diff --git a/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml b/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml
-new file mode 100644
-index 000000000000..e3e292bc6d7d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml
-@@ -0,0 +1,53 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/sensirion,shtc1.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sensirion SHTC1 Humidity and Temperature Sensor IC
-+
-+maintainers:
-+  - jdelvare@suse.com
-+
-+description: |
-+  The SHTC1, SHTW1 and SHTC3 are digital humidity and temperature sensor
-+  designed especially for battery-driven high-volume consumer electronics
-+  applications.
-+  For further information refere to Documentation/hwmon/shtc1.rst
-+
-+  This binding document describes the binding for the hardware monitor
-+  portion of the driver.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - sensirion,shtc1
-+      - sensirion,shtw1
-+      - sensirion,shtc3
-+
-+  reg: I2C address 0x70
-+
-+Optional properties:
-+  sensirion,blocking_io: |
-+    u8, if > 0 the i2c bus hold until measure finished (default 0)
-+  sensirion,high_precision: |
-+    u8, if > 0 aquire data with high precision (default 1)
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+Example:
-+  &i2c1 {
-+    status = "okay";
-+    clock-frequency = <400000>;
-+
-+    shtc3@70 {
-+      compatible = "sensirion,shtc3";
-+      reg = <0x70>
-+      sensirion,blocking_io = <1>;
-+      status = "okay";
-+    };
-+  };
--- 
-2.20.1
+VGhpcyBwYXRjaHNldCBhZGRzIG10Njc3OSBpb21tdSBzdXBwb3J0Lg0KbXQ2Nzc5IGhhcyB0d28g
+aW9tbXVzLCB0aGV5IGFyZSBNTV9JT01NVShNNFUpIGFuZCBBUFVfSU9NTVUgd2hpY2ggdXNlZCBB
+Uk0gU2hvcnQtRGVzY3JpcHRvciB0cmFuc2xhdGlvbiBmb3JtYXQuDQpUaGUgbXQ2Nzc5J3MgTU1f
+SU9NTVUtU01JIGFuZCBBUFVfSU9NTVUgSFcgZGlhZ3JhbSBpcyBhcyBiZWxvdywgaXQgaXMgb25s
+eSBhIGJyaWVmIGRpYWdyYW06DQogICAgICAgICAgICAgICAgICAgICAgIEVNSQ0KCQkgICAgICAg
+IHwNCiAgICAgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCiAgICAgfCAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwNCiAgTU1fSU9NTVUgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgQVBVX0lPTU1VDQogICAgIHwgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICB8DQogU01JX0NPTU1PTS0tLS0tLS0tLS0tICAgICAgICAgICAgICAgICBB
+UFVfQlVTDQogICAgIHwgICAgICAgICAgICAgICAgfCAgICAgICAgICAgICAgICAgICB8DQogIFNN
+SV9MQVJCKDB+MTEpICAgICAgfCAgICAgICAgICAgICAgICAgICB8DQogICAgIHwgICAgICAgICAg
+ICAgICAgfCAgICAgICAgICAgICAgICAgICB8DQogICAgIHwgICAgICAgICAgICAgICAgfCAgICAg
+ICAgICAgICAtLS0tLS0tLS0tLS0tLQ0KICAgICB8ICAgICAgICAgICAgICAgIHwgICAgICAgICAg
+ICAgfCAgICAgfCAgICAgIHwNCk11bHRpbWVkaWEgZW5naW5lICAgIENDVSAgICAgICAgICAgVlBV
+ICAgTURMQSAgIEVNREENCg0KQWxsIHRoZSBjb25uZWN0aW9ucyBhcmUgaGFyZHdhcmUgZml4ZWQs
+IHNvZnR3YXJlIGNhbiBub3QgYWRqdXN0IGl0Lg0KQ29tcGFyZWQgd2l0aCBtdDgxODMsIFNNSV9C
+VVNfSUQgd2lkdGggaGFzIGNoYW5nZWQgZnJvbSAxMCB0byAxMi4gU01JIExhcmIgbnVtYmVyIGlz
+IGRlc2NyaWJlZCBpbiBiaXRbMTE6N10sDQpQb3J0IG51bWJlciBpcyBkZXNjcmliZWQgaW4gYml0
+WzY6Ml0uIEluIGFkZGl0aW9uLCB0aGVyZSBhcmUgc29tZSByZWdpc3RlcnMgaGFzIGNoYW5nZWQg
+aW4gbXQ2Nzc5LCBzbyB3ZSBuZWVkDQp0byByZWRlZmluZSBhbmQgcmV1c2UgdGhlbS4NCg0KVGhl
+IHBhdGNoc2V0IG9ubHkgdXNlZCBNTV9JT01NVSwgc28gd2Ugb25seSBhZGQgTU1fSU9NTVUgYmFz
+aWMgZnVuY3Rpb24sIHN1Y2ggYXMgc21pX2xhcmIgcG9ydCBkZWZpbml0aW9uLCByZWdpc3RlcnMN
+CmRlZmluaXRpb24gYW5kIGhhcmR3YXJlIGluaXRpYWxpemF0aW9uLg0KY2hhbmdlIG5vdGVzOg0K
+DQogdjY6DQogIDEuIEZpeCBidWlsZCBlcnJvciBmb3IgIlBBVENIIHY1IDAyLzEwIi4NCiAgMi4g
+VXNlIG1vcmUgcHJlY2lzZSBkZWZpbml0aW9ucyBhbmQgY29tbWl0IG1lc3NhZ2VzLg0KDQogdjU6
+DQogIDEuIFNwbGl0ICJpb21tdS9tZWRpYXRlazogQWRkIG10Njc3OSBJT01NVSBiYXNpYyBzdXBw
+b3J0KHBhdGNoIHY0KSIgdG8gdGhyZWUgcGF0Y2hlcyhmcm9tIFBBVENIIHY1IDA4LzEwIHRvIFBB
+VENIIHY1IDEwLzEwKS4NCiAgMi4gVXNlIG1hY3JvIGRlZmluaXRpb25zIHRvIHJlcGxhY2UgYm9v
+bCB2YWx1ZXMgaW4gbXRrX2lvbW11X3BsYXRfZGF0YSBzdHJ1Y3R1cmUNCiBodHRwOi8vbGlzdHMu
+aW5mcmFkZWFkLm9yZy9waXBlcm1haWwvbGludXgtbWVkaWF0ZWsvMjAyMC1KdW5lLzAxMzU4Ni5o
+dG1sDQoNCiB2NDoNCiAgMS4gUmViYXNlIG9uIHY1LjgtcmMxLg0KICAyLiBGaXggY29kaW5nIHN0
+eWxlLg0KICAzLiBBZGQgRl9NTVVfSU5fRFJERVJfV1JfRU4gZGVmaW5pdGlvbiBpbiBNSVNDX0NU
+UkwgdG8gaW1wcm92ZSBwZXJmb3JtYW5jZS4NCiBodHRwczovL2xrbWwub3JnL2xrbWwvMjAyMC82
+LzE2LzE3NDENCg0KIHYzOg0KICAxLiBSZWJhc2Ugb24gdjUuNy1yYzEuDQogIDIuIFJlbW92ZSB1
+bnVzZWQgcG9ydCBkZWZpbml0aW9uLGV4OkFQVSBhbmQgQ0NVIHBvcnQgaW4gbXQ2Nzc5LWxhcmIt
+cG9ydC5oLg0KICAzLiBSZW1vdmUgImNoYW5nZSBzaW5nbGUgZG9tYWluIHRvIG11bHRpcGxlIGRv
+bWFpbiIgcGFydChmcm9tIFBBVENIIHYyIDA5LzE5IHRvIFBBVENIIHYyIDE5LzE5KS4NCiAgNC4g
+UmVkZXNpZ24gbXQ2Nzc5IGJhc2ljIHBhcnQNCiAgICAoMSlBZGQgc29tZSByZWdpc3RlciBkZWZp
+bml0aW9uIGFuZCByZXVzZSB0aGVtLg0KICAgICgyKVJlZGVzaWduIHNtaSBsYXJiIGJ1cyBJRCB0
+byBhbmFseXplIElPTU1VIHRyYW5zbGF0aW9uIGZhdWx0Lg0KICAgICgzKU9ubHkgaW5pdCBNTV9J
+T01NVSBhbmQgbm90IHVzZSBBUFVfSU9NTVUuDQogaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcv
+cGlwZXJtYWlsL2xpbnV4LW1lZGlhdGVrLzIwMjAtTWF5LzAyOTgxMS5odG1sDQoNCiB2MjoNCiAg
+MS4gUmViYXNlIG9uIHY1LjUtcmMxLg0KICAyLiBEZWxldGUgTTRVX1BPUlRfVU5LTk9XTiBkZWZp
+bmUgYmVjYXVzZSBvZiBub3QgdXNlIGl0Lg0KICAzLiBDb3JyZWN0IGNvZGluZyBmb3JtYXQuDQog
+IDQuIFJlbmFtZSBvZmZzZXQ9MHg0OCByZWdpc3Rlci4NCiAgNS4gU3BsaXQgImlvbW11L21lZGlh
+dGVrOiBBZGQgbXQ2Nzc5IElPTU1VIGJhc2ljIHN1cHBvcnQocGF0Y2ggdjEpIiB0byBzZXZlcmFs
+IHBhdGNoZXMocGF0Y2ggdjIpLg0KIGh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL3BpcGVybWFp
+bC9saW51eC1tZWRpYXRlay8yMDIwLUphbnVhcnkvMDI2MTMxLmh0bWwNCg0KIHYxOg0KIGh0dHA6
+Ly9saXN0cy5pbmZyYWRlYWQub3JnL3BpcGVybWFpbC9saW51eC1tZWRpYXRlay8yMDE5LU5vdmVt
+YmVyLzAyNDU2Ny5odG1sDQoNCkNoYW8gSGFvICgxMCk6DQogIGR0LWJpbmRpbmdzOiBtZWRpYXRl
+azogQWRkIGJpbmRpbmdzIGZvciBNVDY3NzkNCiAgaW9tbXUvbWVkaWF0ZWs6IFJlbmFtZSB0aGUg
+cmVnaXN0ZXIgU1RBTkRBUkRfQVhJX01PREUoMHg0OCkgdG8gTUlTQ19DVFJMDQogIGlvbW11L21l
+ZGlhdGVrOiBVc2UgYSB1MzIgZmxhZ3MgdG8gZGVzY3JpYmUgZGlmZmVyZW50IEhXIGZlYXR1cmVz
+DQogIGlvbW11L21lZGlhdGVrOiBTZXR0aW5nIE1JU0NfQ1RSTCByZWdpc3Rlcg0KICBpb21tdS9t
+ZWRpYXRlazogTW92ZSBpbnZfc2VsX3JlZyBpbnRvIHRoZSBwbGF0X2RhdGENCiAgaW9tbXUvbWVk
+aWF0ZWs6IEFkZCBzdWJfY29tbSBpZCBpbiB0cmFuc2xhdGlvbiBmYXVsdA0KICBpb21tdS9tZWRp
+YXRlazogQWRkIFJFR19NTVVfV1JfTEVOX0NUUkwgcmVnaXN0ZXIgZGVmaW5pdGlvbg0KICBpb21t
+dS9tZWRpYXRlazogRXh0ZW5kIHByb3RlY3QgcGEgYWxpZ25tZW50IHZhbHVlDQogIGlvbW11L21l
+ZGlhdGVrOiBNb2RpZnkgTU1VX0NUUkwgcmVnaXN0ZXIgc2V0dGluZw0KICBpb21tdS9tZWRpYXRl
+azogQWRkIG10Njc3OSBiYXNpYyBzdXBwb3J0DQoNCiAuLi4vYmluZGluZ3MvaW9tbXUvbWVkaWF0
+ZWssaW9tbXUudHh0ICAgICAgICAgfCAgIDIgKw0KIGRyaXZlcnMvaW9tbXUvbXRrX2lvbW11LmMg
+ICAgICAgICAgICAgICAgICAgICB8IDExMCArKysrKysrLS0tDQogZHJpdmVycy9pb21tdS9tdGtf
+aW9tbXUuaCAgICAgICAgICAgICAgICAgICAgIHwgIDIwICstDQogaW5jbHVkZS9kdC1iaW5kaW5n
+cy9tZW1vcnkvbXQ2Nzc5LWxhcmItcG9ydC5oIHwgMjA2ICsrKysrKysrKysrKysrKysrKw0KIDQg
+ZmlsZXMgY2hhbmdlZCwgMjk5IGluc2VydGlvbnMoKyksIDM5IGRlbGV0aW9ucygtKQ0KDQotLQ0K
+Mi4xOC4wDQoNCg==
 
