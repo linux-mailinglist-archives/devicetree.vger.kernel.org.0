@@ -2,136 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 986A321392D
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2020 13:13:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5F4D213949
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2020 13:24:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726244AbgGCLN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jul 2020 07:13:29 -0400
-Received: from vps.xff.cz ([195.181.215.36]:40748 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726039AbgGCLN0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 3 Jul 2020 07:13:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1593774803; bh=PK9XQwVLZikvPIqIQvVj+rgD6Y+uR8PxJm+ULrZzNEY=;
-        h=Date:From:To:Subject:References:X-My-GPG-KeyId:From;
-        b=S7oWV+ePVh3bfJXlbi+307IscRv04ljcgUCHfqikI/1D//XWGqaz4mN46BGZAazVj
-         5bdCe0vCNFUu1n/lHJ7onleN+X9HghCqqMprndSR8s+JCw/aKbIpo8LQ8SKVK0q3vR
-         b1gDz1xB4J3mN4HoEExzY3QakP/cqkk5MQuGnFsE=
-Date:   Fri, 3 Jul 2020 13:13:23 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Sam Ravnborg <sam@ravnborg.org>, Rob Herring <robh@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
-        linux-kernel@vger.kernel.org, Purism Kernel Team <kernel@puri.sm>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, Bhushan Shah <bshah@kde.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-sunxi@googlegroups.com, Luca Weiss <luca@z3ntu.xyz>,
-        Martijn Braam <martijn@brixit.nl>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Maxime Ripard <mripard@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v7 02/13] dt-bindings: panel: Convert rocktech,
- jh057n00900 to yaml
-Message-ID: <20200703111323.zcmv3cuo7toa4d3g@core.my.home>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Rob Herring <robh@kernel.org>,
-        David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
-        linux-kernel@vger.kernel.org, Purism Kernel Team <kernel@puri.sm>,
-        Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, Bhushan Shah <bshah@kde.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-sunxi@googlegroups.com, Luca Weiss <luca@z3ntu.xyz>,
-        Martijn Braam <martijn@brixit.nl>, Icenowy Zheng <icenowy@aosc.io>,
-        Maxime Ripard <mripard@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20200701162928.1638874-1-megous@megous.com>
- <20200701162928.1638874-3-megous@megous.com>
- <20200702205143.GA1670522@bogus>
- <20200702210354.562wkzpdmyrlwojx@core.my.home>
- <20200703051155.GA1685118@ravnborg.org>
- <20200703104448.iwhxk77d2hyrr3x5@core.my.home>
+        id S1726112AbgGCLYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jul 2020 07:24:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42934 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726035AbgGCLYa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jul 2020 07:24:30 -0400
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AA88C08C5C1
+        for <devicetree@vger.kernel.org>; Fri,  3 Jul 2020 04:24:30 -0700 (PDT)
+Received: by mail-lf1-x141.google.com with SMTP id u25so18282524lfm.1
+        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2020 04:24:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=oitMqipLEPO2Yj5xL/dlzZEeDLyWSmeeByxlVNYyd1g=;
+        b=cNaVziwXP/FXl51uLD6P9SDqfM10xutFUrENHOk8xP7BmYZk+IWUPzeVhnaZQf9gvc
+         vxjGSLQIWpuBQfzo3o5bSoGUxFVJoZJ+ddZCWpOZTdGDg4ZTM6iHWWpMIycrEdxDjLOA
+         vmG5JZBPh8P6Kz+iwAHXiP4l9H8Z+T1SQpQa1c/s5/RCne8EgFXmQLHsH2L2jNGdkCz/
+         CX59J9EmjTO1g7YeQqxM/A0p57k3gU5y0rpUgm+GyfXUFvWU+HQJ6C7AvsG1olSZ5Wf2
+         RAH10ZnURTCqLtuTWy+hNEYQhv56R45INNiRlKhkTKPC2FJSuXDDeCOnYALAyOYuJ8NM
+         9Flw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=oitMqipLEPO2Yj5xL/dlzZEeDLyWSmeeByxlVNYyd1g=;
+        b=LM6EwsJ5BXbaUkMMtV/WsR/82XrdvZokbSrQKhPEYgnPNQnAwSS6z12mko0fSgPOlZ
+         eBP0j0n0oGmuU8r6T6LULJL/mE5bCqA/MkyqEhccV5YovJ+tJTlyKDMwbJsoX3lw0HPe
+         QA6ZPgIbiw6rWlSIl/alFI5T7x+YEQjePSYXbUnjqCfrFEJItWkNxKS+ieBD5dnvIp+B
+         Yk+NeLJCqlfVqsl1bYndfKHzi09RNW1JFw/mECkU7Oi5b/ozH06djGV3NYzFKqoacl1L
+         cKtjlzGPtgximO8zruZYyzMvyuW3lrXOHAcW2MOdwQZG6v1CdKMv8Z5yrh4kBJx5a8Gr
+         wVvw==
+X-Gm-Message-State: AOAM531sL+pJKXvUCA1jwrakJ8zxAmJj9fHZbZyoUFBYduHqJluzHSQa
+        xq5+pUqpWvXhIvhIMOQNLW+Gkg==
+X-Google-Smtp-Source: ABdhPJwSnB2E+9qDy3UvGZ3TOCAmeByNzVFr4FH7BTY3Q5sjfcRDicXgAigg7pUSQRkrPg0kxImDPQ==
+X-Received: by 2002:ac2:5e29:: with SMTP id o9mr20757726lfg.196.1593775468529;
+        Fri, 03 Jul 2020 04:24:28 -0700 (PDT)
+Received: from [192.168.1.9] ([83.68.95.66])
+        by smtp.googlemail.com with ESMTPSA id g7sm4539921lfe.62.2020.07.03.04.24.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Jul 2020 04:24:27 -0700 (PDT)
+Subject: Re: [PATCH v3 2/4] iommu/arm-smmu: Workaround for Marvell
+ Armada-AP806 SoC erratum #582743
+To:     Robin Murphy <robin.murphy@arm.com>, will@kernel.org,
+        joro@8bytes.org, gregory.clement@bootlin.com, robh+dt@kernel.org,
+        hannah@marvell.com
+Cc:     linux-kernel@vger.kernel.org, iommu@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, catalin.marinas@arm.com,
+        nadavh@marvell.com, linux-arm-kernel@lists.infradead.org,
+        mw@semihalf.com
+References: <20200702201633.22693-1-tn@semihalf.com>
+ <20200702201633.22693-3-tn@semihalf.com>
+ <f8c3fea9-2bd7-e776-447e-54886cd61568@arm.com>
+From:   Tomasz Nowicki <tn@semihalf.com>
+Message-ID: <8fb0f73f-35ca-d8ec-43b8-ae89e9a21d0c@semihalf.com>
+Date:   Fri, 3 Jul 2020 13:24:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200703104448.iwhxk77d2hyrr3x5@core.my.home>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
+In-Reply-To: <f8c3fea9-2bd7-e776-447e-54886cd61568@arm.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 03, 2020 at 12:44:48PM +0200, megous hlavni wrote:
-> Hello Sam,
-> 
-> On Fri, Jul 03, 2020 at 07:11:55AM +0200, Sam Ravnborg wrote:
-> > Hi Ondrej.
-> > 
-> > > > My bot found errors running 'make dt_binding_check' on your patch:
-> > > > 
-> > > > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/nwl-dsi.example.dt.yaml: panel@0: '#address-cells', '#size-cells', 'port@0' do not match any of the regexes: 'pinctrl-[0-9]+'
-> > > > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/nwl-dsi.example.dt.yaml: panel@0: 'vcc-supply' is a required property
-> > > > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/nwl-dsi.example.dt.yaml: panel@0: 'iovcc-supply' is a required property
-> > > > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/nwl-dsi.example.dt.yaml: panel@0: 'reset-gpios' is a required property
-> > > 
-> > > Paths look bogus ^^^^
-> > > 
-> > > It should be .../rocktech,jh057n00900.yaml: ...
-> > 
-> > The example in nwl-dsi.yaml contains:
-> > 	compatible = "rocktech,jh057n00900";
-> > 
-> > So the example is checked against your updated binding.
-> > And the binding check fails because the example is no longer valid.
-> 
-> Ah, now I understand.
-> 
-> > This needs to be fixed as we do not wat to introduce new errors.
-> > Either the example or the binding needs the fix.
-> 
-> I think we can unrequire the supplies, but reset is needed really.
 
-Hmm, that's probably wrong kind of thinking. Panel has the supplies, and
-obviously requires them, so the dts must describe them somehow, even if
-they are the fixed supplies. So I'll not unrequire them.
 
-> The panel only has one port, so there should be no address/size-cells
-> in the example, and port@0 should be just port to match existing binding.
-> If it had  multiple ports, port@0 would have to be inside ports { } node
-> anyway, according to the existing binding. Then add reset-gpios to
-> the example...
+On 03.07.2020 11:03, Robin Murphy wrote:
+> On 2020-07-02 21:16, Tomasz Nowicki wrote:
+>> From: Hanna Hawa <hannah@marvell.com>
+>>
+>> Due to erratum #582743, the Marvell Armada-AP806 can't access 64bit to
+>> ARM SMMUv2 registers.
+>>
+>> Provide implementation relevant hooks:
+>> - split the writeq/readq to two accesses of writel/readl.
+>> - mask the MMU_IDR2.PTFSv8 fields to not use AArch64 format (but
+>> only AARCH32_L) since with AArch64 format 32 bits access is not 
+>> supported.
+>>
+>> Note that separate writes/reads to 2 is not problem regards to
+>> atomicity, because the driver use the readq/writeq while initialize
+>> the SMMU, report for SMMU fault, and use spinlock in one
+>> case (iova_to_phys).
 > 
-> And that should fix it.
+> The comment about the spinlock seems to be out of date, and TBH that 
+> whole sentence is a bit unclear - how about something like:
 > 
-> I'll prepare the patch shortly.
+> "Note that most 64-bit registers like TTBRn can be accessed as two 
+> 32-bit halves without issue, and AArch32 format ensures that the 
+> register writes which must be atomic (for TLBI etc.) need only be 32-bit."
 > 
-> regards,
-> 	o.
+>> Signed-off-by: Hanna Hawa <hannah@marvell.com>
+>> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+>> Signed-off-by: Tomasz Nowicki <tn@semihalf.com>
+>> ---
+>>   Documentation/arm64/silicon-errata.rst |  3 ++
+>>   drivers/iommu/arm-smmu-impl.c          | 52 ++++++++++++++++++++++++++
+>>   2 files changed, 55 insertions(+)
+>>
+>> diff --git a/Documentation/arm64/silicon-errata.rst 
+>> b/Documentation/arm64/silicon-errata.rst
+>> index 936cf2a59ca4..157214d3abe1 100644
+>> --- a/Documentation/arm64/silicon-errata.rst
+>> +++ b/Documentation/arm64/silicon-errata.rst
+>> @@ -125,6 +125,9 @@ stable kernels.
+>>   | Cavium         | ThunderX2 Core  | #219            | 
+>> CAVIUM_TX2_ERRATUM_219      |
+>>   
+>> +----------------+-----------------+-----------------+-----------------------------+ 
+>>
+>>   
+>> +----------------+-----------------+-----------------+-----------------------------+ 
+>>
+>> +| Marvell        | ARM-MMU-500     | #582743         | 
+>> N/A                         |
+>> ++----------------+-----------------+-----------------+-----------------------------+ 
+>>
+>> ++----------------+-----------------+-----------------+-----------------------------+ 
+>>
+>>   | Freescale/NXP  | LS2080A/LS1043A | A-008585        | 
+>> FSL_ERRATUM_A008585         |
+>>   
+>> +----------------+-----------------+-----------------+-----------------------------+ 
+>>
+>>   
+>> +----------------+-----------------+-----------------+-----------------------------+ 
+>>
+>> diff --git a/drivers/iommu/arm-smmu-impl.c 
+>> b/drivers/iommu/arm-smmu-impl.c
+>> index c75b9d957b70..c1fc5e1b8193 100644
+>> --- a/drivers/iommu/arm-smmu-impl.c
+>> +++ b/drivers/iommu/arm-smmu-impl.c
+>> @@ -147,6 +147,53 @@ static const struct arm_smmu_impl arm_mmu500_impl 
+>> = {
+>>       .reset = arm_mmu500_reset,
+>>   };
+>> +static u64 mrvl_mmu500_readq(struct arm_smmu_device *smmu, int page, 
+>> int off)
+>> +{
+>> +    u64 val;
+>> +
+>> +    /*
+>> +     * Marvell Armada-AP806 erratum #582743.
+>> +     * Split all the readq to double readl
+>> +     */
+>> +    val = (u64)readl_relaxed(arm_smmu_page(smmu, page) + off + 4) << 32;
+>> +    val |= readl_relaxed(arm_smmu_page(smmu, page) + off);
 > 
-> > 	Sam
-> > 
-> > 
-> > > 
-> > > regards,
-> > > 	o.
-> > > 
-> > > > 
-> > > > See https://patchwork.ozlabs.org/patch/1320690
-> > > > 
-> > > > If you already ran 'make dt_binding_check' and didn't see the above
-> > > > error(s), then make sure dt-schema is up to date:
-> > > > 
-> > > > pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-> > > > 
-> > > > Please check and re-submit.
-> > > > 
+> Even though io-64-nonatomic-hi-lo.h doesn't override readq() etc. for 
+> 64-bit builds, you can still use hi_lo_readq_relaxed() directly.
+> 
+>> +
+>> +    return val;
+>> +}
+>> +
+>> +static void mrvl_mmu500_writeq(struct arm_smmu_device *smmu, int 
+>> page, int off,
+>> +                   u64 val)
+>> +{
+>> +    /*
+>> +     * Marvell Armada-AP806 erratum #582743.
+>> +     * Split all the writeq to double writel
+>> +     */
+>> +    writel_relaxed(upper_32_bits(val), arm_smmu_page(smmu, page) + 
+>> off + 4);
+>> +    writel_relaxed(lower_32_bits(val), arm_smmu_page(smmu, page) + off);
+> 
+> Similarly, hi_lo_writeq_relaxed().
+> 
+>> +}
+>> +
+>> +static u32 mrvl_mmu500_cfg_id2_fixup(u32 id)
+>> +{
+>> +
+>> +    /*
+>> +     * Armada-AP806 erratum #582743.
+>> +     * Hide the SMMU_IDR2.PTFSv8 fields to sidestep the AArch64
+>> +     * formats altogether and allow using 32 bits access on the
+>> +     * interconnect.
+>> +     */
+>> +    id &= ~(ARM_SMMU_ID2_PTFS_4K | ARM_SMMU_ID2_PTFS_16K |
+>> +        ARM_SMMU_ID2_PTFS_64K);
+>> +
+>> +    return id;
+>> +}
+>> +
+>> +static const struct arm_smmu_impl mrvl_mmu500_impl = {
+>> +    .read_reg64 = mrvl_mmu500_readq,
+>> +    .write_reg64 = mrvl_mmu500_writeq,
+>> +    .cfg_id2_fixup = mrvl_mmu500_cfg_id2_fixup,
+>> +    .reset = arm_mmu500_reset,
+>> +};
+>> +
+>>   struct arm_smmu_device *arm_smmu_impl_init(struct arm_smmu_device 
+>> *smmu)
+>>   {
+>> @@ -160,6 +207,11 @@ struct arm_smmu_device *arm_smmu_impl_init(struct 
+>> arm_smmu_device *smmu)
+>>        */
+>>       switch (smmu->model) {
+>>       case ARM_MMU500:
+>> +        if (of_device_is_compatible(smmu->dev->of_node,
+> 
+> Nit: there's a local "np" variable now.
+> 
+>> +                        "marvell,ap806-smmu-500")) {
+>> +            smmu->impl = &mrvl_mmu500_impl;
+>> +            return smmu;
+>> +        }
+> 
+> Please put this with the other integration checks below the switch 
+> statement. Yes, it means we'll end up assigning smmu->impl twice for 
+> this particular case, but that's the intended pattern.
+> 
+
+Thanks, all above comments do make sense and will be fixed in next spin.
+
+Thanks,
+Tomasz
