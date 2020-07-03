@@ -2,106 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81A942136CE
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2020 10:58:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB7F42136E4
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2020 10:59:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726442AbgGCI6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jul 2020 04:58:21 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:37472 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726245AbgGCI6V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jul 2020 04:58:21 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0638wJWg065658;
-        Fri, 3 Jul 2020 03:58:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1593766699;
-        bh=W7t1sC7N6y7fp2AbFukbs/zUn1q/KxGNhrBoW9dURFo=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=rBI1VPweRRqGWen3eKyitMNqcQofm5gDxDmwsNo2extK/Qjd1r1NsCMnwQ/rkMwL9
-         AI2SkQzIpBliL3Mmh8oE/DsCP5m8yklYxB10z4rI2aHmuIDhoTcvvp4YUWOoFQ2eas
-         Q86Qx22hEbsyX9bfRz6ET8jYFhAq+DCCe/2qFtiM=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0638wJH0084790
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 3 Jul 2020 03:58:19 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 3 Jul
- 2020 03:58:19 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 3 Jul 2020 03:58:19 -0500
-Received: from [192.168.2.14] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0638wHbF057587;
-        Fri, 3 Jul 2020 03:58:17 -0500
-Subject: Re: [PATCH v3 1/3] dt-binding: phy: convert ti,omap-usb2 to YAML
-To:     Rob Herring <robh@kernel.org>
-CC:     <vigneshr@ti.com>, <linux-kernel@vger.kernel.org>,
-        <robh+dt@kernel.org>, <kishon@ti.com>, <nsekhar@ti.com>,
-        <devicetree@vger.kernel.org>
-References: <20200630092729.15346-1-rogerq@ti.com>
- <20200630092729.15346-2-rogerq@ti.com> <20200702204758.GA1665250@bogus>
-From:   Roger Quadros <rogerq@ti.com>
-Message-ID: <7899660d-936e-6d88-877a-f75d76f34c40@ti.com>
-Date:   Fri, 3 Jul 2020 11:58:16 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
-MIME-Version: 1.0
-In-Reply-To: <20200702204758.GA1665250@bogus>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1726590AbgGCI7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jul 2020 04:59:12 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:25847 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726228AbgGCI7M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jul 2020 04:59:12 -0400
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 03 Jul 2020 01:59:11 -0700
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 03 Jul 2020 01:59:08 -0700
+Received: from gokulsri-linux.qualcomm.com ([10.201.2.207])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 03 Jul 2020 14:28:44 +0530
+Received: by gokulsri-linux.qualcomm.com (Postfix, from userid 432570)
+        id F417B2168F; Fri,  3 Jul 2020 14:28:42 +0530 (IST)
+From:   Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
+To:     bjorn.andersson@linaro.org, linux-remoteproc@vger.kernel.org,
+        sboyd@kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, linux-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, govinds@codeaurora.org,
+        sricharan@codeaurora.org, gokulsri@codeaurora.org
+Subject: [v7 0/4] Add non PAS wcss Q6 support for QCS404
+Date:   Fri,  3 Jul 2020 14:28:38 +0530
+Message-Id: <1593766722-28838-1-git-send-email-gokulsri@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <20190726092332.25202-1-govinds@codeaurora.org>
+References: <20190726092332.25202-1-govinds@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Changes since v6:
+ Removed duplicate structure entry added during rebase in v5
 
-On 02/07/2020 23:47, Rob Herring wrote:
-> On Tue, 30 Jun 2020 12:27:27 +0300, Roger Quadros wrote:
->> Move ti,omap-usb2 to its own YAML schema.
->>
->> Signed-off-by: Roger Quadros <rogerq@ti.com>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> ---
->>   .../devicetree/bindings/phy/ti,omap-usb2.yaml | 69 +++++++++++++++++++
->>   .../devicetree/bindings/phy/ti-phy.txt        | 37 ----------
->>   2 files changed, 69 insertions(+), 37 deletions(-)
->>   create mode 100644 Documentation/devicetree/bindings/phy/ti,omap-usb2.yaml
->>
-> 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/ti,omap-usb2.example.dt.yaml: example-0: phy@4100000:reg:0: [0, 68157440, 0, 84] is too long
-> 
+Changes since v5:
+ Rebased all the unmerged patches on top of linux-5.8-rc3
+ Added dt-binding for qcom,qcs404-wcss-pil
+ Removed typo
 
-In my local build in the dt example I see
+Changes since v4:
+ removed QDSP6SS clock controls and moved to wcss rproc.
+ renamed wcsccc to q6sstopcc.
+ cleanup/refactoring.
 
-     phy@4100000:
-       compatible: ["ti,am654-usb2", "ti,omap-usb2"]
-       reg: [[0x0, 0x4100000, 0x0, 0x54]]
+Changes since v3:
+ dt binding cleanup.
+ Fixed remoteproc recovery.
+ Added remoteproc dump support.
+ wcsscc cleanup/refactoring.
 
-And I don't see any errors. I've updated my dt-schema as well.
+Changes since v2:
+ Removed unused properties.
+ Refactored code to have common logic b/w ipq8074 and QCS404, wherever possible.
+ Added compatible example.
+ Removed wcss-protected bool.
 
-> 
-> See https://patchwork.ozlabs.org/patch/1319665
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure dt-schema is up to date:
-> 
-> pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-> 
-> Please check and re-submit.
-> 
+Changes since v1:
+  Corrected clock names as per comments in v1 patch.
+
+Govind Singh (4):
+  remoteproc: qcom: wcss: populate hardcoded param using driver data
+  dt-bindings: remoteproc: qcom: Add Q6V5 Modem PIL binding for QCS404
+  remoteproc: qcom: wcss: Add non pas wcss Q6 support for QCS404
+  remoteproc: qcom: wcss: explicitly request exclusive reset control
+
+ .../devicetree/bindings/remoteproc/qcom,q6v5.txt   |   9 +
+ drivers/remoteproc/qcom_q6v5_wcss.c                | 593 +++++++++++++++++++--
+ 2 files changed, 560 insertions(+), 42 deletions(-)
 
 -- 
-cheers,
--roger
+2.7.4
 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
