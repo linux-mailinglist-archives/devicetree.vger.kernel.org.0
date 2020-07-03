@@ -2,58 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C72BF2134F2
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2020 09:27:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7497F213563
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2020 09:46:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726157AbgGCH1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jul 2020 03:27:24 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:50578 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726100AbgGCH1Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jul 2020 03:27:24 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0637R6X8008612;
-        Fri, 3 Jul 2020 02:27:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1593761226;
-        bh=JAgfQZyZ5OCclljqyFUtrQi+fTILtIzhg4LOfF6ffNg=;
-        h=Subject:To:References:From:Date:In-Reply-To;
-        b=qq2T15TP8855E5+LM7HzRbH6C9+JEVm70rVxuj2SW/sudOvyVS7UL+qdm4YLdl9N6
-         ckrL7qObLBsqCSce5xhNyZNi+vTrwNEzo3Xo6vWYMms5ojoX+BJfHSyeMj4f8Ff8Tg
-         hd2086CZRwGgXUIcTV4FvgxwaHrFDLJRt8GkY2K0=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0637R6if050745
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 3 Jul 2020 02:27:06 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 3 Jul
- 2020 02:27:05 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 3 Jul 2020 02:27:05 -0500
-Received: from [10.250.232.87] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0637R1SF002523;
-        Fri, 3 Jul 2020 02:27:02 -0500
-Subject: Re: [PATCH 0/7] Add support for SD card in AM654x-evm
-To:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>, <adrian.hunter@intel.com>,
-        <will@kernel.org>, <catalin.marinas@arm.com>, <robh+dt@kernel.org>,
-        <ulf.hansson@linaro.org>
-References: <20200619125801.9530-1-faiz_abbas@ti.com>
-From:   Faiz Abbas <faiz_abbas@ti.com>
-Message-ID: <10f765e4-d9ac-324d-623f-83720c997042@ti.com>
-Date:   Fri, 3 Jul 2020 12:57:00 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+        id S1725949AbgGCHqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jul 2020 03:46:42 -0400
+Received: from esa2.microchip.iphmx.com ([68.232.149.84]:51125 "EHLO
+        esa2.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725779AbgGCHqm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jul 2020 03:46:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1593762401; x=1625298401;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Qe3AsKz/1NWtVp1Lygpm/UXyvvks8ItOId5LZbRDzSE=;
+  b=yyklb0++eQ5MbSXtAogkfn1kylatS8DUgSxNSgDV0yHMGg8pdw84mb4t
+   hcpei09jp/DvHab2M+W1BNssXTnHjfOWQXqPcCtyL+Q1ffF3qEyX6s1t1
+   9DocxPzIeS2pXSNU9EiEM2pi7xlwxUEn8CLYwH8LyumUKPOXyfeAL1FBw
+   4xUiIttu3duCo7XbHBA5adEkw3WjaKMk7xhnzWGoEdhLYaMp4TdLuWxAW
+   eInrrgL6DbRuhKcmP6qZfYELuiihSdr/iSfNr67t3cLZHuWxI4wUP/Da7
+   8M4yN9BD/kTmZsNIEa3s2q0X0tU18zGptAmfU111dQ5FmQ0wrC6PWViHi
+   w==;
+IronPort-SDR: AfTzNOcXbRjSM3KS+KI3U/gtKHXSrMqBkFwBiCYJNjQMzDG0zc1q7RvSLo6ksFiDlZnyMJvVAC
+ 5ouKWWhV+IbsIlil6Zu4QdH8vX6OW2GXIUE7saiPq75jeSHXTUlTyvAUvnuqjFnvP7578tYV85
+ RNV1vgd5Fib+L0KA1hzxgBS6lOtAKhaJkmrjEaZU93MZsfAnjrewxIna1tCi4Vswi4jPhI3902
+ BNAYFHeJsKiUcQJokCf/WGfDy9b10yRUJ3i92kgOh+gxh3oasQHhV82U2QDy9e2iiS/mOrYjOD
+ LWw=
+X-IronPort-AV: E=Sophos;i="5.75,307,1589266800"; 
+   d="scan'208";a="80602013"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 03 Jul 2020 00:46:41 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Fri, 3 Jul 2020 00:46:39 -0700
+Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Fri, 3 Jul 2020 00:46:14 -0700
+From:   Eugen Hristev <eugen.hristev@microchip.com>
+To:     <mchehab@kernel.org>, <hverkuil@xs4all.nl>, <robh+dt@kernel.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     Eugen Hristev <eugen.hristev@microchip.com>
+Subject: [PATCH v2 0/4] media: introduce microchip csi2dc driver
+Date:   Fri, 3 Jul 2020 10:44:12 +0300
+Message-ID: <20200703074416.55272-1-eugen.hristev@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20200619125801.9530-1-faiz_abbas@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -61,29 +60,43 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On 19/06/20 6:27 pm, Faiz Abbas wrote:
-> The following patches add driver support for SD card on the
-> am654x-evm. It only enables high speed mode with UHS mode
-> support coming in a future series.
-> 
-> DTS support will be added in another series as well.
-> 
-> Faiz Abbas (7):
->   dt-bindings: mmc: sdhci-am654: Add ti,clkbuf-sel binding
->   mmc: sdhci_am654: Add flag for PHY calibration
->   mmc: sdhci_am654: Add Support for SR2.0
->   mmc: sdhci_am654: Fix conditions for enabling dll
->   mmc: sdhci_am654: Update delay chain configuration
->   mmc: sdhci_am654: Add support for clkbuf_sel property
->   arm64: defconfig: Enable AM654x SDHCI controller
-> 
->  .../devicetree/bindings/mmc/sdhci-am654.txt   |  1 +
->  arch/arm64/configs/defconfig                  |  1 +
->  drivers/mmc/host/sdhci_am654.c                | 86 ++++++++++++++-----
->  3 files changed, 65 insertions(+), 23 deletions(-)
-> 
+This series adds support for the Microchip csi2dc csi-2 demux controller.
 
-Gentle ping.
+I was not fully sure where is the best place for such a helper chip, thus
+I added the driver in a separate 'misc' menu under the media menu.
 
-Thanks,
-Faiz
+There are references in the binding driver to the Synopsys IDI interface,
+which is not yet in kernel mainline, as per the patch series at [1].
+
+As this driver is still new, it still can get plenty of improvement, so,
+waiting for feedback.
+
+Thanks everyone for reviewing !
+
+Changes in v2:
+- fixed warnings for binding yaml check
+
+[1] https://lwn.net/Articles/790917/
+
+Eugen Hristev (4):
+  dt-bindings: media: csi2dc: add bindings for microchip csi2dc
+  media: misc: introduce miscellaneous menu for helper chips
+  media: misc: introduce microchip_csi2dc driver
+  MAINTAINERS: add microchip csi2dc
+
+ .../bindings/media/microchip,csi2dc.yaml      | 185 +++++
+ MAINTAINERS                                   |   7 +
+ drivers/media/Kconfig                         |   1 +
+ drivers/media/Makefile                        |   2 +-
+ drivers/media/misc/Kconfig                    |  22 +
+ drivers/media/misc/Makefile                   |   2 +
+ drivers/media/misc/microchip_csi2dc.c         | 705 ++++++++++++++++++
+ 7 files changed, 923 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/media/microchip,csi2dc.yaml
+ create mode 100644 drivers/media/misc/Kconfig
+ create mode 100644 drivers/media/misc/Makefile
+ create mode 100644 drivers/media/misc/microchip_csi2dc.c
+
+-- 
+2.25.1
+
