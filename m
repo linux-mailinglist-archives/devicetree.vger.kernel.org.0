@@ -2,81 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DE11213630
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2020 10:18:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 960C5213655
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2020 10:24:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726116AbgGCISt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jul 2020 04:18:49 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:63416 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725786AbgGCISt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jul 2020 04:18:49 -0400
-X-Greylist: delayed 363 seconds by postgrey-1.27 at vger.kernel.org; Fri, 03 Jul 2020 04:18:48 EDT
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
-  by alexa-out.qualcomm.com with ESMTP; 03 Jul 2020 01:12:45 -0700
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 03 Jul 2020 01:12:43 -0700
-Received: from gokulsri-linux.qualcomm.com ([10.201.2.207])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 03 Jul 2020 13:42:21 +0530
-Received: by gokulsri-linux.qualcomm.com (Postfix, from userid 432570)
-        id 77F2821696; Fri,  3 Jul 2020 13:42:20 +0530 (IST)
-From:   Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
-To:     bjorn.andersson@linaro.org, linux-remoteproc@vger.kernel.org,
-        sboyd@kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Cc:     andy.gross@linaro.org, linux-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, govinds@codeaurora.org,
-        sricharan@codeaurora.org, gokulsri@codeaurora.org
-Subject: [v6 4/4] remoteproc: qcom: wcss: explicitly request exclusive reset control
-Date:   Fri,  3 Jul 2020 13:42:19 +0530
-Message-Id: <1593763939-19096-5-git-send-email-gokulsri@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1593763939-19096-1-git-send-email-gokulsri@codeaurora.org>
-References: <20190726092332.25202-1-govinds@codeaurora.org>
- <1593763939-19096-1-git-send-email-gokulsri@codeaurora.org>
+        id S1725984AbgGCIY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jul 2020 04:24:28 -0400
+Received: from foss.arm.com ([217.140.110.172]:36410 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725779AbgGCIY1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 Jul 2020 04:24:27 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6DB4A2F;
+        Fri,  3 Jul 2020 01:24:27 -0700 (PDT)
+Received: from [10.57.21.32] (unknown [10.57.21.32])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 91FAE3F73C;
+        Fri,  3 Jul 2020 01:24:25 -0700 (PDT)
+Subject: Re: [PATCH v3 1/4] iommu/arm-smmu: Add SMMU ID2 register fixup hook
+To:     Tomasz Nowicki <tn@semihalf.com>, will@kernel.org, joro@8bytes.org,
+        gregory.clement@bootlin.com, robh+dt@kernel.org, hannah@marvell.com
+Cc:     linux-kernel@vger.kernel.org, iommu@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, catalin.marinas@arm.com,
+        nadavh@marvell.com, linux-arm-kernel@lists.infradead.org,
+        mw@semihalf.com
+References: <20200702201633.22693-1-tn@semihalf.com>
+ <20200702201633.22693-2-tn@semihalf.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <d3540512-09c7-0fa5-2b35-6f1112a575a9@arm.com>
+Date:   Fri, 3 Jul 2020 09:24:24 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20200702201633.22693-2-tn@semihalf.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Govind Singh <govinds@codeaurora.org>
+On 2020-07-02 21:16, Tomasz Nowicki wrote:
+> We already have 'cfg_probe' hook which meant to override and apply
+> workarounds while probing ID registers. However, 'cfg_probe' is called
+> at the very end and therefore for some cases fixing up things becomes complex
+> or requires exporting of SMMU driver structures. Hence, seems it is better and
+> cleaner to do ID fixup right away. In preparation for adding Marvell
+> errata add an extra ID2 fixup hook.
 
-Use request exclusive reset control for wcss reset controls.
+Hmm, the intent of ->cfg_probe was very much to give impl a chance to 
+adjust the detected features before we start consuming them, with this 
+exact case in mind. Since the Cavium quirk isn't actually doing that - 
+it just needs to run *anywhere* in the whole probe process - I'm under 
+no illusion that I put the hook in exactly the right place first time 
+around ;)
 
-Signed-off-by: Govind Singh <govinds@codeaurora.org>
----
- drivers/remoteproc/qcom_q6v5_wcss.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+The diff below should be more on the mark...
 
-diff --git a/drivers/remoteproc/qcom_q6v5_wcss.c b/drivers/remoteproc/qcom_q6v5_wcss.c
-index f49fe19..ed35407 100644
---- a/drivers/remoteproc/qcom_q6v5_wcss.c
-+++ b/drivers/remoteproc/qcom_q6v5_wcss.c
-@@ -784,21 +784,21 @@ static int q6v5_wcss_init_reset(struct q6v5_wcss *wcss,
- 	struct device *dev = wcss->dev;
- 
- 	if (desc->aon_reset_required) {
--		wcss->wcss_aon_reset = devm_reset_control_get(dev, "wcss_aon_reset");
-+		wcss->wcss_aon_reset = devm_reset_control_get_exclusive(dev, "wcss_aon_reset");
- 		if (IS_ERR(wcss->wcss_aon_reset)) {
- 			dev_err(wcss->dev, "fail to acquire wcss_aon_reset\n");
- 			return PTR_ERR(wcss->wcss_aon_reset);
- 		}
- 	}
- 
--	wcss->wcss_reset = devm_reset_control_get(dev, "wcss_reset");
-+	wcss->wcss_reset = devm_reset_control_get_exclusive(dev, "wcss_reset");
- 	if (IS_ERR(wcss->wcss_reset)) {
- 		dev_err(wcss->dev, "unable to acquire wcss_reset\n");
- 		return PTR_ERR(wcss->wcss_reset);
- 	}
- 
- 	if (desc->wcss_q6_reset_required) {
--		wcss->wcss_q6_reset = devm_reset_control_get(dev, "wcss_q6_reset");
-+		wcss->wcss_q6_reset = devm_reset_control_get_exclusive(dev, "wcss_q6_reset");
- 		if (IS_ERR(wcss->wcss_q6_reset)) {
- 			dev_err(wcss->dev, "unable to acquire wcss_q6_reset\n");
- 			return PTR_ERR(wcss->wcss_q6_reset);
--- 
-2.7.4
+Robin.
+
+----->8-----
+diff --git a/drivers/iommu/arm-smmu.c b/drivers/iommu/arm-smmu.c
+index 243bc4cb2705..884ffca5b1eb 100644
+--- a/drivers/iommu/arm-smmu.c
++++ b/drivers/iommu/arm-smmu.c
+@@ -1891,6 +1891,9 @@ static int arm_smmu_device_cfg_probe(struct 
+arm_smmu_device *smmu)
+  			smmu->features |= ARM_SMMU_FEAT_FMT_AARCH64_64K;
+  	}
+
++	if (smmu->impl && smmu->impl->cfg_probe)
++		return smmu->impl->cfg_probe(smmu);
++
+  	/* Now we've corralled the various formats, what'll it do? */
+  	if (smmu->features & ARM_SMMU_FEAT_FMT_AARCH32_S)
+  		smmu->pgsize_bitmap |= SZ_4K | SZ_64K | SZ_1M | SZ_16M;
+@@ -1909,7 +1912,6 @@ static int arm_smmu_device_cfg_probe(struct 
+arm_smmu_device *smmu)
+  	dev_notice(smmu->dev, "\tSupported page sizes: 0x%08lx\n",
+  		   smmu->pgsize_bitmap);
+
+-
+  	if (smmu->features & ARM_SMMU_FEAT_TRANS_S1)
+  		dev_notice(smmu->dev, "\tStage-1: %lu-bit VA -> %lu-bit IPA\n",
+  			   smmu->va_size, smmu->ipa_size);
+@@ -1918,9 +1920,6 @@ static int arm_smmu_device_cfg_probe(struct 
+arm_smmu_device *smmu)
+  		dev_notice(smmu->dev, "\tStage-2: %lu-bit IPA -> %lu-bit PA\n",
+  			   smmu->ipa_size, smmu->pa_size);
+
+-	if (smmu->impl && smmu->impl->cfg_probe)
+-		return smmu->impl->cfg_probe(smmu);
+-
+  	return 0;
+  }
 
