@@ -2,115 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DEC3214603
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jul 2020 15:09:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6B2D21460C
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jul 2020 15:20:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726643AbgGDNJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Jul 2020 09:09:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38716 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726638AbgGDNJ2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 4 Jul 2020 09:09:28 -0400
-Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0E48F2075D;
-        Sat,  4 Jul 2020 13:09:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1593868168;
-        bh=XKkYUna+C06YzYOPFLvRPSDNzCZHTcnnHceCSplfaDo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UQGCEihcRR8O+4v1S89+qf+2jJkRhmrnWFknwJYLWkBg5Z/dQ75ffTq12DsnOKMiA
-         gg5x/N0JSgmAq656qlHecV6niqLIryBTuDHAFrCPSMiuDMtV75akZowtq8QyvEWLze
-         zxMxUuXexGPuai9UV2WwDb6idRHJqhw3KHGUJgN8=
-Date:   Sat, 4 Jul 2020 14:09:23 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Konrad Dybcio <konradybcio@gmail.com>
+        id S1726501AbgGDNUm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Jul 2020 09:20:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55852 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726405AbgGDNUm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jul 2020 09:20:42 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5DB2C061794;
+        Sat,  4 Jul 2020 06:20:41 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id l12so37255104ejn.10;
+        Sat, 04 Jul 2020 06:20:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FxeWfdeiZs/rAf+ljgMaCrJoKxPAwF3x7YpavGdK0aI=;
+        b=k0AQLqmBs39X8hgGcZfrSBkkff33qKuj+PAa3/3V65/noDmQ9W9gBdNBEIm3GAiYWG
+         K6z6S2fEzf0frf6VKldY8Gd2e3labO3XqPacm0GwJL0ye56QlNoLrQvh71TI/xADk4Uh
+         ZkXB8LqAQ2QGY5G8fXCYj2K/pROMoNUc2tXHyIV+em8G8bX4fkC8m+EBzByr/hRBUdQc
+         RkNjsKRyV9TcZLk3EruvbcRuMlkJxEtQ34ZyIW5oxcPuvABduPtZpncxH7AvHqQCOqBX
+         JCEH2AQ0xqWNz0m0odvp1ziGDp9a0jNHZZakGHeTRWpHkhw8Wlo3hjBRgnzW4nZOzCKk
+         AK4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FxeWfdeiZs/rAf+ljgMaCrJoKxPAwF3x7YpavGdK0aI=;
+        b=i/eBDyrujDQFc4aJUDVEmndn4BWwgOCCyfmB3Z99rox1sdPy3tq+5dzpqL1F3hZthO
+         OzHyeJP+VA5WwO/UpP0GotnK4aGt+o7XiFRytbuV8w1G1czBpMLfouSZwkZSAMODm2/p
+         dn3fsbe9/gkmDol+FxNybn1ueAAUxwt2j1I/84erRBhAaYe7JcIyW9vv+JLieL6Noxqq
+         08AyqrfaLgIVJ1ZkG1Vt+tM4W7pc/wOiToQ2g31b5C0FL4bJNyDY6MHklzia2nCiAEiw
+         amwmanDZQvRDG3UUgbmd64KrsLogkP4fXuOo0rZi55dhJcxhsE5iTI7OKUp6SXJWMqS9
+         VLWw==
+X-Gm-Message-State: AOAM532Itmt5/+rdo5c51nS/Ze5072k3yqICUq5Q43jVTab2MykB2t9n
+        ScnDlieabOa0KCuGJI8CpQ3exdP8CAe+js/f7pI=
+X-Google-Smtp-Source: ABdhPJyN0L6Lg+tDrvxAD4o3/ArnPQHIneDzLuy5Y3L9y8VnRCiaTHn+7cc8WOa3IbxOlmbcK4A+SFhO5NQmPPcgJZQ=
+X-Received: by 2002:a17:906:70d5:: with SMTP id g21mr19049076ejk.340.1593868840390;
+ Sat, 04 Jul 2020 06:20:40 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200704122809.73794-1-konradybcio@gmail.com> <20200704130922.GB21333@willie-the-truck>
+In-Reply-To: <20200704130922.GB21333@willie-the-truck>
+From:   Konrad Dybcio <konradybcio@gmail.com>
+Date:   Sat, 4 Jul 2020 15:20:04 +0200
+Message-ID: <CAMS8qEU7owyk0ELmfE7f6Q_C0RT0cy3N=WtP0DzEUhV6KPnDhQ@mail.gmail.com>
+Subject: Re: [PATCH 1/1] iommu/arm-smmu: Implement qcom,skip-init
+To:     Will Deacon <will@kernel.org>
 Cc:     skrzynka@konradybcio.pl, Robin Murphy <robin.murphy@arm.com>,
         Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
+        iommu@lists.linux-foundation.org,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         jcrouse@codeaurora.org, john.stultz@linaro.org
-Subject: Re: [PATCH 1/1] iommu/arm-smmu: Implement qcom,skip-init
-Message-ID: <20200704130922.GB21333@willie-the-truck>
-References: <20200704122809.73794-1-konradybcio@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200704122809.73794-1-konradybcio@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[Adding Bjorn, Jordan and John because I really don't want a bunch of
-different ways to tell the driver that the firmware is screwing things up]
+> It would probably be better to know _which_ context banks we shouldn't
+> touch, no? Otherwise what happens to the others?
 
-On Sat, Jul 04, 2020 at 02:28:09PM +0200, Konrad Dybcio wrote:
-> This adds the downstream property required to support
-> SMMUs on SDM630 and other platforms (the need for it
-> most likely depends on firmware configuration).
-> 
-> Signed-off-by: Konrad Dybcio <konradybcio@gmail.com>
-> ---
->  .../devicetree/bindings/iommu/arm,smmu.yaml       | 10 ++++++++++
->  drivers/iommu/arm-smmu.c                          | 15 +++++++++------
->  2 files changed, 19 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> index d7ceb4c34423..9abd6d41a32c 100644
-> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> @@ -102,6 +102,16 @@ properties:
->        access to SMMU configuration registers. In this case non-secure aliases of
->        secure registers have to be used during SMMU configuration.
->  
-> +  qcom,skip-init:
-> +    description: |
-> +      Disable resetting configuration for all context banks
-> +      during device reset.  This is useful for targets where
-> +      some context banks are dedicated to other execution
-> +      environments outside of Linux and those other EEs are
-> +      programming their own stream match tables, SCTLR, etc.
-> +      Without setting this option we will trample on their
-> +      configuration.
+> Do we not need to worry about the SMRs as well?
 
-It would probably be better to know _which_ context banks we shouldn't
-touch, no? Otherwise what happens to the others?
+This was mimicked from CAF (think [1]) and the SMMUs don't make the
+hypervisor angry anymore, so I wouldn't be too picky on that if it works..
 
-> +
->    stream-match-mask:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description: |
-> diff --git a/drivers/iommu/arm-smmu.c b/drivers/iommu/arm-smmu.c
-> index 243bc4cb2705..a5c623d4caf9 100644
-> --- a/drivers/iommu/arm-smmu.c
-> +++ b/drivers/iommu/arm-smmu.c
-> @@ -1655,13 +1655,16 @@ static void arm_smmu_device_reset(struct arm_smmu_device *smmu)
->  	 * Reset stream mapping groups: Initial values mark all SMRn as
->  	 * invalid and all S2CRn as bypass unless overridden.
->  	 */
-> -	for (i = 0; i < smmu->num_mapping_groups; ++i)
-> -		arm_smmu_write_sme(smmu, i);
->  
-> -	/* Make sure all context banks are disabled and clear CB_FSR  */
-> -	for (i = 0; i < smmu->num_context_banks; ++i) {
-> -		arm_smmu_write_context_bank(smmu, i);
-> -		arm_smmu_cb_write(smmu, i, ARM_SMMU_CB_FSR, ARM_SMMU_FSR_FAULT);
-> +	if (!of_find_property(smmu->dev->of_node, "qcom,skip-init", NULL)) {
-> +		for (i = 0; i < smmu->num_mapping_groups; ++i)
-> +			arm_smmu_write_sme(smmu, i);
-> +
-> +		/* Make sure all context banks are disabled and clear CB_FSR  */
-> +		for (i = 0; i < smmu->num_context_banks; ++i) {
-> +			arm_smmu_write_context_bank(smmu, i);
-> +			arm_smmu_cb_write(smmu, i, ARM_SMMU_CB_FSR, ARM_SMMU_FSR_FAULT);
-> +		}
->  	}
 
-Do we not need to worry about the SMRs as well?
+[1] https://github.com/sonyxperiadev/kernel/blob/aosp/LA.UM.7.1.r1/drivers/iommu/arm-smmu.c#L4104-L4109
 
-Will
+Regards
+Konrad
