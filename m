@@ -2,113 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5016121456D
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jul 2020 13:39:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B1022145CE
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jul 2020 14:28:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728132AbgGDLja (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Jul 2020 07:39:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40414 "EHLO
+        id S1726777AbgGDM2X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Jul 2020 08:28:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728170AbgGDLj0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jul 2020 07:39:26 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EE84C061794;
-        Sat,  4 Jul 2020 04:39:26 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id f139so36655806wmf.5;
-        Sat, 04 Jul 2020 04:39:26 -0700 (PDT)
+        with ESMTP id S1726738AbgGDM2X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jul 2020 08:28:23 -0400
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34CB8C061794;
+        Sat,  4 Jul 2020 05:28:23 -0700 (PDT)
+Received: by mail-ed1-x542.google.com with SMTP id d16so23557969edz.12;
+        Sat, 04 Jul 2020 05:28:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=s1wxiSXb6FjGblsvKrZYztMSCVGGVQHB+0DmuQ/lyxA=;
-        b=JrewqFucv5cYOk7OE3oVnmZEW3IbJjLlbiFhIN8TjMDZzUl7L+jK5AKEFgEXWzxTt2
-         2pQXxy3Pz1M75SMWDCj/v0RMb9zesYAdX6YFCYIbnYmGaG9U9A/BVMclHljHSKcbD+qe
-         YAwDMlcI+nxg14LvyfWNzqkomR1qajrWKg4u814ufNNLKFQAY6e3hDdo729Kvyx+Pcil
-         IDKRHP5AQmDyohNs9j0Xia144mKJyU+H5ggVM8MSPXcNsrLv/Pbsxr2TwbtFJf+3XCQy
-         89ld2FVKMq24fnhWHiB3dC+gxVF4kpm1vsG8xovGK4fAWvcuKmXsP643kNsh9VlDOEoe
-         Kgww==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=i+PMOq5Al6StIBzFo1wcc3naFIWV4JdGXcD4ZNngMYA=;
+        b=hPhYRSccHjEE/ShMqbPzxgOdCzDHXjA4b8SawVRhXNUUP+zf2Zwez4er/xTE1Ca5uj
+         mcfmRVtdHXqBvDsIXbwijSfi+FBiunNeXv8qhhPAbCPrXliUSZiDksu6/uj8i+7X9A9k
+         Qs0zcFPfSbKd9Te0JqUwW0M6A7p4KzfnrZjLnIalinkY2YDklLZst1m31vG+rxMTeuV4
+         Wj3yTiwBtFzM15NLWPa7JB0yeiAwRefq0LCBA8K9fDP3oiFoDW99RCzwMQ0kGw8rI+fe
+         kHsdHKBlGScRmD4f9yRo3O9gGuVemAbp1MrOdMKgtoWmxRKUDkLycxUZ4BSwznkz/Fbk
+         zuqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=s1wxiSXb6FjGblsvKrZYztMSCVGGVQHB+0DmuQ/lyxA=;
-        b=uJUUZS2UncPnf/n6cEKz42vZb0VlwUreQAjPD2jfs4GwDMLqp4usb7FTYZWtWWDA0u
-         Kvi+/bDxp6mJ4PnG9q++aa1twiu9QRkdNVr5Rayc64a95XZ0Wdzh0uarVccTdMsTO+To
-         uOMconvmF2/R1L5uCGL5bWz3kd/yGrk4kdHY5/0/HBl/aoj4RxJTdxyEiOiO67t+9h1R
-         XJ6fsbaXzZfTIo8kWzoCINdRaB2VDD0/0I3xSdTgBogXajLdfmrxUH3vuIwrVUw/Lleu
-         q/a68MNt4cDWqgthE8a8b9EFUvzS6wmhVEfGSEgJwFYV5ypSCBDkoa29T/2eiyFDwsei
-         1+7Q==
-X-Gm-Message-State: AOAM531Y9bR7ZiosUvSdDOnjv0SR7uybmpMVaykUePe+nsglbCxkylIY
-        OMKEoSgz1hdkF2YakJEJxekn6bSA8Dai3g==
-X-Google-Smtp-Source: ABdhPJwzV34Wu9Tm/bGGoIIBjIyhv/6HbZCqgcw/NraTBYcNKoYfUjnjYieuWUKNkx3O6QBQVusUfg==
-X-Received: by 2002:a1c:5459:: with SMTP id p25mr39307080wmi.148.1593862764834;
-        Sat, 04 Jul 2020 04:39:24 -0700 (PDT)
-Received: from clement-Latitude-7490.numericable.fr (213-245-241-245.rev.numericable.fr. [213.245.241.245])
-        by smtp.gmail.com with ESMTPSA id j24sm18657373wrd.43.2020.07.04.04.39.23
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=i+PMOq5Al6StIBzFo1wcc3naFIWV4JdGXcD4ZNngMYA=;
+        b=TsvdVxlyeFfv0JKv/bIZWAgvma4mNZsvcmXIz67jW+uMXaovX22uqZ9quhDsH9RYC9
+         K9RnJgKZQZTBRZ4Se0uKGqRteUb+agHFRRN4KDOp/uVjmJIymCvZhsXNccycHkGdRFF9
+         yJ3fccRfK/2CBIbyARO9ihgaoo3FFZzZyKjWLIYI1nBq7/aUphvOTTWaKrqGraAomyWX
+         D5wXFQPr8NONGGvLeeOLOA08poTAkYX9pajV2qKd0g6vRX+VUvepiHABuM32ar+skJrJ
+         0jJmI4LRjDCVNrQuLT5GwT8dACkmLDbE5F0xLjkguJUxVlEYuHoPCtGyb5nO4kZgHTjx
+         en7w==
+X-Gm-Message-State: AOAM5302QN/9OrKhngkUXG3eG/Eqx9v1UvHYEvcp9o9Q/9Rd8nhJ4uBv
+        B8J31R+oNQkHLbbWMRPLuX6VLsWPi3I=
+X-Google-Smtp-Source: ABdhPJxNoGpPWfHtk5GtUWgId+YmOEKnhvbIaHUdtxzXA+oC0iIVpg7GUe70uTMDbAHPmrfK5PCATw==
+X-Received: by 2002:a05:6402:1778:: with SMTP id da24mr33863987edb.126.1593865701817;
+        Sat, 04 Jul 2020 05:28:21 -0700 (PDT)
+Received: from localhost.localdomain (abab73.neoplus.adsl.tpnet.pl. [83.6.165.73])
+        by smtp.googlemail.com with ESMTPSA id be2sm15861831edb.92.2020.07.04.05.28.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Jul 2020 04:39:24 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Sat, 04 Jul 2020 05:28:21 -0700 (PDT)
+From:   Konrad Dybcio <konradybcio@gmail.com>
+To:     skrzynka@konradybcio.pl
+Cc:     Konrad Dybcio <konradybcio@gmail.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-Subject: [PATCH 16/16] arm64: dts: allwinner: a64: Add HDMI audio to Pine64
-Date:   Sat,  4 Jul 2020 13:39:02 +0200
-Message-Id: <20200704113902.336911-17-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200704113902.336911-1-peron.clem@gmail.com>
-References: <20200704113902.336911-1-peron.clem@gmail.com>
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] iommu/arm-smmu: Implement qcom,skip-init
+Date:   Sat,  4 Jul 2020 14:28:09 +0200
+Message-Id: <20200704122809.73794-1-konradybcio@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcus Cooper <codekipper@gmail.com>
+This adds the downstream property required to support
+SMMUs on SDM630 and other platforms (the need for it
+most likely depends on firmware configuration).
 
-Enable HDMI audio on Pine64.
-
-Signed-off-by: Marcus Cooper <codekipper@gmail.com>
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
+Signed-off-by: Konrad Dybcio <konradybcio@gmail.com>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ .../devicetree/bindings/iommu/arm,smmu.yaml       | 10 ++++++++++
+ drivers/iommu/arm-smmu.c                          | 15 +++++++++------
+ 2 files changed, 19 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
-index 2165f238af13..c5939ba52f19 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
-@@ -99,6 +99,10 @@ hdmi_out_con: endpoint {
- 	};
- };
+diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+index d7ceb4c34423..9abd6d41a32c 100644
+--- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
++++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+@@ -102,6 +102,16 @@ properties:
+       access to SMMU configuration registers. In this case non-secure aliases of
+       secure registers have to be used during SMMU configuration.
  
-+&hdmi_sound {
-+	status = "okay";
-+};
++  qcom,skip-init:
++    description: |
++      Disable resetting configuration for all context banks
++      during device reset.  This is useful for targets where
++      some context banks are dedicated to other execution
++      environments outside of Linux and those other EEs are
++      programming their own stream match tables, SCTLR, etc.
++      Without setting this option we will trample on their
++      configuration.
 +
- &i2c1 {
- 	status = "okay";
- };
-@@ -107,6 +111,10 @@ &i2c1_pins {
- 	bias-pull-up;
- };
+   stream-match-mask:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description: |
+diff --git a/drivers/iommu/arm-smmu.c b/drivers/iommu/arm-smmu.c
+index 243bc4cb2705..a5c623d4caf9 100644
+--- a/drivers/iommu/arm-smmu.c
++++ b/drivers/iommu/arm-smmu.c
+@@ -1655,13 +1655,16 @@ static void arm_smmu_device_reset(struct arm_smmu_device *smmu)
+ 	 * Reset stream mapping groups: Initial values mark all SMRn as
+ 	 * invalid and all S2CRn as bypass unless overridden.
+ 	 */
+-	for (i = 0; i < smmu->num_mapping_groups; ++i)
+-		arm_smmu_write_sme(smmu, i);
  
-+&i2s2 {
-+	status = "okay";
-+};
+-	/* Make sure all context banks are disabled and clear CB_FSR  */
+-	for (i = 0; i < smmu->num_context_banks; ++i) {
+-		arm_smmu_write_context_bank(smmu, i);
+-		arm_smmu_cb_write(smmu, i, ARM_SMMU_CB_FSR, ARM_SMMU_FSR_FAULT);
++	if (!of_find_property(smmu->dev->of_node, "qcom,skip-init", NULL)) {
++		for (i = 0; i < smmu->num_mapping_groups; ++i)
++			arm_smmu_write_sme(smmu, i);
 +
- &mdio {
- 	ext_rmii_phy1: ethernet-phy@1 {
- 		compatible = "ethernet-phy-ieee802.3-c22";
++		/* Make sure all context banks are disabled and clear CB_FSR  */
++		for (i = 0; i < smmu->num_context_banks; ++i) {
++			arm_smmu_write_context_bank(smmu, i);
++			arm_smmu_cb_write(smmu, i, ARM_SMMU_CB_FSR, ARM_SMMU_FSR_FAULT);
++		}
+ 	}
+ 
+ 	/* Invalidate the TLB, just in case */
 -- 
-2.25.1
+2.27.0
 
