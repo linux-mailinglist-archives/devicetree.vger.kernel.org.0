@@ -2,176 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28AB02147C4
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jul 2020 19:42:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 132BC2147D7
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jul 2020 19:53:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727771AbgGDRml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Jul 2020 13:42:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39756 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726643AbgGDRml (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jul 2020 13:42:41 -0400
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13AEAC061794;
-        Sat,  4 Jul 2020 10:42:41 -0700 (PDT)
-Received: by mail-ed1-x543.google.com with SMTP id dm19so24361295edb.13;
-        Sat, 04 Jul 2020 10:42:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=s+WjqQhLnrBI9EZzuDqm8X/T4+BDu4Hvw8Pd6T2GP/0=;
-        b=bGJue6eFu/VA4Z82viDrc/TOb1htLvh2SOgSDczNVO7YU7sdfkKY28+EU8afJih10q
-         0N8YaAE/AmpRF6dp640fwh2aIEClOc56Zzav7IhwuCCIQMXGV6if3oeuYbKBWQu+ttlB
-         QSXNrork0ZteL5K5kxxc7oaaLoWxaN+xARlgoWRL6Cuv64rfoHyjMh980DsyvOLaynjR
-         K0UgWIugk+qbiApkZC9cKu2BfujP19Eu3jtymgrqJhYJR56xXgK8r/UgIHYnVhr8myrp
-         bd3Bb7hC2Gjq8H1hERABJXPPmgiFQpOD12As09QpFCPPWdVI1psRm4k36AKXbOJ5vNxk
-         EXYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=s+WjqQhLnrBI9EZzuDqm8X/T4+BDu4Hvw8Pd6T2GP/0=;
-        b=tVbzpDiLNbvt02kkKtppX6qjFIYSRFmUFtBJnKUxuMD1zMKBwqGnbu2TIkjwgBxwNH
-         BnLeA3CC0eS3ZWfzOtDdFTM6P+VeXfrFIXIZyiY1bQ91h84xA1A75pP6w5LwyZgId4n0
-         SA+gg3QoRjPwi8g6Z1IS+ugq0mUOJEKZWWL2Jl3O6tWrcyB59vkYaTk69bTzkXOjEeO5
-         J2c29jLYeWkQysSod38t7FofguD5nWO8IXwIuYRyqyDbfzAsSuNGM6KGbFroJjxpX3S0
-         SW7ft20N+hzXBcC/VHFrtqKQ/9rnxX6fAzCh8IAy0n7atDWm7m1neqCFxGoRm9Pv9EP4
-         04eA==
-X-Gm-Message-State: AOAM5334wtRk4ecCH7SGmCpQhO4wY/q70Wr6mYyXzpHwL5QfXbLDlmDx
-        HddsPAVAeoKIlNMkPxilB+4=
-X-Google-Smtp-Source: ABdhPJy0vTlYXslUqGyC33YSMiLi8X29/Je6nWzHxrmFVdZsP3IEJRoSrq69lLr/vXKxSdAkeSt+Cg==
-X-Received: by 2002:a05:6402:2c2:: with SMTP id b2mr46631661edx.184.1593884559571;
-        Sat, 04 Jul 2020 10:42:39 -0700 (PDT)
-Received: from localhost.localdomain (p200300f137244200428d5cfffeb99db8.dip0.t-ipconnect.de. [2003:f1:3724:4200:428d:5cff:feb9:9db8])
-        by smtp.googlemail.com with ESMTPSA id f17sm17671650edj.32.2020.07.04.10.42.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Jul 2020 10:42:39 -0700 (PDT)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     amelie.delaunay@st.com
-Cc:     alexandre.torgue@st.com, balbi@kernel.org,
-        devicetree@vger.kernel.org, fabrice.gasnier@st.com,
-        gregkh@linuxfoundation.org, hminas@synopsys.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-usb@vger.kernel.org, mcoquelin.stm32@gmail.com,
-        robh+dt@kernel.org
-Subject: RE: [PATCH 1/3] usb: dwc2: override PHY input signals with usb role switch support
-Date:   Sat,  4 Jul 2020 19:42:19 +0200
-Message-Id: <20200704174219.612060-1-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200616140717.28465-2-amelie.delaunay@st.com>
-References: <20200616140717.28465-2-amelie.delaunay@st.com>
+        id S1726682AbgGDRxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Jul 2020 13:53:33 -0400
+Received: from sonic302-21.consmr.mail.ir2.yahoo.com ([87.248.110.84]:33576
+        "EHLO sonic302-21.consmr.mail.ir2.yahoo.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726669AbgGDRxc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jul 2020 13:53:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1593885210; bh=ZWeDLwf4cGlLDzTwCuOen1zTINlp5j+f2ywobrqBR9o=; h=Date:From:Reply-To:Subject:References:From:Subject; b=OqbUDyjWz4mbLHRBZ3NvJMwS66/pKgdivhYezMop8vN9OVqJeo7UKcQoIU9RJMXzvy2n+iW+7DPmqf/3DYkLDAkcbke2liyNG9ehquzsEdqAB6BkT+RZtLPA8yJkMFV/yjz/WOE9EPq8KrJXcUDS41fGV5OmkqrnBOpMIfptmXnxjZXuH/bsa/xcgRxOgG6AbbU2+8tb4pXzExyiOJ0IqCXL9Y/Rb2YiXl1XKpZhYwiPeGrZVmFPtRBGHMXgGgOV7SpkaBieePO0ttATXQh+fEoAxxHxOcWVXUEqIIJs9qj5VTUF30BjrHsA4XzPFM4wb8/SAjm5IuaZFzWKscAJqA==
+X-YMail-OSG: jS7EHDMVM1k55FTGzr5qI9makb9UYU1llwOmoiFNBtEVwTM8Ma8tV7b3znkB0HW
+ yBbZHxfjXQZBCzLr3IcF75d.GWkndcNvJEtEUe9.lq7_8TlyZ4t123Hc8X65QyWTI1T4eZM1WaVv
+ RTk.BZ975akwRvB6eMOFppQL4ZWSEP7aSIZb_n_5uZxIaBggTO5me16.NCsXc4RuD39PiYVsVBEW
+ bW3JeWrP_z96cyfdUji5dqVJ7gi_6z5RAt0igtKlN_TNBdQC2D8MtRi1ISez6gNUd_3S.m8D0SHj
+ _H.zIBOqwYJsSCboIvvy905DvkQVQCfUO3z9nI5VKHnicbpxg_a0sFF7FF9CaV2NRdwez560pHsW
+ 6mG7j5LPfZA_gWLM89M4RKxNK323Os5VDEYZDwpeAY65ewwn8ZN_Q1AywNLkynLfjAWgQOQAmYQQ
+ mjHcF9z_jdQYpib319Aryng21NIr472U4ht3_AxeHz9D2QIOlv30g5G16DhmFJu5GMNTiyBEcfnJ
+ XNg8W3uA9A9e2Pxi3G7cQCOJDktuVx0OSZ6Ts93AtbvtqqtQd18CwghA7SrWLqQcrXTVLOO4YUAM
+ BGjXQb36k30wrj7cIhClSDZu48XyHXB0aSXlEwbSg4iVMuIFex4idaBRDpJMxo4_c4UzEjMhDmDO
+ arUKOq6Rae8sALIeRCT4Pl.1tg6.FUCljka19TPg0V9agxDrhAjX4OFeULBTp2gAGju5c3novHl0
+ qcCcR4np7WTzH1XZtbzisAe6jBnkzUQNZbfXqEwgYBls74ga_hlwNdEZlPgkebq3YD6BS4uG9v9G
+ 3wQ92DpB8zlV1VIaK_r2CntjgirIF6WOt4KL70wVMcxBx39Ifrh4DQu00vD5Q0UANQfTHRRK0sZU
+ SVhGi11rLJAgQ4fyYneL5CUh5D4hY48WVKU9jfm_GHPmNUKdnEk6.cvbFacxQFKe.F5enQHjqYMI
+ yqQiuZg8BufVsinaJYMV_qA2rEFYri3dlDwEr3eRupAOoi3nSKSrmDmD6t_7ksVJrHF2YhB7Sl4C
+ 42pFfjpuEfnfaQss8xJtDvEXQdNnzF30XKRhrqVIqCVUN776uJ3I6jj0b26fmnI5EYeChO33ruzK
+ .vrp_dAi9sFHnrfjyfuGPz5.Xj9z7JSwOkdozCbUHtsq8Ea66Wrh6XBCwUOKIKTupg.WIEAyKee1
+ QxqCQepz7g6uNZ_elg_EBff0.2s3YWbC8g6LpYQQac2U_2cULOZPSuVmT2HEO.vcYi8mxJ2uR0Yt
+ MWxSyd7yiKwyHFUUBN1muPn_3YkuLKl2UQRkezkJIui3W.8PlW_y3oW5tsEO6smAMPkI-
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic302.consmr.mail.ir2.yahoo.com with HTTP; Sat, 4 Jul 2020 17:53:30 +0000
+Date:   Sat, 4 Jul 2020 17:53:27 +0000 (UTC)
+From:   Theresa Han <serena@lantermo.it>
+Reply-To: han.theresa2017@gmail.com
+Message-ID: <802138759.4451384.1593885207291@mail.yahoo.com>
+Subject: =?UTF-8?Q?Ich_gr=C3=BC=C3=9Fe_dich_im_Namen_des_Herrn?=
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+References: <802138759.4451384.1593885207291.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.16197 YMailNodin Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Amelie,
+Ich gr=C3=BC=C3=9Fe dich im Namen des Herrn
 
-thank you for this patch - I am hoping that it will help us on Amlogic
-Meson8, Meson8b, Meson8m2 and GXBB SoCs as well.
-On these SoCs the ID detection is performed by the PHY IP and needs to
-be polled.
-I think usb_role_switch is the perfect framework for this on dwc2 side.
-For the PHY driver I'm going to implement the cable state using the
-extcon framework and then having a new usb-conn-extcon driver. This is
-just to give you an overview why I'm interested in this.
-
-[...]
-> +static int dwc2_drd_role_sw_set(struct usb_role_switch *sw, enum usb_role role)
-> +{
-> +	struct dwc2_hsotg *hsotg = usb_role_switch_get_drvdata(sw);
-> +	unsigned long flags;
-> +
-> +	/* Skip session not in line with dr_mode */
-> +	if ((role == USB_ROLE_DEVICE && hsotg->dr_mode == USB_DR_MODE_HOST) ||
-> +	    (role == USB_ROLE_HOST && hsotg->dr_mode == USB_DR_MODE_PERIPHERAL))
-> +		return -EINVAL;
-> +
-> +	/* Skip session if core is in test mode */
-> +	if (role == USB_ROLE_NONE && hsotg->test_mode) {
-> +		dev_dbg(hsotg->dev, "Core is in test mode\n");
-> +		return -EBUSY;
-> +	}
-> +
-> +	spin_lock_irqsave(&hsotg->lock, flags);
-due to this spin_lock_irqsave() ...
-
-> +	if (role == USB_ROLE_HOST) {
-> +		if (dwc2_ovr_avalid(hsotg, true))
-> +			goto unlock;
-> +
-> +		if (hsotg->dr_mode == USB_DR_MODE_OTG)
-> +			/*
-> +			 * This will raise a Connector ID Status Change
-> +			 * Interrupt - connID A
-> +			 */
-> +			dwc2_force_mode(hsotg, true);
-... we cannot sleep in here. the call flow is:
-dwc2_drd_role_sw_set
-  spin_lock_irqsave
-  dwc2_force_mode
-    dwc2_wait_for_mode
-      usleep_range
-
-> +	} else if (role == USB_ROLE_DEVICE) {
-> +		if (dwc2_ovr_bvalid(hsotg, true))
-> +			goto unlock;
-> +
-> +		if (hsotg->dr_mode == USB_DR_MODE_OTG)
-> +			/*
-> +			 * This will raise a Connector ID Status Change
-> +			 * Interrupt - connID B
-> +			 */
-> +			dwc2_force_mode(hsotg, false);
-(same sleeping issue here)
-
-[...]
-+int dwc2_drd_init(struct dwc2_hsotg *hsotg)
-+{
-+	struct usb_role_switch_desc role_sw_desc = {0};
-+	struct usb_role_switch *role_sw;
-+	int ret;
-+
-+	if (!device_property_read_bool(hsotg->dev, "usb-role-switch"))
-+		return 0;
-should we also return early here if dr_mode != "otg"?
-
-[...]
-@@ -532,6 +534,13 @@ static int dwc2_driver_probe(struct platform_device *dev)
- 		dwc2_writel(hsotg, ggpio, GGPIO);
- 	}
- 
-+	retval = dwc2_drd_init(hsotg);
-+	if (retval) {
-+		if (retval != -EPROBE_DEFER)
-+			dev_err(hsotg->dev, "failed to initialize dual-role\n");
-+		goto error_init;
-+	}
-+
- 	if (hsotg->dr_mode != USB_DR_MODE_HOST) {
- 		retval = dwc2_gadget_init(hsotg);
- 		if (retval)
-I think dwc2_driver_probe() needs a new label (for example named
-error_drd) which then calls dwc2_drd_exit. See [0] which I have
-submitted as a patch for Linux 5.8, so it's not in usb-next yet.
-
-Also in general I think you need to submit a dt-bindings patch that
-documents the usb-role-switch property. Personally I would use
-Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml as
-reference for that.
-
-Can you please keep me Cc'ed on a v2 because I'm not subscribed to the
-linux-usb mailing list?
-I am going to test this on Amlogic SoCs - once I made "everything else"
-work I can give my Tested-by as well.
-
-
-Thank you!
-Martin
-
-
-[0] https://patchwork.kernel.org/patch/11642957/
+Ich kann mir nicht vorstellen wie du dich f=C3=BChlen wirst Sie einen pl=C3=
+=B6tzlichen Brief aus einem abgelegenen Land in der fernen Elfenbeink=C3=BC=
+ste erhalten werden und wahrscheinlich von jemandem, mit dem Sie nicht gut =
+verwandt sind. Ich appelliere an Sie, etwas Geduld zu =C3=BCben und meinen =
+Brief zu lesen Umgang mit Ihnen in dieser wichtigen Transaktion
+=20
+Ich bin Frau Theresa Han, 65 Jahre alt, in der Elfenbeink=C3=BCste, an Kreb=
+sleiden leidend. Ich war mit Herrn Johnson Han verheiratet, der bei der Reg=
+ierung von Elfenbeink=C3=BCste als Auftragnehmer t=C3=A4tig war, bevor er n=
+ach einigen Tagen im Krankenhaus starb
+=20
+Mein verstorbener Ehemann hat die Summe von US$2,5 Millionen (zwei Millione=
+n f=C3=BCnfhunderttausend USD) bei einer Bank in der Elfenbeink=C3=BCste hi=
+nterlegt. Ich habe an Krebs gelitten. K=C3=BCrzlich sagte mir mein Arzt, da=
+ss ich aufgrund der Krebserkrankungen, an denen ich leide, nur noch begrenz=
+te Lebenstage habe. Ich m=C3=B6chte wissen, ob ich Ihnen vertrauen kann, di=
+ese Mittel f=C3=BCr Wohlt=C3=A4tigkeit / Waisenhaus zu verwenden, und 20 Pr=
+ozent werden f=C3=BCr Sie als Entsch=C3=A4digung sein
+=20
+Ich habe diese Entscheidung getroffen, weil ich kein Kind habe, das dieses =
+Geld erben w=C3=BCrde, und mein Ehemann Verwandte sind b=C3=BCrgerliche und=
+ sehr wohlhabende Personen und ich m=C3=B6chte nicht, dass mein Ehemann har=
+t verdientes Geld missbraucht wird
+=20
+Bitte nehmen Sie Kontakt mit mir auf, damit ich Ihnen weitere Einzelheiten =
+mitteilen kann und jede Verz=C3=B6gerung Ihrer Antwort mir Raum geben wird,=
+ eine weitere gute Person f=C3=BCr diesen Zweck zu gewinnen
+=20
+Warten auf Ihre dringende Antwort Mit Gott sind alle Dinge m=C3=B6glich
+=20
+Deine Schwester in Christus
+=20
+Frau Theresa Han
