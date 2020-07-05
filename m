@@ -2,110 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2237C214F02
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2020 21:51:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43DEB214F88
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2020 22:45:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728110AbgGETvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jul 2020 15:51:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53876 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728192AbgGETvd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jul 2020 15:51:33 -0400
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69290C061794;
-        Sun,  5 Jul 2020 12:51:33 -0700 (PDT)
-Received: by mail-pg1-x543.google.com with SMTP id j19so10539794pgm.11;
-        Sun, 05 Jul 2020 12:51:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=1DM6xVZWZJvMpDAjz6LICmJeK1B/WJSbpsotDSZl8bo=;
-        b=SPAw+UuKw/tc6ApBfi4rN3P+pttZynhKwUcVcFYKjqUkKctxLFn2VoCr3QEqTlxy5R
-         djmSMDePYrzvTBaL/umG7PRUYgOxbs4YQ/m6cuXJJaNtYQQR16mIctgtJWtODWsHmraR
-         0+BOXSMK0BcPHEjbXtycUdTyDmdqDnFR1DKlmc35OCN3YoRhkL3/Bq67iC1LLv6A/kHa
-         hJ/GXUO0R6ruDn2rnEBGEnq4AUJQ22b9Kpb9yS8j017V61tVXi1bDChx/dA5yU/1EZjX
-         M8VeCKdMKCOdiv8S7QzUWSUnx05TiL1CXExHk49vefmlzzmDMEwdA4rowrrPRElSyUZ1
-         lloA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1DM6xVZWZJvMpDAjz6LICmJeK1B/WJSbpsotDSZl8bo=;
-        b=GUqKUCy6bszKGsl65awK7MVEjK9u4YnNWowyCnhsCaAKXOdbv70VhffXiKLLH0NY9o
-         1d8gZDW3lUIUlTpmeSIpClT/7hqKNUnya19fCtm9JPKvOrOY8tyqXJvt24zlkVuvyb0y
-         dmDUJ4c92tgAwjqB2E6K2JTWvGAskS/uF5o8djnzMI+p9LJ4dIyaKemcL3ZJbvqUYYJ+
-         VpuIjH2oCpqOjbbOZgtMzYJJ46ZcLhZ4+n5BGpc0kHSjfaslXXFFiKN6T29T5SwK4Kvm
-         JgW9ZNFoOH9WxP4NILiy1UjOh5PiPr1v72y4WXq8YZqV/zQQeWRF1VnfJHG3Hd4JP/+w
-         YLFQ==
-X-Gm-Message-State: AOAM533ZhvgVddogdm04NAWznHjU0t1nfAUjTjpUDvvjx1yRSNnw3ajg
-        VsAo6+jEDLelpVkZrNdB7PM=
-X-Google-Smtp-Source: ABdhPJywhEIbbZJi+sfs9qoPVmo6wP+zmVvWXONJnb9edBcUmKAyA7A9x6PsWAfDc8TF7Hc/tKx3Vg==
-X-Received: by 2002:a65:5c08:: with SMTP id u8mr7911082pgr.184.1593978693025;
-        Sun, 05 Jul 2020 12:51:33 -0700 (PDT)
-Received: from anarsoul-thinkpad.lan (216-71-213-236.dyn.novuscom.net. [216.71.213.236])
-        by smtp.gmail.com with ESMTPSA id g9sm16072879pfm.151.2020.07.05.12.51.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jul 2020 12:51:32 -0700 (PDT)
-From:   Vasily Khoruzhick <anarsoul@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
-        Ondrej Jirman <megous@megous.com>
-Cc:     Vasily Khoruzhick <anarsoul@gmail.com>
-Subject: [PATCH 3/3] arm64: allwinner: a64: enable Bluetooth On Pinebook
-Date:   Sun,  5 Jul 2020 12:51:10 -0700
-Message-Id: <20200705195110.405139-4-anarsoul@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200705195110.405139-1-anarsoul@gmail.com>
-References: <20200705195110.405139-1-anarsoul@gmail.com>
+        id S1728486AbgGEUpj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jul 2020 16:45:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53372 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728326AbgGEUpi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 5 Jul 2020 16:45:38 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E85012068F;
+        Sun,  5 Jul 2020 20:45:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1593981938;
+        bh=PzWD9Q9qreaWguzKmtjZ782UP/42e9+9BUsUmRGeEjw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=wiVQ9fZXiEvK6iYxV3uu+0ZPPkTnV1ZHaQrQLHuSeweFITpQJFM/C3jpPqsviLrUv
+         NpvGv268nwsmfPFOREOzuVh1XoHSDSPJyyHXH5Z41YznUTDuVSghg9v9zfPrGQVppW
+         ovq36YQgJcNzfurQ3iqsL3VMyL80SUEsAFKuqxq4=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.92)
+        (envelope-from <maz@kernel.org>)
+        id 1jsBW4-009Fhz-Ge; Sun, 05 Jul 2020 21:45:36 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Sun, 05 Jul 2020 21:45:36 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+Cc:     tglx@linutronix.de, jason@lakedaemon.net,
+        "Anna, Suman" <s-anna@ti.com>, robh+dt@kernel.org,
+        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, david@lechnology.com,
+        "Mills, William" <wmills@ti.com>, "Andrew F . Davis" <afd@ti.com>,
+        Roger Quadros <rogerq@ti.com>
+Subject: Re: [PATCHv3 2/6] irqchip/irq-pruss-intc: Add a PRUSS irqchip driver
+ for PRUSS interrupts
+In-Reply-To: <CAMxfBF7pbH1LLE4fJnnCPnrqnQ-tdO+_xfoN1VerJcQ-ZyYM9Q@mail.gmail.com>
+References: <1593699479-1445-1-git-send-email-grzegorz.jaszczyk@linaro.org>
+ <1593699479-1445-3-git-send-email-grzegorz.jaszczyk@linaro.org>
+ <f0d3f3224a1b8fa2be668dd2b8d9d84e@kernel.org>
+ <CAMxfBF6A9702-rBOo0jHtfn4Ds1_G+nWG4O9-urNqU00dFXeww@mail.gmail.com>
+ <12db6d22c12369b6d64f410aa2434b03@kernel.org>
+ <CAMxfBF7pbH1LLE4fJnnCPnrqnQ-tdO+_xfoN1VerJcQ-ZyYM9Q@mail.gmail.com>
+User-Agent: Roundcube Webmail/1.4.5
+Message-ID: <53d39d8fbd63c6638dbf0584c7016ee0@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: grzegorz.jaszczyk@linaro.org, tglx@linutronix.de, jason@lakedaemon.net, s-anna@ti.com, robh+dt@kernel.org, lee.jones@linaro.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org, david@lechnology.com, wmills@ti.com, afd@ti.com, rogerq@ti.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pinebook has an RTL8723CS WiFi + BT chip, BT is connected to UART1
-and uses PL5 as device wake GPIO, PL6 as host wake GPIO the I2C
-controlling signals are connected to R_I2C bus.
+On 2020-07-05 14:26, Grzegorz Jaszczyk wrote:
+> On Sat, 4 Jul 2020 at 11:39, Marc Zyngier <maz@kernel.org> wrote:
+>> 
+>> On 2020-07-03 15:28, Grzegorz Jaszczyk wrote:
 
-Enable it in the device tree.
+[...]
 
-Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
----
- .../arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+>> It still begs the question: if the HW can support both edge and level
+>> triggered interrupts, why isn't the driver supporting this diversity?
+>> I appreciate that your HW may only have level interrupts so far, but
+>> what guarantees that this will forever be true? It would imply a 
+>> change
+>> in the DT binding, which isn't desirable.
+> 
+> Ok, I've got your point. I will try to come up with something later
+> on. Probably extending interrupt-cells by one and passing interrupt
+> type will be enough for now. Extending this driver to actually support
+> it can be handled later if needed. Hope it works for you.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
-index 64b1c54f87c0..e63ff271be4e 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
-@@ -408,6 +408,18 @@ &uart0 {
- 	status = "okay";
- };
- 
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "realtek,rtl8723cs-bt";
-+		device-wake-gpios = <&r_pio 0 5 GPIO_ACTIVE_LOW>; /* PL5 */
-+		host-wake-gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
-+	};
-+};
-+
- &usb_otg {
- 	dr_mode = "host";
- };
+Writing a set_type callback to deal with this should be pretty easy.
+Don't delay doing the right thing.
+
+[...]
+
+>> >> > +             hwirq = hipir & GENMASK(9, 0);
+>> >> > +             virq = irq_linear_revmap(intc->domain, hwirq);
+>> >>
+>> >> And this is where I worry. You seems to have a single irqdomain
+>> >> for all the muxes. Are you guaranteed that you will have no
+>> >> overlap between muxes? And please use irq_find_mapping(), as
+>> >> I have top-secret plans to kill irq_linear_revmap().
+>> >
+>> > Regarding irq_find_mapping - sure.
+>> >
+>> > Regarding irqdomains:
+>> > It is a single irqdomain since the hwirq (system event) can be mapped
+>> > to different irq_host (muxes). Patch #6
+>> > https://lkml.org/lkml/2020/7/2/616 implements and describes how input
+>> > events can be mapped to some output host interrupts through 2 levels
+>> > of many-to-one mapping i.e. events to channel mapping and channels to
+>> > host interrupts. Mentioned implementation ensures that specific system
+>> > event (hwirq) can be mapped through PRUSS specific channel into a
+>> > single host interrupt.
+>> 
+>> Patch #6 is a nightmare of its own, and I haven't fully groked it yet.
+>> Also, this driver seems to totally ignore the 2-level routing. Where
+>> is it set up? map/unmap in this driver do exactly *nothing*, so
+>> something somewhere must set it up.
+> 
+> The map/unmap is updated in patch #6 and it deals with those 2-level
+> routing setup. Map is responsible for programming the Channel Map
+> Registers (CMRx) and Host-Interrupt Map Registers (HMRx) basing on
+> provided configuration from the one parsed in the xlate function.
+> Unmap undo whatever was done on the map. More details can be found in
+> patch #6.
+> 
+> Maybe it would be better to squash patch #6 with this one so it would
+> be less confusing. What is your advice?
+
+So am I right in understanding that without patch #6, this driver does
+exactly nothing? If so, it has been a waste of review time.
+
+Please split patch #6 so that this driver does something useful
+for Linux, without any of the PRU interrupt routing stuff. I want
+to see a Linux-only driver that works and doesn't rely on any other
+exotic feature.
+
+         M.
 -- 
-2.27.0
-
+Jazz is not dead. It just smells funny...
