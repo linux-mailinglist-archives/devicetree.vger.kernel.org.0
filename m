@@ -2,102 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4564E214AA0
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2020 08:37:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48076214AC4
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2020 08:59:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726491AbgGEGh3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jul 2020 02:37:29 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:35187 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726331AbgGEGh3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jul 2020 02:37:29 -0400
-X-UUID: ff88b3d6a95543858b0dd4c0a8e8f9ee-20200705
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=H8QcGrkRwb9r12g7RW7vRcc+HdqW1TEDVi2UVMczqEw=;
-        b=SyBFKzt8HafvmDNlNr/QJY+rNqs1gp4N8QAsXeHSHaQa44Zc7rsfbqekJkaPx3B2hHe8WDrCCgtw8MSoz+swPdnpAmHV4dFPQTZJJwslx1GiGrO63OmL4D9YjD08Qk0AxyegqcnQuOT+fYarnvu7c9G2XbwZMKTejiU5vnU92nw=;
-X-UUID: ff88b3d6a95543858b0dd4c0a8e8f9ee-20200705
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <dennis-yc.hsieh@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1973456499; Sun, 05 Jul 2020 14:37:21 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sun, 5 Jul 2020 14:37:18 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sun, 5 Jul 2020 14:37:18 +0800
-From:   Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Bibby Hsieh <bibby.hsieh@mediatek.com>,
-        CK Hu <ck.hu@mediatek.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        HS Liao <hs.liao@mediatek.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>
-Subject: [PATCH v8 4/4] mailbox: mediatek: cmdq: clear task in channel before shutdown
-Date:   Sun, 5 Jul 2020 14:37:16 +0800
-Message-ID: <1593931037-24405-5-git-send-email-dennis-yc.hsieh@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1593931037-24405-1-git-send-email-dennis-yc.hsieh@mediatek.com>
-References: <1593931037-24405-1-git-send-email-dennis-yc.hsieh@mediatek.com>
+        id S1725929AbgGEG7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jul 2020 02:59:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48586 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725873AbgGEG7h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jul 2020 02:59:37 -0400
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F022C061794;
+        Sat,  4 Jul 2020 23:59:37 -0700 (PDT)
+Received: by mail-ed1-x542.google.com with SMTP id dm19so25570647edb.13;
+        Sat, 04 Jul 2020 23:59:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Uj7PGXQjA9Qjyx6Apu7BwCYoAwQ6mjWMYaZTjh1xboA=;
+        b=X1tK2P5x1N5NIvZTW+VcJWoJ5K7YshwD/RGTnoclfrQc9rWXzaq6x5lbh3W1VEPG3H
+         GIBj3aYdZwSkmbX30wI0ltTXdk9CnsRitseiZtukzUKEk3FNTlkZwPOXIzWjeP499J/h
+         xCTffMRhoUn1p7NWV3QhPZ1KwiRWnwxwdcgOzZ7IN9IH/TZ7dDyEEoJLo0yjD+zY/jSq
+         U/Mez575j6Gk8PqJLH1jwIIrEPtUwfcKywMt7nrVfB+WPVnPIRMguFf5Uy51Wimot3VA
+         03Tow+PpzzxaVQn7RJASKTh8RPzBXnCFS8m6FGqLmHu/X1hY90wgL2yNY9oyCjHPCC6U
+         vedg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Uj7PGXQjA9Qjyx6Apu7BwCYoAwQ6mjWMYaZTjh1xboA=;
+        b=f/OUuyeIPvO9lr4l1uz5iGCpZ5tU/IKSo8D6GDhbc5yOhMiCtq9mChXUyYQWWpbryd
+         qOCyBTw/p7E7j/Ftkh7sZm66z39q/IzndNOvkThF8zjyrHi5RYzj08lI5LOepKC/b+T+
+         W6EeZ2KVQBToPJHwVwHgkNH+5SOajPOIhhZLh5grcAIalQFRnDLxNy15n9JDLqSt2GXH
+         hSVaxtvazvxKaRkZlPgyo8PJcMOO29/xNYaA4nqhHERINKGcbLUQcTkRf1Wk0QGHNhHW
+         zgXg46duQ2RhIBeq1u04TcK3prE+ApJWOpbFz5QmR2O6bLM0orKRkPhVIe2idGXbWwy5
+         EXGQ==
+X-Gm-Message-State: AOAM531/ueLPLxGrhey043+2Ydc6KMlDKvJqKp2WzuSRvqlBqI2HUaQR
+        FdOdPit8jmRSI94KaYKyrSc=
+X-Google-Smtp-Source: ABdhPJxf8p7neXQpdYnh+iVo38AaVRoy6UlE6QLvO/bQFZ8OMYCoPcBv6DsoAxTNbMTymew/PEyO+w==
+X-Received: by 2002:aa7:d989:: with SMTP id u9mr31469159eds.85.1593932375906;
+        Sat, 04 Jul 2020 23:59:35 -0700 (PDT)
+Received: from felia.fritz.box ([2001:16b8:2db3:e200:60e7:4b3:523f:884c])
+        by smtp.gmail.com with ESMTPSA id q3sm15042052eds.41.2020.07.04.23.59.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 04 Jul 2020 23:59:35 -0700 (PDT)
+From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
+To:     Ondrej Jirman <megous@megous.com>, Sam Ravnborg <sam@ravnborg.org>
+Cc:     =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        Purism Kernel Team <kernel@puri.sm>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-sunxi@googlegroups.com, linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Ralf Ramsauer <ralf.ramsauer@oth-regensburg.de>,
+        Pia Eichinger <pia.eichinger@st.oth-regensburg.de>,
+        Joe Perches <joe@perches.com>, kernel-janitors@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Subject: [PATCH] MAINTAINERS: adjust entry to renaming and conversion
+Date:   Sun,  5 Jul 2020 08:59:17 +0200
+Message-Id: <20200705065917.22285-1-lukas.bulwahn@gmail.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RG8gc3VjY2VzcyBjYWxsYmFjayBpbiBjaGFubmVsIHdoZW4gc2h1dGRvd24uIEZvciB0aG9zZSB0
-YXNrIG5vdCBmaW5pc2gsDQpjYWxsYmFjayB3aXRoIGVycm9yIGNvZGUgdGh1cyBjbGllbnQgaGFz
-IGNoYW5jZSB0byBjbGVhbnVwIG9yIHJlc2V0Lg0KDQpTaWduZWQtb2ZmLWJ5OiBEZW5uaXMgWUMg
-SHNpZWggPGRlbm5pcy15Yy5oc2llaEBtZWRpYXRlay5jb20+DQpSZXZpZXdlZC1ieTogQ0sgSHUg
-PGNrLmh1QG1lZGlhdGVrLmNvbT4NClJldmlld2VkLWJ5OiBCaWJieSBIc2llaCA8YmliYnkuaHNp
-ZWhAbWVkaWF0ZWsuY29tPg0KLS0tDQogZHJpdmVycy9tYWlsYm94L210ay1jbWRxLW1haWxib3gu
-YyB8ICAgMzggKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrDQogMSBmaWxlIGNo
-YW5nZWQsIDM4IGluc2VydGlvbnMoKykNCg0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvbWFpbGJveC9t
-dGstY21kcS1tYWlsYm94LmMgYi9kcml2ZXJzL21haWxib3gvbXRrLWNtZHEtbWFpbGJveC5jDQpp
-bmRleCAwOGJkNGYxZWI0NjkuLjQ4NGQ0NDM4Y2Q4MyAxMDA2NDQNCi0tLSBhL2RyaXZlcnMvbWFp
-bGJveC9tdGstY21kcS1tYWlsYm94LmMNCisrKyBiL2RyaXZlcnMvbWFpbGJveC9tdGstY21kcS1t
-YWlsYm94LmMNCkBAIC0zNDksNiArMzQ5LDEyIEBAIHN0YXRpYyBpbnQgY21kcV9tYm94X3NlbmRf
-ZGF0YShzdHJ1Y3QgbWJveF9jaGFuICpjaGFuLCB2b2lkICpkYXRhKQ0KIA0KIAlpZiAobGlzdF9l
-bXB0eSgmdGhyZWFkLT50YXNrX2J1c3lfbGlzdCkpIHsNCiAJCVdBUk5fT04oY2xrX2VuYWJsZShj
-bWRxLT5jbG9jaykgPCAwKTsNCisJCS8qDQorCQkgKiBUaGUgdGhyZWFkIHJlc2V0IHdpbGwgY2xl
-YXIgdGhyZWFkIHJlbGF0ZWQgcmVnaXN0ZXIgdG8gMCwNCisJCSAqIGluY2x1ZGluZyBwYywgZW5k
-LCBwcmlvcml0eSwgaXJxLCBzdXNwZW5kIGFuZCBlbmFibGUuIFRodXMNCisJCSAqIHNldCBDTURR
-X1RIUl9FTkFCTEVEIHRvIENNRFFfVEhSX0VOQUJMRV9UQVNLIHdpbGwgZW5hYmxlDQorCQkgKiB0
-aHJlYWQgYW5kIG1ha2UgaXQgcnVubmluZy4NCisJCSAqLw0KIAkJV0FSTl9PTihjbWRxX3RocmVh
-ZF9yZXNldChjbWRxLCB0aHJlYWQpIDwgMCk7DQogDQogCQl3cml0ZWwodGFzay0+cGFfYmFzZSA+
-PiBjbWRxLT5zaGlmdF9wYSwNCkBAIC0zOTEsNiArMzk3LDM4IEBAIHN0YXRpYyBpbnQgY21kcV9t
-Ym94X3N0YXJ0dXAoc3RydWN0IG1ib3hfY2hhbiAqY2hhbikNCiANCiBzdGF0aWMgdm9pZCBjbWRx
-X21ib3hfc2h1dGRvd24oc3RydWN0IG1ib3hfY2hhbiAqY2hhbikNCiB7DQorCXN0cnVjdCBjbWRx
-X3RocmVhZCAqdGhyZWFkID0gKHN0cnVjdCBjbWRxX3RocmVhZCAqKWNoYW4tPmNvbl9wcml2Ow0K
-KwlzdHJ1Y3QgY21kcSAqY21kcSA9IGRldl9nZXRfZHJ2ZGF0YShjaGFuLT5tYm94LT5kZXYpOw0K
-KwlzdHJ1Y3QgY21kcV90YXNrICp0YXNrLCAqdG1wOw0KKwl1bnNpZ25lZCBsb25nIGZsYWdzOw0K
-Kw0KKwlzcGluX2xvY2tfaXJxc2F2ZSgmdGhyZWFkLT5jaGFuLT5sb2NrLCBmbGFncyk7DQorCWlm
-IChsaXN0X2VtcHR5KCZ0aHJlYWQtPnRhc2tfYnVzeV9saXN0KSkNCisJCWdvdG8gZG9uZTsNCisN
-CisJV0FSTl9PTihjbWRxX3RocmVhZF9zdXNwZW5kKGNtZHEsIHRocmVhZCkgPCAwKTsNCisNCisJ
-LyogbWFrZSBzdXJlIGV4ZWN1dGVkIHRhc2tzIGhhdmUgc3VjY2VzcyBjYWxsYmFjayAqLw0KKwlj
-bWRxX3RocmVhZF9pcnFfaGFuZGxlcihjbWRxLCB0aHJlYWQpOw0KKwlpZiAobGlzdF9lbXB0eSgm
-dGhyZWFkLT50YXNrX2J1c3lfbGlzdCkpDQorCQlnb3RvIGRvbmU7DQorDQorCWxpc3RfZm9yX2Vh
-Y2hfZW50cnlfc2FmZSh0YXNrLCB0bXAsICZ0aHJlYWQtPnRhc2tfYnVzeV9saXN0LA0KKwkJCQkg
-bGlzdF9lbnRyeSkgew0KKwkJY21kcV90YXNrX2V4ZWNfZG9uZSh0YXNrLCBDTURRX0NCX0VSUk9S
-KTsNCisJCWtmcmVlKHRhc2spOw0KKwl9DQorDQorCWNtZHFfdGhyZWFkX2Rpc2FibGUoY21kcSwg
-dGhyZWFkKTsNCisJY2xrX2Rpc2FibGUoY21kcS0+Y2xvY2spOw0KK2RvbmU6DQorCS8qDQorCSAq
-IFRoZSB0aHJlYWQtPnRhc2tfYnVzeV9saXN0IGVtcHR5IG1lYW5zIHRocmVhZCBhbHJlYWR5IGRp
-c2FibGUuIFRoZQ0KKwkgKiBjbWRxX21ib3hfc2VuZF9kYXRhKCkgYWx3YXlzIHJlc2V0IHRocmVh
-ZCB3aGljaCBjbGVhciBkaXNhYmxlIGFuZA0KKwkgKiBzdXNwZW5kIHN0YXR1ZSB3aGVuIGZpcnN0
-IHBrdCBzZW5kIHRvIGNoYW5uZWwsIHNvIHRoZXJlIGlzIG5vIG5lZWQNCisJICogdG8gZG8gYW55
-IG9wZXJhdGlvbiBoZXJlLCBvbmx5IHVubG9jayBhbmQgbGVhdmUuDQorCSAqLw0KKwlzcGluX3Vu
-bG9ja19pcnFyZXN0b3JlKCZ0aHJlYWQtPmNoYW4tPmxvY2ssIGZsYWdzKTsNCiB9DQogDQogc3Rh
-dGljIGludCBjbWRxX21ib3hfZmx1c2goc3RydWN0IG1ib3hfY2hhbiAqY2hhbiwgdW5zaWduZWQg
-bG9uZyB0aW1lb3V0KQ0KLS0gDQoxLjcuOS41DQo=
+Commit a74e81a56405 ("drm/panel: rocktech-jh057n00900: Rename the driver to
+st7703") and commit 7317f4574492 ("dt-bindings: panel: Convert
+rocktech,jh057n00900 to yaml") renamed and converted the files mentioned in
+DRM DRIVER FOR ROCKTECH JH057N00900 PANELS, but did not adjust the entries
+in MAINTAINERS.
+
+Hence, ./scripts/get_maintainer.pl --self-test=patterns complains:
+
+  warning: no file matches  F: \
+  Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.txt
+  warning: no file matches  F: \
+  drivers/gpu/drm/panel/panel-rocktech-jh057n00900.c
+
+Adjust entries after this file renaming and devicetree conversion.
+
+Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+---
+applies cleanly on next-20200703
+
+Ondrej, please ack this patch.
+Sam, please pick this minor non-urgent patch into your -next tree.
+
+This is the minimal change to address the warning. You might consider
+changing the name of the section from ROCKTECH to ST7703, change
+maintainers etc.
+
+ MAINTAINERS | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 9375edaef11f..8a7b92faff99 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -5493,8 +5493,8 @@ DRM DRIVER FOR ROCKTECH JH057N00900 PANELS
+ M:	Guido Günther <agx@sigxcpu.org>
+ R:	Purism Kernel Team <kernel@puri.sm>
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.txt
+-F:	drivers/gpu/drm/panel/panel-rocktech-jh057n00900.c
++F:	Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
++F:	drivers/gpu/drm/panel/panel-sitronix-st7703.c
+ 
+ DRM DRIVER FOR SAVAGE VIDEO CARDS
+ S:	Orphan / Obsolete
+-- 
+2.17.1
 
