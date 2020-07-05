@@ -2,103 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D739214B3F
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2020 11:01:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17CFA214B50
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2020 11:19:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726631AbgGEJBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jul 2020 05:01:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38902 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726597AbgGEJBO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jul 2020 05:01:14 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 436B2C08C5DE
-        for <devicetree@vger.kernel.org>; Sun,  5 Jul 2020 02:01:14 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id j18so36019934wmi.3
-        for <devicetree@vger.kernel.org>; Sun, 05 Jul 2020 02:01:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=przTgcny48jd36+oUDZM5VqCUdMOADezAA8z959EYFc=;
-        b=fF9zYQi0OpwzjVvrADGQzgm2O41ekp6ploUjNNPvEqx5jng5xwHlHbfYptRi64sPpg
-         y9iYB7gdR12OKlD4m+vpzQ5HWVD/r2X/aXXkxecU8KXbkdyhQXG566LN+gYJJNhSfyS/
-         0kCQ3Zc84FPQ3TKpJDQDW4mVezKPtKnTDxmNkz5FM55PWSYtAqq+DqYEmgLh2V4jfrz2
-         JdqbhWl/ZYq2OW8Rw/xe0vw0KzeTxr7oWAN7tLvKB0oXTNY2y+LPpugCEZoIKz7Kqeug
-         BLRT93sRc2OPX/gEwNf1uRSW/pD/rDyhI4EEsmUjNRqk1kJ/8FPgzO0k1kNaBgIWS6kd
-         2VCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=przTgcny48jd36+oUDZM5VqCUdMOADezAA8z959EYFc=;
-        b=YZJFFulX57z9+YAMg0PtyjkisJJS0u7ZxwGwEuktfqLrNDeKjEvhD60M9lbWLO/huH
-         PgJFTRX9gvsZbm/Vlahx4nHwrvG2MPv9WOipih4XHBobmBT7iHh+qr7T0iok+LHs9WHA
-         Qveaz2XgT1+34FcGnBTWzJMqFW8fCxMbiQGKdfELjKFCPjGlIoZ2ov32cvCMVnKr38Nt
-         lI+Edp3V0e09UJOADagsRdR8MpnqngxasqPpCLOi7eMgk9oU/MriBQJl7qjCEgU2S55e
-         nAFyuS1zCRe6agTdmHGZ9JV78dVxHnVB2lDddD6iiF4aJdJk55Ya0GUdCkrqGDxFSR7/
-         t5ng==
-X-Gm-Message-State: AOAM532dT4UMkn59zb6ceVP7ID3fmEDAOPUZ4EJrdEC7ZdIDpIwDw0jG
-        lqlbRHnVYawUYSJbCEB51XlsJUwmqHOC/Mu2vsrlNQ==
-X-Google-Smtp-Source: ABdhPJynH7yvwhYRqBjAT6B2crW294fuviv7qzPIHYptEd/zWVZKZnYRZ8CfSV3sTGh2SAjw5YIHx6qxn3RjWJpV3bo=
-X-Received: by 2002:a7b:cf18:: with SMTP id l24mr17960976wmg.116.1593939672936;
- Sun, 05 Jul 2020 02:01:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200701013320.130441-1-drew@beagleboard.org>
-In-Reply-To: <20200701013320.130441-1-drew@beagleboard.org>
-From:   Haojian Zhuang <haojian.zhuang@linaro.org>
-Date:   Sun, 5 Jul 2020 17:01:02 +0800
-Message-ID: <CAD6h2NQWQj1frtfVNorc_wt7CqsOZS7PLaPHZxABFhvEPxkKzw@mail.gmail.com>
-Subject: Re: [PATCH v4 0/2] pinctrl: single: support #pinctrl-cells = 2
-To:     Drew Fustini <drew@beagleboard.org>
-Cc:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, bcousson@baylibre.com,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Robert Nelson <robertcnelson@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726495AbgGEJSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jul 2020 05:18:17 -0400
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:46989 "EHLO
+        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726434AbgGEJSR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jul 2020 05:18:17 -0400
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 05 Jul 2020 02:18:16 -0700
+Received: from sivaprak-linux.qualcomm.com ([10.201.3.202])
+  by ironmsg03-sd.qualcomm.com with ESMTP; 05 Jul 2020 02:18:11 -0700
+Received: by sivaprak-linux.qualcomm.com (Postfix, from userid 459349)
+        id 40AE721355; Sun,  5 Jul 2020 14:48:09 +0530 (IST)
+From:   Sivaprakash Murugesan <sivaprak@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
+        robh+dt@kernel.org, kishon@ti.com, vkoul@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, svarbanov@mm-sol.com,
+        lorenzo.pieralisi@arm.com, p.zabel@pengutronix.de,
+        sivaprak@codeaurora.org, mgautam@codeaurora.org,
+        smuthayy@codeaurora.org, varada@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCH 0/9] Add PCIe support for IPQ8074
+Date:   Sun,  5 Jul 2020 14:47:51 +0530
+Message-Id: <1593940680-2363-1-git-send-email-sivaprak@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 1 Jul 2020 at 09:33, Drew Fustini <drew@beagleboard.org> wrote:
->
-> Currently, pinctrl-single only allows #pinctrl-cells = 1.
->
-> This series will allow pinctrl-single to also support #pinctrl-cells = 2
->
-> If "pinctrl-single,pins" has 3 arguments (offset, conf, mux) then
-> pcs_parse_one_pinctrl_entry() does an OR operation on conf and mux to
-> get the value to store in the register.
->
-> To take advantage of #pinctrl-cells = 2, the AM33XX_PADCONF macro in
-> omap.h is modified to keep pin conf and pin mux values separate.
->
-> change log:
-> - v4: squash patches 2 and 3 together so that git biesct will not result
->   in a boot failure
->
-> - v3: change order of patches to make sure the pinctrl-single.c patch
->   does not break anything without the dts patches
->
-> - v2: remove outer parentheses from AM33XX_PADCONF macro as it causes a
->   compile error in dtc.  I had added it per suggestion from checkpatch
->   about having parentheses around complex values.
->
-> Drew Fustini (2):
->   pinctrl: single: parse #pinctrl-cells = 2
->   ARM: dts: am33xx-l4: change #pinctrl-cells from 1 to 2
->
->  arch/arm/boot/dts/am33xx-l4.dtsi   |  2 +-
->  drivers/pinctrl/pinctrl-single.c   | 11 +++++++++--
->  include/dt-bindings/pinctrl/omap.h |  2 +-
->  3 files changed, 11 insertions(+), 4 deletions(-)
->
-> --
-> 2.25.1
->
+IPQ8074 has two PCIe ports both are based on synopsis designware PCIe
+controller. while it was assumed that PCIe support for IPQ8074 was already
+available. PCIe was not functional until now.
 
-Acked-by: Haojian Zhuang <haojian.zhuang@linaro.org>
+This patch series adds support for PCIe ports on IPQ8074.
+
+First PCIe port is of gen2 synposis version is 2_3_2 which has already been
+enabled. But it had some problems on phy init and needed dt updates.
+
+Second PCIe port is gen3 synopsis version is 2_9_0. This series adds
+support for this PCIe port while fixing dt nodes.
+
+Patch 1 on this series depends on qcom pcie bindings patch
+https://lkml.org/lkml/2020/6/24/162
+
+Sivaprakash Murugesan (9):
+  dt-bindings: pci: Add ipq8074 gen3 pci compatible
+  dt-bindings: phy: qcom,qmp: Add dt-binding for ipq8074 gen3 pcie phy
+  clk: qcom: ipq8074: Add missing bindings for pcie
+  clk: qcom: ipq8074: Add missing clocks for pcie
+  phy: qcom-qmp: use correct values for ipq8074 gen2 pcie phy init
+  phy: qcom-qmp: Add compatible for ipq8074 pcie gen3 qmp phy
+  pci: dwc: qcom: do phy power on before pcie init
+  pci: qcom: Add support for ipq8074 pci controller
+  arm64: dts: ipq8074: Fixup pcie dts nodes
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml         |  47 ++++++
+ .../devicetree/bindings/phy/qcom,qmp-phy.yaml      |   1 +
+ arch/arm64/boot/dts/qcom/ipq8074-hk01.dts          |   8 +-
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi              | 109 ++++++++----
+ drivers/clk/qcom/gcc-ipq8074.c                     |  60 +++++++
+ drivers/pci/controller/dwc/pcie-qcom.c             | 187 +++++++++++++++++++-
+ drivers/phy/qualcomm/phy-qcom-pcie3-qmp.h          | 132 +++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp.c                | 188 ++++++++++++++++++++-
+ drivers/phy/qualcomm/phy-qcom-qmp.h                |   2 +
+ include/dt-bindings/clock/qcom,gcc-ipq8074.h       |   4 +
+ 10 files changed, 683 insertions(+), 55 deletions(-)
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-pcie3-qmp.h
+
+-- 
+2.7.4
+
