@@ -2,120 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48076214AC4
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2020 08:59:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 113D7214AD8
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2020 09:18:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725929AbgGEG7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jul 2020 02:59:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48586 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725873AbgGEG7h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jul 2020 02:59:37 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F022C061794;
-        Sat,  4 Jul 2020 23:59:37 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id dm19so25570647edb.13;
-        Sat, 04 Jul 2020 23:59:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Uj7PGXQjA9Qjyx6Apu7BwCYoAwQ6mjWMYaZTjh1xboA=;
-        b=X1tK2P5x1N5NIvZTW+VcJWoJ5K7YshwD/RGTnoclfrQc9rWXzaq6x5lbh3W1VEPG3H
-         GIBj3aYdZwSkmbX30wI0ltTXdk9CnsRitseiZtukzUKEk3FNTlkZwPOXIzWjeP499J/h
-         xCTffMRhoUn1p7NWV3QhPZ1KwiRWnwxwdcgOzZ7IN9IH/TZ7dDyEEoJLo0yjD+zY/jSq
-         U/Mez575j6Gk8PqJLH1jwIIrEPtUwfcKywMt7nrVfB+WPVnPIRMguFf5Uy51Wimot3VA
-         03Tow+PpzzxaVQn7RJASKTh8RPzBXnCFS8m6FGqLmHu/X1hY90wgL2yNY9oyCjHPCC6U
-         vedg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Uj7PGXQjA9Qjyx6Apu7BwCYoAwQ6mjWMYaZTjh1xboA=;
-        b=f/OUuyeIPvO9lr4l1uz5iGCpZ5tU/IKSo8D6GDhbc5yOhMiCtq9mChXUyYQWWpbryd
-         qOCyBTw/p7E7j/Ftkh7sZm66z39q/IzndNOvkThF8zjyrHi5RYzj08lI5LOepKC/b+T+
-         W6EeZ2KVQBToPJHwVwHgkNH+5SOajPOIhhZLh5grcAIalQFRnDLxNy15n9JDLqSt2GXH
-         hSVaxtvazvxKaRkZlPgyo8PJcMOO29/xNYaA4nqhHERINKGcbLUQcTkRf1Wk0QGHNhHW
-         zgXg46duQ2RhIBeq1u04TcK3prE+ApJWOpbFz5QmR2O6bLM0orKRkPhVIe2idGXbWwy5
-         EXGQ==
-X-Gm-Message-State: AOAM531/ueLPLxGrhey043+2Ydc6KMlDKvJqKp2WzuSRvqlBqI2HUaQR
-        FdOdPit8jmRSI94KaYKyrSc=
-X-Google-Smtp-Source: ABdhPJxf8p7neXQpdYnh+iVo38AaVRoy6UlE6QLvO/bQFZ8OMYCoPcBv6DsoAxTNbMTymew/PEyO+w==
-X-Received: by 2002:aa7:d989:: with SMTP id u9mr31469159eds.85.1593932375906;
-        Sat, 04 Jul 2020 23:59:35 -0700 (PDT)
-Received: from felia.fritz.box ([2001:16b8:2db3:e200:60e7:4b3:523f:884c])
-        by smtp.gmail.com with ESMTPSA id q3sm15042052eds.41.2020.07.04.23.59.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Jul 2020 23:59:35 -0700 (PDT)
-From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
-To:     Ondrej Jirman <megous@megous.com>, Sam Ravnborg <sam@ravnborg.org>
-Cc:     =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
-        Purism Kernel Team <kernel@puri.sm>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-sunxi@googlegroups.com, linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Ralf Ramsauer <ralf.ramsauer@oth-regensburg.de>,
-        Pia Eichinger <pia.eichinger@st.oth-regensburg.de>,
-        Joe Perches <joe@perches.com>, kernel-janitors@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Subject: [PATCH] MAINTAINERS: adjust entry to renaming and conversion
-Date:   Sun,  5 Jul 2020 08:59:17 +0200
-Message-Id: <20200705065917.22285-1-lukas.bulwahn@gmail.com>
+        id S1726583AbgGEHSK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jul 2020 03:18:10 -0400
+Received: from mailout1.samsung.com ([203.254.224.24]:55164 "EHLO
+        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725901AbgGEHSK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jul 2020 03:18:10 -0400
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20200705071806epoutp015028a0ac071185d2ee4db4207426c96a~eyg_n9TAL0986409864epoutp01V
+        for <devicetree@vger.kernel.org>; Sun,  5 Jul 2020 07:18:06 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20200705071806epoutp015028a0ac071185d2ee4db4207426c96a~eyg_n9TAL0986409864epoutp01V
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1593933486;
+        bh=tmCSeqeth7VPuXjmGwKspXpbsIc/fjhuXoBgLnQs/sM=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=Jk8A4p+4A+V7loXDv0sV0otkGZ6rAvw4jTMmJDuzwZvRoOIK5jxnqj6x/KCiXO71S
+         ZrBkvi1dOeix5IBwRy3f+5DIMbfY52t9PMLSJPhtUVAQzbGDZ8b31UZ7thsMCIJ+Jx
+         xWvPWjuGMrk22nsST3yqJzB0pSuXnCKnCzX/DBj4=
+Received: from epsmges5p1new.samsung.com (unknown [182.195.42.73]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTP id
+        20200705071805epcas5p1d5a2ad3a040e2383d10a5bef1d7ce012~eyg9ewVJ-1567215672epcas5p1C;
+        Sun,  5 Jul 2020 07:18:05 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        1D.E9.09467.DAE710F5; Sun,  5 Jul 2020 16:18:05 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+        20200705071805epcas5p37045f009655c40d573077babf17c51fa~eyg9GEk2u1303613036epcas5p3f;
+        Sun,  5 Jul 2020 07:18:05 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20200705071805epsmtrp25090eb91e8ab90409ad76a1035b7a2de~eyg9FV8YI1763917639epsmtrp2K;
+        Sun,  5 Jul 2020 07:18:05 +0000 (GMT)
+X-AuditID: b6c32a49-a3fff700000024fb-1b-5f017eadcbdf
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        8D.9D.08303.CAE710F5; Sun,  5 Jul 2020 16:18:04 +0900 (KST)
+Received: from Jaguar.sa.corp.samsungelectronics.net (unknown
+        [107.108.73.139]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20200705071803epsmtip1646c3f37d1272c020dbbf589d28f97db~eyg8Ab2pQ0264602646epsmtip1T;
+        Sun,  5 Jul 2020 07:18:03 +0000 (GMT)
+From:   Alim Akhtar <alim.akhtar@samsung.com>
+To:     rzk@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, Alim Akhtar <alim.akhtar@samsung.com>
+Subject: [PATCH 1/2] arm64: dts: exynos: Fix silent hang after boot
+Date:   Sun,  5 Jul 2020 12:27:46 +0530
+Message-Id: <20200705065747.63014-1-alim.akhtar@samsung.com>
 X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrCIsWRmVeSWpSXmKPExsWy7bCmuu7aOsZ4g6cfJSwezNvGZjH/yDlW
+        i02Pr7FaXN41h81ixvl9TBate4+wW+x8/4HRgd1j06pONo/NS+o9+rasYvT4vEkugCWKyyYl
+        NSezLLVI3y6BK+PrjGnsBX/YKzr797A3MN5l62Lk5JAQMJE4PbOZpYuRi0NIYDejxJo9M6Cc
+        T4wSLzvaGSGcz4wSO661ssC0vF5+kxHEFhLYxShxok8RoqiFSaJ92iFWkASbgLbE3elbmEBs
+        EQEhiQMNv8DGMgscYZRoOP8CLCEs4Cwxf+kjsAYWAVWJab9eg23gFbCR2PnnKiPENnmJ1RsO
+        MIM0SwgsY5dYOmkVK0TCRWJO30Wok4QlXh3fwg5hS0l8frcX6DsOIDtbomeXMUS4RmLpvGNQ
+        5fYSB67MYQEpYRbQlFi/Sx8kzCzAJ9H7+wkTRCevREebEES1qkTzu6tQndISE7u7oQ7wkOjc
+        9ZwRpFxIIFZi6k3pCYwysxBmLmBkXMUomVpQnJueWmxaYJiXWq5XnJhbXJqXrpecn7uJERzR
+        Wp47GO8++KB3iJGJg/EQowQHs5IIb682Y7wQb0piZVVqUX58UWlOavEhRmkOFiVxXqUfZ+KE
+        BNITS1KzU1MLUotgskwcnFINTIFX94S+0znE7XYnb8qhXS8trUIKtM21z0vuX8E/5ffx+97R
+        xSaHJG7/OOIts9nb4f/63cxzH4nK8u3Olf3DKXWH47JMveCZFVUySYeUzzQvPdGz+v2LeE63
+        M8+r3pRJGf2SaYh51W2s+WHreanvXPs/KHQZP0ksOr14VU5dXln9/Dc2Sn/PslS1nY9Klnp6
+        RfrDdIl7p+adW7HmIv9F1d7/88ueNK/uU9p7ZvVZU4c/zGXMqtV73E441qUZ7S9sqwrsPDUh
+        OEjd4nitluc3Bi7ZrfVyTApWeudsC69vWtB10OCI9oQkNvMpNWWZiRP2XrNMcd7Ynhdp07Jb
+        JkTsG+/n+KauHe1zsny8eT2mKrEUZyQaajEXFScCAAbhY2NXAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrJJMWRmVeSWpSXmKPExsWy7bCSnO6aOsZ4g62nbCwezNvGZjH/yDlW
+        i02Pr7FaXN41h81ixvl9TBate4+wW+x8/4HRgd1j06pONo/NS+o9+rasYvT4vEkugCWKyyYl
+        NSezLLVI3y6BK+PrjGnsBX/YKzr797A3MN5l62Lk5JAQMJF4vfwmYxcjF4eQwA5Gief9L6AS
+        0hLXN05gh7CFJVb+ew5mCwk0MUl8/p0JYrMJaEvcnb6FCcQWERCSONDwiwVkELPAKUaJ/u2b
+        wRqEBZwl5i99xApiswioSkz79ZoFxOYVsJHY+ecqI8QCeYnVGw4wT2DkWcDIsIpRMrWgODc9
+        t9iwwCgvtVyvODG3uDQvXS85P3cTIzh0tLR2MO5Z9UHvECMTB+MhRgkOZiUR3l5txngh3pTE
+        yqrUovz4otKc1OJDjNIcLErivF9nLYwTEkhPLEnNTk0tSC2CyTJxcEo1MIlFd9x13LqJUyxI
+        x+2v7rf7b2+a6fF/3v/w68vp6yJctS4EuSldYt/iojIpq9pgwsXpFfWPz3P4NuxsiFTdc3WS
+        1P5Ld/OlAhZICHNz28amMKucXvit6eAqJqO65U27l3j1p3kd8bxiefH8pXtdzPdOPKxJ4XjR
+        e+isg2CysadA+NTOJT4rigSMU8pvF8Y9PffTbv32ZXLxbBeSFtbqOEk+fRTZwO31yyRuwh45
+        /qOM19gWfbpQvPqbmNT74Gc5d4zLvcuzOU1VXqaLzbmqdiQydmZ3BNc/99a175dm+OwyPtMn
+        +s44cbKhgO0J33XezDGXLR5pn8ppTgh3mTDnYAbjxL5Lye5dp+d9sjhQqsRSnJFoqMVcVJwI
+        APGLK+OMAgAA
+X-CMS-MailID: 20200705071805epcas5p37045f009655c40d573077babf17c51fa
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+X-CMS-RootMailID: 20200705071805epcas5p37045f009655c40d573077babf17c51fa
+References: <CGME20200705071805epcas5p37045f009655c40d573077babf17c51fa@epcas5p3.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit a74e81a56405 ("drm/panel: rocktech-jh057n00900: Rename the driver to
-st7703") and commit 7317f4574492 ("dt-bindings: panel: Convert
-rocktech,jh057n00900 to yaml") renamed and converted the files mentioned in
-DRM DRIVER FOR ROCKTECH JH057N00900 PANELS, but did not adjust the entries
-in MAINTAINERS.
+Once regulators are disabled after kernel boot, on espresso
+board silent hang observed because of LDO7 being disabled.
+LDO7 actually provide power to CPU cores and non-cpu blocks
+circuitries.
+Keep this regulator always-on to fix this hang.
 
-Hence, ./scripts/get_maintainer.pl --self-test=patterns complains:
-
-  warning: no file matches  F: \
-  Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.txt
-  warning: no file matches  F: \
-  drivers/gpu/drm/panel/panel-rocktech-jh057n00900.c
-
-Adjust entries after this file renaming and devicetree conversion.
-
-Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Fixes: 9589f7721e16 ("arm64: dts: Add S2MPS15 PMIC node on exynos7-espresso")
+Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
 ---
-applies cleanly on next-20200703
+ arch/arm64/boot/dts/exynos/exynos7-espresso.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-Ondrej, please ack this patch.
-Sam, please pick this minor non-urgent patch into your -next tree.
-
-This is the minimal change to address the warning. You might consider
-changing the name of the section from ROCKTECH to ST7703, change
-maintainers etc.
-
- MAINTAINERS | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9375edaef11f..8a7b92faff99 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5493,8 +5493,8 @@ DRM DRIVER FOR ROCKTECH JH057N00900 PANELS
- M:	Guido Günther <agx@sigxcpu.org>
- R:	Purism Kernel Team <kernel@puri.sm>
- S:	Maintained
--F:	Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.txt
--F:	drivers/gpu/drm/panel/panel-rocktech-jh057n00900.c
-+F:	Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
-+F:	drivers/gpu/drm/panel/panel-sitronix-st7703.c
+diff --git a/arch/arm64/boot/dts/exynos/exynos7-espresso.dts b/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
+index 790f12ca8981..bb86950032d3 100644
+--- a/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
++++ b/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
+@@ -157,6 +157,7 @@
+ 				regulator-min-microvolt = <700000>;
+ 				regulator-max-microvolt = <1150000>;
+ 				regulator-enable-ramp-delay = <125>;
++				regulator-always-on;
+ 			};
  
- DRM DRIVER FOR SAVAGE VIDEO CARDS
- S:	Orphan / Obsolete
+ 			ldo8_reg: LDO8 {
+
+base-commit: 9e50b94b3eb0d859a2586b5a40d7fd6e5afd9210
 -- 
 2.17.1
 
