@@ -2,267 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0ADE2214B6A
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2020 11:19:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBC28214BD5
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2020 12:35:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726867AbgGEJSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jul 2020 05:18:39 -0400
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:47006 "EHLO
-        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726794AbgGEJS1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jul 2020 05:18:27 -0400
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 05 Jul 2020 02:18:25 -0700
-Received: from sivaprak-linux.qualcomm.com ([10.201.3.202])
-  by ironmsg01-sd.qualcomm.com with ESMTP; 05 Jul 2020 02:18:18 -0700
-Received: by sivaprak-linux.qualcomm.com (Postfix, from userid 459349)
-        id 21880213CD; Sun,  5 Jul 2020 14:48:10 +0530 (IST)
-From:   Sivaprakash Murugesan <sivaprak@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
-        robh+dt@kernel.org, kishon@ti.com, vkoul@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, svarbanov@mm-sol.com,
-        lorenzo.pieralisi@arm.com, p.zabel@pengutronix.de,
-        sivaprak@codeaurora.org, mgautam@codeaurora.org,
-        smuthayy@codeaurora.org, varada@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Cc:     Selvam Sathappan Periakaruppan <speriaka@codeaurora.org>
-Subject: [PATCH 9/9] arm64: dts: ipq8074: Fixup pcie dts nodes
-Date:   Sun,  5 Jul 2020 14:48:00 +0530
-Message-Id: <1593940680-2363-10-git-send-email-sivaprak@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1593940680-2363-1-git-send-email-sivaprak@codeaurora.org>
-References: <1593940680-2363-1-git-send-email-sivaprak@codeaurora.org>
+        id S1726834AbgGEKfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jul 2020 06:35:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53312 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726833AbgGEKfV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jul 2020 06:35:21 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C91CC08C5DE
+        for <devicetree@vger.kernel.org>; Sun,  5 Jul 2020 03:35:21 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1js1zD-0008RR-9i; Sun, 05 Jul 2020 12:35:03 +0200
+Received: from [IPv6:2a03:f580:87bc:d400:44c0:f67d:f3f1:540c] (unknown [IPv6:2a03:f580:87bc:d400:44c0:f67d:f3f1:540c])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256
+         client-signature RSA-PSS (4096 bits) client-digest SHA256)
+        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
+        (Authenticated sender: mkl@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 24E5A529203;
+        Sun,  5 Jul 2020 10:34:57 +0000 (UTC)
+Subject: Re: [PATCH] Replace HTTP links with HTTPS ones: CAN network drivers
+To:     "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        wg@grandegger.com, davem@davemloft.net, kuba@kernel.org,
+        robh+dt@kernel.org, dmurphy@ti.com, sriram.dash@samsung.com,
+        hpeter@gmail.com, masahiroy@kernel.org, leon@kernel.org,
+        krzk@kernel.org, kvalo@codeaurora.org, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20200705075606.22802-1-grandmaster@al2klimov.de>
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
+ mQINBFFVq30BEACtnSvtXHoeHJxG6nRULcvlkW6RuNwHKmrqoksispp43X8+nwqIFYgb8UaX
+ zu8T6kZP2wEIpM9RjEL3jdBjZNCsjSS6x1qzpc2+2ivjdiJsqeaagIgvy2JWy7vUa4/PyGfx
+ QyUeXOxdj59DvLwAx8I6hOgeHx2X/ntKAMUxwawYfPZpP3gwTNKc27dJWSomOLgp+gbmOmgc
+ 6U5KwhAxPTEb3CsT5RicsC+uQQFumdl5I6XS+pbeXZndXwnj5t84M+HEj7RN6bUfV2WZO/AB
+ Xt5+qFkC/AVUcj/dcHvZwQJlGeZxoi4veCoOT2MYqfR0ax1MmN+LVRvKm29oSyD4Ts/97cbs
+ XsZDRxnEG3z/7Winiv0ZanclA7v7CQwrzsbpCv+oj+zokGuKasofzKdpywkjAfSE1zTyF+8K
+ nxBAmzwEqeQ3iKqBc3AcCseqSPX53mPqmwvNVS2GqBpnOfY7Mxr1AEmxdEcRYbhG6Xdn+ACq
+ Dq0Db3A++3PhMSaOu125uIAIwMXRJIzCXYSqXo8NIeo9tobk0C/9w3fUfMTrBDtSviLHqlp8
+ eQEP8+TDSmRP/CwmFHv36jd+XGmBHzW5I7qw0OORRwNFYBeEuiOIgxAfjjbLGHh9SRwEqXAL
+ kw+WVTwh0MN1k7I9/CDVlGvc3yIKS0sA+wudYiselXzgLuP5cQARAQABtCZNYXJjIEtsZWlu
+ ZS1CdWRkZSA8bWtsQHBlbmd1dHJvbml4LmRlPokCVAQTAQoAPgIbAwIeAQIXgAULCQgHAwUV
+ CgkICwUWAgMBABYhBMFAC6CzmJ5vvH1bXCte4hHFiupUBQJcUsSbBQkM366zAAoJECte4hHF
+ iupUgkAP/2RdxKPZ3GMqag33jKwKAbn/fRqAFWqUH9TCsRH3h6+/uEPnZdzhkL4a9p/6OeJn
+ Z6NXqgsyRAOTZsSFcwlfxLNHVxBWm8pMwrBecdt4lzrjSt/3ws2GqxPsmza1Gs61lEdYvLST
+ Ix2vPbB4FAfE0kizKAjRZzlwOyuHOr2ilujDsKTpFtd8lV1nBNNn6HBIBR5ShvJnwyUdzuby
+ tOsSt7qJEvF1x3y49bHCy3uy+MmYuoEyG6zo9udUzhVsKe3hHYC2kfB16ZOBjFC3lH2U5An+
+ yQYIIPZrSWXUeKjeMaKGvbg6W9Oi4XEtrwpzUGhbewxCZZCIrzAH2hz0dUhacxB201Y/faY6
+ BdTS75SPs+zjTYo8yE9Y9eG7x/lB60nQjJiZVNvZ88QDfVuLl/heuIq+fyNajBbqbtBT5CWf
+ mOP4Dh4xjm3Vwlz8imWW/drEVJZJrPYqv0HdPbY8jVMpqoe5jDloyVn3prfLdXSbKPexlJaW
+ 5tnPd4lj8rqOFShRnLFCibpeHWIumqrIqIkiRA9kFW3XMgtU6JkIrQzhJb6Tc6mZg2wuYW0d
+ Wo2qvdziMgPkMFiWJpsxM9xPk9BBVwR+uojNq5LzdCsXQ2seG0dhaOTaaIDWVS8U/V8Nqjrl
+ 6bGG2quo5YzJuXKjtKjZ4R6k762pHJ3tnzI/jnlc1sXz
+Message-ID: <7d4f2aa8-b63a-1c2d-961f-3ab1dbb386cd@pengutronix.de>
+Date:   Sun, 5 Jul 2020 12:34:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
+MIME-Version: 1.0
+In-Reply-To: <20200705075606.22802-1-grandmaster@al2klimov.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: de-DE
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ipq8074 pcie nodes missing several properties which is needed to make
-them work add these properties.
+On 7/5/20 9:56 AM, Alexander A. Klimov wrote:
+> Rationale:
+> Reduces attack surface on kernel devs opening the links for MITM
+> as HTTPS traffic is much harder to manipulate.
+> 
+> Deterministic algorithm:
+> For each file:
+>   If not .svg:
+>     For each line:
+>       If doesn't contain `\bxmlns\b`:
+>         For each link, `\bhttp://[^# \t\r\n]*(?:\w|/)`:
+>           If both the HTTP and HTTPS versions
+>           return 200 OK and serve the same content:
+>             Replace HTTP with HTTPS.
+> 
+> Signed-off-by: Alexander A. Klimov <grandmaster@al2klimov.de>
 
-Co-developed-by: Selvam Sathappan Periakaruppan <speriaka@codeaurora.org>
-Signed-off-by: Selvam Sathappan Periakaruppan <speriaka@codeaurora.org>
-Signed-off-by: Sivaprakash Murugesan <sivaprak@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/ipq8074-hk01.dts |   8 +--
- arch/arm64/boot/dts/qcom/ipq8074.dtsi     | 109 ++++++++++++++++++++----------
- 2 files changed, 78 insertions(+), 39 deletions(-)
+Acked-by: Marc Kleine-Budde <mkl@pengutronix.de>
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-index 6754cb0638f4..dfb8ad73f134 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-@@ -52,19 +52,19 @@
- 
- &pcie0 {
- 	status = "ok";
--	perst-gpio = <&tlmm 61 0x1>;
-+	perst-gpio = <&tlmm 58 0x1>;
- };
- 
- &pcie1 {
- 	status = "ok";
--	perst-gpio = <&tlmm 58 0x1>;
-+	perst-gpio = <&tlmm 61 0x1>;
- };
- 
--&pcie_phy0 {
-+&qmp_pcie_phy0 {
- 	status = "ok";
- };
- 
--&pcie_phy1 {
-+&qmp_pcie_phy1 {
- 	status = "ok";
- };
- 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index 5303821300b4..5bb58b70199e 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -82,34 +82,66 @@
- 		ranges = <0 0 0 0xffffffff>;
- 		compatible = "simple-bus";
- 
--		pcie_phy0: phy@86000 {
--			compatible = "qcom,ipq8074-qmp-pcie-phy";
--			reg = <0x00086000 0x1000>;
--			#phy-cells = <0>;
--			clocks = <&gcc GCC_PCIE0_PIPE_CLK>;
--			clock-names = "pipe_clk";
--			clock-output-names = "pcie20_phy0_pipe_clk";
-+		qmp_pcie_phy0: phy@84000 {
-+			compatible = "qcom,ipq8074-qmp-pcie-gen3-phy";
-+			reg = <0x00084000 0x1bc>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges;
-+
-+			clocks = <&gcc GCC_PCIE0_AUX_CLK>,
-+				 <&gcc GCC_PCIE0_AHB_CLK>;
-+			clock-names = "aux", "cfg_ahb";
- 
- 			resets = <&gcc GCC_PCIE0_PHY_BCR>,
--				<&gcc GCC_PCIE0PHY_PHY_BCR>;
-+				 <&gcc GCC_PCIE0PHY_PHY_BCR>;
- 			reset-names = "phy",
- 				      "common";
-+
- 			status = "disabled";
-+			pcie_phy0: lane@84200 {
-+				reg = <0x84200 0x16c>, /* Serdes Tx */
-+				      <0x84400 0x200>, /* Serdes Rx */
-+				      <0x84800 0x4f4>; /* PCS: Lane0, COM, PCIE */
-+				#phy-cells = <0>;
-+
-+				clocks = <&gcc GCC_PCIE0_PIPE_CLK>;
-+				clock-names = "pipe0";
-+				clock-output-names = "gcc_pcie0_pipe_clk_src";
-+				clock-output-rate = <250000000>;
-+				#clock-cells = <0>;
-+			};
- 		};
- 
--		pcie_phy1: phy@8e000 {
-+		qmp_pcie_phy1: phy@8e000 {
- 			compatible = "qcom,ipq8074-qmp-pcie-phy";
--			reg = <0x0008e000 0x1000>;
--			#phy-cells = <0>;
--			clocks = <&gcc GCC_PCIE1_PIPE_CLK>;
--			clock-names = "pipe_clk";
--			clock-output-names = "pcie20_phy1_pipe_clk";
-+			reg = <0x8e000 0x1c4>; /* Serdes PLL */
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges;
-+
-+			clocks = <&gcc GCC_PCIE1_AUX_CLK>,
-+				 <&gcc GCC_PCIE1_AHB_CLK>;
-+			clock-names = "aux", "cfg_ahb";
- 
- 			resets = <&gcc GCC_PCIE1_PHY_BCR>,
--				<&gcc GCC_PCIE1PHY_PHY_BCR>;
-+				 <&gcc GCC_PCIE1PHY_PHY_BCR>;
- 			reset-names = "phy",
- 				      "common";
-+
- 			status = "disabled";
-+			pcie_phy1: lane@8e200 {
-+				reg = <0x8e200 0x130>, /* Serdes Tx */
-+				      <0x8e400 0x200>, /* Serdes Rx */
-+				      <0x8e800 0x1f8>; /* PCS */
-+				#phy-cells = <0>;
-+
-+				clocks = <&gcc GCC_PCIE1_PIPE_CLK>;
-+				clock-names = "pipe0";
-+				clock-output-names = "gcc_pcie1_pipe_clk_src";
-+				clock-output-rate = <125000000>;
-+				#clock-cells = <0>;
-+			};
- 		};
- 
- 		tlmm: pinctrl@1000000 {
-@@ -370,10 +402,10 @@
- 
- 		pcie1: pci@10000000 {
- 			compatible = "qcom,pcie-ipq8074";
--			reg =  <0x10000000 0xf1d
--				0x10000f20 0xa8
--				0x00088000 0x2000
--				0x10100000 0x1000>;
-+			reg =  <0x10000000 0xf1d>,
-+				<0x10000f20 0xa8>,
-+				<0x00088000 0x2000>,
-+				<0x10100000 0x1000>;
- 			reg-names = "dbi", "elbi", "parf", "config";
- 			device_type = "pci";
- 			linux,pci-domain = <1>;
-@@ -386,9 +418,9 @@
- 			phy-names = "pciephy";
- 
- 			ranges = <0x81000000 0 0x10200000 0x10200000
--				  0 0x100000   /* downstream I/O */
--				  0x82000000 0 0x10300000 0x10300000
--				  0 0xd00000>; /* non-prefetchable memory */
-+				  0 0x100000>,   /* downstream I/O */
-+				  <0x82000000 0 0x10220000 0x10220000
-+				  0 0xfde0000>; /* non-prefetchable memory */
- 
- 			interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "msi";
-@@ -431,12 +463,13 @@
- 		};
- 
- 		pcie0: pci@20000000 {
--			compatible = "qcom,pcie-ipq8074";
--			reg =  <0x20000000 0xf1d
--				0x20000f20 0xa8
--				0x00080000 0x2000
--				0x20100000 0x1000>;
--			reg-names = "dbi", "elbi", "parf", "config";
-+			compatible = "qcom,pcie-ipq8074-gen3";
-+			reg =  <0x20000000 0xf1d>,
-+			       <0x20000f20 0xa8>,
-+			       <0x20001000 0x1000>,
-+			       <0x00080000 0x4000>,
-+			       <0x20100000 0x1000>;
-+			reg-names = "dbi", "elbi", "atu", "parf", "config";
- 			device_type = "pci";
- 			linux,pci-domain = <0>;
- 			bus-range = <0x00 0xff>;
-@@ -448,9 +481,9 @@
- 			phy-names = "pciephy";
- 
- 			ranges = <0x81000000 0 0x20200000 0x20200000
--				  0 0x100000   /* downstream I/O */
--				  0x82000000 0 0x20300000 0x20300000
--				  0 0xd00000>; /* non-prefetchable memory */
-+				  0 0x100000>,   /* downstream I/O */
-+				 <0x82000000 0 0x20220000 0x20220000
-+				  0 0xfde0000>; /* non-prefetchable memory */
- 
- 			interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "msi";
-@@ -469,27 +502,33 @@
- 				 <&gcc GCC_PCIE0_AXI_M_CLK>,
- 				 <&gcc GCC_PCIE0_AXI_S_CLK>,
- 				 <&gcc GCC_PCIE0_AHB_CLK>,
--				 <&gcc GCC_PCIE0_AUX_CLK>;
-+				 <&gcc GCC_PCIE0_AUX_CLK>,
-+				 <&gcc GCC_PCIE0_AXI_S_BRIDGE_CLK>,
-+				 <&gcc GCC_PCIE0_RCHNG_CLK>;
- 
- 			clock-names = "iface",
- 				      "axi_m",
- 				      "axi_s",
- 				      "ahb",
--				      "aux";
-+				      "aux",
-+				      "axi_bridge",
-+				      "rchng";
- 			resets = <&gcc GCC_PCIE0_PIPE_ARES>,
- 				 <&gcc GCC_PCIE0_SLEEP_ARES>,
- 				 <&gcc GCC_PCIE0_CORE_STICKY_ARES>,
- 				 <&gcc GCC_PCIE0_AXI_MASTER_ARES>,
- 				 <&gcc GCC_PCIE0_AXI_SLAVE_ARES>,
- 				 <&gcc GCC_PCIE0_AHB_ARES>,
--				 <&gcc GCC_PCIE0_AXI_MASTER_STICKY_ARES>;
-+				 <&gcc GCC_PCIE0_AXI_MASTER_STICKY_ARES>,
-+				 <&gcc GCC_PCIE0_AXI_SLAVE_STICKY_ARES>;
- 			reset-names = "pipe",
- 				      "sleep",
- 				      "sticky",
- 				      "axi_m",
- 				      "axi_s",
- 				      "ahb",
--				      "axi_m_sticky";
-+				      "axi_m_sticky",
-+				      "axi_s_sticky";
- 			status = "disabled";
- 		};
- 	};
+regards,
+Marc
+
 -- 
-2.7.4
-
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
