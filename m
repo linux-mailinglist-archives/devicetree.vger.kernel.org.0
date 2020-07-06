@@ -2,135 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98DD3215E0C
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2020 20:13:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB8C5215EF6
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2020 20:45:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729632AbgGFSNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jul 2020 14:13:38 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:53335 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729622AbgGFSNi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jul 2020 14:13:38 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id ED5E958023D;
-        Mon,  6 Jul 2020 14:13:36 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Mon, 06 Jul 2020 14:13:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:mime-version:content-type; s=
-        fm3; bh=+v/Te64vKu4e35ENQ/jK6ubbrXotygKRxSoJgsFaBMY=; b=qSy7OzOH
-        skFlHeU9mi26Sma2rX0D/lgIfCCmui9NIvzQgMWug9tdsg6RIO1cZLqpjdwlhmzB
-        5KivDkYhKbmi+Wo0kEIvgJ7/u4ISd/JPSAz14cB63lEUXYhlQFEPJ1xuNSKnF/Y2
-        qpByMVOwDmJgXVa7CRM5SEf+GkyGBnslNoUoCqpSCMc9Qw8+1YLGN98sEL4jJ/VG
-        uN7qMhfDu5+cDGOFlzqbTmXua69/vwUHB5cyE9ue9LlFDnYEWmL2G+ocDPAvFR8A
-        gwbi8wMuLm5W/vQHq4alBcdWVKZuOBsNxCPrhPFIhTaA68X2q/0l6Uwcf5+GDJqy
-        tbZw/+6MOKeI1w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:message-id
-        :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
-        :x-me-sender:x-sasl-enc; s=fm3; bh=+v/Te64vKu4e35ENQ/jK6ubbrXoty
-        gKRxSoJgsFaBMY=; b=qshJlZ0E5dHQkkrkVBROwDSY5Sgo3A2aErHKsBk4Qzhcr
-        YwuFLcpq3tbOAjJDSQBmHDR6xZI/1CNCEffKHJUxCkzmx53vJLWlG1WdmkEXmPOD
-        JfwLoYmaXaTcuR45TtB1ww+APCPkk8b6YtmvmF+w/VdCDOm1675nQNe0gWlxAK2m
-        /Gd9KvUT4QKgNYiizc7yFmAfC52rbIbQVOKdX/S6Vor8Znp6GHXGU5Sq4jwTre1P
-        FxtBFwbHScWLP1IFcoDIctKVuofwpIsDZ9BAn3TnMGziXoFlqCJ3z+uhNz3jMYsi
-        DJ6Acx5FPad+2ZtZrUmjIPEXfcNXCVc/IRbnxdkEg==
-X-ME-Sender: <xms:zWkDX3clahDmVS2Za88QRKWTl2jFfKPA9aUrGPYViYhe8ADoYyiMwg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudefgdduvdegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfggtggusehgtderredttddvnecuhfhrohhmpeforgigihhmvgcu
-    tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
-    hrnhepkeeffefgffeijeffveehkeffleejgeefvefhkedtteegvdefjeduveehhfetveej
-    necuffhomhgrihhnpehkvghrnhgvlhdrohhrghdpsghoohhtlhhinhdrtghomhenucfkph
-    epledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhep
-    mhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:zWkDX9P5hF41A50xUPlgDeEOjXopXgSe8d_p3QdXha1TPnoEHGoE4Q>
-    <xmx:zWkDXwhJ9vZX-1uH9isgRIGWZiQ4ejO47HRiIVneW_F2a0GCskxJqA>
-    <xmx:zWkDX4-0vfTjH14CXWJMFhZ9q1I0n4BBtnRsNZ836qajUeJpYmg2IQ>
-    <xmx:0GkDX5CDafBdVS4Q821QRHeAgSjerkAW00qSoNCP7YeICPRsL-z5Gg>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 7C6193280064;
-        Mon,  6 Jul 2020 14:13:33 -0400 (EDT)
-Date:   Mon, 6 Jul 2020 20:13:31 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Antoine =?utf-8?Q?T=C3=A9nart?= <antoine.tenart@bootlin.com>
-Subject: PHY reset handling during DT parsing
-Message-ID: <20200706181331.x2tn5cl5jn5kqmhx@gilmour.lan>
+        id S1729695AbgGFSp2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jul 2020 14:45:28 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:52122 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729599AbgGFSp2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jul 2020 14:45:28 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 066IjQru127801;
+        Mon, 6 Jul 2020 13:45:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1594061126;
+        bh=PcCdHop+GwSCzLkx0JmARyDO1A24Eate1XRLBtTMA40=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=M6qDT0k4TEgef3OaQkqIPgZk8BwC+8sw6byBrzGey0J/gK3+jLg+vmu8tr48+Za1J
+         h5DtyjJFk1Og1jMpX+LRW7d/8Fc64GYEt6a5/VIxOW8EslwlTXby7lccCDyBunmx0+
+         zMoxFaelMm9FgyrsqF900mUzaptanDFC3srgeTYo=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 066IjQoG102161
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 6 Jul 2020 13:45:26 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 6 Jul
+ 2020 13:45:26 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 6 Jul 2020 13:45:26 -0500
+Received: from [10.250.43.45] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 066IjOjF081156;
+        Mon, 6 Jul 2020 13:45:24 -0500
+Subject: Re: [EXTERNAL] Re: [PATCH v15 2/4] dt-bindings: power: Convert
+ battery.txt to battery.yaml
+To:     Rob Herring <robh@kernel.org>
+CC:     <pali@kernel.org>, <linux-pm@vger.kernel.org>,
+        <sspatil@android.com>, <linux-kernel@vger.kernel.org>,
+        <afd@ti.com>, <dmurphy@ti.com>, <sre@kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20200701211044.18590-1-r-rivera-matos@ti.com>
+ <20200701211044.18590-3-r-rivera-matos@ti.com>
+ <20200702205320.GA1672139@bogus>
+From:   Ricardo Rivera-Matos <r-rivera-matos@ti.com>
+Message-ID: <54914eed-4a65-745b-b61b-9515737023e3@ti.com>
+Date:   Mon, 6 Jul 2020 13:45:24 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="2ftaacwvvl7mumne"
-Content-Disposition: inline
+In-Reply-To: <20200702205320.GA1672139@bogus>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Rob
 
---2ftaacwvvl7mumne
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 7/2/20 3:53 PM, Rob Herring wrote:
+> On Wed, 01 Jul 2020 16:10:42 -0500, Ricardo Rivera-Matos wrote:
+>> From: Dan Murphy <dmurphy@ti.com>
+>>
+>> Convert the battery.txt file to yaml and fix up the examples.
+>>
+>> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+>> ---
+>>   .../bindings/power/supply/battery.txt         |  86 +---------
+>>   .../bindings/power/supply/battery.yaml        | 157 ++++++++++++++++++
+>>   2 files changed, 158 insertions(+), 85 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/power/supply/battery.yaml
+>>
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.6/dist-packages/dtschema/schema/types.yaml'
+> Documentation/devicetree/bindings/Makefile:20: recipe for target 'Documentation/devicetree/bindings/power/supply/battery.example.dts' failed
+> make[1]: *** [Documentation/devicetree/bindings/power/supply/battery.example.dts] Error 255
+> make[1]: *** Waiting for unfinished jobs....
+> Makefile:1347: recipe for target 'dt_binding_check' failed
+> make: *** [dt_binding_check] Error 2
+I think your bot is looking for the types.yaml in the wrong place. 
+'/usr/local/lib/python3.6/dist-packages/dtschema/schema/types.yaml' 
+should be 
+'/usr/local/lib/python3.6/dist-packages/dtschema/schemas/types.yaml'. I 
+renamed might 'schemas' directory to 'schema' and my battery.yaml passed 
+the dt_binding_check.
+>
+>
+> See https://patchwork.ozlabs.org/patch/1320813
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure dt-schema is up to date:
+>
+> pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+Confirmed on latest dt-schema
+>
+> Please check and re-submit.
 
-Hi,
+     Thanks,
 
-I came across an issue today on an Allwinner board, but I believe it's a
-core issue.
+         Ricardo
 
-That board is using the stmac driver together with a phy that happens to
-have a reset GPIO, except that that GPIO will never be claimed, and the
-PHY will thus never work.
-
-You can find an example of such a board here:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/sun6i-a31-hummingbird.dts#n195
-
-It looks like when of_mdiobus_register() will parse the DT, it will then
-call of_mdiobus_register_phy() for each PHY it encounters [1].
-of_mdiobus_register_phy() will then if the phy doesn't have an
-ethernet-phy-id* compatible call get_phy_device() [2], and will later on
-call phy_register_device [3].
-
-get_phy_device() will then call get_phy_id() [4], that will try to
-access the PHY through the MDIO bus [5].
-
-The code that deals with the PHY reset line / GPIO is however only done
-in mdiobus_device_register, called through phy_device_register. Since
-this is happening way after the call to get_phy_device, our PHY might
-still very well be in reset if the bootloader hasn't put it out of reset
-and left it there.
-
-I'm not entirely sure how to fix that though. I tried to fix it by
-splitting away the gpio / reset code away from mdiobus_device_register
-into a new function, and calling it before the first call to get_phy_id
-so that we can put our phy out of reset, but it looks like the device
-registration makes it more complicated than that. Any ideas?
-
-Thanks!
-Maxime
-
-1: https://elixir.bootlin.com/linux/latest/source/drivers/of/of_mdio.c#L274
-2: https://elixir.bootlin.com/linux/latest/source/drivers/of/of_mdio.c#L82
-3: https://elixir.bootlin.com/linux/latest/source/drivers/of/of_mdio.c#L119
-4: https://elixir.bootlin.com/linux/latest/source/drivers/net/phy/phy_device.c#L830
-5: https://elixir.bootlin.com/linux/latest/source/drivers/net/phy/phy_device.c#L791
-
---2ftaacwvvl7mumne
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXwNpywAKCRDj7w1vZxhR
-xU1lAQCR+4X7EF6qEnFyxVCuaNV/g3Bjlk5krQv8tSUb3DmQ+AEA2WAuzE9iBzzg
-Awm1dmo/sBptpDkj+d3oPz4YqsFQvQw=
-=Gsc3
------END PGP SIGNATURE-----
-
---2ftaacwvvl7mumne--
+>
