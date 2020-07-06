@@ -2,101 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED8E7215D96
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2020 19:58:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98DD3215E0C
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2020 20:13:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729766AbgGFR5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jul 2020 13:57:42 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:44029 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729746AbgGFR5l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jul 2020 13:57:41 -0400
-Received: from apollo.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:6257:18ff:fec4:ca34])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 575C223078;
-        Mon,  6 Jul 2020 19:57:38 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1594058258;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=c5LF50IP0lsdbsBcvX/jwWXNVBRMCu+k4mhHhigwj2o=;
-        b=VeiNdRNCumveFMkOVh5JNpW6CruwMpZaitMljx4kAz+pf8jWPy9hDyd06U3fiysDvRuGFV
-        BbUZB534Xnufy/LDDGmNDpaTVvD3VQLMYgWuWY9u6gVIaotXmrdlXo83e6zDnVQLCZFk0K
-        r6etfy1jd5BbY6oPWCRYpr4P4QkN468=
-From:   Michael Walle <michael@walle.cc>
-To:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH v5 13/13] arm64: dts: freescale: sl28: enable fan support
-Date:   Mon,  6 Jul 2020 19:53:53 +0200
-Message-Id: <20200706175353.16404-14-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200706175353.16404-1-michael@walle.cc>
-References: <20200706175353.16404-1-michael@walle.cc>
+        id S1729632AbgGFSNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jul 2020 14:13:38 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:53335 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729622AbgGFSNi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jul 2020 14:13:38 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id ED5E958023D;
+        Mon,  6 Jul 2020 14:13:36 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Mon, 06 Jul 2020 14:13:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:mime-version:content-type; s=
+        fm3; bh=+v/Te64vKu4e35ENQ/jK6ubbrXotygKRxSoJgsFaBMY=; b=qSy7OzOH
+        skFlHeU9mi26Sma2rX0D/lgIfCCmui9NIvzQgMWug9tdsg6RIO1cZLqpjdwlhmzB
+        5KivDkYhKbmi+Wo0kEIvgJ7/u4ISd/JPSAz14cB63lEUXYhlQFEPJ1xuNSKnF/Y2
+        qpByMVOwDmJgXVa7CRM5SEf+GkyGBnslNoUoCqpSCMc9Qw8+1YLGN98sEL4jJ/VG
+        uN7qMhfDu5+cDGOFlzqbTmXua69/vwUHB5cyE9ue9LlFDnYEWmL2G+ocDPAvFR8A
+        gwbi8wMuLm5W/vQHq4alBcdWVKZuOBsNxCPrhPFIhTaA68X2q/0l6Uwcf5+GDJqy
+        tbZw/+6MOKeI1w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:message-id
+        :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
+        :x-me-sender:x-sasl-enc; s=fm3; bh=+v/Te64vKu4e35ENQ/jK6ubbrXoty
+        gKRxSoJgsFaBMY=; b=qshJlZ0E5dHQkkrkVBROwDSY5Sgo3A2aErHKsBk4Qzhcr
+        YwuFLcpq3tbOAjJDSQBmHDR6xZI/1CNCEffKHJUxCkzmx53vJLWlG1WdmkEXmPOD
+        JfwLoYmaXaTcuR45TtB1ww+APCPkk8b6YtmvmF+w/VdCDOm1675nQNe0gWlxAK2m
+        /Gd9KvUT4QKgNYiizc7yFmAfC52rbIbQVOKdX/S6Vor8Znp6GHXGU5Sq4jwTre1P
+        FxtBFwbHScWLP1IFcoDIctKVuofwpIsDZ9BAn3TnMGziXoFlqCJ3z+uhNz3jMYsi
+        DJ6Acx5FPad+2ZtZrUmjIPEXfcNXCVc/IRbnxdkEg==
+X-ME-Sender: <xms:zWkDX3clahDmVS2Za88QRKWTl2jFfKPA9aUrGPYViYhe8ADoYyiMwg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudefgdduvdegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfggtggusehgtderredttddvnecuhfhrohhmpeforgigihhmvgcu
+    tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
+    hrnhepkeeffefgffeijeffveehkeffleejgeefvefhkedtteegvdefjeduveehhfetveej
+    necuffhomhgrihhnpehkvghrnhgvlhdrohhrghdpsghoohhtlhhinhdrtghomhenucfkph
+    epledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhep
+    mhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:zWkDX9P5hF41A50xUPlgDeEOjXopXgSe8d_p3QdXha1TPnoEHGoE4Q>
+    <xmx:zWkDXwhJ9vZX-1uH9isgRIGWZiQ4ejO47HRiIVneW_F2a0GCskxJqA>
+    <xmx:zWkDX4-0vfTjH14CXWJMFhZ9q1I0n4BBtnRsNZ836qajUeJpYmg2IQ>
+    <xmx:0GkDX5CDafBdVS4Q821QRHeAgSjerkAW00qSoNCP7YeICPRsL-z5Gg>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 7C6193280064;
+        Mon,  6 Jul 2020 14:13:33 -0400 (EDT)
+Date:   Mon, 6 Jul 2020 20:13:31 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Antoine =?utf-8?Q?T=C3=A9nart?= <antoine.tenart@bootlin.com>
+Subject: PHY reset handling during DT parsing
+Message-ID: <20200706181331.x2tn5cl5jn5kqmhx@gilmour.lan>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam: Yes
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="2ftaacwvvl7mumne"
+Content-Disposition: inline
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a pwm-fan mapped to the PWM channel 0 which is connected to the
-fan connector of the carrier.
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
-Changes since v4:
- - none
+--2ftaacwvvl7mumne
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Changes since v3:
- - see cover letter
+Hi,
 
- .../dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts | 9 +++++++++
- 1 file changed, 9 insertions(+)
+I came across an issue today on an Allwinner board, but I believe it's a
+core issue.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts
-index 0973a6a45217..c45d7b40e374 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts
-@@ -15,6 +15,15 @@
- 	compatible = "kontron,sl28-var3-ads2", "kontron,sl28-var3",
- 		     "kontron,sl28", "fsl,ls1028a";
- 
-+	pwm-fan {
-+		compatible = "pwm-fan";
-+		cooling-min-state = <0>;
-+		cooling-max-state = <3>;
-+		#cooling-cells = <2>;
-+		pwms = <&sl28cpld_pwm0 0 4000000>;
-+		cooling-levels = <1 128 192 255>;
-+	};
-+
- 	sound {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--- 
-2.20.1
+That board is using the stmac driver together with a phy that happens to
+have a reset GPIO, except that that GPIO will never be claimed, and the
+PHY will thus never work.
 
+You can find an example of such a board here:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/sun6i-a31-hummingbird.dts#n195
+
+It looks like when of_mdiobus_register() will parse the DT, it will then
+call of_mdiobus_register_phy() for each PHY it encounters [1].
+of_mdiobus_register_phy() will then if the phy doesn't have an
+ethernet-phy-id* compatible call get_phy_device() [2], and will later on
+call phy_register_device [3].
+
+get_phy_device() will then call get_phy_id() [4], that will try to
+access the PHY through the MDIO bus [5].
+
+The code that deals with the PHY reset line / GPIO is however only done
+in mdiobus_device_register, called through phy_device_register. Since
+this is happening way after the call to get_phy_device, our PHY might
+still very well be in reset if the bootloader hasn't put it out of reset
+and left it there.
+
+I'm not entirely sure how to fix that though. I tried to fix it by
+splitting away the gpio / reset code away from mdiobus_device_register
+into a new function, and calling it before the first call to get_phy_id
+so that we can put our phy out of reset, but it looks like the device
+registration makes it more complicated than that. Any ideas?
+
+Thanks!
+Maxime
+
+1: https://elixir.bootlin.com/linux/latest/source/drivers/of/of_mdio.c#L274
+2: https://elixir.bootlin.com/linux/latest/source/drivers/of/of_mdio.c#L82
+3: https://elixir.bootlin.com/linux/latest/source/drivers/of/of_mdio.c#L119
+4: https://elixir.bootlin.com/linux/latest/source/drivers/net/phy/phy_device.c#L830
+5: https://elixir.bootlin.com/linux/latest/source/drivers/net/phy/phy_device.c#L791
+
+--2ftaacwvvl7mumne
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXwNpywAKCRDj7w1vZxhR
+xU1lAQCR+4X7EF6qEnFyxVCuaNV/g3Bjlk5krQv8tSUb3DmQ+AEA2WAuzE9iBzzg
+Awm1dmo/sBptpDkj+d3oPz4YqsFQvQw=
+=Gsc3
+-----END PGP SIGNATURE-----
+
+--2ftaacwvvl7mumne--
