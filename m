@@ -2,75 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F80C216C51
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2020 13:51:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEB98216C6A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2020 13:59:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726911AbgGGLvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jul 2020 07:51:06 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:16322 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726540AbgGGLvG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jul 2020 07:51:06 -0400
-X-UUID: 6ab93ad5c0504bb0a3ec9e4173deeb98-20200707
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=3DMwV/Z8QcDuKhf5FKYuKYw/6Ttsn7FiYmhH2inyuNw=;
-        b=m598dhivIyoCn7FiBFuIc58LWXG6u95+ulaNEoVwAOdRRF2akGZ6x42B7UGAFNAt9Jt8y2yXjjZGi1BkHdFZtQ7jGTkUXIwNSOCdAm7/niV24oBxpH2m7UHzky0m9M8K35e5iN3+fIdYViyb6eaNpBK1tVDDCiH0NJkDh+j/kwY=;
-X-UUID: 6ab93ad5c0504bb0a3ec9e4173deeb98-20200707
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <hanks.chen@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1135623474; Tue, 07 Jul 2020 19:51:02 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 7 Jul 2020 19:50:58 +0800
-Received: from [172.21.77.33] (172.21.77.33) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 7 Jul 2020 19:50:59 +0800
-Message-ID: <1594122662.24451.2.camel@mtkswgap22>
-Subject: Re: [PATCH v7] Add basic SoC Support for Mediatek MT6779 SoC
-From:   Hanks Chen <hanks.chen@mediatek.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sean Wang <sean.wang@kernel.org>,
-        mtk01761 <wendell.lin@mediatek.com>,
-        Andy Teng <andy.teng@mediatek.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        <wsd_upstream@mediatek.com>, CC Hwang <cc.hwang@mediatek.com>,
-        Loda Chou <loda.chou@mediatek.com>
-Date:   Tue, 7 Jul 2020 19:51:02 +0800
-In-Reply-To: <CACRpkdY+N17VNdzidBdo-Z8rgvRGMh=576-WPULgCmmuSJyN7g@mail.gmail.com>
-References: <1593694630-26604-1-git-send-email-hanks.chen@mediatek.com>
-         <CACRpkdY+N17VNdzidBdo-Z8rgvRGMh=576-WPULgCmmuSJyN7g@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S1727975AbgGGL7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jul 2020 07:59:11 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:54798 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726879AbgGGL7I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jul 2020 07:59:08 -0400
+X-IronPort-AV: E=Sophos;i="5.75,323,1589209200"; 
+   d="scan'208";a="51316740"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 07 Jul 2020 20:59:06 +0900
+Received: from localhost.localdomain (unknown [10.166.252.89])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 4C22C42325F2;
+        Tue,  7 Jul 2020 20:59:06 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     ulf.hansson@linaro.org, robh+dt@kernel.org
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v5 0/2] mmc: core: add a new property/caps2
+Date:   Tue,  7 Jul 2020 20:58:40 +0900
+Message-Id: <1594123122-13156-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIwLTA3LTA3IGF0IDEzOjQxICswMjAwLCBMaW51cyBXYWxsZWlqIHdyb3RlOg0K
-PiBPbiBUaHUsIEp1bCAyLCAyMDIwIGF0IDI6NTcgUE0gSGFua3MgQ2hlbiA8aGFua3MuY2hlbkBt
-ZWRpYXRlay5jb20+IHdyb3RlOg0KPiANCj4gPiBDaGFuZ2Ugc2luY2Ugdjc6DQo+ID4gQ29tbWl0
-ICJkdC1iaW5kaW5nczogcGluY3RybDogYWRkIGJpbmRpbmdzIGZvciBNZWRpYVRlayINCj4gPiAt
-LSBmaXggdHlwbyBhbmQgY2hhbmdlIG9yZGVyIG9mIHBhdGNoDQo+ID4gQ29tbWl0ICJjbGs6IG1l
-ZGlhdGVrOiBhZGQgVUFSVDAgY2xvY2sgc3VwcG9ydCINCj4gPiAtLSBhZGQgZml4ZXMgdGFnIGFu
-ZCByZWFsIG5hbWUNCj4gPiBDb21taXQgImFybTY0OiBkdHM6IGFkZCBkdHMgbm9kZXMgZm9yIE1U
-Njc3OSINCj4gPiAtLSBleHBvc2UgYWxsIHRocmVlIFVBUlRzIGluIHRoZSBkdHNpDQo+IA0KPiBP
-aCBJIHNlZSB0aGVyZSBhcmUgc3RpbGwgZGV2ZWxvcG1lbnQgb24gdGhpcyBwYXRjaCBzZXQgc28g
-SSB0b29rIG91dA0KPiB0aGUgcGF0Y2hlcyBJIGFwcGxpZWQgYWdhaW4uDQo+IA0KPiBXYWl0aW5n
-IGZvciB0aGUgZmluYWwgcmV2aWV3ZWQgdmVyc2lvbi4NCj4gDQpUaGFuayB5b3UgZm9yIHRha2lu
-ZyBhIGxvb2sgb3ZlciB0aGVzZSBzbyBxdWlja2x5IQ0KDQpHb3QgaXQsIEknbGwgc2VuZCBhIG5l
-d2VyIHZlcnNpb24uDQoNClRoYW5rcyENCg0KPiBZb3VycywNCj4gTGludXMgV2FsbGVpag0KDQo=
+Some environment (like r8a77951-salvator-xs) is possible
+to perform a full power cycle of the card in suspend via firmware
+(PSCI on arm-trusted-firmware). However, the current MMC core
+cannot issue Power Off Notification. This patch series can do it.
+
+We discussed on the v3 email thread [1].
+
+[1]
+https://lore.kernel.org/linux-renesas-soc/1592792699-24638-1-git-send-email-yoshihiro.shimoda.uh@renesas.com/T/#m9c25f35d7126b1c14ea431a773757652ad094341
+
+
+Changes from v4:
+ - Just add a new property/caps2 flag of MMC bindings to fix the issue.
+ https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=308795
+
+Changes from v3:
+ - Modify regulator subsytem and regulator/fixed driver.
+ - Use regulator_is_enabled() instead of firmware API.
+ - Update R-Car Gen3 related dts files for the reference.
+   But, I have only tested on r8a779{5,61}-salvaltor-xs.dts.
+ https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=306281
+
+Changes from v2:
+ - Fix typo of function name in patch2.
+ - Remove RFC.
+ https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=305523
+
+Changes from v1:
+ - Use pm_suspend_via_firmware() API instead of pm_suspend_target_state.
+ - Modify the psci driver to call pm_set_suspend_via_firmware.
+ https://patchwork.kernel.org/patch/11557505/
+
+
+*** BLURB HERE ***
+
+Yoshihiro Shimoda (2):
+  dt-bindings: mmc: Add full-pwr-cycle-in-suspend property
+  mmc: core: Add MMC_CAP2_FULL_PWR_CYCLE_IN_SUSPEND
+
+ Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 5 +++++
+ drivers/mmc/core/host.c                                   | 2 ++
+ drivers/mmc/core/mmc.c                                    | 3 ++-
+ include/linux/mmc/host.h                                  | 1 +
+ 4 files changed, 10 insertions(+), 1 deletion(-)
+
+-- 
+2.7.4
 
