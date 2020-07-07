@@ -2,84 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DEFAB216C5F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2020 13:59:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A06E2216C73
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2020 14:02:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727058AbgGGL7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jul 2020 07:59:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57250 "EHLO
+        id S1726540AbgGGMCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jul 2020 08:02:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725944AbgGGL7F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jul 2020 07:59:05 -0400
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3297BC061755
-        for <devicetree@vger.kernel.org>; Tue,  7 Jul 2020 04:59:05 -0700 (PDT)
-Received: by mail-lf1-x142.google.com with SMTP id g2so24558373lfb.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2020 04:59:05 -0700 (PDT)
+        with ESMTP id S1726951AbgGGMCi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jul 2020 08:02:38 -0400
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78629C08C5E2
+        for <devicetree@vger.kernel.org>; Tue,  7 Jul 2020 05:02:38 -0700 (PDT)
+Received: by mail-lj1-x244.google.com with SMTP id s9so49522820ljm.11
+        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2020 05:02:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=HTPmD5Tv5dUMriTVMEYPSE4aq44oEkYldNJx6iUd92U=;
-        b=HKDcobdwR59Fn4UPxGHRQ0tpAtbpLCJNsZlPMJ/sOiZyRbiNswsgF9jOe/BAk8id8l
-         /5EDjFn+j7IrqQI7DBI2n7Uq2bBWEf1LX5BO0SlioDHGovjRN/+aYEtpFSj1onhKowwd
-         Jyzt+IOCjBFb2xLwG5Ql2hJk4eWSyQElpoG1w08NxiRQ4BjeE4juggLuIqQZrxnUm4AW
-         wxJ5rCZerV2AejOoEFy2/ofH5gJdnEUHklmMBmyEWjepQYIJFNJR4M9pxxd22+ChBxqi
-         z7Y0JHiZJBtFRhUTWf6BA4ruLd/6iHkPnoKgZc0WXt+PJk9Ns+TyOPs2bDd4yFIVnyF9
-         qKqg==
+        bh=qUQcmH93QTvDmQbJjZbeKzTAZa2pMU0UcSehpTBZctg=;
+        b=jdKMJfClPxp5TF9uXx+oqo8TzEc6Evdih7SMSA2I6rJNR+F1Acvu8jU0XFIM9eVqUp
+         KqgqVb0skcKLFN0doaEQp/ez3Gidgorz3AAS+62/U6IcGKh4vMPslYNvWJuxZ12L0HH3
+         xv3iA6BcyUUcAUzwdMT4W+Bu7AnjghaDV8T4XEjCIsIUZZKe9/GYmnQwKLjVqEc8cUNi
+         YMZv0gKiJTEHFkj2K7KluUEt4HnY9MkunhOZzK9ReG69NloWB5yu6VgYs9cPctmcT16H
+         9xbQsU46cV7Jw6OQNDnVE7KDRdED8PO1EU3/hGeLuImjfg7Hylsa3OhgyLksRcloKCH2
+         yXUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=HTPmD5Tv5dUMriTVMEYPSE4aq44oEkYldNJx6iUd92U=;
-        b=qAl2/WoF/jQpWnbZmTPQ9i+/iXe+W+Vv1J+sVNsloAQG5Kcwg4CJQgkWeXrFzRsWO7
-         Sg+aQ1tvqRHzj2gvsqXfwiGOrb51K0G0Pn10Y9lBiSsKf5zgg5f9/mQK9cf7Losf1KYm
-         wMI6xSkhV8+v7gVN1gfw6qQTPWXtXxUIRLWAGbOMdRlgNC/i745RN3gx6OSD08LsSGjw
-         e9Ap/0AZKvLOkmv5+IAeflewDIW62pBZ7NZEhYtYohHY7Sl3i4Imy5xfNfnug0YxQx2c
-         8a6S29M+pDUyL/Zk4mF38bABMNyzhko3yus3rZYjowPsr38eX745P5f0e6EivkurcIXH
-         s1DQ==
-X-Gm-Message-State: AOAM533wXtH8xmQ7Lk7fUqWyypI9Sk1Pd+2BK5uGuqwiOA1cJhIdhe6M
-        GZs308xDpPQCuaylMExdldR2U2jOB4fx1pylOgOWww==
-X-Google-Smtp-Source: ABdhPJy0TxaIe1Wz0GdlFd5FdxpVp2FOvGGrBFkEn0oi3CjP4qg2V304qTt6rBtZAznq91V/ed9yiUW+UN8gJyowQaY=
-X-Received: by 2002:a19:e05d:: with SMTP id g29mr32404950lfj.217.1594123143709;
- Tue, 07 Jul 2020 04:59:03 -0700 (PDT)
+        bh=qUQcmH93QTvDmQbJjZbeKzTAZa2pMU0UcSehpTBZctg=;
+        b=JaBMOpppd4ZtVBuWemHcIR/9drBdAX3j39HaOeSIIgv9nFn+u1oWfTPdXA13OsAaNe
+         K/hjO9x5hfOSgKXn+QHS5+mJHmJUemWT9xO+jxFFBJt49RLQ8q2Fk7JJwv5iLXP7R/I7
+         G5cZ6IWY1wSJVl/DnOvsqSb1X3UuHGXNPJ6uA8CPVuBpYF5ZSzyPvuVK3cfG399reCdi
+         VhLWLcX0PJCIBaxXDDlpj8uJlIg6HDkCitt/wqA21bZzoM3ay1JPfBr65jhVs3yqkCY3
+         Uic+VlgrXT3A1EJY0Vps4hLagy1fFW9Xde0x7/9wjEcL8LF7tnJKPygvsFAZNH7/h34w
+         8fAg==
+X-Gm-Message-State: AOAM532ZvwMxdYz/ndOjMA4I7l5VLdVyjqVa7Q/oPwuzKkwmGJBl1udT
+        /CU7+rrATwal5usb90Nnu5++RExonmcQpt6GnvSzQQ==
+X-Google-Smtp-Source: ABdhPJyoQQmnEXRQsOssY6B//fc0bqu3rkaC2C2dVvGuSLi6c/sP2pXenL4tDe7adDzLmfda5EnD2c4fWXfZBhH7QeI=
+X-Received: by 2002:a2e:7a1a:: with SMTP id v26mr14058132ljc.104.1594123356768;
+ Tue, 07 Jul 2020 05:02:36 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200615133242.24911-1-lars.povlsen@microchip.com> <20200615133242.24911-6-lars.povlsen@microchip.com>
-In-Reply-To: <20200615133242.24911-6-lars.povlsen@microchip.com>
+References: <20200622192558.152828-1-konradybcio@gmail.com> <20200622192558.152828-2-konradybcio@gmail.com>
+In-Reply-To: <20200622192558.152828-2-konradybcio@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 7 Jul 2020 13:58:52 +0200
-Message-ID: <CACRpkdaSVRg3F5FLKi=sGCFQDXXkiz2e1pT3H9dcoaPDSYKrXQ@mail.gmail.com>
-Subject: Re: [PATCH v3 05/10] pinctrl: ocelot: Add Sparx5 SoC support
-To:     Lars Povlsen <lars.povlsen@microchip.com>
-Cc:     SoC Team <soc@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Olof Johansson <olof@lixom.net>,
-        Michael Turquette <mturquette@baylibre.com>,
+Date:   Tue, 7 Jul 2020 14:02:25 +0200
+Message-ID: <CACRpkdaBxYWKcm6b7HGL5XuyfjSVtV3ck4KE2q78mdSixqC6qw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/7] pinctrl: qcom: spmi-gpio: Add pm660(l) compatibility
+To:     Konrad Dybcio <konradybcio@gmail.com>
+Cc:     skrzynka@konradybcio.pl, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>,
+        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 15, 2020 at 3:33 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
+On Mon, Jun 22, 2020 at 9:26 PM Konrad Dybcio <konradybcio@gmail.com> wrote:
 
-> This add support for Sparx5 pinctrl, using the ocelot drives as
-> basis. It adds pinconfig support as well, as supported by the
-> platform.
+> Add support for pm660(l) SPMI GPIOs. The PMICs feature
+> 13 and 12 GPIOs respectively, though with a lot of
+> holes inbetween.
 >
-> Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+> Signed-off-by: Konrad Dybcio <konradybcio@gmail.com>
 
-This one patch applied to the pinctrl tree.
+Patch applied.
 
 Yours,
 Linus Walleij
