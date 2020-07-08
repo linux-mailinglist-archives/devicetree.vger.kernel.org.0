@@ -2,372 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE572218169
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2020 09:41:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93CE5218177
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2020 09:42:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726609AbgGHHkx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jul 2020 03:40:53 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:49557 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726533AbgGHHkw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jul 2020 03:40:52 -0400
-Received: from [78.134.117.153] (port=41602 helo=melee.fritz.box)
-        by hostingweb31.netsons.net with esmtpa (Exim 4.93)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1jt4hF-0009Wd-Qd; Wed, 08 Jul 2020 09:40:49 +0200
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-To:     linux-clk@vger.kernel.org
-Cc:     Luca Ceresoli <luca@lucaceresoli.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Marek Vasut <marek.vasut@gmail.com>,
-        Adam Ford <aford173@gmail.com>
-Subject: [PATCH v2 4/4] dt-bindings: clk: versaclock5: convert to yaml
-Date:   Wed,  8 Jul 2020 09:40:35 +0200
-Message-Id: <20200708074035.31595-4-luca@lucaceresoli.net>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200708074035.31595-1-luca@lucaceresoli.net>
-References: <20200708074035.31595-1-luca@lucaceresoli.net>
+        id S1726777AbgGHHmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jul 2020 03:42:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43066 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725787AbgGHHmR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jul 2020 03:42:17 -0400
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AEBCC08C5DC;
+        Wed,  8 Jul 2020 00:42:17 -0700 (PDT)
+Received: by mail-lf1-x143.google.com with SMTP id u25so26326464lfm.1;
+        Wed, 08 Jul 2020 00:42:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=UqAXpdSgwMr5Q0tv/rDA6Pc9wCXswpuopjQuL6uRINM=;
+        b=Bu3mPkLEMaqO4Ao7xP8BUA3KUqBXVNmZAf4DE4ZuJCF3le9zlxBbYGTFVOnmd1L7Ge
+         o3CuBI/Fg6pPzwYudny138p4gnQlfG0KKclS/FmeuUTLY/R+qoMao+9SOuNFo0QNclQd
+         P+zZbAS+8yjyZIOh3DRV25W+BdU4NgFkun/+Jwn/Lesl1jTkRF//OtKfWpUa4MqRpWih
+         H+fWTffi2g03HL9bc/yg+IJkYSzgMZ0nMQPXEhG/KRYTDi3NGh/AxEm8/2Jpbal+Ns0L
+         SLjnf33opsSSexQOM9aZePS7vlI9Vv/rQXpI7902AczGGBemS+vROO8Bb38mewSEQKtF
+         92VA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=UqAXpdSgwMr5Q0tv/rDA6Pc9wCXswpuopjQuL6uRINM=;
+        b=jImctvpayxlDrOhbUrl6ogNO2kG5IUe8b2inAO54IYWq7tSGS+e0gBXwjNAvnGs6QR
+         J7t24a5ost/IOkaPPa1wJSh92jDHiwQ0oAmUsBbpHhnZs0igSOhm49DWXxCx1+TcucLQ
+         IKUedLtAYs1sClbo5l8ga4eBL/k7c8wozNnjRx1Iz0eptOqHGisaxiPV9fvnWB8J2ggp
+         WLggMejsOLCfbMP/l5C4F8D9reMOetVPIxLUmLpIHl18cRFa5o8Rn+cvLZ5OFUqWPRH/
+         FUOYNhIcTeKRCbMxeW9hgQLKF7lstNknK607E0moaaR/HlnnF3cM+zCeVUdH++lMpKYh
+         Bj2A==
+X-Gm-Message-State: AOAM530QidUVbsz1++fVgHy9jrE/8Qo3xyDF8IgU80DkKKFcCpVeAFTA
+        sddaYecVjQJW7GGtlh3IUsQ=
+X-Google-Smtp-Source: ABdhPJwWcVMnG0BK0zdFrpR01ehZhg+qE/pgvLQLB7GCjsQN9LYcX7Yc6M0UYTUGPwEweDgmhKgq+A==
+X-Received: by 2002:a19:c4a:: with SMTP id 71mr35844362lfm.27.1594194135590;
+        Wed, 08 Jul 2020 00:42:15 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-79-162-105.pppoe.mtu-net.ru. [91.79.162.105])
+        by smtp.googlemail.com with ESMTPSA id v12sm10131186lfp.12.2020.07.08.00.42.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Jul 2020 00:42:15 -0700 (PDT)
+Subject: Re: [PATCH v2 0/9] Summit SMB3xx driver & device-tree
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        David Heidelberg <david@ixit.cz>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Jonghwa Lee <jonghwa3.lee@samsung.com>,
+        John Stultz <john.stultz@linaro.org>,
+        Vinay Simha BN <simhavcs@gmail.com>
+References: <20200607144113.10202-1-digetx@gmail.com>
+Message-ID: <8480ea98-778e-d919-18e3-ab04609af914@gmail.com>
+Date:   Wed, 8 Jul 2020 10:42:14 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
+In-Reply-To: <20200607144113.10202-1-digetx@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert to yaml the VersaClock bindings document. The mapping between
-clock specifier and physical pins cannot be described formally in yaml
-schema, then keep it verbatim in the description field.
+07.06.2020 17:41, Dmitry Osipenko пишет:
+> We gathered existing patches, fixed and improved what we could and
+> final result is an working charging driver with device-tree support
+> for Nexus 7.
+> 
+> At this moment charging works with:
+>  - Nexus 7 2012 (grouper and tilapia)
+>  - Nexus 7 2013 (flo and deb)
+>  - ... and there are more devices equipped with these chargers.
 
-Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
----
- .../bindings/clock/idt,versaclock5.txt        | 125 --------------
- .../bindings/clock/idt,versaclock5.yaml       | 160 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 3 files changed, 161 insertions(+), 125 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/idt,versaclock5.txt
- create mode 100644 Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+Hello Sebastian and everyone!
 
-diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.txt b/Documentation/devicetree/bindings/clock/idt,versaclock5.txt
-deleted file mode 100644
-index 9656d4cf221c..000000000000
---- a/Documentation/devicetree/bindings/clock/idt,versaclock5.txt
-+++ /dev/null
-@@ -1,125 +0,0 @@
--Binding for IDT VersaClock 5,6 programmable i2c clock generators.
--
--The IDT VersaClock 5 and VersaClock 6 are programmable i2c clock
--generators providing from 3 to 12 output clocks.
--
--==I2C device node==
--
--Required properties:
--- compatible:	shall be one of
--		"idt,5p49v5923"
--		"idt,5p49v5925"
--		"idt,5p49v5933"
--		"idt,5p49v5935"
--		"idt,5p49v6901"
--		"idt,5p49v6965"
--- reg:		i2c device address, shall be 0x68 or 0x6a.
--- #clock-cells:	from common clock binding; shall be set to 1.
--- clocks:	from common clock binding; list of parent clock handles,
--		- 5p49v5923 and
--		  5p49v5925 and
--		  5p49v6901: (required) either or both of XTAL or CLKIN
--					reference clock.
--		- 5p49v5933 and
--		- 5p49v5935: (optional) property not present (internal
--					Xtal used) or CLKIN reference
--					clock.
--- clock-names:	from common clock binding; clock input names, can be
--		- 5p49v5923 and
--		  5p49v5925 and
--		  5p49v6901: (required) either or both of "xin", "clkin".
--		- 5p49v5933 and
--		- 5p49v5935: (optional) property not present or "clkin".
--
--For all output ports, a corresponding, optional child node named OUT1,
--OUT2, etc. can represent a each output, and the node can be used to
--specify the following:
--
--- idt,mode: can be one of the following:
--                 - VC5_LVPECL
--                 - VC5_CMOS
--                 - VC5_HCSL33
--                 - VC5_LVDS
--                 - VC5_CMOS2
--                 - VC5_CMOSD
--                 - VC5_HCSL25
--
--- idt,voltage-microvolts:  can be one of the following
--                 - 1800000
--                 - 2500000
--                 - 3300000
---  idt,slew-percent: Percent of normal, can be one of
--                 - 80
--                 - 85
--                 - 90
--                 - 100
--
--==Mapping between clock specifier and physical pins==
--
--When referencing the provided clock in the DT using phandle and
--clock specifier, the following mapping applies:
--
--5P49V5923:
--	0 -- OUT0_SEL_I2CB
--	1 -- OUT1
--	2 -- OUT2
--
--5P49V5933:
--	0 -- OUT0_SEL_I2CB
--	1 -- OUT1
--	2 -- OUT4
--
--5P49V5925 and
--5P49V5935:
--	0 -- OUT0_SEL_I2CB
--	1 -- OUT1
--	2 -- OUT2
--	3 -- OUT3
--	4 -- OUT4
--
--5P49V6901:
--	0 -- OUT0_SEL_I2CB
--	1 -- OUT1
--	2 -- OUT2
--	3 -- OUT3
--	4 -- OUT4
--
--==Example==
--
--/* 25MHz reference crystal */
--ref25: ref25m {
--	compatible = "fixed-clock";
--	#clock-cells = <0>;
--	clock-frequency = <25000000>;
--};
--
--i2c-master-node {
--
--	/* IDT 5P49V5923 i2c clock generator */
--	vc5: clock-generator@6a {
--		compatible = "idt,5p49v5923";
--		reg = <0x6a>;
--		#clock-cells = <1>;
--
--		/* Connect XIN input to 25MHz reference */
--		clocks = <&ref25m>;
--		clock-names = "xin";
--
--		OUT1 {
--			idt,mode = <VC5_CMOS>;
--			idt,voltage-microvolts = <1800000>;
--			idt,slew-percent = <80>;
--		};
--		OUT2 {
--			...
--		};
--		...
--	};
--};
--
--/* Consumer referencing the 5P49V5923 pin OUT1 */
--consumer {
--	...
--	clocks = <&vc5 1>;
--	...
--}
-diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-new file mode 100644
-index 000000000000..4bdfd6187b48
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-@@ -0,0 +1,160 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/idt,versaclock5.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Binding for IDT VersaClock 5 and 6 programmable I2C clock generators
-+
-+description: |
-+  The IDT VersaClock 5 and VersaClock 6 are programmable I2C
-+  clock generators providing from 3 to 12 output clocks.
-+
-+  When referencing the provided clock in the DT using phandle and clock
-+  specifier, the following mapping applies:
-+
-+  - 5P49V5923:
-+    0 -- OUT0_SEL_I2CB
-+    1 -- OUT1
-+    2 -- OUT2
-+
-+  - 5P49V5933:
-+    0 -- OUT0_SEL_I2CB
-+    1 -- OUT1
-+    2 -- OUT4
-+
-+  - other parts:
-+    0 -- OUT0_SEL_I2CB
-+    1 -- OUT1
-+    2 -- OUT2
-+    3 -- OUT3
-+    4 -- OUT4
-+
-+maintainers:
-+  - Luca Ceresoli <luca@lucaceresoli.net>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - idt,5p49v5923
-+      - idt,5p49v5925
-+      - idt,5p49v5933
-+      - idt,5p49v5935
-+      - idt,5p49v6901
-+      - idt,5p49v6965
-+
-+  reg:
-+    maxItems: 1
-+    description: I2C device address, shall be 0x68 or 0x6a.
-+
-+  '#clock-cells':
-+    const: 1
-+
-+patternProperties:
-+  "^OUT[1-4]$":
-+    type: object
-+    description:
-+      Description of one of the outputs (OUT1..OUT4). See "Clock1 Output
-+      Configuration" in the Versaclock 5/6/6E Family Register Description
-+      and Programming Guide.
-+    properties:
-+      idt,mode:
-+        description:
-+          The output drive mode. Values defined in dt-bindings/clk/versaclock.h
-+        enum:
-+          - VC5_LVPECL
-+          - VC5_CMOS
-+          - VC5_HCSL33
-+          - VC5_LVDS
-+          - VC5_CMOS2
-+          - VC5_CMOSD
-+          - VC5_HCSL25
-+      idt,voltage-microvolts:
-+        description: The output drive voltage.
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [ 1800000, 2500000, 3300000 ]
-+      idt,slew-percent:
-+        description: The Slew rate control for CMOS single-ended.
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [ 80, 85, 90, 100 ]
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#clock-cells'
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - idt,5p49v5933
-+              - idt,5p49v5935
-+    then:
-+      # Devices with builtin crystal, optional external input
-+      properties:
-+        clock-names:
-+          const: clkin
-+        clocks:
-+          maxItems: 1
-+    else:
-+      # Devices without builtin crystal
-+      properties:
-+        clock-names:
-+          anyOf:
-+            - required: [ xin ]
-+            - required: [ clkin ]
-+        clocks:
-+          minItems: 1
-+          maxItems: 2
-+      required:
-+        - clock-names
-+        - clocks
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clk/versaclock.h>
-+
-+    /* 25MHz reference crystal */
-+    ref25: ref25m {
-+        compatible = "fixed-clock";
-+        #clock-cells = <0>;
-+        clock-frequency = <25000000>;
-+    };
-+
-+    i2c@0 {
-+        reg = <0x0 0x100>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        /* IDT 5P49V5923 I2C clock generator */
-+        vc5: clock-generator@6a {
-+            compatible = "idt,5p49v5923";
-+            reg = <0x6a>;
-+            #clock-cells = <1>;
-+
-+            /* Connect XIN input to 25MHz reference */
-+            clocks = <&ref25m>;
-+            clock-names = "xin";
-+
-+            OUT1 {
-+                idt,drive-mode = <VC5_CMOSD>;
-+                idt,voltage-microvolts = <1800000>;
-+                idt,slew-percent = <80>;
-+            };
-+
-+            OUT4 {
-+                idt,drive-mode = <VC5_LVDS>;
-+            };
-+        };
-+    };
-+
-+    /* Consumer referencing the 5P49V5923 pin OUT1 */
-+    consumer {
-+        /* ... */
-+        clocks = <&vc5 1>;
-+        /* ... */
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5aa16c245c63..09d6efd1d0d0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8326,6 +8326,7 @@ F:	drivers/input/misc/ideapad_slidebar.c
- IDT VersaClock 5 CLOCK DRIVER
- M:	Luca Ceresoli <luca@lucaceresoli.net>
- S:	Maintained
-+F:	Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
- F:	drivers/clk/clk-versaclock5.c
- 
- IEEE 802.15.4 SUBSYSTEM
--- 
-2.27.0
-
+Sebastian, do you have any comments to this series? Will be nice to get
+some progress :)
