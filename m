@@ -2,68 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B159E218D9E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2020 18:56:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09077218DB4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2020 18:59:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728967AbgGHQ4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jul 2020 12:56:21 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:48234 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726124AbgGHQ4V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jul 2020 12:56:21 -0400
-Received: from [78.134.117.153] (port=33222 helo=[192.168.77.66])
-        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1jtDMm-000BDX-FZ; Wed, 08 Jul 2020 18:56:16 +0200
-Subject: Re: [PATCH v2 1/4] dt-bindings: clk: versaclock5: fix 'idt' prefix
- typos
-To:     linux-clk@vger.kernel.org
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Marek Vasut <marek.vasut@gmail.com>,
-        Adam Ford <aford173@gmail.com>
-References: <20200708074035.31595-1-luca@lucaceresoli.net>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <84f1800d-e8a4-52d8-e7f7-a199601c2fea@lucaceresoli.net>
-Date:   Wed, 8 Jul 2020 18:56:15 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+        id S1730682AbgGHQ7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jul 2020 12:59:07 -0400
+Received: from smtp.al2klimov.de ([78.46.175.9]:33820 "EHLO smtp.al2klimov.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725989AbgGHQ7G (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Jul 2020 12:59:06 -0400
+Received: from authenticated-user (PRIMARY_HOSTNAME [PUBLIC_IP])
+        by smtp.al2klimov.de (Postfix) with ESMTPA id 04350BC0CB;
+        Wed,  8 Jul 2020 16:59:02 +0000 (UTC)
+From:   "Alexander A. Klimov" <grandmaster@al2klimov.de>
+To:     daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     "Alexander A. Klimov" <grandmaster@al2klimov.de>
+Subject: [PATCH] Replace HTTP links with HTTPS ones: CLOCKSOURCE, CLOCKEVENT DRIVERS
+Date:   Wed,  8 Jul 2020 18:58:56 +0200
+Message-Id: <20200708165856.15322-1-grandmaster@al2klimov.de>
 MIME-Version: 1.0
-In-Reply-To: <20200708074035.31595-1-luca@lucaceresoli.net>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 8bit
+X-Spamd-Bar: +++++
+X-Spam-Level: *****
+Authentication-Results: smtp.al2klimov.de;
+        auth=pass smtp.auth=aklimov@al2klimov.de smtp.mailfrom=grandmaster@al2klimov.de
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Rationale:
+Reduces attack surface on kernel devs opening the links for MITM
+as HTTPS traffic is much harder to manipulate.
 
-On 08/07/20 09:40, Luca Ceresoli wrote:
-> 'idt' is misspelled 'itd' in a few places, fix it.
-> 
-> Fixes: 34662f6e3084 ("dt: Add additional option bindings for IDT VersaClock")
+Deterministic algorithm:
+For each file:
+  If not .svg:
+    For each line:
+      If doesn't contain `\bxmlns\b`:
+        For each link, `\bhttp://[^# \t\r\n]*(?:\w|/)`:
+	  If neither `\bgnu\.org/license`, nor `\bmozilla\.org/MPL\b`:
+            If both the HTTP and HTTPS versions
+            return 200 OK and serve the same content:
+              Replace HTTP with HTTPS.
 
-This line triggers a warning in patchwork:
+Signed-off-by: Alexander A. Klimov <grandmaster@al2klimov.de>
+---
+ Continuing my work started at 93431e0607e5.
+ See also: git log --oneline '--author=Alexander A. Klimov <grandmaster@al2klimov.de>' v5.7..master
+ (Actually letting a shell for loop submit all this stuff for me.)
 
-WARNING: Unknown commit id '34662f6e3084', maybe rebased or not pulled?
+ If there are any URLs to be removed completely or at least not HTTPSified:
+ Just clearly say so and I'll *undo my change*.
+ See also: https://lkml.org/lkml/2020/6/27/64
 
-The commit is in the clk-next branch of
-git://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git, and thus
-supposed to be merged into mainline.
+ If there are any valid, but yet not changed URLs:
+ See: https://lkml.org/lkml/2020/6/26/837
 
+ If you apply the patch, please let me know.
+
+
+ Documentation/devicetree/bindings/timer/ti,keystone-timer.txt | 2 +-
+ drivers/clocksource/timer-ti-32k.c                            | 2 +-
+ drivers/clocksource/timer-ti-dm.c                             | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/timer/ti,keystone-timer.txt b/Documentation/devicetree/bindings/timer/ti,keystone-timer.txt
+index 5fbe361252b4..d3905a5412b8 100644
+--- a/Documentation/devicetree/bindings/timer/ti,keystone-timer.txt
++++ b/Documentation/devicetree/bindings/timer/ti,keystone-timer.txt
+@@ -10,7 +10,7 @@ It is global timer is a free running up-counter and can generate interrupt
+ when the counter reaches preset counter values.
+ 
+ Documentation:
+-http://www.ti.com/lit/ug/sprugv5a/sprugv5a.pdf
++https://www.ti.com/lit/ug/sprugv5a/sprugv5a.pdf
+ 
+ Required properties:
+ 
+diff --git a/drivers/clocksource/timer-ti-32k.c b/drivers/clocksource/timer-ti-32k.c
+index ae12bbf3d68c..59b0be482f32 100644
+--- a/drivers/clocksource/timer-ti-32k.c
++++ b/drivers/clocksource/timer-ti-32k.c
+@@ -21,7 +21,7 @@
+  * Roughly modelled after the OMAP1 MPU timer code.
+  * Added OMAP4 support - Santosh Shilimkar <santosh.shilimkar@ti.com>
+  *
+- * Copyright (C) 2015 Texas Instruments Incorporated - http://www.ti.com
++ * Copyright (C) 2015 Texas Instruments Incorporated - https://www.ti.com
+  */
+ 
+ #include <linux/clk.h>
+diff --git a/drivers/clocksource/timer-ti-dm.c b/drivers/clocksource/timer-ti-dm.c
+index 60aff087947a..33eeabf9c3d1 100644
+--- a/drivers/clocksource/timer-ti-dm.c
++++ b/drivers/clocksource/timer-ti-dm.c
+@@ -4,7 +4,7 @@
+  *
+  * OMAP Dual-Mode Timers
+  *
+- * Copyright (C) 2010 Texas Instruments Incorporated - http://www.ti.com/
++ * Copyright (C) 2010 Texas Instruments Incorporated - https://www.ti.com/
+  * Tarun Kanti DebBarma <tarun.kanti@ti.com>
+  * Thara Gopinath <thara@ti.com>
+  *
 -- 
-Luca
+2.27.0
+
