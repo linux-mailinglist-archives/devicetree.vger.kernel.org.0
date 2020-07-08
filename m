@@ -2,82 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CCA9218D8A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2020 18:52:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72D98218DA1
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2020 18:56:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730662AbgGHQur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jul 2020 12:50:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60006 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730634AbgGHQur (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Jul 2020 12:50:47 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 800802063A;
-        Wed,  8 Jul 2020 16:50:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1594227047;
-        bh=AqMKtqS/OXQk+rhorj+lXzo8EwOOu2YsoGozE3DRg5U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=g+siRc6bJy6ezH6ZeNdz2UGNlovQfefe94DX3Ol9cFvhEvJwUWscErEJuSZWseQZS
-         esTenErVulATOMRJI3KaxHGJEZgA7pGTm/tJE0yl+fLtEBEDoedT1KdWyg5i+z02jA
-         31gZNcFQy7WDA+YJFJGBMkhp39cfu1zw3ooqG5XE=
-Date:   Wed, 8 Jul 2020 17:50:41 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Rohit kumar <rohitkr@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Ajit Pandey <ajitp@codeaurora.org>
-Subject: Re: [PATCH v3 5/8] ASoC: qcom: lpass-platform: Replace card->dev
- with component->dev
-Message-ID: <20200708165041.GX4655@sirena.org.uk>
-References: <1594184896-10629-1-git-send-email-rohitkr@codeaurora.org>
- <1594184896-10629-6-git-send-email-rohitkr@codeaurora.org>
+        id S1730333AbgGHQ4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jul 2020 12:56:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44852 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726124AbgGHQ4f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jul 2020 12:56:35 -0400
+Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB43FC08C5C1;
+        Wed,  8 Jul 2020 09:56:35 -0700 (PDT)
+Received: by mail-oi1-x242.google.com with SMTP id 12so31870906oir.4;
+        Wed, 08 Jul 2020 09:56:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=qZmo9U5aXUZDGkqB26q7sUeeEzOZwLyZGd7ARaA8d54=;
+        b=csGaN8X3gJ3gBxU3gPZD9ntGLA/y+1SAjQ7SiWOKwGzlFsI1NiGdNrzmqU1Po9Rt0T
+         S818ZXcfQYwH13Jmr082uT1HcUeVaCcANOGF2uByM7GCAeaXov6rorHpilfVoVE8WVIr
+         cNaw8aV6fFlVjXhUx20qKVUI3/xOcO1hbWetbeUmN3Auqxp0mSPdzKKsm1yfATtOUvfZ
+         M8bEWNp5NcTP4S5I7xreICMs3aTRRRtYiCH6LRc61UzuOL3Y/iJU8hxv1Uxf/epXsNA9
+         5w6Il6sM2glxaLyl6LxqX9FNrwpgf6JBCR4nMSEq4iNJSiKKA3lEMFknGafDHegmo1uV
+         uIsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qZmo9U5aXUZDGkqB26q7sUeeEzOZwLyZGd7ARaA8d54=;
+        b=QAUJAuAx63ooi57/VzAUagDtR+2lBgABNOMi/MGf95nSjZmkfiKX9K00sV+E1ekcdK
+         bOZi4hwvcwWXPlLcfuyVtw0rASzsMtZ1a9U+16DrO29h/N3jOlgkf205weEhVU5Gw5dv
+         vhG0QQvJeBlpSuFupyav37nuSmtQRDCI/WR+8Kt2cCLwnXMioUi6Vs23s6ia5XNVNKFN
+         EMhBwtEvuwZDPgyXcyOU22fOuyNPgkfC08VlJW6aHU4aWdNIZfjGm7ggt9rjNi+FSETr
+         hp3ynbyQcUA0JwR3yhP+uwD1AXT8rk6TGSfr0GoaqBe/tbDY2IwN1ZPk7+f+KRvqFei7
+         Pq0A==
+X-Gm-Message-State: AOAM533A1DwhqxT2CW2qlfl8T3SkyF3jnTHUo6AaN+llzMSeeNfLhsbJ
+        2TPKKwOwFLTVq85fZKrUo+UKw94ou61awSO8K/g=
+X-Google-Smtp-Source: ABdhPJxkeMfA/rVy+3SHKGbcPciz/z+GsVPQFvXGJB1w64YRbQ8QzM8XeW6dvu8cJmDU6/eE92nBVFE+t2LzbkOKaXU=
+X-Received: by 2002:aca:4fd3:: with SMTP id d202mr8216944oib.142.1594227395102;
+ Wed, 08 Jul 2020 09:56:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="aBaYPhOdNx+t7mr3"
-Content-Disposition: inline
-In-Reply-To: <1594184896-10629-6-git-send-email-rohitkr@codeaurora.org>
-X-Cookie: Oh Dad!  We're ALL Devo!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1594138692-16816-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <1594138692-16816-11-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWQHnGJCu6zYQwG16xqQmAaQdBTfyw6T1q2OHF3uR-JQQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdWQHnGJCu6zYQwG16xqQmAaQdBTfyw6T1q2OHF3uR-JQQ@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 8 Jul 2020 17:56:08 +0100
+Message-ID: <CA+V-a8u266t41-SzURjEvsLLgA1j2YCg9egoszZ9XQcqhJuU3A@mail.gmail.com>
+Subject: Re: [PATCH 12/14] clk: renesas: cpg-mssr: Add r8a774e1 support
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Geert,
 
---aBaYPhOdNx+t7mr3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, Jul 8, 2020 at 12:29 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Tue, Jul 7, 2020 at 6:18 PM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > From: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+> >
+> > Add support for the RZ/G2H (R8A774E1) SoC to the Renesas Clock
+> > Pulse Generator / Module Standby and Software Reset driver.
+> >
+> > Signed-off-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in clk-renesas-for-v5.9.
+>
+> > --- /dev/null
+> > +++ b/drivers/clk/renesas/r8a774e1-cpg-mssr.c
+>
+> > +static const unsigned int r8a774e1_crit_mod_clks[] __initconst = {
+>
+> As per commit f23f1101ad0ef1ac ("clk: renesas: rcar-gen3: Mark RWDT
+> clocks as critical"), I'll add a line
+>
+>     MOD_CLK_ID(402),        /* RWDT */
+>
+> while applying.
+>
+Thank you for taking care of it.
 
-On Wed, Jul 08, 2020 at 10:38:13AM +0530, Rohit kumar wrote:
-> From: Ajit Pandey <ajitp@codeaurora.org>
->=20
-> We are allocating dma memory for component->dev but trying to mmap
-> such memory for substream->pcm->card->dev. Replace device argument
-> in mmap with component->dev to fix this.
+Cheers,
+--Prabhakar Lad
 
-This is a bug fix and should've been at the start of the series (or sent
-separately) so that it can be applied without the rest of the series.
-
---aBaYPhOdNx+t7mr3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl8F+WAACgkQJNaLcl1U
-h9DYdwf/TP/V9rRaqchmnuoLr81D+iZWagfBza40aZnj6L9DmzYz9ujUAXhBwLE3
-m0qzU/Y80YabOhh+GByaGdPSPAT+34xYOcFVym6e2Iqq6iJHSIY9OWeChI+ieCKv
-1JxhQzQgOBoHjSLmCG/IM6/DaP8Gcab0uEakRbI6wzuhKbZtQ8TmCLD90Igv2Y36
-bFNfao34+aQxdmGpe1lLqScooepCZzYeL47nFGlVoXFSG9phR0h+Qwj/ed/5alhn
-ntxODL3WdwurRO+1L/TZrPhfrmMolsda9pU0G6Mm4vO2NwXK/bZuYixvckCT7H3S
-5frOF/gMTdki5Wl3SDrE8GDvOrX9/w==
-=exLA
------END PGP SIGNATURE-----
-
---aBaYPhOdNx+t7mr3--
+> > +       MOD_CLK_ID(408),        /* INTC-AP (GIC) */
+> > +};
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
