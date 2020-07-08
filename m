@@ -2,93 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 166892183D1
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2020 11:31:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D3A221859C
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2020 13:09:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728591AbgGHJb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jul 2020 05:31:28 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:59412 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728576AbgGHJb0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jul 2020 05:31:26 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0689VHH5103244;
-        Wed, 8 Jul 2020 04:31:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1594200677;
-        bh=ZmLHKDhhFvQEACU9S2JTUSC0cmWio3Xl+uM9GiBjHGs=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Fd0AXXCBfQwdtXLm2q5HfrV9+m2mNZmCOl4IJxoymw6L686ZeXuFJAroRkt+YWCY+
-         S3g84cd2qfusL6XLlYZTMFYkLfoRZC3jm7CJKM9xBzSeNtJazC0PEMLvcJbcMOe/wF
-         Q8OwPNfFp7DaPQUGtVsEEEUlyjqOI5s/JLMqGgvY=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0689VHUT103753
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 8 Jul 2020 04:31:17 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 8 Jul
- 2020 04:31:17 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 8 Jul 2020 04:31:17 -0500
-Received: from a0393678ub.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0689UJEV098512;
-        Wed, 8 Jul 2020 04:31:13 -0500
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Tom Joseph <tjoseph@cadence.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v6 14/14] MAINTAINERS: Add Kishon Vijay Abraham I for TI J721E SoC PCIe
-Date:   Wed, 8 Jul 2020 15:00:18 +0530
-Message-ID: <20200708093018.28474-15-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200708093018.28474-1-kishon@ti.com>
-References: <20200708093018.28474-1-kishon@ti.com>
+        id S1728810AbgGHLJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jul 2020 07:09:52 -0400
+Received: from elvis.franken.de ([193.175.24.41]:54234 "EHLO elvis.franken.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728700AbgGHLJw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Jul 2020 07:09:52 -0400
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1jt7xR-0008Fx-00; Wed, 08 Jul 2020 13:09:45 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id A20CDC07CE; Wed,  8 Jul 2020 11:33:30 +0200 (CEST)
+Date:   Wed, 8 Jul 2020 11:33:30 +0200
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Huacai Chen <chenhc@lemote.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, Huacai Chen <chenhuacai@gmail.com>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>
+Subject: Re: [PATCH 1/2] MIPS: Loongson: Rename CPU device-tree binding
+Message-ID: <20200708093330.GA9458@alpha.franken.de>
+References: <1592201057-28151-1-git-send-email-chenhc@lemote.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1592201057-28151-1-git-send-email-chenhc@lemote.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Kishon Vijay Abraham I as MAINTAINER for TI J721E SoC PCIe.
+On Mon, Jun 15, 2020 at 02:04:16PM +0800, Huacai Chen wrote:
+> Loongson-3A R1/R2/R3 and Loongson-3B R1/R2 use the same package naming
+> in dts, and Loongson-3A R4 will be different. In cpu.h the classic 64bit
+> Loongson processors are called Loongson64C (C for classic, pre Loongson-
+> 3A R4), and the new 64bit Loongson processors are called Loongson64G (G
+> for generic, Loongson-3A R4+). To keep consistency and make extensible,
+> we rename the classic "loongson3" prefix to "loongson64c", and the new
+> prefix for Loongson-3A R4+ will be "loongson64g".
+> 
+> Signed-off-by: Huacai Chen <chenhc@lemote.com>
+> ---
+>  Documentation/devicetree/bindings/mips/loongson/devices.yaml      | 8 ++++----
+>  arch/mips/boot/dts/loongson/Makefile                              | 2 +-
+>  .../loongson/{loongson3-package.dtsi => loongson64c-package.dtsi} | 0
+>  .../{loongson3_4core_rs780e.dts => loongson64c_4core_rs780e.dts}  | 2 +-
+>  .../{loongson3_8core_rs780e.dts => loongson64c_8core_rs780e.dts}  | 2 +-
+>  arch/mips/include/asm/mach-loongson64/builtin_dtbs.h              | 4 ++--
+>  arch/mips/loongson64/env.c                                        | 4 ++--
+>  7 files changed, 11 insertions(+), 11 deletions(-)
+>  rename arch/mips/boot/dts/loongson/{loongson3-package.dtsi => loongson64c-package.dtsi} (100%)
+>  rename arch/mips/boot/dts/loongson/{loongson3_4core_rs780e.dts => loongson64c_4core_rs780e.dts} (93%)
+>  rename arch/mips/boot/dts/loongson/{loongson3_8core_rs780e.dts => loongson64c_8core_rs780e.dts} (93%)
 
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- MAINTAINERS | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+applied to mips-next.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5bbc2649566b..bdec73c3069e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13119,12 +13119,14 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/pci/designware-pcie.txt
- F:	drivers/pci/controller/dwc/*designware*
- 
--PCI DRIVER FOR TI DRA7XX
-+PCI DRIVER FOR TI DRA7XX/J721E
- M:	Kishon Vijay Abraham I <kishon@ti.com>
- L:	linux-omap@vger.kernel.org
- L:	linux-pci@vger.kernel.org
-+L:	linux-arm-kernel@lists.infradead.org
- S:	Supported
- F:	Documentation/devicetree/bindings/pci/ti-pci.txt
-+F:	drivers/pci/controller/cadence/pci-j721e.c
- F:	drivers/pci/controller/dwc/pci-dra7xx.c
- 
- PCI DRIVER FOR TI KEYSTONE
+Thomas.
+
 -- 
-2.17.1
-
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
