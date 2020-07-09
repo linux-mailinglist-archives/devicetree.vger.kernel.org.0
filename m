@@ -2,67 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F62E21AB94
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 01:28:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28BA021ABC2
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 01:43:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726311AbgGIX2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jul 2020 19:28:53 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:45170 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726272AbgGIX2x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jul 2020 19:28:53 -0400
-Received: by mail-io1-f66.google.com with SMTP id e64so4129742iof.12;
-        Thu, 09 Jul 2020 16:28:52 -0700 (PDT)
+        id S1726546AbgGIXnR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jul 2020 19:43:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48650 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726227AbgGIXnQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jul 2020 19:43:16 -0400
+Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 273F5C08C5CE
+        for <devicetree@vger.kernel.org>; Thu,  9 Jul 2020 16:35:05 -0700 (PDT)
+Received: by mail-io1-xd43.google.com with SMTP id k23so4141926iom.10
+        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2020 16:35:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=+Au39COXULcLItjiF+6L8MUVVfSHmQLmmw2aIEwpt5Q=;
-        b=q4mfYNIfENgqaRCjtnHEdk2o53nPzwDz+alqtEUW0J7w31aV0fClJHY/K30CMm19wt
-         9qrOwmTE15XgRethQGE3ktl4MhENdJlzkxro3q66FIY6d7GQ3vUp06T7xSowqk9rmvVR
-         7nYosgNHfR0LWju0yzcdrhFXaloGNAFBjQ9EXHSeBu/vTdYQ26B3+527v7rnvEb67ccA
-         Gv4MuUN8Q5e1hbjyhS7z0wWdwM7UNgR0y5vSzxv3/mJi07gn/DwesQ8n3J40EFM6cvW4
-         lrTEF0kLxpRFsdLc3YEeSL2MH0cJ0y0Ym7/XEEzTFA1Mmue4cb9uIwEV4xqhsISTdO3e
-         yq3Q==
-X-Gm-Message-State: AOAM530rWAzuUsE7WFh5f2PIMLNcpYXeUpU/rfUEl/u4f28Y3RZXo5NE
-        Y2wFSzgkM6b4hJSKlVOu1w==
-X-Google-Smtp-Source: ABdhPJyozy/fAk+3uupOWcOK06YXVnwlglg0aKM37J+l4lJVLCzIF+edk4spk2R4pUR/B8/H07hTBQ==
-X-Received: by 2002:a05:6602:229a:: with SMTP id d26mr44698583iod.57.1594337332315;
-        Thu, 09 Jul 2020 16:28:52 -0700 (PDT)
+        bh=xYijZ/BX2Btv1jBhkRuxab/fnOb1MXoDYM/e4XDrW5k=;
+        b=GdNMyXeCJnASHMFM9ipv2Z0gSv+FQGE0Ufc1SJrhgr+cJof992dPDGj6BZH+Z701KZ
+         mnZ6EUmwr1jAjUI4RcFPdu9xvyOep1niENfP4WAyUzAxy2r/sK3T85/BYJtwFBEbwDU1
+         RJEjkYczt/mqbfwj3XvK5/u+Z5PVoSTaEL5Z/4NJnjeWSEL5LMMDh8oQpPUCq8kn6oSl
+         P+C4XYD+eWDaRDeQH8CdGZoFVikcvUkvrtnKRg0XiSgQRKJv2PA9GHtZfxM1tES/vUkz
+         RGZWCvuDxH1TIxAGoOMdIKj3gag/lkDdrTXrNaVYBPz01HKU60ZsH6ou0cr48FwWoc8Y
+         ewkg==
+X-Gm-Message-State: AOAM530YHY4IAUg24gRWcG1eEukQsqW+WZ/0IwkTSc0EKhJRoxck/t7D
+        R2ahFPaqrxmUpQTEgyvsxw==
+X-Google-Smtp-Source: ABdhPJw6T9j2SNkUn0RZGgUhV6z0vwDieSHApxdWSPZAqjBVATyRXP+wX6l6mdxeKa+1GCidB2K6cw==
+X-Received: by 2002:a6b:b4d1:: with SMTP id d200mr44270196iof.128.1594337704467;
+        Thu, 09 Jul 2020 16:35:04 -0700 (PDT)
 Received: from xps15 ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id v62sm2684847ila.37.2020.07.09.16.28.51
+        by smtp.gmail.com with ESMTPSA id j28sm2761685ili.76.2020.07.09.16.35.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jul 2020 16:28:51 -0700 (PDT)
-Received: (nullmailer pid 1099701 invoked by uid 1000);
-        Thu, 09 Jul 2020 23:28:50 -0000
-Date:   Thu, 9 Jul 2020 17:28:50 -0600
+        Thu, 09 Jul 2020 16:35:03 -0700 (PDT)
+Received: (nullmailer pid 1109950 invoked by uid 1000);
+        Thu, 09 Jul 2020 23:35:02 -0000
+Date:   Thu, 9 Jul 2020 17:35:02 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     benjamin.gaignard@st.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, lee.jones@linaro.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mfd: st,stmfx: Remove I2C unit name
-Message-ID: <20200709232850.GA1099649@bogus>
-References: <20200702113233.5327-1-festevam@gmail.com>
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Chris Zhong <zyw@rock-chips.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: Re: [PATCH v3 0/3] dt-bindings: display: convert panel bindings to
+ DT Schema
+Message-ID: <20200709233502.GA1103707@bogus>
+References: <20200704102806.735713-1-sam@ravnborg.org>
+ <20200704103408.GA735964@ravnborg.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200702113233.5327-1-festevam@gmail.com>
+In-Reply-To: <20200704103408.GA735964@ravnborg.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 02 Jul 2020 08:32:33 -0300, Fabio Estevam wrote:
-> Remove the I2C unit name to fix the following build warning with
-> 'make dt_binding_check':
+On Sat, Jul 04, 2020 at 12:34:08PM +0200, Sam Ravnborg wrote:
+> On Sat, Jul 04, 2020 at 12:28:03PM +0200, Sam Ravnborg wrote:
+> > This patch-set convert 3 of the remaining panel bindings to yaml.
+> > 
+> > This is a follow-up on v2 that converted a lot of panel bindings:
+> > https://lore.kernel.org/dri-devel/20200408195109.32692-1-sam@ravnborg.org/
+> > All was applied except for the reaming three patches included here.
+> > 
+> > One binding is a DSI binding so just added to panel-simple-dsi.
+> > The other two bindings addressed review feedback from Rob.
+> > 
+> > Sebastian Reichel has a pending patch to address the remaining
+> > panel binding in display/panel/
+> > 
+> > All bindings pass dt-binding-check.
+> > Based on top of drm-misc-next.
+> > 
+> > 	Sam
+> > 
+> > 
+> > Sam Ravnborg (3):
+> >       dt-bindings: display: convert innolux,p079zca to DT Schema
+> >       dt-bindings: display: convert samsung,s6e8aa0 to DT Schema
+> >       dt-bindings: display: convert sharp,lq101r1sx01 to DT Schema
 > 
-> Warning (unit_address_vs_reg): /example-0/i2c@0: node has a unit name, but no reg or ranges property
-> 
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
-> ---
->  Documentation/devicetree/bindings/mfd/st,stmfx.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+> git format-patch adds a space after the ',' - in the subject.
+> This is often a good idea, but not for binding files.
+> Will fix when I apply - if I do not forget that is..
 
-Acked-by: Rob Herring <robh@kernel.org>
+Sure about that? I'm pretty sure it's dri-devel doing it. Look at 
+lore.kernel.org copies for different lists. I've been fighting with that 
+first in patchwork (which had this bug) and then in b4 (which is where 
+it got nailed down to dri-devel).
+
+Rob
