@@ -2,51 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AB0521A06A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2020 15:01:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B466621A08F
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2020 15:13:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726694AbgGINB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jul 2020 09:01:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41530 "EHLO mail.kernel.org"
+        id S1726787AbgGINND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jul 2020 09:13:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46932 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726358AbgGINB6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Jul 2020 09:01:58 -0400
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+        id S1726768AbgGINNC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Jul 2020 09:13:02 -0400
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 18A602074B;
-        Thu,  9 Jul 2020 13:01:57 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id D15B8207DA;
+        Thu,  9 Jul 2020 13:13:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1594299717;
-        bh=svdZb33Y7t1B2vg6ybn6AQgGBJfX7TqitPVoZxOAkL4=;
+        s=default; t=1594300382;
+        bh=WBbJU/KkFXQZfDG744P7nPPYpZA0DJCr2tyu1VZTvTA=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Tfp0iRBHR5aRvFS09s+qOKpZQFFKbB2kScnHzox4/rJKRdocXBIsmZ28HBb3wD6CE
-         fKw6nsoiJUi2ZgfsRnVpWaI7fWnNz2BK3OkaPyeUML/jj6UJmVbe7il6EwRsOjeAHl
-         W+g1fWQZWJ2nrfLleVShsmjfFnoDtyXOcL1gBhhc=
-Received: by mail-ed1-f54.google.com with SMTP id n2so1730626edr.5;
-        Thu, 09 Jul 2020 06:01:57 -0700 (PDT)
-X-Gm-Message-State: AOAM531XottZPZ54EVzF+PXn3u8/ydbF+5YVDQ6YqPFAoZzBubK2eANN
-        a87iVplwo2Gv7sMR0YpOrIXSUv7qGWwoOLbdBQ==
-X-Google-Smtp-Source: ABdhPJwXcokw3x2lqWpS4cVqHBkCVCiRJ+sqhgLCVDH335FOjvxmmxIFTWC0erzNbub7XMGUoCnGTGG4fug7NRxffhU=
-X-Received: by 2002:a05:6402:1766:: with SMTP id da6mr69654748edb.48.1594299715658;
- Thu, 09 Jul 2020 06:01:55 -0700 (PDT)
+        b=0mv/pzeQI/VIqe/m3D1mkdxV2+NosLJryzznIod0FRcZUjdfL6KjoJOTpqw9hFq0S
+         ClUfzGM/2GSP4XyiYW7fbv2+gCv4HwSKXyhchJZS1fmPpOS7poh7q4Pn2KlgPd0JwP
+         v0RFSJ1EuKrFu99hrIFt2WOf6W3JlJFEH78CkQmM=
+Received: by mail-ej1-f42.google.com with SMTP id o18so2202894eje.7;
+        Thu, 09 Jul 2020 06:13:01 -0700 (PDT)
+X-Gm-Message-State: AOAM532h6sXEpBPR6EQ3h5LsV8glocHkPaNHLxz/EFlE1q+vptM/o912
+        n/++aw5ARBcwHQrnovv9o3vXeOf/X69cdj4V8Q==
+X-Google-Smtp-Source: ABdhPJyUxRrhc1z4ZHhofevSZxzBYzCXYv8JpRTyGRhKckyUoVMmTH4L7nw7p3INYz0y0YJL3aK6Bg1WNoVpWz1+8Do=
+X-Received: by 2002:a17:906:856:: with SMTP id f22mr53938906ejd.245.1594300380228;
+ Thu, 09 Jul 2020 06:13:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <1594285927-1840-1-git-send-email-neal.liu@mediatek.com> <1594285927-1840-3-git-send-email-neal.liu@mediatek.com>
-In-Reply-To: <1594285927-1840-3-git-send-email-neal.liu@mediatek.com>
+References: <20200708104023.3225-1-louis.kuo@mediatek.com> <20200708104023.3225-2-louis.kuo@mediatek.com>
+In-Reply-To: <20200708104023.3225-2-louis.kuo@mediatek.com>
 From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Thu, 9 Jul 2020 21:01:44 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-7PwoPG_0ce2p4BCNQ3rundg40Bsni14XSmVETExkKkw@mail.gmail.com>
-Message-ID: <CAAOTY_-7PwoPG_0ce2p4BCNQ3rundg40Bsni14XSmVETExkKkw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] soc: mediatek: add mtk-devapc driver
-To:     Neal Liu <neal.liu@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Date:   Thu, 9 Jul 2020 21:12:48 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-+v_t3Vv-Ms7k9jCxJ+0B9qb93tBkL=3OmpMLeyAdV-g@mail.gmail.com>
+Message-ID: <CAAOTY_-+v_t3Vv-Ms7k9jCxJ+0B9qb93tBkL=3OmpMLeyAdV-g@mail.gmail.com>
+Subject: Re: [RFC PATCH V7 1/3] media: platform: mtk-isp: Add Mediatek sensor
+ interface driver
+To:     Louis Kuo <louis.kuo@mediatek.com>
+Cc:     hans.verkuil@cisco.com, laurent.pinchart+renesas@ideasonboard.com,
+        Tomasz Figa <tfiga@chromium.org>, keiichiw@chromium.org,
         Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         devicetree@vger.kernel.org,
-        wsd_upstream <wsd_upstream@mediatek.com>,
-        lkml <linux-kernel@vger.kernel.org>,
+        =?UTF-8?B?U2VhbiBDaGVuZyAo6YSt5piH5byYKQ==?= 
+        <Sean.Cheng@mediatek.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        =?UTF-8?B?SmVycnktY2ggQ2hlbiAo6Zmz5pWs5oayKQ==?= 
+        <Jerry-ch.Chen@mediatek.com>,
+        =?UTF-8?B?SnVuZ28gTGluICjmnpfmmI7kv4op?= <jungo.lin@mediatek.com>,
+        =?UTF-8?B?U2ogSHVhbmcgKOm7g+S/oeeSiyk=?= <sj.huang@mediatek.com>,
+        yuzhao@chromium.org,
         "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+        <linux-mediatek@lists.infradead.org>, zwisler@chromium.org,
+        =?UTF-8?B?Q2hyaXN0aWUgWXUgKOa4uOmbheaDoCk=?= 
+        <christie.yu@mediatek.com>,
+        =?UTF-8?B?RnJlZGVyaWMgQ2hlbiAo6Zmz5L+K5YWDKQ==?= 
+        <frederic.chen@mediatek.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-media@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
@@ -54,118 +68,128 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Neal:
+Hi, Louis:
 
-Neal Liu <neal.liu@mediatek.com> =E6=96=BC 2020=E5=B9=B47=E6=9C=889=E6=97=
-=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=885:13=E5=AF=AB=E9=81=93=EF=BC=9A
+Louis Kuo <louis.kuo@mediatek.com> =E6=96=BC 2020=E5=B9=B47=E6=9C=888=E6=97=
+=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=886:41=E5=AF=AB=E9=81=93=EF=BC=9A
 >
-> MediaTek bus fabric provides TrustZone security support and data
-> protection to prevent slaves from being accessed by unexpected
-> masters.
-> The security violation is logged and sent to the processor for
-> further analysis or countermeasures.
+> This patch adds Mediatek's sensor interface driver. Sensor interface
+> driver is a MIPI-CSI2 host driver, namely, a HW camera interface controll=
+er.
+> It support a widely adopted, simple, high-speed protocol primarily intend=
+ed
+> for point-to-point image and video transmission between cameras and host
+> devices. The mtk-isp directory will contain drivers for multiple IP block=
+s
+> found in Mediatek ISP system. It will include ISP Pass 1 driver, sensor
+> interface driver, DIP driver and face detection driver.
 >
-> Any occurrence of security violation would raise an interrupt, and
-> it will be handled by mtk-devapc driver. The violation
-> information is printed in order to find the murderer.
+> Signed-off-by: Louis Kuo <louis.kuo@mediatek.com>
+> ---
+>  drivers/media/platform/Makefile               |    1 +
+>  drivers/media/platform/mtk-isp/Kconfig        |   18 +
+>  drivers/media/platform/mtk-isp/Makefile       |    3 +
+>  .../media/platform/mtk-isp/seninf/Makefile    |    7 +
+>  .../platform/mtk-isp/seninf/mtk_seninf.c      |  974 +++++++++++
+>  .../platform/mtk-isp/seninf/mtk_seninf_dphy.c |  353 ++++
+
+I think phy driver should be placed in drivers/phy/mediatek and
+separate phy driver to an independent patch.
+
+>  .../platform/mtk-isp/seninf/mtk_seninf_reg.h  | 1491 +++++++++++++++++
+>  .../mtk-isp/seninf/mtk_seninf_rx_reg.h        |  515 ++++++
+>  8 files changed, 3362 insertions(+)
+>  create mode 100644 drivers/media/platform/mtk-isp/Kconfig
+>  create mode 100644 drivers/media/platform/mtk-isp/Makefile
+>  create mode 100644 drivers/media/platform/mtk-isp/seninf/Makefile
+>  create mode 100644 drivers/media/platform/mtk-isp/seninf/mtk_seninf.c
+>  create mode 100644 drivers/media/platform/mtk-isp/seninf/mtk_seninf_dphy=
+.c
+>  create mode 100644 drivers/media/platform/mtk-isp/seninf/mtk_seninf_reg.=
+h
+>  create mode 100644 drivers/media/platform/mtk-isp/seninf/mtk_seninf_rx_r=
+eg.h
 >
-> Signed-off-by: Neal Liu <neal.liu@mediatek.com>
 
 [snip]
 
 > +
-> +static u32 get_shift_group(struct mtk_devapc_context *devapc_ctx,
-> +                          int slave_type, int vio_idx)
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/module.h>
+> +#include <linux/of_graph.h>
+> +#include <linux/of_irq.h>
 
-vio_idx  is useless, so remove it.
+No irq handler, so remove this.
 
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/slab.h>
+> +#include <linux/videodev2.h>
+> +#include <media/v4l2-async.h>
+> +#include <media/v4l2-ctrls.h>
+> +#include <media/v4l2-event.h>
+> +#include <media/v4l2-fwnode.h>
+> +#include <media/v4l2-subdev.h>
+> +#include <linux/phy/phy.h>
+> +#include "mtk_seninf_reg.h"
+> +
+
+[snip]
+
+> +
+> +static int seninf_set_ctrl(struct v4l2_ctrl *ctrl)
 > +{
-> +       u32 vio_shift_sta;
-> +       void __iomem *reg;
-> +       int bit;
+> +       struct mtk_seninf *priv =3D container_of(ctrl->handler,
+> +                                            struct mtk_seninf, ctrl_hand=
+ler);
 > +
-> +       reg =3D mtk_devapc_pd_get(devapc_ctx, slave_type, VIO_SHIFT_STA, =
-0);
-> +       vio_shift_sta =3D readl(reg);
-> +
-> +       for (bit =3D 0; bit < 32; bit++) {
-> +               if ((vio_shift_sta >> bit) & 0x1)
-> +                       break;
-> +       }
-> +
-> +       return bit;
-> +}
-> +
+> +       switch (ctrl->id) {
+> +       case V4L2_CID_TEST_PATTERN:
+> +               if (ctrl->val =3D=3D TEST_GEN_PATTERN)
+> +                       return seninf_enable_test_pattern(priv);
 
-[snip]
+Without this, this driver still works, so move this to an independent patch=
+.
 
-> +
-> +/*
-> + * devapc_violation_irq - the devapc Interrupt Service Routine (ISR) wil=
-l dump
-> + *                       violation information including which master vi=
-olates
-> + *                       access slave.
-> + */
-> +static irqreturn_t devapc_violation_irq(int irq_number,
-> +                                       struct mtk_devapc_context *devapc=
-_ctx)
-> +{
-> +       const struct mtk_device_info **device_info;
-> +       int slave_type_num;
-> +       int vio_idx =3D -1;
-> +       int slave_type;
-> +
-> +       slave_type_num =3D devapc_ctx->slave_type_num;
-> +       device_info =3D devapc_ctx->device_info;
-> +
-> +       for (slave_type =3D 0; slave_type < slave_type_num; slave_type++)=
- {
-
-If slave_type_num is 1, I think the code should be simpler.
-
-> +               if (!mtk_devapc_dump_vio_dbg(devapc_ctx, slave_type, &vio=
-_idx))
-> +                       continue;
-> +
-> +               /* Ensure that violation info are written before
-> +                * further operations
-> +                */
-> +               smp_mb();
-> +
-> +               mask_module_irq(devapc_ctx, slave_type, vio_idx, true);
-
-Why do you mask irq?
-
-> +
-> +               clear_vio_status(devapc_ctx, slave_type, vio_idx);
-> +
-> +               mask_module_irq(devapc_ctx, slave_type, vio_idx, false);
-> +       }
-> +
-> +       return IRQ_HANDLED;
-> +}
-> +
-> +/*
-> + * start_devapc - initialize devapc status and start receiving interrupt
-> + *               while devapc violation is triggered.
-> + */
-
-[snip]
-
-> +
-> +struct mtk_device_info {
-> +       int sys_index;
-
-Useless, so remove it.
-
-> +       int ctrl_index;
+> +               else if (ctrl->val =3D=3D TEST_DUMP_DEBUG_INFO)
+> +                       return seninf_dump_debug_info(priv);
 
 Ditto.
+
+> +               else
+> +                       return -EINVAL;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+
+[snip]
+
+> +
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id mtk_mipi_dphy_of_match[] =3D {
+> +       {.compatible =3D "mediatek,mt8183-mipi_dphy"},
+
+Where is the definition of "mediatek,mt8183-mipi_dphy"?
 
 Regards,
 Chun-Kuang.
 
-> +       int vio_index;
+> +       {},
 > +};
+> +MODULE_DEVICE_TABLE(of, mtk_mipi_dphy_of_match);
+> +#endif
+> +
+> +static struct platform_driver mipi_dphy_pdrv =3D {
+> +       .probe  =3D mipi_dphy_probe,
+> +       .driver =3D {
+> +               .name   =3D "mipi_dphy",
+> +               .of_match_table =3D of_match_ptr(mtk_mipi_dphy_of_match),
+> +       },
+> +};
+> +
+> +module_platform_driver(mipi_dphy_pdrv);
 > +
