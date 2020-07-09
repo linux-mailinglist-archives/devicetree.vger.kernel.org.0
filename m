@@ -2,178 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 890122194DD
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2020 02:12:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83F3121962C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2020 04:22:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726081AbgGIAMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jul 2020 20:12:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55816 "EHLO
+        id S1726290AbgGICW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jul 2020 22:22:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725982AbgGIAMB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jul 2020 20:12:01 -0400
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE6EAC061A0B;
-        Wed,  8 Jul 2020 17:12:01 -0700 (PDT)
-Received: by mail-pl1-x642.google.com with SMTP id p1so76055pls.4;
-        Wed, 08 Jul 2020 17:12:01 -0700 (PDT)
+        with ESMTP id S1726285AbgGICW0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jul 2020 22:22:26 -0400
+Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com [IPv6:2607:f8b0:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AB0CC08C5C1
+        for <devicetree@vger.kernel.org>; Wed,  8 Jul 2020 19:22:26 -0700 (PDT)
+Received: by mail-oi1-x241.google.com with SMTP id 12so685927oir.4
+        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2020 19:22:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=KqkupbtZKC2qjSer1dGE8XK+5kA0IZx3gNr8bMY/uR0=;
-        b=TldPPZhvHQNUVm64atdptGaYDSlL8NwtMCNrP41p3mAORV+PBRKZfmRLKKTR4frIdH
-         X1ra2e5YOu1UJeF7BP2XPK/Onii6ifQH+3I2/snpFBHcW8682UZobFAGMS7TLXP4E3Rr
-         JF3FMVwXfdwS50qvXNTTWH9yqvnmOu1HnPP6UASgh/0w4g2S4tJifJFutd2WharpR4tr
-         I5nI9eMVNUOkffqiPptXXVAjiYM3UQyX0+y+SlOUMeBXuKEIlUx6iR//wOQoPmKM5CR3
-         rR9/7BgyA6DKAaKWew8I7YBo+F/ED3n2v4Iwf3Pd0HnSNsfJh5kNK3LD17jxRd3V+dKr
-         xJ7g==
+        d=kali.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=DRE+AnxDTPA67RRsyblsDnMJP7GCjkB5PLB0tWpdoQE=;
+        b=nCRjBy6rCZO4tPcusHqvk8I+q8WHCq+AFq8rirKjSah3x23m7XVXGu+vNcFW92y9y7
+         xEhpHOfRp6MpBnynd88ykJtbWvcflOLOnsyQWNTRsMqI1CaqRtcF0EnByTqUhJ8sQ8NQ
+         o25Hd8Nz0k8StgQqM7qU9DzS36rrlze9fWOx6SKlUeKXvI5a0kTfjChPAzqA7AvGciKv
+         GV1xFmOHR6xgXdIVx1mk8jQIyTZIwiphkIwY+k0YJaOlWcUgURjjdHKT4iQhbD0KnWJZ
+         wqySEbUIeroyGlYU2KpcCkrPrhgA6L+7SFD12PLRIs1M8dz3Eyb+x19TnUz1EyYzSgpZ
+         pAUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=KqkupbtZKC2qjSer1dGE8XK+5kA0IZx3gNr8bMY/uR0=;
-        b=U6h73pJHPkS76R2fsL6ocntesiJC98rij/8dsMxp39jiRFfRAjJ0NPkqWtrkUMN+Zy
-         xmwIkrsLD/H/JZR+Wik5VtfIXaGjanInLRYaIwdPCUCafZrZNPymauzPK8TLaU3tukRL
-         U64SKVhGuLQuuagk/B15IYJPFunNcRGkx9Q+vLeC4wGdWc1Afas7WA+brQNidNMrghgR
-         jSIqVgAfuo0SOSzgsgt22by0ep342EwQ+5jBIyo8sMNdqbVL9Fci7X9xlplmoHHZdzxQ
-         MdmMJlKnw4GtZoDP7BjTd+c2VEs/W+T1pZdax1zCDoX84IHptA6Jm0vMJi17plcJKDk5
-         uEYQ==
-X-Gm-Message-State: AOAM533eBSr3hXP5b3Vw3K0LQvI5Uz451C/NqsgMJF/fJWErcPxOhMle
-        Fj3uIm2BuHfdCmSJtpwsz1E=
-X-Google-Smtp-Source: ABdhPJy3s4R5Ku8XAf4vu1kwopHnU8fZOhCvhfPetPBF72iqWtUAfpqHqZNML7I8nYXyK93PJPMxxA==
-X-Received: by 2002:a17:902:bd08:: with SMTP id p8mr42945633pls.154.1594253521197;
-        Wed, 08 Jul 2020 17:12:01 -0700 (PDT)
-Received: from localhost.localdomain.com ([2605:e000:160b:911f:a2ce:c8ff:fe03:6cb0])
-        by smtp.gmail.com with ESMTPSA id u14sm810669pfk.211.2020.07.08.17.12.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jul 2020 17:12:00 -0700 (PDT)
-From:   Chris Healy <cphealy@gmail.com>
-To:     shawnguo@kernel.org, s.hauer@pengutronix.de, stefan@agner.ch,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        festevam@gmail.com
-Cc:     Andrew Lunn <andrew@lunn.ch>, Chris Healy <cphealy@gmail.com>
-Subject: [PATCH v2] arm: dts: vf610-zii-scu4-aib: Configure fibre ports to 1000BaseX
-Date:   Wed,  8 Jul 2020 17:11:54 -0700
-Message-Id: <20200709001154.7403-1-cphealy@gmail.com>
-X-Mailer: git-send-email 2.21.3
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=DRE+AnxDTPA67RRsyblsDnMJP7GCjkB5PLB0tWpdoQE=;
+        b=ANhVMq4xA738A0/lOE0LKuyWraoHtpFKYG8X+FTO77Z3XxkKI9Ck8KZqP7CtXJx3WG
+         cjAKiEDVbr3oRQ+6GFoKqfeivtcF2M1X9Mu0DlaHpr8Ln8fWynsP15/FoRL5pzHiFC/y
+         7WQQVoKtdonzkG1Ee8ablUDjPBGzoJKqwM2h267BWIbkNQIztN/Qg+jhEpy3Gyksl+AV
+         4v2bvqh99RBxk6FFJSIXDwAD8pwPuLhy544P5ALBNz4OrOC97ji4zM+b1yVbftEPcdJR
+         vJlb2VZjunwJpFjACYApty/UmR7PfZASzzwAUpttOicXv67dMvm1tBY1zI4SdDElpg1q
+         jxFg==
+X-Gm-Message-State: AOAM533tuth9k6qnGZITo3WAE1o2hbH9oxKw5+64/XqmggQPckqiITNk
+        fjqOaQzoRkCLdZa77dxZ8nCb/w==
+X-Google-Smtp-Source: ABdhPJzZ3KYDuqCl2pBVz6ZKWW75HF5fDGCk1N4x5FT6TuFs7kUO2+NXH3DohJjIcwdkm+vq6Qbhew==
+X-Received: by 2002:aca:3307:: with SMTP id z7mr6660836oiz.171.1594261345319;
+        Wed, 08 Jul 2020 19:22:25 -0700 (PDT)
+Received: from Steevs-MBP.hackershack.net (cpe-173-175-113-3.satx.res.rr.com. [173.175.113.3])
+        by smtp.gmail.com with ESMTPSA id r19sm290459otn.28.2020.07.08.19.22.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Jul 2020 19:22:24 -0700 (PDT)
+Subject: Re: [PATCH v2] arm64: dts: qcom: sdm845: Add cpu OPP tables
+To:     Sibi Sankar <sibis@codeaurora.org>, bjorn.andersson@linaro.org
+Cc:     viresh.kumar@linaro.org, sboyd@kernel.org,
+        georgi.djakov@linaro.org, agross@kernel.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, saravanak@google.com,
+        dianders@chromium.org, vincent.guittot@linaro.org,
+        amit.kucheria@linaro.org, robdclark@chromium.org
+References: <20200702204643.25785-1-sibis@codeaurora.org>
+From:   Steev Klimaszewski <steev@kali.org>
+Message-ID: <a61c5656-e21f-f071-1149-a3357fe2684e@kali.org>
+Date:   Wed, 8 Jul 2020 21:22:23 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
+ Gecko/20100101 Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20200702204643.25785-1-sibis@codeaurora.org>
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Andrew Lunn <andrew@lunn.ch>
 
-The SFF soldered onto the board expect the ports to use 1000BaseX.  It
-makes no sense to have the ports set to SGMII, since they don't even
-support that mode.
+On 7/2/20 3:46 PM, Sibi Sankar wrote:
+> Add OPP tables required to scale DDR/L3 per freq-domain on SDM845 SoCs.
+>
+> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+> ---
 
-Signed-off-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Chris Healy <cphealy@gmail.com>
----
-v2:
-- convert spaces back to tabs
-- Correct from line to show Andrew as the original author
 
- arch/arm/boot/dts/vf610-zii-scu4-aib.dts | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+Hi Sibi,
 
-diff --git a/arch/arm/boot/dts/vf610-zii-scu4-aib.dts b/arch/arm/boot/dts/vf610-zii-scu4-aib.dts
-index b642520199ba..040a1f8b6130 100644
---- a/arch/arm/boot/dts/vf610-zii-scu4-aib.dts
-+++ b/arch/arm/boot/dts/vf610-zii-scu4-aib.dts
-@@ -186,7 +186,7 @@
- 					port@2 {
- 						reg = <2>;
- 						label = "eth_fc_1000_2";
--						phy-mode = "sgmii";
-+						phy-mode = "1000base-x";
- 						managed = "in-band-status";
- 						sfp = <&sff1>;
- 					};
-@@ -194,7 +194,7 @@
- 					port@3 {
- 						reg = <3>;
- 						label = "eth_fc_1000_3";
--						phy-mode = "sgmii";
-+						phy-mode = "1000base-x";
- 						managed = "in-band-status";
- 						sfp = <&sff2>;
- 					};
-@@ -202,7 +202,7 @@
- 					port@4 {
- 						reg = <4>;
- 						label = "eth_fc_1000_4";
--						phy-mode = "sgmii";
-+						phy-mode = "1000base-x";
- 						managed = "in-band-status";
- 						sfp = <&sff3>;
- 					};
-@@ -210,7 +210,7 @@
- 					port@5 {
- 						reg = <5>;
- 						label = "eth_fc_1000_5";
--						phy-mode = "sgmii";
-+						phy-mode = "1000base-x";
- 						managed = "in-band-status";
- 						sfp = <&sff4>;
- 					};
-@@ -218,7 +218,7 @@
- 					port@6 {
- 						reg = <6>;
- 						label = "eth_fc_1000_6";
--						phy-mode = "sgmii";
-+						phy-mode = "1000base-x";
- 						managed = "in-band-status";
- 						sfp = <&sff5>;
- 					};
-@@ -226,7 +226,7 @@
- 					port@7 {
- 						reg = <7>;
- 						label = "eth_fc_1000_7";
--						phy-mode = "sgmii";
-+						phy-mode = "1000base-x";
- 						managed = "in-band-status";
- 						sfp = <&sff6>;
- 					};
-@@ -234,7 +234,7 @@
- 					port@9 {
- 						reg = <9>;
- 						label = "eth_fc_1000_1";
--						phy-mode = "sgmii";
-+						phy-mode = "1000base-x";
- 						managed = "in-band-status";
- 						sfp = <&sff0>;
- 					};
-@@ -269,7 +269,7 @@
- 					port@2 {
- 						reg = <2>;
- 						label = "eth_fc_1000_8";
--						phy-mode = "sgmii";
-+						phy-mode = "1000base-x";
- 						managed = "in-band-status";
- 						sfp = <&sff7>;
- 					};
-@@ -277,7 +277,7 @@
- 					port@3 {
- 						reg = <3>;
- 						label = "eth_fc_1000_9";
--						phy-mode = "sgmii";
-+						phy-mode = "1000base-x";
- 						managed = "in-band-status";
- 						sfp = <&sff8>;
- 					};
-@@ -285,7 +285,7 @@
- 					port@4 {
- 						reg = <4>;
- 						label = "eth_fc_1000_10";
--						phy-mode = "sgmii";
-+						phy-mode = "1000base-x";
- 						managed = "in-band-status";
- 						sfp = <&sff9>;
- 					};
--- 
-2.21.3
+
+Bjorn asked me to give this patch a whirl, and I have to say, I like it
+but I'm not sure if I'm missing a dependency somewhere...
+
+
+In 5.8.0-rc4, I'm seeing a couple probe defers
+
+[    0.131341] cpu cpu0: _allocate_opp_table: Error finding interconnect
+paths: -517
+
+[    0.132694] cpu cpu4: _allocate_opp_table: Error finding interconnect
+paths: -517
+
+And then a bit later on,
+
+[    0.625837] cpu cpu0: failed to get clock: -2
+
+
+If these aren't anything to worry about, you can throw my Tested-by on
+
+Tested-by: Steev Klimaszewski <steev@kali.org>
 
