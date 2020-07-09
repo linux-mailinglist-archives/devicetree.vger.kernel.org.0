@@ -2,99 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 992BD21AB7A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 01:20:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5618E21AB7D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 01:24:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726908AbgGIXUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jul 2020 19:20:18 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:55410 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726894AbgGIXUS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jul 2020 19:20:18 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 069NKB28019098;
-        Thu, 9 Jul 2020 18:20:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1594336811;
-        bh=hoL0x9O1kvkaT4prL5tfXltZY55PUwkw/Roc9kLuZoA=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=uQrDfkRX1E7dRRpd+FVkx8e9aDd0eG5JNkddM8kTRSJcGB8SYCakzom7KEQaasN6P
-         z+8aqRnjO5MOOA7bgMXm+ROFz96mOjsz4MAn7ESQ0ppXy9m60CayKsFPRsUiiiO1jZ
-         kGr85dwwFamhgdNTrFHDMDz605ciqbUQNwhrdqrE=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 069NKBoo012138
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 9 Jul 2020 18:20:11 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 9 Jul
- 2020 18:20:10 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 9 Jul 2020 18:20:10 -0500
-Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 069NKAtp032199;
-        Thu, 9 Jul 2020 18:20:10 -0500
-Received: from localhost ([10.250.34.57])
-        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 069NKAmV124485;
-        Thu, 9 Jul 2020 18:20:10 -0500
-From:   Suman Anna <s-anna@ti.com>
-To:     Tony Lindgren <tony@atomide.com>
-CC:     <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <t-kristo@ti.com>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH 13/13] ARM: dts: omap5-uevm: Add watchdog timers for IPU and DSP
-Date:   Thu, 9 Jul 2020 18:19:54 -0500
-Message-ID: <20200709231954.1973-14-s-anna@ti.com>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200709231954.1973-1-s-anna@ti.com>
-References: <20200709231954.1973-1-s-anna@ti.com>
+        id S1726272AbgGIXYN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jul 2020 19:24:13 -0400
+Received: from mail-il1-f196.google.com ([209.85.166.196]:34166 "EHLO
+        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726222AbgGIXYN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jul 2020 19:24:13 -0400
+Received: by mail-il1-f196.google.com with SMTP id t4so3543761iln.1;
+        Thu, 09 Jul 2020 16:24:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=C6gSA0EI8NAhedbaWCpzy+MxtCmLEWdTx98rM6v2aJ4=;
+        b=OEw4z0ZrvKIeE86PaNyqbgvHrD2gdadNMMYvMKKJFXFJZNBAvJeYGhDum3diHVYbkt
+         1TaeJedpGot0NUU6GJjlGSpa7iItiTsZ0QVYIZpba318wfdVLmuG2RvurrKhU0txQ5W9
+         4Q3iUfnV4+wnq7MMVL2zBa0q5ruwyHQGkZB7KyXqX7Ov9SOdiDPRn+XNGMxYo5HeTXHV
+         v5E+gvZW6xOz2QDBvv+x8jTeY2pa4kFxvVaCnjsZfjvmtJUixHhJfez1gKb+MwDcgESB
+         VkLWe7RgIS5lGH1rIYyIgzVZfFxkPKmbJJ9oIqrbBuEOC+KhVyLvNRI/w1/pRi4lVDC9
+         g81g==
+X-Gm-Message-State: AOAM533+cB1nG+ymjNsxX0zYe4gg68RuhdlcmdIx1alA/1J2K34NFf+e
+        wNtTQvarLFJPRF1XtQ7SEpnDqzpaQw+A
+X-Google-Smtp-Source: ABdhPJwEi7a4BGxBFM0+WHbiO9IAQ/fGgukfTCWRV9BsdyHWsYFlnELlOQw3UQTchsNsqcLRiabjUA==
+X-Received: by 2002:a92:8585:: with SMTP id f127mr48293818ilh.207.1594337052516;
+        Thu, 09 Jul 2020 16:24:12 -0700 (PDT)
+Received: from xps15 ([64.188.179.254])
+        by smtp.gmail.com with ESMTPSA id w15sm2743064ila.65.2020.07.09.16.24.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jul 2020 16:24:11 -0700 (PDT)
+Received: (nullmailer pid 1091574 invoked by uid 1000);
+        Thu, 09 Jul 2020 23:24:09 -0000
+Date:   Thu, 9 Jul 2020 17:24:09 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Anson Huang <Anson.Huang@nxp.com>
+Cc:     wolfram@the-dreams.de, linux@rempel-privat.de, shawnguo@kernel.org,
+        festevam@gmail.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Linux-imx@nxp.com,
+        kernel@pengutronix.de, linux-i2c@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        s.hauer@pengutronix.de
+Subject: Re: [PATCH V3 1/2] dt-bindings: i2c: Convert mxs i2c to json-schema
+Message-ID: <20200709232409.GA1091519@bogus>
+References: <1592279454-32551-1-git-send-email-Anson.Huang@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1592279454-32551-1-git-send-email-Anson.Huang@nxp.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The watchdog timers have been added for the IPU and DSP remoteproc
-devices for the OMAP5 uEVM board. The following timers (same as the
-timers on OMAP4 Panda boards) are used as the watchdog timers,
-        DSP : GPT6
-        IPU : GPT9 & GPT11 (one for each Cortex-M4 core)
+On Tue, 16 Jun 2020 11:50:53 +0800, Anson Huang wrote:
+> Convert the MXS I2C binding to DT schema format using json-schema
+> 
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> ---
+> Changes since V2:
+> 	- remove 'clock-frequency' property's typs and use enum for it, as it ONLY support 100KHz/400KHz.
+> ---
+>  Documentation/devicetree/bindings/i2c/i2c-mxs.txt  | 25 -----------
+>  Documentation/devicetree/bindings/i2c/i2c-mxs.yaml | 51 ++++++++++++++++++++++
+>  2 files changed, 51 insertions(+), 25 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-mxs.txt
+>  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-mxs.yaml
+> 
 
-The MPU-side drivers will use this data to initialize the watchdog
-timers, and listen for any watchdog triggers. The BIOS-side code
-needs to configure and refresh these timers properly to not throw
-a watchdog error.
-
-These timers can be changed or removed as per the system integration
-needs, alongside appropriate equivalent changes on the firmware side.
-
-Signed-off-by: Suman Anna <s-anna@ti.com>
----
- arch/arm/boot/dts/omap5-uevm.dts | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm/boot/dts/omap5-uevm.dts b/arch/arm/boot/dts/omap5-uevm.dts
-index bb016419ef61..9b9e9ee51b5c 100644
---- a/arch/arm/boot/dts/omap5-uevm.dts
-+++ b/arch/arm/boot/dts/omap5-uevm.dts
-@@ -223,10 +223,12 @@ &dsp {
- 	status = "okay";
- 	memory-region = <&dsp_memory_region>;
- 	ti,timers = <&timer5>;
-+	ti,watchdog-timers = <&timer6>;
- };
- 
- &ipu {
- 	status = "okay";
- 	memory-region = <&ipu_memory_region>;
- 	ti,timers = <&timer3>;
-+	ti,watchdog-timers = <&timer9>, <&timer11>;
- };
--- 
-2.26.0
-
+Applied, thanks!
