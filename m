@@ -2,178 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D0A621AA4B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 00:11:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 503B421AA50
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 00:12:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726265AbgGIWLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jul 2020 18:11:11 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:38032 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726213AbgGIWLK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jul 2020 18:11:10 -0400
-Received: by mail-io1-f65.google.com with SMTP id l1so4004090ioh.5;
-        Thu, 09 Jul 2020 15:11:10 -0700 (PDT)
+        id S1726819AbgGIWM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jul 2020 18:12:26 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:45395 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726496AbgGIWM0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jul 2020 18:12:26 -0400
+Received: by mail-io1-f66.google.com with SMTP id e64so3965986iof.12;
+        Thu, 09 Jul 2020 15:12:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=bT3++BEYrjJIhXhzxTXtHnkKclhpqH+T88s6CFRclJo=;
-        b=CswQIaPFF7yO7s2kqmjnqUNEjLtZBue0XA50JduhAGmpTial2flxV8NnZ53tiVBq3K
-         6qwhM/zRC7S7hrBe3AqBVrWXlOD+LBYYF2X5qmHuxr/TRlqK+8G4UGVcvo8j6aaUlnrm
-         NmAH2IsUPNa/fwDp86q/xvUEe0ofY27oCr4aLopOAr96Urr4wXlnmFFXhfjKFlp5/ABP
-         fE4FIlBkZpWLoTUAiTYkzI2RPyr3q1nbVNYZcG1gplFT0EW7+u7UzpHrbV7KsDjtuw+p
-         K7IhLvbfRuE9AwEEBOEm/DOW6TLdowr7HePw03uqR7q4o+Vk62RZYsSCdxkqjGHL6D1F
-         eJ2A==
-X-Gm-Message-State: AOAM5329/S4wBhbcB5eD5saL2zCOx+kh016WwI0AYTJLHtZyVm1TNU3a
-        5qngspslNEycPcutt6NmFA==
-X-Google-Smtp-Source: ABdhPJz4lRiz70zmxalQUoUYbGE8Rm547bR48XMoyyuw4D0hqYCx9U1AiTKXy2iCcGXC/viEMPy/cA==
-X-Received: by 2002:a02:b0d5:: with SMTP id w21mr63608081jah.27.1594332669694;
-        Thu, 09 Jul 2020 15:11:09 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=N3B7wXkoix7oVZQGXgo+9fqs6RTXkz0Q1P+Jtz6Q3v8=;
+        b=ceK8DIasEoZ8BprSv5WR6n537gLtEt45soDwRaYT7Prt4fReihIlQMjgsVpjG/bxpw
+         pBCmniKvNGKLH5BQk7xE0chUa1KnpF7KvrykwmmABPkOOFcoYQkWF59n7fzmFRKlKYP8
+         29mG1W4fC9W8MdH8RlqfEZlZh7fgNjyXAI72t2/mHfCSQd4Kco/vse6AXSZbWfuOoq3f
+         7yEjHBAN18myyrT6oL4LKLJ4IUpH7FvteZpd4gmBvj6oN46GoSGTPI6Vy8uWp13uTc0W
+         oDnl8YCLnNqlzRMeajex8V0MLg5Z1ERweuwvEdKgXUF3/SKmx64wMcFgV1zBtR5UUBA5
+         2rBA==
+X-Gm-Message-State: AOAM533TsmT55o45QdBeFJ16yiFRv32wv2KTW8tLGuhbIAF8X4jqrGUh
+        v2o2mCRiA4u+Mt9iuh/gARp3gvieUw==
+X-Google-Smtp-Source: ABdhPJx1FEmhQ5vvbZu+CAESLkRPH79yWff7Ulkarh3ebi/v7RbWlfGq3vQ+ZraTxwnV1oTA1Qdmkg==
+X-Received: by 2002:a02:5b83:: with SMTP id g125mr74541532jab.91.1594332745590;
+        Thu, 09 Jul 2020 15:12:25 -0700 (PDT)
 Received: from xps15 ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id o7sm2824483ioo.4.2020.07.09.15.11.07
+        by smtp.gmail.com with ESMTPSA id d6sm2771963ioo.9.2020.07.09.15.12.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jul 2020 15:11:09 -0700 (PDT)
-Received: (nullmailer pid 982246 invoked by uid 1000);
-        Thu, 09 Jul 2020 22:11:05 -0000
-Date:   Thu, 9 Jul 2020 16:11:05 -0600
+        Thu, 09 Jul 2020 15:12:24 -0700 (PDT)
+Received: (nullmailer pid 984111 invoked by uid 1000);
+        Thu, 09 Jul 2020 22:12:23 -0000
+Date:   Thu, 9 Jul 2020 16:12:23 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     =?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>
-Cc:     simon@fire.lp0.eu, jonas.gorski@gmail.com, kishon@ti.com,
-        vkoul@kernel.org, f.fainelli@gmail.com,
-        bcm-kernel-feedback-list@broadcom.com, p.zabel@pengutronix.de,
-        krzk@kernel.org, gregkh@linuxfoundation.org, alcooperx@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: phy: add bcm63xx-usbh bindings
-Message-ID: <20200709221105.GA976808@bogus>
-References: <20200619100035.4032596-1-noltari@gmail.com>
- <20200619100035.4032596-2-noltari@gmail.com>
+To:     Sumit Semwal <sumit.semwal@linaro.org>
+Cc:     devicetree@vger.kernel.org, rnayak@codeaurora.org,
+        broonie@kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, bjorn.andersson@linaro.org,
+        kgunda@codeaurora.org, lgirdwood@gmail.com, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, nishakumari@codeaurora.org
+Subject: Re: [PATCH v5 2/4] dt-bindings: regulator: Add labibb regulator
+Message-ID: <20200709221223.GA984064@bogus>
+References: <20200622124110.20971-1-sumit.semwal@linaro.org>
+ <20200622124110.20971-3-sumit.semwal@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200619100035.4032596-2-noltari@gmail.com>
+In-Reply-To: <20200622124110.20971-3-sumit.semwal@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 19, 2020 at 12:00:34PM +0200, Álvaro Fernández Rojas wrote:
-> Document BCM63xx USBH PHY bindings.
+On Mon, 22 Jun 2020 18:11:08 +0530, Sumit Semwal wrote:
+> From: Nisha Kumari <nishakumari@codeaurora.org>
 > 
-> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
-> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+> Adding the devicetree binding for labibb regulator.
+> 
+> Signed-off-by: Nisha Kumari <nishakumari@codeaurora.org>
+> Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
+>  [sumits: cleanup as per review comments and update to yaml]
+> 
 > ---
->  v5: no changes.
->  v4: conditionally require 1/2 clocks and fix clock/reset values.
->  v3: no changes.
->  v2: phy-cells changed to 1.
+> v5: Addressed review comments - removed interrupt-names, changed to
+>      dual license, added unevaluatedProperties: false
+> v4: fixed dt_binding_check issues
+> v3: moved to yaml
+> v2: updated for better compatible string and names.
+> ---
+>  .../regulator/qcom-labibb-regulator.yaml      | 70 +++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
 > 
->  .../bindings/phy/brcm,bcm63xx-usbh-phy.yaml   | 84 +++++++++++++++++++
->  1 file changed, 84 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/brcm,bcm63xx-usbh-phy.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/brcm,bcm63xx-usbh-phy.yaml b/Documentation/devicetree/bindings/phy/brcm,bcm63xx-usbh-phy.yaml
-> new file mode 100644
-> index 000000000000..f267da6193a9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/brcm,bcm63xx-usbh-phy.yaml
-> @@ -0,0 +1,84 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/phy/brcm,bcm63xx-usbh-phy.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: BCM63xx USBH PHY
-> +
-> +maintainers:
-> +  - Álvaro Fernández Rojas <noltari@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - brcm,bcm6318-usbh-phy
-> +      - brcm,bcm6328-usbh-phy
-> +      - brcm,bcm6358-usbh-phy
-> +      - brcm,bcm6362-usbh-phy
-> +      - brcm,bcm6368-usbh-phy
-> +      - brcm,bcm63268-usbh-phy
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: usbh
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  "#phy-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - "#phy-cells"
 
-You need:
-
-additionalProperties: false
-
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - brcm,bcm6318-usbh-phy
-> +            - brcm,bcm63268-usbh-phy
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 2
-
-This doesn't work. The main schema will also be applied and it says 
-there's 1. The main schema has to cover all the cases and then if/then 
-schemas add constraints.
-
-> +        clock-names:
-> +          items:
-> +            - const: usbh
-> +            - const: usb_ref
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - brcm,bcm6318-usbh-phy
-> +            - brcm,bcm6328-usbh-phy
-> +            - brcm,bcm6362-usbh-phy
-> +            - brcm,bcm63268-usbh-phy
-> +    then:
-> +      properties:
-> +        power-domains:
-> +          maxItems: 1
-> +      required:
-> +        - power-domains
-> +
-> +examples:
-> +  - |
-> +    usbh: usb-phy@10001700 {
-> +      compatible = "brcm,bcm6368-usbh-phy";
-> +      reg = <0x10001700 0x38>;
-> +      clocks = <&periph_clk 15>;
-> +      clock-names = "usbh";
-> +      resets = <&periph_rst 12>;
-> +      #phy-cells = <1>;
-> +    };
-> -- 
-> 2.27.0
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
