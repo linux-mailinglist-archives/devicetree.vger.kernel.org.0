@@ -2,159 +2,392 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85B5C219AEF
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2020 10:36:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18AD0219B73
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2020 10:50:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726228AbgGIIgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jul 2020 04:36:15 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:56310 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726245AbgGIIgO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Jul 2020 04:36:14 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1594283773; h=Content-Transfer-Encoding: Content-Type:
- MIME-Version: Message-ID: Date: Subject: In-Reply-To: References: Cc:
- To: From: Sender; bh=VNqNnxgafwr7RYkJ1Yf6GjVmu/dHflZjtsDnh57E44U=; b=uMMsIDA0Ko8xCBC/Ik8OBn50b/CuopdoyafdcFwSvSPVwjn3Rv3AjRhKaNdjv9TXXfd4SmJ6
- jA+JQvaRvWRqUztYa/uJqgv8zXUzmVOyZWkLl0C8BVTX6uChh7vuRV4EqLDGOhvjM12/NGD/
- zK7ngD6odLb0BAZ3CrGlbYXK2MQ=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 5f06d6fc71d7ca1d3aa277fe (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 09 Jul 2020 08:36:12
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 7F494C43391; Thu,  9 Jul 2020 08:36:11 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from Pillair (unknown [183.83.71.149])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: pillair)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 04226C433C6;
-        Thu,  9 Jul 2020 08:36:07 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 04226C433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=pillair@codeaurora.org
-From:   "Rakesh Pillai" <pillair@codeaurora.org>
-To:     "'Douglas Anderson'" <dianders@chromium.org>,
-        "'Andy Gross'" <agross@kernel.org>,
-        "'Bjorn Andersson'" <bjorn.andersson@linaro.org>
-Cc:     "'Evan Green'" <evgreen@chromium.org>,
-        "'Sibi Sankar'" <sibis@codeaurora.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20200625131658.REPOST.1.I32960cd32bb84d6db4127c906d7e371fa29caebf@changeid> 
-In-Reply-To: 
-Subject: RE: [REPOST PATCH] arm64: dts: qcom: Fix WiFi supplies on sc7180-idp
-Date:   Thu, 9 Jul 2020 14:06:04 +0530
-Message-ID: <001501d655cb$ff5b8bc0$fe12a340$@codeaurora.org>
+        id S1726363AbgGIIuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jul 2020 04:50:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50546 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726140AbgGIIuR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jul 2020 04:50:17 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 028B2C061A0B
+        for <devicetree@vger.kernel.org>; Thu,  9 Jul 2020 01:50:17 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1jtSFw-0008EV-8U; Thu, 09 Jul 2020 10:50:12 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1jtSFq-0005Cr-D3; Thu, 09 Jul 2020 10:50:06 +0200
+Date:   Thu, 9 Jul 2020 10:50:06 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Michael Walle <michael@walle.cc>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v5 07/13] pwm: add support for sl28cpld PWM controller
+Message-ID: <20200709085006.b54ype3p4yu64upl@pengutronix.de>
+References: <20200706175353.16404-1-michael@walle.cc>
+ <20200706175353.16404-8-michael@walle.cc>
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQIJkvzNJ2GrKQD23Wa0Ucd2+v4DjgEVOFggqI++GJA=
-Content-Language: en-us
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="zo5wkjqhpntpevbs"
+Content-Disposition: inline
+In-Reply-To: <20200706175353.16404-8-michael@walle.cc>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--zo5wkjqhpntpevbs
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> -----Original Message-----
-> From: Rakesh Pillai <pillair@codeaurora.org>
-> Sent: Friday, June 26, 2020 2:14 PM
-> To: 'Douglas Anderson' <dianders@chromium.org>; 'Andy Gross'
-> <agross@kernel.org>; 'Bjorn Andersson' <bjorn.andersson@linaro.org>
-> Cc: 'Evan Green' <evgreen@chromium.org>; 'Sibi Sankar'
-> <sibis@codeaurora.org>; 'Rob Herring' <robh+dt@kernel.org>;
-> 'devicetree@vger.kernel.org' <devicetree@vger.kernel.org>; 'linux-arm-
-> msm@vger.kernel.org' <linux-arm-msm@vger.kernel.org>; 'linux-
-> kernel@vger.kernel.org' <linux-kernel@vger.kernel.org>
-> Subject: RE: [REPOST PATCH] arm64: dts: qcom: Fix WiFi supplies on sc7180-
-> idp
-> 
-> 
-> 
-> > -----Original Message-----
-> > From: Douglas Anderson <dianders@chromium.org>
-> > Sent: Friday, June 26, 2020 1:47 AM
-> > To: Andy Gross <agross@kernel.org>; Bjorn Andersson
-> > <bjorn.andersson@linaro.org>
-> > Cc: Evan Green <evgreen@chromium.org>; Sibi Sankar
-> > <sibis@codeaurora.org>; Rakesh Pillai <pillair@codeaurora.org>; Douglas
-> > Anderson <dianders@chromium.org>; Rob Herring <robh+dt@kernel.org>;
-> > devicetree@vger.kernel.org; linux-arm-msm@vger.kernel.org; linux-
-> > kernel@vger.kernel.org
-> > Subject: [REPOST PATCH] arm64: dts: qcom: Fix WiFi supplies on
-sc7180-idp
-> >
-> > The WiFi supplies that were added recently can't have done anything
-> > useful because they were missing the "-supply" suffix.  Booting
-> > without the "-supply" suffix would give these messages:
-> >
-> > ath10k_snoc 18800000.wifi: 18800000.wifi supply vdd-0.8-cx-mx not found,
-> > using dummy regulator
-> > ath10k_snoc 18800000.wifi: 18800000.wifi supply vdd-1.8-xo not found,
-> using
-> > dummy regulator
-> > ath10k_snoc 18800000.wifi: 18800000.wifi supply vdd-1.3-rfa not found,
-> using
-> > dummy regulator
-> > ath10k_snoc 18800000.wifi: 18800000.wifi supply vdd-3.3-ch0 not found,
-> > using dummy regulator
-> >
-> > Let's add the "-supply" suffix.
-> >
-> > Fixes: 1e7594a38f37 ("arm64: dts: qcom: sc7180: Add WCN3990 WLAN
-> > module device node")
-> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > ---
-> Reviewed-by: Rakesh Pillai <pillair@codeaurora.org>
+Hello Michael,
 
+On Mon, Jul 06, 2020 at 07:53:47PM +0200, Michael Walle wrote:
+> diff --git a/drivers/pwm/pwm-sl28cpld.c b/drivers/pwm/pwm-sl28cpld.c
+> new file mode 100644
+> index 000000000000..8ee286b605bf
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-sl28cpld.c
+> @@ -0,0 +1,187 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * sl28cpld PWM driver
+> + *
+> + * Copyright 2020 Kontron Europe GmbH
+> + */
 
-Tested-by: Rakesh Pillai <pillair@codeaurora.org>
+Is there publically available documenation available? If so please add a
+link here.
 
-> 
-> I missed this in the DTSI patch, while manually rebasing to the kernel
-tip.
-> 
-> > I don't have an IDP setup but I have a similar board.  Testing on IDP
-> > would, of course, be appreciated.
-> >
-> > Repost because I screwed up the "after-the-cut" notes on first post.
-> >
-> >  arch/arm64/boot/dts/qcom/sc7180-idp.dts | 8 ++++----
-> >  1 file changed, 4 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> > b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> > index 39dbfc89689e..472f7f41cc93 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> > @@ -391,10 +391,10 @@ video-firmware {
-> >
-> >  &wifi {
-> >  	status = "okay";
-> > -	vdd-0.8-cx-mx = <&vreg_l9a_0p6>;
-> > -	vdd-1.8-xo = <&vreg_l1c_1p8>;
-> > -	vdd-1.3-rfa = <&vreg_l2c_1p3>;
-> > -	vdd-3.3-ch0 = <&vreg_l10c_3p3>;
-> > +	vdd-0.8-cx-mx-supply = <&vreg_l9a_0p6>;
-> > +	vdd-1.8-xo-supply = <&vreg_l1c_1p8>;
-> > +	vdd-1.3-rfa-supply = <&vreg_l2c_1p3>;
-> > +	vdd-3.3-ch0-supply = <&vreg_l10c_3p3>;
-> >  	wifi-firmware {
-> >  		iommus = <&apps_smmu 0xc2 0x1>;
-> >  	};
-> > --
-> > 2.27.0.212.ge8ba1cc988-goog
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/regmap.h>
+> +
+> +/*
+> + * PWM timer block registers.
+> + */
+> +#define PWM_CTRL		0x00
+> +#define   PWM_ENABLE		BIT(7)
+> +#define   PWM_MODE_250HZ	0
+> +#define   PWM_MODE_500HZ	1
+> +#define   PWM_MODE_1KHZ		2
+> +#define   PWM_MODE_2KHZ		3
+> +#define   PWM_MODE_MASK		GENMASK(1, 0)
+> +#define PWM_CYCLE		0x01
+> +#define   PWM_CYCLE_MAX		0x7f
 
+Please use a less generic prefix for your defines. Also I like having
+the defines for field names include register name. Something like:
 
+	#define PWM_SL28CPLD_CTRL		0x00
+	#define PWM_SL28CPLD_CTRL_ENABLE		BIT(7)
+	#define PWM_SL28CPLD_CTRL_MODE_MASK		GENMASK(1, 0)
+	#define PWM_SL28CPLD_CTRL_MODE_250HZ		FIELD_PREP(PWM_SL28CPLD_CTRL_MODE_MA=
+SK, 0)
+
+> +struct sl28cpld_pwm {
+> +	struct pwm_chip pwm_chip;
+> +	struct regmap *regmap;
+> +	u32 offset;
+> +};
+> +
+> +struct sl28cpld_pwm_periods {
+> +	u8 ctrl;
+> +	unsigned long duty_cycle;
+> +};
+> +
+> +struct sl28cpld_pwm_config {
+> +	unsigned long period_ns;
+> +	u8 max_duty_cycle;
+> +};
+> +
+> +static struct sl28cpld_pwm_config sl28cpld_pwm_config[] =3D {
+
+const ? (Or drop as the values can be easily computed, see below.)
+
+> +	[PWM_MODE_250HZ] =3D { .period_ns =3D 4000000, .max_duty_cycle =3D 0x80=
+ },
+> +	[PWM_MODE_500HZ] =3D { .period_ns =3D 2000000, .max_duty_cycle =3D 0x40=
+ },
+> +	[PWM_MODE_1KHZ]  =3D { .period_ns =3D 1000000, .max_duty_cycle =3D 0x20=
+ },
+> +	[PWM_MODE_2KHZ]  =3D { .period_ns =3D  500000, .max_duty_cycle =3D 0x10=
+ },
+> +};
+> +
+> +static void sl28cpld_pwm_get_state(struct pwm_chip *chip,
+> +				   struct pwm_device *pwm,
+> +				   struct pwm_state *state)
+> +{
+> +	struct sl28cpld_pwm *priv =3D dev_get_drvdata(chip->dev);
+> +	static struct sl28cpld_pwm_config *config;
+> +	unsigned int reg;
+> +	unsigned int mode;
+> +
+> +	regmap_read(priv->regmap, priv->offset + PWM_CTRL, &reg);
+> +
+> +	state->enabled =3D reg & PWM_ENABLE;
+
+Would it be more consisted to use FIELD_GET here, too?
+
+> +
+> +	mode =3D FIELD_GET(PWM_MODE_MASK, reg);
+> +	config =3D &sl28cpld_pwm_config[mode];
+> +	state->period =3D config->period_ns;
+
+I wonder if this could be done more effectively without the above table.
+Something like:
+
+	state->period =3D 4000000 >> mode.
+=09
+(with a #define for 4000000 of course).
+
+> +	regmap_read(priv->regmap, priv->offset + PWM_CYCLE, &reg);
+> +	pwm_set_relative_duty_cycle(state, reg, config->max_duty_cycle);
+
+Oh, what a creative idea to use pwm_set_relative_duty_cycle here.
+Unfortunately it's using the wrong rounding strategy. Please enable
+PWM_DEBUG which should diagnose these problems (given enough testing).
+
+(Hmm, on second thought I'm not sure that rounding is relevant with the
+numbers of this hardware. Still it's wrong in general and I don't want
+to have others copy this.)
+
+> +}
+> +
+> +static int sl28cpld_pwm_apply(struct pwm_chip *chip, struct pwm_device *=
+pwm,
+> +			      const struct pwm_state *state)
+> +{
+> +	struct sl28cpld_pwm *priv =3D dev_get_drvdata(chip->dev);
+> +	struct sl28cpld_pwm_config *config;
+> +	unsigned int cycle;
+> +	int ret;
+> +	int mode;
+> +	u8 ctrl;
+> +
+> +	/* Get the configuration by comparing the period */
+> +	for (mode =3D 0; mode < ARRAY_SIZE(sl28cpld_pwm_config); mode++) {
+> +		config =3D &sl28cpld_pwm_config[mode];
+> +		if (state->period =3D=3D config->period_ns)
+> +			break;
+> +	}
+> +
+> +	if (mode =3D=3D ARRAY_SIZE(sl28cpld_pwm_config))
+> +		return -EINVAL;
+
+You're supposed to pick the biggest period that isn't bigger than the
+requested period. So something like:
+
+	switch(period) {
+	case 4000000 ... UINT_MAX:
+		mode =3D 0;
+		break;
+	case 2000000 ... 3999999:
+		mode =3D 1;
+		break;
+	...
+	}
+
+(or:
+
+	if period >=3D 4000000:
+		mode =3D 0
+	else:
+		// I think ... please double-check
+		mode =3D ilog2(4000000 / (period + 1)) + 1
+
+	if mode > 3:
+		return -ERANGE;
+)
+
+	real_period =3D 4000000 >> mode;
+
+> +	ctrl =3D FIELD_PREP(PWM_MODE_MASK, mode);
+> +	if (state->enabled)
+> +		ctrl |=3D PWM_ENABLE;
+> +
+> +	cycle =3D pwm_get_relative_duty_cycle(state, config->max_duty_cycle);
+
+Again the rounding is wrong. You need need to round down the requested
+duty_cycle to the next possible value. So something like:
+
+	duty_cycle =3D min(real_period, state->duty_cycle);
+
+	cycle =3D duty_cycle * (0x80 >> mode) / (4000000 >> mode);
+
+which can be further simplified to
+
+	cycle =3D duty_cycle / 31250
+
+=2E
+
+> +	/*
+> +	 * The hardware doesn't allow to set max_duty_cycle if the
+> +	 * 250Hz mode is enabled, thus we have to trap that here.
+> +	 * But because a 100% duty cycle is equal on all modes, i.e.
+
+It depends on how picky you are if you can agree here. Please document
+this in a Limitations paragraph at the top of the driver similar to
+drivers/pwm/pwm-rcar.c and others.
+
+> +	 * it is just a "all-high" output, we trap any case with a
+> +	 * 100% duty cycle and use the 500Hz mode.
+
+Please only trap on 250Hz mode. (Can be done using: if (cycle =3D=3D 0x80) I
+think)
+
+> +	 */
+> +	if (cycle =3D=3D config->max_duty_cycle) {
+> +		ctrl &=3D ~PWM_MODE_MASK;
+> +		ctrl |=3D FIELD_PREP(PWM_MODE_MASK, PWM_MODE_500HZ);
+> +		cycle =3D PWM_CYCLE_MAX;
+=09
+I would have expected 0x40 here instead of 0x7f?
+
+> +	}
+> +
+> +	ret =3D regmap_write(priv->regmap, priv->offset + PWM_CTRL, ctrl);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return regmap_write(priv->regmap, priv->offset + PWM_CYCLE, (u8)cycle);
+
+I assume this can result in broken output? Consider the hardware runs
+with mode =3D 1 & cycle =3D 0x23 and you want to go to mode =3D 0 & cycle =
+=3D
+0x42: Can this result in a period that has mode =3D 0 & cycle =3D 0x23?
+
+If this cannot be avoided, please document this in the Limitations
+paragraph.
+
+> +}
+> +
+> +static const struct pwm_ops sl28cpld_pwm_ops =3D {
+> +	.apply =3D sl28cpld_pwm_apply,
+> +	.get_state =3D sl28cpld_pwm_get_state,
+> +	.owner =3D THIS_MODULE,
+> +};
+> +
+> +static int sl28cpld_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct sl28cpld_pwm *priv;
+> +	struct pwm_chip *chip;
+> +	int ret;
+> +
+> +	if (!pdev->dev.parent)
+> +		return -ENODEV;
+> +
+> +	priv =3D devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->regmap =3D dev_get_regmap(pdev->dev.parent, NULL);
+> +	if (!priv->regmap)
+> +		return -ENODEV;
+> +
+> +	ret =3D device_property_read_u32(&pdev->dev, "reg", &priv->offset);
+> +	if (ret)
+> +		return -EINVAL;
+> +
+> +	/* Initialize the pwm_chip structure */
+> +	chip =3D &priv->pwm_chip;
+> +	chip->dev =3D &pdev->dev;
+> +	chip->ops =3D &sl28cpld_pwm_ops;
+> +	chip->base =3D -1;
+> +	chip->npwm =3D 1;
+> +
+> +	ret =3D pwmchip_add(&priv->pwm_chip);
+> +	if (ret)
+> +		return ret;
+> +
+> +	platform_set_drvdata(pdev, priv);
+> +
+> +	return 0;
+> +}
+
+Please add error messages with some details for the error paths
+(preferable using %pe to indicate the error code).
+
+> +static int sl28cpld_pwm_remove(struct platform_device *pdev)
+> +{
+> +	struct sl28cpld_pwm *priv =3D platform_get_drvdata(pdev);
+> +
+> +	return pwmchip_remove(&priv->pwm_chip);
+> +}
+> +
+> +static const struct of_device_id sl28cpld_pwm_of_match[] =3D {
+> +	{ .compatible =3D "kontron,sl28cpld-pwm" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, sl28cpld_pwm_of_match);
+> +
+> +static struct platform_driver sl28cpld_pwm_driver =3D {
+> +	.probe =3D sl28cpld_pwm_probe,
+> +	.remove	=3D sl28cpld_pwm_remove,
+> +	.driver =3D {
+> +		.name =3D "sl28cpld-pwm",
+> +		.of_match_table =3D sl28cpld_pwm_of_match,
+> +	},
+> +};
+> +module_platform_driver(sl28cpld_pwm_driver);
+> +
+> +MODULE_DESCRIPTION("sl28cpld PWM Driver");
+> +MODULE_AUTHOR("Michael Walle <michael@walle.cc>");
+> +MODULE_LICENSE("GPL");
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--zo5wkjqhpntpevbs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl8G2joACgkQwfwUeK3K
+7AmJGgf/WBxR5LIpn0VH8Eu7pe5XA6Ic/I7iL7pbWV+u7KttKvKeJSKDQP+Rj7w/
+oTgVpPOzquY7nsgi8Xc+X980NILKIg3h/GOOWCie31utloJHocy4Xva3W4AtfJFi
+vtu5Aeunx9zaStCDvwrA/5QKsxYuMSAKWoTqzRW8gdGyyUFKG5rnS4Sz5A1Zk7Tj
+kv2pVpbVAU4JsnS8FUGQnXG32UhrZddYZKb6h6NoOIP13OybadiQ11dcsfrjguPg
+0NgNL+VHwM1nFEOOTza5u3WfaEXSFIInFev55g3TYnjOIk1mY980eNLc682VqhZX
+djlTan09K0g6k9nD5qjkmhAT8tntQw==
+=pWwP
+-----END PGP SIGNATURE-----
+
+--zo5wkjqhpntpevbs--
