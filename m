@@ -2,73 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAECC21A925
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2020 22:38:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8449421A93A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2020 22:42:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726196AbgGIUik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jul 2020 16:38:40 -0400
-Received: from mail-io1-f47.google.com ([209.85.166.47]:34197 "EHLO
-        mail-io1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726183AbgGIUik (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jul 2020 16:38:40 -0400
-Received: by mail-io1-f47.google.com with SMTP id q74so3782811iod.1;
-        Thu, 09 Jul 2020 13:38:39 -0700 (PDT)
+        id S1726272AbgGIUmz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jul 2020 16:42:55 -0400
+Received: from mail-il1-f196.google.com ([209.85.166.196]:38163 "EHLO
+        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726183AbgGIUmy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jul 2020 16:42:54 -0400
+Received: by mail-il1-f196.google.com with SMTP id s21so3203607ilk.5;
+        Thu, 09 Jul 2020 13:42:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ifuWKsHEKc4eVItwGlNDQiWrJ8Y8Ekt4slSt+PSzbYU=;
-        b=c7awSw90uwm/R/OXf1uhvJHmfxvTKJ3cLXHyuOsN0ZlcOXtEIEX/rds+D3LIAzUSjf
-         e9s3yz03ck8MtJcN4RU8unWecuaZy/zeKD9CIAG2809Ff/bm9xAHy0Fts+WgC0N7H8t1
-         jedrqx+EvWQx3Me0HxYr9ZC+oX1Gi+6bUjZA2FaEext8h7yINv0xmGIJKgXB7Di5PlBW
-         iczWpD+y7WBD49WTAw12GO8J1JhvSWUhkVi25Z0gzLccLbdcCpBVlwdtFKF62awbY6Fs
-         iLgRa9taqS9OROjs8n3McdPgUcTULfGfAWoBYRo9Ndb4r8mb6dPlV9VS1h73obXOl65V
-         1P4Q==
-X-Gm-Message-State: AOAM532dxLhCe4z7cVgGRixnLNQkHZicRwtCFgHvouN/7pHIf4hzzgoh
-        L0t7OzWhJ/HiYpCYVcY+fQ==
-X-Google-Smtp-Source: ABdhPJxqSqxe8SCErlwssNDBuHB9sBW34r9IvjtCU2AySZgYTe+VQHzoxn9WKCPyK+3LRNFV/56xEg==
-X-Received: by 2002:a05:6638:14c5:: with SMTP id l5mr73205355jak.134.1594327119278;
-        Thu, 09 Jul 2020 13:38:39 -0700 (PDT)
+        bh=QRIStQyCkIoaSqHfpji8UZGXhFbUGYsTTZ730xKq2G4=;
+        b=mERc9sediT+ELm9iH+xv/CZc/dtlBFP2GYQFVe5pzzACuJQX6ZeZzn5EUfuEpcqyVd
+         MQx3uHfXOOceVt4HblrE6SieMTCgi2B8fPcO6Bo8L2CiuANOb2q1oMBAY/c3rGGcF1zS
+         SuMxwXpIYBLPjaxqj/3rbeOFEl9hrA9dVyjbO1t2ET5po+1w6nlScTAK54YYTV2fyLit
+         2eNt73jm0RiUtOewSC13WUvLwBULKhuRF+b+y3YlDL59T8F4kGM4Q3BC/rbp83xX3vQz
+         HfWBAZHUfQckH9D/ICbKhWNAFBBbmlMbbK1cwUW80FV7dpOubkDYZxEg4O8KYO/mcUjU
+         nyyA==
+X-Gm-Message-State: AOAM531MhpWYRl684Gj5zc5hp8npcc1uY11doBjC+uBOhiBfF7FhiLOi
+        dzkoJsQQEUIEPlgfVjLDPw==
+X-Google-Smtp-Source: ABdhPJxRpTkSd/WJSCFIsf6B49REhAYLdyj/koXazQPOq/svM5+yEgb4ot3AwlT930+WE7ERTMlHLg==
+X-Received: by 2002:a92:1805:: with SMTP id 5mr45546138ily.127.1594327373701;
+        Thu, 09 Jul 2020 13:42:53 -0700 (PDT)
 Received: from xps15 ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id z20sm2685967iot.15.2020.07.09.13.38.37
+        by smtp.gmail.com with ESMTPSA id z20sm2690327iot.15.2020.07.09.13.42.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jul 2020 13:38:38 -0700 (PDT)
-Received: (nullmailer pid 848114 invoked by uid 1000);
-        Thu, 09 Jul 2020 20:38:37 -0000
-Date:   Thu, 9 Jul 2020 14:38:37 -0600
+        Thu, 09 Jul 2020 13:42:53 -0700 (PDT)
+Received: (nullmailer pid 853786 invoked by uid 1000);
+        Thu, 09 Jul 2020 20:42:51 -0000
+Date:   Thu, 9 Jul 2020 14:42:51 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
-Cc:     sboyd@kernel.org, linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        govinds@codeaurora.org, linux-remoteproc@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-soc@vger.kernel.org, bjorn.andersson@linaro.org,
-        sricharan@codeaurora.org
-Subject: Re: [v7 2/4] dt-bindings: remoteproc: qcom: Add Q6V5 Modem PIL
- binding for QCS404
-Message-ID: <20200709203837.GA848063@bogus>
-References: <20190726092332.25202-1-govinds@codeaurora.org>
- <1593766722-28838-1-git-send-email-gokulsri@codeaurora.org>
- <1593766722-28838-3-git-send-email-gokulsri@codeaurora.org>
+To:     Vinay Simha BN <simhavcs@gmail.com>
+Cc:     open list <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        David Airlie <airlied@linux.ie>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v7 1/2] dt-binding: Add DSI/LVDS TC358775 bridge bindings
+Message-ID: <20200709204251.GA853727@bogus>
+References: <20200704092511.20856-1-simhavcs@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1593766722-28838-3-git-send-email-gokulsri@codeaurora.org>
+In-Reply-To: <20200704092511.20856-1-simhavcs@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 03 Jul 2020 14:28:40 +0530, Gokul Sriram Palanisamy wrote:
-> From: Govind Singh <govinds@codeaurora.org>
+On Sat, 04 Jul 2020 14:54:39 +0530, Vinay Simha BN wrote:
+> - converted from .txt to .yaml
+> - dual-link lvds port added and implemented
+> - dsi data-lanes property removed, it will be picked
+>   from dsi0 ports
+> - VESA/JEIDA formats picked from panel-lvds dts
+> - proper indentation
+> - single-link and dual-link lvds description and
+>   examples are added
+> - license modified to (GPL-2.0-only OR BSD-2-Clause)
 > 
-> Add a new modem compatible string for Qualcomm QCS404 SoCs
+> Signed-off-by: Vinay Simha BN <simhavcs@gmail.com>
 > 
-> Signed-off-by: Govind Singh <govinds@codeaurora.org>
-> [rebased on top of 5.8-rc3]
-> Signed-off-by: Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
 > ---
->  Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt | 9 +++++++++
->  1 file changed, 9 insertions(+)
+> v1:
+>  Initial version wast .txt file
+> 
+> v2:
+>  From txt to yaml file format
+> 
+> v3:
+> * Andrzej Hajda review comments incorporated
+>   dual port lvds implemented
+> 
+> * Laurent Pinchart review comments incorporated
+>   dsi lanes property removed and it is dynamically
+>   picked from the dsi ports
+>   VESA/JEIDA format picked from panel-lvds dts
+> 
+> v4:
+> * Sam Ravnborg review comments incorporated
+>   }' is indented properly in examples data-lanes
+>   description for single-link and dual-link lvds
+> 
+> v5:
+> * Sam Ravnborg review comments incorporated
+>   license modified to (GPL-2.0-only OR BSD-2-Clause)
+>   changelog added
+> ---
+>  .../display/bridge/toshiba,tc358775.yaml      | 215 ++++++++++++++++++
+>  1 file changed, 215 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
