@@ -2,121 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8598821948C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2020 01:46:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 933E32194DF
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2020 02:12:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726142AbgGHXqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jul 2020 19:46:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51846 "EHLO
+        id S1725982AbgGIAMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jul 2020 20:12:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726124AbgGHXqt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jul 2020 19:46:49 -0400
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C98D5C08C5C1
-        for <devicetree@vger.kernel.org>; Wed,  8 Jul 2020 16:46:47 -0700 (PDT)
-Received: by mail-lj1-x244.google.com with SMTP id b25so263894ljp.6
-        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2020 16:46:47 -0700 (PDT)
+        with ESMTP id S1725848AbgGIAMH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jul 2020 20:12:07 -0400
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A326DC061A0B;
+        Wed,  8 Jul 2020 17:12:06 -0700 (PDT)
+Received: by mail-lj1-x241.google.com with SMTP id q7so338889ljm.1;
+        Wed, 08 Jul 2020 17:12:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=hNVOm+zljioPYiyCEKhVRUSifVw9+Rq4lrANP+/QLBY=;
-        b=lcLaSajDl3PXHLI0IsixId3ctDcJw/wcCMiK5LmAriZFBPjCqkHzrpB5Wr8RE5ku3r
-         jUWEGuzjjFwKK+MoTRT33yCbdQgTQwKFWb/UnbSfHe2j9OUtBiKy4DK8qeLKCpRc+9Wj
-         Bzun1SbvUp06+5xggjiRZELJWnHnhk59in1ncmMWss/+VxfsOQxB1i07p/3CscAo4Vbr
-         QjdH83dDvnirLejbklIErYxD/G1RzjIG34SvWUSpq6cQtuEaY7S7Q8EIA2lIqnunGSmj
-         pdQe99/xvr+rhtnFuHZvy68oV0FkHeMRCItVNOqykDmMRzv+6icK/e4Zz3KUbgNWAVXS
-         LFTQ==
+        bh=V0QuEy94Oqtv5Hq07Ru2rABdbi+qMx9R/lannai1iIU=;
+        b=XpkdGxGrTssyStH4hPr9o39/wGfwxJOKn8aISQ/OnLCcepLWPR1w4pIMHeafrZI1EV
+         DjDtwpk/5SSxwSZZR2momLv97Fbf4Jfk0CjkaqsnCH3LBRNJ45TfAeASwq48kQy+o5aR
+         Avbgpj19UhQgfIKDeXEh6Mp2X6FEXY3T+J3phIQykb0jwdJroGJ17NSLjLWQdZ8Kz725
+         8MdO93M/8TTUjiTGEhJQs+mRsItVcF7ordRMR6p79PaEQFbEcXMIhsqfucLnBEmnQMpF
+         9GAQR48c/4Y5Tu6XGZ1BXY/q9aVaN1jhF2KOdjOO02xIXXXBwz3U245VW/2mFAnKjGye
+         v4SA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=hNVOm+zljioPYiyCEKhVRUSifVw9+Rq4lrANP+/QLBY=;
-        b=YKYp0bdU451Ea2LNuXnRl/Rm4ax8+8TnRUIoLSfWdrc02DyDIm/LlfIbulBds7ls+/
-         G029xEIKrWPG2g3IwCsqJO+VlK/BLiHtMGtyt4fqWfgD8JByoy5GnFojCP4+Ukp1/JiD
-         cZyGDaHHww2TGWbTlN/exNaq3r82odSrwQ2r34iMI1HvHSamngtbfi1cq+3ILoJHkOKx
-         wqPY3dRm9u0h4jfP/ibNE2B1++g2HRp3HPlPH7oF+Ig/3qopxSJrWBevqLzSJFRm/jra
-         6vEaiCfOYDuZR8gJJBDI2ViulVmkjjSwTY0Je5OiavkrrzfmMNG1ux/Hun1DQTjEXgpk
-         8AAQ==
-X-Gm-Message-State: AOAM531thoMOXWn3TW+Q+yDDkiTPAq/2OQYvHWSTqEDlko1x4YQxvnJR
-        RLx2kHDwESWNFbSrv3BnqrT2qPsqEBNvvVY/xp12PQ==
-X-Google-Smtp-Source: ABdhPJxQopmgjC6jnaMAt/WQPRrVXt1aN4OhHEolRLPsjEpEaz9Q/mPmsN9bvmri8KaSrr7ODM5XB1eWwNM+XDZ6cAM=
-X-Received: by 2002:a05:651c:1106:: with SMTP id d6mr6280417ljo.214.1594252006292;
- Wed, 08 Jul 2020 16:46:46 -0700 (PDT)
+        bh=V0QuEy94Oqtv5Hq07Ru2rABdbi+qMx9R/lannai1iIU=;
+        b=dvhL14rRqRAEhO5DIFjOEDRJRbcUkGSgcLWI2k24DCJVRs/vBOIk0fr2Zlohebm2vC
+         Q0ObedXVg77kLqmZMZN3lWzKgzYUEe8qRDQZGNRgKCFvncF76WoIfGZNqtiMBDZmsrI+
+         3BWGRO78cJZLnMRRFh7VahTUYnLgyDx7Asv0dT4pTZaJlwOp774GY4OcUtdimDyrr5Bq
+         9fFP4CHy/J7OCihhCLhYyrbZDq6rjXBa3Vmo8d8LlM+aFC7CWQWvzaRdUIRmN4QRyMsN
+         +RIU2GzPcRtscooQkIAdtpjVeu09qVhs6llEC/0Hbjzfe+BgbmoHu8uzg2Xeus221Sdx
+         I1Gw==
+X-Gm-Message-State: AOAM531NZMbzKEg+umbrjQBiaeHzvOerI4EcKvwTEbdvntabcAWaI63G
+        9KFRbgLTLzpb+m31nRb8vqvzNfJIme4a9pUrgkI=
+X-Google-Smtp-Source: ABdhPJwdaVK1ZOVAijaz2w1HJRm3OeUKV77sdjHcARzAwDpy0T3UAGzu/yH7+moDerWi3jJvwg2ZVTh+CwkjndQdrOs=
+X-Received: by 2002:a2e:808d:: with SMTP id i13mr32283739ljg.452.1594253525115;
+ Wed, 08 Jul 2020 17:12:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200708131424.18729-1-masahisa.kojima@linaro.org>
- <20200708162017.GB549022@linux.intel.com> <CADQ0-X9im8yVVVJbJL5Ssaa49UTOw+M=tYrfhNoODUaY723O8A@mail.gmail.com>
-In-Reply-To: <CADQ0-X9im8yVVVJbJL5Ssaa49UTOw+M=tYrfhNoODUaY723O8A@mail.gmail.com>
-From:   Masahisa Kojima <masahisa.kojima@linaro.org>
-Date:   Thu, 9 Jul 2020 08:46:35 +0900
-Message-ID: <CADQ0-X8xF0NpMakEB_Kqd2hVSrMsMB5FqFd7V9F1eLryJbEeFA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] synquacer: add TPM support
-To:     Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        ardb@kernel.org, devicetree <devicetree@vger.kernel.org>,
-        linux-integrity@vger.kernel.org, peterhuewe@gmx.de, jgg@ziepe.ca
+References: <20200708232501.6200-1-cphealy@gmail.com>
+In-Reply-To: <20200708232501.6200-1-cphealy@gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Wed, 8 Jul 2020 21:11:53 -0300
+Message-ID: <CAOMZO5Dshsx++kdd3rdew8CJXTA7ktKnpaoJjtTGW9pfvDeHEQ@mail.gmail.com>
+Subject: Re: [PATCH v2] ARM: dts: vf610-zii-dev-rev-c: Configure fiber port to 1000BaseX
+To:     Chris Healy <cphealy@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Stefan Agner <stefan@agner.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jarkko,
+On Wed, Jul 8, 2020 at 8:25 PM Chris Healy <cphealy@gmail.com> wrote:
+>
+> The SFF soldered onto the board expects the port to use 1000BaseX.  It
+> makes no sense to have the port set to SGMII, since it doesn't even
+> support that mode.
+>
+> Signed-off-by: Chris Healy <cphealy@gmail.com>
 
-> Hi Jakko,
-I apologize for mis-spelling of your name.
-Same mistake also appears in my another reply to "[PATCH v3 1/2] tpm:
-tis: add support for MMIO TPM on SynQuacer"
-
-On Thu, 9 Jul 2020 at 08:34, Masahisa Kojima <masahisa.kojima@linaro.org> wrote:
->
-> Hi Jakko,
->
-> > Overally the code looks great. You've run it through checkpatch.pl?
->
-> Yes, I have run checkpatch.pl and removed errors.
->
-> Regards,
-> Masahisa
->
-> On Thu, 9 Jul 2020 at 01:20, Jarkko Sakkinen
-> <jarkko.sakkinen@linux.intel.com> wrote:
-> >
-> > On Wed, Jul 08, 2020 at 10:14:22PM +0900, Masahisa Kojima wrote:
-> > > This adds support for driving the TPM on Socionext SynQuacer platform
-> > > using the driver for a memory mapped TIS frame.
-> > >
-> > > v3:
-> > > - prepare new module to handle TPM MMIO access on SynQuacer platform
-> > >
-> > > v2:
-> > > - don't use read/write_bytes() to implement read/write16/32 since that uses
-> > >   the wrong address
-> > >
-> > > Cc: jarkko.sakkinen@linux.intel.com
-> > > Cc: linux-arm-kernel@lists.infradead.org
-> > > Cc: ardb@kernel.org
-> > > Cc: devicetree@vger.kernel.org
-> > > Cc: linux-integrity@vger.kernel.org
-> > > Cc: linux-kernel@vger.kernel.org
-> > > Cc: peterhuewe@gmx.de
-> > > Cc: jgg@ziepe.ca
-> > >
-> > > Masahisa Kojima (2):
-> > >   tpm: tis: add support for MMIO TPM on SynQuacer
-> > >   dt-bindings: Add SynQucer TPM MMIO as a trivial device
-> > >
-> > >  .../devicetree/bindings/trivial-devices.yaml  |   2 +
-> > >  drivers/char/tpm/Kconfig                      |  12 ++
-> > >  drivers/char/tpm/Makefile                     |   1 +
-> > >  drivers/char/tpm/tpm_tis_synquacer.c          | 196 ++++++++++++++++++
-> > >  4 files changed, 211 insertions(+)
-> > >  create mode 100644 drivers/char/tpm/tpm_tis_synquacer.c
-> > >
-> > > --
-> > > 2.20.1
-> > >
-> >
-> > Overally the code looks great. You've run it through checkpatch.pl?
-> >
-> > /Jarkko
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
