@@ -2,68 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 652BE21A147
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2020 15:54:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8177B21A173
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2020 15:55:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727948AbgGINy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jul 2020 09:54:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41186 "EHLO
+        id S1728124AbgGINzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jul 2020 09:55:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727831AbgGINy0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jul 2020 09:54:26 -0400
-Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com [IPv6:2607:f8b0:4864:20::841])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54BF8C08C5DD
-        for <devicetree@vger.kernel.org>; Thu,  9 Jul 2020 06:54:26 -0700 (PDT)
-Received: by mail-qt1-x841.google.com with SMTP id w27so1672255qtb.7
-        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2020 06:54:26 -0700 (PDT)
+        with ESMTP id S1728096AbgGINyg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jul 2020 09:54:36 -0400
+Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com [IPv6:2607:f8b0:4864:20::842])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C583C08C5CE
+        for <devicetree@vger.kernel.org>; Thu,  9 Jul 2020 06:54:36 -0700 (PDT)
+Received: by mail-qt1-x842.google.com with SMTP id 6so1715864qtt.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2020 06:54:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=FoYroevO5aBBa1iVjvsDAiRUR6Hq4gmMuR8nLzos3mw=;
-        b=Z6NRe/KH8bncXG4w++4ecKr3wqovwnlWL54aD5Nzi9+BB7vjICb9LcPIGeiPYFNJVo
-         Y/AQ6/wFhrzsBGDSIqFehClvUY0W6XyunhSG+cdNJhm6FQ6Q0D1+GGGDV5SAGpGvs35X
-         zAq7AyAI7DqKTEHXRzXPVTE56RnZj59V6uUK5lOM+IGn5tAhi9U6Cfyk5g2zpt3KZzaP
-         gq+urnDQkd/kAar89rPeSp5ndT15f7TJwZSdPRcp74qc7i+aIjJ4YF9EFC+us5EiP/NV
-         VX8vfcNp6enxaHd4lSfsIM+qpUnUMnXtYmEoWWC0nTXNwCHAjoB1sA5zEKiLDy2THgFB
-         YG8g==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=xBmIQ/oFSlwKs4/CrMYdbz9vzigPGjdXhvW7tiY1q5s=;
+        b=Y0t8U+7kBoHAhht8cZbl0esChsmmQGUV65NQEP4n2Mi67f8bU0caK8Eg8LNtdABMJj
+         CS2EpBebA7TozKr9tsjnw6Wx5yav4ul1LoFieYf9jYfYvKuCLPLlzlkJo4+XvBFDMN0y
+         qB0+6o/C2HPq6G3dP6zr0h4Sim2KH1JeEsORHLOzoLnkMzIcE7lzCRS6gBXFwKQ8gpx0
+         jh09Q0rLx6Hv7zFx3Sp3LDHKvsI41hQEImppIOyzzY7DFApxdnzUmsVodiBBBeFf0w56
+         6szy6O21223IbvVmDakpwISGgrwFgnH+iRAaCHGk9nB3mFyPIMQ1kudtw6cW6DwzoRms
+         InWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=FoYroevO5aBBa1iVjvsDAiRUR6Hq4gmMuR8nLzos3mw=;
-        b=a/wGLepbzTfSdKWyzWqzzNSYSdvJLJMksKviHsyGGFx4037FzDAqRp2tN8SjDTEiKf
-         T5qe2F1BfSYoXUAkIUpTGvJe5deKF2dkFqtOkxmmsqOeFwXhrdpzO0iNBkNrOPwJtPYG
-         S1HHGzUYWqdl6MY7Hb6g9YVTAGbL6ZkF26cM6vcrJSKdJnzGmgyzAxwNpTCQW5q7/ixH
-         v4HN3ERf2qIXWD/u2iGZEXZfwCyRuai48iMxifHj7/nBIjYZRHcgpLmtH9AD6YWZPAJ8
-         mqotivRWtuQ+SPZmLXqmoMCBNkWTaQoNVDX/8rTSZxXb0kfoTC9QcLlBXETbnVZ8hRFl
-         2khw==
-X-Gm-Message-State: AOAM531nRLRNuh4Ytu4hRn7cvI7MjeUuwjGynf9svznWcdpgEly7maB/
-        KE1nRMc6JRfV973Fkpky0SsRrg==
-X-Google-Smtp-Source: ABdhPJxhiX3tijNbdyq0oIUQJC6u0JCpsZSHVAijeTfA7RTEUJdj+vBHVcFpY3YlG+naGt9YwyptvA==
-X-Received: by 2002:ac8:7208:: with SMTP id a8mr68813599qtp.355.1594302865515;
-        Thu, 09 Jul 2020 06:54:25 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=xBmIQ/oFSlwKs4/CrMYdbz9vzigPGjdXhvW7tiY1q5s=;
+        b=rPVRYGivyyS/YBPlGDL7K5EocmivBwFgsBmDFzEfQgrWAeoyQkuhP8wb9nWEtqwU75
+         Uctc3VZ7ldxShiDzCXmhUmpAlSazVaBOVaCy1QXQ66RSfjEOIDKl+2wMbKJ/xrVaIRK/
+         o6lJrm4HqP0m8L0XEJL4me8Qbae5Plv4NHlJD3g+Zdq6zH3W5cPVte9PR56895fmkCPh
+         HpRYqyv16UG7t85KwrH901z8jilMstoV42Z7Vx9/2/WlTz4J89DFpi5KxKPDS3LmMdbk
+         Bs7bnwDuHTfo0FouxGoZehLh+UDrxXimIWm0RG4oce8Hpuyu8h8x9lHxH01SNSXp+41b
+         n0WQ==
+X-Gm-Message-State: AOAM532rvPEZOmzZHnNtAboXFu+aHNXb0uPBqWKp1hpPtQuabDFkSRTd
+        PGGCnn3OExVxSgVsstGbcNrGYw==
+X-Google-Smtp-Source: ABdhPJxEu2r7SE7pouSNQfxD3yyelZtr61AgVQwz8GFUA1mtvBCxou6af4TnVPC6zx/KBLl2y4g74A==
+X-Received: by 2002:ac8:5486:: with SMTP id h6mr65069007qtq.255.1594302875850;
+        Thu, 09 Jul 2020 06:54:35 -0700 (PDT)
 Received: from localhost.localdomain ([147.253.86.153])
-        by smtp.gmail.com with ESMTPSA id 130sm3632735qkn.82.2020.07.09.06.54.24
+        by smtp.gmail.com with ESMTPSA id 130sm3632735qkn.82.2020.07.09.06.54.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jul 2020 06:54:25 -0700 (PDT)
+        Thu, 09 Jul 2020 06:54:35 -0700 (PDT)
 From:   Jonathan Marek <jonathan@marek.ca>
 To:     linux-arm-msm@vger.kernel.org
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Deepak Katragadda <dkatraga@codeaurora.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
-        linux-kernel@vger.kernel.org (open list),
         Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
         Stephen Boyd <sboyd@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>, Vinod Koul <vkoul@kernel.org>
-Subject: [PATCH v3 00/14] Enable GPU for SM8150 and SM8250
-Date:   Thu,  9 Jul 2020 09:52:31 -0400
-Message-Id: <20200709135251.643-1-jonathan@marek.ca>
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v3 06/14] dt-bindings: clock: combine qcom,sdm845-gpucc and qcom,sc7180-gpucc
+Date:   Thu,  9 Jul 2020 09:52:37 -0400
+Message-Id: <20200709135251.643-7-jonathan@marek.ca>
 X-Mailer: git-send-email 2.26.1
+In-Reply-To: <20200709135251.643-1-jonathan@marek.ca>
+References: <20200709135251.643-1-jonathan@marek.ca>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -71,75 +71,137 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series adds the missing clock drivers and dts nodes to enable
-the GPU on both SM8150 and SM8250.
+These two bindings are almost identical, so combine them into one. This
+will make it easier to add the sm8150 and sm8250 gpucc bindings.
 
-Note an extra drm/msm patch [1] is required for SM8250.
-
-As noted by Dmitry, GMU init fails with newer firmware, needs this patch [2].
-
-[1] https://patchwork.freedesktop.org/series/78968/
-[2] https://git.linaro.org/landing-teams/working/qualcomm/kernel.git/commit/?h=tracking-qcomlt-sm8250&id=01331f2ccbe7e6c4719dbe038a5fb496db32646d
-
-Changes in V2:
-* Added "clk: qcom: gcc: fix sm8150 GPU and NPU clocks" to fix the newly added
-  SM8150 GPU gcc clocks
-* Added "Fixes:" tag to "clk: qcom: clk-alpha-pll: remove unused/incorrect PLL_CAL_VAL"
-* Added yaml schemas to gpucc dt-bindings patches
-* Added "clk: qcom: add common gdsc_gx_do_nothing_enable for gpucc drivers" and changed
-  gpucc patches to use it.
-* Removed CLK_IS_CRITICAL from gpu_cc_ahb_clk
-* Added missing rpmh regulator level for sm8250 GPU clock levels
-* Use sm8150/sm8250 iommu compatibles in dts
-* Add gcc_gpu_gpll0_clk_src/gcc_gpu_gpll0_div_clk_src to gpucc clocks in dts
-
-Changes in V3:
-* Combined gpucc yaml bindings into one
-* Removed some unused clocks from gpucc drivers to move closely match other gpucc
-* Use parent_data instead of parent_names
-
-Jonathan Marek (14):
-  clk: qcom: gcc: fix sm8150 GPU and NPU clocks
-  clk: qcom: clk-alpha-pll: remove unused/incorrect PLL_CAL_VAL
-  clk: qcom: clk-alpha-pll: same regs and ops for trion and lucid
-  clk: qcom: clk-alpha-pll: use the right PCAL_DONE value for lucid pll
-  clk: qcom: gcc: remove unnecessary vco_table from SM8150
-  dt-bindings: clock: combine qcom,sdm845-gpucc and qcom,sc7180-gpucc
-  dt-bindings: clock: add SM8150 QCOM Graphics clock bindings
-  dt-bindings: clock: add SM8250 QCOM Graphics clock bindings
-  clk: qcom: add common gdsc_gx_do_nothing_enable for gpucc drivers
-  clk: qcom: Add graphics clock controller driver for SM8150
-  clk: qcom: Add graphics clock controller driver for SM8250
-  dt-bindings: power: Add missing rpmpd rpmh regulator level
-  arm64: dts: qcom: add sm8150 GPU nodes
-  arm64: dts: qcom: add sm8250 GPU nodes
-
- ...qcom,sdm845-gpucc.yaml => qcom,gpucc.yaml} |  18 +-
- .../bindings/clock/qcom,sc7180-gpucc.yaml     |  74 ----
- arch/arm64/boot/dts/qcom/sm8150.dtsi          | 136 +++++++
- arch/arm64/boot/dts/qcom/sm8250.dtsi          | 143 +++++++
- drivers/clk/qcom/Kconfig                      |  16 +
- drivers/clk/qcom/Makefile                     |   2 +
- drivers/clk/qcom/clk-alpha-pll.c              |  70 ++--
- drivers/clk/qcom/clk-alpha-pll.h              |  15 +-
- drivers/clk/qcom/gcc-sm8150.c                 |  26 +-
- drivers/clk/qcom/gdsc.c                       |  25 ++
- drivers/clk/qcom/gdsc.h                       |   1 +
- drivers/clk/qcom/gpucc-sc7180.c               |  27 +-
- drivers/clk/qcom/gpucc-sdm845.c               |  27 +-
- drivers/clk/qcom/gpucc-sm8150.c               | 320 ++++++++++++++++
- drivers/clk/qcom/gpucc-sm8250.c               | 348 ++++++++++++++++++
- include/dt-bindings/clock/qcom,gpucc-sm8150.h |  33 ++
- include/dt-bindings/clock/qcom,gpucc-sm8250.h |  34 ++
- include/dt-bindings/power/qcom-rpmpd.h        |   1 +
- 18 files changed, 1128 insertions(+), 188 deletions(-)
- rename Documentation/devicetree/bindings/clock/{qcom,sdm845-gpucc.yaml => qcom,gpucc.yaml} (75%)
+Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+---
+ ...qcom,sdm845-gpucc.yaml => qcom,gpucc.yaml} | 14 ++--
+ .../bindings/clock/qcom,sc7180-gpucc.yaml     | 74 -------------------
+ 2 files changed, 9 insertions(+), 79 deletions(-)
+ rename Documentation/devicetree/bindings/clock/{qcom,sdm845-gpucc.yaml => qcom,gpucc.yaml} (82%)
  delete mode 100644 Documentation/devicetree/bindings/clock/qcom,sc7180-gpucc.yaml
- create mode 100644 drivers/clk/qcom/gpucc-sm8150.c
- create mode 100644 drivers/clk/qcom/gpucc-sm8250.c
- create mode 100644 include/dt-bindings/clock/qcom,gpucc-sm8150.h
- create mode 100644 include/dt-bindings/clock/qcom,gpucc-sm8250.h
 
+diff --git a/Documentation/devicetree/bindings/clock/qcom,sdm845-gpucc.yaml b/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
+similarity index 82%
+rename from Documentation/devicetree/bindings/clock/qcom,sdm845-gpucc.yaml
+rename to Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
+index 8a0c576ba8b3..aab6bef79771 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,sdm845-gpucc.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
+@@ -1,23 +1,27 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/clock/qcom,sdm845-gpucc.yaml#
++$id: http://devicetree.org/schemas/clock/qcom,gpucc.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Qualcomm Graphics Clock & Reset Controller Binding for SDM845
++title: Qualcomm Graphics Clock & Reset Controller Binding
+ 
+ maintainers:
+   - Taniya Das <tdas@codeaurora.org>
+ 
+ description: |
+   Qualcomm graphics clock control module which supports the clocks, resets and
+-  power domains on SDM845.
++  power domains on SDM845/SC7180.
+ 
+-  See also dt-bindings/clock/qcom,gpucc-sdm845.h.
++  See also:
++    dt-bindings/clock/qcom,gpucc-sdm845.h
++    dt-bindings/clock/qcom,gpucc-sc7180.h
+ 
+ properties:
+   compatible:
+-    const: qcom,sdm845-gpucc
++    enum:
++      - qcom,sdm845-gpucc
++      - qcom,sc7180-gpucc
+ 
+   clocks:
+     items:
+diff --git a/Documentation/devicetree/bindings/clock/qcom,sc7180-gpucc.yaml b/Documentation/devicetree/bindings/clock/qcom,sc7180-gpucc.yaml
+deleted file mode 100644
+index fe08461fce05..000000000000
+--- a/Documentation/devicetree/bindings/clock/qcom,sc7180-gpucc.yaml
++++ /dev/null
+@@ -1,74 +0,0 @@
+-# SPDX-License-Identifier: GPL-2.0-only
+-%YAML 1.2
+----
+-$id: http://devicetree.org/schemas/clock/qcom,sc7180-gpucc.yaml#
+-$schema: http://devicetree.org/meta-schemas/core.yaml#
+-
+-title: Qualcomm Graphics Clock & Reset Controller Binding for SC7180
+-
+-maintainers:
+-  - Taniya Das <tdas@codeaurora.org>
+-
+-description: |
+-  Qualcomm graphics clock control module which supports the clocks, resets and
+-  power domains on SC7180.
+-
+-  See also dt-bindings/clock/qcom,gpucc-sc7180.h.
+-
+-properties:
+-  compatible:
+-    const: qcom,sc7180-gpucc
+-
+-  clocks:
+-    items:
+-      - description: Board XO source
+-      - description: GPLL0 main branch source
+-      - description: GPLL0 div branch source
+-
+-  clock-names:
+-    items:
+-      - const: bi_tcxo
+-      - const: gcc_gpu_gpll0_clk_src
+-      - const: gcc_gpu_gpll0_div_clk_src
+-
+-  '#clock-cells':
+-    const: 1
+-
+-  '#reset-cells':
+-    const: 1
+-
+-  '#power-domain-cells':
+-    const: 1
+-
+-  reg:
+-    maxItems: 1
+-
+-required:
+-  - compatible
+-  - reg
+-  - clocks
+-  - clock-names
+-  - '#clock-cells'
+-  - '#reset-cells'
+-  - '#power-domain-cells'
+-
+-additionalProperties: false
+-
+-examples:
+-  - |
+-    #include <dt-bindings/clock/qcom,gcc-sc7180.h>
+-    #include <dt-bindings/clock/qcom,rpmh.h>
+-    clock-controller@5090000 {
+-      compatible = "qcom,sc7180-gpucc";
+-      reg = <0x05090000 0x9000>;
+-      clocks = <&rpmhcc RPMH_CXO_CLK>,
+-               <&gcc GCC_GPU_GPLL0_CLK_SRC>,
+-               <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
+-      clock-names = "bi_tcxo",
+-                    "gcc_gpu_gpll0_clk_src",
+-                    "gcc_gpu_gpll0_div_clk_src";
+-      #clock-cells = <1>;
+-      #reset-cells = <1>;
+-      #power-domain-cells = <1>;
+-    };
+-...
 -- 
 2.26.1
 
