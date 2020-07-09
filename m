@@ -2,112 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47A0921A9DC
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2020 23:45:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5071B21AA07
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2020 23:52:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726268AbgGIVp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jul 2020 17:45:58 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:40872 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726193AbgGIVp6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jul 2020 17:45:58 -0400
-Received: by mail-io1-f66.google.com with SMTP id q8so3934712iow.7;
-        Thu, 09 Jul 2020 14:45:57 -0700 (PDT)
+        id S1726820AbgGIVvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jul 2020 17:51:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59622 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726213AbgGIVvo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jul 2020 17:51:44 -0400
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A700C08C5CE;
+        Thu,  9 Jul 2020 14:51:44 -0700 (PDT)
+Received: by mail-ed1-x541.google.com with SMTP id d18so3013618edv.6;
+        Thu, 09 Jul 2020 14:51:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sZgQ/rgXy0f1txD21I1WuNSsdShPGwMiyPEgQmV+/ng=;
+        b=UHBdHivVFTxqrWLNtuH5PWVTxCNw8Jb1ou33pWpC5DrQOgMMeEokn33wlzUDwHL8dm
+         kBRzkfgS7VTxZihteeaPs9vGGEY25tPYkWZO4O3IRerLWcJeebM85HNi0U6BXZsALVDF
+         qdYQ5nt34k68KaXEEc/VUYQkKT6da79x+OJtKQcPTdnBrHJbzH8hGWZs2is9rHf3PSsy
+         I8/g/Fv8GvG01ozf6SohmC/g/1NtvyOeWgRyMWIUuDh1MWVI+Kkd6PyoixFAGSV2Hanv
+         ZpsSLqhlS3noQeaoAmvkKrhxFGZDElpu6CYzCBkp4mrYkEbpOiv1kEpZu3EL/TCZumEH
+         cNYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=cm4M9dwes8x03niEEdU7bFOP7a6MNWa2UIuDCHSOETA=;
-        b=fg4qaRmWeRM8GTogI0OfWx9OnPQHO+x6FhWY5D7zDPJP8l9WXBOGXVcI60VfszqSxo
-         I8Aj1TWav1yXZXQ4FiXDVJEIJlrO2OSLs+DWCTQluLKgUFAofynl8zPeamULGUmw405q
-         dFq/NrmFYeVFWYkC7ww63DQgg0YO4FeQ31gcLKiQ1dOFc3rYWqL8nHv/Qj4vQ//3FrUR
-         AatVarlX1hcBGQuYku1hHfyFmOXvCLLslwK+wvj31uxB4x4VBu4VVoVniHm6m2lIaHLj
-         03d9dVPmVmYbVkcxiSu+xmWP2k/0q52kB7U+wDqj4DTmBbHjMb00vmrs+s+ydRUIWGaf
-         4WPA==
-X-Gm-Message-State: AOAM532Rfw7Dz8QO/UuXI1geGG7c9hApSTyBUM6WmQGzNctvd18rdYVu
-        FAb5zjVjaxWE5wmxmLG+ew==
-X-Google-Smtp-Source: ABdhPJxMyLOsUDzCdfKL53+BYbKXk7Kr9ScXgbUfbqOa4CSYjACMyINv95ZFOb6Qxjd9sFBEAddj1Q==
-X-Received: by 2002:a05:6638:25cf:: with SMTP id u15mr65297352jat.19.1594331156767;
-        Thu, 09 Jul 2020 14:45:56 -0700 (PDT)
-Received: from xps15 ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id t6sm2725359ioi.20.2020.07.09.14.45.55
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sZgQ/rgXy0f1txD21I1WuNSsdShPGwMiyPEgQmV+/ng=;
+        b=qmTrJeCBkMT1KTe2Ec3VvAwGIedhrKnCyjPfy9zrBkPXUNiWlONQO4xq+/KG82sHh1
+         FsEQBZByY8Phnm15h6SjC3VRlvdJ/UHbtNAbIrqe0VLyK1wD+v1ONyLgTEdt386P05kM
+         UoYMMbpsezoFpRBEKl+Swrl9t92KhxtD1Np30huoDybknUfBNlq7I0XL6cAnJx5v9DvE
+         lxppOSxgMtW9BZCWRuSdGkrCRLLBbMOQNLk1wbkc/zmstZ2DxnxmOXy4TKj4x6RNtm/a
+         xASvvdEn9P0mnPtrlP4My3Gw1lzPriNGzK9wC3UkrXIbiyez25pa0GXBKRsnw82289fe
+         79Aw==
+X-Gm-Message-State: AOAM533fBBbVsUCMAcHxcNsKjDJESqvTNMZdlHaTPJp4Gr/BqF1kv+tb
+        WhyDpeuZHTaW2s3+6ypRya4=
+X-Google-Smtp-Source: ABdhPJzw5f9c5v4M+O9fs6KhEgVVMRq60AaVUtOw7FiwE0aMNnXhOAKEjnViVMxPCjDxi3fsU2kQIA==
+X-Received: by 2002:a50:cd53:: with SMTP id d19mr75655835edj.300.1594331502912;
+        Thu, 09 Jul 2020 14:51:42 -0700 (PDT)
+Received: from Ansuel-XPS.localdomain (host-87-16-250-164.retail.telecomitalia.it. [87.16.250.164])
+        by smtp.googlemail.com with ESMTPSA id e16sm2498260ejt.14.2020.07.09.14.51.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jul 2020 14:45:56 -0700 (PDT)
-Received: (nullmailer pid 942496 invoked by uid 1000);
-        Thu, 09 Jul 2020 21:45:55 -0000
-Date:   Thu, 9 Jul 2020 15:45:55 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     Tom Joseph <tjoseph@cadence.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 08/14] PCI: cadence: Fix updating Vendor ID and
- Subsystem Vendor ID register
-Message-ID: <20200709214555.GA939109@bogus>
-References: <20200708093018.28474-1-kishon@ti.com>
- <20200708093018.28474-9-kishon@ti.com>
+        Thu, 09 Jul 2020 14:51:42 -0700 (PDT)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Amit Kucheria <amit.kucheria@linaro.org>
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/6] Add support for ipq8064 tsens
+Date:   Thu,  9 Jul 2020 23:51:30 +0200
+Message-Id: <20200709215136.28044-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200708093018.28474-9-kishon@ti.com>
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 08, 2020 at 03:00:12PM +0530, Kishon Vijay Abraham I wrote:
-> Commit 1b79c5284439 ("PCI: cadence: Add host driver for Cadence PCIe
-> controller") in order to update Vendor ID, directly wrote to
-> PCI_VENDOR_ID register. However PCI_VENDOR_ID in root port configuration
-> space is read-only register and writing to it will have no effect.
-> Use local management register to configure Vendor ID and Subsystem Vendor
-> ID.
-> 
-> Fixes: 1b79c5284439 ("PCI: cadence: Add host driver for Cadence PCIe controller")
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> ---
->  drivers/pci/controller/cadence/pcie-cadence-host.c | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/cadence/pcie-cadence-host.c b/drivers/pci/controller/cadence/pcie-cadence-host.c
-> index 10127ea71b83..8935f7a37e5a 100644
-> --- a/drivers/pci/controller/cadence/pcie-cadence-host.c
-> +++ b/drivers/pci/controller/cadence/pcie-cadence-host.c
-> @@ -82,6 +82,7 @@ static int cdns_pcie_host_init_root_port(struct cdns_pcie_rc *rc)
->  {
->  	struct cdns_pcie *pcie = &rc->pcie;
->  	u32 value, ctrl;
-> +	u32 id;
->  
->  	/*
->  	 * Set the root complex BAR configuration register:
-> @@ -101,8 +102,12 @@ static int cdns_pcie_host_init_root_port(struct cdns_pcie_rc *rc)
->  	cdns_pcie_writel(pcie, CDNS_PCIE_LM_RC_BAR_CFG, value);
->  
->  	/* Set root port configuration space */
-> -	if (rc->vendor_id != 0xffff)
-> -		cdns_pcie_rp_writew(pcie, PCI_VENDOR_ID, rc->vendor_id);
+Ipq8064 SoCs tsens driver is based on 8960 tsens driver. This patchset expand
+the 8960 unused driver with interrupt support and set_trip point.
+Ipq8064 needs to registed with a syscon phandle as the tsens regs on
+this platform are shared with the gcc controller.
 
-If this is read-only, then...
+Ansuel Smith (6):
+  drivers: thermal: tsens: load regmap from phandle for 8960
+  drivers: thermal: tsens: add ipq8064 support
+  dt-bindings: thermal: tsens: document ipq8064 bindings
+  drivers: thermal: tsens: add interrupt support for 9860 driver
+  drivers: thermal: tsens: add support for custom set_trip function
+  drivers: thermal: tsens: add set_trip support for 8960
 
-> +	if (rc->vendor_id != 0xffff) {
-> +		id = CDNS_PCIE_LM_ID_VENDOR(rc->vendor_id) |
-> +			CDNS_PCIE_LM_ID_SUBSYS(rc->vendor_id);
-> +		cdns_pcie_writel(pcie, CDNS_PCIE_LM_ID, id);
-> +	}
-> +
->  	if (rc->device_id != 0xffff)
->  		cdns_pcie_rp_writew(pcie, PCI_DEVICE_ID, rc->device_id);
+ .../bindings/thermal/qcom-tsens.yaml          |  51 +++-
+ drivers/thermal/qcom/tsens-8960.c             | 283 +++++++++++++++++-
+ drivers/thermal/qcom/tsens.c                  |   7 +
+ drivers/thermal/qcom/tsens.h                  |   3 +
+ 4 files changed, 321 insertions(+), 23 deletions(-)
 
-...isn't this read-only too?
+-- 
+2.27.0
 
->  
-> -- 
-> 2.17.1
-> 
