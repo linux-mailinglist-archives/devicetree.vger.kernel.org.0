@@ -2,84 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82960219BA5
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2020 11:05:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77ACF219BD7
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2020 11:12:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726222AbgGIJFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jul 2020 05:05:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52894 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726006AbgGIJFi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jul 2020 05:05:38 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1228BC061A0B;
-        Thu,  9 Jul 2020 02:05:38 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 6D7732A5F19
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Collabora Kernel ML <kernel@collabora.com>, dianders@chromium.org,
-        heiko@sntech.de, maz@kernel.org,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh@kernel.org>,
-        =?UTF-8?q?Ga=C3=ABl=20PORTAY?= <gael.portay@collabora.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: [PATCH] dt-bindings: devfreq: rk3399_dmc: Add rockchip,pmu phandle
-Date:   Thu,  9 Jul 2020 11:05:29 +0200
-Message-Id: <20200709090529.1404999-1-enric.balletbo@collabora.com>
-X-Mailer: git-send-email 2.27.0
+        id S1726648AbgGIJMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jul 2020 05:12:31 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:29850 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726211AbgGIJMa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jul 2020 05:12:30 -0400
+X-UUID: b6be88484c1a4597abb2f51f1f0c3ffd-20200709
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=5IFnrClxea+W0uhCfZ9UPEzqQzIug9UzC95zh8SU5JQ=;
+        b=usF3Ok2tHqAwGjKUhhzk1fSPCATIsuT6dCZnfXHFZ/J3BcV/z6LsdGyRZJrawV3u6HojJbICp7/S79IrAq2I5bnlSQyJKpfMKely+Z0h1+6jd5plewC0uIE9INpyHkIB+i+UMLqXePAVZGwjpG91w2sKORJk66DCfqELwcFdaPM=;
+X-UUID: b6be88484c1a4597abb2f51f1f0c3ffd-20200709
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <neal.liu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 513061605; Thu, 09 Jul 2020 17:12:26 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 9 Jul 2020 17:12:15 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 9 Jul 2020 17:12:18 +0800
+From:   Neal Liu <neal.liu@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Neal Liu <neal.liu@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>
+Subject: [PATCH v2] Add MediaTek MT6779 devapc driver
+Date:   Thu, 9 Jul 2020 17:12:05 +0800
+Message-ID: <1594285927-1840-1-git-send-email-neal.liu@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Rockchip DMC (Dynamic Memory Interface) needs to access to the PMU
-general register files to know the DRAM type, so add a phandle to the
-syscon that manages these registers.
-
-Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Reviewed-by: Chanwoo Choi <cw00.choi@samsung.com>
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Gaël PORTAY <gael.portay@collabora.com>
-Acked-by: MyungJoo Ham <myungjoo.ham@samsung.com>
----
-Following the discussion in [1] and after having [2] accepted, this
-patch is a RESEND of a patch [3] that has already all the acks but for
-some reason and my bad, I lost the tracking, didn't land. The patch adds
-documentation for an already property implemented in the driver, so
-resend the patch again. There is a slighty modification, the rockchip,pmu
-property has been moved to be optional as is not really required.
-
-Thanks,
-  Enric
-
-[1] https://lkml.org/lkml/2020/6/22/692
-[2] https://lkml.org/lkml/2020/6/30/367
-[3] https://patchwork.kernel.org/patch/10901593/
-
- Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt b/Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
-index 0ec68141f85a..a10d1f6d85c6 100644
---- a/Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
-+++ b/Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
-@@ -18,6 +18,8 @@ Optional properties:
- 			 format depends on the interrupt controller.
- 			 It should be a DCF interrupt. When DDR DVFS finishes
- 			 a DCF interrupt is triggered.
-+- rockchip,pmu:		 Phandle to the syscon managing the "PMU general register
-+			 files".
- 
- Following properties relate to DDR timing:
- 
--- 
-2.27.0
+VGhlc2UgcGF0Y2ggc2VyaWVzIGludHJvZHVjZSBhIE1lZGlhVGVrIE1UNjc3OSBkZXZhcGMgZHJp
+dmVyLg0KDQpNZWRpYVRlayBidXMgZmFicmljIHByb3ZpZGVzIFRydXN0Wm9uZSBzZWN1cml0eSBz
+dXBwb3J0IGFuZCBkYXRhIHByb3RlY3Rpb24NCnRvIHByZXZlbnQgc2xhdmVzIGZyb20gYmVpbmcg
+YWNjZXNzZWQgYnkgdW5leHBlY3RlZCBtYXN0ZXJzLg0KVGhlIHNlY3VyaXR5IHZpb2xhdGlvbiBp
+cyBsb2dnZWQgYW5kIHNlbnQgdG8gdGhlIHByb2Nlc3NvciBmb3IgZnVydGhlcg0KYW5hbHlzaXMg
+b3IgY291bnRlcm1lYXN1cmVzLg0KDQpBbnkgb2NjdXJyZW5jZSBvZiBzZWN1cml0eSB2aW9sYXRp
+b24gd291bGQgcmFpc2UgYW4gaW50ZXJydXB0LCBhbmQgaXQgd2lsbA0KYmUgaGFuZGxlZCBieSBt
+dGstZGV2YXBjIGRyaXZlci4NClRoZSB2aW9sYXRpb24gaW5mb3JtYXRpb24gaXMgcHJpbnRlZCBp
+biBvcmRlciB0byBmaW5kIHRoZSBtdXJkZXJlci4NCg0KY2hhbmdlcyBzaW5jZSB2MToNCi0gbW92
+ZSBTb0Mgc3BlY2lmaWMgcGFydCB0byBEVCBkYXRhLg0KLSByZW1vdmUgdW5uZWNlc3NhcnkgYm91
+bmRhcnkgY2hlY2suDQotIHJlbW92ZSB1bm5lY2Vzc2FyeSBkYXRhIHR5cGUgZGVjbGFyYXRpb24u
+DQotIHVzZSByZWFkX3BvbGxfdGltZW91dCgpIGluc3RyZWFkIG9mIGZvciBsb29wIHBvbGxpbmcu
+DQotIHJldmlzZSBjb2Rpbmcgc3R5bGUgZWxlZ2FudGx5Lg0KDQoqKiogQkxVUkIgSEVSRSAqKioN
+Cg0KTmVhbCBMaXUgKDIpOg0KICBkdC1iaW5kaW5nczogZGV2YXBjOiBhZGQgYmluZGluZ3MgZm9y
+IG10ay1kZXZhcGMNCiAgc29jOiBtZWRpYXRlazogYWRkIG10ay1kZXZhcGMgZHJpdmVyDQoNCiAu
+Li4vYmluZGluZ3Mvc29jL21lZGlhdGVrL2RldmFwYy55YW1sICAgICAgICAgfCAgODIgKysrDQog
+ZHJpdmVycy9zb2MvbWVkaWF0ZWsvS2NvbmZpZyAgICAgICAgICAgICAgICAgIHwgICA5ICsNCiBk
+cml2ZXJzL3NvYy9tZWRpYXRlay9NYWtlZmlsZSAgICAgICAgICAgICAgICAgfCAgIDEgKw0KIGRy
+aXZlcnMvc29jL21lZGlhdGVrL210ay1kZXZhcGMuYyAgICAgICAgICAgICB8IDQ2NiArKysrKysr
+KysrKysNCiBkcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstZGV2YXBjLmggICAgICAgICAgICAgfCA2
+NzAgKysrKysrKysrKysrKysrKysrDQogNSBmaWxlcyBjaGFuZ2VkLCAxMjI4IGluc2VydGlvbnMo
+KykNCiBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
+L3NvYy9tZWRpYXRlay9kZXZhcGMueWFtbA0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL3Nv
+Yy9tZWRpYXRlay9tdGstZGV2YXBjLmMNCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9zb2Mv
+bWVkaWF0ZWsvbXRrLWRldmFwYy5oDQoNCi0tIA0KMi4xOC4wDQo=
 
