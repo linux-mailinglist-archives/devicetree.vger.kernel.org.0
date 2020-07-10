@@ -2,136 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33B4521B8C7
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 16:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 633E521B8D0
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 16:37:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728069AbgGJOf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jul 2020 10:35:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44960 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727914AbgGJOfq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jul 2020 10:35:46 -0400
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D463C08C5DD
-        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2020 07:35:46 -0700 (PDT)
-Received: by mail-pl1-x642.google.com with SMTP id o1so2339084plk.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2020 07:35:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Un87GvVkLmhF1eD8x6P9VVT98h6gpLaIkLYOlmueJo8=;
-        b=AqOuod1fwoFP8Tl3n4oeOceJUx+4OJE8UasSb6dQjuRAapdz1DxX6akUzAv3oQPDft
-         EbSf0sKCrk6VrDSDmXxnGhmenTmbuQS3xhrf52FYTv2aBS6h5g6sBtCfXQDYAfYY0+y6
-         95bW4mM0b8sJuOBccqDzwwcSw7gCY3DfSkok4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Un87GvVkLmhF1eD8x6P9VVT98h6gpLaIkLYOlmueJo8=;
-        b=lykwYsL0+Nc06feqOrXaz8wrJP8VhDNu1A7tEdMQ0gFE9eDnlgSxOj+5KI3chkYhrW
-         SY+Hz/pF0pFL36w41DSvr3T6vfr03aoJ91oKUubDEAsI3nNNmTW3GAYqlfVVOI+sj9nU
-         TWh+Jmog2n7VWZldDaePdNz3eyobHj1poTlGarK48F7aVQuUK1Y2GNibkhdht6e3o0A4
-         TN5WnAnlT3sIU99mHk8lcUaGbzAl4JQcVealg8YVZlRJx6UYkMiCeot4Ugzt8jwpb6Z/
-         3gfZMywklu5z8sb7OGiHT0eyeOG05k/IPDjfnfBltJzMvJ41CntgK6XdnBcCbq989b7e
-         c3lg==
-X-Gm-Message-State: AOAM533s1tQPH+PuboDIq0x1UZDcYrfGOKtm6W2gZac99XtmL4E3/ne3
-        CCKD3LQAwVWL/V5wQd7etytPUw==
-X-Google-Smtp-Source: ABdhPJyDmDg0FdGBTycWUOByl/yrczi2w0sew0nGDK/z8a2DzZ8JeG1QKYFxbFhxOgBU6mTFElxGqQ==
-X-Received: by 2002:a17:90a:158f:: with SMTP id m15mr5996876pja.93.1594391745744;
-        Fri, 10 Jul 2020 07:35:45 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:42b0:34ff:fe3d:58e6])
-        by smtp.gmail.com with ESMTPSA id gn5sm5951284pjb.23.2020.07.10.07.35.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jul 2020 07:35:45 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     sparate@codeaurora.org, saiprakash.ranjan@codeaurora.org,
-        mturney@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        Jeffrey Hugo <jhugo@codeaurora.org>, dhavalp@codeaurora.org,
-        rnayak@codeaurora.org, mkurumel@codeaurora.org,
-        Ravi Kumar Bokka <rbokka@codeaurora.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v5 4/4] arm64: dts: qcom: sc7180: Add properties to qfprom for fuse blowing
-Date:   Fri, 10 Jul 2020 07:35:20 -0700
-Message-Id: <20200710073439.v5.4.I70c17309f8b433e900656d7c53a2e6b61888bb68@changeid>
-X-Mailer: git-send-email 2.27.0.383.g050319c2ae-goog
-In-Reply-To: <20200710143520.1206846-1-dianders@chromium.org>
-References: <20200710143520.1206846-1-dianders@chromium.org>
+        id S1726925AbgGJOht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jul 2020 10:37:49 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:47192 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726725AbgGJOht (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jul 2020 10:37:49 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06AEbdOo090306;
+        Fri, 10 Jul 2020 09:37:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1594391859;
+        bh=s/Z8V9mGX3gOoutpqf8o4ND8qHAKcSCacNptqGjaKUI=;
+        h=From:To:CC:Subject:Date;
+        b=WDvzP9jYBZUZkzu325ftwGkluhcMqAEvy+t5AUGlcTXz8nf6IwSn1k1iWbVe3McDK
+         xhceuPIyQvRQo+L3ZAvZul8Zfhr24ZyIEUq+cDAeWEedokiaQAIgiEcs7u16oLp0Ux
+         t8ecclIzVMmPtPYSvwHdFQPjXDayhMWQDbYiUiFc=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06AEbdYm118635
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 10 Jul 2020 09:37:39 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 10
+ Jul 2020 09:37:39 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 10 Jul 2020 09:37:39 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06AEbc0S083159;
+        Fri, 10 Jul 2020 09:37:39 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <andrew@lunn.ch>, <f.fainelli@gmail.com>, <hkallweit1@gmail.com>,
+        <davem@davemloft.net>, <robh@kernel.org>
+CC:     <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH net-next v2 0/2] DP83822 Fiber enablement
+Date:   Fri, 10 Jul 2020 09:37:31 -0500
+Message-ID: <20200710143733.30751-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ravi Kumar Bokka <rbokka@codeaurora.org>
+Hello
 
-This patch adds properties to the qfprom node to enable fuse blowing.
+The DP83822 Ethernet PHY has the ability to connect via a Fiber port.  The
+derivative PHYs DP83825 and DP83826 do not have this ability. In fiber mode
+the DP83822 disables auto negotiation and has a fixed 100Mbps speed with
+support for full or half duplex modes.
 
-Signed-off-by: Ravi Kumar Bokka <rbokka@codeaurora.org>
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
-Presumably this patch to the device tree file should go through the
-Qualcomm tree.  Now that bindings have been reviewed by Rob it could
-probably land any time.
+A devicetree binding was added to set the signal polarity for the fiber
+connection.  This property is only applicable if the FX_EN strap is set in
+hardware other wise the signal loss detection is disabled on the PHY.
 
-Changes in v5: None
-Changes in v4:
-- Clock name is "core", not "sec".
+If the FX_EN is not strapped the device can be configured to run in fiber mode
+via the device tree. All be it the PHY will not perfomr signal loss detection.
 
-Changes in v3:
-- Name is now 'efuse' to match what schema checker wants.
-- Reorganized ranges to match driver/bindings changes.
-- Added 4th range as per driver/binding changes.
-- No more reg-names as per driver/binding changes.
-- Clock name is now just "sec" as per driver/binding changes.
+Dan
 
- arch/arm64/boot/dts/qcom/sc7180-idp.dts |  4 ++++
- arch/arm64/boot/dts/qcom/sc7180.dtsi    | 10 ++++++++--
- 2 files changed, 12 insertions(+), 2 deletions(-)
+Dan Murphy (2):
+  dt-bindings: net: dp83822: Add TI dp83822 phy
+  net: phy: DP83822: Add ability to advertise Fiber connection
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-index 4e9149d82d09..2a9224e2083f 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-@@ -287,6 +287,10 @@ vreg_bob: bob {
- 	};
- };
- 
-+&qfprom {
-+	vcc-supply = <&vreg_l11a_1p8>;
-+};
-+
- &qspi {
- 	status = "okay";
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 31b9217bb5bf..fbf9554f1e3a 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -498,9 +498,15 @@ gcc: clock-controller@100000 {
- 			#power-domain-cells = <1>;
- 		};
- 
--		qfprom@784000 {
-+		qfprom: efuse@784000 {
- 			compatible = "qcom,qfprom";
--			reg = <0 0x00784000 0 0x8ff>;
-+			reg = <0 0x00784000 0 0x8ff>,
-+			      <0 0x00780000 0 0x7a0>,
-+			      <0 0x00782000 0 0x100>,
-+			      <0 0x00786000 0 0x1fff>;
-+
-+			clocks = <&gcc GCC_SEC_CTRL_CLK_SRC>;
-+			clock-names = "core";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 
+ .../devicetree/bindings/net/ti,dp83822.yaml   |  80 +++++++++
+ drivers/net/phy/dp83822.c                     | 161 ++++++++++++++++++
+ 2 files changed, 241 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/ti,dp83822.yaml
+
 -- 
-2.27.0.383.g050319c2ae-goog
+2.27.0
 
