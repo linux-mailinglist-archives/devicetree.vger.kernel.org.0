@@ -2,68 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BF8521B9AB
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 17:40:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11AB121B9AE
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 17:40:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727782AbgGJPkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jul 2020 11:40:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56574 "EHLO mail.kernel.org"
+        id S1727864AbgGJPkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jul 2020 11:40:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56746 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726872AbgGJPkF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 Jul 2020 11:40:05 -0400
+        id S1726828AbgGJPkS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 Jul 2020 11:40:18 -0400
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2F80C207BB;
-        Fri, 10 Jul 2020 15:40:04 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 90A1A207DD;
+        Fri, 10 Jul 2020 15:40:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1594395604;
-        bh=31SRA1ojL9GpcKLyUiLwLpHPGG0dcpgvSQatvym/bPs=;
+        s=default; t=1594395618;
+        bh=yBGfKHJWIcCaqiK6pZXuN/WxGy9oTJD39ERpyC3HJZE=;
         h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=LZMhp4bX0rgy7ASmfQ8w6c5qwZi78zTA53J/RT7BpqPcGjen1sXLzA1Aou9pff3wT
-         ECKaLD/lzBs3Wn5/zzrSlOTYRQDPX2/4Qa4CVJfoGvkTZtm4sbJeSQ0mGjNBwGQ/3f
-         OEPXq9ouCjLqHgNvdka7TPnZ7xWZFuTCwODcsYYg=
-Date:   Fri, 10 Jul 2020 16:39:58 +0100
+        b=Rh3B0AA2G23e7cN0TqDiNZ4HGpI6QrwnANwUQheACFHuf8KjlMxr0O4i2mN5/pm//
+         qSCl7C95ob72boOGGaEAMR2FyvS4s23I8TtUJ7QjASt7SX4uMog+BDZDYAmj4eDDzj
+         M2xJL0gFbZqD/hKdki0w60glq8BhA3fDqQ5JOXXY=
+Date:   Fri, 10 Jul 2020 16:40:11 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     robh+dt@kernel.org, Tzung-Bi Shih <tzungbi@google.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-In-Reply-To: <20200710052505.3664118-1-tzungbi@google.com>
-References: <20200710052505.3664118-1-tzungbi@google.com>
-Subject: Re: [PATCH 0/6] ASoC: mediatek: mt8183: support DP audio
-Message-Id: <159439557864.48910.15353677231173679587.b4-ty@kernel.org>
+To:     s.hauer@pengutronix.de, kernel@pengutronix.de,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org, shawnguo@kernel.org, robh+dt@kernel.org,
+        Anson Huang <Anson.Huang@nxp.com>, marex@denx.de,
+        devicetree@vger.kernel.org, festevam@gmail.com
+Cc:     Linux-imx@nxp.com
+In-Reply-To: <1592281575-32708-1-git-send-email-Anson.Huang@nxp.com>
+References: <1592281575-32708-1-git-send-email-Anson.Huang@nxp.com>
+Subject: Re: [PATCH V3 0/3] Convert mxs/imx spi/cspi/lpspi binding to json-schema
+Message-Id: <159439561193.49235.7694501887022961004.b4-ty@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Jul 2020 13:24:59 +0800, Tzung-Bi Shih wrote:
-> This series is a follow up for a long time ago series
-> (https://patchwork.kernel.org/cover/11204303/).
+On Tue, 16 Jun 2020 12:26:12 +0800, Anson Huang wrote:
+> This patch series converts mxs/imx spi/cspi/lpspi binding to json-schema.
 > 
-> The old series bound too much on the patches of DRM bridge and ASoC
-> machine driver.  And unluckily, the dependencies
-> (https://lore.kernel.org/patchwork/patch/1126819/) have not applied.
+> In fsl-imx-cspi.yaml, also update compatible, remove obsolete properties
+> "fsl,spi-num-chipselects" and update the example based on latest DT file;
+> 
+> In spi-fsl-lpspi.yaml, the original maintainer's email address pandy.gao@nxp.com
+> is no longer valid, so I use mine.
 > 
 > [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
 Thanks!
 
-[1/6] ASoC: dt-bindings: mt8183: add a property "mediatek, hdmi-codec"
-      commit: cc07e14b149e4260075093c06b371bcb31574ccc
-[2/6] ASoC: mediatek: mt8183: use hdmi-codec
-      commit: f2024dc55fcb743469238aa11f9967e0752ac600
-[3/6] ASoC: mediatek: mt8183: support HDMI jack reporting
-      commit: 88abbf627a56efcd7f24aa119f07069d3d10bd0b
-[4/6] ASoC: dt-bindings: mt8183-da7219: add a property "mediatek, hdmi-codec"
-      commit: 5653841d1e6bace7897a0b5ca681fa37945fa11b
-[5/6] ASoC: mediatek: mt8183-da7219: use hdmi-codec
-      commit: 5bdbe977117741a6bf4958c8dfdcb6b9263e9f1c
-[6/6] ASoC: mediatek: mt8183-da7219: support HDMI jack reporting
-      commit: e25f8afd8869bd97a4d0baea5d8da730913c8541
+[1/3] dt-bindings: spi: Convert mxs spi to json-schema
+      commit: e013bf2d96528c382f232a6ee068990d63e81a3d
+[2/3] dt-bindings: spi: Convert imx cspi to json-schema
+      commit: 790739c4417c17b2201bc742a9d5d819ea71799f
+[3/3] dt-bindings: spi: Convert imx lpspi to json-schema
+      commit: be8faebc2e55b2e5a335b606d11d070d53e78133
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
