@@ -2,121 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5403D21B29F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 11:47:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD90D21B2B1
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 11:52:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727060AbgGJJql (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jul 2020 05:46:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56616 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728112AbgGJJqj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jul 2020 05:46:39 -0400
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4560AC08C5DC
-        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2020 02:46:39 -0700 (PDT)
-Received: by mail-pf1-x443.google.com with SMTP id a14so2327416pfi.2
-        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2020 02:46:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=IiSZdtFwKwHNBZOweoCEZNTpFyXOI2NF01y7ZbXZOTk=;
-        b=RydD085pKT0b9+NpuJwO0tdgshoGEZNx/AhEt5n3kfl3cx2WJzywCcdnPTvGFULF72
-         961lMEHFVczSkaV0F9k6rewCArn58gmhZKIdjKpVy75CqyS+U/B6LQ1Bcb/Tk4ryvAUi
-         NxkiAOIALY02FUQJmiGhG3fmJ1IbCNgCNK3Gs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=IiSZdtFwKwHNBZOweoCEZNTpFyXOI2NF01y7ZbXZOTk=;
-        b=gjDFzu5fe60wmYq+tCstr4xCrB6fqNZHzP7M0NTyp0pWEuNmRJwYih8j0aVjLxAXQp
-         VLK50VBOyCODTyJOGUgc2SmoH5d3D+7L1CHP7pGxG0X0V3Q3tDIylXpdtJNnno8s6ZkA
-         CYq5u2cCwd9q6iWZX6bNBHwKqY1wNCNGA5iMFmuKbe3ChZuDMcc0TFgfsjKmZxEwXwto
-         J9ZSWQ5+sCyDUpWpNG4z9WCHrX2TUJBAsSmFLqSG+VkEgjqpIBAvS2TQSXlb8KV1dPcw
-         FDZKN12x6LuTCurzBeF75/G5ccXFvpolCSKcrz59qJyP+BCpzh9gw4eKZ1nrWaEqB69o
-         lGOQ==
-X-Gm-Message-State: AOAM532CRr7BFSl3QglS3gNsn099mYdUgbDaC//ucab+fqaMg2qC6JBp
-        3YQRZyOl+tKPAgMSeLihcCVlYw==
-X-Google-Smtp-Source: ABdhPJxRLK+HF3RoRsHoDJrpSwyCcu6NSk63Rd02qQcNLWwyf9MKQPlLn3+V8DlqwpidZkcVz/hs6w==
-X-Received: by 2002:a63:fc01:: with SMTP id j1mr59035011pgi.0.1594374398814;
-        Fri, 10 Jul 2020 02:46:38 -0700 (PDT)
-Received: from shiro.work ([2400:4162:2428:2f01:7285:c2ff:fe8e:66d7])
-        by smtp.googlemail.com with ESMTPSA id z9sm5133213pgh.94.2020.07.10.02.46.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jul 2020 02:46:38 -0700 (PDT)
-From:   Daniel Palmer <daniel@0x0f.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, linux@armlinux.org.uk, arnd@arndb.de,
-        afaerber@suse.de, maz@kernel.org, w@1wt.eu,
-        Daniel Palmer <daniel@0x0f.com>
-Subject: [PATCH v5 12/12] ARM: mstar: Add dts for 70mai midrive d08
-Date:   Fri, 10 Jul 2020 18:45:44 +0900
-Message-Id: <20200710094544.430258-13-daniel@0x0f.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200710094544.430258-1-daniel@0x0f.com>
-References: <20200710094544.430258-1-daniel@0x0f.com>
+        id S1726818AbgGJJwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jul 2020 05:52:10 -0400
+Received: from mail-eopbgr20057.outbound.protection.outlook.com ([40.107.2.57]:54030
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726560AbgGJJwK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 Jul 2020 05:52:10 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EcciSGfvbRj9a8O6dQHWM7Qa1/CBdXLyNDA4+k8S7AZ/EACKxxxBxA+xqk76ntENLoNpzk3LsLcd/5SRkOQpMFuJ6Qr1Bx+dPSQOKveIz3KJUxOWmdpkXbn7tzp6dnWSVlATf916HejRjLF7uSD+iJiYSf5amMB5QlA38uN6CYno1aNDk3BLTqiK/fso0xnqRy+StxpCqDVciI/FBLzs2lGQA74p62ggrFbYZaRjAimDTXL1UIqa9Bm6CVnXrRUifdkLcJSyb128PONL+RFgIiTTGlQmXcDcZVXrTYh/I2KwmLbMXI1sU8wXLS3XnQ+vnP53XV09DIRZoX8FA0XmwA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Uj1p96EV+bN+Q7ds+bpmiVZu2zjFogs0q0tQ1bFVtQ8=;
+ b=bcBKgdrp6U9AvGHJh7kqDrEN+JS1ccfpaw6AMVkft5h/YbXwJrZAaYkGywMfwKQwkSFJ3zUiFdZDY73K+4Vd8P5PWhsjeZEnwfQQVmYQFqB+v8VY/GA58ofZjv2heiC7d3A2pdY+WTGIpAqH4+EzEvttNOX9Tj1CsrMiLFKDU4Qylt5b/D/fRiBAzN5zcR7TW3zlv2+uByO6iWg173CDEVjhcznMC6k0AQ+yAjrqomNyuJ8O2VE528ArtXvDdpvwv7GUmXBi+VLoRol7oOu7/unrzm+lyvJ/SSRI75PSLWa4Q2U9SmdvgU85/WwqicA5D92/TWKfZp9UE9/hSwNVCA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Uj1p96EV+bN+Q7ds+bpmiVZu2zjFogs0q0tQ1bFVtQ8=;
+ b=W3IoGo37JcwmngSmOtKKhIq3Sq27tuhc3ZqidGEhTCBvmwkZVE6W21CbkSvY/cggxl7BiooFReOhSdWrzErdkdCzFdVvP70Pax8clNGJu9ExpuvGZsm5h+nxTsqYJdODoWWjz7t2K6esLSqB+hjBoX9wCAtBFYlVgqApoB8tthY=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
+Received: from VE1PR04MB6702.eurprd04.prod.outlook.com (2603:10a6:803:123::13)
+ by VI1PR04MB3200.eurprd04.prod.outlook.com (2603:10a6:802:d::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.20; Fri, 10 Jul
+ 2020 09:52:06 +0000
+Received: from VE1PR04MB6702.eurprd04.prod.outlook.com
+ ([fe80::81c4:97a6:7592:f225]) by VE1PR04MB6702.eurprd04.prod.outlook.com
+ ([fe80::81c4:97a6:7592:f225%7]) with mapi id 15.20.3174.023; Fri, 10 Jul 2020
+ 09:52:06 +0000
+From:   Wasim Khan <wasim.khan@oss.nxp.com>
+To:     shawnguo@kernel.org, robh+dt@kernel.org, zhiqiang.hou@nxp.com,
+        V.sethi@nxp.com, leoyang.li@nxp.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Wasim Khan <wasim.khan@nxp.com>
+Subject: [PATCH] arm64: dts: lx2160a: Increase configuration space size
+Date:   Fri, 10 Jul 2020 15:21:44 +0530
+Message-Id: <1594374704-11323-1-git-send-email-wasim.khan@oss.nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0055.apcprd02.prod.outlook.com
+ (2603:1096:4:54::19) To VE1PR04MB6702.eurprd04.prod.outlook.com
+ (2603:10a6:803:123::13)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from lsv03032.swis.in-blr01.nxp.com (14.142.151.118) by SG2PR02CA0055.apcprd02.prod.outlook.com (2603:1096:4:54::19) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3174.21 via Frontend Transport; Fri, 10 Jul 2020 09:52:03 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [14.142.151.118]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 52ed5485-8170-4c73-3043-08d824b6e759
+X-MS-TrafficTypeDiagnostic: VI1PR04MB3200:
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR04MB3200ECE010F26956E4245180D1650@VI1PR04MB3200.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1850;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: bM4A5LKGWAoqP2JwnbRh5CS6Ok5J6t+bwVoKy9qwLYR/RloddnT5Aouyad5hqNFALeuTyHGKniZnuK8lGYOeaJIY/uEQi9Y12UR8C4sYMlUq/gT9mbJm5pC01FoXJPzkfnmiqyhIjlqulTP3+smjIOWJYsfT+7V2bxuDtZLFgwXheO06EPL8pLGVFEBaAVVZNZmvVyp9x35ro9wowBlqCguqcziHjL5cmL4MRfTnUPlcwT0rXeVIEF+tEVu4UyRFKzW3kDcTAMqupiQvm1MEVdd3xAtuzQc2T5GMoAVET4pyhwwpNTvGoWmxXfWYpQBf5X2NADNgTw4xC97gaJUDu/OaN+JHMEJKAwZz3aY9j/h7Qd8Dz5mcqznsHfYV+hH/
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6702.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(136003)(346002)(39860400002)(366004)(396003)(376002)(44832011)(52116002)(16526019)(2616005)(4326008)(5660300002)(83380400001)(956004)(186003)(66556008)(26005)(6512007)(478600001)(2906002)(66946007)(66476007)(6506007)(316002)(8676002)(6486002)(6666004)(55236004)(86362001)(8936002)(1006002)(110426005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: cYjU8NXraVn6oQZ/reWpkRHv/0r/H1aNA5gx74w5nhRzjVAUfZamts1lFtlnqt+7OKYWqf8bsRBW2TnEHARpjTZ1vhvlGbczxPdc+XinrPto2Pi3XEpdzTEmtwvV0Xs/6/EzLyZPIGYHKHFlE6g/VKSTYa63pM9QVDwlPhN1+ipElNwtDibl0FqDXsF8NEYoHV6dFZLbhMZw0YvGt8c7OCAUmeXB4nAuLaMo468WLRLeyl5hG6SABUP0jMx8xfSnYODxB3d0knTLSJV/mXBXNSDe6bH2qD9PVci7kMccGGKSdd0Cw1C6RsR+2zRicg/clIzIg1rv+nIFPd0qi1DE815ac2CVETrofA8SldtP+FNwCIjzAchsfcyTc9sVhUeBgPDvC/FuMdyQMFKBI/6R6NhAiCJh5v26t9fH++4m3duP1PfeUnrV4UyedkBR9qiRJO3+UmliC5KklPS0cyZxYv38AfzxK9PDUoK58wEulh5+xHo3KEhlI45pZIluZcWi
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 52ed5485-8170-4c73-3043-08d824b6e759
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6702.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2020 09:52:05.9323
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Ozo9FuwfEQsCGdlySAIw2V7a7V1Nj/Pxf8CAj3yXLJG/IxbGFCL+NFkjsmKP4u3zYfx0J+TRQ1Hjj7X2CLk+8g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB3200
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds initial support for the 70mai midrive d08 dash camera.
+From: Wasim Khan <wasim.khan@nxp.com>
 
-Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+lx2160a rev2 requires 4KB space for type0 and 4KB
+space for type1 iATU window. Increase configuration
+space size to 8KB to have sufficient space for type0
+and type1 window.
+
+Signed-off-by: Wasim Khan <wasim.khan@nxp.com>
+Reviewed-by: Li Yang <leoyang.li@nxp.com>
+Acked-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 ---
- arch/arm/boot/dts/Makefile                    |  3 ++-
- .../boot/dts/mercury5-ssc8336n-midrived08.dts | 25 +++++++++++++++++++
- 2 files changed, 27 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/mercury5-ssc8336n-midrived08.dts
+ arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 4a5f8075a4f6..35c7ecc52c60 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1344,7 +1344,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += \
- dtb-$(CONFIG_ARCH_MILBEAUT) += milbeaut-m10v-evb.dtb
- dtb-$(CONFIG_ARCH_MSTARV7) += \
- 	infinity-msc313-breadbee_crust.dtb \
--	infinity3-msc313e-breadbee.dtb
-+	infinity3-msc313e-breadbee.dtb \
-+	mercury5-ssc8336n-midrive08.dtb
- dtb-$(CONFIG_ARCH_ZX) += zx296702-ad1.dtb
- dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-ast2500-evb.dtb \
-diff --git a/arch/arm/boot/dts/mercury5-ssc8336n-midrived08.dts b/arch/arm/boot/dts/mercury5-ssc8336n-midrived08.dts
-new file mode 100644
-index 000000000000..f24bd8cb8e60
---- /dev/null
-+++ b/arch/arm/boot/dts/mercury5-ssc8336n-midrived08.dts
-@@ -0,0 +1,25 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (c) 2020 thingy.jp.
-+ * Author: Daniel Palmer <daniel@thingy.jp>
-+ */
-+
-+/dts-v1/;
-+#include "mercury5-ssc8336n.dtsi"
-+
-+/ {
-+	model = "70mai Midrive D08";
-+	compatible = "70mai,midrived08", "mstar,mercury5";
-+
-+	aliases {
-+		serial0 = &pm_uart;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&pm_uart {
-+	status = "okay";
-+};
+diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+index abaeb58..037c4b9 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+@@ -2,7 +2,7 @@
+ //
+ // Device Tree Include file for Layerscape-LX2160A family SoC.
+ //
+-// Copyright 2018 NXP
++// Copyright 2018-2020 NXP
+ 
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+@@ -957,7 +957,7 @@
+ 		pcie@3400000 {
+ 			compatible = "fsl,lx2160a-pcie";
+ 			reg = <0x00 0x03400000 0x0 0x00100000   /* controller registers */
+-			       0x80 0x00000000 0x0 0x00001000>; /* configuration space */
++			       0x80 0x00000000 0x0 0x00002000>; /* configuration space */
+ 			reg-names = "csr_axi_slave", "config_axi_slave";
+ 			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>, /* AER interrupt */
+ 				     <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>, /* PME interrupt */
+@@ -985,7 +985,7 @@
+ 		pcie@3500000 {
+ 			compatible = "fsl,lx2160a-pcie";
+ 			reg = <0x00 0x03500000 0x0 0x00100000   /* controller registers */
+-			       0x88 0x00000000 0x0 0x00001000>; /* configuration space */
++			       0x88 0x00000000 0x0 0x00002000>; /* configuration space */
+ 			reg-names = "csr_axi_slave", "config_axi_slave";
+ 			interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>, /* AER interrupt */
+ 				     <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>, /* PME interrupt */
+@@ -1013,7 +1013,7 @@
+ 		pcie@3600000 {
+ 			compatible = "fsl,lx2160a-pcie";
+ 			reg = <0x00 0x03600000 0x0 0x00100000   /* controller registers */
+-			       0x90 0x00000000 0x0 0x00001000>; /* configuration space */
++			       0x90 0x00000000 0x0 0x00002000>; /* configuration space */
+ 			reg-names = "csr_axi_slave", "config_axi_slave";
+ 			interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>, /* AER interrupt */
+ 				     <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>, /* PME interrupt */
+@@ -1041,7 +1041,7 @@
+ 		pcie@3700000 {
+ 			compatible = "fsl,lx2160a-pcie";
+ 			reg = <0x00 0x03700000 0x0 0x00100000   /* controller registers */
+-			       0x98 0x00000000 0x0 0x00001000>; /* configuration space */
++			       0x98 0x00000000 0x0 0x00002000>; /* configuration space */
+ 			reg-names = "csr_axi_slave", "config_axi_slave";
+ 			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>, /* AER interrupt */
+ 				     <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>, /* PME interrupt */
+@@ -1069,7 +1069,7 @@
+ 		pcie@3800000 {
+ 			compatible = "fsl,lx2160a-pcie";
+ 			reg = <0x00 0x03800000 0x0 0x00100000   /* controller registers */
+-			       0xa0 0x00000000 0x0 0x00001000>; /* configuration space */
++			       0xa0 0x00000000 0x0 0x00002000>; /* configuration space */
+ 			reg-names = "csr_axi_slave", "config_axi_slave";
+ 			interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>, /* AER interrupt */
+ 				     <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>, /* PME interrupt */
+@@ -1097,7 +1097,7 @@
+ 		pcie@3900000 {
+ 			compatible = "fsl,lx2160a-pcie";
+ 			reg = <0x00 0x03900000 0x0 0x00100000   /* controller registers */
+-			       0xa8 0x00000000 0x0 0x00001000>; /* configuration space */
++			       0xa8 0x00000000 0x0 0x00002000>; /* configuration space */
+ 			reg-names = "csr_axi_slave", "config_axi_slave";
+ 			interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>, /* AER interrupt */
+ 				     <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>, /* PME interrupt */
 -- 
-2.27.0
+2.7.4
 
