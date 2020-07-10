@@ -2,78 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7708821B79F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 16:02:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05FE421B805
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 16:14:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728054AbgGJOCr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jul 2020 10:02:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49776 "EHLO mail.kernel.org"
+        id S1728397AbgGJON4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jul 2020 10:13:56 -0400
+Received: from 8bytes.org ([81.169.241.247]:52302 "EHLO theia.8bytes.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728328AbgGJOCo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 Jul 2020 10:02:44 -0400
-Received: from localhost (unknown [137.135.114.1])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6097C207BB;
-        Fri, 10 Jul 2020 14:02:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1594389764;
-        bh=sPHnyFrT+qxKtGBUJegtEf5cWJ1hNsRdvHyYkSenN88=;
-        h=Date:From:To:To:To:Cc:Cc:Subject:In-Reply-To:References:From;
-        b=yJP2EcgkVLL3gWd0gyUu7mJrsLdmxob5/Bu2hr9dRBP4ui92qGL6zDQjzVsCCUzD0
-         Y7XMYFxgp4pcp5SQP6t1H7a1IlGPyYfkNdwLKi1gtunCYzWopZ0xtsxMzPa6FS1Edv
-         HDq7MrCxH94vZ0SGSkdrJ8e1MpReaNaJq4cyPi2o=
-Date:   Fri, 10 Jul 2020 14:02:43 +0000
-From:   Sasha Levin <sashal@kernel.org>
-To:     Sasha Levin <sashal@kernel.org>
-To:     Dinh Nguyen <dinguyen@kernel.org>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org
-Cc:     stable@vger.kernel.org
-Subject: Re: [PATCH 2/3] arm64: dts: stratix10: add status to qspi dts node
-In-Reply-To: <20200629203949.6601-2-dinguyen@kernel.org>
-References: <20200629203949.6601-2-dinguyen@kernel.org>
-Message-Id: <20200710140244.6097C207BB@mail.kernel.org>
+        id S1726896AbgGJONz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 Jul 2020 10:13:55 -0400
+Received: by theia.8bytes.org (Postfix, from userid 1000)
+        id E00A920C; Fri, 10 Jul 2020 16:13:50 +0200 (CEST)
+Date:   Fri, 10 Jul 2020 16:13:49 +0200
+From:   Joerg Roedel <joro@8bytes.org>
+To:     Chao Hao <chao.hao@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, wsd_upstream@mediatek.com,
+        FY Yang <fy.yang@mediatek.com>, Yong Wu <yong.wu@mediatek.com>,
+        TH Yang <th.yang@mediatek.com>
+Subject: Re: [PATCH v6 00/10] MT6779 IOMMU SUPPORT
+Message-ID: <20200710141349.GJ27672@8bytes.org>
+References: <20200703044127.27438-1-chao.hao@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200703044127.27438-1-chao.hao@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+On Fri, Jul 03, 2020 at 12:41:17PM +0800, Chao Hao wrote:
+> Chao Hao (10):
+>   dt-bindings: mediatek: Add bindings for MT6779
+>   iommu/mediatek: Rename the register STANDARD_AXI_MODE(0x48) to MISC_CTRL
+>   iommu/mediatek: Use a u32 flags to describe different HW features
+>   iommu/mediatek: Setting MISC_CTRL register
+>   iommu/mediatek: Move inv_sel_reg into the plat_data
+>   iommu/mediatek: Add sub_comm id in translation fault
+>   iommu/mediatek: Add REG_MMU_WR_LEN_CTRL register definition
+>   iommu/mediatek: Extend protect pa alignment value
+>   iommu/mediatek: Modify MMU_CTRL register setting
+>   iommu/mediatek: Add mt6779 basic support
 
-[This is an automated email]
-
-This commit has been processed because it contains a "Fixes:" tag
-fixing commit: 0cb140d07fc7 ("arm64: dts: stratix10: Add QSPI support for Stratix10").
-
-The bot has tested the following trees: v5.7.7, v5.4.50, v4.19.131.
-
-v5.7.7: Build OK!
-v5.4.50: Failed to apply! Possible dependencies:
-    3c0f3b8545e79 ("arm64: dts: add NAND board files for Stratix10 and Agilex")
-
-v4.19.131: Failed to apply! Possible dependencies:
-    116edf6e5239e ("MIPS: mscc: add DT for Ocelot PCB120")
-    1ac832509f2ea ("nds32: Support FP emulation")
-    387181dcdb6c1 ("RISC-V: Always compile mm/init.c with cmodel=medany and notrace")
-    3c0f3b8545e79 ("arm64: dts: add NAND board files for Stratix10 and Agilex")
-    4b36daf9ada30 ("arm64: dts: agilex: Add initial support for Intel's Agilex SoCFPGA")
-    704cfd7f5f71c ("ARM: sti: remove pen_release and boot_lock")
-    78e3dbc166a13 ("ARM: Prepare RDA8810PL SoC")
-    7938e6315c9af ("nds32: Power management for nds32")
-    9671f7061433e ("Allow to disable FPU support")
-    9fb29c734f9e9 ("ARM: milbeaut: Add basic support for Milbeaut m10v SoC")
-    c32e64e852f3f ("csky: Build infrastructure")
-    c4c14c3bd177e ("csky: remove builtin-dtb Kbuild")
-    e46bf83c1864a ("nds32: nds32 FPU port")
-    ebd09753b5707 ("nds32: Perf porting")
-    ec8f24b7faaf3 ("treewide: Add SPDX license identifier - Makefile/Kconfig")
-
-
-NOTE: The patch will not be queued to stable trees until it is upstream.
-
-How should we proceed with this patch?
-
--- 
-Thanks
-Sasha
+Applied, thanks.
