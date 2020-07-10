@@ -2,192 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 123AE21BDF6
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 21:46:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2BAE21BE31
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 22:01:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728590AbgGJTqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jul 2020 15:46:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36390 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728572AbgGJTqT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jul 2020 15:46:19 -0400
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CD61C08E6DC;
-        Fri, 10 Jul 2020 12:46:19 -0700 (PDT)
-Received: by mail-ej1-x643.google.com with SMTP id l12so7289446ejn.10;
-        Fri, 10 Jul 2020 12:46:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ItfQ8L/Er3Hk4c2uSxofOAEu4o/bM64EAYLfz2K5ECQ=;
-        b=FHYMRFQOPQBahtYhgz8M1TfOZPMyoiEsVlfldmypxKAHVYOe/DPRNk9hocDMdZBXbL
-         Xp8/QHddPGFWBsp/EzId0hEm/PBFZHHy+SylzYzP0Nm2y+dbCDepU/81bNe3FD/+BrwU
-         q7WxCE+3AT8aLGvvBZvT2bKG6qL0LJwb7Erju6Ox5h98vhLfOLgShWBHscBGOAy53Et3
-         5stZvE08xLJc0R88/1KtZLrQJpX6MO5g7ZCHzd0SAGOSgz8DvXeRHCQK9KRekyrdXkTh
-         2hG11a9n7P8CpiQHQg4BVJYidFhgZuHt6GEOuCpwccEU1iOePvwIUsdtWUMn3XQoTMLN
-         cvKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ItfQ8L/Er3Hk4c2uSxofOAEu4o/bM64EAYLfz2K5ECQ=;
-        b=bXk9LklmwWjZ72r4rYNZkd2GHr+p3+reLmSjJPO+R+p84owtwBUaFdnK8RdCG9bkjk
-         fzqRvGdaBGtttzYHXZ1gCDlnDvI+aw/KUNJoPEynTKgd+dhNDvjOvF+DNO0GjiMAglCp
-         LsiQGSboDPPARpCWGYDj9JkJrzvMJoR3w2wjH+maOW8cniJYPJS7inuWJhhzyVV9QBb2
-         QGhBnEoyQ++ghNCWpMmHjWYTF91KrJRbvn/Rn+sAD2kM/sGm/hhOICf1WtBKXAIwPP1J
-         /81DS4frqkN8c0eU/jjoJASPENZxQWNJcOy1Iw0xgHsvpFqlmNe2HlWF/+F4+1PBw2bN
-         n5uA==
-X-Gm-Message-State: AOAM53270Hysim7ZJpjlHjSoj8ZPFolHHWKT1F/cKWKNeWDlG95YhwDM
-        5WLNGuW554SGafeJOyeJDhE=
-X-Google-Smtp-Source: ABdhPJyegOvV7pWaDXp0wHvfbYv+3ypu27dlyWQ1uNiRjTQ2sOXdeePRRXUtVRAURro7V1LfQcouwQ==
-X-Received: by 2002:a17:906:b353:: with SMTP id cd19mr55772899ejb.395.1594410377750;
-        Fri, 10 Jul 2020 12:46:17 -0700 (PDT)
-Received: from Ansuel-XPS.localdomain (host-87-16-250-164.retail.telecomitalia.it. [87.16.250.164])
-        by smtp.googlemail.com with ESMTPSA id kt4sm4155768ejb.48.2020.07.10.12.46.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jul 2020 12:46:17 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Amit Kucheria <amit.kucheria@linaro.org>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 6/6] drivers: thermal: tsens: add set_trip support for 8960
-Date:   Fri, 10 Jul 2020 21:45:57 +0200
-Message-Id: <20200710194558.26487-7-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200710194558.26487-1-ansuelsmth@gmail.com>
-References: <20200710194558.26487-1-ansuelsmth@gmail.com>
+        id S1727828AbgGJUBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jul 2020 16:01:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45536 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726832AbgGJUBP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 Jul 2020 16:01:15 -0400
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 448CE2075D;
+        Fri, 10 Jul 2020 20:01:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1594411275;
+        bh=uxSaA+fCdlWn4qcPwLruiKx79jbqmYw66ELH749IiaE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=1wPkaE20z7plsMQiJwhVZ0+paqUwAPcL9GsKXf1XrgHsHp6QKFd3U0qwNQj1wVKw6
+         oFM2bYRdanLlb02iDrG6quyLCCI8fDqDyAlcxJYyq5iMV0fXlzOygHrhBaOBnc10fv
+         qOZWzZ3l5FqPvoVBsTQgTCr2YMgP9r32B1WtrAIw=
+Received: by mail-oi1-f174.google.com with SMTP id k6so5733973oij.11;
+        Fri, 10 Jul 2020 13:01:15 -0700 (PDT)
+X-Gm-Message-State: AOAM5302QEB6q2hQdZ1j4ExEPq/yphh+1JBvgadblNSxBqEwzmamzPv1
+        dz1hv0Vu/h27fovdMNl7OjJT0MCJeS8wNqhTaw==
+X-Google-Smtp-Source: ABdhPJwp+smXE3Nydu1By4o0JE3KuEQE3LX21t7xmomGltsl4AiTMSJDziZ1tEKIqsf+vYtAAi8lMSlSyNN6DaD306U=
+X-Received: by 2002:aca:bb82:: with SMTP id l124mr5612171oif.106.1594411274634;
+ Fri, 10 Jul 2020 13:01:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200701130129.30961-1-benjamin.gaignard@st.com>
+ <20200701130129.30961-2-benjamin.gaignard@st.com> <20200709203718.GA837160@bogus>
+ <20e4907a-f218-3e43-1111-7d4b9ee6d945@st.com>
+In-Reply-To: <20e4907a-f218-3e43-1111-7d4b9ee6d945@st.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 10 Jul 2020 14:01:02 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+VgXTJy1SQr6B63kLZ3wcRMe4YfYiRNCT6s=gUO_tmTw@mail.gmail.com>
+Message-ID: <CAL_Jsq+VgXTJy1SQr6B63kLZ3wcRMe4YfYiRNCT6s=gUO_tmTw@mail.gmail.com>
+Subject: Re: [PATCH v7 1/3] dt-bindings: media: stm32-dcmi: Add DCMI min
+ frequency property
+To:     Benjamin GAIGNARD <benjamin.gaignard@st.com>
+Cc:     Hugues FRUCHET <hugues.fruchet@st.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
+        Alexandre TORGUE <alexandre.torgue@st.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "vincent.guittot@linaro.org" <vincent.guittot@linaro.org>,
+        "valentin.schneider@arm.com" <valentin.schneider@arm.com>,
+        "rjw@rjwysocki.net" <rjw@rjwysocki.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add custom set_trip function for 8960 needed to set trip point to the
-tsens driver for 8960 driver.
+On Fri, Jul 10, 2020 at 1:33 AM Benjamin GAIGNARD
+<benjamin.gaignard@st.com> wrote:
+>
+>
+>
+> On 7/9/20 10:37 PM, Rob Herring wrote:
+> > On Wed, Jul 01, 2020 at 03:01:27PM +0200, Benjamin Gaignard wrote:
+> >> Document st,stm32-dcmi-min-frequency property which is used to
+> >> request CPUs minimum frequency when streaming frames.
+> >>
+> >> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
+> >> ---
+> >>   Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml | 8 ++++++++
+> >>   1 file changed, 8 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
+> >> index 3fe778cb5cc3..05ca85a2411a 100644
+> >> --- a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
+> >> +++ b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
+> >> @@ -44,6 +44,13 @@ properties:
+> >>         bindings defined in
+> >>         Documentation/devicetree/bindings/media/video-interfaces.txt.
+> >>
+> >> +  st,stm32-dcmi-min-frequency:
+> >> +    description: DCMI minimum CPUs frequency requirement (in KHz).
+> >> +    allOf:
+> >> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> >> +      - minimum: 0
+> >> +      - default: 0
+> > I think this is questionable to be in DT and if it is, it's something
+> > that's hardly specific to ST or this block. IIRC, we already have a way
+> > to specify minimum OPPs.
+> This binding is only needed on some STM32 SoC when DVFS is activated
+> with low frequency setting in opp. The value also depends of the targeted
+> video format and framerate.
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
----
- drivers/thermal/qcom/tsens-8960.c | 78 +++++++++++++++++++++++++++++++
- 1 file changed, 78 insertions(+)
+As those 2 things are not in the DT, then neither should this value be.
 
-diff --git a/drivers/thermal/qcom/tsens-8960.c b/drivers/thermal/qcom/tsens-8960.c
-index 2dc670206896..321791b8aabf 100644
---- a/drivers/thermal/qcom/tsens-8960.c
-+++ b/drivers/thermal/qcom/tsens-8960.c
-@@ -93,6 +93,15 @@
- 						TSENS_8064_SENSOR9_EN | \
- 						TSENS_8064_SENSOR10_EN)
- 
-+/* Trips: from very hot to very cold */
-+enum tsens_trip_type {
-+	TSENS_TRIP_STAGE3 = 0,
-+	TSENS_TRIP_STAGE2,
-+	TSENS_TRIP_STAGE1,
-+	TSENS_TRIP_STAGE0,
-+	TSENS_TRIP_NUM,
-+};
-+
- u32 tsens_8960_slope[] = {
- 			1176, 1176, 1154, 1176,
- 			1111, 1132, 1132, 1199,
-@@ -110,6 +119,16 @@ static inline int code_to_mdegC(u32 adc_code, const struct tsens_sensor *s)
- 	return adc_code * slope + offset;
- }
- 
-+static int mdegC_to_code(int degC, const struct tsens_sensor *s)
-+{
-+	int slope, offset;
-+
-+	slope = thermal_zone_get_slope(s->tzd);
-+	offset = CAL_MDEGC - slope * s->offset;
-+
-+	return degC / slope - offset;
-+}
-+
- static void notify_uspace_tsens_fn(struct work_struct *work)
- {
- 	struct tsens_sensor *s = container_of(work, struct tsens_sensor,
-@@ -442,6 +461,64 @@ static int get_temp_8960(const struct tsens_sensor *s, int *temp)
- 	return -ETIMEDOUT;
- }
- 
-+static int set_trip_temp_ipq8064(void *data, int trip, int temp)
-+{
-+	unsigned int reg_th, reg_cntl;
-+	int ret, code, code_chk, hi_code, lo_code;
-+	const struct tsens_sensor *s = data;
-+	struct tsens_priv *priv = s->priv;
-+
-+	code = mdegC_to_code(temp, s);
-+	code_chk = code;
-+
-+	if (code < THRESHOLD_MIN_CODE || code > THRESHOLD_MAX_CODE)
-+		return -EINVAL;
-+
-+	ret = regmap_read(priv->tm_map, STATUS_CNTL_ADDR_8064, &reg_cntl);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_read(priv->tm_map, THRESHOLD_ADDR, &reg_th);
-+	if (ret)
-+		return ret;
-+
-+	hi_code = (reg_th & THRESHOLD_UPPER_LIMIT_MASK)
-+			>> THRESHOLD_UPPER_LIMIT_SHIFT;
-+	lo_code = (reg_th & THRESHOLD_LOWER_LIMIT_MASK)
-+			>> THRESHOLD_LOWER_LIMIT_SHIFT;
-+
-+	switch (trip) {
-+	case TSENS_TRIP_STAGE3:
-+		code <<= THRESHOLD_MAX_LIMIT_SHIFT;
-+		reg_th &= ~THRESHOLD_MAX_LIMIT_MASK;
-+		break;
-+	case TSENS_TRIP_STAGE2:
-+		if (code_chk <= lo_code)
-+			return -EINVAL;
-+		code <<= THRESHOLD_UPPER_LIMIT_SHIFT;
-+		reg_th &= ~THRESHOLD_UPPER_LIMIT_MASK;
-+		break;
-+	case TSENS_TRIP_STAGE1:
-+		if (code_chk >= hi_code)
-+			return -EINVAL;
-+		code <<= THRESHOLD_LOWER_LIMIT_SHIFT;
-+		reg_th &= ~THRESHOLD_LOWER_LIMIT_MASK;
-+		break;
-+	case TSENS_TRIP_STAGE0:
-+		code <<= THRESHOLD_MIN_LIMIT_SHIFT;
-+		reg_th &= ~THRESHOLD_MIN_LIMIT_MASK;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	ret = regmap_write(priv->tm_map, THRESHOLD_ADDR, reg_th | code);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
- static const struct tsens_ops ops_8960 = {
- 	.init		= init_8960,
- 	.calibrate	= calibrate_8960,
-@@ -450,6 +527,7 @@ static const struct tsens_ops ops_8960 = {
- 	.disable	= disable_8960,
- 	.suspend	= suspend_8960,
- 	.resume		= resume_8960,
-+	.set_trip_temp	= set_trip_temp_ipq8064,
- };
- 
- struct tsens_plat_data data_8960 = {
--- 
-2.27.0
+> It is not an opp because it doesn't define a voltage-current-frequency
+> combination
+> but only set a minimum target for the CPUs frequency to guaranty a good
+> reaction
+> time when handling IRQs for the sensor.
 
+OPPs can be frequency only. This is pretty clearly defining the CPU
+must Operate at a certain minimum Performance Point.
+
+Rob
