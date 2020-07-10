@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C777D21B295
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 11:47:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD2AB21B297
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 11:47:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728044AbgGJJqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jul 2020 05:46:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56546 "EHLO
+        id S1728059AbgGJJq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jul 2020 05:46:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728034AbgGJJqU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jul 2020 05:46:20 -0400
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0544C08C5DC
-        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2020 02:46:20 -0700 (PDT)
-Received: by mail-pf1-x442.google.com with SMTP id a14so2327047pfi.2
-        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2020 02:46:20 -0700 (PDT)
+        with ESMTP id S1728043AbgGJJqY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jul 2020 05:46:24 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDCBAC08C5DC
+        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2020 02:46:23 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id w2so2288341pgg.10
+        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2020 02:46:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=0x0f.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=/qLCTDKT97RegvoxMjbs2u6kPwgi/lEYfy74zNQUpW4=;
-        b=F92s58MVcvj2/M3PBmKtwrBVjCHSxph92nRpbBoF4l0jZJpDJ8SvoWZhI6eYKYGtBN
-         sw5FEC21Ww4vbWB+isXpupV+LDVgti9yiIBEk9B/sK1DWOkIxyfuURk/oL8BPjt/upc1
-         TjqEqYhHmAwfLgG7CUsIemIFUFQDctVGasDSc=
+        bh=3QX7mr2czZhjXYilcEPsm3JJuQZMY4I8zbNHVBoLG5o=;
+        b=kfa1c32YEKjeTfDKHQAKtV8FgiuI1D8K0yOcy05VLxl5eFkOU4UF6V22Xj7GeoczAp
+         ai941cnu1m42k3FmtXaAzEeP+jb4mRKbSKx+z4gSG+uULsOkZsWQ8VN+2RqHVZzr4KAC
+         qGDjCEotAwW9ianPnMePwrDXejhy6qY39DuVE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=/qLCTDKT97RegvoxMjbs2u6kPwgi/lEYfy74zNQUpW4=;
-        b=Rgfp+97eqiTdYg/fnFCiggZWXEo9xpjY07KYhwG3iBqTkrS9BS5bFXNFvZ1e10eChi
-         QNizjHbJtF8DFRLdl3b8VcbC1PEJB3CHauUK8KiCxo56cXsbLV9yug82hz1gSL9Drpio
-         gaSuIm54WaIKGkn4k3t+OLI8gOndMSLdGSCB0XJGH11H9W1P1SceHy4SSfkSxY4vNuZA
-         Y2XbuPdYYdCI1gYcGoPBlvMYA0S22oexhdrL+G7WXKqKvQVN3V72D53kAmWLP3MgMYn3
-         im6qjnl9VCEuRQiPPFkT1NJxHCfWNriRhtHgwjEa3GEbqxhH2+ZshJ5ZrbvqWRS1uvw3
-         04dg==
-X-Gm-Message-State: AOAM530H7rK4qcV2FIj40+7I4MEXa2tINTA5SWJ2Wk5n4BhgvmM5oyi7
-        sy5fS3FsVkNcBPS4TgvkX1FoIw==
-X-Google-Smtp-Source: ABdhPJwmVXaJGMLUEHD5XIjxT6Jj/59NuCvK8+O+kAoA8tOD5UeRok7zK0QPPLTFizLcesaQSScBeQ==
-X-Received: by 2002:a63:fc59:: with SMTP id r25mr34393986pgk.336.1594374380085;
-        Fri, 10 Jul 2020 02:46:20 -0700 (PDT)
+        bh=3QX7mr2czZhjXYilcEPsm3JJuQZMY4I8zbNHVBoLG5o=;
+        b=RT7iSwzF/8kOPfZQaNvyMe2srLbmEpB34hflJp5MPLYZxalWNcZxXBJBdj8Su+gVq7
+         PPGokftxtnwx3d53xlrgQ5HFRFEAlq2eo8Xu4IR/2w/goZKine7e/TMG0QhdxDj2lCgV
+         V2NwWnvc5QKZG4qd7wvgJ7hyYnzksk1VvCIEzxpTNY6cp8vZWT9C7w1zA4kY0nGjay59
+         0Mi0U5fkQRDs7qZX8ZoysVG4DnGy8CChvnVDeZsgnRkfw35LW6ab719Zqsxnrzv79wfV
+         Z1IHF/UaBGnOenCcb9QSaLXtnoH7oB+H6xy7oqo7hvt7KvXO5r30FWcRF7eoSn78fQaz
+         f+rg==
+X-Gm-Message-State: AOAM532ebd5RCrkLGylCvSs6XKwmCniOVtI64xaxf6/nycS87giXCGUF
+        NuG/6Sk3XCTRRtORRrlKudCt4w==
+X-Google-Smtp-Source: ABdhPJyb2uDW5kLd5NsW4DYsjExTjrSLzOxm1x+MHO6glBvrk7cv7KZY20e8IH7bj3QhvrSDFrqw6A==
+X-Received: by 2002:a63:bf04:: with SMTP id v4mr59776470pgf.212.1594374383340;
+        Fri, 10 Jul 2020 02:46:23 -0700 (PDT)
 Received: from shiro.work ([2400:4162:2428:2f01:7285:c2ff:fe8e:66d7])
-        by smtp.googlemail.com with ESMTPSA id z9sm5133213pgh.94.2020.07.10.02.46.17
+        by smtp.googlemail.com with ESMTPSA id z9sm5133213pgh.94.2020.07.10.02.46.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jul 2020 02:46:19 -0700 (PDT)
+        Fri, 10 Jul 2020 02:46:22 -0700 (PDT)
 From:   Daniel Palmer <daniel@0x0f.com>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         robh+dt@kernel.org, linux@armlinux.org.uk, arnd@arndb.de,
         afaerber@suse.de, maz@kernel.org, w@1wt.eu,
-        Daniel Palmer <daniel@0x0f.com>
-Subject: [PATCH v5 06/12] ARM: mstar: Add machine for MStar/Sigmastar Armv7 SoCs
-Date:   Fri, 10 Jul 2020 18:45:38 +0900
-Message-Id: <20200710094544.430258-7-daniel@0x0f.com>
+        Daniel Palmer <daniel@0x0f.com>, Rob Herring <robh@kernel.org>
+Subject: [PATCH v5 07/12] ARM: mstar: Add binding details for mstar,l3bridge
+Date:   Fri, 10 Jul 2020 18:45:39 +0900
+Message-Id: <20200710094544.430258-8-daniel@0x0f.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200710094544.430258-1-daniel@0x0f.com>
 References: <20200710094544.430258-1-daniel@0x0f.com>
@@ -63,189 +63,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Initial support for the MStar/Sigmastar Armv7 based IP camera
-and dashcam SoCs.
-
-These chips are interesting in that they contain a Cortex-A7,
-peripherals and system memory in a single tiny QFN package that
-can be hand soldered allowing almost anyone to embed Linux
-in their projects.
+This adds a YAML description of the l3bridge node needed by the
+platform code for the MStar/SigmaStar Armv7 SoCs.
 
 Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- MAINTAINERS                   |  1 +
- arch/arm/Kconfig              |  2 +
- arch/arm/Makefile             |  1 +
- arch/arm/mach-mstar/Kconfig   | 26 ++++++++++++
- arch/arm/mach-mstar/Makefile  |  1 +
- arch/arm/mach-mstar/mstarv7.c | 80 +++++++++++++++++++++++++++++++++++
- 6 files changed, 111 insertions(+)
- create mode 100644 arch/arm/mach-mstar/Kconfig
- create mode 100644 arch/arm/mach-mstar/Makefile
- create mode 100644 arch/arm/mach-mstar/mstarv7.c
+ .../bindings/misc/mstar,l3bridge.yaml         | 44 +++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/mstar,l3bridge.yaml
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 96110ee8a41c..e433847a7446 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2123,6 +2123,7 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
- W:	http://linux-chenxing.org/
- F:	Documentation/devicetree/bindings/arm/mstar.yaml
-+F:	arch/arm/mach-mstar/
- 
- ARM/NEC MOBILEPRO 900/c MACHINE SUPPORT
- M:	Michael Petchkovsky <mkpetch@internode.on.net>
-diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
-index 2ac74904a3ce..d54c413ad937 100644
---- a/arch/arm/Kconfig
-+++ b/arch/arm/Kconfig
-@@ -668,6 +668,8 @@ source "arch/arm/mach-mmp/Kconfig"
- 
- source "arch/arm/mach-moxart/Kconfig"
- 
-+source "arch/arm/mach-mstar/Kconfig"
-+
- source "arch/arm/mach-mv78xx0/Kconfig"
- 
- source "arch/arm/mach-mvebu/Kconfig"
-diff --git a/arch/arm/Makefile b/arch/arm/Makefile
-index 59fde2d598d8..e7f4ca060c0f 100644
---- a/arch/arm/Makefile
-+++ b/arch/arm/Makefile
-@@ -197,6 +197,7 @@ machine-$(CONFIG_ARCH_MXC)		+= imx
- machine-$(CONFIG_ARCH_MEDIATEK)		+= mediatek
- machine-$(CONFIG_ARCH_MILBEAUT)		+= milbeaut
- machine-$(CONFIG_ARCH_MXS)		+= mxs
-+machine-$(CONFIG_ARCH_MSTARV7)		+= mstar
- machine-$(CONFIG_ARCH_NOMADIK)		+= nomadik
- machine-$(CONFIG_ARCH_NPCM)		+= npcm
- machine-$(CONFIG_ARCH_NSPIRE)		+= nspire
-diff --git a/arch/arm/mach-mstar/Kconfig b/arch/arm/mach-mstar/Kconfig
+diff --git a/Documentation/devicetree/bindings/misc/mstar,l3bridge.yaml b/Documentation/devicetree/bindings/misc/mstar,l3bridge.yaml
 new file mode 100644
-index 000000000000..52744fe32368
+index 000000000000..cb7fd1cdfb1a
 --- /dev/null
-+++ b/arch/arm/mach-mstar/Kconfig
-@@ -0,0 +1,26 @@
-+menuconfig ARCH_MSTARV7
-+	bool "MStar/Sigmastar Armv7 SoC Support"
-+	depends on ARCH_MULTI_V7
-+	select ARM_GIC
-+	select ARM_HEAVY_MB
-+	help
-+	  Support for newer MStar/Sigmastar SoC families that are
-+	  based on Armv7 cores like the Cortex A7 and share the same
-+	  basic hardware like the infinity and mercury series.
++++ b/Documentation/devicetree/bindings/misc/mstar,l3bridge.yaml
+@@ -0,0 +1,44 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2020 thingy.jp.
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/misc/mstar,l3bridge.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+if ARCH_MSTARV7
++title: MStar/SigmaStar Armv7 SoC l3bridge
 +
-+config MACH_INFINITY
-+	bool "MStar/Sigmastar infinity SoC support"
-+	default ARCH_MSTARV7
-+	help
-+	  Support for MStar/Sigmastar infinity IP camera SoCs.
++maintainers:
++  - Daniel Palmer <daniel@thingy.jp>
 +
-+config MACH_MERCURY
-+	bool "MStar/Sigmastar mercury SoC support"
-+	default ARCH_MSTARV7
-+	help
-+	  Support for MStar/Sigmastar mercury dash camera SoCs.
-+	  Note that older Mercury2 SoCs are ARM9 based and not supported.
++description: |
++  MStar/SigmaStar's Armv7 SoCs have a pipeline in the interface
++  between the CPU and memory. This means that before DMA capable
++  devices are allowed to run the pipeline must be flushed to ensure
++  everything is in memory.
 +
-+endif
-diff --git a/arch/arm/mach-mstar/Makefile b/arch/arm/mach-mstar/Makefile
-new file mode 100644
-index 000000000000..93b0391ede7e
---- /dev/null
-+++ b/arch/arm/mach-mstar/Makefile
-@@ -0,0 +1 @@
-+obj-$(CONFIG_ARCH_MSTARV7) += mstarv7.o
-diff --git a/arch/arm/mach-mstar/mstarv7.c b/arch/arm/mach-mstar/mstarv7.c
-new file mode 100644
-index 000000000000..81a4cbcab206
---- /dev/null
-+++ b/arch/arm/mach-mstar/mstarv7.c
-@@ -0,0 +1,80 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree support for MStar/Sigmastar Armv7 SoCs
-+ *
-+ * Copyright (c) 2020 thingy.jp
-+ * Author: Daniel Palmer <daniel@thingy.jp>
-+ */
++  The l3bridge region contains registers that allow such a flush
++  to be triggered.
 +
-+#include <linux/init.h>
-+#include <asm/mach/arch.h>
-+#include <asm/mach/map.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/io.h>
++  This node is used by the platform code to find where the registers
++  are and install a barrier that triggers the required pipeline flush.
 +
-+/*
-+ * In the u-boot code the area these registers are in is
-+ * called "L3 bridge" and there are register descriptions
-+ * for something in the same area called "AXI".
-+ *
-+ * It's not exactly known what this is but the vendor code
-+ * for both u-boot and linux share calls to "flush the miu pipe".
-+ * This seems to be to force pending CPU writes to memory so that
-+ * the state is right before DMA capable devices try to read
-+ * descriptors and data the CPU has prepared. Without doing this
-+ * ethernet doesn't work reliably for example.
-+ */
++properties:
++  compatible:
++    items:
++      - const: mstar,l3bridge
 +
-+#define MSTARV7_L3BRIDGE_FLUSH		0x14
-+#define MSTARV7_L3BRIDGE_STATUS		0x40
-+#define MSTARV7_L3BRIDGE_FLUSH_TRIGGER	BIT(0)
-+#define MSTARV7_L3BRIDGE_STATUS_DONE	BIT(12)
++  reg:
++    maxItems: 1
 +
-+static void __iomem *l3bridge;
++required:
++  - compatible
++  - reg
 +
-+static const char * const mstarv7_board_dt_compat[] __initconst = {
-+	"mstar,infinity",
-+	"mstar,infinity3",
-+	"mstar,mercury5",
-+	NULL,
-+};
++additionalProperties: false
 +
-+/*
-+ * This may need locking to deal with situations where an interrupt
-+ * happens while we are in here and mb() gets called by the interrupt handler.
-+ *
-+ * The vendor code did have a spin lock but it doesn't seem to be needed and
-+ * removing it hasn't caused any side effects so far.
-+ *
-+ * [writel|readl]_relaxed have to be used here because otherwise
-+ * we'd end up right back in here.
-+ */
-+static void mstarv7_mb(void)
-+{
-+	/* toggle the flush miu pipe fire bit */
-+	writel_relaxed(0, l3bridge + MSTARV7_L3BRIDGE_FLUSH);
-+	writel_relaxed(MSTARV7_L3BRIDGE_FLUSH_TRIGGER, l3bridge
-+			+ MSTARV7_L3BRIDGE_FLUSH);
-+	while (!(readl_relaxed(l3bridge + MSTARV7_L3BRIDGE_STATUS)
-+			& MSTARV7_L3BRIDGE_STATUS_DONE)) {
-+		/* wait for flush to complete */
-+	}
-+}
-+
-+static void __init mstarv7_init(void)
-+{
-+	struct device_node *np;
-+
-+	np = of_find_compatible_node(NULL, NULL, "mstar,l3bridge");
-+	l3bridge = of_iomap(np, 0);
-+	if (l3bridge)
-+		soc_mb = mstarv7_mb;
-+	else
-+		pr_warn("Failed to install memory barrier, DMA will be broken!\n");
-+}
-+
-+DT_MACHINE_START(MSTARV7_DT, "MStar/Sigmastar Armv7 (Device Tree)")
-+	.dt_compat	= mstarv7_board_dt_compat,
-+	.init_machine	= mstarv7_init,
-+MACHINE_END
++examples:
++  - |
++    l3bridge: l3bridge@1f204400 {
++        compatible = "mstar,l3bridge";
++        reg = <0x1f204400 0x200>;
++    };
 -- 
 2.27.0
 
