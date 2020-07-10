@@ -2,135 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FB7921AE9F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 07:29:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E644021AEAA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2020 07:29:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726830AbgGJF0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jul 2020 01:26:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44520 "EHLO
+        id S1727861AbgGJF3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jul 2020 01:29:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726828AbgGJFZj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jul 2020 01:25:39 -0400
-Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 842A4C08E85B
-        for <devicetree@vger.kernel.org>; Thu,  9 Jul 2020 22:25:37 -0700 (PDT)
-Received: by mail-yb1-xb49.google.com with SMTP id 205so5679048yby.19
-        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2020 22:25:37 -0700 (PDT)
+        with ESMTP id S1727851AbgGJF3b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jul 2020 01:29:31 -0400
+Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6133C08C5DC
+        for <devicetree@vger.kernel.org>; Thu,  9 Jul 2020 22:29:30 -0700 (PDT)
+Received: by mail-pj1-x1043.google.com with SMTP id cv18so4118600pjb.1
+        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2020 22:29:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=rvt07E/G4Y3HgzjtCgi9q4wlTsU980JvgAHfFfxfTkk=;
-        b=Ock+IgY9qdX4YDm3IA6N1vBTSz6q6HQ3LMZJu3aWh7PUhb/fSa7/e/vFX7G/ZnASle
-         YhC3Y16TeMnAe8u4GcoRTXeyLI2uFB6O+aohMVj2BvyBrMg9Kgxz8U0P4aeoSJEZE+DU
-         ykz7XAifBqYDXsh2WmTbwt2nYlW2YNDAqkDbkkPUJXEr+bQxh2ax34gFS60X5zP/C8sB
-         0UewzbA0s3JcwlET+ATFS5hUUZmgiSMosrGudMnSP1PUHSKQZFdbnhGwOWLQ3AXKJmzj
-         DV1FD135KWEosQLnY63INaDy4x9uVvJyFALB3S/Zdw1b5SKNuVAKVZygFOX/fYGPhmD7
-         l63g==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fq5dVVlXW8qg+ASmc5eHI9qkJpaHLFgd8jV55IoO3ds=;
+        b=fSC+TB0W8aTyto0vDTACgNdE+o/xQvY0+T6xDsLXb8pdgoa95Mj8zMAZqwwL++d39S
+         lVWyFoGN+3odNlUh7r3IiowLswEqO1iqmK6kt8zqBamwRNYtPpZ+UVrltGKfoObVSGmg
+         ZqomVJgpYVNQRFbedwWIKVU9uAaDp4HIr85uzOiHAFqOnH/Dok9dMvN2ypcfzVQazEi1
+         6/j6vK8cL9oDX4dC3WH0/3HyKaCTdGzPloRaPMqz6jgIYXipYxr3fPheAh6eI4Bh675I
+         BmDbCj5qK6MMy5KwF4l4Ptu1RycxCp1Bhd//HyFQBPuRkRSYjoP7hy0GzNZIL1kG5kHH
+         llxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=rvt07E/G4Y3HgzjtCgi9q4wlTsU980JvgAHfFfxfTkk=;
-        b=iiG090OUs9erEMs6wYEq/z4vDZiBY6uZDK3GseJJG9/3SboMdpb8RbU/jLsTET+qtN
-         Bc2p71ZRD9/4vqt0wOcDT65w3OHhFUT7sERe8+BoFWCXtYFhUGsDH0INiIQn8iSI0v/M
-         p5YNFHNF0WxNkaLNCXgRI0DXuHFzu9KmqyZ8VnHmT0J+JB2Pj1IYzWPMcWpMV5HBz9uk
-         eQhEBZap+Kd75TPZAtsbuZT+RXdT0rHs12pWxnFjECj0CrC3hWa/q0O5yeCTYP4DIukn
-         /sYhRbtgsVIqkArgLzl/RsOGdaaXnb/KXwWdGtP6Vt+5MUZ7nPt5ad28cb/x4YrwqAAk
-         kyFw==
-X-Gm-Message-State: AOAM5302iR/LYy2iCItu5Kq4K/yIll0aZuScnOKNa1t9zTJlx9q75bRb
-        gxNlyEzXI/aQdhkNvQ9ml9FhvUtCKL/V
-X-Google-Smtp-Source: ABdhPJywn1lcKRT98+mACJg5K/qX5eN7ZPxXtFLfkUv1EO1uiB+3ueV8J3p6VYMYWvGCYE74XQheqyTaFl71
-X-Received: by 2002:a25:be02:: with SMTP id h2mr110770934ybk.315.1594358736784;
- Thu, 09 Jul 2020 22:25:36 -0700 (PDT)
-Date:   Fri, 10 Jul 2020 13:25:05 +0800
-In-Reply-To: <20200710052505.3664118-1-tzungbi@google.com>
-Message-Id: <20200710052505.3664118-7-tzungbi@google.com>
-Mime-Version: 1.0
-References: <20200710052505.3664118-1-tzungbi@google.com>
-X-Mailer: git-send-email 2.27.0.383.g050319c2ae-goog
-Subject: [PATCH 6/6] ASoC: mediatek: mt8183-da7219: support HDMI jack reporting
-From:   Tzung-Bi Shih <tzungbi@google.com>
-To:     broonie@kernel.org, robh+dt@kernel.org
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        tzungbi@google.com
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fq5dVVlXW8qg+ASmc5eHI9qkJpaHLFgd8jV55IoO3ds=;
+        b=N2uYRZPfH62iyG2uzkZ/5oJL06e/R5pL3B6xO+o/Pi/mJnP3DjyQurN3gwSXfdbXvv
+         NQf0Xk1qZC+IXRCYONxWPR3yiPFbL7YKB+1IaA2tQP+JpnKCjSOq+lIdeGif4zTbXcjF
+         g1Cte8mvwDyVGYfWET9sqyLyy5eFiPJ8KcyaX/KgdXn1L9Pwj5o4q8d30fJUiJXydaY2
+         IsCIus2D7tAExjbUql8YXEIYBLqwpWdCXYZHchsVDCTSDu949t2yPHWNTMRyFoAwsWBF
+         OVjs/La40U6/LSA2UQM14SSHbqUl1wGdRwPUYX0fKnsB5EVDTjR06AfzYSnQtdvAB9c2
+         gvKw==
+X-Gm-Message-State: AOAM530n3M3XsAnisL8vm4Vh/qwuOPc1LnpcxXmqrmiTBakHhlmsNlad
+        edLttlfBhVoEyOodoV0NW8sp4w==
+X-Google-Smtp-Source: ABdhPJyGZ0UdSuIDAqgj791fJ6nEZkauC+BEQanM5UDNKEQvIpcTaJkj0dDI4tcfvYGmn77x60c0Sw==
+X-Received: by 2002:a17:902:a3c7:: with SMTP id q7mr23353866plb.20.1594358970129;
+        Thu, 09 Jul 2020 22:29:30 -0700 (PDT)
+Received: from nagraj.local ([49.206.21.239])
+        by smtp.gmail.com with ESMTPSA id j17sm4168320pgn.87.2020.07.09.22.29.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jul 2020 22:29:29 -0700 (PDT)
+From:   Sumit Semwal <sumit.semwal@linaro.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org
+Cc:     nishakumari@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kgunda@codeaurora.org, rnayak@codeaurora.org,
+        Sumit Semwal <sumit.semwal@linaro.org>
+Subject: [RESEND: PATCH v5 0/4] Qualcomm labibb regulator driver
+Date:   Fri, 10 Jul 2020 10:59:15 +0530
+Message-Id: <20200710052919.2611-1-sumit.semwal@linaro.org>
+X-Mailer: git-send-email 2.27.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Supports HDMI jack reporting.
+This series adds a driver for LAB/IBB regulators found on some Qualcomm SoCs.
+These regulators provide positive and/or negative boost power supplies
+for LCD/LED display panels connected to the SoC.
 
-Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
----
- sound/soc/mediatek/Kconfig                    |  1 +
- .../mediatek/mt8183/mt8183-da7219-max98357.c  | 19 ++++++++++++++++++-
- 2 files changed, 19 insertions(+), 1 deletion(-)
+This series adds the support for pmi8998 PMIC found in SDM845 family of SoCs.
 
-diff --git a/sound/soc/mediatek/Kconfig b/sound/soc/mediatek/Kconfig
-index ba120e9441d0..f7bc007bbdec 100644
---- a/sound/soc/mediatek/Kconfig
-+++ b/sound/soc/mediatek/Kconfig
-@@ -142,6 +142,7 @@ config SND_SOC_MT8183_DA7219_MAX98357A
- 	select SND_SOC_RT1015
- 	select SND_SOC_DA7219
- 	select SND_SOC_BT_SCO
-+	select SND_SOC_HDMI_CODEC
- 	help
- 	  This adds ASoC driver for Mediatek MT8183 boards
- 	  with the DA7219 MAX98357A RT1015 audio codec.
-diff --git a/sound/soc/mediatek/mt8183/mt8183-da7219-max98357.c b/sound/soc/mediatek/mt8183/mt8183-da7219-max98357.c
-index cbef4a538224..edfbf34a2f45 100644
---- a/sound/soc/mediatek/mt8183/mt8183-da7219-max98357.c
-+++ b/sound/soc/mediatek/mt8183/mt8183-da7219-max98357.c
-@@ -10,6 +10,7 @@
- #include <linux/module.h>
- #include <linux/of_device.h>
- #include <linux/pinctrl/consumer.h>
-+#include <sound/hdmi-codec.h>
- #include <sound/jack.h>
- #include <sound/pcm_params.h>
- #include <sound/soc.h>
-@@ -26,7 +27,7 @@
- #define RT1015_DEV1_NAME "rt1015.6-0029"
- 
- struct mt8183_da7219_max98357_priv {
--	struct snd_soc_jack headset_jack;
-+	struct snd_soc_jack headset_jack, hdmi_jack;
- };
- 
- static int mt8183_mt6358_i2s_hw_params(struct snd_pcm_substream *substream,
-@@ -357,6 +358,21 @@ SND_SOC_DAILINK_DEFS(tdm,
- 	DAILINK_COMP_ARRAY(COMP_CODEC(NULL, "i2s-hifi")),
- 	DAILINK_COMP_ARRAY(COMP_EMPTY()));
- 
-+static int mt8183_da7219_max98357_hdmi_init(struct snd_soc_pcm_runtime *rtd)
-+{
-+	struct mt8183_da7219_max98357_priv *priv =
-+		snd_soc_card_get_drvdata(rtd->card);
-+	int ret;
-+
-+	ret = snd_soc_card_jack_new(rtd->card, "HDMI Jack", SND_JACK_LINEOUT,
-+				    &priv->hdmi_jack, NULL, 0);
-+	if (ret)
-+		return ret;
-+
-+	return hdmi_codec_set_jack_detect(asoc_rtd_to_codec(rtd, 0)->component,
-+					  &priv->hdmi_jack);
-+}
-+
- static struct snd_soc_dai_link mt8183_da7219_dai_links[] = {
- 	/* FE */
- 	{
-@@ -511,6 +527,7 @@ static struct snd_soc_dai_link mt8183_da7219_dai_links[] = {
- 		.dpcm_playback = 1,
- 		.ignore_suspend = 1,
- 		.be_hw_params_fixup = mt8183_i2s_hw_params_fixup,
-+		.init = mt8183_da7219_max98357_hdmi_init,
- 		SND_SOC_DAILINK_REG(tdm),
- 	},
- };
+Changes from v4:
+- v4 Review comments incorporated
+  - simplified the driver: removed of_get_child_by_name(); use ENABLE_CTL
+    register and switch over to use the regulator_*_regmap helpers
+  - improved kerneldoc
+  - From the dt-bindings, removed interrupt-names, changed to dual license,
+    added unevaluatedProperties: false, removed interrupt-names, since there
+    is only one interrupt per node
+  - Since the Short Circuit handling needs more details from QC engineers,
+    drop the SC handling patch from this series, to submit it later
+
+Changes from v3:
+- Handled review comments from v3
+- In core, swapped the meaning of enable_time and poll_enabled_time; so we
+   wait for total enable_time delay, and poll in-between at poll_enabled_time
+   interval now.
+- fixed dt_bindings_check issues in dt-bindings patch.
+- Cleanup of register_labibb_regulator(), and adapted to updated meaning of
+   poll_enabled_time.
+
+Changes from v2:
+- Review comments from v2
+- Moved the poll-to-check-enabled functionality to regulator core.
+- Used more core features to simplify enable/disable functions.
+- Moved the devicetree binding to yaml.
+- Updated interrupt-names and simplified handling.
+
+Changes from v1:
+- Incorporated review comments from v1
+- Changed from virtual-regulator based handling to individual regulator based
+  handling.
+- Reworked the core to merge most of enable/disable functions, combine the
+  regulator_ops into one and allow for future variations.
+- is_enabled() is now _really_ is_enabled()
+- Simplified the SC interrupt handling - use regmap_read_poll_timeout,
+  REGULATOR_EVENT_OVER_CURRENT handling and notification to clients.
+
+Nisha Kumari (3):
+  dt-bindings: regulator: Add labibb regulator
+  arm64: dts: qcom: pmi8998: Add nodes for LAB and IBB regulators
+  regulator: qcom: Add labibb driver
+
+Sumit Semwal (1):
+  regulator: Allow regulators to verify enabled during enable()
+
+ .../regulator/qcom-labibb-regulator.yaml      |  70 +++++++
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi         |  12 ++
+ drivers/regulator/Kconfig                     |  10 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/core.c                      |  63 ++++++-
+ drivers/regulator/qcom-labibb-regulator.c     | 175 ++++++++++++++++++
+ include/linux/regulator/driver.h              |   5 +
+ 7 files changed, 335 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
+ create mode 100644 drivers/regulator/qcom-labibb-regulator.c
+
 -- 
-2.27.0.383.g050319c2ae-goog
+2.27.0
 
