@@ -2,78 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7081C21C302
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2020 09:12:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1589C21C3C9
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2020 12:46:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727028AbgGKHMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Jul 2020 03:12:31 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:20793 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726958AbgGKHMb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jul 2020 03:12:31 -0400
-X-UUID: 6a255dd1d52a4162b9a29a9d328eb6a2-20200711
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=yilbJrHb4on0J7hThn4YoSbk9aK3TSJQjUpN3XgWrzE=;
-        b=nM2kFz5wU1FHh9xBxJ8fOzMTcgthThfLMN3XDWrbbKOjHaLejrwZVXH/HvXFKm0R9BzLVMK6QqaOPlxvlyCHUbXhwHlTsblRY3MKb20r4cS1G4ohhtVMZ38aC3jV9lZVUcCyjA83rcnWRJRA6hRIi0QLurpnbvyN69y4mfAj9w8=;
-X-UUID: 6a255dd1d52a4162b9a29a9d328eb6a2-20200711
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 220947356; Sat, 11 Jul 2020 15:12:16 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS32DR.mediatek.inc
- (172.27.6.104) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sat, 11 Jul
- 2020 15:12:15 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 11 Jul 2020 15:12:14 +0800
-Message-ID: <1594451493.16172.6.camel@mhfsdcap03>
-Subject: Re: [PATCH v6 00/10] MT6779 IOMMU SUPPORT
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Joerg Roedel <joro@8bytes.org>
-CC:     Chao Hao <chao.hao@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <wsd_upstream@mediatek.com>,
-        FY Yang <fy.yang@mediatek.com>, TH Yang <th.yang@mediatek.com>,
-        <ming-fan.chen@mediatek.com>, <youlin.pei@mediatek.com>,
-        <anan.sun@mediatek.com>
-Date:   Sat, 11 Jul 2020 15:11:33 +0800
-In-Reply-To: <20200710141349.GJ27672@8bytes.org>
-References: <20200703044127.27438-1-chao.hao@mediatek.com>
-         <20200710141349.GJ27672@8bytes.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726261AbgGKKq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Jul 2020 06:46:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33470 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726203AbgGKKq5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jul 2020 06:46:57 -0400
+X-Greylist: delayed 2696 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 11 Jul 2020 03:46:57 PDT
+Received: from hall.aurel32.net (hall.aurel32.net [IPv6:2001:bc8:30d7:100::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A1E7C08C5DD;
+        Sat, 11 Jul 2020 03:46:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+        ; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
+        Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
+        Subject:Content-ID:Content-Description:X-Debbugs-Cc;
+        bh=Brj2Uur/vWw8fobBoxnPCAHoheyz+8lGCkL8KGgE4kk=; b=T3rF3OsCphU2NAQsomSG79Gt7G
+        toOUn6F5KjoMhxsr7qwX0TqKajhOBb5Yiwwk7CK6VeFp8KlTLYtmadtvGpULqvEEUVGwymznvessY
+        5skk9TM12Wf3h47kZUDIbTMD+cCSJKHfCtijxevGHedRQlD857qWYp3owOp3DlgxEyGEfxGy4830G
+        gnkd1pPeUZxEgirqLUdI96a9Rw8nnJCgofAUmv0QwIE1RbxsMZ1HBL1dUTMt182DuKbQuKqqducmU
+        BmSvsX7hSsF8s3RJnoBcSCU0ZChdIhHvDUwQDF85JjEsXYUhEK2eAq0gPt7+eFVxbqotky0YlLYOj
+        IDry8pzw==;
+Received: from [2a01:e35:2fdd:a4e1:fe91:fc89:bc43:b814] (helo=ohm.rr44.fr)
+        by hall.aurel32.net with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <aurelien@aurel32.net>)
+        id 1juCKN-0005Xf-Iz; Sat, 11 Jul 2020 12:01:51 +0200
+Received: from aurel32 by ohm.rr44.fr with local (Exim 4.94)
+        (envelope-from <aurelien@aurel32.net>)
+        id 1juCKL-00A3er-Fn; Sat, 11 Jul 2020 12:01:49 +0200
+Date:   Sat, 11 Jul 2020 12:01:49 +0200
+From:   Aurelien Jarno <aurelien@aurel32.net>
+To:     Sasha Levin <sashal@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org
+Subject: Re: [PATCH AUTOSEL 4.19 080/106] mips: Add udelay lpj numbers
+ adjustment
+Message-ID: <20200711100149.GA2397222@aurel32.net>
+Mail-Followup-To: Sasha Levin <sashal@kernel.org>,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
+        Ralf Baechle <ralf@linux-mips.org>, Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org
+References: <20200608232238.3368589-1-sashal@kernel.org>
+ <20200608232238.3368589-80-sashal@kernel.org>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 05BB3D50A356C307CD14C3C48E7C352C564F8EC9C54A287E85E8AED5818631902000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200608232238.3368589-80-sashal@kernel.org>
+User-Agent: Mutt/1.14.0 (2020-05-02)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDIwLTA3LTEwIGF0IDE2OjEzICswMjAwLCBKb2VyZyBSb2VkZWwgd3JvdGU6DQo+
-IE9uIEZyaSwgSnVsIDAzLCAyMDIwIGF0IDEyOjQxOjE3UE0gKzA4MDAsIENoYW8gSGFvIHdyb3Rl
-Og0KPiA+IENoYW8gSGFvICgxMCk6DQo+ID4gICBkdC1iaW5kaW5nczogbWVkaWF0ZWs6IEFkZCBi
-aW5kaW5ncyBmb3IgTVQ2Nzc5DQo+ID4gICBpb21tdS9tZWRpYXRlazogUmVuYW1lIHRoZSByZWdp
-c3RlciBTVEFOREFSRF9BWElfTU9ERSgweDQ4KSB0byBNSVNDX0NUUkwNCj4gPiAgIGlvbW11L21l
-ZGlhdGVrOiBVc2UgYSB1MzIgZmxhZ3MgdG8gZGVzY3JpYmUgZGlmZmVyZW50IEhXIGZlYXR1cmVz
-DQo+ID4gICBpb21tdS9tZWRpYXRlazogU2V0dGluZyBNSVNDX0NUUkwgcmVnaXN0ZXINCj4gPiAg
-IGlvbW11L21lZGlhdGVrOiBNb3ZlIGludl9zZWxfcmVnIGludG8gdGhlIHBsYXRfZGF0YQ0KPiA+
-ICAgaW9tbXUvbWVkaWF0ZWs6IEFkZCBzdWJfY29tbSBpZCBpbiB0cmFuc2xhdGlvbiBmYXVsdA0K
-PiA+ICAgaW9tbXUvbWVkaWF0ZWs6IEFkZCBSRUdfTU1VX1dSX0xFTl9DVFJMIHJlZ2lzdGVyIGRl
-ZmluaXRpb24NCj4gPiAgIGlvbW11L21lZGlhdGVrOiBFeHRlbmQgcHJvdGVjdCBwYSBhbGlnbm1l
-bnQgdmFsdWUNCj4gPiAgIGlvbW11L21lZGlhdGVrOiBNb2RpZnkgTU1VX0NUUkwgcmVnaXN0ZXIg
-c2V0dGluZw0KPiA+ICAgaW9tbXUvbWVkaWF0ZWs6IEFkZCBtdDY3NzkgYmFzaWMgc3VwcG9ydA0K
-PiANCj4gQXBwbGllZCwgdGhhbmtzLg0KDQpIaSBKb2VyZywNCg0KVGhhbmtzIGZvciB0aGUgYXBw
-bHkuDQoNClRoZSBTTUkgcGFydCBhbHdheXMgZ28gd2l0aCB0aGUgSU9NTVUsIENvdWxkIHlvdSBh
-bHNvIGhlbHAgYXBwbHkgdGhlDQptdDY3NzkgU01JIGJhc2ljYWwgcGFydCBbMV1bMl0uIEJvdGgg
-aGFzIGFscmVhZHkgZ290IHJldmlld2VkLWJ5IGZyb20NClJvYiBhbmQgTWF0dGhpYXMuIGFuZCB0
-aGUgWzNdIGluIHRoYXQgcGF0Y2hzZXQgaXMgZm9yIHBlcmZvcm1hbmNlDQppbXByb3ZlbWVudCwg
-aXQncyBub3Qgc28gbmVjZXNzYXJ5LCBpdCBjYW4gYmUgc2VuZCBpbiBhbm90aGVyIHBhdGNoc2V0
-Lg0KDQoNClsxXSBodHRwczovL2xvcmUua2VybmVsLm9yZy9wYXRjaHdvcmsvcGF0Y2gvMTE3Njgz
-My8NClsyXSBodHRwczovL2xvcmUua2VybmVsLm9yZy9wYXRjaHdvcmsvcGF0Y2gvMTE3NjgzMS8N
-ClszXSBodHRwczovL2xvcmUua2VybmVsLm9yZy9wYXRjaHdvcmsvcGF0Y2gvMTE3NjgzMi8NCg==
+On 2020-06-08 19:22, Sasha Levin wrote:
+> From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> 
+> [ Upstream commit ed26aacfb5f71eecb20a51c4467da440cb719d66 ]
+> 
+> Loops-per-jiffies is a special number which represents a number of
+> noop-loop cycles per CPU-scheduler quantum - jiffies. As you
+> understand aside from CPU-specific implementation it depends on
+> the CPU frequency. So when a platform has the CPU frequency fixed,
+> we have no problem and the current udelay interface will work
+> just fine. But as soon as CPU-freq driver is enabled and the cores
+> frequency changes, we'll end up with distorted udelay's. In order
+> to fix this we have to accordinly adjust the per-CPU udelay_val
+> (the same as the global loops_per_jiffy) number. This can be done
+> in the CPU-freq transition event handler. We subscribe to that event
+> in the MIPS arch time-inititalization method.
+> 
+> Co-developed-by: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+> Signed-off-by: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Reviewed-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> Cc: Paul Burton <paulburton@kernel.org>
+> Cc: Ralf Baechle <ralf@linux-mips.org>
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> Signed-off-by: Sasha Levin <sashal@kernel.org>
+> ---
+>  arch/mips/kernel/time.c | 70 +++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+> 
+> diff --git a/arch/mips/kernel/time.c b/arch/mips/kernel/time.c
+> index bfe02ded25d1..1e631a484ddf 100644
+> --- a/arch/mips/kernel/time.c
+> +++ b/arch/mips/kernel/time.c
+> @@ -22,12 +22,82 @@
+>  #include <linux/smp.h>
+>  #include <linux/spinlock.h>
+>  #include <linux/export.h>
+> +#include <linux/cpufreq.h>
+> +#include <linux/delay.h>
+>  
+>  #include <asm/cpu-features.h>
+>  #include <asm/cpu-type.h>
+>  #include <asm/div64.h>
+>  #include <asm/time.h>
+>  
+> +#ifdef CONFIG_CPU_FREQ
+> +
+> +static DEFINE_PER_CPU(unsigned long, pcp_lpj_ref);
+> +static DEFINE_PER_CPU(unsigned long, pcp_lpj_ref_freq);
+> +static unsigned long glb_lpj_ref;
+> +static unsigned long glb_lpj_ref_freq;
+> +
+> +static int cpufreq_callback(struct notifier_block *nb,
+> +			    unsigned long val, void *data)
+> +{
+> +	struct cpufreq_freqs *freq = data;
+> +	struct cpumask *cpus = freq->policy->cpus;
+                                     ^^^^^^
 
+The policy member has been added in kernel 5.2, so kernel 4.19.129 and
+later do not build anymore when CONFIG_CPU_FREQ=y.
+
+-- 
+Aurelien Jarno                          GPG: 4096R/1DDD8C9B
+aurelien@aurel32.net                 http://www.aurel32.net
