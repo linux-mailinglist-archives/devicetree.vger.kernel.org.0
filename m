@@ -2,57 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF51721C4E1
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2020 17:41:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1E9121C4ED
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2020 17:57:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728494AbgGKPl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Jul 2020 11:41:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43888 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728441AbgGKPl0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 11 Jul 2020 11:41:26 -0400
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 06730207D4;
-        Sat, 11 Jul 2020 15:41:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1594482086;
-        bh=QhEBZ6LDWG3Y1lgugGBg5FYc1wrjjWFWLzR00sIijlQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=zrj/St4g7g5ojfj8wIaEXPVcdZRSzX2Ldf2nUBtpBiGwOKtLffkLmarom4HEUjGps
-         maSP9r6hlLsbBrga5AnqS2J7SrcCfNn/cILH3aIfYK6gSO4T6Zb81/Ok4hHcDq70t7
-         phMCxlpT/ziygEKywOoZYFCHtSr16V2Wihr+vRlY=
-Date:   Sat, 11 Jul 2020 23:41:22 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Biwen Li <biwen.li@oss.nxp.com>
-Cc:     ran.wang_1@nxp.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jiafei.pan@nxp.com, Biwen Li <biwen.li@nxp.com>
-Subject: Re: [v3 4/4] arm: dts: ls1021a: add ftm_alarm0 DT node
-Message-ID: <20200711154121.GO21277@dragon>
-References: <20200624024501.15974-1-biwen.li@oss.nxp.com>
- <20200624024501.15974-4-biwen.li@oss.nxp.com>
+        id S1728552AbgGKP5i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Jul 2020 11:57:38 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:46258 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728412AbgGKP5i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jul 2020 11:57:38 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 1F7CE1C0BD2; Sat, 11 Jul 2020 17:57:35 +0200 (CEST)
+Date:   Sat, 11 Jul 2020 17:57:34 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     jacek.anaszewski@gmail.com, robh@kernel.org,
+        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v29 03/16] leds: multicolor: Introduce a multicolor class
+ definition
+Message-ID: <20200711155734.GA21726@amd>
+References: <20200622185919.2131-1-dmurphy@ti.com>
+ <20200622185919.2131-4-dmurphy@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="huq684BweRXVnRxX"
 Content-Disposition: inline
-In-Reply-To: <20200624024501.15974-4-biwen.li@oss.nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20200622185919.2131-4-dmurphy@ti.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 24, 2020 at 10:45:01AM +0800, Biwen Li wrote:
-> From: Biwen Li <biwen.li@nxp.com>
-> 
-> The patch add ftm_alarm0 DT node
-> 	- add rcpm node
-> 	- add ftm_alarm0 node
-> 	- aliases ftm_alarm0 as rtc1
-> 
-> Signed-off-by: Biwen Li <biwen.li@nxp.com>
 
-s/arm/ARM in prefix.  I fixed it up and applied the patch.
+--huq684BweRXVnRxX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Shawn
+Hi!
+
+> Introduce a multicolor class that groups colored LEDs
+> within a LED node.
+
+> +What:		/sys/class/leds/<led>/multi_intensity
+> +Date:		March 2020
+> +KernelVersion:	5.8
+> +Contact:	Dan Murphy <dmurphy@ti.com>
+> +Description:	read/write
+> +		Intensity level for the LED color within an array of integers.
+
+? "This file contains array of integers".
+
+> +		The intensities for each color must be entered based on the
+> +		multi_index array.
+
+This does not make sense to me. "Order of components is described by
+the multi_index array"?
+
+> The max_intensity should not exceed
+
+"max_intensity" -> "maximum intensity"?
+
+> +		/sys/class/leds/<led>/max_brightness.
+
+> +Multicolor Class Brightness Control
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +The multicolor class framework will calculate each monochrome LEDs inten=
+sity.
+
+?
+
+> +static ssize_t multi_intensity_store(struct device *dev,
+> +				struct device_attribute *intensity_attr,
+> +				const char *buf, size_t size)
+> +{
+> +	struct led_classdev *led_cdev =3D dev_get_drvdata(dev);
+> +	struct led_classdev_mc *mcled_cdev =3D lcdev_to_mccdev(led_cdev);
+> +	int nrchars, offset =3D 0;
+> +	int intensity_value[LED_COLOR_ID_MAX];
+> +	int i;
+> +	ssize_t ret;
+> +
+> +	mutex_lock(&led_cdev->led_access);
+> +
+> +	for (i =3D 0; i < mcled_cdev->num_colors; i++) {
+> +		ret =3D sscanf(buf + offset, "%i%n",
+> +			     &intensity_value[i], &nrchars);
+> +		if (ret !=3D 1) {
+> +			dev_dbg(led_cdev->dev,
+> +				"Incorrect number of LEDs expected %i values intensity was not appli=
+ed\n",
+> +				mcled_cdev->num_colors);
+> +			ret =3D -EINVAL;
+> +			goto err_out;
+> +		}
+> +		offset +=3D nrchars;
+> +	}
+> +
+> +	/* account for the space at the end of the buffer */
+> +	offset++;
+
+space? I'd expect \n there. And it would be good to verify it is
+indeed \n, so that for example "0 0 0b" is not accepted.
+
+Please remove the dev_dbg()s that can be triggered by userspace. We
+don't want users spamming the logs.
+
+> +static ssize_t multi_intensity_show(struct device *dev,
+> +			      struct device_attribute *intensity_attr,
+> +			      char *buf)
+> +{
+> +	struct led_classdev *led_cdev =3D dev_get_drvdata(dev);
+> +	struct led_classdev_mc *mcled_cdev =3D lcdev_to_mccdev(led_cdev);
+> +	int len =3D 0;
+> +	int i;
+> +
+> +	for (i =3D 0; i < mcled_cdev->num_colors; i++) {
+> +		len +=3D sprintf(buf + len, "%d",
+> +			       mcled_cdev->subled_info[i].intensity);
+> +		len +=3D sprintf(buf + len, " ");
+
+We should not really put " " before newline.
+
+> +static ssize_t multi_index_show(struct device *dev,
+> +			      struct device_attribute *multi_index_attr,
+> +			      char *buf)
+> +{
+> +	for (i =3D 0; i < mcled_cdev->num_colors; i++) {
+> +		index =3D mcled_cdev->subled_info[i].color_index;
+> +		len +=3D sprintf(buf + len, "%s", led_colors[index]);
+> +		len +=3D sprintf(buf + len, " ");
+> +	}
+
+We should not really put " " before newline.
+
+> +{
+> +	struct led_classdev *led_cdev;
+> +
+> +	if (!mcled_cdev)
+> +		return -EINVAL;
+> +
+> +	if (!mcled_cdev->num_colors)
+> +		return -EINVAL;
+
+It is plain int, so you may want to check for <=3D 0? Or maybe make it
+unsigned?
+
+> +MODULE_LICENSE("GPL v2");
+
+If your legal department allows that, GPL v2+ would be preffered
+(globally).
+
+> +struct mc_subled {
+> +	int color_index;
+> +	int brightness;
+> +	int intensity;
+> +	int channel;
+> +};
+> +
+> +struct led_classdev_mc {
+> +	/* led class device */
+> +	struct led_classdev led_cdev;
+> +	int num_colors;
+> +
+> +	struct mc_subled *subled_info;
+> +};
+
+Would some "unsigned"s make sense here to cut number of corner cases?
+
+Best regards,
+									Pavel
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--huq684BweRXVnRxX
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl8J4W4ACgkQMOfwapXb+vKH+QCeKT1Udif6m7xNGEBzvGZd+FuN
+MBoAoIoLjg2c6JgcTC4sA+OJgOAaBnuQ
+=lZ/X
+-----END PGP SIGNATURE-----
+
+--huq684BweRXVnRxX--
