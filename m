@@ -2,141 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1589C21C3C9
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2020 12:46:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5285821C37F
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2020 12:05:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726261AbgGKKq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Jul 2020 06:46:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33470 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726203AbgGKKq5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jul 2020 06:46:57 -0400
-X-Greylist: delayed 2696 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 11 Jul 2020 03:46:57 PDT
-Received: from hall.aurel32.net (hall.aurel32.net [IPv6:2001:bc8:30d7:100::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A1E7C08C5DD;
-        Sat, 11 Jul 2020 03:46:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
-        ; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
-        Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
-        Subject:Content-ID:Content-Description:X-Debbugs-Cc;
-        bh=Brj2Uur/vWw8fobBoxnPCAHoheyz+8lGCkL8KGgE4kk=; b=T3rF3OsCphU2NAQsomSG79Gt7G
-        toOUn6F5KjoMhxsr7qwX0TqKajhOBb5Yiwwk7CK6VeFp8KlTLYtmadtvGpULqvEEUVGwymznvessY
-        5skk9TM12Wf3h47kZUDIbTMD+cCSJKHfCtijxevGHedRQlD857qWYp3owOp3DlgxEyGEfxGy4830G
-        gnkd1pPeUZxEgirqLUdI96a9Rw8nnJCgofAUmv0QwIE1RbxsMZ1HBL1dUTMt182DuKbQuKqqducmU
-        BmSvsX7hSsF8s3RJnoBcSCU0ZChdIhHvDUwQDF85JjEsXYUhEK2eAq0gPt7+eFVxbqotky0YlLYOj
-        IDry8pzw==;
-Received: from [2a01:e35:2fdd:a4e1:fe91:fc89:bc43:b814] (helo=ohm.rr44.fr)
-        by hall.aurel32.net with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <aurelien@aurel32.net>)
-        id 1juCKN-0005Xf-Iz; Sat, 11 Jul 2020 12:01:51 +0200
-Received: from aurel32 by ohm.rr44.fr with local (Exim 4.94)
-        (envelope-from <aurelien@aurel32.net>)
-        id 1juCKL-00A3er-Fn; Sat, 11 Jul 2020 12:01:49 +0200
-Date:   Sat, 11 Jul 2020 12:01:49 +0200
-From:   Aurelien Jarno <aurelien@aurel32.net>
-To:     Sasha Levin <sashal@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org
-Subject: Re: [PATCH AUTOSEL 4.19 080/106] mips: Add udelay lpj numbers
- adjustment
-Message-ID: <20200711100149.GA2397222@aurel32.net>
-Mail-Followup-To: Sasha Levin <sashal@kernel.org>,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>, Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org
-References: <20200608232238.3368589-1-sashal@kernel.org>
- <20200608232238.3368589-80-sashal@kernel.org>
+        id S1726661AbgGKKFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Jul 2020 06:05:09 -0400
+Received: from server-x.ipv4.hkg02.ds.network ([27.111.83.178]:46708 "EHLO
+        mail.gtsys.com.hk" rhost-flags-OK-FAIL-OK-OK) by vger.kernel.org
+        with ESMTP id S1726534AbgGKKFJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jul 2020 06:05:09 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.gtsys.com.hk (Postfix) with ESMTP id 7E2A3201411B;
+        Sat, 11 Jul 2020 18:05:05 +0800 (HKT)
+X-Virus-Scanned: Debian amavisd-new at gtsys.com.hk
+Received: from mail.gtsys.com.hk ([127.0.0.1])
+        by localhost (mail.gtsys.com.hk [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id aD-6Vkk2IvhR; Sat, 11 Jul 2020 18:05:05 +0800 (HKT)
+Received: from s01.gtsys.com.hk (unknown [10.128.4.2])
+        by mail.gtsys.com.hk (Postfix) with ESMTP id 5AD522014570;
+        Sat, 11 Jul 2020 18:05:05 +0800 (HKT)
+Received: from [10.128.2.32] (unknown [124.217.189.79])
+        by s01.gtsys.com.hk (Postfix) with ESMTPSA id F20E7C01FBA;
+        Sat, 11 Jul 2020 18:05:04 +0800 (HKT)
+Subject: Re: [PATCH v5 2/2] devicetree: hwmon: shtc1: Add sensirion,shtc1.yaml
+To:     Rob Herring <robh@kernel.org>
+Cc:     Guenter Roeck <linux@roeck-us.net>, Jack Lo <jack.lo@gtsys.com.hk>,
+        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>, devicetree@vger.kernel.org
+References: <20200710021536.27544-1-chris.ruehl@gtsys.com.hk>
+ <20200710021536.27544-3-chris.ruehl@gtsys.com.hk>
+ <20200710163153.GA2760091@bogus>
+From:   Chris Ruehl <chris.ruehl@gtsys.com.hk>
+Message-ID: <d45ba090-a09b-dd51-4645-bc62e90cb9bc@gtsys.com.hk>
+Date:   Sat, 11 Jul 2020 18:05:03 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200608232238.3368589-80-sashal@kernel.org>
-User-Agent: Mutt/1.14.0 (2020-05-02)
+In-Reply-To: <20200710163153.GA2760091@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-06-08 19:22, Sasha Levin wrote:
-> From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> 
-> [ Upstream commit ed26aacfb5f71eecb20a51c4467da440cb719d66 ]
-> 
-> Loops-per-jiffies is a special number which represents a number of
-> noop-loop cycles per CPU-scheduler quantum - jiffies. As you
-> understand aside from CPU-specific implementation it depends on
-> the CPU frequency. So when a platform has the CPU frequency fixed,
-> we have no problem and the current udelay interface will work
-> just fine. But as soon as CPU-freq driver is enabled and the cores
-> frequency changes, we'll end up with distorted udelay's. In order
-> to fix this we have to accordinly adjust the per-CPU udelay_val
-> (the same as the global loops_per_jiffy) number. This can be done
-> in the CPU-freq transition event handler. We subscribe to that event
-> in the MIPS arch time-inititalization method.
-> 
-> Co-developed-by: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-> Signed-off-by: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> Reviewed-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> Cc: Paul Burton <paulburton@kernel.org>
-> Cc: Ralf Baechle <ralf@linux-mips.org>
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> Signed-off-by: Sasha Levin <sashal@kernel.org>
-> ---
->  arch/mips/kernel/time.c | 70 +++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 70 insertions(+)
-> 
-> diff --git a/arch/mips/kernel/time.c b/arch/mips/kernel/time.c
-> index bfe02ded25d1..1e631a484ddf 100644
-> --- a/arch/mips/kernel/time.c
-> +++ b/arch/mips/kernel/time.c
-> @@ -22,12 +22,82 @@
->  #include <linux/smp.h>
->  #include <linux/spinlock.h>
->  #include <linux/export.h>
-> +#include <linux/cpufreq.h>
-> +#include <linux/delay.h>
->  
->  #include <asm/cpu-features.h>
->  #include <asm/cpu-type.h>
->  #include <asm/div64.h>
->  #include <asm/time.h>
->  
-> +#ifdef CONFIG_CPU_FREQ
-> +
-> +static DEFINE_PER_CPU(unsigned long, pcp_lpj_ref);
-> +static DEFINE_PER_CPU(unsigned long, pcp_lpj_ref_freq);
-> +static unsigned long glb_lpj_ref;
-> +static unsigned long glb_lpj_ref_freq;
-> +
-> +static int cpufreq_callback(struct notifier_block *nb,
-> +			    unsigned long val, void *data)
-> +{
-> +	struct cpufreq_freqs *freq = data;
-> +	struct cpumask *cpus = freq->policy->cpus;
-                                     ^^^^^^
 
-The policy member has been added in kernel 5.2, so kernel 4.19.129 and
-later do not build anymore when CONFIG_CPU_FREQ=y.
+On 11/7/2020 12:31 am, Rob Herring wrote:
+> On Fri, 10 Jul 2020 10:15:35 +0800, Chris Ruehl wrote:
+>> Add documentation for the newly added DTS support in the shtc1 driver.
+>> To align with the drivers logic to have high precision by default
+>> a boolean sensirion,low_precision is used to switch to low precision.
+>>
+>> Signed-off-by: Chris Ruehl <chris.ruehl@gtsys.com.hk>
+>> ---
+>>   .../bindings/hwmon/sensirion,shtc1.yaml       | 57 +++++++++++++++++++
+>>   1 file changed, 57 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml
+>>
+> 
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> Error: Documentation/devicetree/bindings/hwmon/sensirion,shtc1.example.dts:25.13-14 syntax error
+> FATAL ERROR: Unable to parse input tree
+> scripts/Makefile.lib:315: recipe for target 'Documentation/devicetree/bindings/hwmon/sensirion,shtc1.example.dt.yaml' failed
+> make[1]: *** [Documentation/devicetree/bindings/hwmon/sensirion,shtc1.example.dt.yaml] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> Makefile:1347: recipe for target 'dt_binding_check' failed
+> make: *** [dt_binding_check] Error 2
+> 
+> 
+> See https://patchwork.ozlabs.org/patch/1326414
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure dt-schema is up to date:
+> 
+> pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+> 
+> Please check and re-submit.
+> 
 
--- 
-Aurelien Jarno                          GPG: 4096R/1DDD8C9B
-aurelien@aurel32.net                 http://www.aurel32.net
+Hi Rob,
+
+I did run the test and didn't had any Error. dt-schema 2020.06 installed from 
+git. pip3 install -e.
+
+Can you help?
+
+Chris
