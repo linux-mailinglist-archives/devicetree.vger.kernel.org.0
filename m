@@ -2,136 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B36821CE05
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 06:11:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6DDC21CA74
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2020 18:56:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727030AbgGMELq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jul 2020 00:11:46 -0400
-Received: from mailout4.samsung.com ([203.254.224.34]:36783 "EHLO
-        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725767AbgGMELo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 00:11:44 -0400
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20200713041142epoutp049d2a5bd6d6c5b74dd309842eef881093~hNIgP3NAu2145821458epoutp04d
-        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2020 04:11:42 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20200713041142epoutp049d2a5bd6d6c5b74dd309842eef881093~hNIgP3NAu2145821458epoutp04d
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1594613502;
-        bh=XzXGzfpAcJxVThQIWOeUjg4uBg4tetUU3f6cEGrLIYA=;
-        h=From:To:Cc:Subject:Date:References:From;
-        b=SjZ2Xd2kYG2R2HkcTVVQEaW2C4Sx4jM2en5WtuKZxqSb0+1/I/0fJjaz3HY+Gj1fD
-         9J0n6dWKCytpnBqmyt3f69V/CCxD2Hoswn6znOA1vInQh7dw1C+2MMZ9VY7X9JYPFP
-         9GCcsPOGKqUgrXetMQUO0n/0uN4ErPVkAck0l3DU=
-Received: from epsmges5p2new.samsung.com (unknown [182.195.42.74]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
-        20200713041141epcas5p4f75f706c798e1e9c702ed18e9502de74~hNIfgZCCg1452614526epcas5p4K;
-        Mon, 13 Jul 2020 04:11:41 +0000 (GMT)
-Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
-        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        75.91.09703.DFEDB0F5; Mon, 13 Jul 2020 13:11:41 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-        20200712165648epcas5p3a1e6b9f9e1fdadc6740bc1eb509285f9~hD7PTMfVn2057020570epcas5p3M;
-        Sun, 12 Jul 2020 16:56:48 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20200712165648epsmtrp1bed5e6f807b47aac1e4d99abced6e461~hD7PSYgHO0771707717epsmtrp1I;
-        Sun, 12 Jul 2020 16:56:48 +0000 (GMT)
-X-AuditID: b6c32a4a-4cbff700000025e7-c2-5f0bdefd3e06
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        5C.40.08382.FC04B0F5; Mon, 13 Jul 2020 01:56:47 +0900 (KST)
-Received: from Jaguar.sa.corp.samsungelectronics.net (unknown
-        [107.108.73.139]) by epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20200712165646epsmtip277c5f22624f1bf97a2c37d09d55238f8~hD7NqJswj1457514575epsmtip2w;
-        Sun, 12 Jul 2020 16:56:46 +0000 (GMT)
-From:   Ajay Kumar <ajaykumar.rs@samsung.com>
-To:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, will@kernel.org
-Cc:     nleeder@codeaurora.org, shameerali.kolothum.thodi@huawei.com,
-        joro@8bytes.org, robin.murphy@arm.com, alim.akhtar@samsung.com,
-        shaik.ameer@samsung.com, Ajay Kumar <ajaykumar.rs@samsung.com>
-Subject: [PATCH 2/4] Documentation: perf: Add documentation for
- arm-smmu-v3-pmcg
-Date:   Sun, 12 Jul 2020 22:05:30 +0530
-Message-Id: <20200712163530.61468-1-ajaykumar.rs@samsung.com>
-X-Mailer: git-send-email 2.17.1
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrKIsWRmVeSWpSXmKPExsWy7bCmuu7fe9zxBp0LOS0OvD/IYvFg3jY2
-        i/lHzrFadM7ewG6x9PpFJotvx2IsWvceYbc4+OEJq8WRh7vZLbZfbWK1aLlj6sDt8eTgPCaP
-        NfPWMHpc7utl8mg58pbVY9OqTjaPvi2rGD0+b5ILYI/isklJzcksSy3St0vgyuj+upK1YA5n
-        xbnvn1gbGG+zdzFyckgImEj0LP7N0sXIxSEksJtRYtrJV6wQzidGibaHy9ghnG+MEvMurmCB
-        aXn28QMTRGIvo8SSA71Q/S1MEjdWXmUEqWIT0JbYNv0mWIeIQLRE34npzCBFzAJHGCUOXb4P
-        VMTBISwQJPGl2RCkhkVAVWLJ/C0sIGFeAVuJSQdLIJbJS6zecACsVULgGrvEgsZLTBAJF4nv
-        /cvZIGxhiVfHt0A9JCXxsr+NHaKhn1Hi6f0/UN2rGSUePLzADFFlL3HgyhywbcwCmhLrd+lD
-        hGUlpp5aB7aAWYBPovf3E6hlvBI75oHYHEC2msTWFX4QYRmJMwevQJV4SJx9MgfsHiGBWIn3
-        y1axT2CUnYWwYAEj4ypGydSC4tz01GLTAqO81HK94sTc4tK8dL3k/NxNjOCUoeW1g/Hhgw96
-        hxiZOBgPMUpwMCuJ8EaLcsYL8aYkVlalFuXHF5XmpBYfYpTmYFES51X6cSZOSCA9sSQ1OzW1
-        ILUIJsvEwSnVwFRtZaXxeGfcsqVNOsvavlS1iCx57RGW//fhp4aILU8Vixd5isbraCguS5ir
-        3vzh2Hl9nho3X6bdndfb2S5/Fs1dMcna+scM24MtL29fDPrqEb2Jv9t0IxeDp+2+4sJa9/+t
-        0+5vDCxLv/HjQUVe+++3G7uaMxwX6F8UczucvnT99EqFzQGB8zZUeIplptpeaeYNjhG//np2
-        3A8xzvebWB/57ttxcHan4o/sGTfF5qRFNblNj6xeHL7czrcjKHvhL3vWT58ETnHY6njIv0gw
-        yz0bVnuvYNrdxW2TPv6N+6TpFlO+cJuF9lHjF0kvas1nH7r77Nu9FK3V/8ujC+xmVmdUKr/R
-        r5Ss6uflatjer8RSnJFoqMVcVJwIAO/TjJuIAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprJLMWRmVeSWpSXmKPExsWy7bCSvO4FB+54gznCFgfeH2SxeDBvG5vF
-        /CPnWC06Z29gt1h6/SKTxbdjMRate4+wWxz88ITV4sjD3ewW2682sVq03DF14PZ4cnAek8ea
-        eWsYPS739TJ5tBx5y+qxaVUnm0ffllWMHp83yQWwR3HZpKTmZJalFunbJXBldH9dyVowh7Pi
-        3PdPrA2Mt9m7GDk5JARMJJ59/MAEYgsJ7GaUuPhZHCIuI/F8x1MWCFtYYuW/50D1XEA1TUwS
-        56ZMYQVJsAloS2ybfhOsSEQgXmLO9n+MIEXMAmcYJZb/ug6WEBYIkOia9QNsG4uAqsSS+VuA
-        4hwcvAK2EpMOlkAskJdYveEA8wRGngWMDKsYJVMLinPTc4sNCwzzUsv1ihNzi0vz0vWS83M3
-        MYJDT0tzB+P2VR/0DjEycTAeYpTgYFYS4Y0W5YwX4k1JrKxKLcqPLyrNSS0+xCjNwaIkznuj
-        cGGckEB6YklqdmpqQWoRTJaJg1OqgSny/jpZ5pfOzSfvF39T7rg52XRyCpO/VunnY72PWWZY
-        H9ih48X6qfYfg2bfFzuWlb3rnpy03dJ6tfXcBOGdahdmdExYJ7jG4dov7oPn7A8f0rTUqf3y
-        jevGonf8Z43nsAr8usLoIeQ82yFtVW5HbvRSibfaZ3+63H7bOGci89+nfqpMr1h5gu45JVff
-        nsIzPdJFNOj7n0N/diV9P/2ivibsb/EFJr6uHjWhSz8rhEw4H9ZqLf/WF/6k7+UjvfmPuXce
-        yjKY9t7m1MPMGRt53QqbTSJW7usK9GfuvJbCsTfNsudwKcO6tRkVD45G1rnvmjzT+pfZXQv/
-        q6J211i2HN7mP7t6341/nKVvNh0MswxQYinOSDTUYi4qTgQAGYqFfKwCAAA=
-X-CMS-MailID: 20200712165648epcas5p3a1e6b9f9e1fdadc6740bc1eb509285f9
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-X-CMS-RootMailID: 20200712165648epcas5p3a1e6b9f9e1fdadc6740bc1eb509285f9
-References: <CGME20200712165648epcas5p3a1e6b9f9e1fdadc6740bc1eb509285f9@epcas5p3.samsung.com>
+        id S1728957AbgGLQ4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Jul 2020 12:56:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55514 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728844AbgGLQ4d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jul 2020 12:56:33 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F4176C061794
+        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2020 09:56:32 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id q17so4910928pfu.8
+        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2020 09:56:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=RoZLVftkUKnaYcMruWWsZbHBr7e1w4vlSaetUKLXTFc=;
+        b=kAilNj0pa5MHzUf5mqnUrQ7Io4OPdEm3+GWctUqGgbEAqrKEONdzOgLEtnLUtC55G+
+         TJtYT+cGSILGH69JxTvlt3yKTcXz6qHtcsydg5XT4UvB5YOx/f/sRub3Ay25mlOjAF/3
+         Q7SsWrN/t2t/YSI2c956Kn0tOeQESIl/aBX/WxWsX5JBA8dwEW/V+tBePyy9k5DcPfvL
+         iOxFXXiqwHcff6QE2/z7w3vFkUXjNvBfC7seQGaFda29Cd9pd0C+OBv/tEpAlByl9WYw
+         TpJC2ksfwfQt93SyRngRVRgQXvhNBnLMoBNkmhoNSK8GbAez6vmaq7TDtGGx61hd60q4
+         EvzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=RoZLVftkUKnaYcMruWWsZbHBr7e1w4vlSaetUKLXTFc=;
+        b=VEK2GlMNX+VuPs0cgruog2YmHDmNfwuvaYw2bFWNiyyHvrANPpLuRK4sI6O3SubuFZ
+         EncS3tt0W24/+XWXc3QdxaBc60OOQAO2Koqegs0uAuZ7PHW2r8TdxvzDPQdbho+CINkK
+         JI0BsTfrB1Qh/dUppex0OvDVQyE7x8hkI2i7uV227iNYkF19DDv8FjQSAtZw9AXw8LsG
+         U2P9ZnbEObG6E6KlTCloRHSH4IhveBOhw3eYV1AV1ND4dUf/eGFBI2nDbVyD9OY4gPNH
+         y0SD6MWYI4nxgECnm+o8Su9Oz2+Z1Y16eFEEb+iRWWyl7Wnn6AUUdg5qTXpSbcI/Suxv
+         vPBw==
+X-Gm-Message-State: AOAM530enB5AU7v2cOGMwG7qvq2y9m6NlQqseeELVInolwxwY7cpvmyj
+        M206MXwYkyVqhEnU/QsBZW23
+X-Google-Smtp-Source: ABdhPJzJFvcF/99ggPqX5iRKTo/N7UTdplTTfJ9WJ7cg6cZfaX40TZSERHNl3+HJgCvx/2u+fP6row==
+X-Received: by 2002:a62:3583:: with SMTP id c125mr23840742pfa.158.1594572992302;
+        Sun, 12 Jul 2020 09:56:32 -0700 (PDT)
+Received: from Mani-XPS-13-9360 ([2409:4072:6c81:c187:70f5:3123:b5de:e77f])
+        by smtp.gmail.com with ESMTPSA id p30sm12971935pfq.153.2020.07.12.09.56.27
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 12 Jul 2020 09:56:31 -0700 (PDT)
+Date:   Sun, 12 Jul 2020 22:26:25 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-actions@lists.infradead.org
+Subject: Re: [PATCH v3 2/6] dt-bindings: clock: Add APB, DMAC, GPIO bindings
+ for Actions S500 SoC
+Message-ID: <20200712165625.GA6110@Mani-XPS-13-9360>
+References: <cover.1593788312.git.cristian.ciocaltea@gmail.com>
+ <67112af4f5bc0cc5e70ce8410feb369cc72972b8.1593788312.git.cristian.ciocaltea@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <67112af4f5bc0cc5e70ce8410feb369cc72972b8.1593788312.git.cristian.ciocaltea@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds devicetree binding for perf/arm_smmuv3_pmu driver.
+On Fri, Jul 03, 2020 at 08:05:08PM +0300, Cristian Ciocaltea wrote:
+> Add the missing APB, DMAC and GPIO clock bindings constants for
+> Actions Semi S500 SoC.
+> 
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
 
-Signed-off-by: Ajay Kumar <ajaykumar.rs@samsung.com>
----
- .../bindings/perf/arm-smmu-v3-pmcg.txt        | 21 +++++++++++++++++++
- 1 file changed, 21 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/perf/arm-smmu-v3-pmcg.txt
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/perf/arm-smmu-v3-pmcg.txt b/Documentation/devicetree/bindings/perf/arm-smmu-v3-pmcg.txt
-new file mode 100644
-index 000000000000..a20fe68ce149
---- /dev/null
-+++ b/Documentation/devicetree/bindings/perf/arm-smmu-v3-pmcg.txt
-@@ -0,0 +1,21 @@
-+* ARM SMMU V3 PMCG
-+
-+Required properties:
-+
-+- compatible: should be "arm-smmu-v3-pmu"
-+
-+- reg: (standard registers property) physical address and size
-+	of the performance counters registers block.
-+	If Page 1 is present, specify the same.
-+
-+- interrupts: (standard interrupt property) single interrupt
-+	generated by the SMMU PMU control block
-+
-+Example:
-+
-+	pmcg@20002000 {
-+		compatible = "arm-smmu-v3-pmu";
-+		reg = <0x0 0x20002000 0x0 0x1000>,
-+			<0x0 0x20022000 0x0 0xE00>; /* Page 1 */
-+		interrupts = <0 181 4>;
-+	};
--- 
-2.17.1
+Thanks,
+Mani
 
+> ---
+> Changes in v3:
+>  - Preserved the original values of the existing bindings and moved
+>    the newly added constants bellow, as indicated by Stephen
+> 
+> Changes in v2:
+>  - None
+> 
+>  include/dt-bindings/clock/actions,s500-cmu.h | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/dt-bindings/clock/actions,s500-cmu.h b/include/dt-bindings/clock/actions,s500-cmu.h
+> index 030981cd2d56..a250a52a6192 100644
+> --- a/include/dt-bindings/clock/actions,s500-cmu.h
+> +++ b/include/dt-bindings/clock/actions,s500-cmu.h
+> @@ -72,7 +72,12 @@
+>  #define CLK_NAND		52
+>  #define CLK_ECC			53
+>  #define CLK_RMII_REF		54
+> +#define CLK_GPIO		55
+>  
+> -#define CLK_NR_CLKS	       (CLK_RMII_REF + 1)
+> +/* system clock (part 2) */
+> +#define CLK_APB			56
+> +#define CLK_DMAC		57
+> +
+> +#define CLK_NR_CLKS		(CLK_DMAC + 1)
+>  
+>  #endif /* __DT_BINDINGS_CLOCK_S500_CMU_H */
+> -- 
+> 2.27.0
+> 
