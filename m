@@ -2,112 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18E4C21C7F8
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2020 10:04:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2D9C21C838
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2020 11:20:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728048AbgGLIEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Jul 2020 04:04:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58960 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725974AbgGLIEY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jul 2020 04:04:24 -0400
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E2E4C061794;
-        Sun, 12 Jul 2020 01:04:24 -0700 (PDT)
-Received: by mail-pl1-x641.google.com with SMTP id x11so4158633plo.7;
-        Sun, 12 Jul 2020 01:04:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=LTBQ5hXaHngPCInPYxsn3Tt3w8wK0N53I4uFY//HXvo=;
-        b=melW+Suxam/anIIxjGA78CCr5w9gIk8QZ2D4vWtgm+kTWfRvERQd8d+ttOy07gkhk+
-         YKJgVZsr1HgL0V8R2rvDVDuQhwSlwMAUcUxU5YuUCt6GFsWruXSEmNQzlLLmgs/jHDbP
-         JwWHOCsvKK776bAB/KU7s9zA6iBWJFvx479LEazyPGyxX0Ivdiroi/AE3u+D+4BTT720
-         gMNtMxEPQ6y/+l7Q5c7cq8kpPFcHG8jKWm5ruYLvFpv0qHc6V5kGM5j7wiePi0Nz5Vcs
-         SNsTztl0xGjGpY9dwcJWu98/sJUVHKYEgm49TOq6+85rOMb3YthZBdOQzckvjQb42yLd
-         s20g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=LTBQ5hXaHngPCInPYxsn3Tt3w8wK0N53I4uFY//HXvo=;
-        b=BVdm5/f+HvFHt0tQlSiFlvVlCFoXFFfEDqP0o1GFubkZD6WLqaxmGoFS3/yoSmuqhO
-         +LDglLYK0Fwd4AYUtpAhV7c8rQXZKbyryr0BebCUCRDb9zinNKaItJ73ujWHO1h/UzQk
-         78wljwnoOU14BiBfvZmeKTZEyKshzI0QYCC8a7z144aoPE5KudmpZY0Sgk3t4+CHcqC1
-         iP1A/3+pcLrYpw/TNO2W4r84FSet+8174wU0A75VOn0ElZ3DT95bUdlWE452FBDUWZN4
-         W9dSkRw8vB4yqSdK+EAGYQ5JE9zprUHlSWRMNbvqfZNw4PG+vDtfMrJj/7fG5hdU38FI
-         OmhA==
-X-Gm-Message-State: AOAM530V867+Eki1T8vJ7qwHw7WGG+mRyhEh4QmZkneKEKLwQx3kGgjG
-        oKihskSwf7+CHbWDtN/g9FDF/8UJHOV1DQ==
-X-Google-Smtp-Source: ABdhPJyRBmqvXaBrw9rcOfDZ+aksHUo0sTFOJITcskkXFEVMr4JjXWXyfsjocjjB+1n7hmVVNpTx9A==
-X-Received: by 2002:a17:902:988b:: with SMTP id s11mr13131866plp.229.1594541063719;
-        Sun, 12 Jul 2020 01:04:23 -0700 (PDT)
-Received: from localhost.localdomain.com ([2605:e000:160b:911f:a2ce:c8ff:fe03:6cb0])
-        by smtp.gmail.com with ESMTPSA id y24sm11602154pfp.217.2020.07.12.01.04.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jul 2020 01:04:23 -0700 (PDT)
-From:   Chris Healy <cphealy@gmail.com>
-To:     shawnguo@kernel.org, s.hauer@pengutronix.de, stefan@agner.ch,
-        festevam@gmail.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        andrew.smirnov@gmail.com, linux-kernel@vger.kernel.org
-Cc:     Chris Healy <cphealy@gmail.com>
-Subject: [PATCH] ARM: dts: vf610-zii-spb4: Add node for switch watchdog
-Date:   Sun, 12 Jul 2020 01:03:57 -0700
-Message-Id: <20200712080357.3586-1-cphealy@gmail.com>
-X-Mailer: git-send-email 2.21.3
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1728264AbgGLJUR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Jul 2020 05:20:17 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:38238 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728112AbgGLJUR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 12 Jul 2020 05:20:17 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id ABF102008BF;
+        Sun, 12 Jul 2020 11:20:15 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id D17872002AB;
+        Sun, 12 Jul 2020 11:20:11 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 2ADD0402C8;
+        Sun, 12 Jul 2020 17:20:07 +0800 (SGT)
+From:   Shengjiu Wang <shengjiu.wang@nxp.com>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [RESEND PATCH] ARM: dts: imx6sx-sdb: Add MQS support
+Date:   Sun, 12 Jul 2020 17:16:42 +0800
+Message-Id: <1594545402-26815-1-git-send-email-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add I2C child node for switch watchdog present on SPB4
+Add MQS support. As the pin conflict with usdhc2, then need
+to add a separate dts.
 
-Signed-off-by: Chris Healy <cphealy@gmail.com>
+Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 ---
- arch/arm/boot/dts/vf610-zii-spb4.dts | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+changes in RESEND
+- resolve the conflict with latest tree.
 
-diff --git a/arch/arm/boot/dts/vf610-zii-spb4.dts b/arch/arm/boot/dts/vf610-zii-spb4.dts
-index a68eae88174a..9e5187ba3fa6 100644
---- a/arch/arm/boot/dts/vf610-zii-spb4.dts
-+++ b/arch/arm/boot/dts/vf610-zii-spb4.dts
-@@ -209,6 +209,18 @@
- 	};
- };
- 
-+&i2c1 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
+ arch/arm/boot/dts/Makefile           |  1 +
+ arch/arm/boot/dts/imx6sx-sdb-mqs.dts | 48 ++++++++++++++++++++++++++++
+ arch/arm/boot/dts/imx6sx-sdb.dtsi    |  7 ++++
+ arch/arm/boot/dts/imx6sx.dtsi        |  6 ++++
+ 4 files changed, 62 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6sx-sdb-mqs.dts
+
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index e6a1cac0bfc7..04f85d6a2af3 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -592,6 +592,7 @@ dtb-$(CONFIG_SOC_IMX6SX) += \
+ 	imx6sx-sdb-reva.dtb \
+ 	imx6sx-sdb-sai.dtb \
+ 	imx6sx-sdb.dtb \
++	imx6sx-sdb-mqs.dtb \
+ 	imx6sx-softing-vining-2000.dtb \
+ 	imx6sx-udoo-neo-basic.dtb \
+ 	imx6sx-udoo-neo-extended.dtb \
+diff --git a/arch/arm/boot/dts/imx6sx-sdb-mqs.dts b/arch/arm/boot/dts/imx6sx-sdb-mqs.dts
+new file mode 100644
+index 000000000000..a4ab2d3e960c
+--- /dev/null
++++ b/arch/arm/boot/dts/imx6sx-sdb-mqs.dts
+@@ -0,0 +1,48 @@
++// SPDX-License-Identifier: GPL-2.0
++//
++// Copyright (C) 2014 Freescale Semiconductor, Inc.
 +
-+	watchdog@38 {
-+		compatible = "zii,rave-wdt";
-+		reg = <0x38>;
++#include "imx6sx-sdb.dts"
++/ {
++
++	sound {
++		status = "disabled";
++	};
++
++	sound-mqs {
++		compatible = "fsl,imx6sx-sdb-mqs",
++			     "fsl,imx-audio-mqs";
++		model = "mqs-audio";
++		audio-cpu = <&sai1>;
++		audio-asrc = <&asrc>;
++		audio-codec = <&mqs>;
 +	};
 +};
 +
- &snvsrtc {
- 	status = "disabled";
- };
-@@ -326,6 +338,13 @@
- 		>;
++&usdhc2 {
++	/* pin conflict with mqs*/
++	status = "disabled";
++};
++
++&mqs {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_mqs>;
++	clocks = <&clks IMX6SX_CLK_SAI1>;
++	clock-names = "mclk";
++	status = "okay";
++};
++
++&sai1 {
++	pinctrl-0 = <>;
++	status = "okay";
++};
++
++&ssi2 {
++	status = "disabled";
++};
++
++&sdma {
++	gpr = <&gpr>;
++	/* SDMA event remap for SAI1 */
++	fsl,sdma-event-remap = <0 15 1>, <0 16 1>;
++};
+diff --git a/arch/arm/boot/dts/imx6sx-sdb.dtsi b/arch/arm/boot/dts/imx6sx-sdb.dtsi
+index 6673532018b2..05d1e9d2efab 100644
+--- a/arch/arm/boot/dts/imx6sx-sdb.dtsi
++++ b/arch/arm/boot/dts/imx6sx-sdb.dtsi
+@@ -522,6 +522,13 @@ MX6SX_PAD_LCD1_RESET__GPIO3_IO_27 0x4001b0b0
+ 			>;
+ 		};
+ 
++		pinctrl_mqs: mqsgrp {
++			fsl,pins = <
++				MX6SX_PAD_SD2_CLK__MQS_RIGHT 0x120b0
++				MX6SX_PAD_SD2_CMD__MQS_LEFT  0x120b0
++			>;
++		};
++
+ 		pinctrl_pcie: pciegrp {
+ 			fsl,pins = <
+ 				MX6SX_PAD_ENET1_COL__GPIO2_IO_0 0x10b0
+diff --git a/arch/arm/boot/dts/imx6sx.dtsi b/arch/arm/boot/dts/imx6sx.dtsi
+index 5c2b78589aa5..fcb3d064d0cc 100644
+--- a/arch/arm/boot/dts/imx6sx.dtsi
++++ b/arch/arm/boot/dts/imx6sx.dtsi
+@@ -134,6 +134,12 @@ anaclk2: clock-anaclk2 {
+ 		clock-output-names = "anaclk2";
  	};
  
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			VF610_PAD_PTB16__I2C1_SCL		0x37ff
-+			VF610_PAD_PTB17__I2C1_SDA		0x37ff
-+		>;
++	mqs: mqs {
++		compatible = "fsl,imx6sx-mqs";
++		gpr = <&gpr>;
++		status = "disabled";
 +	};
 +
- 	pinctrl_leds_debug: pinctrl-leds-debug {
- 		fsl,pins = <
- 			VF610_PAD_PTD3__GPIO_82			0x31c2
+ 	pmu {
+ 		compatible = "arm,cortex-a9-pmu";
+ 		interrupt-parent = <&gpc>;
 -- 
-2.21.3
+2.27.0
 
