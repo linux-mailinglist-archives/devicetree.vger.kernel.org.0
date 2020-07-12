@@ -2,131 +2,280 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA2CB21C88D
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2020 12:29:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FDED21C898
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2020 12:40:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728112AbgGLK3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Jul 2020 06:29:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52894 "EHLO
+        id S1728682AbgGLKkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Jul 2020 06:40:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725892AbgGLK3q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jul 2020 06:29:46 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 906D9C061794;
-        Sun, 12 Jul 2020 03:29:46 -0700 (PDT)
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1594549781;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=IWFrAeJzdC1u5O59YIvI89feeTzWtk1CrA2wzI7B5gE=;
-        b=PSp9tjkUXphkpck6Gxdu/lMEZw5gF0vW38et/aNTdWMOLb+5CmmzJCc6n1n84uBxWDId5X
-        Fzn5t+XBKdd5iHG2y3bRdAiQSDaKkGImtNi/1QuI7LVA7KtDnmxsVU0LxCbogHpExTzNwJ
-        lYiMUCQEMoWWlD2E83VpGi3VHAVGKmqgCJxbAbztoBpUF7NsafpZI/uohat3Vm5R4YsuD9
-        4xOlYlnZ1OyVY0Dxf7CjGOLSE6nyxglV5Rdc5DR9Kn8IS9STCzRhHHjwN8BJXW4CE5Emle
-        2rUCVvvHOJc7iBf/WWU5s7Za8lm+9Moi1siZ5tgTkVig1ddMACL7lrB3MiVF7g==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1594549781;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=IWFrAeJzdC1u5O59YIvI89feeTzWtk1CrA2wzI7B5gE=;
-        b=VMpQ130axs2hwnRSwQ/bqxaQQc3ST3nKEbRBB8nfn4ZY9LkIav224V3zoPMikeu5qmE+yL
-        Qp1rVKb/NkvfLDDg==
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Rob Herring <robh@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v1 1/1] dt-bindings: net: dsa: Add DSA yaml binding
-In-Reply-To: <20200711165203.GO1014141@lunn.ch>
-References: <20200710090618.28945-1-kurt@linutronix.de> <20200710090618.28945-2-kurt@linutronix.de> <20200710163940.GA2775145@bogus> <874kqewahb.fsf@kurt> <20200711165203.GO1014141@lunn.ch>
-Date:   Sun, 12 Jul 2020 12:29:30 +0200
-Message-ID: <877dv9owl1.fsf@kurt>
+        with ESMTP id S1727777AbgGLKkD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jul 2020 06:40:03 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D148EC08C5DD
+        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2020 03:40:02 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id p20so10925780ejd.13
+        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2020 03:40:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aN0S3QocZF4o06z++Y9kZOtmcDBZ/rluxLtOFwCsZzw=;
+        b=H45DtgesHAWfbHUoQHs6/VvFF/5Wa4BYgB+2SaSxdYuoR/S1X/YyMWeOYZ6/kuxx1Y
+         B7+o5NTK+HG/HTJ+F3gsC256oy2rfAxrF08Gk4Z/NnBrGwN2VCRDn+sGYaiCy9Fcre47
+         WdW0qecvJ+ITLbJgGUuPuHetbU6W9Y6TxOyBI3YNP68NDoiKaj6okjNcYiuM070g8HPV
+         e413SNIGl3XIGufAtZYWpk7K4SOlB7hfHPtkY8G+RYMSSnOyg7GJp7ZyKGhUeez2YjxS
+         JV8cjLAXUL77WN32TLhVjPyBWDQpSTs29Dqt3dA5ssyhbneMnR9qcSsMin5E2pyuZAHn
+         qr0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aN0S3QocZF4o06z++Y9kZOtmcDBZ/rluxLtOFwCsZzw=;
+        b=QtMzxZdePqTRw9gAbIT72vAgG/4GWfYVX/IvkVYfySrOVhrlduFIsHTL+f2W2Lk18m
+         BdGvarOI567EAzN4uFbOo7opuTbNMl4h2caAX2OdpcfH6MWC4WEnXe5JWOdBAxFGtNho
+         NNMZ6skn19sUPJ9ak/RhzGWMAEGa3oUui3kdTx6q1b74IfByFxhMdqOBBrmH+m7shS4T
+         euK8jpg7QGbFVgh2Pae9DvHPzwv1fBouB6mAtiVeKhxJLypPj+NT9wq8NTjHKUnBWWuE
+         iP97q/zgHdNMltf47YX/6fS7L5eGYVB5emwaGt55J2pkHIHt/dh0kuRWzEV3y1a2y0PJ
+         zkdA==
+X-Gm-Message-State: AOAM532/n6ui7R6duZavk4Mld2XJhMG7FIMHx9wtJwsmW9tD5h/E6l8Z
+        uHzmTt54XfHh/Va72fwnRpl9JQ==
+X-Google-Smtp-Source: ABdhPJwlHqvjxtCf81KjcT/BWrrFpCGMZJGtc2bPCwpjWJv9c0h1T2Yp6hMHuus8fy4mmvA2fcMYsw==
+X-Received: by 2002:a17:906:7d1:: with SMTP id m17mr71913931ejc.490.1594550400204;
+        Sun, 12 Jul 2020 03:40:00 -0700 (PDT)
+Received: from localhost.localdomain ([2001:16b8:5c6d:5401:5efa:ca01:fd44:b7ae])
+        by smtp.gmail.com with ESMTPSA id z5sm4443604ejw.114.2020.07.12.03.39.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 12 Jul 2020 03:39:59 -0700 (PDT)
+From:   Drew Fustini <drew@beagleboard.org>
+To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
+        bcousson@baylibre.com, Linus Walleij <linus.walleij@linaro.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Drew Fustini <drew@beagleboard.org>
+Subject: [PATCH v4] ARM: dts: am335x-pocketbeagle: set default mux for gpio pins
+Date:   Sun, 12 Jul 2020 12:37:19 +0200
+Message-Id: <20200712103717.1219765-1-drew@beagleboard.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+These pins on the PocketBeagle P1 and P2 headers are connected to AM3358
+balls with gpio lines, and these pins are not used for any other
+peripherals by default. These GPIO lines are unclaimed and could be used
+by userspace program through the gpiod ABI.
 
-On Sat Jul 11 2020, Andrew Lunn wrote:
-> On Sat, Jul 11, 2020 at 01:35:12PM +0200, Kurt Kanzenbach wrote:
->> On Fri Jul 10 2020, Rob Herring wrote:
->> > My bot found errors running 'make dt_binding_check' on your patch:
->> >
->> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/n=
-et/ti,cpsw-switch.example.dt.yaml: switch@0: 'ports' is a required property
->> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/n=
-et/qcom,ipq8064-mdio.example.dt.yaml: switch@10: 'ports' is a required prop=
-erty
->>=20
->> Okay, the requirement for 'ports' has be to removed.
->
-> Hummm....
->
-> ti.cpsw is not a DSA switch. So this binding should not apply to
-> it. It is a plain switchdev switch.
->
-> The qcom,ipq806 is just an MDIO bus master. The DSA binding might
-> apply, for a specific .dts file, if that dts file has a DSA switch on
-> the bus. But in general, it should not apply.
->
-> So i actually think you need to work out why this binding is being
-> applied when it should not be.
->
-> I suspect it is the keyword 'switch'. switch does not imply it is a
-> DSA switch. There are other sorts of switches as well.
+This patch adds a "default" state in the am33xx_pinmux node and sets the
+mux for those pins to gpio (mode 7) and input enable.
 
-OK, makes sense. It seems like the nodename is responsible for that.
+The "pinctrl-single,bias-pullup" and "pinctrl-single,bias-pulldown"
+pinconf properties are also set for each pin per the ball reset state in
+section 4.2 of the datasheet [0].
 
-This fixes the problem:
+This is the AM335x pin control register format in Table 9-60 [1]:
 
-|diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Document=
-ation/devicetree/bindings/net/dsa/dsa.yaml
-|index bec257231bf8..4c360f8b170e 100644
-|--- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-|+++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-|@@ -18,9 +18,6 @@ description:
-|   properties as required by the device it is embedded within.
-|=20
-| properties:
-|-  $nodename:
-|-    pattern: "^switch(@.*)?$"
-|-
-|   dsa,member:
-|     minItems: 2
-|     maxItems: 2
+ bit     attribute      value
+----------------------------------
+31-7     reserved       0 on reset
+   6     slew           { 0: fast, 1: slow }
+   5     rx_active      { 0: rx disable, 1: rx enabled }
+   4     pu_typesel     { 0: pulldown select, 1: pullup select }
+   3     puden          { 0: pud enable, 1: disabled }
+   2     mode           3 bits to selec mode 0 to 7
+   1     mode
+   0     mode
 
-Thanks,
-Kurt
+The values for the bias pinconf properties are derived as follows:
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+pinctrl-single,bias-pullup   = <[input] [enabled] [disable] [mask]>;
+pinctrl-single,bias-pullup   = <  0x10      0x10      0x10   0x18 >;
 
------BEGIN PGP SIGNATURE-----
+          2^5    2^4    2^3    2^2    2^1    2^0  |
+         0x20   0x10   0x08   0x04   0x02   0x01  |
+--------------------------------------------------|
+input       x      1      0     x      x      x   | 0x10
+enabled     x      1      0     x      x      x   | 0x10
+disabled    x      0      0     x      x      x   | 0x00
+mask        x      1      1     x      x      x   | 0x18
 
-iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl8K5goACgkQeSpbgcuY
-8KYE0RAAzpJZjOmKWljpOO5oKYziFmhkV7L3HXbG53rkVv6YbcpuETjWW+UrbEjZ
-XHLxvRFETuQgOrH8bEUWXbom6h0fv7HIUi/On3DSlajPRfyuSzMw7AYMi99wNM0F
-3eVk8f1+ftLDZNEdbcigZYU+ZuCFXlnuelqvq9JzYBps44M18Cdc1DlddNNTy/jo
-/qDtNtHmQxjcxXPDW6LDJn+WnsQlo8Fxz7Se+8/jNHz8NV+b5Hi33m0aevkZwK1R
-bsby9RgIuhbSOg8hlM98KCkowcRT0aNoyMsiy+luoTxEAJOA/QQJ3w0zgdT3+bT9
-7uq0EvdkNtXvbXNVej3FbcxS/9636ZkCEmHCz8EAVbZ7q4WLU2+f801HQ3m21hRO
-7Szad+gXUHkIRP/xGdfZFhGV7snsWKEn13VufmnO5dHz+xVLI39obr0TekbWEjfw
-4H2OaLvnmgGRJlxluH27xDu379IUxYO6lqy+fIpb4WDHiQryjOe2kY14q0hEERKi
-M133gk+DWheg/OrgIPybPHliHrjPO1Egx8N1Lf7fW3HHjA2aRrEpnkrZNDitjXRx
-cJL1DnDDQNp7GUx1aGJJLKISZBMLz/MePwhp6uUAiFeVLEmnk5oGt8joqnMbO0Q4
-TVlzaKEyLdIWtfmc6EJTrRa9NPUYo3BfC8zrupljlcWLxAAQM/Q=
-=1pvc
------END PGP SIGNATURE-----
---=-=-=--
+pinctrl-single,bias-pulldown = <[input] [enabled] [disable] [mask]>;
+pinctrl-single,bias-pulldown = <   0x0       0x0      0x10   0x18 >;
+
+          2^5    2^4    2^3    2^2    2^1    2^0  |
+         0x20   0x10   0x08   0x04   0x02   0x01  |
+--------------------------------------------------|
+input       x      0      0     x      x      x   | 0x00
+enabled     x      0      0     x      x      x   | 0x00
+disabled    x      1      0     x      x      x   | 0x10
+mask        x      1      1     x      x      x   | 0x18
+
+[0] http://www.ti.com/lit/ds/symlink/am3358.pdf
+[1] https://www.ti.com/lit/ug/spruh73q/spruh73q.pdf
+
+Signed-off-by: Drew Fustini <drew@beagleboard.org>
+---
+v4 changes:
+- patch on top of tony's omap-for-v5.9/dt as there is already
+  e14d2c766392 ("ARM: dts: am335x-pocketbeagle: add gpio-line-names")
+
+- correct values for input and disable in pinctrl-single,bias-pullup
+  and pinctrl-single,bias-pulldown
+
+v3 changes:
+- add pinconf bias properties as it is necessary for pcs_pinconf_set()
+  to find the requested bias parameter in the PIN_MAP_TYPE_CONFIGS_GROUP
+  pinctrl map.
+
+v2 changes:
+- change default mux from output to input.  Input is safer as it does
+  not drive the line.  If the user wants output, they will need to edit
+  this device tree.
+
+ arch/arm/boot/dts/am335x-pocketbeagle.dts | 125 ++++++++++++++++++++++
+ 1 file changed, 125 insertions(+)
+
+diff --git a/arch/arm/boot/dts/am335x-pocketbeagle.dts b/arch/arm/boot/dts/am335x-pocketbeagle.dts
+index e08b5f73ccb5..e083ea36184d 100644
+--- a/arch/arm/boot/dts/am335x-pocketbeagle.dts
++++ b/arch/arm/boot/dts/am335x-pocketbeagle.dts
+@@ -204,6 +204,131 @@ &gpio3 {
+ };
+ 
+ &am33xx_pinmux {
++
++	pinctrl-names = "default";
++
++	pinctrl-0 =   < &P2_03_gpio &P1_34_gpio &P2_19_gpio &P2_24_gpio
++			&P2_33_gpio &P2_22_gpio &P2_18_gpio &P2_10_gpio
++			&P2_06_gpio &P2_04_gpio &P2_02_gpio &P2_08_gpio
++			&P2_17_gpio >;
++
++	/* P2_03 (ZCZ ball T10) gpio0_23 0x824 PIN 9 */
++	P2_03_gpio: pinmux_P2_03_gpio {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD9, PIN_INPUT_PULLUP, MUX_MODE7)
++		>;
++		pinctrl-single,bias-pullup   =   < 0x10  0x10  0x00  0x18>;
++		pinctrl-single,bias-pulldown   = < 0x10  0x00  0x10  0x18>;
++	};
++
++	/* P1_34 (ZCZ ball T11) gpio0_26 0x828 PIN 10 */
++	P1_34_gpio: pinmux_P1_34_gpio {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD10, PIN_INPUT_PULLUP, MUX_MODE7)
++		>;
++		pinctrl-single,bias-pullup   =   < 0x10  0x10  0x00  0x18>;
++		pinctrl-single,bias-pulldown   = < 0x10  0x00  0x10  0x18>;
++	};
++
++	/* P2_19 (ZCZ ball U12) gpio0_27 0x82c PIN 11 */
++	P2_19_gpio: pinmux_P2_19_gpio {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD11, PIN_INPUT_PULLUP, MUX_MODE7)
++		>;
++		pinctrl-single,bias-pullup   =   < 0x10  0x10  0x00  0x18>;
++		pinctrl-single,bias-pulldown   = < 0x10  0x00  0x10  0x18>;
++	};
++
++	/* P2_24 (ZCZ ball T12) gpio1_12 0x830 PIN 12 */
++	P2_24_gpio: pinmux_P2_24_gpio {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD12, PIN_INPUT_PULLUP, MUX_MODE7)
++		>;
++		pinctrl-single,bias-pullup   =   < 0x10  0x10  0x00  0x18>;
++		pinctrl-single,bias-pulldown   = < 0x10  0x00  0x10  0x18>;
++	};
++
++	/* P2_33 (ZCZ ball R12) gpio1_13 0x834 PIN 13 */
++	P2_33_gpio: pinmux_P2_33_gpio {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD13, PIN_INPUT_PULLUP, MUX_MODE7)
++		>;
++		pinctrl-single,bias-pullup   =   < 0x10  0x10  0x00  0x18>;
++		pinctrl-single,bias-pulldown   = < 0x10  0x00  0x10  0x18>;
++	};
++
++	/* P2_22 (ZCZ ball V13) gpio1_14 0x838 PIN 14 */
++	P2_22_gpio: pinmux_P2_22_gpio {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD14, PIN_INPUT_PULLUP, MUX_MODE7)
++		>;
++		pinctrl-single,bias-pullup   =   < 0x10  0x10  0x00  0x18>;
++		pinctrl-single,bias-pulldown   = < 0x10  0x00  0x10  0x18>;
++	};
++
++	/* P2_18 (ZCZ ball U13) gpio1_15 0x83c PIN 15 */
++	P2_18_gpio: pinmux_P2_18_gpio {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD15, PIN_INPUT_PULLUP, MUX_MODE7)
++		>;
++		pinctrl-single,bias-pullup   =   < 0x10  0x10  0x00  0x18>;
++		pinctrl-single,bias-pulldown   = < 0x10  0x00  0x10  0x18>;
++	};
++
++	/* P2_10 (ZCZ ball R14) gpio1_20 0x850 PIN 20 */
++	P2_10_gpio: pinmux_P2_10_gpio {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_GPMC_A4, PIN_INPUT_PULLUP, MUX_MODE7)
++		>;
++		pinctrl-single,bias-pullup   =   < 0x10  0x10  0x00  0x18>;
++		pinctrl-single,bias-pulldown   = < 0x10  0x00  0x10  0x18>;
++	};
++
++	/* P2_06 (ZCZ ball U16) gpio1_25 0x864 PIN 25 */
++	P2_06_gpio: pinmux_P2_06_gpio {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_GPMC_A9, PIN_INPUT_PULLUP, MUX_MODE7)
++		>;
++		pinctrl-single,bias-pullup   =   < 0x10  0x10  0x00  0x18>;
++		pinctrl-single,bias-pulldown   = < 0x10  0x00  0x10  0x18>;
++	};
++
++	/* P2_04 (ZCZ ball T16) gpio1_26 0x868 PIN 26 */
++	P2_04_gpio: pinmux_P2_04_gpio {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_GPMC_A10, PIN_INPUT_PULLUP, MUX_MODE7)
++		>;
++		pinctrl-single,bias-pullup   =   < 0x10  0x10  0x00  0x18>;
++		pinctrl-single,bias-pulldown   = < 0x10  0x00  0x10  0x18>;
++	};
++
++	/* P2_02 (ZCZ ball V17) gpio1_27 0x86c PIN 27 */
++	P2_02_gpio: pinmux_P2_02_gpio {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_GPMC_A11, PIN_INPUT_PULLUP, MUX_MODE7)
++		>;
++		pinctrl-single,bias-pullup   =   < 0x10  0x10  0x00  0x18>;
++		pinctrl-single,bias-pulldown   = < 0x10  0x00  0x10  0x18>;
++	};
++
++	/* P2_08 (ZCZ ball U18) gpio1_28 0x878 PIN 30 */
++	P2_08_gpio: pinmux_P2_08_gpio {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_GPMC_BEN1, PIN_INPUT_PULLDOWN, MUX_MODE7)
++		>;
++		pinctrl-single,bias-pullup   =   < 0x00  0x10  0x00  0x18>;
++		pinctrl-single,bias-pulldown   = < 0x00  0x00  0x10  0x18>;
++	};
++
++	/* P2_17 (ZCZ ball V12) gpio2_1 0x88c PIN 35 */
++	P2_17_gpio: pinmux_P2_17_gpio {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_GPMC_CLK, PIN_INPUT_PULLUP, MUX_MODE7)
++		>;
++		pinctrl-single,bias-pullup   =   < 0x10  0x10  0x00  0x18>;
++		pinctrl-single,bias-pulldown   = < 0x10  0x00  0x10  0x18>;
++	};
++
+ 	i2c2_pins: pinmux-i2c2-pins {
+ 		pinctrl-single,pins = <
+ 			AM33XX_PADCONF(AM335X_PIN_UART1_RTSN, PIN_INPUT_PULLUP, MUX_MODE3)	/* (D17) uart1_rtsn.I2C2_SCL */
+-- 
+2.25.1
+
