@@ -2,85 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8BC121C883
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2020 12:25:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA2CB21C88D
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2020 12:29:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728662AbgGLKZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Jul 2020 06:25:20 -0400
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:9233 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727777AbgGLKZT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jul 2020 06:25:19 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5f0ae5020001>; Sun, 12 Jul 2020 03:25:06 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Sun, 12 Jul 2020 03:25:19 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Sun, 12 Jul 2020 03:25:19 -0700
-Received: from HQMAIL111.nvidia.com (172.20.187.18) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Sun, 12 Jul
- 2020 10:25:19 +0000
-Received: from hqnvemgw03.nvidia.com (10.124.88.68) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Sun, 12 Jul 2020 10:25:19 +0000
-Received: from moonraker.nvidia.com (Not Verified[10.26.75.246]) by hqnvemgw03.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5f0ae50e0003>; Sun, 12 Jul 2020 03:25:18 -0700
-From:   Jon Hunter <jonathanh@nvidia.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, Jon Hunter <jonathanh@nvidia.com>
-Subject: [PATCH 3/3] arm64: tegra: Populate VBUS for USB3 on Jetson TX2
-Date:   Sun, 12 Jul 2020 11:25:06 +0100
-Message-ID: <20200712102506.23686-4-jonathanh@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200712102506.23686-1-jonathanh@nvidia.com>
-References: <20200712102506.23686-1-jonathanh@nvidia.com>
-X-NVConfidentiality: public
+        id S1728112AbgGLK3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Jul 2020 06:29:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52894 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725892AbgGLK3q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jul 2020 06:29:46 -0400
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 906D9C061794;
+        Sun, 12 Jul 2020 03:29:46 -0700 (PDT)
+From:   Kurt Kanzenbach <kurt@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1594549781;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=IWFrAeJzdC1u5O59YIvI89feeTzWtk1CrA2wzI7B5gE=;
+        b=PSp9tjkUXphkpck6Gxdu/lMEZw5gF0vW38et/aNTdWMOLb+5CmmzJCc6n1n84uBxWDId5X
+        Fzn5t+XBKdd5iHG2y3bRdAiQSDaKkGImtNi/1QuI7LVA7KtDnmxsVU0LxCbogHpExTzNwJ
+        lYiMUCQEMoWWlD2E83VpGi3VHAVGKmqgCJxbAbztoBpUF7NsafpZI/uohat3Vm5R4YsuD9
+        4xOlYlnZ1OyVY0Dxf7CjGOLSE6nyxglV5Rdc5DR9Kn8IS9STCzRhHHjwN8BJXW4CE5Emle
+        2rUCVvvHOJc7iBf/WWU5s7Za8lm+9Moi1siZ5tgTkVig1ddMACL7lrB3MiVF7g==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1594549781;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=IWFrAeJzdC1u5O59YIvI89feeTzWtk1CrA2wzI7B5gE=;
+        b=VMpQ130axs2hwnRSwQ/bqxaQQc3ST3nKEbRBB8nfn4ZY9LkIav224V3zoPMikeu5qmE+yL
+        Qp1rVKb/NkvfLDDg==
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Rob Herring <robh@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v1 1/1] dt-bindings: net: dsa: Add DSA yaml binding
+In-Reply-To: <20200711165203.GO1014141@lunn.ch>
+References: <20200710090618.28945-1-kurt@linutronix.de> <20200710090618.28945-2-kurt@linutronix.de> <20200710163940.GA2775145@bogus> <874kqewahb.fsf@kurt> <20200711165203.GO1014141@lunn.ch>
+Date:   Sun, 12 Jul 2020 12:29:30 +0200
+Message-ID: <877dv9owl1.fsf@kurt>
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1594549506; bh=yCFruHaw69Mabibsg9VDKDYxzywqatQS+8PmlmivtW8=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=ouYz4kH23cufPUIWzmRCwAqqYgfK2cIMZDblZCPMWneZIZJVB2UkZYEZHLgEAHM/J
-         7P5JQmkuTUkl8ixpPX6JS3Khni5nxGuCnWLhqEDvQJtnG3Bf51r/HDYvpASH23mvgD
-         mPRu/A14qT5dzlj5cjV/GPpBfJj9CeI6vylLLfdtZvIh9S9vTPxxjKaOl0adCpfvy+
-         OJFylu+tK+8IpjOm5FWbboBNW4eXXxG3bRq7xjXpc06KClm4rPrlK8XwXdjVy3XXjI
-         IJbKI38UfyBl1wWegdYsxOFtvAxrzsX6LK9TR3j/tsIb8PqU6h/7Po8o1VC0x8Et2O
-         K74QiEAx53swQ==
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha512; protocol="application/pgp-signature"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The VBUS for USB3 connector on the Jetson TX2 is connected to the
-vdd_usb1 supply and although this is populated for the USB2 port
-on the USB3 connector it is not populated for the USB3 port and
-causes the following warning to be seen on boot ...
+--=-=-=
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
- usb3-0: supply vbus not found, using dummy regulator
+On Sat Jul 11 2020, Andrew Lunn wrote:
+> On Sat, Jul 11, 2020 at 01:35:12PM +0200, Kurt Kanzenbach wrote:
+>> On Fri Jul 10 2020, Rob Herring wrote:
+>> > My bot found errors running 'make dt_binding_check' on your patch:
+>> >
+>> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/n=
+et/ti,cpsw-switch.example.dt.yaml: switch@0: 'ports' is a required property
+>> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/n=
+et/qcom,ipq8064-mdio.example.dt.yaml: switch@10: 'ports' is a required prop=
+erty
+>>=20
+>> Okay, the requirement for 'ports' has be to removed.
+>
+> Hummm....
+>
+> ti.cpsw is not a DSA switch. So this binding should not apply to
+> it. It is a plain switchdev switch.
+>
+> The qcom,ipq806 is just an MDIO bus master. The DSA binding might
+> apply, for a specific .dts file, if that dts file has a DSA switch on
+> the bus. But in general, it should not apply.
+>
+> So i actually think you need to work out why this binding is being
+> applied when it should not be.
+>
+> I suspect it is the keyword 'switch'. switch does not imply it is a
+> DSA switch. There are other sorts of switches as well.
 
-Fix this by also adding the VBUS supply to the USB3 port.
+OK, makes sense. It seems like the nodename is responsible for that.
 
-Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts | 1 +
- 1 file changed, 1 insertion(+)
+This fixes the problem:
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts b/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-index a70fd4e86840..802b8c52489a 100644
---- a/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-@@ -194,6 +194,7 @@
- 
- 			usb3-0 {
- 				nvidia,usb2-companion = <1>;
-+				vbus-supply = <&vdd_usb1>;
- 				status = "okay";
- 			};
- 		};
--- 
-2.17.1
+|diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Document=
+ation/devicetree/bindings/net/dsa/dsa.yaml
+|index bec257231bf8..4c360f8b170e 100644
+|--- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+|+++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+|@@ -18,9 +18,6 @@ description:
+|   properties as required by the device it is embedded within.
+|=20
+| properties:
+|-  $nodename:
+|-    pattern: "^switch(@.*)?$"
+|-
+|   dsa,member:
+|     minItems: 2
+|     maxItems: 2
 
+Thanks,
+Kurt
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl8K5goACgkQeSpbgcuY
+8KYE0RAAzpJZjOmKWljpOO5oKYziFmhkV7L3HXbG53rkVv6YbcpuETjWW+UrbEjZ
+XHLxvRFETuQgOrH8bEUWXbom6h0fv7HIUi/On3DSlajPRfyuSzMw7AYMi99wNM0F
+3eVk8f1+ftLDZNEdbcigZYU+ZuCFXlnuelqvq9JzYBps44M18Cdc1DlddNNTy/jo
+/qDtNtHmQxjcxXPDW6LDJn+WnsQlo8Fxz7Se+8/jNHz8NV+b5Hi33m0aevkZwK1R
+bsby9RgIuhbSOg8hlM98KCkowcRT0aNoyMsiy+luoTxEAJOA/QQJ3w0zgdT3+bT9
+7uq0EvdkNtXvbXNVej3FbcxS/9636ZkCEmHCz8EAVbZ7q4WLU2+f801HQ3m21hRO
+7Szad+gXUHkIRP/xGdfZFhGV7snsWKEn13VufmnO5dHz+xVLI39obr0TekbWEjfw
+4H2OaLvnmgGRJlxluH27xDu379IUxYO6lqy+fIpb4WDHiQryjOe2kY14q0hEERKi
+M133gk+DWheg/OrgIPybPHliHrjPO1Egx8N1Lf7fW3HHjA2aRrEpnkrZNDitjXRx
+cJL1DnDDQNp7GUx1aGJJLKISZBMLz/MePwhp6uUAiFeVLEmnk5oGt8joqnMbO0Q4
+TVlzaKEyLdIWtfmc6EJTrRa9NPUYo3BfC8zrupljlcWLxAAQM/Q=
+=1pvc
+-----END PGP SIGNATURE-----
+--=-=-=--
