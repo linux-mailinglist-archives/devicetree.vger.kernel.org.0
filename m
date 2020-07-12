@@ -2,78 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A74021CAA8
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2020 19:25:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F6AD21CAAA
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2020 19:26:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729133AbgGLRZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Jul 2020 13:25:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59912 "EHLO
+        id S1729264AbgGLR0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Jul 2020 13:26:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728945AbgGLRZI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jul 2020 13:25:08 -0400
+        with ESMTP id S1729218AbgGLR0X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jul 2020 13:26:23 -0400
 Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 604AEC08C5DB
-        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2020 10:25:08 -0700 (PDT)
-Received: by mail-pj1-x1043.google.com with SMTP id cm21so4982395pjb.3
-        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2020 10:25:08 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C8AAC061794
+        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2020 10:26:23 -0700 (PDT)
+Received: by mail-pj1-x1043.google.com with SMTP id ls15so4988632pjb.1
+        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2020 10:26:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=6EsedWsSBU7+QbAVKXxR4rnaZ7gRL2P2rCCnvCziqfE=;
-        b=PYbs+BklM37KkhaDrqT74iSZil79Wzi9Q/xPOBIMr7s7LhKWnUjeqCAwawM9yF6ktW
-         Pdw4MFPZ5cdoLLaNKbWCw1D3OlmE9YUSxKtaDiX3e3UON5o0QMn6PxGpL5hnPyr9DQPc
-         haKQ6dRblP1BQ36/wrBr10nbPAvoMT1FSsKlIZEXu6isXbAzfJPxzekDnccHjV6y8qmp
-         /23Nzj9R/GtwS1P4ISJm/BjAbAWLrEZ0gI+ou7EmDzr70WfSY02RIUXLc6rItCrTlTP1
-         lKiR7rdyeIkUeskXDAUk7pkzbm8vgwhanssusYIgApbywcAKU7TPPbYCkxHrJyrvxHs1
-         eotw==
+        bh=hzeascj2XCa1OYknGvF/fsco34LrcSYuFbtvrfksp3s=;
+        b=upPgI2S+ZJy/GExdD2qzp0knzt+CNMOGr8Am6fo32jENn6mYRgDBJU/RCUfm8m+R/c
+         nbjwBi/1I9a533Cy6C90oBObqGSP8psl/gdmMzNTqxIqPgonalIstidUmFYn5aFN5wqt
+         VT7zqOGhlu0vn+ZQFTy/rbmX91TQQpexGc5FitFu9oXzMtxalcaAI9Jp82jhtMwxtct2
+         m1zSdSDhr4ejYT47G0+zEfo1kb5Hl7aiq0LMdOM1slgUwFKkH/TBFmsLZJ+Hh+jrrPlL
+         M8czWUrInWSXzuqPJiufgkYG85FnpnyOzV799LYfwBuiUdmzdkUAOh2yfmLnQgGU6QZc
+         waUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=6EsedWsSBU7+QbAVKXxR4rnaZ7gRL2P2rCCnvCziqfE=;
-        b=NeSM3Q6hJX2pVd/klQX2IwsbyjwhTpkHwSZrElk5g58+BCotD9gHvytAFwXJY+SwUi
-         ASGyN6X9WeznOeX39IHDtPtIEPbguv19PpAy8uUISpxuS9yrHNuvUokR1ESyM+A0Fs2V
-         sQvuyd8Sl9V6UKcvkPVf/083ZwDDlEAD1AjRIFOZzz0KO8iJXxOOCvNJUspj1QCUp4oe
-         /nj+T4TnuNjCBFtdEd2aH+pGvz1DKDtlZNK4mN98/0Dute8rbCsKCLCHVe7MqVKDhzd6
-         fC+QijQBjpZQcDwvHsVmqWUR8+oEc/GWd+kMwrWI8fa4gpmAzRgyd3dS8nxY2T6vAZ/Q
-         pj9g==
-X-Gm-Message-State: AOAM5322+7B3S2f5u/uO/8YfwDJM+eNqbpDRDHqHqG+gM/vjHjL24Z4s
-        WPYTmLH7bcjIgPJEBeiULmWX
-X-Google-Smtp-Source: ABdhPJxc+DhSSc40Se+WrM+yhdltZ8Yq5UM83EyxtWc9Apiohrjbi9vXe6wEB561QDNauaB+R76bSg==
-X-Received: by 2002:a17:902:54c:: with SMTP id 70mr30488395plf.0.1594574707850;
-        Sun, 12 Jul 2020 10:25:07 -0700 (PDT)
+        bh=hzeascj2XCa1OYknGvF/fsco34LrcSYuFbtvrfksp3s=;
+        b=E3JuXF8tSnclmSYgb3cVR0IJg1wx5JmO3SwIXFBhtkZDYHHiIwHTgusO2v0WGr/sYy
+         XvswKdhdjiHbDNCP3hTqXjzvSyg3n7WHN+PnumYfraDZXgg1FRdyztoI4xs3eXR94J6R
+         Mq3clL0MO50cA70/yStoaRCv2UGC5mK4oXYswL6Avg2JhYjrEClWYanQCnSJO9ig6MV4
+         10rByRlznH7lG0YLp3xHNomD10iW0mG2ItP8MEXvIt5JsEcbhPmc0qIuYIsSjUPikE/w
+         /fHRomlWpJg7xE57Z3K5q8h6/31fyvqlwaYfTlx/NgzAOttkRPqvUfJvSOT5n7YYLXC2
+         h0Jg==
+X-Gm-Message-State: AOAM531WYjy4gZnRLstRn3jbg5sfYlQcNZFcumjQY5+nFfOTLx3Be2wP
+        1Ec8YpUlz1pdcm/z67HRz9sJ
+X-Google-Smtp-Source: ABdhPJzc95iQjLKs3H3XJtLZ7plTR9MqKrwLMZRA49J5BqIWf5Tq1vBsXJS/yd71mTHJLuKVvzwvDw==
+X-Received: by 2002:a17:90a:2846:: with SMTP id p6mr16022228pjf.163.1594574782931;
+        Sun, 12 Jul 2020 10:26:22 -0700 (PDT)
 Received: from Mani-XPS-13-9360 ([2409:4072:6c81:c187:70f5:3123:b5de:e77f])
-        by smtp.gmail.com with ESMTPSA id l207sm362799pfd.79.2020.07.12.10.25.03
+        by smtp.gmail.com with ESMTPSA id az16sm11773569pjb.7.2020.07.12.10.26.18
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 12 Jul 2020 10:25:07 -0700 (PDT)
-Date:   Sun, 12 Jul 2020 22:55:01 +0530
+        Sun, 12 Jul 2020 10:26:22 -0700 (PDT)
+Date:   Sun, 12 Jul 2020 22:56:17 +0530
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     Amit Singh Tomar <amittomer25@gmail.com>
 Cc:     andre.przywara@arm.com, afaerber@suse.de, robh+dt@kernel.org,
         cristian.ciocaltea@gmail.com, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-actions@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 07/10] dt-bindings: reset: s700: Add binding constants
- for mmc
-Message-ID: <20200712172501.GI6110@Mani-XPS-13-9360>
+Subject: Re: [PATCH v5 08/10] dt-bindings: mmc: owl: add compatible string
+ actions,s700-mmc
+Message-ID: <20200712172617.GJ6110@Mani-XPS-13-9360>
 References: <1593701576-28580-1-git-send-email-amittomer25@gmail.com>
- <1593701576-28580-8-git-send-email-amittomer25@gmail.com>
+ <1593701576-28580-9-git-send-email-amittomer25@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1593701576-28580-8-git-send-email-amittomer25@gmail.com>
+In-Reply-To: <1593701576-28580-9-git-send-email-amittomer25@gmail.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 02, 2020 at 08:22:53PM +0530, Amit Singh Tomar wrote:
-> This commit adds device tree binding reset constants for mmc controller
-> present on Actions S700 Soc.
+On Thu, Jul 02, 2020 at 08:22:54PM +0530, Amit Singh Tomar wrote:
+> The commit adds a new SoC specific compatible string "actions,s700-mmc"
+> in combination with more generic string "actions,owl-mmc".
 > 
-> Acked-by: Rob Herring <robh@kernel.org>
+> Placement order of these strings should abide by the principle of
+> "from most specific to most general".
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > Signed-off-by: Amit Singh Tomar <amittomer25@gmail.com>
 
 Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
@@ -87,28 +90,28 @@ Mani
 > Changes since v3:
 >         * No change.
 > Changes since v2:
->         * No change.
-> Changes since v1:
->         * No change.
-> Changes since RFC:
->         * added Rob's acked-by tag
+>         * Added Rob's Reviewed-by tag
 > ---
->  include/dt-bindings/reset/actions,s700-reset.h | 3 +++
->  1 file changed, 3 insertions(+)
+>  Documentation/devicetree/bindings/mmc/owl-mmc.yaml | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
 > 
-> diff --git a/include/dt-bindings/reset/actions,s700-reset.h b/include/dt-bindings/reset/actions,s700-reset.h
-> index 5e3b16b8ef53..a3118de6d7aa 100644
-> --- a/include/dt-bindings/reset/actions,s700-reset.h
-> +++ b/include/dt-bindings/reset/actions,s700-reset.h
-> @@ -30,5 +30,8 @@
->  #define RESET_UART4				20
->  #define RESET_UART5				21
->  #define RESET_UART6				22
-> +#define RESET_SD0				23
-> +#define RESET_SD1				24
-> +#define RESET_SD2				25
+> diff --git a/Documentation/devicetree/bindings/mmc/owl-mmc.yaml b/Documentation/devicetree/bindings/mmc/owl-mmc.yaml
+> index 1380501fb8f0..5eab25ccf7ae 100644
+> --- a/Documentation/devicetree/bindings/mmc/owl-mmc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/owl-mmc.yaml
+> @@ -14,7 +14,11 @@ maintainers:
 >  
->  #endif /* __DT_BINDINGS_ACTIONS_S700_RESET_H */
+>  properties:
+>    compatible:
+> -    const: actions,owl-mmc
+> +    oneOf:
+> +      - const: actions,owl-mmc
+> +      - items:
+> +          - const: actions,s700-mmc
+> +          - const: actions,owl-mmc
+>  
+>    reg:
+>      maxItems: 1
 > -- 
 > 2.7.4
 > 
