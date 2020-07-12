@@ -2,106 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0E0221C6C6
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2020 01:59:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95C6D21C608
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2020 21:57:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727021AbgGKX7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Jul 2020 19:59:08 -0400
-Received: from server-x.ipv4.hkg02.ds.network ([27.111.83.178]:53228 "EHLO
-        mail.gtsys.com.hk" rhost-flags-OK-FAIL-OK-OK) by vger.kernel.org
-        with ESMTP id S1726939AbgGKX7I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jul 2020 19:59:08 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.gtsys.com.hk (Postfix) with ESMTP id 45DBA200080F;
-        Sun, 12 Jul 2020 07:59:05 +0800 (HKT)
-X-Virus-Scanned: Debian amavisd-new at gtsys.com.hk
-Received: from mail.gtsys.com.hk ([127.0.0.1])
-        by localhost (mail.gtsys.com.hk [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Mk8KdIFMvSK7; Sun, 12 Jul 2020 07:59:05 +0800 (HKT)
-Received: from s01.gtsys.com.hk (unknown [10.128.4.2])
-        by mail.gtsys.com.hk (Postfix) with ESMTP id 1F2C6200029E;
-        Sun, 12 Jul 2020 07:59:05 +0800 (HKT)
-Received: from [10.128.2.32] (unknown [124.217.189.79])
-        by s01.gtsys.com.hk (Postfix) with ESMTPSA id BF109C019F4;
-        Sun, 12 Jul 2020 07:59:04 +0800 (HKT)
-Subject: Re: [PATCH v5 2/2] devicetree: hwmon: shtc1: Add sensirion,shtc1.yaml
-From:   Chris Ruehl <chris.ruehl@gtsys.com.hk>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Guenter Roeck <linux@roeck-us.net>, Jack Lo <jack.lo@gtsys.com.hk>,
-        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>, devicetree@vger.kernel.org
-References: <20200710021536.27544-1-chris.ruehl@gtsys.com.hk>
- <20200710021536.27544-3-chris.ruehl@gtsys.com.hk>
- <20200710163153.GA2760091@bogus>
- <d45ba090-a09b-dd51-4645-bc62e90cb9bc@gtsys.com.hk>
-Message-ID: <4189dcf7-fc67-29c4-6357-646071d7ded0@gtsys.com.hk>
-Date:   Sun, 12 Jul 2020 07:59:03 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+        id S1726794AbgGKT5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Jul 2020 15:57:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60938 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726628AbgGKT5K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jul 2020 15:57:10 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A2ACC08C5DD;
+        Sat, 11 Jul 2020 12:57:10 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id s26so4070154pfm.4;
+        Sat, 11 Jul 2020 12:57:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=CZ1e1aAFKaOpSNGWTnMXv42OekoJcfrfcJM5gAnBvUI=;
+        b=YsLWmPPBBUXayWAiuK5Rmy75po32YrKN45MfIrMXRzBfuXOJQsFex/ndZs1VcWs1AH
+         iyzIaZe6H+nnQCgEd0J8YGLPItr4wXe205dFY3ny4p4xOPx0+AcLUFBHOsvNJa/sV9kp
+         emDnfhM4PltGEGnNUbKq5ONFbvJVjlDNS1aqEhq2dOGJqsouW0v/p4kj+VykTxNlF+Oj
+         gAkyq+TvA+MTitOKkQPJFMdUN5qqiBGiBCeW21gmNWdR/I76vQ3bp7ewBuPJOh8+1dpm
+         +adLQUk0rMfbNBHGdmIQ+7BPN0TqS3B8HfFM7vjePPGQrCJiqO8sPNE/g3nc5K8eJ4jL
+         7ssg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=CZ1e1aAFKaOpSNGWTnMXv42OekoJcfrfcJM5gAnBvUI=;
+        b=SB/14gXXXHaqJsfxWs5S/fI+bRwf2XoDH6bOjCY2gYPfzA1ixEyoXvAEXNqCZV/R3V
+         3EJ1kMXmbkB0CZO9ELlOvWQ08oWXWKcYY+mVXF5gCaPSOZsRBWOURf1xgHlsqvweZr/J
+         Vc3jiy/WYfGuItEcRmwTZtfw2P/x8W4V2akXstEmsHvppU2E7uLCj7CTAVBA2w/SoUKw
+         FBQ+QEvHTO4FYvoh9JMLCEzlO4PK+wL30/FP1Z/anRx5t2m/Hg7xSKBbueikZQiqQkFF
+         Xdtbi2IfAxowFGwtYdoLElAO/7uTcV/ozvHoWFklWTUHWnadj594R8SrtEYRNah9+/MU
+         CFxw==
+X-Gm-Message-State: AOAM530Wjpto5nhAErl5aiSIbo6nmN2i5c6Y3w5g4HgwsF7BJybefA7h
+        0nqKuRWSUQlrgsXGuQj104OL7qQf
+X-Google-Smtp-Source: ABdhPJxAiCG8TUmRO+0EQ3UX5b5rBUXvD96iXx8jMh9rEP0v8m5XfDd0zPdjM/5F30KiPVf8TB3sjA==
+X-Received: by 2002:a63:1f04:: with SMTP id f4mr4069076pgf.34.1594497429892;
+        Sat, 11 Jul 2020 12:57:09 -0700 (PDT)
+Received: from ?IPv6:2001:470:67:5b9:d909:803c:5ba6:c13? ([2001:470:67:5b9:d909:803c:5ba6:c13])
+        by smtp.gmail.com with ESMTPSA id o42sm9863679pje.10.2020.07.11.12.57.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 11 Jul 2020 12:57:08 -0700 (PDT)
+Subject: Re: [PATCH v1 1/8] net: dsa: Add tag handling for Hirschmann
+ Hellcreek switches
+To:     Kurt Kanzenbach <kurt@linutronix.de>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
+        ilias.apalodimas@linaro.org, Vladimir Oltean <olteanv@gmail.com>
+References: <20200710113611.3398-1-kurt@linutronix.de>
+ <20200710113611.3398-2-kurt@linutronix.de>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <b83ce019-d2bb-1d51-d5e5-7e6c82c86127@gmail.com>
+Date:   Sat, 11 Jul 2020 19:57:06 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <d45ba090-a09b-dd51-4645-bc62e90cb9bc@gtsys.com.hk>
+In-Reply-To: <20200710113611.3398-2-kurt@linutronix.de>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Morning,
 
-On 11/7/2020 6:05 pm, Chris Ruehl wrote:
-> 
-> On 11/7/2020 12:31 am, Rob Herring wrote:
->> On Fri, 10 Jul 2020 10:15:35 +0800, Chris Ruehl wrote:
->>> Add documentation for the newly added DTS support in the shtc1 driver.
->>> To align with the drivers logic to have high precision by default
->>> a boolean sensirion,low_precision is used to switch to low precision.
->>>
->>> Signed-off-by: Chris Ruehl <chris.ruehl@gtsys.com.hk>
->>> ---
->>>   .../bindings/hwmon/sensirion,shtc1.yaml       | 57 +++++++++++++++++++
->>>   1 file changed, 57 insertions(+)
->>>   create mode 100644 
->>> Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml
->>>
->>
->>
->> My bot found errors running 'make dt_binding_check' on your patch:
->>
->> Error: 
->> Documentation/devicetree/bindings/hwmon/sensirion,shtc1.example.dts:25.13-14 
->> syntax error
->> FATAL ERROR: Unable to parse input tree
->> scripts/Makefile.lib:315: recipe for target 
->> 'Documentation/devicetree/bindings/hwmon/sensirion,shtc1.example.dt.yaml' failed
->> make[1]: *** 
->> [Documentation/devicetree/bindings/hwmon/sensirion,shtc1.example.dt.yaml] Error 1
->> make[1]: *** Waiting for unfinished jobs....
->> Makefile:1347: recipe for target 'dt_binding_check' failed
->> make: *** [dt_binding_check] Error 2
->>
->>
->> See https://patchwork.ozlabs.org/patch/1326414
->>
->> If you already ran 'make dt_binding_check' and didn't see the above
->> error(s), then make sure dt-schema is up to date:
->>
->> pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
->>
->> Please check and re-submit.
->>
-> 
-> Hi Rob,
-> 
-> I did run the test and didn't had any Error. dt-schema 2020.06 installed from 
-> git. pip3 install -e.
-> 
-> Can you help?
-> 
-> Chris
 
-Solved, missing ";" behind reg = <0x70>
+On 7/10/2020 4:36 AM, Kurt Kanzenbach wrote:
+> The Hirschmann Hellcreek TSN switches have a special tagging protocol for frames
+> exchanged between the CPU port and the master interface. The format is a one
+> byte trailer indicating the destination or origin port.
+> 
+> It's quite similar to the Micrel KSZ tagging. That's why the implementation is
+> based on that code.
+> 
+> Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
 
-will resend.
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
