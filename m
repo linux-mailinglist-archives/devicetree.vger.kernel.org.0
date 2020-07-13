@@ -2,106 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87F6F21CF64
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 08:11:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C8F221CF68
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 08:11:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728949AbgGMGKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jul 2020 02:10:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35432 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729408AbgGMGKA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 02:10:00 -0400
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73B10C08C5DB
-        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2020 23:10:00 -0700 (PDT)
-Received: by mail-pf1-x442.google.com with SMTP id t11so5536260pfq.11
-        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2020 23:10:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gB83jD2FpTYfBDRkUJH8DvVVofs2yRFQbXc2yeSZvmk=;
-        b=mQneNRTvRh7TEV8oSckX8BzrplvT9JWTPgTge++Ykp1B5RphqvW7GoZJ7CuLCG5NUG
-         ALY50gHRt/NcNRLiQoXmQFstFkEHgQkNYkl7cQQe6wc1diyCVsgb0FDopMACd33C9vqe
-         SGZDpkH8trEfdC9w/dw0KWhHA4PTUTO9iYCas=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gB83jD2FpTYfBDRkUJH8DvVVofs2yRFQbXc2yeSZvmk=;
-        b=K5qFTMBKIAabBeyE011QN7FnY6+AIv9oHDlV2YWWr5cN7OfB343oLoG0LpQzMkPs4W
-         9wcpldmwtwxXCqa7k+RycBX0/KxLn7euVtNlbwkbYZdcnQZ2OcogUY/dquMq+oykz5XE
-         WuW70rxw8u37KzQrBTp5CohNBrX7P5AwL6ma8Wzs8LH/byEMZrCbcoTubp8Ps7l9zjHS
-         Vhmc6jSndtUsmK6WsMVTsaeGX+M32XZXzHSI5NCkHxfWw6mvUgxBQPEJ41QXH73apPsx
-         lMKNegnKGoKG2ctSjHG6oUXViGabNVYJGvpzxEz94+18jKe6Cw17rAr4JQlICM8Eh8Dw
-         JmMQ==
-X-Gm-Message-State: AOAM530mikN6N7a1a3GDT66OJxOCPmJdaSnnGs8B7aNS3sXxXHZ/ZQlP
-        hNEK6Y8rzWp+Y5g1QTZNHJrMXg==
-X-Google-Smtp-Source: ABdhPJw7xh/m0JWlcTmFBX/gTdG+Hj4V1YLkVAmb10CsnxvzrbYdCbIFz51djjnYzpvhScMv8yE81Q==
-X-Received: by 2002:a63:fe0a:: with SMTP id p10mr66187991pgh.255.1594620600025;
-        Sun, 12 Jul 2020 23:10:00 -0700 (PDT)
-Received: from acourbot.tok.corp.google.com ([2401:fa00:8f:203:eeb1:d7ff:fe57:b7e5])
-        by smtp.gmail.com with ESMTPSA id c134sm13134934pfc.115.2020.07.12.23.09.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jul 2020 23:09:59 -0700 (PDT)
-From:   Alexandre Courbot <acourbot@chromium.org>
-To:     Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Maoguang Meng <maoguang.meng@mediatek.com>
-Cc:     linux-media@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Alexandre Courbot <acourbot@chromium.org>
-Subject: [PATCH v3 16/16] media: mtk-vcodec: venc: fix invalid time per frame in S_PARM
-Date:   Mon, 13 Jul 2020 15:08:42 +0900
-Message-Id: <20200713060842.471356-17-acourbot@chromium.org>
-X-Mailer: git-send-email 2.27.0.383.g050319c2ae-goog
-In-Reply-To: <20200713060842.471356-1-acourbot@chromium.org>
-References: <20200713060842.471356-1-acourbot@chromium.org>
+        id S1727830AbgGMGLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jul 2020 02:11:48 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:5151 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727107AbgGMGLs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 02:11:48 -0400
+X-UUID: 09583ab690804765a025f16a6515d568-20200713
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=4vEP1HF0Q3QvDpYB3OMoRNc2npFo0RTElHQW9KJ35Dc=;
+        b=FS11oL08+hRTmcxJ6dQYj+ovay/NdyNli8ZllVhoC5r7Qitav/qNdbGubN/WcGlUyOHVf7I0bWeF0zgIYkJ5qFT0Mg5PGlJJ87i8hvZe02Kxmt9+9QbDO/TtnAOUsd4g54TlEeItGG/iS78NYVvZW+1EO0RYv2BpenIdSAdw61A=;
+X-UUID: 09583ab690804765a025f16a6515d568-20200713
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <neal.liu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 729864613; Mon, 13 Jul 2020 14:11:39 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 13 Jul 2020 14:11:36 +0800
+Received: from [172.21.77.33] (172.21.77.33) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 13 Jul 2020 14:11:36 +0800
+Message-ID: <1594620698.22730.17.camel@mtkswgap22>
+Subject: Re: [PATCH 2/2] soc: mediatek: devapc: add devapc-mt6779 driver
+From:   Neal Liu <neal.liu@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Neal Liu <neal.liu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, <wsd_upstream@mediatek.com>
+Date:   Mon, 13 Jul 2020 14:11:38 +0800
+In-Reply-To: <922d93be-0243-bd7e-81fd-e0068a90ef4b@gmail.com>
+References: <1594027693-19530-1-git-send-email-neal.liu@mediatek.com>
+         <1594027693-19530-3-git-send-email-neal.liu@mediatek.com>
+         <f3cf4ef4-8c85-8921-5457-cef7a3006690@gmail.com>
+         <1594107170.20820.84.camel@mtkswgap22>
+         <922d93be-0243-bd7e-81fd-e0068a90ef4b@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-TM-SNTS-SMTP: A4163080B86FE9835E37A8AABD162877054BB17FBCB2ED198E917A5C279E90912000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v4l2-compliance expects the driver to adjust the time per frame if it is
-invalid (numerator or denominator set to 0). Adjust it to the default
-value in these cases.
-
-Signed-off-by: Alexandre Courbot <acourbot@chromium.org>
----
- drivers/media/platform/mtk-vcodec/mtk_vcodec_enc.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc.c
-index 09baac2dbc36..82b04714f750 100644
---- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc.c
-+++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc.c
-@@ -200,14 +200,18 @@ static int vidioc_venc_s_parm(struct file *file, void *priv,
- 			      struct v4l2_streamparm *a)
- {
- 	struct mtk_vcodec_ctx *ctx = fh_to_ctx(priv);
-+	struct v4l2_fract *timeperframe = &a->parm.output.timeperframe;
- 
- 	if (a->type != V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
- 		return -EINVAL;
- 
--	ctx->enc_params.framerate_num =
--			a->parm.output.timeperframe.denominator;
--	ctx->enc_params.framerate_denom =
--			a->parm.output.timeperframe.numerator;
-+	if (timeperframe->numerator == 0 || timeperframe->denominator == 0) {
-+		timeperframe->numerator = MTK_DEFAULT_FRAMERATE_NUM;
-+		timeperframe->denominator = MTK_DEFAULT_FRAMERATE_DENOM;
-+	}
-+
-+	ctx->enc_params.framerate_num = timeperframe->denominator;
-+	ctx->enc_params.framerate_denom = timeperframe->numerator;
- 	ctx->param_change |= MTK_ENCODE_PARAM_FRAMERATE;
- 
- 	a->parm.output.capability = V4L2_CAP_TIMEPERFRAME;
--- 
-2.27.0.383.g050319c2ae-goog
+W3NuaXBdDQo+ID4+PiArLyoNCj4gPj4+ICsgKiBkZXZhcGNfdmlvbGF0aW9uX2lycSAtIHRoZSBk
+ZXZhcGMgSW50ZXJydXB0IFNlcnZpY2UgUm91dGluZSAoSVNSKSB3aWxsIGR1bXANCj4gPj4+ICsg
+KgkJCSAgdmlvbGF0aW9uIGluZm9ybWF0aW9uIGluY2x1ZGluZyB3aGljaCBtYXN0ZXIgdmlvbGF0
+ZXMNCj4gPj4+ICsgKgkJCSAgYWNjZXNzIHNsYXZlLg0KPiA+Pj4gKyAqLw0KPiA+Pj4gK3N0YXRp
+YyBpcnFyZXR1cm5fdCBkZXZhcGNfdmlvbGF0aW9uX2lycShpbnQgaXJxX251bWJlciwNCj4gPj4+
+ICsJCQkJCXN0cnVjdCBtdGtfZGV2YXBjX2NvbnRleHQgKmRldmFwY19jdHgpDQo+ID4+PiArew0K
+PiA+Pj4gKwljb25zdCBzdHJ1Y3QgbXRrX2RldmljZV9pbmZvICoqZGV2aWNlX2luZm8gPSBkZXZh
+cGNfY3R4LT5kZXZpY2VfaW5mbzsNCj4gPj4+ICsJaW50IHZpb19pZHggPSAtMTsNCj4gPj4+ICsJ
+aW50IGluZGV4ID0gLTE7DQo+ID4+PiArCWludCBzbGF2ZV90eXBlOw0KPiA+Pj4gKw0KPiA+Pj4g
+Kwlmb3IgKHNsYXZlX3R5cGUgPSAwOyBzbGF2ZV90eXBlIDwgU0xBVkVfVFlQRV9OVU07IHNsYXZl
+X3R5cGUrKykgew0KPiA+Pj4gKwkJaWYgKCFtdGtfZGV2YXBjX2R1bXBfdmlvX2RiZyhkZXZhcGNf
+Y3R4LCBzbGF2ZV90eXBlLCAmdmlvX2lkeCwNCj4gPj4+ICsJCQkJCSAgICAgJmluZGV4KSkNCj4g
+Pj4+ICsJCQljb250aW51ZTsNCj4gPj4+ICsNCj4gPj4+ICsJCS8qIEVuc3VyZSB0aGF0IHZpb2xh
+dGlvbiBpbmZvIGFyZSB3cml0dGVuIGJlZm9yZQ0KPiA+Pj4gKwkJICogZnVydGhlciBvcGVyYXRp
+b25zDQo+ID4+PiArCQkgKi8NCj4gPj4+ICsJCXNtcF9tYigpOw0KPiA+Pj4gKw0KPiA+Pj4gKwkJ
+bWFza19tb2R1bGVfaXJxKGRldmFwY19jdHgsIHNsYXZlX3R5cGUsIHZpb19pZHgsIHRydWUpOw0K
+PiA+Pj4gKw0KPiA+Pj4gKwkJY2xlYXJfdmlvX3N0YXR1cyhkZXZhcGNfY3R4LCBzbGF2ZV90eXBl
+LCB2aW9faWR4KTsNCj4gPj4+ICsNCj4gPj4+ICsJCXByX2luZm8oUEZYICJWaW9sYXRpb24gLSBz
+bGF2ZV90eXBlOjB4JXgsIHN5c19pbmRleDoweCV4LCBjdHJsX2luZGV4OjB4JXgsIHZpb19pbmRl
+eDoweCV4XG4iLA0KPiA+Pj4gKwkJCXNsYXZlX3R5cGUsDQo+ID4+PiArCQkJZGV2aWNlX2luZm9b
+c2xhdmVfdHlwZV1baW5kZXhdLnN5c19pbmRleCwNCj4gPj4+ICsJCQlkZXZpY2VfaW5mb1tzbGF2
+ZV90eXBlXVtpbmRleF0uY3RybF9pbmRleCwNCj4gPj4+ICsJCQlkZXZpY2VfaW5mb1tzbGF2ZV90
+eXBlXVtpbmRleF0udmlvX2luZGV4KTsNCj4gPj4NCj4gPj4gSG93IHdpbGwgdGhhdCB0aGVuIGJl
+IHVzZWQ/IFdpbGwgdGhlcmUgc29tZSBraW5kIG9mIHVzZXItc3BhY2UgZGFlbW9uIHdoaWNoIHdp
+bGwNCj4gPj4gcGFyc2UgdGhlIGtlcm5lbCBsb2cgdG8gc2VlIGlmIGEgdmlvbGF0aW9uIGhhcHBl
+bnM/IFdoYXQgd2lsbCBpdCBkbyB3aXRoIHRoaXMNCj4gPj4gaW5mb3JtYXRpb24/DQo+ID4+DQo+
+ID4+IEkgc3RpbGwgZG9uJ3QgdW5kZXJzdGFuZCB3aHkgd2UgbmVlZCB0byBkbyB0aGF0IGluIHRo
+ZSBrZXJuZWwgaW5zdGVhZCBvZiBpbg0KPiA+PiBURi1BLiBDYW4geW91IHBsZWFzZSBleHBsYWlu
+Pw0KPiA+Pg0KPiA+IA0KPiA+IFdlIHdvdWxkIGRvIGRpZmZlcmVudCBleHRyYSBoYW5kbGUgZm9y
+IGRpZmZlcmVudCBidXMgbWFzdGVycyBpbnRlcm5hbGx5Lg0KPiANCj4gRG9lcyB0aGlzIG1lYW4g
+dGhhdCB0aGlzIGlzIG9ubHkgb25lIHBhcnQgb2YgdGhlIHdob2xlIHN0b3J5PyBBcmUgeW91IHBs
+YW5uaW5nIA0KPiB0byBob29rIGludG8gdGhhdCBjb2RlIGludGVybmFsbHkgdG8gaW1wbGVtZW50
+IHRoZSBoYW5kbGluZz8NCj4gSW4gdGhhdCB3ZSB3b3VsZCBuZWVkIHRvIHN1cHBvcnQgdGhlIHdo
+b2xlIHRoaW5nIGluIHVwc3RyZWFtLiBBbmQgdGhpcyBzb3VuZHMgDQo+IGxpa2UgeW91IHdpbGwg
+bmVlZCBhIG5ldyBzdWJzeXN0ZW0gZm9yIGJ1cyBmaXJld2FsbCAob3IgaG93IHlvdSB3YW50IHRv
+IG5hbWUgDQo+IGl0KS4gV2hpY2ggYWxsb3dzIHlvdSB0byBlYXNpbHkgYWRkIHN1cHBvcnQgZm9y
+IG90aGVyIHZlbmRvcnMgU29Dcy4NCj4gDQoNCk5vLCB0aGUgZXh0cmEgaGFuZGxpbmcgaXMgaW1w
+bGVtZW50ZWQgYnkgTWVkaWF0ZWsgcHJvcHJpZXRhcnkgZHJpdmVycw0Kd2hpY2ggaGFzIG5vIHBs
+YW4gdG8gdXBzdHJlYW0uIEFuZCB0aGVyZSBpcyBubyBuZWVkIGZvciBmaXJzdCBwYXRjaCBvZg0K
+bXRrLWRldmFwYyBkcml2ZXIuDQpXaHkgZG8geW91IHRoaW5rIGl0IG5lZWQgdG8gc3VwcG9ydD8g
+YW5kIHdoeSBpdCB3aWxsIG5lZWQgYSBuZXcNCnN1YnN5c3RlbT8NCg0KVGhlIGJhc2ljIGZ1bmN0
+aW9uYWxpdHkgb2YgdGhpcyBkcml2ZXIgaXMgdGhhdCBpdCB3aWxsIGhhbmRsZSB2aW9sYXRpb24N
+CmludGVycnVwdCwgYW5kIHByaW50IHZpb2xhdGlvbiBpbmZvcm1hdGlvbiBsb2dzIGZvciBmdXJ0
+aGVyIGFuYWx5c2lzLg0KRXh0cmEgaGFuZGxpbmcgaGVscHMgdXMgdG8gYW5hbHl6ZSB2aW9sYXRp
+b24gbW9yZSBlYXNpbHksIGJ1dCBpdCdzIG5vdCBhDQpiYXNpYyBmdW5jdGlvbmFsaXR5IG9mIGl0
+Lg0KDQo+ID4gQmFzaWNhbGx5LCBkaWZmZXJlbnQgYnVzIG1hc3RlcnMgaGF2ZSBkaWZmZXJlbnQg
+ZGVidWcgbWVjaGFuaXNtLg0KPiA+IEFuZCBkaWZmZXJlbnQgY3VzdG9tZXJzIGhhdmUgZGlmZmVy
+ZW50IHNldmVyaXR5IGFib3V0IGRldmFwYyB2aW9sYXRpb24uDQo+ID4gRm9yIGV4YW1wbGUsIGtl
+cm5lbCBleGNlcHRpb24sIGV4dGVybmFsIGV4Y2VwdGlvbiwgd2FybmluZywgZG9uJ3QNCj4gPiBj
+YXJlLC4uLg0KPiA+IA0KPiA+IEkgbGlzdCAyIHJlYXNvbiB3aHkgSSBwdXQgaXQgaW4ga2VybmVs
+IGluc3RlYWQgb2YgQVRGLg0KPiA+IDEuIFJpY2ggT1Mgc3VjaCBhcyBMaW51eCBrZXJuZWwgaGFz
+IG1vcmUgZGVidWcgbWVjaGFuaXNtIGFuZCB0b29scyB0bw0KPiA+IGZpbmQgbXVyZGVyZXIuDQo+
+IA0KPiBCdXQgeW91IGNhbiBhY2Nlc3MgcG9yZ3JhbSBjb3VudGVyIGZyb20gRUwzIGFzIHdlbGws
+IHNvIHlvdSBjb3VsZCBwcmludCBhbGwgdGhlIA0KPiBpbmZvIHlvdSBuZWVkIGluIFRGLUEuDQoN
+CkZvciBsZWFzdCBwcml2aWxlZ2UgcHJpbmNpcGxlLCB0aGVyZSBpcyBubyByZWFzb24gd2Ugc2hv
+dWxkIHByaW50IGFsbA0KdGhlIHZpb2xhdGlvbiBpbmZvcm1hdGlvbiBpbiBURi1BLg0KDQo+IA0K
+PiA+IDIuIElmIGludGVycnVwdCBoYXMgdG8gYmUgaGFuZGxlZCBpbiBBVEYsIEdJQyBpbnRyIHdv
+dWxkIGJlIHNldCBhcyBHMFMNCj4gPiAoR3JvdXAgMCBTZWN1cmUpLiBGb3Igb3VyIGludGVycnVw
+dCByb3V0aW5nLCBHMFMgaW50ciB3b3VsZCBiZSBmaXEuIFdoZW4NCj4gPiB3ZSBoYW5kbGUgaXQg
+aW4gRUwzLCBpdCB3b3VsZCBtYXNrIGFsbCBFTDEgaXJxIHRlbXBvcmFyaWx5LiBXZSBkbyBub3QN
+Cj4gPiB0cmVhdCBkZXZhcGMgaW50ZXJydXB0IGFzIHN1Y2ggY3JpdGljYWwuDQo+IA0KPiBCdXQg
+eW91IHNhaWQgInZpb2xhdGlvbiBzY2VuYXJpbyBpcyB1bmV4cGVjdGVkIiBzbyBhY3R1YWxseSB5
+b3UgZG9uJ3QgZXhwZWN0IGl0IA0KPiB0byBoYXBwZW4uDQo+IA0KPiA+IA0KPiA+IERvZSBpdCBt
+YWtlIHNlbnNlPyBPciBkbyB5b3UgaGF2ZSBhbnkgcmVhc29uIHRoYXQgaXQgc2hvdWxkIGJlIGhh
+bmRsZWQNCj4gPiBpbiBBVEY/DQo+ID4gDQo+IA0KPiBNeSByZWFzb25pbmcgaXMgdGhhdCB5b3Ug
+YnJpbmcgYSBzZWN1cml0eSBtZWNoYW5pc20gaW50byB0aGUga2VybmVsLCB3aGljaCBpcyBpbiAN
+Cj4gbm9uZS1zZWN1cmUgc3RhdGUuIFRoYXQncyBhIGNvbnRyYWRpY3Rpb24uDQoNClRoZXJlIGFy
+ZSB0d28gZnVuY3Rpb25hbGl0eSBmb3IgTWVkaWF0ZWsgZGV2YXBjIGhhcmR3YXJlLg0KMS4gcGVy
+bWlzc2lvbiBjb250cm9sL3Byb3RlY3Rpb24NCjIuIHZpb2xhdGlvbiBpbmZvDQoNCllvdSBjYW4g
+c2VlIHRoYXQgMS4gaXMgc2VjdXJpdHkgbWVjaGFuaXNtIGZvciBzdXJlLCBhbmQgd2UgcHV0IGl0
+IGluDQpURi1BLg0KQnV0IDIuIGlzIG5vdCAic2VjdXJpdHkiIGF0IGFsbC4gaXQncyBmb3IgZGVi
+dWdnaW5nIHB1cnBvc2UsIHdlIHRoaW5rDQppdCdzIG5vIGFueSBzZWN1cml0eSBjb25jZXJuIHRv
+IHB1dCBpdCBpbiBOUy1FTDEuDQoNCj4gDQo+IFJlZ2FyZHMsDQo+IE1hdHRoaWFzDQo+IA0KW3Nu
+aXBdDQoNCg==
 
