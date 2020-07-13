@@ -2,52 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BD4D21CD0F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 04:17:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E552721CD1E
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 04:20:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726465AbgGMCR5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Jul 2020 22:17:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45278 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726261AbgGMCR5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 12 Jul 2020 22:17:57 -0400
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7F1A5206D9;
-        Mon, 13 Jul 2020 02:17:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1594606676;
-        bh=v31vMi7ynx1XiseH1ZOMeZU6ugOoDG2CHW9KHbrBmaU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=wg/hHcHDNbDrO2lEUyNe08emznimj5pe7YaRk/C3wLGMOKEvgMnckk/oGOhgpPlr2
-         MvuVMNugN5Gn9DVAeVB1qKJRXwywXJ/PwO01xPVJbY7SAPPilOCvkbo14hCk//9eKb
-         /AyuSpI7ZekWYHFfd/YfP4qhwoMf3Dh+JlUEfyNE=
-Date:   Mon, 13 Jul 2020 10:17:44 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     andy.tang@nxp.com
-Cc:     leoyang.li@nxp.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: ls1046a: add more thermal zone support
-Message-ID: <20200713021735.GV21277@dragon>
-References: <20200629074519.28851-1-andy.tang@nxp.com>
+        id S1726684AbgGMCUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Jul 2020 22:20:06 -0400
+Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:37243 "EHLO
+        smtp2207-205.mail.aliyun.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726534AbgGMCUE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 12 Jul 2020 22:20:04 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.3835706|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0186492-0.00196135-0.979389;FP=0|0|0|0|0|-1|-1|-1;HT=e01l07440;MF=frank@allwinnertech.com;NM=1;PH=DS;RN=7;RT=7;SR=0;TI=SMTPD_---.I0sDD67_1594606796;
+Received: from allwinnertech.com(mailfrom:frank@allwinnertech.com fp:SMTPD_---.I0sDD67_1594606796)
+          by smtp.aliyun-inc.com(10.147.42.22);
+          Mon, 13 Jul 2020 10:20:00 +0800
+From:   Frank Lee <frank@allwinnertech.com>
+To:     gregory.clement@bootlin.com, robh+dt@kernel.org
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, tiny.windzz@gamil.com,
+        Frank Lee <frank@allwinnertech.com>
+Subject: [PATCH v3 13/16] dt-bindings: i2c: mv64xxx: Add compatible for the A100 i2c node.
+Date:   Mon, 13 Jul 2020 10:19:46 +0800
+Message-Id: <20200713021946.26113-1-frank@allwinnertech.com>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200629074519.28851-1-andy.tang@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 29, 2020 at 03:45:18PM +0800, andy.tang@nxp.com wrote:
-> From: Yuantian Tang <andy.tang@nxp.com>
-> 
-> There are 5 thermal zones in ls1046a soc. Add the rest thermal zone
-> nodes to enable them.
-> 
-> Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
+Allwinner A100 have a mv64xxx i2c interface available to be used.
 
-Applied both, thanks.
+Signed-off-by: Frank Lee <frank@allwinnertech.com>
+---
+ Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
+index 2ceb05b..5b5ae40 100644
+--- a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
++++ b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
+@@ -27,6 +27,9 @@ properties:
+           - const: allwinner,sun50i-a64-i2c
+           - const: allwinner,sun6i-a31-i2c
+       - items:
++          - const: allwinner,sun50i-a100-i2c
++          - const: allwinner,sun6i-a31-i2c
++      - items:
+           - const: allwinner,sun50i-h6-i2c
+           - const: allwinner,sun6i-a31-i2c
+ 
+-- 
+1.9.1
+
