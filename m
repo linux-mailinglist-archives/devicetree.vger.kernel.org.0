@@ -2,92 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA22C21E40E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 01:57:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34D2521E416
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 01:59:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726364AbgGMX5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jul 2020 19:57:55 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:38744 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726339AbgGMX5y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 19:57:54 -0400
-Received: by mail-io1-f67.google.com with SMTP id l1so15454848ioh.5;
-        Mon, 13 Jul 2020 16:57:54 -0700 (PDT)
+        id S1726364AbgGMX7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jul 2020 19:59:38 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:33763 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726339AbgGMX7i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 19:59:38 -0400
+Received: by mail-io1-f66.google.com with SMTP id d18so15481400ion.0;
+        Mon, 13 Jul 2020 16:59:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=7c5zEhAAZe4ARtWE37/DC1WUrD4G1u+Olxon0OQTcTY=;
-        b=FrkBCxvdggVsVNG6H4Jnm6V7x9uOSI5XlXEDbTbC3jEVi2Y6noEdWM302mvv6m5aHr
-         xxEbMG4DffO0LSQ2vPfUHYOagQa+z3/KmsKJgsAyh08kMGPZKvZWNz9XkUxwe0VtcWyh
-         lcKa+2AunMWwZnXde0IjsXvuyaJVXvbJP6q03k5XTlSgIDimvkWIiBkA2MiFDD3HpIG0
-         Di4hwK4cQ6qrALCH16plN0c79fTM9mz+3sQUlPvQEUUI5PC0L4ohSCByqSej3XypERsc
-         kdRxl8qK1AlQ2fpEyv1I7M/d5jM2lbN/2A21Y2JAsqoMckfuWCj+O8lQP2Cp4UL38We3
-         BvgA==
-X-Gm-Message-State: AOAM532WMpNhQsb9fCOqxC/26kpPJ9QaBD6cjY0z+jvjXRTs3+sfNWUG
-        Q9aMb9xuEiNnnfd1qlplMw==
-X-Google-Smtp-Source: ABdhPJzk0xad7Wqvui02rA9XsQsYeJbjiQrhI195AJtDwQfLcpp3zuMxhjsKkSZEBtUKqrliJBcwUQ==
-X-Received: by 2002:a6b:8d4d:: with SMTP id p74mr2302931iod.173.1594684674059;
-        Mon, 13 Jul 2020 16:57:54 -0700 (PDT)
+        bh=459d77cK5HS2FH2dcRqpFw2lnIuuj+dUdJALm7saacU=;
+        b=cMhUOmG0+FKgOAfAy15EqUG23VZkgW+qSw/7Gp86i0a+OU0ArWbPWDvabAXNxGomz/
+         3PYN9o0lQqF+3hBir9CaevsBQKcliLF4CD+IvIrTv8/DnVGEfoK2x25uskaOs7uXE4Z5
+         KFp679S6MOr3xjtBIM9ZU0B8NmGCjaH+Io9lesoCUWNd++iUARfBuWM3s9ppjnRtPE8i
+         NkFUvpaKvtxJ0TCrKF4mzZ0kxw7WCz4v5AQSTjfDrGLqkaOjYFfPn/AtRtYoxQkcHj9h
+         odwV4aoOtU43CIsakvaKcDvv0/4HpmA0CC/BeDsKJQCrg34kosq6+JtT0lx51penO/XK
+         jCwg==
+X-Gm-Message-State: AOAM530kUnP6vzB/Wuo5bndErVaVkEZ4/jNqhRug5e0hgmJ6x1HVH9f+
+        F8z/wtsk8jbOaw7q/RCOuy9H1oRlR8Hi
+X-Google-Smtp-Source: ABdhPJyPlbc1aSPv3+AKY7qOpV+xg3N05oqCGPQx7urbOOGaG7CZ/c1mLdcI+ruLuZoGOJzCXS9DwQ==
+X-Received: by 2002:a6b:6e11:: with SMTP id d17mr2391954ioh.102.1594684777722;
+        Mon, 13 Jul 2020 16:59:37 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id k1sm9003186ilr.35.2020.07.13.16.57.52
+        by smtp.gmail.com with ESMTPSA id a1sm8971534ilq.50.2020.07.13.16.59.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jul 2020 16:57:53 -0700 (PDT)
-Received: (nullmailer pid 959222 invoked by uid 1000);
-        Mon, 13 Jul 2020 23:57:51 -0000
-Date:   Mon, 13 Jul 2020 17:57:51 -0600
+        Mon, 13 Jul 2020 16:59:37 -0700 (PDT)
+Received: (nullmailer pid 961887 invoked by uid 1000);
+        Mon, 13 Jul 2020 23:59:36 -0000
+Date:   Mon, 13 Jul 2020 17:59:36 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>,
-        iommu@lists.linux-foundation.org,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org,
-        Diana Craciun <diana.craciun@oss.nxp.com>,
-        Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, linux-acpi@vger.kernel.org,
-        Hanjun Guo <guohanjun@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Makarand Pawagi <makarand.pawagi@nxp.com>
-Subject: Re: [PATCH v2 06/12] of/iommu: Make of_map_rid() PCI agnostic
-Message-ID: <20200713235751.GA959175@bogus>
-References: <20200521130008.8266-1-lorenzo.pieralisi@arm.com>
- <20200619082013.13661-1-lorenzo.pieralisi@arm.com>
- <20200619082013.13661-7-lorenzo.pieralisi@arm.com>
+To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v2 2/8] dt-bindings: media: renesas, fcp: Make
+ power-domains mandatory
+Message-ID: <20200713235936.GA961843@bogus>
+References: <20200621004734.28602-1-laurent.pinchart+renesas@ideasonboard.com>
+ <20200621004734.28602-3-laurent.pinchart+renesas@ideasonboard.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200619082013.13661-7-lorenzo.pieralisi@arm.com>
+In-Reply-To: <20200621004734.28602-3-laurent.pinchart+renesas@ideasonboard.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Jun 2020 09:20:07 +0100, Lorenzo Pieralisi wrote:
-> There is nothing PCI specific (other than the RID - requester ID)
-> in the of_map_rid() implementation, so the same function can be
-> reused for input/output IDs mapping for other busses just as well.
+On Sun, 21 Jun 2020 03:47:28 +0300, Laurent Pinchart wrote:
+> All DT source files in the kernel tree specify the power-domains
+> property. Make it mandatory.
 > 
-> Rename the RID instances/names to a generic "id" tag.
-> 
-> No functionality change intended.
-> 
-> Signed-off-by: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Joerg Roedel <joro@8bytes.org>
-> Cc: Robin Murphy <robin.murphy@arm.com>
-> Cc: Marc Zyngier <maz@kernel.org>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  drivers/iommu/of_iommu.c |  4 ++--
->  drivers/of/base.c        | 42 ++++++++++++++++++++--------------------
->  drivers/of/irq.c         |  2 +-
->  include/linux/of.h       |  4 ++--
->  4 files changed, 26 insertions(+), 26 deletions(-)
+> Changes since v1:
+> 
+> - Fix typo in commit message
+> ---
+>  Documentation/devicetree/bindings/media/renesas,fcp.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
