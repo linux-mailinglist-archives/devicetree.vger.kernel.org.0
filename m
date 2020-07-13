@@ -2,105 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8E7721D5E5
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 14:26:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF83321D60D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 14:36:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729027AbgGMM0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jul 2020 08:26:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36976 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728950AbgGMM03 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 08:26:29 -0400
-Received: from mail-ua1-x941.google.com (mail-ua1-x941.google.com [IPv6:2607:f8b0:4864:20::941])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EED7C061755
-        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2020 05:26:29 -0700 (PDT)
-Received: by mail-ua1-x941.google.com with SMTP id q15so3996195uap.4
-        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2020 05:26:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:sender:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=t0TLC5mt6zw20J38nO6UV1Kz+5E95WBtIXeRkoxQ4a0=;
-        b=h6RjQQeo+oHHbs144HCb6qbHOkf6nQ3IhoCJs97QtsvIYhdZv/qIgFlkWAMMSvJRn1
-         Cit+T6UdtdJFwArXILQ2RZ6qXXS1HyqPfDVhFOXGHTaiOu7XXvEUQk9YxYLgD8qfc2yg
-         o1QX5PYFJF5PjCJKEa3F7KSHeRuakpvKI/Hkxn7P3/fAdMF9SnGOuU7n8Y0kIG2JiS31
-         k6EyIT3GVYcOY7VjXLunjs2aTrRMg1vfiWselTA4TIqtjO55vxA1qgU90jIuvBNz1H0q
-         OkOOY4JifgxdqphWygqw6XrcM6Pc5Xqjrcnh76ql+GwXPlWjMN9TPSPHJ1UkRDC25y1S
-         O3kA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:sender:from:date
-         :message-id:subject:to:content-transfer-encoding;
-        bh=t0TLC5mt6zw20J38nO6UV1Kz+5E95WBtIXeRkoxQ4a0=;
-        b=ubiNMe0Pg0t6F/XWW+0kbYEdDcsq0X/8Ey4FZLq8G1n+zmDCr7tuq9BH9LJCEwElTa
-         uClK9iQwmOQfAukP1izalyB6eZfZvGpWJYEZR04GE4xt5i3FJUwgILEP9ZWru63z27S4
-         1Q0oZXhHufT6vgZcGRqvPgtHu2uSQfxTWlGsIKSFg7Cqxh6GQNgSAKCKpR+mhFsXtSN5
-         VDU1QbhcMrFu9eA2hPdXxgw3GJl+2zaguKKkgYKpaA2mE6Mx8myKRzGooqAYw+ZyISCA
-         ODMEDgjuBBi8Nc7l1Anq+xwbfp9YZ2s1PblXnBiWqmFiX3V4QumRNekdWiLN6f8btUqs
-         0XrQ==
-X-Gm-Message-State: AOAM530acLJ2+rQHl3Ka2353l10KdBz688ynUyfgFYafwGIeukfC4LA/
-        WIs2705FhfF9NMSwXVZOD7NuOaoF4Dm9fNXnlV0=
-X-Google-Smtp-Source: ABdhPJzin9gw5pZ78EmyL13SqUnhhEg6zX2zV9WNPkNM+gxFPqB0aAvXS3Zz/79CzU1S+fPoLEoK2qq9TMF4tpvATyE=
-X-Received: by 2002:ab0:6402:: with SMTP id x2mr3817066uao.134.1594643188725;
- Mon, 13 Jul 2020 05:26:28 -0700 (PDT)
+        id S1729523AbgGMMgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jul 2020 08:36:33 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:49088 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729494AbgGMMgd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 08:36:33 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06DCaGMG079966;
+        Mon, 13 Jul 2020 07:36:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1594643776;
+        bh=VGBP2fIvmzT/XXdWJZL2v9UPK0oBAiOObCttmYvr9e8=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=Dy7wxJFOQ9y+4BaB9nvQMW+g6oR4tUrvYcpjjyCuNcBsLexBQPbPHss1Q75DC9CoO
+         KlH2MIa9boqTorbzui0f8DIRCo7RSowGVwxmQbzAh1/+f/tp/WmrN8/V30lXSa2EI3
+         YAISUwHmIw+2VoDso8hOZmmqx5syXIybr+vUNKxo=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06DCaGsG013820
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 13 Jul 2020 07:36:16 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 13
+ Jul 2020 07:36:15 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 13 Jul 2020 07:36:15 -0500
+Received: from [10.250.32.229] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06DCaFWw021000;
+        Mon, 13 Jul 2020 07:36:15 -0500
+Subject: Re: [PATCH v29 05/16] leds: lp50xx: Add the LP50XX family of the RGB
+ LED driver
+To:     Marek Behun <marek.behun@nic.cz>
+CC:     <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>, <robh@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-leds@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20200622185919.2131-1-dmurphy@ti.com>
+ <20200622185919.2131-6-dmurphy@ti.com> <20200712192103.5e24ed2a@nic.cz>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <47d846d9-9a49-02b1-ce59-d0cc157c268a@ti.com>
+Date:   Mon, 13 Jul 2020 07:36:15 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Reply-To: mrsanna.h.bruun119@gmail.com
-Received: by 2002:ab0:194:0:0:0:0:0 with HTTP; Mon, 13 Jul 2020 05:26:28 -0700 (PDT)
-From:   "Mrs. Anna H. Bruun" <mrsanna.h.bruun119@gmail.com>
-Date:   Mon, 13 Jul 2020 05:26:28 -0700
-X-Google-Sender-Auth: j2s1Xp35k9mh51R5L675KIswPko
-Message-ID: <CAKipdR=moPNYaDNk_t4m9kMTqpaAkWcBTTVf2XgOPHC++OFLdg@mail.gmail.com>
-Subject: My Greetings
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20200712192103.5e24ed2a@nic.cz>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-My Dear
+Marek
 
-My Name is Mrs. Anna H. Bruun, from Norway. I know that this message
-will be a surprise to you. Firstly, I am married to Mr. Patrick Bruun,
-A gold merchant who owns a small gold Mine in Burkina Faso; He died of
-Cardiovascular Disease in mid-March 2011. During his life time he
-deposited the sum of =E2=82=AC 8.5 Million Euro) Eight million, Five hundre=
-d
-thousand Euros in a bank in Ouagadougou the capital city of Burkina
-Faso. The deposited money was from the sale of the shares, death
-benefits payment and entitlements of my deceased husband by his
-company.
+Thanks for the review
 
-I am sending this message to you praying that it will reach you in
-good health, since I am not in good health condition in which I sleep
-every night without knowing if I may be alive to see the next day. I
-am suffering from long time cancer and presently i am partially
-suffering from a stroke illness which has become almost impossible for
-me to move around. I am married to my late husband for over 4 years
-before he died and is unfortunately that we don't have a child, my
-doctor confided in me that i have less chance to live. Having known my
-health condition, I decided to contact you to claim the fund since I
-don't have any relation I grew up from the orphanage home,
+On 7/12/20 12:21 PM, Marek Behun wrote:
+> Hi Dan, one bug in this driver, see below.
 
-I have decided to donate what I have to you for the support of helping
-Motherless babies/Less privileged/Widows' because I am dying and
-diagnosed of cancer for about 2 years ago. I have been touched by God
-Almighty to donate from what I have inherited from my late husband to
-you for good work of God Almighty. I have asked Almighty God to
-forgive me and believe he has, because He is a Merciful God I will be
-going in for an operation surgery soon
+This is not really a bug.  It is an enhancement to the driver.
 
-This is the reason i need your services to stand as my next of kin or
-an executor to claim the funds for charity purposes. If this money
-remains unclaimed after my death, the bank executives or the
-government will take the money as unclaimed fund and maybe use it for
-selfish and worthless ventures, I need a very honest person who can
-claim this money and use it for Charity works, for orphanages, widows
-and also build schools for less privilege that will be named after my
-late husband and my name; I need your urgent answer to know if you
-will be able to execute this project, and I will give you more
-Information on how the fund will be transferred to your bank account.
+I will update it since I have to touch the series anyway.
 
-Thanks
-Mrs. Anna H.
+Dan
+
