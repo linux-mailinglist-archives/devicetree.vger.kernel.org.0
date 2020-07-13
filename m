@@ -2,102 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43F7721E26D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 23:36:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5761B21E28F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 23:39:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727873AbgGMVgJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jul 2020 17:36:09 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:34745 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727858AbgGMVgI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 17:36:08 -0400
-Received: by mail-io1-f67.google.com with SMTP id q74so15174456iod.1;
-        Mon, 13 Jul 2020 14:36:07 -0700 (PDT)
+        id S1726491AbgGMVjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jul 2020 17:39:06 -0400
+Received: from mail-il1-f193.google.com ([209.85.166.193]:40084 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726432AbgGMVjG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 17:39:06 -0400
+Received: by mail-il1-f193.google.com with SMTP id e18so12508395ilr.7;
+        Mon, 13 Jul 2020 14:39:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Ds31A3g/zm7RWz12Mdt2xEVw3TUuXdV7t8TgREVUS5k=;
-        b=qVge8KVvAM6QAy5d5o3+KwDY3lnpJ6p/zSIJw+ag0cEZwur0Xg7mGDuIyBoQ6UYcDj
-         FqEuMev3blcgS4S4s3c04sbC5DlzjshkGqkNiVxd1SJ4/0HI2vqXv9XcMEqDGCqHw+no
-         jat3IiCL95DiFwxlOWyTYEUyAUQHtfPqt+ssrSGUleVyPTvDtX33IK4F1izdshVoV2Pe
-         X/XpJGLZyZ894R4KEwBaYAaRSNqHmnKRc2hMlrKCkYT0LSkRam3Cj9B4cBQLL/UnKzWg
-         1sFw/RGxPKsvXOU6RdZs0S4kqUQFA4Nsug/IK3KpHV2fVocLU+ypru8ZV79lmJNPa1rm
-         v9Ow==
-X-Gm-Message-State: AOAM531x0MxAxzmLgYXqHQV6iQt1M4i8BUyNtjVBZdZoktJuFRlzZqjt
-        4WubjDoWu4ZCM7cY9ArGVA==
-X-Google-Smtp-Source: ABdhPJzIjXhyFFB2gzub0W2jM/rvGAFEwl9LO8mdLyLFlXaE/U0x+bzAY8WF8WzxMPhaHpWDEwsegA==
-X-Received: by 2002:a02:10c1:: with SMTP id 184mr2288036jay.135.1594676167287;
-        Mon, 13 Jul 2020 14:36:07 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=EdBTRjYgonQ4n/xwV9Lanc05+D2tIq1HVeK6rFmGHsw=;
+        b=N2Yhgh164HCfIfOLu+QrvHjdx3GOuIvG5FruYLpLOVQWa4bJ6H8XkCYGnPoFZeZZo7
+         C9E+MMYV9Ldj3dsxsRqezWBFP4E2mZQqMXBG/u/5jL0LaCvou73AqcxC+qfDuN/zh9qN
+         N6y5ai4CPle+fcBCHnU4NXD532S6SlxiU14M7u1IxxzCPpecherAtcZo6A8PnVx5TxgI
+         lc3RnIQPy3elGwX6e0eyIFmynJvJRXRISK4FSvhSJno2L1S1bEV+qnE6git9VuGZWm3I
+         rvo0s5k9FWqvBAUnPj/77DGb9XqgtnjWcsZT3wF/E+V3BEp5YUyv8XPeWaza9Z49lDGr
+         uXrw==
+X-Gm-Message-State: AOAM531cdld6jnWAjWW68ubfI5dJl9mllYbjUWaEHnjvLPS8NacM0DFf
+        jWt2vfKs5umvprChGXmVXA==
+X-Google-Smtp-Source: ABdhPJyAC3Al6bnbWdMb3ZWrGr8qKNbe4Yy5Xdr0GY628TTB5I0UNKUYeeP49dtMuRZMAxOHeaSC5Q==
+X-Received: by 2002:a05:6e02:13b1:: with SMTP id h17mr1654033ilo.155.1594676345425;
+        Mon, 13 Jul 2020 14:39:05 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id x19sm1372922ioh.38.2020.07.13.14.36.06
+        by smtp.gmail.com with ESMTPSA id r124sm7933561iod.40.2020.07.13.14.39.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jul 2020 14:36:06 -0700 (PDT)
-Received: (nullmailer pid 769509 invoked by uid 1000);
-        Mon, 13 Jul 2020 21:36:05 -0000
-Date:   Mon, 13 Jul 2020 15:36:05 -0600
+        Mon, 13 Jul 2020 14:39:04 -0700 (PDT)
+Received: (nullmailer pid 773476 invoked by uid 1000);
+        Mon, 13 Jul 2020 21:39:03 -0000
+Date:   Mon, 13 Jul 2020 15:39:03 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Tomasz Nowicki <tn@semihalf.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>, will@kernel.org,
-        joro@8bytes.org, gregory.clement@bootlin.com, hannah@marvell.com,
-        linux-kernel@vger.kernel.org, iommu@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, catalin.marinas@arm.com,
-        nadavh@marvell.com, linux-arm-kernel@lists.infradead.org,
-        mw@semihalf.com
-Subject: Re: [PATCH v3 3/4] dt-bindings: arm-smmu: add compatible string for
- Marvell Armada-AP806 SMMU-500
-Message-ID: <20200713213605.GA766184@bogus>
-References: <20200702201633.22693-1-tn@semihalf.com>
- <20200702201633.22693-4-tn@semihalf.com>
- <3172ec21-d773-7fcb-f1ee-f557f72f20c5@arm.com>
- <972f5cbd-705b-e18a-7477-5f6922804361@semihalf.com>
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     linux-actions@lists.infradead.org, Stephen Boyd <sboyd@kernel.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        linux-clk@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        devicetree@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v3 2/6] dt-bindings: clock: Add APB, DMAC, GPIO bindings
+ for Actions S500 SoC
+Message-ID: <20200713213903.GA773423@bogus>
+References: <cover.1593788312.git.cristian.ciocaltea@gmail.com>
+ <67112af4f5bc0cc5e70ce8410feb369cc72972b8.1593788312.git.cristian.ciocaltea@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <972f5cbd-705b-e18a-7477-5f6922804361@semihalf.com>
+In-Reply-To: <67112af4f5bc0cc5e70ce8410feb369cc72972b8.1593788312.git.cristian.ciocaltea@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 03, 2020 at 11:26:32AM +0200, Tomasz Nowicki wrote:
-> On 03.07.2020 11:05, Robin Murphy wrote:
-> > On 2020-07-02 21:16, Tomasz Nowicki wrote:
-> > > Add specific compatible string for Marvell usage due to errata of
-> > > accessing 64bits registers of ARM SMMU, in AP806.
-> > > 
-> > > AP806 SoC uses the generic ARM-MMU500, and there's no specific
-> > > implementation of Marvell, this compatible is used for errata only.
-> > > 
-> > > Signed-off-by: Hanna Hawa <hannah@marvell.com>
-> > > Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> > > Signed-off-by: Tomasz Nowicki <tn@semihalf.com>
-> > > ---
-> > >   Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 5 +++++
-> > >   1 file changed, 5 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> > > b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> > > index d7ceb4c34423..7beca9c00b12 100644
-> > > --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> > > +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> > > @@ -38,6 +38,11 @@ properties:
-> > >                 - qcom,sc7180-smmu-500
-> > >                 - qcom,sdm845-smmu-500
-> > >             - const: arm,mmu-500
-> > > +      - description: Marvell SoCs implementing "arm,mmu-500"
-> > > +        items:
-> > > +          - enum:
-> > > +              - marvell,ap806-smmu-500
-> > 
-> > Isn't a single-valued enum just a constant? :P
+On Fri, 03 Jul 2020 20:05:08 +0300, Cristian Ciocaltea wrote:
+> Add the missing APB, DMAC and GPIO clock bindings constants for
+> Actions Semi S500 SoC.
 > 
-> That's how copy-paste engineering ends up :)
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> ---
+> Changes in v3:
+>  - Preserved the original values of the existing bindings and moved
+>    the newly added constants bellow, as indicated by Stephen
+> 
+> Changes in v2:
+>  - None
+> 
+>  include/dt-bindings/clock/actions,s500-cmu.h | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
 
-It's fine like this if you expect more SoCs to be added.
-
-Either way,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
