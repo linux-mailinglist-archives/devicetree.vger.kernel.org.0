@@ -2,70 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 908BE21DA44
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 17:39:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 622D921DA75
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 17:43:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729687AbgGMPjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jul 2020 11:39:41 -0400
-Received: from mail-il1-f195.google.com ([209.85.166.195]:42001 "EHLO
-        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729649AbgGMPjl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 11:39:41 -0400
-Received: by mail-il1-f195.google.com with SMTP id t27so11515038ill.9;
-        Mon, 13 Jul 2020 08:39:41 -0700 (PDT)
+        id S1729849AbgGMPmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jul 2020 11:42:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40948 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729782AbgGMPmt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 11:42:49 -0400
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com [IPv6:2607:f8b0:4864:20::844])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 021B0C061794
+        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2020 08:42:48 -0700 (PDT)
+Received: by mail-qt1-x844.google.com with SMTP id d27so10270624qtg.4
+        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2020 08:42:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=marek-ca.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=o6mVIteS5H22xj7K9FbgllDWoWh0dWKcuZiDimv8WT0=;
+        b=PWuqcgBxjYScsRLGOLnb7Muj06nTih8BeA2wxRUzz65ls/OgusFE+hlPsst9WP7HSl
+         0wbLJmYCzmvh57Itn/lK1AWfozL4MPIcAdPDZV7lupW5RvF3pkuafSA2sQNkM6/hqZtY
+         qQ4NPXtZUw5pXwb1Xj2IPAY8uHSEfhXfEVSEe3sxsvn9hssb/iaxp+EbEo50Ou1k6Vka
+         T0NCu5E/Xs+oZnort4PcU5yEmqjWsr56TC4r9K+kCGtIZehRrxSMXNVk8vg8XHKv4aXi
+         /32B36zBejkNQ6VA+C5FQU9i4t4HBbFH2GYLmR1lUwNIKq7WPl62vAy/VCAvd+aSzn3g
+         R4Hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=/JwjaTBwdy7p5gzq/S6A6j7F6S/p1+FIjVHrB/VC0Co=;
-        b=noEmCClbjzm84w/UnpT4QVHqivctIwCQfJ+WWjaHmDAqIuQ+D/7qkFJ4K0n4Hx9074
-         DKEX3gqk4R4HdEdodtgewgUVm7alHsay44qhkz57MJL8SROCAArcJMSm2S0rX7WoIWc3
-         pAcprzGxkFBk4QyEAeD2EBWFkXV7AoiTqD2Yvlx6Q8L8uvsJh6I3mAsqNIPxwmgMDy5p
-         JEgMQPcYVdDnoPFg2vPwcQvy3n1q2jjgwuuHC7QzvmhuiplxGdlvcwp/BkYF+p2HagHF
-         4Z1fwGZQyr7WN5PilhYYjYD51XWQq0gl4g+th7eJk6zxOb3JIVriK06MXK4RvLGLD8lt
-         s3Ww==
-X-Gm-Message-State: AOAM533G3e1KSlqoSFc+0VC9Cy3s0KaMxQvS/4z5djd/AYdA5+70kLy9
-        3hztU32KCvLAgJKZ/qkvhw==
-X-Google-Smtp-Source: ABdhPJzWXA9tqzl0qSfuDHyTGqByvWKyA1xxZxjggwkRVJ0xA11a4BggwBLRyuoYIvlSqC4UuDejrw==
-X-Received: by 2002:a92:9892:: with SMTP id a18mr286907ill.60.1594654780640;
-        Mon, 13 Jul 2020 08:39:40 -0700 (PDT)
-Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id s18sm8374531ilj.63.2020.07.13.08.39.39
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=o6mVIteS5H22xj7K9FbgllDWoWh0dWKcuZiDimv8WT0=;
+        b=ILYB5FeFnMGkVZ2MXOd+CqUzQerAq7dRMf7XA7kEsTmuASJsbuX2UB41n0qbmmyJG8
+         wHYftFX/vjer/MmUnrrAGYvUU6KbC36M5ls3qCyl6O7jV3teBno/l8twkD3w8t69HFis
+         sPGW5uL4XGdpn1yKzA2F0KQbET0GZTGyWo+1ud6uZae9Xq05XHIVx6O6X495m+4nzfqh
+         CTGAUjuOstqYRFqOYbouctvaaYaDzDkX35h8RVIHVY/KMyySipRx/h9GIo02IFHi60MG
+         xisbuIH2QraFQ9sB1FZLtL4QiOdvvlXNRoBRn7zHxye3oEXiYtn+dy+nW7rGmDH6/n7X
+         tfPA==
+X-Gm-Message-State: AOAM531UvNoX3Mk3eL6MY5j02i3nzRXo6Mq6xfMGIyXuEWqgc1XWiSCg
+        B3SPZLWYfuOVYDSDKI6M/S25ow==
+X-Google-Smtp-Source: ABdhPJxV2KKXGOQ10kOUx+nUwR0+7ahOgBJa7GfDP+fROft5m6+JqIu5v0A9I3+GFGxVzwGxo7V3eQ==
+X-Received: by 2002:ac8:45d1:: with SMTP id e17mr88246364qto.159.1594654968159;
+        Mon, 13 Jul 2020 08:42:48 -0700 (PDT)
+Received: from localhost.localdomain ([147.253.86.153])
+        by smtp.gmail.com with ESMTPSA id l1sm19806371qtk.18.2020.07.13.08.42.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jul 2020 08:39:40 -0700 (PDT)
-Received: (nullmailer pid 255705 invoked by uid 1000);
-        Mon, 13 Jul 2020 15:39:39 -0000
-Date:   Mon, 13 Jul 2020 09:39:39 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Subject: Re: [PATCH 1/3] dt-bindings: adv7604: Fix documentation for hpd-gpios
-Message-ID: <20200713153939.GA255646@bogus>
-References: <20200713111844.528313-1-niklas.soderlund+renesas@ragnatech.se>
- <20200713111844.528313-2-niklas.soderlund+renesas@ragnatech.se>
+        Mon, 13 Jul 2020 08:42:47 -0700 (PDT)
+From:   Jonathan Marek <jonathan@marek.ca>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), Georgi Djakov <georgi.djakov@linaro.org>,
+        linux-kernel@vger.kernel.org (open list),
+        linux-pm@vger.kernel.org (open list:INTERCONNECT API),
+        Odelu Kukatla <okukatla@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v2 0/7] Add SM8150 and SM8250 interconnect drivers
+Date:   Mon, 13 Jul 2020 11:41:09 -0400
+Message-Id: <20200713154121.22094-1-jonathan@marek.ca>
+X-Mailer: git-send-email 2.26.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200713111844.528313-2-niklas.soderlund+renesas@ragnatech.se>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 Jul 2020 13:18:42 +0200, Niklas Söderlund wrote:
-> As of [1] the hpd-gpios property is optional, document it as such.
-> 
-> 1. commit 269bd1324fbfaa52 ("[media] media: adv7604: improve usage of gpiod API")
-> 
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> ---
->  Documentation/devicetree/bindings/media/i2c/adv7604.txt | 7 +++----
->  1 file changed, 3 insertions(+), 4 deletions(-)
-> 
+Most of this is generated from downstream dts using a script.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+There are a couple things I'm still not sure about:
+* When to set keepalive in DEFINE_QBCM macro (set to all false)
+* Size for the reg fields. For the size I just used 0x1000.
+
+v2: single yaml file for RPMh interconnect bindings, drop display RSC
+
+Jonathan Marek (7):
+  dt-bindings: interconnect: single yaml file for RPMh interconnect
+    drivers
+  dt-bindings: interconnect: Add Qualcomm SM8150 DT bindings
+  dt-bindings: interconnect: Add Qualcomm SM8250 DT bindings
+  interconnect: qcom: Add SM8150 interconnect provider driver
+  interconnect: qcom: Add SM8250 interconnect provider driver
+  arm64: dts: qcom: sm8150: add interconnect nodes
+  arm64: dts: qcom: sm8250: add interconnect nodes
+
+ .../{qcom,sc7180.yaml => qcom,rpmh.yaml}      |  55 +-
+ .../bindings/interconnect/qcom,sdm845.yaml    |  74 --
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          |  82 +++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  82 +++
+ drivers/interconnect/qcom/Kconfig             |  20 +
+ drivers/interconnect/qcom/Makefile            |   4 +
+ drivers/interconnect/qcom/sm8150.c            | 639 +++++++++++++++++
+ drivers/interconnect/qcom/sm8150.h            | 153 ++++
+ drivers/interconnect/qcom/sm8250.c            | 655 ++++++++++++++++++
+ drivers/interconnect/qcom/sm8250.h            | 163 +++++
+ .../dt-bindings/interconnect/qcom,sm8150.h    | 163 +++++
+ .../dt-bindings/interconnect/qcom,sm8250.h    | 173 +++++
+ 12 files changed, 2186 insertions(+), 77 deletions(-)
+ rename Documentation/devicetree/bindings/interconnect/{qcom,sc7180.yaml => qcom,rpmh.yaml} (56%)
+ delete mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sdm845.yaml
+ create mode 100644 drivers/interconnect/qcom/sm8150.c
+ create mode 100644 drivers/interconnect/qcom/sm8150.h
+ create mode 100644 drivers/interconnect/qcom/sm8250.c
+ create mode 100644 drivers/interconnect/qcom/sm8250.h
+ create mode 100644 include/dt-bindings/interconnect/qcom,sm8150.h
+ create mode 100644 include/dt-bindings/interconnect/qcom,sm8250.h
+
+-- 
+2.26.1
+
