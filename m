@@ -2,177 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A050021D6D3
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 15:24:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5333B21D71E
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 15:29:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730109AbgGMNX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jul 2020 09:23:58 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:41493 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730098AbgGMNXx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 09:23:53 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20200713132350euoutp01266d3538379df8378841e3daed33fb2a~hUqlqjIY_3035230352euoutp01a
-        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2020 13:23:50 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20200713132350euoutp01266d3538379df8378841e3daed33fb2a~hUqlqjIY_3035230352euoutp01a
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1594646630;
-        bh=fNdpX2odgKVBawGRmV4rb/Qbvgl0SrWBl4V+4J4Ee5Q=;
-        h=Subject:To:From:Date:In-Reply-To:References:From;
-        b=lH6BvB4qLvHwm2Bbk0e83J45/SrWfkeGuPyjK/NdBiqQoagl4xMxlesTgyHcBc5oe
-         K98AfdmVcX56OMleSMnWcDNH4EzI4XQCYWWcZcAbW1D48nPjCmj32sw5xe3Ghxu7rz
-         fMy3lBNyyHeAynTPcIoEWPG2A0M3bT162jdFtLBE=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20200713132350eucas1p2bae88f863493f264bc2372e211e4b26f~hUqlWkvkX1958919589eucas1p2I;
-        Mon, 13 Jul 2020 13:23:50 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id B5.DC.06318.6606C0F5; Mon, 13
-        Jul 2020 14:23:50 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20200713132349eucas1p1a67db68787c171d5a4b676b5f97900d9~hUqk-Zj4o0272502725eucas1p1r;
-        Mon, 13 Jul 2020 13:23:49 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20200713132349eusmtrp2933489ade48f21526a3ff51744d9195e~hUqk_tC8F2572925729eusmtrp2e;
-        Mon, 13 Jul 2020 13:23:49 +0000 (GMT)
-X-AuditID: cbfec7f5-371ff700000018ae-1f-5f0c6066e551
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 10.6E.06314.5606C0F5; Mon, 13
-        Jul 2020 14:23:49 +0100 (BST)
-Received: from [106.210.88.143] (unknown [106.210.88.143]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20200713132349eusmtip24756ee22791cf003cc7b5f9f0b30a753~hUqkbg7030859108591eusmtip2Q;
-        Mon, 13 Jul 2020 13:23:49 +0000 (GMT)
-Subject: Re: [RFC PATCH] ARM: dts: exynos: partial revert of Adjust bus
- related OPPs to the values correct for Exynos5422 Odroids
-To:     Willy Wolff <willy.mh.wolff.ml@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <147bc7a2-b8bd-83b5-17b3-2c1beedcf387@samsung.com>
-Date:   Mon, 13 Jul 2020 15:23:49 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
-        Thunderbird/68.10.0
+        id S1729833AbgGMN3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jul 2020 09:29:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48604 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729564AbgGMN3l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 09:29:41 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21E7CC061755
+        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2020 06:29:41 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id a6so16550086wrm.4
+        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2020 06:29:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8M2es7HHouzmCUpyAYFqBmq/VXXAGiCHzbOor1SAZdY=;
+        b=eZztk7O7rf+DFBdXysVaFW4Q6svK0fGNMvSOeDFuBZn/YGHCVDHChUbKn5LhBskGZF
+         z4kFVrudVva1mgg1mPIwMgG/zOElB0ulSNlJAWaXR4twxVMVl3if3wzh4Jerf2NIhpy9
+         ZgYZpN1qdb1PX8A36OK7S2FYxhqRzMqWnhli036pECPg1gVa6H+PclsfMX1+zivylIBh
+         EdcoHIsqNvh00CBTbSgfCw04YoJLD5d00c8lG8RVo0q06XZ1R2AfjmaXvoXcZiRPu0I+
+         TnQBMfQZVhJf8vwoGnfJyVRgxYMSADJXe6+/E4ouhnfFeOQD3BoMi4SN7/c/DPG7Jt5h
+         uUmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8M2es7HHouzmCUpyAYFqBmq/VXXAGiCHzbOor1SAZdY=;
+        b=MfyZN/vxEAdkPYcLqy+KxV0ISFCYiB6cxay2kinUP6f56IA7JQpNpxgjlsfL6OQsO1
+         1eSD/QBKtbV4ontMWyA0O9me7wrFnAHO4R5aCzEke62gS/6QMQ6t87x5PnROlQb2kk4b
+         dk3jPJx4QudagDtRCjzW22Rxu4rwldzxLWdKk56/B9cyp+pQM+O1bs+R9Tnmm8PnxH2s
+         rQ7cJ3c39VSB6gkFXVDfuribrqI5ILsy2eQX21jQ9MTEzoypuAS81yIL3oX5cfXv6VO5
+         Am0K1xsv+deQXWzEGDHN2CrlxIk8DWEOHfjvl8wjCpAh+ouo2UcW/YXsjq49qquaKar5
+         uVYA==
+X-Gm-Message-State: AOAM533qQ1woXt7VywQ9MFIxoeYGBK92z0yMu4VpYAgCuVBesyDUNTyj
+        i9kBTbF/IyZHLmrGIIb5NbWe0g==
+X-Google-Smtp-Source: ABdhPJxMEwQ8RYMjAHEW54Z1j94xXKNRmix+I5953GVI4mfW5CH5zrllY5eazKO4pgPCsaIsWRN1NA==
+X-Received: by 2002:adf:e40e:: with SMTP id g14mr86432689wrm.271.1594646979741;
+        Mon, 13 Jul 2020 06:29:39 -0700 (PDT)
+Received: from linux.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id j14sm23896642wrs.75.2020.07.13.06.29.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jul 2020 06:29:38 -0700 (PDT)
+From:   Alexandre Bailon <abailon@baylibre.com>
+To:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        matthias.bgg@gmail.com
+Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alexandre Bailon <abailon@baylibre.com>
+Subject: [PATCH 0/6] Add support of mt8183 APU
+Date:   Mon, 13 Jul 2020 15:29:21 +0200
+Message-Id: <20200713132927.24925-1-abailon@baylibre.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <20200703132054.re3kcgxrb7rciidy@macmini.local>
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa0hTYRju2845OzOnn9PwzSxxVJCg5uXHgdRU/LE/UUQQCDlnHi+pU3a8
-        pP1Iy6xWaDdTl2WKpVm6XN5JwUtZLLdUNJOKnFp4I8QUMy85T5b/nud9npf3eeClhdJ60omO
-        VSWzapUyXkZZEQ2vfxndo8KtFQeLLtsytYU6kinpMpJM3uiUkDGZnosY/eggyfS3FFNMoalN
-        wFxq7RIxC2/MKFAsb9Z+Fsn1VVcp+Yvy8/Lcuiokn9PvOUaGWvlFsvGxqazaMyDcKqbOUEol
-        jbuenchOy0TFzhokpgH7wkrbXUqDrGgprkQwXlEt4MlPBGZzLsmTOQRN97LR5op+qQLxQgWC
-        lz2LQosgxT8QVOrjLII9vojAUKknLMQBDwlAo8vccFHYCzQzGsqCJTgA5q4928AE3geazr4N
-        zw4cBrqJRgHvsYO3RWOEBYuxHxTdniQtWIhdoHGmWMhjRxgeK9kIDrhFBDrjsIDPGgJrg7MU
-        j+1hsrtOxGNnWGveXFiPOmKsFvHkOoL+C4V/mx6CT8al9W16/cQB0LV48uMgmHqgE1jGgG1g
-        aMaOD2EDtxoKhPxYAldypLx7P2i7a/6dbX/PdwQsh8GnedQN5KrdUlO7pZp2SzXt/wwPEVGF
-        HNkULiGa5XxUbJoHp0zgUlTRHqcTE/Ro/ZkMq93zTahtOaIDYRrJrCVw1FohJZWpXHpCBwJa
-        KHOQBPcYwqSSSGV6BqtOVKhT4lmuA+2iCZmjxKds4pQURyuT2TiWTWLVm6qAFjtlolcnPhp8
-        R1eCRxq8pzu3T++2nbXhiMq9ieLQLpcUrff8gDm/vua7zyBBZ6Vl3Sy4kxli+tJYmIO9yXdu
-        KpPJP/9bWfvJooju+MbesW1Bj9b6emsPt55ZMPtHxZZ7LfeVmmSrj+9HTH74uuh55MlxKJst
-        r3ffORLoq2j6PXDOxiFDRnAxSi83oZpT/gHm9y7lSAMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrDIsWRmVeSWpSXmKPExsVy+t/xe7qpCTzxBj/PGllsnLGe1WL+kXOs
-        Fv2PXzNbnD+/gd1i0+NrrBaXd81hs5hxfh+TReveI+wW3048YnTg9Ng56y67x6ZVnWwem5fU
-        e/RtWcXo8XmTXABrlJ5NUX5pSapCRn5xia1StKGFkZ6hpYWekYmlnqGxeayVkamSvp1NSmpO
-        Zllqkb5dgl7GltML2QqeKla8bClvYJwj08XIySEhYCKx6ddyxi5GLg4hgaWMEvMu/WSCSMhI
-        nJzWwAphC0v8udbFBlH0llHi+NyNrCCOsEAzo8TpFZtYQBwRgRtMEh9vHGaBKOtnlLh1+R87
-        SD+bgKFE11uQfk4OXgE7ic/da8BsFgFVia7Dl5hBbFGBOInlW+azQ9QISpyc+YQFxOYUsJGY
-        OfkV2B3MAmYS8zY/ZIaw5SW2v50DZYtL3Hoyn2kCo+AsJO2zkLTMQtIyC0nLAkaWVYwiqaXF
-        uem5xYZ6xYm5xaV56XrJ+bmbGIExt+3Yz807GC9tDD7EKMDBqMTDK+HPEy/EmlhWXJl7iFGC
-        g1lJhNfp7Ok4Id6UxMqq1KL8+KLSnNTiQ4ymQM9NZJYSTc4HpoO8knhDU0NzC0tDc2NzYzML
-        JXHeDoGDMUIC6YklqdmpqQWpRTB9TBycUg2MNqYPAjZ0JrufKeyc3S1kv/Tm0z8ZX3qXbzlb
-        +TDGqz/j/RSDx/8KzvHNunhv9qkrD7c/7pvLMP//eku+uzce6eZ5r3vOqG+zRfOn2q9LVhbz
-        7y1QWOS0UVtyVdr8p/LXVA0nxSke9s0RT7vDyb5+9vcNQqULL//t6LdYuOXDln+9kxREEm5+
-        zFBiKc5INNRiLipOBADZ6HENzwIAAA==
-X-CMS-MailID: 20200713132349eucas1p1a67db68787c171d5a4b676b5f97900d9
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20200703132101eucas1p208d5f57ffd28acf6ce4662d5e9081d6c
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20200703132101eucas1p208d5f57ffd28acf6ce4662d5e9081d6c
-References: <CGME20200703132101eucas1p208d5f57ffd28acf6ce4662d5e9081d6c@eucas1p2.samsung.com>
-        <20200703132054.re3kcgxrb7rciidy@macmini.local>
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Willy,
+Some Mediatek's SoC have an Accelerated Processing Unit.
+This adds support of the one available in the mt8183
+(aswell some derivative SoC).
 
-On 03.07.2020 15:20, Willy Wolff wrote:
-> On Odroid XU3/4 board, since 5.6 with 1019fe2c728003f89ee11482cf8ec81dbd8f15ba,
-> the network is not working properly.
->
-> After properly booting, when trying to connect to the board via ssh, the board
-> hang for a while and this message happen:
->
-> [  211.111967] ------------[ cut here ]------------
-> [  211.117520] WARNING: CPU: 0 PID: 0 at net/sched/sch_generic.c:443 dev_watchdog+0x3ac/0x3e0
-> [  211.125636] NETDEV WATCHDOG: eth0 (smsc95xx): transmit queue 0 timed out
-> [  211.132058] Modules linked in:
-> [  211.134815] CPU: 0 PID: 0 Comm: swapper/0 Not tainted 5.8.0-rc3-00082-gcdd3bb54332f-dirty #1
-> [  211.143518] Hardware name: Samsung Exynos (Flattened Device Tree)
-> [  211.149458] [<c0112290>] (unwind_backtrace) from [<c010d1ac>] (show_stack+0x10/0x14)
-> [  211.157287] [<c010d1ac>] (show_stack) from [<c051b93c>] (dump_stack+0xac/0xd8)
-> [  211.164416] [<c051b93c>] (dump_stack) from [<c0127a50>] (__warn+0xd0/0x108)
-> [  211.171301] [<c0127a50>] (__warn) from [<c0127e60>] (warn_slowpath_fmt+0x94/0xb8)
-> [  211.178824] [<c0127e60>] (warn_slowpath_fmt) from [<c0929b38>] (dev_watchdog+0x3ac/0x3e0)
-> [  211.187043] [<c0929b38>] (dev_watchdog) from [<c01c791c>] (call_timer_fn+0xd4/0x420)
-> [  211.194698] [<c01c791c>] (call_timer_fn) from [<c01c86ec>] (run_timer_softirq+0x620/0x784)
-> [  211.202980] [<c01c86ec>] (run_timer_softirq) from [<c0101408>] (__do_softirq+0x1e0/0x664)
-> [  211.211123] [<c0101408>] (__do_softirq) from [<c0130924>] (irq_exit+0x158/0x16c)
-> [  211.218467] [<c0130924>] (irq_exit) from [<c01a1ef0>] (__handle_domain_irq+0x80/0xec)
-> [  211.226304] [<c01a1ef0>] (__handle_domain_irq) from [<c0536eac>] (gic_handle_irq+0x58/0x9c)
-> [  211.234626] [<c0536eac>] (gic_handle_irq) from [<c0100af0>] (__irq_svc+0x70/0xb0)
-> [  211.241982] Exception stack(0xc1101f10 to 0xc1101f58)
-> [  211.246789] 1f00:                                     ffffffff ffffffff 00000001 0008f0bd
-> [  211.255230] 1f20: ffffe000 c1108eec c1108f30 00000001 00000000 c0df311c 00000000 c1076028
-> [  211.262303] exynos5-hsi2c 12ca0000.i2c: tx timeout
-> [  211.263351] 1f40: 00000000 c1101f60 c01097f8 c01097fc 600f0113 ffffffff
-> [  211.263649] [<c0100af0>] (__irq_svc) from [<c01097fc>] (arch_cpu_idle+0x24/0x44)
-> [  211.263771] [<c01097fc>] (arch_cpu_idle) from [<c01640c8>] (do_idle+0x214/0x2c0)
-> [  211.289414] [<c01640c8>] (do_idle) from [<c0164528>] (cpu_startup_entry+0x18/0x1c)
-> [  211.296999] [<c0164528>] (cpu_startup_entry) from [<c1000e54>] (start_kernel+0x4e8/0x520)
-> [  211.305822] irq event stamp: 585972
-> [  211.308637] hardirqs last  enabled at (585984): [<c0100b0c>] __irq_svc+0x8c/0xb0
-> [  211.316470] hardirqs last disabled at (585993): [<c019ed9c>] console_unlock+0xd4/0x654
-> [  211.324282] softirqs last  enabled at (585920): [<c0130640>] irq_enter_rcu+0x7c/0x84
-> [  211.332072] softirqs last disabled at (585921): [<c0130924>] irq_exit+0x158/0x16c
-> [  211.339329] ---[ end trace 5726ca773f159ae9 ]---
->
-> After that, the board continue working from serial console only, but the board
-> doesn't pong anymore.
->
-> Reverting some change fix the issue.
+This series depends on two other series:
+- Mediatek MT8183 scpsys support  
+- arm64: dts: Add m4u and smi-larbs nodes for mt8183 
 
-Okay, I've finally found some time to analyze this. Your proposed change 
-simply disables devfreq for fsys-bus and it looks that it wasn't working 
-from the begging, due to some misunderstanding what is 'shared-opp'.
+Notes:
+This series include two workarounds:
+- remoteproc: mtk_vpu_rproc: Don't try to load empty PT_LOAD segment
+- rproc: mtk_apu: Don't try to use local APU RAM
 
-When one OPP table has such 'shared-opp' property, when one bus sets the 
-OPP (in our case the FSYS_APB bus), framework assumes that this means 
-that the OPP for the other bus that shares it is also automatically set, 
-so framework will not call clk_set_rate for the FSYS bus related clock. 
-This is okay if two busses shares OPPs and the same clock, but here we 
-have two busses 'sharing' OPPs, but with different clocks.
+The first one is required to load malformed firmwares.
+This is probably caused by the toolchain we are using (a fork of gcc 4.2).
+It would be better to fix the firmwares but I don't know how to fix it.
 
-I remember that You have tries different frequencies for FSYS bus, but 
-in all cases it sooner or later caused USB host crash. I think that the 
-best way to fix this issue would be simply to remove the FSYS-bus 
-devfreq, as scaling its frequency breaks USB host operation on some boards.
+The second one prevents the CPU to access to the APU local RAM.
+If the CPU tries to read or write the APU local RAM, then the CPU will
+hang. I'm still looking for a solution, but until, we must prevent
+remoteproc to write something (usually, to initialize data section).
+Because of that issue, the current driver doesn't map the the local RAM.
 
-I will prepare a patch removing FSYS bus entry with the above 
-description and your 'reported-by' tag.
+Alexandre Bailon (6):
+  dt bindings: remoteproc: Add bindings for MT8183 APU
+  remoteproc: Add a remoteproc driver for the MT8183's APU
+  remoteproc: mtk_vpu_rproc: Add support of JTAG
+  remoteproc: mtk_vpu_rproc: Don't try to load empty PT_LOAD segment
+  remoteproc: mtk_apu: Don't try to use the APU local RAM
+  ARM64: mt8183: Add support of APU to mt8183
 
-Best regards
+ .../bindings/remoteproc/mtk,apu.yaml          | 121 +++++
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  42 ++
+ drivers/remoteproc/Kconfig                    |  19 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/mtk_apu_rproc.c            | 501 ++++++++++++++++++
+ 5 files changed, 684 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/mtk,apu.yaml
+ create mode 100644 drivers/remoteproc/mtk_apu_rproc.c
+
 -- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+2.26.2
 
