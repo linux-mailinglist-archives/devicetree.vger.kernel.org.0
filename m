@@ -2,57 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9D9921CD22
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 04:21:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD07521CD36
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 04:30:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726809AbgGMCVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Jul 2020 22:21:02 -0400
-Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:55428 "EHLO
+        id S1726262AbgGMCab (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Jul 2020 22:30:31 -0400
+Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:44233 "EHLO
         smtp2207-205.mail.aliyun.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726534AbgGMCVC (ORCPT
+        by vger.kernel.org with ESMTP id S1726534AbgGMCab (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Sun, 12 Jul 2020 22:21:02 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.3835706|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0186492-0.00196135-0.979389;FP=10163385476113317275|1|1|4|0|-1|-1|-1;HT=e02c03267;MF=frank@allwinnertech.com;NM=1;PH=DS;RN=7;RT=7;SR=0;TI=SMTPD_---.I0sCU5a_1594606854;
-Received: from allwinnertech.com(mailfrom:frank@allwinnertech.com fp:SMTPD_---.I0sCU5a_1594606854)
-          by smtp.aliyun-inc.com(10.147.42.197);
-          Mon, 13 Jul 2020 10:20:58 +0800
-From:   Frank Lee <frank@allwinnertech.com>
-To:     gregory.clement@bootlin.com, robh+dt@kernel.org
-Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, tiny.windzz@gmail.com,
-        Frank Lee <frank@allwinnertech.com>
-Subject: [PATCH v3 13/16] dt-bindings: i2c: mv64xxx: Add compatible for the A100 i2c node.
-Date:   Mon, 13 Jul 2020 10:20:49 +0800
-Message-Id: <20200713022049.22555-1-frank@allwinnertech.com>
-X-Mailer: git-send-email 2.24.0
+        Sun, 12 Jul 2020 22:30:31 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1725605|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0492821-0.000422833-0.950295;FP=0|0|0|0|0|-1|-1|-1;HT=e01l07440;MF=frank@allwinnertech.com;NM=1;PH=DW;RN=9;RT=9;SR=0;TI=W4_5899425_DEFAULT_0AC26699_1594607350236_o7001c824s;
+Received: from WS-web (frank@allwinnertech.com[W4_5899425_DEFAULT_0AC26699_1594607350236_o7001c824s]) by e02c03303.eu6 at Mon, 13 Jul 2020 10:30:27 +0800
+Date:   Mon, 13 Jul 2020 10:30:27 +0800
+From:   "=?UTF-8?B?5p2O5oms6Z+s?=" <frank@allwinnertech.com>
+To:     "Maxime Ripard" <maxime@cerno.tech>
+Cc:     "wens" <wens@csie.org>, "robh+dt" <robh+dt@kernel.org>,
+        "tiny.windzz" <tiny.windzz@gmail.com>,
+        "linux-arm-kernel" <linux-arm-kernel@lists.infradead.org>,
+        "devicetree" <devicetree@vger.kernel.org>,
+        "linux-kernel" <linux-kernel@vger.kernel.org>,
+        "=?UTF-8?B?6buE54OB55Sf?=" <huangshuosheng@allwinnertech.com>,
+        "=?UTF-8?B?5p2O5YuH?=" <liyong@allwinnertech.com>
+Reply-To: "=?UTF-8?B?5p2O5oms6Z+s?=" <frank@allwinnertech.com>
+Message-ID: <2aa29f79-c105-4dc7-ac71-91a8e1225833.frank@allwinnertech.com>
+Subject: =?UTF-8?B?UmU6IFtQQVRDSCB2MyAxNi8xNl0gYXJtNjQ6IGFsbHdpbm5lcjogQTEwMDogYWRkIHN1cHBv?=
+  =?UTF-8?B?cnQgZm9yIEFsbHdpbm5lciBQZXJmMSBib2FyZA==?=
+X-Mailer: [Alimail-Mailagent][W4_5899425][DEFAULT][Chrome]
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200708082821.13188-1-frank@allwinnertech.com>,<20200710123617.ebd2ljn7okdrx4ph@gilmour.lan>
+x-aliyun-mail-creator: W4_5899425_DEFAULT_LjMTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzU2LjAuMjkyNC44NyBTYWZhcmkvNTM3LjM2TM
+In-Reply-To: <20200710123617.ebd2ljn7okdrx4ph@gilmour.lan>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allwinner A100 have a mv64xxx i2c interface available to be used.
-
-Signed-off-by: Frank Lee <frank@allwinnertech.com>
----
- Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
-index 2ceb05b..5b5ae40 100644
---- a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
-@@ -27,6 +27,9 @@ properties:
-           - const: allwinner,sun50i-a64-i2c
-           - const: allwinner,sun6i-a31-i2c
-       - items:
-+          - const: allwinner,sun50i-a100-i2c
-+          - const: allwinner,sun6i-a31-i2c
-+      - items:
-           - const: allwinner,sun50i-h6-i2c
-           - const: allwinner,sun6i-a31-i2c
- 
--- 
-1.9.1
-
+Pj4gKyZwaW8gewo+PiArIHZjYy1wYi1zdXBwbHkgPSA8JnJlZ19kY2RjMT47Cj4+ICsgdmNjLXBj
+LXN1cHBseSA9IDwmcmVnX2VsZG8xPjsKPj4gKyB2Y2MtcGQtc3VwcGx5ID0gPCZyZWdfZGNkYzE+
+Owo+PiArIHZjYy1wZS1zdXBwbHkgPSA8JnJlZ19kbGRvMj47Cj4+ICsgdmNjLXBmLXN1cHBseSA9
+IDwmcmVnX2RjZGMxPjsKPj4gKyB2Y2MtcGctc3VwcGx5ID0gPCZyZWdfZGxkbzE+Owo+PiArIHZj
+Yy1waC1zdXBwbHkgPSA8JnJlZ19kY2RjMT47Cj4+ICt9OwoKPlRoZXJlJ3Mgc29tZXRoaW5nIG9m
+ZiBoZXJlLiBUaGUgUEMgc3VwcGx5IGlzIHNldCB0byBlbGRvMSwgYnV0Cgo+PiArJnJlZ19kY2Rj
+MSB7Cj4+ICsgcmVndWxhdG9yLWFsd2F5cy1vbjsKPj4gKyByZWd1bGF0b3ItbWluLW1pY3Jvdm9s
+dCA9IDwzMzAwMDAwPjsKPj4gKyByZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwzMzAwMDAwPjsK
+Pj4gKyByZWd1bGF0b3ItbmFtZSA9ICJ2Y2MtcGMtaW8tdXNiLXBkLWVtbWMtbmFuZC1jYXJkIjsK
+Pj4gK307Cgo+QnV0IGhlcmUgeW91IHNheSBpbiB0aGUgbmFtZSB0aGF0IGRsZG8xIGlzIGEgUEMg
+c3VwcGx5IHRvbz8KClRoZXJlIGlzIHNvbWUgbWlzbGVhZGluZyBvbiB0aGUgc2NoZW1hdGljLCBp
+biBmYWN0IHRoZXJlIGlzIG5vCmNvbm5lY3Rpb24gYmV0d2VlbiBkY2RjMSBhbmQgcGMsIEkgd2ls
+bCBmaXggdGhpcy4KClRoeCwKWWFuZ3Rhbw==
