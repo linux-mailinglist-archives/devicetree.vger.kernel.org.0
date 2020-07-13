@@ -2,170 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82F0E21D043
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 09:12:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C4B921D0BF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 09:48:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728795AbgGMHLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jul 2020 03:11:54 -0400
-Received: from mailout2.samsung.com ([203.254.224.25]:18833 "EHLO
-        mailout2.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728737AbgGMHLy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 03:11:54 -0400
-Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20200713071149epoutp021dd0ba9e9752e2d414fbc8a9139397f7~hPlx3H5OR2458124581epoutp02M
-        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2020 07:11:49 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20200713071149epoutp021dd0ba9e9752e2d414fbc8a9139397f7~hPlx3H5OR2458124581epoutp02M
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1594624309;
-        bh=fvdb8j9PaoYsFszqN6un92aMnmzVWaQh86O7KCfShUw=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=rY0Gf63BuEPUQRO6aK6FEJQoYomddTxLHrWiWrFLzhGBlS9jQLyHVzci+aQY/xKWG
-         xBxOzn9iPtOgsxYRhaenryGZ35JMSDwmT8dcXxNLY7eGlZdiOG8TOoh1S/x/W2OGqS
-         KPmFZ8FbgJ3aNbkHLbxVuWGxMN527PRPbzCKJiXQ=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas1p4.samsung.com (KnoxPortal) with ESMTP id
-        20200713071149epcas1p4e16fc830bef8d6680486e068559dc1c2~hPlxOVvkM1177611776epcas1p4_;
-        Mon, 13 Jul 2020 07:11:49 +0000 (GMT)
-Received: from epsmges1p1.samsung.com (unknown [182.195.40.158]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4B4vw163j2zMqYly; Mon, 13 Jul
-        2020 07:11:45 +0000 (GMT)
-Received: from epcas1p2.samsung.com ( [182.195.41.46]) by
-        epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-        4D.86.18978.1390C0F5; Mon, 13 Jul 2020 16:11:45 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas1p4.samsung.com (KnoxPortal) with ESMTPA id
-        20200713071145epcas1p4e85b274131cc673354e22a70d06470d6~hPltlcWIq0908309083epcas1p4k;
-        Mon, 13 Jul 2020 07:11:45 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20200713071145epsmtrp17ad310682ea1085d6f33635242848158~hPltkur6D0449404494epsmtrp10;
-        Mon, 13 Jul 2020 07:11:45 +0000 (GMT)
-X-AuditID: b6c32a35-603ff70000004a22-6a-5f0c09314e3f
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        B9.DC.08303.1390C0F5; Mon, 13 Jul 2020 16:11:45 +0900 (KST)
-Received: from [10.113.221.102] (unknown [10.113.221.102]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20200713071145epsmtip2dbdb3fa43942b6cafe6e075c1694278a~hPltWpsbK2500625006epsmtip2a;
-        Mon, 13 Jul 2020 07:11:45 +0000 (GMT)
-Subject: Re: [PATCH] dt-bindings: devfreq: rk3399_dmc: Add rockchip,pmu
- phandle
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Collabora Kernel ML <kernel@collabora.com>, dianders@chromium.org,
-        heiko@sntech.de, maz@kernel.org, Rob Herring <robh@kernel.org>,
-        =?UTF-8?Q?Ga=c3=abl_PORTAY?= <gael.portay@collabora.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org
-From:   Chanwoo Choi <cw00.choi@samsung.com>
-Organization: Samsung Electronics
-Message-ID: <95cd1315-3253-7b70-f648-717e36d4a6b9@samsung.com>
-Date:   Mon, 13 Jul 2020 16:23:09 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
-        Thunderbird/59.0
+        id S1729199AbgGMHrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jul 2020 03:47:04 -0400
+Received: from gproxy2-pub.mail.unifiedlayer.com ([69.89.18.3]:44020 "EHLO
+        gproxy2-pub.mail.unifiedlayer.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729174AbgGMHrD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Jul 2020 03:47:03 -0400
+X-Greylist: delayed 1383 seconds by postgrey-1.27 at vger.kernel.org; Mon, 13 Jul 2020 03:47:03 EDT
+Received: from cmgw12.unifiedlayer.com (unknown [10.9.0.12])
+        by gproxy2.mail.unifiedlayer.com (Postfix) with ESMTP id 55FA81E0A8B
+        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2020 01:23:57 -0600 (MDT)
+Received: from md-in-79.webhostbox.net ([43.225.55.182])
+        by cmsmtp with ESMTP
+        id usobjQbaJWYdhusodjFfXs; Mon, 13 Jul 2020 01:23:57 -0600
+X-Authority-Reason: nr=8
+X-Authority-Analysis: v=2.3 cv=FvcrAVjq c=1 sm=1 tr=0
+ a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=LfuyaZh/8e9VOkaVZk0aRw==:17
+ a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=_RQrkK6FrEwA:10:nop_rcvd_month_year
+ a=oz0wMknONp8A:10:endurance_base64_authed_username_1 a=vU9dKmh3AAAA:8
+ a=JQgJguoMx5vhFMeBTaQA:9 a=rsP06fVo5MYu2ilr0aT5:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
+        ; s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject
+        :Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=Wtgv+PX9fiZtuMbzwvjH1EMmtWQARKfxtUNj1n2nazU=; b=nmVyA76hn9LjwKAriLP09L2etr
+        ElmwurJglwObA8GYEFV1diQHDMuVYd2S5LbC4/KzRiYaAjSBJFB7aWd44ei7PUjYW/MDJjnu+i3iV
+        19HFQbXfV855akV3ase4NZ2UQZwAGJ1T1dKZmuMRhYDfjbOJueQQYgopcieieFc6pzwLW/qQwjMRG
+        qTMhkQDJL4fDFI97CurEYGeYkk7xQ21UJ66HLocPIpO/EYwpxOIMUmfKdhdZZAIaaJfYAMsYLIews
+        J2tpHi2Les4HavOd0i6fYBjQVD/6QIrYCVfkrgapbKjVTDoAR+icoIHx8gBxWz1iQhlu+zFAb6F4M
+        /0MGSvng==;
+Received: from dslb-002-205-076-031.002.205.pools.vodafone-ip.de ([2.205.76.31]:59038 helo=arch.fritz.box)
+        by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <parthiban@linumiz.com>)
+        id 1jusoZ-0031Qy-GF; Mon, 13 Jul 2020 07:23:51 +0000
+From:   Parthiban Nallathambi <parthiban@linumiz.com>
+To:     shawnguo@kernel.org, s.hauer@pengutronix.de, robh@kernel.org
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Parthiban Nallathambi <parthiban@linumiz.com>
+Subject: [PATCH v4 1/2] dt-bindings: arm: fsl: Add MYiR Tech boards
+Date:   Mon, 13 Jul 2020 09:23:19 +0200
+Message-Id: <20200713072320.5567-1-parthiban@linumiz.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-In-Reply-To: <20200709090529.1404999-1-enric.balletbo@collabora.com>
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrNJsWRmVeSWpSXmKPExsWy7bCmnq4hJ0+8wYO5Bhbzj5xjtTi77CCb
-        xZrbhxgtlux6w2bx/9FrVovN53qAEk1v2C0u75rDZvG59wijxc45J1ktbjeuYLNo3XuE3eL/
-        nh3sDrwesxsusnjsuLuE0WPTqk42j74tqxg9tl+bx+zxeZNcAFtUtk1GamJKapFCal5yfkpm
-        XrqtkndwvHO8qZmBoa6hpYW5kkJeYm6qrZKLT4CuW2YO0KVKCmWJOaVAoYDE4mIlfTubovzS
-        klSFjPziElul1IKUnALLAr3ixNzi0rx0veT8XCtDAwMjU6DChOyMpQ/OsRQ0CVW837mdvYFx
-        IX8XIyeHhICJxPZT7WxdjFwcQgI7GCU+njvFAuF8YpSY3/KSDaRKSOAzo8SG2bIwHTtuTGCH
-        KNrFKLHk/nyoovdAzr0IEFtYIFDi9YSZLCC2iECkxKT2j4wgDcwCX5kkfs/+DdbAJqAlsf/F
-        DTCbX0BR4uqPx4wgNq+AncSun+/YQWwWAVWJhvZvYINEBcIkTm5rgaoRlDg58wlYnFPAReLg
-        hy4wm1lAXOLWk/lMELa8RPPW2cwgiyUEznBI/Jq3jgniBReJu1eaWCBsYYlXx7ewQ9hSEi/7
-        26DsaomVJ4+wQTR3MEps2X+BFSJhLLF/6WSgQRxAGzQl1u/ShwgrSuz8PZcRYjGfxLuvPawg
-        JRICvBIdbUIQJcoSlx/chTpBUmJxeyfbBEalWUjemYXkhVlIXpiFsGwBI8sqRrHUguLc9NRi
-        wwJD5NjexAhOxVqmOxgnvv2gd4iRiYPxEKMEB7OSCG+0KGe8EG9KYmVValF+fFFpTmrxIUZT
-        YABPZJYSTc4HZoO8knhDUyNjY2MLE0MzU0NDJXHef2fZ44UE0hNLUrNTUwtSi2D6mDg4pRqY
-        uln9XYt36JzaZxjLu/NWIq+b6GS1DaeeGBjovxFiXGDO9fx05TKP8P8Z8dFG6Q5TdpQ435xk
-        2K9xY4/0ojchc+tYvWZt2XtU2/HXErn2yrWXmfYLM91TtJp+6nv6N/cfXayGjwqmtUw4dMNK
-        i9moTHLVs7JPSbbv+QR17P9d1Ldp/Ot5PXnV66N3Jz+5NSF2ddr8XUv0r7sdvxTAs8dzelyX
-        gb+FsBPD05/mszI8WXw5VZ3Ou7xWXno+quyNuEO293bDb/Icshblqja3z1b1sL16F+apP2uq
-        SmkM754T/4uuKGUWRiUsv1Z1M937nz1XbE/57JsflF+dfnY5Zdf6Tyohbs+bJm9Q+PxejWWn
-        EktxRqKhFnNRcSIALSds404EAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrGIsWRmVeSWpSXmKPExsWy7bCSvK4hJ0+8weWTfBbzj5xjtTi77CCb
-        xZrbhxgtlux6w2bx/9FrVovN53qAEk1v2C0u75rDZvG59wijxc45J1ktbjeuYLNo3XuE3eL/
-        nh3sDrwesxsusnjsuLuE0WPTqk42j74tqxg9tl+bx+zxeZNcAFsUl01Kak5mWWqRvl0CV8bS
-        B+dYCpqEKt7v3M7ewLiQv4uRk0NCwERix40J7CC2kMAORonbt1Ig4pIS0y4eZe5i5ACyhSUO
-        Hy7uYuQCKnnLKHH55X0WkBphgUCJ1xNmgtkiApESxzYvYAcpYhb4yiSx/Ps2RoiO6YwSc7c1
-        MoJUsQloSex/cYMNxOYXUJS4+uMxWJxXwE5i1893YFewCKhKNLR/A5sqKhAmsXPJYyaIGkGJ
-        kzOfgMU5BVwkDn7oArOZBdQl/sy7xAxhi0vcejKfCcKWl2jeOpt5AqPwLCTts5C0zELSMgtJ
-        ywJGllWMkqkFxbnpucWGBUZ5qeV6xYm5xaV56XrJ+bmbGMFRqaW1g3HPqg96hxiZOBgPMUpw
-        MCuJ8EaLcsYL8aYkVlalFuXHF5XmpBYfYpTmYFES5/06a2GckEB6YklqdmpqQWoRTJaJg1Oq
-        gUkuNvjcTWGOT41/fTqT+5+u5zyxM0B3/pV7VrbJ++yObdRXN79848mPCUGdf7eHTSl41fGE
-        y3zz6orw+4aeyUqXKk1P/s37diq8abaR7AaNN/FFocbnfm245bQ/UTHy1QQ7S87cGP91y19s
-        tu2sXTmv0kBmekmMMG8x67Zz5xu88pzYpTc7LefeNoXzfoXs1jLOa573aqusq48emCMr4r16
-        nZk/v/cTl4kcyvmH/r453dK6SkufaVZn6v1gOX0loeteadxWN/ymXjpov1PQItq4tjqVwWFG
-        04PrikeEW+6wHGR7bejmumHFf/fSa9YW/H8X7/2Zk/N+pulGJTvb7h3rXTQ3NVZm/FKQF8i3
-        VGIpzkg01GIuKk4EAJHMl2g5AwAA
-X-CMS-MailID: 20200713071145epcas1p4e85b274131cc673354e22a70d06470d6
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20200709090541epcas1p1b5d1c5ab9b3c1409d59257035b104747
-References: <CGME20200709090541epcas1p1b5d1c5ab9b3c1409d59257035b104747@epcas1p1.samsung.com>
-        <20200709090529.1404999-1-enric.balletbo@collabora.com>
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - linumiz.com
+X-BWhitelist: no
+X-Source-IP: 2.205.76.31
+X-Source-L: No
+X-Exim-ID: 1jusoZ-0031Qy-GF
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: dslb-002-205-076-031.002.205.pools.vodafone-ip.de (arch.fritz.box) [2.205.76.31]:59038
+X-Source-Auth: parthiban@linumiz.com
+X-Email-Count: 2
+X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
+X-Local-Domain: yes
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Enric,
+Add entries for MYiR Tech imx6ULL eval boards.
 
-On 7/9/20 6:05 PM, Enric Balletbo i Serra wrote:
-> The Rockchip DMC (Dynamic Memory Interface) needs to access to the PMU
-> general register files to know the DRAM type, so add a phandle to the
-> syscon that manages these registers.
-> 
-> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> Reviewed-by: Chanwoo Choi <cw00.choi@samsung.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Gaël PORTAY <gael.portay@collabora.com>
-> Acked-by: MyungJoo Ham <myungjoo.ham@samsung.com>
-> ---
-> Following the discussion in [1] and after having [2] accepted, this
-> patch is a RESEND of a patch [3] that has already all the acks but for
-> some reason and my bad, I lost the tracking, didn't land. The patch adds
-> documentation for an already property implemented in the driver, so
-> resend the patch again. There is a slighty modification, the rockchip,pmu
-> property has been moved to be optional as is not really required.
-> 
-> Thanks,
->   Enric
-> 
-> [1] https://protect2.fireeye.com/v1/url?k=0a124f1c-57c247d0-0a13c453-000babff3793-37ca8c47e6666c09&q=1&e=40f33cd6-b2d6-4de2-a309-fbf8645f89f9&u=https%3A%2F%2Flkml.org%2Flkml%2F2020%2F6%2F22%2F692
-> [2] https://protect2.fireeye.com/v1/url?k=1aca44e8-471a4c24-1acbcfa7-000babff3793-6f0cff085cef3454&q=1&e=40f33cd6-b2d6-4de2-a309-fbf8645f89f9&u=https%3A%2F%2Flkml.org%2Flkml%2F2020%2F6%2F30%2F367
-> [3] https://patchwork.kernel.org/patch/10901593/
-> 
->  Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt b/Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
-> index 0ec68141f85a..a10d1f6d85c6 100644
-> --- a/Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
-> +++ b/Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
-> @@ -18,6 +18,8 @@ Optional properties:
->  			 format depends on the interrupt controller.
->  			 It should be a DCF interrupt. When DDR DVFS finishes
->  			 a DCF interrupt is triggered.
-> +- rockchip,pmu:		 Phandle to the syscon managing the "PMU general register
-> +			 files".
->  
->  Following properties relate to DDR timing:
->  
->
+Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com>
+---
 
-Applied it. Thanks.
+Notes:
+    Changelog v4:
+    - none
+    
+    Changelog v3:
+    - use only 'eval' as compatability. remove inclusion of
+    memory type (nand/emmc) from compatability
 
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 05906e291e38..15f510492e88 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -268,6 +268,7 @@ properties:
+               - armadeus,imx6ull-opos6uldev # OPOS6UL (i.MX6ULL) SoM on OPOS6ULDev board
+               - fsl,imx6ull-14x14-evk     # i.MX6 UltraLiteLite 14x14 EVK Board
+               - kontron,imx6ull-n6411-som # Kontron N6411 SOM
++              - myir,imx6ull-mys-6ulx-eval # MYiR Tech iMX6ULL Evaluation Board
+               - toradex,colibri-imx6ull-eval            # Colibri iMX6ULL Module on Colibri Evaluation Board
+               - toradex,colibri-imx6ull-wifi-eval       # Colibri iMX6ULL Wi-Fi / Bluetooth Module on Colibri Evaluation Board
+           - const: fsl,imx6ull
 -- 
-Best Regards,
-Chanwoo Choi
-Samsung Electronics
+2.27.0
+
