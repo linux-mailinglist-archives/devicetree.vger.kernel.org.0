@@ -2,86 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98D5F21D5E3
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 14:25:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8E7721D5E5
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 14:26:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729796AbgGMMZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jul 2020 08:25:44 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:37296 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729646AbgGMMZo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 08:25:44 -0400
-Received: by mail-ot1-f65.google.com with SMTP id w17so9374478otl.4;
-        Mon, 13 Jul 2020 05:25:43 -0700 (PDT)
+        id S1729027AbgGMM0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jul 2020 08:26:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36976 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728950AbgGMM03 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 08:26:29 -0400
+Received: from mail-ua1-x941.google.com (mail-ua1-x941.google.com [IPv6:2607:f8b0:4864:20::941])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EED7C061755
+        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2020 05:26:29 -0700 (PDT)
+Received: by mail-ua1-x941.google.com with SMTP id q15so3996195uap.4
+        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2020 05:26:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=t0TLC5mt6zw20J38nO6UV1Kz+5E95WBtIXeRkoxQ4a0=;
+        b=h6RjQQeo+oHHbs144HCb6qbHOkf6nQ3IhoCJs97QtsvIYhdZv/qIgFlkWAMMSvJRn1
+         Cit+T6UdtdJFwArXILQ2RZ6qXXS1HyqPfDVhFOXGHTaiOu7XXvEUQk9YxYLgD8qfc2yg
+         o1QX5PYFJF5PjCJKEa3F7KSHeRuakpvKI/Hkxn7P3/fAdMF9SnGOuU7n8Y0kIG2JiS31
+         k6EyIT3GVYcOY7VjXLunjs2aTrRMg1vfiWselTA4TIqtjO55vxA1qgU90jIuvBNz1H0q
+         OkOOY4JifgxdqphWygqw6XrcM6Pc5Xqjrcnh76ql+GwXPlWjMN9TPSPHJ1UkRDC25y1S
+         O3kA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ngQqrXWqBxko6JtBE6sOb/BLJIUDqiUQnKCnbuzn+TQ=;
-        b=JmrdkBN7R6wb69xG9d7LwiOaJldc+6ACCT8EkQtjuInnYkV5+2na2UrUSZ70Njjhid
-         SZ5UBT/ApOus7mObz07QpwGXokQDr/FUSNf9Djp0I2yDAW9y96R7AlvSrQE1SjudnYxk
-         VsAckqUC4FQGZPadVaFYVECV2BQFUXFlJV1ZSVm4BlF+cfFSFunGxsy26SSe9zmGT7E7
-         5ia1pxqjYzhgsFtDuebzikCD83RSKwpbpyH7q4CVUkGQ+8Yo5oOW1qopUo3uBz/zH2Ii
-         ejQ1UA6LAcXhvdxv6OGjfyRCCTv0m6kYgwT3RenN9/l7roNdtEqi9zd4Olu4UuHC7rVW
-         c0DA==
-X-Gm-Message-State: AOAM5303Q8xJnky7cHB6QF56aA5aJbRG3qwdLoLFKZ5cmL1Fi5Zpfl0Z
-        AmKpKdOv+dekfrRS/UKKa0xMQxmjIRveNmKO8MM=
-X-Google-Smtp-Source: ABdhPJzZ7jGk83XfCIDNOcc26Jsxe8/Z0kqkWINTZY1+NJCMaRBt957GP2gBQfs3bj7Fb0KscTISiJUWI7W1/V3CD8k=
-X-Received: by 2002:a9d:2646:: with SMTP id a64mr65288809otb.107.1594643142951;
- Mon, 13 Jul 2020 05:25:42 -0700 (PDT)
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to:content-transfer-encoding;
+        bh=t0TLC5mt6zw20J38nO6UV1Kz+5E95WBtIXeRkoxQ4a0=;
+        b=ubiNMe0Pg0t6F/XWW+0kbYEdDcsq0X/8Ey4FZLq8G1n+zmDCr7tuq9BH9LJCEwElTa
+         uClK9iQwmOQfAukP1izalyB6eZfZvGpWJYEZR04GE4xt5i3FJUwgILEP9ZWru63z27S4
+         1Q0oZXhHufT6vgZcGRqvPgtHu2uSQfxTWlGsIKSFg7Cqxh6GQNgSAKCKpR+mhFsXtSN5
+         VDU1QbhcMrFu9eA2hPdXxgw3GJl+2zaguKKkgYKpaA2mE6Mx8myKRzGooqAYw+ZyISCA
+         ODMEDgjuBBi8Nc7l1Anq+xwbfp9YZ2s1PblXnBiWqmFiX3V4QumRNekdWiLN6f8btUqs
+         0XrQ==
+X-Gm-Message-State: AOAM530acLJ2+rQHl3Ka2353l10KdBz688ynUyfgFYafwGIeukfC4LA/
+        WIs2705FhfF9NMSwXVZOD7NuOaoF4Dm9fNXnlV0=
+X-Google-Smtp-Source: ABdhPJzin9gw5pZ78EmyL13SqUnhhEg6zX2zV9WNPkNM+gxFPqB0aAvXS3Zz/79CzU1S+fPoLEoK2qq9TMF4tpvATyE=
+X-Received: by 2002:ab0:6402:: with SMTP id x2mr3817066uao.134.1594643188725;
+ Mon, 13 Jul 2020 05:26:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <1594230511-24790-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <1594230511-24790-9-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <1594230511-24790-9-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 13 Jul 2020 14:25:32 +0200
-Message-ID: <CAMuHMdXw-rgKJUCz-eoqEQJbRuwdRfyrZj+Ot=Zrg6e4_9cWLg@mail.gmail.com>
-Subject: Re: [PATCH 8/8] arm64: dts: renesas: Add HiHope RZ/G2H sub board support
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux MMC List <linux-mmc@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>
+Reply-To: mrsanna.h.bruun119@gmail.com
+Received: by 2002:ab0:194:0:0:0:0:0 with HTTP; Mon, 13 Jul 2020 05:26:28 -0700 (PDT)
+From:   "Mrs. Anna H. Bruun" <mrsanna.h.bruun119@gmail.com>
+Date:   Mon, 13 Jul 2020 05:26:28 -0700
+X-Google-Sender-Auth: j2s1Xp35k9mh51R5L675KIswPko
+Message-ID: <CAKipdR=moPNYaDNk_t4m9kMTqpaAkWcBTTVf2XgOPHC++OFLdg@mail.gmail.com>
+Subject: My Greetings
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 8, 2020 at 7:49 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> From: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
->
-> The HiHope RZ/G2H sub board sits below the HiHope RZ/G2H main board.
-> These boards are identical with the ones for RZ/G2M[N].
->
-> Signed-off-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+My Dear
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.9.
+My Name is Mrs. Anna H. Bruun, from Norway. I know that this message
+will be a surprise to you. Firstly, I am married to Mr. Patrick Bruun,
+A gold merchant who owns a small gold Mine in Burkina Faso; He died of
+Cardiovascular Disease in mid-March 2011. During his life time he
+deposited the sum of =E2=82=AC 8.5 Million Euro) Eight million, Five hundre=
+d
+thousand Euros in a bank in Ouagadougou the capital city of Burkina
+Faso. The deposited money was from the sale of the shares, death
+benefits payment and entitlements of my deceased husband by his
+company.
 
-Gr{oetje,eeting}s,
+I am sending this message to you praying that it will reach you in
+good health, since I am not in good health condition in which I sleep
+every night without knowing if I may be alive to see the next day. I
+am suffering from long time cancer and presently i am partially
+suffering from a stroke illness which has become almost impossible for
+me to move around. I am married to my late husband for over 4 years
+before he died and is unfortunately that we don't have a child, my
+doctor confided in me that i have less chance to live. Having known my
+health condition, I decided to contact you to claim the fund since I
+don't have any relation I grew up from the orphanage home,
 
-                        Geert
+I have decided to donate what I have to you for the support of helping
+Motherless babies/Less privileged/Widows' because I am dying and
+diagnosed of cancer for about 2 years ago. I have been touched by God
+Almighty to donate from what I have inherited from my late husband to
+you for good work of God Almighty. I have asked Almighty God to
+forgive me and believe he has, because He is a Merciful God I will be
+going in for an operation surgery soon
 
+This is the reason i need your services to stand as my next of kin or
+an executor to claim the funds for charity purposes. If this money
+remains unclaimed after my death, the bank executives or the
+government will take the money as unclaimed fund and maybe use it for
+selfish and worthless ventures, I need a very honest person who can
+claim this money and use it for Charity works, for orphanages, widows
+and also build schools for less privilege that will be named after my
+late husband and my name; I need your urgent answer to know if you
+will be able to execute this project, and I will give you more
+Information on how the fund will be transferred to your bank account.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks
+Mrs. Anna H.
