@@ -2,55 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C703721CE07
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 06:12:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C67E921CE61
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 06:47:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725969AbgGMEL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jul 2020 00:11:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41020 "EHLO mail.kernel.org"
+        id S1726571AbgGMErP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jul 2020 00:47:15 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:10680 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725767AbgGMEL6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Jul 2020 00:11:58 -0400
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1725818AbgGMErP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Jul 2020 00:47:15 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1594615635; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=D1cJQYMG1BKUOtpcDCFa52YY0VbzOKffRSGeoyv72S0=; b=AviZiQAbrks28i06gkmhL6oUP3ZJaC0QY67g7tClX7zFNFdhE1Ttbz1YQ4mESxjc89Ku0stM
+ 5csm1gvI10DK3h/RjAQqG73eqxQLZrff0J/9mIOvXMmXrbqhd85Xt9nElTJh0ylKgYCsiIhz
+ wHHUqlSLQ7SZqwq9go6wG/ky1Lg=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 5f0be73e166c1c5494460b08 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 13 Jul 2020 04:46:54
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 9EABBC433C6; Mon, 13 Jul 2020 04:46:53 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from pillair-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 553FC2070B;
-        Mon, 13 Jul 2020 04:11:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1594613518;
-        bh=09JhWPDy5Ku5b4eWOwy1aGRkyyjcKpPVN4+FSFuKnd8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CRnbMyWZDEsr4LSt6mJCkzvhgqJvYAKIX6/jgFcRL+i6IB5M5/iW2i4BE1QOp9ffz
-         MhAe3KJ9kTxiP8O+BUNis4mKu6m/PEL1sTTBB2jSD3nUtgDMsuioG6Y5100Jd4KMQq
-         fxrJMeqQy+dLgpyxg7nl0QTA7+TnYCDs4fUTzX5Y=
-Date:   Mon, 13 Jul 2020 12:11:51 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Robin Gong <yibin.gong@nxp.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        frieder.schrempf@kontron.de, catalin.marinas@arm.com,
-        will@kernel.org, anson.huang@nxp.com, festevam@gmail.com,
-        s.hauer@pengutronix.de, john.lee@nxp.com, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com
-Subject: Re: [PATCH v2 4/4] arm64: configs: add pca9450 pmic driver
-Message-ID: <20200713041151.GC12113@dragon>
-References: <1593793178-9737-1-git-send-email-yibin.gong@nxp.com>
- <1593793178-9737-5-git-send-email-yibin.gong@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1593793178-9737-5-git-send-email-yibin.gong@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        (Authenticated sender: pillair)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id AF583C433C8;
+        Mon, 13 Jul 2020 04:46:47 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org AF583C433C8
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=pillair@codeaurora.org
+From:   Rakesh Pillai <pillair@codeaurora.org>
+To:     devicetree@vger.kernel.org
+Cc:     dianders@chromium.org, evgreen@chromium.org,
+        Rakesh Pillai <pillair@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: qcom: sc7180: Add missing properties for Wifi node
+Date:   Mon, 13 Jul 2020 10:16:26 +0530
+Message-Id: <1594615586-17055-1-git-send-email-pillair@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 04, 2020 at 12:19:38AM +0800, Robin Gong wrote:
-> Add pca9450 pmic driver.
-> 
-> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
+The wlan firmware memory is statically mapped in
+the Trusted Firmware, hence the wlan driver does
+not need to map/unmap this region dynamically.
 
-Updated subject prefix like 'arm64: defconfig: ...' and applied patch.
+Hence add the property to indicate the wlan driver
+to not map/unamp the firmware memory region
+dynamically.
 
-Shawn
+Also add the chain1 voltage supply for wlan.
+
+Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
+---
+Changes from v1:
+- Add the wifi mac alias
+
+This patch is created on top of the change by
+Douglas Anderson.
+https://lkml.org/lkml/2020/6/25/817
+
+Also the dt-bindings for the chain1 voltage supply
+is added by the below patch series:
+https://patchwork.kernel.org/project/linux-wireless/list/?series=309137
+---
+ arch/arm64/boot/dts/qcom/sc7180-idp.dts | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+index 472f7f4..c042d61 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+@@ -19,6 +19,7 @@
+ 
+ 	aliases {
+ 		bluetooth0 = &bluetooth;
++		wifi0 = &wifi;
+ 		hsuart0 = &uart3;
+ 		serial0 = &uart8;
+ 	};
+@@ -391,10 +392,12 @@
+ 
+ &wifi {
+ 	status = "okay";
++	qcom,msa-fixed-perm;
+ 	vdd-0.8-cx-mx-supply = <&vreg_l9a_0p6>;
+ 	vdd-1.8-xo-supply = <&vreg_l1c_1p8>;
+ 	vdd-1.3-rfa-supply = <&vreg_l2c_1p3>;
+ 	vdd-3.3-ch0-supply = <&vreg_l10c_3p3>;
++	vdd-3.3-ch1-supply = <&vreg_l11c_3p3>;
+ 	wifi-firmware {
+ 		iommus = <&apps_smmu 0xc2 0x1>;
+ 	};
+-- 
+2.7.4
+
