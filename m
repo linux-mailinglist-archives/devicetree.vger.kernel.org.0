@@ -2,61 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55C1521D22E
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 10:48:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEAB921D24B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 10:57:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727829AbgGMIsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jul 2020 04:48:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42208 "EHLO mail.kernel.org"
+        id S1728974AbgGMI5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jul 2020 04:57:04 -0400
+Received: from mga06.intel.com ([134.134.136.31]:23317 "EHLO mga06.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725830AbgGMIsp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Jul 2020 04:48:45 -0400
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EE4A8206F0;
-        Mon, 13 Jul 2020 08:48:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1594630125;
-        bh=bUm42OOlUYxKokde8JgZjn2YGEQW40wUc5t4VOAgz6I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Zh/czHuFrGcqbbP/xy+qMZDeX3DFrKVX11BDJRcESXTCIVVZiyEvONwWBUdtnqXmg
-         ipBq+kBdsaLG8qCyWIpJyLhHvYnmeXWMoWih9EH16ptOans+JogKX09Vm45LTetKIA
-         k0WqM86d8+BaJg4UgWpvVm4oxmH7dlxS+2pZmC3E=
-Date:   Mon, 13 Jul 2020 16:48:40 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Paul Barker <pbarker@konsulko.com>, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v2] ARM: dts: imx: default to #pwm-cells = <3> in the SoC
- dtsi files
-Message-ID: <20200713084839.GG15718@dragon>
-References: <20200710051937.20647-1-u.kleine-koenig@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200710051937.20647-1-u.kleine-koenig@pengutronix.de>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S1726077AbgGMI5E (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Jul 2020 04:57:04 -0400
+IronPort-SDR: uAbh7j2aouX42FzANujdZMs6z9q1X8vjM/YUtpp11M8O80MrbTo0vNwai8cwORXsfHjEExf+IA
+ 5fn7bLldPDCQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9680"; a="210115244"
+X-IronPort-AV: E=Sophos;i="5.75,347,1589266800"; 
+   d="scan'208";a="210115244"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2020 01:57:04 -0700
+IronPort-SDR: sDPCRYT2sksADcjv0vP7vP3slU9Xju2j0UFrhzi/l98oQ6c+xeAo2hK0z+/WnoHaBJOyPVaA4N
+ Bo6j2ENTwZrQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,347,1589266800"; 
+   d="scan'208";a="324183822"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by FMSMGA003.fm.intel.com with ESMTP; 13 Jul 2020 01:57:01 -0700
+From:   "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+To:     kishon@ti.com, linux-kernel@vger.kernel.org
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
+        andriy.shevchenko@intel.com, balbi@kernel.org,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com, yin1.li@intel.com,
+        "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Subject: [PATCH v5 0/2] usb : phy: Add USB PHY support on Intel LGM SoC
+Date:   Mon, 13 Jul 2020 16:54:51 +0800
+Message-Id: <20200713085453.7353-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 10, 2020 at 07:19:37AM +0200, Uwe Kleine-König wrote:
-> The imx-pwm driver supports 3 cells and this is the more flexible setting.
-> So use it by default and overwrite it back to two for the files that
-> reference the PWMs with just 2 cells to minimize changes.
-> 
-> This allows to drop explicit setting to 3 cells for the boards that already
-> depend on this. The boards that are now using 2 cells explicitly can be
-> converted to 3 individually.
-> 
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+The USB PHY provides the optimized for low power dissipation while active, idle, or on standby.
+Requires minimal external components, a single resistor, for best operation.
+Supports 10/5-Gbps high-speed data transmission rates through 3-m USB 3.x cable
+---
+v5:
+  - As per Felipe and Greg's suggestion usb phy driver reviewed patches
+    changed the folder from drivers/usb/phy to drivers/phy
+  - Reviewed-By tag added in commit message
+v4:
+  - Andy's review comments addressed
+  - drop the excess error debug prints
+  - error check optimized
+  - merge the split line to one line
+v3:
+  - Andy's review comments update
+  - hardcode return value changed to actual return value from the callee
+  - add error check is fixed according to the above
+  - correct the assignment in redundant
+  - combine the split line into one line
+v2:
+  - Address Phillip's review comments
+  - replace devm_reset_control_get() by devm_reset_control_get_exclusive()
+  - re-design the assert and deassert fucntion calls as per review comments
+  - address kbuild bot warnings
+  - add the comments
+v1:
+  - initial version
 
-Applied, thanks.
+---
+dt-bindings: usb: Add USB PHY support for Intel LGM SoC
+v5:
+  - Reviewed-By tag added
+v4:
+  - No Change
+v3:
+  - No Change
+v2:
+  - No Change
+v1:
+  - initial version
+ 
+
+Ramuthevar Vadivel Murugan (2):
+  dt-bindings: phy: Add USB PHY support for Intel LGM SoC
+  phy: Add USB3 PHY support for Intel LGM SoC
+
+ .../devicetree/bindings/phy/intel,lgm-usb-phy.yaml |  53 ++++
+ drivers/phy/Kconfig                                |  11 +
+ drivers/phy/Makefile                               |   1 +
+ drivers/phy/phy-lgm-usb.c                          | 278 +++++++++++++++++++++
+ 4 files changed, 343 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/intel,lgm-usb-phy.yaml
+ create mode 100644 drivers/phy/phy-lgm-usb.c
+
+-- 
+2.11.0
+
