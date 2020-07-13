@@ -2,192 +2,358 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1492C21DA65
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 17:43:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E53A021DA78
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 17:44:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730188AbgGMPnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jul 2020 11:43:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41028 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730184AbgGMPnA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 11:43:00 -0400
-Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com [IPv6:2607:f8b0:4864:20::744])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C49E1C08C5DE
-        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2020 08:43:00 -0700 (PDT)
-Received: by mail-qk1-x744.google.com with SMTP id b185so12626262qkg.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2020 08:43:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=SefBkkTKXeYctWnwpQcS5vaISiY7Do8N46ytSx3YzJ4=;
-        b=jMbkVBYY+NXCLG9hbB+gMll4sw7qmTcsdy7tJwrMLZkoblHO09UR9DY6VZQrD5hy+9
-         H+g/+KAY/XFzFbaABAMkRpPY6NU16DDTJNcGXFriLN7JIeTKi1ZCY6q50FZJ7+M+B7+x
-         E97k3CHLlWYn7h5a3tW0cT2krLmPMBVSqLKyVUtlTDHpqbJNm2W7kxHybVCjP13WkVp4
-         7xc651Xao1+dUsD4NAe/9qHUZoKqo0wJ3AW5AkMS3QJqsbhYm8F4WcLmNc/WQsAIFvKn
-         56p/u264l25q129gOnT2fRq9NlzTsbj8EqhyogG6bV6tRIOjfdqYqzrQnPIS5sQCMHda
-         Ra9Q==
+        id S1729703AbgGMPox (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jul 2020 11:44:53 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:36314 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729644AbgGMPox (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 11:44:53 -0400
+Received: by mail-io1-f67.google.com with SMTP id y2so13967639ioy.3;
+        Mon, 13 Jul 2020 08:44:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=SefBkkTKXeYctWnwpQcS5vaISiY7Do8N46ytSx3YzJ4=;
-        b=VMsgVIwD8z6Rd+GcqpYZ0TG5cPJvN1YI99pUWmpWQiiQcQQT/7+LiVf5Ju04M0v61V
-         TpvSuvoRFdcdp6Crxby/lK7BKDYRJyUag9EUJPC4jSQlttRMzgeSxFxebZOr9/fiM7Eo
-         AFOEXQ1B3bB0F/VMGhvqnVQ8qL1snOYh9AEv9bifGdmf/UFLASY0sDJUJr4tiURexDcA
-         OcUc2Y+MP/nCQ/9xmbux1MjzsZ0CP+Gd0N/h5ZJVINMon/oD4WsXsdfUh/qrW9qophFt
-         uRcdOjgBXdMeKl4qiR0aO1N5tY3knV72caRZMl0g0Ki8C8CExmWy/dx2cpb4blxnbAM6
-         7Vpw==
-X-Gm-Message-State: AOAM532XaeoZfrUkAdf3NcHJkawGphs42gC+7xpxxM2wLt9ZSfkkF2dV
-        OvFlIl3QRAKw4TYZJqdrjfg7Ug==
-X-Google-Smtp-Source: ABdhPJx1zGPaXKf+KbTHBqCK7f+OtWWxHy/aBw7q2ZmMFpDzVBrlTF4P7kXfB529C6L8XKJg94jnSA==
-X-Received: by 2002:a05:620a:2492:: with SMTP id i18mr199672qkn.414.1594654980043;
-        Mon, 13 Jul 2020 08:43:00 -0700 (PDT)
-Received: from localhost.localdomain ([147.253.86.153])
-        by smtp.gmail.com with ESMTPSA id l1sm19806371qtk.18.2020.07.13.08.42.59
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=YERaL+KHCGMJb0BAoF+RGnX8A9CCPeD7GkkxlhmLQ48=;
+        b=QBDrw1nkQHelw3/cLP3ynEPqtCzZBDvSKRvVN7GieyW/uqOwB7wY5X2kMOwnlY2dj2
+         ZtkVEeyoZSeH0rOYPjGyIIK9vDT6izmbO+8yMo6/04jH9ez21uimffe91tDk904eLEWm
+         z1Gr5/jF+go8e53Fwji1xpYU0oDi2dm1lViTFJNmabsnOXcEMMN7jfioawU/4ObSFL/1
+         NAy13bY5vwhQ2LcMeUjybiSEl1qmXSICHdjZo5+d6xgFK4GRCTwmgnJVcKQ3/eOmUDUV
+         ZsAnP/1BOfJ1DIx3RBoIkyzZDxs2H+FooPN/0jJspg8MH5tXK+NM1qdBsP+fpz8Fe9LZ
+         R1cw==
+X-Gm-Message-State: AOAM5331d+Pqjt1vWwnU2djCZT4JrhkT52mo0fbiA8+zRjdhlwaF6HyM
+        bpRRtEy/xmKmrQEWFEyuqA==
+X-Google-Smtp-Source: ABdhPJz7mH6zxg+zhBdKAmEOYd5Bdwx0f3TSPuRCowLBbfLYcV1UtN5ZzzZ4LH9FU1RqFm56rZ03JA==
+X-Received: by 2002:a05:6602:21c7:: with SMTP id c7mr290398ioc.1.1594655091561;
+        Mon, 13 Jul 2020 08:44:51 -0700 (PDT)
+Received: from xps15 ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id d9sm974698iod.55.2020.07.13.08.44.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jul 2020 08:42:59 -0700 (PDT)
-From:   Jonathan Marek <jonathan@marek.ca>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 7/7] arm64: dts: qcom: sm8250: add interconnect nodes
-Date:   Mon, 13 Jul 2020 11:41:16 -0400
-Message-Id: <20200713154121.22094-8-jonathan@marek.ca>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20200713154121.22094-1-jonathan@marek.ca>
-References: <20200713154121.22094-1-jonathan@marek.ca>
+        Mon, 13 Jul 2020 08:44:50 -0700 (PDT)
+Received: (nullmailer pid 265817 invoked by uid 1000);
+        Mon, 13 Jul 2020 15:44:49 -0000
+Date:   Mon, 13 Jul 2020 09:44:49 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: adv7604: Convert bindings to json-schema
+Message-ID: <20200713154449.GA256154@bogus>
+References: <20200713111844.528313-1-niklas.soderlund+renesas@ragnatech.se>
+ <20200713111844.528313-3-niklas.soderlund+renesas@ragnatech.se>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200713111844.528313-3-niklas.soderlund+renesas@ragnatech.se>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the interconnect dts nodes for sm8250.
+On Mon, Jul 13, 2020 at 01:18:43PM +0200, Niklas Söderlund wrote:
+> Convert ADV7604 video decoder documentation to json-schema.
+> 
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> ---
+>  .../devicetree/bindings/media/i2c/adv7604.txt |  87 ---------
+>  .../bindings/media/i2c/adv7604.yaml           | 171 ++++++++++++++++++
+>  2 files changed, 171 insertions(+), 87 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/i2c/adv7604.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/adv7604.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/adv7604.txt b/Documentation/devicetree/bindings/media/i2c/adv7604.txt
+> deleted file mode 100644
+> index 8c7cdc7cd7aaebc8..0000000000000000
+> --- a/Documentation/devicetree/bindings/media/i2c/adv7604.txt
+> +++ /dev/null
+> @@ -1,87 +0,0 @@
+> -* Analog Devices ADV7604/11/12 video decoder with HDMI receiver
+> -
+> -The ADV7604 and ADV7611/12 are multiformat video decoders with an integrated
+> -HDMI receiver. The ADV7604 has four multiplexed HDMI inputs and one analog
+> -input, and the ADV7611 has one HDMI input and no analog input. The 7612 is
+> -similar to the 7611 but has 2 HDMI inputs.
+> -
+> -These device tree bindings support the ADV7611/12 only at the moment.
+> -
+> -Required Properties:
+> -
+> -  - compatible: Must contain one of the following
+> -    - "adi,adv7611" for the ADV7611
+> -    - "adi,adv7612" for the ADV7612
+> -
+> -  - reg: I2C slave addresses
+> -    The ADV76xx has up to thirteen 256-byte maps that can be accessed via the
+> -    main I2C ports. Each map has it own I2C address and acts as a standard
+> -    slave device on the I2C bus. The main address is mandatory, others are
+> -    optional and revert to defaults if not specified.
+> -
+> -The device node must contain one 'port' child node per device input and output
+> -port, in accordance with the video interface bindings defined in
+> -Documentation/devicetree/bindings/media/video-interfaces.txt. The port nodes
+> -are numbered as follows.
+> -
+> -  Port			ADV7611    ADV7612
+> -------------------------------------------------------------
+> -  HDMI			0             0, 1
+> -  Digital output	1                2
+> -
+> -The digital output port node must contain at least one endpoint.
+> -
+> -Optional Properties:
+> -
+> -  - hpd-gpios: References to the GPIOs that control the HDMI hot-plug
+> -    detection pins, one per HDMI input. The active flag indicates the GPIO
+> -    level that enables hot-plug detection.
+> -  - reset-gpios: Reference to the GPIO connected to the device's reset pin.
+> -  - default-input: Select which input is selected after reset.
+> -  - reg-names : Names of maps with programmable addresses.
+> -		It can contain any map needing a non-default address.
+> -		Possible maps names are :
+> -		  "main", "avlink", "cec", "infoframe", "esdp", "dpp", "afe",
+> -		  "rep", "edid", "hdmi", "test", "cp", "vdp"
+> -
+> -Optional Endpoint Properties:
+> -
+> -  The following three properties are defined in video-interfaces.txt and are
+> -  valid for source endpoints only.
+> -
+> -  - hsync-active: Horizontal synchronization polarity. Defaults to active low.
+> -  - vsync-active: Vertical synchronization polarity. Defaults to active low.
+> -  - pclk-sample: Pixel clock polarity. Defaults to output on the falling edge.
+> -
+> -  If none of hsync-active, vsync-active and pclk-sample is specified the
+> -  endpoint will use embedded BT.656 synchronization.
+> -
+> -Example:
+> -
+> -	hdmi_receiver@4c {
+> -		compatible = "adi,adv7611";
+> -		/*
+> -		 * The edid page will be accessible @ 0x66 on the I2C bus. All
+> -		 * other maps will retain their default addresses.
+> -		 */
+> -		reg = <0x4c>, <0x66>;
+> -		reg-names = "main", "edid";
+> -
+> -		reset-gpios = <&ioexp 0 GPIO_ACTIVE_LOW>;
+> -		hpd-gpios = <&ioexp 2 GPIO_ACTIVE_HIGH>;
+> -
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -
+> -		default-input = <0>;
+> -
+> -		port@0 {
+> -			reg = <0>;
+> -		};
+> -		port@1 {
+> -			reg = <1>;
+> -			hdmi_in: endpoint {
+> -				remote-endpoint = <&ccdc_in>;
+> -			};
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/media/i2c/adv7604.yaml b/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
+> new file mode 100644
+> index 0000000000000000..d354fd8e0cc88d93
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
+> @@ -0,0 +1,171 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/adv7604.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices ADV7604/11/12 video decoder with HDMI receiver
+> +
+> +maintainers:
+> +  - Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> +
+> +description:
+> +  The ADV7604 and ADV7611/12 are multiformat video decoders with an integrated
+> +  HDMI receiver. The ADV7604 has four multiplexed HDMI inputs and one analog
+> +  input, and the ADV7611 has one HDMI input and no analog input. The 7612 is
+> +  similar to the 7611 but has 2 HDMI inputs.
+> +
+> +  These device tree bindings support the ADV7611/12 only at the moment.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +        - adi,adv7611
+> +        - adi,adv7612
+> +
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 13
+> +
+> +  reg-names:
+> +    items:
+> +      - enum: [ main, avlink, cec, infoframe, esdp, dpp, afe, rep, edid, hdmi, test, cp, vdp ]
+> +      - enum: [ main, avlink, cec, infoframe, esdp, dpp, afe, rep, edid, hdmi, test, cp, vdp ]
+> +      - enum: [ main, avlink, cec, infoframe, esdp, dpp, afe, rep, edid, hdmi, test, cp, vdp ]
+> +      - enum: [ main, avlink, cec, infoframe, esdp, dpp, afe, rep, edid, hdmi, test, cp, vdp ]
+> +      - enum: [ main, avlink, cec, infoframe, esdp, dpp, afe, rep, edid, hdmi, test, cp, vdp ]
+> +      - enum: [ main, avlink, cec, infoframe, esdp, dpp, afe, rep, edid, hdmi, test, cp, vdp ]
+> +      - enum: [ main, avlink, cec, infoframe, esdp, dpp, afe, rep, edid, hdmi, test, cp, vdp ]
+> +      - enum: [ main, avlink, cec, infoframe, esdp, dpp, afe, rep, edid, hdmi, test, cp, vdp ]
+> +      - enum: [ main, avlink, cec, infoframe, esdp, dpp, afe, rep, edid, hdmi, test, cp, vdp ]
+> +      - enum: [ main, avlink, cec, infoframe, esdp, dpp, afe, rep, edid, hdmi, test, cp, vdp ]
+> +      - enum: [ main, avlink, cec, infoframe, esdp, dpp, afe, rep, edid, hdmi, test, cp, vdp ]
+> +      - enum: [ main, avlink, cec, infoframe, esdp, dpp, afe, rep, edid, hdmi, test, cp, vdp ]
+> +      - enum: [ main, avlink, cec, infoframe, esdp, dpp, afe, rep, edid, hdmi, test, cp, vdp ]
 
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 82 ++++++++++++++++++++++++++++
- 1 file changed, 82 insertions(+)
+This can be simplified to:
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 636e2196138c..dfc1b7fa7d85 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -11,6 +11,7 @@
- #include <dt-bindings/power/qcom-aoss-qmp.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-+#include <dt-bindings/interconnect/qcom,sm8250.h>
- 
- / {
- 	interrupt-parent = <&intc>;
-@@ -978,6 +979,55 @@ spi13: spi@a94000 {
- 			};
- 		};
- 
-+		config_noc: interconnect@1500000 {
-+			compatible = "qcom,sm8250-config-noc";
-+			reg = <0 0x01500000 0 0x1000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		ipa_virt: interconnect@1620000 {
-+			compatible = "qcom,sm8250-ipa-virt";
-+			reg = <0 0x01620000 0 0x1000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		system_noc: interconnect@1632000 {
-+			compatible = "qcom,sm8250-system-noc";
-+			reg = <0 0x01632000 0 0x1000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		aggre1_noc: interconnect@16e2000 {
-+			compatible = "qcom,sm8250-aggre1-noc";
-+			reg = <0 0x016e2000 0 0x1000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		aggre2_noc: interconnect@1703000 {
-+			compatible = "qcom,sm8250-aggre2-noc";
-+			reg = <0 0x01703000 0 0x1000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		compute_noc: interconnect@1733000 {
-+			compatible = "qcom,sm8250-compute-noc";
-+			reg = <0 0x01733000 0 0x1000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		mmss_noc: interconnect@174a000 {
-+			compatible = "qcom,sm8250-mmss-noc";
-+			reg = <0 0x0174a000 0 0x1000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
- 		ufs_mem_hc: ufshc@1d84000 {
- 			compatible = "qcom,sm8250-ufshc", "qcom,ufshc",
- 				     "jedec,ufs-2.0";
-@@ -1364,6 +1414,34 @@ usb_2_ssphy: lane@88eb200 {
- 			};
- 		};
- 
-+		dc_noc: interconnect@90c0000 {
-+			compatible = "qcom,sm8250-dc-noc";
-+			reg = <0 0x090c0000 0 0x1000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		mc_virt: interconnect@9100000 {
-+			compatible = "qcom,sm8250-mc-virt";
-+			reg = <0 0x09100000 0 0x1000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		gem_noc: interconnect@9121000 {
-+			compatible = "qcom,sm8250-gem-noc";
-+			reg = <0 0x09121000 0 0x1000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		npu_noc: interconnect@9990000 {
-+			compatible = "qcom,sm8250-npu-noc";
-+			reg = <0 0x09990000 0 0x1000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
- 		usb_1: usb@a6f8800 {
- 			compatible = "qcom,sm8250-dwc3", "qcom,dwc3";
- 			reg = <0 0x0a6f8800 0 0x400>;
-@@ -2359,6 +2437,10 @@ rpmhpd_opp_turbo_l1: opp10 {
- 					};
- 				};
- 			};
-+
-+			apps_bcm_voter: bcm_voter {
-+				compatible = "qcom,bcm-voter";
-+			};
- 		};
- 	};
- 
--- 
-2.26.1
+items:
+  enum: [ main, avlink, cec, infoframe, esdp, dpp, afe, rep, edid, hdmi, test, cp, vdp ]
 
+(Make items a schema applying to all items, rather than a list)
+
+Though we may want to enforce 'main' is first with:
+
+minItems: 1
+maxItems: 13
+items:
+  - const: main
+
+These 2 can be combined under an 'allOf'.
+
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  hpd-gpios:
+> +    minItems: 1
+> +    description:
+> +      References to the GPIOs that control the HDMI hot-plug detection pins,
+> +      one per HDMI input. The active flag indicates the GPIO level that
+> +      enables hot-plug detection.
+> +
+> +  default-input:
+> +    maxItems: 1
+> +    description:
+> +      Select which input is selected after reset.
+> +
+> +  ports:
+> +    type: object
+> +    description:
+> +      A node containing input and output port nodes with endpoint definitions
+> +      as documented in
+> +      Documentation/devicetree/bindings/media/video-interfaces.txt
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: adi,adv7611
+> +    then:
+> +      properties:
+> +        ports:
+> +          properties:
+> +            '#address-cells':
+> +              const: 1
+> +            '#size-cells':
+> +              const: 0
+> +            port@0:
+> +              type: object
+> +              description: Input port
+> +            port@1:
+> +              type: object
+> +              description: Output port
+> +
+> +          required:
+> +            - port@1
+> +
+> +          additionalProperties: false
+> +
+> +      required:
+> +        - ports
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: adi,adv7612
+> +    then:
+> +      properties:
+> +        ports:
+> +          properties:
+> +            '#address-cells':
+> +              const: 1
+> +            '#size-cells':
+> +              const: 0
+> +            port@2:
+> +              type: object
+> +              description: Output port
+> +
+> +          patternProperties:
+> +            "^port@[0-1]$":
+> +              type: object
+> +              description: Input port
+> +
+> +          required:
+> +            - port@2
+> +
+> +          additionalProperties: false
+> +
+> +      required:
+> +        - ports
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            hdmi_receiver@4c {
+> +                    compatible = "adi,adv7611";
+> +                    /*
+> +                     * The edid page will be accessible @ 0x66 on the I2C bus. All
+> +                     * other maps will retain their default addresses.
+> +                     */
+> +                    reg = <0x4c>, <0x66>;
+> +                    reg-names = "main", "edid";
+> +
+> +                    reset-gpios = <&ioexp 0 GPIO_ACTIVE_LOW>;
+> +                    hpd-gpios = <&ioexp 2 GPIO_ACTIVE_HIGH>;
+> +                    default-input = <0>;
+> +
+> +                    ports {
+> +                            #address-cells = <1>;
+> +                            #size-cells = <0>;
+> +
+> +                            port@0 {
+> +                                    reg = <0>;
+> +                            };
+> +
+> +                            port@1 {
+> +                                    reg = <1>;
+> +                                    hdmi_in: endpoint {
+> +                                            remote-endpoint = <&ccdc_in>;
+> +                                    };
+> +                            };
+> +                    };
+> +
+> +
+> +            };
+> +    };
+> -- 
+> 2.27.0
+> 
