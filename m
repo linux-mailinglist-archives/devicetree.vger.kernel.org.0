@@ -2,130 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 415D721CEE8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 07:44:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCBAE21CEF0
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2020 07:45:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725920AbgGMFoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jul 2020 01:44:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59628 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725767AbgGMFoT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jul 2020 01:44:19 -0400
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7658FC061794
-        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2020 22:44:19 -0700 (PDT)
-Received: by mail-ej1-x641.google.com with SMTP id l12so14673207ejn.10
-        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2020 22:44:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Rp7+bh2mU6TpEEtWpOr+87rCm6MPnrvLOWdtUzMHKQ8=;
-        b=CRSdQDBtxmD9eFlVT0K5jcruX9Eb95imbaOtpnYb7gl8aEBpXbsxoBVC4abKx/J+Ld
-         DFDhaOOfCqUgceSh2DeJvNwSBdWGz4Enfbn7+tsEQatlol7t82YFPryAObOhHvlVQ1A+
-         fkQzDtU1fT+c4rqwAN9nfZyl6z1t9Vi91nFGc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Rp7+bh2mU6TpEEtWpOr+87rCm6MPnrvLOWdtUzMHKQ8=;
-        b=rdI41oBXKpCcdDi4fbo/r7eNqBNk2wqJfBFuDSk26BfmHDQJyenwFOevMCMF945LNe
-         NI9R+j82ePMuN9INVSNIYfBnpBeCBtANJxA9gQseOrN1CfDu7F4l+xPInoFMRyd2wsl0
-         T7fzIzSwaDxUUDEl4StR8HoC13ts8T7U9HQOfNoz39wGBgEv/N2q8mOKMBDWAq90vEdz
-         8lyzFjs5DQwIWSUCBVUofTiMW7wB3elClCktdHqJCKP/12ClRxJagMxCkUxdUQoyPVgl
-         bxt2jkVLaEMQRcABPVWSLYT/nryQPxxKnc0WK/doT/2Wl2fvBKkqBYScfuZqn0WhfIs0
-         8gzg==
-X-Gm-Message-State: AOAM533h3SeZJ2HCaicZydMKkqALkFTeHbmC8lnF+wNQ/XRWXcd0vKBJ
-        NF3ZWQ5vvr6KcqhciVw24wTknDLmbRTAgi+81UySwQ==
-X-Google-Smtp-Source: ABdhPJxKhhkxwRWVmaaKVxOyh3qvejCjDIr3yNQRWD870hkkTeHHZbJtXmbbx2iPuNB7nZjoO1GN3ll0CJpetV9WDDo=
-X-Received: by 2002:a17:906:b45:: with SMTP id v5mr69591620ejg.464.1594619058124;
- Sun, 12 Jul 2020 22:44:18 -0700 (PDT)
+        id S1728672AbgGMFpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jul 2020 01:45:38 -0400
+Received: from enterprise02.smtp.diehl.com ([193.201.238.220]:16159 "EHLO
+        enterprise02.smtp.diehl.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725818AbgGMFph (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Jul 2020 01:45:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=diehl.com; i=@diehl.com; q=dns/txt; s=default;
+  t=1594619135; x=1626155135;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=7cW/YOJXUx2PIiwmm/PI3I7DknzDgEvfBng6cd6jKWw=;
+  b=AX/QIrgikYaHJFxASCxcx3RtmqioW7TzAu6aksq3JWtOCpsoSkQcN8o8
+   qfQ5cTBAwCvqWUMSplukHH7fiSDsh/P4OLRnACD/T5vimcgJtFNxiHOgl
+   7EVgXca5xtqO+IjfPezqe7pn/yd7KsQNtMZsmBPgq89VPekEyuBv3TyoK
+   hMvSPYbHDuF7DPaTScM3P/Jcc98MpEESbH0ec5575pcr+U5vpRzs8VfB1
+   z2NxEh3A7JJr21z/hHhNDjhYZowbEt7Hd3cBQsEeRxybWUIeKqtjpbjIu
+   DCe5Tqz3M1qCY7pgjDbjow69XGSL2zO+YvP2KdH+rGqq0C2MZafTO9TYT
+   Q==;
+IronPort-SDR: bg80K5TqI9tLYD0QW4HMUH6kvelFBXiPFM1O6aWKx6bBG82n0PhEavia4qaf2WnjZdYx9wsFGg
+ fEf9KYKxNT0Q==
+X-IronPort-AV: E=Sophos;i="5.75,346,1589234400"; 
+   d="scan'208";a="64193337"
+From:   Denis Osterland-Heim <denis.osterland@diehl.com>
+To:     "dmurphy@ti.com" <dmurphy@ti.com>, "pavel@ucw.cz" <pavel@ucw.cz>,
+        "jacek.anaszewski@gmail.com" <jacek.anaszewski@gmail.com>
+CC:     "robh@kernel.org" <robh@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Denis Osterland-Heim <denis.osterland@diehl.com>,
+        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: [PATCH v6 2/2] leds: pwm: add reference to common leds for
+ default-state
+Thread-Topic: [PATCH v6 2/2] leds: pwm: add reference to common leds for
+ default-state
+Thread-Index: AQHWWNjSvxKdnghAx02VQ0imS9FJCQ==
+Date:   Mon, 13 Jul 2020 05:45:31 +0000
+Message-ID: <20200713054259.7608-3-Denis.Osterland@diehl.com>
+References: <20200713054259.7608-1-Denis.Osterland@diehl.com>
+In-Reply-To: <20200713054259.7608-1-Denis.Osterland@diehl.com>
+Accept-Language: de-DE, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+x-ms-exchange-messagesentrepresentingtype: 1
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20200711064846.16007-1-yong.wu@mediatek.com> <20200711064846.16007-2-yong.wu@mediatek.com>
- <9e21288c-07da-88b0-2dbb-bd9a2a4d529b@gmail.com>
-In-Reply-To: <9e21288c-07da-88b0-2dbb-bd9a2a4d529b@gmail.com>
-From:   Pi-Hsun Shih <pihsun@chromium.org>
-Date:   Mon, 13 Jul 2020 13:43:42 +0800
-Message-ID: <CANdKZ0dwsaP=s8AgRbDx2_0y4JmPnF-X0Rb=4vor2MWCYWfGKw@mail.gmail.com>
-Subject: Re: [PATCH 01/21] dt-binding: memory: mediatek: Add a common
- larb-port header file
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>, srv_heupstream@mediatek.com,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        iommu@lists.linux-foundation.org,
-        =?UTF-8?B?WW91bGluIFBlaSAo6KO05Y+L5p6XKQ==?= 
-        <youlin.pei@mediatek.com>, Nicolas Boichat <drinkcat@chromium.org>,
-        anan.sun@mediatek.com, cui.zhang@mediatek.com,
-        chao.hao@mediatek.com, ming-fan.chen@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+X-TrailerSkip: 1
+X-GBS-PROC: byQFdw3ukCM+zy1/poiPc9DxUHFKa5QuXnUaA65Gx6zvbScgxME0GmNfjkqzTgl2
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 13, 2020 at 2:06 AM Matthias Brugger <matthias.bgg@gmail.com> wrote:
->
->
->
-> On 11/07/2020 08:48, Yong Wu wrote:
-> > Put all the macros about smi larb/port togethers, this is a preparing
-> > patch for extending LARB_NR and adding new dom-id support.
-> >
-> > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> > ---
-> >   include/dt-bindings/memory/mt2712-larb-port.h  |  2 +-
-> >   include/dt-bindings/memory/mt6779-larb-port.h  |  2 +-
-> >   include/dt-bindings/memory/mt8173-larb-port.h  |  2 +-
-> >   include/dt-bindings/memory/mt8183-larb-port.h  |  2 +-
-> >   include/dt-bindings/memory/mtk-smi-larb-port.h | 15 +++++++++++++++
-> >   5 files changed, 19 insertions(+), 4 deletions(-)
-> >   create mode 100644 include/dt-bindings/memory/mtk-smi-larb-port.h
-> >
-> > ...
-> > diff --git a/include/dt-bindings/memory/mtk-smi-larb-port.h b/include/dt-bindings/memory/mtk-smi-larb-port.h
-> > new file mode 100644
-> > index 000000000000..2ec7fe5ce4e9
-> > --- /dev/null
-> > +++ b/include/dt-bindings/memory/mtk-smi-larb-port.h
-> > @@ -0,0 +1,15 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only */
-> > +/*
-> > + * Copyright (c) 2020 MediaTek Inc.
-> > + * Author: Yong Wu <yong.wu@mediatek.com>
-> > + */
-> > +#ifndef __DTS_MTK_IOMMU_PORT_H_
-> > +#define __DTS_MTK_IOMMU_PORT_H_
-> > +
-> > +#define MTK_LARB_NR_MAX                      16
->
-> include/soc/mediatek/smi.h has the very same define.
-> Should smi.h include this file?
->
-> Regards,
-> Matthias
->
+The default-state is now supported for PWM leds.
 
-Looks like this is being addressed in patch 5 in this series ([05/21]
-iommu/mediatek: Use the common mtk-smi-larb-port.h)
-That said, should that patch be merged into this one?
+Signed-off-by: Denis Osterland-Heim <Denis.Osterland@diehl.com>
+Acked-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Acked-by: Pavel Machek <pavel@ucw.cz>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/leds/leds-pwm.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/leds/leds-pwm.txt b/Docume=
+ntation/devicetree/bindings/leds/leds-pwm.txt
+index 6c6583c35f2f..d0f489680594 100644
+--- a/Documentation/devicetree/bindings/leds/leds-pwm.txt
++++ b/Documentation/devicetree/bindings/leds/leds-pwm.txt
+@@ -19,6 +19,8 @@ LED sub-node properties:
+   see Documentation/devicetree/bindings/leds/common.txt
+ - linux,default-trigger :  (optional)
+   see Documentation/devicetree/bindings/leds/common.txt
++- default-state : (optional)
++  see Documentation/devicetree/bindings/leds/common.yaml
+=20
+ Example:
+=20
+--=20
+2.27.0
 
 
 
-> > +
-> > +#define MTK_M4U_ID(larb, port)               (((larb) << 5) | (port))
-> > +#define MTK_M4U_TO_LARB(id)          (((id) >> 5) & 0xf)
-> > +#define MTK_M4U_TO_PORT(id)          ((id) & 0x1f)
-> > +
-> > +#endif
-> >
+Diehl Connectivity Solutions GmbH
+Gesch=E4ftsf=FChrung: Horst Leonberger
+Sitz der Gesellschaft: N=FCrnberg - Registergericht: Amtsgericht
+N=FCrnberg: HRB 32315
+_________________________________________________________________________=
+__________________________
+
+Der Inhalt der vorstehenden E-Mail ist nicht rechtlich bindend. Diese E-M=
+ail enthaelt vertrauliche und/oder rechtlich geschuetzte Informationen.
+Informieren Sie uns bitte, wenn Sie diese E-Mail faelschlicherweise erhal=
+ten haben. Bitte loeschen Sie in diesem Fall die Nachricht.
+Jede unerlaubte Form der Reproduktion, Bekanntgabe, Aenderung, Verteilung=
+ und/oder Publikation dieser E-Mail ist strengstens untersagt.
+- Informationen zum Datenschutz, insbesondere zu Ihren Rechten, erhalten =
+Sie unter https://www.diehl.com/group/de/transparenz-und-informationspfli=
+chten/
+
+The contents of the above mentioned e-mail is not legally binding. This e=
+-mail contains confidential and/or legally protected information. Please =
+inform us if you have received this e-mail by
+mistake and delete it in such a case. Each unauthorized reproduction, dis=
+closure, alteration, distribution and/or publication of this e-mail is st=
+rictly prohibited.=20
+- For general information on data protection and your respective rights p=
+lease visit https://www.diehl.com/group/en/transparency-and-information-o=
+bligations/
