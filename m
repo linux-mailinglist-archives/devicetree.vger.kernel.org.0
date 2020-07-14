@@ -2,185 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81C0A21E96E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 09:05:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2267321E9B6
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 09:12:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725997AbgGNHFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jul 2020 03:05:50 -0400
-Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:39093 "EHLO
-        smtp2207-205.mail.aliyun.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726778AbgGNHEI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Jul 2020 03:04:08 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.8989657|0.1165595;BR=01201311R991ec;CH=green;DM=|AD|false|;DS=SPAM|spam_other|0.913775-0.00286365-0.0833614;FP=0|0|0|0|0|-1|-1|-1;HT=e02c03267;MF=frank@allwinnertech.com;NM=1;PH=DS;RN=12;RT=12;SR=0;TI=SMTPD_---.I1SwXGj_1594710240;
-Received: from allwinnertech.com(mailfrom:frank@allwinnertech.com fp:SMTPD_---.I1SwXGj_1594710240)
-          by smtp.aliyun-inc.com(10.147.41.199);
-          Tue, 14 Jul 2020 15:04:04 +0800
-From:   Frank Lee <frank@allwinnertech.com>
-To:     linus.walleij@linaro.org, robh+dt@kernel.org, mripard@kernel.org,
-        wens@csie.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     tiny.windzz@gmail.com, huangshuosheng@allwinnertech.com,
-        liyong@allwinnertech.com, Yangtao Li <frank@allwinnertech.com>
-Subject: [PATCH v4 03/16] dt-bindings: pinctrl: sunxi: Get rid of continual nesting
-Date:   Tue, 14 Jul 2020 15:03:53 +0800
-Message-Id: <b486dc2f07aeb4772af7ee2ed521932582354a34.1594708864.git.frank@allwinnertech.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <cover.1594708863.git.frank@allwinnertech.com>
-References: <cover.1594708863.git.frank@allwinnertech.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726600AbgGNHML (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jul 2020 03:12:11 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:45060 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725876AbgGNHML (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Jul 2020 03:12:11 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id BBBB3200161;
+        Tue, 14 Jul 2020 09:12:09 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 45668200ED4;
+        Tue, 14 Jul 2020 09:12:06 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 9435D402BB;
+        Tue, 14 Jul 2020 15:12:01 +0800 (SGT)
+From:   Biwen Li <biwen.li@oss.nxp.com>
+To:     leoyang.li@nxp.com, shawnguo@kernel.org, robh+dt@kernel.org,
+        meenakshi.aggarwal@nxp.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        jiafei.pan@nxp.com, Biwen Li <biwen.li@nxp.com>
+Subject: [v2 PATCH] dts: arm64: lx2160a-rdb: fix shunt-resistor value
+Date:   Tue, 14 Jul 2020 15:05:45 +0800
+Message-Id: <20200714070545.2051-1-biwen.li@oss.nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yangtao Li <frank@allwinnertech.com>
+From: Biwen Li <biwen.li@nxp.com>
 
-Rather than a continual nesting of 'else' clauses, just make
-each 'if' a new entry under 'allOf' and get rid of the else.
+Fix value of shunt-resistor property.
+The LX2160A-RDB has 500 uOhm shunt for
+the INA220, not 1000 uOhm. Unless
+it will get wrong power consumption(1/2)
 
-Signed-off-by: Yangtao Li <frank@allwinnertech.com>
+Signed-off-by: Biwen Li <biwen.li@nxp.com>
 ---
- .../pinctrl/allwinner,sun4i-a10-pinctrl.yaml  | 124 ++++++++++--------
- 1 file changed, 68 insertions(+), 56 deletions(-)
+v2:
+	- update description
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-index 7556be6e2754..35a26abb02e7 100644
---- a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-@@ -155,62 +155,74 @@ allOf:
-           minItems: 5
-           maxItems: 5
- 
--    else:
--      if:
--        properties:
--          compatible:
--            enum:
--              - allwinner,sun6i-a31-pinctrl
--              - allwinner,sun6i-a31s-pinctrl
--              - allwinner,sun50i-h6-pinctrl
--
--      then:
--        properties:
--          interrupts:
--            minItems: 4
--            maxItems: 4
--
--      else:
--        if:
--          properties:
--            compatible:
--              enum:
--                - allwinner,sun8i-a23-pinctrl
--                - allwinner,sun8i-a83t-pinctrl
--                - allwinner,sun50i-a64-pinctrl
--                - allwinner,sun50i-h5-pinctrl
--                - allwinner,suniv-f1c100s-pinctrl
--
--        then:
--          properties:
--            interrupts:
--              minItems: 3
--              maxItems: 3
--
--        else:
--          if:
--            properties:
--              compatible:
--                enum:
--                  - allwinner,sun6i-a31-r-pinctrl
--                  - allwinner,sun8i-a33-pinctrl
--                  - allwinner,sun8i-h3-pinctrl
--                  - allwinner,sun8i-v3-pinctrl
--                  - allwinner,sun8i-v3s-pinctrl
--                  - allwinner,sun9i-a80-r-pinctrl
--                  - allwinner,sun50i-h6-r-pinctrl
--
--          then:
--            properties:
--              interrupts:
--                minItems: 2
--                maxItems: 2
--
--          else:
--            properties:
--              interrupts:
--                minItems: 1
--                maxItems: 1
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - allwinner,sun6i-a31-pinctrl
-+            - allwinner,sun6i-a31s-pinctrl
-+            - allwinner,sun50i-h6-pinctrl
-+
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 4
-+          maxItems: 4
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - allwinner,sun8i-a23-pinctrl
-+            - allwinner,sun8i-a83t-pinctrl
-+            - allwinner,sun50i-a64-pinctrl
-+            - allwinner,sun50i-h5-pinctrl
-+            - allwinner,suniv-f1c100s-pinctrl
-+
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 3
-+          maxItems: 3
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - allwinner,sun6i-a31-r-pinctrl
-+            - allwinner,sun8i-a33-pinctrl
-+            - allwinner,sun8i-h3-pinctrl
-+            - allwinner,sun8i-v3-pinctrl
-+            - allwinner,sun8i-v3s-pinctrl
-+            - allwinner,sun9i-a80-r-pinctrl
-+            - allwinner,sun50i-h6-r-pinctrl
-+
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 2
-+          maxItems: 2
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - allwinner,sun4i-a10-pinctrl
-+            - allwinner,sun5i-a10s-pinctrl
-+            - allwinner,sun5i-a13-pinctrl
-+            - allwinner,sun7i-a20-pinctrl
-+            - allwinner,sun8i-a23-r-pinctrl
-+            - allwinner,sun8i-a83t-r-pinctrl
-+            - allwinner,sun8i-h3-r-pinctrl
-+            - allwinner,sun8i-r40-pinctrl
-+            - allwinner,sun50i-a64-r-pinctrl
-+            - nextthing,gr8-pinctrl
-+
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 1
-+          maxItems: 1
- 
- additionalProperties: false
+ arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
+index 22d0308..54fe8cd 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
+@@ -121,7 +121,7 @@
+ 			power-monitor@40 {
+ 				compatible = "ti,ina220";
+ 				reg = <0x40>;
+-				shunt-resistor = <1000>;
++				shunt-resistor = <500>;
+ 			};
+ 		};
  
 -- 
-2.24.0
+2.7.4
 
