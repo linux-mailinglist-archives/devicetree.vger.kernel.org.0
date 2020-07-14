@@ -2,88 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94EC921F166
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 14:34:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EE2521F186
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 14:39:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727942AbgGNMei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jul 2020 08:34:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36308 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728076AbgGNMed (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jul 2020 08:34:33 -0400
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A811C061794;
-        Tue, 14 Jul 2020 05:34:32 -0700 (PDT)
-Received: by mail-io1-xd36.google.com with SMTP id f23so17067213iof.6;
-        Tue, 14 Jul 2020 05:34:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=eAKe8PeEcj987D5w27ZWETMcg348oP/WUZJbCVK0Am4=;
-        b=hDJvX2v4RGCA8saCb/oq0dgy0tXxTBVw81xJrhtq2z/Uuaoq4Uud0kDbPb8VNcMZKw
-         8ElIMp+tXFAN2hKp13CsAkLdBS2Oq9BSI3VXPsh7QSzgXCOZ1JrGomZDASK8Z1Yf3EzT
-         J4DLfa3zTCpgRVA3ZNNxNA2gLlJ9sGsQhTn9sMXn2xjbD4gbt0/fb0utXY4TOBmA8k4V
-         HY+ghiZyMHr9BNKNFEz30/1Mbpg2SLckLBIkagIZT9lOVYvQDejbIy/mZTj0032/g/Pc
-         vVxyIHw3zcRffkSRX2J2nWrua45lHKghNPTvPimZMarTQh6eZTrgbdrntsKUdAboGkd4
-         0nxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=eAKe8PeEcj987D5w27ZWETMcg348oP/WUZJbCVK0Am4=;
-        b=t3+trm7hbYbAKg1tFmCo72VT5Dkcyaj3CxJexrMqCOV3N2m+yCds9+nvTZ5sX5UclW
-         /x66/qduwLWoKFTbIdXDt8LmJFiqhqtiK3BcN3uZctKt123l6/+O1gmQ/XpZpsEjAM2Y
-         m8CtFmOMFaiiuQPQwSDRzwxrxfpKTgvCzbQ0OGaFoWppq+rN/UuT5hgcmLEttP7kAs3Y
-         7Foa8WRhK3EqLFjVTWXU7dmAHsYdXkJ77N0uY7QmPGhXojWFZcVjPWp+DdcNlUCbGTAo
-         JC/PKt00VwsJUjMC0j1yxweEnXzIv0peToD1EqZZKarHUarJERtZtO67xJTdspzh5h+J
-         RsvQ==
-X-Gm-Message-State: AOAM532BGifCgkGW5IRABiAlhRloICG04UMewGok833SxHgaQLd1jcFo
-        Eb+XJhgCE6/+C7F05JUFomXgj8Q4
-X-Google-Smtp-Source: ABdhPJyUI4zKGfErzzFS/FV2xVH7oFqEb/L1x97v5vy21kHhG21vkssyxEEtfClY/JwkdTn8P5SpPQ==
-X-Received: by 2002:a02:878b:: with SMTP id t11mr5750532jai.106.1594730071385;
-        Tue, 14 Jul 2020 05:34:31 -0700 (PDT)
-Received: from aford-OptiPlex-7050.logicpd.com ([174.46.170.158])
-        by smtp.gmail.com with ESMTPSA id d6sm10059337ilq.27.2020.07.14.05.34.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jul 2020 05:34:30 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-renesas-soc@vger.kernel.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH V2 2/2] dt-bindings: arm: renesas: Document beacon-rzg2m
-Date:   Tue, 14 Jul 2020 07:34:19 -0500
-Message-Id: <20200714123419.3390-2-aford173@gmail.com>
+        id S1728075AbgGNMjg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jul 2020 08:39:36 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:51946 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726041AbgGNMjg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Jul 2020 08:39:36 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 2492C201000;
+        Tue, 14 Jul 2020 14:39:34 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 17CCF201004;
+        Tue, 14 Jul 2020 14:39:34 +0200 (CEST)
+Received: from fsr-ub1864-014.ea.freescale.net (fsr-ub1864-014.ea.freescale.net [10.171.95.219])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 5A165205A4;
+        Tue, 14 Jul 2020 14:39:33 +0200 (CEST)
+From:   =?UTF-8?q?Horia=20Geant=C4=83?= <horia.geanta@nxp.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Martin Kaiser <martin@kaiser.cx>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Franck Lenormand <franck.lenormand@nxp.com>,
+        Iuliana Prodan <iuliana.prodan@nxp.com>,
+        Silvano Di Ninno <silvano.dininno@nxp.com>,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/5] hwrng: add support for i.MX6 rngb
+Date:   Tue, 14 Jul 2020 15:39:15 +0300
+Message-Id: <20200714123920.23711-1-horia.geanta@nxp.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200714123419.3390-1-aford173@gmail.com>
-References: <20200714123419.3390-1-aford173@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Beacon EmbeddedWorks in introducing a development kit based on the
-Renesas RZ/G2M platform.  This patch adds the entry to the bindings
-list.
+Add support for RNGB found in some i.MX6 SoCs (6SL, 6SLL, 6ULL, 6ULZ),
+based on RNGC driver (drivers/char/hw_random/imx-rngc.c).
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
-V2:	New to series
+This driver claims support also for RNGB (besides RNGC),
+and is currently used only by i.MX25.
 
-diff --git a/Documentation/devicetree/bindings/arm/renesas.yaml b/Documentation/devicetree/bindings/arm/renesas.yaml
-index d8fd25bccbf5..0d4dabb4a164 100644
---- a/Documentation/devicetree/bindings/arm/renesas.yaml
-+++ b/Documentation/devicetree/bindings/arm/renesas.yaml
-@@ -118,6 +118,7 @@ properties:
-         items:
-           - enum:
-               - hoperun,hihope-rzg2m # HopeRun HiHope RZ/G2M platform
-+              - beacon,beacon-rzg2m # Beacon EmbeddedWorks RZ/G2M Kit
-           - const: renesas,r8a774a1
- 
-       - items:
+Note:
+
+Several NXP SoC from QorIQ family (P1010, P1023, P4080, P3041, P5020)
+also have a RNGB, however it's part of the CAAM
+(Cryptograhic Accelerator and Assurance Module) crypto accelerator.
+In this case, RNGB is managed in the caam driver
+(drivers/crypto/caam/), since it's tightly related to
+the caam "job ring" interface, not to mention CAAM internally relying on
+RNGB as source of randomness.
+
+On the other hand, the i.MX6 SoCs with RNGB have a DCP
+(Data Co-Processor) crypto accelerator and this block and RNGB
+are independent.
+
+Changelog:
+v3
+-mention in the DT binding the compatibility with "fsl,imx25-rngb"
+-collected Reviewed-by
+v2
+-update rngb DT binding with compatible strings for i.MX6 SoCs
+
+Horia Geantă (5):
+  dt-bindings: rng: add RNGB compatibles for i.MX6 SoCs
+  ARM: dts: imx6sl: fix rng node
+  ARM: dts: imx6sll: add rng
+  ARM: dts: imx6ull: add rng
+  hwrng: imx-rngc: enable driver for i.MX6
+
+ Documentation/devicetree/bindings/rng/imx-rng.txt | 3 +++
+ arch/arm/boot/dts/imx6sl.dtsi                     | 2 ++
+ arch/arm/boot/dts/imx6sll.dtsi                    | 7 +++++++
+ arch/arm/boot/dts/imx6ull.dtsi                    | 7 +++++++
+ drivers/char/hw_random/Kconfig                    | 2 +-
+ drivers/char/hw_random/imx-rngc.c                 | 3 +++
+ 6 files changed, 23 insertions(+), 1 deletion(-)
+
 -- 
 2.17.1
 
