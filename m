@@ -2,58 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E84421EEA0
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 13:01:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A8C221EEB9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 13:09:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727812AbgGNLBp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jul 2020 07:01:45 -0400
-Received: from verein.lst.de ([213.95.11.211]:53842 "EHLO verein.lst.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726041AbgGNLBo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Jul 2020 07:01:44 -0400
-Received: by verein.lst.de (Postfix, from userid 2407)
-        id D05A568CFC; Tue, 14 Jul 2020 13:01:41 +0200 (CEST)
-Date:   Tue, 14 Jul 2020 13:01:41 +0200
-From:   Christoph Hellwig <hch@lst.de>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Claire Chang <tientzu@chromium.org>, robh+dt@kernel.org,
-        frowand.list@gmail.com, hch@lst.de, m.szyprowski@samsung.com,
-        treding@nvidia.com, gregkh@linuxfoundation.org,
-        saravanak@google.com, suzuki.poulose@arm.com,
-        dan.j.williams@intel.com, heikki.krogerus@linux.intel.com,
-        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, iommu@lists.linux-foundation.org,
-        tfiga@chromium.org, drinkcat@chromium.org
-Subject: Re: [PATCH 1/4] dma-mapping: Add bounced DMA ops
-Message-ID: <20200714110141.GD16178@lst.de>
-References: <20200713091211.2183368-1-tientzu@chromium.org> <20200713091211.2183368-2-tientzu@chromium.org> <4a2451f9-57d8-2e83-e1d6-f144f37173c0@arm.com>
+        id S1727021AbgGNLJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jul 2020 07:09:44 -0400
+Received: from conssluserg-05.nifty.com ([210.131.2.90]:26298 "EHLO
+        conssluserg-05.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727067AbgGNLJn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jul 2020 07:09:43 -0400
+Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43]) (authenticated)
+        by conssluserg-05.nifty.com with ESMTP id 06EB9N6M007255;
+        Tue, 14 Jul 2020 20:09:23 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-05.nifty.com 06EB9N6M007255
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1594724964;
+        bh=s+qGqbv3CTLs4XT47genE5qR5//Xe3CqrmsU7ugBumg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=CzwbZZIfQDcMPUt8+yrFFQ1YJNYYX5aHiyggE32NZTFoY0mGNbZcUtbFoyrYyOLaC
+         NeM8nDqvL1gldnVGWbkj88awT+PpjhU0EInQVQoAYnRAiHsLnZL0F1YNYrdoCXXx2Y
+         7S1L0KogiGrmaDY3hNB6zV87DB5p9sAlVTzGMtMG82139iRgnWqzckxlHcB8G1snfE
+         RJBt/nhWklQH3KSi1rPclJUwixXjcSqpCPAu/Mekwfi4PXFvsAoD4kRjQx/Oeq1IO0
+         kb1J60B1klWKM8fYcqhK6/myexiflOFp6pEh08hqEdS8vLnkn1QChiAPv5K/XLDoro
+         6LU02AXqg5kpA==
+X-Nifty-SrcIP: [209.85.222.43]
+Received: by mail-ua1-f43.google.com with SMTP id k7so5530481uan.13;
+        Tue, 14 Jul 2020 04:09:23 -0700 (PDT)
+X-Gm-Message-State: AOAM530/B8Z72J4C1Dji4v+k3oyGS3obQUg/QX3L0bYQUnZnCefmQ1sm
+        QawwvsPpZfFbni0c4W6tmI1KvopWX90aMkY1HrY=
+X-Google-Smtp-Source: ABdhPJzFoQKXXaO2byKTNGZBH3Q1438vhfsydjUWOj+DZJy+tjh7hGDv32uH8oQMzIflGPVWY3CW7MQ3X206v85g4Lw=
+X-Received: by 2002:ab0:71d3:: with SMTP id n19mr2734135uao.25.1594724962474;
+ Tue, 14 Jul 2020 04:09:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4a2451f9-57d8-2e83-e1d6-f144f37173c0@arm.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+References: <20200623114005.791643-1-yamada.masahiro@socionext.com>
+ <20200714022252.GA1151466@bogus> <CAK7LNAQrdqztMrHtAHnbMkxeaDLLyBS68WVovev+zytHdD7RVQ@mail.gmail.com>
+ <20200714095259.GB4900@sirena.org.uk>
+In-Reply-To: <20200714095259.GB4900@sirena.org.uk>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Tue, 14 Jul 2020 20:08:45 +0900
+X-Gmail-Original-Message-ID: <CAK7LNARUwPRtG0uMZ4rwr7=+3wa9X1B70AXbnFL-CF1_wMvevw@mail.gmail.com>
+Message-ID: <CAK7LNARUwPRtG0uMZ4rwr7=+3wa9X1B70AXbnFL-CF1_wMvevw@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: ASoC: Convert UniPhier EVEA codec to json-schema
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        - <alsa-devel@alsa-project.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 13, 2020 at 12:55:43PM +0100, Robin Murphy wrote:
-> On 2020-07-13 10:12, Claire Chang wrote:
->> The bounced DMA ops provide an implementation of DMA ops that bounce
->> streaming DMA in and out of a specially allocated region. Only the
->> operations relevant to streaming DMA are supported.
+On Tue, Jul 14, 2020 at 6:53 PM Mark Brown <broonie@kernel.org> wrote:
 >
-> I think there are too many implicit assumptions here - apparently that 
-> coherent allocations will always be intercepted by 
-> dma_*_from_dev_coherent(), and that calling into dma-direct won't actually 
-> bounce things a second time beyond where you thought they were going, 
-> manage coherency for a different address, and make it all go subtly wrong. 
-> Consider "swiotlb=force", for instance...
+> On Tue, Jul 14, 2020 at 03:13:26PM +0900, Masahiro Yamada wrote:
 >
-> Again, plumbing this straight into dma-direct so that SWIOTLB can simply 
-> target a different buffer and always bounce regardless of masks would seem 
-> a far better option.
+> > What do you mean by Reviewed-by ?
+> > Do you expect this to go to the asoc tree?
+>
+> > I just thought the schema conversion
+> > would go through the dt tree.
+>
+> No, bindings changes usually go through the subsystem - if there's any
+> other work on the binding then it'll usually also involve driver
+> changes.
 
-I haven't really had time to read through the details, but I agree that
-any bouncing scheme should reuse the swiotlb code and not invent a
-parallel infrastructure.
+OK, then please apply the following two if they look good.
+
+https://lore.kernel.org/patchwork/patch/1261568/
+https://lore.kernel.org/patchwork/patch/1261569/
+
+Both got Rob's Reviewed-by.
+
+-- 
+Best Regards
+Masahiro Yamada
