@@ -2,94 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6310321F1AC
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 14:40:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC29421F1DA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 14:48:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728050AbgGNMks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jul 2020 08:40:48 -0400
-Received: from mout.kundenserver.de ([217.72.192.74]:58969 "EHLO
+        id S1728049AbgGNMsh convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 14 Jul 2020 08:48:37 -0400
+Received: from mout.kundenserver.de ([212.227.126.187]:37587 "EHLO
         mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726354AbgGNMkr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jul 2020 08:40:47 -0400
-Received: from mail-qk1-f174.google.com ([209.85.222.174]) by
- mrelayeu.kundenserver.de (mreue106 [212.227.15.145]) with ESMTPSA (Nemesis)
- id 1MWSJJ-1kOFtd0c7n-00Xu1w; Tue, 14 Jul 2020 14:40:46 +0200
-Received: by mail-qk1-f174.google.com with SMTP id e13so15379526qkg.5;
-        Tue, 14 Jul 2020 05:40:45 -0700 (PDT)
-X-Gm-Message-State: AOAM532uWDfK0CrMGEqUt+3JEtNLskFiGnm5aWT4PyqG7lknZnW356qk
-        xivRCE1zfxU1jA19LxwwobUqkniFpy0+80lXE8E=
-X-Google-Smtp-Source: ABdhPJwoDyUVNvcOe+3WE/Iw422K5Ioay6giK+l3tMcD5he75L5Od52pooGlmGuC3YHnkuA463/el5XmyYtbmMe13MA=
-X-Received: by 2002:a37:a282:: with SMTP id l124mr4103430qke.3.1594730444925;
- Tue, 14 Jul 2020 05:40:44 -0700 (PDT)
+        with ESMTP id S1728006AbgGNMsQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jul 2020 08:48:16 -0400
+Received: from mail-qt1-f173.google.com ([209.85.160.173]) by
+ mrelayeu.kundenserver.de (mreue012 [212.227.15.129]) with ESMTPSA (Nemesis)
+ id 1N0Zfg-1kpNO54Buu-00wYyD; Tue, 14 Jul 2020 14:48:14 +0200
+Received: by mail-qt1-f173.google.com with SMTP id e12so12598976qtr.9;
+        Tue, 14 Jul 2020 05:48:13 -0700 (PDT)
+X-Gm-Message-State: AOAM53136LyPXLhI3tS8U4sjkpRtrAH+5vomOVClwR9hUqoTfxYIBN8x
+        c3hS627Z4K/Uxg5TyOq3QzstMZvOunD3Sv18VrU=
+X-Google-Smtp-Source: ABdhPJz0Z9SjMA2TiRfvVF5+QL/VnAcXuYiITPjmPiu/IFxPN+hb/xCmz8NbiS+7xnqFLUv/TcXHUKAGTUzOUOis+tM=
+X-Received: by 2002:ac8:4ccb:: with SMTP id l11mr4345870qtv.18.1594730892682;
+ Tue, 14 Jul 2020 05:48:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200708175020.194436-1-daniele.alessandrelli@linux.intel.com>
-In-Reply-To: <20200708175020.194436-1-daniele.alessandrelli@linux.intel.com>
+References: <20200714123920.23711-1-horia.geanta@nxp.com> <20200714123920.23711-6-horia.geanta@nxp.com>
+In-Reply-To: <20200714123920.23711-6-horia.geanta@nxp.com>
 From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 14 Jul 2020 14:40:28 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a3GVZftAZKEHC3TjDRL86vYOkND6TNuVq1KjssOHi5AXw@mail.gmail.com>
-Message-ID: <CAK8P3a3GVZftAZKEHC3TjDRL86vYOkND6TNuVq1KjssOHi5AXw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/5] Add initial Keem Bay SoC / Board support
-To:     Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Olof Johansson <olof@lixom.net>,
+Date:   Tue, 14 Jul 2020 14:47:56 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a3eQ2a3QV=0XAumHAOssddAZ_sBs=Y0D736Sp7_P8Jvuw@mail.gmail.com>
+Message-ID: <CAK8P3a3eQ2a3QV=0XAumHAOssddAZ_sBs=Y0D736Sp7_P8Jvuw@mail.gmail.com>
+Subject: Re: [PATCH v3 5/5] hwrng: imx-rngc: enable driver for i.MX6
+To:     =?UTF-8?Q?Horia_Geant=C4=83?= <horia.geanta@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
         DTML <devicetree@vger.kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Paul Murphy <paul.j.murphy@intel.com>,
-        Will Deacon <will@kernel.org>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Martin Kaiser <martin@kaiser.cx>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Franck Lenormand <franck.lenormand@nxp.com>,
+        Iuliana Prodan <iuliana.prodan@nxp.com>,
+        Silvano Di Ninno <silvano.dininno@nxp.com>,
+        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
+        <linux-crypto@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:CsynuHuwhHtu5uzF+9VYwHTOHeqJFWUP52MU5ctkAdvQyk183H6
- gZqqgMZU6MO6d4Sgt9Qi0sE2qHQLuOEqs8gFjdv9O+nL3qBGJ5iYOQ9undmjHTT2vdKHYUa
- nsQGaaF/O/iYZsiptdAqYvr4CVcvBsjC+m2sKBB0H7nq1+dAnWYeQXPopPew739thZsKqJz
- Rdc8csrJy1rU017s68Vqg==
+Content-Transfer-Encoding: 8BIT
+X-Provags-ID: V03:K1:81kDPhRRuj+8IBXZ0Wc3qn8zBLzUvMRlI++0v4OOYmr3S7wJXnU
+ wNoa9drx2atFGvHTPDiRxuKj0D7t7Ul7qe6yOtUcgYWEII5sBvOCYGVEYMJC1p4aWi4jWiw
+ /ymC/Xq1VE9TXEYRhAfanSG6mZKKdT0ElCXqXtnSyzeNW56LepLNocO/eoQinvMe+M/mJeR
+ F2BsrhhFJNPq4bbEcUbdQ==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:kJyLWz3kEj4=:vOcnB8EFLlBnmYTTKTwQrM
- alOEZAeGQhQ2eyzA8c/HkD12ZTiKooAVcYD1iUveJLGorsAy0b/gEGhl7JCjSKl8BcU9INhuY
- VxKK+umsUS7bW0c3SyQ+AzKWfWTAEOy6JVJtwDN4TP21kf7k2eXY1zz6PmwKi1b+4EbN0NSty
- n+ZgalwffrzvMMH8eLGPZRonpagRwbd9MawsPAD9q6I5GGKVDjbeyCMhmL89F8KmYJx3Aw7oe
- Dzx20PVQHxJRJKAJex3YV0BBpoXfuTdVtuas/U76ZpQ6bZHj9fXWsrbOK3Qvfo3hEIfNhf3gl
- HA+uYJO2uiGupILeymREMXmmhARfThO9NCNE8WeOwzaSqefikPT4UnPDIau68s98CvO75FD6a
- ray6/ghyfmeQWRo2mU6wP3dhsPmQUVJxcfsLM/4A2rRRX2H0gp/WcwlrqBZ5VDzAQ1r8yKLMJ
- wQhKh7G359DX3n6pa2AZAdwDFipCRRdg0RuCmjgUpCNE4UBL2bxQ1WnTOj+yWfWOtp8B2YO3i
- lwf79W/+QSVWFeSLSnWueu9t297boVdHdKSh2q7xBvq0xecnMBLXp8DqQxLPnHKVRYin7jTXk
- o1rvvWrmLg6tja/n63gMPjO1zrWVy4IokizIHKQLrccmK9k19NJqnQ2pKya9TmO4CjsqMTaRq
- bY49eP8+tawnMRVoj7XYEu9H7rjEAaRJz2okswev9PL6XsUtv6SRN7nQ5qyp7DCWPkWvp1giN
- s62H/RYSXit5DP/xJs6wvTjhaPsesq7aqQ6OA2qXDCtUOcA82ymcb/7g2GzoXcF9H0uBE3HMz
- jaEVttUxJVay1TSNP94ogDOUVdK+PsiZOMes2Fa7g6WYVAfWC4IDkju7dFNO/SRGR9ilj45/Z
- NMXgPF4FY10aau3jnKUe3pcjAcZJVyEII5b7OxwTWEkiGhfnPHRW2VnQO777MwOyltsCGIO4A
- Rf49B42n+7U7tXHxqCN48ktluMOW7aOIaRBQNPEHCFohcUci4E3v3
+X-UI-Out-Filterresults: notjunk:1;V03:K0:+QDhVOF4bgQ=:0VNFKV52MZawUlao+T7Lxd
+ gYzJXJ7TPNd2idUBmL8p0VhFr2jFNKCypSTJ+9uqgbEh5ch5Uybvg8j1ReWSERx91kTqsdtIC
+ xIozrfhtagb0uyYOnEYOHSoulxmgnVaKmadFZGvYAcGMh3RODYiG25eTwTUjVDQJ2h1nCDe1a
+ Phfe2PUJJBil0AFMkw9ydXExhOLstQWoFMRIF4bvaILeSsboJETdavUf90Ke2rLHuk+usGnTi
+ 5TbCIaXApxremtNHnI/4z9CNcELoKfu5k5ixqEymuKlKZ836NbpayESwz9fysHEp4Z0iJGGMS
+ fWaEjPyp3X5VgzuSAzqouwhJYelWMIhf3GWvNu9mlroa3JTT1j0e19a/DgyQcTZvJFz1qa4zz
+ g1ZPf9kHoUXLJSPojeum9Euzn6SgCuMCuD73Etmg3BD3RkGDe3H9ZS9mvmi/JgBsLQ9obLjdD
+ ZSo06WkDBJ3yCIRaOxqXkp/jL92JuBOPY1CGzm1VLHBGSoTPShhcV53s2qYJgWOxtox080tca
+ qiq3XW3jzYaOa+z4/wp39BgR3JpiRtYk/fhiLNqtlu+MTIl/5MAwHMnP5lFbB6Ksy4cY8o2DP
+ jkU8jximE4iVem4sILrQUjuS9crCcxdE0EEmV/IzYrxj46RBCC/HUfkVBIkDgWFNcw5gW2S4N
+ VkBZCaCjlFcmk0E1YaaS+CeyUImhb8OTBg0+wLgAyF+bHJN/KEALQoBbsd8P20DNiK6GNWysM
+ CsvFhjgLcZdBAj3F9LtSL9Yk2RWhGFFI4ydBvK1qkMqY+S9YQDmBj4jAKYoFqQD2x8siBU/qN
+ oLIwtBcEa61mjvYqtvlFdbjyXwarDWCjTX8iQ5/CaJ6vQ+QYaNW+JZOVOmTJvYpaiuyXLwLIT
+ TtRXaqf5BD8P5fH0WP8J+d/tYXOqSyvoguESxqfBw8ScRTBgpAqSLkCWTVWSIml1SacA3G3s8
+ svZXe7W/AcYY9cOIrTgdxrM2xtPrzST0Zucu8E/EE3SlX+uhlDIWq
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 8, 2020 at 7:50 PM Daniele Alessandrelli
-<daniele.alessandrelli@linux.intel.com> wrote:
->
-> Hi,
->
-> This patch-set adds initial support for a new Intel Movidius SoC code-named
-> Keem Bay. The SoC couples an ARM Cortex A53 CPU with an Intel Movidius VPU.
->
-> This initial patch-set enables only the minimal set of components required
-> to make the Keem Bay EVM board boot into initramfs.
->
-> Changes from v1 to v2:
-> * Moved keembay-scmi-mailbox driver to a separate patchset
-> * Removed Keem Bay SCMI mailbox and SCMI node from Keem Bay SoC device tree
+On Tue, Jul 14, 2020 at 2:39 PM Horia Geantă <horia.geanta@nxp.com> wrote:
+> diff --git a/drivers/char/hw_random/Kconfig b/drivers/char/hw_random/Kconfig
+> index 8478eb757f3c..98f95a09ce55 100644
+> --- a/drivers/char/hw_random/Kconfig
+> +++ b/drivers/char/hw_random/Kconfig
+> @@ -255,7 +255,7 @@ config HW_RANDOM_MXC_RNGA
+>  config HW_RANDOM_IMX_RNGC
+>         tristate "Freescale i.MX RNGC Random Number Generator"
+>         depends on HAS_IOMEM && HAVE_CLK
+> -       depends on SOC_IMX25 || COMPILE_TEST
+> +       depends on SOC_IMX25 || SOC_IMX6SL || SOC_IMX6SLL || SOC_IMX6UL || COMPILE_TEST
+>         default HW_RANDOM
 
-This all looks basically ok, but I noticed that the DT bindings ands
-DTS files all have a
-"GPL-2.0-only" tag. Usually we make those dual-licensed in order to
-make it easier
-to distribute them with a non-GPL bootloader and synchronize them between
-projects.
+Are these the only chips that have it? If other i.MX variations have
+the same block,
+or might have it in the future, maybe just generialize the dependency
+to SOC_IMX6
+or ARCH_IMX?
 
-Do you know if the GPL-2.0-only part was picked intentionally, or if it can
-be changed to dual-licensed?
+> diff --git a/drivers/char/hw_random/imx-rngc.c b/drivers/char/hw_random/imx-rngc.c
+> index 9c47e431ce90..84576d2fbf8c 100644
+> --- a/drivers/char/hw_random/imx-rngc.c
+> +++ b/drivers/char/hw_random/imx-rngc.c
+> @@ -350,6 +350,9 @@ static SIMPLE_DEV_PM_OPS(imx_rngc_pm_ops, imx_rngc_suspend, imx_rngc_resume);
+>
+>  static const struct of_device_id imx_rngc_dt_ids[] = {
+>         { .compatible = "fsl,imx25-rngb", .data = NULL, },
+> +       { .compatible = "fsl,imx6sl-rngb", .data = NULL, },
+> +       { .compatible = "fsl,imx6sll-rngb", .data = NULL, },
+> +       { .compatible = "fsl,imx6ull-rngb", .data = NULL, },
+>         { /* sentinel */ }
 
-      Arnd
+In the .dts file you describe the devices as compatible with fsl,imx25-rngb,
+so this change is not really needed, unless you want to add non-NULL
+.data fields in a follow-up. It is usually a good idea to have the more
+specialized compatible strings in the DT, but the driver change won't
+do anything here.
+
+       Arnd
