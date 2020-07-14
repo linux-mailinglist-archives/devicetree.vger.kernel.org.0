@@ -2,96 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7681921FFA8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 23:10:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E1B221FFB7
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 23:11:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728092AbgGNVJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jul 2020 17:09:47 -0400
-Received: from mail-il1-f194.google.com ([209.85.166.194]:43510 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726750AbgGNVJr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jul 2020 17:09:47 -0400
-Received: by mail-il1-f194.google.com with SMTP id i18so43204ilk.10;
-        Tue, 14 Jul 2020 14:09:46 -0700 (PDT)
+        id S1727969AbgGNVLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jul 2020 17:11:25 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:41130 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726960AbgGNVLZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jul 2020 17:11:25 -0400
+Received: by mail-io1-f67.google.com with SMTP id p205so10306535iod.8;
+        Tue, 14 Jul 2020 14:11:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=7n1eCfcIXRzp8Zf/h32IGI3ysZU8V6mXbcHVjQ48LpM=;
-        b=pyKmC1iUGPTpESp5UMsKKB8qMGHSZYTG3QAWfP9O6DfL/dhCSRBo7hYqVDFUPQLbXB
-         AwtEVltT2cRklulEZ5N08nsVNMdUmf1Y608Q0vHnEXmwsYfnUWa3a+xXiC1TJj4XNZYV
-         E53s+iO0ATpir+MMmN3vryeS8+96VWAtl/plIKUtZvHGP6ksq4E5SfaJTMQ8LxdUaHj1
-         bpFHsfLQ2v+8f4t21pg0RFTz8xIBCJ/w6xmhN69Lrc4JVbUHqg3SJDtSH0kZ6D4pUIbg
-         2sEfEl2BuFI+cqSoTEMlVSBm/HfCSBjuONy29rRbZRQzQS6seBFRKUyUb9z3EBU/0sUv
-         CkOg==
-X-Gm-Message-State: AOAM531wDsS6JMD2Ob2ASYR5HEziOU31/RMklbkWn4yEEB+LvkuVuvGl
-        4pERuDrNz5WLvxS+/7H8dh7//cK03ZTK
-X-Google-Smtp-Source: ABdhPJy2M+RM7ODxSIifUBuOn2xzZSlv5UJSECY0kHYVvd6TGRWoVCEMCkEvE+CKWf8plGmQrP4TkA==
-X-Received: by 2002:a92:6a02:: with SMTP id f2mr5984073ilc.68.1594760986430;
-        Tue, 14 Jul 2020 14:09:46 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=5Swq7a5ctRoc+RuUYTUtL7qfmQuMHqbMs5u22W+BDmI=;
+        b=f0lxcX8VuyTB5tLjjCGW/mImBTsdeHub4NYpK0PrOmigpfRRTT4i+OBSuH0StOBbF+
+         TGh1Re8U4eYTJgjJVVFLYNkhU1Mh9YzvXsEYZsm32QLnI8q6r+d30UpSHWWqTFBlFilo
+         sL7uOanNLXABFE06IH+moucIh07Rfb0TRiHQgchM40KVNX38UN8ReHBkkzJWlSW2EiS1
+         bhUDqGKc46XKp6MlITNTFsWO/EZwUyw2qT3ZBvn4NvnCBtNP6O00t8khwVtpW78jfLvC
+         dtWD8PeullDzBmkZQAJD5eOHTX8hN1QvuK6aznSf3gjglHB3VjdZXknXp5TqxRC6+6eM
+         cOTg==
+X-Gm-Message-State: AOAM530ywV6YyNhsteMAFH3X22wAgwAXFCokPL37JbrW2rZX6GjVtDgA
+        rkWL2uJnCNKoFCx57TM/jQ==
+X-Google-Smtp-Source: ABdhPJxQmB+aTO4ntgpsDZOBSbGOX3QoKNxusCrXTBL7nhUHdW/a1NUULt6jrIxYZguq5sV6SCOjow==
+X-Received: by 2002:a6b:8f04:: with SMTP id r4mr6811433iod.160.1594761084379;
+        Tue, 14 Jul 2020 14:11:24 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id x71sm57098ilk.43.2020.07.14.14.09.44
+        by smtp.gmail.com with ESMTPSA id v4sm53032ilo.44.2020.07.14.14.11.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jul 2020 14:09:45 -0700 (PDT)
-Received: (nullmailer pid 2921463 invoked by uid 1000);
-        Tue, 14 Jul 2020 21:09:44 -0000
-Date:   Tue, 14 Jul 2020 15:09:44 -0600
+        Tue, 14 Jul 2020 14:11:23 -0700 (PDT)
+Received: (nullmailer pid 2924676 invoked by uid 1000);
+        Tue, 14 Jul 2020 21:11:22 -0000
+Date:   Tue, 14 Jul 2020 15:11:22 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>
-Cc:     Franck Lenormand <franck.lenormand@nxp.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Matt Mackall <mpm@selenic.com>,
-        Iuliana Prodan <iuliana.prodan@nxp.com>,
-        linux-crypto@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Martin Kaiser <martin@kaiser.cx>,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Shawn Guo <shawnguo@kernel.org>,
-        Silvano Di Ninno <silvano.dininno@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: Re: [PATCH v3 1/5] dt-bindings: rng: add RNGB compatibles for i.MX6
- SoCs
-Message-ID: <20200714210944.GA2921406@bogus>
-References: <20200714123920.23711-1-horia.geanta@nxp.com>
- <20200714123920.23711-2-horia.geanta@nxp.com>
+To:     Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
+Cc:     linux-arm-kernel@lists.infradead.org, SoC Team <soc@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        "Paul J. Murphy" <paul.j.murphy@intel.com>,
+        Dinh Nguyen <dinguyen@kernel.org>
+Subject: Re: [PATCH v3 2/7] dt-bindings: arm: Add Keem Bay bindings
+Message-ID: <20200714211122.GA2921587@bogus>
+References: <20200714161305.836348-1-daniele.alessandrelli@linux.intel.com>
+ <20200714161305.836348-3-daniele.alessandrelli@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200714123920.23711-2-horia.geanta@nxp.com>
+In-Reply-To: <20200714161305.836348-3-daniele.alessandrelli@linux.intel.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Jul 2020 15:39:16 +0300, Horia Geantă wrote:
-> RNGB block is found in some i.MX6 SoCs - 6SL, 6SLL, 6ULL, 6ULZ.
-> Add corresponding compatible strings.
+On Tue, Jul 14, 2020 at 05:13:00PM +0100, Daniele Alessandrelli wrote:
+> From: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
 > 
-> Note:
+> Document Intel Movidius SoC code-named Keem Bay, along with the Keem Bay
+> EVM board.
 > 
-> Several NXP SoC from QorIQ family (P1010, P1023, P4080, P3041, P5020)
-> also have a RNGB, however it's part of the CAAM
-> (Cryptograhic Accelerator and Assurance Module) crypto accelerator.
-> In this case, RNGB is managed in the caam driver
-> (drivers/crypto/caam/), since it's tightly related to
-> the caam "job ring" interface, not to mention CAAM internally relying on
-> RNGB as source of randomness.
-> 
-> On the other hand, the i.MX6 SoCs with RNGB have a DCP
-> (Data Co-Processor) crypto accelerator and this block and RNGB
-> are independent.
-> 
-> Signed-off-by: Horia Geantă <horia.geanta@nxp.com>
+> Reviewed-by: Dinh Nguyen <dinguyen@kernel.org>
+> Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
 > ---
->  Documentation/devicetree/bindings/rng/imx-rng.txt | 3 +++
->  1 file changed, 3 insertions(+)
-> 
+>  .../devicetree/bindings/arm/keembay.yaml      | 19 +++++++++++++++++++
+
+/intel,keembay.yaml
+
+With that,
 
 Reviewed-by: Rob Herring <robh@kernel.org>
+
+>  1 file changed, 19 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/keembay.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/keembay.yaml b/Documentation/devicetree/bindings/arm/keembay.yaml
+> new file mode 100644
+> index 000000000000..f81b110046ca
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/keembay.yaml
+> @@ -0,0 +1,19 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/keembay.yaml#
+
+And don't forget this update.
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Keem Bay platform device tree bindings
+> +
+> +maintainers:
+> +  - Paul J. Murphy <paul.j.murphy@intel.com>
+> +  - Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +        - intel,keembay-evm
+> +      - const: intel,keembay
+> +...
+> -- 
+> 2.26.2
+> 
