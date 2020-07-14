@@ -2,204 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EACFD21E809
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 08:22:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8397C21E81C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 08:30:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726817AbgGNGWw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jul 2020 02:22:52 -0400
-Received: from mail-dm6nam12on2078.outbound.protection.outlook.com ([40.107.243.78]:9955
-        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726517AbgGNGWh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Jul 2020 02:22:37 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CsRaI+jYsYWVBuAtx6Dg3Q6GMP+82x1IsMqhEQCW1sOcvPOk6B18SUiKvBxMcVFMSF5jWaqdGgULo1r2UTze47oNmxfhGQGVE4nmU3E6eRpH9fTjRv9+ySAX78RJkB4LSNn7hIw7sIYLCHvjqB0TLqZmgpIkbxr+tz7zPQC4Nynd/2T25gNFuLx7F3prMZ8efFZFJ4cWRsfy/oAcWCk65NLhzzbI2fBcVZIOxJ6CchBxYmLuoZOer3bbgX38uGDzcBWPS8KErwbFKq5wUWmomo9/FufR3+O1tWWzDpPK86s0OVcL+nKPyRJEZpcorge6a8TUC4cimbmzoeqscZ0F9A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LQVpxY9/TFCjIlq2ZXDNOjZ121+4YVrQlaJhBZjfwls=;
- b=NWXQSYh66NjA7A9+TD0BN8Oa7TZyTKDH0SopS+tk+AeI7FqQrJv6VrQx4EyXMaxxtiSZQHBnomiZOrofFIry6YRxfwGSYVUjmZwVWdmdgq+vkBd+aewriEuMGbpkWPfId1Se9weQEma/QJcmnFgEmvqIAbD4NUjUYp5c1lWnkGa3rdlkJn2aV6r/tKNizAJR6iWxZjCVfNzVHB5UHS9ESLqUHaM2THRdm2fHko5PgxdYqLo9cDDkmgvaB5PPm0M8yULfqCxNeGnkGe8vUSOhCPMVsMNvfl4N9RAx0m0t1xr6q5Lo90McY5/b1rc2PCOZ246Ax+TUcMZgsYnxoCw4Xg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.60.83) smtp.rcpttodomain=avnet.com smtp.mailfrom=xilinx.com;
- dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
- not signed); arc=none
+        id S1726061AbgGNGar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jul 2020 02:30:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36368 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725306AbgGNGar (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jul 2020 02:30:47 -0400
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC5C9C061755;
+        Mon, 13 Jul 2020 23:30:46 -0700 (PDT)
+Received: by mail-ej1-x644.google.com with SMTP id p20so20291316ejd.13;
+        Mon, 13 Jul 2020 23:30:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LQVpxY9/TFCjIlq2ZXDNOjZ121+4YVrQlaJhBZjfwls=;
- b=MwozJUytGZXoxztso/7XxyHtrXzpJWJYA1qiSYPJTYfsK9Eo3FyAgGjpfLsixSmaFn+5JLvJWAxKMJhvxU5MHiubFYD65et8ZZN+y/n5eOB3R08vKxmUnV+ee1ZW30Lv7+MHi8NPGeu9/J7aKiR9wD47NEqMqq7UA9weyVzGGME=
-Received: from SN4PR0701CA0010.namprd07.prod.outlook.com
- (2603:10b6:803:28::20) by DM6PR02MB5306.namprd02.prod.outlook.com
- (2603:10b6:5:41::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.21; Tue, 14 Jul
- 2020 06:22:35 +0000
-Received: from SN1NAM02FT013.eop-nam02.prod.protection.outlook.com
- (2603:10b6:803:28:cafe::a3) by SN4PR0701CA0010.outlook.office365.com
- (2603:10b6:803:28::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.22 via Frontend
- Transport; Tue, 14 Jul 2020 06:22:35 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.60.83)
- smtp.mailfrom=xilinx.com; avnet.com; dkim=none (message not signed)
- header.d=none;avnet.com; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
-Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
- SN1NAM02FT013.mail.protection.outlook.com (10.152.72.98) with Microsoft SMTP
- Server id 15.20.3174.21 via Frontend Transport; Tue, 14 Jul 2020 06:22:34
- +0000
-Received: from [149.199.38.66] (port=48880 helo=xsj-pvapsmtp01)
-        by xsj-pvapsmtpgw01 with esmtp (Exim 4.90)
-        (envelope-from <lakshmi.sai.krishna.potthuri@xilinx.com>)
-        id 1jvEJB-00033w-J7; Mon, 13 Jul 2020 23:20:53 -0700
-Received: from localhost ([127.0.0.1] helo=xsj-pvapsmtp01)
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <lakshmi.sai.krishna.potthuri@xilinx.com>)
-        id 1jvEKn-00046D-Vz; Mon, 13 Jul 2020 23:22:34 -0700
-Received: from [10.140.6.35] (helo=xhdsaipava40.xilinx.com)
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <lakshmis@xhdsaipava40.xilinx.com>)
-        id 1jvEKn-000467-9O; Mon, 13 Jul 2020 23:22:33 -0700
-Received: by xhdsaipava40.xilinx.com (Postfix, from userid 14964)
-        id 6237213C05CF; Tue, 14 Jul 2020 11:59:11 +0530 (IST)
-From:   Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, git@xilinx.com,
-        saikrishna12468@gmail.com,
-        Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
-Subject: [PATCH 2/2] reset: reset-zynqmp: Added support for Versal platform
-Date:   Tue, 14 Jul 2020 11:59:09 +0530
-Message-Id: <1594708149-29944-3-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1594708149-29944-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
-References: <1594708149-29944-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
-X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
-X-TM-AS-User-Approved-Sender: Yes;Yes
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:149.199.60.83;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapsmtpgw01;PTR:unknown-60-83.xilinx.com;CAT:NONE;SFTY:;SFS:(39860400002)(376002)(396003)(136003)(346002)(46966005)(81166007)(110136005)(82310400002)(2616005)(356005)(336012)(426003)(186003)(70586007)(26005)(83380400001)(70206006)(47076004)(8676002)(6266002)(107886003)(36756003)(82740400003)(316002)(42186006)(6636002)(2906002)(478600001)(8936002)(5660300002)(4326008);DIR:OUT;SFP:1101;
-X-MS-PublicTrafficType: Email
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: baa13902-8122-4216-6e4f-08d827be4c3a
-X-MS-TrafficTypeDiagnostic: DM6PR02MB5306:
-X-LD-Processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
-X-Microsoft-Antispam-PRVS: <DM6PR02MB53063F3E21DF1B63FB51E106BD610@DM6PR02MB5306.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DIp/ytC/rIKSF1LQlx2U9eWVrcE2nKgJwvBveTYXG3vczxjwkMMbtFFSH9CywbnzKebx4UEg8InCbn4b/5gYHNW9L9+pf/Cm33k6imTNzHeDUpAPZbWgLbZ6ryZA5F1zbj9UIusGHfcwSOej4A4Qz3L6/c5oO8GASI0jmZ0lKJTitqYkMIfsRH6pm89jX6851Ko3ZUwp2pHEw1YC9rvSz779qPlbuhB2SPiG6z/iJySgzebtV9L1kDmoWwHnpKqfF7iF3MJv6huReBhlMUWqE7OVDavdmGESZSx5B0KDH8oCQOdJsLGqpf3EP/PHYEKOoK2rzggbgDUn5lJQoIfAYx/O0CBYjF+i8b7pxFJudcNRo2BBHe0FdgXWQHJGJlbYYfDs8RLdqlCgUrAcu1P6lA==
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2020 06:22:34.8982
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: baa13902-8122-4216-6e4f-08d827be4c3a
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT013.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB5306
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=WDXrzFVh8dPZdUoaPn9Fet8aXFJz7P/2Be+BzrI1pyE=;
+        b=tejj1ErpQNUFtDQMvGW9bNJg1jL6/aKDikj/iPRu5NslOsOp8I0oMU00udNnzmvkSl
+         9qcb2UF9fOj7gxy9Bb9qGzhAI5oy8kaZxB7aml6Y9PXjgQ8npgdvlJ/2oUsj7f9yNvsh
+         +46uOq5N/gkxy9DMtPqpec4S9ttrBprc+xllZHy2kys81rZcPF38FSpo0hS2m9eLQVou
+         C3WsBKCit60KkpttjuFIW2wGybzq1TaOM/4nuuUfkAS8AqAkz35qGYAbv6OrzoP7xtUv
+         uNrIgOoSsKCl+AIVpgHf114ORPpn8++e2u1B+5frd43DvhfG2kLppJQFIKjARSaWNYjT
+         HSIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=WDXrzFVh8dPZdUoaPn9Fet8aXFJz7P/2Be+BzrI1pyE=;
+        b=DPk7ab+CYe849ge4jQobl0UvayOx8armaOj2dgVVyV4HYd12jRzYtEz0pSPBLTH59y
+         H0d5yA1gzBrnk5M97ojKhEzbWJxp/oNKxbFL8o5huVn5MT8LTr+sxKFSIYEOGsr9X2sf
+         6+ke4HFPkoQ0dhlxuidNcfFtQCyDUB7HPJM3nrqr/o5Nuq9t8QMPXTrCfPYyQFUVRTqp
+         CdGYw3nngJtTZr/W2yp0aKuJqo5/ydUXl28k9KnolB7MpizeNmKHnjNKziyg23qPqb+H
+         eCAVAR5pBgKBeP2NND36E3a4Z8cdDSplJBbx5Jq4xg6eLWRCQoIsncq1byHUlPwN8PuG
+         MqDg==
+X-Gm-Message-State: AOAM533hLCfRv+PLzEJeyGuoLjaisjzXfg3HabPDBbygPsRZu3z+/MDb
+        o9NN1J+A0v/z7wlnZK+pJF4=
+X-Google-Smtp-Source: ABdhPJzAtUV4CLIhPpcRbq3dMdTeGC4Ii5aCix/QzePzBrI1bss70Hgw/d/GfQSJxOxUjCJSShMaNA==
+X-Received: by 2002:a17:906:3784:: with SMTP id n4mr196820ejc.277.1594708245450;
+        Mon, 13 Jul 2020 23:30:45 -0700 (PDT)
+Received: from felia.fritz.box ([2001:16b8:2d88:ea00:c4fb:750d:a5d0:9d75])
+        by smtp.gmail.com with ESMTPSA id t20sm11618717ejd.124.2020.07.13.23.30.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jul 2020 23:30:44 -0700 (PDT)
+From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
+To:     Jeff Chase <jnchase@google.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     Rob Herring <robh@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        Ralf Ramsauer <ralf.ramsauer@oth-regensburg.de>,
+        Pia Eichinger <pia.eichinger@st.oth-regensburg.de>,
+        Joe Perches <joe@perches.com>, kernel-janitors@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Subject: [PATCH] MAINTAINERS: rectify CHRONTEL CH7322 CEC DRIVER section
+Date:   Tue, 14 Jul 2020 08:30:35 +0200
+Message-Id: <20200714063035.8635-1-lukas.bulwahn@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Updated the reset driver to support Versal platform.
-As part of adding Versal support
-- Added Versal specific compatible string.
-- Reset Id and number of resets are different for Versal and ZynqMP,
-hence taken care of these two based on compatible string.
+Commit 7f52faabd2e5 ("media: dt-bindings: Add ch7322 media i2c device")
+slipped in a typo in the CHRONTEL CH7322 CEC DRIVER section.
 
-Signed-off-by: Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
+Hence, ./scripts/get_maintainer.pl --self-test=patterns complains:
+
+    warning: no file matches    F: \
+        Documentation/devicetree/bindings/media/i2c/chontel,ch7322.yaml
+
+Fix the typo to address this warning.
+
+Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
 ---
- drivers/reset/reset-zynqmp.c | 24 ++++++++++++++++++++----
- 1 file changed, 20 insertions(+), 4 deletions(-)
+applies on next-20200713
 
-diff --git a/drivers/reset/reset-zynqmp.c b/drivers/reset/reset-zynqmp.c
-index 373ea8d4f7a1..17aa4532ec5e 100644
---- a/drivers/reset/reset-zynqmp.c
-+++ b/drivers/reset/reset-zynqmp.c
-@@ -12,9 +12,11 @@
+Jeff, please ack this patch.
+Hans, please pick this minor non-urgent patch for your -next tree.
+
+ MAINTAINERS | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index ea296f213e45..43661d432b4b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -4114,7 +4114,7 @@ M:	Jeff Chase <jnchase@google.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ T:	git git://linuxtv.org/media_tree.git
+-F:	Documentation/devicetree/bindings/media/i2c/chontel,ch7322.yaml
++F:	Documentation/devicetree/bindings/media/i2c/chrontel,ch7322.yaml
+ F:	drivers/media/cec/i2c/ch7322.c
  
- #define ZYNQMP_NR_RESETS (ZYNQMP_PM_RESET_END - ZYNQMP_PM_RESET_START)
- #define ZYNQMP_RESET_ID ZYNQMP_PM_RESET_START
-+#define VERSAL_NR_RESETS	95
- 
- struct zynqmp_reset_data {
- 	struct reset_controller_dev rcdev;
-+	u32 reset_id;
- };
- 
- static inline struct zynqmp_reset_data *
-@@ -26,23 +28,28 @@ to_zynqmp_reset_data(struct reset_controller_dev *rcdev)
- static int zynqmp_reset_assert(struct reset_controller_dev *rcdev,
- 			       unsigned long id)
- {
--	return zynqmp_pm_reset_assert(ZYNQMP_RESET_ID + id,
-+	struct zynqmp_reset_data *priv = to_zynqmp_reset_data(rcdev);
-+
-+	return zynqmp_pm_reset_assert(priv->reset_id + id,
- 				      PM_RESET_ACTION_ASSERT);
- }
- 
- static int zynqmp_reset_deassert(struct reset_controller_dev *rcdev,
- 				 unsigned long id)
- {
--	return zynqmp_pm_reset_assert(ZYNQMP_RESET_ID + id,
-+	struct zynqmp_reset_data *priv = to_zynqmp_reset_data(rcdev);
-+
-+	return zynqmp_pm_reset_assert(priv->reset_id + id,
- 				      PM_RESET_ACTION_RELEASE);
- }
- 
- static int zynqmp_reset_status(struct reset_controller_dev *rcdev,
- 			       unsigned long id)
- {
-+	struct zynqmp_reset_data *priv = to_zynqmp_reset_data(rcdev);
- 	int val, err;
- 
--	err = zynqmp_pm_reset_get_status(ZYNQMP_RESET_ID + id, &val);
-+	err = zynqmp_pm_reset_get_status(priv->reset_id + id, &val);
- 	if (err)
- 		return err;
- 
-@@ -52,7 +59,9 @@ static int zynqmp_reset_status(struct reset_controller_dev *rcdev,
- static int zynqmp_reset_reset(struct reset_controller_dev *rcdev,
- 			      unsigned long id)
- {
--	return zynqmp_pm_reset_assert(ZYNQMP_RESET_ID + id,
-+	struct zynqmp_reset_data *priv = to_zynqmp_reset_data(rcdev);
-+
-+	return zynqmp_pm_reset_assert(priv->reset_id + id,
- 				      PM_RESET_ACTION_PULSE);
- }
- 
-@@ -76,13 +85,20 @@ static int zynqmp_reset_probe(struct platform_device *pdev)
- 	priv->rcdev.ops = &zynqmp_reset_ops;
- 	priv->rcdev.owner = THIS_MODULE;
- 	priv->rcdev.of_node = pdev->dev.of_node;
-+	priv->reset_id = ZYNQMP_RESET_ID;
- 	priv->rcdev.nr_resets = ZYNQMP_NR_RESETS;
-+	if (of_device_is_compatible(pdev->dev.of_node,
-+				    "xlnx,versal-reset")) {
-+		priv->reset_id = 0;
-+		priv->rcdev.nr_resets = VERSAL_NR_RESETS;
-+	}
- 
- 	return devm_reset_controller_register(&pdev->dev, &priv->rcdev);
- }
- 
- static const struct of_device_id zynqmp_reset_dt_ids[] = {
- 	{ .compatible = "xlnx,zynqmp-reset", },
-+	{ .compatible = "xlnx,versal-reset", },
- 	{ /* sentinel */ },
- };
- 
+ CIRRUS LOGIC AUDIO CODEC DRIVERS
 -- 
 2.17.1
 
