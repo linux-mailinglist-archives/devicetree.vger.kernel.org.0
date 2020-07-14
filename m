@@ -2,93 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 182C421EF4D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 13:31:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5883D21EF5F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 13:36:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727863AbgGNLbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jul 2020 07:31:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46246 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726041AbgGNLbd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Jul 2020 07:31:33 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726955AbgGNLgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jul 2020 07:36:25 -0400
+Received: from us-smtp-1.mimecast.com ([205.139.110.61]:42418 "EHLO
+        us-smtp-1.mimecast.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726041AbgGNLgY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jul 2020 07:36:24 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1594726583;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=4KHHcRC2VLgrkJIS1heGnq6O4q6D/sHPLprylxHZT2M=;
+        b=NO4iCP+9RwRB+Tp9Hvr9CHZPXlYfMKLdLBqZErmaXSKFAMr/olnmf3N8Ea3abgqCFoQ1iF
+        jW8M98Fe2wJKuQCWsdZQrGmfJ369EDzZH2hkODz/dNwGTqxt9twRhvO6Lwk8AOYgSqTNus
+        q3xMQUa2SThZU5EC2PVFylzy9Q1nFE8=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-22-fQEPAtMEN-qURFflfOpU6w-1; Tue, 14 Jul 2020 07:36:21 -0400
+X-MC-Unique: fQEPAtMEN-qURFflfOpU6w-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com [10.5.11.13])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8D16D22203;
-        Tue, 14 Jul 2020 11:31:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1594726293;
-        bh=ByDfIhzyLIF+vxT7O3HCwTlGfVoDr8iCeDZjjO1kjSE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=2ojMGVQNRvCT1i+Lq3g27M788fPIs2mQipsfzj6Dbax+imQP17p2RvPs07Esdj3KN
-         n1zxv+Et6cLRWsHjPxZpKuvxqlQNRjw7H7qfiCMSh1OYaWtxm310M2qTiG+P0e2U6Z
-         pMUbCrTHeYLX0E9UkKbQZVMoKLSSdzUCdQHlBb0E=
-Date:   Tue, 14 Jul 2020 12:31:24 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Masahiro Yamada <masahiroy@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
-        DTML <devicetree@vger.kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        - <alsa-devel@alsa-project.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 7DDFD107ACCA;
+        Tue, 14 Jul 2020 11:36:20 +0000 (UTC)
+Received: from x1.localdomain.com (ovpn-114-109.ams2.redhat.com [10.36.114.109])
+        by smtp.corp.redhat.com (Postfix) with ESMTP id 9BF18797E3;
+        Tue, 14 Jul 2020 11:36:18 +0000 (UTC)
+From:   Hans de Goede <hdegoede@redhat.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
         Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: ASoC: Convert UniPhier EVEA codec to
- json-schema
-Message-ID: <20200714113124.GD4900@sirena.org.uk>
-References: <20200623114005.791643-1-yamada.masahiro@socionext.com>
- <20200714022252.GA1151466@bogus>
- <CAK7LNAQrdqztMrHtAHnbMkxeaDLLyBS68WVovev+zytHdD7RVQ@mail.gmail.com>
- <20200714095259.GB4900@sirena.org.uk>
- <CAK7LNARUwPRtG0uMZ4rwr7=+3wa9X1B70AXbnFL-CF1_wMvevw@mail.gmail.com>
+Cc:     Hans de Goede <hdegoede@redhat.com>,
+        Tobias Schramm <t.schramm@manjaro.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: PATCH 0/4] usbd: typec: fusb302: Add support for specifying supported alternate-modes through devicetree/fwnodes
+Date:   Tue, 14 Jul 2020 13:36:13 +0200
+Message-Id: <20200714113617.10470-1-hdegoede@redhat.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="oj4kGyHlBMXGt3Le"
-Content-Disposition: inline
-In-Reply-To: <CAK7LNARUwPRtG0uMZ4rwr7=+3wa9X1B70AXbnFL-CF1_wMvevw@mail.gmail.com>
-X-Cookie: Your password is pitifully obvious.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi All,
 
---oj4kGyHlBMXGt3Le
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This is a replacement series for an earlier attempt by me for this
+from quite a while ago:
 
-On Tue, Jul 14, 2020 at 08:08:45PM +0900, Masahiro Yamada wrote:
-> On Tue, Jul 14, 2020 at 6:53 PM Mark Brown <broonie@kernel.org> wrote:
+https://patchwork.kernel.org/patch/11199517/
 
-> > No, bindings changes usually go through the subsystem - if there's any
-> > other work on the binding then it'll usually also involve driver
-> > changes.
+As discussed there, this series implements an altmodes devicetree-fwnode
+under the usb-connector node which has 1 child-node per supported
+altmode and in that child-node the svid and vdo for the supported
+altmode are specified.
 
-> OK, then please apply the following two if they look good.
+Note this patch-set does not contain any devicetree users of the
+new bindings. The new support/binding is used on X86 Cherry Trail
+devices with a fusb302 Type-C controller (special variant of the
+INT33FE device in ACPI). But this patch should also help getting
+Display Port altmode to work with the mainline kernel on boards
+like the Pine RockPro64 and Pinebook Pro, which is why I've added
+Tobias Schramm to the Cc since he has done mainline devicetree
+work for the Pinebook Pro in the past.
 
-> https://lore.kernel.org/patchwork/patch/1261568/
-> https://lore.kernel.org/patchwork/patch/1261569/
+The 1st patch adds the dt-bindings docs. I'm not sure if this one
+should go upstream through the USB tree together with patches 2-3 or
+if this should go upstream separately, Rob ?
 
-> Both got Rob's Reviewed-by.
+Patches 2-3 add support for the new binding to Type-C controller drivers
+using the tcpm framework, such as the fusb302 driver.
 
-Only today...
+Patch 4 uses swnodes to add the altmode info on the earlier mentioned
+X86 CHT devices, making DP-altmode work there for the first time.
 
---oj4kGyHlBMXGt3Le
-Content-Type: application/pgp-signature; name="signature.asc"
+Regards,
 
------BEGIN PGP SIGNATURE-----
+Hans
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl8Nl4sACgkQJNaLcl1U
-h9DDjQf+ICe/5B7o/Oiyd40Fde/y+G/XbqI09gtp9WstNujmZycGh1Ay9lDK6mWE
-l0GU3797amc+EOUhRKxHBvwwVnqKzNw6cDzDvskzKMzZfOW3d4OIRUF/lhy5RZiV
-9JMRdrwfadw8Wuw8wtVVN0y61xM7HsdKTFCdCIJOZnvm5fWeVweBu99fNxooHQKP
-yFIfSlOyAvA4ASbhLOyNr1ZLfKQIgpTqn3JYP2YsxSlwujGXTD2X4CrKMIcn5IES
-KSv8q4XKLlNf9rirc9U3K2ikaw3hJSbTSy55+cMsTgoy7WwjJUgBCLC4/zqyvOc6
-RDbGRwjDz/WsYtex4W5gNBgzxstL6g==
-=UlzO
------END PGP SIGNATURE-----
-
---oj4kGyHlBMXGt3Le--
