@@ -2,93 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B3DD21F6EA
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 18:14:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E66F21F711
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 18:18:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728177AbgGNQOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jul 2020 12:14:34 -0400
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:7132 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726817AbgGNQOd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jul 2020 12:14:33 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5f0dd9af0001>; Tue, 14 Jul 2020 09:13:35 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Tue, 14 Jul 2020 09:14:33 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Tue, 14 Jul 2020 09:14:33 -0700
-Received: from [10.24.37.103] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 14 Jul
- 2020 16:14:25 +0000
-Subject: Re: [TEGRA194_CPUFREQ PATCH v5 1/4] dt-bindings: arm: Add t194 ccplex
- compatible and bpmp property
-To:     Rob Herring <robh@kernel.org>
-CC:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Will Deacon" <will@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        <devicetree@vger.kernel.org>, Jon Hunter <jonathanh@nvidia.com>,
-        Timo Alho <talho@nvidia.com>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        <bbasu@nvidia.com>, Mikko Perttunen <mperttunen@nvidia.com>,
-        Sumit Gupta <sumitg@nvidia.com>
-References: <1594649209-29394-1-git-send-email-sumitg@nvidia.com>
- <1594649209-29394-2-git-send-email-sumitg@nvidia.com>
- <20200713164214.GA341271@bogus>
- <70a0a8ee-b79a-2a05-5150-2ee0faaf2730@nvidia.com>
- <CAL_JsqL1CuumdT1CZiofEZw9j+3gsir8JwSrZVfcxFxEB=bavQ@mail.gmail.com>
-From:   Sumit Gupta <sumitg@nvidia.com>
-Message-ID: <ebc98e4b-1f94-e9a5-cad4-0677f4e440f7@nvidia.com>
-Date:   Tue, 14 Jul 2020 21:44:22 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1727898AbgGNQSS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jul 2020 12:18:18 -0400
+Received: from mga05.intel.com ([192.55.52.43]:55862 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725876AbgGNQSS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Jul 2020 12:18:18 -0400
+IronPort-SDR: qUaFIV6Ek4VO4F7jEEhBqUESBD1o+iItkVztJPDxdKUcyu5RrtBvgiISvltaqHUefzZQY5wys9
+ zLs2xqSzJbsg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9681"; a="233813989"
+X-IronPort-AV: E=Sophos;i="5.75,350,1589266800"; 
+   d="scan'208";a="233813989"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2020 09:18:18 -0700
+IronPort-SDR: HN+vpBCYu9KmC3INIgKGNBMsFh/JR6Q0OcGv5RbozxfE74tRKkf9WfaIPnZmBleoc/bK7AUnqY
+ E86DQqdVbCDQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,350,1589266800"; 
+   d="scan'208";a="307928997"
+Received: from djiang5-mobl1.amr.corp.intel.com (HELO [10.209.140.223]) ([10.209.140.223])
+  by fmsmga004.fm.intel.com with ESMTP; 14 Jul 2020 09:18:17 -0700
+Subject: Re: [PATCH v7 05/11] dmaengine: Introduce DMA-device device_caps
+ callback
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20200709224550.15539-1-Sergey.Semin@baikalelectronics.ru>
+ <20200709224550.15539-6-Sergey.Semin@baikalelectronics.ru>
+ <20200710084503.GE3703480@smile.fi.intel.com>
+ <20200710093834.su3nsjesnhntpd6d@mobilestation>
+ <07d4a977-1de6-b611-3d4f-7c7d6cd7fe5f@intel.com>
+ <20200714160830.GL34333@vkoul-mobl>
+From:   Dave Jiang <dave.jiang@intel.com>
+Message-ID: <f746fafd-851e-f402-3755-03ef94a65988@intel.com>
+Date:   Tue, 14 Jul 2020 09:18:16 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqL1CuumdT1CZiofEZw9j+3gsir8JwSrZVfcxFxEB=bavQ@mail.gmail.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
+In-Reply-To: <20200714160830.GL34333@vkoul-mobl>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1594743215; bh=/P5rK0jFQFtvkIppoDEAhZsCXMc8C/ph5QwjUSI4HQ0=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=qnXT67KX8RhTnD9Mtxu7mrWphK73FS5l7mjJnHIsqSG9tbjQb7ko+f0DYypkxpLHm
-         rpe5+GOZTFm1wUAS21fajtoShYzYPPwG/CbHvmrZS0pmGZYuq2uW3VVYlnx29Kx+YV
-         10a1ykGV9l8+dfkSelN0X8dmhwh7mrC7d2IAqUfBnRvXiVHAbDmktMh3O0zoNA01dr
-         LZuZufNgUIODZ2nK9n/u164NghxnC5Cj68CGIVQvPP7g3OwSIq75hWlnCU1mhdBQTs
-         U+9F8+6jTUWjphsqvWEk8ThW6qOZejOUfENRPotDupikT+QIb3nuQEorKD8bmCMIza
-         9ByB+YNPkASkw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
->>>
->>> The cpus.yaml binding documents what's in 'cpu' nodes, not 'cpus'
->>> node. AIUI, the latter is what you want. You should do your own schema
->>> file here.
->>>
->> Do you mean to change existing file name from 'cpus.yaml' to 'cpu.yaml'
->> and create new 'cpus.yaml' file?
->> I think it's better to incorporate the change in existing 'cpus.yaml'
->> file to keep both cpu@X and cpus node details together. Please suggest.
-> 
-> No, I'm suggesting you create nvidia,tegra194-ccplex.yaml.
-> 
-Have posted new version of only this patch with new schema file.
-Please review.
 
-Thanks,
-Sumit
+On 7/14/2020 9:08 AM, Vinod Koul wrote:
+> On 13-07-20, 13:55, Dave Jiang wrote:
+>>
+>>
+>> On 7/10/2020 2:38 AM, Serge Semin wrote:
+>>> On Fri, Jul 10, 2020 at 11:45:03AM +0300, Andy Shevchenko wrote:
+>>>> On Fri, Jul 10, 2020 at 01:45:44AM +0300, Serge Semin wrote:
+>>>>> There are DMA devices (like ours version of Synopsys DW DMAC) which have
+>>>>> DMA capabilities non-uniformly redistributed between the device channels.
+>>>>> In order to provide a way of exposing the channel-specific parameters to
+>>>>> the DMA engine consumers, we introduce a new DMA-device callback. In case
+>>>>> if provided it gets called from the dma_get_slave_caps() method and is
+>>>>> able to override the generic DMA-device capabilities.
+>>>>
+>>>
+>>>> In light of recent developments consider not to add 'slave' and a such words to the kernel.
+>>>
+>>> As long as the 'slave' word is used in the name of the dma_slave_caps
+>>> structure and in the rest of the DMA-engine subsystem, it will be ambiguous
+>>> to use some else terminology. If renaming needs to be done, then it should be
+>>> done synchronously for the whole subsystem.
+>>
+>> What about just calling it dma_device_caps? Consider this is a useful
+>> function not only slave DMA will utilize this. I can see this being useful
+>> for some of my future code with idxd driver.
+> 
+> Some of the caps may make sense to generic dmaengine but few of them do
+> not :) While at it, am planning to make it dmaengine_periph_caps to
+> denote that these are dmaengine peripheral capabilities.
+> 
+
+If the function only passes in periph_caps, how do we allow the non periph DMA 
+utilize this function?
