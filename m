@@ -2,366 +2,479 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F240421EF2E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 13:23:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2607C21EF4B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 13:31:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726801AbgGNLXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jul 2020 07:23:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53272 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726252AbgGNLXM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jul 2020 07:23:12 -0400
-Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C09DAC061755
-        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2020 04:23:12 -0700 (PDT)
-Received: by mail-pj1-x1042.google.com with SMTP id ch3so1424251pjb.5
-        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2020 04:23:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kernelci-org.20150623.gappssmtp.com; s=20150623;
-        h=message-id:date:mime-version:content-transfer-encoding:subject:to
-         :from:cc;
-        bh=//Y6Q6/nt5UQmFKrzLEvuZWLkdIv8woPD80SrhIdXso=;
-        b=GwxB2TJx/Q5Gzmc27zqgSGDWp9BFD8ezXXdKNdeVbfRHuvs+Gx7oP5c/nc37kCMPns
-         F0IXtXePSz4EcZkvdTXouWnDH2mD+7ZUDy5GmK4VJkVBbBA5kGxyt/EafnqwqE+MRya2
-         aHTe2MCOOut1BW6w3Aag5jXJZQ6ECIpSToCg070QrowqQth9bS7UN+WFfTOEvXAHGeov
-         QBDYWx4rp9QVdxdWmIsfD5ETVIe+ExmVS8KHQXHsuFzT1ysyQVXybhR/PECam3ncyXCE
-         zqWxD62gi29N0rAbmmsx3jyyauDakV8g3lbEEoGfgtoJohajf+o11Qh/aclTOK85Uvxi
-         G2Cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:date:mime-version
-         :content-transfer-encoding:subject:to:from:cc;
-        bh=//Y6Q6/nt5UQmFKrzLEvuZWLkdIv8woPD80SrhIdXso=;
-        b=DH2GdGCz28tjIJULp0vOY1XmHo9jOlrJtL4zgieDw9i+Dl4UJGHkB3HVOQI62ewJX3
-         PAG2uv0GLAgklHuaqFXnfh/OhVHZXMc/NsWQ+ZxE5KyyyXu1mxtdyMp/PhoO+pfNAurC
-         Uda3PoTkS/g9jbLEC3Hcv1oOctzFmtJ7xlmCJRt5Et51KSO+WYovnf7pb3S9wr5WC9FS
-         0eoqQmBXdwd4l69ld1Hsgl7sifQlSeEX0xji7NxrBwWapoImBNJUxxbSZyLPfKuVEb3W
-         qWL2tsQhSZklSzkw5yiQ2BIvIuAYh1oE3G8hF91iklYZnqeXNLLgO8Qus7ICzFia0hOl
-         4WwQ==
-X-Gm-Message-State: AOAM530sg0/ygyGbwrs8PMYmAaWXzE2VTOhtWMsX9SeNZPKlUhAoZ2dT
-        OJk2H9oX67ZWllypWZxMEDIPSQ==
-X-Google-Smtp-Source: ABdhPJxvtS+urOiJgadhaOSFAZcKpmlxwgNZi3nXi9RCL4P9R91Xu7iOpv9+/jUyU8jYbnqAzGtejA==
-X-Received: by 2002:a17:90a:b63:: with SMTP id 90mr4262434pjq.47.1594725792100;
-        Tue, 14 Jul 2020 04:23:12 -0700 (PDT)
-Received: from kernelci-production.internal.cloudapp.net ([52.250.1.28])
-        by smtp.gmail.com with ESMTPSA id z11sm17144483pfk.46.2020.07.14.04.23.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jul 2020 04:23:11 -0700 (PDT)
-Message-ID: <5f0d959f.1c69fb81.e240a.a18c@mx.google.com>
-Date:   Tue, 14 Jul 2020 04:23:11 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        id S1726354AbgGNLbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jul 2020 07:31:21 -0400
+Received: from ssl.serverraum.org ([176.9.125.105]:53911 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726041AbgGNLbV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jul 2020 07:31:21 -0400
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 9E9F923E3E;
+        Tue, 14 Jul 2020 13:31:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1594726275;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=53jZjqevdppNi/yPIRQg2AGTGap+wTalwrrJRLNTHkU=;
+        b=oZPuaMI5n9JcNcJazDlv0RSFMj4WOC+gqar4/Co4Kxz7/Hb7U5vgBXcQs6GEpXf7dh4F+9
+        okQu640x5S3A6ZNaTHQNsQlmknQW2gWwVclz7HLhS7lQthG7TrUC0pnvs2sO4NyNrfuNTI
+        15AGe/n0EBgZBcrxLxoNeBaPdV1MhCo=
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Kernelci-Kernel: v5.8-rc5-8-g0dc589da873b
-X-Kernelci-Report-Type: bisect
-X-Kernelci-Tree: mainline
-X-Kernelci-Branch: master
-X-Kernelci-Lab-Name: lab-cip
-Subject: mainline/master bisection: baseline.dmesg.crit on
- qemu_arm-vexpress-a15
-To:     kernelci-results@groups.io, Sudeep Holla <sudeep.holla@arm.com>,
-        gtucker@collabora.com, Andre Przywara <andre.przywara@arm.com>
-From:   "kernelci.org bot" <bot@kernelci.org>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Date:   Tue, 14 Jul 2020 13:31:13 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v5 07/13] pwm: add support for sl28cpld PWM controller
+In-Reply-To: <20200713084750.qj4hquzd6uz6y526@pengutronix.de>
+References: <20200706175353.16404-1-michael@walle.cc>
+ <20200706175353.16404-8-michael@walle.cc>
+ <20200709085006.b54ype3p4yu64upl@pengutronix.de>
+ <72858253a9094074e9c8cd7a4e1db09f@walle.cc>
+ <20200713084750.qj4hquzd6uz6y526@pengutronix.de>
+User-Agent: Roundcube Webmail/1.4.7
+Message-ID: <c0594c34c712ce26b3936d42c92d2361@walle.cc>
+X-Sender: michael@walle.cc
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* This automated bisection report was sent to you on the basis  *
-* that you may be involved with the breaking commit it has      *
-* found.  No manual investigation has been done to verify it,   *
-* and the root cause of the problem may be somewhere else.      *
-*                                                               *
-* If you do send a fix, please include this trailer:            *
-*   Reported-by: "kernelci.org bot" <bot@kernelci.org>          *
-*                                                               *
-* Hope this helps!                                              *
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+Hi Uwe,
 
-mainline/master bisection: baseline.dmesg.crit on qemu_arm-vexpress-a15
+Am 2020-07-13 10:47, schrieb Uwe Kleine-König:
+> On Sat, Jul 11, 2020 at 07:28:05PM +0200, Michael Walle wrote:
+>> Am 2020-07-09 10:50, schrieb Uwe Kleine-König:
+>> > On Mon, Jul 06, 2020 at 07:53:47PM +0200, Michael Walle wrote:
+>> > > diff --git a/drivers/pwm/pwm-sl28cpld.c b/drivers/pwm/pwm-sl28cpld.c
+>> > > new file mode 100644
+>> > > index 000000000000..8ee286b605bf
+>> > > --- /dev/null
+>> > > +++ b/drivers/pwm/pwm-sl28cpld.c
+>> > > @@ -0,0 +1,187 @@
+>> > > +// SPDX-License-Identifier: GPL-2.0-only
+>> > > +/*
+>> > > + * sl28cpld PWM driver
+>> > > + *
+>> > > + * Copyright 2020 Kontron Europe GmbH
+>> > > + */
+>> >
+>> > Is there publically available documenation available? If so please add a
+>> > link here.
+>> 
+>> Unfortunately not. But it should be easy enough and I'll describe it
+>> briefly in the header.
+> 
+> That's fine.
+> 
+>> > > +#include <linux/bitfield.h>
+>> > > +#include <linux/kernel.h>
+>> > > +#include <linux/mod_devicetable.h>
+>> > > +#include <linux/module.h>
+>> > > +#include <linux/platform_device.h>
+>> > > +#include <linux/pwm.h>
+>> > > +#include <linux/regmap.h>
+>> > > +
+>> > > +/*
+>> > > + * PWM timer block registers.
+>> > > + */
+>> > > +#define PWM_CTRL		0x00
+>> > > +#define   PWM_ENABLE		BIT(7)
+>> > > +#define   PWM_MODE_250HZ	0
+>> > > +#define   PWM_MODE_500HZ	1
+>> > > +#define   PWM_MODE_1KHZ		2
+>> > > +#define   PWM_MODE_2KHZ		3
+>> > > +#define   PWM_MODE_MASK		GENMASK(1, 0)
+>> > > +#define PWM_CYCLE		0x01
+>> > > +#define   PWM_CYCLE_MAX		0x7f
+>> >
+>> > Please use a less generic prefix for your defines. Also I like having
+>> > the defines for field names include register name. Something like:
+>> >
+>> > 	#define PWM_SL28CPLD_CTRL		0x00
+>> > 	#define PWM_SL28CPLD_CTRL_ENABLE		BIT(7)
+>> > 	#define PWM_SL28CPLD_CTRL_MODE_MASK		GENMASK(1, 0)
+>> 
+>> Ok.
+>> 
+>> > 	#define
+>> > PWM_SL28CPLD_CTRL_MODE_250HZ		FIELD_PREP(PWM_SL28CPLD_CTRL_MODE_MASK,
+>> > 0)
+>> 
+>> Shouldn't we just "#define ..MODE_250HZ 1" use FIELD_PREP inside the 
+>> code,
+>> so you can actually use the normalized enumeration values, too?
+> 
+> yeah, looks sane.
+> 
+>> Actually, I'll rename the PWM_MODE to PWM_PRESCALER, because that is
+>> more accurate.
+> 
+> Whatever suits you and is consistent is fine for me.
+> 
+>> > > +struct sl28cpld_pwm {
+>> > > +	struct pwm_chip pwm_chip;
+>> > > +	struct regmap *regmap;
+>> > > +	u32 offset;
+>> > > +};
+>> > > +
+>> > > +struct sl28cpld_pwm_periods {
+>> > > +	u8 ctrl;
+>> > > +	unsigned long duty_cycle;
+>> > > +};
+>> > > +
+>> > > +struct sl28cpld_pwm_config {
+>> > > +	unsigned long period_ns;
+>> > > +	u8 max_duty_cycle;
+>> > > +};
+>> > > +
+>> > > +static struct sl28cpld_pwm_config sl28cpld_pwm_config[] = {
+>> >
+>> > const ? (Or drop as the values can be easily computed, see below.)
+>> >
+>> > > +	[PWM_MODE_250HZ] = { .period_ns = 4000000, .max_duty_cycle = 0x80 },
+>> > > +	[PWM_MODE_500HZ] = { .period_ns = 2000000, .max_duty_cycle = 0x40 },
+>> > > +	[PWM_MODE_1KHZ]  = { .period_ns = 1000000, .max_duty_cycle = 0x20 },
+>> > > +	[PWM_MODE_2KHZ]  = { .period_ns =  500000, .max_duty_cycle = 0x10 },
+>> > > +};
+>> > > +
+>> > > +static void sl28cpld_pwm_get_state(struct pwm_chip *chip,
+>> > > +				   struct pwm_device *pwm,
+>> > > +				   struct pwm_state *state)
+>> > > +{
+>> > > +	struct sl28cpld_pwm *priv = dev_get_drvdata(chip->dev);
+>> > > +	static struct sl28cpld_pwm_config *config;
+>> > > +	unsigned int reg;
+>> > > +	unsigned int mode;
+>> > > +
+>> > > +	regmap_read(priv->regmap, priv->offset + PWM_CTRL, &reg);
+>> > > +
+>> > > +	state->enabled = reg & PWM_ENABLE;
+>> >
+>> > Would it be more consisted to use FIELD_GET here, too?
+>> 
+>> I had used FIELD_GET only for bit-fields with more than one bit,
+>> i.e. no flags. But that is just a matter of taste, I guess. I'd
+>> prefer to keep the simple "reg & PWM_ENABLE". If you insist on
+>> the FIELD_GET() I'll change it ;)
+> 
+> I think using FIELD_GET is more consistent, but I won't insist.
+> 
+>> > > +	mode = FIELD_GET(PWM_MODE_MASK, reg);
+>> > > +	config = &sl28cpld_pwm_config[mode];
+>> > > +	state->period = config->period_ns;
+>> >
+>> > I wonder if this could be done more effectively without the above table.
+>> > Something like:
+>> >
+>> > 	state->period = 4000000 >> mode.
+>> 
+>> The reason I introduced a lookup table here was that I need a
+>> list of the supported modes; I wasn't aware of the rounding.
+> 
+> List of supported modes = [0, 1, 2, 3], isn't it?
 
-Summary:
-  Start:      0dc589da873b Merge tag 'iommu-fixes-v5.8-rc5' of git://git.ke=
-rnel.org/pub/scm/linux/kernel/git/joro/iommu
-  Plain log:  https://storage.kernelci.org/mainline/master/v5.8-rc5-8-g0dc5=
-89da873b/arm/vexpress_defconfig/gcc-8/lab-cip/baseline-vexpress-v2p-ca15-tc=
-1.txt
-  HTML log:   https://storage.kernelci.org/mainline/master/v5.8-rc5-8-g0dc5=
-89da873b/arm/vexpress_defconfig/gcc-8/lab-cip/baseline-vexpress-v2p-ca15-tc=
-1.html
-  Result:     38ac46002d1d arm: dts: vexpress: Move mcc node back into moth=
-erboard node
+Back then it was the list of supported periods. But because we do
+the rounding now, we won't need it anymore.
 
-Checks:
-  revert:     PASS
-  verify:     PASS
+>> See also below.
+>> 
+>> > (with a #define for 4000000 of course).
+>> >
+>> > > +	regmap_read(priv->regmap, priv->offset + PWM_CYCLE, &reg);
+>> > > +	pwm_set_relative_duty_cycle(state, reg, config->max_duty_cycle);
+>> >
+>> > Oh, what a creative idea to use pwm_set_relative_duty_cycle here.
+>> 
+>> What is that helper for then? The former versions did the same
+>> calculations (i.e. DIV_ROUND_CLOSEST_ULL()) just open coded. But
+>> I guess then it was also rounding the wrong way.
+> 
+> Yes. In my book pwm_set_relative_duty_cycle is for consumers. And if
+> DIV_ROUND_CLOSEST_ULL is the right thing for them depends on their use
+> case.
+> 
+>> > Unfortunately it's using the wrong rounding strategy. Please enable
+>> > PWM_DEBUG which should diagnose these problems (given enough testing).
+>> 
+>> Is there any written documentation on how to round, i.e. up or down?
+> 
+> There are the checks implemented for PWM_DEBUG. I started to work on 
+> the
+> documentation
+> (https://patchwork.ozlabs.org/project/linux-pwm/patch/20191209213233.29574-2-u.kleine-koenig@pengutronix.de/)
+> but didn't get feedback yet. (And the rounding rules are not included
+> there.)
+> 
+>> I had a look Documentation/driver-api/pwm.rst again. But couldn't find
+>> anything. A grep DIV_ROUND_CLOSEST_ULL() turns out that quite a few
+>> drivers use it, so I did the same ;)
+> 
+> Yes, the rounding requirement is new and many driver's are not
+> conforming (yet).
 
-Parameters:
-  Tree:       mainline
-  URL:        https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linu=
-x.git
-  Branch:     master
-  Target:     qemu_arm-vexpress-a15
-  CPU arch:   arm
-  Lab:        lab-cip
-  Compiler:   gcc-8
-  Config:     vexpress_defconfig
-  Test case:  baseline.dmesg.crit
+ok, I'll then compute everything then and drop the table.
 
-Breaking commit found:
+>> > (Hmm, on second thought I'm not sure that rounding is relevant with the
+>> > numbers of this hardware. Still it's wrong in general and I don't want
+>> > to have others copy this.)
+>> >
+>> > > +}
+>> > > +
+>> > > +static int sl28cpld_pwm_apply(struct pwm_chip *chip, struct
+>> > > pwm_device *pwm,
+>> > > +			      const struct pwm_state *state)
+>> > > +{
+>> > > +	struct sl28cpld_pwm *priv = dev_get_drvdata(chip->dev);
+>> > > +	struct sl28cpld_pwm_config *config;
+>> > > +	unsigned int cycle;
+>> > > +	int ret;
+>> > > +	int mode;
+>> > > +	u8 ctrl;
+>> > > +
+>> > > +	/* Get the configuration by comparing the period */
+>> > > +	for (mode = 0; mode < ARRAY_SIZE(sl28cpld_pwm_config); mode++) {
+>> > > +		config = &sl28cpld_pwm_config[mode];
+>> > > +		if (state->period == config->period_ns)
+>> > > +			break;
+>> > > +	}
+>> > > +
+>> > > +	if (mode == ARRAY_SIZE(sl28cpld_pwm_config))
+>> > > +		return -EINVAL;
+>> >
+>> > You're supposed to pick the biggest period that isn't bigger than the
+>> > requested period. So something like:
+>> >
+>> > 	switch(period) {
+>> > 	case 4000000 ... UINT_MAX:
+>> > 		mode = 0;
+>> > 		break;
+>> > 	case 2000000 ... 3999999:
+>> > 		mode = 1;
+>> > 		break;
+>> > 	...
+>> > 	}
+>> >
+>> > (or:
+>> >
+>> > 	if period >= 4000000:
+>> > 		mode = 0
+>> > 	else:
+>> > 		// I think ... please double-check
+>> > 		mode = ilog2(4000000 / (period + 1)) + 1
+>> >
+>> > 	if mode > 3:
+>> > 		return -ERANGE;
+>> > )
+>> 
+>> I see. In this case I can of course drop the table. But the rounding
+>> will be then very coarse for this driver. And there is no way to get
+>> the value which is actually set, right? You can just read the cached
+>> value. So that value might be far off the actual one set in the
+>> hardware.
+> 
+> Yes, we once changed pwm_get_rate to return the actually implemented
+> setting, but this broke some stuff; see commit
+> 40a6b9a00930fd6b59aa2eb6135abc2efe5440c3.
+> 
+> I already thought about proposing pwm_get_rate_hw(), but for now there
+> is (AFAICT) no user who would need it. And it's hard to know which
+> variant is actually preferred by consumers. My expectation is that most
+> don't even care.
+> 
+> I also have a pwm_round_rate() function in mind that will give you the
+> actual rate without applying it. This can then be used by consumers who
+> care. But also there is no user who would need it today.
 
----------------------------------------------------------------------------=
-----
-commit 38ac46002d1df5707566a73486452851341028d2
-Author: Andre Przywara <andre.przywara@arm.com>
-Date:   Wed Jun 3 17:22:37 2020 +0100
+Ok. I take it that all such improvements are still in the making ;)
 
-    arm: dts: vexpress: Move mcc node back into motherboard node
-    =
+>> During testing I've also found the following problem: Assume we set
+>> a period of 5000000ns; this will be rounded to 4000000ns and written
+>> to the hardware. But the usable duty cycle is still 0..5000000ns. The
+>> driver will translate this input in the following manner:
+>>  - 0..4000000 -> 0%..100%
+>>  - >4000000 -> 100%
+>> Is this behavior intended?
+> 
+> It's expected.
+ok
 
-    Commit d9258898ad49 ("arm64: dts: arm: vexpress: Move fixed devices
-    out of bus node") moved the "mcc" DT node into the root node, because
-    it does not have any children using "reg" properties, so does violate
-    some dtc checks about "simple-bus" nodes.
-    =
+>> Even for PWM hardware which supports finer
+>> grained frequencies there will be some upper and lower limits. Is
+>> the user of the PWM supposed to know these?
+> 
+> There is nothing we can do on hardware imposed limits. In practise it
+> doesn't seem to matter. Also note that most consumers get a proposed
+> period length.
+> 
+>> > 	real_period = 4000000 >> mode;
+>> >
+>> > > +	ctrl = FIELD_PREP(PWM_MODE_MASK, mode);
+>> > > +	if (state->enabled)
+>> > > +		ctrl |= PWM_ENABLE;
+>> > > +
+>> > > +	cycle = pwm_get_relative_duty_cycle(state, config->max_duty_cycle);
+>> >
+>> > Again the rounding is wrong. You need need to round down the requested
+>> > duty_cycle to the next possible value. So something like:
+>> >
+>> > 	duty_cycle = min(real_period, state->duty_cycle);
+>> >
+>> > 	cycle = duty_cycle * (0x80 >> mode) / (4000000 >> mode);
+>> >
+>> > which can be further simplified to
+>> >
+>> > 	cycle = duty_cycle / 31250
+>> 
+>> Mh, this made me think where that "magic" number is coming from. Turns
+>> out this is the NSECS_PE_SEC / base clock of the PWM.
+> 
+> It's a simplification of the line above, so it is 4000000 / 0x80. (But
+> it's not by chance this matches NSECS_PER_SEC / base clock of course.)
+> 
+>> I guess I'll rework the get_state() and apply() to just use this
+>> base frequency, dropping the table etc.
+>> 
+>> Btw what about the polarity. Do I have to support it or can I
+>> return an error code if its != PWM_POLARITY_NORMAL? If so, which
+>> error code? EINVAL?
+> 
+> ..ooOO(Did I really miss that during review? Bummer)
+> 
+> If your hardware only support normal polarity, only implement this and
+> return -EINVAL for inverted polarity requests.
 
-    However this broke the vexpress config-bus code, which walks up the
-    device tree to find the first node with an "arm,vexpress,site" property.
-    This gave the wrong result (matching the root node instead of the
-    motherboard node), so broke the clocks and some other devices for
-    VExpress boards.
-    =
+ok
 
-    Move the whole node back into its original position. This re-introduces
-    the dtc warning, but is conceptually the right thing to do. The dtc
-    warning seems to be overzealous here, there are discussions on fixing or
-    relaxing this check instead.
-    =
+>> I know I could just invert the duty cycle in
+>> software, but shouldn't this be done in the core for any controller
+>> which doesn't support changing the polarity in hardware?
+> 
+> Please don't. This should indeed be done at the framework level. (But
+> I'm not convinced doing this unconditionally is a good idea.)
+> 
+>> > > +	/*
+>> > > +	 * The hardware doesn't allow to set max_duty_cycle if the
+>> > > +	 * 250Hz mode is enabled, thus we have to trap that here.
+>> > > +	 * But because a 100% duty cycle is equal on all modes, i.e.
+>> >
+>> > It depends on how picky you are if you can agree here.
+>> 
+>> why is that? The only drawback is that the mode is changed without
+>> the user seeing it.
+> 
+> Ideally periods are completed before they change. So if a user requests
+> .period = .duty_cycle = 100ms with having the PWM disabled before and
+> afterwards, the expectation is that it is active for (an integer
+> multiple of) 100 ms. But honestly there are not many hardware
+> implementation + driver combos that get this right.
+> 
+>> But the PWM subsystem returns the cached state,
+>> right? get_state() is called only on device request (and during
+>> debug it seems). Actually, enabling PWM_DEBUG might choke on this
+>> workaround (".apply didn't pick the best available period"). Is
+>> this ok?
+> 
+> hmm, I didn't consider this when writing the checks for PWM_DEBUG.
+> According to the currently checked rules the expected configuration is
+> to pick the 250Hz mode and use cycle = 0x7f.
 
-    Link: https://lore.kernel.org/r/20200603162237.16319-1-andre.przywara@a=
-rm.com
-    Fixes: d9258898ad49 ("arm64: dts: vexpress: Move fixed devices out of b=
-us node")
-    Reported-and-tested-by: Guenter Roeck <linux@roeck-us.net>
-    Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-    Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+Not to use 0x80, which is the max_duty_cycle? Like its 0x40 for the 
+500Hz
+mode.
 
-diff --git a/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi b/arch/arm/boot/dts/ve=
-xpress-v2m-rs1.dtsi
-index e6308fb76183..a88ee5294d35 100644
---- a/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
-+++ b/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
-@@ -100,79 +100,6 @@
- 		};
- 	};
- =
+> Hmm, I have to think about
+> this. Maybe we should weaken the check to the cases with
+> 0 < duty_cycle < period. Thierry, what do you think?
+> 
+> Special casing 0% and 100% is annoying, but insisting 250Hz + 0x7f 
+> seems
+> to be far from reality. (Is it?)
 
--	mcc {
--		compatible =3D "arm,vexpress,config-bus";
--		arm,vexpress,config-bridge =3D <&v2m_sysreg>;
--
--		oscclk0 {
--			/* MCC static memory clock */
--			compatible =3D "arm,vexpress-osc";
--			arm,vexpress-sysreg,func =3D <1 0>;
--			freq-range =3D <25000000 60000000>;
--			#clock-cells =3D <0>;
--			clock-output-names =3D "v2m:oscclk0";
--		};
--
--		v2m_oscclk1: oscclk1 {
--			/* CLCD clock */
--			compatible =3D "arm,vexpress-osc";
--			arm,vexpress-sysreg,func =3D <1 1>;
--			freq-range =3D <23750000 65000000>;
--			#clock-cells =3D <0>;
--			clock-output-names =3D "v2m:oscclk1";
--		};
--
--		v2m_oscclk2: oscclk2 {
--			/* IO FPGA peripheral clock */
--			compatible =3D "arm,vexpress-osc";
--			arm,vexpress-sysreg,func =3D <1 2>;
--			freq-range =3D <24000000 24000000>;
--			#clock-cells =3D <0>;
--			clock-output-names =3D "v2m:oscclk2";
--		};
--
--		volt-vio {
--			/* Logic level voltage */
--			compatible =3D "arm,vexpress-volt";
--			arm,vexpress-sysreg,func =3D <2 0>;
--			regulator-name =3D "VIO";
--			regulator-always-on;
--			label =3D "VIO";
--		};
--
--		temp-mcc {
--			/* MCC internal operating temperature */
--			compatible =3D "arm,vexpress-temp";
--			arm,vexpress-sysreg,func =3D <4 0>;
--			label =3D "MCC";
--		};
--
--		reset {
--			compatible =3D "arm,vexpress-reset";
--			arm,vexpress-sysreg,func =3D <5 0>;
--		};
--
--		muxfpga {
--			compatible =3D "arm,vexpress-muxfpga";
--			arm,vexpress-sysreg,func =3D <7 0>;
--		};
--
--		shutdown {
--			compatible =3D "arm,vexpress-shutdown";
--			arm,vexpress-sysreg,func =3D <8 0>;
--		};
--
--		reboot {
--			compatible =3D "arm,vexpress-reboot";
--			arm,vexpress-sysreg,func =3D <9 0>;
--		};
--
--		dvimode {
--			compatible =3D "arm,vexpress-dvimode";
--			arm,vexpress-sysreg,func =3D <11 0>;
--		};
--	};
--
- 	bus@8000000 {
- 		motherboard-bus {
- 			model =3D "V2M-P1";
-@@ -435,6 +362,79 @@
- 						};
- 					};
- 				};
-+
-+				mcc {
-+					compatible =3D "arm,vexpress,config-bus";
-+					arm,vexpress,config-bridge =3D <&v2m_sysreg>;
-+
-+					oscclk0 {
-+						/* MCC static memory clock */
-+						compatible =3D "arm,vexpress-osc";
-+						arm,vexpress-sysreg,func =3D <1 0>;
-+						freq-range =3D <25000000 60000000>;
-+						#clock-cells =3D <0>;
-+						clock-output-names =3D "v2m:oscclk0";
-+					};
-+
-+					v2m_oscclk1: oscclk1 {
-+						/* CLCD clock */
-+						compatible =3D "arm,vexpress-osc";
-+						arm,vexpress-sysreg,func =3D <1 1>;
-+						freq-range =3D <23750000 65000000>;
-+						#clock-cells =3D <0>;
-+						clock-output-names =3D "v2m:oscclk1";
-+					};
-+
-+					v2m_oscclk2: oscclk2 {
-+						/* IO FPGA peripheral clock */
-+						compatible =3D "arm,vexpress-osc";
-+						arm,vexpress-sysreg,func =3D <1 2>;
-+						freq-range =3D <24000000 24000000>;
-+						#clock-cells =3D <0>;
-+						clock-output-names =3D "v2m:oscclk2";
-+					};
-+
-+					volt-vio {
-+						/* Logic level voltage */
-+						compatible =3D "arm,vexpress-volt";
-+						arm,vexpress-sysreg,func =3D <2 0>;
-+						regulator-name =3D "VIO";
-+						regulator-always-on;
-+						label =3D "VIO";
-+					};
-+
-+					temp-mcc {
-+						/* MCC internal operating temperature */
-+						compatible =3D "arm,vexpress-temp";
-+						arm,vexpress-sysreg,func =3D <4 0>;
-+						label =3D "MCC";
-+					};
-+
-+					reset {
-+						compatible =3D "arm,vexpress-reset";
-+						arm,vexpress-sysreg,func =3D <5 0>;
-+					};
-+
-+					muxfpga {
-+						compatible =3D "arm,vexpress-muxfpga";
-+						arm,vexpress-sysreg,func =3D <7 0>;
-+					};
-+
-+					shutdown {
-+						compatible =3D "arm,vexpress-shutdown";
-+						arm,vexpress-sysreg,func =3D <8 0>;
-+					};
-+
-+					reboot {
-+						compatible =3D "arm,vexpress-reboot";
-+						arm,vexpress-sysreg,func =3D <9 0>;
-+					};
-+
-+					dvimode {
-+						compatible =3D "arm,vexpress-dvimode";
-+						arm,vexpress-sysreg,func =3D <11 0>;
-+					};
-+				};
- 			};
- 		};
- 	};
----------------------------------------------------------------------------=
-----
+If you mean by insisting to clip at 0x7f, yeah thats bad IMHO, because
+the user wants an all-high line, but in the end it would be a toggling
+line. It wouldn't be that bad for anything in between 0% and 100% but
+IMHO its bad for exactly 0% and 100%.
+
+You could also ask the driver about known quirks, like special 0% and
+100% handling and exclude it from the tests accordingly.
 
 
-Git bisection log:
+>> > > +	ret = regmap_write(priv->regmap, priv->offset + PWM_CTRL, ctrl);
+>> > > +	if (ret)
+>> > > +		return ret;
+>> > > +
+>> > > +	return regmap_write(priv->regmap, priv->offset + PWM_CYCLE,
+>> > > (u8)cycle);
+>> >
+>> > I assume this can result in broken output? Consider the hardware runs
+>> > with mode = 1 & cycle = 0x23 and you want to go to mode = 0 & cycle =
+>> > 0x42: Can this result in a period that has mode = 0 & cycle = 0x23?
+>> 
+>> Isn't that always the case if a write may fail and there are more than
+>> one register to configure?
+> 
+> Depending on hardware capabilities you might not be able to prevent
+> this yes. Unfortunately this is quite common.
+> 
+> But there are hardware implementations that are not prone to such
+> failures. (E.g. the registers written can be only shadow values that 
+> are
+> latched into hardware only when the last value is written.)
 
----------------------------------------------------------------------------=
-----
-git bisect start
-# good: [719fdd32921fb7e3208db8832d32ae1c2d68900f] afs: Fix storage of cell=
- names
-git bisect good 719fdd32921fb7e3208db8832d32ae1c2d68900f
-# bad: [0dc589da873b58b70f4caf4b070fb0cf70fdd1dc] Merge tag 'iommu-fixes-v5=
-.8-rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/joro/iommu
-git bisect bad 0dc589da873b58b70f4caf4b070fb0cf70fdd1dc
-# bad: [aa27b32b76d0b1b242d43977da0e5358da1c825f] Merge tag 'for-5.8-rc4-ta=
-g' of git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux
-git bisect bad aa27b32b76d0b1b242d43977da0e5358da1c825f
-# bad: [684c8ccc40d7e5408d597a43712bad3827d3fb94] Merge tag 'devicetree-fix=
-es-for-5.8-2' of git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux
-git bisect bad 684c8ccc40d7e5408d597a43712bad3827d3fb94
-# bad: [e44b59cd758acdd413512d4597a1fabdadfe3abf] Merge tag 'arm-fixes-5.8-=
-1' of git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc
-git bisect bad e44b59cd758acdd413512d4597a1fabdadfe3abf
-# good: [91a9a90d040e8b9ff63d48ea71468e0f4db764ff] Merge tag 'sched_urgent_=
-for_5.8_rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
-git bisect good 91a9a90d040e8b9ff63d48ea71468e0f4db764ff
-# bad: [42d3f7e8da1bc55e3109f612c519c945f6587194] Merge tag 'imx-fixes-5.8'=
- of git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux into arm/f=
-ixes
-git bisect bad 42d3f7e8da1bc55e3109f612c519c945f6587194
-# bad: [6d89c73ca5813768a2cc66f7420ac0cbddf4f37d] Merge tag 'arm-soc/for-5.=
-8/soc-fixes' of https://github.com/Broadcom/stblinux into arm/fixes
-git bisect bad 6d89c73ca5813768a2cc66f7420ac0cbddf4f37d
-# bad: [0f77ce26ebcf6ea384421d2dd47b924b83649692] Revert "ARM: sti: Impleme=
-nt dummy L2 cache's write_sec"
-git bisect bad 0f77ce26ebcf6ea384421d2dd47b924b83649692
-# bad: [d68ec1644dd546851d651787a638aead32a60a6f] Merge tag 'juno-fix-5.8' =
-of git://git.kernel.org/pub/scm/linux/kernel/git/sudeep.holla/linux into ar=
-m/fixes
-git bisect bad d68ec1644dd546851d651787a638aead32a60a6f
-# bad: [38ac46002d1df5707566a73486452851341028d2] arm: dts: vexpress: Move =
-mcc node back into motherboard node
-git bisect bad 38ac46002d1df5707566a73486452851341028d2
-# first bad commit: [38ac46002d1df5707566a73486452851341028d2] arm: dts: ve=
-xpress: Move mcc node back into motherboard node
----------------------------------------------------------------------------=
-----
+Maybe this could be improved in the future.
+
+> 
+>> For example, have a look at pwm-iqs620a.c.
+>> Btw. the get_state might also fail, but there is no return value to
+>> return the error.
+> 
+> Yes, changing this is on my todo list.
+> 
+>> > If this cannot be avoided, please document this in the Limitations
+>> > paragraph.
+>> 
+>> Sure. There might be (or most likely are) gliches when you change the
+>> mode.
+> 
+> If you change only cycle but not mode, does the hardware complete the
+> currently running period?
+
+No it does not.
+
+> What about disable()?
+
+Mhh well, it would do one 100% cycle.. mhh ;) Lets see if there we can
+fix that (in hardware), not much we can do in the driver here. We are
+_very_ constraint in size, therefore all that little edge cases fall off
+the table.
+
+I'll post a new version soon.
+
+-michael
