@@ -2,258 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 204B321E9F1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 09:22:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5269521EA10
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 09:32:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726836AbgGNHWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jul 2020 03:22:41 -0400
-Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:46609 "EHLO
-        smtp2207-205.mail.aliyun.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725884AbgGNHWk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Jul 2020 03:22:40 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07526159|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.664333-0.000360464-0.335307;FP=0|0|0|0|0|-1|-1|-1;HT=e02c03307;MF=frank@allwinnertech.com;NM=1;PH=DS;RN=10;RT=10;SR=0;TI=SMTPD_---.I1TTd6V_1594711352;
-Received: from allwinnertech.com(mailfrom:frank@allwinnertech.com fp:SMTPD_---.I1TTd6V_1594711352)
-          by smtp.aliyun-inc.com(10.147.43.95);
-          Tue, 14 Jul 2020 15:22:37 +0800
-From:   Frank Lee <frank@allwinnertech.com>
-To:     mripard@kernel.org, wens@csie.org, robh+dt@kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, tiny.windzz@gmail.com,
-        huangshuosheng@allwinnertech.com, liyong@allwinnertech.com,
-        Yangtao Li <frank@allwinnertech.com>
-Subject: [PATCH v4 16/16] arm64: allwinner: A100: add support for Allwinner Perf1 board
-Date:   Tue, 14 Jul 2020 15:22:26 +0800
-Message-Id: <d0674af1f386f6fae1b2363eabe4129770957d47.1594708864.git.frank@allwinnertech.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <cover.1594708863.git.frank@allwinnertech.com>
-References: <cover.1594708863.git.frank@allwinnertech.com>
+        id S1725780AbgGNHcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jul 2020 03:32:54 -0400
+Received: from www1102.sakura.ne.jp ([219.94.129.142]:22414 "EHLO
+        www1102.sakura.ne.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725306AbgGNHcy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jul 2020 03:32:54 -0400
+Received: from fsav110.sakura.ne.jp (fsav110.sakura.ne.jp [27.133.134.237])
+        by www1102.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id 06E7WqNN034148;
+        Tue, 14 Jul 2020 16:32:52 +0900 (JST)
+        (envelope-from katsuhiro@katsuster.net)
+Received: from www1102.sakura.ne.jp (219.94.129.142)
+ by fsav110.sakura.ne.jp (F-Secure/fsigk_smtp/550/fsav110.sakura.ne.jp);
+ Tue, 14 Jul 2020 16:32:52 +0900 (JST)
+X-Virus-Status: clean(F-Secure/fsigk_smtp/550/fsav110.sakura.ne.jp)
+Received: from localhost.localdomain (121.252.232.153.ap.dti.ne.jp [153.232.252.121])
+        (authenticated bits=0)
+        by www1102.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id 06E7Wnf3034133
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+        Tue, 14 Jul 2020 16:32:52 +0900 (JST)
+        (envelope-from katsuhiro@katsuster.net)
+From:   Katsuhiro Suzuki <katsuhiro@katsuster.net>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v3] dt-bindings: sound: convert rk3328 codec binding to yaml
+Date:   Tue, 14 Jul 2020 16:32:47 +0900
+Message-Id: <20200714073247.172859-1-katsuhiro@katsuster.net>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yangtao Li <frank@allwinnertech.com>
+This patch converts Rockchip rk3328 audio codec binding to DT schema.
+And adds description about "mclk" clock and fixes some errors in
+original example.
 
-A100 perf1 is an Allwinner A100-based SBC, with the following features:
-
-- 1GiB DDR3 DRAM
-- AXP803 PMIC
-- 2 USB 2.0 ports
-- MicroSD slot and on-board eMMC module
-- on-board Nand flash
-- ···
-
-Adds initial support for it, including UART and PMU.
-
-Signed-off-by: Yangtao Li <frank@allwinnertech.com>
+Signed-off-by: Katsuhiro Suzuki <katsuhiro@katsuster.net>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../allwinner/sun50i-a100-allwinner-perf1.dts | 180 ++++++++++++++++++
- 2 files changed, 181 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
+ .../bindings/sound/rockchip,rk3328-codec.txt  | 28 --------
+ .../bindings/sound/rockchip,rk3328-codec.yaml | 69 +++++++++++++++++++
+ 2 files changed, 69 insertions(+), 28 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.yaml
 
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index e4d3cd0ac5bb..ab780dbdd17b 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -14,6 +14,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinephone-1.1.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinetab.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-sopine-baseboard.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-teres-i.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a100-allwinner-perf1.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h5-bananapi-m2-plus.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h5-bananapi-m2-plus-v1.2.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h5-emlid-neutis-n5-devboard.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts b/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
+diff --git a/Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.txt b/Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.txt
+deleted file mode 100644
+index 1ecd75d2032a..000000000000
+--- a/Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.txt
++++ /dev/null
+@@ -1,28 +0,0 @@
+-* Rockchip Rk3328 internal codec
+-
+-Required properties:
+-
+-- compatible: "rockchip,rk3328-codec"
+-- reg: physical base address of the controller and length of memory mapped
+-  region.
+-- rockchip,grf: the phandle of the syscon node for GRF register.
+-- clocks: a list of phandle + clock-specifer pairs, one for each entry in clock-names.
+-- clock-names: should be "pclk".
+-- spk-depop-time-ms: speak depop time msec.
+-
+-Optional properties:
+-
+-- mute-gpios: GPIO specifier for external line driver control (typically the
+-              dedicated GPIO_MUTE pin)
+-
+-Example for rk3328 internal codec:
+-
+-codec: codec@ff410000 {
+-	compatible = "rockchip,rk3328-codec";
+-	reg = <0x0 0xff410000 0x0 0x1000>;
+-	rockchip,grf = <&grf>;
+-	clocks = <&cru PCLK_ACODEC>;
+-	clock-names = "pclk";
+-	mute-gpios = <&grf_gpio 0 GPIO_ACTIVE_LOW>;
+-	spk-depop-time-ms = 100;
+-};
+diff --git a/Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.yaml b/Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.yaml
 new file mode 100644
-index 000000000000..d34c2bb1079f
+index 000000000000..5b85ad5e4834
 --- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
-@@ -0,0 +1,180 @@
-+// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+/*
-+ * Copyright (c) 2020 Yangtao Li <frank@allwinnertech.com>
-+ */
++++ b/Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.yaml
+@@ -0,0 +1,69 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/rockchip,rk3328-codec.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/dts-v1/;
++title: Rockchip rk3328 internal codec
 +
-+#include "sun50i-a100.dtsi"
++maintainers:
++  - Heiko Stuebner <heiko@sntech.de>
 +
-+/{
-+	model = "Allwinner A100 Perf1";
-+	compatible = "allwinner,a100-perf1", "allwinner,sun50i-a100";
++properties:
++  compatible:
++    const: rockchip,rk3328-codec
 +
-+	aliases {
-+		serial0 = &uart0;
-+	};
++  reg:
++    maxItems: 1
 +
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
++  clocks:
++    items:
++      - description: clock for audio codec
++      - description: clock for I2S master clock
 +
-+&pio {
-+	vcc-pb-supply = <&reg_dcdc1>;
-+	vcc-pc-supply = <&reg_eldo1>;
-+	vcc-pd-supply = <&reg_dcdc1>;
-+	vcc-pe-supply = <&reg_dldo2>;
-+	vcc-pf-supply = <&reg_dcdc1>;
-+	vcc-pg-supply = <&reg_dldo1>;
-+	vcc-ph-supply = <&reg_dcdc1>;
-+};
++  clock-names:
++    items:
++      - const: pclk
++      - const: mclk
 +
-+&r_pio {
-+	/*
-+	 * FIXME: We can't add that supply for now since it would
-+	 * create a circular dependency between pinctrl, the regulator
-+	 * and the RSB Bus.
-+	 *
-+	 * vcc-pl-supply = <&reg_aldo3>;
-+	 */
-+};
++  rockchip,grf:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      The phandle of the syscon node for the GRF register.
 +
-+&r_i2c0 {
-+	status = "okay";
++  spk-depop-time-ms:
++    default: 200
++    description:
++      Speaker depop time in msec.
 +
-+	axp803: pmic@34 {
-+		compatible = "x-powers,axp803";
-+		reg = <0x34>;
-+		interrupt-parent = <&r_intc>;
-+		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+		x-powers,drive-vbus-en; /* set N_VBUSEN as output pin */
-+	};
-+};
++  mute-gpios:
++    maxItems: 1
++    description:
++      GPIO specifier for external line driver control (typically the
++      dedicated GPIO_MUTE pin)
 +
-+#include "axp803.dtsi"
++  "#sound-dai-cells":
++    const: 0
 +
-+&ac_power_supply {
-+	status = "okay";
-+};
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - rockchip,grf
++  - "#sound-dai-cells"
 +
-+&reg_aldo1 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <1800000>;
-+	regulator-name = "vcc-pll-avcc";
-+};
-+
-+&reg_aldo2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <1800000>;
-+	regulator-name = "vcc-dram-1";
-+};
-+
-+&reg_aldo3 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-usb-pl";
-+};
-+
-+&reg_dcdc1 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-io-usb-pd-emmc-nand-card";
-+};
-+
-+&reg_dcdc2 {
-+	regulator-always-on;
-+	/*
-+	 * FIXME: update min and max before support dvfs.
-+	 */
-+	regulator-min-microvolt = <500000>;
-+	regulator-max-microvolt = <1300000>;
-+	regulator-name = "vdd-cpux";
-+};
-+
-+/* DCDC3 is polyphased with DCDC2 */
-+
-+&reg_dcdc4 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <950000>;
-+	regulator-max-microvolt = <950000>;
-+	regulator-name = "vdd-sys-usb-dram";
-+};
-+
-+&reg_dcdc5 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1500000>;
-+	regulator-max-microvolt = <1500000>;
-+	regulator-name = "vcc-dram-2";
-+};
-+
-+&reg_dldo1 {
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-pg-dcxo-wifi";
-+};
-+
-+&reg_dldo2 {
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <2800000>;
-+	regulator-name = "vcc-pe-csi";
-+};
-+
-+&reg_dldo3 {
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "ldo-avdd-csi";
-+};
-+
-+&reg_dldo4 {
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <2800000>;
-+	regulator-name = "avcc-csi";
-+};
-+
-+&reg_eldo1 {
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <1800000>;
-+	regulator-name = "vcc-pc-lvds-csi-efuse-emmc-nand";
-+};
-+
-+&reg_eldo2 {
-+	regulator-min-microvolt = <1200000>;
-+	regulator-max-microvolt = <1800000>;
-+	regulator-name = "dvdd-csi";
-+};
-+
-+&reg_eldo3 {
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <1800000>;
-+	regulator-name = "vcc-mipi-lcd";
-+};
-+
-+&reg_fldo1 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <900000>;
-+	regulator-max-microvolt = <900000>;
-+	regulator-name = "vdd-cpus-usb";
-+};
-+
-+&reg_ldo_io0 {
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-ctp";
-+	status = "okay";
-+};
-+
-+&reg_drivevbus {
-+	regulator-name = "usb0-vbus";
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_pb_pins>;
-+	status = "okay";
-+};
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/clock/rk3328-cru.h>
++    codec: codec@ff410000 {
++      compatible = "rockchip,rk3328-codec";
++      reg = <0xff410000 0x1000>;
++      clocks = <&cru PCLK_ACODECPHY>, <&cru SCLK_I2S1>;
++      clock-names = "pclk", "mclk";
++      rockchip,grf = <&grf>;
++      mute-gpios = <&grf_gpio 0 GPIO_ACTIVE_LOW>;
++      spk-depop-time-ms = <100>;
++      #sound-dai-cells = <0>;
++    };
 -- 
-2.24.0
+2.27.0
 
