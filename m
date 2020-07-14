@@ -2,186 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 489B321E831
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 08:34:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF21521E828
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 08:34:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726798AbgGNGeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jul 2020 02:34:44 -0400
-Received: from out28-99.mail.aliyun.com ([115.124.28.99]:34034 "EHLO
-        out28-99.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726777AbgGNGen (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jul 2020 02:34:43 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07439695|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.118669-0.0191296-0.862201;FP=0|0|0|0|0|-1|-1|-1;HT=e01a16368;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=13;RT=13;SR=0;TI=SMTPD_---.I1SlfTL_1594708424;
-Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.I1SlfTL_1594708424)
-          by smtp.aliyun-inc.com(10.147.41.120);
-          Tue, 14 Jul 2020 14:34:37 +0800
-From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
-        <zhouyanjie@wanyeetech.com>
-To:     balbi@kernel.org, robh+dt@kernel.org
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, yanfei.li@ingenic.com,
-        sernia.zhou@foxmail.com, zhenwenjin@gmail.com, paul@crapouillou.net
-Subject: [PATCH v3 3/3] USB: PHY: JZ4770: Reformat the code to align it.
-Date:   Tue, 14 Jul 2020 14:31:09 +0800
-Message-Id: <20200714063109.102926-4-zhouyanjie@wanyeetech.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200714063109.102926-1-zhouyanjie@wanyeetech.com>
-References: <20200714063109.102926-1-zhouyanjie@wanyeetech.com>
+        id S1725925AbgGNGeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jul 2020 02:34:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36904 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725306AbgGNGeO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jul 2020 02:34:14 -0400
+Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5A08C061755;
+        Mon, 13 Jul 2020 23:34:14 -0700 (PDT)
+Received: by mail-io1-xd43.google.com with SMTP id i4so16117075iov.11;
+        Mon, 13 Jul 2020 23:34:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mg7wgDULy0lIYE5hnNqN0j2UtYPwULkhOaQ9Kls/Nyc=;
+        b=tyB5kEh80h4y6UqY/UvTDtTj1/IY5xUlBHVQVix/iwHkP+r7UPrvX1yge1andtOWaU
+         mk/1qV78d18S7ZRJ9GhbfiVg1DdsBX9wba0scX51M8BJEwHps8NVftl1kGQ4lBYVpqf7
+         M1jyWUwNxD74fSXeClEQOIRXqBGZ2+rXeD6di4xSv7B2MBSHAne9ofkIyIhv7wF+by1l
+         zxS3BQhuHwsAJN9x2DfjVI9F2sl7Zc8+285WDIEveOwSHKmMd/8Kf1/8lQ/dxqdlUaxj
+         BNasa0voiAVzQlCrE7uFkQIpMh8YIts77J4Rf2rCZZ887byAJ2+nHZQ0RFhH/98PoX2R
+         XNkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mg7wgDULy0lIYE5hnNqN0j2UtYPwULkhOaQ9Kls/Nyc=;
+        b=XyFf5cZs6tVzyu+v+PxlVP2+v5AiDALH8clf8DojsjRsHn/71/HWEt6cwgUljUSHHE
+         UhZR46Hi8bGYU8U06g8s0b1CU2ow+GFGNbEgRbgkkSvJ/ncowxYGAF1LdKhVMNFgR5IH
+         wg7cnuUITTfdan+x812YwqisDs0rr2ddL1aAnR42rgCeG3R6mPVer0Y11av7nb4HeYG9
+         FJI6E8A5OA0ZovgIVK68SIE3Fhgfb/F6s4HTppITVpY7legsC6soiXXshoQIhUDgvFWD
+         78qdIhb7/rD0wwCNRQBawMCwD8xw3IohkU4vtYB4AD4E4/EEkHr02qMfpG8fm8bjx8Wp
+         hwwA==
+X-Gm-Message-State: AOAM532A5VngAImTyv3vuV9XEGQ6g5iT2+bFs8E2Jf8qbczKluvsCt3Y
+        IRIpIc9+48xLezZosaEOTrJ/3rBl88Cb5t9TztY=
+X-Google-Smtp-Source: ABdhPJwT7lxoi1W5OkuUSDXYa65U0eLsDbZo+QW7nVqjhL+XvY+W+cBhzor2TTtyvrY+kkqGl3UK6GC8McCAFTbKtMU=
+X-Received: by 2002:a6b:ee02:: with SMTP id i2mr3525208ioh.110.1594708454180;
+ Mon, 13 Jul 2020 23:34:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <1594696998-3995-1-git-send-email-dillon.minfei@gmail.com>
+ <1594696998-3995-2-git-send-email-dillon.minfei@gmail.com>
+ <20200714133835.3b03b8af@canb.auug.org.au> <CAL9mu0JurdBoXbSxvHUmNFSBOa=RneNyYtzT=C1MvJs10Y-Geg@mail.gmail.com>
+ <20200714135407.35992389@canb.auug.org.au> <CAL9mu0L5=khi2oXaei=EhTmRJC5mC1hj5gZVBHJgowi_3vxk=Q@mail.gmail.com>
+ <20200714153656.4a044437@canb.auug.org.au>
+In-Reply-To: <20200714153656.4a044437@canb.auug.org.au>
+From:   dillon min <dillon.minfei@gmail.com>
+Date:   Tue, 14 Jul 2020 14:33:38 +0800
+Message-ID: <CAL9mu0+sbCPEuriONAzWAFdpb+ak+ufG=vP7Z10eGL8TC=c3JQ@mail.gmail.com>
+Subject: Re: [PATCH v2] Since am437x have the same clock structure with am335x
+ [1][2], reuse the code from Tony Lindgren's patch [3] to fix dcan probe
+ failed on am437x platform.
+To:     Stephen Rothwell <sfr@canb.auug.org.au>
+Cc:     Benoit Cousson <bcousson@baylibre.com>, tony@atomide.com,
+        Rob Herring <robh+dt@kernel.org>, linux-omap@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reformat the code (add one level of indentation before the values),
-to align the code in the macro definition section.
+Hi Stephen,
 
-Tested-by: 周正 (Zhou Zheng) <sernia.zhou@foxmail.com>
-Co-developed-by: 漆鹏振 (Qi Pengzhen) <aric.pzqi@ingenic.com>
-Signed-off-by: 漆鹏振 (Qi Pengzhen) <aric.pzqi@ingenic.com>
-Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
----
+On Tue, Jul 14, 2020 at 1:37 PM Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+>
+> Hi Dillon,
+>
+> On Tue, 14 Jul 2020 13:21:07 +0800 dillon min <dillon.minfei@gmail.com> wrote:
+> >
+> > Thanks, how about the below commit message.
+> >
+> > Subject: [PATCH v4] Fix dcan driver probe failed on am437x platform
+> >
+> > Got following d_can probe errors with kernel 5.8-rc1 on am437x
+> >
+> > [   10.730822] CAN device driver interface
+> > Starting Wait for Network to be Configured...
+> > [  OK  ] Reached target Network.
+> > [   10.787363] c_can_platform 481cc000.can: probe failed
+> > [   10.792484] c_can_platform: probe of 481cc000.can failed with
+> > error -2
+> > [   10.799457] c_can_platform 481d0000.can: probe failed
+> > [   10.804617] c_can_platform: probe of 481d0000.can failed with
+> > error -2
+> >
+> > actually, Tony has fixed this issue on am335x with the patch [3]
+> >
+> > Since am437x has the same clock structure with am335x
+> > [1][2], so reuse the code from Tony Lindgren's patch [3] to fix it.
+> >
+> >
+> > [1]: https://www.ti.com/lit/pdf/spruh73 Chapter-23, Figure 23-1. DCAN
+> > Integration
+> > [2]: https://www.ti.com/lit/pdf/spruhl7 Chapter-25, Figure 25-1. DCAN
+> > Integration
+> > [3]: commit 516f1117d0fb ("ARM: dts: Configure osc clock for d_can on am335x")
+> >
+> > Fixes: 1a5cd7c23cc5 ("bus: ti-sysc: Enable all clocks directly during
+> > init to read revision")
+> > Signed-off-by: dillon min <dillon.minfei@gmail.com>
+> > ---
+> >
+> > Hi Stephen,
+> >
+> > This changes correct commit messages based on your reviewing.
+> > make Fixes tags to oneline.
+> > make all commit message tags at the end of commit message
+> > make Fixes tags before Signed-off-by line.
+> > add probe failed log to commit message.
+>
+> Apart from the line wrapping, that looks better.  I assume that your
+> email client (looks like Gmail web gui) is wrapping the lines, please
+> see if you can stop it doing that (see the section on Gmail in
+> Documentation/process/email-clients.rst).
+>
+Thanks.
+I checked with git send-email , there is no line wrapping. maybe gmail just has
+the feature which text be split into lines of about 78 characters in
+gmail web clients.
 
-Notes:
-    v1->v2:
-    Add support for the JZ4780 SoC.
-    
-    v2->v3:
-    No change.
+if add '>' before the line which exceeds 78 characters in gmail web
+clients, this line will not be wrapped.
 
- drivers/usb/phy/phy-jz4770.c | 100 +++++++++++++++++++++----------------------
- 1 file changed, 50 insertions(+), 50 deletions(-)
+>Fixes: 1a5cd7c23cc5 ("bus: ti-sysc: Enable all clocks directly during init to read revision")
 
-diff --git a/drivers/usb/phy/phy-jz4770.c b/drivers/usb/phy/phy-jz4770.c
-index fb5e1004bc72..676759250e6a 100644
---- a/drivers/usb/phy/phy-jz4770.c
-+++ b/drivers/usb/phy/phy-jz4770.c
-@@ -15,71 +15,71 @@
- #include <linux/usb/otg.h>
- #include <linux/usb/phy.h>
- 
--#define REG_USBPCR_OFFSET	0x00
--#define REG_USBRDT_OFFSET	0x04
--#define REG_USBVBFIL_OFFSET	0x08
--#define REG_USBPCR1_OFFSET	0x0c
-+#define REG_USBPCR_OFFSET			0x00
-+#define REG_USBRDT_OFFSET			0x04
-+#define REG_USBVBFIL_OFFSET			0x08
-+#define REG_USBPCR1_OFFSET			0x0c
- 
- /*USB Parameter Control Register*/
--#define USBPCR_USB_MODE		BIT(31)
--#define USBPCR_AVLD_REG		BIT(30)
--#define USBPCR_INCR_MASK	BIT(27)
--#define USBPCR_COMMONONN	BIT(25)
--#define USBPCR_VBUSVLDEXT	BIT(24)
--#define USBPCR_VBUSVLDEXTSEL	BIT(23)
--#define USBPCR_POR		BIT(22)
--#define USBPCR_SIDDQ		BIT(21)
--#define USBPCR_OTG_DISABLE	BIT(20)
--#define USBPCR_TXPREEMPHTUNE	BIT(6)
--
--#define USBPCR_IDPULLUP_LSB	28
--#define USBPCR_IDPULLUP_MASK	GENMASK(29, USBPCR_IDPULLUP_LSB)
--#define USBPCR_IDPULLUP_ALWAYS	(0x2 << USBPCR_IDPULLUP_LSB)
--#define USBPCR_IDPULLUP_SUSPEND	(0x1 << USBPCR_IDPULLUP_LSB)
--#define USBPCR_IDPULLUP_OTG	(0x0 << USBPCR_IDPULLUP_LSB)
--
--#define USBPCR_COMPDISTUNE_LSB	17
--#define USBPCR_COMPDISTUNE_MASK	GENMASK(19, USBPCR_COMPDISTUNE_LSB)
--#define USBPCR_COMPDISTUNE_DFT	(0x4 << USBPCR_COMPDISTUNE_LSB)
--
--#define USBPCR_OTGTUNE_LSB	14
--#define USBPCR_OTGTUNE_MASK	GENMASK(16, USBPCR_OTGTUNE_LSB)
--#define USBPCR_OTGTUNE_DFT	(0x4 << USBPCR_OTGTUNE_LSB)
--
--#define USBPCR_SQRXTUNE_LSB	11
--#define USBPCR_SQRXTUNE_MASK	GENMASK(13, USBPCR_SQRXTUNE_LSB)
-+#define USBPCR_USB_MODE				BIT(31)
-+#define USBPCR_AVLD_REG				BIT(30)
-+#define USBPCR_INCR_MASK			BIT(27)
-+#define USBPCR_COMMONONN			BIT(25)
-+#define USBPCR_VBUSVLDEXT			BIT(24)
-+#define USBPCR_VBUSVLDEXTSEL		BIT(23)
-+#define USBPCR_POR					BIT(22)
-+#define USBPCR_SIDDQ				BIT(21)
-+#define USBPCR_OTG_DISABLE			BIT(20)
-+#define USBPCR_TXPREEMPHTUNE		BIT(6)
-+
-+#define USBPCR_IDPULLUP_LSB			28
-+#define USBPCR_IDPULLUP_MASK		GENMASK(29, USBPCR_IDPULLUP_LSB)
-+#define USBPCR_IDPULLUP_ALWAYS		(0x2 << USBPCR_IDPULLUP_LSB)
-+#define USBPCR_IDPULLUP_SUSPEND		(0x1 << USBPCR_IDPULLUP_LSB)
-+#define USBPCR_IDPULLUP_OTG			(0x0 << USBPCR_IDPULLUP_LSB)
-+
-+#define USBPCR_COMPDISTUNE_LSB		17
-+#define USBPCR_COMPDISTUNE_MASK		GENMASK(19, USBPCR_COMPDISTUNE_LSB)
-+#define USBPCR_COMPDISTUNE_DFT		(0x4 << USBPCR_COMPDISTUNE_LSB)
-+
-+#define USBPCR_OTGTUNE_LSB			14
-+#define USBPCR_OTGTUNE_MASK			GENMASK(16, USBPCR_OTGTUNE_LSB)
-+#define USBPCR_OTGTUNE_DFT			(0x4 << USBPCR_OTGTUNE_LSB)
-+
-+#define USBPCR_SQRXTUNE_LSB			11
-+#define USBPCR_SQRXTUNE_MASK		GENMASK(13, USBPCR_SQRXTUNE_LSB)
- #define USBPCR_SQRXTUNE_DCR_20PCT	(0x7 << USBPCR_SQRXTUNE_LSB)
--#define USBPCR_SQRXTUNE_DFT	(0x3 << USBPCR_SQRXTUNE_LSB)
-+#define USBPCR_SQRXTUNE_DFT			(0x3 << USBPCR_SQRXTUNE_LSB)
- 
--#define USBPCR_TXFSLSTUNE_LSB	7
--#define USBPCR_TXFSLSTUNE_MASK	GENMASK(10, USBPCR_TXFSLSTUNE_LSB)
-+#define USBPCR_TXFSLSTUNE_LSB		7
-+#define USBPCR_TXFSLSTUNE_MASK		GENMASK(10, USBPCR_TXFSLSTUNE_LSB)
- #define USBPCR_TXFSLSTUNE_DCR_50PPT	(0xf << USBPCR_TXFSLSTUNE_LSB)
- #define USBPCR_TXFSLSTUNE_DCR_25PPT	(0x7 << USBPCR_TXFSLSTUNE_LSB)
--#define USBPCR_TXFSLSTUNE_DFT	(0x3 << USBPCR_TXFSLSTUNE_LSB)
-+#define USBPCR_TXFSLSTUNE_DFT		(0x3 << USBPCR_TXFSLSTUNE_LSB)
- #define USBPCR_TXFSLSTUNE_INC_25PPT	(0x1 << USBPCR_TXFSLSTUNE_LSB)
- #define USBPCR_TXFSLSTUNE_INC_50PPT	(0x0 << USBPCR_TXFSLSTUNE_LSB)
- 
--#define USBPCR_TXHSXVTUNE_LSB	4
--#define USBPCR_TXHSXVTUNE_MASK	GENMASK(5, USBPCR_TXHSXVTUNE_LSB)
--#define USBPCR_TXHSXVTUNE_DFT	(0x3 << USBPCR_TXHSXVTUNE_LSB)
-+#define USBPCR_TXHSXVTUNE_LSB		4
-+#define USBPCR_TXHSXVTUNE_MASK		GENMASK(5, USBPCR_TXHSXVTUNE_LSB)
-+#define USBPCR_TXHSXVTUNE_DFT		(0x3 << USBPCR_TXHSXVTUNE_LSB)
- #define USBPCR_TXHSXVTUNE_DCR_15MV	(0x1 << USBPCR_TXHSXVTUNE_LSB)
- 
--#define USBPCR_TXRISETUNE_LSB	4
--#define USBPCR_TXRISETUNE_MASK	GENMASK(5, USBPCR_TXRISETUNE_LSB)
--#define USBPCR_TXRISETUNE_DFT	(0x3 << USBPCR_TXRISETUNE_LSB)
-+#define USBPCR_TXRISETUNE_LSB		4
-+#define USBPCR_TXRISETUNE_MASK		GENMASK(5, USBPCR_TXRISETUNE_LSB)
-+#define USBPCR_TXRISETUNE_DFT		(0x3 << USBPCR_TXRISETUNE_LSB)
- 
--#define USBPCR_TXVREFTUNE_LSB	0
--#define USBPCR_TXVREFTUNE_MASK	GENMASK(3, USBPCR_TXVREFTUNE_LSB)
-+#define USBPCR_TXVREFTUNE_LSB		0
-+#define USBPCR_TXVREFTUNE_MASK		GENMASK(3, USBPCR_TXVREFTUNE_LSB)
- #define USBPCR_TXVREFTUNE_INC_25PPT	(0x7 << USBPCR_TXVREFTUNE_LSB)
--#define USBPCR_TXVREFTUNE_DFT	(0x5 << USBPCR_TXVREFTUNE_LSB)
-+#define USBPCR_TXVREFTUNE_DFT		(0x5 << USBPCR_TXVREFTUNE_LSB)
- 
- /*USB Reset Detect Timer Register*/
--#define USBRDT_UTMI_RST		BIT(27)
--#define USBRDT_HB_MASK		BIT(26)
--#define USBRDT_VBFIL_LD_EN	BIT(25)
--#define USBRDT_IDDIG_EN		BIT(24)
--#define USBRDT_IDDIG_REG	BIT(23)
--#define USBRDT_VBFIL_EN		BIT(2)
-+#define USBRDT_UTMI_RST				BIT(27)
-+#define USBRDT_HB_MASK				BIT(26)
-+#define USBRDT_VBFIL_LD_EN			BIT(25)
-+#define USBRDT_IDDIG_EN				BIT(24)
-+#define USBRDT_IDDIG_REG			BIT(23)
-+#define USBRDT_VBFIL_EN				BIT(2)
- 
- /*USB Parameter Control Register 1*/
- #define USBPCR1_BVLD_REG			BIT(31)
--- 
-2.11.0
+I will sumit v4 version for you.
 
+thanks,
+dillon,
+
+> --
+> Cheers,
+> Stephen Rothwell
