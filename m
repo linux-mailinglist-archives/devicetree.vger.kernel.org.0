@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A77321F776
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 18:40:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DB2B21F778
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 18:40:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726364AbgGNQjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jul 2020 12:39:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56446 "EHLO mail.kernel.org"
+        id S1728362AbgGNQjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jul 2020 12:39:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56562 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725931AbgGNQjl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Jul 2020 12:39:41 -0400
+        id S1725931AbgGNQjq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Jul 2020 12:39:46 -0400
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A501922475;
-        Tue, 14 Jul 2020 16:39:40 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id A879122475;
+        Tue, 14 Jul 2020 16:39:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1594744781;
-        bh=VXBDgTJLVKWPVuRwGZc/xyeARiY3XELOkWmvVP1dLgw=;
+        s=default; t=1594744786;
+        bh=TbXWV5ei7TBnr/Ctk0w3GzHb6IxxNUBtez1DyLMmyCk=;
         h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=0DE1cZNs4i1Blxp5k1J4/D1Qca6QXL8nIgyyo5l/CQNesPqvFOquXf/Mhxd5T92iK
-         YvKEKsmr4E5Isdg5UuWo5sRnRFAiX0OhUOWq0xK15h+le7tHVwU4+Lfg0sGi5eqfCD
-         gR9s4bzH5q6X7pL80M4wavbK0v3o+H19pRKyHGMA=
-Date:   Tue, 14 Jul 2020 17:39:32 +0100
+        b=BznuuqH97wJLHyex5iSFWHeYbkNfLTB2RFZQR+i+UN8PjghuFxITWS+85qdQchZaw
+         +06NZp5M5zHse8Ky/eFq7lvb48byAkGE+Ar+GUPnD84kMxweJMwi66np7bv6NgLBBQ
+         TOdoGJScF39M++kfVYx6sAvwM1+CAb4OnAcVaABk=
+Date:   Tue, 14 Jul 2020 17:39:37 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
+To:     Katsuhiro Suzuki <katsuhiro@katsuster.net>,
         Rob Herring <robh+dt@kernel.org>
-Cc:     - <alsa-devel@alsa-project.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
+Cc:     alsa-devel@alsa-project.org, Rob Herring <robh@kernel.org>,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
         linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20200623113915.791386-1-yamada.masahiro@socionext.com>
-References: <20200623113915.791386-1-yamada.masahiro@socionext.com>
-Subject: Re: [PATCH v2] dt-bindings: ASoC: Convert UniPhier AIO audio system to json-schema
-Message-Id: <159474477218.998.6916116867302380188.b4-ty@kernel.org>
+In-Reply-To: <20200714073247.172859-1-katsuhiro@katsuster.net>
+References: <20200714073247.172859-1-katsuhiro@katsuster.net>
+Subject: Re: [PATCH v3] dt-bindings: sound: convert rk3328 codec binding to yaml
+Message-Id: <159474477218.998.15280718297734736345.b4-ty@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Jun 2020 20:39:15 +0900, Masahiro Yamada wrote:
-> Convert the UniPhier AIO audio system binding to DT schema format.
+On Tue, 14 Jul 2020 16:32:47 +0900, Katsuhiro Suzuki wrote:
+> This patch converts Rockchip rk3328 audio codec binding to DT schema.
+> And adds description about "mclk" clock and fixes some errors in
+> original example.
 
 Applied to
 
@@ -51,8 +51,8 @@ Applied to
 
 Thanks!
 
-[1/1] ASoC: Convert UniPhier AIO audio system to json-schema
-      commit: 3d04d1cc48838f9ae6617a97bbb2c16f06f01144
+[1/1] ASoC: convert rk3328 codec binding to yaml
+      commit: 3f6597ad2f9ed8ed89dbd2a9ec0b0c892774f9d2
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
