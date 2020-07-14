@@ -2,150 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D1DE21E7F5
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 08:19:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93BC021E806
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 08:22:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725931AbgGNGTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jul 2020 02:19:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34604 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725876AbgGNGTL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jul 2020 02:19:11 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33008C061755;
-        Mon, 13 Jul 2020 23:19:11 -0700 (PDT)
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1594707548;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=v/S9ee/bUUWrtlIuRaKnITeD/w1HyRpCSHHvDECwsQU=;
-        b=f5pQaFBZPCc246hcRtfvdIxYw3gsShjZ//NN7S5l9RZYswj7ALM1mgtSDF6L0aqI1BQ1kL
-        XlqHnbAZ9y7ei8Swh5mdKXsj3hsa2fkQZZIVWc+iy2w4fIxb7Pd020nBQ3L3dULHHTBtVx
-        3rEKpw9yIBgaNeCoKIIHI8m7CRCJFL19XstIM4wOlSzp9j64tlc69nUE1mtLtdUhwRz3yR
-        c9F/4j3+rzFkCMcuAf8Nna3O1lk/Gx9yVP8Gf9LRM3Xy2qUnM+WT5jGUW2TUTU9XRUjoJy
-        VYA++QnLpQ2muy0nd905iERlnrrK/J1+CoNTNFNrJY/54inamw9d48c99CHAxw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1594707548;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=v/S9ee/bUUWrtlIuRaKnITeD/w1HyRpCSHHvDECwsQU=;
-        b=WHAP7lnpDb/B11Kn30Hw9HHB4rd8n8uYGntsXNBBzZ+RFHM88BeZyHOSFKZqUIPgHZ22F1
-        uUJodHJefRWLq5Ag==
-To:     Rob Herring <robh@kernel.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 1/1] dt-bindings: net: dsa: Add DSA yaml binding
-In-Reply-To: <CAL_JsqJjjSCmijJsN5wH4VgmDCQdDhe7N3tWgzzS7oeqzZjzug@mail.gmail.com>
-References: <20200710090618.28945-1-kurt@linutronix.de> <20200710090618.28945-2-kurt@linutronix.de> <20200710164500.GA2775934@bogus> <8c105489-42c5-b4ba-73b6-c3a858f646a6@gmail.com> <CAL_Jsq+zP9++MftM+Dh2Fe-OdKq6EiGA_tASEbBwA_jEdwoFCA@mail.gmail.com> <871rliw9cq.fsf@kurt> <CAL_JsqJjjSCmijJsN5wH4VgmDCQdDhe7N3tWgzzS7oeqzZjzug@mail.gmail.com>
-Date:   Tue, 14 Jul 2020 08:18:57 +0200
-Message-ID: <87k0z6wre6.fsf@kurt>
+        id S1726769AbgGNGWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jul 2020 02:22:41 -0400
+Received: from mail-dm6nam12on2071.outbound.protection.outlook.com ([40.107.243.71]:6030
+        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726629AbgGNGWi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Jul 2020 02:22:38 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZZ/kOvobLklZAAjbus/RsWLGvyJIk9WbhWYARboYnezzldSd5huuZ+OvLjZ3wagUvrXxLzPd3b4ErIaXqLKHLNzuIE8reX+lJ/IUe0pfUuitiphi/mFq4zThjMayMtVdjCXklhQ/h4SwuyHfiIv2eOiSmfkY4b7cX8zich/pBe+I4GvEziFYfMqCzwhInx9N7rtiQtYAKv2YMBNFOjVIUws0f37awmRMfu3kWEqwNdE9GoVozPYCzUXmiFZjkMi8l364wXu0oLr6+9j+qxkpVpbpaUnqUfXnGqaDqifqsNJTTxVC8MUBe5xCRXQnawDci7cau4fbAdPARQ9kzalSUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cRlIsH2YUSk3nNnlfDhaWl/g3zpeIx5dADi5CDH7xmY=;
+ b=maYGUvit1e6sdlNcsdqUXL0G/LGsK1i+3UXglAHjh3nG9WkUB1TdpmZoZ1yYh+h+7QfrCLAt3dAFf9OVEnx8X+/XZZftaKRIu9CTE3NEzDQXuH5KjE8EUXbvAMKu20Gsq1SNE9ggJTFs2hnEYsXswPCUtAUdsHmKzR6FiSCWqM5KjXZXqu8V9M9haVfYCpplmAwOT4dWn0EQpl0oqImNUIhrzxMPHwacDbJlnrxMUjXsuVZa6xjEtcBhZOk7oTG3HQBklz/nmNdUK7w2g3KG3e7ULW979TU+Ko0/atZlhxtihJEqFU3e2KIBa50OhbMukNntbWu4gmeCjdNEEHoHRQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.60.83) smtp.rcpttodomain=avnet.com smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cRlIsH2YUSk3nNnlfDhaWl/g3zpeIx5dADi5CDH7xmY=;
+ b=HFWGEmDPJM8ZQycTwdtj0spXhu44j5fts6f0U3OL7pxZMGB5IbR38sqszqYpHHOkA0CrMTYovnSOMYmJLvhMGm5lJ6X42mEAvk8muvXGYrEcQrcxJYoN2hj3KYOnLurtV2jjrEkfMQyn7QtMaAZ9orAItFbNgxfQtf0GiLZGogk=
+Received: from BL1PR13CA0008.namprd13.prod.outlook.com (2603:10b6:208:256::13)
+ by SN4PR0201MB3472.namprd02.prod.outlook.com (2603:10b6:803:48::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.22; Tue, 14 Jul
+ 2020 06:22:35 +0000
+Received: from BL2NAM02FT045.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:208:256:cafe::e5) by BL1PR13CA0008.outlook.office365.com
+ (2603:10b6:208:256::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3195.10 via Frontend
+ Transport; Tue, 14 Jul 2020 06:22:35 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.60.83)
+ smtp.mailfrom=xilinx.com; avnet.com; dkim=none (message not signed)
+ header.d=none;avnet.com; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
+Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
+ BL2NAM02FT045.mail.protection.outlook.com (10.152.77.16) with Microsoft SMTP
+ Server id 15.20.3174.21 via Frontend Transport; Tue, 14 Jul 2020 06:22:35
+ +0000
+Received: from [149.199.38.66] (port=48881 helo=xsj-pvapsmtp01)
+        by xsj-pvapsmtpgw01 with esmtp (Exim 4.90)
+        (envelope-from <lakshmi.sai.krishna.potthuri@xilinx.com>)
+        id 1jvEJB-000340-Ov; Mon, 13 Jul 2020 23:20:53 -0700
+Received: from localhost ([127.0.0.1] helo=xsj-pvapsmtp01)
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <lakshmi.sai.krishna.potthuri@xilinx.com>)
+        id 1jvEKo-00046B-6H; Mon, 13 Jul 2020 23:22:34 -0700
+Received: from [10.140.6.35] (helo=xhdsaipava40.xilinx.com)
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <lakshmis@xhdsaipava40.xilinx.com>)
+        id 1jvEKn-000465-8V; Mon, 13 Jul 2020 23:22:33 -0700
+Received: by xhdsaipava40.xilinx.com (Postfix, from userid 14964)
+        id 5B43F13C063E; Tue, 14 Jul 2020 11:59:11 +0530 (IST)
+From:   Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, git@xilinx.com,
+        saikrishna12468@gmail.com,
+        Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
+Subject: [PATCH 0/2] reset: reset-zynqmp: Added Versal platform support
+Date:   Tue, 14 Jul 2020 11:59:07 +0530
+Message-Id: <1594708149-29944-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+X-Mailer: git-send-email 2.7.4
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
+X-TM-AS-User-Approved-Sender: Yes;Yes
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:149.199.60.83;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapsmtpgw01;PTR:unknown-60-83.xilinx.com;CAT:NONE;SFTY:;SFS:(136003)(39860400002)(376002)(346002)(396003)(46966005)(4744005)(70206006)(5660300002)(70586007)(36756003)(47076004)(26005)(82740400003)(478600001)(107886003)(4326008)(83380400001)(82310400002)(2906002)(2616005)(316002)(6666004)(81166007)(8936002)(6636002)(6266002)(110136005)(426003)(42186006)(8676002)(336012)(186003)(356005);DIR:OUT;SFP:1101;
+X-MS-PublicTrafficType: Email
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 1d84401a-1c01-49ee-a580-08d827be4c73
+X-MS-TrafficTypeDiagnostic: SN4PR0201MB3472:
+X-LD-Processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
+X-Microsoft-Antispam-PRVS: <SN4PR0201MB3472F8DEC352822F72241F03BD610@SN4PR0201MB3472.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: XFLGeau5EsedwPPHdRSWPMQ119wTNyed8dm9qcO8SmiXmhyMXbjTokhCZZxT1sV2lMxMceio6Q5VpyCXjSB4qh700AegmceAosTgkVFKWCnihMAYUqws0Mb0F9SV9xq4Vn4GtXDOu3mYCXww4QAhcJnL73Js6z0pfkAoIfMzHZhwp6dwbxqeiVZpCd84gYq8zg5tj2fRYMeOxymvjplHHaM4ttzg2amRO/65e/jXroPRCwmCd1PQ4Om2kCoKHGKe1h27jeLOD0hh44vYhsXCP0xgmGkUad1MwUslZ0rDPA+G3ViPo7pdjQ4nHBidGX31vlkyZhnWA8QzsIQ9ITmuHgmBdtJCssXjICM3Q5F4bl2LbjG3LCcOYu1SXabujaSwHjF2F73Wq65eNxZyLiitbg==
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2020 06:22:35.2702
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1d84401a-1c01-49ee-a580-08d827be4c73
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
+X-MS-Exchange-CrossTenant-AuthSource: BL2NAM02FT045.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN4PR0201MB3472
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
+Extended the ZynqMP reset driver to support Versal platform, accordingly
+updated the dt-binding with the Versal platform specific information
+like compatible string and reset indices.
 
-Hi Rob,
+Sai Krishna Potthuri (2):
+  dt-bindings: reset: Updated binding for Versal reset driver
+  reset: reset-zynqmp: Added support for Versal platform
 
-On Mon Jul 13 2020, Rob Herring wrote:
-> On Sat, Jul 11, 2020 at 5:59 AM Kurt Kanzenbach <kurt@linutronix.de> wrote:
->> How?
->
-> I don't know, just call it 'ethernet switch' binding or something.
+ .../bindings/reset/xlnx,zynqmp-reset.txt      |  11 +-
+ drivers/reset/reset-zynqmp.c                  |  24 +++-
+ .../dt-bindings/reset/xlnx-versal-resets.h    | 105 ++++++++++++++++++
+ 3 files changed, 132 insertions(+), 8 deletions(-)
+ create mode 100644 include/dt-bindings/reset/xlnx-versal-resets.h
 
-OK.
+-- 
+2.17.1
 
->> Yes, it's a conversion of the dsa.txt. I should have stated that more
->> clearly. I didn't remove the .txt file, because it's referenced in all
->> the different switch bindings such as b53.txt, ksz.txt and so on. How to
->> handle that?
->
-> Either update them if not many, or make dsa.txt just point to dsa.yaml
-> as Andrew mentioned. I haven't looked, but seems like this would be a
-> small number.
-
-OK.
-
->
-> Updating all the users to schema is also welcome. :)
->
->> Just to be sure. Instead of
->>
->>   ports {
->>     port@1 {
->>       ...
->>     }
->>   }
->>
->> The following should be possible as well?
->>
->>   ethernet-ports {
->>     port@1 {
->
-> Yes, but probably 'ethernet-port@1' here. Or both can be allowed.
-
-I think both should be allowed. No binding is using
-ethernet-port. They're all using ethernet-ports and port within
-(example: ti,cpsw-switch.yaml).
-
-But, if the binding does allow for ethernet-ports, then the DSA core has
-to be adjusted, or? The current code searches only for "ports" (in
-dsa_switch_parse_ports_of()).
-
->
->>       ...
->>     }
->>   }
->>
->> Is there an easy way to add that alternative to the schema? Or does the
->> ethernet-ports property has to be defined as well?
->
-> You need a pattern like:
->
-> patternProperties:
->   "^(ethernet-)?ports$":
->     ...
-
-I see. Thanks!
-
->
-> You could also make one property a $ref to another, but I prefer the
-> above.
-
-That's what I wanted to avoid.
-
-Thanks,
-Kurt
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl8NTlEACgkQeSpbgcuY
-8KYjog//Tr9f+p/xPVt/XVuaC/PiarBYGr5b72oyUbDATm5/DEt/WKK147dALpxi
-MFBwlv/oHilGUqrnyVMJGSCHA3p6DQEeC1BKppIwg+OP1GRTk0stHGa4BAqVWc3J
-YyGFnFI+lU+DLJokQ/G4cfsWtb4E0gnE9i8QYC/hv7mDZje1q1TVZXm8+L3KhK++
-4h413eEgxyM6nmJS/c2opamBw1E5ClwX3ttRCMEx817Fr+Vd4GH74Gt+j8Jh3lHU
-wAUPPQkvyqnhy1QiyXWxF5M/zvm3C+Kq0BHUguNrNpNmpDiLIZ6eLRJbm+tGj3qT
-F40QBpYb7CN8QAl1+3b1b9VFdJ9Vbjs0bdvBUEWeTFKMkEp7y4s+2+046/C6tmum
-TH6cJOQ8X5JIzeXxhDaUFXWP09NQkb1yTbjO379AICM43pH0pem/Nup2Vbzf947g
-qTUvgP/uFE/40Mv1TNd6zABCNiUmAg04bZ/EnnB6b6UB3YwFN+G0hkD7ue0kdczv
-4Y3Cgs0j/K8beKcr6BPTq16DOBmm9AaabVIE4GlObn04+s32zMobBk3LOB3xf4Wq
-g7eelL+GWpfCWyDQ2s5x4c2EdqqdHikzpdyrmyQJQYrbUx+stCDQaUW0wkWsBSS4
-eRqUaXxfIE5YkqUJ3WkAl3Wa8+hdPUzQ0nIZyt47ZJGmWQf0Yro=
-=sK4k
------END PGP SIGNATURE-----
---=-=-=--
