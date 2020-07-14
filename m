@@ -2,90 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E404921E984
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 09:06:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C13D021E9D3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 09:15:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726729AbgGNHGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jul 2020 03:06:42 -0400
-Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:48606 "EHLO
-        smtp2207-205.mail.aliyun.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725778AbgGNHGm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Jul 2020 03:06:42 -0400
-X-Alimail-AntiSpam: AC=SUSPECT;BC=0.6363785|-1;BR=01201311R131b1;CH=blue;DM=|SUSPECT|false|;DS=CONTINUE|ham_system_inform|0.0262548-0.000494732-0.973251;FP=0|0|0|0|0|-1|-1|-1;HT=e02c03294;MF=frank@allwinnertech.com;NM=1;PH=DS;RN=12;RT=12;SR=0;TI=SMTPD_---.I1TY-3s_1594710393;
-Received: from allwinnertech.com(mailfrom:frank@allwinnertech.com fp:SMTPD_---.I1TY-3s_1594710393)
-          by smtp.aliyun-inc.com(10.147.44.145);
-          Tue, 14 Jul 2020 15:06:37 +0800
-From:   Frank Lee <frank@allwinnertech.com>
-To:     linus.walleij@linaro.org, robh+dt@kernel.org, mripard@kernel.org,
-        wens@csie.org
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        tiny.windzz@gmail.com, huangshuosheng@allwinnertech.com,
-        liyong@allwinnertech.com, Yangtao Li <frank@allwinnertech.com>
-Subject: [PATCH v4 04/16] dt-bindings: pinctrl: sunxi: Add A100 pinctrl bindings
-Date:   Tue, 14 Jul 2020 15:06:23 +0800
-Message-Id: <7be3efafd34cbb5938ea73dfe08f3db3e7747123.1594708864.git.frank@allwinnertech.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <cover.1594708863.git.frank@allwinnertech.com>
-References: <cover.1594708863.git.frank@allwinnertech.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726425AbgGNHOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jul 2020 03:14:54 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:47314 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725905AbgGNHOy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Jul 2020 03:14:54 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 7C594200ED3;
+        Tue, 14 Jul 2020 09:14:52 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 0F08C200154;
+        Tue, 14 Jul 2020 09:14:49 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 65627402E4;
+        Tue, 14 Jul 2020 15:14:44 +0800 (SGT)
+From:   Biwen Li <biwen.li@oss.nxp.com>
+To:     leoyang.li@nxp.com, shawnguo@kernel.org, robh+dt@kernel.org,
+        meenakshi.aggarwal@nxp.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        jiafei.pan@nxp.com, Biwen Li <biwen.li@nxp.com>
+Subject: [RESEND v2] arm64: dts: lx2160a-rdb: fix shunt-resistor value
+Date:   Tue, 14 Jul 2020 15:08:28 +0800
+Message-Id: <20200714070828.3177-1-biwen.li@oss.nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yangtao Li <frank@allwinnertech.com>
+From: Biwen Li <biwen.li@nxp.com>
 
-Add device tree binding Documentation details for A100 pinctrl driver,
-which has a r pin controller and a pin controller with more irq lines.
+Fix value of shunt-resistor property.
+The LX2160A-RDB has 500 uOhm shunt for
+the INA220, not 1000 uOhm. Unless
+it will get wrong power consumption(1/2)
 
-Signed-off-by: Yangtao Li <frank@allwinnertech.com>
+Signed-off-by: Biwen Li <biwen.li@nxp.com>
 ---
- .../pinctrl/allwinner,sun4i-a10-pinctrl.yaml      | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-index 35a26abb02e7..34a17d5c6135 100644
---- a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-@@ -48,6 +48,8 @@ properties:
-       - allwinner,sun9i-a80-r-pinctrl
-       - allwinner,sun50i-a64-pinctrl
-       - allwinner,sun50i-a64-r-pinctrl
-+      - allwinner,sun50i-a100-pinctrl
-+      - allwinner,sun50i-a100-r-pinctrl
-       - allwinner,sun50i-h5-pinctrl
-       - allwinner,sun50i-h6-pinctrl
-       - allwinner,sun50i-h6-r-pinctrl
-@@ -143,6 +145,18 @@ allOf:
-   # boards are defining it at the moment so it would generate a lot of
-   # warnings.
+diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
+index 22d0308..54fe8cd 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
+@@ -121,7 +121,7 @@
+ 			power-monitor@40 {
+ 				compatible = "ti,ina220";
+ 				reg = <0x40>;
+-				shunt-resistor = <1000>;
++				shunt-resistor = <500>;
+ 			};
+ 		};
  
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - allwinner,sun50i-a100-pinctrl
-+
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 7
-+          maxItems: 7
-+
-   - if:
-       properties:
-         compatible:
-@@ -216,6 +230,7 @@ allOf:
-             - allwinner,sun8i-h3-r-pinctrl
-             - allwinner,sun8i-r40-pinctrl
-             - allwinner,sun50i-a64-r-pinctrl
-+            - allwinner,sun50i-a100-r-pinctrl
-             - nextthing,gr8-pinctrl
- 
-     then:
 -- 
-2.24.0
+2.7.4
 
