@@ -2,399 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B542C21E9C5
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 09:13:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7881421E9D5
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 09:16:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726945AbgGNHNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jul 2020 03:13:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56010 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726600AbgGNHNX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Jul 2020 03:13:23 -0400
-Received: from wens.tw (mirror2.csie.ntu.edu.tw [140.112.194.72])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B48F722224;
-        Tue, 14 Jul 2020 07:13:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1594710801;
-        bh=LPMXYSBHUc5/3XxljcDu6A64UBHu6QfCt9odX/hhY2g=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=p5M5EJ3Nwu5Eq7uDgnT3rD5zedmq+5BhhvtpjGKsK7qL15GzdaukZXkIHdxI7l2XD
-         LoCGLKNYPNvdSECPxg+A/mptGjd5Gi2JSQtwAV+oX12AqlS/Kfn2/qnQYIqamvOxiX
-         w5C43kj9hiO97LMz5GorUMjNqOH100oezmZXZOyY=
-Received: by wens.tw (Postfix, from userid 1000)
-        id 1C7AA5FD4B; Tue, 14 Jul 2020 15:13:14 +0800 (CST)
-From:   Chen-Yu Tsai <wens@kernel.org>
-To:     Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     Chen-Yu Tsai <wens@csie.org>, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Siarhei Siamashka <siarhei.siamashka@gmail.com>
-Subject: [PATCH 5/5] ARM: dts: sun7i: Add MSI Primo73 tablet
-Date:   Tue, 14 Jul 2020 15:13:05 +0800
-Message-Id: <20200714071305.18492-6-wens@kernel.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200714071305.18492-1-wens@kernel.org>
-References: <20200714071305.18492-1-wens@kernel.org>
+        id S1725905AbgGNHQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jul 2020 03:16:08 -0400
+Received: from www1102.sakura.ne.jp ([219.94.129.142]:21435 "EHLO
+        www1102.sakura.ne.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725884AbgGNHQI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jul 2020 03:16:08 -0400
+Received: from fsav404.sakura.ne.jp (fsav404.sakura.ne.jp [133.242.250.103])
+        by www1102.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id 06E7FbT3024510;
+        Tue, 14 Jul 2020 16:15:37 +0900 (JST)
+        (envelope-from katsuhiro@katsuster.net)
+Received: from www1102.sakura.ne.jp (219.94.129.142)
+ by fsav404.sakura.ne.jp (F-Secure/fsigk_smtp/550/fsav404.sakura.ne.jp);
+ Tue, 14 Jul 2020 16:15:37 +0900 (JST)
+X-Virus-Status: clean(F-Secure/fsigk_smtp/550/fsav404.sakura.ne.jp)
+Received: from [192.168.1.2] (121.252.232.153.ap.dti.ne.jp [153.232.252.121])
+        (authenticated bits=0)
+        by www1102.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id 06E7FaEQ024506
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+        Tue, 14 Jul 2020 16:15:37 +0900 (JST)
+        (envelope-from katsuhiro@katsuster.net)
+Subject: Re: [PATCH v2] dt-bindings: sound: convert rk3328 codec binding to
+ yaml
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+        alsa-devel@alsa-project.org, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20200630135412.718447-1-katsuhiro@katsuster.net>
+ <20200714024307.GA1175068@bogus>
+From:   Katsuhiro Suzuki <katsuhiro@katsuster.net>
+Message-ID: <8ab6b52a-1084-c63a-51f9-1aa5bd150682@katsuster.net>
+Date:   Tue, 14 Jul 2020 16:15:36 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200714024307.GA1175068@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chen-Yu Tsai <wens@csie.org>
+Hello Rob,
 
-The Primo73 is an MSI branded Allwinner A20-based 7-inch tablet. It has
-a metal back case with a plastic insert around where the WiFi antenna is.
-The tablet is (as of July of 2020) no longer available from retailers.
-Kernel sources (as required by GPL) are no longer available from the
-vendor, MSI. The device support page still lists the link, but it is
-dead.
+Thank you for your comment.
 
-The tablet features a non-identifiable 1024x600 7" MIPI DPI TFT panel,
-Goodix GT911-based capacitive touchscreen, 1GB DRAM, 8GB MLC NAND,
-RTL8188ETV-based WiFi, an NXP MMA8452 accelerometer for orientation,
-a GC2035 2 megapixel rear camera, a GC0308 0.3 megapixel front camera,
-a mini-HDMI output, a micro-USB port, a headphone jack and single speaker.
+On 2020/07/14 11:43, Rob Herring wrote:
+> On Tue, Jun 30, 2020 at 10:54:12PM +0900, Katsuhiro Suzuki wrote:
+>> This patch converts Rockchip rk3328 audio codec binding to DT schema.
+>> And adds description about "mclk" clock and fixes some errors in
+>> original example.
+>>
+>> Signed-off-by: Katsuhiro Suzuki <katsuhiro@katsuster.net>
+>> ---
+>>   .../bindings/sound/rockchip,rk3328-codec.txt  | 28 --------
+>>   .../bindings/sound/rockchip,rk3328-codec.yaml | 70 +++++++++++++++++++
+>>   2 files changed, 70 insertions(+), 28 deletions(-)
+>>   delete mode 100644 Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.txt
+>>   create mode 100644 Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.yaml
+> 
+> Need to Cc Mark Brown...
+> 
 
-The board design is believe to follow Allwinner's reference design. This
-judgement is based on the fact that the I/O pins and GPIO lines used
-match up with the reference design. Assumptions about the regulator tree
-are based on this.
+Oops... I'll add him in the next time.
 
-The LCD panel only has some serial number markings, and what appears to
-be a part number: "OS1N71J003", which is also a prefix for one of the
-serial number markings. Searching for this part number yielded no
-results. As such, the color depth display timings are directly listed
-in the device tree. The timing are from the FEX file recovered from the
-device. The color depth was derived from the dithering setting from the
-FEX file, as well as independent testing with a color gradient image.
-The internal board, as well as the ribbon cable for the panel, route the
-full 24 bits of color. So the 2 extra bits are dropped either by the
-panel itself or somewhere within the LCD panel module casing.
 
-Add a device tree for this tablet. Almost the whole device is supported.
-The only things missing are the two cameras, which don't have device
-tree bindings or driver support. The vendor for the LCD panel is left
-out, since there is nothing to go with.
+>>
+>> diff --git a/Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.txt b/Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.txt
+>> deleted file mode 100644
+>> index 1ecd75d2032a..000000000000
+>> --- a/Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.txt
+>> +++ /dev/null
+>> @@ -1,28 +0,0 @@
+>> -* Rockchip Rk3328 internal codec
+>> -
+>> -Required properties:
+>> -
+>> -- compatible: "rockchip,rk3328-codec"
+>> -- reg: physical base address of the controller and length of memory mapped
+>> -  region.
+>> -- rockchip,grf: the phandle of the syscon node for GRF register.
+>> -- clocks: a list of phandle + clock-specifer pairs, one for each entry in clock-names.
+>> -- clock-names: should be "pclk".
+>> -- spk-depop-time-ms: speak depop time msec.
+>> -
+>> -Optional properties:
+>> -
+>> -- mute-gpios: GPIO specifier for external line driver control (typically the
+>> -              dedicated GPIO_MUTE pin)
+>> -
+>> -Example for rk3328 internal codec:
+>> -
+>> -codec: codec@ff410000 {
+>> -	compatible = "rockchip,rk3328-codec";
+>> -	reg = <0x0 0xff410000 0x0 0x1000>;
+>> -	rockchip,grf = <&grf>;
+>> -	clocks = <&cru PCLK_ACODEC>;
+>> -	clock-names = "pclk";
+>> -	mute-gpios = <&grf_gpio 0 GPIO_ACTIVE_LOW>;
+>> -	spk-depop-time-ms = 100;
+>> -};
+>> diff --git a/Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.yaml b/Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.yaml
+>> new file mode 100644
+>> index 000000000000..525b48c2f5de
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.yaml
+>> @@ -0,0 +1,70 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/sound/rockchip,rk3328-codec.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Rockchip rk3328 internal codec
+>> +
+>> +maintainers:
+>> +  - Heiko Stuebner <heiko@sntech.de>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: rockchip,rk3328-codec
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: clock for audio codec
+>> +      - description: clock for I2S master clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: pclk
+>> +      - const: mclk
+>> +
+>> +  rockchip,grf:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      The phandle of the syscon node for the GRF register.
+>> +
+>> +  spk-depop-time-ms:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> 
+> Don't need a type with standard unit suffixes.
+> 
+>> +    default: 200
+> 
+> Is there a range of values? Surely 2^32 would be too long.
+> 
 
-Signed-off-by: Chen-Yu Tsai <wens@csie.org>
----
+No there isn't. Unfortunately detail specification of rk3328
+internal audio codec is not public. I also think 2^32 is too
+long, but no one knows correct range...
 
-The panel-dpi binding requires a more-specific compatible string.
-However given the vendor of the panel is unknown, I'm not sure what
-the best course of action is here. I opted to put the part number in
-without a vendor prefix.
 
----
- arch/arm/boot/dts/Makefile              |   1 +
- arch/arm/boot/dts/sun7i-a20-primo73.dts | 279 ++++++++++++++++++++++++
- 2 files changed, 280 insertions(+)
- create mode 100644 arch/arm/boot/dts/sun7i-a20-primo73.dts
+> Otherwise,
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> 
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index e6a1cac0bfc7..c09cda958db5 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1133,6 +1133,7 @@ dtb-$(CONFIG_MACH_SUN7I) += \
- 	sun7i-a20-orangepi-mini.dtb \
- 	sun7i-a20-pcduino3.dtb \
- 	sun7i-a20-pcduino3-nano.dtb \
-+	sun7i-a20-primo73.dtb \
- 	sun7i-a20-wexler-tab7200.dtb \
- 	sun7i-a20-wits-pro-a20-dkt.dtb
- dtb-$(CONFIG_MACH_SUN8I) += \
-diff --git a/arch/arm/boot/dts/sun7i-a20-primo73.dts b/arch/arm/boot/dts/sun7i-a20-primo73.dts
-new file mode 100644
-index 000000000000..f3b1002ceb50
---- /dev/null
-+++ b/arch/arm/boot/dts/sun7i-a20-primo73.dts
-@@ -0,0 +1,279 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2020 Chen-Yu Tsai <wens@csie.org>
-+ */
-+
-+/dts-v1/;
-+#include "sun7i-a20.dtsi"
-+#include "sunxi-common-regulators.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/pwm/pwm.h>
-+
-+/{
-+	model = "MSI Primo73 Tablet";
-+	compatible = "msi,primo73", "allwinner,sun7i-a20";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm 0 50000 PWM_POLARITY_INVERTED>;
-+		enable-gpios = <&pio 7 7 GPIO_ACTIVE_HIGH>; /* PH7 */
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "b";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi_out_con>;
-+			};
-+		};
-+	};
-+
-+	panel: panel {
-+		compatible = "os1n71j003", "panel-dpi";
-+		backlight = <&backlight>;
-+		power-supply = <&reg_vcc5v0>; /* Actually driven from IPSOUT */
-+		enable-gpios = <&pio 7 8 GPIO_ACTIVE_HIGH>; /* PH8 */
-+		height-mm = <86>;
-+		width-mm = <155>;
-+		bits-per-color = <6>;
-+
-+		panel-timing {
-+			clock-frequency = <60000000>;
-+			hactive = <1024>;
-+			vactive = <600>;
-+			hfront-porch = <160>;
-+			hback-porch = <60>;
-+			hsync-len = <100>;
-+			vback-porch = <13>;
-+			vfront-porch = <10>;
-+			vsync-len = <10>;
-+			de-active = <1>;
-+			pixelclk-active = <0>;
-+		};
-+
-+		port {
-+			panel_input: endpoint {
-+				remote-endpoint = <&tcon0_out_lcd>;
-+			};
-+		};
-+	};
-+};
-+
-+&ccu {
-+	pinctrl-0 = <&csi0_clk_pin>;
-+	pinctrl-names = "default";
-+};
-+
-+&codec {
-+	allwinner,pa-gpios = <&pio 7 15 GPIO_ACTIVE_HIGH>; /* PH15 */
-+	status = "okay";
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc2>;
-+};
-+
-+&de {
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&hdmi {
-+	status = "okay";
-+};
-+
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	axp209: pmic@34 {
-+		reg = <0x34>;
-+		interrupt-parent = <&nmi_intc>;
-+		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+
-+#include "axp209.dtsi"
-+
-+&battery_power_supply {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	accelerometer@1c {
-+		compatible = "fsl,mma8452";
-+		reg = <0x1c>;
-+		vdd-supply = <&reg_vcc3v0>;
-+		vddio-supply = <&reg_vcc3v0>;
-+		#io-channel-cells = <1>;
-+	};
-+};
-+
-+&i2c2 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	touchscreen@5d {
-+		compatible = "goodix,gt911";
-+		reg = <0x5d>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <7 21 IRQ_TYPE_EDGE_FALLING>; /* EINT21 (PH21) */
-+		irq-gpios = <&pio 7 21 GPIO_ACTIVE_HIGH>; /* INT (PH21) */
-+		reset-gpios = <&pio 1 13 GPIO_ACTIVE_HIGH>; /* RST (PB13) */
-+		touchscreen-swapped-x-y; /* Match LCD panel orientation */
-+	};
-+};
-+
-+&lradc {
-+	vref-supply = <&reg_vcc3v0>;
-+	status = "okay";
-+
-+	button-200 {
-+		label = "Volume Up";
-+		linux,code = <KEY_VOLUMEUP>;
-+		channel = <0>;
-+		voltage = <200000>;
-+	};
-+
-+	button-400 {
-+		label = "Volume Down";
-+		linux,code = <KEY_VOLUMEDOWN>;
-+		channel = <0>;
-+		voltage = <400000>;
-+	};
-+};
-+
-+&mmc0 {
-+	vmmc-supply = <&reg_vcc3v0>;
-+	bus-width = <4>;
-+	cd-gpios = <&pio 7 1 GPIO_ACTIVE_LOW>; /* PH1 */
-+	status = "okay";
-+};
-+
-+&otg_sram {
-+	status = "okay";
-+};
-+
-+&pio {
-+	vcc-pa-supply = <&reg_vcc3v0>;
-+	vcc-pc-supply = <&reg_vcc3v0>;
-+	vcc-pe-supply = <&reg_ldo3>;
-+	vcc-pf-supply = <&reg_vcc3v0>;
-+	vcc-pg-supply = <&reg_ldo3>;
-+};
-+
-+&pwm {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm0_pin>;
-+	status = "okay";
-+};
-+
-+&reg_dcdc2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1000000>;
-+	regulator-max-microvolt = <1400000>;
-+	regulator-name = "vdd-cpu";
-+};
-+
-+&reg_dcdc3 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1000000>;
-+	regulator-max-microvolt = <1400000>;
-+	regulator-name = "vdd-int-dll";
-+};
-+
-+&reg_ldo1 {
-+	regulator-name = "vdd-rtc";
-+};
-+
-+&reg_ldo2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3000000>;
-+	regulator-max-microvolt = <3000000>;
-+	regulator-name = "avcc";
-+};
-+
-+&reg_ldo3 {
-+	regulator-min-microvolt = <2800000>;
-+	regulator-max-microvolt = <2800000>;
-+	regulator-name = "csi-iovdd";
-+};
-+
-+&reg_ldo4 {
-+	regulator-min-microvolt = <2800000>;
-+	regulator-max-microvolt = <2800000>;
-+	regulator-name = "csi-avdd";
-+};
-+
-+&reg_usb0_vbus {
-+	gpio = <&pio 1 9 GPIO_ACTIVE_HIGH>; /* PB09 */
-+	status = "okay";
-+};
-+
-+&reg_usb2_vbus {
-+	gpio = <&pio 7 12 GPIO_ACTIVE_HIGH>; /* PH12 */
-+	status = "okay";
-+};
-+
-+&reg_vcc3v3 {
-+	status = "disabled";
-+};
-+
-+&tcon0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&lcd0_rgb888_pins>;
-+};
-+
-+&tcon0_out {
-+	tcon0_out_lcd: endpoint@0 {
-+		reg = <0>;
-+		remote-endpoint = <&panel_input>;
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_pb_pins>;
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&usb_power_supply {
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb0_id_det-gpios = <&pio 7 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; /* PH4 */
-+	usb0_vbus_power-supply = <&usb_power_supply>;
-+	usb0_vbus-supply = <&reg_usb0_vbus>;
-+	usb2_vbus-supply = <&reg_usb2_vbus>;
-+	status = "okay";
-+};
--- 
-2.27.0
+Best Regards,
+Katsuhiro Suzuki
+
+
+>> +    description:
+>> +      Speaker depop time in msec.
+>> +
+>> +  mute-gpios:
+>> +    maxItems: 1
+>> +    description:
+>> +      GPIO specifier for external line driver control (typically the
+>> +      dedicated GPIO_MUTE pin)
+>> +
+>> +  "#sound-dai-cells":
+>> +    const: 0
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +  - rockchip,grf
+>> +  - "#sound-dai-cells"
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/gpio/gpio.h>
+>> +    #include <dt-bindings/clock/rk3328-cru.h>
+>> +    codec: codec@ff410000 {
+>> +      compatible = "rockchip,rk3328-codec";
+>> +      reg = <0xff410000 0x1000>;
+>> +      clocks = <&cru PCLK_ACODECPHY>, <&cru SCLK_I2S1>;
+>> +      clock-names = "pclk", "mclk";
+>> +      rockchip,grf = <&grf>;
+>> +      mute-gpios = <&grf_gpio 0 GPIO_ACTIVE_LOW>;
+>> +      spk-depop-time-ms = <100>;
+>> +      #sound-dai-cells = <0>;
+>> +    };
+>> -- 
+>> 2.27.0
+>>
 
