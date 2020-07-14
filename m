@@ -2,88 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8581A21F206
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 14:58:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E73A21F276
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2020 15:26:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728466AbgGNM6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jul 2020 08:58:13 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:33292 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728049AbgGNM6C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jul 2020 08:58:02 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 3F1268040A7B;
-        Tue, 14 Jul 2020 12:58:00 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id r2vTuNbBRxgJ; Tue, 14 Jul 2020 15:57:59 +0300 (MSK)
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>, James Hogan <jhogan@kernel.org>,
-        <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v5 6/6] MAINTAINERS: Add maintainers for MIPS core drivers
-Date:   Tue, 14 Jul 2020 15:57:52 +0300
-Message-ID: <20200714125753.22466-7-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20200714125753.22466-1-Sergey.Semin@baikalelectronics.ru>
-References: <20200714125753.22466-1-Sergey.Semin@baikalelectronics.ru>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+        id S1727810AbgGNN0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jul 2020 09:26:41 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:58262 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726461AbgGNN0l (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Jul 2020 09:26:41 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1594733200; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=ZuuVvtXOSn5P69Z0eecIOVwDd77Y6Cz0UPcGzE05C34=; b=Ql3MPcfZvKr13pTbjg/uwp85eDbaqQeWIg9emPHaLxepzK6jsKtI7wS7HpU8yHre8P6y9Vyt
+ yO/YD8TLrRtk7ha7EMO9XXGTkunJH5XvbumoojEVSu3DiJXki0xMbAORV6ZX3CIPyr+w/MXh
+ dTKhZ/KlFksx3s+1/g0pRWKjG4I=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n13.prod.us-east-1.postgun.com with SMTP id
+ 5f0db2551e603dbb44145965 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 14 Jul 2020 13:25:41
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 6ABBDC43391; Tue, 14 Jul 2020 13:25:40 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from akhilpo-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akhilpo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id DDDF8C433CA;
+        Tue, 14 Jul 2020 13:25:36 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org DDDF8C433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=akhilpo@codeaurora.org
+From:   Akhil P Oommen <akhilpo@codeaurora.org>
+To:     freedreno@lists.freedesktop.org
+Cc:     dri-devel@freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, jcrouse@codeaurora.org,
+        devicetree@vger.kernel.org, mka@chromium.org, jonathan@marek.ca,
+        robdclark@gmail.com, rnayak@codeaurora.org
+Subject: [PATCH] drm: msm: a6xx: fix gpu failure after system resume
+Date:   Tue, 14 Jul 2020 18:55:30 +0530
+Message-Id: <1594733130-398-1-git-send-email-akhilpo@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Thomas and myself as maintainers of the MIPS CPU and GIC IRQchip, MIPS
-GIC timer and MIPS CPS CPUidle drivers.
+On targets where GMU is available, GMU takes over the ownership of GX GDSC
+during its initialization. So, take a refcount on the GX PD on behalf of
+GMU before we initialize it. This makes sure that nobody can collapse the
+GX GDSC once GMU owns the GX GDSC. This patch fixes some weird failures
+during GPU wake up during system resume.
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Acked-by: Marc Zyngier <maz@kernel.org>
-
+Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
 ---
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.c | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
 
-Changelog v3:
-- Keep the files list alphabetically ordered.
-- Add Thomas as the co-maintainer of the designated drivers.
----
- MAINTAINERS | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2926327e4976..20532e0287d7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11278,6 +11278,17 @@ F:	arch/mips/configs/generic/board-boston.config
- F:	drivers/clk/imgtec/clk-boston.c
- F:	include/dt-bindings/clock/boston-clock.h
+diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+index a6f43ff..5b2df7d 100644
+--- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
++++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+@@ -873,10 +873,19 @@ int a6xx_gmu_resume(struct a6xx_gpu *a6xx_gpu)
+ 	/* Turn on the resources */
+ 	pm_runtime_get_sync(gmu->dev);
  
-+MIPS CORE DRIVERS
-+M:	Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-+M:	Serge Semin <fancer.lancer@gmail.com>
-+L:	linux-mips@vger.kernel.org
-+S:	Supported
-+F:	drivers/bus/mips_cdmm.c
-+F:	drivers/clocksource/mips-gic-timer.c
-+F:	drivers/cpuidle/cpuidle-cps.c
-+F:	drivers/irqchip/irq-mips-cpu.c
-+F:	drivers/irqchip/irq-mips-gic.c
++	/*
++	 * "enable" the GX power domain which won't actually do anything but it
++	 * will make sure that the refcounting is correct in case we need to
++	 * bring down the GX after a GMU failure
++	 */
++	if (!IS_ERR_OR_NULL(gmu->gxpd))
++		pm_runtime_get_sync(gmu->gxpd);
 +
- MIPS GENERIC PLATFORM
- M:	Paul Burton <paulburton@kernel.org>
- L:	linux-mips@vger.kernel.org
+ 	/* Use a known rate to bring up the GMU */
+ 	clk_set_rate(gmu->core_clk, 200000000);
+ 	ret = clk_bulk_prepare_enable(gmu->nr_clocks, gmu->clocks);
+ 	if (ret) {
++		pm_runtime_put(gmu->gxpd);
+ 		pm_runtime_put(gmu->dev);
+ 		return ret;
+ 	}
+@@ -919,19 +928,12 @@ int a6xx_gmu_resume(struct a6xx_gpu *a6xx_gpu)
+ 	/* Set the GPU to the current freq */
+ 	a6xx_gmu_set_initial_freq(gpu, gmu);
+ 
+-	/*
+-	 * "enable" the GX power domain which won't actually do anything but it
+-	 * will make sure that the refcounting is correct in case we need to
+-	 * bring down the GX after a GMU failure
+-	 */
+-	if (!IS_ERR_OR_NULL(gmu->gxpd))
+-		pm_runtime_get(gmu->gxpd);
+-
+ out:
+ 	/* On failure, shut down the GMU to leave it in a good state */
+ 	if (ret) {
+ 		disable_irq(gmu->gmu_irq);
+ 		a6xx_rpmh_stop(gmu);
++		pm_runtime_put(gmu->gxpd);
+ 		pm_runtime_put(gmu->dev);
+ 	}
+ 
 -- 
-2.26.2
+2.7.4
 
