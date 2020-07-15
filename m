@@ -2,70 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B027722162B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 22:26:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EA54221636
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 22:27:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725917AbgGOU0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 16:26:43 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:46449 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726894AbgGOU0m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 16:26:42 -0400
-Received: by mail-il1-f193.google.com with SMTP id p15so3114375ilh.13;
-        Wed, 15 Jul 2020 13:26:42 -0700 (PDT)
+        id S1727795AbgGOU1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 16:27:25 -0400
+Received: from mail-il1-f196.google.com ([209.85.166.196]:38816 "EHLO
+        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727037AbgGOU1Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 16:27:24 -0400
+Received: by mail-il1-f196.google.com with SMTP id s21so3154131ilk.5;
+        Wed, 15 Jul 2020 13:27:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=iw+abfEcWg8r2U5F9bV1G66d69s59AL0m3KcUrPU2CU=;
-        b=iYbokgXQXT0cJZH6c82/T3TFiE8oNqd+1YE3rikpLQ6J4bEEUl7uuwo9xIuxccHUxM
-         U9UjYoIxkEWkoqftCxOwnN2IH46lUHsRgDVOnyuNZ5uogzBK3DBoFvSaiS74tmCxLTlO
-         O7S2ZU3AlTxnxtEecQpLy+qJx8dK2FcznLs6ErgdX2hp6iLrPBpprjp3rtF732hWYECD
-         cI94n84GFETmwg2tBFeejo8LK5WpnOJKZt764AEfAUWLFhSCe/mG080x9NNvujZLM5nb
-         IfYNQ7PLDXbsfEhCRCnj7DlmHdCtEchA/0bbSbbz7AJD3II7LdD5eKojimP6gXrmF8NX
-         qLvw==
-X-Gm-Message-State: AOAM533bCoPGRg4+DZCsrlMQB4D4i8Ep/wJ6xPy2SWlQmpI6bPS+KHYO
-        tXMvmJDDmYJSvov3ryKvAg==
-X-Google-Smtp-Source: ABdhPJx8z2WZ6yDXhQQvie9RKIBtkE5Ub6i2jwYJzJRbMHG4H74n6NbT8s2P8GEZo8OR8QFixnLRVw==
-X-Received: by 2002:a92:aad6:: with SMTP id p83mr1161782ill.65.1594844801721;
-        Wed, 15 Jul 2020 13:26:41 -0700 (PDT)
+        bh=hp5HmzJiHOmmnapmKHc4+WA+MfvOrYT+drbJbUm7gKg=;
+        b=UvWVrXvG5O1ipP0/BuhJSeUTg2w4NuvDm5/CRk/3oPyGdD6kZlv+dUwY6NqyTx0Hmo
+         aG27HDF4gDLI1MFbZsEoURGvTUdDOGiVPwM85HsZb5rUHPJir6ceIWSToVAHnq+JSo80
+         G+4b+4eIpuiUxMpKmMQIwE3nnoxMKna4h8YyAwcAHN7Q/A/223+Z0xOtdMPGkPLxN+EJ
+         o/Epsj8Emw/NK+Y5JKn0gmLZqsH0afDGxkqkyPlyPtsOvSHJcA5F6T8f8F1px4/Gl1wE
+         FMU94I1fBZoNxsj5lm0I2z7FwKVwVD1aZm4Hk6CB66haopqcoa4JSmc9jptrtlsbtNQQ
+         D3RA==
+X-Gm-Message-State: AOAM533MDQNGOj2VfwLNbR8bAyys7kPWpTvfiKA/dpuzrKIjGZLP7PN6
+        /9LXkWQw67Hz/cJi/TndItyJalotdg==
+X-Google-Smtp-Source: ABdhPJxXvFJvhAfWEuKEbOGO1wNXti8nZgtJ+L13uNRdVTDvDYHxTrzya0aAkmOv1Hxo8Ie4S8fOww==
+X-Received: by 2002:a05:6e02:13e2:: with SMTP id w2mr1283656ilj.9.1594844843463;
+        Wed, 15 Jul 2020 13:27:23 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id z78sm1654024ilk.72.2020.07.15.13.26.40
+        by smtp.gmail.com with ESMTPSA id c16sm1563716ilh.54.2020.07.15.13.27.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jul 2020 13:26:41 -0700 (PDT)
-Received: (nullmailer pid 761926 invoked by uid 1000);
-        Wed, 15 Jul 2020 20:26:40 -0000
-Date:   Wed, 15 Jul 2020 14:26:40 -0600
+        Wed, 15 Jul 2020 13:27:23 -0700 (PDT)
+Received: (nullmailer pid 762998 invoked by uid 1000);
+        Wed, 15 Jul 2020 20:27:22 -0000
+Date:   Wed, 15 Jul 2020 14:27:22 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Bruno Thomsen <bruno.thomsen@gmail.com>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, bth@kamstrup.com,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: ARM: imx: add kamstrup flex
- concentrator to schema
-Message-ID: <20200715202640.GA761896@bogus>
-References: <20200629114927.17379-1-bruno.thomsen@gmail.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Kukjin Kim <kgene@kernel.org>,
+        linux-samsung-soc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: arm: samsung: Do not require clkout on
+ Exynos5260 and Exynos7
+Message-ID: <20200715202722.GA762968@bogus>
+References: <20200629203859.17298-1-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200629114927.17379-1-bruno.thomsen@gmail.com>
+In-Reply-To: <20200629203859.17298-1-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 29 Jun 2020 13:49:25 +0200, Bruno Thomsen wrote:
-> Add Kamstrup flex concentrator compatibles to the schema so we can
-> make use of them for the validation.
+On Mon, 29 Jun 2020 22:38:59 +0200, Krzysztof Kozlowski wrote:
+> The PMU (Power Management Unit) driver is a clkout clock provider (for
+> clock signal monitoring) only for certain Exynos SoCs.  It was never
+> implemented for Exynos5260 and Exynos7.  This fixes dtschema validator
+> warnings like:
 > 
-> Signed-off-by: Bruno Thomsen <bruno.thomsen@gmail.com>
+>     system-controller@105c0000: '#clock-cells' is a required property
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../devicetree/bindings/arm/samsung/pmu.yaml  | 22 ++++++++++++++++---
+>  1 file changed, 19 insertions(+), 3 deletions(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
