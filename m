@@ -2,99 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBA0D220308
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 05:46:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B9BE22033E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 06:14:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728205AbgGODqT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jul 2020 23:46:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36842 "EHLO
+        id S1726829AbgGOEOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 00:14:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728053AbgGODqT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jul 2020 23:46:19 -0400
-Received: from mail-il1-x141.google.com (mail-il1-x141.google.com [IPv6:2607:f8b0:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 471CCC061755
-        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2020 20:46:19 -0700 (PDT)
-Received: by mail-il1-x141.google.com with SMTP id o3so744641ilo.12
-        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2020 20:46:19 -0700 (PDT)
+        with ESMTP id S1726458AbgGOEON (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 00:14:13 -0400
+Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com [IPv6:2607:f8b0:4864:20::842])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D4CAC061755;
+        Tue, 14 Jul 2020 21:14:13 -0700 (PDT)
+Received: by mail-qt1-x842.google.com with SMTP id x62so708835qtd.3;
+        Tue, 14 Jul 2020 21:14:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=TsOL0cHZgNHHXdS8EKSurkqDwkh4q7dcMdF14rSf6+4=;
-        b=PA0lyJmmqv3z1yng5c+bbC+Fd2sF2bB+Z0yAb13o6k76rebaVXD1D3fb41re4Ihvq+
-         hivlxR8HzDkiHGmh0l8EEY9XgRAXgoQEKAMqW+d1+qsPz3YGnYvKzC5wsCQDWpkMhiX8
-         pQ/KWP1oW9UejrUN609DKt62AESXiboSQaStU=
+        bh=foDNNdgIp5gEZxCFX16NjXsSXtzimT2AqP9s4DUPnRU=;
+        b=K1HTY9DwxKkwlxnhxfdiEyaM+jc4pxAHsm3ZoHLNf46o0NPweVzUmsjJtWpbSuLE+5
+         lvihYceaJxRcEpAn5Y7EIeZe/uvSunAtgqS9kNlEQiAGK00zW7tqpXxTeSY/4j+aQStZ
+         dmrHIkiZe+s8yH734YCb8MWgS9ATNCn5XMcrXihLhLhW4cwiabHZHBVUHd1gjGLW4Q1k
+         a0OvsQS95Pvuit+60T/5UuMN5I0UHd0X5zOBO38F201gGpVLceSzNqKd3aGWubrmj2EM
+         Mn2jFZoMXI7qVziDUAk642VoUW2CExUIyYCmfbb46N7N3LTCKRJRuW2yeEO85s+bRLIn
+         UHIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=TsOL0cHZgNHHXdS8EKSurkqDwkh4q7dcMdF14rSf6+4=;
-        b=foBSJjQPBqX/xaiS3hfO5jazWc9zWQEqp1zvOuG2qpLKKIoZxNRLtogvpapsgyXhh4
-         leIEpvthx1gf5HFmMygv7knyEwiAoZk4OYdKrTxUZOLDRRmZy58h5z/E2pxar5i5bTTv
-         LufXfmaeFiuP2f49B0kvWFX1N/JNoAkgzTVcmsLkPKHQjz5g1y3ijaad9d+XxN7xrHwV
-         SrXQ0ELuvnfAXR4xwIHoQuozg6lyoh2x7QsuiaIZarlu734W2NZGXpin2SZUXBjKFe3V
-         lTBxC5dZoqiu3UQ5jsM2PZlyLbRKUmp6NxzrpCGj7/NuLtZ1/4UkcTOqjZ2aPr7uD1dx
-         GD7A==
-X-Gm-Message-State: AOAM5317fEaWrZUk2trBHUZbwEyYN6Gn+5dO+KLk2viisvPAgFCSR92K
-        LKujRg6Ah5uA0Zvil49z1kzFWg8sC0s=
-X-Google-Smtp-Source: ABdhPJz3tXtDrXyumTvLW5p2AUuKml/XaLEJVIb+VDRBK5LTR9aqHbzcKZA16JYiW15IlVDnIWxehA==
-X-Received: by 2002:a92:840b:: with SMTP id l11mr7801310ild.129.1594784777991;
-        Tue, 14 Jul 2020 20:46:17 -0700 (PDT)
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com. [209.85.166.182])
-        by smtp.gmail.com with ESMTPSA id s11sm483764ili.79.2020.07.14.20.46.16
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jul 2020 20:46:17 -0700 (PDT)
-Received: by mail-il1-f182.google.com with SMTP id k6so776891ili.6
-        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2020 20:46:16 -0700 (PDT)
-X-Received: by 2002:a92:a196:: with SMTP id b22mr7685147ill.303.1594784776244;
- Tue, 14 Jul 2020 20:46:16 -0700 (PDT)
+        bh=foDNNdgIp5gEZxCFX16NjXsSXtzimT2AqP9s4DUPnRU=;
+        b=hmLLa0iAOZfoB/jGrNMB3Gg/3clEtRSG3DAq+Bq7T5Xg5Mi//0VQ8Jiheozfl+554W
+         zMufiXJBReL0LbMFP3hY1uQ+I32iv9s0KvU1mGyfAjWeXQvDZ8WFQMHb24rdKzEIH4jY
+         GPzawy7WmqFJcjfb/y7yXuvimo3Rhj1qiMjXp72n6FO8COnt5hsGVmmLamJzLnLKgXPu
+         ApXa4jP4YnVln0nf2vSkUZLdJVNvH+jURhEJqCszEDNOxDPrN9hDnTx6i85PWpT00Ptn
+         L1VmMxaYFXkjYGZ3TIBG0L6gKD5nSCUYsW2GLdUL06xlv1ED7/Me/Lq45eAH5/4Blxwt
+         aKPA==
+X-Gm-Message-State: AOAM533s72WljpwaLq2TYunbmP4u3aHjBj24BQC1pQdJ67/pinMM0HjM
+        7FJ80K/BVR9r5BCWNpES30G/5ocT+n6+/Ln6P34=
+X-Google-Smtp-Source: ABdhPJz9uu3YAldIkZ25DwFl7GQTjr4Q/2qWdCJALV+nDYpRz3j+ggBoJDewGFe15ct9g6o4fvRHNE0l6dRRFxn2zpM=
+X-Received: by 2002:ac8:41c6:: with SMTP id o6mr8114697qtm.292.1594786452616;
+ Tue, 14 Jul 2020 21:14:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200713091211.2183368-1-tientzu@chromium.org>
- <20200713091211.2183368-2-tientzu@chromium.org> <4a2451f9-57d8-2e83-e1d6-f144f37173c0@arm.com>
- <20200714110141.GD16178@lst.de>
-In-Reply-To: <20200714110141.GD16178@lst.de>
-From:   Claire Chang <tientzu@chromium.org>
-Date:   Wed, 15 Jul 2020 11:46:05 +0800
-X-Gmail-Original-Message-ID: <CALiNf2-9b5LMjv+KCqFJ9oz2FocT6oQ1zVY_MBaFgNG1DQxZ=Q@mail.gmail.com>
-Message-ID: <CALiNf2-9b5LMjv+KCqFJ9oz2FocT6oQ1zVY_MBaFgNG1DQxZ=Q@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dma-mapping: Add bounced DMA ops
-To:     Christoph Hellwig <hch@lst.de>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, frowand.list@gmail.com,
-        m.szyprowski@samsung.com, treding@nvidia.com,
-        Greg KH <gregkh@linuxfoundation.org>, saravanak@google.com,
-        suzuki.poulose@arm.com, dan.j.williams@intel.com,
-        heikki.krogerus@linux.intel.com, bgolaszewski@baylibre.com,
-        devicetree@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>,
-        iommu@lists.linux-foundation.org, tfiga@chromium.org,
-        Nicolas Boichat <drinkcat@chromium.org>
+References: <1594717536-5188-1-git-send-email-shengjiu.wang@nxp.com>
+ <1594717536-5188-4-git-send-email-shengjiu.wang@nxp.com> <20200714211432.GA10818@Asurada-Nvidia>
+In-Reply-To: <20200714211432.GA10818@Asurada-Nvidia>
+From:   Shengjiu Wang <shengjiu.wang@gmail.com>
+Date:   Wed, 15 Jul 2020 12:14:01 +0800
+Message-ID: <CAA+D8ANQ_B9jJUhLYQnKxKJcVrmvakxPo58h433QqFhdu2nRPA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] ASoC: fsl-asoc-card: Support Headphone and Microphone
+ Jack detection
+To:     Nicolin Chen <nicoleotsuka@gmail.com>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        linuxppc-dev@lists.ozlabs.org, Timur Tabi <timur@kernel.org>,
+        kuninori.morimoto.gx@renesas.com, samuel@sholland.org,
+        katsuhiro@katsuster.net,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Takashi Iwai <tiwai@suse.com>, Mark Brown <broonie@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 14, 2020 at 7:01 PM Christoph Hellwig <hch@lst.de> wrote:
+On Wed, Jul 15, 2020 at 5:16 AM Nicolin Chen <nicoleotsuka@gmail.com> wrote:
 >
-> On Mon, Jul 13, 2020 at 12:55:43PM +0100, Robin Murphy wrote:
-> > On 2020-07-13 10:12, Claire Chang wrote:
-> >> The bounced DMA ops provide an implementation of DMA ops that bounce
-> >> streaming DMA in and out of a specially allocated region. Only the
-> >> operations relevant to streaming DMA are supported.
-> >
-> > I think there are too many implicit assumptions here - apparently that
-> > coherent allocations will always be intercepted by
-> > dma_*_from_dev_coherent(), and that calling into dma-direct won't actually
-> > bounce things a second time beyond where you thought they were going,
-> > manage coherency for a different address, and make it all go subtly wrong.
-> > Consider "swiotlb=force", for instance...
-> >
-> > Again, plumbing this straight into dma-direct so that SWIOTLB can simply
-> > target a different buffer and always bounce regardless of masks would seem
-> > a far better option.
+> Hi Shengjiu,
 >
-> I haven't really had time to read through the details, but I agree that
-> any bouncing scheme should reuse the swiotlb code and not invent a
-> parallel infrastructure.
-Thanks for the feedback. I'll try to reuse SWIOTLB.
+> The whole series looks good to me. Just a couple of small
+> questions inline:
+>
+> On Tue, Jul 14, 2020 at 05:05:36PM +0800, Shengjiu Wang wrote:
+> > Use asoc_simple_init_jack function from simple card to implement
+> > the Headphone and Microphone detection.
+> > Register notifier to disable Speaker when Headphone is plugged in
+> > and enable Speaker when Headphone is unplugged.
+> > Register notifier to disable Digital Microphone when Analog Microphone
+> > is plugged in and enable DMIC when Analog Microphone is unplugged.
+> >
+> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > ---
+> >  sound/soc/fsl/Kconfig         |  1 +
+> >  sound/soc/fsl/fsl-asoc-card.c | 69 ++++++++++++++++++++++++++++++++++-
+> >  2 files changed, 68 insertions(+), 2 deletions(-)
+>
+> >  static int fsl_asoc_card_late_probe(struct snd_soc_card *card)
+> >  {
+> >       struct fsl_asoc_card_priv *priv = snd_soc_card_get_drvdata(card);
+> > @@ -745,8 +789,29 @@ static int fsl_asoc_card_probe(struct platform_device *pdev)
+> >       snd_soc_card_set_drvdata(&priv->card, priv);
+> >
+> >       ret = devm_snd_soc_register_card(&pdev->dev, &priv->card);
+> > -     if (ret && ret != -EPROBE_DEFER)
+> > -             dev_err(&pdev->dev, "snd_soc_register_card failed (%d)\n", ret);
+> > +     if (ret) {
+> > +             if (ret != -EPROBE_DEFER)
+> > +                     dev_err(&pdev->dev, "snd_soc_register_card failed (%d)\n", ret);
+>
+> I think we may move this EPROBE_DEFER to the asrc_fail label.
+
+If we move this to asrc_fail label, then it will be hard to define the
+error message.
+There are many places that goto asrc_fail.
+
+>
+> > +             goto asrc_fail;
+> > +     }
+> > +
+> > +     if (of_property_read_bool(np, "hp-det-gpio")) {
+>
+> Could we move this check inside asoc_simple_init_jack? There's no
+> problem with doing it here though, yet I got a bit confused by it
+> as I thought it's a boolean type property, which would be against
+> the DT bindings until I saw asoc_simple_init_jack() uses the same
+> string to get the GPIO. Just it probably would be a bit tricky as
+> we need it to be optional here.
+>
+> Otherwise, I think we may add a line of comments to indicate that
+> the API would use the same string to get the GPIO.
+
+In asoc_simple_init_jack, gpio_is_valid() will be invalid when there is
+no "hp-det-gpio" property, and asoc_simple_init_jack will return 0.
+
+The reason why I add a check here is mostly for
+snd_soc_jack_notifier_register().
+when there is no jack created, there will be a kernel dump.
+
+or I can use this code:
+
+-       if (of_property_read_bool(np, "hp-det-gpio")) {
+-               ret = asoc_simple_init_jack(&priv->card, &priv->hp_jack,
+-                                           1, NULL, "Headphone Jack");
+-               if (ret)
+-                       goto asrc_fail;
++       ret = asoc_simple_init_jack(&priv->card, &priv->hp_jack,
++                                   1, NULL, "Headphone Jack");
++       if (ret)
++               goto asrc_fail;
+
++       if (priv->hp_jack.jack.jack)
+                snd_soc_jack_notifier_register(&priv->hp_jack.jack,
+&hp_jack_nb);
+-       }
+
+what do you think?
+
+best regards
+wang shengjiu
