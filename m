@@ -2,184 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 353202216C3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 23:05:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC7042216CE
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 23:08:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726356AbgGOVFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 17:05:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56138 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725917AbgGOVFN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 17:05:13 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D55E0C061755;
-        Wed, 15 Jul 2020 14:05:12 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id q5so4363601wru.6;
-        Wed, 15 Jul 2020 14:05:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=pMuDrbc0LtOTxt86qt0VfuSZy3PKDlBe9oPpUULHnpQ=;
-        b=LWNEV195GUHtZQQKtrKgYeYw564ys5wqPuzKby6I+EG2vKRI64TxxMI0m6hUiCxPQB
-         mQIFx1x72NUgFFT5VNMUf4aEO6BU7UpLk8mO8/RThHUeIloAPOY8DoKeEYpE4e99ggn9
-         /Ada4uJ6xsISkD+ZGasdyCHRTD6aKwbrCC9oNopCdrHMwZLd7hNaHMbgeZYJAgFf/bgq
-         jlkD9/RKP1RkLSFK9NEJxFy1s4d8n+fmrn393DosB3MoexbZttOqRcZVvOgUauBXdWDB
-         lp8ZmOXU27x4lvy6FsvFyuAlYOq9e83KLHViurD7r8dxd/2FnROG3HzYREUX6FA9aamV
-         5XaQ==
+        id S1726479AbgGOVIB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 17:08:01 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:39900 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725917AbgGOVIA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 17:08:00 -0400
+Received: by mail-io1-f65.google.com with SMTP id f23so3773269iof.6;
+        Wed, 15 Jul 2020 14:08:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=pMuDrbc0LtOTxt86qt0VfuSZy3PKDlBe9oPpUULHnpQ=;
-        b=FLBTMHODDPeLPwRT2TE6vt+EHkeky6up2d5gp0fZlQAJmZDlxRsK/90Fpiph3xOzco
-         PTqyH1DWlizy+k1iEshfEg41kX3fAm7IpofnUPCEcYa0boafWgamARz7goWHeaMU5jWa
-         lFAfbhYN5QS+he3xHlbTJEtkk0FOpr4zRMjR7qlPWZS1Q+XhhVrHbBn2kk60gE/ZPRto
-         3Sb+xyOA7opOOmlBOiIpxcMtthA5cPIiCL69wjYg2QRmgwo3KMXUdr8TldTXxXyzyGgc
-         Y8RZiPqWkt/ZZ45J/4sDhbsQIb2qt0/5tQzI6V6c75DAjPjW0cz7izJbb8MrM6r2dfmJ
-         mhpw==
-X-Gm-Message-State: AOAM532R3ffwDdRMJ2PAU2iO6CyQsFRpjjW8sxMmHt2dxZpuy2PBzU5a
-        edYxBTJsmi6ZIUvf0ruRlXc=
-X-Google-Smtp-Source: ABdhPJyMkIbuf0cWEq7Qews8ZNKgYCbSzRPQ6rJMKaHtnSYodbLUH8RRzfvvdkzlbxuBV2cr+ofKfQ==
-X-Received: by 2002:a5d:458a:: with SMTP id p10mr1424074wrq.184.1594847111602;
-        Wed, 15 Jul 2020 14:05:11 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.120.199])
-        by smtp.gmail.com with ESMTPSA id y77sm5515281wmd.36.2020.07.15.14.05.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jul 2020 14:05:10 -0700 (PDT)
-Subject: Re: [PATCH 4/4] iommu/mediatek: check 4GB mode by reading infracfg
-To:     Miles Chen <miles.chen@mediatek.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, wsd_upstream@mediatek.com,
-        Yong Wu <yong.wu@mediatek.com>,
-        Chao Hao <chao.hao@mediatek.com>,
-        Yingjoe Chen <yingjoe.chen@mediatek.com>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        David Hildenbrand <david@redhat.com>,
-        Christoph Hellwig <hch@lst.de>
-References: <20200702093721.6063-1-miles.chen@mediatek.com>
- <20200702093721.6063-4-miles.chen@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <84333997-735c-4a91-6d47-1dcb5c4a6078@gmail.com>
-Date:   Wed, 15 Jul 2020 23:05:09 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=KjCMCoW7QDdmcFgzIcem7O98IMC/DL0hnlshYNlIU/Q=;
+        b=FI3nxx3ezb4/JJRc4X9SmY1Qr7EPITBu8Ij7zRVLLL2IbgpTZZbPCOjuOZEvmz+9OP
+         dFZV1sGbegRBQyDSL8eHC09gbv5GJbOa1vScToPsOFMZDDM7IEyeLmKtzu7R5kGEQ/a0
+         HlKCSBtqJQE3mg9XIIga6VAp9tVV58X5BZzGBJ314i+K+LTa2Lqaelu4BJnib/OiTgcq
+         5dfotMMe5+/FhqeKuBc/FY5MAE6rhJ+7z2WQ8DfoaUR/x1U8XpA4BsxvQRsuu/m8XglS
+         fQlpX90utEL7580ATaTx0NlnmpclR+ro05tz9p8vvN6cAug+KSVqe8iqqJrHyopviS3Y
+         3sGQ==
+X-Gm-Message-State: AOAM530+J3uFGAdD/rh9D/z7MnK7Ia+JzMUlAnyooeEIy7tCPB4Gck7e
+        mGIl0UOKsyTW9XeZST5cbQ==
+X-Google-Smtp-Source: ABdhPJzEQjcFBWmWE376+W3/jvXjGaojoc/mmDz/tY6q3QXK03YBPeISo9pECab3cFblZ38C0GtHEw==
+X-Received: by 2002:a02:9f8e:: with SMTP id a14mr1443823jam.95.1594847279881;
+        Wed, 15 Jul 2020 14:07:59 -0700 (PDT)
+Received: from xps15 ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id u5sm1663421ili.33.2020.07.15.14.07.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jul 2020 14:07:59 -0700 (PDT)
+Received: (nullmailer pid 818071 invoked by uid 1000);
+        Wed, 15 Jul 2020 21:07:58 -0000
+Date:   Wed, 15 Jul 2020 15:07:58 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Ondrej Jirman <megous@megous.com>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: Fix example in nwl-dsi.yaml
+Message-ID: <20200715210758.GA818016@bogus>
+References: <20200703114717.2140832-1-megous@megous.com>
+ <20200703114717.2140832-2-megous@megous.com>
 MIME-Version: 1.0
-In-Reply-To: <20200702093721.6063-4-miles.chen@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200703114717.2140832-2-megous@megous.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 02/07/2020 11:37, Miles Chen wrote:
-> In previous disscusion [1] and [2], we found that it is risky to
-> use max_pfn or totalram_pages to tell if 4GB mode is enabled.
+On Fri, 03 Jul 2020 13:47:16 +0200, Ondrej Jirman wrote:
+> The example is now validated against rocktech,jh057n00900 schema
+> that was ported to yaml, and didn't validate with:
 > 
-> Check 4GB mode by reading infracfg register, remove the usage
-> of the unexported symbol max_pfn.
+> - '#address-cells', '#size-cells', 'port@0' do not match any of
+>   the regexes: 'pinctrl-[0-9]+'
+> - 'vcc-supply' is a required property
+> - 'iovcc-supply' is a required property
+> - 'reset-gpios' is a required property
 > 
-> [1] https://lkml.org/lkml/2020/6/3/733
-> [2] https://lkml.org/lkml/2020/6/4/136
+> Fix it.
 > 
-> Cc: Mike Rapoport <rppt@linux.ibm.com>
-> Cc: David Hildenbrand <david@redhat.com>
-> Cc: Yong Wu <yong.wu@mediatek.com>
-> Cc: Yingjoe Chen <yingjoe.chen@mediatek.com>
-> Cc: Christoph Hellwig <hch@lst.de>
-> Signed-off-by: Miles Chen <miles.chen@mediatek.com>
+> Signed-off-by: Ondrej Jirman <megous@megous.com>
 > ---
->   drivers/iommu/mtk_iommu.c | 22 ++++++++++++++++++----
->   1 file changed, 18 insertions(+), 4 deletions(-)
+>  .../devicetree/bindings/display/bridge/nwl-dsi.yaml      | 9 +++++----
+>  1 file changed, 5 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> index 2be96f1cdbd2..09be57bd8d74 100644
-> --- a/drivers/iommu/mtk_iommu.c
-> +++ b/drivers/iommu/mtk_iommu.c
-> @@ -3,7 +3,6 @@
->    * Copyright (c) 2015-2016 MediaTek Inc.
->    * Author: Yong Wu <yong.wu@mediatek.com>
->    */
-> -#include <linux/memblock.h>
->   #include <linux/bug.h>
->   #include <linux/clk.h>
->   #include <linux/component.h>
-> @@ -15,11 +14,13 @@
->   #include <linux/iommu.h>
->   #include <linux/iopoll.h>
->   #include <linux/list.h>
-> +#include <linux/mfd/syscon.h>
->   #include <linux/of_address.h>
->   #include <linux/of_iommu.h>
->   #include <linux/of_irq.h>
->   #include <linux/of_platform.h>
->   #include <linux/platform_device.h>
-> +#include <linux/regmap.h>
->   #include <linux/slab.h>
->   #include <linux/spinlock.h>
->   #include <asm/barrier.h>
-> @@ -91,6 +92,9 @@
->   #define F_MMU_INT_ID_LARB_ID(a)			(((a) >> 7) & 0x7)
->   #define F_MMU_INT_ID_PORT_ID(a)			(((a) >> 2) & 0x1f)
->   
-> +#define REG_INFRA_MISC				0xf00
-> +#define F_DDR_4GB_SUPPORT_EN			BIT(13)
-> +
 
-As this is used for infracfg, I think it would be good to add it to 
-include/linux/soc/mediatek/infracfg.h and include that file here.
-
->   #define MTK_PROTECT_PA_ALIGN			128
->   
->   /*
-> @@ -599,8 +603,10 @@ static int mtk_iommu_probe(struct platform_device *pdev)
->   	struct resource         *res;
->   	resource_size_t		ioaddr;
->   	struct component_match  *match = NULL;
-> +	struct regmap		*infracfg_regmap;
-
-Maybe call it just infracfg.
-
->   	void                    *protect;
->   	int                     i, larb_nr, ret;
-> +	u32			val;
->   
->   	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
->   	if (!data)
-> @@ -614,10 +620,18 @@ static int mtk_iommu_probe(struct platform_device *pdev)
->   		return -ENOMEM;
->   	data->protect_base = ALIGN(virt_to_phys(protect), MTK_PROTECT_PA_ALIGN);
->   
-> -	/* Whether the current dram is over 4GB */
-> -	data->enable_4GB = !!(max_pfn > (BIT_ULL(32) >> PAGE_SHIFT));
-> -	if (!data->plat_data->has_4gb_mode)
-> +	if (data->plat_data->has_4gb_mode) {
-> +		infracfg_regmap = syscon_regmap_lookup_by_phandle(dev->of_node,
-> +				"mediatek,infracfg");
-> +		if (IS_ERR(infracfg_regmap))
-> +			return PTR_ERR(infracfg_regmap);
-
-Do we need to error out, or could we be conservative and set endable_4GB = false?
-
-> +		ret = regmap_read(infracfg_regmap, REG_INFRA_MISC, &val);
-> +		if (ret)
-> +			return ret;
-> +		data->enable_4GB = !!(val & F_DDR_4GB_SUPPORT_EN);
-> +	} else {
->   		data->enable_4GB = false;
-
-Move that before the if() and update enable_4GB only in case of has_4gb_mode.
-
-> +	}
->   
->   	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->   	data->base = devm_ioremap_resource(dev, res);
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
