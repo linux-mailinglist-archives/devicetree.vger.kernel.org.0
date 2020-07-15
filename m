@@ -2,72 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CF462207F5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 10:58:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E52FE22084C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 11:13:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729868AbgGOI6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 04:58:17 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:33423 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727930AbgGOI6R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 04:58:17 -0400
-Received: by mail-ot1-f65.google.com with SMTP id h13so907207otr.0;
-        Wed, 15 Jul 2020 01:58:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yeMnyF7ItkVPbtYZTSOeFcZrCITQGIgmunPb5COo8ho=;
-        b=R4M+O0MjMDArVRKXd7UQt7y3MDfYzPTANI1v/cGy1orlhCkU0PESHPy43NcpEm8XtK
-         rtanPa9nCZPbrdFnG22rkUkfDFOJsRjPUukD750qiR3p2hfoiyROzmIbHGWTMHx3QbN7
-         W40H7fvk1f6c2cqs72Z4iRmhwYaFElws9uk4V+jDyTRgpE6d9A13E0PGHGBb+tkA5dmI
-         pJnP3z7gPaovorYf9HwzovLpxbx+y3SjppOoMAySIqde8dGe2ukQoPFlxiS4s9NdcVyC
-         t56RLxhrtCQrPPH/cdsdRtHIRr1YTbVg0XjJVGSWk3+MAtKWCl29MfoEJbj3lTgzUzVH
-         yXSQ==
-X-Gm-Message-State: AOAM5303alQVFXIRTEXSkEco2tpvnZvb1efT3NKHLXhliaV4CRQlddNo
-        NAXW27ogmJqrNq4r/KS/DZfCm85QnyUhCUF/0bs=
-X-Google-Smtp-Source: ABdhPJwZdiDSNrdcxQGeLvb5RpjI9g0hXGtsKjnc7+qJE0VqWxy8FJ9B6iVyumYToIoYSRNEJs0YhVphNnDk0kqWCsY=
-X-Received: by 2002:a9d:2646:: with SMTP id a64mr7395517otb.107.1594803496888;
- Wed, 15 Jul 2020 01:58:16 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200714123419.3390-1-aford173@gmail.com> <20200714123419.3390-2-aford173@gmail.com>
-In-Reply-To: <20200714123419.3390-2-aford173@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 15 Jul 2020 10:58:05 +0200
-Message-ID: <CAMuHMdVS6Hf344EbyroGCWR_yxtO3DZh=JUJhauy5OeVG2hajA@mail.gmail.com>
-Subject: Re: [PATCH V2 2/2] dt-bindings: arm: renesas: Document beacon-rzg2m
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1730224AbgGOJME (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 05:12:04 -0400
+Received: from lucky1.263xmail.com ([211.157.147.132]:54690 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728739AbgGOJME (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 05:12:04 -0400
+Received: from localhost (unknown [192.168.167.209])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 30255EC4CA;
+        Wed, 15 Jul 2020 17:03:58 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P9169T139648078694144S1594803824986898_;
+        Wed, 15 Jul 2020 17:03:58 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <f0d531f91e8be1cc3dd6a1ff4d8944af>
+X-RL-SENDER: yifeng.zhao@rock-chips.com
+X-SENDER: zyf@rock-chips.com
+X-LOGIN-NAME: yifeng.zhao@rock-chips.com
+X-FST-TO: miquel.raynal@bootlin.com
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-DNS-TYPE: 0
+X-System-Flag: 0
+From:   Yifeng Zhao <yifeng.zhao@rock-chips.com>
+To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        heiko@sntech.de, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Subject: [PATCH v7 0/8] Add Rockchip NFC drivers for RK3308 and others
+Date:   Wed, 15 Jul 2020 17:03:38 +0800
+Message-Id: <20200715090342.28339-1-yifeng.zhao@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 14, 2020 at 2:34 PM Adam Ford <aford173@gmail.com> wrote:
-> Beacon EmbeddedWorks in introducing a development kit based on the
-> Renesas RZ/G2M platform.  This patch adds the entry to the bindings
-> list.
->
-> Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.9, with the typo pointed out
-by Sergei fixed.
+Rockchp's NFC(Nand Flash Controller) has four versions: V600, V622, V800 and
+V900.This series patch can support all four versions.
 
-Gr{oetje,eeting}s,
 
-                        Geert
+Changes in v7:
+- Fix some wrong define
+- Rebase to linux-next.
+- Fix coding style.
+- Reserved 4 bytes at the begining of the oob area.
+- Page raw read and write included ecc data.
+
+Changes in v6:
+- Fix some wrong define
+- Modified the definition of compatible
+- The mtd->name set by NAND label property.
+- Add some comments.
+- Fix compile error.
+
+Changes in v5:
+- Fix some wrong define.
+- Add boot-medium define.
+- Remove some compatible define.
+- Add boot blocks support  with different ECC for bootROM.
+- Rename rockchip-nand.c to rockchip-nand-controller.c.
+- Unification of other variable names.
+- Remove some compatible define.
+
+Changes in v4:
+- The compatible define with rkxx_nfc.
+- Add assigned-clocks.
+- Fix some wrong defineChanges in.
+- Define platform data structure for the register offsets.
+- The compatible define with rkxx_nfc.
+- Use SET_SYSTEM_SLEEP_PM_OPS to define PM_OPS.
+- Use exec_op instead of legacy hooks.
+
+Changes in v3:
+- Change the title for the dt-bindings.
+
+Changes in v2:
+- Fix compile error.
+- Include header files sorted by file name.
+
+Yifeng Zhao (8):
+  dt-bindings: mtd: Describe Rockchip RK3xxx NAND flash controller
+  mtd: rawnand: rockchip: NFC drivers for RK3308, RK2928 and others
+  MAINTAINERS: add maintainers to ROCKCHIP NFC
+  arm64: dts: rockchip: Add NFC node for RK3308 SoC
+  arm64: dts: rockchip: Add NFC node for PX30 SoC
+  arm: dts: rockchip: Add NFC node for RV1108 SoC
+  arm: dts: rockchip: Add NFC node for RK2928 and other SoCs
+  arm: dts: rockchip: Add NFC node for RK3036 SoC
+
+ .../mtd/rockchip,nand-controller.yaml         |  162 ++
+ MAINTAINERS                                   |    4 +-
+ arch/arm/boot/dts/rk3036.dtsi                 |   52 +
+ arch/arm/boot/dts/rk3xxx.dtsi                 |    9 +
+ arch/arm/boot/dts/rv1108.dtsi                 |   11 +
+ arch/arm64/boot/dts/rockchip/px30.dtsi        |   15 +
+ arch/arm64/boot/dts/rockchip/rk3308.dtsi      |   15 +
+ drivers/mtd/nand/raw/Kconfig                  |   12 +
+ drivers/mtd/nand/raw/Makefile                 |    1 +
+ .../mtd/nand/raw/rockchip-nand-controller.c   | 1422 +++++++++++++++++
+ 10 files changed, 1701 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/rockchip,nand-controller.yaml
+ create mode 100644 drivers/mtd/nand/raw/rockchip-nand-controller.c
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
+
