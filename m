@@ -2,149 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77E4D220867
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 11:15:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71DD22208BC
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 11:28:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730079AbgGOJPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 05:15:45 -0400
-Received: from foss.arm.com ([217.140.110.172]:54634 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729577AbgGOJPo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Jul 2020 05:15:44 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2A2411FB;
-        Wed, 15 Jul 2020 02:15:44 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ED8903F718;
-        Wed, 15 Jul 2020 02:15:41 -0700 (PDT)
-Date:   Wed, 15 Jul 2020 10:15:39 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     linux-arm-kernel@lists.infradead.org,
-        Bjorn Helgaas <bhelgaas@google.com>
-Cc:     Will Deacon <will@kernel.org>, Hanjun Guo <guohanjun@huawei.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        iommu@lists.linux-foundation.org, linux-acpi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, Marc Zyngier <maz@kernel.org>,
-        Makarand Pawagi <makarand.pawagi@nxp.com>,
-        Diana Craciun <diana.craciun@oss.nxp.com>,
-        Laurentiu Tudor <laurentiu.tudor@nxp.com>
-Subject: Re: [PATCH v2 03/12] ACPI/IORT: Make iort_msi_map_rid() PCI agnostic
-Message-ID: <20200715091539.GB30074@e121166-lin.cambridge.arm.com>
-References: <20200521130008.8266-1-lorenzo.pieralisi@arm.com>
- <20200619082013.13661-1-lorenzo.pieralisi@arm.com>
- <20200619082013.13661-4-lorenzo.pieralisi@arm.com>
+        id S1730249AbgGOJ2h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 05:28:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33244 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729850AbgGOJ2g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 05:28:36 -0400
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF4C4C061755;
+        Wed, 15 Jul 2020 02:28:36 -0700 (PDT)
+Received: by mail-pg1-x544.google.com with SMTP id d4so2795147pgk.4;
+        Wed, 15 Jul 2020 02:28:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pJvTVWXy3m6W0qHqqi1ZBUoRZaoYbJ8TfIq2rvc7zc0=;
+        b=sHuPXXrR0FXlRt0O0gM1esBKXFMWqSTDJyw4IeTGgOTCe+yeYmq5cKabsfYpOagmHt
+         YnyidHuzjuGVGMy9zKzsSVKJvGWYlGPXQd6wBt8l24TMEgwessmGJv/fK1aoSxn3y7pg
+         HcvGxFnQC1YKf1rXIfZb9VnvCNh+sdObDz/piUsWK7UzyYZajY/cYqC2ZmeMi7bqk9M1
+         TZ5akwzWXVyRgrks0aEAtPWU9V31u1j6utjwZsT6AnDeIKI1BTd/Cu+lLYzqgjR6zJFE
+         qKrNFZU364IDmHSFyCFPozcdC5qLqVzibY8FDfU46BGUCWadWQlx6y8kf+cI6uFxJhYG
+         XCMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pJvTVWXy3m6W0qHqqi1ZBUoRZaoYbJ8TfIq2rvc7zc0=;
+        b=n8QfTXIKBGKHpQkNQLd9q31v1TOCJyOFfaL/SGwoGGYWl9lZZo4MZUefjohYNGZbWV
+         aW0EHJMuEEDHm01YLWLe8hkp91IhbDVZZqiRhouCUm9V+bRqmX3MHtKO0NKOBmJYdlTf
+         5Qa9cbjW7HTdTY9qvtJh9fIaJ+Yh1mNWzlxL5qJmDueNrhW6dulH2wUgvs7ipHDQIGu6
+         OxyKmbmtFPeAwG7aKKukn2N0jdrtBX+y1yjXdw/s79joW1k/tx2UI0nVTvzfv0j4o1cz
+         rHhL/sQrGThteq3QqSVI/8lUkO7E3F3rZ2ta1ijq7wO8GqPTNF+HawITBC6dqCTlX0ls
+         0h3A==
+X-Gm-Message-State: AOAM5335q8wq7rJnxA0MJq6Cja9fWyN91NHB0fFLE9zywp/jCQz+2UV3
+        LUzTIPIe6SmDvIYw+yhcfDM=
+X-Google-Smtp-Source: ABdhPJxOI/TWSkRH4YpTDwc9zURvXajeabWuPS+KR7SoEsT4GhQpTWxvdwrcmGOBgBXTeWfl2oNGkw==
+X-Received: by 2002:a63:ab4f:: with SMTP id k15mr7396434pgp.247.1594805316396;
+        Wed, 15 Jul 2020 02:28:36 -0700 (PDT)
+Received: from nish-HP-Pavilion ([2409:4072:6188:2bbe:d028:8959:a8a3:a7bc])
+        by smtp.gmail.com with ESMTPSA id 17sm1549391pfv.16.2020.07.15.02.28.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jul 2020 02:28:35 -0700 (PDT)
+From:   Nishant Malpani <nish.malpani25@gmail.com>
+To:     jic23@kernel.org, robh+dt@kernel.org
+Cc:     dragos.bogdan@analog.com, darius.berghe@analog.com,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Nishant Malpani <nish.malpani25@gmail.com>
+Subject: [PATCH 2/2] dt-bindings: iio: gyro: Add DT binding doc for ADXRS290
+Date:   Wed, 15 Jul 2020 14:58:21 +0530
+Message-Id: <20200715092821.14625-1-nish.malpani25@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200619082013.13661-4-lorenzo.pieralisi@arm.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 19, 2020 at 09:20:04AM +0100, Lorenzo Pieralisi wrote:
-> There is nothing PCI specific in iort_msi_map_rid().
-> 
-> Rename the function using a bus protocol agnostic name,
-> iort_msi_map_id(), and convert current callers to it.
-> 
-> Signed-off-by: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> Cc: Will Deacon <will@kernel.org>
-> Cc: Hanjun Guo <guohanjun@huawei.com>
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: Sudeep Holla <sudeep.holla@arm.com>
-> Cc: Catalin Marinas <catalin.marinas@arm.com>
-> Cc: Robin Murphy <robin.murphy@arm.com>
-> Cc: "Rafael J. Wysocki" <rjw@rjwysocki.net>
-> ---
->  drivers/acpi/arm64/iort.c | 12 ++++++------
->  drivers/pci/msi.c         |  2 +-
+Add devicetree binding document for ADXRS290, a dual-axis MEMS gyroscope.
 
-Hi Bjorn,
+Signed-off-by: Nishant Malpani <nish.malpani25@gmail.com>
+---
+ .../bindings/iio/gyroscope/adi,adxrs290.yaml  | 52 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 53 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/gyroscope/adi,adxrs290.yaml
 
-please let me know if you are OK with this change, thanks.
+diff --git a/Documentation/devicetree/bindings/iio/gyroscope/adi,adxrs290.yaml b/Documentation/devicetree/bindings/iio/gyroscope/adi,adxrs290.yaml
+new file mode 100644
+index 000000000000..a997d945fdb0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/gyroscope/adi,adxrs290.yaml
+@@ -0,0 +1,52 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2020 Analog Devices Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/gyroscope/adi,adxrs290.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices ADXRS290 Dual-Axis MEMS Gyroscope
++
++maintainers:
++  - Nishant Malpani <nish.malpani25@gmail.com>
++
++description: |
++  Bindings for the Analog Devices ADXRS290 dual-axis MEMS gyroscope device.
++  https://www.analog.com/media/en/technical-documentation/data-sheets/ADXRS290.pdf
++
++properties:
++  compatible:
++    enum:
++      - adi,adxrs290
++
++  reg:
++    maxItems: 1
++
++  spi-max-frequency:
++    maximum: 5000000
++
++  spi-cpol: true
++
++  spi-cpha: true
++
++required:
++  - compatible
++  - reg
++  - spi-max-frequency
++  - spi-cpol
++  - spi-cpha
++
++examples:
++  - |
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        gyro@0 {
++                   compatible = "adi,adxrs290";
++                   reg = <0>;
++                   spi-max-frequency = <5000000>;
++                   spi-cpol;
++                   spi-cpha;
++        };
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index dd02cfc410e8..0bb8ac90fba1 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1103,6 +1103,7 @@ M:	Nishant Malpani <nish.malpani25@gmail.com>
+ L:	linux-iio@vger.kernel.org
+ S:	Supported
+ F:	drivers/iio/gyro/adxrs290.c
++F:	Documentation/devicetree/bindings/iio/gyroscope/adi,adxrs290.yaml
+ 
+ ANALOG DEVICES INC ASOC CODEC DRIVERS
+ M:	Lars-Peter Clausen <lars@metafoo.de>
+-- 
+2.20.1
 
-Lorenzo
-
->  include/linux/acpi_iort.h |  6 +++---
->  3 files changed, 10 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/acpi/arm64/iort.c b/drivers/acpi/arm64/iort.c
-> index 902e2aaca946..53f9ef515089 100644
-> --- a/drivers/acpi/arm64/iort.c
-> +++ b/drivers/acpi/arm64/iort.c
-> @@ -568,22 +568,22 @@ static struct acpi_iort_node *iort_find_dev_node(struct device *dev)
->  }
->  
->  /**
-> - * iort_msi_map_rid() - Map a MSI requester ID for a device
-> + * iort_msi_map_id() - Map a MSI input ID for a device
->   * @dev: The device for which the mapping is to be done.
-> - * @req_id: The device requester ID.
-> + * @input_id: The device input ID.
->   *
-> - * Returns: mapped MSI RID on success, input requester ID otherwise
-> + * Returns: mapped MSI ID on success, input ID otherwise
->   */
-> -u32 iort_msi_map_rid(struct device *dev, u32 req_id)
-> +u32 iort_msi_map_id(struct device *dev, u32 input_id)
->  {
->  	struct acpi_iort_node *node;
->  	u32 dev_id;
->  
->  	node = iort_find_dev_node(dev);
->  	if (!node)
-> -		return req_id;
-> +		return input_id;
->  
-> -	iort_node_map_id(node, req_id, &dev_id, IORT_MSI_TYPE);
-> +	iort_node_map_id(node, input_id, &dev_id, IORT_MSI_TYPE);
->  	return dev_id;
->  }
->  
-> diff --git a/drivers/pci/msi.c b/drivers/pci/msi.c
-> index 74a91f52ecc0..77f48b95e277 100644
-> --- a/drivers/pci/msi.c
-> +++ b/drivers/pci/msi.c
-> @@ -1536,7 +1536,7 @@ u32 pci_msi_domain_get_msi_rid(struct irq_domain *domain, struct pci_dev *pdev)
->  
->  	of_node = irq_domain_get_of_node(domain);
->  	rid = of_node ? of_msi_map_rid(&pdev->dev, of_node, rid) :
-> -			iort_msi_map_rid(&pdev->dev, rid);
-> +			iort_msi_map_id(&pdev->dev, rid);
->  
->  	return rid;
->  }
-> diff --git a/include/linux/acpi_iort.h b/include/linux/acpi_iort.h
-> index 08ec6bd2297f..e51425e083da 100644
-> --- a/include/linux/acpi_iort.h
-> +++ b/include/linux/acpi_iort.h
-> @@ -28,7 +28,7 @@ void iort_deregister_domain_token(int trans_id);
->  struct fwnode_handle *iort_find_domain_token(int trans_id);
->  #ifdef CONFIG_ACPI_IORT
->  void acpi_iort_init(void);
-> -u32 iort_msi_map_rid(struct device *dev, u32 req_id);
-> +u32 iort_msi_map_id(struct device *dev, u32 id);
->  struct irq_domain *iort_get_device_domain(struct device *dev, u32 id,
->  					  enum irq_domain_bus_token bus_token);
->  void acpi_configure_pmsi_domain(struct device *dev);
-> @@ -39,8 +39,8 @@ const struct iommu_ops *iort_iommu_configure(struct device *dev);
->  int iort_iommu_msi_get_resv_regions(struct device *dev, struct list_head *head);
->  #else
->  static inline void acpi_iort_init(void) { }
-> -static inline u32 iort_msi_map_rid(struct device *dev, u32 req_id)
-> -{ return req_id; }
-> +static inline u32 iort_msi_map_id(struct device *dev, u32 id)
-> +{ return id; }
->  static inline struct irq_domain *iort_get_device_domain(
->  	struct device *dev, u32 id, enum irq_domain_bus_token bus_token)
->  { return NULL; }
-> -- 
-> 2.26.1
-> 
