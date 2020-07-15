@@ -2,153 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1135E220D1D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 14:41:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 200B0220D4F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 14:48:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728656AbgGOMkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 08:40:37 -0400
-Received: from lists.nic.cz ([217.31.204.67]:52132 "EHLO mail.nic.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728975AbgGOMkh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Jul 2020 08:40:37 -0400
-Received: from dellmb.labs.office.nic.cz (unknown [IPv6:2001:1488:fffe:6:cac7:3539:7f1f:463])
-        by mail.nic.cz (Postfix) with ESMTP id 4D11C140A60;
-        Wed, 15 Jul 2020 14:40:35 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
-        t=1594816835; bh=k5uDQU4H8/VsElTcP2LohFrMNXiT1aO7l0l1QPD8arc=;
-        h=From:To:Date;
-        b=ZYHSPDNzlw8S/VNgztjeHC9sjtc+HHe2gVFlT+MZhEKqg/oVUsiwwFPU3/P6ceQy7
-         /6SxnBeQ6l2J8cLh7E0qQEZMaQiNALo8nk73vueJGN2wG4YowD0QHfwcO7ohTjTM0J
-         p85azVraiFPfATWfQwbfz2gVNfjuC5Ij362m+RO4=
-From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>
-To:     linux-leds@vger.kernel.org
-Cc:     Pavel Machek <pavel@ucw.cz>, jacek.anaszewski@gmail.com,
-        Dan Murphy <dmurphy@ti.com>,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v4 1/2] dt-bindings: leds: add cznic,turris-omnia-leds binding
-Date:   Wed, 15 Jul 2020 14:40:33 +0200
-Message-Id: <20200715124034.9804-2-marek.behun@nic.cz>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200715124034.9804-1-marek.behun@nic.cz>
+        id S1730780AbgGOMro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 08:47:44 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:41532 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728861AbgGOMro (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 08:47:44 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06FClTiN090361;
+        Wed, 15 Jul 2020 07:47:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1594817249;
+        bh=mNYG7C2AFo+DMWqI9KN0mrqcpSYNSNfj3TajtzUuWj8=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=Mq7Uv2p9Gabl4xRqsSPQpYb5VP9SEXn3+T6Pg3wu8U1MO9WJMe+aRDf+5Hckbg6sU
+         lpIMNWm6l+dAT7eoa0j2czHUWnF54xSxcCp+59p29HtFGI6fMpg8TyielsW1zipFfN
+         YunM5pTJyt8L5XZHZicAaKCi5J1abI6MIRSHhVbU=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06FClTVm128096
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 15 Jul 2020 07:47:29 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 15
+ Jul 2020 07:47:28 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 15 Jul 2020 07:47:28 -0500
+Received: from [10.250.32.229] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06FClSKZ075347;
+        Wed, 15 Jul 2020 07:47:28 -0500
+Subject: Re: [PATCH v4 1/2] dt-bindings: leds: add cznic,turris-omnia-leds
+ binding
+To:     =?UTF-8?Q?Marek_Beh=c3=ban?= <marek.behun@nic.cz>,
+        <linux-leds@vger.kernel.org>
+CC:     Pavel Machek <pavel@ucw.cz>, <jacek.anaszewski@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
 References: <20200715124034.9804-1-marek.behun@nic.cz>
+ <20200715124034.9804-2-marek.behun@nic.cz>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <c1bfdb2a-f11e-9f67-1569-10c48f40407c@ti.com>
+Date:   Wed, 15 Jul 2020 07:47:28 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20200715124034.9804-2-marek.behun@nic.cz>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
-X-Spam-Status: No, score=0.00
-X-Spamd-Bar: /
-X-Virus-Scanned: clamav-milter 0.102.2 at mail
-X-Virus-Status: Clean
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device-tree bindings documentation for Turris Omnia RGB LEDs.
+Marek
 
-Signed-off-by: Marek Behún <marek.behun@nic.cz>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
----
- .../leds/cznic,turris-omnia-leds.yaml         | 88 +++++++++++++++++++
- 1 file changed, 88 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+On 7/15/20 7:40 AM, Marek Behún wrote:
+> Add device-tree bindings documentation for Turris Omnia RGB LEDs.
+>
+> Signed-off-by: Marek Behún <marek.behun@nic.cz>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> ---
+>   .../leds/cznic,turris-omnia-leds.yaml         | 88 +++++++++++++++++++
+>   1 file changed, 88 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+> new file mode 100644
+> index 000000000000..0b33ebf22e27
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/cznic,turris-omnia-leds.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: CZ.NIC's Turris Omnia LEDs driver
+> +
+> +maintainers:
+> +  - Marek Behún <marek.behun@nic.cz>
+> +
+> +description:
+> +  This module adds support for the RGB LEDs found on the fron panel of the
+s/fron/front
+> +  Turris Omnia router. There are 12 RGB LEDs, they are controlled by device's
+> +  microcontroller with which the system communicates via I2C. Each LED is
 
-diff --git a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-new file mode 100644
-index 000000000000..0b33ebf22e27
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-@@ -0,0 +1,88 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/cznic,turris-omnia-leds.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: CZ.NIC's Turris Omnia LEDs driver
-+
-+maintainers:
-+  - Marek Behún <marek.behun@nic.cz>
-+
-+description:
-+  This module adds support for the RGB LEDs found on the fron panel of the
-+  Turris Omnia router. There are 12 RGB LEDs, they are controlled by device's
-+  microcontroller with which the system communicates via I2C. Each LED is
-+  described as a subnode of this I2C device.
-+
-+properties:
-+  compatible:
-+    const: cznic,turris-omnia-leds
-+
-+  reg:
-+    description: I2C slave address of the microcontroller.
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^multi-led[0-9a-f]$":
-+    type: object
-+    allOf:
-+      - $ref: leds-class-multicolor.yaml#
-+    description:
-+      This node represents one of the RGB LED devices on Turris Omnia.
-+      No subnodes need to be added for subchannels since this controller only
-+      supports RGB LEDs.
-+
-+    properties:
-+      reg:
-+        minimum: 0
-+        maximum: 11
-+        description:
-+          This property identifies one of the LEDs on the front panel of the
-+          Turris Omnia router.
-+
-+    required:
-+      - reg
-+
-+examples:
-+  - |
-+
-+    #include <dt-bindings/leds/common.h>
-+
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        led-controller@2b {
-+            compatible = "cznic,turris-omnia-leds";
-+            reg = <0x2b>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            multi-led@0 {
-+                /*
-+                 * No subnodes are needed, this controller only supports RGB
-+                 * LEDs.
-+                 */
-+                reg = <0>;
-+                color = <LED_COLOR_ID_MULTI>;
-+                function = LED_FUNCTION_POWER;
-+                linux,default-trigger = "heartbeat";
-+            };
-+
-+            multi-led@a {
-+                reg = <0xa>;
-+                color = <LED_COLOR_ID_MULTI>;
-+                function = LED_FUNCTION_INDICATOR;
-+                function-enumerator = <1>;
-+            };
-+        };
-+    };
-+
-+...
--- 
-2.26.2
+This is a bit confusing and reads very rough can maybe
+
+There are 12 RGB LEDs that are controlled via a micro controller that 
+communicates via the I2C bus.
+
+Dan
+
 
