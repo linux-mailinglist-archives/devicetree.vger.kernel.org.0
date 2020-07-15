@@ -2,58 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 215FB220E54
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 15:39:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 794A2220E92
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 15:58:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731855AbgGONji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 09:39:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43668 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730872AbgGONjh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 09:39:37 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AF1AC061755;
-        Wed, 15 Jul 2020 06:39:37 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id k6so2781382wrn.3;
-        Wed, 15 Jul 2020 06:39:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=331LipqvmuxHa4q2emBmbZbjHucC9tfrGiX56G/rfzs=;
-        b=bX9RUGDT9pMH8X2npSgVxbz7GEC3FGIRiJ0GsV8D6nxZjfgn5e5uzvuJILCqUYuTdN
-         PX/vg54Do0TfRLNy5H4DS0G1Nc+qBWiHtf26IVPQ3OLvQfm0B1U9Iw4lwo/k8adClDnz
-         T7SlQVo3GF1fpUDQNqSQ0JN+4+W8UTXL6zHS8wDSjYltuQx8ECo0EIGPNr+o2YVvz7wB
-         zDWrwr8fiJIkuxYMQHXJ/G/Dcrpiyd7cd/TTmoAx5HDIrt8IYoJjIw1mvKZpc60tIYeY
-         DwJQdS1pFJZIkl54cgVLxZrPd7hxdRa0ANcngNPGdq/aAnkHc5Mnh26JzAkrJ2YMIoJJ
-         3s4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=331LipqvmuxHa4q2emBmbZbjHucC9tfrGiX56G/rfzs=;
-        b=rOjeeR1VXrd0qgCTIZhPR0NLLhGCekaUMVNr4D6BzPVWbt7SrpvaXKk1QYFy2pqZIu
-         H1I2D6zO4K1h/ecHFAtOuKo6gz5BN6GBEzoWKyBpCSAIRO6BaH6z6j05aF0zbZpCHn2i
-         Q41Tm5bOq6hU5DTaKW5Tsp2VE10gNwpGq4rBfOcSohNC6we8cTLtD5ds68RbIxcWkPOB
-         HuioK3HXu+BWzUluer3nPqGiAAtUPypyT/0g5gS1Zy5vdHcjF6OwWSPJHqDjtHoHJIJs
-         f/W1+FmvjtlGx8EBl66UUkC5fr7AaV1Pp1Q3vwmTPGO3Of1iShX2eDWvUsHDEpyeNlIl
-         JkXA==
-X-Gm-Message-State: AOAM531ccH7MevNQ8Ujuu31IOMXL8oVDdMmf8yIjhjL8kUnml5yHofOz
-        VVMbCNLVwy7ZGeHcOPkgLDl8L++9Zss=
-X-Google-Smtp-Source: ABdhPJxcQeOWoxTkgUlKb3T3E6eZIODiRewNPO6gvvmjUi2d7LRx5ZhyKnrtebkx2V4+r8gTesI7Ig==
-X-Received: by 2002:adf:dc90:: with SMTP id r16mr11474177wrj.264.1594820376227;
-        Wed, 15 Jul 2020 06:39:36 -0700 (PDT)
-Received: from macbook-pro-alvaro-eth.lan (67.red-88-15-120.dynamicip.rima-tde.net. [88.15.120.67])
-        by smtp.gmail.com with ESMTPSA id j14sm3555568wrs.75.2020.07.15.06.39.35
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 15 Jul 2020 06:39:35 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.80.23.2.2\))
-Subject: Re: [PATCH v6 2/2] phy: bcm63xx-usbh: Add BCM63xx USBH driver
-From:   =?utf-8?Q?=C3=81lvaro_Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>
-In-Reply-To: <2e28eed25955385ab2513f8b617829f3@arlott.org>
-Date:   Wed, 15 Jul 2020 15:39:34 +0200
+        id S1730018AbgGON6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 09:58:15 -0400
+Received: from chalk.uuid.uk ([51.68.227.198]:53906 "EHLO chalk.uuid.uk"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725993AbgGON6P (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Jul 2020 09:58:15 -0400
+X-Greylist: delayed 363 seconds by postgrey-1.27 at vger.kernel.org; Wed, 15 Jul 2020 09:58:14 EDT
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=octiron.net
+        ; s=20180214; h=Message-ID:References:In-Reply-To:Subject:Cc:To:From:Date:
+        Content-Transfer-Encoding:Content-Type:MIME-Version:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=guijBD4cg8Q7tdnUnEDYLjCfwVKhLO9XFxXD5Rd4dqU=; b=bNOrGneSfYnabKmEt6SPi+WhIf
+        idXYQAEi7Poyjy3yLsuqy/0ACqYBbFcVPFXbb0YNSzDlGlr6lRMJBiNSVNdkRjtjooluEZmMcTolf
+        56My/D8cvRmABhjiD0CcNIIPFiu1Eo1GycDDdij0/UemLKBWCIpEs1Alv78co2roBRY+AIx8qG++y
+        EhWTf3CHekv94ORx/+LiocmaTH3L35yiDmj5oOG9zqw2fvvPl7WoZjPm9wXjMIwcwOVTC7umLLaPI
+        Dek47bdZuoyPeetqJKwYcQV4sVN8Seiyk2mWO1TozYNm9peYsHxPRlG2nL3yKKZZIOV7bnisqjszV
+        adyVta9g==;
+Received: by chalk.uuid.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.90_1)
+        (envelope-from <simon@octiron.net>)
+        id 1jvhpH-0000Mi-KI; Wed, 15 Jul 2020 14:52:05 +0100
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=octiron.net
+        ; s=20180214; h=Message-ID:References:In-Reply-To:Subject:Cc:To:From:Date:
+        Content-Transfer-Encoding:Content-Type:MIME-Version;
+        bh=guijBD4cg8Q7tdnUnEDYLjCfwVKhLO9XFxXD5Rd4dqU=; b=pDNq9ZX1Rc+2yxI3frqE441dLn
+        80QhNt/Yfx7iAN/mf+jMRFBtacr/seV9EPGwIbZ5N1gFvw4oZNE2C5FWPS5TXVTC7BuWXN1+AJYtn
+        AR5etgDHvk6u0ceQw+5PYoOLy+nlB7C3uidtDT2OrI6F2nUj2KikkA1oBDDsBr8YXzyJCxSpDwOl1
+        sIpOzTZNCGeC9RhpyQs8HKYSJYrjfSbGlV/8mdYUVfrKyjeg+qYuqFOfOBIY6UPRWhrqcXXsQSWB3
+        I4xwtSVTAxF9Le/gY1Pysf3yxX1iMdR7owIo+2dYk5fbZk29pCF616RWFKKuUKUg7NXmCLt7nBQu8
+        19VaFC3A==;
+Received: by tsort.uuid.uk with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.86_2)
+        (envelope-from <simon@octiron.net>)
+        id 1jvhpC-00018M-Kr; Wed, 15 Jul 2020 14:51:57 +0100
+Received: from localhost ([::1]:45698)
+        by skund.uuid.uk with esmtp (Exim 4.86_2)
+        (envelope-from <simon@octiron.net>)
+        id 1jvhpC-0005Bx-Hy; Wed, 15 Jul 2020 14:51:54 +0100
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Date:   Wed, 15 Jul 2020 14:51:54 +0100
+From:   Simon Arlott <simon@octiron.net>
+To:     =?UTF-8?Q?=C3=81lvaro_Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>
 Cc:     Jonas Gorski <jonas.gorski@gmail.com>, kishon@ti.com,
         vkoul@kernel.org, robh+dt@kernel.org,
         Florian Fainelli <f.fainelli@gmail.com>,
@@ -62,52 +60,36 @@ Cc:     Jonas Gorski <jonas.gorski@gmail.com>, kishon@ti.com,
         gregkh@linuxfoundation.org, alcooperx@gmail.com,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <4C342CF5-7417-4C6D-B1D2-75C71B9688C1@gmail.com>
+Subject: Re: [PATCH v6 2/2] phy: bcm63xx-usbh: Add BCM63xx USBH driver
+In-Reply-To: <4C342CF5-7417-4C6D-B1D2-75C71B9688C1@gmail.com>
 References: <20200715131803.1762064-1-noltari@gmail.com>
  <20200715131803.1762064-3-noltari@gmail.com>
  <2e28eed25955385ab2513f8b617829f3@arlott.org>
-To:     Simon Arlott <simon@octiron.net>
-X-Mailer: Apple Mail (2.3608.80.23.2.2)
+ <4C342CF5-7417-4C6D-B1D2-75C71B9688C1@gmail.com>
+Message-ID: <17de4f558d512a288ff15c26e90951d0@arlott.org>
+X-Sender: simon@octiron.net
+User-Agent: Roundcube Webmail/1.2-beta
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Simon,
+On 2020-07-15 14:39, Álvaro Fernández Rojas wrote:
+> Hello Simon,
+> 
+> This is based on your work:
+> https://github.com/nomis/linux/commit/c4c55b603a78e2732044a833e248c1a1087e7053
+> https://github.com/nomis/linux/commit/f153a58b9e6f88e72c3ef34dc076118f8b3ade5b
 
-This is based on your work:
-=
-https://github.com/nomis/linux/commit/c4c55b603a78e2732044a833e248c1a1087e=
-7053
-=
-https://github.com/nomis/linux/commit/f153a58b9e6f88e72c3ef34dc076118f8b3a=
-de5b
+Ok, it has been a long time and I couldn't find a branch with those in 
+locally.
 
-You never sent it, but I took it from your Github.
-Nevertheless, I can remove you from these patches.
+Please remove my *email address* from the source code and MODULE_AUTHOR 
+text.
 
-Best regards,
-=C3=81lvaro.
 
-> El 15 jul 2020, a las 15:32, Simon Arlott <simon@octiron.net> =
-escribi=C3=B3:
->=20
-> On 2020-07-15 14:18, =C3=81lvaro Fern=C3=A1ndez Rojas wrote:
->> Add BCM63xx USBH PHY driver for BMIPS.
->> Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
->> ---
->> ...
->> +MODULE_DESCRIPTION("BCM63xx USBH PHY driver");
->> +MODULE_AUTHOR("=C3=81lvaro Fern=C3=A1ndez Rojas =
-<noltari@gmail.com>");
->> +MODULE_AUTHOR("Simon Arlott <simon@fire.lp0.eu>");
->> +MODULE_LICENSE("GPL");
->=20
-> I'm not the author of this.
->=20
-> Nacked-by: Simon Arlott <simon@octiron.net>
->=20
-> --=20
-> Simon Arlott
+Historical signed-off-by lines can be updated to:
+Signed-off-by: Simon Arlott <simon@octiron.net>
 
+-- 
+Simon Arlott
