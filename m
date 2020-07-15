@@ -2,65 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12575220D3F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 14:45:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30A85220D8E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 15:01:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731145AbgGOMpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 08:45:31 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:32769 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726335AbgGOMpb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 08:45:31 -0400
-X-Originating-IP: 93.34.118.233
-Received: from uno.lan (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id D58AAC0010;
-        Wed, 15 Jul 2020 12:45:27 +0000 (UTC)
-From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
-To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>, mchehab@kernel.org,
-        sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
-        dave.stevenson@raspberrypi.com, dongchun.zhu@mediatek.com,
-        linux-renesas-soc@vger.kernel.org,
-        laurent.pinchart@ideasonboard.com,
-        roman.kovalivskyi@globallogic.com
-Subject: [PATCH v3 3/3] media: MAINTAINERS: ov5647: Replace maintainer
-Date:   Wed, 15 Jul 2020 14:48:38 +0200
-Message-Id: <20200715124838.84552-4-jacopo+renesas@jmondi.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200715124838.84552-1-jacopo+renesas@jmondi.org>
-References: <20200715124838.84552-1-jacopo+renesas@jmondi.org>
+        id S1731193AbgGONA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 09:00:59 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:36738 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726335AbgGONA6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Jul 2020 09:00:58 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1jvh1i-005FBd-Jk; Wed, 15 Jul 2020 15:00:46 +0200
+Date:   Wed, 15 Jul 2020 15:00:46 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Helmut Grohne <helmut.grohne@intenta.de>
+Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>
+Subject: Re: [PATCH] net: dsa: microchip: look for phy-mode in port nodes
+Message-ID: <20200715130046.GB1211629@lunn.ch>
+References: <20200617082235.GA1523@laureti-dev>
+ <20200714120827.GA7939@laureti-dev>
+ <20200714222716.GP1078057@lunn.ch>
+ <20200715073112.GA25047@laureti-dev>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200715073112.GA25047@laureti-dev>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since the current maintainer email address bounces back, replace
-the entry and make myself and Dave Stevenson maintainers of the driver.
+On Wed, Jul 15, 2020 at 09:31:12AM +0200, Helmut Grohne wrote:
+> You seem to be in favour of more deeply encoding the "there can be only
+> one CPU port" assumption. Based on that assumption, the rest of what you
+> write makes very much sense to me. Is that the direction to go?
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
----
- MAINTAINERS | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+From what i understand, there is only one port which can do RGMII. It
+does not really matter if that is the CPU port, or a user
+port. Ideally, whatever port it is, should have the phy-mode property
+in its port node.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1742fa1a88cd..c74d25c58e1a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12607,7 +12607,8 @@ T:	git git://linuxtv.org/media_tree.git
- F:	drivers/media/i2c/ov5640.c
- 
- OMNIVISION OV5647 SENSOR DRIVER
--M:	Luis Oliveira <lolivei@synopsys.com>
-+M:	Jacopo Mondi <jacopo@jmondi.org>
-+M:	Dave Stevenson <dave.stevenson@raspberrypi.com>
- L:	linux-media@vger.kernel.org
- S:	Maintained
- T:	git git://linuxtv.org/media_tree.git
--- 
-2.27.0
+How you store that information until you need it is up to the
+driver. But KISS is generally best, reuse what you have, unless there
+is a good reason to change it. If you see this code being reused when
+more than one port supports RGMII, then adding a per port members
+makes sense. But if that is unlikely, keep with the global.
 
+      Andrew
