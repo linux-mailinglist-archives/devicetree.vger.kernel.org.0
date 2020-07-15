@@ -2,161 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3259E22077A
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 10:35:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87E0322075E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 10:33:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729304AbgGOIfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 04:35:44 -0400
-Received: from mga02.intel.com ([134.134.136.20]:19841 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729192AbgGOIfn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Jul 2020 04:35:43 -0400
-IronPort-SDR: EjSidi9PFwBEqBOegvAGd8+vAoSfnYhIRlN3ZwzT3ASs3RCJ/n2SmC5Iwmm2jlNGaw34CaHKg0
- TaunBsvrGUIQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9682"; a="137234837"
-X-IronPort-AV: E=Sophos;i="5.75,354,1589266800"; 
-   d="scan'208";a="137234837"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2020 01:35:43 -0700
-IronPort-SDR: wom4Vga3jcrql6t16qwoyNREtupcp1VXNFk8PTdDNTWT21FlEY3nuBl3p7s93G5W0Or1lhgm1D
- gc5c3v+2bDrQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,354,1589266800"; 
-   d="scan'208";a="459992091"
-Received: from yren3-mobl.ccr.corp.intel.com ([10.249.174.224])
-  by orsmga005.jf.intel.com with ESMTP; 15 Jul 2020 01:35:40 -0700
-Message-ID: <d2eeca29328a87433a46c35947ffb490d49c168a.camel@intel.com>
-Subject: Re: [RFC PATCH 4/4] thermal: Modify thermal governors to do nothing
- for "cold" trip points
-From:   Zhang Rui <rui.zhang@intel.com>
-To:     Thara Gopinath <thara.gopinath@linaro.org>,
-        daniel.lezcano@linaro.org, robh+dt@kernel.org
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Date:   Wed, 15 Jul 2020 16:35:39 +0800
-In-Reply-To: <20200710135154.181454-5-thara.gopinath@linaro.org>
-References: <20200710135154.181454-1-thara.gopinath@linaro.org>
-         <20200710135154.181454-5-thara.gopinath@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
+        id S1728590AbgGOIdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 04:33:44 -0400
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:39615 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726034AbgGOIdo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 04:33:44 -0400
+X-Originating-IP: 93.34.118.233
+Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 016ABE0004;
+        Wed, 15 Jul 2020 08:33:36 +0000 (UTC)
+Date:   Wed, 15 Jul 2020 10:37:09 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        mchehab@kernel.org, sakari.ailus@linux.intel.com,
+        hverkuil-cisco@xs4all.nl, dave.stevenson@raspberrypi.com,
+        dongchun.zhu@mediatek.com, linux-renesas-soc@vger.kernel.org,
+        laurent.pinchart@ideasonboard.com,
+        roman.kovalivskyi@globallogic.com, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2 2/3] dt-bindings: media: i2c: Document
+ 'remote-endpoint'
+Message-ID: <20200715083709.h5s2gmx6qdwvxk2c@uno.localdomain>
+References: <20200714142856.58365-1-jacopo+renesas@jmondi.org>
+ <20200714142856.58365-3-jacopo+renesas@jmondi.org>
+ <d00e9b32-5a20-77b2-e99f-ac8822041bbc@cogentembedded.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <d00e9b32-5a20-77b2-e99f-ac8822041bbc@cogentembedded.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2020-07-10 at 09:51 -0400, Thara Gopinath wrote:
-> For now, thermal governors do not support monitoring of falling
-> temperature. Hence, in case of calls to the governor for trip points
-> marked
-> as cold, return doing nothing.
-> 
-> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
-> ---
->  drivers/thermal/gov_bang_bang.c       | 8 ++++++++
->  drivers/thermal/gov_fair_share.c      | 8 ++++++++
->  drivers/thermal/gov_power_allocator.c | 8 ++++++++
->  drivers/thermal/gov_step_wise.c       | 8 ++++++++
->  4 files changed, 32 insertions(+)
+Hi Sergei,
 
-userspace governor does not support cold trip point neither.
+On Wed, Jul 15, 2020 at 11:10:15AM +0300, Sergei Shtylyov wrote:
+> Hello!
+>
+> On 14.07.2020 17:28, Jacopo Mondi wrote:
+>
+> > Document the 'remote-endpoint' property and add it to the list of required
+> > endpoint properties in imx219 and ov8856 dt-schema binding files.
+> >
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+> > ---
+> >   Documentation/devicetree/bindings/media/i2c/imx219.yaml | 5 +++++
+> >   Documentation/devicetree/bindings/media/i2c/ov8856.yaml | 5 +++++
+> >   2 files changed, 10 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/imx219.yaml b/Documentation/devicetree/bindings/media/i2c/imx219.yaml
+> > index dfc4d29a4f04..0251e15fe0a7 100644
+> > --- a/Documentation/devicetree/bindings/media/i2c/imx219.yaml
+> > +++ b/Documentation/devicetree/bindings/media/i2c/imx219.yaml
+> > @@ -71,8 +71,13 @@ properties:
+> >               description:
+> >                 Allowed data bus frequencies.
+> > +          remote-endpoint:
+> > +            description: |-
+> > +              phandle to the video receiver input port
+>
+>    s/to/of/?
+>
+> > +
+> >           required:
+> >             - link-frequencies
+> > +          - remote-endpoint
+> >   required:
+> >     - compatible
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
+> > index 1956b2a32bf4..c1f363bb5aee 100644
+> > --- a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
+> > +++ b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
+> > @@ -84,9 +84,14 @@ properties:
+> >                 Allowed data bus frequencies. 360000000, 180000000 Hz or both
+> >                 are supported by the driver.
+> > +          remote-endpoint:
+> > +            description: |-
+> > +              phandle to the video receiver input port
+>
+>    s/to/of/?
 
-So how about adding the check in handle_non_critical_trips first, and
-remove the check later, after all the governors support cold trip?
+I see both being used in the existing Documentation.
+In the media/ folder it seems like "phandle to" is the only used
+version, so I think I will go with that for consistency, unless this
+is grammatically wrong and I didn't realize it :)
 
-thanks,
-rui
-> 
-> diff --git a/drivers/thermal/gov_bang_bang.c
-> b/drivers/thermal/gov_bang_bang.c
-> index 991a1c54296d..8324d13de1e7 100644
-> --- a/drivers/thermal/gov_bang_bang.c
-> +++ b/drivers/thermal/gov_bang_bang.c
-> @@ -99,6 +99,14 @@ static void thermal_zone_trip_update(struct
-> thermal_zone_device *tz, int trip)
->  static int bang_bang_control(struct thermal_zone_device *tz, int
-> trip)
->  {
->  	struct thermal_instance *instance;
-> +	enum thermal_trip_type trip_type;
-> +
-> +	/* Return doing nothing in case of cold trip point */
-> +	if (trip != THERMAL_TRIPS_NONE) {
-> +		tz->ops->get_trip_type(tz, trip, &trip_type);
-> +		if (trip_type == THERMAL_TRIP_COLD)
-> +			return 0;
-> +	}
->  
->  	thermal_zone_trip_update(tz, trip);
->  
-> diff --git a/drivers/thermal/gov_fair_share.c
-> b/drivers/thermal/gov_fair_share.c
-> index aaa07180ab48..c0adce525faa 100644
-> --- a/drivers/thermal/gov_fair_share.c
-> +++ b/drivers/thermal/gov_fair_share.c
-> @@ -81,6 +81,14 @@ static int fair_share_throttle(struct
-> thermal_zone_device *tz, int trip)
->  	int total_weight = 0;
->  	int total_instance = 0;
->  	int cur_trip_level = get_trip_level(tz);
-> +	enum thermal_trip_type trip_type;
-> +
-> +	/* Return doing nothing in case of cold trip point */
-> +	if (trip != THERMAL_TRIPS_NONE) {
-> +		tz->ops->get_trip_type(tz, trip, &trip_type);
-> +		if (trip_type == THERMAL_TRIP_COLD)
-> +			return 0;
-> +	}
->  
->  	list_for_each_entry(instance, &tz->thermal_instances, tz_node)
-> {
->  		if (instance->trip != trip)
-> diff --git a/drivers/thermal/gov_power_allocator.c
-> b/drivers/thermal/gov_power_allocator.c
-> index 44636475b2a3..2644ad4d4032 100644
-> --- a/drivers/thermal/gov_power_allocator.c
-> +++ b/drivers/thermal/gov_power_allocator.c
-> @@ -613,8 +613,16 @@ static int power_allocator_throttle(struct
-> thermal_zone_device *tz, int trip)
->  {
->  	int ret;
->  	int switch_on_temp, control_temp;
-> +	enum thermal_trip_type trip_type;
->  	struct power_allocator_params *params = tz->governor_data;
->  
-> +	/* Return doing nothing in case of cold trip point */
-> +	if (trip != THERMAL_TRIPS_NONE) {
-> +		tz->ops->get_trip_type(tz, trip, &trip_type);
-> +		if (trip_type == THERMAL_TRIP_COLD)
-> +			return 0;
-> +	}
-> +
->  	/*
->  	 * We get called for every trip point but we only need to do
->  	 * our calculations once
-> diff --git a/drivers/thermal/gov_step_wise.c
-> b/drivers/thermal/gov_step_wise.c
-> index 2ae7198d3067..009aefda0441 100644
-> --- a/drivers/thermal/gov_step_wise.c
-> +++ b/drivers/thermal/gov_step_wise.c
-> @@ -186,6 +186,14 @@ static void thermal_zone_trip_update(struct
-> thermal_zone_device *tz, int trip)
->  static int step_wise_throttle(struct thermal_zone_device *tz, int
-> trip)
->  {
->  	struct thermal_instance *instance;
-> +	enum thermal_trip_type trip_type;
-> +
-> +	/* For now, return doing nothing in case of cold trip point */
-> +	if (trip != THERMAL_TRIPS_NONE) {
-> +		tz->ops->get_trip_type(tz, trip, &trip_type);
-> +		if (trip_type == THERMAL_TRIP_COLD)
-> +			return 0;
-> +	}
->  
->  	thermal_zone_trip_update(tz, trip);
->  
-
+>
+> [...]
+>
+> MBR, Sergei
