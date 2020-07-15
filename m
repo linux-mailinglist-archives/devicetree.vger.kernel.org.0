@@ -2,105 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 200B0220D4F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 14:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15FB1220D35
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 14:45:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730780AbgGOMro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 08:47:44 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:41532 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728861AbgGOMro (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 08:47:44 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06FClTiN090361;
-        Wed, 15 Jul 2020 07:47:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1594817249;
-        bh=mNYG7C2AFo+DMWqI9KN0mrqcpSYNSNfj3TajtzUuWj8=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Mq7Uv2p9Gabl4xRqsSPQpYb5VP9SEXn3+T6Pg3wu8U1MO9WJMe+aRDf+5Hckbg6sU
-         lpIMNWm6l+dAT7eoa0j2czHUWnF54xSxcCp+59p29HtFGI6fMpg8TyielsW1zipFfN
-         YunM5pTJyt8L5XZHZicAaKCi5J1abI6MIRSHhVbU=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06FClTVm128096
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 15 Jul 2020 07:47:29 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 15
- Jul 2020 07:47:28 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 15 Jul 2020 07:47:28 -0500
-Received: from [10.250.32.229] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06FClSKZ075347;
-        Wed, 15 Jul 2020 07:47:28 -0500
-Subject: Re: [PATCH v4 1/2] dt-bindings: leds: add cznic,turris-omnia-leds
- binding
-To:     =?UTF-8?Q?Marek_Beh=c3=ban?= <marek.behun@nic.cz>,
-        <linux-leds@vger.kernel.org>
-CC:     Pavel Machek <pavel@ucw.cz>, <jacek.anaszewski@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-References: <20200715124034.9804-1-marek.behun@nic.cz>
- <20200715124034.9804-2-marek.behun@nic.cz>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <c1bfdb2a-f11e-9f67-1569-10c48f40407c@ti.com>
-Date:   Wed, 15 Jul 2020 07:47:28 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728766AbgGOMpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 08:45:23 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:32981 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726335AbgGOMpX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 08:45:23 -0400
+X-Originating-IP: 93.34.118.233
+Received: from uno.lan (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 8933AC0009;
+        Wed, 15 Jul 2020 12:45:18 +0000 (UTC)
+From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
+To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>, mchehab@kernel.org,
+        sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
+        dave.stevenson@raspberrypi.com, dongchun.zhu@mediatek.com,
+        linux-renesas-soc@vger.kernel.org,
+        laurent.pinchart@ideasonboard.com,
+        roman.kovalivskyi@globallogic.com
+Subject: [PATCH v3 0/3] dt-bidings: media: ov5647 bindings + small fix
+Date:   Wed, 15 Jul 2020 14:48:35 +0200
+Message-Id: <20200715124838.84552-1-jacopo+renesas@jmondi.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-In-Reply-To: <20200715124034.9804-2-marek.behun@nic.cz>
-Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Marek
+A small update to v2:
+- Add Laurent's tags
+- Remove 'endpoint' from the list of required port properties, in the
+  newly introduced ov5647 bindings, and while updating the existing ov8865
+  ones
+- Make Dave and me co-maintainers for ov5647 as the two email addresses we tried
+  to contact Luis with both failed.
 
-On 7/15/20 7:40 AM, Marek Behún wrote:
-> Add device-tree bindings documentation for Turris Omnia RGB LEDs.
->
-> Signed-off-by: Marek Behún <marek.behun@nic.cz>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> ---
->   .../leds/cznic,turris-omnia-leds.yaml         | 88 +++++++++++++++++++
->   1 file changed, 88 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
->
-> diff --git a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-> new file mode 100644
-> index 000000000000..0b33ebf22e27
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-> @@ -0,0 +1,88 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/cznic,turris-omnia-leds.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: CZ.NIC's Turris Omnia LEDs driver
-> +
-> +maintainers:
-> +  - Marek Behún <marek.behun@nic.cz>
-> +
-> +description:
-> +  This module adds support for the RGB LEDs found on the fron panel of the
-s/fron/front
-> +  Turris Omnia router. There are 12 RGB LEDs, they are controlled by device's
-> +  microcontroller with which the system communicates via I2C. Each LED is
+Thanks
+  j
 
-This is a bit confusing and reads very rough can maybe
+Jacopo Mondi (3):
+  dt-bindings: media: ov5647: Convert to json-schema
+  dt-bindings: media: i2c: Document 'remote-endpoint'
+  media: MAINTAINERS: ov5647: Add myself as maintainer
 
-There are 12 RGB LEDs that are controlled via a micro controller that 
-communicates via the I2C bus.
+ .../devicetree/bindings/media/i2c/imx219.yaml |  5 ++
+ .../devicetree/bindings/media/i2c/ov5647.txt  | 35 --------
+ .../devicetree/bindings/media/i2c/ov5647.yaml | 79 +++++++++++++++++++
+ .../devicetree/bindings/media/i2c/ov8856.yaml |  7 +-
+ MAINTAINERS                                   |  3 +-
+ 5 files changed, 90 insertions(+), 39 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5647.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ov5647.yaml
 
-Dan
-
+--
+2.27.0
 
