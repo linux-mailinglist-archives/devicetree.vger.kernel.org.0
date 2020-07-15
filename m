@@ -2,82 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D7D9221535
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 21:39:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78C90221538
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 21:39:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726852AbgGOTgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 15:36:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42482 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726894AbgGOTgo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 15:36:44 -0400
-Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com [IPv6:2607:f8b0:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4741FC08C5DD
-        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2020 12:36:44 -0700 (PDT)
-Received: by mail-oi1-x241.google.com with SMTP id r8so3142314oij.5
-        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2020 12:36:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rR8gIS4VQXCjAcXSb96e3TYhEFgbcxFTF7+lqvB96Mc=;
-        b=XY4/njUigM9ia2/yktoamaYQAG98PZrAmqAG1v7JZXdzlb1/ESpHjDqq0eKQPM+lk8
-         G0WIhU2Kel+ShVX/qcF9VFrPlG9QsMhi3qrUJwtnoCYmIXofkDF2fvkINZFZSuQe7dt1
-         P9ZxduaVAGjWE9wZymXly/Z3FU2PN+wsDBdDT4lunmBJ+k3Nx2OpHNUQOndrWWrLouwG
-         vwpV9CrKs02HDW+u/UyVnAsaluvznfqwagXAOO5hsvufcOCSzZjnBLEVaHiJVRdmoDRi
-         X2xfLU1jJaTHx72bTzKBzoPAllsLUCBpwwpAUTstgE+urPI5/dylyUNXZvmtF3zL5Co4
-         AIkg==
+        id S1726634AbgGOThG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 15:37:06 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:42190 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727021AbgGOThF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 15:37:05 -0400
+Received: by mail-io1-f66.google.com with SMTP id c16so3488417ioi.9;
+        Wed, 15 Jul 2020 12:37:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rR8gIS4VQXCjAcXSb96e3TYhEFgbcxFTF7+lqvB96Mc=;
-        b=motEWGcSeYwHkazo3nMQJgRDyhuUHFvbIAo/Pyvr9xXax4d53MNNLnLZF4QPYfaefP
-         lK/nCQMWcDGYbSAT4Du8qkYzuSlp6BeEAu7wYqq5V6ib9pAr2YozUNpUbOBHCfBY6VrS
-         TCSkvOt7OCobFyvbG9g2d52it0WkC198c+MPrsbEkCI6b4oySVh4LLAxfj7SogTsGPtk
-         X0Kp+rCFkWScp8mNvw157HQfGJya0QVTg75fMnPcRtXs1fJo8AhSbAgmFxztrBwd1k6D
-         Y8HY79bv9nI8qsxdwhrRUZT0+LzaKJhEIhiPU+oIg0aUi2IP0ODR43g9KlrAFt1CwpQP
-         r5vw==
-X-Gm-Message-State: AOAM530FaHJIZsA/FdR8W7kzS3i32MkuV7fLasPa1VDIsazGl++yaPfz
-        Es1/rbs1PpkKn+6yfo8m0TyBcuc8R1GoKtoDwSFWrw==
-X-Google-Smtp-Source: ABdhPJxiRGfd0eoaoROgXUN9uWZUGskblIlhMLdmnnt1Ctbn9jndJMJXv2b3Wfretv7Kef+W1jIxo86dAC31T7EKRgs=
-X-Received: by 2002:a05:6808:8c4:: with SMTP id k4mr1126990oij.177.1594841803655;
- Wed, 15 Jul 2020 12:36:43 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=WZaIoDzYYl/HXO7lkwjh/Xm4aTRVdttVJOPKuBMdG0Y=;
+        b=KCb12iau8xG2V+/g++kf3vHPFhzrDZ5WauN19JTO/8JKX4Qy1OtCAngL2FHXN3xT2H
+         6QZ0KO2MxGUueFK2Mz2TqZvzFRc0adoiEgIrlzydwiT7+F/2LbOZuliPQBJiJwvB767+
+         v3Wi83vs427LV48U+TbV2OahhvqgduxTpQW+srTsBBxzPkq3VI9SJRoXc07ZlZdtVZnv
+         uYf4A2+IcB4bVf8uz53vWg9glbvd0DziGvLA7tTSG0aR7llj7sM7myd4tpiTeG0N0NSU
+         T5j4ILG3CQuwz+KgYHWc2oTiMWkVeyJpzEmSgmT5P0wyLf29AcvCAqEllJzmwcuq1OPJ
+         NaGQ==
+X-Gm-Message-State: AOAM531/x88/ZKKzfO+hlbqLnTiRme8WOQYElWTBdMzaz84kMIKrYOMm
+        zC9rhqFkoQI1PWOukhECLLeFoAl3gw==
+X-Google-Smtp-Source: ABdhPJxcBpVavEBVS1LYGqWlui1bdPPAV/Of34Hrn8YE0UAQW3n3OJuA4f90VAJa6/W+EUbZLkh/vg==
+X-Received: by 2002:a6b:8d04:: with SMTP id p4mr901288iod.174.1594841823937;
+        Wed, 15 Jul 2020 12:37:03 -0700 (PDT)
+Received: from xps15 ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id k1sm1506055ilr.35.2020.07.15.12.37.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jul 2020 12:37:03 -0700 (PDT)
+Received: (nullmailer pid 696024 invoked by uid 1000);
+        Wed, 15 Jul 2020 19:37:02 -0000
+Date:   Wed, 15 Jul 2020 13:37:02 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     od@zcrc.me, =?utf-8?B?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Subject: Re: [PATCH 1/7] dt-bindings: vendor-prefixes: Add YLM
+Message-ID: <20200715193702.GA695993@bogus>
+References: <20200623182432.187843-1-paul@crapouillou.net>
 MIME-Version: 1.0
-References: <20200622075956.171058-1-bjorn.andersson@linaro.org> <20200622075956.171058-5-bjorn.andersson@linaro.org>
-In-Reply-To: <20200622075956.171058-5-bjorn.andersson@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 15 Jul 2020 22:36:31 +0300
-Message-ID: <CAA8EJpqEXcb2DvA+pr=6PmoG1fVQ5kcH0k0VY_jC_Diu_SK=jw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sm8250: Drop tcsr_mutex syscon
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Ohad Ben-Cohen <ohad@wizery.com>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>, linux-remoteproc@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200623182432.187843-1-paul@crapouillou.net>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Jun 2020 at 11:00, Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> Now that we don't need the intermediate syscon to represent the TCSR
-> mutexes, update the dts to describe the TCSR mutex directly under /soc.
->
-> The change also fixes the sort order of the nodes.
->
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+On Tue, 23 Jun 2020 20:24:26 +0200, Paul Cercueil wrote:
+> Shenzhen Yangliming Electronic Technology Co., Ltd., abbreviated YLM or
+> YLMChina, and known as Anbernic in the rest of the world, is a Chinese
+> manufacturer of handheld game consoles, some of which are known to be
+> running Linux.
+> 
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-
--- 
-With best wishes
-Dmitry
+Acked-by: Rob Herring <robh@kernel.org>
