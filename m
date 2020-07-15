@@ -2,88 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22888220E57
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 15:41:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C71B220E4A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 15:39:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731322AbgGONlp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 09:41:45 -0400
-Received: from djelibeybi.uuid.uk ([45.91.101.70]:50224 "EHLO
-        djelibeybi.uuid.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730872AbgGONlp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 09:41:45 -0400
-X-Greylist: delayed 527 seconds by postgrey-1.27 at vger.kernel.org; Wed, 15 Jul 2020 09:41:44 EDT
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=octiron.net
-        ; s=20180214; h=Message-ID:References:In-Reply-To:Subject:Cc:To:From:Date:
-        Content-Transfer-Encoding:Content-Type:MIME-Version:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=NMFdGnynEXqfWa9Heq3oIWzpS++cOfT6IC0BYKcqnB8=; b=LJvkg8GG26kYf7nLFxn57N1DzL
-        PlTpMD18CPHkz4hfqo3o0OLueNlA6RuRhH1pjQetkNbKayc05A6RLSnX9XN+GalweM2anXwPhaftS
-        +SdLHl6FPmS206vHE+uBtWI8OFBjwqVl3unmBkxKm+Nnq4EU4Koigv8EaqJ8FYWnXqu6L35LUtTnx
-        JrQGv+tkM94YC2YiB6FClqAGNID5Vaubdbu8T7tGC5Q1mI4V/A45GhlxuoGLnZYwGDTLPndbSmGmb
-        r+034be/9YtIlRAmq4kW3op+Ln2AXPpvBFguc/srSSdOn688ii+UZxbMBshLRNTEMkFSi9Ex40Vhb
-        +qpLJldg==;
-Received: by djelibeybi.uuid.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.90_1)
-        (envelope-from <simon@octiron.net>)
-        id 1jvhWa-0005kE-5N; Wed, 15 Jul 2020 14:32:51 +0100
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=octiron.net
-        ; s=20180214; h=Message-ID:References:In-Reply-To:Subject:Cc:To:From:Date:
-        Content-Transfer-Encoding:Content-Type:MIME-Version;
-        bh=NMFdGnynEXqfWa9Heq3oIWzpS++cOfT6IC0BYKcqnB8=; b=FqIxAzTo7U3PEEnnrfUuc2hWhz
-        TQf/NGL/p2kMjsohUM0SekrhQmKQvLrysSL43r1faa5OCwHnqSiBqeDetwCKQmQ904UhYUW8YeARy
-        9pdNLlkgNnWIhverb815U9nTpCWZP3kp3CF2YroOkwPWtIcg6BIaoHTRphdOPjhaY97mJhckTiZ2I
-        TzaQeq7iHksbG/WX+iaCbc8fh1+7kOuvwXwCl2+QWQmWDGTntYkPWLFDUBXLTe7NbruY+4dJy4oFP
-        Z/uDPv86lUomAgtK/4/m3ju08eURTWu9aFmSnLrysr6G+7HPIuLUTnMmQIxakxkk95u2af7tY/n3g
-        kSEpqcyQ==;
-Received: by tsort.uuid.uk with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.86_2)
-        (envelope-from <simon@octiron.net>)
-        id 1jvhWL-0000pJ-4o; Wed, 15 Jul 2020 14:32:36 +0100
-Received: from localhost ([::1]:45596)
-        by skund.uuid.uk with esmtp (Exim 4.86_2)
-        (envelope-from <simon@octiron.net>)
-        id 1jvhWK-0004hS-8Q; Wed, 15 Jul 2020 14:32:24 +0100
+        id S1731860AbgGONiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 09:38:10 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:44854 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731790AbgGONiK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 09:38:10 -0400
+Received: by mail-oi1-f193.google.com with SMTP id k6so2190145oij.11;
+        Wed, 15 Jul 2020 06:38:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rpk7FoJIXYoDhquzw41W4uL8Bx2a/st8jnaCqpOsLRM=;
+        b=k4UPQtKX6p3MdHVQtXU8l4vD6W5kFBkz6h/c4RmYVDEJZ08acL++W+K9QHlYK/dgrk
+         vSpIjOdyBfKvflSBF+7gvK3ngVKS2EVwBrhDPzbtqY5Zl2If5Ev9jORm7ZpUPncaEL7u
+         +yguhKoSz8DkZxPzRpXKE4P2MoSb7+LcsJ5KV5rZuZPXMJsuMb6G8ymf9sID+ySc2J43
+         lmkomHC5lJIt1elyLJuPQQTFL7sesFHsPORVB1AnpxSKU4UsulXhj6A5DNt+5TqNYTfY
+         cynhquYOg1BUWjcLy8Ur6NkA5XlIEQzv1+xDvyNj0f0bgZn+ceJ6oiglRQAnRFxWKuYK
+         m8KQ==
+X-Gm-Message-State: AOAM532u6Z6b+F+qsUEpSgTlTIA/G5StxymzKcjONasrmPYBIElJE2jL
+        KuAKg8HD9AfwaBaXflS3uYw4MnIypxCqu29u4Jc=
+X-Google-Smtp-Source: ABdhPJx1CUlhcD4Tr/xaysC9VroMO0L/051qAqViZDTkfJwuC4MVmSl9LK3B9crOXglBMXe9jUrp0udBT4APMg+COM8=
+X-Received: by 2002:aca:ac10:: with SMTP id v16mr7418357oie.153.1594820289414;
+ Wed, 15 Jul 2020 06:38:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Date:   Wed, 15 Jul 2020 14:32:24 +0100
-From:   Simon Arlott <simon@octiron.net>
-To:     =?UTF-8?Q?=C3=81lvaro_Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>
-Cc:     jonas.gorski@gmail.com, kishon@ti.com, vkoul@kernel.org,
-        robh+dt@kernel.org, f.fainelli@gmail.com,
-        bcm-kernel-feedback-list@broadcom.com, p.zabel@pengutronix.de,
-        krzk@kernel.org, gregkh@linuxfoundation.org, alcooperx@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 2/2] phy: bcm63xx-usbh: Add BCM63xx USBH driver
-In-Reply-To: <20200715131803.1762064-3-noltari@gmail.com>
-References: <20200715131803.1762064-1-noltari@gmail.com>
- <20200715131803.1762064-3-noltari@gmail.com>
-Message-ID: <2e28eed25955385ab2513f8b617829f3@arlott.org>
-X-Sender: simon@octiron.net
-User-Agent: Roundcube Webmail/1.2-beta
+References: <20200714123419.3390-1-aford173@gmail.com> <20200714123419.3390-2-aford173@gmail.com>
+ <CAMuHMdVS6Hf344EbyroGCWR_yxtO3DZh=JUJhauy5OeVG2hajA@mail.gmail.com> <CAHCN7xKpXErWc8Bjji1==8+AL-9oeFn3QsP-qmE4QD2NpGt=3Q@mail.gmail.com>
+In-Reply-To: <CAHCN7xKpXErWc8Bjji1==8+AL-9oeFn3QsP-qmE4QD2NpGt=3Q@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 15 Jul 2020 15:37:58 +0200
+Message-ID: <CAMuHMdUy8KApTe=hKVsqaEhSJzne+ZwcWT8fcLu+2OdNDTLiYw@mail.gmail.com>
+Subject: Re: [PATCH V2 2/2] dt-bindings: arm: renesas: Document beacon-rzg2m
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-07-15 14:18, Álvaro Fernández Rojas wrote:
-> Add BCM63xx USBH PHY driver for BMIPS.
-> 
-> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
-> ---
-> ...
-> +MODULE_DESCRIPTION("BCM63xx USBH PHY driver");
-> +MODULE_AUTHOR("Álvaro Fernández Rojas <noltari@gmail.com>");
-> +MODULE_AUTHOR("Simon Arlott <simon@fire.lp0.eu>");
-> +MODULE_LICENSE("GPL");
+Hi Adam,
 
-I'm not the author of this.
+On Wed, Jul 15, 2020 at 3:27 PM Adam Ford <aford173@gmail.com> wrote:
+> On Wed, Jul 15, 2020 at 3:58 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Tue, Jul 14, 2020 at 2:34 PM Adam Ford <aford173@gmail.com> wrote:
+> > > Beacon EmbeddedWorks in introducing a development kit based on the
+> > > Renesas RZ/G2M platform.  This patch adds the entry to the bindings
+> > > list.
+> > >
+> > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> >
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > i.e. will queue in renesas-devel for v5.9, with the typo pointed out
+> > by Sergei fixed.
+>
+> Since you pointed out some stuff I should correct in patch 1/2.
+> Should I just re-submit the first patch by itself, or do you want me
+> to submit 2/2 with these fixes?
 
-Nacked-by: Simon Arlott <simon@octiron.net>
+Just resubmitting the first patch is fine for me.
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-Simon Arlott
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
