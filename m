@@ -2,101 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D00B22080D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 11:04:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 880F522081E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 11:05:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729848AbgGOJEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 05:04:08 -0400
-Received: from lucky1.263xmail.com ([211.157.147.134]:36402 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729869AbgGOJEI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 05:04:08 -0400
-Received: from localhost (unknown [192.168.167.209])
-        by lucky1.263xmail.com (Postfix) with ESMTP id B2027C0BAA;
-        Wed, 15 Jul 2020 17:04:01 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-ABS-CHECKED: 0
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P9169T139648078694144S1594803824986898_;
-        Wed, 15 Jul 2020 17:04:01 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <b34daac0e9f59f38ea61913eca068dac>
-X-RL-SENDER: yifeng.zhao@rock-chips.com
-X-SENDER: zyf@rock-chips.com
-X-LOGIN-NAME: yifeng.zhao@rock-chips.com
-X-FST-TO: miquel.raynal@bootlin.com
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-DNS-TYPE: 0
-X-System-Flag: 0
-From:   Yifeng Zhao <yifeng.zhao@rock-chips.com>
-To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        heiko@sntech.de, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Yifeng Zhao <zyf@rock-chips.com>,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Subject: [PATCH v7 4/8] arm64: dts: rockchip: Add NFC node for RK3308 SoC
-Date:   Wed, 15 Jul 2020 17:03:42 +0800
-Message-Id: <20200715090342.28339-5-yifeng.zhao@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200715090342.28339-1-yifeng.zhao@rock-chips.com>
-References: <20200715090342.28339-1-yifeng.zhao@rock-chips.com>
+        id S1730477AbgGOJEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 05:04:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57784 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730370AbgGOJEv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 05:04:51 -0400
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C82A0C061755
+        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2020 02:04:50 -0700 (PDT)
+Received: by mail-io1-xd42.google.com with SMTP id d18so1478946ion.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2020 02:04:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=q4dxg/x+C61ezLjqHNaCCzjzXw07QWDdBXsi9fVkAUU=;
+        b=YEe2issca20y2/l73T3sa81rOD0zgi1OUm8I/tbIAEmNaSjKhPdRRwJBKafc2gc3jk
+         xDQYds+jIMarrr7rQWr59jGk4zxqH1Wu2H5gqoNbIV8k/iPjTfSnbsRa7W3NEOcMK3up
+         2LgACIRQucnwj+gcTH6lQJtscwwtIK86qjmEo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=q4dxg/x+C61ezLjqHNaCCzjzXw07QWDdBXsi9fVkAUU=;
+        b=LfmI9B8cyaTICiGfWyc185eikW+p8tN6OlPmJeJzCcOeWlKa6NizSv5Wcf1SSFg1eN
+         QY2z38/cRRQsro1duAqLO2NYdxN2Jsi2StGTYh+qxb6pMSKCzN91csmyJVggnEAJbjqd
+         eBVsSkx4jkvxsM7jfsYBzrliF3cfiTA8x1FadeXb4h4QayHRtTSAxbpwGzlHoR8qSCze
+         PSRGRQfu9TM8xxTgUf9gUQrxrc5vmBhCmsW7mZzunNpwkVJgnSiZ08cfyFNH0dVkuqGP
+         tDjizKg380HGfimc/xiE3pJZ4nJv96yvkR6C9tvueVRxhzfXFGmI4dIy5G/YQpTMmfNC
+         VDuA==
+X-Gm-Message-State: AOAM53075nkKrbJ39D73NGD8+DBYlrt9aq4SPT76Q3mDyG+KxsdcMexb
+        goW63C5aB3hC/A42FpTcTCdgQyZ7HQU=
+X-Google-Smtp-Source: ABdhPJxEZmmYXGDflUoRIVqYOX63riAcAxCZck+OdU667dMeln1ptIZf18DSX05x4lwTmxphClELnw==
+X-Received: by 2002:a02:9642:: with SMTP id c60mr10431180jai.71.1594803889746;
+        Wed, 15 Jul 2020 02:04:49 -0700 (PDT)
+Received: from mail-il1-f173.google.com (mail-il1-f173.google.com. [209.85.166.173])
+        by smtp.gmail.com with ESMTPSA id u65sm813586iod.45.2020.07.15.02.04.48
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jul 2020 02:04:48 -0700 (PDT)
+Received: by mail-il1-f173.google.com with SMTP id o3so1307893ilo.12
+        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2020 02:04:48 -0700 (PDT)
+X-Received: by 2002:a92:de42:: with SMTP id e2mr8593960ilr.189.1594803887732;
+ Wed, 15 Jul 2020 02:04:47 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200713091211.2183368-1-tientzu@chromium.org>
+ <20200713091211.2183368-2-tientzu@chromium.org> <4a2451f9-57d8-2e83-e1d6-f144f37173c0@arm.com>
+ <20200714110141.GD16178@lst.de> <CALiNf2-9b5LMjv+KCqFJ9oz2FocT6oQ1zVY_MBaFgNG1DQxZ=Q@mail.gmail.com>
+In-Reply-To: <CALiNf2-9b5LMjv+KCqFJ9oz2FocT6oQ1zVY_MBaFgNG1DQxZ=Q@mail.gmail.com>
+From:   Claire Chang <tientzu@chromium.org>
+Date:   Wed, 15 Jul 2020 17:04:36 +0800
+X-Gmail-Original-Message-ID: <CALiNf28LVobHKLuXAf7P7Avi6n1oU+tbbFJ55ZPanJuq8Q1Ysg@mail.gmail.com>
+Message-ID: <CALiNf28LVobHKLuXAf7P7Avi6n1oU+tbbFJ55ZPanJuq8Q1Ysg@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dma-mapping: Add bounced DMA ops
+To:     Christoph Hellwig <hch@lst.de>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>, frowand.list@gmail.com,
+        m.szyprowski@samsung.com, treding@nvidia.com,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>, suzuki.poulose@arm.com,
+        dan.j.williams@intel.com, heikki.krogerus@linux.intel.com,
+        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>,
+        iommu@lists.linux-foundation.org, tfiga@chromium.org,
+        Nicolas Boichat <drinkcat@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yifeng Zhao <zyf@rock-chips.com>
+On Wed, Jul 15, 2020 at 11:46 AM Claire Chang <tientzu@chromium.org> wrote:
+>
+> On Tue, Jul 14, 2020 at 7:01 PM Christoph Hellwig <hch@lst.de> wrote:
+> >
+> > On Mon, Jul 13, 2020 at 12:55:43PM +0100, Robin Murphy wrote:
+> > > On 2020-07-13 10:12, Claire Chang wrote:
+> > >> The bounced DMA ops provide an implementation of DMA ops that bounce
+> > >> streaming DMA in and out of a specially allocated region. Only the
+> > >> operations relevant to streaming DMA are supported.
+> > >
+> > > I think there are too many implicit assumptions here - apparently that
+> > > coherent allocations will always be intercepted by
+> > > dma_*_from_dev_coherent(), and that calling into dma-direct won't actually
+> > > bounce things a second time beyond where you thought they were going,
+> > > manage coherency for a different address, and make it all go subtly wrong.
+> > > Consider "swiotlb=force", for instance...
+If I understand it correctly, reusing SWIOTLB won't prevent the
+coherent allocations
+from always being intercepted by dma_*_from_dev_coherent(), right?
+Since we can't bounce the coherent memory, we still need to rely on
+dma_*_from_dev_coherent() and a reserved-memory region for coherent DMA to
+restrict the device DMA access.
 
-Add NAND FLASH Controller(NFC) node for RK3308 SoC.
+As for calling into dma-direct, in this version, I use set_dma_ops to set the
+dma_bounced_ops, so I just bypass dma-direct and SWIOTLB. "swiotlb=force"
+won't bounce things a second time and the data will still be bounced
+to the region
+set in dts.
+Besides, I did a quick search and found that only two *-iommu.c directly use
+dma_direct_map_page.
+https://elixir.bootlin.com/linux/latest/C/ident/dma_direct_map_page
+Since bounced DMA is to mitigate the lack of DMA access control on systems
+without an IOMMU (see patch#4, only call of_dma_set_bounce_buffer for the
+devices not behind an IOMMU), can we assume no one will use dma-direct?
+(I understand that if we build bounced DMA on top of SWIOTLB, we don't need
+to worry about this.)
 
-Signed-off-by: Yifeng Zhao <zyf@rock-chips.com>
-Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
----
+> > >
+> > > Again, plumbing this straight into dma-direct so that SWIOTLB can simply
+> > > target a different buffer and always bounce regardless of masks would seem
+> > > a far better option.
+> >
+> > I haven't really had time to read through the details, but I agree that
+> > any bouncing scheme should reuse the swiotlb code and not invent a
+> > parallel infrastructure.
+> Thanks for the feedback. I'll try to reuse SWIOTLB.
+My current plan is to first change the buffers management logic in SWIOTLB to
+use gen_pool like this patch (i.e., gen_pool_dma_alloc, gen_pool_free, ect), and
+then make SWIOTLB use the device's private pool for regular DMA to/from system
+memory if possible.
+Does this sound right?
 
-Changes in v7: None
-Changes in v6: None
-Changes in v5: None
-Changes in v4: None
-Changes in v3: None
-Changes in v2: None
-
- arch/arm64/boot/dts/rockchip/rk3308.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3308.dtsi b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-index 507c6353f842..dea63a649111 100644
---- a/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-@@ -627,6 +627,21 @@
- 		status = "disabled";
- 	};
- 
-+	nfc: nand-controller@ff4b0000 {
-+		compatible = "rockchip,rk3308-nfc",
-+			     "rockchip,rv1108-nfc";
-+		reg = <0x0 0xff4b0000 0x0 0x4000>;
-+		interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru HCLK_NANDC>, <&cru SCLK_NANDC>;
-+		clock-names = "ahb", "nfc";
-+		assigned-clocks = <&cru SCLK_NANDC>;
-+		assigned-clock-rates = <150000000>;
-+		pinctrl-0 = <&flash_ale &flash_bus8 &flash_cle &flash_csn0
-+			     &flash_rdn &flash_rdy &flash_wrn>;
-+		pinctrl-names = "default";
-+		status = "disabled";
-+	};
-+
- 	cru: clock-controller@ff500000 {
- 		compatible = "rockchip,rk3308-cru";
- 		reg = <0x0 0xff500000 0x0 0x1000>;
--- 
-2.17.1
-
-
-
+Thanks!
