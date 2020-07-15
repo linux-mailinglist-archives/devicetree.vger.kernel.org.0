@@ -2,108 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33D13220509
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 08:33:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BC2C220522
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 08:37:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728672AbgGOGdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 02:33:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34322 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725823AbgGOGdo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 02:33:44 -0400
-Received: from smtp.al2klimov.de (smtp.al2klimov.de [IPv6:2a01:4f8:c0c:1465::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 301E4C061755;
-        Tue, 14 Jul 2020 23:33:44 -0700 (PDT)
-Received: from authenticated-user (PRIMARY_HOSTNAME [PUBLIC_IP])
-        by smtp.al2klimov.de (Postfix) with ESMTPA id 06794BC069;
-        Wed, 15 Jul 2020 06:33:39 +0000 (UTC)
-Subject: Re: [PATCH] Replace HTTP links with HTTPS ones: Xilinx video IP cores
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     hyun.kwon@xilinx.com, mchehab@kernel.org, robh+dt@kernel.org,
-        michal.simek@xilinx.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20200705075524.22657-1-grandmaster@al2klimov.de>
- <20200714235724.GR5854@pendragon.ideasonboard.com>
-From:   "Alexander A. Klimov" <grandmaster@al2klimov.de>
-Message-ID: <5fca4c17-9e83-3936-0d8f-ad73ae760033@al2klimov.de>
-Date:   Wed, 15 Jul 2020 08:33:35 +0200
-MIME-Version: 1.0
-In-Reply-To: <20200714235724.GR5854@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spamd-Bar: +
-X-Spam-Level: *
-Authentication-Results: smtp.al2klimov.de;
-        auth=pass smtp.auth=aklimov@al2klimov.de smtp.mailfrom=grandmaster@al2klimov.de
+        id S1728813AbgGOGhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 02:37:05 -0400
+Received: from mail29.static.mailgun.info ([104.130.122.29]:44604 "EHLO
+        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728805AbgGOGhE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Jul 2020 02:37:04 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1594795024; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=6RyZp2uDxt+bunGyRPNwhNMqP6XcfqU0GLUbRZiL/+M=; b=sqJT5iiAOGp+Q66wS0vv8b3fTRF7MOU2PpKHS8trYi+9gRct7e/RXXJl7trdsOsiFLSVVLtI
+ Mgfw6G86ksR3JjdxVQXgqRwg51KhF1tA2IA4iGutiosUX2pAnYQoi7tOXCGfjzHrM+qUHpzj
+ TpZ9qpolzNmmaOOhz8/bYVwTEgQ=
+X-Mailgun-Sending-Ip: 104.130.122.29
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n16.prod.us-east-1.postgun.com with SMTP id
+ 5f0ea40f8423214e138cb251 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 15 Jul 2020 06:37:03
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 17917C433A1; Wed, 15 Jul 2020 06:37:03 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from tdas-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B35A8C433C8;
+        Wed, 15 Jul 2020 06:36:58 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B35A8C433C8
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
+From:   Taniya Das <tdas@codeaurora.org>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
+Cc:     David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+Subject: [PATCH v4 0/4] clk: qcom: Support for Low Power Audio Clocks on SC7180
+Date:   Wed, 15 Jul 2020 12:06:46 +0530
+Message-Id: <1594795010-9074-1-git-send-email-tdas@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+[v4]
+ * Fix minor comments in the documentation binding.
 
+[v3]
+ * Update the clock-name to iface instead of gcc_lpass_sway.
+ * Update the documentation with the reg descriptions and use maxItems.
 
-Am 15.07.20 um 01:57 schrieb Laurent Pinchart:
-> Hi Alexander,
-> 
-> Thank you for the patch.
-> 
-> The subject line should be
-> 
-> dt-bindings: media: xilinx: Replace HTTP links with HTTPS ones
-> 
-> On Sun, Jul 05, 2020 at 09:55:24AM +0200, Alexander A. Klimov wrote:
->> Rationale:
->> Reduces attack surface on kernel devs opening the links for MITM
->> as HTTPS traffic is much harder to manipulate.
->>
->> Deterministic algorithm:
->> For each file:
->>    If not .svg:
->>      For each line:
->>        If doesn't contain `\bxmlns\b`:
->>          For each link, `\bhttp://[^# \t\r\n]*(?:\w|/)`:
->>            If both the HTTP and HTTPS versions
->>            return 200 OK and serve the same content:
->>              Replace HTTP with HTTPS.
->>
->> Signed-off-by: Alexander A. Klimov <grandmaster@al2klimov.de>
-> 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> 
-> Will you get this patch merged as part of a bigger series, or do you
-> expect us to take care of it ? In the latter case, if you agree with the
-I've just followed the patch submission instructions as for any 
-non-treewide patch. So yes, I assume the people I write to take care of 
-the patch.
+[v2]
+ * Update retention macro name.
+ * Update the register description in the documentation.
 
-> subject line change, there's no need to resubmit, I can fix this when
-> applying the patch.
-OK.
+[v1]
+ * Add support for Retention of GDSCR.
+ * Add YAML schema for LPASS clocks and clock IDs for LPASS.
+ * Add clock driver for LPASS core clocks and GCC LPASS clock.
 
-> 
->> ---
->>   Continuing my work started at 93431e0607e5.
->>
->>   If there are any URLs to be removed completely or at least not HTTPSified:
->>   Just clearly say so and I'll *undo my change*.
->>   See also https://lkml.org/lkml/2020/6/27/64
->>
->>   If there are any valid, but yet not changed URLs:
->>   See https://lkml.org/lkml/2020/6/26/837
->>
->>   Documentation/devicetree/bindings/media/xilinx/video.txt | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/media/xilinx/video.txt b/Documentation/devicetree/bindings/media/xilinx/video.txt
->> index 68ac210e688e..d0335ca0cd57 100644
->> --- a/Documentation/devicetree/bindings/media/xilinx/video.txt
->> +++ b/Documentation/devicetree/bindings/media/xilinx/video.txt
->> @@ -32,4 +32,4 @@ The following properties are common to all Xilinx video IP cores.
->>     defaults to "mono".
->>   
->>   
->> -[UG934] http://www.xilinx.com/support/documentation/ip_documentation/axi_videoip/v1_0/ug934_axi_videoIP.pdf
->> +[UG934] https://www.xilinx.com/support/documentation/ip_documentation/axi_videoip/v1_0/ug934_axi_videoIP.pdf
-> 
+Taniya Das (4):
+  clk: qcom: gdsc: Add support to enable retention of GSDCR
+  dt-bindings: clock: Add YAML schemas for LPASS clocks on SC7180
+  clk: qcom: gcc: Add support for GCC LPASS clock for SC7180
+  clk: qcom: lpass: Add support for LPASS clock controller for SC7180
+
+ .../bindings/clock/qcom,sc7180-lpasscorecc.yaml    | 103 +++++
+ drivers/clk/qcom/Kconfig                           |   9 +
+ drivers/clk/qcom/Makefile                          |   1 +
+ drivers/clk/qcom/gcc-sc7180.c                      |  14 +
+ drivers/clk/qcom/gdsc.c                            |  12 +
+ drivers/clk/qcom/gdsc.h                            |   1 +
+ drivers/clk/qcom/lpasscorecc-sc7180.c              | 478 +++++++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-sc7180.h        |   1 +
+ .../dt-bindings/clock/qcom,lpasscorecc-sc7180.h    |  29 ++
+ 9 files changed, 648 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sc7180-lpasscorecc.yaml
+ create mode 100644 drivers/clk/qcom/lpasscorecc-sc7180.c
+ create mode 100644 include/dt-bindings/clock/qcom,lpasscorecc-sc7180.h
+
+--
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+of the Code Aurora Forum, hosted by the  Linux Foundation.
+
