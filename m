@@ -2,184 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 545CC220EEE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 16:14:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7106F220EB3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 16:06:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726821AbgGOONz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 10:13:55 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:49520 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727771AbgGOONy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Jul 2020 10:13:54 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 9267F1A1442;
-        Wed, 15 Jul 2020 16:13:52 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 0F4A31A0241;
-        Wed, 15 Jul 2020 16:13:47 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id A6A80402C1;
-        Wed, 15 Jul 2020 22:13:40 +0800 (SGT)
-From:   Shengjiu Wang <shengjiu.wang@nxp.com>
-To:     perex@perex.cz, tiwai@suse.com, lgirdwood@gmail.com,
-        broonie@kernel.org, alsa-devel@alsa-project.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org, timur@kernel.org,
-        nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com
-Cc:     linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-Subject: [PATCH v2 3/3] ASoC: fsl-asoc-card: Support Headphone and Microphone Jack detection
-Date:   Wed, 15 Jul 2020 22:09:39 +0800
-Message-Id: <1594822179-1849-4-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1594822179-1849-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1594822179-1849-1-git-send-email-shengjiu.wang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1732031AbgGOOGa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 10:06:30 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:35955 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727822AbgGOOGa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 10:06:30 -0400
+X-Originating-IP: 93.34.118.233
+Received: from uno.lan (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 0F97BFF813;
+        Wed, 15 Jul 2020 14:06:25 +0000 (UTC)
+From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
+To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>, mchehab@kernel.org,
+        sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
+        laurent.pinchart@ideasonboard.com,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH 0/8] dt-bindings: media: i2c: Convert to json-schema
+Date:   Wed, 15 Jul 2020 16:09:43 +0200
+Message-Id: <20200715140951.90753-1-jacopo+renesas@jmondi.org>
+X-Mailer: git-send-email 2.27.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use asoc_simple_init_jack function from simple card to implement
-the Headphone and Microphone detection.
-Register notifier to disable Speaker when Headphone is plugged in
-and enable Speaker when Headphone is unplugged.
-Register notifier to disable Digital Microphone when Analog Microphone
-is plugged in and enable DMIC when Analog Microphone is unplugged.
+Convert to json schema the bindings file for the following sensor
+drivers:
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-Acked-by: Nicolin Chen <nicoleotsuka@gmail.com>
----
- sound/soc/fsl/Kconfig         |  1 +
- sound/soc/fsl/fsl-asoc-card.c | 77 ++++++++++++++++++++++++++++++++++-
- 2 files changed, 76 insertions(+), 2 deletions(-)
+- ov5640
+- ov5645
+- ov772x
+- mt9v111
+- imx214
+- imx274
+- imx290
 
-diff --git a/sound/soc/fsl/Kconfig b/sound/soc/fsl/Kconfig
-index ea7b4787a8af..1c4ca5ec8caf 100644
---- a/sound/soc/fsl/Kconfig
-+++ b/sound/soc/fsl/Kconfig
-@@ -315,6 +315,7 @@ config SND_SOC_FSL_ASOC_CARD
- 	depends on OF && I2C
- 	# enforce SND_SOC_FSL_ASOC_CARD=m if SND_AC97_CODEC=m:
- 	depends on SND_AC97_CODEC || SND_AC97_CODEC=n
-+	select SND_SIMPLE_CARD_UTILS
- 	select SND_SOC_IMX_AUDMUX
- 	select SND_SOC_IMX_PCM_DMA
- 	select SND_SOC_FSL_ESAI
-diff --git a/sound/soc/fsl/fsl-asoc-card.c b/sound/soc/fsl/fsl-asoc-card.c
-index faac6ce9a82c..f0cde3ecb5b7 100644
---- a/sound/soc/fsl/fsl-asoc-card.c
-+++ b/sound/soc/fsl/fsl-asoc-card.c
-@@ -15,6 +15,8 @@
- #endif
- #include <sound/pcm_params.h>
- #include <sound/soc.h>
-+#include <sound/jack.h>
-+#include <sound/simple_card_utils.h>
- 
- #include "fsl_esai.h"
- #include "fsl_sai.h"
-@@ -65,6 +67,8 @@ struct cpu_priv {
- /**
-  * struct fsl_asoc_card_priv - Freescale Generic ASOC card private data
-  * @dai_link: DAI link structure including normal one and DPCM link
-+ * @hp_jack: Headphone Jack structure
-+ * @mic_jack: Microphone Jack structure
-  * @pdev: platform device pointer
-  * @codec_priv: CODEC private data
-  * @cpu_priv: CPU private data
-@@ -79,6 +83,8 @@ struct cpu_priv {
- 
- struct fsl_asoc_card_priv {
- 	struct snd_soc_dai_link dai_link[3];
-+	struct asoc_simple_jack hp_jack;
-+	struct asoc_simple_jack mic_jack;
- 	struct platform_device *pdev;
- 	struct codec_priv codec_priv;
- 	struct cpu_priv cpu_priv;
-@@ -445,6 +451,44 @@ static int fsl_asoc_card_audmux_init(struct device_node *np,
- 	return 0;
- }
- 
-+static int hp_jack_event(struct notifier_block *nb, unsigned long event,
-+			 void *data)
-+{
-+	struct snd_soc_jack *jack = (struct snd_soc_jack *)data;
-+	struct snd_soc_dapm_context *dapm = &jack->card->dapm;
-+
-+	if (event & SND_JACK_HEADPHONE)
-+		/* Disable speaker if headphone is plugged in */
-+		snd_soc_dapm_disable_pin(dapm, "Ext Spk");
-+	else
-+		snd_soc_dapm_enable_pin(dapm, "Ext Spk");
-+
-+	return 0;
-+}
-+
-+static struct notifier_block hp_jack_nb = {
-+	.notifier_call = hp_jack_event,
-+};
-+
-+static int mic_jack_event(struct notifier_block *nb, unsigned long event,
-+			  void *data)
-+{
-+	struct snd_soc_jack *jack = (struct snd_soc_jack *)data;
-+	struct snd_soc_dapm_context *dapm = &jack->card->dapm;
-+
-+	if (event & SND_JACK_MICROPHONE)
-+		/* Disable dmic if microphone is plugged in */
-+		snd_soc_dapm_disable_pin(dapm, "DMIC");
-+	else
-+		snd_soc_dapm_enable_pin(dapm, "DMIC");
-+
-+	return 0;
-+}
-+
-+static struct notifier_block mic_jack_nb = {
-+	.notifier_call = mic_jack_event,
-+};
-+
- static int fsl_asoc_card_late_probe(struct snd_soc_card *card)
- {
- 	struct fsl_asoc_card_priv *priv = snd_soc_card_get_drvdata(card);
-@@ -745,8 +789,37 @@ static int fsl_asoc_card_probe(struct platform_device *pdev)
- 	snd_soc_card_set_drvdata(&priv->card, priv);
- 
- 	ret = devm_snd_soc_register_card(&pdev->dev, &priv->card);
--	if (ret && ret != -EPROBE_DEFER)
--		dev_err(&pdev->dev, "snd_soc_register_card failed (%d)\n", ret);
-+	if (ret) {
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(&pdev->dev, "snd_soc_register_card failed (%d)\n", ret);
-+		goto asrc_fail;
-+	}
-+
-+	/*
-+	 * Properties "hp-det-gpio" and "mic-det-gpio" are optional, and
-+	 * asoc_simple_init_jack uses these properties for creating
-+	 * Headphone Jack and Microphone Jack.
-+	 *
-+	 * The notifier is initialized in snd_soc_card_jack_new(), then
-+	 * snd_soc_jack_notifier_register can be called.
-+	 */
-+	if (of_property_read_bool(np, "hp-det-gpio")) {
-+		ret = asoc_simple_init_jack(&priv->card, &priv->hp_jack,
-+					    1, NULL, "Headphone Jack");
-+		if (ret)
-+			goto asrc_fail;
-+
-+		snd_soc_jack_notifier_register(&priv->hp_jack.jack, &hp_jack_nb);
-+	}
-+
-+	if (of_property_read_bool(np, "mic-det-gpio")) {
-+		ret = asoc_simple_init_jack(&priv->card, &priv->mic_jack,
-+					    0, NULL, "Mic Jack");
-+		if (ret)
-+			goto asrc_fail;
-+
-+		snd_soc_jack_notifier_register(&priv->mic_jack.jack, &mic_jack_nb);
-+	}
- 
- asrc_fail:
- 	of_node_put(asrc_np);
--- 
+On top of the conversion to yaml, rename the files to include the
+vendor prefix (I kept this separate as I'm not sure it's actually desired).
+
+The series requires:
+[PATCH v3 0/3] dt-bidings: media: ov5647 bindings + small fix
+which converts the ov5647 bindings to yaml which I sent separately
+as it was already in review.
+
+Individual maintainers Cc-ed for each single patch where available.
+
+Thanks
+  j
+
+Jacopo Mondi (8):
+  dt-bindings: media: ov5640: Convert to json-schema
+  dt-bindings: media: ov5645: Convert to json-schema
+  dt-bindings: media: mt9v111: Convert to json-schema
+  dt-bindings: media: imx290: Convert to json-schema
+  dt-bindings: media: imx274: Convert to json-schema
+  dt-bindings: media: imx214: Convert to json-schema
+  dt-bindings: media: ov772x: Convert to json-schema
+  dt-bindings: media: i2c: Add prefix to yaml bindings
+
+ .../bindings/media/i2c/aptina,mt9v111.txt     |  46 -----
+ .../bindings/media/i2c/aptina,mt9v111.yaml    |  87 +++++++++
+ .../devicetree/bindings/media/i2c/imx274.txt  |  33 ----
+ .../devicetree/bindings/media/i2c/imx290.txt  |  57 ------
+ .../devicetree/bindings/media/i2c/ov5640.txt  |  92 ---------
+ .../devicetree/bindings/media/i2c/ov5645.txt  |  54 ------
+ .../devicetree/bindings/media/i2c/ov772x.txt  |  40 ----
+ .../bindings/media/i2c/ovti,ov5640.yaml       | 181 ++++++++++++++++++
+ .../bindings/media/i2c/ovti,ov5645.yaml       | 123 ++++++++++++
+ .../i2c/{ov5647.yaml => ovti,ov5647.yaml}     |   0
+ .../bindings/media/i2c/ovti,ov772x.yaml       |  89 +++++++++
+ .../i2c/{ov8856.yaml => ovti,ov8856.yaml}     |   0
+ .../bindings/media/i2c/sony,imx214.txt        |  53 -----
+ .../bindings/media/i2c/sony,imx214.yaml       | 124 ++++++++++++
+ .../i2c/{imx219.yaml => sony,imx219.yaml}     |   0
+ .../bindings/media/i2c/sony,imx274.yaml       |  74 +++++++
+ .../bindings/media/i2c/sony,imx290.yaml       | 124 ++++++++++++
+ MAINTAINERS                                   |  25 ++-
+ 18 files changed, 819 insertions(+), 383 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/imx274.txt
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/imx290.txt
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5640.txt
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5645.txt
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov772x.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+ rename Documentation/devicetree/bindings/media/i2c/{ov5647.yaml => ovti,ov5647.yaml} (100%)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+ rename Documentation/devicetree/bindings/media/i2c/{ov8856.yaml => ovti,ov8856.yaml} (100%)
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx214.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
+ rename Documentation/devicetree/bindings/media/i2c/{imx219.yaml => sony,imx219.yaml} (100%)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
+
+--
 2.27.0
 
