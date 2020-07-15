@@ -2,119 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22EBA220619
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 09:23:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE1EE220635
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 09:31:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729256AbgGOHWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 03:22:41 -0400
-Received: from relay2-d.mail.gandi.net ([217.70.183.194]:38843 "EHLO
-        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729066AbgGOHWl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 03:22:41 -0400
-X-Originating-IP: 93.34.118.233
-Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 3E77C4000A;
-        Wed, 15 Jul 2020 07:22:36 +0000 (UTC)
-Date:   Wed, 15 Jul 2020 09:26:08 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>, robh+dt@kernel.org
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        mchehab@kernel.org, sakari.ailus@linux.intel.com,
-        dave.stevenson@raspberrypi.com, dongchun.zhu@mediatek.com,
-        linux-renesas-soc@vger.kernel.org,
-        roman.kovalivskyi@globallogic.com
-Subject: Re: [PATCH v2 2/3] dt-bindings: media: i2c: Document
- 'remote-endpoint'
-Message-ID: <20200715072608.hvog74szw7udx4sk@uno.localdomain>
-References: <20200714142856.58365-1-jacopo+renesas@jmondi.org>
- <20200714142856.58365-3-jacopo+renesas@jmondi.org>
- <20200714234535.GN5854@pendragon.ideasonboard.com>
+        id S1729291AbgGOHbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 03:31:17 -0400
+Received: from mail.intenta.de ([178.249.25.132]:40090 "EHLO mail.intenta.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729251AbgGOHbR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Jul 2020 03:31:17 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=intenta.de; s=dkim1;
+        h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:CC:To:From:Date; bh=K4q1E59OsyH+5CO1gR1zn2E/c5I1MRudGlErx4Cz/cs=;
+        b=k1MEWPxCC0A/gvCdfiJzLZrI0YmXEAFD/axFwnJ1pgh9QAoT2uRlCKEbSjIkcKWOdt/SmQNAMKbY0PARgVi46DHLEbmPL/BJctBsDeU811qzJi6yKoB3g1sHuQ2WPEaiZSif1i9P6bEJB6GPxxm1/c1I+mxvmKotYxDCJm7gr2ZMP/KTsiUjTIk//EESmbf+sdstMLSmzrCly2ZELxb+nLCNcwgCuzAywi+KhHJnM4T26NMwATO1b2nY50sUwXk/iKB//VS2VxkcyY6zDhp4pqeqL+zTAtt8XikkYJAVhMz+j78cGC/qm4gaogxuvQM5MPje/OWOJfSxQzFXwePVoQ==;
+Date:   Wed, 15 Jul 2020 09:31:12 +0200
+From:   Helmut Grohne <helmut.grohne@intenta.de>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>
+Subject: Re: [PATCH] net: dsa: microchip: look for phy-mode in port nodes
+Message-ID: <20200715073112.GA25047@laureti-dev>
+References: <20200617082235.GA1523@laureti-dev>
+ <20200714120827.GA7939@laureti-dev>
+ <20200714222716.GP1078057@lunn.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20200714234535.GN5854@pendragon.ideasonboard.com>
+In-Reply-To: <20200714222716.GP1078057@lunn.ch>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-ClientProxiedBy: ICSMA002.intenta.de (10.10.16.48) To ICSMA002.intenta.de
+ (10.10.16.48)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+Hi Andrew,
 
-On Wed, Jul 15, 2020 at 02:45:35AM +0300, Laurent Pinchart wrote:
-> Hi Jacopo,
->
-> Thank you for the patch.
->
-> On Tue, Jul 14, 2020 at 04:28:55PM +0200, Jacopo Mondi wrote:
-> > Document the 'remote-endpoint' property and add it to the list of required
-> > endpoint properties in imx219 and ov8856 dt-schema binding files.
-> >
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
-> > ---
-> >  Documentation/devicetree/bindings/media/i2c/imx219.yaml | 5 +++++
-> >  Documentation/devicetree/bindings/media/i2c/ov8856.yaml | 5 +++++
-> >  2 files changed, 10 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/imx219.yaml b/Documentation/devicetree/bindings/media/i2c/imx219.yaml
-> > index dfc4d29a4f04..0251e15fe0a7 100644
-> > --- a/Documentation/devicetree/bindings/media/i2c/imx219.yaml
-> > +++ b/Documentation/devicetree/bindings/media/i2c/imx219.yaml
-> > @@ -71,8 +71,13 @@ properties:
-> >              description:
-> >                Allowed data bus frequencies.
-> >
-> > +          remote-endpoint:
-> > +            description: |-
-> > +              phandle to the video receiver input port
-> > +
-> >          required:
-> >            - link-frequencies
-> > +          - remote-endpoint
-> >
-> >  required:
-> >    - compatible
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-> > index 1956b2a32bf4..c1f363bb5aee 100644
-> > --- a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-> > +++ b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-> > @@ -84,9 +84,14 @@ properties:
-> >                Allowed data bus frequencies. 360000000, 180000000 Hz or both
-> >                are supported by the driver.
-> >
-> > +          remote-endpoint:
-> > +            description: |-
-> > +              phandle to the video receiver input port
-> > +
->
-> Extraneous blank line ?
->
+Thank you for the quick reply.
 
-Yes indeed.
+On Wed, Jul 15, 2020 at 12:27:16AM +0200, Andrew Lunn wrote:
+> I think this change is more complex than it needs to be. Only the CPU
+> port supports different interface modes. So i don't see the need to
+> handle both dev->interface and p->interface. Just first search
+> ksz_switch_register() first look in the cpu port node, and if not
+> found go back to the old location. The rest of the code can stay the
+> same.
 
-I'll fix and resend with your comments taken in (this and the one in
-the previous patch).
+The driver supports (among others) the KSZ9897R, which comes with two
+MAC ports supporting[1, page 8] RGMII/RMII/MII (ports 6 and 7). Both of
+these can be connected to a CPU, so they can both operate as CPU ports
+in principle.
 
-Rob, Hans:
-Should this go in through the media tree or through rob ?
+However, one can only enable tail tagging for one of them at a time[1,
+page 39]. As the current driver expects tail tagging to be enabled on
+CPU ports, it doesn't work as is with the driver. It could still be used
+to form a ring of switches such that a single failing switch would leave
+two chains of switches attached to the CPU. This kind of failover seems
+to be part of the DSA vision (but I fail to find a reference at the
+moment).
 
-Thanks
-  j
+For these reasons, I think that there can be multiple CPU ports in
+future. Now there is a trade-off. Either we further encode the
+assumption of there being only a single CPU port more deeply into the
+driver (as it already does assume that) or we can take the opportunity
+to already lift it here with the vision for runtime reconfiguration of
+switch topologies.
 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->
-> >
-> >          required:
-> >            - link-frequencies
-> > +          - remote-endpoint
-> >
-> >      required:
-> >        - endpoint
->
-> --
-> Regards,
->
-> Laurent Pinchart
+You seem to be in favour of more deeply encoding the "there can be only
+one CPU port" assumption. Based on that assumption, the rest of what you
+write makes very much sense to me. Is that the direction to go?
+
+Helmut
+
+[1] http://ww1.microchip.com/downloads/en/DeviceDoc/KSZ9897R-Data-Sheet-DS00002330D.pdf
