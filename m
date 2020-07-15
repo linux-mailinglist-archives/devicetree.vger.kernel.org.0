@@ -2,157 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B9BE22033E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 06:14:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEB6922034F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 06:22:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726829AbgGOEOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 00:14:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41114 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726458AbgGOEON (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 00:14:13 -0400
-Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com [IPv6:2607:f8b0:4864:20::842])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D4CAC061755;
-        Tue, 14 Jul 2020 21:14:13 -0700 (PDT)
-Received: by mail-qt1-x842.google.com with SMTP id x62so708835qtd.3;
-        Tue, 14 Jul 2020 21:14:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=foDNNdgIp5gEZxCFX16NjXsSXtzimT2AqP9s4DUPnRU=;
-        b=K1HTY9DwxKkwlxnhxfdiEyaM+jc4pxAHsm3ZoHLNf46o0NPweVzUmsjJtWpbSuLE+5
-         lvihYceaJxRcEpAn5Y7EIeZe/uvSunAtgqS9kNlEQiAGK00zW7tqpXxTeSY/4j+aQStZ
-         dmrHIkiZe+s8yH734YCb8MWgS9ATNCn5XMcrXihLhLhW4cwiabHZHBVUHd1gjGLW4Q1k
-         a0OvsQS95Pvuit+60T/5UuMN5I0UHd0X5zOBO38F201gGpVLceSzNqKd3aGWubrmj2EM
-         Mn2jFZoMXI7qVziDUAk642VoUW2CExUIyYCmfbb46N7N3LTCKRJRuW2yeEO85s+bRLIn
-         UHIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=foDNNdgIp5gEZxCFX16NjXsSXtzimT2AqP9s4DUPnRU=;
-        b=hmLLa0iAOZfoB/jGrNMB3Gg/3clEtRSG3DAq+Bq7T5Xg5Mi//0VQ8Jiheozfl+554W
-         zMufiXJBReL0LbMFP3hY1uQ+I32iv9s0KvU1mGyfAjWeXQvDZ8WFQMHb24rdKzEIH4jY
-         GPzawy7WmqFJcjfb/y7yXuvimo3Rhj1qiMjXp72n6FO8COnt5hsGVmmLamJzLnLKgXPu
-         ApXa4jP4YnVln0nf2vSkUZLdJVNvH+jURhEJqCszEDNOxDPrN9hDnTx6i85PWpT00Ptn
-         L1VmMxaYFXkjYGZ3TIBG0L6gKD5nSCUYsW2GLdUL06xlv1ED7/Me/Lq45eAH5/4Blxwt
-         aKPA==
-X-Gm-Message-State: AOAM533s72WljpwaLq2TYunbmP4u3aHjBj24BQC1pQdJ67/pinMM0HjM
-        7FJ80K/BVR9r5BCWNpES30G/5ocT+n6+/Ln6P34=
-X-Google-Smtp-Source: ABdhPJz9uu3YAldIkZ25DwFl7GQTjr4Q/2qWdCJALV+nDYpRz3j+ggBoJDewGFe15ct9g6o4fvRHNE0l6dRRFxn2zpM=
-X-Received: by 2002:ac8:41c6:: with SMTP id o6mr8114697qtm.292.1594786452616;
- Tue, 14 Jul 2020 21:14:12 -0700 (PDT)
+        id S1725900AbgGOETW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 00:19:22 -0400
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:11947 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725824AbgGOETW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 00:19:22 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5f0e83900000>; Tue, 14 Jul 2020 21:18:24 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Tue, 14 Jul 2020 21:19:22 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Tue, 14 Jul 2020 21:19:22 -0700
+Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 15 Jul
+ 2020 04:19:21 +0000
+Received: from rnnvemgw01.nvidia.com (10.128.109.123) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Wed, 15 Jul 2020 04:19:21 +0000
+Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.160.169]) by rnnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5f0e83c80002>; Tue, 14 Jul 2020 21:19:21 -0700
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <frankc@nvidia.com>, <hverkuil@xs4all.nl>,
+        <sakari.ailus@iki.fi>, <robh+dt@kernel.org>,
+        <helen.koike@collabora.com>
+CC:     <digetx@gmail.com>, <sboyd@kernel.org>,
+        <gregkh@linuxfoundation.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>
+Subject: [RFC PATCH v3 00/18] Support for Tegra video capture from external sensor
+Date:   Tue, 14 Jul 2020 21:20:37 -0700
+Message-ID: <1594786855-26506-1-git-send-email-skomatineni@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
 MIME-Version: 1.0
-References: <1594717536-5188-1-git-send-email-shengjiu.wang@nxp.com>
- <1594717536-5188-4-git-send-email-shengjiu.wang@nxp.com> <20200714211432.GA10818@Asurada-Nvidia>
-In-Reply-To: <20200714211432.GA10818@Asurada-Nvidia>
-From:   Shengjiu Wang <shengjiu.wang@gmail.com>
-Date:   Wed, 15 Jul 2020 12:14:01 +0800
-Message-ID: <CAA+D8ANQ_B9jJUhLYQnKxKJcVrmvakxPo58h433QqFhdu2nRPA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] ASoC: fsl-asoc-card: Support Headphone and Microphone
- Jack detection
-To:     Nicolin Chen <nicoleotsuka@gmail.com>
-Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        linuxppc-dev@lists.ozlabs.org, Timur Tabi <timur@kernel.org>,
-        kuninori.morimoto.gx@renesas.com, samuel@sholland.org,
-        katsuhiro@katsuster.net,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Takashi Iwai <tiwai@suse.com>, Mark Brown <broonie@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1594786704; bh=H3uPLyelSg29Z/xvdKbwpYtnQFHubI57wAgazwqqfrw=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=X0EOcpsFFWEHuf70WGXCxtoJAK/Jk6fD8r01WJJ4DrQxTYhyxRb0OY6KhDP4Cz44a
+         439SZGN6UU3tNPQu84AL30GbgPxruZ/eZoZpnt81P+iX1w1Cisb2BYpPvHd6wa5IzS
+         2/5VRmMr79THMyo9czoE+HAendIjzh8k/42HhV6fTILkfkf6+2LNbxyCZs8+pldAaZ
+         Ab/yI8XAMWRgR/hCmonUTWbkGE/JE1zd08fw4TTcU0U3ARCvhQ+Dzpavnc+HewW+2C
+         yNHG7uEUD6wNilH2sxkWW8o8EDu2ihCQ3J8VgehZCWtChO9+kSavqGCG9jNQFL4YDk
+         ehyY4yhXsh84g==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 15, 2020 at 5:16 AM Nicolin Chen <nicoleotsuka@gmail.com> wrote:
->
-> Hi Shengjiu,
->
-> The whole series looks good to me. Just a couple of small
-> questions inline:
->
-> On Tue, Jul 14, 2020 at 05:05:36PM +0800, Shengjiu Wang wrote:
-> > Use asoc_simple_init_jack function from simple card to implement
-> > the Headphone and Microphone detection.
-> > Register notifier to disable Speaker when Headphone is plugged in
-> > and enable Speaker when Headphone is unplugged.
-> > Register notifier to disable Digital Microphone when Analog Microphone
-> > is plugged in and enable DMIC when Analog Microphone is unplugged.
-> >
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > ---
-> >  sound/soc/fsl/Kconfig         |  1 +
-> >  sound/soc/fsl/fsl-asoc-card.c | 69 ++++++++++++++++++++++++++++++++++-
-> >  2 files changed, 68 insertions(+), 2 deletions(-)
->
-> >  static int fsl_asoc_card_late_probe(struct snd_soc_card *card)
-> >  {
-> >       struct fsl_asoc_card_priv *priv = snd_soc_card_get_drvdata(card);
-> > @@ -745,8 +789,29 @@ static int fsl_asoc_card_probe(struct platform_device *pdev)
-> >       snd_soc_card_set_drvdata(&priv->card, priv);
-> >
-> >       ret = devm_snd_soc_register_card(&pdev->dev, &priv->card);
-> > -     if (ret && ret != -EPROBE_DEFER)
-> > -             dev_err(&pdev->dev, "snd_soc_register_card failed (%d)\n", ret);
-> > +     if (ret) {
-> > +             if (ret != -EPROBE_DEFER)
-> > +                     dev_err(&pdev->dev, "snd_soc_register_card failed (%d)\n", ret);
->
-> I think we may move this EPROBE_DEFER to the asrc_fail label.
+This series adds support for video capture from external camera sensor to
+Tegra video driver.
 
-If we move this to asrc_fail label, then it will be hard to define the
-error message.
-There are many places that goto asrc_fail.
+Jetson TX1 has camera expansion connector and supports custom camera module
+designed as per TX1 design specification.
 
->
-> > +             goto asrc_fail;
-> > +     }
-> > +
-> > +     if (of_property_read_bool(np, "hp-det-gpio")) {
->
-> Could we move this check inside asoc_simple_init_jack? There's no
-> problem with doing it here though, yet I got a bit confused by it
-> as I thought it's a boolean type property, which would be against
-> the DT bindings until I saw asoc_simple_init_jack() uses the same
-> string to get the GPIO. Just it probably would be a bit tricky as
-> we need it to be optional here.
->
-> Otherwise, I think we may add a line of comments to indicate that
-> the API would use the same string to get the GPIO.
+This series also enables camera capture support for Jetson Nano which has
+Raspberry PI camera header.
 
-In asoc_simple_init_jack, gpio_is_valid() will be invalid when there is
-no "hp-det-gpio" property, and asoc_simple_init_jack will return 0.
+This series is tested with IMX219 camera sensor.
 
-The reason why I add a check here is mostly for
-snd_soc_jack_notifier_register().
-when there is no jack created, there will be a kernel dump.
+This series include,
 
-or I can use this code:
+VI I2C related fixes
+- Camera sensor programming happens through VI I2C which is on host1x bus.
+- These patches includes device tree and I2C driver fixes for VI I2C.
 
--       if (of_property_read_bool(np, "hp-det-gpio")) {
--               ret = asoc_simple_init_jack(&priv->card, &priv->hp_jack,
--                                           1, NULL, "Headphone Jack");
--               if (ret)
--                       goto asrc_fail;
-+       ret = asoc_simple_init_jack(&priv->card, &priv->hp_jack,
-+                                   1, NULL, "Headphone Jack");
-+       if (ret)
-+               goto asrc_fail;
+Tegra video driver updates
+- TPG Vs Non-TPG based on Kconfig
+- Support for external sensor video capture based on device graph from DT.
+- Support for selection ioctl operations
+- Tegra MIPI CSI pads calibration
+- CSI T-CLK and T-HS settle time computation based on clock rates.
 
-+       if (priv->hp_jack.jack.jack)
-                snd_soc_jack_notifier_register(&priv->hp_jack.jack,
-&hp_jack_nb);
--       }
+Host1x driver updates
+- Adds API to allow creating mipi device for specific device node.
+- Splits MIPI pads calibrate start and waiting for calibration to be done.
 
-what do you think?
+Device tree updates
+- Adds camera connector 2V8, 1V8, 1V2 regulator supplies to Jetson TX1 DT.
+- Enabled VI and CSI support in Jetson Nano DT.
 
-best regards
-wang shengjiu
+
+Delta between patch versions:
+
+[v3]:	Includes v2 feedback
+	- Uses separate helper function for retrieving remote csi subdevice
+	  and source subdevice.
+	- Added check for presence of subdevice ops set/get_selection
+	- dropped vb2_queue_release from driver and using
+	  vb2_video_unregister_device instead of video_unregister_device.
+	- video device register should happen in the last after all video
+	  device related setup is done in the driver. This is being addressed
+	  in below RFC patch. Once proper implementation of this is available
+	  will update Tegra video driver to use split APIs and do all setup
+	  prior to device register. Added this as TODO in the driver.
+	  https://www.spinics.net/lists/linux-media/msg172761.html
+
+	Note:
+	Patch-0012 has compilation dependency on
+	https://patchwork.kernel.org/patch/11659521/
+
+
+[v2]:	Includes below changes based on v1 feedback
+	- dt-binding document and the driver update for device graph to use
+	  separate ports for sink endpoint and source endpoint for csi.
+	- Use data-lanes endpoint property for csi.
+	- Update tegra_mipi_request() to take device node pointer argument
+	  rather than adding extra API.
+	- Remove checking for clk pointer before clk_disable.
+
+
+Sowjanya Komatineni (18):
+  dt-bindings: i2c: tegra: Document Tegra210 VI I2C clocks and
+    power-domains
+  arm64: tegra: Add missing clocks and power-domains to Tegra210 VI I2C
+  i2c: tegra: Don't mark VI I2C as IRQ safe runtime PM
+  i2c: tegra: Remove NULL pointer check before
+    clk_enable/disable/prepare/unprepare
+  i2c: tegra: Fix the error path in tegra_i2c_runtime_resume
+  i2c: tegra: Fix runtime resume to re-init VI I2C
+  i2c: tegra: Avoid tegra_i2c_init_dma() for Tegra210 vi i2c
+  media: tegra-video: Fix channel format alignment
+  media: tegra-video: Enable TPG based on kernel config
+  media: tegra-video: Update format lookup to offset based
+  dt-bindings: tegra: Update VI and CSI bindings with port info
+  media: tegra-video: Add support for external sensor capture
+  media: tegra-video: Add support for selection ioctl ops
+  gpu: host1x: mipi: Update tegra_mipi_request() to be node based
+  gpu: host1x: mipi: Use readl_relaxed_poll_timeout in tegra_mipi_wait
+  gpu: host1x: mipi: Split tegra_mipi_calibrate and tegra_mipi_wait
+  media: tegra-video: Add CSI MIPI pads calibration
+  media: tegra-video: Compute settle times based on the clock rate
+
+ .../display/tegra/nvidia,tegra20-host1x.txt        |  92 ++-
+ .../devicetree/bindings/i2c/nvidia,tegra20-i2c.txt |  19 +-
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi           |   6 +
+ drivers/gpu/drm/tegra/dsi.c                        |   9 +-
+ drivers/gpu/host1x/mipi.c                          |  37 +-
+ drivers/i2c/busses/i2c-tegra.c                     | 101 +--
+ drivers/staging/media/tegra-video/Kconfig          |   7 +
+ drivers/staging/media/tegra-video/csi.c            | 247 ++++++-
+ drivers/staging/media/tegra-video/csi.h            |   8 +
+ drivers/staging/media/tegra-video/tegra210.c       |  25 +-
+ drivers/staging/media/tegra-video/vi.c             | 793 +++++++++++++++++++--
+ drivers/staging/media/tegra-video/vi.h             |  25 +-
+ drivers/staging/media/tegra-video/video.c          |  23 +-
+ include/linux/host1x.h                             |   4 +-
+ 14 files changed, 1242 insertions(+), 154 deletions(-)
+
+-- 
+2.7.4
+
