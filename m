@@ -2,100 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C32BD220D9A
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 15:05:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C883220DE0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 15:18:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730868AbgGONFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 09:05:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56456 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729900AbgGONFK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Jul 2020 09:05:10 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 659CC20657;
-        Wed, 15 Jul 2020 13:05:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1594818309;
-        bh=/JbnkKca9isth2Byqb4RT/WZLJphSaAVAFp0XT01uu0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=11WLdv3zamDVHmM6A7sD3vIrgCjWwh2+roNC+ngAh1r1bKzwRyZN5Hv+dK7odXwI5
-         Z96N6IXf1vw98heHULxcTXjVl85NZfzyR30Aywy25KKdwDK5SlEJumKgoTpN0pRPd3
-         3TcKkQHsxLcEAqtcWXhh1ufg29KGZjgEkTtjUSf0=
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.92)
-        (envelope-from <maz@kernel.org>)
-        id 1jvh5v-00BzoN-VJ; Wed, 15 Jul 2020 14:05:08 +0100
+        id S1731423AbgGONSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 09:18:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40316 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731606AbgGONSI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 09:18:08 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB4D7C061755;
+        Wed, 15 Jul 2020 06:18:07 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id z13so2680770wrw.5;
+        Wed, 15 Jul 2020 06:18:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=D+sFqN9sN9u8KSbVLbHvrEOC/vigJwrwrBwNSxJrlGE=;
+        b=ptbeYJ8b8Itx2JPr+Vi2ehiYl7BtnUh75cmsCXhRvBG13rjFc7fcmw9mv4MZWRBi0L
+         APKBBVvwWQ8bYU47iMvmN7f3QcvVjInQnneAl0Bc89NEbpZKc8ZN6AhuYkx6W2H70w+h
+         JwWaxsoG8IuIYot9M0s/Zyt5kBK22ZSyobYSALle3g6tBX0KL6rYjwUevAbZtN6cuxH+
+         g3XeeLRGk/4J3qSOS4w8RtcFawtWTQIbQvNTuqI66fCfG/0lQ3h83hA+4Q3Tbm0/3p9H
+         DKDhF4wGKh8GSa1YDqSc8zgcMRfhXJzeZEeFwkMUUkEumRAaNYJgKLl11xW1EFs4LAQR
+         zvKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=D+sFqN9sN9u8KSbVLbHvrEOC/vigJwrwrBwNSxJrlGE=;
+        b=DQXvAXsHGWkvzhQrm5u9Wb1CcsNFDGpXL6/X3089FH8Imz7iV/PUtqJOXmY5EcOQva
+         J2Gwo4/c3H3WH8eqGIuggYvJqCOeYdzWogll0TjH37AZoPMR2cWa7/uUs+Lp8Y2Nuf1J
+         iDf+CmQgTGau4ltJSdqO5SXpb1KSQ/cB4QPJXhDZQFY/NLTLXX7g5cvokd8dkFTq4bLl
+         A+h+sputP/oIJ+eLzxe+JzdmQMDnXQf6jUPVvQTW+Icj/tdNrOxGM2uC08/tUVSlIdos
+         Aa0cDPIPR3SHJACDNNzswJ+WfUqB10C3wyr2JG9vAq4O/GnogT74Qm1+4qUcoFKWGwXY
+         0JUA==
+X-Gm-Message-State: AOAM530D8CmQlDJhkh6QDA3lwD5S8bzLmjp8kZ4tw5Z52O9i8uND+jiJ
+        13ukikxL7iNA6J3cy0Hyu8E=
+X-Google-Smtp-Source: ABdhPJzm7nUNRhmtfRaBAIP8Zh/cAWGq6eZAIWwgs/FpxfZ3NMqDsmX4SM8uOLiElEWuxE2eld+t3A==
+X-Received: by 2002:a5d:4bd2:: with SMTP id l18mr10996043wrt.119.1594819086573;
+        Wed, 15 Jul 2020 06:18:06 -0700 (PDT)
+Received: from skynet.lan (67.red-88-15-120.dynamicip.rima-tde.net. [88.15.120.67])
+        by smtp.gmail.com with ESMTPSA id j145sm3623650wmj.7.2020.07.15.06.18.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jul 2020 06:18:05 -0700 (PDT)
+From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>
+To:     simon@arlott.org, jonas.gorski@gmail.com, kishon@ti.com,
+        vkoul@kernel.org, robh+dt@kernel.org, f.fainelli@gmail.com,
+        bcm-kernel-feedback-list@broadcom.com, p.zabel@pengutronix.de,
+        krzk@kernel.org, gregkh@linuxfoundation.org, alcooperx@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>
+Subject: [PATCH v6 0/2] phy: bcm63xx-usbh: Add BCM63xx USBH driver
+Date:   Wed, 15 Jul 2020 15:18:01 +0200
+Message-Id: <20200715131803.1762064-1-noltari@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 15 Jul 2020 14:05:07 +0100
-From:   Marc Zyngier <maz@kernel.org>
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Diana Craciun <diana.craciun@oss.nxp.com>,
-        iommu@lists.linux-foundation.org, linux-acpi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Joerg Roedel <joro@8bytes.org>,
-        Hanjun Guo <guohanjun@huawei.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Makarand Pawagi <makarand.pawagi@nxp.com>,
-        Laurentiu Tudor <laurentiu.tudor@nxp.com>
-Subject: Re: [PATCH v2 11/12] bus/fsl-mc: Refactor the MSI domain creation in
- the DPRC driver
-In-Reply-To: <20200619082013.13661-12-lorenzo.pieralisi@arm.com>
-References: <20200521130008.8266-1-lorenzo.pieralisi@arm.com>
- <20200619082013.13661-1-lorenzo.pieralisi@arm.com>
- <20200619082013.13661-12-lorenzo.pieralisi@arm.com>
-User-Agent: Roundcube Webmail/1.4.5
-Message-ID: <bd07f44dad1d029e0d023202cbf5fc94@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: lorenzo.pieralisi@arm.com, linux-arm-kernel@lists.infradead.org, diana.craciun@oss.nxp.com, iommu@lists.linux-foundation.org, linux-acpi@vger.kernel.org, devicetree@vger.kernel.org, linux-pci@vger.kernel.org, robh+dt@kernel.org, rjw@rjwysocki.net, joro@8bytes.org, guohanjun@huawei.com, bhelgaas@google.com, sudeep.holla@arm.com, robin.murphy@arm.com, catalin.marinas@arm.com, will@kernel.org, makarand.pawagi@nxp.com, laurentiu.tudor@nxp.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-06-19 09:20, Lorenzo Pieralisi wrote:
-> From: Diana Craciun <diana.craciun@oss.nxp.com>
-> 
-> The DPRC driver is not taking into account the msi-map property
-> and assumes that the icid is the same as the stream ID. Although
-> this assumption is correct, generalize the code to include a
-> translation between icid and streamID.
-> 
-> Furthermore do not just copy the MSI domain from parent (for child
-> containers), but use the information provided by the msi-map property.
-> 
-> If the msi-map property is missing from the device tree retain the old
-> behaviour for backward compatibility ie the child DPRC objects
-> inherit the MSI domain from the parent.
-> 
-> Signed-off-by: Diana Craciun <diana.craciun@oss.nxp.com>
-> ---
->  drivers/bus/fsl-mc/dprc-driver.c            | 31 ++++++---------------
->  drivers/bus/fsl-mc/fsl-mc-bus.c             |  4 +--
->  drivers/bus/fsl-mc/fsl-mc-msi.c             | 31 +++++++++++++--------
->  drivers/bus/fsl-mc/fsl-mc-private.h         |  6 ++--
->  drivers/irqchip/irq-gic-v3-its-fsl-mc-msi.c | 15 +++++++++-
->  5 files changed, 47 insertions(+), 40 deletions(-)
+v6: introduce changes suggested by Rob and Vinod:
+ - Remove BMIPS_GENERIC default from kconfig.
+ - Print registered message as debug.
+ - Add another if case to device tree binding for SoCs with just 1 clock.
+ - Ignored "additionalProperties: false" suggestion since it triggers a
+  warning. This has been reported, but I haven't received any answer yet.
+v5: use devm_reset_control_get_exclusive.
+v4: fix dt-bindings documentation and improve device mode config.
+v3: introduce changes suggested by Florian:
+ - Add support for device mode.
+v2: introduce changes suggested by Florian:
+ - phy-cells changed to 1.
+ - Drop OF dependency (use device_get_match_data).
+ - Drop __initconst from variant tables.
+ - Use devm_clk_get_optional.
 
-For this patch and the following one:
+Álvaro Fernández Rojas (2):
+  dt-bindings: phy: add bcm63xx-usbh bindings
+  phy: bcm63xx-usbh: Add BCM63xx USBH driver
 
-Acked-by: Marc Zyngier <maz@kernel.org>
+ .../bindings/phy/brcm,bcm63xx-usbh-phy.yaml   |  97 ++++
+ drivers/phy/broadcom/Kconfig                  |   8 +
+ drivers/phy/broadcom/Makefile                 |   1 +
+ drivers/phy/broadcom/phy-bcm63xx-usbh.c       | 457 ++++++++++++++++++
+ 4 files changed, 563 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/brcm,bcm63xx-usbh-phy.yaml
+ create mode 100644 drivers/phy/broadcom/phy-bcm63xx-usbh.c
 
-         M.
 -- 
-Jazz is not dead. It just smells funny...
+2.27.0
+
