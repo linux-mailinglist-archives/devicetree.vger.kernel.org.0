@@ -2,100 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87E0322075E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 10:33:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5245F2207AC
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 10:44:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728590AbgGOIdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 04:33:44 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:39615 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726034AbgGOIdo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 04:33:44 -0400
-X-Originating-IP: 93.34.118.233
-Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 016ABE0004;
-        Wed, 15 Jul 2020 08:33:36 +0000 (UTC)
-Date:   Wed, 15 Jul 2020 10:37:09 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        mchehab@kernel.org, sakari.ailus@linux.intel.com,
-        hverkuil-cisco@xs4all.nl, dave.stevenson@raspberrypi.com,
-        dongchun.zhu@mediatek.com, linux-renesas-soc@vger.kernel.org,
-        laurent.pinchart@ideasonboard.com,
-        roman.kovalivskyi@globallogic.com, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: media: i2c: Document
- 'remote-endpoint'
-Message-ID: <20200715083709.h5s2gmx6qdwvxk2c@uno.localdomain>
-References: <20200714142856.58365-1-jacopo+renesas@jmondi.org>
- <20200714142856.58365-3-jacopo+renesas@jmondi.org>
- <d00e9b32-5a20-77b2-e99f-ac8822041bbc@cogentembedded.com>
+        id S1729585AbgGOIns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 04:43:48 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:39018 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729466AbgGOIns (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 04:43:48 -0400
+Received: by mail-oi1-f196.google.com with SMTP id w17so1629890oie.6;
+        Wed, 15 Jul 2020 01:43:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wBSjJT0ORrybEKumemGZpkTJ/Tv11w9vz0K05d4A6Os=;
+        b=CbIvxwbN3InWD5iqe3TXYMPN0UDxbl8A+hNhBd1LmaJF2YeZOQcYUKRqFJcY8e1dm1
+         PTgb8OtSFnufGOJ879bfwEDEmsihs/vr96qon30UoDcplUgfYnoWg8ZcdKvLZZCBfm04
+         a9jZRhyDA5V2P5DntpD3xL5ezyYuDl3iHgiKBNbpHwg2TVPp4tgGTwYjUnJEQ1ZPfKVm
+         JaG9E+JFFTGY0pgbrafVs0hPcLvaUUdqwKusV+2Ue8+9zUC3oZhffc6Q2Vqtx6joVDTU
+         ww3nwTXqJVWdluxkJJ/+wZ0sf/cXHO3FDJ7UE5dJKdZpNk1yiZTQsbOWBdyuYY75zr7u
+         v0ow==
+X-Gm-Message-State: AOAM532mPUm0wiPNiWb9PTI4QnH6d//rAT8s4nY6SkvEIA6tmqjyYrLe
+        Qrsoh9WwHdVOIwrgzz0waV/UBVDb/0laCC7upnA=
+X-Google-Smtp-Source: ABdhPJw86hPfeV6CTJ8KN+UQ+NcI3bICPWChvBe3FWmE48Q4aabU0FIIinMm3s5aHvZ94WJeCrwGRqzFJIK4nhKEjXM=
+X-Received: by 2002:a05:6808:64a:: with SMTP id z10mr6957983oih.54.1594802626935;
+ Wed, 15 Jul 2020 01:43:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <d00e9b32-5a20-77b2-e99f-ac8822041bbc@cogentembedded.com>
+References: <1567584941-13690-1-git-send-email-biju.das@bp.renesas.com> <1567584941-13690-2-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1567584941-13690-2-git-send-email-biju.das@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 15 Jul 2020 10:43:36 +0200
+Message-ID: <CAMuHMdVZkjGDFmeQ9XkOqq-ogfSZz99hd0=N-OYLai4UEzKwAQ@mail.gmail.com>
+Subject: Re: [PATCH RESEND v7 1/3] dt-bindings: usb: hd3ss3220 device tree
+ binding document
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        USB list <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sergei,
+Hi Biju,
 
-On Wed, Jul 15, 2020 at 11:10:15AM +0300, Sergei Shtylyov wrote:
-> Hello!
+On Wed, Sep 4, 2019 at 10:22 AM Biju Das <biju.das@bp.renesas.com> wrote:
+> Add device tree binding document for TI HD3SS3220 Type-C DRP port
+> controller driver.
 >
-> On 14.07.2020 17:28, Jacopo Mondi wrote:
->
-> > Document the 'remote-endpoint' property and add it to the list of required
-> > endpoint properties in imx219 and ov8856 dt-schema binding files.
-> >
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
-> > ---
-> >   Documentation/devicetree/bindings/media/i2c/imx219.yaml | 5 +++++
-> >   Documentation/devicetree/bindings/media/i2c/ov8856.yaml | 5 +++++
-> >   2 files changed, 10 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/imx219.yaml b/Documentation/devicetree/bindings/media/i2c/imx219.yaml
-> > index dfc4d29a4f04..0251e15fe0a7 100644
-> > --- a/Documentation/devicetree/bindings/media/i2c/imx219.yaml
-> > +++ b/Documentation/devicetree/bindings/media/i2c/imx219.yaml
-> > @@ -71,8 +71,13 @@ properties:
-> >               description:
-> >                 Allowed data bus frequencies.
-> > +          remote-endpoint:
-> > +            description: |-
-> > +              phandle to the video receiver input port
->
->    s/to/of/?
->
-> > +
-> >           required:
-> >             - link-frequencies
-> > +          - remote-endpoint
-> >   required:
-> >     - compatible
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-> > index 1956b2a32bf4..c1f363bb5aee 100644
-> > --- a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-> > +++ b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-> > @@ -84,9 +84,14 @@ properties:
-> >                 Allowed data bus frequencies. 360000000, 180000000 Hz or both
-> >                 are supported by the driver.
-> > +          remote-endpoint:
-> > +            description: |-
-> > +              phandle to the video receiver input port
->
->    s/to/of/?
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-I see both being used in the existing Documentation.
-In the media/ folder it seems like "phandle to" is the only used
-version, so I think I will go with that for consistency, unless this
-is grammatically wrong and I didn't realize it :)
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/ti,hd3ss3220.txt
+> @@ -0,0 +1,38 @@
+> +TI HD3SS3220 TypeC DRP Port Controller.
+> +
+> +Required properties:
+> + - compatible: Must be "ti,hd3ss3220".
+> + - reg: I2C slave address, must be 0x47 or 0x67 based on ADDR pin.
+> + - interrupts: An interrupt specifier.
+> +
+> +Required sub-node:
+> + - connector: The "usb-c-connector" attached to the hd3ss3220 chip. The
+> +   bindings of the connector node are specified in:
+> +
+> +       Documentation/devicetree/bindings/connector/usb-connector.txt
+> +
+> +Example:
+> +hd3ss3220@47 {
+> +       compatible = "ti,hd3ss3220";
+> +       reg = <0x47>;
+> +       interrupt-parent = <&gpio6>;
+> +       interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +       connector {
+> +               compatible = "usb-c-connector";
+> +               label = "USB-C";
+> +               data-role = "dual";
+> +
+> +               ports {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +
+> +                       port@1 {
 
->
-> [...]
->
-> MBR, Sergei
+This does not comply with
+Documentation/devicetree/bindings/connector/usb-connector.yaml:
+
+    connector: ports: 'port@0' is a required property
+
+> +                               reg = <1>;
+> +                               hd3ss3220_ep: endpoint {
+> +                                       remote-endpoint = <&usb3_role_switch>;
+> +                               };
+> +                       };
+> +               };
+> +       };
+> +};
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
