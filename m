@@ -2,98 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C08DD221787
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 00:09:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2B5D221784
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 00:08:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726778AbgGOWJa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 18:09:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37802 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726370AbgGOWJa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 18:09:30 -0400
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 745F1C061755;
-        Wed, 15 Jul 2020 15:09:30 -0700 (PDT)
-Received: by mail-pf1-x442.google.com with SMTP id a24so2711957pfc.10;
-        Wed, 15 Jul 2020 15:09:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=iXUu1B+e2hu89plusvhYUpAqCkvjgD3XbXtinUQy3AM=;
-        b=J/uKHeCUX/uvVp4F0hlELkMzTPPDkIhErFja0Nou/OUYDcxm3S/al0zczKhaWHCWWL
-         +qrNf0OhvBTaV+YPEGA9C68OLamKFFbaZ/dcNpGqTKhLe6MJ2Gpg7DBs9GcTqiMoabd4
-         hE4TGUTmb/ikmCC5bTyi/9vpt3b5i5ld2m8BscPfRtmodtHjkYfc8xNQiGeiN25vpveZ
-         XyE0KKVxv4Sis/kLEFgDi5jv87fqwQBrlliQGIxD9AxeDrFzSjDQsoK0uLmt6Rbtyg22
-         JrocBMUolEH3N86iBU+wvx9fMJYeoFK8yF8XNGvOhZv8J3sE26bLslxG01fiIM7clOf8
-         +ahQ==
+        id S1726660AbgGOWIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 18:08:38 -0400
+Received: from mail-il1-f175.google.com ([209.85.166.175]:40610 "EHLO
+        mail-il1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726370AbgGOWIi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 18:08:38 -0400
+Received: by mail-il1-f175.google.com with SMTP id e18so3365756ilr.7
+        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2020 15:08:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=iXUu1B+e2hu89plusvhYUpAqCkvjgD3XbXtinUQy3AM=;
-        b=KZIxRODY0jHkvqgjpSQ+4VuL+yDxS/OXI9UnMK9K3wvRbkV4uG2mhv1WniZ5vEPFlD
-         TODWbDTjZmcoKTSXd6EbCjSUseZW8O+JLY7pk/e0vqmgx/eeqMFmFWHCcGVyLNf/NwHt
-         NMpCpKSnvYkYvgccsfS/zFnz7rtUyIomQj9Ab0aCxwd3kofumVWrMHuEPs2hrJm91Chq
-         /4f88onGiCM+QyhAYKuhUqa6a10jruLp+B5ld5wxTC/N2TPQAlcnr2kXCwQhdnoyQmP2
-         uYnM9C4hLdl6K2f4ZzH1lhJt4WN+4i88xkf4alebGz1R6Dw5MR+2nWe3i6tKETdmQekx
-         v6Ng==
-X-Gm-Message-State: AOAM531BGi4M+MyWRWsPzjclBFSyTYHzWLZ9VsIDz81HEQc650+hlJ5I
-        eYCQUMy+j1PsWQa9OIQkrAQ=
-X-Google-Smtp-Source: ABdhPJwZXIPr+Pj6FB3BWSb0imr4lOp5785AjF1OEkiJwH49VcK9cPl/dzZK/qHuAYLptDbpH6TqDA==
-X-Received: by 2002:a62:7bc9:: with SMTP id w192mr1132848pfc.255.1594850969862;
-        Wed, 15 Jul 2020 15:09:29 -0700 (PDT)
-Received: from localhost.localdomain.com ([2605:e000:160b:911f:a2ce:c8ff:fe03:6cb0])
-        by smtp.gmail.com with ESMTPSA id g19sm2744233pfu.183.2020.07.15.15.09.28
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=knDsMsUZzPuBI6zceRTXu+uSnKypwnx7mg8vtlqsklw=;
+        b=B9uJtbY+cYYbpi/ZOwUyjkiu+Vufvcns5NIC9WNg+d4L07GF3zXOtapSEkM0I4k95O
+         H6licgeZTpJJAtjpHe2+YezidWNOY6dztkGEhJ6mwUCTZTJe7XkI920J22lbkirNqBG9
+         X2LaS0TvOCokKnV9EEf0AmjlwC7XolsIdcvrvHdQtvZC5Q6DiwmzGPIErWXLNFxOqmBr
+         JiU3KCWndthb4CSNDd5LD5D1XFtQvLTgHp6Qdoj5EKkPnjtClDJrc9ZrA5Y/XMlMlDhJ
+         gfcwDrxuQogx3D9dLPWqO45qv1Zn+/zGRlXHtqwQidiKhlxutovg8XL423p83ZC7iBjf
+         NhDg==
+X-Gm-Message-State: AOAM5334YzVEEXdlYU1i+W0z+zbZNDHV2mu6eX22Tl/o8raAe2NFFG+t
+        YRU00PcudLbJxip1BooR9ky3PA38Z9s6
+X-Google-Smtp-Source: ABdhPJxv9iOiymvbjYstJARTL1KA2eV7g35/XZk4+qyrmqGJVA5nmI9zX1z0p6c3HPJmTe5ujfJNJA==
+X-Received: by 2002:a05:6e02:1086:: with SMTP id r6mr1535402ilj.158.1594850917930;
+        Wed, 15 Jul 2020 15:08:37 -0700 (PDT)
+Received: from xps15 ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id t5sm1893525iov.53.2020.07.15.15.08.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jul 2020 15:09:29 -0700 (PDT)
-From:   Chris Healy <cphealy@gmail.com>
-To:     shawnguo@kernel.org, s.hauer@pengutronix.de, stefan@agner.ch,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        festevam@gmail.com
-Cc:     Chris Healy <cphealy@gmail.com>
-Subject: [PATCH] ARM: dts: vf610-zii-ssmb-spu3: Add node for switch watchdog
-Date:   Wed, 15 Jul 2020 15:07:58 -0700
-Message-Id: <20200715220758.3106-1-cphealy@gmail.com>
-X-Mailer: git-send-email 2.21.3
+        Wed, 15 Jul 2020 15:08:37 -0700 (PDT)
+Received: (nullmailer pid 902712 invoked by uid 1000);
+        Wed, 15 Jul 2020 22:08:36 -0000
+Date:   Wed, 15 Jul 2020 16:08:36 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     alsa-devel@alsa-project.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH][resend] ASoC: dt-bindings: renesas, fsi: use
+ patternProperties for FSI-A/B
+Message-ID: <20200715220836.GA902680@bogus>
+References: <87o8osxlow.wl-kuninori.morimoto.gx@renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87o8osxlow.wl-kuninori.morimoto.gx@renesas.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add I2C child node for switch watchdog present on SPU3
+On Tue, 07 Jul 2020 08:34:40 +0900, Kuninori Morimoto wrote:
+> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> 
+> FSI has FSI-A and FSI-B, and has fsia-xxx/fsib-xxx properties.
+> This patch uses patternProperties, and reduce verbose settings.
+> 
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+> 
+> - 2weeks passed, but nothing happen
+> 
+>  .../bindings/sound/renesas,fsi.yaml           | 19 ++++---------------
+>  1 file changed, 4 insertions(+), 15 deletions(-)
+> 
 
-Signed-off-by: Chris Healy <cphealy@gmail.com>
----
- arch/arm/boot/dts/vf610-zii-ssmb-spu3.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm/boot/dts/vf610-zii-ssmb-spu3.dts b/arch/arm/boot/dts/vf610-zii-ssmb-spu3.dts
-index b3d6d4b9fa9c..d55ceb5afe1d 100644
---- a/arch/arm/boot/dts/vf610-zii-ssmb-spu3.dts
-+++ b/arch/arm/boot/dts/vf610-zii-ssmb-spu3.dts
-@@ -225,6 +225,18 @@
- 	};
- };
- 
-+&i2c1 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
-+
-+	watchdog@38 {
-+		compatible = "zii,rave-wdt";
-+		reg = <0x38>;
-+	};
-+};
-+
- &snvsrtc {
- 	status = "disabled";
- };
--- 
-2.21.3
-
+Reviewed-by: Rob Herring <robh@kernel.org>
