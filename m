@@ -2,142 +2,319 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5CD3220840
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 11:10:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC50022085C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 11:14:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730150AbgGOJKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 05:10:06 -0400
-Received: from lucky1.263xmail.com ([211.157.147.131]:57356 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728682AbgGOJKF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 05:10:05 -0400
-Received: from localhost (unknown [192.168.167.235])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 3ABBDB0379;
-        Wed, 15 Jul 2020 17:06:25 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-ABS-CHECKED: 0
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P5937T140503939016448S1594803977824177_;
-        Wed, 15 Jul 2020 17:06:25 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <e5e97746f481f1f5bd491f9dd2d3f77c>
-X-RL-SENDER: yifeng.zhao@rock-chips.com
-X-SENDER: zyf@rock-chips.com
-X-LOGIN-NAME: yifeng.zhao@rock-chips.com
-X-FST-TO: miquel.raynal@bootlin.com
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-DNS-TYPE: 0
-X-System-Flag: 0
-From:   Yifeng Zhao <yifeng.zhao@rock-chips.com>
-To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        heiko@sntech.de, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Subject: [PATCH v7 8/8] arm: dts: rockchip: Add NFC node for RK3036 SoC
-Date:   Wed, 15 Jul 2020 17:06:16 +0800
-Message-Id: <20200715090616.28452-4-yifeng.zhao@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200715090616.28452-1-yifeng.zhao@rock-chips.com>
-References: <20200715090342.28339-1-yifeng.zhao@rock-chips.com>
- <20200715090616.28452-1-yifeng.zhao@rock-chips.com>
+        id S1729279AbgGOJNf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 05:13:35 -0400
+Received: from foss.arm.com ([217.140.110.172]:54338 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728672AbgGOJNf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Jul 2020 05:13:35 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C25971FB;
+        Wed, 15 Jul 2020 02:13:33 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9180A3F718;
+        Wed, 15 Jul 2020 02:13:31 -0700 (PDT)
+Date:   Wed, 15 Jul 2020 10:13:26 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     linux-arm-kernel@lists.infradead.org,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Cc:     Will Deacon <will@kernel.org>, Hanjun Guo <guohanjun@huawei.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        iommu@lists.linux-foundation.org, linux-acpi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Makarand Pawagi <makarand.pawagi@nxp.com>,
+        Diana Craciun <diana.craciun@oss.nxp.com>,
+        Laurentiu Tudor <laurentiu.tudor@nxp.com>
+Subject: Re: [PATCH v2 05/12] ACPI/IORT: Add an input ID to
+ acpi_dma_configure()
+Message-ID: <20200715091326.GA30074@e121166-lin.cambridge.arm.com>
+References: <20200521130008.8266-1-lorenzo.pieralisi@arm.com>
+ <20200619082013.13661-1-lorenzo.pieralisi@arm.com>
+ <20200619082013.13661-6-lorenzo.pieralisi@arm.com>
+ <20200709093514.GC18149@e121166-lin.cambridge.arm.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200709093514.GC18149@e121166-lin.cambridge.arm.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add NAND FLASH Controller(NFC) node for RK3036 SoC.
+On Thu, Jul 09, 2020 at 10:35:14AM +0100, Lorenzo Pieralisi wrote:
+> On Fri, Jun 19, 2020 at 09:20:06AM +0100, Lorenzo Pieralisi wrote:
+> > Some HW devices are created as child devices of proprietary busses,
+> > that have a bus specific policy defining how the child devices
+> > wires representing the devices ID are translated into IOMMU and
+> > IRQ controllers device IDs.
+> > 
+> > Current IORT code provides translations for:
+> > 
+> > - PCI devices, where the device ID is well identified at bus level
+> >   as the requester ID (RID)
+> > - Platform devices that are endpoint devices where the device ID is
+> >   retrieved from the ACPI object IORT mappings (Named components single
+> >   mappings). A platform device is represented in IORT as a named
+> >   component node
+> > 
+> > For devices that are child devices of proprietary busses the IORT
+> > firmware represents the bus node as a named component node in IORT
+> > and it is up to that named component node to define in/out bus
+> > specific ID translations for the bus child devices that are
+> > allocated and created in a bus specific manner.
+> > 
+> > In order to make IORT ID translations available for proprietary
+> > bus child devices, the current ACPI (and IORT) code must be
+> > augmented to provide an additional ID parameter to acpi_dma_configure()
+> > representing the child devices input ID. This ID is bus specific
+> > and it is retrieved in bus specific code.
+> > 
+> > By adding an ID parameter to acpi_dma_configure(), the IORT
+> > code can map the child device ID to an IOMMU stream ID through
+> > the IORT named component representing the bus in/out ID mappings.
+> > 
+> > Signed-off-by: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+> > Cc: Will Deacon <will@kernel.org>
+> > Cc: Hanjun Guo <guohanjun@huawei.com>
+> > Cc: Sudeep Holla <sudeep.holla@arm.com>
+> > Cc: Catalin Marinas <catalin.marinas@arm.com>
+> > Cc: Robin Murphy <robin.murphy@arm.com>
+> > Cc: "Rafael J. Wysocki" <rjw@rjwysocki.net>
+> > ---
+> >  drivers/acpi/arm64/iort.c | 59 +++++++++++++++++++++++++++++----------
+> >  drivers/acpi/scan.c       |  8 ++++--
+> >  include/acpi/acpi_bus.h   |  9 ++++--
+> >  include/linux/acpi.h      |  7 +++++
+> >  include/linux/acpi_iort.h |  7 +++--
+> >  5 files changed, 67 insertions(+), 23 deletions(-)
+> 
+> Hi Rafael,
+> 
+> just to ask if the ACPI core changes in this patch are OK with you,
+> thank you very much.
 
-Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
----
+Hi Rafael,
 
-Changes in v7: None
-Changes in v6: None
-Changes in v5: None
-Changes in v4: None
-Changes in v3: None
-Changes in v2: None
+are you OK with ACPI core changes in this patch ?
 
- arch/arm/boot/dts/rk3036.dtsi | 52 +++++++++++++++++++++++++++++++++++
- 1 file changed, 52 insertions(+)
+Please let me know, thanks.
 
-diff --git a/arch/arm/boot/dts/rk3036.dtsi b/arch/arm/boot/dts/rk3036.dtsi
-index d9a0c9a29b68..be8d46c0bbb0 100644
---- a/arch/arm/boot/dts/rk3036.dtsi
-+++ b/arch/arm/boot/dts/rk3036.dtsi
-@@ -291,6 +291,21 @@
- 		status = "disabled";
- 	};
- 
-+	nfc: nand-controller@10500000 {
-+		compatible = "rockchip,rk3036-nfc",
-+			     "rockchip,rk2928-nfc";
-+		reg = <0x10500000 0x4000>;
-+		interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru HCLK_NANDC>, <&cru SCLK_NANDC>;
-+		clock-names = "ahb", "nfc";
-+		assigned-clocks = <&cru SCLK_NANDC>;
-+		assigned-clock-rates = <150000000>;
-+		pinctrl-0 = <&flash_ale &flash_bus8 &flash_cle &flash_csn0
-+			     &flash_rdn &flash_rdy &flash_wrn>;
-+		pinctrl-names = "default";
-+		status = "disabled";
-+	};
-+
- 	cru: clock-controller@20000000 {
- 		compatible = "rockchip,rk3036-cru";
- 		reg = <0x20000000 0x1000>;
-@@ -642,6 +657,43 @@
- 			};
- 		};
- 
-+		nfc {
-+			flash_ale: flash-ale {
-+				rockchip,pins = <2 RK_PA0 1 &pcfg_pull_default>;
-+			};
-+
-+			flash_bus8: flash-bus8 {
-+				rockchip,pins = <1 RK_PD0 1 &pcfg_pull_default>,
-+						<1 RK_PD1 1 &pcfg_pull_default>,
-+						<1 RK_PD2 1 &pcfg_pull_default>,
-+						<1 RK_PD3 1 &pcfg_pull_default>,
-+						<1 RK_PD4 1 &pcfg_pull_default>,
-+						<1 RK_PD5 1 &pcfg_pull_default>,
-+						<1 RK_PD6 1 &pcfg_pull_default>,
-+						<1 RK_PD7 1 &pcfg_pull_default>;
-+			};
-+
-+			flash_cle: flash-cle {
-+				rockchip,pins = <2 RK_PA1 1 &pcfg_pull_default>;
-+			};
-+
-+			flash_csn0: flash-csn0 {
-+				rockchip,pins = <2 RK_PA6 1 &pcfg_pull_default>;
-+			};
-+
-+			flash_rdn: flash-rdn {
-+				rockchip,pins = <2 RK_PA3 1 &pcfg_pull_default>;
-+			};
-+
-+			flash_rdy: flash-rdy {
-+				rockchip,pins = <2 RK_PA4 1 &pcfg_pull_default>;
-+			};
-+
-+			flash_wrn: flash-wrn {
-+				rockchip,pins = <2 RK_PA2 1 &pcfg_pull_default>;
-+			};
-+		};
-+
- 		emac {
- 			emac_xfer: emac-xfer {
- 				rockchip,pins = <2 RK_PB2 1 &pcfg_pull_default>, /* crs_dvalid */
--- 
-2.17.1
+Lorenzo
 
-
-
+> Lorenzo
+> 
+> > diff --git a/drivers/acpi/arm64/iort.c b/drivers/acpi/arm64/iort.c
+> > index 421c6976ab81..ec782e4a0fe4 100644
+> > --- a/drivers/acpi/arm64/iort.c
+> > +++ b/drivers/acpi/arm64/iort.c
+> > @@ -978,19 +978,54 @@ static void iort_named_component_init(struct device *dev,
+> >  					   nc->node_flags);
+> >  }
+> >  
+> > +static int iort_nc_iommu_map(struct device *dev, struct acpi_iort_node *node)
+> > +{
+> > +	struct acpi_iort_node *parent;
+> > +	int err = -ENODEV, i = 0;
+> > +	u32 streamid = 0;
+> > +
+> > +	do {
+> > +
+> > +		parent = iort_node_map_platform_id(node, &streamid,
+> > +						   IORT_IOMMU_TYPE,
+> > +						   i++);
+> > +
+> > +		if (parent)
+> > +			err = iort_iommu_xlate(dev, parent, streamid);
+> > +	} while (parent && !err);
+> > +
+> > +	return err;
+> > +}
+> > +
+> > +static int iort_nc_iommu_map_id(struct device *dev,
+> > +				struct acpi_iort_node *node,
+> > +				const u32 *in_id)
+> > +{
+> > +	struct acpi_iort_node *parent;
+> > +	u32 streamid;
+> > +
+> > +	parent = iort_node_map_id(node, *in_id, &streamid, IORT_IOMMU_TYPE);
+> > +	if (parent)
+> > +		return iort_iommu_xlate(dev, parent, streamid);
+> > +
+> > +	return -ENODEV;
+> > +}
+> > +
+> > +
+> >  /**
+> > - * iort_iommu_configure - Set-up IOMMU configuration for a device.
+> > + * iort_iommu_configure_id - Set-up IOMMU configuration for a device.
+> >   *
+> >   * @dev: device to configure
+> > + * @id_in: optional input id const value pointer
+> >   *
+> >   * Returns: iommu_ops pointer on configuration success
+> >   *          NULL on configuration failure
+> >   */
+> > -const struct iommu_ops *iort_iommu_configure(struct device *dev)
+> > +const struct iommu_ops *iort_iommu_configure_id(struct device *dev,
+> > +						const u32 *id_in)
+> >  {
+> > -	struct acpi_iort_node *node, *parent;
+> > +	struct acpi_iort_node *node;
+> >  	const struct iommu_ops *ops;
+> > -	u32 streamid = 0;
+> >  	int err = -ENODEV;
+> >  
+> >  	/*
+> > @@ -1019,21 +1054,13 @@ const struct iommu_ops *iort_iommu_configure(struct device *dev)
+> >  		if (fwspec && iort_pci_rc_supports_ats(node))
+> >  			fwspec->flags |= IOMMU_FWSPEC_PCI_RC_ATS;
+> >  	} else {
+> > -		int i = 0;
+> > -
+> >  		node = iort_scan_node(ACPI_IORT_NODE_NAMED_COMPONENT,
+> >  				      iort_match_node_callback, dev);
+> >  		if (!node)
+> >  			return NULL;
+> >  
+> > -		do {
+> > -			parent = iort_node_map_platform_id(node, &streamid,
+> > -							   IORT_IOMMU_TYPE,
+> > -							   i++);
+> > -
+> > -			if (parent)
+> > -				err = iort_iommu_xlate(dev, parent, streamid);
+> > -		} while (parent && !err);
+> > +		err = id_in ? iort_nc_iommu_map_id(dev, node, id_in) :
+> > +			      iort_nc_iommu_map(dev, node);
+> >  
+> >  		if (!err)
+> >  			iort_named_component_init(dev, node);
+> > @@ -1058,6 +1085,7 @@ const struct iommu_ops *iort_iommu_configure(struct device *dev)
+> >  
+> >  	return ops;
+> >  }
+> > +
+> >  #else
+> >  static inline const struct iommu_ops *iort_fwspec_iommu_ops(struct device *dev)
+> >  { return NULL; }
+> > @@ -1066,7 +1094,8 @@ static inline int iort_add_device_replay(const struct iommu_ops *ops,
+> >  { return 0; }
+> >  int iort_iommu_msi_get_resv_regions(struct device *dev, struct list_head *head)
+> >  { return 0; }
+> > -const struct iommu_ops *iort_iommu_configure(struct device *dev)
+> > +const struct iommu_ops *iort_iommu_configure_id(struct device *dev,
+> > +						const u32 *input_id)
+> >  { return NULL; }
+> >  #endif
+> >  
+> > diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
+> > index 8777faced51a..2142f1554761 100644
+> > --- a/drivers/acpi/scan.c
+> > +++ b/drivers/acpi/scan.c
+> > @@ -1457,8 +1457,10 @@ int acpi_dma_get_range(struct device *dev, u64 *dma_addr, u64 *offset,
+> >   * acpi_dma_configure - Set-up DMA configuration for the device.
+> >   * @dev: The pointer to the device
+> >   * @attr: device dma attributes
+> > + * @input_id: input device id const value pointer
+> >   */
+> > -int acpi_dma_configure(struct device *dev, enum dev_dma_attr attr)
+> > +int acpi_dma_configure_id(struct device *dev, enum dev_dma_attr attr,
+> > +			  const u32 *input_id)
+> >  {
+> >  	const struct iommu_ops *iommu;
+> >  	u64 dma_addr = 0, size = 0;
+> > @@ -1470,7 +1472,7 @@ int acpi_dma_configure(struct device *dev, enum dev_dma_attr attr)
+> >  
+> >  	iort_dma_setup(dev, &dma_addr, &size);
+> >  
+> > -	iommu = iort_iommu_configure(dev);
+> > +	iommu = iort_iommu_configure_id(dev, input_id);
+> >  	if (PTR_ERR(iommu) == -EPROBE_DEFER)
+> >  		return -EPROBE_DEFER;
+> >  
+> > @@ -1479,7 +1481,7 @@ int acpi_dma_configure(struct device *dev, enum dev_dma_attr attr)
+> >  
+> >  	return 0;
+> >  }
+> > -EXPORT_SYMBOL_GPL(acpi_dma_configure);
+> > +EXPORT_SYMBOL_GPL(acpi_dma_configure_id);
+> >  
+> >  static void acpi_init_coherency(struct acpi_device *adev)
+> >  {
+> > diff --git a/include/acpi/acpi_bus.h b/include/acpi/acpi_bus.h
+> > index 5afb6ceb284f..a3abcc4b7d9f 100644
+> > --- a/include/acpi/acpi_bus.h
+> > +++ b/include/acpi/acpi_bus.h
+> > @@ -588,8 +588,13 @@ bool acpi_dma_supported(struct acpi_device *adev);
+> >  enum dev_dma_attr acpi_get_dma_attr(struct acpi_device *adev);
+> >  int acpi_dma_get_range(struct device *dev, u64 *dma_addr, u64 *offset,
+> >  		       u64 *size);
+> > -int acpi_dma_configure(struct device *dev, enum dev_dma_attr attr);
+> > -
+> > +int acpi_dma_configure_id(struct device *dev, enum dev_dma_attr attr,
+> > +			   const u32 *input_id);
+> > +static inline int acpi_dma_configure(struct device *dev,
+> > +				     enum dev_dma_attr attr)
+> > +{
+> > +	return acpi_dma_configure_id(dev, attr, NULL);
+> > +}
+> >  struct acpi_device *acpi_find_child_device(struct acpi_device *parent,
+> >  					   u64 address, bool check_children);
+> >  int acpi_is_root_bridge(acpi_handle);
+> > diff --git a/include/linux/acpi.h b/include/linux/acpi.h
+> > index d661cd0ee64d..6d2c47489d90 100644
+> > --- a/include/linux/acpi.h
+> > +++ b/include/linux/acpi.h
+> > @@ -905,6 +905,13 @@ static inline int acpi_dma_configure(struct device *dev,
+> >  	return 0;
+> >  }
+> >  
+> > +static inline int acpi_dma_configure_id(struct device *dev,
+> > +					enum dev_dma_attr attr,
+> > +					const u32 *input_id)
+> > +{
+> > +	return 0;
+> > +}
+> > +
+> >  #define ACPI_PTR(_ptr)	(NULL)
+> >  
+> >  static inline void acpi_device_set_enumerated(struct acpi_device *adev)
+> > diff --git a/include/linux/acpi_iort.h b/include/linux/acpi_iort.h
+> > index e51425e083da..20a32120bb88 100644
+> > --- a/include/linux/acpi_iort.h
+> > +++ b/include/linux/acpi_iort.h
+> > @@ -35,7 +35,8 @@ void acpi_configure_pmsi_domain(struct device *dev);
+> >  int iort_pmsi_get_dev_id(struct device *dev, u32 *dev_id);
+> >  /* IOMMU interface */
+> >  void iort_dma_setup(struct device *dev, u64 *dma_addr, u64 *size);
+> > -const struct iommu_ops *iort_iommu_configure(struct device *dev);
+> > +const struct iommu_ops *iort_iommu_configure_id(struct device *dev,
+> > +						const u32 *id_in);
+> >  int iort_iommu_msi_get_resv_regions(struct device *dev, struct list_head *head);
+> >  #else
+> >  static inline void acpi_iort_init(void) { }
+> > @@ -48,8 +49,8 @@ static inline void acpi_configure_pmsi_domain(struct device *dev) { }
+> >  /* IOMMU interface */
+> >  static inline void iort_dma_setup(struct device *dev, u64 *dma_addr,
+> >  				  u64 *size) { }
+> > -static inline const struct iommu_ops *iort_iommu_configure(
+> > -				      struct device *dev)
+> > +static inline const struct iommu_ops *iort_iommu_configure_id(
+> > +				      struct device *dev, const u32 *id_in)
+> >  { return NULL; }
+> >  static inline
+> >  int iort_iommu_msi_get_resv_regions(struct device *dev, struct list_head *head)
+> > -- 
+> > 2.26.1
+> > 
