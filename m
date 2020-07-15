@@ -2,75 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BFB422150F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 21:25:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8850922151B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 21:28:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726661AbgGOTZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 15:25:02 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:46170 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726479AbgGOTZB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 15:25:01 -0400
-Received: by mail-io1-f66.google.com with SMTP id a12so3449501ion.13;
-        Wed, 15 Jul 2020 12:25:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Av/nglgHYTh4wCaoP+Mdg19AlGfKhVEQACet9eEyJ+U=;
-        b=ENzIjbEPTEAOs/mVh9Mgj/UD7L6Mu5j8JV6+6Tl8DemAF0+1h4jox/8Oh0xHPU32Mr
-         TgM9Jb/zjNBtj+Cybw6AB2PNDYwZfReWDH6piNFVKPjvd/yQg0yflllsT4djnAFKxsCa
-         m3MltFcv0OVwpblwrPjL56dBjoNPjdH32ORenLusGhEOvxSr4ZfljoJJXh5ll4e7YpEB
-         GQFJe5jm0/dpUQCEZYWsakQYKGp1LaT4I1M35jPjhLY5XQovr/uMaPgev90gXPEMA3sV
-         kKtUPgUrqOdXEsOg1ZSwhqZWN8qShd62cSelktBF1p2UvhuvOI5934FYd8ceDkBsW4Ea
-         YiqA==
-X-Gm-Message-State: AOAM532FFEBIlA9oKOUDT6XLluz5nzVbZYvG3ar1XuPIJIEf9T9ewTlB
-        fU9afL5Uy3LWkLF1Hxy1zQ==
-X-Google-Smtp-Source: ABdhPJw+JKckZiWMOAV6s9bN5tbPRf6zRYcACbF2Zulp6ybuwhWjrcZ19V/SLqi1V5XEy8mp37hBFw==
-X-Received: by 2002:a5d:97d3:: with SMTP id k19mr844652ios.45.1594841100862;
-        Wed, 15 Jul 2020 12:25:00 -0700 (PDT)
-Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id d6sm1569647ioo.9.2020.07.15.12.24.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jul 2020 12:25:00 -0700 (PDT)
-Received: (nullmailer pid 679381 invoked by uid 1000);
-        Wed, 15 Jul 2020 19:24:59 -0000
-Date:   Wed, 15 Jul 2020 13:24:59 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     devicetree@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>, Zhang Rui <rui.zhang@intel.com>,
-        linux-pm@vger.kernel.org,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: thermal: rcar-thermal: Improve schema
- validation
-Message-ID: <20200715192459.GA679343@bogus>
-References: <20200619151541.15069-1-geert+renesas@glider.be>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200619151541.15069-1-geert+renesas@glider.be>
+        id S1726758AbgGOT2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 15:28:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46296 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726491AbgGOT2e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Jul 2020 15:28:34 -0400
+Received: from localhost.localdomain (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 648DC2065F;
+        Wed, 15 Jul 2020 19:28:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1594841313;
+        bh=LWNE7zXq9kCU5Nm7k5Qn/MHXBFjAq0SY8reU6vwgpDQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=BbvinmRGG6OWza0FEJvSpk+PqPlHDlMCpIspavT1JQUW+PMdNY/DYlvKelTq2NVEg
+         tBAPKmCsZsisftnt9cvum2ghGwgi0ioxDjneXN/A9/CdXElb+i/inYEcvtt7FXmib8
+         gLdXRnU+DNttp7obW7VBlbHdK7XMQdzHLKY+7Eiw=
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/3] arm64: dts: agilex: add nand clocks
+Date:   Wed, 15 Jul 2020 14:28:22 -0500
+Message-Id: <20200715192824.22210-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Jun 2020 17:15:41 +0200, Geert Uytterhoeven wrote:
->   - Document missing "#thermal-sensor-cells",
->   - Factor out common required properties,
->   - "interrupts", "clocks", and "power-domains" are required on R-Mobile
->     APE6, too,
->   - Invert logic to simplify descriptions,
->   - Add "additionalProperties: false".
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  .../bindings/thermal/rcar-thermal.yaml        | 53 ++++++++++++-------
->  1 file changed, 34 insertions(+), 19 deletions(-)
-> 
+Add the clock properties for the NAND dts node.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+---
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+index e300330536b7..ac1b2422e8d4 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+@@ -309,6 +309,10 @@
+ 			      <0xffb80000 0x1000>;
+ 			reg-names = "nand_data", "denali_reg";
+ 			interrupts = <0 97 4>;
++			clocks = <&clkmgr AGILEX_NAND_CLK>,
++				 <&clkmgr AGILEX_NAND_X_CLK>,
++				 <&clkmgr AGILEX_NAND_ECC_CLK>;
++			clock-names = "nand", "nand_x", "ecc";
+ 			resets = <&rst NAND_RESET>, <&rst NAND_OCP_RESET>;
+ 			status = "disabled";
+ 		};
+-- 
+2.17.1
+
