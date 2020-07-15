@@ -2,201 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C545A2205D7
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 09:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C5B12205E3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 09:10:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728687AbgGOHHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 03:07:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39514 "EHLO
+        id S1729056AbgGOHKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 03:10:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729020AbgGOHHH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 03:07:07 -0400
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FA44C061755
-        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2020 00:07:07 -0700 (PDT)
-Received: by mail-lj1-x244.google.com with SMTP id e4so1397982ljn.4
-        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2020 00:07:07 -0700 (PDT)
+        with ESMTP id S1728523AbgGOHKE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 03:10:04 -0400
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 074B8C061755;
+        Wed, 15 Jul 2020 00:10:04 -0700 (PDT)
+Received: by mail-ej1-x643.google.com with SMTP id w6so1054256ejq.6;
+        Wed, 15 Jul 2020 00:10:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=VY6/nDkB+l4D8VdfNdnYyBq9q17cRBW9+cu/3oGCNgQ=;
-        b=M5yRZ7ZNspTd64Y3T6EJeSR8BEe9OMlQ4XzMqNsOL1aKRBkPYizWm15squLSNLr9f4
-         rBa60eFJit6+maotnQ0qwVNmkkLEr4LVlSlzvj50dEO69YdHS5LGWqgTJl3WaayqMB8R
-         Ss6sFZTMqqjWmVvbOlQURv3BkEDVa/Hs+YtYv7dc6MrmaUbbM4HVBY0SmwiSfe+i3cFi
-         4+58toaeQyrLor5BcsThGO+Y+N1NOvzG0UskCEa6PKcaO3ky/HnQ0o061JCSBoKZf7Da
-         9TPt7j8CUVnAL6og2kyuNqRC+YEboLTL+BgBpgFEUYvj2Or8EzdjCQuqd1NoOSsGkyTI
-         wmCw==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=J7EhmJLOXoR6ivw1nmOrrsw0zOP4ePzGp0qct+HI630=;
+        b=f+ks6Z9sOUkvj9G4ZFQQm/3XaWceBKwYn53qt/D9Pz6Olh+nVFNxhQbfcXKD0du2yz
+         50M2VaSk0/V2DH/5zNuKIg0g1eZ1sCDr5zpWVCY83OqCxVoOHCD6WI7qtFxhNSllOslk
+         BuWxsU4bnDbuLIJQj6XIggi0G2LGa0fIUqECJ6TnUFXO1K1JH/dS3F38kI1tGymuvfex
+         n7j9wUznAzq8WtGZZoMXpDfBe4X4dGs0Y+rN/jm/woU1oEXLPpIefIi4IAZJLFWvo6Cf
+         RhK8MPGdzW9zM8GPJHYNqGOivSMsbJYWVZQ3vTgs6ErT5LYQLrBHWLzm6OqRlDqA41q2
+         GFtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=VY6/nDkB+l4D8VdfNdnYyBq9q17cRBW9+cu/3oGCNgQ=;
-        b=ixi3Qhql90eORZshRZ2T1u+hy05WH/PqlLu42FVm/guzzkoZdq6wyK9Og70OxGD/nO
-         5iRdaS2JCg3OC2h4GQ7bhwAd7mGq/XtmIhW1ECnKaeBvFVtkW562gWuIXlCVs+1z8PXX
-         l8mWKNnxcnHascirgOkhSnQCndNchUx2gqLihczPBXQ1cnXrAdSnrxoOb8k01M4uDn9Z
-         nT+K4MAx7+l366TqL5jJIIbrXV5WG6VCmfbfqm+l/HTLvk7P012pgS8t2BGbhm9sM/BS
-         vYCct3nZSWWvYylCkEA8eHrNFN8bNTyYvpiPRks8vUXna+zQPTcPilT2kdo3FMLf+nFw
-         Dzjw==
-X-Gm-Message-State: AOAM531ta19kgNxAkOucXyngHgOcr3KnN5sAd6GTC/mj9TA1q9Y+Nf2X
-        dBXb86Wmzsxo7no0v3SPeSJRuw==
-X-Google-Smtp-Source: ABdhPJwrpgLAN7Afl7yoGdK1hqq6n9x3hw3elslWkLxcDk1FTatcRnB2CeQPdKz7PyWfn5zgrTCMAQ==
-X-Received: by 2002:a2e:859a:: with SMTP id b26mr4332777lji.241.1594796825939;
-        Wed, 15 Jul 2020 00:07:05 -0700 (PDT)
-Received: from localhost.localdomain ([83.68.95.66])
-        by smtp.gmail.com with ESMTPSA id 83sm276040ljj.51.2020.07.15.00.07.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jul 2020 00:07:05 -0700 (PDT)
-From:   Tomasz Nowicki <tn@semihalf.com>
-To:     will@kernel.org, robin.murphy@arm.com, joro@8bytes.org,
-        gregory.clement@bootlin.com, robh+dt@kernel.org, hannah@marvell.com
-Cc:     linux-kernel@vger.kernel.org, iommu@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, catalin.marinas@arm.com,
-        nadavh@marvell.com, linux-arm-kernel@lists.infradead.org,
-        mw@semihalf.com, Tomasz Nowicki <tn@semihalf.com>
-Subject: [PATCH v4 4/4] arm64: dts: marvell: add SMMU support
-Date:   Wed, 15 Jul 2020 09:06:49 +0200
-Message-Id: <20200715070649.18733-5-tn@semihalf.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200715070649.18733-1-tn@semihalf.com>
-References: <20200715070649.18733-1-tn@semihalf.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=J7EhmJLOXoR6ivw1nmOrrsw0zOP4ePzGp0qct+HI630=;
+        b=buKEJae9XIIHYXiAyTxbM6RULd4p6+0u+pXLoedst03If+mTolEdkzJI2YYS5M9/C9
+         YpdCp2w5r18COjKADZ8dyUTwJ5d2W3D5UphevMqip2AIO5xBY40h17NQZjcv+xPofpsu
+         g44Bs90laoOAz573lUZYT6hxs699f4Bfmm7A0SDtbRH34/v1tuTlhcDry8gY7oAXUO1k
+         QlXQzpCIiC2fwkIuWJhZqejANpyoeSzS9zTHvTmlfSOReyoklzM8XGVPk2zup5MXATeu
+         yaMxmy8iYrkR2W3M+N12ocHYt+oMiTJh8DP4PL7NhKLVVCbDTdEzrxkA8AHbdkPyII2Q
+         /akg==
+X-Gm-Message-State: AOAM532jvOm+M4Zzj4KLaK5OG3FRP61tTGN9xjGJIHek13Wb5ljviX+3
+        GShb+eiZpEz5h4S2w6+ili7n016jxFM=
+X-Google-Smtp-Source: ABdhPJxN0fKh3jwNnc7Vddxa/9pCDC4VfYGYCRPCA+NthkOFO8WPBnLU9z7/13w2iGz3K03zOzsp1Q==
+X-Received: by 2002:a17:906:86d4:: with SMTP id j20mr8478955ejy.68.1594797002811;
+        Wed, 15 Jul 2020 00:10:02 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id o15sm1226850edv.55.2020.07.15.00.10.01
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 15 Jul 2020 00:10:02 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: remove bus-width from mmc nodes in px30 dts files
+Date:   Wed, 15 Jul 2020 09:09:54 +0200
+Message-Id: <20200715070954.1992-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcin Wojtas <mw@semihalf.com>
+'bus-width' has been added to px30.dtsi mmc nodes, so now it can be
+removed from the dts files that include it.
 
-Add IOMMU node for Marvell AP806 based SoCs together with platform
-and PCI device Stream ID mapping.
-
-Signed-off-by: Marcin Wojtas <mw@semihalf.com>
-Signed-off-by: Tomasz Nowicki <tn@semihalf.com>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 ---
- arch/arm64/boot/dts/marvell/armada-7040.dtsi  | 28 +++++++++++++
- arch/arm64/boot/dts/marvell/armada-8040.dtsi  | 40 +++++++++++++++++++
- arch/arm64/boot/dts/marvell/armada-ap80x.dtsi | 18 +++++++++
- 3 files changed, 86 insertions(+)
+ arch/arm64/boot/dts/rockchip/px30-evb.dts          | 3 ---
+ arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts | 1 -
+ 2 files changed, 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-7040.dtsi b/arch/arm64/boot/dts/marvell/armada-7040.dtsi
-index 47247215770d..7a3198cd7a07 100644
---- a/arch/arm64/boot/dts/marvell/armada-7040.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-7040.dtsi
-@@ -14,3 +14,31 @@
- 	compatible = "marvell,armada7040", "marvell,armada-ap806-quad",
- 		     "marvell,armada-ap806";
- };
-+
-+&smmu {
-+	status = "okay";
-+};
-+
-+&cp0_pcie0 {
-+	iommu-map =
-+		<0x0   &smmu 0x480 0x20>,
-+		<0x100 &smmu 0x4a0 0x20>,
-+		<0x200 &smmu 0x4c0 0x20>;
-+	iommu-map-mask = <0x031f>;
-+};
-+
-+&cp0_sata0 {
-+	iommus = <&smmu 0x444>;
-+};
-+
-+&cp0_sdhci0 {
-+	iommus = <&smmu 0x445>;
-+};
-+
-+&cp0_usb3_0 {
-+	iommus = <&smmu 0x440>;
-+};
-+
-+&cp0_usb3_1 {
-+	iommus = <&smmu 0x441>;
-+};
-diff --git a/arch/arm64/boot/dts/marvell/armada-8040.dtsi b/arch/arm64/boot/dts/marvell/armada-8040.dtsi
-index 7699b19224c2..79e8ce59baa8 100644
---- a/arch/arm64/boot/dts/marvell/armada-8040.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-8040.dtsi
-@@ -15,6 +15,18 @@
- 		     "marvell,armada-ap806";
+diff --git a/arch/arm64/boot/dts/rockchip/px30-evb.dts b/arch/arm64/boot/dts/rockchip/px30-evb.dts
+index 0a680257d..5fe905fae 100644
+--- a/arch/arm64/boot/dts/rockchip/px30-evb.dts
++++ b/arch/arm64/boot/dts/rockchip/px30-evb.dts
+@@ -145,7 +145,6 @@
  };
  
-+&smmu {
-+	status = "okay";
-+};
-+
-+&cp0_pcie0 {
-+	iommu-map =
-+		<0x0   &smmu 0x480 0x20>,
-+		<0x100 &smmu 0x4a0 0x20>,
-+		<0x200 &smmu 0x4c0 0x20>;
-+	iommu-map-mask = <0x031f>;
-+};
-+
- /* The RTC requires external oscillator. But on Aramda 80x0, the RTC clock
-  * in CP master is not connected (by package) to the oscillator. So
-  * disable it. However, the RTC clock in CP slave is connected to the
-@@ -23,3 +35,31 @@
- &cp0_rtc {
- 	status = "disabled";
+ &emmc {
+-	bus-width = <8>;
+ 	cap-mmc-highspeed;
+ 	mmc-hs200-1_8v;
+ 	non-removable;
+@@ -499,7 +498,6 @@
  };
-+
-+&cp0_sata0 {
-+	iommus = <&smmu 0x444>;
-+};
-+
-+&cp0_sdhci0 {
-+	iommus = <&smmu 0x445>;
-+};
-+
-+&cp0_usb3_0 {
-+	iommus = <&smmu 0x440>;
-+};
-+
-+&cp0_usb3_1 {
-+	iommus = <&smmu 0x441>;
-+};
-+
-+&cp1_sata0 {
-+	iommus = <&smmu 0x454>;
-+};
-+
-+&cp1_usb3_0 {
-+	iommus = <&smmu 0x450>;
-+};
-+
-+&cp1_usb3_1 {
-+	iommus = <&smmu 0x451>;
-+};
-diff --git a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi b/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
-index 7f9b9a647717..12e477f1aeb9 100644
---- a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
-@@ -56,6 +56,24 @@
- 			compatible = "simple-bus";
- 			ranges = <0x0 0x0 0xf0000000 0x1000000>;
  
-+			smmu: iommu@5000000 {
-+				compatible = "marvell,ap806-smmu-500", "arm,mmu-500";
-+				reg = <0x100000 0x100000>;
-+				dma-coherent;
-+				#iommu-cells = <1>;
-+				#global-interrupts = <1>;
-+				interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-+				status = "disabled";
-+			};
-+
- 			gic: interrupt-controller@210000 {
- 				compatible = "arm,gic-400";
- 				#interrupt-cells = <3>;
+ &sdmmc {
+-	bus-width = <4>;
+ 	cap-mmc-highspeed;
+ 	cap-sd-highspeed;
+ 	card-detect-delay = <800>;
+@@ -513,7 +511,6 @@
+ };
+ 
+ &sdio {
+-	bus-width = <4>;
+ 	cap-sd-highspeed;
+ 	keep-power-in-suspend;
+ 	non-removable;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+index b3a8f9365..35bd6b904 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+@@ -445,7 +445,6 @@
+ };
+ 
+ &sdmmc {
+-	bus-width = <4>;
+ 	cap-sd-highspeed;
+ 	card-detect-delay = <200>;
+ 	cd-gpios = <&gpio0 RK_PA3 GPIO_ACTIVE_LOW>; /*[> CD GPIO <]*/
 -- 
-2.17.1
+2.11.0
 
