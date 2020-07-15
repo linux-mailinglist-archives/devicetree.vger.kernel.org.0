@@ -2,70 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 495812216B1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 23:01:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A84F12216B6
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2020 23:02:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726424AbgGOU6u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 16:58:50 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:42525 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726356AbgGOU6t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 16:58:49 -0400
-Received: by mail-io1-f67.google.com with SMTP id c16so3733345ioi.9;
-        Wed, 15 Jul 2020 13:58:49 -0700 (PDT)
+        id S1726863AbgGOVCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 17:02:00 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:34336 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726356AbgGOVB7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 17:01:59 -0400
+Received: by mail-io1-f66.google.com with SMTP id q74so3806402iod.1;
+        Wed, 15 Jul 2020 14:01:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=hvOlrpFh38OhJfQRgWsFESzalTDuzMi9WGh0C3h9sK8=;
-        b=lK6hLt8xB4H3LpL4G/OGhS45qxk+agj+vKSSjNDhXspKTqNslZ7Olst5El1JFcPram
-         fP6WIU7b13wr3UCTthcuDfehnzf2Hu/Hd6F0zROctZJSMDVONT4ScmlzcaKROZHiZ9sW
-         C0mgG+mKMkLdFrozc6EO4YtY0nWxGmglmHN9yW0uKLW7s03NvoD+CuRAsDnvE758RPq6
-         0xjk4gOLqOUvjmbySnAb9pdNSIZ63lZ15ZPtlJuHdN+8SENDqLqEavAkYPaK1bJM2Dmo
-         PXefT8y8Med+16h1//BzicCzcVDEfVfDRN+glQh3KfvdG2aCyCPwrdJGiucIugSRUtF0
-         sseQ==
-X-Gm-Message-State: AOAM530/4PC35YTq4fQ8VYWhKd2kw5DJpJ76cH1wwBX/Vwvr9Cs06w7m
-        L/6xi692Qs0I1zqZOTe96g==
-X-Google-Smtp-Source: ABdhPJwD2sTr16al3pJVQdcYEtWu5BczxSa5mMVZBZJxKwKrlnofFmhPZ73CBtj/agbIaHc83ciPdQ==
-X-Received: by 2002:a02:ccb3:: with SMTP id t19mr1387559jap.122.1594846728709;
-        Wed, 15 Jul 2020 13:58:48 -0700 (PDT)
+        bh=Tl/LoJSdH3t7ttKEqz/6MPL6wWrpBrkpzf3QORxog0s=;
+        b=OKic5iL5bq5UZt42Lb7vLDmao+XtSDxEIeCIbV108HWU/C/r7BU5f8tX45R2QEwJNJ
+         9kTAejUyeGbmBlbj5AC9/qXv/1DWkO3i5zyLPAMvZegtUePrDj9ml0JVJzafvHOxueBV
+         X0grmasTZtVUqS8kY+7/J5+Q7UlRVM/bJcuJPlzsrDNIGsGp1Sos7xkSdt5Qs8B9FFkO
+         MAoex6r3P34YHDEhxQ3z4Ne0pgAWKkahUDPRb7S4IVFibHUK45BX8TAcdS2YpE21bcUy
+         7wv9hV5AxDSSqLmhiqB9Xx8GWcvct6FtTsGvBUnfqDwwxR+y3FdQoBGjVZZrwZXQdbYj
+         s1uQ==
+X-Gm-Message-State: AOAM532duHzzRTYjyJv2thofLarectoBhCmF+XBVQPE+sQZoS7tKHy7s
+        3YVF4Yery/8rER9RoXV5CA==
+X-Google-Smtp-Source: ABdhPJykT+41Z6DfMtlkhmJ5RvUlPYF7shfy1TJ/uBCpIrEFYK0Zw0lJg5MCgYGSrBkx0cXVV56/fg==
+X-Received: by 2002:a6b:440d:: with SMTP id r13mr1200583ioa.114.1594846916417;
+        Wed, 15 Jul 2020 14:01:56 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id b2sm1644211ilf.0.2020.07.15.13.58.47
+        by smtp.gmail.com with ESMTPSA id h11sm1602621ilh.69.2020.07.15.14.01.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jul 2020 13:58:48 -0700 (PDT)
-Received: (nullmailer pid 805535 invoked by uid 1000);
-        Wed, 15 Jul 2020 20:58:47 -0000
-Date:   Wed, 15 Jul 2020 14:58:47 -0600
+        Wed, 15 Jul 2020 14:01:55 -0700 (PDT)
+Received: (nullmailer pid 809889 invoked by uid 1000);
+        Wed, 15 Jul 2020 21:01:54 -0000
+Date:   Wed, 15 Jul 2020 15:01:54 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        "Andrew F . Davis" <afd@ti.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org, Tero Kristo <t-kristo@ti.com>
-Subject: Re: [PATCH 1/6] dt-bindings: omap: Update PRM binding for genpd
-Message-ID: <20200715205847.GA805485@bogus>
-References: <20200702154513.31859-1-tony@atomide.com>
- <20200702154513.31859-2-tony@atomide.com>
+To:     Brian Norris <computersforpeace@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.or>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: qcom: add drive-open-drain to
+ ipq4019
+Message-ID: <20200715210154.GA809835@bogus>
+References: <20200703080646.23233-1-computersforpeace@gmail.com>
+ <20200703080646.23233-2-computersforpeace@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200702154513.31859-2-tony@atomide.com>
+In-Reply-To: <20200703080646.23233-2-computersforpeace@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 02 Jul 2020 08:45:08 -0700, Tony Lindgren wrote:
-> The PRM (Power and Reset Module) has a register to enable and disable
-> the related power domain, so let's update the binding for that.
+On Fri, 03 Jul 2020 01:06:46 -0700, Brian Norris wrote:
+> We've added drive-open-drain support, so note it in the DT binding.
 > 
-> Cc: devicetree@vger.kernel.org
-> Cc: Rob Herring <robh@kernel.org>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> Signed-off-by: Brian Norris <computersforpeace@gmail.com>
 > ---
->  Documentation/devicetree/bindings/arm/omap/prm-inst.txt | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../devicetree/bindings/pinctrl/qcom,ipq4019-pinctrl.txt       | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
