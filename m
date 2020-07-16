@@ -2,134 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9071C221DCA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 10:00:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F2D4221DCC
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 10:02:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726057AbgGPIAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jul 2020 04:00:50 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:60409 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725950AbgGPIAu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jul 2020 04:00:50 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 0E865580544;
-        Thu, 16 Jul 2020 04:00:49 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Thu, 16 Jul 2020 04:00:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=0WBVzCtkULkTIiSPfKTqyX5eHWh
-        bKHfLqeErCO3YmRg=; b=KSVv1acNut9qilziLKu5nYwT//sszYCt8C/T6bTDCsV
-        eQMFlJcFsu1pf/vJwpqWankKi12SSSjPAnWXSniWo1OmcyjFjf+9gKTaT11wPEMT
-        Zv4XSLGOyvz5AqE5s7NiTG95jycOq7qZNKFZWSPSlwpBP3jfUXTdhBic5R81VhwB
-        7ZiOK26sRVKgeUtcMyAkrcVXvq6FYYBqQHFPaaNkz0o187qusZP84mK+ufJ1F8Pd
-        exaiqPBTgxSnkr/Jsbk3p/qEG2RdCWz09S9iIpWh34XsUJZfsYxf0p5y9ctXNXfY
-        v0YcZ6NFPHbAo4uNHnV6FM4qXhlmbQrMyzjR6ruWQdg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=0WBVzC
-        tkULkTIiSPfKTqyX5eHWhbKHfLqeErCO3YmRg=; b=SjVVC1qmj8vshte4oahTrH
-        sS0+id7NS8HB+5WdUkmvgkBB9qNQwwuXHRmV+6C+rctwBuCpC+2Hib6/tFZwvpJR
-        5hPlZ9nNIoHiym5Lrq00DCg5yV7JCCKwViED1n5HTmxK9TuSnbtX+EIJD6dfqe6j
-        RIwHsILl96ITZBeVJGqZhFIhYW764J9M+tvr1kC4iPvHl/1FigIul5Q6eEDcI9Qy
-        t92xcUXEuHcH2wsydKTWuKEH+Puj1MtVic3UeCboP61j8qsF1plJ7Kb7Qjox6Aec
-        eNBJYoaf+hzhuTj7AZdgDLFiVF/LwvuUaZM6VJrSvAZRUUXuS+0r2KhUU3qIKpvA
-        ==
-X-ME-Sender: <xms:LgkQXwaCBChfCQx0IABvrQ_0clzh5UhLzjREIrL5P6pQd3AZG9gJTw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrfeefgdduvdeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:LgkQX7bcOnCHiQCCcJEWE4iN16Cu7zGpYiiDh-jpET7AAjEimdZE5Q>
-    <xmx:LgkQX6_Vg-7d_434wtD4x7RsiZLwM3XCcvAibCLmtErs7IFiW3v20Q>
-    <xmx:LgkQX6qhVAREf59FdOasfbS2CRKXhZXGh_537XV4sW9HpchPcOVRDg>
-    <xmx:MQkQX3IAjSn7HdEGX8ZxN3J2K9bLDZoB3y8Qg2j305yX3KLMGhGCkg>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id CA7A5328005A;
-        Thu, 16 Jul 2020 04:00:45 -0400 (EDT)
-Date:   Thu, 16 Jul 2020 10:00:43 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Chen-Yu Tsai <wens@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wens@csie.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Siarhei Siamashka <siarhei.siamashka@gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: display: panel-dpi: Add bits-per-color
- property
-Message-ID: <20200716080043.6duzgo2ikeqr5lnw@gilmour.lan>
-References: <20200714071305.18492-1-wens@kernel.org>
- <20200714071305.18492-2-wens@kernel.org>
+        id S1725926AbgGPICh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jul 2020 04:02:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44154 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725867AbgGPICb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 04:02:31 -0400
+Received: from mail-il1-x144.google.com (mail-il1-x144.google.com [IPv6:2607:f8b0:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86353C061755
+        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 01:02:31 -0700 (PDT)
+Received: by mail-il1-x144.google.com with SMTP id o3so4257186ilo.12
+        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 01:02:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=x8Ce9j7zk91Xc63rHhNEf95IY70/+EmDpEcw9U4m9jo=;
+        b=ioMBvp9teLR1HYUEl0KtqdLDBB9P0+jiD7Ax4pKzABAY0HdU65W1xMtORZ22h/b7qj
+         SdTCtQMgFZ53UTiaOoeA84t5mjXsFX42l9T5wG1CpPTC9tefdGmYlzjwg4WSh8/gM2BW
+         qGKjV8XPylz02mcMFGG+nmthaR1MyjG/vnL3vxdIIkrvFESNSJoqEjbVJyWpHjFYaOi/
+         fK8fUZ12GqF940Hl+5lpXF5puy9Is4RPwIL3V0vhp+2ffuUkTVkTP4GjTyJnSoakOtAT
+         zQjxdE0TfBm1CT9r/LBfQDpxL7CAgR55sUbU1PoM8seFJ7A2VhVvkz8ixUtf3jk1xlnw
+         FMlg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=x8Ce9j7zk91Xc63rHhNEf95IY70/+EmDpEcw9U4m9jo=;
+        b=Iz2LEFFg891D9A4RNjHLzC/PBRe60f6L4eHlRIKxfZg7ShJmNgMVi4zHEZ0Vn6qG+u
+         sU19HWJA9OUhtZ2++WTAWtO3k5URGjM6UALOvq1wSFt5H9TxOXjEqW9yuqOgShqAVJt6
+         RP/igDMMQmUt5LJ0Dr7YLD1ZANiYW2ZYDQ/FFPLExOhTtLyo91KX3yithq+QVfZDg+iU
+         RnfcRQEz30+lvybHLCe51aprGuZm1G0lEdfE3r+o/1yzqr1J98g6i/aNcAneq1SWHpJB
+         JRaSQcCcvIs8sKLdnJiy3/NaxZN0V8wnx9k2kZmVv7UKkXqIYcZ+FeRzfjAbuh/zP120
+         1AZA==
+X-Gm-Message-State: AOAM532t8JwtSpcBomo5KHCanJTOtGpmI0ZgrGLAJf1dUKdAPWLycGkW
+        lfWXkuZKsVbCodKnrLWoKtCRdstnkIQihTvsqow=
+X-Google-Smtp-Source: ABdhPJzcIm9z3NmSkVW5PNnnqLFE0Sg0Xe+eDAwGmuJuSVaGREwAbJNIJw8WDqyqqWpbQnInV7A0ByzS2XY68AtGWcY=
+X-Received: by 2002:a92:5ecf:: with SMTP id f76mr3654015ilg.6.1594886550795;
+ Thu, 16 Jul 2020 01:02:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="otipczuj6ij2bcki"
-Content-Disposition: inline
-In-Reply-To: <20200714071305.18492-2-wens@kernel.org>
+References: <20200715160209.652-1-linux.amoon@gmail.com> <20200715160209.652-2-linux.amoon@gmail.com>
+ <de587578-9da5-cd1d-826a-ab83b7c3dcc1@baylibre.com>
+In-Reply-To: <de587578-9da5-cd1d-826a-ab83b7c3dcc1@baylibre.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Thu, 16 Jul 2020 13:32:20 +0530
+Message-ID: <CANAwSgT9KPt5xTMd77LtSm3ojUiUqVHzJ3mKuKKbFW2c11J=Ag@mail.gmail.com>
+Subject: Re: [PATCHv1 1/3] arm64: dts: meson-g12b-odroid-n2: Enable RTC
+ controller node
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Neil,
 
---otipczuj6ij2bcki
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for your review comments.
 
-On Tue, Jul 14, 2020 at 03:13:01PM +0800, Chen-Yu Tsai wrote:
-> From: Chen-Yu Tsai <wens@csie.org>
->=20
-> Some LCD panels do not support 24-bit true color, or 8bits per channel
-> RGB. Many low end ones only support up to 6 bits per channel natively.
->=20
-> Add a device tree property to describe the native bit depth of the
-> panel. This is separate from the bus width or format of the connection
-> to the display output.
->=20
-> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-> ---
->  .../devicetree/bindings/display/panel/panel-dpi.yaml          | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-dpi.ya=
-ml b/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml
-> index 0cd74c8dab42..8eb013fb1969 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml
-> @@ -26,6 +26,9 @@ properties:
->    height-mm: true
->    label: true
->    panel-timing: true
-> +  bits-per-color:
-> +    description:
-> +      Shall contain an integer describing the number of bits per color.
+On Thu, 16 Jul 2020 at 12:38, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> Hi,
+>
+> On 15/07/2020 18:02, Anand Moon wrote:
+> > Enable RTC PCF8563 node on Odroid-N2 SBC, In order
+> > to support the RTC wakealarm feature for suspend and resume.
+> >
+> > Cc: Neil Armstrong <narmstrong@baylibre.com>
+> > Cc: Kevin Hilman <khilman@baylibre.com>
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> > $ sudo hwclock -r && date
+> > 2020-07-15 13:11:53.862508+00:00
+> > Wed Jul 15 13:11:54 UTC 2020
+> >
+> > $ hwclock --show
+> > 2020-07-15 13:17:30.903300+00:00
+> >
+> > But RTC wake up is not working at my end.
+> > Any inputs are welcome.
+> >
+> > $ time rtcwake -s 30 -m mem
+> > rtcwake: /dev/rtc0 not enabled for wakeup events
+> >
+> > real    0m0.002s
+> > user    0m0.002s
+> > sys     0m0.000s
+> > ---
+> >  .../boot/dts/amlogic/meson-g12b-odroid-n2.dts      | 14 ++++++++++++++
+> >  1 file changed, 14 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+> > index 169ea283d4ee..a447cba4dd53 100644
+> > --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+> > +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+> > @@ -391,6 +391,20 @@ hdmi_tx_tmds_out: endpoint {
+> >       };
+> >  };
+> >
+> > +&i2c3 {
+> > +     pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
+> > +     pinctrl-names = "default";
+> > +     status = "okay";
+> > +
+> > +     rtc: rtc@51 {
+> > +             reg = <0x51>;
+> > +             compatible = "nxp,pcf8563";
+> > +             #clock-cells = <0>;
+> > +             clock-frequency = <32768>;
+> > +             clock-output-names = "rtc_clkout";
+>
+> The clkout output is not used, so I don't think these 3 lines are needed.
 
-You should specify its type (u32), range (1-8 I guess?) and default
-value (which seems to be 8).
+Ok Thanks I will drop these 3 clock lines.
 
-Also, it's not unusual to have a different number of bits per color,
-like for 16 bits panels where we usually use RGB565. I guess we could
-make that an array?
+>
+> > +     };
+> > +};
+> > +
+> >  &ir {
+> >       status = "okay";
+> >       pinctrl-0 = <&remote_input_ao_pins>;
+> >
+>
+> Neil
 
-Maxime
-
---otipczuj6ij2bcki
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXxAJKwAKCRDj7w1vZxhR
-xQvfAP0fFNNpze/ZMPlLdgUo7CYHvKxk2XOpTwI08Idy4WIBQwEAqmCRGSLbw8sO
-RX218G2xEnhnaUtaHngA5puiZJ+WzQQ=
-=BrQO
------END PGP SIGNATURE-----
-
---otipczuj6ij2bcki--
+-Anand
