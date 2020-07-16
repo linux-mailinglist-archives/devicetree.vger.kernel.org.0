@@ -2,209 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25C07222A77
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 19:53:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7503222A92
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 20:01:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728402AbgGPRxF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jul 2020 13:53:05 -0400
-Received: from asavdk3.altibox.net ([109.247.116.14]:43870 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727844AbgGPRxF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 13:53:05 -0400
-Received: from ravnborg.org (unknown [188.228.123.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id 3003E20024;
-        Thu, 16 Jul 2020 19:53:00 +0200 (CEST)
-Date:   Thu, 16 Jul 2020 19:52:58 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Tony Lindgren <tony@atomide.com>, Pavel Machek <pavel@ucw.cz>,
-        Merlijn Wajer <merlijn@wizzup.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org, kernel@collabora.com,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCHv2 1/4] dt-bindings: display: panel-dsi-cm: convert to YAML
-Message-ID: <20200716175258.GE2235355@ravnborg.org>
-References: <20200716125733.83654-1-sebastian.reichel@collabora.com>
- <20200716125733.83654-2-sebastian.reichel@collabora.com>
+        id S1729310AbgGPSBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jul 2020 14:01:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52352 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729296AbgGPSBh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 14:01:37 -0400
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4A33C061755;
+        Thu, 16 Jul 2020 11:01:36 -0700 (PDT)
+Received: by mail-lf1-x144.google.com with SMTP id t9so4320064lfl.5;
+        Thu, 16 Jul 2020 11:01:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RO0Ev4XWmJoAtIvt5ezwXcEjz8a/igJfRlR8CqYlcwk=;
+        b=f+ArHYozj9iXY05L2a9mOZncLmIZrkrlfF7f0ox3qDStqRjfkcCoFld6RZ/ia6HTpb
+         cIV5mTlOmVrT2hjAneei3Je1SaJfNb3yJIwSwwU9HsjWOBm8+6U4e7LgxQoI7mr16P0A
+         DgnV8Z4HlfwgS2+n69C5VzbJOQlqN1MIHEt4HdYUP1Ft+s0W1MrsCHpNyCE54wr2zBgN
+         D0Q1+bJul3OgyR6iDe1P+gQE1P0fXPf/yVaz3k35LplZb/agJQcEJgcI9Ko/5w+Cpnvm
+         V4h7GT+PWGjBv2q79K+tqii9a6lhV4v3YUxcsonHparWShvyBB4QFnzyn+jNaSV/vP2t
+         8WpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RO0Ev4XWmJoAtIvt5ezwXcEjz8a/igJfRlR8CqYlcwk=;
+        b=ufT6brl52tjobI2hmpYXN1FnC/9LYmn7TTnCQZ7+cl2Yj4oQffwoTXdbn/Fg3zaxGR
+         9U+iStsRuwr4oToOXKwL0O0YfdGeziVt4XqDR/LwTAwKrVON5LB9isbWANqHMwqsajJu
+         qI5689Isp9oAUL5GN+IxjCoxrcqrosvkhwkru4eXYMZVpSowBan3TMZ30HifKIBjyvLy
+         PRFfwDokB9zoOa+UGGDpDERBBcBUt9jb9TXqltuAf686fiYMEaiHFOQbNkWSO3lvEbTO
+         lzrR5KGreSNIRoGAtI7+YlghkvBtMHc4TH5VEvYkz22IX0mDW5tRzSmtIr57r5yJ5BlA
+         LICQ==
+X-Gm-Message-State: AOAM531Jw8H8DFw/WotOFTLE/h5TDnDTwWMqZFsrT76E/yqRSVw4xQv/
+        EhlgybbyH1QkbIwfL5fBqyynpfrMfCVmI17eqccanr2WrWg=
+X-Google-Smtp-Source: ABdhPJx/Zdv8xhyeZFB7H/DVbJijxmGRfl3Fpd8wrS1ku4bzw1EgItsFCIj6+osuQpx/XobNVdvngNL2tfdWEJC+814=
+X-Received: by 2002:a19:428c:: with SMTP id p134mr2325052lfa.70.1594922495164;
+ Thu, 16 Jul 2020 11:01:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200716125733.83654-2-sebastian.reichel@collabora.com>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=f+hm+t6M c=1 sm=1 tr=0
-        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=kj9zAlcOel0A:10 a=P1BnusSwAAAA:8 a=VwQbUJbxAAAA:8 a=QX4gbG5DAAAA:8
-        a=gEfo2CItAAAA:8 a=sozttTNsAAAA:8 a=1kXr7ksa4B9EUv6ROdEA:9
-        a=XEMmv6vUd5EzQcYg:21 a=2If40AUfOTYjr9Pu:21 a=CjuIK1q_8ugA:10
-        a=D0XLA9XvdZm18NrgonBM:22 a=AjGcO6oz07-iQ99wixmX:22
-        a=AbAUZ8qAyYyZVLSsDulk:22 a=sptkURWiP4Gy88Gu7hUp:22
-        a=aeg5Gbbo78KNqacMgKqU:22
+References: <20200716172611.5349-1-bruno.thomsen@gmail.com> <20200716172611.5349-2-bruno.thomsen@gmail.com>
+In-Reply-To: <20200716172611.5349-2-bruno.thomsen@gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 16 Jul 2020 15:01:23 -0300
+Message-ID: <CAOMZO5B7cJmF4e78xbErzBHfMw4MuF09eXti4xAUFcKOGKXqNw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] ARM: dts: imx7: add support for kamstrup flex concentrator
+To:     Bruno Thomsen <bruno.thomsen@gmail.com>
+Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Bruno Thomsen <bth@kamstrup.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 16, 2020 at 02:57:30PM +0200, Sebastian Reichel wrote:
-> Convert panel-dsi-cm bindings to YAML and add
-> missing properties while at it.
-> 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Hi Bruno,
 
-Hi Sebastian.
+On Thu, Jul 16, 2020 at 2:26 PM Bruno Thomsen <bruno.thomsen@gmail.com> wrote:
 
-Look good now. Applied this patch to drm-misc-next.
+> Limitations: Ethernet PHY type auto detection does not
+> work when using reset-{assert-us,deassert-us,gpios}
+> properties so it's using a fixed PHY type ID for now. Auto
+> detection worked when using the deprecated FEC properties
+> phy-reset-{gpios,duration,post-delay}.
 
-$ ls Documentation/devicetree/bindings/display/panel/*.txt
-Documentation/devicetree/bindings/display/panel/display-timing.txt
+I think we need to understand this better. Why does it fail?
 
-Nice :-)
+I gave a test on an imx6q-sabresd and the Ethernet PHY (AR8031) could
+be properly detected using reset-{assert-us,deassert-us,gpios}
+properties inside the mdio node.
 
-The DTS file changes needs to go in via another route.
+Is this a Micrel KSZ8081 specific issue?
 
-	Sam
-
-> ---
->  .../bindings/display/panel/panel-dsi-cm.txt   | 29 -------
->  .../bindings/display/panel/panel-dsi-cm.yaml  | 86 +++++++++++++++++++
->  2 files changed, 86 insertions(+), 29 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/panel/panel-dsi-cm.txt
->  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-dsi-cm.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-dsi-cm.txt b/Documentation/devicetree/bindings/display/panel/panel-dsi-cm.txt
-> deleted file mode 100644
-> index dce48eb9db57..000000000000
-> --- a/Documentation/devicetree/bindings/display/panel/panel-dsi-cm.txt
-> +++ /dev/null
-> @@ -1,29 +0,0 @@
-> -Generic MIPI DSI Command Mode Panel
-> -===================================
-> -
-> -Required properties:
-> -- compatible: "panel-dsi-cm"
-> -
-> -Optional properties:
-> -- label: a symbolic name for the panel
-> -- reset-gpios: panel reset gpio
-> -- te-gpios: panel TE gpio
-> -
-> -Required nodes:
-> -- Video port for DSI input
-> -
-> -Example
-> --------
-> -
-> -lcd0: display {
-> -	compatible = "tpo,taal", "panel-dsi-cm";
-> -	label = "lcd0";
-> -
-> -	reset-gpios = <&gpio4 6 GPIO_ACTIVE_HIGH>;
-> -
-> -	port {
-> -		lcd0_in: endpoint {
-> -			remote-endpoint = <&dsi1_out_ep>;
-> -		};
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-dsi-cm.yaml b/Documentation/devicetree/bindings/display/panel/panel-dsi-cm.yaml
-> new file mode 100644
-> index 000000000000..d766c949c622
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-dsi-cm.yaml
-> @@ -0,0 +1,86 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/panel-dsi-cm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: DSI command mode panels
-> +
-> +maintainers:
-> +  - Tomi Valkeinen <tomi.valkeinen@ti.com>
-> +  - Sebastian Reichel <sre@kernel.org>
-> +
-> +description: |
-> +  This binding file is a collection of the DSI panels that
-> +  are usually driven in command mode. If no backlight is
-> +  referenced via the optional backlight property, the DSI
-> +  panel is assumed to have native backlight support.
-> +  The panel may use an OF graph binding for the association
-> +  to the display, or it may be a direct child node of the
-> +  display.
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +
-> +  compatible:
-> +    items:
-> +      - enum:
-> +        - motorola,droid4-panel        # Panel from Motorola Droid4 phone
-> +        - nokia,himalaya               # Panel from Nokia N950 phone
-> +        - tpo,taal                     # Panel from OMAP4 SDP board
-> +      - const: panel-dsi-cm            # Generic DSI command mode panel compatible fallback
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: DSI virtual channel
-> +
-> +  vddi-supply:
-> +    description:
-> +      Display panels require power to be supplied. While several panels need
-> +      more than one power supply with panel-specific constraints governing the
-> +      order and timings of the power supplies, in many cases a single power
-> +      supply is sufficient, either because the panel has a single power rail, or
-> +      because all its power rails can be driven by the same supply. In that case
-> +      the vddi-supply property specifies the supply powering the panel as a
-> +      phandle to a regulator.
-> +
-> +  vpnl-supply:
-> +    description:
-> +      When the display panel needs a second power supply, this property can be
-> +      used in addition to vddi-supply. Both supplies will be enabled at the
-> +      same time before the panel is being accessed.
-> +
-> +  width-mm: true
-> +  height-mm: true
-> +  label: true
-> +  rotation: true
-> +  panel-timing: true
-> +  port: true
-> +  reset-gpios: true
-> +  te-gpios: true
-> +  backlight: true
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    dsi-controller {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        panel@0 {
-> +            compatible = "tpo,taal", "panel-dsi-cm";
-> +            reg = <0>;
-> +            reset-gpios = <&gpio4 6 GPIO_ACTIVE_HIGH>;
-> +        };
-> +    };
-> +
-> +...
-> -- 
-> 2.27.0
+Please report this issue to the Ethernet PHY folks.
