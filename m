@@ -2,110 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85DC82223F1
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 15:34:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AC4922240E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 15:38:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728418AbgGPNeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jul 2020 09:34:12 -0400
-Received: from foss.arm.com ([217.140.110.172]:49518 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725975AbgGPNeM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jul 2020 09:34:12 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E07F331B;
-        Thu, 16 Jul 2020 06:34:11 -0700 (PDT)
-Received: from [10.57.35.46] (unknown [10.57.35.46])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CD2E63F66B;
-        Thu, 16 Jul 2020 06:34:09 -0700 (PDT)
-Subject: Re: [RFC PATCH v1 1/2] dt-bindings: arm: rockchip: add A95X Z2
- description
-To:     Johan Jonker <jbx6244@gmail.com>, Rob Herring <robh@kernel.org>
-Cc:     linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        heiko@sntech.de, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-References: <20200620134659.4592-1-jbx6244@gmail.com>
- <20200620134659.4592-2-jbx6244@gmail.com> <20200715192935.GA684031@bogus>
- <14b39efe-f38b-b471-560d-1ecaeafc5dd5@gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <56b1447d-6c62-9e73-a7ce-08fb70096a97@arm.com>
-Date:   Thu, 16 Jul 2020 14:34:08 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1727044AbgGPNig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jul 2020 09:38:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39774 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725975AbgGPNif (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 09:38:35 -0400
+Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E8C2C061755
+        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 06:38:35 -0700 (PDT)
+Received: by mail-oi1-x244.google.com with SMTP id h17so5100901oie.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 06:38:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=aO6sJz0ss7cLm8Kei6an2LEQl/kyo6eYih60LLTau04=;
+        b=mu3lXAO1gQvqG/QSLBPko51OSOItOw5/7188QrdOopjSQMccFoR/ZR0O+jpG35FaeK
+         8mWuohh+7xbb9CrPTf+JuNpYvUx+58TzENC3bXZM277IaIJaoKdowsvByVXmhhvX8pGp
+         Vyk2N5rP1pFr3CGN8eKRfsB+xkz/VGJVa3R/YIFMTJi6+GRPl6nQLMgw76nw77ZB1OfX
+         CpksNuams225hmHISOsGY8/eWS7zFq4y5KCqrfE5gT61wWfY2eGRuN4/tBSfp3OAWvai
+         2gPc1GL21uItA1OMkhGExRh588+7IU48WUh87fTCCIYzo5V5sIRg4Sf0JK6V2TR+qdBF
+         WB6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=aO6sJz0ss7cLm8Kei6an2LEQl/kyo6eYih60LLTau04=;
+        b=FM0Pjn2yus97HfVv5WgfTWN1MokaZTy5Z2za0Z2HEUli43/s+OZmFN/4WXdr0JYO9/
+         NT9+kp52eR7BxToxuq7ogQvIlLww+Zr+FFZbHeMfFoZWAuwokuzOIGKXUt21ZsaOCjKe
+         WBB0COOG4lBKP3cOovomHR2vQDYefHhCjyOUz8JenNdoeq/4+0cDhJVYgHRl5nvKchBa
+         9wIWtJ9Zz/SRjreNU1divH6idPm4+soh7mZRyu76pNkJjTMfINnDUIV0fcZVN5YW193u
+         oA9SZNHuLafv0m+L8SiK4PDqPKJE2YzaOVHxyaC+WUNdaemuu1utyT9ySTB03detQ3bQ
+         yK3w==
+X-Gm-Message-State: AOAM532NhlwzGEuUQRkB0qIb2Oo0n1UUEA6UxlWZRG65feOQhtudraNJ
+        OH5fWLLDL6or+hhWpkP3/XplF9p7NNOk4yILGHo=
+X-Google-Smtp-Source: ABdhPJz5EvCtf+X4+VezWag1zg++muBrh/Cylx6eZh1mQ5Toq+oMJl/Ufaiey4UcZN5FmjEcNULbELzoVfWGkRKg72Q=
+X-Received: by 2002:aca:d681:: with SMTP id n123mr3891335oig.82.1594906714833;
+ Thu, 16 Jul 2020 06:38:34 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <14b39efe-f38b-b471-560d-1ecaeafc5dd5@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Received: by 2002:a4a:614f:0:0:0:0:0 with HTTP; Thu, 16 Jul 2020 06:38:34
+ -0700 (PDT)
+Reply-To: jinghualiuyang@gmail.com
+From:   Frau JINGHUA Liu Yang <oncesmart3@gmail.com>
+Date:   Thu, 16 Jul 2020 15:38:34 +0200
+Message-ID: <CAOSmJitCdjjiXuH2-ALh1+uO_ZhSNgR2uY=Ej+46Yoj-gSk9FQ@mail.gmail.com>
+Subject: 
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-07-16 13:05, Johan Jonker wrote:
-> Hi Rob,
-> 
-> The A95X Z2 boxes are sold by various vendors/manufacturers/web shops.
-> The box it self only shows a label with a model name.
-> Determining the true vendor is a kind of tricky for a outsider of the
-> business.
-> Could you advise what would be a save choice to the rather rigid vendor
-> requirements.
-> Is for example this a option:
-> 
->    "^a95x,.*":
->      description: A95X
-> 
-> Is there someone who can give more info on this subject?
+--=20
+Guten Morgen,
 
-FWIW we already have some "A95X" branded things attributed to Nexbox in 
-upstream DTs, however, the evidence from scraping around the internet 
-suggests that the closest thing to an original vendor for the "A95X Z2" 
-model is probably these folks:
+          Ich bin Frau JINGHUA Liu Yang f=C3=BCr die Mitarbeiter der
+CITIBANK KOREA hier in der Republik Korea. Kann ich $9.356.669 USD
+=C3=BCberweisen? Vertrauen?
 
-https://zkmagic.en.alibaba.com/
-
-Robin.
-
-> 
-> Kind regards,
-> 
-> Johan Jonker
-> 
-> On 7/15/20 9:29 PM, Rob Herring wrote:
->> On Sat, Jun 20, 2020 at 03:46:58PM +0200, Johan Jonker wrote:
->>> Add A95X Z2 description for a board with rk3318 processor.
->>>
->>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
->>> ---
->>>   Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->>>   1 file changed, 5 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
->>> index d4a404509..3d44b3cf0 100644
->>> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
->>> @@ -25,6 +25,11 @@ properties:
->>>             - const: vamrs,rock960
->>>             - const: rockchip,rk3399
->>>   
->>> +      - description: A95X Z2
->>> +        items:
->>> +          - const: a95x,z2
->>
->> Need to document vendor prefix.
->>
->>> +          - const: rockchip,rk3318
->>> +
->>>         - description: Amarula Vyasa RK3288
->>>           items:
->>>             - const: amarula,vyasa-rk3288
->>> -- 
->>> 2.11.0
->>>
-> 
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
-> 
+Mit freundlichen Gr=C3=BC=C3=9Fen
