@@ -2,135 +2,343 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0784222645
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 16:54:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEDEA222666
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 17:02:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727844AbgGPOy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jul 2020 10:54:57 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:39354 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725867AbgGPOy5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 10:54:57 -0400
-Received: by mail-io1-f65.google.com with SMTP id f23so6288590iof.6;
-        Thu, 16 Jul 2020 07:54:57 -0700 (PDT)
+        id S1728237AbgGPPC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jul 2020 11:02:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52906 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726963AbgGPPC4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 11:02:56 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C32DC061755
+        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 08:02:56 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id n26so6937417ejx.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 08:02:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Zoyi2GCkdDv+77woGYnxvApUPNJmPUhcG6vBpnxKyAc=;
+        b=UudRQwL2T8B7XOQ/OcU5sSni/mpkiuMw4FlalMG4v8UJna9J8+yKNfGuutNY8tlQHk
+         6mRi/zCaHBroMTPWQzmL97I2O1ZTub4ftpdlAYxEAGFRGvIfDXHJpPhQHjJtBjRBMvq6
+         CbA8cLQsvXw6lopRqQZbVLaWHcOo2lY08M+mY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=BaqFZG9UWRjhx4RwScgiajamJpelOhhp1Z38o8FrMds=;
-        b=dBYy+tcnR1zmrENGOQ5gkAc7diqBcqnw2Xul/4Io6VqONuy2Hed7+KTKlI/1N9TOrF
-         rmde/GbNv/cWRfUP913Qx5yEDgp8/Mcmv1+dpfFd+zyYBjbn5QAAHp+W0vF0owoObLDx
-         sL39LKUd1YVbxMhfeb2xrxvE6MDyMb50PEDsVtylph9w3uBW/j6CFWCXXgGtOuxQ02Sr
-         MBAP4qpVK6L75mkEbAErX3UDmigAsLveOnk3zAcLFhCOAklXrPrZcqVGscTBfgHcLePh
-         duISAnCyR+MYCZchlgr61/of3NGp+DJUzL1SNnYVgkUSav6YObxG2vOMSxwC9Odz1OI/
-         /Dpw==
-X-Gm-Message-State: AOAM530dBiP2pNpqPS3eb9VJltdNjl4iw0xx8Yl479RBvm0U2ILdJbBI
-        KkI/3VR4jGm/mlauXnKZ+w==
-X-Google-Smtp-Source: ABdhPJzcGGLXa59ebad8ZEMnpSmd8hkKy1t0JWfmwfPJjXYxdbzORCZ9sBc+M3YUvgGK+FSagG6rPQ==
-X-Received: by 2002:a6b:9388:: with SMTP id v130mr4779402iod.134.1594911295879;
-        Thu, 16 Jul 2020 07:54:55 -0700 (PDT)
-Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id p22sm2946887ili.88.2020.07.16.07.54.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jul 2020 07:54:55 -0700 (PDT)
-Received: (nullmailer pid 2316771 invoked by uid 1000);
-        Thu, 16 Jul 2020 14:54:54 -0000
-Date:   Thu, 16 Jul 2020 08:54:54 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Marek =?iso-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>
-Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        jacek.anaszewski@gmail.com, Dan Murphy <dmurphy@ti.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: leds: add cznic,turris-omnia-leds
- binding
-Message-ID: <20200716145454.GA2313513@bogus>
-References: <20200716114047.22943-1-marek.behun@nic.cz>
- <20200716114047.22943-2-marek.behun@nic.cz>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Zoyi2GCkdDv+77woGYnxvApUPNJmPUhcG6vBpnxKyAc=;
+        b=dASijhe7iNPouvpjIxElElwpPKBjxt/8NF5QXuk67qjLFj0SMGMduwMXiCCB5WY6C8
+         SlptvZZjYlX7zaz1PimDbNialjZhaQdEOOqPo4XFvIwOYeITC9fjbx0Irg0lfj+fJn8s
+         4Yuodc5Z1a94HxsVCPPj9cinFWhVJSaVOojmn38x+APXjfDImj2eVQgJJc8eqXs/H6TJ
+         ZUKfWF7fxgd8ke3aIo5hykglQRSQWs5tBrQ7FgIGDRrva+j73LDQq8jOWFgCWIcHRicX
+         5T6sy+5uEGudfuK09jWa9ooiDi7XMww7Ibvhc2R96kugLOK2tmtDTh/Y2ggZu5/PbKAC
+         Y8pg==
+X-Gm-Message-State: AOAM5304Jhpq9GrinI99cIOa1cpVYAqgDm+EUs9R+YSWIFakCSEU1rUo
+        YE/VJZ4oPKWAB2jKvl1QhVFjPypUIFk=
+X-Google-Smtp-Source: ABdhPJzuVQWP0h1Drfb7Hhytb4a4WQuLo3i/OBJF3icOe495lPgwf1AL+PSgK/AiBGIkbnoMKuau+A==
+X-Received: by 2002:a17:906:eb93:: with SMTP id mh19mr4021987ejb.552.1594911774602;
+        Thu, 16 Jul 2020 08:02:54 -0700 (PDT)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com. [209.85.128.42])
+        by smtp.gmail.com with ESMTPSA id dn15sm5404742ejc.26.2020.07.16.08.02.54
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Jul 2020 08:02:54 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id o8so10598384wmh.4
+        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 08:02:54 -0700 (PDT)
+X-Received: by 2002:a05:600c:d7:: with SMTP id u23mr4486554wmm.183.1594911460118;
+ Thu, 16 Jul 2020 07:57:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200716114047.22943-2-marek.behun@nic.cz>
+References: <20200505070451.GS9190@paasikivi.fi.intel.com> <1588688238.8804.150.camel@mhfsdcap03>
+ <20200506112136.GV9190@paasikivi.fi.intel.com> <1588856325.8804.179.camel@mhfsdcap03>
+ <CAAFQd5CXRD_j7Xkxb4=9kkd+pDy4W5pirAPSG8RsMVH6L-MU2w@mail.gmail.com>
+ <20200507141147.GF9190@paasikivi.fi.intel.com> <CAAFQd5DgDk57MCc4vE9VmifZYjtO_SUFss+vc8W-28SFHbKDrA@mail.gmail.com>
+ <1588920685.8804.230.camel@mhfsdcap03> <20200510223552.GA11272@paasikivi.fi.intel.com>
+ <1589197265.8804.262.camel@mhfsdcap03> <20200715140110.GD16711@paasikivi.fi.intel.com>
+In-Reply-To: <20200715140110.GD16711@paasikivi.fi.intel.com>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Thu, 16 Jul 2020 16:57:28 +0200
+X-Gmail-Original-Message-ID: <CAAFQd5A9L73et30Fr_91sqfQGue7Qo05yCchU_S6bh5H4sBiMQ@mail.gmail.com>
+Message-ID: <CAAFQd5A9L73et30Fr_91sqfQGue7Qo05yCchU_S6bh5H4sBiMQ@mail.gmail.com>
+Subject: Re: [V7, 1/2] media: dt-bindings: media: i2c: Document OV02A10 bindings
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Dongchun Zhu <dongchun.zhu@mediatek.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Boichat <drinkcat@chromium.org>, matrix.zhu@aliyun.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Cao Bing Bu <bingbu.cao@intel.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
+        Sj Huang <sj.huang@mediatek.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        Louis Kuo <louis.kuo@mediatek.com>,
+        =?UTF-8?B?U2hlbmduYW4gV2FuZyAo546L5Zyj55S3KQ==?= 
+        <shengnan.wang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 16, 2020 at 01:40:45PM +0200, Marek Behún wrote:
-> Add device-tree bindings documentation for Turris Omnia RGB LEDs.
-> 
-> Signed-off-by: Marek Behún <marek.behun@nic.cz>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> ---
->  .../leds/cznic,turris-omnia-leds.yaml         | 88 +++++++++++++++++++
->  1 file changed, 88 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-> new file mode 100644
-> index 000000000000..bfe19aee0805
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-> @@ -0,0 +1,88 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/cznic,turris-omnia-leds.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: CZ.NIC's Turris Omnia LEDs driver
-> +
-> +maintainers:
-> +  - Marek Behún <marek.behun@nic.cz>
-> +
-> +description:
-> +  This module adds support for the RGB LEDs found on the front panel of the
-> +  Turris Omnia router. There are 12 RGB LEDs that are controlled by a
-> +  microcontroller that communicates via the I2C bus. Each LED is described
-> +  as a subnode of this I2C device.
-> +
-> +properties:
-> +  compatible:
-> +    const: cznic,turris-omnia-leds
-> +
-> +  reg:
-> +    description: I2C slave address of the microcontroller.
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^multi-led[0-9a-f]$":
-> +    type: object
-> +    allOf:
-> +      - $ref: leds-class-multicolor.yaml#
-> +    description:
-> +      This node represents one of the RGB LED devices on Turris Omnia.
-> +      No subnodes need to be added for subchannels since this controller only
-> +      supports RGB LEDs.
-> +
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 11
-> +        description:
-> +          This property identifies one of the LEDs on the front panel of the
-> +          Turris Omnia router.
-> +
-> +    required:
-> +      - reg
-> +
+On Wed, Jul 15, 2020 at 4:01 PM Sakari Ailus
+<sakari.ailus@linux.intel.com> wrote:
+>
+> hi Dongchun,
+>
+> On Mon, May 11, 2020 at 07:41:05PM +0800, Dongchun Zhu wrote:
+> > Hi Sakari,
+> >
+> > On Mon, 2020-05-11 at 01:35 +0300, Sakari Ailus wrote:
+> > > Hi Dongchun,
+> > >
+> > > On Fri, May 08, 2020 at 02:51:25PM +0800, Dongchun Zhu wrote:
+> > > > Hi Sakari, Tomasz,
+> > > >
+> > > > On Thu, 2020-05-07 at 16:25 +0200, Tomasz Figa wrote:
+> > > > > On Thu, May 7, 2020 at 4:12 PM Sakari Ailus
+> > > > > <sakari.ailus@linux.intel.com> wrote:
+> > > > > >
+> > > > > > Hi Tomasz, Dongchun,
+> > > > > >
+> > > > > > On Thu, May 07, 2020 at 03:50:40PM +0200, Tomasz Figa wrote:
+> > > > > > > Hi Sakari and Dongchun,
+> > > > > > >
+> > > > > > > On Thu, May 7, 2020 at 3:00 PM Dongchun Zhu <dongchun.zhu@mediatek.com> wrote:
+> > > > > > > >
+> > > > > > > > Hi Sakari,
+> > > > > > > >
+> > > > > > > > Thanks for the review.
+> > > > > > > >
+> > > > > > > > On Wed, 2020-05-06 at 14:21 +0300, Sakari Ailus wrote:
+> > > > > > > > > Hi Dongchun,
+> > > > > > > > >
+> > > > > > > > > On Tue, May 05, 2020 at 10:17:18PM +0800, Dongchun Zhu wrote:
+> > > > > > > > > > Hi Sakari,
+> > > > > > > > > >
+> > > > > > > > > > Thanks for the review.
+> > > > > > > > > >
+> > > > > > > > > > On Tue, 2020-05-05 at 10:04 +0300, Sakari Ailus wrote:
+> > > > > > > > > > > Hi Dongchun,
+> > > > > > > > > > >
+> > > > > > > > > > > On Thu, Apr 30, 2020 at 04:09:23PM +0800, Dongchun Zhu wrote:
+> > > > > > > > > > > > Add DT bindings documentation for Omnivision OV02A10 image sensor.
+> > > > > > > > > > > >
+> > > > > > > > > > > > Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> > > > > > > > > > > > ---
+> > > > > > > > > > > >  .../bindings/media/i2c/ovti,ov02a10.yaml           | 148 +++++++++++++++++++++
+> > > > > > > > > > > >  MAINTAINERS                                        |   7 +
+> > > > > > > > > > > >  2 files changed, 155 insertions(+)
+> > > > > > > > > > > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
+> > > > > > > > > > > >
+> > > > > > > > > > > > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
+> > > > > > > > > > > > new file mode 100644
+> > > > > > > > > > > > index 0000000..2be4bd2
+> > > > > > > > > > > > --- /dev/null
+> > > > > > > > > > > > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
+> > > > > > > > > > > > @@ -0,0 +1,148 @@
+> > > > > > > > > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > > > > > > > > > +# Copyright (c) 2020 MediaTek Inc.
+> > > > > > > > > > > > +%YAML 1.2
+> > > > > > > > > > > > +---
+> > > > > > > > > > > > +$id: http://devicetree.org/schemas/media/i2c/ovti,ov02a10.yaml#
+> > > > > > > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +title: Omnivision OV02A10 CMOS Sensor Device Tree Bindings
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +maintainers:
+> > > > > > > > > > > > +  - Dongchun Zhu <dongchun.zhu@mediatek.com>
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +description: |-
+> > > > > > > > > > > > +  The Omnivision OV02A10 is a low-cost, high performance, 1/5-inch, 2 megapixel
+> > > > > > > > > > > > +  image sensor, which is the latest production derived from Omnivision's CMOS
+> > > > > > > > > > > > +  image sensor technology. Ihis chip supports high frame rate speeds up to 30fps
+> > > > > > > > > > > > +  @ 1600x1200 (UXGA) resolution transferred over a 1-lane MIPI interface. The
+> > > > > > > > > > > > +  sensor output is available via CSI-2 serial data output.
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +properties:
+> > > > > > > > > > > > +  compatible:
+> > > > > > > > > > > > +    const: ovti,ov02a10
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +  reg:
+> > > > > > > > > > > > +    maxItems: 1
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +  clocks:
+> > > > > > > > > > > > +    items:
+> > > > > > > > > > > > +      - description: top mux camtg clock
+> > > > > > > > > > > > +      - description: devider clock
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +  clock-names:
+> > > > > > > > > > > > +    items:
+> > > > > > > > > > > > +      - const: eclk
+> > > > > > > > > > > > +      - const: freq_mux
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +  clock-frequency:
+> > > > > > > > > > > > +    description:
+> > > > > > > > > > > > +      Frequency of the eclk clock in Hertz.
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +  dovdd-supply:
+> > > > > > > > > > > > +    description:
+> > > > > > > > > > > > +      Definition of the regulator used as interface power supply.
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +  avdd-supply:
+> > > > > > > > > > > > +    description:
+> > > > > > > > > > > > +      Definition of the regulator used as analog power supply.
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +  dvdd-supply:
+> > > > > > > > > > > > +    description:
+> > > > > > > > > > > > +      Definition of the regulator used as digital power supply.
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +  powerdown-gpios:
+> > > > > > > > > > > > +    description:
+> > > > > > > > > > > > +      The phandle and specifier for the GPIO that controls sensor powerdown.
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +  reset-gpios:
+> > > > > > > > > > > > +    description:
+> > > > > > > > > > > > +      The phandle and specifier for the GPIO that controls sensor reset.
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +  rotation:
+> > > > > > > > > > > > +    description:
+> > > > > > > > > > > > +      Definition of the sensor's placement, valid values are 0 and 180.
+> > > > > > > > > > > > +    allOf:
+> > > > > > > > > > > > +      - $ref: "/schemas/types.yaml#/definitions/uint32"
+> > > > > > > > > > > > +      - enum:
+> > > > > > > > > > > > +          - 0    # Sensor Mounted Upright
+> > > > > > > > > > > > +          - 180  # Sensor Mounted Upside Down
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +  ovti,mipi-tx-speed:
+> > > > > > > > > > > > +    description:
+> > > > > > > > > > > > +      Indication of MIPI transmission speed select.
+> > > > > > > > > > >
+> > > > > > > > > > > What exactly does this signify? And how do you come up with the number?
+> > > > > > > > > > >
+> > > > > > > > > >
+> > > > > > > > > > Apologies for not addressing this number clear.
+> > > > > > > > > >
+> > > > > > > > > > From the datasheet, P1:0xA1 register represents TX_SPEED_AREA_SEL with
+> > > > > > > > > > the default val: 0x03.
+> > > > > > > > > > The description of this RW register is as below:
+> > > > > > > > > > Bit[2:0]: MIPI transmission speed select.
+> > > > > > > > > >
+> > > > > > > > > > Thus the enum should be definited as [ 0, 1, 2, 3, 4, 5, 6, 7 ].
+> > > > > > > > > > This would be fixed in next release.
+> > > > > > > > > >
+> > > > > > > > > > In the meantime, as the default val of P1:0xA1 is 0x03, we hope to keep
+> > > > > > > > > > that value if there is no setting for this private property in DT.
+> > > > > > > > > > The caller in driver would be updated like this in next release.
+> > > > > > > > > > if (ov02a10->mipi_clock_tx_speed)
+> > > > > > > > > >     ret = i2c_smbus_write_byte_data(...,...);
+> > > > > > > > >
+> > > > > > > > > How did you pick the value in the example? And why do you believe it is
+> > > > > > > > > specific to a platform, and not e.g. a sensor mode?
+> > > > > > > > >
+> > > > > > > >
+> > > > > > > > We look into P1:0XA1, one register that defines MIPI transmission speed
+> > > > > > > > select.
+> > > > > > > > From the datasheet, we can get the possible values that could be set to
+> > > > > > > > P1:0xA1.
+> > > > > > > >
+> > > > > > > > Actually this register is an independent of sensor mode, it is just
+> > > > > > > > included in sensor mode's register setting table.
+> > > > > > > >
+> > > > > > > > In addition, this private DT Property is created to fix the MIPI test
+> > > > > > > > failure. The register values are adjusted and verified from vendor to
+> > > > > > > > make sensor signal meet MIPI specification.
+> > > > > > > >
+> > > > > > >
+> > > > > > > In theory the value could depend on the mode, because different link
+> > > > > > > rate could impose different requirements for the physical interface.
+> > > > > > > In practice, we haven't seen any hardware that would require different
+> > > > > > > values for different modes.
+> > > > > >
+> > > > > > The mode (possibly in conjunction with other information available to the
+> > > > > > driver via V4L2 fwnode interface) precisely defines the parameters of the
+> > > > > > CSI-2 bus --- apart from the possible exception of the bus timing related
+> > > > > > parameters but this is not supported by the name of the parameter.
+> > > > > >
+> > > > > > Therefore I don't see how this parameter, which supposedly is used to
+> > > > > > determine the CSI-2 transmissions speed, could be board specific and thus
+> > > > > > belong to DT.
+> > > > >
+> > > > > According to the very imprecise information I have access to, it is
+> > > > > not about the CSI-2 bus itself, but rather some internal parameter of
+> > > > > the sensor's CSI interface. Unfortunately there isn't much information
+> > > > > on what this value exactly controls...
+> > > > >
+> > > > > Best regards,
+> > > > > Tomasz
+> > > >
+> > > > Just got some feedback from OV vendor about this parameter.
+> > > >
+> > > > P1:0xA1 is the register to control D-PHY timing setting based on bclk.
+> > > > It is to adjust the MIPI clock voltage to improve the clock drive
+> > > > capability, and has no affect on the transmission speed of MIPI data.
+> > > >
+> > > > From vendor's perspective, P1:0xA1 depends upon the length of FPC of
+> > > > camera module that used on the board. Considering the physical
+> > > > connections for MIPI signals to user-facing camera are very different
+> > > > between our 2 projects, it can be very difficult to find universal SI
+> > > > parameters for both projects.
+> > >
+> > > Are you using different values for this parameter on these two projects?
+> > >
+> >
+> > Yes. We're actually assigning two different values to this property.
+> > One is 0x03, the other is 0x04.
+> >
+> > > >
+> > > > Thus here we create one new DT property to separate these tuning in
+> > > > driver, to be more like project-specific.
+> > > >
+> > > > More details about the register is as below.
+> > > > P1:0xA1 val: 0x03 default
+> > > > Case: 0  20MHz-30MHz
+> > > >       1  30MHz-50MHz
+> > > >       2  50MHz-75MHz
+> > > >       3  75MHz-100MHz   (default, old DB setting use)
+> > > >       4  100MHz-130MHz  (suggested, new DB setting use)
+> > > >       5  Manual
+> > > > So the value in the example should be [ 0, 1, 2, 3, 4, 5 ].
+> > > >
+> > > > Additionally, P1:0xA1 is recommended to be set as 0x04 in the newest DB
+> > > > setting. We would adjust the register in next release.
+> > >
+> > > Thank you for digging into the issue.
+> > >
+> > > Based on the above description, the parameter would depend on both the link
+> > > frequency and possibly also on wire length. I guess there's no harm from
+> > > using too strong drive, apart from perhaps power consumption? As in
+> > > principle this could be different for different sensor modes. Albeit I
+> > > don't remember seeing a sensor where such a parameter would have been
+> > > needed to be modified.
+> > >
+> >
+> > This may be related to something about sensor fine tuning.
+> > As OV vendor pointed out, the sensor chip provides such one property
+> > that user could adjust based on their specific project.
+> > Also, case 4 (0x04) setting is confirmed to have a little more power
+> > consumption than case 3 (0x03).
+>
+> Apologies for bringing back an old topic --- the driver supports just a
+> single mode, using a specific data rate.
+>
+> If another mode is added later on, will it continue to use the same value
+> for this? Based on the documentation, it seems that this is primarily
+> defined by the frequency of the bus, not by board design. Therefore putting
+> this to DT (and thus ignoring the frequency) appears wrong.
 
-Add:
+I don't think this is exactly implied by the frequency of the bus. The
+values there are recommended for given frequency ranges, but there are
+real cases where depending on the board different values are needed.
 
-additionalProperties: false
-
-With that,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+Best regards,
+Tomasz
