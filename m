@@ -2,68 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AC4922240E
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 15:38:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73F5B222411
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 15:38:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727044AbgGPNig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jul 2020 09:38:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39774 "EHLO
+        id S1725975AbgGPNiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jul 2020 09:38:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725975AbgGPNif (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 09:38:35 -0400
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E8C2C061755
-        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 06:38:35 -0700 (PDT)
-Received: by mail-oi1-x244.google.com with SMTP id h17so5100901oie.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 06:38:35 -0700 (PDT)
+        with ESMTP id S1728093AbgGPNiv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 09:38:51 -0400
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7788C08C5C0
+        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 06:38:50 -0700 (PDT)
+Received: by mail-lf1-x142.google.com with SMTP id j21so3290223lfe.6
+        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 06:38:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=aO6sJz0ss7cLm8Kei6an2LEQl/kyo6eYih60LLTau04=;
-        b=mu3lXAO1gQvqG/QSLBPko51OSOItOw5/7188QrdOopjSQMccFoR/ZR0O+jpG35FaeK
-         8mWuohh+7xbb9CrPTf+JuNpYvUx+58TzENC3bXZM277IaIJaoKdowsvByVXmhhvX8pGp
-         Vyk2N5rP1pFr3CGN8eKRfsB+xkz/VGJVa3R/YIFMTJi6+GRPl6nQLMgw76nw77ZB1OfX
-         CpksNuams225hmHISOsGY8/eWS7zFq4y5KCqrfE5gT61wWfY2eGRuN4/tBSfp3OAWvai
-         2gPc1GL21uItA1OMkhGExRh588+7IU48WUh87fTCCIYzo5V5sIRg4Sf0JK6V2TR+qdBF
-         WB6g==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DisuJGOhTsqZLSRTciJy2DTkS0uWS+KfhdVsbvwNxkE=;
+        b=lt/vkTuBb1vzcvotKi8msv7LGAcjJiMecx/VQsrwFlPVSU++Dt4BH5vYmROr/xqrnG
+         bChm8JUkTuhcZQtrlBY+nk/oIpQhDfxhqsoVBsDShV+IpsMx/7z/0xXZeaAWQSJrlHno
+         1mHZjBT+6rQaG0xMrgWtzRM9xL7y4DfatspuoxLSaqOV3G+50U+9XVM+a3CYNXXmkOHJ
+         +17AdgVIshQGs/pPvRLAgimJ1z1QRKAWbkVa90zvU3nwkuYmdC5u5SlorDArWq6W2DLW
+         9tg8jdqxMsDzAuFsQDrgHkNaMq93G30Nod8tNd6mfhaGh74ddN9+mEptDKq58KNj5LxR
+         q1/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=aO6sJz0ss7cLm8Kei6an2LEQl/kyo6eYih60LLTau04=;
-        b=FM0Pjn2yus97HfVv5WgfTWN1MokaZTy5Z2za0Z2HEUli43/s+OZmFN/4WXdr0JYO9/
-         NT9+kp52eR7BxToxuq7ogQvIlLww+Zr+FFZbHeMfFoZWAuwokuzOIGKXUt21ZsaOCjKe
-         WBB0COOG4lBKP3cOovomHR2vQDYefHhCjyOUz8JenNdoeq/4+0cDhJVYgHRl5nvKchBa
-         9wIWtJ9Zz/SRjreNU1divH6idPm4+soh7mZRyu76pNkJjTMfINnDUIV0fcZVN5YW193u
-         oA9SZNHuLafv0m+L8SiK4PDqPKJE2YzaOVHxyaC+WUNdaemuu1utyT9ySTB03detQ3bQ
-         yK3w==
-X-Gm-Message-State: AOAM532NhlwzGEuUQRkB0qIb2Oo0n1UUEA6UxlWZRG65feOQhtudraNJ
-        OH5fWLLDL6or+hhWpkP3/XplF9p7NNOk4yILGHo=
-X-Google-Smtp-Source: ABdhPJz5EvCtf+X4+VezWag1zg++muBrh/Cylx6eZh1mQ5Toq+oMJl/Ufaiey4UcZN5FmjEcNULbELzoVfWGkRKg72Q=
-X-Received: by 2002:aca:d681:: with SMTP id n123mr3891335oig.82.1594906714833;
- Thu, 16 Jul 2020 06:38:34 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DisuJGOhTsqZLSRTciJy2DTkS0uWS+KfhdVsbvwNxkE=;
+        b=tjQFwsBGAMm5qTiEMm2cKJUqM961Fc02d7dL2D41ivllHoOcLPEG0ViJfuBbo6HUE8
+         7Y9AqYfvkvRp055J86p+iqNFm/+iJT9pJKcLqH0UB+9jfBtz00/d6kStpNIvgQx1ilWK
+         qaqAXcPelez+SQ0DmhISUhm3hHb7VSUDF9k/CUSdiuYKkXQMu5m3T36vi80p4NUKC/Jb
+         DxfAc3U71jG/IOBtFb0YJrNNTDDuhLq6C1Hi0dizUmEY+UAwcHfCcEeV/uaJztQOK1Hg
+         Z2RzwEk8cEIZBv++3UxIkT2F5GfiLqHgLn7QFHG8B3FqAdbQyAL4OpT2uDiUTAks5QhY
+         Qbhw==
+X-Gm-Message-State: AOAM531J7+V61yZt37+nSlqb8Qen+QrLa2tZC1MPCQ5hl+eum1pgyzhL
+        +l6zuSuzQU8knIZKt6xst0vIeoWYeRcnV5GKIF2KtA==
+X-Google-Smtp-Source: ABdhPJx1ef0CZ/3q2wngXBad0JwjLf4fGb8uc5oFMLSEFTqnUhW8aBck8YeJovmK7bjTdr3XajgcAFBpOPdaVGn6bxs=
+X-Received: by 2002:a19:70d:: with SMTP id 13mr2060201lfh.194.1594906729036;
+ Thu, 16 Jul 2020 06:38:49 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a4a:614f:0:0:0:0:0 with HTTP; Thu, 16 Jul 2020 06:38:34
- -0700 (PDT)
-Reply-To: jinghualiuyang@gmail.com
-From:   Frau JINGHUA Liu Yang <oncesmart3@gmail.com>
-Date:   Thu, 16 Jul 2020 15:38:34 +0200
-Message-ID: <CAOSmJitCdjjiXuH2-ALh1+uO_ZhSNgR2uY=Ej+46Yoj-gSk9FQ@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
+References: <01afcac0-bd34-3fd0-b991-a8b40d4b4561@enneenne.com>
+ <CACRpkdbX9T9EuN-nxkMPC=sN74PEdoLuWurNLdGCzZJwwFrdpQ@mail.gmail.com>
+ <1c4f1a83-835a-9317-3647-b55f6f39c0ba@enneenne.com> <CACRpkdZPjJSryJc+RtYjRN=X7xKMcao5pYek1fUM2+sE9xgdFQ@mail.gmail.com>
+ <CAMuHMdUtguuu4FWU4nRS=pBUyEwKM1JZ8DYPdCQHXBYN0i_Frg@mail.gmail.com>
+ <87efe96c-3679-14d5-4d79-569b6c047b00@enneenne.com> <CAMuHMdUght0hkJT1N8ub5xR5GB+U18MAhAg+zDmAAuxoRSRaYg@mail.gmail.com>
+ <d30e64c9-ad7f-7cd5-51a4-3f37d6f1e3d8@enneenne.com> <070fa558-6e20-0fbf-d3e4-0a0eca4fe82c@enneenne.com>
+ <CACRpkdYFAW2bcB53M3_b2LsveJO_PWZJhprGhdTtfmW11B1WmQ@mail.gmail.com>
+ <f66dc9c4-b164-c934-72a8-d4aca063fca5@enneenne.com> <CACRpkdbjc6vvpHVjnJNGisRw6LiLZd-95aHWJJORwvaRNigPcw@mail.gmail.com>
+ <cb6e208b-446e-eba4-b324-d88aec94a69b@enneenne.com>
+In-Reply-To: <cb6e208b-446e-eba4-b324-d88aec94a69b@enneenne.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 16 Jul 2020 15:38:38 +0200
+Message-ID: <CACRpkdZBUw5UPyZB-aeVwh8-GiCifbwABZ9mOsyK90t3cdMQ+w@mail.gmail.com>
+Subject: Re: [RFC v2 GPIO lines [was: GPIO User I/O]
+To:     Rodolfo Giometti <giometti@enneenne.com>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=20
-Guten Morgen,
+On Tue, Jul 14, 2020 at 4:01 PM Rodolfo Giometti <giometti@enneenne.com> wrote:
 
-          Ich bin Frau JINGHUA Liu Yang f=C3=BCr die Mitarbeiter der
-CITIBANK KOREA hier in der Republik Korea. Kann ich $9.356.669 USD
-=C3=BCberweisen? Vertrauen?
+> I see... however attached is a new version of my proposal patch
 
-Mit freundlichen Gr=C3=BC=C3=9Fen
+I looked a bit at this!
+
+IIUC the idea is a "new" sysfs interface that does not require the exporting
+etc used by the current "old" sysfs interface. Instead of poking around in
+sysfs to export lines we do that from the device tree.
+
+It also does not use any global GPIO numbers which would be my other
+main concern.
+
+I must admit that it has some elegance to it. Especially when it comes
+to scripting.
+
+The problem I see is that lines are left in whatever state they were in
+if a script crashes, so there is no "return to the initial value" that was
+there when the GPIOs were picked from the device tree. This makes
+this a bit fragile.
+
+Also users regularly need to listen to events. This interface can and
+should never support that, for this one must use the character device,
+which will of course not work in parallel with using this sysfs ABI.
+And the day someone wants that we simply have to say no. There
+is no way to hold states for event handling in a stateless ABI.
+
+Well of course they can poll for a line to change, but that is not
+proper event handling that reacts to an interrupt.
+
+So while this is much more elegant the old sysfs ABI, and certainly
+better for scripting, it still suffers from some conflicts with
+the character device, and there is a risk to make users dissatisfied
+when they want to e.g. script event handlers.
+
+What are your thoughts on this?
+
+Yours,
+Linus Walleij
