@@ -2,140 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53C1C222EBD
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 01:10:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F34A222E97
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 01:09:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728156AbgGPXKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jul 2020 19:10:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43416 "EHLO
+        id S1727834AbgGPXI7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jul 2020 19:08:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727946AbgGPXJU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 19:09:20 -0400
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D293C08C5E3;
-        Thu, 16 Jul 2020 15:38:26 -0700 (PDT)
-Received: by mail-ej1-x644.google.com with SMTP id br7so8462405ejb.5;
-        Thu, 16 Jul 2020 15:38:26 -0700 (PDT)
+        with ESMTP id S1727815AbgGPXI6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 19:08:58 -0400
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F4EAC08C5FB;
+        Thu, 16 Jul 2020 16:01:32 -0700 (PDT)
+Received: by mail-lf1-x144.google.com with SMTP id b30so2602072lfj.12;
+        Thu, 16 Jul 2020 16:01:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=LmdF87AgMThrWVMnKDsPrAO+JtBMhojr7BAJuj4Mos4=;
-        b=B/RPdWvQDiakdK6Rsjt4FftXkqJwuPOHipdMdoDczJI6xEo/Yf0yPur7/sRo32E+zw
-         BkU4vwctVyFhUWohOj+WYAxWNzSRRfqR5QSJph4gN7VeSFffiVQBEtdDkfyeOS1Ih598
-         QlfGI/HQ/sEpLLQxJMJgQMB0fZlH1OCEL0bTCK0QDQfTgTzCKMr2YmzF+PAdWY8hyeJq
-         qHA5FbWo2GZFjSeQE3eZMYMB09MYnMxWhDPk2Qdc4RMIffPBYQ+QNIXUdf3w4r2xkRHR
-         lLuhgsC7e8e13TLM+t3cPhqU4Ci2T/HhWMoX29cyKkFSZPdy2D9F4rD5PP6vuduiuHn8
-         ECxQ==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=vRmrcXdGKYCulhx5JF7bmSsDjAzR+R6023P6GBnsjfQ=;
+        b=E56txzafzppMuffM1Gu5Z9yBTjbmyAv5+/F6FiMiUIVnnW2zq6c88cHxzrhnkrr6ow
+         gFVX2XlNz6/TNOI0paMw6OLATpLw48J/F2WQDK1u+lH+xK43cuSZeOiSLTc066vdBHUz
+         OR6NLSsip/EVOU+KKyVbfJlO1ObKA/e0PFM+hDzTYp7ibJ2r+L2dxpCeXcF+Fb0oGhV0
+         PQGskd1r2k/w9LTpmAy7RhVwrgx7IRoosJQuDzaQWfHwj+Ggw0OxvtXC8Q6DNuBPTTWU
+         37z0yMiIoUrbD4OM5k9f//XXEbpc3NFfsWMaxH6ejpdxx3WSoyEX0YvoM8Pw5agBQx2B
+         tLOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LmdF87AgMThrWVMnKDsPrAO+JtBMhojr7BAJuj4Mos4=;
-        b=iI48WuQw9+ekELFUV1EpJ/TeM4UeiLhSkgQIKM+EmYVhdVcQ0svserVwJQVX+6sqrx
-         zcpO+Qp23Zv0PI2vp6kZQDMJsIUHnApiPlkg9vInIAhBe4GTe8ItadvASCLvilqJFPI1
-         F9DCWqs9vK+Q5yiIzNCWIb2MBheZyjz/DrXMKqpdRx7YVxKSk6J9Ln1W4QNFDwkcZj+Z
-         nwmKG9S1JhxqA2ajuoRmkDiy6zcwiudER12L6W/7ttpXWnZbf/2yVesu607aocO5pq/1
-         vkkCVM+dpweo79MWM+qPD32e3blpm2cvj6XpU3L7o4/uq2fm81CZwp3cb+nrtwzG50ln
-         fl2Q==
-X-Gm-Message-State: AOAM5322Vo4dn12nrB9aE4sEc2EpsD3s9TFK/IyX+eq6vPrKTb0+7a96
-        k8FukaKNzKPNaUdlrzJhAdU=
-X-Google-Smtp-Source: ABdhPJzapfHHGhirfMsPtF3vhw+bi57Qr2t0qUC2pIbXuSMdeTeBYSATfLh5F/krFsl8XJs1du6ucg==
-X-Received: by 2002:a17:906:82d2:: with SMTP id a18mr5751822ejy.522.1594939105148;
-        Thu, 16 Jul 2020 15:38:25 -0700 (PDT)
-Received: from skbuf ([188.25.219.134])
-        by smtp.gmail.com with ESMTPSA id bm21sm6077578ejb.13.2020.07.16.15.38.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jul 2020 15:38:24 -0700 (PDT)
-Date:   Fri, 17 Jul 2020 01:38:22 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     Matthew Hagan <mnhagan88@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>, linux@armlinux.org.uk,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        John Crispin <john@phrozen.org>,
-        Jonathan McDowell <noodles@earth.li>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: net: dsa: qca8k: Add PORT0_PAD_CTRL
- properties
-Message-ID: <20200716223822.yptldqqn36fbp2i7@skbuf>
-References: <2e1776f997441792a44cd35a16f1e69f848816ce.1594668793.git.mnhagan88@gmail.com>
- <ea0a35ed686e6dace77e25cb70a8f39fdd1ea8ad.1594668793.git.mnhagan88@gmail.com>
- <20200716150925.0f3e01b8@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=vRmrcXdGKYCulhx5JF7bmSsDjAzR+R6023P6GBnsjfQ=;
+        b=WTbuXDY4BY/Yf5GsU2tbCHAc2o0EzB5ohTgGHKqBKlhgaIo36Ohu2rVuoYpOclNuH1
+         UEewVMXll+EASduvUfCTsMjq4KH9jfAhW3epq/z7+bD5nYCWzAs5I6LMEGSX6WoTsEV1
+         j8E4B8KMeYBhI19tFAsxc/LO/ua7VxQyGLuX/gF3bW95w/6cVDq7F/p4ggCgX7qFv6Ro
+         0zkzCDUiyS4tShe68eDvtzk1gJMA9p4gdYTKLzjbOXYDqQJNMi4xBFWIdTYIUI5wvyBG
+         +UheD2MKu2CH3mn/5qo9g27zYiT9ZKwUdhYPd3SrFDxGAor6FHR0bqUBRHVJBtNe4dWT
+         xdFA==
+X-Gm-Message-State: AOAM531l+NewWf9wFg1zmseHU6KTZrdx3CKDtSEtj1NM2jGzTMAWyy71
+        7/7CxuI25a1tHTAJEd6jPzTgQMNr
+X-Google-Smtp-Source: ABdhPJxdHQgI4Iks82B0kVrmWJ74aaaj+x50J9DUOutD6acHfl6haGzwy4wP4QYnc1V6e6cfZgIn3w==
+X-Received: by 2002:a05:6512:250:: with SMTP id b16mr3118639lfo.67.1594940490262;
+        Thu, 16 Jul 2020 16:01:30 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-76-4-184.pppoe.mtu-net.ru. [91.76.4.184])
+        by smtp.googlemail.com with ESMTPSA id w4sm1315624ljw.16.2020.07.16.16.01.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Jul 2020 16:01:29 -0700 (PDT)
+Subject: Re: [RFC PATCH v3 16/18] gpu: host1x: mipi: Split
+ tegra_mipi_calibrate and tegra_mipi_wait
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, frankc@nvidia.com,
+        hverkuil@xs4all.nl, sakari.ailus@iki.fi, robh+dt@kernel.org,
+        helen.koike@collabora.com
+Cc:     sboyd@kernel.org, gregkh@linuxfoundation.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org
+References: <1594786855-26506-1-git-send-email-skomatineni@nvidia.com>
+ <1594786855-26506-17-git-send-email-skomatineni@nvidia.com>
+ <a06dec8f-7042-767b-545b-048685a7683d@gmail.com>
+ <20d63eca-4b2b-584e-a391-a4fb64a16b40@nvidia.com>
+ <c4945c77-5de1-e9b1-9f4f-cdd78bca18c7@gmail.com>
+ <ce0c5ffb-f859-0eab-1ea5-044623dff221@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <a2b8169c-c4a3-4862-cd27-8c1a51ddc558@gmail.com>
+Date:   Fri, 17 Jul 2020 02:01:28 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200716150925.0f3e01b8@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <ce0c5ffb-f859-0eab-1ea5-044623dff221@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 16, 2020 at 03:09:25PM -0700, Jakub Kicinski wrote:
-> On Mon, 13 Jul 2020 21:50:26 +0100 Matthew Hagan wrote:
-> > Add names and decriptions of additional PORT0_PAD_CTRL properties.
-> > 
-> > Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/net/dsa/qca8k.txt | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.txt b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-> > index ccbc6d89325d..3d34c4f2e891 100644
-> > --- a/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-> > +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-> > @@ -13,6 +13,14 @@ Optional properties:
-> >  
-> >  - reset-gpios: GPIO to be used to reset the whole device
-> >  
-> > +Optional MAC configuration properties:
-> > +
-> > +- qca,exchange-mac0-mac6:	If present, internally swaps MAC0 and MAC6.
+17.07.2020 01:49, Sowjanya Komatineni пишет:
+>> What keeps MIPI clock enabled after completion of the
+>> tegra_mipi_calibrate() invocation?
 > 
-> Perhaps we can say a little more here?
+> MIPI clock is disabled at end of tegra_mipi_calibrate and is re-enabled
+> during tegra_mipi_wait.
 > 
-> > +- qca,sgmii-rxclk-falling-edge:	If present, sets receive clock phase to
-> > +				falling edge.
-> > +- qca,sgmii-txclk-falling-edge:	If present, sets transmit clock phase to
-> > +				falling edge.
+> I think I should fix this to keep the clock enabled till calibration
+> results are latched.
 > 
-> These are not something that other vendors may implement and therefore
-> something we may want to make generic? Andrew?
+> All consumers of tegra_mipi_calibrate() will call tegra_mipi_wait().
 > 
+> So will remove clk_disable mipi clk at end of tegra_mipi_calibrate() and
+> clk_enable mipi_clk at beginning of tegra_mipi_wait()
 
-It was asked before whether this device uses source-synchronous clock
-for SGMII or if it recovers the clock from the data stream. Just "pass"
-was given for a response.
-
-https://patchwork.ozlabs.org/project/netdev/patch/8ddd76e484e1bedd12c87ea0810826b60e004a65.1591380105.git.noodles@earth.li/
-
-One can, in principle, tell easily by examining schematics. If the SGMII
-is only connected via RX_P, RX_N, TX_P, TX_N (and optionally there might
-be external reference clocks for the SERDES lanes, but these are not
-part of the data connection itself), then the clock is recovered from
-the serial data stream, and we have no idea what "SGMII delays" are.
-
-If the schematic shows 2 extra clock signals, one in each transmit
-direction, then this is, in Russell King's words, "a new world of RGMII
-delay pain but for SGMII". In principle I would fully expect clock skews
-to be necessary for any high-speed protocol with source-synchronous
-clocking. The problem, really, is that we aren't ready to deal with this
-properly. We aren't distinguishing "SGMII with clock" from "SGMII
-without clock" in any way. We have no idea who else is using such a
-thing. Depending on the magnitude of this new world, it may be wise to
-let these bindings go in as-is, or do something more kernel-wide...
-
-One simple question to ask Matthew is what are you connecting to these
-SGMII lanes, and if you need any special configuration on the other end
-of those lanes too (and what is the configuration you are using on the
-qca8k: enable the "SGMII delays" in both directions?).
-
-> >  Subnodes:
-> >  
-> >  The integrated switch subnode should be specified according to the binding
-> 
-
-Thanks,
--Vladimir
+Isn't it possible to perform the calibration after enabling CSI and
+before of starting the sensor streaming?
