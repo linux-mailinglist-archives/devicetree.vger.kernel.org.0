@@ -2,81 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EE35222ED0
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 01:14:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFFF1222EC0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 01:10:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726893AbgGPXNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jul 2020 19:13:00 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:39766 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726113AbgGPXNA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jul 2020 19:13:00 -0400
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1jwCQe-005W6C-L1; Fri, 17 Jul 2020 00:32:36 +0200
-Date:   Fri, 17 Jul 2020 00:32:36 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     Matthew Hagan <mnhagan88@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>, linux@armlinux.org.uk,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        John Crispin <john@phrozen.org>,
-        Jonathan McDowell <noodles@earth.li>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: net: dsa: qca8k: Add PORT0_PAD_CTRL
- properties
-Message-ID: <20200716223236.GA1314837@lunn.ch>
-References: <2e1776f997441792a44cd35a16f1e69f848816ce.1594668793.git.mnhagan88@gmail.com>
- <ea0a35ed686e6dace77e25cb70a8f39fdd1ea8ad.1594668793.git.mnhagan88@gmail.com>
- <20200716150925.0f3e01b8@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+        id S1728172AbgGPXKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jul 2020 19:10:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43414 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727943AbgGPXJU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 19:09:20 -0400
+Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com [IPv6:2607:f8b0:4864:20::e44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDE7AC08C5E2
+        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 15:38:08 -0700 (PDT)
+Received: by mail-vs1-xe44.google.com with SMTP id e15so3870540vsc.7
+        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 15:38:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=APhlPP59dTHfjeAK3JyZRtdowaZApacEHqoZMv3vuLo=;
+        b=lATawDG4pouGQZJSAvvkfunyTMl2IZ73PwYyG84GujpcBQnK6fr5WmNKFfOvC2b00Y
+         y0FdmXe4rqtNjweViO0egIcCxyXAX5I3pO8ZsDeUzdVtx3QXDWPix9RMjhNYMwSON64A
+         pG4aPJQ70gr5paOUAsbuqgtz69ax08jsU86UQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=APhlPP59dTHfjeAK3JyZRtdowaZApacEHqoZMv3vuLo=;
+        b=Qn+ZoFdp9JhiDlPgN+M30Bom+EGZ4+OH3ZZRPMUsGyG3eh0v0zO49QRLLG01qb3+tZ
+         rWGHI/YTR8jISt81fMhdUwyN93IXcQsB0+EFRO8/1A79+7m3Mrr/KM29/onu24xjnH3E
+         GjXKa/hxkD7IxgepC18kNNnO1+ECmXB9nxEauebkkE0UKsGwBjVn7Eay8ToXrJlfYgc3
+         RTvPgGw/jlPE2G5gWDlVxRYVSGXdFyEpdgm/EFV9OCQ3UFZQtfNVynN75whcowxX3Jze
+         sDlvfqP0eRD8iBeYs/4cPXBK+xdCtbHqHlxCzo+wcGWXilgk5PNPabYOlGOlWql4Y7yY
+         Hc7A==
+X-Gm-Message-State: AOAM530N+CIYuFhSxsbNrUmAMHCnqo/jVWwXOVAJv+jdTjfpIb74a0vc
+        echU8zRN6H6WN9YBfeLPAMSlU1OsDPM=
+X-Google-Smtp-Source: ABdhPJyT93iX+Uu6hGZm/e0Xajzyq8Qz85jMijMtphPS9znlCByu9VL83Pi0RIlZbFMXlSEdqT7U1A==
+X-Received: by 2002:a67:2c45:: with SMTP id s66mr4879557vss.49.1594939087482;
+        Thu, 16 Jul 2020 15:38:07 -0700 (PDT)
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
+        by smtp.gmail.com with ESMTPSA id r18sm928324vkf.49.2020.07.16.15.38.05
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Jul 2020 15:38:06 -0700 (PDT)
+Received: by mail-ua1-f44.google.com with SMTP id b24so2293514uak.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 15:38:05 -0700 (PDT)
+X-Received: by 2002:a9f:3dc6:: with SMTP id e6mr5569576uaj.104.1594939085525;
+ Thu, 16 Jul 2020 15:38:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200716150925.0f3e01b8@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+References: <20200716191746.23196-1-sibis@codeaurora.org>
+In-Reply-To: <20200716191746.23196-1-sibis@codeaurora.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 16 Jul 2020 15:37:54 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XgTvC2Xjw-pVcmS0vooYeGt_BthsWmhBZ4_8u-oJwkbg@mail.gmail.com>
+Message-ID: <CAD=FV=XgTvC2Xjw-pVcmS0vooYeGt_BthsWmhBZ4_8u-oJwkbg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Move the fixed-perm property to
+ SoC dtsi
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Rakesh Pillai <pillair@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 16, 2020 at 03:09:25PM -0700, Jakub Kicinski wrote:
-> On Mon, 13 Jul 2020 21:50:26 +0100 Matthew Hagan wrote:
-> > Add names and decriptions of additional PORT0_PAD_CTRL properties.
-> > 
-> > Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/net/dsa/qca8k.txt | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.txt b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-> > index ccbc6d89325d..3d34c4f2e891 100644
-> > --- a/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-> > +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-> > @@ -13,6 +13,14 @@ Optional properties:
-> >  
-> >  - reset-gpios: GPIO to be used to reset the whole device
-> >  
-> > +Optional MAC configuration properties:
-> > +
-> > +- qca,exchange-mac0-mac6:	If present, internally swaps MAC0 and MAC6.
-> 
-> Perhaps we can say a little more here?
-> 
-> > +- qca,sgmii-rxclk-falling-edge:	If present, sets receive clock phase to
-> > +				falling edge.
-> > +- qca,sgmii-txclk-falling-edge:	If present, sets transmit clock phase to
-> > +				falling edge.
-> 
-> These are not something that other vendors may implement and therefore
-> something we may want to make generic? Andrew?
+Hi,
 
-I've never seen any other vendor implement this. Which to me makes me
-think this is a vendor extension, to Ciscos vendor extension of
-1000BaseX.
+On Thu, Jul 16, 2020 at 12:18 PM Sibi Sankar <sibis@codeaurora.org> wrote:
+>
+> All the platforms using SC7180 SoC are expected to have the wlan firmware
+> memory statically mapped by the Trusted Firmware. Hence move back the
+> qcom,msa-fixed-perm property to the SoC dtsi.
+>
+> Fixes: 7d484566087c0 ("arm64: dts: qcom: sc7180: Add missing properties for Wifi node")
+> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180-idp.dts | 1 -
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi    | 1 +
+>  2 files changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+> index 860fc4658b8b1..26cc4913d3ddc 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+> @@ -392,7 +392,6 @@ video-firmware {
+>
+>  &wifi {
+>         status = "okay";
+> -       qcom,msa-fixed-perm;
+>         vdd-0.8-cx-mx-supply = <&vreg_l9a_0p6>;
+>         vdd-1.8-xo-supply = <&vreg_l1c_1p8>;
+>         vdd-1.3-rfa-supply = <&vreg_l2c_1p3>;
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index 126e2fce26c1a..a91d3f074625e 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -3233,6 +3233,7 @@ wifi: wifi@18800000 {
+>                                 <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH /* CE10 */>,
+>                                 <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH /* CE11 */>;
+>                         memory-region = <&wlan_mem>;
+> +                       qcom,msa-fixed-perm;
 
-Matthew, do you have a real use cases of these? I don't see a DT patch
-making use of them. And if you do, what is the PHY on the other end
-which also allows you to invert the clocks?
+Seems good to me.  If someone ever comes up with a firmware where it's
+sane to not have this property, we can either delete the property from
+those boards or migrate the property to the the existing board dts
+files.
 
-       Andrew
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
