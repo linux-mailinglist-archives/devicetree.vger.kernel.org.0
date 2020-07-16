@@ -2,91 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9227A222BD7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 21:24:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E149E222C00
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 21:32:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729136AbgGPTYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jul 2020 15:24:55 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:36500 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728788AbgGPTYz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 15:24:55 -0400
-Received: by mail-io1-f65.google.com with SMTP id y2so7263781ioy.3;
-        Thu, 16 Jul 2020 12:24:54 -0700 (PDT)
+        id S1729048AbgGPTcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jul 2020 15:32:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38104 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729376AbgGPTcY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 15:32:24 -0400
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C684CC061755;
+        Thu, 16 Jul 2020 12:32:23 -0700 (PDT)
+Received: by mail-ed1-x543.google.com with SMTP id g20so5621199edm.4;
+        Thu, 16 Jul 2020 12:32:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Er29iuItgybp037jv9kMz4TXZ3T9JN/1wmnIzHGCcJY=;
+        b=qhkyJ6FK0Xl4wfWxID9ZGqoG1uEOS27tzc2LQi40P5VfNsimjcF09y75b1Ue5NBVEP
+         rt2u26m+Lm9cGs9krQqAp2wY4zOxZXI9HapMaEERG4uBzEGAtncO3lmJEEubNJu4Y3yH
+         naSlufnOgutcP61Y9bZsB6RFX6D3ukm2jnRc9Gi5IAgiFqO+PVWlYIEt/8+KM9NMyKVb
+         6jrpw79OHfoxmiQ6N45bzqavSzThUkUV0owpZ74fIvPkvrnrlItx2rzkHhJZWjdBx7LD
+         qYYMsQUJyW5CtCQnuNKSot0ya0XuxlLHQzDAiNHxdBDXBnbfbszGfYkVpBcUIvXFqlIk
+         JBmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=fqIIt2FaEzVEayUbwq9mftLIMcW2zYTtnZ5OVri9Dh0=;
-        b=g6cwOhoL8WXzP9LMbsXVCDKNbTaO1x6Zz8fwt2aQ13Tc4S1SZNufJRWiZXos9GNB0j
-         qQa/yfmX8vLyacvZjV7qvWAAtb72CJ0MEmxtgIURjLrO44VLpJEUo2nvYhAGpGO92tLG
-         xJhMbIGtsSWODQG/sQa5rID8BAnlrtY7N8YLvo3C0hJwvwAdisVylvuRMsMeUXm2DeDD
-         FdwyS534DFCsToK+mlZIVd2pTVNJQ/13PXA0LzJOh+iWWQkg6phVQJsztsNM93dROJNx
-         yE+iODSSdC1Xs1YhEXqey76rIdzDiw7z/lrkdvOrAv1sGjpy5sUXgd7xitD1WnP14rq5
-         WXbg==
-X-Gm-Message-State: AOAM532anIEsgGaBA632PTHlX0vdfuVrB4zR2bfSxrXFXGCo+rZ3pYZ9
-        5xwovAb0sQ44XQsYHW8XjQ==
-X-Google-Smtp-Source: ABdhPJx3vjYXOYDEqcmC6qufmiQ19b+sBDpjjIfctsp1sTzarUVj/7pFcLH5uwwo3iYmhB30ZbjW7w==
-X-Received: by 2002:a02:b81a:: with SMTP id o26mr6534437jam.41.1594927494418;
-        Thu, 16 Jul 2020 12:24:54 -0700 (PDT)
-Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id a11sm3342231iow.26.2020.07.16.12.24.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jul 2020 12:24:53 -0700 (PDT)
-Received: (nullmailer pid 2701471 invoked by uid 1000);
-        Thu, 16 Jul 2020 19:24:52 -0000
-Date:   Thu, 16 Jul 2020 13:24:52 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Philippe Schenker <philippe.schenker@toradex.com>
-Cc:     devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: usb: ci-hdrc-usb2: add property
- disable-runtime-pm
-Message-ID: <20200716192452.GA2699629@bogus>
-References: <20200714151822.250783-1-philippe.schenker@toradex.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Er29iuItgybp037jv9kMz4TXZ3T9JN/1wmnIzHGCcJY=;
+        b=k86y7vJSm/IL0YYi6zWn5XejN7EM69FLQRU+8GhjSBSM60rJ4JwO0DNQDaiG8SHp8O
+         0pQ424Sf9y5f9TYfJ4Q/zDSAT6YvWndnHETyUaQpMa6BP9WJKbYBp0ncIaExbtFSGVYy
+         wvX3Zouwkptc0rg0KC4YjkW28Fp4E3IpPPAFMx5H9TOxWbFp9/Cy9mW9EnNMJd+PM0s3
+         9Tzn2ONpqhAEIiF5eVl4fDE8Dq/7Ke+VkpYPkxBlAY5AIS5NW2tUahJBHDnJLUt/KaHw
+         XhDslodD5bQvK9eymTEbaxZY6syMVytBocpN1cJyWHaJQsYNg37Evon6hC7jJhQbRQvg
+         dMZw==
+X-Gm-Message-State: AOAM533jq3PcUtH6ENm7GdjvKpeqxuRFZ81SR4hhvmGXrlg2j0NMYjhU
+        481RrWFxL8bju7HqohnHaz4I6U0HEyGspkLzybA=
+X-Google-Smtp-Source: ABdhPJyQeQgkp5aENNOH3sMYdibgQSrdgRTanWuqo6EmsTYow4zD5OiS0EvIETdAm+f0iA6LxJBG84ybjiFQA21OjEg=
+X-Received: by 2002:a05:6402:17f6:: with SMTP id t22mr6089512edy.141.1594927942421;
+ Thu, 16 Jul 2020 12:32:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200714151822.250783-1-philippe.schenker@toradex.com>
+References: <20200716172611.5349-1-bruno.thomsen@gmail.com>
+ <20200716172611.5349-2-bruno.thomsen@gmail.com> <CAOMZO5B7cJmF4e78xbErzBHfMw4MuF09eXti4xAUFcKOGKXqNw@mail.gmail.com>
+In-Reply-To: <CAOMZO5B7cJmF4e78xbErzBHfMw4MuF09eXti4xAUFcKOGKXqNw@mail.gmail.com>
+From:   Bruno Thomsen <bruno.thomsen@gmail.com>
+Date:   Thu, 16 Jul 2020 21:32:06 +0200
+Message-ID: <CAH+2xPCa2GNgtJ_5hr3dcaXzA+EB4JLfCsqDJQQY4pbxuw-4JQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] ARM: dts: imx7: add support for kamstrup flex concentrator
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Bruno Thomsen <bth@kamstrup.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 14, 2020 at 05:18:20PM +0200, Philippe Schenker wrote:
-> Chipidea depends on some hardware signals to be there in order
-> for runtime-pm to work well. Add the possibility to disable runtime
-> power management that is necessary for certain boards.
+Hi Fabio,
 
-This is why we have SoC specific compatible strings. Use that.
+Den tor. 16. jul. 2020 kl. 20.01 skrev Fabio Estevam <festevam@gmail.com>:
+> On Thu, Jul 16, 2020 at 2:26 PM Bruno Thomsen <bruno.thomsen@gmail.com> wrote:
+>
+> > Limitations: Ethernet PHY type auto detection does not
+> > work when using reset-{assert-us,deassert-us,gpios}
+> > properties so it's using a fixed PHY type ID for now. Auto
+> > detection worked when using the deprecated FEC properties
+> > phy-reset-{gpios,duration,post-delay}.
+>
+> I think we need to understand this better. Why does it fail?
 
-> 
-> Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
-> ---
-> 
-> Changes in v2: None
-> 
->  Documentation/devicetree/bindings/usb/ci-hdrc-usb2.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.txt b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.txt
-> index 51376cbe5f3d..67a31df13e69 100644
-> --- a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.txt
-> +++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.txt
-> @@ -90,6 +90,7 @@ Optional properties:
->    case, the "idle" state needs to pull down the data and strobe pin
->    and the "active" state needs to pull up the strobe pin.
->  - pinctrl-n: alternate pin modes
-> +- disable-runtime-pm: This disables the runtime power management.
+Yes, we need to locate the root cause.
 
-This is a Linux feature, not h/w description or config.
+> I gave a test on an imx6q-sabresd and the Ethernet PHY (AR8031) could
+> be properly detected using reset-{assert-us,deassert-us,gpios}
+> properties inside the mdio node.
 
->  
->  i.mx specific properties
->  - fsl,usbmisc: phandler of non-core register device, with one
-> -- 
-> 2.27.0
-> 
+Okay, thanks.
+
+> Is this a Micrel KSZ8081 specific issue?
+
+Maybe, I'm actually beginning to suspect that the issue might be related
+to polling vs interrupt mode. As all partially related examples I have seen
+uses interrupt mode and I have only configured poll mode. But the hardware
+does have the interrupt signal connected to the imx7.
+
+> Please report this issue to the Ethernet PHY folks.
+
+I'm going to send an Ethernet PHY mail tomorrow with the details I know
+at the moment. Just wanted to get an updated version of the device tree
+out in case of any other issues not related to the PHY part.
+
+/Bruno
