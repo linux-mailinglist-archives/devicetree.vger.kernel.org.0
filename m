@@ -2,83 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 944D1221EDA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 10:47:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89F63221F1F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 10:57:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726332AbgGPIrn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jul 2020 04:47:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51164 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727096AbgGPIrm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 04:47:42 -0400
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CB5DC08C5CE
-        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 01:47:42 -0700 (PDT)
-Received: by mail-lj1-x243.google.com with SMTP id z24so6202189ljn.8
-        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 01:47:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=92XopjWnoleG4glqsG4BU2p6Ba/zWqLgWpalogX+TCM=;
-        b=vGgDGorzuOsneFcC3GpsD5YykNaUbLa2RmqVO839gEwfNOPrEWsw+JY2IAm6dSaLr7
-         k3vylz47FrnNst/TJjyPiMQb1a9+kOmPpO14osAdLWkhcir/GAA4jdHXBlODomeo9DG7
-         N7uN7ZsIsNVu3WtprIIdogMfWtMT6kR121fIeI8aY61Mgy3HW9FDwg48e/LmA+JEbSQW
-         ZDujGl2IaFZl2dkLaTotWiouiUsrQTPvDH9zriM2NtdlBkuazB/5SXFRcQJ/catxZEfi
-         j0VcnZBGwQXaRQFJA86ZN6hcssSICMTrrFR8sV9GOH+Z2yotj3brmFvCn+0YDgXp3XZU
-         2BMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=92XopjWnoleG4glqsG4BU2p6Ba/zWqLgWpalogX+TCM=;
-        b=bqfHXt6R1Y5BcubQ2xh1XtCS6g20ZohAvjX4EGJ7Q5/P5z6Gh/k25wI7+TFl4SvL6b
-         FoMYCV5pMR+N8XkFWShnk1WLIF/cvQutoABKiTSvbfMFva/v+bU6VqpHvtrf+GDE1v2y
-         gr/3IhER8ULTFuabhFu8MivNLYEKXiF/euns93Q/Z/ytU7xq5yCoZuEdmm7ro/xOA0gY
-         s8S5YB39U2kpLCl5x3iI/Dyx46dT1oOCgPP7qSWyi/NhAUWb1Ahm07g4TdLHB05ZLhHJ
-         ODZD7dukB5yhaK/yCXso5zuE4tA8U6Y8929VxzCjIpeVaqwM82HVT/CSWvRl+dwhXU+E
-         mt4w==
-X-Gm-Message-State: AOAM533Cf2QQHMssUv4Zedbf5lVZ3tCzMeC0TOcXygmIJDaKQoPh5xRy
-        aQzUlMmOFENgLva+0cKlAjw61CapLp0qc6FR406TIg==
-X-Google-Smtp-Source: ABdhPJy82hgoliVm6eopFXRyK6GD8v0CzkbH74FPpFZaLSVg+5+aHAZq1hO5uiZU7LO2CprZctMqX0Xm68KIEVQ/u6I=
-X-Received: by 2002:a2e:9a4d:: with SMTP id k13mr1558882ljj.283.1594889260812;
- Thu, 16 Jul 2020 01:47:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200703080646.23233-1-computersforpeace@gmail.com>
-In-Reply-To: <20200703080646.23233-1-computersforpeace@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 16 Jul 2020 10:47:30 +0200
-Message-ID: <CACRpkdar+aBBFn6SKJ1a90D-NT3F6qGvouzjt-jxaiR0VSuUOg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] pinctrl: qcom: ipq4019: add open drain support
-To:     Brian Norris <computersforpeace@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.or>,
-        Andy Gross <agross@kernel.org>,
+        id S1725897AbgGPI5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jul 2020 04:57:31 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:43170 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725908AbgGPI5b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 04:57:31 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: gtucker)
+        with ESMTPSA id 7143826103D
+Subject: Re: mainline/master bisection: baseline.dmesg.crit on
+ qemu_arm-vexpress-a15
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     kernelci-results@groups.io,
+        Andre Przywara <andre.przywara@arm.com>,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Jaiganesh Narayanan <njaigane@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        devicetree@vger.kernel.org, Liviu Dudau <liviu.dudau@arm.com>,
+        linux-kernel@vger.kernel.org
+References: <5f0288aa.1c69fb81.b1c2a.eea4@mx.google.com>
+ <20200706124951.GA32234@bogus>
+From:   Guillaume Tucker <guillaume.tucker@collabora.com>
+Message-ID: <b7d63093-a1a8-fbc1-6673-040d6ba8cc8d@collabora.com>
+Date:   Thu, 16 Jul 2020 09:57:27 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20200706124951.GA32234@bogus>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 3, 2020 at 10:06 AM Brian Norris
-<computersforpeace@gmail.com> wrote:
+On 06/07/2020 13:49, Sudeep Holla wrote:
+> Hi,
+> 
+> On Sun, Jul 05, 2020 at 07:12:58PM -0700, kernelci.org bot wrote:
+>> * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+>> * This automated bisection report was sent to you on the basis  *
+>> * that you may be involved with the breaking commit it has      *
+>> * found.  No manual investigation has been done to verify it,   *
+>> * and the root cause of the problem may be somewhere else.      *
+>> *                                                               *
+>> * If you do send a fix, please include this trailer:            *
+>> *   Reported-by: "kernelci.org bot" <bot@kernelci.org>          *
+>> *                                                               *
+>> * Hope this helps!                                              *
+>> * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+>>
+> 
+> Andre test and replied to one of the similar but earlier reports.
+> Unless we get some response to that, we can't proceed and we can't
+> do much other than ignoring these reports. Please respond to Andre's
+> queries.
 
-> From: Jaiganesh Narayanan <njaigane@codeaurora.org>
->
-> Signed-off-by: Jaiganesh Narayanan <njaigane@codeaurora.org>
-> [ Brian: adapted from from the Chromium OS kernel used on IPQ4019-based
->   WiFi APs. ]
-> Signed-off-by: Brian Norris <computersforpeace@gmail.com>
 
-Patch applied because this looks innocent and Rob
-ACKed the binding.
+Sorry I missed your email, the regression is still there.  I'll
+reply to André.
 
-If Bjorn opposes, I will simply pull the patch out again.
-
-Yours,
-Linus Walleij
+Guillaume
