@@ -2,123 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53A0C22299E
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 19:21:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3510F2229BB
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 19:22:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729124AbgGPRV0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jul 2020 13:21:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45758 "EHLO
+        id S1729300AbgGPRWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jul 2020 13:22:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729364AbgGPRTH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 13:19:07 -0400
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39A50C061755
-        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 10:19:07 -0700 (PDT)
-Received: by mail-pg1-x542.google.com with SMTP id m22so5143968pgv.9
-        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 10:19:07 -0700 (PDT)
+        with ESMTP id S1728807AbgGPRWQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 13:22:16 -0400
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EEA9C061755;
+        Thu, 16 Jul 2020 10:22:16 -0700 (PDT)
+Received: by mail-lf1-x144.google.com with SMTP id u12so4153749lff.2;
+        Thu, 16 Jul 2020 10:22:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=PJplWTbP//JWBP6LiwpcydCLM3kpmqRCafKXQ2sO8HM=;
-        b=gFZyKus1CsQMXkTyfQNTl5O+0k7AWFHlIkYaZ/5TREymgAeyqVUDm/gqS0BV7rcrsu
-         82GmpCSlv26mJYkIfMbStCv9Qy8zBrSoJXare02pYn4LqPE5JgZo1T7UNIT+y5MJDzkg
-         61blOixw6uZPHNnqnZo0H1+brKdZsu0on9SNMnH42bxqRCxrCX/yAR8sXJJaheYfKIBL
-         mPKSk7Ve24sR4PhSPnJEgbd1z4rD0N4+dAMVEGsd25bCGZwVb5wm2SCKJH8MPXuO4LcS
-         7Y8N+rkP9A5ldAquSCD8DeT+G+eh7bmxGOX6VuRMyNnK+XEyu6RgnPXjjyNj+0f8Pmjo
-         ahSA==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=n3q3bzAf9PCQpcN1SbQ1WFbGE7N53vwQR0aJbcOSelA=;
+        b=Wirnft3yE4BZbWw8W9Aw/96GadTCNDkrIV2jt/ODAnNR0AwbPcrhmfLM+qy+zo9Bsh
+         vMUKKxHJIeieQjHMvb2hnqiW1N42ws7IBScOA3Mu+fOGTLJZ+/ACwtpx0bb3qYAOZcea
+         zjazgdNrVVP4WAhw3GVq2AGzvjj+TJ7jiWEyEjos7LO6vVffwTkwep47dCp+AkFLdtny
+         jOQ0Pw7+X12MJtKEePc0KGpKH1vdodNqNdNp27mBRuW1Ity5NWUszm0xwDyu502k0cvI
+         LYl4z6boSTX3VBIrNrPfoT4Ux75K5U8fU6Jn8tyFctkhBdHKmFo3KQjuB+5j+XJ0E1gv
+         9Yfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PJplWTbP//JWBP6LiwpcydCLM3kpmqRCafKXQ2sO8HM=;
-        b=VS3bG1RD3cQajefrKxt2t/bWog5dUKirkZ6X+IKrMtJwdIdhBsNT9/BAL7jubJd5Nm
-         a+ox+Llu/ksD7XSklteAvvaRlJT3CLKgfljw0fGPbJmvjNUbvgykAo7bt+M3DWnIYgnc
-         Pj/erCkMpCOnJMtO5zdPwNIvrWWSLhMFo34MQL0gzzt7SIyj6qkYs5XAuc9s5a2g5EiM
-         zzLfp+zRpBBWJOKcoS5gTHwgu7eSwebIjaE+3I4lqMYzPiDWT8zZzfRvnTN2s6wcpZmG
-         LCtee2wW/zpa2fCDb21AlV5HCgI75VN1cL939+51wWvEm8vJV7quujADj3DkIdgpqMDT
-         e4SQ==
-X-Gm-Message-State: AOAM533g3PlW8CgLiZpPlSikTXQKtZsNhVw8iOwrMq2HbloGQA0hB7XY
-        aFFHnykUiFnS0kGW5zg0Hhtrbw==
-X-Google-Smtp-Source: ABdhPJwJiFSQcdB6omeWjkDHMF9mbOoLcdHIviL7+KHQY8vyEQkjrY3SKAm2f71bm739lOZkfFQVGw==
-X-Received: by 2002:a63:1a44:: with SMTP id a4mr5211817pgm.281.1594919946664;
-        Thu, 16 Jul 2020 10:19:06 -0700 (PDT)
-Received: from xps15 (S0106002369de4dac.cg.shawcable.net. [68.147.8.254])
-        by smtp.gmail.com with ESMTPSA id h7sm5551458pfq.15.2020.07.16.10.19.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jul 2020 10:19:05 -0700 (PDT)
-Date:   Thu, 16 Jul 2020 11:19:03 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Suman Anna <s-anna@ti.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        stefanos@xilinx.com, BLEVINSK@xilinx.com
-Subject: Re: [PATCH v2 1/4] dt-bindings: remoteproc: Add bindings for R5F
- subsystem on TI K3 SoCs
-Message-ID: <20200716171903.GA3286345@xps15>
-References: <20200630024922.32491-1-s-anna@ti.com>
- <20200630024922.32491-2-s-anna@ti.com>
- <20200714171553.GA2522956@bogus>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=n3q3bzAf9PCQpcN1SbQ1WFbGE7N53vwQR0aJbcOSelA=;
+        b=uW7zpgzf1EE8Edd/cjMmWrt8M3TFvwXazwj34L7LZmj/u6FWKYRglwDbPhuk1n2NYg
+         MGhCS5pIpct14xcjhbyEClAxMXfNmbtmstfnK92DrRgGTacXSsptpbjSKCP/O7pD+1L7
+         fNFz2SmLMLCGB0Cvn/yfjAWYGt6+0j6UNsCui2W0fVr0qvZx40IflZp346SID9nHZ+Dr
+         y931D7l7hk6CSZsPpYpTvohIJVmDFVzrOJHwKWgX57A+jVorJ7By2/+BBOlVUnWYA8eR
+         ewpEVX1pygQGgcVpCcVaRiGDJRXSSushUiJUuNhHxf8Zz27NjiCRUTSsxgVnIm7CG4k7
+         Eqqw==
+X-Gm-Message-State: AOAM531pFdq1P4KGJT9OFRiJDaI7zvRlh+afvsHQrNhOVhr331LwqlDd
+        4VM5kTg9nkeO8MeTVW7Uzve+CAYonbOYuuGHM3s=
+X-Google-Smtp-Source: ABdhPJw6PnZvtEEL7z+alpxH6AqPzRf2+wA2WB2C5xkBCcPL4XieygTzUP8ZWYj+YckIBepX04j9veOFWEMsO30ZgyU=
+X-Received: by 2002:a19:8407:: with SMTP id g7mr2669723lfd.61.1594920134941;
+ Thu, 16 Jul 2020 10:22:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200714171553.GA2522956@bogus>
+References: <20200703080646.23233-1-computersforpeace@gmail.com> <CACRpkdar+aBBFn6SKJ1a90D-NT3F6qGvouzjt-jxaiR0VSuUOg@mail.gmail.com>
+In-Reply-To: <CACRpkdar+aBBFn6SKJ1a90D-NT3F6qGvouzjt-jxaiR0VSuUOg@mail.gmail.com>
+From:   Brian Norris <computersforpeace@gmail.com>
+Date:   Thu, 16 Jul 2020 10:22:03 -0700
+Message-ID: <CAN8TOE-h5Sk=eauy91rmP7y=fUtTEATrU6pQttPLoWV=RgdPsw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] pinctrl: qcom: ipq4019: add open drain support
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        bjorn.andersson@linaro.org
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Jaiganesh Narayanan <njaigane@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
++ Bjorn for real
+- Bjorn @mistyped-domain
 
-On Tue, Jul 14, 2020 at 11:15:53AM -0600, Rob Herring wrote:
-> On Mon, Jun 29, 2020 at 09:49:19PM -0500, Suman Anna wrote:
-> > The Texas Instruments K3 family of SoCs have one or more dual-core
-> > Arm Cortex R5F processor subsystems/clusters (R5FSS). The clusters
-> > can be split between multiple voltage domains as well. Add the device
-> > tree bindings document for these R5F subsystem devices. These R5F
-> > processors do not have an MMU, and so require fixed memory carveout
-> > regions matching the firmware image addresses. The nodes require more
-> > than one memory region, with the first memory region used for DMA
-> > allocations at runtime. The remaining memory regions are reserved
-> > and are used for the loading and running of the R5F remote processors.
-> > The R5F processors can also optionally use any internal on-chip SRAM
-> > memories either for executing code or using it as fast-access data.
-> > 
-> > The added example illustrates the DT nodes for the single R5FSS device
-> > present on K3 AM65x family of SoCs.
-> > 
-> > Signed-off-by: Suman Anna <s-anna@ti.com>
-> > ---
-> > v2:
-> >  - Renamed "lockstep-mode" property to "ti,cluster-mode"
-> 
-> I don't think that's a move in the right direction given this is at 
-> least partially a standard feature.
-> 
-> As I said before, I'm very hesistant to accept anything here given I 
-> know the desires and activity to define 'system Devicetrees' of which 
-> TI is participating. While maybe an rproc node is sufficient for a 
-> DSP, it seems multiple vendors have R cores and want to define them in 
-> system DT.
-> 
-> Though the system DT effort has not yet given any thought to what is the 
-> view of one processor or instance to another instance (which is what 
-> this binding is). We'll still need something defined for that, but I'd 
-> expect that to be dependent on what is defined for system DT.
+On Thu, Jul 16, 2020 at 1:47 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+> On Fri, Jul 3, 2020 at 10:06 AM Brian Norris
+> <computersforpeace@gmail.com> wrote:
+>
+> > From: Jaiganesh Narayanan <njaigane@codeaurora.org>
+> >
+> > Signed-off-by: Jaiganesh Narayanan <njaigane@codeaurora.org>
+> > [ Brian: adapted from from the Chromium OS kernel used on IPQ4019-based
+> >   WiFi APs. ]
+> > Signed-off-by: Brian Norris <computersforpeace@gmail.com>
+>
+> Patch applied because this looks innocent and Rob
+> ACKed the binding.
 
-Efforts related to the definition of the system DT are under way, something I
-expect to keep going on for some time to come.  I agree with the need to use the
-system DT to define remote processors and I look forward to the time we can do
-so.
+Thanks!
 
-That being said we need to find a concensus on how to move forward with patches
-that are ready to be merged.  What is your opinion on that?
+> If Bjorn opposes, I will simply pull the patch out again.
 
-Thanks,
-Mathieu 
+Unfortunately, depending on his mail subscriptions and filters, Bjorn
+may not have had much of a chance there. I failed to notice that I
+deleted the "g" in ".org", so my mail didn't deliver to him.
 
-> 
-> Rob
+Bjorn: for reference, here are archive links to the entire patch set:
+
+https://lore.kernel.org/linux-gpio/20200703080646.23233-1-computersforpeace@gmail.com/
+https://lore.kernel.org/linux-gpio/20200703080646.23233-2-computersforpeace@gmail.com/
+
+Brian
