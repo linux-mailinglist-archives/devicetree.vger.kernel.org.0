@@ -2,141 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 708312219B3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 04:04:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C76832219E1
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 04:29:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727075AbgGPCE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jul 2020 22:04:57 -0400
-Received: from regular1.263xmail.com ([211.150.70.203]:51342 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726960AbgGPCE5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 22:04:57 -0400
-Received: from localhost (unknown [192.168.167.225])
-        by regular1.263xmail.com (Postfix) with ESMTP id E5649817;
-        Thu, 16 Jul 2020 10:04:45 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-Received: from hp1216 (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P7251T139772307691264S1594865084409843_;
-        Thu, 16 Jul 2020 10:04:45 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <e89130cb787b0a5d976783346e0ad0fe>
-X-RL-SENDER: zyf@rock-chips.com
-X-SENDER: zyf@rock-chips.com
-X-LOGIN-NAME: zyf@rock-chips.com
-X-FST-TO: robh@kernel.org
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-DNS-TYPE: 0
-X-System-Flag: 0
-Date:   Thu, 16 Jul 2020 10:04:45 +0800
-Organization: =?UTF-8?B?55Ge6Iqv5b6u55S15a2Q?=
-From:   =?UTF-8?B?6LW15Luq5bOw?= <yifeng.zhao@rock-chips.com>
-To:     "Rob Herring" <robh@kernel.org>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        vigneshr <vigneshr@ti.com>,
-        =?UTF-8?B?SGVpa29TdMO8Ym5lcg==?= <heiko@sntech.de>,
-        robh+dt <robh+dt@kernel.org>, richard <richard@nod.at>,
-        "Miquel Raynal" <miquel.raynal@bootlin.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-mtd <linux-mtd@lists.infradead.org>,
-        linux-rockchip <linux-rockchip@lists.infradead.org>
-Subject: =?UTF-8?B?UmU6IFJlOiBbUEFUQ0ggdjcgMS84XSBkdC1iaW5kaW5nczogbXRkOiBEZXNjcmliZSBSb2NrY2hpcCBSSzN4eHggTkFORA0KIGZsYXNoIGNvbnRyb2xsZXLjgJDor7fms6jmhI/vvIzpgq7ku7bnlLFyb2JoZXJyaW5nMkBnbWFpbC5jb23ku6Plj5HjgJE=?=
-References: <20200715090342.28339-1-yifeng.zhao@rock-chips.com>, 
-        <20200715090342.28339-2-yifeng.zhao@rock-chips.com>, 
-        <20200715175356.GA502928@bogus>
-X-Priority: 3
-X-Has-Attach: no
-X-Mailer: Foxmail 7.2.17.58[cn]
-Mime-Version: 1.0
-Message-ID: <2020071610022540759717@rock-chips.com>
-Content-Type: text/plain;
-        charset="UTF-8"
-Content-Transfer-Encoding: base64
+        id S1727825AbgGPC2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jul 2020 22:28:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49182 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726479AbgGPC2Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jul 2020 22:28:24 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CB39C061755;
+        Wed, 15 Jul 2020 19:28:23 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id z2so5266515wrp.2;
+        Wed, 15 Jul 2020 19:28:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gsRpl4HFoDzQHdJmbJ2aLmqfJZ85+Q+C8XgOBbFtdNk=;
+        b=iJqvRTCjPwF29LVysp5cR+WTjEK0keVLezq5UpBh8TBKpPZMK/F1qaiNn1b5v5B8D/
+         FwctVpY5g6H34diBhlhZNS/o24RejCvBwMPgfodxR9W7lY1L1ma7q9zqrPlsldw+BTW7
+         Gx/b+M7X8ZWs2xUpCoWMwWF94G84TibCIrYoiVvZ2xvCgr/qre442EmfS4tTlmggpjqU
+         fFtFOjQuTtdRrxJ8UgiV9lQGFkf59TbBtj0Ub8HLW+7UYT+vkmOSLKVtdBfxZ9LTLW3Q
+         6qZf2jga/SNKtQ4BSDn07BsiXrSc/MslbL/NgvxM/WzNW1dZCrfFE8aH2/qNTNN8Qd4Q
+         4MmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gsRpl4HFoDzQHdJmbJ2aLmqfJZ85+Q+C8XgOBbFtdNk=;
+        b=FseyxY/qq96AnUI1ztkjKrsb8l6jUoB+DyeEr7wMLE8l8nVX6pv/vrw5mhs7xvc1Sg
+         B4dF6DArC9XJe/vUY9CmOqJq2fDFfOxxniS3B5GjsdvUOBwRr8XyUUHVWVx2CgRYLDN/
+         AwSxw24HMEWu1uAdbp0/ATSZA63y5rFaZBMJaIWfcFGgVyU6u+X10eO7AWes9CfJR59O
+         tRbEyNEwlt7FJu93dfILXZTcvZoBflqp1do45aPvRjHIFUA4pcIeAqQlq2jNmTVM0/e4
+         rXVncZlCp/SvKuyezUbepDZq/uce2XWqz18I5SlXsGuygwLuKG4e3L/QIbP50nBCYA7Z
+         oO4Q==
+X-Gm-Message-State: AOAM533Dbg7ENMtUGUh+SeJvtcVH3xrX3aqjpvdkR3TqrtxO4f5OCwdi
+        c4jj9KqF1RwFNbfp9nrx8mE=
+X-Google-Smtp-Source: ABdhPJwrSM7RmbkryD0nvdl24d++HH4tjwvWPp/fUZyADj3sIpMbiC0aSTMbqhMcCPbZCNQrTAFH4g==
+X-Received: by 2002:a5d:51ce:: with SMTP id n14mr2579614wrv.155.1594866502289;
+        Wed, 15 Jul 2020 19:28:22 -0700 (PDT)
+Received: from Ansuel-XPS.localdomain (host-87-7-31-173.retail.telecomitalia.it. [87.7.31.173])
+        by smtp.googlemail.com with ESMTPSA id u1sm7477611wrb.78.2020.07.15.19.28.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jul 2020 19:28:21 -0700 (PDT)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: [PATCH v4 0/7] Add support for ipq8064 tsens
+Date:   Thu, 16 Jul 2020 04:28:09 +0200
+Message-Id: <20200716022817.30439-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.27.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgUm9iLAoKPk9uIFdlZCwgMTUgSnVsIDIwMjAgMTc6MDM6MzkgKzA4MDAsIFlpZmVuZyBaaGFv
-IHdyb3RlOgo+PiBEb2N1bWVudGF0aW9uIHN1cHBvcnQgZm9yIFJvY2tjaGlwIFJLM3h4eCBOQU5E
-IGZsYXNoIGNvbnRyb2xsZXJzCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IFlpZmVuZyBaaGFvIDx5aWZl
-bmcuemhhb0Byb2NrLWNoaXBzLmNvbT4KPj4gLS0tCj4+Cj4+IENoYW5nZXMgaW4gdjc6Cj4+IC0g
-Rml4IHNvbWUgd3JvbmcgZGVmaW5lCj4+Cj4+IENoYW5nZXMgaW4gdjY6Cj4+IC0gRml4IHNvbWUg
-d3JvbmcgZGVmaW5lCj4+IC0gTW9kaWZpZWQgdGhlIGRlZmluaXRpb24gb2YgY29tcGF0aWJsZQo+
-Pgo+PiBDaGFuZ2VzIGluIHY1Ogo+PiAtIEZpeCBzb21lIHdyb25nIGRlZmluZS4KPj4gLSBBZGQg
-Ym9vdC1tZWRpdW0gZGVmaW5lLgo+PiAtIFJlbW92ZSBzb21lIGNvbXBhdGlibGUgZGVmaW5lLgo+
-Pgo+PiBDaGFuZ2VzIGluIHY0Ogo+PiAtIFRoZSBjb21wYXRpYmxlIGRlZmluZSB3aXRoIHJreHhf
-bmZjLgo+PiAtIEFkZCBhc3NpZ25lZC1jbG9ja3MuCj4+IC0gRml4IHNvbWUgd3JvbmcgZGVmaW5l
-Q2hhbmdlcyBpbi4KPj4KPj4gQ2hhbmdlcyBpbiB2MzoKPj4gLSBDaGFuZ2UgdGhlIHRpdGxlIGZv
-ciB0aGUgZHQtYmluZGluZ3MuCj4+Cj4+IENoYW5nZXMgaW4gdjI6IE5vbmUKPj4KPj7CoCAuLi4v
-bXRkL3JvY2tjaGlwLG5hbmQtY29udHJvbGxlci55YW1swqDCoMKgwqDCoMKgwqDCoCB8IDE2MiAr
-KysrKysrKysrKysrKysrKysKPj7CoCAxIGZpbGUgY2hhbmdlZCwgMTYyIGluc2VydGlvbnMoKykK
-Pj7CoCBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
-L210ZC9yb2NrY2hpcCxuYW5kLWNvbnRyb2xsZXIueWFtbAo+Pgo+Cj4KPk15IGJvdCBmb3VuZCBl
-cnJvcnMgcnVubmluZyAnbWFrZSBkdF9iaW5kaW5nX2NoZWNrJyBvbiB5b3VyIHBhdGNoOgo+Cj4v
-YnVpbGRzL3JvYmhlcnJpbmcvbGludXgtZHQtcmV2aWV3L0RvY3VtZW50YXRpb24vZGV2aWNldHJl
-ZS9iaW5kaW5ncy9tdGQvcm9ja2NoaXAsbmFuZC1jb250cm9sbGVyLmV4YW1wbGUuZHQueWFtbDog
-ZXhhbXBsZS0wOiBuYW5kLWNvbnRyb2xsZXJAZmY0YjAwMDA6cmVnOjA6IFswLCA0MjgzMTA1Mjgw
-LCAwLCAxNjM4NF0gaXMgdG9vIGxvbmcKPgo+Cj5TZWUgaHR0cHM6Ly9wYXRjaHdvcmsub3psYWJz
-Lm9yZy9wYXRjaC8xMzI5MzI1Cj4KPklmIHlvdSBhbHJlYWR5IHJhbiAnbWFrZSBkdF9iaW5kaW5n
-X2NoZWNrJyBhbmQgZGlkbid0IHNlZSB0aGUgYWJvdmUKPmVycm9yKHMpLCB0aGVuIG1ha2Ugc3Vy
-ZSBkdC1zY2hlbWEgaXMgdXAgdG8gZGF0ZToKPgo+cGlwMyBpbnN0YWxsIGdpdCtodHRwczovL2dp
-dGh1Yi5jb20vZGV2aWNldHJlZS1vcmcvZHQtc2NoZW1hLmdpdEBtYXN0ZXIgLS11cGdyYWRlCj4K
-PlBsZWFzZSBjaGVjayBhbmQgcmUtc3VibWl0LgoKbWFrZSBBUkNIPWFybTY0IGR0X2JpbmRpbmdf
-Y2hlY2sgRFRfU0NIRU1BX0ZJTEVTPURvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9t
-dGQvcm9ja2NoaXAsbmFuZC1jb250cm9sbGVyLnlhbWzCoArCoCBIT1NUQ0MgwqBzY3JpcHRzL2Jh
-c2ljL2ZpeGRlcArCoCBIT1NUQ0MgwqBzY3JpcHRzL2R0Yy9kdGMubwrCoCBIT1NUQ0MgwqBzY3Jp
-cHRzL2R0Yy9mbGF0dHJlZS5vCsKgIEhPU1RDQyDCoHNjcmlwdHMvZHRjL2ZzdHJlZS5vCsKgIEhP
-U1RDQyDCoHNjcmlwdHMvZHRjL2RhdGEubwrCoCBIT1NUQ0MgwqBzY3JpcHRzL2R0Yy9saXZldHJl
-ZS5vCsKgIEhPU1RDQyDCoHNjcmlwdHMvZHRjL3RyZWVzb3VyY2UubwrCoCBIT1NUQ0MgwqBzY3Jp
-cHRzL2R0Yy9zcmNwb3MubwrCoCBIT1NUQ0MgwqBzY3JpcHRzL2R0Yy9jaGVja3MubwrCoCBIT1NU
-Q0MgwqBzY3JpcHRzL2R0Yy91dGlsLm8KwqAgTEVYIMKgIMKgIHNjcmlwdHMvZHRjL2R0Yy1sZXhl
-ci5sZXguYwrCoCBZQUNDIMKgIMKgc2NyaXB0cy9kdGMvZHRjLXBhcnNlci50YWIuW2NoXQrCoCBI
-T1NUQ0MgwqBzY3JpcHRzL2R0Yy9kdGMtbGV4ZXIubGV4Lm8KwqAgSE9TVENDIMKgc2NyaXB0cy9k
-dGMvZHRjLXBhcnNlci50YWIubwrCoCBIT1NUQ0MgwqBzY3JpcHRzL2R0Yy95YW1sdHJlZS5vCsKg
-IEhPU1RMRCDCoHNjcmlwdHMvZHRjL2R0YwrCoCBDSEtEVCDCoCBEb2N1bWVudGF0aW9uL2Rldmlj
-ZXRyZWUvYmluZGluZ3MvbXRkL3JvY2tjaGlwLG5hbmQtY29udHJvbGxlci55YW1sCsKgIFNDSEVN
-QSDCoERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9wcm9jZXNzZWQtc2NoZW1hLWV4
-YW1wbGVzLnlhbWwKwqAgRFRDIMKgIMKgIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
-cy9tdGQvcm9ja2NoaXAsbmFuZC1jb250cm9sbGVyLmV4YW1wbGUuZHQueWFtbArCoCBDSEVDSyDC
-oCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbXRkL3JvY2tjaGlwLG5hbmQtY29u
-dHJvbGxlci5leGFtcGxlLmR0LnlhbWwKL2hvbWUveWlmZW5nL3dvcmsvbGludXgvRG9jdW1lbnRh
-dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL210ZC9yb2NrY2hpcCxuYW5kLWNvbnRyb2xsZXIuZXhh
-bXBsZS5kdC55YW1sOiBleGFtcGxlLTA6IG5hbmQtY29udHJvbGxlckBmZjRiMDAwMDpyZWc6MDog
-WzAsIDQyODMxMDUyODAsIDAsIDE2Mzg0XSBpcyB0b28gbG9uZwoKSSBhbHJlYWR5IHJhbiB0aGUg
-Im1ha2UgZHRfYmluZGluZ19jaGVjayIgYmVmb3JlIHN1Ym1pdCB0aGlzIHBhdGNoIGFuZCBmb3Vu
-ZCB0aGlzIGlzc3VlLgpUaGUgZHRzIGV4YW1wbGVzIGlzIGZvciBSSzMzMDgsIEFSQ0g9YXJtNjQs
-IGFuZCB0aGUgcmVnIGRlZmluZSBpcyBjb3JyZWN0LgpJIHRob3VnaHQgdGhlcmUgd2FzIHNvbWV0
-aGluZyB3cm9uZyB3aXRoIHRoZSBjaGVja++8jCBvciBzb21ldGhpbmcgY29uZmlndXJhdGlvbiBJ
-IG1pc3NlZC4KUGxlYXNlIGdpdmUgbWUgc29tZSBzdWdnZXN0aW9ucy4KCgpkaWZmIC0tZ2l0IGEv
-RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL210ZC9yb2NrY2hpcCxuYW5kLWNvbnRy
-b2xsZXIueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tdGQvcm9ja2No
-aXAsbmFuZC1jb250cm9sbGVyLnlhbWwKaW5kZXggNDkzNzA1YTU1NjM4Li5iOWQ3YThjNzk0MDIg
-MTAwNjQ0Ci0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tdGQvcm9ja2No
-aXAsbmFuZC1jb250cm9sbGVyLnlhbWwKKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
-bmRpbmdzL210ZC9yb2NrY2hpcCxuYW5kLWNvbnRyb2xsZXIueWFtbApAQCAtMTMyLDcgKzEzMiw3
-IEBAIGV4YW1wbGVzOgrCoCDCoCDCoG5mYzogbmFuZC1jb250cm9sbGVyQGZmNGIwMDAwIHsKwqAg
-wqAgwqAgwqBjb21wYXRpYmxlID0gInJvY2tjaGlwLHJrMzMwOC1uZmMiLArCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCAicm9ja2NoaXAscnYxMTA4LW5mYyI7Ci0gwqAgwqAgwqByZWcgPSA8
-MHgwIDB4ZmY0YjAwMDAgMHgwIDB4NDAwMD47CisgwqAgwqAgwqByZWcgPSA8MHhmZjRiMDAwMCAw
-eDQwMDA+OwrCoCDCoCDCoCDCoGludGVycnVwdHMgPSA8R0lDX1NQSSA4MSBJUlFfVFlQRV9MRVZF
-TF9ISUdIPjsKwqAgwqAgwqAgwqBjbG9ja3MgPSA8JmNydSBIQ0xLX05BTkRDPiwgPCZjcnUgU0NM
-S19OQU5EQz47CsKgIMKgIMKgIMKgY2xvY2stbmFtZXMgPSAiYWhiIiwgIm5mYyI7CgptYWtlIEFS
-Q0g9YXJtNjQgZHRfYmluZGluZ19jaGVjayBEVF9TQ0hFTUFfRklMRVM9RG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL210ZC9yb2NrY2hpcCxuYW5kLWNvbnRyb2xsZXIueWFtbMKgCsKg
-IFNDSEVNQSDCoERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9wcm9jZXNzZWQtc2No
-ZW1hLWV4YW1wbGVzLnlhbWwKwqAgQ0hLRFQgwqAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
-bmRpbmdzL210ZC9yb2NrY2hpcCxuYW5kLWNvbnRyb2xsZXIueWFtbArCoCBEVEMgwqAgwqAgRG9j
-dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL210ZC9yb2NrY2hpcCxuYW5kLWNvbnRyb2xs
-ZXIuZXhhbXBsZS5kdC55YW1sCsKgIENIRUNLIMKgIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
-aW5kaW5ncy9tdGQvcm9ja2NoaXAsbmFuZC1jb250cm9sbGVyLmV4YW1wbGUuZHQueWFtbAoKeWlm
-ZW5nLnpoYW8KCg==
+Ipq8064 SoCs tsens driver is based on 8960 tsens driver. This patchset 
+expand the 8960 unused driver with interrupt support and set_trip point.
+Ipq8064 needs to be registered as a gcc child as the tsens regs on
+this platform are shared with the controller.
 
+v4:
+* Fix compilation error and warning reported by the bot
+v3:
+* Change driver to register as child instead of use phandle
+v2:
+* Fix dt-bindings problems
 
+Ansuel Smith (7):
+  ipq806x: gcc: add support for child probe
+  drivers: thermal: tsens: try load regmap from parent for 8960
+  drivers: thermal: tsens: add ipq8064 support
+  dt-bindings: thermal: tsens: document ipq8064 bindings
+  drivers: thermal: tsens: add interrupt support for 9860 driver
+  drivers: thermal: tsens: add support for custom set_trip function
+  drivers: thermal: tsens: add set_trip support for 8960
+
+ .../bindings/thermal/qcom-tsens.yaml          |  50 ++-
+ drivers/clk/qcom/gcc-ipq806x.c                |   2 +-
+ drivers/thermal/qcom/tsens-8960.c             | 287 +++++++++++++++++-
+ drivers/thermal/qcom/tsens.c                  |   7 +
+ drivers/thermal/qcom/tsens.h                  |   5 +
+ 5 files changed, 328 insertions(+), 23 deletions(-)
+
+-- 
+2.27.0
 
