@@ -2,93 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6A7A222445
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 15:50:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74F792224C0
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 16:01:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728093AbgGPNuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jul 2020 09:50:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41574 "EHLO
+        id S1729374AbgGPOBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jul 2020 10:01:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726986AbgGPNuJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 09:50:09 -0400
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 541CAC061755
-        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 06:50:09 -0700 (PDT)
-Received: by mail-lj1-x244.google.com with SMTP id q4so7284460lji.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 06:50:09 -0700 (PDT)
+        with ESMTP id S1729369AbgGPOBf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 10:01:35 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7501CC08C5C0
+        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 07:01:35 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id z15so7169671wrl.8
+        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 07:01:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=W0iuDU+qCWBUM7ba2OgUNPdlmGMl1pYMR/idMsHed54=;
-        b=UPe+Ak5h0P6Z8onkrvDvi6QUVwIWIGpi7uVLXWjnR50zvyoG8zkGEuyKrRvZqzeaVs
-         7flptBJJLbpHGwORkLYAmufCmWvGfUkoNyHT5bGmX36i/a0HegWUvz96XnbuJRHWAfmR
-         vaKpbaNCPOFd9kZAqffwVWkCSOErYcQim25VAwe6+We+6xCAbwHI++HQ5iwpKnw3NA6Z
-         AMU1wu9f4MKmZW6eE79d+LPAU3N+Gs/b0koGCHXt4m65RerZFlF0HvBXdiSkWQUAeFAp
-         VoAuMgRT2f502rMCwgG6H9qyyTldwRfWJxb6dzlxVVget/xx4QR57S/61FyI8/bRXMjq
-         g+ug==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=cBgidtm3K2UC7bZZD55ufcqNRxLA7lDeHaLH7hy/Zr8=;
+        b=BPn/z1Lg4Ha3YThdEhMABfg1GUZMLmrkbn22btW3YQXptrhrx2hxb6Q/uSuFdMTzhm
+         pMfcXaPSnKoNCfaJg/0W2zZ5D46xvftkaMQ3RslriCnOiUWvf9G8u9VQaeZN2DCboxPU
+         xAGk8J2dVTTdOI2ZEKlmdD79jH9qen6wcLfFGtJDVYCE55JHtrZnCfcfRjSeDlkP/i4O
+         Pk7/81psmTfylLNQVbzi/R3250fofHM3xPxtq7Q3K3hxRB3JtaThKcgp7loQWMbSFEUR
+         BMspmu4NGwWXSWAglvfwUs5AAnFJDLwYdwjfecHnoin3JHBoUCwFGbFgDj//M2iPjZ8E
+         EfnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=W0iuDU+qCWBUM7ba2OgUNPdlmGMl1pYMR/idMsHed54=;
-        b=JiMxoq2NxhVzn7/8qYX21zTXh2CB5A3Cf9d8ncrsaQNHaZQ3QMt9vWdDuYG/FK3Nwv
-         7bPip83soePAjlnF0Ddltgz5D73BdbcrVHZTMM7L2L8RVuFCY/4E9l5wU9Hi6bVFG764
-         F/NZJDBdDXVY5d28EUMbnDW8KCuvUiRxailrjj3XT9SLxWle9IkRHjEVz8J/u99OfVVe
-         nM7Z7SMs+m4EIjsDzTp28fSWWYhtH4RrowziRdwnn1oAK9ymAM1nqMjt5G3rh/MLek6n
-         FNS2hz0b17PMerooz2zPeAZzxv+5I3qsrq7JNfAgaHvUK0rXbQ+gtV4B2bSH+UhB3LZr
-         YFyw==
-X-Gm-Message-State: AOAM530YFqlncthn13OZ/ZK6eS5igNHbqYFFJXaMkFUn5Nc7kjL4qQzt
-        +w1a7x8S9OrP51MZoat7rEswtRrGY9pOhI08WKtNEg==
-X-Google-Smtp-Source: ABdhPJyuZR3go+MjRH0QD2hTjIiPi2nGSy2AbPjYJo0SRP7oWmUGCCRWXTzrLI3Eps1+wMn3Fs9p2fh605lNHa8lJsM=
-X-Received: by 2002:a2e:7a1a:: with SMTP id v26mr2010346ljc.104.1594907407852;
- Thu, 16 Jul 2020 06:50:07 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=cBgidtm3K2UC7bZZD55ufcqNRxLA7lDeHaLH7hy/Zr8=;
+        b=uHLqYsuxZ8gvmjv1vYPy9uORTPhf79DaOVnytJ3BylrEp9QrnmikmOJ+cXsa8siaLk
+         GhnVDpvaV+MTo+JFunbAHdKgiVHrUqbt+I/c7jCyQQq6MeqTOBF35THkh56iLt96uH27
+         JAZK+7Ar7gLGWuh/7xYwjxluFT90KrhlylmV7g9dMgyzFRfsAK2lIftIPwn8eMEy4YIc
+         CY2hQ7XsT2x9iNmp8pGj6CQf9PptS/xpoOqhuHQLxgdSNub0/btCc0nfZXZdVSx24Ru8
+         Cisz7oPtQhB7WfPVM05jmHjmTIjAQDt7fYFLNO6Afbyt2944sF3eInIwuUSZOCobBu/E
+         oMBg==
+X-Gm-Message-State: AOAM531LuspZ95owfGsytBKXX/9RHMTkmtch/eEg9Hwxdwj8j12Q6VMg
+        RzsgazVRarPsBGx3Bo21p0sOzw==
+X-Google-Smtp-Source: ABdhPJxWuTEqJ0U0mmug3AZEYrGs0qIUBJq6BWHdQAoQMxFMyqmaghCWr1vGT05W3k5rLX9Hq4gauA==
+X-Received: by 2002:adf:edc6:: with SMTP id v6mr5240273wro.413.1594908093264;
+        Thu, 16 Jul 2020 07:01:33 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:9880:a643:3e69:6393? ([2a01:e34:ed2f:f020:9880:a643:3e69:6393])
+        by smtp.googlemail.com with ESMTPSA id b62sm8730073wmh.38.2020.07.16.07.01.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Jul 2020 07:01:32 -0700 (PDT)
+Subject: Re: [PATCH v3 4/4] dt-bindings: timer: Add CLINT bindings
+To:     Anup Patel <anup@brainfault.org>, Rob Herring <robh@kernel.org>
+Cc:     Anup Patel <anup.patel@wdc.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Atish Patra <atish.patra@wdc.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree@vger.kernel.org, Damien Le Moal <damien.lemoal@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>
+References: <20200715071506.10994-1-anup.patel@wdc.com>
+ <20200715071506.10994-5-anup.patel@wdc.com> <20200715175052.GA497000@bogus>
+ <CAAhSdy04h-PD-=VhjB=5MOf=-RZMrMOcvEtbtUaDc3-kbV47BA@mail.gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <9c12dd2c-7285-5664-973e-3ec066eec0a2@linaro.org>
+Date:   Thu, 16 Jul 2020 16:01:30 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <1594718402-20813-1-git-send-email-hanks.chen@mediatek.com> <1594718402-20813-2-git-send-email-hanks.chen@mediatek.com>
-In-Reply-To: <1594718402-20813-2-git-send-email-hanks.chen@mediatek.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 16 Jul 2020 15:49:57 +0200
-Message-ID: <CACRpkdYOtp027AOMgw_spyRdO2XjGjr4BOoEVfOJN9Y2TtJ=Kw@mail.gmail.com>
-Subject: Re: [PATCH v8 1/7] pinctrl: mediatek: update pinmux definitions for mt6779
-To:     Hanks Chen <hanks.chen@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sean Wang <sean.wang@kernel.org>,
-        mtk01761 <wendell.lin@mediatek.com>,
-        Andy Teng <andy.teng@mediatek.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        wsd_upstream@mediatek.com, CC Hwang <cc.hwang@mediatek.com>,
-        Loda Chou <loda.chou@mediatek.com>,
-        Mars Cheng <mars.cheng@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAAhSdy04h-PD-=VhjB=5MOf=-RZMrMOcvEtbtUaDc3-kbV47BA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 14, 2020 at 11:20 AM Hanks Chen <hanks.chen@mediatek.com> wrote:
 
-> Add devicetree bindings for Mediatek mt6779 SoC Pin Controller.
->
-> Acked-by: Sean Wang <sean.wang@kernel.org>
-> Signed-off-by: Mars Cheng <mars.cheng@mediatek.com>
-> Signed-off-by: Andy Teng <andy.teng@mediatek.com>
-> Signed-off-by: Hanks Chen <hanks.chen@mediatek.com>
+Hi Anup,
 
-Sorry for responding to old patches :/
 
-This and the rest of the pinctrl patches are now applied
-to the pinctrl tree for v5.9.
+On 16/07/2020 14:32, Anup Patel wrote:
+> On Wed, Jul 15, 2020 at 11:20 PM Rob Herring <robh@kernel.org> wrote:
 
-The DTS and clock patches need to be applied elsewhere.
+[ ... ]
 
-Yours,
-Linus Walleij
+> Thanks for these steps. I will fix and send v4.
+
+Please take the opportunity to clarify how you want the series to be merged.
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
