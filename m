@@ -2,153 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4D3F222DEA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 23:29:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B468D222E3E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 23:58:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726960AbgGPV3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jul 2020 17:29:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56184 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726243AbgGPV3I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 17:29:08 -0400
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DD72C08C5DB
-        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 14:29:07 -0700 (PDT)
-Received: by mail-lj1-x244.google.com with SMTP id h22so10009071lji.9
-        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 14:29:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=snejp.pl; s=gmail;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=BMW25MccEXBEQKiOayk0XDiCmm5Kg67PbQTIPz8CeXU=;
-        b=Q8OcFTKPw8k3z2elh+O/yAez7MPSAXdHzUNs/Ks0fOM5yKcM8I5iUWNAkZLRO8jVYV
-         Bi1IGEqK4hM3tKFXoVzNwDiXw03mVBOwFZM2ZpD5QMNN8oi/tuqzs/YmofsxLwHFSanG
-         rFA5u6QvyEgmg05+RjOlgBWx164bWRFwGHueXaqHiIF8IiHGDhPO43BOuPYo2ekOAeaq
-         /LFBPfI0ksHYRgg/bnshjk9SVN6q5y0JnVoHg60EqQdfLl6gRSehZshGGbiyLKJw2l8v
-         fBy4ebyhe6m0NS1dY1pvmnrCSLCuqHrql7lR/IcHDRjiuLewIkuNRo4sQhYFvB/xfMWW
-         L78A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BMW25MccEXBEQKiOayk0XDiCmm5Kg67PbQTIPz8CeXU=;
-        b=e8NJcTpWnxAvMENYgCwtLlSXLIieHWxDJIRuKHkpDfF6MhQfUWlqfPo9tq1AXk/eQ+
-         2KhYsMtbKMWOis/+mCOKDt8jphYwASVnn6EeX0MDecy4/HI4z4clgatdNpVlAbNMpjzL
-         71rovxvbvMB9btqDRDsOE21R8SeOO0zwC/s2RZv7BgCBPxsFtD0rJ+Tf6hYsHp5rgX6d
-         GbPa50M4ShLeD9i2YdfDWEBxOtT1yNK8dV8y+KssJILPI6QifcHxelgj9tebGYJvtXWL
-         T8FamPfPp2XbIk7qAB848GLnGZo33fGxwPOmMzzRzS1WUxFZRIhZ8Fb3yawG4xyrKGxj
-         GlYw==
-X-Gm-Message-State: AOAM532uWkj390F5B/vU75LZyZxQfdlQdDCxHWU48MjEP+b0Z5zhuAYi
-        LsEgM85qZz75H3G3HMIJnq8dY+BNjq23eQ==
-X-Google-Smtp-Source: ABdhPJzVYp/5WHye4DJHuSaRnmWrbiRRSCijThWnACJvir4tMmyzsXCyvlLmpk/vX1xE+o8oq9JMeg==
-X-Received: by 2002:a2e:8296:: with SMTP id y22mr3056440ljg.238.1594934945707;
-        Thu, 16 Jul 2020 14:29:05 -0700 (PDT)
-Received: from PackardBell ([82.160.139.10])
-        by smtp.gmail.com with ESMTPSA id k12sm1287608lfe.68.2020.07.16.14.29.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jul 2020 14:29:04 -0700 (PDT)
-Received: from localhost (PackardBell [local])
-        by PackardBell (OpenSMTPD) with ESMTPA id 44c50bbc;
-        Thu, 16 Jul 2020 21:29:03 +0000 (UTC)
-Date:   Thu, 16 Jul 2020 23:29:03 +0200
-From:   Bartosz Dudziak <bartosz.dudziak@snejp.pl>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom: Add msm8226 pinctrl
- bindings
-Message-ID: <20200716212903.GA23234@PackardBell>
-References: <20200627192833.217531-1-bartosz.dudziak@snejp.pl>
- <20200627192833.217531-2-bartosz.dudziak@snejp.pl>
- <20200715202413.GA755488@bogus>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200715202413.GA755488@bogus>
+        id S1726867AbgGPV6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jul 2020 17:58:32 -0400
+Received: from smtprelay-out1.synopsys.com ([149.117.73.133]:46054 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726007AbgGPV6c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jul 2020 17:58:32 -0400
+Received: from mailhost.synopsys.com (sv2-mailhost1.synopsys.com [10.205.2.133])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 8EDA7401D7;
+        Thu, 16 Jul 2020 21:58:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1594936712; bh=sK0ThbhK5CcurT3pB2csZyciDvpT2tyMTxoy+PRzJsQ=;
+        h=Date:From:Subject:To:Cc:From;
+        b=VeAeACVOA7S/ZMw+TnkTTaRba+0Hvugg4PluiXbBvL6SN2isF2D6uouKmRRJM+pkU
+         5gPKJ4R2VjEOhVphxzb0ADvVwh+JMBhEMdwjxWKW3vtdL8uRj58EfDTou3bendTo4i
+         CAGoX/QfKnOlFfy2eTc2ATS1K20GYT2OkSMjfcabBMKcrV5ptHKXVI69ak7t6rOgEH
+         Y+dNLv9+AOZKaI9kONnemTGULZrS21SQBWKHnZmnUPcdCR1QNkhnnsem4a/RZO1Gu0
+         2o2Lj17B9zUyskmZPKoWZDcgkKnfnRLpWmDJDYUF43mStybrKtWD06eYz7UB5IuB3u
+         s409IfCm8J0Sg==
+Received: from te-lab16 (nanobot.internal.synopsys.com [10.10.186.99])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mailhost.synopsys.com (Postfix) with ESMTPSA id C599EA0258;
+        Thu, 16 Jul 2020 21:58:29 +0000 (UTC)
+Received: by te-lab16 (sSMTP sendmail emulation); Thu, 16 Jul 2020 14:58:29 -0700
+Date:   Thu, 16 Jul 2020 14:58:29 -0700
+Message-Id: <cover.1594935978.git.thinhn@synopsys.com>
+X-SNPS-Relay: synopsys.com
+From:   Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Subject: [PATCH 00/11] usb: Handle different sublink speeds
+To:     Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Peter Chen <peter.chen@nxp.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Dejin Zheng <zhengdejin5@gmail.com>,
+        Roger Quadros <rogerq@ti.com>, Jun Li <jun.li@nxp.com>
+Cc:     John Youn <John.Youn@synopsys.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 15, 2020 at 02:24:13PM -0600, Rob Herring wrote:
-> On Sat, Jun 27, 2020 at 09:28:30PM +0200, Bartosz Dudziak wrote:
-> > Add device tree binding Documentation details for Qualcomm msm8226
-> > pinctrl driver.
-> > 
-> > - Bindings documentation was based on qcom,sm8250-pinctrl.yaml by
-> >   Bjorn Andersson <bjorn.andersson@linaro.org> and then modified for
-> >   msm8226 content
-> > 
-> > Signed-off-by: Bartosz Dudziak <bartosz.dudziak@snejp.pl>
-> > ---
-> >  .../pinctrl/qcom,msm8226-pinctrl.yaml         | 123 ++++++++++++++++++
-> >  1 file changed, 123 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml
-> > new file mode 100644
-> > index 0000000000..8d8dc15718
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml
-> > @@ -0,0 +1,123 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pinctrl/qcom,msm8226-pinctrl.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm Technologies, Inc. MSM8226 TLMM block
-> > +
-> > +maintainers:
-> > +  - Bjorn Andersson <bjorn.andersson@linaro.org>
-> > +
-> > +description: |
-> > +  This binding describes the Top Level Mode Multiplexer block found in the
-> > +  MSM8226 platform.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: qcom,msm8226-pinctrl
-> > +
-> > +  reg:
-> > +    description: Specifies the base address and size of the TLMM register space
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    description: Specifies the TLMM summary IRQ
-> > +    maxItems: 1
-> > +
-> > +  interrupt-controller: true
-> > +
-> > +  '#interrupt-cells':
-> > +    description: Specifies the PIN numbers and Flags, as defined in
-> > +      include/dt-bindings/interrupt-controller/irq.h
-> > +    const: 2
-> > +
-> > +  gpio-controller: true
-> > +
-> > +  '#gpio-cells':
-> > +    description: Specifying the pin number and flags, as defined in
-> > +      include/dt-bindings/gpio/gpio.h
-> > +    const: 2
-> > +
-> > +  gpio-ranges:
-> > +    maxItems: 1
-> > +
-> > +  gpio-reserved-ranges:
-> > +    maxItems: 1
-> > +
-> > +#PIN CONFIGURATION NODES
-> > +patternProperties:
-> > +  '^.*$':
-> > +    if:
-> > +      type: object
-> 
-> For new bindings, do '-pins$' for the node name pattern so we don't have 
-> to do this hack.
-> 
+A USB super-speed-plus device may operate at different sublink speed and lane
+count (e.g. gen2x2, gen1x2, or gen2x1). The usb gadget stack needs to be able
+to handle a couple things:
 
-I have changed the name pattern and sent a v2 patch.
+1) Report the sublink speed attributes the device support
+2) Select the sublink speed attribute
+
+This series introduces sublink speed attribute structure to ch9.h to capture
+the device capability of the gadget. It also introduces a new gadget ops
+udc_set_num_lanes_and_speed to select a specific sublink speed.
+
+DWC3 needs this support for DWC_usb32 IP. Implement the new changes for DWC3.
+
+
+Thinh Nguyen (11):
+  usb: ch9: Add sublink speed struct
+  usb: gadget: composite: Avoid using magic numbers
+  usb: gadget: Expose sublink speed attributes
+  usb: gadget: Set max speed for SSP devices
+  usb: composite: Properly report sublink speed
+  usb: devicetree: dwc3: Introduce num-lanes and lsm
+  usb: dwc3: Initialize lane count and sublink speed
+  usb: dwc3: gadget: Report sublink speed capability
+  usb: dwc3: gadget: Implement setting of sublink speed
+  usb: dwc3: gadget: Track connected lane and sublink speed
+  usb: dwc3: gadget: Set speed only up to the max supported
+
+ Documentation/devicetree/bindings/usb/dwc3.txt |   9 ++
+ drivers/usb/dwc3/core.c                        |  64 ++++++++++++
+ drivers/usb/dwc3/core.h                        |  18 ++++
+ drivers/usb/dwc3/gadget.c                      | 135 ++++++++++++++++++++++++-
+ drivers/usb/gadget/composite.c                 |  81 ++++++++++-----
+ drivers/usb/gadget/udc/core.c                  |  24 ++++-
+ include/linux/usb/gadget.h                     |  23 +++++
+ include/uapi/linux/usb/ch9.h                   |  42 ++++++++
+ 8 files changed, 360 insertions(+), 36 deletions(-)
+
+-- 
+2.11.0
+
