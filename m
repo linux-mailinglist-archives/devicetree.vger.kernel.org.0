@@ -2,97 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8819B2227DF
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 17:55:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD15222280D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jul 2020 18:11:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729087AbgGPPzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jul 2020 11:55:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60996 "EHLO
+        id S1729228AbgGPQLV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jul 2020 12:11:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728894AbgGPPzM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 11:55:12 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EEFFC08C5C0
-        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 08:55:12 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id l2so12121437wmf.0
-        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 08:55:11 -0700 (PDT)
+        with ESMTP id S1728837AbgGPQLV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 12:11:21 -0400
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A56FCC061755;
+        Thu, 16 Jul 2020 09:11:20 -0700 (PDT)
+Received: by mail-ej1-x643.google.com with SMTP id a21so7131021ejj.10;
+        Thu, 16 Jul 2020 09:11:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/Wm5nrLpCBdqeYkmR+57rLRuzRzpNbn845e+5GZLhdQ=;
-        b=vZRZASGUjzHUDNUcoWRJVEw/jprfGBhvzfE347Y80rA4PUsDvEPgDpQmwf0g9FfhVG
-         9ikl4jTDrkinwreLaaXqxVE9fsGf/w9fU4498vUUFEQPHBZgRe7V2u3k3lvStIkGSTym
-         XvIHE5c2u3SW7L2A7GKBpYNQHvdpyBtruaMdffJa3GalO0Ij4GTdmvbItV4mkVwuXQqO
-         GlP19rGLfU0OCyQNdW1aonSGxS8+DSgLACEeO3w1G9lFmWrdkqwLBrINsrFBKCgj/t4y
-         xnwsAPPbvpiFYmerLBDbqm5MY2knzZq+YZaIC3hS4jdOxPWgasXzLjuYUx7YjmzEnDAi
-         l4WA==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=afikj2x6d80faw5ihr4eewg9zarzp6KGseVCVHdo4Xc=;
+        b=fGVtEIMMVzv7JQI7ZwCO1ec93nwrG0eR8KkMl6HxIa8zP53rpG4eecbAlNDXUB5EQw
+         0uGmIYBFKOkLsPakr9gBU4jxgpIT62ecZKmjtepYHJ5z0NgBhK5tx6V1GVXvSXH/3cAp
+         mb9pI4UIrY1NxC03ZiAxK6ATO/4yuPJtkEAERro8FHBTtkocyj34RmGfZ117vEodlVkh
+         X/3DUK4o5vbSuKYE2+6lAjE8aTbIguxkkkT91zoICdY7WKpZNA52vP2bGWBNwyxLqZbn
+         YVuAF0Ct2Ssx8NYaO4FVRb+uCAF0+09dgFJoxmJKXDfootnEbbzaxGmghhIxWkr7J/7D
+         MfPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/Wm5nrLpCBdqeYkmR+57rLRuzRzpNbn845e+5GZLhdQ=;
-        b=HuGL1SFn0me1YqewzL30k1j/I2D3QKvfqe8D6aHk0TPp+1m/FyPdeEDCcVjrxe3yV9
-         xj6N0hTTBiG7VUzN/6QqYle67H1ULwTVunSF36k3plGspV9bcMYh5JrGbDGb7ZesTgxB
-         AmLODWi9MUh+201h+jpClN+DSaGNGjvkMKKF1aXjoyG5eQDu9/y3rxd3G0ciNPPUbYZs
-         Dpb7NUV3h34VqnhxYLHxkaYdZtp6kIRdQHC27y5Bw6W16ObHCvudt15lK8tUZdKnES45
-         WarA57kFQx5ACYw5c+9t5GRDcQe+bgJSCNRkQtILRApKWJje+lJ+U7oBYiXWbLoLlnTL
-         w87w==
-X-Gm-Message-State: AOAM531r5Jt4YdRNuTK/6H7jUyFY8BV/jshQ5ll2xl2KA7agNKi1wP98
-        ZjEDcBhYUjds0IILZBWAcvgvmPrWW3ListuAuYLRjg==
-X-Google-Smtp-Source: ABdhPJzBrhvBt5WZDYVM9BB+5Ge01yxUo/KxdkO1suwsN8v/UCTxvNd1QhAwCk2imFJLL0ZsShqhItpxBSVnMqiMg+0=
-X-Received: by 2002:a05:600c:2154:: with SMTP id v20mr5279691wml.185.1594914910499;
- Thu, 16 Jul 2020 08:55:10 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=afikj2x6d80faw5ihr4eewg9zarzp6KGseVCVHdo4Xc=;
+        b=ff8DBJZHtzLbfQ+slnHJpS0w7u6rs9c2Ql9Dy6pHFHiWBrBMw1NRmt5VIdSbl1hZoD
+         p4mFcJvLKrsaB/oRBcjTFmYbnLe77HAC29Z84B/0im2yBt1w/YmcSPnR1sw8fua28+AB
+         ItS6Qrr07S1h/g3xoeoK4nZZ6x16fooWfwH4Pxx6zU+WjJ/WpkXzbUs54kgEUs9saKsd
+         ZIijpW34nvCD964KXdHOQ/BKDa16SX8YEl1Cvr8tI+J0TrDJ6HjuvKW+A94p/yd1p/wV
+         KQ6pn33eHuaLGBFwyR0PdDLjHY+B4LPIDGl4yoiCK0/dlbWydMHbb3YAyVo0S2E97bEL
+         T+kw==
+X-Gm-Message-State: AOAM533X7vTB8hPsNQwPqGJcZ02cAiJ/TzWbR09ceIYoa9lWXpJGR3m6
+        ws/LINwCpmM17Ul0GJEz0EGkpuax9OE=
+X-Google-Smtp-Source: ABdhPJw3Sjmye5JUDNp0BJHq8yK9rY4J+JijCf75AbIl4nClN+7v8c0wXm4G8SksZjQzW8i1NpFtng==
+X-Received: by 2002:a17:906:f94c:: with SMTP id ld12mr4608617ejb.426.1594915879041;
+        Thu, 16 Jul 2020 09:11:19 -0700 (PDT)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id j21sm5781506edq.20.2020.07.16.09.11.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Jul 2020 09:11:18 -0700 (PDT)
+Subject: Re: [RFC PATCH v1 1/2] dt-bindings: arm: rockchip: add A95X Z2
+ description
+To:     Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>
+Cc:     linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        heiko@sntech.de, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+References: <20200620134659.4592-1-jbx6244@gmail.com>
+ <20200620134659.4592-2-jbx6244@gmail.com> <20200715192935.GA684031@bogus>
+ <14b39efe-f38b-b471-560d-1ecaeafc5dd5@gmail.com>
+ <56b1447d-6c62-9e73-a7ce-08fb70096a97@arm.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <544f9182-034b-6309-a945-72b5a34ee2e8@gmail.com>
+Date:   Thu, 16 Jul 2020 18:11:16 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-References: <20200715071506.10994-1-anup.patel@wdc.com> <20200715071506.10994-5-anup.patel@wdc.com>
- <20200715175052.GA497000@bogus> <CAAhSdy04h-PD-=VhjB=5MOf=-RZMrMOcvEtbtUaDc3-kbV47BA@mail.gmail.com>
- <9c12dd2c-7285-5664-973e-3ec066eec0a2@linaro.org>
-In-Reply-To: <9c12dd2c-7285-5664-973e-3ec066eec0a2@linaro.org>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Thu, 16 Jul 2020 21:24:58 +0530
-Message-ID: <CAAhSdy1kOvXXecGM=qyWS5cpx9nq9RpahLrVaQAUg0VKFu7pYg@mail.gmail.com>
-Subject: Re: [PATCH v3 4/4] dt-bindings: timer: Add CLINT bindings
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, Anup Patel <anup.patel@wdc.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Atish Patra <atish.patra@wdc.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree@vger.kernel.org, Damien Le Moal <damien.lemoal@wdc.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <56b1447d-6c62-9e73-a7ce-08fb70096a97@arm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
+On 7/16/20 3:34 PM, Robin Murphy wrote:
+> On 2020-07-16 13:05, Johan Jonker wrote:
+>> Hi Rob,
+>>
+>> The A95X Z2 boxes are sold by various vendors/manufacturers/web shops.
+>> The box it self only shows a label with a model name.
+>> Determining the true vendor is a kind of tricky for a outsider of the
+>> business.
+>> Could you advise what would be a save choice to the rather rigid vendor
+>> requirements.
+>> Is for example this a option:
+>>
+>>    "^a95x,.*":
+>>      description: A95X
+>>
+>> Is there someone who can give more info on this subject?
+> 
+> FWIW we already have some "A95X" branded things attributed to Nexbox in
+> upstream DTs, however, the evidence from scraping around the internet
+> suggests that the closest thing to an original vendor for the "A95X Z2"
+> model is probably these folks:
+> 
+> https://zkmagic.en.alibaba.com/
 
-On Thu, Jul 16, 2020 at 7:31 PM Daniel Lezcano
-<daniel.lezcano@linaro.org> wrote:
->
->
-> Hi Anup,
->
->
-> On 16/07/2020 14:32, Anup Patel wrote:
-> > On Wed, Jul 15, 2020 at 11:20 PM Rob Herring <robh@kernel.org> wrote:
->
-> [ ... ]
->
-> > Thanks for these steps. I will fix and send v4.
->
-> Please take the opportunity to clarify how you want the series to be merged.
+That's where I got my update/backup img from.
+A mail was sent, but what if they all claim to be a 'official' or
+'direct' store?
 
-This is yet another series which largely impacts arch/riscv because we are
-factoring CLINT code from arch/riscv into it's own timer driver.
+option 1:
 
-I think this can go via the RISC-V tree.
+      - description: A95X Z2
+        items:
+          - const: a95x,z2
 
-Regards,
-Anup
+  "^a95x,.*":
+    description: A95X
+
+or option 2:
+
+      - description: Zkmagic A95X Z2
+        items:
+          - const: zkmagic,a95x-z2
+
+  "^zkmagic,.*":
+    description: Shenzhen Zkmagic Technology Co., Ltd.
+
+I'ld rather prefer a short neutral name like option 1 just to be save. ;)
+For the completeness there seems to be:
+a95x a2
+a95x a3
+a95x f1
+a95x f2
+a95x f3
+a95x max
+a95x max plus
+a95x r1
+a95x r2
+a95x r3
+a95x r5
+a95x z2
+a95x z2 +
+
+Any advice welcome..
+
+Johan
+
+> 
+> Robin.
+> 
+>>
+>> Kind regards,
+>>
+>> Johan Jonker
+>>
+>> On 7/15/20 9:29 PM, Rob Herring wrote:
+>>> On Sat, Jun 20, 2020 at 03:46:58PM +0200, Johan Jonker wrote:
+>>>> Add A95X Z2 description for a board with rk3318 processor.
+>>>>
+>>>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+>>>> ---
+>>>>   Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+>>>>   1 file changed, 5 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>>> b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>>> index d4a404509..3d44b3cf0 100644
+>>>> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>>> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>>> @@ -25,6 +25,11 @@ properties:
+>>>>             - const: vamrs,rock960
+>>>>             - const: rockchip,rk3399
+>>>>   +      - description: A95X Z2
+>>>> +        items:
+>>>> +          - const: a95x,z2
+>>>
+>>> Need to document vendor prefix.
+>>>
+>>>> +          - const: rockchip,rk3318
+>>>> +
+>>>>         - description: Amarula Vyasa RK3288
+>>>>           items:
+>>>>             - const: amarula,vyasa-rk3288
+>>>> -- 
+>>>> 2.11.0
+>>>>
+>>
+>>
+>> _______________________________________________
+>> Linux-rockchip mailing list
+>> Linux-rockchip@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+>>
+
