@@ -2,97 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA146224135
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 19:00:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E03E22413C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 19:00:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727120AbgGQRA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jul 2020 13:00:26 -0400
-Received: from out28-73.mail.aliyun.com ([115.124.28.73]:40359 "EHLO
-        out28-73.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726938AbgGQRA0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jul 2020 13:00:26 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1281664|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00566534-0.00266333-0.991671;FP=0|0|0|0|0|-1|-1|-1;HT=e01a16378;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=14;RT=14;SR=0;TI=SMTPD_---.I3U5VZp_1595005212;
-Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.I3U5VZp_1595005212)
-          by smtp.aliyun-inc.com(10.147.41.121);
-          Sat, 18 Jul 2020 01:00:20 +0800
-From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
-        <zhouyanjie@wanyeetech.com>
-To:     daniel.lezcano@linaro.org, tsbogend@alpha.franken.de,
-        robh+dt@kernel.org
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, tglx@linutronix.de,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, yanfei.li@ingenic.com,
-        sernia.zhou@foxmail.com, zhenwenjin@gmail.com, paul@crapouillou.net
-Subject: [PATCH v7 3/5] MIPS: Ingenic: Let the Kconfig of platform enable the clocksource driver.
-Date:   Sat, 18 Jul 2020 00:59:45 +0800
-Message-Id: <20200717165947.56158-4-zhouyanjie@wanyeetech.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200717165947.56158-1-zhouyanjie@wanyeetech.com>
-References: <20200717165947.56158-1-zhouyanjie@wanyeetech.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        id S1727951AbgGQRAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jul 2020 13:00:35 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:46867 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727926AbgGQRAf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Jul 2020 13:00:35 -0400
+X-IronPort-AV: E=Sophos;i="5.75,362,1589209200"; 
+   d="scan'208";a="52419826"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 18 Jul 2020 02:00:33 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 0CC8B40061A0;
+        Sat, 18 Jul 2020 02:00:30 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Prabhakar <prabhakar.csengg@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2 2/2] ARM: dts: r8a7742-iwg21d-q7: Enable HSUSB, USB2.0 and xHCI
+Date:   Fri, 17 Jul 2020 18:00:25 +0100
+Message-Id: <1595005225-11519-3-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1595005225-11519-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <1595005225-11519-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The previous clocksource patch in this series ([2/3]) has remove
-"default MACH_INGENIC" and make option silent, so we need to
-enable the corresponding driver in the platform's Kconfig.
+Enable support for HSUSB, USB2.0 and xHCI on iWave RZ/G1H carrier board.
 
-Suggested-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-Tested-by: 周正 (Zhou Zheng) <sernia.zhou@foxmail.com>
-Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
+ arch/arm/boot/dts/r8a7742-iwg21d-q7.dts | 42 +++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
-Notes:
-    v7:
-    New patch.
-
- arch/mips/jz4740/Kconfig | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/arch/mips/jz4740/Kconfig b/arch/mips/jz4740/Kconfig
-index 6c065dcaeff8..5ad60998702e 100644
---- a/arch/mips/jz4740/Kconfig
-+++ b/arch/mips/jz4740/Kconfig
-@@ -36,27 +36,34 @@ endchoice
- config MACH_JZ4740
- 	bool
- 	select SYS_HAS_CPU_MIPS32_R1
-+    select INGENIC_TIMER
+diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
+index e90aaf1c94f0..f4910e709b87 100644
+--- a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
++++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
+@@ -131,6 +131,30 @@
+ 	};
+ };
  
- config MACH_JZ4770
- 	bool
- 	select MIPS_CPU_SCACHE
- 	select SYS_HAS_CPU_MIPS32_R2
- 	select SYS_SUPPORTS_HIGHMEM
-+    select INGENIC_TIMER
-+    select INGENIC_OST
++&hsusb {
++	pinctrl-0 = <&usb0_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
++&pci0 {
++	pinctrl-0 = <&usb0_pins>;
++	pinctrl-names = "default";
++	/* Disable hsusb to enable USB2.0 host mode support on J2 */
++	/* status = "okay"; */
++};
++
++&pci1 {
++	pinctrl-0 = <&usb1_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
++&pci2 {
++	/* Disable xhci to enable USB2.0 host mode support on J23 bottom port */
++	/* status = "okay"; */
++};
++
+ &pfc {
+ 	avb_pins: avb {
+ 		groups = "avb_mdio", "avb_gmii";
+@@ -168,6 +192,16 @@
+ 		groups = "ssi34_ctrl", "ssi3_data", "ssi4_data";
+ 		function = "ssi";
+ 	};
++
++	usb0_pins: usb0 {
++		groups = "usb0";
++		function = "usb0";
++	};
++
++	usb1_pins: usb1 {
++		groups = "usb1_pwen";
++		function = "usb1";
++	};
+ };
  
- config MACH_JZ4780
- 	bool
- 	select MIPS_CPU_SCACHE
- 	select SYS_HAS_CPU_MIPS32_R2
- 	select SYS_SUPPORTS_HIGHMEM
-+    select INGENIC_TIMER
-+    select INGENIC_OST
- 
- config MACH_X1000
- 	bool
- 	select MIPS_CPU_SCACHE
- 	select SYS_HAS_CPU_MIPS32_R2
- 	select SYS_SUPPORTS_HIGHMEM
-+    select INGENIC_SYSOST
- 
- config MACH_X1830
- 	bool
- 	select MIPS_CPU_SCACHE
- 	select SYS_HAS_CPU_MIPS32_R2
- 	select SYS_SUPPORTS_HIGHMEM
-+    select INGENIC_SYSOST
+ &rcar_sound {
+@@ -222,3 +256,11 @@
+ &ssi4 {
+ 	shared-pin;
+ };
++
++&usbphy {
++	status = "okay";
++};
++
++&xhci {
++	status = "okay";
++};
 -- 
-2.11.0
+2.17.1
 
