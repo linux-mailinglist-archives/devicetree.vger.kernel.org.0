@@ -2,100 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7343223FE8
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 17:49:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3D0722401B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 18:02:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726530AbgGQPsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jul 2020 11:48:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56350 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726322AbgGQPsz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jul 2020 11:48:55 -0400
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5745C0619D2;
-        Fri, 17 Jul 2020 08:48:54 -0700 (PDT)
-Received: by mail-lj1-x244.google.com with SMTP id q4so13299925lji.2;
-        Fri, 17 Jul 2020 08:48:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=h11XOtehZDloRQK9LLWJgIGaRhspppMNqDAzBiX5ad0=;
-        b=Vl3NEvpnwvvHcMUF3NitR+46Z8sGTxKpnmW2tSGbSZI5WEMW3t/cfVkfrQKwFVLfmn
-         qeYWAms1UJZ0u2rgIpGXKPqzQRww21hWUFCIGkYU5iU2aI2DNB/ORCPOtTw84QooEoxU
-         RYowe2rX5Fdj+dRoNdNiG6L6UUa+Alrbcl8abG9racjlDwSa72vWTml3oZe1LVxEno23
-         8HqvAdO0M0ijRxSL52knF8JcEemEUtGDRuqD43LXb5rbnu/qG8BBreBmnwIir7x5vGFu
-         M9aVkD5RibFZ132rkt+/LOK5QNQiB843eekX8O2TxJo2RHEHnZOn30hEob39Xp0gVhf+
-         8DpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=h11XOtehZDloRQK9LLWJgIGaRhspppMNqDAzBiX5ad0=;
-        b=OcxAdtBkUGH+WxOJ7X7+bilGNiZsr1N2MZhhfMh/59EFre5MAjLXVr/S5gkYQMuf8v
-         A720dS8BlqDBhkEUFlQpJionh83WzLYrGXOvAPUpH7DMGqcOsT9DEpTosHINWU70USed
-         WhxIAjgNHwH6zvbjwVKM7N11ufVG2lSKNBdNBSY5nZjtdb90RHjB5gVtnFeyX5OQ14Uj
-         1B+aoeBGNEQwFYOY8ZCA7qA9xmiQoKwr0nBMGb1W5xfOvSMLwJsutIpDoIb0O1p1/2lT
-         BLK1Yd2B4K+XOYHEY7LyjbUOqY9LADdgnzqfLVqkizuytRq5JKfDv4+QGS5daNuQ6NEl
-         8V5Q==
-X-Gm-Message-State: AOAM533XuFiFXvCPjKZH8r8dBNvwK61VDGrg47pDmXkRL2h5H2HYI5Ml
-        4UkKd4AcGCKO0FzNIjl59YFRYWtam1e5RrfAaxI=
-X-Google-Smtp-Source: ABdhPJwIzsbxel7UyqOZp+lBviG9zAjrG/Jz3iqThbVW0psJDeH5ulOp2LIDuUFpVJDNfOVaozw3oLVmHULgDPnkduQ=
-X-Received: by 2002:a2e:a375:: with SMTP id i21mr4928341ljn.403.1595000933299;
- Fri, 17 Jul 2020 08:48:53 -0700 (PDT)
+        id S1726351AbgGQQB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jul 2020 12:01:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40662 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726344AbgGQQA6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Jul 2020 12:00:58 -0400
+Received: from wens.tw (mirror2.csie.ntu.edu.tw [140.112.194.72])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2C5D3204EA;
+        Fri, 17 Jul 2020 16:00:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1595001658;
+        bh=HCMMe4fMnT5S7T6Y9hA0e8QN+UlZn1sl4i+208DYvE8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=S53KSg/dyvjJKWabCVGGpfh7QsjKPd9eC320JUlH221vVIoge3owNoT+VBdWR1Sio
+         epLG1hlpJ7tO2DbT2Hpdu+NNG8lp8MTqfR4GGUTOSuOz7DbUx+oMLKJ0p3tEsw9xPT
+         L8Hw143Fu01YyMZWYIgNJRolKXsFKAhKGR2Nyw/E=
+Received: by wens.tw (Postfix, from userid 1000)
+        id 0CE4B5FC63; Sat, 18 Jul 2020 00:00:55 +0800 (CST)
+From:   Chen-Yu Tsai <wens@kernel.org>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/8] arm64: dts: allwinner: h5: Enable CPU DVFS (cpufreq)
+Date:   Sat, 18 Jul 2020 00:00:45 +0800
+Message-Id: <20200717160053.31191-1-wens@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20200717132859.237120-1-jacopo+renesas@jmondi.org> <20200717132859.237120-6-jacopo+renesas@jmondi.org>
-In-Reply-To: <20200717132859.237120-6-jacopo+renesas@jmondi.org>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Fri, 17 Jul 2020 12:48:42 -0300
-Message-ID: <CAOMZO5Ap2_3hECqB5K3tbD-0URq0hJrMoNDwq6WmUMVojahfJg@mail.gmail.com>
-Subject: Re: [PATCH 05/13] dt-bindings: media: ov5640: Make bus-type mandatory
-To:     Jacopo Mondi <jacopo+renesas@jmondi.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>, linux-omap@vger.kernel.org,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        "moderated list:ARM/STM32 ARCHITECTURE" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
+From: Chen-Yu Tsai <wens@csie.org>
 
-On Fri, Jul 17, 2020 at 10:25 AM Jacopo Mondi <jacopo+renesas@jmondi.org> wrote:
+Hi everyone,
 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ov5640.yaml b/Documentation/devicetree/bindings/media/i2c/ov5640.yaml
-> index 503f8b78615c..16e6c2dc629a 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/ov5640.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/ov5640.yaml
-> @@ -73,6 +73,9 @@ properties:
->            remote-endpoint:
->              description: A phandle to the bus receiver's endpoint node.
->
-> +          bus-type:
-> +            enum: [4, 5]
+This is v2 of my Allwinner H5 SoC cpufreq support series from way
+back [1]. The series enables DVFS for the CPU cores (aka cpufreq)
+on the Allwinner H5 SoC. The OPP table was taken from Armbian, with
+minor tweaks to the maximum voltage to account for slightly increased
+voltage on some of the boards.
 
-Can we have an explanation for what the values 4 and 5 mean in the yaml doc?
+In this version, the OPP table and tie in to the CPU cores has been
+split out into a separate file, like what was done for the H6. The
+patches adding CPU regulator supplies for all the boards that I don't
+have have been removed. The series now only enables cpufreq for Libre
+Computer ALL-H3-CC and ALL-H5-CC, and Bananapi M2+ v1.2.
 
-Looking at the series I see that 4 means MIPI-CSI2 and 5 means
-parallel interface, but this is not too obvious (at least for me).
+For the original Bananapi M2+, if I add the fixed regulator with the
+enable pin, it ends up causing some sort of glitch or lock up on the
+v1.2, which includes the original dts file. Since I haven't been able
+to sort it out yet, I've left it out for now.
 
-Or maybe we could use a string definition instead of hard coding 4 and 5?
+Patch 1 assigns the CPU regulator supply to all the CPU cores on the
+Libre Computer ALL-H3-CC.
+
+Patch 2 assigns the CPU regulator supply to all the CPU cores on the
+Bananapi M2+ v1.2.
+
+Patch 3 fixes the voltages specified for the GPIO-controlled regulator
+on the Bananapi M2+ v1.2. The voltages are slightly higher than what
+was originally written.
+
+Patch 4 ties the CPU clock to the CPU cores.
+
+Patch 5 adds trip points and cooling maps to the CPU thermal zones.
+
+Patch 6 adds the OPP table, based on the one from Armbian.
+
+Patch 7 hooks up the CPU regulator supply for the Libre Computer
+ALL-H3-CC H5 variant, and by extension, the ALL-H5-CC.
+
+Patch 8 hooks up the CPU regulator supply for the Bananapi M2+ v1.2.
+
+Changes since v1:
+
+  - Re-ordered patches
+  - Added patches to set regulator supply for all CPU cores
+  - Added thermal trip points and cooling maps
+  - OPP table and assignment split into separate file
+  - Added patches to tie in OPP table file for the boards I have
+
+Please have a look.
+
+
+Regards
+ChenYu
+
+
+[1] https://patchwork.kernel.org/cover/10787869/
+
+
+Chen-Yu Tsai (8):
+  ARM: dts: sunxi: libretech-all-h3-cc: Add regulator supply to all CPU
+    cores
+  ARM: dts: sunxi: bananapi-m2-plus-v1.2: Add regulator supply to all
+    CPU cores
+  ARM: dts: sunxi: bananapi-m2-plus-v1.2: Fix CPU supply voltages
+  arm64: dts: allwinner: h5: Add clock to CPU cores
+  arm64: dts: allwinner: h5: Add trip and cooling maps to CPU thermal
+    zones
+  arm64: dts: allwinner: h5: Add CPU Operating Performance Points table
+  arm64: dts: allwinner: h5: libretech-all-h3-cc: Tie in CPU OPPs
+  arm64: dts: allwinner: h5: bananapi-m2-plus-v1.2: Tie in CPU OPPs
+
+ .../boot/dts/sunxi-bananapi-m2-plus-v1.2.dtsi | 18 ++++-
+ .../boot/dts/sunxi-libretech-all-h3-cc.dtsi   | 12 +++
+ .../sun50i-h5-bananapi-m2-plus-v1.2.dts       |  1 +
+ .../boot/dts/allwinner/sun50i-h5-cpu-opp.dtsi | 79 +++++++++++++++++++
+ .../sun50i-h5-libretech-all-h3-cc.dts         |  1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi  | 38 +++++++++
+ 6 files changed, 146 insertions(+), 3 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h5-cpu-opp.dtsi
+
+-- 
+2.27.0
+
