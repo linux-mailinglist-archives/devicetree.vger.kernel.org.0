@@ -2,97 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B552223701
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 10:29:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9F7D223708
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 10:30:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726113AbgGQI3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jul 2020 04:29:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44990 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725970AbgGQI3u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jul 2020 04:29:50 -0400
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C96DEC061755
-        for <devicetree@vger.kernel.org>; Fri, 17 Jul 2020 01:29:49 -0700 (PDT)
-Received: by mail-lj1-x243.google.com with SMTP id h19so11616346ljg.13
-        for <devicetree@vger.kernel.org>; Fri, 17 Jul 2020 01:29:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:sender:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=l8o/PxZLRUsXqbfQdaHQ/PhODuJFQTqIyS1z/DNGmXE=;
-        b=NUI8/GsX6DgtXMAWAVsnOwhky5KGgVqmPoc9EQVcncw6QizGVTdibqk7pGjGJN2SEk
-         tFFt1WHmtBqYbEMGzsXb8kO/5qk8TOQ2wmpPpr5W1/6FuwNWQTODlDLDVYbsN2ZAOl+J
-         SYTxw7LvDZxozF0X38HEVu6UAOYLck1MlBuDMC8j3MUW8cWv2Z+0i87epFYQtlyNSRp2
-         y7RXhUOKyFl8YwZbIgtY8GODQaNCIo6VSTnOgYzciAWOUpt4rSuWWv8iWHfuMmo62PRd
-         46YTCP33htxb8Wu9Bwvtnnzdi1dcNICT2f9U+IGHrh9DXe6YmmIrMWeAnpA9kWuCZ4WN
-         NBaQ==
+        id S1726359AbgGQIa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jul 2020 04:30:57 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:35954 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725864AbgGQIa4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jul 2020 04:30:56 -0400
+Received: by mail-ot1-f65.google.com with SMTP id 72so6326077otc.3;
+        Fri, 17 Jul 2020 01:30:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to:content-transfer-encoding;
-        bh=l8o/PxZLRUsXqbfQdaHQ/PhODuJFQTqIyS1z/DNGmXE=;
-        b=hkM8RLBJHfZ3w0zuU7ZzN3Tf8jPl+aSdNIySxSYh3u2fK0s5tvGDtQmFNWDz3wL32h
-         eqj9P4HrHUaKCL3FivN6dcG3DawDKc/55RUNGeoz+OLNnpWAchjF0vjftEtbu9hji9/r
-         8XGblhyNTZK5UcQ9sF1F8EVurDhjsI90FqBQCOJiTu4qzCx8Ioc1JJvT3C3vva1sUz6N
-         eNGn0BFssCymy869CYdgJ09BKFu4xwqli6M8ZfPO7var0M5WxJZFTsTsXfD6PV90eSMr
-         NVvw99esADFQf2slD5mNzF4l2rAJiG61N2tV3pXnUlx8soTePDILqmn3aMq95R3ATb4L
-         +imQ==
-X-Gm-Message-State: AOAM533OdOPwVl0/LPLM09jG4LwDKgerX8P+OuhcwcntFMHBOQddWDUZ
-        NDWP0ALn2SuTESRYu9bSg3Fcw8ry7X7pl3M7B0o=
-X-Google-Smtp-Source: ABdhPJz8H4vG/HyAp3HwqHl7xuvkr242VCAH7F/ncqpCAXCEGosCJWrsGHEB5GmcU32BklrI3BV3O33WYpJAkgiCWKg=
-X-Received: by 2002:a2e:a375:: with SMTP id i21mr4087191ljn.403.1594974588034;
- Fri, 17 Jul 2020 01:29:48 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=SaPmcDUg77LU2p28w1+XxvJM/pkYFA+OmeunTanH6NM=;
+        b=Op9uWwA9+uHBLKuFz/y/xTKj3USv53KLaLcX15rGFX98ghtNG7DcDG264YbKRjBnwb
+         poGbj/mhMK+uhhd82hP+2XF12SULaufFoErAmB4+fck8tk3dpxN1MeyKjiREyhEZVwiO
+         9meINp//qifOnbvB5mgzAByMPIKRgr/D+SrTzbyso8OqjQ0YdevQV2JyG3MT/hrWCZlZ
+         8fQhnkmmLdPZXiQERZMTjqTDA6bnrSqwY2DcLVneiGh0S+ptu/UiAXLKzUt4Mu5L1snl
+         RcJKX840HCM+sGuMcI2n4si5prP5TeklOzGtOoIRLo9Y0Swr1Uqk2SrRnthiM/oCaCn2
+         OIDg==
+X-Gm-Message-State: AOAM533zV5Q7lU0SKA03vYU0rJVD5kIl7gnoeydLhjYe3uEabxjrN7er
+        D3ppYmt5oqpXRSlYHbp1c3vaH7NCdM+E8BlQdMQ=
+X-Google-Smtp-Source: ABdhPJwBR4fz/v72KgD7+7gM2P5Tmqx8wLWOng1tBACwKN4gtmWwLhUzgHZdq7TTGK9C+gXsTQ9SgDG6nK730RSLp4E=
+X-Received: by 2002:a9d:1b0d:: with SMTP id l13mr7734447otl.145.1594974655311;
+ Fri, 17 Jul 2020 01:30:55 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:ab3:4e07:0:0:0:0:0 with HTTP; Fri, 17 Jul 2020 01:29:47
- -0700 (PDT)
-From:   Donna Louise <donnalouisemchince@gmail.com>
-Date:   Thu, 16 Jul 2020 20:29:47 -1200
-X-Google-Sender-Auth: Hy3ctHrGudtZMzCO3rO6mA62VLE
-Message-ID: <CAJMpOnfnnAVSbN33_==wfGSqcsM3PTVcVRsfxwjjQgJstsw0vQ@mail.gmail.com>
-Subject: Hello,
-To:     undisclosed-recipients:;
+References: <1594971274-48027-1-git-send-email-biju.das.jz@bp.renesas.com>
+ <20200717075452.GD68629@google.com> <TYBPR01MB5309AED7152585BD238DD013867C0@TYBPR01MB5309.jpnprd01.prod.outlook.com>
+In-Reply-To: <TYBPR01MB5309AED7152585BD238DD013867C0@TYBPR01MB5309.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 17 Jul 2020 10:30:44 +0200
+Message-ID: <CAMuHMdVvOa6GhVi8CZ6QNdY02KU6sOL4s0BS=vDM+u3a+7CaQw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: update usb-c-connector required property
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Prashant Malani <pmalani@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Thierry Reding <treding@nvidia.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
- Dear Friend,
+Hi Biju,
 
-  I am glad to know you, but God knows you better and he knows why he
-has directed me to you at this point in time so do not be surprised at
-all. My name is Mrs. Donna Louise McInnes, a widow, i have been
-suffering from ovarian cancer disease. At this moment i am about to
-end the race like this because the illness has gotten to a very bad
-stage, without any family members and no child. I hope that you will
-not expose or betray this trust and confidence that I am about to
-entrust to you for the mutual benefit of the orphans and the less
-privileged ones. I have some funds I inherited from my late husband,
-the sum of ($11.000.000 Eleven million dollars.) deposited in the
-Bank.  Having known my present health status, I decided to entrust
-this fund to you believing that you will utilize it the way i am going
-to instruct herein.
+On Fri, Jul 17, 2020 at 10:09 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > On Fri, Jul 17, 2020 at 08:34:33AM +0100, Biju Das wrote:
+> > > Some boards have a single SS capable connector. Update usb-c-connector
+> > > bindings to list port@1 as at least one of the required property.
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-
+> > lad.rj@bp.renesas.com>
+> > > ---
+> > >  Ref: https://patchwork.kernel.org/patch/11129567/
+> > > ---
+> > >  Documentation/devicetree/bindings/connector/usb-connector.yaml | 7
+> > > +++++--
+> > >  1 file changed, 5 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> > > b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> > > index 9bd52e6..41e0685 100644
+> > > --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> > > +++ b/Documentation/devicetree/bindings/connector/usb-
+> > connector.yaml
+> > > @@ -139,8 +139,11 @@ properties:
+> > >          description: Sideband Use (SBU), present in USB-C. This describes the
+> > >            alternate mode connection of which SBU is a part.
+> > >
+> > > -    required:
+> > > -      - port@0
+> > > +    anyOf:
+> > > +      - required:
+> > > +        - port@0
+> > > +      - required:
+> > > +        - port@1
+> >
+> > So the connector[1] doesn't have any High Speed (D+/D-) lanes? Those are
+> > supposed to be present on all Type C connectors.
+>
+> Yes , USB-TypeC connector has  USB3HS0_DP and USB3HS0_DM signals apart from USB3S0_CLK_P, USB3S0_CLK_M,USB3S0_RX_P,USB3S0_RX_M,USB3S0_TX_P,USB3S0_TX_M,
+> USB3HS0_DP,USB3HS0_DM, USB30_PWEN and USB30_OVC.
+>
+> But the Connector is a SS Capable connector which supports UFP/DFP and DRP.
 
-Therefore I need you to assist me and reclaim this money and use it
-for Charity works, for orphanages and giving justice and help to the
-poor, needy and to promote the words of God and the effort that the
-house of God will be maintained says The Lord." Jeremiah 22:15-16.=E2=80=9C
+The SS lanes of the connector are tied to the HD3SS3220.
+The D+/D- lanes of the connector are tied to the R-Car SoC directly.
 
-It will be my great pleasure to compensate you with 35 % percent of
-the total money for your personal use, 5 % percent for any expenses
-that may occur during the international transfer process while 60% of
-the money will go to the charity project.
+Perhaps modelling the C connector as a child of the HD3SS3220 is the
+issue?  If the C connector was a separate node, it could have port@1
+point to the HD3SS3220, and port@0 to the SoC?
+That means there needs to be a different way to link the HD3SS3220 and
+the on-SoC usb3_peri0.  The current link between usb3_peri0 and
+hd3ss3220_ep looks a bit strange to me, as the latter label points to
+the C connector, not to the HD3SS3220 itself[2].
 
-All I require from you is sincerity and the ability to complete God's
-task without any failure. It will be my pleasure to see that the bank
-has finally released and transferred the fund into your bank account
-therein your country even before I die here in the hospital, because
-of my present health status everything needs to be processed rapidly
-as soon as possible. I am waiting for your immediate reply, if only
-you are interested for further details of the transaction and
-execution of this charitable project.
+> > [1] : https://patchwork.kernel.org/patch/11129567/
 
-Best Regards your friend Mrs.
-Donna Louise McInnes.
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
