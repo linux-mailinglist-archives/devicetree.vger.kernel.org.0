@@ -2,185 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A9A2223282
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 06:43:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEB8A2232A7
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 06:54:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725936AbgGQEnN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jul 2020 00:43:13 -0400
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:4767 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725300AbgGQEnN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jul 2020 00:43:13 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5f112c250000>; Thu, 16 Jul 2020 21:42:13 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Thu, 16 Jul 2020 21:43:12 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Thu, 16 Jul 2020 21:43:12 -0700
-Received: from [10.2.163.115] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 17 Jul
- 2020 04:43:11 +0000
-Subject: Re: [RFC PATCH v3 16/18] gpu: host1x: mipi: Split
- tegra_mipi_calibrate and tegra_mipi_wait
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     Dmitry Osipenko <digetx@gmail.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <frankc@nvidia.com>, <hverkuil@xs4all.nl>,
-        <sakari.ailus@iki.fi>, <robh+dt@kernel.org>,
-        <helen.koike@collabora.com>
-CC:     <sboyd@kernel.org>, <gregkh@linuxfoundation.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>
-References: <1594786855-26506-1-git-send-email-skomatineni@nvidia.com>
- <1594786855-26506-17-git-send-email-skomatineni@nvidia.com>
- <a06dec8f-7042-767b-545b-048685a7683d@gmail.com>
- <20d63eca-4b2b-584e-a391-a4fb64a16b40@nvidia.com>
- <c4945c77-5de1-e9b1-9f4f-cdd78bca18c7@gmail.com>
- <ce0c5ffb-f859-0eab-1ea5-044623dff221@nvidia.com>
- <a2b8169c-c4a3-4862-cd27-8c1a51ddc558@gmail.com>
- <4690e682-8495-2327-87c7-c2f06a7a479d@nvidia.com>
- <66812127-38cf-2af3-51c0-50edbe446e73@nvidia.com>
- <9b4fbf9d-d651-aa35-c0a6-b8f16aeb0900@gmail.com>
- <550f1796-67ca-5856-223d-c68360243954@nvidia.com>
-Message-ID: <ca8f2184-de30-03ec-9caf-e20a22d96a77@nvidia.com>
-Date:   Thu, 16 Jul 2020 21:46:14 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1725811AbgGQEyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jul 2020 00:54:45 -0400
+Received: from conssluserg-05.nifty.com ([210.131.2.90]:47446 "EHLO
+        conssluserg-05.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725300AbgGQEyo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jul 2020 00:54:44 -0400
+Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50]) (authenticated)
+        by conssluserg-05.nifty.com with ESMTP id 06H4sIHU031108;
+        Fri, 17 Jul 2020 13:54:18 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-05.nifty.com 06H4sIHU031108
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1594961659;
+        bh=sviaHrnMJZujQ/kfSzVdyLTKRQoxe3KftF0ksGJHZt0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=sEdbXhZ4rXqBlMoeE+YoAkoj9rNKhW56osfU1/fkgOUzj40HDe2oCN3I4FdzwX7nX
+         vSY9+Ycd29xngkdcrgYXCShqg725WYwrGtSmrCUXpp0PxHYK4olic6aVP2OFnHVl5/
+         i5mGFfVxUPINVktnU9CyirkF7NPxyGDwFxPyHcMHOeoIeRKt0UhixohbkcawRh5Ulb
+         HNKfo2bXbu3yYHNU8C2oLZ8fkDRQ11aOfhrt0oSN5sRpFQt+TJ+oOBJIy/fZo0qvSI
+         4H8fCVlvH5WooExGNixwia9phCIsCYcsQkpf/pfd15zm0z50Z99RUckEWlj8jtpUUV
+         stX4e8osGOpkg==
+X-Nifty-SrcIP: [209.85.222.50]
+Received: by mail-ua1-f50.google.com with SMTP id j21so2492814ual.11;
+        Thu, 16 Jul 2020 21:54:18 -0700 (PDT)
+X-Gm-Message-State: AOAM531CSrm2RwmUXPJJrtNVfPFuSJQChNowzuUR199h+HVcceifc0Z8
+        05DrPF+HAE3DZG7BiQYi1c8xmy/7l+EAH0wWFuA=
+X-Google-Smtp-Source: ABdhPJy8QAUyiGsYNoe7J//N9aC1WKkuYpuvH9y8BqfVTTPpOtmEC3WdCNovEUTiKXjxWrl0eMOA6w9tffFl3RYrSX8=
+X-Received: by 2002:ab0:71d3:: with SMTP id n19mr6086967uao.25.1594961657690;
+ Thu, 16 Jul 2020 21:54:17 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <550f1796-67ca-5856-223d-c68360243954@nvidia.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1594960933; bh=zrJPrkEaMilEsiEvCxFcP2qbAQOtnirImXULU2ZGxhw=;
-        h=X-PGP-Universal:Subject:From:To:CC:References:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=royn2/PPV0tG+o3uz3podazpaSg+TPlkllbRFPolMwQkBGDlcwzbqOPcUlvl6bpUu
-         VW92u//W+t9T+V5jjotKTA3QnS+R+qe+DDZ7NZxmMtZc7CGa4GPchtE+V5g7cHNRd1
-         XA6ZKE+tkkAfQuGk7P4CnaSBOcTpuEVRLxAIyKUWgd32J7DNdgAC17TEw1ElcHLsD2
-         TBxxCZ6eSTN/eQdCdMWeT64mo77pSxVZ3S0k8yvfnzkB3IEBAnEF679u1HObAcSImA
-         fsoM/ZtUwjFZ7V582xtQHiNYnJJkN+azdHxpMn/QgnhyOyCh5w8hr2PPFLYl1ll5bL
-         e/7PfBjBNmoyQ==
+References: <20200707102338.989660-1-yamada.masahiro@socionext.com> <20200716230451.GA3041278@bogus>
+In-Reply-To: <20200716230451.GA3041278@bogus>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Fri, 17 Jul 2020 13:53:41 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAQN04i14VwrWspTJ7+Y87rgsopv88Dyv_8+4Hk8Kx0Fdw@mail.gmail.com>
+Message-ID: <CAK7LNAQN04i14VwrWspTJ7+Y87rgsopv88Dyv_8+4Hk8Kx0Fdw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: uniphier-thermal: add minItems to socionext,tmod-calibration
+To:     Rob Herring <robh@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Amit Kucheria <amit.kucheria@verdurent.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM mailing list <linux-pm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 7/16/20 5:16 PM, Sowjanya Komatineni wrote:
+On Fri, Jul 17, 2020 at 8:09 AM Rob Herring <robh@kernel.org> wrote:
 >
-> On 7/16/20 4:47 PM, Dmitry Osipenko wrote:
->> 17.07.2020 02:09, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->>> On 7/16/20 4:06 PM, Sowjanya Komatineni wrote:
->>>> On 7/16/20 4:01 PM, Dmitry Osipenko wrote:
->>>>> 17.07.2020 01:49, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->>>>>>> What keeps MIPI clock enabled after completion of the
->>>>>>> tegra_mipi_calibrate() invocation?
->>>>>> MIPI clock is disabled at end of tegra_mipi_calibrate and is=20
->>>>>> re-enabled
->>>>>> during tegra_mipi_wait.
->>>>>>
->>>>>> I think I should fix this to keep the clock enabled till calibration
->>>>>> results are latched.
->>>>>>
->>>>>> All consumers of tegra_mipi_calibrate() will call tegra_mipi_wait().
->>>>>>
->>>>>> So will remove clk_disable mipi clk at end of tegra_mipi_calibrate()
->>>>>> and
->>>>>> clk_enable mipi_clk at beginning of tegra_mipi_wait()
->>>>> Isn't it possible to perform the calibration after enabling CSI and
->>>>> before of starting the sensor streaming?
->>>> Currently this is what I am doing. Triggering calibration start during
->>>> CSI receiver being ready and then sensor streaming will happen where
->>>> internal MIPI CAL detects for LP -> HS transition and applies results
->>>> to pads. So checking for calibration results after sensor stream is
->>>> enabled
->>> 1. Calling tegra_mipi_calibrate() during CSI streaming where CSI pads
->>> are enabled and receiver is kept ready
->>>
->>> 2. Start Sensor stream
->>>
->>> 3. Calling tegra_mipi_wait() to check for MIPI Cal status.
->>>
->>> So as mipi cal clk need to be kept enabled till 3rd step, we can enable
->>> clock during tegra_mipi_calibrate() and leave it enabled and disable it
->>> in tegra_mipi_wait after status check.
->> =C2=A0From TRM:
->>
->> The following sequence is recommended for capturing a single frame:
->>
->> 1. Set up CSI registers for use case such as number of lanes, virtual
->> channel, etc.
->> 2. Initialize and power up CSI interface
->> 3. Wait for initialization time or done signal from calibration logic
->> 4. Power up camera through the I2C interface
->> 5. All CSI data and clock lanes are in stop state, LP11
->> 6. Initiate frame capture through the I2C
->> 7. Frame done, CSI goes back to stop state, LP11
->>
->> Hence, is it really necessary to perform the manual calibration?
+> On Tue, Jul 07, 2020 at 07:23:38PM +0900, Masahiro Yamada wrote:
+> > As the description says, this property contains a pair of calibration
+> > values. The number of items must be exactly 2.
+> >
+> > Add minItems to check a too short property.
+> >
+> > While I was here, I also added this property to the example because
+> > this is the case in the real DT file,
+> > arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
+> >
+> > Also, fix the interrupt type (edge -> level) to align with the
+> > real DT.
+> >
+> > Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+> > ---
+> >
+> >  .../bindings/thermal/socionext,uniphier-thermal.yaml          | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/thermal/socionext,uniphier-thermal.yaml b/Documentation/devicetree/bindings/thermal/socionext,uniphier-thermal.yaml
+> > index 553c9dcdaeeb..57ffd0c4c474 100644
+> > --- a/Documentation/devicetree/bindings/thermal/socionext,uniphier-thermal.yaml
+> > +++ b/Documentation/devicetree/bindings/thermal/socionext,uniphier-thermal.yaml
+> > @@ -29,6 +29,7 @@ properties:
+> >
+> >    socionext,tmod-calibration:
+> >      $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +    minItems: 2
 >
-> done signal from calibration logic will happen only when it sees LP to=20
-> HS transition as thats when calibration results are applied to pads=20
-> and then done signal is set.
+> The intent was if minItems is not defined, then the default is the same
+> as maxItems. This is not the default for json-schema, so the tooling is
+> supposed to add it.
+
+
+This implication is unclear.
+
+maxItems should literally only define the max, and
+we should stick to json-schema as much as possible, IMHO.
+
+
+
+
+It would be nice if json-schema had something like:
+
+numItems: 2
+
+as a shorthand for
+
+minItems: 2
+maxItems: 2
+
+
+Masahiro Yamada
+
+
+
+
+> But looking at processed-schema.yaml, it doesn't
+> seem to be happening for one case here. I'm working on a fix in the
+> tools.
 >
-> Also MIPI Pads calibration need to be done on every power off/on. So=20
-> need to do calibration and trigger it along with CSI receiver=20
-> programming to keep it ready and then need to check/wait for status=20
-> only after sensor stream happens as thats where LP->HS transition happen.
->
-Looks like sequence posted in TRM need to be updated clearly for proper=20
-MIPI CAL start and wait.
-
-Correct steps should be like below
-
-1. Set up CSI registers for use case such as number of lanes, virtual=C2=A0=
-=20
-channel, etc.
-2. Initialize and power up CSI CIL interface
-3. Program MIPI CAL bias pads, cal configs, cal control registers and=20
-enable calibration start
-4. Power up camera through the I2C interface and start sensor streaming=20
-through the I2C
-
-Note: All sensors might not leave pads in LP-11 state as sensor may be=20
-power down when not in use.
-
-So start streaming prior to checking for calibration done status as=20
-LP-11 -> HS transition happens during sensor stream and calibration=20
-logic can apply results to pads and update done status,
-
-5. Wait for done signal from calibration logic
-
-6. perform frame capture thru VI
-7. Frame done, CSI goes back to stop state, LP11
-
-Will work internally to correct sequence in TRM ...
+> Rob
 
 
-In mipi driver will update as below to have mipi clk enabled till=20
-calibration status check is done.
 
-Always tegra_mipi_wait() followes tegra_mipi_calibrate() in both DSI and=20
-CSI. So below sequence should work good.
-
-tegra_mipi_calibrate()
-
-- clk_enable mipi cal
-- program mipi cal registers (bias pads cfgs, mipi cal ctrl and trigger=20
-calibration start)
-
-tegra_mipi_wait()
-- read mipi cal status and wait for active and done bits
-- clk_disable mipi cal
-
-Thanks
-
-Sowjanya
-
+--
+Best Regards
+Masahiro Yamada
