@@ -2,40 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85696224010
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 18:01:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8523224022
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 18:04:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727042AbgGQQBC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jul 2020 12:01:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40798 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726998AbgGQQBA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Jul 2020 12:01:00 -0400
-Received: from wens.tw (mirror2.csie.ntu.edu.tw [140.112.194.72])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 43C58207EA;
-        Fri, 17 Jul 2020 16:01:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1595001660;
-        bh=QbFFDHcfMK18BVTPneujdXF5wa9/BSrZb6nRcGZq4MM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=rNAOaOValywCqZggHF3hZsetoRgt5WU+G8oRE17V15JRWkBAXzXM5V+3aTmPv2Sny
-         KGnKJvOoQfe1yD2fZD1A5ViNM39AbzdbIZeZCzOkcNrxaxIzrAh2dhW90px2H7oJKy
-         XhMGJpXqzZyUo2MZao17oCOe2U2u2+0Gjnr8q4N8=
-Received: by wens.tw (Postfix, from userid 1000)
-        id 5106B600AA; Sat, 18 Jul 2020 00:00:55 +0800 (CST)
-From:   Chen-Yu Tsai <wens@kernel.org>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 8/8] arm64: dts: allwinner: h5: bananapi-m2-plus-v1.2: Tie in CPU OPPs
-Date:   Sat, 18 Jul 2020 00:00:53 +0800
-Message-Id: <20200717160053.31191-9-wens@kernel.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200717160053.31191-1-wens@kernel.org>
-References: <20200717160053.31191-1-wens@kernel.org>
+        id S1726344AbgGQQEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jul 2020 12:04:12 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:35571 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726233AbgGQQEM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jul 2020 12:04:12 -0400
+Received: by mail-io1-f68.google.com with SMTP id v8so10966652iox.2;
+        Fri, 17 Jul 2020 09:04:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZZMONCL19UYadzPu6uG68r61s8RwI/fmFOE3TtThbcg=;
+        b=pEu+gzPAAzWrKN2BSJTuIUXO1McQqvZl6VZETKQsNqA/91Rl9p5yA21p/xff9OILzE
+         1OjnaX9NmTzJvXUCA0/Uxr2rE9celR+6tWh/UDOU7UJFcnig9yynNwBwVgYlJV7WpJ7N
+         I2LVlP5TikP0aJ3JWREU0jPxO4vDACVQr/VRcFLkMyzcMsf2jVoEZDui6tHg79Ke4oaU
+         bf+6oNA7qVsoN3H5/Vfn5zwnoxOiS28BNS1xCK3LqqZc1/KvG0Q/1AP8KUu6kmk1EwLu
+         EoGtzv9fg5phfq+ogCD3UkewC8uz4lKWi4xUgol5EJYvnb3f7T6uD5VP3fnBhK3PGoFk
+         vSnQ==
+X-Gm-Message-State: AOAM533Y+GIx0ZQVx0UnxkRBL9N+g2JHMvWq+7Gk5B6vr7YLxv5WUCUI
+        mdbfBNvIsFOVlSYPe2InSg8fEDcE8g==
+X-Google-Smtp-Source: ABdhPJzGbW4bYcU9wLZQ3cvTOdjIX6H0PPdVQMlHCWfeqAt+eh60L5Fdbpj72QS1+tYlVJ7SYFFexQ==
+X-Received: by 2002:a05:6638:69d:: with SMTP id i29mr11734802jab.47.1595001850880;
+        Fri, 17 Jul 2020 09:04:10 -0700 (PDT)
+Received: from xps15.herring.priv ([64.188.179.252])
+        by smtp.googlemail.com with ESMTPSA id e21sm4623586ioe.11.2020.07.17.09.04.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Jul 2020 09:04:10 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     Wolfram Sang <wolfram@the-dreams.de>, linux-i2c@vger.kernel.org
+Subject: [PATCH] dt-bindings: i2c-gpio: Use 'deprecated' keyword on deprecated properties
+Date:   Fri, 17 Jul 2020 10:04:07 -0600
+Message-Id: <20200717160407.378140-1-robh@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -43,32 +47,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chen-Yu Tsai <wens@csie.org>
+The i2c-gpio binding is the only case of 'not: true' being used for a
+deprecated property. Update it to use the json-schema 2019.09
+'deprecated' keyword instead. Define the type too in order to keep the
+meta-schema happy.
 
-The Bananapi M2 Plus H5 v1.2 can work with the standard H5 OPPs.
-Tie them in to enable CPU frequency scaling.
+This will disable warnings for these properties until the dtschema tools
+are updated to handle 'deprecated', but they are only used in a few at91
+dts files.
 
-The original Bananapi M2 Plus H5 is left out for now, as adding
-the fixed regulator along with the enable pin seemed to cause some
-glitching in Linux.
-
-Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+Cc: Wolfram Sang <wolfram@the-dreams.de>
+Cc: linux-i2c@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- .../arm64/boot/dts/allwinner/sun50i-h5-bananapi-m2-plus-v1.2.dts | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/i2c/i2c-gpio.yaml | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-bananapi-m2-plus-v1.2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-bananapi-m2-plus-v1.2.dts
-index 2e2b14c0ae75..8857a3791593 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h5-bananapi-m2-plus-v1.2.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-bananapi-m2-plus-v1.2.dts
-@@ -3,6 +3,7 @@
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-gpio.yaml b/Documentation/devicetree/bindings/i2c/i2c-gpio.yaml
+index da6129090a8e..78ffcab2428c 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c-gpio.yaml
++++ b/Documentation/devicetree/bindings/i2c/i2c-gpio.yaml
+@@ -52,15 +52,15 @@ properties:
+     description: sda and scl gpio, alternative for {sda,scl}-gpios
  
- /dts-v1/;
- #include "sun50i-h5.dtsi"
-+#include "sun50i-h5-cpu-opp.dtsi"
- #include <arm/sunxi-bananapi-m2-plus-v1.2.dtsi>
+   i2c-gpio,sda-open-drain:
+-    # Generate a warning if present
+-    not: true
++    type: boolean
++    deprecated: true
+     description: this means that something outside of our control has put
+       the GPIO line used for SDA into open drain mode, and that something is
+       not the GPIO chip. It is essentially an inconsistency flag.
  
- / {
+   i2c-gpio,scl-open-drain:
+-    # Generate a warning if present
+-    not: true
++    type: boolean
++    deprecated: true
+     description: this means that something outside of our control has put the
+       GPIO line used for SCL into open drain mode, and that something is not
+       the GPIO chip. It is essentially an inconsistency flag.
 -- 
-2.27.0
+2.25.1
 
