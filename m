@@ -2,132 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9F7D223708
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 10:30:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE808223735
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 10:36:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726359AbgGQIa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jul 2020 04:30:57 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:35954 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725864AbgGQIa4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jul 2020 04:30:56 -0400
-Received: by mail-ot1-f65.google.com with SMTP id 72so6326077otc.3;
-        Fri, 17 Jul 2020 01:30:55 -0700 (PDT)
+        id S1726056AbgGQIgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jul 2020 04:36:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45974 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726974AbgGQIgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jul 2020 04:36:16 -0400
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD740C061755;
+        Fri, 17 Jul 2020 01:36:15 -0700 (PDT)
+Received: by mail-ed1-x543.google.com with SMTP id d16so7014431edz.12;
+        Fri, 17 Jul 2020 01:36:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UKKt1i+qbb7u1MCS8ODLjX9FpnfwbfNBADcfLCJcoNk=;
+        b=OUPcgdRGfHBaIyE07DxAgHEsGAJchRmLtt8wCEg7nVFBm36LvFl37rxywBzGOJo8wL
+         AujuSqXksDhLCbq74NX1L1e6uZ/+wemBYGjofH5Lxi0dNHgsk6hGmJZjj3G2f08qhgXe
+         RYgKPFa7e4YSNI9UgZXiFmHwzrElsKRhwHyBoxbmUYRLq3Z3cIEQX89nlLNq9LDqj7E1
+         Micu+IvV3G2Dlbfj6pprJonk8ADrb20ZKoU7vM3hEBFKLOsSHTZj7AFRjNrx2BE5PG+w
+         QNQT9THWO94qqD/tsFtnpZaRFtftTWjfIhhGwQUmmtQ5KtJEBQi/eqtJORFGlBaUh8V7
+         7b8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SaPmcDUg77LU2p28w1+XxvJM/pkYFA+OmeunTanH6NM=;
-        b=Op9uWwA9+uHBLKuFz/y/xTKj3USv53KLaLcX15rGFX98ghtNG7DcDG264YbKRjBnwb
-         poGbj/mhMK+uhhd82hP+2XF12SULaufFoErAmB4+fck8tk3dpxN1MeyKjiREyhEZVwiO
-         9meINp//qifOnbvB5mgzAByMPIKRgr/D+SrTzbyso8OqjQ0YdevQV2JyG3MT/hrWCZlZ
-         8fQhnkmmLdPZXiQERZMTjqTDA6bnrSqwY2DcLVneiGh0S+ptu/UiAXLKzUt4Mu5L1snl
-         RcJKX840HCM+sGuMcI2n4si5prP5TeklOzGtOoIRLo9Y0Swr1Uqk2SrRnthiM/oCaCn2
-         OIDg==
-X-Gm-Message-State: AOAM533zV5Q7lU0SKA03vYU0rJVD5kIl7gnoeydLhjYe3uEabxjrN7er
-        D3ppYmt5oqpXRSlYHbp1c3vaH7NCdM+E8BlQdMQ=
-X-Google-Smtp-Source: ABdhPJwBR4fz/v72KgD7+7gM2P5Tmqx8wLWOng1tBACwKN4gtmWwLhUzgHZdq7TTGK9C+gXsTQ9SgDG6nK730RSLp4E=
-X-Received: by 2002:a9d:1b0d:: with SMTP id l13mr7734447otl.145.1594974655311;
- Fri, 17 Jul 2020 01:30:55 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UKKt1i+qbb7u1MCS8ODLjX9FpnfwbfNBADcfLCJcoNk=;
+        b=s2iHmKHEYGrVoDjP7L/7jVIOXrHCp+b1VyR23EJjOZbKYpzny2EvR4bP2xma2R1el5
+         /oXLh/P4UjanShYBvrWDJAUsFamcFxsPjslOW+ePTxptWO3Zy4k6hw5QRc6T7CTED3V1
+         Rw+VRkbybNncHxa6qrHeSL7FFQN/IGTBF+a1O0UZnHS+7y3ZlE59uzUC+G6/4OEXIyoZ
+         rteamcUFCZNPbjUe0UYvuBJs4oWTn5GW9PaJahDQYLqCYXZW4Rd/i7Zcoe+zR1K89Yjv
+         bjiCPSekckR0VPhm/JjFoIdfcqiNjZ4kUjuz5grvAo7r4vuoztxQ7dawVs9daZwVOCPv
+         AA1g==
+X-Gm-Message-State: AOAM532pzWgii07KF12s37dA0TbQ384my13zUKZPH5CzMht5vSYVAOej
+        OU8w0JsH04L1ChPuCfPVmLcXqPYq
+X-Google-Smtp-Source: ABdhPJySzetdMLRbHWosbzzD4UCkj6mQY50Ymnb6XBhSxYEHQLajfwo4shxW66CXpA3k45bJW/QNSA==
+X-Received: by 2002:aa7:c341:: with SMTP id j1mr8557511edr.197.1594974974219;
+        Fri, 17 Jul 2020 01:36:14 -0700 (PDT)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id da20sm7799527edb.27.2020.07.17.01.36.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Jul 2020 01:36:12 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Terje Bergstrom <tbergstrom@nvidia.com>,
+        Debarshi Dutta <ddutta@nvidia.com>,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 1/2] dt-bindings: Add documentation for GV11B GPU
+Date:   Fri, 17 Jul 2020 10:36:08 +0200
+Message-Id: <20200717083609.557205-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <1594971274-48027-1-git-send-email-biju.das.jz@bp.renesas.com>
- <20200717075452.GD68629@google.com> <TYBPR01MB5309AED7152585BD238DD013867C0@TYBPR01MB5309.jpnprd01.prod.outlook.com>
-In-Reply-To: <TYBPR01MB5309AED7152585BD238DD013867C0@TYBPR01MB5309.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 17 Jul 2020 10:30:44 +0200
-Message-ID: <CAMuHMdVvOa6GhVi8CZ6QNdY02KU6sOL4s0BS=vDM+u3a+7CaQw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: update usb-c-connector required property
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Prashant Malani <pmalani@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <treding@nvidia.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+From: Thierry Reding <treding@nvidia.com>
 
-On Fri, Jul 17, 2020 at 10:09 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > On Fri, Jul 17, 2020 at 08:34:33AM +0100, Biju Das wrote:
-> > > Some boards have a single SS capable connector. Update usb-c-connector
-> > > bindings to list port@1 as at least one of the required property.
-> > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-
-> > lad.rj@bp.renesas.com>
-> > > ---
-> > >  Ref: https://patchwork.kernel.org/patch/11129567/
-> > > ---
-> > >  Documentation/devicetree/bindings/connector/usb-connector.yaml | 7
-> > > +++++--
-> > >  1 file changed, 5 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > > b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > > index 9bd52e6..41e0685 100644
-> > > --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > > +++ b/Documentation/devicetree/bindings/connector/usb-
-> > connector.yaml
-> > > @@ -139,8 +139,11 @@ properties:
-> > >          description: Sideband Use (SBU), present in USB-C. This describes the
-> > >            alternate mode connection of which SBU is a part.
-> > >
-> > > -    required:
-> > > -      - port@0
-> > > +    anyOf:
-> > > +      - required:
-> > > +        - port@0
-> > > +      - required:
-> > > +        - port@1
-> >
-> > So the connector[1] doesn't have any High Speed (D+/D-) lanes? Those are
-> > supposed to be present on all Type C connectors.
->
-> Yes , USB-TypeC connector has  USB3HS0_DP and USB3HS0_DM signals apart from USB3S0_CLK_P, USB3S0_CLK_M,USB3S0_RX_P,USB3S0_RX_M,USB3S0_TX_P,USB3S0_TX_M,
-> USB3HS0_DP,USB3HS0_DM, USB30_PWEN and USB30_OVC.
->
-> But the Connector is a SS Capable connector which supports UFP/DFP and DRP.
+The GV11B's device tree bindings are the same as for GP10B, though the
+GPU is not completely compatible, so all that is needed is a different
+compatible string.
 
-The SS lanes of the connector are tied to the HD3SS3220.
-The D+/D- lanes of the connector are tied to the R-Car SoC directly.
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+Changes in v3:
+- document the "fuse" clock which needs to be enabled during the GPU
+  initialization
 
-Perhaps modelling the C connector as a child of the HD3SS3220 is the
-issue?  If the C connector was a separate node, it could have port@1
-point to the HD3SS3220, and port@0 to the SoC?
-That means there needs to be a different way to link the HD3SS3220 and
-the on-SoC usb3_peri0.  The current link between usb3_peri0 and
-hd3ss3220_ep looks a bit strange to me, as the latter label points to
-the C connector, not to the HD3SS3220 itself[2].
+ .../devicetree/bindings/gpu/nvidia,gk20a.txt  | 25 +++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-> > [1] : https://patchwork.kernel.org/patch/11129567/
-
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/Documentation/devicetree/bindings/gpu/nvidia,gk20a.txt b/Documentation/devicetree/bindings/gpu/nvidia,gk20a.txt
+index f32bbba4d3bc..662a3c8a7d29 100644
+--- a/Documentation/devicetree/bindings/gpu/nvidia,gk20a.txt
++++ b/Documentation/devicetree/bindings/gpu/nvidia,gk20a.txt
+@@ -6,6 +6,7 @@ Required properties:
+   - nvidia,gk20a
+   - nvidia,gm20b
+   - nvidia,gp10b
++  - nvidia,gv11b
+ - reg: Physical base address and length of the controller's registers.
+   Must contain two entries:
+   - first entry for bar0
+@@ -25,6 +26,9 @@ Required properties:
+ If the compatible string is "nvidia,gm20b", then the following clock
+ is also required:
+   - ref
++If the compatible string is "nvidia,gv11b", then the following clock is also
++required:
++  - fuse
+ - resets: Must contain an entry for each entry in reset-names.
+   See ../reset/reset.txt for details.
+ - reset-names: Must include the following entries:
+@@ -88,3 +92,24 @@ Example for GP10B:
+ 		power-domains = <&bpmp TEGRA186_POWER_DOMAIN_GPU>;
+ 		iommus = <&smmu TEGRA186_SID_GPU>;
+ 	};
++
++Example for GV11B:
++
++	gpu@17000000 {
++		compatible = "nvidia,gv11b";
++		reg = <0x17000000 0x10000000>,
++		      <0x18000000 0x10000000>;
++		interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "stall", "nonstall";
++		clocks = <&bpmp TEGRA194_CLK_GPCCLK>,
++			 <&bpmp TEGRA194_CLK_GPU_PWR>,
++			 <&bpmp TEGRA194_CLK_FUSE>;
++		clock-names = "gpu", "pwr", "fuse";
++		resets = <&bpmp TEGRA194_RESET_GPU>;
++		reset-names = "gpu";
++		dma-coherent;
++
++		power-domains = <&bpmp TEGRA194_POWER_DOMAIN_GPU>;
++		iommus = <&smmu TEGRA194_SID_GPU>;
++	};
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.27.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
