@@ -2,98 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB2E322425E
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 19:44:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19B9722427B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 19:47:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728349AbgGQRoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jul 2020 13:44:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59142 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728091AbgGQRoP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Jul 2020 13:44:15 -0400
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 89A6D22B4E;
-        Fri, 17 Jul 2020 17:44:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1595007854;
-        bh=8KhGhYBxnfryGaCJ4USJbgh0ERjIkpbE+Ah2Ia0FzVY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=W0nYfbVjzCONNpiGooYEWPPFRXkLlokkcPhl3A1lZqCJ+5OOenlOxseUiU6mMCB/A
-         znN2y7Yk4Pb6bptYEZ5CEyHi/0plSim+pZbDtv7Pp1w2uzJFDz38fLej6XM2nNTPi5
-         6RI7Y2NKe9s7mXZxbDZ655w3wevWqwVCFlCfXq14=
-Received: by mail-ot1-f46.google.com with SMTP id t18so7451299otq.5;
-        Fri, 17 Jul 2020 10:44:14 -0700 (PDT)
-X-Gm-Message-State: AOAM5314oTvqHBMMiHtgGYsaLvgZnSIboHW7R91gY80GST5N1g80yOBp
-        Gf6CZtI9dbPUnejvDefO1ukVwuB5HBdG/VpaWA==
-X-Google-Smtp-Source: ABdhPJzmF19p2CWPSseEsvbYzrAu3m4cEXKROdnW9Mwivlqz1HHyHd8Lvx2gzO5P1fA1g1DlI6dgjzgfnM6jDjbbmBQ=
-X-Received: by 2002:a05:6830:3104:: with SMTP id b4mr9977843ots.192.1595007853870;
- Fri, 17 Jul 2020 10:44:13 -0700 (PDT)
+        id S1726293AbgGQRrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jul 2020 13:47:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46550 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726232AbgGQRrT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jul 2020 13:47:19 -0400
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70906C0619D2;
+        Fri, 17 Jul 2020 10:47:19 -0700 (PDT)
+Received: by mail-ej1-x644.google.com with SMTP id lx13so11765699ejb.4;
+        Fri, 17 Jul 2020 10:47:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MCHMQCyaGiFmiAEOZCGJJ9+ZHHBfKYMD4ndLx0utt+k=;
+        b=kL6cSQaA7ZAVb822SFcAn7jM2Z6R7qPL+QjfpbvzDVzuf+tomRxqOFWAJ20xTDf1tY
+         2rbaQqrOLOC/Bo8gmXu2gTHqxX6Qo4NB57ye5M0qR6u6UtQM5s8N+0UVlh9tLUyFdjL/
+         Eyj8QpTzQ9BBM2QPHD6E8YuSF8JTRCENbiVEYnryF8HkLcdFxrbD313fC06dlQ2mRqAv
+         YMyf04NxtyDacYtALlkVvz5xR1aGACID1vGMZI0WQsm1aXahrqOuctfNzpptlK/1atPw
+         h5zCqVW2HBLNE64+8ZJPcJqL5mjo3EtLkUTKyOAKfciGLTj114RioK73jR5iAjg69Lsb
+         XMdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MCHMQCyaGiFmiAEOZCGJJ9+ZHHBfKYMD4ndLx0utt+k=;
+        b=hWeNo40xfimkQScjsbQcKWfOJWmCiFY3qqPMWI2yWQo4qkl8u30Xp9hpBlg1hc4Pv6
+         bhbph/AobDa3CmSDZMK1njoeI2SYOhHca9/Ur/SfBdARwUqdworZ0OqzscWyxgalyHp9
+         v69c4DaP5nFUzWTQoVw3c3iy9dx39p3rsqnze+vxwVD9oy3GMgkOYmd9NjI6k70yP+SD
+         9Pq8tz8TUJHszKj8PzsqJuBePvH5fOqlJyTtk+RWBBErjsQBys8rCQa09lKE2kI76qvX
+         NCoAYiPQ3WUwtEUwcXI/3DqZS2I3fweHYZ3plbcWiXv/HZO1nGaMjdf6Bn8RjIbWsxJ1
+         ppig==
+X-Gm-Message-State: AOAM531/s+tADcbPsPMX4w7CBL9y7AmDX3NmLjvBtv69e0RfqxWQiwMq
+        TdtOZ+Z8ZH1aXFeyeYTVikDqozaU/1+w1mw1MJI=
+X-Google-Smtp-Source: ABdhPJwtmM5I9XsUxydmrAjDhrNrNvfs/8okO6i9fpHQnBYs8v9G4H73wAYeFtCw/gPwg6HQpmgc6UytC/0WnR2RsRo=
+X-Received: by 2002:a17:906:7c54:: with SMTP id g20mr9931963ejp.460.1595008037981;
+ Fri, 17 Jul 2020 10:47:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200702191322.2639681-1-helen.koike@collabora.com> <20200702191322.2639681-5-helen.koike@collabora.com>
-In-Reply-To: <20200702191322.2639681-5-helen.koike@collabora.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 17 Jul 2020 11:44:02 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLYHY85_JhpGKwTOSP99uCER9VEf-gp3g4nFhN4ktCO3w@mail.gmail.com>
-Message-ID: <CAL_JsqLYHY85_JhpGKwTOSP99uCER9VEf-gp3g4nFhN4ktCO3w@mail.gmail.com>
-Subject: Re: [PATCH v4 4/9] media: staging: dt-bindings: rkisp1: fix "no reg"
- error in parent node
-To:     Helen Koike <helen.koike@collabora.com>
-Cc:     devicetree@vger.kernel.org,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
-        "heiko@sntech.de" <heiko@sntech.de>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Mark Rutland <mark.rutland@arm.com>, karthik.poduval@gmail.com,
-        Johan Jonker <jbx6244@gmail.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Eddie Cai <eddie.cai.linux@gmail.com>,
-        Shunqian Zheng <zhengsq@rock-chips.com>,
-        Robin Murphy <robin.murphy@arm.com>
+References: <1594292674-15632-1-git-send-email-rnayak@codeaurora.org> <1594292674-15632-4-git-send-email-rnayak@codeaurora.org>
+In-Reply-To: <1594292674-15632-4-git-send-email-rnayak@codeaurora.org>
+From:   Rob Clark <robdclark@gmail.com>
+Date:   Fri, 17 Jul 2020 10:47:51 -0700
+Message-ID: <CAF6AEGvioVKKSN-UP35OfJcfUXeHy34Y6w2eM_FZU+zpTaRE7A@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] arm64: dts: sdm845: Add DSI and MDP OPP tables and power-domains
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     Sean Paul <sean@poorly.run>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 2, 2020 at 1:13 PM Helen Koike <helen.koike@collabora.com> wrote:
+On Thu, Jul 9, 2020 at 4:05 AM Rajendra Nayak <rnayak@codeaurora.org> wrote:
 >
-> Fix the following error found with make ARCH=arm64 dt_binding_check:
+> Add the OPP tables for DSI and MDP based on the perf state/clk
+> requirements, and add the power-domains property to specify the
+> scalable power domain.
 >
-> Documentation/devicetree/bindings/media/rockchip-isp1.example.dts:24.27-101.11:
-> Warning (unit_address_vs_reg): /example-0/parent@0: node has a unit name, but no reg or ranges property
->
-> Reported-by: Johan Jonker <jbx6244@gmail.com>
-> Signed-off-by: Helen Koike <helen.koike@collabora.com>
-> ---
->
-> V3:
-> - this is a new patch in the series
-> ---
->  .../Documentation/devicetree/bindings/media/rockchip-isp1.yaml   | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/staging/media/rkisp1/Documentation/devicetree/bindings/media/rockchip-isp1.yaml b/drivers/staging/media/rkisp1/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
-> index e5b9c0574e352..4d111ef2e89c7 100644
-> --- a/drivers/staging/media/rkisp1/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
-> +++ b/drivers/staging/media/rkisp1/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
-> @@ -126,6 +126,7 @@ examples:
->      #include <dt-bindings/power/rk3399-power.h>
->
->      parent0: parent@0 {
-> +        reg = <0 0>;
+> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
 
-Just drop the unit-address.
+Tested-by: Rob Clark <robdclark@gmail.com>
 
->          #address-cells = <2>;
->          #size-cells = <2>;
+Bjorn, the two driver patches are queued up in msm-next, I assume
+you'll pickup the two dt patches?
+
+BR,
+-R
+
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 59 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 59 insertions(+)
 >
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index fee50d9..3efdd70 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -3296,6 +3296,35 @@
+>                         #power-domain-cells = <1>;
+>                 };
+>
+> +               dsi_opp_table: dsi-opp-table {
+> +                       compatible = "operating-points-v2";
+> +
+> +                       opp-19200000 {
+> +                               opp-hz = /bits/ 64 <19200000>;
+> +                               required-opps = <&rpmhpd_opp_min_svs>;
+> +                       };
+> +
+> +                       opp-180000000 {
+> +                               opp-hz = /bits/ 64 <180000000>;
+> +                               required-opps = <&rpmhpd_opp_low_svs>;
+> +                       };
+> +
+> +                       opp-275000000 {
+> +                               opp-hz = /bits/ 64 <275000000>;
+> +                               required-opps = <&rpmhpd_opp_svs>;
+> +                       };
+> +
+> +                       opp-328580000 {
+> +                               opp-hz = /bits/ 64 <328580000>;
+> +                               required-opps = <&rpmhpd_opp_svs_l1>;
+> +                       };
+> +
+> +                       opp-358000000 {
+> +                               opp-hz = /bits/ 64 <358000000>;
+> +                               required-opps = <&rpmhpd_opp_nom>;
+> +                       };
+> +               };
+> +
+>                 mdss: mdss@ae00000 {
+>                         compatible = "qcom,sdm845-mdss";
+>                         reg = <0 0x0ae00000 0 0x1000>;
+> @@ -3340,6 +3369,8 @@
+>                                                   <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
+>                                 assigned-clock-rates = <300000000>,
+>                                                        <19200000>;
+> +                               operating-points-v2 = <&mdp_opp_table>;
+> +                               power-domains = <&rpmhpd SDM845_CX>;
+>
+>                                 interrupt-parent = <&mdss>;
+>                                 interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> @@ -3364,6 +3395,30 @@
+>                                                 };
+>                                         };
+>                                 };
+> +
+> +                               mdp_opp_table: mdp-opp-table {
+> +                                       compatible = "operating-points-v2";
+> +
+> +                                       opp-19200000 {
+> +                                               opp-hz = /bits/ 64 <19200000>;
+> +                                               required-opps = <&rpmhpd_opp_min_svs>;
+> +                                       };
+> +
+> +                                       opp-171428571 {
+> +                                               opp-hz = /bits/ 64 <171428571>;
+> +                                               required-opps = <&rpmhpd_opp_low_svs>;
+> +                                       };
+> +
+> +                                       opp-344000000 {
+> +                                               opp-hz = /bits/ 64 <344000000>;
+> +                                               required-opps = <&rpmhpd_opp_svs_l1>;
+> +                                       };
+> +
+> +                                       opp-430000000 {
+> +                                               opp-hz = /bits/ 64 <430000000>;
+> +                                               required-opps = <&rpmhpd_opp_nom>;
+> +                                       };
+> +                               };
+>                         };
+>
+>                         dsi0: dsi@ae94000 {
+> @@ -3386,6 +3441,8 @@
+>                                               "core",
+>                                               "iface",
+>                                               "bus";
+> +                               operating-points-v2 = <&dsi_opp_table>;
+> +                               power-domains = <&rpmhpd SDM845_CX>;
+>
+>                                 phys = <&dsi0_phy>;
+>                                 phy-names = "dsi";
+> @@ -3450,6 +3507,8 @@
+>                                               "core",
+>                                               "iface",
+>                                               "bus";
+> +                               operating-points-v2 = <&dsi_opp_table>;
+> +                               power-domains = <&rpmhpd SDM845_CX>;
+>
+>                                 phys = <&dsi1_phy>;
+>                                 phy-names = "dsi";
 > --
-> 2.26.0
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+> of Code Aurora Forum, hosted by The Linux Foundation
 >
