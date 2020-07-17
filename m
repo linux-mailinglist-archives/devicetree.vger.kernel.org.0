@@ -2,218 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 918B1223E76
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 16:43:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85FF8223F08
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 17:03:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726429AbgGQOnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jul 2020 10:43:03 -0400
-Received: from mail-eopbgr60077.outbound.protection.outlook.com ([40.107.6.77]:27969
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726104AbgGQOm7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Jul 2020 10:42:59 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B8jIv4Ln/VYBHppYWP7qVrPv1zqsyb3Q775IJSPiUbWfaf8OR/3cYK40MpWevutiWSfUqUkZoDY7YaPHe7mv8x/110a3gtWtN+MGa4HmVDMIQffe/jYJEDychi7okxc1rWP0TeIgFAdgjDsROOmKmPIlTdhiYhB0SQK+AVg9StPRNv0dEjfSePWxoi3Ip1w7Wxa7r+qtB2yo76SF0fiJyie+KCq87FILsG9G/jphf4sak/28d7IRijv+aBKhgpS7N5Pow9Yz/X0IOuGCBxdqYva6816dBz56c5EF6MFnfjhMXFoVpYRBQo43fjkH9mMFLPwVnP7GGpHiZPZN5sSe3A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZQidYtEHaaVmN58ty0BpN5J9mbFff7t8em3qmaLa2DU=;
- b=Hh2TzWk/fPxfBNFmBYPPc4XAV737P6QosxkLU+47CDrFI4yIL8lXRhm+mokG6k/SRX1+J+xZIUXKZeRkt4WgOZkt9lf+q3SXhulZnCAxaisFCUQhPW2eYSovZ+iybWeQMF76MFszRG0ZYWtn4PXBCvl/OioH2itN6sOUDlloAGLpC9BV5liX+hCTcE/EI+q+vmqNGQEHgPd1zssaDWS4yHPF93iN6R7hnLmBV3u8mjFqHNwfxjbs1a5/hZ2RW7rsQvVADXqLm/jOtLqP+CKocbd6nKEjK/NXNlZniYqDpPkjXFdIo7MRv2iFWZmtO0Nc0N4M81IlCpmRKZKrrsEnig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZQidYtEHaaVmN58ty0BpN5J9mbFff7t8em3qmaLa2DU=;
- b=XtBPFpbYJPzp3446Xuk/YZ79i6LBcnCZDRfkrAuV4ZYPUZGDB8shIFmuCbe07FwizE8zZXpSPybw4QDznlcfiwx4V30XEbGnUSmtpPU66muqLOLLMeXHGJLIJOwZiNSqIfbWgmxNnR8nFJFQbC4b7zXbuJAOPgRUjiUviyz3YNE=
-Authentication-Results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none header.from=oss.nxp.com;
-Received: from VI1PR0402MB3902.eurprd04.prod.outlook.com
- (2603:10a6:803:22::27) by VI1PR04MB6959.eurprd04.prod.outlook.com
- (2603:10a6:803:139::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3195.17; Fri, 17 Jul
- 2020 14:42:32 +0000
-Received: from VI1PR0402MB3902.eurprd04.prod.outlook.com
- ([fe80::4c0:79dd:b734:9ea7]) by VI1PR0402MB3902.eurprd04.prod.outlook.com
- ([fe80::4c0:79dd:b734:9ea7%5]) with mapi id 15.20.3174.029; Fri, 17 Jul 2020
- 14:42:32 +0000
-From:   Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     lukas@mntmn.com, agx@sigxcpu.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, laurentiu.palcu@oss.nxp.com,
-        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v6 4/4] dt-bindings: display: imx: add bindings for DCSS
-Date:   Fri, 17 Jul 2020 17:41:29 +0300
-Message-Id: <20200717144132.2206-5-laurentiu.palcu@oss.nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200717144132.2206-1-laurentiu.palcu@oss.nxp.com>
-References: <20200717144132.2206-1-laurentiu.palcu@oss.nxp.com>
-Content-Type: text/plain; charset="us-ascii"
-X-ClientProxiedBy: AM4PR05CA0035.eurprd05.prod.outlook.com (2603:10a6:205::48)
- To VI1PR0402MB3902.eurprd04.prod.outlook.com (2603:10a6:803:22::27)
+        id S1726817AbgGQPCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jul 2020 11:02:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49170 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726351AbgGQPCE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jul 2020 11:02:04 -0400
+Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com [IPv6:2607:f8b0:4864:20::e43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17350C0619D2
+        for <devicetree@vger.kernel.org>; Fri, 17 Jul 2020 08:02:04 -0700 (PDT)
+Received: by mail-vs1-xe43.google.com with SMTP id d11so5008765vsq.3
+        for <devicetree@vger.kernel.org>; Fri, 17 Jul 2020 08:02:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7Aj8c3ItAShnnsLNIQ3E8MXZ0tu8sMgycVZ8H2IhzgY=;
+        b=YooeeixG0/jkhNIRHh3/Ok41dsT/OX3z2lbp1dsvYYWgOvjgGAeQzWt4/nwPKnz3Mv
+         uXq028FmcWMT8/xVvpnT5J5b/dVVSVDK5eofaCaIcodv7fnB3wrg/uKVe0+25lcrLv/3
+         WamTri+dPxncC4RrX/4vmXrs97xe8dnN1V6/E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7Aj8c3ItAShnnsLNIQ3E8MXZ0tu8sMgycVZ8H2IhzgY=;
+        b=ud3n3ZZDvj5dFIpdUnATUTM0S5ZIOprPim8XV+hioYxLekpW2hi2iN2juoNbN74Kos
+         1/f8hXQFWBYVAWJZFLHb6uRj5UI/eUlZeDJHzDWFmNFpLlVX9LVnNvsO0/IHXv528P3W
+         FPxkNKzoKvfhUMztQkkAELXNYFR0EJYn3YdMXV/uOVy45pRJsmzX1lNlAzLVEGGMx1RW
+         andaaZ+jL12MELHROmEu1UcSPOZfAkD8Y6GffWiZ3J9AbKJ/T679jl+NCUOf9c5ZM6EZ
+         ikqU7oM9BWzVPR4L+tf3qRvoPrpj5SvKQ1wq23MbxMtR2EwsOlt05yyqg3jCC6+bg+XV
+         LkwQ==
+X-Gm-Message-State: AOAM531OHAd/nPBgvKdAni3Wl6HnBV0CfO/TwXbQ5WGYrDllUny7Bx7n
+        Jxph2qZG1kg3LB3LQzChLkdcF0ASmJ8=
+X-Google-Smtp-Source: ABdhPJwpQuoIi+9vl5Yr6/NWlPknKIx4wjzpoSd+j9j1T+V+43NaSwQrGhElgsq8uWyJBx+REfKY9w==
+X-Received: by 2002:a67:7d44:: with SMTP id y65mr7617785vsc.172.1594998122727;
+        Fri, 17 Jul 2020 08:02:02 -0700 (PDT)
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com. [209.85.221.174])
+        by smtp.gmail.com with ESMTPSA id t13sm993087vst.9.2020.07.17.08.02.00
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Jul 2020 08:02:01 -0700 (PDT)
+Received: by mail-vk1-f174.google.com with SMTP id r7so2183637vkf.0
+        for <devicetree@vger.kernel.org>; Fri, 17 Jul 2020 08:02:00 -0700 (PDT)
+X-Received: by 2002:a1f:3d4a:: with SMTP id k71mr7624402vka.65.1594998119832;
+ Fri, 17 Jul 2020 08:01:59 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from fsr-ub1864-141.ea.freescale.net (83.217.231.2) by AM4PR05CA0035.eurprd05.prod.outlook.com (2603:10a6:205::48) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3195.19 via Frontend Transport; Fri, 17 Jul 2020 14:42:30 +0000
-X-Mailer: git-send-email 2.17.1
-X-Originating-IP: [83.217.231.2]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 906cce2c-32a9-47e5-cbe8-08d82a5fa32b
-X-MS-TrafficTypeDiagnostic: VI1PR04MB6959:
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR04MB6959FC3656E4ED3C4555D4EDBE7C0@VI1PR04MB6959.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: V6i97HYo4UtKvBzjQW/uCRmU22A3qZ0/O2K6lbsLbvinmGHfNC/8+gvGAZ43wbfhpDoJi5pGboIkyzkUBh+GK6rl+FvGJyraDtK9LD2BXcaimiKGntFtCVGI4FvJVcOfKvBECI1ZMfOHgZVz7LjGraSZuZXkL1icaGAg//ABsA+eb4WbWKj5Fz3bQLWUa+dO/Zkk7+Eg4Hd25KfuS+BvfKTmXQ27iz93cnDY7vIhrXdp204B5lj1UYVBg/B9ZgzHoA2V9C14jXz8iFAUm1GQHs2fMyTmdUEz5kRdMB7gh8OY3wqnxuNQYEPvbl60NMK9LhVVuOTZ11Pc7zUbfU8+kY/+UZqcVjZMZTuv0xcV6L+IimaEw6+AJhLhlH8YUmTApzUG2vfjjkwZYyWsUYV4aw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3902.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(136003)(376002)(39860400002)(396003)(346002)(366004)(110136005)(186003)(44832011)(16526019)(1076003)(8936002)(2906002)(6506007)(86362001)(26005)(6486002)(2616005)(5660300002)(66946007)(478600001)(66476007)(7416002)(66556008)(6512007)(4326008)(316002)(83380400001)(956004)(8676002)(52116002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: W9q6XRZt6cL7CRNbofIjAFOFKYbIagljU9PQ9JU34C+UwuH3o1QYO80FXEj2GbRh4/PhLCynBW160r6IBAM4PDCnUgBH1e071nkZwee+/MSUOws5sepHdkEKbEY9I2oqOHs2G8z+2vSYa2y1PMOt3JWYirezCSvRWu0uNm3n7Gydq6BWkJMhhHeYk0lU/8V6UHK5pLeaWNpU+n4VzWbRhFepFSW61+LyiZB3Py0HtV2EZ5VmD8N6InOIDmWjCj3OjsHbItcY1ZXJ+UcVx/rp3WGaZ1a9ivhFgLFMH783aaJoYiK73kgBFdG13FQ6dU3R+5R1PdTUEz/D01V1KgzjPv2FUlnLaLOhUQQtlaxn3toC0zGsAom8rOB1OoMdNUYWXbvm1435RTvgF+xc6nkeaTdSO02wcuthskdUh40/9FRu3q/pCcOArSjq6xnY/u8J2jvp9SlvdB8n11FlZnT9EIDxEXTExr0uoZgr2TwaVs0=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 906cce2c-32a9-47e5-cbe8-08d82a5fa32b
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3902.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2020 14:42:32.2860
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: q0BRO3zr/JDFLQLP+Dn53dtweNhqym0NrX1fZO2LOSCebjFCFCwcuEv7B4b0NBsUkxMRUme1zmclpPHr+dcFDA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6959
+References: <20200717120207.3471030-1-cychiang@chromium.org>
+In-Reply-To: <20200717120207.3471030-1-cychiang@chromium.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 17 Jul 2020 08:01:48 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XFayyvT-b9C3f4pXNkboH7kb7ikyi9qJxmNvowOfkjqQ@mail.gmail.com>
+Message-ID: <CAD=FV=XFayyvT-b9C3f4pXNkboH7kb7ikyi9qJxmNvowOfkjqQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ASoC: qcom: dt-bindings: Add sc7180 machine bindings
+To:     Cheng-Yi Chiang <cychiang@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Dylan Reid <dgreid@chromium.org>, tzungbi@chromium.org,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ALSA Development Mailing List <alsa-devel@alsa-project.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Laurentiu Palcu <laurentiu.palcu@nxp.com>
+Hi,
 
-Add bindings for iMX8MQ Display Controller Subsystem.
+On Fri, Jul 17, 2020 at 5:02 AM Cheng-Yi Chiang <cychiang@chromium.org> wrote:
+>
+> Add devicetree bindings documentation file for sc7180 sound card.
+>
+> Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
+> ---
+>  .../bindings/sound/qcom,sc7180.yaml           | 123 ++++++++++++++++++
+>  1 file changed, 123 insertions(+)
 
-Signed-off-by: Laurentiu Palcu <laurentiu.palcu@nxp.com>
----
- .../bindings/display/imx/nxp,imx8mq-dcss.yaml | 104 ++++++++++++++++++
- 1 file changed, 104 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.yaml
+A bit of a mechanical review since my audio knowledge is not strong.
 
-diff --git a/Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.yaml b/Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.yaml
-new file mode 100644
-index 000000000000..68e4635e4874
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.yaml
-@@ -0,0 +1,104 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2019 NXP
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/display/imx/nxp,imx8mq-dcss.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: iMX8MQ Display Controller Subsystem (DCSS)
-+
-+maintainers:
-+  - Laurentiu Palcu <laurentiu.palcu@nxp.com>
-+
-+description:
-+
-+  The DCSS (display controller sub system) is used to source up to three
-+  display buffers, compose them, and drive a display using HDMI 2.0a(with HDCP
-+  2.2) or MIPI-DSI. The DCSS is intended to support up to 4kp60 displays. HDR10
-+  image processing capabilities are included to provide a solution capable of
-+  driving next generation high dynamic range displays.
-+
-+properties:
-+  compatible:
-+    const: nxp,imx8mq-dcss
-+
-+  reg:
-+    items:
-+      - description: DCSS base address and size, up to IRQ steer start
-+      - description: DCSS BLKCTL base address and size
-+
-+  interrupts:
-+    items:
-+      - description: Context loader completion and error interrupt
-+      - description: DTG interrupt used to signal context loader trigger time
-+      - description: DTG interrupt for Vblank
-+
-+  interrupt-names:
-+    items:
-+      - const: ctxld
-+      - const: ctxld_kick
-+      - const: vblank
-+
-+  clocks:
-+    items:
-+      - description: Display APB clock for all peripheral PIO access interfaces
-+      - description: Display AXI clock needed by DPR, Scaler, RTRAM_CTRL
-+      - description: RTRAM clock
-+      - description: Pixel clock, can be driven either by HDMI phy clock or MIPI
-+      - description: DTRC clock, needed by video decompressor
-+
-+  clock-names:
-+    items:
-+      - const: apb
-+      - const: axi
-+      - const: rtrm
-+      - const: pix
-+      - const: dtrc
-+
-+  assigned-clocks:
-+    items:
-+      - description: Phandle and clock specifier of IMX8MQ_CLK_DISP_AXI_ROOT
-+      - description: Phandle and clock specifier of IMX8MQ_CLK_DISP_RTRM
-+      - description: Phandle and clock specifier of either IMX8MQ_VIDEO2_PLL1_REF_SEL or
-+                     IMX8MQ_VIDEO_PLL1_REF_SEL
-+
-+  assigned-clock-parents:
-+    items:
-+      - description: Phandle and clock specifier of IMX8MQ_SYS1_PLL_800M
-+      - description: Phandle and clock specifier of IMX8MQ_SYS1_PLL_800M
-+      - description: Phandle and clock specifier of IMX8MQ_CLK_27M
-+
-+  assigned-clock-rates:
-+    items:
-+      - description: Must be 800 MHz
-+      - description: Must be 400 MHz
-+
-+  port:
-+    type: object
-+    description:
-+      A port node pointing to the input port of a HDMI/DP or MIPI display bridge.
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    dcss: display-controller@32e00000 {
-+        compatible = "nxp,imx8mq-dcss";
-+        reg = <0x32e00000 0x2d000>, <0x32e2f000 0x1000>;
-+        interrupts = <6>, <8>, <9>;
-+        interrupt-names = "ctxld", "ctxld_kick", "vblank";
-+        interrupt-parent = <&irqsteer>;
-+        clocks = <&clk 248>, <&clk 247>, <&clk 249>,
-+                 <&clk 254>,<&clk 122>;
-+        clock-names = "apb", "axi", "rtrm", "pix", "dtrc";
-+        assigned-clocks = <&clk 107>, <&clk 109>, <&clk 266>;
-+        assigned-clock-parents = <&clk 78>, <&clk 78>, <&clk 3>;
-+        assigned-clock-rates = <800000000>,
-+                               <400000000>;
-+        port {
-+            dcss_out: endpoint {
-+                remote-endpoint = <&hdmi_in>;
-+            };
-+        };
-+    };
-+
--- 
-2.17.1
 
+>  create mode 100644 Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,sc7180.yaml b/Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
+> new file mode 100644
+> index 000000000000..d60d2880d991
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
+> @@ -0,0 +1,123 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/qcom,sc7180.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies Inc. SC7180 ASoC sound card driver
+> +
+> +maintainers:
+> +  - Rohit kumar <rohitkr@codeaurora.org>
+> +  - Cheng-Yi Chiang <cychiang@chromium.org>
+> +
+> +description: |
+> +  This binding describes the SC7180 sound card, which uses LPASS for audio.
+
+nit: you don't need the pipe at the end of the "description" line.
+That means that newlines are important and you don't need it.
+
+
+> +definitions:
+
+I haven't yet seen much yaml using definitions like this.  It feels
+like overkill for some of these properties, especially ones that are
+only ever used once in the "properties:" section and are/or are really
+simple.
+
+
+> +  link-name:
+> +    description: Indicates dai-link name and PCM stream name.
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    maxItems: 1
+> +
+> +  dai:
+> +    type: object
+> +    properties:
+> +      sound-dai:
+> +        maxItems: 1
+> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+> +        description: phandle array of the codec or CPU DAI
+> +
+> +    required:
+> +      - sound-dai
+> +
+> +  unidirectional:
+> +    description: Specify direction of unidirectional dai link.
+> +                 0 for playback only. 1 for capture only.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+So if the property isn't there then it's _not_ unidirectional and if
+it is there then this specifies the direction, right?  I almost wonder
+if this should just be two boolean properties, like:
+
+playback-only;
+capture-only;
+
+...but I guess I'd leave it to Rob and/or Mark to say what they liked
+better.  In any case if you keep it how you have it then you should
+use yaml to force it to be either 0 or 1 if present.
+
+
+> +
+> +properties:
+> +  compatible:
+> +    contains:
+> +      enum:
+> +        - qcom,sc7180-sndcard
+
+Just:
+
+properties:
+  compatible:
+    const: qcom,sc7180-sndcard
+
+
+
+> +  audio-routing:
+> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> +    description: |-
+> +      A list of the connections between audio components. Each entry is a
+> +      pair of strings, the first being the connection's sink, the second
+> +      being the connection's source.
+
+You don't need the "|-" after the "description:".  That says newlines
+are important but strip the newline from the end.
+
+
+> +  model:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: User specified audio sound card name
+> +
+> +patternProperties:
+> +  "^dai-link-[0-9]+$":
+> +    description: |
+> +      Each subnode represents a dai link. Subnodes of each dai links would be
+> +      cpu/codec dais.
+
+From looking at "simple-card.yaml", I'm gonna guess that instead of
+encoding the link number in the name of the node that you should
+actually use a unit address and a reg in the subnodes.
+
+...also, again your description doesn't need the "|" at the end.
+Maybe <https://yaml-multiline.info/> will be useful to you?
+
+
+> +    type: object
+> +
+> +    properties:
+> +      link-name:
+> +        $ref: "#/definitions/link-name"
+> +
+> +      unidirectional:
+> +        $ref: "#/definitions/unidirectional"
+> +
+> +      cpu:
+> +        $ref: "#/definitions/dai"
+> +
+> +      codec:
+> +        $ref: "#/definitions/dai"
+> +
+> +    required:
+> +      - link-name
+> +      - cpu
+> +      - codec
+> +
+> +    additionalProperties: false
+> +
+> +examples:
+> +
+> +  - |
+> +    snd {
+
+Can you use the full node name "sound" here?
+
+
+> +        compatible = "qcom,sc7180-sndcard";
+> +        model = "sc7180-snd-card";
+> +
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&sec_mi2s_active &sec_mi2s_dout_active
+> +                     &sec_mi2s_ws_active &pri_mi2s_active
+> +                     &pri_mi2s_dout_active &pri_mi2s_ws_active
+> +                     &pri_mi2s_din_active &pri_mi2s_mclk_active>;
+
+I think pinctrl is usually not in the dt examples.
+
+...also, shouldn't the mi2s pinctrl be in the i2s nodes, not in the
+overall sound node?
+
+
+> +        audio-routing =
+> +                    "Headphone Jack", "HPOL",
+> +                    "Headphone Jack", "HPOR";
+> +
+> +        dai-link-0 {
+> +            link-name = "MultiMedia0";
+> +            cpu {
+> +                sound-dai = <&lpass_cpu 0>;
+> +            };
+> +
+> +            codec {
+> +                sound-dai = <&alc5682 0>;
+> +            };
+> +        };
+> +
+> +        dai-link-1 {
+> +            link-name = "MultiMedia1";
+> +            unidirectional = <0>;
+> +            cpu {
+> +                sound-dai = <&lpass_cpu 1>;
+> +            };
+> +
+> +            codec {
+> +                sound-dai = <&max98357a>;
+> +            };
+> +        };
+> +    };
+> --
+> 2.28.0.rc0.105.gf9edc3c819-goog
+>
