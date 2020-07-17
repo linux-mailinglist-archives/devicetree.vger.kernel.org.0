@@ -2,101 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61ECA2243AC
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 21:02:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDF9A2243F4
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 21:13:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726650AbgGQTCa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jul 2020 15:02:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34130 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726439AbgGQTCa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Jul 2020 15:02:30 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 66DDE20775;
-        Fri, 17 Jul 2020 19:02:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1595012549;
-        bh=hY/IiQZ62oMR2cm1BWXEte+UuNUso2tLkvY01Z3Z7so=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=QNwhBCWxtuvTLRSbhixHCBlp73msYY5d2rOsE+qi+9d+WJgBkiDpqBUsQNPg4hTr+
-         mHTMZHwMy/c1hncyNQVipPgFrbmRlFfqK0GiZOCEybSU6XSQTum/kgvhljsXbv0/Im
-         hvjLnb9qvM6T3djT7shhwgAP2Pq0/27HXSUi0QtM=
-Received: by mail-oi1-f170.google.com with SMTP id t4so8832941oij.9;
-        Fri, 17 Jul 2020 12:02:29 -0700 (PDT)
-X-Gm-Message-State: AOAM530Z1EQqa2V5907KbvYFF6G0rAuklBX5F7MqFlTWRnrQBWWFhgAv
-        +G9kaKZhfFvr892kNK9g9IbGw0YJ2P0ru/p6MA==
-X-Google-Smtp-Source: ABdhPJzZY8yy3yKxPk7vB1ABc8/WFSudqSAMcFCsEUF38xcGMuBxhU8wPz3U67XIH6o54FVkR0PRKLPNGbkhbV3VBOE=
-X-Received: by 2002:aca:30d2:: with SMTP id w201mr8975582oiw.147.1595012548740;
- Fri, 17 Jul 2020 12:02:28 -0700 (PDT)
+        id S1727978AbgGQTL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jul 2020 15:11:58 -0400
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:1396 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728607AbgGQTL6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jul 2020 15:11:58 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5f11f7c20006>; Fri, 17 Jul 2020 12:10:58 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Fri, 17 Jul 2020 12:11:57 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Fri, 17 Jul 2020 12:11:57 -0700
+Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 17 Jul
+ 2020 19:11:57 +0000
+Received: from rnnvemgw01.nvidia.com (10.128.109.123) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Fri, 17 Jul 2020 19:11:57 +0000
+Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.163.115]) by rnnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5f11f7fc0001>; Fri, 17 Jul 2020 12:11:56 -0700
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <frankc@nvidia.com>, <hverkuil@xs4all.nl>,
+        <luca@lucaceresoli.net>, <leonl@leopardimaging.com>,
+        <robh+dt@kernel.org>, <lgirdwood@gmail.com>, <broonie@kernel.org>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 1/3] media: i2c: imx274: Fix Y_OUT_SIZE register setting
+Date:   Fri, 17 Jul 2020 12:15:20 -0700
+Message-ID: <1595013322-15077-1-git-send-email-skomatineni@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
 MIME-Version: 1.0
-References: <20200715221150.v3.2.I113cdbaf66d48b37ac0faefb9b845480d122f3b9@changeid>
- <20200716191318.GA2683551@bogus> <3995892c-340c-3419-3c2d-934a3067f51b@collabora.com>
-In-Reply-To: <3995892c-340c-3419-3c2d-934a3067f51b@collabora.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 17 Jul 2020 13:02:17 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+Xr5m4pxqbeEt+Zwb1GCWPKN1KBmdVtyKAmVFiLf=r1A@mail.gmail.com>
-Message-ID: <CAL_Jsq+Xr5m4pxqbeEt+Zwb1GCWPKN1KBmdVtyKAmVFiLf=r1A@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] dt-bindings: mfd: Add DT compatible string "google,cros_ec_uart"
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Furquan Shaikh <furquan@chromium.org>,
-        Raul E Rangel <rrangel@chromium.org>,
-        Eric Peers <epeers@google.com>,
-        Duncan Laurie <dlaurie@google.com>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1595013058; bh=DLvQ6chRzbjeKicuQdxuqVcpH3d1W/1R1Kay/NtRj70=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=dNkIccMwSkcpJVG9TVvN1c8DqptyYAYHC0pojdxtG/ndu8jD1Aqq8KySS2156GZQm
+         yngeqITKvsHwtyC2mPMbgIoU7I6NAAfkIR3cQD8BtywDat7iYArxf0NoScpyi9SlbM
+         pMUY7U4PFSmgDiu39pU9LqEhyukAf2VhxjdYKUi1jFtIlymWLn7Y7HB3wUpYAZWJqk
+         FLVNwWvdAlmJXbXy5zeU63P91/RarxpLqS8hNorSv25iXnI3FefRBmWj3t7FxlFbd4
+         1wR3HRZfgqhbsY6XDaelo7suvoDrmjeTShv0B0YG9M7chZ5jXhYugVQ6fVhFetF03x
+         lfT3lqnadGRRg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 17, 2020 at 3:53 AM Enric Balletbo i Serra
-<enric.balletbo@collabora.com> wrote:
->
-> Hi Rob,
->
-> On 16/7/20 21:13, Rob Herring wrote:
-> > On Wed, Jul 15, 2020 at 10:16:04PM -0700, Bhanu Prakash Maiya wrote:
-> >> From: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
-> >>
-> >> Add DT compatible string in
-> >> Documentation/devicetree/bindings/mfd/cros_ec.txt
-> >
-> > Need to update this.
-> >
-> > With that,
-> >
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> >
->
-> So this is an ACPI-only driver that is instantiated by using the Device Tree
-> namespace link in ACPI. I am not sure how to deal with this, but I suspect we
-> need a proper OF binding definition before accept it.
+As per Sony IMX274 Y_OUT_SIZE should be the height of effective
+image output from the sensor which are the actual total lines
+sent over MIPI CSI to receiver.
 
-In that case, NAK because I have no bandwidth or desire for ACPI
-stuff. The DT bindings in ACPI concept is flawed.
+So, Y_OUT_SIZE should be same as crop height and this patch fixes it.
 
-> The driver gets at least the baudrate and the flowcontrol from ACPI resources,
-> so I'm wondering if we should also add the properties in the device-tree
-> description (although we're not able to really test because there is not OF
-> hardware that supports it yet). Or is fine to just accept the compatible for now
-> and we can do this later when we have the possibility to test with OF-based
-> hardware.
+Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+---
+ drivers/media/i2c/imx274.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-That's all defined by the serial device binding already, so it doesn't
-really matter here.
+diff --git a/drivers/media/i2c/imx274.c b/drivers/media/i2c/imx274.c
+index e6aa9f3..55869ff 100644
+--- a/drivers/media/i2c/imx274.c
++++ b/drivers/media/i2c/imx274.c
+@@ -1163,7 +1163,7 @@ static int imx274_apply_trimming(struct stimx274 *imx274)
+ 		(-imx274->crop.top / 2) : (imx274->crop.top / 2);
+ 	v_cut = (IMX274_MAX_HEIGHT - imx274->crop.height) / 2;
+ 	write_v_size = imx274->crop.height + 22;
+-	y_out_size   = imx274->crop.height + 14;
++	y_out_size   = imx274->crop.height;
+ 
+ 	err = imx274_write_mbreg(imx274, IMX274_HMAX_REG_LSB, hmax, 2);
+ 	if (!err)
+-- 
+2.7.4
 
-You can keep my R-by, but don't send me more ACPI crap.
-
-Rob
