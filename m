@@ -2,131 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D435622317B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 05:06:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A1E822320D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 06:21:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727930AbgGQDGI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jul 2020 23:06:08 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:22993 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726593AbgGQDGF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jul 2020 23:06:05 -0400
-X-UUID: a93f6aa0536b4f93be16a4f7b5ac21cd-20200717
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=CSw11oLawBPErUprkvFsJtdwknxu/qYAQm+6ktkLuU0=;
-        b=juOxDc14sJeJsQmiUgBVLaY3jl/kQIf0jd3/AYi/RGQvMYOhGS6e9tS9IVfjK6M78HbXH8hqmlK9XKnSJA7ODklfeOyZB3akFJ+l9ANuNJJn3Z/xYcTK56uWl1PiQq82zF3tvKmAnxSNnxPTKBW1J5Y7KSq2NsPZo0CPBp1Y6bs=;
-X-UUID: a93f6aa0536b4f93be16a4f7b5ac21cd-20200717
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <huihui.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1127657063; Fri, 17 Jul 2020 11:06:02 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 17 Jul 2020 11:05:29 +0800
-Received: from localhost.localdomain (10.15.20.246) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 17 Jul 2020 11:05:26 +0800
-From:   Huihui Wang <huihui.wang@mediatek.com>
-To:     Sean Wang <sean.wang@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <wsd_upstream@mediatek.com>, huihui wang <huihui.wang@mediatek.com>
-Subject: [PATCH v1 2/2] dma: mediatek: dma address bits config with compatible data
-Date:   Fri, 17 Jul 2020 11:02:05 +0800
-Message-ID: <20200717030203.14872-3-huihui.wang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20200717030203.14872-1-huihui.wang@mediatek.com>
-References: <20200717030203.14872-1-huihui.wang@mediatek.com>
+        id S1726026AbgGQEVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jul 2020 00:21:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34944 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725936AbgGQEVC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jul 2020 00:21:02 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E362C08C5C0
+        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 21:21:02 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id b6so9555450wrs.11
+        for <devicetree@vger.kernel.org>; Thu, 16 Jul 2020 21:21:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=vTU0fD0RqPTAMbppUiAJYQhElhFYod+EUa58MhwuRFg=;
+        b=ACzxgl8pWNw1qfxqU9+pYlrS4eR6a5e8McuQW2jb5q8hduM5b3kyZe5bs9+gGa8hL1
+         5FJtj/j+394vgNFHlQM2BW4bLEdoCF+hvyq4FnPvtaN4aX3i/NZ8W7szbOj6dDzcvx8M
+         105ReGcsasNaMMmppOs7r6YbsWyMAXlUhgWkN0PKnHnMLoleD5ljIbnU2JNlI0VNQ6hn
+         0mfgfFQO4eCe7L2o9yREBsMif2/QjWS24jxf0p8dmO/28uBfwiLo92hRfocfz8JAjyPN
+         G9AmS9LCbInhyHoihQp3JbZwc63+NvyBXrabUky7sSWI9WzW4HcpKbe0p9kw0VocDwoa
+         fN9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=vTU0fD0RqPTAMbppUiAJYQhElhFYod+EUa58MhwuRFg=;
+        b=GF4MMO2XOUhGaqq0FLWcYCS7w0o8Vb17Y9TkygJHO9Ld8iNSP6rO4uqASg/iiiTOY5
+         YhXCeYGfbvn3xbOQuYtclVa9UqzSMrzwQJjelQ1Itz24MYvwR/pftVEI2Li5fPZ1q0Xz
+         2BWxYBxyQJZXjtKE1OfsotfMB/IhmGs7V4e2qCdgWf0HNP5AJa7n6R+snsvkQFkW3BX5
+         mOhGVJcLfGJCyEq32O96Ro9hh9yeR9ijgpFjALxM1t3PpD0hpHr9r5kxizQaPNc86kfM
+         yZye17fFkmowk9txMUvjzi8E1OpENSPa96BYvxvygUiOwTrub4jG0TqysRRJjaqK2mRL
+         B3ww==
+X-Gm-Message-State: AOAM5334GSJFsVfwUIt2BDE5VdeAhXaTGKGM/qMc1aZLD/c7tpyV7KsH
+        wV+ZTcI8JS5yupxUr/CVSiFIlg==
+X-Google-Smtp-Source: ABdhPJwec3DisLdAS02+fUE6IczMefzHYliDuu268Dl6qCiJz8+nAomftZcYkwgKg4V15D7Jeop8BA==
+X-Received: by 2002:adf:dd83:: with SMTP id x3mr9050111wrl.292.1594959660912;
+        Thu, 16 Jul 2020 21:21:00 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:9880:a643:3e69:6393? ([2a01:e34:ed2f:f020:9880:a643:3e69:6393])
+        by smtp.googlemail.com with ESMTPSA id 138sm7175510wmb.1.2020.07.16.21.20.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Jul 2020 21:21:00 -0700 (PDT)
+Subject: Re: [PATCH v6 2/2] clocksource: Ingenic: Add support for the Ingenic
+ X1000 OST.
+To:     =?UTF-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
+        <zhouyanjie@wanyeetech.com>, linux-kernel@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org, tglx@linutronix.de,
+        paul@crapouillou.net, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        yanfei.li@ingenic.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com
+References: <20200710170259.29028-1-zhouyanjie@wanyeetech.com>
+ <20200710170259.29028-3-zhouyanjie@wanyeetech.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <dd01a117-265a-e64b-5871-22f0f752834a@linaro.org>
+Date:   Fri, 17 Jul 2020 06:20:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 498D7E9EE804C783BF0F34416D3037089D0916A265142A72B1D3420E8F9ACDE72000:8
-Content-Transfer-Encoding: base64
+In-Reply-To: <20200710170259.29028-3-zhouyanjie@wanyeetech.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogaHVpaHVpIHdhbmcgPGh1aWh1aS53YW5nQG1lZGlhdGVrLmNvbT4NCg0KMS5MZWdhY3kg
-aW1wbGVtZW50IG9ubHkgc3VwcG9ydCAzMyBiaXRzIGFkZHJlc3MsDQp3ZSBjaGFuZ2UgdGhlIHNv
-bHV0aW9uIHRvIHN1cHBvcnQgYW55IHdpZHRoIGFkZHJlc3MuDQoNCjIuRE1BIGFkZHJlc3MgYml0
-cyBpcyB2ZXJ5IGRldGFpbCBpbmZvcm1hdGlvbiwNCmFuZCBpdCBpcyBub3QgcHJvcGVyIHRvIGNv
-bmZpZyBpbiBkZXZpY2UgdHJlZS4NClNvIHdlIG1vdmUgaXQgaW50byBtdGtfdWFydF9hcGRtYS5j
-LA0KYW5kIGNvbmZpZyBpdCBieSBjb21wYXRpYmxlIGRhdGEuDQoNClNpZ25lZC1vZmYtYnk6IGh1
-aWh1aSB3YW5nIDxodWlodWkud2FuZ0BtZWRpYXRlay5jb20+DQotLS0NCiBkcml2ZXJzL2RtYS9t
-ZWRpYXRlay9tdGstdWFydC1hcGRtYS5jIHwgNTUgKysrKysrKysrKysrKysrKysrKy0tLS0tLS0t
-DQogMSBmaWxlIGNoYW5nZWQsIDQwIGluc2VydGlvbnMoKyksIDE1IGRlbGV0aW9ucygtKQ0KDQpk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9kbWEvbWVkaWF0ZWsvbXRrLXVhcnQtYXBkbWEuYyBiL2RyaXZl
-cnMvZG1hL21lZGlhdGVrL210ay11YXJ0LWFwZG1hLmMNCmluZGV4IDI5ZjEyMjNiMjg1YS4uOWMw
-ODBmOTkxN2E3IDEwMDY0NA0KLS0tIGEvZHJpdmVycy9kbWEvbWVkaWF0ZWsvbXRrLXVhcnQtYXBk
-bWEuYw0KKysrIGIvZHJpdmVycy9kbWEvbWVkaWF0ZWsvbXRrLXVhcnQtYXBkbWEuYw0KQEAgLTMx
-LDcgKzMxLDYgQEANCiAjZGVmaW5lIFZGRl9FTl9CCQlCSVQoMCkNCiAjZGVmaW5lIFZGRl9TVE9Q
-X0IJCUJJVCgwKQ0KICNkZWZpbmUgVkZGX0ZMVVNIX0IJCUJJVCgwKQ0KLSNkZWZpbmUgVkZGXzRH
-X0VOX0IJCUJJVCgwKQ0KIC8qIHJ4IHZhbGlkIHNpemUgPj0gIHZmZiB0aHJlICovDQogI2RlZmlu
-ZSBWRkZfUlhfSU5UX0VOX0IJCShCSVQoMCkgfCBCSVQoMSkpDQogLyogdHggbGVmdCBzaXplID49
-IHZmZiB0aHJlICovDQpAQCAtNDMsNyArNDIsNyBAQA0KICNkZWZpbmUgVkZGX0VOX0NMUl9CCQkw
-DQogI2RlZmluZSBWRkZfSU5UX0VOX0NMUl9CCTANCiAjZGVmaW5lIFZGRl80R19TVVBQT1JUX0NM
-Ul9CCTANCi0NCisjZGVmaW5lIFZGRl9PUklfQUREUl9CSVRTX05VTSAgICAzMg0KIC8qDQogICog
-aW50ZXJydXB0IHRyaWdnZXIgbGV2ZWwgZm9yIHR4DQogICogaWYgdGhyZXNob2xkIGlzIG4sIG5v
-IHBvbGxpbmcgaXMgcmVxdWlyZWQgdG8gc3RhcnQgdHguDQpAQCAtNzUsMTAgKzc0LDE0IEBADQog
-I2RlZmluZSBWRkZfREVCVUdfU1RBVFVTCTB4NTANCiAjZGVmaW5lIFZGRl80R19TVVBQT1JUCQkw
-eDU0DQogDQorc3RydWN0IG10a191YXJ0X2FwZG1hY29tcCB7DQorCXVuc2lnbmVkIGludCBhZGRy
-X2JpdHM7DQorfTsNCisNCiBzdHJ1Y3QgbXRrX3VhcnRfYXBkbWFkZXYgew0KIAlzdHJ1Y3QgZG1h
-X2RldmljZSBkZGV2Ow0KIAlzdHJ1Y3QgY2xrICpjbGs7DQotCWJvb2wgc3VwcG9ydF8zM2JpdHM7
-DQorCXVuc2lnbmVkIGludCBzdXBwb3J0X2JpdHM7DQogCXVuc2lnbmVkIGludCBkbWFfcmVxdWVz
-dHM7DQogfTsNCiANCkBAIC0xNTIsOCArMTU1LDkgQEAgc3RhdGljIHZvaWQgbXRrX3VhcnRfYXBk
-bWFfc3RhcnRfdHgoc3RydWN0IG10a19jaGFuICpjKQ0KIAkJbXRrX3VhcnRfYXBkbWFfd3JpdGUo
-YywgVkZGX1dQVCwgMCk7DQogCQltdGtfdWFydF9hcGRtYV93cml0ZShjLCBWRkZfSU5UX0ZMQUcs
-IFZGRl9UWF9JTlRfQ0xSX0IpOw0KIA0KLQkJaWYgKG10a2QtPnN1cHBvcnRfMzNiaXRzKQ0KLQkJ
-CW10a191YXJ0X2FwZG1hX3dyaXRlKGMsIFZGRl80R19TVVBQT1JULCBWRkZfNEdfRU5fQik7DQor
-CQlpZiAobXRrZC0+c3VwcG9ydF9iaXRzID4gVkZGX09SSV9BRERSX0JJVFNfTlVNKQ0KKwkJCW10
-a191YXJ0X2FwZG1hX3dyaXRlKGMsIFZGRl80R19TVVBQT1JULA0KKwkJCQkJICAgICB1cHBlcl8z
-Ml9iaXRzKGQtPmFkZHIpKTsNCiAJfQ0KIA0KIAltdGtfdWFydF9hcGRtYV93cml0ZShjLCBWRkZf
-RU4sIFZGRl9FTl9CKTsNCkBAIC0xOTUsOCArMTk5LDkgQEAgc3RhdGljIHZvaWQgbXRrX3VhcnRf
-YXBkbWFfc3RhcnRfcngoc3RydWN0IG10a19jaGFuICpjKQ0KIAkJbXRrX3VhcnRfYXBkbWFfd3Jp
-dGUoYywgVkZGX1JQVCwgMCk7DQogCQltdGtfdWFydF9hcGRtYV93cml0ZShjLCBWRkZfSU5UX0ZM
-QUcsIFZGRl9SWF9JTlRfQ0xSX0IpOw0KIA0KLQkJaWYgKG10a2QtPnN1cHBvcnRfMzNiaXRzKQ0K
-LQkJCW10a191YXJ0X2FwZG1hX3dyaXRlKGMsIFZGRl80R19TVVBQT1JULCBWRkZfNEdfRU5fQik7
-DQorCQlpZiAobXRrZC0+c3VwcG9ydF9iaXRzID4gVkZGX09SSV9BRERSX0JJVFNfTlVNKQ0KKwkJ
-CW10a191YXJ0X2FwZG1hX3dyaXRlKGMsIFZGRl80R19TVVBQT1JULA0KKwkJCQkJICAgICB1cHBl
-cl8zMl9iaXRzKGQtPmFkZHIpKTsNCiAJfQ0KIA0KIAltdGtfdWFydF9hcGRtYV93cml0ZShjLCBW
-RkZfSU5UX0VOLCBWRkZfUlhfSU5UX0VOX0IpOw0KQEAgLTI5Niw3ICszMDEsNyBAQCBzdGF0aWMg
-aW50IG10a191YXJ0X2FwZG1hX2FsbG9jX2NoYW5fcmVzb3VyY2VzKHN0cnVjdCBkbWFfY2hhbiAq
-Y2hhbikNCiAJCXJldHVybiAtRUlOVkFMOw0KIAl9DQogDQotCWlmIChtdGtkLT5zdXBwb3J0XzMz
-Yml0cykNCisJaWYgKG10a2QtPnN1cHBvcnRfYml0cyA+IFZGRl9PUklfQUREUl9CSVRTX05VTSkN
-CiAJCW10a191YXJ0X2FwZG1hX3dyaXRlKGMsIFZGRl80R19TVVBQT1JULCBWRkZfNEdfU1VQUE9S
-VF9DTFJfQik7DQogDQogCXJldHVybiByZXQ7DQpAQCAtNDY1LDggKzQ3MCwxNCBAQCBzdGF0aWMg
-dm9pZCBtdGtfdWFydF9hcGRtYV9mcmVlKHN0cnVjdCBtdGtfdWFydF9hcGRtYWRldiAqbXRrZCkN
-CiAJfQ0KIH0NCiANCitzdGF0aWMgY29uc3Qgc3RydWN0IG10a191YXJ0X2FwZG1hY29tcCBtdDY3
-NzlfY29tcCA9IHsNCisJLmFkZHJfYml0cyA9IDM0DQorfTsNCisNCiBzdGF0aWMgY29uc3Qgc3Ry
-dWN0IG9mX2RldmljZV9pZCBtdGtfdWFydF9hcGRtYV9tYXRjaFtdID0gew0KLQl7IC5jb21wYXRp
-YmxlID0gIm1lZGlhdGVrLG10NjU3Ny11YXJ0LWRtYSIsIH0sDQorCXsgLmNvbXBhdGlibGUgPSAi
-bWVkaWF0ZWssbXQ2NTc3LXVhcnQtZG1hIiwgLmRhdGEgPSBOVUxMfSwNCisJeyAuY29tcGF0aWJs
-ZSA9ICJtZWRpYXRlayxtdDI3MTItdWFydC1kbWEiLCAuZGF0YSA9IE5VTEx9LA0KKwl7IC5jb21w
-YXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS11YXJ0LWRtYSIsIC5kYXRhID0gJm10Njc3OV9jb21w
-fSwNCiAJeyAvKiBzZW50aW5lbCAqLyB9LA0KIH07DQogTU9EVUxFX0RFVklDRV9UQUJMRShvZiwg
-bXRrX3VhcnRfYXBkbWFfbWF0Y2gpOw0KQEAgLTQ3NSw5ICs0ODYsMTAgQEAgc3RhdGljIGludCBt
-dGtfdWFydF9hcGRtYV9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQ0KIHsNCiAJ
-c3RydWN0IGRldmljZV9ub2RlICpucCA9IHBkZXYtPmRldi5vZl9ub2RlOw0KIAlzdHJ1Y3QgbXRr
-X3VhcnRfYXBkbWFkZXYgKm10a2Q7DQotCWludCBiaXRfbWFzayA9IDMyLCByYzsNCisJaW50IHJj
-Ow0KIAlzdHJ1Y3QgbXRrX2NoYW4gKmM7DQogCXVuc2lnbmVkIGludCBpOw0KKwljb25zdCBzdHJ1
-Y3QgbXRrX3VhcnRfYXBkbWFjb21wICpjb21wOw0KIA0KIAltdGtkID0gZGV2bV9remFsbG9jKCZw
-ZGV2LT5kZXYsIHNpemVvZigqbXRrZCksIEdGUF9LRVJORUwpOw0KIAlpZiAoIW10a2QpDQpAQCAt
-NDkwLDEzICs1MDIsMjYgQEAgc3RhdGljIGludCBtdGtfdWFydF9hcGRtYV9wcm9iZShzdHJ1Y3Qg
-cGxhdGZvcm1fZGV2aWNlICpwZGV2KQ0KIAkJcmV0dXJuIHJjOw0KIAl9DQogDQotCWlmIChvZl9w
-cm9wZXJ0eV9yZWFkX2Jvb2wobnAsICJtZWRpYXRlayxkbWEtMzNiaXRzIikpDQotCQltdGtkLT5z
-dXBwb3J0XzMzYml0cyA9IHRydWU7DQorCWNvbXAgPSBvZl9kZXZpY2VfZ2V0X21hdGNoX2RhdGEo
-JnBkZXYtPmRldik7DQorCWlmICghY29tcCkgew0KKwkJLypJbiBvcmRlciB0byBjb21wYXRpYWJs
-ZSB3aXRoIGxlZ2FjeSBkZXZpY2UgdHJlZSBmaWxlKi8NCisJCWRldl9pbmZvKCZwZGV2LT5kZXYs
-DQorCQkJICJObyBjb21wYXRpYWJsZSwgdXNpbmcgRFRTIGNvbmZpZ3VyYXRpb25cbiIpOw0KKw0K
-KwkJaWYgKG9mX3Byb3BlcnR5X3JlYWRfYm9vbChwZGV2LT5kZXYub2Zfbm9kZSwNCisJCQkJCSAg
-Im1lZGlhdGVrLGRtYS0zM2JpdHMiKSkgew0KKwkJCW10a2QtPnN1cHBvcnRfYml0cyA9IDMzOw0K
-KwkJfQ0KKw0KKwl9IGVsc2Ugew0KKwkJbXRrZC0+c3VwcG9ydF9iaXRzID0gY29tcC0+YWRkcl9i
-aXRzOw0KKwl9DQogDQotCWlmIChtdGtkLT5zdXBwb3J0XzMzYml0cykNCi0JCWJpdF9tYXNrID0g
-MzM7DQorCWRldl9pbmZvKCZwZGV2LT5kZXYsDQorCQkgIkRNQSBhZGRyZXNzIGJpdHM6ICVkXG4i
-LCAgbXRrZC0+c3VwcG9ydF9iaXRzKTsNCiANCi0JcmMgPSBkbWFfc2V0X21hc2tfYW5kX2NvaGVy
-ZW50KCZwZGV2LT5kZXYsIERNQV9CSVRfTUFTSyhiaXRfbWFzaykpOw0KKwlyYyA9IGRtYV9zZXRf
-bWFza19hbmRfY29oZXJlbnQoJnBkZXYtPmRldiwNCisJCQkJICAgICAgIERNQV9CSVRfTUFTSyht
-dGtkLT5zdXBwb3J0X2JpdHMpKTsNCiAJaWYgKHJjKQ0KIAkJcmV0dXJuIHJjOw0KIA0KLS0gDQoy
-LjE4LjANCg==
+On 10/07/2020 19:02, 周琰杰 (Zhou Yanjie) wrote:
+> X1000 and SoCs after X1000 (such as X1500 and X1830) had a separate
+> OST, it no longer belongs to TCU. This driver will register both a
+> clocksource and a sched_clock to the system.
+> 
+> Tested-by: 周正 (Zhou Zheng) <sernia.zhou@foxmail.com>
+> Co-developed-by: 漆鹏振 (Qi Pengzhen) <aric.pzqi@ingenic.com>
+> Signed-off-by: 漆鹏振 (Qi Pengzhen) <aric.pzqi@ingenic.com>
+> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+> Reviewed-by: Paul Cercueil <paul@crapouillou.net>
+> ---
+> 
+> Notes:
+>     v1->v2:
+>     Fix compile warnings.
+>     Reported-by: kernel test robot <lkp@intel.com>
+>     
+>     v2->v3:
+>     No change.
+>     
+>     v3->v4:
+>     1.Rename "ost" to "sysost"
+>     1.Remove unrelated changes.
+>     2.Remove ost_clock_parent enum.
+>     3.Remove ost->percpu_timer_channel/ost->global_timer_channel.
+>     4.Set up independent .recalc_rate/.set_rate for percpu/global timer.
+>     5.No longer call functions in variable declarations.
+>     
+>     v4->v5:
+>     Use "of_io_request_and_map()" instead "of_iomap()".
+>     Suggested-by: Paul Cercueil <paul@crapouillou.net>
+>     
+>     v5->v6:
+>     No change.
+> 
+>  drivers/clocksource/Kconfig          |  11 +
+>  drivers/clocksource/Makefile         |   1 +
+>  drivers/clocksource/ingenic-sysost.c | 539 +++++++++++++++++++++++++++++++++++
+>  3 files changed, 551 insertions(+)
+>  create mode 100644 drivers/clocksource/ingenic-sysost.c
+> 
+> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
+> index 91418381fcd4..1bca8b8fb30f 100644
+> --- a/drivers/clocksource/Kconfig
+> +++ b/drivers/clocksource/Kconfig
+> @@ -696,6 +696,17 @@ config INGENIC_TIMER
+>  	help
+>  	  Support for the timer/counter unit of the Ingenic JZ SoCs.
+>  
+> +config INGENIC_SYSOST
+> +	bool "Clocksource/timer using the SYSOST in Ingenic X SoCs"
 
+We usually use silent options and let the platform's Kconfig enable it.
+We show up the option only when COMPILE_TEST is enabled.
+
+Is there a reason to do it differently?
+
+> +	default MACH_INGENIC
+> +	depends on MIPS || COMPILE_TEST
+> +	depends on COMMON_CLK
+> +	select MFD_SYSCON
+> +	select TIMER_OF
+> +	select IRQ_DOMAIN
+> +	help
+> +	  Support for the SYSOST of the Ingenic X Series SoCs.
+> +
+
+[ ... ]
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
