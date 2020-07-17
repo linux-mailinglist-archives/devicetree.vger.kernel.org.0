@@ -2,52 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BC772235D5
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 09:23:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 161ED2235DD
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jul 2020 09:26:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727989AbgGQHWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jul 2020 03:22:46 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:55368 "EHLO
+        id S1726200AbgGQH0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jul 2020 03:26:18 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:55818 "EHLO
         lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725995AbgGQHWq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jul 2020 03:22:46 -0400
+        with ESMTP id S1726113AbgGQH0S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jul 2020 03:26:18 -0400
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06H7MgEr010271;
-        Fri, 17 Jul 2020 02:22:42 -0500
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06H7QCjL011362;
+        Fri, 17 Jul 2020 02:26:12 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1594970562;
-        bh=XNNcfenzn5BVU/fqCgZrkziwMHoFzsF1wvlu4KoZgxw=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=q22LmMWP7lD4vOudYIqSJvIRnD4REdx9eh3jmTX/0nev33P6RvryVQLbQQy1gIZe2
-         3KPylsc9Tet61tnDx1wWQ8efyGmDvyn/7IXueu7ImNf5RAPa9W4Ow638vdpuuTsV1o
-         O1/SPsBDrlyFbBdjP1VSFYyb7PAvxKjxXte7UveA=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06H7Mg5F043448;
-        Fri, 17 Jul 2020 02:22:42 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+        s=ti-com-17Q1; t=1594970772;
+        bh=tKYwrKi8X1cOjaOBmnoL7GIPg/AdrpmzkkkGA5eACeI=;
+        h=Subject:To:References:From:Date:In-Reply-To;
+        b=nxlxNSZg8Jm2Pb23OGBeg1ab3FzMclsQI67sYUzne2e35HB7UagRokLGe7NA3nf8E
+         NkT3hRlTD183yp60jPxn2xrlE4fFlK3xWzMMuKe2THKQVOgBefk8FVOhX/aTish9U3
+         pruvwGWnlYjpMG4bBmkkKJH7p3HfwGQ5VGXbSVgc=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06H7QCMT048479;
+        Fri, 17 Jul 2020 02:26:12 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 17
- Jul 2020 02:22:42 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ Jul 2020 02:26:12 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 17 Jul 2020 02:22:42 -0500
+ Frontend Transport; Fri, 17 Jul 2020 02:26:12 -0500
 Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06H7McFK128800;
-        Fri, 17 Jul 2020 02:22:39 -0500
-Subject: Re: [PATCH 0/2] Add support for SD card on on AM65x-evm
-To:     Faiz Abbas <faiz_abbas@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <robh+dt@kernel.org>, <nm@ti.com>
-References: <20200710190215.30938-1-faiz_abbas@ti.com>
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06H7Q9nD065861;
+        Fri, 17 Jul 2020 02:26:10 -0500
+Subject: Re: [PATCH] arm64: dts: ti: k3-*: Replace HTTP links with HTTPS ones
+To:     "Alexander A. Klimov" <grandmaster@al2klimov.de>, <nm@ti.com>,
+        <robh+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20200713101409.33131-1-grandmaster@al2klimov.de>
 From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <4873d494-d38e-acb1-242e-9fb2f6dbf999@ti.com>
-Date:   Fri, 17 Jul 2020 10:22:37 +0300
+Message-ID: <98a8c378-3220-65e0-965c-5b0f4167605d@ti.com>
+Date:   Fri, 17 Jul 2020 10:26:08 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.8.0
 MIME-Version: 1.0
-In-Reply-To: <20200710190215.30938-1-faiz_abbas@ti.com>
+In-Reply-To: <20200713101409.33131-1-grandmaster@al2klimov.de>
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -57,33 +56,231 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/07/2020 22:02, Faiz Abbas wrote:
-> The following patches add support for SD card node in am654x-evm
+On 13/07/2020 13:14, Alexander A. Klimov wrote:
+> Rationale:
+> Reduces attack surface on kernel devs opening the links for MITM
+> as HTTPS traffic is much harder to manipulate.
 > 
-> Because of fundamental interface issues (see patch 2 for details),
-> SD card was never enabled for silicon revision 1.0
+> Deterministic algorithm:
+> For each file:
+>    If not .svg:
+>      For each line:
+>        If doesn't contain `\bxmlns\b`:
+>          For each link, `\bhttp://[^# \t\r\n]*(?:\w|/)`:
+> 	  If neither `\bgnu\.org/license`, nor `\bmozilla\.org/MPL\b`:
+>              If both the HTTP and HTTPS versions
+>              return 200 OK and serve the same content:
+>                Replace HTTP with HTTPS.
 > 
-> These issues have been fixed with SR2.0 but boards with SR1.0 are
-> recommended to disable this node
-> 
-> These patches depend on kernel patches for supporting silicon revision
-> 2.0 posted here:
-> https://patchwork.kernel.org/project/linux-mmc/list/?series=305565
-> 
-> The dependencies have been picked up and are in linux-next
+> Signed-off-by: Alexander A. Klimov <grandmaster@al2klimov.de>
 
 Queued up for 5.9, thanks.
 
 -Tero
 
+> ---
+>   Continuing my work started at 93431e0607e5.
+>   See also: git log --oneline '--author=Alexander A. Klimov <grandmaster@al2klimov.de>' v5.7..master
+>   (Actually letting a shell for loop submit all this stuff for me.)
 > 
-> Faiz Abbas (2):
->    arm64: dts: ti: k3-am65-main: Add support for sdhci1
->    arm64: dts: ti: k3-am654-base-board: Add support for SD card
+>   If there are any URLs to be removed completely or at least not just HTTPSified:
+>   Just clearly say so and I'll *undo my change*.
+>   See also: https://lkml.org/lkml/2020/6/27/64
 > 
->   arch/arm64/boot/dts/ti/k3-am65-main.dtsi      | 24 +++++++++++++++++++
->   .../arm64/boot/dts/ti/k3-am654-base-board.dts | 24 +++++++++++++++++++
->   2 files changed, 48 insertions(+)
+>   If there are any valid, but yet not changed URLs:
+>   See: https://lkml.org/lkml/2020/6/26/837
+> 
+>   If you apply the patch, please let me know.
+> 
+>   Sorry again to all maintainers who complained about subject lines.
+>   Now I realized that you want an actually perfect prefixes,
+>   not just subsystem ones.
+>   I tried my best...
+>   And yes, *I could* (at least half-)automate it.
+>   Impossible is nothing! :)
+> 
+> 
+>   arch/arm64/boot/dts/ti/Makefile                       | 2 +-
+>   arch/arm64/boot/dts/ti/k3-am65-main.dtsi              | 2 +-
+>   arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi               | 2 +-
+>   arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi            | 2 +-
+>   arch/arm64/boot/dts/ti/k3-am65.dtsi                   | 2 +-
+>   arch/arm64/boot/dts/ti/k3-am654-base-board.dts        | 2 +-
+>   arch/arm64/boot/dts/ti/k3-am654.dtsi                  | 2 +-
+>   arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts | 2 +-
+>   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi             | 2 +-
+>   arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi       | 2 +-
+>   arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi           | 2 +-
+>   arch/arm64/boot/dts/ti/k3-j721e.dtsi                  | 2 +-
+>   include/dt-bindings/pinctrl/k3.h                      | 2 +-
+>   13 files changed, 13 insertions(+), 13 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> index b397945fdf73..05c0bebf65d4 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -3,7 +3,7 @@
+>   # Make file to build device tree binaries for boards based on
+>   # Texas Instruments Inc processors
+>   #
+> -# Copyright (C) 2016-2018 Texas Instruments Incorporated - http://www.ti.com/
+> +# Copyright (C) 2016-2018 Texas Instruments Incorporated - https://www.ti.com/
+>   #
+>   
+>   dtb-$(CONFIG_ARCH_K3_AM6_SOC) += k3-am654-base-board.dtb
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> index 61815228e230..940acc6cbf26 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> @@ -2,7 +2,7 @@
+>   /*
+>    * Device Tree Source for AM6 SoC Family Main Domain peripherals
+>    *
+> - * Copyright (C) 2016-2018 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2016-2018 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   #include <dt-bindings/phy/phy-am654-serdes.h>
+>   
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+> index ae5f813d0cac..8c1abcfe0860 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+> @@ -2,7 +2,7 @@
+>   /*
+>    * Device Tree Source for AM6 SoC Family MCU Domain peripherals
+>    *
+> - * Copyright (C) 2016-2018 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2016-2018 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   &cbass_mcu {
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
+> index 54a133fa1bf2..dd75a5592539 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
+> @@ -2,7 +2,7 @@
+>   /*
+>    * Device Tree Source for AM6 SoC Family Wakeup Domain peripherals
+>    *
+> - * Copyright (C) 2016-2018 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2016-2018 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   &cbass_wakeup {
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65.dtsi b/arch/arm64/boot/dts/ti/k3-am65.dtsi
+> index 5be75e430965..27c0406b10ba 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65.dtsi
+> @@ -2,7 +2,7 @@
+>   /*
+>    * Device Tree Source for AM6 SoC Family
+>    *
+> - * Copyright (C) 2016-2018 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2016-2018 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   #include <dt-bindings/gpio/gpio.h>
+> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> index 2f3d3316a1cf..78084a507fcf 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> @@ -1,6 +1,6 @@
+>   // SPDX-License-Identifier: GPL-2.0
+>   /*
+> - * Copyright (C) 2016-2018 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2016-2018 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   /dts-v1/;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am654.dtsi b/arch/arm64/boot/dts/ti/k3-am654.dtsi
+> index b221abf43ac2..f0a6541b8042 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am654.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am654.dtsi
+> @@ -2,7 +2,7 @@
+>   /*
+>    * Device Tree Source for AM6 SoC family in Quad core configuration
+>    *
+> - * Copyright (C) 2016-2018 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2016-2018 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   #include "k3-am65.dtsi"
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> index 6df823aaa37c..7de37e8abfbb 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> @@ -1,6 +1,6 @@
+>   // SPDX-License-Identifier: GPL-2.0
+>   /*
+> - * Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2019 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   /dts-v1/;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> index 96c929da639d..bdeda701af7c 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> @@ -2,7 +2,7 @@
+>   /*
+>    * Device Tree Source for J721E SoC Family Main Domain peripherals
+>    *
+> - * Copyright (C) 2016-2019 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2016-2019 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   &cbass_main {
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> index dc31bd0434cb..4e1865d2d4b1 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> @@ -2,7 +2,7 @@
+>   /*
+>    * Device Tree Source for J721E SoC Family MCU/WAKEUP Domain peripherals
+>    *
+> - * Copyright (C) 2016-2019 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2016-2019 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   &cbass_mcu_wakeup {
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> index 7680109ca60a..8fa3361e5e45 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> @@ -1,6 +1,6 @@
+>   // SPDX-License-Identifier: GPL-2.0
+>   /*
+> - * Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2019 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   /dts-v1/;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+> index 2f9a56d9b114..d035b61e0e16 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+> @@ -2,7 +2,7 @@
+>   /*
+>    * Device Tree Source for J721E SoC Family
+>    *
+> - * Copyright (C) 2016-2019 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2016-2019 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   #include <dt-bindings/interrupt-controller/irq.h>
+> diff --git a/include/dt-bindings/pinctrl/k3.h b/include/dt-bindings/pinctrl/k3.h
+> index 499de6216581..b0eea7cc6e23 100644
+> --- a/include/dt-bindings/pinctrl/k3.h
+> +++ b/include/dt-bindings/pinctrl/k3.h
+> @@ -3,7 +3,7 @@
+>    * This header provides constants for pinctrl bindings for TI's K3 SoC
+>    * family.
+>    *
+> - * Copyright (C) 2018 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2018 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   #ifndef _DT_BINDINGS_PINCTRL_TI_K3_H
+>   #define _DT_BINDINGS_PINCTRL_TI_K3_H
 > 
 
 --
