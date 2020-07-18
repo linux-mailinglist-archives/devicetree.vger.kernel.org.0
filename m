@@ -2,50 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C3D22248D0
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jul 2020 07:01:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1800C2248F4
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jul 2020 07:23:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726248AbgGRFBE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jul 2020 01:01:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36940 "EHLO
+        id S1726066AbgGRFXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Jul 2020 01:23:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725791AbgGRFBD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jul 2020 01:01:03 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68101C0619D2;
-        Fri, 17 Jul 2020 22:01:03 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id z13so13117554wrw.5;
-        Fri, 17 Jul 2020 22:01:03 -0700 (PDT)
+        with ESMTP id S1725887AbgGRFXE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jul 2020 01:23:04 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07D54C0619D2;
+        Fri, 17 Jul 2020 22:23:04 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id q5so13140791wru.6;
+        Fri, 17 Jul 2020 22:23:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=pdW+Mjjnec0fSYPYQpDNjTJP81EjQ4GG3syPqnLR7Sc=;
-        b=T2MHOb96zwRInfSLZlWUZTvE51GWOTjRoEfY/e1F9wRGBHS7xuq7BpVecTZUTEUF1W
-         n/zz0kXeHWfy5gWgr6M45vy3Bd8cWRXlj9YUMZVSAUNDjp1tO1wE3yEEJVR8WTAyTX/o
-         t8jKPqv0RoK1WJow8GD155dFpuO+hbSH7rjJvhHTAq0mqfm00ZEEFPHtaUk73oDZcZ1m
-         QBigDfwRfa9diYYtY3k6bz9p5hwvOGbxjl/uQs5YoSxb50ktVsQDgOa5LtldlXPx84RM
-         qdsFTenMH212uwVF4PaJJmKp5aAZt/9UKAltbrdc7V9ypwy06/UavuAfp9wi2FCThowM
-         DZeA==
+        h=from:to:cc:subject:date:message-id;
+        bh=68XVIKJYC51HwphePdTA9Lwzvvw+s3PKoRyB8S+VPNI=;
+        b=cT3ae4B/9OU66h0+rkwDY8k47sIDc5dudndIC/G5UXIUUsAcygze5S3w750uxyVDwS
+         +M/5SpQMP9H6WNj0zXtwEb7i8HeRczJfv3WJNjOcVV5zAKV8hj1oPTNY37psbPQ7X86I
+         zmlFiDQOg8ICG8V4rM37eB+nIm0nI4IGKKtHlx7hjDntLmYAoo1i+dS6/E+hUMtvLn2u
+         gE1SjsK2V1t5bRTptUNZoya0Tb/gdFklNhpYcDAt+ulK1Y51dXitN9jg1f0oaRgG8mm0
+         v7BlAiuho/oII5ptg8HDc6MFOadOQoYEWqPu5CwyONYACPTeTCtscIyQawMVpBNxPnbH
+         y9Xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=pdW+Mjjnec0fSYPYQpDNjTJP81EjQ4GG3syPqnLR7Sc=;
-        b=Uwk0vhiJ0bf2YxkpEx3EL1mlE8m3HKUG9WbkQpTCQBGuVVMJ7ncCtREoit7cOx0O4r
-         3dppFPRbZ0iMwJcFYG8g5iVJI4nuDQvTNTEfacLyPtYnAlbwyDwpxatWMdP77bazH0wX
-         E2TdleUv7zJ/IG2mMgjtEAIATUVO87eOqiRul33RcK9MeJiWw0rGXuEM/reF8kW9ma05
-         xiqFrSaFItcp11SDW13ARcK27hJp0JnUhtrpXxOxnoDzzw6zmmxhTi5X+Fazz2az3ZFu
-         OEH1+/SKq9DqbgBiAUrz5rBApCJc5MKV4aJ1nsXRyP7eRDkA8K5swXi3HLubJVJqVxL0
-         CXNQ==
-X-Gm-Message-State: AOAM5332eEuKNffQy2WCv2ysMCSuonptdWBHOCv1D7qh9bmh/Tlg/dD7
-        avd0FeDzuNLSwa3UfPaN2No=
-X-Google-Smtp-Source: ABdhPJxHRWHgh67kxq9xkuW198zVtS8jYB21lXDt27XPbgKgq2mt1y4z1UjeejNofF1NYKxGFZ/d9w==
-X-Received: by 2002:a5d:4b45:: with SMTP id w5mr12527495wrs.4.1595048462119;
-        Fri, 17 Jul 2020 22:01:02 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=68XVIKJYC51HwphePdTA9Lwzvvw+s3PKoRyB8S+VPNI=;
+        b=EJt+LPoVUrIJjY3o15ilOPDTwGjo6QQFnrnGEZ0Ny+oP3IwHonxMf4v5THk8es5BHs
+         p6o0H21hrOtNbE7e3pK5m/m+heluR68urTbzx0J/4WRSJw1R8bPEOhE79H57KeJVidq8
+         6+ddNcuhbcU2Kl3+yJy4/x/O69PxrFT45MOtUE58UFQDyHlG0MXvwaMETOsPqZPW/AT2
+         1NjexjKDK1xP3D8HfgHjIiOachbjhqXjlnJubcyBSfIzgvqy61t6prbWrBk+H0p/4KCi
+         Dla/GWAl8YPNPTZhOXRDHRvnjf80epA8uJ82xOHJ1HXqFGujSNGftd6OpCH/Fum3RO9V
+         7xUw==
+X-Gm-Message-State: AOAM532m7WoPez86pYd24st1kKXRLDqY38sLSqmIguhMMx/YVwuI793i
+        iJOZyfMNmr4DoH4vfkwC30w=
+X-Google-Smtp-Source: ABdhPJwFA04O0Vo827+TYXELnidVX5qxVKJEDLQCoYfwdm8pKzam0cDcrr0PdyGYzXfqhn/u8xJ3fg==
+X-Received: by 2002:adf:f34e:: with SMTP id e14mr13158030wrp.299.1595049782582;
+        Fri, 17 Jul 2020 22:23:02 -0700 (PDT)
 Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id 68sm18179815wmz.40.2020.07.17.22.01.00
+        by smtp.gmail.com with ESMTPSA id f16sm17536608wmf.17.2020.07.17.22.23.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Jul 2020 22:01:01 -0700 (PDT)
+        Fri, 17 Jul 2020 22:23:02 -0700 (PDT)
 From:   Christian Hewitt <christianshewitt@gmail.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -53,141 +52,35 @@ To:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH 2/2] arm64: dts: meson: add support for the WeTek Core 2
-Date:   Sat, 18 Jul 2020 05:00:56 +0000
-Message-Id: <20200718050056.1713-2-christianshewitt@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: arm: amlogic: add support for the Beelink GS-King-X
+Date:   Sat, 18 Jul 2020 05:22:57 +0000
+Message-Id: <20200718052258.2890-1-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200718050056.1713-1-christianshewitt@gmail.com>
-References: <20200718050056.1713-1-christianshewitt@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The WeTek Core2 is a commercial device based on the Amlogic Q200 reference
-design but with the following differences:
-
-- 3GB RAM, 32GB eMMC
-- Blue and Red LEDs used to signal on/off status
-- uart_AO can be accessed after opening the case; soldering required
-- USB OTG is not accessible (inside the case)
-- Realtek RTL8152 Ethernet (internal USB connection)
+The Shenzen AZW (Beelink) GS-King-X is based on the Amlogic W400 reference
+board with an S922X-H chip.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- arch/arm64/boot/dts/amlogic/Makefile          |  1 +
- .../dts/amlogic/meson-gxm-wetek-core2.dts     | 90 +++++++++++++++++++
- 2 files changed, 91 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-wetek-core2.dts
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 5cac4d1d487d..4e2239ffcaa5 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -41,6 +41,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q201.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-rbox-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-s912-libretech-pc.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-vega-s96.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxm-wetek-core2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-c4.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-wetek-core2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-wetek-core2.dts
-new file mode 100644
-index 000000000000..44fc5ea38dc0
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-wetek-core2.dts
-@@ -0,0 +1,90 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2020 Christian Hewitt <christianshewitt@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-gxm.dtsi"
-+#include "meson-gx-p23x-q20x.dtsi"
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	compatible = "wetek,core2", "amlogic,s912", "amlogic,meson-gxm";
-+	model = "WeTek Core 2";
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x80000000>; /* 2 GiB or 3 GiB */
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		blue {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+		};
-+	};
-+
-+	adc-keys {
-+		compatible = "adc-keys";
-+		io-channels = <&saradc 0>;
-+		io-channel-names = "buttons";
-+		keyup-threshold-microvolt = <1710000>;
-+
-+		button-update {
-+			label = "update";
-+			linux,code = <KEY_VENDOR>;
-+			press-threshold-microvolt = <10000>;
-+		};
-+	};
-+
-+	gpio-keys-polled {
-+		compatible = "gpio-keys-polled";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		poll-interval = <100>;
-+
-+		button-power {
-+			label = "power";
-+			linux,code = <KEY_POWER>;
-+			gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+/* This is disabled as Realtek RTL8152 USB provides Ethernet */
-+&ethmac {
-+	status = "disabled";
-+	phy-mode = "rmii";
-+	phy-handle = <&internal_phy>;
-+};
-+
-+&internal_phy {
-+	pinctrl-0 = <&eth_link_led_pins>, <&eth_act_led_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&ir {
-+	linux,rc-map-name = "rc-wetek-play2";
-+};
-+
-+/* This is connected to the Bluetooth module: */
-+&uart_A {
-+	status = "okay";
-+	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		enable-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+		max-speed = <2000000>;
-+		clocks = <&wifi32k>;
-+		clock-names = "lpo";
-+	};
-+};
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 378229fa8310..8711fa57ee25 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -149,6 +149,7 @@ properties:
+       - description: Boards with the Amlogic Meson G12B S922X SoC
+         items:
+           - enum:
++              - azw,gsking-x
+               - azw,gtking
+               - azw,gtking-pro
+               - hardkernel,odroid-n2
 -- 
 2.17.1
 
