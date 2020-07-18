@@ -2,210 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77D4B22472B
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jul 2020 01:48:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 494BF224780
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jul 2020 02:41:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728630AbgGQXsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jul 2020 19:48:19 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:39574 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728562AbgGQXsS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jul 2020 19:48:18 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06HNmBMP013382;
-        Fri, 17 Jul 2020 18:48:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1595029691;
-        bh=jq4rgHcvJJ8L4v7IzJjoMyKc+IOd8AzBCxOmX0OsqdM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=nAggGv61x1G5J2XqEiM57YhQZkQDhm1lsM0/QjH3tL7fnhWz/9v56rWSNJvkFl/P9
-         jbWrB0/iAysU09bNjo8mPIow1pvaw7yVGneFCF5M8SEdla9FUzAT0HX+2h50fGM9Yr
-         ZYFRgGifaez3SHz3q/ybW/bWfxlhUkz2/VlWqgdE=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06HNmBAr029966;
-        Fri, 17 Jul 2020 18:48:11 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 17
- Jul 2020 18:48:11 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 17 Jul 2020 18:48:10 -0500
-Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06HNmBTt129102;
-        Fri, 17 Jul 2020 18:48:11 -0500
-Received: from localhost ([10.250.34.57])
-        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 06HNmAmv108326;
-        Fri, 17 Jul 2020 18:48:11 -0500
-From:   Suman Anna <s-anna@ti.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH v4 6/6] remoteproc: k3-dsp: Add support for L2RAM loading on C66x DSPs
-Date:   Fri, 17 Jul 2020 18:48:00 -0500
-Message-ID: <20200717234800.9423-7-s-anna@ti.com>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200717234800.9423-1-s-anna@ti.com>
-References: <20200717234800.9423-1-s-anna@ti.com>
+        id S1728691AbgGRAlF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jul 2020 20:41:05 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:24384 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728276AbgGRAlE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Jul 2020 20:41:04 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1595032864; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=iNKJj+TLzkBnI4NSsc5gA6qzfp4yaENwEEBOKVBFHZM=; b=YVGERfFCTvjK5Kh6ZfPvrAEEOAORfxq7l4yOJIE7v+k8Si6r5U7/A01WW8peViKkVtLlHDUV
+ K+l23ypb4YSQ6MuKajuVyktYT0haYnrxHIeLEc78pwoL+XIz14F1QFv39qHnDqo35TSvO8Rm
+ MUhSesU26sUPDqysXYHf+LXxh2Y=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 5f12451fe3bee125108f0b52 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sat, 18 Jul 2020 00:41:03
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id C3AFEC433CB; Sat, 18 Jul 2020 00:41:02 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,NICE_REPLY_A,
+        SPF_NONE,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [192.168.1.117] (ip70-179-20-127.sd.sd.cox.net [70.179.20.127])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: mdtipton)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id BF392C433C9;
+        Sat, 18 Jul 2020 00:41:01 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org BF392C433C9
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=mdtipton@codeaurora.org
+Subject: Re: [PATCH v2 2/6] dt-bindings: interconnect: Add property to set BCM
+ TCS wait behavior
+To:     Rob Herring <robh@kernel.org>
+Cc:     georgi.djakov@linaro.org, bjorn.andersson@linaro.org,
+        agross@kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20200710015652.19206-1-mdtipton@codeaurora.org>
+ <20200710015652.19206-3-mdtipton@codeaurora.org>
+ <20200710163119.GA2753833@bogus>
+From:   Mike Tipton <mdtipton@codeaurora.org>
+Message-ID: <43a0638a-ea3d-eb96-16d0-524148f86bc3@codeaurora.org>
+Date:   Fri, 17 Jul 2020 17:41:01 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20200710163119.GA2753833@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The resets for the DSP processors on K3 SoCs are managed through the
-Power and Sleep Controller (PSC) module. Each DSP typically has two
-resets - a global module reset for powering on the device, and a local
-reset that affects only the CPU while allowing access to the other
-sub-modules within the DSP processor sub-systems.
+On 7/10/2020 9:31 AM, Rob Herring wrote:
+> On Thu, Jul 09, 2020 at 06:56:48PM -0700, Mike Tipton wrote:
+>> Add "qcom,tcs-wait" property to set which TCS should wait for completion
+>> when triggering.
+>>
+>> Signed-off-by: Mike Tipton <mdtipton@codeaurora.org>
+>> ---
+>>   .../bindings/interconnect/qcom,bcm-voter.yaml       | 13 +++++++++++++
+>>   1 file changed, 13 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,bcm-voter.yaml b/Documentation/devicetree/bindings/interconnect/qcom,bcm-voter.yaml
+>> index 5971fc1df08d..f0c3d6b01831 100644
+>> --- a/Documentation/devicetree/bindings/interconnect/qcom,bcm-voter.yaml
+>> +++ b/Documentation/devicetree/bindings/interconnect/qcom,bcm-voter.yaml
+>> @@ -21,6 +21,16 @@ properties:
+>>       enum:
+>>         - qcom,bcm-voter
+>>   
+>> +  qcom,tcs-wait:
+>> +    description: |
+>> +      Optional mask of which TCSs (Triggered Command Sets) wait for completion
+>> +      upon triggering. In most cases, it's necessary to wait in both the AMC
+>> +      and WAKE sets to ensure resources are available before use. If a specific
+>> +      RSC and its use cases can ensure sufficient delay by other means, then
+>> +      this can be overridden to reduce latencies.
+> 
+> I have no idea what any of this means to provide any meaningful comment.
+> 
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    default: QCOM_ICC_TAG_ACTIVE_ONLY
+> 
+> Can't use defines here.
 
-The C66x DSPs have two levels of internal RAMs that can be used to
-boot from, and the firmware loading into these RAMs require the
-local reset to be asserted with the device powered on/enabled using
-the module reset. Enhance the K3 DSP remoteproc driver to add support
-for loading into the internal RAMs. The local reset is deasserted on
-SoC power-on-reset, so logic has to be added in probe in remoteproc
-mode to balance the remoteproc state-machine.
+What's the recommended alternative? The meaning isn't obvious as a raw 
+number (3). We expect the defines to be used in the dt files themselves 
+(see example below). Is this just a restriction for the `default` 
+documentation specifically? I could just mention the default behavior in 
+the description I suppose, but that seems to defeat the purpose of 
+having a separate `default` key.
 
-Note that the local resets are a no-op on C71x cores, and the hardware
-does not supporting loading into its internal RAMs.
-
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
----
-v4: No changes
-v3: https://patchwork.kernel.org/patch/11602323/
-
- drivers/remoteproc/ti_k3_dsp_remoteproc.c | 72 +++++++++++++++++++++++
- 1 file changed, 72 insertions(+)
-
-diff --git a/drivers/remoteproc/ti_k3_dsp_remoteproc.c b/drivers/remoteproc/ti_k3_dsp_remoteproc.c
-index 18f714b012df..43566ead7a1d 100644
---- a/drivers/remoteproc/ti_k3_dsp_remoteproc.c
-+++ b/drivers/remoteproc/ti_k3_dsp_remoteproc.c
-@@ -174,6 +174,9 @@ static int k3_dsp_rproc_reset(struct k3_dsp_rproc *kproc)
- 		return ret;
- 	}
- 
-+	if (kproc->data->uses_lreset)
-+		return ret;
-+
- 	ret = kproc->ti_sci->ops.dev_ops.put_device(kproc->ti_sci,
- 						    kproc->ti_sci_id);
- 	if (ret) {
-@@ -191,6 +194,9 @@ static int k3_dsp_rproc_release(struct k3_dsp_rproc *kproc)
- 	struct device *dev = kproc->dev;
- 	int ret;
- 
-+	if (kproc->data->uses_lreset)
-+		goto lreset;
-+
- 	ret = kproc->ti_sci->ops.dev_ops.get_device(kproc->ti_sci,
- 						    kproc->ti_sci_id);
- 	if (ret) {
-@@ -198,6 +204,7 @@ static int k3_dsp_rproc_release(struct k3_dsp_rproc *kproc)
- 		return ret;
- 	}
- 
-+lreset:
- 	ret = reset_control_deassert(kproc->reset);
- 	if (ret) {
- 		dev_err(dev, "local-reset deassert failed, ret = %d\n", ret);
-@@ -209,6 +216,53 @@ static int k3_dsp_rproc_release(struct k3_dsp_rproc *kproc)
- 	return ret;
- }
- 
-+/*
-+ * The C66x DSP cores have a local reset that affects only the CPU, and a
-+ * generic module reset that powers on the device and allows the DSP internal
-+ * memories to be accessed while the local reset is asserted. This function is
-+ * used to release the global reset on C66x DSPs to allow loading into the DSP
-+ * internal RAMs. The .prepare() ops is invoked by remoteproc core before any
-+ * firmware loading, and is followed by the .start() ops after loading to
-+ * actually let the C66x DSP cores run.
-+ */
-+static int k3_dsp_rproc_prepare(struct rproc *rproc)
-+{
-+	struct k3_dsp_rproc *kproc = rproc->priv;
-+	struct device *dev = kproc->dev;
-+	int ret;
-+
-+	ret = kproc->ti_sci->ops.dev_ops.get_device(kproc->ti_sci,
-+						    kproc->ti_sci_id);
-+	if (ret)
-+		dev_err(dev, "module-reset deassert failed, cannot enable internal RAM loading, ret = %d\n",
-+			ret);
-+
-+	return ret;
-+}
-+
-+/*
-+ * This function implements the .unprepare() ops and performs the complimentary
-+ * operations to that of the .prepare() ops. The function is used to assert the
-+ * global reset on applicable C66x cores. This completes the second portion of
-+ * powering down the C66x DSP cores. The cores themselves are only halted in the
-+ * .stop() callback through the local reset, and the .unprepare() ops is invoked
-+ * by the remoteproc core after the remoteproc is stopped to balance the global
-+ * reset.
-+ */
-+static int k3_dsp_rproc_unprepare(struct rproc *rproc)
-+{
-+	struct k3_dsp_rproc *kproc = rproc->priv;
-+	struct device *dev = kproc->dev;
-+	int ret;
-+
-+	ret = kproc->ti_sci->ops.dev_ops.put_device(kproc->ti_sci,
-+						    kproc->ti_sci_id);
-+	if (ret)
-+		dev_err(dev, "module-reset assert failed, ret = %d\n", ret);
-+
-+	return ret;
-+}
-+
- /*
-  * Power up the DSP remote processor.
-  *
-@@ -352,6 +406,8 @@ static void *k3_dsp_rproc_da_to_va(struct rproc *rproc, u64 da, size_t len)
- }
- 
- static const struct rproc_ops k3_dsp_rproc_ops = {
-+	.prepare	= k3_dsp_rproc_prepare,
-+	.unprepare	= k3_dsp_rproc_unprepare,
- 	.start		= k3_dsp_rproc_start,
- 	.stop		= k3_dsp_rproc_stop,
- 	.kick		= k3_dsp_rproc_kick,
-@@ -612,6 +668,22 @@ static int k3_dsp_rproc_probe(struct platform_device *pdev)
- 		goto release_tsp;
- 	}
- 
-+	/*
-+	 * ensure the DSP local reset is asserted to ensure the DSP doesn't
-+	 * execute bogus code in .prepare() when the module reset is released.
-+	 */
-+	if (data->uses_lreset) {
-+		ret = reset_control_status(kproc->reset);
-+		if (ret < 0) {
-+			dev_err(dev, "failed to get reset status, status = %d\n",
-+				ret);
-+			goto release_mem;
-+		} else if (ret == 0) {
-+			dev_warn(dev, "local reset is deasserted for device\n");
-+			k3_dsp_rproc_reset(kproc);
-+		}
-+	}
-+
- 	ret = rproc_add(rproc);
- 	if (ret) {
- 		dev_err(dev, "failed to add register device with remoteproc core, status = %d\n",
--- 
-2.26.0
-
+> 
+>> +
+>>   required:
+>>     - compatible
+>>   
+>> @@ -39,7 +49,10 @@ examples:
+>>     # as defined in Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt
+>>     - |
+>>   
+>> +    #include <dt-bindings/interconnect/qcom,icc.h>
+>> +
+>>       disp_bcm_voter: bcm_voter {
+>>           compatible = "qcom,bcm-voter";
+>> +        qcom,tcs-wait = <QCOM_ICC_TAG_AMC>;
+>>       };
+>>   ...
+>> -- 
+>> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+>> a Linux Foundation Collaborative Project
+>>
