@@ -2,159 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF9EA224984
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jul 2020 08:59:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C8EF224992
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jul 2020 09:07:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729195AbgGRG6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jul 2020 02:58:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54880 "EHLO
+        id S1728951AbgGRHHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Jul 2020 03:07:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729162AbgGRG6N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jul 2020 02:58:13 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94BFFC0619D3;
-        Fri, 17 Jul 2020 23:58:11 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id f7so13262797wrw.1;
-        Fri, 17 Jul 2020 23:58:11 -0700 (PDT)
+        with ESMTP id S1725920AbgGRHHp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jul 2020 03:07:45 -0400
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7469FC0619D2
+        for <devicetree@vger.kernel.org>; Sat, 18 Jul 2020 00:07:45 -0700 (PDT)
+Received: by mail-pf1-x444.google.com with SMTP id s26so6437451pfm.4
+        for <devicetree@vger.kernel.org>; Sat, 18 Jul 2020 00:07:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=1gIivsKhrs5B4E2eM/SXdSVH3UTq3Ox3b3pPitMs8zM=;
-        b=JIvb2Ngqnjk847TFxnaUZHKhchB8YfVtdu/CTHONMKczeOW8Le0mBfXZDoBYduxujB
-         lTAIwDhYvrjH+Um9LwOxUH5mkHPSGWYRULG0+9+2mucvkp/5p/mdmhaJOHBcrvqNKMSZ
-         xmIFrQEAA/FMLCGEZpQLUvRZrp+Jtslprw1QlZ+mHzVcit9c+ecHYD6BCHXBxImZALwy
-         m6Iw7MCdMPUbaiyNAiGRvKoqKA+FZkanTdd+/KbTTRp8v2fspqCYTYBa3Jp6ijLCZYJk
-         eFtr3EttuKnBPd7OvYPdQZ51rWiu+uIOxN9Mn2XNmiNgGX0OczdUmeNp2GYZsmHMcvis
-         cVtg==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=FvB+EstirEoaTYLy3FAmpSy2vtZp1fbnxBznhXtHkyU=;
+        b=zOrVrQ8vs9K/U2uxQicdd0HuHtzFZWRl13/zXu2H/VSzWMsxphMZUUccwK34jqeiRr
+         KYSzLmJrqdrS1FHjnsQxrBD5jirXXrbWPj8UksDOnkWSD9lGGhcFULfAvndSAaH7vbrz
+         di3kEoRa+6Nt83wAeKHtAxGjWguI+iTDqOswGzEDwQ1HwjmRXOMG6tLFULIiSFfQBztv
+         bAVQNa8r7K1RiTJ/0He0A1X5MTFZ9NZo4mfRLsI/3T4z3g3mM6lT2jXLRaL/SFC+mr6C
+         nQP3VAn06OoxobWjoZ0bkub4ez4+feDmW4qpkYZ/BNALw2aDF1EcgC9jV2cbozWHDlBv
+         PMWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=1gIivsKhrs5B4E2eM/SXdSVH3UTq3Ox3b3pPitMs8zM=;
-        b=DjA4VPvKKxaihyIrD6fb9pHGwt3U293L96UEDJ7wZCn++2MRd7HmxW95LapKjjb6nH
-         dfuk3xy8xlL3OTfn9vdaWiSoiuIfD7zSy3DvxnLXHRX4A2vrZc2XX6zasjZdM6HqNwjP
-         Pn8sCbTqsrR4Fg5i0fyu3+Zszp+wqf5r5Cs/K8imWfc8DkYtbi9ASgjjKtD8uT70gfrV
-         78GWllsrUzuFZh7Nfdz8LAB0XTtUCeWFHNObwTo3DqEUTQ0Dxdrq4YPmAnx7yRP4lPEo
-         pCezKKH5RUNnuHDDwjEnbfWHbJu+AwOLdrdMUIH9EkWghHH/86STyM/Ravh5J3qgCDCs
-         RVgA==
-X-Gm-Message-State: AOAM532rnOShJstZiV4FyWNC4YI3XZfye20FR4rJ9pLWGchcA1R4K47A
-        hHRyHhYDkMtzGqAxLeUOr+Q=
-X-Google-Smtp-Source: ABdhPJxEIE/fyCFRu3RRxgW1mThwfcZwyiNFLjxzNHyGDN6C7wSEse0IChWCM1AhE9sSWWyDdWzz3g==
-X-Received: by 2002:a5d:5490:: with SMTP id h16mr14399637wrv.394.1595055490357;
-        Fri, 17 Jul 2020 23:58:10 -0700 (PDT)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id x5sm18749191wmg.2.2020.07.17.23.58.08
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=FvB+EstirEoaTYLy3FAmpSy2vtZp1fbnxBznhXtHkyU=;
+        b=ZUkZgOiS7bzHFYOQL7dhOzoK96P72RWJFGN7s+BptNRJqa81uaOUJxnDgezfobAWIG
+         z9MFaouBlYrupXk1wO2Zp8rqV2LVrBNQ0cJHX3slGNIdpeJkTqWl6AvbY4Rf2TeJR2Eh
+         0BsxrRpT/y2wpSbEmkQNPAYPgzoFn3d7dgmiJqwwJTtJWaBQPUgON0UjcIYOFhQcJizI
+         wbR5wHpDZrMhMcHIUU0tmMAwlNtmh2Kh5Ob340fcFRIZAdtRf1r9P3yGF75DSUa3sBu8
+         +T37gD96UWMn6hFv8Tj85DLvChPqmAQ06sshsbkJDJNWFsuVsUMNl5B1VrqVw6zbGpeE
+         iHLA==
+X-Gm-Message-State: AOAM532+ekUeUfw2ZUL/0S8Pdj9eLz86ufD8qDiu1TYOgNMV0laHBMCx
+        TR8MMsm4y7sI6E5oxkshe8B6Ng==
+X-Google-Smtp-Source: ABdhPJxI1f6Tah2zpEfBV0ApJb35RLL0rDSc8ngWpvA54RkvtaT4kEQqaoMfJx9gdGEPqAzFnsReiQ==
+X-Received: by 2002:a63:be4e:: with SMTP id g14mr11652459pgo.193.1595056064925;
+        Sat, 18 Jul 2020 00:07:44 -0700 (PDT)
+Received: from yoga (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id r8sm9689269pfh.29.2020.07.18.00.07.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Jul 2020 23:58:09 -0700 (PDT)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH 12/12] arm64: dts: meson: add audio playback to wetek-play2
-Date:   Sat, 18 Jul 2020 06:57:39 +0000
-Message-Id: <20200718065739.7802-13-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200718065739.7802-1-christianshewitt@gmail.com>
-References: <20200718065739.7802-1-christianshewitt@gmail.com>
+        Sat, 18 Jul 2020 00:07:44 -0700 (PDT)
+Date:   Sat, 18 Jul 2020 00:07:40 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Shaik Sajida Bhanu <sbhanu@codeaurora.org>
+Cc:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, mka@chromium.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, agross@kernel.org,
+        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
+Subject: Re: [PATCH V1] arm64: dts: qcom: SD-card GPIO pin set bias-pull up
+Message-ID: <20200718070740.GB61202@yoga>
+References: <1595054041-6872-1-git-send-email-sbhanu@codeaurora.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1595054041-6872-1-git-send-email-sbhanu@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial support limited to HDMI i2s and SPDIF (LPCM).
+On Fri 17 Jul 23:34 PDT 2020, Shaik Sajida Bhanu wrote:
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- .../dts/amlogic/meson-gxbb-wetek-play2.dts    | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
+> From: Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
+> 
+> On some sc7180 based platforms where external pull is not present on cd-gpio,
+> this gpio state is getting read as HIGH when sleep config is applied on it.
+> This is resulting in SDcard rescan after suspend-resume even though SDcard
+> is not present.
+> 
+> Update cd-gpio sleep config with bais-pull to fix this issue.
+> 
+> Also include xo clock to sdhc clocks list which will be used
+> in calculating MCLK_FREQ field of DLL_CONFIG2 register.
+> 
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
-index 2ab8a3d10079..f2562c7de67c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
-@@ -8,11 +8,19 @@
- 
- #include "meson-gxbb-wetek.dtsi"
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/sound/meson-aiu.h>
- 
- / {
- 	compatible = "wetek,play2", "amlogic,meson-gxbb";
- 	model = "WeTek Play 2";
- 
-+	spdif_dit: audio-codec-0 {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dit";
-+		status = "okay";
-+		sound-name-prefix = "DIT";
-+	};
-+
- 	leds {
- 		led-wifi {
- 			label = "wetek-play:wifi-status";
-@@ -39,6 +47,59 @@
- 			gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_LOW>;
- 		};
- 	};
-+
-+	sound {
-+		compatible = "amlogic,gx-sound-card";
-+		model = "GXBB-WETEK-PLAY2";
-+		assigned-clocks = <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>,
-+				  <&clkc CLKID_MPLL2>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&aiu AIU_CPU CPU_SPDIF_FIFO>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
-+			};
-+		};
-+
-+		dai-link-3 {
-+			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
-+
-+			codec-0 {
-+				sound-dai = <&spdif_dit>;
-+			};
-+		};
-+
-+		dai-link-4 {
-+			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+};
-+
-+&aiu {
-+	status = "okay";
-+	pinctrl-0 = <&spdif_out_y_pins>;
-+	pinctrl-names = "default";
- };
- 
- &i2c_A {
--- 
-2.17.1
+Please split this in two patches; one fixing the card detect bias and
+one for adding the xo clock.
 
+
+This needs Veerabhadrarao's signed-off-by as well (followed by yours).
+
+Regards,
+Bjorn
+
+> Signed-off-by: Shaik Sajida Bhanu <sbhanu@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 12 +++++++-----
+>  1 file changed, 7 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index d78a066..8034fcc 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -682,8 +682,9 @@
+>  			interrupt-names = "hc_irq", "pwr_irq";
+>  
+>  			clocks = <&gcc GCC_SDCC1_APPS_CLK>,
+> -					<&gcc GCC_SDCC1_AHB_CLK>;
+> -			clock-names = "core", "iface";
+> +					<&gcc GCC_SDCC1_AHB_CLK>,
+> +					<&xo_board>;
+> +			clock-names = "core", "iface", "xo";
+>  			interconnects = <&aggre1_noc MASTER_EMMC &mc_virt SLAVE_EBI1>,
+>  				<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_EMMC_CFG>;
+>  			interconnect-names = "sdhc-ddr","cpu-sdhc";
+> @@ -1819,7 +1820,7 @@
+>  
+>  				pinconf-sd-cd {
+>  					pins = "gpio69";
+> -					bias-disable;
+> +					bias-pull-up;
+>  					drive-strength = <2>;
+>  				};
+>  			};
+> @@ -2481,8 +2482,9 @@
+>  			interrupt-names = "hc_irq", "pwr_irq";
+>  
+>  			clocks = <&gcc GCC_SDCC2_APPS_CLK>,
+> -					<&gcc GCC_SDCC2_AHB_CLK>;
+> -			clock-names = "core", "iface";
+> +					<&gcc GCC_SDCC2_AHB_CLK>,
+> +					<&xo_board>;
+> +			clock-names = "core", "iface", "xo";
+>  
+>  			interconnects = <&aggre1_noc MASTER_SDCC_2 &mc_virt SLAVE_EBI1>,
+>  				<&gem_noc MASTER_APPSS_PROC &config_noc	SLAVE_SDCC_2>;
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+> of Code Aurora Forum, hosted by The Linux Foundation
+> 
