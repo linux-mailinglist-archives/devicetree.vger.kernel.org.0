@@ -2,108 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D3AF224C0A
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jul 2020 16:49:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B65B8224C40
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jul 2020 17:08:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727869AbgGROty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jul 2020 10:49:54 -0400
-Received: from mga17.intel.com ([192.55.52.151]:3940 "EHLO mga17.intel.com"
+        id S1726818AbgGRPIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Jul 2020 11:08:07 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:39218 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726574AbgGROty (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 18 Jul 2020 10:49:54 -0400
-IronPort-SDR: vBbq3as+qeeIfHIAyhDUDZgT86XWJcpAd3qKSuBpZJIHg85QUg+ooAra/C1fnZ56jw4VKnasQu
- 2FmRPHwCVDkg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9686"; a="129826079"
-X-IronPort-AV: E=Sophos;i="5.75,367,1589266800"; 
-   d="scan'208";a="129826079"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jul 2020 07:49:54 -0700
-IronPort-SDR: Lc+DHL93rLE70zHYVn7CQb9cLBNP23C9270cw6P3sYFvJUrMOEJQIA0gFNclWWV1rDrrRAZG6M
- KiCgx5HwJ5BQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,367,1589266800"; 
-   d="scan'208";a="300836352"
-Received: from vgjayaku-ilbpg7.png.intel.com ([10.88.227.96])
-  by orsmga002.jf.intel.com with ESMTP; 18 Jul 2020 07:49:52 -0700
-From:   vineetha.g.jaya.kumaran@intel.com
-To:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        robh+dt@kernel.org
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        wan.ahmad.zainie.wan.mohamad@intel.com, andriy.shevchenko@intel.com
-Subject: [PATCH v2 2/2] dt-bindings: pwm: keembay: Add bindings for Intel Keem Bay PWM
-Date:   Sat, 18 Jul 2020 22:47:08 +0800
-Message-Id: <1595083628-20734-3-git-send-email-vineetha.g.jaya.kumaran@intel.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1595083628-20734-1-git-send-email-vineetha.g.jaya.kumaran@intel.com>
-References: <1595083628-20734-1-git-send-email-vineetha.g.jaya.kumaran@intel.com>
+        id S1726155AbgGRPIH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 18 Jul 2020 11:08:07 -0400
+Received: from x2f7f83e.dyn.telefonica.de ([2.247.248.62] helo=phil.sntech)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1jwoRY-0007el-C9; Sat, 18 Jul 2020 17:08:04 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Suniel Mahesh <sunil@amarulasolutions.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 0/7] ARM: dts: rockchip: Radxa Rock Pi N8 initial support
+Date:   Sat, 18 Jul 2020 17:08:02 +0200
+Message-Id: <159508486383.16292.5716289936157540708.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200715083418.112003-1-jagan@amarulasolutions.com>
+References: <20200715083418.112003-1-jagan@amarulasolutions.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "Vineetha G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>
+On Wed, 15 Jul 2020 14:04:11 +0530, Jagan Teki wrote:
+> Rock Pi N8 is a Rockchip RK3288 based SBC, which has
+> - VMARC RK3288 SOM (as per SMARC standard) from Vamrs.
+> - Compatible carrier board from Radxa.
+> 
+> VMARC RK3288 SOM need to mount on top of dalang carrier
+> board for making Rock PI N8 SBC.
+> 
+> [...]
 
-Add PWM Device Tree bindings documentation for the Intel Keem Bay SoC.
+Applied, thanks!
 
-Signed-off-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
----
- .../devicetree/bindings/pwm/intel,keembay-pwm.yaml | 45 ++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
+[1/7] ARM: dts: rockchip: dalang-carrier: Move i2c nodes into SOM
+      commit: c2f343510d99ab53b46bdfeb184cb48f622e6943
+[2/7] arm64: dts: rk3399pro: vmarc-som: Fix sorting nodes, properties
+      commit: 3047b384a74090f09b994298eb5c40986275233a
+[3/7] arm64: dts: rk3399pro: vmarc-som: Move supply regulators into Carrier
+      commit: 4a3ca113c0f3a2ce33e51fc6a48a121b2d707d4f
+[4/7] arm64: dts: rk3399pro: vmarc-som: Move common properties into Carrier
+      commit: a66bd94d0eac017e4846658750acaca2937555bb
+[5/7] dt-bindings: arm: rockchip: Add Rock Pi N8 binding
+      commit: 09ee4794270f0010c6397163f033f883f5bff1aa
+[6/7] ARM: dts: rockchip: Add VMARC RK3288 SOM initial support
+      commit: b8c564d4fa76b1314a10585eea8e97b8c621a77a
+[7/7] ARM: dts: rockchip: Add Radxa Rock Pi N8 initial support
+      commit: afd9eb88041409e0f311730f23e8fe6921e74cb8
 
-diff --git a/Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml b/Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
-new file mode 100644
-index 00000000..e9388a7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2020 Intel Corporation
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/intel,keembay-pwm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Intel Keem Bay PWM Device Tree Bindings
-+
-+maintainers:
-+  - Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - intel,keembay-pwm
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  "#pwm-cells":
-+    const: 2
-+
-+required:
-+ - compatible
-+ - reg
-+ - clocks
-+ - '#pwm-cells'
-+
-+examples:
-+  - |
-+    #define KEEM_BAY_A53_GPIO
-+
-+    pwm@203200a0 {
-+      compatible = "intel,keembay-pwm";
-+      reg = <0x203200a0 0xe8>;
-+      clocks = <&scmi_clk KEEM_BAY_A53_GPIO>;
-+      #pwm-cells = <2>;
-+    };
+Best regards,
 -- 
-1.9.1
-
+Heiko Stuebner <heiko@sntech.de>
