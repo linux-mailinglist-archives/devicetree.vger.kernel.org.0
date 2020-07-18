@@ -2,50 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64C4C2248F6
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jul 2020 07:23:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FE1B224901
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jul 2020 07:29:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726601AbgGRFXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jul 2020 01:23:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40304 "EHLO
+        id S1726485AbgGRF35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Jul 2020 01:29:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725887AbgGRFXG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jul 2020 01:23:06 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECEF0C0619D2;
-        Fri, 17 Jul 2020 22:23:05 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id o2so20440364wmh.2;
-        Fri, 17 Jul 2020 22:23:05 -0700 (PDT)
+        with ESMTP id S1726466AbgGRF34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jul 2020 01:29:56 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4344CC0619D2;
+        Fri, 17 Jul 2020 22:29:56 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id 88so2864711wrh.3;
+        Fri, 17 Jul 2020 22:29:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=cAYxwf3PWKuckY2hB45qBXD12qyW8EWqiGVEnf1AhJ8=;
-        b=ahoKNN/2UsGf2261/PlAzJzMU5wSe7qP1X+NHH1C5XFRC9/Eixnma6gwZKnybt4GAt
-         Tk9O4FMkcXWGGNEfeV4pOWJVh8CBI/X5iBSamDa/WungfMcVb9TTFeTrrf/MQwPTsvRa
-         2XmgDnOiP+4khMX0h6UwQE53Kyc0fyxeSCS0wN8ZMi3atYkNM+2AHtnwMetN+VFpphHF
-         DEGcD6XS2v9jPs8LRhVE6+vbVsTRSTXLdf3+pYnXE8NnFw0Lk/aX11oevj51tuLJzXiL
-         OfeVYxLdDdgExNGWp4wNQOPMAWnbIPj4YZIpzvsI7eJ0HbZhsc+demln5eAzf0ZTl1cl
-         pZ8Q==
+        h=from:to:cc:subject:date:message-id;
+        bh=rqatcQsvNnH489JiyTckIeyzp1Uk83CW3W6g2HlZiXI=;
+        b=ht7EAniV2VwVIjDt2coFsLdF0qOfytsvxoXCTyI68FZcWBFnZV300S80lysLs4n0/+
+         9ps8caWmmP+IDjMuoM2YfPIlp/seCkFSd9vRYPfeY+VY0dT9liPagwLbsw9QFD5fUdGN
+         Hinf5h8xRRFDUWQRV6lKNror4mZr6gZHD+ra1HNxrXKylhJ7S31dsHk1YlB7fkkyhOCW
+         iOVmoYngzhC/rx0jDxoI0EGrnrr26r0hvMLWpAzRXu+bC4yg9kxVf0WNL1KfEB5iKIg1
+         67JBj/hcm4AxRHm96doGfMU1Rt4FS+UM7KMuZOAQaCtzbRWC/izujaAmBhtJsnVhDo68
+         M85w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=cAYxwf3PWKuckY2hB45qBXD12qyW8EWqiGVEnf1AhJ8=;
-        b=D9MzmfwMQI5gGexxMWqlhENCHUV69cdnX4Mlhk13donZQ1hOJL2k6gS79vHv8yPpMa
-         uaHDP6/xtln4EugWAQnxp+0eli3pOm++bU6CLW0R85w9fU8VPtMy0gnJUYlexfsUjI44
-         IxMD/uXsdU6LcXLSo90XxflcYrDjXR4SNdEVSWVxcMBY7T6Hza95Ub93PrhVBnFmZmQ4
-         50RdIqWHnxSvW78OpgaPachVH78RZmftKWq9WDZG0H5RvbUsGRkDy4mWYT0CQXE+VoZN
-         4GrOFjjFl87zGebX5ySBg6Om/GXs044pbCZP4v0p0VJT7wPDFooIT9LMqKEBEm8h7GTd
-         LprQ==
-X-Gm-Message-State: AOAM530fXyvBFNPdXh38Mhnc3I5tGbqk27at94GmVVrcpKrSartcwyN4
-        nlwhsL2W0FgFUZz7DeFuDv4=
-X-Google-Smtp-Source: ABdhPJyrAZ3UMP5EXqPvxtY9rGSpOSCytCxrVZqOS0PbHzzpVTWW4bmMK2/AusJFj00YMzB2B2WBjg==
-X-Received: by 2002:a1c:4183:: with SMTP id o125mr12180611wma.101.1595049784690;
-        Fri, 17 Jul 2020 22:23:04 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=rqatcQsvNnH489JiyTckIeyzp1Uk83CW3W6g2HlZiXI=;
+        b=QA9zmFdEdXqYGRQDOLP2LUsBBfdpu514cHOBHbkAqTIk/4p7cxpevwwrR85CDjPvnc
+         8cDDsrMdkBslbY2UTqFeemhaMcQOv1PHNqI4zQuFSyL+OCLEUElwySLix89TNVzEDlSf
+         emUM1dLXFJBTHih0emdpmk7ZUvRZe9IoNnGaZ0QC0qyZDsFvtBMw2vkXxT6KBLNVApsX
+         g1yO34XicJTKgzHvvQU9C4LEocnCenI31kCsI+4dLGyjL1qAcavpbXOSpfIIY83jDczk
+         lTmRevTOvjpgDyMeumN+XPHolcz4Plh/QRlHQlKsl3heupS0HxRy3ZU42UEVQ7Sf1K6D
+         on1g==
+X-Gm-Message-State: AOAM533lWYAt+KTYKkFRkN9UeJVUqqHlmS9gQLyAgKxDHxtcm5LBG+gS
+        6jfeQJF6x8P7Tl826xSjoUO8+nY9
+X-Google-Smtp-Source: ABdhPJxIZIk8IpaHWGoqT3B44PSmWmajAlSFxLC+YGacclYjd9J4ahr2meIk1JK0DS4HW7oSiVnXww==
+X-Received: by 2002:a5d:444e:: with SMTP id x14mr12526132wrr.279.1595050194874;
+        Fri, 17 Jul 2020 22:29:54 -0700 (PDT)
 Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id f16sm17536608wmf.17.2020.07.17.22.23.02
+        by smtp.gmail.com with ESMTPSA id r10sm18393722wrm.17.2020.07.17.22.29.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Jul 2020 22:23:04 -0700 (PDT)
+        Fri, 17 Jul 2020 22:29:54 -0700 (PDT)
 From:   Christian Hewitt <christianshewitt@gmail.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -53,231 +52,57 @@ To:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH 2/2] arm64: dts: meson: add initial Beelink GS-King-X device-tree
-Date:   Sat, 18 Jul 2020 05:22:58 +0000
-Message-Id: <20200718052258.2890-2-christianshewitt@gmail.com>
+Subject: [PATCH] arm64: dts: meson: misc fixups for w400 dtsi
+Date:   Sat, 18 Jul 2020 05:29:50 +0000
+Message-Id: <20200718052950.3707-1-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200718052258.2890-1-christianshewitt@gmail.com>
-References: <20200718052258.2890-1-christianshewitt@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Shenzen AZW (Beelink) GS-King-X is based on the Amlogic W400 reference
-board with an S922X-H chip.
+Current devices using the W400 dtsi show mmc tuning errors:
 
-- 4GB LPDDR4 RAM
-- 64GB eMMC storage
-- 10/100/1000 Base-T Ethernet
-- AP6356S Wireless (802.11 a/b/g/n/ac, BT 4.1)
-- HDMI 2.1 video
-- S/PDIF optical output
-- 2x ESS9018 audio DACs
-- 4x Ricor RT6862 audio amps
-- Analogue headphone output
-- 1x USB 2.0 OTG port
-- 3x USB 3.0 ports
-- IR receiver
-- 1x micro SD card slot (internal)
-- USB SATA controller with 2x 3.5" drive bays
-- 1x Power on/off button
+[12483.917391] mmc0: tuning execution failed: -5
+[30535.551221] mmc0: tuning execution failed: -5
+[35359.953671] mmc0: tuning execution failed: -5
+[35561.875332] mmc0: tuning execution failed: -5
+[61733.348709] mmc0: tuning execution failed: -5
+
+Removing "sd-uhs-sdr50" from the SDIO node prevents this. We also add
+keep-power-in-suspend to the SDIO node and fix an indentation.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../boot/dts/amlogic/meson-g12b-gsking-x.dts  | 170 ++++++++++++++++++
- 2 files changed, 171 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
+ arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 5cac4d1d487d..99a6e8e0b644 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -3,6 +3,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gsking-x.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
-new file mode 100644
-index 000000000000..60b681d6cfe3
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
-@@ -0,0 +1,170 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
-+ */
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi
+index 98b70d216a6f..2802ddbb83ac 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi
+@@ -336,9 +336,11 @@
+ 
+ 	bus-width = <4>;
+ 	cap-sd-highspeed;
+-	sd-uhs-sdr50;
+ 	max-frequency = <100000000>;
+ 
++	/* WiFi firmware requires power to be kept while in suspend */
++	keep-power-in-suspend;
 +
-+/dts-v1/;
-+
-+#include "meson-g12b-w400.dtsi"
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-+
-+/ {
-+	compatible = "azw,gsking-x", "amlogic,g12b";
-+	model = "Beelink GS-King X";
-+
-+	gpio-keys-polled {
-+		compatible = "gpio-keys-polled";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		poll-interval = <100>;
-+
-+		power-button {
-+			label = "power";
-+			linux,code = <KEY_POWER>;
-+			gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		blue {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio_ao GPIOAO_11 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+		};
-+	};
-+
-+	spdif_dit: audio-codec-1 {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dit";
-+		status = "okay";
-+		sound-name-prefix = "DIT";
-+	};
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		model = "G12B-GSKING-X";
-+		audio-aux-devs = <&tdmout_b>;
-+		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT",
-+				"SPDIFOUT IN 0", "FRDDR_A OUT 3",
-+				"SPDIFOUT IN 1", "FRDDR_B OUT 3",
-+				"SPDIFOUT IN 2", "FRDDR_C OUT 3";
-+
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+				  <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&frddr_a>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&frddr_b>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&frddr_c>;
-+		};
-+
-+		/* 8ch hdmi interface */
-+		dai-link-3 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+			};
-+		};
-+
-+		/* spdif hdmi or toslink interface */
-+		dai-link-4 {
-+			sound-dai = <&spdifout>;
-+
-+			codec-0 {
-+				sound-dai = <&spdif_dit>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&tohdmitx TOHDMITX_SPDIF_IN_A>;
-+			};
-+		};
-+
-+		/* spdif hdmi interface */
-+		dai-link-5 {
-+			sound-dai = <&spdifout_b>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_SPDIF_IN_B>;
-+			};
-+		};
-+
-+		/* hdmi glue */
-+		dai-link-6 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+};
-+
-+&arb {
-+	status = "okay";
-+};
-+
-+&clkc_audio {
-+	status = "okay";
-+};
-+
-+&frddr_a {
-+	status = "okay";
-+};
-+
-+&frddr_b {
-+	status = "okay";
-+};
-+
-+&frddr_c {
-+	status = "okay";
-+};
-+
-+&spdifout {
-+	pinctrl-0 = <&spdif_out_h_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&spdifout_b {
-+	status = "okay";
-+};
-+
-+&tdmif_b {
-+	status = "okay";
-+};
-+
-+&tdmout_b {
-+	status = "okay";
-+};
-+
-+&tohdmitx {
-+	status = "okay";
-+};
+ 	non-removable;
+ 	disable-wp;
+ 
+@@ -398,7 +400,7 @@
+ 		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
+ 		max-speed = <2000000>;
+ 		clocks = <&wifi32k>;
+-	clock-names = "lpo";
++		clock-names = "lpo";
+ 	};
+ };
+ 
 -- 
 2.17.1
 
