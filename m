@@ -2,252 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B4A8224EC2
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jul 2020 04:46:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 171F52250F0
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jul 2020 11:39:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726623AbgGSCqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jul 2020 22:46:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38590 "EHLO
+        id S1726021AbgGSJjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jul 2020 05:39:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726382AbgGSCqB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jul 2020 22:46:01 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91883C0619D2;
-        Sat, 18 Jul 2020 19:46:00 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id 22so19144726wmg.1;
-        Sat, 18 Jul 2020 19:46:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=aDlMbyjXbF67HGTAUvI4dBM3JFAclGFOXiFtjc3PP5g=;
-        b=OBkm5yZBxqZNX3JWP/0xtIJqilNQ+sQ2OdaYW+DSf3sWEl0Z7wRdxDy7MnGyTaECup
-         yrHW041kNMOsICMTd1OcBvFNlW7L8osiYeRd3DTObPZE2Yl7tVYa9+FQKwT6BrMxVGxZ
-         tcKiPwtGFIHZmTyhvgZIoUqRUHTbV2cEgEMfP+u1oyzCHvI+wWbL+FlOe++xqZibPMnX
-         OooeApTErxNeJ3o5jrlxIs8vi/rlRkONnu+IN/gTBe4uWXD12SMF+3A9w/LKTk7dbqcQ
-         3GJaJdlbE31wcBclN3C2e9JLsGmSOMzf+qKmxjldli7bxG/NDeXCJKLuMH5cWXyx1tVl
-         S9CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=aDlMbyjXbF67HGTAUvI4dBM3JFAclGFOXiFtjc3PP5g=;
-        b=gmV0ffpng8G483DtzkgFQC4+u8NdaxVdOlpSy0rpau4eJSWATx/GQfE4g+jbiEah1/
-         vGidSnWvM4vJRcqNls4wH4MZKTy8LqI46XWZ9Gr7Av5vm996Mg8eYGynctsRyF7SvMTC
-         DDDZcqWQEBHPnY2LPYEmMU8zkyTvBkQ8cc8nli38WKBvd6cct0pR5ee3V7WN3TcqPMbs
-         RPdkncquPgKokcnhpZR9Ht6xSr2MiQzVnVC+Am1AR3u5zf0Q80PUbEDFBE0yO8io7RzW
-         qLQukRzs9uQDSkaT9OiOkhnaduggoo0zUbut2BoLzzQE8w5jkw2rlz7Pw/kawKCwbumQ
-         xT4w==
-X-Gm-Message-State: AOAM533T6u6oyZP46RPk5Y7Fyy2X5BLlMl3hJr8/USTnwbI+eMqR32Va
-        XEa0oIeat8iZ6fM5sVTA+DNIX4Ri
-X-Google-Smtp-Source: ABdhPJyYLXrdLbPXFHWT/nFJ2Ld9X7eWl9Ks4YZeNZaMwCthZKPlmXCGnUBHku/1InWBePW4oDCUTg==
-X-Received: by 2002:a1c:7402:: with SMTP id p2mr15953197wmc.117.1595126759292;
-        Sat, 18 Jul 2020 19:45:59 -0700 (PDT)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id e5sm5176242wrc.37.2020.07.18.19.45.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Jul 2020 19:45:58 -0700 (PDT)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH v2 3/3] arm64: dts: meson: add audio playback to u200
-Date:   Sun, 19 Jul 2020 02:45:48 +0000
-Message-Id: <20200719024548.8940-4-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200719024548.8940-1-christianshewitt@gmail.com>
-References: <20200719024548.8940-1-christianshewitt@gmail.com>
+        with ESMTP id S1725988AbgGSJjt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jul 2020 05:39:49 -0400
+Received: from smtp.al2klimov.de (smtp.al2klimov.de [IPv6:2a01:4f8:c0c:1465::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F2A8C0619D2;
+        Sun, 19 Jul 2020 02:39:49 -0700 (PDT)
+Received: from authenticated-user (PRIMARY_HOSTNAME [PUBLIC_IP])
+        by smtp.al2klimov.de (Postfix) with ESMTPA id A8817BC073;
+        Sun, 19 Jul 2020 09:39:45 +0000 (UTC)
+From:   "Alexander A. Klimov" <grandmaster@al2klimov.de>
+To:     robh+dt@kernel.org, kgene@kernel.org, krzk@kernel.org,
+        linux@armlinux.org.uk, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     "Alexander A. Klimov" <grandmaster@al2klimov.de>
+Subject: [PATCH for v5.9] ARM: SAMSUNG: Replace HTTP links with HTTPS ones
+Date:   Sun, 19 Jul 2020 11:39:39 +0200
+Message-Id: <20200719093939.57412-1-grandmaster@al2klimov.de>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spamd-Bar: ++++++
+X-Spam-Level: ******
+Authentication-Results: smtp.al2klimov.de;
+        auth=pass smtp.auth=aklimov@al2klimov.de smtp.mailfrom=grandmaster@al2klimov.de
+X-Spam: Yes
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial support limited to HDMI i2s and S/PDIF (LPCM).
+Rationale:
+Reduces attack surface on kernel devs opening the links for MITM
+as HTTPS traffic is much harder to manipulate.
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Deterministic algorithm:
+For each file:
+  If not .svg:
+    For each line:
+      If doesn't contain `\bxmlns\b`:
+        For each link, `\bhttp://[^# \t\r\n]*(?:\w|/)`:
+	  If neither `\bgnu\.org/license`, nor `\bmozilla\.org/MPL\b`:
+            If both the HTTP and HTTPS versions
+            return 200 OK and serve the same content:
+              Replace HTTP with HTTPS.
+
+Signed-off-by: Alexander A. Klimov <grandmaster@al2klimov.de>
 ---
- .../boot/dts/amlogic/meson-g12a-u200.dts      | 131 ++++++++++++++++++
- 1 file changed, 131 insertions(+)
+ Continuing my work started at 93431e0607e5.
+ See also: git log --oneline '--author=Alexander A. Klimov <grandmaster@al2klimov.de>' v5.7..master
+ (Actually letting a shell for loop submit all this stuff for me.)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-index a26bfe72550f..dde7e258a184 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-@@ -8,6 +8,7 @@
- #include "meson-g12a.dtsi"
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/gpio/meson-g12a-gpio.h>
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+ If there are any URLs to be removed completely
+ or at least not (just) HTTPSified:
+ Just clearly say so and I'll *undo my change*.
+ See also: https://lkml.org/lkml/2020/6/27/64
+
+ If there are any valid, but yet not changed URLs:
+ See: https://lkml.org/lkml/2020/6/26/837
+
+ If you apply the patch, please let me know.
+
+ Sorry again to all maintainers who complained about subject lines.
+ Now I realized that you want an actually perfect prefixes,
+ not just subsystem ones.
+ I tried my best...
+ And yes, *I could* (at least half-)automate it.
+ Impossible is nothing! :)
+
+
+ arch/arm/boot/dts/exynos5410-pinctrl.dtsi | 2 +-
+ arch/arm/mach-s3c24xx/Kconfig             | 2 +-
+ arch/arm/mach-s3c24xx/mach-h1940.c        | 2 +-
+ arch/arm/mach-s3c24xx/mach-mini2440.c     | 2 +-
+ arch/arm/mach-s3c24xx/mach-n30.c          | 2 +-
+ arch/arm/mach-s3c24xx/mach-rx3715.c       | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm/boot/dts/exynos5410-pinctrl.dtsi b/arch/arm/boot/dts/exynos5410-pinctrl.dtsi
+index 369a8a7f2105..e5d0a2a4f648 100644
+--- a/arch/arm/boot/dts/exynos5410-pinctrl.dtsi
++++ b/arch/arm/boot/dts/exynos5410-pinctrl.dtsi
+@@ -3,7 +3,7 @@
+  * Exynos5410 SoC pin-mux and pin-config device tree source
+  *
+  * Copyright (c) 2013 Hardkernel Co., Ltd.
+- *              http://www.hardkernel.com
++ *              https://www.hardkernel.com
+  */
  
- / {
- 	compatible = "amlogic,u200", "amlogic,g12a";
-@@ -18,6 +19,13 @@
- 		ethernet0 = &ethmac;
- 	};
+ #include <dt-bindings/pinctrl/samsung.h>
+diff --git a/arch/arm/mach-s3c24xx/Kconfig b/arch/arm/mach-s3c24xx/Kconfig
+index c5c06d98b147..7673dde9671a 100644
+--- a/arch/arm/mach-s3c24xx/Kconfig
++++ b/arch/arm/mach-s3c24xx/Kconfig
+@@ -267,7 +267,7 @@ config MACH_TCT_HAMMER
+ 	select S3C_DEV_USB_HOST
+ 	help
+ 	  Say Y here if you are using the TinCanTools Hammer Board
+-	  <http://www.tincantools.com>
++	  <https://www.tincantools.com>
  
-+	spdif_dit: audio-codec-1 {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dit";
-+		status = "okay";
-+		sound-name-prefix = "DIT";
-+	};
-+
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-@@ -147,6 +155,91 @@
- 		regulator-boot-on;
- 		regulator-always-on;
- 	};
-+
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		model = "G12A-U200";
-+		audio-aux-devs = <&tdmout_b>;
-+		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT",
-+				"SPDIFOUT IN 0", "FRDDR_A OUT 3",
-+				"SPDIFOUT IN 1", "FRDDR_B OUT 3",
-+				"SPDIFOUT IN 2", "FRDDR_C OUT 3";
-+
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+				  <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&frddr_a>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&frddr_b>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&frddr_c>;
-+		};
-+
-+		/* 8ch hdmi interface */
-+		dai-link-3 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+			};
-+		};
-+
-+		/* spdif hdmi or toslink interface */
-+		dai-link-4 {
-+			sound-dai = <&spdifout>;
-+
-+			codec-0 {
-+				sound-dai = <&spdif_dit>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&tohdmitx TOHDMITX_SPDIF_IN_A>;
-+			};
-+		};
-+
-+		/* spdif hdmi interface */
-+		dai-link-5 {
-+			sound-dai = <&spdifout_b>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_SPDIF_IN_B>;
-+			};
-+		};
-+
-+		/* hdmi glue */
-+		dai-link-6 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+};
-+
-+&arb {
-+	status = "okay";
- };
+ config MACH_VR1000
+ 	bool "Thorcom VR1000"
+diff --git a/arch/arm/mach-s3c24xx/mach-h1940.c b/arch/arm/mach-s3c24xx/mach-h1940.c
+index e1c372e5447b..f4710052843a 100644
+--- a/arch/arm/mach-s3c24xx/mach-h1940.c
++++ b/arch/arm/mach-s3c24xx/mach-h1940.c
+@@ -3,7 +3,7 @@
+ // Copyright (c) 2003-2005 Simtec Electronics
+ //   Ben Dooks <ben@simtec.co.uk>
+ //
+-// http://www.handhelds.org/projects/h1940.html
++// https://www.handhelds.org/projects/h1940.html
  
- &cec_AO {
-@@ -163,6 +256,10 @@
- 	hdmi-phandle = <&hdmi_tx>;
- };
+ #include <linux/kernel.h>
+ #include <linux/types.h>
+diff --git a/arch/arm/mach-s3c24xx/mach-mini2440.c b/arch/arm/mach-s3c24xx/mach-mini2440.c
+index 9035f868fb34..113b69ba4921 100644
+--- a/arch/arm/mach-s3c24xx/mach-mini2440.c
++++ b/arch/arm/mach-s3c24xx/mach-mini2440.c
+@@ -6,7 +6,7 @@
+ //      Weibing <http://weibing.blogbus.com> and
+ //      Michel Pollet <buserror@gmail.com>
+ //
+-// For product information, visit http://code.google.com/p/mini2440/
++// For product information, visit https://code.google.com/p/mini2440/
  
-+&clkc_audio {
-+	status = "okay";
-+};
-+
- &cpu0 {
- 	cpu-supply = <&vddcpu>;
- 	operating-points-v2 = <&cpu_opp_table>;
-@@ -203,6 +300,18 @@
- 	phy-mode = "rmii";
- };
+ #include <linux/kernel.h>
+ #include <linux/types.h>
+diff --git a/arch/arm/mach-s3c24xx/mach-n30.c b/arch/arm/mach-s3c24xx/mach-n30.c
+index d856f23939af..9ebde6dc6169 100644
+--- a/arch/arm/mach-s3c24xx/mach-n30.c
++++ b/arch/arm/mach-s3c24xx/mach-n30.c
+@@ -9,7 +9,7 @@
+ // Copyright (c) 2005-2008 Christer Weinigel <christer@weinigel.se>
+ //
+ // There is a wiki with more information about the n30 port at
+-// http://handhelds.org/moin/moin.cgi/AcerN30Documentation .
++// https://handhelds.org/moin/moin.cgi/AcerN30Documentation .
  
-+&frddr_a {
-+	status = "okay";
-+};
-+
-+&frddr_b {
-+	status = "okay";
-+};
-+
-+&frddr_c {
-+	status = "okay";
-+};
-+
- &hdmi_tx {
- 	status = "okay";
- 	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
-@@ -288,6 +397,28 @@
- 	vqmmc-supply = <&flash_1v8>;
- };
+ #include <linux/kernel.h>
+ #include <linux/types.h>
+diff --git a/arch/arm/mach-s3c24xx/mach-rx3715.c b/arch/arm/mach-s3c24xx/mach-rx3715.c
+index 529c6faf862f..995f1ff34a1b 100644
+--- a/arch/arm/mach-s3c24xx/mach-rx3715.c
++++ b/arch/arm/mach-s3c24xx/mach-rx3715.c
+@@ -3,7 +3,7 @@
+ // Copyright (c) 2003-2004 Simtec Electronics
+ //	Ben Dooks <ben@simtec.co.uk>
+ //
+-// http://www.handhelds.org/projects/rx3715.html
++// https://www.handhelds.org/projects/rx3715.html
  
-+&spdifout {
-+	pinctrl-0 = <&spdif_out_h_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&spdifout_b {
-+	status = "okay";
-+};
-+
-+&tdmif_b {
-+	status = "okay";
-+};
-+
-+&tdmout_b {
-+	status = "okay";
-+};
-+
-+&tohdmitx {
-+	status = "okay";
-+};
-+
- &uart_AO {
- 	status = "okay";
- 	pinctrl-0 = <&uart_ao_a_pins>;
+ #include <linux/kernel.h>
+ #include <linux/types.h>
 -- 
-2.17.1
+2.27.0
 
