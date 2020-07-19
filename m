@@ -2,247 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9919C2253E6
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jul 2020 22:06:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7BCD225426
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jul 2020 22:54:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726073AbgGSUGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jul 2020 16:06:34 -0400
-Received: from smtp.al2klimov.de ([78.46.175.9]:39488 "EHLO smtp.al2klimov.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726009AbgGSUGe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 19 Jul 2020 16:06:34 -0400
-Received: from authenticated-user (PRIMARY_HOSTNAME [PUBLIC_IP])
-        by smtp.al2klimov.de (Postfix) with ESMTPA id BDBE4BC063;
-        Sun, 19 Jul 2020 20:06:29 +0000 (UTC)
-From:   "Alexander A. Klimov" <grandmaster@al2klimov.de>
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        tony@atomide.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-omap@vger.kernel.org
-Cc:     "Alexander A. Klimov" <grandmaster@al2klimov.de>
-Subject: [PATCH for v5.9] regulator: Replace HTTP links with HTTPS ones
-Date:   Sun, 19 Jul 2020 22:06:23 +0200
-Message-Id: <20200719200623.61524-1-grandmaster@al2klimov.de>
+        id S1726131AbgGSUyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jul 2020 16:54:17 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:37081 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726073AbgGSUyR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jul 2020 16:54:17 -0400
+X-Originating-IP: 195.189.32.242
+Received: from pc.localdomain (unknown [195.189.32.242])
+        (Authenticated sender: contact@artur-rojek.eu)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id BF667FF804;
+        Sun, 19 Jul 2020 20:54:10 +0000 (UTC)
+From:   Artur Rojek <contact@artur-rojek.eu>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Artur Rojek <contact@artur-rojek.eu>
+Subject: [PATCH v9 1/5] IIO: Ingenic JZ47xx: Error check clk_enable calls.
+Date:   Sun, 19 Jul 2020 22:53:03 +0200
+Message-Id: <20200719205307.87385-1-contact@artur-rojek.eu>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spamd-Bar: ++++++
-X-Spam-Level: ******
-Authentication-Results: smtp.al2klimov.de;
-        auth=pass smtp.auth=aklimov@al2klimov.de smtp.mailfrom=grandmaster@al2klimov.de
-X-Spam: Yes
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rationale:
-Reduces attack surface on kernel devs opening the links for MITM
-as HTTPS traffic is much harder to manipulate.
+Introduce error checks for the clk_enable calls used in this driver.
+As part of the changes, move clk_enable/clk_disable calls out of
+ingenic_adc_set_config and into respective logic of its callers.
 
-Deterministic algorithm:
-For each file:
-  If not .svg:
-    For each line:
-      If doesn't contain `\bxmlns\b`:
-        For each link, `\bhttp://[^# \t\r\n]*(?:\w|/)`:
-	  If neither `\bgnu\.org/license`, nor `\bmozilla\.org/MPL\b`:
-            If both the HTTP and HTTPS versions
-            return 200 OK and serve the same content:
-              Replace HTTP with HTTPS.
-
-Signed-off-by: Alexander A. Klimov <grandmaster@al2klimov.de>
+Signed-off-by: Artur Rojek <contact@artur-rojek.eu>
+Tested-by: Paul Cercueil <paul@crapouillou.net>
 ---
- Continuing my work started at 93431e0607e5.
- See also: git log --oneline '--author=Alexander A. Klimov <grandmaster@al2klimov.de>' v5.7..master
- (Actually letting a shell for loop submit all this stuff for me.)
 
- If there are any URLs to be removed completely
- or at least not (just) HTTPSified:
- Just clearly say so and I'll *undo my change*.
- See also: https://lkml.org/lkml/2020/6/27/64
+ Changes:
 
- If there are any valid, but yet not changed URLs:
- See: https://lkml.org/lkml/2020/6/26/837
+ v6: new patch
 
- If you apply the patch, please let me know.
+ v7: no change
 
- Sorry again to all maintainers who complained about subject lines.
- Now I realized that you want an actually perfect prefixes,
- not just subsystem ones.
- I tried my best...
- And yes, *I could* (at least half-)automate it.
- Impossible is nothing! :)
+ v8: move `clk_disable` outside the lock
 
+ v9: remove `iio_priv_to_dev` usage
 
- Documentation/devicetree/bindings/regulator/lp872x.txt | 4 ++--
- drivers/regulator/hi6421-regulator.c                   | 2 +-
- drivers/regulator/hi6421v530-regulator.c               | 2 +-
- drivers/regulator/lp873x-regulator.c                   | 2 +-
- drivers/regulator/lp87565-regulator.c                  | 2 +-
- drivers/regulator/pbias-regulator.c                    | 2 +-
- drivers/regulator/tps65023-regulator.c                 | 2 +-
- drivers/regulator/tps6507x-regulator.c                 | 2 +-
- drivers/regulator/tps65086-regulator.c                 | 2 +-
- drivers/regulator/tps65217-regulator.c                 | 2 +-
- drivers/regulator/tps65218-regulator.c                 | 2 +-
- drivers/regulator/tps65912-regulator.c                 | 2 +-
- 12 files changed, 13 insertions(+), 13 deletions(-)
+ drivers/iio/adc/ingenic-adc.c | 30 ++++++++++++++++++++++++------
+ 1 file changed, 24 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/regulator/lp872x.txt b/Documentation/devicetree/bindings/regulator/lp872x.txt
-index ca58a68ffdf1..ab895cd1cac1 100644
---- a/Documentation/devicetree/bindings/regulator/lp872x.txt
-+++ b/Documentation/devicetree/bindings/regulator/lp872x.txt
-@@ -37,8 +37,8 @@ Optional properties:
-     (Documentation/devicetree/bindings/regulator/regulator.txt)
+diff --git a/drivers/iio/adc/ingenic-adc.c b/drivers/iio/adc/ingenic-adc.c
+index 39c0a609fc94..059c2573e4a9 100644
+--- a/drivers/iio/adc/ingenic-adc.c
++++ b/drivers/iio/adc/ingenic-adc.c
+@@ -73,7 +73,6 @@ static void ingenic_adc_set_config(struct ingenic_adc *adc,
+ {
+ 	uint32_t cfg;
  
- Datasheet
--  - LP8720: http://www.ti.com/lit/ds/symlink/lp8720.pdf
--  - LP8725: http://www.ti.com/lit/ds/symlink/lp8725.pdf
-+  - LP8720: https://www.ti.com/lit/ds/symlink/lp8720.pdf
-+  - LP8725: https://www.ti.com/lit/ds/symlink/lp8725.pdf
+-	clk_enable(adc->clk);
+ 	mutex_lock(&adc->lock);
  
- Example 1) LP8720
+ 	cfg = readl(adc->base + JZ_ADC_REG_CFG) & ~mask;
+@@ -81,7 +80,6 @@ static void ingenic_adc_set_config(struct ingenic_adc *adc,
+ 	writel(cfg, adc->base + JZ_ADC_REG_CFG);
  
-diff --git a/drivers/regulator/hi6421-regulator.c b/drivers/regulator/hi6421-regulator.c
-index 66219d8dfc1a..dc631c1a46b4 100644
---- a/drivers/regulator/hi6421-regulator.c
-+++ b/drivers/regulator/hi6421-regulator.c
-@@ -5,7 +5,7 @@
- // Copyright (c) <2011-2014> HiSilicon Technologies Co., Ltd.
- //              http://www.hisilicon.com
- // Copyright (c) <2013-2014> Linaro Ltd.
--//              http://www.linaro.org
-+//              https://www.linaro.org
- //
- // Author: Guodong Xu <guodong.xu@linaro.org>
+ 	mutex_unlock(&adc->lock);
+-	clk_disable(adc->clk);
+ }
  
-diff --git a/drivers/regulator/hi6421v530-regulator.c b/drivers/regulator/hi6421v530-regulator.c
-index 06ae65199afd..988115f9b594 100644
---- a/drivers/regulator/hi6421v530-regulator.c
-+++ b/drivers/regulator/hi6421v530-regulator.c
-@@ -5,7 +5,7 @@
- // Copyright (c) <2017> HiSilicon Technologies Co., Ltd.
- //              http://www.hisilicon.com
- // Copyright (c) <2017> Linaro Ltd.
--//              http://www.linaro.org
-+//              https://www.linaro.org
- //
- // Author: Wang Xiaoyin <hw.wangxiaoyin@hisilicon.com>
- //         Guodong Xu <guodong.xu@linaro.org>
-diff --git a/drivers/regulator/lp873x-regulator.c b/drivers/regulator/lp873x-regulator.c
-index fe049b67e7d5..c38387e0fbb2 100644
---- a/drivers/regulator/lp873x-regulator.c
-+++ b/drivers/regulator/lp873x-regulator.c
-@@ -1,7 +1,7 @@
- /*
-  * Regulator driver for LP873X PMIC
-  *
-- * Copyright (C) 2016 Texas Instruments Incorporated - http://www.ti.com/
-+ * Copyright (C) 2016 Texas Instruments Incorporated - https://www.ti.com/
-  *
-  * This program is free software; you can redistribute it and/or
-  * modify it under the terms of the GNU General Public License version 2 as
-diff --git a/drivers/regulator/lp87565-regulator.c b/drivers/regulator/lp87565-regulator.c
-index 5d525dacf959..b77d69b687d9 100644
---- a/drivers/regulator/lp87565-regulator.c
-+++ b/drivers/regulator/lp87565-regulator.c
-@@ -2,7 +2,7 @@
- /*
-  * Regulator driver for LP87565 PMIC
-  *
-- * Copyright (C) 2017 Texas Instruments Incorporated - http://www.ti.com/
-+ * Copyright (C) 2017 Texas Instruments Incorporated - https://www.ti.com/
-  */
+ static void ingenic_adc_enable(struct ingenic_adc *adc,
+@@ -124,6 +122,8 @@ static int ingenic_adc_write_raw(struct iio_dev *iio_dev,
+ 				 long m)
+ {
+ 	struct ingenic_adc *adc = iio_priv(iio_dev);
++	struct device *dev = iio_dev->dev.parent;
++	int ret;
  
- #include <linux/module.h>
-diff --git a/drivers/regulator/pbias-regulator.c b/drivers/regulator/pbias-regulator.c
-index bfc15dd3f730..4eccf12f39de 100644
---- a/drivers/regulator/pbias-regulator.c
-+++ b/drivers/regulator/pbias-regulator.c
-@@ -1,7 +1,7 @@
- /*
-  * pbias-regulator.c
-  *
-- * Copyright (C) 2014 Texas Instruments Incorporated - http://www.ti.com/
-+ * Copyright (C) 2014 Texas Instruments Incorporated - https://www.ti.com/
-  * Author: Balaji T K <balajitk@ti.com>
-  *
-  * This program is free software; you can redistribute it and/or
-diff --git a/drivers/regulator/tps65023-regulator.c b/drivers/regulator/tps65023-regulator.c
-index 5ca6d2130593..795d459ff3cf 100644
---- a/drivers/regulator/tps65023-regulator.c
-+++ b/drivers/regulator/tps65023-regulator.c
-@@ -3,7 +3,7 @@
-  *
-  * Supports TPS65023 Regulator
-  *
-- * Copyright (C) 2009 Texas Instrument Incorporated - http://www.ti.com/
-+ * Copyright (C) 2009 Texas Instrument Incorporated - https://www.ti.com/
-  *
-  * This program is free software; you can redistribute it and/or
-  * modify it under the terms of the GNU General Public License as
-diff --git a/drivers/regulator/tps6507x-regulator.c b/drivers/regulator/tps6507x-regulator.c
-index d2a8f69b2665..eafbc2bb4b57 100644
---- a/drivers/regulator/tps6507x-regulator.c
-+++ b/drivers/regulator/tps6507x-regulator.c
-@@ -3,7 +3,7 @@
-  *
-  * Regulator driver for TPS65073 PMIC
-  *
-- * Copyright (C) 2009 Texas Instrument Incorporated - http://www.ti.com/
-+ * Copyright (C) 2009 Texas Instrument Incorporated - https://www.ti.com/
-  *
-  * This program is free software; you can redistribute it and/or
-  * modify it under the terms of the GNU General Public License as
-diff --git a/drivers/regulator/tps65086-regulator.c b/drivers/regulator/tps65086-regulator.c
-index 9910e949373c..23528475a962 100644
---- a/drivers/regulator/tps65086-regulator.c
-+++ b/drivers/regulator/tps65086-regulator.c
-@@ -1,5 +1,5 @@
- /*
-- * Copyright (C) 2015 Texas Instruments Incorporated - http://www.ti.com/
-+ * Copyright (C) 2015 Texas Instruments Incorporated - https://www.ti.com/
-  *
-  * Author: Andrew F. Davis <afd@ti.com>
-  *
-diff --git a/drivers/regulator/tps65217-regulator.c b/drivers/regulator/tps65217-regulator.c
-index d27dbbafcf72..2c989256c0a7 100644
---- a/drivers/regulator/tps65217-regulator.c
-+++ b/drivers/regulator/tps65217-regulator.c
-@@ -3,7 +3,7 @@
-  *
-  * Regulator driver for TPS65217 PMIC
-  *
-- * Copyright (C) 2011 Texas Instruments Incorporated - http://www.ti.com/
-+ * Copyright (C) 2011 Texas Instruments Incorporated - https://www.ti.com/
-  *
-  * This program is free software; you can redistribute it and/or
-  * modify it under the terms of the GNU General Public License as
-diff --git a/drivers/regulator/tps65218-regulator.c b/drivers/regulator/tps65218-regulator.c
-index 05d13f807918..433f27cb324e 100644
---- a/drivers/regulator/tps65218-regulator.c
-+++ b/drivers/regulator/tps65218-regulator.c
-@@ -3,7 +3,7 @@
-  *
-  * Regulator driver for TPS65218 PMIC
-  *
-- * Copyright (C) 2014 Texas Instruments Incorporated - http://www.ti.com/
-+ * Copyright (C) 2014 Texas Instruments Incorporated - https://www.ti.com/
-  *
-  * This program is free software; you can redistribute it and/or
-  * modify it under the terms of the GNU General Public License version 2 as
-diff --git a/drivers/regulator/tps65912-regulator.c b/drivers/regulator/tps65912-regulator.c
-index 15c79931ea89..63d6bbd4969b 100644
---- a/drivers/regulator/tps65912-regulator.c
-+++ b/drivers/regulator/tps65912-regulator.c
-@@ -1,7 +1,7 @@
- /*
-  * Regulator driver for TI TPS65912x PMICs
-  *
-- * Copyright (C) 2015 Texas Instruments Incorporated - http://www.ti.com/
-+ * Copyright (C) 2015 Texas Instruments Incorporated - https://www.ti.com/
-  *	Andrew F. Davis <afd@ti.com>
-  *
-  * This program is free software; you can redistribute it and/or
+ 	switch (m) {
+ 	case IIO_CHAN_INFO_SCALE:
+@@ -131,6 +131,14 @@ static int ingenic_adc_write_raw(struct iio_dev *iio_dev,
+ 		case INGENIC_ADC_BATTERY:
+ 			if (!adc->soc_data->battery_vref_mode)
+ 				return -EINVAL;
++
++			ret = clk_enable(adc->clk);
++			if (ret) {
++				dev_err(dev, "Failed to enable clock: %d\n",
++					ret);
++				return ret;
++			}
++
+ 			if (val > JZ_ADC_BATTERY_LOW_VREF) {
+ 				ingenic_adc_set_config(adc,
+ 						       JZ_ADC_REG_CFG_BAT_MD,
+@@ -142,6 +150,9 @@ static int ingenic_adc_write_raw(struct iio_dev *iio_dev,
+ 						       JZ_ADC_REG_CFG_BAT_MD);
+ 				adc->low_vref_mode = true;
+ 			}
++
++			clk_disable(adc->clk);
++
+ 			return 0;
+ 		default:
+ 			return -EINVAL;
+@@ -312,11 +323,19 @@ static int ingenic_adc_read_avail(struct iio_dev *iio_dev,
+ 	};
+ }
+ 
+-static int ingenic_adc_read_chan_info_raw(struct ingenic_adc *adc,
++static int ingenic_adc_read_chan_info_raw(struct iio_dev *iio_dev,
+ 					  struct iio_chan_spec const *chan,
+ 					  int *val)
+ {
+ 	int bit, ret, engine = (chan->channel == INGENIC_ADC_BATTERY);
++	struct ingenic_adc *adc = iio_priv(iio_dev);
++
++	ret = clk_enable(adc->clk);
++	if (ret) {
++		dev_err(iio_dev->dev.parent, "Failed to enable clock: %d\n",
++			ret);
++		return ret;
++	}
+ 
+ 	/* We cannot sample AUX/AUX2 in parallel. */
+ 	mutex_lock(&adc->aux_lock);
+@@ -325,7 +344,6 @@ static int ingenic_adc_read_chan_info_raw(struct ingenic_adc *adc,
+ 		ingenic_adc_set_config(adc, JZ_ADC_REG_CFG_AUX_MD, bit);
+ 	}
+ 
+-	clk_enable(adc->clk);
+ 	ret = ingenic_adc_capture(adc, engine);
+ 	if (ret)
+ 		goto out;
+@@ -342,8 +360,8 @@ static int ingenic_adc_read_chan_info_raw(struct ingenic_adc *adc,
+ 
+ 	ret = IIO_VAL_INT;
+ out:
+-	clk_disable(adc->clk);
+ 	mutex_unlock(&adc->aux_lock);
++	clk_disable(adc->clk);
+ 
+ 	return ret;
+ }
+@@ -358,7 +376,7 @@ static int ingenic_adc_read_raw(struct iio_dev *iio_dev,
+ 
+ 	switch (m) {
+ 	case IIO_CHAN_INFO_RAW:
+-		return ingenic_adc_read_chan_info_raw(adc, chan, val);
++		return ingenic_adc_read_chan_info_raw(iio_dev, chan, val);
+ 	case IIO_CHAN_INFO_SCALE:
+ 		switch (chan->channel) {
+ 		case INGENIC_ADC_AUX:
 -- 
 2.27.0
 
