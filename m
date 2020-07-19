@@ -2,140 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C44322252FB
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jul 2020 19:12:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13D8B225306
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jul 2020 19:18:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726049AbgGSRMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jul 2020 13:12:07 -0400
-Received: from relay3.mymailcheap.com ([217.182.66.161]:33616 "EHLO
-        relay3.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725783AbgGSRMH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jul 2020 13:12:07 -0400
-Received: from filter1.mymailcheap.com (filter1.mymailcheap.com [149.56.130.247])
-        by relay3.mymailcheap.com (Postfix) with ESMTPS id 69AB23ECDF;
-        Sun, 19 Jul 2020 19:12:05 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by filter1.mymailcheap.com (Postfix) with ESMTP id ACAFD2A354;
-        Sun, 19 Jul 2020 13:12:04 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mymailcheap.com;
-        s=default; t=1595178724;
-        bh=FV+wR9CULgMQqlgDNOjT69yBHwivGDyAlFaoqfduitg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=xjRq7OvEaFLeXZv+/7n4rBzF8vXU6RnULYcxdyK9axzD3ITmr6j+8nqxSPeGERhPL
-         wKOs2PwMCgUoIjNFJUBPArtoJcPN5RUukZQ0butZfZuu7tEPMs83WQhwVqF8dVlKsl
-         fYKZWwfZwQ4hNPt/9Cu9Jbf7s1UGvP38QBIb/1ao=
-X-Virus-Scanned: Debian amavisd-new at filter1.mymailcheap.com
-Received: from filter1.mymailcheap.com ([127.0.0.1])
-        by localhost (filter1.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id lZL9LLXvAdRh; Sun, 19 Jul 2020 13:12:03 -0400 (EDT)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
-        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
+        id S1726009AbgGSRSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jul 2020 13:18:13 -0400
+Received: from asavdk3.altibox.net ([109.247.116.14]:38242 "EHLO
+        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725783AbgGSRSN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jul 2020 13:18:13 -0400
+Received: from ravnborg.org (unknown [188.228.123.71])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by filter1.mymailcheap.com (Postfix) with ESMTPS;
-        Sun, 19 Jul 2020 13:12:03 -0400 (EDT)
-Received: from [148.251.23.173] (ml.mymailcheap.com [148.251.23.173])
-        by mail20.mymailcheap.com (Postfix) with ESMTP id E323240854;
-        Sun, 19 Jul 2020 17:12:02 +0000 (UTC)
-Authentication-Results: mail20.mymailcheap.com;
-        dkim=pass (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="PVgbZv72";
-        dkim-atps=neutral
-AI-Spam-Status: Not processed
-Received: from ice-e5v2.lan (unknown [59.41.163.116])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail20.mymailcheap.com (Postfix) with ESMTPSA id B42D140854;
-        Sun, 19 Jul 2020 17:11:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
-        t=1595178718; bh=FV+wR9CULgMQqlgDNOjT69yBHwivGDyAlFaoqfduitg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=PVgbZv72Q+weuV5/PjECAIuV/ZgPjm9ZKkOB4wDSetLzo+KgVLrVxjG/SAdpEFbum
-         tO8wTIgn3D2p8o3yKBmN9Zq4zlKcEoKiZw5ORf/RM8xVBfss45gvOsVPTBQigCUXX8
-         8WPhTHvLsW56+aMqSfHc+uChV9S9E43b+2a/o234=
-From:   Icenowy Zheng <icenowy@aosc.io>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Icenowy Zheng <icenowy@aosc.io>
-Subject: [PATCH 4/4] [DO NOT MERGE] arm64: allwinner: dts: a64: enable K101-IM2BYL02 panel for PineTab
-Date:   Mon, 20 Jul 2020 01:11:34 +0800
-Message-Id: <20200719171134.276652-1-icenowy@aosc.io>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200719170411.275812-1-icenowy@aosc.io>
-References: <20200719170411.275812-1-icenowy@aosc.io>
+        by asavdk3.altibox.net (Postfix) with ESMTPS id CE31220026;
+        Sun, 19 Jul 2020 19:18:07 +0200 (CEST)
+Date:   Sun, 19 Jul 2020 19:18:06 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
+        Rob Clark <robdclark@gmail.com>, linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Emil Velikov <emil.l.velikov@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        John Stultz <john.stultz@linaro.org>
+Subject: Re: [PATCH v5 3/4] drm/bridge: Introduce LT9611 DSI to HDMI bridge
+Message-ID: <20200719171806.GA55541@ravnborg.org>
+References: <20200708103559.132300-1-vkoul@kernel.org>
+ <20200708103559.132300-4-vkoul@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: E323240854
-X-Spamd-Result: default: False [6.40 / 20.00];
-         RCVD_VIA_SMTP_AUTH(0.00)[];
-         TO_DN_SOME(0.00)[];
-         R_MISSING_CHARSET(2.50)[];
-         BROKEN_CONTENT_TYPE(1.50)[];
-         R_SPF_SOFTFAIL(0.00)[~all:c];
-         ML_SERVERS(-3.10)[148.251.23.173];
-         DKIM_TRACE(0.00)[aosc.io:+];
-         RCPT_COUNT_SEVEN(0.00)[8];
-         FREEMAIL_TO(0.00)[gmail.com,ravnborg.org,kernel.org];
-         RCVD_NO_TLS_LAST(0.10)[];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:24940, ipnet:148.251.0.0/16, country:DE];
-         RECEIVED_SPAMHAUS_PBL(0.00)[59.41.163.116:received];
-         ARC_NA(0.00)[];
-         R_DKIM_ALLOW(0.00)[aosc.io:s=default];
-         FROM_HAS_DN(0.00)[];
-         FREEMAIL_ENVRCPT(0.00)[gmail.com];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         TAGGED_RCPT(0.00)[];
-         MIME_GOOD(-0.10)[text/plain];
-         DMARC_NA(0.00)[aosc.io];
-         DBL_PROHIBIT(0.00)[0.0.0.0:email];
-         MID_CONTAINS_FROM(1.00)[];
-         HFILTER_HELO_BAREIP(3.00)[148.251.23.173,1];
-         RCVD_COUNT_TWO(0.00)[2];
-         SUSPICIOUS_RECIPS(1.50)[]
-X-Rspamd-Server: mail20.mymailcheap.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200708103559.132300-4-vkoul@kernel.org>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=f+hm+t6M c=1 sm=1 tr=0
+        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+        a=kj9zAlcOel0A:10 a=7gkXJVJtAAAA:8 a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8
+        a=fbRPyE8KL9-ZYcdT3u0A:9 a=CjuIK1q_8ugA:10 a=E9Po1WZjFZOl8hwRPBS3:22
+        a=cvBusfyB2V15izCimMoJ:22 a=AjGcO6oz07-iQ99wixmX:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Newer PineTab may switch to K101-IM2BYL02.
+Hi Vinod.
 
-Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
----
- arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Three trivial points below.
+The rest looks good.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
-index dc4ab6b434f97..15c4f5b5b17a7 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
-@@ -152,6 +152,7 @@ &dsi {
- 	vcc-dsi-supply = <&reg_dldo1>;
- 	status = "okay";
- 
-+#if 0
- 	panel@0 {
- 		compatible = "feixin,k101-im2ba02";
- 		reg = <0>;
-@@ -161,6 +162,15 @@ panel@0 {
- 		reset-gpios = <&pio 3 24 GPIO_ACTIVE_HIGH>; /* PD24 */
- 		backlight = <&backlight>;
- 	};
-+#endif
-+
-+	panel@0 {
-+		compatible = "feixin,k101-im2byl02";
-+		reg = <0>;
-+		power-supply = <&reg_dc1sw>;
-+		reset-gpios = <&pio 3 24 GPIO_ACTIVE_LOW>; /* PD24 */
-+		backlight = <&backlight>;
-+	};
- };
- 
- &ehci0 {
--- 
-2.27.0
+With these fixed you can add:
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+
+	Sam
+
+On Wed, Jul 08, 2020 at 04:05:58PM +0530, Vinod Koul wrote:
+> Lontium Lt9611 is a DSI to HDMI bridge which supports two DSI ports and
+> I2S port as an input and HDMI port as output
+> 
+> Co-developed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Co-developed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Tested-by: John Stultz <john.stultz@linaro.org>
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  drivers/gpu/drm/bridge/Kconfig          |   13 +
+>  drivers/gpu/drm/bridge/Makefile         |    1 +
+>  drivers/gpu/drm/bridge/lontium-lt9611.c | 1142 +++++++++++++++++++++++
+>  3 files changed, 1156 insertions(+)
+>  create mode 100644 drivers/gpu/drm/bridge/lontium-lt9611.c
+> 
+> +
+> +#include <drm/drm_probe_helper.h>
+> +#include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_bridge.h>
+> +#include <drm/drm_mipi_dsi.h>
+> +#include <drm/drm_print.h>
+
+In alphabetical order. drm_probe_helper needs to be moved.
+
+> +
+> +#define EDID_SEG_SIZE	256
+> +#define EDID_LEN	32
+> +#define EDID_LOOP	8
+> +#define KEY_DDC_ACCS_DONE 0x02
+> +#define DDC_NO_ACK	0x50
+> +
+
+
+> +static void lt9611_pcr_setup(struct lt9611 *lt9611, const struct drm_display_mode *mode)
+> +{
+> +	const struct reg_sequence reg_cfg[] = {
+> +		{ 0x830b, 0x01 },
+> +		{ 0x830c, 0x10 },
+> +		{ 0x8348, 0x00 },
+> +		{ 0x8349, 0x81 },
+> +
+> +		/* stage 1 */
+> +		{ 0x8321, 0x4a },
+> +		{ 0x8324, 0x71 },
+> +		{ 0x8325, 0x30 },
+> +		{ 0x832a, 0x01 },
+> +
+> +		/* stage 2 */
+> +		{ 0x834a, 0x40 },
+> +		{ 0x831d, 0x10 },
+> +
+> +		/* MK limit */
+> +		{ 0x832d, 0x38 },
+> +		{ 0x8331, 0x08 },
+> +	};
+> +	const struct reg_sequence reg_cfg2[] = {
+> +			{ 0x830b, 0x03 },
+> +			{ 0x830c, 0xd0 },
+> +			{ 0x8348, 0x03 },
+> +			{ 0x8349, 0xe0 },
+> +			{ 0x8324, 0x72 },
+> +			{ 0x8325, 0x00 },
+> +			{ 0x832a, 0x01 },
+> +			{ 0x834a, 0x10 },
+> +			{ 0x831d, 0x10 },
+> +			{ 0x8326, 0x37 },
+Block above is indented one tab too much.
+
+> +static int lt9611_bridge_attach(struct drm_bridge *bridge,
+> +				enum drm_bridge_attach_flags flags)
+> +{
+> +	struct lt9611 *lt9611 = bridge_to_lt9611(bridge);
+> +	int ret;
+> +
+> +	if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)) {
+> +		dev_err(lt9611->dev, "Fix bridge driver to make connector optional!");
+> +		return -EINVAL;
+> +	}
+This should say that the display driver should be fixed.
+If a display driver expects this bridge to create the connector
+it would not work.
+
+
