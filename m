@@ -2,102 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D56722516C
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jul 2020 13:00:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 083AD22518D
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jul 2020 13:12:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726012AbgGSLAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jul 2020 07:00:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57524 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725836AbgGSLAx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jul 2020 07:00:53 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 764FDC0619D2;
-        Sun, 19 Jul 2020 04:00:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
-        Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:Reply-To:Content-ID
-        :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
-        Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=pfbrKMZbukV4D22VnfokUOnwQuv0f1aU2UCKwOx5Fu0=; b=yBauyqXIXmm7OYaqATu2Ow3lL4
-        jOa4L02Yn87LavOGmKpCGK25db6If9UvXKBUal0E3y+ELhrXvUneRAPqJjlGxXnME2BhXOlYSMDAh
-        HXe0Tgd+V7cewYRsY/3kKtj5mFJgVOzYlv3Uq+hjTecWC9HdRTEUxFCMm/d1X6aY8M3HY1DGD2RKd
-        lqTudwPQmPB7MmJwA0p7lQI/e24Vr6gLREvp1gN3/9wxj44IVhbS0E4dPz7Y0rb1EK6kxoQc6+s0Y
-        pV+eD29n+3oiTWX+HVYu52rPc3Ln9He/J5rlUNSIGMAiGrZYkBXL+86yd4GVbXfd8Q2u+UsEm5Faz
-        G7QokFpQ==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:54116 helo=rmk-PC.armlinux.org.uk)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <rmk@armlinux.org.uk>)
-        id 1jx73h-0002CO-5j; Sun, 19 Jul 2020 12:00:41 +0100
-Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <rmk@armlinux.org.uk>)
-        id 1jx73g-0006mp-UI; Sun, 19 Jul 2020 12:00:40 +0100
-From:   Russell King <rmk+kernel@armlinux.org.uk>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Martin Rowe <martin.p.rowe@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>
-Subject: [PATCH net] arm64: dts: clearfog-gt-8k: fix switch link configuration
+        id S1725988AbgGSLMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jul 2020 07:12:07 -0400
+Received: from sonic313-56.consmr.mail.ne1.yahoo.com ([66.163.185.31]:34433
+        "EHLO sonic313-56.consmr.mail.ne1.yahoo.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725836AbgGSLMG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 19 Jul 2020 07:12:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1595157126; bh=qXBWf2EoWT9gmJgm/3NiogFnv3V/rxlq5ApKE+Dow4k=; h=Date:From:Reply-To:Subject:References:From:Subject; b=PJYanfWUWrefFdBQ6QrMqKo55LhWKTm/qmHNX7pmQeGBYFw/8NgGdx4ZzvQVEaaST40qCf/xQQaMFJILHyRhXwpwvf/Dahun50IcSs2mVKJWELtn/yXuhmYspZPnoALgkXedGLbl7n96XslyGv0jQlJH8ySL0QqEn4gI17IyD8y9Ame7n3ub0KgIwZ8g5QCAYjycSxzbVRwJ2zfVVr+Q14OlItmzdSkm/I7Z+YtUgIxjiB+r4bB2w8cBzjZ2r1J38J8CKo8qCyqVPB1WrKo1j/7RbqVT3FVLM6OakkfoLN5Gg5KNt9sqhi7FaRJ22BywGJt/G2wUfVk9qqyP1Dxuew==
+X-YMail-OSG: jn2oagwVM1m7YpVyjNupcO4wNFMld2qwLzewOUDYzSDBa8cWE10A0WbaZX6PT_h
+ tx47NEYKrQOrAXFWeVgOdfh_JVH3PQbKSP2_mHLQgoSOgqe1shCUSGOIXoj8R5Hlb8GmJhIl_9d3
+ gKUf86yN0yXCumRxR3IVQVjqAw_GsYs9DMaldmLGlKVjxThl0AMVq.1HYJIf4XFWy5zwTNOtLwW8
+ GLv6T9EJVtroY8ev81b7VdxA49JvpyrdrRoLEhBj0pPhfgAUYBIJFmbPIokBiltWl0x9AuVoDraY
+ SbXEytjo9KEBGWLGFy9Aw1Aneia2qY0MIlv57HDMiIelUAp8iXz7GasGsLqWFI19cJnstMKJYNC6
+ J8QrIjTGHBgvhzSuJzsJUebb.dEQBTT5i_KIz3ug3QNTsGBGIeT7RpgxLQXInv24i4CYOHXKgSOi
+ gbHYDtXPvImgMeK7QBUkz5RnNVerSDFXyx_Fs2UysrPCuj0nXsce6_RSrFLwTiUsY_QFX._mMY_n
+ VWNs4gIVI2tt8wzjW7x2JG.VWSSP2QC1Iyo1a0bnx2d7GsKVI6LokdjRBoe__A3YfRN_ng4SEBX_
+ FnST1lp3GvbtFXNvQeUkE7XR9PCARBMyaT2BluQ3kmSuKssICcRQTPkV2IAMw7RbiVVR0XQ28leU
+ 3yY_xVuVkh9LsR89aqROZi0H8K9Y.MxlMvDJ.k3STvOroHaRy5oK7ppzN6giqS5sNDkHIMHxuiIk
+ c6d7nnnBxa6ZJPd3zGH.UxOxLqbzbl9.5XdaVkzWCnu.1ySkN75AOE3NF3u2_8U_yDT0dBOAUCWd
+ r9afysiu8grj4qzZjelkkYV8d0OcdfiFHOazT.IHHUamevK430aocoSk70cBoSx1_U7TdGMyioOM
+ lD3MH6pp8IiiACkC6dr4._vIzMhWd9zGgc6KOU21_iav4wZE1p9zxc0imtoS0SQ6ZePyEWp5GGkU
+ RaT_hd.gQJwtywj6XwfFQ0T7yYLeZGERDlBNo7Vrt4LMr..c84PNGIiYxgi5yzPuIbj7JTZCRv6n
+ MjAw_xoB7RGcD1TwRx7yJVc2WC_n_QML2flKndwDDC32CI1P4S4gJWog5XvRS13bNnbRQkyFwMes
+ IMIHDgZDUgR_9Em_FWW5Ev9o45KL0LMlh.bWpy9AXF77Xt0nGQg.fOaPaq1jVznm_Y6YUa8k1V9n
+ JA2pjae_RfFCCDnsWiXlgQLZD7ZlGFhxEw8Wq.KnUpQ5Yy_HDSEdDagrll.XHTCVhMq4IvoOCXHm
+ SWdBQXLf.2E_.ReiYFMn9OP476TsUY3XquXrTihnB.a3074UbbHaycfUCMrfJIRhULH4xRNlqxxO
+ 98KU-
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic313.consmr.mail.ne1.yahoo.com with HTTP; Sun, 19 Jul 2020 11:12:06 +0000
+Date:   Sun, 19 Jul 2020 11:12:04 +0000 (UTC)
+From:   Monica Render <prender1226@gmx.com>
+Reply-To: mrender377@gmail.com
+Message-ID: <907194498.3841327.1595157124735@mail.yahoo.com>
+Subject: Nice to meet you!
 MIME-Version: 1.0
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <E1jx73g-0006mp-UI@rmk-PC.armlinux.org.uk>
-Date:   Sun, 19 Jul 2020 12:00:40 +0100
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+References: <907194498.3841327.1595157124735.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.16271 YMailNodin Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The commit below caused a regression for clearfog-gt-8k, where the link
-between the switch and the host does not come up.
-
-Investigation revealed two issues:
-- MV88E6xxx DSA no longer allows an in-band link to come up as the link
-  is programmed to be forced down. Commit "net: dsa: mv88e6xxx: fix
-  in-band AN link establishment" addresses this.
-
-- The dts configured dissimilar link modes at each end of the host to
-  switch link; the host was configured using a fixed link (so has no
-  in-band status) and the switch was configured to expect in-band
-  status.
-
-With both issues fixed, the regression is resolved.
-
-Fixes: 34b5e6a33c1a ("net: dsa: mv88e6xxx: Configure MAC when using fixed link")
-Reported-by: Martin Rowe <martin.p.rowe@gmail.com>
-Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
----
- arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
-index c8243da71041..eb01cc96ba7a 100644
---- a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
-@@ -454,10 +454,7 @@
- 	status = "okay";
- 	phy-mode = "2500base-x";
- 	phys = <&cp1_comphy5 2>;
--	fixed-link {
--		speed = <2500>;
--		full-duplex;
--	};
-+	managed = "in-band-status";
- };
- 
- &cp1_spi1 {
--- 
-2.20.1
-
+Please do you speak english?
