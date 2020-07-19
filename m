@@ -2,153 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37F96225229
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jul 2020 16:10:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 178BE225248
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jul 2020 16:50:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726548AbgGSOKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jul 2020 10:10:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58240 "EHLO
+        id S1726094AbgGSOuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jul 2020 10:50:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725988AbgGSOKr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jul 2020 10:10:47 -0400
+        with ESMTP id S1726024AbgGSOuj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jul 2020 10:50:39 -0400
 Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30D1FC0619D2;
-        Sun, 19 Jul 2020 07:10:47 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id o11so15378590wrv.9;
-        Sun, 19 Jul 2020 07:10:47 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BA55C0619D2;
+        Sun, 19 Jul 2020 07:50:39 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id o11so15429412wrv.9;
+        Sun, 19 Jul 2020 07:50:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=BO3/npBe/d3IU+Xb/V+yWFJYQheJQv/P5LLMxy6zjOI=;
-        b=DS1kNoof5nEfvtqD86NpiQvO/pKycqZpLQzz8mUB3MWCkvVyMJmRQ1FbhDzVqfrp/6
-         laMgFtXMutsiEfpZtMG8O5zv2v7Hgm9R1JHkdUp/eGAD1S4BLt32HCwzuoS+LDECAuUp
-         OJ1rqdgCZBWhI9KbCEshgetYXCa6/HWhX24XTjk3eh/xU8X781tF2AytCVqTOCDomH7c
-         ev+gtrNpA+urtRvUWMynwGeoRwTQOupGV5ItsQj7FTuLnO8Ts3Wh/WWGSkH3DRCRVDHT
-         1Tl7iTcwy7I2wWGZ0XX9HWJkmYrgOal+usAs164luVeeqbShAFEJ3WLYSZhTYJIDX2Dz
-         HEgA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UUqLFtjizIDo67kZSDAuxTvDZ8v5hpCknWjlNVsJDEE=;
+        b=G7Eq1PJQEyo8Takx/kaoykf4sk2/Xa1qsLGrafGiL8XQGE29sZLmx1ECnQuj/OBfHl
+         dB3FB7qhSLBZ8EEjKI1t7h2fioIKfHRGdRFHB2Hun7yq2nkIcFaoNOAnLs0mncD2jZuZ
+         Z+aEEPMPtmj7tPH+uyy/9jj7avxhM5DVK4WrmG/Z2+0aZM8XXBW8P7uTJlsRO/MsYO3L
+         auqYIb/2kG0WJWuWZ5rfJ+3cYUcS9zErm28ppynDT62SlbtLzXoYIW9awCdktV+pijym
+         /gIVw/oMoOFgp1yuIZtjWn6LWJ3A2rrQ/0Mw6wSQovG415EgsY4EsRLLNo/7GpnQH3mJ
+         Virg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=BO3/npBe/d3IU+Xb/V+yWFJYQheJQv/P5LLMxy6zjOI=;
-        b=VMgVm5rlVITuTfpzD1K3/dpIn24ezCGXOeaSNjiJN7fhr1eySMsKvuLUpJYSQ31IVZ
-         aQbaNPc7y9tTBLSKN3tr22zA0TivRtGyn/2gn4ZYucMcTD4zSPCR03xMN3cXMfx7vcja
-         Eb4gipQ40wpIaS4C8Sh7/byNyyWLRIrDFYvy626Gh6ZOWw6aRzFgt1wXRLg6qfTMGx7q
-         CtNX+Uf16eRbTE3lASbsZPgHwVYotMKRcAqZyanaMe10tXyksv8HGN+2wwrZWhnt1oPP
-         Onl/1gZj9oY+WgTY7dML1rPn5BIT8ODSc90ONtsgZ/B2T1X/CHNTBZ4McDU2mFWvZKy5
-         mlUA==
-X-Gm-Message-State: AOAM532T7B1cBCGFNLLtNrLdCKtTAp6PYuwPnv4xlapugEdq5PjzJDV6
-        8PXl8ZeDrfkxxWCz+tuKSdi2eLKn
-X-Google-Smtp-Source: ABdhPJyLN7KEli95FjWvMQPH5iNrxKCsln/FrY+b7WavAQ92CWP0VWbwceObDro0QbbWzaSdIEZH6Q==
-X-Received: by 2002:adf:d084:: with SMTP id y4mr17959433wrh.161.1595167845879;
-        Sun, 19 Jul 2020 07:10:45 -0700 (PDT)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id y11sm9215554wrs.80.2020.07.19.07.10.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Jul 2020 07:10:45 -0700 (PDT)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>,
-        Dongjin Kim <tobetter@hardkernel.com>
-Subject: [PATCH 3/3] arm64: dts: meson: add support for the ODROID-N2+
-Date:   Sun, 19 Jul 2020 14:10:34 +0000
-Message-Id: <20200719141034.8403-4-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200719141034.8403-1-christianshewitt@gmail.com>
-References: <20200719141034.8403-1-christianshewitt@gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UUqLFtjizIDo67kZSDAuxTvDZ8v5hpCknWjlNVsJDEE=;
+        b=R9nYfO4MKx6X9VCvFL2x4BF0EX2IYgqSRV1bSRtJoZ0y7nurP4A2hgXtl8YyJKTQOz
+         XGa8Nb4eDj07ke5Xv8lBe5532TE972sWcrZO0OASQEhxmr6Fw6V2yQUN/hEJFWYN2mpz
+         ktvKGmYt3jH0RCY2xUSqgVP/AFeAowv0KHePVwhp79wV0g38QKb23ujrbSkNXEfAvpdO
+         moiIklfchtwEeu7zOTSqf+zrC6rFojGk05z1pTCiT3NHvqYs63FF0AHIRThvIfK7IRbS
+         jzd5pa+1Pr+eyVAPS191maNFfDqx278/TbkESNTAP8gEtFjfCiLaQtDrvKpnDpp+4coZ
+         KA2g==
+X-Gm-Message-State: AOAM532+igXbbLUKMBx/KY6m5xCGH9UhzyLLW55GoL4w+k0O1jHsKiG2
+        adeNUsYzB/xJIB/iS8vTC8w=
+X-Google-Smtp-Source: ABdhPJyNOMc9VuTGG3PC6b6FayRsZXsh0Mt8lFi6GRDpdpnSz9+N2I9pPXKA4OpE4DzP1iscXAosOg==
+X-Received: by 2002:a5d:6107:: with SMTP id v7mr18012777wrt.174.1595170237975;
+        Sun, 19 Jul 2020 07:50:37 -0700 (PDT)
+Received: from localhost.localdomain (arl-84-90-179-3.netvisao.pt. [84.90.179.3])
+        by smtp.gmail.com with ESMTPSA id d13sm26422755wrq.89.2020.07.19.07.50.36
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 19 Jul 2020 07:50:37 -0700 (PDT)
+From:   miguelborgesdefreitas@gmail.com
+To:     a.zummo@towertech.it
+Cc:     linux@armlinux.org.uk, alexandre.belloni@bootlin.com,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        miguelborgesdefreitas@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] rtc: pcf8523: Make DSM for battery switch-over configurable from DT and enable it for the cubox-i
+Date:   Sun, 19 Jul 2020 15:50:26 +0100
+Message-Id: <20200719145028.3370-1-miguelborgesdefreitas@gmail.com>
+X-Mailer: git-send-email 2.24.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HardKernel ODROID-N2+ uses an Amlogic S922X rev. C chip capable of higher
-clock speeds than the original ODROID-N2. Hardkernel supports the big cpu
-cluster at 2.4GHz and the little cpu cluster at 2.0GHz. Opp points and
-regulator changess are from the HardKernel Linux kernel sources.
+From: Miguel Borges de Freitas <miguelborgesdefreitas@gmail.com>
 
-Suggested-by: Dongjin Kim <tobetter@hardkernel.com>
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- arch/arm64/boot/dts/amlogic/Makefile          |  1 +
- .../dts/amlogic/meson-g12b-odroid-n2-plus.dts | 53 +++++++++++++++++++
- 2 files changed, 54 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dts
+The pcf8523 has two configurable modes for the battery switch-over functionality:
+(i) the default mode and (ii) the direct switching mode. For the default mode to work (at the
+moment the only driver option), a filtering circuit consisting of a series resistor of 1 kOhm
+and a capacitor of 3.3 microF must be added to the VDD pin input to guarantee a voltage drop
+of less 0.7V/ms for the oscillator operation reliability (see pp.54 of the datasheet).
+Some boards (e.g. the cubox-i) do not include such circuitry and are designed to work only in
+direct switching mode. In fact, this is the recommended mode in the datasheet for hw designs
+where VDD is always expected to be higher than VBAT.
+If DSM is not enabled, after a power cycle, the voltage drop may be too high causing the
+oscillator to stop working momentarily and the REG_SECONDS_OS bit to be set.
+This causes userspace applications such as timedatectl and hwclock to fail when obtaining
+the RTC time (RTC_RD_TIME: Invalid argument).
+Hence, this patch set makes DSM configurable for the pcf8523 RTC in the device-tree and enables it
+for the board where this issue was detected - the cubox-i. Note that if the RTC comes from an
+inconsistent state, the software reset will override any power management options set during the
+probe phase. Thus, pm is also enforced in pcf8523_start_rtc.
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 5cac4d1d487d..6dc508b80133 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-khadas-vim3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2-plus.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-ugoos-am6.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-kii-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nanopi-k2.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dts
-new file mode 100644
-index 000000000000..99e96be509f8
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dts
-@@ -0,0 +1,53 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-g12b-odroid-n2.dtsi"
-+
-+/ {
-+	compatible = "hardkernel,odroid-n2-plus", "amlogic,s922x", "amlogic,g12b";
-+	model = "Hardkernel ODROID-N2+";
-+
-+	vddcpu_a: regulator-vddcpu-a {
-+		regulator-min-microvolt = <680000>;
-+		regulator-max-microvolt = <1040000>;
-+
-+		pwms = <&pwm_ab 0 1500 0>;
-+	};
-+
-+	vddcpu_b: regulator-vddcpu-b {
-+		regulator-min-microvolt = <680000>;
-+		regulator-max-microvolt = <1040000>;
-+
-+		pwms = <&pwm_AO_cd 1 1500 0>;
-+	};
-+
-+	cpu_opp_table_0: opp-table-0 {
-+		opp-1908000000 {
-+			opp-hz = /bits/ 64 <1908000000>;
-+			opp-microvolt = <1030000>;
-+		};
-+
-+		opp-2016000000 {
-+			opp-hz = /bits/ 64 <2016000000>;
-+			opp-microvolt = <1040000>;
-+		};
-+	};
-+
-+	cpub_opp_table_1: opp-table-1 {
-+		opp-2304000000 {
-+			opp-hz = /bits/ 64 <2304000000>;
-+			opp-microvolt = <1030000>;
-+		};
-+
-+		opp-2400000000 {
-+			opp-hz = /bits/ 64 <2400000000>;
-+			opp-microvolt = <1040000>;
-+		};
-+	};
-+};
-+
+
+Miguel Borges de Freitas (2):
+  rtc: pcf8523: Make DSM for battery switch-over configurable from DT
+  ARM: dts: imx6qdl-cubox-i: enable DSM for the RTC
+
+ Documentation/devicetree/bindings/rtc/nxp,pcf8523.txt |  7 ++++++-
+ Documentation/devicetree/bindings/rtc/rtc.yaml        |  7 +++++++
+ arch/arm/boot/dts/imx6qdl-cubox-i.dtsi                |  1 +
+ drivers/rtc/rtc-pcf8523.c                             | 13 ++++++++++---
+ 4 files changed, 24 insertions(+), 4 deletions(-)
+
 -- 
-2.17.1
+1.8.3.1
 
