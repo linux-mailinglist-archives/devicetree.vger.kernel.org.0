@@ -2,106 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 44740227184
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 23:44:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0D5822720B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 00:17:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728072AbgGTViR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jul 2020 17:38:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56700 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728062AbgGTViR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Jul 2020 17:38:17 -0400
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A558B22BEF;
-        Mon, 20 Jul 2020 21:38:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1595281096;
-        bh=7ieTW10cs9zo/rw7fhm6O8NQwDfikmvtqfJ9a+7vWGk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Dw2No4DSIr03SSvFiLoxOAdbWqI9PEU5XG9DflYUFEEtVhyTxLsMDCPHwrIdBZTEk
-         RYeGyVlk6/QLGgMAXwe1gcuCa37kHVJqaumbG1ukkKFO9EubWvSHOfXhTPLO59dP1r
-         gj3Gv7pJAygnMp7OhN47i4u83MbCf3OxFHn14TBs=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Merlijn Wajer <merlijn@wizzup.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 07/34] ARM: dts: n900: remove mmc1 card detect gpio
-Date:   Mon, 20 Jul 2020 17:37:40 -0400
-Message-Id: <20200720213807.407380-7-sashal@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200720213807.407380-1-sashal@kernel.org>
-References: <20200720213807.407380-1-sashal@kernel.org>
+        id S1726535AbgGTWRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jul 2020 18:17:22 -0400
+Received: from mail-il1-f193.google.com ([209.85.166.193]:38013 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726506AbgGTWRV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 18:17:21 -0400
+Received: by mail-il1-f193.google.com with SMTP id s21so14681593ilk.5;
+        Mon, 20 Jul 2020 15:17:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=xw+kNgrmN01tKflF96Ap8WHL6nw90wmHAHL9pG+Op5w=;
+        b=Xtb36kvgU0BYYO9DYZDYQKLv6pjx48BWSuREbWECkjMjudp9PeBfMhV1Bwu1kuPjd6
+         C7DyOj3sk9NYNK99K7rDw8rKaqM+8789WNA9Fx0WZ73dUVV4+YYeEXx7aXdtFPII97+b
+         Ug1xp0xT4ZYFqVnIf0S987JveJQtiae4Nb49SWku/Lv9pehF5DPGwPSDW3ZDgmx4xmTe
+         nuPUuhB523FFL/XTRBEfA+EynME9sCz5d6ygvRixTeKpX7yhnyY17K1X7Inq83upfdEs
+         k00atftZgWoFP1vdIJCYUk6EDiH/AXNpS9at+wRTDPT+f7p+YUVncQwdKb/YTcEtw6Ya
+         sTSw==
+X-Gm-Message-State: AOAM5312sEn4HaMyvBf5CHJgMCtjKLV4H7/X2UVOCVZj5fI3X5jzviI1
+        mlnaRzUVj4j2CgcKOQ9bOQrGiNnfbw==
+X-Google-Smtp-Source: ABdhPJx+fNU/JtjCpCBo//kxlDsXhsQbzWwWFEXUKfxOZlq/lfplFg9f61K0t0ozpjZvqBn4ZDC5Dg==
+X-Received: by 2002:a92:8b0e:: with SMTP id i14mr24153739ild.307.1595283440805;
+        Mon, 20 Jul 2020 15:17:20 -0700 (PDT)
+Received: from xps15 ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id b20sm9756658ila.5.2020.07.20.15.17.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Jul 2020 15:17:19 -0700 (PDT)
+Received: (nullmailer pid 3049330 invoked by uid 1000);
+        Mon, 20 Jul 2020 22:17:18 -0000
+Date:   Mon, 20 Jul 2020 16:17:18 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Lokesh Vutla <lokeshvutla@ti.com>, linux-kernel@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 3/6] dt-bindings: remoteproc: Add common TI SCI rproc
+ bindings
+Message-ID: <20200720221718.GA2899451@bogus>
+References: <20200717234800.9423-1-s-anna@ti.com>
+ <20200717234800.9423-4-s-anna@ti.com>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200717234800.9423-4-s-anna@ti.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Merlijn Wajer <merlijn@wizzup.org>
+On Fri, 17 Jul 2020 18:47:57 -0500, Suman Anna wrote:
+> Add a bindings document that lists the common TI SCI properties
+> used by the K3 R5F and DSP remoteproc devices.
+> 
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> ---
+> v4: Addressed both of Rob's review comments on ti,sci-proc-ids property
+> v3: https://patchwork.kernel.org/patch/11602317/
+> 
+>  .../bindings/remoteproc/ti,k3-sci-proc.yaml   | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-sci-proc.yaml
+> 
 
-[ Upstream commit ed3e98e919aaaa47e9d9f8a40c3f6f4a22577842 ]
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
-Instead, expose the key via the input framework, as SW_MACHINE_COVER
-
-The chip-detect GPIO is actually detecting if the cover is closed.
-Technically it's possible to use the SD card with open cover. The
-only downside is risk of battery falling out and user being able
-to physically remove the card.
-
-The behaviour of SD card not being available when the device is
-open is unexpected and creates more problems than it solves. There
-is a high chance, that more people accidentally break their rootfs
-by opening the case without physically removing the card.
-
-Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-Acked-by: Tony Lindgren <tony@atomide.com>
-Signed-off-by: Merlijn Wajer <merlijn@wizzup.org>
-Link: https://lore.kernel.org/r/20200612125402.18393-3-merlijn@wizzup.org
-Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/omap3-n900.dts | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm/boot/dts/omap3-n900.dts b/arch/arm/boot/dts/omap3-n900.dts
-index 7f2ddb78da5fa..4227da71cc626 100644
---- a/arch/arm/boot/dts/omap3-n900.dts
-+++ b/arch/arm/boot/dts/omap3-n900.dts
-@@ -105,6 +105,14 @@ proximity_sensor {
- 			linux,code = <SW_FRONT_PROXIMITY>;
- 			linux,can-disable;
- 		};
-+
-+		machine_cover {
-+			label = "Machine Cover";
-+			gpios = <&gpio6 0 GPIO_ACTIVE_LOW>; /* 160 */
-+			linux,input-type = <EV_SW>;
-+			linux,code = <SW_MACHINE_COVER>;
-+			linux,can-disable;
-+		};
- 	};
- 
- 	isp1707: isp1707 {
-@@ -814,10 +822,6 @@ &mmc1 {
- 	pinctrl-0 = <&mmc1_pins>;
- 	vmmc-supply = <&vmmc1>;
- 	bus-width = <4>;
--	/* For debugging, it is often good idea to remove this GPIO.
--	   It means you can remove back cover (to reboot by removing
--	   battery) and still use the MMC card. */
--	cd-gpios = <&gpio6 0 GPIO_ACTIVE_LOW>; /* 160 */
- };
- 
- /* most boards use vaux3, only some old versions use vmmc2 instead */
--- 
-2.25.1
+If a tag was not added on purpose, please state why and what changed.
 
