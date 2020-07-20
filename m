@@ -2,100 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E4FA226FAE
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 22:26:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF551226FC6
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 22:37:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729831AbgGTUYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jul 2020 16:24:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54708 "EHLO
+        id S1726381AbgGTUfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jul 2020 16:35:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729246AbgGTUYv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 16:24:51 -0400
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EF96C0619D4
-        for <devicetree@vger.kernel.org>; Mon, 20 Jul 2020 13:24:51 -0700 (PDT)
-Received: by mail-pg1-x544.google.com with SMTP id w2so10840758pgg.10
-        for <devicetree@vger.kernel.org>; Mon, 20 Jul 2020 13:24:51 -0700 (PDT)
+        with ESMTP id S1726076AbgGTUfV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 16:35:21 -0400
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA2A5C061794
+        for <devicetree@vger.kernel.org>; Mon, 20 Jul 2020 13:35:20 -0700 (PDT)
+Received: by mail-lj1-x242.google.com with SMTP id b25so21674164ljp.6
+        for <devicetree@vger.kernel.org>; Mon, 20 Jul 2020 13:35:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=4Ot9BSN65uwqjuzPt11oHFwPT284z0A1s3vHTUzwUuc=;
-        b=P7kNkP1J0vskqpeYwWoRwgS0pIRkpEhb9+IyXfYYWTqympKRjTVxOzshkA4wbQFkw1
-         xv9aA77wGusH5dc9v0Il+7wnwsbnpxhLK1PWdwacHM6/F2emh32Sb7s/jQvJX/xs9KlF
-         16yDXjDs1sHY/0t+BRFW3GFojUuvY8/lS8QWk=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=x2zJYpgDs4IU0fc9VR3TdzhXdQh+0MOJRer0pywnXKA=;
+        b=KhkPtvIsDLUNIupaXYNs8UBWIwdZ5u3Ek5KzfJqFq/S0YjXqGAPiLmgJ8ef90Q0q9l
+         zXaUKRTw8YvweSdBStgruLCIAPSNwXiiOKMzP+FUmVd7CdH8+m8yks4w7YQbA735nY1m
+         Dhf9ftDAXtFClaNUWPGxg4atllIYzWU1vQzjQNFS68jYxjRmHMURVEL84OdGJXRjD8A3
+         i0FQSxlq89LbYuIqg68lCArt8ML/2QEDRwashMf9J5pQxQ5kx6s9bm+weCDzNzh4qu3X
+         HhdCiEb6DWrcAlOQBt/OQjjqRBzPgposiQLdr7rFarZ4M8llrLhhmOkGZCMiM0ItgmBD
+         zt2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=4Ot9BSN65uwqjuzPt11oHFwPT284z0A1s3vHTUzwUuc=;
-        b=bvRFYvG+fV4HuHau3W8P5zGy6MpZwI6hJeyMEJIQhj/Y7gvm1+QQsQ0D/vyOj7OQoD
-         Mmmi08xAWq45qomIUzB9/VZ4SKq5mJDZHCE7KAa9CrOeQyf6qsreF+t50Aj74GMjsD2U
-         O4JJxc4ujmESGnLwHRirOjPYX54Oryhcih220W+LH0qGJ2M+LunlKqmJ+4F8vTzq/pvX
-         yDRJbP5r4PUEYP8r5mjzU/m2eHl5kN/0ZNXBKcs7tqhE9I7DA3MpOTE27RavlKJih4vy
-         /fjeT8utRn7xxlfkQP4BciNSBoe0bjjwktvetGpItUrUGS+kFD1MhGUfMB5P/1pDmOzV
-         FCEg==
-X-Gm-Message-State: AOAM531TM1ro0NgJzeGG13mclyxZp0h/KuGieWIxIuL52JZH4NbjFrAD
-        KOMM2/x2YiiKs3UsHKdRsJ+8KabqSC0=
-X-Google-Smtp-Source: ABdhPJx0ht90Y69rD5rQnfk78renCW+m6JoyhG8U2VU/215s6FVTp+kZISZ6zfOaaE+wVaD2kwNDvQ==
-X-Received: by 2002:a63:5220:: with SMTP id g32mr19401467pgb.78.1595276690630;
-        Mon, 20 Jul 2020 13:24:50 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:3e52:82ff:fe6c:83ab])
-        by smtp.gmail.com with ESMTPSA id hg13sm433919pjb.21.2020.07.20.13.24.49
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=x2zJYpgDs4IU0fc9VR3TdzhXdQh+0MOJRer0pywnXKA=;
+        b=OBuPxNxP6daYnZQ7Njsi0uoB8cK399KvNPJ2sZxkVcqe2HyUuIYZrakWt3J+Le0gA6
+         wirHjTLjnnL0toM9LNQs5aQNb+xTGrq07Q83b3I0QqMJvDfUZPpCx8Ciwy1LzkXl3OPf
+         Rxi61NNJSZnUNk1qFps9iFwBnQ2c02UWX/T5iZhmxNXvKsX7Af7w3iLlhJlq6Z8+KdQy
+         RmWuyPWFpjap6R1nOsPXgfzlgkts9Gq7xl97nwCQPs4nLRc6yHpFYDBQcBcKoXzwIZj0
+         FFe5iWrzKeoCHjbxPe9DAw+mOjOT8CBY30Kly7Vj7HbPmiG0eZqS7sexmGhgpm0tkyJR
+         QbQQ==
+X-Gm-Message-State: AOAM533rUp+LCtJHZM8o/Ax2zAtU25uqH6DvVH79PZfN5EOrhyVubrQi
+        adeE9PCGVBZbFKemmL1X8W9XPA==
+X-Google-Smtp-Source: ABdhPJzvwrDIcDCCe4LB9xTwr68FXr5R+zlTi94XLknZf5DVBVuutopYN4TgqjOAlrk4Du5owjyogQ==
+X-Received: by 2002:a2e:8718:: with SMTP id m24mr11490351lji.253.1595277319177;
+        Mon, 20 Jul 2020 13:35:19 -0700 (PDT)
+Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
+        by smtp.gmail.com with ESMTPSA id y24sm3435076ljy.91.2020.07.20.13.35.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jul 2020 13:24:50 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        Mon, 20 Jul 2020 13:35:18 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        dri-devel@lists.freedesktop.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2 v1] dt-bindings: backlight: Add Kinetic KTD253 bindings
+Date:   Mon, 20 Jul 2020 22:35:05 +0200
+Message-Id: <20200720203506.3883129-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <5c2265e82af8f755d649c0c36a462f19@codeaurora.org>
-References: <20200217085842.28333-1-harigovi@codeaurora.org> <159304723830.62212.5069780400830519255@swboyd.mtv.corp.google.com> <5c2265e82af8f755d649c0c36a462f19@codeaurora.org>
-Subject: Re: [v3] arm64: dts: sc7180: add nodes for idp display
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        seanpaul@chromium.org, hoegsberg@chromium.org,
-        kalyan_t@codeaurora.org, nganji@codeaurora.org
-To:     harigovi@codeaurora.org
-Date:   Mon, 20 Jul 2020 13:24:49 -0700
-Message-ID: <159527668913.1987609.9777678660905277260@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting harigovi@codeaurora.org (2020-06-29 06:50:09)
-> On 2020-06-25 06:37, Stephen Boyd wrote:
-> > Quoting Harigovindan P (2020-02-17 00:58:42)
-> >> diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts=20
-> >> b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> >> index 388f50ad4fde..349db8fe78a5 100644
-> >> --- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> >> +++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> >> @@ -232,6 +233,57 @@ vreg_bob: bob {
-[...]
-> >> +       ports {
-> >> +               port@1 {
-> >> +                       endpoint {
-> >> +                               remote-endpoint =3D <&panel0_in>;
-> >> +                               data-lanes =3D <0 1 2 3>;
-> >=20
-> > Is this property needed? If it's the default assumption it would be=20
-> > nice
-> > to omit it so that we don't have to think about it.
-> > This property is needed during panel probe. If this is not mentioned=20
-> > here,
-> mipi_dsi_attach() will fail during panel probe. In dsi_host.c,=20
-> dsi_host_attach()
-> fails since dsi lanes are greater than msm_host lanes. msm_host lanes=20
-> are updated
-> as part of dsi_host_parse_dt. If we dont provide data-lanes in dt, it'll =
+This adds device tree bindings for the Kinetic KTD253
+white LED backlight driver.
 
-> have default
-> value and fail in dsi_host_attach().
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ .../leds/backlight/kinetic,ktd253.yaml        | 48 +++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/kinetic,ktd253.yaml
 
-What is the default value? It looks like dsi_host_parse_dt() says it's
-using a default but I guess the default is 0 lanes? Why not make it the
-normal 4 lanes?
+diff --git a/Documentation/devicetree/bindings/leds/backlight/kinetic,ktd253.yaml b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktd253.yaml
+new file mode 100644
+index 000000000000..610bf9a0e270
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktd253.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/backlight/kinetic,ktd253.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Kinetic Technologies KTD253 one-wire backlight
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: |
++  The Kinetic Technologies KTD253 is a white LED backlight that is
++  controlled by a single GPIO line. If you just turn on the backlight
++  it goes to maximum backlight then you can set the level of backlight
++  using pulses on the enable wire.
++
++properties:
++  compatible:
++    const: kinetic,ktd253
++
++  gpios:
++    description: GPIO to use to enable/disable and dim the backlight.
++    maxItems: 1
++
++  default-brightness:
++    description: Default brightness level on boot. 0 is off.
++    minimum: 0
++    maximum: 255
++
++  max-brightness:
++    description: Maximum brightness that is allowed during runtime.
++    minimum: 0
++    maximum: 255
++
++required:
++  - compatible
++  - gpios
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    backlight {
++        compatible = "kinetic,ktd253";
++        gpios = <&gpio2 5 GPIO_ACTIVE_HIGH>;
++        default-on;
++        default-brightness = <160>;
++    };
+-- 
+2.26.2
+
