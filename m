@@ -2,131 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B36D226A65
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 18:36:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A66A226C63
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 18:50:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731339AbgGTQdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jul 2020 12:33:55 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:39659 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388962AbgGTQdy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 12:33:54 -0400
-Received: by mail-il1-f193.google.com with SMTP id k6so13834845ili.6;
-        Mon, 20 Jul 2020 09:33:53 -0700 (PDT)
+        id S1729882AbgGTQtc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jul 2020 12:49:32 -0400
+Received: from mail-il1-f195.google.com ([209.85.166.195]:37589 "EHLO
+        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728890AbgGTQtb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 12:49:31 -0400
+Received: by mail-il1-f195.google.com with SMTP id r12so13887841ilh.4;
+        Mon, 20 Jul 2020 09:49:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=I0wQ3YO8Vss6xaeuCLdInIi0SX7uQKxUoc58bndvXRg=;
-        b=cZgYGUFjAVKN8ZX8fTOTsFvezbIe6LfiDdYMQyQv5r2NRjkk1D2GAbUmiH/HsYPY6R
-         mBGY4yHL7mH7K/8eK6mEh73N5PcJ00gQ0VlH9QbkUiBdrIr4UxYEWBjU9l5Lg9ybni2H
-         JlKQLL2p943NJXnTUV6/DwRCcnFGZ67pNwdOnJqp+pCFgLgaQCiFLcdyvvyPpF9D8I+J
-         MnlKJELDrU0tSffteh3cntx3U0C5rdMtYmDBL+60zLMRNPtb0Pj032KRaAU8Rh84MUDY
-         cGiD6Pb0rcM5Jz3bzBiRF+c56kzdp7MZ4FExFeP+Ywpi+TTPiE5vkE1ZNWCFKy6YVKu0
-         Hbhg==
-X-Gm-Message-State: AOAM530SCty2zVl2/b01BolON7YwYkKYWblEOExKvF6ifssQ0ntoPLjY
-        xYs/X+wwTA3z6uecpzvwIC2aiFE4MQ==
-X-Google-Smtp-Source: ABdhPJyWvpuSNg/zWars+w88sZJsxEErbQ5PDf/rFSRBSl5xMfKye5hioNqx7KI9vXMByvsU0WXuzA==
-X-Received: by 2002:a92:5ecf:: with SMTP id f76mr22893176ilg.281.1595262833149;
-        Mon, 20 Jul 2020 09:33:53 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=XgKAKo+S7gA8PeWe+CXW+WfGrv348894snfv+irZlfo=;
+        b=mO3ZXfhJMtjZJatTVr6R5vxs6rXm6it3E8GjiW/z5eUby+kaZnWSCr/NFkX/or+JzK
+         mLu42YB/PjBY4Gkk/azofJmeXWIMNcw6oWDoR/6nMQaxuanbF1bn5Vxom+rolx3GrbMh
+         pm9W7f+yQpJBD4FkCUPuCxSn+/vVgvC3Hp3jEic86g1FLIJPsLGQoMCH+hVhv3ExVNGd
+         IsvqwfomtRzhpzWPDXaC7ZNikWVKTQTOra5IecySNGttduVMlVByYvCj84Z/jTl+0OUh
+         rhp8I8h2rLVvweQU6CarRrqANPuCWv6ENROWCXajFuV27CKxRgr8cTf99UzmqPhVQq/8
+         9+Kw==
+X-Gm-Message-State: AOAM531TSj/ZC5bMnaKX1x9ve3+CZrcoQCBJ3mNcd/+3/g1m3b2xAaeo
+        VfG9VNcym9s+VDsUzSy0EQ==
+X-Google-Smtp-Source: ABdhPJyTRCVRoTuZGnQpzCTUrFO9tb3c0NKREz91tnGjrAlsvG4TZNieeaTudRx6yJwvSiggn1u7Iw==
+X-Received: by 2002:a05:6e02:1043:: with SMTP id p3mr22878021ilj.245.1595263770294;
+        Mon, 20 Jul 2020 09:49:30 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id i6sm8997543ilj.61.2020.07.20.09.33.50
+        by smtp.gmail.com with ESMTPSA id a13sm9049380ilk.19.2020.07.20.09.49.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jul 2020 09:33:52 -0700 (PDT)
-Received: (nullmailer pid 2627088 invoked by uid 1000);
-        Mon, 20 Jul 2020 16:33:49 -0000
-Date:   Mon, 20 Jul 2020 10:33:49 -0600
+        Mon, 20 Jul 2020 09:49:29 -0700 (PDT)
+Received: (nullmailer pid 2651900 invoked by uid 1000);
+        Mon, 20 Jul 2020 16:49:27 -0000
+Date:   Mon, 20 Jul 2020 10:49:27 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
-        <zhouyanjie@wanyeetech.com>
-Cc:     yanfei.li@ingenic.com, devicetree@vger.kernel.org,
-        dongsheng.qiu@ingenic.com, zhenwenjin@gmail.com,
-        aric.pzqi@ingenic.com, paul@crapouillou.net,
-        rick.tyliu@ingenic.com, daniel.lezcano@linaro.org,
-        tglx@linutronix.de, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, sernia.zhou@foxmail.com
-Subject: Re: [PATCH v9 1/2] dt-bindings: timer: Add Ingenic X1000 OST
- bindings.
-Message-ID: <20200720163349.GA2626388@bogus>
-References: <20200720151106.112807-1-zhouyanjie@wanyeetech.com>
- <20200720151106.112807-2-zhouyanjie@wanyeetech.com>
+To:     Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Lucas Stach <l.stach@pengutronix.de>,
+        devicetree@vger.kernel.org, lukas@mntmn.com,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Laurentiu Palcu <laurentiu.palcu@nxp.com>, agx@sigxcpu.org
+Subject: Re: [PATCH v6 4/4] dt-bindings: display: imx: add bindings for DCSS
+Message-ID: <20200720164927.GA2650420@bogus>
+References: <20200717144132.2206-1-laurentiu.palcu@oss.nxp.com>
+ <20200717144132.2206-5-laurentiu.palcu@oss.nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200720151106.112807-2-zhouyanjie@wanyeetech.com>
+In-Reply-To: <20200717144132.2206-5-laurentiu.palcu@oss.nxp.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Jul 2020 23:11:05 +0800, 周琰杰 (Zhou Yanjie) wrote:
-> Add the OST bindings for the X10000 SoC from Ingenic.
+On Fri, 17 Jul 2020 17:41:29 +0300, Laurentiu Palcu wrote:
+> From: Laurentiu Palcu <laurentiu.palcu@nxp.com>
 > 
-> Tested-by: 周正 (Zhou Zheng) <sernia.zhou@foxmail.com>
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-> Reviewed-by: Paul Cercueil <paul@crapouillou.net>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Add bindings for iMX8MQ Display Controller Subsystem.
+> 
+> Signed-off-by: Laurentiu Palcu <laurentiu.palcu@nxp.com>
 > ---
-> 
-> Notes:
->     v1->v2:
->     No change.
-> 
->     v2->v3:
->     Fix wrong parameters in "clocks".
-> 
->     v3->v4:
->     1.Rename "ingenic,ost.yaml" to "ingenic,sysost.yaml".
->     2.Rename "ingenic,ost.h" to "ingenic,sysost.h".
->     3.Modify the description in "ingenic,sysost.yaml".
-> 
->     v4->v5:
->     No change.
-> 
->     v5->v6:
->     1.Drop "oneOf" and the blank line.
->     2.Add "additionalProperties: false".
-> 
->     v6->v7:
->     No change.
-> 
->     v7->v8:
->     No change.
-> 
->     v8->v9:
->     Fix warning while applying.
->     Reported-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> 
->  .../devicetree/bindings/timer/ingenic,sysost.yaml  | 63 ++++++++++++++++++++++
->  include/dt-bindings/clock/ingenic,sysost.h         | 12 +++++
->  2 files changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/ingenic,sysost.yaml
->  create mode 100644 include/dt-bindings/clock/ingenic,sysost.h
+>  .../bindings/display/imx/nxp,imx8mq-dcss.yaml | 104 ++++++++++++++++++
+>  1 file changed, 104 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.yaml
 > 
 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/timer/ingenic,sysost.yaml: properties: '#address-cells' is a dependency of '#size-cells'
-Documentation/devicetree/bindings/Makefile:20: recipe for target 'Documentation/devicetree/bindings/timer/ingenic,sysost.example.dts' failed
-make[1]: *** [Documentation/devicetree/bindings/timer/ingenic,sysost.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/timer/ingenic,sysost.yaml: ignoring, error in schema: properties
-warning: no schema found in file: ./Documentation/devicetree/bindings/timer/ingenic,sysost.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/timer/ingenic,sysost.yaml: ignoring, error in schema: properties
-warning: no schema found in file: ./Documentation/devicetree/bindings/timer/ingenic,sysost.yaml
-Makefile:1347: recipe for target 'dt_binding_check' failed
-make: *** [dt_binding_check] Error 2
-
-
-See https://patchwork.ozlabs.org/patch/1332465
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
-
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-
-Please check and re-submit.
+If a tag was not added on purpose, please state why and what changed.
 
