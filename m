@@ -2,84 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DD50226D1C
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 19:29:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A65A2226D21
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 19:32:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729690AbgGTR3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jul 2020 13:29:04 -0400
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:16682 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728324AbgGTR3E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 13:29:04 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5f15d3e80001>; Mon, 20 Jul 2020 10:27:04 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Mon, 20 Jul 2020 10:29:04 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Mon, 20 Jul 2020 10:29:04 -0700
-Received: from [10.2.53.86] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 20 Jul
- 2020 17:29:03 +0000
-Subject: Re: [PATCH v2 2/2] arm64: tegra: Add the GPU on Tegra194
-To:     Thierry Reding <thierry.reding@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Debarshi Dutta <ddutta@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20200716143341.545804-1-thierry.reding@gmail.com>
- <20200716143341.545804-2-thierry.reding@gmail.com>
-X-Nvconfidentiality: public
-From:   Terje Bergstrom <tbergstrom@nvidia.com>
-Message-ID: <de024331-cc7a-42ac-6b03-4ac8eb3af351@nvidia.com>
-Date:   Mon, 20 Jul 2020 10:29:03 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1729307AbgGTRcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jul 2020 13:32:09 -0400
+Received: from out28-125.mail.aliyun.com ([115.124.28.125]:54427 "EHLO
+        out28-125.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728985AbgGTRcJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 13:32:09 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.3914844|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0437144-0.000340074-0.955946;FP=0|0|0|0|0|-1|-1|-1;HT=e02c03302;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=12;RT=12;SR=0;TI=SMTPD_---.I4vxxaz_1595266316;
+Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.I4vxxaz_1595266316)
+          by smtp.aliyun-inc.com(10.147.44.129);
+          Tue, 21 Jul 2020 01:32:02 +0800
+From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>
+To:     daniel.lezcano@linaro.org, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        tglx@linutronix.de, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        yanfei.li@ingenic.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com, paul@crapouillou.net
+Subject: [PATCH v10 0/2] Add support for the OST in Ingenic X1000.
+Date:   Tue, 21 Jul 2020 01:31:32 +0800
+Message-Id: <20200720173134.22826-1-zhouyanjie@wanyeetech.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-In-Reply-To: <20200716143341.545804-2-thierry.reding@gmail.com>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1595266024; bh=ac8zO61pbb5tpf5xClufOhOCk2EwcuyOQ6iixGYE1yE=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:
-         Content-Transfer-Encoding:Content-Language;
-        b=ktxiedt9++tvbzE8plmar2iBg/wSKwH8tDjfvLXANC4Q5FHgP6f5RUsFSKxtcGkXx
-         hq3A9gVhAp1miwXjv0rKlhj85j9KF6ihsxZzJucitn7cR/SJljzv8iEyg7zfjiZ7ge
-         2GzG3HRfkYUVm7mefv6NBL9wI8f+UuKNNFska5ikgC0TqIfVDgkFN9y/FU4YrLopgw
-         lodQyB4A6CLZRzX08mNaL3TbIBnoY3noVILnEnN+mnD8VFY6CaXEP0A4q2c449iCER
-         wJebR/fILchznAMK6Ur2LKa5TQ7NLpxB7tztaBq2gc9pZTfGprq8YM4zGNqri6cKM0
-         QyEI1sfIB2Pxg==
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/16/2020 7:33 AM, Thierry Reding wrote:
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-> index 98c366ab4aab..14da0793be69 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-> @@ -1395,6 +1395,39 @@ sor3: sor@15bc0000 {
->   				nvidia,interface = <3>;
->   			};
->   		};
-> +
-> +		gpu@17000000 {
-> +			compatible = "nvidia,gv11b";
-> +			reg = <0x17000000 0x10000000>,
-> +			      <0x18000000 0x10000000>;
+v9->v10:
+Fix errors which case "make dt_binding_check" failed.
 
-Hi,
+周琰杰 (Zhou Yanjie) (2):
+  dt-bindings: timer: Add Ingenic X1000 OST bindings.
+  clocksource: Ingenic: Add support for the Ingenic X1000 OST.
 
-I noticed a typo here. The sizes of the resources have one zero too 
-many. Should be 0x1000000.
+ .../devicetree/bindings/timer/ingenic,sysost.yaml  |  63 +++
+ drivers/clocksource/Kconfig                        |  12 +-
+ drivers/clocksource/Makefile                       |   1 +
+ drivers/clocksource/ingenic-sysost.c               | 539 +++++++++++++++++++++
+ include/dt-bindings/clock/ingenic,sysost.h         |  12 +
+ 5 files changed, 626 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/timer/ingenic,sysost.yaml
+ create mode 100644 drivers/clocksource/ingenic-sysost.c
+ create mode 100644 include/dt-bindings/clock/ingenic,sysost.h
 
-Terje
+-- 
+2.11.0
 
