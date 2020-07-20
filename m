@@ -2,105 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BDAFF225E22
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 14:07:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37CA1225E65
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 14:21:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728581AbgGTMH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jul 2020 08:07:26 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:57820 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728568AbgGTMHZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 08:07:25 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06KC74kU075321;
-        Mon, 20 Jul 2020 07:07:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1595246824;
-        bh=aj1lP0WZkkMDqqRJkTAmBFSAqvwrbFH5xh9UNbjJztU=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=eT8ph3GfR3hfkfZT/7C7F7eo0fkPxyj2yM9xX7MH8byXRnwwh5U23XN/8Rcwbc1GQ
-         eStItNoISCEBVyoayZ3pq9FZ8h+imd5dTaP3iKXmiL68jHKY1nyieY0K4mGmU2Dt5b
-         uOrb517DHFe+RNyLitdud984xaIMjz+IoI9DQuL4=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06KC74Zi071107;
-        Mon, 20 Jul 2020 07:07:04 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 20
- Jul 2020 07:07:03 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 20 Jul 2020 07:07:03 -0500
-Received: from [10.250.32.229] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06KC73tp015469;
-        Mon, 20 Jul 2020 07:07:03 -0500
-Subject: Re: [PATCH v31 01/12] leds: multicolor: Introduce a multicolor class
- definition
-To:     Pavel Machek <pavel@ucw.cz>
-CC:     <jacek.anaszewski@gmail.com>, <robh@kernel.org>,
-        <marek.behun@nic.cz>, <devicetree@vger.kernel.org>,
-        <linux-leds@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20200716182007.18389-1-dmurphy@ti.com>
- <20200716182007.18389-2-dmurphy@ti.com> <20200720095409.GA13137@amd>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <95708f01-0db6-ed25-e087-2d95f28fe509@ti.com>
-Date:   Mon, 20 Jul 2020 07:07:03 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728688AbgGTMVH convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 Jul 2020 08:21:07 -0400
+Received: from mout.kundenserver.de ([212.227.17.10]:32999 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728460AbgGTMVG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 08:21:06 -0400
+Received: from mail-qk1-f182.google.com ([209.85.222.182]) by
+ mrelayeu.kundenserver.de (mreue108 [212.227.15.145]) with ESMTPSA (Nemesis)
+ id 1M7JrG-1juCT63Gf6-007j4f; Mon, 20 Jul 2020 14:21:04 +0200
+Received: by mail-qk1-f182.google.com with SMTP id z15so8193088qki.10;
+        Mon, 20 Jul 2020 05:21:04 -0700 (PDT)
+X-Gm-Message-State: AOAM533ithWRD6Gv/yS3ySVZQWpH2Ee5Al0wJnqfzEI4CJ1n+FiGWbc2
+        A7To4/S700mp6SLZ0Nhe0ACYXyBN8pi2Q3iiU+A=
+X-Google-Smtp-Source: ABdhPJxnDaps2mzwyIsQu5vg0Fu3YsCdpchsfKZVpyRu8MsSM9Gcl79g+mqxBm6tfbp35cPwGB+thoVnqL5sOIIyG+c=
+X-Received: by 2002:a37:b484:: with SMTP id d126mr21267846qkf.394.1595247663277;
+ Mon, 20 Jul 2020 05:21:03 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200720095409.GA13137@amd>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20200720074249.596364-1-jiaxun.yang@flygoat.com>
+ <20200720074249.596364-4-jiaxun.yang@flygoat.com> <CAK8P3a13vZJyOGZ1FpS98ytVC57P6NgmQpSfhf2h9b7meQLtcw@mail.gmail.com>
+ <d927b5b6-e33e-4a94-c997-b1794dbde411@flygoat.com>
+In-Reply-To: <d927b5b6-e33e-4a94-c997-b1794dbde411@flygoat.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Mon, 20 Jul 2020 14:20:46 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a2=qrp6x4yLUXhQU2MwcMa4HpEzAdVs_zW8f14GZ-_zqQ@mail.gmail.com>
+Message-ID: <CAK8P3a2=qrp6x4yLUXhQU2MwcMa4HpEzAdVs_zW8f14GZ-_zqQ@mail.gmail.com>
+Subject: Re: [PATCH 3/5] MIPS: Loongson64: Enlarge IO_SPACE_LIMIT
+To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc:     "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Huacai Chen <chenhc@lemote.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Paul Burton <paulburton@kernel.org>,
+        Nathan Chancellor <natechancellor@gmail.com>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Provags-ID: V03:K1:cD2rRfBF59CX61+zemVyUHT3Z9YhsV3/Z+NHlrBTDAPsD74CR0L
+ nyOgRYZuZYWmOQ2dgYtQBxgKLiR8eRiobdfquNJBUmWhlELJvehIDi1zkyxyrSWStMdLGnE
+ OgRNitBOvmix2W8l+2rfol9HM+hEQ56iSqiLcrpSXrvCKcscoKnYp791ja9DCybxgedZtJj
+ zct3LJCXapc7Sq1jzSQVg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:i+f8y2Tjuhc=:mVrdaKEhHPMW8V6+dV4jQW
+ ROk0WSCY8QIJdWAhzb6FXwEw7ggXgk1TmicrFRJx/FbseVg95qETX7IeNgLWpmFsBU9oXB2KQ
+ csYOxouwX/KSa5ivE5iyS6CwBATpJS9lV/I/aS0DkBrvJHc7gOziL56qd26INwBZx9j7FSdtN
+ paje5DUiViHp+Y7GrMNVq8EbT7+mQI19nOoMtMxVRFMbtgUBqPGHkey2/3hnFlCwQ7tKoQZq7
+ JHwjcPX9kkHabQbbj9a3hPRfTZBERjAt+5P5yNrkwz0SulYAbtw7GuvM0jxlW7sReuYOpL1rw
+ R1J2+5jJfdHcU7vsltqFIQT9I0j2Etkm6PyA+2b3CxXU0X4ZJY2iqdY6kX2thMvfh/qSPubwf
+ 4EbBVR/LBuDN6bNEK7bMK6Pz4/cZTKeYHUQWto4uRE2wF8/TU9jnGR2a7wSVfRdGCnqMcvo0M
+ 5uZ/7hpe99LyFrq0dvdeW10hgz13M/yKZ9z3gV4zA6o3TWMwwk/UnQvQ6CqZCS/23oytKm5/z
+ PMINa6JaSTx2DRLr5ELMtRvvk82D6oe4A69D1aENJejMgMK+nkNEBUMnagtPjLJJ9vgQRvrK6
+ S2pc7HpF03GBBl6QfHJJ8Vcni+Q0RHQVrAqvkS+C1Jl3az715Edj5QqtswBH7f3u81zNODgWU
+ hMriL68NeNzDwdu1LhEcF+I0ShqCJBshf6VPziZUKYcpEjtQ3gp0uJ+2bCbwHDzffbzYTwmNn
+ DMuF0ZNtpMncFCq8zJg23yjCmmKn4Tpu09yQYTn2pO4xHWxPSQGPQPCFij+xpBeKCYEWCtRe7
+ 444JyFoq3lqVFA0wVJBPXHJMBoHvtQqG5z7M5/34zXqnFcJ5gzBUuxVZlPekUPeBqyn7u0Piq
+ t6PQqlLRePlGHr7BTjTwjYrP2EG5tlvb9S5CHPxfcieit9A5UJ/F26YEmP3A9sY02hbL5w0Xf
+ GoD1xswEp58IHmLgdsMsJPzKOCu3u+nyn5+ajvCZGjpZzjaiMgU7y
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pavel
+On Mon, Jul 20, 2020 at 2:07 PM Jiaxun Yang <jiaxun.yang@flygoat.com> wrote:
+> 在 2020/7/20 下午6:45, Arnd Bergmann 写道:
+> > On Mon, Jul 20, 2020 at 9:44 AM Jiaxun Yang <jiaxun.yang@flygoat.com> wrote:
+> >> It can be very big on LS7A PCH systems.
+> > In practice, one should rarely need more than a few kb worth of
+> > port numbers, unless you expect to see hundreds of legacy PCI
+> > devices.
+> I must blame stupid hardware design here. The LPC Controller (for ISA
+> device) can eat
+> up to 0x20000 IO BAR, and we can't resize it. Thus we have to enlarge
+> the I/O Space.
 
-On 7/20/20 4:54 AM, Pavel Machek wrote:
-> Hi!
->
->> Introduce a multicolor class that groups colored LEDs
->> within a LED node.
->>
->> The multicolor class groups monochrome LEDs and allows controlling two
->> aspects of the final combined color: hue and lightness. The former is
->> controlled via the intensity file and the latter is controlled
->> via brightness file.
->>
->> Acked-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
->> Signed-off-by: Dan Murphy <dmurphy@ti.com>
-> Thanks, applied and pushed out.
+Ok, I see.
 
-Thank you. What about the patches for the users?
-
->> +====================================
->> +MultiColor LED handling under Linux
->> +====================================
-> ...
->> +Multicolor Class Control
->> +========================
-> AFAICT The first one should be "Multicolor" for consistency.
->
->> +config LEDS_CLASS_MULTICOLOR
->> +	tristate "LED MultiColor Class Support"
-> Here too.
->
-> Can you send a followup patch to fix it up?
-
-Will send a patch to fix it up but not sure if I should send as part of 
-this series or separately?
-
-Because I am not sure if you are going to apply the remaining patches up 
-to the DTs
-
-Dan
-
-
-> Best regards,
-> 									Pavel
+       Arnd
