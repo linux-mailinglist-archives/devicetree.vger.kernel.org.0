@@ -2,83 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EFBB226E13
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 20:13:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A47E226E2E
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 20:23:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730330AbgGTSNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jul 2020 14:13:08 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:48530 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729921AbgGTSNI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 14:13:08 -0400
+        id S1729204AbgGTSXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jul 2020 14:23:23 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:56624 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726381AbgGTSXW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 14:23:22 -0400
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06KICESd057699;
-        Mon, 20 Jul 2020 13:12:14 -0500
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06KIMUOE102100;
+        Mon, 20 Jul 2020 13:22:30 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1595268734;
-        bh=7tyvgaL+fW83SAUmCUViLrsnXQp4Obzw1ixykaV8ISI=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=kMmJlhlJy1WGDQkBsH0rhk1gjbXR46eDnqxStJo9yR8e4XCwYmGToZAVzASCBP1ap
-         Zwj8fcEuBSfB/3IQDcbdF9NkrjPeF52a626LqwoKSRehTDiA4uIhQBdUQaBVHwieZk
-         VPR3y0MW1Qc98QUs6Vm/0vqk5piLefkipNQiQux0=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06KICE8Q091024;
-        Mon, 20 Jul 2020 13:12:14 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+        s=ti-com-17Q1; t=1595269350;
+        bh=Sd5hnnt4GxFptLwg5tfzZnZe3N/CSbSSNwGUNJiJjGg=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=knABtIz/jmMhBngJ8jfzuvoe4eXBXcBKN9jwGnl956ycWLGE3iCkivm5pbdn7z7EI
+         bUagy0Zdls//uoybpGBdhCDWIQgjneSVPXgxA23XPixpPAjFgX9+2jzSIRc7ltuLl2
+         h9dwtNHeUQ5T7iOfp0qRJ+8rjAkLemRu0JNemaz8=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06KIMU0x103198;
+        Mon, 20 Jul 2020 13:22:30 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 20
- Jul 2020 13:12:14 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ Jul 2020 13:22:30 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 20 Jul 2020 13:12:14 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06KICEuK064305;
-        Mon, 20 Jul 2020 13:12:14 -0500
+ Frontend Transport; Mon, 20 Jul 2020 13:22:30 -0500
+Received: from [10.250.32.229] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06KIMUVZ080357;
+        Mon, 20 Jul 2020 13:22:30 -0500
+Subject: Re: [PATCH 4/4] dt-bindings: tas2562: Convert the tas2562 binding to
+ yaml
+To:     Rob Herring <robh@kernel.org>
+CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
+        <tiwai@suse.com>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20200626154143.20351-1-dmurphy@ti.com>
+ <20200626154143.20351-4-dmurphy@ti.com> <20200715201522.GA740682@bogus>
 From:   Dan Murphy <dmurphy@ti.com>
-To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
-        <tiwai@suse.com>
-CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-kernel@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
-Subject: [PATCH v3 2/2] ASoC: tas2770: Fix reset gpio property name
-Date:   Mon, 20 Jul 2020 13:12:02 -0500
-Message-ID: <20200720181202.31000-2-dmurphy@ti.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200720181202.31000-1-dmurphy@ti.com>
-References: <20200720181202.31000-1-dmurphy@ti.com>
+Message-ID: <e61b54bf-f77c-cb4d-c256-fb0c15f18993@ti.com>
+Date:   Mon, 20 Jul 2020 13:22:25 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20200715201522.GA740682@bogus>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Language: en-US
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the reset property name when allocating the GPIO descriptor.
-The gpiod_get_optional appends either the -gpio or -gpios suffix to the
-name.
+Rob
 
-Fixes: 1a476abc723e6 ("tas2770: add tas2770 smart PA kernel driver")
-Signed-off-by: Dan Murphy <dmurphy@ti.com>
----
- sound/soc/codecs/tas2770.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+On 7/15/20 3:15 PM, Rob Herring wrote:
+> On Fri, Jun 26, 2020 at 10:41:43AM -0500, Dan Murphy wrote:
+>> Convert the TAS2562 text file to yaml format.
+>>
+>> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+>> ---
+>>   .../devicetree/bindings/sound/tas2562.txt     | 37 ---------
+>>   .../devicetree/bindings/sound/tas2562.yaml    | 77 +++++++++++++++++++
+>>   2 files changed, 77 insertions(+), 37 deletions(-)
+>>   delete mode 100644 Documentation/devicetree/bindings/sound/tas2562.txt
+>>   create mode 100644 Documentation/devicetree/bindings/sound/tas2562.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/sound/tas2562.txt b/Documentation/devicetree/bindings/sound/tas2562.txt
+>> deleted file mode 100644
+>> index dc6d7362ded7..000000000000
+>> --- a/Documentation/devicetree/bindings/sound/tas2562.txt
+>> +++ /dev/null
+>> @@ -1,37 +0,0 @@
+>> -Texas Instruments TAS2562 Smart PA
+>> -
+>> -The TAS2562 is a mono, digital input Class-D audio amplifier optimized for
+>> -efficiently driving high peak power into small loudspeakers.
+>> -Integrated speaker voltage and current sense provides for
+>> -real time monitoring of loudspeaker behavior.
+>> -
+>> -Required properties:
+>> - - #address-cells  - Should be <1>.
+>> - - #size-cells     - Should be <0>.
+>> - - compatible:	   - Should contain "ti,tas2562", "ti,tas2563".
+>> - - reg:		   - The i2c address. Should be 0x4c, 0x4d, 0x4e or 0x4f.
+>> - - ti,imon-slot-no:- TDM TX current sense time slot.
+>> - - ti,vmon-slot-no:- TDM TX voltage sense time slot. This slot must always be
+>> -		     greater then ti,imon-slot-no.
+>> -
+>> -Optional properties:
+>> -- interrupt-parent: phandle to the interrupt controller which provides
+>> -                    the interrupt.
+>> -- interrupts: (GPIO) interrupt to which the chip is connected.
+>> -- shut-down-gpio: GPIO used to control the state of the device.
+>> -
+>> -Examples:
+>> -tas2562@4c {
+>> -        #address-cells = <1>;
+>> -        #size-cells = <0>;
+>> -        compatible = "ti,tas2562";
+>> -        reg = <0x4c>;
+>> -
+>> -        interrupt-parent = <&gpio1>;
+>> -        interrupts = <14>;
+>> -
+>> -	shut-down-gpio = <&gpio1 15 0>;
+>> -        ti,imon-slot-no = <0>;
+>> -        ti,vmon-slot-no = <1>;
+>> -};
+>> -
+>> diff --git a/Documentation/devicetree/bindings/sound/tas2562.yaml b/Documentation/devicetree/bindings/sound/tas2562.yaml
+>> new file mode 100644
+>> index 000000000000..1fb467e14d4c
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/sound/tas2562.yaml
+>> @@ -0,0 +1,77 @@
+>> +# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
+> Same licensing comment here as tas2770
 
-diff --git a/sound/soc/codecs/tas2770.c b/sound/soc/codecs/tas2770.c
-index 4538b2d0216f..1eb9b77439eb 100644
---- a/sound/soc/codecs/tas2770.c
-+++ b/sound/soc/codecs/tas2770.c
-@@ -759,8 +759,7 @@ static int tas2770_i2c_probe(struct i2c_client *client,
- 		}
- 	}
- 
--	tas2770->reset_gpio = devm_gpiod_get_optional(tas2770->dev,
--							  "reset-gpio",
-+	tas2770->reset_gpio = devm_gpiod_get_optional(tas2770->dev, "reset",
- 						      GPIOD_OUT_HIGH);
- 	if (IS_ERR(tas2770->reset_gpio)) {
- 		if (PTR_ERR(tas2770->reset_gpio) == -EPROBE_DEFER) {
--- 
-2.27.0
+OK I will fix it like I did with the other TAS2770 patches
+
+
+>> +# Copyright (C) 2019 Texas Instruments Incorporated
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/sound/tas2562.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +
+>> +title: Texas Instruments TAS2562 Smart PA
+>> +
+>> +maintainers:
+>> +  - Dan Murphy <dmurphy@ti.com>
+>> +
+>> +description: |
+>> +  The TAS2562 is a mono, digital input Class-D audio amplifier optimized for
+>> +  efficiently driving high peak power into small loudspeakers.
+>> +  Integrated speaker voltage and current sense provides for
+>> +  real time monitoring of loudspeaker behavior.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - ti,tas2562
+>> +      - ti,tas2563
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +    description: |
+>> +       I2C address of the device can be one of these 0x4c, 0x4d, 0x4e or 0x4f
+>> +
+>> +  shut-down-gpio:
+>> +    description: GPIO used to control the state of the device.
+>> +    deprecated: true
+> Why do we need this as the driver never worked?
+
+Not sure what you are asking.
+
+Driver has been fixed for this specific binding in sound for-next.
+
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/commit/sound/soc/codecs/tas2562.c?h=for-next&id=bc07b54459cbb3a572a78b5c200ff79ef11b8158
+
+>
+>> +
+>> +  shutdown-gpio:
+>> +    description: GPIO used to control the state of the device.
+> -gpios is the preferred form: shutdown-gpios
+
+So the plural form of gpio is preferred even if the gpio is singular?  I 
+would think gpio would be plural if this was an array of gpios.
+
+I am waiting for the yaml to be accepted before adding this shutdown 
+property to the driver.
+
+Dan
 
