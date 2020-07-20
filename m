@@ -2,125 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F10A225832
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 09:08:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52EFA2258A5
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 09:32:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727073AbgGTHIG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jul 2020 03:08:06 -0400
-Received: from mail29.static.mailgun.info ([104.130.122.29]:55013 "EHLO
-        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727087AbgGTHIB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Jul 2020 03:08:01 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1595228881; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=Hgc8qrbajmA7cvjWQhgBc1e4wcka087+3kuJ5nLwjR4=; b=c0SioNe+ADCLnUpqrHfp70b0d8QI1F8qlTCa9pjCwWlquMRpUc/GveExrC5LM7oNNrew1jtr
- eut76v3yduJncv5sD6wXDmWylrOPC1mje0v8mRSZfDFsVML7m/jl7R4ZXjTrYQoQ5uJvZByE
- RVJnLly1WVc2wA/DH2iL17tPIVI=
-X-Mailgun-Sending-Ip: 104.130.122.29
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n18.prod.us-west-2.postgun.com with SMTP id
- 5f1542cb512812c070050096 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 20 Jul 2020 07:07:55
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 36164C433CB; Mon, 20 Jul 2020 07:07:55 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A161FC433CB;
-        Mon, 20 Jul 2020 07:07:50 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A161FC433CB
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=rnayak@codeaurora.org
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-To:     stanimir.varbanov@linaro.org, robh+dt@kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mka@chromium.org, Rajendra Nayak <rnayak@codeaurora.org>
-Subject: [PATCH v3 4/4] arm64: dts: sc7180: Add OPP tables and power-domains for venus
-Date:   Mon, 20 Jul 2020 12:37:22 +0530
-Message-Id: <1595228842-9826-5-git-send-email-rnayak@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1595228842-9826-1-git-send-email-rnayak@codeaurora.org>
-References: <1595228842-9826-1-git-send-email-rnayak@codeaurora.org>
+        id S1726254AbgGTHcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jul 2020 03:32:47 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:55702 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725815AbgGTHcr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 03:32:47 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06K7WI1d021738;
+        Mon, 20 Jul 2020 02:32:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1595230338;
+        bh=/jWIiALzK5V8fvNl6MphNcf2kmWQpId+dgZUsAkatZo=;
+        h=Subject:To:References:From:Date:In-Reply-To;
+        b=Nq90Hzd6Wbf2o2UFZXbEwdU6FyZSUD0LYkHs/SNRN8N1Fr4tpmG3JWlx7WzPNOPBV
+         BL2lMJOvHcyjlo70f0AY/JmO0Tyrn2EDf6CScFYn/7NlexcDbVYXkaq0ZUgxT3T4TQ
+         CdYcPTEZZnujGkppNZLotdZXfGglX7y8kj2SK4r8=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06K7WIid074617
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 20 Jul 2020 02:32:18 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 20
+ Jul 2020 02:32:18 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 20 Jul 2020 02:32:18 -0500
+Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06K7WEUK125332;
+        Mon, 20 Jul 2020 02:32:15 -0500
+Subject: Re: [PATCH] firmware: ti_sci: Replace HTTP links with HTTPS ones
+To:     "Alexander A. Klimov" <grandmaster@al2klimov.de>, <nm@ti.com>,
+        <ssantosh@kernel.org>, <tglx@linutronix.de>,
+        <jason@lakedaemon.net>, <maz@kernel.org>, <robh+dt@kernel.org>,
+        <p.zabel@pengutronix.de>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20200718105538.9542-1-grandmaster@al2klimov.de>
+From:   Tero Kristo <t-kristo@ti.com>
+Message-ID: <7b6caa87-8672-b5d5-ef8d-2fd38a4b53e6@ti.com>
+Date:   Mon, 20 Jul 2020 10:32:13 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
+MIME-Version: 1.0
+In-Reply-To: <20200718105538.9542-1-grandmaster@al2klimov.de>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the OPP tables in order to be able to vote on the performance state
-of a power-domain
+Hi Alexander,
 
-Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 35 +++++++++++++++++++++++++++++++++--
- 1 file changed, 33 insertions(+), 2 deletions(-)
+One comment below.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 16df08d..cb6137d 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -2664,8 +2664,10 @@
- 			reg = <0 0x0aa00000 0 0xff000>;
- 			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
- 			power-domains = <&videocc VENUS_GDSC>,
--					<&videocc VCODEC0_GDSC>;
--			power-domain-names = "venus", "vcodec0";
-+					<&videocc VCODEC0_GDSC>,
-+					<&rpmhpd SC7180_CX>;
-+			power-domain-names = "venus", "vcodec0", "cx";
-+			operating-points-v2 = <&venus_opp_table>;
- 			clocks = <&videocc VIDEO_CC_VENUS_CTL_CORE_CLK>,
- 				 <&videocc VIDEO_CC_VENUS_AHB_CLK>,
- 				 <&videocc VIDEO_CC_VENUS_CTL_AXI_CLK>,
-@@ -2686,6 +2688,35 @@
- 			video-encoder {
- 				compatible = "venus-encoder";
- 			};
-+
-+			venus_opp_table: venus-opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-150000000 {
-+					opp-hz = /bits/ 64 <150000000>;
-+					required-opps = <&rpmhpd_opp_low_svs>;
-+				};
-+
-+				opp-270000000 {
-+					opp-hz = /bits/ 64 <270000000>;
-+					required-opps = <&rpmhpd_opp_svs>;
-+				};
-+
-+				opp-340000000 {
-+					opp-hz = /bits/ 64 <340000000>;
-+					required-opps = <&rpmhpd_opp_svs_l1>;
-+				};
-+
-+				opp-434000000 {
-+					opp-hz = /bits/ 64 <434000000>;
-+					required-opps = <&rpmhpd_opp_nom>;
-+				};
-+
-+				opp-500000000 {
-+					opp-hz = /bits/ 64 <500000000>;
-+					required-opps = <&rpmhpd_opp_turbo>;
-+				};
-+			};
- 		};
- 
- 		videocc: clock-controller@ab00000 {
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+On 18/07/2020 13:55, Alexander A. Klimov wrote:
+> Rationale:
+> Reduces attack surface on kernel devs opening the links for MITM
+> as HTTPS traffic is much harder to manipulate.
+> 
+> Deterministic algorithm:
+> For each file:
+>    If not .svg:
+>      For each line:
+>        If doesn't contain `\bxmlns\b`:
+>          For each link, `\bhttp://[^# \t\r\n]*(?:\w|/)`:
+> 	  If neither `\bgnu\.org/license`, nor `\bmozilla\.org/MPL\b`:
+>              If both the HTTP and HTTPS versions
+>              return 200 OK and serve the same content:
+>                Replace HTTP with HTTPS.
+> 
+> Signed-off-by: Alexander A. Klimov <grandmaster@al2klimov.de>
+> ---
+>   Continuing my work started at 93431e0607e5.
+>   See also: git log --oneline '--author=Alexander A. Klimov <grandmaster@al2klimov.de>' v5.7..master
+> 
+>   If there are any URLs to be removed completely
+>   or at least not (just) HTTPSified:
+>   Just clearly say so and I'll *undo my change*.
+>   See also: https://lkml.org/lkml/2020/6/27/64
+> 
+>   If there are any valid, but yet not changed URLs:
+>   See: https://lkml.org/lkml/2020/6/26/837
+> 
+>   If you apply the patch, please let me know.
+> 
+> 
+>   .../devicetree/bindings/interrupt-controller/ti,sci-intr.txt    | 2 +-
+>   drivers/firmware/ti_sci.c                                       | 2 +-
+>   drivers/firmware/ti_sci.h                                       | 2 +-
+>   drivers/irqchip/irq-ti-sci-inta.c                               | 2 +-
+>   drivers/irqchip/irq-ti-sci-intr.c                               | 2 +-
+>   drivers/reset/reset-ti-sci.c                                    | 2 +-
+>   include/linux/soc/ti/ti_sci_inta_msi.h                          | 2 +-
+>   include/linux/soc/ti/ti_sci_protocol.h                          | 2 +-
+>   8 files changed, 8 insertions(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.txt b/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.txt
+> index 1a8718f8855d..178fca08278f 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.txt
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.txt
+> @@ -55,7 +55,7 @@ Required Properties:
+>   			corresponds to a range of host irqs.
+>   
+>   For more details on TISCI IRQ resource management refer:
+> -http://downloads.ti.com/tisci/esd/latest/2_tisci_msgs/rm/rm_irq.html
+> +https://downloads.ti.com/tisci/esd/latest/2_tisci_msgs/rm/rm_irq.html
+>   
+>   Example:
+>   --------
+> diff --git a/drivers/firmware/ti_sci.c b/drivers/firmware/ti_sci.c
+> index 4126be9e3216..53cee17d0115 100644
+> --- a/drivers/firmware/ti_sci.c
+> +++ b/drivers/firmware/ti_sci.c
+> @@ -2,7 +2,7 @@
+>   /*
+>    * Texas Instruments System Control Interface Protocol Driver
+>    *
+> - * Copyright (C) 2015-2016 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2015-2016 Texas Instruments Incorporated - https://www.ti.com/
+>    *	Nishanth Menon
+>    */
+>   
+> diff --git a/drivers/firmware/ti_sci.h b/drivers/firmware/ti_sci.h
+> index f0d068c03944..57cd04062994 100644
+> --- a/drivers/firmware/ti_sci.h
+> +++ b/drivers/firmware/ti_sci.h
+> @@ -6,7 +6,7 @@
+>    * The system works in a message response protocol
+>    * See: http://processors.wiki.ti.com/index.php/TISCI for details
 
+^^^^
+
+You should probably replace that one as well to be https while doing the 
+rest of the changes, even though the wiki is being deprecated during 
+this year.
+
+-Tero
+
+>    *
+> - * Copyright (C)  2015-2016 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C)  2015-2016 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   #ifndef __TI_SCI_H
+> diff --git a/drivers/irqchip/irq-ti-sci-inta.c b/drivers/irqchip/irq-ti-sci-inta.c
+> index 7e3ebf6ed2cd..85de19fe9b6e 100644
+> --- a/drivers/irqchip/irq-ti-sci-inta.c
+> +++ b/drivers/irqchip/irq-ti-sci-inta.c
+> @@ -2,7 +2,7 @@
+>   /*
+>    * Texas Instruments' K3 Interrupt Aggregator irqchip driver
+>    *
+> - * Copyright (C) 2018-2019 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2018-2019 Texas Instruments Incorporated - https://www.ti.com/
+>    *	Lokesh Vutla <lokeshvutla@ti.com>
+>    */
+>   
+> diff --git a/drivers/irqchip/irq-ti-sci-intr.c b/drivers/irqchip/irq-ti-sci-intr.c
+> index 59d51a20bbd8..5ea148faf2ab 100644
+> --- a/drivers/irqchip/irq-ti-sci-intr.c
+> +++ b/drivers/irqchip/irq-ti-sci-intr.c
+> @@ -2,7 +2,7 @@
+>   /*
+>    * Texas Instruments' K3 Interrupt Router irqchip driver
+>    *
+> - * Copyright (C) 2018-2019 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2018-2019 Texas Instruments Incorporated - https://www.ti.com/
+>    *	Lokesh Vutla <lokeshvutla@ti.com>
+>    */
+>   
+> diff --git a/drivers/reset/reset-ti-sci.c b/drivers/reset/reset-ti-sci.c
+> index bf68729ab729..b799aefad547 100644
+> --- a/drivers/reset/reset-ti-sci.c
+> +++ b/drivers/reset/reset-ti-sci.c
+> @@ -1,7 +1,7 @@
+>   /*
+>    * Texas Instrument's System Control Interface (TI-SCI) reset driver
+>    *
+> - * Copyright (C) 2015-2017 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2015-2017 Texas Instruments Incorporated - https://www.ti.com/
+>    *	Andrew F. Davis <afd@ti.com>
+>    *
+>    * This program is free software; you can redistribute it and/or modify
+> diff --git a/include/linux/soc/ti/ti_sci_inta_msi.h b/include/linux/soc/ti/ti_sci_inta_msi.h
+> index 11fb5048f5f6..e3aa8b14612e 100644
+> --- a/include/linux/soc/ti/ti_sci_inta_msi.h
+> +++ b/include/linux/soc/ti/ti_sci_inta_msi.h
+> @@ -2,7 +2,7 @@
+>   /*
+>    * Texas Instruments' K3 TI SCI INTA MSI helper
+>    *
+> - * Copyright (C) 2018-2019 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2018-2019 Texas Instruments Incorporated - https://www.ti.com/
+>    *	Lokesh Vutla <lokeshvutla@ti.com>
+>    */
+>   
+> diff --git a/include/linux/soc/ti/ti_sci_protocol.h b/include/linux/soc/ti/ti_sci_protocol.h
+> index 9531ec823298..0fc452dd96d4 100644
+> --- a/include/linux/soc/ti/ti_sci_protocol.h
+> +++ b/include/linux/soc/ti/ti_sci_protocol.h
+> @@ -2,7 +2,7 @@
+>   /*
+>    * Texas Instruments System Control Interface Protocol
+>    *
+> - * Copyright (C) 2015-2016 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2015-2016 Texas Instruments Incorporated - https://www.ti.com/
+>    *	Nishanth Menon
+>    */
+>   
+> 
+
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
