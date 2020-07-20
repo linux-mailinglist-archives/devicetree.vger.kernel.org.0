@@ -2,86 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9BAC225F86
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 14:51:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 033A522607F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 15:14:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729009AbgGTMun (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jul 2020 08:50:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40938 "EHLO
+        id S1726483AbgGTNMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jul 2020 09:12:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728889AbgGTMun (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 08:50:43 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C018AC061794;
-        Mon, 20 Jul 2020 05:50:42 -0700 (PDT)
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1595249441;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=CB5H/YHGiCyYzTr4iglevitlMOepA1m6Hp8M8xP/Zcw=;
-        b=VNGH+WeW7XyE6iv6uKO8KcHM0OAirZVPw+HHF0T0/bcv48RBO0ckGKlkB5fVhwBXKOtf0g
-        UXpabsT3V+2mNNRhCA6ZoYEOIzHb+F1HcAhgJtneqMMw9aLp50wJpk+yrxczOqbrWjcwrg
-        WgIX7Y6zIUZIGGi9imcUidEtXX4Va4jKsPebO1HVk2Z2PZoTemkklLk48lqI9SERyPoNKH
-        hA4tR5/g7ui5Y22HfVPznJoY/J58YOBFGZXpYf70BLEyYWiMva5yoV2gNcfV1z96Bxki+M
-        9JvV3LDbWM4rADXk8dzUfLeMMDKLuU6H2O/QqGWXsujl9269DjmM3lZFxJGqoQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1595249441;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=CB5H/YHGiCyYzTr4iglevitlMOepA1m6Hp8M8xP/Zcw=;
-        b=rRa5puuGs4dFxAOEOVk4GHxLZc7qyq/7YN4X4YuMJfd5CsjHERs5YaHOxAdaJBOk2clIhj
-        eG5URipdCn60X+Cw==
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, Kurt Kanzenbach <kurt@linutronix.de>
-Subject: [PATCH v2 3/3] net: dsa: of: Allow ethernet-ports as encapsulating node
-Date:   Mon, 20 Jul 2020 14:49:39 +0200
-Message-Id: <20200720124939.4359-4-kurt@linutronix.de>
-In-Reply-To: <20200720124939.4359-1-kurt@linutronix.de>
-References: <20200720124939.4359-1-kurt@linutronix.de>
+        with ESMTP id S1726076AbgGTNMS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 09:12:18 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 228C1C061794;
+        Mon, 20 Jul 2020 06:12:18 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id f2so17770660wrp.7;
+        Mon, 20 Jul 2020 06:12:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=I74xvJtzsjaudxa1pxR363b/RUGO1Y/C083f203Hn7A=;
+        b=Mh/wpx6se2TY3xjfuT4WtX01b4++wFyyvqYyF5kKVHeRaqzaZcp1UF4lbZGxMPjE5Z
+         c7B4tfEtirkSpO22dByuNkIFDkkhmaT4evS6BrE6jltrjTDdva3p256bmEXRF9B3/Jsf
+         qREOo8z6eJDoMVdQfShivC+YISM78l8jiFZnQJ70p2J6FlCBgTv3y404DYyZS5uVx6Av
+         /bXgNO83O8w1hbqrkjQhoPz6DDH27d8tjgC2Gu3xHMqEVhfjDlObJwTLBDpgXynJMqFE
+         ty9Sb0KXjH/TLOUAzW4jGQgikuR6volcQ53gYsb69BbF7CsTnXqIxPXsacGAERh1j0xz
+         V6ew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=I74xvJtzsjaudxa1pxR363b/RUGO1Y/C083f203Hn7A=;
+        b=XT33Pz/TO+9fFvYOGVRqlizK7bQuZk3ggL4xOiW0a09WAX/tQaedTGyihyMmZebsfU
+         7JI04zDPiobwyJ9o2rRb0oHNO7SVg2LHhmcbZcA0LPEFlSrimfTRB2hE8Ox3/03YG6qY
+         VLgbQ41Zulh2VKlN0iNBeVpm2P5QGXXXRV5SzL6EzK8ZnsRaRxnIwhs+vbtNdrII975c
+         M1nSdi3mJ3zpllD1hSptf6J3SmBtnunUMJeM2oHCfbq3Eo9Um1HAVuGR8kuEriKV9C7O
+         JzCLOLHiRTwIpRNw7uNbBr5k5RxsaqLpVWs/aDAL3OY7MlKOVytmxjKTBmKJAKNAKHgo
+         6isg==
+X-Gm-Message-State: AOAM533PaP5FzLdMIYx+h+m6xcpo8nsSQI0l7tB0EFdSg7Mlz44UMNiX
+        HTI2TM+2g/2fUrnRQvAgMJA=
+X-Google-Smtp-Source: ABdhPJw9OqceBedFy/lUsoQxaiIvRQLMWn8OErAt8tUirgIKJSf/VYRP2xcZNP10zxf5lKN91cSXbw==
+X-Received: by 2002:adf:f542:: with SMTP id j2mr22255065wrp.61.1595250736743;
+        Mon, 20 Jul 2020 06:12:16 -0700 (PDT)
+Received: from skynet.lan (67.red-88-15-120.dynamicip.rima-tde.net. [88.15.120.67])
+        by smtp.gmail.com with ESMTPSA id j24sm2725293wrb.49.2020.07.20.06.12.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Jul 2020 06:12:16 -0700 (PDT)
+From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>
+To:     jonas.gorski@gmail.com, kishon@ti.com, vkoul@kernel.org,
+        robh+dt@kernel.org, f.fainelli@gmail.com,
+        bcm-kernel-feedback-list@broadcom.com, p.zabel@pengutronix.de,
+        krzk@kernel.org, gregkh@linuxfoundation.org, alcooperx@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>
+Subject: [PATCH v8 0/2] phy: bcm63xx-usbh: Add BCM63xx USBH driver
+Date:   Mon, 20 Jul 2020 15:12:07 +0200
+Message-Id: <20200720131209.1236590-1-noltari@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to unified Ethernet Switch Device Tree Bindings allow for ethernet-ports as
-encapsulating node as well.
+Add BCM63xx USBH PHY driver for BMIPS.
 
-Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
----
- net/dsa/dsa2.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+v8: readd Simon as author and remove his email address from the source code.
+v7: remove Simon from authors and introduce changes suggested by Rob:
+  - Move clock conditions to the main section.
+  - Set missing additionalProperties to false.
+v6: introduce changes suggested by Rob and Vinod:
+ - Remove BMIPS_GENERIC default from kconfig.
+ - Print registered message as debug.
+ - Add another if case to device tree binding for SoCs with just 1 clock.
+ - Ignored "additionalProperties: false" suggestion since it triggers a
+  warning. This has been reported, but I haven't received any answer yet.
+v5: use devm_reset_control_get_exclusive.
+v4: fix dt-bindings documentation and improve device mode config.
+v3: introduce changes suggested by Florian:
+ - Add support for device mode.
+v2: introduce changes suggested by Florian:
+ - phy-cells changed to 1.
+ - Drop OF dependency (use device_get_match_data).
+ - Drop __initconst from variant tables.
+ - Use devm_clk_get_optional.
 
-diff --git a/net/dsa/dsa2.c b/net/dsa/dsa2.c
-index e055efff390b..c0ffc7a2b65f 100644
---- a/net/dsa/dsa2.c
-+++ b/net/dsa/dsa2.c
-@@ -727,8 +727,12 @@ static int dsa_switch_parse_ports_of(struct dsa_switch *ds,
- 
- 	ports = of_get_child_by_name(dn, "ports");
- 	if (!ports) {
--		dev_err(ds->dev, "no ports child node found\n");
--		return -EINVAL;
-+		/* The second possibility is "ethernet-ports" */
-+		ports = of_get_child_by_name(dn, "ethernet-ports");
-+		if (!ports) {
-+			dev_err(ds->dev, "no ports child node found\n");
-+			return -EINVAL;
-+		}
- 	}
- 
- 	for_each_available_child_of_node(ports, port) {
+Álvaro Fernández Rojas (2):
+  dt-bindings: phy: add bcm63xx-usbh bindings
+  phy: bcm63xx-usbh: Add BCM63xx USBH driver
+
+ .../bindings/phy/brcm,bcm63xx-usbh-phy.yaml   |  79 +++
+ drivers/phy/broadcom/Kconfig                  |   8 +
+ drivers/phy/broadcom/Makefile                 |   1 +
+ drivers/phy/broadcom/phy-bcm63xx-usbh.c       | 457 ++++++++++++++++++
+ 4 files changed, 545 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/brcm,bcm63xx-usbh-phy.yaml
+ create mode 100644 drivers/phy/broadcom/phy-bcm63xx-usbh.c
+
 -- 
-2.20.1
+2.27.0
 
