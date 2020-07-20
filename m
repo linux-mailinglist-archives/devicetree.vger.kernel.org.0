@@ -2,106 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C16A2258BD
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 09:38:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D7742258EE
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 09:49:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726893AbgGTHiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jul 2020 03:38:10 -0400
-Received: from smtpweb146.aruba.it ([62.149.158.146]:50332 "EHLO
-        smtpweb146.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726890AbgGTHiK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 03:38:10 -0400
-Received: from [192.168.1.134] ([93.146.66.165])
-        by smtpcmd05.ad.aruba.it with bizsmtp
-        id 5Ke52302y3Zw7e501Ke679; Mon, 20 Jul 2020 09:38:07 +0200
-Subject: Re: [RFC v2 GPIO lines [was: GPIO User I/O]
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        id S1726015AbgGTHtx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jul 2020 03:49:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50286 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725845AbgGTHtx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 03:49:53 -0400
+X-Greylist: delayed 343 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 20 Jul 2020 00:49:53 PDT
+Received: from vultr.net.flygoat.com (vultr.net.flygoat.com [IPv6:2001:19f0:6001:3633:5400:2ff:fe8c:553])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BA03C061794
+        for <devicetree@vger.kernel.org>; Mon, 20 Jul 2020 00:49:53 -0700 (PDT)
+Received: from localhost.localdomain (unknown [IPv6:2001:da8:20f:4430:250:56ff:fe9a:7470])
+        by vultr.net.flygoat.com (Postfix) with ESMTPSA id C2CAA1FEB4;
+        Mon, 20 Jul 2020 07:44:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=flygoat.com; s=vultr;
+        t=1595231049; bh=1agkTCChFFKEns9U88+0HkPfubwkBpH/BY7hu2/r318=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Up3OW7briPnLfjQc3Bd4wcOMg9f+uxow15iQh1aTiwSkdXVLeSi6EC001B4MxsCE4
+         SRF08D6CL0wEFkUtmt/WmeJ4SBhCBm5ub29YkA/f/5WtdtltGbAoZ6Ik4uO+b5LvMU
+         reMlv4fE8R49YLJdtp7nYt9HmOaphBKIpCHRzj1ib16MDOyLFHCLic6yYfBp77EKSB
+         rsJZzxR78mwHFiDuDN3xKlWaSXs7+wbz+Riy0RZR1Qpa1UGxD2CUldoxXSfLpBux99
+         u4tWpqY5ge2eCi+1OBh5xK8NH74Y697vjVPRPXDn0Ee7YWgBjXFpxn2lO1gjbFI4kl
+         9bMZWpUAUMDHw==
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+To:     linux-mips@vger.kernel.org
+Cc:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <01afcac0-bd34-3fd0-b991-a8b40d4b4561@enneenne.com>
- <CACRpkdbX9T9EuN-nxkMPC=sN74PEdoLuWurNLdGCzZJwwFrdpQ@mail.gmail.com>
- <1c4f1a83-835a-9317-3647-b55f6f39c0ba@enneenne.com>
- <CACRpkdZPjJSryJc+RtYjRN=X7xKMcao5pYek1fUM2+sE9xgdFQ@mail.gmail.com>
- <CAMuHMdUtguuu4FWU4nRS=pBUyEwKM1JZ8DYPdCQHXBYN0i_Frg@mail.gmail.com>
- <87efe96c-3679-14d5-4d79-569b6c047b00@enneenne.com>
- <CAMuHMdUght0hkJT1N8ub5xR5GB+U18MAhAg+zDmAAuxoRSRaYg@mail.gmail.com>
- <d30e64c9-ad7f-7cd5-51a4-3f37d6f1e3d8@enneenne.com>
- <070fa558-6e20-0fbf-d3e4-0a0eca4fe82c@enneenne.com>
- <CACRpkdYFAW2bcB53M3_b2LsveJO_PWZJhprGhdTtfmW11B1WmQ@mail.gmail.com>
- <f66dc9c4-b164-c934-72a8-d4aca063fca5@enneenne.com>
- <CACRpkdbjc6vvpHVjnJNGisRw6LiLZd-95aHWJJORwvaRNigPcw@mail.gmail.com>
- <cb6e208b-446e-eba4-b324-d88aec94a69b@enneenne.com>
- <CACRpkdZBUw5UPyZB-aeVwh8-GiCifbwABZ9mOsyK90t3cdMQ+w@mail.gmail.com>
- <80bf1236-aacd-1044-b0e5-5b5718b7e9f0@enneenne.com>
- <CAHp75Vc1ezuW9m8OCQUmEJoNVoD-Z3eWF=Lzcr2v32Br8Gr60w@mail.gmail.com>
-From:   Rodolfo Giometti <giometti@enneenne.com>
-Message-ID: <a80dda59-4037-e67b-d99c-7dcdcb44a8f4@enneenne.com>
-Date:   Mon, 20 Jul 2020 09:38:05 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Huacai Chen <chenhc@lemote.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Paul Burton <paulburton@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Nathan Chancellor <natechancellor@gmail.com>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/5] MIPS: Loongson64: Process ISA Node in DeviceTree
+Date:   Mon, 20 Jul 2020 15:42:33 +0800
+Message-Id: <20200720074249.596364-1-jiaxun.yang@flygoat.com>
+X-Mailer: git-send-email 2.28.0.rc1
 MIME-Version: 1.0
-In-Reply-To: <CAHp75Vc1ezuW9m8OCQUmEJoNVoD-Z3eWF=Lzcr2v32Br8Gr60w@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
-        t=1595230687; bh=GKkOGIGhCBY9lAbMSnioB/xi0FLqCI9XkJzBUYXRyq8=;
-        h=Subject:To:From:Date:MIME-Version:Content-Type;
-        b=Q/sM94YqyKWgCxRnrE8kZTBHfBp7DrbVkIe8dGc2dqp7GkLb36bDj6rhpHPJPjtYg
-         p3LadMsQnWhia+OtJAprGIfs5RNfqqhkvzXzd/Nz/E2/qjyaF9lIuA99IMm6UbzpTa
-         1AUQC58YoGbKhjJiFE8cxLNJkM90wyrCudQ9FMejb3rMQRTfEpQAUlFe5OfWeP4X8P
-         fDw49wU3AvzJBlbezlQ51OYvgZSwuITnZScrpZTL4XNEF9IILZq4S0XkPX2ClivjHz
-         G6BWEpyDid/J5XohaUPlaf94stQDK7X0rYDEHTVB/3grsdBTYQb74GSEw9iyzbPADQ
-         rZCdCMQmI3GUw==
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/07/2020 20:35, Andy Shevchenko wrote:
-> On Thu, Jul 16, 2020 at 6:17 PM Rodolfo Giometti <giometti@enneenne.com> wrote:
->> On 16/07/2020 15:38, Linus Walleij wrote:
-> 
-> ...
-> 
->> I see but this interface is not designed for such complex usage nor to compete
->> with the current character interface! It is designed to allow boards
->> manufactures to "describe" some I/O lines that are not used by any driver in the
->> device tree,
-> 
-> Why are they not in firmware tables? Platform is a set of hardware
-> that makes it so.
-> If something is not in DT, then there is no possible way to know what
-> is that line?
-> 
-> Or in other words how does the OS know that the certain line is
-> connected to a relay?
+Hi,
 
-I'm sorry but I'm not sure to understand you.
+This series convert reservation of Loongson64 Logic PIO into DeviceTree based
+method.
 
-I think that within the DT the board developer should describe his/her hardware
-in the most detailed manner for drivers and, as last step, for the userspace.
-The OS should only knows such IO lines whose are driver related while other ones
-(such as a relay or a generic digital input such as a lock/unlock signal) should
-be described for the userspace.
+It can be used to replace Huacai's
+"MIPS: Loongson64: Reserve legacy MMIO space according to bridge type".
 
-At the moment the only way to "describe" a digital output/input not related to
-any driver is by using the led or uinput interface that are not designed for
-such purposes! My suggestion is to give a proper/dedicated description of such
-IO lines.
+Thanks.
 
-Ciao,
+Jiaxun Yang (5):
+  of_address: Add bus type match for pci ranges parser
+  MIPS: Loongson64: Process ISA Node in DeviceTree
+  MIPS: Loongson64: Enlarge IO_SPACE_LIMIT
+  MIPS: Loongson64: DTS: Fix ISA range for RS780E PCH
+  MIPS: Loongson64: Add ISA node for LS7A PCH
 
-Rodolfo
+ arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |  7 ++
+ arch/mips/boot/dts/loongson/rs780e-pch.dtsi   |  2 +-
+ arch/mips/include/asm/io.h                    |  3 +-
+ .../mips/include/asm/mach-loongson64/spaces.h |  3 +-
+ arch/mips/loongson64/init.c                   | 85 +++++++++++++------
+ drivers/of/address.c                          | 15 +++-
+ include/linux/of_address.h                    |  3 +
+ 7 files changed, 85 insertions(+), 33 deletions(-)
 
 -- 
-GNU/Linux Solutions                  e-mail: giometti@enneenne.com
-Linux Device Driver                          giometti@linux.it
-Embedded Systems                     phone:  +39 349 2432127
-UNIX programming                     skype:  rodolfo.giometti
+2.28.0.rc1
+
