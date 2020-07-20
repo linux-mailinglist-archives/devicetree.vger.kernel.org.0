@@ -2,86 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8528F22725A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 00:26:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FF1522725E
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 00:26:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727795AbgGTWYs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jul 2020 18:24:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44798 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728227AbgGTWYj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 18:24:39 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E39D6C0619D2
-        for <devicetree@vger.kernel.org>; Mon, 20 Jul 2020 15:24:38 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id 22so952180wmg.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Jul 2020 15:24:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=SD6pCvrvSmO2DCp4Ax7aixATHBTxpI+s2rfIo5Cd1Tk=;
-        b=gJuwBswFKpnqWojomkEAyfFJ97lPplPSeCK+E363TxmVlRV58FKEyWYXj715tEfJaF
-         WJp/pzSop/BTyKgsMRvZ4wcQnnV9yHjIMPlJgPRyl7r/47L7CqPAd4hc2kR/EqXNUqng
-         Fzmf7psWo0I/pPWpbRBDclhg7PyIf+6bPtBHfRPDsk5o9lVCZc2+HB8j2PxdKJKcNMz1
-         Y4jJwL0UGTkWerGpjrBWGt+552ScuE4A1ci+gZiZ/w+ZvEkTYLg2ef0epgkvuwpJvTMX
-         s3iBRDxK4RjDsqWn+hMiv1blBBdHqVAA+JrgsOq2VlNnIAzEi0QzFzln0/8+Fc1Fj3hS
-         yUug==
+        id S1726021AbgGTWZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jul 2020 18:25:09 -0400
+Received: from mail-il1-f196.google.com ([209.85.166.196]:36588 "EHLO
+        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726061AbgGTWZF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 18:25:05 -0400
+Received: by mail-il1-f196.google.com with SMTP id x9so14729042ila.3;
+        Mon, 20 Jul 2020 15:25:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=SD6pCvrvSmO2DCp4Ax7aixATHBTxpI+s2rfIo5Cd1Tk=;
-        b=QFP5ndx4dCFD/NeZyWr/1SJeEVAhkkeEKRjF7FeKVPYja3NTbzReiqbIG8q5CB7ldj
-         ckaqghWSYRPMx/VvcWW0QRdYjn4Bw/hjNce/m4r2b2yBRccH/kobmChqTtRuULnt44eh
-         ZmsKKUbEcjqwqf+HtAVevqjb1CSVYGF346tmRWYHxMG40uYmnfO0wkLmnIzw//nXAAth
-         OdtNNW/bo/GgxtHePzhOpbSjY6TTio0p2cRWWTd3Tn51ATPv/6jrSEy0hRGPc+vX10XH
-         85qbUUXvE0gWKHoT9xkpgq5vgNq339TKcU83Kmft2vHjHywbc/rGUC8n54d6uX08G9xU
-         62KQ==
-X-Gm-Message-State: AOAM530XTwUi7PD0QrUggExr6CagwTzl/SYaZXrCFRhpgt/ZB3Nz/u8M
-        ac8J0Z0cHq9hPTPKElAK68UWIw==
-X-Google-Smtp-Source: ABdhPJzLjqSEGicKLBeM9jtOFSaC7vzuE8tYOjIYpQxTfgGZI4nBdbBv1nDffuj/z+Q+IdN56GIk7A==
-X-Received: by 2002:a1c:bb44:: with SMTP id l65mr1283114wmf.51.1595283877622;
-        Mon, 20 Jul 2020 15:24:37 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id v9sm36819684wri.3.2020.07.20.15.24.36
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MZqPehWuAaKZ1kDIiDAtIDxeI9fYnQ6uKzjYm+bg3hw=;
+        b=l74HM/QEIyMume9MYOGL+Y2z/FpKO5mNYjLxU543TVaJxNc1xBJ42YvkAIISSKnsEa
+         BDpZUGL1ddvRTET/lKwYmmBZh9ZzLdLAnj0F1QC8Hdw0iKqeMj0kuUftRM0h1UTJEHiT
+         T38wgfr7vRM3mFCQXPGGIwvGk3D3OptoSbNVorfCByFGrsEr5D8H1nd48LA4t1wN7//d
+         04EQfb9/DkkvgMwzhOAw0Vx2wfE1EqRlDEU2byM43dBDaa4XJXpCn6HCFI6KmDQfo6hJ
+         M7t49+PCrBVsXg0zWnK8MWer9TVHLN993BEGVbNbggCjliAQ9XLYu9YtmDFKklBBxN6y
+         8YfQ==
+X-Gm-Message-State: AOAM533J6fkqwJJcHqhzt2Ny74kVvpzTFnsADYeC8zBZjY4Qfw2YDJnB
+        ZXEe75K0vSEZmCWB+LrlpQ==
+X-Google-Smtp-Source: ABdhPJwB+CzpX9Dgd3C5ILBklMR8r62BD85LbwTOjFwD1kOkV+ZDYDVOCXLvY4fVyBJrJ9WY0ZIYUA==
+X-Received: by 2002:a92:8552:: with SMTP id f79mr25548228ilh.225.1595283904930;
+        Mon, 20 Jul 2020 15:25:04 -0700 (PDT)
+Received: from xps15 ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id u9sm10033330iom.14.2020.07.20.15.25.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jul 2020 15:24:36 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Christian Hewitt <christianshewitt@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: Re: [PATCH] arm64: dts: meson: fix mmc0 tuning error on Khadas VIM3
-In-Reply-To: <20200718054040.3996-1-christianshewitt@gmail.com>
-References: <20200718054040.3996-1-christianshewitt@gmail.com>
-Date:   Mon, 20 Jul 2020 15:24:34 -0700
-Message-ID: <7ha6ztakpp.fsf@baylibre.com>
+        Mon, 20 Jul 2020 15:25:04 -0700 (PDT)
+Received: (nullmailer pid 3060507 invoked by uid 1000);
+        Mon, 20 Jul 2020 22:25:03 -0000
+Date:   Mon, 20 Jul 2020 16:25:03 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Eddie James <eajames@linux.ibm.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dmurphy@ti.com, jacek.anaszewski@gmail.com, vishwa@linux.ibm.com
+Subject: Re: [PATCH 1/2] dt-bindings: leds: pca955x: Add IBM implementation
+ compatible string
+Message-ID: <20200720222503.GA3058862@bogus>
+References: <20200709201220.13736-1-eajames@linux.ibm.com>
+ <20200709201220.13736-2-eajames@linux.ibm.com>
+ <20200711134814.GB6407@amd>
+ <ad50a2a7-0b06-420e-baa7-dec2787ab30d@linux.ibm.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ad50a2a7-0b06-420e-baa7-dec2787ab30d@linux.ibm.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Christian Hewitt <christianshewitt@gmail.com> writes:
+On Mon, Jul 13, 2020 at 09:28:32AM -0500, Eddie James wrote:
+> 
+> On 7/11/20 8:48 AM, Pavel Machek wrote:
+> > Hi!
+> > 
+> > > IBM created an implementation of the PCA9552 on a PIC16F
+> > > microcontroller. Document the new compatible string for this device.
+> > Is the implementation opensource?
+> 
+> 
+> Hi, no it is not.
+> 
+> 
+> > 
+> > > Signed-off-by: Eddie James <eajames@linux.ibm.com>
+> > > +++ b/Documentation/devicetree/bindings/leds/leds-pca955x.txt
+> > > @@ -9,6 +9,7 @@ Required properties:
+> > >   	"nxp,pca9550"
+> > >   	"nxp,pca9551"
+> > >   	"nxp,pca9552"
+> > > +	"nxp,pca9552-ibm"
+> > >   	"nxp,pca9553"
+> > Is it good idea to use nxp prefix for something that is
+> > software-defined and not built by nxp?
+> 
+> 
+> Yea I suppose not...
+> 
+> > 
+> > Would ibm,pca9552 be better, or maybe even sw,pca9552 to indicate that
+> > is not real hardware, but software emulation?
+> 
+> 
+> How about ibm,pca9552-sw? Someone suggested that just adding "sw" could be a
+> problem if another company does the same thing but it isn't compatible.
 
-> Similar to other G12B devices using the W400 dtsi, I see reports of mmc0
-> tuning errors on VIM3 after a few hours uptime:
->
-> [12483.917391] mmc0: tuning execution failed: -5
-> [30535.551221] mmc0: tuning execution failed: -5
-> [35359.953671] mmc0: tuning execution failed: -5
-> [35561.875332] mmc0: tuning execution failed: -5
-> [61733.348709] mmc0: tuning execution failed: -5
->
-> I do not see the same on VIM3L, so remove sd-uhs-sdr50 from the common dtsi
-> to silence the error, then (re)add it to the VIM3L dts.
->
-> Signed-off-by: Chrisitan Hewitt <christianshewitt@gmail.com>
+ibm,pca9552 is good.
 
-Fixes?
-
-Kevin
+Rob
