@@ -2,101 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C83E226B6E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 18:43:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4901F226A48
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jul 2020 18:36:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729793AbgGTPp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jul 2020 11:45:57 -0400
-Received: from crapouillou.net ([89.234.176.41]:53584 "EHLO crapouillou.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730587AbgGTPp5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Jul 2020 11:45:57 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1595259953; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:references; bh=MYfSK0uCqzVeDm3Bgtm0aTqhsB8rtuNFCVEW421QRKw=;
-        b=ViLLZSgTdkS7MmHwzrvODyCaxPA9gXgb9Yz0MAjOzBpVUXU4ZKq6EVhy8BNdiZi4i6xLLv
-        4B+faPF+EAaMOHMiUqIOrceGjTMtUW/VDLNE0dwb2Dd/69Pyy+0B7rJEck3sd1AGdcYzgu
-        FkfhtUUlHZ3wQ/VkHhHA22M0j+8S1Jw=
-From:   Paul Cercueil <paul@crapouillou.net>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     od@zcrc.me, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Paul Cercueil <paul@crapouillou.net>
-Subject: [PATCH v2] dt-bindings: ingenic,pinctrl: Support pinmux/pinconf nodes
-Date:   Mon, 20 Jul 2020 17:45:48 +0200
-Message-Id: <20200720154548.12453-1-paul@crapouillou.net>
+        id S2388883AbgGTQci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jul 2020 12:32:38 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:35245 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731808AbgGTQch (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jul 2020 12:32:37 -0400
+Received: by mail-io1-f65.google.com with SMTP id v8so18270263iox.2;
+        Mon, 20 Jul 2020 09:32:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=yQyvs1jRHaG4iCDzDf8+qWStV4fhrEVZDcK1+1MvdZw=;
+        b=ffUUXhgl8xxspbPMTooZU2d7B4r17cpo6A9CTfFnq94BrfIi7vzstq7va/c0S0uB0t
+         NpL1p1+Q1Uo5xCCennh53Fmaq0mSuyIKepPP8quROzY9M5H2WBIWk++QmOeenBTVJqX3
+         kcN5Wtd0dnngvGKYzNxAOfhfRqfRcvQrIovgua9EiDDPyr1j4vruW30DKOM4y+ciOHv+
+         PXOZs7POL9n0wn58lq2bMVe271C6lcYjFyN+Eg02Bc7S+hydD04L/erqwMzFc9sfHrJe
+         ME6zOx7QU0hC1n1kW8aAWC+e+kSwV2KCw4JYKz8nH1AbXe+EIQKIdEk6/rqdct49UdKb
+         L0Ig==
+X-Gm-Message-State: AOAM532sQLGgyDuAqJ9XC3BIEIJWmftyzpD0QphuciiXNcnzPEfsrdr4
+        Bto2SuhgozTvGLdMc5N/dG5F+dJQgw==
+X-Google-Smtp-Source: ABdhPJwknigBOGgNYAdUjh4u6rS8PisVTTSLhhXo4Mpm0o84omeZS5Hi+Wkk+jC2ZNgZWLbPh0RBwg==
+X-Received: by 2002:a5d:964b:: with SMTP id d11mr6997577ios.30.1595262756173;
+        Mon, 20 Jul 2020 09:32:36 -0700 (PDT)
+Received: from xps15 ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id v7sm563525iol.53.2020.07.20.09.32.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Jul 2020 09:32:35 -0700 (PDT)
+Received: (nullmailer pid 2625208 invoked by uid 1000);
+        Mon, 20 Jul 2020 16:32:34 -0000
+Date:   Mon, 20 Jul 2020 10:32:34 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jacopo Mondi <jacopo+renesas@jmondi.org>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-media@vger.kernel.org,
+        laurent.pinchart@ideasonboard.com, slongerbeam@gmail.com
+Subject: Re: [PATCH 01/13] dt-bindings: media: ov5640: Convert to json-schema
+Message-ID: <20200720163234.GA2624150@bogus>
+References: <20200717132859.237120-1-jacopo+renesas@jmondi.org>
+ <20200717132859.237120-2-jacopo+renesas@jmondi.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200717132859.237120-2-jacopo+renesas@jmondi.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add YAML to describe the pinmux/pinconf sub-nodes of the pinctrl IP on
-Ingenic SoCs.
+On Fri, 17 Jul 2020 15:28:47 +0200, Jacopo Mondi wrote:
+> Convert the ov5640 bindings document to json-schema.
+> 
+> This commit ports the existing bindings, clean up patches
+> will follow.
+> 
+> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> ---
+>  .../devicetree/bindings/media/i2c/ov5640.txt  |  92 ---------
+>  .../devicetree/bindings/media/i2c/ov5640.yaml | 181 ++++++++++++++++++
+>  2 files changed, 181 insertions(+), 92 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5640.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov5640.yaml
+> 
 
-Signed-off-by: Paul Cercueil <paul@crapouillou.net>
----
 
-Notes:
-    v2: Rebased on top of pinctrl/devel
+My bot found errors running 'make dt_binding_check' on your patch:
 
- .../bindings/pinctrl/ingenic,pinctrl.yaml     | 40 +++++++++++++++++++
- 1 file changed, 40 insertions(+)
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/ti,cal.example.dt.yaml: camera-sensor@3c: 'DOVDD-supply' is a required property
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/ti,cal.example.dt.yaml: camera-sensor@3c: 'AVDD-supply' is a required property
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/ti,cal.example.dt.yaml: camera-sensor@3c: 'DVDD-supply' is a required property
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/ingenic,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/ingenic,pinctrl.yaml
-index 5be2b1e95b36..18163fb69ce7 100644
---- a/Documentation/devicetree/bindings/pinctrl/ingenic,pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/ingenic,pinctrl.yaml
-@@ -110,6 +110,46 @@ required:
-   - "#address-cells"
-   - "#size-cells"
- 
-+additionalProperties:
-+  anyOf:
-+    - type: object
-+      allOf:
-+        - $ref: pincfg-node.yaml#
-+        - $ref: pinmux-node.yaml#
-+
-+      properties:
-+        phandle: true
-+        function: true
-+        groups: true
-+        pins: true
-+        bias-disable: true
-+        bias-pull-up: true
-+        bias-pull-down: true
-+        output-low: true
-+        output-high: true
-+      additionalProperties: false
-+
-+    - type: object
-+      properties:
-+        phandle: true
-+      additionalProperties:
-+        type: object
-+        allOf:
-+          - $ref: pincfg-node.yaml#
-+          - $ref: pinmux-node.yaml#
-+
-+        properties:
-+          phandle: true
-+          function: true
-+          groups: true
-+          pins: true
-+          bias-disable: true
-+          bias-pull-up: true
-+          bias-pull-down: true
-+          output-low: true
-+          output-high: true
-+        additionalProperties: false
-+
- examples:
-   - |
-     pin-controller@10010000 {
--- 
-2.27.0
+
+See https://patchwork.ozlabs.org/patch/1331124
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
 
