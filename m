@@ -2,90 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37AE8228A75
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 23:15:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89321228B77
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 23:36:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730640AbgGUVO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jul 2020 17:14:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32942 "EHLO
+        id S1731046AbgGUVgH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jul 2020 17:36:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731135AbgGUVOv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jul 2020 17:14:51 -0400
+        with ESMTP id S1731174AbgGUVgH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jul 2020 17:36:07 -0400
 Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C4F5C0619DB
-        for <devicetree@vger.kernel.org>; Tue, 21 Jul 2020 14:14:51 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id k5so40410pjg.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Jul 2020 14:14:51 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 224E0C0619DD
+        for <devicetree@vger.kernel.org>; Tue, 21 Jul 2020 14:36:07 -0700 (PDT)
+Received: by mail-pj1-x1044.google.com with SMTP id k71so69032pje.0
+        for <devicetree@vger.kernel.org>; Tue, 21 Jul 2020 14:36:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=8Wwp/nTJzsUvhisUQ9+vaJpMJ0iH/g8jv6QNXb3X5ww=;
-        b=R46YDFvsp892X1mA7UDmA3obkdoXFygn2SPRBg1p9ocvU8u0SvQaYmqpvYBXPRYiKU
-         5+oz5AUctzTlpODshc8BvvGMEMSDeK5pEj6ZMB1D9fMQJEyMYhAR+DsyA1aNCtvRSIw6
-         erNog0J6vUpi1vJN+bhGmlH+vJVn55lRxbVhxQmQN7jOF29tA9EEuYrg0UOnTWGqBH2H
-         2HiBKtQiYtZI+SqoH7ikzMGaSA0XyGDFrBqO6LAeqme2Yn1INMnwWEhCzqfcl2u6iWiu
-         CTd6FICWjWbzpHAlp3gBKmAYl6XAaNA6wAllYMnHTZSWElLDFQAVYOfO7XPPq8D4brqb
-         BiEQ==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=QnFBaTSg1O0oHUaCso2bk1qAOV9FQ15i24q2Wj9c11M=;
+        b=YOUL4cnKo2x3TaJ+BAr/95ETT6x9gObK2WQYwFGJgK/9RUBdjb9MfbaMiHffHRHyKC
+         LGPxmxmDr3JtJgytD9mZPSCsbbH8QO2j0gNH8SXz+CGy6SykntBW6W3e46GhrYKLD/as
+         8vk+cPDlyjlX5x6BntZR1v6ykrBCcA+fBZIkA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=8Wwp/nTJzsUvhisUQ9+vaJpMJ0iH/g8jv6QNXb3X5ww=;
-        b=lE7LY4CJotaz3zpHKbT/d0fJ4vKUYFFDiH87O8T3qyDCnmMmF+R3H+UaU8/2AxhENA
-         54qZZyvxQkNUeesA/nkUu5N9CMYuKphrBkBi9Ambb01Q3Ku3M7tagUJaFK25GSQZO6QC
-         cAVtKiQ8/HrgmHQehrCYb05DG8g5eVHS19Ie88H+i07UqWihjraO5WiDAbxuIlKpnlux
-         Kh3MkwM1GwyQS7uw6kdNIJTBw3PzHo/kZ3XOVVyINNDSMgxvTtmIowkqdGbLmI0Qrexj
-         T/zvsnlMSapd+2zg0lYvtJsYoI2AFbpg42RsOqsF93MKQsMOOxClE+E3ghJRm8ZocdYd
-         koCA==
-X-Gm-Message-State: AOAM531A8OtQUCYFe+Da5U78XzXJeAeo6NOhkt9AV0fH0MUcEChVgDgJ
-        ohz5xtlMfM+l6ngGhTA/hdrPsw==
-X-Google-Smtp-Source: ABdhPJzyJvqDGRK1A9FroF7bWZIj9yO99S+GpeI/v/ztl4Hj14ZjS1n14DHIrndS7G5OAKQTZkXClw==
-X-Received: by 2002:a17:902:bd8a:: with SMTP id q10mr24858111pls.236.1595366090725;
-        Tue, 21 Jul 2020 14:14:50 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id i196sm18903141pgc.55.2020.07.21.14.14.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jul 2020 14:14:50 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Christian Hewitt <christianshewitt@gmail.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=QnFBaTSg1O0oHUaCso2bk1qAOV9FQ15i24q2Wj9c11M=;
+        b=WZ+nbjj7U0ts//H4mG7+ugesegB/adEsbQNt4DFlyfr9eznPF9GBC7iIOUbWKGVbDm
+         DnZYpIYFVOxg88nKu8+tQTi0MLsXXXJOoBn8Nkajo9sCVViLQywwFGuPEBKdTAsPT1Us
+         KZOJLGO6b6asMNFXgRXKN78lbLSvPs6wuJVPy72SySMeVuzYHjWM7ym8kZVwblKmgC/W
+         YyN+rj9t2NIX3gAutxm1+1sDJ1wLYFt6OooRz2lzIVEf/PSxzvFVK39VV4DIVRPq+3jy
+         SbQi6l/Vywx/yi+S0GxXUBxWx+jBcR/SmKdRekBuaJk3Gs9SDX1JhvyDDjeZPUNQMFjC
+         zCDQ==
+X-Gm-Message-State: AOAM533TN4UiJTOZhjEHIeFfT9Zga6zd1D2DonbedTayHPYFfbryZDpE
+        LJjlWE5FK+cdZLGavPn1ptKPkw==
+X-Google-Smtp-Source: ABdhPJwTp73CGx2NZOG1F3slWn6h4XRPSmBMoPPr4bTFkCrHZLbZxCeKsBovc096clKCXXQIzGNjEA==
+X-Received: by 2002:a17:902:7c8b:: with SMTP id y11mr10339693pll.142.1595367366620;
+        Tue, 21 Jul 2020 14:36:06 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id b4sm21711441pfo.137.2020.07.21.14.36.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Jul 2020 14:36:05 -0700 (PDT)
+Date:   Tue, 21 Jul 2020 14:36:04 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Sandeep Maheswaram <sanm@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 0/2] arm64: dts: meson: add support for WeTek Core 2
-Date:   Tue, 21 Jul 2020 14:14:45 -0700
-Message-Id: <159536607960.30777.1598266947126340920.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200719021421.7959-1-christianshewitt@gmail.com>
-References: <20200719021421.7959-1-christianshewitt@gmail.com>
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manu Gautam <mgautam@codeaurora.org>
+Subject: Re: [PATCH v2 1/3] usb: dwc3: core: Host wake up support from system
+ suspend
+Message-ID: <20200721213604.GW3191083@google.com>
+References: <1594235417-23066-1-git-send-email-sanm@codeaurora.org>
+ <1594235417-23066-2-git-send-email-sanm@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1594235417-23066-2-git-send-email-sanm@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 19 Jul 2020 02:14:19 +0000, Christian Hewitt wrote:
-> This series adds support for the WeTek Core 2 which is a commercial box
-> device based on the Amlogic Q200 reference design.
-> 
-> v3 changes - fix BT node (enable-gpios > shutdown-gpios)
-> v2 changes - simplify ethernet disable
-> 
-> Christian Hewitt (2):
->   dt-bindings: arm: amlogic: add support for the WeTek Core 2
->   arm64: dts: meson: add support for the WeTek Core 2
-> 
-> [...]
+Hi Sandeep,
 
-Applied, thanks!
+On Thu, Jul 09, 2020 at 12:40:15AM +0530, Sandeep Maheswaram wrote:
+> Avoiding phy powerdown in host mode so that it can be wake up by devices.
+> Added need_phy_for_wakeup flag to distinugush resume path and hs_phy_flags
+> to check connection status and set phy mode and  configure interrupts.
+> 
+> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
+> ---
+>  drivers/usb/dwc3/core.c | 47 ++++++++++++++++++++++++++++++++++++++++-------
+>  drivers/usb/dwc3/core.h |  2 ++
+>  2 files changed, 42 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> index 25c686a7..eb7c225 100644
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -31,12 +31,14 @@
+>  #include <linux/usb/gadget.h>
+>  #include <linux/usb/of.h>
+>  #include <linux/usb/otg.h>
+> +#include <linux/usb/hcd.h>
+>  
+>  #include "core.h"
+>  #include "gadget.h"
+>  #include "io.h"
+>  
+>  #include "debug.h"
+> +#include "../host/xhci.h"
+>  
+>  #define DWC3_DEFAULT_AUTOSUSPEND_DELAY	5000 /* ms */
+>  
+> @@ -1627,10 +1629,36 @@ static int dwc3_core_init_for_resume(struct dwc3 *dwc)
+>  	return ret;
+>  }
+>  
+> +static void dwc3_set_phy_speed_flags(struct dwc3 *dwc)
+> +{
+> +
+> +	int i, num_ports;
+> +	u32 reg;
+> +	struct usb_hcd	*hcd = platform_get_drvdata(dwc->xhci);
+> +	struct xhci_hcd	*xhci_hcd = hcd_to_xhci(hcd);
+> +
+> +	dwc->hs_phy_flags &= ~(PHY_MODE_USB_HOST_HS | PHY_MODE_USB_HOST_LS);
 
-[1/2] dt-bindings: arm: amlogic: add support for the WeTek Core 2
-      commit: 8b6f53d7b94b8d23860ae44a56b0af404a6c7e4c
-[2/2] arm64: dts: meson: add support for the WeTek Core 2
-      commit: ea232b9ccccf2f55fe231441f3908c31c7136c4f
+Where is hs_phy_flags initialized? As far as I can tell it isn't, hence when
+dwc3_set_phy_speed_flags() is executed the first time it is 0 (from
+devm_kzalloc()), and after the '&=' it is still 0. The next time it will have
+whatever value it was set to in the below loop, which is then cleared by
+the '&='. It seems you could as well just write 'dwc->hs_phy_flags = 0',
+which is clearer, unless the field is used in some other way that isn't
+obvious to me.
 
-Best regards,
--- 
-Kevin Hilman <khilman@baylibre.com>
+> +
+> +	reg = readl(&xhci_hcd->cap_regs->hcs_params1);
+> +
+> +	num_ports = HCS_MAX_PORTS(reg);
+> +	for (i = 0; i < num_ports; i++) {
+> +		reg = readl(&xhci_hcd->op_regs->port_status_base + i * 0x04);
+> +		if (reg & PORT_PE) {
+> +			if (DEV_HIGHSPEED(reg) || DEV_FULLSPEED(reg))
+> +				dwc->hs_phy_flags |= PHY_MODE_USB_HOST_HS;
+> +			else if (DEV_LOWSPEED(reg))
+> +				dwc->hs_phy_flags |= PHY_MODE_USB_HOST_LS;
+
+Is another entry for DEV_SUPERSPEED needed?
+
+> +		}
+> +	}
+> +	phy_set_mode(dwc->usb2_generic_phy, dwc->hs_phy_flags);
+> +}
+> +
+>  static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
+>  {
+>  	unsigned long	flags;
+>  	u32 reg;
+> +	struct usb_hcd  *hcd = platform_get_drvdata(dwc->xhci);
+>  
+>  	switch (dwc->current_dr_role) {
+>  	case DWC3_GCTL_PRTCAP_DEVICE:
+> @@ -1643,9 +1671,12 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
+>  		dwc3_core_exit(dwc);
+>  		break;
+>  	case DWC3_GCTL_PRTCAP_HOST:
+> +		dwc3_set_phy_speed_flags(dwc);
+>  		if (!PMSG_IS_AUTO(msg)) {
+> -			dwc3_core_exit(dwc);
+> -			break;
+> +			if (usb_wakeup_enabled_descendants(hcd->self.root_hub))
+> +				dwc->need_phy_for_wakeup = true;
+> +			else
+> +				dwc->need_phy_for_wakeup = false;
+>  		}
+>  
+>  		/* Let controller to suspend HSPHY before PHY driver suspends */
+> @@ -1705,11 +1736,13 @@ static int dwc3_resume_common(struct dwc3 *dwc, pm_message_t msg)
+>  		break;
+>  	case DWC3_GCTL_PRTCAP_HOST:
+>  		if (!PMSG_IS_AUTO(msg)) {
+> -			ret = dwc3_core_init_for_resume(dwc);
+> -			if (ret)
+> -				return ret;
+> -			dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_HOST);
+> -			break;
+> +			if (!dwc->need_phy_for_wakeup) {
+> +				ret = dwc3_core_init_for_resume(dwc);
+
+Before this patch we had the combo dwc3_core_exit() / dwc3_core_init_for_resume(),
+now it is only dwc3_core_init_for_resume() for !dwc->need_phy_for_wakeup.
+Doesn't this cause trouble with enable counts, e.g. with clk_bulk_prepare_enable()
+being called in dwc3_core_init_for_resume(), without the corresponding
+clk_bulk_disable_unprepare() calls in dwc3_core_exit()?
