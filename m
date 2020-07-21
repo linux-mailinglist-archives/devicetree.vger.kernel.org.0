@@ -2,101 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BD5422828E
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 16:44:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D6D122829A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 16:47:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729896AbgGUOoH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jul 2020 10:44:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56606 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729871AbgGUOoH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jul 2020 10:44:07 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A14CBC061794;
-        Tue, 21 Jul 2020 07:44:06 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id q5so21461820wru.6;
-        Tue, 21 Jul 2020 07:44:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=/f+3CAnVUu/WjuKg7piRBh88qTkT5e7hVX0fEyS5bwY=;
-        b=Ms7mwOupgucNKvHjaO51nVyunwKt6+TL6btD/qMIECU2mqYJHJGKfg0XiRiLB7OpCJ
-         io2x9OLHnMKcDRuYwpIFmGJUw9nx+4eIGRX1JD1S5w8M1Wrhi30qUR+SWaQj1hWwOdbx
-         rWzX12fpHhEHXa1DqPgEJal92k2p3qDfkbYvoUnQxIWle+DzQ0xhcAwa8jCEpHjFxIYC
-         uYcKJKepMIlbAx0dF6m8BO6vmQ3hY9qnFwuY1M65G/4vLNk+pdyOC5TLRQeIBRkfGquB
-         45o9VO43PPPeC0ELIrcBPy72cH2PtBh1xBrARSHHxwWlIfoo/AebnNF61SHg7Bt6Q/k5
-         bCUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=/f+3CAnVUu/WjuKg7piRBh88qTkT5e7hVX0fEyS5bwY=;
-        b=PFzv/1GssZdM+YH4gk1vlf1FYZ/KLT07U7xTMe9wyMZIdmWzN15kG2S6ruZWtTeK1q
-         dNRT2hLhkSAfG0ZUgvwWqr2uKcfCcDttYT0VXREFfkzj3gV1K5YFt6adEhQo1igAMvRe
-         XwWfWEDxT6+DtcyBZtozl+0aA3JS53YkVyc/A4TBEePzkT3aTY7ooS41U0PrUSZ8onWF
-         AzSOJfPJnTD8P0+gRhalSJrOKgxhzvbWMzoJT5rKgM+36WpLSKM73EhQocByiJlmwGfJ
-         AlTkq84itPAd7xr8ywF5MmzIslpP1yxmN2OuVOZDT2Vh0FnpCaXyL1fIhfRNnybTQj6a
-         e0GQ==
-X-Gm-Message-State: AOAM532cRKpDZBnx6AlnenycowcJT6aVg/8TknssdS5jHSA2EVT1BR8h
-        jruV8BwcoSHt4TH4zlMXkF2LZy/O
-X-Google-Smtp-Source: ABdhPJzB0wLvFkFof5pNtZA4xFonrctQrhfecc9Jb5K8Cw2fhCvUQR6jldysZfVCTluswm8bqGFpWA==
-X-Received: by 2002:adf:a15c:: with SMTP id r28mr7590524wrr.151.1595342645103;
-        Tue, 21 Jul 2020 07:44:05 -0700 (PDT)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.231.250])
-        by smtp.gmail.com with ESMTPSA id y6sm38043116wrr.74.2020.07.21.07.44.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jul 2020 07:44:04 -0700 (PDT)
-From:   Al Cooper <alcooperx@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Al Cooper <alcooperx@gmail.com>, devicetree@vger.kernel.org,
-        Felipe Balbi <balbi@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-usb@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Sasi Kumar <sasi.kumar@broadcom.com>
-Subject: [PATCH v2 7/7] usb: bdc: Use devm_clk_get_optional()
-Date:   Tue, 21 Jul 2020 10:43:26 -0400
-Message-Id: <20200721144326.7976-8-alcooperx@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200721144326.7976-1-alcooperx@gmail.com>
-References: <20200721144326.7976-1-alcooperx@gmail.com>
+        id S1726710AbgGUOrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jul 2020 10:47:03 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:60848 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728127AbgGUOrC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jul 2020 10:47:02 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06LEkkHL029060;
+        Tue, 21 Jul 2020 09:46:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1595342806;
+        bh=zXcjraNdieCat5ZM86lkn+6Gv+qgiFtvCPdxqpheW60=;
+        h=Subject:To:References:From:Date:In-Reply-To;
+        b=vWqVu2XR7OHXKWU2VjCmuyD6LeJezdVgH93He3QzJaYmwqaOTV6rHkemi8luf4oTQ
+         LXJ4fPMSi3+9E1x0RE6WyJ1R0RJgOeTqeFLkyhBa7vr1f2m6IocNNvu3+sg1cfSLgA
+         bfdGRZJca5VUUHzp0sP238KQyrm3foeSEnIqHgoA=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06LEkjRx113908
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 21 Jul 2020 09:46:45 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 21
+ Jul 2020 09:46:45 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 21 Jul 2020 09:46:45 -0500
+Received: from [10.24.69.198] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06LEkg6d006260;
+        Tue, 21 Jul 2020 09:46:43 -0500
+Subject: Re: [PATCH for v5.9] ARM: mach-davinci: Replace HTTP links with HTTPS
+ ones
+To:     "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        <bgolaszewski@baylibre.com>, <robh+dt@kernel.org>,
+        <linux@armlinux.org.uk>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20200719102020.57779-1-grandmaster@al2klimov.de>
+From:   Sekhar Nori <nsekhar@ti.com>
+Message-ID: <10638fa7-6150-0960-9153-fd3a51debac3@ti.com>
+Date:   Tue, 21 Jul 2020 20:16:42 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+MIME-Version: 1.0
+In-Reply-To: <20200719102020.57779-1-grandmaster@al2klimov.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Florian Fainelli <f.fainelli@gmail.com>
+On 7/19/20 3:50 PM, Alexander A. Klimov wrote:
+> Rationale:
+> Reduces attack surface on kernel devs opening the links for MITM
+> as HTTPS traffic is much harder to manipulate.
+> 
+> Deterministic algorithm:
+> For each file:
+>   If not .svg:
+>     For each line:
+>       If doesn't contain `\bxmlns\b`:
+>         For each link, `\bhttp://[^# \t\r\n]*(?:\w|/)`:
+> 	  If neither `\bgnu\.org/license`, nor `\bmozilla\.org/MPL\b`:
+>             If both the HTTP and HTTPS versions
+>             return 200 OK and serve the same content:
+>               Replace HTTP with HTTPS.
+> 
+> Signed-off-by: Alexander A. Klimov <grandmaster@al2klimov.de>
 
-The BDC clock is optional and we may get an -EPROBE_DEFER error code
-which would not be propagated correctly, fix this by using
-devm_clk_get_optional().
+> diff --git a/arch/arm/boot/dts/da850-evm.dts b/arch/arm/boot/dts/da850-evm.dts
+> index f2e7609e5346..87c517d65f62 100644
+> --- a/arch/arm/boot/dts/da850-evm.dts
+> +++ b/arch/arm/boot/dts/da850-evm.dts
+> @@ -2,7 +2,7 @@
+>  /*
+>   * Device Tree for DA850 EVM board
+>   *
+> - * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
+> + * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
+>   */
+>  /dts-v1/;
+>  #include "da850.dtsi"
+> diff --git a/arch/arm/mach-davinci/Kconfig b/arch/arm/mach-davinci/Kconfig
+> index d028d38a44bf..5b0125f1265c 100644
+> --- a/arch/arm/mach-davinci/Kconfig
+> +++ b/arch/arm/mach-davinci/Kconfig
+> @@ -201,7 +201,7 @@ config MACH_MITYOMAPL138
+>  	help
+>  	  Say Y here to select the Critical Link MityDSP-L138/MityARM-1808
+>  	  System on Module.  Information on this SoM may be found at
+> -	  http://www.mitydsp.com
+> +	  https://www.mitydsp.com
+>  
+>  config MACH_OMAPL138_HAWKBOARD
+>  	bool "TI AM1808 / OMAPL-138 Hawkboard platform"
+> @@ -209,7 +209,7 @@ config MACH_OMAPL138_HAWKBOARD
+>  	help
+>  	  Say Y here to select the TI AM1808 / OMAPL-138 Hawkboard platform .
+>  	  Information of this board may be found at
+> -	  http://www.hawkboard.org/
+> +	  https://www.hawkboard.org/
 
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
-Signed-off-by: Al Cooper <alcooperx@gmail.com>
----
- drivers/usb/gadget/udc/bdc/bdc_core.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+This now redirects to something irrelevant. So, dropped the URL
+altogether. Also, we use prefix "ARM: davinci: " in subject line.
 
-diff --git a/drivers/usb/gadget/udc/bdc/bdc_core.c b/drivers/usb/gadget/udc/bdc/bdc_core.c
-index c1650247ea39..f6e4026618e8 100644
---- a/drivers/usb/gadget/udc/bdc/bdc_core.c
-+++ b/drivers/usb/gadget/udc/bdc/bdc_core.c
-@@ -497,11 +497,9 @@ static int bdc_probe(struct platform_device *pdev)
- 
- 	dev_dbg(dev, "%s()\n", __func__);
- 
--	clk = devm_clk_get(dev, "sw_usbd");
--	if (IS_ERR(clk)) {
--		dev_info(dev, "Clock not found in Device Tree\n");
--		clk = NULL;
--	}
-+	clk = devm_clk_get_optional(dev, "sw_usbd");
-+	if (IS_ERR(clk))
-+		return PTR_ERR(clk);
- 
- 	ret = clk_prepare_enable(clk);
- 	if (ret) {
--- 
-2.17.1
+I made those changes locally and committed the patch. Will try to send
+for v5.9, but its getting quite late.
 
+Thanks,
+Sekhar
