@@ -2,126 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECFD4227AA6
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 10:29:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46B61227AEC
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 10:40:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727048AbgGUI3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jul 2020 04:29:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54972 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728044AbgGUI3S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jul 2020 04:29:18 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06885C0619DA
-        for <devicetree@vger.kernel.org>; Tue, 21 Jul 2020 01:29:17 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id z2so20339193wrp.2
-        for <devicetree@vger.kernel.org>; Tue, 21 Jul 2020 01:29:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=BCc9lQHutdqUheCKRkROi161ZNJWwY3EPFExUcfdRiQ=;
-        b=nQZzuMkvsmF8UEWlQ2eMje2ox6IxIQnvVbZvACyM99WUCNYR4mar5iAsEGOMOc1+kZ
-         W47xjV3CaLmGqGyhv+1g8jpHCUH2OllbVfcJnsO2LuTUPFgblr8cB3VkvBPBU0eMoS8C
-         bDpo4AnqD9Ze142VKWzYhpOd238YloVY6mGh99Pj3KHwXg4yPC5MPHjeWWDd2+cLLFE7
-         VWXzcnWEMofCTSbJPcZGPf78ZW/wwbQR3UBjy0EiNgclwxf6YDw2IB5JTQ5l6nd72jFF
-         NzSBCKQA6U6T6hQYX5gxJm4mO0jp49pX79cI2b8LyY7hj/iq16n93wrUPjZMA62YVHHw
-         0F4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=BCc9lQHutdqUheCKRkROi161ZNJWwY3EPFExUcfdRiQ=;
-        b=oiPx4iMeK1bw6T4orjiECqS6U1LDlRZwPqOz3LaOX0ylsvIVMIzJ7iX+wPuqDjRSU8
-         TLlfHOrh0rmdxitZAJzFo70l4qdELaz0kTlD179lBOAqEoZ9UUWm+vflWPLCfWWCnoL4
-         q4D7X7Djunk3ytY1GFQ4bBZSPz7+kkg6a1m7INJxadWTQaXb9/3t/CZbaBYO3W/zy1nA
-         DQLd7IPWjXGQKt9VYuGtbhkM4stP5BIVCtZDoPgh3maRfD1cQphubwei2O+6OLbo43e4
-         2u6cJDLUlkbTC3BeJYFxwjfYPJtLjj13k8OhMG0vHsXf6KRXX3pC2TUgwIxiP9wkUlPZ
-         3vww==
-X-Gm-Message-State: AOAM530pJx+mPLNuUKzZNpjyFmtnMZ49XfdQ42AyHejZlxli5ixDhH/G
-        yzddrXqkt+34hAlxQAVcl5Jm9Q==
-X-Google-Smtp-Source: ABdhPJx7ILZH2KvjvBFVVZB5grxQumhwOHm/i3j36nylWvTrt1yjKSBvidlCH5i8FTEEGeIg8iA/PA==
-X-Received: by 2002:adf:fb06:: with SMTP id c6mr810292wrr.261.1595320156360;
-        Tue, 21 Jul 2020 01:29:16 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:3590:b402:869a:11fc? ([2a01:e34:ed2f:f020:3590:b402:869a:11fc])
-        by smtp.googlemail.com with ESMTPSA id d10sm36006628wrx.66.2020.07.21.01.29.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Jul 2020 01:29:15 -0700 (PDT)
-Subject: Re: [PATCH v2] dt-bindings: thermal: Get rid of thermal.txt and
- replace references
-To:     Amit Kucheria <amit.kucheria@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        lukasz.luba@arm.com, Sudeep Holla <sudeep.holla@arm.com>,
+        id S1728854AbgGUIka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jul 2020 04:40:30 -0400
+Received: from elvis.franken.de ([193.175.24.41]:44083 "EHLO elvis.franken.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726673AbgGUIk3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Jul 2020 04:40:29 -0400
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1jxnp2-0007dy-00; Tue, 21 Jul 2020 10:40:24 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id D2B5DC0880; Tue, 21 Jul 2020 10:30:08 +0200 (CEST)
+Date:   Tue, 21 Jul 2020 10:30:08 +0200
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
         "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Talel Shenhar <talel@amazon.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Marc Gonzalez <marc.w.gonzalez@free.fr>,
-        Mans Rullgard <mans@mansr.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Stefan Wahren <wahrenst@gmx.net>
-Cc:     Rob Herring <robh@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <e9aacd33071a00568b67e110fa3bcc4d86d3e1e4.1595245166.git.amit.kucheria@linaro.org>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <8c7f5c41-746b-f26d-7b3e-4152c17c4812@linaro.org>
-Date:   Tue, 21 Jul 2020 10:29:13 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>, James Hogan <jhogan@kernel.org>,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 0/6] mips: Add DT bindings for MIPS CDMM and MIPS GIC
+Message-ID: <20200721083008.GA9399@alpha.franken.de>
+References: <20200714125753.22466-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-In-Reply-To: <e9aacd33071a00568b67e110fa3bcc4d86d3e1e4.1595245166.git.amit.kucheria@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200714125753.22466-1-Sergey.Semin@baikalelectronics.ru>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2020 13:53, Amit Kucheria wrote:
-> Now that we have yaml bindings for the thermal subsystem, get rid of the
-> old bindings (thermal.txt).
+On Tue, Jul 14, 2020 at 03:57:46PM +0300, Serge Semin wrote:
+> Daniel, Rafael, Thomas (Gleixner), could you specifically take a look at
+> the last patch in this series? If you are ok with that, please explicitly
+> ack. We need at least one of your blessing to merge the series in, since
+> the code and DT-related patches here have been mostly reviewed. We've
+> missed the last merge window. It would be pity to miss the next one...
 > 
-> Replace all references to thermal.txt in the Documentation with a link
-> to the appropriate YAML bindings using the following search and replace
-> pattern:
->  - If the reference is specific to the thermal-sensor-cells property,
->  replace with a pointer to thermal-sensor.yaml
->  - If the reference is to the cooling-cells property, replace with a
->  pointer to thermal-cooling-devices.yaml
->  - If the reference is generic thermal bindings, replace with a
->  reference to thermal*.yaml.
+> Regarding this patchset origin. Recently I've submitted a series of
+> patchset's which provided multiple fixes for the MIPS arch subsystem and
+> the MIPS GIC and DW APB Timer drivers, which were required for the
+> Baikal-T1 SoC correctly working with those drivers. Mostly those patchsets
+> have been already merged into the corresponding subsystems, but several
+> patches have been left floating since noone really responded for review
+> except Rob provided his approval regarding DT bindings. Thus in this
+> patchset I've collected all the leftovers so not to loose them in a pale
+> of the maintainers email logs.
 > 
-> Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> The patchset includes the following updates: MIPS CPC and GIC DT bindings
+> legacy text-based file are converted to the DT schema (Rob has already
+> reviewed them), add MIPS CDMM DT node support to place the CDMM block at
+> the platform-specific MMIO range, make sure MIPS CDMM is available for
+> MIPS_R5 CPUs.
+> 
+> Seeing the series concerns the MIPS-related drivers it's better to merge
+> it in through the MIPS repository:
+> https://git.kernel.org/pub/scm/linux/kernel/git/mips/linux.git/
+> 
+> This patchset is rebased and tested on the mainline Linux kernel 5.7-rc4:
+> base-commit: 0e698dfa2822 ("Linux 5.7-rc4")
+> tag: v5.7-rc4
+> 
+> Suggestion.
+> Since Paul isn't looking after the MIPS arch code anymore, Ralf hasn't
+> been seen maintaining MIPS for a long time, Thomas is only responsible
+> for the next part of it:
+> 	F:      Documentation/devicetree/bindings/mips/
+> 	F:      Documentation/mips/
+> 	F:      arch/mips/
+> 	F:      drivers/platform/mips/
+> the MIPS-specific drivers like:
+> 	F:	drivers/bus/mips_cdmm.c
+> 	F:	drivers/irqchip/irq-mips-cpu.c
+> 	F:	drivers/irqchip/irq-mips-gic.c
+> 	F:	drivers/clocksource/mips-gic-timer.c
+> 	F:	drivers/cpuidle/cpuidle-cps.c
+> seem to be left for the subsystems maintainers to support. So if you don't
+> mind or unless there is a better alternative, I can help with looking
+> after them to ease the maintainers review burden and since I'll be working
+> on our MIPS-based SoC drivers integrating into the mainline kernel repo
+> anyway. Thomas agreed to join in maintaining that drivers.
+> 
+> Previous patchsets:
+> mips: Prepare MIPS-arch code for Baikal-T1 SoC support:
+> Link: https://lore.kernel.org/linux-mips/20200306124807.3596F80307C2@mail.baikalelectronics.ru
+> Link: https://lore.kernel.org/linux-mips/20200506174238.15385-1-Sergey.Semin@baikalelectronics.ru
+> Link: https://lore.kernel.org/linux-mips/20200521140725.29571-1-Sergey.Semin@baikalelectronics.ru
+> 
+> clocksource: Fix MIPS GIC and DW APB Timer for Baikal-T1 SoC support:
+> Link: https://lore.kernel.org/linux-rtc/20200324174325.14213-1-Sergey.Semin@baikalelectronics.ru
+> Link: https://lore.kernel.org/linux-rtc/20200506214107.25956-1-Sergey.Semin@baikalelectronics.ru
+> Link: https://lore.kernel.org/linux-rtc/20200521005321.12129-1-Sergey.Semin@baikalelectronics.ru
+> 
+> Changelog prev:
+> - Add yaml-based bindings file for MIPS CDMM dt-node.
+> - Convert mti,mips-cpc to DT schema.
+> - Use a shorter summary describing the bindings modification patches.
+> - Rearrange the SoBs with adding Alexey' co-development tag.
+> - Lowercase the hex numbers in the dt-bindings.
+> 
+> Changelog v2:
+> - Resend.
+> 
+> Link: https://lore.kernel.org/linux-mips/20200601122121.15809-1-Sergey.Semin@baikalelectronics.ru
+> Changelog v3:
+> - Keep F: MAINTAINERS section alphabetically ordered.
+> - Add Thomas as the co-maintainer of the MIPS CPU and GIC IRQchip, MIPS
+>   GIC timer and MIPS CPS CPUidle drivers.
+> 
+> Link: https://lore.kernel.org/linux-mips/20200602100921.1155-1-Sergey.Semin@baikalelectronics.ru
+> Changelog v4:
+> - Resend.
+> 
+> Link: https://lore.kernel.org/linux-mips/20200617223201.23259-1-Sergey.Semin@baikalelectronics.ru
+> Changelog v5:
+> - Consider address and size cells being <1> by default for the DT examples.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Cc: Jason Cooper <jason@lakedaemon.net>
+> Cc: Marc Zyngier <maz@kernel.org>
+> Cc: James Hogan <jhogan@kernel.org>
+> Cc: linux-mips@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> 
+> Serge Semin (6):
+>   dt-bindings: power: Convert mti,mips-cpc to DT schema
+>   dt-bindings: interrupt-controller: Convert mti,gic to DT schema
+>   dt-bindings: bus: Add MIPS CDMM controller
+>   mips: cdmm: Add mti,mips-cdmm dtb node support
+>   bus: cdmm: Add MIPS R5 arch support
+>   MAINTAINERS: Add maintainers for MIPS core drivers
+> 
+>  .../bindings/bus/mti,mips-cdmm.yaml           |  35 +++++
+>  .../interrupt-controller/mips-gic.txt         |  67 --------
+>  .../interrupt-controller/mti,gic.yaml         | 148 ++++++++++++++++++
+>  .../bindings/power/mti,mips-cpc.txt           |   8 -
+>  .../bindings/power/mti,mips-cpc.yaml          |  35 +++++
+>  MAINTAINERS                                   |  11 ++
+>  drivers/bus/Kconfig                           |   2 +-
+>  drivers/bus/mips_cdmm.c                       |  15 ++
+>  8 files changed, 245 insertions(+), 76 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/bus/mti,mips-cdmm.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/mips-gic.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/mti,gic.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/power/mti,mips-cpc.txt
+>  create mode 100644 Documentation/devicetree/bindings/power/mti,mips-cpc.yaml
 
-Applied, thanks
+series applied to mips-next.
 
+Thomas.
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
