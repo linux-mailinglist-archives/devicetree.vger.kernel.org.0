@@ -2,199 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD5C0227B66
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 11:09:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F2A0227B60
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 11:07:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728673AbgGUJJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jul 2020 05:09:33 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:43820 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725984AbgGUJJd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Jul 2020 05:09:33 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 06L96o3N027673;
-        Tue, 21 Jul 2020 11:09:24 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=3P6/CzI3nOMFBgAbJEh+SX9yJmO1KrFcTfM3aEnWuYw=;
- b=ozzmk79VdzsCLnZCUcx9GYPD52vFRITbbof6astgSHfxSf8gTuAmXiUuqy9W7sr+VLbB
- VuwC1+YIFSzLQ6lD8BGN6xiclI748KLvATyE5WFKWLwCOvA9vu2Y8YEpr/sSQVQ8wxyn
- wsrKJ6AsSsASzwmT8Fg8J3mXEbJ4x6l9Yg8/kX9Qn+/qTOz1R4fBNVGIdPqg+kmpJPo/
- PNOsBk9A773g60rmYIQ2oxdvwM6m/Wfp95oPOcaSXfBp6A7/Il908wNpSgDRZOC9T655
- uT6R3EVbXNENdb6PSFtHoMjAspspMVTjgx8QhWT5F8GLuWR/1LL3eqIXXFDXPVa9VttU CA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 32bsagw303-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 21 Jul 2020 11:09:24 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D6E2A100038;
-        Tue, 21 Jul 2020 11:09:23 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C10AB2A8D8F;
-        Tue, 21 Jul 2020 11:09:23 +0200 (CEST)
-Received: from lmecxl0912.lme.st.com (10.75.127.46) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Tue, 21 Jul
- 2020 11:09:23 +0200
-Subject: Re: [PATCH v2 2/2] ARM: dts: stm32: Enable MIPI DSI display support.
-To:     Adrian Pop <pop.adrian61@gmail.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20200702172714.158786-1-pop.adrian61@gmail.com>
- <20200702172714.158786-2-pop.adrian61@gmail.com>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <c9d8bfaa-9958-ad65-e59c-4f8a7ffdf208@st.com>
-Date:   Tue, 21 Jul 2020 11:09:22 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20200702172714.158786-2-pop.adrian61@gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-07-21_02:2020-07-21,2020-07-21 signatures=0
+        id S1728271AbgGUJHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jul 2020 05:07:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60876 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725984AbgGUJHp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jul 2020 05:07:45 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C62AFC061794
+        for <devicetree@vger.kernel.org>; Tue, 21 Jul 2020 02:07:44 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id a15so5468472wrh.10
+        for <devicetree@vger.kernel.org>; Tue, 21 Jul 2020 02:07:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=/OxVowHa1fzTS8gxpWxPISoWUyhArDmXgs2hoChHUPc=;
+        b=rA/559WyzqjkNR0hbv9ikfJ1cN7FUfBS0VOcj1VuFigCuNRmYYnaZ8HL5f2FY6y2OV
+         CNxdI61eEXdQ15w/ee103fQDg1Q/NQvsoozh5MZnCIjtftL4U4JTshJnjE8CE3kmLE82
+         29rQIEHxkgGrrxj0kOidCm1FY5O/2z5dX28DYn2aL7ygStdgIuZgeFKGWwpK3HZwfzwa
+         iiRHEo5furMeU9/ZnIUUKQ1F+opEl43up4wCVu5cSUeuvUWTJxhFBbB8xGk2oFt7zPLU
+         CQWPhkG3F+JH9gw+dR+87Dboa5DIxFOz+cVvaB8GJYzdwaDsG9fx4mZazA6oN7lVjrdn
+         QU6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=/OxVowHa1fzTS8gxpWxPISoWUyhArDmXgs2hoChHUPc=;
+        b=K5de0P0s3jztq+Q4n1qK9p8T4KDMChvC+ixolfXGaP90SY5Rx/01RIdbAMIktthr19
+         NF+lNEHRInwqfUQjOyYGMVAnsRJsNiC9kLZVgB32nESuwBvpDoEj/NrBuT53DkFAcL/c
+         DITU0L7ybv2n3/B72+StJoSi/lPKXFimTWQTkvC//JkUoPLV2MiLg1GL37IB06WqfgEV
+         wQ59nDPQz8syKWCaoC9WeNzfaFhGSqhRNkL5Fr4WDcuokvIcn5MhVPzW3DS5b5paAY+s
+         Z2bXioR0t7rJzYADa7QeMJhgNfg4XJO0Xcz8MXEK9vhR+5tsW1/HwuZpL+5Wy0tbmdLo
+         ApHw==
+X-Gm-Message-State: AOAM530AxgNSxrlxevO4w/8L2/tfJcBdEQUsEiEpjxq4qwYTdNIyXQo6
+        XkbBZXT96D6ivyZhA6Qwj8DkKw==
+X-Google-Smtp-Source: ABdhPJzvKTkGOU3P6banh76jfIC31xAnMFma1OCt8xasxSNWGqr4pPlHEn1SLwIj5zO/QkMX7HRX8A==
+X-Received: by 2002:adf:fcc5:: with SMTP id f5mr28572300wrs.60.1595322463467;
+        Tue, 21 Jul 2020 02:07:43 -0700 (PDT)
+Received: from localhost.localdomain ([88.122.66.28])
+        by smtp.gmail.com with ESMTPSA id m9sm2495594wml.45.2020.07.21.02.07.42
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 21 Jul 2020 02:07:43 -0700 (PDT)
+From:   Loic Poulain <loic.poulain@linaro.org>
+To:     sboyd@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Loic Poulain <loic.poulain@linaro.org>
+Subject: [PATCH] dt-bindings: clock: Fix qcom,msm8996-apcc yaml syntax
+Date:   Tue, 21 Jul 2020 11:13:11 +0200
+Message-Id: <1595322791-18571-1-git-send-email-loic.poulain@linaro.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adrian
+Fix errors reported by dt_binding_check.
+- Fix literal block scalar for dts example
+- Fix schema identifier URI
 
-On 7/2/20 7:27 PM, Adrian Pop wrote:
-> STM32f769-disco features a 4" MIPI DSI display: add support for it.
-> On Cortex-M7 DMA can't use cached memory. For this reason I use a dedicated
-> memory pool for DMA with no-cache attribute which is located at the end of
->   RAM.
-> 
-> Signed-off-by: Adrian Pop <pop.adrian61@gmail.com>
-> ---
->   arch/arm/boot/dts/stm32f746.dtsi      | 34 +++++++++++++++++++
->   arch/arm/boot/dts/stm32f769-disco.dts | 49 +++++++++++++++++++++++++++
->   2 files changed, 83 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/stm32f746.dtsi b/arch/arm/boot/dts/stm32f746.dtsi
-> index 93c063796780..577a812ca01c 100644
-> --- a/arch/arm/boot/dts/stm32f746.dtsi
-> +++ b/arch/arm/boot/dts/stm32f746.dtsi
-> @@ -48,6 +48,19 @@ / {
->   	#address-cells = <1>;
->   	#size-cells = <1>;
->   
-> +	reserved-memory {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		linux,dma {
-> +			compatible = "shared-dma-pool";
-> +			linux,dma-default;
-> +			no-map;
-> +			reg = <0xc0f00000 0x100000>;
-> +		};
-> +	};
-> +
+Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+---
+ Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-Please check Rob's remark (make W=1). Furthermore this node should be 
-declared in board dts file is should depend on SDRAM size embedded on board.
-
->   	clocks {
->   		clk_hse: clk-hse {
->   			#clock-cells = <0>;
-> @@ -75,6 +88,27 @@ clk_i2s_ckin: clk-i2s-ckin {
->   	};
->   
->   	soc {
-> +		ltdc: display-controller@40016800 {
-> +			compatible = "st,stm32-ltdc";
-> +			reg = <0x40016800 0x200>;
-> +			interrupts = <88>, <89>;
-> +			resets = <&rcc STM32F7_APB2_RESET(LTDC)>;
-> +			clocks = <&rcc 1 CLK_LCD>;
-> +			clock-names = "lcd";
-> +			status = "disabled";
-> +		};
-> +
-> +		dsi: dsi@40016c00 {
-> +			compatible = "st,stm32-dsi";
-> +			reg = <0x40016c00 0x800>;
-> +			interrupts = <98>;
-> +			clocks = <&rcc 1 CLK_F769_DSI>, <&clk_hse>;
-> +			clock-names = "pclk", "ref";
-> +			resets = <&rcc STM32F7_APB2_RESET(DSI)>;
-> +			reset-names = "apb";
-> +			status = "disabled";
-> +		};
-> +
-
-Nodes are ordered by address in soc dtsi file. Please follow it.
-
->   		timer2: timer@40000000 {
->   			compatible = "st,stm32-timer";
->   			reg = <0x40000000 0x400>;
-> diff --git a/arch/arm/boot/dts/stm32f769-disco.dts b/arch/arm/boot/dts/stm32f769-disco.dts
-> index 1626e00bb2cb..a9e81b49809c 100644
-> --- a/arch/arm/boot/dts/stm32f769-disco.dts
-> +++ b/arch/arm/boot/dts/stm32f769-disco.dts
-> @@ -153,3 +153,52 @@ &usbotg_hs {
->   	pinctrl-names = "default";
->   	status = "okay";
->   };
-> +
-> +&dsi {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	status = "okay";
-> +
-> +	ports {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		port@0 {
-> +			reg = <0>;
-> +			dsi_in: endpoint {
-> +				remote-endpoint = <&ltdc_out_dsi>;
-> +			};
-> +		};
-> +
-> +		port@1 {
-> +			reg = <1>;
-> +			dsi_out: endpoint {
-> +				remote-endpoint = <&dsi_in_panel>;
-> +			};
-> +		};
-> +
-> +	};
-> +
-> +	panel: panel {
-> +		compatible = "orisetech,otm8009a";
-> +		reg = <0>;
-> +		reset-gpios = <&gpioj 15 GPIO_ACTIVE_LOW>;
-> +		status = "okay";
-> +
-> +		port {
-> +			dsi_in_panel: endpoint {
-> +				remote-endpoint = <&dsi_out>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&ltdc {
-> +	status = "okay";
-> +
-> +	port {
-> +		ltdc_out_dsi: endpoint {
-> +			remote-endpoint = <&dsi_in>;
-> +		};
-> +	};
-> +};
+diff --git a/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml b/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
+index d673ede..a20cb10 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/clock/qcom,kryocc.yaml#
++$id: http://devicetree.org/schemas/clock/qcom,msm8996-apcc.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Qualcomm clock controller for MSM8996 CPUs
+@@ -46,11 +46,9 @@ required:
+ additionalProperties: false
+ 
+ examples:
+-  # Example for msm8996
+   - |
+     kryocc: clock-controller@6400000 {
+         compatible = "qcom,msm8996-apcc";
+         reg = <0x6400000 0x90000>;
+         #clock-cells = <1>;
+-  };
+-...
++    };
+-- 
+2.7.4
 
