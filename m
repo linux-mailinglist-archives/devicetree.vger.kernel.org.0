@@ -2,99 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89A6C227CB5
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 12:17:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FC90227CA0
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 12:13:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728536AbgGUKRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jul 2020 06:17:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43350 "EHLO
+        id S1728373AbgGUKNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jul 2020 06:13:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726147AbgGUKRM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jul 2020 06:17:12 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1884C0619D8
-        for <devicetree@vger.kernel.org>; Tue, 21 Jul 2020 03:17:12 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id 22so2260657wmg.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Jul 2020 03:17:12 -0700 (PDT)
+        with ESMTP id S1726521AbgGUKNH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jul 2020 06:13:07 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04E48C0619D8
+        for <devicetree@vger.kernel.org>; Tue, 21 Jul 2020 03:13:06 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id 88so10339262wrh.3
+        for <devicetree@vger.kernel.org>; Tue, 21 Jul 2020 03:13:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=Bl3XIfXLjah4oPLTL/rDwdpYDwZ3/9YGgHZMl8zqpLA=;
-        b=L1RvLKNqtxs6nWiVoFNg7xichLnVL9Lw3ZKE0k6yBdT/h/bZSuUjuNni35i5O+T0wX
-         hqWkOEcklsePlmH06tF2lai3NWe0NMjpCEPFYtiqRQOeGdIOzwlvUIHmMMCVLHQcG+pl
-         EPHj4l00LRIcJrkcjr3sg+qPq3wjU7VAABRN0xVdtHiV+yETGHhP09DmQHGNXTNItqRw
-         Wf38K8gqyd6DE4EObx8W201R6UdLtP19Qn4vBHLs2h1Mmrq4bc/8FieHxRNjvaU6EBP9
-         WyWnbBxtC5js/1G51fWbyPja+pMNFlbQc0UBS9hhuu5iT/frnPqiFChyfAv1JPDIcoAb
-         MRzw==
+        h=from:to:cc:subject:date:message-id;
+        bh=/OxVowHa1fzTS8gxpWxPISoWUyhArDmXgs2hoChHUPc=;
+        b=A6xv2xdqRRmjsJnH38u8wGV4i2qAIL7q6a0rbpYXygq+txew9VnMaadu8N2TcsQi7Y
+         6nMIE/yX12FfnEv05wILXT4YUa9VDeTLZvLYQN0GgsWfdioW4h19cZTGo0lXPoTIfPyT
+         4IidUIr/O71+cOtxrGb1FY/MNmrTTbF7ThDxjUSez2EJdSL4x9K/v1diaNOPqT6cnyFc
+         iAEYZ5kb+UgWnxQdicnDwZiA8hmEPblKNdsPZArgp09sVibWaFksD98xgoHBdhg6QF0f
+         57YbGxjwNQDwhTGjfVVcDPLDKDZ5jjC5TdYbAGhZv57oCsRhDaXknnEjtsLgKopI+fmu
+         HA/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Bl3XIfXLjah4oPLTL/rDwdpYDwZ3/9YGgHZMl8zqpLA=;
-        b=kbrUXHMGUBR71uFNLpzTR9zaVuAlKxVkkXud+kyJ+mUIrt/jaCb+aqHN731E/RHl3G
-         kYvdqE18KJZvTHH/YLsHLLe88hJ7cBinie6p7XxR6xliP1oa1KRNyyFLpvmRWdminKJY
-         9mVgNHqeM8f9sAOG0m8ULfq7z9nnGPBOrYgl9OJAZQBVX3qzURyf9FyhhtDeu1VJtlGD
-         w1Tx4r7eaOqeygdcm0drT9KcbNnLD2ADIHI96RMQKZIkr+R2WSz964PMn2yiQirWV6Z1
-         hZ/+L+Fso0Ave2iIMlAf6b5VN6RoAaYlZiad7eB+eQwa57FxwaAFrrG0FsDTvJWpr/py
-         /FLA==
-X-Gm-Message-State: AOAM533db2XNEB9F3xdNbXscs0ih63iYRg8VjefbRxNcqpeXJ0IpAOg0
-        JPVMhBfOuRKmYWWDJWxSZRbvAjOt+Xc=
-X-Google-Smtp-Source: ABdhPJzaSOzBg/P/7Wo8uh3IBjKdlBxyt8Ncn2NlVZKOs8h2lFF2aYdaM13WWnx7mJ8ljvT5Y/hECg==
-X-Received: by 2002:a1c:e088:: with SMTP id x130mr3252719wmg.14.1595326630904;
-        Tue, 21 Jul 2020 03:17:10 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:3590:b402:869a:11fc? ([2a01:e34:ed2f:f020:3590:b402:869a:11fc])
-        by smtp.googlemail.com with ESMTPSA id w12sm39791729wrm.79.2020.07.21.03.17.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Jul 2020 03:17:10 -0700 (PDT)
-Subject: Re: [PATCH] Replace HTTP links with HTTPS ones: CLOCKSOURCE,
- CLOCKEVENT DRIVERS
-To:     "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        tglx@linutronix.de, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20200708165856.15322-1-grandmaster@al2klimov.de>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <f84744cb-92a3-a731-732f-996bd556ae87@linaro.org>
-Date:   Tue, 21 Jul 2020 12:17:09 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20200708165856.15322-1-grandmaster@al2klimov.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=/OxVowHa1fzTS8gxpWxPISoWUyhArDmXgs2hoChHUPc=;
+        b=fQSnR+EYX6vwY4BX5nPm5aAFE0iYHKL8dYmYzthyMtAC/2L50yPzJ2BtguyWMBTzvB
+         K3qd3Y7iu7laF0Z59pLGQ6wwMvGFAh6oMLqMVwmzfsBDdO7a1oPJOqG9o9W/RTlQQEtm
+         FEapNACXBVxSBKSlaFHxrEQYNvzdDSSe4uOQL9jHVPvhsmbN3ZW68xqXkiyblDKJ3VyC
+         Jyi19eI4qFf5K1TZW0pWDWBqffwF6KfRtCG6M0+yYMBmUPqZDgz+51/FzqkGhJOd9jV0
+         DupuYMI96zfpRSr3gNoJLJyv2bE8uzawU8VDD+bGcNhzv/nLGb/d15A55RnAQuQL9Bzs
+         Veag==
+X-Gm-Message-State: AOAM530VugJszBYuEG/y4glVUXrHKLJAfuE0C7riYixqOGw0mP6wdr3p
+        dNlUXAcnbchr38+kv7bPENIDmg==
+X-Google-Smtp-Source: ABdhPJw+fh8anSweT6KXCWAMvVeosjJlXbgdhOWwmSRONVbvlwc51svaGRDnQBXR5UIfVdtGrqM76g==
+X-Received: by 2002:adf:f44b:: with SMTP id f11mr14033056wrp.114.1595326385607;
+        Tue, 21 Jul 2020 03:13:05 -0700 (PDT)
+Received: from localhost.localdomain ([88.122.66.28])
+        by smtp.gmail.com with ESMTPSA id t3sm5546169wre.41.2020.07.21.03.13.04
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 21 Jul 2020 03:13:05 -0700 (PDT)
+From:   Loic Poulain <loic.poulain@linaro.org>
+To:     sboyd@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, robh+dt@kernel.org,
+        Loic Poulain <loic.poulain@linaro.org>
+Subject: [PATCH] dt-bindings: clock: Fix qcom,msm8996-apcc yaml syntax
+Date:   Tue, 21 Jul 2020 12:18:34 +0200
+Message-Id: <1595326714-20485-1-git-send-email-loic.poulain@linaro.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/07/2020 18:58, Alexander A. Klimov wrote:
-> Rationale:
-> Reduces attack surface on kernel devs opening the links for MITM
-> as HTTPS traffic is much harder to manipulate.
-> 
-> Deterministic algorithm:
-> For each file:
->   If not .svg:
->     For each line:
->       If doesn't contain `\bxmlns\b`:
->         For each link, `\bhttp://[^# \t\r\n]*(?:\w|/)`:
-> 	  If neither `\bgnu\.org/license`, nor `\bmozilla\.org/MPL\b`:
->             If both the HTTP and HTTPS versions
->             return 200 OK and serve the same content:
->               Replace HTTP with HTTPS.
-> 
-> Signed-off-by: Alexander A. Klimov <grandmaster@al2klimov.de>
-> ---
+Fix errors reported by dt_binding_check.
+- Fix literal block scalar for dts example
+- Fix schema identifier URI
 
-Applied, thanks
+Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+---
+ Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-
-
+diff --git a/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml b/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
+index d673ede..a20cb10 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/clock/qcom,kryocc.yaml#
++$id: http://devicetree.org/schemas/clock/qcom,msm8996-apcc.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Qualcomm clock controller for MSM8996 CPUs
+@@ -46,11 +46,9 @@ required:
+ additionalProperties: false
+ 
+ examples:
+-  # Example for msm8996
+   - |
+     kryocc: clock-controller@6400000 {
+         compatible = "qcom,msm8996-apcc";
+         reg = <0x6400000 0x90000>;
+         #clock-cells = <1>;
+-  };
+-...
++    };
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+2.7.4
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
