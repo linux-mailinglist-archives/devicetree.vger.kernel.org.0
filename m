@@ -2,77 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6512C2281D8
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 16:18:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0D85228203
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 16:23:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728606AbgGUOSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jul 2020 10:18:45 -0400
-Received: from vultr.net.flygoat.com ([149.28.68.211]:41584 "EHLO
-        vultr.net.flygoat.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726522AbgGUOSp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jul 2020 10:18:45 -0400
-Received: from localhost.localdomain (unknown [IPv6:2001:da8:20f:4430:250:56ff:fe9a:7470])
-        by vultr.net.flygoat.com (Postfix) with ESMTPSA id EA9381FEB5;
-        Tue, 21 Jul 2020 14:18:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=flygoat.com; s=vultr;
-        t=1595341124; bh=vaKD7IUjG1etsvFupW6edy8t9lQ2LBk8C1F1iGCfaLk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=tce9KQGX93te0m68uhC/CMSBP0c091jJweStn3YBbYVkQL/iO0rIpJeBNo784UcxT
-         O4agLh/309o8puqXrtgadFqp4pLuONuOmrbRVvtF6XpJtJfRkL8aSy7tbkZ2djVg7Z
-         Q9JYpH/0UX8oP2Esa6P3Bhtzt0N2pimL/XWEVV2jYsrKp/Vh4yofO5YI6syWpbehn5
-         iE2so5lSFUdaFS6YPwcJFruXCl68xFnKFJBIGDu2F3njisBMFYW3k5rIah6Plh1fod
-         6X/rXB89msdwEIs+KhLmptnalyF1XRRQDAMxHpUp1wHGf+kRUZsSnFvj0uUOff96eP
-         eSt7ggJireOzw==
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-To:     linux-mips@vger.kernel.org
-Cc:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Huacai Chen <chenhc@lemote.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Paul Burton <paulburton@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 5/5] MIPS: Loongson64: Add ISA node for LS7A PCH
-Date:   Tue, 21 Jul 2020 22:17:33 +0800
-Message-Id: <20200721141742.996350-6-jiaxun.yang@flygoat.com>
-X-Mailer: git-send-email 2.28.0.rc1
-In-Reply-To: <20200721141742.996350-1-jiaxun.yang@flygoat.com>
-References: <20200721141742.996350-1-jiaxun.yang@flygoat.com>
+        id S1729141AbgGUOXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jul 2020 10:23:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53346 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729116AbgGUOXS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jul 2020 10:23:18 -0400
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 175EFC061794;
+        Tue, 21 Jul 2020 07:23:18 -0700 (PDT)
+Received: by mail-pl1-x642.google.com with SMTP id d7so1558774plq.13;
+        Tue, 21 Jul 2020 07:23:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CX4eH9/QUA1u4saPv6izPwaTM6OqoGtAPvD7DC3yquA=;
+        b=H4P/VrzK9rOD3lnOaNH0hX9ZLYi7AoWW2siJNnBQYE09LI/XQ3Ip5TyyQg8gqTWv07
+         PAC/Ag6TGy+gxyN+27SXJMGJMZvmvNugN22G62XJcK180PdWd6GfbvgzV6XYKSbtHtyF
+         SLw5opNeUYvfCMqQwtYHHEMj80bXgD2y237FSBJmnmSYkJW4icj8RfwfHqWHhXWcgQUa
+         heDatMhgGWyCk8mTjzc4VKQxp40MAnPCBnqyqQ+46IV6IaN6JiIA/Y59DgOhUL7GfkZf
+         jjYJxTTFPdJxwXQGHQd4UDocuApmmkZBebHQmCUP85EIuXxe0eS/quSPus108oRHzqmI
+         P9og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CX4eH9/QUA1u4saPv6izPwaTM6OqoGtAPvD7DC3yquA=;
+        b=bnHAAcn+mybGS8XkiaCVmTf8reUghev6m8iJpufX3MbosUcVjtpLf4fUeV6fRYQkpe
+         E7IaHhm3mRGBicL4c2M7mQz5rqgrWPzSme1fJ4VDpEWW7qVV5qL45FTId20GugxjM8rp
+         6z1DxAQOucrT2xlKRipgRjuzJAzmRCHFRvCsAZan/3G6NnlVy/FWYKDXFQGw07wdn1i8
+         oUhVYDkA3mKeHab0ZsE+eSAkZ7DrC8BgWSst3ltb6VJICnhhrkkblhL6u1cM6g/aVx8p
+         Gtm4yq1M167UF6XEyVSVD+r4KhUOmlNlV407scMzrIewlUvwguv0nQ8cjKZu5av/odsL
+         YQnQ==
+X-Gm-Message-State: AOAM531ESByCZR19nIIcQR/XVTcg3J+Rr+xoyUcBMHYJaVoTf+PLPSeJ
+        R32mGAwdxldL5mzRaXQqcXUgQ7TYhAygJf3bXiR55AfmRX4=
+X-Google-Smtp-Source: ABdhPJxnpuDyH/u9trmPIq89haOgJSMaTcFCtl639VtNm1WgUMH05ZqjfNiwqqUMlBDkoaI0O0cvoy2rFOxsKhLk8qg=
+X-Received: by 2002:a17:902:8491:: with SMTP id c17mr22040941plo.262.1595341397575;
+ Tue, 21 Jul 2020 07:23:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200721022324.21898-1-fengping.yu@mediatek.com>
+ <20200721022324.21898-3-fengping.yu@mediatek.com> <87ft9l3v2l.fsf@baylibre.com>
+In-Reply-To: <87ft9l3v2l.fsf@baylibre.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 21 Jul 2020 17:23:03 +0300
+Message-ID: <CAHp75VcnfF3ucuAJXDDy8pit5-LE42d4ROkL2y3QZroK6RU4Rw@mail.gmail.com>
+Subject: Re: [PATCH v15 2/3] drivers: input:keyboard: Add mtk keypad driver
+To:     Mattijs Korpershoek <mkorpershoek@baylibre.com>
+Cc:     Fengping yu <fengping.yu@mediatek.com>,
+        Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-input <linux-input@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Although currently we're not enabling any ISA device in devicetree,
-but this node is required to express the ranges of address reserved
-for ISA.
+On Tue, Jul 21, 2020 at 3:38 PM Mattijs Korpershoek
+<mkorpershoek@baylibre.com> wrote:
+> Fengping yu <fengping.yu@mediatek.com> writes:
 
-Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
----
- arch/mips/boot/dts/loongson/ls7a-pch.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+> > This adds matrix keypad support for Mediatek SoCs.
 
-diff --git a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-index 1c286bb8c703..e574a062dfae 100644
---- a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-+++ b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-@@ -367,5 +367,12 @@ pci_bridge@14,0 {
- 				interrupt-map = <0 0 0 0 &pic 39 IRQ_TYPE_LEVEL_HIGH>;
- 			};
- 		};
-+
-+		isa {
-+			compatible = "isa";
-+			#address-cells = <2>;
-+			#size-cells = <1>;
-+			ranges = <1 0 0 0x18000000 0x20000>;
-+		};
- 	};
- };
+...
+
+> > +     keypad->regmap = devm_regmap_init_mmio(&pdev->dev,
+> > +                                            keypad->base,
+> > +                                            &keypad_regmap_cfg);
+> > +     if (IS_ERR(keypad->regmap)) {
+> > +             dev_err(&pdev->dev,
+> > +                     "regmap init failed:%ld\n", PTR_ERR(keypad->regmap));
+> > +             return PTR_ERR(keypad->regmap);
+> > +     }
+
+Okay, because another comment appeared, I would suggest to switch to
+%pe at the same time.
+
+            dev_err(&pdev->dev,   "regmap init failed: %pe\n", keypad->regmap);
+
 -- 
-2.28.0.rc1
-
+With Best Regards,
+Andy Shevchenko
