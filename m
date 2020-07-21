@@ -2,64 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 562B82283ED
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 17:37:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D92B42283E6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 17:35:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729972AbgGUPhE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jul 2020 11:37:04 -0400
-Received: from comms.puri.sm ([159.203.221.185]:54724 "EHLO comms.puri.sm"
+        id S1728180AbgGUPfp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jul 2020 11:35:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59076 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729612AbgGUPhE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Jul 2020 11:37:04 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 04C88E031F;
-        Tue, 21 Jul 2020 08:37:04 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 62QamMgfWfaW; Tue, 21 Jul 2020 08:37:03 -0700 (PDT)
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     robh@kernel.org, kernel@puri.sm, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, mchehab@kernel.org, Anson.Huang@nxp.com,
-        agx@sigxcpu.org, angus@akkea.ca, broonie@kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Martin Kepplinger <martin.kepplinger@puri.sm>
-Subject: [PATCH v4 3/3] dt-bindings: arm: fsl: Add the librem 5 phone
-Date:   Tue, 21 Jul 2020 17:32:25 +0200
-Message-Id: <20200721153225.7593-3-martin.kepplinger@puri.sm>
-In-Reply-To: <20200721153225.7593-1-martin.kepplinger@puri.sm>
-References: <20200721153225.7593-1-martin.kepplinger@puri.sm>
-Content-Transfer-Encoding: 8bit
+        id S1726654AbgGUPfo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Jul 2020 11:35:44 -0400
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 73E8B20792;
+        Tue, 21 Jul 2020 15:35:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1595345744;
+        bh=Jq+HO2ZE92p41uBQdq/BMb/mypTi/nYDecJWM1AihcM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=uMvk+L3hsMaoMlasRaEj9I8zGcI/tqH0ZIJuLcQv4IC+JuWRDgpSxScQYBkC0nbQU
+         OVveghfBbeGVxsp81V0eTkkUGYdoAs9zbyM8C+LBrEbT091oRUenY85sUXGhPDsS12
+         V835OiF8a8D0Eq3LGGMcC6+AnWYvmvzPL/IhH8C4=
+Received: by mail-qk1-f172.google.com with SMTP id h7so3865581qkk.7;
+        Tue, 21 Jul 2020 08:35:44 -0700 (PDT)
+X-Gm-Message-State: AOAM530qu0lXx91s/HfWU5iTxD/21Z2oduiPe6ze/W8syLQuHidqE6L/
+        uYsogj+jDZPFlkenWRmRiXTWZ4A/VPgh7am6Jg==
+X-Google-Smtp-Source: ABdhPJz4TgtCgchktOu/dOftli6ITM4jB5qBpP6WwLgR2Lc4OZWUMi1i07ta0w6iQeOAXiRtzIeIDiSq6wAE9rjmUjE=
+X-Received: by 2002:a37:b341:: with SMTP id c62mr26653760qkf.128.1595345743622;
+ Tue, 21 Jul 2020 08:35:43 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200703114717.2140832-1-megous@megous.com>
+In-Reply-To: <20200703114717.2140832-1-megous@megous.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 21 Jul 2020 09:35:32 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK6hEiC0O5WeR6nKw38zvX3G=QeCq3-xZ+_9SHWcE6jrw@mail.gmail.com>
+Message-ID: <CAL_JsqK6hEiC0O5WeR6nKw38zvX3G=QeCq3-xZ+_9SHWcE6jrw@mail.gmail.com>
+Subject: Re: [PATCH 0/2] Fix warnings in display/bridge/nwl-dsi.yaml DT example
+To:     Ondrej Jirman <megous@megous.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entries for the imx8mq based Librem 5 phone. The "Birch" and
-"Chestnut" hardware revisions are supported by r2. The "Dogwood"
-revision by r3.
-See https://puri.sm/products/librem-5/ and https://developer.puri.sm/Librem5/
-for the schematics and more information.
+On Fri, Jul 3, 2020 at 5:47 AM Ondrej Jirman <megous@megous.com> wrote:
+>
+> This patchset fixes warnings in the example in display/bridge/nwl-dsi.yaml
+> revealed during port of display/panel/rocktech,jh057n00900.yaml to
+> yaml.
+>
+> Please take a look.
+>
+> thank you and regards,
+>   Ondrej Jirman
+>
+> Ondrej Jirman (2):
+>   dt-bindings: display: Fix example in nwl-dsi.yaml
+>   dt-binding: display: Allow a single port node on rocktech,jh057n00900
 
-Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Series applied to drm-misc.
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index f63895c8ce2d..1cce4ff58ff8 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -365,6 +365,8 @@ properties:
-               - fsl,imx8mq-evk            # i.MX8MQ EVK Board
-               - google,imx8mq-phanbell    # Google Coral Edge TPU
-               - purism,librem5-devkit     # Purism Librem5 devkit
-+              - purism,librem5r2          # Purism Librem5 phone "Chestnut"
-+              - purism,librem5r3          # Purism Librem5 phone "Dogwood"
-               - solidrun,hummingboard-pulse # SolidRun Hummingboard Pulse
-               - technexion,pico-pi-imx8m  # TechNexion PICO-PI-8M evk
-           - const: fsl,imx8mq
--- 
-2.20.1
-
+Rob
