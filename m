@@ -2,125 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DD20227AE7
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 10:39:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4FC3227AF2
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 10:43:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726607AbgGUIj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jul 2020 04:39:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56622 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726469AbgGUIj6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jul 2020 04:39:58 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2A87C061794
-        for <devicetree@vger.kernel.org>; Tue, 21 Jul 2020 01:39:57 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id 22so1968812wmg.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Jul 2020 01:39:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=references:user-agent:from:to:subject:in-reply-to:date:message-id
-         :mime-version;
-        bh=kffYnJ6AlClklIV94Jnp3wm8cFF3FK2tqJd8e6ndHNA=;
-        b=ZHkV8yt3OL5rcS+aqUvhiyM3XF59GBemXA6DwSKA9Wz9bQWUDFlSA/bnjwvE3caBHh
-         VZdYeJShAe3TpNjjzybE7oF9oWz1nnYYL/Uz4PEWeEEnzXKisbkZHegFPN0wQBmJ/O3M
-         dJx3a+mpMwXZBlrkXt8SdYXmpS4qVwAsf/EwKrxfn+/CTgDV8xDOc2tTNFqE2yT4EjOj
-         9T60xEnQC1RnOtV24/SPfaKxK2kfluHHTpcZwQYl8wimTcuXmVe9ct9ZFz20G/rV2/N7
-         A4qr+ecDGnGBuDqVfRAHKYXSlmZ6LdpDaxylhOCnchElF6NQjwqC+vimBJqK5K3jXf2x
-         T2Vw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:references:user-agent:from:to:subject
-         :in-reply-to:date:message-id:mime-version;
-        bh=kffYnJ6AlClklIV94Jnp3wm8cFF3FK2tqJd8e6ndHNA=;
-        b=p6aR+5mA+ZCWDZA+NONPLThyQWs2S5GkrTmK3QWkopuPC5b/lmFWnOBEXX3AuEmQ65
-         3J4JhM5Km2WewVAI7ZriQ7oFdUWgZiwbgZDD+G5v/xhsRdTuCU+KgzZR4VKfKt/0L3ng
-         +1AUlbMjZyfMQj//zVq7KFv8bRJKNKj4PQMKcRlTX7ma4YMeBMJmAbLwcp7LweyMLdY7
-         KDp4yYNitosga3IkbsHS6iqfXpUYRzTnPOdwCIGwW014qQsHsk2CE2pYBPFx4nc+ahLv
-         Ec3CJ2vvcNB5LS6JPHMOk/160HwekP1BimlvPeObC/4WXSgwVIjYhBg/5ScnDpnByqpL
-         KfQA==
-X-Gm-Message-State: AOAM530m7PEwjEzRC6LFSXDt68XxWgo5kaMTq9gpxzhzQuNJikDUOmAB
-        6UgHJbvz2CIWkQw/bLfT6c1AwUwRU88=
-X-Google-Smtp-Source: ABdhPJytIMh8MKWLIeaObf5rXO9B9D9co4BaPFgQ7wK5k0hBGSGiAuNpeRqCul3V5nGfvsvi2ap9Rg==
-X-Received: by 2002:a1c:bc02:: with SMTP id m2mr2537003wmf.132.1595320796488;
-        Tue, 21 Jul 2020 01:39:56 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id u20sm2478974wmm.15.2020.07.21.01.39.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jul 2020 01:39:55 -0700 (PDT)
-References: <20200718065739.7802-1-christianshewitt@gmail.com>
-User-agent: mu4e 1.3.3; emacs 26.3
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Christian Hewitt <christianshewitt@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 00/12] arm64: dts: meson: add more GX soundcards
-In-reply-to: <20200718065739.7802-1-christianshewitt@gmail.com>
-Date:   Tue, 21 Jul 2020 10:39:55 +0200
-Message-ID: <1jtuy18dno.fsf@starbuckisacylon.baylibre.com>
+        id S1728638AbgGUIn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jul 2020 04:43:29 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:4336 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728418AbgGUIn2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Jul 2020 04:43:28 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 06L8avqI020757;
+        Tue, 21 Jul 2020 10:43:18 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=dJLHdoGwt48EnjSrf0L0JKYkNiadZM77RdxMqkK77T4=;
+ b=YZW7+M6nqFCTFlcQL3GU+ISgaS6SJXJGBep9/K1+AsjqH+ytBHRT4TXY7MUEAQkJtvKi
+ 8YyURQEKTCDYK6adyvmpvwogPC65A+yIB3kKD0hg45BlVkY8vRtLhtb4+Ure5F94kxmr
+ VaxKLw3reSYy17cxeLAlHJkFG7y1jgZ+L16KhYivxeBnzA6gyVFEpqe7LMyw/PGYFydL
+ 0ppetjLHxh6fNSP/3QtjZJHnm9re4p47WGPyo9Cw/kDklXN/Wotv/1fraYAWWt1U80Pt
+ pPd1DJUpJcL+I6FA+5l4Kmx7/WVrrkHDeqnBQn64ZGfbco+w0HCBBXecO34MVxjsajW0 UQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 32bs6uvswq-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 21 Jul 2020 10:43:18 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id B4F0C10002A;
+        Tue, 21 Jul 2020 10:43:17 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A2F702A615D;
+        Tue, 21 Jul 2020 10:43:17 +0200 (CEST)
+Received: from lmecxl0912.lme.st.com (10.75.127.46) by SFHDAG3NODE2.st.com
+ (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Tue, 21 Jul
+ 2020 10:43:17 +0200
+Subject: Re: [PATCH 0/5] ARM: STM32: Add compatibles for syscon nodes
+To:     Benjamin Gaignard <benjamin.gaignard@st.com>, <robh+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <lee.jones@linaro.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20200703095520.30264-1-benjamin.gaignard@st.com>
+From:   Alexandre Torgue <alexandre.torgue@st.com>
+Message-ID: <dc7779a9-fe0d-5317-2b7f-3607963888c5@st.com>
+Date:   Tue, 21 Jul 2020 10:43:16 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20200703095520.30264-1-benjamin.gaignard@st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG7NODE3.st.com (10.75.127.21) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-07-21_02:2020-07-21,2020-07-21 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Benjamin
 
-On Sat 18 Jul 2020 at 08:57, Christian Hewitt <christianshewitt@gmail.com> wrote:
+On 7/3/20 11:55 AM, Benjamin Gaignard wrote:
+> Since commit ad440432d1f9 ("dt-bindings: mfd: Ensure 'syscon' has a more specific compatible")
+> it is required to provide at least 2 compatibles string for syscon node.
+> This series update the syscon of the STM32 SoCs to fix the reported errors.
+> 
+> Benjamin Gaignard (5):
+>    dt-bingings: arm: stm32: Add compatibles for syscon nodes
+>    ARM: dts: stm32: Add compatibles for syscon for stm32f426
+>    ARM: dts: stm32: Add compatibles for syscon for stm32f746
+>    ARM: dts: stm32: Add compatibles for syscon for stm32h743
+>    ARM: dts: stm32: Add compatibles for syscon for stm32mp151
+> 
+>   .../devicetree/bindings/arm/stm32/st,stm32-syscon.yaml     | 14 +++++++++++++-
+>   arch/arm/boot/dts/stm32f429.dtsi                           |  6 +++---
+>   arch/arm/boot/dts/stm32f746.dtsi                           |  6 +++---
+>   arch/arm/boot/dts/stm32h743.dtsi                           |  6 +++---
+>   arch/arm/boot/dts/stm32mp151.dtsi                          |  2 +-
+>   5 files changed, 23 insertions(+), 11 deletions(-)
+> 
 
-> From: chewitt <christianshewitt@gmail.com>
->
-> This series adds basic support for LPCM audio over HDMI and S/PDIF
-> interfaces to GXBB/GXL/GXM devices without support. I'm sure audio
-> support can be extended in places (some devices have internal DACs
-> and headphone hardware) but this gets the HDMI port working as a
-> minimum capability.
->
-> I have personally tested with the khadas-vim2, odroid-c2, and both
-> wetek devices as I have them, and there are positive forum reports
-> from users with vega-s95 and some no-name P20X box devices.
+Series applied on stm32-next by fixing subject of patch [1].
 
-I'm under the impression that not *all* the boards below have tested
-against these changes, on both output when applicable. I'm a bit
-concerned by that. For the boards you don't have, it would be nice if
-you could add a Tested-by Tag.
-
-Tiny things, yet critical, such as regulators and pinctrl, may change.
-People looking at our DT should be able to expect that things have been
-tested and confirmed working at least once.
-
-Apart from the comment regarding the regulators, the changes seems OK.
-
->
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
->
-> Christian Hewitt (12):
->   arm64: dts: meson: add audio playback to a95x
->   arm64: dts: meson: add audio playback to khadas-vim2
->   arm64: dts: meson: add audio playback to nanopi-k2
->   arm64: dts: meson: add audio playback to nexbox-a1
->   arm64: dts: meson: add audio playback to odroid-c2
->   arm64: dts: meson: add audio playback to p201
->   arm64: dts: meson: add audio playback to p200
->   arm64: dts: meson: add audio playback to p212-s905x dtsi
->   arm64: dts: meson: add audio playback to rbox-pro
->   arm64: dts: meson: add audio playback to vega-s95 dtsi
->   arm64: dts: meson: add audio playback to wetek-hub
->   arm64: dts: meson: add audio playback to wetek-play2
->
->  .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts | 40 ++++++++++
->  .../dts/amlogic/meson-gxbb-nexbox-a95x.dts    | 40 ++++++++++
->  .../boot/dts/amlogic/meson-gxbb-odroidc2.dts  | 40 ++++++++++
->  .../boot/dts/amlogic/meson-gxbb-p200.dts      | 61 ++++++++++++++
->  .../boot/dts/amlogic/meson-gxbb-p201.dts      | 40 ++++++++++
->  .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi | 61 ++++++++++++++
->  .../boot/dts/amlogic/meson-gxbb-wetek-hub.dts | 40 ++++++++++
->  .../dts/amlogic/meson-gxbb-wetek-play2.dts    | 61 ++++++++++++++
->  .../dts/amlogic/meson-gxl-s905x-p212.dtsi     | 40 ++++++++++
->  .../dts/amlogic/meson-gxm-khadas-vim2.dts     | 44 +++++++++-
->  .../boot/dts/amlogic/meson-gxm-nexbox-a1.dts  | 80 +++++++++++++++++++
->  .../boot/dts/amlogic/meson-gxm-rbox-pro.dts   | 80 +++++++++++++++++++
->  12 files changed, 624 insertions(+), 3 deletions(-)
-
+Regards
+Alex
