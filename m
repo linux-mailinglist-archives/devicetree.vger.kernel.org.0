@@ -2,126 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17C8122795D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 09:16:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 493642279B8
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 09:45:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725984AbgGUHQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jul 2020 03:16:16 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:19422 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726074AbgGUHQQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Jul 2020 03:16:16 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 06L77RKS010258;
-        Tue, 21 Jul 2020 09:16:03 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=73dAVS9zUnqZ8WATP62hAGazNOj36cZliVUS8oX7h4U=;
- b=zv/sNEUL05QFtuyXeubVy9UghJ47mfJ+LITSloTtydnx8AyIyOUG90UXZDK5nh6WlYj4
- yCGAMF4CrYHmVG8tPA5lDMnXLLjhU3fouCZXgYuJBnUEDeiVPiylOXf7ncEAI5rhGhde
- Ab6eUKuu8qTh9IC0Yvyq4MzBMrXZHHnjrMQDOcxXj5OTlwn7iN/kqXTObosvjFYfIUpn
- 5w/82ZpxNwgbePUmSVpJt/pV5mXw8iLDVSDCnOhy6mnjC/tiu31tJxRmVXbHAYlH9Xq3
- J/lvBl+eUZTeAdV05MAZZI0sYAnddRZp97gdGAXmXQoIwC/x6Ah3bySZUHqpH+dnXeZJ 4A== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 32bsfpcana-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 21 Jul 2020 09:16:03 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id EF3FB10002A;
-        Tue, 21 Jul 2020 09:16:02 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id DF0CA220CCB;
-        Tue, 21 Jul 2020 09:16:02 +0200 (CEST)
-Received: from lmecxl0912.lme.st.com (10.75.127.45) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Tue, 21 Jul
- 2020 09:16:02 +0200
-Subject: Re: [PATCH] ARM: dts: stm32: cosmetic update in
- stm32mp15-pinctrl.dtsi
-To:     Patrick Delaunay <patrick.delaunay@st.com>,
-        <linux-kernel@vger.kernel.org>
-CC:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20200616153329.15148-1-patrick.delaunay@st.com>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <b18bd7f8-f63c-13ad-6220-f7745600a7a6@st.com>
-Date:   Tue, 21 Jul 2020 09:16:01 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20200616153329.15148-1-patrick.delaunay@st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG8NODE2.st.com (10.75.127.23) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-07-21_02:2020-07-21,2020-07-21 signatures=0
+        id S1728000AbgGUHp3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jul 2020 03:45:29 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:13786 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727916AbgGUHp3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jul 2020 03:45:29 -0400
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 21 Jul 2020 00:45:28 -0700
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 21 Jul 2020 00:45:26 -0700
+Received: from c-sanm-linux.qualcomm.com ([10.206.25.31])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 21 Jul 2020 13:15:00 +0530
+Received: by c-sanm-linux.qualcomm.com (Postfix, from userid 2343233)
+        id 386A52BA8; Tue, 21 Jul 2020 13:14:59 +0530 (IST)
+From:   Sandeep Maheswaram <sanm@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Sandeep Maheswaram <sanm@codeaurora.org>
+Subject: [PATCH v9 0/2] ADD interconnect support for Qualcomm DWC3 driver
+Date:   Tue, 21 Jul 2020 13:14:47 +0530
+Message-Id: <1595317489-18432-1-git-send-email-sanm@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Patrick
+This path series aims to add interconnect support in
+dwc3-qcom driver on SDM845 and SC7180 SoCs.
 
-On 6/16/20 5:33 PM, Patrick Delaunay wrote:
-> Use tabs where possible and remove multiple blanks lines.
-> 
-> Signed-off-by: Patrick Delaunay <patrick.delaunay@st.com>
-> ---
-> 
->   arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 9 ++++-----
->   1 file changed, 4 insertions(+), 5 deletions(-)
-> 
+Changes from v8 -> v9
+  > Addressed comments from Matthias.
 
-Applied on stm32-next.
+Changes from v7 -> v8
+  > Only driver change is pending all other patches are merged so dropped
+    from the series.
+  > Removed the device_is_bound call and getting speed from device tree
+    and rearranged interconnect functions to avoid forward declarations.	
+  > Added patch to specify maximum speed for dwc3 DT node.
 
-Thanks.
-Alex
+Changes from v6 -> v7
+  > [PATCH 2/4] Fixed review comments from Matthias in DWC3 driver.
+  > Other patches remain unchanged.
 
-> diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-> index 7eb858732d6d..7d351757f2f8 100644
-> --- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-> @@ -210,8 +210,8 @@
->   				 <STM32_PINMUX('E', 2, ANALOG)>, /* ETH_RGMII_TXD3 */
->   				 <STM32_PINMUX('B', 11, ANALOG)>, /* ETH_RGMII_TX_CTL */
->   				 <STM32_PINMUX('C', 1, ANALOG)>, /* ETH_MDC */
-> -			         <STM32_PINMUX('A', 2, ANALOG)>, /* ETH_MDIO */
-> -			         <STM32_PINMUX('C', 4, ANALOG)>, /* ETH_RGMII_RXD0 */
-> +				 <STM32_PINMUX('A', 2, ANALOG)>, /* ETH_MDIO */
-> +				 <STM32_PINMUX('C', 4, ANALOG)>, /* ETH_RGMII_RXD0 */
->   				 <STM32_PINMUX('C', 5, ANALOG)>, /* ETH_RGMII_RXD1 */
->   				 <STM32_PINMUX('H', 6, ANALOG)>, /* ETH_RGMII_RXD2 */
->   				 <STM32_PINMUX('H', 7, ANALOG)>, /* ETH_RGMII_RXD3 */
-> @@ -453,7 +453,7 @@
->   	i2c5_pins_b: i2c5-1 {
->   		pins {
->   			pinmux = <STM32_PINMUX('D', 0, AF4)>, /* I2C5_SCL */
-> -			         <STM32_PINMUX('D', 1, AF4)>; /* I2C5_SDA */
-> +				 <STM32_PINMUX('D', 1, AF4)>; /* I2C5_SDA */
->   			bias-disable;
->   			drive-open-drain;
->   			slew-rate = <0>;
-> @@ -463,7 +463,7 @@
->   	i2c5_sleep_pins_b: i2c5-sleep-1 {
->   		pins {
->   			pinmux = <STM32_PINMUX('D', 0, ANALOG)>, /* I2C5_SCL */
-> -			         <STM32_PINMUX('D', 1, ANALOG)>; /* I2C5_SDA */
-> +				 <STM32_PINMUX('D', 1, ANALOG)>; /* I2C5_SDA */
->   		};
->   	};
->   
-> @@ -1072,7 +1072,6 @@
->   		};
->   	};
->   
-> -
->   	sai2a_pins_b: sai2a-1 {
->   		pins1 {
->   			pinmux = <STM32_PINMUX('I', 6, AF10)>,	/* SAI2_SD_A */
-> 
+Changes from v5 -> v6
+  > [PATCH 1/4] Addressed comments from Rob.
+  > [PATCH 2/4] Fixed review comments from Matthias in DWC3 driver.
+  > [PATCH 3/4] Ignoring 80 char limit in defining interconnect paths.
+  > Added [PATCH 4/4] in this series. Adding interconnect nodes for SC7180.
+    Depends on patch https://patchwork.kernel.org/patch/11417989/.	
+
+Changes from v4 -> v5
+  > [PATCH 1/3] Added the interconnect properties in yaml. This patch depends
+    on series https://patchwork.kernel.org/cover/11372641/.
+  > [PATCH 2/3] Fixed review comments from Matthias in DWC3 driver.
+  > [PATCH 3/3] Modified as per the new interconnect nodes in sdm845. Depends
+    on series https://patchwork.kernel.org/cover/11372211/. 
+
+
+Changes from v3 -> v4
+  > Fixed review comments from Matthias
+  > [PATCH 1/3] and [PATCH 3/3] remains unchanged
+
+Changes from v2 -> v3
+  > Fixed review comments from Matthias and Manu
+  > changed the functions prefix from usb_* to dwc3_qcom_*
+
+Changes since V1:
+  > Comments by Georgi Djakov on "[PATCH 2/3]" addressed
+  > [PATCH 1/3] and [PATCH 3/3] remains unchanged
+
+Sandeep Maheswaram (2):
+  usb: dwc3: qcom: Add interconnect support in dwc3 driver
+  arm64: dts: qcom: sc7180: Add maximum speed property for DWC3 USB node
+
+ arch/arm64/boot/dts/qcom/sc7180.dtsi |   1 +
+ drivers/usb/dwc3/dwc3-qcom.c         | 127 ++++++++++++++++++++++++++++++++++-
+ 2 files changed, 126 insertions(+), 2 deletions(-)
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
+
