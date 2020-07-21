@@ -2,79 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9E76228532
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 18:21:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E46C62285BC
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 18:35:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727778AbgGUQVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jul 2020 12:21:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43494 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726890AbgGUQVG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jul 2020 12:21:06 -0400
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F063C061794;
-        Tue, 21 Jul 2020 09:21:06 -0700 (PDT)
-Received: by mail-ed1-x543.google.com with SMTP id dg28so15697284edb.3;
-        Tue, 21 Jul 2020 09:21:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=OHn7hEjFb/8SBXPDh1+DgoRQWsuvdjNe2+U9AyALG4o=;
-        b=Ymm00dD9F2MasO44D8/wTfY1on9EmII3e6c5icTnGDjY49MsIFNKckv4IZwX+ryogf
-         GRb1dqFZQCLJj0kOlfQ+/ioq9eSG3gXCeDvzxIkQ3XhNVRYELEvEWCTRfL41X2oFvkFJ
-         6B+e20IzO63huP1rpSd2WjArWZ25Qb3gIIWlfNwKP5mOav3z7CoBOoIoQhiYBALvUL52
-         BYB+4ZQb63i8kAb2LtDh/0/iF3bUWc3Th+eULyeWS+cGaSLe5tkqpkhazu1sKFawBxHm
-         fQZv5FoabAu9gg8akYzMCY6Fw5v7Hb5iimAkyb1YL8YKZPr0UHqJfXw85J3Bl5e2ND/y
-         4o2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=OHn7hEjFb/8SBXPDh1+DgoRQWsuvdjNe2+U9AyALG4o=;
-        b=o32R44laedXCQoK+YjeInT50P1QspspQ/j9TIEET6qf9tqvrb5rnxYQ/mIUGYgihGf
-         Zk7RMGw/otBjbnOezMldrpt5/CRsJXWVqtcUpSvlTe0xH8U0PPembi5F9Fovat/gdGlI
-         1xbGVzy5iluOuA7G6KVKox/KTOOv9iDkuaqdGPqWYnEtLEMooGfc5j2m7gWc+YypVYpZ
-         ssyx26b5dcCvtMFQgrOR3Fjp4ZPxURxWmTHI5alqgwOiMQADtdviQPpRbNVH/6rHkRLG
-         nXMYTBzKyNwKEMvf5dj8ikOWFAF4HxBVo0WFNiyzVgJx8QY1UkVoWbDhHXw1iMZrRIXu
-         x6BQ==
-X-Gm-Message-State: AOAM533q43LJthqcqI0IRoEnOJvscHsSb7b2HVWwjpa4RGOjzdRbcXE0
-        VemRosHxSzjDadPQAcB29eG5Pq3AKa6gP4p2BUno+zTqnZw=
-X-Google-Smtp-Source: ABdhPJwlkQdsmXiGVJuT5fBMSRufgvGnNFQJWXPQYp7JmU26Bood8ogKvJRBt/XX6NId4d0K7v9nUTgHvmnJoTuh4oY=
-X-Received: by 2002:a05:6402:202e:: with SMTP id ay14mr26654583edb.233.1595348465062;
- Tue, 21 Jul 2020 09:21:05 -0700 (PDT)
+        id S1728956AbgGUQcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jul 2020 12:32:15 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:44704 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727058AbgGUQcO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jul 2020 12:32:14 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06LGWCZo009455;
+        Tue, 21 Jul 2020 11:32:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1595349132;
+        bh=VXQVYB3wzJZWQT9GPM/H2pXNrk9WfmlT/oWF5ORcuqY=;
+        h=From:To:CC:Subject:Date;
+        b=ZLISQ8gBnfpEgWRKBMAQZ99+D9fIOsDzyqQ2M7TEjzc46/TCtB7ph6PkNAiGN8s9K
+         iMYkemgOMItg6Di+LqUQ32j6suxcisVJIa6zJH2Ryhy6OXgbGy2Rz4/1VZ1L3QFz+d
+         umMoPS4Tz9WxPcQIm5H6FMluGRlDdS9mGyK5xv/Y=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06LGWCKs039721
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 21 Jul 2020 11:32:12 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 21
+ Jul 2020 11:32:12 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 21 Jul 2020 11:32:12 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06LGWCAt027900;
+        Tue, 21 Jul 2020 11:32:12 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <sre@kernel.org>, <afd@ti.com>, <pali@kernel.org>
+CC:     <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh@kernel.org>,
+        Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH v3 1/4] dt-bindings: power: Add BQ27561 compatible
+Date:   Tue, 21 Jul 2020 11:32:03 -0500
+Message-ID: <20200721163206.25438-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20200704122809.73794-1-konradybcio@gmail.com> <20200704130922.GB21333@willie-the-truck>
- <20200705033511.GR388985@builder.lan> <CAMS8qEWO-1mNd12Zs-2WogCrgNF5=6RkF=Z1pTeOZxSuKjx+qg@mail.gmail.com>
- <20200721154415.GA5758@jcrouse1-lnx.qualcomm.com>
-In-Reply-To: <20200721154415.GA5758@jcrouse1-lnx.qualcomm.com>
-From:   Konrad Dybcio <konradybcio@gmail.com>
-Date:   Tue, 21 Jul 2020 18:20:29 +0200
-Message-ID: <CAMS8qEXNh6n9SpMkPAr8cPneasPvJPELD2TZ4gxUf0byxNePbg@mail.gmail.com>
-Subject: Re: [PATCH 1/1] iommu/arm-smmu: Implement qcom,skip-init
-To:     Konrad Dybcio <konradybcio@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Will Deacon <will@kernel.org>, skrzynka@konradybcio.pl,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        John Stultz <john.stultz@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->The current
->focus has been on moving more of the SMMU specific bits into the arm-smmu-qcom
->implementation [1] and I think that is the right way to go.
+Add the Texas Instruments bq27561 battery monitor to the bq27xxx
+binding.
 
-Pardon if I overlooked something obvious, but I can't seem to find a
-clean way for implementing qcom,skip-init in arm-smmu-qcom, as neither
-the arm_smmu_test_smr_masks nor the probe function seem to be
-alterable with arm_smmu_impl. I'm open to your ideas guys.
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
+ Documentation/devicetree/bindings/power/supply/bq27xxx.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Konrad
+diff --git a/Documentation/devicetree/bindings/power/supply/bq27xxx.yaml b/Documentation/devicetree/bindings/power/supply/bq27xxx.yaml
+index 03d1020a2e47..51cb1f685dcf 100644
+--- a/Documentation/devicetree/bindings/power/supply/bq27xxx.yaml
++++ b/Documentation/devicetree/bindings/power/supply/bq27xxx.yaml
+@@ -49,6 +49,7 @@ properties:
+       - ti,bq27426
+       - ti,bq27441
+       - ti,bq27621
++      - ti,bq27561
+ 
+   reg:
+     maxItems: 1
+-- 
+2.27.0
+
