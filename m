@@ -2,123 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1814228BD6
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jul 2020 00:09:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0659228BFC
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jul 2020 00:37:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727850AbgGUWJK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jul 2020 18:09:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41620 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726686AbgGUWJJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jul 2020 18:09:09 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A4DFC061794;
-        Tue, 21 Jul 2020 15:09:09 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id 184so107050wmb.0;
-        Tue, 21 Jul 2020 15:09:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=jmxp9ZjwzrYU1CbK6BbkvHp9azWbhVXBGBSwuvDU5/Q=;
-        b=UbYmBjCBdVt56lbOo9uLJj4QIJ93bEJNWqYyy0Aa7BP07xdb46QT1/1hS69tOeS55S
-         Y/lDYpWJrncj7JgrdrarkD8BaI28v7fMrFT8WoWmDeDgmlbG47qvkTdrZNE6phccwm2g
-         OiFvnenr1w2xNP2h4Bo3JMQTdKOUic5WmGHVw7AP0bgxou9WmkssfHWWNhUXIYOEEAFp
-         xM9g/GkplKSdNyKy9IG7FWHJn1kRLzwqBCPSz8abbMuVY3hFhtBRhcpu3XXfh20e9nHD
-         c1scEShv0oNJGjuJlh1hXzjN63AwBsgs4VdA+sQRvf3/9zUK6fsxN1zvjye/Q0A4/DYL
-         zOPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=jmxp9ZjwzrYU1CbK6BbkvHp9azWbhVXBGBSwuvDU5/Q=;
-        b=dZ8T0jnzQChlgFECj18Z05gshDR6lJE5htY3VnUqQAgc1N6hC0nVC4fgI4CcId061t
-         MYtfQs9nM9hH+clohiPTJAFqLWDfW4O/nfFogOFKNDK8IQdw5u6eQvv/516xIj0Lf82Q
-         fmDR1De4e0a19lahqBLKHuGkn0mqzY+a7kEuPdztzkDzuXtveGHxl7hby+BxtKlHg3bz
-         8Ns7VNxSTzfLnAY012+XT63Ic5D6PJRfGRQy+apSApezKO5DdPFtR9hc/BxyAw5ap5Xb
-         daWdlqQZlk+8YJeOJ8tdEZnizg1Zp2cBDkJNbRKduoAfufft4lExMhaSYq10lQlK2wTu
-         MRxA==
-X-Gm-Message-State: AOAM533eqPEciXtu7lxxiqbL9rq63iAAdyA9AUmFcYu8/mOJITclDKoE
-        JXdN3EmIfBk6whcs7xvSIBY=
-X-Google-Smtp-Source: ABdhPJwl/nnr+jBNsRDdiUcJoX66N+yahxMmWnzmyCTxkv1EFWyNbM9CrmHt1yr/mCOJmwbNuTKUkA==
-X-Received: by 2002:a7b:c4d6:: with SMTP id g22mr6095038wmk.170.1595369348208;
-        Tue, 21 Jul 2020 15:09:08 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.122.158])
-        by smtp.gmail.com with ESMTPSA id k126sm5110920wmf.3.2020.07.21.15.09.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Jul 2020 15:09:07 -0700 (PDT)
-Subject: Re: [PATCH v8 6/7] arm64: dts: add dts nodes for MT6779
-To:     Hanks Chen <hanks.chen@mediatek.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        id S1729066AbgGUWg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jul 2020 18:36:27 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:36016 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726555AbgGUWg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jul 2020 18:36:26 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06LMaLNG108088;
+        Tue, 21 Jul 2020 17:36:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1595370981;
+        bh=3Sb6PrHGQGYKFrEVdSA8GaYuEwf+vL4h5BIJE8Zpo6k=;
+        h=From:To:CC:Subject:Date;
+        b=C3Lu1WiJ0sSay5h9zOT1yMJmfHMYoMNXmyoeU9WQcFiVBoJ55Fp8VLR56viwCNRtt
+         JVtC0nvljbmVgTEA57WgoTWyfzXy18MRCILBh4HWFPux8f7RN70qzsqzq40SJ73Ur1
+         AdNyCJ77Ot3zJaZyqCSU40lf8T9Tt7Ldd78WJr6c=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06LMaL51023668;
+        Tue, 21 Jul 2020 17:36:21 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 21
+ Jul 2020 17:36:21 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 21 Jul 2020 17:36:21 -0500
+Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06LMaLRo013887;
+        Tue, 21 Jul 2020 17:36:21 -0500
+Received: from localhost ([10.250.34.248])
+        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 06LMaL2D080793;
+        Tue, 21 Jul 2020 17:36:21 -0500
+From:   Suman Anna <s-anna@ti.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sean Wang <sean.wang@kernel.org>,
-        mtk01761 <wendell.lin@mediatek.com>,
-        Andy Teng <andy.teng@mediatek.com>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        wsd_upstream@mediatek.com, CC Hwang <cc.hwang@mediatek.com>,
-        Loda Chou <loda.chou@mediatek.com>
-References: <1594718402-20813-1-git-send-email-hanks.chen@mediatek.com>
- <1594718402-20813-7-git-send-email-hanks.chen@mediatek.com>
- <1b335463-b0af-9010-feed-c4b673ebb6c5@gmail.com>
- <1594872242.11090.8.camel@mtkswgap22>
- <742eefe1-954b-eb3f-98b7-469833df729a@gmail.com>
- <1595311242.5599.3.camel@mtkswgap22>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <1eb11f7f-603a-4aa9-92c5-1e18e6e2ce01@gmail.com>
-Date:   Wed, 22 Jul 2020 00:09:06 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+        Mathieu Poirier <mathieu.poirier@linaro.org>
+CC:     Nishanth Menon <nm@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH v5 0/6] TI K3 DSP remoteproc driver for C66x DSPs
+Date:   Tue, 21 Jul 2020 17:36:11 -0500
+Message-ID: <20200721223617.20312-1-s-anna@ti.com>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-In-Reply-To: <1595311242.5599.3.camel@mtkswgap22>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi All,
 
+The following is v5 of the K3 DSP remoteproc driver supporting the C66x DSPs
+on the TI K3 J721E SoCs. The patches apply cleanly both on v5.8-rc1 as well
+as on latest HEAD of rproc-next branch. The C71x v3 still applies cleanly on
+top of this series.
 
-On 21/07/2020 08:00, Hanks Chen wrote:
-> On Mon, 2020-07-20 at 18:13 +0200, Matthias Brugger wrote:
->>
->> On 16/07/2020 06:04, Hanks Chen wrote:
+The main changes are on the bindings. The previously added common 
+ti,k3-sci-rproc.yaml remoteproc binding (v4 patch#3) is replaced by an
+equivalent generic ti,k3-sci-common.yaml binding (patch #1) that can scale
+to other TI SCI controller nodes. As such, I have relocated the file to 
+Documentation/devicetree/bindings/arm/keystone folder instead of the
+remoteproc folder. Driver patches are unchanged.
 
->>>>> +		uart2: serial@11004000 {
->>>>> +			compatible = "mediatek,mt6779-uart",
->>>>> +				     "mediatek,mt6577-uart";
->>>>> +			reg = <0 0x11004000 0 0x400>;
->>>>> +			interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_LOW>;
->>>>> +			clocks = <&clk26m>, <&infracfg_ao CLK_INFRA_UART2>;
->>>>> +			clock-names = "baud", "bus";
->>>>> +			status = "disabled";
->>>>> +		};
->>>>
->>>> Devicetree describes the HW we have. As far as I know, we have 4 UARTs on
->>>> MT6779. So we should list them all here.
->>>>
->>>
->>> Actually, We have only 3 UARTs HW on MT6779, but have 4 UART clk in
->>> header file of clk.
->>
->> Correct, I got confused by the four clocks.
->> With that clarified I'm fine with the patch and will take it as soon as the
->> clock driver patch is accepted.
->>
->> Regards,
->> Matthias
->>
-> Got it, I send a new serial to fix the redundant UART clk
-> https://lkml.org/lkml/2020/7/21/45
-> 
+Please see the v4 cover-letter and individual patches for further delta
+differences.
 
-Ok, also I was talking about:
-[PATCH v8 7/7] clk: mediatek: add UART0 clock support
+v4: https://patchwork.kernel.org/cover/11671459/
+v3: https://patchwork.kernel.org/cover/11602331/
+v2: https://patchwork.kernel.org/cover/11561787/
+v1: https://patchwork.kernel.org/cover/11458573/
 
-Regards,
-Matthias
+C71x v3: https://patchwork.kernel.org/cover/11602345/
+
+regards
+Suman
+
+Suman Anna (6):
+  dt-bindings: arm: keystone: Add common TI SCI bindings
+  remoteproc: Introduce rproc_of_parse_firmware() helper
+  remoteproc: k3: Add TI-SCI processor control helper functions
+  dt-bindings: remoteproc: Add bindings for C66x DSPs on TI K3 SoCs
+  remoteproc: k3-dsp: Add a remoteproc driver of K3 C66x DSPs
+  remoteproc: k3-dsp: Add support for L2RAM loading on C66x DSPs
+
+ .../arm/keystone/ti,k3-sci-common.yaml        |  44 +
+ .../bindings/remoteproc/ti,k3-dsp-rproc.yaml  | 142 ++++
+ MAINTAINERS                                   |   1 +
+ drivers/remoteproc/Kconfig                    |  13 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/remoteproc_core.c          |  23 +
+ drivers/remoteproc/remoteproc_internal.h      |   2 +
+ drivers/remoteproc/ti_k3_dsp_remoteproc.c     | 771 ++++++++++++++++++
+ drivers/remoteproc/ti_sci_proc.h              | 104 +++
+ 9 files changed, 1101 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/keystone/ti,k3-sci-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+ create mode 100644 drivers/remoteproc/ti_k3_dsp_remoteproc.c
+ create mode 100644 drivers/remoteproc/ti_sci_proc.h
+
+-- 
+2.26.0
+
