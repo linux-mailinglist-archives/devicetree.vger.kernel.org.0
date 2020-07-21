@@ -2,55 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0E41227BE1
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 11:37:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2619227BF5
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 11:40:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726415AbgGUJhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jul 2020 05:37:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53704 "EHLO mail.kernel.org"
+        id S1726188AbgGUJkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jul 2020 05:40:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55240 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726188AbgGUJhK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Jul 2020 05:37:10 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726089AbgGUJkk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Jul 2020 05:40:40 -0400
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 04E032070A;
-        Tue, 21 Jul 2020 09:37:09 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 01EF720B1F
+        for <devicetree@vger.kernel.org>; Tue, 21 Jul 2020 09:40:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1595324230;
-        bh=K8Sj50xO/JwTh4VLhBj/W7/IQ4b0OHSwpJCDBWyZClA=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=XzytEykN3qSDmKdHOYrgZYJx6b8K2JHAUfC7k0U92DYJaPpsazu4BtCWiWVaR38SG
-         T3ztzBw+HXAg9bdC6y/9s+YcnUt7TSpHTo+fSwEQEduff8xuBmEm9bAAELC2hCGmEn
-         68lK89oWptjMlvgHJYg/OLEF4wRnSFkJOo41n+lM=
-Content-Type: text/plain; charset="utf-8"
+        s=default; t=1595324440;
+        bh=1h+1GwE7hycFxjfYabzIepvpJdN7SRC2PKRbHoqdfyY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=J4U7lTxP5CPf34ZMzQ0rqY8I+kAGHCPBLjtoorIK4vqedXL2mOGl+IRYh/N3kUIX5
+         Sgjzv4hMOE/YeDvWBd52DX1VJ3VsWWlHBRD6L9SmEpZd8/BJ7d144OWbi07o7IXizh
+         SnlqhWn1rTSyPQtwoCQRARIiz9qPuL88kLW/DbTk=
+Received: by mail-lj1-f177.google.com with SMTP id z24so23324725ljn.8
+        for <devicetree@vger.kernel.org>; Tue, 21 Jul 2020 02:40:39 -0700 (PDT)
+X-Gm-Message-State: AOAM532zVNQXWhGZWBts2iN2MPnjcRKu01R6y5q56mKZ22RtWqF9a43c
+        1C5qvhYqKCvN8FnUmCH+4QwMylDztxGhsKZPygg=
+X-Google-Smtp-Source: ABdhPJztnP32RRtDsgpLBdJTMG2Xrxbs0KhILV9JrQ/K/yISWSE0z+EYbvdc+2v7/fcnB210sYBlWmctvBNrRhTMV8U=
+X-Received: by 2002:a2e:99cf:: with SMTP id l15mr12651424ljj.294.1595324438214;
+ Tue, 21 Jul 2020 02:40:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1595322791-18571-1-git-send-email-loic.poulain@linaro.org>
-References: <1595322791-18571-1-git-send-email-loic.poulain@linaro.org>
-Subject: Re: [PATCH] dt-bindings: clock: Fix qcom,msm8996-apcc yaml syntax
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Loic Poulain <loic.poulain@linaro.org>
-To:     Loic Poulain <loic.poulain@linaro.org>
-Date:   Tue, 21 Jul 2020 02:37:09 -0700
-Message-ID: <159532422926.3847286.17225381725328792627@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+References: <20200714071305.18492-1-wens@kernel.org> <20200714071305.18492-2-wens@kernel.org>
+ <20200721021026.GA3382460@bogus> <20200721092333.yr3wwmrxwz5rvpam@gilmour.lan>
+In-Reply-To: <20200721092333.yr3wwmrxwz5rvpam@gilmour.lan>
+From:   Chen-Yu Tsai <wens@kernel.org>
+Date:   Tue, 21 Jul 2020 17:40:26 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64=RozBti+ww1Pi56AcKu8RvCN1u7KhfQM8tXRUu4mnWQ@mail.gmail.com>
+Message-ID: <CAGb2v64=RozBti+ww1Pi56AcKu8RvCN1u7KhfQM8tXRUu4mnWQ@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: display: panel-dpi: Add bits-per-color property
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Rob Herring <robh@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Siarhei Siamashka <siarhei.siamashka@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Loic Poulain (2020-07-21 02:13:11)
-> Fix errors reported by dt_binding_check.
-> - Fix literal block scalar for dts example
-> - Fix schema identifier URI
->=20
-> Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
-> ---
-
-Any chance you can resend and Cc linux-clk and Robh?
-
->  Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml | 6 ++----
->  1 file changed, 2 insertions(+), 4 deletions(-)
+On Tue, Jul 21, 2020 at 5:23 PM Maxime Ripard <maxime@cerno.tech> wrote:
 >
+> On Mon, Jul 20, 2020 at 08:10:26PM -0600, Rob Herring wrote:
+> > On Tue, Jul 14, 2020 at 03:13:01PM +0800, Chen-Yu Tsai wrote:
+> > > From: Chen-Yu Tsai <wens@csie.org>
+> > >
+> > > Some LCD panels do not support 24-bit true color, or 8bits per channel
+> > > RGB. Many low end ones only support up to 6 bits per channel natively.
+> >
+> > This should be implied by the panel's compatible property.
+>
+> I'm not sure it should, or at least it's not sufficient. Some panels
+> while 24 bits capable might only have the higher bits connected to save
+> off a couple of pins per color, in which case we should probably
+> describe that somehow.
+
+The bus format stuff that was added then removed might be better suited
+for what you have in mind. Right now that's put in the simple panel
+driver, but it likely doesn't belong there, since the bus format is
+also related to the hardware integration, signal routing as you mentioned,
+and not just a property of the panel itself.
+
+Nevertheless, what I'm looking for can be achieved using bus format
+as well. Given that I have no datasheet for the panel in the device
+I'm upstreaming, and only a vague part number to go with, describing
+it as a bus format modifier rather than a property of the panel might
+be safer.
+
+So I'll just drop the two patches regarding bit depth for now.
+
+
+ChenYu
