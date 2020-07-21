@@ -2,98 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA747228734
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 19:22:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57EC322874E
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jul 2020 19:27:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730307AbgGURVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jul 2020 13:21:50 -0400
-Received: from esa5.microchip.iphmx.com ([216.71.150.166]:22525 "EHLO
-        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728306AbgGURVt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jul 2020 13:21:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1595352110; x=1626888110;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Cr9yMh/643YG+tS2Nsorca62cbZHykMm0kwOqg1UwAk=;
-  b=lw/szNsMajlb+0AdVo8voOGoG/msPvajoNGh8yH6vKT+IUNw1d5wqFo2
-   JMO+ruKApIR4Zud3EDItOlwybE6NOBYUtgVNj/Yma8f0EAmiVYeFC/Jz7
-   J+KcKTa2BDFS0ApkxoMq57h4xMtRc+Tcwos8chSvHmZJ5NoC/f0SP8az0
-   xzZvUiR+wG/W/QgiwrSkPONdmdthBwfQYW4wIttUUGr1kEMPBqdjwnSX4
-   pwSSldYwpwkDYuuPnJhjxglGUrB6aVOj1fhnIfquVxXdQM1cJ64BLWP56
-   PCO0YNHJfDC/ofEpSIHOS07kFdR3VTNub2Vc6ocb8y5AVaFu/38ICWrry
-   Q==;
-IronPort-SDR: CcUTc3On6c0yp9yuLQT1QB8qmu3kf1ctzNkAZV5ykz+c/Q4nHoQAmZsZXurSKjCElhdpE9vH3X
- jviXJD+TgYaZfN7gnZ3sCQD0xVo3KtgMuMMonpP989J6dwByPekkqtHLlHUj8URJbA/vwgc2zu
- etVGQzMqLQDCpsrUbbFKPiatvFNQsrnpSJQSZocfLuYXb3e1rVQQBLP3Of2S8Pu/Q70iPcdG/f
- oswuX8YdXbPr3uCVZQR1raA7mdWkVOwhzBIFqJUd4p2nxS0rUtgLsXJOjG7a3SJY7YsOZchP0J
- XaE=
-X-IronPort-AV: E=Sophos;i="5.75,379,1589266800"; 
-   d="scan'208";a="84067376"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 21 Jul 2020 10:21:49 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Tue, 21 Jul 2020 10:21:47 -0700
-Received: from rob-ult-m19940.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Tue, 21 Jul 2020 10:20:43 -0700
-From:   Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
-To:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <nicolas.ferre@microchip.com>, <claudiu.beznea@microchip.com>,
-        <davem@davemloft.net>, <kuba@kernel.org>, <andrew@lunn.ch>,
-        <f.fainelli@gmail.com>, <robh+dt@kernel.org>,
-        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
-        "Codrin Ciubotariu" <codrin.ciubotariu@microchip.com>
-Subject: [PATCH net-next v2 7/7] ARM: dts: at91: sam9x60: add an mdio sub-node to macb
-Date:   Tue, 21 Jul 2020 20:13:16 +0300
-Message-ID: <20200721171316.1427582-8-codrin.ciubotariu@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200721171316.1427582-1-codrin.ciubotariu@microchip.com>
-References: <20200721171316.1427582-1-codrin.ciubotariu@microchip.com>
+        id S1730408AbgGUR1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jul 2020 13:27:06 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:34548 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730392AbgGUR1G (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Jul 2020 13:27:06 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1595352425; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=tn7ejI+sUf3otsLmxloNW0nHWliUL6j6F994zKSOkpc=; b=cqG10eD7MmmObF4BgrQeUeCoaJapAA4i6ieO93R1svhvKoKAaeuYHzFQWr8I08PRNsDhXLb+
+ eCZeUlTzWP+nJEm6J10ppyRR4tLrnJ/OnhD6O57gCQzTRBZMyB/ejz8eSw7/O4JEX6XpEsmM
+ sqXAvxNWvCJvGNREnufEZS4MQrY=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n11.prod.us-west-2.postgun.com with SMTP id
+ 5f1725640cb8533c3bef1e68 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 21 Jul 2020 17:27:00
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 7FEF6C433CA; Tue, 21 Jul 2020 17:27:00 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,NICE_REPLY_A,
+        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [192.168.0.106] (unknown [183.82.139.81])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 07DB0C433C6;
+        Tue, 21 Jul 2020 17:26:55 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 07DB0C433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
+Subject: Re: [PATCH v4 2/4] dt-bindings: clock: Add YAML schemas for LPASS
+ clocks on SC7180
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        robh@kernel.org, robh+dt@kernel.org
+References: <1594795010-9074-1-git-send-email-tdas@codeaurora.org>
+ <1594795010-9074-3-git-send-email-tdas@codeaurora.org>
+ <159531791606.3847286.11896325263133276429@swboyd.mtv.corp.google.com>
+From:   Taniya Das <tdas@codeaurora.org>
+Message-ID: <01daee94-756d-3970-9057-849de2b76430@codeaurora.org>
+Date:   Tue, 21 Jul 2020 22:56:53 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+In-Reply-To: <159531791606.3847286.11896325263133276429@swboyd.mtv.corp.google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use the new macb bindings and add an mdio sub-node to contain all the
-phy nodes.
+Hi Stephen,
 
-Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
----
+Thanks for the review.
 
-Changes in v2:
- - none
+On 7/21/2020 1:21 PM, Stephen Boyd wrote:
 
- arch/arm/boot/dts/at91-sam9x60ek.dts | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+>> +...
+>> diff --git a/include/dt-bindings/clock/qcom,gcc-sc7180.h b/include/dt-bindings/clock/qcom,gcc-sc7180.h
+>> index 992b67b..bdf43adc 100644
+>> --- a/include/dt-bindings/clock/qcom,gcc-sc7180.h
+>> +++ b/include/dt-bindings/clock/qcom,gcc-sc7180.h
+>> @@ -138,6 +138,7 @@
+>>   #define GCC_MSS_Q6_MEMNOC_AXI_CLK                              128
+>>   #define GCC_MSS_SNOC_AXI_CLK                                   129
+>>   #define GCC_SEC_CTRL_CLK_SRC                                   130
+>> +#define GCC_LPASS_CFG_NOC_SWAY_CLK                             131
+>>   
+>>   /* GCC resets */
+>>   #define GCC_QUSB2PHY_PRIM_BCR                                  0
+> 
+> This hunk should be in the next patch. Oh but then that patch should come
+> before this one so the binding can use it. Either way, shouldn't be part
+> of this patch.
+> 
 
-diff --git a/arch/arm/boot/dts/at91-sam9x60ek.dts b/arch/arm/boot/dts/at91-sam9x60ek.dts
-index a5f5718c711a..ba871ebe10d4 100644
---- a/arch/arm/boot/dts/at91-sam9x60ek.dts
-+++ b/arch/arm/boot/dts/at91-sam9x60ek.dts
-@@ -324,8 +324,12 @@ &macb0 {
- 	pinctrl-0 = <&pinctrl_macb0_rmii>;
- 	status = "okay";
- 
--	ethernet-phy@0 {
--		reg = <0x0>;
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		ethernet-phy@0 {
-+			reg = <0x0>;
-+		};
- 	};
- };
- 
+
+We had a problem with the bot complaining about the clock handles being 
+used in the example.
+
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1582540703-6328-4-git-send-email-tdas@codeaurora.org/
+
+Thus I have kept the GCC bindings in the same patch.
+
 -- 
-2.25.1
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation.
 
+--
