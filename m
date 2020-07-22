@@ -2,87 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB6A6229FA7
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jul 2020 20:51:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A2B7229FEB
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jul 2020 21:13:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732488AbgGVSvY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jul 2020 14:51:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36220 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726642AbgGVSvX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jul 2020 14:51:23 -0400
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A99FDC0619E0
-        for <devicetree@vger.kernel.org>; Wed, 22 Jul 2020 11:51:21 -0700 (PDT)
-Received: by mail-ej1-x642.google.com with SMTP id lx13so3382394ejb.4
-        for <devicetree@vger.kernel.org>; Wed, 22 Jul 2020 11:51:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ckjMfObU3VR4aVlN8sx7NeyOwpBgmwCnRHjq06bGHdA=;
-        b=bOI/H+t8PnciNYTHP/88aE2CzZkUKTkT2+gh5LYFnaRTm7sX+E3EBfyXcWby2Lk9o8
-         THn8qBlr9fR/kLc/rJOhtfchzPz2h6GViYLw0YJBWkd1QhP61SYEQKyiRd52AdJ0t31T
-         BkzlhwABTrcUx/oBR2Yygdp/myp1rsyOcP3fI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ckjMfObU3VR4aVlN8sx7NeyOwpBgmwCnRHjq06bGHdA=;
-        b=dz5Ouo6HA1JtvL+hoMvPMh9Mby/x9bWty6jTVwy6/kPTrJ15XohkHHElS4aDy0Bppx
-         rbTknAgpoMpprC0Jo4aBJToH1q6XlV/ji/VCVDL8Kl4fCtYabP51g8xhCpfEA5Ujs2Xx
-         aHLyyoapGxlFBNcjoN3f7U/s0S+TZed3gCkRfbr8xpYBx43nEAr9gO0f5vLNlmpW0D+E
-         oao4DrUB+9c6z6vVA+gM0Ua6hb75qljI0gl7yrW2xLgjmbwfvf+sT5QhTjbevi992cVw
-         74c7jpU/LMhZBSzBIO9J5c+fVNNJ5Lmw9u8RTg2AtoHpCSLIZ8DeEwsK1Asa51Oh0TOQ
-         +szg==
-X-Gm-Message-State: AOAM531DDR7TfMnF/LgtsZ40b9Ww+YkUbtL4daEmo4X7zl3Izxy+nqUt
-        Rf/kLzw27g6jkoeeR6E29/gSAlfCHTpE4YzEGrML6A==
-X-Google-Smtp-Source: ABdhPJwkngaZ2CHVRhBzf8uI4XLL0dC4YbAv+ZrUhO8OEdsq3u5XQolU4RSgHCv2T3YROp8PBgWIIC1BBIjreo/5ifc=
-X-Received: by 2002:a17:906:ecf4:: with SMTP id qt20mr929128ejb.485.1595443880417;
- Wed, 22 Jul 2020 11:51:20 -0700 (PDT)
+        id S1732666AbgGVTLp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jul 2020 15:11:45 -0400
+Received: from mailout06.rmx.de ([94.199.90.92]:52874 "EHLO mailout06.rmx.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732575AbgGVTLo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Jul 2020 15:11:44 -0400
+X-Greylist: delayed 1923 seconds by postgrey-1.27 at vger.kernel.org; Wed, 22 Jul 2020 15:11:43 EDT
+Received: from kdin01.retarus.com (kdin01.dmz1.retloc [172.19.17.48])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mailout06.rmx.de (Postfix) with ESMTPS id 4BBklZ1dR6z9yJT;
+        Wed, 22 Jul 2020 20:39:38 +0200 (CEST)
+Received: from mta.arri.de (unknown [217.111.95.66])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by kdin01.retarus.com (Postfix) with ESMTPS id 4BBklC2LPTz2xDP;
+        Wed, 22 Jul 2020 20:39:19 +0200 (CEST)
+Received: from N95HX1G2.wgnetz.xx (192.168.54.68) by mta.arri.de
+ (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.408.0; Wed, 22 Jul
+ 2020 20:39:12 +0200
+From:   Christian Eggers <ceggers@arri.de>
+To:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Richard Leitner <richard.leitner@skidata.com>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH] Add two new configuration drivers for Microchip USB hubs
+Date:   Wed, 22 Jul 2020 20:38:55 +0200
+Message-ID: <20200722183859.24470-1-ceggers@arri.de>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20200720110230.367985-1-jagan@amarulasolutions.com> <20200720110230.367985-3-jagan@amarulasolutions.com>
-In-Reply-To: <20200720110230.367985-3-jagan@amarulasolutions.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Thu, 23 Jul 2020 00:21:07 +0530
-Message-ID: <CAMty3ZDkvRGn6a54ryVFNJOwm+X6YXW-TxSjO+kC9o2kshRxtg@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add PCIe for RockPI N10
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>
-Cc:     Suniel Mahesh <sunil@amarulasolutions.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.54.68]
+X-RMX-ID: 20200722-203923-4BBklC2LPTz2xDP-0@kdin01
+X-RMX-SOURCE: 217.111.95.66
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko,
+Most USB hub chips from Microchip can be configured via I2C/SMBus
+interface. The series adds two new drivers for configuration of the
+following USB hub series:
 
-On Mon, Jul 20, 2020 at 4:33 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
->
-> This patch adds support to enable PCIe for RockPI N10.
->
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
->  .../dts/rockchip/rk3399pro-vmarc-som.dtsi     | 41 ++++++++++++++++++-
->  1 file changed, 39 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi b/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi
-> index ebccc4a153a2..b415b8a16c78 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi
-> @@ -11,6 +11,19 @@
->
->  / {
->         compatible = "vamrs,rk3399pro-vmarc-som", "rockchip,rk3399pro";
-> +
-> +
+- USB253x
+- USB3x13
+- USB46x4
+- USB47xx
+- USB49xx
 
-Sorry for this extra space, let me know so that I can resend next version.
 
-Jagan.
