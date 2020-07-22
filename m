@@ -2,243 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECE9F2291BD
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jul 2020 09:10:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E60A2291F2
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jul 2020 09:18:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730380AbgGVHJ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jul 2020 03:09:58 -0400
-Received: from mail-eopbgr680086.outbound.protection.outlook.com ([40.107.68.86]:49959
-        "EHLO NAM04-BN3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728063AbgGVHJ5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Jul 2020 03:09:57 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZSJ/BlPehGoAIMJjkGwCiv9Wq3PQ8jbVn8BRtD8wHIdzE3qPc4K+5GbGFCyUYcnWgn1lyfXuU88QmG847m0e6L4bFoqXkYoj7otcDsf+9KroeyyL/JDXzzWkliivjCYj48PeAV4TkhZbhkXaL4fR4kHZ+xLGKIGTObyOyf7ymDNlIdeYZh6xPNgrTnf4+huoxWQeay6DsOoTP7j6qJXs8lTGDdYw4ps0yPrhA5ivlyXn0sacvHvZgL8zZPVo/4PObVE8aJRrT7fIfPWabpogmMtdRhsygaFHrvW1AEdUzit/RYRoQMvaW4ICpZrSpbEWOR7m0pD+KU+ny48UgotBMw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GmFdi2scGz1OVqTFGp8mqvD/8d5wjmTPuW7BfwhRvKM=;
- b=TLLeYRNoNCU798GiopG62WsElEZAg2ckY3tmxhWsBrfwpQR9IRDhkpKro9kOL2lHxerT0jM/ZHXsNMaIGomA3bIh2POmLF6cOIWbvv2dcwtzImnOErnJygddXOSPOjt3T2vFRqKu7FyTZLMsNGQuYwlXer11PyOlGrHZsA+qlup94wESt1gEh3TYSF94ANnmmK5BYN9N0olq+82D6039mk+xwhD/Ee3OEMANEQXUnlEOpflAE2v4YMVxoiFd41fKgT9tLFUZwVSkprZdm1yT5XaQ9j72vXU2so/Gvqk+Z2eTSsRjdiKyWyG6vZWr/2vEHxlJgmEspSKr8E9jtS9hdQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.60.83) smtp.rcpttodomain=avnet.com smtp.mailfrom=xilinx.com;
- dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
- not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GmFdi2scGz1OVqTFGp8mqvD/8d5wjmTPuW7BfwhRvKM=;
- b=aMBLaj7ct0jYLuO43XgcRXyUWsaAPxWbC8Vx2LMZRjjzMSJPTIhZCEpkerQfriRydzaO/bC6IYg3iCF6fnZo2c8/mKX0LNavaHOxjP2g7qsPR1elh5xMq17QkYN/KI/oZ9voFdJdhD8bUFpp28v+OWDMwC6Vcl6v8tmlMZHGEr4=
-Received: from CY4PR12CA0039.namprd12.prod.outlook.com (2603:10b6:903:129::25)
- by DM6PR02MB5913.namprd02.prod.outlook.com (2603:10b6:5:157::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3195.17; Wed, 22 Jul
- 2020 07:09:54 +0000
-Received: from CY1NAM02FT012.eop-nam02.prod.protection.outlook.com
- (2603:10b6:903:129:cafe::8a) by CY4PR12CA0039.outlook.office365.com
- (2603:10b6:903:129::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.22 via Frontend
- Transport; Wed, 22 Jul 2020 07:09:53 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.60.83)
- smtp.mailfrom=xilinx.com; avnet.com; dkim=none (message not signed)
- header.d=none;avnet.com; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
-Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
- CY1NAM02FT012.mail.protection.outlook.com (10.152.75.158) with Microsoft SMTP
- Server id 15.20.3216.10 via Frontend Transport; Wed, 22 Jul 2020 07:09:53
- +0000
-Received: from [149.199.38.66] (port=60679 helo=smtp.xilinx.com)
-        by xsj-pvapsmtpgw01 with esmtp (Exim 4.90)
-        (envelope-from <lakshmi.sai.krishna.potthuri@xilinx.com>)
-        id 1jy8rB-0002Jq-4f; Wed, 22 Jul 2020 00:08:01 -0700
-Received: from [127.0.0.1] (helo=xsj-smtp-dlp1.xlnx.xilinx.com)
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <lakshmi.sai.krishna.potthuri@xilinx.com>)
-        id 1jy8sy-0001GB-G2; Wed, 22 Jul 2020 00:09:52 -0700
-Received: from xsj-pvapsmtp01 (mailhost.xilinx.com [149.199.38.66])
-        by xsj-smtp-dlp1.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id 06M79pe8016849;
-        Wed, 22 Jul 2020 00:09:51 -0700
-Received: from [10.140.6.35] (helo=xhdsaipava40.xilinx.com)
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <lakshmis@xhdsaipava40.xilinx.com>)
-        id 1jy8sw-0001Fr-OU; Wed, 22 Jul 2020 00:09:50 -0700
-Received: by xhdsaipava40.xilinx.com (Postfix, from userid 14964)
-        id 1D36413C0556; Wed, 22 Jul 2020 12:46:07 +0530 (IST)
-From:   Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, git@xilinx.com,
-        saikrishna12468@gmail.com,
-        Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
-Subject: [PATCH v2 2/2] reset: reset-zynqmp: Added support for Versal platform
-Date:   Wed, 22 Jul 2020 12:46:05 +0530
-Message-Id: <1595402165-8282-3-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1595402165-8282-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
-References: <1595402165-8282-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
-X-RCIS-Action: ALLOW
-X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
-X-TM-AS-User-Approved-Sender: Yes;Yes
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:149.199.60.83;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapsmtpgw01;PTR:unknown-60-83.xilinx.com;CAT:NONE;SFTY:;SFS:(376002)(346002)(136003)(39860400002)(396003)(46966005)(2616005)(2906002)(26005)(81166007)(82310400002)(8676002)(8936002)(356005)(4326008)(47076004)(186003)(6266002)(336012)(107886003)(5660300002)(316002)(426003)(70586007)(82740400003)(6636002)(42186006)(70206006)(478600001)(83380400001)(110136005)(36756003);DIR:OUT;SFP:1101;
-X-MS-PublicTrafficType: Email
+        id S1731452AbgGVHSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jul 2020 03:18:13 -0400
+Received: from us-smtp-delivery-1.mimecast.com ([205.139.110.120]:54053 "EHLO
+        us-smtp-1.mimecast.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1730351AbgGVHSM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jul 2020 03:18:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1595402290;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=gtsyT4mz+LNAUNpKdG4kBHqIVduUS0Y9Bmc1QqpE/F8=;
+        b=TQhpq9XZns6pUWHmcC8ojfVkrjuehr4G8YJEIb27s3q3qzP3mztlgAzySqlf5o33+SKOw0
+        qSRfmOi/0m2jrE9NmeKY4ni2jLlvKU8Z1AI86Y6wwa94ILROX6iIEY0i7U3soc8npew2ED
+        cSzorXISLTeQgkWM103RWNBTNqiO0so=
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
+ [209.85.218.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-430-w9wrKJIBML6gua-2ym4aRA-1; Wed, 22 Jul 2020 03:18:05 -0400
+X-MC-Unique: w9wrKJIBML6gua-2ym4aRA-1
+Received: by mail-ej1-f72.google.com with SMTP id op28so641514ejb.15
+        for <devicetree@vger.kernel.org>; Wed, 22 Jul 2020 00:18:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=gtsyT4mz+LNAUNpKdG4kBHqIVduUS0Y9Bmc1QqpE/F8=;
+        b=cIcKoTWHVyPX+ddzrr9VNlL5IHsr4E59Ga6fB/0xbyXDmT/APZsHvsdR+7+8xDkya4
+         rSRs2lCw1pgVnpSwd8sAV9bmj5LQ8ox0eKWSsXxkNYWVQq+iFG7Jp6V+RjGQPfANqqXH
+         p/N3aLvgojhFlvg8rdDKUOlZpORr3nr51AMgPi048bF/wxXzWwwJy0p/P2WqZsCnk03b
+         3I38+9+Jlpuu9w7nfKcEkG+ESC1w9H/xlXYBpe78Xa7kuF1F86ZbdvtutEB67TimjWpn
+         eG+XWXTCsZv6VnFTPIV9GQszWmi2OTY3gpRtVVSf7eZN0WtxfqX1wX2ZM3QPlwI116/w
+         ENtA==
+X-Gm-Message-State: AOAM5329qJGRoZ4v+XBY83ZxhkpjtXUR7NbX5u1U+z2N1iAjMyIZ0KGm
+        o4upiptDY8EEA23reSRw1IT4wXmczIZ1dkW1oY3bhHEzY6bcVZxI5kTMXfQCjPMEMhU9Je/x61h
+        g41ctIIyE382VM3f0unFpVA==
+X-Received: by 2002:a17:906:57c5:: with SMTP id u5mr27834203ejr.311.1595402283741;
+        Wed, 22 Jul 2020 00:18:03 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyceOzzKjVYzoyGWeTz9chUJQE8t5Cdl25VlPyxcK/im99H2NYsEVDg7gPuHMxJ5fCOsgw1Og==
+X-Received: by 2002:a17:906:57c5:: with SMTP id u5mr27834183ejr.311.1595402283431;
+        Wed, 22 Jul 2020 00:18:03 -0700 (PDT)
+Received: from x1.localdomain (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl. [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
+        by smtp.gmail.com with ESMTPSA id f17sm18076914ejr.71.2020.07.22.00.18.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Jul 2020 00:18:02 -0700 (PDT)
+Subject: Re: [PATCH 1/4] dt-bindings: usb-connector: Add support for Type-C
+ alternate-modes
+To:     Rob Herring <robh@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Tobias Schramm <t.schramm@manjaro.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+References: <20200714113617.10470-1-hdegoede@redhat.com>
+ <20200714113617.10470-2-hdegoede@redhat.com> <20200721022610.GA3391383@bogus>
+From:   Hans de Goede <hdegoede@redhat.com>
+Message-ID: <f143d626-2a78-e32f-b122-7dbae1b3a50e@redhat.com>
+Date:   Wed, 22 Jul 2020 09:18:02 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: fcf61859-c539-42a7-96bc-08d82e0e3b7e
-X-MS-TrafficTypeDiagnostic: DM6PR02MB5913:
-X-LD-Processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
-X-Microsoft-Antispam-PRVS: <DM6PR02MB5913DEAB569DBD116F0CA691BD790@DM6PR02MB5913.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /2aDVX5/bv2JOUhocJCG4fWTiaC82uf1YZuHZxSAbxwsyZFbr1OcdvIdopt4tpBMKxMuXZic1fMOtCEF2T5K7SbKdqviR+rY00Pj4w/OiP3ot8997BXLPgQ4mTrWnYiN2zKxqbbR7ChEP+DJIAt5ySSUDFsEYJMTSSgcWot8Im45eb1Vz2afv/6Skfqu5yOdkgu/m6K3eq6Iy323FKezRz2RsMqPG0tBKWZkh+IjfABR7sVUSvAXk6F5wDQc8aEttX4P4THusoXxkXmhP7lbiL9GLQ3pWXHK6fF8VBmgEQ7EQyI0fQMbXiOCGZUQNLHiPJmONV6TvBl8X6N0sDmDvbgGvyRosipsEd0q59Q7Krtv7PAKTDnPas9culEHKw18+bVkEXuFbHAzVgDxywQ30A==
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2020 07:09:53.5366
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fcf61859-c539-42a7-96bc-08d82e0e3b7e
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
-X-MS-Exchange-CrossTenant-AuthSource: CY1NAM02FT012.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB5913
+In-Reply-To: <20200721022610.GA3391383@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Updated the reset driver to support Versal platform.
-As part of adding Versal support
-- Added Versal specific compatible string.
-- Reset Id and number of resets are different for Versal and ZynqMP,
-hence taken care of these two based on compatible string.
+Hi,
 
-Signed-off-by: Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
----
- drivers/reset/reset-zynqmp.c | 50 +++++++++++++++++++++++++++++++-----
- 1 file changed, 44 insertions(+), 6 deletions(-)
+On 7/21/20 4:26 AM, Rob Herring wrote:
+> On Tue, Jul 14, 2020 at 01:36:14PM +0200, Hans de Goede wrote:
+>> This commit adds the minimum bindings required to allow describing which
+>> altmodes a port supports. Currently this is limited to just specifying:
+>>
+>> 1. The svid, which is the id of the altmode, e.g. displayport altmode has
+>> a svid of 0xff01.
+>>
+>> 2. The vdo, a 32 bit integer, typically used as a bitmask describing the
+>> capabilities of the altmode, the bits in the vdo are specified in the
+>> specification of the altmode, the dt-binding simply refers to the
+>> specification as that is the canonical source of the meaning of the bits.
+> 
+> What if this information should be derived from information already in
+> DT (or would be there if alt mode connections are described)?
+> 
+>>
+>> Later on we may want to extend the binding with extra properties specific
+>> to some altmode, but for now this is sufficient to e.g. hook up
+>> displayport alternate-mode.
+> 
+> I don't think this is sufficient as it doesn't describe how alternate
+> modes are connected to various components. This has been discussed some
+> here[1] with the CrOS folks. Maybe this is orthogonal, IDK, but I really
+> need something that is somewhat complete and not sprinkle a few new
+> properties at a time.
 
-diff --git a/drivers/reset/reset-zynqmp.c b/drivers/reset/reset-zynqmp.c
-index 373ea8d4f7a1..ebd433fa09dd 100644
---- a/drivers/reset/reset-zynqmp.c
-+++ b/drivers/reset/reset-zynqmp.c
-@@ -9,12 +9,20 @@
- #include <linux/platform_device.h>
- #include <linux/reset-controller.h>
- #include <linux/firmware/xlnx-zynqmp.h>
-+#include <linux/of_device.h>
- 
- #define ZYNQMP_NR_RESETS (ZYNQMP_PM_RESET_END - ZYNQMP_PM_RESET_START)
- #define ZYNQMP_RESET_ID ZYNQMP_PM_RESET_START
-+#define VERSAL_NR_RESETS	95
-+
-+struct zynqmp_reset_soc_data {
-+	u32 reset_id;
-+	u32 num_resets;
-+};
- 
- struct zynqmp_reset_data {
- 	struct reset_controller_dev rcdev;
-+	const struct zynqmp_reset_soc_data *data;
- };
- 
- static inline struct zynqmp_reset_data *
-@@ -26,23 +34,28 @@ to_zynqmp_reset_data(struct reset_controller_dev *rcdev)
- static int zynqmp_reset_assert(struct reset_controller_dev *rcdev,
- 			       unsigned long id)
- {
--	return zynqmp_pm_reset_assert(ZYNQMP_RESET_ID + id,
-+	struct zynqmp_reset_data *priv = to_zynqmp_reset_data(rcdev);
-+
-+	return zynqmp_pm_reset_assert(priv->data->reset_id + id,
- 				      PM_RESET_ACTION_ASSERT);
- }
- 
- static int zynqmp_reset_deassert(struct reset_controller_dev *rcdev,
- 				 unsigned long id)
- {
--	return zynqmp_pm_reset_assert(ZYNQMP_RESET_ID + id,
-+	struct zynqmp_reset_data *priv = to_zynqmp_reset_data(rcdev);
-+
-+	return zynqmp_pm_reset_assert(priv->data->reset_id + id,
- 				      PM_RESET_ACTION_RELEASE);
- }
- 
- static int zynqmp_reset_status(struct reset_controller_dev *rcdev,
- 			       unsigned long id)
- {
-+	struct zynqmp_reset_data *priv = to_zynqmp_reset_data(rcdev);
- 	int val, err;
- 
--	err = zynqmp_pm_reset_get_status(ZYNQMP_RESET_ID + id, &val);
-+	err = zynqmp_pm_reset_get_status(priv->data->reset_id + id, &val);
- 	if (err)
- 		return err;
- 
-@@ -52,10 +65,28 @@ static int zynqmp_reset_status(struct reset_controller_dev *rcdev,
- static int zynqmp_reset_reset(struct reset_controller_dev *rcdev,
- 			      unsigned long id)
- {
--	return zynqmp_pm_reset_assert(ZYNQMP_RESET_ID + id,
-+	struct zynqmp_reset_data *priv = to_zynqmp_reset_data(rcdev);
-+
-+	return zynqmp_pm_reset_assert(priv->data->reset_id + id,
- 				      PM_RESET_ACTION_PULSE);
- }
- 
-+static int zynqmp_reset_of_xlate(struct reset_controller_dev *rcdev,
-+				 const struct of_phandle_args *reset_spec)
-+{
-+	return reset_spec->args[0];
-+}
-+
-+static const struct zynqmp_reset_soc_data zynqmp_reset_data = {
-+	.reset_id = ZYNQMP_RESET_ID,
-+	.num_resets = ZYNQMP_NR_RESETS,
-+};
-+
-+static const struct zynqmp_reset_soc_data versal_reset_data = {
-+        .reset_id = 0,
-+        .num_resets = VERSAL_NR_RESETS,
-+};
-+
- static const struct reset_control_ops zynqmp_reset_ops = {
- 	.reset = zynqmp_reset_reset,
- 	.assert = zynqmp_reset_assert,
-@@ -71,18 +102,25 @@ static int zynqmp_reset_probe(struct platform_device *pdev)
- 	if (!priv)
- 		return -ENOMEM;
- 
-+	priv->data = of_device_get_match_data(&pdev->dev);
-+	if (!priv->data)
-+		return -EINVAL;
-+
- 	platform_set_drvdata(pdev, priv);
- 
- 	priv->rcdev.ops = &zynqmp_reset_ops;
- 	priv->rcdev.owner = THIS_MODULE;
- 	priv->rcdev.of_node = pdev->dev.of_node;
--	priv->rcdev.nr_resets = ZYNQMP_NR_RESETS;
-+	priv->rcdev.nr_resets = priv->data->num_resets;
-+	priv->rcdev.of_reset_n_cells = 1;
-+	priv->rcdev.of_xlate = zynqmp_reset_of_xlate;
- 
- 	return devm_reset_controller_register(&pdev->dev, &priv->rcdev);
- }
- 
- static const struct of_device_id zynqmp_reset_dt_ids[] = {
--	{ .compatible = "xlnx,zynqmp-reset", },
-+	{ .compatible = "xlnx,zynqmp-reset", .data = &zynqmp_reset_data, },
-+	{ .compatible = "xlnx,versal-reset", .data = &versal_reset_data, },
- 	{ /* sentinel */ },
- };
- 
--- 
-2.17.1
+Right, but that is an orthogonal problem, this is telling the Type-C
+controller which modes it is allowed to negotiate and which capabilties
+(altmode specific, stored in the vdo) it should advertise.
+
+I agree that if the connector is connected to a mux and how that mux is then
+connected to the SoC, or if the SoC has a multi-mode phy also needs to be
+specified in some cases. But that is mostly a separate problem.
+One thing which we will want to add to this part of the bindings when that
+other part is in place is a link to the endpoint *after* the mux, that is
+after the mode- and role-switch in Prashant's example here:
+https://lkml.org/lkml/2020/6/12/602
+
+The Type-C controller may receive out-of-band messages related to the
+altmode (through USB-PD messages) which need to be communicated to
+the endpoint, so in the case of display-port altmode, the dp0_out_ep
+from Prashant's example. Note the link/object reference I'm suggesting
+here deliberately skips the mux, since the oob messages need to be
+send through the endpoint without the mux being involved since they are
+oob after all.
+
+Specifically there is no pin on the Type-C connector for the display-port
+hotplug-detect pin, so hot(un)plug is signaled through altmode specific
+USB-PD messages.
+
+Note that this binding and the 2 patches implementing it for x86
+devices (*), are already useful / functional. The user just needs to
+manually run "xrandr" to force the video-output driver to manually
+recheck for new/changed monitors, just like an old VGA ports without
+load detection.
+
+I haven't fully figured out how to wire up the hotplug signal in the
+kernel yet, which is why the link to the DP endpoint is not yet part of
+the bindings.
+
+*) Using sw-fw-nodes to pass the info from a drivers/platform/x86/
+driver to the Type-C controller code which uses fw_nodes to get this info
+
+So since this is x86 only for now; and AFAIK you don't want to take bindings
+upstream until there is an actual DT user anyways, my main goal of including
+this was to see if we are at least on the right way with this. With x86 it
+is all in the kernel, so if the binding changes a bit we can easily adjust the
+drivers/platform/x86/ code generating the nodes at the same time as we
+update the Type-C controller code to implement the final binding. But it
+would be good to know that we are at least going in the right direction.
+
+BTW note that making the binding look like this was proposed by Heikki,
+the Type-C subsys maintainer, I ended up implementing this because Heikki
+did no have the time for it.
+
+Regards,
+
+Hans
+
+
+
+
+
+> 
+>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+>> ---
+>> Note I hope I got the yaml correct, this is my first time writing a
+>> dt-binding in the new yaml style. I did run:
+>> make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/connector/usb-connector.yaml
+>> and that was happy.
+> 
+> That aspect of it looks fine.
+> 
+> Rob
+> 
+> [1] https://lkml.org/lkml/2020/4/22/1819
+> 
 
