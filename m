@@ -2,54 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EF5D228D4A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jul 2020 02:57:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E94D7228D4D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jul 2020 02:57:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731600AbgGVA5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jul 2020 20:57:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59574 "EHLO mail.kernel.org"
+        id S1731503AbgGVA5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jul 2020 20:57:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59814 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731599AbgGVA5R (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Jul 2020 20:57:17 -0400
+        id S1731474AbgGVA5d (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Jul 2020 20:57:33 -0400
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E9088208E4;
-        Wed, 22 Jul 2020 00:57:16 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id A85FC208E4;
+        Wed, 22 Jul 2020 00:57:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1595379437;
-        bh=riS8bMs892HGteqg2+0T2hRaNKMd6XV6TpU0/EGhfIg=;
+        s=default; t=1595379453;
+        bh=YFc1Ge3NE0T3bXCC5Gf3GooNVqwqCIBxiYL/YiH8W8o=;
         h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=dzOHzGLHSeUIJy5drw5i19eUV72jDThgW8NRwVEUiqXR2i43WuJBnmQ6hNdyKb0z8
-         9v4FVqeko9e7+2ESsir/SsIDktaD9vWMQEyFtcXsMWvp3J93SZC1dgNDVw9mDRmEEj
-         ILWzTuDF5YeLjfbuJkbLzlSnh2wLW7tLO/iHnD1Y=
-Date:   Wed, 22 Jul 2020 01:57:04 +0100
+        b=BtVqH/lPGZbQNQGutQe2W2b5gVSMnKSuKUu9razqy0V/4QB6v0uzos6diTaXDgi5Y
+         ojvuOZHz6MlAuRhVLl2NN5Czj87Es2jqzCWEImv5i0aRinMrbQcR7ZypStWJNtVL76
+         HT51hxX9SEkI6yDGv0E9euRMGQ7tmvgzumvwblow=
+Date:   Wed, 22 Jul 2020 01:57:20 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     Fabio Estevam <festevam@gmail.com>, alsa-devel@alsa-project.org,
-        Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org
-In-Reply-To: <20200608174658.1315325-1-thierry.reding@gmail.com>
-References: <20200608174658.1315325-1-thierry.reding@gmail.com>
-Subject: Re: [PATCH] dt-bindings: sound: sgtl5000: Convert to json-schema
-Message-Id: <159537940423.49432.17540517625529265309.b4-ty@kernel.org>
+To:     robh+dt@kernel.org, Kathiravan T <kathirav@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        agross@kernel.org, devicetree@vger.kernel.org,
+        bjorn.andersson@linaro.org, lgirdwood@gmail.com
+Cc:     sricharan@codeaurora.org, sivaprak@codeaurora.org
+In-Reply-To: <1595225543-12127-1-git-send-email-kathirav@codeaurora.org>
+References: <1595225543-12127-1-git-send-email-kathirav@codeaurora.org>
+Subject: Re: [PATCH V3 0/4] Add frequency / voltage scaling support for IPQ6018 SoC
+Message-Id: <159537943520.49645.2118659765116943270.b4-ty@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 8 Jun 2020 19:46:58 +0200, Thierry Reding wrote:
-> Convert the Freescale SGTL5000 device tree bindings from free-form text
-> format to json-schema.
+On Mon, 20 Jul 2020 11:42:19 +0530, Kathiravan T wrote:
+> IPQ6018 SoC uses the PMIC MP5496. SMPA2 and LDOA2 regulator of MP5496
+> controls the APSS and SDCC voltage scaling respectively. Add support
+> for the same.
+> 
+> changes since V2:
+> 	- Rebased on top of linux-next 20200717 tag
+> 	- Addressed Rob's comment to drop the 'syscon' node in qcom,smd-rpm.yaml
+> 	- Picked up the Reviewed-by tag for qcom,smd-rpm-regulator.yaml
+> 	- Regulator patches part of V2 was picked up by Mark and it's available in linux-next tree
+> 
+> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-[1/1] ASoC: sgtl5000: Convert to json-schema
-      commit: c3061bc73fd7073e6ea9a780a99bbb15587f8abe
+[1/1] regulator: convert QCOM SMD-RPM regulator document to YAML schema
+      commit: 175a1d84154d4077da437b873319bd094b266ab8
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
