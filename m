@@ -2,107 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A16A3229BB9
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jul 2020 17:47:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF470229C15
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jul 2020 17:56:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727778AbgGVPrP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jul 2020 11:47:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35684 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726717AbgGVPrP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jul 2020 11:47:15 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74BF5C0619DC;
-        Wed, 22 Jul 2020 08:47:14 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id a8so2021556edy.1;
-        Wed, 22 Jul 2020 08:47:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HoVUwkD/CbiG5/MELncVn64RYUZvFJVClzUVyeNxr7M=;
-        b=jE/wvq2Q7DTuw3xPwzOgwmtTwSpZfjrNYA9x3yVk3+2T2eZUI/GEgnLpFbxI7Oys1M
-         UV9a7dxVhM8s44FwUkVvBzxdfz0k++qzn1KZCGRDyHgV/bi8uUfwkUl7n/njVt5USEzp
-         koIaslLr1+G4INekfMHW9X9OEMNNUC/96hRiys7d64trF8Y2VlxoGrz5kp1cQDtwkkDC
-         IACBthdVY/UuorfPqXW3COp/2ZOi0p7OXVZjqDycs6bxKPoUb880KG37PEk20CBA38gM
-         WiTrUjRruZEca5HkHPTOF4H0F3lCG4LWfW48bf6wjMQO4FFNj9m55HAwnHQcHUUPQ2tT
-         dhKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HoVUwkD/CbiG5/MELncVn64RYUZvFJVClzUVyeNxr7M=;
-        b=TepTsI4lgwLGPajU+52RFFt0Bah1V6CuMwmbShiZafF5iWy4VgfqSaAsMW4FfzTJ12
-         vnRZs/M7vZ6qBoc4JzDV5IhtCOlkNkDKNnt7xiICQJVsTytUmmImamDmqLPYIVE/tvzz
-         ypqS6pYqFwcrsO0jfx9palannGdKFUrKEE9/rAEeT3fhug9T5iPAwoPs5US+OLNXpRh8
-         wU759yiVVQHAFhuUYlmuFyVqY+TUIGEHcD5bvBH0IQHlSrkYIBsQ6OStCDnFOZfE/Fsm
-         L9aPIX5FrPFbfBAHPEPDa+EFwt1weTo4jOpan38uLoNBkFvy6u/MveELyc18cuthWnjm
-         h98g==
-X-Gm-Message-State: AOAM530rsz3ucdbBK5sHVetF5q7GbaxDkGnmeV/QsGWN/A9O1H1dsJ0e
-        2K8fhYtHsDmexuD3j8053+KmLyVK4ZhBJPmT6Z0=
-X-Google-Smtp-Source: ABdhPJxosJN11zDQSjXmhENnAY8a/xTlojpLCi063iaBnlxh58oOjashgy9Fq9WU5WMvUzog9st58umRz18yVM4p8bo=
-X-Received: by 2002:a50:cd1a:: with SMTP id z26mr117686edi.120.1595432832953;
- Wed, 22 Jul 2020 08:47:12 -0700 (PDT)
+        id S1733039AbgGVPzg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jul 2020 11:55:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36830 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1733022AbgGVPzf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Jul 2020 11:55:35 -0400
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3E14722BEF;
+        Wed, 22 Jul 2020 15:55:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1595433334;
+        bh=kbnKA7mCq4Ti8FRp3szUEaPvkReboJRHj1Bnap/yDXc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=M7PCNAT9DGUX2L0caH+10UVk/p1rx6cEhyeyfCRf6jASk+SutrbKCUhw/JYEbYB32
+         BjD0ohEjSXEDVDq1qz6Q8MfXlggxLHeV1j3pv/wpdz0SRtzmomA0dZBVPY43/EzREm
+         Ocy1sPp4IMvGRDmbA0L51GpMPky3zMlh5grWjl2M=
+Received: by mail-ot1-f43.google.com with SMTP id t18so2122728otq.5;
+        Wed, 22 Jul 2020 08:55:34 -0700 (PDT)
+X-Gm-Message-State: AOAM530N5TuAfQ/pLHpqByyI61P8YN2eA3v3d8CJjtoyGidTLgKWC5GX
+        Ptrb3Z2DSNb5dzgwhOLIzzfc5i3UmQuiqBFgNg==
+X-Google-Smtp-Source: ABdhPJyb6F8z3WA4lftymR6yk0cNa75DCHAW9IbL6thShEbw7ONJr6PozDiOwNdaclBZhAjRHcaGBf8TXqSfAfl9dE4=
+X-Received: by 2002:a9d:46c:: with SMTP id 99mr580182otc.192.1595433333529;
+ Wed, 22 Jul 2020 08:55:33 -0700 (PDT)
 MIME-Version: 1.0
-References: <1594644106-22449-1-git-send-email-akhilpo@codeaurora.org>
- <CAF6AEGtAEwZbWxLb4MxaWNswvtrFbLK+N0Fez2XYr7odKZffWA@mail.gmail.com>
- <20200720100131.6ux4zumbwqpa42ye@vireshk-mac-ubuntu> <CAF6AEGurrsd3nrbB=ktZjWfKTNbKwPHYwTFiZdD-NOW1T7gePQ@mail.gmail.com>
- <20200721032442.hv7l4q6633vnmnfe@vireshk-mac-ubuntu> <CAF6AEGuhQcRskGhrFvmCf5T3EcZ9S+3LRdZBiaDYqF34yZjd+A@mail.gmail.com>
- <20200722053023.vwaoj5oqh4cazzzz@vireshk-mac-ubuntu>
-In-Reply-To: <20200722053023.vwaoj5oqh4cazzzz@vireshk-mac-ubuntu>
-From:   Rob Clark <robdclark@gmail.com>
-Date:   Wed, 22 Jul 2020 08:47:49 -0700
-Message-ID: <CAF6AEGsOZshgBUnUKUF_hOLNHmvrvsDwPzX24-RKos6MZEeusg@mail.gmail.com>
-Subject: Re: [PATCH v5 0/6] Add support for GPU DDR BW scaling
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Akhil P Oommen <akhilpo@codeaurora.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        dri-devel@freedesktop.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Jordan Crouse <jcrouse@codeaurora.org>,
-        Sharat Masetty <smasetty@codeaurora.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Matthias Kaehlcke <mka@chromium.org>,
-        saravanak@google.com, Sibi Sankar <sibis@codeaurora.org>,
-        Jonathan <jonathan@marek.ca>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dave Airlie <airlied@gmail.com>
+References: <20200721141742.996350-1-jiaxun.yang@flygoat.com> <20200721141742.996350-2-jiaxun.yang@flygoat.com>
+In-Reply-To: <20200721141742.996350-2-jiaxun.yang@flygoat.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 22 Jul 2020 09:55:21 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLFZc8ChR=Sj3N-G-b0tq_4F0-HSQPt5+WmkcDZrxUznA@mail.gmail.com>
+Message-ID: <CAL_JsqLFZc8ChR=Sj3N-G-b0tq_4F0-HSQPt5+WmkcDZrxUznA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] of_address: Add bus type match for pci ranges parser
+To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc:     "open list:MIPS" <linux-mips@vger.kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Huacai Chen <chenhc@lemote.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Paul Burton <paulburton@kernel.org>,
+        Nathan Chancellor <natechancellor@gmail.com>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 21, 2020 at 10:30 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+On Tue, Jul 21, 2020 at 8:18 AM Jiaxun Yang <jiaxun.yang@flygoat.com> wrote:
 >
-> On 21-07-20, 07:28, Rob Clark wrote:
-> > With your ack, I can add the patch the dev_pm_opp_set_bw patch to my
-> > tree and merge it via msm-next -> drm-next -> linus
+> So the parser can be used to parse range property of ISA bus.
 >
-> I wanted to send it via my tree, but its okay. Pick this patch from
-> linux-next and add my Ack, I will drop it after that.
+> As they're all using PCI-like method of range property, there is no need
+> start a new parser.
 >
-> a8351c12c6c7 OPP: Add and export helper to set bandwidth
-
-Thanks, I'll do that
-
->
-> > Otherwise I can send a second later pull req that adds the final patch
-> > after has rebased to 5.9-rc1 (by which point the opp next tree will
-> > have presumably been merged
->
-> The PM stuff gets pushed fairly early and so I was asking you to
-> rebase just on my tree, so you could have sent the pull request right
-> after the PM tree landed there instead of waiting for rc1.
-
-I guess I should have explained that my tree gets pulled first into
-drm-next, which then gets pulled by Linus.
-
-BR,
--R
-
-> But its fine now.
+> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
 >
 > --
-> viresh
+> v2: Drop useless check, fix some na for bus_addr
+>         add define of of_range_parser_init according to
+>         Rob's suggestion.
+> ---
+>  drivers/of/address.c       | 27 +++++++++++++++------------
+>  include/linux/of_address.h |  5 +++++
+>  2 files changed, 20 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/of/address.c b/drivers/of/address.c
+> index 8eea3f6e29a4..7406636cea87 100644
+> --- a/drivers/of/address.c
+> +++ b/drivers/of/address.c
+> @@ -698,9 +698,10 @@ static int parser_init(struct of_pci_range_parser *parser,
+>
+>         parser->node = node;
+>         parser->pna = of_n_addr_cells(node);
+> -       parser->na = of_bus_n_addr_cells(node);
+> -       parser->ns = of_bus_n_size_cells(node);
+>         parser->dma = !strcmp(name, "dma-ranges");
+> +       parser->bus = of_match_bus(node);
+> +
+> +       parser->bus->count_cells(parser->node, &parser->na, &parser->ns);
+>
+>         parser->range = of_get_property(node, name, &rlen);
+>         if (parser->range == NULL)
+> @@ -732,6 +733,7 @@ struct of_pci_range *of_pci_range_parser_one(struct of_pci_range_parser *parser,
+>         int na = parser->na;
+>         int ns = parser->ns;
+>         int np = parser->pna + na + ns;
+> +       int busflag_na = 0;
+>
+>         if (!range)
+>                 return NULL;
+> @@ -739,12 +741,14 @@ struct of_pci_range *of_pci_range_parser_one(struct of_pci_range_parser *parser,
+>         if (!parser->range || parser->range + np > parser->end)
+>                 return NULL;
+>
+> -       if (parser->na == 3)
+> -               range->flags = of_bus_pci_get_flags(parser->range);
+> -       else
+> -               range->flags = 0;
+> +       range->flags = parser->bus->get_flags(parser->range);
+> +
+> +       /* PCI and ISA have a extra cell for resource flags */
+> +       if (strcmp(parser->bus->name, "pci") ||
+> +           strcmp(parser->bus->name, "isa"))
+> +               busflag_na = 1;
+
+This should be abstracted out. Probably the easiest is to add a
+'has_flags' boolean to the of_bus struct.
+
+>
+> -       range->pci_addr = of_read_number(parser->range, na);
+> +       range->bus_addr = of_read_number(parser->range + busflag_na, na - busflag_na);
+>
+>         if (parser->dma)
+>                 range->cpu_addr = of_translate_dma_address(parser->node,
+> @@ -759,11 +763,10 @@ struct of_pci_range *of_pci_range_parser_one(struct of_pci_range_parser *parser,
+>         /* Now consume following elements while they are contiguous */
+>         while (parser->range + np <= parser->end) {
+>                 u32 flags = 0;
+> -               u64 pci_addr, cpu_addr, size;
+> +               u64 bus_addr, cpu_addr, size;
+>
+> -               if (parser->na == 3)
+> -                       flags = of_bus_pci_get_flags(parser->range);
+> -               pci_addr = of_read_number(parser->range, na);
+> +               flags = parser->bus->get_flags(parser->range);
+> +               bus_addr = of_read_number(parser->range + busflag_na, na - busflag_na);
+>                 if (parser->dma)
+>                         cpu_addr = of_translate_dma_address(parser->node,
+>                                         parser->range + na);
+> @@ -774,7 +777,7 @@ struct of_pci_range *of_pci_range_parser_one(struct of_pci_range_parser *parser,
+>
+>                 if (flags != range->flags)
+>                         break;
+> -               if (pci_addr != range->pci_addr + range->size ||
+> +               if (bus_addr != range->bus_addr + range->size ||
+>                     cpu_addr != range->cpu_addr + range->size)
+>                         break;
+>
+> diff --git a/include/linux/of_address.h b/include/linux/of_address.h
+> index 763022ed3456..3e8d6489cbf1 100644
+> --- a/include/linux/of_address.h
+> +++ b/include/linux/of_address.h
+> @@ -6,8 +6,11 @@
+>  #include <linux/of.h>
+>  #include <linux/io.h>
+>
+> +struct of_bus;
+> +
+>  struct of_pci_range_parser {
+>         struct device_node *node;
+> +       struct of_bus *bus;
+>         const __be32 *range;
+>         const __be32 *end;
+>         int na;
+> @@ -53,6 +56,7 @@ extern const __be32 *of_get_address(struct device_node *dev, int index,
+>
+>  extern int of_pci_range_parser_init(struct of_pci_range_parser *parser,
+>                         struct device_node *node);
+> +#define of_range_parser_init of_pci_range_parser_init
+>  extern int of_pci_dma_range_parser_init(struct of_pci_range_parser *parser,
+>                         struct device_node *node);
+>  extern struct of_pci_range *of_pci_range_parser_one(
+> @@ -83,6 +87,7 @@ static inline int of_pci_range_parser_init(struct of_pci_range_parser *parser,
+>  {
+>         return -ENOSYS;
+>  }
+> +#define of_range_parser_init of_pci_range_parser_init
+
+No need for 2 defines. Move this outside of the ifdef like the others.
