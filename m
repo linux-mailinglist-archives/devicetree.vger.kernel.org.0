@@ -2,161 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2730A22990C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jul 2020 15:14:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CE90229962
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jul 2020 15:47:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726567AbgGVNOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jul 2020 09:14:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39976 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725878AbgGVNOi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jul 2020 09:14:38 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7D06C0619DC;
-        Wed, 22 Jul 2020 06:14:37 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3F279329;
-        Wed, 22 Jul 2020 15:14:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1595423676;
-        bh=Yy1kPitq1p4+UT+TJhQ9MFHfEcOUO4nuS8woENFDtKE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iUx5z42nUo41McjzpXcpPYK3kDiTO0mS1R0i5jJXLLU3o3kpDsQg+ihnlOuKkDYxX
-         sfXX1nV021EDZeAuXNHMdFQKl2tey7qXoTUZT4lGFnkv5g5LDVx2Vko187/pg+yYdP
-         OhB1hAttWuHlUPXd0sIziaSJsIWioKxfeEu5GqWo=
-Date:   Wed, 22 Jul 2020 16:14:30 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Rob Clark <robdclark@gmail.com>, linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Emil Velikov <emil.l.velikov@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        John Stultz <john.stultz@linaro.org>
-Subject: Re: [PATCH v5 3/4] drm/bridge: Introduce LT9611 DSI to HDMI bridge
-Message-ID: <20200722131430.GJ5833@pendragon.ideasonboard.com>
-References: <20200708103559.132300-1-vkoul@kernel.org>
- <20200708103559.132300-4-vkoul@kernel.org>
- <20200719171806.GA55541@ravnborg.org>
+        id S1732513AbgGVNol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jul 2020 09:44:41 -0400
+Received: from esa2.microchip.iphmx.com ([68.232.149.84]:56875 "EHLO
+        esa2.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727867AbgGVNok (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jul 2020 09:44:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1595425479; x=1626961479;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=x67atpIPPy7ehWiPrLyZwKmSAKD5xBofNyNuEjmdwpE=;
+  b=WF0S3HdBy0/3Xepi/MpZcvNhc5ZII/0m4AEMHYUsvXcxdb7KpvQ8vWTa
+   BhhO8jDHdflr7Zuywy2GWEs9oA8BJwATjLsSjMKPXESmXXsGCVlK/Lnc3
+   jEEZsJPQmdYg9p0qzZ0XTzf6vn7GHsFrrGZAVce3OSwNiEZy1RA9HEFAS
+   l+8qlNNRozmvpSz0Tng54r3cvzyN0SEbuLY5GwRCQMpV+hGrl3fmZe8BL
+   sFBKNP9Az/smkgdspzQ9Py3LcrvUhAnoYAdXw+v+GXTTV/VPN2ZqxMt6I
+   ak4ZOHm2fhgbIR1AFNv18OvyfeRl6edAlKMCiEF/cX2Fs2al9oNXk7O5G
+   w==;
+IronPort-SDR: XeGwUtETrr1LnBtY7gfFqS/EOwXn7H7vb+QjWX4iGr+F5ghYj1OsgdZZXMwgn/IwI4ci2GxPrO
+ SHv1LYKAWgIFw5e3dOzBMM/QxXvwnTuZLZqTcJ2mk8KltxnlmgF17t6cAz8rGPJxSefdHj/plt
+ 1a/dSFlS7mvhEgjgjOCoT563uSuSjM8YMtyhRC+oXuQMRG6I5v/l0th6q0asP8gnecW7++L5c8
+ XHN8mzSbjoanTEfK0y6Zrog21hjgwB2BcqUR+zIk91CdvDGmZZM133No7uwlyu4/yntJtVPKLl
+ Bjo=
+X-IronPort-AV: E=Sophos;i="5.75,383,1589266800"; 
+   d="scan'208";a="82819476"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 Jul 2020 06:44:25 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Wed, 22 Jul 2020 06:44:25 -0700
+Received: from cristi-P53.amer.actel.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Wed, 22 Jul 2020 06:43:43 -0700
+From:   <cristian.birsan@microchip.com>
+To:     <balbi@kernel.org>, <gregkh@linuxfoundation.org>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <ludovic.desroches@microchip.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Cristian Birsan <cristian.birsan@microchip.com>
+Subject: [PATCH v3 0/6] usb: gadget: udc: atmel: add usb device support for SAM9x60 SoC
+Date:   Wed, 22 Jul 2020 16:44:15 +0300
+Message-ID: <20200722134421.190741-1-cristian.birsan@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200719171806.GA55541@ravnborg.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+From: Cristian Birsan <cristian.birsan@microchip.com>
 
-On Sun, Jul 19, 2020 at 07:18:06PM +0200, Sam Ravnborg wrote:
-> Hi Vinod.
-> 
-> Three trivial points below.
-> The rest looks good.
-> 
-> With these fixed you can add:
-> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
-> 
-> 	Sam
-> 
-> On Wed, Jul 08, 2020 at 04:05:58PM +0530, Vinod Koul wrote:
-> > Lontium Lt9611 is a DSI to HDMI bridge which supports two DSI ports and
-> > I2S port as an input and HDMI port as output
-> > 
-> > Co-developed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Co-developed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> > Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> > Tested-by: John Stultz <john.stultz@linaro.org>
-> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > ---
-> >  drivers/gpu/drm/bridge/Kconfig          |   13 +
-> >  drivers/gpu/drm/bridge/Makefile         |    1 +
-> >  drivers/gpu/drm/bridge/lontium-lt9611.c | 1142 +++++++++++++++++++++++
-> >  3 files changed, 1156 insertions(+)
-> >  create mode 100644 drivers/gpu/drm/bridge/lontium-lt9611.c
-> > 
-> > +
-> > +#include <drm/drm_probe_helper.h>
-> > +#include <drm/drm_atomic_helper.h>
-> > +#include <drm/drm_bridge.h>
-> > +#include <drm/drm_mipi_dsi.h>
-> > +#include <drm/drm_print.h>
-> 
-> In alphabetical order. drm_probe_helper needs to be moved.
-> 
-> > +
-> > +#define EDID_SEG_SIZE	256
-> > +#define EDID_LEN	32
-> > +#define EDID_LOOP	8
-> > +#define KEY_DDC_ACCS_DONE 0x02
-> > +#define DDC_NO_ACK	0x50
-> > +
-> 
-> > +static void lt9611_pcr_setup(struct lt9611 *lt9611, const struct drm_display_mode *mode)
-> > +{
-> > +	const struct reg_sequence reg_cfg[] = {
-> > +		{ 0x830b, 0x01 },
-> > +		{ 0x830c, 0x10 },
-> > +		{ 0x8348, 0x00 },
-> > +		{ 0x8349, 0x81 },
-> > +
-> > +		/* stage 1 */
-> > +		{ 0x8321, 0x4a },
-> > +		{ 0x8324, 0x71 },
-> > +		{ 0x8325, 0x30 },
-> > +		{ 0x832a, 0x01 },
-> > +
-> > +		/* stage 2 */
-> > +		{ 0x834a, 0x40 },
-> > +		{ 0x831d, 0x10 },
-> > +
-> > +		/* MK limit */
-> > +		{ 0x832d, 0x38 },
-> > +		{ 0x8331, 0x08 },
-> > +	};
-> > +	const struct reg_sequence reg_cfg2[] = {
-> > +			{ 0x830b, 0x03 },
-> > +			{ 0x830c, 0xd0 },
-> > +			{ 0x8348, 0x03 },
-> > +			{ 0x8349, 0xe0 },
-> > +			{ 0x8324, 0x72 },
-> > +			{ 0x8325, 0x00 },
-> > +			{ 0x832a, 0x01 },
-> > +			{ 0x834a, 0x10 },
-> > +			{ 0x831d, 0x10 },
-> > +			{ 0x8326, 0x37 },
-> 
-> Block above is indented one tab too much.
-> 
-> > +static int lt9611_bridge_attach(struct drm_bridge *bridge,
-> > +				enum drm_bridge_attach_flags flags)
-> > +{
-> > +	struct lt9611 *lt9611 = bridge_to_lt9611(bridge);
-> > +	int ret;
-> > +
-> > +	if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)) {
-> > +		dev_err(lt9611->dev, "Fix bridge driver to make connector optional!");
-> > +		return -EINVAL;
-> > +	}
->
-> This should say that the display driver should be fixed.
-> If a display driver expects this bridge to create the connector
-> it would not work.
+This patch set adds usb device support for SAM9x60 SoC.
+The DPRAM memory for the USB High Speed Device Port (UDPHS) hardware
+block was increased and the allocation method is changed. This patch
+series simplifies the endpoint allocation scheme to acomodate this SoC
+and the old ones.
 
-Actually, for new bridge drivers, connector creation should be optional
-from the start. We don't want a failure in that case, the feature should
-be implemented.
+Changes in v3:
+- rebase on top of testing/next
+- depends on https://lore.kernel.org/linux-arm-kernel/cover.1594231056.git.mirq-linux@rere.qmqm.pl/
+- extend usba_udc_config structure with endpoint preallocaion flag
+- collect acked-by tags
+
+Changes in v2:
+- drop the patch that adds reference to pmc for sam9x60
+- use dt-bindings: usb prefix
+- enable usb device in device tree
+
+Claudiu Beznea (1):
+  usb: gadget: udc: atmel: use of_find_matching_node_and_match
+
+Cristian Birsan (5):
+  dt-bindings: usb: atmel: Update DT bindings documentation for sam9x60
+  usb: gadget: udc: atmel: simplify endpoint allocation
+  usb: gadget: udc: atmel: use 1 bank endpoints for control transfers
+  usb: gadget: udc: atmel: update endpoint allocation for sam9x60
+  ARM: dts: at91: sam9x60ek: enable usb device
+
+ .../devicetree/bindings/usb/atmel-usb.txt     |  1 +
+ arch/arm/boot/dts/at91-sam9x60ek.dts          | 13 ++++
+ arch/arm/boot/dts/sam9x60.dtsi                | 14 ++++
+ drivers/usb/gadget/udc/atmel_usba_udc.c       | 67 ++++++++++++-------
+ drivers/usb/gadget/udc/atmel_usba_udc.h       |  3 +-
+ 5 files changed, 74 insertions(+), 24 deletions(-)
 
 -- 
-Regards,
+2.25.1
 
-Laurent Pinchart
