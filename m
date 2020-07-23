@@ -2,103 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24ED222A408
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 02:59:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C79C522A426
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 03:02:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387514AbgGWA7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jul 2020 20:59:02 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:60954 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387494AbgGWA7A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jul 2020 20:59:00 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 6513C8040A68;
-        Thu, 23 Jul 2020 00:58:58 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id TVVPrDv645SK; Thu, 23 Jul 2020 03:58:57 +0300 (MSK)
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Vinod Koul <vkoul@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Dan Williams <dan.j.williams@intel.com>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <dmaengine@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v8 10/10] dmaengine: dw: Initialize max_sg_burst capability
-Date:   Thu, 23 Jul 2020 03:58:48 +0300
-Message-ID: <20200723005848.31907-11-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20200723005848.31907-1-Sergey.Semin@baikalelectronics.ru>
-References: <20200723005848.31907-1-Sergey.Semin@baikalelectronics.ru>
+        id S1733073AbgGWBCe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jul 2020 21:02:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37430 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728914AbgGWBCe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jul 2020 21:02:34 -0400
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13FB3C0619DC
+        for <devicetree@vger.kernel.org>; Wed, 22 Jul 2020 18:02:34 -0700 (PDT)
+Received: by mail-pg1-x544.google.com with SMTP id s189so2190625pgc.13
+        for <devicetree@vger.kernel.org>; Wed, 22 Jul 2020 18:02:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nUCwRjT2pU2Gmv3Op2+ljHBnuLbX/BdWuYfwk3p2dPU=;
+        b=Gv5J7slRS2adw592HJRD5Dk1x0nICM0czHuAtw+Bea1LUJWvVeWd0EXViOfOPO1aIz
+         lZRq1TTWDGIpJFyqeXnKCiX4h5lGMCqz+sDdJoYXUjk2nk0smYwqWnSg3ia+ENWx3JL6
+         J3P2+rh7riPtr1zCP0JTRttUOoJt8xjmKnixeV5qmaJMSe8T1E39p3iyzDBlQ/bMcJgG
+         CgUONWqmmby9jG30sRUM7Kw4PSnEj4qGFFW1pVFZrnjJzniW8fYV5srexWGwLHMe67Tb
+         Xoo/sWsbkcjREY3TQbYqcS+/AG9DB2VIYxYjlkTctj6thbZspvKB0TG84njjduRKwvae
+         rdUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nUCwRjT2pU2Gmv3Op2+ljHBnuLbX/BdWuYfwk3p2dPU=;
+        b=P71bKNEAAQQ6Iq83fJvcbZ+SRd5JHMtKdYHKVuYzRczmyI1UR+8vC8Eg7p9XrFAupo
+         znxAcDc6w6t0mv8KmbUZ59Pyoo5zOOUCTgFayHGe+mIi1ok/OwH5tF/Pg4+l0mU/XkTB
+         jrHoKiKBPIy77w0Hvx6d4r9cgrdWAqqXRqqOQGj5tnwSb+fG2gwFk3zF61JyX8PGOzAf
+         Yp+Q7lIs7ZVm7HX1Lv0McEWmMUb3seCpUox0OT5rrPSPJwirxfVIUdJKzoyxHHINybP/
+         shgBHkpx/v5zfHDtjX9OnoHmaV7ruv7hqGGZbNuIcQNkLIDK5ij5PPZnTibKKgDRGY07
+         zCmQ==
+X-Gm-Message-State: AOAM5339Tn9KfEqzRLpgZqXJgxn9XYIpf1TJd4Aq/UjinTk3Af4HvHX2
+        oBQbozFxUSKYxlqyKZixgpEJDQwWsHUY0dbd8QW+QdzOaOo=
+X-Google-Smtp-Source: ABdhPJy3F0JIAPnQcvEuqhIjvTmhlNc50e2Fao3jv3xBkWy1mCNh+m6SvHBS7aYoHWIqwjhyNEQp/34XrbengBxtQHU=
+X-Received: by 2002:a63:495c:: with SMTP id y28mr2164282pgk.30.1595466153346;
+ Wed, 22 Jul 2020 18:02:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+References: <20200722201313.754671-1-saravanak@google.com> <20200722201313.754671-2-saravanak@google.com>
+ <084158b7-f6dc-167f-b06d-db617fb2df29@gmail.com>
+In-Reply-To: <084158b7-f6dc-167f-b06d-db617fb2df29@gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 22 Jul 2020 18:01:57 -0700
+Message-ID: <CAGETcx-CajYnh=ZOkGBxrSUHe0uTAwJ_gZ8EJV1jrq-jNmaBVw@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] of: property: Add device link support for
+ pinctrl-0 through pinctrl-8
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Multi-block support provides a way to map the kernel-specific SG-table so
-the DW DMA device would handle it as a whole instead of handling the
-SG-list items or so called LLP block items one by one. So if true LLP
-list isn't supported by the DW DMA engine, then soft-LLP mode will be
-utilized to load and execute each LLP-block one by one. The soft-LLP mode
-of the DMA transactions execution might not work well for some DMA
-consumers like SPI due to its Tx and Rx buffers inter-dependency. Let's
-initialize the max_sg_burst DMA channels capability based on the nollp
-flag state. If it's true, no hardware accelerated LLP is available and
-max_sg_burst should be set with 1, which means that the DMA engine
-can handle only a single SG list entry at a time. If noLLP is set to
-false, then hardware accelerated LLP is supported and the DMA engine
-can handle infinite number of SG entries in a single DMA transaction.
+On Wed, Jul 22, 2020 at 1:56 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>
+> On 2020-07-22 15:13, Saravana Kannan wrote:
+> > Add support for pinctrl-0 through pinctrl-8 explicitly instead of trying
+> > to add support for pinctrl-%d properties.
+> >
+> > Of all the pinctrl-* properties in dts files (20322), only 47% (9531)
+> > are pinctrl-%d properties. Of all the pinctrl-%d properties, 99.5%
+> > (9486) are made up of pinctrl-[0-2].
+> >
+> > Trying to parse all pinctrl-* properties and checking for pinctrl-%d is
+> > unnecessarily complicated. So, just add support for pinctrl-[0-8] for
+> > now. In the unlikely event we ever exceed pinctrl-8, we can come back
+> > and improve this.
+>
+> If you were to implement the more general pinctrl-* case, roughly what would
+> it look like (pseudo-code or english description is fine).
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+So when I say "unnecessarily complicated", it's in terms of
+readability. I can't use these macros -- which are succinct 1 line
+entries that are super easy to understand.
 
----
+Pseudo code:
+parse_pinctrl(np, prop_name, index)
+{
+    if (doens't start with "pinctrl-")
+        return NULL;
+    ret = kstrtouint(propname + strlen("pinctrl"), 10, &val);
 
-Changelog v3:
-- This is a new patch created as a result of the discussion with Vinud and
-  Andy in the framework of DW DMA burst and LLP capabilities.
+    check that it's not something line "pinctrl-2nd-val" that'll still
+set val to 2.
 
-Changelog v4:
-- Use explicit if-else statement when assigning the max_sg_burst field.
+    parse phandle with args and return phandle node.
+}
 
-Changelog v8:
-- Replace max_sg_nents with max_sg_burst.
----
- drivers/dma/dw/core.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+All this when effectively 99.5% of the DT just use pinctrl-0,
+pinctrl-1 and pinctrl-2. There are a few that use pinctrl-3. And
+literally 6 DT files in the entire kernel source tree use pinctrl-4 or
+greater.
 
-diff --git a/drivers/dma/dw/core.c b/drivers/dma/dw/core.c
-index 588b9bae827c..eb9175133034 100644
---- a/drivers/dma/dw/core.c
-+++ b/drivers/dma/dw/core.c
-@@ -1059,6 +1059,18 @@ static void dwc_caps(struct dma_chan *chan, struct dma_slave_caps *caps)
- 	struct dw_dma_chan *dwc = to_dw_dma_chan(chan);
- 
- 	caps->max_burst = dwc->max_burst;
-+
-+	/*
-+	 * It might be crucial for some devices to have the hardware
-+	 * accelerated multi-block transfers supported, aka LLPs in DW DMAC
-+	 * notation. So if LLPs are supported then max_sg_burst is set to
-+	 * zero which means unlimited number of SG entries can be handled in a
-+	 * single DMA transaction, otherwise it's just one SG entry.
-+	 */
-+	if (dwc->nollp)
-+		caps->max_sg_burst = 1;
-+	else
-+		caps->max_sg_burst = 0;
- }
- 
- int do_dma_probe(struct dw_dma_chip *chip)
--- 
-2.26.2
+And for those 6 files, pinctrl-[0-8] really point to the same pinctrl
+node. So even if I didn't parse pinctrl-[4-8], all the device
+dependencies would be tracked properly.
 
+-Saravana
