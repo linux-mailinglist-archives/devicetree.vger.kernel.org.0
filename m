@@ -2,93 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88CF322A628
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 05:40:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19F1422A668
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 06:16:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729401AbgGWDk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jul 2020 23:40:27 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:22385 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2387797AbgGWDkZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jul 2020 23:40:25 -0400
-X-UUID: 0ecb2dcba9044329a88e747761756eb2-20200723
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=K40oCWnkehv+R4EecDWzyL/LvaW4FziBkaXpPnK2J84=;
-        b=uEHPbaWUN57zLnCJto1lG7xffMporf9epi/OOTybHosd8OcRwimWeT3rzuT6127RUzjeym9MHAxWPjtSsnZSFqGvLPOd0IokB9BAKJggoi6sKuR7nlkltWKzseReqPMN3EJg9X3CIST02fHUOvcvoFuJFntHMShuZjegyf81wu0=;
-X-UUID: 0ecb2dcba9044329a88e747761756eb2-20200723
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <hsin-hsiung.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1093032588; Thu, 23 Jul 2020 11:40:20 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 23 Jul 2020 11:40:18 +0800
-Received: from mtksdaap41.mediatek.inc (172.21.77.4) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 23 Jul 2020 11:40:16 +0800
-From:   Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Argus Lin <argus.lin@mediatek.com>
-CC:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>
-Subject: [PATCH v2 4/4] soc: mediatek: pwrap: add pwrap driver for MT6873/8192 SoCs
-Date:   Thu, 23 Jul 2020 11:40:00 +0800
-Message-ID: <1595475600-23180-5-git-send-email-hsin-hsiung.wang@mediatek.com>
-X-Mailer: git-send-email 2.6.4
-In-Reply-To: <1595475600-23180-1-git-send-email-hsin-hsiung.wang@mediatek.com>
-References: <1595475600-23180-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+        id S1726109AbgGWEQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 00:16:25 -0400
+Received: from mga06.intel.com ([134.134.136.31]:44677 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725774AbgGWEQY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 Jul 2020 00:16:24 -0400
+IronPort-SDR: 9GOXqDrua+V07IoOz1oMITzw90rxZP5GDtO6pjusCC1cm116jh36SsT4jRY0Np7k2dlZAz96Ez
+ 9AOdGy3+wjhg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9690"; a="212005799"
+X-IronPort-AV: E=Sophos;i="5.75,385,1589266800"; 
+   d="scan'208";a="212005799"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jul 2020 21:16:22 -0700
+IronPort-SDR: rpHIBZB6bPuv3oNaM50bZUknBDy+sYwfmQRnelBJL17bUfJOpOoX8J3DFyk6Szu4intgGr9/2i
+ DVGSuZxFmu8w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,385,1589266800"; 
+   d="scan'208";a="288509462"
+Received: from linux.intel.com ([10.54.29.200])
+  by orsmga006.jf.intel.com with ESMTP; 22 Jul 2020 21:16:22 -0700
+Received: from [10.226.38.18] (unknown [10.226.38.18])
+        by linux.intel.com (Postfix) with ESMTP id AEE69580299;
+        Wed, 22 Jul 2020 21:16:19 -0700 (PDT)
+Subject: Re: [PATCH v4 2/2] Add PWM fan controller driver for LGM SoC
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     linux-pwm@vger.kernel.org, thierry.reding@gmail.com,
+        p.zabel@pengutronix.de, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@intel.com, songjun.Wu@intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        rahul.tanwar.linux@gmail.com
+References: <cover.1593503228.git.rahul.tanwar@linux.intel.com>
+ <a74b18b68f26bf902c30a017050cc4ea070da887.1593503228.git.rahul.tanwar@linux.intel.com>
+ <20200713191059.zsokzvv3k2hyaxcl@pengutronix.de>
+From:   "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>
+Message-ID: <409ee148-a6a6-327f-e4d7-455f98ef4c66@linux.intel.com>
+Date:   Thu, 23 Jul 2020 12:16:18 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20200713191059.zsokzvv3k2hyaxcl@pengutronix.de>
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TVQ2ODczLzgxOTIgYXJlIGhpZ2hseSBpbnRlZ3JhdGVkIFNvQ3MgYW5kIHVzZSBQTUlDX01UNjM1
-OSBmb3INCnBvd2VyIG1hbmFnZW1lbnQuIFRoaXMgcGF0Y2ggYWRkcyBwd3JhcCBtYXN0ZXIgZHJp
-dmVyIHRvDQphY2Nlc3MgUE1JQ19NVDYzNTkuDQoNClNpZ25lZC1vZmYtYnk6IEhzaW4tSHNpdW5n
-IFdhbmcgPGhzaW4taHNpdW5nLndhbmdAbWVkaWF0ZWsuY29tPg0KLS0tDQogZHJpdmVycy9zb2Mv
-bWVkaWF0ZWsvbXRrLXBtaWMtd3JhcC5jIHwgMjkgKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysNCiAxIGZpbGUgY2hhbmdlZCwgMjkgaW5zZXJ0aW9ucygrKQ0KDQpkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9zb2MvbWVkaWF0ZWsvbXRrLXBtaWMtd3JhcC5jIGIvZHJpdmVycy9zb2MvbWVkaWF0ZWsv
-bXRrLXBtaWMtd3JhcC5jDQppbmRleCA4ZDc2ZWQ0Li42YmEwNjA0IDEwMDY0NA0KLS0tIGEvZHJp
-dmVycy9zb2MvbWVkaWF0ZWsvbXRrLXBtaWMtd3JhcC5jDQorKysgYi9kcml2ZXJzL3NvYy9tZWRp
-YXRlay9tdGstcG1pYy13cmFwLmMNCkBAIC02MzIsNiArNjMyLDE3IEBAIHN0YXRpYyBpbnQgbXQ2
-Nzk3X3JlZ3NbXSA9IHsNCiAJW1BXUkFQX0RDTV9EQkNfUFJEXSA9CQkweDFENCwNCiB9Ow0KIA0K
-K3N0YXRpYyBpbnQgbXQ2ODczX3JlZ3NbXSA9IHsNCisJW1BXUkFQX0lOSVRfRE9ORTJdID0JCTB4
-MCwNCisJW1BXUkFQX1RJTUVSX0VOXSA9CQkweDNFMCwNCisJW1BXUkFQX0lOVF9FTl0gPQkJMHg0
-NDgsDQorCVtQV1JBUF9XQUNTMl9DTURdID0JCTB4QzgwLA0KKwlbUFdSQVBfU1dJTkZfMl9XREFU
-QV8zMV8wXSA9CTB4Qzg0LA0KKwlbUFdSQVBfU1dJTkZfMl9SREFUQV8zMV8wXSA9CTB4Qzk0LA0K
-KwlbUFdSQVBfV0FDUzJfVkxEQ0xSXSA9CQkweENBNCwNCisJW1BXUkFQX1dBQ1MyX1JEQVRBXSA9
-CQkweENBOCwNCit9Ow0KKw0KIHN0YXRpYyBpbnQgbXQ3NjIyX3JlZ3NbXSA9IHsNCiAJW1BXUkFQ
-X01VWF9TRUxdID0JCTB4MCwNCiAJW1BXUkFQX1dSQVBfRU5dID0JCTB4NCwNCkBAIC0xMDUwLDYg
-KzEwNjEsNyBAQCBlbnVtIHB3cmFwX3R5cGUgew0KIAlQV1JBUF9NVDY3NjUsDQogCVBXUkFQX01U
-Njc3OSwNCiAJUFdSQVBfTVQ2Nzk3LA0KKwlQV1JBUF9NVDY4NzMsDQogCVBXUkFQX01UNzYyMiwN
-CiAJUFdSQVBfTVQ4MTM1LA0KIAlQV1JBUF9NVDgxNzMsDQpAQCAtMTUxNyw2ICsxNTI5LDcgQEAg
-c3RhdGljIGludCBwd3JhcF9pbml0X2NpcGhlcihzdHJ1Y3QgcG1pY193cmFwcGVyICp3cnApDQog
-CWNhc2UgUFdSQVBfTVQ3NjIyOg0KIAkJcHdyYXBfd3JpdGVsKHdycCwgMCwgUFdSQVBfQ0lQSEVS
-X0VOKTsNCiAJCWJyZWFrOw0KKwljYXNlIFBXUkFQX01UNjg3MzoNCiAJY2FzZSBQV1JBUF9NVDgx
-ODM6DQogCQlicmVhazsNCiAJfQ0KQEAgLTE5NTMsNiArMTk2NiwxOSBAQCBzdGF0aWMgY29uc3Qg
-c3RydWN0IHBtaWNfd3JhcHBlcl90eXBlIHB3cmFwX210Njc5NyA9IHsNCiAJLmluaXRfc29jX3Nw
-ZWNpZmljID0gTlVMTCwNCiB9Ow0KIA0KK3N0YXRpYyBzdHJ1Y3QgcG1pY193cmFwcGVyX3R5cGUg
-cHdyYXBfbXQ2ODczID0gew0KKwkucmVncyA9IG10Njg3M19yZWdzLA0KKwkudHlwZSA9IFBXUkFQ
-X01UNjg3MywNCisJLmFyYl9lbl9hbGwgPSAweDc3N2YsDQorCS5pbnRfZW5fYWxsID0gQklUKDQp
-IHwgQklUKDUpLA0KKwkuaW50MV9lbl9hbGwgPSAwLA0KKwkuc3BpX3cgPSBQV1JBUF9NQU5fQ01E
-X1NQSV9XUklURSwNCisJLndkdF9zcmMgPSBQV1JBUF9XRFRfU1JDX01BU0tfQUxMLA0KKwkuY2Fw
-cyA9IFBXUkFQX0NBUF9BUkIsDQorCS5pbml0X3JlZ19jbG9jayA9IHB3cmFwX2NvbW1vbl9pbml0
-X3JlZ19jbG9jaywNCisJLmluaXRfc29jX3NwZWNpZmljID0gTlVMTCwNCit9Ow0KKw0KIHN0YXRp
-YyBjb25zdCBzdHJ1Y3QgcG1pY193cmFwcGVyX3R5cGUgcHdyYXBfbXQ3NjIyID0gew0KIAkucmVn
-cyA9IG10NzYyMl9yZWdzLA0KIAkudHlwZSA9IFBXUkFQX01UNzYyMiwNCkBAIC0yMDMxLDYgKzIw
-NTcsOSBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCBvZl9wd3JhcF9tYXRjaF90
-YmxbXSA9IHsNCiAJCS5jb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc5Ny1wd3JhcCIsDQogCQku
-ZGF0YSA9ICZwd3JhcF9tdDY3OTcsDQogCX0sIHsNCisJCS5jb21wYXRpYmxlID0gIm1lZGlhdGVr
-LG10Njg3My1wd3JhcCIsDQorCQkuZGF0YSA9ICZwd3JhcF9tdDY4NzMsDQorCX0sIHsNCiAJCS5j
-b21wYXRpYmxlID0gIm1lZGlhdGVrLG10NzYyMi1wd3JhcCIsDQogCQkuZGF0YSA9ICZwd3JhcF9t
-dDc2MjIsDQogCX0sIHsNCi0tIA0KMi42LjQNCg==
 
+Hi Uwe,
+
+Thanks for the feedback.
+
+On 14/7/2020 3:10 am, Uwe Kleine-König wrote:
+> Hello,
+>
+> On Tue, Jun 30, 2020 at 03:55:32PM +0800, Rahul Tanwar wrote:
+>> Intel Lightning Mountain(LGM) SoC contains a PWM fan controller.
+>> This PWM controller does not have any other consumer, it is a
+>> dedicated PWM controller for fan attached to the system. Add
+>> driver for this PWM fan controller.
+>>
+>> Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
+>> ---
+>>  drivers/pwm/Kconfig         |  11 ++
+>>  drivers/pwm/Makefile        |   1 +
+>>  drivers/pwm/pwm-intel-lgm.c | 266 ++++++++++++++++++++++++++++++++++++++++++++
+>>  3 files changed, 278 insertions(+)
+>>  create mode 100644 drivers/pwm/pwm-intel-lgm.c
+
+[...]
+
+>> +
+>> +static int lgm_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>> +			 const struct pwm_state *state)
+>> +{
+>> +	struct lgm_pwm_chip *pc = to_lgm_pwm_chip(chip);
+>> +	u32 duty_cycle, val;
+>> +	unsigned int period;
+>> +
+>> +	if (!state->enabled) {
+>> +		lgm_pwm_enable(chip, 0);
+>> +		return 0;
+>> +	}
+>> +
+>> +	period = min_t(u64, state->period, pc->period);
+>> +
+>> +	if (state->polarity != PWM_POLARITY_NORMAL ||
+>> +	    period < pc->period)
+>> +		return -EINVAL;
+> This check looks wrong. If you refuse period < pc->period there isn't
+> much configuration possible.
+
+I am kind of stuck here. I made this change of adding a check
+period < pc->period based on your feedback on v2 patch.
+In fact, you had specified this code in v2 review feedback
+and i used the same exact code.
+
+How should we handle it when the hardware supports fixed period.
+We don't want user to change period and allow just changing
+duty_cycle. With that intention, i had first added a strict check
+which refused configuration if period != pc->period. Period is
+intended to be a read only value.
+
+How do you suggest we handle the fixed period hardware support?
+Would you have any reference example of other drivers which also
+supports fixed period? Thanks.
+
+[...]
+>> +static int lgm_pwm_remove(struct platform_device *pdev)
+>> +{
+>> +	struct lgm_pwm_chip *pc = platform_get_drvdata(pdev);
+>> +	int ret;
+>> +
+>> +	ret = pwmchip_remove(&pc->chip);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	clk_disable_unprepare(pc->clk);
+>> +	reset_control_assert(pc->rst);
+> Please swap the two previous lines to match the error patch of .probe.
+
+Again, i had made this change based on your below review feedback
+for v1. IMO, reverse of probe makes more sense.
+
+"In .probe() you first release reset and then enable the clock. It's good
+style to do it the other way round in .remove()."
+
+Regards,
+Rahul
