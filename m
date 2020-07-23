@@ -2,110 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C1BA22B78D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 22:22:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A97A022B7B9
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 22:29:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727985AbgGWUWL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 16:22:11 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:35246 "EHLO
+        id S1726146AbgGWU3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 16:29:40 -0400
+Received: from mail-il1-f193.google.com ([209.85.166.193]:42886 "EHLO
         mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727983AbgGWUWK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 16:22:10 -0400
-Received: by mail-il1-f193.google.com with SMTP id t18so5459992ilh.2;
-        Thu, 23 Jul 2020 13:22:10 -0700 (PDT)
+        with ESMTP id S1725979AbgGWU3j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 16:29:39 -0400
+Received: by mail-il1-f193.google.com with SMTP id t27so5427243ill.9;
+        Thu, 23 Jul 2020 13:29:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=8PtLd/nQS2KeriszStyvu2vlXIzpEo/AUp7+ugOv89o=;
-        b=c5V9pqZ90K/QBW8bBNraGN8MI8becA9d6toG6SEjrZvOyX9wjiolgwfMDDjwJvnSZW
-         XFNHx2NGvdz4EK2HQqOhXtnTM24yrJvQuVqcF9vXGWdhUUlSKCcpi9LMTzrt2WH+1/j9
-         fCVO/jMZd7YWVQJAR9Z5WR72p+PfWahA9prz4PzSr89ZMa+nrl2tSXALkhNAbl5lfERW
-         fR4Pb33RroWIJRPg2bGYPI6pX8bTi9LDaxBhX/vQ3aeE77YBK936R/+cF4wcZfV4j0mE
-         sYiaxVzobfO6opE1drpx81+9Watml/jQ17UQDsPIYkCzTZXiJ0SLHsJ5/H39nhV+IkuP
-         Im8g==
-X-Gm-Message-State: AOAM533glWsAof/eo9VChyua2IpwSK5Q8YotXvCQwKTI8kqcKWd34qLf
-        cXUFwgfin6apNKxKlqilZg==
-X-Google-Smtp-Source: ABdhPJz9ETfckL7Gs2paXfossxHdDkoov3qmWJsBQD6PRGMZvUczCXOPfNMswMcsmYkyKV0QjfdKbQ==
-X-Received: by 2002:a92:8b51:: with SMTP id i78mr6376682ild.179.1595535729652;
-        Thu, 23 Jul 2020 13:22:09 -0700 (PDT)
+        bh=kjud4HzJiYuJbrWHJZPLLkD9nUbndPaEbp8Lk6hPciw=;
+        b=D0yQXu4P4yhZWQHAyEJqPnO6BgsAY0UgmEX/26UkR1A7qR7enEWcRFaVWNrlcvjMOs
+         XypNRJJ6eiSQtZqA0+pXqXgZ1R+PbNPhb2xW0ebdZ1bba/ABJjVHbljwsrxFJGbYuJsq
+         /ogpFDEmRca1zieuTKeYn8XeGi70e5UPEacGS1US+J8YiazqV0aDsaFczE68V1B9mxtz
+         uaIDAjyOl/N9e6TzPU5Lt0E7JBPAZxgx6Zz3Dbz77VXSVDmDixnYx3cRUaI15gPSNdYC
+         u8xFs4pC8xI5rD4JtU41kr7z7GP2Tucemd/xSQLVgJDveGEzFB6OPfFnvW/L8G/Di7S3
+         3u7g==
+X-Gm-Message-State: AOAM531ExblBZCa9HWLjSIqj/ZfMV1WuNXw6Ru5JIJnT1fTKVHsE0u59
+        gTHq2xFNlgINTBczrNoJRA==
+X-Google-Smtp-Source: ABdhPJyVRyKvIrX21z4Zl2OJ4Xp53IgxAGPYZ3HN3G0+kSgHj7Uy5uc1dGpt8JJf6bR/XReMP27Prw==
+X-Received: by 2002:a92:dc09:: with SMTP id t9mr6938082iln.226.1595536178724;
+        Thu, 23 Jul 2020 13:29:38 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id u3sm1965948iol.41.2020.07.23.13.22.07
+        by smtp.gmail.com with ESMTPSA id w15sm2030713ior.4.2020.07.23.13.29.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jul 2020 13:22:07 -0700 (PDT)
-Received: (nullmailer pid 798999 invoked by uid 1000);
-        Thu, 23 Jul 2020 20:22:07 -0000
-Date:   Thu, 23 Jul 2020 14:22:07 -0600
+        Thu, 23 Jul 2020 13:29:37 -0700 (PDT)
+Received: (nullmailer pid 808938 invoked by uid 1000);
+        Thu, 23 Jul 2020 20:29:36 -0000
+Date:   Thu, 23 Jul 2020 14:29:36 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Suniel Mahesh <sunil@amarulasolutions.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Subject: Re: [PATCH v2 1/6] dt-bindings: arm: rockchip: Update ROCKPi 4 with
- 4A binding
-Message-ID: <20200723202207.GA794123@bogus>
-References: <20200722190949.215656-1-jagan@amarulasolutions.com>
+To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc:     Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        John Youn <John.Youn@synopsys.com>
+Subject: Re: [PATCH v2 06/12] usb: devicetree: Introduce num-lanes and lsm
+Message-ID: <20200723202936.GA801155@bogus>
+References: <cover.1595468673.git.thinhn@synopsys.com>
+ <d605a437f0a4bc837a05269caaa3875c2e0b29d8.1595468673.git.thinhn@synopsys.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200722190949.215656-1-jagan@amarulasolutions.com>
+In-Reply-To: <d605a437f0a4bc837a05269caaa3875c2e0b29d8.1595468673.git.thinhn@synopsys.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 23, 2020 at 12:39:44AM +0530, Jagan Teki wrote:
-> ROCKPi 4 has 3 variants of hardware platforms called
-> ROCKPi 4A, 4B, and 4C.
+On Wed, Jul 22, 2020 at 07:12:39PM -0700, Thinh Nguyen wrote:
+> According to USB 3.2 spec, a super-speed-plus device can operate at
+> gen2x2, gen2x1, or gen1x2. Introduce "num-lanes" and
+> "lane-speed-mantissa-gbps" properties for devices operating in
+> super-speed-plus. If the USB controller device supports multiple lanes
+> at different transfer rate, the user can specify the HW capability via
+> these properties.
 > 
-> - ROCKPi 4A has no Wif/BT.
-> - ROCKPi 4B has AP6256 Wifi/BT, PoE.
-> - ROCKPi 4C has AP6256 Wifi/BT, PoE, miniDP, USB Host enabled
->   GPIO pin change compared to 4B, 4C
-> 
-> So, update the existing ROCKPi 4 with ROCKPi 4A binding.
-> 
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> Signed-off-by: Thinh Nguyen <thinhn@synopsys.com>
 > ---
-> Changes for v2:
-> - new patch
+> Changes in v2:
+> - Make "num-lanes" and "lane-speed-mantissa-gbps" common USB properties
 > 
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/usb/generic.txt | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index 41f919de1ad4..36057c9e4b83 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -442,9 +442,10 @@ properties:
->            - const: radxa,rock
->            - const: rockchip,rk3188
->  
-> -      - description: Radxa ROCK Pi 4
-> +      - description: Radxa ROCK Pi 4A
->          items:
->            - const: radxa,rockpi4
-> +          - const: radxa,rockpi4a
->            - const: rockchip,rk3399
+> diff --git a/Documentation/devicetree/bindings/usb/generic.txt b/Documentation/devicetree/bindings/usb/generic.txt
+> index ba472e7aefc9..a8253da684af 100644
+> --- a/Documentation/devicetree/bindings/usb/generic.txt
+> +++ b/Documentation/devicetree/bindings/usb/generic.txt
+> @@ -7,6 +7,17 @@ Optional properties:
+>  			"low-speed". In case this isn't passed via DT, USB
+>  			controllers should default to their maximum HW
+>  			capability.
+> + - num-lanes: tells USB controllers that we want to work up to a certain number
+> +			of lanes. Valid arguments are 1 or 2. Apply if the
+> +			maximum-speed is super-speed-plus. In case this isn't
+> +			passed via DT, the USB controllers should default to
+> +			their maximum HW capability.
+> + - lane-speed-mantissa-gbps: tells USB controllers that we want the symmetric
+> +			lanes to operate up to a certain rate in Gbps. Valid
+> +			inputs are 5 or 10 (i.e. Gen 1/Gen 2 transfer rate).
+> +			Apply if the maximum-speed is super-speed-plus. In case
+> +			this isn't passed via DT, the USB controllers should
+> +			default to their maximum HW capability.
 
-That's not what I suggested. And this is just wrong as the order is most 
-specific to least specific.
+This still leaves 'maximum-speed = "super-speed-plus"' ambiguous. Fix 
+that please.
 
-This is what I suggest:
+To put it another way, we already have one way to define USB speeds. 
+Don't define a new and different way that only covers a fraction of the 
+possibilities.
 
-items:
-  - enum:
-      - radxa,rockpi4    # ROCK Pi 4A
-      - radxa,rockpi4b
-      - radxa,rockpi4c
-  - const: rockchip,rk3399
-
->  
->        - description: Radxa ROCK Pi N8
-> -- 
-> 2.25.1
-> 
+Rob
