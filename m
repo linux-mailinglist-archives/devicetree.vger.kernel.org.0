@@ -2,119 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3CB622B6AC
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 21:29:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D48722B6D5
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 21:37:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726021AbgGWT3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 15:29:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39454 "EHLO
+        id S1725979AbgGWTh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 15:37:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725849AbgGWT3f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 15:29:35 -0400
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 026E6C0619DC
-        for <devicetree@vger.kernel.org>; Thu, 23 Jul 2020 12:29:34 -0700 (PDT)
-Received: by mail-pf1-x441.google.com with SMTP id t11so3517210pfq.11
-        for <devicetree@vger.kernel.org>; Thu, 23 Jul 2020 12:29:34 -0700 (PDT)
+        with ESMTP id S1725894AbgGWTh5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 15:37:57 -0400
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB677C0619DC;
+        Thu, 23 Jul 2020 12:37:56 -0700 (PDT)
+Received: by mail-ed1-x543.google.com with SMTP id n2so5376606edr.5;
+        Thu, 23 Jul 2020 12:37:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=K/x2tOMHGvw/i83L77yt0mj2n5UBoDKQeUt3On2GUd4=;
-        b=gjZSD2aVJt8KcTJCKakJp6DrtQOApap9cF9iHFVrvOrrEw0QRXx03CQBbwXQHx54uT
-         NFg23hfGx0s1WUwhxJtK9P1CthK49t5QsPzXHaKkzri7vtgwnzKu6+FlAAhT/5ZLeGjg
-         l0RG+ahYtiYxkwdvLROyBjK9wk4sTbZuIHRX0=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TnSVvBPLgxOr7Okxa4+yFdbMwIKkVndKbRuepRfY/Zs=;
+        b=cGHFjlpd9fFxJoTHprdv6bxx7jEzuQfyVGo7hhnORgret3eeD02uMscYszAG1w+6oD
+         Ye4gl7/956XvDvUdQHQhlCmY3XjGmUiRo1Gn+ayf/bRyLqZ26rfRyGWcMureVHazph74
+         1hKIha1snTai6b2WGSUYSqA01CJixfgnygSjXypsUce32AOcM7JhNtZR+Wrb0SjPNTDR
+         VLsAE66PhLX4T0+tW14BKHJO3kNEgd/A2gN8xhp9Ga0sx7T1xmgPnjnTaZcE9/L+hmNW
+         VgS+4THVcnnlqzq7HEJNm0nmFrwlNpD0kqO4/eH20DLJoiL9byGCin/ww9eGxjbDrfxl
+         f6sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=K/x2tOMHGvw/i83L77yt0mj2n5UBoDKQeUt3On2GUd4=;
-        b=Onw98IUt+3yCvH/PgiJButWPiSvHPmG5q83+W++GjwBuDdyTqFRnwz/ADp8uNfMU2A
-         qBoJ983qCdXYfXSObgshUbGAue13yJUife07s3rV2c2DEXLIMv+HpCkjdah0umFsY1xK
-         f1xwL+6e5q3BW1zwVWrdZMedN6X28jWh0ZuWkRWSgCx6UWz3j4Ra5mLQSJaeQ8vukyPH
-         xHoBkJL4IAOPsEeo2XnsDmn479ZgC41gKzhDhNTYlOhfuedhHZW6V8ecMibF7Jvwl1u7
-         9GuawAmm4sc5MnYwaJMpK3Ojn4nGUnunB5N0uveytZLCVZRCktl/1WgSsAVjyieeRl0e
-         G2mg==
-X-Gm-Message-State: AOAM530T81LT5+HYpW+uga8e0egPwB5BRZjJFSh64vxudapTUulhrbXV
-        Z1mGjvl1XRkMrsUd8JDmWi+TIg==
-X-Google-Smtp-Source: ABdhPJx0H6UfXHELhN9FOg1zfdumImKJnOs6681TwMRzBjmHidxeuFNbFoBWBYY0BxdEqhcGHRVd0A==
-X-Received: by 2002:a63:e04c:: with SMTP id n12mr5257110pgj.388.1595532574358;
-        Thu, 23 Jul 2020 12:29:34 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:3e52:82ff:fe6c:83ab])
-        by smtp.gmail.com with ESMTPSA id b4sm3181271pjn.38.2020.07.23.12.29.33
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TnSVvBPLgxOr7Okxa4+yFdbMwIKkVndKbRuepRfY/Zs=;
+        b=QMWkh8WNoP6iRXdpfzz4LVgDtgxOiUiA2wv2BY2CAZ1Cxgn2oPw58LGLCdhYX7yztD
+         ybsYvakcAaC/7Bs2DPyeO9Piauv7DVrVAkv3wvEFRy03p8mGhpjwzfVSnhDqaq8L9hCW
+         99+UfBbc+STl1nsnHEnCwMKFFiIBeXeuKGIr3p8Wfb3l81ft9gJKoFVVpe//0axmUyZ8
+         uLDVEZ9cnN0hqpB4n451MvCpupgORTVNfM5RHYxxjqQghVugmcsfZBsRd2CSobkaVTAO
+         fjZjrP1377b8MzJOmNBhBSPzUFSh++qSSTy+ljrHZKF/in7H5nrzJwIJqemFMKWNWkqQ
+         lhpA==
+X-Gm-Message-State: AOAM5329BPGmmOhePo59sYBNhZLZvgH7Qy7XLPUGAEI9cMG+wMPSg9n4
+        y0ZkrkkdqQCkW4veXcxwO2A=
+X-Google-Smtp-Source: ABdhPJz0Q1XaTDnhZogjytSe3cUi83UxpYnapEIh7JfyZjShqQ3Or7lVzyvtbZvsrUp+F6uOqIrJ5A==
+X-Received: by 2002:aa7:da0c:: with SMTP id r12mr3743912eds.109.1595533075477;
+        Thu, 23 Jul 2020 12:37:55 -0700 (PDT)
+Received: from blackhead.home ([2a01:112f:a1c:7900:7316:ce1e:7b0b:6bd7])
+        by smtp.gmail.com with ESMTPSA id o20sm2655719ejr.64.2020.07.23.12.37.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jul 2020 12:29:33 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        Thu, 23 Jul 2020 12:37:54 -0700 (PDT)
+From:   Marcin Sloniewski <marcin.sloniewski@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     robh+dt@kernel.org, mcoquelin.stm32@gmail.com,
+        alexandre.torgue@st.com, mani@kernel.org, a.fatoum@pengutronix.de,
+        marcin.sloniewski@gmail.com, sam@ravnborg.org,
+        linus.walleij@linaro.org, heiko.stuebner@theobroma-systems.com,
+        stephan@gerhold.net, lkundrak@v3.sk, broonie@kernel.org,
+        allen.chen@ite.com.tw, robh@kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 1/3] dt-bindings: vendor-prefixes: add Seeed Studio
+Date:   Thu, 23 Jul 2020 21:37:35 +0200
+Message-Id: <20200723193737.190291-1-marcin.sloniewski@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20200414143536.v10.1.I30e2a8ff8cc4ad1ffb65df09ad933e5b4d9f16f8@changeid>
-References: <20200414143536.v10.1.I30e2a8ff8cc4ad1ffb65df09ad933e5b4d9f16f8@changeid>
-Subject: Re: [PATCH v10 1/2] dt-bindings: iio: Add bindings for sx9310 sensor
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Daniel Campello <campello@chromium.org>,
-        Rob Herring <robh@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org
-To:     Daniel Campello <campello@chromium.org>,
-        LKML <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Date:   Thu, 23 Jul 2020 12:29:33 -0700
-Message-ID: <159553257307.3847286.4297914412173341085@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Daniel Campello (2020-04-14 13:36:07)
-> Adds device tree bandings for sx9310 sensor.
->=20
-> Signed-off-by: Daniel Campello <campello@chromium.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
+Add the "seeed" vendor prefix for Seeed Technology Co., Ltd
+Website: https://www.seeedstudio.com/
 
-I don't see this picked up anywhere in linux-next. Can we squash in this
-change? Typically the voltage regulator names match the data sheet, and
-in this case the datasheet names them vdd and svdd. Also, they're not
-strictly necessary to be in the binding if they're always on supplies so
-we can remove them from the required section and DT files can omit them
-if they don't care to actively power manage them.
+Signed-off-by: Marcin Sloniewski <marcin.sloniewski@gmail.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
----8<---
-diff --git a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310=
-.yaml b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
-index b52ffdac678b..ba734ee868c7 100644
---- a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
-+++ b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
-@@ -31,12 +31,15 @@ properties:
-       available or that a close/far proximity event has happened.
-     maxItems: 1
-=20
--  power-supply: true
-+  vdd-supply:
-+    description: Main power supply
-+
-+  svdd-supply:
-+    description: Host interface power supply
-=20
- required:
-   - compatible
-   - reg
--  - power-supply
-=20
- additionalProperties: false
-=20
-@@ -51,6 +54,7 @@ examples:
-         reg =3D <0x28>;
-         interrupt-parent =3D <&pio>;
-         interrupts =3D <5 IRQ_TYPE_LEVEL_LOW 5>;
--        power-supply =3D <...>;
-+        vdd-supply =3D <&pp3300_a>;
-+        svdd-supply =3D <&pp1800_prox>;
-       };
-     };
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 9aeab66be85f..7dd03b3e9d3c 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -902,6 +902,8 @@ patternProperties:
+     description: Schindler
+   "^seagate,.*":
+     description: Seagate Technology PLC
++  "^seeed,.*":
++    description: Seeed Technology Co., Ltd
+   "^seirobotics,.*":
+     description: Shenzhen SEI Robotics Co., Ltd
+   "^semtech,.*":
+-- 
+2.27.0
+
