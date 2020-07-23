@@ -2,155 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0CA122AF46
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 14:27:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0310722AF8B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 14:40:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729313AbgGWM1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 08:27:02 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:36636 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729324AbgGWM1B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 08:27:01 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06NCQwB6077169;
-        Thu, 23 Jul 2020 07:26:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1595507218;
-        bh=k4XT/ag3y89G2xERAKuPRDve/n7of+kXftcTCTVuRQM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=xDOBOrtNyxiwy/MAhZU60wMm5daqZEoGrGoZ5F6zh7rrLRaXJBZC6Q1qOczQlR39V
-         3iA6WKnxPn6GS6tSy9wmZEZzBXOxlvw5h8azGbGexA6fx9QpqLQZqfd+Sv9iHrines
-         h0z2wL3NH5CERlWjaTVeUWo7GrFudGyG/11uV/f4=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06NCQwmN126597;
-        Thu, 23 Jul 2020 07:26:58 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 23
- Jul 2020 07:26:57 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 23 Jul 2020 07:26:57 -0500
-Received: from a0393678ub.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06NCQooX024814;
-        Thu, 23 Jul 2020 07:26:55 -0500
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j721e-common-proc-board: Configure the PCIe instances
-Date:   Thu, 23 Jul 2020 17:56:49 +0530
-Message-ID: <20200723122649.24676-3-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200723122649.24676-1-kishon@ti.com>
-References: <20200723122649.24676-1-kishon@ti.com>
+        id S1728692AbgGWMkL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 08:40:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60602 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728499AbgGWMkL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 08:40:11 -0400
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABBF5C0619DC
+        for <devicetree@vger.kernel.org>; Thu, 23 Jul 2020 05:40:10 -0700 (PDT)
+Received: by mail-pf1-x442.google.com with SMTP id a14so2961979pfi.2
+        for <devicetree@vger.kernel.org>; Thu, 23 Jul 2020 05:40:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=78DNKewgvGuO7JtiEp9n0GA7+N0YVp1BKe8RGOkUB1k=;
+        b=LmYSOZz8qGvkJMQRHPG7LEJeh47WCjGLbF91lOecvk8FRiv7selasyl6PIWrtrWSpZ
+         cQpHU570FvQHZ2Q0L7ukehQRmac7dwZc0jwqKrqURBUd2OM6h9oMirl50ABJCkxTFDPm
+         iYEMyyQHEkn0YigFUJ8Qbm9Lpk2QHiOUTjMZU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=78DNKewgvGuO7JtiEp9n0GA7+N0YVp1BKe8RGOkUB1k=;
+        b=Nn6beCJDUvmTqIc17bdTzBymoAXgdTtedzy9zJr/Q1RZAolnz9QeU1jLFgDbb1B0vR
+         QXZ6aeLwtOQk4T8p/0QYmB01crF7CUGjs5//mBkpI7FaEJvYhgXTIVc367AfitfsIswa
+         XQ9VDJJR7Snep2pTH/Ufyz42m1vPpskXV6/by/zR9LT8TGm6LArVCHxGuHf5zVMXp1uq
+         AHKi6Q+2MhCjtg31SMUu9iR9cT5xfzSnrfjWCJjWwTC+qi8GsdXDrVeSTFBPcOSsffO0
+         M7Q2auassg+8WkayBnRrT2l3V1Y99qVz5cuOGbyDNnP3SIAIb8aTPsOVqZ7GIJ3Ahig7
+         GfRQ==
+X-Gm-Message-State: AOAM5321G6dbBOvx2mjbsMKXR0CybO3G1rICE1uadHtnTcFjVEi20Mj3
+        gfBVRQ65ncxSsJJD3U2yMIvcnA==
+X-Google-Smtp-Source: ABdhPJzKQ8HIN0n3HwHsMov5IRd+jA9fucy3Zbi4FubPg+ZV8L0hq/Q4PpwulFt6FCsbldStufZUQA==
+X-Received: by 2002:a63:e24d:: with SMTP id y13mr4089941pgj.248.1595508010141;
+        Thu, 23 Jul 2020 05:40:10 -0700 (PDT)
+Received: from localhost.localdomain ([2405:201:c809:c7d5:cbf:ea0:8a30:a3af])
+        by smtp.gmail.com with ESMTPSA id m26sm3051270pff.84.2020.07.23.05.40.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Jul 2020 05:40:09 -0700 (PDT)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>
+Cc:     Suniel Mahesh <sunil@amarulasolutions.com>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH 0/7] arm64: dts: rockchip: Add Engicam PX30.Core
+Date:   Thu, 23 Jul 2020 18:09:44 +0530
+Message-Id: <20200723123951.149497-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-J721E Common Processor Board has PCIe connectors for the 1st three PCIe
-instances. Configure the three PCIe instances in RC mode and disable the
-4th PCIe instance.
+PX30.Core is an EDIMM SOM based on Rockchip PX30 from Engicam.
+    
+PX30.Core needs to mount on top of Engicam baseboards for creating
+complete platform boards.
+    
+Possible baseboards are,
+- EDIMM2.2 Starter Kit
+- C.TOUCH 2.0 10.1" Open Frame
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- .../dts/ti/k3-j721e-common-proc-board.dts     | 80 +++++++++++++++++++
- 1 file changed, 80 insertions(+)
+Note: These baseboards can be used for i.MX8 SOM's as well. So having
+baseboard on respective SoC seems to be easy rather than making it
+common across all.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-index 8bc1e6ecc50e..29be88811132 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-@@ -651,3 +651,83 @@
- 
- 	status = "okay";
- };
-+
-+&serdes0 {
-+	serdes0_pcie_link: link@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <1>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_PCIE>;
-+		resets = <&serdes_wiz0 1>;
-+	};
-+};
-+
-+&serdes1 {
-+	serdes1_pcie_link: link@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <2>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_PCIE>;
-+		resets = <&serdes_wiz1 1>, <&serdes_wiz1 2>;
-+	};
-+};
-+
-+&serdes2 {
-+	serdes2_pcie_link: link@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <2>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_PCIE>;
-+		resets = <&serdes_wiz2 1>, <&serdes_wiz2 2>;
-+	};
-+};
-+
-+&pcie0_rc {
-+	reset-gpios = <&exp1 6 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <1>;
-+};
-+
-+&pcie1_rc {
-+	reset-gpios = <&exp1 2 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes1_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <2>;
-+};
-+
-+&pcie2_rc {
-+	reset-gpios = <&exp2 20 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes2_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <2>;
-+};
-+
-+&pcie0_ep {
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <1>;
-+	status = "disabled";
-+};
-+
-+&pcie1_ep {
-+	phys = <&serdes1_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <2>;
-+	status = "disabled";
-+};
-+
-+&pcie2_ep {
-+	phys = <&serdes2_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <2>;
-+	status = "disabled";
-+};
-+
-+&pcie3_rc {
-+	status = "disabled";
-+};
-+
-+&pcie3_ep {
-+	status = "disabled";
-+};
+Any inputs?
+Jagan.
+
+Jagan Teki (7):
+  dt-bindings: arm: rockchip: Add Engicam PX30.Core EDIMM2.2 Starter Kit
+  arm64: dts: rockchip: px30: Add Engicam EDIMM2.2 Starter Kit
+  arm64: dts: rockchip: Add Engicam PX30.Core SOM
+  arm64: dts: rockchip: Add Engicam PX30.Core EDIMM2.2 Starter Kit
+  dt-bindings: arm: rockchip: Add Engicam PX30.Core C.TOUCH 2.0 10.1" OF
+  arm64: dts: rockchip: px30: Add Engicam C.TOUCH 2.0 10.1" OF
+  arm64: dts: rockchip: Add Engicam PX30.Core C.TOUCH 2.0 10.1" OF
+
+ .../devicetree/bindings/arm/rockchip.yaml     |  12 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   2 +
+ .../dts/rockchip/px30-engicam-common.dtsi     |  31 +++
+ .../rockchip/px30-engicam-ctouch2-of10.dtsi   |   7 +
+ .../dts/rockchip/px30-engicam-edimm2.2.dtsi   |   7 +
+ .../rockchip/px30-px30-core-ctouch2-of10.dts  |  21 ++
+ .../dts/rockchip/px30-px30-core-edimm2.2.dts  |  21 ++
+ .../boot/dts/rockchip/px30-px30-core.dtsi     | 250 ++++++++++++++++++
+ 8 files changed, 351 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-ctouch2-of10.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-edimm2.2.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-px30-core-ctouch2-of10.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-px30-core-edimm2.2.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-px30-core.dtsi
+
 -- 
-2.17.1
+2.25.1
 
