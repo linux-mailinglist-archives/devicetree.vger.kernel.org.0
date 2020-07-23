@@ -2,158 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7DA422B421
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 19:08:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05B0D22B42C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 19:09:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726666AbgGWRIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 13:08:10 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:43602 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726650AbgGWRIJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 13:08:09 -0400
-Received: by mail-io1-f66.google.com with SMTP id k23so6962190iom.10;
-        Thu, 23 Jul 2020 10:08:08 -0700 (PDT)
+        id S1726814AbgGWRJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 13:09:13 -0400
+Received: from mail-il1-f193.google.com ([209.85.166.193]:37729 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726254AbgGWRJN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 13:09:13 -0400
+Received: by mail-il1-f193.google.com with SMTP id r12so4943907ilh.4;
+        Thu, 23 Jul 2020 10:09:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=2PWZkJpZ4ipb8P8p+Pg9LEmAeqADVPvG7RRrCZ//S+E=;
-        b=qD0xTsqkPQUJrr/7dbMgo0CxBgTIw5RnBAT+Cox7K+bvWBN71BM4GlfWdngtsqGFSu
-         BC/aE7iQyBNet0JTKLhQ4IF6Ffb2QimWaabuvklKo0aHelc/IHHYRxZR3sNx77+S88bl
-         QB8hDoYXGnmtRJkjiiZ4RzVZa2/RL++xPV8MbCba72Lsy1gCnJx30dNZGRbwA0WxzfcO
-         hLjEA7oKp5Wiae8YlLuNndNS0ZL/gh1AcvrNW2fLGOc1AUbwu6gDGDdMBMJK9BodxaBo
-         b79qjeQ2KE3vAlBwnZTnWvH9oEjdiCRYI81z1/EsdR+Sw8NU7zgmwCxaOhfYU3rB2Anz
-         9Nsg==
-X-Gm-Message-State: AOAM530dq+k/dofK83dVs6ai5/RUQBmM3o2EPN+4LWml8mivsUlyjZK8
-        e2ej7knRuEbj8BHXfabVyA==
-X-Google-Smtp-Source: ABdhPJy+mKukhzCYRjhxLsHsBZnW1R9/7jgyhS48f5gwxsaDSYQ5vRd5zhVrQuLqdvM6icVj9WOxxA==
-X-Received: by 2002:a6b:7c08:: with SMTP id m8mr2363635iok.200.1595524087764;
-        Thu, 23 Jul 2020 10:08:07 -0700 (PDT)
+        bh=Kze7uV82SUZpJUOtNuBnD6sFmN/SrEeVHBi08SLQeLQ=;
+        b=EA1NtiF79HQ1jKCrg/JQzDIsiWdB2tb8OL/8CIqsVZFr5FVKjc/L8mvuiiWUxmFz1R
+         OS0v7aeknKZiAZs8/Ur3D1T7vcarataQaMLhDdcsXWRgbRQOJbatL9oWRMIK4davI0iP
+         PeaKHeCpF7tzOJHibOLZCJV4uo/0lrzALUnbhu1wwyynDEo8pk/+iylT9F/iR7unxMyX
+         UIMTzVxBTWQER282KpvktiQ9HyMDQ6aWwKGhLvF67SNVW76EbsgjjAFWdPFi87hWmWgf
+         mPijGzcmJJtOvYJ7D5e1sVDleYOgEpLPp+LkzdHBVGD4PTzgq2X3+wtqsL1TrP42bbwX
+         MDOg==
+X-Gm-Message-State: AOAM533BC2Ye3PSvZXygSZUEahibVDHRbgA2nG0j42cIJZUAM5sQKuI7
+        K1LCUI/a1fRFnoUqOkXyDw==
+X-Google-Smtp-Source: ABdhPJwAoGVIDmO0+nmhcKlcUs+phhhTWD14e8hUiqneEXeaH3ip09RFCPy8OBqVRcv3YPZwJ2M5Dw==
+X-Received: by 2002:a92:9804:: with SMTP id l4mr5879435ili.271.1595524152087;
+        Thu, 23 Jul 2020 10:09:12 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id n15sm1524181ioc.15.2020.07.23.10.08.06
+        by smtp.gmail.com with ESMTPSA id o16sm1783266ilt.59.2020.07.23.10.09.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jul 2020 10:08:07 -0700 (PDT)
-Received: (nullmailer pid 542912 invoked by uid 1000);
-        Thu, 23 Jul 2020 17:08:06 -0000
-Date:   Thu, 23 Jul 2020 11:08:06 -0600
+        Thu, 23 Jul 2020 10:09:11 -0700 (PDT)
+Received: (nullmailer pid 544431 invoked by uid 1000);
+        Thu, 23 Jul 2020 17:09:10 -0000
+Date:   Thu, 23 Jul 2020 11:09:10 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Anup Patel <anup.patel@wdc.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Emil Renner Berhing <kernel@esmil.dk>
-Subject: Re: [PATCH v5 4/4] dt-bindings: timer: Add CLINT bindings
-Message-ID: <20200723170806.GA535824@bogus>
-References: <20200723142409.47057-1-anup.patel@wdc.com>
- <20200723142409.47057-5-anup.patel@wdc.com>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     linux-kernel@vger.kernel.org, agx@sigxcpu.org, kernel@puri.sm,
+        broonie@kernel.org, mchehab@kernel.org, shawnguo@kernel.org,
+        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
+        festevam@gmail.com, devicetree@vger.kernel.org,
+        Anson.Huang@nxp.com, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        angus@akkea.ca
+Subject: Re: [PATCH v4 3/3] dt-bindings: arm: fsl: Add the librem 5 phone
+Message-ID: <20200723170910.GA544402@bogus>
+References: <20200721153225.7593-1-martin.kepplinger@puri.sm>
+ <20200721153225.7593-3-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200723142409.47057-5-anup.patel@wdc.com>
+In-Reply-To: <20200721153225.7593-3-martin.kepplinger@puri.sm>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 23, 2020 at 07:54:09PM +0530, Anup Patel wrote:
-> We add DT bindings documentation for CLINT device.
+On Tue, 21 Jul 2020 17:32:25 +0200, Martin Kepplinger wrote:
+> Add entries for the imx8mq based Librem 5 phone. The "Birch" and
+> "Chestnut" hardware revisions are supported by r2. The "Dogwood"
+> revision by r3.
+> See https://puri.sm/products/librem-5/ and https://developer.puri.sm/Librem5/
+> for the schematics and more information.
 > 
-> Signed-off-by: Anup Patel <anup.patel@wdc.com>
-> Reviewed-by: Palmer Dabbelt <palmerdabbelt@google.com>
-> Tested-by: Emil Renner Berhing <kernel@esmil.dk>
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
 > ---
->  .../bindings/timer/sifive,clint.yaml          | 58 +++++++++++++++++++
->  1 file changed, 58 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/sifive,clint.yaml
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> new file mode 100644
-> index 000000000000..8ad115611860
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> @@ -0,0 +1,58 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/timer/sifive,clint.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: SiFive Core Local Interruptor
-> +
-> +maintainers:
-> +  - Palmer Dabbelt <palmer@dabbelt.com>
-> +  - Anup Patel <anup.patel@wdc.com>
-> +
-> +description:
-> +  SiFive (and other RISC-V) SOCs include an implementation of the SiFive
-> +  Core Local Interruptor (CLINT) for M-mode timer and M-mode inter-processor
-> +  interrupts. It directly connects to the timer and inter-processor interrupt
-> +  lines of various HARTs (or CPUs) so RISC-V per-HART (or per-CPU) local
-> +  interrupt controller is the parent interrupt controller for CLINT device.
-> +  The clock frequency of CLINT is specified via "timebase-frequency" DT
-> +  property of "/cpus" DT node. The "timebase-frequency" DT property is
-> +  described in Documentation/devicetree/bindings/riscv/cpus.yaml
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: sifive,clint0
-> +      - const: sifive,fu540-c000-clint
 
-Wrong order. Most specific goes first.
-
-> +
-> +    description:
-> +      Should be "sifive,<chip>-clint" and "sifive,clint<version>".
-> +      Supported compatible strings are -
-> +      "sifive,fu540-c000-clint" for the SiFive CLINT v0 as integrated
-> +      onto the SiFive FU540 chip, and "sifive,clint0" for the SiFive
-> +      CLINT v0 IP block with no chip integration tweaks.
-> +      Please refer to sifive-blocks-ip-versioning.txt for details
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts-extended:
-> +    minItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts-extended
-
-Add:
-
-additionalProperties: false
-
-> +
-> +examples:
-> +  - |
-> +    clint@2000000 {
-
-timer@...
-
-> +      compatible = "sifive,clint0", "sifive,fu540-c000-clint";
-> +      interrupts-extended = <&cpu1intc 3 &cpu1intc 7
-> +                             &cpu2intc 3 &cpu2intc 7
-> +                             &cpu3intc 3 &cpu3intc 7
-> +                             &cpu4intc 3 &cpu4intc 7>;
-> +       reg = <0x2000000 0x4000000>;
-
-64MB of register space? Doesn't matter much for 64-bit, but would waste 
-lots of virtual space (low mem) on 32-bit.
-
-> +    };
-> +...
-> -- 
-> 2.25.1
-> 
+Acked-by: Rob Herring <robh@kernel.org>
