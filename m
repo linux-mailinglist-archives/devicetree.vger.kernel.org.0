@@ -2,138 +2,323 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4D6722B657
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 21:00:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE20422B6AF
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 21:29:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728305AbgGWTAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 15:00:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34946 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726455AbgGWTAp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 15:00:45 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0593C0619DC;
-        Thu, 23 Jul 2020 12:00:44 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id f18so6164978wml.3;
-        Thu, 23 Jul 2020 12:00:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=bxQ7tQ6z3mNBLFtLdG+90Disq7Kpghx+V15fQV2DmfA=;
-        b=q5qWfop9m0Dp+hPZHJyboAnzMRih4b6oSpBDFQwj9KXL6kPsVdIr+SRmf680r2xkYn
-         yqrYIWBwovxJvIwWgA1JmkaxdiMbYezUS9sPncsmVqkYqPnAmg+0LzqPuENzT1CSEFRA
-         CM7cYGYMachdMCi2uCmKCYQ5LhfH3+4j99pgbBJ4eTNUer5hGinLpyhlMukCP+ZIpBDD
-         7Jj4UyCPSY3h6X8zu+xywDkw+qUnQWh0qF0vYd3ptbSrM7ZxAYRoT40lahoN6uyXYx7z
-         4YQXzH/rgEdpZUB9ThznN6e+xVZuQa2ptvLaQGttwMaC3jL90Mkgv8OY9yeo1kdJDXBR
-         imaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=bxQ7tQ6z3mNBLFtLdG+90Disq7Kpghx+V15fQV2DmfA=;
-        b=h2x8hC9ojn0CUU/qTvpTek7dHVxGlHgv5GsCpL8Dp3BCRMqwSrDdR/u+TsXnow0V9D
-         4S+Ubwu6c8bNXfVy2u6g24geOyCHirBSqXLX/5zYAfJPoW0NJ5TtMC3P2uQ6kbR2gS4S
-         RNuq/3CBOampYvkG6v33mAjjrf+tYOV2m/UA0mqj8N3IiVYs+3MFvF9jwDFvN3Nqsm5u
-         PnxPP09LEaTbTGEk17Vuhr2PZF2YQ+mYAqQSjVZ+rS3HF61RvOyTEXv5jzMI7kVv/+JH
-         RSBqifLmQpOCsl64+/SdmDB56oEsw8IXeCjyM22XpJ+8ATw7EpY2GrQPlAiqmiWIboq6
-         EEmA==
-X-Gm-Message-State: AOAM532hyyM9g8Tkbf2TAGaUQkyjb7GphX7MOUbUdVNSjz67Szio1Fh2
-        0hTHw6lthKyy9plIKJheuPo=
-X-Google-Smtp-Source: ABdhPJx8SA+dtDuyc7twAoVNbX5P1ISVas28ZQBVtqeHkRcHusG6+3ivkvCN8HKmZGFTQcG+ydAMyQ==
-X-Received: by 2002:a1c:2547:: with SMTP id l68mr2316128wml.181.1595530843568;
-        Thu, 23 Jul 2020 12:00:43 -0700 (PDT)
-Received: from [10.67.50.75] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id h11sm5314294wrb.68.2020.07.23.12.00.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Jul 2020 12:00:42 -0700 (PDT)
-Subject: Re: [PATCH net-next v2 7/7] ARM: dts: at91: sam9x60: add an mdio
- sub-node to macb
-To:     Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     nicolas.ferre@microchip.com, claudiu.beznea@microchip.com,
-        davem@davemloft.net, kuba@kernel.org, andrew@lunn.ch,
-        robh+dt@kernel.org, alexandre.belloni@bootlin.com,
-        ludovic.desroches@microchip.com
-References: <20200721171316.1427582-1-codrin.ciubotariu@microchip.com>
- <20200721171316.1427582-8-codrin.ciubotariu@microchip.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- G10n8gCguORqNGMsVRxrlLs7/himep7MrCc=
-Message-ID: <75cc15cd-3857-5af6-7987-487182486122@gmail.com>
-Date:   Thu, 23 Jul 2020 12:00:38 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726111AbgGWT3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 15:29:48 -0400
+Received: from mailout05.rmx.de ([94.199.90.90]:59670 "EHLO mailout05.rmx.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725894AbgGWT3s (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 Jul 2020 15:29:48 -0400
+Received: from kdin02.retarus.com (kdin02.dmz1.retloc [172.19.17.49])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mailout05.rmx.de (Postfix) with ESMTPS id 4BCMps1PPfzB04W;
+        Thu, 23 Jul 2020 21:29:41 +0200 (CEST)
+Received: from mta.arri.de (unknown [217.111.95.66])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by kdin02.retarus.com (Postfix) with ESMTPS id 4BCMpQ38kQz2TSDJ;
+        Thu, 23 Jul 2020 21:29:18 +0200 (CEST)
+Received: from N95HX1G2.wgnetz.xx (192.168.54.10) by mta.arri.de
+ (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.408.0; Thu, 23 Jul
+ 2020 21:29:18 +0200
+From:   Christian Eggers <ceggers@arri.de>
+To:     Rob Hering <robh@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Richard Leitner <richard.leitner@skidata.com>,
+        <devicetree@vger.kernel.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Christian Eggers <ceggers@arri.de>
+Subject: [PATCH v2 3/4] dt-bindings: usb: Add Microchip USB47xx/USB49xx support
+Date:   Thu, 23 Jul 2020 21:29:01 +0200
+Message-ID: <20200723192901.26661-1-ceggers@arri.de>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200723153508.GA413741@bogus>
+References: <20200723153508.GA413741@bogus>
 MIME-Version: 1.0
-In-Reply-To: <20200721171316.1427582-8-codrin.ciubotariu@microchip.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.54.10]
+X-RMX-ID: 20200723-212918-4BCMpQ38kQz2TSDJ-0@kdin02
+X-RMX-SOURCE: 217.111.95.66
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/21/20 10:13 AM, Codrin Ciubotariu wrote:
-> Use the new macb bindings and add an mdio sub-node to contain all the
-> phy nodes.
-> 
-> Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+Add DT bindings for Microchip USB47xx/USB49xx driver.
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+Signed-off-by: Christian Eggers <ceggers@arri.de>
+---
+> My bot found errors running 'make dt_binding_check' on your patch:
+
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/usb49xx.example.dt.yaml: usb4916i@2d: 'ocs-min-width-ms' does not match any of the regexes: 'pinctrl-[0-9]+'
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure dt-schema is up to date:
+The mistake was sitting in front of the computer. I simply overlooked this message.
+
+Changes in v2:
+- added property description for ocs-min-width-ms
+- fixed property description for oc-delay-ns
+
+ .../devicetree/bindings/usb/usb49xx.yaml      | 238 ++++++++++++++++++
+ 1 file changed, 238 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/usb49xx.yaml
+
+diff --git a/Documentation/devicetree/bindings/usb/usb49xx.yaml b/Documentation/devicetree/bindings/usb/usb49xx.yaml
+new file mode 100644
+index 000000000000..a4843f2cbefa
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/usb49xx.yaml
+@@ -0,0 +1,238 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/usb49xx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microchip USB47xx/USB49xx USB 2.0 Hi-Speed Hub Controller
++
++maintainers:
++  - Christian Eggers <ceggers@arri.de>
++
++description: |
++  http://ww1.microchip.com/downloads/en/Appnotes/AN2651-Configuration-of-Microchip-USB47xx-USB49xx-Application-Note-00002651B.pdf
++
++properties:
++  compatible:
++    enum:
++      - microchip,usb4712
++      - microchip,usb4712i
++      - microchip,usb4715
++      - microchip,usb4715i
++      - microchip,usb4912
++      - microchip,usb4912i
++      - microchip,usb4914
++      - microchip,usb4914i
++      - microchip,usb4916
++      - microchip,usb4916i
++      - microchip,usb4925
++      - microchip,usb4925i
++      - microchip,usb4927
++      - microchip,usb4927i
++
++  reg:
++    maxItems: 1
++    description:
++      I2C address on the selected bus (usually <0x2D>).
++
++  reset-gpios:
++    maxItems: 1
++    description:
++      Specify the gpio for hub reset.
++
++  vdd-supply:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Specify the regulator supplying vdd.
++
++  skip-config:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Skip Hub configuration, but only send the USB-Attach command.
++
++  vendor-id:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maximum: 65535
++    description:
++      Set USB Vendor ID of the hub.
++
++  product-id:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maximum: 65535
++    description:
++      Set USB Product ID of the hub.
++
++  device-id:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maximum: 65535
++    description:
++      Set USB Device ID of the hub.
++
++  language-id:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maximum: 65535
++    description:
++      Set USB Language ID.
++
++  manufacturer:
++    $ref: /schemas/types.yaml#/definitions/string
++    description:
++      Set USB Manufacturer string (max. 62 characters long).
++
++  product:
++    $ref: /schemas/types.yaml#/definitions/string
++    description:
++      Set USB Product string (max. 62 characters long).
++
++  bus-powered:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Selects bus powered operation.
++
++  self-powered:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Selects self powered operation (default).
++
++  disable-hi-speed:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Disable USB Hi-Speed support.
++
++  multi-tt:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Selects multi-transaction-translator (default).
++
++  single-tt:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Selects single-transaction-translator.
++
++  disable-eop:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Disable End of Packet generation in full-speed mode.
++
++  ganged-sensing:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Select ganged over-current sense type in self-powered mode.
++
++  individual-sensing:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Select individual over-current sense type in self-powered mode (default).
++
++  ganged-port-switching:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Select ganged port power switching mode.
++
++  individual-port-switching:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Select individual port power switching mode (default).
++
++  dynamic-power-switching:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Enable auto-switching from self- to bus-powered operation if the local
++      power source is removed or unavailable.
++
++  oc-delay-ns:
++    enum:
++      - 50
++      - 100
++      - 200
++      - 400
++    default: 200
++    description:
++      Delay time (in nanoseconds) for filtering the over-current sense inputs.
++      If an invalid value is given, the default is used instead.
++
++  compound-device:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Indicate the hub is part of a compound device.
++
++  port-mapping-mode:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Enable port mapping mode.
++
++  non-removable-ports:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Should specify the ports which have a non-removable device connected.
++
++  sp-disabled-ports:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Specifies the ports which will be self-power disabled.
++
++  bp-disabled-ports:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Specifies the ports which will be bus-power disabled.
++
++  power-on-time-ms:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 100
++    minimum: 0
++    maximum: 510
++    description:
++      Specifies the time (in milliseconds) it takes from the time the host
++      initiates the power-on sequence to a port until the port has adequate
++      power.
++
++  ocs-min-width-ms:
++    default: 5
++    minimum: 0
++    maximum: 5
++    description:
++      Minimum OCS pulse width (in milliseconds) required to detect an OCS
++      event.
++
++  hub-controller-port:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Hub port where the internal hub controller shall be connected. Usually
++      <number of ports>+1.
++
++additionalProperties: false
++
++required:
++  - compatible
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    i2c0 {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      usb4916i@2d {
++        compatible = "microchip,usb4916i";
++        reg = <0x2d>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&pinctrl_usb_hub>;
++        /* usb49xx.c already assumes low-active, don't negate twice */
++        reset-gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>;
++        //skip-config;
++        //self-powered;         /* power on default */
++        //individual-sensing;   /* power on default */
++        //multi-tt;             /* power on default */
++        //disable-eop;          /* power on default */
++        //individual-port-switching;  /* power on default */
++        //oc-delay-ns = <200>;  /* power on default */
++        power-on-time-ms = <4>; /* T_ON,max = 4 ms for NCP380 */
++        ocs-min-width-ms = <0>; /* MIC2005 only outputs 2us FAULT pulses */
++        manufacturer = "Foo";
++        product = "Foo-Bar";
++        /* port 5 is connected to an internal SD-Card reader */
++        non-removable-ports = <5>;
++      };
++    };
++
++...
 -- 
-Florian
+Christian Eggers
+Embedded software developer
+
+Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
+Sitz: Muenchen - Registergericht: Amtsgericht Muenchen - Handelsregisternummer: HRA 57918
+Persoenlich haftender Gesellschafter: Arnold & Richter Cine Technik GmbH
+Sitz: Muenchen - Registergericht: Amtsgericht Muenchen - Handelsregisternummer: HRB 54477
+Geschaeftsfuehrer: Dr. Michael Neuhaeuser; Stephan Schenk; Walter Trauninger; Markus Zeiler
+
