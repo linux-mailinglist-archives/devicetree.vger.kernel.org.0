@@ -2,95 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DE7722B864
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 23:11:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44BA522B865
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 23:12:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726436AbgGWVLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 17:11:43 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:59590 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726115AbgGWVLm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 17:11:42 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06NLBfTx098002;
-        Thu, 23 Jul 2020 16:11:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1595538701;
-        bh=/O41v73HtXFfIGvXSuOEKaB9+UYd2bCj6LNeroq+r78=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=nTHmIAKgAbTpz80PfUHYwsq3eYNXjiKSMB/0G2pd1aLHGVBG9bi+oJE4MLvmN2NLO
-         AM7lbvJU/usYrcFiapd8rTv/ITIqxeZ/DYbYpBwz6u3amnulCGXEHY+bjboshLnanP
-         n2P0p1YHzhQ6FbvszH0ILOm6gCBDX4cNWv+xjL+8=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06NLBfhF106360;
-        Thu, 23 Jul 2020 16:11:41 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 23
- Jul 2020 16:11:41 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 23 Jul 2020 16:11:40 -0500
-Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06NLBens004498;
-        Thu, 23 Jul 2020 16:11:40 -0500
-Received: from localhost ([10.250.34.248])
-        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 06NLBeX8048246;
-        Thu, 23 Jul 2020 16:11:40 -0500
-From:   Suman Anna <s-anna@ti.com>
-To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j721e: Fix interconnect node names
-Date:   Thu, 23 Jul 2020 16:11:37 -0500
-Message-ID: <20200723211137.26641-3-s-anna@ti.com>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200723211137.26641-1-s-anna@ti.com>
-References: <20200723211137.26641-1-s-anna@ti.com>
+        id S1726033AbgGWVM4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 17:12:56 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:42633 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726029AbgGWVM4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 17:12:56 -0400
+Received: by mail-io1-f66.google.com with SMTP id c16so7777976ioi.9;
+        Thu, 23 Jul 2020 14:12:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=IMBnZKsh48SKsX8jjKgPA2bqoA7i2K6aQrR+811fDqM=;
+        b=bvwJB7x8wssdiT3s3ZdWFCz4E+2N8qLeaH1y13r7mFeEmemf60ert7TF0gzweRG2QF
+         yKL8tsleFXjGASAMIRS/P7vzAvjc9Reg8rZhsX/+NmWlXi77RUrdRyjmJTv3DkS+us/r
+         N5/Mud2xAYKz5383PqaLw0tNGR4zODcgHZE2OH+11zqKmpGQfkPo8jinRcKFQ6TvGrS3
+         aQBdXt4cHxY7QWYuMf0wPsupxEyBJnj3qwsYBZw/b6/yzU0CFPiSk4elGtBVQLP0/jWR
+         3vVzQRi386ekmOnlYDGoWhjrT1eEoZn52RDE4/RF0ZUIZRDt6Fysx6KAmmRUGUdfrjuL
+         RqkQ==
+X-Gm-Message-State: AOAM530ScqY+zpBim/PpQNYEJrtDY+06URX6meapU26enP3Ke/M0TrDd
+        /PeKoq01NvWDeIslyRU4rQ==
+X-Google-Smtp-Source: ABdhPJxloVcHKJ9XFGl9lzOl5yMefFdfF+hhlnC+m1/0kOnxSi4LDMpW6iKiBRM2GLSrNZ05MUVAPQ==
+X-Received: by 2002:a02:cb92:: with SMTP id u18mr7016893jap.143.1595538775491;
+        Thu, 23 Jul 2020 14:12:55 -0700 (PDT)
+Received: from xps15 ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id r13sm1821041ila.85.2020.07.23.14.12.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Jul 2020 14:12:55 -0700 (PDT)
+Received: (nullmailer pid 867917 invoked by uid 1000);
+        Thu, 23 Jul 2020 21:12:53 -0000
+Date:   Thu, 23 Jul 2020 15:12:53 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Icenowy Zheng <icenowy@aosc.io>
+Cc:     Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Maxime Ripard <mripard@kernel.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] dt-bindings: ili9881c: add compatible string for
+ Feixin K101-IM2BYL02
+Message-ID: <20200723211253.GA867872@bogus>
+References: <20200719170411.275812-1-icenowy@aosc.io>
+ <20200719171007.276383-1-icenowy@aosc.io>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200719171007.276383-1-icenowy@aosc.io>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The various CBASS interconnect nodes on K3 J721E SoCs are defined
-using the node name "interconnect". This is not a valid node name
-as per the dt-schema. Fix these node names to use the standard name
-used for SoC interconnects, "bus".
+On Mon, 20 Jul 2020 01:10:04 +0800, Icenowy Zheng wrote:
+> Feixin K101-IM2BYL02 is a drop-in replacement of K101-IM2BA02 panel
+> (which is already supported by panel-feixin-k101-im2ba02 driver) with
+> the same pinout. It utilizes an Ilitek ILI9881C controller chip, so its
+> compatible string should be added to ilitek,ili9881c file.
+> 
+> Add the compatible string for it.
+> 
+> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+> ---
+>  .../devicetree/bindings/display/panel/ilitek,ili9881c.yaml       | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-index 2f9a56d9b114..3565885142e7 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-@@ -120,7 +120,7 @@ pmu: pmu {
- 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
- 	};
- 
--	cbass_main: interconnect@100000 {
-+	cbass_main: bus@100000 {
- 		compatible = "simple-bus";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -155,7 +155,7 @@ cbass_main: interconnect@100000 {
- 			 <0x05 0x00000000 0x05 0x00000000 0x01 0x00000000>,
- 			 <0x07 0x00000000 0x07 0x00000000 0x01 0x00000000>;
- 
--		cbass_mcu_wakeup: interconnect@28380000 {
-+		cbass_mcu_wakeup: bus@28380000 {
- 			compatible = "simple-bus";
- 			#address-cells = <2>;
- 			#size-cells = <2>;
--- 
-2.26.0
-
+Acked-by: Rob Herring <robh@kernel.org>
