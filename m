@@ -2,342 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ED6622A55D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 04:36:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D59E622A599
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 05:09:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733169AbgGWCgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jul 2020 22:36:41 -0400
-Received: from mga14.intel.com ([192.55.52.115]:40530 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732755AbgGWCgl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Jul 2020 22:36:41 -0400
-IronPort-SDR: JTHlfTpp7rBkVaaawh5U/Z+P2ewHcBhQkGsqFRrH6uInDbwVjQ+eHV7Fwcxdh7jL4Di6C2zPrR
- 3EvGpZMapuTA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9690"; a="149630943"
-X-IronPort-AV: E=Sophos;i="5.75,385,1589266800"; 
-   d="scan'208";a="149630943"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jul 2020 19:36:40 -0700
-IronPort-SDR: IDBCwYcd24hNIjqEs6G05qqqMzh9zJt0/ISxIU1GvdWwQQcCrLd8rWvXTJx1Limd50tNG9eXgi
- oPOM+kOdsHkw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,385,1589266800"; 
-   d="scan'208";a="432586639"
-Received: from schwings-mobl.ger.corp.intel.com (HELO localhost) ([10.252.33.132])
-  by orsmga004.jf.intel.com with ESMTP; 22 Jul 2020 19:36:36 -0700
-Date:   Thu, 23 Jul 2020 05:36:34 +0300
-From:   Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
-To:     Masahisa Kojima <masahisa.kojima@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        ardb@kernel.org, devicetree@vger.kernel.org,
-        linux-integrity@vger.kernel.org, peterhuewe@gmx.de, jgg@ziepe.ca
-Subject: Re: [PATCH v4 1/2] tpm: tis: add support for MMIO TPM on SynQuacer
-Message-ID: <20200723023634.GI45081@linux.intel.com>
-References: <20200717084932.3449-1-masahisa.kojima@linaro.org>
- <20200717084932.3449-2-masahisa.kojima@linaro.org>
+        id S2387487AbgGWDGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jul 2020 23:06:11 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:4457 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1730837AbgGWDGI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jul 2020 23:06:08 -0400
+X-UUID: 5fec4b7fb577495bbfd00471ab6fd3c8-20200723
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=DgQa4gQ3vMEHGrBV4aHNxu5RYiJKC/N8HLKK81qfVyo=;
+        b=fQaFkH4TnjAyKw/udg/lrsH+zVa6mfsmL00oJgLaLmLmTt6FXIsbJw5LIzJ+4P5yJSn1lJWIpcGxW47Awn7PiQ2XSmJTOXpfQ+L2dAul8D1RaDk30mchWgwEMwAuiPAcJG7Eff8P58bvY4sW5Le5Yjpbj7CjzMPRL4lHMtt73IU=;
+X-UUID: 5fec4b7fb577495bbfd00471ab6fd3c8-20200723
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <xia.jiang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 2110260975; Thu, 23 Jul 2020 11:06:03 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 23 Jul 2020 11:06:01 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 23 Jul 2020 11:05:58 +0800
+From:   Xia Jiang <xia.jiang@mediatek.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rick Chang <rick.chang@mediatek.com>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        <srv_heupstream@mediatek.com>, <senozhatsky@chromium.org>,
+        <mojahsu@chromium.org>, <drinkcat@chromium.org>,
+        <maoguang.meng@mediatek.com>
+Subject: [PATCH v10 00/28] Add support for mt2701 JPEG ENC support
+Date:   Thu, 23 Jul 2020 11:04:23 +0800
+Message-ID: <20200723030451.5616-1-xia.jiang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200717084932.3449-2-masahisa.kojima@linaro.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 17, 2020 at 05:49:31PM +0900, Masahisa Kojima wrote:
-> When fitted, the SynQuacer platform exposes its SPI TPM via a MMIO
-> window that is backed by the SPI command sequencer in the SPI bus
-> controller. This arrangement has the limitation that only byte size
-> accesses are supported, and so we'll need to provide a separate module
-> that take this into account.
-> 
-> Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
-> Signed-off-by: Masahisa Kojima <masahisa.kojima@linaro.org>
-> ---
->  drivers/char/tpm/Kconfig             |  12 ++
->  drivers/char/tpm/Makefile            |   1 +
->  drivers/char/tpm/tpm_tis_synquacer.c | 209 +++++++++++++++++++++++++++
->  3 files changed, 222 insertions(+)
->  create mode 100644 drivers/char/tpm/tpm_tis_synquacer.c
-> 
-> diff --git a/drivers/char/tpm/Kconfig b/drivers/char/tpm/Kconfig
-> index 58b4c573d176..a18c314da211 100644
-> --- a/drivers/char/tpm/Kconfig
-> +++ b/drivers/char/tpm/Kconfig
-> @@ -74,6 +74,18 @@ config TCG_TIS_SPI_CR50
->  	  If you have a H1 secure module running Cr50 firmware on SPI bus,
->  	  say Yes and it will be accessible from within Linux.
->  
-> +config TCG_TIS_SYNQUACER
-> +	tristate "TPM Interface Specification 1.2 Interface / TPM 2.0 FIFO Interface (MMIO - SynQuacer)"
-> +	depends on ARCH_SYNQUACER
-> +	select TCG_TIS_CORE
-> +	help
-> +	  If you have a TPM security chip that is compliant with the
-> +	  TCG TIS 1.2 TPM specification (TPM1.2) or the TCG PTP FIFO
-> +	  specification (TPM2.0) say Yes and it will be accessible from
-> +	  within Linux on Socionext SynQuacer platform.
-> +	  To compile this driver as a module, choose  M here;
-> +	  the module will be called tpm_tis_synquacer.
-> +
->  config TCG_TIS_I2C_ATMEL
->  	tristate "TPM Interface Specification 1.2 Interface (I2C - Atmel)"
->  	depends on I2C
-> diff --git a/drivers/char/tpm/Makefile b/drivers/char/tpm/Makefile
-> index 9567e5197f74..84db4fb3a9c9 100644
-> --- a/drivers/char/tpm/Makefile
-> +++ b/drivers/char/tpm/Makefile
-> @@ -21,6 +21,7 @@ tpm-$(CONFIG_EFI) += eventlog/efi.o
->  tpm-$(CONFIG_OF) += eventlog/of.o
->  obj-$(CONFIG_TCG_TIS_CORE) += tpm_tis_core.o
->  obj-$(CONFIG_TCG_TIS) += tpm_tis.o
-> +obj-$(CONFIG_TCG_TIS_SYNQUACER) += tpm_tis_synquacer.o
->  
->  obj-$(CONFIG_TCG_TIS_SPI) += tpm_tis_spi.o
->  tpm_tis_spi-y := tpm_tis_spi_main.o
-> diff --git a/drivers/char/tpm/tpm_tis_synquacer.c b/drivers/char/tpm/tpm_tis_synquacer.c
-> new file mode 100644
-> index 000000000000..ac2a1d2a5001
-> --- /dev/null
-> +++ b/drivers/char/tpm/tpm_tis_synquacer.c
-> @@ -0,0 +1,209 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2020 Linaro Ltd.
-> + *
-> + * This device driver implements MMIO TPM on SynQuacer Platform.
-> + */
-> +#include <linux/acpi.h>
-> +#include <linux/init.h>
-> +#include <linux/module.h>
-> +#include <linux/slab.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/kernel.h>
-> +#include "tpm.h"
-> +#include "tpm_tis_core.h"
-> +
-> +struct tpm_tis_synquacer_info {
-> +	struct resource res;
-> +	/* irq > 0 means: use irq $irq;
-> +	 * irq = 0 means: autoprobe for an irq;
-> +	 * irq = -1 means: no irq support
-> +	 */
-> +	int irq;
-> +};
+VGhpcyBwYXRjaHNldCBhZGQgc3VwcG9ydCBmb3IgbXQyNzAxIEpQRUcgRU5DIHN1cHBvcnQuICAg
+ICAgDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICANClRoaXMgaXMgdGhlIGNvbXBsaWFuY2UgdGVzdCByZXN1bHQgZm9yIGpwZWcgZGVj
+IGFuZCBlbmMuICAgIA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgDQpUaGUgSlBFRyBkZWMgbG9nOiAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICANCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KdjRsMi1jb21wbGlhbmNlIC1kIC9kZXYvdmlk
+ZW8wDQp2NGwyLWNvbXBsaWFuY2UgU0hBOiA2OTdhZTk0MGI2MGExNzJlZjMxOTQ4ZGQ3NDMxNmZl
+OWRlMzY1YjdlLCAzMiBiaXRzLCAzMi1iaXQgdGltZV90DQoNCkNvbXBsaWFuY2UgdGVzdCBmb3Ig
+bXRrLWpwZWctZGVjIGRldmljZSAvZGV2L3ZpZGVvMDoNCg0KRHJpdmVyIEluZm86DQogICAgICAg
+IERyaXZlciBuYW1lICAgICAgOiBtdGstanBlZy1kZWMNCiAgICAgICAgQ2FyZCB0eXBlICAgICAg
+ICA6IG10ay1qcGVnLWRlYw0KICAgICAgICBCdXMgaW5mbyAgICAgICAgIDogcGxhdGZvcm06MTUw
+MDQwMDAuanBlZ2RlYw0KICAgICAgICBEcml2ZXIgdmVyc2lvbiAgIDogNS44LjANCiAgICAgICAg
+Q2FwYWJpbGl0aWVzICAgICA6IDB4ODQyMDQwMDANCiAgICAgICAgICAgICAgICBWaWRlbyBNZW1v
+cnktdG8tTWVtb3J5IE11bHRpcGxhbmFyDQogICAgICAgICAgICAgICAgU3RyZWFtaW5nDQogICAg
+ICAgICAgICAgICAgRXh0ZW5kZWQgUGl4IEZvcm1hdA0KICAgICAgICAgICAgICAgIERldmljZSBD
+YXBhYmlsaXRpZXMNCiAgICAgICAgRGV2aWNlIENhcHMgICAgICA6IDB4MDQyMDQwMDANCiAgICAg
+ICAgICAgICAgICBWaWRlbyBNZW1vcnktdG8tTWVtb3J5IE11bHRpcGxhbmFyDQogICAgICAgICAg
+ICAgICAgU3RyZWFtaW5nDQogICAgICAgICAgICAgICAgRXh0ZW5kZWQgUGl4IEZvcm1hdA0KICAg
+ICAgICBEZXRlY3RlZCBKUEVHIERlY29kZXINCg0KUmVxdWlyZWQgaW9jdGxzOg0KICAgICAgICB0
+ZXN0IFZJRElPQ19RVUVSWUNBUDogT0sNCg0KQWxsb3cgZm9yIG11bHRpcGxlIG9wZW5zOg0KICAg
+ICAgICB0ZXN0IHNlY29uZCAvZGV2L3ZpZGVvMCBvcGVuOiBPSw0KICAgICAgICB0ZXN0IFZJRElP
+Q19RVUVSWUNBUDogT0sNCiAgICAgICAgdGVzdCBWSURJT0NfRy9TX1BSSU9SSVRZOiBPSw0KICAg
+ICAgICB0ZXN0IGZvciB1bmxpbWl0ZWQgb3BlbnM6IE9LDQoNCiAgICAgICAgdGVzdCBpbnZhbGlk
+IGlvY3RsczogT0sNCkRlYnVnIGlvY3RsczoNCiAgICAgICAgdGVzdCBWSURJT0NfREJHX0cvU19S
+RUdJU1RFUjogT0sgKE5vdCBTdXBwb3J0ZWQpDQogICAgICAgIHRlc3QgVklESU9DX0xPR19TVEFU
+VVM6IE9LIChOb3QgU3VwcG9ydGVkKQ0KDQpJbnB1dCBpb2N0bHM6DQogICAgICAgIHRlc3QgVklE
+SU9DX0cvU19UVU5FUi9FTlVNX0ZSRVFfQkFORFM6IE9LIChOb3QgU3VwcG9ydGVkKQ0KICAgICAg
+ICB0ZXN0IFZJRElPQ19HL1NfRlJFUVVFTkNZOiBPSyAoTm90IFN1cHBvcnRlZCkNCiAgICAgICAg
+dGVzdCBWSURJT0NfU19IV19GUkVRX1NFRUs6IE9LIChOb3QgU3VwcG9ydGVkKQ0KICAgICAgICB0
+ZXN0IFZJRElPQ19FTlVNQVVESU86IE9LIChOb3QgU3VwcG9ydGVkKQ0KICAgICAgICB0ZXN0IFZJ
+RElPQ19HL1MvRU5VTUlOUFVUOiBPSyAoTm90IFN1cHBvcnRlZCkNCiAgICAgICAgdGVzdCBWSURJ
+T0NfRy9TX0FVRElPOiBPSyAoTm90IFN1cHBvcnRlZCkNCiAgICAgICAgSW5wdXRzOiAwIEF1ZGlv
+IElucHV0czogMCBUdW5lcnM6IDANCg0KT3V0cHV0IGlvY3RsczoNCiAgICAgICAgdGVzdCBWSURJ
+T0NfRy9TX01PRFVMQVRPUjogT0sgKE5vdCBTdXBwb3J0ZWQpDQogICAgICAgIHRlc3QgVklESU9D
+X0cvU19GUkVRVUVOQ1k6IE9LIChOb3QgU3VwcG9ydGVkKQ0KICAgICAgICB0ZXN0IFZJRElPQ19F
+TlVNQVVET1VUOiBPSyAoTm90IFN1cHBvcnRlZCkNCiAgICAgICAgdGVzdCBWSURJT0NfRy9TL0VO
+VU1PVVRQVVQ6IE9LIChOb3QgU3VwcG9ydGVkKQ0KICAgICAgICB0ZXN0IFZJRElPQ19HL1NfQVVE
+T1VUOiBPSyAoTm90IFN1cHBvcnRlZCkNCiAgICAgICAgT3V0cHV0czogMCBBdWRpbyBPdXRwdXRz
+OiAwIE1vZHVsYXRvcnM6IDANCg0KSW5wdXQvT3V0cHV0IGNvbmZpZ3VyYXRpb24gaW9jdGxzOg0K
+ICAgICAgICB0ZXN0IFZJRElPQ19FTlVNL0cvUy9RVUVSWV9TVEQ6IE9LIChOb3QgU3VwcG9ydGVk
+KQ0KICAgICAgICB0ZXN0IFZJRElPQ19FTlVNL0cvUy9RVUVSWV9EVl9USU1JTkdTOiBPSyAoTm90
+IFN1cHBvcnRlZCkNCiAgICAgICAgdGVzdCBWSURJT0NfRFZfVElNSU5HU19DQVA6IE9LIChOb3Qg
+U3VwcG9ydGVkKQ0KICAgICAgICB0ZXN0IFZJRElPQ19HL1NfRURJRDogT0sgKE5vdCBTdXBwb3J0
+ZWQpDQoNCkNvbnRyb2wgaW9jdGxzOg0KICAgICAgICB0ZXN0IFZJRElPQ19RVUVSWV9FWFRfQ1RS
+TC9RVUVSWU1FTlU6IE9LDQogICAgICAgIHRlc3QgVklESU9DX1FVRVJZQ1RSTDogT0sNCiAgICAg
+ICAgdGVzdCBWSURJT0NfRy9TX0NUUkw6IE9LDQogICAgICAgIHRlc3QgVklESU9DX0cvUy9UUllf
+RVhUX0NUUkxTOiBPSw0KICAgICAgICB0ZXN0IFZJRElPQ18oVU4pU1VCU0NSSUJFX0VWRU5UL0RR
+RVZFTlQ6IE9LIChOb3QgU3VwcG9ydGVkKQ0KICAgICAgICB0ZXN0IFZJRElPQ19HL1NfSlBFR0NP
+TVA6IE9LIChOb3QgU3VwcG9ydGVkKQ0KICAgICAgICBTdGFuZGFyZCBDb250cm9sczogMCBQcml2
+YXRlIENvbnRyb2xzOiAwDQoNCkZvcm1hdCBpb2N0bHM6DQogICAgICAgIHRlc3QgVklESU9DX0VO
+VU1fRk1UL0ZSQU1FU0laRVMvRlJBTUVJTlRFUlZBTFM6IE9LDQogICAgICAgIHRlc3QgVklESU9D
+X0cvU19QQVJNOiBPSyAoTm90IFN1cHBvcnRlZCkNCiAgICAgICAgdGVzdCBWSURJT0NfR19GQlVG
+OiBPSyAoTm90IFN1cHBvcnRlZCkNCiAgICAgICAgdGVzdCBWSURJT0NfR19GTVQ6IE9LDQogICAg
+ICAgIHRlc3QgVklESU9DX1RSWV9GTVQ6IE9LDQogICAgICAgIHRlc3QgVklESU9DX1NfRk1UOiBP
+Sw0KICAgICAgICB0ZXN0IFZJRElPQ19HX1NMSUNFRF9WQklfQ0FQOiBPSyAoTm90IFN1cHBvcnRl
+ZCkNCiAgICAgICAgdGVzdCBDcm9wcGluZzogT0sgKE5vdCBTdXBwb3J0ZWQpDQogICAgICAgIHRl
+c3QgQ29tcG9zaW5nOiBPSw0KICAgICAgICB0ZXN0IFNjYWxpbmc6IE9LIChOb3QgU3VwcG9ydGVk
+KQ0KDQpDb2RlYyBpb2N0bHM6DQogICAgICAgIHRlc3QgVklESU9DXyhUUllfKUVOQ09ERVJfQ01E
+OiBPSyAoTm90IFN1cHBvcnRlZCkNCiAgICAgICAgdGVzdCBWSURJT0NfR19FTkNfSU5ERVg6IE9L
+IChOb3QgU3VwcG9ydGVkKQ0KICAgICAgICB0ZXN0IFZJRElPQ18oVFJZXylERUNPREVSX0NNRDog
+T0sgKE5vdCBTdXBwb3J0ZWQpDQoNCkJ1ZmZlciBpb2N0bHM6DQogICAgICAgIHRlc3QgVklESU9D
+X1JFUUJVRlMvQ1JFQVRFX0JVRlMvUVVFUllCVUY6IE9LDQogICAgICAgIHRlc3QgVklESU9DX0VY
+UEJVRjogT0sNCiAgICAgICAgdGVzdCBSZXF1ZXN0czogT0sgKE5vdCBTdXBwb3J0ZWQpDQoNClRv
+dGFsIGZvciBtdGstanBlZy1kZWMgZGV2aWNlIC9kZXYvdmlkZW8wOiA0NSwgU3VjY2VlZGVkOiA0
+NSwgRmFpbGVkOiAwLCBXYXJuaW5nczogMA0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQogICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICANClRoZSBKUEVHIGVuYyBsb2c6ICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIA0KICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgDQotLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCnY0bDIt
+Y29tcGxpYW5jZSAtZCAvZGV2L3ZpZGVvMSANCnY0bDItY29tcGxpYW5jZSBTSEE6IDY5N2FlOTQw
+YjYwYTE3MmVmMzE5NDhkZDc0MzE2ZmU5ZGUzNjViN2UsIDMyIGJpdHMsIDMyLWJpdCB0aW1lX3QN
+Cg0KQ29tcGxpYW5jZSB0ZXN0IGZvciBtdGstanBlZy1lbmMgZGV2aWNlIC9kZXYvdmlkZW8xOg0K
+DQpEcml2ZXIgSW5mbzoNCiAgICAgICAgRHJpdmVyIG5hbWUgICAgICA6IG10ay1qcGVnLWVuYw0K
+ICAgICAgICBDYXJkIHR5cGUgICAgICAgIDogbXRrLWpwZWctZW5jDQogICAgICAgIEJ1cyBpbmZv
+ICAgICAgICAgOiBwbGF0Zm9ybToxNTAwYTAwMC5qcGVnZW5jDQogICAgICAgIERyaXZlciB2ZXJz
+aW9uICAgOiA1LjguMA0KICAgICAgICBDYXBhYmlsaXRpZXMgICAgIDogMHg4NDIwNDAwMA0KICAg
+ICAgICAgICAgICAgIFZpZGVvIE1lbW9yeS10by1NZW1vcnkgTXVsdGlwbGFuYXINCiAgICAgICAg
+ICAgICAgICBTdHJlYW1pbmcNCiAgICAgICAgICAgICAgICBFeHRlbmRlZCBQaXggRm9ybWF0DQog
+ICAgICAgICAgICAgICAgRGV2aWNlIENhcGFiaWxpdGllcw0KICAgICAgICBEZXZpY2UgQ2FwcyAg
+ICAgIDogMHgwNDIwNDAwMA0KICAgICAgICAgICAgICAgIFZpZGVvIE1lbW9yeS10by1NZW1vcnkg
+TXVsdGlwbGFuYXINCiAgICAgICAgICAgICAgICBTdHJlYW1pbmcNCiAgICAgICAgICAgICAgICBF
+eHRlbmRlZCBQaXggRm9ybWF0DQogICAgICAgIERldGVjdGVkIEpQRUcgRW5jb2Rlcg0KDQpSZXF1
+aXJlZCBpb2N0bHM6DQogICAgICAgIHRlc3QgVklESU9DX1FVRVJZQ0FQOiBPSw0KDQpBbGxvdyBm
+b3IgbXVsdGlwbGUgb3BlbnM6DQogICAgICAgIHRlc3Qgc2Vjb25kIC9kZXYvdmlkZW8xIG9wZW46
+IE9LDQogICAgICAgIHRlc3QgVklESU9DX1FVRVJZQ0FQOiBPSw0KICAgICAgICB0ZXN0IFZJRElP
+Q19HL1NfUFJJT1JJVFk6IE9LDQogICAgICAgIHRlc3QgZm9yIHVubGltaXRlZCBvcGVuczogT0sN
+Cg0KICAgICAgICB0ZXN0IGludmFsaWQgaW9jdGxzOiBPSw0KRGVidWcgaW9jdGxzOg0KICAgICAg
+ICB0ZXN0IFZJRElPQ19EQkdfRy9TX1JFR0lTVEVSOiBPSyAoTm90IFN1cHBvcnRlZCkNCiAgICAg
+ICAgdGVzdCBWSURJT0NfTE9HX1NUQVRVUzogT0sgKE5vdCBTdXBwb3J0ZWQpDQoNCklucHV0IGlv
+Y3RsczoNCiAgICAgICAgdGVzdCBWSURJT0NfRy9TX1RVTkVSL0VOVU1fRlJFUV9CQU5EUzogT0sg
+KE5vdCBTdXBwb3J0ZWQpDQogICAgICAgIHRlc3QgVklESU9DX0cvU19GUkVRVUVOQ1k6IE9LIChO
+b3QgU3VwcG9ydGVkKQ0KICAgICAgICB0ZXN0IFZJRElPQ19TX0hXX0ZSRVFfU0VFSzogT0sgKE5v
+dCBTdXBwb3J0ZWQpDQogICAgICAgIHRlc3QgVklESU9DX0VOVU1BVURJTzogT0sgKE5vdCBTdXBw
+b3J0ZWQpDQogICAgICAgIHRlc3QgVklESU9DX0cvUy9FTlVNSU5QVVQ6IE9LIChOb3QgU3VwcG9y
+dGVkKQ0KICAgICAgICB0ZXN0IFZJRElPQ19HL1NfQVVESU86IE9LIChOb3QgU3VwcG9ydGVkKQ0K
+ICAgICAgICBJbnB1dHM6IDAgQXVkaW8gSW5wdXRzOiAwIFR1bmVyczogMA0KDQpPdXRwdXQgaW9j
+dGxzOg0KICAgICAgICB0ZXN0IFZJRElPQ19HL1NfTU9EVUxBVE9SOiBPSyAoTm90IFN1cHBvcnRl
+ZCkNCiAgICAgICAgdGVzdCBWSURJT0NfRy9TX0ZSRVFVRU5DWTogT0sgKE5vdCBTdXBwb3J0ZWQp
+DQogICAgICAgIHRlc3QgVklESU9DX0VOVU1BVURPVVQ6IE9LIChOb3QgU3VwcG9ydGVkKQ0KICAg
+ICAgICB0ZXN0IFZJRElPQ19HL1MvRU5VTU9VVFBVVDogT0sgKE5vdCBTdXBwb3J0ZWQpDQogICAg
+ICAgIHRlc3QgVklESU9DX0cvU19BVURPVVQ6IE9LIChOb3QgU3VwcG9ydGVkKQ0KICAgICAgICBP
+dXRwdXRzOiAwIEF1ZGlvIE91dHB1dHM6IDAgTW9kdWxhdG9yczogMA0KDQpJbnB1dC9PdXRwdXQg
+Y29uZmlndXJhdGlvbiBpb2N0bHM6DQogICAgICAgIHRlc3QgVklESU9DX0VOVU0vRy9TL1FVRVJZ
+X1NURDogT0sgKE5vdCBTdXBwb3J0ZWQpDQogICAgICAgIHRlc3QgVklESU9DX0VOVU0vRy9TL1FV
+RVJZX0RWX1RJTUlOR1M6IE9LIChOb3QgU3VwcG9ydGVkKQ0KICAgICAgICB0ZXN0IFZJRElPQ19E
+Vl9USU1JTkdTX0NBUDogT0sgKE5vdCBTdXBwb3J0ZWQpDQogICAgICAgIHRlc3QgVklESU9DX0cv
+U19FRElEOiBPSyAoTm90IFN1cHBvcnRlZCkNCg0KQ29udHJvbCBpb2N0bHM6DQogICAgICAgIHRl
+c3QgVklESU9DX1FVRVJZX0VYVF9DVFJML1FVRVJZTUVOVTogT0sNCiAgICAgICAgdGVzdCBWSURJ
+T0NfUVVFUllDVFJMOiBPSw0KICAgICAgICB0ZXN0IFZJRElPQ19HL1NfQ1RSTDogT0sNCiAgICAg
+ICAgdGVzdCBWSURJT0NfRy9TL1RSWV9FWFRfQ1RSTFM6IE9LDQogICAgICAgIHRlc3QgVklESU9D
+XyhVTilTVUJTQ1JJQkVfRVZFTlQvRFFFVkVOVDogT0sNCiAgICAgICAgdGVzdCBWSURJT0NfRy9T
+X0pQRUdDT01QOiBPSyAoTm90IFN1cHBvcnRlZCkNCiAgICAgICAgU3RhbmRhcmQgQ29udHJvbHM6
+IDQgUHJpdmF0ZSBDb250cm9sczogMA0KDQpGb3JtYXQgaW9jdGxzOg0KICAgICAgICB0ZXN0IFZJ
+RElPQ19FTlVNX0ZNVC9GUkFNRVNJWkVTL0ZSQU1FSU5URVJWQUxTOiBPSw0KICAgICAgICB0ZXN0
+IFZJRElPQ19HL1NfUEFSTTogT0sgKE5vdCBTdXBwb3J0ZWQpDQogICAgICAgIHRlc3QgVklESU9D
+X0dfRkJVRjogT0sgKE5vdCBTdXBwb3J0ZWQpDQogICAgICAgIHRlc3QgVklESU9DX0dfRk1UOiBP
+Sw0KICAgICAgICB0ZXN0IFZJRElPQ19UUllfRk1UOiBPSw0KICAgICAgICB0ZXN0IFZJRElPQ19T
+X0ZNVDogT0sNCiAgICAgICAgdGVzdCBWSURJT0NfR19TTElDRURfVkJJX0NBUDogT0sgKE5vdCBT
+dXBwb3J0ZWQpDQogICAgICAgIHRlc3QgQ3JvcHBpbmc6IE9LDQogICAgICAgIHRlc3QgQ29tcG9z
+aW5nOiBPSyAoTm90IFN1cHBvcnRlZCkNCiAgICAgICAgdGVzdCBTY2FsaW5nOiBPSyAoTm90IFN1
+cHBvcnRlZCkNCg0KQ29kZWMgaW9jdGxzOg0KICAgICAgICB0ZXN0IFZJRElPQ18oVFJZXylFTkNP
+REVSX0NNRDogT0sgKE5vdCBTdXBwb3J0ZWQpDQogICAgICAgIHRlc3QgVklESU9DX0dfRU5DX0lO
+REVYOiBPSyAoTm90IFN1cHBvcnRlZCkNCiAgICAgICAgdGVzdCBWSURJT0NfKFRSWV8pREVDT0RF
+Ul9DTUQ6IE9LIChOb3QgU3VwcG9ydGVkKQ0KDQpCdWZmZXIgaW9jdGxzOg0KICAgICAgICB0ZXN0
+IFZJRElPQ19SRVFCVUZTL0NSRUFURV9CVUZTL1FVRVJZQlVGOiBPSw0KICAgICAgICB0ZXN0IFZJ
+RElPQ19FWFBCVUY6IE9LDQogICAgICAgIHRlc3QgUmVxdWVzdHM6IE9LIChOb3QgU3VwcG9ydGVk
+KQ0KDQpUb3RhbCBmb3IgbXRrLWpwZWctZW5jIGRldmljZSAvZGV2L3ZpZGVvMTogNDUsIFN1Y2Nl
+ZWRlZDogNDUsIEZhaWxlZDogMCwgV2FybmluZ3M6IDANCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KDQpDaGFuZ2UgY29tcGFyZWQg
+dG8gdjk6DQotIHVzZSBwbV9ydW50aW1lX2ZvcmNlXyooKWhlbHBlcnMgb2YgcGF0Y2ggMDcvMjgN
+Ci0gYWRkIG9uZSBwYXRjaCBmb3IgaGFuZGxpbmcganBlZyBoYXJkd2FyZSdzIGxvY2tpbmcgdXAN
+Ci0gZGVsZXRlIG10a19qcGVnX3FidWYoKSBpbiBwYXRjaCAwOS8yOA0KLSBhZGQgb25lIHBhdGNo
+IGZvciBkZWxldHRpbmcgdmlkaW9jX3Nfc2VsZWN0aW9uIGlvY3RsIG9mIGpwZWcgZGVjDQotIGFk
+ZCBvbmUgcGF0Y2ggZm9yIGNoYW5naW5nIHRoZSBtYXhpbXVtIHdpZHRoIGFuZCBoZWlnaHQgc3Vw
+cG9ydGVkIGJ5IGpwZWcgZGVjDQotIGFkZCBvbmUgcGF0Y2ggZm9yIHJlZmFjdG9yaW5nIG10a19q
+cGVnX3RyeV9mbXRfbXBsYW5lIGZ1bmN0aW9uDQotIGFkZCBvbmUgcGF0Y2ggZm9yIHJlZmFjdG9y
+aW5nIG10a19qcGVnX2ZpbmRfZm9ybWF0IGZ1bmN0aW9uDQotIGFkZCBvbmUgcGF0Y2ggZm9yIHJl
+ZGVmaW5pdGlvbiBvZiBtdGtfanBlZ19xX2RhdGEgc3RydWN0dXJlDQotIGFkZCBvbmUgcGF0Y2gg
+Zm9yIGNoYW5naW5nIHRoZSBjb2xvcnNwYWNlIG9mIGpwZWcgdG8gdGhlIGZpeGVkIHZhbHVlDQot
+IGFkZCBvbmUgcGF0Y2ggZm9yIHJlZmFjdG9yaW5nIG10a19qcGVnX3NldF9kZWZhdWx0X3BhcmFt
+cyBmdW5jdGlvbg0KLSBhZGQgb25lIHBhdGNoIGZvciBjaGFuZ2luZyB0aGUgY2FsbCBmdW5jdGlv
+biBvZiBnZXR0aW5nL2VuYWJsZS9kaXNhYmxlIHRoZSBqcGVnJ3MgY2xvY2sNCi0gYWRkIG9uZSBw
+YXRjaCBmb3IgdXNpbmcgdGhlIHZhcmlhbnQgc3RydWN0dXJlIHRvIGNvbnRhaW4gdGhlIHZhcmFi
+aWxpdHkgYmV0d2VlbiBqcGVnIGRlYyBhbmQgZW5jDQotIHJldHVybiBhY3RpdmUgY3JvcCBpbmZv
+cm1hdGlvbiBpbiBtdGtfanBlZ19lbmNfZ19zZWxlY3Rpb24gZnVuY3Rpb24NCi0gY2FuY2VsIG10
+a19qcGVnX2VuY19icyBzdHJ1Y3R1cmUNCi0gcmVmYWN0b3IgdGhlIHNldHRpbmcgaGFyZHdhcmUg
+cmVnaXN0ZXIgZnVuY3Rpb25zIGluIG10a19qcGVnX2VuY19ody5jDQotIHJlbW92ZSBtdGtfanBl
+Z19lbmNfam9iX3JlYWR5IGZ1bmN0aW9uDQotIHJlZmFjdG9yIG10a19qcGVnX2VuY19pcnEgZnVu
+Y3Rpb24NCi0gY2FuY2VsIHNldHRpbmcgdXAgYSBjb250cm9sIGhhbmRsZXIgZm9yIGpwZWcgZGVj
+DQotIGFkZCB0aGUgbWVjaGFuaXNtIHRvIGVuc3VyZSB0aGF0IHRoZSBidWZmZXIgaXMgZW5vdWdo
+IHRvIGhvbGQgdGhlIEVYSUYgZGF0YSBpbiAuYnVmX3ByZXBhcmUgY2FsbGJhY2sNCg0KWGlhIEpp
+YW5nICgyOCk6DQogIG1lZGlhOiBwbGF0Zm9ybTogSW1wcm92ZSBzdWJzY3JpYmUgZXZlbnQgZmxv
+dyBmb3IgYnVnIGZpeGluZw0KICBtZWRpYTogcGxhdGZvcm06IEltcHJvdmUgcXVldWUgc2V0IHVw
+IGZsb3cgZm9yIGJ1ZyBmaXhpbmcNCiAgbWVkaWE6IHBsYXRmb3JtOiBJbXByb3ZlIGdldHRpbmcg
+YW5kIHJlcXVlc3RpbmcgaXJxIGZsb3cgZm9yIGJ1Zw0KICAgIGZpeGluZw0KICBtZWRpYTogcGxh
+dGZvcm06IENoYW5nZSB0aGUgZml4ZWQgZGV2aWNlIG5vZGUgbnVtYmVyIHRvIHVuZml4ZWQgdmFs
+dWUNCiAgbWVkaWE6IHBsYXRmb3JtOiBJbXByb3ZlIHBvd2VyIG9uIGFuZCBwb3dlciBvZmYgZmxv
+dw0KICBtZWRpYTogcGxhdGZvcm06IERlbGV0ZSB0aGUgcmVzZXR0aW5nIGhhcmR3YXJlIGZsb3cg
+aW4gdGhlIHN5c3RlbSBQTQ0KICAgIG9wcw0KICBtZWRpYTogcGxhdGZvcm06IEltcHJvdmUgdGhl
+IGltcGxlbWVudGF0aW9uIG9mIHRoZSBzeXN0ZW0gUE0gb3BzDQogIG1lZGlhOiBwbGF0Zm9ybTog
+QWRkIG1lY2hhbmlzbSB0byBoYW5kbGUganBlZyBoYXJkd2FyZSdzIGxvY2tpbmcgdXANCiAgbWVk
+aWE6IHBsYXRmb3JtOiBDYW5jZWwgdGhlIGxhc3QgZnJhbWUgaGFuZGxpbmcgZmxvdw0KICBtZWRp
+YTogcGxhdGZvcm06IERlbGV0ZSB6ZXJvaW5nIHRoZSByZXNlcnZlZCBmaWVsZHMNCiAgbWVkaWE6
+IHBsYXRmb3JtOiBTdHlsaXN0aWMgY2hhbmdlcyBmb3IgaW1wcm92aW5nIGNvZGUgcXVhbGl0eQ0K
+ICBtZWRpYTogcGxhdGZvcm06IFVzZSBnZW5lcmljIHJvdW5kaW5nIGhlbHBlcnMNCiAgbWVkaWE6
+IHBsYXRmb3JtOiBDaGFuZ2UgTVRLX0pQRUdfQ09NUF9NQVggbWFjcm8gZGVmaW5pdGlvbiBsb2Nh
+dGlvbg0KICBtZWRpYTogcGxhdGZvcm06IERlbGV0ZSByZWR1bmRhbnQgY29kZSBhbmQgYWRkIGFu
+bm90YXRpb24gZm9yIGFuIGVudW0NCiAgbWVkaWE6IHBsYXRmb3JtOiBEZWxldGUgdmlkaW9jX3Nf
+c2VsZWN0aW9uIGlvY3RsIG9mIGpwZWcgZGVjDQogIG1lZGlhOiBwbGF0Zm9ybTogQ2hhbmdlIHRo
+ZSBtYXhpbXVtIHdpZHRoIGFuZCBoZWlnaHQgc3VwcG9ydGVkIGJ5IEpQRUcNCiAgICBkZWMNCiAg
+bWVkaWE6IHBsYXRmb3JtOiBSZWZhY3RvciBtdGtfanBlZ190cnlfZm10X21wbGFuZSgpDQogIG1l
+ZGlhOiBwbGF0Zm9ybTogUmVmYWN0b3IgbXRrX2pwZWdfZmluZF9mb3JtYXQoKQ0KICBtZWRpYTog
+cGxhdGZvcm06IFJlZGVmaW5pdGlvbiBvZiBtdGtfanBlZ19xX2RhdGEgc3RydWN0dXJlDQogIG1l
+ZGlhOiBwbGF0Zm9ybTogQ2hhbmdlIHRoZSBjb2xvcnNwYWNlIG9mIGpwZWcgdG8gdGhlIGZpeGVk
+IHZhbHVlDQogIG1lZGlhOiBwbGF0Zm9ybTogUmVmYWN0b3IgbXRrX2pwZWdfc2V0X2RlZmF1bHRf
+cGFyYW1zKCkNCiAgbWVkaWE6IHBsYXRmb3JtOiBDaGFuZ2UgdGhlIGNhbGwgZnVuY3Rpb25zIG9m
+IGdldHRpbmcvZW5hYmxlL2Rpc2FibGUNCiAgICB0aGUganBlZydzIGNsb2NrDQogIG1lZGlhOiBk
+dC1iaW5kaW5nczogQWRkIGpwZWcgZW5jIGRldmljZSB0cmVlIG5vZGUgZG9jdW1lbnQNCiAgYXJt
+OiBkdHM6IG10MjcwMTogQWRkIGpwZWcgZW5jIGRldmljZSB0cmVlIG5vZGUNCiAgbWVkaWE6IHBs
+YXRmb3JtOiBSZW5hbWUganBlZyBkZWMgZmlsZSBuYW1lDQogIG1lZGlhOiBwbGF0Zm9ybTogUmVu
+YW1lIGV4aXN0aW5nIGZ1bmN0aW9ucy9kZWZpbmVzL3ZhcmlhYmxlcw0KICBtZWRpYTogcGxhdGZv
+cm06IFVzaW5nIHRoZSB2YXJpYW50IHN0cnVjdHVyZSB0byBjb250YWluIHRoZSB2YXJhYmlsaXR5
+DQogICAgYmV0d2VlbiBkZWMgYW5kIGVuYw0KICBtZWRpYTogcGxhdGZvcm06IEFkZCBqcGVnIGVu
+YyBmZWF0dXJlDQoNCiAuLi4vYmluZGluZ3MvbWVkaWEvbWVkaWF0ZWstanBlZy1lbmNvZGVyLnR4
+dCAgfCAgMzUgKw0KIGFyY2gvYXJtL2Jvb3QvZHRzL210MjcwMS5kdHNpICAgICAgICAgICAgICAg
+ICB8ICAxMyArDQogZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9tdGstanBlZy9NYWtlZmlsZSAgICAg
+IHwgICA1ICstDQogLi4uL21lZGlhL3BsYXRmb3JtL210ay1qcGVnL210a19qcGVnX2NvcmUuYyAg
+IHwgOTQxICsrKysrKysrKysrKy0tLS0tLQ0KIC4uLi9tZWRpYS9wbGF0Zm9ybS9tdGstanBlZy9t
+dGtfanBlZ19jb3JlLmggICB8IDEwOCArLQ0KIC4uLi97bXRrX2pwZWdfaHcuYyA9PiBtdGtfanBl
+Z19kZWNfaHcuY30gICAgICB8ICAxMCArLQ0KIC4uLi97bXRrX2pwZWdfaHcuaCA9PiBtdGtfanBl
+Z19kZWNfaHcuaH0gICAgICB8ICAxMiArLQ0KIC4uLnttdGtfanBlZ19wYXJzZS5jID0+IG10a19q
+cGVnX2RlY19wYXJzZS5jfSB8ICAgMiArLQ0KIC4uLnttdGtfanBlZ19wYXJzZS5oID0+IG10a19q
+cGVnX2RlY19wYXJzZS5ofSB8ICAgMiArLQ0KIC4uLi97bXRrX2pwZWdfcmVnLmggPT4gbXRrX2pw
+ZWdfZGVjX3JlZy5ofSAgICB8ICAxOSArLQ0KIC4uLi9tZWRpYS9wbGF0Zm9ybS9tdGstanBlZy9t
+dGtfanBlZ19lbmNfaHcuYyB8IDE1NCArKysNCiAuLi4vbWVkaWEvcGxhdGZvcm0vbXRrLWpwZWcv
+bXRrX2pwZWdfZW5jX2h3LmggfCAgOTEgKysNCiAxMiBmaWxlcyBjaGFuZ2VkLCAxMDA5IGluc2Vy
+dGlvbnMoKyksIDM4MyBkZWxldGlvbnMoLSkNCiBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRh
+dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21lZGlhL21lZGlhdGVrLWpwZWctZW5jb2Rlci50eHQN
+CiByZW5hbWUgZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9tdGstanBlZy97bXRrX2pwZWdfaHcuYyA9
+PiBtdGtfanBlZ19kZWNfaHcuY30gKDk4JSkNCiByZW5hbWUgZHJpdmVycy9tZWRpYS9wbGF0Zm9y
+bS9tdGstanBlZy97bXRrX2pwZWdfaHcuaCA9PiBtdGtfanBlZ19kZWNfaHcuaH0gKDkxJSkNCiBy
+ZW5hbWUgZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9tdGstanBlZy97bXRrX2pwZWdfcGFyc2UuYyA9
+PiBtdGtfanBlZ19kZWNfcGFyc2UuY30gKDk4JSkNCiByZW5hbWUgZHJpdmVycy9tZWRpYS9wbGF0
+Zm9ybS9tdGstanBlZy97bXRrX2pwZWdfcGFyc2UuaCA9PiBtdGtfanBlZ19kZWNfcGFyc2UuaH0g
+KDkyJSkNCiByZW5hbWUgZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9tdGstanBlZy97bXRrX2pwZWdf
+cmVnLmggPT4gbXRrX2pwZWdfZGVjX3JlZy5ofSAoNzclKQ0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBk
+cml2ZXJzL21lZGlhL3BsYXRmb3JtL210ay1qcGVnL210a19qcGVnX2VuY19ody5jDQogY3JlYXRl
+IG1vZGUgMTAwNjQ0IGRyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbXRrLWpwZWcvbXRrX2pwZWdfZW5j
+X2h3LmgNCg0KLS0gDQoyLjE4LjANCg0K
 
-According to the coding style, multi-line comments must begin with an
-empty line.
-
-Also it would be preferable to have the comment prepending the struct
-for easier read:
-
-/*
- * irq > 0 means: use irq $irq;
- * irq = 0 means: autoprobe for an irq;
- * irq = -1 means: no irq support
- */
-struct tpm_tis_synquacer_info {
-
-> +
-> +struct tpm_tis_synquacer_phy {
-> +	struct tpm_tis_data priv;
-> +	void __iomem *iobase;
-> +};
-> +
-> +static inline struct tpm_tis_synquacer_phy *to_tpm_tis_tcg_phy(struct tpm_tis_data *data)
-> +{
-> +	return container_of(data, struct tpm_tis_synquacer_phy, priv);
-> +}
-> +
-> +static int tpm_tis_synquacer_read_bytes(struct tpm_tis_data *data, u32 addr,
-> +					u16 len, u8 *result)
-> +{
-> +	struct tpm_tis_synquacer_phy *phy = to_tpm_tis_tcg_phy(data);
-> +
-> +	while (len--)
-> +		*result++ = ioread8(phy->iobase + addr);
-> +
-> +	return 0;
-> +}
-> +
-> +static int tpm_tis_synquacer_write_bytes(struct tpm_tis_data *data, u32 addr,
-> +					 u16 len, const u8 *value)
-> +{
-> +	struct tpm_tis_synquacer_phy *phy = to_tpm_tis_tcg_phy(data);
-> +
-> +	while (len--)
-> +		iowrite8(*value++, phy->iobase + addr);
-> +
-> +	return 0;
-> +}
-> +
-> +static int tpm_tis_synquacer_read16_bw(struct tpm_tis_data *data,
-> +				       u32 addr, u16 *result)
-> +{
-> +	struct tpm_tis_synquacer_phy *phy = to_tpm_tis_tcg_phy(data);
-> +
-> +	/*
-> +	 * Due to the limitation of SPI controller on SynQuacer,
-> +	 * 16/32 bits access must be done in byte-wise and descending order.
-> +	 */
-> +	*result = (ioread8(phy->iobase + addr + 1) << 8) |
-> +		  (ioread8(phy->iobase + addr));
-> +
-> +	return 0;
-> +}
-> +
-> +static int tpm_tis_synquacer_read32_bw(struct tpm_tis_data *data,
-> +				       u32 addr, u32 *result)
-> +{
-> +	struct tpm_tis_synquacer_phy *phy = to_tpm_tis_tcg_phy(data);
-> +
-> +	/*
-> +	 * Due to the limitation of SPI controller on SynQuacer,
-> +	 * 16/32 bits access must be done in byte-wise and descending order.
-> +	 */
-> +	*result = (ioread8(phy->iobase + addr + 3) << 24) |
-> +		  (ioread8(phy->iobase + addr + 2) << 16) |
-> +		  (ioread8(phy->iobase + addr + 1) << 8) |
-> +		  (ioread8(phy->iobase + addr));
-> +
-> +	return 0;
-> +}
-> +
-> +static int tpm_tis_synquacer_write32_bw(struct tpm_tis_data *data,
-> +					u32 addr, u32 value)
-> +{
-> +	struct tpm_tis_synquacer_phy *phy = to_tpm_tis_tcg_phy(data);
-> +
-> +	/*
-> +	 * Due to the limitation of SPI controller on SynQuacer,
-> +	 * 16/32 bits access must be done in byte-wise and descending order.
-> +	 */
-> +	iowrite8(value >> 24, phy->iobase + addr + 3);
-> +	iowrite8(value >> 16, phy->iobase + addr + 2);
-> +	iowrite8(value >> 8, phy->iobase + addr + 1);
-> +	iowrite8(value, phy->iobase + addr);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct tpm_tis_phy_ops tpm_tcg_bw = {
-> +	.read_bytes	= tpm_tis_synquacer_read_bytes,
-> +	.write_bytes	= tpm_tis_synquacer_write_bytes,
-> +	.read16		= tpm_tis_synquacer_read16_bw,
-> +	.read32		= tpm_tis_synquacer_read32_bw,
-> +	.write32	= tpm_tis_synquacer_write32_bw,
-> +};
-> +
-> +static int tpm_tis_synquacer_init(struct device *dev,
-> +				  struct tpm_tis_synquacer_info *tpm_info)
-> +{
-> +	struct tpm_tis_synquacer_phy *phy;
-> +
-> +	phy = devm_kzalloc(dev, sizeof(struct tpm_tis_synquacer_phy), GFP_KERNEL);
-> +	if (phy == NULL)
-> +		return -ENOMEM;
-> +
-> +	phy->iobase = devm_ioremap_resource(dev, &tpm_info->res);
-> +	if (IS_ERR(phy->iobase))
-> +		return PTR_ERR(phy->iobase);
-> +
-> +	return tpm_tis_core_init(dev, &phy->priv, tpm_info->irq, &tpm_tcg_bw,
-> +				 ACPI_HANDLE(dev));
-> +}
-> +
-> +static SIMPLE_DEV_PM_OPS(tpm_tis_synquacer_pm, tpm_pm_suspend, tpm_tis_resume);
-> +
-> +static int tpm_tis_synquacer_probe(struct platform_device *pdev)
-> +{
-> +	struct tpm_tis_synquacer_info tpm_info = {};
-> +	struct resource *res;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	if (res == NULL) {
-> +		dev_err(&pdev->dev, "no memory resource defined\n");
-> +		return -ENODEV;
-> +	}
-> +	tpm_info.res = *res;
-> +
-> +	tpm_info.irq = -1;
-> +
-> +	return tpm_tis_synquacer_init(&pdev->dev, &tpm_info);
-> +}
-> +
-> +static int tpm_tis_synquacer_remove(struct platform_device *pdev)
-> +{
-> +	struct tpm_chip *chip = dev_get_drvdata(&pdev->dev);
-> +
-> +	tpm_chip_unregister(chip);
-> +	tpm_tis_remove(chip);
-> +
-> +	return 0;
-> +}
-> +
-> +#ifdef CONFIG_OF
-> +static const struct of_device_id tis_synquacer_of_platform_match[] = {
-> +	{.compatible = "socionext,synquacer-tpm-mmio"},
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, tis_synquacer_of_platform_match);
-> +#endif
-> +
-> +#ifdef CONFIG_ACPI
-> +static const struct acpi_device_id tpm_synquacer_acpi_tbl[] = {
-> +	{ "SCX0009" },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(acpi, tpm_synquacer_acpi_tbl);
-> +#endif
-> +
-> +static struct platform_driver tis_synquacer_drv = {
-> +	.probe = tpm_tis_synquacer_probe,
-> +	.remove = tpm_tis_synquacer_remove,
-> +	.driver = {
-> +		.name		= "tpm_tis_synquacer",
-> +		.pm		= &tpm_tis_synquacer_pm,
-> +		.of_match_table = of_match_ptr(tis_synquacer_of_platform_match),
-> +		.acpi_match_table = ACPI_PTR(tpm_synquacer_acpi_tbl),
-> +	},
-> +};
-> +
-> +static int __init tpm_tis_synquacer_module_init(void)
-> +{
-> +	int rc;
-> +
-> +	rc = platform_driver_register(&tis_synquacer_drv);
-> +	if (rc)
-> +		return rc;
-> +
-> +	return 0;
-> +}
-> +
-> +static void __exit tpm_tis_synquacer_module_exit(void)
-> +{
-> +	platform_driver_unregister(&tis_synquacer_drv);
-> +}
-> +
-> +module_init(tpm_tis_synquacer_module_init);
-> +module_exit(tpm_tis_synquacer_module_exit);
-> +MODULE_AUTHOR("Masahisa Kojima (masahisa.kojima@linaro.org)");
-
-It is completely redundant field because authorship is part of the
-commit object itself. And it does not tell the truth after a while
-anyway. MODULE_AUTHOR() made more sense before there was any sort of
-legit versio control in place.
-
-I think it would be better not to have it as we don't have any use
-for this data. It is just cruft hanging there.
-
-> +MODULE_DESCRIPTION("TPM MMIO Driver for Socionext SynQuacer platform");
-> +MODULE_VERSION("2.0");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.20.1
-> 
-
-/Jarkko
