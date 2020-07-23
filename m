@@ -2,203 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7E2122AA80
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 10:17:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D656F22AA93
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 10:22:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727111AbgGWIRl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 04:17:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48038 "EHLO
+        id S1725858AbgGWIWi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 04:22:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727804AbgGWIRh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 04:17:37 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 489B5C0619DC;
-        Thu, 23 Jul 2020 01:17:37 -0700 (PDT)
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1595492254;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=dnjGn/AU+fRt0hpW+UXz0JagirHdk28DLXmyBPvv19g=;
-        b=SEypb57nnN9grdWOCwBey1cyuVRmJlRal2ROTB5aswjCEu1mPmntswo2YLn5NmuV/0k3Tl
-        ndB8TEi/P79y8k+1LnAgVnQqW9LXnA+WdOZvs0nFr0CqwsuObs379PGOW3SjfsAtG1Pf4Y
-        bCO3mONcOkFlETuiu83gQsi5v7Bh2L63ixczpiXiEhnPTF63uzPeJoFV52+0PAculJt5BZ
-        Vd5CrmcxdaJiJ5Z6IslUESBpAb9Shc2spxemo5SikoS8eeIZdGIo1DxtwIhkmdQcKnL9xP
-        NO17+7z7Ec+zsjpyy31pxugIUexT45rjihE/FBvZPZQTaPfsaVRj+/un389qew==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1595492254;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=dnjGn/AU+fRt0hpW+UXz0JagirHdk28DLXmyBPvv19g=;
-        b=KC9+afCPXnPf+iSA8Pa91xafcnq3pwkZiqpEKhzJujnbmi5PJdIep+nAxj+tloi6nRzxqj
-        4/t+cWcd67ePIKBw==
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        ilias.apalodimas@linaro.org, Vladimir Oltean <olteanv@gmail.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>
-Subject: [PATCH v2 8/8] dt-bindings: net: dsa: Add documentation for Hellcreek switches
-Date:   Thu, 23 Jul 2020 10:17:14 +0200
-Message-Id: <20200723081714.16005-9-kurt@linutronix.de>
-In-Reply-To: <20200723081714.16005-1-kurt@linutronix.de>
-References: <20200723081714.16005-1-kurt@linutronix.de>
+        with ESMTP id S1725846AbgGWIWi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 04:22:38 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3593C0619DC;
+        Thu, 23 Jul 2020 01:22:37 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id p14so3771910wmg.1;
+        Thu, 23 Jul 2020 01:22:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=QE10UDZQ3r5KctDFG038ZVtepXURxKEMA8qw8LlWSEY=;
+        b=Os/0wGVhINaT50kNjojm42n5UockuOvesYAtUK3exVVbKcF5f/N0XQJlTarczwHRKU
+         uy4WrGbGX1HgDZMJHOdn3+fUrZAGtEXkfou9SSW+pVYhvrjkV2mNzquCZEHE3xVGY5bX
+         yb8pittSkp1e5A7ZkSg9Y0HFp6327SPU3I6nl0kxxOUfWE3jePiiSvpBvwpvjKVJKel/
+         kTZsuoKzZsMGOPRrf49CbzEGxqQbmm04QK+emJHbt/jYHbzENz/h8MGC9vyIFLZOOhFJ
+         S5/Oh3RUNtI9ver6zN0JtaKBYLBePUSrdcKiCcOCRTMnMZ/BIC8k+OZ6URKGLL3aY+NT
+         ERrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=QE10UDZQ3r5KctDFG038ZVtepXURxKEMA8qw8LlWSEY=;
+        b=ZD6NV0l0SYzTpTsC16dBODK7W6HIq0v+c5QFdpxjI+8zzUX/SHFHBnivqTQW+alIAW
+         EyVfCK+9OK6rEQsF9dpCnC/QBdliWSpAPsZxuYqHFUm/woapcljieP3cwXENfHRzIcpM
+         IXfzojmrcxbgGVamm6FlxX34MV8F2DzO4/D09TjkNLsM539kr2Uy3DNQhJCnce2+uV8D
+         H54H0NV5kBvbgFz23RehSTFR2cDzNCMh5zT/UWIkpXOZ+QTjNi54fYODn0Ouu2Ztj0Xk
+         ujjWVzc3wAydxopIkwkvlUCeZcMydVoKAZTmuiVdfI15SgvpC8KFc7khvpMG8IFLroCz
+         DneA==
+X-Gm-Message-State: AOAM533kscGaWDPiZhieARFKRDHuqflnT38EaNc3r61FCOveZS12NsvM
+        Ivx+njqkKMIdBDpqbC1SsWA=
+X-Google-Smtp-Source: ABdhPJzRo2CpLckZ5BybV2p2mZPEKIPpKjjoDDNVlus8LUvOzoTI2kUV/qOMer0ffg8TPEA8+n5kqQ==
+X-Received: by 2002:a1c:df02:: with SMTP id w2mr436740wmg.137.1595492556305;
+        Thu, 23 Jul 2020 01:22:36 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.122.158])
+        by smtp.gmail.com with ESMTPSA id f12sm2805882wrj.48.2020.07.23.01.22.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Jul 2020 01:22:35 -0700 (PDT)
+Subject: Re: [PATCH] dt-bindings: spi: update bindings for MT8192 SoC
+To:     Mark Brown <broonie@kernel.org>, Leilk Liu <leilk.liu@mediatek.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <20200721024819.7150-1-leilk.liu@mediatek.com>
+ <20200721094859.GB4845@sirena.org.uk>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <2a1cfaf2-0c58-e0c9-7c70-20a2f84321f9@gmail.com>
+Date:   Thu, 23 Jul 2020 10:22:34 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200721094859.GB4845@sirena.org.uk>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic documentation and example.
 
-Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
----
- .../bindings/net/dsa/hellcreek.yaml           | 126 ++++++++++++++++++
- 1 file changed, 126 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/dsa/hellcreek.yaml
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/hellcreek.yaml b/Documentation/devicetree/bindings/net/dsa/hellcreek.yaml
-new file mode 100644
-index 000000000000..1b192ba7f4ca
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/dsa/hellcreek.yaml
-@@ -0,0 +1,126 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/dsa/hellcreek.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Hirschmann Hellcreek TSN Switch Device Tree Bindings
-+
-+allOf:
-+  - $ref: dsa.yaml#
-+
-+maintainers:
-+  - Andrew Lunn <andrew@lunn.ch>
-+  - Florian Fainelli <f.fainelli@gmail.com>
-+  - Vivien Didelot <vivien.didelot@gmail.com>
-+  - Kurt Kanzenbach <kurt@linutronix.de>
-+
-+description:
-+  The Hellcreek TSN Switch IP is a 802.1Q Ethernet compliant switch. It supports
-+  the Precision Time Protocol, Hardware Timestamping as well the Time Aware
-+  Shaper.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: hirschmann,hellcreek
-+
-+  reg:
-+    description:
-+      The physical base address and size of TSN and PTP memory base
-+    minItems: 2
-+    maxItems: 2
-+
-+  reg-names:
-+    description:
-+      Names of the physical base addresses
-+    minItems: 2
-+    maxItems: 2
-+    items:
-+      enum: ["reg", "ptp"]
-+
-+  leds:
-+    type: object
-+    properties:
-+      '#address-cells':
-+        const: 1
-+      '#size-cells':
-+        const: 0
-+
-+    patternProperties:
-+      "^led@[0-9]+$":
-+          type: object
-+          description: Hellcreek leds
-+
-+          properties:
-+            reg:
-+              items:
-+                - enum: [0, 1]
-+              description: Led number
-+
-+            label: true
-+
-+            default-state: true
-+
-+          required:
-+            - reg
-+
-+          additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - ports
-+  - leds
-+
-+examples:
-+  - |
-+        switch0: switch@ff240000 {
-+            compatible = "hirschmann,hellcreek";
-+            status = "okay";
-+            reg = <0xff240000 0x1000>,
-+                  <0xff250000 0x1000>;
-+            reg-names = "reg", "ptp";
-+            dsa,member = <0 0>;
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    reg = <0>;
-+                    label = "cpu";
-+                    ethernet = <&gmac0>;
-+                };
-+
-+                port@2 {
-+                    reg = <2>;
-+                    label = "lan0";
-+                    phy-handle = <&phy1>;
-+                };
-+
-+                port@3 {
-+                    reg = <3>;
-+                    label = "lan1";
-+                    phy-handle = <&phy2>;
-+                };
-+            };
-+
-+            leds {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                led@0 {
-+                    reg = <0>;
-+                    label = "sync_good";
-+                    default-state = "on";
-+                };
-+
-+                led@1 {
-+                    reg = <1>;
-+                    label = "is_gm";
-+                    default-state = "off";
-+                };
-+            };
-+        };
--- 
-2.20.1
+On 21/07/2020 11:48, Mark Brown wrote:
+> On Tue, Jul 21, 2020 at 10:48:19AM +0800, Leilk Liu wrote:
+>> From: "leilk.liu" <leilk.liu@mediatek.com>
+>>
+>> Add a DT binding documentation for the MT8192 soc.
+> 
+> I'd expect to see a matching driver patch.
+> 
 
+Well for now the device would match against the "mediatek,mt6765-spi" as it is 
+the same chip. We just want to define the binding so that we could add a special 
+case for mt8192 in the future, if needed.
+
+Regards,
+Matthias
