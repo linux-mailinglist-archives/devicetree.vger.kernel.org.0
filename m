@@ -2,125 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 675F922AF99
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 14:40:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F26422AFB7
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 14:53:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728948AbgGWMkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 08:40:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60712 "EHLO
+        id S1726666AbgGWMx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 08:53:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728947AbgGWMkm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 08:40:42 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70291C0619DC
-        for <devicetree@vger.kernel.org>; Thu, 23 Jul 2020 05:40:42 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id 1so2947098pfn.9
-        for <devicetree@vger.kernel.org>; Thu, 23 Jul 2020 05:40:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=WDNDRjywjyqpB5L/QCIx/xtojuw5bNyR8YRkTXP5eyQ=;
-        b=FxhRtfulyYZnd8BzpGtUd7Q722UXLNsA245+8ajQo7fNJi52t0V3SoLQeu7rb9/8Mn
-         h5a6NTPk559YwIrStlhNAVpi/OJtTE+7zHA0UxhzmFelZOJv3DNSbE/pbkbMaU1XoqnP
-         Js8vSQrPTKPLL112O0qh7nZSfLDuUfteQI3I8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=WDNDRjywjyqpB5L/QCIx/xtojuw5bNyR8YRkTXP5eyQ=;
-        b=Zx98bBeXUW+wiutlWu0qtoz8ZxKEa4nOXoiWlvNJdyo30Z/aubsbWtxNK8q/PnjSBn
-         b4FAHEM+PGB2kUKzukkIbDLpHDw/NwFyA38HlSISfeVJ4LQlgtH7XcUYh/58H+DOILtY
-         VqrPudL8B9Zf1DqVVkc0P3XlyR84fP+GiHjY82eRucnoGSbW2m5zkusA+F72vFn7w4eD
-         o7ZW0GfoRHwqGHiMqNgsFRv2BVDwzLZOkk7TG+C3+HOZ/GOkMGxxFaw/TZS5wZFNa27J
-         69hK9wygRTcq14M7Y7YYJpp/fAFqRSShsztzY81la6XnsDprzj/IT8v3lnFYoCqI017X
-         78ww==
-X-Gm-Message-State: AOAM532Vlzosfd5UghEO0hcwJO/k3jqkYgZWRsdlpgFOmfCF4uWo4oK3
-        XdBrRNlj3124pEDUf4Bh5cZV+16QuD6w0w==
-X-Google-Smtp-Source: ABdhPJy5qwfhQw/yLRPrIE+wAn4xcIP1SmsbB6BaixfqXaVhKEBLMoVOAVrMYK6hJ/8bwLK61SqZsQ==
-X-Received: by 2002:a63:182:: with SMTP id 124mr3758056pgb.288.1595508042007;
-        Thu, 23 Jul 2020 05:40:42 -0700 (PDT)
-Received: from localhost.localdomain ([2405:201:c809:c7d5:cbf:ea0:8a30:a3af])
-        by smtp.gmail.com with ESMTPSA id m26sm3051270pff.84.2020.07.23.05.40.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jul 2020 05:40:41 -0700 (PDT)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>
-Cc:     Suniel Mahesh <sunil@amarulasolutions.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH 7/7] arm64: dts: rockchip: Add Engicam PX30.Core C.TOUCH 2.0 10.1" OF
-Date:   Thu, 23 Jul 2020 18:09:51 +0530
-Message-Id: <20200723123951.149497-8-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200723123951.149497-1-jagan@amarulasolutions.com>
-References: <20200723123951.149497-1-jagan@amarulasolutions.com>
+        with ESMTP id S1728134AbgGWMx0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 08:53:26 -0400
+Received: from mail.nic.cz (lists.nic.cz [IPv6:2001:1488:800:400::400])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAB8EC0619E2;
+        Thu, 23 Jul 2020 05:53:25 -0700 (PDT)
+Received: from dellmb.labs.office.nic.cz (unknown [IPv6:2001:1488:fffe:6:cac7:3539:7f1f:463])
+        by mail.nic.cz (Postfix) with ESMTP id 849D21409FC;
+        Thu, 23 Jul 2020 14:53:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
+        t=1595508803; bh=g9VYd6zwE87aZES+pRe4qt8hT60KMG7StUvV1ACXxsM=;
+        h=From:To:Date;
+        b=xERWZXcqTqBwhbWhl4sJqas86hBCQivv8Hq4BGmjlyA4rRq+oU8J2QfowYvdDT2mF
+         2ccVB8drRt7K08PtcF5xypjTrYOVh7L89it84EAt1G5wVLAgI7Jh0WM+GQlPxPA6x7
+         RN83xN37AD7TQYIImRmO4A/umaoYfC/omUYIv8sw=
+From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>
+To:     linux-leds@vger.kernel.org
+Cc:     Pavel Machek <pavel@ucw.cz>, jacek.anaszewski@gmail.com,
+        Dan Murphy <dmurphy@ti.com>,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v7 1/3] dt-bindings: leds: add cznic,turris-omnia-leds binding
+Date:   Thu, 23 Jul 2020 14:53:18 +0200
+Message-Id: <20200723125320.3572-2-marek.behun@nic.cz>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200723125320.3572-1-marek.behun@nic.cz>
+References: <20200723125320.3572-1-marek.behun@nic.cz>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
+X-Spam-Status: No, score=0.00
+X-Spamd-Bar: /
+X-Virus-Scanned: clamav-milter 0.102.2 at mail
+X-Virus-Status: Clean
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PX30.Core is an EDIMM SOM based on Rockchip PX30 from Engicam.
+Add device-tree bindings documentation for Turris Omnia RGB LEDs.
 
-C.TOUCH 2.0 10.1" Open Frame is a Carrier board with Capacitive
-touch 10.1" open frame from Engicam.
-
-PX30.Core needs to mount on top of this Carrier board for creating
-complete PX30.Core C.TOUCH 2.0 10.1" Open Frame.
-
-Add support for it.
-
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+Signed-off-by: Marek Behún <marek.behun@nic.cz>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
 ---
- arch/arm64/boot/dts/rockchip/Makefile         |  1 +
- .../rockchip/px30-px30-core-ctouch2-of10.dts  | 21 +++++++++++++++++++
- 2 files changed, 22 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/px30-px30-core-ctouch2-of10.dts
+ .../leds/cznic,turris-omnia-leds.yaml         | 90 +++++++++++++++++++
+ 1 file changed, 90 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 65116fcb7368..5b85e315f14d 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-evb.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-px30-core-ctouch2-of10.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-px30-core-edimm2.2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-evb.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-roc-cc.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/px30-px30-core-ctouch2-of10.dts b/arch/arm64/boot/dts/rockchip/px30-px30-core-ctouch2-of10.dts
+diff --git a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
 new file mode 100644
-index 000000000000..9c957a21e38f
+index 000000000000..24ad1446445e
 --- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/px30-px30-core-ctouch2-of10.dts
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2020 Fuzhou Rockchip Electronics Co., Ltd
-+ * Copyright (c) 2020 Engicam srl
-+ * Copyright (c) 2020 Amarula Solutions(India)
-+ */
++++ b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+@@ -0,0 +1,90 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/cznic,turris-omnia-leds.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/dts-v1/;
-+#include "px30.dtsi"
-+#include "px30-engicam-ctouch2-of10.dtsi"
-+#include "px30-px30-core.dtsi"
++title: CZ.NIC's Turris Omnia LEDs driver
 +
-+/ {
-+	model = "Engicam PX30.Core C.TOUCH 2.0 10.1\" Open Frame";
-+	compatible = "engicam,px30-core-ctouch2-of10", "engicam,px30-px30-core",
-+		     "rockchip,px30";
++maintainers:
++  - Marek Behún <marek.behun@nic.cz>
 +
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+	};
-+};
++description:
++  This module adds support for the RGB LEDs found on the front panel of the
++  Turris Omnia router. There are 12 RGB LEDs that are controlled by a
++  microcontroller that communicates via the I2C bus. Each LED is described
++  as a subnode of this I2C device.
++
++properties:
++  compatible:
++    const: cznic,turris-omnia-leds
++
++  reg:
++    description: I2C slave address of the microcontroller.
++    maxItems: 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++patternProperties:
++  "^multi-led[0-9a-f]$":
++    type: object
++    allOf:
++      - $ref: leds-class-multicolor.yaml#
++    description:
++      This node represents one of the RGB LED devices on Turris Omnia.
++      No subnodes need to be added for subchannels since this controller only
++      supports RGB LEDs.
++
++    properties:
++      reg:
++        minimum: 0
++        maximum: 11
++        description:
++          This property identifies one of the LEDs on the front panel of the
++          Turris Omnia router.
++
++    required:
++      - reg
++
++additionalProperties: false
++
++examples:
++  - |
++
++    #include <dt-bindings/leds/common.h>
++
++    i2c0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        led-controller@2b {
++            compatible = "cznic,turris-omnia-leds";
++            reg = <0x2b>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            multi-led@0 {
++                /*
++                 * No subnodes are needed, this controller only supports RGB
++                 * LEDs.
++                 */
++                reg = <0>;
++                color = <LED_COLOR_ID_MULTI>;
++                function = LED_FUNCTION_POWER;
++                linux,default-trigger = "heartbeat";
++            };
++
++            multi-led@a {
++                reg = <0xa>;
++                color = <LED_COLOR_ID_MULTI>;
++                function = LED_FUNCTION_INDICATOR;
++                function-enumerator = <1>;
++            };
++        };
++    };
++
++...
 -- 
-2.25.1
+2.26.2
 
