@@ -2,64 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0985C22B524
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 19:47:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9FF822B52D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 19:49:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729811AbgGWRre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 13:47:34 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:42849 "EHLO
+        id S1729974AbgGWRtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 13:49:08 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:34263 "EHLO
         mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726666AbgGWRrd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 13:47:33 -0400
-Received: by mail-io1-f66.google.com with SMTP id c16so7152286ioi.9;
-        Thu, 23 Jul 2020 10:47:33 -0700 (PDT)
+        with ESMTP id S1726814AbgGWRtH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 13:49:07 -0400
+Received: by mail-io1-f66.google.com with SMTP id q74so7181067iod.1;
+        Thu, 23 Jul 2020 10:49:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=igJO29xYdhEX1YZcPaTW1/UQWYbjGuigif1HBx3az5o=;
-        b=Dr7ztTS1Bw8nSdfIfDio0zEi0F9rCQsEtUYASh5MJhpUshYziGKXT002UQx26SYBgK
-         NtUEN4w/mpiRkKVJkMHcwt+odCL29GMYA4Nx1b/wLH8nQWOFRmmuNARY8UGn8Qkbd7Wu
-         +T6GiYS3GEWAsj5fJk3RVTA+prZDzVUiOJYCAq7rKSXwZd6THqIiIiAZ2yNd6pKADQC9
-         LOR6P6CmBiZpN/7l6whs7IPAH+uZSuqD/3YmR5873riE0OXQdBtyDDm/cxPQBb1de4hs
-         TFQpXF7Dpv8rgubriTTKtUiXC1wKmwXB0ZvbmGEFs4Z4umxyrC+q4BUGL0pHkBt81IPY
-         PLnw==
-X-Gm-Message-State: AOAM530SDRz56IGxPbAhkpdUFiydRhvSVv5ZbT+PwJVA+h+2LlEZNHHd
-        wzdXjREb4fYWRAP1kstxGA==
-X-Google-Smtp-Source: ABdhPJy27/VlKtHPpbL16r6sY+r3eYd1PpECzmmkVDUMiMNSdrTQRv5b79vmNs9h4w0jeamL027ckg==
-X-Received: by 2002:a02:6595:: with SMTP id u143mr4012012jab.28.1595526452873;
-        Thu, 23 Jul 2020 10:47:32 -0700 (PDT)
+        bh=2YqHLx33D3lKQvsVIeu4fr2sY1tMGjPB3BoYpQvDkyk=;
+        b=VcOXQGj8cS4Hu1inEHWtMPIDB9k7pUYZacGscPw3jELZxt33U2XFuPpQ4OkkG4bA9J
+         C+sfM9+bFa1kJcAayLq8wS5+rgrcVUz84s/whdM4LzujO97d5GN2WHs+m7btQI0R4UOU
+         DvoewFAJBy9RVyyapuW2pPjM8PFdQB3Ibjv1mHWZtPu/I6Aze8qv5LL19NusqNt3uKRn
+         DBYiSCc3izmKCwM0l9JzChiKMv7F7RQdtq1PSOndxx2lObmVqMlpT4/nRWP1Usc3sJfm
+         4Cv0ZbtUkMdtvOAp3/xFjwgUlseZ1mt1Cr2ywuBMngVXN/mvVUagm4GiyJS2HUQodBrK
+         tylQ==
+X-Gm-Message-State: AOAM531e2OZNW09HhsrbBHe31zzCKYbKfSsu8HZN4UAI/F5PnzH52NU5
+        J9QgTcrA1tsQpcnbVeGsprA8tO7LyA==
+X-Google-Smtp-Source: ABdhPJzMt9kdwyy1jgkZzCBgVSV/BYhakcwYiid0IQjxc9Xt7Tc5qUdDCRcJRJ0xVc1wcAH/BlPJGg==
+X-Received: by 2002:a02:cb97:: with SMTP id u23mr6003181jap.113.1595526546930;
+        Thu, 23 Jul 2020 10:49:06 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id y24sm1854076ilk.52.2020.07.23.10.47.31
+        by smtp.gmail.com with ESMTPSA id v10sm1797167ilj.40.2020.07.23.10.49.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jul 2020 10:47:32 -0700 (PDT)
-Received: (nullmailer pid 596082 invoked by uid 1000);
-        Thu, 23 Jul 2020 17:47:31 -0000
-Date:   Thu, 23 Jul 2020 11:47:31 -0600
+        Thu, 23 Jul 2020 10:49:06 -0700 (PDT)
+Received: (nullmailer pid 598211 invoked by uid 1000);
+        Thu, 23 Jul 2020 17:49:05 -0000
+Date:   Thu, 23 Jul 2020 11:49:05 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Matt Ranostay <matt.ranostay@konsulko.com>
-Cc:     linux-iio@vger.kernel.org, jic23@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: iio: chemical: add O2 EZO module
- documentation
-Message-ID: <20200723174731.GA596034@bogus>
-References: <20200720070330.259954-1-matt.ranostay@konsulko.com>
- <20200720070330.259954-3-matt.ranostay@konsulko.com>
+To:     miguelborgesdefreitas@gmail.com
+Cc:     a.zummo@towertech.it, baruch@tkos.co.il, linux@armlinux.org.uk,
+        alexandre.belloni@bootlin.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: rtc: pcf8523: add DSM pm option for
+ battery switch-over
+Message-ID: <20200723174905.GA596242@bogus>
+References: <20200719145028.3370-3-miguelborgesdefreitas@gmail.com>
+ <20200720112401.4620-1-miguelborgesdefreitas@gmail.com>
+ <20200720112401.4620-2-miguelborgesdefreitas@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200720070330.259954-3-matt.ranostay@konsulko.com>
+In-Reply-To: <20200720112401.4620-2-miguelborgesdefreitas@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Jul 2020 00:03:29 -0700, Matt Ranostay wrote:
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Matt Ranostay <matt.ranostay@konsulko.com>
-> ---
->  .../devicetree/bindings/iio/chemical/atlas,sensor.yaml          | 2 ++
->  1 file changed, 2 insertions(+)
+On Mon, Jul 20, 2020 at 12:23:59PM +0100, miguelborgesdefreitas@gmail.com wrote:
+> From: Miguel Borges de Freitas <miguelborgesdefreitas@gmail.com>
 > 
+> This adds direct-switching mode as a configurable DT flag for
+> RTC modules supporting it (e.g. nxp pcf8523).
+> DSM switches the power source to the battery supply whenever the
+> VDD drops below VBAT. The option is recommended for hw designs
+> where VDD is always expected to be higher than VBAT.
+> 
+> Signed-off-by: Miguel Borges de Freitas <miguelborgesdefreitas@gmail.com>
+> ---
+> Changes in v2:
+> - Added extended commit message for git history
+> - Separate dt bindings documentation into a single patch
+> 
+>  Documentation/devicetree/bindings/rtc/nxp,pcf8523.txt | 7 ++++++-
+>  Documentation/devicetree/bindings/rtc/rtc.yaml        | 7 +++++++
+>  2 files changed, 13 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf8523.txt b/Documentation/devicetree/bindings/rtc/nxp,pcf8523.txt
+> index 0b1080c..f715a8f 100644
+> --- a/Documentation/devicetree/bindings/rtc/nxp,pcf8523.txt
+> +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf8523.txt
+> @@ -4,10 +4,14 @@ Required properties:
+>  - compatible: Should contain "nxp,pcf8523".
+>  - reg: I2C address for chip.
+>  
+> -Optional property:
+> +Optional properties:
+>  - quartz-load-femtofarads: The capacitive load of the quartz(x-tal),
+>    expressed in femto Farad (fF). Valid values are 7000 and 12500.
+>    Default value (if no value is specified) is 12500fF.
+> +- pm-enable-dsm: battery switch-over function is enabled in direct
+> +  switching mode. The power failure condition happens when VDD < VBAT,
+> +  without requiring VDD to drop below Vth(sw)bat.
+> +  Default value (if not provided) is the standard mode.
+>  
+>  Example:
+>  
+> @@ -15,4 +19,5 @@ pcf8523: rtc@68 {
+>  	compatible = "nxp,pcf8523";
+>  	reg = <0x68>;
+>  	quartz-load-femtofarads = <7000>;
+> +	pm-enable-dsm;
+>  };
+> diff --git a/Documentation/devicetree/bindings/rtc/rtc.yaml b/Documentation/devicetree/bindings/rtc/rtc.yaml
+> index ee237b2..a0048f4 100644
+> --- a/Documentation/devicetree/bindings/rtc/rtc.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/rtc.yaml
+> @@ -47,4 +47,11 @@ properties:
+>      description:
+>        Enables wake up of host system on alarm.
+>  
+> +  pm-enable-dsm:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Enables the battery switch-over function in direct switching
+> +      mode. Should be set in systems where VDD is higher than VBAT
+> +      at all times.
 
-Acked-by: Rob Herring <robh@kernel.org>
+I'm all for common properties, but is this common across vendors?
+
+> +
+>  ...
+> -- 
+> 1.8.3.1
+> 
