@@ -2,104 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04B8322B38E
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 18:33:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C87DA22B39D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 18:37:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726761AbgGWQdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 12:33:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51380 "EHLO mail.kernel.org"
+        id S1729861AbgGWQez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 12:34:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52992 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726621AbgGWQdm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 Jul 2020 12:33:42 -0400
-Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown [163.114.132.5])
+        id S1729778AbgGWQez (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 Jul 2020 12:34:55 -0400
+Received: from localhost.localdomain (unknown [122.171.202.192])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8457C206F4;
-        Thu, 23 Jul 2020 16:33:41 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6E718206F4;
+        Thu, 23 Jul 2020 16:34:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1595522022;
-        bh=+YoF+u7eGjYIySOWzo/Bv6pU7qJ+t88s/pAvFJA9/ms=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=wv/4QU9Xy8wnDkWO20mHhRsIPDiG0WkZr545biSg3hj9g0QgugyQQvFMoYhNTMJG/
-         I5N5Wr4LnwglFWAjGczfM2GkyhQP001T3bxavM8afm17dNMPcO2+Xgxkay8qa0QMj1
-         Jp74RIeJyTuvKdbMcLAuD+aajqppsTKJoJY1A0GY=
-Date:   Thu, 23 Jul 2020 09:33:39 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Kurt Kanzenbach <kurt@linutronix.de>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        s=default; t=1595522094;
+        bh=MP/p5I5PmDdq9WQ/ZX6AaTgVnkcn2iem13nFwnvaoJU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=RQqey9r/4/ERgiO+HerjYshII4jgiJgjp7KH7vNxS8Pd9rAjBGgDsfgljy2U9WnY7
+         CYNdvo10MPtN2bLSpYW7meQfgzHTVSiNnzFkbavIrqCZEwTk0sAZ94sPkk5SAJ1yAw
+         UrfsSziC1GUkRZIBFmVJes+rAmP/YS/GBtv0lNRg=
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
+        Rob Clark <robdclark@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        ilias.apalodimas@linaro.org, Vladimir Oltean <olteanv@gmail.com>
-Subject: Re: [PATCH v2 0/8] Hirschmann Hellcreek DSA driver
-Message-ID: <20200723093339.7f2b6e27@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20200723081714.16005-1-kurt@linutronix.de>
-References: <20200723081714.16005-1-kurt@linutronix.de>
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Emil Velikov <emil.l.velikov@gmail.com>
+Subject: [PATCH v6 0/3] Add LT9611 DSI to HDMI bridge
+Date:   Thu, 23 Jul 2020 22:04:39 +0530
+Message-Id: <20200723163442.1280414-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Jul 2020 10:17:06 +0200 Kurt Kanzenbach wrote:
-> Hi,
->=20
-> this series adds a DSA driver for the Hirschmann Hellcreek TSN switch
-> IP. Characteristics of that IP:
->=20
->  * Full duplex Ethernet interface at 100/1000 Mbps on three ports
->  * IEEE 802.1Q-compliant Ethernet Switch
->  * IEEE 802.1Qbv Time-Aware scheduling support
->  * IEEE 1588 and IEEE 802.1AS support
->=20
-> That IP is used e.g. in
->=20
->  https://www.arrow.com/en/campaigns/arrow-kairos
->=20
-> Due to the hardware setup the switch driver is implemented using DSA. A s=
-pecial
-> tagging protocol is leveraged. Furthermore, this driver supports PTP, har=
-dware
-> timestamping and TAPRIO offloading.
->=20
-> This work is part of the AccessTSN project: https://www.accesstsn.com/
->=20
-> The previous versions can be found here:
->=20
->  * https://lkml.kernel.org/netdev/20200618064029.32168-1-kurt@linutronix.=
-de/
->  * https://lkml.kernel.org/netdev/20200710113611.3398-1-kurt@linutronix.d=
-e/
->=20
-> This series depends on:
->=20
->  * https://lkml.kernel.org/netdev/20200723074946.14253-1-kurt@linutronix.=
-de/
->=20
-> Changes since v1:
->=20
->  * Code simplifications (Florian Fainelli, Vladimir Oltean)
->  * Fix issues with hellcreek.yaml bindings (Florian Fainelli)
->  * Clear reserved field in ptp v2 event messages (Richard Cochran)
->  * Make use of generic ptp parsing function (Richard Cochran, Vladimir Ol=
-tean)
->  * Fix Kconfig (Florian Fainelli)
->  * Add tags (Florian Fainelli, Rob Herring, Richard Cochran)=20
->=20
-> I didn't change the bridge/tagging setup, as I didn't find a better way t=
-o do it.
+Hi,
 
-Appears not to build:
+This series adds driver and bindings for Lontium LT9611 bridge chip which
+takes MIPI DSI as input and HDMI as output.
 
-drivers/net/dsa/hirschmann/hellcreek_hwtstamp.c: In function =E2=80=98hellc=
-reek_get_reserved_field=E2=80=99:
-drivers/net/dsa/hirschmann/hellcreek_hwtstamp.c:177:24: error: invalid use =
-of undefined type =E2=80=98const struct ptp_header=E2=80=99
-  177 |  return be32_to_cpu(hdr->reserved2);
-      |                        ^~
+This chip can be found in 96boards RB3 platform [1] commonly called DB845c.
+
+[1]: https://www.96boards.org/product/rb3-platform/
+
+Changes in v6:
+ - Drop msm/dsi patch as we need to get more bridges fixed before we add that
+ - Bring back support for DRM_BRIDGE_ATTACH_NO_CONNECTOR not set, now driver
+	supports both
+ - Fix nits found by Sam
+
+Changes in v5:
+ - make symbol static, reported by kbuild-bot
+
+Changes in v4:
+ - Add msm/dsi patch to create connector and support DRM_BRIDGE_ATTACH_NO_CONNECTOR
+ - Fix comments provided by Sam
+
+Changes in v3:
+ - fix kbuild reported error
+ - rebase on v5.8-rc1
+
+Changes in v2:
+ - Add acks by Rob
+ - Fix comments reported by Emil and rename the file to lontium-lt9611.c
+ - Fix comments reported by Laurent on binding and driver
+ - Add HDMI audio support
+
+Vinod Koul (3):
+  dt-bindings: vendor-prefixes: Add Lontium vendor prefix
+  dt-bindings: display: bridge: Add documentation for LT9611
+  drm/bridge: Introduce LT9611 DSI to HDMI bridge
+
+ .../display/bridge/lontium,lt9611.yaml        |  176 +++
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ drivers/gpu/drm/bridge/Kconfig                |   13 +
+ drivers/gpu/drm/bridge/Makefile               |    1 +
+ drivers/gpu/drm/bridge/lontium-lt9611.c       | 1229 +++++++++++++++++
+ 5 files changed, 1421 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml
+ create mode 100644 drivers/gpu/drm/bridge/lontium-lt9611.c
+
+-- 
+2.26.2
+
