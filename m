@@ -2,74 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93F0F22B840
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 22:57:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F262122B854
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 23:07:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726063AbgGWU5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 16:57:30 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:34702 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726046AbgGWU53 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 16:57:29 -0400
-Received: by mail-io1-f68.google.com with SMTP id q74so7755098iod.1;
-        Thu, 23 Jul 2020 13:57:29 -0700 (PDT)
+        id S1726608AbgGWVHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 17:07:30 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:33026 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726115AbgGWVHa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 17:07:30 -0400
+Received: by mail-io1-f67.google.com with SMTP id d18so7779093ion.0;
+        Thu, 23 Jul 2020 14:07:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ZKEsUsuJIbZrXn6bbTn+pQozwM4jxWor3S9XuDvFA1c=;
-        b=OOALpNG4AQan8HOx0nQ7wUbZB393mtXljj86MmRXfDB02wprfl6Lz1SBMqdwKluEbe
-         keTld2uoURAxIVJL2VodCpT9o4243CxHN437Ybe5/La+9lrrcX6Dd5P1jSOiIqyXgiGz
-         loPpiq7yorK/cA6OlyYjzTHx4x1p+RvI2yg4kOUrU9p7GU3ArzCcy87zA75KmDa5OShf
-         1klwPGhDplHfT4twYnUl9zLjzV0nkZDbRVXefJm0fWd+biburCkyBtXKnYub45j++z+I
-         k4KDRbmarN46dRoVcEy3T1rI/yGE9VEeIMDtSx16z7tjCJ+s+tybUeLSRipiXBnhMaXA
-         flxQ==
-X-Gm-Message-State: AOAM530S7j5sCaacVbrQOu4OzwS4ViDV8EmFUWBLBVz9FMcAj/sh3lBc
-        eusd0by/aEHB4zHenseQgDWnRcLS1A==
-X-Google-Smtp-Source: ABdhPJwU98oXLS4jDcGtL+DAmyecuLWM+bVPp8A7ELvPpvQRVNFF3esKEXIvzAViY9wBD0Y0z4MBhw==
-X-Received: by 2002:a6b:2b12:: with SMTP id r18mr6733996ior.88.1595537848905;
-        Thu, 23 Jul 2020 13:57:28 -0700 (PDT)
+        bh=DqiJg+iVm+KO76sfvCQ1PcB5FB3q5avv7am6yCHETiw=;
+        b=IszeoXuHRUWe7GB6szpC/jmrtFHFzEqAFOwCwzEHA6jNzdc+tQtNMrQaRWxyolnAdz
+         kfcr/VReUFqUQnWboe2G4tICjaBdVYdq96/mk7tulwOB0biRMUq2RkzW+46qCcmxQ8gm
+         1mrxhfnoZxdN+GM6vtXHpkPEu5fd1/wk44KAN+fNuNCCuW6M1FzMVO6sDtbuUNo03en1
+         lyctyo+F3blt196pkwge6GO+aRkhqGatpcyYMti5d0GmYX+/KuqWaWHrZkAsGFHQORGw
+         D1qmLhHJ/yUqf6f+b9JkG0IR3lj8npjGafQKmgP7SyB6zPmJdIeBnr3u0cScdJaVrr0K
+         n/kw==
+X-Gm-Message-State: AOAM531+v3YckeJvePTnHoPGTvtos5p05kQd8iOnFKDF6w9XPtEcn7hz
+        txfje9xMt9T346JgDEycNRY7l6g42g==
+X-Google-Smtp-Source: ABdhPJw41flIcVg/c3woDitOvrf2Wnz/THl1yI2iKhN3PaLn3hSvaeMmDaHtlOtXhqqQjr/qpfOk1Q==
+X-Received: by 2002:a5d:97d1:: with SMTP id k17mr6942837ios.100.1595538449560;
+        Thu, 23 Jul 2020 14:07:29 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id h11sm2024389ilh.69.2020.07.23.13.57.27
+        by smtp.gmail.com with ESMTPSA id g1sm2001627ilk.51.2020.07.23.14.07.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jul 2020 13:57:28 -0700 (PDT)
-Received: (nullmailer pid 846854 invoked by uid 1000);
-        Thu, 23 Jul 2020 20:57:27 -0000
-Date:   Thu, 23 Jul 2020 14:57:27 -0600
+        Thu, 23 Jul 2020 14:07:28 -0700 (PDT)
+Received: (nullmailer pid 860277 invoked by uid 1000);
+        Thu, 23 Jul 2020 21:07:26 -0000
+Date:   Thu, 23 Jul 2020 15:07:26 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jacopo Mondi <jacopo+renesas@jmondi.org>
-Cc:     robh+dt@kernel.org, bparrot@ti.com,
-        laurent.pinchart@ideasonboard.com, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, slongerbeam@gmail.com,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 04/13] dt-bindings: media: ti,cal: Remove sensor from
- example
-Message-ID: <20200723205727.GA846806@bogus>
-References: <20200717132859.237120-1-jacopo+renesas@jmondi.org>
- <20200717132859.237120-5-jacopo+renesas@jmondi.org>
+To:     Christian Hewitt <christianshewitt@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: add support for the
+ Beelink GS-King-X
+Message-ID: <20200723210726.GA860231@bogus>
+References: <20200718052258.2890-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200717132859.237120-5-jacopo+renesas@jmondi.org>
+In-Reply-To: <20200718052258.2890-1-christianshewitt@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Jul 2020 15:28:50 +0200, Jacopo Mondi wrote:
-> The newly introduced dt-schema bindings for the ov5640 image
-> sensor triggered a warning in the ti,cal.yaml bindings file, which
-> has a camera sensor node marked compatible with the sensor.
+On Sat, 18 Jul 2020 05:22:57 +0000, Christian Hewitt wrote:
+> The Shenzen AZW (Beelink) GS-King-X is based on the Amlogic W400 reference
+> board with an S922X-H chip.
 > 
-> As in the example is enough to report a node for the device that
-> the bindings is about, and maintaining the sensor node up-to-date
-> is a non-necessary burden, remove the image sensor node from the
-> ti,cal bindings file.
-> 
-> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->  .../devicetree/bindings/media/ti,cal.yaml     | 22 -------------------
->  1 file changed, 22 deletions(-)
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
