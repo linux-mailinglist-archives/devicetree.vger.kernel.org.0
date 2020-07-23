@@ -2,53 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ABAF22B862
+	by mail.lfdr.de (Postfix) with ESMTP id E8EA322B863
 	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 23:11:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726310AbgGWVLm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 17:11:42 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:59584 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726115AbgGWVLm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 17:11:42 -0400
+        id S1726115AbgGWVLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 17:11:43 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:55374 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726331AbgGWVLn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 17:11:43 -0400
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06NLBdGu097996;
-        Thu, 23 Jul 2020 16:11:39 -0500
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06NLBeO0098109;
+        Thu, 23 Jul 2020 16:11:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1595538699;
-        bh=mddWor3T4cUAeqK3ZXp1pWXlDw8KkoBZyTIOadqQLLI=;
-        h=From:To:CC:Subject:Date;
-        b=YEpSo5AA0MTV6zpAxfwZn5U9j+kXBK+511jslgr+dlt7Pnw1xZpuSQ1a2E2waDXVR
-         2MV/lLAkHQ3ygNGHDDtsylOs+hnwJk+bolYgmEMVoyBw2v7W0qLmFoI9WE3fhfwdvR
-         UTp/8N9gn15UMDpwiu2eIx2vJH+vUjeS4Q8aVJAM=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06NLBduw067243
+        s=ti-com-17Q1; t=1595538700;
+        bh=AvA/3flL1lvhfpZIkpDl4/E87runPBSR4YhkzjSR0z8=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=FY4+mBxh0+FmVzBE2iVFqx8TJ2SNq1oOS+htztX1WAZ6In1luSWSoO2/SgVIq3PGF
+         iUU6rChnX9x6cexHMshRevxJQl3jAMQEIr1gK/58V4ZEdvsnMq2O74nynXU3kBPKPT
+         9zL9XeK7XoILmDPd3qIn7AeyBRS6SZyNCq3bHfeI=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06NLBeOX067252
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 23 Jul 2020 16:11:39 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 23 Jul 2020 16:11:40 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 23
- Jul 2020 16:11:39 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ Jul 2020 16:11:40 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 23 Jul 2020 16:11:39 -0500
+ Frontend Transport; Thu, 23 Jul 2020 16:11:40 -0500
 Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06NLBdjT101897;
-        Thu, 23 Jul 2020 16:11:39 -0500
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06NLBetB014209;
+        Thu, 23 Jul 2020 16:11:40 -0500
 Received: from localhost ([10.250.34.248])
-        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 06NLBdew048239;
-        Thu, 23 Jul 2020 16:11:39 -0500
+        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 06NLBe97048243;
+        Thu, 23 Jul 2020 16:11:40 -0500
 From:   Suman Anna <s-anna@ti.com>
 To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>
 CC:     Lokesh Vutla <lokeshvutla@ti.com>,
         Grygorii Strashko <grygorii.strashko@ti.com>,
         <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH 0/2] Fix TI K3 cbass interconnect node names
-Date:   Thu, 23 Jul 2020 16:11:35 -0500
-Message-ID: <20200723211137.26641-1-s-anna@ti.com>
+Subject: [PATCH 1/2] arm64: dts: ti: k3-am65: Fix interconnect node names
+Date:   Thu, 23 Jul 2020 16:11:36 -0500
+Message-ID: <20200723211137.26641-2-s-anna@ti.com>
 X-Mailer: git-send-email 2.26.0
+In-Reply-To: <20200723211137.26641-1-s-anna@ti.com>
+References: <20200723211137.26641-1-s-anna@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -58,29 +60,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tero, Nishanth,
+The various CBASS interconnect nodes on K3 AM65x SoCs are defined
+using the node name "interconnect". This is not a valid node name
+as per the dt-schema. Fix these node names to use the standard name
+used for SoC interconnects, "bus".
 
-Following are couple of minor fixes that fix the node names
-for the interconnect bus nodes on K3 AM65x and J721E SoCs. These
-fix the following warnings seen with dtbs_check on the K3 dtbs.
+Signed-off-by: Suman Anna <s-anna@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am65.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-'interconnect@100000' does not match '^(bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
-'interconnect@28380000' does not match '^(bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
-
-Lokesh has already used the correct name in his initial
-submission for J7200 SoCs.
-
-regards
-Suman
-
-Suman Anna (2):
-  arm64: dts: ti: k3-am65: Fix interconnect node names
-  arm64: dts: ti: k3-j721e: Fix interconnect node names
-
- arch/arm64/boot/dts/ti/k3-am65.dtsi  | 6 +++---
- arch/arm64/boot/dts/ti/k3-j721e.dtsi | 4 ++--
- 2 files changed, 5 insertions(+), 5 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/ti/k3-am65.dtsi b/arch/arm64/boot/dts/ti/k3-am65.dtsi
+index 5be75e430965..94ab5bd744cf 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65.dtsi
+@@ -61,7 +61,7 @@ pmu: pmu {
+ 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+ 	};
+ 
+-	cbass_main: interconnect@100000 {
++	cbass_main: bus@100000 {
+ 		compatible = "simple-bus";
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+@@ -88,7 +88,7 @@ cbass_main: interconnect@100000 {
+ 			 <0x05 0x00000000 0x05 0x00000000 0x01 0x0000000>,
+ 			 <0x07 0x00000000 0x07 0x00000000 0x01 0x0000000>;
+ 
+-		cbass_mcu: interconnect@28380000 {
++		cbass_mcu: bus@28380000 {
+ 			compatible = "simple-bus";
+ 			#address-cells = <2>;
+ 			#size-cells = <2>;
+@@ -106,7 +106,7 @@ cbass_mcu: interconnect@28380000 {
+ 				 <0x05 0x00000000 0x05 0x00000000 0x01 0x0000000>, /* FSS OSPI0 data region 3*/
+ 				 <0x07 0x00000000 0x07 0x00000000 0x01 0x0000000>; /* FSS OSPI1 data region 3*/
+ 
+-			cbass_wakeup: interconnect@42040000 {
++			cbass_wakeup: bus@42040000 {
+ 				compatible = "simple-bus";
+ 				#address-cells = <1>;
+ 				#size-cells = <1>;
 -- 
 2.26.0
 
