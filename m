@@ -2,64 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1382B22B27D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 17:27:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45D8E22B28B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 17:28:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729591AbgGWP1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 11:27:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58196 "EHLO
+        id S1729686AbgGWP1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 11:27:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729588AbgGWP06 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 11:26:58 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 963BAC0619E2
-        for <devicetree@vger.kernel.org>; Thu, 23 Jul 2020 08:26:58 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id r2so476457wrs.8
-        for <devicetree@vger.kernel.org>; Thu, 23 Jul 2020 08:26:58 -0700 (PDT)
+        with ESMTP id S1729649AbgGWP1M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 11:27:12 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F229BC0619E2
+        for <devicetree@vger.kernel.org>; Thu, 23 Jul 2020 08:27:11 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id r12so5534805wrj.13
+        for <devicetree@vger.kernel.org>; Thu, 23 Jul 2020 08:27:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=R3Az9OepR2BdTDAPEdWN7LwMsA5P61TmIGuTZB4zgG8=;
-        b=dQ0bNcNHpnx9qpWEBFvn7k8BSJ2+ODBoKIGwRh8WJxScokmdsmED6rZDIst+EPX73+
-         IDDU64ZC9K0ihBDdbvtkjDopIVWL++lUhyeRvE1y1WGtDBZY71hjXDm84zKIj44QDyS/
-         QixwlMZJ4P0+GvPv9cGPqCLIpGUob9YCuBrBuyZk2xKm8jYOQNElQCkudTwJyeftVOgj
-         BcybaEjwi9sQTAZvYtaepJP8A4953wsmbvhodkgh3DC0UE7JAwH2//Gr97lxGDF5F1iC
-         g9Sq+FbIp/Hya2TDm9DioJ5j5tu20mfUOJJQ2xr7x5BtGOyT0g1MpcJbIkuWuX4raguH
-         oOnw==
+        bh=kHJ+XeVbi6Fqf64rZGsvMfPCwEnJl/mkyREvWYHyzSs=;
+        b=P+0A1dF9XopiITzqpUXhrqYmXagxXC05lz3m9je4nXa09TlHs3Wgl5NkZ0dwKPljj2
+         bNncZ1E7bxQNsrC/daqJTPVx6+DR9vV0FUpip0Mlr9OBTSfLqwdtXzIm58MPKJKFzObE
+         cIjpP033bIrzzrX3Y5KuGgYSb440xS3POfuAAbN4D9qJw40M15PMKTTvT0RlBOA/xah7
+         jrNBC+cdGHmi2ZD68Vrkz0Wgn+QR+TJfdasmgUd1YS7DHC9ysFNoMs5dSOGQoi10EXha
+         9tJWIgJ5ofi5CyoYnQwfoDlc3GN27Gk9rFaq8B6bJGI1x8Qj3Jr3Q8FgFoBPYjO6rAWf
+         deDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=R3Az9OepR2BdTDAPEdWN7LwMsA5P61TmIGuTZB4zgG8=;
-        b=WklDr6V2fitUtqRobNLkNeMu/KfIRCE6F4EC/oyXlBAUOYFq3GE80XjdLQf+ivrv/S
-         2sGRkn8h2GiB+wlT1EdsPjI1Rm56BtttttXTa+ex2JGWdyqurY3PGqKXAlt7viLhkM2A
-         v9ybeGlflgsNZfLldaomXdhcPFCQTk1TFV5qvqRsNSfl8kS+2NhLP4Yp/U1oa1VC1ayg
-         lOyy+q+80bszWW5rTjGbjtMbrCvLK1GpJRdECcnbBrmWbY3mU2NtnOHQItowwPKFhFpK
-         cebyBivfkZkvbD59c1WLnUrQWnemrlicsiCfzQfx6UkrFa63mwwFOx+b206dDQc9zV9X
-         vV7A==
-X-Gm-Message-State: AOAM532ACLFDBpGsqiTmniQnLqB9E67/HWmXDnjpq6a6Mfrdz4yTa8yW
-        2GwhPiHIq3f2gk9qDodTRZHwSg==
-X-Google-Smtp-Source: ABdhPJx6Y0KCgNUV6vyevzLdntNlIy25yfdHe+xPNK9dHmUZ0jPqL/DqTZacB9I3mfa7338G1RCmeQ==
-X-Received: by 2002:adf:c108:: with SMTP id r8mr3999574wre.41.1595518017097;
-        Thu, 23 Jul 2020 08:26:57 -0700 (PDT)
+        bh=kHJ+XeVbi6Fqf64rZGsvMfPCwEnJl/mkyREvWYHyzSs=;
+        b=f2fwTzyLa9vCneipf8W8kVdADTnTVoxFWuaW5uuTjXzzEH91gp7x6a7yhPnGi8AuJc
+         zJrlWRkzjdiVslIK5Rk5kSOEOhFujfmMhp3fY/YtHYpQSDLMWHKFPeLcMNz3wFDUa2Po
+         tCXZgY+rCmlqRkEatEiAugF5OckvkkKk7mDuoNOavcCQ9VvuZ+y3V9Cy66qw0P3N8dJZ
+         CRdCb5VHc8CEnxFyur/UcB1GUDfqJq8hURlDLHh2AHHvLEPv3vcmrAvIWnQW0LMERoKo
+         PA/Vj+A+W4uzsMIaxuqmmzKYBUOyoP/N+VvnMMyMbYbUGI/Hixv8OP/S0iKYrAMzhQRw
+         vH7Q==
+X-Gm-Message-State: AOAM530GhZMKvJ+mONF+wBUEIY0RVEpAAkAE7r/fKUQ/0UhwQEfecmjw
+        FbsnZBciImImV/tZKOyjAXc0Pw==
+X-Google-Smtp-Source: ABdhPJxto3SkmLheNic/ExNkEwYZALuchouPqArggo5mcpv1XGq50mFFFcZ22obJHZIjt6mM3FIe5A==
+X-Received: by 2002:a5d:4984:: with SMTP id r4mr4471366wrq.401.1595518030564;
+        Thu, 23 Jul 2020 08:27:10 -0700 (PDT)
 Received: from mai.imgcgcw.net ([2a01:e34:ed2f:f020:dca7:8d30:33fa:daac])
-        by smtp.gmail.com with ESMTPSA id g145sm5963491wmg.23.2020.07.23.08.26.56
+        by smtp.gmail.com with ESMTPSA id g145sm5963491wmg.23.2020.07.23.08.27.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jul 2020 08:26:56 -0700 (PDT)
+        Thu, 23 Jul 2020 08:27:10 -0700 (PDT)
 From:   Daniel Lezcano <daniel.lezcano@linaro.org>
 To:     tglx@linutronix.de
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
+Cc:     "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        Rob Herring <robh@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Microchip
-        (AT91) SoC support),
+        linux-kernel@vger.kernel.org (open list:CLOCKSOURCE, CLOCKEVENT DRIVERS),
         devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 03/16] ARM: dts: at91: sama5d2: add TCB GCLK
-Date:   Thu, 23 Jul 2020 17:26:23 +0200
-Message-Id: <20200723152639.639771-3-daniel.lezcano@linaro.org>
+        DEVICE TREE BINDINGS)
+Subject: [PATCH 14/16] clocksource/drivers: Replace HTTP links with HTTPS ones
+Date:   Thu, 23 Jul 2020 17:26:34 +0200
+Message-Id: <20200723152639.639771-14-daniel.lezcano@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200723152639.639771-1-daniel.lezcano@linaro.org>
 References: <1b1122f4-bce9-f349-e602-ed8e14cbb501@linaro.org>
@@ -71,51 +69,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+From: "Alexander A. Klimov" <grandmaster@al2klimov.de>
 
-The sama5d2 tcbs take an extra input clock, their gclk.
+Rationale:
+Reduces attack surface on kernel devs opening the links for MITM
+as HTTPS traffic is much harder to manipulate.
 
-Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Deterministic algorithm:
+For each file:
+  If not .svg:
+    For each line:
+      If doesn't contain `\bxmlns\b`:
+        For each link, `\bhttp://[^# \t\r\n]*(?:\w|/)`:
+	  If neither `\bgnu\.org/license`, nor `\bmozilla\.org/MPL\b`:
+            If both the HTTP and HTTPS versions
+            return 200 OK and serve the same content:
+              Replace HTTP with HTTPS.
+
+Signed-off-by: Alexander A. Klimov <grandmaster@al2klimov.de>
+Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-Link: https://lore.kernel.org/r/20200710230813.1005150-4-alexandre.belloni@bootlin.com
+Link: https://lore.kernel.org/r/20200708165856.15322-1-grandmaster@al2klimov.de
 ---
- arch/arm/boot/dts/sama5d2.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ Documentation/devicetree/bindings/timer/ti,keystone-timer.txt | 2 +-
+ drivers/clocksource/timer-ti-32k.c                            | 2 +-
+ drivers/clocksource/timer-ti-dm.c                             | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/sama5d2.dtsi b/arch/arm/boot/dts/sama5d2.dtsi
-index ab550d69db91..996143e966d8 100644
---- a/arch/arm/boot/dts/sama5d2.dtsi
-+++ b/arch/arm/boot/dts/sama5d2.dtsi
-@@ -499,23 +499,23 @@ macb0: ethernet@f8008000 {
- 			};
+diff --git a/Documentation/devicetree/bindings/timer/ti,keystone-timer.txt b/Documentation/devicetree/bindings/timer/ti,keystone-timer.txt
+index 5fbe361252b4..d3905a5412b8 100644
+--- a/Documentation/devicetree/bindings/timer/ti,keystone-timer.txt
++++ b/Documentation/devicetree/bindings/timer/ti,keystone-timer.txt
+@@ -10,7 +10,7 @@ It is global timer is a free running up-counter and can generate interrupt
+ when the counter reaches preset counter values.
  
- 			tcb0: timer@f800c000 {
--				compatible = "atmel,at91sam9x5-tcb", "simple-mfd", "syscon";
-+				compatible = "atmel,sama5d2-tcb", "simple-mfd", "syscon";
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				reg = <0xf800c000 0x100>;
- 				interrupts = <35 IRQ_TYPE_LEVEL_HIGH 0>;
--				clocks = <&pmc PMC_TYPE_PERIPHERAL 35>, <&clk32k>;
--				clock-names = "t0_clk", "slow_clk";
-+				clocks = <&pmc PMC_TYPE_PERIPHERAL 35>, <&pmc PMC_TYPE_GCK 35>, <&clk32k>;
-+				clock-names = "t0_clk", "gclk", "slow_clk";
- 			};
+ Documentation:
+-http://www.ti.com/lit/ug/sprugv5a/sprugv5a.pdf
++https://www.ti.com/lit/ug/sprugv5a/sprugv5a.pdf
  
- 			tcb1: timer@f8010000 {
--				compatible = "atmel,at91sam9x5-tcb", "simple-mfd", "syscon";
-+				compatible = "atmel,sama5d2-tcb", "simple-mfd", "syscon";
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				reg = <0xf8010000 0x100>;
- 				interrupts = <36 IRQ_TYPE_LEVEL_HIGH 0>;
--				clocks = <&pmc PMC_TYPE_PERIPHERAL 36>, <&clk32k>;
--				clock-names = "t0_clk", "slow_clk";
-+				clocks = <&pmc PMC_TYPE_PERIPHERAL 36>, <&pmc PMC_TYPE_GCK 36>, <&clk32k>;
-+				clock-names = "t0_clk", "gclk", "slow_clk";
- 			};
+ Required properties:
  
- 			hsmc: hsmc@f8014000 {
+diff --git a/drivers/clocksource/timer-ti-32k.c b/drivers/clocksource/timer-ti-32k.c
+index ae12bbf3d68c..59b0be482f32 100644
+--- a/drivers/clocksource/timer-ti-32k.c
++++ b/drivers/clocksource/timer-ti-32k.c
+@@ -21,7 +21,7 @@
+  * Roughly modelled after the OMAP1 MPU timer code.
+  * Added OMAP4 support - Santosh Shilimkar <santosh.shilimkar@ti.com>
+  *
+- * Copyright (C) 2015 Texas Instruments Incorporated - http://www.ti.com
++ * Copyright (C) 2015 Texas Instruments Incorporated - https://www.ti.com
+  */
+ 
+ #include <linux/clk.h>
+diff --git a/drivers/clocksource/timer-ti-dm.c b/drivers/clocksource/timer-ti-dm.c
+index 60aff087947a..33eeabf9c3d1 100644
+--- a/drivers/clocksource/timer-ti-dm.c
++++ b/drivers/clocksource/timer-ti-dm.c
+@@ -4,7 +4,7 @@
+  *
+  * OMAP Dual-Mode Timers
+  *
+- * Copyright (C) 2010 Texas Instruments Incorporated - http://www.ti.com/
++ * Copyright (C) 2010 Texas Instruments Incorporated - https://www.ti.com/
+  * Tarun Kanti DebBarma <tarun.kanti@ti.com>
+  * Thara Gopinath <thara@ti.com>
+  *
 -- 
 2.25.1
 
