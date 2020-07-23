@@ -2,75 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3642A22B878
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 23:18:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A6AD22B85F
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 23:10:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727034AbgGWVSk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 17:18:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56448 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726115AbgGWVSj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 17:18:39 -0400
-X-Greylist: delayed 492 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 23 Jul 2020 14:18:39 PDT
-Received: from hera.iit.uni-miskolc.hu (hera.iit.uni-miskolc.hu [IPv6:2001:738:6001:500::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91FFEC0619D3;
-        Thu, 23 Jul 2020 14:18:39 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by hera.iit.uni-miskolc.hu (Postfix) with ESMTP id C3F27A10;
-        Thu, 23 Jul 2020 23:10:35 +0200 (CEST)
-X-Virus-Scanned: Kamavis at iit.uni-miskolc.hu
-Received: from hera.iit.uni-miskolc.hu ([127.0.0.1])
-        by localhost (hera.iit.uni-miskolc.hu [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Y1COzVsCAt1j; Thu, 23 Jul 2020 23:10:29 +0200 (CEST)
-Received: from titan.hitronhub.home (unknown [IPv6:2a02:8109:a180:908:226:9eff:fe30:2af8])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: szucst@iit.uni-miskolc.hu)
-        by hera.iit.uni-miskolc.hu (Postfix) with ESMTPSA id 9F1A7A11;
-        Thu, 23 Jul 2020 23:10:21 +0200 (CEST)
-From:   =?UTF-8?q?Tam=C3=A1s=20Sz=C5=B1cs?= <tszucs@protonmail.ch>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Vidya Sagar <vidyas@nvidia.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        JC Kuo <jckuo@nvidia.com>, Sameer Pujar <spujar@nvidia.com>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     =?UTF-8?q?Tam=C3=A1s=20Sz=C5=B1cs?= <tszucs@protonmail.ch>
-Subject: [PATCH v2 4/4] arm64: tegra: Enable HS400 on Tegra194 SDMMC4
-Date:   Thu, 23 Jul 2020 23:09:32 +0200
-Message-Id: <20200723210932.8076-5-tszucs@protonmail.ch>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200723210932.8076-1-tszucs@protonmail.ch>
-References: <20200723210932.8076-1-tszucs@protonmail.ch>
+        id S1726390AbgGWVKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 17:10:43 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:33455 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726115AbgGWVKn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 17:10:43 -0400
+Received: by mail-io1-f68.google.com with SMTP id d18so7788321ion.0;
+        Thu, 23 Jul 2020 14:10:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=rFnG6OjqqnnpckoLrF3IZeXaDva71gf7e2ghfJANXJg=;
+        b=WnjFgiT3oZtrQsSP6M056gk2UDj8nnuD6qbS27XY820YGwaHFEwdufHGZeyM6/vUMs
+         jn0bysi21w1wPSqKVe4+QqPbshxVIHl+xvoHXRpkMQrecIWNq0qFndPWtLJnJfvIqk51
+         o6obecMnJfdfwxIz8KWhoWSmpLbHjJ7H3/uO8CuZ9usUB+BSnPMlVY0WHzvRS182rt5e
+         FWXKBopBUWPw/Ccs3nGGtNM4qp1tCLKA/OWaPbs/mjjqAVoeDUdGOX+eJO3yQsCXsAC8
+         jN20w6MKH/3L8QYbEPbI6MCmMEmxDWFOx3ob5s3M3W+Rp8hL5oD0cYjz+sAGMUfX77AC
+         2TVw==
+X-Gm-Message-State: AOAM531I/DRXqRoKHnALtnwC904u+9Vj9pyenx2j/0HSbBBvxLMj6yv9
+        tB11Gw2C+dS1/2kQOm5TaA==
+X-Google-Smtp-Source: ABdhPJzPkVpagcW3ivBb3LUe2ly7ZSWK85Q3R+Kf30ArUVlbxiQmo8M85lxbkm/bp9JvXSVnb1L/Jw==
+X-Received: by 2002:a6b:4f19:: with SMTP id d25mr233891iob.190.1595538642326;
+        Thu, 23 Jul 2020 14:10:42 -0700 (PDT)
+Received: from xps15 ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id d6sm2086764ioo.9.2020.07.23.14.10.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Jul 2020 14:10:41 -0700 (PDT)
+Received: (nullmailer pid 864810 invoked by uid 1000);
+        Thu, 23 Jul 2020 21:10:40 -0000
+Date:   Thu, 23 Jul 2020 15:10:40 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Christian Hewitt <christianshewitt@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
+        Dongjin Kim <tobetter@hardkernel.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-amlogic@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/3] dt-bindings: arm: amlogic: add support for the
+ ODROID-N2+
+Message-ID: <20200723211040.GA864520@bogus>
+References: <20200719141034.8403-1-christianshewitt@gmail.com>
+ <20200719141034.8403-3-christianshewitt@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200719141034.8403-3-christianshewitt@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable HS400 signaling on Tegra194 SDMMC4 controller.
+On Sun, 19 Jul 2020 14:10:33 +0000, Christian Hewitt wrote:
+> HardKernel ODROID-N2+ uses a revised Amlogic S922X v2 chip that supports
+> higher cpu clock speeds than the original ODROID-N2.
+> 
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Signed-off-by: Tamás Szűcs <tszucs@protonmail.ch>
----
- arch/arm64/boot/dts/nvidia/tegra194.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-index 8351035bb6a7..e26f35b6279b 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-@@ -558,6 +558,7 @@
- 			nvidia,default-tap = <0x8>;
- 			nvidia,default-trim = <0x14>;
- 			nvidia,dqs-trim = <40>;
-+			mmc-hs400-1_8v;
- 			supports-cqe;
- 			status = "disabled";
- 		};
--- 
-2.20.1
-
+Acked-by: Rob Herring <robh@kernel.org>
