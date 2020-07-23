@@ -2,177 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA5FF22A89A
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 08:14:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C2C822A8CA
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 08:17:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727085AbgGWGOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 02:14:04 -0400
-Received: from out28-73.mail.aliyun.com ([115.124.28.73]:58677 "EHLO
-        out28-73.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728306AbgGWGOD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 02:14:03 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07450123|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0250197-0.000978011-0.974002;FP=0|0|0|0|0|-1|-1|-1;HT=e02c03300;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=14;RT=14;SR=0;TI=SMTPD_---.I6H78tB_1595484804;
-Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.I6H78tB_1595484804)
-          by smtp.aliyun-inc.com(10.147.40.7);
-          Thu, 23 Jul 2020 14:13:55 +0800
-From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
-        <zhouyanjie@wanyeetech.com>
-To:     balbi@kernel.org, gregkh@linuxfoundation.org, robh+dt@kernel.org
-Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, paul@crapouillou.net,
-        prasannatsmkumar@gmail.com, dongsheng.qiu@ingenic.com,
+        id S1726691AbgGWGQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 02:16:58 -0400
+Received: from out28-145.mail.aliyun.com ([115.124.28.145]:60821 "EHLO
+        out28-145.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726522AbgGWGQ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 02:16:58 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1183656|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0542861-0.0440707-0.901643;FP=0|0|0|0|0|-1|-1|-1;HT=e02c03308;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=22;RT=22;SR=0;TI=SMTPD_---.I6H4xer_1595484991;
+Received: from 192.168.10.205(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.I6H4xer_1595484991)
+          by smtp.aliyun-inc.com(10.147.42.16);
+          Thu, 23 Jul 2020 14:16:32 +0800
+Subject: Re: [PATCH 2/2] crypto: Ingenic: Add hardware RNG for Ingenic JZ4780
+ and X1000.
+To:     Randy Dunlap <rdunlap@infradead.org>, arnd@arndb.de,
+        gregkh@linuxfoundation.org, mpm@selenic.com,
+        herbert@gondor.apana.org.au, robh+dt@kernel.org
+Cc:     linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, hadar.gat@arm.com,
+        prasannatsmkumar@gmail.com, krzk@kernel.org, masahiroy@kernel.org,
+        xuzaibo@huawei.com, daniel.thompson@linaro.org,
+        tmaimon77@gmail.com, dongsheng.qiu@ingenic.com,
         aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
         yanfei.li@ingenic.com, sernia.zhou@foxmail.com,
         zhenwenjin@gmail.com
-Subject: [PATCH v5 4/4] USB: PHY: JZ4770: Reformat the code to align it.
-Date:   Thu, 23 Jul 2020 14:13:01 +0800
-Message-Id: <20200723061301.82583-5-zhouyanjie@wanyeetech.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200723061301.82583-1-zhouyanjie@wanyeetech.com>
-References: <20200723061301.82583-1-zhouyanjie@wanyeetech.com>
+References: <20200722164007.77655-1-zhouyanjie@wanyeetech.com>
+ <20200722164007.77655-3-zhouyanjie@wanyeetech.com>
+ <779949c8-8b1a-52ed-f695-7006f0045d7e@infradead.org>
+From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
+Message-ID: <cb9d9d4d-4f85-5e41-8597-946698649c5e@wanyeetech.com>
+Date:   Thu, 23 Jul 2020 14:16:30 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.3.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <779949c8-8b1a-52ed-f695-7006f0045d7e@infradead.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reformat the code (add one level of indentation before the values),
-to align the code in the macro definition section.
+Hello Randy,
 
-Tested-by: 周正 (Zhou Zheng) <sernia.zhou@foxmail.com>
-Co-developed-by: 漆鹏振 (Qi Pengzhen) <aric.pzqi@ingenic.com>
-Signed-off-by: 漆鹏振 (Qi Pengzhen) <aric.pzqi@ingenic.com>
-Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
----
+在 2020/7/23 上午2:27, Randy Dunlap 写道:
+> On 7/22/20 9:40 AM, 周琰杰 (Zhou Yanjie) wrote:
+>> diff --git a/drivers/char/hw_random/Kconfig b/drivers/char/hw_random/Kconfig
+>> index 0ad17efc96df..fcb06027cd88 100644
+>> --- a/drivers/char/hw_random/Kconfig
+>> +++ b/drivers/char/hw_random/Kconfig
+>> @@ -257,6 +257,21 @@ config HW_RANDOM_IMX_RNGC
+>>   
+>>   	  If unsure, say Y.
+>>   
+>> +config HW_RANDOM_INGENIC_RNG
+>> +	tristate "Ingenic Random Number Generator support"
+>> +	depends on HW_RANDOM
+>> +	depends on MACH_JZ4780 || MACH_X1000
+>> +	default HW_RANDOM
+>> +	---help---
+> Just use:
+> 	help
+> here. See this for why:
+>
+> commit 8f268881d7d278047b00eed54bbb9288dbd6ab23
+> Author: Masahiro Yamada <masahiroy@kernel.org>
+> Date:   Tue Dec 17 20:51:51 2019 +0900
+>
+>      kconfig: remove ---help--- from documentation
+>      
+>      Since commit 84af7a6194e4 ("checkpatch: kconfig: prefer 'help' over
+>      '---help---'"), scripts/checkpatch.pl warns the use of ---help---.
+>      
+>      Kconfig still supports ---help---, but new code should avoid using it.
+>      Let's stop advertising it in documentation.
+>
 
-Notes:
-    v1->v2:
-    Add support for the JZ4780 SoC.
-    
-    v2->v3:
-    No change.
-    
-    v3->v4:
-    No change.
-    
-    v4->v5:
-    No change.
+Sure, I will change it in v2.
 
- drivers/usb/phy/phy-jz4770.c | 74 ++++++++++++++++++++++----------------------
- 1 file changed, 37 insertions(+), 37 deletions(-)
+Thanks and best regards!
 
-diff --git a/drivers/usb/phy/phy-jz4770.c b/drivers/usb/phy/phy-jz4770.c
-index 5c6e5cbb6f30..40c73c1a8c79 100644
---- a/drivers/usb/phy/phy-jz4770.c
-+++ b/drivers/usb/phy/phy-jz4770.c
-@@ -15,46 +15,46 @@
- #include <linux/usb/phy.h>
- 
- /* OTGPHY register offsets */
--#define REG_USBPCR_OFFSET	0x00
--#define REG_USBRDT_OFFSET	0x04
--#define REG_USBVBFIL_OFFSET	0x08
--#define REG_USBPCR1_OFFSET	0x0c
-+#define REG_USBPCR_OFFSET			0x00
-+#define REG_USBRDT_OFFSET			0x04
-+#define REG_USBVBFIL_OFFSET			0x08
-+#define REG_USBPCR1_OFFSET			0x0c
- 
- /* bits within the USBPCR register */
--#define USBPCR_USB_MODE		BIT(31)
--#define USBPCR_AVLD_REG		BIT(30)
--#define USBPCR_COMMONONN	BIT(25)
--#define USBPCR_VBUSVLDEXT	BIT(24)
--#define USBPCR_VBUSVLDEXTSEL	BIT(23)
--#define USBPCR_POR		BIT(22)
--#define USBPCR_SIDDQ		BIT(21)
--#define USBPCR_OTG_DISABLE	BIT(20)
--#define USBPCR_TXPREEMPHTUNE	BIT(6)
-+#define USBPCR_USB_MODE				BIT(31)
-+#define USBPCR_AVLD_REG				BIT(30)
-+#define USBPCR_COMMONONN			BIT(25)
-+#define USBPCR_VBUSVLDEXT			BIT(24)
-+#define USBPCR_VBUSVLDEXTSEL		BIT(23)
-+#define USBPCR_POR					BIT(22)
-+#define USBPCR_SIDDQ				BIT(21)
-+#define USBPCR_OTG_DISABLE			BIT(20)
-+#define USBPCR_TXPREEMPHTUNE		BIT(6)
- 
- #define USBPCR_IDPULLUP_LSB	28
--#define USBPCR_IDPULLUP_MASK	GENMASK(29, USBPCR_IDPULLUP_LSB)
--#define USBPCR_IDPULLUP_ALWAYS	(0x2 << USBPCR_IDPULLUP_LSB)
--#define USBPCR_IDPULLUP_SUSPEND	(0x1 << USBPCR_IDPULLUP_LSB)
--#define USBPCR_IDPULLUP_OTG	(0x0 << USBPCR_IDPULLUP_LSB)
-+#define USBPCR_IDPULLUP_MASK		GENMASK(29, USBPCR_IDPULLUP_LSB)
-+#define USBPCR_IDPULLUP_ALWAYS		(0x2 << USBPCR_IDPULLUP_LSB)
-+#define USBPCR_IDPULLUP_SUSPEND		(0x1 << USBPCR_IDPULLUP_LSB)
-+#define USBPCR_IDPULLUP_OTG			(0x0 << USBPCR_IDPULLUP_LSB)
- 
--#define USBPCR_COMPDISTUNE_LSB	17
--#define USBPCR_COMPDISTUNE_MASK	GENMASK(19, USBPCR_COMPDISTUNE_LSB)
--#define USBPCR_COMPDISTUNE_DFT	(0x4 << USBPCR_COMPDISTUNE_LSB)
-+#define USBPCR_COMPDISTUNE_LSB		17
-+#define USBPCR_COMPDISTUNE_MASK		GENMASK(19, USBPCR_COMPDISTUNE_LSB)
-+#define USBPCR_COMPDISTUNE_DFT		(0x4 << USBPCR_COMPDISTUNE_LSB)
- 
--#define USBPCR_OTGTUNE_LSB	14
--#define USBPCR_OTGTUNE_MASK	GENMASK(16, USBPCR_OTGTUNE_LSB)
--#define USBPCR_OTGTUNE_DFT	(0x4 << USBPCR_OTGTUNE_LSB)
-+#define USBPCR_OTGTUNE_LSB			14
-+#define USBPCR_OTGTUNE_MASK			GENMASK(16, USBPCR_OTGTUNE_LSB)
-+#define USBPCR_OTGTUNE_DFT			(0x4 << USBPCR_OTGTUNE_LSB)
- 
- #define USBPCR_SQRXTUNE_LSB	11
--#define USBPCR_SQRXTUNE_MASK	GENMASK(13, USBPCR_SQRXTUNE_LSB)
-+#define USBPCR_SQRXTUNE_MASK		GENMASK(13, USBPCR_SQRXTUNE_LSB)
- #define USBPCR_SQRXTUNE_DCR_20PCT	(0x7 << USBPCR_SQRXTUNE_LSB)
--#define USBPCR_SQRXTUNE_DFT	(0x3 << USBPCR_SQRXTUNE_LSB)
-+#define USBPCR_SQRXTUNE_DFT			(0x3 << USBPCR_SQRXTUNE_LSB)
- 
--#define USBPCR_TXFSLSTUNE_LSB	7
--#define USBPCR_TXFSLSTUNE_MASK	GENMASK(10, USBPCR_TXFSLSTUNE_LSB)
-+#define USBPCR_TXFSLSTUNE_LSB		7
-+#define USBPCR_TXFSLSTUNE_MASK		GENMASK(10, USBPCR_TXFSLSTUNE_LSB)
- #define USBPCR_TXFSLSTUNE_DCR_50PPT	(0xf << USBPCR_TXFSLSTUNE_LSB)
- #define USBPCR_TXFSLSTUNE_DCR_25PPT	(0x7 << USBPCR_TXFSLSTUNE_LSB)
--#define USBPCR_TXFSLSTUNE_DFT	(0x3 << USBPCR_TXFSLSTUNE_LSB)
-+#define USBPCR_TXFSLSTUNE_DFT		(0x3 << USBPCR_TXFSLSTUNE_LSB)
- #define USBPCR_TXFSLSTUNE_INC_25PPT	(0x1 << USBPCR_TXFSLSTUNE_LSB)
- #define USBPCR_TXFSLSTUNE_INC_50PPT	(0x0 << USBPCR_TXFSLSTUNE_LSB)
- 
-@@ -63,21 +63,21 @@
- #define USBPCR_TXHSXVTUNE_DFT		(0x3 << USBPCR_TXHSXVTUNE_LSB)
- #define USBPCR_TXHSXVTUNE_DCR_15MV	(0x1 << USBPCR_TXHSXVTUNE_LSB)
- 
--#define USBPCR_TXRISETUNE_LSB	4
--#define USBPCR_TXRISETUNE_MASK	GENMASK(5, USBPCR_TXRISETUNE_LSB)
--#define USBPCR_TXRISETUNE_DFT	(0x3 << USBPCR_TXRISETUNE_LSB)
-+#define USBPCR_TXRISETUNE_LSB		4
-+#define USBPCR_TXRISETUNE_MASK		GENMASK(5, USBPCR_TXRISETUNE_LSB)
-+#define USBPCR_TXRISETUNE_DFT		(0x3 << USBPCR_TXRISETUNE_LSB)
- 
--#define USBPCR_TXVREFTUNE_LSB	0
--#define USBPCR_TXVREFTUNE_MASK	GENMASK(3, USBPCR_TXVREFTUNE_LSB)
-+#define USBPCR_TXVREFTUNE_LSB		0
-+#define USBPCR_TXVREFTUNE_MASK		GENMASK(3, USBPCR_TXVREFTUNE_LSB)
- #define USBPCR_TXVREFTUNE_INC_25PPT	(0x7 << USBPCR_TXVREFTUNE_LSB)
--#define USBPCR_TXVREFTUNE_DFT	(0x5 << USBPCR_TXVREFTUNE_LSB)
-+#define USBPCR_TXVREFTUNE_DFT		(0x5 << USBPCR_TXVREFTUNE_LSB)
- 
- /* bits within the USBRDTR register */
- #define USBRDT_UTMI_RST				BIT(27)
- #define USBRDT_HB_MASK				BIT(26)
--#define USBRDT_VBFIL_LD_EN	BIT(25)
--#define USBRDT_IDDIG_EN		BIT(24)
--#define USBRDT_IDDIG_REG	BIT(23)
-+#define USBRDT_VBFIL_LD_EN			BIT(25)
-+#define USBRDT_IDDIG_EN				BIT(24)
-+#define USBRDT_IDDIG_REG			BIT(23)
- #define USBRDT_VBFIL_EN				BIT(2)
- 
- /* bits within the USBPCR1 register */
--- 
-2.11.0
 
+>> +	  This driver provides kernel-side support for the Random Number Generator
+>> +	  hardware found in ingenic JZ4780 and X1000 SoC. MIPS Creator CI20 uses
+>> +	  JZ4780 SoC, YSH & ATIL CU1000-Neo uses X1000 SoC.
+>> +
+>> +	  To compile this driver as a module, choose M here: the
+>> +	  module will be called ingenic-rng.
+>> +
+>> +	  If unsure, say Y.
+>> +
+>>   config HW_RANDOM_NOMADIK
+>>   	tristate "ST-Ericsson Nomadik Random Number Generator support"
+>>   	depends on ARCH_NOMADIK
+> thanks.
