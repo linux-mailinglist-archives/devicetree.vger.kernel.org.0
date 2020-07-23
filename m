@@ -2,73 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F0BC22B892
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 23:22:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7429C22B894
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 23:26:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726686AbgGWVWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 17:22:34 -0400
-Received: from mail-il1-f196.google.com ([209.85.166.196]:41437 "EHLO
-        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726029AbgGWVWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 17:22:33 -0400
-Received: by mail-il1-f196.google.com with SMTP id q3so5574967ilt.8;
-        Thu, 23 Jul 2020 14:22:33 -0700 (PDT)
+        id S1726033AbgGWV01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 17:26:27 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:40333 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726029AbgGWV00 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 17:26:26 -0400
+Received: by mail-io1-f66.google.com with SMTP id l17so7791486iok.7;
+        Thu, 23 Jul 2020 14:26:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=OJ57T581vc5PeC3dDJScbWKVMa1D4jQ/zhnzNifzw9Q=;
-        b=tArhQ5AASqcaPSf9cNlS6hytKA6mI7u3XpOn0pKi8Rtl+xhToGBd/W6eFcZeYM8u84
-         Ofg6h1LNvQEdUg/n9Oqwar1JQTxotBoIJ7tsBYK9Cpok6AfZndRpAl6wqoOm3I9AyTP0
-         FPCmFLWXhOKzzz+o//unVPv0oqviQInVu5FfDUhhMn21dSAowqMNx47vwDnzYwzjI2ka
-         HUFGJC1isZg0YxW1j5Ev9Zj0T0Ij9R9Ib3huHfWloqn4J65E6MJeIBgcT6otY/qgdMKR
-         CERhxHbv/cREhDFCr5eRKvC8E5b2WUGQitNgDRJMPUVEjRM7rn8YCc1DArbo40srqkvF
-         O+PA==
-X-Gm-Message-State: AOAM531oYqFJRUiKmaPzfyrVBiFoDOMSKiRWHIMRGsRhZiwUKd+kiraN
-        +m7NyCOqKgXdxv0+kBraqw==
-X-Google-Smtp-Source: ABdhPJwzC8OH3Mz3FyBavKzPCckG/RRrF9p2NAjnBrtkJ8Q8NBT2pnlr1Ur1wfpwZpiNTnMEhHHaAw==
-X-Received: by 2002:a92:da51:: with SMTP id p17mr7030616ilq.44.1595539353289;
-        Thu, 23 Jul 2020 14:22:33 -0700 (PDT)
+        bh=Aio0O56TMdFYqw2UCtuk3QI7N/E8ozfzhWYeOVwX0x4=;
+        b=GtwRUGsL5UBGIF3jNYv9SjoEne6H/QTv8gaNrReibfW4kIMlTJqp8/Yi9IHoq1HFnl
+         OGbn/iFpCaScBg3OIjQOHHiFywPA+8OI7xaXrPpatvaYri6s7neotHz+iaL3ztxd2eFN
+         w7GAqywkPXbyBrLj2keGyHNYW4IdtnWqJ01z6hXxFTml3LqQJeRldy1GJzufz17kwS68
+         mictbn660NSKwntTo2eG7XUiEo02LGDnllQgPaUi2ECyDwHNR93XuO1qUrduy3dX+pTd
+         EyyF3cnKlijJ3Hbro4HSWv3D0AUj4EKARA2xm454FnFmL75uX02URXZ/KyDtbjtHFu5f
+         y/cg==
+X-Gm-Message-State: AOAM533wn0l5tVLTeflOeCaohGlvZcQt53l6DMK+3QacHzWAGFtJ7jqr
+        b7so3PkvG0+CC+1o4WFO8w==
+X-Google-Smtp-Source: ABdhPJxz8jFmwfXBj5nmYZ+34dKaTVlZ/aHCHdHoiAgKX5+W1LlWTBhTOwsE6vqBfYqNJfIO6Ymhcg==
+X-Received: by 2002:a05:6602:1587:: with SMTP id e7mr3179560iow.203.1595539585372;
+        Thu, 23 Jul 2020 14:26:25 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id f2sm2082536ioc.52.2020.07.23.14.22.32
+        by smtp.gmail.com with ESMTPSA id k3sm2034542ils.8.2020.07.23.14.26.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jul 2020 14:22:32 -0700 (PDT)
-Received: (nullmailer pid 881539 invoked by uid 1000);
-        Thu, 23 Jul 2020 21:22:31 -0000
-Date:   Thu, 23 Jul 2020 15:22:31 -0600
+        Thu, 23 Jul 2020 14:26:24 -0700 (PDT)
+Received: (nullmailer pid 886747 invoked by uid 1000);
+        Thu, 23 Jul 2020 21:26:23 -0000
+Date:   Thu, 23 Jul 2020 15:26:23 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Akinobu Mita <akinobu.mita@gmail.com>,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: iio: adc: maxim,max9611 yaml conversions
-Message-ID: <20200723212231.GA881485@bogus>
-References: <20200722171224.989138-1-jic23@kernel.org>
- <20200722171224.989138-4-jic23@kernel.org>
+To:     Katsuhiro Suzuki <katsuhiro@katsuster.net>
+Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: sound: convert Everest ES8316 binding to
+ yaml
+Message-ID: <20200723212623.GA882284@bogus>
+References: <20200722180728.993812-1-katsuhiro@katsuster.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200722171224.989138-4-jic23@kernel.org>
+In-Reply-To: <20200722180728.993812-1-katsuhiro@katsuster.net>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Jul 2020 18:12:24 +0100, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+On Thu, Jul 23, 2020 at 03:07:28AM +0900, Katsuhiro Suzuki wrote:
+> This patch converts Everest Semiconductor ES8316 low power audio
+> CODEC binding to DT schema.
 > 
-> Straight forward conversion of this binding for this
-> current sense amplifier and ADC.
-> 
-> Cc: Jacopo Mondi <jacopo@jmondi.org>
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Signed-off-by: Katsuhiro Suzuki <katsuhiro@katsuster.net>
 > ---
->  .../devicetree/bindings/iio/adc/max9611.txt   | 27 ----------
->  .../bindings/iio/adc/maxim,max9611.yaml       | 49 +++++++++++++++++++
->  2 files changed, 49 insertions(+), 27 deletions(-)
+>  .../bindings/sound/everest,es8316.txt         | 23 ---------
+>  .../bindings/sound/everest,es8316.yaml        | 49 +++++++++++++++++++
+>  2 files changed, 49 insertions(+), 23 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/everest,es8316.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/everest,es8316.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/sound/everest,es8316.txt b/Documentation/devicetree/bindings/sound/everest,es8316.txt
+> deleted file mode 100644
+> index 1bf03c5f2af4..000000000000
+> --- a/Documentation/devicetree/bindings/sound/everest,es8316.txt
+> +++ /dev/null
+> @@ -1,23 +0,0 @@
+> -Everest ES8316 audio CODEC
+> -
+> -This device supports both I2C and SPI.
+> -
+> -Required properties:
+> -
+> -  - compatible  : should be "everest,es8316"
+> -  - reg : the I2C address of the device for I2C
+> -
+> -Optional properties:
+> -
+> -  - clocks : a list of phandle, should contain entries for clock-names
+> -  - clock-names : should include as follows:
+> -         "mclk" : master clock (MCLK) of the device
+> -
+> -Example:
+> -
+> -es8316: codec@11 {
+> -	compatible = "everest,es8316";
+> -	reg = <0x11>;
+> -	clocks = <&clks 10>;
+> -	clock-names = "mclk";
+> -};
+> diff --git a/Documentation/devicetree/bindings/sound/everest,es8316.yaml b/Documentation/devicetree/bindings/sound/everest,es8316.yaml
+> new file mode 100644
+> index 000000000000..b713404dac4f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/everest,es8316.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/everest,es8316.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Everest ES8316 audio CODEC
+> +
+> +maintainers:
+> +  - Mark Brown <broonie@kernel.org>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Should be someone who knows and cares about the h/w which is not Mark.
+
+> +
+> +properties:
+> +  compatible:
+> +    const: everest,es8316
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: clock for master clock (MCLK)
+> +
+> +  clock-names:
+> +    items:
+> +      - const: mclk
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#sound-dai-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c0 {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      es8316: codec@11 {
+> +        compatible = "everest,es8316";
+> +        reg = <0x11>;
+> +        clocks = <&clks 10>;
+> +        clock-names = "mclk";
+> +        #sound-dai-cells = <0>;
+> +      };
+> +    };
+> -- 
+> 2.27.0
+> 
