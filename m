@@ -2,71 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E462C22AB66
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 11:09:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C32222AB81
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 11:12:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728233AbgGWJIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 05:08:44 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:19453 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726127AbgGWJIn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 05:08:43 -0400
-X-UUID: a394200657ba4bb49d41679fa2ec77aa-20200723
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=LkLD6rKD+tyfSOxJ/tFfCgfVHNHDHHwbNbevew2fYZ4=;
-        b=tBh0SDxEkPPTeQ8bV8EjBxN5n90HlyJbdD7ZbLv5syW+VDbcyoOtwWcvqh81YHLZ3gVivyEM1qE1trsYssbaB/uMOTPIX+y5mKBQ54kCYOlkSpBXl9e4NZvbDYGN8n2dzDs5V2bUtR6+QvoDkcs4JOVvmSagTjS0S6C+n/o/hSU=;
-X-UUID: a394200657ba4bb49d41679fa2ec77aa-20200723
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <seiya.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 125551253; Thu, 23 Jul 2020 17:08:39 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 23 Jul 2020 17:08:36 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 23 Jul 2020 17:08:37 +0800
-From:   Seiya Wang <seiya.wang@mediatek.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>
-CC:     <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>,
-        Crystal Guo <crystal.guo@mediatek.com>
-Subject: [PATCH 4/4] dt-binding: mediatek: mt8192: update mtk-wdt document
-Date:   Thu, 23 Jul 2020 17:07:31 +0800
-Message-ID: <20200723090731.4482-5-seiya.wang@mediatek.com>
-X-Mailer: git-send-email 2.14.1
-In-Reply-To: <20200723090731.4482-1-seiya.wang@mediatek.com>
-References: <20200723090731.4482-1-seiya.wang@mediatek.com>
+        id S1728234AbgGWJMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 05:12:46 -0400
+Received: from elvis.franken.de ([193.175.24.41]:46183 "EHLO elvis.franken.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726558AbgGWJMp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 Jul 2020 05:12:45 -0400
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1jyXHM-0001Ij-00; Thu, 23 Jul 2020 11:12:40 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id 4FEDBC08DD; Thu, 23 Jul 2020 11:10:08 +0200 (CEST)
+Date:   Thu, 23 Jul 2020 11:10:08 +0200
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     =?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>
+Cc:     hauke@hauke-m.de, zajec5@gmail.com, robh+dt@kernel.org,
+        f.fainelli@gmail.com, jonas.gorski@gmail.com,
+        bcm-kernel-feedback-list@broadcom.com, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 7/9] mips: bmips: dts: add BCM6328 power domain support
+Message-ID: <20200723091008.GA2749@alpha.franken.de>
+References: <20200610171630.465579-1-noltari@gmail.com>
+ <20200613082140.2009461-1-noltari@gmail.com>
+ <20200613082140.2009461-8-noltari@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200613082140.2009461-8-noltari@gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogQ3J5c3RhbCBHdW8gPGNyeXN0YWwuZ3VvQG1lZGlhdGVrLmNvbT4NCg0KdXBkYXRlIG10
-ay13ZHQgZG9jdW1lbnQgZm9yIE1UODE5MiBwbGF0Zm9ybQ0KDQpTaWduZWQtb2ZmLWJ5OiBDcnlz
-dGFsIEd1byA8Y3J5c3RhbC5ndW9AbWVkaWF0ZWsuY29tPg0KLS0tDQogRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL3dhdGNoZG9nL210ay13ZHQudHh0IHwgMiArKw0KIDEgZmlsZSBj
-aGFuZ2VkLCAyIGluc2VydGlvbnMoKykNCg0KZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2
-aWNldHJlZS9iaW5kaW5ncy93YXRjaGRvZy9tdGstd2R0LnR4dCBiL0RvY3VtZW50YXRpb24vZGV2
-aWNldHJlZS9iaW5kaW5ncy93YXRjaGRvZy9tdGstd2R0LnR4dA0KaW5kZXggNGRkMzZiZDNmMWFk
-Li5kNzYwY2E4YTYzMGUgMTAwNjQ0DQotLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3Mvd2F0Y2hkb2cvbXRrLXdkdC50eHQNCisrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
-ZS9iaW5kaW5ncy93YXRjaGRvZy9tdGstd2R0LnR4dA0KQEAgLTEyLDYgKzEyLDggQEAgUmVxdWly
-ZWQgcHJvcGVydGllczoNCiAJIm1lZGlhdGVrLG10NzYyOS13ZHQiLCAibWVkaWF0ZWssbXQ2NTg5
-LXdkdCI6IGZvciBNVDc2MjkNCiAJIm1lZGlhdGVrLG10ODE4My13ZHQiLCAibWVkaWF0ZWssbXQ2
-NTg5LXdkdCI6IGZvciBNVDgxODMNCiAJIm1lZGlhdGVrLG10ODUxNi13ZHQiLCAibWVkaWF0ZWss
-bXQ2NTg5LXdkdCI6IGZvciBNVDg1MTYNCisJIm1lZGlhdGVrLG10ODE5Mi13ZHQiOiBmb3IgTVQ4
-MTkyDQorDQogDQogLSByZWcgOiBTcGVjaWZpZXMgYmFzZSBwaHlzaWNhbCBhZGRyZXNzIGFuZCBz
-aXplIG9mIHRoZSByZWdpc3RlcnMuDQogDQotLSANCjIuMTQuMQ0K
+On Sat, Jun 13, 2020 at 10:21:38AM +0200, Álvaro Fernández Rojas wrote:
+> BCM6328 SoCs have a power domain controller to enable/disable certain
+> components in order to save power.
+> 
+> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
+> Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+> ---
+>  v4: no changes.
+>  v3: Separate dt-bindings definitions from power domain .dtsi support.
+>  v2: Add dt-bindings header files.
+> 
+>  arch/mips/boot/dts/brcm/bcm6328.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
+Acked-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
