@@ -2,131 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F28F822ABAE
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 11:22:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3761F22ABBB
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jul 2020 11:27:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728175AbgGWJWX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 05:22:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58088 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725984AbgGWJWX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 05:22:23 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE96DC0619DC;
-        Thu, 23 Jul 2020 02:22:22 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id k17so2897898lfg.3;
-        Thu, 23 Jul 2020 02:22:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=XvcKynrAqO64jDpC8rXFTuj/dKk+qiTN+T9dWEvAtxc=;
-        b=S4AhXunyLyzCvttdEP0lHg79NiI8x2rN7v5vr5tZWrBNhnHq8dZqaGGts0UMrYKMZR
-         pdHmEaCvziSeqmM8ClLwcBfgaRB7ZwYo+lU/y6ShCbzUfItxrVlUAw66KmjVW4WCAgNW
-         is6DO6kAXsPA8u0GmhrWGh7KzQnkbvgGAg/MwSQXgt4Umz25XuzvlP0MCz+XSNOI88wF
-         vNT27LmNPB6occfeHKtWA6mpm/GSqhD4qb94f6m2WQ5loOzsvEXhuTVYn4EUfFtkXNtn
-         zKT3L7W6DBBvJ/rdamodnz8iN1QeywLHRnMnDWJ/xnszln22r6PkYqxcd8u3tpQ8FyBD
-         gVBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:in-reply-to:references
-         :date:message-id:mime-version;
-        bh=XvcKynrAqO64jDpC8rXFTuj/dKk+qiTN+T9dWEvAtxc=;
-        b=cyoxVh1OROE+FSHzd5l28eO5pd2Cew5ryIey5Uvo3xxnufaN3zTbw8NtfozjAr4l3Z
-         zK/L4GxbQjqr1/ZebJxU5pJMGTWceD1e8mpSdpvq8XiJ0yYoZhhcIQuosU/jWTB8VdX2
-         t71vh+/HQ88rRzfQB/YZP9M2MsuEvpfrLhn+P2s5iTftLiWm6SelsKGhRYTRqSbQyd1h
-         BdeslKCBdQu/gYcyfSFHNcBXInx+zxzj2stqRsxAK5c+pyZ4qQXk/ohqexeGGs1A2Mjm
-         WfbeueNEW+v7WiiyZHicjrYlemKAnFmZQaUlp3HAsl5uFoqAbhGwJO2SgW1Nnmh5W5f+
-         RNRQ==
-X-Gm-Message-State: AOAM533V6YhlWE6cOGky2bBD2/8zheZ/lrbIiYhdS9JPlPJGrt+xokqN
-        141/RMmzmknW5lRtg+nU22c=
-X-Google-Smtp-Source: ABdhPJz/q1d2N92Gvcbi/36LZ3e25H6+JolBjAiy3RzcxRita7lk14lAd0B4uewMO9o4dqee1cz8ug==
-X-Received: by 2002:a19:654c:: with SMTP id c12mr1860082lfj.132.1595496141134;
-        Thu, 23 Jul 2020 02:22:21 -0700 (PDT)
-Received: from saruman (91-155-214-58.elisa-laajakaista.fi. [91.155.214.58])
-        by smtp.gmail.com with ESMTPSA id i5sm359918lfe.5.2020.07.23.02.22.19
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 23 Jul 2020 02:22:20 -0700 (PDT)
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Li Jun <jun.li@nxp.com>, shawnguo@kernel.org, robh+dt@kernel.org
-Cc:     gregkh@linuxfoundation.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, peter.chen@nxp.com,
-        Anson.Huang@nxp.com, peng.fan@nxp.com, horia.geanta@nxp.com
-Subject: Re: [PATCH v2 1/5] usb: dwc3: add platform data to dwc3 core device to pass data
-In-Reply-To: <1594028699-1055-2-git-send-email-jun.li@nxp.com>
-References: <1594028699-1055-1-git-send-email-jun.li@nxp.com> <1594028699-1055-2-git-send-email-jun.li@nxp.com>
-Date:   Thu, 23 Jul 2020 12:22:15 +0300
-Message-ID: <87r1t2oabc.fsf@kernel.org>
+        id S1726675AbgGWJ1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 05:27:18 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:32853 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726303AbgGWJ1S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 05:27:18 -0400
+Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 5364E240004;
+        Thu, 23 Jul 2020 09:27:13 +0000 (UTC)
+Date:   Thu, 23 Jul 2020 11:30:51 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, Akinobu Mita <akinobu.mita@gmail.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH 3/3] dt-bindings: iio: adc: maxim,max9611 yaml conversions
+Message-ID: <20200723093051.kq7nc72s6532zoct@uno.localdomain>
+References: <20200722171224.989138-1-jic23@kernel.org>
+ <20200722171224.989138-4-jic23@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha256; protocol="application/pgp-signature"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200722171224.989138-4-jic23@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
-
-
-Hi,
-
-Li Jun <jun.li@nxp.com> writes:
-> In case dwc3 has SoC specific customizations, dwc3 glue driver can base on
-> compatible string and pass it via platform data to dwc3 core driver; and
-> pass xhci private data further to xhci-plat like quirks.
+On Wed, Jul 22, 2020 at 06:12:24PM +0100, Jonathan Cameron wrote:
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 >
-> Signed-off-by: Li Jun <jun.li@nxp.com>
+> Straight forward conversion of this binding for this
+> current sense amplifier and ADC.
+>
+> Cc: Jacopo Mondi <jacopo@jmondi.org>
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 > ---
->  drivers/usb/dwc3/core.h | 5 +++++
->  drivers/usb/dwc3/host.c | 9 +++++++++
->  2 files changed, 14 insertions(+)
+>  .../devicetree/bindings/iio/adc/max9611.txt   | 27 ----------
+>  .../bindings/iio/adc/maxim,max9611.yaml       | 49 +++++++++++++++++++
+>  2 files changed, 49 insertions(+), 27 deletions(-)
 >
-> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-> index 0b8ea8c..3146697 100644
-> --- a/drivers/usb/dwc3/core.h
-> +++ b/drivers/usb/dwc3/core.h
-> @@ -29,6 +29,7 @@
->  #include <linux/ulpi/interface.h>
->=20=20
->  #include <linux/phy/phy.h>
-> +#include "../host/xhci-plat.h"
->=20=20
->  #define DWC3_MSG_MAX	500
->=20=20
-> @@ -924,6 +925,10 @@ struct dwc3_scratchpad_array {
->  	__le64	dma_adr[DWC3_MAX_HIBER_SCRATCHBUFS];
->  };
->=20=20
-> +struct dwc3_platform_data {
-> +	struct xhci_plat_priv *xhci_priv;
-> +};
+> diff --git a/Documentation/devicetree/bindings/iio/adc/max9611.txt b/Documentation/devicetree/bindings/iio/adc/max9611.txt
+> deleted file mode 100644
+> index ab4f43145ae5..000000000000
+> --- a/Documentation/devicetree/bindings/iio/adc/max9611.txt
+> +++ /dev/null
+> @@ -1,27 +0,0 @@
+> -* Maxim max9611/max9612 current sense amplifier with 12-bits ADC interface
+> -
+> -Maxim max9611/max9612 is an high-side current sense amplifier with integrated
+> -12-bits ADC communicating over I2c bus.
+> -The device node for this driver shall be a child of a I2c controller.
+> -
+> -Required properties
+> -  - compatible: Should be "maxim,max9611" or "maxim,max9612"
+> -  - reg: The 7-bits long I2c address of the device
+> -  - shunt-resistor-micro-ohms: Value, in micro Ohms, of the current sense shunt
+> -			        resistor
+> -
+> -Example:
+> -
+> -&i2c4 {
+> -	csa: adc@7c {
+> -		compatible = "maxim,max9611";
+> -		reg = <0x7c>;
+> -
+> -		shunt-resistor-micro-ohms = <5000>;
+> -	};
+> -};
+> -
+> -This device node describes a current sense amplifier sitting on I2c4 bus
+> -with address 0x7c (read address is 0xf9, write address is 0xf8).
+> -A sense resistor of 0,005 Ohm is installed between RS+ and RS- current-sensing
+> -inputs.
+> diff --git a/Documentation/devicetree/bindings/iio/adc/maxim,max9611.yaml b/Documentation/devicetree/bindings/iio/adc/maxim,max9611.yaml
+> new file mode 100644
+> index 000000000000..a9fc05e6b62c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/maxim,max9611.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/maxim,max9611.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim MAX9611 and similar current sense amplifiers with integrated ADCs
+> +
+> +maintainers:
+> +  - Jacopo Mondi <jacopo@jmondi.org>
+> +
+> +description: |
+> +   These devices combine a high-side current sense amplifier with a 12 bit ADC.
+> +   They have an i2c interface.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,max9611
+> +      - maxim,max9612
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  shunt-resistor-micro-ohms:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Value in micro Ohms of the shunt resistor connected between the RS+ and
+> +      RS- inputs, across which the current is measured.  Value needed to compute
+                                                          ^ Double space
+> +      the scaling of the measured current.
+> +
 
-why? We should rely on properties, no?
+With additionalProperties added
+Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
 
-=2D-=20
-balbi
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEElLzh7wn96CXwjh2IzL64meEamQYFAl8ZVscACgkQzL64meEa
-mQZq4w//e21Lo4ff7jZDTYI4GNKwH8wGmrPPmEocHEMLnDb55BHDFolJp0dFTNg5
-tj06t+ukHPltpMdJB2NBhAT3hAwTFOuyl3SiTtnWkFAT5Pr/s+juL4qmOwCBrFwb
-/OSnwtgXr3b3wM88Wil8O6XqolUPe1rCWprGv+PAMnmnmFe6WALjbUoIfts/gvxY
-WPyGDnKLFyGhCt89CbAhCNpnhsqOzg4Ic1RTLMxARM5s+m8BZrfPSPS0L/5npKq3
-+SxdlQgnCnrmOZrUkVbw+w9PF1XbR2elsQOiBnSADYIx7azi6DcBtqe+ClLImb4Q
-wsfDmCrZ+yp8/BMW7MR+YvcPp8JsTH5scbv6owSu7FF9uZA9wk44kbzSL4aA0La5
-yWWmyGdkWiloxzMQCODq7sd+tizcTqZADhKylQ8YKF+7sEtDuyaNowoC6fV50Zk+
-/oTqCr6lwGkWiwE2M/FsWeXZo4+DdkXKobQx0OvyJjyqJ/26SQKyOEGoZO+xZVg/
-fDkoV/GPbgdBc89tB6HG5FiTyCXLY1oqAuNwWiZcSA03YSbBglCQGwDEh4hvGW16
-CTrT8kMATxUvTYlwMnfTwGRQwQtCp+veazjD9ZgEtfk0aB9Bwwl1qlTgok31xDI1
-uZlB9d0GbnabH8BceuyeCwgaBjFDexRPuAXVQI9TcB5ON5rZUSY=
-=yp3d
------END PGP SIGNATURE-----
---=-=-=--
+Thanks
+  j
+> +required:
+> +  - compatible
+> +  - reg
+> +  - shunt-resistor-micro-ohms
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        adc@7c {
+> +            compatible = "maxim,max9611";
+> +            reg = <0x7c>;
+> +            shunt-resistor-micro-ohms = <5000>;
+> +        };
+> +    };
+> +...
+> --
+> 2.27.0
+>
