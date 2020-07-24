@@ -2,231 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 083C822C78F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 16:13:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3120122C7BF
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 16:19:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726810AbgGXONU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jul 2020 10:13:20 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:52452 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726797AbgGXONU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Jul 2020 10:13:20 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1595600000; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=RwctQRbm9rUDdtg6nDhU8CUxDe/QiKiPo5F5WN++oyg=;
- b=KHoETh24pZefoMRWoBT6aIc4VfANefVCj8rdIyTS8wJxQ+kBDV2W5mOZr1jA+8NzEZu73xv2
- whs9iMRpK+mNjlFBwh7BJV1oMZNa8OVtWUjERDs3ndJ6KNFb9bXnTi62MvtSrZ4i1OtJ0fFI
- q1GAxDmg8ce/J7rI51qhLqZjv2E=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 5f1aec7e36e6de324e0aec68 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 24 Jul 2020 14:13:18
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 28922C43391; Fri, 24 Jul 2020 14:13:18 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 46FAEC433C6;
-        Fri, 24 Jul 2020 14:13:17 +0000 (UTC)
+        id S1726317AbgGXOTI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jul 2020 10:19:08 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:52786 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726728AbgGXOTH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jul 2020 10:19:07 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06OEIm62085739;
+        Fri, 24 Jul 2020 09:18:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1595600329;
+        bh=19k8DA4Q1cHUv4MK3B2ZIf6flcxWQj/5hijdVVn7j68=;
+        h=From:To:CC:Subject:Date;
+        b=K+CBxmdhDoSLrxEBtWYv0Dy8ChL+UYB1Jdmz7FF+9hUBLsEVBNAqCpz754KC+Xoqk
+         mNbjpp09SI3qEOB0rtRo6Q0ksGI/Hx9CYQNKrOXeyOMkjM+OPUK42LIPWxZ9UuDltb
+         7BkyCj36e8DL4GalSNYZZnrhShMp9q0CB6612QWM=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06OEImor022277
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 24 Jul 2020 09:18:48 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 24
+ Jul 2020 09:18:48 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 24 Jul 2020 09:18:48 -0500
+Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06OEIiXo016316;
+        Fri, 24 Jul 2020 09:18:44 -0500
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+To:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>
+CC:     Thomas Gleixner <tglx@linutronix.de>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Suman Anna <s-anna@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH v3 0/9] irqchip: ti, sci-intr/inta: Update the dt bindings to accept different interrupt parents
+Date:   Fri, 24 Jul 2020 19:48:28 +0530
+Message-ID: <20200724141837.4542-1-lokeshvutla@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 24 Jul 2020 19:43:17 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Jonathan Marek <jonathan@marek.ca>
-Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kernel-owner@vger.kernel.org
-Subject: Re: [PATCH v2 7/7] arm64: dts: qcom: sm8250: add interconnect nodes
-In-Reply-To: <20200713154121.22094-8-jonathan@marek.ca>
-References: <20200713154121.22094-1-jonathan@marek.ca>
- <20200713154121.22094-8-jonathan@marek.ca>
-Message-ID: <630319740d3f06cfb0435cae025e0ca1@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Jonathan,
+Hi Marc,
+	This is continuation of the RFC patches[0] regarding the driver
+updates to support for following interrupt parent connection:
+- INTR -> INTR
+- INTA -> GICv3
+The current existing driver assumes that INTR is always connected to
+GICv3 and INTA is always connected to INTR.
 
-Thanks for the patch! Please use the
-suggested register space definitions
-instead.
+As discussed this change breaks the DT backward compatibility but it
+allows to not depend on TISCI firmware properties in DT node. IMHO, this
+will ensure that any future changes will not effect DT properties.
 
-On 2020-07-13 21:11, Jonathan Marek wrote:
-> Add the interconnect dts nodes for sm8250.
-> 
-> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-> ---
->  arch/arm64/boot/dts/qcom/sm8250.dtsi | 82 ++++++++++++++++++++++++++++
->  1 file changed, 82 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index 636e2196138c..dfc1b7fa7d85 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -11,6 +11,7 @@
->  #include <dt-bindings/power/qcom-aoss-qmp.h>
->  #include <dt-bindings/power/qcom-rpmpd.h>
->  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> +#include <dt-bindings/interconnect/qcom,sm8250.h>
+This series depends on the the new Yaml bindings for common TISCI[1]
 
-please fix ^^ sort order
+[0] https://lore.kernel.org/linux-arm-kernel/20190923042405.26064-1-lokeshvutla@ti.com/
+[1] https://patchwork.kernel.org/patch/11676843/
 
-> 
->  / {
->  	interrupt-parent = <&intc>;
-> @@ -978,6 +979,55 @@ spi13: spi@a94000 {
->  			};
->  		};
-> 
-> +		config_noc: interconnect@1500000 {
-> +			compatible = "qcom,sm8250-config-noc";
-> +			reg = <0 0x01500000 0 0x1000>;
+Changes since v2:
+- Fixed comments from Rob
+- Fixed DT schema warnings.
 
-0x01500000 0xa580
+Changes since v1:
+- Rebased on top of latest Linux master
+- Dropped DT patches.
 
-> +			#interconnect-cells = <1>;
-> +			qcom,bcm-voters = <&apps_bcm_voter>;
-> +		};
-> +
-> +		ipa_virt: interconnect@1620000 {
-> +			compatible = "qcom,sm8250-ipa-virt";
-> +			reg = <0 0x01620000 0 0x1000>;
+Lokesh Vutla (9):
+  firmware: ti_sci: Drop the device id to resource type translation
+  firmware: ti_sci: Drop unused structure ti_sci_rm_type_map
+  firmware: ti_sci: Add support for getting resource with subtype
+  dt-bindings: irqchip: ti,sci-intr: Update bindings to drop the usage
+    of gic as parent
+  dt-bindings: irqchip: Convert ti,sci-intr bindings to yaml
+  irqchip/ti-sci-intr: Add support for INTR being a parent to INTR
+  dt-bindings: irqchip: ti,sci-inta: Update docs to support different
+    parent.
+  dt-bindings: irqchip: Convert ti,sci-inta bindings to yaml
+  irqchip/ti-sci-inta: Add support for INTA directly connecting to GIC
 
-0x01e00000 0x1000
-
-> +			#interconnect-cells = <1>;
-> +			qcom,bcm-voters = <&apps_bcm_voter>;
-> +		};
-> +
-> +		system_noc: interconnect@1632000 {
-> +			compatible = "qcom,sm8250-system-noc";
-> +			reg = <0 0x01632000 0 0x1000>;
-
-0x01620000 0x1C200
-
-> +			#interconnect-cells = <1>;
-> +			qcom,bcm-voters = <&apps_bcm_voter>;
-> +		};
-> +
-> +		aggre1_noc: interconnect@16e2000 {
-> +			compatible = "qcom,sm8250-aggre1-noc";
-> +			reg = <0 0x016e2000 0 0x1000>;
-
-0x016e0000 0x1f180
-
-> +			#interconnect-cells = <1>;
-> +			qcom,bcm-voters = <&apps_bcm_voter>;
-> +		};
-> +
-> +		aggre2_noc: interconnect@1703000 {
-> +			compatible = "qcom,sm8250-aggre2-noc";
-> +			reg = <0 0x01703000 0 0x1000>;
-
-0x01700000 0x33000
-
-> +			#interconnect-cells = <1>;
-> +			qcom,bcm-voters = <&apps_bcm_voter>;
-> +		};
-> +
-> +		compute_noc: interconnect@1733000 {
-> +			compatible = "qcom,sm8250-compute-noc";
-> +			reg = <0 0x01733000 0 0x1000>;
-
-0x01733000 0xd180
-
-> +			#interconnect-cells = <1>;
-> +			qcom,bcm-voters = <&apps_bcm_voter>;
-> +		};
-> +
-> +		mmss_noc: interconnect@174a000 {
-> +			compatible = "qcom,sm8250-mmss-noc";
-> +			reg = <0 0x0174a000 0 0x1000>;
-
-0x01740000 0x1f080
-
-> +			#interconnect-cells = <1>;
-> +			qcom,bcm-voters = <&apps_bcm_voter>;
-> +		};
-> +
->  		ufs_mem_hc: ufshc@1d84000 {
->  			compatible = "qcom,sm8250-ufshc", "qcom,ufshc",
->  				     "jedec,ufs-2.0";
-> @@ -1364,6 +1414,34 @@ usb_2_ssphy: lane@88eb200 {
->  			};
->  		};
-> 
-> +		dc_noc: interconnect@90c0000 {
-> +			compatible = "qcom,sm8250-dc-noc";
-> +			reg = <0 0x090c0000 0 0x1000>;
-
-0x090c0000 0x4200
-
-> +			#interconnect-cells = <1>;
-> +			qcom,bcm-voters = <&apps_bcm_voter>;
-> +		};
-> +
-> +		mc_virt: interconnect@9100000 {
-> +			compatible = "qcom,sm8250-mc-virt";
-> +			reg = <0 0x09100000 0 0x1000>;
-
-0x0163d000 0x1000
-
-> +			#interconnect-cells = <1>;
-> +			qcom,bcm-voters = <&apps_bcm_voter>;
-> +		};
-> +
-> +		gem_noc: interconnect@9121000 {
-> +			compatible = "qcom,sm8250-gem-noc";
-> +			reg = <0 0x09121000 0 0x1000>;
-
-0x09100000 0xb4000
-
-> +			#interconnect-cells = <1>;
-> +			qcom,bcm-voters = <&apps_bcm_voter>;
-> +		};
-> +
-> +		npu_noc: interconnect@9990000 {
-> +			compatible = "qcom,sm8250-npu-noc";
-> +			reg = <0 0x09990000 0 0x1000>;
-
-0x09990000 0x1600
-
-> +			#interconnect-cells = <1>;
-> +			qcom,bcm-voters = <&apps_bcm_voter>;
-> +		};
-> +
->  		usb_1: usb@a6f8800 {
->  			compatible = "qcom,sm8250-dwc3", "qcom,dwc3";
->  			reg = <0 0x0a6f8800 0 0x400>;
-> @@ -2359,6 +2437,10 @@ rpmhpd_opp_turbo_l1: opp10 {
->  					};
->  				};
->  			};
-> +
-> +			apps_bcm_voter: bcm_voter {
-> +				compatible = "qcom,bcm-voter";
-> +			};
->  		};
->  	};
+ .../interrupt-controller/ti,sci-inta.txt      |  66 --------
+ .../interrupt-controller/ti,sci-inta.yaml     |  98 +++++++++++
+ .../interrupt-controller/ti,sci-intr.txt      |  82 ---------
+ .../interrupt-controller/ti,sci-intr.yaml     | 102 ++++++++++++
+ MAINTAINERS                                   |   4 +-
+ drivers/firmware/ti_sci.c                     | 155 ++++++++----------
+ drivers/irqchip/irq-ti-sci-inta.c             |  90 ++++++++--
+ drivers/irqchip/irq-ti-sci-intr.c             | 150 ++++++++++-------
+ include/linux/soc/ti/ti_sci_protocol.h        |  13 ++
+ 9 files changed, 451 insertions(+), 309 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml
 
 -- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
+2.27.0
+
