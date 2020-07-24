@@ -2,92 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F312822BE8C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 09:03:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E67322BE93
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 09:05:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726381AbgGXHD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jul 2020 03:03:28 -0400
-Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:52632 "EHLO
-        smtp2207-205.mail.aliyun.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725942AbgGXHD1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Jul 2020 03:03:27 -0400
-X-Alimail-AntiSpam: AC=SUSPECT;BC=0.6201684|-1;BR=01201311R131b1;CH=blue;DM=|SUSPECT|false|;DS=CONTINUE|ham_system_inform|0.0262548-0.000494732-0.973251;FP=0|0|0|0|0|-1|-1|-1;HT=e02c03278;MF=frank@allwinnertech.com;NM=1;PH=DS;RN=13;RT=13;SR=0;TI=SMTPD_---.I6q9oNz_1595574198;
-Received: from allwinnertech.com(mailfrom:frank@allwinnertech.com fp:SMTPD_---.I6q9oNz_1595574198)
-          by smtp.aliyun-inc.com(10.147.44.118);
-          Fri, 24 Jul 2020 15:03:23 +0800
-From:   Frank Lee <frank@allwinnertech.com>
-To:     linus.walleij@linaro.org, robh+dt@kernel.org, mripard@kernel.org,
-        wens@csie.org
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        tiny.windzz@gmail.com, huangshuosheng@allwinnertech.com,
-        liyong@allwinnertech.com, Yangtao Li <frank@allwinnertech.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v5 04/16] dt-bindings: pinctrl: sunxi: Add A100 pinctrl bindings
-Date:   Fri, 24 Jul 2020 15:02:42 +0800
-Message-Id: <a5773d677bcc89af3810cdd187fae54eced82f27.1595572867.git.frank@allwinnertech.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <cover.1595572867.git.frank@allwinnertech.com>
-References: <cover.1595572867.git.frank@allwinnertech.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726425AbgGXHFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jul 2020 03:05:38 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:21167 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725942AbgGXHFi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 Jul 2020 03:05:38 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1595574338; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=N3Yzy01IyuEZ2gSZWxIuEh5vzA7NuBS5hy/OdYXg7s4=; b=NwHLejyJ7mBWyDEdwQOjmY9bz+Id3BfJ3Dc1Rq0dnLCcVpHerWrtCSHW678sxEJ2TvOBsyj7
+ nZLq20vCz43PF2P3OIdZdu7rNfGpPcCj16X98l42XJpOHuPVpDjJfVFMXQXXFsBKX4evT43q
+ ufkJ78vdIKTMC7XCVJoKDrVqnPw=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n10.prod.us-west-2.postgun.com with SMTP id
+ 5f1a8840cf983e60a83b7e24 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 24 Jul 2020 07:05:36
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id E7D59C43391; Fri, 24 Jul 2020 07:05:35 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from vnaralas-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akolli)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0C362C433C6;
+        Fri, 24 Jul 2020 07:05:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 0C362C433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=akolli@codeaurora.org
+From:   Anilkumar Kolli <akolli@codeaurora.org>
+To:     ath11k@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
+        akolli@codeaurora.org
+Subject: [PATCH v5 0/3] ath11k: Add IPQ6018 support
+Date:   Fri, 24 Jul 2020 12:35:22 +0530
+Message-Id: <1595574325-16300-1-git-send-email-akolli@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yangtao Li <frank@allwinnertech.com>
+IPQ6018 has a 5G radio and 2G radio with 2x2
+and shares IPQ8074 configuration.
 
-Add device tree binding Documentation details for A100 pinctrl driver,
-which has a r pin controller and a pin controller with more irq lines.
+Tested on: IPQ6018 WLAN.HK.2.2-02134-QCAHKSWPL_SILICONZ-1
+Tested on: IPQ8074 WLAN.HK.2.4.0.1-00009-QCAHKSWPL_SILICONZ-1 
 
-Signed-off-by: Yangtao Li <frank@allwinnertech.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../pinctrl/allwinner,sun4i-a10-pinctrl.yaml      | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+Anilkumar Kolli (3):
+  dt: bindings: net: update compatible for ath11k
+  ath11k: copy ce service configs to hw_params
+  ath11k: add IPQ6018 support
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-index 35a26abb02e7..34a17d5c6135 100644
---- a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-@@ -48,6 +48,8 @@ properties:
-       - allwinner,sun9i-a80-r-pinctrl
-       - allwinner,sun50i-a64-pinctrl
-       - allwinner,sun50i-a64-r-pinctrl
-+      - allwinner,sun50i-a100-pinctrl
-+      - allwinner,sun50i-a100-r-pinctrl
-       - allwinner,sun50i-h5-pinctrl
-       - allwinner,sun50i-h6-pinctrl
-       - allwinner,sun50i-h6-r-pinctrl
-@@ -143,6 +145,18 @@ allOf:
-   # boards are defining it at the moment so it would generate a lot of
-   # warnings.
- 
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - allwinner,sun50i-a100-pinctrl
-+
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 7
-+          maxItems: 7
-+
-   - if:
-       properties:
-         compatible:
-@@ -216,6 +230,7 @@ allOf:
-             - allwinner,sun8i-h3-r-pinctrl
-             - allwinner,sun8i-r40-pinctrl
-             - allwinner,sun50i-a64-r-pinctrl
-+            - allwinner,sun50i-a100-r-pinctrl
-             - nextthing,gr8-pinctrl
- 
-     then:
+V2:
+ - Added devicetree reviewers 
+V3:
+ - addressed dt bindinds comments
+ - Reworked on Kalles patches
+ - copied ce svc configs to hw_params
+V4:
+ - updated dt patch (Rob)
+V5:
+ - Fixes errors in 'make dt_binding_check' (Rob)
+
+ .../bindings/net/wireless/qcom,ath11k.yaml         |   4 +-
+ drivers/net/wireless/ath/ath11k/ahb.c              | 131 ++++++++++++++++++++-
+ drivers/net/wireless/ath/ath11k/core.c             |  20 ++--
+ drivers/net/wireless/ath/ath11k/core.h             |   2 +
+ drivers/net/wireless/ath/ath11k/hw.h               |   2 +
+ 5 files changed, 146 insertions(+), 13 deletions(-)
+
 -- 
-2.24.0
+2.7.4
 
