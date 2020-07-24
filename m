@@ -2,255 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4BAC22C2ED
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 12:16:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8F0E22C39C
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 12:47:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726989AbgGXKQ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jul 2020 06:16:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35708 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726807AbgGXKQ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jul 2020 06:16:26 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F100C0619E6
-        for <devicetree@vger.kernel.org>; Fri, 24 Jul 2020 03:16:26 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id z18so4236385wrm.12
-        for <devicetree@vger.kernel.org>; Fri, 24 Jul 2020 03:16:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=/crr1B0GqubjNwG43KatHyRCC39WbnEB7v+bZrA77SA=;
-        b=Y/rInoxsn92r02GUndlt2TNOypplp+8emBTWlbR2c0Wew3bKj8Sr2RSzFpxMI5Wdf1
-         56VXN131Cn3xSmujxU/KVzkhQtyvXLIgKLw/JQoExLR95fd7MNzGz55+2h39ogEqON9y
-         eS/4HB9KdFUymYt2gaE3XOoOOy7hkcM9zGzArxAvPVsrSdaIUoa2ERgS5Q4Q1QwVhNs8
-         yvVp+UccvZ/lTEwwihjy3Ti6MSKomGhr5MkYpXvuLqsZKUOBUMCJgtc8uNMJm0lz/JeX
-         vsyzqHZUZHq65GHF3xA37hGBz9aiGqwrsq+vDpU8IjqSMuNQVdqMQB8haK1TRqoEljIk
-         ExyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=/crr1B0GqubjNwG43KatHyRCC39WbnEB7v+bZrA77SA=;
-        b=QnchtDGro4+EQe496edvkzUC5Lo9RjHddSjIgplG1D5Z/+BQLNpa9YitOdfepzZvIr
-         XF9clybLhiuVOILF/ZYSWF/UVnbr4nk6J0nbKH49mg9PKburWik+wMo8rXNiIQS+w2eE
-         WYqkKr7XPpn/CpnIDZaHLANc0YWZQn79TAjbDvBwNExrBK7+hvhQeVVn7bKnQjVq+2zh
-         2/EN19v3an5pQhlOmXV9RMHrCJWHWIuhDqFEeoiyRNNERx+epx5kxYZT/f4hF6Ay9owu
-         Bnu4DQrnzjiaYXTAdab3091Va0D48/0HbaqwQRkeix07tEp75TLP2wAbtJHcsuY+qsCp
-         jLWg==
-X-Gm-Message-State: AOAM532Pq9rYGBpALihfFxHP7TfqAcVAp0GvW54wqAecyHP7Qbf36gTx
-        o6BkDY0m+Smnq8G/SMPxG0pSm1CVmZGmcw==
-X-Google-Smtp-Source: ABdhPJz4y+AV7oH5TqR49qAmZppza0iAQtDgZzmmFAPnCpOfFNS/dkNyqoaFZUFkPp+CMzp7c4/nmQ==
-X-Received: by 2002:adf:de8d:: with SMTP id w13mr7786164wrl.129.1595585784885;
-        Fri, 24 Jul 2020 03:16:24 -0700 (PDT)
-Received: from [192.168.1.4] ([195.24.90.54])
-        by smtp.googlemail.com with ESMTPSA id x4sm953873wru.81.2020.07.24.03.16.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Jul 2020 03:16:24 -0700 (PDT)
-Subject: Re: [PATCH v4 4/5] arm64: dts: sdm845: Add OPP tables and
- power-domains for venus
-To:     Rajendra Nayak <rnayak@codeaurora.org>, robh+dt@kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mka@chromium.org
-References: <1595503612-2901-1-git-send-email-rnayak@codeaurora.org>
- <1595503612-2901-5-git-send-email-rnayak@codeaurora.org>
- <e68ff810-362a-5b99-206b-f676b204101d@linaro.org>
- <a2935e9c-6908-05cb-a137-7dd2d5e50a33@codeaurora.org>
-From:   Stanimir Varbanov <stanimir.varbanov@linaro.org>
-Message-ID: <8b60fc8b-7c7e-f904-3444-fc35641a3a08@linaro.org>
-Date:   Fri, 24 Jul 2020 13:16:20 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726329AbgGXKrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jul 2020 06:47:39 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:40650 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727057AbgGXKri (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 Jul 2020 06:47:38 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 06OAlMvI002109;
+        Fri, 24 Jul 2020 12:47:22 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=p9Yq1UIRht3FJka2ELyJEv6RiWxJVu9Woas+GfUzZYs=;
+ b=OQbP1dk93DzXNT/7wCmzF4vPEJwt7sR+MAHn+bESQdNI2ojpzn2zEhkvtPBPWgaCHwed
+ d0QhSs65RSL9mOMm6Qyi4626fe6x+XiMctd+HjY+kTBW3yhNuox0SQ9pyXko6DWAT61+
+ z/L1G8+yyYdRczj7EX86o4ZJLhnGMw/R5ES4nsiAXHFyUQf3RctMMUqMuxchtC2HzwaG
+ fqznXhV+aX/ewh7cfCuK6DwFIgN3s6/KKm5NDB09bQQ7tV2o+qHBTXGP0xdcj4bHg+0a
+ 39w7WFXNTjE/i5UUaQxAGR8qoT9Fm0O4B3tBbtVUVVUL9qFTuoH1pPCkoWW7aKMQDGev Xw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 32bsahfwxp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 24 Jul 2020 12:47:22 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0421310002A;
+        Fri, 24 Jul 2020 12:47:17 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E2E292A4D71;
+        Fri, 24 Jul 2020 12:47:16 +0200 (CEST)
+Received: from localhost (10.75.127.47) by SFHDAG3NODE2.st.com (10.75.127.8)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 24 Jul 2020 12:47:16
+ +0200
+From:   Amelie Delaunay <amelie.delaunay@st.com>
+To:     Minas Harutyunyan <hminas@synopsys.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>
+CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>,
+        Amelie Delaunay <amelie.delaunay@st.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v3 0/3] Add USB role switch support to DWC2
+Date:   Fri, 24 Jul 2020 12:47:08 +0200
+Message-ID: <20200724104711.5474-1-amelie.delaunay@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <a2935e9c-6908-05cb-a137-7dd2d5e50a33@codeaurora.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG6NODE2.st.com (10.75.127.17) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-07-24_03:2020-07-24,2020-07-24 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+When using usb-c connector (but it can also be the case with a micro-b
+connector), iddig, avalid, bvalid, vbusvalid input signals may not be
+connected to the DWC2 OTG controller.
+DWC2 OTG controller features an overriding control of the PHY voltage valid
+and ID input signals.
+So, missing signals can be forced using usb role from usb role switch and
+this override feature.
 
-On 7/24/20 11:49 AM, Rajendra Nayak wrote:
-> Hey Stan,
-> 
-> On 7/23/2020 11:36 PM, Stanimir Varbanov wrote:
->> Hi Rajendra,
->>
->> After applying 2,3 and 4/5 patches on linaro-integration v5.8-rc2 I see
->> below messages on db845:
->>
->> qcom-venus aa00000.video-codec: dev_pm_opp_set_rate: failed to find
->> current OPP for freq 533000097 (-34)
->>
->> ^^^ This one is new.
-> 
-> I was hoping to be able to reproduce this on the 845 mtp (I don't have
-> a db845), but I can;t seem to get venus working on mainline [1]
-> (neither with linux-next, nor with linaro integration)
+This series adds support for usb role switch to dwc2, by using overriding
+control of the PHY voltage valid and ID input signals.
 
-The driver should at least load without errors on -next and
-linaro-integration for db845. As to MTP and haven't checked because I
-don't have such board with me.
+It has been tested on stm32mp157c-dk2 [1], which has a Type-C connector
+managed by a Type-C port controller, and connected to USB OTG controller.
 
-I will try to debug dev_pm_opp_set_rate -ERANGE error.
+[1] https://www.st.com/en/evaluation-tools/stm32mp157c-dk2.html
 
-> Do you know if I might be missing some fix?
-> 
->>
->> qcom_rpmh TCS Busy, retrying RPMH message send: addr=0x30000
->>
->> ^^^ and this message is annoying, can we make it pr_debug in rpmh?
-> 
-> Sure, I'll send a patch for that and see what the rpmh owners have to say.
-> 
-> [1]
-> 
-> [    1.632147] qcom-venus aa00000.video-codec: Adding to iommu group 2
-> [    1.638920] qcom-venus aa00000.video-codec: non legacy binding
-> [    1.648313] ------------[ cut here ]------------
-> [    1.652976] video_cc_venus_ctl_axi_clk status stuck at 'off'
-
-I guess this means that venus_gdsc is not powered on.
-
-> [    1.653068] WARNING: CPU: 7 PID: 1 at
-> drivers/clk/qcom/clk-branch.c:92 clk_b8
-> [    1.667977] Modules linked in:
-> [    1.671076] CPU: 7 PID: 1 Comm: swapper/0 Not tainted
-> 5.8.0-rc6-00254-gc43551
-> [    1.678704] Hardware name: Qualcomm Technologies, Inc. SDM845 MTP (DT)
-> [    1.685294] pstate: 60c00085 (nZCv daIf +PAN +UAO BTYPE=--)
-> [    1.690911] pc : clk_branch_toggle+0x14c/0x168
-> [    1.695397] lr : clk_branch_toggle+0x14c/0x168
-> [    1.699881] sp : ffff80001005b900
-> [    1.703232] x29: ffff80001005b900 x28: ffffb58586ac2f38
-> [    1.708594] x27: ffff0000f86c6d48 x26: ffffb58586f09000
-> [    1.713953] x25: ffffb585867c0bd8 x24: 0000000000000000
-> [    1.719312] x23: ffffb5858702df28 x22: ffffb58585a3c6a8
-> [    1.724672] x21: 0000000000000001 x20: ffffb58586f09000
-> [    1.730031] x19: 0000000000000000 x18: ffffb58586f09948
-> [    1.735390] x17: 0000000000000001 x16: 0000000000000019
-> [    1.740749] x15: ffff80009005b5a7 x14: 0000000000000006
-> [    1.746107] x13: ffff80001005b5b5 x12: ffffb58586f21d68
-> [    1.751466] x11: 0000000000000000 x10: 0000000005f5e0ff
-> [    1.756825] x9 : ffff80001005b900 x8 : 2766666f27207461
-> [    1.762184] x7 : 206b637574732073 x6 : ffffb58587141848
-> [    1.767543] x5 : 0000000000000000 x4 : 0000000000000000
-> [    1.772902] x3 : 00000000ffffffff x2 : ffff4a7b76cd8000
-> [    1.778261] x1 : ad405f90446fcf00 x0 : 0000000000000000
-> [    1.783624] Call trace:
-> [    1.786103]  clk_branch_toggle+0x14c/0x168
-> [    1.790241]  clk_branch2_enable+0x18/0x20
-> [    1.794306]  clk_core_enable+0x60/0xa8
-> [    1.798090]  clk_core_enable_lock+0x20/0x40
-> [    1.802316]  clk_enable+0x14/0x28
-> [    1.805682]  core_clks_enable+0x94/0xd8
-> [    1.809562]  core_power_v4+0x48/0x50
-> [    1.813178]  venus_runtime_resume+0x24/0x40
-> [    1.817417]  pm_generic_runtime_resume+0x28/0x40
-> [    1.822079]  __rpm_callback+0xa0/0x138
-> [    1.825861]  rpm_callback+0x24/0x98
-> [    1.829390]  rpm_resume+0x32c/0x490
-> [    1.832917]  __pm_runtime_resume+0x38/0x88
-> [    1.837051]  venus_probe+0x1f0/0x34c
-> [    1.840667]  platform_drv_probe+0x4c/0xa8
-> [    1.844727]  really_probe+0x100/0x388
-> [    1.848428]  driver_probe_device+0x54/0xb8
-> [    1.852563]  device_driver_attach+0x6c/0x78
-> [    1.856790]  __driver_attach+0xb0/0xf0
-> [    1.860576]  bus_for_each_dev+0x68/0xc8
-> [    1.864456]  driver_attach+0x20/0x28
-> [    1.868064]  bus_add_driver+0x148/0x200
-> [    1.871941]  driver_register+0x60/0x110
-> [    1.875819]  __platform_driver_register+0x44/0x50
-> [    1.880576]  qcom_venus_driver_init+0x18/0x20
-> [    1.884990]  do_one_initcall+0x58/0x1a0
-> [    1.888878]  kernel_init_freeable+0x1fc/0x28c
-> [    1.893292]  kernel_init+0x10/0x108
-> [    1.896821]  ret_from_fork+0x10/0x1c
-> [    1.900441] ---[ end trace f12a7e5e182f3e4e ]---
-> [    1.906415] qcom-venus: probe of aa00000.video-codec failed with
-> error -16
-> 
->>
->> On 7/23/20 2:26 PM, Rajendra Nayak wrote:
->>> Add the OPP tables in order to be able to vote on the performance
->>> state of
->>> a power-domain.
->>>
->>> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
->>> ---
->>>   arch/arm64/boot/dts/qcom/sdm845.dtsi | 40
->>> ++++++++++++++++++++++++++++++++++--
->>>   1 file changed, 38 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>> b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>> index e506793..5ca2265 100644
->>> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>> @@ -3631,8 +3631,10 @@
->>>               interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
->>>               power-domains = <&videocc VENUS_GDSC>,
->>>                       <&videocc VCODEC0_GDSC>,
->>> -                    <&videocc VCODEC1_GDSC>;
->>> -            power-domain-names = "venus", "vcodec0", "vcodec1";
->>> +                    <&videocc VCODEC1_GDSC>,
->>> +                    <&rpmhpd SDM845_CX>;
->>> +            power-domain-names = "venus", "vcodec0", "vcodec1", "cx";
->>> +            operating-points-v2 = <&venus_opp_table>;
->>>               clocks = <&videocc VIDEO_CC_VENUS_CTL_CORE_CLK>,
->>>                    <&videocc VIDEO_CC_VENUS_AHB_CLK>,
->>>                    <&videocc VIDEO_CC_VENUS_CTL_AXI_CLK>,
->>> @@ -3654,6 +3656,40 @@
->>>               video-core1 {
->>>                   compatible = "venus-encoder";
->>>               };
->>> +
->>> +            venus_opp_table: venus-opp-table {
->>> +                compatible = "operating-points-v2";
->>> +
->>> +                opp-100000000 {
->>> +                    opp-hz = /bits/ 64 <100000000>;
->>> +                    required-opps = <&rpmhpd_opp_min_svs>;
->>> +                };
->>> +
->>> +                opp-200000000 {
->>> +                    opp-hz = /bits/ 64 <200000000>;
->>> +                    required-opps = <&rpmhpd_opp_low_svs>;
->>> +                };
->>> +
->>> +                opp-320000000 {
->>> +                    opp-hz = /bits/ 64 <320000000>;
->>> +                    required-opps = <&rpmhpd_opp_svs>;
->>> +                };
->>> +
->>> +                opp-380000000 {
->>> +                    opp-hz = /bits/ 64 <380000000>;
->>> +                    required-opps = <&rpmhpd_opp_svs_l1>;
->>> +                };
->>> +
->>> +                opp-444000000 {
->>> +                    opp-hz = /bits/ 64 <444000000>;
->>> +                    required-opps = <&rpmhpd_opp_nom>;
->>> +                };
->>> +
->>> +                opp-533000000 {
->>> +                    opp-hz = /bits/ 64 <533000000>;
->>> +                    required-opps = <&rpmhpd_opp_turbo>;
->>> +                };
->>> +            };
->>>           };
->>>             videocc: clock-controller@ab00000 {
->>>
->>
-> 
+Amelie Delaunay (3):
+  usb: dwc2: override PHY input signals with usb role switch support
+  dt-bindings: usb: dwc2: add optional usb-role-switch property
+  usb: dwc2: don't use ID/Vbus detection if usb-role-switch on STM32MP15
+    SoCs
+---
+Changes in v3:
+- Fix build issue reported by kernel test robot in drd.c
+Changes in v2:
+- Previous DT patch already in stm32-next branch so removed from v2 patchset
+  "ARM: dts: stm32: enable usb-role-switch on USB OTG on stm32mp15xx-dkx"
+- DWC2 DT bindings update added
+- Build issue reported by kernel test robot fixed
+- Martin's comments taken into account
+---
+ .../devicetree/bindings/usb/dwc2.yaml         |   4 +
+ drivers/usb/dwc2/Kconfig                      |   1 +
+ drivers/usb/dwc2/Makefile                     |   2 +-
+ drivers/usb/dwc2/core.h                       |   9 +
+ drivers/usb/dwc2/drd.c                        | 181 ++++++++++++++++++
+ drivers/usb/dwc2/gadget.c                     |   2 +-
+ drivers/usb/dwc2/params.c                     |   4 +-
+ drivers/usb/dwc2/platform.c                   |  15 ++
+ 8 files changed, 215 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/usb/dwc2/drd.c
 
 -- 
-regards,
-Stan
+2.17.1
+
