@@ -2,245 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E92922BA80
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 01:49:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 870F322BAD3
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 02:15:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728494AbgGWXsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 19:48:42 -0400
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:18029 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728443AbgGWXs0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 19:48:26 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5f1a218a0000>; Thu, 23 Jul 2020 16:47:22 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Thu, 23 Jul 2020 16:48:25 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Thu, 23 Jul 2020 16:48:25 -0700
-Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 23 Jul
- 2020 23:48:25 +0000
-Received: from hqnvemgw03.nvidia.com (10.124.88.68) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Thu, 23 Jul 2020 23:48:25 +0000
-Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.168.236]) by hqnvemgw03.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5f1a21c80003>; Thu, 23 Jul 2020 16:48:25 -0700
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <frankc@nvidia.com>, <hverkuil@xs4all.nl>,
-        <sakari.ailus@iki.fi>, <robh+dt@kernel.org>,
-        <helen.koike@collabora.com>
-CC:     <digetx@gmail.com>, <sboyd@kernel.org>,
-        <gregkh@linuxfoundation.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>
-Subject: [RFC PATCH v4 14/14] media: tegra-video: Compute settle times based on the clock rate
-Date:   Thu, 23 Jul 2020 16:51:12 -0700
-Message-ID: <1595548272-9809-15-git-send-email-skomatineni@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1595548272-9809-1-git-send-email-skomatineni@nvidia.com>
-References: <1595548272-9809-1-git-send-email-skomatineni@nvidia.com>
-X-NVConfidentiality: public
+        id S1728210AbgGXAPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jul 2020 20:15:51 -0400
+Received: from smtprelay-out1.synopsys.com ([149.117.73.133]:38850 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728065AbgGXAPu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 Jul 2020 20:15:50 -0400
+Received: from mailhost.synopsys.com (badc-mailhost4.synopsys.com [10.192.0.82])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 27F1C405B8;
+        Fri, 24 Jul 2020 00:15:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1595549750; bh=iLKH3U0AWCFKTbDX2ohnt0oMb2RFnKQtEk6doF8INUA=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+        b=QKd+p8Y4lLdcin4lP+Ji6xsVPZpo1gw7+IGrxBwG/j3sZM1jB6EqTlLRdUkgzF7Wm
+         W23aKD+ZWk3hy1EQYnTEEYEbCPFi5T0EKcPkihslThvMzj7xy0hj/U+/MkiUZZsoha
+         +8ZTwxFG64QLb5WwdWjzoyp6OXtQ4UJNpZyEdne6VZxp0d3GyDuWSdLHwe/F69TwOy
+         lbyunFaHUh4ZUmTGpI2TFkk1ISUFL0d1UdaN5aZNsjcscrkX8NXNIXqK70nBMOo1ER
+         IOqC2e/TtIh2mQsVCO8grsrJx2Rk/w7mImHRGl+s8vfxFVYSBCzPExnFmhLsnyoFm3
+         0VtJiXqTS3j0w==
+Received: from o365relay-in.synopsys.com (us03-o365relay3.synopsys.com [10.4.161.139])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mailhost.synopsys.com (Postfix) with ESMTPS id 7D83AA0255;
+        Fri, 24 Jul 2020 00:15:49 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2174.outbound.protection.outlook.com [104.47.57.174])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client CN "mail.protection.outlook.com", Issuer "GlobalSign Organization Validation CA - SHA256 - G3" (verified OK))
+        by o365relay-in.synopsys.com (Postfix) with ESMTPS id 60B13801BF;
+        Fri, 24 Jul 2020 00:15:48 +0000 (UTC)
+Authentication-Results: o365relay-in.synopsys.com; dmarc=pass (p=reject dis=none) header.from=synopsys.com
+Authentication-Results: o365relay-in.synopsys.com; spf=pass smtp.mailfrom=joglekar@synopsys.com
+Authentication-Results: o365relay-in.synopsys.com;
+        dkim=pass (1024-bit key; unprotected) header.d=synopsys.com header.i=@synopsys.com header.b="vw5BpkVK";
+        dkim-atps=neutral
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bXyH7owN4m2fYDLBSg08jt1P0uqL36k3xWZyOJ1pw+Vfp8cwDxzo6ZOSee4tA3EM848YdDzJwgMMe9U/PZS38ydiTxrivKBcMTrjGv2S5LekccFFoZrbzwzGPv22/5NDAHpQxWVehT4ODbtk7Pg7uAR46Ze+1XVj8EwVcUYw981niq0O0AYwXQ+PR6xYdCBDERqYoh0XksJHHKUz+SZcUXuCkx89tDV79e++uQb4qFtvbmGmY/GI3QSEMlNcPMS7T/tBx0UTrxPzqjFDiu9wvQ0w/0Va/xwc0J+JNn+Miq7CdXEpwREWCDZRDijN+T804BFkpPbXToIRt/4RPpAFsw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iLKH3U0AWCFKTbDX2ohnt0oMb2RFnKQtEk6doF8INUA=;
+ b=UmvS6HVJ49NbhpUL3/u+yvKpijmq0n3U3HSGnm4bo64fKyiOqipJU1nf9UMT4YLfFUe1xDtVNGrP4gFg1rUS0+oAGNVmkSj+yr+xVDrdOS+/nvmFoMg5JjPwpmJI7chIL3P6JmTpEjzJxZfq+WGgsm2wWvfj1IRAlEZPAEdAGUGd8VIU7ra5rVhof5XRd9JjZdkjlw9gvQS5axd1ZEq6vyRjQcUiDggue9JOKbrqmlzLml72+1+kHql50kbWmK6okxrh905eqcz/kwXY1nj8kWNBKdbDs01oL8w0IGGfwRGXB55FlcG/M2daudhXkW4HbcmpVf307FScNO/LxI0ZMA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synopsys.com; dmarc=pass action=none header.from=synopsys.com;
+ dkim=pass header.d=synopsys.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iLKH3U0AWCFKTbDX2ohnt0oMb2RFnKQtEk6doF8INUA=;
+ b=vw5BpkVKFqMN3eRf93P8mcbYcQ9PyJ0OxPBFQQmHYLKCwp3YrbFyXfAuLOM0U6NWUAa/180euIRML0yrsIfEwalAMQ5VmbPEigFmquQWbpqL+TgEk7rOK+uqJN51ylS7b61zPgX8MdKMWp+ByIAPqVKYPw4+z1TqfKPbsi0UOOo=
+Received: from BN8PR12MB3458.namprd12.prod.outlook.com (2603:10b6:408:44::32)
+ by BN8PR12MB3187.namprd12.prod.outlook.com (2603:10b6:408:69::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.23; Fri, 24 Jul
+ 2020 00:15:45 +0000
+Received: from BN8PR12MB3458.namprd12.prod.outlook.com
+ ([fe80::9559:91b2:aaa3:bfd6]) by BN8PR12MB3458.namprd12.prod.outlook.com
+ ([fe80::9559:91b2:aaa3:bfd6%2]) with mapi id 15.20.3216.020; Fri, 24 Jul 2020
+ 00:15:45 +0000
+X-SNPS-Relay: synopsys.com
+From:   Tejas Joglekar <Tejas.Joglekar@synopsys.com>
+To:     Jun Li <lijun.kernel@gmail.com>,
+        Tejas Joglekar <Tejas.Joglekar@synopsys.com>
+CC:     Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        John Youn <John.Youn@synopsys.com>, Li Jun <jun.li@nxp.com>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Subject: Re: [PATCH v3 0/4] Add logic to consolidate TRBs for Synopsys xHC
+Thread-Topic: [PATCH v3 0/4] Add logic to consolidate TRBs for Synopsys xHC
+Thread-Index: AQHWNBOcKSGY3EC5WEe37t+laBwpCKkVUfKAgADlCwA=
+Date:   Fri, 24 Jul 2020 00:15:45 +0000
+Message-ID: <3dec20c0-6fd3-ff40-091c-93cb093a2ff9@synopsys.com>
+References: <cover.1590415123.git.joglekar@synopsys.com>
+ <CAKgpwJX6awJeqVsa_3mX_+UbhC+3ns=dLeiXBz7Na5QkQRZpjQ@mail.gmail.com>
+In-Reply-To: <CAKgpwJX6awJeqVsa_3mX_+UbhC+3ns=dLeiXBz7Na5QkQRZpjQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=synopsys.com;
+x-originating-ip: [49.207.209.22]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: cd1aa8b4-785b-4431-4f5d-08d82f66b5ca
+x-ms-traffictypediagnostic: BN8PR12MB3187:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BN8PR12MB3187BE428A65A90E47CCBC22A4770@BN8PR12MB3187.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: h70WCG0M+kuihYlU8jGf6nEzDkfug+X0y1GpQCNzNlkr0Tb+k52Rk9mwCoIxFPjSPZtcZWvXM4mx50rV0bDB4PXrSpG/8qjYO2qkkO6NA/5lZy3qbnQ3c7Y1LdMstytACyWiPr9DLMymp8TjTnrEzY5GnSJ8LyBCebazA1whc1JyyfcYymFYp77QPr186Xl+dWIiizmSayq1eta+4zf00/lCrG7sH96pAX+Im4/kOf3dTDweQWiFUzx/DsbuvrPVS95MI4c6Hk53kRoccskGk0ivYcdL6r8p8oKgjjizN+LISfErhCbNgBNU0VzgspaY
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN8PR12MB3458.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(39860400002)(366004)(136003)(376002)(396003)(346002)(86362001)(478600001)(55236004)(91956017)(5660300002)(71200400001)(53546011)(107886003)(6506007)(54906003)(36756003)(110136005)(66446008)(2906002)(4326008)(6512007)(76116006)(66476007)(66946007)(316002)(31696002)(64756008)(31686004)(66556008)(2616005)(6486002)(186003)(83380400001)(8676002)(26005)(8936002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: Wphe2bibTQjHuTMA9vYWNQYOka+IFIFpI7xcHPTf7hFYt0z5YPlDBhbktB32gV1UhJBCrdr5OPehYArpqioJ80TSoucEZhW6aC6tzcKLHdJbtMSPTCi8pocMzkyOnuYnRuk2BG+1Xuy/jqNGEt6eK6lQdAf3CfCkJ5eK973WtRXeU/G6o/5Z/QGFn+6R7u49g/jiOnzgoBvn3e4POVqyZga98teN3M3oetr4kETkMZTqEjPkU5/SKZZe0NXPPfgF8K3x4ZfYyIQquDIDT9+z/nCD/vdJbUQvqwXc+OyjA3EecyAeNCh8joQcFGRJHvngoARqlVgDuhBeL80MpITce+vr7B7JqBLvRxZYOyDtkBgMrxLdPCS3OzVltve2iWzksthqwzfskh7lNxVphnMql88WD/tB4XxhyCviYwHWDqF7Qs0YqR5YxQPGAj4VHqYm6GEmDPav3LuxWlDVurB775+lXwZaQ7H9zEEUlRyxlRY=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <2E918CC2E25A4A4D9390468233F22653@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1595548042; bh=O7OwfDPtrwAESPcnfY4hKzGwmLiXVBIun9uDnAHRy8A=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=pSQ8GFpqxEWtPJ/mDxNYWfdMYH/vSWcyh5Ie07qLwLaZsj5+1puw4d2MV+LrANtsX
-         q8Z9NTMvScBgEWw9BZUzTkSlyKiIEsNJroa6vMwqv7keDF/TbkfeknIqajSRevG8ag
-         e0DbXQfEy9Z/AqyySFpbQ9Um2z6BrCrdaR4G2P9Z8gjD3KcZz0bazpFCOTd2XEHAYz
-         hId73TVKorux1hM2FQk09TeyL4cHT/0+4wcNOGah4/J1I9NBjN9jDbJ1G58z1qBe0p
-         XWCCoWUq7Z7vsMT2iyhmgVruDL1epc8qSC55CL+vu6dnUmqmeBhGjXuGqDmT/66dz0
-         k7+/ck+XKIRfA==
+X-OriginatorOrg: synopsys.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3458.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cd1aa8b4-785b-4431-4f5d-08d82f66b5ca
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jul 2020 00:15:45.4160
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c33c9f88-1eb7-4099-9700-16013fd9e8aa
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: RXeS8EkjP86gH1yG3px//YpCmjf4P5tFWaKBT6IhYPMkNz6qVDY2drEXELaHobEaK9tb9LIrWIwD/qs1UzAgVw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3187
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Settle time determines the number of cil clock cyles to wait after
-LP00 when moving from LP to HS.
-
-This patch computes T-CLK-SETTLE and T-HS-SETTLE times based on cil
-clock rate and pixel rate from the sensor and programs them during
-streaming.
-
-T-CLK-SETTLE time is the interval during which receiver will ignore
-any HS transitions on clock lane starting from the beginning of
-T-CLK-PREPARE.
-
-T-HS-SETTLE time is the interval during which recevier will ignore
-any HS transitions on data lane starting from the beginning of
-T-HS-PREPARE.
-
-Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
----
- drivers/staging/media/tegra-video/csi.c      | 55 ++++++++++++++++++++++++++++
- drivers/staging/media/tegra-video/csi.h      |  5 +++
- drivers/staging/media/tegra-video/tegra210.c | 17 ++++++++-
- 3 files changed, 75 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/staging/media/tegra-video/csi.c b/drivers/staging/media/tegra-video/csi.c
-index bdaf4b6..4d38e0e 100644
---- a/drivers/staging/media/tegra-video/csi.c
-+++ b/drivers/staging/media/tegra-video/csi.c
-@@ -19,6 +19,8 @@
- #include "csi.h"
- #include "video.h"
- 
-+#define MHZ			1000000
-+
- static inline struct tegra_csi *
- host1x_client_to_csi(struct host1x_client *client)
- {
-@@ -235,6 +237,59 @@ static int tegra_csi_g_frame_interval(struct v4l2_subdev *subdev,
- 	return 0;
- }
- 
-+static unsigned int csi_get_pixel_rate(struct tegra_csi_channel *csi_chan)
-+{
-+	struct tegra_vi_channel *chan;
-+	struct v4l2_subdev *src_subdev;
-+	struct v4l2_ctrl *ctrl;
-+
-+	chan = v4l2_get_subdev_hostdata(&csi_chan->subdev);
-+	src_subdev = tegra_channel_get_remote_source_subdev(chan);
-+	ctrl = v4l2_ctrl_find(src_subdev->ctrl_handler, V4L2_CID_PIXEL_RATE);
-+	if (ctrl)
-+		return v4l2_ctrl_g_ctrl_int64(ctrl);
-+
-+	return 0;
-+}
-+
-+void tegra_csi_calc_settle_time(struct tegra_csi_channel *csi_chan,
-+				u8 *clk_settle_time,
-+				u8 *ths_settle_time)
-+{
-+	struct tegra_csi *csi = csi_chan->csi;
-+	unsigned int cil_clk_mhz;
-+	unsigned int pix_clk_mhz;
-+	int clk_idx = (csi_chan->csi_port_num >> 1) + 1;
-+
-+	cil_clk_mhz = clk_get_rate(csi->clks[clk_idx].clk) / MHZ;
-+	pix_clk_mhz = csi_get_pixel_rate(csi_chan) / MHZ;
-+
-+	/*
-+	 * CLK Settle time is the interval during which HS receiver should
-+	 * ignore any clock lane HS transitions, starting from the beginning
-+	 * of T-CLK-PREPARE.
-+	 * Per DPHY specification, T-CLK-SETTLE should be between 95ns ~ 300ns
-+	 *
-+	 * 95ns < (clk-settle-programmed + 7) * lp clk period < 300ns
-+	 * midpoint = 197.5 ns
-+	 */
-+	*clk_settle_time = ((95 + 300) * cil_clk_mhz - 14000) / 2000;
-+
-+	/*
-+	 * THS Settle time is the interval during which HS receiver should
-+	 * ignore any data lane HS transitions, starting from the beginning
-+	 * of THS-PREPARE.
-+	 *
-+	 * Per DPHY specification, T-HS-SETTLE should be between 85ns + 6UI
-+	 * and 145ns+10UI.
-+	 * 85ns + 6UI < (Ths-settle-prog + 5) * lp_clk_period < 145ns + 10UI
-+	 * midpoint = 115ns + 8UI
-+	 */
-+	if (pix_clk_mhz)
-+		*ths_settle_time = (115 * cil_clk_mhz + 8000 * cil_clk_mhz
-+				   / (2 * pix_clk_mhz) - 5000) / 1000;
-+}
-+
- static int tegra_csi_s_stream(struct v4l2_subdev *subdev, int enable)
- {
- 	struct tegra_vi_channel *chan = v4l2_get_subdev_hostdata(subdev);
-diff --git a/drivers/staging/media/tegra-video/csi.h b/drivers/staging/media/tegra-video/csi.h
-index 0d50fc3..c65ff73 100644
---- a/drivers/staging/media/tegra-video/csi.h
-+++ b/drivers/staging/media/tegra-video/csi.h
-@@ -51,6 +51,7 @@ struct tegra_csi;
-  * @h_blank: horizontal blanking for TPG active format
-  * @v_blank: vertical blanking for TPG active format
-  * @mipi: mipi device for corresponding csi channel pads
-+ * @pixel_rate: active pixel rate from the sensor on this channel
-  */
- struct tegra_csi_channel {
- 	struct list_head list;
-@@ -67,6 +68,7 @@ struct tegra_csi_channel {
- 	unsigned int h_blank;
- 	unsigned int v_blank;
- 	struct tegra_mipi_device *mipi;
-+	unsigned int pixel_rate;
- };
- 
- /**
-@@ -147,4 +149,7 @@ extern const struct tegra_csi_soc tegra210_csi_soc;
- #endif
- 
- void tegra_csi_error_recover(struct v4l2_subdev *subdev);
-+void tegra_csi_calc_settle_time(struct tegra_csi_channel *csi_chan,
-+				u8 *clk_settle_time,
-+				u8 *ths_settle_time);
- #endif
-diff --git a/drivers/staging/media/tegra-video/tegra210.c b/drivers/staging/media/tegra-video/tegra210.c
-index 253bf33..ac066c0 100644
---- a/drivers/staging/media/tegra-video/tegra210.c
-+++ b/drivers/staging/media/tegra-video/tegra210.c
-@@ -7,6 +7,7 @@
-  * This source file contains Tegra210 supported video formats,
-  * VI and CSI SoC specific data, operations and registers accessors.
-  */
-+#include <linux/bitfield.h>
- #include <linux/clk.h>
- #include <linux/clk/tegra.h>
- #include <linux/delay.h>
-@@ -98,6 +99,8 @@
- #define   BRICK_CLOCK_B_4X				(0x2 << 16)
- #define TEGRA_CSI_CIL_PAD_CONFIG1                       0x004
- #define TEGRA_CSI_CIL_PHY_CONTROL                       0x008
-+#define   CLK_SETTLE_MASK				GENMASK(13, 8)
-+#define   THS_SETTLE_MASK				GENMASK(5, 0)
- #define TEGRA_CSI_CIL_INTERRUPT_MASK                    0x00c
- #define TEGRA_CSI_CIL_STATUS                            0x010
- #define TEGRA_CSI_CILX_STATUS                           0x014
-@@ -770,8 +773,14 @@ static int tegra210_csi_start_streaming(struct tegra_csi_channel *csi_chan)
- {
- 	struct tegra_csi *csi = csi_chan->csi;
- 	unsigned int portno = csi_chan->csi_port_num;
-+	u8 clk_settle_time = 0;
-+	u8 ths_settle_time = 10;
- 	u32 val;
- 
-+	if (!csi_chan->pg_mode)
-+		tegra_csi_calc_settle_time(csi_chan, &clk_settle_time,
-+					   &ths_settle_time);
-+
- 	csi_write(csi, portno, TEGRA_CSI_CLKEN_OVERRIDE, 0);
- 
- 	/* clean up status */
-@@ -782,7 +791,9 @@ static int tegra210_csi_start_streaming(struct tegra_csi_channel *csi_chan)
- 
- 	/* CIL PHY registers setup */
- 	cil_write(csi, portno, TEGRA_CSI_CIL_PAD_CONFIG0, 0x0);
--	cil_write(csi, portno, TEGRA_CSI_CIL_PHY_CONTROL, 0xa);
-+	cil_write(csi, portno, TEGRA_CSI_CIL_PHY_CONTROL,
-+		  FIELD_PREP(CLK_SETTLE_MASK, clk_settle_time) |
-+		  FIELD_PREP(THS_SETTLE_MASK, ths_settle_time));
- 
- 	/*
- 	 * The CSI unit provides for connection of up to six cameras in
-@@ -801,7 +812,9 @@ static int tegra210_csi_start_streaming(struct tegra_csi_channel *csi_chan)
- 			  BRICK_CLOCK_A_4X);
- 		cil_write(csi, portno + 1, TEGRA_CSI_CIL_PAD_CONFIG0, 0x0);
- 		cil_write(csi, portno + 1, TEGRA_CSI_CIL_INTERRUPT_MASK, 0x0);
--		cil_write(csi, portno + 1, TEGRA_CSI_CIL_PHY_CONTROL, 0xa);
-+		cil_write(csi, portno + 1, TEGRA_CSI_CIL_PHY_CONTROL,
-+			  FIELD_PREP(CLK_SETTLE_MASK, clk_settle_time) |
-+			  FIELD_PREP(THS_SETTLE_MASK, ths_settle_time));
- 		csi_write(csi, portno, TEGRA_CSI_PHY_CIL_COMMAND,
- 			  CSI_A_PHY_CIL_ENABLE | CSI_B_PHY_CIL_ENABLE);
- 	} else {
--- 
-2.7.4
-
+SGVsbG8sDQpPbiA3LzIzLzIwMjAgNDowNSBQTSwgSnVuIExpIHdyb3RlOg0KPiBUZWphcyBKb2ds
+ZWthciA8VGVqYXMuSm9nbGVrYXJAc3lub3BzeXMuY29tPiDkuo4yMDIw5bm0NeaciDI35pel5ZGo
+5LiJIOS4i+WNiDc6NTTlhpnpgZPvvJoNCj4+DQo+PiBUaGUgU3lub3BzeXMgeEhDIGhhcyBhbiBp
+bnRlcm5hbCBUUkIgY2FjaGUgb2Ygc2l6ZSBUUkJfQ0FDSEVfU0laRSBmb3INCj4+IGVhY2ggZW5k
+cG9pbnQuIFRoZSBkZWZhdWx0IHZhbHVlIGZvciBUUkJfQ0FDSEVfU0laRSBpcyAxNiBmb3IgU1Mg
+YW5kIDgNCj4+IGZvciBIUy4gVGhlIGNvbnRyb2xsZXIgbG9hZHMgYW5kIHVwZGF0ZXMgdGhlIFRS
+QiBjYWNoZSBmcm9tIHRoZQ0KPj4gdHJhbnNmZXIgcmluZyBpbiBzeXN0ZW0gbWVtb3J5IHdoZW5l
+dmVyIHRoZSBkcml2ZXIgaXNzdWVzIGEgc3RhcnQNCj4+IHRyYW5zZmVyIG9yIHVwZGF0ZSB0cmFu
+c2ZlciBjb21tYW5kLg0KPj4NCj4+IEZvciBjaGFpbmVkIFRSQnMsIHRoZSBTeW5vcHN5cyB4SEMg
+cmVxdWlyZXMgdGhhdCB0aGUgdG90YWwgYW1vdW50IG9mDQo+PiBieXRlcyBmb3IgYWxsIFRSQnMg
+bG9hZGVkIGluIHRoZSBUUkIgY2FjaGUgYmUgZ3JlYXRlciB0aGFuIG9yIGVxdWFsIHRvDQo+PiAx
+IE1QUy4gT3IgdGhlIGNoYWluIGVuZHMgd2l0aGluIHRoZSBUUkIgY2FjaGUgKHdpdGggYSBsYXN0
+IFRSQikuDQo+Pg0KPj4gSWYgdGhpcyByZXF1aXJlbWVudCBpcyBub3QgbWV0LCB0aGUgY29udHJv
+bGxlciB3aWxsIG5vdCBiZSBhYmxlIHRvDQo+PiBzZW5kIG9yIHJlY2VpdmUgYSBwYWNrZXQgYW5k
+IGl0IHdpbGwgaGFuZyBjYXVzaW5nIGEgZHJpdmVyIHRpbWVvdXQgYW5kDQo+PiBlcnJvci4NCj4g
+DQo+IEhpIFRlamFzIEpvZ2xla2FyDQo+IA0KPiBJIGFtIGRlYnVnZ2luZyAgYSBzaW1pbGFyIGlz
+c3VlIG9uIFN5bmlwc3lzIFhIQywgaXQncyBub3QgdGhlIHNhbWUgY2FzZQ0KPiBidXQgSSBhbSB3
+b25kZXJpbmcgaWYgaXQgYWxzbyBsaW5rZWQgdG8gdGhpcyBIVyBsaW1pdGF0aW9uLg0KPiANCj4g
+TXkgU3lub3BzeXMgWEhDIGJhc2VkIGhvc3QgZW5hYmxlIFVBUywgd2hlbiBlbnVtZXJhdGVzIGEg
+VUFTDQo+IEhERCwgb25lIEJVTEstSU4gRVAgd2l0aCBzdHJlYW0gZW5hYmxlZCB3aWxsIG5vdCBn
+ZW5lcmF0ZSBldmVudCBmb3INCj4gdHJiKHdpdGggc3RyZWFtIElEIDEpIGFmdGVyIGEgMTYvNDA5
+NiBieXRlcyh3aXRoIHN0cmVhbSBJRCAyKSBmaW5pc2hlZCBpbg0KPiBwcmV2aW91cyB0cmIuDQo+
+IA0KPiBJZiBJIGNoYW5nZSB0aGUgbGFzdCBPSyB1cmIvdHJiJ3MgYnVmZmVyIGxlbmd0aCBmcm9t
+IDQwOTYgdG8gNTEyLCB0aGUgaXNzdWUNCj4gd2lsbCBnb25lLg0KPiANCj4gZm9sbG93aW5nIGlz
+IHRoZSBzZXF1ZW5jZSBvZiB0aGUgcXVlc3Rpb24gRVAtSU46DQo+IA0KPiA8aWRsZT4tMCAgICAg
+WzAwMF0gZC5oMSAgIDE1NC45NjE3MTA6IHhoY2lfdXJiX2dpdmViYWNrOiBlcDNpbi1idWxrOg0K
+PiB1cmIgZmZmZjAwMDE3NzVmNmYwMCBwaXBlIDMyMjEzMjQ2NzIgc2xvdCAxIGxlbmd0aCAzNi8z
+NiBzZ3MgMS8xDQo+IHN0cmVhbSAxIGZsYWdzIDAwMDQwMjAwDQo+IDxpZGxlPi0wICAgICBbMDAw
+XSBkLmgxICAgMTU0Ljk2MjAyMzogeGhjaV91cmJfZ2l2ZWJhY2s6IGVwM2luLWJ1bGs6DQo+IHVy
+YiBmZmZmMDAwMTc3ZDAwNDAwIHBpcGUgMzIyMTMyNDY3MiBzbG90IDEgbGVuZ3RoIDk2Lzk2IHNn
+cyAxLzENCj4gc3RyZWFtIDEgZmxhZ3MgMDAwNDAyMDANCj4gPGlkbGU+LTAgICAgIFswMDBdIGQu
+aDEgICAxNTQuOTcwMzk1OiB4aGNpX3VyYl9naXZlYmFjazogZXAzaW4tYnVsazoNCj4gdXJiIGZm
+ZmYwMDAxNzdkMDA0MDAgcGlwZSAzMjIxMzI0NjcyIHNsb3QgMSBsZW5ndGggMTEvMjU1IHNncyAx
+LzENCj4gc3RyZWFtIDEgZmxhZ3MgMDAwNDAyMDANCj4gPGlkbGU+LTAgICAgIFswMDBdIGQuaDEg
+ICAxNTQuOTcwNTYyOiB4aGNpX3VyYl9naXZlYmFjazogZXAzaW4tYnVsazoNCj4gdXJiIGZmZmYw
+MDAxNzdkMDA0MDAgcGlwZSAzMjIxMzI0NjcyIHNsb3QgMSBsZW5ndGggMjAvMjU1IHNncyAxLzEN
+Cj4gc3RyZWFtIDEgZmxhZ3MgMDAwNDAyMDANCj4gPGlkbGU+LTAgICAgIFswMDBdIGQuaDEgICAx
+NTQuOTcwNzg2OiB4aGNpX3VyYl9naXZlYmFjazogZXAzaW4tYnVsazoNCj4gdXJiIGZmZmYwMDAx
+NzdkMDA0MDAgcGlwZSAzMjIxMzI0NjcyIHNsb3QgMSBsZW5ndGggNjAvMjU1IHNncyAxLzENCj4g
+c3RyZWFtIDEgZmxhZ3MgMDAwNDAyMDANCj4gPGlkbGU+LTAgICAgIFswMDBdIGQuaDEgICAxNTUu
+ODUxNjAwOiB4aGNpX3VyYl9naXZlYmFjazogZXAzaW4tYnVsazoNCj4gdXJiIGZmZmYwMDAxNzdk
+MDAyMDAgcGlwZSAzMjIxMzI0NjcyIHNsb3QgMSBsZW5ndGggMTYvNDA5NiBzZ3MgMS8xDQo+IHN0
+cmVhbSAyIGZsYWdzIDAwMDQwMjAwDQo+IA0KPiAvKiB0aGVuIHRoZSBuZXh0IGVwMy1pbiB0cmIg
+d2lsbCBub3QgZ2VuZXJhdGUgZXZlbnQgYW5kIHN0b3BwZWQsIHNvDQo+IGRyaXZlciB0aW1lb3V0
+IGluIHRoZSBlbmQgKi8NCj4ga3dvcmtlci91ODoyLTM0OSAgIFswMDNdIGQuLjMgICAxNTUuODUx
+OTg3OiB4aGNpX3VyYl9lbnF1ZXVlOg0KPiBlcDNpbi1idWxrOiB1cmIgZmZmZjAwMDE3MDQ5MjQw
+MCBwaXBlIDMyMjEzMjQ2NzIgc2xvdCAxIGxlbmd0aCAwLzMyDQo+IHNncyAxLzEgc3RyZWFtIDEg
+ZmxhZ3MgMDAwNDAyMDANCj4ga3dvcmtlci91ODoyLTM0OSAgIFswMDNdIGQuLjQgICAxNTUuODUx
+OTg5OiB4aGNpX3F1ZXVlX3RyYjogU1RSRUFNOg0KPiBCdWZmZXIgMDAwMDAwMDBjMTljZjAwMCBs
+ZW5ndGggMzIgVEQgc2l6ZSAwIGludHIgMCB0eXBlICdOb3JtYWwnIGZsYWdzDQo+IGI6aTpJOmM6
+czpJOmU6Yw0KPiBrd29ya2VyL3U4OjItMzQ5ICAgWzAwM10gZC4uNCAgIDE1NS44NTE5OTE6IHho
+Y2lfaW5jX2VucTogU1RSRUFNDQo+IGZmZmYwMDAxNzdmODZmODA6IGVucSAweDAwMDAwMDAwYmUw
+ZWIwNjAoMHgwMDAwMDAwMGJlMGViMDAwKSBkZXENCj4gMHgwMDAwMDAwMGJlMGViMDUwKDB4MDAw
+MDAwMDBiZTBlYjAwMCkgc2VncyAyIHN0cmVhbSAxIGZyZWVfdHJicyA1MDgNCj4gYm91bmNlIDEw
+MjQgY3ljbGUgMQ0KPiANCj4gRG8geW91IGhhdmUgYW55IGlkZWFzPw0KPiANCkZyb20gaW5pdGlh
+bCBvYnNlcnZhdGlvbiBvZiB5b3VyIGlzc3VlIGl0IHNlZW1zIHRvIGJlIHVucmVsYXRlZCB3aXRo
+IHRoZQ0KY2hhbmdlcyBpbiBteSBwYXRjaC4gQnV0IGNvdWxkIHlvdSBwbGVhc2UgcHJvdmlkZSwg
+VVNCIGFuYWx5emVyIHRyYWNlIGxvZ3MNCmZvciB0aGUgd29ya2luZyBhbmQgbm9uLXdvcmtpbmcg
+Y2FzZT8gQWxzbyBpdCB3b3VsZCBiZSBoZWxwZnVsIGlmIHlvdSBjYW4NCnByb3ZpZGUgZGV2aWNl
+IGRldGFpbHMgd2hpY2ggeW91IGFyZSB0ZXN0aW5nLg0KDQo+IHRoYW5rcw0KPiBMaSBKdW4NCg0K
+VGhhbmtzICYgUmVnYXJkcywNCiBUZWphcyBKb2dsZWthcg0KDQo=
