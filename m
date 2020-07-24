@@ -2,223 +2,507 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96AA122C1BE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 11:08:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 210AC22C1E1
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 11:16:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726863AbgGXJIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jul 2020 05:08:38 -0400
-Received: from mail-vi1eur05on2043.outbound.protection.outlook.com ([40.107.21.43]:35680
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728037AbgGXJIh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Jul 2020 05:08:37 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gPsRHAKVOgkiuzcYhmh7lvgY5wQ5Yqj0dEvu7S7khz1Lt9gcghAaEn7ijIAfUjFx+0eCYyY04JnrNHBx6MZv3oAWJyLe1Rot1JDA3HL/oJD0bL67bcdZkLkwjM45bfac8x9MqAiEnSYmPfcjeyP5u5ULToz/RxPPAB4qC2x37T5aONnwpwvxbG6zNnh58Z7lLTETryyDd9MMxphwnm1ZYiJrLNIABtBRZwbgtdkeHO/2kAhq8RJ0etlCJYrN0wDXvkgBluh4dQ3/eIcmCwxx6ZYfW5Oh5/h7LMcUDzGoHIyyu1EXdJ6gqjOk74rHlZvjxSZmJ+CMsGLJvdQZFteksw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m9daiHRo1mxt5cacqv8wV10od6W29rxvawkioiNZ+kE=;
- b=BpCFOGoWdoAMikrro5kiXz+yLq4J7SjL3g6DsSvIu+xa0QpgVeaMiSFUr8Qe8NkIix+czh3w9cPoevF+95lSFLAw6o46V/JxWnOazzS2zTvWCzuZWbarzaraY2U1wuSq6k0/1N3+GdKePzyFz8fsjCY4gz/HH2MfiXAP81j9QuQ7stmL1jW8rZNmhzLweJnyCZmrVveWiWJC1lun0KiZCVwDo3R2LoEx+cJk7bGNNKRZWPxkm+n7aq/qrrmooBnbiOFVmkBtwzT4dNUJzlUXL7TZuqji1Psg32VlRNXvGTcVmG3bI+Rxht0nNsoMY8FdMTTm7bBtr4SoIq6kRgWj8A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m9daiHRo1mxt5cacqv8wV10od6W29rxvawkioiNZ+kE=;
- b=Z6dx0SmBNre4H3JGu/5HeNApa/MGez+F0oSVdhtsD76FEmF8G5CnMYbo1fa4BCO4aT8zaTdO9V/XXl1l6q2YwRuap2qnXyzGvYL3fUcmcBe+64gWklmV9hbdeoZKde0muME0451WlSPuJw+GAwR8I/Uei5D7D+goWyZPJ8AOwSs=
-Authentication-Results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none header.from=oss.nxp.com;
-Received: from VI1PR0402MB3902.eurprd04.prod.outlook.com
- (2603:10a6:803:22::27) by VI1PR04MB6960.eurprd04.prod.outlook.com
- (2603:10a6:803:12d::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3195.23; Fri, 24 Jul
- 2020 09:08:31 +0000
-Received: from VI1PR0402MB3902.eurprd04.prod.outlook.com
- ([fe80::4c0:79dd:b734:9ea7]) by VI1PR0402MB3902.eurprd04.prod.outlook.com
- ([fe80::4c0:79dd:b734:9ea7%5]) with mapi id 15.20.3195.028; Fri, 24 Jul 2020
- 09:08:31 +0000
-From:   Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     lukas@mntmn.com, agx@sigxcpu.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, laurentiu.palcu@oss.nxp.com,
-        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v8 5/5] dt-bindings: display: imx: add bindings for DCSS
-Date:   Fri, 24 Jul 2020 12:07:34 +0300
-Message-Id: <20200724090736.12228-6-laurentiu.palcu@oss.nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200724090736.12228-1-laurentiu.palcu@oss.nxp.com>
-References: <20200724090736.12228-1-laurentiu.palcu@oss.nxp.com>
-Content-Type: text/plain; charset="us-ascii"
-X-ClientProxiedBy: AM0PR10CA0128.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:208:e6::45) To VI1PR0402MB3902.eurprd04.prod.outlook.com
- (2603:10a6:803:22::27)
+        id S1728027AbgGXJQy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jul 2020 05:16:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54644 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726979AbgGXJQy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jul 2020 05:16:54 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB08DC0619D3
+        for <devicetree@vger.kernel.org>; Fri, 24 Jul 2020 02:16:53 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1jytox-0003WI-Es; Fri, 24 Jul 2020 11:16:51 +0200
+Subject: Re: [PATCH v3 3/3] ARM: dts: stm32: add initial support for
+ stm32mp157-odyssey board
+To:     =?UTF-8?Q?Marcin_S=c5=82oniewski?= <marcin.sloniewski@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-kernel@vger.kernel.org
+References: <20200721185317.208722-1-marcin.sloniewski@gmail.com>
+ <20200721185317.208722-3-marcin.sloniewski@gmail.com>
+ <1e7dcbbe-638a-9579-e97f-17f986e664f5@pengutronix.de>
+ <CALa5TyxAYpWnekx+a2yz9gk1D0X1VM0OAqW=YKPdzKqqwNxiNg@mail.gmail.com>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Message-ID: <d1ba2e21-d410-5973-b082-e1ef43ca67bd@pengutronix.de>
+Date:   Fri, 24 Jul 2020 11:16:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from fsr-ub1864-141.ea.freescale.net (83.217.231.2) by AM0PR10CA0128.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:e6::45) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.23 via Frontend Transport; Fri, 24 Jul 2020 09:08:29 +0000
-X-Mailer: git-send-email 2.17.1
-X-Originating-IP: [83.217.231.2]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 5c2ca092-6efe-460e-1631-08d82fb122ab
-X-MS-TrafficTypeDiagnostic: VI1PR04MB6960:
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR04MB6960B8CDFBD007751A16D8C3BE770@VI1PR04MB6960.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: R97y8X2nI5d4/lsCbk1AH1hjP1hMzjZ8czKvXMCYCI5PC12Ln14OksOhGRzXMa95nuNnAFgb0IpRSHxwEtOufddq2XJR6rFCCACGGj/v+IIotYrpg5F8F42SBBsjmcd8a9fJsjne5KxTz93zWzbQAgkxkx68hXPk6n3Fx+hnOUTxKu+W/cuJBYaJ996ccRl2v28Qh7q+VNAHDg4hDNQmD238Yy/ZQDcfv3hp0KLHpfBMTub3vx2dWD6j9qgIilfqlEtF1iWQgXte7d2gXCCyrUapcnG4J0Qd64g+Fa6dF8N84LEBJY/MC1T0AmMXnZpK5Cvn7BW1MQAytaWf+qbLTd0WfhhO0auFUbkr/H4OzXYZd9TeaPyfmTYpYygutFUTkIPBblehLgQUKAtnaL5/Qf3xOXMvvoxfT0i8qyZi/5nXdgFIbSITVJV0cYJImI0k
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3902.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(366004)(346002)(396003)(136003)(39860400002)(376002)(26005)(5660300002)(186003)(86362001)(6506007)(83380400001)(478600001)(1076003)(16526019)(52116002)(2616005)(66556008)(66946007)(66476007)(6512007)(6666004)(956004)(8676002)(2906002)(6486002)(4326008)(7416002)(44832011)(8936002)(110136005)(316002)(921003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: 5wd+JxmKF9bgbwFPb996qaLNvnQKLtphCJqM22sNaCL2420djbeNG9wYt8JMGawxuqL/YqoaKJLJ+Jhhl7aQvSViwU/L7ZFD8UKeh9JiRFJwPog4mYEzZ04lxrveI4wYhvGA1xRhDOe9a2yGLFqxYsOlEBOf7gLNF7PD3uZG9A9cPjFD595Z8EG97rmX+sDLNgfOBZXmiKR8JKOq1h3/TbuSmukAxU94uGawkdDC48j9y+3G+lvQQ29i7As5D4iXHwhzuWmH8rEuPZrfVULjaFZ/DnfQPeCXxd/E0SJKmpQUJ+PjNTiRWCwHLgHW9c0JT5NBnhLIWZOqbXV7PAEqR2mgKJUxKArvNcTzycmk4mlfchfDPYyEvQHP2IAJRsJ3gETpDUQdRJ9gELOB1xKROLdVXWynnErUhFq7YpB12YH1uS1XThH0Uy6ELN1NdMnw8ZAiskDAO5AatWBBZ34xWR08kTraK1jyzBXkgJzBanY=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c2ca092-6efe-460e-1631-08d82fb122ab
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3902.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2020 09:08:31.2088
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QYMZ3iJqSt5vSTkYWtDWa4HpoL39ij4eB4DQrad0HabwwqRoA3n5QXN3OJC2Jv57hBQZKxQD4PO/QL2kVkajQA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6960
+In-Reply-To: <CALa5TyxAYpWnekx+a2yz9gk1D0X1VM0OAqW=YKPdzKqqwNxiNg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Laurentiu Palcu <laurentiu.palcu@nxp.com>
+Hi,
 
-Add bindings for iMX8MQ Display Controller Subsystem.
+On 7/23/20 9:43 PM, Marcin Słoniewski wrote:
+> Hello Ahmad,
+> 
+> First of all thank you very much for your feedback, it was very helpful!
+> 
+> śr., 22 lip 2020 o 08:40 Ahmad Fatoum <a.fatoum@pengutronix.de> napisał(a):
+>>
+>> On 7/21/20 8:53 PM, Marcin Sloniewski wrote:
+>>> Add support for Seeed Studio's stm32mp157c odyssey board.
+>>> Board consists of SoM with stm32mp157c with 4GB eMMC and 512 MB DDR3 RAM
+>>> and carrier board with USB and ETH interfaces, SD card connector,
+>>> wifi and BT chip AP6236.
+>>>
+>>> In this patch only basic kernel boot is supported and interfacing
+>>> SD card and on-board eMMC.
+>>>
+>>> Signed-off-by: Marcin Sloniewski <marcin.sloniewski@gmail.com>
+>>> ---
+>>>
+>>> Changes in v3:
+>>> - fix compilation on tip of stm32-next
+>>>   due to change in names for pinctrl
+>>> - fix deprecated binding for led node
+>>> - fix redundant "okay" statuses
+>>> - add phy part number for eth in comment
+>>
+>> You didn't address all my feedback on v2.
+> I posted today v4 of the patch-set with further changes.
+> Regarding watchdog from pmic: when using this watchdog
+> my board resets even though I feed the watchdog. I'm going to
+> use the internal watchdog for now and keep in mind that this
+> could be improved in future.
 
-Signed-off-by: Laurentiu Palcu <laurentiu.palcu@nxp.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/display/imx/nxp,imx8mq-dcss.yaml | 104 ++++++++++++++++++
- 1 file changed, 104 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.yaml
+Who turns on the watchdog? If it's in the bootloader,
+you can't rely on CONFIG_WATCHDOG_HANDLE_BOOT_ENABLED feeding it till
+userspace takes over because the stpmic1_wdt doesn't populate
+WDOG_HW_RUNNING in status.
 
-diff --git a/Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.yaml b/Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.yaml
-new file mode 100644
-index 000000000000..68e4635e4874
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.yaml
-@@ -0,0 +1,104 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2019 NXP
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/display/imx/nxp,imx8mq-dcss.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: iMX8MQ Display Controller Subsystem (DCSS)
-+
-+maintainers:
-+  - Laurentiu Palcu <laurentiu.palcu@nxp.com>
-+
-+description:
-+
-+  The DCSS (display controller sub system) is used to source up to three
-+  display buffers, compose them, and drive a display using HDMI 2.0a(with HDCP
-+  2.2) or MIPI-DSI. The DCSS is intended to support up to 4kp60 displays. HDR10
-+  image processing capabilities are included to provide a solution capable of
-+  driving next generation high dynamic range displays.
-+
-+properties:
-+  compatible:
-+    const: nxp,imx8mq-dcss
-+
-+  reg:
-+    items:
-+      - description: DCSS base address and size, up to IRQ steer start
-+      - description: DCSS BLKCTL base address and size
-+
-+  interrupts:
-+    items:
-+      - description: Context loader completion and error interrupt
-+      - description: DTG interrupt used to signal context loader trigger time
-+      - description: DTG interrupt for Vblank
-+
-+  interrupt-names:
-+    items:
-+      - const: ctxld
-+      - const: ctxld_kick
-+      - const: vblank
-+
-+  clocks:
-+    items:
-+      - description: Display APB clock for all peripheral PIO access interfaces
-+      - description: Display AXI clock needed by DPR, Scaler, RTRAM_CTRL
-+      - description: RTRAM clock
-+      - description: Pixel clock, can be driven either by HDMI phy clock or MIPI
-+      - description: DTRC clock, needed by video decompressor
-+
-+  clock-names:
-+    items:
-+      - const: apb
-+      - const: axi
-+      - const: rtrm
-+      - const: pix
-+      - const: dtrc
-+
-+  assigned-clocks:
-+    items:
-+      - description: Phandle and clock specifier of IMX8MQ_CLK_DISP_AXI_ROOT
-+      - description: Phandle and clock specifier of IMX8MQ_CLK_DISP_RTRM
-+      - description: Phandle and clock specifier of either IMX8MQ_VIDEO2_PLL1_REF_SEL or
-+                     IMX8MQ_VIDEO_PLL1_REF_SEL
-+
-+  assigned-clock-parents:
-+    items:
-+      - description: Phandle and clock specifier of IMX8MQ_SYS1_PLL_800M
-+      - description: Phandle and clock specifier of IMX8MQ_SYS1_PLL_800M
-+      - description: Phandle and clock specifier of IMX8MQ_CLK_27M
-+
-+  assigned-clock-rates:
-+    items:
-+      - description: Must be 800 MHz
-+      - description: Must be 400 MHz
-+
-+  port:
-+    type: object
-+    description:
-+      A port node pointing to the input port of a HDMI/DP or MIPI display bridge.
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    dcss: display-controller@32e00000 {
-+        compatible = "nxp,imx8mq-dcss";
-+        reg = <0x32e00000 0x2d000>, <0x32e2f000 0x1000>;
-+        interrupts = <6>, <8>, <9>;
-+        interrupt-names = "ctxld", "ctxld_kick", "vblank";
-+        interrupt-parent = <&irqsteer>;
-+        clocks = <&clk 248>, <&clk 247>, <&clk 249>,
-+                 <&clk 254>,<&clk 122>;
-+        clock-names = "apb", "axi", "rtrm", "pix", "dtrc";
-+        assigned-clocks = <&clk 107>, <&clk 109>, <&clk 266>;
-+        assigned-clock-parents = <&clk 78>, <&clk 78>, <&clk 3>;
-+        assigned-clock-rates = <800000000>,
-+                               <400000000>;
-+        port {
-+            dcss_out: endpoint {
-+                remote-endpoint = <&hdmi_in>;
-+            };
-+        };
-+    };
-+
+> I changed phy address to 7, indeed you were right about it.
+> But unfortunately even though I set the address correctly phy
+> is still missing according to dmesg (I checked datasheet and schematics
+> the address is surely correct now).
+> That's something I would like to postpone a little bit as well for now.
+
+You sent out v4 with a phy address of 7 though.
+Did you get it working meanwhile?
+
+> 
+>>
+>>> Changes in v2:
+>>> - add new odyssey dts to Makefile
+>>>
+>>>  arch/arm/boot/dts/Makefile                    |   3 +-
+>>>  .../arm/boot/dts/stm32mp157c-odyssey-som.dtsi | 276 ++++++++++++++++++
+>>>  arch/arm/boot/dts/stm32mp157c-odyssey.dts     |  72 +++++
+>>>  3 files changed, 350 insertions(+), 1 deletion(-)
+>>>  create mode 100644 arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
+>>>  create mode 100644 arch/arm/boot/dts/stm32mp157c-odyssey.dts
+>>>
+>>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+>>> index e6a1cac0bfc7..a3ea2301c82c 100644
+>>> --- a/arch/arm/boot/dts/Makefile
+>>> +++ b/arch/arm/boot/dts/Makefile
+>>> @@ -1047,7 +1047,8 @@ dtb-$(CONFIG_ARCH_STM32) += \
+>>>       stm32mp157c-dk2.dtb \
+>>>       stm32mp157c-ed1.dtb \
+>>>       stm32mp157c-ev1.dtb \
+>>> -     stm32mp157c-lxa-mc1.dtb
+>>> +     stm32mp157c-lxa-mc1.dtb \
+>>> +     stm32mp157c-odyssey.dtb
+>>>  dtb-$(CONFIG_MACH_SUN4I) += \
+>>>       sun4i-a10-a1000.dtb \
+>>>       sun4i-a10-ba10-tvbox.dtb \
+>>> diff --git a/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi b/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
+>>> new file mode 100644
+>>> index 000000000000..935632caddd6
+>>> --- /dev/null
+>>> +++ b/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
+>>> @@ -0,0 +1,276 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+>>> +/*
+>>> + * Copyright (C) 2020 Marcin Sloniewski <marcin.sloniewski@gmail.com>.
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include "stm32mp157.dtsi"
+>>> +#include "stm32mp15xc.dtsi"
+>>> +#include "stm32mp15-pinctrl.dtsi"
+>>> +#include "stm32mp15xxac-pinctrl.dtsi"
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +#include <dt-bindings/leds/common.h>
+>>> +#include <dt-bindings/mfd/st,stpmic1.h>
+>>> +
+>>> +/ {
+>>> +     model = "Seeed Studio Odyssey-STM32MP157C SOM";
+>>> +     compatible = "seeed,stm32mp157c-odyssey-som", "st,stm32mp157";
+>>> +
+>>> +     memory@c0000000 {
+>>> +             device_type = "memory";
+>>> +             reg = <0xc0000000 0x20000000>;
+>>> +     };
+>>> +
+>>> +     reserved-memory {
+>>> +             #address-cells = <1>;
+>>> +             #size-cells = <1>;
+>>> +             ranges;
+>>> +
+>>> +             mcuram2: mcuram2@10000000 {
+>>> +                     compatible = "shared-dma-pool";
+>>> +                     reg = <0x10000000 0x40000>;
+>>> +                     no-map;
+>>> +             };
+>>> +
+>>> +             vdev0vring0: vdev0vring0@10040000 {
+>>> +                     compatible = "shared-dma-pool";
+>>> +                     reg = <0x10040000 0x1000>;
+>>> +                     no-map;
+>>> +             };
+>>> +
+>>> +             vdev0vring1: vdev0vring1@10041000 {
+>>> +                     compatible = "shared-dma-pool";
+>>> +                     reg = <0x10041000 0x1000>;
+>>> +                     no-map;
+>>> +             };
+>>> +
+>>> +             vdev0buffer: vdev0buffer@10042000 {
+>>> +                     compatible = "shared-dma-pool";
+>>> +                     reg = <0x10042000 0x4000>;
+>>> +                     no-map;
+>>> +             };
+>>> +
+>>> +             mcuram: mcuram@30000000 {
+>>> +                     compatible = "shared-dma-pool";
+>>> +                     reg = <0x30000000 0x40000>;
+>>> +                     no-map;
+>>> +             };
+>>> +
+>>> +             retram: retram@38000000 {
+>>> +                     compatible = "shared-dma-pool";
+>>> +                     reg = <0x38000000 0x10000>;
+>>> +                     no-map;
+>>> +             };
+>>> +
+>>> +             gpu_reserved: gpu@d4000000 {
+>>> +                     reg = <0xd4000000 0x4000000>;
+>>> +                     no-map;
+>>> +             };
+>>> +     };
+>>> +
+>>> +     led {
+>>> +             compatible = "gpio-leds";
+>>> +             led-blue {
+>>> +                     color = <LED_COLOR_ID_BLUE>;
+>>> +                     function = LED_FUNCTION_HEARTBEAT;
+>>> +                     gpios = <&gpiog 3 GPIO_ACTIVE_HIGH>;
+>>> +                     linux,default-trigger = "heartbeat";
+>>> +             };
+>>> +     };
+>>> +};
+>>> +
+>>> +&gpu {
+>>> +     contiguous-area = <&gpu_reserved>;
+>>> +     status = "okay";
+>>> +};
+>>> +
+>>> +&i2c2 {
+>>> +     pinctrl-names = "default";
+>>> +     pinctrl-0 = <&i2c2_pins_a>;
+>>> +     i2c-scl-rising-time-ns = <185>;
+>>> +     i2c-scl-falling-time-ns = <20>;
+>>> +     status = "okay";
+>>> +     /* spare dmas for other usage */
+>>> +     /delete-property/dmas;
+>>> +     /delete-property/dma-names;
+>>> +
+>>> +     pmic: stpmic@33 {
+>>> +             compatible = "st,stpmic1";
+>>> +             reg = <0x33>;
+>>> +             interrupts-extended = <&gpioa 0 IRQ_TYPE_EDGE_FALLING>;
+>>> +             interrupt-controller;
+>>> +             #interrupt-cells = <2>;
+>>> +
+>>> +             regulators {
+>>> +                     compatible = "st,stpmic1-regulators";
+>>> +                     ldo1-supply = <&v3v3>;
+>>> +                     ldo3-supply = <&vdd_ddr>;
+>>> +                     ldo6-supply = <&v3v3>;
+>>> +                     pwr_sw1-supply = <&bst_out>;
+>>> +                     pwr_sw2-supply = <&bst_out>;
+>>> +
+>>> +                     vddcore: buck1 {
+>>> +                             regulator-name = "vddcore";
+>>> +                             regulator-min-microvolt = <800000>;
+>>> +                             regulator-max-microvolt = <1350000>;
+>>> +                             regulator-always-on;
+>>> +                             regulator-initial-mode = <0>;
+>>> +                             regulator-over-current-protection;
+>>> +                     };
+>>> +
+>>> +                     vdd_ddr: buck2 {
+>>> +                             regulator-name = "vdd_ddr";
+>>> +                             regulator-min-microvolt = <1350000>;
+>>> +                             regulator-max-microvolt = <1350000>;
+>>> +                             regulator-always-on;
+>>> +                             regulator-initial-mode = <0>;
+>>> +                             regulator-over-current-protection;
+>>> +                     };
+>>> +
+>>> +                     vdd: buck3 {
+>>> +                             regulator-name = "vdd";
+>>> +                             regulator-min-microvolt = <3300000>;
+>>> +                             regulator-max-microvolt = <3300000>;
+>>> +                             regulator-always-on;
+>>> +                             st,mask-reset;
+>>> +                             regulator-initial-mode = <0>;
+>>> +                             regulator-over-current-protection;
+>>> +                     };
+>>> +
+>>> +                     v3v3: buck4 {
+>>> +                             regulator-name = "v3v3";
+>>> +                             regulator-min-microvolt = <3300000>;
+>>> +                             regulator-max-microvolt = <3300000>;
+>>> +                             regulator-always-on;
+>>> +                             regulator-over-current-protection;
+>>> +                             regulator-initial-mode = <0>;
+>>> +                     };
+>>> +
+>>> +                     v1v8_audio: ldo1 {
+>>> +                             regulator-name = "v1v8_audio";
+>>> +                             regulator-min-microvolt = <1800000>;
+>>> +                             regulator-max-microvolt = <1800000>;
+>>> +                             regulator-always-on;
+>>> +                             interrupts = <IT_CURLIM_LDO1 0>;
+>>> +                     };
+>>> +
+>>> +                     v3v3_hdmi: ldo2 {
+>>> +                             regulator-name = "v3v3_hdmi";
+>>> +                             regulator-min-microvolt = <3300000>;
+>>> +                             regulator-max-microvolt = <3300000>;
+>>> +                             regulator-always-on;
+>>> +                             interrupts = <IT_CURLIM_LDO2 0>;
+>>> +                     };
+>>> +
+>>> +                     vtt_ddr: ldo3 {
+>>> +                             regulator-name = "vtt_ddr";
+>>> +                             regulator-min-microvolt = <500000>;
+>>> +                             regulator-max-microvolt = <750000>;
+>>> +                             regulator-always-on;
+>>> +                             regulator-over-current-protection;
+>>> +                     };
+>>> +
+>>> +                     vdd_usb: ldo4 {
+>>> +                             regulator-name = "vdd_usb";
+>>> +                             regulator-min-microvolt = <3300000>;
+>>> +                             regulator-max-microvolt = <3300000>;
+>>> +                             interrupts = <IT_CURLIM_LDO4 0>;
+>>> +                     };
+>>> +
+>>> +                     vdda: ldo5 {
+>>> +                             regulator-name = "vdda";
+>>> +                             regulator-min-microvolt = <2900000>;
+>>> +                             regulator-max-microvolt = <2900000>;
+>>> +                             interrupts = <IT_CURLIM_LDO5 0>;
+>>> +                             regulator-boot-on;
+>>> +                     };
+>>> +
+>>> +                     v1v2_hdmi: ldo6 {
+>>> +                             regulator-name = "v1v2_hdmi";
+>>> +                             regulator-min-microvolt = <1200000>;
+>>> +                             regulator-max-microvolt = <1200000>;
+>>> +                             regulator-always-on;
+>>> +                             interrupts = <IT_CURLIM_LDO6 0>;
+>>> +                     };
+>>> +
+>>> +                     vref_ddr: vref_ddr {
+>>> +                             regulator-name = "vref_ddr";
+>>> +                             regulator-always-on;
+>>> +                             regulator-over-current-protection;
+>>> +                     };
+>>> +
+>>> +                      bst_out: boost {
+>>> +                             regulator-name = "bst_out";
+>>> +                             interrupts = <IT_OCP_BOOST 0>;
+>>> +                      };
+>>> +
+>>> +                     vbus_otg: pwr_sw1 {
+>>> +                             regulator-name = "vbus_otg";
+>>> +                             interrupts = <IT_OCP_OTG 0>;
+>>> +                      };
+>>> +
+>>> +                      vbus_sw: pwr_sw2 {
+>>> +                             regulator-name = "vbus_sw";
+>>> +                             interrupts = <IT_OCP_SWOUT 0>;
+>>> +                             regulator-active-discharge;
+>>> +                      };
+>>> +             };
+>>> +
+>>> +             onkey {
+>>> +                     compatible = "st,stpmic1-onkey";
+>>> +                     interrupts = <IT_PONKEY_F 0>, <IT_PONKEY_R 0>;
+>>> +                     interrupt-names = "onkey-falling", "onkey-rising";
+>>> +                     power-off-time-sec = <10>;
+>>> +             };
+>>> +
+>>> +             watchdog {
+>>> +                     compatible = "st,stpmic1-wdt";
+>>> +                     status = "disabled";
+>>> +             };
+>>> +     };
+>>> +};
+>>> +
+>>> +&ipcc {
+>>> +     status = "okay";
+>>> +};
+>>> +
+>>> +&iwdg2 {
+>>> +     timeout-sec = <32>;
+>>> +     status = "okay";
+>>> +};
+>>> +
+>>> +&m4_rproc {
+>>> +     memory-region = <&retram>, <&mcuram>, <&mcuram2>, <&vdev0vring0>,
+>>> +                     <&vdev0vring1>, <&vdev0buffer>;
+>>> +     mboxes = <&ipcc 0>, <&ipcc 1>, <&ipcc 2>;
+>>> +     mbox-names = "vq0", "vq1", "shutdown";
+>>> +     interrupt-parent = <&exti>;
+>>> +     interrupts = <68 1>;
+>>> +     status = "okay";
+>>> +};
+>>> +
+>>> +&rng1 {
+>>> +     status = "okay";
+>>> +};
+>>> +
+>>> +&rtc {
+>>> +     status = "okay";
+>>> +};
+>>> +
+>>> +&sdmmc2 {
+>>> +     pinctrl-names = "default", "opendrain", "sleep";
+>>> +     pinctrl-0 = <&sdmmc2_b4_pins_a &sdmmc2_d47_pins_a>;
+>>> +     pinctrl-1 = <&sdmmc2_b4_od_pins_a &sdmmc2_d47_pins_a>;
+>>> +     pinctrl-2 = <&sdmmc2_b4_sleep_pins_a &sdmmc2_d47_sleep_pins_a>;
+>>> +     non-removable;
+>>> +     no-sd;
+>>> +     no-sdio;
+>>> +     st,neg-edge;
+>>> +     bus-width = <4>;
+>>> +     vmmc-supply = <&v3v3>;
+>>> +     vqmmc-supply = <&v3v3>;
+>>> +     mmc-ddr-3_3v;
+>>> +     status = "okay";
+>>> +};
+>>> +
+>>> diff --git a/arch/arm/boot/dts/stm32mp157c-odyssey.dts b/arch/arm/boot/dts/stm32mp157c-odyssey.dts
+>>> new file mode 100644
+>>> index 000000000000..09edf6afa155
+>>> --- /dev/null
+>>> +++ b/arch/arm/boot/dts/stm32mp157c-odyssey.dts
+>>> @@ -0,0 +1,72 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+>>> +/*
+>>> + * Copyright (C) 2020 Marcin Sloniewski <marcin.sloniewski@gmail.com>.
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include "stm32mp157c-odyssey-som.dtsi"
+>>> +
+>>> +/ {
+>>> +     model = "Seeed Studio Odyssey-STM32MP157C Board";
+>>> +     compatible = "seeed,stm32mp157c-odyssey", "st,stm32mp157";
+>>> +
+>>> +     aliases {
+>>> +             ethernet0 = &ethernet0;
+>>> +             serial0 = &uart4;
+>>> +     };
+>>> +
+>>> +     chosen {
+>>> +             stdout-path = "serial0:115200n8";
+>>> +     };
+>>> +};
+>>> +
+>>> +&ethernet0 {
+>>> +     status = "okay";
+>>> +     pinctrl-0 = <&ethernet0_rgmii_pins_a>;
+>>> +     pinctrl-1 = <&ethernet0_rgmii_sleep_pins_a>;
+>>> +     pinctrl-names = "default", "sleep";
+>>> +     phy-mode = "rgmii-id";
+>>> +     max-speed = <1000>;
+>>> +     phy-handle = <&phy0>;
+>>> +
+>>> +     mdio0 {
+>>> +             #address-cells = <1>;
+>>> +             #size-cells = <0>;
+>>> +             compatible = "snps,dwmac-mdio";
+>>> +             phy0: ethernet-phy@0 { /* KSZ9031RN */
+>>> +                     reg = <0>;
+>>> +             };
+>>> +     };
+>>> +};
+>>> +
+>>> +&i2c1 {
+>>> +     pinctrl-names = "default", "sleep";
+>>> +     pinctrl-0 = <&i2c1_pins_a>;
+>>> +     pinctrl-1 = <&i2c1_sleep_pins_a>;
+>>> +     i2c-scl-rising-time-ns = <100>;
+>>> +     i2c-scl-falling-time-ns = <7>;
+>>> +     status = "okay";
+>>> +     /delete-property/dmas;
+>>> +     /delete-property/dma-names;
+>>> +};
+>>> +
+>>> +&sdmmc1 {
+>>> +     pinctrl-names = "default", "opendrain", "sleep";
+>>> +     pinctrl-0 = <&sdmmc1_b4_pins_a>;
+>>> +     pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
+>>> +     pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
+>>> +     cd-gpios = <&gpiob 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+>>> +     disable-wp;
+>>> +     st,neg-edge;
+>>> +     bus-width = <4>;
+>>> +     vmmc-supply = <&v3v3>;
+>>> +     status = "okay";
+>>> +};
+>>> +
+>>> +&uart4 {
+>>> +     pinctrl-names = "default";
+>>> +     pinctrl-0 = <&uart4_pins_a>;
+>>> +     status = "okay";
+>>> +};
+>>> +
+>>>
+>>
+>> --
+>> Pengutronix e.K.                           |                             |
+>> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+>> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+>> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> 
+
 -- 
-2.23.0
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
