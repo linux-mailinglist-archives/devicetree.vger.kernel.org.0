@@ -2,534 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4C6A22C66C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 15:28:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50C4322C6EE
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 15:45:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727040AbgGXN2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jul 2020 09:28:33 -0400
-Received: from smtp-fw-6002.amazon.com ([52.95.49.90]:43005 "EHLO
-        smtp-fw-6002.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727041AbgGXN2d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jul 2020 09:28:33 -0400
+        id S1727060AbgGXNpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jul 2020 09:45:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40012 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726326AbgGXNpL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jul 2020 09:45:11 -0400
+Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com [IPv6:2607:f8b0:4864:20::e44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C54B6C0619D3
+        for <devicetree@vger.kernel.org>; Fri, 24 Jul 2020 06:45:10 -0700 (PDT)
+Received: by mail-vs1-xe44.google.com with SMTP id o184so4940993vsc.0
+        for <devicetree@vger.kernel.org>; Fri, 24 Jul 2020 06:45:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1595597310; x=1627133310;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=ndZnobQDkKrkO7PlwHAI/yOaDjmUOeSNHsflymP+n4c=;
-  b=JW/Qkg96eejBO5tc/nxWUHsQBp+7AaChbB+zMgQh7JGPwHmiYWnOnywT
-   N1nE0X5oyzJq2ebfqdHnv/ZWzRhOJ0UtEwqz2ZYVrSbQpEzrcRCIo9DKf
-   1+vbx4bAqP15M3pIW0AbkzXNvqN6Yvsxp526woW0w6WEXIZbHvJ5h/udF
-   Y=;
-IronPort-SDR: vxShPv83CaRSi0i0poBSsdf+mwE2lVrsSmdrd7Re08ZWIhHds7aoqLaSxfJ4TbdIENXPMQnFEc
- f0xMji0QwPrA==
-X-IronPort-AV: E=Sophos;i="5.75,390,1589241600"; 
-   d="scan'208";a="43769498"
-Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-2c-1968f9fa.us-west-2.amazon.com) ([10.43.8.6])
-  by smtp-border-fw-out-6002.iad6.amazon.com with ESMTP; 24 Jul 2020 13:28:28 +0000
-Received: from EX13MTAUEA002.ant.amazon.com (pdx4-ws-svc-p6-lb7-vlan3.pdx.amazon.com [10.170.41.166])
-        by email-inbound-relay-2c-1968f9fa.us-west-2.amazon.com (Postfix) with ESMTPS id 52C18A27D2;
-        Fri, 24 Jul 2020 13:28:27 +0000 (UTC)
-Received: from EX13D19EUB001.ant.amazon.com (10.43.166.229) by
- EX13MTAUEA002.ant.amazon.com (10.43.61.77) with Microsoft SMTP Server (TLS)
- id 15.0.1497.2; Fri, 24 Jul 2020 13:28:26 +0000
-Received: from u8a88181e7b2355.ant.amazon.com (10.43.160.65) by
- EX13D19EUB001.ant.amazon.com (10.43.166.229) with Microsoft SMTP Server (TLS)
- id 15.0.1497.2; Fri, 24 Jul 2020 13:28:18 +0000
-From:   Hanna Hawa <hhhawa@amazon.com>
-To:     <arnd@arndb.de>, <robh+dt@kernel.org>, <tsahee@annapurnalabs.com>,
-        <antoine.tenart@bootlin.com>, <mchehab+huawei@kernel.org>,
-        <davem@davemloft.net>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <arm@kernel.org>,
-        <soc@kernel.org>, <dwmw@amazon.co.uk>, <benh@amazon.com>,
-        <ronenk@amazon.com>, <talel@amazon.com>, <jonnyc@amazon.com>,
-        <hanochu@amazon.com>, <eitan@amazon.com>, <hhhawa@amazon.com>
-Subject: [PATCH v6 6/6] arm64: dts: amazon: add Amazon's Annapurna Labs Alpine v3 support
-Date:   Fri, 24 Jul 2020 16:26:54 +0300
-Message-ID: <20200724132654.16549-7-hhhawa@amazon.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200724132654.16549-1-hhhawa@amazon.com>
-References: <20200724132654.16549-1-hhhawa@amazon.com>
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=g/+5UoxaK0B/ouWKXhlnGp7tlvNSVwLA+fl6kPFBy3Q=;
+        b=OCr7V9PvnMgT+sB96Edxhs4Fa6YvkPB8pV2zkvYSzisExSkRA2oHnRwBTYa1D+8Pke
+         T833lNyfbhaGuRGE36rEbzToZ+w4ajlTEeaiN2xCMgTuug0VRSy0K9578WWtKKFTS3CC
+         w5K3xXdFEA+2XsYJ0VQ9GBTd9aaj8pyS1o/vQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=g/+5UoxaK0B/ouWKXhlnGp7tlvNSVwLA+fl6kPFBy3Q=;
+        b=R2Je8HoNYiLrIW+5NwlTxrLn6osGt7+FIRlQ/Y3FBHNGu2Dh5LiEw5eVwmr8ktRWwp
+         sy0hhUTYUQDtzvpE0ktwawDrySgaGb0C6LAspvpxFj5LYTibRvhcAkU51KecLrQ1DhYP
+         7Ze31NiF+BcUoKPtyfnDhjRaY8CTDPGZaX+8IZuNAmE4Wqi9FRm1WuPvN0E2YEpd/tCd
+         6kmkic04OfUWmGd+9jIsNtbPkiAJS67ZVBVdrIEFEiWFgU5XbnCX0PWQ6g/2HpejVn/V
+         HJ2o07aaaR1xlus/bL1scCNn/KlUd6DqlG0uwrVkTjLqSqNVtNPyW1vqWd6QuQNC0NtS
+         up4g==
+X-Gm-Message-State: AOAM533LJajF0V9+IgmU/bkodJDYjSninFulGrgk5rcSG8iF/fyDRKHX
+        rzQln8EyKTmZvDiDgiVADVXI6qJyzkDCm3yWM1QV3w==
+X-Google-Smtp-Source: ABdhPJzF8Cn+eUjgEJZZxSH4zV2/AuLt79M3/GOySgsHJwoMPWl9y7OO1PDUxu5v46KpEurVhelGQjKWin7Y5j6dqJQ=
+X-Received: by 2002:a67:f5c6:: with SMTP id t6mr7555224vso.14.1595598309872;
+ Fri, 24 Jul 2020 06:45:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.43.160.65]
-X-ClientProxiedBy: EX13D32UWA004.ant.amazon.com (10.43.160.193) To
- EX13D19EUB001.ant.amazon.com (10.43.166.229)
+References: <1595475600-23180-1-git-send-email-hsin-hsiung.wang@mediatek.com> <1595475600-23180-3-git-send-email-hsin-hsiung.wang@mediatek.com>
+In-Reply-To: <1595475600-23180-3-git-send-email-hsin-hsiung.wang@mediatek.com>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Fri, 24 Jul 2020 21:44:58 +0800
+Message-ID: <CANMq1KAmVbNnXMV0Zw9ZBPtnnj283uemF+ctztaEzZi8ikB-jw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] soc: mediatek: pwrap: add arbiter capability
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Argus Lin <argus.lin@mediatek.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ronen Krupnik <ronenk@amazon.com>
+On Thu, Jul 23, 2020 at 11:40 AM Hsin-Hsiung Wang
+<hsin-hsiung.wang@mediatek.com> wrote:
+>
+> Add arbiter capability for pwrap driver.
+> This patch is preparing for adding mt6873/8192 pwrap support.
+>
+> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+> ---
+>  drivers/soc/mediatek/mtk-pmic-wrap.c | 67 ++++++++++++++++++++++++++++++------
+>  1 file changed, 56 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c b/drivers/soc/mediatek/mtk-pmic-wrap.c
+> index c897205..8d76ed4 100644
+> --- a/drivers/soc/mediatek/mtk-pmic-wrap.c
+> +++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
+> @@ -24,11 +24,13 @@
+>  #define PWRAP_MT8135_BRIDGE_WDT_SRC_EN         0x54
+>
+>  /* macro for wrapper status */
+> +#define PWRAP_GET_SWINF_2_FSM(x)       (((x) >> 1) & 0x00000007)
 
-This patch adds the initial support for the Amazon's Annapurna Labs
-Alpine v3 Soc and Evaluation Platform (EVP).
+I find this macro name a bit weird, because you are actually using
+this mask on PWRAP_WACS2_RDATA register value (just like
+PWRAP_GET_WACS_FSM below).
 
-Signed-off-by: Ronen Krupnik <ronenk@amazon.com>
-Signed-off-by: Talel Shenhar <talel@amazon.com>
-Signed-off-by: Hanna Hawa <hhhawa@amazon.com>
-Acked-by: Antoine Tenart <antoine.tenart@bootlin.com>
----
- arch/arm64/boot/dts/amazon/Makefile          |   1 +
- arch/arm64/boot/dts/amazon/alpine-v3-evp.dts |  24 ++
- arch/arm64/boot/dts/amazon/alpine-v3.dtsi    | 408 +++++++++++++++++++
- 3 files changed, 433 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amazon/alpine-v3-evp.dts
- create mode 100644 arch/arm64/boot/dts/amazon/alpine-v3.dtsi
+Should it be something like PWRAP_GET_WACS_ARB_FSM?!
 
-diff --git a/arch/arm64/boot/dts/amazon/Makefile b/arch/arm64/boot/dts/amazon/Makefile
-index d79822dc30cd..ba9e11544905 100644
---- a/arch/arm64/boot/dts/amazon/Makefile
-+++ b/arch/arm64/boot/dts/amazon/Makefile
-@@ -1,2 +1,3 @@
- # SPDX-License-Identifier: GPL-2.0-only
- dtb-$(CONFIG_ARCH_ALPINE)	+= alpine-v2-evp.dtb
-+dtb-$(CONFIG_ARCH_ALPINE)	+= alpine-v3-evp.dtb
-diff --git a/arch/arm64/boot/dts/amazon/alpine-v3-evp.dts b/arch/arm64/boot/dts/amazon/alpine-v3-evp.dts
-new file mode 100644
-index 000000000000..48078f5ea545
---- /dev/null
-+++ b/arch/arm64/boot/dts/amazon/alpine-v3-evp.dts
-@@ -0,0 +1,24 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-+ */
-+
-+#include "alpine-v3.dtsi"
-+
-+/ {
-+	model = "Amazon's Annapurna Labs Alpine v3 Evaluation Platform (EVP)";
-+	compatible = "amazon,al-alpine-v3-evp", "amazon,al-alpine-v3";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		serial1 = &uart1;
-+		serial2 = &uart2;
-+		serial3 = &uart3;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&uart0 { status = "okay"; };
-diff --git a/arch/arm64/boot/dts/amazon/alpine-v3.dtsi b/arch/arm64/boot/dts/amazon/alpine-v3.dtsi
-new file mode 100644
-index 000000000000..73a352ea8fd5
---- /dev/null
-+++ b/arch/arm64/boot/dts/amazon/alpine-v3.dtsi
-@@ -0,0 +1,408 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2020, Amazon.com, Inc. or its affiliates. All Rights Reserved
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	model = "Amazon's Annapurna Labs Alpine v3";
-+	compatible = "amazon,al-alpine-v3";
-+
-+	interrupt-parent = <&gic>;
-+
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a72";
-+			reg = <0x0>;
-+			enable-method = "psci";
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			next-level-cache = <&cluster0_l2>;
-+		};
-+
-+		cpu@1 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a72";
-+			reg = <0x1>;
-+			enable-method = "psci";
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			next-level-cache = <&cluster0_l2>;
-+		};
-+
-+		cpu@2 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a72";
-+			reg = <0x2>;
-+			enable-method = "psci";
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			next-level-cache = <&cluster0_l2>;
-+		};
-+
-+		cpu@3 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a72";
-+			reg = <0x3>;
-+			enable-method = "psci";
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			next-level-cache = <&cluster0_l2>;
-+		};
-+
-+		cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a72";
-+			reg = <0x100>;
-+			enable-method = "psci";
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			next-level-cache = <&cluster1_l2>;
-+		};
-+
-+		cpu@101 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a72";
-+			reg = <0x101>;
-+			enable-method = "psci";
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			next-level-cache = <&cluster1_l2>;
-+		};
-+
-+		cpu@102 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a72";
-+			reg = <0x102>;
-+			enable-method = "psci";
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			next-level-cache = <&cluster1_l2>;
-+		};
-+
-+		cpu@103 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a72";
-+			reg = <0x103>;
-+			enable-method = "psci";
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			next-level-cache = <&cluster1_l2>;
-+		};
-+
-+		cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a72";
-+			reg = <0x200>;
-+			enable-method = "psci";
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			next-level-cache = <&cluster2_l2>;
-+		};
-+
-+		cpu@201 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a72";
-+			reg = <0x201>;
-+			enable-method = "psci";
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			next-level-cache = <&cluster2_l2>;
-+		};
-+
-+		cpu@202 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a72";
-+			reg = <0x202>;
-+			enable-method = "psci";
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			next-level-cache = <&cluster2_l2>;
-+		};
-+
-+		cpu@203 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a72";
-+			reg = <0x203>;
-+			enable-method = "psci";
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			next-level-cache = <&cluster2_l2>;
-+		};
-+
-+		cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a72";
-+			reg = <0x300>;
-+			enable-method = "psci";
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			next-level-cache = <&cluster3_l2>;
-+		};
-+
-+		cpu@301 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a72";
-+			reg = <0x301>;
-+			enable-method = "psci";
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			next-level-cache = <&cluster3_l2>;
-+		};
-+
-+		cpu@302 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a72";
-+			reg = <0x302>;
-+			enable-method = "psci";
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			next-level-cache = <&cluster3_l2>;
-+		};
-+
-+		cpu@303 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a72";
-+			reg = <0x303>;
-+			enable-method = "psci";
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			next-level-cache = <&cluster3_l2>;
-+		};
-+
-+		cluster0_l2: cache@0 {
-+			compatible = "cache";
-+			cache-size = <0x200000>;
-+			cache-line-size = <64>;
-+			cache-sets = <2048>;
-+			cache-level = <2>;
-+		};
-+
-+		cluster1_l2: cache@100 {
-+			compatible = "cache";
-+			cache-size = <0x200000>;
-+			cache-line-size = <64>;
-+			cache-sets = <2048>;
-+			cache-level = <2>;
-+		};
-+
-+		cluster2_l2: cache@200 {
-+			compatible = "cache";
-+			cache-size = <0x200000>;
-+			cache-line-size = <64>;
-+			cache-sets = <2048>;
-+			cache-level = <2>;
-+		};
-+
-+		cluster3_l2: cache@300 {
-+			compatible = "cache";
-+			cache-size = <0x200000>;
-+			cache-line-size = <64>;
-+			cache-sets = <2048>;
-+			cache-level = <2>;
-+		};
-+
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		secmon@0 {
-+			reg = <0x0 0x0 0x0 0x100000>;
-+			no-map;
-+		};
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-0.2";
-+		method = "smc";
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	pmu {
-+		compatible = "arm,cortex-a72-pmu";
-+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		gic: interrupt-controller@f0000000 {
-+			compatible = "arm,gic-v3";
-+			#interrupt-cells = <3>;
-+			interrupt-controller;
-+			reg = <0x0 0xf0800000 0 0x10000>,	/* GICD */
-+			      <0x0 0xf0a00000 0 0x200000>,	/* GICR */
-+			      <0x0 0xf0000000 0 0x2000>,	/* GICC */
-+			      <0x0 0xf0010000 0 0x1000>,	/* GICH */
-+			      <0x0 0xf0020000 0 0x2000>;	/* GICV */
-+			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
-+		pcie@fbd00000 {
-+			compatible = "pci-host-ecam-generic";
-+			device_type = "pci";
-+			#size-cells = <2>;
-+			#address-cells = <3>;
-+			#interrupt-cells = <1>;
-+			reg = <0x0 0xfbd00000 0x0 0x100000>;
-+			interrupt-map-mask = <0xf800 0 0 7>;
-+			/* 8 x legacy interrupts for SATA only */
-+			interrupt-map = <0x4000 0 0 1 &gic 0 57 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x4800 0 0 1 &gic 0 58 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x5000 0 0 1 &gic 0 59 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x5800 0 0 1 &gic 0 60 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x6000 0 0 1 &gic 0 61 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x6800 0 0 1 &gic 0 62 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x7000 0 0 1 &gic 0 63 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x7800 0 0 1 &gic 0 64 IRQ_TYPE_LEVEL_HIGH>;
-+			ranges = <0x02000000 0x0 0xfe000000 0x0 0xfe000000 0x0 0x1000000>;
-+			bus-range = <0x00 0x00>;
-+			msi-parent = <&msix>;
-+		};
-+
-+		msix: msix@fbe00000 {
-+			compatible = "al,alpine-msix";
-+			reg = <0x0 0xfbe00000 0x0 0x100000>;
-+			interrupt-controller;
-+			msi-controller;
-+			al,msi-base-spi = <336>;
-+			al,msi-num-spis = <959>;
-+			interrupt-parent = <&gic>;
-+		};
-+
-+		io-fabric {
-+			compatible = "simple-bus";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0x0 0xfc000000 0x2000000>;
-+
-+			uart0: serial@1883000 {
-+				compatible = "ns16550a";
-+				reg = <0x1883000 0x1000>;
-+				interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
-+				clock-frequency = <0>; /* Filled by firmware */
-+				reg-shift = <2>;
-+				reg-io-width = <4>;
-+				status = "disabled";
-+			};
-+
-+			uart1: serial@1884000 {
-+				compatible = "ns16550a";
-+				reg = <0x1884000 0x1000>;
-+				interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-+				clock-frequency = <0>; /* Filled by firmware */
-+				reg-shift = <2>;
-+				reg-io-width = <4>;
-+				status = "disabled";
-+			};
-+
-+			uart2: serial@1885000 {
-+				compatible = "ns16550a";
-+				reg = <0x1885000 0x1000>;
-+				interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-+				clock-frequency = <0>; /* Filled by firmware */
-+				reg-shift = <2>;
-+				reg-io-width = <4>;
-+				status = "disabled";
-+			};
-+
-+			uart3: serial@1886000 {
-+				compatible = "ns16550a";
-+				reg = <0x1886000 0x1000>;
-+				interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
-+				clock-frequency = <0>; /* Filled by firmware */
-+				reg-shift = <2>;
-+				reg-io-width = <4>;
-+				status = "disabled";
-+			};
-+		};
-+	};
-+};
--- 
-2.17.1
+>  #define PWRAP_GET_WACS_RDATA(x)                (((x) >> 0) & 0x0000ffff)
+>  #define PWRAP_GET_WACS_FSM(x)          (((x) >> 16) & 0x00000007)
+>  #define PWRAP_GET_WACS_REQ(x)          (((x) >> 19) & 0x00000001)
+>  #define PWRAP_STATE_SYNC_IDLE0         BIT(20)
+>  #define PWRAP_STATE_INIT_DONE0         BIT(21)
+> +#define PWRAP_STATE_INIT_DONE1         BIT(15)
+>
+>  /* macro for WACS FSM */
+>  #define PWRAP_WACS_FSM_IDLE            0x00
+> @@ -74,6 +76,7 @@
+>  #define PWRAP_CAP_DCM          BIT(2)
+>  #define PWRAP_CAP_INT1_EN      BIT(3)
+>  #define PWRAP_CAP_WDT_SRC1     BIT(4)
+> +#define PWRAP_CAP_ARB          BIT(5)
+>
+>  /* defines for slave device wrapper registers */
+>  enum dew_regs {
+> @@ -340,6 +343,8 @@ enum pwrap_regs {
+>         PWRAP_DCM_DBC_PRD,
+>         PWRAP_EINT_STA0_ADR,
+>         PWRAP_EINT_STA1_ADR,
+> +       PWRAP_SWINF_2_WDATA_31_0,
+> +       PWRAP_SWINF_2_RDATA_31_0,
+>
+>         /* MT2701 only regs */
+>         PWRAP_ADC_CMD_ADDR,
+> @@ -1108,16 +1113,30 @@ static void pwrap_writel(struct pmic_wrapper *wrp, u32 val, enum pwrap_regs reg)
+>
+>  static bool pwrap_is_fsm_idle(struct pmic_wrapper *wrp)
+>  {
+> -       u32 val = pwrap_readl(wrp, PWRAP_WACS2_RDATA);
+> +       u32 val;
+> +       bool ret;
+> +
+> +       val = pwrap_readl(wrp, PWRAP_WACS2_RDATA);
+> +       if (!HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB))
+> +               ret = (PWRAP_GET_WACS_FSM(val) == PWRAP_WACS_FSM_IDLE);
+> +       else
+> +               ret = (PWRAP_GET_SWINF_2_FSM(val) == PWRAP_WACS_FSM_IDLE);
+>
+> -       return PWRAP_GET_WACS_FSM(val) == PWRAP_WACS_FSM_IDLE;
+> +       return ret;
 
+Those !HAS_CAP tests are a little hard to read. Also, ret isn't really needed.
+
+So I'd do this:
+if (HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB))
+    return PWRAP_GET_SWINF_2_FSM(val) == PWRAP_WACS_FSM_IDLE;
+
+return PWRAP_GET_WACS_FSM(val) == PWRAP_WACS_FSM_IDLE;
+
+>  }
+>
+>  static bool pwrap_is_fsm_vldclr(struct pmic_wrapper *wrp)
+>  {
+> -       u32 val = pwrap_readl(wrp, PWRAP_WACS2_RDATA);
+> +       u32 val;
+> +       bool ret;
+> +
+> +       val = pwrap_readl(wrp, PWRAP_WACS2_RDATA);
+> +       if (!HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB))
+> +               ret = (PWRAP_GET_WACS_FSM(val) == PWRAP_WACS_FSM_WFVLDCLR);
+> +       else
+> +               ret = (PWRAP_GET_SWINF_2_FSM(val) == PWRAP_WACS_FSM_WFVLDCLR);
+>
+> -       return PWRAP_GET_WACS_FSM(val) == PWRAP_WACS_FSM_WFVLDCLR;
+> +       return ret;
+
+ditto
+
+>  }
+>
+>  /*
+> @@ -1172,13 +1191,21 @@ static int pwrap_read16(struct pmic_wrapper *wrp, u32 adr, u32 *rdata)
+>                 return ret;
+>         }
+>
+> -       pwrap_writel(wrp, (adr >> 1) << 16, PWRAP_WACS2_CMD);
+> +       if (!HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB))
+
+ditto, I'd reverse all these tests.
+
+> +               pwrap_writel(wrp, (adr >> 1) << 16, PWRAP_WACS2_CMD);
+> +       else
+> +               pwrap_writel(wrp, adr, PWRAP_WACS2_CMD);
+
+Not 100% convinced if worth it, but you could also do:
+
+if (HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB))
+   val = adr;
+else
+   val = (adr >> 1) << 16;
+
+pwrap_writel(wrp, val, PWRAP_WACS2_CMD);
+
+>
+>         ret = pwrap_wait_for_state(wrp, pwrap_is_fsm_vldclr);
+>         if (ret)
+>                 return ret;
+>
+> -       *rdata = PWRAP_GET_WACS_RDATA(pwrap_readl(wrp, PWRAP_WACS2_RDATA));
+> +       if (!HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB))
+> +               *rdata = PWRAP_GET_WACS_RDATA(pwrap_readl(wrp,
+> +                                             PWRAP_WACS2_RDATA));
+> +       else
+> +               *rdata = PWRAP_GET_WACS_RDATA(pwrap_readl(wrp,
+> +                                             PWRAP_SWINF_2_RDATA_31_0));
+
+Similarly:
+
+if (HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB))
+   val = pwrap_readl(wrp, PWRAP_SWINF_2_RDATA_31_0);
+else
+   val = pwrap_readl(wrp, PWRAP_WACS2_RDATA);
+
+*rdata = PWRAP_GET_WACS_RDATA(val);
+
+(or set the register address in an `reg` variable)
+
+>
+>         pwrap_writel(wrp, 1, PWRAP_WACS2_VLDCLR);
+>
+> @@ -1228,8 +1255,13 @@ static int pwrap_write16(struct pmic_wrapper *wrp, u32 adr, u32 wdata)
+>                 return ret;
+>         }
+>
+> -       pwrap_writel(wrp, (1 << 31) | ((adr >> 1) << 16) | wdata,
+> -                    PWRAP_WACS2_CMD);
+> +       if (!HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB)) {
+> +               pwrap_writel(wrp, BIT(31) | ((adr >> 1) << 16) | wdata,
+> +                            PWRAP_WACS2_CMD);
+> +       } else {
+> +               pwrap_writel(wrp, wdata, PWRAP_SWINF_2_WDATA_31_0);
+> +               pwrap_writel(wrp, BIT(29) | adr, PWRAP_WACS2_CMD);
+> +       }
+>
+>         return 0;
+>  }
+> @@ -2022,6 +2054,7 @@ MODULE_DEVICE_TABLE(of, of_pwrap_match_tbl);
+>  static int pwrap_probe(struct platform_device *pdev)
+>  {
+>         int ret, irq;
+> +       u32 rdata;
+>         struct pmic_wrapper *wrp;
+>         struct device_node *np = pdev->dev.of_node;
+>         const struct of_device_id *of_slave_id = NULL;
+> @@ -2116,14 +2149,22 @@ static int pwrap_probe(struct platform_device *pdev)
+>                 }
+>         }
+>
+> -       if (!(pwrap_readl(wrp, PWRAP_WACS2_RDATA) & PWRAP_STATE_INIT_DONE0)) {
+> +       if (!HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB))
+> +               rdata = pwrap_readl(wrp, PWRAP_WACS2_RDATA) &
+> +                                   PWRAP_STATE_INIT_DONE0;
+> +       else
+> +               rdata = pwrap_readl(wrp, PWRAP_WACS2_RDATA) &
+> +                                   PWRAP_STATE_INIT_DONE1;
+> +       if (!rdata) {
+
+Maybe:
+
+if (HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB))
+   mask_done = PWRAP_STATE_INIT_DONE1;
+else
+   mask_done = PWRAP_STATE_INIT_DONE0;
+
+if (!(pwrap_readl(wrp, PWRAP_WACS2_RDATA) & mask_done)) {
+
+
+>                 dev_dbg(wrp->dev, "initialization isn't finished\n");
+>                 ret = -ENODEV;
+>                 goto err_out2;
+>         }
+>
+>         /* Initialize watchdog, may not be done by the bootloader */
+> -       pwrap_writel(wrp, 0xf, PWRAP_WDT_UNIT);
+> +       if (!HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB))
+> +               pwrap_writel(wrp, 0xf, PWRAP_WDT_UNIT);
+> +
+>         /*
+>          * Since STAUPD was not used on mt8173 platform,
+>          * so STAUPD of WDT_SRC which should be turned off
+> @@ -2132,7 +2173,11 @@ static int pwrap_probe(struct platform_device *pdev)
+>         if (HAS_CAP(wrp->master->caps, PWRAP_CAP_WDT_SRC1))
+>                 pwrap_writel(wrp, wrp->master->wdt_src, PWRAP_WDT_SRC_EN_1);
+>
+> -       pwrap_writel(wrp, 0x1, PWRAP_TIMER_EN);
+> +       if (!HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB))
+> +               pwrap_writel(wrp, 0x1, PWRAP_TIMER_EN);
+> +       else
+> +               pwrap_writel(wrp, 0x3, PWRAP_TIMER_EN);
+> +
+>         pwrap_writel(wrp, wrp->master->int_en_all, PWRAP_INT_EN);
+>         /*
+>          * We add INT1 interrupt to handle starvation and request exception
+> --
+> 2.6.4
