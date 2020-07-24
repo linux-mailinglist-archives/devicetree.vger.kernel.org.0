@@ -2,96 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59E6822C554
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 14:38:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 928C422C581
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 14:44:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726945AbgGXMiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jul 2020 08:38:18 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:35438 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726411AbgGXMiJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Jul 2020 08:38:09 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 06OCbmn3030431;
-        Fri, 24 Jul 2020 14:37:56 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=hITZ0rNuNZdzv6aASsIGDY5KNIH8glBNT6+akNE1P8o=;
- b=oPV/csVAuyyFnhgTBy6hXaSEMDDcsjG3J5J3FWwkSMQ316F3cyZPhevOdYH+HLLFK6y0
- n3sQduS5LwI/ci0i80Fp8CtIJcgSqFHoZKt/fJhwreb0cyykZLfgM9FB7buZez0iytMA
- i7LCx1IxH8lBPQ+sNl0chC4OPfyPalub3/mirgtBx0Vt3+7VdLRWIKw62OOlNNXdRgNd
- mo6kaEf9FItLM6xsT9n5myJPMWlFkVnbAvrctuez43fccfOw1htF12QjbDNdI4jT6xnZ
- nTTVVQy40neJ+kd5MXSUc74O4C0quVdZAX8z2PY/7dzaHj9179tFpbNL659aeIBj26rl 1g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 32bsahgcgu-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 24 Jul 2020 14:37:56 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 98A0910002A;
-        Fri, 24 Jul 2020 14:37:55 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8ADD82AF334;
-        Fri, 24 Jul 2020 14:37:55 +0200 (CEST)
-Received: from localhost (10.75.127.44) by SFHDAG3NODE2.st.com (10.75.127.8)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 24 Jul 2020 14:37:55
- +0200
-From:   Amelie Delaunay <amelie.delaunay@st.com>
-To:     Minas Harutyunyan <hminas@synopsys.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>
-CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>,
-        Amelie Delaunay <amelie.delaunay@st.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH 4/4] usb: dwc2: fix error path with missing dwc2_drd_exit
-Date:   Fri, 24 Jul 2020 14:37:48 +0200
-Message-ID: <20200724123748.25369-5-amelie.delaunay@st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200724123748.25369-1-amelie.delaunay@st.com>
-References: <20200724123748.25369-1-amelie.delaunay@st.com>
+        id S1726926AbgGXMoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jul 2020 08:44:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58738 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726411AbgGXMoT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jul 2020 08:44:19 -0400
+Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com [IPv6:2607:f8b0:4864:20::e44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DD9DC0619E4
+        for <devicetree@vger.kernel.org>; Fri, 24 Jul 2020 05:44:19 -0700 (PDT)
+Received: by mail-vs1-xe44.google.com with SMTP id p25so4822415vsg.4
+        for <devicetree@vger.kernel.org>; Fri, 24 Jul 2020 05:44:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FGHawDNNHiCHWgrOxcXKqCSMD7oEiI1UqCmKADBljuU=;
+        b=EuAwwFRWeuUdb4vF35T0sjuH5dKD0BasNwv6q+tQLoNCduhL0GWSu7acttBEE3iv1H
+         bjK3j7nBVDXvHpMygDOgB/y1hWSgES61TVbuJCpr5iBiZuBSSEwo+9b0oVR3jhDxAtRx
+         UNKAU8CRfgMVR0ZeNRGN4w0yIX6LkRxIiFL/Xsme9m/0kt5bdvN7Rk6byC9Swb+auhbI
+         c2TD/rY5ENrsNnfZmnuh8zJ0mfiuK/2aYSEB4m9eqy4IQJcfXr+UtbMp5rlsNxmnRs6d
+         fjwfLn9fg2+ssivzVRjo8yVs4khRFeKgUgX6O8zn/chNccrgLUnT2x/QoJkUFzgauZ1y
+         onMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FGHawDNNHiCHWgrOxcXKqCSMD7oEiI1UqCmKADBljuU=;
+        b=Tatc34nMUbE6zznMjLHKITHACuMO2yOKDMSdFiJUUqLvPRlumOW9aKFfYpfKcJdROA
+         8pT3+scOp4/yhGQCDf55/wZ2cejEqaI9Y2uQB5IlKVSONuRUk+5sUcxtP6O6u6IKTtnf
+         EX60w5vhD4z2fvfyt7FN0LzijoyrsRoPscHgOqHmSrdt6fMxda8524X4toVsYR2yWsfE
+         LFpxRML/U7Qo3zEMxSuOYl3BuvT6AAl9lhwJjzdRxJlz8wXSydvsi738O1HxW1ydSgn/
+         s7xtJ1SO95JBtjM5V/UONFkXMi+JU3mMcBJG3V0XcbSNm5YT8K6yr3imRY8LoLX+A9Yz
+         0whA==
+X-Gm-Message-State: AOAM531H6ottUvKqCtj9MliUTPAnkbfEMHa17OHUfS+Q+V2oJW8B6VUN
+        TJTr/Mnse3QJnupEyzd4PKYKXhn1snmS94OtZcXtng==
+X-Google-Smtp-Source: ABdhPJycLPobdqjIlIM9BjxmDXvzoDmUte/V7P4h0bRLVGruk4z8NXmk6DXEi6GUkT4hQpVU32Ou5Bq/2mmkmEW1tWU=
+X-Received: by 2002:a67:f98c:: with SMTP id b12mr7556870vsq.34.1595594658333;
+ Fri, 24 Jul 2020 05:44:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG8NODE2.st.com (10.75.127.23) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-07-24_04:2020-07-24,2020-07-24 signatures=0
+References: <20200618141326.25723-1-lars.povlsen@microchip.com>
+ <20200618141326.25723-3-lars.povlsen@microchip.com> <aee90bbf-f0ff-b0cb-b10a-9a2f3bb6acca@intel.com>
+ <87wo2vkbns.fsf@soft-dev15.microsemi.net> <CAPDyKFpozhFSzWEM6s8cdeG+8JGX00YyFSzeXZxCsY7Efn0aeQ@mail.gmail.com>
+ <87zh7pf8sg.fsf@soft-dev15.microsemi.net>
+In-Reply-To: <87zh7pf8sg.fsf@soft-dev15.microsemi.net>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 24 Jul 2020 14:43:41 +0200
+Message-ID: <CAPDyKFpzxPnVFwrPiG738_HpKnypvZev5r874k5WVgL8GEXHJg@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] sdhci: sparx5: Add Sparx5 SoC eMMC driver
+To:     Lars Povlsen <lars.povlsen@microchip.com>
+Cc:     Adrian Hunter <adrian.hunter@intel.com>, SoC Team <soc@kernel.org>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In case of failure, role switch has to be unregistered. It is done by
-dwc2_drd_exit.
+On Fri, 24 Jul 2020 at 13:32, Lars Povlsen <lars.povlsen@microchip.com> wrote:
+>
+>
+> Ulf Hansson writes:
+>
+> > On Wed, 22 Jul 2020 at 13:54, Lars Povlsen <lars.povlsen@microchip.com> wrote:
+> >>
+> >>
+> >> Adrian Hunter writes:
+> >>
+> >> > On 18/06/20 5:13 pm, Lars Povlsen wrote:
+> >> >> This adds the eMMC driver for the Sparx5 SoC. It is based upon the
+> >> >> designware IP, but requires some extra initialization and quirks.
+> >> >>
+> >> >> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+> >> >
+> >> > Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+> >> >
+> >>
+> >> Adrian,
+> >>
+> >> Thanks for the ack. I was expecting to see this in linux-next, anything
+> >> holding it back?
+> >>
+> >> pinctrl and hwmon drivers have been merged.
+> >>
+> >> Thanks,
+> >
+> > Hi Lars,
+> >
+> > Looks like you got some feedback on the DT patch (patch1/3) from Rob.
+> > I didn't find that you have addressed them and therefore I am holding
+> > back on the $subject patch as well.
+> >
+>
+> Uffe, thank you for responding.
+>
+> The automated checker complains about the inclusion of a header file
+> (#include <dt-bindings/clock/microchip,sparx5.h>) in the example. The
+> header file itself is part of the "parent" patch series sent to arm-soc,
+> but is needed to make the example complete.
+>
+> I e-mailed Rob about how to handle this, but never got a reply.
+>
+> Can you suggest how to deal with this? I have checked the schema with
+> dt_binding_check manually - with the header file in place.
 
-Fixes: bc0f0d4a5853 ("usb: dwc2: override PHY input signals with usb role switch support")
-Reported-by: kernel test robot <lkp@intel.com>
-Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
----
- drivers/usb/dwc2/platform.c | 2 ++
- 1 file changed, 2 insertions(+)
+I see, thanks for clarifying.
 
-diff --git a/drivers/usb/dwc2/platform.c b/drivers/usb/dwc2/platform.c
-index 68b56b43a45e..f4a0371c3e89 100644
---- a/drivers/usb/dwc2/platform.c
-+++ b/drivers/usb/dwc2/platform.c
-@@ -600,6 +600,8 @@ static int dwc2_driver_probe(struct platform_device *dev)
- 	return 0;
- 
- error_init:
-+	dwc2_drd_exit(hsotg);
-+
- 	if (hsotg->params.activate_stm_id_vb_detection)
- 		regulator_disable(hsotg->usb33d);
- error:
--- 
-2.17.1
+When this kind of dependy happens, we have a couple of options.
 
+1. Wait for a new rc to have the dependent changes included.
+2. Share the changes between maintainers's git trees, through
+immutable branches.
+
+Looks like 1) would be easiest here. So, I suggest you re-post the
+series when v5.9-rc1 is out.
+
+>
+> I can of course remove the include and associated properties, but that
+> will make the example incomplete and irrelevant.
+
+No, that doesn't sound right.
+
+[...]
+
+Kind regards
+Uffe
