@@ -2,94 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40D6822C828
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 16:37:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E285B22C86A
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 16:51:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726591AbgGXOhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jul 2020 10:37:23 -0400
-Received: from mout.kundenserver.de ([212.227.126.187]:59959 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726366AbgGXOhW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jul 2020 10:37:22 -0400
-Received: from mail-qk1-f178.google.com ([209.85.222.178]) by
- mrelayeu.kundenserver.de (mreue009 [212.227.15.129]) with ESMTPSA (Nemesis)
- id 1M5Q6n-1k0MOz3oDl-001RSX; Fri, 24 Jul 2020 16:37:21 +0200
-Received: by mail-qk1-f178.google.com with SMTP id d14so8733337qke.13;
-        Fri, 24 Jul 2020 07:37:20 -0700 (PDT)
-X-Gm-Message-State: AOAM530FIFJc95r7tlLXcXV7NgEUGV9fBFtMgOZFoSH9aCHC1QqVp0ub
-        szReiIBPj6uwYpEdyq7S9sR57/HWG6uZF5xqRl8=
-X-Google-Smtp-Source: ABdhPJyaQi7YzQKTJwmOO4XDEeEyZaHphOcqVuChV10LKgqkrkdxnJ75ifPgkS9cU2YkIgVzTsgKdKYNadxoztv7GTc=
-X-Received: by 2002:a05:620a:1654:: with SMTP id c20mr10764238qko.138.1595601439718;
- Fri, 24 Jul 2020 07:37:19 -0700 (PDT)
+        id S1726317AbgGXOv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jul 2020 10:51:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50364 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726170AbgGXOv1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jul 2020 10:51:27 -0400
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 573B9C0619D3;
+        Fri, 24 Jul 2020 07:51:27 -0700 (PDT)
+Received: by mail-ed1-x544.google.com with SMTP id q4so3998641edv.13;
+        Fri, 24 Jul 2020 07:51:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TnSVvBPLgxOr7Okxa4+yFdbMwIKkVndKbRuepRfY/Zs=;
+        b=EKfhrwLSBlpUDSfbwmy+TKVdItuEwUFE+rwpl/BBpHVTunh1HcunYRzV/UAkFOmt4A
+         +ZpYGfCaAYqngbG0R7SiTq9t/pLcYQQ7ySNDaiOGnU8SfNGkuUSVdw2yfjIlpxwg2IBI
+         K62lCA7typmCS7SuWiAcWyH5Vh6Nw6RqBfhW16lMVG53+Bk1hup9RKNNC/y8DBgAOjuZ
+         p4JaoGNkcRqUBKV5iLKpWbHmM8gkgfr0vTVsX9hA1ZyGNmOejtiVzNnhyMX4Gn2QKGyE
+         p/pWRyK9w/GwjpKz2v+oeJOlrCbS/i3Ry4F+lZS+6ibl2wcGkQlh9VSXcvhVA6c2vj5y
+         K9pA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TnSVvBPLgxOr7Okxa4+yFdbMwIKkVndKbRuepRfY/Zs=;
+        b=ke0MzOb7b1RfDrsy7GFhD5NE+fXPTciE8dxbsjs4HIcDgUDFMazLZtRyU0ZrldUeh8
+         QR8V543TepHTrkQ742tupY8/L4eCkvYac/PwMVKYH2KxDeaX8hELlH2bXGj5+tU5h0Fh
+         eULo+ow3QTwHzvDf/ZvUh6RbRhbHXGdFjnY+kySasrfDbKAtxsYd23WOlADX8fbhGdN3
+         vATYRMsHXB1spoO9z7G+whrkmq84kPv+GnX7V1lDkuUN0giZznk5FDMfVoXXCMVII49e
+         qeadFztidW637GVhk4yq126TnWGJ+aIGHg02DoUTmZFTFtjsyY4tVY8Vb5Q9cBcYjamS
+         WqlA==
+X-Gm-Message-State: AOAM533yRPhu4pW4sYy57Cnl/5OJND27X1uVgxmAEhLzz5YT3T4oar40
+        ke1rWyiZAwo85kM4bmNPU08=
+X-Google-Smtp-Source: ABdhPJwvLYHGjgAuJ7dGovxJ5+5LP8JUWjKsoUMQ6Gld/w48Bq1GyMyLuJ0WRDDnmf7FBWJO/1wKaQ==
+X-Received: by 2002:a05:6402:1d97:: with SMTP id dk23mr9525309edb.1.1595602286010;
+        Fri, 24 Jul 2020 07:51:26 -0700 (PDT)
+Received: from blackhead.home ([2a01:112f:a1c:7900:7316:ce1e:7b0b:6bd7])
+        by smtp.gmail.com with ESMTPSA id m6sm788309ejq.85.2020.07.24.07.51.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Jul 2020 07:51:25 -0700 (PDT)
+From:   Marcin Sloniewski <marcin.sloniewski@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     robh+dt@kernel.org, mcoquelin.stm32@gmail.com,
+        alexandre.torgue@st.com, mani@kernel.org, a.fatoum@pengutronix.de,
+        marcin.sloniewski@gmail.com, sam@ravnborg.org,
+        linus.walleij@linaro.org, heiko.stuebner@theobroma-systems.com,
+        stephan@gerhold.net, lkundrak@v3.sk, broonie@kernel.org,
+        allen.chen@ite.com.tw, robh@kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v5 1/3] dt-bindings: vendor-prefixes: add Seeed Studio
+Date:   Fri, 24 Jul 2020 16:51:05 +0200
+Message-Id: <20200724145107.35772-1-marcin.sloniewski@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20200710094544.430258-1-daniel@0x0f.com>
-In-Reply-To: <20200710094544.430258-1-daniel@0x0f.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Fri, 24 Jul 2020 16:37:03 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a2xQmba=ikPjRZCu+PhMGMRKDWW=WbgzjRypD9U43WHDw@mail.gmail.com>
-Message-ID: <CAK8P3a2xQmba=ikPjRZCu+PhMGMRKDWW=WbgzjRypD9U43WHDw@mail.gmail.com>
-Subject: Re: [PATCH v5 00/12] Initial MStar/Sigmastar ARMv7 SoC support
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King - ARM Linux <linux@armlinux.org.uk>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Marc Zyngier <maz@kernel.org>, Willy Tarreau <w@1wt.eu>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:YLqLKonfSFlV0CdryiCWyZo0KqBmLMX0UfCGDGKDrrPMRzm2Hct
- Ztf2ZBDM5+/H/XndQ/LS9H3sP0bnW5+u2srbtzlLBfGd/uWGha8cGvgL6jj1vDQ2KrkAVrk
- 4mlCMm/wImI5OI9VgicQKt/jSk4t4NZscA3hKRcKwwypkNADgzpBZu8mrwkd0Shai9F6V6p
- Re1+014RGObpWXvfAXS+Q==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:qYsSy1sGqow=:ozo37+sqzsWY5KN5+V+YPI
- OlCXkG+1uGAPEs4x28hvbfb7vE1YcujfYXFT5xV1GF9bl9/VC8ouXY9p0ReOAYV0hHOxLnMhs
- Qrc5Ceetk6PUduiI3LOl584yJlaBkrJqkl3lH8Er3zibKHbn434znybWfHvp7LlfaTVvtkT+B
- Mm1Oc3cMcfhCphAScByEKkTK2gWPA3tPo5F6kGItVyCMr9q6aixvJXwKGzoJPRKkTfuLgG6Bl
- 3oAP6a+3YgzwksObkpGDOpSKGCwxeHU4ddWIqOcOb+3CV6OsMqHkA0UFtwbVEpqkA/GWJ9Ov3
- ynuV01ekPkRUq3kin9/uA2yH3iSd138L+x6cjBNorXqDRx+0mJULTl3NwmZp7AQA7PP/3EG8w
- 48rA6nhG4n0CXkWmLXpYJ6Wki0rIuynAwOPG/zHroaaCOo8KytudNcNQ1DBtEUJ16pL7eRHum
- OwazTZc5iFxQKwCd0iBqQTO6Zm4VsvwTnpTgidrM9NnjRu8ZzTjDH5YsI2LhTN2VvdXz7H0MQ
- /ywa+I4jndo23Il8TafVODSX2PbHwIUQxO6dsPnbKbFvPHy3s1oQmhpzV4AB7rRdo1LUSY8hv
- Nj/uQDY9LR4cBc95RfcRh7pSUMUc9X+wEsBr5vlaLArGkGUWtnokqDT3dxVVmL/4GHhi4yEIb
- f4w4nUWC0w+1UDefFvoSmu8zXzaU/BcTXlRIDnxAHbxRH8rPJCHU1XwWkxZw1x3bYx12JyN/k
- l2ahhrFD0Q8i1RTVt9BMrRnO88m3cAarJAX/o/cFq7nYkhows7EZU49w1aGwzJ//be5+pkiW4
- /AZ+urb+e4cxs1ne7rq6rAmh9+AYO7zt4n26ueBoYgBhWYyJortjXI5VrtwKhs/DwzQ9P2kHp
- rGqcaqR3F1oFPaM9D31vh7DOc4snOFK5YT1DjajpeRkI8Ia8xsMbOHGKvHCGkCtC5/grEbh4B
- iT/5/nvlhiIgq5cnFIulaqNYEIEalrC6v5taFCaft/luDscbiiPLK
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 10, 2020 at 11:46 AM Daniel Palmer <daniel@0x0f.com> wrote:
->
-> This patch set adds initial support for MStar/Sigmastar's
-> Armv7 based SoCs. There is just enough here to get to a shell
-> with an initramfs but support for a lot of the hardware is
-> in progress and will follow.
->
-> MStar also shipped chips with MIPS cores and ARM9 etc which
-> are incompatible so I've tried to make the distinction in the
-> code that this is strictly for the Armv7 based chips.
->
-> Sorry for the spamming this. I just really want to make some
-> progress on this because I'm worried the other bits that are
-> needed for these SoCs (Really old AT91 support in macb and
-> the fotg210 usb host) will be lost or stop working in the meantime.
-> This already happened in u-boot.
+Add the "seeed" vendor prefix for Seeed Technology Co., Ltd
+Website: https://www.seeedstudio.com/
 
-Hi Daniel,
+Signed-off-by: Marcin Sloniewski <marcin.sloniewski@gmail.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-I just found the series again after looking through some backlog,
-and noticing I missed your submission from July 10. This looks
-all good to me now, so I've merged the series into the arm/newsoc
-branch that already contains added support for the keembay and
-sparx5 SoCs.
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 9aeab66be85f..7dd03b3e9d3c 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -902,6 +902,8 @@ patternProperties:
+     description: Schindler
+   "^seagate,.*":
+     description: Seagate Technology PLC
++  "^seeed,.*":
++    description: Seeed Technology Co., Ltd
+   "^seirobotics,.*":
+     description: Shenzhen SEI Robotics Co., Ltd
+   "^semtech,.*":
+-- 
+2.27.0
 
-If you require any changes to this, please send incremental
-patches against the soc tree, and submit it to soc@kernel.org
-so it makes it gets into patchwork.
-
-       Arnd
