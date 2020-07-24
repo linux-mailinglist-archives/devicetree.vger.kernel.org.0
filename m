@@ -2,74 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 006C022BCA5
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 05:58:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D578722BCD0
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 06:17:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726573AbgGXD6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jul 2020 23:58:46 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:38295 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726503AbgGXD6q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jul 2020 23:58:46 -0400
-Received: from ironmsg07-lv.qualcomm.com (HELO ironmsg07-lv.qulacomm.com) ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 23 Jul 2020 20:58:46 -0700
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg07-lv.qulacomm.com with ESMTP/TLS/AES256-SHA; 23 Jul 2020 20:58:44 -0700
-Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 24 Jul 2020 09:28:24 +0530
-Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
-        id 2CF344272; Fri, 24 Jul 2020 09:28:23 +0530 (IST)
-From:   satya priya <skakit@codeaurora.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        gregkh@linuxfoundation.org
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, akashast@codeaurora.org,
-        rojay@codeaurora.org, msavaliy@qti.qualcomm.com,
-        satya priya <skakit@codeaurora.org>
-Subject: [PATCH V2 3/3] tty: serial: qcom_geni_serial: Fix the UART wakeup issue
-Date:   Fri, 24 Jul 2020 09:28:02 +0530
-Message-Id: <1595563082-2353-4-git-send-email-skakit@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1595563082-2353-1-git-send-email-skakit@codeaurora.org>
-References: <1595563082-2353-1-git-send-email-skakit@codeaurora.org>
+        id S1726317AbgGXER1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jul 2020 00:17:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36434 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725889AbgGXER1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jul 2020 00:17:27 -0400
+Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 691E5C0619D3
+        for <devicetree@vger.kernel.org>; Thu, 23 Jul 2020 21:17:27 -0700 (PDT)
+Received: by mail-oi1-x242.google.com with SMTP id w17so7002742oie.6
+        for <devicetree@vger.kernel.org>; Thu, 23 Jul 2020 21:17:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=YTT73fROBVT8TZbJViXVHJt1wjzukhaNdjZMHoT4MMM=;
+        b=gmqfhVFtR337ZrjFDzRLwS/pOwrr2MrmvoxgzuqKhyWihrkEJAP0OX2mekTSzg1lTh
+         4OUMLj+g/asCGM5+CFRMwA6QrVEYkt9ZHV2g9Fm9li9W3qYvQhsdGA8VUsGt9XIdkYFq
+         T74by6FB0sFWsSyWM35fUrjhYhFXNwswSuCi4Ikt33R2rcJ+lqyOWu9SRtUzaE2aZ5hN
+         HYOCF1X8xFXcJLig8HTMcWM5ChMEUGsUHPHsPAMPZJieMCK7+Soc88nUX/ZVh39kxb52
+         6IqGWyKyZurId3qZ86v4I5jdSPrXaiJgCm881mzgCp0YsCHbi3Qbay/RKd5XqVmnbqHz
+         z8KQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=YTT73fROBVT8TZbJViXVHJt1wjzukhaNdjZMHoT4MMM=;
+        b=AentKLgyefiKU7CRWqj3TXRoMZUw4ueoaBCKxcutKrDwzTjnG7vG1Uq8I0hYhFi2KB
+         N74Ra4V8Buhu+E0NgUKvFV+eh+ggi6liGfcupsAXIXgujwXlOSRTWjpD94gobn94l7ND
+         Gu2VrQIrkDKUYq+1jsr64UoVnx4Qqfm3mw/XD3bewFBD25goIoA9h9N6PZQK3KVAcypp
+         opD3JO0ECCl0G/9D2C1ofG17RtlfPXL1g0q0DQ6bclBtwPOEhaTKLCZhfEgeWwxLyJNh
+         Sh4EAPIcEBFvHYp6aV1ru1fwDAUfWRRhB1emlJCazmcU2emh1YRPF6obf8+rluDkdz5J
+         521w==
+X-Gm-Message-State: AOAM5328Nh+EcD48dHwQuT+P8jkJcL6iq+1lGizeu1tYVemye+HwYv44
+        RP9bHRShg2y5XkJJFi+dKKfIzvsr+yqqQH10g3sPfQ==
+X-Google-Smtp-Source: ABdhPJx/agHjYflbwk6fi2xXMZqsnu4VQ0/K/yAmmSRQzS/+TjeabhqhPYBCWVJmqyU41+AcbdUgXQZnaG5C8w8nTZQ=
+X-Received: by 2002:aca:2811:: with SMTP id 17mr6887468oix.166.1595564246768;
+ Thu, 23 Jul 2020 21:17:26 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200722055816.20768-1-sumit.semwal@linaro.org>
+ <20200722055816.20768-2-sumit.semwal@linaro.org> <20200723175552.GA602630@bogus>
+In-Reply-To: <20200723175552.GA602630@bogus>
+From:   Sumit Semwal <sumit.semwal@linaro.org>
+Date:   Fri, 24 Jul 2020 09:47:15 +0530
+Message-ID: <CAO_48GH3btOO9JyxqC2JEcqqxnP_Fxk_u4mvuaEy22TfMZ8pqA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: Add bindings for
+ Tianma nt36672a panel
+To:     Rob Herring <robh@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        LKML <linux-kernel@vger.kernel.org>,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As a part of system suspend we call uart_port_suspend from the
-Serial driver, which calls set_mctrl passing mctrl as NULL. This
-makes RFR high(NOT_READY) during suspend.
+Hi Rob,
 
-Due to this BT SoC is not able to send wakeup bytes to UART during
-suspend. Included if check for non-suspend case to keep RFR low
-during suspend.
+Thanks for the review!
 
-Signed-off-by: satya priya <skakit@codeaurora.org>
----
-Changes in V2:
- - This patch fixes the UART flow control issue during suspend.
-   Newly added in V2.
+On Thu, 23 Jul 2020 at 23:25, Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Jul 22, 2020 at 11:28:15AM +0530, Sumit Semwal wrote:
+> > The nt36672a panel from Tianma is a FHD+ panel with a resolution of 1080x2246
+> > and 6.18 inches size. It is found in some of the Poco F1 phones.
+> >
+> > Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
+> > Change-Id: I401dfbfe23ff2d806c956002f45e349cb9688c16
+>
+> You know better...
+Yes - Sorry :( - will correct.
+>
+> > ---
+> > v2: remove ports node, making port@0 directly under panel@0 node.
+> > ---
+> >  .../display/panel/tianma,nt36672a.yaml        | 104 ++++++++++++++++++
+> >  1 file changed, 104 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/panel/tianma,nt36672a.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/panel/tianma,nt36672a.yaml b/Documentation/devicetree/bindings/display/panel/tianma,nt36672a.yaml
+> > new file mode 100644
+> > index 000000000000..cb1799fbbd32
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/panel/tianma,nt36672a.yaml
+> > @@ -0,0 +1,104 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/panel/tianma,nt36672a.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Tianma model NT36672A DSI Panel display driver
+> > +
+> > +maintainers:
+> > +  - Sumit Semwal <sumit.semwal@linaro.org>
+> > +
+> > +description: |
+> > +  The nt36672a panel from Tianma is a FHD+ LCD display panel with a resolution
+> > +  of 1080x2246. It is a video mode DSI panel.
+> > +
+> > +allOf:
+> > +  - $ref: panel-common.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: tianma,nt36672a
+> > +
+> > +  reg:
+> > +    description: DSI virtual channel of the peripheral
+> > +
+> > +  reset-gpios:
+> > +    description: phandle of gpio for reset line - This should be 8mA, gpio
+> > +      can be configured using mux, pinctrl, pinctrl-names (active high)
+> > +
+> > +  vddio-supply:
+> > +    description: phandle of the regulator that provides the supply voltage
+> > +      Power IC supply
+> > +
+> > +  vddpos-supply:
+> > +    description: phandle of the positive boost supply regulator
+> > +
+> > +  vddneg-supply:
+> > +    description: phandle of the negative boost supply regulator
+> > +
+> > +  pinctrl-names:
+> > +    description: Pinctrl for panel active and suspend
+> > +
+> > +  pinctrl-0:
+> > +    description: Active pinctrls
+> > +
+> > +  pinctrl-1:
+> > +    description: Suspend pinctrls
+> > +
+> > +  port@0:
+>
+> Just 'port' as there can only be 1 in this case.
+>
+> You can do just: 'port: true' as panel-common.yaml already has a
+> definition.
 
- drivers/tty/serial/qcom_geni_serial.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Ok, let me try that and send out v3.
+>
+> > +    type: object
+> > +    description: DSI input port driven by master DSI
+> > +    properties:
+> > +      reg:
+> > +        const: 0
+> > +
+> > +    required:
+> > +      - reg
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - vddi0-supply
+> > +  - vddpos-supply
+> > +  - vddneg-supply
+> > +  - reset-gpios
+> > +  - pinctrl-names
+> > +  - pinctrl-0
+> > +  - pinctrl-1
+> > +  - port@0
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |+
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +    dsi0 {
+> > +      #address-cells = <1>;
+> > +      #size-cells = <0>;
+> > +
+> > +      panel@0 {
+> > +        compatible = "tianma,nt36672a";
+> > +        reg = <0>;
+> > +        vddi0-supply = <&vreg_l14a_1p88>;
+> > +        vddpos-supply = <&lab>;
+> > +        vddneg-supply = <&ibb>;
+> > +
+> > +        reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
+> > +
+> > +        pinctrl-names = "panel_active", "panel_suspend";
+> > +        pinctrl-0 = <&sde_dsi_active>;
+> > +        pinctrl-1 = <&sde_dsi_suspend>;
+> > +
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +        port@0 {
+> > +          reg = <0>;
+> > +          tianma_nt36672a_in_0: endpoint {
+> > +            remote-endpoint = <&dsi0_out>;
+> > +          };
+> > +        };
+> > +      };
+> > +    };
+> > +
+> > +...
+> > --
+> > 2.27.0
+> >
+>
 
-diff --git a/drivers/tty/serial/qcom_geni_serial.c b/drivers/tty/serial/qcom_geni_serial.c
-index 07b7b6b..7108dfc 100644
---- a/drivers/tty/serial/qcom_geni_serial.c
-+++ b/drivers/tty/serial/qcom_geni_serial.c
-@@ -242,7 +242,7 @@ static void qcom_geni_serial_set_mctrl(struct uart_port *uport,
- 	if (mctrl & TIOCM_LOOP)
- 		port->loopback = RX_TX_CTS_RTS_SORTED;
- 
--	if (!(mctrl & TIOCM_RTS))
-+	if ((!(mctrl & TIOCM_RTS)) && (!(uport->suspended)))
- 		uart_manual_rfr = UART_MANUAL_RFR_EN | UART_RFR_NOT_READY;
- 	writel(uart_manual_rfr, uport->membase + SE_UART_MANUAL_RFR);
- }
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-of Code Aurora Forum, hosted by The Linux Foundation
-
+Best,
+Sumit.
