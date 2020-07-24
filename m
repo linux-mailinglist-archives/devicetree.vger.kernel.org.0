@@ -2,231 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA9A422C7C7
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 16:19:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62B0222C82F
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 16:38:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726782AbgGXOTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jul 2020 10:19:34 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:52910 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726366AbgGXOTe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jul 2020 10:19:34 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06OEJQrV085906;
-        Fri, 24 Jul 2020 09:19:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1595600366;
-        bh=tCRyqOS7QzOz+wBhm7jyYwDjGFUQdR0oZraTRLE9x2o=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=r4sdoTiq02C4QyjomVMczWN8yC9TgXU15Xzbt47dg5deIWaaj9Teazykk3KX18pNK
-         4tReGgHNwpBD5JhKYvRtp1wm/f3Aha6WIRwvy1izN5BIllsVfBREnkJy8NJlnRTYL9
-         nAmTsaSxryEY23hWlZA545rXVNhSpscNxCJA4WNE=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06OEJQ22005108;
-        Fri, 24 Jul 2020 09:19:26 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 24
- Jul 2020 09:19:26 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 24 Jul 2020 09:19:26 -0500
-Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06OEIiXx016316;
-        Fri, 24 Jul 2020 09:19:22 -0500
-From:   Lokesh Vutla <lokeshvutla@ti.com>
-To:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>
-CC:     Thomas Gleixner <tglx@linutronix.de>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Suman Anna <s-anna@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [PATCH v3 9/9] irqchip/ti-sci-inta: Add support for INTA directly connecting to GIC
-Date:   Fri, 24 Jul 2020 19:48:37 +0530
-Message-ID: <20200724141837.4542-10-lokeshvutla@ti.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200724141837.4542-1-lokeshvutla@ti.com>
-References: <20200724141837.4542-1-lokeshvutla@ti.com>
+        id S1726941AbgGXOiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jul 2020 10:38:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48298 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726366AbgGXOiM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jul 2020 10:38:12 -0400
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com [IPv6:2607:f8b0:4864:20::844])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EDAFC0619D3
+        for <devicetree@vger.kernel.org>; Fri, 24 Jul 2020 07:38:12 -0700 (PDT)
+Received: by mail-qt1-x844.google.com with SMTP id t23so3916453qto.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Jul 2020 07:38:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=marek-ca.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=zOK7eAgZJ3t7dQkZKNcxeqBq/iG/Skq4gZfTI03mDPM=;
+        b=YOqLeyRMdwqgU18zVS/+N6TLsH9gI63rm9VIeN/epQyBzEW9i5ywuSAdqJbHLmHdad
+         /MQnCuvp7fEnW4nrMTruFWDGhfmvMODXjt4QBoYwZtty84j5U1CUjAC50/lJfnz0HFD/
+         KSWqe8l+ecOd8S7OdU7qh0hAC9DQd5zRs2zPk2CmVRNR6AYPuzs8FU8FO+kDOzqc6v6e
+         vZonBwMR0Q/H4WhyVWJS9oT6W+NzFLdtDt3AZ6rxd1ekOxw1jkp/aohptqGjc4nijzRd
+         J6aRNPM1HdeGjcBVxJQvUL6ryiucAgeDzP1Bun6BIuZd68AE3mIxTeaHdPxvLJ2DoyeT
+         Pkhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=zOK7eAgZJ3t7dQkZKNcxeqBq/iG/Skq4gZfTI03mDPM=;
+        b=qCGIN4BHKVOcka8a//puP3gjgHjyYXMuOeGNSTkPiZe+9rT+oWe1lwFlk8ZNA6KKGI
+         DDw9mQ7sUagf3/aiPLplZh3bDIcruNmXxMKZaaaQ3dojzN82McpdPs6Wru2LijCu+vtM
+         72027afBrcqi2uM5CRsN27WGeCtwYwPn7G05Nxlb5mbIRGbEgEg2srUAtDDbUZgIoZAA
+         za7kvuJ9vsTz/5aY8Xw79N4LIAh79nO7xlZBAz2Mp6T/i8MEJKUvJ5kdzrJASXVxxU8T
+         aXJFC6xWicuiE0G7OVhCxFDGE5fOu633NIWnMDyxj2IQrQkNZ5dksErOorbrPp/3G7DK
+         dGxg==
+X-Gm-Message-State: AOAM531tv+weMtCpgX5gEcK2qJX0pStZm1wSeBFSSqk7yhGYTKoWiExI
+        Rbq929Dc3KxAnWQCeCksbX7Q0w==
+X-Google-Smtp-Source: ABdhPJxswmfpAyOetAIYg885jgQlQudsWTetNor8KGf5GHaVE6siL0yymRtSfn2lOGY9/sOQY7g7mQ==
+X-Received: by 2002:ac8:1a14:: with SMTP id v20mr9702060qtj.269.1595601491494;
+        Fri, 24 Jul 2020 07:38:11 -0700 (PDT)
+Received: from [192.168.0.189] ([147.253.86.153])
+        by smtp.gmail.com with ESMTPSA id d15sm132156qka.91.2020.07.24.07.38.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Jul 2020 07:38:10 -0700 (PDT)
+Subject: Re: [PATCH v2 7/7] arm64: dts: qcom: sm8250: add interconnect nodes
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kernel-owner@vger.kernel.org
+References: <20200713154121.22094-1-jonathan@marek.ca>
+ <20200713154121.22094-8-jonathan@marek.ca>
+ <630319740d3f06cfb0435cae025e0ca1@codeaurora.org>
+From:   Jonathan Marek <jonathan@marek.ca>
+Message-ID: <2b77bdaf-0c9e-c054-77d1-3bc21e857773@marek.ca>
+Date:   Fri, 24 Jul 2020 10:36:48 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
+In-Reply-To: <630319740d3f06cfb0435cae025e0ca1@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Driver assumes that Interrupt parent to Interrupt Aggregator is always
-Interrupt router. This is not true always and GIC can be a parent to
-Interrupt Aggregator. Update the driver to detect the parent and request
-the parent irqs accordingly.
+On 7/24/20 10:13 AM, Sibi Sankar wrote:
+> Hey Jonathan,
+> 
+> Thanks for the patch! Please use the
+> suggested register space definitions
+> instead.
+> 
 
-Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
----
- drivers/irqchip/irq-ti-sci-inta.c | 90 ++++++++++++++++++++++++++-----
- 1 file changed, 77 insertions(+), 13 deletions(-)
+Thanks for the suggestions, I was unsure what to use for the sizes. The 
+reg field is unused by the upstream driver so it is hard to figure out.
 
-diff --git a/drivers/irqchip/irq-ti-sci-inta.c b/drivers/irqchip/irq-ti-sci-inta.c
-index 7e3ebf6ed2cd..00c17ade118a 100644
---- a/drivers/irqchip/irq-ti-sci-inta.c
-+++ b/drivers/irqchip/irq-ti-sci-inta.c
-@@ -8,6 +8,7 @@
- 
- #include <linux/err.h>
- #include <linux/io.h>
-+#include <linux/irq.h>
- #include <linux/irqchip.h>
- #include <linux/irqdomain.h>
- #include <linux/interrupt.h>
-@@ -128,6 +129,37 @@ static void ti_sci_inta_irq_handler(struct irq_desc *desc)
- 	chained_irq_exit(irq_desc_get_chip(desc), desc);
- }
- 
-+/**
-+ * ti_sci_inta_xlate_irq() - Translate hwirq to parent's hwirq.
-+ * @inta:	IRQ domain corresponding to Interrupt Aggregator
-+ * @irq:	Hardware irq corresponding to the above irq domain
-+ *
-+ * Return parent irq number if translation is available else -ENOENT.
-+ */
-+static int ti_sci_inta_xlate_irq(struct ti_sci_inta_irq_domain *inta,
-+				 u16 vint_id)
-+{
-+	struct device_node *np = dev_of_node(&inta->pdev->dev);
-+	u32 base, parent_base, size;
-+	const __be32 *range;
-+	int len;
-+
-+	range = of_get_property(np, "ti,interrupt-ranges", &len);
-+	if (!range)
-+		return vint_id;
-+
-+	for (len /= sizeof(*range); len >= 3; len -= 3) {
-+		base = be32_to_cpu(*range++);
-+		parent_base = be32_to_cpu(*range++);
-+		size = be32_to_cpu(*range++);
-+
-+		if (base <= vint_id && vint_id < base + size)
-+			return vint_id - base + parent_base;
-+	}
-+
-+	return -ENOENT;
-+}
-+
- /**
-  * ti_sci_inta_alloc_parent_irq() - Allocate parent irq to Interrupt aggregator
-  * @domain:	IRQ domain corresponding to Interrupt Aggregator
-@@ -139,30 +171,55 @@ static struct ti_sci_inta_vint_desc *ti_sci_inta_alloc_parent_irq(struct irq_dom
- 	struct ti_sci_inta_irq_domain *inta = domain->host_data;
- 	struct ti_sci_inta_vint_desc *vint_desc;
- 	struct irq_fwspec parent_fwspec;
-+	struct device_node *parent_node;
- 	unsigned int parent_virq;
--	u16 vint_id;
-+	u16 vint_id, p_hwirq;
-+	int ret;
- 
- 	vint_id = ti_sci_get_free_resource(inta->vint);
- 	if (vint_id == TI_SCI_RESOURCE_NULL)
- 		return ERR_PTR(-EINVAL);
- 
-+	p_hwirq = ti_sci_inta_xlate_irq(inta, vint_id);
-+	if (p_hwirq < 0) {
-+		ret = p_hwirq;
-+		goto free_vint;
-+	}
-+
- 	vint_desc = kzalloc(sizeof(*vint_desc), GFP_KERNEL);
--	if (!vint_desc)
--		return ERR_PTR(-ENOMEM);
-+	if (!vint_desc) {
-+		ret = -ENOMEM;
-+		goto free_vint;
-+	}
- 
- 	vint_desc->domain = domain;
- 	vint_desc->vint_id = vint_id;
- 	INIT_LIST_HEAD(&vint_desc->list);
- 
--	parent_fwspec.fwnode = of_node_to_fwnode(of_irq_find_parent(dev_of_node(&inta->pdev->dev)));
--	parent_fwspec.param_count = 2;
--	parent_fwspec.param[0] = inta->pdev->id;
--	parent_fwspec.param[1] = vint_desc->vint_id;
-+	parent_node = of_irq_find_parent(dev_of_node(&inta->pdev->dev));
-+	parent_fwspec.fwnode = of_node_to_fwnode(parent_node);
-+	if (of_property_read_u32(parent_node, "#interrupt-cells",
-+				 &parent_fwspec.param_count)) {
-+		ret = -EINVAL;
-+		goto free_vint_desc;
-+	}
-+
-+	if (of_device_is_compatible(parent_node, "arm,gic-v3")) {
-+		/* Parent is GIC */
-+		parent_fwspec.param[0] = 0;
-+		parent_fwspec.param[1] = p_hwirq - 32;
-+		parent_fwspec.param[2] = IRQ_TYPE_LEVEL_HIGH;
-+	} else {
-+		/* Parent is Interrupt Router */
-+		parent_fwspec.param[0] = p_hwirq;
-+	}
- 
- 	parent_virq = irq_create_fwspec_mapping(&parent_fwspec);
- 	if (parent_virq == 0) {
--		kfree(vint_desc);
--		return ERR_PTR(-EINVAL);
-+		dev_err(&inta->pdev->dev, "Parent IRQ allocation failed\n");
-+		ret = -EINVAL;
-+		goto free_vint_desc;
-+
- 	}
- 	vint_desc->parent_virq = parent_virq;
- 
-@@ -171,6 +228,11 @@ static struct ti_sci_inta_vint_desc *ti_sci_inta_alloc_parent_irq(struct irq_dom
- 					 ti_sci_inta_irq_handler, vint_desc);
- 
- 	return vint_desc;
-+free_vint_desc:
-+	kfree(vint_desc);
-+free_vint:
-+	ti_sci_release_resource(inta->vint, vint_id);
-+	return ERR_PTR(ret);
- }
- 
- /**
-@@ -555,15 +617,15 @@ static int ti_sci_inta_irq_domain_probe(struct platform_device *pdev)
- 		return -EINVAL;
- 	}
- 
--	inta->vint = devm_ti_sci_get_of_resource(inta->sci, dev, pdev->id,
--						 "ti,sci-rm-range-vint");
-+	inta->vint = devm_ti_sci_get_resource(inta->sci, dev, pdev->id,
-+					      TI_SCI_RESASG_SUBTYPE_IA_VINT);
- 	if (IS_ERR(inta->vint)) {
- 		dev_err(dev, "VINT resource allocation failed\n");
- 		return PTR_ERR(inta->vint);
- 	}
- 
--	inta->global_event = devm_ti_sci_get_of_resource(inta->sci, dev, pdev->id,
--						"ti,sci-rm-range-global-event");
-+	inta->global_event = devm_ti_sci_get_resource(inta->sci, dev, pdev->id,
-+					TI_SCI_RESASG_SUBTYPE_GLOBAL_EVENT_SEVT);
- 	if (IS_ERR(inta->global_event)) {
- 		dev_err(dev, "Global event resource allocation failed\n");
- 		return PTR_ERR(inta->global_event);
-@@ -594,6 +656,8 @@ static int ti_sci_inta_irq_domain_probe(struct platform_device *pdev)
- 	INIT_LIST_HEAD(&inta->vint_list);
- 	mutex_init(&inta->vint_mutex);
- 
-+	dev_info(dev, "Interrupt Aggregator domain %d created\n", pdev->id);
-+
- 	return 0;
- }
- 
--- 
-2.27.0
+However, I'm not sure about some of your suggestions for the base 
+address. For example, for "mc_virt" you suggest 0x0163d000, and I have 
+0x09100000. In the downstream dts, "mc_virt-base" is 0x9100000 and 
+qcom,base-offset for fab_mc_virt is 0. Do you have an explanation for 
+why your suggestion is so different?
 
+> On 2020-07-13 21:11, Jonathan Marek wrote:
+>> Add the interconnect dts nodes for sm8250.
+>>
+>> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sm8250.dtsi | 82 ++++++++++++++++++++++++++++
+>>  1 file changed, 82 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> index 636e2196138c..dfc1b7fa7d85 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> @@ -11,6 +11,7 @@
+>>  #include <dt-bindings/power/qcom-aoss-qmp.h>
+>>  #include <dt-bindings/power/qcom-rpmpd.h>
+>>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+>> +#include <dt-bindings/interconnect/qcom,sm8250.h>
+> 
+> please fix ^^ sort order
+> 
+>>
+>>  / {
+>>      interrupt-parent = <&intc>;
+>> @@ -978,6 +979,55 @@ spi13: spi@a94000 {
+>>              };
+>>          };
+>>
+>> +        config_noc: interconnect@1500000 {
+>> +            compatible = "qcom,sm8250-config-noc";
+>> +            reg = <0 0x01500000 0 0x1000>;
+> 
+> 0x01500000 0xa580
+> 
+>> +            #interconnect-cells = <1>;
+>> +            qcom,bcm-voters = <&apps_bcm_voter>;
+>> +        };
+>> +
+>> +        ipa_virt: interconnect@1620000 {
+>> +            compatible = "qcom,sm8250-ipa-virt";
+>> +            reg = <0 0x01620000 0 0x1000>;
+> 
+> 0x01e00000 0x1000
+> 
+>> +            #interconnect-cells = <1>;
+>> +            qcom,bcm-voters = <&apps_bcm_voter>;
+>> +        };
+>> +
+>> +        system_noc: interconnect@1632000 {
+>> +            compatible = "qcom,sm8250-system-noc";
+>> +            reg = <0 0x01632000 0 0x1000>;
+> 
+> 0x01620000 0x1C200
+> 
+>> +            #interconnect-cells = <1>;
+>> +            qcom,bcm-voters = <&apps_bcm_voter>;
+>> +        };
+>> +
+>> +        aggre1_noc: interconnect@16e2000 {
+>> +            compatible = "qcom,sm8250-aggre1-noc";
+>> +            reg = <0 0x016e2000 0 0x1000>;
+> 
+> 0x016e0000 0x1f180
+> 
+>> +            #interconnect-cells = <1>;
+>> +            qcom,bcm-voters = <&apps_bcm_voter>;
+>> +        };
+>> +
+>> +        aggre2_noc: interconnect@1703000 {
+>> +            compatible = "qcom,sm8250-aggre2-noc";
+>> +            reg = <0 0x01703000 0 0x1000>;
+> 
+> 0x01700000 0x33000
+> 
+>> +            #interconnect-cells = <1>;
+>> +            qcom,bcm-voters = <&apps_bcm_voter>;
+>> +        };
+>> +
+>> +        compute_noc: interconnect@1733000 {
+>> +            compatible = "qcom,sm8250-compute-noc";
+>> +            reg = <0 0x01733000 0 0x1000>;
+> 
+> 0x01733000 0xd180
+> 
+>> +            #interconnect-cells = <1>;
+>> +            qcom,bcm-voters = <&apps_bcm_voter>;
+>> +        };
+>> +
+>> +        mmss_noc: interconnect@174a000 {
+>> +            compatible = "qcom,sm8250-mmss-noc";
+>> +            reg = <0 0x0174a000 0 0x1000>;
+> 
+> 0x01740000 0x1f080
+> 
+>> +            #interconnect-cells = <1>;
+>> +            qcom,bcm-voters = <&apps_bcm_voter>;
+>> +        };
+>> +
+>>          ufs_mem_hc: ufshc@1d84000 {
+>>              compatible = "qcom,sm8250-ufshc", "qcom,ufshc",
+>>                       "jedec,ufs-2.0";
+>> @@ -1364,6 +1414,34 @@ usb_2_ssphy: lane@88eb200 {
+>>              };
+>>          };
+>>
+>> +        dc_noc: interconnect@90c0000 {
+>> +            compatible = "qcom,sm8250-dc-noc";
+>> +            reg = <0 0x090c0000 0 0x1000>;
+> 
+> 0x090c0000 0x4200
+> 
+>> +            #interconnect-cells = <1>;
+>> +            qcom,bcm-voters = <&apps_bcm_voter>;
+>> +        };
+>> +
+>> +        mc_virt: interconnect@9100000 {
+>> +            compatible = "qcom,sm8250-mc-virt";
+>> +            reg = <0 0x09100000 0 0x1000>;
+> 
+> 0x0163d000 0x1000
+> 
+>> +            #interconnect-cells = <1>;
+>> +            qcom,bcm-voters = <&apps_bcm_voter>;
+>> +        };
+>> +
+>> +        gem_noc: interconnect@9121000 {
+>> +            compatible = "qcom,sm8250-gem-noc";
+>> +            reg = <0 0x09121000 0 0x1000>;
+> 
+> 0x09100000 0xb4000
+> 
+>> +            #interconnect-cells = <1>;
+>> +            qcom,bcm-voters = <&apps_bcm_voter>;
+>> +        };
+>> +
+>> +        npu_noc: interconnect@9990000 {
+>> +            compatible = "qcom,sm8250-npu-noc";
+>> +            reg = <0 0x09990000 0 0x1000>;
+> 
+> 0x09990000 0x1600
+> 
+>> +            #interconnect-cells = <1>;
+>> +            qcom,bcm-voters = <&apps_bcm_voter>;
+>> +        };
+>> +
+>>          usb_1: usb@a6f8800 {
+>>              compatible = "qcom,sm8250-dwc3", "qcom,dwc3";
+>>              reg = <0 0x0a6f8800 0 0x400>;
+>> @@ -2359,6 +2437,10 @@ rpmhpd_opp_turbo_l1: opp10 {
+>>                      };
+>>                  };
+>>              };
+>> +
+>> +            apps_bcm_voter: bcm_voter {
+>> +                compatible = "qcom,bcm-voter";
+>> +            };
+>>          };
+>>      };
+> 
