@@ -2,104 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 599FC22C047
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 09:57:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC1AE22C002
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 09:43:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726716AbgGXH5s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jul 2020 03:57:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42312 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726567AbgGXH5s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jul 2020 03:57:48 -0400
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60C87C0619D3;
-        Fri, 24 Jul 2020 00:57:48 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id b92so4777163pjc.4;
-        Fri, 24 Jul 2020 00:57:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=xv1zcnsXMWiFNO1yGG77PvS7le6RI8NhBpIqWlz5EF8=;
-        b=MBDrRoFhTThMwn4vuJaaJ1dUYtoHvJ9AvJUl0nf0zlaZSI6t6TWtrxf9QZLT16Cjac
-         H23NM9EEsXLczUcARcfJgpW3/75JTNWtoVXlH1i8PJQYqMUT0IESJDkn6TJLdVsA1URB
-         ZmMzUC35wS3XEC3figGP8sKiEVYd0Pxdb1pSLbN+YB9N14rqtIQaLMc8yI3lP1ATVkC0
-         C7F6xEs3MNco4mv0eLNtiF+a5dTIWyog3K+3h57lmwPpu96CBzsjOk0L9KTnAfJmfJg/
-         Zdl7/zxuRdCOtE2s5tYxBtXqjB1YznlEDwOmetthQnbq7IjCYMMoxf/PzdJjvpaibbjs
-         VPWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=xv1zcnsXMWiFNO1yGG77PvS7le6RI8NhBpIqWlz5EF8=;
-        b=rKJ5+UprjweLR5iy4PeiefLesuVDRRjIvpCEAaBsUqM4mzcm6ZmbZoVGkPZfvX5n5C
-         7hH1I3o5OmlTRH+BfZI52Pmnof9O1oaAYJNXUgMOd+X1AcITX33sCClkK0k0vGnsXdGT
-         UAKQSEO6K+/o4Zndag7hmlLPidmPfLCloO3oGWK8JLz0eToM2xwKtRmq1Aejjfez03dy
-         6kah2F3H/fzxjLoDRbyB8ZnbYBpTObPoH4V7vDGON3BK11xRuordgWHuNTsmxpWemI++
-         ImAQ+jxsjKEVjsDjSFS/W1R9okxyJuEPuquj8LvC85gnAm5KY4N1tHZJMaZjzvTkLvTv
-         qjvA==
-X-Gm-Message-State: AOAM533KwR9d0zNNJ52Gi2PML1KkpWEYEDFwimH3red1NBUNA04I90Hz
-        eoMilB05pziEAjIwzGNnA8M=
-X-Google-Smtp-Source: ABdhPJynechrOQSEPYvcFtvaqlpIS9gq+rCF/yyS8wRTv0ETsMXi1wl44AtzrxCRuDoo1r19Tx0gGA==
-X-Received: by 2002:a17:902:6941:: with SMTP id k1mr7207545plt.270.1595577467811;
-        Fri, 24 Jul 2020 00:57:47 -0700 (PDT)
-Received: from taoren-ubuntu-R90MNF91 (c-73-252-146-110.hsd1.ca.comcast.net. [73.252.146.110])
-        by smtp.gmail.com with ESMTPSA id b22sm4784117pju.26.2020.07.24.00.57.46
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 24 Jul 2020 00:57:47 -0700 (PDT)
-Date:   Fri, 24 Jul 2020 00:57:40 -0700
-From:   Tao Ren <rentao.bupt@gmail.com>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Tao Ren <taoren@fb.com>
-Subject: Re: [PATCH v2 0/3] ARM: dts: aspeed: fixup wedge40 device tree
-Message-ID: <20200724075739.GA4327@taoren-ubuntu-R90MNF91>
-References: <20200723230539.17860-1-rentao.bupt@gmail.com>
- <CACPK8XdiHLcBBhXjCpTZotVPuRj4bFh0x8TFhSj1TBK2xB0SiQ@mail.gmail.com>
+        id S1728225AbgGXHnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jul 2020 03:43:33 -0400
+Received: from mail-eopbgr00087.outbound.protection.outlook.com ([40.107.0.87]:36007
+        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726607AbgGXHnc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 Jul 2020 03:43:32 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=C4SiM0oNcDQ6Tnru5emckgGeRAVEYD9QUmrR7CUk0trlxc2LJz3gO253nuN+ILGc9qz/E9ELFdRmcKY9oYFfc5rJJGP1tlMLSpZeWFVx1Y3U4EX0GZ1+gR7FUdXc8wrRJK13RpaZS1CBGWNxzCRxvJKx2O+ebN/tSmRrFBBEYr75y36k54gC1GMyp4/zf/dPq52XEcubkrqgC24GNeXsGsYW0RTSrK5bCIJEd5t+vyQczmX5u3TM+UTvFUHBaNT5dSdvjoA4mWrPcuyOwzGPE6kxV4i+t0o57B3xELmRoOXJCa3hpQu/Vs3LwwPidwcBpCh/YICsg+JnjIAGVNymRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lmGgTMIbllQUaEA8zmOQnT0s4TQFi5n7J8IqHXxHCJo=;
+ b=KbeGzmKN+PpMylGI5JQy450VAXZoRfPCAc8jr8LrPusC1oHdEjQuWaQNVUT+Bq1YZ0Ot0hNvcmBLVsQAbzxYZTOJcfm3GW3B3rq5ilyoaSFO8uWMQ7C/TS6YJfBTf9/91uEK2uq8taQESpFklrlcefjfbthQxWKkyqTSsw4J9LfVSxN6RwpNOF+49HFTcpkxsUnXjrtTr0bUSf2jJ4y3alxbb6B0CACzD/Z04p2UOQT/aU5Qv1eiMLVlO0XogvWmeW1l3eLRS/yTXSuVn6TuH4pk0aHHjRQgZJi9Bn4AdiLbnvrbFTws4Psq1gOGM+52/EzbfKkP4DFIe6/ddGy0yw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lmGgTMIbllQUaEA8zmOQnT0s4TQFi5n7J8IqHXxHCJo=;
+ b=DRL1ZkkG0Df3WDQ26V7RiYpo6fDYS6FEicNqwdFwM36JE8zdznd9uBP+Jq1N/AdX7keb2y5IxeIAPnUzxEyppvln2bVovlWK1XEp6cJj6M3nBrxDqOhdeTbru7nkAJ8IS5rVA/HlEQ9CosvUc3L+FmkCidZw9tVeG+z1WF733yc=
+Authentication-Results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none header.from=nxp.com;
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DB8PR04MB6857.eurprd04.prod.outlook.com (2603:10a6:10:114::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.24; Fri, 24 Jul
+ 2020 07:43:27 +0000
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::2d36:b569:17c:7701]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::2d36:b569:17c:7701%4]) with mapi id 15.20.3216.024; Fri, 24 Jul 2020
+ 07:43:27 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
+        o.rempel@pengutronix.de, robh+dt@kernel.org
+Cc:     linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH 00/10] remoteproc: imx_rproc: support iMX8M and early boot
+Date:   Fri, 24 Jul 2020 16:08:03 +0800
+Message-Id: <20200724080813.24884-1-peng.fan@nxp.com>
+X-Mailer: git-send-email 2.16.4
+Content-Type: text/plain
+X-ClientProxiedBy: SGAP274CA0014.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::26)
+ To DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACPK8XdiHLcBBhXjCpTZotVPuRj4bFh0x8TFhSj1TBK2xB0SiQ@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from linux-1xn6.ap.freescale.net (119.31.174.71) by SGAP274CA0014.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::26) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.23 via Frontend Transport; Fri, 24 Jul 2020 07:43:23 +0000
+X-Mailer: git-send-email 2.16.4
+X-Originating-IP: [119.31.174.71]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: d39b57dd-b7a8-45c3-b986-08d82fa540aa
+X-MS-TrafficTypeDiagnostic: DB8PR04MB6857:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB8PR04MB6857666065C706510ECD6A2988770@DB8PR04MB6857.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7wVGcDEgjQNoxjZAuonCt7RhyVZWB4rotR/CHrx0KZOFeMIrjzhD9RxQv2U5MwuzLAUCxSeOI0DSOrcmGNRay5hrrgu910OLUkwwjwh4yYYlDukfQfI0V93RhjxNec6PWlO+/Z7R9uDPo14Re1aHxISGOqDMp6LpT9c4zA6DWTmo7MyHGGSbi2HSRDnAIiwNr6XOZ6xY5p4zx3Lxc9XfQ41VI765VmGfdgnpc69kLr7tkXKG/zXY1kiQZnZHvKSpwTgDYq7HLzOToWvAIUXga38VptcTg1idwp5M6MZ6uyV4MR91tOX9M6pKwZvvxlYH2dSF/KwZfGPrGFAIS53wlQYP6RZ6ZV33bs+yRpLtJgja67Q3V+0fVAXjWxausXkO
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(366004)(136003)(346002)(376002)(39860400002)(396003)(6512007)(478600001)(8676002)(2616005)(7416002)(316002)(44832011)(956004)(66946007)(66476007)(66556008)(1076003)(5660300002)(6506007)(186003)(26005)(8936002)(6666004)(2906002)(6486002)(16526019)(86362001)(4326008)(36756003)(83380400001)(52116002)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: xRRoyv5cdfPQ3QzNcXRsI2sNH0+oON4rJU8Bfgfut3nVOCC4olqhnzK3XK6PiIVK3N0KD1owvgsWGiQDyNsipbMt+/hVzHbtTRdXqi7NDND9AOQCWrmEgLM2j7JbqdRvpaM6QIEBlCrFKejyei6lj6Uhns/GKy6+Q+TWgeq8P5abgJZoA+cgzZj39Sn5yY1WKsChAfFp+m0WiSflWRKI7b/ihFFYMnhAxo64kBB/ajPaVp8LJ8KKRCbOachUNDJvfQgFnvHgUw6QAkhJ9o4sEQDzOP5oDW0jmHxphJCfdLU91SIgG1zTbyMPc0iR8OYIEsVZHduhlM4xFbBCOF93OOaWk9rZUBQ/V3vcOAyKqMlleWsSXe7wBYqupOoiQDAxBjvI9w3eoVxpAWxAOaB9mWYn3ZCtdWWpt1MwPzynqjEvJAJGahKjaL4BEkAiUqkMM3p+uW+kAHW69AWMLJpaPQPNFsiPS/yo+bnLid4wCT/CDNZ3mZCwug7v1aW55c/l
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d39b57dd-b7a8-45c3-b986-08d82fa540aa
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2020 07:43:27.7883
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rCQSlNHM4BkQ9jdLtH+MeJVP36oUhaN/uFvgRCxeRwgUiOoJF1yXj3Dz4ewZh9b8pVkB3k8Gpb4tYYUfAIz6DQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6857
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 24, 2020 at 05:32:30AM +0000, Joel Stanley wrote:
-> On Thu, 23 Jul 2020 at 23:05, <rentao.bupt@gmail.com> wrote:
-> >
-> > From: Tao Ren <rentao.bupt@gmail.com>
-> >
-> > The patch series update several devices' settings in Facebook Wedge40
-> > device tree.
-> >
-> > Patch #1 disables a few i2c controllers as they are not being used at
-> > present.
-> >
-> > Patch #2 enables adc device for voltage monitoring.
-> >
-> > Patch #3 enables pwm_tacho device for fan control and monitoring.
-> >
-> > Tao Ren (3):
-> >   ARM: dts: aspeed: wedge40: disable a few i2c controllers
-> >   ARM: dts: aspeed: wedge40: enable adc device
-> >   ARM: dts: aspeed: wedge40: enable pwm_tacho device
-> 
-> I have merged this series into the aspeed dt-for-5.9 branch.
-> 
-> Cheers,
-> 
-> Joel
+This patchset is to support i.MX8MQ/M coproc booted before linux.
+Since i.MX8MQ/M was not supported, several patches are needed
+to first support the platform, then support early boot case.
 
-Thanks a lot Joel. Have a great weekend.
+I intended to included i.MX8QM/QXP, but that would introduce a large
+patchset, so not included. But the clk/syscon optional patch for
+i.MX8QM/QXP was still kept here to avoid rebase error.
 
+Peng Fan (10):
+  dt-bindings: remoteproc: imx_rproc: add i.MX8MQ/M
+  remoteproc: imx_rproc: correct err message
+  remoteproc: imx: use devm_ioremap
+  remoteproc: imx_rproc: make syscon optional
+  remoteproc: imx_rproc: make clk optional
+  remoteproc: imx_rproc: add load hook
+  remoteproc: imx_rproc: add i.MX specific parse fw hook
+  remoteproc: imx_rproc: support i.MX8MQ/M
+  remoteproc: imx_proc: enable virtio/mailbox
+  remoteproc: imx_rproc: support coproc booting before Linux
 
-Cheers,
+ .../devicetree/bindings/remoteproc/imx-rproc.txt   |   3 +
+ drivers/remoteproc/imx_rproc.c                     | 409 ++++++++++++++++++++-
+ 2 files changed, 401 insertions(+), 11 deletions(-)
 
-Tao
+-- 
+2.16.4
+
