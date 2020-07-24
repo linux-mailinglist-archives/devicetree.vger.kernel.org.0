@@ -2,31 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C80722BED0
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 09:16:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D238E22BEDB
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 09:17:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726783AbgGXHQh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jul 2020 03:16:37 -0400
-Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:33188 "EHLO
+        id S1726559AbgGXHRp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jul 2020 03:17:45 -0400
+Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:37911 "EHLO
         smtp2207-205.mail.aliyun.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726607AbgGXHQh (ORCPT
+        by vger.kernel.org with ESMTP id S1726437AbgGXHRp (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Jul 2020 03:16:37 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.3374368|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0120182-0.00230646-0.985675;FP=0|0|0|0|0|-1|-1|-1;HT=e01a16384;MF=frank@allwinnertech.com;NM=1;PH=DS;RN=14;RT=14;SR=0;TI=SMTPD_---.I6qYcLF_1595574989;
-Received: from allwinnertech.com(mailfrom:frank@allwinnertech.com fp:SMTPD_---.I6qYcLF_1595574989)
-          by smtp.aliyun-inc.com(10.147.42.253);
-          Fri, 24 Jul 2020 15:16:34 +0800
+        Fri, 24 Jul 2020 03:17:45 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.3730119|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00789351-0.00130981-0.990797;FP=0|0|0|0|0|-1|-1|-1;HT=e01a16368;MF=frank@allwinnertech.com;NM=1;PH=DS;RN=10;RT=10;SR=0;TI=SMTPD_---.I6q9yS4_1595575057;
+Received: from allwinnertech.com(mailfrom:frank@allwinnertech.com fp:SMTPD_---.I6q9yS4_1595575057)
+          by smtp.aliyun-inc.com(10.147.44.118);
+          Fri, 24 Jul 2020 15:17:42 +0800
 From:   Frank Lee <frank@allwinnertech.com>
-To:     tglx@linutronix.de, jason@lakedaemon.net, maz@kernel.org,
-        robh+dt@kernel.org, mripard@kernel.org, wens@csie.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
+To:     gregory.clement@bootlin.com, robh+dt@kernel.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Cc:     tiny.windzz@gmail.com, huangshuosheng@allwinnertech.com,
         liyong@allwinnertech.com, Yangtao Li <frank@allwinnertech.com>,
         Rob Herring <robh@kernel.org>
-Subject: [PATCH v5 12/16] dt-bindings: irq: sun7i-nmi: Add binding for A100's NMI controller
-Date:   Fri, 24 Jul 2020 15:15:53 +0800
-Message-Id: <953b76413563551b82dd11cadbc99c695f74f721.1595572867.git.frank@allwinnertech.com>
+Subject: [PATCH v5 13/16] dt-bindings: i2c: mv64xxx: Add compatible for the A100 i2c node.
+Date:   Fri, 24 Jul 2020 15:17:01 +0800
+Message-Id: <a6393e8feec580e11dccd5df20417e66e8485cd0.1595572867.git.frank@allwinnertech.com>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <cover.1595572867.git.frank@allwinnertech.com>
 References: <cover.1595572867.git.frank@allwinnertech.com>
@@ -39,28 +38,28 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Yangtao Li <frank@allwinnertech.com>
 
-Add a binding for A100's nmi controller.
+Allwinner A100 have a mv64xxx i2c interface available to be used.
 
 Signed-off-by: Yangtao Li <frank@allwinnertech.com>
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- .../interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml       | 3 +++
+ Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml b/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml
-index d8fe2d9a307b..8acca0ae3129 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml
-@@ -33,6 +33,9 @@ properties:
+diff --git a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
+index 2ceb05ba2df5..5b5ae402f97a 100644
+--- a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
++++ b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
+@@ -26,6 +26,9 @@ properties:
        - items:
-           - const: allwinner,sun50i-a64-r-intc
-           - const: allwinner,sun6i-a31-r-intc
+           - const: allwinner,sun50i-a64-i2c
+           - const: allwinner,sun6i-a31-i2c
 +      - items:
-+          - const: allwinner,sun50i-a100-nmi
-+          - const: allwinner,sun9i-a80-nmi
++          - const: allwinner,sun50i-a100-i2c
++          - const: allwinner,sun6i-a31-i2c
        - items:
-           - const: allwinner,sun50i-h6-r-intc
-           - const: allwinner,sun6i-a31-r-intc
+           - const: allwinner,sun50i-h6-i2c
+           - const: allwinner,sun6i-a31-i2c
 -- 
 2.24.0
 
