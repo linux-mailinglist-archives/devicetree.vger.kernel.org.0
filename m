@@ -2,40 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AA6422C7C0
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 16:19:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36BF022C7C3
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 16:19:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726742AbgGXOTK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jul 2020 10:19:10 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:44192 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726728AbgGXOTK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jul 2020 10:19:10 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06OEJ1qB104452;
-        Fri, 24 Jul 2020 09:19:01 -0500
+        id S1726801AbgGXOTW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jul 2020 10:19:22 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:40452 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726728AbgGXOTV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jul 2020 10:19:21 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06OEJ5pn108640;
+        Fri, 24 Jul 2020 09:19:05 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1595600341;
-        bh=h92cHj7BYyrTVLRSv15VrePE3h+H1Z15skCXbIXesRU=;
+        s=ti-com-17Q1; t=1595600345;
+        bh=KBmvYUHdmZfCvEZHlMZUacBrLZmVDRahlpdUcwDvbIM=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=mSlgpVP98jtc2CxFflIMLJQhTa86bKahrJft8TqkkVHI9pamMtdh3xo5Z/ogYH41J
-         es5TvcoMztOXs2xQRxkxDc9k8DXbrsx6jDXnXXSepJiFJRf/299cfhTOxWtF6J0rQ2
-         NBR1xxUM2WF3jMHyRdtqjqC7IpjqHi/O7OQoKwK8=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06OEJ12v021482
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 24 Jul 2020 09:19:01 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+        b=y2AaeJzpbDAm4j6iv3yfn+c22we0mG/so9iCe2qcWUDnJ3R8z8iKi/Zxmr8DrKAqx
+         HmbU4UUx1d1EwhGGtfMMBlOop2V6cqnB1qJOcVnlur1s532Z6adVDtxduuzZBUOugP
+         75ee6IHx5ZkmqysHp906GqjYtpKUu4LdUWc4Gz+g=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06OEJ5sW004637;
+        Fri, 24 Jul 2020 09:19:05 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 24
- Jul 2020 09:19:01 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ Jul 2020 09:19:05 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 24 Jul 2020 09:19:00 -0500
+ Frontend Transport; Fri, 24 Jul 2020 09:19:05 -0500
 Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06OEIiXr016316;
-        Fri, 24 Jul 2020 09:18:57 -0500
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06OEIiXs016316;
+        Fri, 24 Jul 2020 09:19:01 -0500
 From:   Lokesh Vutla <lokeshvutla@ti.com>
 To:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>
 CC:     Thomas Gleixner <tglx@linutronix.de>, Nishanth Menon <nm@ti.com>,
@@ -47,9 +46,9 @@ CC:     Thomas Gleixner <tglx@linutronix.de>, Nishanth Menon <nm@ti.com>,
         Peter Ujfalusi <peter.ujfalusi@ti.com>,
         Device Tree Mailing List <devicetree@vger.kernel.org>,
         Suman Anna <s-anna@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [PATCH v3 3/9] firmware: ti_sci: Add support for getting resource with subtype
-Date:   Fri, 24 Jul 2020 19:48:31 +0530
-Message-ID: <20200724141837.4542-4-lokeshvutla@ti.com>
+Subject: [PATCH v3 4/9] dt-bindings: irqchip: ti,sci-intr: Update bindings to drop the usage of gic as parent
+Date:   Fri, 24 Jul 2020 19:48:32 +0530
+Message-ID: <20200724141837.4542-5-lokeshvutla@ti.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200724141837.4542-1-lokeshvutla@ti.com>
 References: <20200724141837.4542-1-lokeshvutla@ti.com>
@@ -62,195 +61,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With SYSFW ABI 3.0 changes, interrupts coming out of an interrupt
-controller is identified by a type and it is consistent across SoCs.
-Similarly global events for Interrupt aggregator. So add an API to get
-resource range using a resource type.
+Drop the firmware related dt-bindings and use the hardware specified
+interrupt numbers within Interrupt Router. This ensures interrupt router
+DT node need not assume any interrupt parent type.
 
 Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
 ---
- drivers/firmware/ti_sci.c              | 89 +++++++++++++++++++-------
- include/linux/soc/ti/ti_sci_protocol.h | 13 ++++
- 2 files changed, 80 insertions(+), 22 deletions(-)
+ .../interrupt-controller/ti,sci-intr.txt      | 31 ++++++++++---------
+ 1 file changed, 16 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/firmware/ti_sci.c b/drivers/firmware/ti_sci.c
-index a81ddec9e669..918117be4a73 100644
---- a/drivers/firmware/ti_sci.c
-+++ b/drivers/firmware/ti_sci.c
-@@ -3208,61 +3208,50 @@ u32 ti_sci_get_num_resources(struct ti_sci_resource *res)
- EXPORT_SYMBOL_GPL(ti_sci_get_num_resources);
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.txt b/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.txt
+index 1a8718f8855d..8b56b2de1c73 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.txt
++++ b/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.txt
+@@ -44,15 +44,17 @@ Required Properties:
+ 			4: If intr supports level triggered interrupts.
+ - interrupt-controller:	Identifies the node as an interrupt controller
+ - #interrupt-cells:	Specifies the number of cells needed to encode an
+-			interrupt source. The value should be 2.
+-			First cell should contain the TISCI device ID of source
+-			Second cell should contain the interrupt source offset
+-			within the device.
++			interrupt source. The value should be 1.
++			First cell should contain interrupt router input number
++			as specified by hardware.
+ - ti,sci:		Phandle to TI-SCI compatible System controller node.
+-- ti,sci-dst-id:	TISCI device ID of the destination IRQ controller.
+-- ti,sci-rm-range-girq:	Array of TISCI subtype ids representing the host irqs
+-			assigned to this interrupt router. Each subtype id
+-			corresponds to a range of host irqs.
++- ti,sci-dev-id:	TISCI device id of interrupt controller.
++- ti,interrupt-ranges:	Set of triplets containing ranges that convert
++			the INTR output interrupt numbers to parent's
++			interrupt number. Each triplet has following entries:
++			- First entry specifies the base for intr output irq
++			- Second entry specifies the base for parent irqs
++			- Third entry specifies the limit
  
- /**
-- * devm_ti_sci_get_of_resource() - Get a TISCI resource assigned to a device
-+ * devm_ti_sci_get_resource_sets() - Get a TISCI resources assigned to a device
-  * @handle:	TISCI handle
-  * @dev:	Device pointer to which the resource is assigned
-  * @dev_id:	TISCI device id to which the resource is assigned
-- * @of_prop:	property name by which the resource are represented
-+ * @sub_types:	Array of sub_types assigned corresponding to device
-+ * @sets:	Number of sub_types
-  *
-  * Return: Pointer to ti_sci_resource if all went well else appropriate
-  *	   error pointer.
-  */
--struct ti_sci_resource *
--devm_ti_sci_get_of_resource(const struct ti_sci_handle *handle,
--			    struct device *dev, u32 dev_id, char *of_prop)
-+static struct ti_sci_resource *
-+devm_ti_sci_get_resource_sets(const struct ti_sci_handle *handle,
-+			      struct device *dev, u32 dev_id, u32 *sub_types,
-+			      u32 sets)
- {
- 	struct ti_sci_resource *res;
- 	bool valid_set = false;
--	u32 resource_subtype;
- 	int i, ret;
+ For more details on TISCI IRQ resource management refer:
+ http://downloads.ti.com/tisci/esd/latest/2_tisci_msgs/rm/rm_irq.html
+@@ -62,21 +64,20 @@ Example:
+ The following example demonstrates both interrupt router node and the consumer
+ node(main gpio) on the AM654 SoC:
  
- 	res = devm_kzalloc(dev, sizeof(*res), GFP_KERNEL);
- 	if (!res)
- 		return ERR_PTR(-ENOMEM);
- 
--	ret = of_property_count_elems_of_size(dev_of_node(dev), of_prop,
--					      sizeof(u32));
--	if (ret < 0) {
--		dev_err(dev, "%s resource type ids not available\n", of_prop);
--		return ERR_PTR(ret);
--	}
--	res->sets = ret;
--
-+	res->sets = sets;
- 	res->desc = devm_kcalloc(dev, res->sets, sizeof(*res->desc),
- 				 GFP_KERNEL);
- 	if (!res->desc)
- 		return ERR_PTR(-ENOMEM);
- 
- 	for (i = 0; i < res->sets; i++) {
--		ret = of_property_read_u32_index(dev_of_node(dev), of_prop, i,
--						 &resource_subtype);
--		if (ret)
--			return ERR_PTR(-EINVAL);
--
- 		ret = handle->ops.rm_core_ops.get_range(handle, dev_id,
--							resource_subtype,
-+							sub_types[i],
- 							&res->desc[i].start,
- 							&res->desc[i].num);
- 		if (ret) {
- 			dev_dbg(dev, "dev = %d subtype %d not allocated for this host\n",
--				dev_id, resource_subtype);
-+				dev_id, sub_types[i]);
- 			res->desc[i].start = 0;
- 			res->desc[i].num = 0;
- 			continue;
- 		}
- 
- 		dev_dbg(dev, "dev = %d, subtype = %d, start = %d, num = %d\n",
--			dev_id, resource_subtype, res->desc[i].start,
-+			dev_id, sub_types[i], res->desc[i].start,
- 			res->desc[i].num);
- 
- 		valid_set = true;
-@@ -3280,6 +3269,62 @@ devm_ti_sci_get_of_resource(const struct ti_sci_handle *handle,
- 	return ERR_PTR(-EINVAL);
- }
- 
-+/**
-+ * devm_ti_sci_get_of_resource() - Get a TISCI resource assigned to a device
-+ * @handle:	TISCI handle
-+ * @dev:	Device pointer to which the resource is assigned
-+ * @dev_id:	TISCI device id to which the resource is assigned
-+ * @of_prop:	property name by which the resource are represented
-+ *
-+ * Return: Pointer to ti_sci_resource if all went well else appropriate
-+ *	   error pointer.
-+ */
-+struct ti_sci_resource *
-+devm_ti_sci_get_of_resource(const struct ti_sci_handle *handle,
-+			    struct device *dev, u32 dev_id, char *of_prop)
-+{
-+	struct ti_sci_resource *res;
-+	u32 *sub_types;
-+	int sets;
-+
-+	sets = of_property_count_elems_of_size(dev_of_node(dev), of_prop,
-+					       sizeof(u32));
-+	if (sets < 0) {
-+		dev_err(dev, "%s resource type ids not available\n", of_prop);
-+		return ERR_PTR(sets);
-+	}
-+
-+	sub_types = kcalloc(sets, sizeof(*sub_types), GFP_KERNEL);
-+	if (!sub_types)
-+		return ERR_PTR(-ENOMEM);
-+
-+	of_property_read_u32_array(dev_of_node(dev), of_prop, sub_types, sets);
-+	res = devm_ti_sci_get_resource_sets(handle, dev, dev_id, sub_types,
-+					    sets);
-+
-+	kfree(sub_types);
-+	return res;
-+}
-+EXPORT_SYMBOL_GPL(devm_ti_sci_get_of_resource);
-+
-+/**
-+ * devm_ti_sci_get_resource() - Get a resource range assigned to the device
-+ * @handle:	TISCI handle
-+ * @dev:	Device pointer to which the resource is assigned
-+ * @dev_id:	TISCI device id to which the resource is assigned
-+ * @suub_type:	TISCI resource subytpe representing the resource.
-+ *
-+ * Return: Pointer to ti_sci_resource if all went well else appropriate
-+ *	   error pointer.
-+ */
-+struct ti_sci_resource *
-+devm_ti_sci_get_resource(const struct ti_sci_handle *handle, struct device *dev,
-+			 u32 dev_id, u32 sub_type)
-+{
-+	return devm_ti_sci_get_resource_sets(handle, dev, dev_id, &sub_type, 1);
-+}
-+EXPORT_SYMBOL_GPL(devm_ti_sci_get_resource);
-+
- static int tisci_reboot_handler(struct notifier_block *nb, unsigned long mode,
- 				void *cmd)
- {
-diff --git a/include/linux/soc/ti/ti_sci_protocol.h b/include/linux/soc/ti/ti_sci_protocol.h
-index 9531ec823298..68e47f6324be 100644
---- a/include/linux/soc/ti/ti_sci_protocol.h
-+++ b/include/linux/soc/ti/ti_sci_protocol.h
-@@ -220,6 +220,9 @@ struct ti_sci_rm_core_ops {
- 				    u16 *range_start, u16 *range_num);
+-main_intr: interrupt-controller0 {
++main_gpio_intr: interrupt-controller0 {
+ 	compatible = "ti,sci-intr";
+ 	ti,intr-trigger-type = <1>;
+ 	interrupt-controller;
+ 	interrupt-parent = <&gic500>;
+-	#interrupt-cells = <2>;
++	#interrupt-cells = <1>;
+ 	ti,sci = <&dmsc>;
+-	ti,sci-dst-id = <56>;
+-	ti,sci-rm-range-girq = <0x1>;
++	ti,sci-dev-id = <131>;
++	ti,interrupt-ranges = <0 360 32>;
  };
  
-+#define TI_SCI_RESASG_SUBTYPE_IR_OUTPUT		0
-+#define TI_SCI_RESASG_SUBTYPE_IA_VINT		0xa
-+#define TI_SCI_RESASG_SUBTYPE_GLOBAL_EVENT_SEVT	0xd
- /**
-  * struct ti_sci_rm_irq_ops: IRQ management operations
-  * @set_irq:		Set an IRQ route between the requested source
-@@ -556,6 +559,9 @@ u32 ti_sci_get_num_resources(struct ti_sci_resource *res);
- struct ti_sci_resource *
- devm_ti_sci_get_of_resource(const struct ti_sci_handle *handle,
- 			    struct device *dev, u32 dev_id, char *of_prop);
-+struct ti_sci_resource *
-+devm_ti_sci_get_resource(const struct ti_sci_handle *handle, struct device *dev,
-+			 u32 dev_id, u32 sub_type);
- 
- #else	/* CONFIG_TI_SCI_PROTOCOL */
- 
-@@ -609,6 +615,13 @@ devm_ti_sci_get_of_resource(const struct ti_sci_handle *handle,
- {
- 	return ERR_PTR(-EINVAL);
- }
-+
-+static inline struct ti_sci_resource *
-+devm_ti_sci_get_resource(const struct ti_sci_handle *handle, struct device *dev,
-+			 u32 dev_id, u32 sub_type);
-+{
-+	return ERR_PTR(-EINVAL);
-+}
- #endif	/* CONFIG_TI_SCI_PROTOCOL */
- 
- #endif	/* __TISCI_PROTOCOL_H */
+ main_gpio0: gpio@600000 {
+ 	...
+-	interrupt-parent = <&main_intr>;
+-	interrupts = <57 256>, <57 257>, <57 258>,
+-		     <57 259>, <57 260>, <57 261>;
++	interrupt-parent = <&main_gpio_intr>;
++	interrupts = <192>, <193>, <194>, <195>, <196>, <197>;
+ 	...
+ };
 -- 
 2.27.0
 
