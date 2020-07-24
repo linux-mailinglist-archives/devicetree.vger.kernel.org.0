@@ -2,157 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF43822BDC3
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 07:56:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3423C22BDDB
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jul 2020 08:04:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726769AbgGXF4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jul 2020 01:56:19 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:50018 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726134AbgGXF4S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jul 2020 01:56:18 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06O5uFXR088243;
-        Fri, 24 Jul 2020 00:56:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1595570175;
-        bh=k4XT/ag3y89G2xERAKuPRDve/n7of+kXftcTCTVuRQM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Lhagn9ri1QJbWaGkcSOPXniFFsWSYgzMAjBvykj0HSYf4VMBpDTtYXmwQILz5T6VU
-         wDkr/pwnjF1lQaxU8osh4DM+HC50dvJ/vCkFW/Y8uXHr0EZKva+8MMqWjK32bHrBUv
-         YiYxRcO/xdTOm3kTkoqD9bPKoTVI1Kmi92rc87iw=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06O5uFLZ001436
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 24 Jul 2020 00:56:15 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 24
- Jul 2020 00:56:12 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 24 Jul 2020 00:56:12 -0500
-Received: from a0393678ub.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06O5u437005411;
-        Fri, 24 Jul 2020 00:56:10 -0500
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kishon@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j721e-common-proc-board: Configure the PCIe instances
-Date:   Fri, 24 Jul 2020 11:26:04 +0530
-Message-ID: <20200724055604.31498-3-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200724055604.31498-1-kishon@ti.com>
-References: <20200724055604.31498-1-kishon@ti.com>
+        id S1726381AbgGXGEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jul 2020 02:04:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53044 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725898AbgGXGEY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jul 2020 02:04:24 -0400
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F6F9C0619D3;
+        Thu, 23 Jul 2020 23:04:23 -0700 (PDT)
+From:   Kurt Kanzenbach <kurt@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1595570661;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=W/Q7CjsF5YM70HgqJFYJatisrDvgiek54xnQlBFfRBo=;
+        b=su8eQhU14kEk8WW8+WP+7/xC/t0xtp1qrhbgMhSA3juVONgmL/mfajkrIvobUXv2HXCnog
+        XfcTEPUlRiEZE92+LLi8SaI40c5zr1VkwQZqxOtN+wwDrM2LXQXh/ACrZIGitTChJO3tMm
+        asxQhS7+Ti4++aYQ5HJzRRFd8UwTecYEd3XnnBPml/6hYf1TxMATep2kD0jaJMEUTsXdPx
+        cUPvGBUT+SAEOaaKB98J7ofxpWkFnBPtvVqisewKep2IyV/7+89IrzjqkHEFHSSCDBPCMD
+        h/XaFkmjz96/SHfayPlKfeR4FhM+Uf+ZDbSVBhuxkJPBnf2hkOK5AKSP0AmHmQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1595570661;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=W/Q7CjsF5YM70HgqJFYJatisrDvgiek54xnQlBFfRBo=;
+        b=RdSIXFiO0A23nPDNvlCwNrHjPsxLFPxxfYae7AQoKK60LfmrJdmlnQfOxudGxk+Qba5jEC
+        P6zN0aXJ6ZPLBfBw==
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
+        ilias.apalodimas@linaro.org, Vladimir Oltean <olteanv@gmail.com>
+Subject: Re: [PATCH v2 0/8] Hirschmann Hellcreek DSA driver
+In-Reply-To: <20200723093339.7f2b6e27@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+References: <20200723081714.16005-1-kurt@linutronix.de> <20200723093339.7f2b6e27@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+Date:   Fri, 24 Jul 2020 08:04:10 +0200
+Message-ID: <87wo2t30v9.fsf@kurt>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha512; protocol="application/pgp-signature"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-J721E Common Processor Board has PCIe connectors for the 1st three PCIe
-instances. Configure the three PCIe instances in RC mode and disable the
-4th PCIe instance.
+--=-=-=
+Content-Type: text/plain
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- .../dts/ti/k3-j721e-common-proc-board.dts     | 80 +++++++++++++++++++
- 1 file changed, 80 insertions(+)
+On Thu Jul 23 2020, Jakub Kicinski wrote:
+> Appears not to build:
+>
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-index 8bc1e6ecc50e..29be88811132 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-@@ -651,3 +651,83 @@
- 
- 	status = "okay";
- };
-+
-+&serdes0 {
-+	serdes0_pcie_link: link@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <1>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_PCIE>;
-+		resets = <&serdes_wiz0 1>;
-+	};
-+};
-+
-+&serdes1 {
-+	serdes1_pcie_link: link@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <2>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_PCIE>;
-+		resets = <&serdes_wiz1 1>, <&serdes_wiz1 2>;
-+	};
-+};
-+
-+&serdes2 {
-+	serdes2_pcie_link: link@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <2>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_PCIE>;
-+		resets = <&serdes_wiz2 1>, <&serdes_wiz2 2>;
-+	};
-+};
-+
-+&pcie0_rc {
-+	reset-gpios = <&exp1 6 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <1>;
-+};
-+
-+&pcie1_rc {
-+	reset-gpios = <&exp1 2 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes1_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <2>;
-+};
-+
-+&pcie2_rc {
-+	reset-gpios = <&exp2 20 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes2_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <2>;
-+};
-+
-+&pcie0_ep {
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <1>;
-+	status = "disabled";
-+};
-+
-+&pcie1_ep {
-+	phys = <&serdes1_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <2>;
-+	status = "disabled";
-+};
-+
-+&pcie2_ep {
-+	phys = <&serdes2_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <2>;
-+	status = "disabled";
-+};
-+
-+&pcie3_rc {
-+	status = "disabled";
-+};
-+
-+&pcie3_ep {
-+	status = "disabled";
-+};
--- 
-2.17.1
+Yeah, i know. This patch series depends on two other ones:
 
+ * https://lkml.kernel.org/netdev/20200723074946.14253-1-kurt@linutronix.de/
+ * https://lkml.kernel.org/netdev/20200720124939.4359-1-kurt@linutronix.de/
+
+One of them has been merged, the other is being discussed. That series
+includes the 'ptp_header' and the corresponding functions. So, for
+compile testing you'll have to apply that series as well.
+
+Thanks,
+Kurt
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl8aedoACgkQeSpbgcuY
+8Ka5lw//Td9+vjtUcPCDvj++bQMYniWhZpj2bLUhDPym+CXfAYNpdazAMS0ByIvY
+uePFci2PDJtG/PXhKygBDU8rWx5bKdCNOwD/xwsCThplvIvK7vOH5k/uf6DDhNH/
+83d7BUJik9TRoTWcJIdZPUDclZsLGY7FbMdrMkT8GLmMSoHornUSbkryxIFTGP/K
+Lx34DEoDBv+c+MF0NISkzd8zWmGu81IT8c4Bc8uCuYKbdvyyNWQcN/sJhHanvcSJ
+OI1f+9gyM6N4pRXuXGUJM9X57CsDljDwaS52gAHwb8q64Q41QqyF8b4avZq7oOvY
+itEN8jhhkWAa5tnfvAdMHmvck4peEcvBylDheCigD7vH1GR9fQJ89dfpG8rLE720
+zLK+3671ZC1xkVnjI9DM3p3ptBFTglLvwqcv/5QxZAoKH/Ap/d/3gMvTVCfL/qsA
+dpw7Gfp7ixAUVtTV/v+vjFJFQbyusjUQXpAjKYXyXxHdSiHygNmv9SEljxs2gkHE
+HJPxbFs5NBOSaa9yqgjGLg8O2RfRnUA7f9TWp+ZxXIN+NKBZ5efCobr0MJ88mTIk
+kLw5suc236isl5VCQ3+HgYD6pToQzD7+njR6EMrwp8xd+lAwsCXZnx716HZPt9hM
+xeWj4ZSn4Nlu+IKegVJM0iSP3WBaUmjJsX3yMpWOHvV7pBAXgkQ=
+=Lg4Q
+-----END PGP SIGNATURE-----
+--=-=-=--
