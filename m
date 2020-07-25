@@ -2,34 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72EA622D7FC
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jul 2020 16:10:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F8B622D7FD
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jul 2020 16:13:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726745AbgGYOKy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Jul 2020 10:10:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38796 "EHLO mail.kernel.org"
+        id S1726904AbgGYONA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Jul 2020 10:13:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39416 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726652AbgGYOKy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 25 Jul 2020 10:10:54 -0400
+        id S1726652AbgGYONA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 25 Jul 2020 10:13:00 -0400
 Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 09E8C206D7;
-        Sat, 25 Jul 2020 14:10:53 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8A3AB206D7;
+        Sat, 25 Jul 2020 14:12:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1595686253;
-        bh=K5mDISNf+19YggF4dg2G2Pd6dD/CEpErQK90WHh7Xo0=;
+        s=default; t=1595686379;
+        bh=+dGVKP/thoqFXdnlsJQGDIVIpZJR0SFIbl5+nzHxG6M=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=qysRIWEcIuhmGp7FUvaOYD5tjF+UQfqSNJaw75J3f29CSg5jbMYaurMGUatJszyh4
-         rgfMfkggM0DFh7RTXDGAOtCQCW27alO0amoXURKYSNn2bOXYn4zI+I42eEUoZI5olC
-         EtPFVj6MNMlqYRhJrrq2ifc37JnRDnCieEUVI1BA=
+        b=SPTj7gGEtR4ptyH3vlg9u1aTuOsWwRMe67tllMubtdEUqAbU/vBjNt2FCxGrT1xKY
+         c40WVM839nIRTX547JH4NKOjlj/wv5Ku82tEzJmbNsccxo4NXTUFhIqKQY4E5TCBVc
+         KCo9D3o2HLHcyqcGt2za99boekYW47pEa8kk2ono=
 Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=wait-a-minute.misterjones.org)
         by disco-boy.misterjones.org with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <maz@kernel.org>)
-        id 1jzKt1-00EqzU-GW; Sat, 25 Jul 2020 15:10:51 +0100
-Date:   Sat, 25 Jul 2020 15:10:50 +0100
-Message-ID: <87zh7nwuqd.wl-maz@kernel.org>
+        id 1jzKv4-00Er0D-3B; Sat, 25 Jul 2020 15:12:58 +0100
+Date:   Sat, 25 Jul 2020 15:12:57 +0100
+Message-ID: <87y2n7wumu.wl-maz@kernel.org>
 From:   Marc Zyngier <maz@kernel.org>
 To:     Lokesh Vutla <lokeshvutla@ti.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -42,10 +42,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Peter Ujfalusi <peter.ujfalusi@ti.com>,
         Device Tree Mailing List <devicetree@vger.kernel.org>,
         Suman Anna <s-anna@ti.com>
-Subject: Re: [PATCH v3 9/9] irqchip/ti-sci-inta: Add support for INTA directly connecting to GIC
-In-Reply-To: <20200724141837.4542-10-lokeshvutla@ti.com>
+Subject: Re: [PATCH v3 0/9] irqchip: ti, sci-intr/inta: Update the dt bindings to accept different interrupt parents
+In-Reply-To: <20200724141837.4542-1-lokeshvutla@ti.com>
 References: <20200724141837.4542-1-lokeshvutla@ti.com>
-        <20200724141837.4542-10-lokeshvutla@ti.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 EasyPG/1.0.0 Emacs/26.3
  (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -60,187 +59,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Jul 2020 15:18:37 +0100,
+On Fri, 24 Jul 2020 15:18:28 +0100,
 Lokesh Vutla <lokeshvutla@ti.com> wrote:
 > 
-> Driver assumes that Interrupt parent to Interrupt Aggregator is always
-> Interrupt router. This is not true always and GIC can be a parent to
-> Interrupt Aggregator. Update the driver to detect the parent and request
-> the parent irqs accordingly.
+> Hi Marc,
+> 	This is continuation of the RFC patches[0] regarding the driver
+> updates to support for following interrupt parent connection:
+> - INTR -> INTR
+> - INTA -> GICv3
+> The current existing driver assumes that INTR is always connected to
+> GICv3 and INTA is always connected to INTR.
 > 
-> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
-> ---
->  drivers/irqchip/irq-ti-sci-inta.c | 90 ++++++++++++++++++++++++++-----
->  1 file changed, 77 insertions(+), 13 deletions(-)
+> As discussed this change breaks the DT backward compatibility but it
+> allows to not depend on TISCI firmware properties in DT node. IMHO, this
+> will ensure that any future changes will not effect DT properties.
 > 
-> diff --git a/drivers/irqchip/irq-ti-sci-inta.c b/drivers/irqchip/irq-ti-sci-inta.c
-> index 7e3ebf6ed2cd..00c17ade118a 100644
-> --- a/drivers/irqchip/irq-ti-sci-inta.c
-> +++ b/drivers/irqchip/irq-ti-sci-inta.c
-> @@ -8,6 +8,7 @@
->  
->  #include <linux/err.h>
->  #include <linux/io.h>
-> +#include <linux/irq.h>
->  #include <linux/irqchip.h>
->  #include <linux/irqdomain.h>
->  #include <linux/interrupt.h>
-> @@ -128,6 +129,37 @@ static void ti_sci_inta_irq_handler(struct irq_desc *desc)
->  	chained_irq_exit(irq_desc_get_chip(desc), desc);
->  }
->  
-> +/**
-> + * ti_sci_inta_xlate_irq() - Translate hwirq to parent's hwirq.
-> + * @inta:	IRQ domain corresponding to Interrupt Aggregator
-> + * @irq:	Hardware irq corresponding to the above irq domain
-> + *
-> + * Return parent irq number if translation is available else -ENOENT.
-> + */
-> +static int ti_sci_inta_xlate_irq(struct ti_sci_inta_irq_domain *inta,
-> +				 u16 vint_id)
-> +{
-> +	struct device_node *np = dev_of_node(&inta->pdev->dev);
-> +	u32 base, parent_base, size;
-> +	const __be32 *range;
-> +	int len;
-> +
-> +	range = of_get_property(np, "ti,interrupt-ranges", &len);
-> +	if (!range)
-> +		return vint_id;
-> +
-> +	for (len /= sizeof(*range); len >= 3; len -= 3) {
-> +		base = be32_to_cpu(*range++);
-> +		parent_base = be32_to_cpu(*range++);
-> +		size = be32_to_cpu(*range++);
-> +
-> +		if (base <= vint_id && vint_id < base + size)
-> +			return vint_id - base + parent_base;
-> +	}
-> +
-> +	return -ENOENT;
-> +}
-> +
->  /**
->   * ti_sci_inta_alloc_parent_irq() - Allocate parent irq to Interrupt aggregator
->   * @domain:	IRQ domain corresponding to Interrupt Aggregator
-> @@ -139,30 +171,55 @@ static struct ti_sci_inta_vint_desc *ti_sci_inta_alloc_parent_irq(struct irq_dom
->  	struct ti_sci_inta_irq_domain *inta = domain->host_data;
->  	struct ti_sci_inta_vint_desc *vint_desc;
->  	struct irq_fwspec parent_fwspec;
-> +	struct device_node *parent_node;
->  	unsigned int parent_virq;
-> -	u16 vint_id;
-> +	u16 vint_id, p_hwirq;
-> +	int ret;
->  
->  	vint_id = ti_sci_get_free_resource(inta->vint);
->  	if (vint_id == TI_SCI_RESOURCE_NULL)
->  		return ERR_PTR(-EINVAL);
->  
-> +	p_hwirq = ti_sci_inta_xlate_irq(inta, vint_id);
-> +	if (p_hwirq < 0) {
-> +		ret = p_hwirq;
-> +		goto free_vint;
-> +	}
-> +
->  	vint_desc = kzalloc(sizeof(*vint_desc), GFP_KERNEL);
-> -	if (!vint_desc)
-> -		return ERR_PTR(-ENOMEM);
-> +	if (!vint_desc) {
-> +		ret = -ENOMEM;
-> +		goto free_vint;
-> +	}
->  
->  	vint_desc->domain = domain;
->  	vint_desc->vint_id = vint_id;
->  	INIT_LIST_HEAD(&vint_desc->list);
->  
-> -	parent_fwspec.fwnode = of_node_to_fwnode(of_irq_find_parent(dev_of_node(&inta->pdev->dev)));
-> -	parent_fwspec.param_count = 2;
-> -	parent_fwspec.param[0] = inta->pdev->id;
-> -	parent_fwspec.param[1] = vint_desc->vint_id;
-> +	parent_node = of_irq_find_parent(dev_of_node(&inta->pdev->dev));
-> +	parent_fwspec.fwnode = of_node_to_fwnode(parent_node);
-> +	if (of_property_read_u32(parent_node, "#interrupt-cells",
-> +				 &parent_fwspec.param_count)) {
-> +		ret = -EINVAL;
-> +		goto free_vint_desc;
-> +	}
-> +
-> +	if (of_device_is_compatible(parent_node, "arm,gic-v3")) {
-> +		/* Parent is GIC */
-> +		parent_fwspec.param[0] = 0;
-> +		parent_fwspec.param[1] = p_hwirq - 32;
-> +		parent_fwspec.param[2] = IRQ_TYPE_LEVEL_HIGH;
+> This series depends on the the new Yaml bindings for common TISCI[1]
 
-Same comment as on patch #6.
-
-> +	} else {
-> +		/* Parent is Interrupt Router */
-> +		parent_fwspec.param[0] = p_hwirq;
-> +	}
->  
->  	parent_virq = irq_create_fwspec_mapping(&parent_fwspec);
->  	if (parent_virq == 0) {
-> -		kfree(vint_desc);
-> -		return ERR_PTR(-EINVAL);
-> +		dev_err(&inta->pdev->dev, "Parent IRQ allocation failed\n");
-> +		ret = -EINVAL;
-> +		goto free_vint_desc;
-> +
->  	}
->  	vint_desc->parent_virq = parent_virq;
->  
-> @@ -171,6 +228,11 @@ static struct ti_sci_inta_vint_desc *ti_sci_inta_alloc_parent_irq(struct irq_dom
->  					 ti_sci_inta_irq_handler, vint_desc);
->  
->  	return vint_desc;
-> +free_vint_desc:
-> +	kfree(vint_desc);
-> +free_vint:
-> +	ti_sci_release_resource(inta->vint, vint_id);
-> +	return ERR_PTR(ret);
->  }
->  
->  /**
-> @@ -555,15 +617,15 @@ static int ti_sci_inta_irq_domain_probe(struct platform_device *pdev)
->  		return -EINVAL;
->  	}
->  
-> -	inta->vint = devm_ti_sci_get_of_resource(inta->sci, dev, pdev->id,
-> -						 "ti,sci-rm-range-vint");
-> +	inta->vint = devm_ti_sci_get_resource(inta->sci, dev, pdev->id,
-> +					      TI_SCI_RESASG_SUBTYPE_IA_VINT);
-
-Same comment as on patch #6 as well, although the pdev->id hijacking
-already existed. I believe this should be fixed, unless you can
-explain why this can't possibly be implemented in a different way.
-
->  	if (IS_ERR(inta->vint)) {
->  		dev_err(dev, "VINT resource allocation failed\n");
->  		return PTR_ERR(inta->vint);
->  	}
->  
-> -	inta->global_event = devm_ti_sci_get_of_resource(inta->sci, dev, pdev->id,
-> -						"ti,sci-rm-range-global-event");
-> +	inta->global_event = devm_ti_sci_get_resource(inta->sci, dev, pdev->id,
-> +					TI_SCI_RESASG_SUBTYPE_GLOBAL_EVENT_SEVT);
->  	if (IS_ERR(inta->global_event)) {
->  		dev_err(dev, "Global event resource allocation failed\n");
->  		return PTR_ERR(inta->global_event);
-> @@ -594,6 +656,8 @@ static int ti_sci_inta_irq_domain_probe(struct platform_device *pdev)
->  	INIT_LIST_HEAD(&inta->vint_list);
->  	mutex_init(&inta->vint_mutex);
->  
-> +	dev_info(dev, "Interrupt Aggregator domain %d created\n", pdev->id);
-> +
->  	return 0;
->  }
->  
-> -- 
-> 2.27.0
-> 
-> 
+Assuming you fix the issues I have pointed out for patches 6 and 9,
+this will need some Acks for the firmware parts, as the irqchip
+patches are not standalone.
 
 Thanks,
 
