@@ -2,39 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9DAA22D8C8
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jul 2020 18:55:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61E7522D8C9
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jul 2020 18:55:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726969AbgGYQzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Jul 2020 12:55:37 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:48636 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726727AbgGYQzh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jul 2020 12:55:37 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06PGtXIJ065381;
-        Sat, 25 Jul 2020 11:55:33 -0500
+        id S1726727AbgGYQzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Jul 2020 12:55:40 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:43160 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726567AbgGYQzk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jul 2020 12:55:40 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06PGtab6092455;
+        Sat, 25 Jul 2020 11:55:36 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1595696133;
-        bh=sShe0KjtSdQ43Z3VYVGtGnsjfPqKlxyx8TGszXHjAog=;
+        s=ti-com-17Q1; t=1595696136;
+        bh=C5bREt6ICTWBNX37BVjDl/uKruMfEc18QygGp/DI6xc=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=LeDQGNbvNEXmttkzxZf86xl9Lg6sFIcYfx4ZntkVgzUVPdDTt4NNS8iMAU5/uG8xi
-         c5CBqsF/rAU55WbvE05/zt8UtGgiZhIr7hVym5C7C15mtGaLRaoj8nbZ1uGzOtQwS/
-         3qfMsU/aGVwqw9h2nv1Ybp7uJYYx3iEeAYwy9Fu8=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06PGtXhD013657;
-        Sat, 25 Jul 2020 11:55:33 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+        b=NBBurCHQpckKg5NEitDR/5t036LKO1pxRiFtCMSdBihOVu5EI/XKXW5OAw5NrHocP
+         tNAsuxTwVIa0SH6evKQZ1f4r2giaYppo/0IPNbBJ4cpsgCm/E77llruuRbQPKN3LDc
+         wmr2BKMGsbHWj6p5aFOhSemdNgHHQWNOY1f98yig=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06PGta4i058295
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sat, 25 Jul 2020 11:55:36 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Sat, 25
- Jul 2020 11:55:32 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ Jul 2020 11:55:36 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Sat, 25 Jul 2020 11:55:32 -0500
+ Frontend Transport; Sat, 25 Jul 2020 11:55:36 -0500
 Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06PGtPLE026200;
-        Sat, 25 Jul 2020 11:55:30 -0500
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06PGtPLF026200;
+        Sat, 25 Jul 2020 11:55:33 -0500
 From:   Lokesh Vutla <lokeshvutla@ti.com>
 To:     Nishanth Menon <nm@ti.com>, Tero Kristo <t-kristo@ti.com>,
         Rob Herring <robh+dt@kernel.org>
@@ -43,9 +44,9 @@ CC:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
         Sekhar Nori <nsekhar@ti.com>, Suman Anna <s-anna@ti.com>,
         Grygorii Strashko <grygorii.strashko@ti.com>,
         Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [PATCH 1/3] arm64: dts: k3-j721e: ti-sci-inta/intr: Update to latest bindings
-Date:   Sat, 25 Jul 2020 22:25:22 +0530
-Message-ID: <20200725165524.22151-2-lokeshvutla@ti.com>
+Subject: [PATCH 2/3] arm64: dts: k3-am65: ti-sci-inta/intr: Update to latest bindings
+Date:   Sat, 25 Jul 2020 22:25:23 +0530
+Message-ID: <20200725165524.22151-3-lokeshvutla@ti.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200725165524.22151-1-lokeshvutla@ti.com>
 References: <20200725165524.22151-1-lokeshvutla@ti.com>
@@ -61,231 +62,147 @@ X-Mailing-List: devicetree@vger.kernel.org
 Update the INTA and INTR dt nodes to the latest DT bindings.
 
 Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
+Signed-off-by: Suman Anna <s-anna@ti.com>
 ---
- .../dts/ti/k3-j721e-common-proc-board.dts     | 10 ++---
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 43 ++++++++++---------
- .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      | 11 +++--
- 3 files changed, 32 insertions(+), 32 deletions(-)
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi      | 24 +++++++++----------
+ arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi    |  8 +++----
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts |  4 ++--
+ .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |  1 -
+ 4 files changed, 17 insertions(+), 20 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-index 6df823aaa37c..532e1ed4dfb4 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-@@ -223,7 +223,7 @@ &wkup_gpio1 {
- };
- 
- &mailbox0_cluster0 {
--	interrupts = <214 0>;
-+	interrupts = <436>;
- 
- 	mbox_mcu_r5fss0_core0: mbox-mcu-r5fss0-core0 {
- 		ti,mbox-rx = <0 0 0>;
-@@ -237,7 +237,7 @@ mbox_mcu_r5fss0_core1: mbox-mcu-r5fss0-core1 {
- };
- 
- &mailbox0_cluster1 {
--	interrupts = <215 0>;
-+	interrupts = <432>;
- 
- 	mbox_main_r5fss0_core0: mbox-main-r5fss0-core0 {
- 		ti,mbox-rx = <0 0 0>;
-@@ -251,7 +251,7 @@ mbox_main_r5fss0_core1: mbox-main-r5fss0-core1 {
- };
- 
- &mailbox0_cluster2 {
--	interrupts = <216 0>;
-+	interrupts = <428>;
- 
- 	mbox_main_r5fss1_core0: mbox-main-r5fss1-core0 {
- 		ti,mbox-rx = <0 0 0>;
-@@ -265,7 +265,7 @@ mbox_main_r5fss1_core1: mbox-main-r5fss1-core1 {
- };
- 
- &mailbox0_cluster3 {
--	interrupts = <217 0>;
-+	interrupts = <424>;
- 
- 	mbox_c66_0: mbox-c66-0 {
- 		ti,mbox-rx = <0 0 0>;
-@@ -279,7 +279,7 @@ mbox_c66_1: mbox-c66-1 {
- };
- 
- &mailbox0_cluster4 {
--	interrupts = <218 0>;
-+	interrupts = <420>;
- 
- 	mbox_c71_0: mbox-c71-0 {
- 		ti,mbox-rx = <0 0 0>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index 96c929da639d..38bb352f8253 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -45,10 +45,10 @@ main_gpio_intr: interrupt-controller0 {
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+index 61815228e230..0af4ebacf939 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+@@ -383,10 +383,10 @@ intr_main_gpio: interrupt-controller0 {
  		ti,intr-trigger-type = <1>;
  		interrupt-controller;
  		interrupt-parent = <&gic500>;
 -		#interrupt-cells = <2>;
 +		#interrupt-cells = <1>;
  		ti,sci = <&dmsc>;
--		ti,sci-dst-id = <14>;
+-		ti,sci-dst-id = <56>;
 -		ti,sci-rm-range-girq = <0x1>;
-+		ti,sci-dev-id = <131>;
-+		ti,interrupt-ranges = <8 392 56>;
++		ti,sci-dev-id = <100>;
++		ti,interrupt-ranges = <0 392 32>;
  	};
  
  	main_navss {
-@@ -66,10 +66,12 @@ main_navss_intr: interrupt-controller1 {
+@@ -404,10 +404,11 @@ intr_main_navss: interrupt-controller1 {
  			ti,intr-trigger-type = <4>;
  			interrupt-controller;
  			interrupt-parent = <&gic500>;
 -			#interrupt-cells = <2>;
 +			#interrupt-cells = <1>;
  			ti,sci = <&dmsc>;
--			ti,sci-dst-id = <14>;
--			ti,sci-rm-range-girq = <0>, <2>;
-+			ti,sci-dev-id = <213>;
+-			ti,sci-dst-id = <56>;
+-			ti,sci-rm-range-girq = <0x0>, <0x2>;
++			ti,sci-dev-id = <182>;
 +			ti,interrupt-ranges = <0 64 64>,
-+					      <64 448 64>,
-+					      <128 672 64>;
++					      <64 448 64>;
  		};
  
- 		main_udmass_inta: interrupt-controller@33d00000 {
-@@ -80,8 +82,7 @@ main_udmass_inta: interrupt-controller@33d00000 {
+ 		inta_main_udmass: interrupt-controller@33d00000 {
+@@ -418,8 +419,7 @@ inta_main_udmass: interrupt-controller@33d00000 {
  			msi-controller;
  			ti,sci = <&dmsc>;
- 			ti,sci-dev-id = <209>;
--			ti,sci-rm-range-vint = <0xa>;
--			ti,sci-rm-range-global-event = <0xd>;
+ 			ti,sci-dev-id = <179>;
+-			ti,sci-rm-range-vint = <0x0>;
+-			ti,sci-rm-range-global-event = <0x1>;
 +			ti,interrupt-ranges = <0 0 256>;
  		};
  
  		secure_proxy_main: mailbox@32c00000 {
-@@ -261,7 +262,7 @@ cpts@310d0000 {
+@@ -588,7 +588,7 @@ cpts@310d0000 {
  			reg-names = "cpts";
- 			clocks = <&k3_clks 201 1>;
+ 			clocks = <&main_cpts_mux>;
  			clock-names = "cpts";
--			interrupts-extended = <&main_navss_intr 201 0>;
-+			interrupts-extended = <&main_navss_intr 391>;
+-			interrupts-extended = <&intr_main_navss 163 0>;
++			interrupts-extended = <&intr_main_navss 391>;
  			interrupt-names = "cpts";
  			ti,cpts-periodic-outputs = <6>;
  			ti,cpts-ext-ts-inputs = <8>;
-@@ -413,8 +414,8 @@ main_gpio0: gpio@600000 {
+@@ -611,8 +611,7 @@ main_gpio0:  main_gpio0@600000 {
  		gpio-controller;
  		#gpio-cells = <2>;
- 		interrupt-parent = <&main_gpio_intr>;
--		interrupts = <105 0>, <105 1>, <105 2>, <105 3>,
--			     <105 4>, <105 5>, <105 6>, <105 7>;
-+		interrupts = <256>, <257>, <258>, <259>,
-+			     <260>, <261>, <262>, <263>;
+ 		interrupt-parent = <&intr_main_gpio>;
+-		interrupts = <57 256>, <57 257>, <57 258>, <57 259>, <57 260>,
+-				<57 261>;
++		interrupts = <192>, <193>, <194>, <195>, <196>, <197>;
  		interrupt-controller;
  		#interrupt-cells = <2>;
- 		ti,ngpio = <128>;
-@@ -430,7 +431,7 @@ main_gpio1: gpio@601000 {
+ 		ti,ngpio = <96>;
+@@ -627,8 +626,7 @@ main_gpio1:  main_gpio1@601000 {
  		gpio-controller;
  		#gpio-cells = <2>;
- 		interrupt-parent = <&main_gpio_intr>;
--		interrupts = <106 0>, <106 1>, <106 2>;
-+		interrupts = <288>, <289>, <290>;
+ 		interrupt-parent = <&intr_main_gpio>;
+-		interrupts = <58 256>, <58 257>, <58 258>, <58 259>, <58 260>,
+-				<58 261>;
++		interrupts = <200>, <201>, <202>, <203>, <204>, <205>;
  		interrupt-controller;
  		#interrupt-cells = <2>;
- 		ti,ngpio = <36>;
-@@ -446,8 +447,8 @@ main_gpio2: gpio@610000 {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 		interrupt-parent = <&main_gpio_intr>;
--		interrupts = <107 0>, <107 1>, <107 2>, <107 3>,
--			     <107 4>, <107 5>, <107 6>, <107 7>;
-+		interrupts = <264>, <265>, <266>, <267>,
-+			     <268>, <269>, <270>, <271>;
- 		interrupt-controller;
- 		#interrupt-cells = <2>;
- 		ti,ngpio = <128>;
-@@ -463,7 +464,7 @@ main_gpio3: gpio@611000 {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 		interrupt-parent = <&main_gpio_intr>;
--		interrupts = <108 0>, <108 1>, <108 2>;
-+		interrupts = <292>, <293>, <294>;
- 		interrupt-controller;
- 		#interrupt-cells = <2>;
- 		ti,ngpio = <36>;
-@@ -479,8 +480,8 @@ main_gpio4: gpio@620000 {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 		interrupt-parent = <&main_gpio_intr>;
--		interrupts = <109 0>, <109 1>, <109 2>, <109 3>,
--			     <109 4>, <109 5>, <109 6>, <109 7>;
-+		interrupts = <272>, <273>, <274>, <275>,
-+			     <276>, <277>, <278>, <279>;
- 		interrupt-controller;
- 		#interrupt-cells = <2>;
- 		ti,ngpio = <128>;
-@@ -496,7 +497,7 @@ main_gpio5: gpio@621000 {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 		interrupt-parent = <&main_gpio_intr>;
--		interrupts = <110 0>, <110 1>, <110 2>;
-+		interrupts = <296>, <297>, <298>;
- 		interrupt-controller;
- 		#interrupt-cells = <2>;
- 		ti,ngpio = <36>;
-@@ -512,8 +513,8 @@ main_gpio6: gpio@630000 {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 		interrupt-parent = <&main_gpio_intr>;
--		interrupts = <111 0>, <111 1>, <111 2>, <111 3>,
--			     <111 4>, <111 5>, <111 6>, <111 7>;
-+		interrupts = <280>, <281>, <282>, <283>,
-+			     <284>, <285>, <286>, <287>;
- 		interrupt-controller;
- 		#interrupt-cells = <2>;
- 		ti,ngpio = <128>;
-@@ -529,7 +530,7 @@ main_gpio7: gpio@631000 {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 		interrupt-parent = <&main_gpio_intr>;
--		interrupts = <112 0>, <112 1>, <112 2>;
-+		interrupts = <300>, <301>, <302>;
- 		interrupt-controller;
- 		#interrupt-cells = <2>;
- 		ti,ngpio = <36>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-index dc31bd0434cb..62b87fd6c555 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-@@ -96,9 +96,10 @@ wkup_gpio_intr: interrupt-controller2 {
+ 		ti,ngpio = <90>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
+index 54a133fa1bf2..e1cb8a1196ea 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
+@@ -69,10 +69,10 @@ intr_wkup_gpio: interrupt-controller2 {
  		ti,intr-trigger-type = <1>;
  		interrupt-controller;
  		interrupt-parent = <&gic500>;
 -		#interrupt-cells = <2>;
 +		#interrupt-cells = <1>;
  		ti,sci = <&dmsc>;
--		ti,sci-dst-id = <14>;
-+		ti,sci-dev-id = <137>;
-+		ti,interrupt-ranges = <16 960 16>;
- 		ti,sci-rm-range-girq = <0x5>;
+-		ti,sci-dst-id = <56>;
+-		ti,sci-rm-range-girq = <0x4>;
++		ti,sci-dev-id = <156>;
++		ti,interrupt-ranges = <0 712 16>;
  	};
  
-@@ -108,8 +109,7 @@ wkup_gpio0: gpio@42110000 {
+ 	wkup_gpio0: wkup_gpio0@42110000 {
+@@ -81,7 +81,7 @@ wkup_gpio0: wkup_gpio0@42110000 {
  		gpio-controller;
  		#gpio-cells = <2>;
- 		interrupt-parent = <&wkup_gpio_intr>;
--		interrupts = <113 0>, <113 1>, <113 2>,
--			     <113 3>, <113 4>, <113 5>;
-+		interrupts = <103>, <104>, <105>, <106>, <107>, <108>;
+ 		interrupt-parent = <&intr_wkup_gpio>;
+-		interrupts = <59 128>, <59 129>, <59 130>, <59 131>;
++		interrupts = <60>, <61>, <62>, <63>;
  		interrupt-controller;
  		#interrupt-cells = <2>;
- 		ti,ngpio = <84>;
-@@ -125,8 +125,7 @@ wkup_gpio1: gpio@42100000 {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 		interrupt-parent = <&wkup_gpio_intr>;
--		interrupts = <114 0>, <114 1>, <114 2>,
--			     <114 3>, <114 4>, <114 5>;
-+		interrupts = <112>, <113>, <114>, <115>, <116>, <117>;
- 		interrupt-controller;
- 		#interrupt-cells = <2>;
- 		ti,ngpio = <84>;
+ 		ti,ngpio = <56>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+index 2f3d3316a1cf..e58668f9fb59 100644
+--- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+@@ -359,7 +359,7 @@ &pcie1_ep {
+ };
+ 
+ &mailbox0_cluster0 {
+-	interrupts = <164 0>;
++	interrupts = <436>;
+ 
+ 	mbox_mcu_r5fss0_core0: mbox-mcu-r5fss0-core0 {
+ 		ti,mbox-tx = <1 0 0>;
+@@ -368,7 +368,7 @@ mbox_mcu_r5fss0_core0: mbox-mcu-r5fss0-core0 {
+ };
+ 
+ &mailbox0_cluster1 {
+-	interrupts = <165 0>;
++	interrupts = <432>;
+ 
+ 	mbox_mcu_r5fss0_core1: mbox-mcu-r5fss0-core1 {
+ 		ti,mbox-tx = <1 0 0>;
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+index 62b87fd6c555..e778a7e80ce7 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+@@ -100,7 +100,6 @@ wkup_gpio_intr: interrupt-controller2 {
+ 		ti,sci = <&dmsc>;
+ 		ti,sci-dev-id = <137>;
+ 		ti,interrupt-ranges = <16 960 16>;
+-		ti,sci-rm-range-girq = <0x5>;
+ 	};
+ 
+ 	wkup_gpio0: gpio@42110000 {
 -- 
 2.27.0
 
