@@ -2,229 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2571C22D8BB
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jul 2020 18:38:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8ECE22D8BF
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jul 2020 18:40:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726926AbgGYQiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Jul 2020 12:38:08 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:47170 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726567AbgGYQiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jul 2020 12:38:08 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06PGc18w062000;
-        Sat, 25 Jul 2020 11:38:01 -0500
+        id S1727013AbgGYQkR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Jul 2020 12:40:17 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:41850 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726567AbgGYQkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jul 2020 12:40:17 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06PGdTDm089050;
+        Sat, 25 Jul 2020 11:39:29 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1595695081;
-        bh=HeX0VbKPlWpFeEwDIWsY63pWmoJAwLroryi9ehWI7Gs=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=R+SNu9yTAsxLb0ZMTeJ3A0NrJPEYsFLOkwgoic5d+VKO6m5GQeOE4LSfZOwar6rOa
-         SnzKDJYl3aRBXXe9MuHUJzaeY7db2KnbFmvwVDX85FQHj9WCLP0PrjzY6rduanupVN
-         gYBGeYprBGrsJGOSx3Z2kRJpGExCuu9mIinQVJDI=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06PGc15b106279
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 25 Jul 2020 11:38:01 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+        s=ti-com-17Q1; t=1595695169;
+        bh=NbfVhg/Rso9iy/ZTX1Svn7MyhcuckxecUCwfUCbjpwA=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=jnkDKO4oa9Oox6+Q4wWWFHVKw+m7O+JBDYxwU7Ow6WnND0erPbuAUIHpz7sxm2QVF
+         phS3Z3V4SP+uFb3QIXVOHlT2i7x+cww2yGt9BOXzmZb3/Mv3R8APJHMyJHIA6pIaO5
+         ewSIqkKNfETiU7FJ3tCP56llvvzsqCja4ArkYhNo=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06PGdTeo121873;
+        Sat, 25 Jul 2020 11:39:29 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Sat, 25
- Jul 2020 11:38:01 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ Jul 2020 11:39:28 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Sat, 25 Jul 2020 11:38:00 -0500
-Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06PGbCo4124636;
-        Sat, 25 Jul 2020 11:37:57 -0500
-From:   Lokesh Vutla <lokeshvutla@ti.com>
-To:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>
-CC:     Thomas Gleixner <tglx@linutronix.de>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Suman Anna <s-anna@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [PATCH v4 10/10] irqchip/ti-sci-inta: Add support for INTA directly connecting to GIC
-Date:   Sat, 25 Jul 2020 22:07:00 +0530
-Message-ID: <20200725163700.20583-11-lokeshvutla@ti.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200725163700.20583-1-lokeshvutla@ti.com>
-References: <20200725163700.20583-1-lokeshvutla@ti.com>
+ Frontend Transport; Sat, 25 Jul 2020 11:39:28 -0500
+Received: from [10.250.34.248] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06PGdSbB096543;
+        Sat, 25 Jul 2020 11:39:28 -0500
+Subject: Re: [PATCHv3 3/6] irqchip/irq-pruss-intc: Add support for shared and
+ invalid interrupts
+To:     Marc Zyngier <maz@kernel.org>
+CC:     Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
+        <tglx@linutronix.de>, <jason@lakedaemon.net>, <robh+dt@kernel.org>,
+        <lee.jones@linaro.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <david@lechnology.com>,
+        <wmills@ti.com>
+References: <1593699479-1445-1-git-send-email-grzegorz.jaszczyk@linaro.org>
+ <1593699479-1445-4-git-send-email-grzegorz.jaszczyk@linaro.org>
+ <2a6b0391f1395eb0aa15ffee6769184e@kernel.org>
+ <3a73bb14-9f7b-970d-fbae-f9c7bb7bdf1e@ti.com> <87imemxv3l.wl-maz@kernel.org>
+ <14a0978a-f38f-8cd7-3fee-b0e438513396@ti.com>
+ <1cd0b6c9bfe2dc42e9c6b69baacf4635@kernel.org>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <0a5664c1-88af-072e-7ad2-6a0b28fce28f@ti.com>
+Date:   Sat, 25 Jul 2020 11:39:28 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <1cd0b6c9bfe2dc42e9c6b69baacf4635@kernel.org>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Driver assumes that Interrupt parent to Interrupt Aggregator is always
-Interrupt router. This is not true always and GIC can be a parent to
-Interrupt Aggregator. Update the driver to detect the parent and request
-the parent irqs accordingly.
+Hi Marc,
 
-Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
----
- drivers/irqchip/irq-ti-sci-inta.c | 87 ++++++++++++++++++++++++++-----
- 1 file changed, 74 insertions(+), 13 deletions(-)
+On 7/25/20 11:27 AM, Marc Zyngier wrote:
+> On 2020-07-25 16:57, Suman Anna wrote:
+> 
+> Suman,
+> 
+>> Hi Marc,
+> 
+> [...]
+> 
+>>>>>> @@ -244,8 +295,14 @@ static int pruss_intc_probe(struct
+>>>>>> platform_device *pdev)
+>>>>>>           return -ENOMEM;
+>>>>>>
+>>>>>>       for (i = 0; i < MAX_NUM_HOST_IRQS; i++) {
+>>>>>> +        if (intc->invalid_intr & BIT(i))
+>>>>>> +            continue;
+>>>>>> +
+>>>>>>           irq = platform_get_irq_byname(pdev, irq_names[i]);
+>>>>>>           if (irq <= 0) {
+>>>>>> +            if (intc->shared_intr & BIT(i))
+>>>>>> +                continue;
+>>>>>
+>>>>> I don't really understand why you are treating these "shared" 
+>>>>> interrupts
+>>>>> differently from the invalid ones. In all cases, they shouldn't be 
+>>>>> used.
+>>>>
+>>>> The behavior is the same in how we handle it, but the difference is
+>>>> that an "invalid" one is never even connected to the ARM interrupt
+>>>> controller, while the "shared" one is a choice. So, unless this
+>>>> interrupt is being used/handled by a different processor/entity, you
+>>>> would not see this skipped from the dts node.
+>>>
+>>> And I'm saying that all that matters is that you are discarding these
+>>> interrupts. Whether they are flagged invalid or shared, they are not
+>>> available to Linux. So the difference in handling is pointless and
+>>> only makes it harder to understand what you are doing.
+>>
+>> The primary reason for using two properties and this logic was to
+>> accurately describe the h/w and usage of these in the DT bindings to
+>> distinguish the "never connected" vs the "optionally can be skipped"
+>> interrupts rather than go by how these are handled in the driver. I
+>> feel we will loose this description and make it confusing for SoC
+>> product integration developers.
+> 
+> This logic makes zero difference to Linux, and I do not see what
+> you gain by having two code paths with separate list of unusable
+> interrupts. 
 
-diff --git a/drivers/irqchip/irq-ti-sci-inta.c b/drivers/irqchip/irq-ti-sci-inta.c
-index f2d2f29991b9..da1298ee365f 100644
---- a/drivers/irqchip/irq-ti-sci-inta.c
-+++ b/drivers/irqchip/irq-ti-sci-inta.c
-@@ -8,6 +8,7 @@
- 
- #include <linux/err.h>
- #include <linux/io.h>
-+#include <linux/irq.h>
- #include <linux/irqchip.h>
- #include <linux/irqdomain.h>
- #include <linux/interrupt.h>
-@@ -130,6 +131,37 @@ static void ti_sci_inta_irq_handler(struct irq_desc *desc)
- 	chained_irq_exit(irq_desc_get_chip(desc), desc);
- }
- 
-+/**
-+ * ti_sci_inta_xlate_irq() - Translate hwirq to parent's hwirq.
-+ * @inta:	IRQ domain corresponding to Interrupt Aggregator
-+ * @irq:	Hardware irq corresponding to the above irq domain
-+ *
-+ * Return parent irq number if translation is available else -ENOENT.
-+ */
-+static int ti_sci_inta_xlate_irq(struct ti_sci_inta_irq_domain *inta,
-+				 u16 vint_id)
-+{
-+	struct device_node *np = dev_of_node(&inta->pdev->dev);
-+	u32 base, parent_base, size;
-+	const __be32 *range;
-+	int len;
-+
-+	range = of_get_property(np, "ti,interrupt-ranges", &len);
-+	if (!range)
-+		return vint_id;
-+
-+	for (len /= sizeof(*range); len >= 3; len -= 3) {
-+		base = be32_to_cpu(*range++);
-+		parent_base = be32_to_cpu(*range++);
-+		size = be32_to_cpu(*range++);
-+
-+		if (base <= vint_id && vint_id < base + size)
-+			return vint_id - base + parent_base;
-+	}
-+
-+	return -ENOENT;
-+}
-+
- /**
-  * ti_sci_inta_alloc_parent_irq() - Allocate parent irq to Interrupt aggregator
-  * @domain:	IRQ domain corresponding to Interrupt Aggregator
-@@ -141,30 +173,52 @@ static struct ti_sci_inta_vint_desc *ti_sci_inta_alloc_parent_irq(struct irq_dom
- 	struct ti_sci_inta_irq_domain *inta = domain->host_data;
- 	struct ti_sci_inta_vint_desc *vint_desc;
- 	struct irq_fwspec parent_fwspec;
-+	struct device_node *parent_node;
- 	unsigned int parent_virq;
--	u16 vint_id;
-+	u16 vint_id, p_hwirq;
-+	int ret;
- 
- 	vint_id = ti_sci_get_free_resource(inta->vint);
- 	if (vint_id == TI_SCI_RESOURCE_NULL)
- 		return ERR_PTR(-EINVAL);
- 
-+	p_hwirq = ti_sci_inta_xlate_irq(inta, vint_id);
-+	if (p_hwirq < 0) {
-+		ret = p_hwirq;
-+		goto free_vint;
-+	}
-+
- 	vint_desc = kzalloc(sizeof(*vint_desc), GFP_KERNEL);
--	if (!vint_desc)
--		return ERR_PTR(-ENOMEM);
-+	if (!vint_desc) {
-+		ret = -ENOMEM;
-+		goto free_vint;
-+	}
- 
- 	vint_desc->domain = domain;
- 	vint_desc->vint_id = vint_id;
- 	INIT_LIST_HEAD(&vint_desc->list);
- 
--	parent_fwspec.fwnode = of_node_to_fwnode(of_irq_find_parent(dev_of_node(&inta->pdev->dev)));
--	parent_fwspec.param_count = 2;
--	parent_fwspec.param[0] = inta->ti_sci_id;
--	parent_fwspec.param[1] = vint_desc->vint_id;
-+	parent_node = of_irq_find_parent(dev_of_node(&inta->pdev->dev));
-+	parent_fwspec.fwnode = of_node_to_fwnode(parent_node);
-+
-+	if (of_device_is_compatible(parent_node, "arm,gic-v3")) {
-+		/* Parent is GIC */
-+		parent_fwspec.param_count = 3;
-+		parent_fwspec.param[0] = 0;
-+		parent_fwspec.param[1] = p_hwirq - 32;
-+		parent_fwspec.param[2] = IRQ_TYPE_LEVEL_HIGH;
-+	} else {
-+		/* Parent is Interrupt Router */
-+		parent_fwspec.param_count = 1;
-+		parent_fwspec.param[0] = p_hwirq;
-+	}
- 
- 	parent_virq = irq_create_fwspec_mapping(&parent_fwspec);
- 	if (parent_virq == 0) {
--		kfree(vint_desc);
--		return ERR_PTR(-EINVAL);
-+		dev_err(&inta->pdev->dev, "Parent IRQ allocation failed\n");
-+		ret = -EINVAL;
-+		goto free_vint_desc;
-+
- 	}
- 	vint_desc->parent_virq = parent_virq;
- 
-@@ -173,6 +227,11 @@ static struct ti_sci_inta_vint_desc *ti_sci_inta_alloc_parent_irq(struct irq_dom
- 					 ti_sci_inta_irq_handler, vint_desc);
- 
- 	return vint_desc;
-+free_vint_desc:
-+	kfree(vint_desc);
-+free_vint:
-+	ti_sci_release_resource(inta->vint, vint_id);
-+	return ERR_PTR(ret);
- }
- 
- /**
-@@ -557,15 +616,15 @@ static int ti_sci_inta_irq_domain_probe(struct platform_device *pdev)
- 		return -EINVAL;
- 	}
- 
--	inta->vint = devm_ti_sci_get_of_resource(inta->sci, dev, inta->ti_sci_id,
--						 "ti,sci-rm-range-vint");
-+	inta->vint = devm_ti_sci_get_resource(inta->sci, dev, inta->ti_sci_id,
-+					      TI_SCI_RESASG_SUBTYPE_IA_VINT);
- 	if (IS_ERR(inta->vint)) {
- 		dev_err(dev, "VINT resource allocation failed\n");
- 		return PTR_ERR(inta->vint);
- 	}
- 
--	inta->global_event = devm_ti_sci_get_of_resource(inta->sci, dev, inta->ti_sci_id,
--							 "ti,sci-rm-range-global-event");
-+	inta->global_event = devm_ti_sci_get_resource(inta->sci, dev, inta->ti_sci_id,
-+						      TI_SCI_RESASG_SUBTYPE_GLOBAL_EVENT_SEVT);
- 	if (IS_ERR(inta->global_event)) {
- 		dev_err(dev, "Global event resource allocation failed\n");
- 		return PTR_ERR(inta->global_event);
-@@ -596,6 +655,8 @@ static int ti_sci_inta_irq_domain_probe(struct platform_device *pdev)
- 	INIT_LIST_HEAD(&inta->vint_list);
- 	mutex_init(&inta->vint_mutex);
- 
-+	dev_info(dev, "Interrupt Aggregator domain %d created\n", pdev->id);
-+
- 	return 0;
- }
- 
--- 
-2.27.0
+OK, I understand your stance on this.
 
+And why on Earth would a "Soc product integration
+> developer" have any business to mess with this driver code?
+> They should very much stay away from it and deal with their
+> precious value add.
+
+It really depends on how they put together the system and exercise the 
+PRUs and the number of processors interacting with them. We have had 
+customers put together usecases where both the ARM core running Linux 
+and a remote processor like an M4 or R5 talk to the PRU at the same 
+time, or even inter PRUSS instances. They would have to adjust the DT in 
+their board dts files in general.
+
+> 
+> If you want two properties or even twenty, go for it, and have fun.
+> Just don't make this driver even more unreadable than it already is.
+> Merge all these interrupts in *one* list of unusable interrupts,
+> and be done with it.
+
+Yes, we are merging this for the next version.
+
+regards
+Suman
