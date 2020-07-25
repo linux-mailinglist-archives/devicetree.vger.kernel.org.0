@@ -2,167 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B999122D93B
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jul 2020 20:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F84822D98B
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jul 2020 21:18:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728074AbgGYSOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Jul 2020 14:14:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51000 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728071AbgGYSOk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jul 2020 14:14:40 -0400
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC917C08C5C0;
-        Sat, 25 Jul 2020 11:14:39 -0700 (PDT)
-Received: by mail-ed1-x543.google.com with SMTP id d18so9255785edv.6;
-        Sat, 25 Jul 2020 11:14:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=XKnDklCAGiv58g9Foc3TqRLdzVf3EoGTeteiTkp0kag=;
-        b=GJ07DrBgtpG7LTpUn3MU6eIPgrRISBw/2GM5Mfq3Ksb8dre5YamuMV+ffjsAT8bNgn
-         u3QU/d46eVHhq3bXl291YVu0rJhU8nDXL/MUuAuA1lI8pK2G0DI/RpbYHU15gMMFJjee
-         Fyahnj9dxmIqG1lu9/JF3D89bQA/tB5ZdOsDKXn7K8e/TkB7/RldxNoAjvq1l63VIRAy
-         weepThoEd/B4QKsqunh+bV7WQRbNkywP7IJ/VC95uz4bzuHGif9CKAyEMLLbRKnnCRQH
-         G9x9b6FzmXP2gfWUnF7pQipZdIXuTC8ZQcxN0tt9lF8MhVgBxkvtDgjVJ8S1m0utS2NT
-         XPsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=XKnDklCAGiv58g9Foc3TqRLdzVf3EoGTeteiTkp0kag=;
-        b=rUSvvzNIn/kEOblbfIozxSr4RU9K2IhIo/hyMKfSVrWJNorN9dmFJ6lOPUcZICQInR
-         qT9g2o3eLQr24q6eCtqWWLpntAK9gQVSgP0uATN4H7et1W2goienP1LJLvwLam6mi0Un
-         9GXqav6+d1OuAFBjPgjcZwK0qhtG8flPlWAL3TqKU5/bK020XwG5uHTNGVVopGR0d0mm
-         xT9PussQISpUHbbGA7Ojvb2Ojmh81HhGwhDjZZiFK7kZ3t69jSUlBsM63ctXoMjDj8ME
-         O/CZZfErAUFPqp+A6Hmcs8nA3dhZOAU3KgrF1TENsJjEBVnyV2v/Y6ukhIySeWXNfN/7
-         VcNA==
-X-Gm-Message-State: AOAM5316rVuKhDFkTJLobCU47izU7bg7ZPsywFPoa4WM2AAbDLJzjLyg
-        4PAPz+r72sHt9jFdvs3rYww=
-X-Google-Smtp-Source: ABdhPJymEfznei5ky/ny1Kg/HlDVR3Y7dGzAt4QmgjnqZoY6VY8yrVuGLMPB0Cu++anysV35CSTZCg==
-X-Received: by 2002:aa7:c655:: with SMTP id z21mr14407787edr.330.1595700878430;
-        Sat, 25 Jul 2020 11:14:38 -0700 (PDT)
-Received: from Ansuel-XPS.localdomain (host-79-22-5-125.retail.telecomitalia.it. [79.22.5.125])
-        by smtp.googlemail.com with ESMTPSA id qn10sm220922ejb.39.2020.07.25.11.14.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Jul 2020 11:14:37 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Amit Kucheria <amit.kucheria@linaro.org>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [RFC PATCH v5 7/7] dt-bindings: thermal: tsens: Document ipq8064 bindings
-Date:   Sat, 25 Jul 2020 20:14:03 +0200
-Message-Id: <20200725181404.18951-8-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200725181404.18951-1-ansuelsmth@gmail.com>
-References: <20200725181404.18951-1-ansuelsmth@gmail.com>
+        id S1726447AbgGYTSn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Jul 2020 15:18:43 -0400
+Received: from out2-smtp.messagingengine.com ([66.111.4.26]:34397 "EHLO
+        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726381AbgGYTSn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 25 Jul 2020 15:18:43 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 0443B5C00CA;
+        Sat, 25 Jul 2020 15:18:42 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Sat, 25 Jul 2020 15:18:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        subject:to:cc:references:from:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=r
+        WYFqMi0Bc4yD9F0ulehRfAQBdRpLQU+sbOfDtxKETM=; b=AYL24dWCsNSJoR3J7
+        49Z604uXy1bARXjeh+9TIP23BVdgIBBs/7KsJ5zdlayVP110mLvMNtIAQqggsAT7
+        5LIr4f2P1hS+dKF5IJUjIeXMADBxH1p5wO10AV+3JbwQT6x5Ezp7Wxqtz0LvFa9c
+        AfnllR5TOI4Erx3Y6OibtgZJonHkGF9gnwh447n4pwJr/25sfH8AGO/oEz5X26m8
+        l0F90yjTA4nlDGlFcc+46bfIYYuWri+ytwbuSJ5HV7Scnde+j5Nigl+Zv++z6Rnp
+        ndG3v61EcxaYw+nZmTVXF+Imk5WYCmddhPi090btGtnIZT6y9MdfWS4CAGMN0pxn
+        shTDQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=rWYFqMi0Bc4yD9F0ulehRfAQBdRpLQU+sbOfDtxKE
+        TM=; b=WlszfhUbL/eAqIxpSEN+45puRzOzyhq7lKG/ppk62McHtQ+U4dPV2mi+L
+        uQfsLNWIpx2s0rtxHl614oyePRGj1C+vwbCRiqW5AcTMYOmUdaUBrPeQkpHRX/YY
+        BBO0W8hmnfdvhR0X3HEPqMNYW2HgMfG4uOd4ysyF9+W1PEfymdRk7Vt5dFFHrId6
+        1vqe4Z3CDNreFV5JttQbR31WN0u/SszWGN0pHkny3dXucqLlQ0gkng/dcY5nL78i
+        lyNQa4wZwRkRMVgBi5GTQ2FFVTZWBgZIqnwiUFU8XNcPPoknUejJQGLeNdtN6o6k
+        AmhtU+C5moPYl1hKpJQHIkz43n05Q==
+X-ME-Sender: <xms:kIUcX_j718I3fRag_OLmiodGDTbF-7Kj_qxAEkDlKLlq8EPcLXJv5A>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrheehgddufeeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepgfevffetleehffejueekvdekvdeitdehveegfeekheeuieeiueet
+    uefgtedtgeegnecukfhppeejtddrudefhedrudegkedrudehudenucevlhhushhtvghruf
+    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgr
+    nhgurdhorhhg
+X-ME-Proxy: <xmx:kIUcX8A07aJoVhbI5fnJbcab5Ew8DFOMY1ouuVh0gm-f5KRFYdHo9w>
+    <xmx:kIUcX_FNxJTuGDkpwEWlVX67SFrCyOkpYPT9h_w4SpZxjm79YqETBw>
+    <xmx:kIUcX8Qhq9L5tofcNWTI4_gi4XlYoB2qdnoIOBobyy4tnmTbu5ExTA>
+    <xmx:kYUcX2sqoZX4tKW10J1Gt0dRF1_Hq4YGTZldnHgBQbjJr3VtP9qF2w>
+Received: from [192.168.50.169] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 0B20530600A3;
+        Sat, 25 Jul 2020 15:18:40 -0400 (EDT)
+Subject: =?UTF-8?Q?Re=3a_=5bPATCH_1/3=5d_dt-bindings=3a_gpio=3a_sunxi?=
+ =?UTF-8?Q?=ef=bc=9acreate_a_DT_header_for_Allwinner_pin_controller?=
+To:     Maxime Ripard <maxime@cerno.tech>,
+        Frank Lee <frank@allwinnertech.com>
+Cc:     robh+dt@kernel.org, wens@csie.org, tiny.windzz@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20200715115412.2544-1-frank@allwinnertech.com>
+ <20200717160727.e6y5htg4sjd7bezi@gilmour.lan>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <db1908ae-817c-f30d-7b88-f4afa593b258@sholland.org>
+Date:   Sat, 25 Jul 2020 14:18:39 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200717160727.e6y5htg4sjd7bezi@gilmour.lan>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the use of bindings used for msm8960 tsens based devices.
-msm8960 use the same gcc regs and is set as a child of the qcom gcc.
+Maxime,
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
----
- .../bindings/thermal/qcom-tsens.yaml          | 50 ++++++++++++++++---
- 1 file changed, 43 insertions(+), 7 deletions(-)
+On 7/17/20 11:07 AM, Maxime Ripard wrote:
+> Hi!
+> 
+> On Wed, Jul 15, 2020 at 07:54:12PM +0800, Frank Lee wrote:
+>> From: Yangtao Li <frank@allwinnertech.com>
+>>
+>> The sunxi gpio binding defines a few custom cells for its gpio specifier.
+>> Provide bank name for those.
+>>
+>> Signed-off-by: Yangtao Li <frank@allwinnertech.com>
+> 
+> Thanks for working on this, I wanted to do it at some point but it kept
+> getting pushed further into my todo list.
+> 
+>> ---
+>>  include/dt-bindings/gpio/sunxi-gpio.h | 29 +++++++++++++++++++++++++++
+>>  1 file changed, 29 insertions(+)
+>>  create mode 100644 include/dt-bindings/gpio/sunxi-gpio.h
+>>
+>> diff --git a/include/dt-bindings/gpio/sunxi-gpio.h b/include/dt-bindings/gpio/sunxi-gpio.h
+>> new file mode 100644
+>> index 000000000000..c692b4360da6
+>> --- /dev/null
+>> +++ b/include/dt-bindings/gpio/sunxi-gpio.h
+> 
+> So generally we've been using the compatible name as the file name. You
+> should follow that convention too, and since it was added with the A10,
+> using the A10 compatible.
+> 
+>> @@ -0,0 +1,29 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +/*
+>> + * GPIO definitions for Allwinner SoCs
+>> + *
+>> + * Copyright (C) 2020 Yangtao Li <frank@allwinnertech.com>
+>> + */
+>> +
+>> +#ifndef _DT_BINDINGS_SUNXI_GPIO_H
+>> +#define _DT_BINDINGS_SUNXI_GPIO_H
+>> +
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +
+>> +/* pio */
+>> +#define PA	0
+>> +#define PB	1
+>> +#define PC	2
+>> +#define PD	3
+>> +#define PE	4
+>> +#define PF	5
+>> +#define PG	6
+>> +#define PH	7
+>> +#define PI	8
+>> +
+>> +/* r-pio */
+>> +#define PL	0
+>> +#define PM	1
+>> +#define PN	2
+>> +
+>> +#endif /* _DT_BINDINGS_SUNXI_GPIO_H */
+> 
+> Maybe we can go one step further and use a macro to have something like
+> PIN(A, 12) ?
 
-diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-index d7be931b42d2..9d480e3943a2 100644
---- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-+++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-@@ -19,6 +19,11 @@ description: |
- properties:
-   compatible:
-     oneOf:
-+      - description: msm9860 TSENS based
-+        items:
-+          - enum:
-+            - qcom,ipq8064-tsens
-+
-       - description: v0.1 of TSENS
-         items:
-           - enum:
-@@ -85,12 +90,18 @@ properties:
-       Number of cells required to uniquely identify the thermal sensors. Since
-       we have multiple sensors this is set to 1
- 
-+required:
-+  - compatible
-+  - interrupts
-+  - "#thermal-sensor-cells"
-+
- allOf:
-   - if:
-       properties:
-         compatible:
-           contains:
-             enum:
-+              - qcom,ipq8064-tsens
-               - qcom,msm8916-tsens
-               - qcom,msm8974-tsens
-               - qcom,msm8976-tsens
-@@ -111,17 +122,42 @@ allOf:
-         interrupt-names:
-           minItems: 2
- 
--required:
--  - compatible
--  - reg
--  - "#qcom,sensors"
--  - interrupts
--  - interrupt-names
--  - "#thermal-sensor-cells"
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,tsens-v0_1
-+              - qcom,tsens-v1
-+              - qcom,tsens-v2
-+
-+    then:
-+      required:
-+        - reg
-+        - interrupt-names
-+        - "#qcom,sensors"
- 
- additionalProperties: false
- 
- examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    // Example msm9860 based SoC (ipq8064):
-+    gcc: clock-controller {
-+
-+           /* ... */
-+
-+           tsens: thermal-sensor {
-+                compatible = "qcom,ipq8064-tsens";
-+
-+                 nvmem-cells = <&tsens_calib>, <&tsens_calsel>;
-+                 nvmem-cell-names = "calib", "calib_sel";
-+                 interrupts = <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>;
-+
-+                 #thermal-sensor-cells = <1>;
-+          };
-+    };
-+
-   - |
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
-     // Example 1 (legacy: for pre v1 IP):
--- 
-2.27.0
+Since we have separate cells for the bank and pin, I don't think it would be
+appropriate to have a single macro generating both. And I'm not sure what the
+benefit of the macro would be, if all it does is forward its arguments. Are you
+concerned that P[A-M] could conflict with something else in the device tree?
 
+Cheers,
+Samuel
