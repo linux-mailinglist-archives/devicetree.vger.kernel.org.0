@@ -2,182 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBC2222D47E
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jul 2020 05:53:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2048F22D500
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jul 2020 06:44:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726784AbgGYDxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jul 2020 23:53:15 -0400
-Received: from out28-195.mail.aliyun.com ([115.124.28.195]:56103 "EHLO
-        out28-195.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726717AbgGYDxL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jul 2020 23:53:11 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07448637|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0250197-0.000978011-0.974002;FP=0|0|0|0|0|-1|-1|-1;HT=e01a16378;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=19;RT=19;SR=0;TI=SMTPD_---.I7EgnZy_1595649141;
-Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.I7EgnZy_1595649141)
-          by smtp.aliyun-inc.com(10.147.40.2);
-          Sat, 25 Jul 2020 11:53:06 +0800
-From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
-        <zhouyanjie@wanyeetech.com>
-To:     balbi@kernel.org, gregkh@linuxfoundation.org, robh+dt@kernel.org
-Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, paul@crapouillou.net,
-        prasannatsmkumar@gmail.com, kishon@ti.com, vkoul@kernel.org,
-        gor@linux.ibm.com, hca@linux.ibm.com,
-        christophe.jaillet@wanadoo.fr, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        yanfei.li@ingenic.com, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com
-Subject: [PATCH v6 4/5] USB: PHY: JZ4770: Reformat the code to align it.
-Date:   Sat, 25 Jul 2020 11:51:58 +0800
-Message-Id: <20200725035159.31231-5-zhouyanjie@wanyeetech.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200725035159.31231-1-zhouyanjie@wanyeetech.com>
-References: <20200725035159.31231-1-zhouyanjie@wanyeetech.com>
+        id S1726811AbgGYEo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Jul 2020 00:44:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39162 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725825AbgGYEo2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jul 2020 00:44:28 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02F85C0619D3
+        for <devicetree@vger.kernel.org>; Fri, 24 Jul 2020 21:44:27 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id b6so9959488wrs.11
+        for <devicetree@vger.kernel.org>; Fri, 24 Jul 2020 21:44:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5VrwN5/UnygvMy3zMm6TjQrq+luQNTXvPZ+NbPuQVPA=;
+        b=ibIWiXjGWI4kz9I5MrfgGQdY71Zw+k0eXM7gC5w5R+lLsuD/rVVn4l5bB7vbyRpgSF
+         CV+8imaGR1JjGgXBgy9BLroi7X+UhQOc0W+LxYQAbq+YPThjVyOrAleyn+J44L5k/1pZ
+         ATDUYH0iFCuMMtfyo4nNuUBNgpolxBm3o3+jo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5VrwN5/UnygvMy3zMm6TjQrq+luQNTXvPZ+NbPuQVPA=;
+        b=MIRcxb7AW6Rd8FvgMOzFTl1M85kzAiBllzz5eI8NxrNJ9ySO5x/fj/UW1tezp11ohw
+         AVs4tksNYwb0ZoZnLv6PwytEu0/T3+aiBO31esqXoTX9WqLtxyyzrXkxWANsENJVzcy9
+         mnhWuQv6IvgmUl2hTRHZlpbUwB6Tb/7aoOfGwTUH8vuEZwOzGuSuNTyuxadZYny/+U3N
+         0uhI9RQrSv94LeCaKP2e+n6IuU48q7rJDVxdD/nsC05qF1zyd5qbt0/YU9uohHVGCcQ3
+         4+yaWeb006WIQUunSNjlGdCIw/slIOmB92I74IaqC5/mLE/6+U/ksyta7updGA4EGW8l
+         Yi5w==
+X-Gm-Message-State: AOAM531F8zREioJVRZGMzm8z3AmGtWTrBQcwUOEakh6HKk81cDpayzYU
+        u/9OtDuLbpvxxPDJLwUH2Beoha1ziwsl465AQrC5/g==
+X-Google-Smtp-Source: ABdhPJyibJBX0jw3LQVOdkevS7Z9trwmeRbeB+lDZ+bqAHr4vmhNL3sBrn1KJuO9i4ieIVDSG6EKmvewA3ljP/CM5q4=
+X-Received: by 2002:adf:cd91:: with SMTP id q17mr11312969wrj.5.1595652264082;
+ Fri, 24 Jul 2020 21:44:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20200710094544.430258-1-daniel@0x0f.com> <CAK8P3a2xQmba=ikPjRZCu+PhMGMRKDWW=WbgzjRypD9U43WHDw@mail.gmail.com>
+In-Reply-To: <CAK8P3a2xQmba=ikPjRZCu+PhMGMRKDWW=WbgzjRypD9U43WHDw@mail.gmail.com>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Sat, 25 Jul 2020 13:44:13 +0900
+Message-ID: <CAFr9PX=jMd1hogK9_JPU4N+QsDgiFyMMqON0_7-SytX2Kuh6Pg@mail.gmail.com>
+Subject: Re: [PATCH v5 00/12] Initial MStar/Sigmastar ARMv7 SoC support
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King - ARM Linux <linux@armlinux.org.uk>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Marc Zyngier <maz@kernel.org>, Willy Tarreau <w@1wt.eu>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reformat the code (add one level of indentation before the values),
-to align the code in the macro definition section.
+Hi Arnd,
 
-Tested-by: 周正 (Zhou Zheng) <sernia.zhou@foxmail.com>
-Co-developed-by: 漆鹏振 (Qi Pengzhen) <aric.pzqi@ingenic.com>
-Signed-off-by: 漆鹏振 (Qi Pengzhen) <aric.pzqi@ingenic.com>
-Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
----
+Thanks.
 
-Notes:
-    v1->v2:
-    Add support for the JZ4780 SoC.
-    
-    v2->v3:
-    No change.
-    
-    v3->v4:
-    No change.
-    
-    v4->v5:
-    No change.
-    
-    v5->v6:
-    No change.
+There is one small fix for the v5 set. One of the DTS file names got
+broken when I rebased on a different machine.
+I'll send a patch for that later today.
 
- drivers/usb/phy/phy-jz4770.c | 74 ++++++++++++++++++++++----------------------
- 1 file changed, 37 insertions(+), 37 deletions(-)
+Cheer,
 
-diff --git a/drivers/usb/phy/phy-jz4770.c b/drivers/usb/phy/phy-jz4770.c
-index b1540e059a09..23d38cbc150e 100644
---- a/drivers/usb/phy/phy-jz4770.c
-+++ b/drivers/usb/phy/phy-jz4770.c
-@@ -15,46 +15,46 @@
- #include <linux/usb/phy.h>
- 
- /* OTGPHY register offsets */
--#define REG_USBPCR_OFFSET	0x00
--#define REG_USBRDT_OFFSET	0x04
--#define REG_USBVBFIL_OFFSET	0x08
--#define REG_USBPCR1_OFFSET	0x0c
-+#define REG_USBPCR_OFFSET			0x00
-+#define REG_USBRDT_OFFSET			0x04
-+#define REG_USBVBFIL_OFFSET			0x08
-+#define REG_USBPCR1_OFFSET			0x0c
- 
- /* bits within the USBPCR register */
--#define USBPCR_USB_MODE		BIT(31)
--#define USBPCR_AVLD_REG		BIT(30)
--#define USBPCR_COMMONONN	BIT(25)
--#define USBPCR_VBUSVLDEXT	BIT(24)
--#define USBPCR_VBUSVLDEXTSEL	BIT(23)
--#define USBPCR_POR		BIT(22)
--#define USBPCR_SIDDQ		BIT(21)
--#define USBPCR_OTG_DISABLE	BIT(20)
--#define USBPCR_TXPREEMPHTUNE	BIT(6)
-+#define USBPCR_USB_MODE				BIT(31)
-+#define USBPCR_AVLD_REG				BIT(30)
-+#define USBPCR_COMMONONN			BIT(25)
-+#define USBPCR_VBUSVLDEXT			BIT(24)
-+#define USBPCR_VBUSVLDEXTSEL		BIT(23)
-+#define USBPCR_POR					BIT(22)
-+#define USBPCR_SIDDQ				BIT(21)
-+#define USBPCR_OTG_DISABLE			BIT(20)
-+#define USBPCR_TXPREEMPHTUNE		BIT(6)
- 
- #define USBPCR_IDPULLUP_LSB	28
--#define USBPCR_IDPULLUP_MASK	GENMASK(29, USBPCR_IDPULLUP_LSB)
--#define USBPCR_IDPULLUP_ALWAYS	(0x2 << USBPCR_IDPULLUP_LSB)
--#define USBPCR_IDPULLUP_SUSPEND	(0x1 << USBPCR_IDPULLUP_LSB)
--#define USBPCR_IDPULLUP_OTG	(0x0 << USBPCR_IDPULLUP_LSB)
-+#define USBPCR_IDPULLUP_MASK		GENMASK(29, USBPCR_IDPULLUP_LSB)
-+#define USBPCR_IDPULLUP_ALWAYS		(0x2 << USBPCR_IDPULLUP_LSB)
-+#define USBPCR_IDPULLUP_SUSPEND		(0x1 << USBPCR_IDPULLUP_LSB)
-+#define USBPCR_IDPULLUP_OTG			(0x0 << USBPCR_IDPULLUP_LSB)
- 
--#define USBPCR_COMPDISTUNE_LSB	17
--#define USBPCR_COMPDISTUNE_MASK	GENMASK(19, USBPCR_COMPDISTUNE_LSB)
--#define USBPCR_COMPDISTUNE_DFT	(0x4 << USBPCR_COMPDISTUNE_LSB)
-+#define USBPCR_COMPDISTUNE_LSB		17
-+#define USBPCR_COMPDISTUNE_MASK		GENMASK(19, USBPCR_COMPDISTUNE_LSB)
-+#define USBPCR_COMPDISTUNE_DFT		(0x4 << USBPCR_COMPDISTUNE_LSB)
- 
--#define USBPCR_OTGTUNE_LSB	14
--#define USBPCR_OTGTUNE_MASK	GENMASK(16, USBPCR_OTGTUNE_LSB)
--#define USBPCR_OTGTUNE_DFT	(0x4 << USBPCR_OTGTUNE_LSB)
-+#define USBPCR_OTGTUNE_LSB			14
-+#define USBPCR_OTGTUNE_MASK			GENMASK(16, USBPCR_OTGTUNE_LSB)
-+#define USBPCR_OTGTUNE_DFT			(0x4 << USBPCR_OTGTUNE_LSB)
- 
- #define USBPCR_SQRXTUNE_LSB	11
--#define USBPCR_SQRXTUNE_MASK	GENMASK(13, USBPCR_SQRXTUNE_LSB)
-+#define USBPCR_SQRXTUNE_MASK		GENMASK(13, USBPCR_SQRXTUNE_LSB)
- #define USBPCR_SQRXTUNE_DCR_20PCT	(0x7 << USBPCR_SQRXTUNE_LSB)
--#define USBPCR_SQRXTUNE_DFT	(0x3 << USBPCR_SQRXTUNE_LSB)
-+#define USBPCR_SQRXTUNE_DFT			(0x3 << USBPCR_SQRXTUNE_LSB)
- 
--#define USBPCR_TXFSLSTUNE_LSB	7
--#define USBPCR_TXFSLSTUNE_MASK	GENMASK(10, USBPCR_TXFSLSTUNE_LSB)
-+#define USBPCR_TXFSLSTUNE_LSB		7
-+#define USBPCR_TXFSLSTUNE_MASK		GENMASK(10, USBPCR_TXFSLSTUNE_LSB)
- #define USBPCR_TXFSLSTUNE_DCR_50PPT	(0xf << USBPCR_TXFSLSTUNE_LSB)
- #define USBPCR_TXFSLSTUNE_DCR_25PPT	(0x7 << USBPCR_TXFSLSTUNE_LSB)
--#define USBPCR_TXFSLSTUNE_DFT	(0x3 << USBPCR_TXFSLSTUNE_LSB)
-+#define USBPCR_TXFSLSTUNE_DFT		(0x3 << USBPCR_TXFSLSTUNE_LSB)
- #define USBPCR_TXFSLSTUNE_INC_25PPT	(0x1 << USBPCR_TXFSLSTUNE_LSB)
- #define USBPCR_TXFSLSTUNE_INC_50PPT	(0x0 << USBPCR_TXFSLSTUNE_LSB)
- 
-@@ -63,21 +63,21 @@
- #define USBPCR_TXHSXVTUNE_DFT		(0x3 << USBPCR_TXHSXVTUNE_LSB)
- #define USBPCR_TXHSXVTUNE_DCR_15MV	(0x1 << USBPCR_TXHSXVTUNE_LSB)
- 
--#define USBPCR_TXRISETUNE_LSB	4
--#define USBPCR_TXRISETUNE_MASK	GENMASK(5, USBPCR_TXRISETUNE_LSB)
--#define USBPCR_TXRISETUNE_DFT	(0x3 << USBPCR_TXRISETUNE_LSB)
-+#define USBPCR_TXRISETUNE_LSB		4
-+#define USBPCR_TXRISETUNE_MASK		GENMASK(5, USBPCR_TXRISETUNE_LSB)
-+#define USBPCR_TXRISETUNE_DFT		(0x3 << USBPCR_TXRISETUNE_LSB)
- 
--#define USBPCR_TXVREFTUNE_LSB	0
--#define USBPCR_TXVREFTUNE_MASK	GENMASK(3, USBPCR_TXVREFTUNE_LSB)
-+#define USBPCR_TXVREFTUNE_LSB		0
-+#define USBPCR_TXVREFTUNE_MASK		GENMASK(3, USBPCR_TXVREFTUNE_LSB)
- #define USBPCR_TXVREFTUNE_INC_25PPT	(0x7 << USBPCR_TXVREFTUNE_LSB)
--#define USBPCR_TXVREFTUNE_DFT	(0x5 << USBPCR_TXVREFTUNE_LSB)
-+#define USBPCR_TXVREFTUNE_DFT		(0x5 << USBPCR_TXVREFTUNE_LSB)
- 
- /* bits within the USBRDTR register */
- #define USBRDT_UTMI_RST				BIT(27)
- #define USBRDT_HB_MASK				BIT(26)
--#define USBRDT_VBFIL_LD_EN	BIT(25)
--#define USBRDT_IDDIG_EN		BIT(24)
--#define USBRDT_IDDIG_REG	BIT(23)
-+#define USBRDT_VBFIL_LD_EN			BIT(25)
-+#define USBRDT_IDDIG_EN				BIT(24)
-+#define USBRDT_IDDIG_REG			BIT(23)
- #define USBRDT_VBFIL_EN				BIT(2)
- 
- /* bits within the USBPCR1 register */
--- 
-2.11.0
+Daniel
 
+On Fri, 24 Jul 2020 at 23:37, Arnd Bergmann <arnd@arndb.de> wrote:
+>
+> On Fri, Jul 10, 2020 at 11:46 AM Daniel Palmer <daniel@0x0f.com> wrote:
+> >
+> > This patch set adds initial support for MStar/Sigmastar's
+> > Armv7 based SoCs. There is just enough here to get to a shell
+> > with an initramfs but support for a lot of the hardware is
+> > in progress and will follow.
+> >
+> > MStar also shipped chips with MIPS cores and ARM9 etc which
+> > are incompatible so I've tried to make the distinction in the
+> > code that this is strictly for the Armv7 based chips.
+> >
+> > Sorry for the spamming this. I just really want to make some
+> > progress on this because I'm worried the other bits that are
+> > needed for these SoCs (Really old AT91 support in macb and
+> > the fotg210 usb host) will be lost or stop working in the meantime.
+> > This already happened in u-boot.
+>
+> Hi Daniel,
+>
+> I just found the series again after looking through some backlog,
+> and noticing I missed your submission from July 10. This looks
+> all good to me now, so I've merged the series into the arm/newsoc
+> branch that already contains added support for the keembay and
+> sparx5 SoCs.
+>
+> If you require any changes to this, please send incremental
+> patches against the soc tree, and submit it to soc@kernel.org
+> so it makes it gets into patchwork.
+>
+>        Arnd
