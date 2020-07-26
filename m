@@ -2,61 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B42B822DF06
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jul 2020 14:34:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A606422DF07
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jul 2020 14:35:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726144AbgGZMeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jul 2020 08:34:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36306 "EHLO mail.kernel.org"
+        id S1726820AbgGZMfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jul 2020 08:35:22 -0400
+Received: from www.zeus03.de ([194.117.254.33]:39918 "EHLO mail.zeus03.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725848AbgGZMeb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 26 Jul 2020 08:34:31 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 22D69206D8;
-        Sun, 26 Jul 2020 12:34:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1595766871;
-        bh=eAlrwCkGaxj2oiht2tjkTxM5eF+LRyV8H2S//rwKV3U=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=EMBU7P7XKWlZRdrGObVzCaZwqdkb14rHsmAp7n15osZp8wx49LWa3Syiw2oA9TS5q
-         kSHyjJDwrdoLxwWOr5Ab49nMsKhDeBNMessWObwGf3Uwyj9kDGjOByrQCLJUyPZNGj
-         35bFaFl0wX/MMpw4OHFKP3RDJW/8bnW/1hfKpVX8=
-Date:   Sun, 26 Jul 2020 13:34:27 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Matt Ranostay <matt.ranostay@konsulko.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: iio: chemical: add O2 EZO module
- documentation
-Message-ID: <20200726133427.711b4157@archlinux>
-In-Reply-To: <20200723174731.GA596034@bogus>
-References: <20200720070330.259954-1-matt.ranostay@konsulko.com>
-        <20200720070330.259954-3-matt.ranostay@konsulko.com>
-        <20200723174731.GA596034@bogus>
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726106AbgGZMfW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 26 Jul 2020 08:35:22 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=onAeRnhffhF8ckRwRk4DsGKcuZ5Z
+        A3FW02cG3cQyVvk=; b=xOPdX7zIGdV+hLDlDtvJQrla1xgvXVqgjudDwZNJcY/y
+        UxH6Uxc3rBrfVuJ6qwDWL6hBSBtWw2GhDWVjKC9p7CtD5q6fULK7WI9rNWEzztj8
+        c6QmeBMw5XkrgpSXrqPG+G4nlMniocnv8rbnHt5MagEQJ3i3L88k/ge12XmPocY=
+Received: (qmail 40298 invoked from network); 26 Jul 2020 14:35:19 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 26 Jul 2020 14:35:19 +0200
+X-UD-Smtp-Session: l3s3148p1@D31ocFer/I8gAwDPXy27AOM4pzPBFrIA
+Date:   Sun, 26 Jul 2020 14:35:19 +0200
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Niklas <niklas.soderlund@ragnatech.se>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amit.kucheria@verdurent.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Subject: Re: [PATCH 11/20] dt-bindings: i2c: renesas,i2c: Document r8a774e1
+ support
+Message-ID: <20200726123519.GC2484@ninjato>
+References: <1594811350-14066-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <1594811350-14066-12-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ZwgA9U+XZDXt4+m+"
+Content-Disposition: inline
+In-Reply-To: <1594811350-14066-12-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Jul 2020 11:47:31 -0600
-Rob Herring <robh@kernel.org> wrote:
 
-> On Mon, 20 Jul 2020 00:03:29 -0700, Matt Ranostay wrote:
-> > Cc: devicetree@vger.kernel.org
-> > Signed-off-by: Matt Ranostay <matt.ranostay@konsulko.com>
-> > ---
-> >  .../devicetree/bindings/iio/chemical/atlas,sensor.yaml          | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >   
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
-Applied.
+--ZwgA9U+XZDXt4+m+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
+On Wed, Jul 15, 2020 at 12:09:01PM +0100, Lad Prabhakar wrote:
+> Document i2c controller for RZ/G2H (R8A774E1) SoC, which is compatible
+> with R-Car Gen3 SoC family.
+>=20
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renes=
+as.com>
 
+Applied to for-next, thanks!
+
+
+--ZwgA9U+XZDXt4+m+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl8deIcACgkQFA3kzBSg
+KbZbZA//W705bUta/I2fFJX9THCgPXeyts2P3gy1nQcBJvGROOzL6jZJne4W6nHR
+fJdAUnOfyZMTkCvfgnGGrnCa2QRrIgIYmnx1ZpF+dONaPYJPkZOOXoven13LjohY
+0lswiHVVEsKsESNlA8agcPm9Gniuvb8jpzUfpaTOZd2VQr6vV7YSoq53HXOKka+s
+mXwwe5J31Mc/DnJ7Yu0bZYo9jyFdKg4xSXrTwAz5FK+OqdYEyY9Qnu3ne0JZ4k99
+xPaCx5h0DQcoR4rOqIi21dedGiJ7iRuao1sDBgq5X1BxHIzJ5q+1HW1xiwMTdj/d
+6xA2PN1HxqaZ3Ff6p0tamC5AgmjgMQrFJj2cFI+fF/1VWp62V3O8oNZ/5b3f7bP4
+4f5ZwCfNYTcGB9tJnDxqTsAHAXAhnxlNc56kCWEZhTzKDzE7gW+H6+90OZEtzeA5
+Akq7504HPVrlgmL52JBbNcunDvs1eTc9ROjPVYJPGu5BKrcB+m2a0HCwhi2nJRBT
+XE//0zGPvPpiq+wYvUiyxmrBWTE/qKJekKoyLUmEIYlaDy9IdDEes5m9yJFlmsAy
+tvXt/lsCak31bfhyHa6HQQ3O8tjC5h+DTpJ4G1zp4u3d1yqBJcobgbySqibzKalP
+BdwAoJP8ng3+Q1MBRngxSYyKZvv7J3uderjW7yq8BN8+KwjU+uE=
+=FNmn
+-----END PGP SIGNATURE-----
+
+--ZwgA9U+XZDXt4+m+--
