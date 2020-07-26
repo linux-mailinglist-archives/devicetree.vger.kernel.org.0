@@ -2,110 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F34722DB16
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jul 2020 03:26:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16CDD22DB2C
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jul 2020 03:35:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728224AbgGZB0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Jul 2020 21:26:05 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:49817 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726870AbgGZB0E (ORCPT
+        id S1727009AbgGZBf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Jul 2020 21:35:57 -0400
+Received: from smtprelay-out1.synopsys.com ([149.117.87.133]:44704 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726870AbgGZBf4 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Sat, 25 Jul 2020 21:26:04 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 981225803EA;
-        Sat, 25 Jul 2020 21:26:03 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Sat, 25 Jul 2020 21:26:03 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=zniOgjBVDjzwc
-        FzCQ5VisrbxqLW88v+7YjNv2U8VdwA=; b=PJ+Oa5kHxTGVKa819xKyIo9XhUpsy
-        MxV1xREn35tIJHEmvXnk4bSUpYej2kQxCs5TGocTZIlVDK+a81PnIWtvbD17kGbv
-        4Q/LoQrnwWQ1qF8gB1BnyuD5KUeE71sv1KK/Utnri2sFf3B5BDbMCtXMX8E4/8Pb
-        VVKdsAublimntYRqoKx7PpErVgdQ6xVEUI7nRF5eNF0Or0elERDEIzm/NKLpiI4N
-        LIma/rXTpDh9Az+NHHDyFr3AyG0QYXtF6Oyz/m81YkNA1kz7W69XQeQxTonrio/I
-        cY8tL7HvZvMmA1bDkiZA2+obq9bzSM0p5GHh7D4cOJhDvHcBhfYqIXylw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=zniOgjBVDjzwcFzCQ5VisrbxqLW88v+7YjNv2U8VdwA=; b=Dad5MuFu
-        Zt9T4DR+KMBf0RjbT33sRMx+RDHITZrRUbj/jWkv7ClbLMQbvNtqZ/mknWj3kLvU
-        dHav/m56nYJGkL91ssmqMJa5cqqC6ZsSJOHRCI0FJIzd9e4RuGtPNUUJUaC6u+Ja
-        lRpPpAq59A25qEidDFCdyyQtdUcjymb3u4BwybDefZyQsZ/yXZiCguXSMYgSYA8h
-        p3BnHRmnPhMixmH4Y5OeghWhkvS7ENk/aOgy7M6ie56CNnqz11gYSn3corOl7jkC
-        ct8PZPRpRwr45MfxB6UB1Fb0tJtlvxfE1qI+V0YCn0opBrZZmtj2NfTq2wdQ32xc
-        anFK+Z09L13Akg==
-X-ME-Sender: <xms:q9scX3NLQiLSwwwDLMlSMjFjpV7e4wzgKMFBRIS80JXh1ZgTY7aWAg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrheeigdegfecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghl
-    ucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrf
-    grthhtvghrnhepudfhjeefvdfhgfefheetgffhieeigfefhefgvddvveefgeejheejvdfg
-    jeehueeinecukfhppeejtddrudefhedrudegkedrudehudenucevlhhushhtvghrufhiii
-    gvpeeinecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgrnhgu
-    rdhorhhg
-X-ME-Proxy: <xmx:q9scXx-O_bW0wcoE6PUKU3yhzMZyuhF9ArPOsA77dVp-a3yOJ5jjlg>
-    <xmx:q9scX2S1mSjwM3krrgOInygqr9fwrWBeEHvNT4Sg48ibpuojhAIh1g>
-    <xmx:q9scX7t_fZdBbgBizTZGFZXTV5Aag0Kl7zy2o7Z9jdiMh0BZtz60DQ>
-    <xmx:q9scX33jxQHmADYspKGKdWEVdq0ygykFhRPt3O32RHjuX8xAHnWYNA>
-Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id C641A30600A9;
-        Sat, 25 Jul 2020 21:26:02 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        Sat, 25 Jul 2020 21:35:56 -0400
+Received: from mailhost.synopsys.com (sv1-mailhost2.synopsys.com [10.205.2.132])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 8FBD8C00A4;
+        Sun, 26 Jul 2020 01:35:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1595727356; bh=iTGwTIakwO2wPklsQCqfd8dwj5JlgJ0LzsAMUzYaE94=;
+        h=Date:From:Subject:To:Cc:From;
+        b=Hw9N2mCeeN1O0nk07w5TlrtqtwQQXg7ksDNidoYsYACgEhiNubO8eEnA3MvbsElkh
+         /4FVFChHo/GhtIlXA8sv1H44Y8/xaZFf/JRMRgmyKLy0wLB90S+NKSscmlfIrqRNI+
+         EvWbGGka1sM5ccmJRuK3gcB0ZPRnIbVY/WmjSAsCGD0T4ny/ggKTx4cFhk8XCrLrl8
+         1RR4bFyTfo7iBvjPtA3ZSZKPUWzho4bACtCapUR0l4kUcsnEbVNgpETFkFul5C69lo
+         cpp9DW3vZXrT0HhTd9cIuaKkuIJ4IvnaT7rfGV9GQ6WO1o2zRx2TDfueZjpNx9HiCM
+         ParlaBNHpECoA==
+Received: from te-lab16 (nanobot.internal.synopsys.com [10.10.186.99])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mailhost.synopsys.com (Postfix) with ESMTPSA id 2B6EFA0070;
+        Sun, 26 Jul 2020 01:35:51 +0000 (UTC)
+Received: by te-lab16 (sSMTP sendmail emulation); Sat, 25 Jul 2020 18:35:51 -0700
+Date:   Sat, 25 Jul 2020 18:35:51 -0700
+Message-Id: <cover.1595727196.git.thinhn@synopsys.com>
+X-SNPS-Relay: synopsys.com
+From:   Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Subject: [PATCH v4 00/12] usb: Handle different sublink speeds
+To:     Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>
-Cc:     Ondrej Jirman <megous@megous.com>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Samuel Holland <samuel@sholland.org>
-Subject: [PATCH 7/7] arm64: dts: allwinner: a64: Update the audio codec compatible
-Date:   Sat, 25 Jul 2020 20:25:57 -0500
-Message-Id: <20200726012557.38282-8-samuel@sholland.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200726012557.38282-1-samuel@sholland.org>
-References: <20200726012557.38282-1-samuel@sholland.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Peter Chen <peter.chen@nxp.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Dejin Zheng <zhengdejin5@gmail.com>,
+        Roger Quadros <rogerq@ti.com>
+Cc:     John Youn <John.Youn@synopsys.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The audio codec in the A64 has some differences from the A33 codec, so
-it needs its own compatible. Since the two codecs are similar, the A33
-codec compatible is kept as a fallback.
+A USB super-speed-plus device may operate at different sublink speed and lane
+count (e.g. gen2x2, gen1x2, or gen2x1). The usb gadget stack needs to be able
+to handle a couple things:
 
-Using the correct compatible fixes a channel inversion issue and cleans
-up some DAPM widgets that are no longer used.
+1) Report the sublink speed attributes the device support
+2) Select the sublink speed attribute
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
- arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+This series introduces sublink speed attribute structure to ch9.h to capture
+the device capability of the gadget. It also introduces a new gadget ops
+udc_set_num_lanes_and_speed to select a specific sublink speed.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-index 73ae7656e0f3..26df6278dfb7 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-@@ -860,7 +860,8 @@ dai: dai@1c22c00 {
- 
- 		codec: codec@1c22e00 {
- 			#sound-dai-cells = <0>;
--			compatible = "allwinner,sun8i-a33-codec";
-+			compatible = "allwinner,sun50i-a64-codec",
-+				     "allwinner,sun8i-a33-codec";
- 			reg = <0x01c22e00 0x600>;
- 			interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&ccu CLK_BUS_CODEC>, <&ccu CLK_AC_DIG>;
+DWC3 needs this support for DWC_usb32 IP. Implement the new changes for DWC3.
+
+Changes in v4:
+ - Instead of using a single function to parse "maximum-speed" property for
+   speed, gen X, and number of lanes, split those tasks to separate common
+   functions
+ - Revise DWC3 driver to use those new common functions
+ - Fix checkpatch warnings for using "unsigned" rather than "unsigned int" and
+   missing identifier name in udc_set_num_lanes_and_speed gadget ops
+
+Changes in v3:
+ - Remove "num-lanes" and "lane-speed-mantissa-gbps" common properties
+ - Remove "num-lanes" and "lane-speed-mantissa-gbps" properties validation in dwc3
+ - Update "maximum-speed" to support variations of SSP Gen X x Y
+ - Update common function to parse new strings for "maximum-speed"
+ - Update commit messages for the new changes
+
+Changes in v2:
+ - Move usb_sublink_speed attribute struct and enum to include/linux/usb/ch9.h
+ - Use "num-lanes" and "lane-speed-mantissa-gbps" as common properties instead
+ - Add common functions to get num-lanes and lsm properties
+ - Fix missing gen1x2 sublink speed attribute check report in dwc3
+
+
+Thinh Nguyen (12):
+  usb: ch9: Add sublink speed struct
+  usb: gadget: composite: Avoid using magic numbers
+  usb: gadget: Expose sublink speed attributes
+  usb: gadget: Set max speed for SSP devices
+  usb: composite: Properly report sublink speed
+  usb: devicetree: Include USB SSP Gen X x Y
+  usb: common: Add and update common functions for SSP speeds
+  usb: dwc3: Initialize lane count and sublink speed
+  usb: dwc3: gadget: Report sublink speed capability
+  usb: dwc3: gadget: Implement setting of sublink speed
+  usb: dwc3: gadget: Track connected lane and sublink speed
+  usb: dwc3: gadget: Set speed only up to the max supported
+
+ Documentation/devicetree/bindings/usb/generic.txt |  11 +-
+ drivers/usb/common/common.c                       |  46 ++++++-
+ drivers/usb/dwc3/core.c                           |  29 +++++
+ drivers/usb/dwc3/core.h                           |  14 +++
+ drivers/usb/dwc3/gadget.c                         | 143 +++++++++++++++++++++-
+ drivers/usb/gadget/composite.c                    |  81 ++++++++----
+ drivers/usb/gadget/udc/core.c                     |  24 +++-
+ include/linux/usb/ch9.h                           |  73 +++++++++++
+ include/linux/usb/gadget.h                        |  23 ++++
+ 9 files changed, 403 insertions(+), 41 deletions(-)
+
+
+base-commit: a1ff2f6769e39055e973b068070aeea0b3bcd90f
 -- 
-2.26.2
+2.11.0
 
