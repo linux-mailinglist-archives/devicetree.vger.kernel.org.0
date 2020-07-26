@@ -2,115 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67AF222DEE2
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jul 2020 14:04:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B42B822DF06
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jul 2020 14:34:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726144AbgGZMEd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jul 2020 08:04:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43366 "EHLO mail.kernel.org"
+        id S1726144AbgGZMeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jul 2020 08:34:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36306 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725848AbgGZME1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 26 Jul 2020 08:04:27 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        id S1725848AbgGZMeb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 26 Jul 2020 08:34:31 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 40BAB2065E;
-        Sun, 26 Jul 2020 12:04:24 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 22D69206D8;
+        Sun, 26 Jul 2020 12:34:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1595765065;
-        bh=LJxegL2P5hNKR910G8c/QDoI1uB2BfRFQ4PeiQJwStQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Xy0KtmyrKY0jX8tITQlUegCxmDYNtTsgBZMQUvwmUrdMbIF0cVKjshR0MQeIGNHRj
-         u3dZWeWJc5V9C/OxmUSuefkUN6fX7aAq8RXQINPs/V1QurcwpCNTAP9KonYrK9ZOLC
-         qACyVZsJwgPmYtOqUITCkz9UKqybv0a91ujrcAaY=
-Date:   Sun, 26 Jul 2020 14:04:22 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Konrad Dybcio <konradybcio@gmail.com>
-Cc:     Martin Botka <martin.botka1@gmail.com>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Jordan Crouse <jcrouse@codeaurora.org>,
-        zhengbin <zhengbin13@huawei.com>,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Ben Dooks <ben.dooks@codethink.co.uk>,
-        Krzysztof Wilczynski <kw@linux.com>,
-        Harigovindan P <harigovi@codeaurora.org>,
-        Brian Masney <masneyb@onstation.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Xiaozhe Shi <xiaozhes@codeaurora.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-usb@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 9/9] soc/qcom: Add REVID driver
-Message-ID: <20200726120422.GA1292190@kroah.com>
-References: <20200726111215.22361-1-konradybcio@gmail.com>
- <20200726111215.22361-10-konradybcio@gmail.com>
- <20200726112920.GA1286220@kroah.com>
- <CAMS8qEV7jhbHqpXE2UOaXBVM5WbCThaGrcD3wiH9kf6h_K-qeA@mail.gmail.com>
+        s=default; t=1595766871;
+        bh=eAlrwCkGaxj2oiht2tjkTxM5eF+LRyV8H2S//rwKV3U=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=EMBU7P7XKWlZRdrGObVzCaZwqdkb14rHsmAp7n15osZp8wx49LWa3Syiw2oA9TS5q
+         kSHyjJDwrdoLxwWOr5Ab49nMsKhDeBNMessWObwGf3Uwyj9kDGjOByrQCLJUyPZNGj
+         35bFaFl0wX/MMpw4OHFKP3RDJW/8bnW/1hfKpVX8=
+Date:   Sun, 26 Jul 2020 13:34:27 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Matt Ranostay <matt.ranostay@konsulko.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: iio: chemical: add O2 EZO module
+ documentation
+Message-ID: <20200726133427.711b4157@archlinux>
+In-Reply-To: <20200723174731.GA596034@bogus>
+References: <20200720070330.259954-1-matt.ranostay@konsulko.com>
+        <20200720070330.259954-3-matt.ranostay@konsulko.com>
+        <20200723174731.GA596034@bogus>
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMS8qEV7jhbHqpXE2UOaXBVM5WbCThaGrcD3wiH9kf6h_K-qeA@mail.gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 26, 2020 at 01:40:46PM +0200, Konrad Dybcio wrote:
-> >Horrible global symbol name.  Who calls this?
+On Thu, 23 Jul 2020 11:47:31 -0600
+Rob Herring <robh@kernel.org> wrote:
+
+> On Mon, 20 Jul 2020 00:03:29 -0700, Matt Ranostay wrote:
+> > Cc: devicetree@vger.kernel.org
+> > Signed-off-by: Matt Ranostay <matt.ranostay@konsulko.com>
+> > ---
+> >  .../devicetree/bindings/iio/chemical/atlas,sensor.yaml          | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >   
 > 
-> Welcome to development on qcom platforms :D
+> Acked-by: Rob Herring <robh@kernel.org>
+Applied.
 
-Yeah, I have seen :(
+Thanks,
 
-> >This is the last patch in
-> >the series, so if there is no user for this, please don't export it.
-> 
-> Other downstream drivers make use of it.. need to get this up first, sorry :V
-
-Then use a proper name for it, with a correct prefix, and export it with
-EXPORT_SYMBOL_GPL() please.
-
-> >Why do you need a .h file in the include directory if only a single .c
-> >file needs it?  Just put that info in the .c file itself.
-> 
-> Again, other downstream drivers which some people and I intend to
-> bring to upstream standards use that to access the PMIC model/hw revision.
-
-But all of those defines are not needed, just the function name, right?
-
-> >But again, who uses this module?  If it's only good for a single line in
-> >the kernel log, that feels like a huge waste to me.
-> 
-> downstream-kernel-dir$ rg -l qpnp-revid.h | wc -l
-> 25
-> 
-> So yeah, quite a bunch of other qcom-specific drivers.
-> 
-> I'll try to fix these and send a v2.
-
-Hold off on this and wait until there is a real user for it, as we can
-not take api additions without a user, otherwise we will just come along
-and delete the code.
-
-Submit it as part of a series that actually uses the function, so we can
-at least see if the function makes sense to be used in that way as well,
-right now we have no clue.
-
-thanks,
-
-greg k-h
