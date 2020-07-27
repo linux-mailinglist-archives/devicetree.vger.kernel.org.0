@@ -2,134 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8994B22FAA9
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 22:53:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 332A622FAD2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 22:58:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727823AbgG0Uw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jul 2020 16:52:56 -0400
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:9194 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726744AbgG0Uwz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 16:52:55 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5f1f3e990000>; Mon, 27 Jul 2020 13:52:41 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Mon, 27 Jul 2020 13:52:55 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Mon, 27 Jul 2020 13:52:55 -0700
-Received: from [10.2.168.236] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 27 Jul
- 2020 20:52:54 +0000
-Subject: Re: [RFC PATCH v4 04/14] i2c: tegra: Fix runtime resume to re-init VI
- I2C
-To:     Dmitry Osipenko <digetx@gmail.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <frankc@nvidia.com>, <hverkuil@xs4all.nl>,
-        <sakari.ailus@iki.fi>, <robh+dt@kernel.org>,
-        <helen.koike@collabora.com>
-CC:     <sboyd@kernel.org>, <gregkh@linuxfoundation.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>
-References: <1595548272-9809-1-git-send-email-skomatineni@nvidia.com>
- <1595548272-9809-5-git-send-email-skomatineni@nvidia.com>
- <d427f421-3c20-2aa3-b719-638be6aeca1d@gmail.com>
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-Message-ID: <5d49d755-2eec-1c46-4d4c-87ec837bc5bd@nvidia.com>
-Date:   Mon, 27 Jul 2020 13:58:37 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726327AbgG0U65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jul 2020 16:58:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42752 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726171AbgG0U65 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 16:58:57 -0400
+Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE1D7C061794
+        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 13:58:56 -0700 (PDT)
+Received: by mail-pj1-x1043.google.com with SMTP id gc9so10362072pjb.2
+        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 13:58:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=1oR/0P9ErtpTgrX+m0OBVrR3VYxPvi53ReAdjDAOr4Y=;
+        b=I5dX71/Uvcfwk/jblm750/2EXt9yjhsPtSEdC4N4lQ/AO2FGB8gfWH/WsjvuuSQOyj
+         ONY5pB87KzLdpaf2iZKf6HtgyagXcsssjLA0pBtIbfYXso5X7qhilKimVkhh0S66fKIy
+         UdZRRQbO/XKIGmFIbA50WIhCZmfQ+15/zHM9A=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1oR/0P9ErtpTgrX+m0OBVrR3VYxPvi53ReAdjDAOr4Y=;
+        b=JX6pOztTN9P3Vf/qwou4atscP+EVFk+n2tub7msRDcZZitCGhqzsanJKVELfgoXxtP
+         V92XHXJRr1LACUqmxQlnjw9C9KOPQVYRwwdLMQX+OBACu06T6yGBZgyOP3CgfMVHQpbr
+         uigWOVNa+pSW75Ik2n8aYmnNz4S25oousFKRIODSKZ2MmejBt7wLsYzytO6w0GUISeS9
+         cQjgKaEvSWm9uyIxhsQJkDVu5zoTvWDJbT0AKa5TRqtkWkhzdLEgU6mnLectmhIVZNHp
+         dogvhy16wc2QS1PQFOHGyHsPlRFcwcaugLaMar7lWVfFJgihHL/lixrpD2xy19HYBNi4
+         8O9g==
+X-Gm-Message-State: AOAM532ZdqRUsyEDL3QEecNd9ovgj4gCx40aFZ2LNGTIAoALlbh/83Id
+        F9i90Qm6l8OFNJTTE2XGQFX/bw==
+X-Google-Smtp-Source: ABdhPJwNPDS+cc+l5C6Fk46mxdaDL9PclHliTxJP5rQfP6oKuQNDrzGsoCx2t1y2JMkjPqG1jMFPKw==
+X-Received: by 2002:a17:902:7485:: with SMTP id h5mr7030550pll.282.1595883536582;
+        Mon, 27 Jul 2020 13:58:56 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id g8sm15819746pgr.70.2020.07.27.13.58.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jul 2020 13:58:55 -0700 (PDT)
+Date:   Mon, 27 Jul 2020 13:58:55 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Georgi Djakov <georgi.djakov@linaro.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        sibis@codeaurora.org, dianders@chromium.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 5/6] interconnect: qcom: sc7180: Replace xlate with
+ xlate_extended
+Message-ID: <20200727205855.GI3191083@google.com>
+References: <20200723130942.28491-1-georgi.djakov@linaro.org>
+ <20200723130942.28491-6-georgi.djakov@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <d427f421-3c20-2aa3-b719-638be6aeca1d@gmail.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1595883161; bh=UGMt8TwvCp08KuZfursHHfETCghFq1sNm6XqxSy966s=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=rMG45YVKb0X9dS26bZOMWmtNdQH9HjvkG7gdeI7ltFgF+RXpKPkocwPj+5mc7oh6n
-         uUziG6tMZ6pou9YWPVP7aHDKYD0nxs2fHfxuQunw/yg1wEDSys4RTvKFMhRhe0H583
-         7Ues5DdGgcjBMAjn6v0Ff2i6ihEheItRk/69FYf/Hj1dgObKExY9qasdmAB6KFsqgk
-         pr8H6tBoZ/rWKyjFYyxh8Ls0jxQTH17ZuSvxmDW22N4vtRkeRllxH4k/Fbj+/Ns1Zz
-         7/txNoGFEriNBdRHLGkTQyyaVvVIn5ki+yOvvyYMjowIZ1/dshww04KuhvUyWUW85Y
-         dfow99fOdlFow==
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200723130942.28491-6-georgi.djakov@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jul 23, 2020 at 04:09:41PM +0300, Georgi Djakov wrote:
+> From: Sibi Sankar <sibis@codeaurora.org>
+> 
+> Use the qcom_icc_xlate_extended() in order to parse tags, that are
+> specified as an additional arguments to the path endpoints in DT.
+> 
+> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
 
-On 7/26/20 4:53 PM, Dmitry Osipenko wrote:
-> 24.07.2020 02:51, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->> VI I2C is on host1x bus and is part of VE power domain.
->>
->> During suspend/resume VE power domain goes through power off/on.
->>
->> So, controller reset followed by i2c re-initialization is required
->> after the domain power up.
->>
->> This patch fixes it.
->>
->> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->> ---
->>   drivers/i2c/busses/i2c-tegra.c | 16 ++++++++++++++++
->>   1 file changed, 16 insertions(+)
->>
->> diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/i2c-teg=
-ra.c
->> index 7b93c45..1bf3666 100644
->> --- a/drivers/i2c/busses/i2c-tegra.c
->> +++ b/drivers/i2c/busses/i2c-tegra.c
->> @@ -293,6 +293,8 @@ struct tegra_i2c_dev {
->>   	bool is_curr_atomic_xfer;
->>   };
->>  =20
->> +static int tegra_i2c_init(struct tegra_i2c_dev *i2c_dev, bool clk_reini=
-t);
->> +
->>   static void dvc_writel(struct tegra_i2c_dev *i2c_dev, u32 val,
->>   		       unsigned long reg)
->>   {
->> @@ -675,8 +677,22 @@ static int __maybe_unused tegra_i2c_runtime_resume(=
-struct device *dev)
->>   		goto disable_slow_clk;
->>   	}
->>  =20
->> +	/*
->> +	 * VI I2C device is attached to VE power domain which goes through
->> +	 * power ON/OFF during PM runtime resume/suspend. So, controller
->> +	 * should go through reset and need to re-initialize after power
->> +	 * domain ON.
->> +	 */
->> +	if (i2c_dev->is_vi) {
->> +		ret =3D tegra_i2c_init(i2c_dev, true);
->> +		if (ret)
->> +			goto disable_div_clk;
->> +	}
->> +
->>   	return 0;
->>  =20
->> +disable_div_clk:
->> +	clk_disable(i2c_dev->div_clk);
->>   disable_slow_clk:
->>   	clk_disable(i2c_dev->slow_clk);
->>   disable_fast_clk:
->>
-> This look okay, but isn't RPM usage a bit too expensive for VI? Maybe
-> RPM autodelay needs to be set for the I2C driver?
->
-> Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
->
-Thanks Dmitry. Will look into and have separate patch for VI I2C RPM=20
-auto-delay out of this series sometime next week.
-
-Regards
-
-Sowjanya
-
+Tested-by: Matthias Kaehlcke <mka@chromium.org>
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
