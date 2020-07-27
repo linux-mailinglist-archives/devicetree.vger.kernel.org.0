@@ -2,66 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0EBA22FAE0
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 23:00:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AE8222FAE3
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 23:02:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726194AbgG0VAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jul 2020 17:00:25 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:35442 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726183AbgG0VAY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 17:00:24 -0400
-Received: by mail-io1-f67.google.com with SMTP id s189so11242115iod.2;
-        Mon, 27 Jul 2020 14:00:24 -0700 (PDT)
+        id S1726738AbgG0VCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jul 2020 17:02:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43254 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726183AbgG0VCI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 17:02:08 -0400
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79865C061794
+        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 14:02:08 -0700 (PDT)
+Received: by mail-pg1-x543.google.com with SMTP id w2so10620312pgg.10
+        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 14:02:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=CnrNkbaFG+mo4svSlEoBObsg4w60j22J8+PYU+PPvCU=;
+        b=bRfFtHzX1zVRP2KIqcniBiHeMDlhjIOU9Yqml+WYD/0qj/30U1iKTD6aLjfxsmvsIh
+         2DI827NOO8fp17l913ZXVV/i4xiHpwS3PnCguZtL1TWXK73R0bTtoAt0vUlmWNNQN0JA
+         cevBggN1G9RolPdsvBl48M4oForqiVBJIFebodZDCHDhTWfzDtoT51+gOExhaipG578n
+         Yy8QciRsWunDIqNKU2kIvh8RnsmKMFECTgK04U1Rl941Ysg4/Y82s7KH5j3lWGfMTB01
+         5gsGBcJiRJVrXH99DyqKbmTPqenXApD/dl6iOvozpT5JMOvz6kImIUjVDJVyFy/0Q9QY
+         CuwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Q/xx8a2iBuQvh2CskhteFtxckcB5mAiI21DtCGwJE70=;
-        b=Y4psj9wFS3ltulrmDJJHywaoK4jMgznO/Iaev1h4M0uyoB1MekaVngemaZByLW3GGl
-         PU6rX1w+G0zTvJkhg+HzYBebn/3/Z47cPqYKjI5HHkhb6CrnKh0q9CmLWbilXMxweHBM
-         V4Ef+L/BqH/3BoFlSODG1Cn6+2e/67wzRChMbdgeLdVBvL1Rv081RXzArMoBXT+XJF2w
-         cBCvmL+B5b6giLGYszVohLQUapvJ7vvmDHNb+EkNQ/eflH4poo+TtQaBdoiQCNcyvPNe
-         TVZG5+zT3EFKc4fV3fKwjLE0tMaia9O6vCxRzYpu+I7Ivx4jmEfv91KdZMCFCehGaIrY
-         LgOQ==
-X-Gm-Message-State: AOAM533esOeJe87r45N+h+YItC0AwJgNmYTj6h3/kaUoAzQ+wQZH6lOd
-        I2g58fKFjWIKgOLYgHW9XA==
-X-Google-Smtp-Source: ABdhPJzdCLTZ2NA/wRoY6sUwazpy2vMTI1rQNQTsNfv0kTp2JW8MZpYqzkgO5mWrLnkse06fqotpVQ==
-X-Received: by 2002:a02:bb05:: with SMTP id y5mr19148048jan.98.1595883623966;
-        Mon, 27 Jul 2020 14:00:23 -0700 (PDT)
-Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id q5sm8914029ilm.73.2020.07.27.14.00.22
+        bh=CnrNkbaFG+mo4svSlEoBObsg4w60j22J8+PYU+PPvCU=;
+        b=ji4edJJIb5Q2Pz//d/TvLlMNuw99s+BwkGaCEMpS3Hjg3XaIzPcN2gGbJ4joX8P95K
+         0QMhHF3Rkadc6+r+n4Z01wAlPtUbQMMTvuOLUVjqe/OMnXobWbHdNVaWG7rnXqoVTvSe
+         aWs3xlLbI+cKL6fF2dzuH9ILzLX2FdM9K+3dpKQvjcvfgo/InOk15LszlxoeoWf7F+Q2
+         razLeHJiqGvKoVShqyhTTiVIcDyoPy3hxGqxFyHkVD8sRoJJ/os2zk1CcbIckgDSVylv
+         C1HuLF4UMRCr9glgyaqSwMnYto9ggO5j8SwDGphE4F2aDiTnVE/7Mut8bt6UpvnbteN+
+         uYmw==
+X-Gm-Message-State: AOAM531Thswy702XnE6cynvZOd07M8LYmTyCqKjh6bkxr5mydrrPU6ra
+        dNWDzvLfs1uJlg65McqyGU8Acg==
+X-Google-Smtp-Source: ABdhPJwwmvQE1grbXpKyCQ9I9VejZ9WeQ4E0X7yonbSngdxc3zyray6+GR0huEYUc7zxd8h2CwTOFw==
+X-Received: by 2002:a62:fcca:: with SMTP id e193mr22259656pfh.307.1595883727948;
+        Mon, 27 Jul 2020 14:02:07 -0700 (PDT)
+Received: from builder.lan (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id b24sm14930840pgn.8.2020.07.27.14.02.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jul 2020 14:00:23 -0700 (PDT)
-Received: (nullmailer pid 863116 invoked by uid 1000);
-        Mon, 27 Jul 2020 21:00:21 -0000
-Date:   Mon, 27 Jul 2020 15:00:21 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     broonie@kernel.org, linux-kernel@vger.kernel.org, perex@perex.cz,
-        lgirdwood@gmail.com, devicetree@vger.kernel.org, tiwai@suse.com,
-        alsa-devel@alsa-project.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: tas2562: Convert the tas2562 binding
- to yaml
-Message-ID: <20200727210021.GA863046@bogus>
-References: <20200723160838.9738-1-dmurphy@ti.com>
+        Mon, 27 Jul 2020 14:02:07 -0700 (PDT)
+Date:   Mon, 27 Jul 2020 13:58:34 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>, Stephen Boyd <swboyd@chromium.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        mike.leach@linaro.org, Jonathan Marek <jonathan@marek.ca>
+Subject: Re: [PATCH 2/4] arm64: dts: qcom: sc7180: Add iommus property to ETR
+Message-ID: <20200727205834.GA202429@builder.lan>
+References: <cover.1591708204.git.saiprakash.ranjan@codeaurora.org>
+ <2312c9a10e7251d69e31e4f51c0f1d70e6f2f2f5.1591708204.git.saiprakash.ranjan@codeaurora.org>
+ <20200621072213.GG128451@builder.lan>
+ <f40621b2b01f836a8a97686707599dd0@codeaurora.org>
+ <e270acd3f7db076c043f1b982b1efea0@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200723160838.9738-1-dmurphy@ti.com>
+In-Reply-To: <e270acd3f7db076c043f1b982b1efea0@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Jul 2020 11:08:37 -0500, Dan Murphy wrote:
-> Convert the TAS2562 text file to yaml format.
+On Tue 23 Jun 23:56 PDT 2020, Sai Prakash Ranjan wrote:
+
+> Hi Bjorn,
 > 
-> Signed-off-by: Dan Murphy <dmurphy@ti.com>
-> ---
->  .../devicetree/bindings/sound/tas2562.yaml    | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/tas2562.yaml
+> On 2020-06-21 13:39, Sai Prakash Ranjan wrote:
+> > Hi Bjorn,
+> > 
+> > On 2020-06-21 12:52, Bjorn Andersson wrote:
+> > > On Tue 09 Jun 06:30 PDT 2020, Sai Prakash Ranjan wrote:
+> > > 
+> > > > Define iommus property for Coresight ETR component in
+> > > > SC7180 SoC with the SID and mask to enable SMMU
+> > > > translation for this master.
+> > > > 
+> > > 
+> > > We don't have &apps_smmu in linux-next, as we've yet to figure out how
+> > > to disable the boot splash or support the stream mapping handover.
+> > > 
+> > > So I'm not able to apply this.
+> > > 
+> > 
+> > This is for SC7180 which has apps_smmu not SM8150.
+> > 
+> 
+> Please let me know if this needs further explanation.
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I must have commented on the wrong patch, sorry about that. The SM8150
+patch in this series does not compile due to the lack of &apps_smmu.
+
+I've picked the other 3 patches.
+
+Thanks,
+Bjorn
