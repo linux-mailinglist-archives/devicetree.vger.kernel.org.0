@@ -2,144 +2,307 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1414F22E7A8
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 10:25:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6916322E7D0
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 10:34:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726265AbgG0IZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jul 2020 04:25:20 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.164]:15492 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726139AbgG0IZT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 04:25:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1595838317;
-        s=strato-dkim-0002; d=gerhold.net;
-        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
-        Subject:Sender;
-        bh=ymFhDf2n8j14zfm7wXMkjoAX9qryOdYV+fcCssWX+cI=;
-        b=eEPCiD7S5YEUOiyy9FcXyuWy3m5XwGXd6AWb2Y1W+ed2lIhZMITF8Nw3f18lHlzHPd
-        Pt1E7NfGdrpdln5loC8+9RLjJilDC/fOpjAv7KaFQ+BUmqrEphK6UZygA5i0DVGMEgeH
-        mdxKmuJ73qa7VtDalAgILG0LKAtQVSov+qk3gwjtqYjbiWQ4HP8Tln9/SDi0+ffG6lw7
-        Z4KepUYcBuIIwmL9TuHvcQV6KunGss8qpQmMQdlOgyRp+7P66UrLnNgKhe5W+YlgW+iS
-        gWbWXHHHbn/EjafATx0+sxmQapAFagJCp/XJq+j4LtQU+kxMO6i0GtemqJGMWYmEjSPM
-        xFrA==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB5m6IbY0="
-X-RZG-CLASS-ID: mo00
-Received: from localhost.localdomain
-        by smtp.strato.de (RZmta 46.10.5 DYNA|AUTH)
-        with ESMTPSA id Y0939ew6R8PGKLZ
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-        Mon, 27 Jul 2020 10:25:16 +0200 (CEST)
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        alsa-devel@alsa-project.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH] ASoC: dt-bindings: q6asm: Add Q6ASM_DAI_{TX_RX,TX,RX} defines
-Date:   Mon, 27 Jul 2020 10:25:02 +0200
-Message-Id: <20200727082502.2341-1-stephan@gerhold.net>
-X-Mailer: git-send-email 2.27.0
+        id S1726269AbgG0Ie4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jul 2020 04:34:56 -0400
+Received: from mailout07.rmx.de ([94.199.90.95]:42382 "EHLO mailout07.rmx.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726227AbgG0Ie4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Jul 2020 04:34:56 -0400
+Received: from kdin02.retarus.com (kdin02.dmz1.retloc [172.19.17.49])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mailout07.rmx.de (Postfix) with ESMTPS id 4BFY5Q0RkvzBxd7;
+        Mon, 27 Jul 2020 10:34:50 +0200 (CEST)
+Received: from mta.arri.de (unknown [217.111.95.66])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by kdin02.retarus.com (Postfix) with ESMTPS id 4BFY4q211qz2TTNP;
+        Mon, 27 Jul 2020 10:34:19 +0200 (CEST)
+Received: from N95HX1G2.wgnetz.xx (192.168.54.102) by mta.arri.de
+ (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.408.0; Mon, 27 Jul
+ 2020 10:34:19 +0200
+From:   Christian Eggers <ceggers@arri.de>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Rob Hering <robh@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Richard Leitner" <richard.leitner@skidata.com>,
+        <devicetree@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <ceggers@arri.de>
+Subject: [PATCH v3 1/4] dt-bindings: usb: Add Microchip USB253x/USB3x13/USB46x4 support
+Date:   Mon, 27 Jul 2020 10:33:30 +0200
+Message-ID: <20200727083333.19623-2-ceggers@arri.de>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200727083333.19623-1-ceggers@arri.de>
+References: <20200726084116.GD448215@kroah.com>
+ <20200727083333.19623-1-ceggers@arri.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.54.102]
+X-RMX-ID: 20200727-103419-4BFY4q211qz2TTNP-0@kdin02
+X-RMX-SOURCE: 217.111.95.66
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Right now the direction of a DAI has to be specified as a literal
-number in the device tree, e.g.:
+Add DT bindings for Microchip USB253x/USB3x13/USB46x4 driver.
 
-	dai@0 {
-		reg = <0>;
-		direction = <2>;
-	};
-
-but this does not make it immediately clear that this is a
-playback/RX-only DAI.
-
-Actually, q6asm-dai.c has useful defines for this. Move them to the
-dt-bindings header to allow using them in the dts(i) files.
-The example above then becomes:
-
-	dai@0 {
-		reg = <0>;
-		direction = <Q6ASM_DAI_RX>;
-	};
-
-which is immediately recognizable as playback/RX-only DAI.
-
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+Signed-off-by: Christian Eggers <ceggers@arri.de>
 ---
- Documentation/devicetree/bindings/sound/qcom,q6asm.txt | 9 +++++----
- include/dt-bindings/sound/qcom,q6asm.h                 | 4 ++++
- sound/soc/qcom/qdsp6/q6asm-dai.c                       | 3 ---
- 3 files changed, 9 insertions(+), 7 deletions(-)
+ .../devicetree/bindings/usb/usb253x.yaml      | 234 ++++++++++++++++++
+ 1 file changed, 234 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/usb253x.yaml
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,q6asm.txt b/Documentation/devicetree/bindings/sound/qcom,q6asm.txt
-index 6b9a88d0ea3f..8c4883becae9 100644
---- a/Documentation/devicetree/bindings/sound/qcom,q6asm.txt
-+++ b/Documentation/devicetree/bindings/sound/qcom,q6asm.txt
-@@ -39,9 +39,9 @@ configuration of each dai. Must contain the following properties.
- 	Usage: Required for Compress offload dais
- 	Value type: <u32>
- 	Definition: Specifies the direction of the dai stream
--			0 for both tx and rx
--			1 for only tx (Capture/Encode)
--			2 for only rx (Playback/Decode)
-+			Q6ASM_DAI_TX_RX (0) for both tx and rx
-+			Q6ASM_DAI_TX (1) for only tx (Capture/Encode)
-+			Q6ASM_DAI_RX (2) for only rx (Playback/Decode)
- 
- - is-compress-dai:
- 	Usage: Required for Compress offload dais
-@@ -50,6 +50,7 @@ configuration of each dai. Must contain the following properties.
- 
- 
- = EXAMPLE
-+#include <dt-bindings/sound/qcom,q6asm.h>
- 
- apr-service@7 {
- 	compatible = "qcom,q6asm";
-@@ -62,7 +63,7 @@ apr-service@7 {
- 
- 		dai@0 {
- 			reg = <0>;
--			direction = <2>;
-+			direction = <Q6ASM_DAI_RX>;
- 			is-compress-dai;
- 		};
- 	};
-diff --git a/include/dt-bindings/sound/qcom,q6asm.h b/include/dt-bindings/sound/qcom,q6asm.h
-index 1eb77d87c2e8..f59d74f14395 100644
---- a/include/dt-bindings/sound/qcom,q6asm.h
-+++ b/include/dt-bindings/sound/qcom,q6asm.h
-@@ -19,4 +19,8 @@
- #define	MSM_FRONTEND_DAI_MULTIMEDIA15	14
- #define	MSM_FRONTEND_DAI_MULTIMEDIA16	15
- 
-+#define Q6ASM_DAI_TX_RX	0
-+#define Q6ASM_DAI_TX	1
-+#define Q6ASM_DAI_RX	2
+diff --git a/Documentation/devicetree/bindings/usb/usb253x.yaml b/Documentation/devicetree/bindings/usb/usb253x.yaml
+new file mode 100644
+index 000000000000..88ea744147b6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/usb253x.yaml
+@@ -0,0 +1,234 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/usb253x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- #endif /* __DT_BINDINGS_Q6_ASM_H__ */
-diff --git a/sound/soc/qcom/qdsp6/q6asm-dai.c b/sound/soc/qcom/qdsp6/q6asm-dai.c
-index a2acb7564eb8..9b7b218f2a20 100644
---- a/sound/soc/qcom/qdsp6/q6asm-dai.c
-+++ b/sound/soc/qcom/qdsp6/q6asm-dai.c
-@@ -37,9 +37,6 @@
- #define COMPR_PLAYBACK_MAX_FRAGMENT_SIZE (128 * 1024)
- #define COMPR_PLAYBACK_MIN_NUM_FRAGMENTS (4)
- #define COMPR_PLAYBACK_MAX_NUM_FRAGMENTS (16 * 4)
--#define Q6ASM_DAI_TX_RX	0
--#define Q6ASM_DAI_TX	1
--#define Q6ASM_DAI_RX	2
- 
- #define ALAC_CH_LAYOUT_MONO   ((101 << 16) | 1)
- #define ALAC_CH_LAYOUT_STEREO ((101 << 16) | 2)
++title: Microchip USB253x/USB3x13/USB46x4 USB 2.0 Hi-Speed Hub Controller
++
++maintainers:
++  - Christian Eggers <ceggers@arri.de>
++
++description: |
++  http://ww1.microchip.com/downloads/en/AppNotes/00001801C.pdf
++
++properties:
++  compatible:
++    enum:
++      - microchip,usb2532
++      - microchip,usb2532i
++      - microchip,usb2533
++      - microchip,usb2533i
++      - microchip,usb2534
++      - microchip,usb2534i
++      - microchip,usb3613
++      - microchip,usb3613i
++      - microchip,usb3813
++      - microchip,usb3813i
++      - microchip,usb4604
++      - microchip,usb4604i
++      - microchip,usb4624
++      - microchip,usb4624i
++
++  reg:
++    maxItems: 1
++    description:
++      I2C address on the selected bus (usually <0x2D>).
++
++  reset-gpios:
++    maxItems: 1
++    description:
++      Specify the gpio for hub reset.
++
++  vdd-supply:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Specify the regulator supplying vdd.
++
++  skip-config:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Skip Hub configuration, but only send the USB-Attach command.
++
++  vendor-id:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maximum: 65535
++    description:
++      Set USB Vendor ID of the hub.
++
++  product-id:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maximum: 65535
++    description:
++      Set USB Product ID of the hub.
++
++  device-id:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maximum: 65535
++    description:
++      Set USB Device ID of the hub.
++
++  language-id:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maximum: 65535
++    description:
++      Set USB Language ID.
++
++  manufacturer:
++    $ref: /schemas/types.yaml#/definitions/string
++    description:
++      Set USB Manufacturer string (max. a total of 93 characters for
++      manufacturer, product and serial).
++
++  product:
++    $ref: /schemas/types.yaml#/definitions/string
++    description:
++      Set USB Product string (max. a total of 93 characters for
++      manufacturer, product and serial).
++
++  serial:
++    $ref: /schemas/types.yaml#/definitions/string
++    description:
++      Set USB Serial string (max. a total of 93 characters for
++      manufacturer, product and serial).
++
++  bus-powered:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Selects bus powered operation.
++
++  self-powered:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Selects self powered operation (default).
++
++  disable-hi-speed:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Disable USB Hi-Speed support.
++
++  multi-tt:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Selects multi-transaction-translator (default).
++
++  single-tt:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Selects single-transaction-translator.
++
++  disable-eop:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Disable End of Packet generation in full-speed mode.
++
++  ganged-sensing:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Select ganged over-current sense type in self-powered mode.
++
++  individual-sensing:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Select individual over-current sense type in self-powered mode (default).
++
++  ganged-port-switching:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Select ganged port power switching mode.
++
++  individual-port-switching:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Select individual port power switching mode (default).
++
++  dynamic-power-switching:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Enable auto-switching from self- to bus-powered operation if the local
++      power source is removed or unavailable.
++
++  oc-delay-us:
++    enum:
++      - 100
++      - 4000
++      - 8000
++      - 16000
++    default: 8000
++    description:
++      Delay time (in microseconds) for filtering the over-current sense inputs.
++      If an invalid value is given, the default is used instead.
++
++  compound-device:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Indicate the hub is part of a compound device.
++
++  port-mapping-mode:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Enable port mapping mode.
++
++  non-removable-ports:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Should specify the ports which have a non-removable device connected.
++
++  sp-disabled-ports:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Specifies the ports which will be self-power disabled.
++
++  bp-disabled-ports:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Specifies the ports which will be bus-power disabled.
++
++  power-on-time-ms:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 100
++    minimum: 0
++    maximum: 510
++    description:
++      Specifies the time (in milliseconds) it takes from the time the host
++      initiates the power-on sequence to a port until the port has adequate
++      power.
++
++  hub-controller-port:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Hub port where the internal hub controller shall be connected. Usually
++      <number of ports>+1.
++
++additionalProperties: false
++
++required:
++  - compatible
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    i2c0 {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      usb2534i@2d {
++        compatible = "microchip,usb2534i";
++        reg = <0x2d>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&pinctrl_usb_hub>;
++        /* usb253x.c already assumes low-active, don't negate twice */
++        reset-gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>;
++        /*skip-config;*/
++        /* T_ON,max = 4 ms for NCP380 */
++        power-on-time-ms = <4>;
++        manufacturer = "Foo";
++        product = "Foo-Bar";
++        /* port 2 is connected to an internal SD-Card reader */
++        non-removable-ports = <2>;
++        /* hub controller mapped to logical port 5 */
++        hub-controller-port = <5>;
++      };
++    };
++
++...
 -- 
-2.27.0
+Christian Eggers
+Embedded software developer
+
+Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
+Sitz: Muenchen - Registergericht: Amtsgericht Muenchen - Handelsregisternummer: HRA 57918
+Persoenlich haftender Gesellschafter: Arnold & Richter Cine Technik GmbH
+Sitz: Muenchen - Registergericht: Amtsgericht Muenchen - Handelsregisternummer: HRB 54477
+Geschaeftsfuehrer: Dr. Michael Neuhaeuser; Stephan Schenk; Walter Trauninger; Markus Zeiler
 
