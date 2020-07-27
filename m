@@ -2,95 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0878922EA79
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 12:54:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D10A122EA8F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 12:59:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727079AbgG0KyU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jul 2020 06:54:20 -0400
-Received: from mail29.static.mailgun.info ([104.130.122.29]:18501 "EHLO
-        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726269AbgG0KyT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Jul 2020 06:54:19 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1595847259; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=/E07zcWP7cDl0cKYrcOVvgqPqfhXiQamtMhLxP/YTkw=;
- b=MEif+7abeXjQzO6hDiv6mcRzOZDHvsgJULq4qI+R4AO6oq94ZsclUGYZopra3sVD1ky07aKg
- 7YF1u3dPXFtdTvF4cqrZdsettKDKhgj3Dbz3J40nnGkWbOu3C60rky/qRu2S0fJ6sk8y4rvv
- WbhAN791MChUmyEm+hjgTIwQVQ8=
-X-Mailgun-Sending-Ip: 104.130.122.29
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n11.prod.us-east-1.postgun.com with SMTP id
- 5f1eb2577ab15087ebfc0f57 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 27 Jul 2020 10:54:15
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 25E83C433CB; Mon, 27 Jul 2020 10:54:15 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        id S1726808AbgG0K7K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jul 2020 06:59:10 -0400
+Received: from mailout08.rmx.de ([94.199.90.85]:34276 "EHLO mailout08.rmx.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727775AbgG0K7K (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Jul 2020 06:59:10 -0400
+Received: from kdin01.retarus.com (kdin01.dmz1.retloc [172.19.17.48])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 953A0C433C9;
-        Mon, 27 Jul 2020 10:54:14 +0000 (UTC)
+        by mailout08.rmx.de (Postfix) with ESMTPS id 4BFcHv1P26zMrsP;
+        Mon, 27 Jul 2020 12:59:07 +0200 (CEST)
+Received: from mta.arri.de (unknown [217.111.95.66])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by kdin01.retarus.com (Postfix) with ESMTPS id 4BFcHV2fTpz2xK9;
+        Mon, 27 Jul 2020 12:58:46 +0200 (CEST)
+Received: from N95HX1G2.wgnetz.xx (192.168.54.121) by mta.arri.de
+ (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.408.0; Mon, 27 Jul
+ 2020 12:57:53 +0200
+From:   Christian Eggers <ceggers@arri.de>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        "Sascha Hauer" <s.hauer@pengutronix.de>
+CC:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Martin Kaiser" <martin@kaiser.cx>,
+        PrasannaKumar Muralidharan <prasannatsmkumar@gmail.com>,
+        Christian Eggers <ceggers@arri.de>,
+        "Dong Aisheng" <aisheng.dong@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-crypto@vger.kernel.org>
+Subject: [PATCH] Support for RNGB on i.MX6 ULL
+Date:   Mon, 27 Jul 2020 12:57:13 +0200
+Message-ID: <20200727105718.26225-1-ceggers@arri.de>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 27 Jul 2020 16:24:14 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Georgi Djakov <georgi.djakov@linaro.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org, mka@chromium.org,
-        dianders@chromium.org, linux-kernel@vger.kernel.org,
-        linux-kernel-owner@vger.kernel.org
-Subject: Re: [PATCH 3/6] interconnect: qcom: sdm845: Replace xlate with
- xlate_extended
-In-Reply-To: <20200723130942.28491-4-georgi.djakov@linaro.org>
-References: <20200723130942.28491-1-georgi.djakov@linaro.org>
- <20200723130942.28491-4-georgi.djakov@linaro.org>
-Message-ID: <5e145c668b5c9c6709e102145b8d403b@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.54.121]
+X-RMX-ID: 20200727-125852-4BFcHV2fTpz2xK9-0@kdin01
+X-RMX-SOURCE: 217.111.95.66
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-07-23 18:39, Georgi Djakov wrote:
-> Use the qcom_icc_xlate_extended() in order to parse tags, that are
-> specified as an additional arguments to the path endpoints in DT.
-> 
-> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
+This small series adds support for the Random Number Generator on 
+the i.MX6 ULL SoC.
 
-Tested-by: Sibi Sankar <sibis@codeaurora.org>
-Reviewed-by: Sibi Sankar <sibis@codeaurora.org>
 
-> ---
->  drivers/interconnect/qcom/sdm845.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/interconnect/qcom/sdm845.c
-> b/drivers/interconnect/qcom/sdm845.c
-> index f6c7b969520d..3b81dbb71b0b 100644
-> --- a/drivers/interconnect/qcom/sdm845.c
-> +++ b/drivers/interconnect/qcom/sdm845.c
-> @@ -469,7 +469,7 @@ static int qnoc_probe(struct platform_device *pdev)
->  	provider->set = qcom_icc_set;
->  	provider->pre_aggregate = qcom_icc_pre_aggregate;
->  	provider->aggregate = qcom_icc_aggregate;
-> -	provider->xlate = of_icc_xlate_onecell;
-> +	provider->xlate_extended = qcom_icc_xlate_extended;
->  	INIT_LIST_HEAD(&provider->nodes);
->  	provider->data = data;
-
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
