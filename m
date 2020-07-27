@@ -2,59 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDEB422E6CB
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 09:41:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78A4422E6D0
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 09:44:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726323AbgG0Hlg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jul 2020 03:41:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59332 "EHLO
+        id S1726853AbgG0Hn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jul 2020 03:43:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726183AbgG0Hlg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 03:41:36 -0400
-Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1293C0619D2
-        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 00:41:35 -0700 (PDT)
-Received: by mail-pj1-x1043.google.com with SMTP id lw1so883779pjb.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 00:41:35 -0700 (PDT)
+        with ESMTP id S1726116AbgG0Hn7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 03:43:59 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2290BC0619D2
+        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 00:43:59 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id z188so767032pfc.6
+        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 00:43:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=02L+nV06/zwmICNroTjg7mYMa/wTXN2VrRKBLAVM2dw=;
-        b=V47joEy77meF+oSYORGjxuLpKGaeEr7xnIXCBWjrzNaPfWMvv2QRB45d0IROIpCTOO
-         80nbmPjwyX5jPTo6BZfOxXcEMWPaVYTXVfJo+azQjZsMxvxNXq3LCe12uRk/2m8Ifli5
-         2PJ9EDDRyYjJ9BIe+vMXLuW3oWZVdsOwml30I=
+        bh=Yz4TcW9rTup6J1JHf4cL+vgG/kmFz0aHv9ruePdNsKs=;
+        b=aFXOkM+Be+7mBtbE26DlXdCZ1eQ7pGgqRGMDv7uP587bt+zwmfsY4EiU1e0wTOgTy3
+         Yw3ZlK7Y0MBV7i48If//5OPi/xfuJ7myy+YbKQ1g0MwO+4U+9eTWWoe8SzCgaZJ+dUEg
+         wOytugbcFSL9vY8q9xzzyKmeiWm+gq9jldEOniIwHuJnAzv+oWs4lo6i3X7j181HUNOl
+         0KY3hNz8ipRo93vT3i38xhYHmOosCK2Te7HhO1rdUrFxHyJBhMXzppT3SpiC7mbZp1jd
+         8txo/0j375SmCHvYFEEyagYwGcCTmwlqbqkY86RUt5BW3L3F47+v5SuVM5jnf3PrGnct
+         QBZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=02L+nV06/zwmICNroTjg7mYMa/wTXN2VrRKBLAVM2dw=;
-        b=PnmTb1wpGQH48T+naXWS9lZNTuNG/cQDaVtxX3N13ra66ba3xfyOHR6NNJieaPh2Ku
-         T7xSK5ExFlPuDFaUOwzimF+IFzZBKbfkp5jjEiPWp/PLr6UuUOWJI4QT4FEm85qtCRr3
-         NQcc3r8mlBsPmN5fwVn+wk00wfgCqaflz3LCykRb2AIEYZjaeMBkH2xybXC/SRLiqn3p
-         nyhDoloMNByvgwHwoPSRdAKJzfNfZ/GAYEWpYxKjQKI5NM2x2sZS5l507lmQqVoICFJV
-         Q91QpSE+N4MABNX7Hlq95b7bNrC2QUZpnUdp61BCvTw0TX9pJpCNahAmAOQGoQM9mLmV
-         oG2g==
-X-Gm-Message-State: AOAM532dfbBKr6S1W20JI3yPmwvoTy8hip1Zo8YFnBPgtPZV3zrPx1gP
-        1b4lm5btRiuwBSYnby/ZPTxY7g==
-X-Google-Smtp-Source: ABdhPJzuZ7ICmuF4ozEQuv167siP20VYHysSz7yu/BjNoHfuX0QIrN7rkJ7u6etQwGM3gpJ79LyGpA==
-X-Received: by 2002:a17:90a:204:: with SMTP id c4mr16807174pjc.165.1595835695486;
-        Mon, 27 Jul 2020 00:41:35 -0700 (PDT)
-Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:1a60:24ff:fe89:3e93])
-        by smtp.gmail.com with ESMTPSA id f2sm13966544pfb.184.2020.07.27.00.41.33
+        bh=Yz4TcW9rTup6J1JHf4cL+vgG/kmFz0aHv9ruePdNsKs=;
+        b=UmST3+2lhyNR9LE3NtScZlMElgid4fdHLUaT99K+GDDD1B7NB9hlR712SQu8kR2b5x
+         H5WoT1SW9BTLLtNtQZ87+HpwWPCOU/0RcGwzuvJKg3RbUMCgq6dP/grvWC77O3aOeKD1
+         Don2p2AtjnxAe6yAo/XCN7NYDn/HbZX+Jfk0MasU7BQNJ/idEAr503GdFG777ZLcUIS2
+         nuIauIWZkynJa5wum3H2vaygR3YTxgOlYvoJSiHLbLrQc1t4Ptk7uLcIlnzAVI9QYHBB
+         VlpOCY0SGAh7aOttM86R5nYIvjvQnyEJlgyfKUEoO4C+1g6M5sjyujC9ogiaiyNonIqZ
+         kz1w==
+X-Gm-Message-State: AOAM5318T9HNGTL7ReV7Km4DoaLEwwOiVczw5/96ePFix0+3nNRU0DSi
+        R15FBdKuRym0TNKIvJ4/rFT5yw==
+X-Google-Smtp-Source: ABdhPJzNAhwoobYuzfypI6jZj3vQId16bxmejaBmJhjHNhj5jBPLz54zUVzlg6Vppj/NNfSRoK5DIw==
+X-Received: by 2002:a63:6c49:: with SMTP id h70mr18571850pgc.150.1595835838525;
+        Mon, 27 Jul 2020 00:43:58 -0700 (PDT)
+Received: from nagraj.local ([49.206.21.239])
+        by smtp.gmail.com with ESMTPSA id n22sm13062152pjq.25.2020.07.27.00.43.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jul 2020 00:41:34 -0700 (PDT)
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: mt8173: elm: Fix nor_flash node property
-Date:   Mon, 27 Jul 2020 15:41:24 +0800
-Message-Id: <20200727074124.3779237-1-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.28.0.rc0.142.g3c755180ce-goog
+        Mon, 27 Jul 2020 00:43:57 -0700 (PDT)
+From:   Sumit Semwal <sumit.semwal@linaro.org>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>
+Subject: [PATCH v3 0/2] Add support for Tianma nt36672a video mode panel
+Date:   Mon, 27 Jul 2020 13:13:46 +0530
+Message-Id: <20200727074348.26116-1-sumit.semwal@linaro.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -62,35 +69,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-bus-width and non-removable is not used by the driver.
-max-frequency should be spi-max-frequency for flash node.
+Some Poco F1 phones from Xiaomi have an nt36672a video mode panel; add support
+for the same.
+Most of the panel data is taken from downstream panel dts, and is converted to
+drm-panel based driver by me.
+It has been validated with v5.8-rc5 on Poco F1 phone; my tree with other
+dependent patches is here [1]
 
-Fixes: 689b937bedde ("arm64: dts: mediatek: add mt8173 elm and hana board")
-Reported-by: Nicolas Boichat <drinkcat@chromium.org>
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+[1]: https://git.linaro.org/people/sumit.semwal/linux-dev.git/log/?h=dev/poco-panel-upstreaming
+
 ---
- arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+v2: In dt-binding, removed ports node, making port@0 directly under panel@0 node.
+    Also updated the panel_on delay to a safer 200ms as needed for latest Android.
+v3: Replaced port@0 with just port in panel@0 node.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-index a5a12b2599a4..01522dd10603 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-@@ -431,12 +431,11 @@ &nor_flash {
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&nor_gpio1_pins>;
--	bus-width = <8>;
--	max-frequency = <50000000>;
--	non-removable;
-+
- 	flash@0 {
- 		compatible = "jedec,spi-nor";
- 		reg = <0>;
-+		spi-max-frequency = <50000000>;
- 	};
- };
- 
+[1]: 
+
+Sumit Semwal (2):
+  dt-bindings: display: panel: Add bindings for Tianma nt36672a panel
+  drm: panel: Add tianma nt36672a panel driver
+
+ .../display/panel/tianma,nt36672a.yaml        |  95 ++
+ MAINTAINERS                                   |   7 +
+ drivers/gpu/drm/panel/Kconfig                 |  11 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-tianma-nt36672a.c | 859 ++++++++++++++++++
+ 5 files changed, 973 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/tianma,nt36672a.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-tianma-nt36672a.c
+
 -- 
-2.28.0.rc0.142.g3c755180ce-goog
+2.27.0
 
