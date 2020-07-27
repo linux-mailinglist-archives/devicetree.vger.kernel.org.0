@@ -2,77 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 538DE22E69F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 09:33:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 313C422E6B8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 09:38:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726513AbgG0HdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jul 2020 03:33:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58038 "EHLO
+        id S1726211AbgG0HiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jul 2020 03:38:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726116AbgG0HdK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 03:33:10 -0400
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DB74C0619D2;
-        Mon, 27 Jul 2020 00:33:10 -0700 (PDT)
-Received: by mail-ed1-x543.google.com with SMTP id c2so5517874edx.8;
-        Mon, 27 Jul 2020 00:33:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=95o2SL2yS+OJ42B7vx7vpE8aa2uvVeEjtGJk2w185hM=;
-        b=reT1y3UM0/eHiiOk8AjpyJEGO5IZw7wNJAYn9rDmVsKIMJPwGvujG9/JMiuIrosiZv
-         WyGZ4ADs5yhYnEBDvFEk+7Ve2c3jVQ4nuUKG1PsFfuKwcoBw7jS89lEQRLKj+wkF+f6K
-         YMo1wEaBR6SMBzWfnfSoOHmwSovsord7w9qtESgRyXIQoD/GJgOJor0fh+C+ncsdtd7f
-         ZAfZDHto385Fr1/D4UlfZj5S9Zgq9jg8ur/NISYj3PQizB4ILuL2NzIc743IXwduuUyj
-         LjGWhBnJ4OwUsAUhNyh3H5ZRgOc5YObSNQkjkzWfkzZwVdsKarf6IVET9AviCzhzBnf9
-         /hkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=95o2SL2yS+OJ42B7vx7vpE8aa2uvVeEjtGJk2w185hM=;
-        b=meqPkt9zEPYGrlxkx4svzRJZJd+zs3p1Rvnveri3rjDgPFRcrO1rUfYr5bOMqWlSfz
-         LwjvKtD09d3G1iOVCueSvB3uSoXeMtq6j9v9meBo074PY46SPXEU8n9j3VC3VpZXZdxr
-         TpbKEkJCMqwI9CWm4nSJWU7xD+zRr9Fg7Nvd7sC0y6pUp8R/3eCht+xfhP4fR0sXkId9
-         +3d5Fu6OsbVFyB2iBtIaSkn1kW+blejiZJgzl6XNGACMxH0sdDoMCBHsSsHqlp8mOTNs
-         37OroRoh9N69Cr/ttgC/sK0soILi3Zx+W0jdz9h8hdQdzditVqCNE0gN79oSInm8hp8y
-         HKXQ==
-X-Gm-Message-State: AOAM530YrittIk+mswE/gUoZTFhzQmRRAiuJp8FuXTVRim0edjV/DCM7
-        k4946zEAfIZ/kAwVLDXgGTIO2YBjjyVqI4NMej7qAoZN
-X-Google-Smtp-Source: ABdhPJyY4JZi0jBFS9XuIKOB3L/gBL5RfEZTypoj8YM0d14GZMRw8scieVd3NJU8rhon6bN52FrwzCZzwxF6z8BX+HY=
-X-Received: by 2002:a05:6402:d06:: with SMTP id eb6mr19513491edb.211.1595835188988;
- Mon, 27 Jul 2020 00:33:08 -0700 (PDT)
+        with ESMTP id S1726892AbgG0HiF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 03:38:05 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D1BAC0619D2
+        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 00:38:05 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1jzxht-0002NO-VG; Mon, 27 Jul 2020 09:37:57 +0200
+Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ore@pengutronix.de>)
+        id 1jzxht-0007xt-1v; Mon, 27 Jul 2020 09:37:57 +0200
+Date:   Mon, 27 Jul 2020 09:37:57 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 03/10] remoteproc: imx: use devm_ioremap
+Message-ID: <20200727073757.r2vq6djh3a4dyfp6@pengutronix.de>
+References: <20200724080813.24884-1-peng.fan@nxp.com>
+ <20200724080813.24884-4-peng.fan@nxp.com>
+ <20200727062335.v2pxgu6kr6ao2qmh@pengutronix.de>
+ <DB6PR0402MB27601C875FF5F1E02DBF5C6488720@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+ <20200727064151.767kc7622tcqmqfs@pengutronix.de>
+ <DB6PR0402MB276063FBE74FCF222CB00F8588720@DB6PR0402MB2760.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-References: <20200724213659.273599-1-martin.botka1@gmail.com>
- <20200724213659.273599-3-martin.botka1@gmail.com> <CAHp75VdJ14p+_+XqxrgRrjXF7m6L4nGr5vB03NTM=0xjgw4c7Q@mail.gmail.com>
- <CADQ2G_HkiAZx8OhfQ_jeizveMaB-QN9dfN6Tcwfk9XuF97rmOg@mail.gmail.com> <CADQ2G_HYTE6cd=PM2JzCTadkPe2DDb8dxObPdPJtz1626ktE9Q@mail.gmail.com>
-In-Reply-To: <CADQ2G_HYTE6cd=PM2JzCTadkPe2DDb8dxObPdPJtz1626ktE9Q@mail.gmail.com>
-From:   Martin Botka <martin.botka1@gmail.com>
-Date:   Mon, 27 Jul 2020 09:32:31 +0200
-Message-ID: <CADQ2G_HF+eBgNJVgFS4OP2FBOHvvPE6rkPz3vjSG7PZ3qm3igw@mail.gmail.com>
-Subject: Re: [PATCH RFC 2/6] pwm: core: Add option to config PWM duty/period
- with u64 data length
-To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Fenglin Wu <fenglinw@codeaurora.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-pwm@vger.kernel.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="lledsvdu3e7clex3"
+Content-Disposition: inline
+In-Reply-To: <DB6PR0402MB276063FBE74FCF222CB00F8588720@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 09:08:39 up 254 days, 22:27, 241 users,  load average: 0.11, 0.11,
+ 0.08
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Could you please send the messages also to everyone else ?
 
-Next time of course.
+--lledsvdu3e7clex3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Jul 27, 2020 at 06:51:00AM +0000, Peng Fan wrote:
+> > Subject: Re: [PATCH 03/10] remoteproc: imx: use devm_ioremap
+> >=20
+> > On Mon, Jul 27, 2020 at 06:28:20AM +0000, Peng Fan wrote:
+> > > Hi Oleksij,
+> > >
+> > > > Subject: Re: [PATCH 03/10] remoteproc: imx: use devm_ioremap
+> > > >
+> > > > On Fri, Jul 24, 2020 at 04:08:06PM +0800, Peng Fan wrote:
+> > > > > We might need to map an region multiple times, becaue the region
+> > > > > might be shared between remote processors, such i.MX8QM with dual
+> > M4 cores.
+> > > > > So use devm_ioremap, not devm_ioremap_resource.
+> > > >
+> > > > Can you please give an example of this kind of shared resources and
+> > > > how they should be handled by two separate devices?
+> > >
+> > > This is to share vdevbuffer space, there is a vdevbuffer in device
+> > > tree, it will be shared between M4_0 and M4_1.
+> > >
+> > > For the buffer, it is Linux DMA API will handle the space.
+> >=20
+> > Why remoteproc need to care about it? If I see it correctly, from the l=
+inux
+> > perspective, it is one buffer and one driver is responsible for it. Or =
+do I missing
+> > some thing?
+>=20
+> We not have the vdev buffer in resource table, so I added in device tree,=
+ see below:
+
+Hm.. if vdev is not in resource table and should not be controlled by
+remoteproc, why do we need remoteproc?
+
+>         imx8qm_cm40: imx8qm_cm4@0 {
+>                 compatible =3D "fsl,imx8qm-cm4";
+>                 rsc-da =3D <0x90000000>;
+>                 mbox-names =3D "tx", "rx", "rxdb";
+>                 mboxes =3D <&lsio_mu5 0 1
+>                           &lsio_mu5 1 1
+>                           &lsio_mu5 3 1>;
+>                 mub-partition =3D <3>;
+>                 memory-region =3D <&vdev0vring0>, <&vdev0vring1>, <&vdevb=
+uffer>,
+>                                 <&vdev1vring0>, <&vdev1vring1>;
+>                 core-index =3D <0>;
+>                 core-id =3D <IMX_SC_R_M4_0_PID0>;
+>                 status =3D "okay";
+>                 power-domains =3D <&pd IMX_SC_R_M4_0_PID0>,
+>                                 <&pd IMX_SC_R_M4_0_MU_1A>;
+>         };
+>=20
+>         imx8qm_cm41: imx8x_cm4@1 {
+>                 compatible =3D "fsl,imx8qm-cm4";
+>                 rsc-da =3D <0x90100000>;
+>                 mbox-names =3D "tx", "rx", "rxdb";
+>                 mboxes =3D <&lsio_mu6 0 1
+>                           &lsio_mu6 1 1
+>                           &lsio_mu6 3 1>;
+>                 mub-partition =3D <4>;
+>                 memory-region =3D <&vdev2vring0>, <&vdev2vring1>, <&vdevb=
+uffer>,
+>                                 <&vdev3vring0>, <&vdev3vring1>;
+>                 core-index =3D <1>;
+>                 core-id =3D <IMX_SC_R_M4_1_PID0>;
+>                 status =3D "okay";
+>                 power-domains =3D <&pd IMX_SC_R_M4_1_PID0>,
+>                                 <&pd IMX_SC_R_M4_1_MU_1A>;
+>         };
+>=20
+>                 vdevbuffer: vdevbuffer {
+>                         compatible =3D "shared-dma-pool";
+>                         reg =3D <0 0x90400000 0 0x100000>;
+>                         no-map;
+>                 };
+>=20
+> I have the upper vdevbuffer node shared between M40 and M41 node.
+> The vdevbuffer will be used as virtio data buffer.
+>=20
+> And I have the following in rproc_add_virtio_dev to share vdevbuffer:
+>         /* Try to find dedicated vdev buffer carveout */
+>         mem =3D rproc_find_carveout_by_name(rproc, "vdev%dbuffer", rvdev-=
+>index);
+>         if (!mem)
+>                 mem =3D rproc_find_carveout_by_name(rproc, "vdevbuffer");
+
+With kernel v5.8-rc7 i get following call chain:
+rproc_boot()
+  rproc_fw_boot()
+    rproc_handle_vdev
+      rproc_vdev_do_start()
+        rproc_add_virtio_dev()
+
+
+So, at the end, we will call rproc_add_virtio_dev() only if we boot
+firmware by linux, or if we get at least the resource table.
+
+Since none of this seems to be the case, i still do not understand how
+it should work.
+
+> Hope this is clear.
+
+:) i still need some time to understand it.
+
+--=20
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+
+--lledsvdu3e7clex3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEERBNZvwSgvmcMY/T74omh9DUaUbMFAl8ehFAACgkQ4omh9DUa
+UbNuvBAAzaHrZx+RWrM1K4wZ6lTlnlom0/YvoOHFJy6BFwR3G5839nr1109/x9Rg
+SBhifCjiIISDYSDl2MdlgAPxjjEcLfjIJH9PTCzk9YoXZOkBvCzTnxBxSePlXAol
+ezH+BJsu/Bfc9iva+cLflE3CAEAc80MESPXlMoQg6W7E7CS0CsvTh4MwuWWc0KDR
+a9lEI7axGKePILdQzK6r25cAerJwxH1YA4EWOg09Da9kwSnECMdcY+fI5Bp1aYxg
+zlpxbtcpwtLgeR3s+IzKSOEGkWeMQOOwumVJ5hEs2Rdl4GoPvWBt+YH34XYnziU3
+gTLCfpJkno5smfBOub49/6UA+wj8aDVzZaAWZj0/FwowFvmymgncl4RpSRtkqG1s
+k6xiBSBES+IIBHeZek7SINYI4UoA0rV4GnbzIFza6IzhB58mcv1a3i1S+TnNHEoi
+ZyR+tTyK7NdeuRoWO5W7dlgFa7pt1Y+pia1HGWiksnUY4xCsdaVm+Ugpm4OXY1KB
+9IneQA0QfggVk8BuXnP0i6qlQGc5abdLYhPM8SI71jzuRtMzt2O/yAKGt+mhHQTO
+VxNfoa+q7DVG/bce3Q3iRCK+BG92BznmYF7v+uiHEWuD/7tRcztXKjJkxxuu9MTc
+l+FN2vsU9w/tdeFrEivpA4yq/Lr5ExMvHYmjDzqnYj3NTlFdd88=
+=1uiY
+-----END PGP SIGNATURE-----
+
+--lledsvdu3e7clex3--
