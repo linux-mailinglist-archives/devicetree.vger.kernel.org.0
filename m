@@ -2,103 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5D9C22E7CA
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 10:34:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23D8822E7F8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 10:42:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726297AbgG0IeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jul 2020 04:34:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39234 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726265AbgG0IeQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 04:34:16 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79694C061794
-        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 01:34:16 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1jzyaI-0000ik-4Y; Mon, 27 Jul 2020 10:34:10 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1jzyaG-0001dX-V7; Mon, 27 Jul 2020 10:34:08 +0200
-Date:   Mon, 27 Jul 2020 10:34:08 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Martin Botka <martin.botka1@gmail.com>
-Cc:     Fenglin Wu <fenglinw@codeaurora.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-pwm@vger.kernel.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: Re: [PATCH RFC 2/6] pwm: core: Add option to config PWM duty/period
- with u64 data length
-Message-ID: <20200727083408.jqm72hty62w7kxdc@pengutronix.de>
-References: <20200724213659.273599-1-martin.botka1@gmail.com>
- <20200724213659.273599-3-martin.botka1@gmail.com>
- <CAHp75VdJ14p+_+XqxrgRrjXF7m6L4nGr5vB03NTM=0xjgw4c7Q@mail.gmail.com>
- <CADQ2G_HkiAZx8OhfQ_jeizveMaB-QN9dfN6Tcwfk9XuF97rmOg@mail.gmail.com>
- <CADQ2G_HYTE6cd=PM2JzCTadkPe2DDb8dxObPdPJtz1626ktE9Q@mail.gmail.com>
- <20200727075243.cjkxblsivgnn6jsk@pengutronix.de>
- <CADQ2G_GcYh13CGbApCqvi3xcHU-Ur2ej98VccKFOUSOZPrQZnQ@mail.gmail.com>
+        id S1726302AbgG0ImW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jul 2020 04:42:22 -0400
+Received: from esa3.microchip.iphmx.com ([68.232.153.233]:48503 "EHLO
+        esa3.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726139AbgG0ImV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 04:42:21 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1595839340; x=1627375340;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=WYr258yzTXpeZq4ZS7iWdQCOwZdWx5s0U0DJNipkAO0=;
+  b=Bc+X9WBpeHmo+CrCXdXuZym1azvlpIUAbqr7ggO5wZdo0J8EXcZIZiwH
+   dsiUaIamy6a2CF0VgM0RfctgXtxnRnkdhJIxX89YaQRkdCTmAfU+yjROF
+   Hk2GEs9cjpf9H4bpk2BMrYn0r7M1mWTmPUcS+KXAAEnkDhcEaFbQLrhec
+   DNkxuscPDPnvBjMw5zjHaxf73sRfj6iFNA36f8bZmd4oPXirfoZ2datjs
+   yxSs34/nT/4zd/telN8V8MBIViDJd4j2/RQg9fthKADs+5eQ9KYQgkx5E
+   jJBgDw1AwuROnvJzg16Ti/SU84cNYAxJfdsfmq//QgkCX1bPEhm1cA4UU
+   g==;
+IronPort-SDR: 7h+9mPFX5+fDfqKRYGq7zEXieHZTt7NsmJTke6/7L715Muuz3SfkdXhHVnM66DkEqccEEj+ukp
+ NDKib/nWZE7FFABEM/h32SH09RBkARXxwLVFhHz9VUek5B99VQUJTwzEDPTUcgC63PwQ0/gilH
+ nGJWJ62R47lNOW5hWQo/WXLZJeRSYWfXcAqTr0xtpeNO7JlNJMbxnQ2oJFjaw0Gx3x3yxBTjD7
+ wYr9FHE612T+jn6UOrH4frPAqAaJ69C/HugGSAfq3cwXjvIA1IVNduSMzLp54NYdOmVvlqB4zc
+ sIQ=
+X-IronPort-AV: E=Sophos;i="5.75,402,1589266800"; 
+   d="scan'208";a="85470205"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Jul 2020 01:42:19 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Mon, 27 Jul 2020 01:42:18 -0700
+Received: from soft-dev15.microsemi.net (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Mon, 27 Jul 2020 01:42:14 -0700
+From:   Lars Povlsen <lars.povlsen@microchip.com>
+To:     SoC Team <soc@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+CC:     Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Olof Johansson <olof@lixom.net>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: [PATCH v4 00/10] Adding support for Microchip Sparx5 SoC
+Date:   Mon, 27 Jul 2020 10:42:01 +0200
+Message-ID: <20200727084211.6632-1-lars.povlsen@microchip.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lvdzfpf3t7glasbo"
-Content-Disposition: inline
-In-Reply-To: <CADQ2G_GcYh13CGbApCqvi3xcHU-Ur2ej98VccKFOUSOZPrQZnQ@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series adds support for Microchip Sparx5 SoC, the CPU
+system of a advanced, TSN capable gigabit switch. The CPU is an armv8
+x 2 CPU core (A53).
 
---lvdzfpf3t7glasbo
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Although this is an ARM core, it shares some peripherals with the
+Microsemi Ocelot MIPS SoC.
 
-Hello Martin,
+NB: This version *only* updates the drivers/clk/clk-sparx5.c driver
 
-On Mon, Jul 27, 2020 at 09:58:01AM +0200, Martin Botka wrote:
-> > I hit "reply-to-all" and the mail only was sent to you because you wrote
-> > to only me.
->=20
-> Yes my reply was only to you. But your original message was sent only to =
-me too.
-> So when i clicked reply to all it was only you as you sent it only to me.
+Changes in v4:
+- Updates to the clock driver per Stephen Boyd <sboyd@kernel.org>
+ - Remove unused include of of_address.h
+ - Remove unused member in s5_hw_clk struct
+ - Changed type (to unsigned long) for freq in s5_pll_conf struct
+ - Use .parent_data instead of looking up parent name
+ - Use devm_of_clk_add_hw_provider
+ - Some minor comsmetics
 
-Oh indeed. Bummer, and I was so sure to always reply to all :-|
+Changes in v3:
+- a "gpio-restart" node has been added to the pcb134/pcb135 DT files.
+- pinctrl-ocelot.c: ENOTSUPP replaced by EOPNOTSUPP. Fixed non-static
+  ocelot_pinconf_set(), Fixed ocelot_hw_get_value() not returning proper
+  read value.
+- Rebased on v5.8-rc1
 
-Best regards
-Uwe
+Changes in v2:
+- Misc fixes to bindings/arm/microchip,sparx5.yaml
+- Changed clock driver to platform driver, using bitfields, recalc
+  properly implented, using proper clock parent.
+- arch/arm64/boot/dts/microchip/sparx5.dtsi:
+ - Added pmu and psci node, using PSCI
+ - Updates to GICv3 register spaces (GICV/GICH)
+ - Updated timer interrupt specifiers
+- pinctrl: ocelot: Fixed symbol clashes from powerpc
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+Lars Povlsen (10):
+  dt-bindings: arm: sparx5: Add documentation for Microchip Sparx5 SoC
+  arm64: sparx5: Add support for Microchip 2xA53 SoC
+  arm64: dts: sparx5: Add basic cpu support
+  arm64: dts: sparx5: Add pinctrl support
+  pinctrl: ocelot: Add Sparx5 SoC support
+  dt-bindings: clock: sparx5: Add Sparx5 SoC DPLL clock
+  dt-bindings: clock: sparx5: Add bindings include file
+  clk: sparx5: Add Sparx5 SoC DPLL clock driver
+  arm64: dts: sparx5: Add Sparx5 SoC DPLL clock
+  arm64: dts: sparx5: Add i2c devices, i2c muxes
 
---lvdzfpf3t7glasbo
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../bindings/arm/microchip,sparx5.yaml        |  65 +++
+ .../bindings/clock/microchip,sparx5-dpll.yaml |  52 +++
+ .../devicetree/bindings/mfd/syscon.yaml       |   1 +
+ MAINTAINERS                                   |   9 +
+ arch/arm64/Kconfig.platforms                  |  14 +
+ arch/arm64/boot/dts/Makefile                  |   1 +
+ arch/arm64/boot/dts/microchip/Makefile        |   4 +
+ arch/arm64/boot/dts/microchip/sparx5.dtsi     | 213 +++++++++
+ .../boot/dts/microchip/sparx5_pcb125.dts      |  21 +
+ .../boot/dts/microchip/sparx5_pcb134.dts      |  17 +
+ .../dts/microchip/sparx5_pcb134_board.dtsi    | 252 ++++++++++
+ .../boot/dts/microchip/sparx5_pcb134_emmc.dts |  17 +
+ .../boot/dts/microchip/sparx5_pcb135.dts      |  17 +
+ .../dts/microchip/sparx5_pcb135_board.dtsi    |  92 ++++
+ .../boot/dts/microchip/sparx5_pcb135_emmc.dts |  17 +
+ .../boot/dts/microchip/sparx5_pcb_common.dtsi |  19 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/clk-sparx5.c                      | 295 ++++++++++++
+ drivers/pinctrl/pinctrl-ocelot.c              | 430 +++++++++++++++++-
+ include/dt-bindings/clock/microchip,sparx5.h  |  23 +
+ 20 files changed, 1559 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/microchip,sparx5.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/microchip,sparx5-dpll.yaml
+ create mode 100644 arch/arm64/boot/dts/microchip/Makefile
+ create mode 100644 arch/arm64/boot/dts/microchip/sparx5.dtsi
+ create mode 100644 arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
+ create mode 100644 arch/arm64/boot/dts/microchip/sparx5_pcb134.dts
+ create mode 100644 arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
+ create mode 100644 arch/arm64/boot/dts/microchip/sparx5_pcb134_emmc.dts
+ create mode 100644 arch/arm64/boot/dts/microchip/sparx5_pcb135.dts
+ create mode 100644 arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
+ create mode 100644 arch/arm64/boot/dts/microchip/sparx5_pcb135_emmc.dts
+ create mode 100644 arch/arm64/boot/dts/microchip/sparx5_pcb_common.dtsi
+ create mode 100644 drivers/clk/clk-sparx5.c
+ create mode 100644 include/dt-bindings/clock/microchip,sparx5.h
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl8ekX0ACgkQwfwUeK3K
-7AnF8Af/auMYk0XSqHjSdH6o5BpdaRw4k2nwyrLlpPbA1EAo1doDPo+5qggDDEEI
-Hhasvj30vEfKAP5PHmRcwHSacAYoUrLgzL9vrO3VLDrSfq1+xPoR2oZNyvEwyNjY
-ORMuV/aXEqcOgjfqciLl/qjMouS5RFyMryESdDULaQTPtIPNJGtFAL63cWibRVB2
-jh8JDB9F/rijp8QsmEDDqEMVSyjbLoGWHdQJvbbd3N9Xy8Rke6Iob+AUXulnFzaC
-q1sOJT3ypUjDhMhvxNBUSMVto8pKUUPZfuJosWBWDpWmAA1Bqi93FvTNyAGKeo4E
-D7Ne9+lzuKLmtH6bwgskg/LCNtlsRA==
-=VGmX
------END PGP SIGNATURE-----
-
---lvdzfpf3t7glasbo--
+--
+2.27.0
