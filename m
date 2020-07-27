@@ -2,103 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F315322F60F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 19:05:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EECB222F620
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 19:07:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729876AbgG0RF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jul 2020 13:05:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34570 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729380AbgG0RF0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 13:05:26 -0400
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B64DC0619D2
-        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 10:05:26 -0700 (PDT)
-Received: by mail-ej1-x643.google.com with SMTP id gg18so14437778ejb.6
-        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 10:05:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=solid-run-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1UWXuVxrTXPn2/C98wkkf6EevtHV1S1R04GoKomRKLw=;
-        b=R7lqQ6pNyaOi81+mhqvokLJeiXUFPNBwC3xsKxqjGxZb/k31uk7EKn6BoAnyjvbn5S
-         umAchjm85d039omd9hPDmJX7TMsYmZd7fl7WCzCJNXIOxmYMpU2UG/d2A3DnuJV9jYkw
-         HObkH8Tmtp3IlcOzSTwxKikid7ELzMjZcxWKX33SujUJUYjb1QcP23NVg6b2Z9j9rPnB
-         PhaYFjPvHYlQS48MvUQ11ajUsuyb5p2iTQbx/NB402O1P8e4jeMxVmbk/tY/Bn65r3kh
-         ibrzMKa53e3v1LP/eUFspBJbYORDRyf1V7s/OyEPLKdFiyAAQLQZIHw2elVliGPuU5vk
-         FpQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1UWXuVxrTXPn2/C98wkkf6EevtHV1S1R04GoKomRKLw=;
-        b=KmPvvptFxLlIPv+CdxWC8ZmeNAaA8KmU8CTpBqlVjM7I1yfgdv9+9JgIVXQy3FUqLn
-         vyqJBorcX1Psh8joUge0/byoNY/+uQD1WhRnljVjVl//o997o/JMOuH6zC86ipj8YszE
-         T97Uluu9zUXYwwuTNGNjYfaYnRRzUIslJw9folxNLmSfbnU1hlBKmW7s84JpGQjL2oaS
-         l5cbNz0Hkg9nwWBFgfSW+B2u5JGW/mCfCy7oTg62F0FSE0doTEojajrgEiNxWJ8OXJXU
-         RQYxgktHlJ4vle81OR29zalkaxn+kjpRqqVCnKJCIfH+MQBXTFb8UfZ3eBRqtkWIl4rj
-         xDLA==
-X-Gm-Message-State: AOAM533XyVKq60TXL5v+MPnElulkmKnKegrmhY3n25Mwe3L4+j3kraaW
-        TKQkftVUKYfnjMVgQIaHoFD0+1KRkZ9wSgOED51YMg==
-X-Google-Smtp-Source: ABdhPJww0X8+AryGC7QGb6Vr6z1aKgVHMeJd/legoaBgd3/asP7tfo1T4gXuCtDNqqBsPtTHiO/pshG2xA412Y2chEw=
-X-Received: by 2002:a17:906:cc48:: with SMTP id mm8mr20323361ejb.132.1595869524926;
- Mon, 27 Jul 2020 10:05:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200720112401.4620-1-miguelborgesdefreitas@gmail.com>
- <20200720112401.4620-2-miguelborgesdefreitas@gmail.com> <20200723174905.GA596242@bogus>
- <20200723195755.GV3428@piout.net> <20200727094553.GH1551@shell.armlinux.org.uk>
- <20200727144938.GC239143@piout.net> <20200727152439.GK1551@shell.armlinux.org.uk>
- <20200727154104.GE239143@piout.net> <20200727154335.GL1551@shell.armlinux.org.uk>
- <CABdtJHuVaTa5T0-KdQ-wZQrmFQ6HO3FvgnTgSo3aOi+=SPzDZA@mail.gmail.com> <20200727161632.GF239143@piout.net>
-In-Reply-To: <20200727161632.GF239143@piout.net>
-From:   Jon Nettleton <jon@solid-run.com>
-Date:   Mon, 27 Jul 2020 19:04:48 +0200
-Message-ID: <CABdtJHukOOMN7zsrAUQYma==N_t+LYmgWLpqJvZZNwg8PBM7dA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: rtc: pcf8523: add DSM pm option for
- battery switch-over
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Russell King - ARM Linux admin <linux@armlinux.org.uk>,
-        Rob Herring <robh@kernel.org>,
-        Miguel Borges de Freitas <miguelborgesdefreitas@gmail.com>,
-        a.zummo@towertech.it, Baruch Siach <baruch@tkos.co.il>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1729946AbgG0RHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jul 2020 13:07:11 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:27531 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729945AbgG0RHL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 13:07:11 -0400
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 27 Jul 2020 10:07:10 -0700
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 27 Jul 2020 10:07:08 -0700
+Received: from c-sanm-linux.qualcomm.com ([10.206.25.31])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 27 Jul 2020 22:36:41 +0530
+Received: by c-sanm-linux.qualcomm.com (Postfix, from userid 2343233)
+        id 5CC7F2C93; Mon, 27 Jul 2020 22:36:40 +0530 (IST)
+From:   Sandeep Maheswaram <sanm@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Sandeep Maheswaram <sanm@codeaurora.org>
+Subject: [PATCH v11 0/2] ADD interconnect support for Qualcomm DWC3 driver 
+Date:   Mon, 27 Jul 2020 22:36:35 +0530
+Message-Id: <1595869597-26049-1-git-send-email-sanm@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 27, 2020 at 6:16 PM Alexandre Belloni
-<alexandre.belloni@bootlin.com> wrote:
->
-> On 27/07/2020 17:55:50+0200, Jon Nettleton wrote:
-> > > So, can we please have that discussion, it is pertinent to this patch.
-> > >
-> >
-> > Thinking about this some more, I believe whether or not an IOCTL
-> > interface is in the works or needed is irrelevant.  This patch
-> > describes the hardware and how it is designed and the topic of
-> > discussion is if we need a simple boolean state, or if we need
-> > something that could be used to support dynamic configuration in the
-> > future.  I would rather make this decision now rather than keep
-> > tacking on boolean config options, or revisit a bunch of device-tree
-> > changes.
->
-> Something that would describe the hardware is a property telling whether
-> the filter is present on VDD, not a property selecting DSM. The driver
-> can then chose to avoid standard mode when needed.
->
+This path series aims to add interconnect support in
+dwc3-qcom driver on SDM845 and SC7180 SoCs.
 
-The filter being present or not is not the singular hardware
-requirement for making this determination.  There is no reason to make
-this some obtuse argument.  There are two states and you may want one
-or the other, or the ability to switch between them.  This is a flag
-to tell the driver how the hardware should be configured based on the
-board preference.  Let's find a simple consistent way to do this.
+Changes from v10 -> v11
+ > Made the error handling symmetrical in enable and disable cases.
+ > Removed empty line in interconnect-init function. 
+
+Changes from v9 -> v10
+  > Removed cooments for enable,disable functions.
+  > Handled the enable,disable failure cases as in v8.
+
+Changes from v8 -> v9
+  > Addressed comments from Matthias.
+
+Changes from v7 -> v8
+  > Only driver change is pending all other patches are merged so dropped
+    from the series.
+  > Removed the device_is_bound call and getting speed from device tree
+    and rearranged interconnect functions to avoid forward declarations.	
+  > Added patch to specify maximum speed for dwc3 DT node.
+
+Changes from v6 -> v7
+  > [PATCH 2/4] Fixed review comments from Matthias in DWC3 driver.
+  > Other patches remain unchanged.
+
+Changes from v5 -> v6
+  > [PATCH 1/4] Addressed comments from Rob.
+  > [PATCH 2/4] Fixed review comments from Matthias in DWC3 driver.
+  > [PATCH 3/4] Ignoring 80 char limit in defining interconnect paths.
+  > Added [PATCH 4/4] in this series. Adding interconnect nodes for SC7180.
+    Depends on patch https://patchwork.kernel.org/patch/11417989/.	
+
+Changes from v4 -> v5
+  > [PATCH 1/3] Added the interconnect properties in yaml. This patch depends
+    on series https://patchwork.kernel.org/cover/11372641/.
+  > [PATCH 2/3] Fixed review comments from Matthias in DWC3 driver.
+  > [PATCH 3/3] Modified as per the new interconnect nodes in sdm845. Depends
+    on series https://patchwork.kernel.org/cover/11372211/. 
+
+
+Changes from v3 -> v4
+  > Fixed review comments from Matthias
+  > [PATCH 1/3] and [PATCH 3/3] remains unchanged
+
+Changes from v2 -> v3
+  > Fixed review comments from Matthias and Manu
+  > changed the functions prefix from usb_* to dwc3_qcom_*
+
+Changes since V1:
+  > Comments by Georgi Djakov on "[PATCH 2/3]" addressed
+  > [PATCH 1/3] and [PATCH 3/3] remains unchanged 
+
+Sandeep Maheswaram (2):
+  usb: dwc3: qcom: Add interconnect support in dwc3 driver
+  arm64: dts: qcom: sc7180: Add maximum speed property for DWC3 USB node
+
+ arch/arm64/boot/dts/qcom/sc7180.dtsi |   1 +
+ drivers/usb/dwc3/dwc3-qcom.c         | 120 ++++++++++++++++++++++++++++++++++-
+ 2 files changed, 119 insertions(+), 2 deletions(-)
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
+
