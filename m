@@ -2,353 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0010222FAC8
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 22:57:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B06C022FA74
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 22:53:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726731AbgG0U5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jul 2020 16:57:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42484 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726171AbgG0U5K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 16:57:10 -0400
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AA89C061794;
-        Mon, 27 Jul 2020 13:57:10 -0700 (PDT)
-Received: by mail-ej1-x643.google.com with SMTP id dk23so6585521ejb.11;
-        Mon, 27 Jul 2020 13:57:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=+WXybRNIUsUWOZ+JzhFF8n0Y/tkCcTOibeRYqQZPjfs=;
-        b=hPcwslpF0T31laTII1OdphFHnPEn/+kyFmyO69Y0AwMqnlRnIsfnRxUPtlvM5BkQw9
-         swmq7YN6zCBNd+OgstVnQa8NoDRjU/Z4LCmQ8bCjM8l856IFZ1ZdpIbSfH1Cu/wh5jaU
-         ynPqz1YdEAgX8U+clSj2hvWozDVoCYKRGyQe1Qqgc48KGVAAOV9z3rA/mYeARPzfWo5H
-         GH35msHvO2cY0fbenhyNtXd+Dl+Ovi7/z0Roh/85z65K7vYumhT5TymfPacBkp1r964t
-         fdwhARQnm1d5peXud6JR30yNjederSkRVdzAVRSch0bVIXvtrU2I2d7AprkFo6SkkP6M
-         4qHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=+WXybRNIUsUWOZ+JzhFF8n0Y/tkCcTOibeRYqQZPjfs=;
-        b=ZQ5IogwtacPN6WilGs8V6jLnemlsFcEmG7KLhCdZ7eS+n3WokRgaLCPhRnUfCgXeN6
-         YNOoW+8+69SEsfF6ysVAT7GLaEcVsX8mxDNQx6pFeVHwA6rb7Wfat5g0l9A8iFQP0H7O
-         uSwGQ1mWEVFzfl03xX39EqftDxjrMdcUftsmM3/G1EmRlTh9cMDX7QeLk66UsZF3pfgW
-         mzU1Oq6Cg3AS2+JXf20Yq/ftrI6k7Ow4sX2uRAug5V7foIz82jo0Cq4XbLHynp785Oy+
-         CJdcNE1a7kfxHmaLJpaLNOnWUuKLvZqOl38Q+9zD/3pbCQN8eMDd/t7FeiMFC78So10x
-         En3A==
-X-Gm-Message-State: AOAM533fbltZhLeG/F7cz0iCNjR2I8gVaCNJVKFo5T4g1YFdKBIjJW6p
-        iuZx9BgkuiZaEQw0K40GxBM3P4jqLFkr1qHzFP8=
-X-Google-Smtp-Source: ABdhPJxop/vEgCXatU5dwsU9mctsq4Z4SbyrEeG8T6Gtdoy6PNMtcVi5UKqTMG8vcrUXL53BwtlQuuzn773zX3tSg1M=
-X-Received: by 2002:a17:906:1392:: with SMTP id f18mr14718052ejc.521.1595883429069;
- Mon, 27 Jul 2020 13:57:09 -0700 (PDT)
+        id S1727784AbgG0Uvv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jul 2020 16:51:51 -0400
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:9046 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727098AbgG0Uvu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 16:51:50 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5f1f3e590000>; Mon, 27 Jul 2020 13:51:37 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Mon, 27 Jul 2020 13:51:50 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Mon, 27 Jul 2020 13:51:50 -0700
+Received: from HQMAIL111.nvidia.com (172.20.187.18) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 27 Jul
+ 2020 20:51:50 +0000
+Received: from hqnvemgw03.nvidia.com (10.124.88.68) by HQMAIL111.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Mon, 27 Jul 2020 20:51:50 +0000
+Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.168.236]) by hqnvemgw03.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5f1f3e650001>; Mon, 27 Jul 2020 13:51:49 -0700
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <frankc@nvidia.com>, <hverkuil@xs4all.nl>,
+        <sakari.ailus@iki.fi>, <robh+dt@kernel.org>,
+        <helen.koike@collabora.com>
+CC:     <digetx@gmail.com>, <sboyd@kernel.org>,
+        <gregkh@linuxfoundation.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>
+Subject: [RFC PATCH v5 00/14] Support for Tegra video capture from external sensor
+Date:   Mon, 27 Jul 2020 13:57:18 -0700
+Message-ID: <1595883452-17343-1-git-send-email-skomatineni@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
 MIME-Version: 1.0
-References: <20200724213659.273599-1-martin.botka1@gmail.com>
- <20200724213659.273599-2-martin.botka1@gmail.com> <20200727201034.dkc6qkkbte6qeiba@pengutronix.de>
-In-Reply-To: <20200727201034.dkc6qkkbte6qeiba@pengutronix.de>
-From:   Martin Botka <martin.botka1@gmail.com>
-Date:   Mon, 27 Jul 2020 22:56:31 +0200
-Message-ID: <CADQ2G_GxpWk1AK4OQPZZuk=vCmostC4vEGSHjj01WMzFxpD7CA@mail.gmail.com>
-Subject: Re: [PATCH RCC 1/6] pwm: Add different PWM output types support
-To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Fenglin Wu <fenglinw@codeaurora.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-pwm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1595883097; bh=OiCERtwmnSrWrsnJYibLEpiEIKPHiyr+VvQpQKD3bk8=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=f0EbM19V7bPtnkOJkSwn7lQWweg8fjt3ho0TpwROO8ISQLat4KkZmJdN43vtHQVV5
+         aOrgzu/eCFqFmtwpk81WQYkaQ7YW82fzaGciKmlqaP1OHY0jYzomLvamnT9WuXpbhG
+         xt3q4mFwNBP4fSFiVDltXaayrrh/C1HI0iZDgJXWR3U7Jt4EyPrTZYKY5sDkuRTntt
+         lizOIOEf+Z5neFDm+Bmts5XokoprPEB6GEyFpD76xGE80i+mRzW6Ett4JAIhcdti85
+         T81gu6jR76vG1HkigmHgWQq49s8hT01TTUZnNSzCtwkkYxoEzycMV7jqe+wOyd/ZRH
+         Cn2wgsf1+8Enw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mo 27. 7. 2020 at 22:10 Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.=
-de> wrote:
->
-> Hello,
->
-> On Fri, Jul 24, 2020 at 11:36:51PM +0200, Martin Botka wrote:
-> > From: Fenglin Wu <fenglinw@codeaurora.org>
-> >
-> > Normally, PWM channel has fixed output until software request to change
->
-> "fixed" in the sense of "periodic", not "constant", right?
+This series adds support for video capture from external camera sensor to
+Tegra video driver.
 
-Correct.
+Jetson TX1 has camera expansion connector and supports custom camera module
+designed as per TX1 design specification.
 
->
-> > its settings. There are some PWM devices which their outputs could be
-> > changed autonomously according to a predefined pattern programmed in
-> > hardware. Add pwm_output_type enum type to identify these two different
-> > PWM types and add relevant helper functions to set and get PWM output
-> > types and pattern.
->
-> You write "some devices". Which do you have in mind?
+This series also enables camera capture support for Jetson Nano which has
+Raspberry PI camera header.
 
-As can be seen this commit is not authored by me so the commit message
-is from the original author.
-So i don't know what the original author meant here.
-I can only guess that s/he meant all the PWM chips made by Qcom or
-other companies that also have hardware based support for patterns.
+This series is tested with IMX219 camera sensor.
 
->
-> > [...]
-> > diff --git a/drivers/pwm/sysfs.c b/drivers/pwm/sysfs.c
-> > index 2389b8669846..4ee1e81db0bc 100644
-> > --- a/drivers/pwm/sysfs.c
-> > +++ b/drivers/pwm/sysfs.c
->
-> adapting the sysfs stuff should be done in a separate step.
+This series include,
 
-By that you mean in separate commit right ?
+VI I2C related fixes
+- Camera sensor programming happens through VI I2C which is on host1x bus.
+- These patches includes device tree and I2C driver fixes for VI I2C.
 
->
-> > @@ -215,11 +215,60 @@ static ssize_t capture_show(struct device *child,
-> >       return sprintf(buf, "%u %u\n", result.period, result.duty_cycle);
-> >  }
-> >
-> > +static ssize_t output_type_show(struct device *child,
-> > +                                                     struct device_att=
-ribute *attr,
-> > +                                                     char *buf)
-> > +{
-> > +     const struct pwm_device *pwm =3D child_to_pwm_device(child);
-> > +     const char *output_type =3D "unknown";
-> > +     struct pwm_state state;
-> > +
-> > +     pwm_get_state(pwm, &state);
-> > +     switch (state.output_type) {
-> > +     case PWM_OUTPUT_FIXED:
-> > +             output_type =3D "fixed";
-> > +             break;
-> > +     case PWM_OUTPUT_MODULATED:
-> > +             output_type =3D "modulated";
-> > +             break;
-> > +     default:
-> > +             break;
-> > +     }
-> > +
-> > +     return snprintf(buf, PAGE_SIZE, "%s\n", output_type);
-> > +}
-> > +
-> > +static ssize_t output_type_store(struct device *child,
-> > +                                                             struct de=
-vice_attribute *attr,
-> > +                                                             const cha=
-r *buf, size_t size)
->
-> Indention is broken here. Please align to the opening (.
+Tegra video driver updates
+- TPG Vs Non-TPG based on Kconfig
+- Support for external sensor video capture based on device graph from DT.
+- Support for selection ioctl operations
+- Tegra MIPI CSI pads calibration
+- CSI T-CLK and T-HS settle time computation based on clock rates.
 
-OK. Will do.
+Host1x driver updates
+- Adds API to allow creating mipi device for specific device node.
+- Splits MIPI pads calibrate start and waiting for calibration to be done.
 
->
-> > +{
-> > +     struct pwm_export *export =3D child_to_pwm_export(child);
-> > +     struct pwm_device *pwm =3D export->pwm;
-> > +     struct pwm_state state;
-> > +     int ret =3D -EINVAL;
-> > +
-> > +     mutex_lock(&export->lock);
-> > +     pwm_get_state(pwm, &state);
-> > +     if (sysfs_streq(buf, "fixed"))
-> > +             state.output_type =3D PWM_OUTPUT_FIXED;
-> > +     else if (sysfs_streq(buf, "modulated"))
-> > +             state.output_type =3D PWM_OUTPUT_MODULATED;
-> > +     else
-> > +             goto unlock;
-> > +
-> > +     ret =3D pwm_apply_state(pwm, &state);
-> > +unlock:
-> > +     mutex_unlock(&export->lock);
-> > +
-> > +     return ret ? : size;
-> > +}
-> > +
-> >  static DEVICE_ATTR_RW(period);
-> >  static DEVICE_ATTR_RW(duty_cycle);
-> >  static DEVICE_ATTR_RW(enable);
-> >  static DEVICE_ATTR_RW(polarity);
-> >  static DEVICE_ATTR_RO(capture);
-> > +static DEVICE_ATTR_RW(output_type);
-> >
-> >  static struct attribute *pwm_attrs[] =3D {
-> >       &dev_attr_period.attr,
-> > @@ -227,6 +276,7 @@ static struct attribute *pwm_attrs[] =3D {
-> >       &dev_attr_enable.attr,
-> >       &dev_attr_polarity.attr,
-> >       &dev_attr_capture.attr,
-> > +     &dev_attr_output_type.attr,
-> >       NULL
-> >  };
-> >  ATTRIBUTE_GROUPS(pwm);
-> > diff --git a/include/linux/pwm.h b/include/linux/pwm.h
-> > index 2635b2a55090..10a102efadc4 100644
-> > --- a/include/linux/pwm.h
-> > +++ b/include/linux/pwm.h
-> > @@ -48,6 +48,29 @@ enum {
-> >       PWMF_EXPORTED =3D 1 << 1,
-> >  };
-> >
-> > +/*
-> > + * enum pwm_output_type - output type of the PWM signal
-> > + * @PWM_OUTPUT_FIXED: PWM output is fixed until a change request
-> > + * @PWM_OUTPUT_MODULATED: PWM output is modulated in hardware
-> > + * autonomously with a predefined pattern
-> > + */
-> > +enum pwm_output_type {
-> > +     PWM_OUTPUT_FIXED =3D 1 << 0,
-> > +     PWM_OUTPUT_MODULATED =3D 1 << 1,
-> > +};
-> > +
-> > +/*
-> > + * struct pwm_output_pattern - PWM duty pattern for MODULATED duty typ=
-e
-> > + * @duty_pattern: PWM duty cycles in the pattern for duty modulation
-> > + * @num_entries: number of entries in the pattern
-> > + * @cycles_per_duty: number of PWM period cycles an entry stays at
-> > + */
-> > +struct pwm_output_pattern {
-> > +     unsigned int *duty_pattern;
-> > +     unsigned int num_entries;
-> > +     unsigned int cycles_per_duty;
-> > +};
->
-> I don't understand the semantics here. (i.e. how does a given
-> pwm_output_pattern map to the intended wave form?)
-
-I did not understand that part either.
-It's not uncommon for Qcom to have some stuff hidden like this in
-other drivers that we have in downstream (Tho they mainly hide that in
-pre-compiled binary blobs).
-Here it's either the missing PBS driver from downstream that i want to
-send later in separate series.
-Or that it's fully done in hardware. Unlikely but you never know with Qcom.
+Device tree updates
+- Adds camera connector 2V8, 1V8, 1V2 regulator supplies to Jetson TX1 DT.
+- Enabled VI and CSI support in Jetson Nano DT.
 
 
->
-> > +
-> >  /*
-> >   * struct pwm_state - state of a PWM channel
-> >   * @period: PWM period (in nanoseconds)
-> > @@ -59,6 +82,8 @@ struct pwm_state {
-> >       unsigned int period;
-> >       unsigned int duty_cycle;
-> >       enum pwm_polarity polarity;
-> > +     enum pwm_output_type output_type;
-> > +     struct pwm_output_pattern *output_pattern;
-> >       bool enabled;
-> >  };
-> >
-> > @@ -146,6 +171,26 @@ static inline enum pwm_polarity pwm_get_polarity(c=
-onst struct pwm_device *pwm)
-> >       return state.polarity;
-> >  }
-> >
-> > +static inline enum pwm_output_type pwm_get_output_type(
-> > +                             const struct pwm_device *pwm)
-> > +{
-> > +     struct pwm_state state;
-> > +
-> > +     pwm_get_state(pwm, &state);
-> > +
-> > +     return state.output_type;
-> > +}
-> > +
-> > +static inline struct pwm_output_pattern *pwm_get_output_pattern(
-> > +                             struct pwm_device *pwm)
-> > +{
-> > +     struct pwm_state state;
-> > +
-> > +     pwm_get_state(pwm, &state);
-> > +
-> > +     return pwm->state.output_pattern ?: NULL;
->
-> Who is the owner of the data behind this pointer? Is it expected to be
-> valid only until the next call to change the output? What happens if the
-> caller modifies the data returned?
->
-> > +}
-> > +
-> >  static inline void pwm_get_args(const struct pwm_device *pwm,
-> >                               struct pwm_args *args)
-> >  {
-> > @@ -254,6 +299,9 @@ pwm_set_relative_duty_cycle(struct pwm_state *state=
-, unsigned int duty_cycle,
-> >   * @set_polarity: configure the polarity of this PWM
-> >   * @enable: enable PWM output toggling
-> >   * @disable: disable PWM output toggling
-> > + * @get_output_type_supported: get the supported output type
-> > + * @set_output_type: set PWM output type
-> > + * @set_output_pattern: set the pattern for the modulated output
-> >   */
-> >  struct pwm_ops {
-> >       int (*request)(struct pwm_chip *chip, struct pwm_device *pwm);
-> > @@ -273,6 +321,13 @@ struct pwm_ops {
-> >                           enum pwm_polarity polarity);
-> >       int (*enable)(struct pwm_chip *chip, struct pwm_device *pwm);
-> >       void (*disable)(struct pwm_chip *chip, struct pwm_device *pwm);
-> > +     int (*get_output_type_supported)(struct pwm_chip *chip,
-> > +                         struct pwm_device *pwm);
-> > +     int (*set_output_type)(struct pwm_chip *chip, struct pwm_device *=
-pwm,
-> > +                         enum pwm_output_type output_type);
-> > +     int (*set_output_pattern)(struct pwm_chip *chip,
-> > +                         struct pwm_device *pwm,
-> > +                         struct pwm_output_pattern *output_pattern);
->
-> This doesn't match the atomic approach that we're following since the
-> introduction of .apply. Please don't add new non-atomic callbacks.
->
-> >  };
-> >
-> >  /**
-> > @@ -318,6 +373,20 @@ void pwm_free(struct pwm_device *pwm);
-> >  int pwm_apply_state(struct pwm_device *pwm, const struct pwm_state *st=
-ate);
-> >  int pwm_adjust_config(struct pwm_device *pwm);
-> >
-> > +/*
-> > + * pwm_output_type_support()
-> > + * @pwm: PWM device
-> > + *
-> > + * Returns:  output types supported by the PWM device
-> > + */
-> > +static inline int pwm_get_output_type_supported(struct pwm_device *pwm=
-)
-> > +{
-> > +     if (pwm->chip->ops->get_output_type_supported !=3D NULL)
-> > +             return pwm->chip->ops->get_output_type_supported(pwm->chi=
-p, pwm);
-> > +     else
-> > +             return PWM_OUTPUT_FIXED;
-> > +}
->
-> I don't like this "advertising" for specific functions. I'd prefer to
-> handle this in .apply(), fix all drivers to return -ESOMETHING when the
-> request cannot be fulfilled.
+Delta between patch versions:
+[v5]:	Includes below minor change based on v4 feedback
+	Patch-0012: renames APIs to use calibration instead of calibrate.
 
-I will have to disagree on this one. As the functions are called in
-multiple places it would just make mess in the driver.
-As the driver is even now not exactly the definition of clean driver i
-would not like to make it even more messy.
+	Note:
+	Patch-0010 has compilation dependency on
+	https://patchwork.kernel.org/patch/11659521/
 
->
-> Having said that I wonder if this output pattern is a common enough
-> property to add support for it in the PWM framework.
->
+[v4]:	Includes below fix based on v3 feedback
+	- Patches are based on latest linux-next.
+	- With split of tegra_mipi_calibrate() and tegra_mipi_wait(), mipi
+	  clock is not left enabled till calibration done. This series adds
+	  a patch to fix this by keeping clock enabled till calibration is
+	  done.
 
-I have gotten an email from Guru Das Srinagesh regarding this exact
-issue you are pointing to. Yes the output pattern will be dropped in
-V2.
+	Note:
+	Patch-0010 has compilation dependency on
+	https://patchwork.kernel.org/patch/11659521/
 
-Best Regards,
-Martin
+[v3]:	Includes v2 feedback
+	- Uses separate helper function for retrieving remote csi subdevice
+	  and source subdevice.
+	- Added check for presence of subdevice ops set/get_selection
+	- dropped vb2_queue_release from driver and using
+	  vb2_video_unregister_device instead of video_unregister_device.
+	- video device register should happen in the last after all video
+	  device related setup is done in the driver. This is being addressed
+	  in below RFC patch. Once proper implementation of this is available
+	  will update Tegra video driver to use split APIs and do all setup
+	  prior to device register. Added this as TODO in the driver.
+	  https://www.spinics.net/lists/linux-media/msg172761.html
+
+	Note:
+	Patch-0012 has compilation dependency on
+	https://patchwork.kernel.org/patch/11659521/
+
+
+[v2]:	Includes below changes based on v1 feedback
+	- dt-binding document and the driver update for device graph to use
+	  separate ports for sink endpoint and source endpoint for csi.
+	- Use data-lanes endpoint property for csi.
+	- Update tegra_mipi_request() to take device node pointer argument
+	  rather than adding extra API.
+	- Remove checking for clk pointer before clk_disable.
+
+Sowjanya Komatineni (14):
+  i2c: tegra: Don't mark VI I2C as IRQ safe runtime PM
+  i2c: tegra: Remove NULL pointer check before
+    clk_enable/disable/prepare/unprepare
+  i2c: tegra: Fix the error path in tegra_i2c_runtime_resume
+  i2c: tegra: Fix runtime resume to re-init VI I2C
+  i2c: tegra: Avoid tegra_i2c_init_dma() for Tegra210 vi i2c
+  media: tegra-video: Fix channel format alignment
+  media: tegra-video: Enable TPG based on kernel config
+  media: tegra-video: Update format lookup to offset based
+  dt-bindings: tegra: Update VI and CSI bindings with port info
+  media: tegra-video: Add support for external sensor capture
+  media: tegra-video: Add support for selection ioctl ops
+  gpu: host1x: mipi: Keep MIPI clock enabled till calibration is done
+  media: tegra-video: Add CSI MIPI pads calibration
+  media: tegra-video: Compute settle times based on the clock rate
+
+ .../display/tegra/nvidia,tegra20-host1x.txt        |  92 ++-
+ drivers/gpu/drm/tegra/dsi.c                        |   4 +-
+ drivers/gpu/host1x/mipi.c                          |  19 +-
+ drivers/i2c/busses/i2c-tegra.c                     | 101 +--
+ drivers/staging/media/tegra-video/Kconfig          |   7 +
+ drivers/staging/media/tegra-video/TODO             |   6 -
+ drivers/staging/media/tegra-video/csi.c            | 258 ++++++-
+ drivers/staging/media/tegra-video/csi.h            |   8 +
+ drivers/staging/media/tegra-video/tegra210.c       |  25 +-
+ drivers/staging/media/tegra-video/vi.c             | 800 +++++++++++++++++++--
+ drivers/staging/media/tegra-video/vi.h             |  25 +-
+ drivers/staging/media/tegra-video/video.c          |  23 +-
+ include/linux/host1x.h                             |   5 +-
+ 13 files changed, 1224 insertions(+), 149 deletions(-)
+
+-- 
+2.7.4
+
