@@ -2,498 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D92B22E81D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 10:43:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36E8B22E835
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 10:52:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727814AbgG0InA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jul 2020 04:43:00 -0400
-Received: from esa4.microchip.iphmx.com ([68.232.154.123]:44405 "EHLO
-        esa4.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727804AbgG0Im7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 04:42:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1595839377; x=1627375377;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=rCGT4N1yOPlxvY9suPfbdkB7M2NYTVLpQxsrCKbtlPs=;
-  b=dsxXANENGlOUbgYFMG0NpE3MEpJ+Q1D4PrAJKIJex0RwRVdxdvgH+qPa
-   BU8QeG7wG92VvkbnQ6UxMgWamz6hlGfumzQm1IaT1k/tjAwdj+7jEwnrM
-   c/ZjtX1arQeDl27sIBBmH/ukDKnBkAWIQEpP1h7FIqkt42ZoJTzQ3lXNM
-   bpMjpB7WAcjvivPDXISr/KeiPxqgvIUJ2osGuaeN9JSD+o1q905LxEpA/
-   vCOpxsKThPJnFnx2jx0Y3UuO4mZcB5yrNSvbLQY02LklsjqTM7NkmWysx
-   TLJgIjLPIwjdN0g6fe75I2lpvtHkNFF5ln2deIvJbHbu9z5rTj0wDOnm4
-   Q==;
-IronPort-SDR: LsgXvG6LbuYeONzwBFRI/v1P2AJ7VaSCN2dQ09JSKoa9OvFAByaVOImcftLvIMPudbvy5vqWpy
- CTf133/wEdz6FCVeHGeeUJNp5zJbep2WVAmBs1+SQGrKCrEvqbGhJxoDsIIyGiwh84qR8Zutgf
- J97r9bC6GXRikiPIQqUYVM3cdFW7W2g0Y4SOzwueNhUofSioSgtGGY3QwQKH9soJk9D8h1rgNb
- CGPM4QzWiPgbO8LJT9yJmTgW3Lb5utMFJGYI8DyTQfa9s7TmRPmeX7TeJGF4rFt/ydpwTOZgB0
- rR4=
-X-IronPort-AV: E=Sophos;i="5.75,402,1589266800"; 
-   d="scan'208";a="81360590"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Jul 2020 01:42:56 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Mon, 27 Jul 2020 01:42:12 -0700
-Received: from soft-dev15.microsemi.net (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Mon, 27 Jul 2020 01:42:51 -0700
-From:   Lars Povlsen <lars.povlsen@microchip.com>
-To:     SoC Team <soc@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-CC:     Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Olof Johansson <olof@lixom.net>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
+        id S1726140AbgG0IwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jul 2020 04:52:10 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:50531 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726302AbgG0IwJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 04:52:09 -0400
+X-UUID: 4faa5b68767544c988f8a5078b80dc23-20200727
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=q34zqKlfJT1egqrpS4Z0LW4UkZCQFjyQJ1hrO1Kt++w=;
+        b=jdh9vUaEP2PlzjKm/2oker36hCtrU4F+ZAjB2yirdFYudZ0SNBA/h8ra30CPxk0Ue1jRLD4gswLnpoiX55DNLLt/CyNcWkR7bbJP6M7fWkjviEmKFUfhgUhXzYw5KnBSmjHDkaW1c8U96XW23RwYiLj5bdomeApnwD0X0MVlMbg=;
+X-UUID: 4faa5b68767544c988f8a5078b80dc23-20200727
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <chao.hao@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1620473155; Mon, 27 Jul 2020 16:52:02 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 27 Jul 2020 16:51:59 +0800
+Received: from [10.15.20.246] (10.15.20.246) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 27 Jul 2020 16:51:58 +0800
+Message-ID: <1595839778.2350.4.camel@mbjsdccf07>
+Subject: Re: [PATCH 11/21] iommu/mediatek: Add power-domain operation
+From:   chao hao <Chao.Hao@mediatek.com>
+To:     Yong Wu <yong.wu@mediatek.com>
+CC:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: [PATCH v4 10/10] arm64: dts: sparx5: Add i2c devices, i2c muxes
-Date:   Mon, 27 Jul 2020 10:42:11 +0200
-Message-ID: <20200727084211.6632-11-lars.povlsen@microchip.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200727084211.6632-1-lars.povlsen@microchip.com>
-References: <20200727084211.6632-1-lars.povlsen@microchip.com>
+        <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux-foundation.org>, <youlin.pei@mediatek.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        <anan.sun@mediatek.com>, <cui.zhang@mediatek.com>,
+        <ming-fan.chen@mediatek.com>, chao hao <"Chao. Hao"@mediatek.com>
+Date:   Mon, 27 Jul 2020 16:49:38 +0800
+In-Reply-To: <20200711064846.16007-12-yong.wu@mediatek.com>
+References: <20200711064846.16007-1-yong.wu@mediatek.com>
+         <20200711064846.16007-12-yong.wu@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds i2c devices and muxes to the Sparx5 reference boards.
-
-Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
----
- arch/arm64/boot/dts/microchip/sparx5.dtsi     |  38 +++
- .../boot/dts/microchip/sparx5_pcb125.dts      |   4 +
- .../dts/microchip/sparx5_pcb134_board.dtsi    | 237 ++++++++++++++++++
- .../dts/microchip/sparx5_pcb135_board.dtsi    |  77 ++++++
- .../boot/dts/microchip/sparx5_pcb_common.dtsi |   4 +
- 5 files changed, 360 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-index 161846caf9c94..cf712e80615da 100644
---- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-@@ -170,6 +170,44 @@ uart2_pins: uart2-pins {
- 				pins = "GPIO_26", "GPIO_27";
- 				function = "uart2";
- 			};
-+
-+			i2c_pins: i2c-pins {
-+				pins = "GPIO_14", "GPIO_15";
-+				function = "twi";
-+			};
-+
-+			i2c2_pins: i2c2-pins {
-+				pins = "GPIO_28", "GPIO_29";
-+				function = "twi2";
-+			};
-+		};
-+
-+		i2c0: i2c@600101000 {
-+			compatible = "snps,designware-i2c";
-+			status = "disabled";
-+			pinctrl-0 = <&i2c_pins>;
-+			pinctrl-names = "default";
-+			reg = <0x6 0x00101000 0x100>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
-+			i2c-sda-hold-time-ns = <300>;
-+			clock-frequency = <100000>;
-+			clocks = <&ahb_clk>;
-+		};
-+
-+		i2c1: i2c@600103000 {
-+			compatible = "snps,designware-i2c";
-+			status = "disabled";
-+			pinctrl-0 = <&i2c2_pins>;
-+			pinctrl-names = "default";
-+			reg = <0x6 0x00103000 0x100>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
-+			i2c-sda-hold-time-ns = <300>;
-+			clock-frequency = <100000>;
-+			clocks = <&ahb_clk>;
- 		};
- 	};
- };
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts b/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
-index d7f985f7ee020..91ee5b6cfc37a 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
-@@ -15,3 +15,7 @@ memory@0 {
- 		reg = <0x00000000 0x00000000 0x10000000>;
- 	};
- };
-+
-+&i2c1 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi b/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-index 9b2aec400101b..18a535a043686 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-@@ -7,9 +7,246 @@
- #include "sparx5_pcb_common.dtsi"
- 
- /{
-+	aliases {
-+	    i2c0   = &i2c0;
-+	    i2c100 = &i2c100;
-+	    i2c101 = &i2c101;
-+	    i2c102 = &i2c102;
-+	    i2c103 = &i2c103;
-+	    i2c104 = &i2c104;
-+	    i2c105 = &i2c105;
-+	    i2c106 = &i2c106;
-+	    i2c107 = &i2c107;
-+	    i2c108 = &i2c108;
-+	    i2c109 = &i2c109;
-+	    i2c110 = &i2c110;
-+	    i2c111 = &i2c111;
-+	    i2c112 = &i2c112;
-+	    i2c113 = &i2c113;
-+	    i2c114 = &i2c114;
-+	    i2c115 = &i2c115;
-+	    i2c116 = &i2c116;
-+	    i2c117 = &i2c117;
-+	    i2c118 = &i2c118;
-+	    i2c119 = &i2c119;
-+	};
-+
- 	gpio-restart {
- 		compatible = "gpio-restart";
- 		gpios = <&gpio 37 GPIO_ACTIVE_LOW>;
- 		priority = <200>;
- 	};
- };
-+
-+&gpio {
-+	i2cmux_pins_i: i2cmux-pins-i {
-+	       pins = "GPIO_16", "GPIO_17", "GPIO_18", "GPIO_19",
-+		      "GPIO_20", "GPIO_22", "GPIO_36", "GPIO_35",
-+		      "GPIO_50", "GPIO_51", "GPIO_56", "GPIO_57";
-+		function = "twi_scl_m";
-+		output-low;
-+	};
-+	i2cmux_0: i2cmux-0 {
-+		pins = "GPIO_16";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_1: i2cmux-1 {
-+		pins = "GPIO_17";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_2: i2cmux-2 {
-+		pins = "GPIO_18";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_3: i2cmux-3 {
-+		pins = "GPIO_19";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_4: i2cmux-4 {
-+		pins = "GPIO_20";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_5: i2cmux-5 {
-+		pins = "GPIO_22";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_6: i2cmux-6 {
-+		pins = "GPIO_36";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_7: i2cmux-7 {
-+		pins = "GPIO_35";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_8: i2cmux-8 {
-+		pins = "GPIO_50";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_9: i2cmux-9 {
-+		pins = "GPIO_51";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_10: i2cmux-10 {
-+		pins = "GPIO_56";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_11: i2cmux-11 {
-+		pins = "GPIO_57";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+};
-+
-+&axi {
-+	i2c0_imux: i2c0-imux@0 {
-+		compatible = "i2c-mux-pinctrl";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-parent = <&i2c0>;
-+	};
-+	i2c0_emux: i2c0-emux@0 {
-+		compatible = "i2c-mux-gpio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-parent = <&i2c0>;
-+	};
-+};
-+
-+&i2c0_imux {
-+	pinctrl-names =
-+		"i2c100", "i2c101", "i2c102", "i2c103",
-+		"i2c104", "i2c105", "i2c106", "i2c107",
-+		"i2c108", "i2c109", "i2c110", "i2c111", "idle";
-+	pinctrl-0 = <&i2cmux_0>;
-+	pinctrl-1 = <&i2cmux_1>;
-+	pinctrl-2 = <&i2cmux_2>;
-+	pinctrl-3 = <&i2cmux_3>;
-+	pinctrl-4 = <&i2cmux_4>;
-+	pinctrl-5 = <&i2cmux_5>;
-+	pinctrl-6 = <&i2cmux_6>;
-+	pinctrl-7 = <&i2cmux_7>;
-+	pinctrl-8 = <&i2cmux_8>;
-+	pinctrl-9 = <&i2cmux_9>;
-+	pinctrl-10 = <&i2cmux_10>;
-+	pinctrl-11 = <&i2cmux_11>;
-+	pinctrl-12 = <&i2cmux_pins_i>;
-+	i2c100: i2c_sfp1 {
-+		reg = <0x0>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c101: i2c_sfp2 {
-+		reg = <0x1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c102: i2c_sfp3 {
-+		reg = <0x2>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c103: i2c_sfp4 {
-+		reg = <0x3>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c104: i2c_sfp5 {
-+		reg = <0x4>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c105: i2c_sfp6 {
-+		reg = <0x5>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c106: i2c_sfp7 {
-+		reg = <0x6>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c107: i2c_sfp8 {
-+		reg = <0x7>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c108: i2c_sfp9 {
-+		reg = <0x8>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c109: i2c_sfp10 {
-+		reg = <0x9>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c110: i2c_sfp11 {
-+		reg = <0xa>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c111: i2c_sfp12 {
-+		reg = <0xb>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+};
-+
-+&i2c0_emux {
-+	mux-gpios = <&gpio 55 GPIO_ACTIVE_HIGH
-+		     &gpio 60 GPIO_ACTIVE_HIGH
-+		     &gpio 61 GPIO_ACTIVE_HIGH
-+		     &gpio 54 GPIO_ACTIVE_HIGH>;
-+	idle-state = <0x8>;
-+	i2c112: i2c_sfp13 {
-+		reg = <0x0>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c113: i2c_sfp14 {
-+		reg = <0x1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c114: i2c_sfp15 {
-+		reg = <0x2>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c115: i2c_sfp16 {
-+		reg = <0x3>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c116: i2c_sfp17 {
-+		reg = <0x4>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c117: i2c_sfp18 {
-+		reg = <0x5>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c118: i2c_sfp19 {
-+		reg = <0x6>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c119: i2c_sfp20 {
-+		reg = <0x7>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi b/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-index 9b2aec400101b..d71f11a10b3d2 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-@@ -7,9 +7,86 @@
- #include "sparx5_pcb_common.dtsi"
- 
- /{
-+	aliases {
-+	    i2c0   = &i2c0;
-+	    i2c152 = &i2c152;
-+	    i2c153 = &i2c153;
-+	    i2c154 = &i2c154;
-+	    i2c155 = &i2c155;
-+	};
-+
- 	gpio-restart {
- 		compatible = "gpio-restart";
- 		gpios = <&gpio 37 GPIO_ACTIVE_LOW>;
- 		priority = <200>;
- 	};
- };
-+
-+&gpio {
-+	i2cmux_pins_i: i2cmux-pins-i {
-+	       pins = "GPIO_35", "GPIO_36",
-+		      "GPIO_50", "GPIO_51";
-+		function = "twi_scl_m";
-+		output-low;
-+	};
-+	i2cmux_s29: i2cmux-0 {
-+		pins = "GPIO_35";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_s30: i2cmux-1 {
-+		pins = "GPIO_36";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_s31: i2cmux-2 {
-+		pins = "GPIO_50";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_s32: i2cmux-3 {
-+		pins = "GPIO_51";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+};
-+
-+&axi {
-+	i2c0_imux: i2c0-imux@0 {
-+		compatible = "i2c-mux-pinctrl";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-parent = <&i2c0>;
-+	};
-+};
-+
-+&i2c0_imux {
-+	pinctrl-names =
-+		"i2c152", "i2c153", "i2c154", "i2c155",
-+		"idle";
-+	pinctrl-0 = <&i2cmux_s29>;
-+	pinctrl-1 = <&i2cmux_s30>;
-+	pinctrl-2 = <&i2cmux_s31>;
-+	pinctrl-3 = <&i2cmux_s32>;
-+	pinctrl-4 = <&i2cmux_pins_i>;
-+	i2c152: i2c_sfp1 {
-+		reg = <0x0>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c153: i2c_sfp2 {
-+		reg = <0x1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c154: i2c_sfp3 {
-+		reg = <0x2>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+	i2c155: i2c_sfp4 {
-+		reg = <0x3>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb_common.dtsi b/arch/arm64/boot/dts/microchip/sparx5_pcb_common.dtsi
-index 1f99d0db1284f..9d1a082de3e29 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb_common.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb_common.dtsi
-@@ -13,3 +13,7 @@ &uart0 {
- &uart1 {
- 	status = "okay";
- };
-+
-+&i2c0 {
-+	status = "okay";
-+};
--- 
-2.27.0
+T24gU2F0LCAyMDIwLTA3LTExIGF0IDE0OjQ4ICswODAwLCBZb25nIFd1IHdyb3RlOg0KPiBJbiB0
+aGUgcHJldmlvdXMgU29DLCB0aGUgTTRVIEhXIGlzIGluIHRoZSBFTUkgcG93ZXIgZG9tYWluIHdo
+aWNoIGlzDQo+IGFsd2F5cyBvbi4gdGhlIGxhdGVzdCBNNFUgaXMgaW4gdGhlIGRpc3BsYXkgcG93
+ZXIgZG9tYWluIHdoaWNoIG1heSBiZQ0KPiB0dXJuZWQgb24vb2ZmLCB0aHVzIHdlIGhhdmUgdG8g
+YWRkIHBtX3J1bnRpbWUgaW50ZXJmYWNlIGZvciBpdC4NCj4gDQo+IHdlIHNob3VsZCBlbmFibGUg
+aXRzIHBvd2VyIGJlZm9yZSBNNFUgaHcgaW5pdGlhbC4gYW5kIGRpc2FibGUgaXQgYWZ0ZXIgSFcN
+Cj4gaW5pdGlhbGl6ZS4NCj4gDQo+IFdoZW4gdGhlIGVuZ2luZSB3b3JrLCB0aGUgZW5naW5lIGFs
+d2F5cyBlbmFibGUgdGhlIHBvd2VyIGFuZCBjbG9ja3MgZm9yDQo+IHNtaS1sYXJiL3NtaS1jb21t
+b24sIHRoZW4gdGhlIE00VSdzIHBvd2VyIHdpbGwgYWx3YXlzIGJlIHBvd2VyZWQgb24NCj4gYXV0
+b21hdGljYWxseSB2aWEgdGhlIGRldmljZSBsaW5rIHdpdGggc21pLWNvbW1vbi4NCj4gDQo+IE5v
+dGU6IHdlIGRvbid0IGVuYWJsZSB0aGUgTTRVIHBvd2VyIGluIGlvbW11X21hcC91bm1hcCBmb3Ig
+dGxiIGZsdXNoLg0KPiBJZiBpdHMgcG93ZXIgYWxyZWFkeSBpcyBvbiwgb2YgY291cnNlIGl0IGlz
+IG9rLiBpZiB0aGUgcG93ZXIgaXMgb2ZmLA0KPiB0aGUgbWFpbiB0bGIgd2lsbCBiZSByZXNldCB3
+aGlsZSBNNFUgcG93ZXIgb24sIHRodXMgdGhlIHRsYiBmbHVzaCB3aGlsZQ0KPiBtNHUgcG93ZXIg
+b2ZmIGlzIHVubmVjZXNzYXJ5LCBqdXN0IHNraXAgaXQuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBZ
+b25nIFd1IDx5b25nLnd1QG1lZGlhdGVrLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2lvbW11L210
+a19pb21tdS5jIHwgNTQgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKy0tLS0tDQo+
+ICAxIGZpbGUgY2hhbmdlZCwgNDcgaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkNCj4gDQo+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2lvbW11L210a19pb21tdS5jIGIvZHJpdmVycy9pb21tdS9t
+dGtfaW9tbXUuYw0KPiBpbmRleCA5MzFmZGQxOWM4ZjMuLjAzYTZkNjZmNGJlZiAxMDA2NDQNCj4g
+LS0tIGEvZHJpdmVycy9pb21tdS9tdGtfaW9tbXUuYw0KPiArKysgYi9kcml2ZXJzL2lvbW11L210
+a19pb21tdS5jDQo+IEBAIC0yMCw2ICsyMCw3IEBADQo+ICAjaW5jbHVkZSA8bGludXgvb2ZfaXJx
+Lmg+DQo+ICAjaW5jbHVkZSA8bGludXgvb2ZfcGxhdGZvcm0uaD4NCj4gICNpbmNsdWRlIDxsaW51
+eC9wbGF0Zm9ybV9kZXZpY2UuaD4NCj4gKyNpbmNsdWRlIDxsaW51eC9wbV9ydW50aW1lLmg+DQo+
+ICAjaW5jbHVkZSA8bGludXgvc2xhYi5oPg0KPiAgI2luY2x1ZGUgPGxpbnV4L3NwaW5sb2NrLmg+
+DQo+ICAjaW5jbHVkZSA8YXNtL2JhcnJpZXIuaD4NCj4gQEAgLTE3Miw2ICsxNzMsMTkgQEAgc3Rh
+dGljIHN0cnVjdCBtdGtfaW9tbXVfZG9tYWluICp0b19tdGtfZG9tYWluKHN0cnVjdCBpb21tdV9k
+b21haW4gKmRvbSkNCj4gIAlyZXR1cm4gY29udGFpbmVyX29mKGRvbSwgc3RydWN0IG10a19pb21t
+dV9kb21haW4sIGRvbWFpbik7DQo+ICB9DQo+ICANCj4gK3N0YXRpYyBpbnQgbXRrX2lvbW11X3Jw
+bV9nZXQoc3RydWN0IGRldmljZSAqZGV2KQ0KPiArew0KPiArCWlmIChwbV9ydW50aW1lX2VuYWJs
+ZWQoZGV2KSkNCj4gKwkJcmV0dXJuIHBtX3J1bnRpbWVfZ2V0X3N5bmMoZGV2KTsNCj4gKwlyZXR1
+cm4gMDsNCj4gK30NCj4gKw0KPiArc3RhdGljIHZvaWQgbXRrX2lvbW11X3JwbV9wdXQoc3RydWN0
+IGRldmljZSAqZGV2KQ0KPiArew0KPiArCWlmIChwbV9ydW50aW1lX2VuYWJsZWQoZGV2KSkNCj4g
+KwkJcG1fcnVudGltZV9wdXRfYXV0b3N1c3BlbmQoZGV2KTsNCj4gK30NCj4gKw0KPiAgc3RhdGlj
+IHZvaWQgbXRrX2lvbW11X3RsYl9mbHVzaF9hbGwodm9pZCAqY29va2llKQ0KPiAgew0KPiAgCXN0
+cnVjdCBtdGtfaW9tbXVfZGF0YSAqZGF0YSA9IGNvb2tpZTsNCj4gQEAgLTE5Myw2ICsyMDcsMTEg
+QEAgc3RhdGljIHZvaWQgbXRrX2lvbW11X3RsYl9mbHVzaF9yYW5nZV9zeW5jKHVuc2lnbmVkIGxv
+bmcgaW92YSwgc2l6ZV90IHNpemUsDQo+ICAJdTMyIHRtcDsNCj4gIA0KPiAgCWZvcl9lYWNoX200
+dShkYXRhKSB7DQo+ICsJCS8qIHNraXAgdGxiIGZsdXNoIHdoZW4gcG0gaXMgbm90IGFjdGl2ZSAq
+Lw0KPiArCQlpZiAocG1fcnVudGltZV9lbmFibGVkKGRhdGEtPmRldikgJiYNCj4gKwkJICAgICFw
+bV9ydW50aW1lX2FjdGl2ZShkYXRhLT5kZXYpKQ0KPiArCQkJY29udGludWU7DQo+ICsNCj4gIAkJ
+c3Bpbl9sb2NrX2lycXNhdmUoJmRhdGEtPnRsYl9sb2NrLCBmbGFncyk7DQo+ICAJCXdyaXRlbF9y
+ZWxheGVkKEZfSU5WTERfRU4xIHwgRl9JTlZMRF9FTjAsDQo+ICAJCQkgICAgICAgZGF0YS0+YmFz
+ZSArIGRhdGEtPnBsYXRfZGF0YS0+aW52X3NlbF9yZWcpOw0KPiBAQCAtMzc3LDE1ICszOTYsMjAg
+QEAgc3RhdGljIGludCBtdGtfaW9tbXVfYXR0YWNoX2RldmljZShzdHJ1Y3QgaW9tbXVfZG9tYWlu
+ICpkb21haW4sDQo+ICB7DQo+ICAJc3RydWN0IG10a19pb21tdV9kYXRhICpkYXRhID0gZGV2X2lv
+bW11X3ByaXZfZ2V0KGRldik7DQo+ICAJc3RydWN0IG10a19pb21tdV9kb21haW4gKmRvbSA9IHRv
+X210a19kb21haW4oZG9tYWluKTsNCj4gKwlpbnQgcmV0Ow0KPiAgDQo+ICAJaWYgKCFkYXRhKQ0K
+PiAgCQlyZXR1cm4gLUVOT0RFVjsNCj4gIA0KPiAgCS8qIFVwZGF0ZSB0aGUgcGd0YWJsZSBiYXNl
+IGFkZHJlc3MgcmVnaXN0ZXIgb2YgdGhlIE00VSBIVyAqLw0KPiAgCWlmICghZGF0YS0+bTR1X2Rv
+bSkgew0KPiArCQlyZXQgPSBtdGtfaW9tbXVfcnBtX2dldChkZXYpOw0KPiArCQlpZiAocmV0IDwg
+MCkNCj4gKwkJCXJldHVybiByZXQ7DQo+ICAJCWRhdGEtPm00dV9kb20gPSBkb207DQo+ICAJCXdy
+aXRlbChkb20tPmNmZy5hcm1fdjdzX2NmZy50dGJyICYgTU1VX1BUX0FERFJfTUFTSywNCj4gIAkJ
+ICAgICAgIGRhdGEtPmJhc2UgKyBSRUdfTU1VX1BUX0JBU0VfQUREUik7DQo+ICsJCW10a19pb21t
+dV9ycG1fcHV0KGRldik7DQo+ICAJfQ0KPiAgDQo+ICAJbXRrX2lvbW11X2NvbmZpZyhkYXRhLCBk
+ZXYsIHRydWUpOw0KPiBAQCAtNTQzLDEwICs1NjcsMTQgQEAgc3RhdGljIGludCBtdGtfaW9tbXVf
+aHdfaW5pdChjb25zdCBzdHJ1Y3QgbXRrX2lvbW11X2RhdGEgKmRhdGEpDQo+ICAJdTMyIHJlZ3Zh
+bDsNCj4gIAlpbnQgcmV0Ow0KPiAgDQo+IC0JcmV0ID0gY2xrX3ByZXBhcmVfZW5hYmxlKGRhdGEt
+PmJjbGspOw0KPiAtCWlmIChyZXQpIHsNCj4gLQkJZGV2X2VycihkYXRhLT5kZXYsICJGYWlsZWQg
+dG8gZW5hYmxlIGlvbW11IGJjbGsoJWQpXG4iLCByZXQpOw0KPiAtCQlyZXR1cm4gcmV0Ow0KPiAr
+CS8qIGJjbGsgd2lsbCBiZSBlbmFibGVkIGluIHBtIGNhbGxiYWNrIGluIHBvd2VyLWRvbWFpbiBj
+YXNlLiAqLw0KPiArCWlmICghcG1fcnVudGltZV9lbmFibGVkKGRhdGEtPmRldikpIHsNCj4gKwkJ
+cmV0ID0gY2xrX3ByZXBhcmVfZW5hYmxlKGRhdGEtPmJjbGspOw0KPiArCQlpZiAocmV0KSB7DQo+
+ICsJCQlkZXZfZXJyKGRhdGEtPmRldiwgIkZhaWxlZCB0byBlbmFibGUgaW9tbXUgYmNsayglZClc
+biIsDQo+ICsJCQkJcmV0KTsNCj4gKwkJCXJldHVybiByZXQ7DQo+ICsJCX0NCj4gIAl9DQo+ICAN
+Cj4gIAlpZiAoZGF0YS0+cGxhdF9kYXRhLT5tNHVfcGxhdCA9PSBNNFVfTVQ4MTczKSB7DQo+IEBA
+IC03MjgsNyArNzU2LDE1IEBAIHN0YXRpYyBpbnQgbXRrX2lvbW11X3Byb2JlKHN0cnVjdCBwbGF0
+Zm9ybV9kZXZpY2UgKnBkZXYpDQo+ICANCj4gIAlwbGF0Zm9ybV9zZXRfZHJ2ZGF0YShwZGV2LCBk
+YXRhKTsNCj4gIA0KPiArCWlmIChkZXYtPnBtX2RvbWFpbikNCj4gKwkJcG1fcnVudGltZV9lbmFi
+bGUoZGV2KTsNCg0KaGkgeW9uZywNCg0KSWYgeW91IHB1dCAicG1fcnVudGltZV9lbmFibGUiIGhl
+cmUsIGl0IG1heWJlIG5vdCBkZXZpY2VfbGluayB3aXRoDQpzbWlfY29tbW9uIGZvciBwcmV2aW91
+cyBwYXRjaDogDQppZihpIHx8ICFwbV9ydW50aW1lX2VuYWJsZWQoZGV2KSkNCiAgICBjb250aW51
+ZTsNCg0KV2hldGhlciBwdXQgaXQgdXAgZnJvbnQ/DQoNCmJlc3QgcmVnYXJkcywNCmNoYW8NCg0K
+PiArDQo+ICsJcmV0ID0gbXRrX2lvbW11X3JwbV9nZXQoZGV2KTsNCj4gKwlpZiAocmV0IDwgMCkN
+Cj4gKwkJcmV0dXJuIHJldDsNCj4gKw0KPiAgCXJldCA9IG10a19pb21tdV9od19pbml0KGRhdGEp
+Ow0KPiArCW10a19pb21tdV9ycG1fcHV0KGRldik7DQo+ICAJaWYgKHJldCkNCj4gIAkJcmV0dXJu
+IHJldDsNCj4gIA0KPiBAQCAtODAxLDYgKzgzNywxMCBAQCBzdGF0aWMgaW50IF9fbWF5YmVfdW51
+c2VkIG10a19pb21tdV9yZXN1bWUoc3RydWN0IGRldmljZSAqZGV2KQ0KPiAgCQlkZXZfZXJyKGRh
+dGEtPmRldiwgIkZhaWxlZCB0byBlbmFibGUgY2xrKCVkKSBpbiByZXN1bWVcbiIsIHJldCk7DQo+
+ICAJCXJldHVybiByZXQ7DQo+ICAJfQ0KPiArDQo+ICsJLyogQXZvaWQgZmlyc3QgcmVzdW1lIHRv
+IGFmZmVjdCB0aGUgZGVmYXVsdCB2YWx1ZSBvZiByZWdpc3RlcnMgYmVsb3cuICovDQo+ICsJaWYg
+KCFtNHVfZG9tKQ0KPiArCQlyZXR1cm4gMDsNCj4gIAl3cml0ZWxfcmVsYXhlZChyZWctPndyX2xl
+bl9jdHJsLCBiYXNlICsgUkVHX01NVV9XUl9MRU5fQ1RSTCk7DQo+ICAJd3JpdGVsX3JlbGF4ZWQo
+cmVnLT5taXNjX2N0cmwsIGJhc2UgKyBSRUdfTU1VX01JU0NfQ1RSTCk7DQo+ICAJd3JpdGVsX3Jl
+bGF4ZWQocmVnLT5kY21fZGlzLCBiYXNlICsgUkVHX01NVV9EQ01fRElTKTsNCj4gQEAgLTgwOSwx
+MyArODQ5LDEzIEBAIHN0YXRpYyBpbnQgX19tYXliZV91bnVzZWQgbXRrX2lvbW11X3Jlc3VtZShz
+dHJ1Y3QgZGV2aWNlICpkZXYpDQo+ICAJd3JpdGVsX3JlbGF4ZWQocmVnLT5pbnRfbWFpbl9jb250
+cm9sLCBiYXNlICsgUkVHX01NVV9JTlRfTUFJTl9DT05UUk9MKTsNCj4gIAl3cml0ZWxfcmVsYXhl
+ZChyZWctPml2cnBfcGFkZHIsIGJhc2UgKyBSRUdfTU1VX0lWUlBfUEFERFIpOw0KPiAgCXdyaXRl
+bF9yZWxheGVkKHJlZy0+dmxkX3BhX3JuZywgYmFzZSArIFJFR19NTVVfVkxEX1BBX1JORyk7DQo+
+IC0JaWYgKG00dV9kb20pDQo+IC0JCXdyaXRlbChtNHVfZG9tLT5jZmcuYXJtX3Y3c19jZmcudHRi
+ciAmIE1NVV9QVF9BRERSX01BU0ssDQo+IC0JCSAgICAgICBiYXNlICsgUkVHX01NVV9QVF9CQVNF
+X0FERFIpOw0KPiArCXdyaXRlbChtNHVfZG9tLT5jZmcuYXJtX3Y3c19jZmcudHRiciAmIE1NVV9Q
+VF9BRERSX01BU0ssDQo+ICsJICAgICAgIGJhc2UgKyBSRUdfTU1VX1BUX0JBU0VfQUREUik7DQo+
+ICAJcmV0dXJuIDA7DQo+ICB9DQo+ICANCj4gIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZGV2X3BtX29w
+cyBtdGtfaW9tbXVfcG1fb3BzID0gew0KPiArCVNFVF9SVU5USU1FX1BNX09QUyhtdGtfaW9tbXVf
+c3VzcGVuZCwgbXRrX2lvbW11X3Jlc3VtZSwgTlVMTCkNCj4gIAlTRVRfTk9JUlFfU1lTVEVNX1NM
+RUVQX1BNX09QUyhtdGtfaW9tbXVfc3VzcGVuZCwgbXRrX2lvbW11X3Jlc3VtZSkNCj4gIH07DQo+
+ICANCg0K
 
