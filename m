@@ -2,244 +2,336 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D42AF22E530
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 07:21:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD93A22E548
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 07:30:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726327AbgG0FUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jul 2020 01:20:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37648 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726956AbgG0FUq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 01:20:46 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90830C0619D2
-        for <devicetree@vger.kernel.org>; Sun, 26 Jul 2020 22:20:45 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1jzvYd-0005Ov-P9; Mon, 27 Jul 2020 07:20:15 +0200
-Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ore@pengutronix.de>)
-        id 1jzvYc-0001Zu-AD; Mon, 27 Jul 2020 07:20:14 +0200
-Date:   Mon, 27 Jul 2020 07:20:14 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
-        robh+dt@kernel.org, linux-remoteproc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 06/10] remoteproc: imx_rproc: add load hook
-Message-ID: <20200727052014.tadfgxyexkoxffy7@pengutronix.de>
-References: <20200724080813.24884-1-peng.fan@nxp.com>
- <20200724080813.24884-7-peng.fan@nxp.com>
+        id S1726759AbgG0FaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jul 2020 01:30:07 -0400
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:32374 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726753AbgG0FaH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Jul 2020 01:30:07 -0400
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 06R5SkUc011858;
+        Mon, 27 Jul 2020 01:30:05 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com with ESMTP id 32ghn5da4w-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 27 Jul 2020 01:30:05 -0400
+Received: from ASHBMBX9.ad.analog.com (ashbmbx9.ad.analog.com [10.64.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 06R5U4hi047698
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
+        Mon, 27 Jul 2020 01:30:04 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Mon, 27 Jul 2020 01:30:03 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Mon, 27 Jul 2020 01:30:03 -0400
+Received: from zeus.spd.analog.com (10.64.82.11) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
+ Transport; Mon, 27 Jul 2020 01:30:03 -0400
+Received: from localhost.localdomain ([10.48.65.12])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 06R5TksU007624;
+        Mon, 27 Jul 2020 01:29:58 -0400
+From:   <alexandru.tachici@analog.com>
+To:     <linux-hwmon@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <robh+dt@kernel.org>, <linux@roeck-us.net>,
+        Alexandru Tachici <alexandru.tachici@analog.com>
+Subject: [PATCH v6 8/9] hwmon: pmbus: adm1266: program configuration
+Date:   Mon, 27 Jul 2020 08:31:20 +0300
+Message-ID: <20200727053121.23288-9-alexandru.tachici@analog.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200727053121.23288-1-alexandru.tachici@analog.com>
+References: <20200727053121.23288-1-alexandru.tachici@analog.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="fbgyevojci4fu3gk"
-Content-Disposition: inline
-In-Reply-To: <20200724080813.24884-7-peng.fan@nxp.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 07:01:51 up 254 days, 20:20, 238 users,  load average: 0.18, 0.13,
- 0.04
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
+X-ADIRoutedOnPrem: True
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-07-27_03:2020-07-27,2020-07-27 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ clxscore=1015 lowpriorityscore=0 bulkscore=0 mlxscore=0 mlxlogscore=999
+ adultscore=0 suspectscore=0 malwarescore=0 phishscore=0 spamscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2007270040
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Alexandru Tachici <alexandru.tachici@analog.com>
 
---fbgyevojci4fu3gk
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Writing the configuration Intel hex file to the nvmem,
+of an adm1266, with offset 0x30000, will now
+trigger the configuration programming.
 
-On Fri, Jul 24, 2020 at 04:08:09PM +0800, Peng Fan wrote:
-> To i.MX8, we not able to see the correct data written into TCM when
-> using ioremap_wc, so use ioremap.
->=20
-> However common elf loader using memset.
->=20
-> To arm64, "dc      zva, dst" is used in memset.
-> Per ARM DDI 0487A.j, chapter C5.3.8 DC ZVA, Data Cache Zero by VA,
->=20
-> "If the memory region being zeroed is any type of Device memory,
-> this instruction can give an alignment fault which is prioritized
-> in the same way as other alignment faults that are determined
-> by the memory type."
->=20
-> On i.MX platforms, when elf is loaded to onchip TCM area, the region
-> is ioremapped, so "dc zva, dst" will trigger abort.
->
-> So add i.MX specific loader to address the TCM write issue.
+During this process the adm1266 sequencer will be
+stopped and at the end will be issued a seq reset
+(see AN-1453 Programming the configuration).
 
-First I wonted to ask, if it is AMR64 related issues, why do we handle
-it in iMX specific driver?
+Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
+---
+ drivers/hwmon/pmbus/adm1266.c | 179 +++++++++++++++++++++++++++++++++-
+ 1 file changed, 178 insertions(+), 1 deletion(-)
 
-But after searching and finding this thread:
-https://lkml.org/lkml/2020/4/18/93
-it looks to me like most of related maintainer questions, was not
-answered.
+diff --git a/drivers/hwmon/pmbus/adm1266.c b/drivers/hwmon/pmbus/adm1266.c
+index 376fc56abe04..2b07e38041da 100644
+--- a/drivers/hwmon/pmbus/adm1266.c
++++ b/drivers/hwmon/pmbus/adm1266.c
+@@ -40,7 +40,10 @@
+ #define ADM1266_BLACKBOX_INFO	0xE6
+ #define ADM1266_PDIO_STATUS	0xE9
+ #define ADM1266_GPIO_STATUS	0xEA
++#define ADM1266_STATUS_MFR_2	0xED
++#define ADM1266_REFRESH_FLASH	0xF5
+ #define ADM1266_MEMORY_CONFIG	0xF8
++#define ADM1266_MEMORY_CRC	0xF9
+ #define ADM1266_SWITCH_MEMORY	0xFA
+ #define ADM1266_UPDATE_FW	0xFC
+ #define ADM1266_FW_PASSWORD	0xFD
+@@ -66,6 +69,11 @@
+ 
+ /* ADM1266 STATUS_MFR defines */
+ #define ADM1266_STATUS_PART_LOCKED(x)	FIELD_GET(BIT(2), x)
++#define ADM1266_RUNNING_REFRESH(x)	FIELD_GET(BIT(3), x)
++#define ADM1266_ALL_CRC_FAULT(x)	FIELD_GET(BIT(5), x)
++
++/* ADM1266 STATUS_MFR_2 defines */
++#define ADM1266_MAIN_CONFIG_FAULT(x)	FIELD_GET(GENMASK(9, 8), x)
+ 
+ /* ADM1266 GO_COMMAND defines */
+ #define ADM1266_GO_COMMAND_STOP		BIT(0)
+@@ -74,6 +82,8 @@
+ 
+ #define ADM1266_FIRMWARE_OFFSET		0x00000
+ #define ADM1266_FIRMWARE_SIZE		131072
++#define ADM1266_CONFIG_OFFSET		0x30000
++#define ADM1266_CONFIG_SIZE		131072
+ #define ADM1266_BLACKBOX_OFFSET		0x7F700
+ #define ADM1266_BLACKBOX_SIZE		64
+ 
+@@ -117,6 +127,11 @@ static const struct nvmem_cell_info adm1266_nvmem_cells[] = {
+ 		.offset         = ADM1266_FIRMWARE_OFFSET,
+ 		.bytes          = ADM1266_FIRMWARE_SIZE,
+ 	},
++	{
++		.name           = "configuration",
++		.offset         = ADM1266_CONFIG_OFFSET,
++		.bytes          = ADM1266_CONFIG_SIZE,
++	},
+ };
+ 
+ DECLARE_CRC8_TABLE(pmbus_crc_table);
+@@ -521,6 +536,9 @@ static int adm1266_read_mem_cell(struct adm1266_data *data, const struct nvmem_c
+ 	case ADM1266_FIRMWARE_OFFSET:
+ 		/* firmware is write-only */
+ 		return 0;
++	case ADM1266_CONFIG_OFFSET:
++		/* configuration is write-only */
++		return 0;
+ 	default:
+ 		return -EINVAL;
+ 	}
+@@ -677,6 +695,7 @@ static int adm1266_write_hex(struct adm1266_data *data,
+ 	u8 first_writes[7];
+ 	u8 byte_count;
+ 	u8 reg_address;
++	bool to_slaves = false;
+ 	int ret;
+ 	int i;
+ 
+@@ -707,7 +726,10 @@ static int adm1266_write_hex(struct adm1266_data *data,
+ 		if (ret < 0)
+ 			return ret;
+ 
+-		ret = adm1266_group_cmd(data, reg_address, write_buf, byte_count, true);
++		if (offset == ADM1266_FIRMWARE_OFFSET)
++			to_slaves = true;
++
++		ret = adm1266_group_cmd(data, reg_address, write_buf, byte_count, to_slaves);
+ 		if (ret < 0) {
+ 			dev_err(&data->client->dev, "Firmware write error: %d.", ret);
+ 			return ret;
+@@ -732,6 +754,87 @@ static int adm1266_write_hex(struct adm1266_data *data,
+ 	return 0;
+ }
+ 
++static int adm1266_verify_memory(struct adm1266_data *data)
++{
++	char cmd[2];
++	int ret;
++	int reg;
++
++	cmd[0] = 0x1;
++	cmd[1] = 0x0;
++	ret = adm1266_group_cmd(data, ADM1266_MEMORY_CRC, cmd,
++				sizeof(cmd), true);
++	if (ret < 0)
++		return ret;
++
++	/* after issuing a memory recalculate crc command, wait 1000 ms */
++	msleep(1000);
++
++	reg = pmbus_read_word_data(data->client, 0, 0xFF, ADM1266_STATUS_MFR_2);
++	if (reg < 0)
++		return reg;
++
++	if (ADM1266_MAIN_CONFIG_FAULT(reg)) {
++		dev_err(&data->client->dev, "Main memory corrupted.");
++		return -EFAULT;
++	}
++
++	return 0;
++}
++
++static int adm1266_refresh_memory(struct adm1266_data *data)
++{
++	unsigned int timeout = 9000;
++	int ret;
++	u8 cmd[2];
++
++	cmd[0] = 0x2;
++	ret = adm1266_group_cmd(data, ADM1266_REFRESH_FLASH, cmd, 1, true);
++	if (ret < 0) {
++		dev_err(&data->client->dev, "Could not refresh flash.");
++		return ret;
++	}
++
++	/* after issuing a refresh flash command, wait 9000 ms */
++	msleep(9000);
++
++	do {
++		msleep(1000);
++		timeout -= 1000;
++
++		ret = pmbus_read_byte_data(data->client, 0, ADM1266_STATUS_MFR);
++		if (ret < 0) {
++			dev_err(&data->client->dev, "Could not read status.");
++			return ret;
++		}
++
++	} while (ADM1266_RUNNING_REFRESH(ret) && timeout > 0);
++
++	if (timeout == 0)
++		return -ETIMEDOUT;
++
++	cmd[0] = 0x1;
++	cmd[1] = 0x0;
++	ret = adm1266_group_cmd(data, ADM1266_MEMORY_CRC, cmd,
++				sizeof(cmd), true);
++	if (ret < 0)
++		return ret;
++
++	/* after issuing a memory recalculate crc command, wait 1000 ms */
++	msleep(1000);
++
++	ret = pmbus_read_byte_data(data->client, 0, ADM1266_STATUS_MFR);
++	if (ret < 0)
++		return ret;
++
++	if (ADM1266_ALL_CRC_FAULT(ret)) {
++		dev_err(&data->client->dev, "CRC checks failed.");
++		return ret;
++	}
++
++	return 0;
++}
++
+ static int adm1266_program_firmware(struct adm1266_data *data)
+ {
+ 	u8 write_data[3];
+@@ -784,6 +887,77 @@ static int adm1266_program_firmware(struct adm1266_data *data)
+ 	return ret;
+ }
+ 
++static int adm1266_program_config(struct adm1266_data *data)
++{
++	u8 cmd[2];
++	u8 value;
++	int ret;
++
++	value = ADM1266_GO_COMMAND_STOP | ADM1266_GO_COMMAND_SEQ_RES;
++	ret = pmbus_write_word_data(data->client, 0, ADM1266_GO_COMMAND, value);
++	if (ret < 0) {
++		dev_err(&data->client->dev, "Could not stop sequence.");
++		return ret;
++	}
++
++	/* after issuing a stop command, wait 100 ms */
++	msleep(100);
++
++	ret = adm1266_unlock_all_dev(data);
++	if (ret < 0) {
++		dev_err(&data->client->dev, "Could not unlock dev.");
++		goto lock_all_devices;
++	}
++
++	value = 0;
++	ret = i2c_smbus_write_block_data(data->client, ADM1266_SWITCH_MEMORY, 1, &value);
++	if (ret < 0) {
++		dev_err(&data->client->dev, "Could not switch to main mem.");
++		goto lock_all_devices;
++	}
++
++	/* after issuing a SWITCH_MEMORY command, wait 1000 ms */
++	msleep(1000);
++
++	ret = adm1266_write_hex(data, ADM1266_CONFIG_OFFSET, ADM1266_CONFIG_SIZE);
++	if (ret < 0) {
++		dev_err(&data->client->dev, "Could not write configuration.");
++		goto lock_all_devices;
++	}
++
++	ret = pmbus_write_byte(data->client, 0, ADM1266_STORE_USER_ALL);
++	if (ret < 0)
++		return ret;
++
++	/* after issuing a STORE_USER_ALL command, wait 300 ms */
++	msleep(300);
++
++	if (!data->master_dev)
++		goto lock_all_devices;
++
++	ret = adm1266_verify_memory(data);
++	if (ret < 0)
++		goto lock_all_devices;
++
++	cmd[0] = 0;
++	cmd[1] = 0;
++	ret = adm1266_group_cmd(data, ADM1266_GO_COMMAND, cmd, sizeof(cmd), true);
++	if (ret < 0) {
++		dev_err(&data->client->dev, "Could not restart sequence.");
++		goto lock_all_devices;
++	}
++
++	/* after issuing a restart sequence command, wait 350 ms */
++	msleep(350);
++
++	ret = adm1266_refresh_memory(data);
++
++lock_all_devices:
++	adm1266_lock_all_dev(data);
++
++	return ret;
++}
++
+ /* check if firmware/config write has ended */
+ static bool adm1266_check_ending(struct adm1266_data *data, unsigned int offset,
+ 				 unsigned int size)
+@@ -825,6 +999,9 @@ static int adm1266_write_mem_cell(struct adm1266_data *data,
+ 
+ 		program_func = &adm1266_program_firmware;
+ 		break;
++	case ADM1266_CONFIG_OFFSET:
++		program_func = &adm1266_program_config;
++		break;
+ 	default:
+ 		return -EINVAL;
+ 	}
+-- 
+2.20.1
 
-> The change not impact i.MX6/7 function.
-
-Hm... it is impossible assumption,e except you was able to test all
-firmware variants it the wild.
-You changed behavior of ELF parser in the first place. It means,
-not iMX6/7 is affected, but firmware used on this platforms.
-
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/remoteproc/imx_rproc.c | 76 ++++++++++++++++++++++++++++++++++++=
-++++++
->  1 file changed, 76 insertions(+)
->=20
-> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rpro=
-c.c
-> index aee790efbf7b..c23726091228 100644
-> --- a/drivers/remoteproc/imx_rproc.c
-> +++ b/drivers/remoteproc/imx_rproc.c
-> @@ -4,6 +4,7 @@
->   */
-> =20
->  #include <linux/clk.h>
-> +#include <linux/elf.h>
->  #include <linux/err.h>
->  #include <linux/interrupt.h>
->  #include <linux/kernel.h>
-> @@ -15,6 +16,9 @@
->  #include <linux/regmap.h>
->  #include <linux/remoteproc.h>
-> =20
-> +#include "remoteproc_internal.h"
-> +#include "remoteproc_elf_helpers.h"
-> +
->  #define IMX7D_SRC_SCR			0x0C
->  #define IMX7D_ENABLE_M4			BIT(3)
->  #define IMX7D_SW_M4P_RST		BIT(2)
-> @@ -247,10 +251,82 @@ static void *imx_rproc_da_to_va(struct rproc *rproc=
-, u64 da, size_t len)
->  	return va;
->  }
-> =20
-> +static int imx_rproc_elf_load_segments(struct rproc *rproc, const struct=
- firmware *fw)
-> +{
-> +	struct device *dev =3D &rproc->dev;
-> +	const void *ehdr, *phdr;
-> +	int i, ret =3D 0;
-> +	u16 phnum;
-> +	const u8 *elf_data =3D fw->data;
-> +	u8 class =3D fw_elf_get_class(fw);
-> +	u32 elf_phdr_get_size =3D elf_size_of_phdr(class);
-> +
-> +	ehdr =3D elf_data;
-> +	phnum =3D elf_hdr_get_e_phnum(class, ehdr);
-> +	phdr =3D elf_data + elf_hdr_get_e_phoff(class, ehdr);
-> +
-> +	/* go through the available ELF segments */
-> +	for (i =3D 0; i < phnum; i++, phdr +=3D elf_phdr_get_size) {
-> +		u64 da =3D elf_phdr_get_p_paddr(class, phdr);
-> +		u64 memsz =3D elf_phdr_get_p_memsz(class, phdr);
-> +		u64 filesz =3D elf_phdr_get_p_filesz(class, phdr);
-> +		u64 offset =3D elf_phdr_get_p_offset(class, phdr);
-> +		u32 type =3D elf_phdr_get_p_type(class, phdr);
-> +		void *ptr;
-> +
-> +		if (type !=3D PT_LOAD)
-> +			continue;
-> +
-> +		dev_dbg(dev, "phdr: type %d da 0x%llx memsz 0x%llx filesz 0x%llx\n",
-> +			type, da, memsz, filesz);
-> +
-> +		if (filesz > memsz) {
-> +			dev_err(dev, "bad phdr filesz 0x%llx memsz 0x%llx\n",
-> +				filesz, memsz);
-> +			ret =3D -EINVAL;
-> +			break;
-> +		}
-> +
-> +		if (offset + filesz > fw->size) {
-> +			dev_err(dev, "truncated fw: need 0x%llx avail 0x%zx\n",
-> +				offset + filesz, fw->size);
-> +			ret =3D -EINVAL;
-> +			break;
-> +		}
-> +
-> +		if (!rproc_u64_fit_in_size_t(memsz)) {
-> +			dev_err(dev, "size (%llx) does not fit in size_t type\n",
-> +				memsz);
-> +			ret =3D -EOVERFLOW;
-> +			break;
-> +		}
-> +
-> +		/* grab the kernel address for this device address */
-> +		ptr =3D rproc_da_to_va(rproc, da, memsz);
-> +		if (!ptr) {
-> +			dev_err(dev, "bad phdr da 0x%llx mem 0x%llx\n", da,
-> +				memsz);
-> +			ret =3D -EINVAL;
-> +			break;
-> +		}
-> +
-> +		/* put the segment where the remote processor expects it */
-> +		if (filesz)
-> +			memcpy_toio(ptr, elf_data + offset, filesz);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
->  static const struct rproc_ops imx_rproc_ops =3D {
->  	.start		=3D imx_rproc_start,
->  	.stop		=3D imx_rproc_stop,
->  	.da_to_va       =3D imx_rproc_da_to_va,
-> +	.load		=3D imx_rproc_elf_load_segments,
-> +	.parse_fw	=3D rproc_elf_load_rsc_table,
-> +	.find_loaded_rsc_table =3D rproc_elf_find_loaded_rsc_table,
-> +	.sanity_check	=3D rproc_elf_sanity_check,
-> +	.get_boot_addr	=3D rproc_elf_get_boot_addr,
->  };
-> =20
->  static int imx_rproc_addr_init(struct imx_rproc *priv,
-> --=20
-> 2.16.4
->=20
->=20
-
---=20
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-
---fbgyevojci4fu3gk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEERBNZvwSgvmcMY/T74omh9DUaUbMFAl8eZAkACgkQ4omh9DUa
-UbMr4xAAzb9KHRlNH/QhnvS0wxRRBZAU6U8LEO6qZrFn6a00IcQqY2y35hdAr5kf
-c8uo3kBuHbrw3aYeur6iNQA8cp57Uc70fK0a4jS7KOvDmjuttRyDN/GD2Gb6kY/a
-RoG33lQc0JA1gtLNoMA1VeX3Oaoghlvpv0VBrstPGHp+b61uDI2lFwF4KkhrEe0G
-+HjTWxdkFiZ1g4kC5Ik8ZlaKwNfzTcJgnlaoQsQQkxECIILcZvmntru0YOdePM9t
-0/VOGJH+qA+Np7A5j/sb+D07RYMmcb1ek7GLTIgsndtMlHp66XkzKyObbLLfRnqU
-DQ8w4waaY9i8X2W3X9aaCi45dG2XJ9m7wvGohLp7Rr4b9bioo1lbNHNM2Jo0fEXE
-0X7XRACIKihQy3QmN2lX7zXK0kpQcq+gSV2kRvairRDuqYXm/lKoMsPMT3UAMbsu
-fCj7D66swuCfdoe05hwsqu93fbJP7Jdog3gCyHVoFxNcXT43ur4AwRkJkdU+yl2C
-TmK9U2hLq+DhnlBg0M+6yaf7t2P4kuu6BRy7kLzf+KrB4daU0nxqDF+404apbP0N
-Z6WgWETHEfn0i53mHIaVwAWdGLwJhNAsSAB3c82+D3TLozJyQgOrtWZK1VtcUnWq
-q20cBB7zMuOX82D5G+YVz6K1rwYb0MsLSVQT9J0VMDl24rHJBDw=
-=9PWb
------END PGP SIGNATURE-----
-
---fbgyevojci4fu3gk--
