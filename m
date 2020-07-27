@@ -2,68 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F03F22E9C1
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 12:05:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 981F022E9D9
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jul 2020 12:17:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727951AbgG0KFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jul 2020 06:05:53 -0400
-Received: from mailout08.rmx.de ([94.199.90.85]:40597 "EHLO mailout08.rmx.de"
+        id S1726513AbgG0KRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jul 2020 06:17:00 -0400
+Received: from mailout07.rmx.de ([94.199.90.95]:36896 "EHLO mailout07.rmx.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727775AbgG0KFx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Jul 2020 06:05:53 -0400
+        id S1726139AbgG0KRA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Jul 2020 06:17:00 -0400
 Received: from kdin01.retarus.com (kdin01.dmz1.retloc [172.19.17.48])
         (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by mailout08.rmx.de (Postfix) with ESMTPS id 4BFb6P6jBSzMngK;
-        Mon, 27 Jul 2020 12:05:49 +0200 (CEST)
+        by mailout07.rmx.de (Postfix) with ESMTPS id 4BFbMD11YnzBwPs;
+        Mon, 27 Jul 2020 12:16:56 +0200 (CEST)
 Received: from mta.arri.de (unknown [217.111.95.66])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
         (No client certificate requested)
-        by kdin01.retarus.com (Postfix) with ESMTPS id 4BFb6323yVz2xFY;
-        Mon, 27 Jul 2020 12:05:31 +0200 (CEST)
+        by kdin01.retarus.com (Postfix) with ESMTPS id 4BFbLR2TMWz2xFJ;
+        Mon, 27 Jul 2020 12:16:15 +0200 (CEST)
 Received: from N95HX1G2.wgnetz.xx (192.168.54.121) by mta.arri.de
  (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.408.0; Mon, 27 Jul
- 2020 12:05:31 +0200
+ 2020 12:16:15 +0200
 From:   Christian Eggers <ceggers@arri.de>
 To:     Rob Herring <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+CC:     <devicetree@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "Peter Meerwald-Stadler" <pmeerw@pmeerw.net>,
         Jiri Kosina <trivial@kernel.org>,
-        Christian Eggers <ceggers@arri.de>
-Subject: [PATCH] dt-bindings: at25: fix syntax error in example code
-Date:   Mon, 27 Jul 2020 12:05:05 +0200
-Message-ID: <20200727100505.23908-1-ceggers@arri.de>
+        Christian Eggers <ceggers@arri.de>, <stable@vger.kernel.org>
+Subject: [PATCH] dt-bindings: iio: io-channel-mux: Fix compatible string in example code
+Date:   Mon, 27 Jul 2020 12:16:05 +0200
+Message-ID: <20200727101605.24384-1-ceggers@arri.de>
 X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7BIT
 Content-Type:   text/plain; charset=US-ASCII
 X-Originating-IP: [192.168.54.121]
-X-RMX-ID: 20200727-120531-4BFb6323yVz2xFY-0@kdin01
+X-RMX-ID: 20200727-121615-4BFbLR2TMWz2xFJ-0@kdin01
 X-RMX-SOURCE: 217.111.95.66
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing semicolon.
+The correct compatible string is "gpio-mux" (see
+bindings/mux/gpio-mux.txt).
 
 Signed-off-by: Christian Eggers <ceggers@arri.de>
+Cc: stable@vger.kernel.org
 ---
- Documentation/devicetree/bindings/eeprom/at25.txt | 2 +-
+ .../devicetree/bindings/iio/multiplexer/io-channel-mux.txt      | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/eeprom/at25.txt b/Documentation/devicetree/bindings/eeprom/at25.txt
-index fcacd97abd0a..fe91ecf1f61b 100644
---- a/Documentation/devicetree/bindings/eeprom/at25.txt
-+++ b/Documentation/devicetree/bindings/eeprom/at25.txt
-@@ -33,7 +33,7 @@ Additional compatible properties are also allowed.
+diff --git a/Documentation/devicetree/bindings/iio/multiplexer/io-channel-mux.txt b/Documentation/devicetree/bindings/iio/multiplexer/io-channel-mux.txt
+index c82794002595..89647d714387 100644
+--- a/Documentation/devicetree/bindings/iio/multiplexer/io-channel-mux.txt
++++ b/Documentation/devicetree/bindings/iio/multiplexer/io-channel-mux.txt
+@@ -21,7 +21,7 @@ controller state. The mux controller state is described in
+ 
  Example:
- 	eeprom@0 {
- 		compatible = "st,m95256", "atmel,at25";
--		reg = <0>
-+		reg = <0>;
- 		spi-max-frequency = <5000000>;
- 		spi-cpha;
- 		spi-cpol;
+ 	mux: mux-controller {
+-		compatible = "mux-gpio";
++		compatible = "gpio-mux";
+ 		#mux-control-cells = <0>;
+ 
+ 		mux-gpios = <&pioA 0 GPIO_ACTIVE_HIGH>,
 -- 
 Christian Eggers
 Embedded software developer
