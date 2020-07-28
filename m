@@ -2,121 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F16D12313B5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 22:15:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE769231429
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 22:45:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728643AbgG1UPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jul 2020 16:15:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32894 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728590AbgG1UPV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 16:15:21 -0400
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1552CC0619D4
-        for <devicetree@vger.kernel.org>; Tue, 28 Jul 2020 13:15:21 -0700 (PDT)
-Received: by mail-pg1-x543.google.com with SMTP id h12so1377842pgf.7
-        for <devicetree@vger.kernel.org>; Tue, 28 Jul 2020 13:15:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=tqZMz16pvW2AijIRQi4zUGCh+M0EN/UmSMDkjaIZOyM=;
-        b=agnVKpBKvxL7cmQ2YRR6UlkjTqmr2v7BFp5jUSNqFj4eD46vMXV31Db3meKNfH7BJW
-         4KVCWX7y8rKr3SrRZGkHZgVIVAZK6p8Q9b1VZpOQchmHZbx/jXxPnjVyyrBwPtm/NODx
-         VlOFom+kFTlw0apOLdcp5w/6hiJ9GbyxcJxj0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=tqZMz16pvW2AijIRQi4zUGCh+M0EN/UmSMDkjaIZOyM=;
-        b=sT1j+fEa6M+rDpu43ZiXFK8TKyvX+WMStZdHFM/aErfCvH4Juqpuq+CIb1SK9cuqD8
-         KTx5SncU3eCvS/v7XRdpzf/tVhn81pVlQUFV4XQrKmxapzaoLTn9zrHqwuX9HNrn4tx5
-         dzgF9zpByQ8soJA45Mj/+Nf6oAx1qZ61WqXg90vSuxPAGOqAfQv/dEnI0asfBvVclAmo
-         qO9wyP3ZIfJDQdRnS6lhDrD4g/C1Y8tn4qK7LhHzqimMpvldo8qi7fCnGKZ1TJZ3Qxoc
-         4kHpyBiLqGfkz0qpK28/hCzxOtpDDRugVIfzUg01U3oQD5b3SO7Zkw0n17GeHjG3WjQ3
-         U75A==
-X-Gm-Message-State: AOAM530IZ4BP1J3Rafpii+pf36bKhcKPMLuu1l7eVchLuEKVXDpcwZhl
-        8mZEMVuOCwEUsGNyc3vEOXAQ7miEhf0=
-X-Google-Smtp-Source: ABdhPJy1L3+1VlaDSMLSfdVxBXSlBNoRZxKyEwfJn034n/+sp9DsAfEYTBXzXsBl1zfgDMoSjm665Q==
-X-Received: by 2002:a63:f1a:: with SMTP id e26mr26558253pgl.80.1595967320319;
-        Tue, 28 Jul 2020 13:15:20 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:3e52:82ff:fe6c:83ab])
-        by smtp.gmail.com with ESMTPSA id v78sm9204748pfc.121.2020.07.28.13.15.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jul 2020 13:15:19 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        id S1728830AbgG1Upl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jul 2020 16:45:41 -0400
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:46524 "EHLO
+        mx0b-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729165AbgG1Upk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Jul 2020 16:45:40 -0400
+Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 06SKVp3U120022;
+        Tue, 28 Jul 2020 16:45:38 -0400
+Received: from ppma02dal.us.ibm.com (a.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.10])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 32j7sxu47c-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 28 Jul 2020 16:45:38 -0400
+Received: from pps.filterd (ppma02dal.us.ibm.com [127.0.0.1])
+        by ppma02dal.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 06SKYoRp006440;
+        Tue, 28 Jul 2020 20:45:37 GMT
+Received: from b01cxnp23034.gho.pok.ibm.com (b01cxnp23034.gho.pok.ibm.com [9.57.198.29])
+        by ppma02dal.us.ibm.com with ESMTP id 32gcy4bf6h-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 28 Jul 2020 20:45:37 +0000
+Received: from b01ledav005.gho.pok.ibm.com (b01ledav005.gho.pok.ibm.com [9.57.199.110])
+        by b01cxnp23034.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 06SKjatt52625702
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 28 Jul 2020 20:45:36 GMT
+Received: from b01ledav005.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 9811CAE05F;
+        Tue, 28 Jul 2020 20:45:36 +0000 (GMT)
+Received: from b01ledav005.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 33D4BAE05C;
+        Tue, 28 Jul 2020 20:45:36 +0000 (GMT)
+Received: from [9.211.141.254] (unknown [9.211.141.254])
+        by b01ledav005.gho.pok.ibm.com (Postfix) with ESMTP;
+        Tue, 28 Jul 2020 20:45:36 +0000 (GMT)
+Subject: Re: [PATCH 1/2] rainier: Add leds that are off 9551 on Operator Panel
+To:     Vishwanatha Subbanna <vishwa@linux.vnet.ibm.com>, joel@jms.id.au
+Cc:     devicetree@vger.kernel.org
+References: <1595944770-18106-1-git-send-email-vishwa@linux.vnet.ibm.com>
+From:   Eddie James <eajames@linux.ibm.com>
+Message-ID: <ef560a40-03ef-d77b-68d4-5f8062688a82@linux.ibm.com>
+Date:   Tue, 28 Jul 2020 15:45:35 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAHcu+VaDBj87stJ9JJkuerJkr8=-g68FhUUnKvfpN8uYaMBUhQ@mail.gmail.com>
-References: <20200724183954.1.I2e29ae25368ba8a72a9e44121cfbc36ead8ecc6b@changeid> <20200728151258.1222876-1-campello@chromium.org> <20200728091057.3.I2a1314232ace4323af96f9981c1e1a4f31f78049@changeid> <CAHp75VfOhoJrHEnC_Wh2qnOMX0pT1Jx92B0TFQ5=cfZsTSNSOg@mail.gmail.com> <CAHcu+VaDBj87stJ9JJkuerJkr8=-g68FhUUnKvfpN8uYaMBUhQ@mail.gmail.com>
-Subject: Re: [PATCH 03/15] iio: sx9310: Fix irq handling
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     LKML <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Gwendal Grignou <gwendal@chromium.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio <linux-iio@vger.kernel.org>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Daniel Campello <campello@chromium.org>
-Date:   Tue, 28 Jul 2020 13:15:17 -0700
-Message-ID: <159596731796.1360974.3913058992312532558@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+In-Reply-To: <1595944770-18106-1-git-send-email-vishwa@linux.vnet.ibm.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-07-28_16:2020-07-28,2020-07-28 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
+ clxscore=1015 phishscore=0 malwarescore=0 impostorscore=0 adultscore=0
+ bulkscore=0 spamscore=0 suspectscore=0 mlxlogscore=999 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2007280142
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Daniel Campello (2020-07-28 13:07:00)
-> On Tue, Jul 28, 2020 at 12:08 PM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
-> >
-> > On Tue, Jul 28, 2020 at 6:14 PM Daniel Campello <campello@chromium.org>=
- wrote:
-> > >
-> > > Fixes enable/disable irq handling at various points. The driver needs=
- to
-> > > only enable/disable irqs if there is an actual irq handler installed.
-> >
-> > > -       enable_irq(data->client->irq);
-> > > +       if (!ret)
-> > > +               enable_irq(data->client->irq);
-> > >
-> > >         return ret;
-> > >  }
-> >
-> > Can it be a usual pattern?
-> >
-> >   if (ret)
-> >     return ret;
-> >   ...
-> >   return 0;
->=20
-> I think this way is more readable. The alternative would have to be
-> something like this:
->=20
-> ....
-> if (ret)
->   goto out;
-> mutex_unlock(&data->mutex);
-> enable_irq(data->client->irq);
-> return 0;
->=20
-> out:
-> mutex_unlock(&data->mutex);
-> return ret;
->=20
 
-I think the suggestion is
+On 7/28/20 8:59 AM, Vishwanatha Subbanna wrote:
+> These are LEDs that are controlled by 9551
 
-	mutex_unlock(&data->mutex);
-	if (ret)
-		return ret;
 
-	enable_irq(data->client->irq);
+Reviewed-by: Eddie James <eajames@linux.ibm.com>
 
-	return 0;
+
+>
+> Signed-off-by: Vishwanatha Subbanna <vishwa@linux.vnet.ibm.com>
+> ---
+>   arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts | 82 ++++++++++++++++++++++++++++
+>   1 file changed, 82 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
+> index 0b5c6cc..ecbce50 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
+> +++ b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
+> @@ -69,6 +69,38 @@
+>   		};
+>   	};
+>   
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		/* System ID LED that is at front on Op Panel */
+> +		front-sys-id0 {
+> +			retain-state-shutdown;
+> +			default-state = "keep";
+> +			gpios = <&pca1 0 GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		/* System Attention Indicator ID LED that is at front on Op Panel */
+> +		front-check-log0 {
+> +			retain-state-shutdown;
+> +			default-state = "keep";
+> +			gpios = <&pca1 1 GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		/* Enclosure Fault LED that is at front on Op Panel */
+> +		front-enc-fault1 {
+> +			retain-state-shutdown;
+> +			default-state = "keep";
+> +			gpios = <&pca1 2 GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		/* System PowerOn LED that is at front on Op Panel */
+> +		front-sys-pwron0 {
+> +			retain-state-shutdown;
+> +			default-state = "keep";
+> +			gpios = <&pca1 3 GPIO_ACTIVE_LOW>;
+> +		};
+> +	};
+> +
+>   };
+>   
+>   &gpio0 {
+> @@ -514,6 +546,56 @@
+>   		};
+>   	};
+>   
+> +	pca1: pca9551@60 {
+> +		compatible = "nxp,pca9551";
+> +		reg = <0x60>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +
+> +		gpio@0 {
+> +			reg = <0>;
+> +			type = <PCA955X_TYPE_GPIO>;
+> +		};
+> +
+> +		gpio@1 {
+> +			reg = <1>;
+> +			type = <PCA955X_TYPE_GPIO>;
+> +		};
+> +
+> +		gpio@2 {
+> +			reg = <2>;
+> +			type = <PCA955X_TYPE_GPIO>;
+> +		};
+> +
+> +		gpio@3 {
+> +			reg = <3>;
+> +			type = <PCA955X_TYPE_GPIO>;
+> +		};
+> +
+> +		gpio@4 {
+> +			reg = <4>;
+> +			type = <PCA955X_TYPE_GPIO>;
+> +		};
+> +
+> +		gpio@5 {
+> +			reg = <5>;
+> +			type = <PCA955X_TYPE_GPIO>;
+> +		};
+> +
+> +		gpio@6 {
+> +			reg = <6>;
+> +			type = <PCA955X_TYPE_GPIO>;
+> +		};
+> +
+> +		gpio@7 {
+> +			reg = <7>;
+> +			type = <PCA955X_TYPE_GPIO>;
+> +		};
+> +	};
+> +
+>   	dps: dps310@76 {
+>   		compatible = "infineon,dps310";
+>   		reg = <0x76>;
