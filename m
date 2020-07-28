@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD1A7231618
+	by mail.lfdr.de (Postfix) with ESMTP id 05CAA231616
 	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 01:07:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729996AbgG1XGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1730404AbgG1XGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 28 Jul 2020 19:06:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59238 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730036AbgG1XFk (ORCPT
+        with ESMTP id S1730008AbgG1XFk (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 19:05:40 -0400
-Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD4F4C0619DC
-        for <devicetree@vger.kernel.org>; Tue, 28 Jul 2020 16:05:38 -0700 (PDT)
-Received: by mail-io1-xd44.google.com with SMTP id w12so8953209iom.4
-        for <devicetree@vger.kernel.org>; Tue, 28 Jul 2020 16:05:38 -0700 (PDT)
+Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7633C061794
+        for <devicetree@vger.kernel.org>; Tue, 28 Jul 2020 16:05:39 -0700 (PDT)
+Received: by mail-io1-xd41.google.com with SMTP id v6so7337558iow.11
+        for <devicetree@vger.kernel.org>; Tue, 28 Jul 2020 16:05:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Ckdl4rRSej+TpSQNUfdzpqHgfB1W1nhYEbGg+nzFza8=;
-        b=BarEV0ovrLCUh0MdcCNuv9Iya/tsHqfYXc1+zb7Pr+Rgdv9Sr9OxrYmLSvCrGEC+an
-         /huzljzKU+yIifhVNdt6i4SdeCPwgHzSMJ/52KURRXP11KIEgFhJ+DWKU/hCoANgTd5G
-         yZgNmU9zkD2Ov5Vnw4m5O6ugjPKQekbh5sLH0=
+        bh=rFwKpOolil2cigK/Fi3S/MPo2NhowXWtQj+GOyuNS/c=;
+        b=TKT5aUTJuFr6UoNYj4eTsHJGVckWaAjBanjyOyARCuOJnTfFVXPP4wufGorg5KdMu3
+         xGt6iqRvYVZAu/0e9aXOA0caHT8zPr4guxMP9L0qULqwu8I9qgmnTXMhvVE0h3jAC74K
+         FJUvG+4VEXa3IR2FXFifykWWs28pVkTdavucw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Ckdl4rRSej+TpSQNUfdzpqHgfB1W1nhYEbGg+nzFza8=;
-        b=INdNju/vM/Bgnq/LAJD+zlkAhSlfjTmP+0EpR2a4+US55Xxr1imecYyGYh229eHz5w
-         UZJEnx+uIj36iPUgClioYwFJEgasnQ3eVHw/pHB6TzPqnzoc55rZhlc/Q0pWWnKphgRe
-         udjxC3gNXyZI1XO3k0QC/THEaMU1rhXWiF25lDzJU/2LQza8wLjNXWbaKka4vPlx5KT0
-         BB9GOn4dmEgBUcYB/345fWzq2/4Vr6KKQEYl9wvS/WBW48S2XOeN0QhZP40U9+88NDc4
-         HyasX/V0AD0P0hkseQ5czMTUSzAY8m5SBnhvTvWJr7FeLy5NpCumBBJAu129Pk2HnQL5
-         k9xw==
-X-Gm-Message-State: AOAM5324Q/2tv2Fl0IYuq0/BeFS8PyXWs/q20WAh74wX7eoKyZRBYPr3
-        HBFmVC/F0l54kTsuQTLgxxxJCt//10ffYQ==
-X-Google-Smtp-Source: ABdhPJzGSH1oEOQzZQiA6n/X77Umratilf3Tp30+qtl4G3Ep3KRfzTXFX9YiySzRFD4aKYorhSkqcA==
-X-Received: by 2002:a05:6602:29c9:: with SMTP id z9mr30956817ioq.4.1595977538023;
-        Tue, 28 Jul 2020 16:05:38 -0700 (PDT)
+        bh=rFwKpOolil2cigK/Fi3S/MPo2NhowXWtQj+GOyuNS/c=;
+        b=V2vhVmtrr3i9ZzBxF0bQsmU0xMTCuTiJOePfp6YsbglcbXNr/hJkHcKtl4eC3BMSgA
+         VZ8j91OcoxdUJY+1g9M/Ah8kpgdkRLA7J9+Uys1tyr0vAEN5GMgK46sN4T9dlxnEwepz
+         YK+8mmWXrEqB6/R3YDw4oEm46wLqgQ73CVXY3ZG5qvM+7Wj+E+GE1eykagje7oNGneJY
+         I3C0jM6wIcGXvKV8nsCJzC4bwfEb7ULajoRxxYoh9gEYoHaZHLcDTD5xvD/CE6SHbSCb
+         GJiPwqdDh5/qdGJYlVx5rDzi0oayhcjNYOY52BMyhedNie5JTc/bDJnV9blf4WJL6kHi
+         B3pw==
+X-Gm-Message-State: AOAM531sT+BCnfpNh7R8aQ+HSExf996b4Wnaefd77Z6r5mN+JtT+mSNQ
+        wjZkyfWqXQB0+SwyHzU3qlMvyhnuzDmUuA==
+X-Google-Smtp-Source: ABdhPJw3oJB71OoukounwSSpOZX9IysvOrjvnrfFdWaactsDXxmWmMqPd90CoQ6uWvd+N+teRdhMPw==
+X-Received: by 2002:a5d:9b86:: with SMTP id r6mr11454618iom.44.1595977539055;
+        Tue, 28 Jul 2020 16:05:39 -0700 (PDT)
 Received: from derch.Home (97-122-92-59.hlrn.qwest.net. [97.122.92.59])
-        by smtp.gmail.com with ESMTPSA id w10sm148945ilo.10.2020.07.28.16.05.37
+        by smtp.gmail.com with ESMTPSA id w10sm148945ilo.10.2020.07.28.16.05.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jul 2020 16:05:37 -0700 (PDT)
+        Tue, 28 Jul 2020 16:05:38 -0700 (PDT)
 From:   Daniel Campello <campello@chromium.org>
 To:     LKML <devicetree@vger.kernel.org>,
         LKML <linux-kernel@vger.kernel.org>
 Cc:     Jonathan Cameron <jic23@kernel.org>,
         Daniel Campello <campello@chromium.org>,
-        kbuild test robot <lkp@intel.com>,
         Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Stephen Boyd <swboyd@chromium.org>,
         Douglas Anderson <dianders@chromium.org>,
         Hartmut Knaack <knaack.h@gmx.de>,
         Lars-Peter Clausen <lars@metafoo.de>,
         Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Stephen Boyd <swboyd@chromium.org>, linux-iio@vger.kernel.org
-Subject: [PATCH v2 04/14] iio: sx9310: Remove acpi and of table macros
-Date:   Tue, 28 Jul 2020 17:05:10 -0600
-Message-Id: <20200728170317.v2.4.I9bf713a86d6076b44441ef5f534f9c240271699a@changeid>
+        linux-iio@vger.kernel.org
+Subject: [PATCH v2 05/14] iio: sx9310: Change from .probe to .probe_new
+Date:   Tue, 28 Jul 2020 17:05:11 -0600
+Message-Id: <20200728170317.v2.5.Ieb5fdf7381764835dad0b3099c7b19ba754e4c47@changeid>
 X-Mailer: git-send-email 2.28.0.163.g6104cc2f0b6-goog
 In-Reply-To: <20200728230520.2011240-1-campello@chromium.org>
 References: <20200728151258.1222876-1-campello@chromium.org>
@@ -70,43 +70,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Avoids unused warnings due to acpi/of table macros.
+Uses .probe_new in place of .probe. Also uses device_get_match_data()
+for whoami matching.
 
-Reported-by: kbuild test robot <lkp@intel.com>
 Signed-off-by: Daniel Campello <campello@chromium.org>
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 ---
 
 Changes in v2:
- - Added #include <linux/mod_devicetable.h>
+ - Added '\n' to dev_err()
 
- drivers/iio/proximity/sx9310.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/iio/proximity/sx9310.c | 39 ++++++++++++----------------------
+ 1 file changed, 14 insertions(+), 25 deletions(-)
 
 diff --git a/drivers/iio/proximity/sx9310.c b/drivers/iio/proximity/sx9310.c
-index 108d82ba81146e..04b646ae8a1009 100644
+index 04b646ae8a1009..bb007673f758d5 100644
 --- a/drivers/iio/proximity/sx9310.c
 +++ b/drivers/iio/proximity/sx9310.c
-@@ -15,8 +15,8 @@
- #include <linux/i2c.h>
- #include <linux/irq.h>
- #include <linux/kernel.h>
-+#include <linux/mod_devicetable.h>
- #include <linux/module.h>
--#include <linux/of.h>
- #include <linux/pm.h>
- #include <linux/regmap.h>
- #include <linux/slab.h>
-@@ -1051,8 +1051,8 @@ MODULE_DEVICE_TABLE(i2c, sx9310_id);
- static struct i2c_driver sx9310_driver = {
- 	.driver = {
- 		.name	= "sx9310",
--		.acpi_match_table = ACPI_PTR(sx9310_acpi_match),
--		.of_match_table = of_match_ptr(sx9310_of_match),
-+		.acpi_match_table = sx9310_acpi_match,
-+		.of_match_table = sx9310_of_match,
+@@ -139,7 +139,7 @@ struct sx9310_data {
+ 	struct completion completion;
+ 	unsigned int chan_read, chan_event;
+ 	int channel_users[SX9310_NUM_CHANNELS];
+-	int whoami;
++	unsigned int whoami;
+ };
+ 
+ static const struct iio_event_spec sx9310_events[] = {
+@@ -860,24 +860,15 @@ static int sx9310_init_device(struct iio_dev *indio_dev)
+ 
+ static int sx9310_set_indio_dev_name(struct device *dev,
+ 				     struct iio_dev *indio_dev,
+-				     const struct i2c_device_id *id, int whoami)
++				     unsigned int whoami)
+ {
+-	const struct acpi_device_id *acpi_id;
+-
+-	/* id will be NULL when enumerated via ACPI */
+-	if (id) {
+-		if (id->driver_data != whoami)
+-			dev_err(dev, "WHOAMI does not match i2c_device_id: %s",
+-				id->name);
+-	} else if (ACPI_HANDLE(dev)) {
+-		acpi_id = acpi_match_device(dev->driver->acpi_match_table, dev);
+-		if (!acpi_id)
+-			return -ENODEV;
+-		if (acpi_id->driver_data != whoami)
+-			dev_err(dev, "WHOAMI does not match acpi_device_id: %s",
+-				acpi_id->id);
+-	} else
++	unsigned int long ddata;
++
++	ddata = (uintptr_t)device_get_match_data(dev);
++	if (ddata != whoami) {
++		dev_err(dev, "WHOAMI does not match device data: %u\n", whoami);
+ 		return -ENODEV;
++	}
+ 
+ 	switch (whoami) {
+ 	case SX9310_WHOAMI_VALUE:
+@@ -887,15 +878,14 @@ static int sx9310_set_indio_dev_name(struct device *dev,
+ 		indio_dev->name = "sx9311";
+ 		break;
+ 	default:
+-		dev_err(dev, "unexpected WHOAMI response: %u", whoami);
++		dev_err(dev, "unexpected WHOAMI response: %u\n", whoami);
+ 		return -ENODEV;
+ 	}
+ 
+ 	return 0;
+ }
+ 
+-static int sx9310_probe(struct i2c_client *client,
+-			const struct i2c_device_id *id)
++static int sx9310_probe(struct i2c_client *client)
+ {
+ 	int ret;
+ 	struct iio_dev *indio_dev;
+@@ -921,8 +911,7 @@ static int sx9310_probe(struct i2c_client *client,
+ 		return ret;
+ 	}
+ 
+-	ret = sx9310_set_indio_dev_name(&client->dev, indio_dev, id,
+-					data->whoami);
++	ret = sx9310_set_indio_dev_name(&client->dev, indio_dev, data->whoami);
+ 	if (ret < 0)
+ 		return ret;
+ 
+@@ -1035,8 +1024,8 @@ static const struct acpi_device_id sx9310_acpi_match[] = {
+ MODULE_DEVICE_TABLE(acpi, sx9310_acpi_match);
+ 
+ static const struct of_device_id sx9310_of_match[] = {
+-	{ .compatible = "semtech,sx9310" },
+-	{ .compatible = "semtech,sx9311" },
++	{ .compatible = "semtech,sx9310", (void *)SX9310_WHOAMI_VALUE },
++	{ .compatible = "semtech,sx9311", (void *)SX9311_WHOAMI_VALUE },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, sx9310_of_match);
+@@ -1055,7 +1044,7 @@ static struct i2c_driver sx9310_driver = {
+ 		.of_match_table = sx9310_of_match,
  		.pm = &sx9310_pm_ops,
  	},
- 	.probe		= sx9310_probe,
+-	.probe		= sx9310_probe,
++	.probe_new	= sx9310_probe,
+ 	.id_table	= sx9310_id,
+ };
+ module_i2c_driver(sx9310_driver);
 -- 
 2.28.0.163.g6104cc2f0b6-goog
 
