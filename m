@@ -2,135 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3A6123094D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 13:59:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8210A23097E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 14:02:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729301AbgG1L72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jul 2020 07:59:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40666 "EHLO
+        id S1729347AbgG1MAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jul 2020 08:00:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729305AbgG1L71 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 07:59:27 -0400
-Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55ABBC0619D2
-        for <devicetree@vger.kernel.org>; Tue, 28 Jul 2020 04:59:26 -0700 (PDT)
-Received: by mail-io1-xd41.google.com with SMTP id e64so20384264iof.12
-        for <devicetree@vger.kernel.org>; Tue, 28 Jul 2020 04:59:26 -0700 (PDT)
+        with ESMTP id S1728433AbgG1MAz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 08:00:55 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D923BC061794;
+        Tue, 28 Jul 2020 05:00:54 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id y10so20395495eje.1;
+        Tue, 28 Jul 2020 05:00:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Tl/xK5nksFGek4I0hJhjtnSKtWmsm7mD8uEP3H8tAJc=;
-        b=dKxVLScNmH+IxfLYOJHi2FyLa1HeUI2rsPJTmMupKBaQWimNey/qP3/d62lN/wRW/l
-         eQ4lrfidDx/qDiuCsBs8jqw6PRXawqwMoVVC3s9ak2gMfUMN+L9SwWpIE/lgtTa/OWao
-         ZE7kRtmQ9VEQjfKvpIUMjvlPOFlq1JqJQiEEc=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=U1+l6khR5WEgvOR/QZzKuHUQUvz26GVnRqvOBKPa+Ig=;
+        b=Cb8xHECisgxMI9BTnvqRvZP+7vKvwzS4JS6Rhk2Ik8HhAQQMxqaKo0TJ0nl1uWgIpW
+         VbXK8r2vM3FY9oqWWJ98hhYUg40cszGAuL4D8R1ApJIG+xHEwmhLwEJ+oxjqWDdwQlrp
+         XoBy7SweEFWlzlQtQbsGkMmHYVBRNIVCuSFV7LnlvzaTuanqGZsye1oIWtOB8qT7qDf2
+         RiupBmERD5+dyGR0BiftJ0D1r9F1lTx0YisvWk19oZmUc6XtYNQp79kIx0kvZhsbL7lV
+         ZzKb+VT0vvZSplXrIc1G6yzZ67bolIK4Vm1L7+ct3DeXe+aX9sLHZvPPWeDPQBvU/M/q
+         ruwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Tl/xK5nksFGek4I0hJhjtnSKtWmsm7mD8uEP3H8tAJc=;
-        b=KHxUqoeJPnNL1Lmiq3Vh2p1LSHpe/1LD6aX00qE/eclrInuB+nkgTvyf2cqu63FEvq
-         d6Tl65UgscHvWdqW1CRt5CkWeIjXDiehQlixX0wWUbJdva9LNBPKlgD8ucvhL0SkBEWe
-         N1uRlWzqo26/KehM9gmhYm7ZJ6lOiTjFgYbod3tJOzXdHfVaWlGFj0ste+QUIHK6/cIu
-         hNkxgvY1jN9v+HJHVxBEDlZGZnL7Rr+BGr+G2YwqTyOYF3leK1QUNEJQHhSSS+FQSWwL
-         +nbyuSKu7NAz4If+rvoAk2tbxDOMGTQf3jEOIlyn5Mf3YbjYfrM5wGZy6YU7NGNap/Qj
-         9x4A==
-X-Gm-Message-State: AOAM530xFRn4Ttk399aSkQ1pIxyVxJwdj0RVyPo7ykgbROUPGQ/i8iNI
-        gqbcCEnFuNEz/+RzbqVN/qTBdSJVjvo=
-X-Google-Smtp-Source: ABdhPJyJDFeQiKptaFRp+JdF+oc8rUDWts3NK922YVm4gr3OZ46ZbU4iKjxXTtbRi0ho6gj6V8yU2Q==
-X-Received: by 2002:a6b:e009:: with SMTP id z9mr17986291iog.124.1595937565289;
-        Tue, 28 Jul 2020 04:59:25 -0700 (PDT)
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com. [209.85.166.50])
-        by smtp.gmail.com with ESMTPSA id j81sm9008424iof.13.2020.07.28.04.59.23
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jul 2020 04:59:24 -0700 (PDT)
-Received: by mail-io1-f50.google.com with SMTP id w12so6804402iom.4
-        for <devicetree@vger.kernel.org>; Tue, 28 Jul 2020 04:59:23 -0700 (PDT)
-X-Received: by 2002:a02:6947:: with SMTP id e68mr17279172jac.3.1595937563294;
- Tue, 28 Jul 2020 04:59:23 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=U1+l6khR5WEgvOR/QZzKuHUQUvz26GVnRqvOBKPa+Ig=;
+        b=gbb0ao97Y3cZ1JdFdOCklWdQZjDdj1pE4Q9ObdU9RWPLa6HhgWynRB9VIhohpZKVrd
+         liJemtRA3qnUFKPErXl4YXR5VLZ+z239CKtvKQANztA9TdDMz8JIQb9zHxB6yghntpmN
+         dnBHWP/324JAiqi8RB8ubqRR0Iykw4HKCR/MPHOrm6zq8HA0xSemnuFin/bxV1bKa/+a
+         AgCNQwE443baxdJIVUgDVl3yYT99ig+61w9/50DgWto19zC7VIY5OKJNvszhf3FEuhLu
+         aueJffTIP5KcnvT6E3kE3Jp5pSiIW26rumW5IpSPEITVC40gi94U2I6F/ollnGZ43c3C
+         Yh0Q==
+X-Gm-Message-State: AOAM530ZZcUqrsDy9x0KUbycJaXLl+bOFSUU0dT+yQOoH4P8LnMrKYZX
+        EeixStkQypIsbrObHQvzAqs=
+X-Google-Smtp-Source: ABdhPJxlN/0QPTsiHNWeYZHn5E08xNHKQc5xzCIEGu0HQEKO2OhckRJZqPbvvALD8H3dobgZtRTPcQ==
+X-Received: by 2002:a17:906:12cd:: with SMTP id l13mr18815289ejb.385.1595937653613;
+        Tue, 28 Jul 2020 05:00:53 -0700 (PDT)
+Received: from localhost.localdomain (abad207.neoplus.adsl.tpnet.pl. [83.6.167.207])
+        by smtp.googlemail.com with ESMTPSA id m20sm9066959ejk.90.2020.07.28.05.00.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jul 2020 05:00:53 -0700 (PDT)
+From:   Konrad Dybcio <konradybcio@gmail.com>
+To:     konradybcio@gmail.com
+Cc:     lauren.kelly@msn.com, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCH 0/9] msm8992/4 updates
+Date:   Tue, 28 Jul 2020 14:00:39 +0200
+Message-Id: <20200728120049.90632-1-konradybcio@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20200728050140.996974-1-tientzu@chromium.org>
-In-Reply-To: <20200728050140.996974-1-tientzu@chromium.org>
-From:   Claire Chang <tientzu@chromium.org>
-Date:   Tue, 28 Jul 2020 19:59:12 +0800
-X-Gmail-Original-Message-ID: <CALiNf28XXGpJ=hV-S3dLyq1U18_trr4e4rr6OPr5W5DxHD9XcA@mail.gmail.com>
-Message-ID: <CALiNf28XXGpJ=hV-S3dLyq1U18_trr4e4rr6OPr5W5DxHD9XcA@mail.gmail.com>
-Subject: Re: [RFC v2 0/5] Restricted DMA
-To:     Rob Herring <robh+dt@kernel.org>, frowand.list@gmail.com,
-        Christoph Hellwig <hch@lst.de>, m.szyprowski@samsung.com,
-        Robin Murphy <robin.murphy@arm.com>
-Cc:     treding@nvidia.com, Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>, suzuki.poulose@arm.com,
-        dan.j.williams@intel.com, heikki.krogerus@linux.intel.com,
-        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        iommu@lists.linux-foundation.org,
-        Nicolas Boichat <drinkcat@chromium.org>, tfiga@chromium.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It seems that I didn't rebase the patchset properly. There are some
-build test errors.
-Sorry about that. Please kindly ignore those rebase issues. I'll fix
-them in the next version.
+This series brings support for:
 
+* sdhci2 on 8992/4
+* BLSP_I2C1 (a seemingly WP-exclusive i2c bus) for 8992
+* Synaptics RMI4 touchscreen for Sony Kitakami and MSFT L950
+* DWC3 USB for msm8992/4 (doesn't work on Lumias, they use custom
+circuitry)
+* Missing clocks for 8994 GCC needed for USB
 
-On Tue, Jul 28, 2020 at 1:01 PM Claire Chang <tientzu@chromium.org> wrote:
->
-> This series implements mitigations for lack of DMA access control on
-> systems without an IOMMU, which could result in the DMA accessing the
-> system memory at unexpected times and/or unexpected addresses, possibly
-> leading to data leakage or corruption.
->
-> For example, we plan to use the PCI-e bus for Wi-Fi on one MTK platform and
-> that PCI-e bus is not behind an IOMMU. As PCI-e, by design, gives the
-> device full access to system memory, a vulnerability in the Wi-Fi firmware
-> could easily escalate to a full system exploit (remote wifi exploits: [1a],
-> [1b] that shows a full chain of exploits; [2], [3]).
->
-> To mitigate the security concerns, we introduce restricted DMA. The
-> restricted DMA is implemented by per-device swiotlb and coherent memory
-> pools. The feature on its own provides a basic level of protection against
-> the DMA overwriting buffer contents at unexpected times. However, to
-> protect against general data leakage and system memory corruption, the
-> system needs to provide a way to restrict the DMA to a predefined memory
-> region (this is usually done at firmware level, e.g. in ATF on some ARM
-> platforms).
->
-> [1a] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_4.html
-> [1b] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_11.html
-> [2] https://blade.tencent.com/en/advisories/qualpwn/
-> [3] https://www.bleepingcomputer.com/news/security/vulnerabilities-found-in-highly-popular-firmware-for-wifi-chips/
->
->
-> Claire Chang (5):
->   swiotlb: Add io_tlb_mem struct
->   swiotlb: Add device swiotlb pool
->   swiotlb: Use device swiotlb pool if available
->   dt-bindings: of: Add plumbing for restricted DMA pool
->   of: Add plumbing for restricted DMA pool
->
->  .../reserved-memory/reserved-memory.txt       |  35 ++
->  drivers/iommu/intel/iommu.c                   |   8 +-
->  drivers/of/address.c                          |  39 ++
->  drivers/of/device.c                           |   3 +
->  drivers/of/of_private.h                       |   6 +
->  drivers/xen/swiotlb-xen.c                     |   4 +-
->  include/linux/device.h                        |   4 +
->  include/linux/dma-direct.h                    |   8 +-
->  include/linux/swiotlb.h                       |  49 +-
->  kernel/dma/direct.c                           |   8 +-
->  kernel/dma/swiotlb.c                          | 418 +++++++++++-------
->  11 files changed, 393 insertions(+), 189 deletions(-)
->
-> --
-> v1: https://lore.kernel.org/patchwork/cover/1271660/
-> Changes in v2:
-> - build on top of swiotlb
->
-> 2.28.0.rc0.142.g3c755180ce-goog
->
+Konrad Dybcio (9):
+  arm64: dts: qcom: msm8992: Add support for SDHCI2
+  arm64: dts: qcom: msm8992: Add BLSP_I2C1 support
+  arm64: dts: qcom: talkman: Add Synaptics RMI4 touchscreen
+  arm64: dts: qcom: msm8994: Add USB support
+  arm64: dts: qcom: msm8992: Add USB support
+  clk: qcom: gcc-msm8994: Add missing clocks, resets and GDSCs
+  arm64: dts: qcom: kitakami: Add Synaptics touchscreen
+  arm64: dts: qcom: msm8994: Add SDHCI2 node
+  arm64: dts: qcom: kitakami: Enable SDHCI2
+
+ .../dts/qcom/msm8992-msft-lumia-talkman.dts   |  28 ++
+ arch/arm64/boot/dts/qcom/msm8992.dtsi         | 124 ++++++
+ .../qcom/msm8994-sony-xperia-kitakami.dtsi    |  49 ++-
+ arch/arm64/boot/dts/qcom/msm8994.dtsi         |  89 ++++
+ drivers/clk/qcom/gcc-msm8994.c                | 388 +++++++++++++++++-
+ include/dt-bindings/clock/qcom,gcc-msm8994.h  |  36 ++
+ 6 files changed, 712 insertions(+), 2 deletions(-)
+
+-- 
+2.27.0
+
