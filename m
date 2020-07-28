@@ -2,189 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6D84230DBE
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 17:27:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0DDC230E0D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 17:38:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730863AbgG1P1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jul 2020 11:27:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43102 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730637AbgG1P1P (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Jul 2020 11:27:15 -0400
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 75C80206D8;
-        Tue, 28 Jul 2020 15:27:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1595950034;
-        bh=FSygYseQrDpyWFyRVEBREvmwpWPpOqKjBJL2fZMrrZk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=B/lYja2Btw1plI2Vz8W7r9HzBv+a8iKi/jMRUREQmZ1NCPExTXPa4fofF9dR/2vO2
-         TVaDTYf+sMg9fvP7MDBHA+ZKecef+axRwkrq96xn02V5oIxToxGIz0vP1pbFT8agiX
-         s/qBnOMNa8VE7uCuSS3A6yNe9SOE7elYw1hjNLQc=
-Received: by mail-ot1-f53.google.com with SMTP id w17so15171269otl.4;
-        Tue, 28 Jul 2020 08:27:14 -0700 (PDT)
-X-Gm-Message-State: AOAM531g5xfL5dzHLgI7bQYUa1SJHw9IdjScqVeOyiJaKYNeXhSjTLHe
-        bl1FGkze6DKxUyqdLTomDxd4ZY1rxIEpeGbnWw==
-X-Google-Smtp-Source: ABdhPJzW+pLIVBpgooW1y4TcjlX6GiauKPjLYWljjA7Cu23WQa6nxbEndsfVE94qkcjq2RVC1WkXCFwftebxQS183J4=
-X-Received: by 2002:a9d:46c:: with SMTP id 99mr25034284otc.192.1595950033837;
- Tue, 28 Jul 2020 08:27:13 -0700 (PDT)
+        id S1731011AbgG1Phi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jul 2020 11:37:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46120 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730812AbgG1Ph0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 11:37:26 -0400
+Received: from ustc.edu.cn (email6.ustc.edu.cn [IPv6:2001:da8:d800::8])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DFFC9C0619D2;
+        Tue, 28 Jul 2020 08:37:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mail.ustc.edu.cn; s=dkim; h=Received:Date:From:To:Cc:Subject:
+        Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding;
+        bh=SP4UMFb1WB1izsQH5BQcEb4/cjOimxk03MhDuSg/fAg=; b=lbWovlqVroe9i
+        iHaB3ynvggOzei7ex54GSZ7SiTHuUUBIudqn5ll964LT+Zpbkgjo4GlB/cPn9ob0
+        qtdpPJ9jWebkEZeh4RKLCz2xB5O9UsfbFaFAInr3xZTMv29yDJpEaDPLMT4Fu5q9
+        5d5x3f+nSQC26pu9j9aVEs3Oic61Fo=
+Received: from xhacker (unknown [101.86.17.135])
+        by newmailweb.ustc.edu.cn (Coremail) with SMTP id LkAmygCHj_diRCBfgxI2AA--.17695S4;
+        Tue, 28 Jul 2020 23:29:43 +0800 (CST)
+Date:   Tue, 28 Jul 2020 23:23:27 +0800
+From:   Jisheng Zhang <jszhang3@mail.ustc.edu.cn>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Saravanan Sekar <sravanhome@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 0/4] regulator: mp886x: two features and dt json convert
+Message-ID: <20200728232327.71ab3729@xhacker>
 MIME-Version: 1.0
-References: <1595776013-12877-1-git-send-email-sivaprak@qti.qualcomm.com>
-In-Reply-To: <1595776013-12877-1-git-send-email-sivaprak@qti.qualcomm.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 28 Jul 2020 09:27:01 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+-rwG73mEkYmMQcnxHoBpbFMWHKDvzUK=6-fMAo77-9w@mail.gmail.com>
-Message-ID: <CAL_Jsq+-rwG73mEkYmMQcnxHoBpbFMWHKDvzUK=6-fMAo77-9w@mail.gmail.com>
-Subject: Re: [PATCH V2] dt-bindings: pci: convert QCOM pci bindings to YAML
-To:     Sivaprakash Murugesan <sivaprak@qti.qualcomm.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID: LkAmygCHj_diRCBfgxI2AA--.17695S4
+X-Coremail-Antispam: 1UD129KBjvdXoW7Xryktw13WrWxXryrGryfJFb_yoWfCFcE9r
+        yxAa47Gw4DZF1rCayIyFsrt34YyF4Iqa4kXFy7trZ0yry7Za4UGrZxXr9Fvr4xWayUAFn7
+        Wwn7JrWSyry3WjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+        9fnUUIcSsGvfJTRUUUb3xYjsxI4VWxJwAYFVCjjxCrM7AC8VAFwI0_Xr0_Wr1l1xkIjI8I
+        6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l82xGYIkIc2x26280x7
+        IE14v26r15M28IrcIa0xkI8VCY1x0267AKxVW8JVW5JwA2ocxC64kIII0Yj41l84x0c7CE
+        w4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6x
+        kF7I0E14v26F4j6r4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY
+        1x0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4
+        xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCa
+        FVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4
+        AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE
+        17CEb7AF67AKxVWUAVWUtwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMI
+        IF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4l
+        IxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvf
+        C2KfnxnUUI43ZEXa7IU01v35UUUUU==
+X-CM-SenderInfo: xmv2xttqjtqzxdloh3xvwfhvlgxou0/
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 26, 2020 at 9:07 AM Sivaprakash Murugesan
-<sivaprak@qti.qualcomm.com> wrote:
->
-> From: Sivaprakash Murugesan <sivaprak@codeaurora.org>
->
-> Convert QCOM pci bindings to YAML schema
->
-> Signed-off-by: Sivaprakash Murugesan <sivaprak@codeaurora.org>
-> ---
-> [v2]
->   - Referenced pci-bus.yaml
->   - removed duplicate properties already referenced by pci-bus.yaml
->   - Addressed comments from Rob
->  .../devicetree/bindings/pci/qcom,pcie.txt          | 330 ---------------
->  .../devicetree/bindings/pci/qcom,pcie.yaml         | 447 +++++++++++++++++++++
->  2 files changed, 447 insertions(+), 330 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie.txt
->  create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+From: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+
+This is to improve the mp886x regulator driver support.
+patch1 converts dt binding to json-schema
+patch2 implments .set_ramp_delay
+patch3 and patch3 support the switch freq setting
+
+Jisheng Zhang (4):
+  dt-bindings: regulator: Convert mp886x to json-schema
+  regulator: mp886x: implement set_ramp_delay
+  dt-bindings: regulator: mp886x: support mps,switch-frequency
+  regulator: mp886x: support setting switch freq
+
+ .../devicetree/bindings/regulator/mp886x.txt  |  27 -----
+ .../bindings/regulator/mps,mp886x.yaml        |  58 ++++++++++
+ drivers/regulator/mp886x.c                    | 109 +++++++++++++++++-
+ 3 files changed, 164 insertions(+), 30 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/regulator/mp886x.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/mps,mp886x.yaml
+
+-- 
+2.28.0.rc0
 
 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> new file mode 100644
-> index 000000000000..ddb84f49ac1c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> @@ -0,0 +1,447 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/pci/qcom,pcie.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Qualcomm PCI express root complex
-> +
-> +maintainers:
-> +  - Sivaprakash Murugesan <sivaprak@codeaurora.org>
-> +
-> +description:
-> +  QCOM PCIe controller uses Designware IP with Qualcomm specific hardware
-> +  wrappers.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,pcie-apq8064
-> +      - qcom,pcie-apq8084
-> +      - qcom,pcie-ipq4019
-> +      - qcom,pcie-ipq8064
-> +      - qcom,pcie-ipq8074
-> +      - qcom,pcie-msm8996
-> +      - qcom,pcie-qcs404
-> +      - qcom,pcie-sdm845
-> +
-> +  reg:
-> +    description: Register ranges as listed in the reg-names property
-
-Can drop this.
-
-> +    maxItems: 4
-> +
-> +  reg-names:
-> +    items:
-> +      - const: dbi
-> +      - const: elbi
-> +      - const: parf
-> +      - const: config
-> +
-> +  ranges:
-> +    maxItems: 2
-> +
-> +  interrupts:
-> +    items:
-> +      - description: MSI interrupts
-> +
-> +  interrupt-names:
-> +    const: msi
-> +
-> +  "#interrupt-cells":
-
-In pci-bus.yaml, so you can drop.
-
-> +    const: 1
-> +
-> +  interrupt-map-mask:
-
-In pci-bus.yaml, so you can drop.
-
-> +    items:
-> +      - description: standard PCI properties to define mapping of PCIe
-> +                     interface to interrupt numbers.
-> +
-> +  interrupt-map:
-> +    maxItems: 4
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 7
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    maxItems: 7
-> +
-> +  resets:
-> +    minItems: 1
-> +    maxItems: 12
-> +
-> +  reset-names:
-> +    minItems: 1
-> +    maxItems: 12
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  vdda-supply:
-> +    description: phandle to power supply
-> +
-> +  vdda_phy-supply:
-> +    description: phandle to the power supply to PHY
-> +
-> +  vdda_refclk-supply:
-> +    description: phandle to power supply for ref clock generator
-> +
-> +  vddpe-3v3-supply:
-> +    description: PCIe endpoint power supply
-> +
-> +  phys:
-> +    maxItems: 1
-> +    items:
-> +      - description: phandle to the PHY block
-
-Can drop 'items'.
-
-With those fixed,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
