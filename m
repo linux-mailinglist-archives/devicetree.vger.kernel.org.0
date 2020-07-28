@@ -2,39 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F4118230196
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 07:18:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4253A230197
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 07:18:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726533AbgG1FSK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jul 2020 01:18:10 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:33682 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726251AbgG1FSJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 01:18:09 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06S5HnqN042203;
-        Tue, 28 Jul 2020 00:17:49 -0500
+        id S1726581AbgG1FSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jul 2020 01:18:13 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:47142 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726251AbgG1FSN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 01:18:13 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06S5Hr7q096192;
+        Tue, 28 Jul 2020 00:17:53 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1595913469;
-        bh=/D5VA7+K8MPVBXvUkuEX+a8cL3vO3llLk69PPnVxhR4=;
+        s=ti-com-17Q1; t=1595913473;
+        bh=v0P0kEwd+3S5M7UitmXi0NKwnurO9CWy6cgt5TsxxOE=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=bCcO5AQU3sE8a28vKNShobaqZBLnrEg8LW9I32qaFMzVsGyTiTliXHgOVI24FwB6V
-         oRsWG3JPKaH0la9cr0/5LNOnZ9cIjAOjWVSt2j9nkfsX/PgP+GLuebhQr4vE7txrbR
-         QPehh4Bu5bJ9ImyFKVWwJe9WeN+La+RcwfJGTL2k=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06S5HnRs028707;
-        Tue, 28 Jul 2020 00:17:49 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+        b=y8qo5FoEOghjSHCeAxTcRSEHPcGBo2c8DcN/OU23boG24kYwbZGaIbe2JBNO7GCXN
+         DZ8om+o5h2vSfbfLP215WtmjboKExt3xsoFshW1ajNPPTBCjPRe9uf2VO+c8uiGVEH
+         kLY3rYxQiW938CXs31OR77JB6JCXaeZFfefvp1qM=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06S5HrVe103801
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 28 Jul 2020 00:17:53 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 28
- Jul 2020 00:17:49 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ Jul 2020 00:17:53 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 28 Jul 2020 00:17:49 -0500
+ Frontend Transport; Tue, 28 Jul 2020 00:17:53 -0500
 Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06S5Hasu005947;
-        Tue, 28 Jul 2020 00:17:45 -0500
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06S5Hasv005947;
+        Tue, 28 Jul 2020 00:17:49 -0500
 From:   Lokesh Vutla <lokeshvutla@ti.com>
 To:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>
 CC:     Thomas Gleixner <tglx@linutronix.de>, Nishanth Menon <nm@ti.com>,
@@ -46,9 +47,9 @@ CC:     Thomas Gleixner <tglx@linutronix.de>, Nishanth Menon <nm@ti.com>,
         Peter Ujfalusi <peter.ujfalusi@ti.com>,
         Device Tree Mailing List <devicetree@vger.kernel.org>,
         Suman Anna <s-anna@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [PATCH v5 02/10] firmware: ti_sci: Drop unused structure ti_sci_rm_type_map
-Date:   Tue, 28 Jul 2020 10:47:27 +0530
-Message-ID: <20200728051735.6187-3-lokeshvutla@ti.com>
+Subject: [PATCH v5 03/10] firmware: ti_sci: Add support for getting resource with subtype
+Date:   Tue, 28 Jul 2020 10:47:28 +0530
+Message-ID: <20200728051735.6187-4-lokeshvutla@ti.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200728051735.6187-1-lokeshvutla@ti.com>
 References: <20200728051735.6187-1-lokeshvutla@ti.com>
@@ -61,132 +62,196 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-struct ti_sci_rm_type_map is no longer used. Drop its definition and its
-declarations.
+With SYSFW ABI 3.0 changes, interrupts coming out of an interrupt
+controller is identified by a type and it is consistent across SoCs.
+Similarly global events for Interrupt aggregator. So add an API to get
+resource range using a resource type.
 
 Acked-by: Nishanth Menon <nm@ti.com>
 Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
 ---
- drivers/firmware/ti_sci.c | 56 +--------------------------------------
- 1 file changed, 1 insertion(+), 55 deletions(-)
+ drivers/firmware/ti_sci.c              | 89 +++++++++++++++++++-------
+ include/linux/soc/ti/ti_sci_protocol.h | 13 ++++
+ 2 files changed, 80 insertions(+), 22 deletions(-)
 
 diff --git a/drivers/firmware/ti_sci.c b/drivers/firmware/ti_sci.c
-index 930a65ed78ad..a81ddec9e669 100644
+index a81ddec9e669..918117be4a73 100644
 --- a/drivers/firmware/ti_sci.c
 +++ b/drivers/firmware/ti_sci.c
-@@ -64,22 +64,6 @@ struct ti_sci_xfers_info {
- 	spinlock_t xfer_lock;
- };
+@@ -3208,61 +3208,50 @@ u32 ti_sci_get_num_resources(struct ti_sci_resource *res)
+ EXPORT_SYMBOL_GPL(ti_sci_get_num_resources);
  
--/**
-- * struct ti_sci_rm_type_map - Structure representing TISCI Resource
-- *				management representation of dev_ids.
-- * @dev_id:	TISCI device ID
-- * @type:	Corresponding id as identified by TISCI RM.
-- *
-- * Note: This is used only as a work around for using RM range apis
-- *	for AM654 SoC. For future SoCs dev_id will be used as type
-- *	for RM range APIs. In order to maintain ABI backward compatibility
-- *	type is not being changed for AM654 SoC.
-- */
--struct ti_sci_rm_type_map {
--	u32 dev_id;
--	u16 type;
--};
--
  /**
-  * struct ti_sci_desc - Description of SoC integration
-  * @default_host_id:	Host identifier representing the compute entity
-@@ -87,14 +71,12 @@ struct ti_sci_rm_type_map {
-  * @max_msgs: Maximum number of messages that can be pending
-  *		  simultaneously in the system
-  * @max_msg_size: Maximum size of data per message that can be handled.
-- * @rm_type_map: RM resource type mapping structure.
+- * devm_ti_sci_get_of_resource() - Get a TISCI resource assigned to a device
++ * devm_ti_sci_get_resource_sets() - Get a TISCI resources assigned to a device
+  * @handle:	TISCI handle
+  * @dev:	Device pointer to which the resource is assigned
+  * @dev_id:	TISCI device id to which the resource is assigned
+- * @of_prop:	property name by which the resource are represented
++ * @sub_types:	Array of sub_types assigned corresponding to device
++ * @sets:	Number of sub_types
+  *
+  * Return: Pointer to ti_sci_resource if all went well else appropriate
+  *	   error pointer.
   */
- struct ti_sci_desc {
- 	u8 default_host_id;
- 	int max_rx_timeout_ms;
- 	int max_msgs;
- 	int max_msg_size;
--	struct ti_sci_rm_type_map *rm_type_map;
- };
+-struct ti_sci_resource *
+-devm_ti_sci_get_of_resource(const struct ti_sci_handle *handle,
+-			    struct device *dev, u32 dev_id, char *of_prop)
++static struct ti_sci_resource *
++devm_ti_sci_get_resource_sets(const struct ti_sci_handle *handle,
++			      struct device *dev, u32 dev_id, u32 *sub_types,
++			      u32 sets)
+ {
+ 	struct ti_sci_resource *res;
+ 	bool valid_set = false;
+-	u32 resource_subtype;
+ 	int i, ret;
  
- /**
-@@ -1710,33 +1692,6 @@ static int ti_sci_cmd_core_reboot(const struct ti_sci_handle *handle)
- 	return ret;
+ 	res = devm_kzalloc(dev, sizeof(*res), GFP_KERNEL);
+ 	if (!res)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	ret = of_property_count_elems_of_size(dev_of_node(dev), of_prop,
+-					      sizeof(u32));
+-	if (ret < 0) {
+-		dev_err(dev, "%s resource type ids not available\n", of_prop);
+-		return ERR_PTR(ret);
+-	}
+-	res->sets = ret;
+-
++	res->sets = sets;
+ 	res->desc = devm_kcalloc(dev, res->sets, sizeof(*res->desc),
+ 				 GFP_KERNEL);
+ 	if (!res->desc)
+ 		return ERR_PTR(-ENOMEM);
+ 
+ 	for (i = 0; i < res->sets; i++) {
+-		ret = of_property_read_u32_index(dev_of_node(dev), of_prop, i,
+-						 &resource_subtype);
+-		if (ret)
+-			return ERR_PTR(-EINVAL);
+-
+ 		ret = handle->ops.rm_core_ops.get_range(handle, dev_id,
+-							resource_subtype,
++							sub_types[i],
+ 							&res->desc[i].start,
+ 							&res->desc[i].num);
+ 		if (ret) {
+ 			dev_dbg(dev, "dev = %d subtype %d not allocated for this host\n",
+-				dev_id, resource_subtype);
++				dev_id, sub_types[i]);
+ 			res->desc[i].start = 0;
+ 			res->desc[i].num = 0;
+ 			continue;
+ 		}
+ 
+ 		dev_dbg(dev, "dev = %d, subtype = %d, start = %d, num = %d\n",
+-			dev_id, resource_subtype, res->desc[i].start,
++			dev_id, sub_types[i], res->desc[i].start,
+ 			res->desc[i].num);
+ 
+ 		valid_set = true;
+@@ -3280,6 +3269,62 @@ devm_ti_sci_get_of_resource(const struct ti_sci_handle *handle,
+ 	return ERR_PTR(-EINVAL);
  }
  
--static int ti_sci_get_resource_type(struct ti_sci_info *info, u16 dev_id,
--				    u16 *type)
--{
--	struct ti_sci_rm_type_map *rm_type_map = info->desc->rm_type_map;
--	bool found = false;
--	int i;
--
--	/* If map is not provided then assume dev_id is used as type */
--	if (!rm_type_map) {
--		*type = dev_id;
--		return 0;
--	}
--
--	for (i = 0; rm_type_map[i].dev_id; i++) {
--		if (rm_type_map[i].dev_id == dev_id) {
--			*type = rm_type_map[i].type;
--			found = true;
--			break;
--		}
--	}
--
--	if (!found)
--		return -EINVAL;
--
--	return 0;
--}
--
++/**
++ * devm_ti_sci_get_of_resource() - Get a TISCI resource assigned to a device
++ * @handle:	TISCI handle
++ * @dev:	Device pointer to which the resource is assigned
++ * @dev_id:	TISCI device id to which the resource is assigned
++ * @of_prop:	property name by which the resource are represented
++ *
++ * Return: Pointer to ti_sci_resource if all went well else appropriate
++ *	   error pointer.
++ */
++struct ti_sci_resource *
++devm_ti_sci_get_of_resource(const struct ti_sci_handle *handle,
++			    struct device *dev, u32 dev_id, char *of_prop)
++{
++	struct ti_sci_resource *res;
++	u32 *sub_types;
++	int sets;
++
++	sets = of_property_count_elems_of_size(dev_of_node(dev), of_prop,
++					       sizeof(u32));
++	if (sets < 0) {
++		dev_err(dev, "%s resource type ids not available\n", of_prop);
++		return ERR_PTR(sets);
++	}
++
++	sub_types = kcalloc(sets, sizeof(*sub_types), GFP_KERNEL);
++	if (!sub_types)
++		return ERR_PTR(-ENOMEM);
++
++	of_property_read_u32_array(dev_of_node(dev), of_prop, sub_types, sets);
++	res = devm_ti_sci_get_resource_sets(handle, dev, dev_id, sub_types,
++					    sets);
++
++	kfree(sub_types);
++	return res;
++}
++EXPORT_SYMBOL_GPL(devm_ti_sci_get_of_resource);
++
++/**
++ * devm_ti_sci_get_resource() - Get a resource range assigned to the device
++ * @handle:	TISCI handle
++ * @dev:	Device pointer to which the resource is assigned
++ * @dev_id:	TISCI device id to which the resource is assigned
++ * @suub_type:	TISCI resource subytpe representing the resource.
++ *
++ * Return: Pointer to ti_sci_resource if all went well else appropriate
++ *	   error pointer.
++ */
++struct ti_sci_resource *
++devm_ti_sci_get_resource(const struct ti_sci_handle *handle, struct device *dev,
++			 u32 dev_id, u32 sub_type)
++{
++	return devm_ti_sci_get_resource_sets(handle, dev, dev_id, &sub_type, 1);
++}
++EXPORT_SYMBOL_GPL(devm_ti_sci_get_resource);
++
+ static int tisci_reboot_handler(struct notifier_block *nb, unsigned long mode,
+ 				void *cmd)
+ {
+diff --git a/include/linux/soc/ti/ti_sci_protocol.h b/include/linux/soc/ti/ti_sci_protocol.h
+index 9531ec823298..68e47f6324be 100644
+--- a/include/linux/soc/ti/ti_sci_protocol.h
++++ b/include/linux/soc/ti/ti_sci_protocol.h
+@@ -220,6 +220,9 @@ struct ti_sci_rm_core_ops {
+ 				    u16 *range_start, u16 *range_num);
+ };
+ 
++#define TI_SCI_RESASG_SUBTYPE_IR_OUTPUT		0
++#define TI_SCI_RESASG_SUBTYPE_IA_VINT		0xa
++#define TI_SCI_RESASG_SUBTYPE_GLOBAL_EVENT_SEVT	0xd
  /**
-  * ti_sci_get_resource_range - Helper to get a range of resources assigned
-  *			       to a host. Resource is uniquely identified by
-@@ -1760,7 +1715,6 @@ static int ti_sci_get_resource_range(const struct ti_sci_handle *handle,
- 	struct ti_sci_xfer *xfer;
- 	struct ti_sci_info *info;
- 	struct device *dev;
--	u16 type;
- 	int ret = 0;
+  * struct ti_sci_rm_irq_ops: IRQ management operations
+  * @set_irq:		Set an IRQ route between the requested source
+@@ -556,6 +559,9 @@ u32 ti_sci_get_num_resources(struct ti_sci_resource *res);
+ struct ti_sci_resource *
+ devm_ti_sci_get_of_resource(const struct ti_sci_handle *handle,
+ 			    struct device *dev, u32 dev_id, char *of_prop);
++struct ti_sci_resource *
++devm_ti_sci_get_resource(const struct ti_sci_handle *handle, struct device *dev,
++			 u32 dev_id, u32 sub_type);
  
- 	if (IS_ERR(handle))
-@@ -1780,15 +1734,9 @@ static int ti_sci_get_resource_range(const struct ti_sci_handle *handle,
- 		return ret;
- 	}
+ #else	/* CONFIG_TI_SCI_PROTOCOL */
  
--	ret = ti_sci_get_resource_type(info, dev_id, &type);
--	if (ret) {
--		dev_err(dev, "rm type lookup failed for %u\n", dev_id);
--		goto fail;
--	}
--
- 	req = (struct ti_sci_msg_req_get_resource_range *)xfer->xfer_buf;
- 	req->secondary_host = s_host;
--	req->type = type & MSG_RM_RESOURCE_TYPE_MASK;
-+	req->type = dev_id & MSG_RM_RESOURCE_TYPE_MASK;
- 	req->subtype = subtype & MSG_RM_RESOURCE_SUBTYPE_MASK;
+@@ -609,6 +615,13 @@ devm_ti_sci_get_of_resource(const struct ti_sci_handle *handle,
+ {
+ 	return ERR_PTR(-EINVAL);
+ }
++
++static inline struct ti_sci_resource *
++devm_ti_sci_get_resource(const struct ti_sci_handle *handle, struct device *dev,
++			 u32 dev_id, u32 sub_type);
++{
++	return ERR_PTR(-EINVAL);
++}
+ #endif	/* CONFIG_TI_SCI_PROTOCOL */
  
- 	ret = ti_sci_do_xfer(info, xfer);
-@@ -3352,7 +3300,6 @@ static const struct ti_sci_desc ti_sci_pmmc_k2g_desc = {
- 	/* Limited by MBOX_TX_QUEUE_LEN. K2G can handle upto 128 messages! */
- 	.max_msgs = 20,
- 	.max_msg_size = 64,
--	.rm_type_map = NULL,
- };
- 
- /* Description for AM654 */
-@@ -3363,7 +3310,6 @@ static const struct ti_sci_desc ti_sci_pmmc_am654_desc = {
- 	/* Limited by MBOX_TX_QUEUE_LEN. K2G can handle upto 128 messages! */
- 	.max_msgs = 20,
- 	.max_msg_size = 60,
--	.rm_type_map = NULL,
- };
- 
- static const struct of_device_id ti_sci_of_match[] = {
+ #endif	/* __TISCI_PROTOCOL_H */
 -- 
 2.27.0
 
