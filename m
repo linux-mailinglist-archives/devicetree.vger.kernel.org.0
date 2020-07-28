@@ -2,84 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82BCC231259
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 21:19:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D56CC23125C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 21:19:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732709AbgG1TSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jul 2020 15:18:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52206 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728751AbgG1TSg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 15:18:36 -0400
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53A93C061794;
-        Tue, 28 Jul 2020 12:18:36 -0700 (PDT)
-Received: by mail-ed1-x544.google.com with SMTP id v22so4858250edy.0;
-        Tue, 28 Jul 2020 12:18:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=oa15p4iXa6GJWXcRKbHat247Q7cvm1xa0u7tYmwOk/s=;
-        b=blU+NE79hmQP+AWK2v6QHIjREnaP4/YLScYIEh3rWReHYQ1hpM4CB6natewhEcZJg3
-         At/DtAoJ9fBGj4g3ZnXIMFH10prYf+AFTHKPO+8fGRN1w55P9BQqv5CG5MoRsyeuOUGy
-         POKNlHiYWWDnRAmGiURfH6NrFotdNYkduTjxfX1eU8AGv+UrcTi8XLXCxBpX95UH/nrL
-         VkdM0HjfPkXJVbmw5xo9QFfmCuDC7uGtgEvhLlgy6LaFCwHAms40eJR1/qxhoNZR63Us
-         RkobSo+XmF/XkyPrpesTskiyKBR75/rYao7GhgZ+zXjoQJs1dT76PdO1tV+cozSe21+o
-         52EQ==
+        id S1732723AbgG1TSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jul 2020 15:18:44 -0400
+Received: from mail-il1-f193.google.com ([209.85.166.193]:35243 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728751AbgG1TSo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 15:18:44 -0400
+Received: by mail-il1-f193.google.com with SMTP id t18so17241140ilh.2;
+        Tue, 28 Jul 2020 12:18:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=oa15p4iXa6GJWXcRKbHat247Q7cvm1xa0u7tYmwOk/s=;
-        b=Uy4PPF4woKMyS4JMu3Q8HWUxMMcMppymWPzWFO6BqnxBP+0fmOjBK6P7V1tSYLiaSJ
-         FSMI7a1eWs4SHcT78TgnltknunaOvUZHJKLWLsb3N/ZNYecj9pq/3+Y6YZc8Xm5ipCtX
-         TkuOU7c5ZwCnkFlajsyRqrIvG7ty6ZQwP3ilZaKMxH+zyw2kfIfnqgucNbU85FP4ZdSX
-         /IMvp3OrwQylnw3FoD3IZer9TR0MIbtrR7YiuwHx1sytaGFVPxwqRx0Lhqmt+TK947BI
-         9hqI8YTgkYn+EwXc29Wx4X77wNJeGhC9hFwm9f1N7j7F1jIwNsirRv7YlDg3sb5qsCgf
-         GsYQ==
-X-Gm-Message-State: AOAM5317sbn/o/tDDTFAyNXOBIcr5GsnBpRQP394iRbL/Fxv1fVIAGR3
-        WsG0EwYB2GkZtLxd8doVuAFQ32wrNjvL85Kq5lA=
-X-Google-Smtp-Source: ABdhPJy5S7ubQoYm3tHb4jW0VlpjbyrDB7KIdVKen1wY3pcq2mMJd8xXnF7ClZtX7lLSpJPEPi2etzzsUrRn6G+1/8E=
-X-Received: by 2002:a05:6402:1d0a:: with SMTP id dg10mr26396667edb.110.1595963915038;
- Tue, 28 Jul 2020 12:18:35 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9F3cWW09ioux65mfhzYBsZ9niInvkdfVsRaw2chstUk=;
+        b=nxia130sMvtPYh3YfCgg8VsWcTyHNC68ExzHDoOMWnyo6gUNjeOewnOpOlAjKXcmsf
+         Nxe6C8mFLQ0shTeaJ3Pe9I6wmTtj6P9sJzZuX+xDfYhIeHB9yHLpCpWjtDargokHxApm
+         f0Kn+EQFUMnwc6Y9/UG7L/gZHsQqvSQSAxgW3G3AK5FUb6udbbv1BM0td42orvuFvQcj
+         5z29FYcSHR8jbb44IXimwRz0ILBz2Ml8zgPcF5Qp55GA02Sl4x/EYKm5M7HUgptaNMUx
+         aY3YeX81ybRsaVZAGJU/bbvxpgyPemiA8DzAJsM0ZGHnePZLBh14mU9+FqCFqQx9uCzR
+         Vhqw==
+X-Gm-Message-State: AOAM533C7TTX/LMWulsXEgjFeAriLjuWdj3X+jjy/3ZlELqTpZfB3KKn
+        OR9COil5Zepjpc1MXaCeerREjXNtsQ==
+X-Google-Smtp-Source: ABdhPJxgAfsLS4pxpTK+EOfMRrpi8C8DIImjE1iaHAQ8VK6HDfaB0TVolR+ZoRk7j95B/yGu+vrJFA==
+X-Received: by 2002:a05:6e02:1021:: with SMTP id o1mr22675354ilj.182.1595963923249;
+        Tue, 28 Jul 2020 12:18:43 -0700 (PDT)
+Received: from xps15 ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id x88sm3755044ilk.81.2020.07.28.12.18.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jul 2020 12:18:42 -0700 (PDT)
+Received: (nullmailer pid 2783759 invoked by uid 1000);
+        Tue, 28 Jul 2020 19:18:42 -0000
+Date:   Tue, 28 Jul 2020 13:18:42 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        arnd@arndb.de
+Subject: Re: [PATCH v2 1/9] dt-bindings: arm: mstar: Add binding details for
+ mstar,pmsleep
+Message-ID: <20200728191842.GB2778962@bogus>
+References: <20200728100321.1691745-1-daniel@0x0f.com>
+ <20200728100321.1691745-2-daniel@0x0f.com>
 MIME-Version: 1.0
-References: <20200728074602.14218-1-amelie.delaunay@st.com> <20200728074602.14218-4-amelie.delaunay@st.com>
-In-Reply-To: <20200728074602.14218-4-amelie.delaunay@st.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 28 Jul 2020 21:18:24 +0200
-Message-ID: <CAFBinCDd_9HJA4TT2mS007xFyO4jovt+Xrpejppzzq2Ty-JDmg@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] usb: dwc2: don't use ID/Vbus detection if
- usb-role-switch on STM32MP15 SoCs
-To:     Amelie Delaunay <amelie.delaunay@st.com>
-Cc:     Minas Harutyunyan <hminas@synopsys.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Fabrice Gasnier <fabrice.gasnier@st.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200728100321.1691745-2-daniel@0x0f.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Amelie,
+On Tue, Jul 28, 2020 at 07:03:13PM +0900, Daniel Palmer wrote:
+> This adds a YAML description of the pmsleep node used by
+> MStar/SigmaStar Armv7 SoCs.
+> 
+> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+> ---
+>  .../bindings/arm/mstar/mstar,pmsleep.yaml     | 43 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/mstar/mstar,pmsleep.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mstar/mstar,pmsleep.yaml b/Documentation/devicetree/bindings/arm/mstar/mstar,pmsleep.yaml
+> new file mode 100644
+> index 000000000000..ef78097a7087
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/mstar/mstar,pmsleep.yaml
+> @@ -0,0 +1,43 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2020 thingy.jp.
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/arm/mstar/mstar,pmsleep.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: MStar/SigmaStar Armv7 SoC pmsleep register region
+> +
+> +maintainers:
+> +  - Daniel Palmer <daniel@thingy.jp>
+> +
+> +description: |
+> +  MStar/Sigmastar's Armv7 SoCs contain a region of registers that are
+> +  in the always on domain that the vendor code calls the "pmsleep" area.
+> +
+> +  This area contains registers and bits for a broad range of functionality
+> +  ranging from registers that control going into deep sleep to bits that
+> +  turn things like the internal temperature sensor on and off.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +         - enum:
+> +             - mstar,pmsleep
 
-On Tue, Jul 28, 2020 at 9:46 AM Amelie Delaunay <amelie.delaunay@st.com> wrote:
->
-> If usb-role-switch is present in the device tree, it means that ID and Vbus
-> signals are not connected to the OTG controller but to an external
-> component (GPIOs, Type-C controller). In this configuration, usb role
-> switch is used to force valid sessions on STM32MP15 SoCs.
->
-> Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
-thank you for updating this patch - please add my:
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Needs to be SoC specific. Random collections of bits are never 
+'standard' from one SoC to the next.
 
+If your never going to have child nodes, then you can just add the 
+compatible to syscon.yaml.
 
-Martin
+> +         - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pmsleep: pmsleep@1c00 {
+> +        compatible = "mstar,pmsleep", "syscon";
+> +        reg = <0x0x1c00 0x100>;
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 991814ea6f76..432fcc867ed6 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2140,6 +2140,7 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+>  S:	Maintained
+>  W:	http://linux-chenxing.org/
+>  F:	Documentation/devicetree/bindings/arm/mstar.yaml
+> +F:	Documentation/devicetree/bindings/arm/mstar/*
+>  F:	arch/arm/boot/dts/infinity*.dtsi
+>  F:	arch/arm/boot/dts/mercury*.dtsi
+>  F:	arch/arm/boot/dts/mstar-v7.dtsi
+> -- 
+> 2.27.0
+> 
