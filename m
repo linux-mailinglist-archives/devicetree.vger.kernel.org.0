@@ -2,122 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59A00230BF1
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 15:59:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B36F7230BFB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 16:04:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730286AbgG1N7u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jul 2020 09:59:50 -0400
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:49512 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730226AbgG1N7t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Jul 2020 09:59:49 -0400
-Received: from pps.filterd (m0098409.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 06SDWxMn036126;
-        Tue, 28 Jul 2020 09:59:48 -0400
-Received: from ppma02dal.us.ibm.com (a.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.10])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 32jkw23a24-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 28 Jul 2020 09:59:48 -0400
-Received: from pps.filterd (ppma02dal.us.ibm.com [127.0.0.1])
-        by ppma02dal.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 06SDscFD020305;
-        Tue, 28 Jul 2020 13:59:47 GMT
-Received: from b03cxnp08025.gho.boulder.ibm.com (b03cxnp08025.gho.boulder.ibm.com [9.17.130.17])
-        by ppma02dal.us.ibm.com with ESMTP id 32gcy48asy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 28 Jul 2020 13:59:47 +0000
-Received: from b03ledav002.gho.boulder.ibm.com (b03ledav002.gho.boulder.ibm.com [9.17.130.233])
-        by b03cxnp08025.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 06SDxisa66388420
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 28 Jul 2020 13:59:44 GMT
-Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 0E550136055;
-        Tue, 28 Jul 2020 13:59:46 +0000 (GMT)
-Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id EC2FA136051;
-        Tue, 28 Jul 2020 13:59:45 +0000 (GMT)
-Received: from gfw170.aus.stglabs.ibm.com (unknown [9.3.62.224])
-        by b03ledav002.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Tue, 28 Jul 2020 13:59:45 +0000 (GMT)
-Received: by gfw170.aus.stglabs.ibm.com (Postfix, from userid 298080)
-        id 8936B2AB; Tue, 28 Jul 2020 08:59:45 -0500 (CDT)
-From:   Vishwanatha Subbanna <vishwa@linux.vnet.ibm.com>
-To:     joel@jms.id.au
-Cc:     vishwa@linux.vnet.ibm.com, devicetree@vger.kernel.org,
-        eajames@linux.ibm.com
-Subject: [PATCH 2/2] rainier: Add LEDs that are controlled by ASPEED
-Date:   Tue, 28 Jul 2020 08:59:43 -0500
-Message-Id: <1595944783-18172-1-git-send-email-vishwa@linux.vnet.ibm.com>
-X-Mailer: git-send-email 1.8.3.1
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-07-28_11:2020-07-28,2020-07-28 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
- phishscore=0 mlxlogscore=803 spamscore=0 clxscore=1015 malwarescore=0
- priorityscore=1501 impostorscore=0 suspectscore=1 mlxscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2007280103
+        id S1730264AbgG1OEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jul 2020 10:04:15 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:58244 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730211AbgG1OEP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 10:04:15 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06SE4D6C110713;
+        Tue, 28 Jul 2020 09:04:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1595945053;
+        bh=XRCyFICfAbzoSRKBaeClzmOc5bpzSUxQPEJq6VvvJi8=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=LdI8BzQj93XvNZkZ4d4oESBsQm56cgloU20cB8l7PycNEa3+0aQqKRs0t3l667Hdv
+         OnvPzyHESd0qTXUbz4bDMZFJKl8zP3o2HbwYRvOEPxHN2qGnV5UuopVDlI8HDPchXP
+         QOo5hNE1gGSE2sqqHtxkJaNbzO32ABIypk1bDxfM=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06SE4Dvx057786
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 28 Jul 2020 09:04:13 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 28
+ Jul 2020 09:04:13 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 28 Jul 2020 09:04:13 -0500
+Received: from [10.250.35.192] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06SE4D1n101658;
+        Tue, 28 Jul 2020 09:04:13 -0500
+Subject: Re: [PATCH v3 2/4] power: supply: bq27xxx_battery: Add the BQ27561
+ Battery monitor
+To:     Sebastian Reichel <sre@kernel.org>
+CC:     <afd@ti.com>, <pali@kernel.org>, <linux-pm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh@kernel.org>
+References: <20200721163206.25438-1-dmurphy@ti.com>
+ <20200721163206.25438-2-dmurphy@ti.com>
+ <20200727223646.vjnkyrmipwin3pj6@earth.universe>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <bc31b9d8-d114-e776-84fd-e05a014b74eb@ti.com>
+Date:   Tue, 28 Jul 2020 09:04:08 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20200727223646.vjnkyrmipwin3pj6@earth.universe>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These are the LEDs that have direct GPIO connection from ASPEED
+Sebastian
 
-Signed-off-by: Vishwanatha Subbanna <vishwa@linux.vnet.ibm.com>
----
- arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts | 24 ++++++++++++++++++++++--
- 1 file changed, 22 insertions(+), 2 deletions(-)
+On 7/27/20 5:36 PM, Sebastian Reichel wrote:
+> Hi,
+>
+> On Tue, Jul 21, 2020 at 11:32:04AM -0500, Dan Murphy wrote:
+>> Add the Texas Instruments BQ27561 battery monitor.  The register address
+>> map is laid out the same as compared to other devices within the file.
+>> The battery status register has differing bits to determine if the
+>> battery is full, discharging or dead.
+>>
+>> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+>> ---
+> Looks mostly good to me, but
+>
+> [...]
+>
+>> @@ -1710,6 +1769,13 @@ static int bq27xxx_battery_capacity_level(struct bq27xxx_device_info *di,
+>>   			level = POWER_SUPPLY_CAPACITY_LEVEL_CRITICAL;
+>>   		else
+>>   			level = POWER_SUPPLY_CAPACITY_LEVEL_NORMAL;
+>> +	} else if (di->opts & BQ27561_O_BITS) {
+>> +		if (di->cache.flags & BQ27561_FLAG_FC)
+>> +			level = POWER_SUPPLY_CAPACITY_LEVEL_FULL;
+>> +		else if (di->cache.flags & BQ27561_FLAG_DIS_CH)
+>> +			level = POWER_SUPPLY_CAPACITY_LEVEL_CRITICAL;
+> Shouldn't this be checking for FLAG_FDC instead of FLAG_DIS_CH?
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-index ecbce50..dc68c49 100644
---- a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-@@ -72,6 +72,26 @@
- 	leds {
- 		compatible = "gpio-leds";
- 
-+		/* BMC Card fault LED at the back */
-+		bmc-ingraham0 {
-+			gpios = <&gpio0 ASPEED_GPIO(H, 1) GPIO_ACTIVE_LOW>;
-+		};
-+
-+		/* Enclosure ID LED at the back */
-+		rear-enc-id0 {
-+			gpios = <&gpio0 ASPEED_GPIO(H, 2) GPIO_ACTIVE_LOW>;
-+		};
-+
-+		/* Enclosure fault LED at the back */
-+		rear-enc-fault0 {
-+			gpios = <&gpio0 ASPEED_GPIO(H, 3) GPIO_ACTIVE_LOW>;
-+		};
-+
-+		/* PCIE slot power LED */
-+		pcieslot-power {
-+			gpios = <&gpio0 ASPEED_GPIO(P, 4) GPIO_ACTIVE_LOW>;
-+		};
-+
- 		/* System ID LED that is at front on Op Panel */
- 		front-sys-id0 {
- 			retain-state-shutdown;
-@@ -112,7 +132,7 @@
- 	/*E0-E7*/	"","","","","","","","",
- 	/*F0-F7*/	"","","","","","","","",
- 	/*G0-G7*/	"","","","","","","","",
--	/*H0-H7*/	"","","","","","","","",
-+	/*H0-H7*/	"","bmc-ingraham0","rear-enc-id0","rear-enc-fault0","","","","",
- 	/*I0-I7*/	"","","","","","","","",
- 	/*J0-J7*/	"","","","","","","","",
- 	/*K0-K7*/	"","","","","","","","",
-@@ -120,7 +140,7 @@
- 	/*M0-M7*/	"","","","","","","","",
- 	/*N0-N7*/	"","","","","","","","",
- 	/*O0-O7*/	"","","","","","","","",
--	/*P0-P7*/	"","","","","","","","",
-+	/*P0-P7*/	"","","","","pcieslot-power","","","",
- 	/*Q0-Q7*/	"cfam-reset","","","","","","","",
- 	/*R0-R7*/	"","","","","","","","",
- 	/*S0-S7*/	"presence-ps0","presence-ps1","presence-ps2","presence-ps3",
--- 
-1.8.3.1
+Yes.
 
+Dan
+
+
+> -- Sebastian
