@@ -2,186 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 913D3230C1C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 16:11:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5642230D24
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 17:11:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730372AbgG1OLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jul 2020 10:11:32 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:59488 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730344AbgG1OL1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 10:11:27 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06SEBQhU112984;
-        Tue, 28 Jul 2020 09:11:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1595945486;
-        bh=I2R+2PF2epnAa3bOY1CVQ2VhJ+hdLW1QPoNVLY3D/BA=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ot74DTPYtLmGC0zmJRH7M0Tfxtp33koHdqtUpW9571uNjeDlT5S4PlN2tPzwne1P9
-         gfN1qQ3vS2JMk1Nm/WjcdwkTi7Jm24EZqX2EYcQAm8nOARK2OC1By+WGoMB5b+NNcB
-         VNF+Qk+CUSworv1v/bdWV59dWT+QZIgGUS1WT3eE=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06SEBQXx020139;
-        Tue, 28 Jul 2020 09:11:26 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 28
- Jul 2020 09:11:25 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 28 Jul 2020 09:11:25 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06SEBPr5035341;
-        Tue, 28 Jul 2020 09:11:25 -0500
-From:   Dan Murphy <dmurphy@ti.com>
-To:     <sre@kernel.org>, <afd@ti.com>, <pali@kernel.org>
-CC:     <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh@kernel.org>,
-        Dan Murphy <dmurphy@ti.com>
-Subject: [PATCH v4 4/4] power: supply: bq27xxx_battery: Add the BQ28z610 Battery monitor
-Date:   Tue, 28 Jul 2020 09:11:13 -0500
-Message-ID: <20200728141113.31518-4-dmurphy@ti.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200728141113.31518-1-dmurphy@ti.com>
-References: <20200728141113.31518-1-dmurphy@ti.com>
+        id S1730647AbgG1PLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jul 2020 11:11:44 -0400
+Received: from out28-146.mail.aliyun.com ([115.124.28.146]:44640 "EHLO
+        out28-146.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730499AbgG1PLo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 11:11:44 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07729437|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.125387-0.156531-0.718082;FP=0|0|0|0|0|-1|-1|-1;HT=e02c03306;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=19;RT=19;SR=0;TI=SMTPD_---.I8t9.vR_1595949095;
+Received: from 192.168.10.205(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.I8t9.vR_1595949095)
+          by smtp.aliyun-inc.com(10.147.40.2);
+          Tue, 28 Jul 2020 23:11:36 +0800
+Subject: Re: [PATCH v6 3/5] USB: PHY: JZ4770: Add support for new Ingenic
+ SoCs.
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Felipe Balbi <balbi@kernel.org>, gregkh@linuxfoundation.org,
+        robh+dt@kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        paul@crapouillou.net, prasannatsmkumar@gmail.com, kishon@ti.com,
+        gor@linux.ibm.com, hca@linux.ibm.com,
+        christophe.jaillet@wanadoo.fr, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        yanfei.li@ingenic.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com
+References: <20200725035159.31231-1-zhouyanjie@wanyeetech.com>
+ <20200725035159.31231-4-zhouyanjie@wanyeetech.com>
+ <87r1t0nmpr.fsf@kernel.org>
+ <1727b5db-5cdf-b88a-4672-bfb4e9809bb0@wanyeetech.com>
+ <20200727095355.GW12965@vkoul-mobl>
+From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
+Message-ID: <1c311f60-87e0-8120-79bd-addab8dc02b3@wanyeetech.com>
+Date:   Tue, 28 Jul 2020 23:11:35 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.3.0
 MIME-Version: 1.0
+In-Reply-To: <20200727095355.GW12965@vkoul-mobl>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Texas Instruments BQ28z610 battery monitor.
-The register address map is laid out the same as compared to other
-devices within the file.
+Hi Vinod,
 
-The battery status register bits are similar to the BQ27561 but they
-are different compared to other fuel gauge devices within this file.
-
-Signed-off-by: Dan Murphy <dmurphy@ti.com>
----
- drivers/power/supply/bq27xxx_battery.c     | 42 ++++++++++++++++++++++
- drivers/power/supply/bq27xxx_battery_i2c.c |  2 ++
- include/linux/power/bq27xxx_battery.h      |  1 +
- 3 files changed, 45 insertions(+)
-
-diff --git a/drivers/power/supply/bq27xxx_battery.c b/drivers/power/supply/bq27xxx_battery.c
-index 654d38bcd7e0..ae9080f2083c 100644
---- a/drivers/power/supply/bq27xxx_battery.c
-+++ b/drivers/power/supply/bq27xxx_battery.c
-@@ -44,6 +44,7 @@
-  * http://www.ti.com/product/bq27441-g1
-  * http://www.ti.com/product/bq27621-g1
-  * https://www.ti.com/lit/gpn/bq27z561
-+ * https://www.ti.com/lit/gpn/bq28z610
-  */
- 
- #include <linux/device.h>
-@@ -462,6 +463,26 @@ static u8
- 		[BQ27XXX_REG_DCAP] = 0x3c,
- 		[BQ27XXX_REG_AP] = 0x22,
- 		BQ27XXX_DM_REG_ROWS,
-+	},
-+	bq28z610_regs[BQ27XXX_REG_MAX] = {
-+		[BQ27XXX_REG_CTRL] = 0x00,
-+		[BQ27XXX_REG_TEMP] = 0x06,
-+		[BQ27XXX_REG_INT_TEMP] = INVALID_REG_ADDR,
-+		[BQ27XXX_REG_VOLT] = 0x08,
-+		[BQ27XXX_REG_AI] = 0x14,
-+		[BQ27XXX_REG_FLAGS] = 0x0a,
-+		[BQ27XXX_REG_TTE] = 0x16,
-+		[BQ27XXX_REG_TTF] = 0x18,
-+		[BQ27XXX_REG_TTES] = INVALID_REG_ADDR,
-+		[BQ27XXX_REG_TTECP] = INVALID_REG_ADDR,
-+		[BQ27XXX_REG_NAC] = INVALID_REG_ADDR,
-+		[BQ27XXX_REG_FCC] = 0x12,
-+		[BQ27XXX_REG_CYCT] = 0x2a,
-+		[BQ27XXX_REG_AE] = 0x22,
-+		[BQ27XXX_REG_SOC] = 0x2c,
-+		[BQ27XXX_REG_DCAP] = 0x3c,
-+		[BQ27XXX_REG_AP] = 0x22,
-+		BQ27XXX_DM_REG_ROWS,
- 	};
- 
- static enum power_supply_property bq27000_props[] = {
-@@ -717,6 +738,25 @@ static enum power_supply_property bq27561_props[] = {
- 	POWER_SUPPLY_PROP_MANUFACTURER,
- };
- 
-+static enum power_supply_property bq28z610_props[] = {
-+	POWER_SUPPLY_PROP_STATUS,
-+	POWER_SUPPLY_PROP_PRESENT,
-+	POWER_SUPPLY_PROP_VOLTAGE_NOW,
-+	POWER_SUPPLY_PROP_CURRENT_NOW,
-+	POWER_SUPPLY_PROP_CAPACITY,
-+	POWER_SUPPLY_PROP_CAPACITY_LEVEL,
-+	POWER_SUPPLY_PROP_TEMP,
-+	POWER_SUPPLY_PROP_TIME_TO_EMPTY_NOW,
-+	POWER_SUPPLY_PROP_TIME_TO_FULL_NOW,
-+	POWER_SUPPLY_PROP_TECHNOLOGY,
-+	POWER_SUPPLY_PROP_CHARGE_FULL,
-+	POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN,
-+	POWER_SUPPLY_PROP_CYCLE_COUNT,
-+	POWER_SUPPLY_PROP_POWER_AVG,
-+	POWER_SUPPLY_PROP_HEALTH,
-+	POWER_SUPPLY_PROP_MANUFACTURER,
-+};
-+
- struct bq27xxx_dm_reg {
- 	u8 subclass_id;
- 	u8 offset;
-@@ -813,6 +853,7 @@ static struct bq27xxx_dm_reg bq27621_dm_regs[] = {
- #endif
- 
- #define bq27561_dm_regs 0
-+#define bq28z610_dm_regs 0
- 
- #define BQ27XXX_O_ZERO	0x00000001
- #define BQ27XXX_O_OTDC	0x00000002 /* has OTC/OTD overtemperature flags */
-@@ -865,6 +906,7 @@ static struct {
- 	[BQ27441]   = BQ27XXX_DATA(bq27441,   0x80008000, BQ27XXX_O_UTOT | BQ27XXX_O_CFGUP | BQ27XXX_O_RAM),
- 	[BQ27621]   = BQ27XXX_DATA(bq27621,   0x80008000, BQ27XXX_O_UTOT | BQ27XXX_O_CFGUP | BQ27XXX_O_RAM),
- 	[BQ27561]   = BQ27XXX_DATA(bq27561,   0         , BQ27561_O_BITS),
-+	[BQ28Z610]  = BQ27XXX_DATA(bq28z610,  0         , BQ27561_O_BITS),
- };
- 
- static DEFINE_MUTEX(bq27xxx_list_lock);
-diff --git a/drivers/power/supply/bq27xxx_battery_i2c.c b/drivers/power/supply/bq27xxx_battery_i2c.c
-index d0d55e0959d5..12cf0c619d6d 100644
---- a/drivers/power/supply/bq27xxx_battery_i2c.c
-+++ b/drivers/power/supply/bq27xxx_battery_i2c.c
-@@ -254,6 +254,7 @@ static const struct i2c_device_id bq27xxx_i2c_id_table[] = {
- 	{ "bq27441", BQ27441 },
- 	{ "bq27621", BQ27621 },
- 	{ "bq27561", BQ27561 },
-+	{ "bq28z610", BQ28Z610 },
- 	{},
- };
- MODULE_DEVICE_TABLE(i2c, bq27xxx_i2c_id_table);
-@@ -288,6 +289,7 @@ static const struct of_device_id bq27xxx_battery_i2c_of_match_table[] = {
- 	{ .compatible = "ti,bq27441" },
- 	{ .compatible = "ti,bq27621" },
- 	{ .compatible = "ti,bq27561" },
-+	{ .compatible = "ti,bq28z610" },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, bq27xxx_battery_i2c_of_match_table);
-diff --git a/include/linux/power/bq27xxx_battery.h b/include/linux/power/bq27xxx_battery.h
-index 4a319950ea22..50f6230f42c4 100644
---- a/include/linux/power/bq27xxx_battery.h
-+++ b/include/linux/power/bq27xxx_battery.h
-@@ -31,6 +31,7 @@ enum bq27xxx_chip {
- 	BQ27441,
- 	BQ27621,
- 	BQ27561,
-+	BQ28Z610,
- };
- 
- struct bq27xxx_device_info;
--- 
-2.27.0
-
+在 2020/7/27 下午5:53, Vinod Koul 写道:
+> On 25-07-20, 15:34, Zhou Yanjie wrote:
+>> Hi Felipe,
+>>
+>> 在 2020/7/25 下午2:16, Felipe Balbi 写道:
+>>> Hi,
+>>>
+>>> 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com> writes:
+>>>> Add support for probing the phy-jz4770 driver on the JZ4780 SoC,
+>>>> the X1000 SoC and the X1830 SoC from Ingenic.
+>>>>
+>>>> Tested-by: 周正 (Zhou Zheng) <sernia.zhou@foxmail.com>
+>>>> Co-developed-by: 漆鹏振 (Qi Pengzhen) <aric.pzqi@ingenic.com>
+>>>> Signed-off-by: 漆鹏振 (Qi Pengzhen) <aric.pzqi@ingenic.com>
+>>>> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+>>> It would be better to move this driver to drivers/phy before adding
+>>> support for new SoCs. We want to remove drivers/usb/phy/ in the near
+>>> future, any help is welcome.
+>>>
+>> Seems my mailbox have something wrong, the [5/5] patch in this series is
+>> used to move this river to drivers/phy, but seems that it has not been sent
+>> out correctly, I already resend it.
+> I have resend patches in my inbox but that seems missing patches too :(
+>
+I'm very sorry, but the problem with my mailbox has not been completely 
+resolved. In the past week, it still has frequent mail delays and mail 
+loss :(
