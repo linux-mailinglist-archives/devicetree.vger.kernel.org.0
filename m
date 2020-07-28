@@ -2,106 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9229B23120B
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 20:56:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70BB0231247
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 21:16:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732529AbgG1S4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jul 2020 14:56:48 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:38682 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728782AbgG1S4s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 14:56:48 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06SIukBo042254;
-        Tue, 28 Jul 2020 13:56:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1595962606;
-        bh=TsBj4IyXyiAC4vsRIW7YyeVgfCcS4eXV9QnjvdxD88E=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=MeAMExUNGridwucgq9A9A8v3aBYvEJlze23Bzj7tKfJtGmoR136GXiDn/V4spyTCZ
-         t/Cw46I3hVP+uun5EGolqwOe3tGigNwhDhUkQSkRp6Yf5wihgZqzIf0YP6Tphz2Xfp
-         bl3lCeC6mi6rkOYxD0Tc4/IZNz/x/sjuyEFNxu4s=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06SIukBP000847
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 28 Jul 2020 13:56:46 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 28
- Jul 2020 13:56:46 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 28 Jul 2020 13:56:45 -0500
-Received: from [10.250.35.195] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06SIujXk051016;
-        Tue, 28 Jul 2020 13:56:45 -0500
-Subject: Re: [PATCH v4 2/4] power: supply: bq27xxx_battery: Add the BQ27561
- Battery monitor
-To:     Sebastian Reichel <sre@kernel.org>
-CC:     <afd@ti.com>, <pali@kernel.org>, <linux-pm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <robh@kernel.org>
-References: <20200728141113.31518-1-dmurphy@ti.com>
- <20200728141113.31518-2-dmurphy@ti.com>
- <20200728181755.6bkhp7j3cqtpooof@earth.universe>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <7035eebd-0324-6cf0-1de7-75eb4524cb94@ti.com>
-Date:   Tue, 28 Jul 2020 13:56:45 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1732630AbgG1TQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jul 2020 15:16:24 -0400
+Received: from mail-il1-f196.google.com ([209.85.166.196]:42493 "EHLO
+        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732601AbgG1TQY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 15:16:24 -0400
+Received: by mail-il1-f196.google.com with SMTP id i138so11278575ild.9;
+        Tue, 28 Jul 2020 12:16:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=0H+b6zQt0ezS7kYwcQh9hJueRgaTbGNjTiuGLpXHZrQ=;
+        b=bGSwrrZ2wfHXtcV6fzWkn7RYngI1vN0SEtzKJEu4E8vaxmNG95wJLuWCWoiSucAAJC
+         vvkCWAu/4847kf4WGWrT5dYB7kTj6nz9nvTrgkM0zDhjLVVhpeZf5Jk0sLoDPHI3xNcX
+         jUUuzoTzxlv0RkQX898UgB/oCrnLa5s7pL5IdYpNTnoo7d4Z+RqVzZ60mnwY0vSP9jD2
+         FBTzX5CCw2ELhOFC2Nk65KDvn8oUg6tpQ+cjxN77wyjfLe2C2+nj1VgZZbKJ3Kgtwbuc
+         V+8DZCNVFX1NdEeIWDZB8Wd+hgFeZa9qk7HccTd+PDk4xu6ThpBDQwbAQlZn0Mjeu/Gm
+         xwfw==
+X-Gm-Message-State: AOAM53334sSnI4qWfmpSbpUATNmlOPY1S7iIwRMfUdulQb/yk7/4B15M
+        BUDKECDg03Ez+wA5VjhGhw==
+X-Google-Smtp-Source: ABdhPJwZSntLXAv+6Q+F7NQjzwUH5eUUeDRgDMukHAUHZqv/Km+dTvTfswJnQ7vDvyJlvzlS43odlA==
+X-Received: by 2002:a92:b6d4:: with SMTP id m81mr24095574ill.72.1595963783056;
+        Tue, 28 Jul 2020 12:16:23 -0700 (PDT)
+Received: from xps15 ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id t18sm6185560ild.52.2020.07.28.12.16.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jul 2020 12:16:22 -0700 (PDT)
+Received: (nullmailer pid 2780627 invoked by uid 1000);
+        Tue, 28 Jul 2020 19:16:20 -0000
+Date:   Tue, 28 Jul 2020 13:16:20 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, soc@kernel.org, arnd@arndb.de
+Subject: Re: [PATCH v2 1/9] dt-bindings: arm: mstar: Add binding details for
+ mstar, pmsleep
+Message-ID: <20200728191620.GA2778962@bogus>
+References: <20200728100321.1691745-1-daniel@0x0f.com>
+ <20200728100321.1691745-2-daniel@0x0f.com>
 MIME-Version: 1.0
-In-Reply-To: <20200728181755.6bkhp7j3cqtpooof@earth.universe>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200728100321.1691745-2-daniel@0x0f.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sebastian
+On Tue, 28 Jul 2020 19:03:13 +0900, Daniel Palmer wrote:
+> This adds a YAML description of the pmsleep node used by
+> MStar/SigmaStar Armv7 SoCs.
+> 
+> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+> ---
+>  .../bindings/arm/mstar/mstar,pmsleep.yaml     | 43 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/mstar/mstar,pmsleep.yaml
+> 
 
-On 7/28/20 1:17 PM, Sebastian Reichel wrote:
-> Hi,
->
-> On Tue, Jul 28, 2020 at 09:11:11AM -0500, Dan Murphy wrote:
->> Add the Texas Instruments BQ27561 battery monitor.  The register address
->> map is laid out the same as compared to other devices within the file.
->> The battery status register has differing bits to determine if the
->> battery is full, discharging or dead.
->>
->> Signed-off-by: Dan Murphy <dmurphy@ti.com>
->> ---
->>   drivers/power/supply/bq27xxx_battery.c     | 68 +++++++++++++++++++++-
->>   drivers/power/supply/bq27xxx_battery_i2c.c |  2 +
->>   include/linux/power/bq27xxx_battery.h      |  1 +
->>   3 files changed, 70 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/power/supply/bq27xxx_battery.c b/drivers/power/supply/bq27xxx_battery.c
->> index 942c92127b6d..654d38bcd7e0 100644
->> --- a/drivers/power/supply/bq27xxx_battery.c
->> +++ b/drivers/power/supply/bq27xxx_battery.c
->> @@ -43,6 +43,7 @@
->>    * http://www.ti.com/product/bq27411-g1
->>    * http://www.ti.com/product/bq27441-g1
->>    * http://www.ti.com/product/bq27621-g1
->> + * https://www.ti.com/lit/gpn/bq27z561
-> Applying this failed, because I applied a patch converting the
-> http urls to https. I would have fixed this silently, but it made
-> me notice the chip name is bq27z561 instead of simply bq27561.
->
-> You named it without the 'z' everywhere, is there a reason?
-> Searching for bq27561 basically only finds your patches and
-> you decided not to drop the z for the bq28z610.
 
-At the time I was working on the BQ27750 as well and that has no letters 
-in it so I was following that part number.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-I will add the z in and rebase so the patch applies cleanly
+Error: Documentation/devicetree/bindings/arm/mstar/mstar,pmsleep.example.dts:21.23-24 syntax error
+FATAL ERROR: Unable to parse input tree
+scripts/Makefile.lib:315: recipe for target 'Documentation/devicetree/bindings/arm/mstar/mstar,pmsleep.example.dt.yaml' failed
+make[1]: *** [Documentation/devicetree/bindings/arm/mstar/mstar,pmsleep.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+Makefile:1347: recipe for target 'dt_binding_check' failed
+make: *** [dt_binding_check] Error 2
 
-Dan
 
->
-> -- Sebastian
+See https://patchwork.ozlabs.org/patch/1337730
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
+
