@@ -2,224 +2,451 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DA782303F5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 09:20:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28238230400
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 09:24:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728015AbgG1HUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jul 2020 03:20:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53890 "EHLO
+        id S1727917AbgG1HY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jul 2020 03:24:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728001AbgG1HUP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 03:20:15 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69C28C061794
-        for <devicetree@vger.kernel.org>; Tue, 28 Jul 2020 00:20:15 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1k0JuB-00052U-BM; Tue, 28 Jul 2020 09:20:07 +0200
-Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ore@pengutronix.de>)
-        id 1k0JuA-0004oF-Cm; Tue, 28 Jul 2020 09:20:06 +0200
-Date:   Tue, 28 Jul 2020 09:20:06 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 03/10] remoteproc: imx: use devm_ioremap
-Message-ID: <20200728072006.6lqia5gssfepnpbq@pengutronix.de>
-References: <20200724080813.24884-1-peng.fan@nxp.com>
- <20200724080813.24884-4-peng.fan@nxp.com>
- <20200727062335.v2pxgu6kr6ao2qmh@pengutronix.de>
- <DB6PR0402MB27601C875FF5F1E02DBF5C6488720@DB6PR0402MB2760.eurprd04.prod.outlook.com>
- <20200727064151.767kc7622tcqmqfs@pengutronix.de>
- <DB6PR0402MB276063FBE74FCF222CB00F8588720@DB6PR0402MB2760.eurprd04.prod.outlook.com>
- <20200727073757.r2vq6djh3a4dyfp6@pengutronix.de>
- <DB6PR0402MB2760EFCB8C91680DC719C82C88720@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+        with ESMTP id S1727834AbgG1HY1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 03:24:27 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C7A0C0619D6
+        for <devicetree@vger.kernel.org>; Tue, 28 Jul 2020 00:24:27 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id l2so6651511wrc.7
+        for <devicetree@vger.kernel.org>; Tue, 28 Jul 2020 00:24:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=VdDZUU19qDZriJhUPGfcHbxuvpV2FWI8A0HgGKJC8cE=;
+        b=Saa0mQjox5IT+8LfzWTLzBs0DOwcNR3klvP5AWtzHNk7EWcIipa72zTeOo994dvRQV
+         7EK35DniAH0F3H3tqnDuyoEArGmJaM0UmuXv5R3MKoDSk3Jj3mkq34SbSIzScGw4uW1N
+         pySsiw7d1/IvjfSSSrr4bALHIo1uOtGagEMhmeQ8fRyrCfqHcPGVIkgXOFf5QUEJYkQD
+         ESHjDesdqoRfsDU5hnYBWT+4UtC5Fk//lpi8BxyZbfAZEM/uuNckvOOnlEpbGdSab9N2
+         0Hmqr2tT26F2aTqBihBu50iq45WnAnFlt80+CkewyAsKcanfk1oMsecQOGXaiXUtFOxZ
+         Wddw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=VdDZUU19qDZriJhUPGfcHbxuvpV2FWI8A0HgGKJC8cE=;
+        b=Y+jn8f5TuhrlhhBsOitDumg41YTjiWr7kt1ZlBRVN16+j8w6u45xxAkrU2yP0JY6fm
+         e3UYDY3lcNZKAzUiQe9ebultUFJCYTwRhtjDsWrHi0BxY+w0GKsQ+Kk4B1gZrWn5rLV6
+         04JYpObZKIqE+6Fx4WhzzuPStjbL2szfOfY96GvKac4AwT1H5/u2yCkaeIlY+F/wKV4S
+         AsaIJZedA6zf3MIJlQRJeS2RsfQN5RkDBhq5YcxZm1tHENZn6tW4AeKADmK4yKNsVYqJ
+         BDcOsRU61I4jHrvKdxWehOcCMtCPbittjka7lElVlCfvND73IF+tJOQqVZvPcwatHnV9
+         RAFw==
+X-Gm-Message-State: AOAM530V5WjlYyC4u5PRfwau5xePVcRK+J/GE5Mtb7T6UxAwAEJjf+o8
+        Da2iBt73NU5vaNiXA69mMEb8NA==
+X-Google-Smtp-Source: ABdhPJwB5lXf9X1lh58EpA+mJMTPPubl1qt2FH6w/NK2sDnGtN6tzav1weWuj/7BTnRqhEOJQPC7Jw==
+X-Received: by 2002:adf:db4d:: with SMTP id f13mr23431063wrj.336.1595921065647;
+        Tue, 28 Jul 2020 00:24:25 -0700 (PDT)
+Received: from dell ([2.27.167.73])
+        by smtp.gmail.com with ESMTPSA id b18sm15907130wrs.46.2020.07.28.00.24.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jul 2020 00:24:24 -0700 (PDT)
+Date:   Tue, 28 Jul 2020 08:24:22 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v6 02/13] dt-bindings: mfd: Add bindings for sl28cpld
+Message-ID: <20200728072422.GF1850026@dell>
+References: <20200725231834.25642-1-michael@walle.cc>
+ <20200725231834.25642-3-michael@walle.cc>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="i5eqgdj3pjiydqz6"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <DB6PR0402MB2760EFCB8C91680DC719C82C88720@DB6PR0402MB2760.eurprd04.prod.outlook.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 09:17:41 up 255 days, 22:36, 251 users,  load average: 0.03, 0.06,
- 0.07
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200725231834.25642-3-michael@walle.cc>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, 26 Jul 2020, Michael Walle wrote:
 
---i5eqgdj3pjiydqz6
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Add a device tree bindings for the board management controller found on
+> the Kontron SMARC-sAL28 board.
+> 
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+> Changes since v5:
+>  - none
+> 
+> Changes since v4:
+>  - fix the regex of the unit-address
+> 
+> Changes since v3:
+>  - see cover letter
+> 
+>  .../bindings/gpio/kontron,sl28cpld-gpio.yaml  |  54 +++++++
+>  .../hwmon/kontron,sl28cpld-hwmon.yaml         |  27 ++++
+>  .../kontron,sl28cpld-intc.yaml                |  54 +++++++
+>  .../bindings/mfd/kontron,sl28cpld.yaml        | 153 ++++++++++++++++++
+>  .../bindings/pwm/kontron,sl28cpld-pwm.yaml    |  35 ++++
+>  .../watchdog/kontron,sl28cpld-wdt.yaml        |  35 ++++
+>  6 files changed, 358 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/kontron,sl28cpld-gpio.yaml
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/kontron,sl28cpld-hwmon.yaml
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/kontron,sl28cpld-intc.yaml
+>  create mode 100644 Documentation/devicetree/bindings/mfd/kontron,sl28cpld.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pwm/kontron,sl28cpld-pwm.yaml
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/kontron,sl28cpld-wdt.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/kontron,sl28cpld-gpio.yaml b/Documentation/devicetree/bindings/gpio/kontron,sl28cpld-gpio.yaml
+> new file mode 100644
+> index 000000000000..9a63a158a796
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/kontron,sl28cpld-gpio.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/kontron,sl28cpld-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: GPIO driver for the sl28cpld board management controller
+> +
+> +maintainers:
+> +  - Michael Walle <michael@walle.cc>
+> +
+> +description: |
+> +  This module is part of the sl28cpld multi-function device. For more
+> +  details see Documentation/devicetree/bindings/mfd/kontron,sl28cpld.yaml.
 
-On Mon, Jul 27, 2020 at 08:11:09AM +0000, Peng Fan wrote:
-> > Subject: Re: [PATCH 03/10] remoteproc: imx: use devm_ioremap
-> >=20
-> > On Mon, Jul 27, 2020 at 06:51:00AM +0000, Peng Fan wrote:
-> > > > Subject: Re: [PATCH 03/10] remoteproc: imx: use devm_ioremap
-> > > >
-> > > > On Mon, Jul 27, 2020 at 06:28:20AM +0000, Peng Fan wrote:
-> > > > > Hi Oleksij,
-> > > > >
-> > > > > > Subject: Re: [PATCH 03/10] remoteproc: imx: use devm_ioremap
-> > > > > >
-> > > > > > On Fri, Jul 24, 2020 at 04:08:06PM +0800, Peng Fan wrote:
-> > > > > > > We might need to map an region multiple times, becaue the
-> > > > > > > region might be shared between remote processors, such i.MX8QM
-> > > > > > > with dual
-> > > > M4 cores.
-> > > > > > > So use devm_ioremap, not devm_ioremap_resource.
-> > > > > >
-> > > > > > Can you please give an example of this kind of shared resources
-> > > > > > and how they should be handled by two separate devices?
-> > > > >
-> > > > > This is to share vdevbuffer space, there is a vdevbuffer in device
-> > > > > tree, it will be shared between M4_0 and M4_1.
-> > > > >
-> > > > > For the buffer, it is Linux DMA API will handle the space.
-> > > >
-> > > > Why remoteproc need to care about it? If I see it correctly, from
-> > > > the linux perspective, it is one buffer and one driver is
-> > > > responsible for it. Or do I missing some thing?
-> > >
-> > > We not have the vdev buffer in resource table, so I added in device t=
-ree, see
-> > below:
-> >=20
-> > Hm.. if vdev is not in resource table and should not be controlled by
-> > remoteproc, why do we need remoteproc?
->=20
-> I use same approach as stm32 rproc driver.
->=20
-> The resource table here only publish vring address.
->=20
-> >=20
-> > >         imx8qm_cm40: imx8qm_cm4@0 {
-> > >                 compatible =3D "fsl,imx8qm-cm4";
-> > >                 rsc-da =3D <0x90000000>;
-> > >                 mbox-names =3D "tx", "rx", "rxdb";
-> > >                 mboxes =3D <&lsio_mu5 0 1
-> > >                           &lsio_mu5 1 1
-> > >                           &lsio_mu5 3 1>;
-> > >                 mub-partition =3D <3>;
-> > >                 memory-region =3D <&vdev0vring0>, <&vdev0vring1>,
-> > <&vdevbuffer>,
-> > >                                 <&vdev1vring0>, <&vdev1vring1>;
-> > >                 core-index =3D <0>;
-> > >                 core-id =3D <IMX_SC_R_M4_0_PID0>;
-> > >                 status =3D "okay";
-> > >                 power-domains =3D <&pd IMX_SC_R_M4_0_PID0>,
-> > >                                 <&pd IMX_SC_R_M4_0_MU_1A>;
-> > >         };
-> > >
-> > >         imx8qm_cm41: imx8x_cm4@1 {
-> > >                 compatible =3D "fsl,imx8qm-cm4";
-> > >                 rsc-da =3D <0x90100000>;
-> > >                 mbox-names =3D "tx", "rx", "rxdb";
-> > >                 mboxes =3D <&lsio_mu6 0 1
-> > >                           &lsio_mu6 1 1
-> > >                           &lsio_mu6 3 1>;
-> > >                 mub-partition =3D <4>;
-> > >                 memory-region =3D <&vdev2vring0>, <&vdev2vring1>,
-> > <&vdevbuffer>,
-> > >                                 <&vdev3vring0>, <&vdev3vring1>;
-> > >                 core-index =3D <1>;
-> > >                 core-id =3D <IMX_SC_R_M4_1_PID0>;
-> > >                 status =3D "okay";
-> > >                 power-domains =3D <&pd IMX_SC_R_M4_1_PID0>,
-> > >                                 <&pd IMX_SC_R_M4_1_MU_1A>;
-> > >         };
-> > >
-> > >                 vdevbuffer: vdevbuffer {
-> > >                         compatible =3D "shared-dma-pool";
-> > >                         reg =3D <0 0x90400000 0 0x100000>;
-> > >                         no-map;
-> > >                 };
-> > >
-> > > I have the upper vdevbuffer node shared between M40 and M41 node.
-> > > The vdevbuffer will be used as virtio data buffer.
-> > >
-> > > And I have the following in rproc_add_virtio_dev to share vdevbuffer:
-> > >         /* Try to find dedicated vdev buffer carveout */
-> > >         mem =3D rproc_find_carveout_by_name(rproc, "vdev%dbuffer",
-> > rvdev->index);
-> > >         if (!mem)
-> > >                 mem =3D rproc_find_carveout_by_name(rproc,
-> > > "vdevbuffer");
-> >=20
-> > With kernel v5.8-rc7 i get following call chain:
->=20
-> Please use Linux-next which has support of M4 booted before Linux in
-> in remoteproc.
->=20
-> > rproc_boot()
-> >   rproc_fw_boot()
-> >     rproc_handle_vdev
-> >       rproc_vdev_do_start()
-> >         rproc_add_virtio_dev()
-> >=20
-> >=20
-> > So, at the end, we will call rproc_add_virtio_dev() only if we boot fir=
-mware by
-> > linux, or if we get at least the resource table.
->=20
->=20
-> Resource table could be got from elf file if it is booted by Linux, or go=
-t from
-> an address if M4 is booted before Linux.
+Paths are normally relative.
 
-Ok, i see now. Thank you!
+> +  There are three flavors of the GPIO controller, one full featured
+> +  input/output with interrupt support (kontron,sl28cpld-gpio), one
+> +  output-only (kontron,sl28-gpo) and one input-only (kontron,sl28-gpi).
+> +
+> +  Each controller supports 8 GPIO lines.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - kontron,sl28cpld-gpio
+> +      - kontron,sl28cpld-gpi
+> +      - kontron,sl28cpld-gpo
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  "#interrupt-cells":
+> +    const: 2
+> +
+> +  interrupt-controller: true
+> +
+> +  "#gpio-cells":
+> +    const: 2
+> +
+> +  gpio-controller: true
+> +
+> +  gpio-line-names:
+> +      minItems: 1
+> +      maxItems: 8
+> +
+> +required:
+> +  - compatible
+> +  - "#gpio-cells"
+> +  - gpio-controller
+> +
+> +additionalProperties: false
+> diff --git a/Documentation/devicetree/bindings/hwmon/kontron,sl28cpld-hwmon.yaml b/Documentation/devicetree/bindings/hwmon/kontron,sl28cpld-hwmon.yaml
+> new file mode 100644
+> index 000000000000..1cebd61c6c32
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/kontron,sl28cpld-hwmon.yaml
+> @@ -0,0 +1,27 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/kontron,sl28cpld-hwmon.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Hardware monitoring driver for the sl28cpld board management controller
+> +
+> +maintainers:
+> +  - Michael Walle <michael@walle.cc>
+> +
+> +description: |
+> +  This module is part of the sl28cpld multi-function device. For more
+> +  details see Documentation/devicetree/bindings/mfd/kontron,sl28cpld.yaml.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - kontron,sl28cpld-fan
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/kontron,sl28cpld-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/kontron,sl28cpld-intc.yaml
+> new file mode 100644
+> index 000000000000..4c39e9ff9aea
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/kontron,sl28cpld-intc.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interrupt-controller/kontron,sl28cpld-intc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Interrupt controller driver for the sl28cpld board management controller
+> +
+> +maintainers:
+> +  - Michael Walle <michael@walle.cc>
+> +
+> +description: |
+> +  This module is part of the sl28cpld multi-function device. For more
+> +  details see Documentation/devicetree/bindings/mfd/kontron,sl28cpld.yaml.
+> +
+> +  The following interrupts are available. All types and levels are fixed
+> +  and handled by the board management controller.
+> +
+> +  ==== ============= ==================================
+> +   IRQ line/device   description
+> +  ==== ============= ==================================
+> +    0  RTC_INT#      Interrupt line from on-board RTC
+> +    1  SMB_ALERT#    Event on SMB_ALERT# line (P1)
+> +    2  ESPI_ALERT0#  Event on ESPI_ALERT0# line (S43)
+> +    3  ESPI_ALERT1#  Event on ESPI_ALERT1# line (S44)
+> +    4  PWR_BTN#      Event on PWR_BTN# line (P128)
+> +    5  SLEEP#        Event on SLEEP# line (S149)
+> +    6  watchdog      Interrupt of the internal watchdog
+> +    7  n/a           not used
+> +  ==== ============= ==================================
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - kontron,sl28cpld-intc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  "#interrupt-cells":
+> +    const: 2
+> +
+> +  interrupt-controller: true
+> +
+> +required:
+> +  - compatible
+> +  - interrupts
+> +  - "#interrupt-cells"
+> +  - interrupt-controller
+> +
+> +additionalProperties: false
+> diff --git a/Documentation/devicetree/bindings/mfd/kontron,sl28cpld.yaml b/Documentation/devicetree/bindings/mfd/kontron,sl28cpld.yaml
+> new file mode 100644
+> index 000000000000..e3a62db678e7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/kontron,sl28cpld.yaml
+> @@ -0,0 +1,153 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/kontron,sl28cpld.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Kontron's sl28cpld board management controller
 
-Reviewed-by: Oleksij Rempel <o.rempel@pengutronix.de>
+"S128CPLD" ?
 
---=20
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+"Board Management Controller (BMC)" ?
 
---i5eqgdj3pjiydqz6
-Content-Type: application/pgp-signature; name="signature.asc"
+> +maintainers:
+> +  - Michael Walle <michael@walle.cc>
+> +
+> +description: |
+> +  The board management controller may contain different IP blocks like
+> +  watchdog, fan monitoring, PWM controller, interrupt controller and a
+> +  GPIO controller.
+> +
+> +properties:
+> +  compatible:
+> +    const: kontron,sl28cpld-r1
 
------BEGIN PGP SIGNATURE-----
+We don't usually code revision numbers in compatible strings.
 
-iQIzBAABCAAdFiEERBNZvwSgvmcMY/T74omh9DUaUbMFAl8f0aEACgkQ4omh9DUa
-UbPAsQ//XBoFlYduiR5diPTVmdX6G5+l7hpLt+H0SBighq2rejKsHq/dH8w/MHT1
-OBlB8JEZJgJIY3VzYIvBwYs9M5qGYYQfLymZVORDi59RDuyYkBDI0LeIBVCxfSxb
-JnmOEXly2nGD/cVRQB2O2NLBCpE1SFiZ/LbQ21DCzm40gfaXFkO7/bxgpMz1r/XY
-Whr7fb3772f4NGOYOTRVUj7n5+jp48yFRoCwEnjeTC/fZ7Jpi1YzJpmfdFq5Hzjt
-9ZRhHITjac2FcicZjJ5Ac92JZvt7lII1tFhh7UGxt7tnkS1mOglehuhynst5RoGk
-NbrzCgozsbJenU6vfdgcsMFHO49Mjj1EP+hITKDClQVbImEgdU4ZmhW4sRY1cAO7
-3FeG9ZH7ru60PnEUR/SUt4e3dIAcGr4vjLdtY0kODpkfgyvYJfrssCzJIkCuboO2
-Xn7DWtoANixGZpr8g00VcBgEQL+zfEUrGcHS8pEIH/P9jippTsYnP7bX3EEDIkJR
-qwqQ/UUyiZ9yGGX2z/ShdUplEho9HaSz0DXl/C64kMikQAROAy/B+bk/Vs0rCgEY
-ESq82Ghy5FBdakZouPA1DfYvWmRTgolIiFALkZT/X1RyaVPjvf5vNG7Ceyb7upn3
-uB5KZu1T1i99l44Ff5yZR5/+hYp+YuO4CLaGYlNoXrtBIlH0iwU=
-=q0i1
------END PGP SIGNATURE-----
+Is there any way to pull this from the H/W?
 
---i5eqgdj3pjiydqz6--
+> +  reg:
+> +    description:
+> +      I2C device address.
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  "#interrupt-cells":
+> +    const: 2
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +patternProperties:
+> +  "^gpio(@[0-9a-f]+)?$":
+> +    $ref: ../gpio/kontron,sl28cpld-gpio.yaml
+> +
+> +  "^hwmon(@[0-9a-f]+)?$":
+> +    $ref: ../hwmon/kontron,sl28cpld-hwmon.yaml
+> +
+> +  "^interrupt-controller(@[0-9a-f]+)?$":
+> +    $ref: ../interrupt-controller/kontron,sl28cpld-intc.yaml
+> +
+> +  "^pwm(@[0-9a-f]+)?$":
+> +    $ref: ../pwm/kontron,sl28cpld-pwm.yaml
+> +
+> +  "^watchdog(@[0-9a-f]+)?$":
+> +    $ref: ../watchdog/kontron,sl28cpld-wdt.yaml
+> +
+> +required:
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        sl28cpld@4a {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            compatible = "kontron,sl28cpld-r1";
+> +            reg = <0x4a>;
+
+Nit: Could you put the 'reg' and 'compatible' at the top please?
+
+Same for all nodes.
+
+> +            watchdog@4 {
+> +                compatible = "kontron,sl28cpld-wdt";
+> +                reg = <0x4>;
+> +                kontron,assert-wdt-timeout-pin;
+> +            };
+> +
+> +            hwmon@b {
+> +                compatible = "kontron,sl28cpld-fan";
+> +                reg = <0xb>;
+> +            };
+> +
+> +            pwm@c {
+> +                #pwm-cells = <2>;
+> +                compatible = "kontron,sl28cpld-pwm";
+> +                reg = <0xc>;
+> +            };
+> +
+> +            pwm@e {
+> +                #pwm-cells = <2>;
+> +                compatible = "kontron,sl28cpld-pwm";
+> +                reg = <0xe>;
+> +            };
+> +
+> +            gpio@10 {
+> +                compatible = "kontron,sl28cpld-gpio";
+> +                reg = <0x10>;
+> +                interrupts-extended = <&gpio2 6
+> +                               IRQ_TYPE_EDGE_FALLING>;
+> +
+> +                gpio-controller;
+> +                #gpio-cells = <2>;
+> +                gpio-line-names = "a", "b", "c";
+> +
+> +                interrupt-controller;
+> +                #interrupt-cells = <2>;
+> +            };
+> +
+> +            gpio@15 {
+> +                compatible = "kontron,sl28cpld-gpio";
+> +                reg = <0x15>;
+> +                interrupts-extended = <&gpio2 6
+> +                               IRQ_TYPE_EDGE_FALLING>;
+> +
+> +                gpio-controller;
+> +                #gpio-cells = <2>;
+> +
+> +                interrupt-controller;
+> +                #interrupt-cells = <2>;
+> +            };
+> +
+> +            gpio@1a {
+> +                compatible = "kontron,sl28cpld-gpo";
+> +                reg = <0x1a>;
+> +
+> +                gpio-controller;
+> +                #gpio-cells = <2>;
+> +            };
+> +
+> +            gpio@1b {
+> +                compatible = "kontron,sl28cpld-gpi";
+> +                reg = <0x1b>;
+> +
+> +                gpio-controller;
+> +                #gpio-cells = <2>;
+> +            };
+> +
+> +            interrupt-controller@1c {
+> +                compatible = "kontron,sl28cpld-intc";
+> +                reg = <0x1c>;
+> +                interrupts-extended = <&gpio2 6
+> +                               IRQ_TYPE_EDGE_FALLING>;
+> +
+> +                interrupt-controller;
+> +                #interrupt-cells = <2>;
+> +            };
+> +        };
+> +    };
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
