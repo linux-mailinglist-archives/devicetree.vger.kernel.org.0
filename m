@@ -2,65 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61EF022FFAD
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 04:39:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA84822FFC4
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 04:40:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726951AbgG1Cjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jul 2020 22:39:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38850 "EHLO
+        id S1727034AbgG1Cjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jul 2020 22:39:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726760AbgG1Cjn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 22:39:43 -0400
-Received: from mail-qv1-xf43.google.com (mail-qv1-xf43.google.com [IPv6:2607:f8b0:4864:20::f43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB581C061794
-        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 19:39:43 -0700 (PDT)
-Received: by mail-qv1-xf43.google.com with SMTP id a19so2497561qvy.3
-        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 19:39:43 -0700 (PDT)
+        with ESMTP id S1726911AbgG1Cjp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 22:39:45 -0400
+Received: from mail-qv1-xf42.google.com (mail-qv1-xf42.google.com [IPv6:2607:f8b0:4864:20::f42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4B88C061794
+        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 19:39:45 -0700 (PDT)
+Received: by mail-qv1-xf42.google.com with SMTP id y11so5541660qvl.4
+        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 19:39:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=JpBwI5rh1VmR9dJCXKb+bJH00mu8Lm9wehnoKvU4jcQ=;
-        b=bqUQy7jhnL0rGAZVXzl2pr3NWaTgdIriU12FTryPEPMVY5wt51fHrXJ0vbVkcfIr4d
-         WAYoI66DcIz8Z2qRIvZ5yKiv5D8YgwxBTnylMztk4s16k5XUIlc/re9PODqvhvkRtB5B
-         TVZSkva+UhquRQULicJzDN9icgzBm2blLaIyZTP9OL8mv9ugJTBJiyDe6iSjRBOZvOBv
-         sA1vH0643u/pUW6E2y/lTzK2XhtF6fnFY5q02YCUSNgODaW+bprgm2eXlDdmxyLptMyH
-         yBoE+/88gElgn3TEvFtyRfqbBLxv6nxBgMXkuxf+SNdXWTYMbOiK7VH6fSm1eh9enAGr
-         DsZQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=BsqPZ0XK5KxOBsJDhy4IA2RMRHhLCVsHp4kme64uz/I=;
+        b=0EvAbl63wJZ0o6r0mX2NkvUUN85M2+6KiLtS+P4ptN1Uzw+sjqf7EydA1uXA7HNV9p
+         rm9k1+FO/65etsED8cvXGQoVWFuRQflwM07infMMDwacptAEJq93qbsBsN/zokdhs/G/
+         i4Rrv21/F7Zhi8aGxAaZcDt4DkdhcOLjITBHCdi7a2a2bDIwCK5WJBmTJINFxQPvByuK
+         G9uuzxJW4t9+3UsSF2plh25qdgxCkiMjywWRw1RxbV1RlYkfGMHpk09a6UydRla7gHtn
+         U9grSJ/hgThkO7mgX8+3Bi7xm6azOsQXBr9qzheQwewXxgebpaR0fPEY70y5h2lfNBWz
+         SYJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=JpBwI5rh1VmR9dJCXKb+bJH00mu8Lm9wehnoKvU4jcQ=;
-        b=DW4hHzfJBlP4VKq9UUAFG10bYtryVcreTScxlA9rDQs0dyqSrj1X6EsT30++oEJrEb
-         H6EAzmj0qNO1ljsxf1PCVr//t/sZQdNDWeBIGbD8+Fzp4dS+Zji7PkfpThf0bOO/NKw5
-         0P488gV9Fm0FVIyxM+wrpDQMwglGjDYAKSTsTLBMYiKSZJRTLMYQcf3GQ/hq9CYx8ePl
-         1YHhDsX7VUXXfTMEZoz5Dk5Jc9otIStS/dxVWtp2nBBismOLPcxjfpBVOYvt4lOmCYEl
-         I+H5d4eFccUqok0Sau6nAJQUwt8rG3F6uqejMGRoUb7hzbyNgtbaQ184Ib0KftJJPFkM
-         OIRg==
-X-Gm-Message-State: AOAM531yUsk4mt/bt0TgaLUwiYGa1PhlTLmNcH7ES2ry4jpndFBBZrJO
-        lre1Ghv2RBtpB+Od23qpbGgS6O0aITk=
-X-Google-Smtp-Source: ABdhPJz9E9SJY8pj6+WMHEhK2Nhev880nCCsyeRYYub0FM05PwJIPJreA7LDFUu+Z4vWX3RN2jcOLA==
-X-Received: by 2002:ad4:49a1:: with SMTP id u1mr7434725qvx.245.1595903982912;
-        Mon, 27 Jul 2020 19:39:42 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=BsqPZ0XK5KxOBsJDhy4IA2RMRHhLCVsHp4kme64uz/I=;
+        b=COvzS4MLIl9SNJErLXHe2uQVcgdfmWdPeeIpns2OvX50lCal0FXkSExCuop/NImz27
+         pCC7WmVlh2DA1YciRG+s0fwP4rekIM0dKyee/QiVXzBfJmB2oZlH5C+X2+YV9lNf02Ya
+         h/HYmL9IcpoDv6hp8C9kdgkgYkcnB1z0q5QXpPq2qypKsyovpqfCAuYwEm42HaZ9MREB
+         zQLyoHzJ3jPWFqb71db+Xhmq+7Xux0Okv6O1vnxEGhaG8FNsLt+qPh1G8jrTqds1egdc
+         VQ443TH3GqpQQEwP+Mz9aO7gFzbxudYDln+yCqgTS1s9G4HXtPRGiuzeBeJShRBa91G3
+         dcUA==
+X-Gm-Message-State: AOAM531D3fBa8knCsbRTwNnVHa6ZZuhqPSYm4Rie0bMKhYHHlXgaUcfu
+        2P9TJOjhP5QMwRhiwXMzbL09kw==
+X-Google-Smtp-Source: ABdhPJwSBR9k7+IQldew4BpIXSPT/ksfrunWCNXWeVkUhSbn7nl4/CjiIPbtR+pAHO95zeck6sfWDQ==
+X-Received: by 2002:ad4:5748:: with SMTP id q8mr24551032qvx.1.1595903985030;
+        Mon, 27 Jul 2020 19:39:45 -0700 (PDT)
 Received: from localhost.localdomain ([147.253.86.153])
-        by smtp.gmail.com with ESMTPSA id z3sm13885548qkc.4.2020.07.27.19.39.41
+        by smtp.gmail.com with ESMTPSA id z3sm13885548qkc.4.2020.07.27.19.39.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jul 2020 19:39:42 -0700 (PDT)
+        Mon, 27 Jul 2020 19:39:44 -0700 (PDT)
 From:   Jonathan Marek <jonathan@marek.ca>
 To:     linux-arm-msm@vger.kernel.org
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), Georgi Djakov <georgi.djakov@linaro.org>,
-        linux-kernel@vger.kernel.org (open list),
-        linux-pm@vger.kernel.org (open list:INTERCONNECT API),
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Odelu Kukatla <okukatla@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v3 0/7] Add SM8150 and SM8250 interconnect drivers
-Date:   Mon, 27 Jul 2020 22:37:59 -0400
-Message-Id: <20200728023811.5607-1-jonathan@marek.ca>
+        linux-pm@vger.kernel.org (open list:INTERCONNECT API),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v3 1/7] dt-bindings: interconnect: single yaml file for RPMh interconnect drivers
+Date:   Mon, 27 Jul 2020 22:38:00 -0400
+Message-Id: <20200728023811.5607-2-jonathan@marek.ca>
 X-Mailer: git-send-email 2.26.1
+In-Reply-To: <20200728023811.5607-1-jonathan@marek.ca>
+References: <20200728023811.5607-1-jonathan@marek.ca>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -68,48 +70,156 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Most of this is generated from downstream dts using a script.
+These two bindings are almost identical, so combine them into one. This
+will make it easier to add the sm8150 and sm8250 interconnect bindings.
 
-v2: single yaml file for RPMh interconnect bindings, drop display RSC
-v3:
- - removed the sc7180 example from the combined yaml file, two
-   examples with conflicting includes doesn't seem possible
- - Removed MASTER_ALC and bcm_alc (sm8150 and sm8250)
- - Set keep alive for SH0, MC0, MM0, SN0 and CN0 (both)
- - Used Sibi Sankar's suggestions for reg base/size in dts
-
-Jonathan Marek (7):
-  dt-bindings: interconnect: single yaml file for RPMh interconnect
-    drivers
-  dt-bindings: interconnect: Add Qualcomm SM8150 DT bindings
-  dt-bindings: interconnect: Add Qualcomm SM8250 DT bindings
-  interconnect: qcom: Add SM8150 interconnect provider driver
-  interconnect: qcom: Add SM8250 interconnect provider driver
-  arm64: dts: qcom: sm8150: add interconnect nodes
-  arm64: dts: qcom: sm8250: add interconnect nodes
-
- .../{qcom,sdm845.yaml => qcom,rpmh.yaml}      |  42 +-
- .../bindings/interconnect/qcom,sc7180.yaml    |  85 ---
- arch/arm64/boot/dts/qcom/sm8150.dtsi          |  82 +++
- arch/arm64/boot/dts/qcom/sm8250.dtsi          |  82 +++
- drivers/interconnect/qcom/Kconfig             |  20 +
- drivers/interconnect/qcom/Makefile            |   4 +
- drivers/interconnect/qcom/sm8150.c            | 635 +++++++++++++++++
- drivers/interconnect/qcom/sm8150.h            | 152 ++++
- drivers/interconnect/qcom/sm8250.c            | 651 ++++++++++++++++++
- drivers/interconnect/qcom/sm8250.h            | 162 +++++
- .../dt-bindings/interconnect/qcom,sm8150.h    | 162 +++++
- .../dt-bindings/interconnect/qcom,sm8250.h    | 172 +++++
- 12 files changed, 2161 insertions(+), 88 deletions(-)
- rename Documentation/devicetree/bindings/interconnect/{qcom,sdm845.yaml => qcom,rpmh.yaml} (60%)
+Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+---
+ .../{qcom,sdm845.yaml => qcom,rpmh.yaml}      | 20 ++++-
+ .../bindings/interconnect/qcom,sc7180.yaml    | 85 -------------------
+ 2 files changed, 17 insertions(+), 88 deletions(-)
+ rename Documentation/devicetree/bindings/interconnect/{qcom,sdm845.yaml => qcom,rpmh.yaml} (76%)
  delete mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sc7180.yaml
- create mode 100644 drivers/interconnect/qcom/sm8150.c
- create mode 100644 drivers/interconnect/qcom/sm8150.h
- create mode 100644 drivers/interconnect/qcom/sm8250.c
- create mode 100644 drivers/interconnect/qcom/sm8250.h
- create mode 100644 include/dt-bindings/interconnect/qcom,sm8150.h
- create mode 100644 include/dt-bindings/interconnect/qcom,sm8250.h
 
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sdm845.yaml b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
+similarity index 76%
+rename from Documentation/devicetree/bindings/interconnect/qcom,sdm845.yaml
+rename to Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
+index 74536747b51d..6a457f914bb5 100644
+--- a/Documentation/devicetree/bindings/interconnect/qcom,sdm845.yaml
++++ b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
+@@ -1,16 +1,17 @@
+ # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/interconnect/qcom,sdm845.yaml#
++$id: http://devicetree.org/schemas/interconnect/qcom,rpmh.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title:  Qualcomm SDM845 Network-On-Chip Interconnect
++title:  Qualcomm RPMh Network-On-Chip Interconnect
+ 
+ maintainers:
+   - Georgi Djakov <georgi.djakov@linaro.org>
++  - Odelu Kukatla <okukatla@codeaurora.org>
+ 
+ description: |
+-   SDM845 interconnect providers support system bandwidth requirements through
++   RPMh interconnect providers support system bandwidth requirements through
+    RPMh hardware accelerators known as Bus Clock Manager (BCM). The provider is
+    able to communicate with the BCM through the Resource State Coordinator (RSC)
+    associated with each execution environment. Provider nodes must point to at
+@@ -23,6 +24,19 @@ properties:
+ 
+   compatible:
+     enum:
++      - qcom,sc7180-aggre1-noc
++      - qcom,sc7180-aggre2-noc
++      - qcom,sc7180-camnoc-virt
++      - qcom,sc7180-compute-noc
++      - qcom,sc7180-config-noc
++      - qcom,sc7180-dc-noc
++      - qcom,sc7180-gem-noc
++      - qcom,sc7180-ipa-virt
++      - qcom,sc7180-mc-virt
++      - qcom,sc7180-mmss-noc
++      - qcom,sc7180-npu-noc
++      - qcom,sc7180-qup-virt
++      - qcom,sc7180-system-noc
+       - qcom,sdm845-aggre1-noc
+       - qcom,sdm845-aggre2-noc
+       - qcom,sdm845-config-noc
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sc7180.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sc7180.yaml
+deleted file mode 100644
+index d01bac80d416..000000000000
+--- a/Documentation/devicetree/bindings/interconnect/qcom,sc7180.yaml
++++ /dev/null
+@@ -1,85 +0,0 @@
+-# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+-%YAML 1.2
+----
+-$id: http://devicetree.org/schemas/interconnect/qcom,sc7180.yaml#
+-$schema: http://devicetree.org/meta-schemas/core.yaml#
+-
+-title:  Qualcomm SC7180 Network-On-Chip Interconnect
+-
+-maintainers:
+-  - Odelu Kukatla <okukatla@codeaurora.org>
+-
+-description: |
+-   SC7180 interconnect providers support system bandwidth requirements through
+-   RPMh hardware accelerators known as Bus Clock Manager (BCM). The provider is
+-   able to communicate with the BCM through the Resource State Coordinator (RSC)
+-   associated with each execution environment. Provider nodes must point to at
+-   least one RPMh device child node pertaining to their RSC and each provider
+-   can map to multiple RPMh resources.
+-
+-properties:
+-  reg:
+-    maxItems: 1
+-
+-  compatible:
+-    enum:
+-      - qcom,sc7180-aggre1-noc
+-      - qcom,sc7180-aggre2-noc
+-      - qcom,sc7180-camnoc-virt
+-      - qcom,sc7180-compute-noc
+-      - qcom,sc7180-config-noc
+-      - qcom,sc7180-dc-noc
+-      - qcom,sc7180-gem-noc
+-      - qcom,sc7180-ipa-virt
+-      - qcom,sc7180-mc-virt
+-      - qcom,sc7180-mmss-noc
+-      - qcom,sc7180-npu-noc
+-      - qcom,sc7180-qup-virt
+-      - qcom,sc7180-system-noc
+-
+-  '#interconnect-cells':
+-    const: 1
+-
+-  qcom,bcm-voters:
+-    $ref: /schemas/types.yaml#/definitions/phandle-array
+-    description: |
+-      List of phandles to qcom,bcm-voter nodes that are required by
+-      this interconnect to send RPMh commands.
+-
+-  qcom,bcm-voter-names:
+-    $ref: /schemas/types.yaml#/definitions/string-array
+-    description: |
+-      Names for each of the qcom,bcm-voters specified.
+-
+-required:
+-  - compatible
+-  - reg
+-  - '#interconnect-cells'
+-  - qcom,bcm-voters
+-
+-additionalProperties: false
+-
+-examples:
+-  - |
+-      #include <dt-bindings/interconnect/qcom,sc7180.h>
+-
+-      config_noc: interconnect@1500000 {
+-            compatible = "qcom,sc7180-config-noc";
+-            reg = <0x01500000 0x28000>;
+-            #interconnect-cells = <1>;
+-            qcom,bcm-voters = <&apps_bcm_voter>;
+-      };
+-
+-      system_noc: interconnect@1620000 {
+-            compatible = "qcom,sc7180-system-noc";
+-            reg = <0x01620000 0x17080>;
+-            #interconnect-cells = <1>;
+-            qcom,bcm-voters = <&apps_bcm_voter>;
+-      };
+-
+-      mmss_noc: interconnect@1740000 {
+-            compatible = "qcom,sc7180-mmss-noc";
+-            reg = <0x01740000 0x1c100>;
+-            #interconnect-cells = <1>;
+-            qcom,bcm-voters = <&apps_bcm_voter>;
+-      };
 -- 
 2.26.1
 
