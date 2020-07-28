@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23CCF22FFDA
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 04:55:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6450F22FFDB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 04:55:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726760AbgG1Czp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jul 2020 22:55:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41344 "EHLO
+        id S1726821AbgG1Czt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jul 2020 22:55:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726410AbgG1Czo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 22:55:44 -0400
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D643AC061794
-        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 19:55:44 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id il6so4878856pjb.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 19:55:44 -0700 (PDT)
+        with ESMTP id S1726410AbgG1Czs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 22:55:48 -0400
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DC06C061794
+        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 19:55:48 -0700 (PDT)
+Received: by mail-pg1-x541.google.com with SMTP id o13so11091722pgf.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 19:55:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=6Ckk/6ewdW9qSUoP0eBZAL2Xbg3NR5wTYMI4LU5aFt4=;
-        b=qwm4vltxppZrjcwHre2u8XPw/2x/A/ajhqryA4wKKE4Jxxl4xtOYU/PcilF6+6a1KS
-         kQCe3XGO262TWK2MeJaZdKb5NupNdxV9cG+MHUl0Zv948QCe0yd1AK2rk5zrr0AVz39D
-         NYNrXYrLZhzhlDzIscWny3RogwmmAmYeinlHjxO5sPpeLHq1FW/ZmzUo7BuJsfj/w2dP
-         fKO9cFbVZ3RtnJT85YiHMjnTTBJd+WJ/tdS07odx6JEbtNeU7X0xCTw+j8uuxtJQuORy
-         Tiirqcw3lmPkOtES+yzq1Wpo5mLmiJ+cV23g2agFR+BT+lr6B1llmXpcJNrzGO+yTWSp
-         mfLw==
+        bh=etR2ncs18vgJbAdIWyCeb1uJq/TbjsZdQrwX72WYY3o=;
+        b=KvkF5Wb4msJY05g+xyOomJxBfCmyXBjzZukMrcyHF3XWtg3jnGJuhFwC6qBmUquXiP
+         QP4Fcx7xO7KtRj8f5akD29mJU4+M6DF/XJUE4CTVbpGe6p9VySOroq+AErRO/baRx5FW
+         yNqnJlDMT8RaP9+7ci1OU1IHk/Yi+5kMOVxSzA8Cz7/O+zdUHTv/tZE71tE/2zoZ6e3S
+         CMZ7rsG5Xuq9QUp75Ompge6vanhjHbE4+pb30tvJqGrKzBnHbcvz+mwKAUc02APecPbk
+         pYsMM5L3fI5ujcccmgTzF8RvdJwXuD666JjFKHHbo5t7aqlURwXFi3tgPtvpfYuhkBKc
+         weXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=6Ckk/6ewdW9qSUoP0eBZAL2Xbg3NR5wTYMI4LU5aFt4=;
-        b=njN3piICTUdKoaoIqcnhaho1CMlswLB+I2nI0OxiRjaLSOeO4qGZAYgEM//uoTbWX+
-         bkCA8fm6y0JZRCmx4Ff/FXfAXQebiDZ8l7jMRAO50ax3aPqhVr5E9rBW1RfIgbbKsD+y
-         F1V0l9mKawxe8S1xfe9chUvmjJlYavHYNNcUCmrtMshsarKxuEaSTZDdFVnt40QOMQE4
-         gKUMhXpwoh7qn6N12fp3frP/atPcvnR5FePwf+4FCkwPtQZ/YOm0JWKG4nc8/+Ev3IvN
-         sT+j/8bIZiIwivhMV9LedRPhxguRHXW+i+Ro19jbMkVW7IeoV65natrCD34+MmpfkimK
-         0mLQ==
-X-Gm-Message-State: AOAM531QcDl9xp5Bk+c9FJMmCY6TnfBYmFxoaxriYk3yJRpIbZny3Ptl
-        RDS0B41Otz3jSJ1lukqZvkI=
-X-Google-Smtp-Source: ABdhPJzbnK5XuiLz1+hp6r9eBmGOKwKaPDwfwg8x6ABvtWcdMwkEo8lIUImCsZ/cWAs1/wr4FcDBpw==
-X-Received: by 2002:a17:902:6b0c:: with SMTP id o12mr21979221plk.321.1595904944347;
-        Mon, 27 Jul 2020 19:55:44 -0700 (PDT)
+        bh=etR2ncs18vgJbAdIWyCeb1uJq/TbjsZdQrwX72WYY3o=;
+        b=DeWsR0xTb208t1MfdZ7eMaydcvlLMcVUZINmdbB6hh76N7lMkZEyjjH9EbgEoTReh7
+         W5c9cF05WT8izq6CUtYWRaKIrWdTR6HywcWdOjf1gQPm6ShYficl4zMdIwiaZF7w2Y8u
+         34ORWhFa56jBxvSg2QC5BZeCrhPR0r+wI5++IlLfKA3gUAPW5rm9Lju0XqlKKPAZqB2V
+         6g0+fai5hOf34tXHnMmbemy7mS230i9xSnsmf8iGW7Zx3vLy0bY4x/3CNZxaGkWM5t/G
+         Aqb4Z0zMWQ5LYllWAf51FZ/bqFc1LDZZWP3zEu84FU1GH/VOK+TdAuscXh3ClBWjZWPq
+         FprA==
+X-Gm-Message-State: AOAM532gPCKT6faaYC75wKzZhJZU84MPN27PmCJAnngT1bA0tScYah/0
+        hSu2ryzCZFiavDBzkzPi7HkHnpRH83A=
+X-Google-Smtp-Source: ABdhPJyqEI/lCzk4+OYvmGLKS68lPcaaIcW1M8qCySclFW71gCmiH/TXMYjvFFsY+PUkox3lfB21Tw==
+X-Received: by 2002:a65:4549:: with SMTP id x9mr21970729pgr.415.1595904948210;
+        Mon, 27 Jul 2020 19:55:48 -0700 (PDT)
 Received: from localhost.localdomain ([45.124.203.15])
-        by smtp.gmail.com with ESMTPSA id w9sm15147407pfq.178.2020.07.27.19.55.40
+        by smtp.gmail.com with ESMTPSA id w9sm15147407pfq.178.2020.07.27.19.55.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jul 2020 19:55:43 -0700 (PDT)
+        Mon, 27 Jul 2020 19:55:47 -0700 (PDT)
 From:   Joel Stanley <joel@jms.id.au>
 To:     linux-fsi@lists.ozlabs.org, Rob Herring <robh+dt@kernel.org>
 Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         Andrew Jeffery <andrew@aj.id.au>,
         Eddie James <eajames@linux.ibm.com>
-Subject: [PATCH 2/5] fsi: aspeed: Support cabled FSI
-Date:   Tue, 28 Jul 2020 12:25:24 +0930
-Message-Id: <20200728025527.174503-3-joel@jms.id.au>
+Subject: [PATCH 3/5] fsi: aspeed: Run the bus at maximum speed
+Date:   Tue, 28 Jul 2020 12:25:25 +0930
+Message-Id: <20200728025527.174503-4-joel@jms.id.au>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200728025527.174503-1-joel@jms.id.au>
 References: <20200728025527.174503-1-joel@jms.id.au>
@@ -65,94 +65,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some FSI capable systems have internal FSI signals, and some have
-external cabled FSI. Software can detect which machine this is by
-reading a jumper GPIO, and also control which pins the signals are
-routed to through a mux GPIO.
+Testing of Tacoma has shown that the ASPEED master can be run at maximum
+speed.
 
-This attempts to find the GPIOs at probe time. If they are not present
-in the device tree the driver will not error and continue as before.
+The exception is when wired externally with a cable, in which case we
+use a divisor of two to ensure reliable operation.
 
-The mux GPIO is owned by the FSI driver to ensure it is not modified at
-runtime. The routing jumper obtained as non-exclusive to allow other
-software to inspect it's state.
-
+Reviewed-by: Eddie James <eajames@linux.ibm.com>
 Signed-off-by: Joel Stanley <joel@jms.id.au>
 ---
- drivers/fsi/fsi-master-aspeed.c | 46 +++++++++++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+ drivers/fsi/fsi-master-aspeed.c | 17 ++++++++++++++---
+ 1 file changed, 14 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/fsi/fsi-master-aspeed.c b/drivers/fsi/fsi-master-aspeed.c
-index 2b8ca72baeb5..c282de76e6e7 100644
+index c282de76e6e7..f503f64ab32b 100644
 --- a/drivers/fsi/fsi-master-aspeed.c
 +++ b/drivers/fsi/fsi-master-aspeed.c
-@@ -13,6 +13,7 @@
- #include <linux/regmap.h>
- #include <linux/slab.h>
- #include <linux/iopoll.h>
-+#include <linux/gpio/consumer.h>
+@@ -83,7 +83,11 @@ static const u32 fsi_base = 0xa0000000;
  
- #include "fsi-master.h"
+ #define FSI_LINK_ENABLE_SETUP_TIME	10	/* in mS */
  
-@@ -417,6 +418,45 @@ static int aspeed_master_init(struct fsi_master_aspeed *aspeed)
- 	return 0;
- }
+-#define DEFAULT_DIVISOR			14
++/* Run the bus at maximum speed by default */
++#define FSI_DIVISOR_DEFAULT            1
++#define FSI_DIVISOR_CABLED             2
++static u16 aspeed_fsi_divisor = FSI_DIVISOR_DEFAULT;
++
+ #define OPB_POLL_TIMEOUT		10000
  
-+static int tacoma_cabled_fsi_fixup(struct device *dev)
-+{
-+	struct gpio_desc *routing_gpio, *mux_gpio;
-+	int gpio;
-+
-+	/*
-+	 * The routing GPIO is a jumper indicating we should mux for the
-+	 * externally connected FSI cable.
-+	 */
-+	routing_gpio = devm_gpiod_get_optional(dev, "fsi-routing",
-+			GPIOD_IN | GPIOD_FLAGS_BIT_NONEXCLUSIVE);
-+	if (IS_ERR(routing_gpio))
-+		return PTR_ERR(routing_gpio);
-+	if (!routing_gpio)
-+		return 0;
-+
-+	mux_gpio = devm_gpiod_get_optional(dev, "fsi-mux", GPIOD_ASIS);
-+	if (IS_ERR(mux_gpio))
-+		return PTR_ERR(mux_gpio);
-+	if (!mux_gpio)
-+		return 0;
-+
-+	gpio = gpiod_get_value(routing_gpio);
-+	if (gpio < 0)
-+		return gpio;
-+
-+	/* If the routing GPIO is high we should set the mux to low. */
-+	if (gpio) {
-+		gpiod_direction_output(mux_gpio, 0);
-+		dev_info(dev, "FSI configured for external cable\n");
-+	} else {
-+		gpiod_direction_output(mux_gpio, 1);
-+	}
-+
-+	devm_gpiod_put(dev, routing_gpio);
-+
-+	return 0;
-+}
-+
- static int fsi_master_aspeed_probe(struct platform_device *pdev)
- {
- 	struct fsi_master_aspeed *aspeed;
-@@ -424,6 +464,12 @@ static int fsi_master_aspeed_probe(struct platform_device *pdev)
- 	int rc, links, reg;
- 	__be32 raw;
+ static int __opb_write(struct fsi_master_aspeed *aspeed, u32 addr,
+@@ -385,9 +389,11 @@ static int aspeed_master_init(struct fsi_master_aspeed *aspeed)
+ 	opb_writel(aspeed, ctrl_base + FSI_MECTRL, reg);
  
-+	rc = tacoma_cabled_fsi_fixup(&pdev->dev);
-+	if (rc) {
-+		dev_err(&pdev->dev, "Tacoma FSI cable fixup failed\n");
-+		return rc;
-+	}
-+
- 	aspeed = devm_kzalloc(&pdev->dev, sizeof(*aspeed), GFP_KERNEL);
- 	if (!aspeed)
- 		return -ENOMEM;
+ 	reg = cpu_to_be32(FSI_MMODE_ECRC | FSI_MMODE_EPC | FSI_MMODE_RELA
+-			| fsi_mmode_crs0(DEFAULT_DIVISOR)
+-			| fsi_mmode_crs1(DEFAULT_DIVISOR)
++			| fsi_mmode_crs0(aspeed_fsi_divisor)
++			| fsi_mmode_crs1(aspeed_fsi_divisor)
+ 			| FSI_MMODE_P8_TO_LSB);
++	dev_info(aspeed->dev, "mmode set to %08x (divisor %d)\n",
++			be32_to_cpu(reg), aspeed_fsi_divisor);
+ 	opb_writel(aspeed, ctrl_base + FSI_MMODE, reg);
+ 
+ 	reg = cpu_to_be32(0xffff0000);
+@@ -446,6 +452,11 @@ static int tacoma_cabled_fsi_fixup(struct device *dev)
+ 
+ 	/* If the routing GPIO is high we should set the mux to low. */
+ 	if (gpio) {
++		/*
++		 * Cable signal integrity means we should run the bus
++		 * slightly slower
++		 */
++		aspeed_fsi_divisor = FSI_DIVISOR_CABLED;
+ 		gpiod_direction_output(mux_gpio, 0);
+ 		dev_info(dev, "FSI configured for external cable\n");
+ 	} else {
 -- 
 2.27.0
 
