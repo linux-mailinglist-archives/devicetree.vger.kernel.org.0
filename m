@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9327622FFDC
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 04:55:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F9F522FFDD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 04:55:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726826AbgG1Czx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jul 2020 22:55:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41368 "EHLO
+        id S1726916AbgG1Cz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jul 2020 22:55:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726410AbgG1Czw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 22:55:52 -0400
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1AF3C061794
-        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 19:55:52 -0700 (PDT)
-Received: by mail-pf1-x441.google.com with SMTP id f185so5209909pfg.10
-        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 19:55:52 -0700 (PDT)
+        with ESMTP id S1726410AbgG1Cz4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jul 2020 22:55:56 -0400
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1A2AC061794
+        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 19:55:56 -0700 (PDT)
+Received: by mail-pl1-x644.google.com with SMTP id 72so9155058ple.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Jul 2020 19:55:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=LSKd0G5Txp3QCoH0wblOaMdjCRcT0SQZyQIDSr/GeGM=;
-        b=ozzO8EqzqybbL7ON31QioltDqBbDlQAkv8dbA2uiGm7Z7h8yLUFqMHddmxSsQuoUIn
-         twUEUjYyNeesMrtzbv/MqY5JKwjrwl3+zT3pPyHxH0lXBPMPG30ZxrqZA00Op3EapAST
-         /H8gkAZhQKHzXg1uZSTC8cbadi/94tGJ3nMzpfXJMOSL59OHoBPU1RMLCUJk+uBQVDEu
-         uBrkJyjBnn7kw3VCf/3qoh9kmEu9EOOc9lIzabEIdBeEO0Tpau2Zd5g3y2QikOgRzGID
-         gqlnX9fKazhPZK28L+dPlLYEvm8wp4irfELCrzBXQhW/E+S2PFAoI0blh0617tUiPcha
-         LhqA==
+        bh=xHSue0CpQdznRDxP9HpcUml2ldWS2kI8QAiHMjwZsXk=;
+        b=IUASXs1vJ1qA+xjSALYyZt+BdzR4rFVXPkh++rAUOBtW4OALDpHw7FcO3xHVgYiCZi
+         /YC0T0Q0QLAJEIuYlDEdC1B/0lHyq08IcxsTpffEYRgOHUp9eokDwJOdobX6OdNzBHWC
+         gGcYXpgJsy8sknso3kDuoeJs6DXH8C14Ig2m2/U9A0WirUen7R0UEmzCcRSwFy9C3O6y
+         uT1Psxj5VOB05ySDtvIJD0K7WY0C16kRQvrosHcpWR9tO52rvSAp66ctAIUgqGXmj6ld
+         TjtuqaiXR2CRNGWf58N1Bkqc8KG77MsTq5894zZ+AanQ/gD0JZ1MuBQZexHCIGFfiDy9
+         xipQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=LSKd0G5Txp3QCoH0wblOaMdjCRcT0SQZyQIDSr/GeGM=;
-        b=bsYpBApdZ/xrZFM6OBvzM25oFMqgXTWyiXK4HI5BHzQ4M+mwGsm50pMO5rkExsuy9P
-         uEF4HIY4aco5xbhE2v2XUpSaZs0OTFDEXT4Y3MDVk0U4PRxbgwA+8BRyd/zV4iYSm6cl
-         i/yUv+bTXIc6azHJnRaIciqkFwg9Y8nZwz+HXlJIl7/LNlvmVWUEQxSFlzeZt3WsQhdc
-         MXldEmNoajNxn2Vj4gnkyvh7yZg1MSifxE3SCGxDjabBj5QeZwYsU/+pWmdzx3673s51
-         Ewi275CXFwBYx2pzw2PnDK5jZ5DwG5fuOwgdfcchf1rzV1aC1F+N1ZB3r1w7XDzbbfWC
-         3B2A==
-X-Gm-Message-State: AOAM530xs7WUaqNQdvBtgahKj3lYeSiQLUkiTcnwy0mXnyKqkZX/dhPZ
-        uZaJCw75mT5pwJ6UETt30VA=
-X-Google-Smtp-Source: ABdhPJz1jvzbg9lif0geIL/79cRtoqM0ogGNeVTpK8rAn5SyGc6I7ZdN/0EmA0Mqw5hu0GD548OfWw==
-X-Received: by 2002:a63:7cd:: with SMTP id 196mr22043450pgh.230.1595904952308;
-        Mon, 27 Jul 2020 19:55:52 -0700 (PDT)
+        bh=xHSue0CpQdznRDxP9HpcUml2ldWS2kI8QAiHMjwZsXk=;
+        b=Oujazh1Np2KovBz4en5Vy5N456r0Y4VDOJOjcNUxv0fkqU5LsOUu3uapj/60EKLotj
+         r85fStYDuooqs80oiDCuxKgS1t/aAS++J43P6mQjfzsiWbksd1AiyobDKuC28EQ2qW66
+         guWei+1vt/9jNK1eBTphg4IsFXwWqxlw+/ietBbc2jicoVOxjJ6l+5jPTqNivbTrAinq
+         Zm9CIMXhMVP4WAijdkjMdv98F4QobwppUi7sPvkQajEErY7H8UOgs3L7/xox6CKNde+1
+         8qhfdsuRZCAxM3Ius9BlJ5nWpw7zMXifWZ7mCkTHoZO1B/T36MAtv4unk2SXZqJNoXBt
+         oqcQ==
+X-Gm-Message-State: AOAM531BD+nZnkmd6um5VOKD8ZA7ldbt6CsvWOI8BADn6lNbTP42EWIm
+        5ETKn2lRiCrSPdds9IzxiHI=
+X-Google-Smtp-Source: ABdhPJwjK0HYoPAp5SbegcVvL9vysGStO3XCD+1r9RziUs8rO+gT/2vi8u418QOHBxw3jN5+WNU4uQ==
+X-Received: by 2002:a17:902:d704:: with SMTP id w4mr21994938ply.278.1595904956348;
+        Mon, 27 Jul 2020 19:55:56 -0700 (PDT)
 Received: from localhost.localdomain ([45.124.203.15])
-        by smtp.gmail.com with ESMTPSA id w9sm15147407pfq.178.2020.07.27.19.55.48
+        by smtp.gmail.com with ESMTPSA id w9sm15147407pfq.178.2020.07.27.19.55.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jul 2020 19:55:51 -0700 (PDT)
+        Mon, 27 Jul 2020 19:55:55 -0700 (PDT)
 From:   Joel Stanley <joel@jms.id.au>
 To:     linux-fsi@lists.ozlabs.org, Rob Herring <robh+dt@kernel.org>
 Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         Andrew Jeffery <andrew@aj.id.au>,
         Eddie James <eajames@linux.ibm.com>
-Subject: [PATCH 4/5] fsi: aspeed: Add module param for bus divisor
-Date:   Tue, 28 Jul 2020 12:25:26 +0930
-Message-Id: <20200728025527.174503-5-joel@jms.id.au>
+Subject: [PATCH 5/5] fsi: aspeed: Support CFAM reset GPIO
+Date:   Tue, 28 Jul 2020 12:25:27 +0930
+Message-Id: <20200728025527.174503-6-joel@jms.id.au>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200728025527.174503-1-joel@jms.id.au>
 References: <20200728025527.174503-1-joel@jms.id.au>
@@ -65,46 +65,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For testing and hardware debugging a user may wish to override the
-divisor at runtime. By setting fsi_master_aspeed.bus_div=N, the divisor
-will be set to N, if 0 < N <= 0x3ff.
+Systems have a line for restting the remote CFAM. This is not part of
+the FSI master, but is associated with it, so it makes sense to include
+it in the master driver.
 
-This is a module parameter and not a device tree option as it will only
-need to be set when testing or debugging.
+This exposes a sysfs interface to reset the cfam, abstracting away the
+direction and polarity of the GPIO, as well as the timing of the reset
+pulse. Userspace will be blocked until the reset pulse is finished.
 
-Reviewed-by: Eddie James <eajames@linux.ibm.com>
+The reset is hard coded to be in the range of (900, 1000) us. It was
+observed with a scope to regularly be just over 1ms.
+
+If the device tree property is not preset the driver will silently
+continue.
+
+Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
 Signed-off-by: Joel Stanley <joel@jms.id.au>
 ---
- drivers/fsi/fsi-master-aspeed.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ drivers/fsi/fsi-master-aspeed.c | 43 +++++++++++++++++++++++++++++++++
+ 1 file changed, 43 insertions(+)
 
 diff --git a/drivers/fsi/fsi-master-aspeed.c b/drivers/fsi/fsi-master-aspeed.c
-index f503f64ab32b..2531e826ba8b 100644
+index 2531e826ba8b..c006ec008a1a 100644
 --- a/drivers/fsi/fsi-master-aspeed.c
 +++ b/drivers/fsi/fsi-master-aspeed.c
-@@ -87,6 +87,7 @@ static const u32 fsi_base = 0xa0000000;
- #define FSI_DIVISOR_DEFAULT            1
- #define FSI_DIVISOR_CABLED             2
- static u16 aspeed_fsi_divisor = FSI_DIVISOR_DEFAULT;
-+module_param_named(bus_div,aspeed_fsi_divisor, ushort, 0);
+@@ -22,6 +22,7 @@ struct fsi_master_aspeed {
+ 	struct device		*dev;
+ 	void __iomem		*base;
+ 	struct clk		*clk;
++	struct gpio_desc	*cfam_reset_gpio;
+ };
  
- #define OPB_POLL_TIMEOUT		10000
+ #define to_fsi_master_aspeed(m) \
+@@ -425,6 +426,43 @@ static int aspeed_master_init(struct fsi_master_aspeed *aspeed)
+ 	return 0;
+ }
  
-@@ -454,9 +455,12 @@ static int tacoma_cabled_fsi_fixup(struct device *dev)
- 	if (gpio) {
- 		/*
- 		 * Cable signal integrity means we should run the bus
--		 * slightly slower
-+		 * slightly slower. Do not override if a kernel param
-+		 * has already overridden.
- 		 */
--		aspeed_fsi_divisor = FSI_DIVISOR_CABLED;
-+		if (aspeed_fsi_divisor == FSI_DIVISOR_DEFAULT)
-+			aspeed_fsi_divisor = FSI_DIVISOR_CABLED;
++static ssize_t cfam_reset_store(struct device *dev, struct device_attribute *attr,
++				const char *buf, size_t count)
++{
++	struct fsi_master_aspeed *aspeed = dev_get_drvdata(dev);
 +
- 		gpiod_direction_output(mux_gpio, 0);
- 		dev_info(dev, "FSI configured for external cable\n");
- 	} else {
++	gpiod_set_value(aspeed->cfam_reset_gpio, 1);
++	usleep_range(900, 1000);
++	gpiod_set_value(aspeed->cfam_reset_gpio, 0);
++
++	return count;
++}
++
++static DEVICE_ATTR(cfam_reset, 0200, NULL, cfam_reset_store);
++
++static int setup_cfam_reset(struct fsi_master_aspeed *aspeed)
++{
++	struct device *dev = aspeed->dev;
++	struct gpio_desc *gpio;
++	int rc;
++
++	gpio = devm_gpiod_get_optional(dev, "cfam-reset", GPIOD_OUT_LOW);
++	if (IS_ERR(gpio))
++		return PTR_ERR(gpio);
++	if (!gpio)
++		return 0;
++
++	aspeed->cfam_reset_gpio = gpio;
++
++	rc = device_create_file(dev, &dev_attr_cfam_reset);
++	if (rc) {
++		devm_gpiod_put(dev, gpio);
++		return rc;
++	}
++
++	return 0;
++}
++
+ static int tacoma_cabled_fsi_fixup(struct device *dev)
+ {
+ 	struct gpio_desc *routing_gpio, *mux_gpio;
+@@ -507,6 +545,11 @@ static int fsi_master_aspeed_probe(struct platform_device *pdev)
+ 		return rc;
+ 	}
+ 
++	rc = setup_cfam_reset(aspeed);
++	if (rc) {
++		dev_err(&pdev->dev, "CFAM reset GPIO setup failed\n");
++	}
++
+ 	writel(0x1, aspeed->base + OPB_CLK_SYNC);
+ 	writel(OPB1_XFER_ACK_EN | OPB0_XFER_ACK_EN,
+ 			aspeed->base + OPB_IRQ_MASK);
 -- 
 2.27.0
 
