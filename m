@@ -2,88 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70BB0231247
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 21:16:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82BCC231259
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 21:19:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732630AbgG1TQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jul 2020 15:16:24 -0400
-Received: from mail-il1-f196.google.com ([209.85.166.196]:42493 "EHLO
-        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732601AbgG1TQY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 15:16:24 -0400
-Received: by mail-il1-f196.google.com with SMTP id i138so11278575ild.9;
-        Tue, 28 Jul 2020 12:16:23 -0700 (PDT)
+        id S1732709AbgG1TSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jul 2020 15:18:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52206 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728751AbgG1TSg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 15:18:36 -0400
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53A93C061794;
+        Tue, 28 Jul 2020 12:18:36 -0700 (PDT)
+Received: by mail-ed1-x544.google.com with SMTP id v22so4858250edy.0;
+        Tue, 28 Jul 2020 12:18:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=oa15p4iXa6GJWXcRKbHat247Q7cvm1xa0u7tYmwOk/s=;
+        b=blU+NE79hmQP+AWK2v6QHIjREnaP4/YLScYIEh3rWReHYQ1hpM4CB6natewhEcZJg3
+         At/DtAoJ9fBGj4g3ZnXIMFH10prYf+AFTHKPO+8fGRN1w55P9BQqv5CG5MoRsyeuOUGy
+         POKNlHiYWWDnRAmGiURfH6NrFotdNYkduTjxfX1eU8AGv+UrcTi8XLXCxBpX95UH/nrL
+         VkdM0HjfPkXJVbmw5xo9QFfmCuDC7uGtgEvhLlgy6LaFCwHAms40eJR1/qxhoNZR63Us
+         RkobSo+XmF/XkyPrpesTskiyKBR75/rYao7GhgZ+zXjoQJs1dT76PdO1tV+cozSe21+o
+         52EQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0H+b6zQt0ezS7kYwcQh9hJueRgaTbGNjTiuGLpXHZrQ=;
-        b=bGSwrrZ2wfHXtcV6fzWkn7RYngI1vN0SEtzKJEu4E8vaxmNG95wJLuWCWoiSucAAJC
-         vvkCWAu/4847kf4WGWrT5dYB7kTj6nz9nvTrgkM0zDhjLVVhpeZf5Jk0sLoDPHI3xNcX
-         jUUuzoTzxlv0RkQX898UgB/oCrnLa5s7pL5IdYpNTnoo7d4Z+RqVzZ60mnwY0vSP9jD2
-         FBTzX5CCw2ELhOFC2Nk65KDvn8oUg6tpQ+cjxN77wyjfLe2C2+nj1VgZZbKJ3Kgtwbuc
-         V+8DZCNVFX1NdEeIWDZB8Wd+hgFeZa9qk7HccTd+PDk4xu6ThpBDQwbAQlZn0Mjeu/Gm
-         xwfw==
-X-Gm-Message-State: AOAM53334sSnI4qWfmpSbpUATNmlOPY1S7iIwRMfUdulQb/yk7/4B15M
-        BUDKECDg03Ez+wA5VjhGhw==
-X-Google-Smtp-Source: ABdhPJwZSntLXAv+6Q+F7NQjzwUH5eUUeDRgDMukHAUHZqv/Km+dTvTfswJnQ7vDvyJlvzlS43odlA==
-X-Received: by 2002:a92:b6d4:: with SMTP id m81mr24095574ill.72.1595963783056;
-        Tue, 28 Jul 2020 12:16:23 -0700 (PDT)
-Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id t18sm6185560ild.52.2020.07.28.12.16.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jul 2020 12:16:22 -0700 (PDT)
-Received: (nullmailer pid 2780627 invoked by uid 1000);
-        Tue, 28 Jul 2020 19:16:20 -0000
-Date:   Tue, 28 Jul 2020 13:16:20 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, soc@kernel.org, arnd@arndb.de
-Subject: Re: [PATCH v2 1/9] dt-bindings: arm: mstar: Add binding details for
- mstar, pmsleep
-Message-ID: <20200728191620.GA2778962@bogus>
-References: <20200728100321.1691745-1-daniel@0x0f.com>
- <20200728100321.1691745-2-daniel@0x0f.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oa15p4iXa6GJWXcRKbHat247Q7cvm1xa0u7tYmwOk/s=;
+        b=Uy4PPF4woKMyS4JMu3Q8HWUxMMcMppymWPzWFO6BqnxBP+0fmOjBK6P7V1tSYLiaSJ
+         FSMI7a1eWs4SHcT78TgnltknunaOvUZHJKLWLsb3N/ZNYecj9pq/3+Y6YZc8Xm5ipCtX
+         TkuOU7c5ZwCnkFlajsyRqrIvG7ty6ZQwP3ilZaKMxH+zyw2kfIfnqgucNbU85FP4ZdSX
+         /IMvp3OrwQylnw3FoD3IZer9TR0MIbtrR7YiuwHx1sytaGFVPxwqRx0Lhqmt+TK947BI
+         9hqI8YTgkYn+EwXc29Wx4X77wNJeGhC9hFwm9f1N7j7F1jIwNsirRv7YlDg3sb5qsCgf
+         GsYQ==
+X-Gm-Message-State: AOAM5317sbn/o/tDDTFAyNXOBIcr5GsnBpRQP394iRbL/Fxv1fVIAGR3
+        WsG0EwYB2GkZtLxd8doVuAFQ32wrNjvL85Kq5lA=
+X-Google-Smtp-Source: ABdhPJy5S7ubQoYm3tHb4jW0VlpjbyrDB7KIdVKen1wY3pcq2mMJd8xXnF7ClZtX7lLSpJPEPi2etzzsUrRn6G+1/8E=
+X-Received: by 2002:a05:6402:1d0a:: with SMTP id dg10mr26396667edb.110.1595963915038;
+ Tue, 28 Jul 2020 12:18:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200728100321.1691745-2-daniel@0x0f.com>
+References: <20200728074602.14218-1-amelie.delaunay@st.com> <20200728074602.14218-4-amelie.delaunay@st.com>
+In-Reply-To: <20200728074602.14218-4-amelie.delaunay@st.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Tue, 28 Jul 2020 21:18:24 +0200
+Message-ID: <CAFBinCDd_9HJA4TT2mS007xFyO4jovt+Xrpejppzzq2Ty-JDmg@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] usb: dwc2: don't use ID/Vbus detection if
+ usb-role-switch on STM32MP15 SoCs
+To:     Amelie Delaunay <amelie.delaunay@st.com>
+Cc:     Minas Harutyunyan <hminas@synopsys.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Jul 2020 19:03:13 +0900, Daniel Palmer wrote:
-> This adds a YAML description of the pmsleep node used by
-> MStar/SigmaStar Armv7 SoCs.
-> 
-> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
-> ---
->  .../bindings/arm/mstar/mstar,pmsleep.yaml     | 43 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/mstar/mstar,pmsleep.yaml
-> 
+Hi Amelie,
+
+On Tue, Jul 28, 2020 at 9:46 AM Amelie Delaunay <amelie.delaunay@st.com> wrote:
+>
+> If usb-role-switch is present in the device tree, it means that ID and Vbus
+> signals are not connected to the OTG controller but to an external
+> component (GPIOs, Type-C controller). In this configuration, usb role
+> switch is used to force valid sessions on STM32MP15 SoCs.
+>
+> Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
+thank you for updating this patch - please add my:
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-Error: Documentation/devicetree/bindings/arm/mstar/mstar,pmsleep.example.dts:21.23-24 syntax error
-FATAL ERROR: Unable to parse input tree
-scripts/Makefile.lib:315: recipe for target 'Documentation/devicetree/bindings/arm/mstar/mstar,pmsleep.example.dt.yaml' failed
-make[1]: *** [Documentation/devicetree/bindings/arm/mstar/mstar,pmsleep.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-Makefile:1347: recipe for target 'dt_binding_check' failed
-make: *** [dt_binding_check] Error 2
-
-
-See https://patchwork.ozlabs.org/patch/1337730
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
-
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-
-Please check and re-submit.
-
+Martin
