@@ -2,138 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7934C231582
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 00:23:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E6BB231614
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 01:07:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729731AbgG1WXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jul 2020 18:23:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52798 "EHLO
+        id S1729820AbgG1XFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jul 2020 19:05:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729717AbgG1WXe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 18:23:34 -0400
-Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com [IPv6:2607:f8b0:4864:20::741])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1E04C0619D4
-        for <devicetree@vger.kernel.org>; Tue, 28 Jul 2020 15:23:33 -0700 (PDT)
-Received: by mail-qk1-x741.google.com with SMTP id e13so20374472qkg.5
-        for <devicetree@vger.kernel.org>; Tue, 28 Jul 2020 15:23:33 -0700 (PDT)
+        with ESMTP id S1729744AbgG1XFf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 19:05:35 -0400
+Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6704C0619D2
+        for <devicetree@vger.kernel.org>; Tue, 28 Jul 2020 16:05:34 -0700 (PDT)
+Received: by mail-il1-x12f.google.com with SMTP id z3so7503648ilh.3
+        for <devicetree@vger.kernel.org>; Tue, 28 Jul 2020 16:05:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8wMDzveqXMcU7qz1vEvMmj5Kh0jEuVD57A0b/vJIJrw=;
-        b=tG4rNdPI8R5LdMMO8xwPde56cVxcwd5fZAw2kzauifqgPFPeBuZ9hEyUHhD85W8bcI
-         M1T/PlI64ZhklmxrEyELMjberZDJ4KzNnazmhwE09VlAAj0XK22zP/a/RK+PvrSp+Dnw
-         /kkHshyydV5SLhk3KWYkA4xDfl/IEjoYJ5GkZ4EoshWFgVSVIYnqm32wkBDc1LGr7m0N
-         HgzWw9A3e0iQmRej8ZPgpGbNn9sSZ2XIGEd3opB1tb8IvxSd7SFVVhcpRuKxcTXFy7C+
-         nDujLhiAkU2NKuhnqQJRM1pocRepvEnfkf/zdOdHFkbxcH1jSPE5wsMu/GvGsW2QmqB5
-         Cq2g==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=X2K1uWR/QwXzI+l+S0k7hjE0zeO95oKopjPckuJcKks=;
+        b=HOn3483CcpZx2rWHnawxK0dXc7b7G3G5XyIIEaStLxCW23pUVEwNQSJlsoN5IYnNKY
+         0RzfcqUgEwEbc52FV8EqKZrskl8T7j7KFw4co7FnweEU/6zwiFFfZGKBxxQPDxgrn0zb
+         JqFA1LXPUUMNTBIiCOnr5umVrMuM3+gdkejyI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8wMDzveqXMcU7qz1vEvMmj5Kh0jEuVD57A0b/vJIJrw=;
-        b=Wy4B19RmppSP5pzaa6m7uB4c2zjNF3lyyaTzPxt18UlOLje+uw7vqxio/scGxbXWoo
-         WTtjrjkIWFcfUhtNcyryvsnNvNM7A9fVr387t+WJgb5Lsv9E5oziijkrCLKaKywzpzBW
-         kT0goSQXy13rVGuJV2ByLkvDzP6fOqKGPQeuUPef6oJMN1rC4S/0URXSjQDoK0FP4jkl
-         4DOlcEOWIWmnO1NnqzYAOxecMPvnZVKtuG02i2XPgYfmdNTrO3Q0RnlJYyL106e7KhFi
-         xKYD4jxaXbYt5JxlDmGbwKkIsJ/vOb8S0IUWvEIF09C0erAfVU4ji7S6hum27bpbocHh
-         vmHw==
-X-Gm-Message-State: AOAM532l1S1tcCln/F4kSqLkBAvP1kN5IUC1KEPYkR0Apti4kit0fbwf
-        QKR3wt4yM3snHVKq9PnisPOjISj49mQ+m/DaFe2Q1Q==
-X-Google-Smtp-Source: ABdhPJzBuFDwbTuAKAxLAKDoRVzjoMzJAgky0l1xUfwlCP1+u+1EBHu/d0wQurDqGyYI3vgcw/PLrAXzP60vhB16MLo=
-X-Received: by 2002:a05:620a:4ca:: with SMTP id 10mr27297992qks.306.1595975012973;
- Tue, 28 Jul 2020 15:23:32 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=X2K1uWR/QwXzI+l+S0k7hjE0zeO95oKopjPckuJcKks=;
+        b=k5iJVknhDvkYR1yLCbZfjbNWNlc2/6YUiV8T32fa/ASAw43S8FMBJsZulo2ferUFqM
+         ECyt+Ue04qFhXijHX/EgK6+Ej8bKUJFmhtk1VaLShR1hMMejWBQVhUyWgl8nf4sLPkxH
+         ydVTiJWK4cCcp38IeMiD8cJz+Aqa0YTCQieHRXP/O/04by6g6w4W1KJquYJL/4YQU326
+         Gp0MzvVbxErRP+RN1/DZenNa3Nm8jusZrcHoofSuNv2J7nOOX07zsVP46t4LoaQOWRDc
+         iAyXMnd3hjDUMeNNjRNZvzjIOPU6DI26gwXsO2QFDkw7+fQVSqkm4EVu1Q3NDwCJmXYK
+         y0jg==
+X-Gm-Message-State: AOAM531mh9pitCe3xcnqj1XZ2JdWIHhwSJGyhnqmEGfHOrOlsUN0k88T
+        AhM7DrO2NOs9GQT5iQzvzQ/77prdQp0p3Q==
+X-Google-Smtp-Source: ABdhPJxeTMzUL3WLdENfYV1RlntACUW3gDS4unVc7Ykwx0HXqZLKzhm39zzPu64EzsiHP3DPycSDBQ==
+X-Received: by 2002:a92:db06:: with SMTP id b6mr26282237iln.228.1595977533862;
+        Tue, 28 Jul 2020 16:05:33 -0700 (PDT)
+Received: from derch.Home (97-122-92-59.hlrn.qwest.net. [97.122.92.59])
+        by smtp.gmail.com with ESMTPSA id w10sm148945ilo.10.2020.07.28.16.05.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jul 2020 16:05:33 -0700 (PDT)
+From:   Daniel Campello <campello@chromium.org>
+To:     LKML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Daniel Campello <campello@chromium.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Enrico Granata <egranata@chromium.org>,
+        Gwendal Grignou <gwendal@chromium.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>, linux-iio@vger.kernel.org
+Subject: [PATCH v2 00/14] sx9310 iio driver updates
+Date:   Tue, 28 Jul 2020 17:05:06 -0600
+Message-Id: <20200728230520.2011240-1-campello@chromium.org>
+X-Mailer: git-send-email 2.28.0.163.g6104cc2f0b6-goog
+In-Reply-To: <20200728151258.1222876-1-campello@chromium.org>
+References: <20200728151258.1222876-1-campello@chromium.org>
 MIME-Version: 1.0
-References: <1595927918-19845-1-git-send-email-grzegorz.jaszczyk@linaro.org>
- <1595927918-19845-4-git-send-email-grzegorz.jaszczyk@linaro.org> <1ae8b42d0e7a09caf01197b11cea2fff@kernel.org>
-In-Reply-To: <1ae8b42d0e7a09caf01197b11cea2fff@kernel.org>
-From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Date:   Wed, 29 Jul 2020 00:23:22 +0200
-Message-ID: <CAMxfBF7uaFMhGDTmVjZiAEiUxNFSBnh-qcEz3rSDhFTkWkrLkw@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] irqchip/irq-pruss-intc: Add logic for handling
- reserved interrupts
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     tglx@linutronix.de, jason@lakedaemon.net,
-        "Anna, Suman" <s-anna@ti.com>, robh+dt@kernel.org,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, david@lechnology.com,
-        "Mills, William" <wmills@ti.com>,
-        "Bajjuri, Praneeth" <praneeth@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc
+The first patch resends the DT binding for the driver that was merged in
+v5.8-rc1 with a small change to update for proper regulators. The second
+through the eleventh patch fixes several issues dropped from v8 to v9
+when the initial patch was merged. The twelveth patch fixes a few
+printks that are missing newlines and should be totally non-trivial to
+apply. The thirteenth patch drops channel_users because it's unused. The
+final patch adds support to enable the svdd and vdd supplies so that
+this driver can work on a board where the svdd supply isn't enabled at
+boot and needs to be turned on before this driver starts to communicate
+with the chip.
 
-On Tue, 28 Jul 2020 at 18:37, Marc Zyngier <maz@kernel.org> wrote:
->
-> On 2020-07-28 10:18, Grzegorz Jaszczyk wrote:
-> > From: Suman Anna <s-anna@ti.com>
-> >
-> > The PRUSS INTC has a fixed number of output interrupt lines that are
-> > connected to a number of processors or other PRUSS instances or other
-> > devices (like DMA) on the SoC. The output interrupt lines 2 through 9
-> > are usually connected to the main Arm host processor and are referred
-> > to as host interrupts 0 through 7 from ARM/MPU perspective.
-> >
-> > All of these 8 host interrupts are not always exclusively connected
-> > to the Arm interrupt controller. Some SoCs have some interrupt lines
-> > not connected to the Arm interrupt controller at all, while a few
-> > others
-> > have the interrupt lines connected to multiple processors in which they
-> > need to be partitioned as per SoC integration needs. For example,
-> > AM437x
-> > and 66AK2G SoCs have 2 PRUSS instances each and have the host interrupt
-> > 5
-> > connected to the other PRUSS, while AM335x has host interrupt 0 shared
-> > between MPU and TSC_ADC and host interrupts 6 & 7 shared between MPU
-> > and
-> > a DMA controller.
-> >
-> > Add logic to the PRUSS INTC driver to ignore both these shared and
-> > invalid interrupts.
-> >
-> > Signed-off-by: Suman Anna <s-anna@ti.com>
-> > Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> > ---
-> > v3->v4:
-> > - Due to changes in DT bindings which converts irqs-reserved
-> >   property from uint8-array to bitmask requested by Rob introduce
-> >   relevant changes in the driver.
-> > - Merge the irqs-reserved and irqs-shared to one property since they
-> >   can be handled by one logic (relevant change was introduced to DT
-> >   binding).
->
-> This isn't what I asked for in my initial review.
->
-> I repeatedly asked for the *handling* to be common, not for the
-> properties to be merged. I don't mind either way, but I understood
-> there were two properties for a good reason. Has this reason gone?
+Changes in v2:
+ - Added #io-channel-cells as a required property
+ - Reordered error handling on sx9310_resume()
+ - Added #include <linux/mod_devicetable.h>
+ - Added '\n' to dev_err()
+ - Fixed commit message from "iio: sx9310: Align memory"
+ - Changed prox_stat to chan_prox_stat bitmap.
+ - Fixed dev_err() message
+ - Added '\n' to dev_err()
 
-Yes, I am aware that you've asked for common handling. Nevertheless
-due to this change the usage of irqs-shared had to change. Previously
-Suman's intention was to always skip the irqs-reserved, while allowing
-to try getting interrupts even from irqs-shared list but in case of
-failure (during platform_get_irq_byname) it wasn't treated as an
-error.
-In other words: in the previous approach if the interrupt from
-irqs-shared was present in DT interrupts property it was treated as a
-valid resource. If the irqs-shared interrupt wasn't present in DT
-interrupts property it was skipped (similar to the irqs-reserved
-case).
+Daniel Campello (12):
+  dt-bindings: iio: Add bindings for sx9310 sensor
+  iio: sx9310: Update macros declarations
+  iio: sx9310: Fix irq handling
+  iio: sx9310: Remove acpi and of table macros
+  iio: sx9310: Change from .probe to .probe_new
+  iio: sx9310: Fixes various memory handling
+  iio: sx9310: Use long instead of int for channel bitmaps
+  iio: sx9310: Use regmap_read_poll_timeout() for compensation
+  iio: sx9310: Update copyright
+  iio: sx9310: Simplify error return handling
+  iio: sx9310: Use variable to hold &client->dev
+  iio: sx9310: Miscellaneous format fixes
 
-Now after your request for handling both in a common way the
-interpretation of irqs-shared had to change. Therefore there's no need
-to have seperate property for them. Now it is simpler: if some
-interrupt is present in irqs-reserved it will be skipped.
+Stephen Boyd (2):
+  iio: sx9310: Drop channel_users[]
+  iio: sx9310: Enable vdd and svdd regulators at probe
 
->
-> Anyway, I'll come back to it once I start reviewing the series
-> again.
->
+ .../iio/proximity/semtech,sx9310.yaml         |  65 +++
+ drivers/iio/proximity/sx9310.c                | 424 +++++++++---------
+ 2 files changed, 277 insertions(+), 212 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
 
-Ok, thank you,
-Grzegorz
+--
+2.28.0.163.g6104cc2f0b6-goog
+
