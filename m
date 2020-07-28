@@ -2,75 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B27D23059C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 10:39:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E0FA230580
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 10:35:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728115AbgG1IjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jul 2020 04:39:08 -0400
-Received: from elvis.franken.de ([193.175.24.41]:51663 "EHLO elvis.franken.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728104AbgG1IjI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Jul 2020 04:39:08 -0400
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1k0L8B-0000DV-03; Tue, 28 Jul 2020 10:38:39 +0200
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id 9994EC0A94; Tue, 28 Jul 2020 10:33:08 +0200 (CEST)
-Date:   Tue, 28 Jul 2020 10:33:08 +0200
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        Huacai Chen <chenhc@lemote.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Paul Burton <paulburton@kernel.org>,
-        Nathan Chancellor <natechancellor@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 1/5] of_address: Add bus type match for pci ranges
- parser
-Message-ID: <20200728083308.GD9062@alpha.franken.de>
-References: <20200725014529.1143208-1-jiaxun.yang@flygoat.com>
- <20200725014529.1143208-2-jiaxun.yang@flygoat.com>
- <CAL_JsqKePrUW3-HoSnQawqhgg23XJ7MxzawD7TKt-__q3jM55g@mail.gmail.com>
+        id S1728226AbgG1IfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jul 2020 04:35:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37312 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728195AbgG1IfX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 04:35:23 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5CC4C0619D4
+        for <devicetree@vger.kernel.org>; Tue, 28 Jul 2020 01:35:22 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id a15so17405059wrh.10
+        for <devicetree@vger.kernel.org>; Tue, 28 Jul 2020 01:35:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=wIEap5nu6/u8U1i+WE2J6fe1oYcakn7JFpIXO/o4yqY=;
+        b=wzdHmSNupB/gvHxvaTzGoKr1l0PUZe1L5IJjQHR+y+Mftcr7BWvLUXOOxcbrqw/NeC
+         txj7PBsaU7zWETRFk7Y3jqiE7gbWfXw6QTy5c8RiQnko2Uvtw0n9+h/2MW1oYQ6J3BHm
+         orUCUrnlxxKnUDvUVWzC+ws2mP9aRwuKOLuTxTSGfFE0TLlGcso1EL/1VvUkP/zhmaRf
+         QuXPY1hgq16BhisRZ5VkUg9FH351qj7iV+17Bvy8LvnpWlPHTy61IlLLqRgZqsdqA2F2
+         EgDK32RgjKUxJ3MVsyl1NPNqLT/bU95m5q6dSnXvN1LR4O9aV1Nru/mFvVMbcjy87O1L
+         wbhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=wIEap5nu6/u8U1i+WE2J6fe1oYcakn7JFpIXO/o4yqY=;
+        b=LCj9/+64jYK3RzjHHd/zJixjKNb3ONOVGJprM6d4KSvYHKHwfj6n3OBfuJ7PsO/e/q
+         0AtAB9fH75zzxijI2MiktXz7e+1pQnnIZmHq73Yt3lHRfOjWXz6wAi1dywhmdjApiws6
+         Fye1RzeRMT6ClbRj4weM2OqI555wFa4yd11WttfhtgSWbcnH+5qnU9eg4iJvCeSLbpFw
+         +UAsba8HvPKJbwWcE8+VLqo+AKWUm1U5nCifeObAn342QB4eCbu4SQU87DLwlLgLFZa2
+         bGXryh2S+9DRMM4t4GNYqJMzFCo9OAGwkwSYf8JdmmWvH4plJKumYhcWpV6xfRkJZ3uC
+         uJHA==
+X-Gm-Message-State: AOAM530hma1LZsv3QQxT+P06HBsvx8THvDvAtVc28C0se6bxy2MGau5F
+        EkVBfUIvGkjs9EWEwWCUQWs/Xw==
+X-Google-Smtp-Source: ABdhPJwG1bTGEwviQBx4fQX6vXqs1qp0AAL5ZGxkde5J0PYhdXIPql4dbkmS6q4z2xbEkiCvqUsGMQ==
+X-Received: by 2002:adf:ec8b:: with SMTP id z11mr23369607wrn.51.1595925321324;
+        Tue, 28 Jul 2020 01:35:21 -0700 (PDT)
+Received: from dell ([2.27.167.73])
+        by smtp.gmail.com with ESMTPSA id 62sm16885342wrq.31.2020.07.28.01.35.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jul 2020 01:35:20 -0700 (PDT)
+Date:   Tue, 28 Jul 2020 09:35:18 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Pavel Machek <pavel@ucw.cz>
+Subject: Re: [PATCH v6 01/13] mfd: add simple regmap based I2C driver
+Message-ID: <20200728083518.GC2419169@dell>
+References: <20200725231834.25642-1-michael@walle.cc>
+ <20200725231834.25642-2-michael@walle.cc>
+ <20200728071949.GE1850026@dell>
+ <23a9ecf5fe4f15b9b20a91cc292aca80@walle.cc>
+ <20200728081506.GA2419169@dell>
+ <5de219e973e9d3c1455f1a09b4ce4177@walle.cc>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqKePrUW3-HoSnQawqhgg23XJ7MxzawD7TKt-__q3jM55g@mail.gmail.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5de219e973e9d3c1455f1a09b4ce4177@walle.cc>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 27, 2020 at 11:50:14AM -0600, Rob Herring wrote:
-> On Fri, Jul 24, 2020 at 7:45 PM Jiaxun Yang <jiaxun.yang@flygoat.com> wrote:
-> >
-> > So the parser can be used to parse range property of ISA bus.
-> >
-> > As they're all using PCI-like method of range property, there is no need
-> > start a new parser.
-> >
-> > Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> >
-> > --
-> > v2: Drop useless check, fix some na for bus_addr
-> >         add define of of_range_parser_init according to
-> >         Rob's suggestion.
-> > v3: Abstract out has_flags. simplify define.
-> > ---
-> >  drivers/of/address.c       | 29 +++++++++++++++++------------
-> >  include/linux/of_address.h |  4 ++++
-> >  2 files changed, 21 insertions(+), 12 deletions(-)
+On Tue, 28 Jul 2020, Michael Walle wrote:
+
+> Am 2020-07-28 10:15, schrieb Lee Jones:
+> > On Tue, 28 Jul 2020, Michael Walle wrote:
+> > 
+> > > Am 2020-07-28 09:19, schrieb Lee Jones:
+> > > > On Sun, 26 Jul 2020, Michael Walle wrote:
+> > > >
+> > > > > There are I2C devices which contain several different functions but
+> > > > > doesn't require any special access functions. For these kind of
+> > > > > drivers
+> > > > > an I2C regmap should be enough.
+> > > > >
+> > > > > Create an I2C driver which creates an I2C regmap and enumerates its
+> > > > > children. If a device wants to use this as its MFD core driver, it has
+> > > > > to add an individual compatible string. It may provide its own regmap
+> > > > > configuration.
+> > > > >
+> > > > > Subdevices can use dev_get_regmap() on the parent to get their regmap
+> > > > > instance.
+> > > > >
+> > > > > Signed-off-by: Michael Walle <michael@walle.cc>
+> > > > > ---
+> > > > > Changes since v5:
+> > > > >  - removed "select MFD_CORE" in Kconfig
+> > > > >  - removed help text in Kconfig, we assume that the users of this
+> > > >
+> > > > That's the opposite of what I asked for.
+> > > 
+> > > What is the use to describe the symbol, if it is not user selectable?
+> > > I'm not aware this is done anywhere in the kernel, am I missing
+> > > something?
+> > 
+> > You mean in menuconfig?
+> > 
+> > I find 'help's helpful even outside of menuconfig.
+> > 
+> > Surely I'm not the only one who reads them 'raw'?
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Its already available in the header of the file. But sure, I can
+> copy it.
 
-Rob, are you ok with merging this via the mips-next tree ?
+Thanks.
 
-Thomas.
+[...]
+
+> > > Why would you remove information about the intention of this driver?
+> > > If
+> > > someone
+> > > looks for a place to implement its SPI/I3C/Slimbus MFD driver this
+> > > might
+> > > come
+> > > in handy.
+> > 
+> > By all means put something similar in the commit log, but it has no
+> > place in the driver itself.  Besides, if we were to add support for
+> > SPI, it is likely to be a completely separate/unrelated driver.
+> 
+> Why would that be another driver? It would be 90% copy paste with
+> regmap_init_i2c() replaced by regmap_init_spi() and i2c_driver replaced
+> by spi_driver.
+
+We'll investigate options if/when the time comes.  If 'spi_driver' and
+'i2c_driver' can *sensibly* co-exist, then that is certainly an option
+we can explore.
+
+> But I don't care. I'll remove it.
+
+Please.
 
 -- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
