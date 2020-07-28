@@ -2,77 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFE41230A27
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 14:32:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A53F6230A9A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jul 2020 14:48:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729563AbgG1Mbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jul 2020 08:31:44 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:58928 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729619AbgG1Mbi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 08:31:38 -0400
-X-UUID: 47fce131f0bc4ce8bdd873b60e3f7dc8-20200728
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=re9A+rq4KYmObWKmW7Bf0ezIeYUSRyNZ7fUizuyl6XA=;
-        b=H8P85t8YytaNjKoYFI1kWsXqlGNHU+QsH6bJ1NdAPTjWA++0Xl7lmLR5xWejWiO+M6ZZ5bTAndVRV02SKC312k+/5IvZ2p8eWhq81tfpIJ1miw6oTWU0aJMjvLgZbcZ7cQbdCG/RDQPBHlvRYgvcIncHprwV2ctvDHXrSKeQHS4=;
-X-UUID: 47fce131f0bc4ce8bdd873b60e3f7dc8-20200728
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
-        (envelope-from <qii.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1736896492; Tue, 28 Jul 2020 20:31:36 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 28 Jul 2020 20:31:32 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 28 Jul 2020 20:31:31 +0800
-From:   Qii Wang <qii.wang@mediatek.com>
-To:     <wsa@the-dreams.de>
-CC:     <robh+dt@kernel.org>, <linux-i2c@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
-        <qii.wang@mediatek.com>, <qiangming.xia@mediatek.com>
-Subject: [PATCH v2 4/4] i2c: mediatek: Add i2c compatible for MediaTek MT8192
-Date:   Tue, 28 Jul 2020 20:30:46 +0800
-Message-ID: <1595939446-5484-5-git-send-email-qii.wang@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1595939446-5484-1-git-send-email-qii.wang@mediatek.com>
-References: <1595939446-5484-1-git-send-email-qii.wang@mediatek.com>
+        id S1729909AbgG1Msr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jul 2020 08:48:47 -0400
+Received: from foss.arm.com ([217.140.110.172]:34550 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729379AbgG1Msp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Jul 2020 08:48:45 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5ED431FB;
+        Tue, 28 Jul 2020 05:48:44 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2DD4A3F718;
+        Tue, 28 Jul 2020 05:48:42 -0700 (PDT)
+Date:   Tue, 28 Jul 2020 13:48:35 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     linux-arm-kernel@lists.infradead.org,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Cc:     Will Deacon <will@kernel.org>, Hanjun Guo <guohanjun@huawei.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        iommu@lists.linux-foundation.org, linux-acpi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Makarand Pawagi <makarand.pawagi@nxp.com>,
+        Diana Craciun <diana.craciun@oss.nxp.com>,
+        Laurentiu Tudor <laurentiu.tudor@nxp.com>
+Subject: Re: [PATCH v2 05/12] ACPI/IORT: Add an input ID to
+ acpi_dma_configure()
+Message-ID: <20200728124835.GA14596@e121166-lin.cambridge.arm.com>
+References: <20200521130008.8266-1-lorenzo.pieralisi@arm.com>
+ <20200619082013.13661-1-lorenzo.pieralisi@arm.com>
+ <20200619082013.13661-6-lorenzo.pieralisi@arm.com>
+ <20200709093514.GC18149@e121166-lin.cambridge.arm.com>
+ <20200715091326.GA30074@e121166-lin.cambridge.arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200715091326.GA30074@e121166-lin.cambridge.arm.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QWRkIGkyYyBjb21wYXRpYmxlIGZvciBNVDgxOTIuIENvbXBhcmUgdG8gTVQ4MTgzIGkyYyBjb250
-cm9sbGVyLA0KTVQ4MTkyIHN1cHBvcnQgbW9yZSB0aGVuIDhHQiBETUEgbW9kZS4NCg0KU2lnbmVk
-LW9mZi1ieTogUWlpIFdhbmcgPHFpaS53YW5nQG1lZGlhdGVrLmNvbT4NCi0tLQ0KIGRyaXZlcnMv
-aTJjL2J1c3Nlcy9pMmMtbXQ2NXh4LmMgfCAxNSArKysrKysrKysrKysrKysNCiAxIGZpbGUgY2hh
-bmdlZCwgMTUgaW5zZXJ0aW9ucygrKQ0KDQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9pMmMvYnVzc2Vz
-L2kyYy1tdDY1eHguYyBiL2RyaXZlcnMvaTJjL2J1c3Nlcy9pMmMtbXQ2NXh4LmMNCmluZGV4IDQ5
-Nzc3YTYuLmRiZjMxZWIgMTAwNjQ0DQotLS0gYS9kcml2ZXJzL2kyYy9idXNzZXMvaTJjLW10NjV4
-eC5jDQorKysgYi9kcml2ZXJzL2kyYy9idXNzZXMvaTJjLW10NjV4eC5jDQpAQCAtMzg3LDYgKzM4
-NywyMCBAQCBzdHJ1Y3QgaTJjX3NwZWNfdmFsdWVzIHsNCiAJLm1heF9kbWFfc3VwcG9ydCA9IDMz
-LA0KIH07DQogDQorc3RhdGljIGNvbnN0IHN0cnVjdCBtdGtfaTJjX2NvbXBhdGlibGUgbXQ4MTky
-X2NvbXBhdCA9IHsNCisJLnF1aXJrcyA9ICZtdDgxODNfaTJjX3F1aXJrcywNCisJLnJlZ3MgPSBt
-dF9pMmNfcmVnc192MiwNCisJLnBtaWNfaTJjID0gMCwNCisJLmRjbSA9IDAsDQorCS5hdXRvX3Jl
-c3RhcnQgPSAxLA0KKwkuYXV4X2xlbl9yZWcgPSAxLA0KKwkudGltaW5nX2FkanVzdCA9IDEsDQor
-CS5kbWFfc3luYyA9IDEsDQorCS5sdGltaW5nX2FkanVzdCA9IDEsDQorCS5hcGRtYV9zeW5jID0g
-MSwNCisJLm1heF9kbWFfc3VwcG9ydCA9IDM2LA0KK307DQorDQogc3RhdGljIGNvbnN0IHN0cnVj
-dCBvZl9kZXZpY2VfaWQgbXRrX2kyY19vZl9tYXRjaFtdID0gew0KIAl7IC5jb21wYXRpYmxlID0g
-Im1lZGlhdGVrLG10MjcxMi1pMmMiLCAuZGF0YSA9ICZtdDI3MTJfY29tcGF0IH0sDQogCXsgLmNv
-bXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2NTc3LWkyYyIsIC5kYXRhID0gJm10NjU3N19jb21wYXQg
-fSwNCkBAIC0zOTQsNiArNDA4LDcgQEAgc3RydWN0IGkyY19zcGVjX3ZhbHVlcyB7DQogCXsgLmNv
-bXBhdGlibGUgPSAibWVkaWF0ZWssbXQ3NjIyLWkyYyIsIC5kYXRhID0gJm10NzYyMl9jb21wYXQg
-fSwNCiAJeyAuY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxNzMtaTJjIiwgLmRhdGEgPSAmbXQ4
-MTczX2NvbXBhdCB9LA0KIAl7IC5jb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE4My1pMmMiLCAu
-ZGF0YSA9ICZtdDgxODNfY29tcGF0IH0sDQorCXsgLmNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4
-MTkyLWkyYyIsIC5kYXRhID0gJm10ODE5Ml9jb21wYXQgfSwNCiAJe30NCiB9Ow0KIE1PRFVMRV9E
-RVZJQ0VfVEFCTEUob2YsIG10a19pMmNfb2ZfbWF0Y2gpOw0KLS0gDQoxLjkuMQ0K
+On Wed, Jul 15, 2020 at 10:13:26AM +0100, Lorenzo Pieralisi wrote:
+> On Thu, Jul 09, 2020 at 10:35:14AM +0100, Lorenzo Pieralisi wrote:
+> > On Fri, Jun 19, 2020 at 09:20:06AM +0100, Lorenzo Pieralisi wrote:
+> > > Some HW devices are created as child devices of proprietary busses,
+> > > that have a bus specific policy defining how the child devices
+> > > wires representing the devices ID are translated into IOMMU and
+> > > IRQ controllers device IDs.
+> > > 
+> > > Current IORT code provides translations for:
+> > > 
+> > > - PCI devices, where the device ID is well identified at bus level
+> > >   as the requester ID (RID)
+> > > - Platform devices that are endpoint devices where the device ID is
+> > >   retrieved from the ACPI object IORT mappings (Named components single
+> > >   mappings). A platform device is represented in IORT as a named
+> > >   component node
+> > > 
+> > > For devices that are child devices of proprietary busses the IORT
+> > > firmware represents the bus node as a named component node in IORT
+> > > and it is up to that named component node to define in/out bus
+> > > specific ID translations for the bus child devices that are
+> > > allocated and created in a bus specific manner.
+> > > 
+> > > In order to make IORT ID translations available for proprietary
+> > > bus child devices, the current ACPI (and IORT) code must be
+> > > augmented to provide an additional ID parameter to acpi_dma_configure()
+> > > representing the child devices input ID. This ID is bus specific
+> > > and it is retrieved in bus specific code.
+> > > 
+> > > By adding an ID parameter to acpi_dma_configure(), the IORT
+> > > code can map the child device ID to an IOMMU stream ID through
+> > > the IORT named component representing the bus in/out ID mappings.
+> > > 
+> > > Signed-off-by: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+> > > Cc: Will Deacon <will@kernel.org>
+> > > Cc: Hanjun Guo <guohanjun@huawei.com>
+> > > Cc: Sudeep Holla <sudeep.holla@arm.com>
+> > > Cc: Catalin Marinas <catalin.marinas@arm.com>
+> > > Cc: Robin Murphy <robin.murphy@arm.com>
+> > > Cc: "Rafael J. Wysocki" <rjw@rjwysocki.net>
+> > > ---
+> > >  drivers/acpi/arm64/iort.c | 59 +++++++++++++++++++++++++++++----------
+> > >  drivers/acpi/scan.c       |  8 ++++--
+> > >  include/acpi/acpi_bus.h   |  9 ++++--
+> > >  include/linux/acpi.h      |  7 +++++
+> > >  include/linux/acpi_iort.h |  7 +++--
+> > >  5 files changed, 67 insertions(+), 23 deletions(-)
+> > 
+> > Hi Rafael,
+> > 
+> > just to ask if the ACPI core changes in this patch are OK with you,
+> > thank you very much.
+> 
+> Hi Rafael,
+> 
+> are you OK with ACPI core changes in this patch ?
+> 
+> Please let me know, thanks.
 
+Hi Rafael,
+
+gentle ping, I think we are missing v5.9, we would need your feedback
+on this please.
+
+Thanks,
+Lorenzo
