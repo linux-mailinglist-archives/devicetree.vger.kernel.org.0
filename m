@@ -2,222 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F381231AC3
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 10:04:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41FCC231AB9
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 10:02:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727964AbgG2IEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jul 2020 04:04:45 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:52518 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727846AbgG2IEp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Jul 2020 04:04:45 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3C368200E84;
-        Wed, 29 Jul 2020 10:04:43 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 99435200E83;
-        Wed, 29 Jul 2020 10:04:38 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id D147240302;
-        Wed, 29 Jul 2020 10:04:32 +0200 (CEST)
-From:   Dong Aisheng <aisheng.dong@nxp.com>
-To:     linux-clk@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, sboyd@kernel.org,
-        mturquette@baylibre.com, shawnguo@kernel.org,
-        fabio.estevam@nxp.com, linux-imx@nxp.com, kernel@pengutronix.de,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v7 02/11] dt-bindings: clock: imx-lpcg: add support to parse clocks from device tree
-Date:   Wed, 29 Jul 2020 16:00:09 +0800
-Message-Id: <1596009618-25516-3-git-send-email-aisheng.dong@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1596009618-25516-1-git-send-email-aisheng.dong@nxp.com>
-References: <1596009618-25516-1-git-send-email-aisheng.dong@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726536AbgG2ICY convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 29 Jul 2020 04:02:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56682 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726336AbgG2ICX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jul 2020 04:02:23 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEF90C0619D2
+        for <devicetree@vger.kernel.org>; Wed, 29 Jul 2020 01:02:22 -0700 (PDT)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1k0h2X-00086y-8P; Wed, 29 Jul 2020 10:02:17 +0200
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1k0h2W-0001cy-D3; Wed, 29 Jul 2020 10:02:16 +0200
+Message-ID: <d259a74ca9e425f9b39ebbf47b0decb6be0beed5.camel@pengutronix.de>
+Subject: Re: [PATCH 1/2] reset-controller: ti: adjust the reset assert and
+ deassert interface
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Crystal Guo <crystal.guo@mediatek.com>, robh+dt@kernel.org
+Cc:     srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, seiya.wang@mediatek.com
+Date:   Wed, 29 Jul 2020 10:02:16 +0200
+In-Reply-To: <ba0d1e29-3ba3-5379-d03e-1ccec21c2ffa@gmail.com>
+References: <1596008357-11213-1-git-send-email-crystal.guo@mediatek.com>
+         <1596008357-11213-2-git-send-email-crystal.guo@mediatek.com>
+         <ba0d1e29-3ba3-5379-d03e-1ccec21c2ffa@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MX8QM and MX8QXP LPCG Clocks are mostly the same except they may reside
-in different subsystems across CPUs and also vary a bit on the availability.
+Hi Crystal, Matthias,
 
-Same as SCU clock, we want to move the clock definition into device tree
-which can fully decouple the dependency of Clock ID definition from device
-tree and make us be able to write a fully generic lpcg clock driver.
+On Wed, 2020-07-29 at 09:48 +0200, Matthias Brugger wrote:
+> 
+> On 29/07/2020 09:39, Crystal Guo wrote:
+> > Add ti_syscon_reset() to integrate assert and deassert together,
+> > and change return value of the reset assert and deassert interface
+> > from regmap_update_bits to regmap_write_bits.
+> > 
+> > when clear bit is already 1, regmap_update_bits can not write 1 to it again.
+> > Some IC has the feature that, when set bit is 1, the clear bit change
+> > to 1 together. It will truly clear bit to 0 by write 1 to the clear bit
+> > 
+> > Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
+> > ---
+> >   drivers/reset/reset-ti-syscon.c | 13 +++++++++++--
+> >   1 file changed, 11 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/reset/reset-ti-syscon.c b/drivers/reset/reset-ti-syscon.c
+> > index a2635c2..5a8ec8f 100644
+> > --- a/drivers/reset/reset-ti-syscon.c
+> > +++ b/drivers/reset/reset-ti-syscon.c
+> > @@ -89,7 +89,7 @@ static int ti_syscon_reset_assert(struct reset_controller_dev *rcdev,
+> >   	mask = BIT(control->assert_bit);
+> >   	value = (control->flags & ASSERT_SET) ? mask : 0x0;
+> >   
+> > -	return regmap_update_bits(data->regmap, control->assert_offset, mask, value);
+> > +	return regmap_write_bits(data->regmap, control->assert_offset, mask, value);
+> 
+> Nack, this will break the driver for the other devices.
 
-And we can also use the existence of clock nodes in device tree to address
-the device and clock availability differences across different SoCs.
+I don't think this will break the driver for existing hardware.
+regmap_write_bits() is the same as regmap_update_bits(), it just forces
+the write in case the read already happens to return the correct value.
+Of course it would be good to check that this actually works.
 
-Cc: Sascha Hauer <kernel@pengutronix.de>
-Cc: Michael Turquette <mturquette@baylibre.com>
-Cc: devicetree@vger.kernel.org
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>
-Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
----
-ChangeLog:
-v6->v7:
- * No other changes except converting to json schema based on the former reviewed
-   patches due to the lagecy binding file was removed in latests kernel.
-   Because the format is different now, i removed the former R-b
-   and A-b tags and request a new review.
-   See original patch here:
-   https://patchwork.kernel.org/patch/11439079/
-v4->v6:
- * no changes
-v3->v4:
- * change bit-offset property to clock-indices
- * use constant macro to define clock indinces
- * drop hw-autogate property which is still not used by drivers
-v2->v3:
- * no changes
-v1->v2:
- * Update example
- * Add power domain property
----
- .../bindings/clock/imx8qxp-lpcg.yaml          | 79 ++++++++++++++-----
- include/dt-bindings/clock/imx8-lpcg.h         | 14 ++++
- 2 files changed, 74 insertions(+), 19 deletions(-)
- create mode 100644 include/dt-bindings/clock/imx8-lpcg.h
+> The kernel has to work not just for your SoC but for all devices of all 
+> architectures. You can't just hack something up, that will work on your specific 
+> SoC.
+> 
+> Regards,
+> Matthias
+> 
+> >   }
+> >   
+> >   /**
+> > @@ -120,7 +120,7 @@ static int ti_syscon_reset_deassert(struct reset_controller_dev *rcdev,
+> >   	mask = BIT(control->deassert_bit);
+> >   	value = (control->flags & DEASSERT_SET) ? mask : 0x0;
+> >   
+> > -	return regmap_update_bits(data->regmap, control->deassert_offset, mask, value);
+> > +	return regmap_write_bits(data->regmap, control->deassert_offset, mask, value);
+> >   }
+> >   
+> >   /**
+> > @@ -158,10 +158,19 @@ static int ti_syscon_reset_status(struct reset_controller_dev *rcdev,
+> >   		!(control->flags & STATUS_SET);
+> >   }
+> >   
+> > +static int ti_syscon_reset(struct reset_controller_dev *rcdev,
+> > +			   unsigned long id)
+> > +{
+> > +	ti_syscon_reset_assert(rcdev, id);
+> > +
+> > +	return ti_syscon_reset_deassert(rcdev, id);
+> > +}
+> > +
 
-diff --git a/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml b/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml
-index 33f3010f48c3..e709e530e17a 100644
---- a/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml
-+++ b/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml
-@@ -21,27 +21,58 @@ description: |
- 
-   The clock consumer should specify the desired clock by having the clock
-   ID in its "clocks" phandle cell. See the full list of clock IDs from:
--  include/dt-bindings/clock/imx8-clock.h
-+  include/dt-bindings/clock/imx8-lpcg.h
- 
- properties:
-   compatible:
--    enum:
--      - fsl,imx8qxp-lpcg-adma
--      - fsl,imx8qxp-lpcg-conn
--      - fsl,imx8qxp-lpcg-dc
--      - fsl,imx8qxp-lpcg-dsp
--      - fsl,imx8qxp-lpcg-gpu
--      - fsl,imx8qxp-lpcg-hsio
--      - fsl,imx8qxp-lpcg-img
--      - fsl,imx8qxp-lpcg-lsio
--      - fsl,imx8qxp-lpcg-vpu
--
-+    oneOf:
-+      - const: fsl,imx8qxp-lpcg
-+      - items:
-+          - enum:
-+            - fsl,imx8qm-lpcg
-+          - const: fsl,imx8qxp-lpcg
-+      - enum:
-+        - fsl,imx8qxp-lpcg-adma
-+        - fsl,imx8qxp-lpcg-conn
-+        - fsl,imx8qxp-lpcg-dc
-+        - fsl,imx8qxp-lpcg-dsp
-+        - fsl,imx8qxp-lpcg-gpu
-+        - fsl,imx8qxp-lpcg-hsio
-+        - fsl,imx8qxp-lpcg-img
-+        - fsl,imx8qxp-lpcg-lsio
-+        - fsl,imx8qxp-lpcg-vpu
-+        deprecated: true
-   reg:
-     maxItems: 1
- 
-   '#clock-cells':
-     const: 1
- 
-+  clocks:
-+    description: |
-+      Input parent clocks phandle array for each clock
-+    minItems: 1
-+    maxItems: 8
-+
-+  clock-indices:
-+    description: |
-+      An integer array indicating the bit offset for each clock.
-+      Refer to <include/dt-bindings/clock/imx8-lpcg.h> for the
-+      supported LPCG clock indices.
-+    minItems: 1
-+    maxItems: 8
-+
-+  clock-output-names:
-+    description: |
-+      Shall be the corresponding names of the outputs.
-+      NOTE this property must be specified in the same order
-+      as the clock-indices property.
-+    minItems: 1
-+    maxItems: 8
-+
-+  power-domains:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
-@@ -51,23 +82,33 @@ additionalProperties: false
- 
- examples:
-   - |
--    #include <dt-bindings/clock/imx8-clock.h>
-+    #include <dt-bindings/clock/imx8-lpcg.h>
-     #include <dt-bindings/firmware/imx/rsrc.h>
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
- 
--    clock-controller@5b200000 {
--        compatible = "fsl,imx8qxp-lpcg-conn";
--        reg = <0x5b200000 0xb0000>;
-+    sdhc0_lpcg: clock-controller@5b200000 {
-+        compatible = "fsl,imx8qxp-lpcg";
-+        reg = <0x5b200000 0x10000>;
-         #clock-cells = <1>;
-+        clocks = <&sdhc0_clk IMX_SC_PM_CLK_PER>,
-+                 <&conn_ipg_clk>,
-+                 <&conn_axi_clk>;
-+        clock-indices = <IMX_LPCG_CLK_0>,
-+                        <IMX_LPCG_CLK_4>,
-+                        <IMX_LPCG_CLK_5>;
-+        clock-output-names = "sdhc0_lpcg_per_clk",
-+                             "sdhc0_lpcg_ipg_clk",
-+                             "sdhc0_lpcg_ahb_clk";
-+        power-domains = <&pd IMX_SC_R_SDHC_0>;
-     };
- 
-     mmc@5b010000 {
-         compatible = "fsl,imx8qxp-usdhc", "fsl,imx7d-usdhc";
-         interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>;
-         reg = <0x5b010000 0x10000>;
--        clocks = <&conn_lpcg IMX_CONN_LPCG_SDHC0_IPG_CLK>,
--                 <&conn_lpcg IMX_CONN_LPCG_SDHC0_PER_CLK>,
--                 <&conn_lpcg IMX_CONN_LPCG_SDHC0_HCLK>;
-+        clocks = <&sdhc0_lpcg IMX_LPCG_CLK_4>,
-+                 <&sdhc0_lpcg IMX_LPCG_CLK_0>,
-+                 <&sdhc0_lpcg IMX_LPCG_CLK_5>;
-         clock-names = "ipg", "per", "ahb";
-         power-domains = <&pd IMX_SC_R_SDHC_0>;
-     };
-diff --git a/include/dt-bindings/clock/imx8-lpcg.h b/include/dt-bindings/clock/imx8-lpcg.h
-new file mode 100644
-index 000000000000..d202715652c3
---- /dev/null
-+++ b/include/dt-bindings/clock/imx8-lpcg.h
-@@ -0,0 +1,14 @@
-+/* SPDX-License-Identifier: GPL-2.0+ */
-+/*
-+ * Copyright 2019-2020 NXP
-+ *   Dong Aisheng <aisheng.dong@nxp.com>
-+ */
-+
-+#define IMX_LPCG_CLK_0	0
-+#define IMX_LPCG_CLK_1	4
-+#define IMX_LPCG_CLK_2	8
-+#define IMX_LPCG_CLK_3	12
-+#define IMX_LPCG_CLK_4	16
-+#define IMX_LPCG_CLK_5	20
-+#define IMX_LPCG_CLK_6	24
-+#define IMX_LPCG_CLK_7	28
--- 
-2.23.0
+I'm unsure about this one, though. This is an incompatible change. At
+the very least this would have to be optional depending on compatible.
 
+regards
+Philipp
