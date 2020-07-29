@@ -2,126 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CADB231D25
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 13:03:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E90E8231DC3
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 13:59:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726909AbgG2LDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jul 2020 07:03:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56128 "EHLO
+        id S1726710AbgG2L7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jul 2020 07:59:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726842AbgG2LC4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jul 2020 07:02:56 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F9C3C0619DA
-        for <devicetree@vger.kernel.org>; Wed, 29 Jul 2020 04:02:55 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id b25so24557559ljp.6
-        for <devicetree@vger.kernel.org>; Wed, 29 Jul 2020 04:02:55 -0700 (PDT)
+        with ESMTP id S1726353AbgG2L7W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jul 2020 07:59:22 -0400
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45278C0619D2
+        for <devicetree@vger.kernel.org>; Wed, 29 Jul 2020 04:59:20 -0700 (PDT)
+Received: by mail-ed1-x541.google.com with SMTP id di22so10010603edb.12
+        for <devicetree@vger.kernel.org>; Wed, 29 Jul 2020 04:59:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=gf7cv2SFIbdtlnGIIkL7k9OE8WL9LTH6+emgR/zQp4Y=;
-        b=ZLHbE57Xrx/TPW6fyBjKZ4HFPTD8aCMjiF/g9R77/NYupMLxx0EkeWq8hl66ENUsJn
-         AvubfKp5u5Gv7drFCny8A1HL+Yd5qU8PG6b2Yp+6K8v0iufbi1Z1XkAG0pG1m8Y2MVN8
-         s6KGiIvAnieDGi8/CFOkjP2KEUnPozZ1X7o3voWYEXDwhZd2QXKenDTQff6spCGx2rdR
-         +rEF9n9gnL+Rp0fQGFDQ38POtiTNTI4QpNfbRQw34nA8z67m6VhIUFSKreBbuQdbfx4O
-         cxRqko6iBR8sYfvOIK80V3I3xSbbPwJGocWUinntbJUpLAQLee9Ene5dMwcxjbR2JJWU
-         HVsw==
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5QRWy1YBlieNCizCX79fYi5/kvniVQ9BIqFKoJ+v6lY=;
+        b=Onozl2PvdryGi9YD+CsC7unot6+rdgNl73NAR/I++XEkM/ICfb2X5HUb9upkVoQ5lR
+         LWcTDVhZzlficsyzPt23J8l8HKMfciLClrRJ+X8j5F+jNX7PG89SmCaJQcmujDl47pw5
+         hALGlMtR8EwQKPcr6wEtumEdIBpNGCaL8QebI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=gf7cv2SFIbdtlnGIIkL7k9OE8WL9LTH6+emgR/zQp4Y=;
-        b=BMW+lVUqWNX7AVWxKCrL/+FV3Z9Mrvpa+jTP8fqSwgfMQ9GsFNL1Yb/+298DfDQ5HT
-         o2B35iF2GQTE8aHv4Fh42BzNvT38+IxKLEkC31adY1HnRvcVivia+8L80TUlhwbcgTW8
-         lnXnIDpxNZRnwxjleBQd+MtOTCyuBUIq8NEHCT1MC2qKkl2AgpyXBxd+7gidmP8TXBZl
-         0q7QMMpuoFGFcFpMuqAdem1Y+n2FBO874JjB8vKSMfgKILKu1r8bFTH3J/ljqOzXeUvY
-         SQoc55MmfX6/RZkPNi9lfpiuprSfpfwZGhzAAWNMDMjeeH2QjxcbOsNJTq7Ll3oFG3LE
-         JdRA==
-X-Gm-Message-State: AOAM530oUBZlbHVCk68jHK9pXdnsDSBhhGbNOVzBfKp1ncz3L/5NHmlN
-        BWKxSggriOf92Tz77cFXcnv/HA==
-X-Google-Smtp-Source: ABdhPJyitBHf4z//24bE/wVIWN+Nxe4X98g0ie3HwNXAk9SBLq5d3xt7fZLrj9T/mgXKz48baDAFMg==
-X-Received: by 2002:a05:651c:319:: with SMTP id a25mr15139192ljp.272.1596020573965;
-        Wed, 29 Jul 2020 04:02:53 -0700 (PDT)
-Received: from gilgamesh.semihalf.com (193-106-246-138.noc.fibertech.net.pl. [193.106.246.138])
-        by smtp.gmail.com with ESMTPSA id e12sm329283ljk.74.2020.07.29.04.02.52
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 29 Jul 2020 04:02:53 -0700 (PDT)
-From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-To:     ssantosh@kernel.org, s-anna@ti.com
-Cc:     grzegorz.jaszczyk@linaro.org, santosh.shilimkar@oracle.com,
-        robh+dt@kernel.org, lee.jones@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        wmills@ti.com, praneeth@ti.com
-Subject: [PATCH 6/6] soc: ti: pruss: enable support for ICSSG subsystems on K3 AM65x SoCs
-Date:   Wed, 29 Jul 2020 13:02:08 +0200
-Message-Id: <1596020528-19510-7-git-send-email-grzegorz.jaszczyk@linaro.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1596020528-19510-1-git-send-email-grzegorz.jaszczyk@linaro.org>
-References: <1596020528-19510-1-git-send-email-grzegorz.jaszczyk@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5QRWy1YBlieNCizCX79fYi5/kvniVQ9BIqFKoJ+v6lY=;
+        b=r8/5T6try21xwfK2EwIy0bWqGM1xzHk3samwGo9HY4VglmZl17hBakT7E221sWxCkx
+         i2zwZPnoCIQJ0oNcqwAqioSvYL8C6KDE4ZByCp8PtJHTm57B/vVLnDup+AqeGsh278v9
+         EhzqyLpLuIuq5tWpifwKo3cdTCbzIdWeJabz5gxBMQ7th2aDnwEh726WhRvWLiOJ3C+a
+         4EdiQUs/U3KhPsZfYIyZYzrBE37e1hyapx/NR7HFq4fmVKxOnTVtCYlewIzfiN/sXXAr
+         y/4SqKQTjzRGAcYWLNDAAeGGIlKZViAJrt8nOvU6O79eM6g8A9uSN3DyLU1F0uIWCV1/
+         m6Rg==
+X-Gm-Message-State: AOAM5317aMf8GEB09QkHqluF5tP3HVMGj2AbYngTifqrjTqX//+rciSU
+        sCwtqRq6m9auPsxqAYLMAFC8rsLuruZL4/ymKtpNFQ==
+X-Google-Smtp-Source: ABdhPJxJTqL+yv4XQZ+e0Yu1p1dYX4jQwhJQ/xCQBLuR5o92WBnb1MdF57usX1MRal33FHuF6Ysjh0ffW2dn1NvjC0w=
+X-Received: by 2002:a05:6402:c86:: with SMTP id cm6mr12777305edb.205.1596023958843;
+ Wed, 29 Jul 2020 04:59:18 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200723090210.41201-1-jagan@amarulasolutions.com> <20200723155028.GA427258@bogus>
+In-Reply-To: <20200723155028.GA427258@bogus>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Wed, 29 Jul 2020 17:29:07 +0530
+Message-ID: <CAMty3ZDgrxeLxshKMMjXgg6wgDsan8mJeLr9d+YC9F=5uLPMqw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: arm: rockchip: Update ROCKPi 4 binding
+To:     Rob Herring <robh@kernel.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        Suniel Mahesh <sunil@amarulasolutions.com>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Suman Anna <s-anna@ti.com>
+On Thu, Jul 23, 2020 at 9:20 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Jul 23, 2020 at 02:32:07PM +0530, Jagan Teki wrote:
+> > ROCKPi 4 has 3 variants of hardware platforms called
+> > ROCKPi 4A, 4B, and 4C.
+> >
+> > - ROCKPi 4A has no Wif/BT.
+> > - ROCKPi 4B has AP6256 Wifi/BT, PoE.
+> > - ROCKPi 4C has AP6256 Wifi/BT, PoE, miniDP, USB Host enabled
+> >   GPIO pin change compared to 4B, 4C
+> >
+> > So, update the existing ROCKPi 4 binding to support
+> > ROCKPi 4A/B/C hardware platforms.
+> >
+> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > ---
+> > Changes for v3:
+> > - new patch
+> >
+> >  Documentation/devicetree/bindings/arm/rockchip.yaml | 6 +++++-
+> >  1 file changed, 5 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > index db2e35796795..e6f656b0bd56 100644
+> > --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > @@ -430,8 +430,12 @@ properties:
+> >            - const: radxa,rock
+> >            - const: rockchip,rk3188
+> >
+> > -      - description: Radxa ROCK Pi 4
+> > +      - description: Radxa ROCK Pi 4A/B/C
+> >          items:
+> > +          - enum:
+> > +              - const: radxa,rockpi4a
+> > +              - const: radxa,rockpi4b
+> > +              - const: radxa,rockpi4c
+> >            - const: radxa,rockpi4
+>
+> radxa,rockpi4 already meant 'ROCKPi 4A' and should continue to do so.
+> Just add 4B and 4C strings. It's up to you if they should be backwards
+> compatible with 'radxa,rockpi4' (meaning 4A), but I'd guess not unless
+> it's just a board pop option.
 
-The K3 AM65x family of SoCs have the next generation of the PRU-ICSS
-processor subsystem capable of supporting Gigabit Ethernet, and is
-commonly referred to as ICSSG. These SoCs contain typically three
-ICSSG instances named ICSSG0, ICSSG1 and ICSSG2. The three ICSSGs are
-identical to each other for the most part with minor SoC integration
-differences and capabilities. The ICSSG2 supports slightly enhanced
-features like SGMII mode Ethernet, while the ICSS0 and ICSSG1 instances
-are limited to MII mode only.
+At-least from dts nodes enablement point of view the existing dts
+(with radxa,rockpi4) is 4B since it has wifi/bt enabled. 4A is the
+real name of the board so having a compatible with radxa,rockpi4a is
+meaningful as I understood.
 
-The ICSSGs on K3 AM65x SoCs are in general super-sets of the PRUSS on the
-AM57xx/66AK2G SoCs. They include two additional auxiliary PRU cores called
-RTUs and few other additional sub-modules. The interrupt integration is
-also different on the K3 AM65x SoCs and are propagated through various
-SoC-level Interrupt Router and Interrupt Aggregator blocks. Other IP level
-differences include different constant tables, differences in system event
-interrupt input sources etc. They also do not have a programmable module
-reset line like those present on AM33xx/AM43xx SoCs. The modules are reset
-just like any other IP with the SoC's global cold/warm resets.
+So, based on the above statements the respective binding look like
 
-The existing pruss platform driver has been updated to support these new
-ICSSG instances through new AM65x specific compatibles. A build dependency
-with ARCH_K3 is added to enable building all the existing PRUSS platform
-drivers for this ARMv8 platform.
+      - description: Radxa ROCK Pi 4A/B/C
+        items:
+          - enum:
+              - radxa,rockpi4a
+              - radxa,rockpi4b
+              - radxa,rockpi4c
+          - const: radxa,rockpi4
+          - const: rockchip,rk3399
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
----
- drivers/soc/ti/Kconfig | 2 +-
- drivers/soc/ti/pruss.c | 1 +
- 2 files changed, 2 insertions(+), 1 deletion(-)
+Comments, please?
 
-diff --git a/drivers/soc/ti/Kconfig b/drivers/soc/ti/Kconfig
-index c290343..f5b82ff 100644
---- a/drivers/soc/ti/Kconfig
-+++ b/drivers/soc/ti/Kconfig
-@@ -103,7 +103,7 @@ config TI_K3_SOCINFO
- 
- config TI_PRUSS
- 	tristate "TI PRU-ICSS Subsystem Platform drivers"
--	depends on SOC_AM33XX || SOC_AM43XX || SOC_DRA7XX || ARCH_KEYSTONE
-+	depends on SOC_AM33XX || SOC_AM43XX || SOC_DRA7XX || ARCH_KEYSTONE || ARCH_K3
- 	select MFD_SYSCON
- 	help
- 	  TI PRU-ICSS Subsystem platform specific support.
-diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
-index d5f128e..ccc9783 100644
---- a/drivers/soc/ti/pruss.c
-+++ b/drivers/soc/ti/pruss.c
-@@ -163,6 +163,7 @@ static const struct of_device_id pruss_of_match[] = {
- 	{ .compatible = "ti,am4376-pruss1", .data = &am437x_pruss1_data, },
- 	{ .compatible = "ti,am5728-pruss" },
- 	{ .compatible = "ti,k2g-pruss" },
-+	{ .compatible = "ti,am654-icssg" },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, pruss_of_match);
--- 
-2.7.4
-
+Jagan.
