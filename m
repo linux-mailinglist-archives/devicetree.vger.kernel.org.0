@@ -2,91 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A89B232161
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 17:16:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 271CC2321A1
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 17:31:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726449AbgG2PQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jul 2020 11:16:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47906 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726054AbgG2PQH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Jul 2020 11:16:07 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E5BE420829;
-        Wed, 29 Jul 2020 15:16:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1596035766;
-        bh=yDdQDhe0aUkPneMHf4V7CtUIlgiQ6JNskljZx+0L3lY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Gei8T5JG9mkokmueZzsBGcLX8YlboI/FeJehVNWoEm6q8np1zBgiz2xRJCgZ50WMa
-         duK94SsDjx3dcUQZ/qxbD9kRvbRfotqQgGnuG/YP+L9oby0LuER4sQU432e+thWKZc
-         11er+SlaUzGnZyXJ12P5ZS9ynMsNXAF4xj3riDgw=
-Date:   Wed, 29 Jul 2020 16:15:48 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Marcus Cooper <codekipper@gmail.com>
-Subject: Re: [PATCH v3 3/7] ASoC: sun4i-i2s: Add support for H6 I2S
-Message-ID: <20200729151548.GB5612@sirena.org.uk>
-References: <20200426104115.22630-4-peron.clem@gmail.com>
- <20200428081321.ht3el26yqhsnyfm4@gilmour.lan>
- <CAJiuCcdVs_drs40Q6537BYfz24F7NmC6B8S5-Lt4V4ggs-FXWA@mail.gmail.com>
- <20200429123529.y24dpy63wxq7uvkt@gilmour.lan>
- <CAJiuCcfXqizcq_JuXRCsqEqM2562cr1SGJ0pmy07jcJxAXojOw@mail.gmail.com>
- <20200430084600.samghw4zxb5zdbez@gilmour.lan>
- <CAJiuCcf_LHrJ6QdZgH8HyN6TRiT+GiD+t4UggFCrz-VwVHXV6w@mail.gmail.com>
- <20200504120942.lnrxnnmykqnvw3fb@gilmour.lan>
- <CAJiuCceF340FiLvyeXNZtvqftQMAmk=MtFDLT_9696ix+eH1Yw@mail.gmail.com>
- <20200729143927.47f5tbuaob4ph3lp@gilmour.lan>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="xgyAXRrhYN0wYx8y"
-Content-Disposition: inline
-In-Reply-To: <20200729143927.47f5tbuaob4ph3lp@gilmour.lan>
-X-Cookie: May all your PUSHes be POPped.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1726054AbgG2Pbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jul 2020 11:31:34 -0400
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:10005 "EHLO
+        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726365AbgG2PbG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Jul 2020 11:31:06 -0400
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 29 Jul 2020 08:31:04 -0700
+Received: from sivaprak-linux.qualcomm.com ([10.201.3.202])
+  by ironmsg02-sd.qualcomm.com with ESMTP; 29 Jul 2020 08:30:56 -0700
+Received: by sivaprak-linux.qualcomm.com (Postfix, from userid 459349)
+        id A89C42114B; Wed, 29 Jul 2020 21:00:54 +0530 (IST)
+From:   Sivaprakash Murugesan <sivaprak@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
+        robh+dt@kernel.org, kishon@ti.com, vkoul@kernel.org,
+        svarbanov@mm-sol.com, lorenzo.pieralisi@arm.com,
+        p.zabel@pengutronix.de, sivaprak@codeaurora.org,
+        mgautam@codeaurora.org, smuthayy@codeaurora.org,
+        varada@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH V2 0/7] Add PCIe support for IPQ8074
+Date:   Wed, 29 Jul 2020 21:00:00 +0530
+Message-Id: <1596036607-11877-1-git-send-email-sivaprak@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+IPQ8074 has two PCIe ports both are based on synopsis designware PCIe
+controller. while it was assumed that PCIe support for IPQ8074 was already
+available, it was not functional until now.
 
---xgyAXRrhYN0wYx8y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This patch series adds support for PCIe ports on IPQ8074.
 
-On Wed, Jul 29, 2020 at 04:39:27PM +0200, Maxime Ripard wrote:
+First PCIe port is of Gen2 synposis version is 2_3_2 which has already been
+enabled. But it had some problems on phy init and needed dt updates.
 
-> It really looks like the polarity of LRCK is fine though. The first word
-> is sent with LRCK low, and then high, so we have channel 0 and then
-> channel 1 which seems to be the proper ordering?
+Second PCIe port is Gen3 synopsis version is 2_9_0. This series adds
+support for this PCIe port while fixing dt nodes.
 
-Yes, that's normal.
+Patch 1 on this series depends on qcom PCIe bindings patch
+https://lkml.org/lkml/2020/6/24/162
 
---xgyAXRrhYN0wYx8y
-Content-Type: application/pgp-signature; name="signature.asc"
+[V2]
+ * Fixed commit headers and messages to have PCIe and Gen[2-3]
+ * Addressed Vinod's review comments on phy init
+ * Patches are rebased on linux-next to resolve dependencies with recent
+   PCI patches
+ * Patch 1 depends on https://lkml.org/lkml/2020/7/28/1462
+ * Dropped clock patches as it has picked up by Stephen
 
------BEGIN PGP SIGNATURE-----
+Sivaprakash Murugesan (7):
+  dt-bindings: PCI: qcom: Add ipq8074 Gen3 PCIe compatible
+  dt-bindings: phy: qcom,qmp: Add ipq8074 PCIe Gen3 phy
+  phy: qcom-qmp: Use correct values for ipq8074 PCIe Gen2 PHY init
+  phy: qcom-qmp: Add compatible for ipq8074 PCIe Gen3 qmp phy
+  PCI: qcom: Do PHY power on before PCIe init
+  PCI: qcom: Add ipq8074 PCIe controller support
+  arm64: dts: ipq8074: Fixup PCIe dts nodes
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl8hkqMACgkQJNaLcl1U
-h9BWOAgAgZCmz5kPu3UP5TIzHU0FAftm7xaaVdfAgv4E8uT1NNTTa8BP1dvsplb9
-Y4S5BMhGEtD8QKO8xfJOn2rmCsNNVxKbTcu17pJrU/deNmnoT5F4TnYr08pckTcp
-0lR7PGk2ue9IcXFaDjzjTEHRy6OAm607BBjXyWVAhr3eM9KxVObTR/xeYaXsW0pl
-524o3XwTcNKdjkYC+zmF/wcrJ98vThoGY3AIm/2dwJJ7/LjXGWxE0JVMMoA7o4RZ
-6DbNVGZyRaha3iLUmk75+d8yD+Bub8C+/xZUDzZX9dskbmerGio/TCFJhG24cx+w
-zXy5TYbMMqUp7E3+lRX8m6sRgBuA7Q==
-=1GYE
------END PGP SIGNATURE-----
+ .../devicetree/bindings/pci/qcom,pcie.yaml         |  47 +++++
+ .../devicetree/bindings/phy/qcom,qmp-phy.yaml      |   1 +
+ arch/arm64/boot/dts/qcom/ipq8074-hk01.dts          |   8 +-
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi              | 109 ++++++++----
+ drivers/pci/controller/dwc/pcie-qcom.c             | 189 ++++++++++++++++++++-
+ drivers/phy/qualcomm/phy-qcom-pcie3-qmp.h          | 139 +++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp.c                | 187 +++++++++++++++++++-
+ drivers/phy/qualcomm/phy-qcom-qmp.h                |   2 +
+ 8 files changed, 627 insertions(+), 55 deletions(-)
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-pcie3-qmp.h
 
---xgyAXRrhYN0wYx8y--
+-- 
+2.7.4
+
