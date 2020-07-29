@@ -2,81 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30C60231E2E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 14:09:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7439A231E4A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 14:11:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726806AbgG2MIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jul 2020 08:08:32 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:37816 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726707AbgG2MIb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Jul 2020 08:08:31 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id AE520200FDB;
-        Wed, 29 Jul 2020 14:08:30 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 9EF25200FAB;
-        Wed, 29 Jul 2020 14:08:30 +0200 (CEST)
-Received: from fsr-ub1664-175.ea.freescale.net (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id EF1E52032B;
-        Wed, 29 Jul 2020 14:08:29 +0200 (CEST)
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Anson Huang <anson.huang@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, Fugang Duan <fugang.duan@nxp.com>
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        Abel Vesa <abel.vesa@nxp.com>
-Subject: [PATCH 17/17] arm64: dts: imx8mp: Add hdmi_blk_ctrl node
-Date:   Wed, 29 Jul 2020 15:08:03 +0300
-Message-Id: <1596024483-21482-18-git-send-email-abel.vesa@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1596024483-21482-1-git-send-email-abel.vesa@nxp.com>
-References: <1596024483-21482-1-git-send-email-abel.vesa@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726353AbgG2MLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jul 2020 08:11:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38414 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726341AbgG2MLc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jul 2020 08:11:32 -0400
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15AEBC061794
+        for <devicetree@vger.kernel.org>; Wed, 29 Jul 2020 05:11:32 -0700 (PDT)
+Received: by mail-qk1-x72f.google.com with SMTP id h7so21879419qkk.7
+        for <devicetree@vger.kernel.org>; Wed, 29 Jul 2020 05:11:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=yNeUcCB/F1/GGGKxhPZb81S5SG9ouesknVFnm9/hr7Q=;
+        b=bNNfZc+y4mobO3WCIszkZDjJbFlTVzhyORB8bW4FX+/aE8H6fra/7HdZC4Kg4mtLPi
+         ZS0dY/2rGGzYSXHjXVmbdzhnuERxn+LQhSyap2Qqtmf3klLLMaKoNQnApD0WziFNbLp4
+         0EJ805uHmfkwTQiTOYDlXnB29p0S+36Yrqhhj5WXvGhI+2/qOFVbpT0x7K1D0xBMHxev
+         3FPMl2Lba7WRasHGKUcemNqF46KCvHNKld1MRdWZ7piEt8XFFhEqtj09N/Vs4k9XTU94
+         THk/C53J83fTKAomVPZo9nrsryoxfTDj5fqpazlhj2Lpp7wyMROymMWZE6ywniHBuXYW
+         o6+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=yNeUcCB/F1/GGGKxhPZb81S5SG9ouesknVFnm9/hr7Q=;
+        b=WFdVEdg1N+WGK6CGRY9KtwsNdj4/QQtrls6mTkgKtdzN7JBPr3jC88+zrdnG1d9M//
+         eMIX3AsvgmcS9fEOW2lwgvNxvqSerZwYZBgVtI6c8+LB+D+UatEs5yZpc1hVpegsm3oc
+         dL+jf8fDYZT/WWuKEiRXMF17JVF0rCvIHTKLVjFkFJsNsuLgbsaKSVgmQDUEedNlbiGH
+         Q5ICk0s02u1EnYRK5Tb3MsAh3eh0yzXKiIh3pnQZKL5NKDc4RZNgjfNRTu/BjtbmTNI3
+         D2fiAzR1BGqtYS1UnvJbEzND5YT+qJ/KZsYTLW8KQsIxxPaAOErUbI4e8Sikp22WK6y/
+         BzVg==
+X-Gm-Message-State: AOAM5302w247pJLtOUYRRtPnV4L0GfsUrD7IluVTirHHqwNQjo8DA6Bl
+        2gs7pV2O3mH3vWH55Xs527Jy2E8G3oYwir+SyZKfj3w=
+X-Google-Smtp-Source: ABdhPJzJxaQjXNpXNaSsM6kZSqRh/xRNcrYnYW5mi76BJnEBFyC1khmCcP+2FdrBNCK4krbUQpiQnc81xr22bjrPhL0=
+X-Received: by 2002:a05:620a:1355:: with SMTP id c21mr33690348qkl.378.1596024690532;
+ Wed, 29 Jul 2020 05:11:30 -0700 (PDT)
+MIME-Version: 1.0
+From:   Alif Ilhan <alifilhan2@gmail.com>
+Date:   Wed, 29 Jul 2020 18:11:18 +0600
+Message-ID: <CAKfYjimfyfzLxjppSS_8RhLtr_qZuW-eEK0FBZM-uVToayjVqw@mail.gmail.com>
+Subject: A new device tree from scratch
+To:     devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some of the features of the hdmi_ctrl will be used by some
-different drivers in a way those drivers will know best, so adding the
-syscon compatible we allow those to do just that. Only the resets
-and the clocks are registered bit the clk-blk-ctrl driver.
+Please pardon me for my absurd question. I have an ARM android device
+for which I want to develop device tree. I have the kernel source for
+the device but the kernel is very old (3.4.67)doesn't have any device
+tree source files. But it has board specific files at mach-mediatek.
+Is there any way to use those board files and build or generate a
+device tree using any software or manually? Please give me hints, I
+want to know.
 
-Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 172c548..5a76c4d 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -751,6 +751,15 @@
- 				#clock-cells = <1>;
- 				#reset-cells = <1>;
- 			};
-+
-+			hdmi_blk_ctrl: hdmi-blk-ctrl@32fc0000 {
-+				compatible = "fsl,imx8mp-hdmi-blk-ctrl", "syscon";
-+				reg = <0x32fc0000 0x1000>;
-+				power-domains = <&hdmimix_pd>;
-+
-+				#clock-cells = <1>;
-+				#reset-cells = <1>;
-+			};
- 		};
- 
- 		aips5: bus@30c00000 {
--- 
-2.7.4
-
+Alif
