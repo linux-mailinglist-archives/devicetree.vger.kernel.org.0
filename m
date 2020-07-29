@@ -2,326 +2,843 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D3F12317FA
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 05:16:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 156AF231824
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 05:33:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726341AbgG2DQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jul 2020 23:16:35 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:34619 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726047AbgG2DPk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jul 2020 23:15:40 -0400
-X-UUID: ef7c589bffa44a91952ebe0c0fbf4d5e-20200729
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=gxnyGEjtd3ZwDEJ8oeskMKClMVsIiXr3URSMOGukv18=;
-        b=bt6/UAJ0DQypIn/41LaVc8XEvwlrSKafwo1BxDEwC9U1eiXn+LlZlgtLzJ09jln8xlZqvTcn7Ec6PHjUhQagENxbNuR8FJSMxIpRvBDJhBzyjQf36ar6ObMQAv15+Gqpk33AVvabhQ0QH7YZcqxCFBsONq9wpqAwT6xlGVAQeF8=;
-X-UUID: ef7c589bffa44a91952ebe0c0fbf4d5e-20200729
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <neal.liu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1323224562; Wed, 29 Jul 2020 11:15:30 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 29 Jul 2020 11:15:29 +0800
-Received: from [172.21.77.33] (172.21.77.33) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 29 Jul 2020 11:15:25 +0800
-Message-ID: <1595992529.6575.0.camel@mtkswgap22>
-Subject: Re: [PATCH v3 2/2] soc: mediatek: add mtk-devapc driver
-From:   Neal Liu <neal.liu@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     Neal Liu <neal.liu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        wsd_upstream <wsd_upstream@mediatek.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Date:   Wed, 29 Jul 2020 11:15:29 +0800
-In-Reply-To: <CAAOTY_82nN8U34-LW8RTqTLEH2MwTg+B5KMHjha3=sbOXPdWSw@mail.gmail.com>
-References: <1595303971-8793-1-git-send-email-neal.liu@mediatek.com>
-         <1595303971-8793-3-git-send-email-neal.liu@mediatek.com>
-         <CAAOTY_8T=DCntU8x5YEo+Pcs2J0Y4YvDaHUBdGiqEFRxghOd_Q@mail.gmail.com>
-         <1595389756.20193.12.camel@mtkswgap22>
-         <CAAOTY_9k7rM=Pf43DwJR_bkQvxVtpWYTjVoNSZLVE2N0Y_DBmA@mail.gmail.com>
-         <1595484707.26237.12.camel@mtkswgap22>
-         <CAAOTY__V3zwux7UP7p4SUbreGrPBbwRqi=E1WVsA58tYNmri1A@mail.gmail.com>
-         <1595573719.24412.9.camel@mtkswgap22>
-         <CAAOTY__KYH4G3E+c=zoOk==hPJHsAd5u4Q0oj4adKstaoOciMg@mail.gmail.com>
-         <1595819152.7630.13.camel@mtkswgap22>
-         <CAAOTY_8j4rxxqOD0-gf-=sJPhiLu9KE4zF467v7g2EBrTFJUeQ@mail.gmail.com>
-         <1595908325.1388.8.camel@mtkswgap22>
-         <CAAOTY_-POOCU0mG3qcV8=3UF4Qr5rq1RVAeFtnRvLgAxaof32g@mail.gmail.com>
-         <1595988652.9265.8.camel@mtkswgap22>
-         <CAAOTY_82nN8U34-LW8RTqTLEH2MwTg+B5KMHjha3=sbOXPdWSw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S1726299AbgG2DdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jul 2020 23:33:11 -0400
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:62528 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726245AbgG2DdK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Jul 2020 23:33:10 -0400
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 28 Jul 2020 20:33:08 -0700
+Received: from sivaprak-linux.qualcomm.com ([10.201.3.202])
+  by ironmsg05-sd.qualcomm.com with ESMTP; 28 Jul 2020 20:33:04 -0700
+Received: by sivaprak-linux.qualcomm.com (Postfix, from userid 459349)
+        id 15E662182C; Wed, 29 Jul 2020 09:03:02 +0530 (IST)
+From:   Sivaprakash Murugesan <sivaprak@codeaurora.org>
+To:     agross@kernel.org, ansuelsmth@gmail.com,
+        bjorn.andersson@linaro.org, bhelgaas@google.com,
+        robh+dt@kernel.org, sivaprak@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH V3] dt-bindings: pci: convert QCOM pci bindings to YAML
+Date:   Wed, 29 Jul 2020 09:02:55 +0530
+Message-Id: <1595993575-24761-1-git-send-email-sivaprak@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gV2VkLCAyMDIwLTA3LTI5IGF0IDEwOjIyICswODAwLCBDaHVuLUt1YW5nIEh1IHdyb3RlOg0K
-PiBOZWFsIExpdSA8bmVhbC5saXVAbWVkaWF0ZWsuY29tPiDmlrwgMjAyMOW5tDfmnIgyOeaXpSDp
-gLHkuIkg5LiK5Y2IMTA6MTDlr6vpgZPvvJoNCj4gPg0KPiA+IEhpIENodW4tS3VhbmcsDQo+ID4N
-Cj4gPiBPbiBUdWUsIDIwMjAtMDctMjggYXQgMjM6MzUgKzA4MDAsIENodW4tS3VhbmcgSHUgd3Jv
-dGU6DQo+ID4gPiBIaSwgTmVhbDoNCj4gPiA+DQo+ID4gPiBOZWFsIExpdSA8bmVhbC5saXVAbWVk
-aWF0ZWsuY29tPiDmlrwgMjAyMOW5tDfmnIgyOOaXpSDpgLHkuowg5LiK5Y2IMTE6NTLlr6vpgZPv
-vJoNCj4gPiA+ID4NCj4gPiA+ID4gSGkgQ2h1bi1LdWFuZywNCj4gPiA+ID4NCj4gPiA+ID4gT24g
-TW9uLCAyMDIwLTA3LTI3IGF0IDIyOjQ3ICswODAwLCBDaHVuLUt1YW5nIEh1IHdyb3RlOg0KPiA+
-ID4gPiA+IEhpLCBOZWFsOg0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gTmVhbCBMaXUgPG5lYWwubGl1
-QG1lZGlhdGVrLmNvbT4g5pa8IDIwMjDlubQ35pyIMjfml6Ug6YCx5LiAIOS4iuWNiDExOjA25a+r
-6YGT77yaDQo+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gSGkgQ2h1bi1LdWFuZywNCj4gPiA+ID4g
-PiA+DQo+ID4gPiA+ID4gPiBPbiBGcmksIDIwMjAtMDctMjQgYXQgMjM6NTUgKzA4MDAsIENodW4t
-S3VhbmcgSHUgd3JvdGU6DQo+ID4gPiA+ID4gPiA+IEhpLCBOZWFsOg0KPiA+ID4gPiA+ID4gPg0K
-PiA+ID4gPiA+ID4gPiBOZWFsIExpdSA8bmVhbC5saXVAbWVkaWF0ZWsuY29tPiDmlrwgMjAyMOW5
-tDfmnIgyNOaXpSDpgLHkupQg5LiL5Y2IMjo1NeWvq+mBk++8mg0KPiA+ID4gPiA+ID4gPiA+DQo+
-ID4gPiA+ID4gPiA+ID4gSGkgQ2h1bi1LdWFuZywNCj4gPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+
-ID4gPiA+IE9uIEZyaSwgMjAyMC0wNy0yNCBhdCAwMDozMiArMDgwMCwgQ2h1bi1LdWFuZyBIdSB3
-cm90ZToNCj4gPiA+ID4gPiA+ID4gPiA+IEhpLCBOZWFsOg0KPiA+ID4gPiA+ID4gPiA+ID4NCj4g
-PiA+ID4gPiA+ID4gPiA+IE5lYWwgTGl1IDxuZWFsLmxpdUBtZWRpYXRlay5jb20+IOaWvCAyMDIw
-5bm0N+aciDIz5pelIOmAseWbmyDkuIvljYgyOjEx5a+r6YGT77yaDQo+ID4gPiA+ID4gPiA+ID4g
-PiA+DQo+ID4gPiA+ID4gPiA+ID4gPiA+IEhpIENodW4tS3VhbmcsDQo+ID4gPiA+ID4gPiA+ID4g
-PiA+DQo+ID4gPiA+ID4gPiA+ID4gPiA+IE9uIFdlZCwgMjAyMC0wNy0yMiBhdCAyMjoyNSArMDgw
-MCwgQ2h1bi1LdWFuZyBIdSB3cm90ZToNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiBIaSwgTmVhbDoN
-Cj4gPiA+ID4gPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+IE5lYWwgTGl1IDxu
-ZWFsLmxpdUBtZWRpYXRlay5jb20+IOaWvCAyMDIw5bm0N+aciDIy5pelIOmAseS4iSDkuIrljYgx
-MTo0OeWvq+mBk++8mg0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gPiA+
-ID4gPiA+IEhpIENodW4tS3VhbmcsDQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+
-ID4gPiA+ID4gPiA+ID4gT24gV2VkLCAyMDIwLTA3LTIyIGF0IDA3OjIxICswODAwLCBDaHVuLUt1
-YW5nIEh1IHdyb3RlOg0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiBIaSwgTmVhbDoNCj4gPiA+
-ID4gPiA+ID4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gTmVhbCBMaXUg
-PG5lYWwubGl1QG1lZGlhdGVrLmNvbT4g5pa8IDIwMjDlubQ35pyIMjHml6Ug6YCx5LqMIOS4i+WN
-iDEyOjAw5a+r6YGT77yaDQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+
-ID4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiArDQo+ID4gPiA+ID4g
-PiA+ID4gPiA+ID4gPiA+ID4gKy8qDQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gKyAqIG10
-a19kZXZhcGNfZHVtcF92aW9fZGJnIC0gZ2V0IHRoZSB2aW9sYXRpb24gaW5kZXggYW5kIGR1bXAg
-dGhlIGZ1bGwgdmlvbGF0aW9uDQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gKyAqICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgZGVidWcgaW5mb3JtYXRpb24uDQo+ID4gPiA+ID4gPiA+ID4g
-PiA+ID4gPiA+ID4gKyAqLw0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ICtzdGF0aWMgYm9v
-bCBtdGtfZGV2YXBjX2R1bXBfdmlvX2RiZyhzdHJ1Y3QgbXRrX2RldmFwY19jb250ZXh0ICpjdHgs
-IHUzMiB2aW9faWR4KQ0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ICt7DQo+ID4gPiA+ID4g
-PiA+ID4gPiA+ID4gPiA+ID4gKyAgICAgICB1MzIgc2hpZnRfYml0Ow0KPiA+ID4gPiA+ID4gPiA+
-ID4gPiA+ID4gPiA+ICsNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiArICAgICAgIGlmIChj
-aGVja192aW9fbWFzayhjdHgsIHZpb19pZHgpKQ0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+
-ICsgICAgICAgICAgICAgICByZXR1cm4gZmFsc2U7DQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+
-ID4gKw0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgaWYgKCFjaGVja192aW9f
-c3RhdHVzKGN0eCwgdmlvX2lkeCkpDQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gKyAgICAg
-ICAgICAgICAgIHJldHVybiBmYWxzZTsNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiArDQo+
-ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gKyAgICAgICBzaGlmdF9iaXQgPSBnZXRfc2hpZnRf
-Z3JvdXAoY3R4LCB2aW9faWR4KTsNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiArDQo+ID4g
-PiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gKyAgICAgICBpZiAoc3luY192aW9fZGJnKGN0eCwgc2hp
-ZnRfYml0KSkNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgcmV0
-dXJuIGZhbHNlOw0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ICsNCj4gPiA+ID4gPiA+ID4g
-PiA+ID4gPiA+ID4gPiArICAgICAgIGRldmFwY19leHRyYWN0X3Zpb19kYmcoY3R4KTsNCj4gPiA+
-ID4gPiA+ID4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gSSB0aGluayBn
-ZXRfc2hpZnRfZ3JvdXAoKSwgc3luY192aW9fZGJnKCksIGFuZA0KPiA+ID4gPiA+ID4gPiA+ID4g
-PiA+ID4gPiBkZXZhcGNfZXh0cmFjdF92aW9fZGJnKCkgc2hvdWxkIGJlIG1vdmVkIG91dCBvZiB2
-aW9faWR4IGZvci1sb29wICh0aGUNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gbG9vcCBpbiBk
-ZXZhcGNfdmlvbGF0aW9uX2lycSgpKSBiZWNhdXNlIHRoZXNlIHRocmVlIGZ1bmN0aW9uIGlzIG5v
-dA0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiByZWxhdGVkIHRvIHZpb19pZHguDQo+ID4gPiA+
-ID4gPiA+ID4gPiA+ID4gPiA+IEFub3RoZXIgcXVlc3Rpb246IHdoZW4gbXVsdGlwbGUgdmlvX2lk
-eCB2aW9sYXRpb24gb2NjdXIsIHZpb19hZGRyIGlzDQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+
-IHJlbGF0ZWQgdG8gd2hpY2ggb25lIHZpb19pZHg/IFRoZSBsYXRlc3QgaGFwcGVuZWQgb25lPw0K
-PiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4NCj4gPiA+
-ID4gPiA+ID4gPiA+ID4gPiA+IEFjdHVhbGx5LCBpdCdzIHJlbGF0ZWQgdG8gdmlvX2lkeC4gQnV0
-IHdlIGRvbid0IHVzZSBpdCBkaXJlY3RseSBvbiB0aGVzZQ0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+
-ID4gZnVuY3Rpb24uIEkgdGhpbmsgYmVsb3cgc25pcCBjb2RlIG1pZ2h0IGJlIGJldHRlciB3YXkg
-dG8gdW5kZXJzdGFuZCBpdC4NCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiA+
-ID4gPiA+ID4gPiBmb3IgKC4uLikNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+IHsNCj4gPiA+ID4g
-PiA+ID4gPiA+ID4gPiA+ICAgICAgICAgY2hlY2tfdmlvX21hc2soKQ0KPiA+ID4gPiA+ID4gPiA+
-ID4gPiA+ID4gICAgICAgICBjaGVja192aW9fc3RhdHVzKCkNCj4gPiA+ID4gPiA+ID4gPiA+ID4g
-PiA+DQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiAgICAgICAgIC8vIGlmIGdldCB2aW9faWR4LCBt
-YXNrIGl0IHRlbXBvcmFyaWx5DQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiAgICAgICAgIG1hc2tf
-bW9kdWxlX2lycSh0cnVlKQ0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gICAgICAgICBjbGVhcl92
-aW9fc3RhdHVzKCkNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiA+ID4gPiA+
-ID4gPiAgICAgICAgIC8vIGR1bXAgdmlvbGF0aW9uIGluZm8NCj4gPiA+ID4gPiA+ID4gPiA+ID4g
-PiA+ICAgICAgICAgZ2V0X3NoaWZ0X2dyb3VwKCkNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ICAg
-ICAgICAgc3luY192aW9fZGJnKCkNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ICAgICAgICAgZGV2
-YXBjX2V4dHJhY3RfdmlvX2RiZygpDQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+
-ID4gPiA+ID4gPiA+ID4gICAgICAgICAvLyB1bm1hc2sNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+
-ICAgICAgICAgbWFza19tb2R1bGVfaXJxKGZhbHNlKQ0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4g
-fQ0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gVGhpcyBzbmlw
-IGNvZGUgZG9lcyBub3QgZXhwbGFpbiBhbnkgdGhpbmcuIEkgY291bGQgcmV3cml0ZSB0aGlzIGNv
-ZGUgYXM6DQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiBmb3Ig
-KC4uLikNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiB7DQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gICAg
-IGNoZWNrX3Zpb19tYXNrKCkNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiAgICAgY2hlY2tfdmlvX3N0
-YXR1cygpDQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiAgICAg
-Ly8gaWYgZ2V0IHZpb19pZHgsIG1hc2sgaXQgdGVtcG9yYXJpbHkNCj4gPiA+ID4gPiA+ID4gPiA+
-ID4gPiAgICAgbWFza19tb2R1bGVfaXJxKHRydWUpDQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gICAg
-IGNsZWFyX3Zpb19zdGF0dXMoKQ0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+ICAgICAvLyB1bm1hc2sN
-Cj4gPiA+ID4gPiA+ID4gPiA+ID4gPiAgICAgbWFza19tb2R1bGVfaXJxKGZhbHNlKQ0KPiA+ID4g
-PiA+ID4gPiA+ID4gPiA+IH0NCj4gPiA+ID4gPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiA+
-ID4gPiA+IC8vIGR1bXAgdmlvbGF0aW9uIGluZm8NCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiBnZXRf
-c2hpZnRfZ3JvdXAoKQ0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+IHN5bmNfdmlvX2RiZygpDQo+ID4g
-PiA+ID4gPiA+ID4gPiA+ID4gZGV2YXBjX2V4dHJhY3RfdmlvX2RiZygpDQo+ID4gPiA+ID4gPiA+
-ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiBBbmQgbXkgdmVyc2lvbiBpcyBpZGVudGlj
-YWwgd2l0aCB5b3VyIHZlcnNpb24sIGlzbid0IGl0Pw0KPiA+ID4gPiA+ID4gPiA+ID4gPg0KPiA+
-ID4gPiA+ID4gPiA+ID4gPiBTb3JyeSwgSSBkaWQgbm90IGV4cGxhaW4gaXQgY2xlYXJseS4gTGV0
-J3MgbWUgdHJ5IGFnYWluLg0KPiA+ID4gPiA+ID4gPiA+ID4gPiBUaGUgcmVhc29uIHdoeSBJIHB1
-dCAiZHVtcCB2aW9sYXRpb24gaW5mbyIgYmV0d2VlbiBtYXNrICYgdW5tYXNrIGNvbnRleHQNCj4g
-PiA+ID4gPiA+ID4gPiA+ID4gaXMgYmVjYXVzZSBpdCBoYXMgdG8gc3RvcCBpbnRlcnJ1cHQgZmly
-c3QgYmVmb3JlIGR1bXAgdmlvbGF0aW9uIGluZm8sDQo+ID4gPiA+ID4gPiA+ID4gPiA+IGFuZCB0
-aGVuIHVubWFzayBpdCB0byBwcmVwYXJlIG5leHQgdmlvbGF0aW9uLg0KPiA+ID4gPiA+ID4gPiA+
-ID4gPiBUaGVzZSBzZXF1ZW5jZSBndWFyYW50ZWUgdGhhdCBpZiBtdWx0aXBsZSB2aW9sYXRpb24g
-aXMgdHJpZ2dlcmVkLCB3ZQ0KPiA+ID4gPiA+ID4gPiA+ID4gPiBzdGlsbCBoYXZlIGluZm9ybWF0
-aW9uIHRvIGRlYnVnLg0KPiA+ID4gPiA+ID4gPiA+ID4gPiBJZiB0aGUgY29kZSBzZXF1ZW5jZSBp
-biB5b3VyIHZlcnNpb24gYW5kIG11bHRpcGxlIHZpb2xhdGlvbiBpcw0KPiA+ID4gPiA+ID4gPiA+
-ID4gPiB0cmlnZ2VyZWQsIHRoZXJlIG1pZ2h0IGJlIG5vIGFueSBpbmZvcm1hdGlvbiBidXQga2Vl
-cHMgZW50ZXJpbmcgSVNSLg0KPiA+ID4gPiA+ID4gPiA+ID4gPiBGaW5hbGx5LCBzeXN0ZW0gbWln
-aHQgYmUgYWJub3JtYWwgYW5kIHdhdGNoZG9nIHRpbWVvdXQuDQo+ID4gPiA+ID4gPiA+ID4gPiA+
-IEluIHRoaXMgY2FzZSwgd2Ugc3RpbGwgZG9uJ3QgaGF2ZSBhbnkgaW5mb3JtYXRpb24gdG8gZGVi
-dWcuDQo+ID4gPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiA+ID4gSSBzdGlsbCBkb24ndCB1
-bmRlcnN0YW5kIHdoeSBubyBpbmZvcm1hdGlvbiB0byBkZWJ1Zy4gRm9yIGV4YW1wbGUgd2hlbg0K
-PiA+ID4gPiA+ID4gPiA+ID4gdmlvX2lkeCA1LCAxMCwgMTUgaGFzIHZpb2xhdGlvbiwNCj4gPiA+
-ID4gPiA+ID4gPiA+IFlvdSB3b3VsZCBtYXNrIHZpb19pZHggNSB0byBnZXQgaW5mb3JtYXRpb24s
-IGJ1dCB2aW9faWR4IDEwLCAxNSBkb2VzDQo+ID4gPiA+ID4gPiA+ID4gPiBub3QgbWFzayB5ZXQu
-DQo+ID4gPiA+ID4gPiA+ID4gPiBJbiB5b3VyIHdvcmRzLCB3aGVuIHZpb19pZHggMTAsIDE1IG5v
-dCBtYXNrLCB5b3Ugd291bGQgbm90IGdldCBhbnkNCj4gPiA+ID4gPiA+ID4gPiA+IGRlYnVnIGlu
-Zm9ybWF0aW9uIHdoZW4geW91IHByb2Nlc3MgdmlvX2lkeCA1Lg0KPiA+ID4gPiA+ID4gPiA+ID4N
-Cj4gPiA+ID4gPiA+ID4gPiA+IEluIG15IHZlcnNpb24sIEkgd291bGQgY2xlYXIgYWxsIHN0YXR1
-cywgd2h5IGtlZXBzIGVudGVyaW5nIElTUj8NCj4gPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4g
-PiA+IFRoaW5rIGFib3V0IHRoaXMgY2FzZSwgaWYgc29tZW9uZSB0cmllcyB0byBkdW1wICJBQUEi
-IG1vZHVsZSdzIHJlZ2lzdGVyLg0KPiA+ID4gPiA+ID4gPiA+IEl0IHdvdWxkIGtlZXAgcmVhZCBy
-ZWcgYmFzZSwgYmFzZSsweDQsIGJhc2UrMHg4LCAuLi4NCj4gPiA+ID4gPiA+ID4gPiBBbGwgdGhl
-c2UgcmVnaXN0ZXJzIGFyZSBpbiB0aGUgc2FtZSBzbGF2ZSwgd2hpY2ggd291bGQgYmUgc2FtZSB2
-aW9faWR4Lg0KPiA+ID4gPiA+ID4gPiA+IChUYWtlIHZpb19pZHggNSBhcyBleGFtcGxlKQ0KPiA+
-ID4gPiA+ID4gPiA+IEluIHRoaXMgY2FzZSwgdmlvX2lkeCA1IHdpbGwga2VlcCB0cmlnZ2VyaW5n
-IGludGVycnVwdC4gSWYgeW91IGRpZCBub3QNCj4gPiA+ID4gPiA+ID4gPiBkbyAiZHVtcCB2aW9s
-YXRpb24gaW5mbyIgYmV0d2VlbiBtYXNrICYgdW5tYXNrLCB5b3UgY2Fubm90IGdldCBhbnkNCj4g
-PiA+ID4gPiA+ID4gPiB2aW9sYXRpb24gaW5mbyB1bnRpbCB0aGUgbGFzdCBpbnRlcnJ1cHQgYmVp
-bmcgaGFuZGxlZC4NCj4gPiA+ID4gPiA+ID4gPiBOb3JtYWxseSwgc3lzdGVtIHdpbGwgY3Jhc2gg
-YmVmb3JlIGxhc3QgaW50ZXJydXB0IGNvbWluZy4NCj4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+
-ID4gWW91IGhhdmUgc2FpZCB0aGF0IGZpcnN0IHZpb19hZGRyIHdvdWxkIGJlIGtlcHQgdW50aWwg
-aXQncyAnaGFuZGxlZCcuDQo+ID4gPiA+ID4gPiA+IFNvIHRoZSBmaXJzdCB2aW9fYWRkciByZWdf
-YmFzZSB3b3VsZCBiZSBrZXB0IGV2ZW4gdGhvdWdoIG90aGVyDQo+ID4gPiA+ID4gPiA+IHZpb2xh
-dGlvbiBoYXBwZW4uIEFuZCBJIGNvdWxkIGhhbmRsZSAoY2xlYXIgc3RhdHVzIGFuZCBkdW1wIGlu
-Zm8pIGl0DQo+ID4gPiA+ID4gPiA+IHRoZW4gdmlvX2FkZHIgd291bGQgbmV4dCB2aW9sYXRpb24n
-cyBhZGRyZXNzLiBJJ20gY29uZnVzZWQgd2l0aCB5b3VyDQo+ID4gPiA+ID4gPiA+IHN0YXRlbWVu
-dC4gSWYgQUFBIGlzIGR1bXBpbmcgcmVnaXN0ZXIgb2YgdmlvX2lkeCA1LCBCQkIgaXMgZHVtcGlu
-Zw0KPiA+ID4gPiA+ID4gPiByZWdpc3RlciBvZiB2aW9faWR4IDEwLCBDQ0MgaXMgZHVtcGluZyBy
-ZWdpc3RlciBvZiB2aW9faWR4IDE1LCBJIHRoaW5rDQo+ID4gPiA+ID4gPiA+IHlvdSBzaG91bGQg
-bWFzayBhbGwgdmlvX2lkeCBub3Qgb25seSBvbmUuIFNvIHRoZSBjb2RlIHdvdWxkIGJlDQo+ID4g
-PiA+ID4gPiA+DQo+ID4gPiA+ID4gPiA+IGZvciBhbGwgdmlvX2lkeCB7DQo+ID4gPiA+ID4gPiA+
-ICAgICBtYXNrX21vZHVsZV9pcnEodHJ1ZSkNCj4gPiA+ID4gPiA+ID4gfQ0KPiA+ID4gPiA+ID4g
-Pg0KPiA+ID4gPiA+ID4gPiBkZXZhcGNfZXh0cmFjdF92aW9fZGJnKCkNCj4gPiA+ID4gPiA+ID4N
-Cj4gPiA+ID4gPiA+ID4gZm9yIGFsbCB2aW9faWR4IHsNCj4gPiA+ID4gPiA+ID4gICAgIGNsZWFy
-X3Zpb19zdGF0dXMoKQ0KPiA+ID4gPiA+ID4gPiAgICAgbWFza19tb2R1bGVfaXJxKGZhbHNlKQ0K
-PiA+ID4gPiA+ID4gPiB9DQo+ID4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4g
-SSdtIGFsc28gY29uc2lkZXIgdGhpcyBzb2x1dGlvbiBhbmQgSSB0aGluayBpdCdzIG11Y2ggYmV0
-dGVyIHRvDQo+ID4gPiA+ID4gPiB1bmRlcnN0YW5kIGhhcmR3YXJlIGJlaGF2aW9yLg0KPiA+ID4g
-PiA+ID4NCj4gPiA+ID4gPiA+IGRldmFwY19kdW1wX3Zpb19kYmcoKQ0KPiA+ID4gPiA+ID4gew0K
-PiA+ID4gPiA+ID4gICAgICAgICB3aGlsZSgxKSB7DQo+ID4gPiA+ID4gPiAgICAgICAgICAgICAg
-ICAgLy8gbWlnaHQgaGF2ZSBtdWx0aXBsZSBzaGlmdF9iaXQgcmFpc2VkDQo+ID4gPiA+ID4gPiAg
-ICAgICAgICAgICAgICAgc2hpZnRfYml0ID0gZ2V0X3NoaWZ0X2dyb3VwKCkNCj4gPiA+ID4gPiA+
-ICAgICAgICAgICAgICAgICBpZiAoc2hpZnRfYml0ID49IDAgJiYgc2hpZnQgYml0IDw9IDMxKQ0K
-PiA+ID4gPiA+ID4gICAgICAgICAgICAgICAgICAgICAgICAgc3luY192aW9fZGJnKHNoaWZ0X2Jp
-dCkNCj4gPiA+ID4gPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIGV4dHJhY3RfdmlvX2RiZygp
-DQo+ID4gPiA+ID4NCj4gPiA+ID4gPiBBY2NvcmRpbmcgdG8geW91ciBzdGF0ZW1lbnQsIHdoZW4g
-bXVsdGlwbGUgdmlvbGF0aW9uIG9jY3VyLCBvbmx5IHRoZQ0KPiA+ID4gPiA+IGZpcnN0IG9uZSBp
-cyBrZXB0LCBvdGhlcnMgYXJlIGRyb3BwZWQuIEkgdGhpbmsgd2UganVzdCBuZWVkIHRvIGR1bXAN
-Cj4gPiA+ID4gPiBkZWJ1ZyBpbmZvIG9uY2UuDQo+ID4gPiA+ID4NCj4gPiA+ID4gPiBCZWNhdXNl
-IG9ubHkgb25lIHZpb2xhdGlvbiBpbmZvcm1hdGlvbiB3b3VsZCBiZSBrZXB0LCB3aHkgbm90IG9u
-bHkgb25lDQo+ID4gPiA+ID4gZ3JvdXAgKGVxdWFsIHRvIG5vIGdyb3VwKT8NCj4gPiA+ID4gPg0K
-PiA+ID4gPiA+IFJlZ2FyZHMsDQo+ID4gPiA+ID4gQ2h1bi1LdWFuZy4NCj4gPiA+ID4NCj4gPiA+
-ID4gTGV0J3MgbWUgZ2l2ZSB5b3UgYW4gZXhhbXBsZSBvZiBkZXZhcGMgZGVzaWduLg0KPiA+ID4g
-PiB2aW9faWR4OiAwLCAxLCAyIC0+IGdyb3VwIDAgKHNoaWZ0X2JpdDogMCkNCj4gPiA+ID4gdmlv
-X2lkeDogMywgNCwgNSAtPiBncm91cCAxIChzaGlmdF9iaXQ6IDEpDQo+ID4gPiA+IC4uLg0KPiA+
-ID4gPg0KPiA+ID4gPiBFYWNoIGdyb3VwIHZpb2xhdGlvbiB3aWxsIGtlZXAgb25lIHZpb2xhdGlv
-biAodGhlIGZpcnN0IG9uZSkuIElmIHZpb19pZHgNCj4gPiA+ID4gMCBpcyB0cmlnZ2VyZWQgZmly
-c3QsIHZpb19pZHggMSBpcyB0cmlnZ2VyZWQgbmV4dCwgdGhlbiBncm91cCAwIHdpbGwNCj4gPiA+
-ID4ganVzdCBrZWVwIHZpb19pZHggMCB2aW9sYXRpb24gaW5mby4NCj4gPiA+ID4gSWYgdmlvX2lk
-eCAyIGlzIHRyaWdnZXJlZCBmaXJzdCwgdmlvX2lkeCAzIGlzIHRyaWdnZXJlZCBuZXh0LCB0aGVu
-IGdyb3VwDQo+ID4gPiA+IDAgd2lsbCBrZWVwIHZpb19pZHggMiB2aW9sYXRpb24gaW5mbywgZ3Jv
-dXAgMSB3aWxsIGtlZXAgdmlvX2lkeCAzJ3MuDQo+ID4gPiA+DQo+ID4gPiA+IFdlIGhhdmUgdG8g
-c2NhbiBhbGwgZ3JvdXBzIGFuZCBkdW1wIGV2ZXJ5dGhpbmcgd2UgaGF2ZS4NCj4gPiA+ID4gVGhh
-bmtzICENCj4gPiA+ID4NCj4gPiA+DQo+ID4gPiBDb3VsZCB3ZSBsZXQgYWxsIHZpb19pZHggYmUg
-Z3JvdXAgMCBzbyB0aGF0IHdlIGNvdWxkIGp1c3Qgc3luYyBvbmUNCj4gPiA+IGdyb3VwPyBJdCdz
-IGJhZCB0byBzcGVuZCB0b28gbXVjaCB0aW1lIGluIGlycSBoYW5kbGVyLg0KPiA+ID4gV2hlbiB3
-ZSBzZXQgcGRfdmlvX3NoaWZ0X3NlbF9yZWcsIGl0IHNlZW1zIHdlIGNvdWxkIHNldCBtdWx0aXBs
-ZSBncm91cA0KPiA+ID4gdG9nZXRoZXIsIGNvdWxkbid0IGl0Pw0KPiA+ID4NCj4gPiA+IFJlZ2Fy
-ZHMsDQo+ID4gPiBDaHVuLUt1YW5nLg0KPiA+ID4NCj4gPg0KPiA+IE5vLCBXaGljaCBncm91cCB2
-aW9faWR4IGJlbG9uZ3MgdG8gaXMgZGV0ZXJtaW5lZCBieSBoYXJkd2FyZS4gU29mdHdhcmUNCj4g
-PiBjYW5ub3QgY2hhbmdlIGl0cyBncm91cC4NCj4gPiBUaGVyZSBpcyB2ZXJ5IGxvdyBwb3NzaWJp
-bGl0eSB0aGF0IG11bHRpcGxlIGdyb3VwcyBoYXMgdmlvbGF0aW9uIGF0IHRoZQ0KPiA+IHNhbWUg
-dGltZSwgc28gaXQgd291bGQgbm90IHNwZW5kIG11Y2ggdGltZSB0byBoYW5kbGUgaXQuDQo+ID4g
-SXQgYWxzbyBjYW5ub3Qgc2hpZnQgbXVsdGlwbGUgZ3JvdXBzIGF0IHRoZSBzYW1lIHRpbWUgc2lu
-Y2UgdGhlcmUgaXMNCj4gPiBvbmx5IG9uZSB2aW9faW5mbyhydywgdmlvX2FkZHIsIG1hc3Rlcl9p
-ZCwgLi4uKSBleGlzdCBhdCBhIHRpbWUuDQo+ID4gZGV2YXBjX2V4dHJhY3RfdmlvX2RiZygpIGZ1
-bmN0aW9uIGlzIGRvaW5nIHRoaXMgc3RlcC4NCj4gPg0KPiANCj4gU28gdGhpcyBmbG93IGlzIE9L
-IGZvciBtZS4gV291bGQgeW91IHBsZWFzZSBhZGQgY29tbWVudCBmb3IgdGhpcw0KPiBpbmZvcm1h
-dGlvbiBzbyB0aGF0IHdlIGNvdWxkIHVuZGVyc3RhbmQgaG93IGhhcmR3YXJlIHdvcmsuDQo+IA0K
-PiBSZWdhcmRzLA0KPiBDaHVuLUt1YW5nLg0KPiANCg0KT2theSwgSSdsbCBhZGQgaXQgaW4gbmV4
-dCBwYXRjaC4gVGhhbmtzICENCg0KPiA+IFRoYW5rcyAhDQo+ID4NCj4gPiA+ID4gPg0KPiA+ID4g
-PiA+ID4gICAgICAgICAgICAgICAgIGVsc2UNCj4gPiA+ID4gPiA+ICAgICAgICAgICAgICAgICAg
-ICAgICAgIGJyZWFrDQo+ID4gPiA+ID4gPiAgICAgICAgIH0NCj4gPiA+ID4gPiA+IH0NCj4gPiA+
-ID4gPiA+DQo+ID4gPiA+ID4gPiBkZXZhcGNfdmlvbGF0aW9uX2lycSgpDQo+ID4gPiA+ID4gPiB7
-DQo+ID4gPiA+ID4gPiAgICAgICAgIGZvciBhbGwgdmlvX2lkeCB7DQo+ID4gPiA+ID4gPiAgICAg
-ICAgICAgICAgICAgbWFza19tb2R1bGVfaXJxKHRydWUpDQo+ID4gPiA+ID4gPiAgICAgICAgIH0N
-Cj4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiAgICAgICAgIGRldmFwY19kdW1wX3Zpb19kYmcoKQ0K
-PiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ICAgICAgICAgZm9yIGFsbCB2aW9faWR4IHsNCj4gPiA+
-ID4gPiA+ICAgICAgICAgICAgICAgICBjbGVhcl92aW9fc3RhdHVzKCkNCj4gPiA+ID4gPiA+ICAg
-ICAgICAgICAgICAgICBtYXNrX21vZHVsZV9pcnEoZmFsc2UpDQo+ID4gPiA+ID4gPiAgICAgICAg
-IH0NCj4gPiA+ID4gPiA+IH0NCj4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiBJcyBpdCBtb3JlIGNs
-ZWFyIGZvciB0aGlzIGNvbnRyb2wgZmxvdz8NCj4gPiA+ID4gPiA+IFRoYW5rcyAhDQo+ID4gPiA+
-ID4gPg0KPiA+ID4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiA+
-ID4gPg0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPg0KPiA+
-ID4gPiA+ID4gPiA+ID4gPiA+ID4gQWJvdXQgeW91ciBxdWVzdGlvbiwgdmlvX2FkZHIgd291bGQg
-YmUgdGhlIGZpcnN0IG9uZS4NCj4gPiA+ID4gPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiA+
-ID4gPiA+IFNvIG90aGVyIHZpb19hZGRyIHdvdWxkIGJlIGRyb3BwZWQ/IE9yIGhhcmR3YXJlIHdv
-dWxkIGtlZXAgYWxsDQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gdmlvX2FkZHIgYW5kIHlvdSBoYXZl
-IHNvbWUgd2F5IHRvIGdldCBhbGwgdmlvX2FkZHI/DQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4NCj4g
-PiA+ID4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gPiA+ID4gSW4gdGhpcyBjYXNlLCBoYXJk
-d2FyZSB3aWxsIGRyb3Agb3RoZXIgdmlvbGF0aW9uIGluZm8gYW5kIGtlZXAgdGhlIGZpcnN0DQo+
-ID4gPiA+ID4gPiA+ID4gPiA+IG9uZSB1bnRpbCBpdCBiZWVuIGhhbmRsZWQuDQo+ID4gPiA+ID4g
-PiA+ID4gPg0KPiA+ID4gPiA+ID4gPiA+ID4gRG9lcyAnaGFuZGxlZCcgbWVhbiBzdGF0dXMgaXMg
-Y2xlYXJlZD8NCj4gPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiA+ICJoYW5kbGVkIiBtZWFu
-cyBjbGVhciBzdGF0dXMgYW5kIGR1bXAgdmlvbGF0aW9uIGluZm8uDQo+ID4gPiA+ID4gPiA+ID4N
-Cj4gPiA+ID4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiA+ID4gPiBSZWdhcmRzLA0KPiA+ID4gPiA+
-ID4gPiA+ID4gQ2h1bi1LdWFuZy4NCj4gPiA+ID4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiA+ID4g
-PiA+DQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+
-ICsNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiArICAgICAgIHJldHVybiB0cnVlOw0KPiA+
-ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ICt9DQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4g
-Kw0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ICsvKg0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+
-ID4gPiA+ICsgKiBkZXZhcGNfdmlvbGF0aW9uX2lycSAtIHRoZSBkZXZhcGMgSW50ZXJydXB0IFNl
-cnZpY2UgUm91dGluZSAoSVNSKSB3aWxsIGR1bXANCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4g
-PiArICogICAgICAgICAgICAgICAgICAgICAgICB2aW9sYXRpb24gaW5mb3JtYXRpb24gaW5jbHVk
-aW5nIHdoaWNoIG1hc3RlciB2aW9sYXRlcw0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ICsg
-KiAgICAgICAgICAgICAgICAgICAgICAgIGFjY2VzcyBzbGF2ZS4NCj4gPiA+ID4gPiA+ID4gPiA+
-ID4gPiA+ID4gPiArICovDQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gK3N0YXRpYyBpcnFy
-ZXR1cm5fdCBkZXZhcGNfdmlvbGF0aW9uX2lycShpbnQgaXJxX251bWJlciwNCj4gPiA+ID4gPiA+
-ID4gPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-c3RydWN0IG10a19kZXZhcGNfY29udGV4dCAqY3R4KQ0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4g
-PiA+ICt7DQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gKyAgICAgICB1MzIgdmlvX2lkeDsN
-Cj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiArDQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+
-ID4gKyAgICAgICBmb3IgKHZpb19pZHggPSAwOyB2aW9faWR4IDwgY3R4LT52aW9faWR4X251bTsg
-dmlvX2lkeCsrKSB7DQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAg
-IGlmICghbXRrX2RldmFwY19kdW1wX3Zpb19kYmcoY3R4LCB2aW9faWR4KSkNCj4gPiA+ID4gPiA+
-ID4gPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICBjb250aW51ZTsNCj4gPiA+
-ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiArDQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gKyAg
-ICAgICAgICAgICAgIC8qIEVuc3VyZSB0aGF0IHZpb2xhdGlvbiBpbmZvIGFyZSB3cml0dGVuIGJl
-Zm9yZQ0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAgKiBmdXJ0
-aGVyIG9wZXJhdGlvbnMNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAg
-ICAgICovDQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgIHNtcF9t
-YigpOw0KPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ICsNCj4gPiA+ID4gPiA+ID4gPiA+ID4g
-PiA+ID4gPiArICAgICAgICAgICAgICAgLyoNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiAr
-ICAgICAgICAgICAgICAgICogTWFzayBzbGF2ZSdzIGlycSBiZWZvcmUgY2xlYXJpbmcgdmlvIHN0
-YXR1cy4NCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgICogTXVz
-dCBkbyBpdCB0byBhdm9pZCBuZXN0ZWQgaW50ZXJydXB0IGFuZCBwcmV2ZW50DQo+ID4gPiA+ID4g
-PiA+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAqIHVuZXhwZWN0ZWQgYmVoYXZpb3Iu
-DQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAqLw0KPiA+ID4g
-PiA+ID4gPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICBtYXNrX21vZHVsZV9pcnEoY3R4
-LCB2aW9faWR4LCB0cnVlKTsNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiArDQo+ID4gPiA+
-ID4gPiA+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgIGNsZWFyX3Zpb19zdGF0dXMoY3R4
-LCB2aW9faWR4KTsNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiArDQo+ID4gPiA+ID4gPiA+
-ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgIG1hc2tfbW9kdWxlX2lycShjdHgsIHZpb19p
-ZHgsIGZhbHNlKTsNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiArICAgICAgIH0NCj4gPiA+
-ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiArDQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gKyAg
-ICAgICByZXR1cm4gSVJRX0hBTkRMRUQ7DQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gK30N
-Cj4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiArDQo+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+
-ID4gKy8qDQo+ID4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+DQo+ID4gPiA+DQo+ID4NCg0K
+Convert QCOM pci bindings to YAML schema
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Sivaprakash Murugesan <sivaprak@codeaurora.org>
+---
+[V3]
+ * Rebased V2 including recent patches from Ansuel
+ * Addressed Review comments from Rob
+ * Apart from properties commented by Rob interrupt-map is also
+   removed as it is documented in pci-bus.yaml and throwing error when
+   included
+ * check patch warning 
+   "Use of 'slave' is deprecated, please '(secondary|target|...)', instead."
+   is not addressed in this patch as it requires changes in code and dts
+ .../devicetree/bindings/pci/qcom,pcie.txt          | 337 ----------------
+ .../devicetree/bindings/pci/qcom,pcie.yaml         | 437 +++++++++++++++++++++
+ 2 files changed, 437 insertions(+), 337 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.txt b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
+deleted file mode 100644
+index 02bc81b..0000000
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie.txt
++++ /dev/null
+@@ -1,337 +0,0 @@
+-* Qualcomm PCI express root complex
+-
+-- compatible:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: Value should contain
+-			- "qcom,pcie-ipq8064" for ipq8064
+-			- "qcom,pcie-ipq8064-v2" for ipq8064 rev 2 or ipq8065
+-			- "qcom,pcie-apq8064" for apq8064
+-			- "qcom,pcie-apq8084" for apq8084
+-			- "qcom,pcie-msm8996" for msm8996 or apq8096
+-			- "qcom,pcie-ipq4019" for ipq4019
+-			- "qcom,pcie-ipq8074" for ipq8074
+-			- "qcom,pcie-qcs404" for qcs404
+-			- "qcom,pcie-sdm845" for sdm845
+-
+-- reg:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: Register ranges as listed in the reg-names property
+-
+-- reg-names:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: Must include the following entries
+-			- "parf"   Qualcomm specific registers
+-			- "dbi"	   DesignWare PCIe registers
+-			- "elbi"   External local bus interface registers
+-			- "config" PCIe configuration space
+-
+-- device_type:
+-	Usage: required
+-	Value type: <string>
+-	Definition: Should be "pci". As specified in designware-pcie.txt
+-
+-- #address-cells:
+-	Usage: required
+-	Value type: <u32>
+-	Definition: Should be 3. As specified in designware-pcie.txt
+-
+-- #size-cells:
+-	Usage: required
+-	Value type: <u32>
+-	Definition: Should be 2. As specified in designware-pcie.txt
+-
+-- ranges:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: As specified in designware-pcie.txt
+-
+-- interrupts:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: MSI interrupt
+-
+-- interrupt-names:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: Should contain "msi"
+-
+-- #interrupt-cells:
+-	Usage: required
+-	Value type: <u32>
+-	Definition: Should be 1. As specified in designware-pcie.txt
+-
+-- interrupt-map-mask:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: As specified in designware-pcie.txt
+-
+-- interrupt-map:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: As specified in designware-pcie.txt
+-
+-- clocks:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: List of phandle and clock specifier pairs as listed
+-		    in clock-names property
+-
+-- clock-names:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: Should contain the following entries
+-			- "iface"	Configuration AHB clock
+-
+-- clock-names:
+-	Usage: required for ipq/apq8064
+-	Value type: <stringlist>
+-	Definition: Should contain the following entries
+-			- "core"	Clocks the pcie hw block
+-			- "phy"		Clocks the pcie PHY block
+-			- "aux" 	Clocks the pcie AUX block
+-			- "ref" 	Clocks the pcie ref block
+-- clock-names:
+-	Usage: required for apq8084/ipq4019
+-	Value type: <stringlist>
+-	Definition: Should contain the following entries
+-			- "aux"		Auxiliary (AUX) clock
+-			- "bus_master"	Master AXI clock
+-			- "bus_slave"	Slave AXI clock
+-
+-- clock-names:
+-	Usage: required for msm8996/apq8096
+-	Value type: <stringlist>
+-	Definition: Should contain the following entries
+-			- "pipe"	Pipe Clock driving internal logic
+-			- "aux"		Auxiliary (AUX) clock
+-			- "cfg"		Configuration clock
+-			- "bus_master"	Master AXI clock
+-			- "bus_slave"	Slave AXI clock
+-
+-- clock-names:
+-	Usage: required for ipq8074
+-	Value type: <stringlist>
+-	Definition: Should contain the following entries
+-			- "iface"	PCIe to SysNOC BIU clock
+-			- "axi_m"	AXI Master clock
+-			- "axi_s"	AXI Slave clock
+-			- "ahb"		AHB clock
+-			- "aux"		Auxiliary clock
+-
+-- clock-names:
+-	Usage: required for qcs404
+-	Value type: <stringlist>
+-	Definition: Should contain the following entries
+-			- "iface"	AHB clock
+-			- "aux"		Auxiliary clock
+-			- "master_bus"	AXI Master clock
+-			- "slave_bus"	AXI Slave clock
+-
+--clock-names:
+-	Usage: required for sdm845
+-	Value type: <stringlist>
+-	Definition: Should contain the following entries
+-			- "aux"		Auxiliary clock
+-			- "cfg"		Configuration clock
+-			- "bus_master"	Master AXI clock
+-			- "bus_slave"	Slave AXI clock
+-			- "slave_q2a"	Slave Q2A clock
+-			- "tbu"		PCIe TBU clock
+-			- "pipe"	PIPE clock
+-
+-- resets:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: List of phandle and reset specifier pairs as listed
+-		    in reset-names property
+-
+-- reset-names:
+-	Usage: required for ipq/apq8064
+-	Value type: <stringlist>
+-	Definition: Should contain the following entries
+-			- "axi"  AXI reset
+-			- "ahb"  AHB reset
+-			- "por"  POR reset
+-			- "pci"  PCI reset
+-			- "phy"  PHY reset
+-
+-- reset-names:
+-	Usage: required for apq8084
+-	Value type: <stringlist>
+-	Definition: Should contain the following entries
+-			- "core" Core reset
+-
+-- reset-names:
+-	Usage: required for ipq/apq8064
+-	Value type: <stringlist>
+-	Definition: Should contain the following entries
+-			- "axi_m"		AXI master reset
+-			- "axi_s"		AXI slave reset
+-			- "pipe"		PIPE reset
+-			- "axi_m_vmid"		VMID reset
+-			- "axi_s_xpu"		XPU reset
+-			- "parf"		PARF reset
+-			- "phy"			PHY reset
+-			- "axi_m_sticky"	AXI sticky reset
+-			- "pipe_sticky"		PIPE sticky reset
+-			- "pwr"			PWR reset
+-			- "ahb"			AHB reset
+-			- "phy_ahb"		PHY AHB reset
+-			- "ext"			EXT reset
+-
+-- reset-names:
+-	Usage: required for ipq8074
+-	Value type: <stringlist>
+-	Definition: Should contain the following entries
+-			- "pipe"		PIPE reset
+-			- "sleep"		Sleep reset
+-			- "sticky"		Core Sticky reset
+-			- "axi_m"		AXI Master reset
+-			- "axi_s"		AXI Slave reset
+-			- "ahb"			AHB Reset
+-			- "axi_m_sticky"	AXI Master Sticky reset
+-
+-- reset-names:
+-	Usage: required for qcs404
+-	Value type: <stringlist>
+-	Definition: Should contain the following entries
+-			- "axi_m"		AXI Master reset
+-			- "axi_s"		AXI Slave reset
+-			- "axi_m_sticky"	AXI Master Sticky reset
+-			- "pipe_sticky"		PIPE sticky reset
+-			- "pwr"			PWR reset
+-			- "ahb"			AHB reset
+-
+-- reset-names:
+-	Usage: required for sdm845
+-	Value type: <stringlist>
+-	Definition: Should contain the following entries
+-			- "pci"			PCIe core reset
+-
+-- power-domains:
+-	Usage: required for apq8084 and msm8996/apq8096
+-	Value type: <prop-encoded-array>
+-	Definition: A phandle and power domain specifier pair to the
+-		    power domain which is responsible for collapsing
+-		    and restoring power to the peripheral
+-
+-- vdda-supply:
+-	Usage: required
+-	Value type: <phandle>
+-	Definition: A phandle to the core analog power supply
+-
+-- vdda_phy-supply:
+-	Usage: required for ipq/apq8064
+-	Value type: <phandle>
+-	Definition: A phandle to the analog power supply for PHY
+-
+-- vdda_refclk-supply:
+-	Usage: required for ipq/apq8064
+-	Value type: <phandle>
+-	Definition: A phandle to the analog power supply for IC which generates
+-		    reference clock
+-- vddpe-3v3-supply:
+-	Usage: optional
+-	Value type: <phandle>
+-	Definition: A phandle to the PCIe endpoint power supply
+-
+-- phys:
+-	Usage: required for apq8084 and qcs404
+-	Value type: <phandle>
+-	Definition: List of phandle(s) as listed in phy-names property
+-
+-- phy-names:
+-	Usage: required for apq8084 and qcs404
+-	Value type: <stringlist>
+-	Definition: Should contain "pciephy"
+-
+-- <name>-gpios:
+-	Usage: optional
+-	Value type: <prop-encoded-array>
+-	Definition: List of phandle and GPIO specifier pairs. Should contain
+-			- "perst-gpios"	PCIe endpoint reset signal line
+-			- "wake-gpios"	PCIe endpoint wake signal line
+-
+-* Example for ipq/apq8064
+-	pcie@1b500000 {
+-		compatible = "qcom,pcie-apq8064", "qcom,pcie-ipq8064", "snps,dw-pcie";
+-		reg = <0x1b500000 0x1000
+-		       0x1b502000 0x80
+-		       0x1b600000 0x100
+-		       0x0ff00000 0x100000>;
+-		reg-names = "dbi", "elbi", "parf", "config";
+-		device_type = "pci";
+-		linux,pci-domain = <0>;
+-		bus-range = <0x00 0xff>;
+-		num-lanes = <1>;
+-		#address-cells = <3>;
+-		#size-cells = <2>;
+-		ranges = <0x81000000 0 0 0x0fe00000 0 0x00100000   /* I/O */
+-			  0x82000000 0 0 0x08000000 0 0x07e00000>; /* memory */
+-		interrupts = <GIC_SPI 238 IRQ_TYPE_NONE>;
+-		interrupt-names = "msi";
+-		#interrupt-cells = <1>;
+-		interrupt-map-mask = <0 0 0 0x7>;
+-		interrupt-map = <0 0 0 1 &intc 0 36 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+-				<0 0 0 2 &intc 0 37 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
+-				<0 0 0 3 &intc 0 38 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
+-				<0 0 0 4 &intc 0 39 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
+-		clocks = <&gcc PCIE_A_CLK>,
+-			 <&gcc PCIE_H_CLK>,
+-			 <&gcc PCIE_PHY_CLK>,
+-			 <&gcc PCIE_AUX_CLK>,
+-			 <&gcc PCIE_ALT_REF_CLK>;
+-		clock-names = "core", "iface", "phy", "aux", "ref";
+-		resets = <&gcc PCIE_ACLK_RESET>,
+-			 <&gcc PCIE_HCLK_RESET>,
+-			 <&gcc PCIE_POR_RESET>,
+-			 <&gcc PCIE_PCI_RESET>,
+-			 <&gcc PCIE_PHY_RESET>,
+-			 <&gcc PCIE_EXT_RESET>;
+-		reset-names = "axi", "ahb", "por", "pci", "phy", "ext";
+-		pinctrl-0 = <&pcie_pins_default>;
+-		pinctrl-names = "default";
+-	};
+-
+-* Example for apq8084
+-	pcie0@fc520000 {
+-		compatible = "qcom,pcie-apq8084", "snps,dw-pcie";
+-		reg = <0xfc520000 0x2000>,
+-		      <0xff000000 0x1000>,
+-		      <0xff001000 0x1000>,
+-		      <0xff002000 0x2000>;
+-		reg-names = "parf", "dbi", "elbi", "config";
+-		device_type = "pci";
+-		linux,pci-domain = <0>;
+-		bus-range = <0x00 0xff>;
+-		num-lanes = <1>;
+-		#address-cells = <3>;
+-		#size-cells = <2>;
+-		ranges = <0x81000000 0 0          0xff200000 0 0x00100000   /* I/O */
+-			  0x82000000 0 0x00300000 0xff300000 0 0x00d00000>; /* memory */
+-		interrupts = <GIC_SPI 243 IRQ_TYPE_NONE>;
+-		interrupt-names = "msi";
+-		#interrupt-cells = <1>;
+-		interrupt-map-mask = <0 0 0 0x7>;
+-		interrupt-map = <0 0 0 1 &intc 0 244 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+-				<0 0 0 2 &intc 0 245 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
+-				<0 0 0 3 &intc 0 247 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
+-				<0 0 0 4 &intc 0 248 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
+-		clocks = <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
+-			 <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
+-			 <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
+-			 <&gcc GCC_PCIE_0_AUX_CLK>;
+-		clock-names = "iface", "master_bus", "slave_bus", "aux";
+-		resets = <&gcc GCC_PCIE_0_BCR>;
+-		reset-names = "core";
+-		power-domains = <&gcc PCIE0_GDSC>;
+-		vdda-supply = <&pma8084_l3>;
+-		phys = <&pciephy0>;
+-		phy-names = "pciephy";
+-		perst-gpio = <&tlmm 70 GPIO_ACTIVE_LOW>;
+-		pinctrl-0 = <&pcie0_pins_default>;
+-		pinctrl-names = "default";
+-	};
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+new file mode 100644
+index 0000000..2eef6d5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+@@ -0,0 +1,437 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/pci/qcom,pcie.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Qualcomm PCI express root complex
++
++maintainers:
++  - Sivaprakash Murugesan <sivaprak@codeaurora.org>
++
++description:
++  QCOM PCIe controller uses Designware IP with Qualcomm specific hardware
++  wrappers.
++
++properties:
++  compatible:
++    enum:
++      - qcom,pcie-apq8064
++      - qcom,pcie-apq8084
++      - qcom,pcie-ipq4019
++      - qcom,pcie-ipq8064
++      - qcom,pcie-ipq8064-v2
++      - qcom,pcie-ipq8074
++      - qcom,pcie-msm8996
++      - qcom,pcie-qcs404
++      - qcom,pcie-sdm845
++
++  reg:
++    maxItems: 4
++
++  reg-names:
++    items:
++      - const: dbi
++      - const: elbi
++      - const: parf
++      - const: config
++
++  ranges:
++    maxItems: 2
++
++  interrupts:
++    items:
++      - description: MSI interrupts
++
++  interrupt-names:
++    const: msi
++
++  interrupt-map-mask: true
++
++  clocks:
++    minItems: 1
++    maxItems: 7
++
++  clock-names:
++    minItems: 1
++    maxItems: 7
++
++  resets:
++    minItems: 1
++    maxItems: 12
++
++  reset-names:
++    minItems: 1
++    maxItems: 12
++
++  power-domains:
++    maxItems: 1
++
++  vdda-supply:
++    description: phandle to power supply
++
++  vdda_phy-supply:
++    description: phandle to the power supply to PHY
++
++  vdda_refclk-supply:
++    description: phandle to power supply for ref clock generator
++
++  vddpe-3v3-supply:
++    description: PCIe endpoint power supply
++
++  phys:
++    maxItems: 1
++
++  phy-names:
++    const: pciephy
++
++  perst-gpios:
++    description: Endpoint reset signal line
++    maxItems: 1
++
++  num-lanes:
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts
++  - interrupt-names
++  - "#interrupt-cells"
++  - interrupt-map-mask
++  - interrupt-map
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - phys
++  - phy-names
++
++allOf:
++ - $ref: /schemas/pci/pci-bus.yaml#
++ - if:
++     properties:
++       compatible:
++         contains:
++           enum:
++             - qcom,pcie-apq8064
++   then:
++     properties:
++       clocks:
++         items:
++           - description: clock for pcie hw block
++           - description: clock for pcie phy block
++       clock-names:
++         items:
++           - const: core
++           - const: phy
++       resets:
++         items:
++           - description: AXI reset
++           - description: AHB reset
++           - description: POR reset
++           - description: PCI reset
++           - description: PHY reset
++       reset-names:
++         items:
++           - const: axi
++           - const: ahb
++           - const: por
++           - const: pci
++           - const: phy
++ - if:
++     properties:
++       compatible:
++         contains:
++           enum:
++             - qcom,pcie-apq8084
++   then:
++     properties:
++       clocks:
++         items:
++           - description: AUX clock
++           - description: Master AXI clock
++           - description: Slave AXI clock
++       clock-names:
++         items:
++           - const: aux
++           - const: bus_master
++           - const: bus_slave
++       resets:
++         items:
++           - description: core reset
++       reset-names:
++         items:
++           - const: core
++ - if:
++     properties:
++       compatible:
++         contains:
++           enum:
++             - qcom,pcie-ipq4019
++   then:
++     properties:
++       clocks:
++         items:
++           - description: AUX clock
++           - description: Master AXI clock
++           - description: Slave AXI clock
++       clock-names:
++         items:
++           - const: aux
++           - const: master_bus
++           - const: master_slave
++       resets:
++         items:
++           - description: AXI master reset
++           - description: AXI slave reset
++           - description: PCIE pipe reset
++           - description: AXI vmid reset
++           - description: AXI XPU reset
++           - description: parf reset
++           - description: PHY reset
++           - description: AXI master sticky reset
++           - description: PCIE pipe sticky reset
++           - description: pwr reset
++           - description: AHB reset
++           - description: PHY AHB reset
++       reset-names:
++         items:
++           - const: axi_m
++           - const: axi_s
++           - const: pipe
++           - const: axi_m_vmid
++           - const: axi_s_xpu
++           - const: parf
++           - const: phy
++           - const: axi_m_sticky
++           - const: pipe_sticky
++           - const: pwr
++           - const: ahb
++           - const: phy_ahb
++ - if:
++     properties:
++       compatible:
++         contains:
++           enum:
++             - qcom,pcie-ipq8064
++             - qcom,pcie-ipq8064-v2
++   then:
++     properties:
++       clocks:
++         items:
++           - description: core clock
++           - description: interface clock
++           - description: phy clock
++           - description: Auxilary clock
++           - description: reference clock
++       clock-names:
++         items:
++           - const: core
++           - const: iface
++           - const: phy
++           - const: aux
++           - const: ref
++       resets:
++         items:
++           - description: AXI reset
++           - description: AHB reset
++           - description: POR reset
++           - description: PCI reset
++           - description: PHY reset
++           - description: External reset
++       reset-names:
++         items:
++           - const: axi
++           - const: ahb
++           - const: por
++           - const: pci
++           - const: phy
++           - const: ext
++ - if:
++     properties:
++       compatible:
++         contains:
++           enum:
++             - qcom,pcie-ipq8074
++   then:
++     properties:
++       clocks:
++         items:
++           - description: sys noc interface clock
++           - description: AXI master clock
++           - description: AXI slave clock
++           - description: AHB clock
++           - description: Auxilary clock
++       clock-names:
++         items:
++           - const: iface
++           - const: axi_m
++           - const: axi_s
++           - const: ahb
++           - const: aux
++       resets:
++         items:
++           - description: PIPE reset
++           - description: PCIe sleep reset
++           - description: PCIe sticky reset
++           - description: AXI master reset
++           - description: AXI slave reset
++           - description: AHB reset
++           - description: AXI master sticky reset
++       reset-names:
++         items:
++           - const: pipe
++           - const: sleep
++           - const: sticky
++           - const: axi_m
++           - const: axi_s
++           - const: ahb
++           - const: axi_m_sticky
++ - if:
++     properties:
++       compatible:
++         contains:
++           enum:
++             - qcom,pcie-msm8996
++   then:
++     properties:
++       clocks:
++         items:
++           - description: PCIe pipe clock
++           - description: Auxilary clock
++           - description: AHB config clock
++           - description: AXI master clock
++           - description: AXI slave clock
++       clock-names:
++         items:
++           - const: pipe
++           - const: aux
++           - const: cfg
++           - const: bus_master
++           - const: bus_slave
++ - if:
++     properties:
++       compatible:
++         contains:
++           enum:
++             - qcom,pcie-qcs404
++   then:
++     properties:
++       clocks:
++         items:
++           - description: interface clock
++           - description: Auxilary clock
++           - description: AXI master clock
++           - description: AXI slave clock
++       clock-names:
++         items:
++           - const: iface
++           - const: aux
++           - const: master_bus
++           - const: slave_bus
++       resets:
++         items:
++           - description: AXI master reset
++           - description: AXI slave reset
++           - description: AXI master sticky reset
++           - description: PCIe pipe sticky reset
++           - description: power reset
++           - description: AHB reset
++       reset-names:
++         items:
++           - const: axi_m
++           - const: axi_s
++           - const: axi_m_sticky
++           - const: pipe_sticky
++           - const: pwr
++           - const: ahb
++ - if:
++     properties:
++       compatible:
++         contains:
++           enum:
++             - qcom,pcie-sdm845
++   then:
++     properties:
++       clocks:
++         items:
++           - description: PCIE pipe clock
++           - description: Auxilary clock
++           - description: AHB config clock
++           - description: AXI Master clock
++           - description: AXI Slave clock
++           - description: AXI Slave Q2A clock
++           - description: NOC TBU clock
++       clock-names:
++         items:
++           - const: pipe
++           - const: aux
++           - const: cfg
++           - const: bus_master
++           - const: bus_slave
++           - const: slave_q2a
++           - const: tbu
++       resets:
++         items:
++           - description: PCI reset
++       reset-names:
++         items:
++           - const: pci
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,gcc-qcs404.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    pcie: pci@10000000 {
++        compatible = "qcom,pcie-qcs404";
++        reg =  <0x10000000 0xf1d>,
++               <0x10000f20 0xa8>,
++               <0x07780000 0x2000>,
++               <0x10001000 0x2000>;
++        reg-names = "dbi", "elbi", "parf", "config";
++        device_type = "pci";
++        linux,pci-domain = <0>;
++        bus-range = <0x00 0xff>;
++        num-lanes = <1>;
++        #address-cells = <3>;
++        #size-cells = <2>;
++
++        ranges = <0x01000000 0 0          0x10003000 0 0x00010000>, /* I/O */
++                 <0x02000000 0 0x10013000 0x10013000 0 0x007ed000>; /* memory */
++
++        interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "msi";
++        #interrupt-cells = <1>;
++        interrupt-map-mask = <0 0 0 0x7>;
++        interrupt-map = <0 0 0 1 &intc GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
++                        <0 0 0 2 &intc GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
++                        <0 0 0 3 &intc GIC_SPI 267 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
++                        <0 0 0 4 &intc GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
++        clocks = <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
++                 <&gcc GCC_PCIE_0_AUX_CLK>,
++                 <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
++                 <&gcc GCC_PCIE_0_SLV_AXI_CLK>;
++        clock-names = "iface", "aux", "master_bus", "slave_bus";
++
++        resets = <&gcc 18>,
++                 <&gcc 17>,
++                 <&gcc 15>,
++                 <&gcc 19>,
++                 <&gcc GCC_PCIE_0_BCR>,
++                 <&gcc 16>;
++        reset-names = "axi_m",
++                      "axi_s",
++                      "axi_m_sticky",
++                      "pipe_sticky",
++                      "pwr",
++                      "ahb";
++
++        phys = <&pcie_phy>;
++        phy-names = "pciephy";
++
++    };
+-- 
+2.7.4
 
