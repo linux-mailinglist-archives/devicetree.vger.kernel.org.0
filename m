@@ -2,69 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B39FD231A70
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 09:39:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A936F231A8A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 09:45:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727849AbgG2Hjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jul 2020 03:39:51 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:37634 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726290AbgG2Hjv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jul 2020 03:39:51 -0400
-X-UUID: 700611f5285945a7aad4c10411b29e77-20200729
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=BAzzGPnATd/QF6uwaKKNFf1HLANzxr4fsUKdT6hn41E=;
-        b=e/sLIATztxhhbPyi8+pFqwk1LXK4Rn2nYe5w7muboFS6U2rr2wBgDPpK3LR2gFDVY2v2FErS7EoZyVmha3Wt++0t4X2I3gqYmVRpvJdLMa+80jkcciPEg7tSnva3yXu2zx9quUVSQHUb5WV0M92CoO4l9ZZBF8qum4GaLHdRiHI=;
-X-UUID: 700611f5285945a7aad4c10411b29e77-20200729
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <crystal.guo@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1438535055; Wed, 29 Jul 2020 15:39:47 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 29 Jul 2020 15:39:45 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 29 Jul 2020 15:39:46 +0800
-From:   Crystal Guo <crystal.guo@mediatek.com>
-To:     <p.zabel@pengutronix.de>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>
-CC:     <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <seiya.wang@mediatek.com>, Crystal Guo <crystal.guo@mediatek.com>
-Subject: [PATCH 2/2] arm64: dts: mt8192: add infracfg_rst node
-Date:   Wed, 29 Jul 2020 15:39:17 +0800
-Message-ID: <1596008357-11213-3-git-send-email-crystal.guo@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1596008357-11213-1-git-send-email-crystal.guo@mediatek.com>
+        id S1727937AbgG2Hpc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jul 2020 03:45:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54096 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726290AbgG2Hpc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jul 2020 03:45:32 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB234C061794;
+        Wed, 29 Jul 2020 00:45:30 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id r4so17663866wrx.9;
+        Wed, 29 Jul 2020 00:45:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=O+ETSXA6RyFZRpnWcbmn7fgTJlT89iJkYuFlDE0wwHw=;
+        b=ldxAiEUF7m47Z96S6vgEZzfr3N9UpXPqj1PG8UnrxVKo8qRfizI9cjQLMlMP5AS7tj
+         e2txp0GTVY7DIj4OlM9lIISC4YoeY/+0N6/eAWBzEewvqIiCRlBuaVBDZvg4ZthMoO7e
+         CP+tkipdL6V50KMfZmRTbSA1mKr4y79WlC+3aYH/4yd896dfBw3VL3AnWytEm1wa9BdW
+         KXBIdqFLicgjYThAF0GYX2nFIpPI0ST8Gw/IWvVSVpeK/tB7ys4T5K55YNszjvzbOkxC
+         MOKuiM83Do4EwqlM3RbaCXYt1UtTaMKLG3vqPjhfrspupQns4dMeNPVA4wI8HuOyo4ze
+         C2pQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=O+ETSXA6RyFZRpnWcbmn7fgTJlT89iJkYuFlDE0wwHw=;
+        b=XgIliVuO4QueqMEIdcX5/s/b1vKBZvbXF9zLIf2eSd1MaozystfkDsz40zV2wS1k7z
+         1IScr+3OLBVdUBeKbocyGRUSxv93F4EoqQwCwFwwsiaDmtjnWByFuRqFdZmAmRP6d+I2
+         uoKEV3OvfkN97gjF2MonnpnSTyXBhelMtxm0pwr0YVtbCLZaREVmpyad98/pi65lWPqC
+         Ary1YdWyG4AV4GKdyn1OCII/f5gRXSlkRriUCGszXrIYJoNrQUGQ1QWvK+imvbU9+X8j
+         Y+3rZJs+UB1T+fndwg7jzNaNRbMZT/9QYXRTPAILoqiy9N6gVlhKRqI3r94PxOVuaHoK
+         ePLw==
+X-Gm-Message-State: AOAM530tYeJTVvKw/8m/8XJiMDXY0U5xGNRV0s/s3mRBSX24tKs+a1wR
+        DMIRkZA3Z94CBevtIzBg8aI=
+X-Google-Smtp-Source: ABdhPJwfFlS5I2dKSqCQPxUR7kjkBgQTVm6GIWd3Aw/T37/KvKHZ0aX3Vj7Y/eIYZFtX/E6njpeFGA==
+X-Received: by 2002:adf:ed88:: with SMTP id c8mr26645654wro.233.1596008729618;
+        Wed, 29 Jul 2020 00:45:29 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.122.158])
+        by smtp.gmail.com with ESMTPSA id c7sm3540328wrq.58.2020.07.29.00.45.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jul 2020 00:45:28 -0700 (PDT)
+Subject: Re: [PATCH 2/2] arm64: dts: mt8192: add infracfg_rst node
+To:     Crystal Guo <crystal.guo@mediatek.com>, p.zabel@pengutronix.de,
+        robh+dt@kernel.org
+Cc:     srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, seiya.wang@mediatek.com
 References: <1596008357-11213-1-git-send-email-crystal.guo@mediatek.com>
+ <1596008357-11213-3-git-send-email-crystal.guo@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <b81f1936-caf0-e843-9556-14e3024d6d6f@gmail.com>
+Date:   Wed, 29 Jul 2020 09:45:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <1596008357-11213-3-git-send-email-crystal.guo@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-YWRkIGluZnJhY2ZnX3JzdCBub2RlIHdoaWNoIGlzIGZvciBNVDgxOTIgcGxhdGZvcm0NCg0KU2ln
-bmVkLW9mZi1ieTogQ3J5c3RhbCBHdW8gPGNyeXN0YWwuZ3VvQG1lZGlhdGVrLmNvbT4NCi0tLQ0K
-IGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTkyLmR0c2kgfCAxMCArKysrKysrKyst
-DQogMSBmaWxlIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KDQpkaWZm
-IC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxOTIuZHRzaSBiL2FyY2gv
-YXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTkyLmR0c2kNCmluZGV4IGIxNmRiYmQuLmFkYzYy
-MzkgMTAwNjQ0DQotLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi5kdHNp
-DQorKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi5kdHNpDQpAQCAtMjE3
-LDkgKzIxNywxNyBAQA0KIAkJfTsNCiANCiAJCWluZnJhY2ZnOiBpbmZyYWNmZ0AxMDAwMTAwMCB7
-DQotCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxOTItaW5mcmFjZmciLCAic3lzY29uIjsN
-CisJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE5Mi1pbmZyYWNmZyIsICJzeXNjb24iLCAi
-c2ltcGxlLW1mZCI7DQogCQkJcmVnID0gPDAgMHgxMDAwMTAwMCAwIDB4MTAwMD47DQogCQkJI2Ns
-b2NrLWNlbGxzID0gPDE+Ow0KKw0KKwkJCWluZnJhY2ZnX3JzdDogcmVzZXQtY29udHJvbGxlciB7
-DQorCQkJCWNvbXBhdGlibGUgPSAidGksc3lzY29uLXJlc2V0IjsNCisJCQkJI3Jlc2V0LWNlbGxz
-ID0gPDE+Ow0KKwkJCQl0aSxyZXNldC1iaXRzID0gPA0KKwkJCQkJMHgxNDAgMTUgMHgxNDQgMTUg
-MCAwIChBU1NFUlRfU0VUIHwgREVBU1NFUlRfU0VUIHwgU1RBVFVTX05PTkUpIC8qIDA6IHBjaWUg
-Ki8NCisJCQkJPjsNCisJCQl9Ow0KIAkJfTsNCiANCiAJCXBlcmljZmc6IHBlcmljZmdAMTAwMDMw
-MDAgew0KLS0gDQoxLjguMS4xLmRpcnR5DQo=
 
+
+On 29/07/2020 09:39, Crystal Guo wrote:
+> add infracfg_rst node which is for MT8192 platform
+> 
+> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 10 +++++++++-
+>   1 file changed, 9 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index b16dbbd..adc6239 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -217,9 +217,17 @@
+>   		};
+>   
+>   		infracfg: infracfg@10001000 {
+> -			compatible = "mediatek,mt8192-infracfg", "syscon";
+> +			compatible = "mediatek,mt8192-infracfg", "syscon", "simple-mfd";
+>   			reg = <0 0x10001000 0 0x1000>;
+>   			#clock-cells = <1>;
+> +
+> +			infracfg_rst: reset-controller {
+> +				compatible = "ti,syscon-reset";
+> +				#reset-cells = <1>;
+> +				ti,reset-bits = <
+> +					0x140 15 0x144 15 0 0 (ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* 0: pcie */
+
+You have Texas Instruments hardware inside infracfg? Are you sure?
+
+> +				>;
+> +			};
+>   		};
+>   
+>   		pericfg: pericfg@10003000 {
+> 
