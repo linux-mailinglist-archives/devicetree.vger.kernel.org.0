@@ -2,82 +2,269 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1E42231ABD
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 10:03:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAA09231B19
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 10:21:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727846AbgG2IDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jul 2020 04:03:00 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:8782 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726797AbgG2IDA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jul 2020 04:03:00 -0400
-X-UUID: fc4db75c07b146e58e1087cc745a45f9-20200729
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=teICIrkV7sOQV3jPEavLyrRW/vZEh5lh1RgTjnP7gJE=;
-        b=NS8yLb9s0Hs5bWKTdVCbzC3ZjyxNZ66JXyMBObdxZPpo0RyJhJ9FRp1tIWcNDf2n+mnhmkRlWZUpseFAjKCMb5E6M9BOLpL/gozawbdXirXlTG55ABNPZFcJqLXTI+Thql5hw4EURws1/qFqIFakwOzxG3vd9UDpA2mdNqD5rsU=;
-X-UUID: fc4db75c07b146e58e1087cc745a45f9-20200729
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1080694864; Wed, 29 Jul 2020 16:02:57 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 29 Jul 2020 16:02:54 +0800
-Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 29 Jul 2020 16:02:55 +0800
-Message-ID: <1596009775.12468.6.camel@mtksdaap41>
-Subject: Re: [PATCH v3 1/3] arm64: dts: Add Mediatek SoC MT8192 and
- evaluation board dts and Makefile
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Seiya Wang <seiya.wang@mediatek.com>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Daniel Lezcano" <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        <devicetree@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-serial@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Wed, 29 Jul 2020 16:02:55 +0800
-In-Reply-To: <20200729013100.19539-2-seiya.wang@mediatek.com>
-References: <20200729013100.19539-1-seiya.wang@mediatek.com>
-         <20200729013100.19539-2-seiya.wang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1728017AbgG2IVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jul 2020 04:21:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59590 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726476AbgG2IVZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jul 2020 04:21:25 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC395C061794;
+        Wed, 29 Jul 2020 01:21:24 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id bo3so766372ejb.11;
+        Wed, 29 Jul 2020 01:21:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KqA1sSRAqoMmHyUXGQDJ9R0gs8rOE6Bt39JWluAbiwQ=;
+        b=FSxKa6hWppCQgjLw0HUrH/yC0RwdyNb76TiEXJcyNYQlmMpgXvpdblzyHIqMrHjRBt
+         8zMECz77kaLRPFUKlln9aH27jU/y3EmhpKWSZ45rATgpsV1twAHgF/sdKoafFR1G03u+
+         QqETqjU91lncV59E99lZaXk5s7WN3XQraISFQeCmYMm+cqSgPxcaPBQO0WexMFTAL+s+
+         ROHZXjUr08vgGLEd7xJ4yeSMjarbVcTSNBkzXjrXq0qoJ9jd9SA1Lh0oHQzaKF7wTIWo
+         wsRtoyfoJv3wIWzBYGoxe2ERGppZ96kOTnX5YspTwT9Tq4HqXP36nLOTwoq4lxR+dvdM
+         JTpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KqA1sSRAqoMmHyUXGQDJ9R0gs8rOE6Bt39JWluAbiwQ=;
+        b=hjN+4Js9Nu30ap1jUD84iJ8/7pDV7Fxk3HiuPP5CQ6kIxFHan86vYmY0R2lXPSUCYc
+         fH2JCBuY0AITNc7E93FRI1pXoIyRwHvURhEZH3Q90mk0uYU3YSoPXfAGgNtZjtXBFBS2
+         X474NLrNPkuIpbg4FcF9tU/WqHaN0LvmIlmbrP5VosBQgHSiGVa0JIHmgdvWdlcmevlu
+         Mvte2SkXLy3ovu1QzNBTVHFWYcE+zSksb4730wDuTenEvDQXff0/p9sXGhZ+TIwTP6+A
+         H6JU00fJJt44FqcuGPRwUPKnQgawmFYExoVFKzsQ/N4X2n/Rhyek0sNgLd42smQvFLld
+         KAdQ==
+X-Gm-Message-State: AOAM533V3CB6X0wu+r23QukkmNKDnXVUA/YFfA32c7DStZsZnUcvJmO9
+        zrRY5+DG7OjJQMJKxnu9N6RyoFgbxxD46eyQl0M=
+X-Google-Smtp-Source: ABdhPJw/O7KiCS4DRgu+qkKGXRd/OHgNcuZ5h1KpU5b34LFKdVVbliJID4l6d4Kw1uw5pyHXW4aA3vPh02+YKJmKDZM=
+X-Received: by 2002:a17:906:78e:: with SMTP id l14mr4968502ejc.67.1596010883445;
+ Wed, 29 Jul 2020 01:21:23 -0700 (PDT)
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 5B75A061824025819F6C2CAD15E5F4863A2B7D6837702194A55A34624A6820D12000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <1596009618-25516-1-git-send-email-aisheng.dong@nxp.com> <1596009618-25516-3-git-send-email-aisheng.dong@nxp.com>
+In-Reply-To: <1596009618-25516-3-git-send-email-aisheng.dong@nxp.com>
+From:   Dong Aisheng <dongas86@gmail.com>
+Date:   Wed, 29 Jul 2020 16:06:56 +0800
+Message-ID: <CAA+hA=SXe8y4dZ7Bf9ciYAVz8eJ65v2TsF6BeKgpDVyGB_H1mQ@mail.gmail.com>
+Subject: Re: [PATCH v7 02/11] dt-bindings: clock: imx-lpcg: add support to
+ parse clocks from device tree
+To:     Dong Aisheng <aisheng.dong@nxp.com>
+Cc:     linux-clk <linux-clk@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIFNlaXlhOg0KDQpPbiBXZWQsIDIwMjAtMDctMjkgYXQgMDk6MzAgKzA4MDAsIFNlaXlhIFdh
-bmcgd3JvdGU6DQo+IEFkZCBiYXNpYyBjaGlwIHN1cHBvcnQgZm9yIE1lZGlhdGVrIE1UODE5Mg0K
-PiANCj4gU2lnbmVkLW9mZi1ieTogU2VpeWEgV2FuZyA8c2VpeWEud2FuZ0BtZWRpYXRlay5jb20+
-DQo+IC0tLQ0KPiAgYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9NYWtlZmlsZSAgICAgICB8
-ICAgMSArDQo+ICBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi1ldmIuZHRzIHwg
-IDI5ICsrDQo+ICBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi5kdHNpICAgIHwg
-NjcxICsrKysrKysrKysrKysrKysrKysrKysrKysrKysNCj4gIDMgZmlsZXMgY2hhbmdlZCwgNzAx
-IGluc2VydGlvbnMoKykNCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNoL2FybTY0L2Jvb3QvZHRz
-L21lZGlhdGVrL210ODE5Mi1ldmIuZHRzDQo+ICBjcmVhdGUgbW9kZSAxMDA2NDQgYXJjaC9hcm02
-NC9ib290L2R0cy9tZWRpYXRlay9tdDgxOTIuZHRzaQ0KPiANCg0KW3NuaXBdDQoNCj4gKw0KPiAr
-CQl3YXRjaGRvZzogd2F0Y2hkb2dAMTAwMDcwMDAgew0KPiArCQkJY29tcGF0aWJsZSA9ICJtZWRp
-YXRlayxtdDY1ODktd2R0IjsNCg0KQWNjb3JkaW5nIHRvIFsxXSBhbmQgWzJdLCBjb21wYXRpYmxl
-IHN0cmluZyBmb3IgbXQ4MTkyIHdhdGNoIGRvZyBzaG91bGQNCmJlICJtZWRpYXRlayxtdDY4NzMt
-d2R0IiwibWVkaWF0ZWssbXQ4MTkyLXdkdCIuDQoNCg0KWzFdDQpodHRwczovL2Nocm9taXVtLXJl
-dmlldy5nb29nbGVzb3VyY2UuY29tL2MvY2hyb21pdW1vcy90aGlyZF9wYXJ0eS9rZXJuZWwvKy8y
-Mjg3MDkwLzEyDQpbMl0NCmh0dHBzOi8vY2hyb21pdW0tcmV2aWV3Lmdvb2dsZXNvdXJjZS5jb20v
-Yy9jaHJvbWl1bW9zL3RoaXJkX3BhcnR5L2tlcm5lbC8rLzIxMzE1OTgvMTgNCg0KPiArCQkJcmVn
-ID0gPDAgMHgxMDAwNzAwMCAwIDB4MTAwPjsNCj4gKwkJCSNyZXNldC1jZWxscyA9IDwxPjsNCj4g
-KwkJfTsNCj4gKw0KDQpbc25pcF0NCg0KPiArDQo+ICsJCW1tc3lzOiBtbXN5c0AxNDAwMDAwMCB7
-DQo+ICsJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE5Mi1tbXN5cyIsICJzeXNjb24iOw0K
-DQpZb3Ugc2hvdWxkIGRlZmluZSAibWVkaWF0ZWssbXQ4MTkyLW1tc3lzIiBmaXJzdCwgdGhlbiB5
-b3UgY291bGQgdXNlIGl0DQppbiB0aGlzIHBhdGNoLg0KDQpSZWdhcmRzLA0KQ0sNCg0KPiArCQkJ
-cmVnID0gPDAgMHgxNDAwMDAwMCAwIDB4MTAwMD47DQo+ICsJCQkjY2xvY2stY2VsbHMgPSA8MT47
-DQo+ICsJCX07DQo+ICsNCg0K
+Hi Rob, Stephen, Shawn,
 
+On Wed, Jul 29, 2020 at 4:05 PM Dong Aisheng <aisheng.dong@nxp.com> wrote:
+>
+> MX8QM and MX8QXP LPCG Clocks are mostly the same except they may reside
+> in different subsystems across CPUs and also vary a bit on the availability.
+>
+> Same as SCU clock, we want to move the clock definition into device tree
+> which can fully decouple the dependency of Clock ID definition from device
+> tree and make us be able to write a fully generic lpcg clock driver.
+>
+> And we can also use the existence of clock nodes in device tree to address
+> the device and clock availability differences across different SoCs.
+>
+> Cc: Sascha Hauer <kernel@pengutronix.de>
+> Cc: Michael Turquette <mturquette@baylibre.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
+
+This patch has been reviewed before, however, i removed your tags due
+to the legacy binding
+file was removed and switched to json schema.
+So i updated this patch to json schema accordingly and need your
+kindly re-review.
+
+The former reviewed patch is here:
+https://patchwork.kernel.org/patch/11439079/
+
+Regards
+Aisheng
+
+> ---
+> ChangeLog:
+> v6->v7:
+>  * No other changes except converting to json schema based on the former reviewed
+>    patches due to the lagecy binding file was removed in latests kernel.
+>    Because the format is different now, i removed the former R-b
+>    and A-b tags and request a new review.
+>    See original patch here:
+>    https://patchwork.kernel.org/patch/11439079/
+> v4->v6:
+>  * no changes
+> v3->v4:
+>  * change bit-offset property to clock-indices
+>  * use constant macro to define clock indinces
+>  * drop hw-autogate property which is still not used by drivers
+> v2->v3:
+>  * no changes
+> v1->v2:
+>  * Update example
+>  * Add power domain property
+> ---
+>  .../bindings/clock/imx8qxp-lpcg.yaml          | 79 ++++++++++++++-----
+>  include/dt-bindings/clock/imx8-lpcg.h         | 14 ++++
+>  2 files changed, 74 insertions(+), 19 deletions(-)
+>  create mode 100644 include/dt-bindings/clock/imx8-lpcg.h
+>
+> diff --git a/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml b/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml
+> index 33f3010f48c3..e709e530e17a 100644
+> --- a/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml
+> +++ b/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml
+> @@ -21,27 +21,58 @@ description: |
+>
+>    The clock consumer should specify the desired clock by having the clock
+>    ID in its "clocks" phandle cell. See the full list of clock IDs from:
+> -  include/dt-bindings/clock/imx8-clock.h
+> +  include/dt-bindings/clock/imx8-lpcg.h
+>
+>  properties:
+>    compatible:
+> -    enum:
+> -      - fsl,imx8qxp-lpcg-adma
+> -      - fsl,imx8qxp-lpcg-conn
+> -      - fsl,imx8qxp-lpcg-dc
+> -      - fsl,imx8qxp-lpcg-dsp
+> -      - fsl,imx8qxp-lpcg-gpu
+> -      - fsl,imx8qxp-lpcg-hsio
+> -      - fsl,imx8qxp-lpcg-img
+> -      - fsl,imx8qxp-lpcg-lsio
+> -      - fsl,imx8qxp-lpcg-vpu
+> -
+> +    oneOf:
+> +      - const: fsl,imx8qxp-lpcg
+> +      - items:
+> +          - enum:
+> +            - fsl,imx8qm-lpcg
+> +          - const: fsl,imx8qxp-lpcg
+> +      - enum:
+> +        - fsl,imx8qxp-lpcg-adma
+> +        - fsl,imx8qxp-lpcg-conn
+> +        - fsl,imx8qxp-lpcg-dc
+> +        - fsl,imx8qxp-lpcg-dsp
+> +        - fsl,imx8qxp-lpcg-gpu
+> +        - fsl,imx8qxp-lpcg-hsio
+> +        - fsl,imx8qxp-lpcg-img
+> +        - fsl,imx8qxp-lpcg-lsio
+> +        - fsl,imx8qxp-lpcg-vpu
+> +        deprecated: true
+>    reg:
+>      maxItems: 1
+>
+>    '#clock-cells':
+>      const: 1
+>
+> +  clocks:
+> +    description: |
+> +      Input parent clocks phandle array for each clock
+> +    minItems: 1
+> +    maxItems: 8
+> +
+> +  clock-indices:
+> +    description: |
+> +      An integer array indicating the bit offset for each clock.
+> +      Refer to <include/dt-bindings/clock/imx8-lpcg.h> for the
+> +      supported LPCG clock indices.
+> +    minItems: 1
+> +    maxItems: 8
+> +
+> +  clock-output-names:
+> +    description: |
+> +      Shall be the corresponding names of the outputs.
+> +      NOTE this property must be specified in the same order
+> +      as the clock-indices property.
+> +    minItems: 1
+> +    maxItems: 8
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -51,23 +82,33 @@ additionalProperties: false
+>
+>  examples:
+>    - |
+> -    #include <dt-bindings/clock/imx8-clock.h>
+> +    #include <dt-bindings/clock/imx8-lpcg.h>
+>      #include <dt-bindings/firmware/imx/rsrc.h>
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>
+> -    clock-controller@5b200000 {
+> -        compatible = "fsl,imx8qxp-lpcg-conn";
+> -        reg = <0x5b200000 0xb0000>;
+> +    sdhc0_lpcg: clock-controller@5b200000 {
+> +        compatible = "fsl,imx8qxp-lpcg";
+> +        reg = <0x5b200000 0x10000>;
+>          #clock-cells = <1>;
+> +        clocks = <&sdhc0_clk IMX_SC_PM_CLK_PER>,
+> +                 <&conn_ipg_clk>,
+> +                 <&conn_axi_clk>;
+> +        clock-indices = <IMX_LPCG_CLK_0>,
+> +                        <IMX_LPCG_CLK_4>,
+> +                        <IMX_LPCG_CLK_5>;
+> +        clock-output-names = "sdhc0_lpcg_per_clk",
+> +                             "sdhc0_lpcg_ipg_clk",
+> +                             "sdhc0_lpcg_ahb_clk";
+> +        power-domains = <&pd IMX_SC_R_SDHC_0>;
+>      };
+>
+>      mmc@5b010000 {
+>          compatible = "fsl,imx8qxp-usdhc", "fsl,imx7d-usdhc";
+>          interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>;
+>          reg = <0x5b010000 0x10000>;
+> -        clocks = <&conn_lpcg IMX_CONN_LPCG_SDHC0_IPG_CLK>,
+> -                 <&conn_lpcg IMX_CONN_LPCG_SDHC0_PER_CLK>,
+> -                 <&conn_lpcg IMX_CONN_LPCG_SDHC0_HCLK>;
+> +        clocks = <&sdhc0_lpcg IMX_LPCG_CLK_4>,
+> +                 <&sdhc0_lpcg IMX_LPCG_CLK_0>,
+> +                 <&sdhc0_lpcg IMX_LPCG_CLK_5>;
+>          clock-names = "ipg", "per", "ahb";
+>          power-domains = <&pd IMX_SC_R_SDHC_0>;
+>      };
+> diff --git a/include/dt-bindings/clock/imx8-lpcg.h b/include/dt-bindings/clock/imx8-lpcg.h
+> new file mode 100644
+> index 000000000000..d202715652c3
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/imx8-lpcg.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: GPL-2.0+ */
+> +/*
+> + * Copyright 2019-2020 NXP
+> + *   Dong Aisheng <aisheng.dong@nxp.com>
+> + */
+> +
+> +#define IMX_LPCG_CLK_0 0
+> +#define IMX_LPCG_CLK_1 4
+> +#define IMX_LPCG_CLK_2 8
+> +#define IMX_LPCG_CLK_3 12
+> +#define IMX_LPCG_CLK_4 16
+> +#define IMX_LPCG_CLK_5 20
+> +#define IMX_LPCG_CLK_6 24
+> +#define IMX_LPCG_CLK_7 28
+> --
+> 2.23.0
+>
