@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCAA62321C7
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 17:44:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B44AA2321CD
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jul 2020 17:44:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726913AbgG2PoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jul 2020 11:44:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43196 "EHLO
+        id S1726920AbgG2PoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jul 2020 11:44:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726918AbgG2PoK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jul 2020 11:44:10 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C37A1C0619D5
-        for <devicetree@vger.kernel.org>; Wed, 29 Jul 2020 08:44:09 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id 3so3445601wmi.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Jul 2020 08:44:09 -0700 (PDT)
+        with ESMTP id S1726929AbgG2PoL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jul 2020 11:44:11 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF865C0619D7
+        for <devicetree@vger.kernel.org>; Wed, 29 Jul 2020 08:44:10 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id r2so17010877wrs.8
+        for <devicetree@vger.kernel.org>; Wed, 29 Jul 2020 08:44:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Y+stM08urg1MpZtIURBzurop2zYVssGxsR+vYUwG2fs=;
-        b=jCVXP2mQ0g3I2lQs3Yc2Dt4So4ExRRYZ/pKduxeOF61Jkg4sAon5xCNAcwi6ZUC6ts
-         vIL5+ecZp3TFcvMB1iutrKisLoiSP17Trjedha8GV9Y0wmrzzmCNnH4wSeV9fqLxbIJc
-         blLoHCX5q8ytYhwvR+KQXQp2hQFlUl5PHzmw0nbt6Vb+Nf3oDaDbiWYKPzwWrzDyF6ry
-         twbhjzdGIn9XCLiHw5l4cow4QDX/8Ms03uUVxuPL9sfW2vkak9WSZiYsvINls00SNouA
-         hmLrVbLYfsyvLPLQKyFpRMizq7Eu3nVpDcZ9dv7DNNEmmhn+RMQEkFyJD8+5OV/so4MV
-         cQ4w==
+        bh=yp/yuUeWaoEU++o8YiqJZ6Ow3f9kDkTqY4X3Il1fAaU=;
+        b=OfAx+z+38BroiK1UxjBz316l00GKw6NR4nK+Qbixfz/rYzg3GvwXZv6zj8aIdlOGbr
+         ZCw/ibRyT2LLtpcbR5a6GkNX2ahQcFzrXURYua0ZvoMaOqrtGsnSzzI5WUM/g0XP2Spt
+         EqdsseD7LgqAW2oJ6RR7Udl6o+ugCwvhi70KGxGvdkZhXO96DbGyvKhOdgGid7Pdwrh8
+         P+/9XJe7BBXAiUOS+2ThQ8p6suLIM1hy+1ceQULFN7x+uAFmyBpZfFPSr31WQFoi7TNh
+         s8m6Sf5c83PFhiHch9IsOr21AiQUH9jZpTUA3dpf4kIfUcCHsa05QDzMvgvl/5ozHOs3
+         lbkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Y+stM08urg1MpZtIURBzurop2zYVssGxsR+vYUwG2fs=;
-        b=cO3lKxOR/mprrk0PMw8oBmM5L73QSvskRqTMxytjOCpTK99WAGvxyCIgb9PJQyXKPS
-         hROtkfxZsv5r6Y0tRMdDjir7AYMyWsq/7Mb5bjoNH/8eNEYS4y61Hct1iMxJfV7GDbZ0
-         DYfH4dfiA1tRAd098hhUupyDinGUURpt04CmggdGExaJkIT+qK6CWaMDTL71avl5xv9L
-         SLIFnjP6fYFFpzDyUmJqIV7Bgs54EVHg3dHF4RKHCDwTps1PB5ysS2XoVA/WVSBnv5aN
-         LE4vPzVXfAhxCaFy1VLK8Ak5aGKmghKjagfOkVe+WfFygU8sHZ+hijewb8/IPQbu1NvX
-         Ntlw==
-X-Gm-Message-State: AOAM533q3Ow4HieiZh2Alhq3ywwkyYiH+YyF5AxYRySSomKFA8u2sRct
-        ZtNzN+/7pjgtlOJXwvPT2mmwgA==
-X-Google-Smtp-Source: ABdhPJyGVavZA3HF6yfY3RkIlIer3uK/JkzW+9Dxi5rltIpks9NfFZDBbEcl/1zDdJ36dgWl9O0naA==
-X-Received: by 2002:a1c:6007:: with SMTP id u7mr9608865wmb.32.1596037448515;
-        Wed, 29 Jul 2020 08:44:08 -0700 (PDT)
+        bh=yp/yuUeWaoEU++o8YiqJZ6Ow3f9kDkTqY4X3Il1fAaU=;
+        b=f6qdzNDeV3KySuhnvNpB4yJaf5WNW+DJLyOeeq8d7gSD33XZ4TRi6h9ntCo+GjGt90
+         OhWY21QJIM3Ni99j6FZXv113sfsJbVX66asQBBsWtlWNvoG1q80jU2uqcsAr9Gx6QXQw
+         F7iBodHTy/GHoH9rL3VQFBGPTCS2hRjkebbqhcTiVSWMHofe2BQ9DOvt65W64Pf3tKub
+         BEjza8U3zH9Ve6PcGCvc5hIGiAl0WFO93MTL/JrWSMkuPlJ+x2Yn4mguJeLwxeJ/7qvU
+         TL2cAYjNdn98RD0cikqmtY0XgQkDNvWEIWhay6nBt2fzEiCeLRg9vgk/2WEWF2C9ZKcQ
+         6aoA==
+X-Gm-Message-State: AOAM5311oliV/PrkGfWC9FJB18Rqx4Wyh8wk5aoXdDht/QCqSqujVaCM
+        mldkC7mOmfol3QMDu/YycqNpKqMWdxAZgg==
+X-Google-Smtp-Source: ABdhPJyLNVsGNKiTLhfrWHsr6RG7KXjk22Yr2Px7XacWgic1dr9bMjrMGeMcikX5l1IXnYFsXtrkow==
+X-Received: by 2002:adf:bb07:: with SMTP id r7mr24475972wrg.102.1596037449509;
+        Wed, 29 Jul 2020 08:44:09 -0700 (PDT)
 Received: from starbuck.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id a134sm6526030wmd.17.2020.07.29.08.44.07
+        by smtp.googlemail.com with ESMTPSA id a134sm6526030wmd.17.2020.07.29.08.44.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jul 2020 08:44:07 -0700 (PDT)
+        Wed, 29 Jul 2020 08:44:08 -0700 (PDT)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Neil Armstrong <narmstrong@baylibre.com>, linux-clk@vger.kernel.org
 Cc:     Jerome Brunet <jbrunet@baylibre.com>,
         Kevin Hilman <khilman@baylibre.com>,
         linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 2/3] clk: meson: axg-audio: separate axg and g12a regmap tables
-Date:   Wed, 29 Jul 2020 17:43:58 +0200
-Message-Id: <20200729154359.1983085-3-jbrunet@baylibre.com>
+Subject: [PATCH 3/3] clk: meson: axg-audio: fix g12a tdmout sclk inverter
+Date:   Wed, 29 Jul 2020 17:43:59 +0200
+Message-Id: <20200729154359.1983085-4-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200729154359.1983085-1-jbrunet@baylibre.com>
 References: <20200729154359.1983085-1-jbrunet@baylibre.com>
@@ -67,169 +67,182 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are more differences than what we initially thought.
-Let's keeps things clear and separate the axg and g12a regmap tables of the
-audio clock controller.
+Fix the tdmout inverter of the g12a and following SoC families.
+This inverter is special and needs two bits to be the inverse of each other
+for the inverter to operate properly.
 
+Fixes: 075001385c66 ("clk: meson: axg-audio: add g12a support")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/axg-audio.c | 135 ++++++++++++++++++++++++++++++++--
- 1 file changed, 127 insertions(+), 8 deletions(-)
+ drivers/clk/meson/axg-audio.c | 85 ++++++++++++++++++++++++-----------
+ 1 file changed, 60 insertions(+), 25 deletions(-)
 
 diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
-index 53715e36326c..9918cb375de3 100644
+index 9918cb375de3..7c8d02164443 100644
 --- a/drivers/clk/meson/axg-audio.c
 +++ b/drivers/clk/meson/axg-audio.c
-@@ -1209,13 +1209,132 @@ static struct clk_hw_onecell_data sm1_audio_hw_onecell_data = {
- };
+@@ -147,6 +147,29 @@
+ 	},								\
+ }
  
- 
--/* Convenience table to populate regmap in .probe()
-- * Note that this table is shared between both AXG and G12A,
-- * with spdifout_b clocks being exclusive to G12A. Since those
-- * clocks are not declared within the AXG onecell table, we do not
-- * feel the need to have separate AXG/G12A regmap tables.
-- */
-+/* Convenience table to populate regmap in .probe(). */
- static struct clk_regmap *const axg_clk_regmaps[] = {
-+	&ddr_arb,
-+	&pdm,
-+	&tdmin_a,
-+	&tdmin_b,
-+	&tdmin_c,
-+	&tdmin_lb,
-+	&tdmout_a,
-+	&tdmout_b,
-+	&tdmout_c,
-+	&frddr_a,
-+	&frddr_b,
-+	&frddr_c,
-+	&toddr_a,
-+	&toddr_b,
-+	&toddr_c,
-+	&loopback,
-+	&spdifin,
-+	&spdifout,
-+	&resample,
-+	&power_detect,
-+	&mst_a_mclk_sel,
-+	&mst_b_mclk_sel,
-+	&mst_c_mclk_sel,
-+	&mst_d_mclk_sel,
-+	&mst_e_mclk_sel,
-+	&mst_f_mclk_sel,
-+	&mst_a_mclk_div,
-+	&mst_b_mclk_div,
-+	&mst_c_mclk_div,
-+	&mst_d_mclk_div,
-+	&mst_e_mclk_div,
-+	&mst_f_mclk_div,
-+	&mst_a_mclk,
-+	&mst_b_mclk,
-+	&mst_c_mclk,
-+	&mst_d_mclk,
-+	&mst_e_mclk,
-+	&mst_f_mclk,
-+	&spdifout_clk_sel,
-+	&spdifout_clk_div,
-+	&spdifout_clk,
-+	&spdifin_clk_sel,
-+	&spdifin_clk_div,
-+	&spdifin_clk,
-+	&pdm_dclk_sel,
-+	&pdm_dclk_div,
-+	&pdm_dclk,
-+	&pdm_sysclk_sel,
-+	&pdm_sysclk_div,
-+	&pdm_sysclk,
-+	&mst_a_sclk_pre_en,
-+	&mst_b_sclk_pre_en,
-+	&mst_c_sclk_pre_en,
-+	&mst_d_sclk_pre_en,
-+	&mst_e_sclk_pre_en,
-+	&mst_f_sclk_pre_en,
-+	&mst_a_sclk_div,
-+	&mst_b_sclk_div,
-+	&mst_c_sclk_div,
-+	&mst_d_sclk_div,
-+	&mst_e_sclk_div,
-+	&mst_f_sclk_div,
-+	&mst_a_sclk_post_en,
-+	&mst_b_sclk_post_en,
-+	&mst_c_sclk_post_en,
-+	&mst_d_sclk_post_en,
-+	&mst_e_sclk_post_en,
-+	&mst_f_sclk_post_en,
-+	&mst_a_sclk,
-+	&mst_b_sclk,
-+	&mst_c_sclk,
-+	&mst_d_sclk,
-+	&mst_e_sclk,
-+	&mst_f_sclk,
-+	&mst_a_lrclk_div,
-+	&mst_b_lrclk_div,
-+	&mst_c_lrclk_div,
-+	&mst_d_lrclk_div,
-+	&mst_e_lrclk_div,
-+	&mst_f_lrclk_div,
-+	&mst_a_lrclk,
-+	&mst_b_lrclk,
-+	&mst_c_lrclk,
-+	&mst_d_lrclk,
-+	&mst_e_lrclk,
-+	&mst_f_lrclk,
-+	&tdmin_a_sclk_sel,
-+	&tdmin_b_sclk_sel,
-+	&tdmin_c_sclk_sel,
-+	&tdmin_lb_sclk_sel,
-+	&tdmout_a_sclk_sel,
-+	&tdmout_b_sclk_sel,
-+	&tdmout_c_sclk_sel,
-+	&tdmin_a_sclk_pre_en,
-+	&tdmin_b_sclk_pre_en,
-+	&tdmin_c_sclk_pre_en,
-+	&tdmin_lb_sclk_pre_en,
-+	&tdmout_a_sclk_pre_en,
-+	&tdmout_b_sclk_pre_en,
-+	&tdmout_c_sclk_pre_en,
-+	&tdmin_a_sclk_post_en,
-+	&tdmin_b_sclk_post_en,
-+	&tdmin_c_sclk_post_en,
-+	&tdmin_lb_sclk_post_en,
-+	&tdmout_a_sclk_post_en,
-+	&tdmout_b_sclk_post_en,
-+	&tdmout_c_sclk_post_en,
-+	&tdmin_a_sclk,
-+	&tdmin_b_sclk,
-+	&tdmin_c_sclk,
-+	&tdmin_lb_sclk,
-+	&tdmout_a_sclk,
-+	&tdmout_b_sclk,
-+	&tdmout_c_sclk,
-+	&tdmin_a_lrclk,
-+	&tdmin_b_lrclk,
-+	&tdmin_c_lrclk,
-+	&tdmin_lb_lrclk,
-+	&tdmout_a_lrclk,
-+	&tdmout_b_lrclk,
-+	&tdmout_c_lrclk,
-+};
++#define AUD_SCLK_WS(_name, _reg, _width, _shift_ph, _shift_ws, _pname,	\
++		    _iflags) {						\
++	.data = &(struct meson_sclk_ws_inv_data) {			\
++		.ph = {							\
++			.reg_off = (_reg),				\
++			.shift   = (_shift_ph),				\
++			.width   = (_width),				\
++		},							\
++		.ws = {							\
++			.reg_off = (_reg),				\
++			.shift   = (_shift_ws),				\
++			.width   = (_width),				\
++		},							\
++	},								\
++	.hw.init = &(struct clk_init_data) {				\
++		.name = "aud_"#_name,					\
++		.ops = &meson_clk_phase_ops,				\
++		.parent_names = (const char *[]){ #_pname },		\
++		.num_parents = 1,					\
++		.flags = (_iflags),					\
++	},								\
++}
 +
-+static struct clk_regmap *const g12a_clk_regmaps[] = {
- 	&ddr_arb,
- 	&pdm,
- 	&tdmin_a,
-@@ -1713,8 +1832,8 @@ static const struct audioclk_data axg_audioclk_data = {
- };
+ /* Audio Master Clocks */
+ static const struct clk_parent_data mst_mux_parent_data[] = {
+ 	{ .fw_name = "mst_in0", },
+@@ -254,6 +277,10 @@ static const struct clk_parent_data tdm_lrclk_parent_data[] = {
+ 	AUD_PHASE(tdm##_name##_sclk, _reg, 1, 29,			\
+ 		  aud_tdm##_name##_sclk_post_en,			\
+ 		  CLK_DUTY_CYCLE_PARENT | CLK_SET_RATE_PARENT)
++#define AUD_TDM_SCLK_WS(_name, _reg)					\
++	AUD_SCLK_WS(tdm##_name##_sclk, _reg, 1, 29, 28,			\
++		    aud_tdm##_name##_sclk_post_en,			\
++		    CLK_DUTY_CYCLE_PARENT | CLK_SET_RATE_PARENT)
  
- static const struct audioclk_data g12a_audioclk_data = {
--	.regmap_clks = axg_clk_regmaps,
--	.regmap_clk_num = ARRAY_SIZE(axg_clk_regmaps),
-+	.regmap_clks = g12a_clk_regmaps,
-+	.regmap_clk_num = ARRAY_SIZE(g12a_clk_regmaps),
- 	.hw_onecell_data = &g12a_audio_hw_onecell_data,
- 	.reset_offset = AUDIO_SW_RESET,
- 	.reset_num = 26,
+ #define AUD_TDM_LRLCK(_name, _reg)					\
+ 	AUD_MUX(tdm##_name##_lrclk, _reg, 0xf, 20,			\
+@@ -499,12 +526,6 @@ static struct clk_regmap tdmin_c_sclk =
+ 	AUD_TDM_SCLK(in_c, AUDIO_CLK_TDMIN_C_CTRL);
+ static struct clk_regmap tdmin_lb_sclk =
+ 	AUD_TDM_SCLK(in_lb, AUDIO_CLK_TDMIN_LB_CTRL);
+-static struct clk_regmap tdmout_a_sclk =
+-	AUD_TDM_SCLK(out_a, AUDIO_CLK_TDMOUT_A_CTRL);
+-static struct clk_regmap tdmout_b_sclk =
+-	AUD_TDM_SCLK(out_b, AUDIO_CLK_TDMOUT_B_CTRL);
+-static struct clk_regmap tdmout_c_sclk =
+-	AUD_TDM_SCLK(out_c, AUDIO_CLK_TDMOUT_C_CTRL);
+ 
+ static struct clk_regmap tdmin_a_lrclk =
+ 	AUD_TDM_LRLCK(in_a, AUDIO_CLK_TDMIN_A_CTRL);
+@@ -521,6 +542,14 @@ static struct clk_regmap tdmout_b_lrclk =
+ static struct clk_regmap tdmout_c_lrclk =
+ 	AUD_TDM_LRLCK(out_c, AUDIO_CLK_TDMOUT_C_CTRL);
+ 
++/* AXG Clocks */
++static struct clk_regmap axg_tdmout_a_sclk =
++	AUD_TDM_SCLK(out_a, AUDIO_CLK_TDMOUT_A_CTRL);
++static struct clk_regmap axg_tdmout_b_sclk =
++	AUD_TDM_SCLK(out_b, AUDIO_CLK_TDMOUT_B_CTRL);
++static struct clk_regmap axg_tdmout_c_sclk =
++	AUD_TDM_SCLK(out_c, AUDIO_CLK_TDMOUT_C_CTRL);
++
+ /* AXG/G12A Clocks */
+ static struct clk_hw axg_aud_top = {
+ 	.init = &(struct clk_init_data) {
+@@ -591,7 +620,13 @@ static struct clk_regmap g12a_tdm_sclk_pad_1 = AUD_TDM_PAD_CTRL(
+ static struct clk_regmap g12a_tdm_sclk_pad_2 = AUD_TDM_PAD_CTRL(
+ 	sclk_pad_2, AUDIO_MST_PAD_CTRL1, 8, sclk_pad_ctrl_parent_data);
+ 
+-/* G12a/SM1 clocks */
++static struct clk_regmap g12a_tdmout_a_sclk =
++	AUD_TDM_SCLK_WS(out_a, AUDIO_CLK_TDMOUT_A_CTRL);
++static struct clk_regmap g12a_tdmout_b_sclk =
++	AUD_TDM_SCLK_WS(out_b, AUDIO_CLK_TDMOUT_B_CTRL);
++static struct clk_regmap g12a_tdmout_c_sclk =
++	AUD_TDM_SCLK_WS(out_c, AUDIO_CLK_TDMOUT_C_CTRL);
++
+ static struct clk_regmap toram =
+ 	AUD_PCLK_GATE(toram, AUDIO_CLK_GATE_EN, 20);
+ static struct clk_regmap spdifout_b =
+@@ -889,9 +924,9 @@ static struct clk_hw_onecell_data axg_audio_hw_onecell_data = {
+ 		[AUD_CLKID_TDMIN_B_SCLK]	= &tdmin_b_sclk.hw,
+ 		[AUD_CLKID_TDMIN_C_SCLK]	= &tdmin_c_sclk.hw,
+ 		[AUD_CLKID_TDMIN_LB_SCLK]	= &tdmin_lb_sclk.hw,
+-		[AUD_CLKID_TDMOUT_A_SCLK]	= &tdmout_a_sclk.hw,
+-		[AUD_CLKID_TDMOUT_B_SCLK]	= &tdmout_b_sclk.hw,
+-		[AUD_CLKID_TDMOUT_C_SCLK]	= &tdmout_c_sclk.hw,
++		[AUD_CLKID_TDMOUT_A_SCLK]	= &axg_tdmout_a_sclk.hw,
++		[AUD_CLKID_TDMOUT_B_SCLK]	= &axg_tdmout_b_sclk.hw,
++		[AUD_CLKID_TDMOUT_C_SCLK]	= &axg_tdmout_c_sclk.hw,
+ 		[AUD_CLKID_TDMIN_A_LRCLK]	= &tdmin_a_lrclk.hw,
+ 		[AUD_CLKID_TDMIN_B_LRCLK]	= &tdmin_b_lrclk.hw,
+ 		[AUD_CLKID_TDMIN_C_LRCLK]	= &tdmin_c_lrclk.hw,
+@@ -1026,9 +1061,9 @@ static struct clk_hw_onecell_data g12a_audio_hw_onecell_data = {
+ 		[AUD_CLKID_TDMIN_B_SCLK]	= &tdmin_b_sclk.hw,
+ 		[AUD_CLKID_TDMIN_C_SCLK]	= &tdmin_c_sclk.hw,
+ 		[AUD_CLKID_TDMIN_LB_SCLK]	= &tdmin_lb_sclk.hw,
+-		[AUD_CLKID_TDMOUT_A_SCLK]	= &tdmout_a_sclk.hw,
+-		[AUD_CLKID_TDMOUT_B_SCLK]	= &tdmout_b_sclk.hw,
+-		[AUD_CLKID_TDMOUT_C_SCLK]	= &tdmout_c_sclk.hw,
++		[AUD_CLKID_TDMOUT_A_SCLK]	= &g12a_tdmout_a_sclk.hw,
++		[AUD_CLKID_TDMOUT_B_SCLK]	= &g12a_tdmout_b_sclk.hw,
++		[AUD_CLKID_TDMOUT_C_SCLK]	= &g12a_tdmout_c_sclk.hw,
+ 		[AUD_CLKID_TDMIN_A_LRCLK]	= &tdmin_a_lrclk.hw,
+ 		[AUD_CLKID_TDMIN_B_LRCLK]	= &tdmin_b_lrclk.hw,
+ 		[AUD_CLKID_TDMIN_C_LRCLK]	= &tdmin_c_lrclk.hw,
+@@ -1170,9 +1205,9 @@ static struct clk_hw_onecell_data sm1_audio_hw_onecell_data = {
+ 		[AUD_CLKID_TDMIN_B_SCLK]	= &tdmin_b_sclk.hw,
+ 		[AUD_CLKID_TDMIN_C_SCLK]	= &tdmin_c_sclk.hw,
+ 		[AUD_CLKID_TDMIN_LB_SCLK]	= &tdmin_lb_sclk.hw,
+-		[AUD_CLKID_TDMOUT_A_SCLK]	= &tdmout_a_sclk.hw,
+-		[AUD_CLKID_TDMOUT_B_SCLK]	= &tdmout_b_sclk.hw,
+-		[AUD_CLKID_TDMOUT_C_SCLK]	= &tdmout_c_sclk.hw,
++		[AUD_CLKID_TDMOUT_A_SCLK]	= &g12a_tdmout_a_sclk.hw,
++		[AUD_CLKID_TDMOUT_B_SCLK]	= &g12a_tdmout_b_sclk.hw,
++		[AUD_CLKID_TDMOUT_C_SCLK]	= &g12a_tdmout_c_sclk.hw,
+ 		[AUD_CLKID_TDMIN_A_LRCLK]	= &tdmin_a_lrclk.hw,
+ 		[AUD_CLKID_TDMIN_B_LRCLK]	= &tdmin_b_lrclk.hw,
+ 		[AUD_CLKID_TDMIN_C_LRCLK]	= &tdmin_c_lrclk.hw,
+@@ -1322,9 +1357,9 @@ static struct clk_regmap *const axg_clk_regmaps[] = {
+ 	&tdmin_b_sclk,
+ 	&tdmin_c_sclk,
+ 	&tdmin_lb_sclk,
+-	&tdmout_a_sclk,
+-	&tdmout_b_sclk,
+-	&tdmout_c_sclk,
++	&axg_tdmout_a_sclk,
++	&axg_tdmout_b_sclk,
++	&axg_tdmout_c_sclk,
+ 	&tdmin_a_lrclk,
+ 	&tdmin_b_lrclk,
+ 	&tdmin_c_lrclk,
+@@ -1447,9 +1482,9 @@ static struct clk_regmap *const g12a_clk_regmaps[] = {
+ 	&tdmin_b_sclk,
+ 	&tdmin_c_sclk,
+ 	&tdmin_lb_sclk,
+-	&tdmout_a_sclk,
+-	&tdmout_b_sclk,
+-	&tdmout_c_sclk,
++	&g12a_tdmout_a_sclk,
++	&g12a_tdmout_b_sclk,
++	&g12a_tdmout_c_sclk,
+ 	&tdmin_a_lrclk,
+ 	&tdmin_b_lrclk,
+ 	&tdmin_c_lrclk,
+@@ -1584,9 +1619,9 @@ static struct clk_regmap *const sm1_clk_regmaps[] = {
+ 	&tdmin_b_sclk,
+ 	&tdmin_c_sclk,
+ 	&tdmin_lb_sclk,
+-	&tdmout_a_sclk,
+-	&tdmout_b_sclk,
+-	&tdmout_c_sclk,
++	&g12a_tdmout_a_sclk,
++	&g12a_tdmout_b_sclk,
++	&g12a_tdmout_c_sclk,
+ 	&tdmin_a_lrclk,
+ 	&tdmin_b_lrclk,
+ 	&tdmin_c_lrclk,
 -- 
 2.25.4
 
