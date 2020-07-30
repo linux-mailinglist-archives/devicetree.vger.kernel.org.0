@@ -2,140 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 365E22335BE
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jul 2020 17:42:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C75072335E2
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jul 2020 17:46:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728412AbgG3PmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jul 2020 11:42:23 -0400
-Received: from mga09.intel.com ([134.134.136.24]:58103 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726275AbgG3PmW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Jul 2020 11:42:22 -0400
-IronPort-SDR: ei34C2A5y7d1exDVltL57AgBe+7euMXfCfwEYWOxXc9MeR5fc7f6olftJqUXhjCa6Kss1pwpWH
- jdZkMUoN5Jbw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9698"; a="152845271"
-X-IronPort-AV: E=Sophos;i="5.75,414,1589266800"; 
-   d="scan'208";a="152845271"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jul 2020 08:42:22 -0700
-IronPort-SDR: pYFaeeLcAzZxuB3wsRF1p9piO49pM0d0SQc6xtkttyfru1JKtDnZfDFPUceGi0P33TrYamCqla
- XCBsZdFx7ExA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,414,1589266800"; 
-   d="scan'208";a="490697704"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga006.fm.intel.com with ESMTP; 30 Jul 2020 08:42:19 -0700
-Received: from andy by smile with local (Exim 4.94)
-        (envelope-from <andy.shevchenko@gmail.com>)
-        id 1k1AhH-004ypR-1w; Thu, 30 Jul 2020 18:42:19 +0300
-Date:   Thu, 30 Jul 2020 18:42:19 +0300
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Hoan Tran <hoan@os.amperecomputing.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        id S1729965AbgG3Pp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jul 2020 11:45:57 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:57340 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729945AbgG3Ppz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jul 2020 11:45:55 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id F04418040A69;
+        Thu, 30 Jul 2020 15:45:52 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id KJ0HO7bzAbyZ; Thu, 30 Jul 2020 18:45:51 +0300 (MSK)
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Vinod Koul <vkoul@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         Serge Semin <fancer.lancer@gmail.com>,
         Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
         Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 04/10] gpio: dwapb: Add max GPIOs macro
-Message-ID: <20200730154219.GS3703480@smile.fi.intel.com>
-References: <20200730152808.2955-1-Sergey.Semin@baikalelectronics.ru>
- <20200730152808.2955-5-Sergey.Semin@baikalelectronics.ru>
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, <dmaengine@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/5] dmaengine: dw: Introduce non-mem peripherals optimizations
+Date:   Thu, 30 Jul 2020 18:45:40 +0300
+Message-ID: <20200730154545.3965-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200730152808.2955-5-Sergey.Semin@baikalelectronics.ru>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 30, 2020 at 06:28:01PM +0300, Serge Semin wrote:
-> Add a new macro DWAPB_MAX_GPIOS which defines the maximum possible number
-> of GPIO lines corresponding to the maximum DW APB GPIO controller port
-> width. Use the new macro instead of number literal 32 where it's
-> applicable.
+After a lot of tests and thorough DW DMAC databook studying we've
+discovered that the driver can be optimized especially when it comes to
+working with non-memory peripherals.
 
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+First of all we've found out that since each DW DMAC channel can
+be synthesized with different parameters, then even when two of them
+are configured to perform the same DMA transactions they may execute them
+with different performance. Since some DMA client devices might be
+sensitive to such important parameter as performance, then it is a good
+idea to let them request only suitable DMA channels. In this patchset we
+introduce a functionality, which makes it possible by passing the DMA
+channels mask either over the "dmas" DT property or in the dw_dma_slave
+platform data descriptor.
 
-> Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> ---
->  drivers/gpio/gpio-dwapb.c                | 8 ++++----
->  include/linux/platform_data/gpio-dwapb.h | 4 +++-
->  2 files changed, 7 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpio/gpio-dwapb.c b/drivers/gpio/gpio-dwapb.c
-> index 3081213247d8..f34001152850 100644
-> --- a/drivers/gpio/gpio-dwapb.c
-> +++ b/drivers/gpio/gpio-dwapb.c
-> @@ -162,7 +162,7 @@ static struct dwapb_gpio_port *dwapb_offs_to_port(struct dwapb_gpio *gpio, unsig
->  
->  	for (i = 0; i < gpio->nr_ports; i++) {
->  		port = &gpio->ports[i];
-> -		if (port->idx == offs / 32)
-> +		if (port->idx == offs / DWAPB_MAX_GPIOS)
->  			return port;
->  	}
->  
-> @@ -182,7 +182,7 @@ static void dwapb_toggle_trigger(struct dwapb_gpio *gpio, unsigned int offs)
->  
->  	pol = dwapb_read(gpio, GPIO_INT_POLARITY);
->  	/* Just read the current value right out of the data register */
-> -	val = gc->get(gc, offs % 32);
-> +	val = gc->get(gc, offs % DWAPB_MAX_GPIOS);
->  	if (val)
->  		pol &= ~BIT(offs);
->  	else
-> @@ -197,7 +197,7 @@ static u32 dwapb_do_irq(struct dwapb_gpio *gpio)
->  	irq_hw_number_t hwirq;
->  
->  	irq_status = dwapb_read(gpio, GPIO_INTSTATUS);
-> -	for_each_set_bit(hwirq, &irq_status, 32) {
-> +	for_each_set_bit(hwirq, &irq_status, DWAPB_MAX_GPIOS) {
->  		int gpio_irq = irq_find_mapping(gpio->domain, hwirq);
->  		u32 irq_type = irq_get_trigger_type(gpio_irq);
->  
-> @@ -599,7 +599,7 @@ static struct dwapb_platform_data *dwapb_gpio_get_pdata(struct device *dev)
->  			dev_info(dev,
->  				 "failed to get number of gpios for port%d\n",
->  				 i);
-> -			pp->ngpio = 32;
-> +			pp->ngpio = DWAPB_MAX_GPIOS;
->  		}
->  
->  		pp->irq_shared	= false;
-> diff --git a/include/linux/platform_data/gpio-dwapb.h b/include/linux/platform_data/gpio-dwapb.h
-> index ff1be737bad6..0aa5c6720259 100644
-> --- a/include/linux/platform_data/gpio-dwapb.h
-> +++ b/include/linux/platform_data/gpio-dwapb.h
-> @@ -6,12 +6,14 @@
->  #ifndef GPIO_DW_APB_H
->  #define GPIO_DW_APB_H
->  
-> +#define DWAPB_MAX_GPIOS		32
-> +
->  struct dwapb_port_property {
->  	struct fwnode_handle *fwnode;
->  	unsigned int	idx;
->  	unsigned int	ngpio;
->  	unsigned int	gpio_base;
-> -	int		irq[32];
-> +	int		irq[DWAPB_MAX_GPIOS];
->  	bool		irq_shared;
->  };
->  
-> -- 
-> 2.27.0
-> 
+Secondly FIFO-mode of the "FIFO readiness" criterion is more suitable for
+the pure memory DMA transfers, since it minimizes the system bus
+utilization, but causes some performance drop. When it comes to working with
+non-memory peripherals the DMA engine performance comes to the first
+place. Since normally DMA client devices keep data in internal FIFOs, any
+latency at some critical moment may cause a FIFO being overflown and
+consequently losing data. So in order to minimize a chance of the DW DMAC
+internal FIFO being a bottle neck during the DMA transfers to and from
+non-memory peripherals we propose not to use FIFO-mode for them.
+
+Thirdly it has been discovered that using a DMA transaction length is
+redundant when calculating the destination transfer width for the
+dev-to-mem DMA communications. That shall increase performance of the DMA
+transfers with unaligned data length.
+
+Finally there is a small optimization in the burst length setting. In
+particular we've found out, that according to the DW DMAC databoot it's
+pointless to set one for the memory peripherals since they don't have
+handshaking interface connected to the DMA controller. So we suggest to
+just ignore the burst length config when it comes to setting the memory
+peripherals up.
+
+Note this patchset is supposed to be applied on top of the series:
+Link: https://lore.kernel.org/dmaengine/20200723005848.31907-1-Sergey.Semin@baikalelectronics.ru
+
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: dmaengine@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Serge Semin (5):
+  dt-bindings: dma: dw: Add optional DMA-channels mask cell support
+  dmaengine: dw: Activate FIFO-mode for memory peripherals only
+  dmaengine: dw: Discard dlen from the dev-to-mem xfer width calculation
+  dmaengine: dw: Ignore burst setting for memory peripherals
+  dmaengine: dw: Add DMA-channels mask cell support
+
+ .../devicetree/bindings/dma/snps,dma-spear1340.yaml        | 7 +++++--
+ drivers/dma/dw/core.c                                      | 6 +++++-
+ drivers/dma/dw/dw.c                                        | 7 +++----
+ drivers/dma/dw/idma32.c                                    | 5 ++---
+ drivers/dma/dw/of.c                                        | 7 +++++--
+ include/linux/platform_data/dma-dw.h                       | 3 +++
+ 6 files changed, 23 insertions(+), 12 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.27.0
 
