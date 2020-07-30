@@ -2,140 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9F7423355F
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jul 2020 17:28:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B594D2335B4
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jul 2020 17:37:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729853AbgG3P2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jul 2020 11:28:22 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:57256 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729836AbgG3P2V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jul 2020 11:28:21 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 696588040A6D;
-        Thu, 30 Jul 2020 15:28:18 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id g363o4P2slKZ; Thu, 30 Jul 2020 18:28:17 +0300 (MSK)
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Hoan Tran <hoan@os.amperecomputing.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Serge Semin <fancer.lancer@gmail.com>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 10/10] gpio: dwapb: Use resource managed GPIO-chip add data method
-Date:   Thu, 30 Jul 2020 18:28:07 +0300
-Message-ID: <20200730152808.2955-11-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20200730152808.2955-1-Sergey.Semin@baikalelectronics.ru>
-References: <20200730152808.2955-1-Sergey.Semin@baikalelectronics.ru>
+        id S1729879AbgG3Pha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jul 2020 11:37:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37470 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729838AbgG3Ph3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jul 2020 11:37:29 -0400
+Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8163C06174A
+        for <devicetree@vger.kernel.org>; Thu, 30 Jul 2020 08:37:29 -0700 (PDT)
+Received: by mail-pj1-x1044.google.com with SMTP id lx9so4858399pjb.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Jul 2020 08:37:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=9SEQ1OEv82nHNMdL9SqhRCzSBouc4sokzr4x8Hh1/DI=;
+        b=MGZ/ahYtIdiF9ni3ETE3Khx9UnzPeaO4A/M7nSu0MJyY5+bCzMAsEhfkzzy2Gy2vHu
+         N6joxF9xSH76v6buIa+i8zHYXDLBXuMJT6TDd7p3WcnMb9N2l3Szxxl333c9/wjLes+C
+         KtGkEIWrsimjwMDomJX3xuQeVyWoSYJbL0I3PyBtDVqJClaQgg9l4+QISP2TJ2TKivAo
+         prRKjq++Yg1p+fpQMs+eU75sFdgTQy1OezcxkoAtTcQky2LSiVUmrmEZ3bdWem0LD+gh
+         BUuZmuoHDN7Lc3ZjsiqvPDeGFq3/uxgCTXRPlI9G52R9C+UxF/divsyP6+uS1leZZniY
+         d9Ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=9SEQ1OEv82nHNMdL9SqhRCzSBouc4sokzr4x8Hh1/DI=;
+        b=rMmvkoQACku0B+WZtbbCmRSR0N16zoCqR9x+KMHOOlGanm99Yx+LQGhMRXGBAmGMbA
+         qwb+qFYf2HfWFF6L5WX0EfAXl65Kzj7HGFSYZUBJdEGaWYSJLKn5WeaWVTsPgBmv8xTg
+         y6waszuVMnEgZjxsQWJGtDGqbpSqmTqqxl/Qkgwou5LHlXQ6/IppZwNTbp4zSud1PRMP
+         o5hDX0FnPXB3xk9mD8iT8l6L9nV8KpF59EHw8NTSLkE2sYDkEQNCrNX8ne7NEXI0I4JZ
+         I6YTips4EkH4WPxWoA4GC7LWSLK3JeVL54TUbfix4iKLtV22BEPSiXwvNGXN/LVRcSJm
+         op/w==
+X-Gm-Message-State: AOAM533WnWcSNPtm9oWtTop1YxdSr7ixho1OCRM8sRn2Z7WdywA4E7L/
+        qVEgOC9Buh3F76Z6f4CH5RwTmw==
+X-Google-Smtp-Source: ABdhPJwQyi8M14QMhOXfHbSaGH7VCYAkvRqASesnwEbOczg1tB8ocLA9RDU1wXDJ/FEr3D1Nv1dW2A==
+X-Received: by 2002:a62:520b:: with SMTP id g11mr3981023pfb.168.1596123449285;
+        Thu, 30 Jul 2020 08:37:29 -0700 (PDT)
+Received: from localhost ([106.201.14.19])
+        by smtp.gmail.com with ESMTPSA id f29sm6943179pga.59.2020.07.30.08.37.26
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 30 Jul 2020 08:37:27 -0700 (PDT)
+Date:   Thu, 30 Jul 2020 21:07:22 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rob Clark <robdclark@gmail.com>
+Cc:     Akhil P Oommen <akhilpo@codeaurora.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        dri-devel@freedesktop.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Jordan Crouse <jcrouse@codeaurora.org>,
+        Sharat Masetty <smasetty@codeaurora.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Matthias Kaehlcke <mka@chromium.org>,
+        saravanak@google.com, Sibi Sankar <sibis@codeaurora.org>,
+        Jonathan <jonathan@marek.ca>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dave Airlie <airlied@gmail.com>
+Subject: Re: [PATCH v5 0/6] Add support for GPU DDR BW scaling
+Message-ID: <20200730153722.cnpg6n6tnmvjtuso@vireshk-mac-ubuntu>
+References: <1594644106-22449-1-git-send-email-akhilpo@codeaurora.org>
+ <CAF6AEGtAEwZbWxLb4MxaWNswvtrFbLK+N0Fez2XYr7odKZffWA@mail.gmail.com>
+ <20200720100131.6ux4zumbwqpa42ye@vireshk-mac-ubuntu>
+ <CAF6AEGurrsd3nrbB=ktZjWfKTNbKwPHYwTFiZdD-NOW1T7gePQ@mail.gmail.com>
+ <20200721032442.hv7l4q6633vnmnfe@vireshk-mac-ubuntu>
+ <CAF6AEGuhQcRskGhrFvmCf5T3EcZ9S+3LRdZBiaDYqF34yZjd+A@mail.gmail.com>
+ <20200722053023.vwaoj5oqh4cazzzz@vireshk-mac-ubuntu>
+ <20200730051045.jejrtkor3b32l2qe@vireshk-mac-ubuntu>
+ <CAF6AEGuzff9+Wy4EHx0aDx1gBzSEGh--yqT5rnwLHp=U6amnyA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAF6AEGuzff9+Wy4EHx0aDx1gBzSEGh--yqT5rnwLHp=U6amnyA@mail.gmail.com>
+User-Agent: NeoMutt/20170609 (1.8.3)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since the resource managed version of gpiochip_add_data() will handle the
-GPIO-chip data automated cleanup we can freely remove the DW APB GPIO
-driver code responsible for that. After doing so the DW APB GPIO driver
-removal callback can be also fully discarded since there is nothing left
-to be done for it. All the cleanups are now performed by means of the
-device managed framework.
+On 30-07-20, 08:27, Rob Clark wrote:
+> Hmm, I've already sent my pull request to Dave, dropping the patch
+> would require force-push and sending a new PR.  Which I can do if Dave
+> prefers.  OTOH I guess it isn't the end of the world if the patch is
+> merged via two different trees.
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
----
- drivers/gpio/gpio-dwapb.c | 37 ++-----------------------------------
- 1 file changed, 2 insertions(+), 35 deletions(-)
+I don't think a patch can go via two trees, as that would have two sha
+keys for the same code.
 
-diff --git a/drivers/gpio/gpio-dwapb.c b/drivers/gpio/gpio-dwapb.c
-index 803e1d1f4b5a..a5b326754124 100644
---- a/drivers/gpio/gpio-dwapb.c
-+++ b/drivers/gpio/gpio-dwapb.c
-@@ -91,7 +91,6 @@ struct dwapb_gpio_port_irqchip {
- struct dwapb_gpio_port {
- 	struct gpio_chip	gc;
- 	struct dwapb_gpio_port_irqchip *pirq;
--	bool			is_registered;
- 	struct dwapb_gpio	*gpio;
- #ifdef CONFIG_PM_SLEEP
- 	struct dwapb_context	*ctx;
-@@ -519,32 +518,16 @@ static int dwapb_gpio_add_port(struct dwapb_gpio *gpio,
- 	if (pp->idx == 0)
- 		dwapb_configure_irqs(gpio, port, pp);
- 
--	err = gpiochip_add_data(&port->gc, port);
-+	err = devm_gpiochip_add_data(gpio->dev, &port->gc, port);
- 	if (err) {
- 		dev_err(gpio->dev, "failed to register gpiochip for port%d\n",
- 			port->idx);
- 		return err;
- 	}
- 
--	port->is_registered = true;
--
- 	return 0;
- }
- 
--static void dwapb_gpio_unregister(struct dwapb_gpio *gpio)
--{
--	unsigned int m;
--
--	for (m = 0; m < gpio->nr_ports; ++m) {
--		struct dwapb_gpio_port *port = &gpio->ports[m];
--
--		if (!port->is_registered)
--			continue;
--
--		gpiochip_remove(&port->gc);
--	}
--}
--
- static void dwapb_get_irq(struct device *dev, struct fwnode_handle *fwnode,
- 			  struct dwapb_port_property *pp)
- {
-@@ -738,23 +721,8 @@ static int dwapb_gpio_probe(struct platform_device *pdev)
- 	for (i = 0; i < gpio->nr_ports; i++) {
- 		err = dwapb_gpio_add_port(gpio, &pdata->properties[i], i);
- 		if (err)
--			goto out_unregister;
-+			return err;
- 	}
--	platform_set_drvdata(pdev, gpio);
--
--	return 0;
--
--out_unregister:
--	dwapb_gpio_unregister(gpio);
--
--	return err;
--}
--
--static int dwapb_gpio_remove(struct platform_device *pdev)
--{
--	struct dwapb_gpio *gpio = platform_get_drvdata(pdev);
--
--	dwapb_gpio_unregister(gpio);
- 
- 	return 0;
- }
-@@ -858,7 +826,6 @@ static struct platform_driver dwapb_gpio_driver = {
- 		.acpi_match_table = dwapb_acpi_match,
- 	},
- 	.probe		= dwapb_gpio_probe,
--	.remove		= dwapb_gpio_remove,
- };
- 
- module_platform_driver(dwapb_gpio_driver);
+Though it is fine for a patch to go via two different trees if we make
+sure the same sha key is used for both.
+
+Will it be possible for you to provide a branch/tag of your branch
+that I can base stuff of ?
+
 -- 
-2.27.0
-
+viresh
