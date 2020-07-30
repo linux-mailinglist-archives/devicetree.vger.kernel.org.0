@@ -2,86 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D26D2336F1
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jul 2020 18:37:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87D012336E0
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jul 2020 18:33:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727072AbgG3Qhd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jul 2020 12:37:33 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:57560 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726353AbgG3Qhd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jul 2020 12:37:33 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id A8F7B8030866;
-        Thu, 30 Jul 2020 16:37:30 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 0mIXFzg4vNJg; Thu, 30 Jul 2020 19:37:30 +0300 (MSK)
-Date:   Thu, 30 Jul 2020 19:37:29 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-CC:     Serge Semin <fancer.lancer@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, <dmaengine@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 4/5] dmaengine: dw: Ignore burst setting for memory
- peripherals
-Message-ID: <20200730163729.azi6e2ket37choub@mobilestation>
-References: <20200730154545.3965-1-Sergey.Semin@baikalelectronics.ru>
- <20200730154545.3965-5-Sergey.Semin@baikalelectronics.ru>
- <20200730163122.GW3703480@smile.fi.intel.com>
+        id S1728412AbgG3Qdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jul 2020 12:33:53 -0400
+Received: from foss.arm.com ([217.140.110.172]:42294 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728473AbgG3Qdx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Jul 2020 12:33:53 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 38B3D1FB;
+        Thu, 30 Jul 2020 09:33:53 -0700 (PDT)
+Received: from [10.37.12.83] (unknown [10.37.12.83])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CF01C3F66E;
+        Thu, 30 Jul 2020 09:33:51 -0700 (PDT)
+Subject: Re: [RFC PATCH 14/14] dts: bindings: coresight: ETMv4.4 system
+ register access only units
+To:     mathieu.poirier@linaro.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        mike.leach@linaro.org, coresight@lists.linaro.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+References: <20200722172040.1299289-1-suzuki.poulose@arm.com>
+ <20200722172040.1299289-15-suzuki.poulose@arm.com>
+ <20200729172058.GA3060370@xps15>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+Message-ID: <7036b8c5-b920-3de7-21d0-474e759e2624@arm.com>
+Date:   Thu, 30 Jul 2020 17:38:37 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200730163122.GW3703480@smile.fi.intel.com>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+In-Reply-To: <20200729172058.GA3060370@xps15>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 30, 2020 at 07:31:22PM +0300, Andy Shevchenko wrote:
-> On Thu, Jul 30, 2020 at 06:45:44PM +0300, Serge Semin wrote:
-> > According to the DW DMA controller Databook (page 40 "3.5 Memory
+On 07/29/2020 06:20 PM, Mathieu Poirier wrote:
+> On Wed, Jul 22, 2020 at 06:20:40PM +0100, Suzuki K Poulose wrote:
+>> Document the bindings for ETMv4.4 and later with only system register
+>> access.
+>>
+>> Cc: Rob Herring <robh+dt@kernel.org>
+>> Cc: devicetree@vger.kernel.org
+>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+>> Cc: Mike Leach <mike.leach@linaro.org>
+>> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+>> ---
+>>   Documentation/devicetree/bindings/arm/coresight.txt | 6 +++++-
+>>   1 file changed, 5 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/coresight.txt b/Documentation/devicetree/bindings/arm/coresight.txt
+>> index d711676b4a51..cfe47bdda728 100644
+>> --- a/Documentation/devicetree/bindings/arm/coresight.txt
+>> +++ b/Documentation/devicetree/bindings/arm/coresight.txt
+>> @@ -34,9 +34,13 @@ its hardware characteristcs.
+>>   					Program Flow Trace Macrocell:
+>>   			"arm,coresight-etm3x", "arm,primecell";
+>>   
+>> -		- Embedded Trace Macrocell (version 4.x):
+>> +		- Embedded Trace Macrocell (version 4.x), with memory mapped access.
+>>   			"arm,coresight-etm4x", "arm,primecell";
+>>   
+>> +		- Embedded Trace Macrocell (version 4.4 and later) with system
+>> +		  register access only.
+>> +			"arm,coresight-etm-v4.4";
 > 
+> I would rather call this "arm,coresight-etm-v4.4+" so that the binding's
+> semantic is still relevant when dealing with ETM v4.5 and onward.
 
-> Which version of it?
+AFAIUC, "compatible" stands for something that is compatible with v4.4.
+All v4.4+ versions that are compatible with v4.4 are covered here.
+Having said that I am fine with "arm,coresight-etm-v4.4+" , if it
+is fine by the DT conventions.
 
-2.18b
-
-> 
-> > Peripherals") memory peripherals don't have handshaking interface
-> > connected to the controller, therefore they can never be a flow
-> > controller. Since the CTLx.SRC_MSIZE and CTLx.DEST_MSIZE are
-> > properties valid only for peripherals with a handshaking
-> > interface, we can freely zero these fields out if the memory peripheral
-> > is selected to be the source or the destination of the DMA transfers.
-> > 
-> > Note according to the databook, length of burst transfers to memory is
-> > always equal to the number of data items available in a channel FIFO or
-> > data items required to complete the block transfer, whichever is smaller;
-> > length of burst transfers from memory is always equal to the space
-> > available in a channel FIFO or number of data items required to complete
-> > the block transfer, whichever is smaller.
-> 
-
-> But does it really matter if you program there something or not?
-
-For memory peripherals it doesn't. But it's better to remove the redundant
-settings for consistency with the doc and to get rid of the unneeded
-stack-variable declaration.
-
--Sergey
-
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
+Cheers
+Suzuki
