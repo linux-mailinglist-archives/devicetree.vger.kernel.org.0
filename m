@@ -2,130 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48238232EF9
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jul 2020 10:55:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A39D232F0B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jul 2020 10:59:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729201AbgG3IzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jul 2020 04:55:13 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:54232 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728693AbgG3IzK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Jul 2020 04:55:10 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 9F5ED2011FB;
-        Thu, 30 Jul 2020 10:55:08 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 91B3B200263;
-        Thu, 30 Jul 2020 10:55:08 +0200 (CEST)
-Received: from localhost (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 7932920340;
-        Thu, 30 Jul 2020 10:55:08 +0200 (CEST)
-Date:   Thu, 30 Jul 2020 11:55:08 +0300
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        id S1729060AbgG3I7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jul 2020 04:59:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60784 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729032AbgG3I7h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jul 2020 04:59:37 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B4A4C061794
+        for <devicetree@vger.kernel.org>; Thu, 30 Jul 2020 01:59:37 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1k14PQ-0002tp-I6; Thu, 30 Jul 2020 10:59:28 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1k14PQ-0003bj-0G; Thu, 30 Jul 2020 10:59:28 +0200
+Date:   Thu, 30 Jul 2020 10:59:27 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
+        =?iso-8859-1?Q?Andr=E9?= Draszik <git@andred.net>,
+        Robin Gong <yibin.gong@nxp.com>,
         Anson Huang <anson.huang@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, Fugang Duan <fugang.duan@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 11/17] clk: imx: Add blk_ctrl combo driver
-Message-ID: <20200730085508.ddxhb4rjnzwooh2z@fsr-ub1664-175>
-References: <1596024483-21482-1-git-send-email-abel.vesa@nxp.com>
- <1596024483-21482-12-git-send-email-abel.vesa@nxp.com>
- <d44e88a1408add6491897a8793b57ee0090fa4c6.camel@pengutronix.de>
+        Fabio Estevam <festevam@gmail.com>,
+        Aymen Sghaier <aymen.sghaier@nxp.com>,
+        Adam Ford <aford173@gmail.com>, linux-input@vger.kernel.org,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>
+Subject: Re: [PATCH v3 3/3] Input: snvs_pwrkey - only IRQ_HANDLED for our own
+ events
+Message-ID: <20200730085927.ro3c2ptiixi2ikyf@pengutronix.de>
+References: <20200723074314.3304-1-horia.geanta@nxp.com>
+ <20200723074314.3304-4-horia.geanta@nxp.com>
+ <20200729075513.ckjnhfv3dxuesvsi@pengutronix.de>
+ <20200730060601.GE1665100@dtor-ws>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <d44e88a1408add6491897a8793b57ee0090fa4c6.camel@pengutronix.de>
-User-Agent: NeoMutt/20180622
-X-Virus-Scanned: ClamAV using ClamSMTP
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200730060601.GE1665100@dtor-ws>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:56:41 up 258 days, 15 min, 251 users,  load average: 0.05, 0.08,
+ 0.08
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-07-29 14:46:28, Philipp Zabel wrote:
-> Hi Abel,
+Hi Dmitry,
+
+On 20-07-29 23:06, Dmitry Torokhov wrote:
+> Hi Marco,
 > 
-> On Wed, 2020-07-29 at 15:07 +0300, Abel Vesa wrote:
-> > On i.MX8MP, there is a new type of IP which is called BLK_CTRL in
-
-[...]
-
-> > +
-> > +static int imx_blk_ctrl_reset_set(struct reset_controller_dev *rcdev,
-> > +				  unsigned long id, bool assert)
-> > +{
-> > +	struct imx_blk_ctrl_drvdata *drvdata = container_of(rcdev,
-> > +			struct imx_blk_ctrl_drvdata, rcdev);
-> > +	unsigned int offset = drvdata->rst_hws[id].offset;
-> > +	unsigned int shift = drvdata->rst_hws[id].shift;
-> > +	unsigned int mask = drvdata->rst_hws[id].mask;
-> > +	void __iomem *reg_addr = drvdata->base + offset;
-> > +	unsigned long flags;
-> > +	u32 reg;
-> > +
-> > +	if (assert) {
-> > +		pm_runtime_get_sync(rcdev->dev);
-> > +		spin_lock_irqsave(&drvdata->lock, flags);
-> > +		reg = readl(reg_addr);
-> > +		writel(reg & ~(mask << shift), reg_addr);
-> > +		spin_unlock_irqrestore(&drvdata->lock, flags);
-> > +	} else {
-> > +		spin_lock_irqsave(&drvdata->lock, flags);
-> > +		reg = readl(reg_addr);
-> > +		writel(reg | (mask << shift), reg_addr);
-> > +		spin_unlock_irqrestore(&drvdata->lock, flags);
-> > +		pm_runtime_put(rcdev->dev);
+> On Wed, Jul 29, 2020 at 09:55:13AM +0200, Marco Felsch wrote:
+> > Hi,
+> > 
+> > On 20-07-23 10:43, Horia Geantă wrote:
+> > > From: André Draszik <git@andred.net>
+> > > 
+> > > The snvs_pwrkey shares the SNVS LPSR status register with the snvs_rtc.
+> > > 
+> > > This driver here should only return IRQ_HANDLED if the status register
+> > > indicates that the event we're handling in the irq handler was genuinely
+> > > intended for this driver. Otheriwse the interrupt subsystem will
+> > > assume the interrupt was handled successfully even though it wasn't
+> > > at all.
+> > 
+> > After checking the RM and the imx6qdl.dtsi I'm not very sure that this
+> > is right since the snvs-powerkey has a seperate irq-line. So we can be
+> > sure that this irq is for us. If this is the case we don't need to check
+> > the SNVS_LPSR_REG instead we only need to clear it.
 > 
-> This still has the issue of potentially letting exclusive reset control
-> users break the device usage counter.
+> Wouldn't we want to know if for some reason we get spurious interrupts?
+
+We could check the bit at the very begin of the IRQ and return early but
+according the RM this should never happen. Anyway you're right HW is
+never bug free.
+
+Regards,
+  Marco
+
+> Thanks.
 > 
-> Also shared reset control users start with deassert(), and you end probe
-> with pm_runtime_put(), so the first shared reset control user that
-> deasserts its reset will decrement the dev->power.usage_count to -1 ?
-> For multiple resets being initially deasserted this would decrement
-> multiple times.
-> 
-> I think you'll have to track the (number of) asserted reset bits in this
-> reset controller and limit when to call pm_runtime_get/put_sync().
-> 
-
-Yes, you're right.
-
-I'll add a mask, and for each assert, the according bit will get set, and 
-for each deasssert the same bit will get cleared. And when the mask has at least
-one bit set, the pm_runtime_get gets called and when the mask is 0, the 
-pm_runtime_put_sync will be called.
-
-Does that sound OK ?
-
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int imx_blk_ctrl_reset_reset(struct reset_controller_dev *rcdev,
-> > +					   unsigned long id)
-> > +{
-> > +	imx_blk_ctrl_reset_set(rcdev, id, true);
-> > +	return imx_blk_ctrl_reset_set(rcdev, id, false);
-> 
-> Does this work for all peripherals? Are there none that require the
-> reset line to be asserted for a certain number of bus clocks or similar?
-
-As of now, there is no user that calls reset. All the users call the assert
-and then deassert. As for the number of clocks for reset, I'll try to have a
-chat to the HW design team and then come back with the information.
-
-> 
-> > +}
-> > +
-
+> -- 
+> Dmitry
