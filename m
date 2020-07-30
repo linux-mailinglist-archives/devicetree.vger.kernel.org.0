@@ -2,101 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA9AF23314E
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jul 2020 13:57:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F8AB2331C1
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jul 2020 14:14:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726794AbgG3L53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jul 2020 07:57:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59994 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726615AbgG3L52 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jul 2020 07:57:28 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97DC6C061794
-        for <devicetree@vger.kernel.org>; Thu, 30 Jul 2020 04:57:28 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id r4so21665495wrx.9
-        for <devicetree@vger.kernel.org>; Thu, 30 Jul 2020 04:57:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=references:user-agent:from:to:cc:subject:in-reply-to:date
-         :message-id:mime-version;
-        bh=Lk0vtaJ/HwDFlBgWWnoYso6B2Zcq+TTu5FHszftlqR0=;
-        b=Mm45+XM1hEHj6wncZG4txKaVupTlTcQ/HnbDx+C3/9sBFXsM6SU/fwzotTVN5kUqTr
-         VuOeSA+vXJuv8DV3H/p6koTsuRI/xKIJEdc9KTYBfotxpOeYwt/VmezgagcQ/HuVWoWd
-         GtqUMCnOEsbzePC0ATALEq5DCKoBz8u1rob0Yc01ZvRf6TkgS4qmxzOshPHSBlaf37+T
-         Y9gxLmwwG96YSzVoDwczXKH2McYjZowQAAb6J+Z9JA+8o7LpdnIlG/zdJxHUf5tjtzPm
-         mVnfy39Y8/COKt6Woqsmm6EKiiAicHRpyMEFNZOuNMYOkNWMcrruFOEzUqWPN/pOLsQ3
-         oDsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:references:user-agent:from:to:cc:subject
-         :in-reply-to:date:message-id:mime-version;
-        bh=Lk0vtaJ/HwDFlBgWWnoYso6B2Zcq+TTu5FHszftlqR0=;
-        b=DanL/SF+wfekwXpM5srLyduFahH6eQLGKE/As/0tRWHXTuQTiAAz9YvqVHCkUZpuFm
-         VkoX8RgQqF8B+GQVFn/zmXeQCIKdpS5rdYLTiHNaM9VQHnYRnR2D0ZcThg6Dh0uJIZRR
-         oPlT8Cs3T9EchI9YEoGlOyMIMtRXhqOuC+C3qnhtWIoWG3iG4Qn5645SlxxxPN+0KZLY
-         CdKGbtLwhsGq4uFo49MOWLNYWDFLX5WFbcpyzYxJxcA4SLfuoRkAgJyomBncn3tje0xC
-         T2Po/+yWEPMcoI+j+QOD8Pc8NkCUUQOmhb0gLk9mg22xSA2XgVitbJxDKdewwoW8PSTO
-         Nv6w==
-X-Gm-Message-State: AOAM531YhPne6/2q2l5yc24HPxNYE0K5fyRarNI5FoupdcVmikoYZton
-        m5Dt8REpeYr46fz8pYm8eZ9OPw==
-X-Google-Smtp-Source: ABdhPJyJLQpjqs5e+nauT4xj/WRjIxKQlhAAydhv+/Ol5/5Ev4HmBpRX0WlricV0ioMnQDKza1LyhA==
-X-Received: by 2002:adf:fe05:: with SMTP id n5mr26970112wrr.237.1596110247192;
-        Thu, 30 Jul 2020 04:57:27 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id s19sm11185960wrb.54.2020.07.30.04.57.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jul 2020 04:57:26 -0700 (PDT)
-References: <20200730100209.793-1-linux.amoon@gmail.com>
-User-agent: mu4e 1.3.3; emacs 26.3
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Anand Moon <linux.amoon@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH v1 0/3] Add missing ethernet reset ID for Amlogic SoC
-In-reply-to: <20200730100209.793-1-linux.amoon@gmail.com>
-Date:   Thu, 30 Jul 2020 13:57:25 +0200
-Message-ID: <1jeeot8bbu.fsf@starbuckisacylon.baylibre.com>
-MIME-Version: 1.0
-Content-Type: text/plain
+        id S1727888AbgG3MOg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jul 2020 08:14:36 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:15938 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726967AbgG3MOg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jul 2020 08:14:36 -0400
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 30 Jul 2020 05:14:36 -0700
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 30 Jul 2020 05:14:33 -0700
+Received: from gokulsri-linux.qualcomm.com ([10.201.2.207])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 30 Jul 2020 17:44:06 +0530
+Received: by gokulsri-linux.qualcomm.com (Postfix, from userid 432570)
+        id C3700218A2; Thu, 30 Jul 2020 17:44:04 +0530 (IST)
+From:   Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
+To:     bjorn.andersson@linaro.org, linux-remoteproc@vger.kernel.org,
+        sboyd@kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, linux-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, govinds@codeaurora.org,
+        sricharan@codeaurora.org, gokulsri@codeaurora.org
+Subject: [PATCH v8 0/4] Add non PAS wcss Q6 support for QCS404
+Date:   Thu, 30 Jul 2020 17:44:00 +0530
+Message-Id: <1596111244-28411-1-git-send-email-gokulsri@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes since v7:
+ Addressed review comments from	Stephen Boyd
+ 
+Changes since v6:
+ Removed duplicate structure entry added during rebase in v5
 
-On Thu 30 Jul 2020 at 12:02, Anand Moon <linux.amoon@gmail.com> wrote:
+Changes since v5:
+ Rebased all the unmerged patches on top of linux-5.8-rc3
+ Added dt-binding for qcom,qcs404-wcss-pil
+ Removed typo
 
-> These patch fix the Ethernet issue on Odroid C2 & Odroid N2 
-> Some time Ethernet interface come up but no DHCP request
-> is forwaded to the Router, this happens quite offern on
-> my side. Adding Reset controller to ethernet node FIx the
-> inilization issue.
->
+Changes since v4:
+ removed QDSP6SS clock controls and moved to wcss rproc.
+ renamed wcsccc to q6sstopcc.
+ cleanup/refactoring.
 
-I'm seeing this on other device as well. Strange that it pops up only
-now. Change tested on S905x, seems to help.
+Changes since v3:
+ dt binding cleanup.
+ Fixed remoteproc recovery.
+ Added remoteproc dump support.
+ wcsscc cleanup/refactoring.
 
-> -Anand
->
-> Anand Moon (3):
->   arm64: dts: amlogic: meson-gx: add missing ethernet reset ID
->   arm64: dts: amlogic: meson-axg: add missing ethernet reset ID
->   arm64: dts: amlogic: meson-g12: add missing ethernet reset ID
+Changes since v2:
+ Removed unused properties.
+ Refactored code to have common logic b/w ipq8074 and QCS404, wherever possible.
+ Added compatible example.
+ Removed wcss-protected bool.
 
-None of the patches apply, please rebase on kevin's dt64 branch.
+Changes since v1:
+  Corrected clock names as per comments in v1 patch.
 
-With that, you can add
+Govind Singh (4):
+  remoteproc: qcom: wcss: populate hardcoded param using driver data
+  dt-bindings: remoteproc: qcom: Add Q6V5 Modem PIL binding for QCS404
+  remoteproc: qcom: wcss: Add non pas wcss Q6 support for QCS404
+  remoteproc: qcom: wcss: explicitly request exclusive reset control
 
-Tested-by: Jerome Brunet <jbrunet@baylibre.com>
+ .../devicetree/bindings/remoteproc/qcom,q6v5.txt   |   9 +
+ drivers/remoteproc/qcom_q6v5_wcss.c                | 591 +++++++++++++++++++--
+ 2 files changed, 558 insertions(+), 42 deletions(-)
 
->
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 2 ++
->  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 ++
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 3 +++
->  3 files changed, 7 insertions(+)
+-- 
+2.7.4
 
