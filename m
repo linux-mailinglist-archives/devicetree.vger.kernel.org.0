@@ -2,204 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EE1C2332A3
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jul 2020 15:08:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D6492332F9
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jul 2020 15:25:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726535AbgG3NIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jul 2020 09:08:30 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:49026 "EHLO inva020.nxp.com"
+        id S1728874AbgG3NYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jul 2020 09:24:51 -0400
+Received: from vps.xff.cz ([195.181.215.36]:54952 "EHLO vps.xff.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728192AbgG3NI3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Jul 2020 09:08:29 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id D2BB31A0415;
-        Thu, 30 Jul 2020 15:08:27 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id E6E541A043C;
-        Thu, 30 Jul 2020 15:08:23 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 049F1402BF;
-        Thu, 30 Jul 2020 15:08:18 +0200 (CEST)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH 2/2] ARM: dts: imx: Change gpmi nand node name to nand-controller
-Date:   Thu, 30 Jul 2020 21:04:06 +0800
-Message-Id: <1596114246-26579-2-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1596114246-26579-1-git-send-email-Anson.Huang@nxp.com>
-References: <1596114246-26579-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726281AbgG3NYv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Jul 2020 09:24:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1596115488; bh=+MEVVHTIP9qhrFsbZIUNBBqcgRQFMCeiJcYQh/7XLBY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=cfll2q7lDhjjLE3ehKU9p0gLMOahxR+T1rKwaA6DNQWCirwOGDq+f2vBLtd5Mp/OT
+         a4md/P5e8nKKRCnchmBrETfBPT/xtjjltIkNXVbFvLVyF1QQQuSey2RzbnZsJmUh/W
+         YP1T7BYpSQzkYxHsDTPZah+YlO2Ys3V8HkZQJAsY=
+From:   Ondrej Jirman <megous@megous.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>
+Cc:     Ondrej Jirman <megous@megous.com>, Luca Weiss <luca@z3ntu.xyz>,
+        Tomas Novotny <tomas@novotny.cz>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v5 0/4] Add support for vibrator motor for TBS A711 Tablet
+Date:   Thu, 30 Jul 2020 15:24:42 +0200
+Message-Id: <20200730132446.3139980-1-megous@megous.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Change i.MX SoCs nand node name from "gpmi-nand" to "nand-controller" to
-be compliant with yaml schema, it requires the nodename to be
-"nand-controller".
+The tablet has a vibrator motor. This patch series exposes it via
+input subsystem (EV_FF).
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
- arch/arm/boot/dts/imx23-evk.dts        | 2 +-
- arch/arm/boot/dts/imx23.dtsi           | 2 +-
- arch/arm/boot/dts/imx28-apf28.dts      | 2 +-
- arch/arm/boot/dts/imx28-apx4devkit.dts | 2 +-
- arch/arm/boot/dts/imx28-evk.dts        | 2 +-
- arch/arm/boot/dts/imx28-m28cu3.dts     | 2 +-
- arch/arm/boot/dts/imx28.dtsi           | 2 +-
- arch/arm/boot/dts/imx6qdl.dtsi         | 2 +-
- arch/arm/boot/dts/imx6sx.dtsi          | 2 +-
- arch/arm/boot/dts/imx6ul.dtsi          | 2 +-
- arch/arm/boot/dts/imx7s.dtsi           | 2 +-
- 11 files changed, 11 insertions(+), 11 deletions(-)
+I'd like to ask input maintainers to take the patches 1 and 2.
+Patches 3 and 4 should go via the sunxi tree.
 
-diff --git a/arch/arm/boot/dts/imx23-evk.dts b/arch/arm/boot/dts/imx23-evk.dts
-index 0b2701c..8cbaf1c81 100644
---- a/arch/arm/boot/dts/imx23-evk.dts
-+++ b/arch/arm/boot/dts/imx23-evk.dts
-@@ -53,7 +53,7 @@
- 
- 	apb@80000000 {
- 		apbh@80000000 {
--			gpmi-nand@8000c000 {
-+			nand-controller@8000c000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&gpmi_pins_a &gpmi_pins_fixup>;
- 				status = "okay";
-diff --git a/arch/arm/boot/dts/imx23.dtsi b/arch/arm/boot/dts/imx23.dtsi
-index 18289f6..7f4c602 100644
---- a/arch/arm/boot/dts/imx23.dtsi
-+++ b/arch/arm/boot/dts/imx23.dtsi
-@@ -76,7 +76,7 @@
- 				status = "disabled";
- 			};
- 
--			gpmi-nand@8000c000 {
-+			nand-controller@8000c000 {
- 				compatible = "fsl,imx23-gpmi-nand";
- 				#address-cells = <1>;
- 				#size-cells = <1>;
-diff --git a/arch/arm/boot/dts/imx28-apf28.dts b/arch/arm/boot/dts/imx28-apf28.dts
-index 3ed2b32..14a92fe 100644
---- a/arch/arm/boot/dts/imx28-apf28.dts
-+++ b/arch/arm/boot/dts/imx28-apf28.dts
-@@ -17,7 +17,7 @@
- 
- 	apb@80000000 {
- 		apbh@80000000 {
--			gpmi-nand@8000c000 {
-+			nand-controller@8000c000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&gpmi_pins_a &gpmi_status_cfg>;
- 				status = "okay";
-diff --git a/arch/arm/boot/dts/imx28-apx4devkit.dts b/arch/arm/boot/dts/imx28-apx4devkit.dts
-index c5acc19..b86be32 100644
---- a/arch/arm/boot/dts/imx28-apx4devkit.dts
-+++ b/arch/arm/boot/dts/imx28-apx4devkit.dts
-@@ -13,7 +13,7 @@
- 
- 	apb@80000000 {
- 		apbh@80000000 {
--			gpmi-nand@8000c000 {
-+			nand-controller@8000c000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&gpmi_pins_a &gpmi_status_cfg>;
- 				status = "okay";
-diff --git a/arch/arm/boot/dts/imx28-evk.dts b/arch/arm/boot/dts/imx28-evk.dts
-index 96c1d10..7e2b0f1 100644
---- a/arch/arm/boot/dts/imx28-evk.dts
-+++ b/arch/arm/boot/dts/imx28-evk.dts
-@@ -97,7 +97,7 @@
- 
- 	apb@80000000 {
- 		apbh@80000000 {
--			gpmi-nand@8000c000 {
-+			nand-controller@8000c000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&gpmi_pins_a &gpmi_status_cfg
- 					     &gpmi_pins_evk>;
-diff --git a/arch/arm/boot/dts/imx28-m28cu3.dts b/arch/arm/boot/dts/imx28-m28cu3.dts
-index 91bd6de..865ac3d 100644
---- a/arch/arm/boot/dts/imx28-m28cu3.dts
-+++ b/arch/arm/boot/dts/imx28-m28cu3.dts
-@@ -17,7 +17,7 @@
- 
- 	apb@80000000 {
- 		apbh@80000000 {
--			gpmi-nand@8000c000 {
-+			nand-controller@8000c000 {
- 				#address-cells = <1>;
- 				#size-cells = <1>;
- 				pinctrl-names = "default";
-diff --git a/arch/arm/boot/dts/imx28.dtsi b/arch/arm/boot/dts/imx28.dtsi
-index a2b799c..94dfbf5 100644
---- a/arch/arm/boot/dts/imx28.dtsi
-+++ b/arch/arm/boot/dts/imx28.dtsi
-@@ -100,7 +100,7 @@
- 				status = "disabled";
- 			};
- 
--			gpmi: gpmi-nand@8000c000 {
-+			gpmi: nand-controller@8000c000 {
- 				compatible = "fsl,imx28-gpmi-nand";
- 				#address-cells = <1>;
- 				#size-cells = <1>;
-diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
-index 43edbf1..de6daa7 100644
---- a/arch/arm/boot/dts/imx6qdl.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl.dtsi
-@@ -159,7 +159,7 @@
- 			clocks = <&clks IMX6QDL_CLK_APBH_DMA>;
- 		};
- 
--		gpmi: gpmi-nand@112000 {
-+		gpmi: nand-controller@112000 {
- 			compatible = "fsl,imx6q-gpmi-nand";
- 			reg = <0x00112000 0x2000>, <0x00114000 0x2000>;
- 			reg-names = "gpmi-nand", "bch";
-diff --git a/arch/arm/boot/dts/imx6sx.dtsi b/arch/arm/boot/dts/imx6sx.dtsi
-index b480dfa..dfdca18 100644
---- a/arch/arm/boot/dts/imx6sx.dtsi
-+++ b/arch/arm/boot/dts/imx6sx.dtsi
-@@ -213,7 +213,7 @@
- 			clocks = <&clks IMX6SX_CLK_APBH_DMA>;
- 		};
- 
--		gpmi: gpmi-nand@1806000{
-+		gpmi: nand-controller@1806000{
- 			compatible = "fsl,imx6sx-gpmi-nand";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
-index 2b088f2..d7d9f3e 100644
---- a/arch/arm/boot/dts/imx6ul.dtsi
-+++ b/arch/arm/boot/dts/imx6ul.dtsi
-@@ -174,7 +174,7 @@
- 			clocks = <&clks IMX6UL_CLK_APBHDMA>;
- 		};
- 
--		gpmi: gpmi-nand@1806000 {
-+		gpmi: nand-controller@1806000 {
- 			compatible = "fsl,imx6q-gpmi-nand";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
-index 1cfaf41..2d23779 100644
---- a/arch/arm/boot/dts/imx7s.dtsi
-+++ b/arch/arm/boot/dts/imx7s.dtsi
-@@ -1208,7 +1208,7 @@
- 			clocks = <&clks IMX7D_NAND_USDHC_BUS_RAWNAND_CLK>;
- 		};
- 
--		gpmi: gpmi-nand@33002000{
-+		gpmi: nand-controller@33002000{
- 			compatible = "fsl,imx7d-gpmi-nand";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
+The change to the vibrator driver is meant to enable toggling the
+vibrator motor just via a power supply itself. There's not additional
+gpio driven switch on this tablet between the power supply for the
+motor and the motor.
+
+Please take a look.
+
+Changes in v5:
+- Fix probe without a power supply (Dmitry)
+
+Changes in v4:
+- Added DT reviewed-by tag
+- Fixed motor typo
+
+Changes in v3:
+- Changed dt-binding to require at least one of enable/supply, dropped ack
+- Changed driver to bail out if neither supply nor gpio is given
+
+Changes in v2:
+- Added DT ack tag
+- Add more information to the commit log (re use of LDO for the power)
+
+
+thank you and regards,
+  Ondrej Jirman
+
+Ondrej Jirman (4):
+  dt-bindings: input: gpio-vibrator: Don't require enable-gpios
+  input: gpio-vibra: Allow to use vcc-supply alone to control the
+    vibrator
+  ARM: dts: sun8i-a83t-tbs-a711: Add support for the vibrator motor
+  ARM: dts: sun8i-a83t-tbs-a711: Increase voltage on the vibrator
+
+ .../bindings/input/gpio-vibrator.yaml          |  7 ++++++-
+ arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts      |  9 +++++++--
+ drivers/input/misc/gpio-vibra.c                | 18 +++++++++++++-----
+ 3 files changed, 26 insertions(+), 8 deletions(-)
+
 -- 
-2.7.4
+2.27.0
 
