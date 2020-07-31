@@ -2,87 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C53C3234DA7
-	for <lists+devicetree@lfdr.de>; Sat,  1 Aug 2020 00:42:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60E6D234DAE
+	for <lists+devicetree@lfdr.de>; Sat,  1 Aug 2020 00:43:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726119AbgGaWmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Jul 2020 18:42:16 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:44593 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726099AbgGaWmP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Jul 2020 18:42:15 -0400
-Received: by mail-io1-f66.google.com with SMTP id v6so17940088iow.11;
-        Fri, 31 Jul 2020 15:42:15 -0700 (PDT)
+        id S1726903AbgGaWnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Jul 2020 18:43:15 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:40332 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726883AbgGaWnO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Jul 2020 18:43:14 -0400
+Received: by mail-io1-f67.google.com with SMTP id l17so33186304iok.7;
+        Fri, 31 Jul 2020 15:43:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=soM3XiGlqMF6wRO5kAd80dwyaXMFhHTLobhFQyhs1VA=;
-        b=i+RGnrcuC2hsYROT/ugS4m/8mErVz0A1C87rw8b6CdneVCSPYntNncZ3m+o/e/HeJ2
-         O1VYa20E0EZ7I6IVJTyAjs7g2RPvE0jv217+cVpy21PBQiKPiXF6L4RAL64BdqaRflHT
-         acbGUcs5jEWmhzIbkz1DC+aMfgK4cIEaY94GLzGxW2OOKO0DvNiQZxlYuyn/fDkWP468
-         8Dfc8gqYfNgNoXTS40tdqxl7H1p8qUrOl/SBmtkiPk4qe2LJLZVuauu2WBiN8C12px5Z
-         cWjmgRqiqWs50ntyqnaHRmOJz2AXUuuIBD3sE/t8DljwOJAh4CRbv3N3u4WBocmkMFlg
-         mrNQ==
-X-Gm-Message-State: AOAM532dE/KGLgMISlxevweUw7s1bI0VSdZjU+lAu6piw5X18aeqYq5y
-        gCkKKFSXDYSKVvFG0t0/cQ==
-X-Google-Smtp-Source: ABdhPJzCLkAb9cmGZT9KOsWAc2uFkDU6xbg3zFNhGW9fmSZ0oPYORZm5j3NYhoSrUh/mtFccShqV6w==
-X-Received: by 2002:a02:3e13:: with SMTP id s19mr7569352jas.95.1596235334866;
-        Fri, 31 Jul 2020 15:42:14 -0700 (PDT)
+        bh=1B+vyO+R8quuszNhtOVeeWCkKlu3aOesury3x/oHRpU=;
+        b=EcReuUdawrJllYwPSiyEFtFRPY/9Jg55O0PTxsB1KD6Uhp+rXnNXTY5iCZzF+fH87C
+         nkx8FGBbfdmt6aNlaPLROn1aXq0vAu0nOdjOl2/d3CtYPF6mSLN9BUqIKTcsfaLez9AL
+         0dPp3h4yZHVwuk9I5W3axbTKFvRvQJoO97rAeTlCKwq3Fd7JpJB91TBiG7U2S7uZcewr
+         UhsRppJi5nDXUAqTteVezInLiPTpM4+Qj6E5gVISVotPsf0TRw/Lm+V2wWG4Wtobf9vl
+         i7nU5osUcc3W2Vi8swR3LFfnZzey44/KwHz3r2wfTH0XZOzbStBy9lO58e/fu20q5prg
+         RoXQ==
+X-Gm-Message-State: AOAM533ZiTVqq/X0HaDNfMbWwd2nVkDsRBXZKxYpAFQCdj9e4LMOZcvL
+        w9+tEMgg0Re51gLuydAwsw==
+X-Google-Smtp-Source: ABdhPJz2Svj2E53KRDqoGx4JA4V4fWumeWvZbSTFi+n69Ey9ghRgN1SmkWE3+pqiF//EmqPn6wrunw==
+X-Received: by 2002:a05:6638:1649:: with SMTP id a9mr7746090jat.115.1596235393792;
+        Fri, 31 Jul 2020 15:43:13 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id x12sm5715381ile.14.2020.07.31.15.42.13
+        by smtp.gmail.com with ESMTPSA id y8sm5242818iom.26.2020.07.31.15.43.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Jul 2020 15:42:14 -0700 (PDT)
-Received: (nullmailer pid 941715 invoked by uid 1000);
-        Fri, 31 Jul 2020 22:42:13 -0000
-Date:   Fri, 31 Jul 2020 16:42:13 -0600
+        Fri, 31 Jul 2020 15:43:13 -0700 (PDT)
+Received: (nullmailer pid 943315 invoked by uid 1000);
+        Fri, 31 Jul 2020 22:43:10 -0000
+Date:   Fri, 31 Jul 2020 16:43:10 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        linux-kernel@vger.kernel.org, Viresh Kumar <vireshk@kernel.org>,
-        devicetree@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        dmaengine@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Serge Semin <fancer.lancer@gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: dma: dw: Add optional DMA-channels mask
- cell support
-Message-ID: <20200731224213.GA941640@bogus>
-References: <20200730154545.3965-1-Sergey.Semin@baikalelectronics.ru>
- <20200730154545.3965-2-Sergey.Semin@baikalelectronics.ru>
+To:     Jonathan Bakker <xc-racer2@live.ca>
+Cc:     robh+dt@kernel.org, mchehab@kernel.org, s.nawrocki@samsung.com,
+        kyungmin.park@samsung.com, linux-arm-kernel@lists.infradead.org,
+        kgene@kernel.org, krzk@kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v2 11/11] dt-bindings: media: Correct samsung-fimc
+ parallel port numbering
+Message-ID: <20200731224310.GA943204@bogus>
+References: <20200730230114.8572-1-xc-racer2@live.ca>
+ <BN6PR04MB0660B938349CA15DE7BCC5BBA3710@BN6PR04MB0660.namprd04.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200730154545.3965-2-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <BN6PR04MB0660B938349CA15DE7BCC5BBA3710@BN6PR04MB0660.namprd04.prod.outlook.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Jul 2020 18:45:41 +0300, Serge Semin wrote:
-> Each DW DMA controller channel can be synthesized with different
-> parameters like maximum burst-length, multi-block support, maximum data
-> width, etc. Most of these parameters determine the DW DMAC channels
-> performance in its own aspect. On the other hand these parameters can
-> be implicitly responsible for the channels performance degradation
-> (for instance multi-block support is a very useful feature, but having
-> it disabled during the DW DMAC synthesize will provide a more optimized
-> core). Since DMA slave devices may have critical dependency on the DMA
-> engine performance, let's provide a way for the slave devices to have
-> the DMA-channels allocated from a pool of the channels, which according
-> to the system engineer fulfill their performance requirements.
+On Thu, 30 Jul 2020 16:01:14 -0700, Jonathan Bakker wrote:
+> The parallel port nodes should be numbered 1 and 2, not 0 and 1
+> for A and B respectively.  The driver has always implemented 1
+> and 2 and the in-tree Goni DTS uses 1 as port A as well.  Update
+> the documentation to match this behaviour.
 > 
-> The pool is determined by a mask optionally specified in the fifth
-> DMA-cell of the DMA DT-property. If the fifth cell is omitted from the
-> phandle arguments or the mask is zero, then the allocation will be
-> performed from a set of all channels provided by the DMA controller.
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Signed-off-by: Jonathan Bakker <xc-racer2@live.ca>
 > ---
->  .../devicetree/bindings/dma/snps,dma-spear1340.yaml        | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
+> Changes from v1:
+> - New patch replacing patch modifying driver to match documentation
+> ---
+>  Documentation/devicetree/bindings/media/samsung-fimc.txt | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
