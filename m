@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83D78234996
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jul 2020 18:49:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F32C623497E
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jul 2020 18:49:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733180AbgGaQtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Jul 2020 12:49:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43992 "EHLO
+        id S1733299AbgGaQtQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Jul 2020 12:49:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733174AbgGaQtH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Jul 2020 12:49:07 -0400
-Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60746C06138F
-        for <devicetree@vger.kernel.org>; Fri, 31 Jul 2020 09:49:06 -0700 (PDT)
-Received: by mail-io1-xd42.google.com with SMTP id l17so32282046iok.7
-        for <devicetree@vger.kernel.org>; Fri, 31 Jul 2020 09:49:06 -0700 (PDT)
+        with ESMTP id S1733184AbgGaQtI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Jul 2020 12:49:08 -0400
+Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E879C061756
+        for <devicetree@vger.kernel.org>; Fri, 31 Jul 2020 09:49:07 -0700 (PDT)
+Received: by mail-io1-xd43.google.com with SMTP id a5so17040652ioa.13
+        for <devicetree@vger.kernel.org>; Fri, 31 Jul 2020 09:49:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=XHCUU2RRnfaW/xOy0tUCXIP889dh0URjbsp/iA2xySI=;
-        b=UttcU3N3nttvXlJ8qC5xBWXsvsAh+sqFPzkIM8khtexWu++q35V94rnwGyOB6FqUHG
-         j9Lf5QLydvMp2UmbUpFunMQKamV/WyYDR/Jz1b8x++OcDmZf6VwOUbwJa/FyYFaUNq3B
-         VeEKOEjEzFrX7+XJJJsqxSonhDjt08GNWPIIE=
+        bh=kJxFQ5dicx/XdfMjNZsxOmoMpHKnwMI2oZ1xqNHvk7E=;
+        b=YhRnLi0kUNL57DqqpZqj7QSpzSWeeRK75/1uhIBZH91Ny2l1EJFxkbrqSLgfXnFW5C
+         VmN2t+phogi/sdui2npf1W399a2tUvJNs/d/E63wIMD8LJIY30S14yJBGcvkj1XR8Kyd
+         JOUA6dec9CQhMz17YnM2kRyMlmb5uCCQard9w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=XHCUU2RRnfaW/xOy0tUCXIP889dh0URjbsp/iA2xySI=;
-        b=RPrB1L4VXE4Ea38qFlZu86mfiBPPNkbmyTi9oF8ILbERewL6N0PaQlFKT19EksnNTP
-         syeQL7XoAP0ZP1WxRjgrZCHfd8324tEN+B/j99ijrQghdHfsEOzTnddswb7DEIkerYhT
-         stRuiJ552cYLeufyMCrFLHVtRjyLk0pruw90uDt0UsJigUdcvjGcrjBPsM0eYOpgsVGZ
-         vWVTX3OIuGi1ytQMT/vW4FfJS0k0qnT/aAMygEExr1h2FP0I+9TrZuyefpruFiLwUTBV
-         3zxN7yK5yXZjx2f2zmLqz+NcFmHcfWd7rD83H7SoY7x3dm1L7eZwCD4Fx+yqxJB3xghg
-         ZVrg==
-X-Gm-Message-State: AOAM5319jEo/A+/m0kJgOGMO6hFMXzus0+b67ef9t+W02CjaakxQ1If1
-        zUz6MoquTJACfNVZmZtqhu+v9zn8LZh1wQ==
-X-Google-Smtp-Source: ABdhPJzIMn/W3JE/0PZaHnMNnre5jGWm2flk0DVLrUPQfgEdwiQciGPBXUWRGcZXYBqJdEes/zE9pQ==
-X-Received: by 2002:a02:7092:: with SMTP id f140mr6145335jac.8.1596214145596;
-        Fri, 31 Jul 2020 09:49:05 -0700 (PDT)
+        bh=kJxFQ5dicx/XdfMjNZsxOmoMpHKnwMI2oZ1xqNHvk7E=;
+        b=CewnLqD5HG+eDgoSeO7EoWSRmDHK0jRVHBUy6GjLayLE8gsEjjC+zrsOn2iAPhDakw
+         Llv9cxjdB52oeSvW+o8olhWruKp2OyEVEmGj1S+G5jYL49iv+39erpdALYNGB0qYYG7Q
+         9lqSSBU7rHFrBdNjbKNZEM3M9SjqHlEZqhXPI5YT+SJOrr0PbZq3kQirjDd06CuDdDWX
+         LmlWfzzERogAh9GfRNC16JlL6an6sI8iz400R525wV7o5eeigaMNvQAI/p8+eJRZn2PA
+         QKAT5mdeeCAep+TNa1jRzr4gSiNXJfvzpFIROmS5FHjVIgkJKOnw2xT9O398dl/52rOw
+         pkeg==
+X-Gm-Message-State: AOAM530Hv48kJHEKiJSHmD+txi0SYIpp14K2nnaXv49B8wAuPGbwmmvN
+        M0asv0UZ4Y+v5WGbUi2ClbxoC6LibEFVJQ==
+X-Google-Smtp-Source: ABdhPJxphulmJ4n52qeAfu6XFsVF+xiIHnLgNMg7tfM3ebQTH0fDaz1WZm5ZuRohQLMVb4GpcVK00g==
+X-Received: by 2002:a6b:b215:: with SMTP id b21mr4371808iof.43.1596214146567;
+        Fri, 31 Jul 2020 09:49:06 -0700 (PDT)
 Received: from derch.Home (97-122-92-59.hlrn.qwest.net. [97.122.92.59])
-        by smtp.gmail.com with ESMTPSA id e84sm5122083ill.60.2020.07.31.09.49.04
+        by smtp.gmail.com with ESMTPSA id e84sm5122083ill.60.2020.07.31.09.49.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Jul 2020 09:49:05 -0700 (PDT)
+        Fri, 31 Jul 2020 09:49:06 -0700 (PDT)
 From:   Daniel Campello <campello@chromium.org>
 To:     LKML <devicetree@vger.kernel.org>,
         LKML <linux-kernel@vger.kernel.org>
@@ -51,13 +51,14 @@ Cc:     Jonathan Cameron <jic23@kernel.org>,
         Daniel Campello <campello@chromium.org>,
         Andy Shevchenko <andy.shevchenko@gmail.com>,
         Douglas Anderson <dianders@chromium.org>,
+        Gwendal Grignou <gwendal@chromium.org>,
         Hartmut Knaack <knaack.h@gmx.de>,
         Lars-Peter Clausen <lars@metafoo.de>,
         Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
         Stephen Boyd <swboyd@chromium.org>, linux-iio@vger.kernel.org
-Subject: [PATCH v3 08/15] iio: sx9310: Use regmap_read_poll_timeout() for compensation
-Date:   Fri, 31 Jul 2020 10:48:45 -0600
-Message-Id: <20200731104555.v3.8.Ia205f0b0363bf663db7704026b5b7036b9748c56@changeid>
+Subject: [PATCH v3 09/15] iio: sx9310: Update copyright
+Date:   Fri, 31 Jul 2020 10:48:46 -0600
+Message-Id: <20200731104555.v3.9.If88afce92bbc1e97a532874cca35e642a9566172@changeid>
 X-Mailer: git-send-email 2.28.0.163.g6104cc2f0b6-goog
 In-Reply-To: <20200731164853.3020946-1-campello@chromium.org>
 References: <20200731164853.3020946-1-campello@chromium.org>
@@ -68,64 +69,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Simplify compensation stage by using regmap_read_poll_timeout().
+Fixes wrong copyright year.
 
 Signed-off-by: Daniel Campello <campello@chromium.org>
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 ---
 
 Changes in v3: None
-Changes in v2:
- - Fixed dev_err() message
+Changes in v2: None
 
- drivers/iio/proximity/sx9310.c | 25 ++++++++++---------------
- 1 file changed, 10 insertions(+), 15 deletions(-)
+ drivers/iio/proximity/sx9310.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/iio/proximity/sx9310.c b/drivers/iio/proximity/sx9310.c
-index 8f80a4c20ac05e..9f6292cc86146d 100644
+index 9f6292cc86146d..19253bf335437f 100644
 --- a/drivers/iio/proximity/sx9310.c
 +++ b/drivers/iio/proximity/sx9310.c
-@@ -802,7 +802,7 @@ static const struct sx9310_reg_default sx9310_default_regs[] = {
- static int sx9310_init_compensation(struct iio_dev *indio_dev)
- {
- 	struct sx9310_data *data = iio_priv(indio_dev);
--	int i, ret;
-+	int ret;
- 	unsigned int val;
- 	unsigned int ctrl0;
+@@ -1,13 +1,13 @@
+ // SPDX-License-Identifier: GPL-2.0
+ /*
+- * Copyright 2018 Google LLC.
++ * Copyright 2020 Google LLC.
+  *
+  * Driver for Semtech's SX9310/SX9311 capacitive proximity/button solution.
+  * Based on SX9500 driver and Semtech driver using the input framework
+  * <https://my.syncplicity.com/share/teouwsim8niiaud/
+  *          linux-driver-SX9310_NoSmartHSensing>.
+- * Reworked April 2019 by Evan Green <evgreen@chromium.org>
+- * and January 2020 by Daniel Campello <campello@chromium.org>
++ * Reworked in April 2019 by Evan Green <evgreen@chromium.org>
++ * and in January 2020 by Daniel Campello <campello@chromium.org>.
+  */
  
-@@ -816,22 +816,17 @@ static int sx9310_init_compensation(struct iio_dev *indio_dev)
- 	if (ret < 0)
- 		return ret;
- 
--	for (i = 100; i >= 0; i--) {
--		msleep(20);
--		ret = regmap_read(data->regmap, SX9310_REG_STAT1, &val);
--		if (ret < 0)
--			goto out;
--		if (!(val & SX9310_COMPSTAT_MASK))
--			break;
--	}
--
--	if (i < 0) {
--		dev_err(&data->client->dev,
--			"initial compensation timed out: 0x%02x", val);
--		ret = -ETIMEDOUT;
-+	ret = regmap_read_poll_timeout(data->regmap, SX9310_REG_STAT1, val,
-+				       !(val & SX9310_REG_STAT1_COMPSTAT_MASK),
-+				       20000, 2000000);
-+	if (ret) {
-+		if (ret == -ETIMEDOUT)
-+			dev_err(&data->client->dev,
-+				"initial compensation timed out: 0x%02x\n",
-+				val);
-+		return ret;
- 	}
- 
--out:
- 	regmap_write(data->regmap, SX9310_REG_PROX_CTRL0, ctrl0);
- 	return ret;
- }
+ #include <linux/acpi.h>
 -- 
 2.28.0.163.g6104cc2f0b6-goog
 
