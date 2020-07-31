@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D09FC23497C
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jul 2020 18:49:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83D78234996
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jul 2020 18:49:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733226AbgGaQtJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Jul 2020 12:49:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43956 "EHLO
+        id S1733180AbgGaQtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Jul 2020 12:49:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733155AbgGaQtH (ORCPT
+        with ESMTP id S1733174AbgGaQtH (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 31 Jul 2020 12:49:07 -0400
-Received: from mail-il1-x144.google.com (mail-il1-x144.google.com [IPv6:2607:f8b0:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C6CEC0617B1
-        for <devicetree@vger.kernel.org>; Fri, 31 Jul 2020 09:49:05 -0700 (PDT)
-Received: by mail-il1-x144.google.com with SMTP id y18so17431297ilp.10
-        for <devicetree@vger.kernel.org>; Fri, 31 Jul 2020 09:49:05 -0700 (PDT)
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60746C06138F
+        for <devicetree@vger.kernel.org>; Fri, 31 Jul 2020 09:49:06 -0700 (PDT)
+Received: by mail-io1-xd42.google.com with SMTP id l17so32282046iok.7
+        for <devicetree@vger.kernel.org>; Fri, 31 Jul 2020 09:49:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=6WJOpih10G5LrQiOZLhDb5AlSl69gNb0B6aytvleDjw=;
-        b=dElXqIE1198tbm2UIWdhAIl/ERxxwPIyJ7q5XwpfIpZhs2AEfBIy8WVfSyzcBfZ9kT
-         e1ToeJHPAI1L5NPtszeDLtix5iJtBVWvjb+vszBohkfZc22qkSppM61JM6iAVof+KCeX
-         HQ8nBfSPJ0LFwevvBLTnaLPIBQIcaTVEsQUBk=
+        bh=XHCUU2RRnfaW/xOy0tUCXIP889dh0URjbsp/iA2xySI=;
+        b=UttcU3N3nttvXlJ8qC5xBWXsvsAh+sqFPzkIM8khtexWu++q35V94rnwGyOB6FqUHG
+         j9Lf5QLydvMp2UmbUpFunMQKamV/WyYDR/Jz1b8x++OcDmZf6VwOUbwJa/FyYFaUNq3B
+         VeEKOEjEzFrX7+XJJJsqxSonhDjt08GNWPIIE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=6WJOpih10G5LrQiOZLhDb5AlSl69gNb0B6aytvleDjw=;
-        b=FDKjVt8UMydoPo9w+WkJRfvXvrNxW8HKp9NvNxl9lS8Qiaa4b+x7Ws6AJ5Y39iXsJl
-         v7i7OPbDObAAg9ehARlXZfsNt2/kQy3mVFYhPjDGGKoF8pgncCi9lgpK4O0pPxJJdc2x
-         LXzrtz/cJk8q7OI1AY3xM1L2HS+zNnsyW7Xyd3d/EuySuKzR0jASohQ+FzHvk9JdCt19
-         xS7E30VLe8tOUav7P6kfuSM9BSHhgPZRtCpWDgyv7p05d/JoLLTrYXQrqWPbNE+LWU4s
-         6Si6Cv4Lhne21CO1pghCDn0FeYNABRB4dHrkBQbGo5W8c0ykSgUyMoWcJR/dNlheRwnS
-         v3xQ==
-X-Gm-Message-State: AOAM530zURbfuuYjHeMDRBZ3zlvwljtxGtiV2j/Q8zkCk59BOU0vXSgd
-        2WlBw2NqPMgN+o9Fc90t+0YwYYERNnNHIw==
-X-Google-Smtp-Source: ABdhPJwHvu5de9YhcaASuVrSsByGsU4noAiiti5+DOgk/iNUZwZf4MC4Cuc/93Nh8PAr1hSfEm3aCQ==
-X-Received: by 2002:a92:d24a:: with SMTP id v10mr4743833ilg.224.1596214144611;
-        Fri, 31 Jul 2020 09:49:04 -0700 (PDT)
+        bh=XHCUU2RRnfaW/xOy0tUCXIP889dh0URjbsp/iA2xySI=;
+        b=RPrB1L4VXE4Ea38qFlZu86mfiBPPNkbmyTi9oF8ILbERewL6N0PaQlFKT19EksnNTP
+         syeQL7XoAP0ZP1WxRjgrZCHfd8324tEN+B/j99ijrQghdHfsEOzTnddswb7DEIkerYhT
+         stRuiJ552cYLeufyMCrFLHVtRjyLk0pruw90uDt0UsJigUdcvjGcrjBPsM0eYOpgsVGZ
+         vWVTX3OIuGi1ytQMT/vW4FfJS0k0qnT/aAMygEExr1h2FP0I+9TrZuyefpruFiLwUTBV
+         3zxN7yK5yXZjx2f2zmLqz+NcFmHcfWd7rD83H7SoY7x3dm1L7eZwCD4Fx+yqxJB3xghg
+         ZVrg==
+X-Gm-Message-State: AOAM5319jEo/A+/m0kJgOGMO6hFMXzus0+b67ef9t+W02CjaakxQ1If1
+        zUz6MoquTJACfNVZmZtqhu+v9zn8LZh1wQ==
+X-Google-Smtp-Source: ABdhPJzIMn/W3JE/0PZaHnMNnre5jGWm2flk0DVLrUPQfgEdwiQciGPBXUWRGcZXYBqJdEes/zE9pQ==
+X-Received: by 2002:a02:7092:: with SMTP id f140mr6145335jac.8.1596214145596;
+        Fri, 31 Jul 2020 09:49:05 -0700 (PDT)
 Received: from derch.Home (97-122-92-59.hlrn.qwest.net. [97.122.92.59])
-        by smtp.gmail.com with ESMTPSA id e84sm5122083ill.60.2020.07.31.09.49.03
+        by smtp.gmail.com with ESMTPSA id e84sm5122083ill.60.2020.07.31.09.49.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Jul 2020 09:49:04 -0700 (PDT)
+        Fri, 31 Jul 2020 09:49:05 -0700 (PDT)
 From:   Daniel Campello <campello@chromium.org>
 To:     LKML <devicetree@vger.kernel.org>,
         LKML <linux-kernel@vger.kernel.org>
@@ -51,14 +51,13 @@ Cc:     Jonathan Cameron <jic23@kernel.org>,
         Daniel Campello <campello@chromium.org>,
         Andy Shevchenko <andy.shevchenko@gmail.com>,
         Douglas Anderson <dianders@chromium.org>,
-        Enrico Granata <egranata@chromium.org>,
         Hartmut Knaack <knaack.h@gmx.de>,
         Lars-Peter Clausen <lars@metafoo.de>,
         Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
         Stephen Boyd <swboyd@chromium.org>, linux-iio@vger.kernel.org
-Subject: [PATCH v3 07/15] iio: sx9310: Use long instead of int for channel bitmaps
-Date:   Fri, 31 Jul 2020 10:48:44 -0600
-Message-Id: <20200731104555.v3.7.Iecaa50e469918a385b3e5dab375e442540ea2ad4@changeid>
+Subject: [PATCH v3 08/15] iio: sx9310: Use regmap_read_poll_timeout() for compensation
+Date:   Fri, 31 Jul 2020 10:48:45 -0600
+Message-Id: <20200731104555.v3.8.Ia205f0b0363bf663db7704026b5b7036b9748c56@changeid>
 X-Mailer: git-send-email 2.28.0.163.g6104cc2f0b6-goog
 In-Reply-To: <20200731164853.3020946-1-campello@chromium.org>
 References: <20200731164853.3020946-1-campello@chromium.org>
@@ -69,131 +68,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Uses for_each_set_bit() macro to loop over channel bitmaps.
+Simplify compensation stage by using regmap_read_poll_timeout().
 
 Signed-off-by: Daniel Campello <campello@chromium.org>
 Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 ---
 
-Changes in v3:
- - Added static assert for number of channels.
-
+Changes in v3: None
 Changes in v2:
- - Changed prox_stat to chan_prox_stat bitmap.
+ - Fixed dev_err() message
 
- drivers/iio/proximity/sx9310.c | 39 ++++++++++++++++++----------------
- 1 file changed, 21 insertions(+), 18 deletions(-)
+ drivers/iio/proximity/sx9310.c | 25 ++++++++++---------------
+ 1 file changed, 10 insertions(+), 15 deletions(-)
 
 diff --git a/drivers/iio/proximity/sx9310.c b/drivers/iio/proximity/sx9310.c
-index c46584b4817b4a..8f80a4c20ac05e 100644
+index 8f80a4c20ac05e..9f6292cc86146d 100644
 --- a/drivers/iio/proximity/sx9310.c
 +++ b/drivers/iio/proximity/sx9310.c
-@@ -119,6 +119,7 @@
- 
- /* 4 hardware channels, as defined in STAT0: COMB, CS2, CS1 and CS0. */
- #define SX9310_NUM_CHANNELS				4
-+static_assert(SX9310_NUM_CHANNELS < BITS_PER_LONG);
- 
- struct sx9310_data {
- 	/* Serialize access to registers and channel configuration */
-@@ -130,7 +131,7 @@ struct sx9310_data {
- 	 * Last reading of the proximity status for each channel.
- 	 * We only send an event to user space when this changes.
- 	 */
--	bool prox_stat[SX9310_NUM_CHANNELS];
-+	unsigned long chan_prox_stat;
- 	bool trigger_enabled;
- 	/* Ensure correct alignment of timestamp when present. */
- 	struct {
-@@ -140,7 +141,8 @@ struct sx9310_data {
- 	/* Remember enabled channels and sample rate during suspend. */
- 	unsigned int suspend_ctrl0;
- 	struct completion completion;
--	unsigned int chan_read, chan_event;
-+	unsigned long chan_read;
-+	unsigned long chan_event;
- 	int channel_users[SX9310_NUM_CHANNELS];
- 	unsigned int whoami;
- };
-@@ -283,15 +285,16 @@ static const struct regmap_config sx9310_regmap_config = {
- };
- 
- static int sx9310_update_chan_en(struct sx9310_data *data,
--				 unsigned int chan_read,
--				 unsigned int chan_event)
-+				 unsigned long chan_read,
-+				 unsigned long chan_event)
+@@ -802,7 +802,7 @@ static const struct sx9310_reg_default sx9310_default_regs[] = {
+ static int sx9310_init_compensation(struct iio_dev *indio_dev)
  {
- 	int ret;
-+	unsigned long channels = chan_read | chan_event;
- 
--	if ((data->chan_read | data->chan_event) != (chan_read | chan_event)) {
-+	if ((data->chan_read | data->chan_event) != channels) {
- 		ret = regmap_update_bits(data->regmap, SX9310_REG_PROX_CTRL0,
- 					 SX9310_REG_PROX_CTRL0_SENSOREN_MASK,
--					 chan_read | chan_event);
-+					 channels);
- 		if (ret)
- 			return ret;
- 	}
-@@ -535,6 +538,7 @@ static void sx9310_push_events(struct iio_dev *indio_dev)
- 	unsigned int val, chan;
  	struct sx9310_data *data = iio_priv(indio_dev);
- 	s64 timestamp = iio_get_time_ns(indio_dev);
-+	unsigned long prox_changed;
+-	int i, ret;
++	int ret;
+ 	unsigned int val;
+ 	unsigned int ctrl0;
  
- 	/* Read proximity state on all channels */
- 	ret = regmap_read(data->regmap, SX9310_REG_STAT0, &val);
-@@ -543,24 +547,23 @@ static void sx9310_push_events(struct iio_dev *indio_dev)
- 		return;
- 	}
+@@ -816,22 +816,17 @@ static int sx9310_init_compensation(struct iio_dev *indio_dev)
+ 	if (ret < 0)
+ 		return ret;
  
--	for (chan = 0; chan < SX9310_NUM_CHANNELS; chan++) {
-+	/*
-+	 * Only iterate over channels with changes on proximity status that have
-+	 * events enabled.
-+	 */
-+	prox_changed = (data->chan_prox_stat ^ val) & data->chan_event;
-+
-+	for_each_set_bit(chan, &prox_changed, SX9310_NUM_CHANNELS) {
- 		int dir;
- 		u64 ev;
--		bool new_prox = val & BIT(chan);
+-	for (i = 100; i >= 0; i--) {
+-		msleep(20);
+-		ret = regmap_read(data->regmap, SX9310_REG_STAT1, &val);
+-		if (ret < 0)
+-			goto out;
+-		if (!(val & SX9310_COMPSTAT_MASK))
+-			break;
+-	}
 -
--		if (!(data->chan_event & BIT(chan)))
--			continue;
--		if (new_prox == data->prox_stat[chan])
--			/* No change on this channel. */
--			continue;
- 
--		dir = new_prox ? IIO_EV_DIR_FALLING : IIO_EV_DIR_RISING;
-+		dir = val & BIT(chan) ? IIO_EV_DIR_FALLING : IIO_EV_DIR_RISING;
- 		ev = IIO_UNMOD_EVENT_CODE(IIO_PROXIMITY, chan,
- 					  IIO_EV_TYPE_THRESH, dir);
- 
- 		iio_push_event(indio_dev, ev, timestamp);
--		data->prox_stat[chan] = new_prox;
+-	if (i < 0) {
+-		dev_err(&data->client->dev,
+-			"initial compensation timed out: 0x%02x", val);
+-		ret = -ETIMEDOUT;
++	ret = regmap_read_poll_timeout(data->regmap, SX9310_REG_STAT1, val,
++				       !(val & SX9310_REG_STAT1_COMPSTAT_MASK),
++				       20000, 2000000);
++	if (ret) {
++		if (ret == -ETIMEDOUT)
++			dev_err(&data->client->dev,
++				"initial compensation timed out: 0x%02x\n",
++				val);
++		return ret;
  	}
-+	data->chan_prox_stat = val;
+ 
+-out:
+ 	regmap_write(data->regmap, SX9310_REG_PROX_CTRL0, ctrl0);
+ 	return ret;
  }
- 
- static irqreturn_t sx9310_irq_thread_handler(int irq, void *private)
-@@ -717,13 +720,13 @@ static irqreturn_t sx9310_trigger_handler(int irq, void *private)
- static int sx9310_buffer_preenable(struct iio_dev *indio_dev)
- {
- 	struct sx9310_data *data = iio_priv(indio_dev);
--	unsigned int channels = 0;
-+	unsigned long channels = 0;
- 	int bit, ret;
- 
- 	mutex_lock(&data->mutex);
- 	for_each_set_bit(bit, indio_dev->active_scan_mask,
- 			 indio_dev->masklength)
--		channels |= BIT(indio_dev->channels[bit].channel);
-+		__set_bit(indio_dev->channels[bit].channel, &channels);
- 
- 	ret = sx9310_update_chan_en(data, channels, data->chan_event);
- 	mutex_unlock(&data->mutex);
 -- 
 2.28.0.163.g6104cc2f0b6-goog
 
