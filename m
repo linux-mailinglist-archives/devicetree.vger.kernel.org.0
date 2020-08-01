@@ -2,130 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87ADB234F98
-	for <lists+devicetree@lfdr.de>; Sat,  1 Aug 2020 05:32:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57CF5235064
+	for <lists+devicetree@lfdr.de>; Sat,  1 Aug 2020 06:33:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728377AbgHADc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Jul 2020 23:32:29 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:58288 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728335AbgHADc2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 31 Jul 2020 23:32:28 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1596252748; h=Content-Transfer-Encoding: MIME-Version:
- References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=4F33MECp3PLMA5dVQe508bFwLJi13Gd+zPp0VmPVuUU=; b=jh0Waq5Qok2ckWrPDPmfaFomad5prMTft0qODwEEqbifq+f8q7WfBT+EAxGYHBJ3XuX5Cbsi
- VWv2TzA2xuFPZUkqw3PuJG39L4bRMWO7QyhJRnEcskA5HMvGoL3OFBtlvaT+ohvsObL+csIx
- PMNQu6EIGAi+NZxsWg4Wctx6fAw=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n09.prod.us-west-2.postgun.com with SMTP id
- 5f24e24cba6d142d1cdfc71b (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sat, 01 Aug 2020 03:32:28
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 0F653C43391; Sat,  1 Aug 2020 03:32:28 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.0
-Received: from mdtipton-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: mdtipton)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4BAF0C433CB;
-        Sat,  1 Aug 2020 03:32:27 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4BAF0C433CB
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=mdtipton@codeaurora.org
-From:   Mike Tipton <mdtipton@codeaurora.org>
-To:     georgi.djakov@linaro.org
-Cc:     bjorn.andersson@linaro.org, agross@kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mike Tipton <mdtipton@codeaurora.org>
-Subject: [PATCH v3 6/6] interconnect: qcom: Fix small BW votes being truncated to zero
-Date:   Fri, 31 Jul 2020 20:32:15 -0700
-Message-Id: <20200801033215.1440-7-mdtipton@codeaurora.org>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20200801033215.1440-1-mdtipton@codeaurora.org>
-References: <20200801033215.1440-1-mdtipton@codeaurora.org>
+        id S1725780AbgHAEdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Aug 2020 00:33:44 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:22047 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725601AbgHAEdo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Aug 2020 00:33:44 -0400
+X-UUID: 3ccb1420bc4d473cbce0582b0181a449-20200801
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=VSXHzuVe7TyPrG7V1dalxToyvgZ0VM2OicojizCUcAM=;
+        b=bkvMTwgRrP94DoVh4i+wuu9QvGZCkPx5NrjE2GXcbY71+vAERFZTOuUz2wofZuc9D9cxg4wZPMBlfA0U9A9nEBPvNQKsnBJTx6CNmWgxF2cyuoFaAzlslghEpglP8uO+nShUl1bLrGFFRV9fO+yz8GxsHFcPdeZ/wGDRsnHXHvM=;
+X-UUID: 3ccb1420bc4d473cbce0582b0181a449-20200801
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <zhiyong.tao@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 548145483; Sat, 01 Aug 2020 12:33:39 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Sat, 1 Aug 2020 12:33:36 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 1 Aug 2020 12:33:36 +0800
+From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
+To:     <robh+dt@kernel.org>, <linus.walleij@linaro.org>,
+        <mark.rutland@arm.com>, <matthias.bgg@gmail.com>,
+        <sean.wang@kernel.org>
+CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <hui.liu@mediatek.com>, <eddie.huang@mediatek.com>,
+        <chuanjia.liu@mediatek.com>, <biao.huang@mediatek.com>,
+        <hongzhou.yang@mediatek.com>, <erin.lo@mediatek.com>,
+        <sean.wang@mediatek.com>, <sj.huang@mediatek.com>,
+        <seiya.wang@mediatek.com>, <jg_poxu@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>
+Subject: [PATCH v2 0/3] Mediatek pinctrl patch on mt8192 
+Date:   Sat, 1 Aug 2020 12:33:00 +0800
+Message-ID: <20200801043303.32149-1-zhiyong.tao@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-SNTS-SMTP: B470880E776B38862319ED4C7CBD9BC1D5990EA650C3814ADCD0175DDF9A736D2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Small BW votes that translate to less than a single BCM unit are
-currently truncated to zero. Ensure that non-zero BW requests always
-result in at least a vote of 1 to BCM.
-
-Fixes: 976daac4a1c5 ("interconnect: qcom: Consolidate interconnect RPMh support")
-Signed-off-by: Mike Tipton <mdtipton@codeaurora.org>
----
- drivers/interconnect/qcom/bcm-voter.c | 27 +++++++++++++++++++--------
- 1 file changed, 19 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/interconnect/qcom/bcm-voter.c b/drivers/interconnect/qcom/bcm-voter.c
-index be7660b95ccc..887d13721e52 100644
---- a/drivers/interconnect/qcom/bcm-voter.c
-+++ b/drivers/interconnect/qcom/bcm-voter.c
-@@ -54,8 +54,20 @@ static int cmp_vcd(void *priv, struct list_head *a, struct list_head *b)
- 		return 1;
- }
- 
-+static u64 bcm_div(u64 num, u32 base)
-+{
-+	/* Ensure that small votes aren't lost. */
-+	if (num && num < base)
-+		return 1;
-+
-+	do_div(num, base);
-+
-+	return num;
-+}
-+
- static void bcm_aggregate(struct qcom_icc_bcm *bcm)
- {
-+	struct qcom_icc_node *node;
- 	size_t i, bucket;
- 	u64 agg_avg[QCOM_ICC_NUM_BUCKETS] = {0};
- 	u64 agg_peak[QCOM_ICC_NUM_BUCKETS] = {0};
-@@ -63,22 +75,21 @@ static void bcm_aggregate(struct qcom_icc_bcm *bcm)
- 
- 	for (bucket = 0; bucket < QCOM_ICC_NUM_BUCKETS; bucket++) {
- 		for (i = 0; i < bcm->num_nodes; i++) {
--			temp = bcm->nodes[i]->sum_avg[bucket] * bcm->aux_data.width;
--			do_div(temp, bcm->nodes[i]->buswidth * bcm->nodes[i]->channels);
-+			node = bcm->nodes[i];
-+			temp = bcm_div(node->sum_avg[bucket] * bcm->aux_data.width,
-+				       node->buswidth * node->channels);
- 			agg_avg[bucket] = max(agg_avg[bucket], temp);
- 
--			temp = bcm->nodes[i]->max_peak[bucket] * bcm->aux_data.width;
--			do_div(temp, bcm->nodes[i]->buswidth);
-+			temp = bcm_div(node->max_peak[bucket] * bcm->aux_data.width,
-+				       node->buswidth);
- 			agg_peak[bucket] = max(agg_peak[bucket], temp);
- 		}
- 
- 		temp = agg_avg[bucket] * bcm->vote_scale;
--		do_div(temp, bcm->aux_data.unit);
--		bcm->vote_x[bucket] = temp;
-+		bcm->vote_x[bucket] = bcm_div(temp, bcm->aux_data.unit);
- 
- 		temp = agg_peak[bucket] * bcm->vote_scale;
--		do_div(temp, bcm->aux_data.unit);
--		bcm->vote_y[bucket] = temp;
-+		bcm->vote_y[bucket] = bcm_div(temp, bcm->aux_data.unit);
- 	}
- 
- 	if (bcm->keepalive && bcm->vote_x[QCOM_ICC_BUCKET_AMC] == 0 &&
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+VGhpcyBzZXJpZXMgaW5jbHVkZXMgMyBwYXRjaGVzOg0KMS5hZGQgcGluY3RybCBmaWxlIG9uIG10
+ODE5Mi4NCjIuYWRkIHBpbmN0cmwgYmluZGluZyBkb2N1bWVudCBvbiBtdDgxOTIuDQozLmFkZCBw
+aW5jdHJsIGRyaXZlciBvbiBNVDgxOTIuDQoNCkNoYW5nZXMgaW4gcGF0Y2ggdjI6DQoxKWNoYW5n
+ZSBtYWludGFpbmVycyBuYW1lIGluIHBpbmN0cmwtbXQ4MTkyLnlhbWwuDQoyKXJlbW92ZSB1bnVz
+ZWQgZGVzY3JpcHRpb24gZm9yICJyZWctbmFtZXMiLg0KMyljaGFuZ2UgJ3N1Ym5vZGUgZm9ybWF0
+Oicgd2hpY2ggaXMgbm90IGEgY2hpbGQgbmFtZSB0byAiXnBpbnMiLg0KNClhZGQgKCd8JykgYWZ0
+ZXIgImRlc2NyaXB0aW9uOiIuDQo1KXJlbW92ZSAiaTJjMF9waW5zX2E6IGkyYzAiIGFuZCAiaTJj
+MF9waW5zX2E6IGkyYzEiLg0KNilhZGQgcHJvcGVydGllcyBmb3IgcGluIGNvbmZpZ3VyYXRpb24g
+bm9kZXMuDQoNClpoaXlvbmcgVGFvICgzKToNCiAgZHQtYmluZGluZ3M6IHBpbmN0cmw6IG10ODE5
+MjogYWRkIHBpbmN0cmwgZmlsZQ0KICBkdC1iaW5kaW5nczogcGluY3RybDogbXQ4MTkyOiBhZGQg
+YmluZGluZyBkb2N1bWVudA0KICBwaW5jdHJsOiBhZGQgcGluY3RybCBkcml2ZXIgb24gbXQ4MTky
+DQoNCiAuLi4vYmluZGluZ3MvcGluY3RybC9waW5jdHJsLW10ODE5Mi55YW1sICAgICAgfCAgMTUx
+ICsrDQogZHJpdmVycy9waW5jdHJsL21lZGlhdGVrL0tjb25maWcgICAgICAgICAgICAgIHwgICAg
+NyArDQogZHJpdmVycy9waW5jdHJsL21lZGlhdGVrL01ha2VmaWxlICAgICAgICAgICAgIHwgICAg
+MSArDQogZHJpdmVycy9waW5jdHJsL21lZGlhdGVrL3BpbmN0cmwtbXQ4MTkyLmMgICAgIHwgMTQ1
+MyArKysrKysrKysrKw0KIGRyaXZlcnMvcGluY3RybC9tZWRpYXRlay9waW5jdHJsLW10ay1tdDgx
+OTIuaCB8IDIyMjggKysrKysrKysrKysrKysrKysNCiBpbmNsdWRlL2R0LWJpbmRpbmdzL3BpbmN0
+cmwvbXQ4MTkyLXBpbmZ1bmMuaCAgfCAxMzQ0ICsrKysrKysrKysNCiA2IGZpbGVzIGNoYW5nZWQs
+IDUxODQgaW5zZXJ0aW9ucygrKQ0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvcGluY3RybC9waW5jdHJsLW10ODE5Mi55YW1sDQogY3JlYXRlIG1v
+ZGUgMTAwNjQ0IGRyaXZlcnMvcGluY3RybC9tZWRpYXRlay9waW5jdHJsLW10ODE5Mi5jDQogY3Jl
+YXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvcGluY3RybC9tZWRpYXRlay9waW5jdHJsLW10ay1tdDgx
+OTIuaA0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBpbmNsdWRlL2R0LWJpbmRpbmdzL3BpbmN0cmwvbXQ4
+MTkyLXBpbmZ1bmMuaA0KDQotLQ0KMi4xOC4wDQoNCg==
 
