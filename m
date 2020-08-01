@@ -2,120 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4966235400
-	for <lists+devicetree@lfdr.de>; Sat,  1 Aug 2020 20:14:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 820A1235467
+	for <lists+devicetree@lfdr.de>; Sat,  1 Aug 2020 23:28:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726795AbgHASOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Aug 2020 14:14:23 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:30303 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727113AbgHASOX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 1 Aug 2020 14:14:23 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1596305662; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=4G27Zl1+E0JAY/pLZNnLlP6h3k5h3oQBdUrO9rd3Gi4=; b=JDE0j0Um8jLVnLYEHUIphpZlXT6EQHy7gr2QvZ34P+FxtPqk4FZxyXwe64G/Nh8+0etg5JKS
- yNwH/kx7UiyMJ1Lnua05bK3QgODmvnpetSclYCab0feRXPB0OM2u8K/pi3/2XLGNGYBtzHEZ
- Hrvxs0kQ7lfcJ7IyX3bsHTzwB+o=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n19.prod.us-east-1.postgun.com with SMTP id
- 5f25b0e59403087e10de4305 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sat, 01 Aug 2020 18:13:57
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id F2F6EC433CA; Sat,  1 Aug 2020 18:13:56 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from tdas-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: tdas)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3303BC433C6;
-        Sat,  1 Aug 2020 18:13:51 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3303BC433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
-From:   Taniya Das <tdas@codeaurora.org>
-To:     Stephen Boyd <sboyd@kernel.org>,
-        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
-Cc:     David Brown <david.brown@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        robh@kernel.org, robh+dt@kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Taniya Das <tdas@codeaurora.org>
-Subject: [PATCH v2] arm64: dts: qcom: sc7180: Add LPASS clock controller nodes
-Date:   Sat,  1 Aug 2020 23:43:35 +0530
-Message-Id: <1596305615-5894-2-git-send-email-tdas@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1596305615-5894-1-git-send-email-tdas@codeaurora.org>
-References: <1596305615-5894-1-git-send-email-tdas@codeaurora.org>
+        id S1727057AbgHAV2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Aug 2020 17:28:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52290 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726748AbgHAV2S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Aug 2020 17:28:18 -0400
+Received: from relay.felk.cvut.cz (relay.felk.cvut.cz [IPv6:2001:718:2:1611:0:1:0:70])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 876D2C06174A;
+        Sat,  1 Aug 2020 14:28:18 -0700 (PDT)
+Received: from cmp.felk.cvut.cz (haar.felk.cvut.cz [147.32.84.19])
+        by relay.felk.cvut.cz (8.15.2/8.15.2) with ESMTP id 071LR31E069253;
+        Sat, 1 Aug 2020 23:27:03 +0200 (CEST)
+        (envelope-from pisa@cmp.felk.cvut.cz)
+Received: from haar.felk.cvut.cz (localhost [127.0.0.1])
+        by cmp.felk.cvut.cz (8.14.0/8.12.3/SuSE Linux 0.6) with ESMTP id 071LR3UW012987;
+        Sat, 1 Aug 2020 23:27:03 +0200
+Received: (from pisa@localhost)
+        by haar.felk.cvut.cz (8.14.0/8.13.7/Submit) id 071LR2Ja012983;
+        Sat, 1 Aug 2020 23:27:02 +0200
+X-Authentication-Warning: haar.felk.cvut.cz: pisa set sender to pisa@cmp.felk.cvut.cz using -f
+From:   Pavel Pisa <pisa@cmp.felk.cvut.cz>
+To:     Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 2/6] dt-bindings: net: can: binding for CTU CAN FD open-source IP core.
+Date:   Sat, 1 Aug 2020 23:27:02 +0200
+User-Agent: KMail/1.9.10
+Cc:     c.emde@osadl.org, devicetree@vger.kernel.org, mkl@pengutronix.de,
+        linux-can@vger.kernel.org, socketcan@hartkopp.net,
+        wg@grandegger.com, davem@davemloft.net, mark.rutland@arm.com,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        martin.jerabek01@gmail.com, ondrej.ille@gmail.com,
+        jnovak@fel.cvut.cz, jara.beran@gmail.com, porazil@pikron.com
+References: <cover.1576922226.git.pisa@cmp.felk.cvut.cz> <20200103235359.GA23875@bogus> <202007290112.32007.pisa@cmp.felk.cvut.cz>
+In-Reply-To: <202007290112.32007.pisa@cmp.felk.cvut.cz>
+X-KMail-QuotePrefix: > 
+MIME-Version: 1.0
+Content-Type: Text/Plain;
+  charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+Message-Id: <202008012327.02185.pisa@cmp.felk.cvut.cz>
+X-FELK-MailScanner-Information: 
+X-MailScanner-ID: 071LR31E069253
+X-FELK-MailScanner: Found to be clean
+X-FELK-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+        score=-1.235, required 6, autolearn=not spam, BAYES_00 -0.50,
+        KHOP_HELO_FCRDNS 0.21, NICE_REPLY_A -0.95, SPF_HELO_NONE 0.00,
+        SPF_NONE 0.00)
+X-FELK-MailScanner-From: pisa@cmp.felk.cvut.cz
+X-FELK-MailScanner-Watermark: 1596922028.72396@tRCbrGj+PxUvk141JZjhxg
+X-Spam-Status: No
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the clock controller nodes for Low power audio subsystem
-functionality.
+Hello Rob ad others,
 
-Signed-off-by: Taniya Das <tdas@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+On Wednesday 29 of July 2020 01:12:31 Pavel Pisa wrote:
+> On Saturday 04 of January 2020 00:53:59 Rob Herring wrote:
+> > On Sat, Dec 21, 2019 at 03:07:31PM +0100, pisa@cmp.felk.cvut.cz wrote:
+> > > From: Pavel Pisa <pisa@cmp.felk.cvut.cz>
+> > >
+> > > Signed-off-by: Pavel Pisa <pisa@cmp.felk.cvut.cz>
+> > > ---
+> > >  .../devicetree/bindings/net/can/ctu,ctucanfd.txt   | 61
+> > > ++++++++++++++++++++++ 1 file changed, 61 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/net/can/ctu,ctucanfd.txt
+> >
+> > Bindings are moving DT schema format now. Not something I'd require on a
+> > respin I've already reviewed, but OTOH it's been 10 months to respin
+> > from v2. So:
+> >
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> >
+> > If you have a v4, then please convert to a schema.
+>
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index d46b383..7cf8bfe 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/clock/qcom,dispcc-sc7180.h>
- #include <dt-bindings/clock/qcom,gcc-sc7180.h>
- #include <dt-bindings/clock/qcom,gpucc-sc7180.h>
-+#include <dt-bindings/clock/qcom,lpasscorecc-sc7180.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/clock/qcom,videocc-sc7180.h>
- #include <dt-bindings/interconnect/qcom,osm-l3.h>
-@@ -3312,6 +3313,30 @@
- 			qcom,msa-fixed-perm;
- 			status = "disabled";
- 		};
-+
-+		lpasscc: clock-controller@62d00000 {
-+			compatible = "qcom,sc7180-lpasscorecc";
-+			reg = <0 0x62d00000 0 0x50000>,
-+			    <0 0x62780000 0 0x30000>;
-+			reg-names = "lpass_core_cc", "lpass_audio_cc";
-+			clocks = <&gcc GCC_LPASS_CFG_NOC_SWAY_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "iface", "bi_tcxo";
-+			power-domains = <&lpass_hm LPASS_CORE_HM_GDSCR>;
-+			#clock-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
-+		lpass_hm: clock-controller@63000000 {
-+			compatible = "qcom,sc7180-lpasshm";
-+			reg = <0 0x63000000 0 0x28>;
-+			clocks = <&gcc GCC_LPASS_CFG_NOC_SWAY_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "iface", "bi_tcxo";
-+			#clock-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 	};
+...
 
- 	thermal-zones {
---
-Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
-of the Code Aurora Forum, hosted by the  Linux Foundation.
+> I am trying to resolve that only one review feedback which I have received
+> before v4 patches sending. I have spent half day to update and integrate
+> self build packages to my stable Debian to can run
+>
+>    make -k dt_binding_check
+>
+> but unfortunately, I have not achieved promissing result even when tested
+> on Linux kernel unpatched sources. I used actual git
+> dt-schema/dt-doc-validate with 5.4 kernel build but I get only long series
+> of
+
+I have succeed to run make dt_binding_check on stable Debian with 5.4
+kernel with only denumerable bunch of errors, probably normal one.
+Details to make dt_binding_check usable on stable Debian later.
+
+When invoked with base directory specified
+
+/usr/local/bin/dt-doc-validate -u /usr/src/linux-5.4/Documentation/devicetree/bindings/ net/can/ctu,ctucanfd.yaml
+
+then no problem is reported in ctu,ctucanfd.yaml .
+Please is the specification correct even after human check?
+
+> pi@baree:/usr/src/linux-5.4-rt/_build/arm/px6$ make dt_binding_check -k
+> GNUmakefile:40: *** mixed implicit and normal rules: deprecated syntax
+> make -C /usr/src/linux-5.4-rt O=/usr/src/linux-5.4-rt/_build/arm/px6/
+> ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- QTDIR=/usr/share/qt4
+> dt_binding_check CHKDT   Documentation/devicetree/bindings/arm/actions.yaml
+> /usr/src/linux-5.4-rt/Documentation/devicetree/bindings/arm/actions.yaml: 
+> found incompatible YAML document in "<unicode string>", line 2, column 1
+> make[3]: ***
+
+The remark to save time of others, actual stable Debian Buster provides package
+python3-ruamel.yaml in 0.15.34-1+b1 version. But use of make dt_binding_check
+and dt-doc-validate and dt-validate with this version lead to many errors
+"found incompatible YAML document". The validation tools can be make
+to work when next packages are added and replaced in stable Debian
+
+python3-pyrsistent 0.15.5-1
+python3-pyfakefs 4.0.2-1
+python3-zipp 1.0.0-3
+python3-importlib-metadata 1.6.0
+python3-jsonschema 3.2.0-3
+python3-ruamel.yaml.clib 0.2.0-3
+python3-ruamel.yaml 0.16.10-2
+
+The dependencies and interdependence of the tools are really wide and that
+the tools are unusable in the actual regular Debian stable distribution
+should be described somewhere visible enough to save developers
+time.
+
+Best wishes,
+
+                Pavel
+-- 
+                Pavel Pisa
+    phone:      +420 603531357
+    e-mail:     pisa@cmp.felk.cvut.cz
+    Department of Control Engineering FEE CVUT
+    Karlovo namesti 13, 121 35, Prague 2
+    university: http://dce.fel.cvut.cz/
+    personal:   http://cmp.felk.cvut.cz/~pisa
+    projects:   https://www.openhub.net/accounts/ppisa
+    CAN related:http://canbus.pages.fel.cvut.cz/
 
