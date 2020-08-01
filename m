@@ -2,69 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63BB8234F81
-	for <lists+devicetree@lfdr.de>; Sat,  1 Aug 2020 04:53:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A53DB234F9C
+	for <lists+devicetree@lfdr.de>; Sat,  1 Aug 2020 05:32:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728402AbgHACxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Jul 2020 22:53:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51806 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727047AbgHACxJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Jul 2020 22:53:09 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC4B7C06174A
-        for <devicetree@vger.kernel.org>; Fri, 31 Jul 2020 19:53:07 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id l2so18972766wrc.7
-        for <devicetree@vger.kernel.org>; Fri, 31 Jul 2020 19:53:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xQw/GDvZAdqgK8PngDZUR70WBhENQwa4VO5dO5VMRYQ=;
-        b=fvD9VkcpIpmLGOc0RN16Q3g+MDuB1wAVsNPB1I3qdv6BXascnBQB4/jFZkdPGFNPlb
-         Ic2arZ3utbXNqLm5oNcWE388GCL0ou46KCU6Du0kkjr+1cndmEfqqXaeY24F59LG42u3
-         IgGAnx1zhThprobHe2gfEmlVlaxeA0GpoVsVI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xQw/GDvZAdqgK8PngDZUR70WBhENQwa4VO5dO5VMRYQ=;
-        b=WLiQrQmSiaYlz7aA4DnUCfk7KXfTGqCq2nnyhVB3AxQUt/5sjjs0h966Zd4MzlvqjX
-         VuiUoBk8ZG0kzl9gx98zHi6KUJ5omhU3b9awxqVrsTE5fLZ/ZsRv3ge7xmkjymlIDfIl
-         BM/BNyGz5krZWV+WqgTJ76jpkxHOlPk38g1Ca4f9BwRQ720puK2kBw7QOt3uFy9Z14jr
-         8z/F2KahYKiSvXwhj66GvzDd9WpDeDVMV/MrTfCiFHHbnOhLqJbUl+FYdDZ1vi7hs0nz
-         BzG8UnxhClu7lF0GnSeGzXZGI+bsf4Ous2+KjELWwZWVxe8qIfwgFxObdjTBWmtjaKOx
-         SWIA==
-X-Gm-Message-State: AOAM5331eY2l4O4nyOSJq1Cb7WTzLfxMUIF7M1q+hPn4wLmtSGuJvN0e
-        h3ZBNvVAEy13kL/Cf7SJ7bLUAwXDxQDepAjyF17KlfVf
-X-Google-Smtp-Source: ABdhPJzYPKm/erB6sVI52cjRD9FHiQr2nWVZVyOZjhc+4s1LOvf5ZcI3PFb7AEEsBm6nMUykRgV5fktNAgsesrmbuZs=
-X-Received: by 2002:a5d:6641:: with SMTP id f1mr5731384wrw.307.1596250386460;
- Fri, 31 Jul 2020 19:53:06 -0700 (PDT)
+        id S1728487AbgHADch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Jul 2020 23:32:37 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:58288 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727978AbgHADcg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 31 Jul 2020 23:32:36 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1596252756; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=mZoXbg7QKXgsr8QudG8yDWBYbvZd92MunjPxpBzjxNo=; b=XlvZeryHlQmq9aqJrHY/7EFqEtQKqlizQqUHM2XB6YMmiN/xpsCVdUFSTaaTjQNOYMwZ+fzN
+ k5taZme1noS3A55JDOLpLIrYCTJdt0Z8EfebifzUSwRquVoFx9GYQpFVaAx3EkCXDVOv1nqR
+ VqDetKQsWvox9b6dfC1V+TWJQKA=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n19.prod.us-east-1.postgun.com with SMTP id
+ 5f24e24976a940cda8fd2c1d (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sat, 01 Aug 2020 03:32:25
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 055D9C43395; Sat,  1 Aug 2020 03:32:25 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mdtipton-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: mdtipton)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 29223C433C9;
+        Sat,  1 Aug 2020 03:32:24 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 29223C433C9
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=mdtipton@codeaurora.org
+From:   Mike Tipton <mdtipton@codeaurora.org>
+To:     georgi.djakov@linaro.org
+Cc:     bjorn.andersson@linaro.org, agross@kernel.org,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mike Tipton <mdtipton@codeaurora.org>
+Subject: [PATCH v3 0/6] interconnect: qcom: Misc bcm-voter changes and fixes
+Date:   Fri, 31 Jul 2020 20:32:09 -0700
+Message-Id: <20200801033215.1440-1-mdtipton@codeaurora.org>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-References: <20200729150748.1945589-1-daniel@0x0f.com> <20200729150748.1945589-3-daniel@0x0f.com>
- <CAK8P3a2DY8kNMzZs6vpcsvpU1CaEQy6yCiHq40txEgUBn8d=wA@mail.gmail.com>
-In-Reply-To: <CAK8P3a2DY8kNMzZs6vpcsvpU1CaEQy6yCiHq40txEgUBn8d=wA@mail.gmail.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Sat, 1 Aug 2020 11:53:10 +0900
-Message-ID: <CAFr9PXmNLMXDXGOF+XDK1dPVY5OO6PfSvy54tLw-Wj-gdb8wBA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: arm: mstar: remove the binding
- description for mstar,pmsleep
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     SoC Team <soc@kernel.org>, DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 1 Aug 2020 at 04:22, Arnd Bergmann <arnd@arndb.de> wrote:
+These changes are mostly unrelated, but there are some dependencies
+between them.
 
-> This patch for some reason did not apply, so I ended up removing the
-> file manually and using your changelog.
->
->       Arnd
+v3:
+- Improve qcom,tcs-wait property description
+- Stop using #define in property `default` doc
 
-Thanks Arnd.
+v2:
+- New patch for generic qcom,icc.h bindings
+- New patch for documenting qcom,tcs-wait property
+- Update bcm_div() 'base' parameter from u64 to u32
+
+Mike Tipton (6):
+  dt-bindings: interconnect: Add generic qcom bindings
+  dt-bindings: interconnect: Add property to set BCM TCS wait behavior
+  interconnect: qcom: Support bcm-voter-specific TCS wait behavior
+  interconnect: qcom: Only wait for completion in AMC/WAKE by default
+  interconnect: qcom: Add support for per-BCM scaling factors
+  interconnect: qcom: Fix small BW votes being truncated to zero
+
+ .../bindings/interconnect/qcom,bcm-voter.yaml | 20 ++++++
+ drivers/interconnect/qcom/bcm-voter.c         | 63 ++++++++++++-------
+ drivers/interconnect/qcom/icc-rpmh.c          |  3 +
+ drivers/interconnect/qcom/icc-rpmh.h          | 20 ++----
+ include/dt-bindings/interconnect/qcom,icc.h   | 26 ++++++++
+ 5 files changed, 95 insertions(+), 37 deletions(-)
+ create mode 100644 include/dt-bindings/interconnect/qcom,icc.h
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
