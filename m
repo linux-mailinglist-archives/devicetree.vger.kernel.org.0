@@ -2,59 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B33823A1D8
-	for <lists+devicetree@lfdr.de>; Mon,  3 Aug 2020 11:41:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43F5B23A302
+	for <lists+devicetree@lfdr.de>; Mon,  3 Aug 2020 13:00:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726511AbgHCJlF convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 3 Aug 2020 05:41:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44918 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725948AbgHCJlE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Aug 2020 05:41:04 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6DC4C06174A
-        for <devicetree@vger.kernel.org>; Mon,  3 Aug 2020 02:41:04 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1k2Wxk-0003Nn-F2; Mon, 03 Aug 2020 11:40:56 +0200
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1k2Wxj-0006Sn-Px; Mon, 03 Aug 2020 11:40:55 +0200
-Message-ID: <48b41a9374a2ee7d6f78e8fb70b90df6066a269b.camel@pengutronix.de>
-Subject: Re: [PATCH 2/2] reset: imx7: add the cm4 reset for i.MX8MQ
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     peng.fan@nxp.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        robh+dt@kernel.org
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Date:   Mon, 03 Aug 2020 11:40:55 +0200
-In-Reply-To: <1596091569-10013-2-git-send-email-peng.fan@nxp.com>
-References: <1596091569-10013-1-git-send-email-peng.fan@nxp.com>
-         <1596091569-10013-2-git-send-email-peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        id S1725948AbgHCLAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Aug 2020 07:00:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48884 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725945AbgHCLAV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 3 Aug 2020 07:00:21 -0400
+Received: from localhost (unknown [122.171.202.192])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 55DB520578;
+        Mon,  3 Aug 2020 11:00:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1596452419;
+        bh=LYS0GWdRpiOi06IUzhl5C/4AAkTdXCxhTjn+IAoTmwI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aknNQkg/fkfqlAJkanuP86F0U0ybdq+0nVqKK3c/cmMK5Mb6txJZRRA1KeHacl4Ag
+         dK3x2SQOz0k+OrDtiLPy69xBdcaBIjnIudeR7vBhfUGph9ozVgDa17Ee5EG9vZ/U25
+         yJmSjh9Iz+yOg9ZX2laUFq6EgqSS3LUUiCNeGX3U=
+Date:   Mon, 3 Aug 2020 16:30:16 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Konrad Dybcio <konradybcio@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Clark <robdclark@gmail.com>
+Cc:     martin.botka1@gmail.com, Sean Paul <sean@poorly.run>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Jordan Crouse <jcrouse@codeaurora.org>,
+        zhengbin <zhengbin13@huawei.com>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Ben Dooks <ben.dooks@codethink.co.uk>,
+        Krzysztof Wilczynski <kw@linux.com>,
+        Harigovindan P <harigovi@codeaurora.org>,
+        Brian Masney <masneyb@onstation.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Xiaozhe Shi <xiaozhes@codeaurora.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH 4/9] drm/msm/dsi: Add phy configuration for SDM630/636/660
+Message-ID: <20200803110016.GL12965@vkoul-mobl>
+References: <20200726111215.22361-1-konradybcio@gmail.com>
+ <20200726111215.22361-5-konradybcio@gmail.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200726111215.22361-5-konradybcio@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2020-07-30 at 14:46 +0800, peng.fan@nxp.com wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On 26-07-20, 13:12, Konrad Dybcio wrote:
+> These SoCs make use of the 14nm phy, but at different
+> addresses than other 14nm units.
 > 
-> Add the cm4 reset used by the remoteproc driver
+> Signed-off-by: Konrad Dybcio <konradybcio@gmail.com>
+> ---
+>  .../devicetree/bindings/display/msm/dsi.txt    |  1 +
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy.c          |  2 ++
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy.h          |  1 +
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c     | 18 ++++++++++++++++++
+
+Is there a reason why dsi phy needs to be here and not in phy subsystem
+drivers/phy/ ?
+
+>  4 files changed, 22 insertions(+)
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> diff --git a/Documentation/devicetree/bindings/display/msm/dsi.txt b/Documentation/devicetree/bindings/display/msm/dsi.txt
+> index af95586c898f..7884fd7a85c1 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dsi.txt
+> +++ b/Documentation/devicetree/bindings/display/msm/dsi.txt
+> @@ -87,6 +87,7 @@ Required properties:
+>    * "qcom,dsi-phy-20nm"
+>    * "qcom,dsi-phy-28nm-8960"
+>    * "qcom,dsi-phy-14nm"
+> +  * "qcom,dsi-phy-14nm-660"
+>    * "qcom,dsi-phy-10nm"
+>    * "qcom,dsi-phy-10nm-8998"
+>  - reg: Physical base address and length of the registers of PLL, PHY. Some
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> index f509ebd77500..009f5b843dd1 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> @@ -499,6 +499,8 @@ static const struct of_device_id dsi_phy_dt_match[] = {
+>  #ifdef CONFIG_DRM_MSM_DSI_14NM_PHY
+>  	{ .compatible = "qcom,dsi-phy-14nm",
+>  	  .data = &dsi_phy_14nm_cfgs },
+> +	{ .compatible = "qcom,dsi-phy-14nm-660",
+> +	  .data = &dsi_phy_14nm_660_cfgs },
+>  #endif
+>  #ifdef CONFIG_DRM_MSM_DSI_10NM_PHY
+>  	{ .compatible = "qcom,dsi-phy-10nm",
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> index 24b294ed3059..ef8672d7b123 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> @@ -45,6 +45,7 @@ extern const struct msm_dsi_phy_cfg dsi_phy_28nm_lp_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_20nm_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_28nm_8960_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_14nm_cfgs;
+> +extern const struct msm_dsi_phy_cfg dsi_phy_14nm_660_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_10nm_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_10nm_8998_cfgs;
+>  
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
+> index 1594f1422372..519400501bcd 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
+> @@ -161,3 +161,21 @@ const struct msm_dsi_phy_cfg dsi_phy_14nm_cfgs = {
+>  	.io_start = { 0x994400, 0x996400 },
+>  	.num_dsi_phy = 2,
+>  };
+> +
+> +const struct msm_dsi_phy_cfg dsi_phy_14nm_660_cfgs = {
+> +	.type = MSM_DSI_PHY_14NM,
+> +	.src_pll_truthtable = { {false, false}, {true, false} },
+> +	.reg_cfg = {
+> +		.num = 1,
+> +		.regs = {
+> +			{"vcca", 17000, 32},
+> +		},
+> +	},
+> +	.ops = {
+> +		.enable = dsi_14nm_phy_enable,
+> +		.disable = dsi_14nm_phy_disable,
+> +		.init = dsi_14nm_phy_init,
+> +	},
+> +	.io_start = { 0xc994400, 0xc996000 },
+> +	.num_dsi_phy = 2,
+> +};
+> -- 
+> 2.27.0
 
-Thank you, both applied to reset/next.
-
-regards
-Philipp
+-- 
+~Vinod
