@@ -2,89 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A369323B0F1
-	for <lists+devicetree@lfdr.de>; Tue,  4 Aug 2020 01:32:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A54323B12B
+	for <lists+devicetree@lfdr.de>; Tue,  4 Aug 2020 01:43:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728003AbgHCXbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Aug 2020 19:31:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60240 "EHLO
+        id S1728517AbgHCXmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Aug 2020 19:42:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726916AbgHCXbV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Aug 2020 19:31:21 -0400
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0972FC06174A
-        for <devicetree@vger.kernel.org>; Mon,  3 Aug 2020 16:31:21 -0700 (PDT)
-Received: by mail-lf1-x143.google.com with SMTP id 140so21356202lfi.5
-        for <devicetree@vger.kernel.org>; Mon, 03 Aug 2020 16:31:20 -0700 (PDT)
+        with ESMTP id S1726350AbgHCXmB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Aug 2020 19:42:01 -0400
+Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE764C061756
+        for <devicetree@vger.kernel.org>; Mon,  3 Aug 2020 16:42:00 -0700 (PDT)
+Received: by mail-il1-x12b.google.com with SMTP id l17so22432373ilq.13
+        for <devicetree@vger.kernel.org>; Mon, 03 Aug 2020 16:42:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=fV01at6U179YYTkypCe1mjYEuoEGSoyCBx3vei1jsL8=;
-        b=kLZPFNzaiLoIf37Ocp6yoJdmJakN2FAOgin1yWPmvyiqcRGfvkDyLIJwgFnR7SibjW
-         eDY6+V7iRkT7GmQRC7Mtk5KyBDTfuD4CL/PYuTQzAyQQrWqL/YynpbMpKEODLM1f/W4J
-         tTGBCULVUmvrDKbcEgpiT565Jo4ros0QWA0bYpY6RJDKjOiSUgsq1W+8rhBSuZCNVWm5
-         ZvesqRzD3GSrQDRSgUP2N6M9Y3PZtprj4rkT3HM4EbsoGyagbd2z8n5C7uB4Afu2c6nU
-         sWyQBZzktZkb9o84466l36KfybPylh8PrYGMkgKxsqc6rvL/aU1nDW78+MUAsnA8ldTx
-         tOog==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=REBhfBv0y9iheUmDMAD5SkNTWPE8KTprJ/7qrn9ga3c=;
+        b=BwL27FbFizHtr8CZDR3cITVgiP+qWBE5wP5lYLn5rgwHEns8KBZg/OK6bN4uOe2Hj/
+         toKEV82gKnsOULOibiH6turbMrtUIpvAqaHN8hbV/newGCaAg0PrYsIqNA8BHuad2EUX
+         mY0h1crzvcOz14F6VfjDSBtJlMJ3JiobWv7Ck=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fV01at6U179YYTkypCe1mjYEuoEGSoyCBx3vei1jsL8=;
-        b=HTxTE/jAzQbq7NGIlDIttIYz5aVoF3bKvMOB9f0D8/atzI50V/f+T0Bv8MhV4JNJkk
-         hh/naxPXMBI4dXHl3ioBymJdY/nVwgfE8h0SrvhePXU9W5e76Tzh0tpBWjmTpzTZs2Pu
-         O/WObSC+0roaW9ykID+D3mlfmfYYLMpo6lV/GCn3/qUMBdQziDVefp2VrtZuERLeXh1q
-         Eg7PaFhZ22z8R6FOtrIDjDOkw88CbXpRRArWWCaBe7Az+P0Bn19/UL5bBcll6MEni/Ld
-         DFaLsuA4W5qDtKfMyaXRsyjbDjCEROa+jXDTbjOPoC9GvwSrhQ1JZmNtxl0+BdjXYJxO
-         NSLw==
-X-Gm-Message-State: AOAM5334MIqd+eRasQ0qHlWO26MEpt5e6BnNgueuTwH4EHKJAo1vW93Q
-        clTN/L4brEOnHnRY8Vc4rKCC+wMjXUWpwrhCBpMdxg==
-X-Google-Smtp-Source: ABdhPJxWx+hfDk0lqptunggKbQMSvFYj4Ku0H41x8vXU6S8/mAV1QIwpU4LOkgKmpf8w7QdtsdTt1LUVSEoJbOHVisk=
-X-Received: by 2002:ac2:5e26:: with SMTP id o6mr9486395lfg.194.1596497479493;
- Mon, 03 Aug 2020 16:31:19 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=REBhfBv0y9iheUmDMAD5SkNTWPE8KTprJ/7qrn9ga3c=;
+        b=n9B0txhyMxiEWXeDBjUADd+SmNvuaRbgjCthGJsN3bsa3AYbCZkGenwKJ9tkXQQ/Hg
+         996DjM8SNqr3To69sxbh0vPHt5M2T2soII7uZTyb83HctKqJas/6xNndjMfT+afglr5L
+         VEIlA3Ffn/OaWJp3OT7cov/qnj9VRsKbbzRciSecPPHwKeZP1b6967oeJOzCesMbcggY
+         ecHNF6VrJYljow7Hixrryl0hVkYy1U+FbS6tbBL2jDUgLAiGZQ5SmcRPORf6tjxueBij
+         gvHUpPPqWBCuNCjZfOAS4ErjlSiurguG4NSN2cYYPMuQ9txwtXJXs6qgLCpLlzgfJPT+
+         AB2w==
+X-Gm-Message-State: AOAM531bzu1oK5ucG2FYXsca3Bokl2yJGNLZyOyolYNlx+vSKc8dLEME
+        8LAhccRFViniiFniE/zphcRW64Pk0uQ5lw==
+X-Google-Smtp-Source: ABdhPJxXgPUqxVxsiaMbVWQZoOwwsc+ysCkOr8SgJMnz1sCbbrdYGP3wICNYwI62CvtKlmGJAR1vMw==
+X-Received: by 2002:a05:6e02:cac:: with SMTP id 12mr1972194ilg.175.1596498119359;
+        Mon, 03 Aug 2020 16:41:59 -0700 (PDT)
+Received: from derch.Home (97-122-92-59.hlrn.qwest.net. [97.122.92.59])
+        by smtp.gmail.com with ESMTPSA id g2sm5468435ioe.4.2020.08.03.16.41.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Aug 2020 16:41:58 -0700 (PDT)
+From:   Daniel Campello <campello@chromium.org>
+To:     LKML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Daniel Campello <campello@chromium.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Enrico Granata <egranata@chromium.org>,
+        Gwendal Grignou <gwendal@chromium.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>, linux-iio@vger.kernel.org
+Subject: [PATCH v4 00/15] sx9310 iio driver updates
+Date:   Mon,  3 Aug 2020 17:41:39 -0600
+Message-Id: <20200803234154.320400-1-campello@chromium.org>
+X-Mailer: git-send-email 2.28.0.163.g6104cc2f0b6-goog
 MIME-Version: 1.0
-References: <1596115816-11758-1-git-send-email-hanks.chen@mediatek.com> <1596115816-11758-2-git-send-email-hanks.chen@mediatek.com>
-In-Reply-To: <1596115816-11758-2-git-send-email-hanks.chen@mediatek.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 4 Aug 2020 01:31:08 +0200
-Message-ID: <CACRpkdYP1EGemHtqO_vrUf-wUyimAs=tXM5WNBD-NcL-h15ZhQ@mail.gmail.com>
-Subject: Re: [PATCH v10 1/3] dt-bindings: pinctrl: add bindings for MediaTek
- MT6779 SoC
-To:     Hanks Chen <hanks.chen@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        mtk01761 <wendell.lin@mediatek.com>,
-        YueHaibing <yuehaibing@huawei.com>,
-        Andy Teng <andy.teng@mediatek.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        CC Hwang <cc.hwang@mediatek.com>,
-        Loda Chou <loda.chou@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 30, 2020 at 3:30 PM Hanks Chen <hanks.chen@mediatek.com> wrote:
+The first patch resends the DT binding for the driver that was merged in
+v5.8-rc1 with a small change to update for proper regulators. The second
+through the eleventh patch fixes several issues dropped from v8 to v9
+when the initial patch was merged.  The twelveth patch drops
+channel_users because it's unused. The thirteenth patch adds support to
+enable the svdd and vdd supplies so that this driver can work on a board
+where the svdd supply isn't enabled at boot and needs to be turned on
+before this driver starts to communicate with the chip. The final patch
+updates irq trigger flags.
 
-> From: Andy Teng <andy.teng@mediatek.com>
->
-> Add devicetree bindings for MediaTek MT6779 pinctrl driver.
->
-> Signed-off-by: Andy Teng <andy.teng@mediatek.com>
-> Signed-off-by: Hanks Chen <hanks.chen@mediatek.com>
+Changes in v4:
+ - Updated macro SX9310_REG_STAT1_COMPSTAT_MASK at call site.
+ - Use FIELD_GET/FIELD_PREP instead of manual shift.
+ - Reverted condition check logic on enable/disable_irq methods.
+ - Use pointer to buffer struct on iio_push_to_buffers_with_timestamp().
 
-I pulled out the v9 version of this patch and applied v10 instead.
+Changes in v3:
+ - Moved irq presence check down to lower methods
+ - Changed buffer to struct type to align timestamp memory properly.
+ - Added static assert for number of channels.
+ - Added irq trigger flags commit to the series.
 
-Yours,
-Linus Walleij
+Changes in v2:
+ - Added #io-channel-cells as a required property
+ - Reordered error handling on sx9310_resume()
+ - Added #include <linux/mod_devicetable.h>
+ - Added '\n' to dev_err()
+ - Fixed commit message from "iio: sx9310: Align memory"
+ - Changed prox_stat to chan_prox_stat bitmap.
+ - Fixed dev_err() message
+ - Added '\n' to dev_err()
+
+Daniel Campello (12):
+  dt-bindings: iio: Add bindings for sx9310 sensor
+  iio: sx9310: Update macros declarations
+  iio: sx9310: Fix irq handling
+  iio: sx9310: Remove acpi and of table macros
+  iio: sx9310: Change from .probe to .probe_new
+  iio: sx9310: Fixes various memory handling
+  iio: sx9310: Use long instead of int for channel bitmaps
+  iio: sx9310: Use regmap_read_poll_timeout() for compensation
+  iio: sx9310: Update copyright
+  iio: sx9310: Simplify error return handling
+  iio: sx9310: Use variable to hold &client->dev
+  iio: sx9310: Miscellaneous format fixes
+
+Stephen Boyd (3):
+  iio: sx9310: Drop channel_users[]
+  iio: sx9310: Enable vdd and svdd regulators at probe
+  iio: sx9310: Use irq trigger flags from firmware
+
+ .../iio/proximity/semtech,sx9310.yaml         |  65 +++
+ drivers/iio/proximity/sx9310.c                | 421 +++++++++---------
+ 2 files changed, 276 insertions(+), 210 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
+
+--
+2.28.0.163.g6104cc2f0b6-goog
+
