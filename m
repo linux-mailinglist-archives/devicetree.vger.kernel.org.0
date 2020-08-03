@@ -2,106 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69D8E23AE0A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Aug 2020 22:20:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CA2A23AE23
+	for <lists+devicetree@lfdr.de>; Mon,  3 Aug 2020 22:30:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726478AbgHCUUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Aug 2020 16:20:18 -0400
-Received: from pb-smtp20.pobox.com ([173.228.157.52]:64517 "EHLO
-        pb-smtp20.pobox.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726370AbgHCUUS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Aug 2020 16:20:18 -0400
-Received: from pb-smtp20.pobox.com (unknown [127.0.0.1])
-        by pb-smtp20.pobox.com (Postfix) with ESMTP id 8731CF554D;
-        Mon,  3 Aug 2020 16:20:16 -0400 (EDT)
-        (envelope-from nico@fluxnic.net)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=pobox.com; h=date:from:to
-        :cc:subject:in-reply-to:message-id:references:mime-version
-        :content-type; s=sasl; bh=PF90wNMuKpjCQ5V/5619nvwTLro=; b=dddKWn
-        C44X0MRBNrallMp/OYIZNUaHHnSOD31wde63SYuclky+jvS7AokK5gpWV4ZpDQp8
-        1YS2JK/IY5WAZcq1jarHa6cRuFYp/jvIy4hyBAXdxB5LRAz+W4kPtznwOMHlWmc0
-        2aUvRMw7tYOPek0quk9K5ioEvcyKfG+qDDKrs=
-Received: from pb-smtp20.sea.icgroup.com (unknown [127.0.0.1])
-        by pb-smtp20.pobox.com (Postfix) with ESMTP id 7F25CF554C;
-        Mon,  3 Aug 2020 16:20:16 -0400 (EDT)
-        (envelope-from nico@fluxnic.net)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=fluxnic.net;
- h=date:from:to:cc:subject:in-reply-to:message-id:references:mime-version:content-type; s=2016-12.pbsmtp; bh=Q9xTu3Q7G6ybCTets5WU0b++RTe3jw3gfIDCaIw+Fog=; b=PLDu4peJV9GFqRgQ/gK3uKs6SclhX6iumGQpARWgslvZ828s41isyydhcY7iIHhe2e64FRi8PUaMlo1CFSRE4HJYWM8Dru0DeXAh61lbYkj3l5iYcA95R9VwQbau3alTvFj1CKrn/zpzhsFyb/bU85/IesAEyZdhQ/WtDqbkfjA=
-Received: from yoda.home (unknown [24.203.50.76])
+        id S1728102AbgHCU3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Aug 2020 16:29:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53204 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726725AbgHCU3w (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 3 Aug 2020 16:29:52 -0400
+Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown [163.114.132.6])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by pb-smtp20.pobox.com (Postfix) with ESMTPSA id 6E6C2F554B;
-        Mon,  3 Aug 2020 16:20:13 -0400 (EDT)
-        (envelope-from nico@fluxnic.net)
-Received: from xanadu.home (xanadu.home [192.168.2.2])
-        by yoda.home (Postfix) with ESMTPSA id 851B62DA0BFC;
-        Mon,  3 Aug 2020 16:20:11 -0400 (EDT)
-Date:   Mon, 3 Aug 2020 16:20:11 -0400 (EDT)
-From:   Nicolas Pitre <nico@fluxnic.net>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-cc:     Boris Brezillon <boris.brezillon@collabora.com>,
-        linux-i3c@lists.infradead.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Conor Culhane <conor.culhane@silvaco.com>,
-        Rajeev Huralikoppi <rajeev.huralikoppi@silvaco.com>,
-        npitre@baylibre.com
-Subject: Re: [PATCH 3/4] i3c: master: svc: Add Silvaco I3C master driver
-In-Reply-To: <20200709080159.2178-3-miquel.raynal@bootlin.com>
-Message-ID: <nycvar.YSQ.7.77.849.2008031546570.1112668@knanqh.ubzr>
-References: <20200709080159.2178-1-miquel.raynal@bootlin.com> <20200709080159.2178-3-miquel.raynal@bootlin.com>
+        by mail.kernel.org (Postfix) with ESMTPSA id C2BEC22B45;
+        Mon,  3 Aug 2020 20:29:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1596486592;
+        bh=VNXrJoDu2nVwvK5pv8XXLArHar+98PGv944XMa5VqRo=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=NshCfN2Ba0b2nhmggzG3c76IhGP7zrRQp2Gn+JAqkTnw/o4d1QyNLZbSTu95u+iLa
+         h0eK2KyrS9nt5ONx4JXrbmac/+dsXhcUcyt44OfyAwIiZDl8GJ5sUoE/Lt/pN2WfuT
+         +1r+PeYuxJbTX4fECjsAasPf3/Hldbi+UGG1m75w=
+Date:   Mon, 3 Aug 2020 13:29:49 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     pisa@cmp.felk.cvut.cz
+Cc:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        mkl@pengutronix.de, socketcan@hartkopp.net, wg@grandegger.com,
+        davem@davemloft.net, robh+dt@kernel.org, mark.rutland@arm.com,
+        c.emde@osadl.org, armbru@redhat.com, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, martin.jerabek01@gmail.com,
+        ondrej.ille@gmail.com, jnovak@fel.cvut.cz, jara.beran@gmail.com,
+        porazil@pikron.com
+Subject: Re: [PATCH v4 0/6] CTU CAN FD open-source IP core SocketCAN driver,
+ PCI, platform integration and documentation
+Message-ID: <20200803132949.64884ff1@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <cover.1596408856.git.pisa@cmp.felk.cvut.cz>
+References: <cover.1596408856.git.pisa@cmp.felk.cvut.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
-X-Pobox-Relay-ID: BCB8755A-D5C6-11EA-B562-F0EA2EB3C613-78420484!pb-smtp20.pobox.com
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 9 Jul 2020, Miquel Raynal wrote:
-
-> Add support for Silvaco I3C dual-role IP. The master role is supported
-> in SDR mode only. I2C transfers have not been tested but are shared
-> because they are so close to the I3C transfers in terms of registers
-> configuration.
+On Mon,  3 Aug 2020 20:34:48 +0200 pisa@cmp.felk.cvut.cz wrote:
+> From: Pavel Pisa <pisa@cmp.felk.cvut.cz>
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> This driver adds support for the CTU CAN FD open-source IP core.
+> More documentation and core sources at project page
+> (https://gitlab.fel.cvut.cz/canbus/ctucanfd_ip_core).
+> The core integration to Xilinx Zynq system as platform driver
+> is available (https://gitlab.fel.cvut.cz/canbus/zynq/zynq-can-sja1000-top).
+> Implementation on Intel FPGA based PCI Express board is available
+> from project (https://gitlab.fel.cvut.cz/canbus/pcie-ctu_can_fd).
+> The CTU CAN FD core emulation send for review for QEMU mainline.
+> Development repository for QEMU emulation - ctu-canfd branch of
+>   https://gitlab.fel.cvut.cz/canbus/qemu-canbus
+> 
+> More about CAN related projects used and developed at the Faculty
+> of the Electrical Engineering (http://www.fel.cvut.cz/en/)
+> of Czech Technical University (https://www.cvut.cz/en)
+> in Prague at http://canbus.pages.fel.cvut.cz/ .
 
-I'm worried by constructs like these:
+Patches 3 and 4 have warnings when built with W=1 C=1 flags.
 
-> +static int svc_i3c_master_handle_ibi(struct svc_i3c_master *master,
-> +				     struct i3c_dev_desc *dev)
-> +{
-> +	struct svc_i3c_i2c_dev_data *data = i3c_dev_get_master_data(dev);
-> +	struct i3c_ibi_slot *slot;
-> +	unsigned int count;
-> +	u32 mdatactrl;
-> +	u8 *buf;
-> +	int ret;
-> +	u32 reg;
-> +
-> +	spin_lock(&master->ibi.lock);
-> +
-> +	slot = i3c_generic_ibi_get_free_slot(data->ibi_pool);
-> +	if (!slot) {
-> +		ret = -ENOSPC;
-> +		goto unlock;
-> +	}
-> +
-> +	slot->len = 0;
-> +	buf = slot->data;
-> +
-> +	ret = readl_poll_timeout(master->regs + SVC_I3C_MSTATUS, reg,
-> +				 reg & SVC_I3C_MINT_RXPEND, 0, 1000);
-
-Here you're in atomic context due to the lock, and 
-readl_poll_timeout(() is built using usleep() which may ... sleep.
-
-Also, is it actually possible for execution to reach this point if 
-SVC_I3C_MINT_RXPEND is not set?
-
-The rest looks reasonable to me.
-
-
-Nicolas
+Please also remove the uses of static inline in C sources.
+Those are rarely necessary and hide unused code warnings.
