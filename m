@@ -2,144 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C233D23BF18
-	for <lists+devicetree@lfdr.de>; Tue,  4 Aug 2020 19:48:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A90023BF76
+	for <lists+devicetree@lfdr.de>; Tue,  4 Aug 2020 20:48:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727987AbgHDRst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Aug 2020 13:48:49 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:24954 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726338AbgHDRss (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Aug 2020 13:48:48 -0400
-X-IronPort-AV: E=Sophos;i="5.75,434,1589209200"; 
-   d="scan'208";a="53649497"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 05 Aug 2020 02:48:48 +0900
-Received: from localhost.localdomain (unknown [172.29.52.222])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 2361340B92DF;
-        Wed,  5 Aug 2020 02:48:45 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 5/5] arm64: dts: renesas: beacon-renesom-baseboard: Move connector node out of hd3ss3220 device
-Date:   Tue,  4 Aug 2020 18:48:28 +0100
-Message-Id: <20200804174828.8339-6-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200804174828.8339-1-biju.das.jz@bp.renesas.com>
-References: <20200804174828.8339-1-biju.das.jz@bp.renesas.com>
+        id S1727880AbgHDSsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Aug 2020 14:48:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40792 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727816AbgHDSsq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Aug 2020 14:48:46 -0400
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 976EAC06174A
+        for <devicetree@vger.kernel.org>; Tue,  4 Aug 2020 11:48:45 -0700 (PDT)
+Received: by mail-ej1-x644.google.com with SMTP id o23so16158576ejr.1
+        for <devicetree@vger.kernel.org>; Tue, 04 Aug 2020 11:48:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=k6n9Bx3dS7/rl5+hEQcop2J6ordeV//9xvdRouOCTy8=;
+        b=hg7DVeAuoJ8QIOV9tq9Uk8NDmJQs7QY+/+0GaEmeFug3QJKKIl9TecClodaq5ryqwX
+         bQCilQCYYffU16LTepCDIh+agVs9uQUSAQV6Zx4EpcaBJyd6yRu2vZkKqAjc+V8p6wD1
+         sVeMAe3SNpy6Kx7H/NJxH6bmXtKpYRJfAls1E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=k6n9Bx3dS7/rl5+hEQcop2J6ordeV//9xvdRouOCTy8=;
+        b=V7cA+Bpt/YjuBC9ejzN7R5bhnoRShc7tU2/o16xXVfB8TUUqKKDV6zkU2XdDA65OC6
+         AkvVkdUbBbADXq4St4zx0CnWrm5CwgSEWXslr+aCG4hcaOW0iOcfb9YmaJSVtO8z7q8B
+         Jx2PJjSnP4BkqSqJG910K1PFOPqwdKQkv66ElETpzX67u4BdP8WqGLm3hAWZ7cP1wuys
+         TDOAAXXV+jsSGgGNeLHMxVcREcwFv5/4HI8UCQyGWQIykH8dGpHDXM6AsAj1aYb3BPhw
+         G1TJzHRTuiMwErtJCRc4ysYHNZTT3Dr24sQi+gps34KEiWV1deDXZLrt/tCxuZ27os/e
+         gkkA==
+X-Gm-Message-State: AOAM533vsZAQ/j44Z5NjWpsy45BRGCofmuSxkawS29fSVPjUMjAmayBy
+        aMfeqTCLNGRVytRNfs03Yuz5HNajYmBmoIydBf8n5A==
+X-Google-Smtp-Source: ABdhPJzErpOyOvNE+rPIf2h1XLHlZ/Z9OnqOzuXaEJHun6C5kwQFsKbupJpAwtgn1WjEhgl1H9J/a3e/s+vx+8dRcCU=
+X-Received: by 2002:a17:906:d187:: with SMTP id c7mr23685263ejz.196.1596566924085;
+ Tue, 04 Aug 2020 11:48:44 -0700 (PDT)
+MIME-Version: 1.0
+From:   Markus Mayer <mmayer@broadcom.com>
+Date:   Tue, 4 Aug 2020 11:48:32 -0700
+Message-ID: <CAGt4E5tMdG9gZbx43MeXpiPnqe0sy9bYKQmZ1oJCSwTL=Xf7Dg@mail.gmail.com>
+Subject: Build error caused by "arm64: dts: agilex: add nand clocks"
+To:     Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     Device Tree <devicetree@vger.kernel.org>,
+        Linux Kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move connector node out of hd3ss3220 device in order to comply with usb
-connector bindings.
+Hi,
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- .../dts/renesas/beacon-renesom-baseboard.dtsi | 67 ++++++++++++++-----
- 1 file changed, 50 insertions(+), 17 deletions(-)
+I don't know if anybody else is seeing this, but for me the commit
+"arm64: dts: agilex: add nand clocks"[1] is causing a build error
+while generating DTS files for ARM64.
 
-diff --git a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-index 66c9153b3101..e66b5b36e489 100644
---- a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-+++ b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-@@ -223,6 +223,29 @@
- 		#clock-cells = <0>;
- 		clock-frequency = <25000000>;
- 	};
-+
-+	connector {
-+		compatible = "usb-c-connector";
-+		label = "USB-C";
-+		data-role = "dual";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			port@0 {
-+				reg = <0>;
-+				hs_ep: endpoint {
-+					remote-endpoint = <&usb3_hs_ep>;
-+				};
-+			};
-+			port@1 {
-+				reg = <1>;
-+				ss_ep: endpoint {
-+					remote-endpoint = <&hd3ss3220_in_ep>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &audio_clk_a {
-@@ -427,20 +450,19 @@
- 		interrupt-parent = <&gpio6>;
- 		interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
- 
--		connector {
--			compatible = "usb-c-connector";
--			label = "USB-C";
--			data-role = "dual";
--
--			ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
--
--				port@1 {
--					reg = <1>;
--					hd3ss3220_ep: endpoint {
--						remote-endpoint = <&usb3_role_switch>;
--					};
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			port@0 {
-+				reg = <0>;
-+				hd3ss3220_in_ep: endpoint {
-+					remote-endpoint = <&ss_ep>;
-+				};
-+			};
-+			port@1 {
-+				reg = <1>;
-+				hd3ss3220_out_ep: endpoint {
-+					remote-endpoint = <&usb3_role_switch>;
- 				};
- 			};
- 		};
-@@ -714,9 +736,20 @@
- 	status = "okay";
- 	usb-role-switch;
- 
--	port {
--		usb3_role_switch: endpoint {
--			remote-endpoint = <&hd3ss3220_ep>;
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		port@0 {
-+			reg = <0>;
-+			usb3_hs_ep: endpoint {
-+				remote-endpoint = <&hs_ep>;
-+			};
-+		};
-+		port@1 {
-+			reg = <1>;
-+			usb3_role_switch: endpoint {
-+				remote-endpoint = <&hd3ss3220_out_ep>;
-+			};
- 		};
- 	};
- };
--- 
-2.17.1
+The error goes away when I drop the commit.
 
+$ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make defconfig dtbs
+  HOSTCC  scripts/basic/fixdep
+  HOSTCC  scripts/kconfig/conf.o
+  HOSTCC  scripts/kconfig/confdata.o
+  HOSTCC  scripts/kconfig/expr.o
+  LEX     scripts/kconfig/lexer.lex.c
+  YACC    scripts/kconfig/parser.tab.[ch]
+  HOSTCC  scripts/kconfig/lexer.lex.o
+  HOSTCC  scripts/kconfig/parser.tab.o
+  HOSTCC  scripts/kconfig/preprocess.o
+  HOSTCC  scripts/kconfig/symbol.o
+  HOSTCC  scripts/kconfig/util.o
+  HOSTLD  scripts/kconfig/conf
+*** Default configuration is based on 'defconfig'
+[...]
+  DTC     arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dtb
+  DTC     arch/arm64/boot/dts/freescale/imx8mq-thor96.dtb
+  DTC     arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb
+  DTC     arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb
+  DTC     arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dtb
+  DTC     arch/arm64/boot/dts/freescale/imx8qxp-colibri-eval-v3.dtb
+  DTC     arch/arm64/boot/dts/freescale/imx8qxp-mek.dtb
+  DTC     arch/arm64/boot/dts/freescale/s32v234-evb.dtb
+  DTC     arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dtb
+  DTC     arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dtb
+  DTC     arch/arm64/boot/dts/hisilicon/hi3798cv200-poplar.dtb
+  DTC     arch/arm64/boot/dts/hisilicon/hi6220-hikey.dtb
+  DTC     arch/arm64/boot/dts/hisilicon/hip05-d02.dtb
+  DTC     arch/arm64/boot/dts/hisilicon/hip06-d03.dtb
+  DTC     arch/arm64/boot/dts/hisilicon/hip07-d05.dtb
+  DTC     arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dtb
+Error: arch/arm64/boot/dts/intel/socfpga_agilex.dtsi:313.15-16 syntax error
+FATAL ERROR: Unable to parse input tree
+make[3]: *** [scripts/Makefile.lib:309:
+arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dtb] Error 1
+make[2]: *** [scripts/Makefile.build:497: arch/arm64/boot/dts/intel] Error 2
+make[1]: *** [Makefile:1306: dtbs] Error 2
+make: *** [Makefile:336: __build_one_by_one] Error 2
+
+Regards,
+-Markus
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=d4ae4dd346cd49302d157b129ead2f60d3a82534
