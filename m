@@ -2,108 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EB2423B15F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Aug 2020 01:59:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC9A623B198
+	for <lists+devicetree@lfdr.de>; Tue,  4 Aug 2020 02:15:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729368AbgHCX6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Aug 2020 19:58:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36338 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729265AbgHCX6f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Aug 2020 19:58:35 -0400
-Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B834C06174A
-        for <devicetree@vger.kernel.org>; Mon,  3 Aug 2020 16:58:35 -0700 (PDT)
-Received: by mail-io1-xd41.google.com with SMTP id s189so33168515iod.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Aug 2020 16:58:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=wsVqyjHcA1iKwUDBxCp9up0hP+cWrDA1sHvlf/BCc1I=;
-        b=AiShUQSXnB6sCwZ0hjrv/cNhWcDpdxOe25FBTj9xmqPNXeVLzAbER2ihz09Fw2BE/h
-         YCyLmXGXXdiSiLOx1Mrvd3H1roH+ItiZNmy7HKicnANGt6drgrndXYPcgDL3giO6mb4K
-         JLMaHIv8CT3pyKRiMubXM+tZUjlW8GFAoAfy8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=wsVqyjHcA1iKwUDBxCp9up0hP+cWrDA1sHvlf/BCc1I=;
-        b=lJi6W2N+CsXicLfrVp8pEjWT5J67Pdli+GXMbiM9L3H2L/ETulb8tEP+/1vPCm1jJ2
-         BgZeLQd3ksbuiK1QwJ/rTog6aWqU8ddsNYk1JDh8G9nULccWnhO1DopSamoB5zxAbJDF
-         u+BBAo1+VmP97irxWvjdMpusFVroW4LhKFDaRaRmc9puaC6tjHp82owpjrC2yHzZ2p6r
-         6Ok2uaiCgfz/1vXF7cfFq10L6tU89Nz9/BeX4H6kacrCCvv50fZFgKED9UzayLeukjIz
-         oBeAB40JVexaLPZOXlM8JvFuCr2Gk6HiUI+xIhgW+H2LfLw2D2U3vDfVVciafyH1oV0b
-         FBKQ==
-X-Gm-Message-State: AOAM5335E9vXs2gh8YfBDtggtDLXJT9z8dGpaNljONZNMC5Bar3l4+eU
-        /KA9f0p4EQu9tXpj2oT6Q0Q8JeAc78DWXw==
-X-Google-Smtp-Source: ABdhPJxDqAh8c8N6NwS66oD3lSYhKYcAZzbzw5XKTWBN5KQaQPgLB22TF0PmY9OHGTOqtWAiSzHV+w==
-X-Received: by 2002:a05:6602:381:: with SMTP id f1mr2386096iov.193.1596499114281;
-        Mon, 03 Aug 2020 16:58:34 -0700 (PDT)
-Received: from derch.Home (97-122-92-59.hlrn.qwest.net. [97.122.92.59])
-        by smtp.gmail.com with ESMTPSA id x185sm11075992iof.41.2020.08.03.16.58.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Aug 2020 16:58:33 -0700 (PDT)
-From:   Daniel Campello <campello@chromium.org>
-To:     LKML <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Daniel Campello <campello@chromium.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Gwendal Grignou <gwendal@chromium.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio@vger.kernel.org
-Subject: [PATCH v5 15/15] iio: sx9310: Use irq trigger flags from firmware
-Date:   Mon,  3 Aug 2020 17:58:15 -0600
-Message-Id: <20200803175559.v5.15.I4c344a6793007001bbb3c1c08e96d3acf893b36b@changeid>
-X-Mailer: git-send-email 2.28.0.163.g6104cc2f0b6-goog
-In-Reply-To: <20200803235815.778997-1-campello@chromium.org>
-References: <20200803235815.778997-1-campello@chromium.org>
+        id S1728689AbgHDAPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Aug 2020 20:15:22 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:36653 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728329AbgHDAPW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Aug 2020 20:15:22 -0400
+X-UUID: ef7542779436431f80815dec5f03a96e-20200804
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=3spY01kwf4O6wv7cicumcVELIxjbsq4/eTGUCLDHWqw=;
+        b=XinFr6mmrVN0Q5O7bKYQJPJO8TT9FPpJ0Gy02/VbSxVKidrAchUt5dSoPu1FGIp+L7KEZPSSwFSH8kw4yV1J9XQruu8OSwk+OVKYSbF0Fwd4Bt7TkG8xAsKoOjeQ5B3zDpSbrwTOov3CwZRHM2VCZGaW8pS84ofNl4KUdS2VAEg=;
+X-UUID: ef7542779436431f80815dec5f03a96e-20200804
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <zhiyong.tao@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 50072949; Tue, 04 Aug 2020 08:15:12 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31DR.mediatek.inc
+ (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 4 Aug
+ 2020 08:15:04 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 4 Aug 2020 08:15:05 +0800
+Message-ID: <1596500071.20778.0.camel@mhfsdcap03>
+Subject: Re: [PATCH v2 2/3] dt-bindings: pinctrl: mt8192: add binding
+ document
+From:   zhiyong tao <zhiyong.tao@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <seiya.wang@mediatek.com>, <linux-arm-kernel@lists.infradead.org>,
+        <jg_poxu@mediatek.com>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <chuanjia.liu@mediatek.com>,
+        <sean.wang@kernel.org>, <srv_heupstream@mediatek.com>,
+        <biao.huang@mediatek.com>, <erin.lo@mediatek.com>,
+        <mark.rutland@arm.com>, <hongzhou.yang@mediatek.com>,
+        <matthias.bgg@gmail.com>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, <hui.liu@mediatek.com>,
+        <eddie.huang@mediatek.com>, <sean.wang@mediatek.com>,
+        <linux-gpio@vger.kernel.org>, <sj.huang@mediatek.com>,
+        <linus.walleij@linaro.org>
+Date:   Tue, 4 Aug 2020 08:14:31 +0800
+In-Reply-To: <20200803214054.GA3184946@bogus>
+References: <20200801043303.32149-1-zhiyong.tao@mediatek.com>
+         <20200801043303.32149-3-zhiyong.tao@mediatek.com>
+         <20200803214054.GA3184946@bogus>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-TM-SNTS-SMTP: 7534D64DA8CF1C4E84B2CC352E2ADD1F41974CB8CC880301656CE46078BDEF9C2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Stephen Boyd <swboyd@chromium.org>
-
-We shouldn't need to set default irq trigger flags here as the firmware
-should have properly indicated the trigger type, i.e. level low, in the
-DT or ACPI tables.
-
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-Signed-off-by: Daniel Campello <campello@chromium.org>
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
----
-
-Changes in v5: None
-Changes in v4: None
-Changes in v3:
- - Added irq trigger flags commit to the series.
-
-Changes in v2: None
-
- drivers/iio/proximity/sx9310.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/iio/proximity/sx9310.c b/drivers/iio/proximity/sx9310.c
-index a68766708fb304..db97b5339d0eff 100644
---- a/drivers/iio/proximity/sx9310.c
-+++ b/drivers/iio/proximity/sx9310.c
-@@ -948,7 +948,7 @@ static int sx9310_probe(struct i2c_client *client)
- 		ret = devm_request_threaded_irq(dev, client->irq,
- 						sx9310_irq_handler,
- 						sx9310_irq_thread_handler,
--						IRQF_TRIGGER_LOW | IRQF_ONESHOT,
-+						IRQF_ONESHOT,
- 						"sx9310_event", indio_dev);
- 		if (ret)
- 			return ret;
--- 
-2.28.0.163.g6104cc2f0b6-goog
+T24gTW9uLCAyMDIwLTA4LTAzIGF0IDE1OjQwIC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
+T24gU2F0LCAwMSBBdWcgMjAyMCAxMjozMzowMiArMDgwMCwgWmhpeW9uZyBUYW8gd3JvdGU6DQo+
+ID4gVGhlIGNvbW1pdCBhZGRzIG10ODE5MiBjb21wYXRpYmxlIG5vZGUgaW4gYmluZGluZyBkb2N1
+bWVudC4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBaaGl5b25nIFRhbyA8emhpeW9uZy50YW9A
+bWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+ICAuLi4vYmluZGluZ3MvcGluY3RybC9waW5jdHJs
+LW10ODE5Mi55YW1sICAgICAgfCAxNzUgKysrKysrKysrKysrKysrKysrDQo+ID4gIDEgZmlsZSBj
+aGFuZ2VkLCAxNzUgaW5zZXJ0aW9ucygrKQ0KPiA+ICBjcmVhdGUgbW9kZSAxMDA3NTUgRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BpbmN0cmwvcGluY3RybC1tdDgxOTIueWFtbA0K
+PiA+IA0KPiANCj4gDQo+IE15IGJvdCBmb3VuZCBlcnJvcnMgcnVubmluZyAnbWFrZSBkdF9iaW5k
+aW5nX2NoZWNrJyBvbiB5b3VyIHBhdGNoOg0KDQo9PT4gRGVhciBSb2IsDQpJIHdpbGwgZml4IGl0
+IGluIHYzLiBUaGFua3MuDQo+IA0KPiAvYnVpbGRzL3JvYmhlcnJpbmcvbGludXgtZHQtcmV2aWV3
+L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9waW5jdHJsL3BpbmN0cmwtbXQ4MTky
+LmV4YW1wbGUuZHQueWFtbDogZXhhbXBsZS0wOiBwaW5jdHJsQDEwMDA1MDAwOnJlZzowOiBbMCwg
+MjY4NDU1OTM2LCAwLCA0MDk2XSBpcyB0b28gbG9uZw0KPiAvYnVpbGRzL3JvYmhlcnJpbmcvbGlu
+dXgtZHQtcmV2aWV3L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9waW5jdHJsL3Bp
+bmN0cmwtbXQ4MTkyLmV4YW1wbGUuZHQueWFtbDogZXhhbXBsZS0wOiBwaW5jdHJsQDEwMDA1MDAw
+OnJlZzoxOiBbMCwgMjk3OTI2NjU2LCAwLCA0MDk2XSBpcyB0b28gbG9uZw0KPiAvYnVpbGRzL3Jv
+YmhlcnJpbmcvbGludXgtZHQtcmV2aWV3L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
+cy9waW5jdHJsL3BpbmN0cmwtbXQ4MTkyLmV4YW1wbGUuZHQueWFtbDogZXhhbXBsZS0wOiBwaW5j
+dHJsQDEwMDA1MDAwOnJlZzoyOiBbMCwgMjk4OTA5Njk2LCAwLCA0MDk2XSBpcyB0b28gbG9uZw0K
+PiAvYnVpbGRzL3JvYmhlcnJpbmcvbGludXgtZHQtcmV2aWV3L0RvY3VtZW50YXRpb24vZGV2aWNl
+dHJlZS9iaW5kaW5ncy9waW5jdHJsL3BpbmN0cmwtbXQ4MTkyLmV4YW1wbGUuZHQueWFtbDogZXhh
+bXBsZS0wOiBwaW5jdHJsQDEwMDA1MDAwOnJlZzozOiBbMCwgMjk5MDQwNzY4LCAwLCA0MDk2XSBp
+cyB0b28gbG9uZw0KPiAvYnVpbGRzL3JvYmhlcnJpbmcvbGludXgtZHQtcmV2aWV3L0RvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9waW5jdHJsL3BpbmN0cmwtbXQ4MTkyLmV4YW1wbGUu
+ZHQueWFtbDogZXhhbXBsZS0wOiBwaW5jdHJsQDEwMDA1MDAwOnJlZzo0OiBbMCwgMjk5MTA2MzA0
+LCAwLCA0MDk2XSBpcyB0b28gbG9uZw0KPiAvYnVpbGRzL3JvYmhlcnJpbmcvbGludXgtZHQtcmV2
+aWV3L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9waW5jdHJsL3BpbmN0cmwtbXQ4
+MTkyLmV4YW1wbGUuZHQueWFtbDogZXhhbXBsZS0wOiBwaW5jdHJsQDEwMDA1MDAwOnJlZzo1OiBb
+MCwgMzAwMDIzODA4LCAwLCA0MDk2XSBpcyB0b28gbG9uZw0KPiAvYnVpbGRzL3JvYmhlcnJpbmcv
+bGludXgtZHQtcmV2aWV3L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9waW5jdHJs
+L3BpbmN0cmwtbXQ4MTkyLmV4YW1wbGUuZHQueWFtbDogZXhhbXBsZS0wOiBwaW5jdHJsQDEwMDA1
+MDAwOnJlZzo2OiBbMCwgMzAwMzUxNDg4LCAwLCA0MDk2XSBpcyB0b28gbG9uZw0KPiAvYnVpbGRz
+L3JvYmhlcnJpbmcvbGludXgtZHQtcmV2aWV3L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
+aW5ncy9waW5jdHJsL3BpbmN0cmwtbXQ4MTkyLmV4YW1wbGUuZHQueWFtbDogZXhhbXBsZS0wOiBw
+aW5jdHJsQDEwMDA1MDAwOnJlZzo3OiBbMCwgMzAwNTQ4MDk2LCAwLCA0MDk2XSBpcyB0b28gbG9u
+Zw0KPiAvYnVpbGRzL3JvYmhlcnJpbmcvbGludXgtZHQtcmV2aWV3L0RvY3VtZW50YXRpb24vZGV2
+aWNldHJlZS9iaW5kaW5ncy9waW5jdHJsL3BpbmN0cmwtbXQ4MTkyLmV4YW1wbGUuZHQueWFtbDog
+ZXhhbXBsZS0wOiBwaW5jdHJsQDEwMDA1MDAwOnJlZzo4OiBbMCwgMzAxMDcyMzg0LCAwLCA0MDk2
+XSBpcyB0b28gbG9uZw0KPiAvYnVpbGRzL3JvYmhlcnJpbmcvbGludXgtZHQtcmV2aWV3L0RvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9waW5jdHJsL3BpbmN0cmwtbXQ4MTkyLmV4YW1w
+bGUuZHQueWFtbDogZXhhbXBsZS0wOiBwaW5jdHJsQDEwMDA1MDAwOnJlZzo5OiBbMCwgMzAxMTM3
+OTIwLCAwLCA0MDk2XSBpcyB0b28gbG9uZw0KPiAvYnVpbGRzL3JvYmhlcnJpbmcvbGludXgtZHQt
+cmV2aWV3L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9waW5jdHJsL3BpbmN0cmwt
+bXQ4MTkyLmV4YW1wbGUuZHQueWFtbDogZXhhbXBsZS0wOiBwaW5jdHJsQDEwMDA1MDAwOnJlZzox
+MDogWzAsIDI2ODQ4MDUxMiwgMCwgNDA5Nl0gaXMgdG9vIGxvbmcNCj4gDQo+IA0KPiBTZWUgaHR0
+cHM6Ly9wYXRjaHdvcmsub3psYWJzLm9yZy9wYXRjaC8xMzM5NjYxDQo+IA0KPiBJZiB5b3UgYWxy
+ZWFkeSByYW4gJ21ha2UgZHRfYmluZGluZ19jaGVjaycgYW5kIGRpZG4ndCBzZWUgdGhlIGFib3Zl
+DQo+IGVycm9yKHMpLCB0aGVuIG1ha2Ugc3VyZSBkdC1zY2hlbWEgaXMgdXAgdG8gZGF0ZToNCj4g
+DQo+IHBpcDMgaW5zdGFsbCBnaXQraHR0cHM6Ly9naXRodWIuY29tL2RldmljZXRyZWUtb3JnL2R0
+LXNjaGVtYS5naXRAbWFzdGVyIC0tdXBncmFkZQ0KPiANCj4gUGxlYXNlIGNoZWNrIGFuZCByZS1z
+dWJtaXQuDQo+IA0KDQo=
 
