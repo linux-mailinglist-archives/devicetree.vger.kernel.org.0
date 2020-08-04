@@ -2,109 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D7DE23B1C1
-	for <lists+devicetree@lfdr.de>; Tue,  4 Aug 2020 02:47:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9945623B281
+	for <lists+devicetree@lfdr.de>; Tue,  4 Aug 2020 03:51:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728015AbgHDApm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Aug 2020 20:45:42 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:24391 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727852AbgHDApm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 3 Aug 2020 20:45:42 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1596501941; h=Content-Transfer-Encoding: MIME-Version:
- References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=OLPKTdSqqloYxw93IHUq14f5yJAcWoSaKHnlKyo6IBE=; b=HW9Y9yKnUijw+NVIRr8+2NtUJI6fFUFz+GP8HA7+AchIqQfs65k0ViZy/64BLWsVzZ01xwTr
- 5qMr1Oth+MkW8gl7Mqc2RxPfeQgsTQBUGDkg7QMVwGedPqJBWidhFQyGwIJzmTn14YznrcOF
- sxnIcBlf8bMGEerxKgbGW8F3jC8=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 5f28afb576a940cda887636e (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 04 Aug 2020 00:45:41
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 3D123C433A0; Tue,  4 Aug 2020 00:45:40 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from wcheng-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: wcheng)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3419DC433C6;
-        Tue,  4 Aug 2020 00:45:39 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3419DC433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=wcheng@codeaurora.org
-From:   Wesley Cheng <wcheng@codeaurora.org>
-To:     robh+dt@kernel.org, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, agross@kernel.org,
-        bjorn.andersson@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        jackp@codeaurora.org, sboyd@kernel.org,
-        Wesley Cheng <wcheng@codeaurora.org>
-Subject: [PATCH v7 4/4] arm64: boot: dts: qcom: pm8150b: Add DTS node for PMIC VBUS booster
-Date:   Mon,  3 Aug 2020 17:45:23 -0700
-Message-Id: <20200804004523.7964-5-wcheng@codeaurora.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200804004523.7964-1-wcheng@codeaurora.org>
-References: <20200804004523.7964-1-wcheng@codeaurora.org>
+        id S1728373AbgHDBvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Aug 2020 21:51:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53678 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726615AbgHDBvQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Aug 2020 21:51:16 -0400
+Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1A1FC06174A
+        for <devicetree@vger.kernel.org>; Mon,  3 Aug 2020 18:51:15 -0700 (PDT)
+Received: by mail-vs1-xe42.google.com with SMTP id 4so14114285vsf.11
+        for <devicetree@vger.kernel.org>; Mon, 03 Aug 2020 18:51:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZjddNGXz3YzU7Pvdk0bKn7EGChBBYHNzVV19el9GvN4=;
+        b=aaf257HYCPeWHrjBXePaOYS8VFb1Q/czqyneX50WCTw9iwZoobQcG+o1I1MWB7iKJs
+         smazrjiW0L6F2JZ72ElWTxCb5NTLzF2eL/KqMeWC9AHOwb9tlBgjdHwOTBLnOa+PAG0y
+         GzfieF4oG1m72F66pbXCb9LhKUeoz73OImW5s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZjddNGXz3YzU7Pvdk0bKn7EGChBBYHNzVV19el9GvN4=;
+        b=T81AcluLJlwh1Tm4dn9ZMHF5Lk0GEgOBECL+B1Z1iq1pEfhemZd4kIJNcHLCExhlvh
+         TeKuNIvLiPyxICOxUI7YFOYJXni3KnIN1WazSzlcKmm+LpcX2hSIezFaqBkNhKDHhset
+         QiFIVah+A9q2NP7YqzHLXniKhjYclsb4ar8sHFsQ5LEPFmO2OaBBQhuhIR+aavGqsETW
+         lOSva5DTctBOxYC20f+7G9H4Ea8TjApAuXwnHmxHV/AWEIjk4oc1i7sWlDonK7C49+SR
+         mawYUgEtB8KJeauFd3NgFzlqeKjIEIr3JOg1bln9EfLjRPFW/r6ZEq9A8uREFE9uqFz0
+         Msig==
+X-Gm-Message-State: AOAM530aqkT2B1jZdmN/3O9Wg62POD/BbYdkRwow+pZrkQZWswYyxY9c
+        qs9m4SFcHjP6f6qqx6+rp8OvTBIAIwz6WVDmvJQ8Cg==
+X-Google-Smtp-Source: ABdhPJy1lRFt2xIEK6BlHw92IYkKS9uhFUQMHmq60wCSuWixqVxrgiG9sOnX8EEpNmGgC5HX8UN7Ug7KXZjZv9nKfx8=
+X-Received: by 2002:a67:bb06:: with SMTP id m6mr13785000vsn.54.1596505874070;
+ Mon, 03 Aug 2020 18:51:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1596445047-2975-1-git-send-email-hsin-hsiung.wang@mediatek.com> <1596445047-2975-2-git-send-email-hsin-hsiung.wang@mediatek.com>
+In-Reply-To: <1596445047-2975-2-git-send-email-hsin-hsiung.wang@mediatek.com>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Tue, 4 Aug 2020 09:51:03 +0800
+Message-ID: <CANMq1KCSiRwCvPcbdA-g4Xwm5Jwk7VLDNpsR-_zoxEOv9ZFHWQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] spmi: Add driver shutdown support
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-arm-msm@vger.kernel.org,
+        srv_heupstream <srv_heupstream@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the required DTS node for the USB VBUS output regulator, which is
-available on PM8150B.  This will provide the VBUS source to connected
-peripherals.
+On Mon, Aug 3, 2020 at 4:57 PM Hsin-Hsiung Wang
+<hsin-hsiung.wang@mediatek.com> wrote:
+>
+> Add new shutdown() method.  Use it in the standard driver model style.
+>
+> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+> ---
+>  drivers/spmi/spmi.c  | 12 ++++++++++++
+>  drivers/spmi/spmi.c  | 12 ++++++++++++
+>  include/linux/spmi.h |  1 +
+>  2 files changed, 13 insertions(+)
+>
+> diff --git a/drivers/spmi/spmi.c b/drivers/spmi/spmi.c
+> index c16b60f..5fde024 100644
+> --- a/drivers/spmi/spmi.c
+> +++ b/drivers/spmi/spmi.c
+> @@ -357,6 +357,17 @@ static int spmi_drv_remove(struct device *dev)
+>         return 0;
+>  }
+>
+> +static void spmi_drv_shutdown(struct device *dev)
+> +{
+> +       const struct spmi_driver *sdrv = to_spmi_driver(dev->driver);
+> +
+> +       if (!sdrv)
+> +               return;
+> +
+> +
+> +       if (sdrv->shutdown)
+> +               sdrv->shutdown(to_spmi_device(dev));
 
-Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/pm8150b.dtsi   | 6 ++++++
- arch/arm64/boot/dts/qcom/sm8150-mtp.dts | 4 ++++
- 2 files changed, 10 insertions(+)
+Slight more succinct (assuming sdrv _can_ actually be NULL, I'm not
+sure about that)
 
-diff --git a/arch/arm64/boot/dts/qcom/pm8150b.dtsi b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-index 053c659734a7..9e560c1ca30d 100644
---- a/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-@@ -53,6 +53,12 @@ power-on@800 {
- 			status = "disabled";
- 		};
- 
-+		pm8150b_vbus: dcdc@1100 {
-+			compatible = "qcom,pm8150b-vbus-reg";
-+			status = "disabled";
-+			reg = <0x1100>;
-+		};
-+
- 		pm8150b_typec: typec@1500 {
- 			compatible = "qcom,pm8150b-usb-typec";
- 			status = "disabled";
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-index 6c6325c3af59..ba3b5b802954 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-@@ -409,6 +409,10 @@ &ufs_mem_phy {
- 	vdda-pll-max-microamp = <19000>;
- };
- 
-+&pm8150b_vbus {
-+	status = "okay";
-+};
-+
- &usb_1_hsphy {
- 	status = "okay";
- 	vdda-pll-supply = <&vdd_usb_hs_core>;
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+if (srdv && sdrv->shutdown)
 
+> +}
+> +}
+> +
+>  static int spmi_drv_uevent(struct device *dev, struct kobj_uevent_env *env)
+>  {
+>         int ret;
+> @@ -373,6 +384,7 @@ static struct bus_type spmi_bus_type = {
+> @@ -373,6 +384,7 @@ static struct bus_type spmi_bus_type = {
+>         .match          = spmi_device_match,
+>         .probe          = spmi_drv_probe,
+>         .remove         = spmi_drv_remove,
+> +       .shutdown       = spmi_drv_shutdown,
+>         .uevent         = spmi_drv_uevent,
+>  };
+>
+> diff --git a/include/linux/spmi.h b/include/linux/spmi.h
+> index 394a3f6..729bcbf 100644
+> --- a/include/linux/spmi.h
+> +++ b/include/linux/spmi.h
+> @@ -138,6 +138,7 @@ struct spmi_driver {
+>         struct device_driver driver;
+>         int     (*probe)(struct spmi_device *sdev);
+>         void    (*remove)(struct spmi_device *sdev);
+> +       void    (*shutdown)(struct spmi_device *sdev);
+>  };
+>
+>  static inline struct spmi_driver *to_spmi_driver(struct device_driver *d)
+> --
+> 2.6.4
