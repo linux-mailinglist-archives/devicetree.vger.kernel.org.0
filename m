@@ -2,156 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66E4F23B42E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Aug 2020 06:30:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7B8E23B4B0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Aug 2020 07:57:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729787AbgHDE3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Aug 2020 00:29:50 -0400
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:9710 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727999AbgHDE3b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Aug 2020 00:29:31 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5f28e3c80001>; Mon, 03 Aug 2020 21:27:53 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Mon, 03 Aug 2020 21:29:30 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Mon, 03 Aug 2020 21:29:30 -0700
-Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 4 Aug
- 2020 04:29:29 +0000
-Received: from hqnvemgw03.nvidia.com (10.124.88.68) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Tue, 4 Aug 2020 04:29:29 +0000
-Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.167.221]) by hqnvemgw03.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5f28e4280005>; Mon, 03 Aug 2020 21:29:29 -0700
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     <adrian.hunter@intel.com>, <ulf.hansson@linaro.org>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <robh+dt@kernel.org>
-CC:     <skomatineni@nvidia.com>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>
-Subject: [PATCH v2 6/6] sdhci: tegra: Add missing TMCLK for data timeout
-Date:   Mon, 3 Aug 2020 21:29:23 -0700
-Message-ID: <1596515363-27235-7-git-send-email-skomatineni@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1596515363-27235-1-git-send-email-skomatineni@nvidia.com>
-References: <1596515363-27235-1-git-send-email-skomatineni@nvidia.com>
-X-NVConfidentiality: public
+        id S1729270AbgHDF5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Aug 2020 01:57:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34876 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726514AbgHDF5p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Aug 2020 01:57:45 -0400
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFC97C06174A;
+        Mon,  3 Aug 2020 22:57:44 -0700 (PDT)
+Received: by mail-lj1-x244.google.com with SMTP id v12so11881366ljc.10;
+        Mon, 03 Aug 2020 22:57:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=5U+m+9JSkwxJJhqjPVRn3WLkY6Le0ENenqvq9/Z7HUw=;
+        b=uzh1lNvgZJ6EKadMvtyrQbIJtr7vBd1YN8XcQUsa0sjlRqlPFz+Rmrr3NK7eKcgwla
+         U9zfXqeLgTpds/90Qm0HlhXZYTM/UX+jwip1OCeDO0hHDqjSf8UITgnfFjf4fMsxdt8H
+         8qU0Qse3pbeNGZzi1OilFilWF8vAz4c5Vv96SNqs1o43KJF1xiRQgQMsKPMnLhGtzutr
+         bdn455ho3bRaJ0NHR2YG9/R/RR1q0KxtH9c/I9a2T0cFxz+NKCHjimOX2vzTJIcG9eat
+         nunyaJk2qwidW+kxkDnHBAS0h46lvFGAMoHwSwstZBcKaFb9jrbcKFgba7f3rOgQTMYg
+         OYEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=5U+m+9JSkwxJJhqjPVRn3WLkY6Le0ENenqvq9/Z7HUw=;
+        b=drpQc7aqGGkrRH4gV2P5d4XCOugKgdOVzv8C4PFMG5IJG2UZK8C3POGwY0rkGG1fAj
+         bi7KkFINxwfWN87b1/6npocOmf6/QSR11qbYU0DDJcIwr/JxlVSUypCYfhzj50AsTu8S
+         Apd6Hubs8CvkEKlfznSOsqrcC7L2/QkqLzMlrNK01R7qgKTqSKI7rNwqB+1TII9IkEjI
+         uDwiP7xq/Jek/KwsJj56mzg/iYwl0oGcX88wtlpL9O2Nzs3P0DJ5iovYaPX5iYgdI4l0
+         Cjgnmx7HtBJhZ5sZ1uY0ptkd52tW88T1VRpJ7rqnUxWMzBYfqLDaFqpQ21Xwll5jzDLZ
+         HTwA==
+X-Gm-Message-State: AOAM533L/w19tqreQjVrPZ527sFS9HUOyVNXISGlJMCFYhW2PY1O87rt
+        KrULVhxRfT6DY7GCDXKacJZDkxnm
+X-Google-Smtp-Source: ABdhPJz+YuuLYuM6oYU0ejGfnA7gf/4ATRAgnz8+lidinPm8XDWxCrf/O2v5WYAIlOrneeEqKzzF2w==
+X-Received: by 2002:a2e:804d:: with SMTP id p13mr4942418ljg.359.1596520663024;
+        Mon, 03 Aug 2020 22:57:43 -0700 (PDT)
+Received: from [192.168.2.145] (94-29-41-50.dynamic.spd-mgts.ru. [94.29.41.50])
+        by smtp.googlemail.com with ESMTPSA id j4sm5074643ljc.20.2020.08.03.22.57.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Aug 2020 22:57:42 -0700 (PDT)
+Subject: Re: [PATCH v8 06/10] media: tegra-video: Add support for external
+ sensor capture
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, frankc@nvidia.com,
+        hverkuil@xs4all.nl, sakari.ailus@iki.fi, robh+dt@kernel.org,
+        helen.koike@collabora.com
+Cc:     gregkh@linuxfoundation.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1596469346-937-1-git-send-email-skomatineni@nvidia.com>
+ <1596469346-937-7-git-send-email-skomatineni@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <287fb73c-63b9-e49d-095d-280179736cfc@gmail.com>
+Date:   Tue, 4 Aug 2020 08:57:40 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1596515273; bh=r6u0HMf6o4jPz5Nwr4/5GJuqlW/cC/VMT34/Nxbq+OY=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=qT3j1GngoQhOEm0eg8syrfDVFk+k2WTrcxtTBbfa16DrnWvS0VUuuYrsBNVqbOWcf
-         S2b5wueGc2EET20lSsiMDEdczbXiCQFQo/3jESjqtDiX/WwPHnehitnnzGZIm0We2r
-         qjq/byxS1Q0sNHCYa7nd4KthXM7Vik4JTTiliz7ZhbNCn+O2CPc6IU7+pmUv6FnPsP
-         VY8BLEuV70i1L1Ym+J6hkcgdYwbs/6fL2LAmoRFCKEOaSPlcMksW0+yoMq94BKDoLG
-         6ADLg+1Bopc2UgDHmYJvS4iBX8DifYnTVlfSU+XCPNnH3nLMujKrPFMCSo+iR4c8sM
-         cYmXzDzIFMRQg==
+In-Reply-To: <1596469346-937-7-git-send-email-skomatineni@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-commit b5a84ecf025a ("mmc: tegra: Add Tegra210 support")
+03.08.2020 18:42, Sowjanya Komatineni пишет:
+> This patch adds support to capture from the external sensor
+> based on device graph in the device tree.
+> 
+> Driver walks through the device graph to create media links
+> between the entities and registers and unregisters video devices
+> when the corresponding sub-devices are bound and unbound.
+> 
+> Channel formats are enumerated based on available formats from
+> the sensor and the corresponding matched formats from the Tegra
+> supported video formats list.
+> 
+> Each Tegra CSI instance can be configured as 4-lane or 2-lane
+> based on supported lane configuration from the sensor through
+> the device tree.
+> 
+> Currently this driver supports V4L2 video node centric only.
+> 
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> ---
+>  drivers/staging/media/tegra-video/Kconfig    |   1 +
+>  drivers/staging/media/tegra-video/TODO       |   4 -
+>  drivers/staging/media/tegra-video/csi.c      | 139 +++++-
+>  drivers/staging/media/tegra-video/csi.h      |   1 +
+>  drivers/staging/media/tegra-video/tegra210.c |   2 +-
+>  drivers/staging/media/tegra-video/vi.c       | 692 +++++++++++++++++++++++++--
+>  drivers/staging/media/tegra-video/vi.h       |  25 +-
+>  7 files changed, 800 insertions(+), 64 deletions(-)
 
-Tegra210 and later has a separate sdmmc_legacy_tm (TMCLK) used by Tegra
-SDMMC hawdware for data timeout to achive better timeout than using
-SDCLK and using TMCLK is recommended.
+This and the rest of the patches look sane to me, thanks.
 
-USE_TMCLK_FOR_DATA_TIMEOUT bit in Tegra SDMMC register
-SDHCI_TEGRA_VENDOR_SYS_SW_CTRL can be used to choose either TMCLK or
-SDCLK for data timeout.
-
-Default USE_TMCLK_FOR_DATA_TIMEOUT bit is set to 1 and TMCLK is used
-for data timeout by Tegra SDMMC hardware and having TMCLK not enabled
-is not recommended.
-
-So, this patch fixes it.
-
-Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
----
- drivers/mmc/host/sdhci-tegra.c | 41 +++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
-
-diff --git a/drivers/mmc/host/sdhci-tegra.c b/drivers/mmc/host/sdhci-tegra.c
-index 31ed321..c0b9405 100644
---- a/drivers/mmc/host/sdhci-tegra.c
-+++ b/drivers/mmc/host/sdhci-tegra.c
-@@ -140,6 +140,7 @@ struct sdhci_tegra_autocal_offsets {
- struct sdhci_tegra {
- 	const struct sdhci_tegra_soc_data *soc_data;
- 	struct gpio_desc *power_gpio;
-+	struct clk *tmclk;
- 	bool ddr_signaling;
- 	bool pad_calib_required;
- 	bool pad_control_available;
-@@ -1611,6 +1612,44 @@ static int sdhci_tegra_probe(struct platform_device *pdev)
- 		goto err_power_req;
- 	}
- 
-+	/*
-+	 * Tegra210 has a separate SDMMC_LEGACY_TM clock used for host
-+	 * timeout clock and SW can choose TMCLK or SDCLK for hardware
-+	 * data timeout through the bit USE_TMCLK_FOR_DATA_TIMEOUT of
-+	 * the register SDHCI_TEGRA_VENDOR_SYS_SW_CTRL.
-+	 *
-+	 * USE_TMCLK_FOR_DATA_TIMEOUT bit default is set to 1 and SDMMC uses
-+	 * 12Mhz TMCLK which is advertised in host capability register.
-+	 * With TMCLK of 12Mhz provides maximum data timeout period that can
-+	 * be achieved is 11s better than using SDCLK for data timeout.
-+	 *
-+	 * So, TMCLK is set to 12Mhz and kept enabled all the time on SoC's
-+	 * supporting SDR104 mode and when not using SDCLK for data timeout.
-+	 */
-+
-+	if ((soc_data->nvquirks & NVQUIRK_ENABLE_SDR104) &&
-+	    !(soc_data->pdata->quirks & SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK)) {
-+		clk = devm_clk_get(&pdev->dev, "tmclk");
-+		if (IS_ERR(clk)) {
-+			rc = PTR_ERR(clk);
-+			if (rc == -EPROBE_DEFER)
-+				goto err_power_req;
-+
-+			dev_warn(&pdev->dev, "failed to get tmclk: %d\n", rc);
-+			clk = NULL;
-+		}
-+
-+		clk_set_rate(clk, 12000000);
-+		rc = clk_prepare_enable(clk);
-+		if (rc) {
-+			dev_err(&pdev->dev,
-+				"failed to enable tmclk: %d\n", rc);
-+			goto err_power_req;
-+		}
-+
-+		tegra_host->tmclk = clk;
-+	}
-+
- 	clk = devm_clk_get(mmc_dev(host->mmc), NULL);
- 	if (IS_ERR(clk)) {
- 		rc = PTR_ERR(clk);
-@@ -1654,6 +1693,7 @@ static int sdhci_tegra_probe(struct platform_device *pdev)
- err_rst_get:
- 	clk_disable_unprepare(pltfm_host->clk);
- err_clk_get:
-+	clk_disable_unprepare(tegra_host->tmclk);
- err_power_req:
- err_parse_dt:
- 	sdhci_pltfm_free(pdev);
-@@ -1671,6 +1711,7 @@ static int sdhci_tegra_remove(struct platform_device *pdev)
- 	reset_control_assert(tegra_host->rst);
- 	usleep_range(2000, 4000);
- 	clk_disable_unprepare(pltfm_host->clk);
-+	clk_disable_unprepare(tegra_host->tmclk);
- 
- 	sdhci_pltfm_free(pdev);
- 
--- 
-2.7.4
-
+Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
