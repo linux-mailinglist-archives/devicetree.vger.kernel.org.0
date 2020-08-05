@@ -2,80 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B34023D2BD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 22:15:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77F5823D238
+	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 22:10:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726956AbgHEUPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Aug 2020 16:15:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42176 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726429AbgHEQUG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 12:20:06 -0400
-Received: from mail-oo1-xc42.google.com (mail-oo1-xc42.google.com [IPv6:2607:f8b0:4864:20::c42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2F79C0086A4;
-        Wed,  5 Aug 2020 07:43:39 -0700 (PDT)
-Received: by mail-oo1-xc42.google.com with SMTP id a9so8816689oof.12;
-        Wed, 05 Aug 2020 07:43:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GHOG3MMfsS8Q4iK2eQgCcwA2GFKcb5/CggWXLB2DZwI=;
-        b=cdEwdP7dZcXvRLz38WwI2mBl6cQMeZH/O+UvjcNDzp+zaB+BzerBdoEo5rGyh9Fsht
-         FYCfq2oBaMBbdhOVFkui+n03ocYTEE1tlNlT5pY1/W59I0y32FyqnorZlbJMLDvcYsya
-         iedZWWisMJF3LouBc6f5yVucWaMPev3oQc9upmWEGvIVDzevQP2e0I4lCnDGQuECRu1s
-         NfSa9hNHZ6Dkd3tKlytQwvE20tRa1Xq/JL1MwAhsCVVPH0WABe1Sy8BHhPjDqzV0IDbh
-         e5Q1OiZSMOpR2g3tcDFqLmpC83zdKTtgbxzPvj6dOd2KZ65lIbXqP0kD+G3X4UlTghEV
-         T4cQ==
-X-Gm-Message-State: AOAM5314XgY4PcOsBDQHJnm/v0v8tscUalkQt5+4Zx0z2oLfETNDe/7+
-        CZeAJ/1RDpP/+gtPZwloNgeBCeI/Cmaw99viN4E=
-X-Google-Smtp-Source: ABdhPJw9RW5CudcHTtQDFGv1V5QDzRVBcVFCwYbJOv2CTxkyE1KBLND9KzWPONo2u/qPu+8W70ut9anlzKiuUHbnLAU=
-X-Received: by 2002:a4a:9d19:: with SMTP id w25mr3187978ooj.11.1596638599474;
- Wed, 05 Aug 2020 07:43:19 -0700 (PDT)
+        id S1726316AbgHEUJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Aug 2020 16:09:49 -0400
+Received: from pb-smtp2.pobox.com ([64.147.108.71]:56962 "EHLO
+        pb-smtp2.pobox.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725996AbgHEQ3N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 12:29:13 -0400
+Received: from pb-smtp2.pobox.com (unknown [127.0.0.1])
+        by pb-smtp2.pobox.com (Postfix) with ESMTP id 3153987992;
+        Wed,  5 Aug 2020 11:13:43 -0400 (EDT)
+        (envelope-from nico@fluxnic.net)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=pobox.com; h=date:from:to
+        :cc:subject:in-reply-to:message-id:references:mime-version
+        :content-type; s=sasl; bh=t4fVhjQVDWtzEETmfxy67PMJ+aE=; b=Xln+P+
+        yxlSY/84uqmszJffyoR/qH2KB/720zEYc/zh05B9w6FYOZo4SNr9h8RIRD9YGwUd
+        11XTHGNxdeatYBx7fwQRKn1KMzxfvb1+tEQj7ZOISPLsts5x+dWLdNJC25uO6khI
+        B+/WIr6D7qtNubL+35i4I2hjOMe31sYeorLtc=
+Received: from pb-smtp2.nyi.icgroup.com (unknown [127.0.0.1])
+        by pb-smtp2.pobox.com (Postfix) with ESMTP id 28FEC87991;
+        Wed,  5 Aug 2020 11:13:43 -0400 (EDT)
+        (envelope-from nico@fluxnic.net)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=fluxnic.net;
+ h=date:from:to:cc:subject:in-reply-to:message-id:references:mime-version:content-type; s=2016-12.pbsmtp; bh=Cvq6oQrzezpY4LxASPSDQy3sp0oeiiOQ+kGdMlRFHB4=; b=jZLFbTc4/NjzG+eJj6EfBs0AT33scg8HOgZvS0M5ev35O9kw6hCDbVnZHJr7GRhvS4AXf1ayxSbZqCUXBnU8mD4YbXbkqVt9Qtt48z1QSieFOrL5wCXG2xJOz2hMROcuo+zeGXbk7SKI2a7+E5OMeNcaERHPAyyuHU/tojg6Kvw=
+Received: from yoda.home (unknown [24.203.50.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by pb-smtp2.pobox.com (Postfix) with ESMTPSA id 700B987990;
+        Wed,  5 Aug 2020 11:13:42 -0400 (EDT)
+        (envelope-from nico@fluxnic.net)
+Received: from xanadu.home (xanadu.home [192.168.2.2])
+        by yoda.home (Postfix) with ESMTPSA id 380822DA0AA7;
+        Wed,  5 Aug 2020 11:13:41 -0400 (EDT)
+Date:   Wed, 5 Aug 2020 11:13:41 -0400 (EDT)
+From:   Nicolas Pitre <nico@fluxnic.net>
+To:     Conor Culhane <conor.culhane@silvaco.com>
+cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        "linux-i3c@lists.infradead.org" <linux-i3c@lists.infradead.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Rajeev Huralikoppi <rajeev.huralikoppi@silvaco.com>
+Subject: Re: [PATCH 3/4] i3c: master: svc: Add Silvaco I3C master driver
+In-Reply-To: <BN6PR16MB1762D6CE430AB08B7A2BE5FCF14A0@BN6PR16MB1762.namprd16.prod.outlook.com>
+Message-ID: <nycvar.YSQ.7.77.849.2008051105550.1112668@knanqh.ubzr>
+References: <20200709080159.2178-1-miquel.raynal@bootlin.com> <20200709080159.2178-3-miquel.raynal@bootlin.com>,<nycvar.YSQ.7.77.849.2008031546570.1112668@knanqh.ubzr> <BN6PR16MB1762D6CE430AB08B7A2BE5FCF14A0@BN6PR16MB1762.namprd16.prod.outlook.com>
 MIME-Version: 1.0
-References: <20200805142634.12252-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20200805142634.12252-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 5 Aug 2020 16:43:08 +0200
-Message-ID: <CAMuHMdVBFQ79Bqd7qn_AEvHSeJ0P8GRVAKSK2VFwB8YM9sQ+qQ@mail.gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: iwg22d-sodimm: Fix dt nodes sorting
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+X-Pobox-Relay-ID: 3FA9ABCE-D72E-11EA-93F8-2F5D23BA3BAF-78420484!pb-smtp2.pobox.com
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 5, 2020 at 4:26 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Some r8a7745-iwg22d-sodimm.dts device nodes are not sorted alphabetically.
-> This patch fixes the sorting of nodes and also fixes a typo in the stmpe
-> node.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v1->v2:- Fixed sorting of sound node
-> v1:- https://patchwork.kernel.org/patch/11690969/
+On Tue, 4 Aug 2020, Conor Culhane wrote:
 
-Thanks for the update!
+> Miquel is passing 0 as the delay_us argument.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.10.
+Good point.
 
-Gr{oetje,eeting}s,
+> Is this still a concern?
 
-                        Geert
+Not in that case.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Nicolas
