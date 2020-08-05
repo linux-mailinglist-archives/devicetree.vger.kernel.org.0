@@ -2,115 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39EE923C3A3
-	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 04:48:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E68F123C3BD
+	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 04:55:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727804AbgHECsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Aug 2020 22:48:17 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:39602 "EHLO inva021.nxp.com"
+        id S1725904AbgHECzW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Aug 2020 22:55:22 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:34356 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727109AbgHECsQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Aug 2020 22:48:16 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6B1C920139E;
-        Wed,  5 Aug 2020 04:48:14 +0200 (CEST)
+        id S1725864AbgHECzV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 Aug 2020 22:55:21 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 77ED01A1499;
+        Wed,  5 Aug 2020 04:55:19 +0200 (CEST)
 Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id BEE05201398;
-        Wed,  5 Aug 2020 04:48:08 +0200 (CEST)
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 4033A1A1490;
+        Wed,  5 Aug 2020 04:55:15 +0200 (CEST)
 Received: from 10.192.242.69 (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id E3A2740302;
-        Wed,  5 Aug 2020 04:48:01 +0200 (CEST)
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id BDA17402CF;
+        Wed,  5 Aug 2020 04:55:09 +0200 (CEST)
 From:   Anson Huang <Anson.Huang@nxp.com>
-To:     herbert@gondor.apana.org.au, davem@davemloft.net,
-        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, marex@denx.de,
-        s.trumtrar@pengutronix.de, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, aisheng.dong@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
 Cc:     Linux-imx@nxp.com
-Subject: [PATCH 3/3] dt-bindings: crypto: Convert i.MX sahara to json-schema
-Date:   Wed,  5 Aug 2020 10:43:30 +0800
-Message-Id: <1596595410-26921-3-git-send-email-Anson.Huang@nxp.com>
+Subject: [PATCH 1/2] dt-bindings: fsl: Convert i.MX7ULP PM to json-schema
+Date:   Wed,  5 Aug 2020 10:50:40 +0800
+Message-Id: <1596595841-27563-1-git-send-email-Anson.Huang@nxp.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1596595410-26921-1-git-send-email-Anson.Huang@nxp.com>
-References: <1596595410-26921-1-git-send-email-Anson.Huang@nxp.com>
 X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the i.MX sahara binding to DT schema format using json-schema.
+Convert the i.MX7ULP PM binding to DT schema format using json-schema.
 
 Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 ---
- .../devicetree/bindings/crypto/fsl-imx-sahara.txt  | 15 ----------
- .../devicetree/bindings/crypto/fsl-imx-sahara.yaml | 35 ++++++++++++++++++++++
- 2 files changed, 35 insertions(+), 15 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/crypto/fsl-imx-sahara.txt
- create mode 100644 Documentation/devicetree/bindings/crypto/fsl-imx-sahara.yaml
+ .../bindings/arm/freescale/fsl,imx7ulp-pm.txt      | 23 -------------
+ .../bindings/arm/freescale/fsl,imx7ulp-pm.yaml     | 40 ++++++++++++++++++++++
+ 2 files changed, 40 insertions(+), 23 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,imx7ulp-pm.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,imx7ulp-pm.yaml
 
-diff --git a/Documentation/devicetree/bindings/crypto/fsl-imx-sahara.txt b/Documentation/devicetree/bindings/crypto/fsl-imx-sahara.txt
+diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,imx7ulp-pm.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,imx7ulp-pm.txt
 deleted file mode 100644
-index db690b1..0000000
---- a/Documentation/devicetree/bindings/crypto/fsl-imx-sahara.txt
+index 75195be..0000000
+--- a/Documentation/devicetree/bindings/arm/freescale/fsl,imx7ulp-pm.txt
 +++ /dev/null
-@@ -1,15 +0,0 @@
--Freescale SAHARA Cryptographic Accelerator included in some i.MX chips.
--Currently only i.MX27 and i.MX53 are supported.
+@@ -1,23 +0,0 @@
+-Freescale i.MX7ULP Power Management Components
+-----------------------------------------------
+-
+-The Multi-System Mode Controller (MSMC) is responsible for sequencing
+-the MCU into and out of all stop and run power modes. Specifically, it
+-monitors events to trigger transitions between power modes while
+-controlling the power, clocks, and memories of the MCU to achieve the
+-power consumption and functionality of that mode.
+-
+-The WFI or WFE instruction is used to invoke a Sleep, Deep Sleep or
+-Standby modes for either Cortex family. Run, Wait, and Stop are the
+-common terms used for the primary operating modes of Kinetis
+-microcontrollers.
 -
 -Required properties:
--- compatible : Should be "fsl,<soc>-sahara"
--- reg : Should contain SAHARA registers location and length
--- interrupts : Should contain SAHARA interrupt number
+-- compatible:	Should be "fsl,imx7ulp-smc1".
+-- reg:		Specifies base physical address and size of the register sets.
 -
 -Example:
--
--sah: crypto@10025000 {
--	compatible = "fsl,imx27-sahara";
--	reg = <	0x10025000 0x800>;
--	interrupts = <75>;
+-smc1: smc1@40410000 {
+-	compatible = "fsl,imx7ulp-smc1";
+-	reg = <0x40410000 0x1000>;
 -};
-diff --git a/Documentation/devicetree/bindings/crypto/fsl-imx-sahara.yaml b/Documentation/devicetree/bindings/crypto/fsl-imx-sahara.yaml
+diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,imx7ulp-pm.yaml b/Documentation/devicetree/bindings/arm/freescale/fsl,imx7ulp-pm.yaml
 new file mode 100644
-index 0000000..3cabc6b
+index 0000000..1b00294
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/crypto/fsl-imx-sahara.yaml
-@@ -0,0 +1,35 @@
++++ b/Documentation/devicetree/bindings/arm/freescale/fsl,imx7ulp-pm.yaml
+@@ -0,0 +1,40 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/crypto/fsl-imx-sahara.yaml#
++$id: http://devicetree.org/schemas/arm/freescale/fsl,imx7ulp-pm.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Freescale SAHARA Cryptographic Accelerator included in some i.MX chips
++title: Freescale i.MX7ULP Power Management Components
 +
 +maintainers:
-+  - Steffen Trumtrar <s.trumtrar@pengutronix.de>
++  - A.s. Dong <aisheng.dong@nxp.com>
++
++description: |
++  The Multi-System Mode Controller (MSMC) is responsible for sequencing
++  the MCU into and out of all stop and run power modes. Specifically, it
++  monitors events to trigger transitions between power modes while
++  controlling the power, clocks, and memories of the MCU to achieve the
++  power consumption and functionality of that mode.
++
++  The WFI or WFE instruction is used to invoke a Sleep, Deep Sleep or
++  Standby modes for either Cortex family. Run, Wait, and Stop are the
++  common terms used for the primary operating modes of Kinetis
++  microcontrollers.
 +
 +properties:
 +  compatible:
-+    enum:
-+      - fsl,imx27-sahara
-+      - fsl,imx53-sahara
++    const: fsl,imx7ulp-smc1
 +
 +  reg:
-+    maxItems: 1
-+
-+  interrupts:
 +    maxItems: 1
 +
 +required:
 +  - compatible
 +  - reg
-+  - interrupts
 +
 +examples:
 +  - |
-+    crypto@10025000 {
-+        compatible = "fsl,imx27-sahara";
-+        reg = < 0x10025000 0x800>;
-+        interrupts = <75>;
++    smc1@40410000 {
++        compatible = "fsl,imx7ulp-smc1";
++        reg = <0x40410000 0x1000>;
 +    };
 -- 
 2.7.4
