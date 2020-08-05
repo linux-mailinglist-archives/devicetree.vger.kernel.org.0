@@ -2,114 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D00D423CCDA
-	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 19:09:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EECFF23CD42
+	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 19:23:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728184AbgHERIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Aug 2020 13:08:54 -0400
-Received: from mout.gmx.net ([212.227.17.22]:41503 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728455AbgHEREv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Aug 2020 13:04:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1596647056;
-        bh=30nFNzwPxZmz9Y2oABIElubYun9r6VlJJIvIzFQZ2Xg=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=j1Y6eOK4/meE5OlJuq7nV5/1tZQTDbIb0WAyuTnEV9W9352mCZM3HHaq831GiceSx
-         fgLA0zs30eUwgj/z5EAxrGr9g97L+Ulxo1k83AHy0VNfGgt5sBKeIEwHFaXQzQv2bW
-         1f8xJG600QmOvgSFHH6ezeOrOkMafkMRsbtLzx2I=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [80.208.209.197] ([80.208.209.197]) by web-mail.gmx.net
- (3c-app-gmx-bap13.server.lan [172.19.172.83]) (via HTTP); Wed, 5 Aug 2020
- 15:01:52 +0200
-MIME-Version: 1.0
-Message-ID: <trinity-9f86ac52-5249-44e7-b51d-1ee00850f544-1596632511956@3c-app-gmx-bap13>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     David Woodhouse <dwmw2@infradead.org>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        chunhui dai <chunhui.dai@mediatek.com>,
-        David Airlie <airlied@linux.ie>,
-        Sean Wang <sean.wang@mediatek.com>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        CK Hu <ck.hu@mediatek.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Frank Wunderlich <linux@fw-web.de>,
-        Bibby Hsieh <bibby.hsieh@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Aw: [PATCH 2/3] arm: dts: mt7623: move MT7623N GPU to separate
- mt7623n.dtsi file
-Content-Type: text/plain; charset=UTF-8
-Date:   Wed, 5 Aug 2020 15:01:52 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <20200805113013.2763510-2-dwmw2@infradead.org>
-References: <8ef96e4d02ef82e171409945ee6cc0348c4fe594.camel@infradead.org>
- <20200805113013.2763510-1-dwmw2@infradead.org>
- <20200805113013.2763510-2-dwmw2@infradead.org>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:G8MRnqoV1D2B0ErxKua+b90DZKS/NUdemUbrgGRwofr3Vs3wa3sLtGJLSaIjAmckjfQuY
- N2q+Z1WAU5keJxhmjgF2SFnKLAx/+ssSg5jG4hUSN4rhMAozwVfyIJHClWHwJMkftrm1YI9Hdl3N
- N2EZp25fXiSYSNd4CgWyeh3C56OTSnt6jPqOH91UQ3q3+VeqQ8/hSKikviDmaPX5zjuc+ZoBk88W
- vF8v75+g6PyEv8XnV1zeMlKR5e7LgiTjKKDbo3QbXbuY0GPdBBboJNcu7cnHK7c5hBWoJyu0lqbH
- o0=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:eGU+7LZ5Pbw=:Sko+N8vHSN+A2ehhghqC1j
- 5MMHe1kmzGXDBBaX64keZASyrgU+qlX7o+JajiNRC6IRo9MZqvUkedHsVkSpGrYyojWGuNB5H
- 9KX1Vczr5d3J9h3acYQQxadMgAe7EIh1s+76gXgbfOKinVAl6wBWexiuVdHHlLm/S0sbjyF9Z
- VCg3ZXCpzu6fmA31EjSdFKB2pcoLxliB/Q7NPN3eooHXsaGpXjApg57qAs/HMfESeQDYciWaj
- 1UXePZmbm63g2L6/RZcFtdy6zOGcKiETn2s1FvAeli1kHSopIklGmblk7nQcKLjMajrjcOioG
- qfKDuin+bEuUmkjk4SXsLduH2DnX/+zEHre1Jesd+haC8kLTCV8+0Geripw13gnzPZ62bT6Dh
- Ed2rUps/JEPdMUhlja5BNgD62C8B3h2JUqowbeA4SaRKReeOVoAERR3HMfyi5WPouE5xhRptf
- RegBBdMk6+sDlsVu/hMMy2GrDgn/0Kei1XN+EM2Vf3JMpezFWZIxQ5CPMViCq0kJDpQo1hKVy
- PVCsWTlDGdOqvi+A2cXB31zpPAjkQ70+ArZJtecl8ubq7u0yzeuGfM7eX6oKM00njHW43ArRA
- GiHHCcgL8ITsw5cRGaoytN9wRwUhCjEXKYOSUfXL0F6iggOsgPH7w4MqxWCpNaTGH58tI1Ihz
- dpPIcjKdEbs7ykZdlqhL5i7kp+5L5wwL7znRsOMEXPWEMJnFC1v9bUxQ489+GPvW3DQA=
-Content-Transfer-Encoding: quoted-printable
+        id S1728578AbgHERXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Aug 2020 13:23:36 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:56777 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728575AbgHERRD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 13:17:03 -0400
+X-IronPort-AV: E=Sophos;i="5.75,436,1589209200"; 
+   d="scan'208";a="53743861"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 05 Aug 2020 23:26:39 +0900
+Received: from localhost.localdomain (unknown [172.29.52.220])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id E1BBB42921F2;
+        Wed,  5 Aug 2020 23:26:36 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2] ARM: dts: iwg22d-sodimm: Fix dt nodes sorting
+Date:   Wed,  5 Aug 2020 15:26:34 +0100
+Message-Id: <20200805142634.12252-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi David
+Some r8a7745-iwg22d-sodimm.dts device nodes are not sorted alphabetically.
+This patch fixes the sorting of nodes and also fixes a typo in the stmpe
+node.
 
-> Gesendet: Mittwoch, 05. August 2020 um 13:30 Uhr
-> Von: "David Woodhouse" <dwmw2@infradead.org>
-> From: David Woodhouse <dwmw@amazon.co.uk>
->
-> The MT7623A doesn't have a GPU; add it only for MT7623N boards.
->
-> Fixes: 1f6ed224594 ("arm: dts: mt7623: add Mali-450 device node")
-> Signed-off-by: David Woodhouse <dwmw@amazon.co.uk>
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+v1->v2:- Fixed sorting of sound node
+v1:- https://patchwork.kernel.org/patch/11690969/
+---
+ arch/arm/boot/dts/r8a7745-iwg22d-sodimm.dts | 112 ++++++++++----------
+ 1 file changed, 56 insertions(+), 56 deletions(-)
 
-> diff --git a/arch/arm/boot/dts/mt7623.dtsi b/arch/arm/boot/dts/mt7623.dt=
-si
-> index 3a6b856e5b74..dcd2f5ba4e20 100644
-> --- a/arch/arm/boot/dts/mt7623.dtsi
-> +++ b/arch/arm/boot/dts/mt7623.dtsi
-> @@ -734,30 +734,6 @@ g3dsys: syscon@13000000 {
->  		#reset-cells =3D <1>;
->  	};
->
-> -	mali: gpu@13040000 {
-> -		compatible =3D "mediatek,mt7623-mali", "arm,mali-450";
-...
-> -		clocks =3D <&topckgen CLK_TOP_MMPLL>,
-> -			 <&g3dsys CLK_G3DSYS_CORE>;
-> -		clock-names =3D "bus", "core";
-> -		power-domains =3D <&scpsys MT2701_POWER_DOMAIN_MFG>;
-> -		resets =3D <&g3dsys MT2701_G3DSYS_CORE_RST>;
-> -	};
+diff --git a/arch/arm/boot/dts/r8a7745-iwg22d-sodimm.dts b/arch/arm/boot/dts/r8a7745-iwg22d-sodimm.dts
+index b15b1b088a32..1c7b37a01f0a 100644
+--- a/arch/arm/boot/dts/r8a7745-iwg22d-sodimm.dts
++++ b/arch/arm/boot/dts/r8a7745-iwg22d-sodimm.dts
+@@ -53,42 +53,6 @@
+ 		clock-frequency = <26000000>;
+ 	};
+ 
+-	rsnd_sgtl5000: sound {
+-		compatible = "simple-audio-card";
+-		simple-audio-card,format = "i2s";
+-		simple-audio-card,bitclock-master = <&sndcodec>;
+-		simple-audio-card,frame-master = <&sndcodec>;
+-
+-		sndcpu: simple-audio-card,cpu {
+-			sound-dai = <&rcar_sound>;
+-		};
+-
+-		sndcodec: simple-audio-card,codec {
+-			sound-dai = <&sgtl5000>;
+-		};
+-	};
+-
+-	vccq_sdhi0: regulator-vccq-sdhi0 {
+-		compatible = "regulator-gpio";
+-
+-		regulator-name = "SDHI0 VccQ";
+-		regulator-min-microvolt = <1800000>;
+-		regulator-max-microvolt = <3300000>;
+-
+-		gpios = <&gpio0 20 GPIO_ACTIVE_LOW>;
+-		gpios-states = <1>;
+-		states = <3300000 1>, <1800000 0>;
+-	};
+-
+-	vccq_panel: regulator-vccq-panel {
+-		compatible = "regulator-fixed";
+-		regulator-name = "Panel VccQ";
+-		regulator-min-microvolt = <3300000>;
+-		regulator-max-microvolt = <3300000>;
+-		gpio = <&gpio1 13 GPIO_ACTIVE_LOW>;
+-		enable-active-high;
+-	};
+-
+ 	backlight_lcd: backlight {
+ 		compatible = "pwm-backlight";
+ 		pwms = <&tpu 3 5000000 PWM_POLARITY_INVERTED>;
+@@ -107,19 +71,40 @@
+ 			};
+ 		};
+ 	};
+-};
+ 
+-&du {
+-	pinctrl-0 = <&du0_pins>;
+-	pinctrl-names = "default";
++	vccq_panel: regulator-vccq-panel {
++		compatible = "regulator-fixed";
++		regulator-name = "Panel VccQ";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&gpio1 13 GPIO_ACTIVE_LOW>;
++		enable-active-high;
++	};
+ 
+-	status = "okay";
++	vccq_sdhi0: regulator-vccq-sdhi0 {
++		compatible = "regulator-gpio";
+ 
+-	ports {
+-		port@0 {
+-			endpoint {
+-				remote-endpoint = <&lcd_in>;
+-			};
++		regulator-name = "SDHI0 VccQ";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
++
++		gpios = <&gpio0 20 GPIO_ACTIVE_LOW>;
++		gpios-states = <1>;
++		states = <3300000 1>, <1800000 0>;
++	};
++
++	rsnd_sgtl5000: sound {
++		compatible = "simple-audio-card";
++		simple-audio-card,format = "i2s";
++		simple-audio-card,bitclock-master = <&sndcodec>;
++		simple-audio-card,frame-master = <&sndcodec>;
++
++		sndcpu: simple-audio-card,cpu {
++			sound-dai = <&rcar_sound>;
++		};
++
++		sndcodec: simple-audio-card,codec {
++			sound-dai = <&sgtl5000>;
+ 		};
+ 	};
+ };
+@@ -150,6 +135,21 @@
+ 	status = "okay";
+ };
+ 
++&du {
++	pinctrl-0 = <&du0_pins>;
++	pinctrl-names = "default";
++
++	status = "okay";
++
++	ports {
++		port@0 {
++			endpoint {
++				remote-endpoint = <&lcd_in>;
++			};
++		};
++	};
++};
++
+ &hscif1 {
+ 	pinctrl-0 = <&hscif1_pins>;
+ 	pinctrl-names = "default";
+@@ -171,6 +171,15 @@
+ 	status = "okay";
+ 	clock-frequency = <400000>;
+ 
++	sgtl5000: codec@a {
++		compatible = "fsl,sgtl5000";
++		#sound-dai-cells = <0>;
++		reg = <0x0a>;
++		clocks = <&audio_clock>;
++		VDDA-supply = <&reg_3p3v>;
++		VDDIO-supply = <&reg_3p3v>;
++	};
++
+ 	stmpe811@44 {
+ 		compatible = "st,stmpe811";
+ 		reg = <0x44>;
+@@ -179,7 +188,7 @@
+ 
+ 		/* 3.25 MHz ADC clock speed */
+ 		st,adc-freq = <1>;
+-		/* ADC converstion time: 80 clocks */
++		/* ADC conversion time: 80 clocks */
+ 		st,sample-time = <4>;
+ 		/* 12-bit ADC */
+ 		st,mod-12b = <1>;
+@@ -203,15 +212,6 @@
+ 			st,touch-det-delay = <5>;
+ 		};
+ 	};
+-
+-	sgtl5000: codec@a {
+-		compatible = "fsl,sgtl5000";
+-		#sound-dai-cells = <0>;
+-		reg = <0x0a>;
+-		clocks = <&audio_clock>;
+-		VDDA-supply = <&reg_3p3v>;
+-		VDDIO-supply = <&reg_3p3v>;
+-	};
+ };
+ 
+ &pci1 {
+-- 
+2.17.1
 
-i guess you should to move g3dsys too, and maybe the mmsys which is also d=
-rm-related?
-
-I can add this to my series, but before i change my series, i need advice =
-from MTK/DT owners whats the preferred way ;)
-
-regards Frank
