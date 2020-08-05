@@ -2,73 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACE7223D3F6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 00:34:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE0CE23D44E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 01:57:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726256AbgHEWeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Aug 2020 18:34:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44388 "EHLO
+        id S1726087AbgHEX5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Aug 2020 19:57:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726066AbgHEWeV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 18:34:21 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F06D1C061574
-        for <devicetree@vger.kernel.org>; Wed,  5 Aug 2020 15:34:20 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id r2so37062504wrs.8
-        for <devicetree@vger.kernel.org>; Wed, 05 Aug 2020 15:34:20 -0700 (PDT)
+        with ESMTP id S1725779AbgHEX5p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 19:57:45 -0400
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE92AC061574
+        for <devicetree@vger.kernel.org>; Wed,  5 Aug 2020 16:57:44 -0700 (PDT)
+Received: by mail-pl1-x644.google.com with SMTP id w17so26564748ply.11
+        for <devicetree@vger.kernel.org>; Wed, 05 Aug 2020 16:57:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:sender:from:date:message-id:subject:to;
-        bh=YOgPcABv2Kswn7RngHqoDjEYRr/fN1iSsHNNdDmZg0s=;
-        b=g7gh0GoF77xT3BHL1OI5PX77+qE6OkBAsW5DcjTY+azZ2G2gebHhIXdb6Pric+TaGK
-         4/MVDxnjbC8Kvwpw4KL41DvgtTLTIrPTQF12IYU14n0l7b5aayZZb70B+RpFiCUnoBoe
-         8X6BC2TwhiOSA+Pl6wc6RvQEC4Ny6w1347EWNs6Zmc4dKerKygRBTLja/G4aIeHdlmhx
-         JKpbprACCTYAXffSt73WUYQVT45idhapT0WE9qhx0bw7lX+Vv0bo+tJQWMWK4D+Q0SLZ
-         BPsNXwyXXtyrqQ0+uKyPplRXi64k6hg65gyJSdILILjEPXrrnY+jVThx/Ga3yVnzSQ3e
-         xOIA==
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=4ifd5xwQw/fF71sDAVj0NW6xVjjKI1lLoO8YrlRE1c0=;
+        b=W6CnF3IFM1qV4vtyI4l+BsHliSAapqyzRfwP5beGaDhXjDfZFPIU6UStOC92nizOTo
+         aWkDKwkFohx7OKn2mg8i/RSJrfwtBoR5s6iBJWAGa9yjAqbJVL7kn4mG5Ax8Ih/a0UGL
+         b1ZjUdMSZyOOwYExEooYKVQan12BTOgKsSKo0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to;
-        bh=YOgPcABv2Kswn7RngHqoDjEYRr/fN1iSsHNNdDmZg0s=;
-        b=JzmK++qalQv83Is03hHB9C5QPXgSrJvNDBuqJjNmp0bOwPlCpTz2nRrXAPyCA2tEBN
-         sdVTSOsLyRzul+kyCj4Xrod2FKVZLbJYa5AIZuS+k/Aj9IqLREqv5Q+tqzteLhxOqpZT
-         jeU1zGHPjvAjb/5lj4yHtvPLGeb0QzUwO9K+JJ8NiVD6BBwl1CS5YsWg2zU8f/cicjOD
-         iYqUppmMlkp992Wx6pP3+e8vT+rVLQIhTEcmEZtZpmVXPcUs2bujPq5Fh09lzUrnXbZl
-         0P9Xx7CIoS/LXwAie9GpA39KrQzN4WBnCdyjNEyziCA7FdtMhnU/SLy4IXqej6Y4yzlC
-         gQzQ==
-X-Gm-Message-State: AOAM530DvZf8vGc3QqCnw+6aXvXghbRVGtlp8GHaXtAGM6K4yVjnrxbl
-        gbbIPg8ZZWQMULhX9DkjxHdW7YYGepQ27rAJquE=
-X-Google-Smtp-Source: ABdhPJwG8MzHtxaREx72pxuVhFrhTFD+ybC5fL/hRHfxRTFVlkIZH9DRchyh4VkEx4PSvfIBFa8lfZiNwLi7bs61GK0=
-X-Received: by 2002:a05:6000:4e:: with SMTP id k14mr4457278wrx.303.1596666859591;
- Wed, 05 Aug 2020 15:34:19 -0700 (PDT)
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=4ifd5xwQw/fF71sDAVj0NW6xVjjKI1lLoO8YrlRE1c0=;
+        b=U0e4ikqVPxk223o5pYLbHuRAkY2mQ/M2Q2ygEwvFbefsXItE7w9HVf1wLC+Ujv9LZn
+         VfsA2frdrXa+cVDndNBl9k8qhmhM96gI3Kr538sp6y8rWxy6bSqpXbTtPwywcXjzv0cX
+         QOSUfQh0x/s3uSYhiHndbCG8YrLvlpthdKWuyxTJy6jz7qYELkgpQ8eymRqVQj/t4FEj
+         /BqzCH23wOO9+mQ2rfrFfg5o8BTcTljmmczQkn2PXQcBVdYSSu43EElfSPBfywD0wPPT
+         lvgCSJuisAQToLIMjHLZFOaTP6agr1FF3d6glztKo8AbUCDZRooaKDPPBVTOsLsr2rPk
+         f+iQ==
+X-Gm-Message-State: AOAM533RfmRYM5X/2iq0kcjtn0B0WY0oVDfvclMY6MFQGbzLtAuX2Kmg
+        7mSC+MsP0RjY5Gviu2KvSuqhxg==
+X-Google-Smtp-Source: ABdhPJxdV4c+ByHIoyl3UTQ5JOq/H3l5NMy7snS9vWIKQev3DSMuRd8Yi8bmuJJTKYnajrrlgKX1jg==
+X-Received: by 2002:a17:90a:f68a:: with SMTP id cl10mr5578673pjb.40.1596671864307;
+        Wed, 05 Aug 2020 16:57:44 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:3e52:82ff:fe6c:83ab])
+        by smtp.gmail.com with ESMTPSA id go12sm4214725pjb.2.2020.08.05.16.57.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Aug 2020 16:57:43 -0700 (PDT)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Received: by 2002:a5d:66c3:0:0:0:0:0 with HTTP; Wed, 5 Aug 2020 15:34:18 -0700 (PDT)
-From:   Miss Ayesha Gaddafi <aisha0gaddafix@gmail.com>
-Date:   Wed, 5 Aug 2020 15:34:18 -0700
-X-Google-Sender-Auth: ttbgXUNQH6VQGOds1Sr7eLieLRg
-Message-ID: <CACfnaTG4eVANnGaY2TGs+rQWywZgDde1rbZ3wPy86_o_GUqJ-g@mail.gmail.com>
-Subject: HELLO
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <98050322-9ba6-303c-4ca4-07baa56ebd80@codeaurora.org>
+References: <1596541616-27688-1-git-send-email-rnayak@codeaurora.org> <1596541616-27688-2-git-send-email-rnayak@codeaurora.org> <159660954201.1360974.5176671532597020049@swboyd.mtv.corp.google.com> <98050322-9ba6-303c-4ca4-07baa56ebd80@codeaurora.org>
+Subject: Re: [PATCH 1/3] dt-bindings: power: Introduce 'assigned-performance-states' property
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+To:     Rajendra Nayak <rnayak@codeaurora.org>, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org, ulf.hansson@linaro.org
+Date:   Wed, 05 Aug 2020 16:57:41 -0700
+Message-ID: <159667186194.1360974.10053425753327700919@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Assalamu Alaikum Wa Rahmatullahi Wa Barakatuh,
+Quoting Rajendra Nayak (2020-08-05 01:13:06)
+>=20
+> On 8/5/2020 12:09 PM, Stephen Boyd wrote:
+> > Quoting Rajendra Nayak (2020-08-04 04:46:54)
+> >=20
+> >> +       device's performance, also known as DVFS techniques. The list =
+of performance
+> >> +       state values should correspond to the list of power domains sp=
+ecified as part
+> >> +       of the power-domains property.
+> >=20
+> > This is different than assigned-clock-rates. I guess that's OK because
+> > we don't need to assign parents with more specifiers. Maybe it should be
+> > worded more strongly to clearly state that each cell corresponds to one
+> > power domain? And that it should match the opp-level inside any OPP
+> > table for the power domain?
+>=20
+> Sure, I'll reword it to make it clear that we need the same number of cel=
+ls
+> as power-domains, and as you pointed out below that 0 corresponds to not =
+setting
+> anything.
+>=20
+> For the matching of opp-level inside the OPP table of the power-domain, I=
+ don't
+> think from the power-domain bindings we limit providers with only OPP tab=
+les to
+> support performance states? It could be just a range that the provider ma=
+nages
+> internally?
 
-My name is Aisha Gaddafi the only biological Daughter of Late Colonel Mohammad
-Muammar Gaddafi, Libyan formal President.
-
-I'm a Widow with three Children, presently living in Oman as a refugee
-with my three children, i have been under political asylum protection
-by the Government of Oman however, I have an investment funds which i
-want to entrust on you for investment project in your country or your
-company.
-
-PLease in the name of Allah/God, I hope to hear from you for more
-details if you're interested,
-
-Warmest regards
-Mrs Aisha Gaddafi
+Ok. The example made it match so maybe that can be clarified as well
+that it doesn't need to match any OPP table performance state.
