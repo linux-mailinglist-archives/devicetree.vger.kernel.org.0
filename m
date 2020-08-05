@@ -2,157 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B886D23CCAB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 18:57:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4E1E23CD30
+	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 19:22:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728250AbgHEQ5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Aug 2020 12:57:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47274 "EHLO
+        id S1728774AbgHERWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Aug 2020 13:22:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728322AbgHEQzP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 12:55:15 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7856C001FCA;
-        Wed,  5 Aug 2020 08:47:51 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id di22so25717997edb.12;
-        Wed, 05 Aug 2020 08:47:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+thVhnOzocq+PgCFY0tda78F/9CHLw5tyXEyW5ctJ0o=;
-        b=K30Jpi+unvD+CodHrimHJBJOgIBKD2vORRRsNDdnxowxbqvNqWmkAuS87xxPAvIxSE
-         ePsUbOvmJ2NJ/xZNYGM9PJaoNcn/9NN9lsFvOaM2shMUcbTCUbYb86NythE2JhhhJNZQ
-         IPzpttIxwWgZMBIpbgr3qu+/sQaRlEc9o+gOa6sbnKflX3vw5+Qyq+5+Ts4dZtEaZoIB
-         r7bRtoTPTc7S494vAZzE1jsYQXemBVLfNJfQpUKxqDPcxayazZStrgobE4jw9ZObecr+
-         UKlUHS8s2PCiYg+N0X5gslQEfsQEMKsjRSifBnzyqFxNyjtFjnSSOtvmPkfGyBskiDbl
-         BVZw==
+        with ESMTP id S1728148AbgHERVU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 13:21:20 -0400
+Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88BA4C0086B0;
+        Wed,  5 Aug 2020 07:50:47 -0700 (PDT)
+Received: by mail-oi1-x242.google.com with SMTP id v13so23186635oiv.13;
+        Wed, 05 Aug 2020 07:50:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=+thVhnOzocq+PgCFY0tda78F/9CHLw5tyXEyW5ctJ0o=;
-        b=s0mIlclpL3+TdiGf3d9+AhofQqABHMrsq3YaVAOv7Hpyf1hxuXoA68/5admcysEYZ6
-         IH8CL3rNK/EmB1Q+lnV2ASxvrRJkXeeFwg61WQb3pVlD6xWFwozSsRWwLa1mGboghe9N
-         JA7RhAAmmAg5yTu5DmdIkmyO/1dV+t782aniKUxW5hZzGwOFn+T3oe7yD4ZQt352OU5C
-         291yHgS9Nw8braywlZzBCqKHAl5C3uPxVyXEpU45m+bl4TiX1PitYma3qAVNOZjyCbSm
-         THG9oGzYglMfms3ZEMIOj/H76H4bkijgGFmCUvNt8YoPtLclHl+mztxNBOd5Nj3dN53R
-         BIlg==
-X-Gm-Message-State: AOAM531SbDZUtlZI9iMECw9kpQgqCg6LRsA7jrzoD6ynH5p6J3tkdSgX
-        kuUfCaE1tOxDopXfULzdHkyReJJ02NbkATQw0vpQ87/nwQg=
-X-Google-Smtp-Source: ABdhPJwWW0KOvBhVO5pikas+uaQ+9Bi+oT+23iSZ47+Y2ckg0AYW5ATvLjA/5bzvEOv35sFXN/1aBcuO1YWaqys/Vi4=
-X-Received: by 2002:a05:6402:a5b:: with SMTP id bt27mr3476095edb.120.1596642470596;
- Wed, 05 Aug 2020 08:47:50 -0700 (PDT)
+        bh=5lnCZoNdrZNQbQaV/iF1DKtpBff6Ck+1xozm4eqaEmw=;
+        b=p+jlcQHBqr0FBki7hCBNWHPJ/hWFZrwga7NmQDaDGOIgnf2c+20Begp0wNRxZJkIWH
+         Ex+VyXmuD34hri9YsT48xhntbdkHS+2WOyzX/X2cpbM79wbvuH6FHlx/S10vmtILLW9R
+         xAmOWDgxN+J03mi2Qo9jM7ptSngvD5bqL+wyWVST0Zn2cgaRz7lH9rV2FaeI0Ml7HWuS
+         cuXEy+u7LJ3/kdywifRuMnseOTbmHhe5IKiYJEtk1wCg1jaA0atFTT9OjzCdOWd6+PT+
+         mQv8J1mAjz1Jbm3EkIdkYl9WEDW55j2SmdJMXB280MYlvfbNO4qfYXTbPyk7EO3q3Oec
+         kS9A==
+X-Gm-Message-State: AOAM531OT4CMd+P7TZx1NJNkek7bjLSqS6uLK5tKKcmsxwWf6f0u12eV
+        aNh+hepY96KHqiQuS8BM/CvOscD68y6A7SiHpH+X1nah
+X-Google-Smtp-Source: ABdhPJwhUm4QHaZz7xbR+lTUoUQuyCH4le0QF/k75iMvl2tButnuNI7+iEhEoJyqrnRXlecEQMMJHtDC6cCth7F51hU=
+X-Received: by 2002:aca:4b54:: with SMTP id y81mr2275594oia.54.1596626072299;
+ Wed, 05 Aug 2020 04:14:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <1596634446-1413-1-git-send-email-kalyan_t@codeaurora.org>
-In-Reply-To: <1596634446-1413-1-git-send-email-kalyan_t@codeaurora.org>
-From:   Rob Clark <robdclark@gmail.com>
-Date:   Wed, 5 Aug 2020 08:48:34 -0700
-Message-ID: <CAF6AEGtWNDGDsUBVk-Ud5OpretHA4qKDKtE+3mS=C8DAa=+Heg@mail.gmail.com>
-Subject: Re: [v1] drm/msm/dpu: Fix reservation failures in modeset
-To:     Kalyan Thota <kalyan_t@codeaurora.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
+References: <1594919915-5225-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <1594919915-5225-11-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <1594919915-5225-11-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 5 Aug 2020 13:14:20 +0200
+Message-ID: <CAMuHMdW5_yBdEidPiVNeQO0QwuJfTe0kSiHLg4hkQLzVuRM7VA@mail.gmail.com>
+Subject: Re: [PATCH 10/20] arm64: dts: renesas: r8a774e1: Add USB3.0 device nodes
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Jens Axboe <axboe@kernel.dk>, Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Mark Brown <broonie@kernel.org>,
+        Niklas <niklas.soderlund@ragnatech.se>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, linux-ide@vger.kernel.org,
+        dmaengine <dmaengine@vger.kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Krishna Manikandan <mkrishn@codeaurora.org>,
-        Raviteja Tamatam <travitej@codeaurora.org>,
-        nganji@codeaurora.org, Stephen Boyd <swboyd@chromium.org>,
-        Abhinav Kumar <abhinavk@codeaurora.org>,
-        Drew Davenport <ddavenport@chromium.org>
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        USB list <linux-usb@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 5, 2020 at 6:34 AM Kalyan Thota <kalyan_t@codeaurora.org> wrote:
+On Thu, Jul 16, 2020 at 7:19 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Add usb3.0 phy, host and function device nodes on RZ/G2H SoC dtsi.
 >
-> In TEST_ONLY commit, rm global_state will duplicate the
-> object and request for new reservations, once they pass
-> then the new state will be swapped with the old and will
-> be available for the Atomic Commit.
->
-> This patch fixes some of missing links in the resource
-> reservation sequence mentioned above.
->
-> 1) Creation of a duplicate state in test_only commit (Rob)
-> 2) Allow resource release only during crtc_active false.
->
-> For #2
-> In a modeset operation, swap state happens well before disable.
-> Hence clearing reservations in disable will cause failures
-> in modeset enable.
->
-> Sequence:
->     Swap state --> old, new
->     modeset disables --> virt disable
->     modeset enable --> virt modeset
->
-> Allow reservations to be cleared only when crtc active is false
-> as in that case there wont be any modeset enable after disable.
->
-> Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
-> ---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> index 63976dc..b85a576 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> @@ -582,7 +582,7 @@ static int dpu_encoder_virt_atomic_check(
->         dpu_kms = to_dpu_kms(priv->kms);
->         mode = &crtc_state->mode;
->         adj_mode = &crtc_state->adjusted_mode;
-> -       global_state = dpu_kms_get_existing_global_state(dpu_kms);
-> +       global_state = dpu_kms_get_global_state(crtc_state->state);
->         trace_dpu_enc_atomic_check(DRMID(drm_enc));
->
->         /*
-> @@ -1172,6 +1172,7 @@ static void dpu_encoder_virt_disable(struct drm_encoder *drm_enc)
->         struct msm_drm_private *priv;
->         struct dpu_kms *dpu_kms;
->         struct dpu_global_state *global_state;
-> +       struct drm_crtc_state *crtc_state;
->         int i = 0;
->
->         if (!drm_enc) {
-> @@ -1191,6 +1192,7 @@ static void dpu_encoder_virt_disable(struct drm_encoder *drm_enc)
->         priv = drm_enc->dev->dev_private;
->         dpu_kms = to_dpu_kms(priv->kms);
->         global_state = dpu_kms_get_existing_global_state(dpu_kms);
-> +       crtc_state = drm_enc->crtc->state;
->
->         trace_dpu_enc_disable(DRMID(drm_enc));
->
-> @@ -1220,7 +1222,8 @@ static void dpu_encoder_virt_disable(struct drm_encoder *drm_enc)
->
->         DPU_DEBUG_ENC(dpu_enc, "encoder disabled\n");
->
-> -       dpu_rm_release(global_state, drm_enc);
-> +       if (crtc_state->active_changed && !crtc_state->active)
-> +               dpu_rm_release(global_state, drm_enc);
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
 
-I still think releasing the state in the atomic_commit() path is the
-wrong thing to do.  In the commit path, the various state objects
-should be immutable.. ie. in the atomic_test() path you derive the new
-hw state (including assignment/release of resources), and
-atomic_commit() is simply pushing the state down to the hw.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.10.
 
-Otherwise, this looks better than v1.
+Gr{oetje,eeting}s,
 
-BR,
--R
+                        Geert
 
->
->         mutex_unlock(&dpu_enc->enc_lock);
->  }
-> --
-> 1.9.1
->
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
