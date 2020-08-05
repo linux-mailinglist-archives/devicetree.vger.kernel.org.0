@@ -2,307 +2,391 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E7C723D2AB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 22:15:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FE7723D196
+	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 22:03:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729806AbgHEUOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Aug 2020 16:14:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42498 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726664AbgHEQXZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 12:23:25 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B03C0C001FDA;
-        Wed,  5 Aug 2020 09:10:29 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 7C7E3299005
-Received: by jupiter.universe (Postfix, from userid 1000)
-        id 437F548011C; Wed,  5 Aug 2020 18:05:21 +0200 (CEST)
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Ahmet Inan <inan@distec.de>,
-        Martin Fuzzey <martin.fuzzey@flowbird.group>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Subject: [PATCHv4 4/4] Input: EXC3000: Add support to query model and fw_version
-Date:   Wed,  5 Aug 2020 18:05:20 +0200
-Message-Id: <20200805160520.456570-5-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200805160520.456570-1-sebastian.reichel@collabora.com>
-References: <20200805160520.456570-1-sebastian.reichel@collabora.com>
+        id S1728281AbgHEUCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Aug 2020 16:02:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51078 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727883AbgHEQii (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Aug 2020 12:38:38 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 77CD52067C;
+        Wed,  5 Aug 2020 16:26:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1596644802;
+        bh=NuRrHjb75cFrk+n0vybfkD6hzBt2HG5YdzBYnMqCit0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=2BymGdaHusJTYFIG1xA3p908Cd/DF3LTrd7CO4lIWW06cbmdScox9iztI5jlm//wF
+         iJmXcdFRD7g73XSW/VqccNdZOhWBzPT+Z6vSsQfXYa52Vk5pqJDbY0A4HcRYFkyIjO
+         kqnDo0H5qnidMxWe2tEOBCpv6nYrUYhyipcTnJbM=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.92)
+        (envelope-from <maz@kernel.org>)
+        id 1k3MFU-0003cw-Tu; Wed, 05 Aug 2020 17:26:41 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
+Date:   Wed, 05 Aug 2020 17:26:40 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, tglx@linutronix.de,
+        jason@lakedaemon.net, robh+dt@kernel.org, arnd@arndb.de,
+        Willy Tarreau <w@1wt.eu>, mark-pk.tsai@mediatek.com
+Subject: Re: [PATCH 2/3] irqchip: mstar: msc313-intc interrupt controller
+ driver
+In-Reply-To: <20200805110052.2655487-3-daniel@0x0f.com>
+References: <20200805110052.2655487-1-daniel@0x0f.com>
+ <20200805110052.2655487-3-daniel@0x0f.com>
+User-Agent: Roundcube Webmail/1.4.5
+Message-ID: <a2ac8875d67ce7afe1b28f01683e0c9d@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: daniel@0x0f.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org, arnd@arndb.de, w@1wt.eu, mark-pk.tsai@mediatek.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Expose model and fw_version via sysfs. Also query the model
-in probe to make sure, that the I2C communication with the
-device works before successfully probing the driver.
+[+ Mark-PK Tsai]
 
-This is a bit complicated, since EETI devices do not have
-a sync interface. Sending the commands and directly reading
-does not work. Sending the command and waiting for some time
-is also not an option, since there might be touch events in
-the mean time.
+Hi Daniel,
 
-Last but not least we do not cache the results, since this
-interface can be used to check the I2C communication is still
-working as expected.
+On 2020-08-05 12:00, Daniel Palmer wrote:
+> Add a driver for the two peripheral interrupt controllers
+> in MStar MSC313 and other MStar/Sigmastar Armv7 SoCs.
+> 
+> Supports both the "IRQ" and "FIQ" controllers that
+> forward interrupts from the various IP blocks inside the
+> SoC to the ARM GIC.
+> 
+> They are basically the same thing except for one difference:
+> The FIQ controller needs to clear the interrupt and the IRQ
+> controller doesn't.
+> 
+> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+> Tested-by: Willy Tarreau <w@1wt.eu>
+> ---
+>  MAINTAINERS                       |   1 +
+>  drivers/irqchip/Makefile          |   1 +
+>  drivers/irqchip/irq-msc313-intc.c | 210 ++++++++++++++++++++++++++++++
+>  3 files changed, 212 insertions(+)
+>  create mode 100644 drivers/irqchip/irq-msc313-intc.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 6e64d17aad7b..4d07403a7726 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2157,6 +2157,7 @@ F:	arch/arm/boot/dts/infinity*.dtsi
+>  F:	arch/arm/boot/dts/mercury*.dtsi
+>  F:	arch/arm/boot/dts/mstar-v7.dtsi
+>  F:	arch/arm/mach-mstar/
+> +F:	drivers/irqchip/irq-msc313-intc.c
+> 
+>  ARM/NEC MOBILEPRO 900/c MACHINE SUPPORT
+>  M:	Michael Petchkovsky <mkpetch@internode.on.net>
+> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
+> index 133f9c45744a..67f3ae3507b8 100644
+> --- a/drivers/irqchip/Makefile
+> +++ b/drivers/irqchip/Makefile
+> @@ -111,3 +111,4 @@ obj-$(CONFIG_LOONGSON_HTPIC)		+= 
+> irq-loongson-htpic.o
+>  obj-$(CONFIG_LOONGSON_HTVEC)		+= irq-loongson-htvec.o
+>  obj-$(CONFIG_LOONGSON_PCH_PIC)		+= irq-loongson-pch-pic.o
+>  obj-$(CONFIG_LOONGSON_PCH_MSI)		+= irq-loongson-pch-msi.o
+> +obj-$(CONFIG_ARCH_MSTARV7)		+= irq-msc313-intc.o
+> diff --git a/drivers/irqchip/irq-msc313-intc.c
+> b/drivers/irqchip/irq-msc313-intc.c
+> new file mode 100644
+> index 000000000000..b50f5c858d38
+> --- /dev/null
+> +++ b/drivers/irqchip/irq-msc313-intc.c
+> @@ -0,0 +1,210 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2019 Daniel Palmer
+> + */
+> +
+> +#include <linux/irq.h>
+> +#include <linux/irqchip.h>
+> +#include <linux/irqdomain.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +#define REGOFF_MASK		0x0
+> +#define REGOFF_POLARITY		0x10
+> +#define REGOFF_STATUSCLEAR	0x20
+> +#define IRQSPERREG		16
+> +#define IRQBIT(hwirq)		BIT((hwirq % IRQSPERREG))
+> +#define REGOFF(hwirq)		((hwirq >> 4) * 4)
+> +
+> +struct msc313_intc {
+> +	struct irq_domain *domain;
+> +	void __iomem *base;
+> +	struct irq_chip irqchip;
 
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- .../ABI/testing/sysfs-driver-input-exc3000    |  15 ++
- drivers/input/touchscreen/exc3000.c           | 154 +++++++++++++++++-
- 2 files changed, 168 insertions(+), 1 deletion(-)
- create mode 100644 Documentation/ABI/testing/sysfs-driver-input-exc3000
+Why do you need to embed the irq_chip on a per-controller basis?
 
-diff --git a/Documentation/ABI/testing/sysfs-driver-input-exc3000 b/Documentation/ABI/testing/sysfs-driver-input-exc3000
-new file mode 100644
-index 000000000000..3d316d54f81c
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-driver-input-exc3000
-@@ -0,0 +1,15 @@
-+What:		/sys/bus/i2c/devices/xxx/fw_version
-+Date:		Aug 2020
-+Contact:	linux-input@vger.kernel.org
-+Description:    Reports the firmware version provided by the touchscreen, for example "00_T6" on a EXC80H60
-+
-+		Access: Read
-+		Valid values: Represented as string
-+
-+What:		/sys/bus/i2c/devices/xxx/model
-+Date:		Aug 2020
-+Contact:	linux-input@vger.kernel.org
-+Description:    Reports the model identification provided by the touchscreen, for example "Orion_1320" on a EXC80H60
-+
-+		Access: Read
-+		Valid values: Represented as string
-diff --git a/drivers/input/touchscreen/exc3000.c b/drivers/input/touchscreen/exc3000.c
-index 203f50acaab7..2e5fdbc9878a 100644
---- a/drivers/input/touchscreen/exc3000.c
-+++ b/drivers/input/touchscreen/exc3000.c
-@@ -27,6 +27,9 @@
- #define EXC3000_LEN_FRAME		66
- #define EXC3000_LEN_POINT		10
- 
-+#define EXC3000_LEN_MODEL_NAME		16
-+#define EXC3000_LEN_FW_VERSION		16
-+
- #define EXC3000_MT1_EVENT		0x06
- #define EXC3000_MT2_EVENT		0x18
- 
-@@ -71,6 +74,11 @@ struct exc3000_data {
- 	struct gpio_desc *reset;
- 	struct timer_list timer;
- 	u8 buf[2 * EXC3000_LEN_FRAME];
-+	struct completion wait_event;
-+	struct mutex query_lock;
-+	int query_result;
-+	char model[EXC3000_LEN_MODEL_NAME];
-+	char fw_version[EXC3000_LEN_FW_VERSION];
- };
- 
- static void exc3000_report_slots(struct input_dev *input,
-@@ -156,6 +164,28 @@ static int exc3000_read_data(struct exc3000_data *data,
- 	return 0;
- }
- 
-+static int exc3000_query_interrupt(struct exc3000_data *data)
-+{
-+	u8 *buf = data->buf;
-+	int err;
-+
-+	err = i2c_master_recv(data->client, buf, EXC3000_LEN_FRAME);
-+	if (err < 0)
-+		return err;
-+
-+	if (buf[0] != 0x42)
-+		return -EPROTO;
-+
-+	if (buf[4] == 'E')
-+		strlcpy(data->model, buf+5, sizeof(data->model));
-+	else if (buf[4] == 'D')
-+		strlcpy(data->fw_version, buf+5, sizeof(data->fw_version));
-+	else
-+		return -EPROTO;
-+
-+	return 0;
-+}
-+
- static irqreturn_t exc3000_interrupt(int irq, void *dev_id)
- {
- 	struct exc3000_data *data = dev_id;
-@@ -164,6 +194,12 @@ static irqreturn_t exc3000_interrupt(int irq, void *dev_id)
- 	int slots, total_slots;
- 	int error;
- 
-+	if (mutex_is_locked(&data->query_lock)) {
-+		data->query_result = exc3000_query_interrupt(data);
-+		complete(&data->wait_event);
-+		goto out;
-+	}
-+
- 	error = exc3000_read_data(data, buf, &total_slots);
- 	if (error) {
- 		/* Schedule a timer to release "stuck" contacts */
-@@ -191,11 +227,95 @@ static irqreturn_t exc3000_interrupt(int irq, void *dev_id)
- 	return IRQ_HANDLED;
- }
- 
-+static ssize_t fw_version_show(struct device *dev,
-+			       struct device_attribute *attr, char *buf)
-+{
-+	struct exc3000_data *data = dev_get_drvdata(dev);
-+	static const u8 request[68] = {
-+		0x67, 0x00, 0x42, 0x00, 0x03, 0x01, 'D', 0x00
-+	};
-+	struct i2c_client *client = data->client;
-+	int err;
-+
-+	mutex_lock(&data->query_lock);
-+
-+	data->query_result = -ETIMEDOUT;
-+	reinit_completion(&data->wait_event);
-+
-+	err = i2c_master_send(client, request, sizeof(request));
-+	if (err < 0) {
-+		mutex_unlock(&data->query_lock);
-+		return err;
-+	}
-+
-+	wait_for_completion_interruptible_timeout(&data->wait_event, 1*HZ);
-+	mutex_unlock(&data->query_lock);
-+
-+	if (data->query_result < 0)
-+		return data->query_result;
-+
-+	return sprintf(buf, "%s\n", data->fw_version);
-+}
-+static DEVICE_ATTR_RO(fw_version);
-+
-+static ssize_t exc3000_get_model(struct exc3000_data *data)
-+{
-+	static const u8 request[68] = {
-+		0x67, 0x00, 0x42, 0x00, 0x03, 0x01, 'E', 0x00
-+	};
-+	struct i2c_client *client = data->client;
-+	int err;
-+
-+	mutex_lock(&data->query_lock);
-+	data->query_result = -ETIMEDOUT;
-+	reinit_completion(&data->wait_event);
-+
-+	err = i2c_master_send(client, request, sizeof(request));
-+	if (err < 0) {
-+		mutex_unlock(&data->query_lock);
-+		return err;
-+	}
-+
-+	wait_for_completion_interruptible_timeout(&data->wait_event, 1 * HZ);
-+	mutex_unlock(&data->query_lock);
-+
-+	return data->query_result;
-+}
-+
-+static ssize_t model_show(struct device *dev,
-+			  struct device_attribute *attr, char *buf)
-+{
-+	struct exc3000_data *data = dev_get_drvdata(dev);
-+	int err = exc3000_get_model(data);
-+
-+	if (err < 0)
-+		return err;
-+
-+	return sprintf(buf, "%s\n", data->model);
-+}
-+static DEVICE_ATTR_RO(model);
-+
-+static struct attribute *sysfs_attrs[] = {
-+	&dev_attr_fw_version.attr,
-+	&dev_attr_model.attr,
-+	NULL
-+};
-+
-+static struct attribute_group exc3000_attribute_group = {
-+	.attrs = sysfs_attrs
-+};
-+
-+static void exc3000_unregister_sysfs(void *_dev)
-+{
-+	struct device *dev = _dev;
-+	sysfs_remove_group(&dev->kobj, &exc3000_attribute_group);
-+}
-+
- static int exc3000_probe(struct i2c_client *client)
- {
- 	struct exc3000_data *data;
- 	struct input_dev *input;
--	int error, max_xy;
-+	int error, max_xy, retry;
- 
- 	data = devm_kzalloc(&client->dev, sizeof(*data), GFP_KERNEL);
- 	if (!data)
-@@ -209,6 +329,8 @@ static int exc3000_probe(struct i2c_client *client)
- 		data->info = &exc3000_info[eeti_dev_id];
- 	}
- 	timer_setup(&data->timer, exc3000_timer, 0);
-+	init_completion(&data->wait_event);
-+	mutex_init(&data->query_lock);
- 
- 	data->reset = devm_gpiod_get_optional(&client->dev, "reset",
- 					      GPIOD_OUT_HIGH);
-@@ -226,6 +348,7 @@ static int exc3000_probe(struct i2c_client *client)
- 		return -ENOMEM;
- 
- 	data->input = input;
-+	input_set_drvdata(input, data);
- 
- 	input->name = data->info->name;
- 	input->id.bustype = BUS_I2C;
-@@ -251,6 +374,35 @@ static int exc3000_probe(struct i2c_client *client)
- 	if (error)
- 		return error;
- 
-+	/*
-+	 * I²C does not have built-in recovery, so retry on failure. This ensures,
-+	 * that the device probe will not fail for temporary issues on the bus.
-+	 * This is not needed for the sysfs calls (userspace will receive the error
-+	 * code and can start another query) and cannot be done for touch events
-+	 * (but that only means loosing one or two touch events anyways).
-+	 */
-+	for (retry = 0; retry < 3; ++retry) {
-+		error = exc3000_get_model(data);
-+		if (!error)
-+			break;
-+		dev_warn(&client->dev, "Retry %d get EETI EXC3000 model: %d\n",
-+			 retry + 1, error);
-+	}
-+
-+	if (error)
-+		return error;
-+
-+	dev_dbg(&client->dev, "TS Model: %s", data->model);
-+
-+	i2c_set_clientdata(client, data);
-+	error = sysfs_create_group(&client->dev.kobj, &exc3000_attribute_group);
-+	if (error)
-+		return error;
-+
-+	error = devm_add_action_or_reset(&client->dev, exc3000_unregister_sysfs, &client->dev);
-+	if (error)
-+		return error;
-+
- 	return 0;
- }
- 
+> +	u8 gicoff;
+
+Given that basic SPIs can be in the 32-1019 range, this is at
+best risky. u32s are free, please use them.
+
+> +};
+> +
+> +static void msc313_intc_maskunmask(struct msc313_intc *intc, int
+> hwirq, bool mask)
+> +{
+> +	int regoff = REGOFF(hwirq);
+> +	void __iomem *addr = intc->base + REGOFF_MASK + regoff;
+> +	u16 bit = IRQBIT(hwirq);
+> +	u16 reg = readw_relaxed(addr);
+> +
+> +	if (mask)
+> +		reg |= bit;
+> +	else
+> +		reg &= ~bit;
+> +
+> +	writew_relaxed(reg, addr);
+
+RMW on a shared MMIO register. Not going to end well. This is valid
+for all the callbacks, I believe.
+
+Also, please inline the maskunmask code in their respective callers.
+It will be much more readable.
+
+> +}
+> +
+> +static void msc313_intc_mask_irq(struct irq_data *data)
+> +{
+> +	struct msc313_intc *intc = data->chip_data;
+> +
+> +	msc313_intc_maskunmask(intc, data->hwirq, true);
+> +	irq_chip_mask_parent(data);
+> +}
+> +
+> +static void msc313_intc_unmask_irq(struct irq_data *data)
+> +{
+> +	struct msc313_intc *intc = data->chip_data;
+> +
+> +	msc313_intc_maskunmask(intc, data->hwirq, false);
+> +	irq_chip_unmask_parent(data);
+> +}
+> +
+> +static int msc313_intc_set_type_irq(struct irq_data *data, unsigned
+> int flow_type)
+> +{
+> +	struct msc313_intc *intc = data->chip_data;
+> +	int irq = data->hwirq;
+> +	int regoff = REGOFF(irq);
+> +	void __iomem *addr = intc->base + REGOFF_POLARITY + regoff;
+> +	u16 bit = IRQBIT(irq);
+> +	u16 reg = readw_relaxed(addr);
+
+Please try to write this in a more readable way. For example:
+
+
+         struct msc313_intc *intc = data->chip_data;
+         void __iomem *addr;
+         u16 reg, bit;
+
+         addr = intc->base + REGOFF_POLARITY + REGOFF(d->hwirq);
+         reg = readw_relaxed(addr);
+         bit = IRQBIT(d->hwirq);
+
+White space is free, and some of the variables are really useless.
+
+> +
+> +	if (flow_type & (IRQ_TYPE_EDGE_FALLING | IRQ_TYPE_LEVEL_HIGH))
+> +		reg &= ~bit;
+> +	else
+> +		reg |= bit;
+
+I don't follow grasp the logic here. What happens on EDGE_BOTH, for
+example?
+
+> +
+> +	writew_relaxed(reg, addr);
+
+Surely you need to communicate the change of signalling mode
+to the parent irqchip, don't you?
+
+> +	return 0;
+> +}
+> +
+> +static void msc313_intc_irq_eoi(struct irq_data *data)
+> +{
+> +	struct msc313_intc *intc = data->chip_data;
+> +	int irq = data->hwirq;
+> +	int regoff = REGOFF(irq);
+> +	void __iomem *addr = intc->base + REGOFF_STATUSCLEAR + regoff;
+> +	u16 bit = IRQBIT(irq);
+> +	u16 reg = readw_relaxed(addr);
+> +
+> +	reg |= bit;
+> +	writew_relaxed(reg, addr);
+> +	irq_chip_eoi_parent(data);
+> +}
+> +
+> +static int msc313_intc_domain_translate(struct irq_domain *d,
+> +				     struct irq_fwspec *fwspec,
+> +				     unsigned long *hwirq,
+> +				     unsigned int *type)
+> +{
+> +	if (!is_of_node(fwspec->fwnode) || fwspec->param_count != 2)
+> +		return -EINVAL;
+> +
+> +	*hwirq = fwspec->param[0];
+
+Don't you want to check that the input you get is actually in range?
+Not a big deal, given that you then use it as an input parameter
+to the GIC driver, it'd better be correct.
+
+> +	*type = fwspec->param[1];
+> +
+> +	return 0;
+> +}
+> +
+> +static int msc313_intc_domain_alloc(struct irq_domain *domain,
+> unsigned int virq,
+> +				 unsigned int nr_irqs, void *data)
+> +{
+> +	struct irq_fwspec *fwspec = data;
+> +	struct irq_fwspec parent_fwspec;
+> +	struct msc313_intc *intc = domain->host_data;
+> +
+> +	if (fwspec->param_count != 2)
+> +		return -EINVAL;
+> +
+> +	irq_domain_set_hwirq_and_chip(domain, virq, fwspec->param[0],
+> &intc->irqchip, intc);
+> +
+> +	parent_fwspec.fwnode = domain->parent->fwnode;
+> +	parent_fwspec.param[0] = GIC_SPI;
+> +	parent_fwspec.param[1] = fwspec->param[0] + intc->gicoff;
+> +	parent_fwspec.param[2] = fwspec->param[1];
+> +	parent_fwspec.param_count = 3;
+> +
+> +	return irq_domain_alloc_irqs_parent(domain, virq, nr_irqs,
+> +					    &parent_fwspec);
+> +}
+> +
+> +static const struct irq_domain_ops msc313_intc_domain_ops = {
+> +		.translate = msc313_intc_domain_translate,
+> +		.alloc = msc313_intc_domain_alloc,
+> +		.free = irq_domain_free_irqs_common,
+> +};
+> +
+> +static int  msc313_intc_of_init(struct device_node *node,
+> +				   struct device_node *parent,
+> +				   void (*eoi)(struct irq_data *data))
+> +{
+> +	struct irq_domain *domain_parent;
+> +	struct msc313_intc *intc;
+> +	int ret = 0;
+> +	u32 gicoffset, numirqs;
+> +
+> +	if (of_property_read_u32(node, "mstar,gic-offset", &gicoffset)) {
+> +		ret = -EINVAL;
+> +		goto out;
+> +	}
+> +
+> +	if (of_property_read_u32(node, "mstar,nr-interrupts", &numirqs)) {
+> +		ret = -EINVAL;
+> +		goto out;
+> +	}
+> +
+> +	domain_parent = irq_find_host(parent);
+> +	if (!domain_parent) {
+> +		ret = -EINVAL;
+> +		goto out;
+> +	}
+> +
+> +	intc = kzalloc(sizeof(*intc), GFP_KERNEL);
+> +	if (!intc) {
+> +		ret = -ENOMEM;
+> +		goto out;
+> +	}
+> +
+> +	intc->base = of_iomap(node, 0);
+> +	if (IS_ERR(intc->base)) {
+> +		ret = PTR_ERR(intc->base);
+> +		goto free_intc;
+> +	}
+> +
+> +	intc->irqchip.name = node->name;
+
+No, please. /proc/interrupt isn't a dumping ground for DT related
+information. We have debugfs for that.
+
+> +	intc->irqchip.irq_mask = msc313_intc_mask_irq;
+> +	intc->irqchip.irq_unmask = msc313_intc_unmask_irq;
+> +	intc->irqchip.irq_eoi = eoi;
+> +	intc->irqchip.irq_set_type = msc313_intc_set_type_irq;
+> +	intc->irqchip.flags = IRQCHIP_MASK_ON_SUSPEND;
+
+This needs to be a static irq_chip structure. Use two for the EOI
+weirdness, or test a flag in your eoi callback.
+
+> +
+> +	intc->gicoff = gicoffset;
+> +
+> +	intc->domain = irq_domain_add_hierarchy(domain_parent, 0, numirqs, 
+> node,
+> +			&msc313_intc_domain_ops, intc);
+> +	if (!intc->domain) {
+> +		ret = -ENOMEM;
+> +		goto unmap;
+> +	}
+> +
+> +	return 0;
+> +
+> +unmap:
+> +	iounmap(intc->base);
+> +free_intc:
+> +	kfree(intc);
+> +out:
+> +	return ret;
+> +}
+> +
+> +static int __init msc313_intc_irq_of_init(struct device_node *node,
+> +				   struct device_node *parent)
+> +{
+> +	return msc313_intc_of_init(node, parent, irq_chip_eoi_parent);
+> +};
+> +
+> +static int __init msc313_intc_fiq_of_init(struct device_node *node,
+> +				   struct device_node *parent)
+> +{
+> +	return msc313_intc_of_init(node, parent, msc313_intc_irq_eoi);
+> +};
+> +
+> +IRQCHIP_DECLARE(msc313_intc_irq, "mstar,msc313-intc-irq",
+> +		msc313_intc_irq_of_init);
+> +IRQCHIP_DECLARE(mstar_intc_fiq, "mstar,msc313-intc-fiq",
+> +		msc313_intc_fiq_of_init);
+
+This driver has a massive feeling of déja-vu. It is almost
+a copy of the one posted at [1], which I reviewed early
+this week. The issues are the exact same, and I'm 98%
+sure this is the same IP block used by two SoC vendors.
+
+Please talk to each other and come up with a single driver.
+
+Thanks,
+
+         M.
+
+[1] 
+https://lore.kernel.org/r/20200803062214.24076-1-mark-pk.tsai@mediatek.com
 -- 
-2.27.0
-
+Jazz is not dead. It just smells funny...
