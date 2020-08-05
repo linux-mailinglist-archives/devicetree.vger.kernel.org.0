@@ -2,164 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3BCC23D126
-	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 21:57:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A515723D0D7
+	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 21:53:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727061AbgHET5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Aug 2020 15:57:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45438 "EHLO
+        id S1728605AbgHETxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Aug 2020 15:53:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727998AbgHEQoM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 12:44:12 -0400
-Received: from mail-il1-x142.google.com (mail-il1-x142.google.com [IPv6:2607:f8b0:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB433C08ED2B;
-        Wed,  5 Aug 2020 06:17:29 -0700 (PDT)
-Received: by mail-il1-x142.google.com with SMTP id j9so33893460ilc.11;
-        Wed, 05 Aug 2020 06:17:29 -0700 (PDT)
+        with ESMTP id S1728135AbgHEQtp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 12:49:45 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70DAFC0A8887;
+        Wed,  5 Aug 2020 06:46:09 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id f18so4442872wmc.0;
+        Wed, 05 Aug 2020 06:46:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=U9j+MufxMDRYF1VNGK/h8ZpxbV45735lCqjDi7az7Y4=;
-        b=HYhDSNmOIeR8Tsx8WIrVaqjB1BsfWU/aDZd+mWUzIkl92tNvGHxuV98CEr4ICg5bZj
-         0hMqGfgpfY0LmImX9w5DtGi+O5L/JgjPyvAAnDDwcIFA+JiEH4lTU/iYTZ4kzSfyjVN/
-         APHqSnfypG1GSBKovRFe8+eUbJLog8nP7ypyeUlkdqpyuq3+fPS5sXRKdpZpTAHtttDW
-         VsLqacvZOAeeZOqzobmFGX5eZWyQyVHa5ExdjZ8ZigsYZzuaQEYs7/LdG+R+u8I7iMWP
-         JNNhNcHMSQRRLVOBUQiRIQY1q/eDk8A0E4ZlwRBXgQx4xECv3OiwvnkQxuUSm40BJZWG
-         YuMA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=IvlO0ppqF9UArsb4hIlu04eWVyRDh7e1MY8XEpiuw5k=;
+        b=WQcRJ7Z65FK/7+pUqdkKp75OOYNe0WQjFo9Cw5blTqO239cCEwOFQZIYRnZC/dQ95J
+         Z+7BGqY7HIIQEtu4h7s6r67mif32DQb+48H4bbOm1WbvK7AZgLVZ0rAuQbs+6/sR6bF7
+         ty3+pNDO91++Due/cBCi7Kk//QXrlda/LRsn1wTegLtMxE0XOnHEj4pAf/fWrDg0xkXY
+         Jlr2BhQ3MG46ASm/9QD0OxE/3r5+HQlytZAmrxVeyAlRMzqD+BDqps77XKQ+zTq2Slkl
+         /yfoB2MKKPs1Myihdi0loj/EiIW4u2FBEo+EIK2xo2jjBLxORl8KKmP7Rzgk3LrvVxuq
+         izkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=U9j+MufxMDRYF1VNGK/h8ZpxbV45735lCqjDi7az7Y4=;
-        b=h92tL9f5cpMt6h3GVoMA0UoUB3ySXn5whPYW9eiwm+bxH5U1fvlOhSCERFcYeI/WKT
-         +9dd2EnuYS1oi7gbcm7snOKAueLtZO3RLFYqXTLbG9V9ZJ96PKKvWcCYYDEu56ULHSxr
-         INyhRe6/ylaxuUWstTuX6GvIBGnVMy903fDTqnAaOvTsXgqL5Fz1w4e+aX15PHNMOtyR
-         pmDuDnqmdRVhGf8oeB+r3X5o8v8QvUFTtN0s46+5TLeRV/xGmoLnMWbVwnRMrjodE4WS
-         To3MHjpSCSOuUNaJw2b4qckGviptnnH/I98dGCy5bRY80/2I4K22G+oCfim2Wm4d8xnZ
-         +OZA==
-X-Gm-Message-State: AOAM532OFR6m1OGh0SOcJMtrkciGM25VFBt8DO/F/s7Dg9GKMAgA8oLx
-        5rm6uYDnY1CGTCkrELPIgVMlaRLeE2BFLa93f8gnvg==
-X-Google-Smtp-Source: ABdhPJwHeDoHvq2FDyJUbZK5qgI7U+gsBRFp8nkzGnu2r/YdKckPQIeQukn5HdbnZh+8a/s0rnH4tJdWMvWvFKiyjHE=
-X-Received: by 2002:a92:60d:: with SMTP id x13mr3933276ilg.214.1596633448397;
- Wed, 05 Aug 2020 06:17:28 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=IvlO0ppqF9UArsb4hIlu04eWVyRDh7e1MY8XEpiuw5k=;
+        b=kTEmLvkzzrOX8Bf2ItYPoWwIXrw9/kJKF02B6e1vH5MI/F3sY76vG9ezh4I0oYWeLA
+         T0LDLyN0rznloltTEgL4Ekh82aIxy0lbSzWWJ22Y0qId4LOOlUpiuSFTAf0oCpYzxQAy
+         7/hxDmKTFosy+mBTNkj+A2rT1LorpBiWuRJM9oOKjMMsuZl+XESA0FqHRjd0cY50ExAc
+         1bbYMfU4e57ppJ+++wN543IHflannecL3+dYci5YYc8pd2F/NrKv5DZC8hQiK3hGeoNq
+         mpHQl7k2S7mtXnbsgQryyAYa40bw1+dlcBSZTrlf4QZcmWCEkbAy6UD7Ig4VUUU/2Gck
+         hWfg==
+X-Gm-Message-State: AOAM533G0U5lLhQwvViUvkzjB+aeRiGlJXdzAKTioIvpCV9kQBsGd7zI
+        qk9dc+mDeirLJeYDkqI2cLE=
+X-Google-Smtp-Source: ABdhPJz2VKUWk6KI0JO8VGpsFKkoIikz2P2rKNJOslir2jWvq2D49ff4HvuEEUnMhMtDL4+vNT/IJQ==
+X-Received: by 2002:a1c:2dc6:: with SMTP id t189mr3556800wmt.26.1596635166313;
+        Wed, 05 Aug 2020 06:46:06 -0700 (PDT)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id k126sm3077720wme.17.2020.08.05.06.46.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Aug 2020 06:46:02 -0700 (PDT)
+Date:   Wed, 5 Aug 2020 15:46:00 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     jonathanh@nvidia.com, frankc@nvidia.com, hverkuil@xs4all.nl,
+        sakari.ailus@iki.fi, robh+dt@kernel.org, helen.koike@collabora.com,
+        digetx@gmail.com, gregkh@linuxfoundation.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 08/10] gpu: host1x: mipi: Keep MIPI clock enabled till
+ calibration is done
+Message-ID: <20200805134600.GA3351349@ulmo>
+References: <1596469346-937-1-git-send-email-skomatineni@nvidia.com>
+ <1596469346-937-9-git-send-email-skomatineni@nvidia.com>
 MIME-Version: 1.0
-References: <20191007220540.30690-1-aford173@gmail.com> <20191007220540.30690-2-aford173@gmail.com>
-In-Reply-To: <20191007220540.30690-2-aford173@gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Wed, 5 Aug 2020 08:17:16 -0500
-Message-ID: <CAHCN7x+fnyXb+UO3xPd0nKeZNAPhRsXd5kTCAHxvg6hSt8Bx-A@mail.gmail.com>
-Subject: Re: [PATCH 2/2] ARM: dts: omap3: Add cpu trips and cooling map for
- omap34/36 families
-To:     Linux-OMAP <linux-omap@vger.kernel.org>
-Cc:     Adam Ford <adam.ford@logicpd.com>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Russell King <linux@armlinux.org.uk>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="0OAP2g/MAC+5xKAE"
+Content-Disposition: inline
+In-Reply-To: <1596469346-937-9-git-send-email-skomatineni@nvidia.com>
+User-Agent: Mutt/1.14.4 (2020-06-18)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 7, 2019 at 5:06 PM Adam Ford <aford173@gmail.com> wrote:
->
-> The OMAP3530, OMAP3630, and DM3730 all show thresholds of 90C and 105C
-> depending on commercial or industrial temperature ratings.
->
-> This patch expands the thermal information to include the limits of 90
-> and 105C for alert and critical.  It sets the coolings-cells for the
-> 34xx and 36xx CPU's which both point to omap3-cpu-thermal.dtsi.
->
-> For boards who never use industrial temperatures, these can be
-> changed on their respective device trees with something like:
->
-> &cpu_alert0 {
->         temperature = <85000>; /* millicelsius */
-> };
->
-> &cpu_crit {
->         temperature = <90000>; /* millicelsius */
-> };
->
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> Tested-by: H. Nikolaus Schaller <hns@goldelico.com> # on GTA04A5 with dm3730cbp100
->
 
-Tony,
+--0OAP2g/MAC+5xKAE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I know this is an old thread.  I am trying to revisit some of the
-other issues that came about with this, but is there any way we can
-get patch 2/2 applied?  It might not do anything unless the bandgap
-sensor is enabled, but it at least gets us one step closer for those
-who choose to enable it.  With 1GHz support now available, it would be
-nice to have the precautions to protect the processor from running too
-fast when its too hot.
+On Mon, Aug 03, 2020 at 08:42:24AM -0700, Sowjanya Komatineni wrote:
+> With the split of MIPI calibration into tegra_mipi_calibrate() and
+> tegra_mipi_wait(), MIPI clock is not kept enabled till the calibration
+> is done.
+>=20
+> So, this patch skips disabling MIPI clock after triggering start of
+> calibration and disables it only after waiting for done status from
+> the calibration logic.
+>=20
+> This patch renames tegra_mipi_calibrate() as tegra_mipi_start_calibration=
+()
+> and tegra_mipi_wait() as tegra_mipi_finish_calibration() to be inline
+> with their usage.
+>=20
+> As MIPI clock is left enabled and in case of any failures with CSI input
+> streaming tegra_mipi_finish_calibration() will not get invoked.
+> So added new API tegra_mipi_cancel_calibration() which disables MIPI clock
+> and consumer drivers can call this in such cases.
+>=20
+> Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> ---
+>  drivers/gpu/drm/tegra/dsi.c |  4 ++--
+>  drivers/gpu/host1x/mipi.c   | 19 ++++++++++---------
+>  include/linux/host1x.h      |  5 +++--
+>  3 files changed, 15 insertions(+), 13 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/tegra/dsi.c b/drivers/gpu/drm/tegra/dsi.c
+> index 3820e8d..a7864e9 100644
+> --- a/drivers/gpu/drm/tegra/dsi.c
+> +++ b/drivers/gpu/drm/tegra/dsi.c
+> @@ -694,11 +694,11 @@ static int tegra_dsi_pad_calibrate(struct tegra_dsi=
+ *dsi)
+>  		DSI_PAD_PREEMP_PD(0x03) | DSI_PAD_PREEMP_PU(0x3);
+>  	tegra_dsi_writel(dsi, value, DSI_PAD_CONTROL_3);
+> =20
+> -	err =3D tegra_mipi_calibrate(dsi->mipi);
+> +	err =3D tegra_mipi_start_calibration(dsi->mipi);
+>  	if (err < 0)
+>  		return err;
+> =20
+> -	return tegra_mipi_wait(dsi->mipi);
+> +	return tegra_mipi_finish_calibration(dsi->mipi);
+>  }
+> =20
+>  static void tegra_dsi_set_timeout(struct tegra_dsi *dsi, unsigned long b=
+clk,
+> diff --git a/drivers/gpu/host1x/mipi.c b/drivers/gpu/host1x/mipi.c
+> index e606464..b15ab6e 100644
+> --- a/drivers/gpu/host1x/mipi.c
+> +++ b/drivers/gpu/host1x/mipi.c
+> @@ -293,17 +293,19 @@ int tegra_mipi_disable(struct tegra_mipi_device *de=
+v)
+>  }
+>  EXPORT_SYMBOL(tegra_mipi_disable);
+> =20
+> -int tegra_mipi_wait(struct tegra_mipi_device *device)
+> +void tegra_mipi_cancel_calibration(struct tegra_mipi_device *device)
+> +{
+> +	clk_disable(device->mipi->clk);
 
-thanks
+Do we need to do anything with the MIPI_CAL_CTRL and MIPI_CAL_STATUS
+registers here? We don't clear the START bit in the former when the
+calibration has successfully finished, but I suspect that's because
+the bit is self-clearing. But I wonder if we still need to clear it
+upon cancellation to make sure the calibration does indeed stop.
 
-adam
+Thierry
 
-> diff --git a/arch/arm/boot/dts/omap3-cpu-thermal.dtsi b/arch/arm/boot/dts/omap3-cpu-thermal.dtsi
-> index 235ecfd61e2d..dfbd0cb0b00b 100644
-> --- a/arch/arm/boot/dts/omap3-cpu-thermal.dtsi
-> +++ b/arch/arm/boot/dts/omap3-cpu-thermal.dtsi
-> @@ -17,4 +17,25 @@ cpu_thermal: cpu_thermal {
->
->                         /* sensor       ID */
->         thermal-sensors = <&bandgap     0>;
-> +
-> +       cpu_trips: trips {
-> +               cpu_alert0: cpu_alert {
-> +                       temperature = <90000>; /* millicelsius */
-> +                       hysteresis = <2000>; /* millicelsius */
-> +                       type = "passive";
-> +               };
-> +               cpu_crit: cpu_crit {
-> +                       temperature = <105000>; /* millicelsius */
-> +                       hysteresis = <2000>; /* millicelsius */
-> +                       type = "critical";
-> +               };
-> +       };
-> +
-> +       cpu_cooling_maps: cooling-maps {
-> +               map0 {
-> +                       trip = <&cpu_alert0>;
-> +                       cooling-device =
-> +                               <&cpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +               };
-> +       };
->  };
-> diff --git a/arch/arm/boot/dts/omap34xx.dtsi b/arch/arm/boot/dts/omap34xx.dtsi
-> index 7b09cbee8bb8..99a7161bebb2 100644
-> --- a/arch/arm/boot/dts/omap34xx.dtsi
-> +++ b/arch/arm/boot/dts/omap34xx.dtsi
-> @@ -26,6 +26,7 @@
->                                 600000  1350000
->                         >;
->                         clock-latency = <300000>; /* From legacy driver */
-> +                       #cooling-cells = <2>;
->                 };
->         };
->
-> diff --git a/arch/arm/boot/dts/omap36xx.dtsi b/arch/arm/boot/dts/omap36xx.dtsi
-> index 1e552f08f120..8096b6ef0ae1 100644
-> --- a/arch/arm/boot/dts/omap36xx.dtsi
-> +++ b/arch/arm/boot/dts/omap36xx.dtsi
-> @@ -28,6 +28,7 @@
->                                 800000  1325000
->                         >;
->                         clock-latency = <300000>; /* From legacy driver */
-> +                       #cooling-cells = <2>;
->                 };
->         };
->
-> --
-> 2.17.1
->
+--0OAP2g/MAC+5xKAE
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl8quBQACgkQ3SOs138+
+s6GBNw/+MTmEubphwcvWa9ieNScL1nFuVHEUP4lHuuvAbR/nUQ/vzMjHwCZsZKfJ
+8LACRgG2l/SCkv1ei6v6km7tQHIvpCI1ceJgljHZK6Jfdl8NgAUryJjr6xugZ7SJ
+DnAaqtE2j4Nf0Zi79PLxCXaOnU/nqALuYADJ6SOyyENnFwJnGnvHsjbhtvO94yMF
+11z6PLDQzsncmWl0SRIVMF0rql+NG+Xb3aJbUeqfXRFzF6SvOd7H7taCt8pD2oJJ
++v+Mx6iqvkWFWeJ7e1IbYP7WhATL8c4kU6CcqKG7F+GW9Hrvh1NNw+R1k5DechLY
+b64JrgILrJdsjCfvs9AA68US//oXHTGXHwDhjmHmHPQhLv2eZZ4cPjvjvVACYW9b
+hUiwNJ4k1nsztAPewYHFM0ISJ0zGyO5AMKXG0k20EAFx/Tdu28hSUbOdlnWhu0fL
+zSslBqdnsfBO1AAFMO5DS/2IbIangcLQWZbnA0RKb61znnLHhpf1RdmCauw0Trnr
+ZruwSWQuqTXOgRD7FEqfXhVjjgcPjrHkVYaqpyRwNBKYOo1oHhbzNId34UxHZVa4
+EYU2ePiPuO1BQFmJhbetHacampQoymghSlGmf6jCg6BUuN+gIWkJyeeVxyPMSsJJ
+BN09B8wtbCeASpRN0fuFt2TgfmRh72SoyFSCi6yVgmEcfX0NfmQ=
+=wSg4
+-----END PGP SIGNATURE-----
+
+--0OAP2g/MAC+5xKAE--
