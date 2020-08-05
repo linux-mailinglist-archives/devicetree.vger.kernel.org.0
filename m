@@ -2,127 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B606223CD57
-	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 19:25:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D00D423CCDA
+	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 19:09:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728761AbgHERZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Aug 2020 13:25:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52814 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728103AbgHERZG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 13:25:06 -0400
-Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E34BAC0086AB;
-        Wed,  5 Aug 2020 07:47:02 -0700 (PDT)
-Received: by mail-ot1-x343.google.com with SMTP id t7so19695374otp.0;
-        Wed, 05 Aug 2020 07:47:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EwNbORxDFIbm44T1fVXX43x3s7U+jU8SsrHPB/cPJqU=;
-        b=WN/1bEFCBuQuFMVyLXsLFREdhs5LBhNQDp9WlpeR8TFfmrsaiar8PDzY8vtjTLeeym
-         NFBWux02Y5Pb0QK/RldxA7IjdZwx6B8QR+cV1LJyLY9slvVlcK6yzCVSWNpa9PkycwUU
-         rbUu0mrPH6iyAYUcE7pod0BoNbNhKE9WJY2tK5w8cFi5/juzE8TIWJi2HHLdc6NYWW6g
-         UDXYnU2TX5zHGAV2GOfVLWoIOxb2kn82/UVIhSxKUJynCZ5lwzd/CP1Bb78leIujhMOY
-         /iiVTsnBVWtW8QQKU8lKrt8Cy497lmMco0lTmKtakxHOFeKYMSE7w9AdvE/j32lgkJM0
-         4lUg==
-X-Gm-Message-State: AOAM530gplRzia9Htz6QHmP6qv4JA8qk2/s6ujy1nysTa5Klo2rm4D5v
-        x09bKW138Vfbmva7mMl298XRwrnpT37rnVfKNOo/7g==
-X-Google-Smtp-Source: ABdhPJzt7h8RrIxvZX2vRMm2/bzqaHnsQxVVdhFRu4B03RG5Stg3lPBllx3+yunGKjo04+1O1mlapSD/aeoZS8HU1PE=
-X-Received: by 2002:a9d:1b0d:: with SMTP id l13mr2165602otl.145.1596627711771;
- Wed, 05 Aug 2020 04:41:51 -0700 (PDT)
+        id S1728184AbgHERIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Aug 2020 13:08:54 -0400
+Received: from mout.gmx.net ([212.227.17.22]:41503 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728455AbgHEREv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Aug 2020 13:04:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1596647056;
+        bh=30nFNzwPxZmz9Y2oABIElubYun9r6VlJJIvIzFQZ2Xg=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=j1Y6eOK4/meE5OlJuq7nV5/1tZQTDbIb0WAyuTnEV9W9352mCZM3HHaq831GiceSx
+         fgLA0zs30eUwgj/z5EAxrGr9g97L+Ulxo1k83AHy0VNfGgt5sBKeIEwHFaXQzQv2bW
+         1f8xJG600QmOvgSFHH6ezeOrOkMafkMRsbtLzx2I=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [80.208.209.197] ([80.208.209.197]) by web-mail.gmx.net
+ (3c-app-gmx-bap13.server.lan [172.19.172.83]) (via HTTP); Wed, 5 Aug 2020
+ 15:01:52 +0200
 MIME-Version: 1.0
-References: <20200729122602.9561-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20200729122602.9561-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 5 Aug 2020 13:41:40 +0200
-Message-ID: <CAMuHMdXPRsB3N=sfL0VgvAxxHLNCHhotsc501kG9-KMDoYXRJA@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: iwg22d-sodimm: Fix dt nodes sorting
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Message-ID: <trinity-9f86ac52-5249-44e7-b51d-1ee00850f544-1596632511956@3c-app-gmx-bap13>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     David Woodhouse <dwmw2@infradead.org>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        chunhui dai <chunhui.dai@mediatek.com>,
+        David Airlie <airlied@linux.ie>,
+        Sean Wang <sean.wang@mediatek.com>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        CK Hu <ck.hu@mediatek.com>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Frank Wunderlich <linux@fw-web.de>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Aw: [PATCH 2/3] arm: dts: mt7623: move MT7623N GPU to separate
+ mt7623n.dtsi file
+Content-Type: text/plain; charset=UTF-8
+Date:   Wed, 5 Aug 2020 15:01:52 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <20200805113013.2763510-2-dwmw2@infradead.org>
+References: <8ef96e4d02ef82e171409945ee6cc0348c4fe594.camel@infradead.org>
+ <20200805113013.2763510-1-dwmw2@infradead.org>
+ <20200805113013.2763510-2-dwmw2@infradead.org>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:G8MRnqoV1D2B0ErxKua+b90DZKS/NUdemUbrgGRwofr3Vs3wa3sLtGJLSaIjAmckjfQuY
+ N2q+Z1WAU5keJxhmjgF2SFnKLAx/+ssSg5jG4hUSN4rhMAozwVfyIJHClWHwJMkftrm1YI9Hdl3N
+ N2EZp25fXiSYSNd4CgWyeh3C56OTSnt6jPqOH91UQ3q3+VeqQ8/hSKikviDmaPX5zjuc+ZoBk88W
+ vF8v75+g6PyEv8XnV1zeMlKR5e7LgiTjKKDbo3QbXbuY0GPdBBboJNcu7cnHK7c5hBWoJyu0lqbH
+ o0=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:eGU+7LZ5Pbw=:Sko+N8vHSN+A2ehhghqC1j
+ 5MMHe1kmzGXDBBaX64keZASyrgU+qlX7o+JajiNRC6IRo9MZqvUkedHsVkSpGrYyojWGuNB5H
+ 9KX1Vczr5d3J9h3acYQQxadMgAe7EIh1s+76gXgbfOKinVAl6wBWexiuVdHHlLm/S0sbjyF9Z
+ VCg3ZXCpzu6fmA31EjSdFKB2pcoLxliB/Q7NPN3eooHXsaGpXjApg57qAs/HMfESeQDYciWaj
+ 1UXePZmbm63g2L6/RZcFtdy6zOGcKiETn2s1FvAeli1kHSopIklGmblk7nQcKLjMajrjcOioG
+ qfKDuin+bEuUmkjk4SXsLduH2DnX/+zEHre1Jesd+haC8kLTCV8+0Geripw13gnzPZ62bT6Dh
+ Ed2rUps/JEPdMUhlja5BNgD62C8B3h2JUqowbeA4SaRKReeOVoAERR3HMfyi5WPouE5xhRptf
+ RegBBdMk6+sDlsVu/hMMy2GrDgn/0Kei1XN+EM2Vf3JMpezFWZIxQ5CPMViCq0kJDpQo1hKVy
+ PVCsWTlDGdOqvi+A2cXB31zpPAjkQ70+ArZJtecl8ubq7u0yzeuGfM7eX6oKM00njHW43ArRA
+ GiHHCcgL8ITsw5cRGaoytN9wRwUhCjEXKYOSUfXL0F6iggOsgPH7w4MqxWCpNaTGH58tI1Ihz
+ dpPIcjKdEbs7ykZdlqhL5i7kp+5L5wwL7znRsOMEXPWEMJnFC1v9bUxQ489+GPvW3DQA=
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+Hi David
 
-On Wed, Jul 29, 2020 at 2:26 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Some device nodes in the r8a7745-iwg22d-sodimm.dts are not sorted
-> alphabetically. This patch fixes the sorting of nodes and also fixes a
-> typo in the stmpe node.
+> Gesendet: Mittwoch, 05. August 2020 um 13:30 Uhr
+> Von: "David Woodhouse" <dwmw2@infradead.org>
+> From: David Woodhouse <dwmw@amazon.co.uk>
 >
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-
-Thanks for your patch!
-
-> --- a/arch/arm/boot/dts/r8a7745-iwg22d-sodimm.dts
-> +++ b/arch/arm/boot/dts/r8a7745-iwg22d-sodimm.dts
-> @@ -53,6 +53,25 @@
->                 clock-frequency = <26000000>;
->         };
+> The MT7623A doesn't have a GPU; add it only for MT7623N boards.
 >
-> +       backlight_lcd: backlight {
-> +               compatible = "pwm-backlight";
-> +               pwms = <&tpu 3 5000000 PWM_POLARITY_INVERTED>;
-> +               brightness-levels = <0 4 8 16 32 64 128 255>;
-> +               default-brightness-level = <7>;
-> +       };
-> +
-> +       lcd_panel: lcd {
-> +               compatible = "edt,etm043080dh6gp";
-> +               power-supply = <&vccq_panel>;
-> +               backlight = <&backlight_lcd>;
-> +
-> +               port {
-> +                       lcd_in: endpoint {
-> +                               remote-endpoint = <&du_out_rgb0>;
-> +                       };
-> +               };
-> +       };
-> +
->         rsnd_sgtl5000: sound {
+> Fixes: 1f6ed224594 ("arm: dts: mt7623: add Mali-450 device node")
+> Signed-off-by: David Woodhouse <dwmw@amazon.co.uk>
 
-Shouldn't the sound node be moved below the regulator nodes?
-
->                 compatible = "simple-audio-card";
->                 simple-audio-card,format = "i2s";
-> @@ -68,18 +87,6 @@
->                 };
->         };
+> diff --git a/arch/arm/boot/dts/mt7623.dtsi b/arch/arm/boot/dts/mt7623.dt=
+si
+> index 3a6b856e5b74..dcd2f5ba4e20 100644
+> --- a/arch/arm/boot/dts/mt7623.dtsi
+> +++ b/arch/arm/boot/dts/mt7623.dtsi
+> @@ -734,30 +734,6 @@ g3dsys: syscon@13000000 {
+>  		#reset-cells =3D <1>;
+>  	};
 >
-> -       vccq_sdhi0: regulator-vccq-sdhi0 {
-> -               compatible = "regulator-gpio";
-> -
-> -               regulator-name = "SDHI0 VccQ";
-> -               regulator-min-microvolt = <1800000>;
-> -               regulator-max-microvolt = <3300000>;
-> -
-> -               gpios = <&gpio0 20 GPIO_ACTIVE_LOW>;
-> -               gpios-states = <1>;
-> -               states = <3300000 1>, <1800000 0>;
-> -       };
-> -
->         vccq_panel: regulator-vccq-panel {
->                 compatible = "regulator-fixed";
->                 regulator-name = "Panel VccQ";
+> -	mali: gpu@13040000 {
+> -		compatible =3D "mediatek,mt7623-mali", "arm,mali-450";
+...
+> -		clocks =3D <&topckgen CLK_TOP_MMPLL>,
+> -			 <&g3dsys CLK_G3DSYS_CORE>;
+> -		clock-names =3D "bus", "core";
+> -		power-domains =3D <&scpsys MT2701_POWER_DOMAIN_MFG>;
+> -		resets =3D <&g3dsys MT2701_G3DSYS_CORE_RST>;
+> -	};
 
-Gr{oetje,eeting}s,
+i guess you should to move g3dsys too, and maybe the mmsys which is also d=
+rm-related?
 
-                        Geert
+I can add this to my series, but before i change my series, i need advice =
+from MTK/DT owners whats the preferred way ;)
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+regards Frank
