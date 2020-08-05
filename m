@@ -2,324 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9866123CC6A
-	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 18:44:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B9AE23CC6E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 18:45:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728018AbgHEQoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Aug 2020 12:44:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45440 "EHLO
+        id S1727060AbgHEQor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Aug 2020 12:44:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727930AbgHEQmM (ORCPT
+        with ESMTP id S1727915AbgHEQmM (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 12:42:12 -0400
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F1B3C06138F
-        for <devicetree@vger.kernel.org>; Wed,  5 Aug 2020 04:01:29 -0700 (PDT)
-Received: by mail-pf1-x443.google.com with SMTP id r11so14587147pfl.11
-        for <devicetree@vger.kernel.org>; Wed, 05 Aug 2020 04:01:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=R4fpWOqpBFl4YW+gjIGDtcJmKMkUJgphCM8cmn4jPi0=;
-        b=AgEIBPo7jkQpOlkHlqljgV9zaXxH9CVK+sp71nP3S85oCgjoPbBIX9hEGrvRfF8S2S
-         wlH9yDchUSJ6psQ2YzxDgSpauTHLTHImjH5yH8kKL6CeUv99FqEdaqknCPh1sARYsZBK
-         YhPW3G2PXL8mkDbHfkm5wZ4IsdFbbDarKqxPQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=R4fpWOqpBFl4YW+gjIGDtcJmKMkUJgphCM8cmn4jPi0=;
-        b=MbkwjidGv5Fb0ECUPY8hovKqOFoBiMTe0GqxSYX8nl8z6OxGh4/HPwMEvyXNuy7LM1
-         HwnZ3/irYeV2gTT2G7oTCmMvfzhZbVnj8FCwTNS9v5x6T+IyzwCZELgcUIieg6sAdgpc
-         0BcvAUNTH0omyDxIiHn8Lrvmz0igRyRdUJkBGIw0+fqNhjl3Hp8w4WMHNHoAdIEqlHHh
-         uHyGAzLDp5vAGJy/DWlugxsQet6AscaOttKmMEOvt+dTLmUeQx907VYN9UGIb+qq/4ys
-         Cx5Jus4jkbHx0nO4/oQzkFC4DDa3lxyBp0PRCDdIAp6LuGVOld27dw/MKyKFmH3nAL/v
-         oRDA==
-X-Gm-Message-State: AOAM532lSjAHqmzwTdCVGqg9NOjnpaAW6Q0OHpmTVVYYmW8b9AlOzFu3
-        JIUc2SO4hkbEsZR6jMCLSn5Hkg==
-X-Google-Smtp-Source: ABdhPJySE9UZPCujh2vALZVNOpXJZnYkWwGKM0HQFCvSc2ybGU3FBflfuw+pnV1AAWlHtgeBiS3E6Q==
-X-Received: by 2002:aa7:8eca:: with SMTP id b10mr1046302pfr.50.1596625288482;
-        Wed, 05 Aug 2020 04:01:28 -0700 (PDT)
-Received: from shiro.work (p532183-ipngn200506sizuokaden.shizuoka.ocn.ne.jp. [153.199.2.183])
-        by smtp.googlemail.com with ESMTPSA id fv21sm2583142pjb.16.2020.08.05.04.01.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Aug 2020 04:01:27 -0700 (PDT)
-From:   Daniel Palmer <daniel@0x0f.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        tglx@linutronix.de, jason@lakedaemon.net, maz@kernel.org,
-        robh+dt@kernel.org, arnd@arndb.de, Daniel Palmer <daniel@0x0f.com>,
-        Willy Tarreau <w@1wt.eu>
-Subject: [PATCH 2/3] irqchip: mstar: msc313-intc interrupt controller driver
-Date:   Wed,  5 Aug 2020 20:00:51 +0900
-Message-Id: <20200805110052.2655487-3-daniel@0x0f.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200805110052.2655487-1-daniel@0x0f.com>
-References: <20200805110052.2655487-1-daniel@0x0f.com>
+Received: from casper.infradead.org (casper.infradead.org [IPv6:2001:8b0:10b:1236::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EADFC061A31;
+        Wed,  5 Aug 2020 04:30:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=casper.20170209; h=Sender:Content-Transfer-Encoding:
+        MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+        Reply-To:Content-Type:Content-ID:Content-Description;
+        bh=J08654X7H3kbc58/m2gL+bfcL2jyb0HzXVeKBQozN18=; b=DC8aYJFt9cO5OYGZXYZ4pk5oxV
+        +8JcsbVbK3VPyo8Rqa1zrayMTV25RJIgCiEFVYdntVbNcbl/W/L8yxfEDBIZxqO7ExarM07ZZLIXF
+        /DfydtCqSvavDLR0MTVFO/RKveDDydmsL67zqd02pXJf1i6lK0XPCNARjPP5QG1lVKPo/nOZgIiXH
+        kKto+7OnkDAbfE6fGtfntJiJslatSVyIfBpqIqW0R6ofjAhlbBppIAqr/Xu5JC9b/3WP3jyY21ACY
+        DFd0XOgngt31L6mWcqKubsxBwHcyGopOuxQzNlWx02B8ygbE/ejNAP/7nr3ygleS1IJbek2tw+PiA
+        OYbmVQSg==;
+Received: from i7.infradead.org ([2001:8b0:10b:1:21e:67ff:fecb:7a92])
+        by casper.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1k3Hcc-0007nH-4c; Wed, 05 Aug 2020 11:30:14 +0000
+Received: from dwoodhou by i7.infradead.org with local (Exim 4.93 #3 (Red Hat Linux))
+        id 1k3Hcb-00BavU-NB; Wed, 05 Aug 2020 12:30:13 +0100
+From:   David Woodhouse <dwmw2@infradead.org>
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        chunhui dai <chunhui.dai@mediatek.com>,
+        David Airlie <airlied@linux.ie>,
+        Sean Wang <sean.wang@mediatek.com>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        CK Hu <ck.hu@mediatek.com>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Frank Wunderlich <linux@fw-web.de>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/3] arm: dts: remove stray /dts-v1/ from mt7623a.dtsi
+Date:   Wed,  5 Aug 2020 12:30:11 +0100
+Message-Id: <20200805113013.2763510-1-dwmw2@infradead.org>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <8ef96e4d02ef82e171409945ee6cc0348c4fe594.camel@infradead.org>
+References: <8ef96e4d02ef82e171409945ee6cc0348c4fe594.camel@infradead.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by casper.infradead.org. See http://www.infradead.org/rpr.html
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a driver for the two peripheral interrupt controllers
-in MStar MSC313 and other MStar/Sigmastar Armv7 SoCs.
+From: David Woodhouse <dwmw@amazon.co.uk>
 
-Supports both the "IRQ" and "FIQ" controllers that
-forward interrupts from the various IP blocks inside the
-SoC to the ARM GIC.
+This isn't needed in dtsi files.
 
-They are basically the same thing except for one difference:
-The FIQ controller needs to clear the interrupt and the IRQ
-controller doesn't.
-
-Signed-off-by: Daniel Palmer <daniel@0x0f.com>
-Tested-by: Willy Tarreau <w@1wt.eu>
+Signed-off-by: David Woodhouse <dwmw@amazon.co.uk>
 ---
- MAINTAINERS                       |   1 +
- drivers/irqchip/Makefile          |   1 +
- drivers/irqchip/irq-msc313-intc.c | 210 ++++++++++++++++++++++++++++++
- 3 files changed, 212 insertions(+)
- create mode 100644 drivers/irqchip/irq-msc313-intc.c
+ arch/arm/boot/dts/mt7623a.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6e64d17aad7b..4d07403a7726 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2157,6 +2157,7 @@ F:	arch/arm/boot/dts/infinity*.dtsi
- F:	arch/arm/boot/dts/mercury*.dtsi
- F:	arch/arm/boot/dts/mstar-v7.dtsi
- F:	arch/arm/mach-mstar/
-+F:	drivers/irqchip/irq-msc313-intc.c
+diff --git a/arch/arm/boot/dts/mt7623a.dtsi b/arch/arm/boot/dts/mt7623a.dtsi
+index 0735a1fb8ad9..a96075206cce 100644
+--- a/arch/arm/boot/dts/mt7623a.dtsi
++++ b/arch/arm/boot/dts/mt7623a.dtsi
+@@ -5,7 +5,6 @@
+  *
+  */
  
- ARM/NEC MOBILEPRO 900/c MACHINE SUPPORT
- M:	Michael Petchkovsky <mkpetch@internode.on.net>
-diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
-index 133f9c45744a..67f3ae3507b8 100644
---- a/drivers/irqchip/Makefile
-+++ b/drivers/irqchip/Makefile
-@@ -111,3 +111,4 @@ obj-$(CONFIG_LOONGSON_HTPIC)		+= irq-loongson-htpic.o
- obj-$(CONFIG_LOONGSON_HTVEC)		+= irq-loongson-htvec.o
- obj-$(CONFIG_LOONGSON_PCH_PIC)		+= irq-loongson-pch-pic.o
- obj-$(CONFIG_LOONGSON_PCH_MSI)		+= irq-loongson-pch-msi.o
-+obj-$(CONFIG_ARCH_MSTARV7)		+= irq-msc313-intc.o
-diff --git a/drivers/irqchip/irq-msc313-intc.c b/drivers/irqchip/irq-msc313-intc.c
-new file mode 100644
-index 000000000000..b50f5c858d38
---- /dev/null
-+++ b/drivers/irqchip/irq-msc313-intc.c
-@@ -0,0 +1,210 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2019 Daniel Palmer
-+ */
-+
-+#include <linux/irq.h>
-+#include <linux/irqchip.h>
-+#include <linux/irqdomain.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+#define REGOFF_MASK		0x0
-+#define REGOFF_POLARITY		0x10
-+#define REGOFF_STATUSCLEAR	0x20
-+#define IRQSPERREG		16
-+#define IRQBIT(hwirq)		BIT((hwirq % IRQSPERREG))
-+#define REGOFF(hwirq)		((hwirq >> 4) * 4)
-+
-+struct msc313_intc {
-+	struct irq_domain *domain;
-+	void __iomem *base;
-+	struct irq_chip irqchip;
-+	u8 gicoff;
-+};
-+
-+static void msc313_intc_maskunmask(struct msc313_intc *intc, int hwirq, bool mask)
-+{
-+	int regoff = REGOFF(hwirq);
-+	void __iomem *addr = intc->base + REGOFF_MASK + regoff;
-+	u16 bit = IRQBIT(hwirq);
-+	u16 reg = readw_relaxed(addr);
-+
-+	if (mask)
-+		reg |= bit;
-+	else
-+		reg &= ~bit;
-+
-+	writew_relaxed(reg, addr);
-+}
-+
-+static void msc313_intc_mask_irq(struct irq_data *data)
-+{
-+	struct msc313_intc *intc = data->chip_data;
-+
-+	msc313_intc_maskunmask(intc, data->hwirq, true);
-+	irq_chip_mask_parent(data);
-+}
-+
-+static void msc313_intc_unmask_irq(struct irq_data *data)
-+{
-+	struct msc313_intc *intc = data->chip_data;
-+
-+	msc313_intc_maskunmask(intc, data->hwirq, false);
-+	irq_chip_unmask_parent(data);
-+}
-+
-+static int msc313_intc_set_type_irq(struct irq_data *data, unsigned int flow_type)
-+{
-+	struct msc313_intc *intc = data->chip_data;
-+	int irq = data->hwirq;
-+	int regoff = REGOFF(irq);
-+	void __iomem *addr = intc->base + REGOFF_POLARITY + regoff;
-+	u16 bit = IRQBIT(irq);
-+	u16 reg = readw_relaxed(addr);
-+
-+	if (flow_type & (IRQ_TYPE_EDGE_FALLING | IRQ_TYPE_LEVEL_HIGH))
-+		reg &= ~bit;
-+	else
-+		reg |= bit;
-+
-+	writew_relaxed(reg, addr);
-+	return 0;
-+}
-+
-+static void msc313_intc_irq_eoi(struct irq_data *data)
-+{
-+	struct msc313_intc *intc = data->chip_data;
-+	int irq = data->hwirq;
-+	int regoff = REGOFF(irq);
-+	void __iomem *addr = intc->base + REGOFF_STATUSCLEAR + regoff;
-+	u16 bit = IRQBIT(irq);
-+	u16 reg = readw_relaxed(addr);
-+
-+	reg |= bit;
-+	writew_relaxed(reg, addr);
-+	irq_chip_eoi_parent(data);
-+}
-+
-+static int msc313_intc_domain_translate(struct irq_domain *d,
-+				     struct irq_fwspec *fwspec,
-+				     unsigned long *hwirq,
-+				     unsigned int *type)
-+{
-+	if (!is_of_node(fwspec->fwnode) || fwspec->param_count != 2)
-+		return -EINVAL;
-+
-+	*hwirq = fwspec->param[0];
-+	*type = fwspec->param[1];
-+
-+	return 0;
-+}
-+
-+static int msc313_intc_domain_alloc(struct irq_domain *domain, unsigned int virq,
-+				 unsigned int nr_irqs, void *data)
-+{
-+	struct irq_fwspec *fwspec = data;
-+	struct irq_fwspec parent_fwspec;
-+	struct msc313_intc *intc = domain->host_data;
-+
-+	if (fwspec->param_count != 2)
-+		return -EINVAL;
-+
-+	irq_domain_set_hwirq_and_chip(domain, virq, fwspec->param[0], &intc->irqchip, intc);
-+
-+	parent_fwspec.fwnode = domain->parent->fwnode;
-+	parent_fwspec.param[0] = GIC_SPI;
-+	parent_fwspec.param[1] = fwspec->param[0] + intc->gicoff;
-+	parent_fwspec.param[2] = fwspec->param[1];
-+	parent_fwspec.param_count = 3;
-+
-+	return irq_domain_alloc_irqs_parent(domain, virq, nr_irqs,
-+					    &parent_fwspec);
-+}
-+
-+static const struct irq_domain_ops msc313_intc_domain_ops = {
-+		.translate = msc313_intc_domain_translate,
-+		.alloc = msc313_intc_domain_alloc,
-+		.free = irq_domain_free_irqs_common,
-+};
-+
-+static int  msc313_intc_of_init(struct device_node *node,
-+				   struct device_node *parent,
-+				   void (*eoi)(struct irq_data *data))
-+{
-+	struct irq_domain *domain_parent;
-+	struct msc313_intc *intc;
-+	int ret = 0;
-+	u32 gicoffset, numirqs;
-+
-+	if (of_property_read_u32(node, "mstar,gic-offset", &gicoffset)) {
-+		ret = -EINVAL;
-+		goto out;
-+	}
-+
-+	if (of_property_read_u32(node, "mstar,nr-interrupts", &numirqs)) {
-+		ret = -EINVAL;
-+		goto out;
-+	}
-+
-+	domain_parent = irq_find_host(parent);
-+	if (!domain_parent) {
-+		ret = -EINVAL;
-+		goto out;
-+	}
-+
-+	intc = kzalloc(sizeof(*intc), GFP_KERNEL);
-+	if (!intc) {
-+		ret = -ENOMEM;
-+		goto out;
-+	}
-+
-+	intc->base = of_iomap(node, 0);
-+	if (IS_ERR(intc->base)) {
-+		ret = PTR_ERR(intc->base);
-+		goto free_intc;
-+	}
-+
-+	intc->irqchip.name = node->name;
-+	intc->irqchip.irq_mask = msc313_intc_mask_irq;
-+	intc->irqchip.irq_unmask = msc313_intc_unmask_irq;
-+	intc->irqchip.irq_eoi = eoi;
-+	intc->irqchip.irq_set_type = msc313_intc_set_type_irq;
-+	intc->irqchip.flags = IRQCHIP_MASK_ON_SUSPEND;
-+
-+	intc->gicoff = gicoffset;
-+
-+	intc->domain = irq_domain_add_hierarchy(domain_parent, 0, numirqs, node,
-+			&msc313_intc_domain_ops, intc);
-+	if (!intc->domain) {
-+		ret = -ENOMEM;
-+		goto unmap;
-+	}
-+
-+	return 0;
-+
-+unmap:
-+	iounmap(intc->base);
-+free_intc:
-+	kfree(intc);
-+out:
-+	return ret;
-+}
-+
-+static int __init msc313_intc_irq_of_init(struct device_node *node,
-+				   struct device_node *parent)
-+{
-+	return msc313_intc_of_init(node, parent, irq_chip_eoi_parent);
-+};
-+
-+static int __init msc313_intc_fiq_of_init(struct device_node *node,
-+				   struct device_node *parent)
-+{
-+	return msc313_intc_of_init(node, parent, msc313_intc_irq_eoi);
-+};
-+
-+IRQCHIP_DECLARE(msc313_intc_irq, "mstar,msc313-intc-irq",
-+		msc313_intc_irq_of_init);
-+IRQCHIP_DECLARE(mstar_intc_fiq, "mstar,msc313-intc-fiq",
-+		msc313_intc_fiq_of_init);
+-/dts-v1/;
+ #include <dt-bindings/power/mt7623a-power.h>
+ #include "mt7623.dtsi"
+ 
 -- 
-2.27.0
+2.26.2
 
