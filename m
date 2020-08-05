@@ -2,151 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41BE523CC6B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 18:44:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B886D23CCAB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 18:57:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727930AbgHEQoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Aug 2020 12:44:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45436 "EHLO
+        id S1728250AbgHEQ5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Aug 2020 12:57:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727928AbgHEQmM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 12:42:12 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 237C9C0086D2;
-        Wed,  5 Aug 2020 07:19:56 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id h19so47888800ljg.13;
-        Wed, 05 Aug 2020 07:19:55 -0700 (PDT)
+        with ESMTP id S1728322AbgHEQzP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 12:55:15 -0400
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7856C001FCA;
+        Wed,  5 Aug 2020 08:47:51 -0700 (PDT)
+Received: by mail-ed1-x542.google.com with SMTP id di22so25717997edb.12;
+        Wed, 05 Aug 2020 08:47:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Qm6Ej0exkuDwKqXg5SiXppSqBSR/B5iSnMsDgHpre7I=;
-        b=gwlV0g6jtWbcz3d4+dfyYotSLCuWXlwfq5pi61UDD/9b97I+lD8aaLS+mZb52iNqIe
-         IS6aCP90M8Va2j9rHpQr/J2yKrX8DJYesdYthy28qYmvwgaP1eLNkABPQgu1PxN5KaYA
-         jNI9o3XnFGb+RX1AQaLbu072D16Wx5oXtsHISbtvOiYFa8hqYxnNt3cBVNw4gImM1AyG
-         0YCTkAiOMV76R7adrn1xyldkdCAfT34MhLg/oGUw+7HG9sUxJHcUUEwbW8X03H/Rs/ka
-         KUTUUJasa2YqvCfN7ltLjnKV+nDdJlpMR+TUaAr0NhLPBtCtpw66i6spOVroxsWeb7+j
-         +ujQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+thVhnOzocq+PgCFY0tda78F/9CHLw5tyXEyW5ctJ0o=;
+        b=K30Jpi+unvD+CodHrimHJBJOgIBKD2vORRRsNDdnxowxbqvNqWmkAuS87xxPAvIxSE
+         ePsUbOvmJ2NJ/xZNYGM9PJaoNcn/9NN9lsFvOaM2shMUcbTCUbYb86NythE2JhhhJNZQ
+         IPzpttIxwWgZMBIpbgr3qu+/sQaRlEc9o+gOa6sbnKflX3vw5+Qyq+5+Ts4dZtEaZoIB
+         r7bRtoTPTc7S494vAZzE1jsYQXemBVLfNJfQpUKxqDPcxayazZStrgobE4jw9ZObecr+
+         UKlUHS8s2PCiYg+N0X5gslQEfsQEMKsjRSifBnzyqFxNyjtFjnSSOtvmPkfGyBskiDbl
+         BVZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Qm6Ej0exkuDwKqXg5SiXppSqBSR/B5iSnMsDgHpre7I=;
-        b=bXaBAVIP8mGjAvjdhzqjUlnoQVV0JFJ4RoQ9nIn3ffAq9DPuNj6EIo8aA33PBDAT+j
-         mRx6DIcGVhdo7i8/yEVP7+wJ6Q/00TsQKGQAd0k2wOE1ntm1jrgY3EzdKzxJNSfOyFfH
-         VdmRLE127qMVkdq1WlDdZrF10B7aFvH3lc3/XAqOFyW0dcSBFEMjcUS9Oz0t8gRgteNJ
-         NQPL+EeQpmzodI3+wDnvT/5cIrYzkX7AGCk24kT3xKZm7++fRHwAGuZ4bNDYCEEYA4wT
-         ZD+62oAHJkNiw8izYjGLzFeFYJjYtuIvlkYPzwSeuYW/JJ1n+uNTCQCV3bGzBLgHlnEX
-         fHnw==
-X-Gm-Message-State: AOAM530goFGc9eoPb0Opk5XgX0kRkkK/fqq9eK5EEQq6jouedmezCx3T
-        8S67q0hZypCbLIjYDPbgbLHlMT7i
-X-Google-Smtp-Source: ABdhPJyX/nk4BnxYLi+IZ2EQX/2K3hvXCNEtxm0Q1OtvaDN4g1VTEtKtaj5iBJmRqEIBT+Wsd7t/Nw==
-X-Received: by 2002:a2e:9449:: with SMTP id o9mr1667761ljh.403.1596637194081;
-        Wed, 05 Aug 2020 07:19:54 -0700 (PDT)
-Received: from [192.168.2.145] (94-29-41-50.dynamic.spd-mgts.ru. [94.29.41.50])
-        by smtp.googlemail.com with ESMTPSA id c4sm1263842lfs.27.2020.08.05.07.19.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Aug 2020 07:19:53 -0700 (PDT)
-Subject: Re: [PATCH v8 08/10] gpu: host1x: mipi: Keep MIPI clock enabled till
- calibration is done
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     jonathanh@nvidia.com, frankc@nvidia.com, hverkuil@xs4all.nl,
-        sakari.ailus@iki.fi, robh+dt@kernel.org, helen.koike@collabora.com,
-        gregkh@linuxfoundation.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <1596469346-937-1-git-send-email-skomatineni@nvidia.com>
- <1596469346-937-9-git-send-email-skomatineni@nvidia.com>
- <20200805134600.GA3351349@ulmo>
- <103efe31-1abc-54f2-6004-490d7bb1b61a@gmail.com>
-Message-ID: <dcd58ae7-58ed-11d1-0e10-7f522b651b30@gmail.com>
-Date:   Wed, 5 Aug 2020 17:19:52 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+thVhnOzocq+PgCFY0tda78F/9CHLw5tyXEyW5ctJ0o=;
+        b=s0mIlclpL3+TdiGf3d9+AhofQqABHMrsq3YaVAOv7Hpyf1hxuXoA68/5admcysEYZ6
+         IH8CL3rNK/EmB1Q+lnV2ASxvrRJkXeeFwg61WQb3pVlD6xWFwozSsRWwLa1mGboghe9N
+         JA7RhAAmmAg5yTu5DmdIkmyO/1dV+t782aniKUxW5hZzGwOFn+T3oe7yD4ZQt352OU5C
+         291yHgS9Nw8braywlZzBCqKHAl5C3uPxVyXEpU45m+bl4TiX1PitYma3qAVNOZjyCbSm
+         THG9oGzYglMfms3ZEMIOj/H76H4bkijgGFmCUvNt8YoPtLclHl+mztxNBOd5Nj3dN53R
+         BIlg==
+X-Gm-Message-State: AOAM531SbDZUtlZI9iMECw9kpQgqCg6LRsA7jrzoD6ynH5p6J3tkdSgX
+        kuUfCaE1tOxDopXfULzdHkyReJJ02NbkATQw0vpQ87/nwQg=
+X-Google-Smtp-Source: ABdhPJwWW0KOvBhVO5pikas+uaQ+9Bi+oT+23iSZ47+Y2ckg0AYW5ATvLjA/5bzvEOv35sFXN/1aBcuO1YWaqys/Vi4=
+X-Received: by 2002:a05:6402:a5b:: with SMTP id bt27mr3476095edb.120.1596642470596;
+ Wed, 05 Aug 2020 08:47:50 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <103efe31-1abc-54f2-6004-490d7bb1b61a@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <1596634446-1413-1-git-send-email-kalyan_t@codeaurora.org>
+In-Reply-To: <1596634446-1413-1-git-send-email-kalyan_t@codeaurora.org>
+From:   Rob Clark <robdclark@gmail.com>
+Date:   Wed, 5 Aug 2020 08:48:34 -0700
+Message-ID: <CAF6AEGtWNDGDsUBVk-Ud5OpretHA4qKDKtE+3mS=C8DAa=+Heg@mail.gmail.com>
+Subject: Re: [v1] drm/msm/dpu: Fix reservation failures in modeset
+To:     Kalyan Thota <kalyan_t@codeaurora.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sean Paul <seanpaul@chromium.org>,
+        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Krishna Manikandan <mkrishn@codeaurora.org>,
+        Raviteja Tamatam <travitej@codeaurora.org>,
+        nganji@codeaurora.org, Stephen Boyd <swboyd@chromium.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        Drew Davenport <ddavenport@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-05.08.2020 17:05, Dmitry Osipenko пишет:
-> 05.08.2020 16:46, Thierry Reding пишет:
->> On Mon, Aug 03, 2020 at 08:42:24AM -0700, Sowjanya Komatineni wrote:
->>> With the split of MIPI calibration into tegra_mipi_calibrate() and
->>> tegra_mipi_wait(), MIPI clock is not kept enabled till the calibration
->>> is done.
->>>
->>> So, this patch skips disabling MIPI clock after triggering start of
->>> calibration and disables it only after waiting for done status from
->>> the calibration logic.
->>>
->>> This patch renames tegra_mipi_calibrate() as tegra_mipi_start_calibration()
->>> and tegra_mipi_wait() as tegra_mipi_finish_calibration() to be inline
->>> with their usage.
->>>
->>> As MIPI clock is left enabled and in case of any failures with CSI input
->>> streaming tegra_mipi_finish_calibration() will not get invoked.
->>> So added new API tegra_mipi_cancel_calibration() which disables MIPI clock
->>> and consumer drivers can call this in such cases.
->>>
->>> Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
->>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->>> ---
->>>  drivers/gpu/drm/tegra/dsi.c |  4 ++--
->>>  drivers/gpu/host1x/mipi.c   | 19 ++++++++++---------
->>>  include/linux/host1x.h      |  5 +++--
->>>  3 files changed, 15 insertions(+), 13 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/tegra/dsi.c b/drivers/gpu/drm/tegra/dsi.c
->>> index 3820e8d..a7864e9 100644
->>> --- a/drivers/gpu/drm/tegra/dsi.c
->>> +++ b/drivers/gpu/drm/tegra/dsi.c
->>> @@ -694,11 +694,11 @@ static int tegra_dsi_pad_calibrate(struct tegra_dsi *dsi)
->>>  		DSI_PAD_PREEMP_PD(0x03) | DSI_PAD_PREEMP_PU(0x3);
->>>  	tegra_dsi_writel(dsi, value, DSI_PAD_CONTROL_3);
->>>  
->>> -	err = tegra_mipi_calibrate(dsi->mipi);
->>> +	err = tegra_mipi_start_calibration(dsi->mipi);
->>>  	if (err < 0)
->>>  		return err;
->>>  
->>> -	return tegra_mipi_wait(dsi->mipi);
->>> +	return tegra_mipi_finish_calibration(dsi->mipi);
->>>  }
->>>  
->>>  static void tegra_dsi_set_timeout(struct tegra_dsi *dsi, unsigned long bclk,
->>> diff --git a/drivers/gpu/host1x/mipi.c b/drivers/gpu/host1x/mipi.c
->>> index e606464..b15ab6e 100644
->>> --- a/drivers/gpu/host1x/mipi.c
->>> +++ b/drivers/gpu/host1x/mipi.c
->>> @@ -293,17 +293,19 @@ int tegra_mipi_disable(struct tegra_mipi_device *dev)
->>>  }
->>>  EXPORT_SYMBOL(tegra_mipi_disable);
->>>  
->>> -int tegra_mipi_wait(struct tegra_mipi_device *device)
->>> +void tegra_mipi_cancel_calibration(struct tegra_mipi_device *device)
->>> +{
->>> +	clk_disable(device->mipi->clk);
->>
->> Do we need to do anything with the MIPI_CAL_CTRL and MIPI_CAL_STATUS
->> registers here? We don't clear the START bit in the former when the
->> calibration has successfully finished, but I suspect that's because
->> the bit is self-clearing. But I wonder if we still need to clear it
->> upon cancellation to make sure the calibration does indeed stop.
-> 
-> Apparently there is no way to explicitly stop calibration other than to
-> reset MIPI calibration block, but Sowjanya says this is unnecessary.
-> 
-> Perhaps having a fixed delay before disabling clock could be enough to
-> ensure that calibration is stopped before the clock is disabled?
-> 
+On Wed, Aug 5, 2020 at 6:34 AM Kalyan Thota <kalyan_t@codeaurora.org> wrote:
+>
+> In TEST_ONLY commit, rm global_state will duplicate the
+> object and request for new reservations, once they pass
+> then the new state will be swapped with the old and will
+> be available for the Atomic Commit.
+>
+> This patch fixes some of missing links in the resource
+> reservation sequence mentioned above.
+>
+> 1) Creation of a duplicate state in test_only commit (Rob)
+> 2) Allow resource release only during crtc_active false.
+>
+> For #2
+> In a modeset operation, swap state happens well before disable.
+> Hence clearing reservations in disable will cause failures
+> in modeset enable.
+>
+> Sequence:
+>     Swap state --> old, new
+>     modeset disables --> virt disable
+>     modeset enable --> virt modeset
+>
+> Allow reservations to be cleared only when crtc active is false
+> as in that case there wont be any modeset enable after disable.
+>
+> Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
+> ---
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> index 63976dc..b85a576 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> @@ -582,7 +582,7 @@ static int dpu_encoder_virt_atomic_check(
+>         dpu_kms = to_dpu_kms(priv->kms);
+>         mode = &crtc_state->mode;
+>         adj_mode = &crtc_state->adjusted_mode;
+> -       global_state = dpu_kms_get_existing_global_state(dpu_kms);
+> +       global_state = dpu_kms_get_global_state(crtc_state->state);
+>         trace_dpu_enc_atomic_check(DRMID(drm_enc));
+>
+>         /*
+> @@ -1172,6 +1172,7 @@ static void dpu_encoder_virt_disable(struct drm_encoder *drm_enc)
+>         struct msm_drm_private *priv;
+>         struct dpu_kms *dpu_kms;
+>         struct dpu_global_state *global_state;
+> +       struct drm_crtc_state *crtc_state;
+>         int i = 0;
+>
+>         if (!drm_enc) {
+> @@ -1191,6 +1192,7 @@ static void dpu_encoder_virt_disable(struct drm_encoder *drm_enc)
+>         priv = drm_enc->dev->dev_private;
+>         dpu_kms = to_dpu_kms(priv->kms);
+>         global_state = dpu_kms_get_existing_global_state(dpu_kms);
+> +       crtc_state = drm_enc->crtc->state;
+>
+>         trace_dpu_enc_disable(DRMID(drm_enc));
+>
+> @@ -1220,7 +1222,8 @@ static void dpu_encoder_virt_disable(struct drm_encoder *drm_enc)
+>
+>         DPU_DEBUG_ENC(dpu_enc, "encoder disabled\n");
+>
+> -       dpu_rm_release(global_state, drm_enc);
+> +       if (crtc_state->active_changed && !crtc_state->active)
+> +               dpu_rm_release(global_state, drm_enc);
 
-Actually, there is a MIPI_CAL_ACTIVE bit in the status register. Maybe
-it needs to be polled until it's unset?
+I still think releasing the state in the atomic_commit() path is the
+wrong thing to do.  In the commit path, the various state objects
+should be immutable.. ie. in the atomic_test() path you derive the new
+hw state (including assignment/release of resources), and
+atomic_commit() is simply pushing the state down to the hw.
+
+Otherwise, this looks better than v1.
+
+BR,
+-R
+
+>
+>         mutex_unlock(&dpu_enc->enc_lock);
+>  }
+> --
+> 1.9.1
+>
