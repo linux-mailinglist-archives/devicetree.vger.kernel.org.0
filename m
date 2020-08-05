@@ -2,123 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F370F23CF37
-	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 21:17:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE81523D0D8
+	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 21:53:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728431AbgHETRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Aug 2020 15:17:09 -0400
-Received: from mail29.static.mailgun.info ([104.130.122.29]:24222 "EHLO
-        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729126AbgHER7z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 13:59:55 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1596650395; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=kg0EF5rfNOmYrsglJGmq1Vj6cS50it6TVyt41Nu8U+I=; b=T4l0TeVZPcEfvK+BLVVuXjOEGNLCB/FRqTek8cJbYLt/XBNiuzEPqlOjVxhODmEIMrqcPPQJ
- W9cthHE3HsQifWB6dqp/IpyHwkFmC3Dbz0+EFmM2lbJVn2t8DDyWLHTajNyKVIY14RaZ7bDv
- Hl+JfLybBTqAMF86YJ4lRDQlKRU=
-X-Mailgun-Sending-Ip: 104.130.122.29
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n15.prod.us-east-1.postgun.com with SMTP id
- 5f2af37790893260dd5ddddc (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 05 Aug 2020 17:59:19
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 9626BC433A0; Wed,  5 Aug 2020 17:59:18 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from eberman-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: eberman)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 76DC1C43395;
-        Wed,  5 Aug 2020 17:59:17 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 76DC1C43395
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=eberman@codeaurora.org
-From:   Elliot Berman <eberman@codeaurora.org>
-To:     Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Elliot Berman <eberman@codeaurora.org>,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Steve Muckle <smuckle@google.com>,
-        Trilok Soni <tsoni@codeaurora.org>
-Subject: [PATCH] kbuild: Add dtc flag test
-Date:   Wed,  5 Aug 2020 10:58:48 -0700
-Message-Id: <1596650328-14869-1-git-send-email-eberman@codeaurora.org>
+        id S1726831AbgHETxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Aug 2020 15:53:19 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:45384 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728158AbgHEQuU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Aug 2020 12:50:20 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 434B1201463;
+        Wed,  5 Aug 2020 12:43:57 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 680AF200431;
+        Wed,  5 Aug 2020 12:43:53 +0200 (CEST)
+Received: from 10.192.242.69 (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 5282A402D0;
+        Wed,  5 Aug 2020 12:43:35 +0200 (CEST)
+From:   Shengjiu Wang <shengjiu.wang@nxp.com>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] ARM: dts: imx6qdl-sabresd: Support headphone and microphone detection
+Date:   Wed,  5 Aug 2020 18:39:04 +0800
+Message-Id: <1596623944-3104-1-git-send-email-shengjiu.wang@nxp.com>
 X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Host dtc may not support the same flags as kernel's copy of dtc. Test
-if dtc supports each flag when the dtc comes from host.
+Add "DMIC" rounting, headphone and microphone detect gpio for sound
+card, then output sound can switch between headphone and speaker.
+input sound can switch between DMIC and AMIC.
 
-Signed-off-by: Elliot Berman <eberman@codeaurora.org>
+Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 ---
- scripts/Makefile.lib | 34 ++++++++++++++++++++++------------
- 1 file changed, 22 insertions(+), 12 deletions(-)
+ arch/arm/boot/dts/imx6qdl-sabresd.dtsi | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-index 841ac03..2722a67 100644
---- a/scripts/Makefile.lib
-+++ b/scripts/Makefile.lib
-@@ -274,25 +274,35 @@ quiet_cmd_gzip = GZIP    $@
+diff --git a/arch/arm/boot/dts/imx6qdl-sabresd.dtsi b/arch/arm/boot/dts/imx6qdl-sabresd.dtsi
+index 28b35ccb3757..d933b5384a96 100644
+--- a/arch/arm/boot/dts/imx6qdl-sabresd.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-sabresd.dtsi
+@@ -105,9 +105,13 @@ sound {
+ 			"Ext Spk", "SPKOUTL",
+ 			"Ext Spk", "SPKOUTR",
+ 			"AMIC", "MICBIAS",
+-			"IN3R", "AMIC";
++			"IN3R", "AMIC",
++			"DMIC", "MICBIAS",
++			"DMICDAT", "DMIC";
+ 		mux-int-port = <2>;
+ 		mux-ext-port = <3>;
++		hp-det-gpio = <&gpio7 8 GPIO_ACTIVE_LOW>;
++		mic-det-gpio = <&gpio1 9 GPIO_ACTIVE_LOW>;
+ 	};
  
- # DTC
- # ---------------------------------------------------------------------------
-+ifeq ("$(origin DTC)", "command line")
-+PHONY += $(DTC)
-+dtc-option = $(call try-run, $(DTC) $1 -v,$1)
-+else
-+# Just add the flag. DTC is compiled later as a prerequisite, so there's no dtc
-+# to test the flag against. This is okay because we're not testing flags which
-+# aren't supported by in-kernel dtc to begin with.
-+dtc-option = $1
-+endif
-+
- DTC ?= $(objtree)/scripts/dtc/dtc
--DTC_FLAGS += -Wno-interrupt_provider
-+DTC_FLAGS += $(call dtc-option,-Wno-interrupt_provider)
- 
- # Disable noisy checks by default
- ifeq ($(findstring 1,$(KBUILD_EXTRA_WARN)),)
--DTC_FLAGS += -Wno-unit_address_vs_reg \
--	-Wno-unit_address_format \
--	-Wno-avoid_unnecessary_addr_size \
--	-Wno-alias_paths \
--	-Wno-graph_child_address \
--	-Wno-simple_bus_reg \
--	-Wno-unique_unit_address \
--	-Wno-pci_device_reg
-+DTC_FLAGS += $(call dtc-option,-Wno-unit_address_vs_reg) \
-+	$(call dtc-option,-Wno-unit_address_format) \
-+	$(call dtc-option,-Wno-avoid_unnecessary_addr_size) \
-+	$(call dtc-option,-Wno-alias_paths) \
-+	$(call dtc-option,-Wno-graph_child_address) \
-+	$(call dtc-option,-Wno-simple_bus_reg) \
-+	$(call dtc-option,-Wno-unique_unit_address) \
-+	$(call dtc-option,-Wno-pci_device_reg)
- endif
- 
- ifneq ($(findstring 2,$(KBUILD_EXTRA_WARN)),)
--DTC_FLAGS += -Wnode_name_chars_strict \
--	-Wproperty_name_chars_strict \
--	-Winterrupt_provider
-+DTC_FLAGS += $(call dtc-option,-Wnode_name_chars_strict) \
-+	$(call dtc-option,-Wproperty_name_chars_strict) \
-+	$(call dtc-option,-Winterrupt_provider)
- endif
- 
- DTC_FLAGS += $(DTC_FLAGS_$(basetarget))
+ 	backlight_lvds: backlight-lvds {
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.27.0
 
