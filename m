@@ -2,49 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7E7C23C761
-	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 10:07:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A14423C78E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 10:13:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727873AbgHEIHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Aug 2020 04:07:09 -0400
-Received: from mga17.intel.com ([192.55.52.151]:27768 "EHLO mga17.intel.com"
+        id S1728231AbgHEINV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Aug 2020 04:13:21 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:11831 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728103AbgHEIG7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Aug 2020 04:06:59 -0400
-IronPort-SDR: zFV+RSDXo+QrxeBWfm5urjuU+5dK/syNoNXjrI/wBF9hNaWxlMt4cEZWk+YS2uzhuQPmIWy6sy
- 0R6yjcZIUBNA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9703"; a="132565404"
-X-IronPort-AV: E=Sophos;i="5.75,436,1589266800"; 
-   d="scan'208";a="132565404"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Aug 2020 01:06:56 -0700
-IronPort-SDR: TXCzUvfTE8HQm5pRaoT3axqbHZpTJ9m0DQlZimClpzcxkZNDv90pZBYKMOQERpX3hG3+4OXvIn
- l9U1IhTsjg3Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,436,1589266800"; 
-   d="scan'208";a="493195293"
-Received: from ahunter-desktop.fi.intel.com (HELO [10.237.72.73]) ([10.237.72.73])
-  by fmsmga005.fm.intel.com with ESMTP; 05 Aug 2020 01:06:54 -0700
-Subject: Re: [PATCH v2 6/6] sdhci: tegra: Add missing TMCLK for data timeout
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        ulf.hansson@linaro.org, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
-References: <1596515363-27235-1-git-send-email-skomatineni@nvidia.com>
- <1596515363-27235-7-git-send-email-skomatineni@nvidia.com>
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-Message-ID: <d131fc8c-fa1f-cb67-fe6a-955d3582d1d6@intel.com>
-Date:   Wed, 5 Aug 2020 11:06:30 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728357AbgHEINU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Aug 2020 04:13:20 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1596615199; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=XSZLok439pWl7CwEqyvK09XFwTyFBf7GehR5emIIdDA=; b=plJ3J37H0I6/W+bmOcdOLdzt+yqM9DC7kwVQ78BEfftrXvz2REAFmTpCQiUKU62+uyPrwsgm
+ O2+SL267cG4dBMPiUEkkcg5MYgQlo1A47lgF41rExHZ40hGEMJTYwYkiwvgsgZGc58p91jUc
+ WOAR83UK9NPRpI2IITi0VHlwa/U=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n12.prod.us-east-1.postgun.com with SMTP id
+ 5f2a6a19f89b692ba22d805c (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 05 Aug 2020 08:13:13
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id AB0EDC43391; Wed,  5 Aug 2020 08:13:12 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,NICE_REPLY_A,
+        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [192.168.1.12] (unknown [61.1.228.31])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5FDA6C433C9;
+        Wed,  5 Aug 2020 08:13:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 5FDA6C433C9
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=rnayak@codeaurora.org
+Subject: Re: [PATCH 1/3] dt-bindings: power: Introduce
+ 'assigned-performance-states' property
+To:     Stephen Boyd <swboyd@chromium.org>, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org, ulf.hansson@linaro.org
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <1596541616-27688-1-git-send-email-rnayak@codeaurora.org>
+ <1596541616-27688-2-git-send-email-rnayak@codeaurora.org>
+ <159660954201.1360974.5176671532597020049@swboyd.mtv.corp.google.com>
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+Message-ID: <98050322-9ba6-303c-4ca4-07baa56ebd80@codeaurora.org>
+Date:   Wed, 5 Aug 2020 13:43:06 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-In-Reply-To: <1596515363-27235-7-git-send-email-skomatineni@nvidia.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <159660954201.1360974.5176671532597020049@swboyd.mtv.corp.google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
@@ -52,106 +65,115 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/08/20 7:29 am, Sowjanya Komatineni wrote:
-> commit b5a84ecf025a ("mmc: tegra: Add Tegra210 support")
 
-So that could be a Fixes tag also?
+On 8/5/2020 12:09 PM, Stephen Boyd wrote:
+> Quoting Rajendra Nayak (2020-08-04 04:46:54)
+>> While most devices within power-domains which support performance states,
+>> scale the performance state dynamically, some devices might want to
+>> set a static/default performance state while the device is active.
+>> These devices typically would also run of a fixed clock and not support
+> 
+> s/of/off/
+> 
+>> dyamically scaling the device's performance, also known as DVFS techniques.
+> 
+> s/dyamically/dynamically/
+> 
+>> Add a property 'assigned-performance-states' which client devices can
+>> use to set this default performance state on their power-domains.
+>>
+>> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+>> ---
+>>   .../devicetree/bindings/power/power-domain.yaml    | 47 ++++++++++++++++++++++
+>>   1 file changed, 47 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/power/power-domain.yaml b/Documentation/devicetree/bindings/power/power-domain.yaml
+>> index ff5936e..48e9319 100644
+>> --- a/Documentation/devicetree/bindings/power/power-domain.yaml
+>> +++ b/Documentation/devicetree/bindings/power/power-domain.yaml
+>> @@ -66,6 +66,16 @@ properties:
+>>          by the given provider should be subdomains of the domain specified
+>>          by this binding.
+>>   
+>> +  assigned-performance-states:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    description:
+>> +       Some devices might need to configure their power domains in a default
+>> +       performance state while the device is active. These devices typcially
+>> +       would also run of a fixed clock and not support dyamically scaling the
+> 
+> Same of and dynamically comment.
+> 
+>> +       device's performance, also known as DVFS techniques. The list of performance
+>> +       state values should correspond to the list of power domains specified as part
+>> +       of the power-domains property.
+> 
+> This is different than assigned-clock-rates. I guess that's OK because
+> we don't need to assign parents with more specifiers. Maybe it should be
+> worded more strongly to clearly state that each cell corresponds to one
+> power domain? And that it should match the opp-level inside any OPP
+> table for the power domain?
+
+Sure, I'll reword it to make it clear that we need the same number of cells
+as power-domains, and as you pointed out below that 0 corresponds to not setting
+anything.
+
+For the matching of opp-level inside the OPP table of the power-domain, I don't
+think from the power-domain bindings we limit providers with only OPP tables to
+support performance states? It could be just a range that the provider manages
+internally?
+
+And thanks for catching all my typos :), I'll have them fixed when I re-spin.
 
 > 
-> Tegra210 and later has a separate sdmmc_legacy_tm (TMCLK) used by Tegra
-> SDMMC hawdware for data timeout to achive better timeout than using
-> SDCLK and using TMCLK is recommended.
+>> +
+>>   required:
+>>     - "#power-domain-cells"
+>>   
+>> @@ -129,3 +139,40 @@ examples:
+>>               min-residency-us = <7000>;
+>>           };
+>>       };
+>> +
+>> +  - |
+>> +    parent4: power-controller@12340000 {
+>> +        compatible = "foo,power-controller";
+>> +        reg = <0x12340000 0x1000>;
+>> +        #power-domain-cells = <0>;
+>> +    };
+>> +
+>> +    parent5: power-controller@43210000 {
+>> +        compatible = "foo,power-controller";
+>> +        reg = <0x43210000 0x1000>;
+>> +        #power-domain-cells = <0>;
+>> +        operating-points-v2 = <&power_opp_table>;
+>> +
+>> +        power_opp_table: opp-table {
+>> +            compatible = "operating-points-v2";
+>> +
+>> +            power_opp_low: opp1 {
+>> +                opp-level = <16>;
+>> +            };
+>> +
+>> +            rpmpd_opp_ret: opp2 {
+>> +                opp-level = <64>;
+>> +            };
+>> +
+>> +            rpmpd_opp_svs: opp3 {
+>> +                opp-level = <256>;
+>> +            };
+>> +        };
+>> +    };
+>> +
+>> +    child4: consumer@12341000 {
+>> +        compatible = "foo,consumer";
+>> +        reg = <0x12341000 0x1000>;
+>> +        power-domains = <&parent4>, <&parent5>;
+>> +        assigned-performance-states = <0>, <256>;
 > 
-> USE_TMCLK_FOR_DATA_TIMEOUT bit in Tegra SDMMC register
-> SDHCI_TEGRA_VENDOR_SYS_SW_CTRL can be used to choose either TMCLK or
-> SDCLK for data timeout.
-> 
-> Default USE_TMCLK_FOR_DATA_TIMEOUT bit is set to 1 and TMCLK is used
-> for data timeout by Tegra SDMMC hardware and having TMCLK not enabled
-> is not recommended.
-> 
-> So, this patch fixes it.
-> 
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
-
-> ---
->  drivers/mmc/host/sdhci-tegra.c | 41 +++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 41 insertions(+)
-> 
-> diff --git a/drivers/mmc/host/sdhci-tegra.c b/drivers/mmc/host/sdhci-tegra.c
-> index 31ed321..c0b9405 100644
-> --- a/drivers/mmc/host/sdhci-tegra.c
-> +++ b/drivers/mmc/host/sdhci-tegra.c
-> @@ -140,6 +140,7 @@ struct sdhci_tegra_autocal_offsets {
->  struct sdhci_tegra {
->  	const struct sdhci_tegra_soc_data *soc_data;
->  	struct gpio_desc *power_gpio;
-> +	struct clk *tmclk;
->  	bool ddr_signaling;
->  	bool pad_calib_required;
->  	bool pad_control_available;
-> @@ -1611,6 +1612,44 @@ static int sdhci_tegra_probe(struct platform_device *pdev)
->  		goto err_power_req;
->  	}
->  
-> +	/*
-> +	 * Tegra210 has a separate SDMMC_LEGACY_TM clock used for host
-> +	 * timeout clock and SW can choose TMCLK or SDCLK for hardware
-> +	 * data timeout through the bit USE_TMCLK_FOR_DATA_TIMEOUT of
-> +	 * the register SDHCI_TEGRA_VENDOR_SYS_SW_CTRL.
-> +	 *
-> +	 * USE_TMCLK_FOR_DATA_TIMEOUT bit default is set to 1 and SDMMC uses
-> +	 * 12Mhz TMCLK which is advertised in host capability register.
-> +	 * With TMCLK of 12Mhz provides maximum data timeout period that can
-> +	 * be achieved is 11s better than using SDCLK for data timeout.
-> +	 *
-> +	 * So, TMCLK is set to 12Mhz and kept enabled all the time on SoC's
-> +	 * supporting SDR104 mode and when not using SDCLK for data timeout.
-> +	 */
-> +
-> +	if ((soc_data->nvquirks & NVQUIRK_ENABLE_SDR104) &&
-> +	    !(soc_data->pdata->quirks & SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK)) {
-> +		clk = devm_clk_get(&pdev->dev, "tmclk");
-> +		if (IS_ERR(clk)) {
-> +			rc = PTR_ERR(clk);
-> +			if (rc == -EPROBE_DEFER)
-> +				goto err_power_req;
-> +
-> +			dev_warn(&pdev->dev, "failed to get tmclk: %d\n", rc);
-> +			clk = NULL;
-> +		}
-> +
-> +		clk_set_rate(clk, 12000000);
-> +		rc = clk_prepare_enable(clk);
-> +		if (rc) {
-> +			dev_err(&pdev->dev,
-> +				"failed to enable tmclk: %d\n", rc);
-> +			goto err_power_req;
-> +		}
-> +
-> +		tegra_host->tmclk = clk;
-> +	}
-> +
->  	clk = devm_clk_get(mmc_dev(host->mmc), NULL);
->  	if (IS_ERR(clk)) {
->  		rc = PTR_ERR(clk);
-> @@ -1654,6 +1693,7 @@ static int sdhci_tegra_probe(struct platform_device *pdev)
->  err_rst_get:
->  	clk_disable_unprepare(pltfm_host->clk);
->  err_clk_get:
-> +	clk_disable_unprepare(tegra_host->tmclk);
->  err_power_req:
->  err_parse_dt:
->  	sdhci_pltfm_free(pdev);
-> @@ -1671,6 +1711,7 @@ static int sdhci_tegra_remove(struct platform_device *pdev)
->  	reset_control_assert(tegra_host->rst);
->  	usleep_range(2000, 4000);
->  	clk_disable_unprepare(pltfm_host->clk);
-> +	clk_disable_unprepare(tegra_host->tmclk);
->  
->  	sdhci_pltfm_free(pdev);
->  
+> I guess <0> means don't set anything?
 > 
 
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
