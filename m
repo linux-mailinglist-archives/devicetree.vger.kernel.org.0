@@ -2,102 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31F5F23CDA8
-	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 19:41:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68BCB23CE03
+	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 20:06:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728875AbgHERjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Aug 2020 13:39:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54278 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728913AbgHERe0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 13:34:26 -0400
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BE49C061575;
-        Wed,  5 Aug 2020 10:34:25 -0700 (PDT)
-Received: by mail-lf1-x142.google.com with SMTP id m15so24027311lfp.7;
-        Wed, 05 Aug 2020 10:34:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=8HNwuenZ8HVoSfRFM1yr+yhY+DsPUgYL0/MOa8/jpuw=;
-        b=iBRKOMudr0THs5hTgteotC5bRZ/66USrPw3+qrK/dEZs9FSP5eKITva6gk0ucJ7i4L
-         AFAb35yJ8hLuKDaybk/amuGvLAWCnXCxxaZHsxIb5cXpjtVb0GdKhh1hskI8yinJFElG
-         eYNS1JXAFbdDNPRZ5GmEWrKB+8UQTZxbhkbNac9zlFe59Az0VOs1x/cuHuleDVe6COhB
-         5IuVxYNH58/w6iQxy7x1pM7VMxGRRwnGIqyfC/4GiEwgvTUlwVUPdjBtEZ7zeUlcq3rr
-         DqHAzIdW3RCIZbFc538fnJYC/e/HOcxmjc/B2SBMMhnPHXhOx3OF+w9bG5VZci7DQTK5
-         VbTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=8HNwuenZ8HVoSfRFM1yr+yhY+DsPUgYL0/MOa8/jpuw=;
-        b=Q8KbsW9YIsaj6bO4gjFitCy/Wpae9wFTt3tHhdjEegLW8wGz1yEsWN7i1Rd+kW0ujf
-         LfsvfP2VL3W5oQKWiHInhBSeOMFJgFeNLo/K7c/R8osPiA1NKECC01TQYaICyWYkRM32
-         oXdLcmf2g0Ww3PiguhWpVpQeLLgXOqfuFDUTcdD8JF26oNZuod51Qt+TA68mmBMmusZ1
-         mJHYgkySgof8v9c6v2Suu+4FWhVd4advmq5rwF4oO+jTkXtcDgVP5ZUJu9mLNzxXKt1X
-         4+inyx/bSs6bsiS/IjVGlTFyYAk5Nckm9BAHQya7y04fXXKKEj2zzC/sj+4WdJcX2xqk
-         kfEw==
-X-Gm-Message-State: AOAM533oNEW16+OLEHMjZMe2AG0cdNN8vljxnWebtggK2Y+Ozs8MO5hY
-        xRSzGna+3ogPIUAeod68mrDKaISk
-X-Google-Smtp-Source: ABdhPJyjhk8Q6HUt9Yu+pqu8UnN5oD9llj148EBGwcEGKoESer4YRNK3ivBgN2/rmEQSpgxbLQ812w==
-X-Received: by 2002:a05:6512:1182:: with SMTP id g2mr2081022lfr.126.1596648863749;
-        Wed, 05 Aug 2020 10:34:23 -0700 (PDT)
-Received: from [192.168.2.145] (94-29-41-50.dynamic.spd-mgts.ru. [94.29.41.50])
-        by smtp.googlemail.com with ESMTPSA id x6sm1370280lff.64.2020.08.05.10.34.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Aug 2020 10:34:23 -0700 (PDT)
-Subject: Re: [PATCH v8 08/10] gpu: host1x: mipi: Keep MIPI clock enabled till
- calibration is done
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     jonathanh@nvidia.com, frankc@nvidia.com, hverkuil@xs4all.nl,
-        sakari.ailus@iki.fi, robh+dt@kernel.org, helen.koike@collabora.com,
-        gregkh@linuxfoundation.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        id S1728378AbgHESFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Aug 2020 14:05:51 -0400
+Received: from mail29.static.mailgun.info ([104.130.122.29]:49589 "EHLO
+        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729166AbgHESDi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 14:03:38 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1596650582; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=wDrn6qZ0UEY+b7/V0j8agr4SjPY1RYQe65RUiGn653k=; b=fk8PImoSiRdhxn8Ro0i//lYIv0WZ+Z0fExVfzEvOlmRdlR7hUCas6sZLHpyr8YHVNSQ8S3g6
+ o1HcOFjCdXjuJ3NJMa+vhaKki3pdvsEuVbLLTwhaIe/qBjcpNQ7n7SpWqF1L6uIDXyMVNtV4
+ JWUxfRIhST6hu3KbLo3pFybyktg=
+X-Mailgun-Sending-Ip: 104.130.122.29
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n16.prod.us-west-2.postgun.com with SMTP id
+ 5f2af44d5a221ff37b3f5412 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 05 Aug 2020 18:02:53
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 3297CC433CA; Wed,  5 Aug 2020 18:02:53 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from kathirav-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kathirav)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 778BAC433C6;
+        Wed,  5 Aug 2020 18:02:50 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 778BAC433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=kathirav@codeaurora.org
+From:   Kathiravan T <kathirav@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <1596469346-937-1-git-send-email-skomatineni@nvidia.com>
- <1596469346-937-9-git-send-email-skomatineni@nvidia.com>
- <20200805134600.GA3351349@ulmo>
- <103efe31-1abc-54f2-6004-490d7bb1b61a@gmail.com>
- <dcd58ae7-58ed-11d1-0e10-7f522b651b30@gmail.com>
- <addb92e5-7c7a-6fba-117d-c7880b2d4597@nvidia.com>
- <ed80bf2f-213f-286a-59b2-fc85e4181b3d@gmail.com>
- <6eede805-80fd-016f-22f8-b6d25f6587af@nvidia.com>
- <1c12e40e-de7f-0599-a941-82760b4c7668@gmail.com>
- <9ef0b875-e826-43e2-207e-168d2081ff6a@nvidia.com>
- <4689cfe9-e7c4-48bf-217f-3a31b59b8bda@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <0e78c5ca-c529-1e98-891d-30351c9aae81@gmail.com>
-Date:   Wed, 5 Aug 2020 20:34:22 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <4689cfe9-e7c4-48bf-217f-3a31b59b8bda@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Cc:     kathirav@codeaurora.org
+Subject: [PATCH] arm64: dts: ipq8074: Use the A53 PMU compatible
+Date:   Wed,  5 Aug 2020 23:32:41 +0530
+Message-Id: <1596650561-11312-1-git-send-email-kathirav@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-05.08.2020 20:29, Sowjanya Komatineni пишет:
-...
-> UART_FST_MIPI_CAL is the clock used for calibration logic which is FSM
-> that goes thru sequence codes and when done waits for pads to be in
-> LP-11 to apply results.
-> 
-> MIPI_CLK is controller gate clock which is also need to be kept enabled
-> as incase if it sees LP-11 it updates registers so its recommended to
-> have this clock enabled.
-> 
-> We can cancel_calibration() in CSI only when csi/sensor stream on fails
-> and in which case there will be no LP-11 so we can unconditionally
-> disable MIPI_CLK.
-> 
+IPQ8074 has A53 cores, so lets use the corresponding PMU compatible.
 
-There is no guarantee that the fail comes before the LP-11. For example,
-some odd camera driver may have a complicated enable sequence which may
-fail after enabling the hardware streaming.
+Signed-off-by: Kathiravan T <kathirav@codeaurora.org>
+---
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+index 96a5ec89b5f0..e4859c7f6208 100644
+--- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+@@ -67,7 +67,7 @@
+ 	};
+ 
+ 	pmu {
+-		compatible = "arm,armv8-pmuv3";
++		compatible = "arm,cortex-a53-pmu";
+ 		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+ 	};
+ 
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
+
