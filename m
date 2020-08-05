@@ -2,182 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1EB223CC80
-	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 18:49:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2617623CCA6
+	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 18:56:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728124AbgHEQtX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Aug 2020 12:49:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46314 "EHLO
+        id S1728342AbgHEQ4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Aug 2020 12:56:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727985AbgHEQsi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 12:48:38 -0400
-Received: from merlin.infradead.org (merlin.infradead.org [IPv6:2001:8b0:10b:1231::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D254C061A2D;
-        Wed,  5 Aug 2020 04:30:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-        Content-Type:MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:
-        To:From:Reply-To:Content-ID:Content-Description;
-        bh=YDX2dL3dA5DnPicWfPc6UxoSlo/ROXibu/4w9Wyspnk=; b=Iyr12YsJcO1QsAETO6CjuPY/zM
-        tmWmBP037J/hBchf7ZFu5fQJbhPZM+CxoSC70l4K+dv55iTzk43a5LcoCGIj02QOkjSbHe+Z9e0j3
-        Rn+iauWU9aRpErMR89PTODIK/zT+QEe9ba3/Ubx+YKzJV3C1IMlkRODCF2O1CD8Rs6Len2R0LPU/r
-        qPKuoOf3wKEuXJogT1iwm3oCZBVZrK86eOcTZgccApTB0HVbSlZ+gq9udTl6w0szybhlC4A3rGApb
-        QrGEhrWVdykBHA4YoPYWlXhPNtfEt93mw5H1MnEhjI6RMOyHPx6twAHqp/EpGB3mPaN9USYzUmYZz
-        9CfbLv/A==;
-Received: from i7.infradead.org ([2001:8b0:10b:1:21e:67ff:fecb:7a92])
-        by merlin.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
-        id 1k3Hcc-0002bF-PC; Wed, 05 Aug 2020 11:30:14 +0000
-Received: from dwoodhou by i7.infradead.org with local (Exim 4.93 #3 (Red Hat Linux))
-        id 1k3Hcb-00BavX-Nw; Wed, 05 Aug 2020 12:30:13 +0100
-From:   David Woodhouse <dwmw2@infradead.org>
-To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        chunhui dai <chunhui.dai@mediatek.com>,
-        David Airlie <airlied@linux.ie>,
-        Sean Wang <sean.wang@mediatek.com>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        CK Hu <ck.hu@mediatek.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Frank Wunderlich <linux@fw-web.de>,
-        Bibby Hsieh <bibby.hsieh@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/3] arm: dts: mt7623: move MT7623N GPU to separate mt7623n.dtsi file
-Date:   Wed,  5 Aug 2020 12:30:12 +0100
-Message-Id: <20200805113013.2763510-2-dwmw2@infradead.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200805113013.2763510-1-dwmw2@infradead.org>
-References: <8ef96e4d02ef82e171409945ee6cc0348c4fe594.camel@infradead.org>
- <20200805113013.2763510-1-dwmw2@infradead.org>
+        with ESMTP id S1728290AbgHEQyb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 12:54:31 -0400
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B51C1C08E834;
+        Wed,  5 Aug 2020 06:12:18 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id c19so4373567wmd.1;
+        Wed, 05 Aug 2020 06:12:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=B9JUGt8Pb9MDGuBsLIt3kVKcTw+cuX4wnQpyN3p61KQ=;
+        b=pbk1cNPRF/GvqfGkOr+BRCbGcJN5u/R67NUNZc5JeQP6+Ucu93yX5HNmhmIGcpnbDg
+         b/Vb5CNZU1Ai7dd2ZgXfZe5Eg5kzp4G+pIcJFMIjbRDvqndYePvwy8BiVcZGC3tCtAo9
+         1ONUxrvdZxxvAzMHnCb/p9eoxfg87gYN5yhFKc8hJSTQBNaQq5Hj19/HA74yll88Arrt
+         NjKOdn4OI7CxOZk6HgB0D6UUc5eiGbxAcuj0VhtfZavaaCzB0miFqJiT9b9E7RHQUSRB
+         5sFbWUnFxYCQUFI/90+Y6qZ37czHQwsEmr6FzhuPpkC64Q7HbsWa0gq0WF6xe/ubtMgM
+         cL7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=B9JUGt8Pb9MDGuBsLIt3kVKcTw+cuX4wnQpyN3p61KQ=;
+        b=sxZNa+apP25vppczNLXjRDKJiB1s22yXdKGBh1woBI82+Qg/MohcBMvxgq7jTB01rO
+         BU0qWS21oOjjFVAUiu7fbvc/L034wBHFJYkGEuR3hZvhQwBSyjrzXiRMmsw7CwtIogAu
+         Lmvdvx2VS6Tlz5ZDxC5seIKc9G0TOivfwdIOm5uap+zxdqRe/Zy1NdYzhWB5bUsQbuDL
+         WDH2PaetIsYxUKB01CNDiN7v0iZlE25E0BlIAzzW4q7q1ckdC3FM1KbwY44y5mjPc0SK
+         aCeKHY3KDhOuCKb4U7ygOd22iexkjHUUfqvt2i0afBfIPgr9c/COfmTOS393e7TiiTJZ
+         60eA==
+X-Gm-Message-State: AOAM530arzSf2ncFR1sWcJXYBcSpEd6eQt0kYz3qxnApG5Orkot2vF9c
+        FfQhO/j4P1SYhpSwg5zdbhA=
+X-Google-Smtp-Source: ABdhPJx7QnQpLkIIv5E0GyPade/7mWzzITIagloPzo8qbKK9XtJXsRfCQT2mdy/5AeRoPFSS4o0yFA==
+X-Received: by 2002:a1c:6555:: with SMTP id z82mr3330653wmb.67.1596633137287;
+        Wed, 05 Aug 2020 06:12:17 -0700 (PDT)
+Received: from Ansuel-XPS.localdomain (host-95-251-1-48.retail.telecomitalia.it. [95.251.1.48])
+        by smtp.googlemail.com with ESMTPSA id j11sm2669756wrq.69.2020.08.05.06.12.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Aug 2020 06:12:16 -0700 (PDT)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [RFC PATCH 2/2] dt-bindings: cpufreq: Document Krait CPU Cache scaling
+Date:   Wed,  5 Aug 2020 15:11:59 +0200
+Message-Id: <20200805131200.3234-3-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20200805131200.3234-1-ansuelsmth@gmail.com>
+References: <20200805131200.3234-1-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by merlin.infradead.org. See http://www.infradead.org/rpr.html
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: David Woodhouse <dwmw@amazon.co.uk>
+Document dedicated Krait CPU Cache Scaling driver.
 
-The MT7623A doesn't have a GPU; add it only for MT7623N boards.
-
-Fixes: 1f6ed224594 ("arm: dts: mt7623: add Mali-450 device node")
-Signed-off-by: David Woodhouse <dwmw@amazon.co.uk>
+Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
 ---
- arch/arm/boot/dts/mt7623.dtsi                 | 24 -------------
- arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts |  2 +-
- arch/arm/boot/dts/mt7623n-rfb-emmc.dts        |  2 +-
- arch/arm/boot/dts/mt7623n.dtsi                | 35 +++++++++++++++++++
- 4 files changed, 37 insertions(+), 26 deletions(-)
- create mode 100644 arch/arm/boot/dts/mt7623n.dtsi
+ .../bindings/cpufreq/krait-cache-scale.yaml   | 89 +++++++++++++++++++
+ 1 file changed, 89 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/cpufreq/krait-cache-scale.yaml
 
-diff --git a/arch/arm/boot/dts/mt7623.dtsi b/arch/arm/boot/dts/mt7623.dtsi
-index 3a6b856e5b74..dcd2f5ba4e20 100644
---- a/arch/arm/boot/dts/mt7623.dtsi
-+++ b/arch/arm/boot/dts/mt7623.dtsi
-@@ -734,30 +734,6 @@ g3dsys: syscon@13000000 {
- 		#reset-cells = <1>;
- 	};
- 
--	mali: gpu@13040000 {
--		compatible = "mediatek,mt7623-mali", "arm,mali-450";
--		reg = <0 0x13040000 0 0x30000>;
--		interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 171 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 172 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 173 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 174 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 175 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 176 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 177 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 178 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 179 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 180 IRQ_TYPE_LEVEL_LOW>;
--		interrupt-names = "gp", "gpmmu", "pp0", "ppmmu0", "pp1",
--				  "ppmmu1", "pp2", "ppmmu2", "pp3", "ppmmu3",
--				  "pp";
--		clocks = <&topckgen CLK_TOP_MMPLL>,
--			 <&g3dsys CLK_G3DSYS_CORE>;
--		clock-names = "bus", "core";
--		power-domains = <&scpsys MT2701_POWER_DOMAIN_MFG>;
--		resets = <&g3dsys MT2701_G3DSYS_CORE_RST>;
--	};
--
- 	mmsys: syscon@14000000 {
- 		compatible = "mediatek,mt7623-mmsys",
- 			     "mediatek,mt2701-mmsys",
-diff --git a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
-index 2b760f90f38c..344f8c65c4aa 100644
---- a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
-+++ b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
-@@ -6,7 +6,7 @@
- 
- /dts-v1/;
- #include <dt-bindings/input/input.h>
--#include "mt7623.dtsi"
-+#include "mt7623n.dtsi"
- #include "mt6323.dtsi"
- 
- / {
-diff --git a/arch/arm/boot/dts/mt7623n-rfb-emmc.dts b/arch/arm/boot/dts/mt7623n-rfb-emmc.dts
-index 0447748f9fa0..f8efcc364bc3 100644
---- a/arch/arm/boot/dts/mt7623n-rfb-emmc.dts
-+++ b/arch/arm/boot/dts/mt7623n-rfb-emmc.dts
-@@ -7,7 +7,7 @@
- 
- /dts-v1/;
- #include <dt-bindings/input/input.h>
--#include "mt7623.dtsi"
-+#include "mt7623n.dtsi"
- #include "mt6323.dtsi"
- 
- / {
-diff --git a/arch/arm/boot/dts/mt7623n.dtsi b/arch/arm/boot/dts/mt7623n.dtsi
+diff --git a/Documentation/devicetree/bindings/cpufreq/krait-cache-scale.yaml b/Documentation/devicetree/bindings/cpufreq/krait-cache-scale.yaml
 new file mode 100644
-index 000000000000..7724a4d05b89
+index 000000000000..190276ba035a
 --- /dev/null
-+++ b/arch/arm/boot/dts/mt7623n.dtsi
-@@ -0,0 +1,35 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright © 2017-2020 MediaTek Inc.
-+ * Author: Sean Wang <sean.wang@mediatek.com>
-+ *	   Ryder Lee <ryder.lee@mediatek.com>
-+ *
-+ */
++++ b/Documentation/devicetree/bindings/cpufreq/krait-cache-scale.yaml
+@@ -0,0 +1,89 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/cpufreq/krait-cache-scale.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#include "mt7623.dtsi"
++title: Krait Cpu Cache Frequency Scaling dedicated driver
 +
-+/ {
-+	mali: gpu@13040000 {
-+		compatible = "mediatek,mt7623-mali", "arm,mali-450";
-+		reg = <0 0x13040000 0 0x30000>;
-+		interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_SPI 171 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_SPI 172 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_SPI 173 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_SPI 174 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_SPI 175 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_SPI 176 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_SPI 177 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_SPI 178 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_SPI 179 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_SPI 180 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-names = "gp", "gpmmu", "pp0", "ppmmu0", "pp1",
-+				  "ppmmu1", "pp2", "ppmmu2", "pp3", "ppmmu3",
-+				  "pp";
-+		clocks = <&topckgen CLK_TOP_MMPLL>,
-+			 <&g3dsys CLK_G3DSYS_CORE>;
-+		clock-names = "bus", "core";
-+		power-domains = <&scpsys MT2701_POWER_DOMAIN_MFG>;
-+		resets = <&g3dsys MT2701_G3DSYS_CORE_RST>;
-+	};
-+};
++maintainers:
++  - Ansuel Smith <ansuelsmth@gmail.com>
++
++description: |
++  This Scale the Krait CPU Cache Frequency and optionally voltage
++  when the Cpu Frequency is changed (using the cpufreq notifier).
++
++  Cache is scaled with the max frequency across all core and the cache
++  frequency will scale based on the configured threshold in the dts.
++
++  The cache is hardcoded to 3 frequency bin, idle, nominal and high.
++
++properties:
++  compatible:
++    const: qcom,krait-cache
++
++  clocks:
++    description: Phandle to the L2 CPU clock
++
++  clock-names:
++    const: "l2"
++
++  voltage-tolerance:
++    description: Same voltage tollerance of the Krait CPU
++
++  l2-rates:
++    description: |
++      Frequency the L2 cache will be scaled at.
++      Value is in Hz.
++    items:
++      - description: idle
++      - description: nominal
++      - description: high
++
++  l2-cpufreq:
++    description: |
++      Threshold used by the driver to scale the L2 cache.
++      If the max CPU Frequency is more than the set frequency,
++      the driver will transition to the next frequency bin.
++      Value is in kHz
++    items:
++      - description: idle
++      - description: nominal
++      - description: high
++
++  l2-volt:
++    description: |
++      Threshold used by the driver to scale the L2 cache.
++      If the max CPU Frequency is more than the set frequency,
++      the driver will transition to the next frequency bin.
++      Value is in microvolt.
++    items:
++      - description: idle
++      - description: nominal
++      - description: high
++
++  l2-supply:
++    description: Phandle to the L2 regulator supply.
++
++required:
++  - compatible
++  - clocks
++  - clock-names
++  - voltage-tolerance
++  - l2-rates
++  - l2-cpufreq
++  - l2-supply
++  - l2-volt
++
++examples:
++  - |
++    qcom-krait-cache {
++      compatible = "qcom,krait-cache";
++      clocks = <&kraitcc 4>;
++      clock-names = "l2";
++      voltage-tolerance = <5>;
++      l2-rates = <384000000 1000000000 1200000000>;
++      l2-cpufreq = <384000 600000 1200000>;
++      l2-volt = <1100000 1100000 1150000>;
++      l2-supply = <&smb208_s1a>;
++    };
 -- 
-2.26.2
+2.27.0
 
