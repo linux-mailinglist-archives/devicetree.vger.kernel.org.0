@@ -2,70 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E95F423D0DF
-	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 21:54:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3512823D074
+	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 21:49:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729190AbgHETx7 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 5 Aug 2020 15:53:59 -0400
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:42396 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728121AbgHEQtJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 12:49:09 -0400
-X-Greylist: delayed 2502 seconds by postgrey-1.27 at vger.kernel.org; Wed, 05 Aug 2020 12:49:07 EDT
-Received: from relay3-d.mail.gandi.net (unknown [217.70.183.195])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id 947DC3A9F99;
-        Wed,  5 Aug 2020 15:27:41 +0000 (UTC)
-X-Originating-IP: 91.224.148.103
-Received: from xps13 (unknown [91.224.148.103])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 385F760004;
-        Wed,  5 Aug 2020 15:22:18 +0000 (UTC)
-Date:   Wed, 5 Aug 2020 17:22:17 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Nicolas Pitre <nico@fluxnic.net>
-Cc:     Conor Culhane <conor.culhane@silvaco.com>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        "linux-i3c@lists.infradead.org" <linux-i3c@lists.infradead.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Rajeev Huralikoppi <rajeev.huralikoppi@silvaco.com>
-Subject: Re: [PATCH 3/4] i3c: master: svc: Add Silvaco I3C master driver
-Message-ID: <20200805172217.27a00af5@xps13>
-In-Reply-To: <nycvar.YSQ.7.77.849.2008051105550.1112668@knanqh.ubzr>
-References: <20200709080159.2178-1-miquel.raynal@bootlin.com>
-        <20200709080159.2178-3-miquel.raynal@bootlin.com>
-        <nycvar.YSQ.7.77.849.2008031546570.1112668@knanqh.ubzr>
-        <BN6PR16MB1762D6CE430AB08B7A2BE5FCF14A0@BN6PR16MB1762.namprd16.prod.outlook.com>
-        <nycvar.YSQ.7.77.849.2008051105550.1112668@knanqh.ubzr>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1728144AbgHETsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Aug 2020 15:48:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47400 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728232AbgHEQ4J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 12:56:09 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7119AC001FD5;
+        Wed,  5 Aug 2020 09:05:26 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id 730E3298FFF
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id 38295480115; Wed,  5 Aug 2020 18:05:21 +0200 (CEST)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Ahmet Inan <inan@distec.de>,
+        Martin Fuzzey <martin.fuzzey@flowbird.group>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: [PATCHv4 0/4] EXC3000 Updates
+Date:   Wed,  5 Aug 2020 18:05:16 +0200
+Message-Id: <20200805160520.456570-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nicolas,
+Hi,
 
-Nicolas Pitre <nico@fluxnic.net> wrote on Wed, 5 Aug 2020 11:13:41
--0400 (EDT):
+This is PATCHv3 of the EXC80Hxx support patchset.
 
-> On Tue, 4 Aug 2020, Conor Culhane wrote:
-> 
-> > Miquel is passing 0 as the delay_us argument.  
-> 
-> Good point.
-> 
-> > Is this still a concern?  
-> 
-> Not in that case.
+Changes since [PATCHv3]:
+ - reorder last two patches
+ - register 'fw_version' and 'model' sysfs files in i2c device's
+   sysfs node instead of input device
+ - Add Reviewed-by from Enric
+ - Add Rob Herring and DT mailinglist
+ - Drop probe_new API patch (applied)
 
-I will check again if looping over this register read actually
-makes sense or not. If yes, I will add a comment here.
+Changes since [PATCHv2]:
+ - add #include <linux/size.h> for SZ_4K and SZ_16K (kbuild test bot)
+ - fw_version_show must be ssize_t (kbuild test bot)
+ - rename YAML binding file to include eeti, prefix (Enric)
+ - noise from gpio-reset patch (Enric)
+ - add comment for the retry loop (Enric, Martin)
+ - document sysfs entries (Enric)
 
-Thanks,
-Miquèl
+Changes since [PATCHv1]:
+ - prepend new patch converting binding document to YAML
+ - prepend new patch switching to I2C probe_new
+ - append new patch adding reset-gpio support
+ - use explicit compatible values for the touchscreen chips instead of
+   a wildcast. Since the documentation, that I have is very vague let's
+   use different values for exc80h60 and exc80h84. This avoids wildcard
+   DT entries and means we are prepared when noticing differences
+   between the chips.
+ - add accidently removed terminator entry in exc3000_id
+ - use device structure with max_xy and name (suggested by Martin)
+ - use SZ_4K, SZ_16K defines (suggested by Dmitry)
+ - harden event check, so that MT1 and MT2 based chips only allow
+   their own event type.
+ - write more detailed commit description in the fw_version/model
+   sysfs patch to explain why the values are not cached and why
+   the simpler read(); sleep(); write() approach has not been used
+ - use DEVICE_ATTR_RO() in fw_version/model patch to improve readability
+ - fw_version/model: replace memcpy + null termination with strlcpy
+ - fw_version/model: increase buffer size for weird firmware versions
+ - fw_version/model: use sizeof() instead of hardcoded buffer sizes
+ - simplify exc3000_query_interrupt() by moving the complete() call to
+   the exc3000_interrupt().
+
+I think I only ignored one review feedback, that the fw_version and
+model sysfs nodes are attached to the input device instead of the
+i2c device. This was done to avoid being racy:
+
+http://kroah.com/log/blog/2013/06/26/how-to-create-a-sysfs-file-correctly/
+
+Thanks in advance for looking at the patches,
+
+-- Sebastian
+
+[PATCHv3] https://lore.kernel.org/linux-input/20200520153936.46869-1-sebastian.reichel@collabora.com/
+[PATCHv2] https://lore.kernel.org/linux-input/20200519182447.73405-1-sebastian.reichel@collabora.com/
+[PATCHv1] https://lore.kernel.org/linux-input/20191107181010.17211-1-sebastian.reichel@collabora.com/
+
+Sebastian Reichel (4):
+  dt-bindings: touchscreen: Convert EETI EXC3000 touchscreen to
+    json-schema
+  Input: EXC3000: add EXC80H60 and EXC80H84 support
+  Input: EXC3000: Add reset gpio support
+  Input: EXC3000: Add support to query model and fw_version
+
+ .../ABI/testing/sysfs-driver-input-exc3000    |  15 ++
+ .../input/touchscreen/eeti,exc3000.yaml       |  58 ++++
+ .../bindings/input/touchscreen/exc3000.txt    |  26 --
+ drivers/input/touchscreen/exc3000.c           | 249 +++++++++++++++++-
+ 4 files changed, 308 insertions(+), 40 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-input-exc3000
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/eeti,exc3000.yaml
+ delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/exc3000.txt
+
+-- 
+2.27.0
+
