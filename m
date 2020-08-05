@@ -2,110 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05CBF23D23D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 22:10:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B34023D2BD
+	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 22:15:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728516AbgHEUKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Aug 2020 16:10:40 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:5112 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726180AbgHEQ1n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 12:27:43 -0400
-Received: from ironmsg07-lv.qualcomm.com (HELO ironmsg07-lv.qulacomm.com) ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 05 Aug 2020 06:34:40 -0700
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg07-lv.qulacomm.com with ESMTP/TLS/AES256-SHA; 05 Aug 2020 06:34:38 -0700
-Received: from kalyant-linux.qualcomm.com ([10.204.66.210])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 05 Aug 2020 19:04:07 +0530
-Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
-        id D31433EBB; Wed,  5 Aug 2020 19:04:07 +0530 (IST)
-From:   Kalyan Thota <kalyan_t@codeaurora.org>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Kalyan Thota <kalyan_t@codeaurora.org>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        seanpaul@chromium.org, hoegsberg@chromium.org,
-        dianders@chromium.org, mkrishn@codeaurora.org,
-        travitej@codeaurora.org, nganji@codeaurora.org,
-        swboyd@chromium.org, abhinavk@codeaurora.org,
-        ddavenport@chromium.org
-Subject: [v1] drm/msm/dpu: Fix reservation failures in modeset
-Date:   Wed,  5 Aug 2020 19:04:06 +0530
-Message-Id: <1596634446-1413-1-git-send-email-kalyan_t@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
+        id S1726956AbgHEUPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Aug 2020 16:15:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42176 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726429AbgHEQUG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 12:20:06 -0400
+Received: from mail-oo1-xc42.google.com (mail-oo1-xc42.google.com [IPv6:2607:f8b0:4864:20::c42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2F79C0086A4;
+        Wed,  5 Aug 2020 07:43:39 -0700 (PDT)
+Received: by mail-oo1-xc42.google.com with SMTP id a9so8816689oof.12;
+        Wed, 05 Aug 2020 07:43:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=GHOG3MMfsS8Q4iK2eQgCcwA2GFKcb5/CggWXLB2DZwI=;
+        b=cdEwdP7dZcXvRLz38WwI2mBl6cQMeZH/O+UvjcNDzp+zaB+BzerBdoEo5rGyh9Fsht
+         FYCfq2oBaMBbdhOVFkui+n03ocYTEE1tlNlT5pY1/W59I0y32FyqnorZlbJMLDvcYsya
+         iedZWWisMJF3LouBc6f5yVucWaMPev3oQc9upmWEGvIVDzevQP2e0I4lCnDGQuECRu1s
+         NfSa9hNHZ6Dkd3tKlytQwvE20tRa1Xq/JL1MwAhsCVVPH0WABe1Sy8BHhPjDqzV0IDbh
+         e5Q1OiZSMOpR2g3tcDFqLmpC83zdKTtgbxzPvj6dOd2KZ65lIbXqP0kD+G3X4UlTghEV
+         T4cQ==
+X-Gm-Message-State: AOAM5314XgY4PcOsBDQHJnm/v0v8tscUalkQt5+4Zx0z2oLfETNDe/7+
+        CZeAJ/1RDpP/+gtPZwloNgeBCeI/Cmaw99viN4E=
+X-Google-Smtp-Source: ABdhPJw9RW5CudcHTtQDFGv1V5QDzRVBcVFCwYbJOv2CTxkyE1KBLND9KzWPONo2u/qPu+8W70ut9anlzKiuUHbnLAU=
+X-Received: by 2002:a4a:9d19:: with SMTP id w25mr3187978ooj.11.1596638599474;
+ Wed, 05 Aug 2020 07:43:19 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200805142634.12252-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20200805142634.12252-1-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 5 Aug 2020 16:43:08 +0200
+Message-ID: <CAMuHMdVBFQ79Bqd7qn_AEvHSeJ0P8GRVAKSK2VFwB8YM9sQ+qQ@mail.gmail.com>
+Subject: Re: [PATCH v2] ARM: dts: iwg22d-sodimm: Fix dt nodes sorting
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In TEST_ONLY commit, rm global_state will duplicate the
-object and request for new reservations, once they pass
-then the new state will be swapped with the old and will
-be available for the Atomic Commit.
+On Wed, Aug 5, 2020 at 4:26 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Some r8a7745-iwg22d-sodimm.dts device nodes are not sorted alphabetically.
+> This patch fixes the sorting of nodes and also fixes a typo in the stmpe
+> node.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v1->v2:- Fixed sorting of sound node
+> v1:- https://patchwork.kernel.org/patch/11690969/
 
-This patch fixes some of missing links in the resource
-reservation sequence mentioned above.
+Thanks for the update!
 
-1) Creation of a duplicate state in test_only commit (Rob)
-2) Allow resource release only during crtc_active false.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.10.
 
-For #2
-In a modeset operation, swap state happens well before disable.
-Hence clearing reservations in disable will cause failures
-in modeset enable.
+Gr{oetje,eeting}s,
 
-Sequence:
-    Swap state --> old, new
-    modeset disables --> virt disable
-    modeset enable --> virt modeset
+                        Geert
 
-Allow reservations to be cleared only when crtc active is false
-as in that case there wont be any modeset enable after disable.
-
-Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-index 63976dc..b85a576 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-@@ -582,7 +582,7 @@ static int dpu_encoder_virt_atomic_check(
- 	dpu_kms = to_dpu_kms(priv->kms);
- 	mode = &crtc_state->mode;
- 	adj_mode = &crtc_state->adjusted_mode;
--	global_state = dpu_kms_get_existing_global_state(dpu_kms);
-+	global_state = dpu_kms_get_global_state(crtc_state->state);
- 	trace_dpu_enc_atomic_check(DRMID(drm_enc));
- 
- 	/*
-@@ -1172,6 +1172,7 @@ static void dpu_encoder_virt_disable(struct drm_encoder *drm_enc)
- 	struct msm_drm_private *priv;
- 	struct dpu_kms *dpu_kms;
- 	struct dpu_global_state *global_state;
-+	struct drm_crtc_state *crtc_state;
- 	int i = 0;
- 
- 	if (!drm_enc) {
-@@ -1191,6 +1192,7 @@ static void dpu_encoder_virt_disable(struct drm_encoder *drm_enc)
- 	priv = drm_enc->dev->dev_private;
- 	dpu_kms = to_dpu_kms(priv->kms);
- 	global_state = dpu_kms_get_existing_global_state(dpu_kms);
-+	crtc_state = drm_enc->crtc->state;
- 
- 	trace_dpu_enc_disable(DRMID(drm_enc));
- 
-@@ -1220,7 +1222,8 @@ static void dpu_encoder_virt_disable(struct drm_encoder *drm_enc)
- 
- 	DPU_DEBUG_ENC(dpu_enc, "encoder disabled\n");
- 
--	dpu_rm_release(global_state, drm_enc);
-+	if (crtc_state->active_changed && !crtc_state->active)
-+		dpu_rm_release(global_state, drm_enc);
- 
- 	mutex_unlock(&dpu_enc->enc_lock);
- }
 -- 
-1.9.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
