@@ -2,183 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BC5723CDCB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 19:53:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF46E23CDAB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 19:41:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728918AbgHERw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Aug 2020 13:52:56 -0400
-Received: from mail29.static.mailgun.info ([104.130.122.29]:55030 "EHLO
-        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729021AbgHERwu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 13:52:50 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1596649968; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=S5hJFYd7MMSkEoR3CdrZ7jrWlq63SZiOAFEvmVnWV/Q=;
- b=mRL9xHoT1B/HGMaH7NTVzWc7RG+l58wZT5cFhGW8GgpwTVJRPmBslWHMb2GCsWMgb5wtI6in
- tsVgmagFa3mDMp3vfcnbKOotC4OFi11ZQ7nfL58SW4uDY6TdQ4chkonrwdEuCWpf3wg7AiIJ
- 9jjgYhlsgOGq9iXZBvmGdeul/yk=
-X-Mailgun-Sending-Ip: 104.130.122.29
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n17.prod.us-east-1.postgun.com with SMTP id
- 5f2abfa7eecfc978d337cfbd (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 05 Aug 2020 14:18:15
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id C623EC433C6; Wed,  5 Aug 2020 14:18:14 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kalyan_t)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id EE057C433C9;
-        Wed,  5 Aug 2020 14:18:13 +0000 (UTC)
+        id S1728460AbgHEReN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Aug 2020 13:34:13 -0400
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:2965 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728883AbgHERdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Aug 2020 13:33:09 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5f2aed230001>; Wed, 05 Aug 2020 10:32:19 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Wed, 05 Aug 2020 10:32:33 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Wed, 05 Aug 2020 10:32:33 -0700
+Received: from [10.2.172.190] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 5 Aug
+ 2020 17:32:32 +0000
+Subject: Re: [PATCH v8 08/10] gpu: host1x: mipi: Keep MIPI clock enabled till
+ calibration is done
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>
+CC:     <jonathanh@nvidia.com>, <frankc@nvidia.com>, <hverkuil@xs4all.nl>,
+        <sakari.ailus@iki.fi>, <robh+dt@kernel.org>,
+        <helen.koike@collabora.com>, <gregkh@linuxfoundation.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <1596469346-937-1-git-send-email-skomatineni@nvidia.com>
+ <1596469346-937-9-git-send-email-skomatineni@nvidia.com>
+ <20200805134600.GA3351349@ulmo>
+ <103efe31-1abc-54f2-6004-490d7bb1b61a@gmail.com>
+ <dcd58ae7-58ed-11d1-0e10-7f522b651b30@gmail.com>
+ <addb92e5-7c7a-6fba-117d-c7880b2d4597@nvidia.com>
+ <ed80bf2f-213f-286a-59b2-fc85e4181b3d@gmail.com>
+ <6eede805-80fd-016f-22f8-b6d25f6587af@nvidia.com>
+ <1c12e40e-de7f-0599-a941-82760b4c7668@gmail.com>
+ <9ef0b875-e826-43e2-207e-168d2081ff6a@nvidia.com>
+ <57b48a06-325c-86ba-db24-011de7ab51a3@gmail.com>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <66b46f49-7008-9ed3-41d0-3154849abfe6@nvidia.com>
+Date:   Wed, 5 Aug 2020 10:32:32 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 05 Aug 2020 19:48:13 +0530
-From:   kalyan_t@codeaurora.org
-To:     Rob Clark <robdclark@gmail.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Krishna Manikandan <mkrishn@codeaurora.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Raviteja Tamatam <travitej@codeaurora.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        nganji@codeaurora.org, Sean Paul <seanpaul@chromium.org>,
-        Abhinav Kumar <abhinavk@codeaurora.org>,
-        Drew Davenport <ddavenport@chromium.org>,
-        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        freedreno <freedreno@lists.freedesktop.org>
-Subject: Re: [Freedreno] [v1] drm/msm/dpu: update reservations in commit path
-In-Reply-To: <CAF6AEGtpPU+ALcpQMuy-MpLF_ZwjD+k=aN7gkoBFjJPq1++9qQ@mail.gmail.com>
-References: <1596540744-6902-1-git-send-email-kalyan_t@codeaurora.org>
- <CAF6AEGtpPU+ALcpQMuy-MpLF_ZwjD+k=aN7gkoBFjJPq1++9qQ@mail.gmail.com>
-Message-ID: <37bbf6e41a844f681e263bc13bd6e7ef@codeaurora.org>
-X-Sender: kalyan_t@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+In-Reply-To: <57b48a06-325c-86ba-db24-011de7ab51a3@gmail.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1596648740; bh=3XHls26dJrbmy4q2EuHupvbS4QwfjZfBrLEAWAJEpWU=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=JQg+ZiJznxCQMDpoaMP98C/bRElF5Weg15wgzdKATUEAFJmxjDbQuuLRELKN2/w19
+         mHMxsrgwCta8YuqNH2uSuWrSqXlMkqNU/INppjiEHZl4AE2bfHJA8y9gZF15+lZRvu
+         fB5Byx6JmWNEiCbOomUzU2nqrGB+uYpRwEvIf8ufMJtw+Q2Tb/c9RKBBZZwKStw9ND
+         4jW9ey29uW11mw8ofc5lejxLGFltuTqphSPv7IO9tsqHixDykNTlHxe/lN4QjgBM/5
+         vGxuIGSBTdHsLWCKohr+c8WI17pAevl7meN6GpcSkcpaZ20vWTu5Rri+G4yqdZKLse
+         6YdMdzO/jHvrA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-08-05 01:02, Rob Clark wrote:
-> On Tue, Aug 4, 2020 at 4:32 AM Kalyan Thota <kalyan_t@codeaurora.org> 
-> wrote:
->> 
->> DPU resources reserved in the atomic_check path gets unwinded
->> during modeset operation before commit happens in a non seamless
->> transition.
->> 
->> Update the reservations in the commit path to avoid resource
->> failures. Secondly have dummy reservations in atomic_check path
->> so that we can gracefully fail the composition if resources are
->> not available.
->> 
->> Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
->> ---
->>  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 15 +++++++++++----
->>  1 file changed, 11 insertions(+), 4 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c 
->> b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->> index 63976dc..c6b8254 100644
->> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->> @@ -565,7 +565,7 @@ static int dpu_encoder_virt_atomic_check(
->>         const struct drm_display_mode *mode;
->>         struct drm_display_mode *adj_mode;
->>         struct msm_display_topology topology;
->> -       struct dpu_global_state *global_state;
->> +       struct dpu_global_state tmp_resv_state;
->>         int i = 0;
->>         int ret = 0;
->> 
->> @@ -582,7 +582,7 @@ static int dpu_encoder_virt_atomic_check(
->>         dpu_kms = to_dpu_kms(priv->kms);
->>         mode = &crtc_state->mode;
->>         adj_mode = &crtc_state->adjusted_mode;
->> -       global_state = dpu_kms_get_existing_global_state(dpu_kms);
->> +       memset(&tmp_resv_state, 0, sizeof(tmp_resv_state));
-> 
-> I think what you want to do is dpu_kms_get_global_state().. that will
-> clone/duplicate the existing global state (or return the already
-> duplicated global state if it is called multiple times).
-> 
-Thanks Rob, realized the same after posting patch. Made changes in the 
-new patch
-accordingly.
 
-> It is safe to modify this global state in the atomic_check() path.. in
-> fact that is the intention.  For a TEST_ONLY atomic commit, or if any
-> of the atomic_check()'s fail, this new duplicated global state is
-> discarded.  If all the checks succeed and the atomic update is
-> committed to hw, this new global state replaces the existing global
-> state.
-> 
-Posted a new change kindly review.
+On 8/5/20 10:23 AM, Dmitry Osipenko wrote:
+> 05.08.2020 20:04, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>> On 8/5/20 9:57 AM, Dmitry Osipenko wrote:
+>>> 05.08.2020 19:50, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>>>> On 8/5/20 9:47 AM, Dmitry Osipenko wrote:
+>>>>> 05.08.2020 19:33, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>>>>>> On 8/5/20 7:19 AM, Dmitry Osipenko wrote:
+>>>>>>> 05.08.2020 17:05, Dmitry Osipenko =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>>>>>>>> 05.08.2020 16:46, Thierry Reding =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>>>>>>>>> On Mon, Aug 03, 2020 at 08:42:24AM -0700, Sowjanya Komatineni
+>>>>>>>>> wrote:
+>>>>>>>>>> With the split of MIPI calibration into tegra_mipi_calibrate() a=
+nd
+>>>>>>>>>> tegra_mipi_wait(), MIPI clock is not kept enabled till the
+>>>>>>>>>> calibration
+>>>>>>>>>> is done.
+>>>>>>>>>>
+>>>>>>>>>> So, this patch skips disabling MIPI clock after triggering
+>>>>>>>>>> start of
+>>>>>>>>>> calibration and disables it only after waiting for done status
+>>>>>>>>>> from
+>>>>>>>>>> the calibration logic.
+>>>>>>>>>>
+>>>>>>>>>> This patch renames tegra_mipi_calibrate() as
+>>>>>>>>>> tegra_mipi_start_calibration()
+>>>>>>>>>> and tegra_mipi_wait() as tegra_mipi_finish_calibration() to be
+>>>>>>>>>> inline
+>>>>>>>>>> with their usage.
+>>>>>>>>>>
+>>>>>>>>>> As MIPI clock is left enabled and in case of any failures with C=
+SI
+>>>>>>>>>> input
+>>>>>>>>>> streaming tegra_mipi_finish_calibration() will not get invoked.
+>>>>>>>>>> So added new API tegra_mipi_cancel_calibration() which disables
+>>>>>>>>>> MIPI clock
+>>>>>>>>>> and consumer drivers can call this in such cases.
+>>>>>>>>>>
+>>>>>>>>>> Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
+>>>>>>>>>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>>>>>>>>>> ---
+>>>>>>>>>>  =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/tegra/dsi.c |=C2=A0 4 ++--
+>>>>>>>>>>  =C2=A0=C2=A0=C2=A0 drivers/gpu/host1x/mipi.c=C2=A0=C2=A0 | 19 +=
++++++++++---------
+>>>>>>>>>>  =C2=A0=C2=A0=C2=A0 include/linux/host1x.h=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 5 +++--
+>>>>>>>>>>  =C2=A0=C2=A0=C2=A0 3 files changed, 15 insertions(+), 13 deleti=
+ons(-)
+>>>>>>>>>>
+>>>>>>>>>> diff --git a/drivers/gpu/drm/tegra/dsi.c
+>>>>>>>>>> b/drivers/gpu/drm/tegra/dsi.c
+>>>>>>>>>> index 3820e8d..a7864e9 100644
+>>>>>>>>>> --- a/drivers/gpu/drm/tegra/dsi.c
+>>>>>>>>>> +++ b/drivers/gpu/drm/tegra/dsi.c
+>>>>>>>>>> @@ -694,11 +694,11 @@ static int tegra_dsi_pad_calibrate(struct
+>>>>>>>>>> tegra_dsi *dsi)
+>>>>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 DSI_PAD_PREEMP_PD(0x03) | DSI_PAD_PREEMP_PU(0x3);
+>>>>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tegra_dsi_writel(dsi=
+, value, DSI_PAD_CONTROL_3);
+>>>>>>>>>>  =C2=A0=C2=A0=C2=A0 -=C2=A0=C2=A0=C2=A0 err =3D tegra_mipi_calib=
+rate(dsi->mipi);
+>>>>>>>>>> +=C2=A0=C2=A0=C2=A0 err =3D tegra_mipi_start_calibration(dsi->mi=
+pi);
+>>>>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (err < 0)
+>>>>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 return err;
+>>>>>>>>>>  =C2=A0=C2=A0=C2=A0 -=C2=A0=C2=A0=C2=A0 return tegra_mipi_wait(d=
+si->mipi);
+>>>>>>>>>> +=C2=A0=C2=A0=C2=A0 return tegra_mipi_finish_calibration(dsi->mi=
+pi);
+>>>>>>>>>>  =C2=A0=C2=A0=C2=A0 }
+>>>>>>>>>>  =C2=A0=C2=A0=C2=A0 =C2=A0 static void tegra_dsi_set_timeout(str=
+uct tegra_dsi *dsi,
+>>>>>>>>>> unsigned long bclk,
+>>>>>>>>>> diff --git a/drivers/gpu/host1x/mipi.c b/drivers/gpu/host1x/mipi=
+.c
+>>>>>>>>>> index e606464..b15ab6e 100644
+>>>>>>>>>> --- a/drivers/gpu/host1x/mipi.c
+>>>>>>>>>> +++ b/drivers/gpu/host1x/mipi.c
+>>>>>>>>>> @@ -293,17 +293,19 @@ int tegra_mipi_disable(struct
+>>>>>>>>>> tegra_mipi_device *dev)
+>>>>>>>>>>  =C2=A0=C2=A0=C2=A0 }
+>>>>>>>>>>  =C2=A0=C2=A0=C2=A0 EXPORT_SYMBOL(tegra_mipi_disable);
+>>>>>>>>>>  =C2=A0=C2=A0=C2=A0 -int tegra_mipi_wait(struct tegra_mipi_devic=
+e *device)
+>>>>>>>>>> +void tegra_mipi_cancel_calibration(struct tegra_mipi_device
+>>>>>>>>>> *device)
+>>>>>>>>>> +{
+>>>>>>>>>> +=C2=A0=C2=A0=C2=A0 clk_disable(device->mipi->clk);
+>>>>>>>>> Do we need to do anything with the MIPI_CAL_CTRL and
+>>>>>>>>> MIPI_CAL_STATUS
+>>>>>>>>> registers here? We don't clear the START bit in the former when t=
+he
+>>>>>>>>> calibration has successfully finished, but I suspect that's becau=
+se
+>>>>>>>>> the bit is self-clearing. But I wonder if we still need to clear =
+it
+>>>>>>>>> upon cancellation to make sure the calibration does indeed stop.
+>>>>>>>> Apparently there is no way to explicitly stop calibration other
+>>>>>>>> than to
+>>>>>>>> reset MIPI calibration block, but Sowjanya says this is unnecessar=
+y.
+>>>>>>>>
+>>>>>>>> Perhaps having a fixed delay before disabling clock could be
+>>>>>>>> enough to
+>>>>>>>> ensure that calibration is stopped before the clock is disabled?
+>>>>>>>>
+>>>>>>> Actually, there is a MIPI_CAL_ACTIVE bit in the status register.
+>>>>>>> Maybe
+>>>>>>> it needs to be polled until it's unset?
+>>>>>> Confirmed with HW design team during this patch update.
+>>>>>>
+>>>>>> SW does not need to clear START bit and only write 1 takes effect to
+>>>>>> that bit.
+>>>>>>
+>>>>>> Also, no need to have delay or do any other register settings
+>>>>>> unclear as
+>>>>>> its FSM and there's nothing to get stuck.
+>>>>>>
+>>>>>> Also it goes thru small finite set of codes and by the time sensor
+>>>>>> programming happens for enabling streaming FSM will finish its
+>>>>>> calibration sequence much early and it will only wait for pads LP-11=
+.
+>>>>>>
+>>>>>> So, during cancel we only need disable MIPI clock.
+>>>>>>
+>>>>> But there is no guarantee that cancel_calibration() couldn't be invok=
+ed
+>>>>> in the middle of the calibration process, hence FSM could freeze in a=
+n
+>>>>> intermediate state if it's running on the disabled MIPI clock, this
+>>>>> doesn't sound good.
+>>>> Actual calibration logic uses UART_FST_CAL clock which is always enabl=
+ed
+>>> What enables the UART_FST_CAL clock? I don't see this clock used
+>>> anywhere.
+>> UART_FST_MIPI_CAL is shared with uart and is always enabled all the time=
+.
+>>
+>> I don't see mipi driver handling this and I think that's because this
+>> clock is enabled all the time as its used for UART as well. Probably
+>> thierry can comment on this clock.
+> It's not only the MIPI driver, the clock isn't defined at all neither in
+> the clk driver, nor in clk DT bindings.
+>
+> It could be fragile to assume that it's always enabled.
 
-> BR,
-> -R
-> 
->>         trace_dpu_enc_atomic_check(DRMID(drm_enc));
->> 
->>         /*
->> @@ -621,7 +621,7 @@ static int dpu_encoder_virt_atomic_check(
->>                  * info may not be available to complete reservation.
->>                  */
->>                 if (drm_atomic_crtc_needs_modeset(crtc_state)) {
->> -                       ret = dpu_rm_reserve(&dpu_kms->rm, 
->> global_state,
->> +                       ret = dpu_rm_reserve(&dpu_kms->rm, 
->> &tmp_resv_state,
->>                                         drm_enc, crtc_state, 
->> topology);
->>                 }
->>         }
->> @@ -966,7 +966,7 @@ static void dpu_encoder_virt_mode_set(struct 
->> drm_encoder *drm_enc,
->>         struct dpu_hw_blk *hw_lm[MAX_CHANNELS_PER_ENC];
->>         struct dpu_hw_blk *hw_dspp[MAX_CHANNELS_PER_ENC] = { NULL };
->>         int num_lm, num_ctl, num_pp, num_dspp;
->> -       int i, j;
->> +       int i, j, rc;
->> 
->>         if (!drm_enc) {
->>                 DPU_ERROR("invalid encoder\n");
->> @@ -1006,6 +1006,13 @@ static void dpu_encoder_virt_mode_set(struct 
->> drm_encoder *drm_enc,
->> 
->>         topology = dpu_encoder_get_topology(dpu_enc, dpu_kms, 
->> adj_mode);
->> 
->> +       rc = dpu_rm_reserve(&dpu_kms->rm, global_state, drm_enc,
->> +               drm_crtc->state, topology);
->> +       if (rc) {
->> +               DPU_ERROR_ENC(dpu_enc, "Failed to reserve 
->> resources\n");
->> +               return;
->> +       }
->> +
->>         /* Query resource that have been reserved in atomic check 
->> step. */
->>         num_pp = dpu_rm_get_assigned_resources(&dpu_kms->rm, 
->> global_state,
->>                 drm_enc->base.id, DPU_HW_BLK_PINGPONG, hw_pp,
->> --
->> 1.9.1
->> 
-> _______________________________________________
-> Freedreno mailing list
-> Freedreno@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/freedreno
+ From SW clock architecture this clock is always kept programmed to=20
+68Mhz and enabled.
+
+Its shared clock for UART and I see it enabled.
+
+Thierry can comment more on where this clock is being handled? prior to=20
+kernel?
+
+>
+>> Also regarding cancel calibration, as FSM goes thru only finite sequence
+>> codes by the time csi stream and sensor stream happens which is where we
+>> check for calibration to complete for sure calibration will be finished
+>> and calibration logic will only wait for pads to be in LP-11 to apply
+>> results. So nothing special needed during cancel except to turn clock
+>> off to balance its usage count.
+> I guess it should be okay for the case of the VI driver, but
+> in general please don't assume that code can't change in the future. The
+> common API always should be made reliable for all possible situations.
+
+Yes, There is no assumption here.
+
+Just to be clear, UART_FST_MIPI_CAL is the clock used for calibration=20
+logic which is FSM that goes thru sequence codes and when done waits for=20
+pads to be in LP-11 to apply results.
+
+MIPI_CLK is controller gate clock which is also need to be kept enabled=20
+as in case if it sees LP-11 it updates registers so its recommended to=20
+have this clock enabled during calibration process.
+
+In case of CSI pads calibration, we call cancel_calibration() only when=20
+csi/sensor stream on fails and in which case there will be no LP-11 so=20
+we can unconditionally disable MIPI_CLK.
