@@ -2,263 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E849A23D710
-	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 08:57:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7D6E23D7AE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 09:49:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728234AbgHFG5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Aug 2020 02:57:16 -0400
-Received: from mars.blocktrron.ovh ([51.254.112.43]:53536 "EHLO
-        mail.blocktrron.ovh" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727028AbgHFG5P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 02:57:15 -0400
-Received: from [IPv6:2001:678:6e3:1040:4613:faa3:b901:e91f] (unknown [IPv6:2001:678:6e3:1040:4613:faa3:b901:e91f])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.blocktrron.ovh (Postfix) with ESMTPSA id 920CA23BC0;
-        Thu,  6 Aug 2020 08:57:04 +0200 (CEST)
-From:   David Bauer <mail@david-bauer.net>
-Subject: Re: [PATCH v2 2/2] rockchip: rk3328: Add support for FriendlyARM
- NanoPi R2S
-To:     Robin Murphy <robin.murphy@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-References: <20200730232054.286381-1-mail@david-bauer.net>
- <20200730232054.286381-2-mail@david-bauer.net>
- <d0053630-1ff3-9771-eb7d-7aaf0a27dca2@arm.com>
-Autocrypt: addr=mail@david-bauer.net; prefer-encrypt=mutual; keydata=
- mQENBFYkGEcBCADbRMHdOXmszxrmE9G/gWUD4/HXklOfn+hyBpEcOul+GKAet0oFxznkchJe
- hO5MbEFYsnM8TZVxjnEi70c3luF1m4JycjgQ91GJ52+xvLV0dVz+L99JBgVJNRDvvt68rLVq
- A8/LCdkXctZ+GBfrtTYQ6dOeuQf/qWuwlNTvuG92uWVZjncyWOmQX73gv+1MTRsCmIGNYQu1
- ZDVyhr3YsTgJIXTHUCxBHQBDglkb3L5lK9WHPf1puQ2grNbUg9VSmo4a9IzUpRauNtCDUFxi
- 1m1e5VnmU5O5/xZyDzwmpWog9tUfScS7X9pdVNQ+2W3zCRrotFEn6FKdD01mhIsLnczjABEB
- AAG0IkRhdmlkIEJhdWVyIDxtYWlsQGRhdmlkLWJhdWVyLm5ldD6JAVkEEwEIAEMCGwMHCwkI
- BwMCAQYVCAIJCgsEFgIDAQIeAQIXgAIZARYhBNcEMml7fEwnOA/No7qzlxS0pLh4BQJfJtbx
- BQkOplkqAAoJELqzlxS0pLh4DVsIAKedmfQNTTWPlLDni4TUqTDUC1XFsMuE0XUg+naVs10K
- 35FpmZwzFzZYwPa1BYso3kE4EtuisFm6MsDkNhPrkL2fXMFONevSW1R9yYVH2BHZk9DkySjy
- 4vTsztjCFnkgQSs8GPKOy/upXt9ZYHNAUMqdwyjF1x8bhXP+dBpvL/0mLckZyVBZ06wgKdFc
- kjgEKAhRrfIaWYDa7hqFTts5C+NEd2MZsqRzry87TmCwKzy4HIpDyc52BUINj5QjRZu14IG/
- x+9zyh7ItDRMGxeRP+TU0HKrhUL9ToGRGwVKxybY10DQiXktIBOUFy6QboK8QOKMrxtmQ31j
- 3Zz+N0Ace2y5AQ0EViQYRwEIALqz1V6kWIvCTVN/6QN9fepVSwSw+5IiiVBGtf2rtdqujCRD
- bGi96a2ZLYRQzlSQvCZ51skgoZFmIW2YhPP90qiZssSEQxgY1rf+DEYnjWmFSgi3iHqYXRk2
- cY7OI3ZT8D2tAFu9pIAxZpD5FdQznJmUhljeTJw+lGOoxctf1xjHZcRcU6GUFMpFBc4xaLC0
- hUN24HT5pDpklxskPFH91VncDaOsLesqszGaUHWx3hogRfogdADvycUp/bQB80kZO/XqexWN
- GUNJYS4axWM2ND25bWV1h9aFjPpOwFM7FwAyra0VihnnNn7dTL5vBpFztY0IFPlvqyc1Vw8y
- vgtShA0AEQEAAYkBPAQYAQgAJgIbDBYhBNcEMml7fEwnOA/No7qzlxS0pLh4BQJfJtYyBQkO
- plhrAAoJELqzlxS0pLh4skYIAKFHNWPI9nFDbM4Caoy6unnAF0z9Se2YHfySyfwqfM3AYWku
- V5fxURhFZwsSmU9EuE4xgYbJsCI++BG70mRzpzjuA0lXpl2Ql3WtP2ocEBvsf0Tx+uFH9DYE
- USIr/M9shLswNr4uh8ZCbrH/ag01ZzdHISdicv1A8UlVFzwtFxaYjk+iJrhfE+J16bqepccp
- SsstQIZnGGL+pJRYYnM3bR+eAIefsUX+kyS6/+SxVzeZ1nSGGErKQpcRid0Iny7pUJNM0pPT
- yp74AEsXeEnwARddTIQi4Qy6UsgPr0ARkfx+oEIu+m3qXfeBAIyzykDAnjX7G6yb2ZiBsCBy
- xYmCdlk=
-Message-ID: <685c3ab2-5f51-1fc2-622d-4d9785d7074b@david-bauer.net>
-Date:   Thu, 6 Aug 2020 08:57:03 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728832AbgHFHtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Aug 2020 03:49:22 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:50350 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728802AbgHFHtH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 03:49:07 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0767mXMg108540;
+        Thu, 6 Aug 2020 02:48:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1596700113;
+        bh=3M4CuMX5MIgPdgE/0mpUEmd2g7W/gj9qcBLithCYER0=;
+        h=From:To:CC:Subject:Date;
+        b=DpBIL8xU6g7SKTMGtoI++/Mfufa4dze3+iDQHCTADFVGSPgtjao0VGT1PH5lEVo9O
+         3NMjVDwbpVuZLWbxnxAV+7D9lcetAs5223SpyVn61p/6ikvRVyuvHQLgpP0WMKye4R
+         z5cnZHxuc3SfCTOWX5hT5Cq8LHwGO2nuVAzJ0Y40=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0767mXOn078259
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 6 Aug 2020 02:48:33 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 6 Aug
+ 2020 02:48:32 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 6 Aug 2020 02:48:32 -0500
+Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0767mSYn051454;
+        Thu, 6 Aug 2020 02:48:29 -0500
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+To:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>
+CC:     Thomas Gleixner <tglx@linutronix.de>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Suman Anna <s-anna@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH v6 00/13] irqchip: ti,sci-intr/inta: Update the dt bindings to accept different interrupt parents 
+Date:   Thu, 6 Aug 2020 13:18:13 +0530
+Message-ID: <20200806074826.24607-1-lokeshvutla@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-In-Reply-To: <d0053630-1ff3-9771-eb7d-7aaf0a27dca2@arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robin,
+Hi Marc,
+	This is continuation of the RFC patches[0] regarding the driver
+updates to support for following interrupt parent connection:
+- INTR -> INTR
+- INTA -> GICv3
+The current existing driver assumes that INTR is always connected to
+GICv3 and INTA is always connected to INTR.
 
-thanks for your review. Only adressing some non-formal comments below.
+As discussed this change breaks the DT backward compatibility but it
+allows to not depend on TISCI firmware properties in DT node. IMHO, this
+will ensure that any future changes will not effect DT properties.
 
-On 8/3/20 12:01 AM, Robin Murphy wrote:
-> 
-> This seems to match the schematic, however in practice the GPIO seems to have a mind of its own and not respond to the LED settings - are we missing something with the pinctrl perhaps?
+This series depends on the the new Yaml bindings for common TISCI[1].
 
-Hmm, this is strange. It works fine on my unit (with the current OpenWrt release). Can you test this and report back?
+[0] https://lore.kernel.org/linux-arm-kernel/20190923042405.26064-1-lokeshvutla@ti.com/
+[1] https://patchwork.kernel.org/patch/11676843/
 
-> 
->> +            label = "nanopi-r2s:green:lan";
->> +        };
->> +
->> +        wan {
->> +            gpios = <&gpio2 RK_PC2 GPIO_ACTIVE_HIGH>;
->> +            label = "nanopi-r2s:green:wan";
->> +        };
->> +    };
->> +
->> +    gpio_keys {
->> +        compatible = "gpio-keys-polled";
-> 
-> Does this need to be polled? I would have thought regular interrupt-based gpio-keys should work, to avoid the overhead of polling for something (relatively) incredibly rare, but perhaps I'm wrong :/
+Tested with: (There is a build error on Today's master while building dtbs. So I enabled
+	      only the TI specific components for building DTBS).
+- DT_SCHEMA_FILES="Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml"
+  v8make dt_binding_check
+- DT_SCHEMA_FILES="Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml"
+  v8make dt_binding_check
+- DT_SCHEMA_FILES="Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml"
+  v8make dtbs_check
+- DT_SCHEMA_FILES="Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml"
+  v8make dtbs_check
+- v8make allmodconfig
 
-To be honest, I've missed that this is still polled. I've had this set to polled mode, as I've
-had some issues (were to dumb) to get the pinmux going. I'll switch this to interrupt triggered and report back.
+Changes since v5:
+- Rebased on latest master.
+- Collected Reviewed-by from Rob.
+- Included DT changes in the same series so that everything can be merged in a single go.
+  Without DT changes, there are regressions for DMA and other consumer peripherals so suggestion
+  is to merge everthing in a single go. DT changes apply cleanly on next and Linus's master
+  without any merge conflicts.
 
-> 
->> +        poll-interval = <100>;
->> +
->> +        pinctrl-names = "default";
->> +        pinctrl-0 = <&button_pins>;
->> +
->> +        reset {
->> +            label = "Reset Button";
->> +            gpios = <&gpio0 RK_PA0 GPIO_ACTIVE_LOW>;
->> +            linux,code = <KEY_RESTART>;
->> +            debounce-interval = <50>;
->> +        };
->> +    };
->> +};
->> +
->> +&cpu0 {
->> +    cpu-supply = <&vdd_arm>;
->> +};
->> +
->> +&cpu1 {
->> +    cpu-supply = <&vdd_arm>;
->> +};
->> +
->> +&cpu2 {
->> +    cpu-supply = <&vdd_arm>;
->> +};
->> +
->> +&cpu3 {
->> +    cpu-supply = <&vdd_arm>;
->> +};
->> +
->> +&gmac2io {
->> +    assigned-clocks = <&cru SCLK_MAC2IO>, <&cru SCLK_MAC2IO_EXT>;
->> +    assigned-clock-parents = <&gmac_clkin>, <&gmac_clkin>;
->> +    clock_in_out = "input";
->> +    phy-supply = <&vcc_io>;
->> +    phy-handle = <&rtl8211e>;
->> +    phy-mode = "rgmii";
->> +    pinctrl-names = "default";
->> +    pinctrl-0 = <&rgmiim1_pins>;
->> +    snps,aal;
-> 
-> Is this needed over and above the txpbl fix present in the main DTSI? I forget exactly where all those discussions ended up, but if it matters here then it probably matters for all RK3328 boards.
+Changes since v4:
+- Fixed Rob's comment on INTR and INTA yaml documentation
+- Collected Reviewed-by's and Acked-by's
 
-It seems to matter, as otherwise forwards from LAN to WAN will result in tx_fifo errors.
+Changes since v3:
+- Hardcode param_count based on parent instead of reading it from DT.
+- Drop storing TISCI device id in platform device id field.
 
-> 
->> +    snps,reset-gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
->> +    snps,reset-active-low;
->> +    snps,reset-delays-us = <0 10000 50000>;
-> 
-> Since you're describing the phy already, you can convert these to generic reset specifiers on the phy node itself (shame we don't have an interrupt wired up, oh well...)
+Changes since v2:
+- Fixed comments from Rob
+- Fixed DT schema warnings.
 
-Yup, I've forgotten that there's reset-gpio bindings for the PHY itself. 
+Changes since v1:
+- Rebased on top of latest Linux master
+- Dropped DT patches.
 
-> 
->> +    tx_delay = <0x24>;
->> +    rx_delay = <0x18>;
->> +    status = "okay";
->> +
->> +    mdio {
->> +        compatible = "snps,dwmac-mdio";
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        rtl8211e: ethernet-phy@0 {
->> +            reg = <0>;
-> 
-> Is that right? The schematic says the phy is strapped for address 1 (although 0 probably does manage to work since it should be interpreted as a broadcast address).
+Lokesh Vutla (13):
+  firmware: ti_sci: Drop the device id to resource type translation
+  firmware: ti_sci: Drop unused structure ti_sci_rm_type_map
+  firmware: ti_sci: Add support for getting resource with subtype
+  dt-bindings: irqchip: ti,sci-intr: Update bindings to drop the usage
+    of gic as parent
+  dt-bindings: irqchip: Convert ti,sci-intr bindings to yaml
+  irqchip/ti-sci-intr: Add support for INTR being a parent to INTR
+  dt-bindings: irqchip: ti,sci-inta: Update docs to support different
+    parent.
+  dt-bindings: irqchip: Convert ti,sci-inta bindings to yaml
+  irqchip/ti-sci-inta: Do not store TISCI device id in platform device
+    id field
+  irqchip/ti-sci-inta: Add support for INTA directly connecting to GIC
+  arm64: dts: k3-j721e: ti-sci-inta/intr: Update to latest bindings
+  arm64: dts: k3-am65: ti-sci-inta/intr: Update to latest bindings
+  arm64: dts: k3-am65: Update the RM resource types
 
-I'll test this.
+ .../interrupt-controller/ti,sci-inta.txt      |  66 --------
+ .../interrupt-controller/ti,sci-inta.yaml     |  98 +++++++++++
+ .../interrupt-controller/ti,sci-intr.txt      |  82 ---------
+ .../interrupt-controller/ti,sci-intr.yaml     | 102 ++++++++++++
+ MAINTAINERS                                   |   4 +-
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  36 ++--
+ arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi       |  12 +-
+ arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi    |   8 +-
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts |   4 +-
+ .../dts/ti/k3-j721e-common-proc-board.dts     |  10 +-
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     |  43 ++---
+ .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |  12 +-
+ drivers/firmware/ti_sci.c                     | 155 ++++++++----------
+ drivers/irqchip/irq-ti-sci-inta.c             |  95 +++++++++--
+ drivers/irqchip/irq-ti-sci-intr.c             | 152 ++++++++++-------
+ include/linux/soc/ti/ti_sci_protocol.h        |  13 ++
+ 16 files changed, 516 insertions(+), 376 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml
 
-> 
->> +        };
->> +    };
->> +};
->> +
->> +&i2c1 {
->> +    status = "okay";
->> +
->> +    rk805: rk805@18 {
->> +        compatible = "rockchip,rk805";
->> +        reg = <0x18>;
->> +        interrupt-parent = <&gpio2>;
->> +        interrupts = <6 IRQ_TYPE_LEVEL_LOW>;
-> 
-> The schematic says GPIO1_D0 for this.
-
-You are right, I'll fix this.
-
->> +
-> 
-> It shouldn't hurt to enable PWM2 from the outset to make mucking about with the fan easier.
-
-I've seen reports of people having Fans on their NanoPi R2S, my unit does not have such 
-
-> 
->> +&sdmmc {
->> +    bus-width = <4>;
->> +    cap-mmc-highspeed;
->> +    cap-sd-highspeed;
-> 
-> How about UHS modes, since we have the requisite I/O voltage support?
-
-I'll look into this.
-
-> 
->> +    disable-wp;
-> 
-> I believe this property is only meant for full-size MMC/SD sockets where write-protect functionality is expected but somehow broken. For micro-SD sockets the SoC pin should be hard-wired to write-enable anyway and thus it shouldn't need to be stated.
-
-Thanks for this explanation, I'll remove and re-test.
-
-> 
->> +    max-frequency = <150000000>;
-> 
-> This is in the DTSI already.
-> 
->> +    pinctrl-names = "default";
->> +    pinctrl-0 = <&sdmmc0_clk &sdmmc0_cmd &sdmmc0_dectn &sdmmc0_bus4>;
->> +    vmmc-supply = <&vcc_sd>;
->> +    vqmmc-supply = <&vcc_sdio>;
->> +    status = "okay";
->> +};
->> +
->> +&tsadc {
->> +    rockchip,hw-tshut-mode = <0>;
->> +    rockchip,hw-tshut-polarity = <0>;
->> +    status = "okay";
->> +};
->> +
->> +&uart2 {
->> +    status = "okay";
->> +};
->> +
->> +&u2phy {
->> +    status = "okay";
->> +
->> +    u2phy_host: host-port {
-> 
-> Just reference this by label directly, rather than as a child node here (especially since redefining the existing label is a bit confusing).
-> 
->> +        status = "okay";
->> +    };
->> +};
-> 
-> No reason not to enable the OTG port either - I've hacked that in with g_serial for a cheeky console while powering the board from my laptop and it works fine.
-
-Ouch, I've completely missed the micro-USB port is wired up to the OTG port.
-
-I'll follow up with a v3 in the coming days. Thanks for your feedback!
-
-Best wishes
-David
-
-> 
-> Cheers,
-> Robin.
-> 
->> +
->> +&usb_host0_ehci {
->> +    status = "okay";
->> +};
->> +
->> +&usb_host0_ohci {
->> +    status = "okay";
->> +};
->>
-
+-- 
+2.27.0
 
