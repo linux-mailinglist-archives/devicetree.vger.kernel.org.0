@@ -2,294 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 611B823DCAB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 18:55:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9A9E23DCC8
+	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 18:56:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729574AbgHFQyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Aug 2020 12:54:47 -0400
-Received: from mx0b-0014ca01.pphosted.com ([208.86.201.193]:41298 "EHLO
-        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729553AbgHFQuP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 12:50:15 -0400
-Received: from pps.filterd (m0042333.ppops.net [127.0.0.1])
-        by mx0b-0014ca01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 076BPHEA021976;
-        Thu, 6 Aug 2020 04:34:53 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=proofpoint;
- bh=lpu3R9pnJEeYMPfZkRDd6NNNOjlZmLlWX81096+hIF0=;
- b=tOwdgn1xj8iQeTTNkWlbqv/Z7e5ov9tvfiACiFqqopM4nQrVYB+LJCaA0vqzGpBsyl4i
- ECDKkaYuiq4CC1riaV41jEDfvhF4zFp0JMI4TchpIAIhcaN/9ZJ1F3ZXTAGC15PDVQa8
- /VTNEoWgcrSutU3nXHrKNafweVcFrpH+XTrcD2Qjl5eyAoANUpr0cbkBFGlp+W2OT9p7
- HfH0INjkF1/OjxH4dNDQTiCn3JnaW3A4+OXCK5Um+5zad1jvHRcNxYMSSvqtv/fumFWx
- L6D0HupBOseuNMYBexEJ2xwy+oKU0dqcgDSqfcAMTH6i2Obilvgk9dEotgT8u7H2hYNT Rw== 
-Received: from nam10-dm6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2104.outbound.protection.outlook.com [104.47.58.104])
-        by mx0b-0014ca01.pphosted.com with ESMTP id 32n8gy1uv9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 06 Aug 2020 04:34:52 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B6KIIb228bj11R77OeOpZU3wXab7L/Deq63qL90YrW8r1snK5Fir0jb1vhcZbGwVfZ1cBJ/C8dd94gXAlax5fLWKe1qv2xbczaFr+5VR/GpEd3LvNXOtkcSZZsaCvVIVOJ37g2RMZT5YSGdYqnRmh+QaHqOdzM5RNLX8TCXUYeYtBF/paurW8ZCg/4lX5xJ0a1uRQTseEJtmR/t6mui88a3jcNyphA0P/K5+7aeE09rS72oaJmLqRGtOHY0ihcKIvFPjrryiLUexaT7sZv1QknhX0JSHq+y9sUFs2aguvZSmiI9Sy5fG+MHyJsIJekhQN/T7sPgPu+dpeN2u99Zn6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lpu3R9pnJEeYMPfZkRDd6NNNOjlZmLlWX81096+hIF0=;
- b=fcVnIMqkk2K8LYcjX25IVMJzZzoC6qYP0PlOnM65d4ceW3P+ZsDPOeQMJqns5I9OBrnqvWYAiInK4LJVEW1DfiiL5LqdVdtga4kq6VtV9PgtaUymtG6Yuy+RVt9yggO+/XXoJSCOn9gAR+M7upGHaTF/H1lrjtKRjKh8m87YMln1R+EjE7neWFxCBO8gSWY+8nKVxpKo+Aeoc8XMJ9H4b0PLgSaoKUOAQ+0055fyPBMkF8xFitlv79haqHFFEmy3j1FzGa9kZBooiuD/m8Gny7GVi3kyEFyLSc9D49Q17xyq9W64xqwZUg3HYfVkPLFaTlOpG5N2thi/7BI8B8dicQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 64.207.220.244) smtp.rcpttodomain=samsung.com smtp.mailfrom=cadence.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=cadence.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lpu3R9pnJEeYMPfZkRDd6NNNOjlZmLlWX81096+hIF0=;
- b=MUPEndLzT8+BVNZStgGY/AiFobRpIJ4wHQ6BfmpJkM6uxfR7laTDmDcCEjRsKMLNv5mYNH1vuGSLGWGZ/Aa4ouNmI9u9b5YzIXa2c17jEpTIJcnxNN80rEIDABIQqkGWArbIfdizPuW+oBn77tFjP9hMd+/9oS9x7HQgrplJiFA=
-Received: from MWHPR21CA0040.namprd21.prod.outlook.com (2603:10b6:300:129::26)
- by BN7PR07MB4835.namprd07.prod.outlook.com (2603:10b6:406:f0::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.21; Thu, 6 Aug
- 2020 11:34:48 +0000
-Received: from MW2NAM12FT039.eop-nam12.prod.protection.outlook.com
- (2603:10b6:300:129:cafe::14) by MWHPR21CA0040.outlook.office365.com
- (2603:10b6:300:129::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3283.0 via Frontend
- Transport; Thu, 6 Aug 2020 11:34:48 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 64.207.220.244)
- smtp.mailfrom=cadence.com; samsung.com; dkim=none (message not signed)
- header.d=none;samsung.com; dmarc=pass action=none header.from=cadence.com;
-Received-SPF: Pass (protection.outlook.com: domain of cadence.com designates
- 64.207.220.244 as permitted sender) receiver=protection.outlook.com;
- client-ip=64.207.220.244; helo=wcmailrelayl01.cadence.com;
-Received: from wcmailrelayl01.cadence.com (64.207.220.244) by
- MW2NAM12FT039.mail.protection.outlook.com (10.13.181.39) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3261.10 via Frontend Transport; Thu, 6 Aug 2020 11:34:46 +0000
-Received: from maileu3.global.cadence.com (maileu3.cadence.com [10.160.88.99])
-        by wcmailrelayl01.cadence.com (8.14.7/8.14.4) with ESMTP id 076BYZWm083124
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=OK);
-        Thu, 6 Aug 2020 04:34:37 -0700
-X-CrossPremisesHeadersFilteredBySendConnector: maileu3.global.cadence.com
-Received: from maileu3.global.cadence.com (10.160.88.99) by
- maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
- 15.0.1367.3; Thu, 6 Aug 2020 13:34:35 +0200
-Received: from vleu-orange.cadence.com (10.160.88.83) by
- maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
- 15.0.1367.3 via Frontend Transport; Thu, 6 Aug 2020 13:34:35 +0200
-Received: from vleu-orange.cadence.com (localhost.localdomain [127.0.0.1])
-        by vleu-orange.cadence.com (8.14.4/8.14.4) with ESMTP id 076BYZLq008204;
-        Thu, 6 Aug 2020 13:34:35 +0200
-Received: (from sjakhade@localhost)
-        by vleu-orange.cadence.com (8.14.4/8.14.4/Submit) id 076BYZd7008203;
-        Thu, 6 Aug 2020 13:34:35 +0200
-From:   Swapnil Jakhade <sjakhade@cadence.com>
-To:     <airlied@linux.ie>, <daniel@ffwll.ch>,
-        <Laurent.pinchart@ideasonboard.com>, <robh+dt@kernel.org>,
-        <a.hajda@samsung.com>, <narmstrong@baylibre.com>,
-        <jonas@kwiboo.se>, <jernej.skrabec@siol.net>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <mparab@cadence.com>, <sjakhade@cadence.com>,
-        <yamonkar@cadence.com>, <tomi.valkeinen@ti.com>, <jsarha@ti.com>,
-        <nsekhar@ti.com>, <praneeth@ti.com>
-Subject: [PATCH v8 1/3] dt-bindings: drm/bridge: Document Cadence MHDP bridge bindings
-Date:   Thu, 6 Aug 2020 13:34:30 +0200
-Message-ID: <1596713672-8146-2-git-send-email-sjakhade@cadence.com>
-X-Mailer: git-send-email 2.4.5
-In-Reply-To: <1596713672-8146-1-git-send-email-sjakhade@cadence.com>
-References: <1596713672-8146-1-git-send-email-sjakhade@cadence.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-OrganizationHeadersPreserved: maileu3.global.cadence.com
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: bd2c18fb-e488-464f-70c8-08d839fcb8d4
-X-MS-TrafficTypeDiagnostic: BN7PR07MB4835:
-X-Microsoft-Antispam-PRVS: <BN7PR07MB4835FC8D026B146DE90B33EDC5480@BN7PR07MB4835.namprd07.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: VE7roeJIKnK+Jfd7Ulve5dZTvD8CxfqyBVlj/HnwVk62aPU6H9hcvuZGifUCPFU4ImF/3gyrcbi/AyYM0n4P97MDopg20ZKR5pzWJf7rwA1VwNogV6uTy6OnychY6ZfZrnzryQhrBc9TA6i3EqhQDSBPnb1GkE+EFjln3Py6NMjaSQ5DxXs4KJ7EdypN+qNX5KQpr91jdsLm/vDUw2EQZ37nA4mFsk06La3YoNxghnJw3JWnwNhTpSZ3nIXbQvu+GZljRRqpsqKJeLL92U8o0jgwpQW3zKkk4a9YyuNDUO6kBzeqtNBkrzRyUoAVgsHf06C7djiC8SNipfY2N7b1puZgTz+tBOcYiQSnwRlGg8sk3cYMRG/cEdDHUzbZoNpt++PZtlY2M69kxtW980Ol/3BqdOBlARjnJNvivqur+Iu4Riqv73IsVRkBi9Mlx4LF4Qnoc7vgbSQ3LO6n/nmYIvhFh+rGcU+9/hkrWC51fSjmjYLyAWcDeGMTgW12slciaYO2oL5sY5SHnYUKhMldEvvwIL0SznhuQCFvMrpGogyDJZyu86Yg9yulHqUW/zEUr7efnR6kCCASagt0+L/W6g==
-X-Forefront-Antispam-Report: CIP:64.207.220.244;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:wcmailrelayl01.cadence.com;PTR:ErrorRetry;CAT:NONE;SFTY:;SFS:(4636009)(136003)(396003)(376002)(346002)(39860400002)(36092001)(46966005)(8936002)(8676002)(7416002)(47076004)(4326008)(82740400003)(70586007)(478600001)(36756003)(186003)(81166007)(70206006)(26005)(83380400001)(82310400002)(356005)(86362001)(6666004)(36906005)(2616005)(336012)(426003)(2906002)(316002)(54906003)(42186006)(110136005)(5660300002)(921003)(21314003)(2101003)(83996005);DIR:OUT;SFP:1101;
-X-OriginatorOrg: cadence.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2020 11:34:46.7797
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd2c18fb-e488-464f-70c8-08d839fcb8d4
-X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[64.207.220.244];Helo=[wcmailrelayl01.cadence.com]
-X-MS-Exchange-CrossTenant-AuthSource: MW2NAM12FT039.eop-nam12.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR07MB4835
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-08-06_06:2020-08-06,2020-08-06 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0 malwarescore=0
- phishscore=0 mlxlogscore=999 impostorscore=0 priorityscore=1501
- bulkscore=0 suspectscore=0 spamscore=0 mlxscore=0 clxscore=1015
- adultscore=0 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2006250000 definitions=main-2008060083
+        id S1729861AbgHFQ4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Aug 2020 12:56:00 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:36072 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728912AbgHFQkn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 Aug 2020 12:40:43 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 11A872005E0;
+        Thu,  6 Aug 2020 13:53:36 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 376DF200869;
+        Thu,  6 Aug 2020 13:53:32 +0200 (CEST)
+Received: from 10.192.242.69 (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 14A3340252;
+        Thu,  6 Aug 2020 13:53:27 +0200 (CEST)
+From:   Shengjiu Wang <shengjiu.wang@nxp.com>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] ARM: dts: imx6sl-evk: Add headphone detection for sound card
+Date:   Thu,  6 Aug 2020 19:48:53 +0800
+Message-Id: <1596714533-16350-1-git-send-email-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yuti Amonkar <yamonkar@cadence.com>
+Headphone detection is triggered by GPIO, then driver can
+switch between speaker and headphone.
 
-Document the bindings used for the Cadence MHDP DPI/DP bridge in
-yaml format.
-
-Signed-off-by: Yuti Amonkar <yamonkar@cadence.com>
-Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 ---
- .../bindings/display/bridge/cdns,mhdp.yaml    | 139 ++++++++++++++++++
- 1 file changed, 139 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,mhdp.yaml
+ arch/arm/boot/dts/imx6sl-evk.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp.yaml
-new file mode 100644
-index 000000000000..dabccefe0983
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp.yaml
-@@ -0,0 +1,139 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/display/bridge/cdns,mhdp.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Cadence MHDP bridge
-+
-+maintainers:
-+  - Swapnil Jakhade <sjakhade@cadence.com>
-+  - Yuti Amonkar <yamonkar@cadence.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - cdns,mhdp8546
-+      - ti,j721e-mhdp8546
-+
-+  reg:
-+    minItems: 1
-+    maxItems: 2
-+    items:
-+      - description:
-+          Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
-+          The AUX and PMA registers are not part of this range, they are instead
-+          included in the associated PHY.
-+      - description:
-+          Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
-+
-+  reg-names:
-+    minItems: 1
-+    maxItems: 2
-+    items:
-+      - const: mhdptx
-+      - const: j721e-intg
-+
-+  clocks:
-+    maxItems: 1
-+    description:
-+      DP bridge clock, used by the IP to know how to translate a number of
-+      clock cycles into a time (which is used to comply with DP standard timings
-+      and delays).
-+
-+  phys:
-+    maxItems: 1
-+    description:
-+      phandle to the DisplayPort PHY.
-+
-+  ports:
-+    type: object
-+    description:
-+      Ports as described in Documentation/devicetree/bindings/graph.txt.
-+
-+    properties:
-+      '#address-cells':
-+        const: 1
-+
-+      '#size-cells':
-+        const: 0
-+
-+      port@0:
-+        type: object
-+        description:
-+          Input port representing the DP bridge input.
-+
-+      port@1:
-+        type: object
-+        description:
-+          Output port representing the DP bridge output.
-+
-+    required:
-+      - port@0
-+      - port@1
-+      - '#address-cells'
-+      - '#size-cells'
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: ti,j721e-mhdp8546
-+    then:
-+      properties:
-+        reg:
-+          minItems: 2
-+        reg-names:
-+          minItems: 2
-+    else:
-+      properties:
-+        reg:
-+          maxItems: 1
-+        reg-names:
-+          maxItems: 1
-+
-+required:
-+  - compatible
-+  - clocks
-+  - reg
-+  - reg-names
-+  - phys
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    bus {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        mhdp: dp-bridge@f0fb000000 {
-+            compatible = "cdns,mhdp8546";
-+            reg = <0xf0 0xfb000000 0x0 0x1000000>;
-+            reg-names = "mhdptx";
-+            clocks = <&mhdp_clock>;
-+            phys = <&dp_phy>;
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    reg = <0>;
-+                    dp_bridge_input: endpoint {
-+                        remote-endpoint = <&xxx_dpi_output>;
-+                    };
-+                };
-+
-+                port@1 {
-+                    reg = <1>;
-+                    dp_bridge_output: endpoint {
-+                        remote-endpoint = <&xxx_dp_connector_input>;
-+                    };
-+                };
-+            };
-+        };
-+    };
-+...
+diff --git a/arch/arm/boot/dts/imx6sl-evk.dts b/arch/arm/boot/dts/imx6sl-evk.dts
+index bc86cfaaa9c2..a17d6b784c0d 100644
+--- a/arch/arm/boot/dts/imx6sl-evk.dts
++++ b/arch/arm/boot/dts/imx6sl-evk.dts
+@@ -106,6 +106,7 @@ sound {
+ 			"IN3R", "AMIC";
+ 		mux-int-port = <2>;
+ 		mux-ext-port = <3>;
++		hp-det-gpio = <&gpio4 19 GPIO_ACTIVE_LOW>;
+ 	};
+ 
+ 	panel {
+@@ -295,6 +296,7 @@ MX6SL_PAD_REF_CLK_32K__GPIO3_IO22 0x17059
+ 				MX6SL_PAD_KEY_COL4__GPIO4_IO00	0x80000000
+ 				MX6SL_PAD_KEY_COL5__GPIO4_IO02	0x80000000
+ 				MX6SL_PAD_AUD_MCLK__AUDIO_CLK_OUT 0x4130b0
++				MX6SL_PAD_FEC_RX_ER__GPIO4_IO19	  0x1b0b0
+ 			>;
+ 		};
+ 
 -- 
-2.26.1
+2.27.0
 
