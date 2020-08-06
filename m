@@ -2,154 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F70E23DD5E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 19:09:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3BC723DE15
+	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 19:22:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729957AbgHFRIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Aug 2020 13:08:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45092 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730024AbgHFRGQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 13:06:16 -0400
-Received: from relay.felk.cvut.cz (relay.felk.cvut.cz [IPv6:2001:718:2:1611:0:1:0:70])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D6B12C002156;
-        Thu,  6 Aug 2020 08:55:08 -0700 (PDT)
-Received: from cmp.felk.cvut.cz (haar.felk.cvut.cz [147.32.84.19])
-        by relay.felk.cvut.cz (8.15.2/8.15.2) with ESMTP id 076Frg7D045971;
-        Thu, 6 Aug 2020 17:53:42 +0200 (CEST)
-        (envelope-from pisa@cmp.felk.cvut.cz)
-Received: from haar.felk.cvut.cz (localhost [127.0.0.1])
-        by cmp.felk.cvut.cz (8.14.0/8.12.3/SuSE Linux 0.6) with ESMTP id 076FrfBn002665;
-        Thu, 6 Aug 2020 17:53:41 +0200
-Received: (from pisa@localhost)
-        by haar.felk.cvut.cz (8.14.0/8.13.7/Submit) id 076FrfWs002664;
-        Thu, 6 Aug 2020 17:53:41 +0200
-X-Authentication-Warning: haar.felk.cvut.cz: pisa set sender to pisa@cmp.felk.cvut.cz using -f
-From:   Pavel Pisa <pisa@cmp.felk.cvut.cz>
-To:     Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v4 2/6] dt-bindings: net: can: binding for CTU CAN FD open-source IP core.
-Date:   Thu, 6 Aug 2020 17:53:40 +0200
-User-Agent: KMail/1.9.10
-Cc:     Pavel Machek <pavel@ucw.cz>, linux-can@vger.kernel.org,
-        devicetree@vger.kernel.org, mkl@pengutronix.de,
-        socketcan@hartkopp.net, wg@grandegger.com, davem@davemloft.net,
-        mark.rutland@arm.com, c.emde@osadl.org, armbru@redhat.com,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        martin.jerabek01@gmail.com, ondrej.ille@gmail.com,
-        jnovak@fel.cvut.cz, jara.beran@gmail.com, porazil@pikron.com
-References: <cover.1596408856.git.pisa@cmp.felk.cvut.cz> <20200804092021.yd3wisz3g2ed6ioe@duo.ucw.cz> <20200806144713.GA829771@bogus>
-In-Reply-To: <20200806144713.GA829771@bogus>
-X-KMail-QuotePrefix: > 
+        id S1729476AbgHFRVt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Aug 2020 13:21:49 -0400
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:6842 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729491AbgHFRVm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 13:21:42 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5f2c28c90000>; Thu, 06 Aug 2020 08:59:05 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Thu, 06 Aug 2020 08:59:55 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Thu, 06 Aug 2020 08:59:55 -0700
+Received: from [10.2.172.190] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 6 Aug
+ 2020 15:59:54 +0000
+Subject: Re: [PATCH v8 08/10] gpu: host1x: mipi: Keep MIPI clock enabled till
+ calibration is done
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>
+CC:     <jonathanh@nvidia.com>, <frankc@nvidia.com>, <hverkuil@xs4all.nl>,
+        <sakari.ailus@iki.fi>, <robh+dt@kernel.org>,
+        <helen.koike@collabora.com>, <gregkh@linuxfoundation.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <1596469346-937-1-git-send-email-skomatineni@nvidia.com>
+ <1596469346-937-9-git-send-email-skomatineni@nvidia.com>
+ <20200805134600.GA3351349@ulmo>
+ <103efe31-1abc-54f2-6004-490d7bb1b61a@gmail.com>
+ <dcd58ae7-58ed-11d1-0e10-7f522b651b30@gmail.com>
+ <addb92e5-7c7a-6fba-117d-c7880b2d4597@nvidia.com>
+ <ed80bf2f-213f-286a-59b2-fc85e4181b3d@gmail.com>
+ <6eede805-80fd-016f-22f8-b6d25f6587af@nvidia.com>
+ <1c12e40e-de7f-0599-a941-82760b4c7668@gmail.com>
+ <9ef0b875-e826-43e2-207e-168d2081ff6a@nvidia.com>
+ <4689cfe9-e7c4-48bf-217f-3a31b59b8bda@nvidia.com>
+ <0e78c5ca-c529-1e98-891d-30351c9aae81@gmail.com>
+ <b2098a68-d02f-b406-fc57-56e3ff5d8d1a@nvidia.com>
+ <309e3b66-9288-91ef-71b4-be73eacbbd62@nvidia.com>
+ <fde2431a-0585-ac32-ac25-73e198aaa948@nvidia.com>
+ <4025a458-fa78-924d-c84f-166f82df0f8e@gmail.com>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <4f15d655-3d62-cf9f-82da-eae379d60fa6@nvidia.com>
+Date:   Thu, 6 Aug 2020 08:59:56 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: Text/Plain;
-  charset="iso-8859-1"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-Message-Id: <202008061753.40832.pisa@cmp.felk.cvut.cz>
-X-FELK-MailScanner-Information: 
-X-MailScanner-ID: 076Frg7D045971
-X-FELK-MailScanner: Found to be clean
-X-FELK-MailScanner-SpamCheck: not spam, SpamAssassin (not cached, score=-0.1,
-        required 6, BAYES_00 -0.50, KHOP_HELO_FCRDNS 0.40,
-        NICE_REPLY_A -0.00, SPF_HELO_NONE 0.00, SPF_NONE 0.00)
-X-FELK-MailScanner-From: pisa@cmp.felk.cvut.cz
-X-FELK-MailScanner-Watermark: 1597334025.32967@lL+aMP+/PLx5Ni1jQOKRFQ
-X-Spam-Status: No
+In-Reply-To: <4025a458-fa78-924d-c84f-166f82df0f8e@gmail.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1596729545; bh=BmP7tNOgCgboFqvS8lSz48oQDm4QwQamCVy+CrncH7k=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=hPfwC07LV+YrR7dnigHuF0tUwgIgPps+81M9GhtJxH8WlghHga5Ip43DtfXVjdEsD
+         KMZch65jTrOCyTidWLf3/qfMCuGuPFobjYrTkqv6m5kY1DqmNLLWuSrsgjkIKvu4zn
+         2CFhjK0VJJRvGTRVCw8vga5wkYG3ikBI5Oo7BaDw7QsYyOGBqvIv+pRJl5JV2Yv76Z
+         P8Nd7TogwVBLaSpDCLtmJqJnVyN3n9JPqaOg89O0i6rsgfTRjfxipnOObcshlI58M7
+         PxgovQ7gWocIEfCe8Aul5zvlYspj3W146SaFtTWmJ0v3ER5HcrNmSXDe6KgIXvxCSG
+         AbrdX6IXw+OUw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Pavel and Rob,
 
-thanks much for review.
+On 8/6/20 6:32 AM, Dmitry Osipenko wrote:
+> 06.08.2020 03:47, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>> On 8/5/20 11:06 AM, Sowjanya Komatineni wrote:
+>>> On 8/5/20 10:46 AM, Sowjanya Komatineni wrote:
+>>>> On 8/5/20 10:34 AM, Dmitry Osipenko wrote:
+>>>>> 05.08.2020 20:29, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>>>>> ...
+>>>>>> UART_FST_MIPI_CAL is the clock used for calibration logic which is F=
+SM
+>>>>>> that goes thru sequence codes and when done waits for pads to be in
+>>>>>> LP-11 to apply results.
+>>>>>>
+>>>>>> MIPI_CLK is controller gate clock which is also need to be kept
+>>>>>> enabled
+>>>>>> as incase if it sees LP-11 it updates registers so its recommended t=
+o
+>>>>>> have this clock enabled.
+>>>>>>
+>>>>>> We can cancel_calibration() in CSI only when csi/sensor stream on
+>>>>>> fails
+>>>>>> and in which case there will be no LP-11 so we can unconditionally
+>>>>>> disable MIPI_CLK.
+>>>>>>
+>>>>> There is no guarantee that the fail comes before the LP-11. For
+>>>>> example,
+>>>>> some odd camera driver may have a complicated enable sequence which m=
+ay
+>>>>> fail after enabling the hardware streaming.
+>>>> MIPI_CLK to keep enable is for calibration logic to update results,
+>>>> but like I said calibration logic uses UART_FST_MIPI_CAL clock. So
+>>>> even in case if fail happens from sensor after having pads in LP-11
+>>>> then, calibration logic will still be running but result update will
+>>>> not happen with clock disabled. But HW will not stuck as this is
+>>>> confirmed from HW designer.
+>>> If LP-11 happens from sensor stream (followed by fail) and by that
+>>> time if calibration FSM is done and if calibration logic sees LP-11
+>>> then results will be applied to pads.
+>>>
+>>> We did start of calibration before CSI stream so by the time we do
+>>> sensor stream enable, calibration logic might have done with FSM and
+>>> waiting for LP-11
+>>>
+>>> Also if we see any special case, we always can use
+>>> finish_calibration() instead of cancel_calibration() as well.
+> Why not to do it right now?
 
-On Thursday 06 of August 2020 16:47:13 Rob Herring wrote:
-> On Tue, Aug 04, 2020 at 11:20:21AM +0200, Pavel Machek wrote:
-> > On Tue 2020-08-04 11:18:17, Pavel Machek wrote:
-> > > Hi!
-> > >
-> > > > The commit text again to make checkpatch happy.
-> > >
-> > > ?
-
-The checkpatch reports as a problem when there is no description
-of the patch. At least for patch
-
-  [PATCH v4 1/6] dt-bindings: vendor-prefix: add prefix for the Czech Technical University in Prague.
-
-I consider that little pontificate but I have fullfiled its suggestion
-with remark, that in this case, It is not my intention to add these
-promotions. I remove the reference to patchcheck from these commit messages.
-
-> > > > +    oneOf:
-> > > > +      - items:
-> > > > +          - const: ctu,ctucanfd
-> > > > +          - const: ctu,canfd-2
-> > > > +      - const: ctu,ctucanfd
-> > >
-> > > For consistency, can we have ctu,canfd-1, ctu,canfd-2?
-> >
-> > Make it ctu,ctucanfd-1, ctu,ctucanfd-2... to make it consistent with
-> > the file names.
+> Then the code could look like this:
 >
-> If you are going to do version numbers, please define where they come
-> from. Hopefully some tag of the h/w IP version...
+> src_subdev =3D tegra_channel_get_remote_source_subdev(chan);
+> ret =3D v4l2_subdev_call(src_subdev, video, s_stream, true);
+> err =3D tegra_mipi_finish_calibration(csi_chan->mipi);
 >
-> Better yet, put version numbers in the h/w registers itself and you
-> don't need different compatibles.
+> if (ret < 0 && ret !=3D -ENOIOCTLCMD)
+> 	goto err_disable_csi_stream;
+>
+> if (err < 0)
+> 	dev_warn(csi_chan->csi->dev,
+> 		 "MIPI calibration failed: %d\n", err);
+>
+>>> finish_calibration() has extra 250ms wait time polling done bit and we
+>>> can ignore its return code during fail pathway.
+>>>
+>> Confirmed from HW designer, calibration FSM to finish takes worst case
+>> 72uS so by the time it gets to sensor stream it will be done its
+>> sequence and will be waiting for DONE bit.
+>>
+>> So disabling MIPI CAL clock on sensor stream fails is safe.
+>
+> 72us is quite a lot of time, what will happen if LP-11 happens before
+> FSM finished calibration?
+>
+> Maybe the finish_calibration() needs to split into two parts:
+>
+>   1. wait for CAL_STATUS_ACTIVE before enabling sensor
+>   2. wait for CAL_STATUS_DONE after enabling sensor
 
-The actual major version of the core is 2. The minor intended
-for release was 1. But we wait for driver inclusion and release
-and IP core release has not been realized. Sources moved to
-2.2-pre version and compiled core reports 2.2 now.
-There is added control bit for protocol exception
-behavior selection and minor enhancements in sync of standard
-and data rate bittimes starts.
+I don't think we need to split for active and done. Active will be 1 as=20
+long as other pads are in calibration as well.
 
-Yes, version can be obtained from hardware.
-There is magic and version in the first core register.
-See 3.1.1 DEVICE_ID section of the manual (page 22/28)
+We cant use active status check for specific pads under calibration.=20
+This is common bit for all pads.
 
-  http://canbus.pages.fel.cvut.cz/ctucanfd_ip_core/Progdokum.pdf
+Unfortunately HW don't have separate status indicating when sequence is=20
+done to indicate its waiting for LP11.
 
-As for the DT identifier we use "ctu,ctucanfd" in more projects already.
-Some devices are in the wild now. So I would prefer to keep compatibility
-with that name. Other name reflects that this driver is compatible with major
-version 2 of the core. It can be "ctu,ctucanfd-2". I am not sure if the
-repeat of "ctu" is good idea, but yes, full sources prefix is "ctucanfd".
-The second alias can be omitted alltogether. But I am not sure, there can
-be one day fundamental change between IP core versions which would be better
-handled by change of PCI ID and DT ID. It is questionable if attempt to keep
-single driver for more too different versions would be more manageable
-or convoluted than two fully independent ones. May it be we do not need
-to solve that because by that time it would be "ctu,ctucanxl".
 
-At this time, our actual first first choic for the IP core identifier
-is ctu,ctucanfd.
-
-As for the pointed description, I would remove them from version 5
-according to your reference. My personal one is to keep documentation
-(even of actual/local functional setup) directly in the sources and mainline
-to find it out when I or somebody else need to recreate or update designs,
-my biological memory is already worn out by past events.
-
-I am not sure if I should wait for subsystem maintainers review now
-or sent new patches version. I may get to its preparation tommorrow
-or may it be later because I want to take some time in
-countrysite/mountains.
-
-Best wishes
-
-                Pavel
--- 
-                Pavel Pisa
-    phone:      +420 603531357
-    e-mail:     pisa@cmp.felk.cvut.cz
-    Department of Control Engineering FEE CVUT
-    Karlovo namesti 13, 121 35, Prague 2
-    university: http://dce.fel.cvut.cz/
-    personal:   http://cmp.felk.cvut.cz/~pisa
-    projects:   https://www.openhub.net/accounts/ppisa
-    CAN related:http://canbus.pages.fel.cvut.cz/
+To avoid all this, will remove cancel_calibration() totally and use same=20
+finish calibration even in case of stream failure then.
 
