@@ -2,95 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6751E23DF33
-	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 19:42:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 198C523DF53
+	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 19:46:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729996AbgHFRks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Aug 2020 13:40:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54632 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729403AbgHFRbn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 Aug 2020 13:31:43 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C5FC523133;
-        Thu,  6 Aug 2020 15:12:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1596726754;
-        bh=cUg8ko8OEiK/4qIbgfajwCnFYSLMbgT5cLNLiBOA0zc=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=AbFccKDJye+6TKEYkdO27Ltto8sfBzN9avARpUTzS2JIZOCnVJJvIiHQp6vOomQOC
-         F8JNZCzIVobAp32SyKnSVXDA/lbtwWMtL78IWNpUC9RYHN0kLSqSvrU3xvklsMNxUQ
-         acUSid/EZztAy2Hg3NFiZG8sWBd8qI54SF2roqnw=
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.92)
-        (envelope-from <maz@kernel.org>)
-        id 1k3hZJ-000Iec-1O; Thu, 06 Aug 2020 16:12:33 +0100
+        id S1730215AbgHFRpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Aug 2020 13:45:23 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:54742 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728984AbgHFQiU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 12:38:20 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 076FCr1E111118;
+        Thu, 6 Aug 2020 10:12:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1596726773;
+        bh=clr1VV5fPhd6AHkch16xD7rviP96hWisxiD/e/1uR3I=;
+        h=To:CC:From:Subject:Date;
+        b=H/LXcHAbdCuFU8t9rrNFf1lbDN0jDofl7KV460VgutudTGmclKw2O/+Fi6CChq6Xz
+         R70EdAi+CWvRbSwm2sTogdRiWVorO+CWI/+jHffJGI+p5Fp2loBnzid9sKDGXFYUzq
+         BOZ4u2anwRvP9jXUzhN5CGjOGt8DhMrYtEOP5eVQ=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 076FCroR047443;
+        Thu, 6 Aug 2020 10:12:53 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 6 Aug
+ 2020 10:12:52 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 6 Aug 2020 10:12:52 -0500
+Received: from [10.250.38.37] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 076FCqGN065312;
+        Thu, 6 Aug 2020 10:12:52 -0500
+To:     Rob Herring <robh@kernel.org>
+CC:     "Rivera-Matos, Ricardo" <r-rivera-matos@ti.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+From:   Dan Murphy <dmurphy@ti.com>
+Subject: [RFC] Writing a yaml to support multiple devices
+Message-ID: <d8963f7a-c675-0e83-7ad9-cb79455cce58@ti.com>
+Date:   Thu, 6 Aug 2020 10:12:52 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 06 Aug 2020 16:12:32 +0100
-From:   Marc Zyngier <maz@kernel.org>
-To:     Daniel Palmer <daniel@0x0f.com>,
-        Mark-PK Tsai <mark-pk.tsai@mediatek.com>
-Cc:     alix.wu@mediatek.com, DTML <devicetree@vger.kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>, yj.chiang@mediatek.com
-Subject: Re: [PATCH 0/2] irqchip: irq-mt58xx: Add mt58xx series interrupt
-In-Reply-To: <CAFr9PXkFJJKnqVkPBXgh1kqL_serK4DmrmJ73xU+ZMA+NuF-bA@mail.gmail.com>
-References: <CAFr9PX=Gk9h6ASi6saBLhoZ45g-WqCzDQo2XWT033fJykFSY_g@mail.gmail.com>
- <20200806140739.31501-1-mark-pk.tsai@mediatek.com>
- <CAFr9PXkFJJKnqVkPBXgh1kqL_serK4DmrmJ73xU+ZMA+NuF-bA@mail.gmail.com>
-User-Agent: Roundcube Webmail/1.4.5
-Message-ID: <654a81dcefb3024d762ff338d4bd7f14@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: daniel@0x0f.com, mark-pk.tsai@mediatek.com, alix.wu@mediatek.com, devicetree@vger.kernel.org, jason@lakedaemon.net, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com, robh+dt@kernel.org, tglx@linutronix.de, yj.chiang@mediatek.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-08-06 15:58, Daniel Palmer wrote:
-> Hi Mark-PK,
-> 
-> On Thu, 6 Aug 2020 at 23:08, Mark-PK Tsai <mark-pk.tsai@mediatek.com> 
-> wrote:
->> > Do you know if it would be possible to confirm if they are
->> > the
->> > same thing? MediaTek bought MStar a few years ago so it seems likely
->> > but I have no hard information.
->> >
->> 
->> Yes, it's for the same interrupt controller IP.
-> 
-> That's good news. :)
-> 
->> > If they are the same thing could we work on making one series that
->> > supports both use cases?
->> 
->> Sure, and I think the irq controller driver should support both use 
->> cases.
->> So how about keep the MTK version driver?
-> 
-> I'm fine with that. Maybe you can push the MTK version and I can send
-> a small patch after that to add the small bits I need?
+Rob
 
-In the interest of being vendor agnostic, please rename the properties
-such as mediatek,irqs-map-range to something less brand-specific.
-The compatible string should be enough.
+I have a question on how to properly instrument a yaml that supports a 
+family of charger devices.  These devices will have a common driver 
+since the register maps are the same but the min,max and default values 
+are different in different registers.
 
-Thanks,
+The devices are the BQ25980, BQ25975 and the BQ25960 they have a 
+configuration to provide over voltage protection values as in the 
+example below.
 
-         M.
--- 
-Jazz is not dead. It just smells funny...
+ti,sc-ovp-limit-microvolt:
+     description: |
+       Minimum input voltage limit in micro volts with a when the 
+charger is in
+       switch cap mode. 100000 micro volt step.
+     default: 17800000
+     minimum: 14000000
+     maximum: 22000000
+
+The issue here is that the min, max and default are for the BQ25980 
+where as the 975 and 960 have min of 7v, a max of 12.75v and a default 
+of 8.9v.  I am not sure how to write the yaml to indicate these differences.
+
+Can you point me to an example yaml that may have this properly done?  
+Or should we create a separate yaml for the 980 and inherit the 975 and 
+960 yaml?
+
+Any guidance is appreciated.  I think we have a similar situations on 
+some other drivers we are writing so the guidance will go a long way.
+
+Dan
+
