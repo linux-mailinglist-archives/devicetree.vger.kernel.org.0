@@ -2,71 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF34323DC6C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 18:52:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9328A23DC26
+	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 18:47:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729229AbgHFQvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Aug 2020 12:51:53 -0400
-Received: from mail-pg1-f171.google.com ([209.85.215.171]:46023 "EHLO
-        mail-pg1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729382AbgHFQvw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 12:51:52 -0400
-Received: by mail-pg1-f171.google.com with SMTP id x6so11972822pgx.12;
-        Thu, 06 Aug 2020 09:51:52 -0700 (PDT)
+        id S1729333AbgHFQq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Aug 2020 12:46:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42550 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729235AbgHFQpo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 12:45:44 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65BCFC0A3BD0
+        for <devicetree@vger.kernel.org>; Thu,  6 Aug 2020 07:58:30 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id y3so44311784wrl.4
+        for <devicetree@vger.kernel.org>; Thu, 06 Aug 2020 07:58:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=I2QgUmIlO6maUIvLNmFMIgB6tFghLiGYEgxkf43Wx9U=;
+        b=RU0tPU8bAxRiOuvHY7DJRlCCP2+QRbiYTaM0EYG5OIICce80n/byLWVwV7uLOp8vjb
+         zWbCdW/3rPa2b9W3bVCAqFeyee6Kk5YIEQGfReqtSa12vcltpB6yZj0yIp6dXYe+ZXTA
+         uj1D2Zs5Yu49k1Pzvv5W7vUodcbxEQk3yvggE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=9WzP/qX68qYJ2hNsWrKZ2UF/VOiRo1FGiV7mEAPI4o8=;
-        b=UBAj31rUkVHghDVXtjZ0/wVOUkN+aCkneYrWizAVydvO8QkGyrwIoMxW8J4J494VnX
-         0F/W/hz5G46lcCNR5mh2esaxXsZfe/Yb6S+ehVdjyIyXZCr4Uucyih7yKFQb+/L8MPHk
-         vPB3mQPmGo03pva1ntFRFYrTwSi0YJs/RfWAAoCDcfPgDmlpLPAukJn/i6fJ+O3wC9H4
-         MdyzjnOR+WPv6btxeiwiT5Ufhi9zdKXcW/fndA4OXgiblzVhKbz7zO7rxPbMdl9lRPQx
-         6BcRY3/MpLxxftaeFYbd0DCz2zgchDN3u4J7OGjgXASG+kH4Dao+XTKuvrJ+58kIIHXW
-         cyBQ==
-X-Gm-Message-State: AOAM530BAB8rQ0hzlRrkDOIg6rVJ0o2jUrh4FQNIkQaFy94eDjUZWESo
-        jrthlPvvf+lL6qyM+eOLTNtqLZw=
-X-Google-Smtp-Source: ABdhPJzSi7X3jBLpEqD8SZQol0aayJ75PVEkC6cgKrEGtbOTZR9JvyOCv2zvr0+d+NIejU2BAtVvgQ==
-X-Received: by 2002:a92:ba02:: with SMTP id o2mr10384602ili.3.1596725420911;
-        Thu, 06 Aug 2020 07:50:20 -0700 (PDT)
-Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id p20sm3847903iod.27.2020.08.06.07.50.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Aug 2020 07:50:20 -0700 (PDT)
-Received: (nullmailer pid 840060 invoked by uid 1000);
-        Thu, 06 Aug 2020 14:50:19 -0000
-Date:   Thu, 6 Aug 2020 08:50:19 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Martin Fuzzey <martin.fuzzey@flowbird.group>,
-        Ahmet Inan <inan@distec.de>, kernel@collabora.com,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCHv4 3/4] Input: EXC3000: Add reset gpio support
-Message-ID: <20200806145019.GA840006@bogus>
-References: <20200805160520.456570-1-sebastian.reichel@collabora.com>
- <20200805160520.456570-4-sebastian.reichel@collabora.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=I2QgUmIlO6maUIvLNmFMIgB6tFghLiGYEgxkf43Wx9U=;
+        b=e25jB6xdAUCXYdVLixhYglHVV9PXN3jK+mVRMYo1bDx9bx0wE/qy6mxnWferAq1K9p
+         M0DEtjdkxr5Hrz+M+O2C3y+bEbTbJviM0hUrefdcRYLbCW4Bffbx7TGOLkyQm87op0+r
+         axPQxVh7PRWTKh97VJJXPk8qzSywWbcWxfMuzVpDru0A+frUxD0uupRwolqfRJZZgdQq
+         htxfldullBUgcWVw9DvtE0fcdc7fHzHKqSoXxhC3SvSzZ3fsKNA6Fs8iHhqBzHUT+7rm
+         4SjEyCZoJXuLUzrkoZkEe9kIEYjHukqvsdfwow/Rh+COZe4cVEXvaeXHqRk98bBAVIja
+         JsFQ==
+X-Gm-Message-State: AOAM530F4JWU3/0zw5YYK+PQllH3B8ODK+Ptu8shNSRRF9EK1FK4NJww
+        QW6trSIewi7JNfjL4G4M523mKVuUBhG3GE1hA5eYUQ==
+X-Google-Smtp-Source: ABdhPJxei3fOQSc5RtFiRdeqUA8wYj3HA5L3OtFNsjWOwMSmZXT0JK+Zw+6cm6ro6Yk62WFzA6yS7yy5PVLA37ZNW0U=
+X-Received: by 2002:adf:ed85:: with SMTP id c5mr7800963wro.307.1596725908629;
+ Thu, 06 Aug 2020 07:58:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200805160520.456570-4-sebastian.reichel@collabora.com>
+References: <CAFr9PX=Gk9h6ASi6saBLhoZ45g-WqCzDQo2XWT033fJykFSY_g@mail.gmail.com>
+ <20200806140739.31501-1-mark-pk.tsai@mediatek.com>
+In-Reply-To: <20200806140739.31501-1-mark-pk.tsai@mediatek.com>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Thu, 6 Aug 2020 23:58:33 +0900
+Message-ID: <CAFr9PXkFJJKnqVkPBXgh1kqL_serK4DmrmJ73xU+ZMA+NuF-bA@mail.gmail.com>
+Subject: Re: [PATCH 0/2] irqchip: irq-mt58xx: Add mt58xx series interrupt
+To:     Mark-PK Tsai <mark-pk.tsai@mediatek.com>
+Cc:     alix.wu@mediatek.com, DTML <devicetree@vger.kernel.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>, yj.chiang@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 05 Aug 2020 18:05:19 +0200, Sebastian Reichel wrote:
-> Add basic support for an optional reset gpio.
-> 
-> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  .../input/touchscreen/eeti,exc3000.yaml         |  2 ++
->  drivers/input/touchscreen/exc3000.c             | 17 +++++++++++++++++
->  2 files changed, 19 insertions(+)
-> 
+Hi Mark-PK,
 
-Acked-by: Rob Herring <robh@kernel.org>
+On Thu, 6 Aug 2020 at 23:08, Mark-PK Tsai <mark-pk.tsai@mediatek.com> wrote:
+> > Do you know if it would be possible to confirm if they are
+> > the
+> > same thing? MediaTek bought MStar a few years ago so it seems likely
+> > but I have no hard information.
+> >
+>
+> Yes, it's for the same interrupt controller IP.
+
+That's good news. :)
+
+> > If they are the same thing could we work on making one series that
+> > supports both use cases?
+>
+> Sure, and I think the irq controller driver should support both use cases.
+> So how about keep the MTK version driver?
+
+I'm fine with that. Maybe you can push the MTK version and I can send
+a small patch after that to add the small bits I need?
+
+> I'll send patch v2 after -rc1 as I mentioned in the previous mail,
+> and keep you posted.
+> And any suggestion is welcome. :)
+
+I think Marc's comments on my series apply to your driver and I think
+maybe answer some of the questions you had. For example what
+to do about the read-modify-write sequence for updating the registers.
+
+> > It's also possible that if the interrupt controller is the same some
+> > other things like the SPI NOR controller etc are also common and
+> > working
+> > on a single driver for those would save us both time.
+>
+> I'm not sure about that.
+> I'll check the patches you contributed and confirm with our driver owners.
+
+I have a very messy tree with support for the SPI NOR controller, SPI, i2c etc
+that were used in MStar chips. If any of those are shared it'd be great to know.
+
+Thanks,
+
+Daniel
