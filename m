@@ -2,68 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D16D23DF51
-	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 19:46:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6751E23DF33
+	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 19:42:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729001AbgHFRpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Aug 2020 13:45:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53554 "EHLO mail.kernel.org"
+        id S1729996AbgHFRks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Aug 2020 13:40:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54632 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728878AbgHFRbQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 Aug 2020 13:31:16 -0400
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1729403AbgHFRbn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 Aug 2020 13:31:43 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1461623128;
-        Thu,  6 Aug 2020 14:15:54 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id C5FC523133;
+        Thu,  6 Aug 2020 15:12:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1596723354;
-        bh=h9yr92Fex5ltfMP+qZOHpzmYyhnDbgztEcO9IPRg14o=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=SQDMiQDH41Bduy8zoYbVAfI1ioXwch+Hw8pNUzKqCX2MjAD2ryIr5Gl8Ixh5iSDGF
-         hzbKHCaBI82bn+gUycQq5cVNgIHMjRL/jLOD/6Nvabu7cFfTYtBxRAlfrvBst0NzEr
-         TdnUI0Ffg11czHV29VkAyY6GqIDi43LPD7H3JqL8=
-Received: by mail-oi1-f181.google.com with SMTP id a24so22463317oia.6;
-        Thu, 06 Aug 2020 07:15:53 -0700 (PDT)
-X-Gm-Message-State: AOAM532lI08zG8zLUVbGfN/KshGLOClfA9MXa/abph4tWBHvPgwfFX/5
-        W9MeNwKUGtJpgILszFJKKDCUUEH/FeIYiv788Q==
-X-Google-Smtp-Source: ABdhPJxA2Sjm3IZPFJP0zjMdosn8kZNNtfiDvPae0/2S8FhdH5gX0PWIZLExsEmKzhoQ6UqOVM42ZrqnCy1Ja5rnJmA=
-X-Received: by 2002:aca:c3d8:: with SMTP id t207mr7387578oif.152.1596723353187;
- Thu, 06 Aug 2020 07:15:53 -0700 (PDT)
+        s=default; t=1596726754;
+        bh=cUg8ko8OEiK/4qIbgfajwCnFYSLMbgT5cLNLiBOA0zc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=AbFccKDJye+6TKEYkdO27Ltto8sfBzN9avARpUTzS2JIZOCnVJJvIiHQp6vOomQOC
+         F8JNZCzIVobAp32SyKnSVXDA/lbtwWMtL78IWNpUC9RYHN0kLSqSvrU3xvklsMNxUQ
+         acUSid/EZztAy2Hg3NFiZG8sWBd8qI54SF2roqnw=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.92)
+        (envelope-from <maz@kernel.org>)
+        id 1k3hZJ-000Iec-1O; Thu, 06 Aug 2020 16:12:33 +0100
 MIME-Version: 1.0
-References: <20200805110052.2655487-1-daniel@0x0f.com> <20200805110052.2655487-2-daniel@0x0f.com>
-In-Reply-To: <20200805110052.2655487-2-daniel@0x0f.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 6 Aug 2020 08:15:42 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK5YWe71HU+bSMG2uNZOgFN85x4zatuiS-fkUYKXHDs-w@mail.gmail.com>
-Message-ID: <CAL_JsqK5YWe71HU+bSMG2uNZOgFN85x4zatuiS-fkUYKXHDs-w@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt: bindings: interrupt-controller: Add binding
- description for msc313-intc
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 06 Aug 2020 16:12:32 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     Daniel Palmer <daniel@0x0f.com>,
+        Mark-PK Tsai <mark-pk.tsai@mediatek.com>
+Cc:     alix.wu@mediatek.com, DTML <devicetree@vger.kernel.org>,
         Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>, yj.chiang@mediatek.com
+Subject: Re: [PATCH 0/2] irqchip: irq-mt58xx: Add mt58xx series interrupt
+In-Reply-To: <CAFr9PXkFJJKnqVkPBXgh1kqL_serK4DmrmJ73xU+ZMA+NuF-bA@mail.gmail.com>
+References: <CAFr9PX=Gk9h6ASi6saBLhoZ45g-WqCzDQo2XWT033fJykFSY_g@mail.gmail.com>
+ <20200806140739.31501-1-mark-pk.tsai@mediatek.com>
+ <CAFr9PXkFJJKnqVkPBXgh1kqL_serK4DmrmJ73xU+ZMA+NuF-bA@mail.gmail.com>
+User-Agent: Roundcube Webmail/1.4.5
+Message-ID: <654a81dcefb3024d762ff338d4bd7f14@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: daniel@0x0f.com, mark-pk.tsai@mediatek.com, alix.wu@mediatek.com, devicetree@vger.kernel.org, jason@lakedaemon.net, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com, robh+dt@kernel.org, tglx@linutronix.de, yj.chiang@mediatek.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 5, 2020 at 5:01 AM Daniel Palmer <daniel@0x0f.com> wrote:
->
-> Adds a YAML description of the binding for the msc313-intc.
->
-> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
-> ---
->  .../mstar,msc313-intc.yaml                    | 79 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/mstar,msc313-intc.yaml
+On 2020-08-06 15:58, Daniel Palmer wrote:
+> Hi Mark-PK,
+> 
+> On Thu, 6 Aug 2020 at 23:08, Mark-PK Tsai <mark-pk.tsai@mediatek.com> 
+> wrote:
+>> > Do you know if it would be possible to confirm if they are
+>> > the
+>> > same thing? MediaTek bought MStar a few years ago so it seems likely
+>> > but I have no hard information.
+>> >
+>> 
+>> Yes, it's for the same interrupt controller IP.
+> 
+> That's good news. :)
+> 
+>> > If they are the same thing could we work on making one series that
+>> > supports both use cases?
+>> 
+>> Sure, and I think the irq controller driver should support both use 
+>> cases.
+>> So how about keep the MTK version driver?
+> 
+> I'm fine with that. Maybe you can push the MTK version and I can send
+> a small patch after that to add the small bits I need?
 
-Why are you sending another version? You ignored the errors and my
-questions on the RFC.
+In the interest of being vendor agnostic, please rename the properties
+such as mediatek,irqs-map-range to something less brand-specific.
+The compatible string should be enough.
 
-Rob
+Thanks,
+
+         M.
+-- 
+Jazz is not dead. It just smells funny...
