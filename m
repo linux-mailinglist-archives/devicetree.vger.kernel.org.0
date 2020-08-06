@@ -2,125 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 889F823DC06
-	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 18:44:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64AB923DCF8
+	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 18:58:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729146AbgHFQoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Aug 2020 12:44:20 -0400
-Received: from mail29.static.mailgun.info ([104.130.122.29]:29021 "EHLO
-        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729119AbgHFQoH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 12:44:07 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1596732247; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: To:
- Subject: Sender; bh=ggOg6zyHd/BJyz6p09BxDxipcYys+9vo5wRtRWDV+Dw=; b=YzcrkpLkdVO1nn/XrhmEfZRmg0Vodwoc1kEb4IrGpsw4WtgL6TwxIxDKWiWnONQu2EiKSGir
- HCYDxHd/vLeftWWxztEL9K3Pk6worNLcGEgzK1LuSZLS7zD9AmwBE2Nzt9kbDErBYhwkI5Y9
- yAwBVle7q8USIBuWlNAyuDkiPE4=
-X-Mailgun-Sending-Ip: 104.130.122.29
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n13.prod.us-east-1.postgun.com with SMTP id
- 5f2c1da548ee73b1c7a30a65 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 06 Aug 2020 15:11:33
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 75D15C4339C; Thu,  6 Aug 2020 15:11:32 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.5 required=2.0 tests=ALL_TRUSTED,NICE_REPLY_A,
-        SPF_NONE,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [192.168.0.129] (unknown [183.83.142.110])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rohitkr)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 62261C433C9;
-        Thu,  6 Aug 2020 15:11:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 62261C433C9
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=rohitkr@codeaurora.org
-Subject: Re: [PATCH v5 00/12] ASoC: qcom: Add support for SC7180 lpass variant
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <1596528453-11437-1-git-send-email-rohitkr@codeaurora.org>
-From:   Rohit Kumar <rohitkr@codeaurora.org>
-Message-ID: <1aa197e8-0c11-e2f1-d067-c74c1a185b8a@codeaurora.org>
-Date:   Thu, 6 Aug 2020 20:41:04 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        id S1729218AbgHFQ6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Aug 2020 12:58:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41654 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728768AbgHFQkm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 12:40:42 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D907C0086B9;
+        Thu,  6 Aug 2020 08:36:58 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id c16so30416719ejx.12;
+        Thu, 06 Aug 2020 08:36:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xpnCPJNyGsrLzWm8QOzVbxMg70S0b7SCU0Q8vzGNKK0=;
+        b=Z/EQNUDaGYAngW57e5SPhEMMQviexnNEdX1OL8T0J8vvO3HW6AQDQoEtnsgqOdejSG
+         j7NeDR63FkI2y+Sg+FZr7fDNzw68hmE1/zlxMxpiX3QWPCNyjoV7VTBhIsB4wh5bQM2D
+         1derZihF6/dWXWAcaG0BO1yZbDTL0QBWxO7LBWCr5mp45poeITN69tJKvhXEo60OJYPV
+         ihDCDzTECHtfo7SkZxW+uFK/+YG7mWoVZ+k1omKseDF0t3XgJ8bsfmz000dVuXwptjt+
+         egVVAZ2W9LcB2Yln2DEJralPQYwHKJ3PdtqE6+eT2W1a8A5XSbLY3346tLlrVWjzRnlo
+         Qq/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xpnCPJNyGsrLzWm8QOzVbxMg70S0b7SCU0Q8vzGNKK0=;
+        b=euAqzzWTnNEQwRAKymBjwwW3fsYAVNaCyX/1Ht/hSDwiefzy74pA6WRwKjrIJ1O8XH
+         GjfO7gNbYxPpu1rYLvpnU44j2QGOjz7tXBWL0NMEgFUX5ECk4jUgCfdHO+5qh8k4Jqxk
+         rY1G2TNnqtXfH1FE0NOj8owprm04uO0xKUe9hb7ZS0O/q7QhRDqeXHiMcMv34gcBNTcv
+         QcxkABWdVFQ1ldXPg7R87ZrIiqE7J0fB1adduM5UKFPf9QV6b1Bk3QGpZaBe6Z6+LTgw
+         i4YtZ2mDuC8n48D7W9FY56PiRYlu2eSNKZ7ZHSaiZg271AKiGTmS5C22NR/gtzSp94qo
+         h9rw==
+X-Gm-Message-State: AOAM531O55K8tOOWaugL3HQ2yzc3cyKNxhPbt0jt1nZzjiyhTJS06iQM
+        BZ7YWXzhpUIjvY6RA/6MO3wxxuMB
+X-Google-Smtp-Source: ABdhPJyjvQ0o88PzKsmx99c/tjJod1LI1/VwIAe8QTyZaHHrSHXsA/mfPwbax44NxKm9klRmAuMXZQ==
+X-Received: by 2002:a17:906:970a:: with SMTP id k10mr4850800ejx.189.1596728216809;
+        Thu, 06 Aug 2020 08:36:56 -0700 (PDT)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id g21sm3563561edm.65.2020.08.06.08.36.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Aug 2020 08:36:54 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] of: platform: Destroy child devices symmetrically
+Date:   Thu,  6 Aug 2020 17:36:50 +0200
+Message-Id: <20200806153650.3883530-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-In-Reply-To: <1596528453-11437-1-git-send-email-rohitkr@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Mark,
+From: Thierry Reding <treding@nvidia.com>
 
-Other than patch 12, there is no comment on other patches from anyone as 
-of now.
+Iterate over child devices in reverse when unpopulating a platform
+device to make this step symmetrical with the population step. This
+fixes an issue in the Tegra DRM driver where upon module unload the
+DPAUX controller tries to unregister an I2C controller but will end
+up waiting indefinitely because one of the SOR devices is keeping a
+reference to it. Since the SOR devices are instantiated after the
+DPAUX devices, they would only be removed (and hence release their
+reference to the I2C controller) after the DPAUX devices have been
+removed.
 
-[PATCH v5 12/12] dt-bindings: sound: lpass-cpu: Move to yaml format
+While destroying the child devices in reverse order helps in this
+situation, it isn't fully safe to do so either. An even better way
+would be for the child devices to be reordered to match the probe
+order, which would work irrespective of the instantiation order.
 
-I will plan to post patch12 only with comments addressed if other
-changes does not have any comment. Please let me know your inputs.
+However, reordering by probe order would be fairly complicated and
+doesn't fix any known issues, so we'll go with the simpler fix for
+now.
 
-Thanks,
-Rohit
-On 8/4/2020 1:37 PM, Rohit kumar wrote:
-> This patch chain add audio support for SC7180 soc by doing the required
-> modification in existing common lpass-cpu/lpass-platform driver.
-> This also fixes some concurrency issue.
->
-> This patch series is already tested by Srinivas on Dragon Board 410c.
-> Changes since v4:
->          - Updated compatible string for sc7180 lpass cpu as suggested by Rob
->          - Addressed comments by Rob in yaml Documentation.
->
-> Ajit Pandey (4):
->    ASoC: qcom: Add common array to initialize soc based core clocks
->    ASoC: qcom: lpass-platform: Replace card->dev with component->dev
->    include: dt-bindings: sound: Add sc7180-lpass bindings header
->    ASoC: qcom: lpass-sc7180: Add platform driver for lpass audio
->
-> Rohit kumar (8):
->    ASoC: qcom: lpass-cpu: Move ahbix clk to platform specific function
->    ASoC: qcom: lpass-platform: fix memory leak
->    ASoC: qcom: lpass: Use regmap_field for i2sctl and dmactl registers
->    ASoC: qcom: lpass-cpu: fix concurrency issue
->    dt-bindings: sound: lpass-cpu: Add sc7180 lpass cpu node
->    ASoC: qcom: lpass-cpu: Use platform_get_resource
->    ASoC: qcom: lpass-platform: Use platform_get_irq
->    dt-bindings: sound: lpass-cpu: Move to yaml format
->
->   .../devicetree/bindings/sound/qcom,lpass-cpu.txt   |  79 --------
->   .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  | 179 +++++++++++++++++
->   include/dt-bindings/sound/sc7180-lpass.h           |  10 +
->   sound/soc/qcom/Kconfig                             |   5 +
->   sound/soc/qcom/Makefile                            |   2 +
->   sound/soc/qcom/lpass-apq8016.c                     |  86 ++++++--
->   sound/soc/qcom/lpass-cpu.c                         | 204 ++++++++++---------
->   sound/soc/qcom/lpass-ipq806x.c                     |  67 +++++++
->   sound/soc/qcom/lpass-lpaif-reg.h                   | 157 ++++++++-------
->   sound/soc/qcom/lpass-platform.c                    | 155 +++++++++++----
->   sound/soc/qcom/lpass-sc7180.c                      | 216 +++++++++++++++++++++
->   sound/soc/qcom/lpass.h                             |  63 +++++-
->   12 files changed, 924 insertions(+), 299 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/sound/qcom,lpass-cpu.txt
->   create mode 100644 Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
->   create mode 100644 include/dt-bindings/sound/sc7180-lpass.h
->   create mode 100644 sound/soc/qcom/lpass-sc7180.c
->
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+ drivers/of/platform.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+index 071f04da32c8..b557a0fcd4ba 100644
+--- a/drivers/of/platform.c
++++ b/drivers/of/platform.c
+@@ -590,7 +590,7 @@ EXPORT_SYMBOL_GPL(of_platform_device_destroy);
+ void of_platform_depopulate(struct device *parent)
+ {
+ 	if (parent->of_node && of_node_check_flag(parent->of_node, OF_POPULATED_BUS)) {
+-		device_for_each_child(parent, NULL, of_platform_device_destroy);
++		device_for_each_child_reverse(parent, NULL, of_platform_device_destroy);
+ 		of_node_clear_flag(parent->of_node, OF_POPULATED_BUS);
+ 	}
+ }
 -- 
-Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
-of the Code Aurora Forum, hosted by the Linux Foundation.
+2.27.0
 
