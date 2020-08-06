@@ -2,704 +2,499 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3A1523DBD9
-	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 18:34:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B68423DC69
+	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 18:52:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728334AbgHFQeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Aug 2020 12:34:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40172 "EHLO
+        id S1729587AbgHFQvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Aug 2020 12:51:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728064AbgHFQcp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 12:32:45 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A6B4C02B8CC
-        for <devicetree@vger.kernel.org>; Thu,  6 Aug 2020 09:31:41 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id q76so10267999wme.4
-        for <devicetree@vger.kernel.org>; Thu, 06 Aug 2020 09:31:41 -0700 (PDT)
+        with ESMTP id S1729564AbgHFQvG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 12:51:06 -0400
+Received: from mail-yb1-xb41.google.com (mail-yb1-xb41.google.com [IPv6:2607:f8b0:4864:20::b41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D701C0A8938;
+        Thu,  6 Aug 2020 09:39:25 -0700 (PDT)
+Received: by mail-yb1-xb41.google.com with SMTP id e187so13701269ybc.5;
+        Thu, 06 Aug 2020 09:39:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=o1DNwHTB2pSgb5a7fFbiP5awwGwo+okHpDOnTZRVZoI=;
-        b=aIa+XZ8fqPjIS9AouQP4eiN4SFZhfXTUOkTrRD1FPOJ4S5MkJfuK2bwzAKaFLrMzTj
-         Nsvdy3JqD3GuQbemBxQJR7fhGd7iPv3Mppe1AuP588yc/DHwIE4W00EYQOmUVxlO9kHm
-         0XrPl1B5X2QP7zCwdlr4ArJeHM3mPuA24r6zYSXa2XyObeRsGSOKEVvR1VuRVpwDBhn/
-         AruTKO7OjaSFU5PncM9pz0zcPTqJ8CxQ2Hft9JhtXdW0HKZvmztaYNIZjx/3cfCO+9FN
-         7fOk7iFciV8t6+r904epPXA/fpFnuYCa17zSgLLoLWolIHXBTeRys84lw418k9XwOf8Y
-         Z0PA==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CouUnYBkuAmV4JKwky5FNt+DlmjxWfezT2r8xtdBStw=;
+        b=BzvBpExnJ1CGSJxMPejYRdqmf7wplvQSNSW069kfyEGf9N2VNPF83LGr6fPe7MuKDx
+         4bW3jsnK02CUOQIVACL4ypUQ+4v9Tos1xj4Gs22TDz2gCGArIOsWiJJha0494XE4gg3O
+         X5omCVNU08/NITGBwLYxMARl4VyV+V/Sr4XKTL1j7ZacaaFARkiKQJ6/3lQyYdmuWes+
+         6aZeDlsESL2esNMsiz290EUM4d/ru+l0s3zeBguxhi9S17UYzE9S3BCG9fO8WzoMMENm
+         fmcgRHIhVKibFzgTF2P+KZrY3dJ3BuypozbHlpxPsRLH/qdo1Hb+ja3meocdS9QiNdOJ
+         hSJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=o1DNwHTB2pSgb5a7fFbiP5awwGwo+okHpDOnTZRVZoI=;
-        b=rC6mzQNmN3IUDaFleBFOH9G54N3JER4wUbooEMQZh+OQNI34l6ywkrJeOZd1t6NGIW
-         h8zuyeOEielVN/ivycBcigBhftRdfhrHF3zX7j+vuuYtmQk+egx8s3QWvIu2p/xptOX1
-         Wk3M6yJ3fpGmjw1pX8/lSnHAX/dEtbWnw2KzZ2e+U1JcAFCn8/ItqSS+pBRAvXWsiEBh
-         cTDuZa2OilfAjEx3dFPKEr6hOI0K4KlJFHKiZFZdq+F1AE2voy92067+m18p/230An9s
-         ORH6wbBe8Tyksf9lapGu+I2by+SWkX9HRYUHx/AHiui9uJCrpPWey8950UP8f1j7aY9a
-         d8uw==
-X-Gm-Message-State: AOAM530/1MdnGS3ExVsEZVMXCS3SmsZyzFRMTSH33Ng6bTuXYyyMqW/v
-        91/pRVVjfAxgszy9IBA3UhPZRw==
-X-Google-Smtp-Source: ABdhPJyLvwNgomKblok9MgnNW4QDS+6bTNt98cxnKLNyNI5ssODvfWe7+i/O/u82e+Gkz18HqycWGA==
-X-Received: by 2002:a1c:ba84:: with SMTP id k126mr9225917wmf.55.1596731500024;
-        Thu, 06 Aug 2020 09:31:40 -0700 (PDT)
-Received: from localhost.localdomain ([87.120.218.65])
-        by smtp.googlemail.com with ESMTPSA id i66sm7468537wma.35.2020.08.06.09.31.38
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 06 Aug 2020 09:31:39 -0700 (PDT)
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-To:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org, bjorn.andersson@linaro.org,
-        sibis@codeaurora.org, mka@chromium.org, dianders@chromium.org,
-        georgi.djakov@linaro.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 7/7] arm64: dts: qcom: sc7180: Increase the number of interconnect cells
-Date:   Thu,  6 Aug 2020 19:31:26 +0300
-Message-Id: <20200806163126.22667-8-georgi.djakov@linaro.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200806163126.22667-1-georgi.djakov@linaro.org>
-References: <20200806163126.22667-1-georgi.djakov@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CouUnYBkuAmV4JKwky5FNt+DlmjxWfezT2r8xtdBStw=;
+        b=hOLF9ZloyOqlCdCqZym7AxMjc1wSG0sJaTdAi5v62ve0PiJKV0gK4+HH0HwMM2QTB/
+         /OSNdqGg2nosUI4DsnTf6GIbKlXxC8O8uMC8MRTiUGWTMgdC1RV1ApT+EWI7ShJaWUZL
+         vwK0ytF2Ctlh2xbchyKkYao4XICwoGQCiddKhpUp6GybwMnDh9V7Z9yoLBxKiVuFSvbv
+         OCGBiBPpKEBxld9LDzStxfNKqjN/8uWTmk52PxSEWXUt1YI2jq0G1miQxEFSdVD8/Cv/
+         i4BMCTQnNr9dgs2pchHLy5YoPKK3fcBiFozU0MQLpUr51lzkmtHkEEPSFyF272VUOYAw
+         0Eog==
+X-Gm-Message-State: AOAM531QZ5O7FGs1LaNGO0bg1MVceLGI1/cjAmupkYY358JEzJekodtY
+        hl2QylULDR1f4pBptbjqi6g0wzbx8s4iqqYQ2Lw=
+X-Google-Smtp-Source: ABdhPJyKjvsxu3866DOGraLC7oo+BoJnKPATWcIrtajBImTzStfDVzQYUptH25FJisF3XDi718ZpAjRUePo2hpuDeJg=
+X-Received: by 2002:a25:3355:: with SMTP id z82mr14756085ybz.445.1596731963711;
+ Thu, 06 Aug 2020 09:39:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1596465107-14251-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <1596465107-14251-3-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com> <20200806163054.vz7t7jgm4bapzkpq@uno.localdomain>
+In-Reply-To: <20200806163054.vz7t7jgm4bapzkpq@uno.localdomain>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Thu, 6 Aug 2020 17:38:57 +0100
+Message-ID: <CA+V-a8tmnqRvmW1=55K7Za2DoxBR+4LD4oZMGfX14-WfBocokQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] media: i2c: ov5640: Enable data pins on poweron
+ for DVP mode
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hugues Fruchet <hugues.fruchet@st.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sibi Sankar <sibis@codeaurora.org>
+Hi Jacopo,
 
-Increase the number of interconnect-cells, as now we can include
-the tag information. The consumers can specify the path tag as an
-additional argument to the endpoints.
+Thank you for the review.
 
-Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-Tested-by: Matthias Kaehlcke <mka@chromium.org>
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 216 +++++++++++++--------------
- 1 file changed, 108 insertions(+), 108 deletions(-)
+On Thu, Aug 6, 2020 at 5:27 PM Jacopo Mondi <jacopo@jmondi.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Mon, Aug 03, 2020 at 03:31:45PM +0100, Lad Prabhakar wrote:
+> > During testing this sensor on iW-RainboW-G21D-Qseven platform in 8-bit DVP
+> > mode with rcar-vin bridge noticed the capture worked fine for the first run
+> > (with yavta), but for subsequent runs the bridge driver waited for the
+> > frame to be captured. Debugging further noticed the data lines were
+> > enabled/disabled in stream on/off callback and dumping the register
+> > contents 0x3017/0x3018 in ov5640_set_stream_dvp() reported the correct
+> > values, but yet frame capturing failed.
+>
+> That's pretty weird, I wonder if that's not an issue in the bridge, as
+> I expect someone tryed to capture more than 1 image in DVP mode with
+> this driver already.
+>
+I did try the bridge driver with an ov7725 sensor and it works fine in
+both the modes (DVP and BT656).
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 16df08d9ef8f..fe80e1b8acee 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -132,7 +132,7 @@ &LITTLE_CPU_SLEEP_1
- 			capacity-dmips-mhz = <1024>;
- 			dynamic-power-coefficient = <100>;
- 			operating-points-v2 = <&cpu0_opp_table>;
--			interconnects = <&gem_noc MASTER_APPSS_PROC &mc_virt SLAVE_EBI1>,
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
- 					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
- 			next-level-cache = <&L2_0>;
- 			#cooling-cells = <2>;
-@@ -158,7 +158,7 @@ &LITTLE_CPU_SLEEP_1
- 			dynamic-power-coefficient = <100>;
- 			next-level-cache = <&L2_100>;
- 			operating-points-v2 = <&cpu0_opp_table>;
--			interconnects = <&gem_noc MASTER_APPSS_PROC &mc_virt SLAVE_EBI1>,
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
- 					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
- 			#cooling-cells = <2>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
-@@ -180,7 +180,7 @@ &LITTLE_CPU_SLEEP_1
- 			dynamic-power-coefficient = <100>;
- 			next-level-cache = <&L2_200>;
- 			operating-points-v2 = <&cpu0_opp_table>;
--			interconnects = <&gem_noc MASTER_APPSS_PROC &mc_virt SLAVE_EBI1>,
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
- 					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
- 			#cooling-cells = <2>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
-@@ -202,7 +202,7 @@ &LITTLE_CPU_SLEEP_1
- 			dynamic-power-coefficient = <100>;
- 			next-level-cache = <&L2_300>;
- 			operating-points-v2 = <&cpu0_opp_table>;
--			interconnects = <&gem_noc MASTER_APPSS_PROC &mc_virt SLAVE_EBI1>,
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
- 					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
- 			#cooling-cells = <2>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
-@@ -224,7 +224,7 @@ &LITTLE_CPU_SLEEP_1
- 			dynamic-power-coefficient = <100>;
- 			next-level-cache = <&L2_400>;
- 			operating-points-v2 = <&cpu0_opp_table>;
--			interconnects = <&gem_noc MASTER_APPSS_PROC &mc_virt SLAVE_EBI1>,
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
- 					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
- 			#cooling-cells = <2>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
-@@ -246,7 +246,7 @@ &LITTLE_CPU_SLEEP_1
- 			dynamic-power-coefficient = <100>;
- 			next-level-cache = <&L2_500>;
- 			operating-points-v2 = <&cpu0_opp_table>;
--			interconnects = <&gem_noc MASTER_APPSS_PROC &mc_virt SLAVE_EBI1>,
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
- 					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
- 			#cooling-cells = <2>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
-@@ -268,7 +268,7 @@ &BIG_CPU_SLEEP_1
- 			dynamic-power-coefficient = <405>;
- 			next-level-cache = <&L2_600>;
- 			operating-points-v2 = <&cpu6_opp_table>;
--			interconnects = <&gem_noc MASTER_APPSS_PROC &mc_virt SLAVE_EBI1>,
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
- 					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
- 			#cooling-cells = <2>;
- 			qcom,freq-domain = <&cpufreq_hw 1>;
-@@ -290,7 +290,7 @@ &BIG_CPU_SLEEP_1
- 			dynamic-power-coefficient = <405>;
- 			next-level-cache = <&L2_700>;
- 			operating-points-v2 = <&cpu6_opp_table>;
--			interconnects = <&gem_noc MASTER_APPSS_PROC &mc_virt SLAVE_EBI1>,
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
- 					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
- 			#cooling-cells = <2>;
- 			qcom,freq-domain = <&cpufreq_hw 1>;
-@@ -742,7 +742,7 @@ qupv3_id_0: geniqup@8c0000 {
- 			#size-cells = <2>;
- 			ranges;
- 			iommus = <&apps_smmu 0x43 0x0>;
--			interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt SLAVE_QUP_CORE_0>;
-+			interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>;
- 			interconnect-names = "qup-core";
- 			status = "disabled";
- 
-@@ -756,9 +756,9 @@ i2c0: i2c@880000 {
- 				interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt SLAVE_QUP_CORE_0>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_0>,
--						<&aggre1_noc MASTER_QUP_0 &mc_virt SLAVE_EBI1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
-+						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
- 				status = "disabled";
-@@ -776,8 +776,8 @@ spi0: spi@880000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt SLAVE_QUP_CORE_0>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_0>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -792,8 +792,8 @@ uart0: serial@880000 {
- 				interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt SLAVE_QUP_CORE_0>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_0>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -808,9 +808,9 @@ i2c1: i2c@884000 {
- 				interrupts = <GIC_SPI 602 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt SLAVE_QUP_CORE_0>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_0>,
--						<&aggre1_noc MASTER_QUP_0 &mc_virt SLAVE_EBI1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
-+						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
- 				status = "disabled";
-@@ -828,8 +828,8 @@ spi1: spi@884000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt SLAVE_QUP_CORE_0>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_0>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -844,8 +844,8 @@ uart1: serial@884000 {
- 				interrupts = <GIC_SPI 602 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt SLAVE_QUP_CORE_0>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_0>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -860,9 +860,9 @@ i2c2: i2c@888000 {
- 				interrupts = <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt SLAVE_QUP_CORE_0>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_0>,
--						<&aggre1_noc MASTER_QUP_0 &mc_virt SLAVE_EBI1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
-+						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
- 				status = "disabled";
-@@ -878,8 +878,8 @@ uart2: serial@888000 {
- 				interrupts = <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt SLAVE_QUP_CORE_0>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_0>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -894,9 +894,9 @@ i2c3: i2c@88c000 {
- 				interrupts = <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt SLAVE_QUP_CORE_0>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_0>,
--						<&aggre1_noc MASTER_QUP_0 &mc_virt SLAVE_EBI1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
-+						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
- 				status = "disabled";
-@@ -914,8 +914,8 @@ spi3: spi@88c000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt SLAVE_QUP_CORE_0>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_0>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -930,8 +930,8 @@ uart3: serial@88c000 {
- 				interrupts = <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt SLAVE_QUP_CORE_0>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_0>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -946,9 +946,9 @@ i2c4: i2c@890000 {
- 				interrupts = <GIC_SPI 605 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt SLAVE_QUP_CORE_0>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_0>,
--						<&aggre1_noc MASTER_QUP_0 &mc_virt SLAVE_EBI1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
-+						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
- 				status = "disabled";
-@@ -964,8 +964,8 @@ uart4: serial@890000 {
- 				interrupts = <GIC_SPI 605 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt SLAVE_QUP_CORE_0>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_0>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -980,9 +980,9 @@ i2c5: i2c@894000 {
- 				interrupts = <GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt SLAVE_QUP_CORE_0>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_0>,
--						<&aggre1_noc MASTER_QUP_0 &mc_virt SLAVE_EBI1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
-+						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
- 				status = "disabled";
-@@ -1000,8 +1000,8 @@ spi5: spi@894000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt SLAVE_QUP_CORE_0>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_0>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -1016,8 +1016,8 @@ uart5: serial@894000 {
- 				interrupts = <GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt SLAVE_QUP_CORE_0>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_0>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -1033,7 +1033,7 @@ qupv3_id_1: geniqup@ac0000 {
- 			#size-cells = <2>;
- 			ranges;
- 			iommus = <&apps_smmu 0x4c3 0x0>;
--			interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt SLAVE_QUP_CORE_1>;
-+			interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>;
- 			interconnect-names = "qup-core";
- 			status = "disabled";
- 
-@@ -1047,9 +1047,9 @@ i2c6: i2c@a80000 {
- 				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt SLAVE_QUP_CORE_1>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_1>,
--						<&aggre2_noc MASTER_QUP_1 &mc_virt SLAVE_EBI1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
-+						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
- 				status = "disabled";
-@@ -1067,8 +1067,8 @@ spi6: spi@a80000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt SLAVE_QUP_CORE_1>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -1083,8 +1083,8 @@ uart6: serial@a80000 {
- 				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt SLAVE_QUP_CORE_1>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -1099,9 +1099,9 @@ i2c7: i2c@a84000 {
- 				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt SLAVE_QUP_CORE_1>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_1>,
--						<&aggre2_noc MASTER_QUP_1 &mc_virt SLAVE_EBI1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
-+						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
- 				status = "disabled";
-@@ -1117,8 +1117,8 @@ uart7: serial@a84000 {
- 				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt SLAVE_QUP_CORE_1>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -1133,9 +1133,9 @@ i2c8: i2c@a88000 {
- 				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt SLAVE_QUP_CORE_1>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_1>,
--						<&aggre2_noc MASTER_QUP_1 &mc_virt SLAVE_EBI1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
-+						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
- 				status = "disabled";
-@@ -1153,8 +1153,8 @@ spi8: spi@a88000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt SLAVE_QUP_CORE_1>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -1169,8 +1169,8 @@ uart8: serial@a88000 {
- 				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt SLAVE_QUP_CORE_1>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -1185,9 +1185,9 @@ i2c9: i2c@a8c000 {
- 				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt SLAVE_QUP_CORE_1>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_1>,
--						<&aggre2_noc MASTER_QUP_1 &mc_virt SLAVE_EBI1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
-+						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
- 				status = "disabled";
-@@ -1203,8 +1203,8 @@ uart9: serial@a8c000 {
- 				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt SLAVE_QUP_CORE_1>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -1219,9 +1219,9 @@ i2c10: i2c@a90000 {
- 				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt SLAVE_QUP_CORE_1>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_1>,
--						<&aggre2_noc MASTER_QUP_1 &mc_virt SLAVE_EBI1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
-+						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
- 				status = "disabled";
-@@ -1239,8 +1239,8 @@ spi10: spi@a90000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt SLAVE_QUP_CORE_1>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -1255,8 +1255,8 @@ uart10: serial@a90000 {
- 				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt SLAVE_QUP_CORE_1>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -1271,9 +1271,9 @@ i2c11: i2c@a94000 {
- 				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt SLAVE_QUP_CORE_1>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_1>,
--						<&aggre2_noc MASTER_QUP_1 &mc_virt SLAVE_EBI1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
-+						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
- 				status = "disabled";
-@@ -1291,8 +1291,8 @@ spi11: spi@a94000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt SLAVE_QUP_CORE_1>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -1307,8 +1307,8 @@ uart11: serial@a94000 {
- 				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SC7180_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
--				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt SLAVE_QUP_CORE_1>,
--						<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_1>;
-+				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>;
- 				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
-@@ -1317,63 +1317,63 @@ uart11: serial@a94000 {
- 		config_noc: interconnect@1500000 {
- 			compatible = "qcom,sc7180-config-noc";
- 			reg = <0 0x01500000 0 0x28000>;
--			#interconnect-cells = <1>;
-+			#interconnect-cells = <2>;
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
- 		system_noc: interconnect@1620000 {
- 			compatible = "qcom,sc7180-system-noc";
- 			reg = <0 0x01620000 0 0x17080>;
--			#interconnect-cells = <1>;
-+			#interconnect-cells = <2>;
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
- 		mc_virt: interconnect@1638000 {
- 			compatible = "qcom,sc7180-mc-virt";
- 			reg = <0 0x01638000 0 0x1000>;
--			#interconnect-cells = <1>;
-+			#interconnect-cells = <2>;
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
- 		qup_virt: interconnect@1650000 {
- 			compatible = "qcom,sc7180-qup-virt";
- 			reg = <0 0x01650000 0 0x1000>;
--			#interconnect-cells = <1>;
-+			#interconnect-cells = <2>;
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
- 		aggre1_noc: interconnect@16e0000 {
- 			compatible = "qcom,sc7180-aggre1-noc";
- 			reg = <0 0x016e0000 0 0x15080>;
--			#interconnect-cells = <1>;
-+			#interconnect-cells = <2>;
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
- 		aggre2_noc: interconnect@1705000 {
- 			compatible = "qcom,sc7180-aggre2-noc";
- 			reg = <0 0x01705000 0 0x9000>;
--			#interconnect-cells = <1>;
-+			#interconnect-cells = <2>;
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
- 		compute_noc: interconnect@170e000 {
- 			compatible = "qcom,sc7180-compute-noc";
- 			reg = <0 0x0170e000 0 0x6000>;
--			#interconnect-cells = <1>;
-+			#interconnect-cells = <2>;
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
- 		mmss_noc: interconnect@1740000 {
- 			compatible = "qcom,sc7180-mmss-noc";
- 			reg = <0 0x01740000 0 0x1c100>;
--			#interconnect-cells = <1>;
-+			#interconnect-cells = <2>;
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
- 		ipa_virt: interconnect@1e00000 {
- 			compatible = "qcom,sc7180-ipa-virt";
- 			reg = <0 0x01e00000 0 0x1000>;
--			#interconnect-cells = <1>;
-+			#interconnect-cells = <2>;
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
-@@ -1400,9 +1400,9 @@ ipa: ipa@1e40000 {
- 			clocks = <&rpmhcc RPMH_IPA_CLK>;
- 			clock-names = "core";
- 
--			interconnects = <&aggre2_noc MASTER_IPA &mc_virt SLAVE_EBI1>,
--				        <&aggre2_noc MASTER_IPA &system_noc SLAVE_IMEM>,
--					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_IPA_CFG>;
-+			interconnects = <&aggre2_noc MASTER_IPA 0 &mc_virt SLAVE_EBI1 0>,
-+					<&aggre2_noc MASTER_IPA 0 &system_noc SLAVE_IMEM 0>,
-+					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_IPA_CFG 0>;
- 			interconnect-names = "memory",
- 					     "imem",
- 					     "config";
-@@ -2526,8 +2526,8 @@ qspi: spi@88dc000 {
- 			clocks = <&gcc GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
- 				 <&gcc GCC_QSPI_CORE_CLK>;
- 			clock-names = "iface", "core";
--			interconnects = <&gem_noc MASTER_APPSS_PROC
--					&config_noc SLAVE_QSPI_0>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 0
-+					&config_noc SLAVE_QSPI_0 0>;
- 			interconnect-names = "qspi-config";
- 			power-domains = <&rpmhpd SC7180_CX>;
- 			operating-points-v2 = <&qspi_opp_table>;
-@@ -2586,7 +2586,7 @@ usb_1_ssphy: phy@88e9200 {
- 		dc_noc: interconnect@9160000 {
- 			compatible = "qcom,sc7180-dc-noc";
- 			reg = <0 0x09160000 0 0x03200>;
--			#interconnect-cells = <1>;
-+			#interconnect-cells = <2>;
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
-@@ -2600,14 +2600,14 @@ system-cache-controller@9200000 {
- 		gem_noc: interconnect@9680000 {
- 			compatible = "qcom,sc7180-gem-noc";
- 			reg = <0 0x09680000 0 0x3e200>;
--			#interconnect-cells = <1>;
-+			#interconnect-cells = <2>;
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
- 		npu_noc: interconnect@9990000 {
- 			compatible = "qcom,sc7180-npu-noc";
- 			reg = <0 0x09990000 0 0x1600>;
--			#interconnect-cells = <1>;
-+			#interconnect-cells = <2>;
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
-@@ -2643,8 +2643,8 @@ usb_1: usb@a6f8800 {
- 
- 			resets = <&gcc GCC_USB30_PRIM_BCR>;
- 
--			interconnects = <&aggre2_noc MASTER_USB3 &mc_virt SLAVE_EBI1>,
--					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3>;
-+			interconnects = <&aggre2_noc MASTER_USB3 0 &mc_virt SLAVE_EBI1 0>,
-+					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3 0>;
- 			interconnect-names = "usb-ddr", "apps-usb";
- 
- 			usb_1_dwc3: dwc3@a600000 {
-@@ -2675,8 +2675,8 @@ venus: video-codec@aa00000 {
- 				      "vcodec0_core", "vcodec0_bus";
- 			iommus = <&apps_smmu 0x0c00 0x60>;
- 			memory-region = <&venus_mem>;
--			interconnects = <&mmss_noc MASTER_VIDEO_P0 &mc_virt SLAVE_EBI1>,
--					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_VENUS_CFG>;
-+			interconnects = <&mmss_noc MASTER_VIDEO_P0 0 &mc_virt SLAVE_EBI1 0>,
-+					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_VENUS_CFG 0>;
- 			interconnect-names = "video-mem", "cpu-cfg";
- 
- 			video-decoder {
-@@ -2701,7 +2701,7 @@ videocc: clock-controller@ab00000 {
- 		camnoc_virt: interconnect@ac00000 {
- 			compatible = "qcom,sc7180-camnoc-virt";
- 			reg = <0 0x0ac00000 0 0x1000>;
--			#interconnect-cells = <1>;
-+			#interconnect-cells = <2>;
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
+> I didn't get from your commit message if you have been able to
+> identify where the issue is. You said register values are correct, but
+> did you try to plug a scope and see if data are actually put on the
+> bus ? Does this happen with full parallel too or BT.656 only ?
+>
+unfortunately I didn't scope the pins, but this issue happened in both
+the modes. And with this patch it improves handling the sensor in
+s_stream call.
+
+Cheers,
+Prabhakar
+
+> >
+> > To get around this issue the following actions are performed for
+> > parallel mode (DVP):
+> > 1: Keeps the sensor in software power down mode and is woken up only in
+> >    ov5640_set_stream_dvp() callback.
+> > 2: Enables data lines in s_power callback
+> > 3: Configures HVP lines in s_power callback instead of configuring
+> >    everytime in ov5640_set_stream_dvp().
+> > 4: Disables MIPI interface.
+> >
+> > Fixes: f22996db44e2d ("media: ov5640: add support of DVP parallel interface")
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > ---
+> >  drivers/media/i2c/ov5640.c | 321 ++++++++++++++++++++-----------------
+> >  1 file changed, 172 insertions(+), 149 deletions(-)
+> >
+> > diff --git a/drivers/media/i2c/ov5640.c b/drivers/media/i2c/ov5640.c
+> > index 2fe4a7ac0592..ec444bee2ce9 100644
+> > --- a/drivers/media/i2c/ov5640.c
+> > +++ b/drivers/media/i2c/ov5640.c
+> > @@ -94,6 +94,9 @@
+> >  #define OV5640_REG_SDE_CTRL5         0x5585
+> >  #define OV5640_REG_AVG_READOUT               0x56a1
+> >
+> > +#define OV5640_SOFTWARE_PWDN         0x42
+> > +#define OV5640_SOFTWARE_WAKEUP               0x02
+> > +
+> >  enum ov5640_mode_id {
+> >       OV5640_MODE_QCIF_176_144 = 0,
+> >       OV5640_MODE_QVGA_320_240,
+> > @@ -274,7 +277,7 @@ static inline struct v4l2_subdev *ctrl_to_sd(struct v4l2_ctrl *ctrl)
+> >  /* YUV422 UYVY VGA@30fps */
+> >  static const struct reg_value ov5640_init_setting_30fps_VGA[] = {
+> >       {0x3103, 0x11, 0, 0}, {0x3008, 0x82, 0, 5}, {0x3008, 0x42, 0, 0},
+> > -     {0x3103, 0x03, 0, 0}, {0x3017, 0x00, 0, 0}, {0x3018, 0x00, 0, 0},
+> > +     {0x3103, 0x03, 0, 0},
+> >       {0x3630, 0x36, 0, 0},
+> >       {0x3631, 0x0e, 0, 0}, {0x3632, 0xe2, 0, 0}, {0x3633, 0x12, 0, 0},
+> >       {0x3621, 0xe0, 0, 0}, {0x3704, 0xa0, 0, 0}, {0x3703, 0x5a, 0, 0},
+> > @@ -1120,6 +1123,11 @@ static int ov5640_load_regs(struct ov5640_dev *sensor,
+> >               val = regs->val;
+> >               mask = regs->mask;
+> >
+> > +             /* remain in power down mode for DVP */
+> > +             if (regs->reg_addr == OV5640_REG_SYS_CTRL0 && val == OV5640_SOFTWARE_WAKEUP &&
+> > +                 sensor->ep.bus_type != V4L2_MBUS_CSI2_DPHY)
+> > +                     continue;
+> > +
+> >               if (mask)
+> >                       ret = ov5640_mod_reg(sensor, reg_addr, mask, val);
+> >               else
+> > @@ -1210,96 +1218,8 @@ static int ov5640_set_autogain(struct ov5640_dev *sensor, bool on)
+> >
+> >  static int ov5640_set_stream_dvp(struct ov5640_dev *sensor, bool on)
+> >  {
+> > -     int ret;
+> > -     unsigned int flags = sensor->ep.bus.parallel.flags;
+> > -     u8 pclk_pol = 0;
+> > -     u8 hsync_pol = 0;
+> > -     u8 vsync_pol = 0;
+> > -
+> > -     /*
+> > -      * Note about parallel port configuration.
+> > -      *
+> > -      * When configured in parallel mode, the OV5640 will
+> > -      * output 10 bits data on DVP data lines [9:0].
+> > -      * If only 8 bits data are wanted, the 8 bits data lines
+> > -      * of the camera interface must be physically connected
+> > -      * on the DVP data lines [9:2].
+> > -      *
+> > -      * Control lines polarity can be configured through
+> > -      * devicetree endpoint control lines properties.
+> > -      * If no endpoint control lines properties are set,
+> > -      * polarity will be as below:
+> > -      * - VSYNC:     active high
+> > -      * - HREF:      active low
+> > -      * - PCLK:      active low
+> > -      */
+> > -
+> > -     if (on) {
+> > -             /*
+> > -              * configure parallel port control lines polarity
+> > -              *
+> > -              * POLARITY CTRL0
+> > -              * - [5]:       PCLK polarity (0: active low, 1: active high)
+> > -              * - [1]:       HREF polarity (0: active low, 1: active high)
+> > -              * - [0]:       VSYNC polarity (mismatch here between
+> > -              *              datasheet and hardware, 0 is active high
+> > -              *              and 1 is active low...)
+> > -              */
+> > -             if (flags & V4L2_MBUS_PCLK_SAMPLE_RISING)
+> > -                     pclk_pol = 1;
+> > -             if (flags & V4L2_MBUS_HSYNC_ACTIVE_HIGH)
+> > -                     hsync_pol = 1;
+> > -             if (flags & V4L2_MBUS_VSYNC_ACTIVE_LOW)
+> > -                     vsync_pol = 1;
+> > -
+> > -             ret = ov5640_write_reg(sensor,
+> > -                                    OV5640_REG_POLARITY_CTRL00,
+> > -                                    (pclk_pol << 5) |
+> > -                                    (hsync_pol << 1) |
+> > -                                    vsync_pol);
+> > -
+> > -             if (ret)
+> > -                     return ret;
+> > -     }
+> > -
+> > -     /*
+> > -      * powerdown MIPI TX/RX PHY & disable MIPI
+> > -      *
+> > -      * MIPI CONTROL 00
+> > -      * 4:    PWDN PHY TX
+> > -      * 3:    PWDN PHY RX
+> > -      * 2:    MIPI enable
+> > -      */
+> > -     ret = ov5640_write_reg(sensor,
+> > -                            OV5640_REG_IO_MIPI_CTRL00, on ? 0x18 : 0);
+> > -     if (ret)
+> > -             return ret;
+> > -
+> > -     /*
+> > -      * enable VSYNC/HREF/PCLK DVP control lines
+> > -      * & D[9:6] DVP data lines
+> > -      *
+> > -      * PAD OUTPUT ENABLE 01
+> > -      * - 6:         VSYNC output enable
+> > -      * - 5:         HREF output enable
+> > -      * - 4:         PCLK output enable
+> > -      * - [3:0]:     D[9:6] output enable
+> > -      */
+> > -     ret = ov5640_write_reg(sensor,
+> > -                            OV5640_REG_PAD_OUTPUT_ENABLE01,
+> > -                            on ? 0x7f : 0);
+> > -     if (ret)
+> > -             return ret;
+> > -
+> > -     /*
+> > -      * enable D[5:0] DVP data lines
+> > -      *
+> > -      * PAD OUTPUT ENABLE 02
+> > -      * - [7:2]:     D[5:0] output enable
+> > -      */
+> > -     return ov5640_write_reg(sensor,
+> > -                             OV5640_REG_PAD_OUTPUT_ENABLE02,
+> > -                             on ? 0xfc : 0);
+> > +     return ov5640_write_reg(sensor, OV5640_REG_SYS_CTRL0, on ?
+> > +                             OV5640_SOFTWARE_WAKEUP : OV5640_SOFTWARE_PWDN);
+> >  }
+> >
+> >  static int ov5640_set_stream_mipi(struct ov5640_dev *sensor, bool on)
+> > @@ -2001,6 +1921,159 @@ static void ov5640_set_power_off(struct ov5640_dev *sensor)
+> >       clk_disable_unprepare(sensor->xclk);
+> >  }
+> >
+> > +static int ov5640_set_mipi(struct ov5640_dev *sensor, bool on)
+> > +{
+> > +     int ret = 0;
+> > +
+> > +     if (!on) {
+> > +             /* Reset MIPI bus settings to their default values. */
+> > +             ov5640_write_reg(sensor, OV5640_REG_IO_MIPI_CTRL00, 0x58);
+> > +             ov5640_write_reg(sensor, OV5640_REG_MIPI_CTRL00, 0x04);
+> > +             ov5640_write_reg(sensor, OV5640_REG_PAD_OUTPUT00, 0x00);
+> > +
+> > +             return ret;
+> > +     }
+> > +
+> > +     /*
+> > +      * Power up MIPI HS Tx and LS Rx; 2 data lanes mode
+> > +      *
+> > +      * 0x300e = 0x40
+> > +      * [7:5] = 010  : 2 data lanes mode (see FIXME note in
+> > +      *                "ov5640_set_stream_mipi()")
+> > +      * [4] = 0      : Power up MIPI HS Tx
+> > +      * [3] = 0      : Power up MIPI LS Rx
+> > +      * [2] = 0      : MIPI interface disabled
+> > +      */
+> > +     ret = ov5640_write_reg(sensor, OV5640_REG_IO_MIPI_CTRL00, 0x40);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     /*
+> > +      * Gate clock and set LP11 in 'no packets mode' (idle)
+> > +      *
+> > +      * 0x4800 = 0x24
+> > +      * [5] = 1      : Gate clock when 'no packets'
+> > +      * [2] = 1      : MIPI bus in LP11 when 'no packets'
+> > +      */
+> > +     ret = ov5640_write_reg(sensor, OV5640_REG_MIPI_CTRL00, 0x24);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     /*
+> > +      * Set data lanes and clock in LP11 when 'sleeping'
+> > +      *
+> > +      * 0x3019 = 0x70
+> > +      * [6] = 1      : MIPI data lane 2 in LP11 when 'sleeping'
+> > +      * [5] = 1      : MIPI data lane 1 in LP11 when 'sleeping'
+> > +      * [4] = 1      : MIPI clock lane in LP11 when 'sleeping'
+> > +      */
+> > +     ret = ov5640_write_reg(sensor, OV5640_REG_PAD_OUTPUT00, 0x70);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     /* Give lanes some time to coax into LP11 state. */
+> > +     usleep_range(500, 1000);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int ov5640_set_dvp(struct ov5640_dev *sensor, bool on)
+> > +{
+> > +     unsigned int flags = sensor->ep.bus.parallel.flags;
+> > +     u8 pclk_pol = 0;
+> > +     u8 hsync_pol = 0;
+> > +     u8 vsync_pol = 0;
+> > +     int ret = 0;
+> > +
+> > +     if (!on) {
+> > +             /* Reset settings to their default values. */
+> > +             ov5640_write_reg(sensor, OV5640_REG_IO_MIPI_CTRL00, 0x58);
+> > +             ov5640_write_reg(sensor, OV5640_REG_POLARITY_CTRL00, 0x20);
+> > +             ov5640_write_reg(sensor, OV5640_REG_PAD_OUTPUT_ENABLE01, 0x00);
+> > +             ov5640_write_reg(sensor, OV5640_REG_PAD_OUTPUT_ENABLE02, 0x00);
+> > +
+> > +             return ret;
+> > +     }
+> > +
+> > +     /*
+> > +      * Note about parallel port configuration.
+> > +      *
+> > +      * When configured in parallel mode, the OV5640 will
+> > +      * output 10 bits data on DVP data lines [9:0].
+> > +      * If only 8 bits data are wanted, the 8 bits data lines
+> > +      * of the camera interface must be physically connected
+> > +      * on the DVP data lines [9:2].
+> > +      *
+> > +      * Control lines polarity can be configured through
+> > +      * devicetree endpoint control lines properties.
+> > +      * If no endpoint control lines properties are set,
+> > +      * polarity will be as below:
+> > +      * - VSYNC:     active high
+> > +      * - HREF:      active low
+> > +      * - PCLK:      active low
+> > +      */
+> > +     /*
+> > +      * configure parallel port control lines polarity
+> > +      *
+> > +      * POLARITY CTRL0
+> > +      * - [5]:       PCLK polarity (0: active low, 1: active high)
+> > +      * - [1]:       HREF polarity (0: active low, 1: active high)
+> > +      * - [0]:       VSYNC polarity (mismatch here between
+> > +      *              datasheet and hardware, 0 is active high
+> > +      *              and 1 is active low...)
+> > +      */
+> > +     if (flags & V4L2_MBUS_PCLK_SAMPLE_RISING)
+> > +             pclk_pol = 1;
+> > +     if (flags & V4L2_MBUS_HSYNC_ACTIVE_HIGH)
+> > +             hsync_pol = 1;
+> > +     if (flags & V4L2_MBUS_VSYNC_ACTIVE_LOW)
+> > +             vsync_pol = 1;
+> > +
+> > +     ret = ov5640_write_reg(sensor, OV5640_REG_POLARITY_CTRL00,
+> > +                            (pclk_pol << 5) | (hsync_pol << 1) | vsync_pol);
+> > +
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     /*
+> > +      * powerdown MIPI TX/RX PHY & disable MIPI
+> > +      *
+> > +      * MIPI CONTROL 00
+> > +      * 4:    PWDN PHY TX
+> > +      * 3:    PWDN PHY RX
+> > +      * 2:    MIPI enable
+> > +      */
+> > +     ret = ov5640_write_reg(sensor, OV5640_REG_IO_MIPI_CTRL00, 0x18);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     /*
+> > +      * enable VSYNC/HREF/PCLK DVP control lines
+> > +      * & D[9:6] DVP data lines
+> > +      *
+> > +      * PAD OUTPUT ENABLE 01
+> > +      * - 6:         VSYNC output enable
+> > +      * - 5:         HREF output enable
+> > +      * - 4:         PCLK output enable
+> > +      * - [3:0]:     D[9:6] output enable
+> > +      */
+> > +     ret = ov5640_write_reg(sensor, OV5640_REG_PAD_OUTPUT_ENABLE01, 0x7f);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     /*
+> > +      * enable D[5:0] DVP data lines
+> > +      *
+> > +      * PAD OUTPUT ENABLE 02
+> > +      * - [7:2]:     D[5:0] output enable
+> > +      */
+> > +     ret = ov5640_write_reg(sensor, OV5640_REG_PAD_OUTPUT_ENABLE02, 0xfc);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     return 0;
+> > +}
+> > +
+> >  static int ov5640_set_power(struct ov5640_dev *sensor, bool on)
+> >  {
+> >       int ret = 0;
+> > @@ -2013,67 +2086,17 @@ static int ov5640_set_power(struct ov5640_dev *sensor, bool on)
+> >               ret = ov5640_restore_mode(sensor);
+> >               if (ret)
+> >                       goto power_off;
+> > +     }
+> >
+> > -             /* We're done here for DVP bus, while CSI-2 needs setup. */
+> > -             if (sensor->ep.bus_type != V4L2_MBUS_CSI2_DPHY)
+> > -                     return 0;
+> > -
+> > -             /*
+> > -              * Power up MIPI HS Tx and LS Rx; 2 data lanes mode
+> > -              *
+> > -              * 0x300e = 0x40
+> > -              * [7:5] = 010  : 2 data lanes mode (see FIXME note in
+> > -              *                "ov5640_set_stream_mipi()")
+> > -              * [4] = 0      : Power up MIPI HS Tx
+> > -              * [3] = 0      : Power up MIPI LS Rx
+> > -              * [2] = 0      : MIPI interface disabled
+> > -              */
+> > -             ret = ov5640_write_reg(sensor,
+> > -                                    OV5640_REG_IO_MIPI_CTRL00, 0x40);
+> > -             if (ret)
+> > -                     goto power_off;
+> > -
+> > -             /*
+> > -              * Gate clock and set LP11 in 'no packets mode' (idle)
+> > -              *
+> > -              * 0x4800 = 0x24
+> > -              * [5] = 1      : Gate clock when 'no packets'
+> > -              * [2] = 1      : MIPI bus in LP11 when 'no packets'
+> > -              */
+> > -             ret = ov5640_write_reg(sensor,
+> > -                                    OV5640_REG_MIPI_CTRL00, 0x24);
+> > -             if (ret)
+> > -                     goto power_off;
+> > -
+> > -             /*
+> > -              * Set data lanes and clock in LP11 when 'sleeping'
+> > -              *
+> > -              * 0x3019 = 0x70
+> > -              * [6] = 1      : MIPI data lane 2 in LP11 when 'sleeping'
+> > -              * [5] = 1      : MIPI data lane 1 in LP11 when 'sleeping'
+> > -              * [4] = 1      : MIPI clock lane in LP11 when 'sleeping'
+> > -              */
+> > -             ret = ov5640_write_reg(sensor,
+> > -                                    OV5640_REG_PAD_OUTPUT00, 0x70);
+> > -             if (ret)
+> > -                     goto power_off;
+> > -
+> > -             /* Give lanes some time to coax into LP11 state. */
+> > -             usleep_range(500, 1000);
+> > -
+> > -     } else {
+> > -             if (sensor->ep.bus_type == V4L2_MBUS_CSI2_DPHY) {
+> > -                     /* Reset MIPI bus settings to their default values. */
+> > -                     ov5640_write_reg(sensor,
+> > -                                      OV5640_REG_IO_MIPI_CTRL00, 0x58);
+> > -                     ov5640_write_reg(sensor,
+> > -                                      OV5640_REG_MIPI_CTRL00, 0x04);
+> > -                     ov5640_write_reg(sensor,
+> > -                                      OV5640_REG_PAD_OUTPUT00, 0x00);
+> > -             }
+> > +     if (sensor->ep.bus_type == V4L2_MBUS_CSI2_DPHY)
+> > +             ret = ov5640_set_mipi(sensor, on);
+> > +     else
+> > +             ret = ov5640_set_dvp(sensor, on);
+> > +     if (ret)
+> > +             goto power_off;
+> >
+> > +     if (!on)
+> >               ov5640_set_power_off(sensor);
+> > -     }
+> >
+> >       return 0;
+> >
+> > --
+> > 2.17.1
+> >
