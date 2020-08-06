@@ -2,147 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B670C23D88D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 11:25:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE64B23D8B6
+	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 11:33:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729195AbgHFJZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Aug 2020 05:25:20 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:43311 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729074AbgHFJZG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 05:25:06 -0400
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
-  by alexa-out.qualcomm.com with ESMTP; 06 Aug 2020 02:24:59 -0700
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 06 Aug 2020 02:24:57 -0700
-Received: from gokulsri-linux.qualcomm.com ([10.201.2.207])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 06 Aug 2020 14:54:40 +0530
-Received: by gokulsri-linux.qualcomm.com (Postfix, from userid 432570)
-        id E7BD6219E1; Thu,  6 Aug 2020 14:54:38 +0530 (IST)
-From:   Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        sboyd@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     sricharan@codeaurora.org, gokulsri@codeaurora.org
-Subject: [PATCH 3/3] arm64: dts: Enabled MHI device over PCIe
-Date:   Thu,  6 Aug 2020 14:54:38 +0530
-Message-Id: <1596705878-12385-4-git-send-email-gokulsri@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1596705878-12385-1-git-send-email-gokulsri@codeaurora.org>
-References: <1596705878-12385-1-git-send-email-gokulsri@codeaurora.org>
+        id S1729257AbgHFJcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Aug 2020 05:32:41 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:47550 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1729002AbgHFJWq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 05:22:46 -0400
+X-UUID: 9b5a535d52124b33b67b243e4bcc4b26-20200806
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=dGXGiunHjZndJ6cHTy/bVaVcZvEJmUdgQt8u80wNGMc=;
+        b=GF9F6mWVU+fjxwWa8z4VOZHYFq3LUr3qvEA/mJ6FmxyH87jGLiPuMoPINvDvit195pxf1M1Td0uQdqVG6Flb5iLRQIZVN9A5DIKLkqKS+U4XWJA6eTvBUIZ/0h9yHvjYOioDwx/rA+prlmsSFzu4v8VKx6S5B+XamAtcIdDApBQ=;
+X-UUID: 9b5a535d52124b33b67b243e4bcc4b26-20200806
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <weiyi.lu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 231799712; Thu, 06 Aug 2020 17:22:01 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 6 Aug 2020 17:21:59 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 6 Aug 2020 17:21:58 +0800
+From:   Weiyi Lu <weiyi.lu@mediatek.com>
+To:     Enric Balletbo Serra <eballetbo@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>
+CC:     James Liao <jamesjj.liao@mediatek.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, Weiyi Lu <weiyi.lu@mediatek.com>
+Subject: [PATCH v17 01/12] dt-bindings: mediatek: Add property to mt8183 smi-common
+Date:   Thu, 6 Aug 2020 17:21:44 +0800
+Message-ID: <1596705715-15320-2-git-send-email-weiyi.lu@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
+In-Reply-To: <1596705715-15320-1-git-send-email-weiyi.lu@mediatek.com>
+References: <1596705715-15320-1-git-send-email-weiyi.lu@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enabled MHI device support over PCIe and added memory
-reservation required for MHI enabled QCN9000 PCIe card.
-
-Signed-off-by: Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi | 58 ++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/ipq8074.dtsi      |  8 +++++
- 2 files changed, 66 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi b/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
-index 0827055..d201a7b 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
-@@ -24,6 +24,22 @@
- 		device_type = "memory";
- 		reg = <0x0 0x40000000 0x0 0x20000000>;
- 	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		qcn9000_pcie0: memory@50f00000 {
-+			no-map;
-+			reg = <0x0 0x50f00000 0x0 0x03700000>;
-+		};
-+
-+		qcn9000_pcie1: memory@54600000 {
-+			no-map;
-+			reg = <0x0 0x54600000 0x0 0x03700000>;
-+		};
-+	};
- };
- 
- &blsp1_spi1 {
-@@ -74,3 +90,45 @@
- 		nand-bus-width = <8>;
- 	};
- };
-+
-+&pcie0_rp {
-+	status = "ok";
-+
-+	mhi_0: qcom,mhi@0 {
-+		reg = <0 0 0 0 0 >;
-+		qrtr_instance_id = <0x20>;
-+		#address-cells = <0x2>;
-+		#size-cells = <0x2>;
-+
-+		base-addr = <0x50f00000>;
-+		qcom,caldb-addr = <0x53E00000>;
-+		qrtr_node_id = <0x27>;
-+		mhi,max-channels = <30>;
-+		mhi,timeout = <10000>;
-+
-+		pcie0_mhi: pcie0_mhi {
-+			status = "ok";
-+		};
-+	};
-+};
-+
-+&pcie1_rp {
-+	status = "ok";
-+
-+	mhi_1: qcom,mhi@1 {
-+		reg = <0 0 0 0 0 >;
-+		qrtr_instance_id = <0x21>;
-+		#address-cells = <0x2>;
-+		#size-cells = <0x2>;
-+
-+		base-addr = <0x54600000>;
-+		qcom,caldb-addr = <0x57500000>;
-+		qrtr_node_id = <0x28>;
-+		mhi,max-channels = <30>;
-+		mhi,timeout = <10000>;
-+
-+		pcie1_mhi: pcie1_mhi {
-+			status = "ok";
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index b651345..eef47c1 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -709,6 +709,10 @@
- 				      "ahb",
- 				      "axi_m_sticky";
- 			status = "disabled";
-+
-+			pcie1_rp: pcie1_rp {
-+				reg = <0 0 0 0 0>;
-+			};
- 		};
- 
- 		pcie0: pci@20000000 {
-@@ -779,6 +783,10 @@
- 				      "axi_m_sticky",
- 				      "axi_s_sticky";
- 			status = "disabled";
-+
-+			pcie0_rp: pcie0_rp {
-+				reg = <0 0 0 0 0>;
-+			};
- 		};
- 
- 		tcsr_q6: syscon@1945000 {
--- 
-2.7.4
+Rm9yIHNjcHN5cyBkcml2ZXIgdXNpbmcgcmVnbWFwIGJhc2VkIHN5c2NvbiBkcml2ZXIgQVBJLg0K
+DQpTaWduZWQtb2ZmLWJ5OiBXZWl5aSBMdSA8d2VpeWkubHVAbWVkaWF0ZWsuY29tPg0KQWNrZWQt
+Ynk6IFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5lbC5vcmc+DQotLS0NCiAuLi4vZGV2aWNldHJlZS9i
+aW5kaW5ncy9tZW1vcnktY29udHJvbGxlcnMvbWVkaWF0ZWssc21pLWNvbW1vbi50eHQgICAgICB8
+IDIgKy0NCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkNCg0K
+ZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZW1vcnktY29u
+dHJvbGxlcnMvbWVkaWF0ZWssc21pLWNvbW1vbi50eHQgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRy
+ZWUvYmluZGluZ3MvbWVtb3J5LWNvbnRyb2xsZXJzL21lZGlhdGVrLHNtaS1jb21tb24udHh0DQpp
+bmRleCBiNDc4YWRlLi4wMTc0NGVjIDEwMDY0NA0KLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL21lbW9yeS1jb250cm9sbGVycy9tZWRpYXRlayxzbWktY29tbW9uLnR4dA0K
+KysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21lbW9yeS1jb250cm9sbGVy
+cy9tZWRpYXRlayxzbWktY29tbW9uLnR4dA0KQEAgLTIwLDcgKzIwLDcgQEAgUmVxdWlyZWQgcHJv
+cGVydGllczoNCiAJIm1lZGlhdGVrLG10MjcxMi1zbWktY29tbW9uIg0KIAkibWVkaWF0ZWssbXQ3
+NjIzLXNtaS1jb21tb24iLCAibWVkaWF0ZWssbXQyNzAxLXNtaS1jb21tb24iDQogCSJtZWRpYXRl
+ayxtdDgxNzMtc21pLWNvbW1vbiINCi0JIm1lZGlhdGVrLG10ODE4My1zbWktY29tbW9uIg0KKwki
+bWVkaWF0ZWssbXQ4MTgzLXNtaS1jb21tb24iLCAic3lzY29uIg0KIC0gcmVnIDogdGhlIHJlZ2lz
+dGVyIGFuZCBzaXplIG9mIHRoZSBTTUkgYmxvY2suDQogLSBwb3dlci1kb21haW5zIDogYSBwaGFu
+ZGxlIHRvIHRoZSBwb3dlciBkb21haW4gb2YgdGhpcyBsb2NhbCBhcmJpdGVyLg0KIC0gY2xvY2tz
+IDogTXVzdCBjb250YWluIGFuIGVudHJ5IGZvciBlYWNoIGVudHJ5IGluIGNsb2NrLW5hbWVzLg0K
+LS0gDQoxLjguMS4xLmRpcnR5DQo=
 
