@@ -2,167 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A043023E0D7
-	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 20:39:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B71F723E10E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 20:42:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729108AbgHFSir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Aug 2020 14:38:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60656 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726899AbgHFSin (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 Aug 2020 14:38:43 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 878AF221E3;
-        Thu,  6 Aug 2020 18:38:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1596739123;
-        bh=2kQR9I4zXt/WNULI01GY/ypUOHIRns3YKmoIz1UaEr4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=fRTYpEGCjZWeocG4aY97dzfbZvAO437sqaVl2VpUuxiYy7sElhR1g3gUyoezzPBMS
-         9hojTb0yDIbtJjxuXpZpdoi+mIF/q0DYfIMi0exfQeg05CMS6LCSTCIOG/8qsYEX3X
-         ydTPApw7fIA7o+rGUqq8tYAhmdGBDpfk9d4phDC4=
-Date:   Thu, 6 Aug 2020 19:38:38 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Daniel Campello <campello@chromium.org>
-Cc:     LKML <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH v5 11/15] iio: sx9310: Use variable to hold &client->dev
-Message-ID: <20200806193838.092d1567@archlinux>
-In-Reply-To: <20200803175559.v5.11.If9d9c0fe089e43ea2dbc7900b6d61cd05c66f1f7@changeid>
-References: <20200803235815.778997-1-campello@chromium.org>
-        <20200803175559.v5.11.If9d9c0fe089e43ea2dbc7900b6d61cd05c66f1f7@changeid>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1729984AbgHFSkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Aug 2020 14:40:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60452 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729979AbgHFSkI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 14:40:08 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8AC7C061575
+        for <devicetree@vger.kernel.org>; Thu,  6 Aug 2020 11:40:07 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1k3ko2-0004cr-1P; Thu, 06 Aug 2020 20:39:58 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1k3knz-0007gi-5v; Thu, 06 Aug 2020 20:39:55 +0200
+Date:   Thu, 6 Aug 2020 20:39:55 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Subject: Re: [PATCH 2/5] dt-bindings: pwm: renesas,pwm-rcar: Add r8a7742
+ support
+Message-ID: <20200806183955.lmlwhsdrcpccwrkz@pengutronix.de>
+References: <20200806183152.11809-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20200806183152.11809-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="wi7zgoow7wajiuwc"
+Content-Disposition: inline
+In-Reply-To: <20200806183152.11809-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  3 Aug 2020 17:58:11 -0600
-Daniel Campello <campello@chromium.org> wrote:
 
-> Improves readability by storing &client->dev in a local variable.
-> 
-> Signed-off-by: Daniel Campello <campello@chromium.org>
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-This one needed some tweaking to apply as the parent is now
-set by the core code.
+--wi7zgoow7wajiuwc
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied (and the ones before I didn't metion) to the togreg branch
-of iio.git and pushed out as testing,
+Hello,
 
-Thanks,
-
-Jonathan
-
+On Thu, Aug 06, 2020 at 07:31:49PM +0100, Lad Prabhakar wrote:
+> Document RZ/G1H (R8A7742) SoC bindings.
+>=20
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renes=
+as.com>
 > ---
-> 
-> Changes in v5: None
-> Changes in v4: None
-> Changes in v3: None
-> Changes in v2:
->  - Added '\n' to dev_err()
-> 
->  drivers/iio/proximity/sx9310.c | 30 +++++++++++++++---------------
->  1 file changed, 15 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/iio/proximity/sx9310.c b/drivers/iio/proximity/sx9310.c
-> index adb707e2d79612..589052d2d1146e 100644
-> --- a/drivers/iio/proximity/sx9310.c
-> +++ b/drivers/iio/proximity/sx9310.c
-> @@ -887,11 +887,12 @@ static int sx9310_set_indio_dev_name(struct device *dev,
->  static int sx9310_probe(struct i2c_client *client)
->  {
->  	int ret;
-> +	struct device *dev = &client->dev;
->  	struct iio_dev *indio_dev;
->  	struct sx9310_data *data;
->  
-> -	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
-> -	if (indio_dev == NULL)
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-> +	if (!indio_dev)
->  		return -ENOMEM;
->  
->  	data = iio_priv(indio_dev);
-> @@ -905,17 +906,16 @@ static int sx9310_probe(struct i2c_client *client)
->  
->  	ret = regmap_read(data->regmap, SX9310_REG_WHOAMI, &data->whoami);
->  	if (ret) {
-> -		dev_err(&client->dev, "error in reading WHOAMI register: %d",
-> -			ret);
-> +		dev_err(dev, "error in reading WHOAMI register: %d\n", ret);
->  		return ret;
->  	}
->  
-> -	ret = sx9310_set_indio_dev_name(&client->dev, indio_dev, data->whoami);
-> +	ret = sx9310_set_indio_dev_name(dev, indio_dev, data->whoami);
->  	if (ret)
->  		return ret;
->  
-> -	ACPI_COMPANION_SET(&indio_dev->dev, ACPI_COMPANION(&client->dev));
-> -	indio_dev->dev.parent = &client->dev;
-> +	ACPI_COMPANION_SET(&indio_dev->dev, ACPI_COMPANION(dev));
-> +	indio_dev->dev.parent = dev;
->  	indio_dev->channels = sx9310_channels;
->  	indio_dev->num_channels = ARRAY_SIZE(sx9310_channels);
->  	indio_dev->info = &sx9310_info;
-> @@ -927,7 +927,7 @@ static int sx9310_probe(struct i2c_client *client)
->  		return ret;
->  
->  	if (client->irq) {
-> -		ret = devm_request_threaded_irq(&client->dev, client->irq,
-> +		ret = devm_request_threaded_irq(dev, client->irq,
->  						sx9310_irq_handler,
->  						sx9310_irq_thread_handler,
->  						IRQF_TRIGGER_LOW | IRQF_ONESHOT,
-> @@ -935,29 +935,29 @@ static int sx9310_probe(struct i2c_client *client)
->  		if (ret)
->  			return ret;
->  
-> -		data->trig =
-> -			devm_iio_trigger_alloc(&client->dev, "%s-dev%d",
-> -					       indio_dev->name, indio_dev->id);
-> +		data->trig = devm_iio_trigger_alloc(dev, "%s-dev%d",
-> +						    indio_dev->name,
-> +						    indio_dev->id);
->  		if (!data->trig)
->  			return -ENOMEM;
->  
-> -		data->trig->dev.parent = &client->dev;
-> +		data->trig->dev.parent = dev;
->  		data->trig->ops = &sx9310_trigger_ops;
->  		iio_trigger_set_drvdata(data->trig, indio_dev);
->  
-> -		ret = devm_iio_trigger_register(&client->dev, data->trig);
-> +		ret = devm_iio_trigger_register(dev, data->trig);
->  		if (ret)
->  			return ret;
->  	}
->  
-> -	ret = devm_iio_triggered_buffer_setup(&client->dev, indio_dev,
-> +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
->  					      iio_pollfunc_store_time,
->  					      sx9310_trigger_handler,
->  					      &sx9310_buffer_setup_ops);
->  	if (ret)
->  		return ret;
->  
-> -	return devm_iio_device_register(&client->dev, indio_dev);
-> +	return devm_iio_device_register(dev, indio_dev);
->  }
->  
->  static int __maybe_unused sx9310_suspend(struct device *dev)
+>  Documentation/devicetree/bindings/pwm/renesas,pwm-rcar.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pwm/renesas,pwm-rcar.yaml =
+b/Documentation/devicetree/bindings/pwm/renesas,pwm-rcar.yaml
+> index daadde9ff9c4..8b22cb110f3f 100644
+> --- a/Documentation/devicetree/bindings/pwm/renesas,pwm-rcar.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/renesas,pwm-rcar.yaml
+> @@ -13,6 +13,7 @@ properties:
+>    compatible:
+>      items:
+>        - enum:
+> +          - renesas,pwm-r8a7742   # RZ/G1H
+>            - renesas,pwm-r8a7743   # RZ/G1M
+>            - renesas,pwm-r8a7744   # RZ/G1N
+>            - renesas,pwm-r8a7745   # RZ/G1E
 
+The typical dts has:
+
+	compatible =3D "renesas,pwm-r8a7742", "renesas,pwm-rcar";
+
+so there is no need for a driver adaption.
+
+Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--wi7zgoow7wajiuwc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl8sTngACgkQwfwUeK3K
+7Ang/gf/VQ5o3nYBkW7YrJzYGx7rsiH9B/HWrwbVgpjOwQfNc1yCEfg1liZYHDFm
+feEMs3dkCO93YHZjdKGKeqIiXxdbHdEY94Cgmk8am1Ml9+koA79tHUD+UblJ9U28
+T9zl88KmyjU5BImc1AJSAvVRoMO6BopXbbqCKAh+PYrpspxLSHyQeEZHssl4FxXK
+ZRKfnjC3bJr0xas7F2EQ9lukFqr5wdQN+kJpkv1LIf1eDDKvimdOuCLW2710ES4O
+brIMcPs5PyJha1hcV2qVk1/5LXWlSilL2QB3mUhThWX7KtlGIlQj4DJFll/nlqyi
+SKrDlmoOl9sXyzrAAuj7K/VAz3pOZA==
+=8duc
+-----END PGP SIGNATURE-----
+
+--wi7zgoow7wajiuwc--
