@@ -2,108 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 230EF23DC86
-	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 18:53:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 889F823DC06
+	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 18:44:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728618AbgHFQxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Aug 2020 12:53:22 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:56292 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729231AbgHFQwy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 12:52:54 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 076F15Ev107938;
-        Thu, 6 Aug 2020 10:01:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1596726065;
-        bh=SsDht611ujdkNQFc6BFSfYMna5LmuK9AurW2tYiBVyU=;
-        h=Subject:To:References:From:Date:In-Reply-To;
-        b=IydTJGkvBiT7VaX6EBJOe1Z1CzhZiR6dHukbm9n8mlGN/ogWpgM04AcWOGWWqilRV
-         aVoxk2TSG5yjqHjWygESa/KQksSSpl/nyd+5j9Y0f+uKkuyeyay94f0K+0S0ahvi4w
-         a3NIvRw6BmqgBwxkkKa4qNyqzlfEDuB14CS9L//w=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 076F15G0015172
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 6 Aug 2020 10:01:05 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 6 Aug
- 2020 10:01:05 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 6 Aug 2020 10:01:05 -0500
-Received: from [10.250.38.37] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 076F14J2050834;
-        Thu, 6 Aug 2020 10:01:04 -0500
-Subject: Re: [PATCH 1/2] leds: is31fl319x: Add sdb pin and generate a 5ms low
- pulse when startup
-To:     Grant Feng <von81@163.com>, <jacek.anaszewski@gmail.com>,
-        <pavel@ucw.cz>, <robh+dt@kernel.org>, <linux-leds@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20200806062130.25187-1-von81@163.com>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <7c828160-bef6-45b5-60d1-85c6074953c4@ti.com>
-Date:   Thu, 6 Aug 2020 10:00:59 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1729146AbgHFQoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Aug 2020 12:44:20 -0400
+Received: from mail29.static.mailgun.info ([104.130.122.29]:29021 "EHLO
+        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729119AbgHFQoH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 12:44:07 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1596732247; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: To:
+ Subject: Sender; bh=ggOg6zyHd/BJyz6p09BxDxipcYys+9vo5wRtRWDV+Dw=; b=YzcrkpLkdVO1nn/XrhmEfZRmg0Vodwoc1kEb4IrGpsw4WtgL6TwxIxDKWiWnONQu2EiKSGir
+ HCYDxHd/vLeftWWxztEL9K3Pk6worNLcGEgzK1LuSZLS7zD9AmwBE2Nzt9kbDErBYhwkI5Y9
+ yAwBVle7q8USIBuWlNAyuDkiPE4=
+X-Mailgun-Sending-Ip: 104.130.122.29
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n13.prod.us-east-1.postgun.com with SMTP id
+ 5f2c1da548ee73b1c7a30a65 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 06 Aug 2020 15:11:33
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 75D15C4339C; Thu,  6 Aug 2020 15:11:32 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=2.0 tests=ALL_TRUSTED,NICE_REPLY_A,
+        SPF_NONE,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [192.168.0.129] (unknown [183.83.142.110])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rohitkr)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 62261C433C9;
+        Thu,  6 Aug 2020 15:11:19 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 62261C433C9
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=rohitkr@codeaurora.org
+Subject: Re: [PATCH v5 00/12] ASoC: qcom: Add support for SC7180 lpass variant
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1596528453-11437-1-git-send-email-rohitkr@codeaurora.org>
+From:   Rohit Kumar <rohitkr@codeaurora.org>
+Message-ID: <1aa197e8-0c11-e2f1-d067-c74c1a185b8a@codeaurora.org>
+Date:   Thu, 6 Aug 2020 20:41:04 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-In-Reply-To: <20200806062130.25187-1-von81@163.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1596528453-11437-1-git-send-email-rohitkr@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Grant
+Hello Mark,
 
-On 8/6/20 1:21 AM, Grant Feng wrote:
-> generate a 5ms low pulse on sdb pin when startup, then the chip
-> becomes more stable in the complex EM environment.
+Other than patch 12, there is no comment on other patches from anyone as 
+of now.
+
+[PATCH v5 12/12] dt-bindings: sound: lpass-cpu: Move to yaml format
+
+I will plan to post patch12 only with comments addressed if other
+changes does not have any comment. Please let me know your inputs.
+
+Thanks,
+Rohit
+On 8/4/2020 1:37 PM, Rohit kumar wrote:
+> This patch chain add audio support for SC7180 soc by doing the required
+> modification in existing common lpass-cpu/lpass-platform driver.
+> This also fixes some concurrency issue.
 >
-> Signed-off-by: Grant Feng <von81@163.com>
-> ---
->   drivers/leds/leds-is31fl319x.c | 12 ++++++++++++
->   1 file changed, 12 insertions(+)
+> This patch series is already tested by Srinivas on Dragon Board 410c.
+> Changes since v4:
+>          - Updated compatible string for sc7180 lpass cpu as suggested by Rob
+>          - Addressed comments by Rob in yaml Documentation.
 >
-> diff --git a/drivers/leds/leds-is31fl319x.c b/drivers/leds/leds-is31fl319x.c
-> index ca6634b8683c..b4f70002cec9 100644
-> --- a/drivers/leds/leds-is31fl319x.c
-> +++ b/drivers/leds/leds-is31fl319x.c
-> @@ -16,6 +16,8 @@
->   #include <linux/of_device.h>
->   #include <linux/regmap.h>
->   #include <linux/slab.h>
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
->   
->   /* register numbers */
->   #define IS31FL319X_SHUTDOWN		0x00
-> @@ -61,6 +63,7 @@
->   struct is31fl319x_chip {
->   	const struct is31fl319x_chipdef *cdef;
->   	struct i2c_client               *client;
-> +	struct gpio_desc		*sdb_pin;
->   	struct regmap                   *regmap;
->   	struct mutex                    lock;
->   	u32                             audio_gain_db;
-> @@ -265,6 +268,15 @@ static int is31fl319x_parse_dt(struct device *dev,
->   		is31->audio_gain_db = min(is31->audio_gain_db,
->   					  IS31FL319X_AUDIO_GAIN_DB_MAX);
->   
-> +	is31->sdb_pin = gpiod_get(dev, "sdb", GPIOD_ASIS);
-
-Since this is optional maybe use devm_gpiod_get_optional.
-
-If this is required for stability then if the GPIO is not present then 
-the parse_dt should return the error.
-
-And use the devm_gpiod_get call.  Otherwise you are missing the 
-gpiod_put when exiting or removing the driver.
-
-Dan
-
+> Ajit Pandey (4):
+>    ASoC: qcom: Add common array to initialize soc based core clocks
+>    ASoC: qcom: lpass-platform: Replace card->dev with component->dev
+>    include: dt-bindings: sound: Add sc7180-lpass bindings header
+>    ASoC: qcom: lpass-sc7180: Add platform driver for lpass audio
+>
+> Rohit kumar (8):
+>    ASoC: qcom: lpass-cpu: Move ahbix clk to platform specific function
+>    ASoC: qcom: lpass-platform: fix memory leak
+>    ASoC: qcom: lpass: Use regmap_field for i2sctl and dmactl registers
+>    ASoC: qcom: lpass-cpu: fix concurrency issue
+>    dt-bindings: sound: lpass-cpu: Add sc7180 lpass cpu node
+>    ASoC: qcom: lpass-cpu: Use platform_get_resource
+>    ASoC: qcom: lpass-platform: Use platform_get_irq
+>    dt-bindings: sound: lpass-cpu: Move to yaml format
+>
+>   .../devicetree/bindings/sound/qcom,lpass-cpu.txt   |  79 --------
+>   .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  | 179 +++++++++++++++++
+>   include/dt-bindings/sound/sc7180-lpass.h           |  10 +
+>   sound/soc/qcom/Kconfig                             |   5 +
+>   sound/soc/qcom/Makefile                            |   2 +
+>   sound/soc/qcom/lpass-apq8016.c                     |  86 ++++++--
+>   sound/soc/qcom/lpass-cpu.c                         | 204 ++++++++++---------
+>   sound/soc/qcom/lpass-ipq806x.c                     |  67 +++++++
+>   sound/soc/qcom/lpass-lpaif-reg.h                   | 157 ++++++++-------
+>   sound/soc/qcom/lpass-platform.c                    | 155 +++++++++++----
+>   sound/soc/qcom/lpass-sc7180.c                      | 216 +++++++++++++++++++++
+>   sound/soc/qcom/lpass.h                             |  63 +++++-
+>   12 files changed, 924 insertions(+), 299 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/sound/qcom,lpass-cpu.txt
+>   create mode 100644 Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+>   create mode 100644 include/dt-bindings/sound/sc7180-lpass.h
+>   create mode 100644 sound/soc/qcom/lpass-sc7180.c
+>
+-- 
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+of the Code Aurora Forum, hosted by the Linux Foundation.
 
