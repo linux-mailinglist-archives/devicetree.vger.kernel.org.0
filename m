@@ -2,76 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC9F623E067
-	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 20:33:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A043023E0D7
+	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 20:39:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728724AbgHFSdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Aug 2020 14:33:03 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:9539 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728664AbgHFScO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 14:32:14 -0400
-X-IronPort-AV: E=Sophos;i="5.75,441,1589209200"; 
-   d="scan'208";a="54073247"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 07 Aug 2020 03:32:13 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 5B91240062A0;
-        Fri,  7 Aug 2020 03:32:10 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        linux-renesas-soc@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, Prabhakar <prabhakar.csengg@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 5/5] ARM: dts: r8a7742: Add TPU support
-Date:   Thu,  6 Aug 2020 19:31:52 +0100
-Message-Id: <20200806183152.11809-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200806183152.11809-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20200806183152.11809-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S1729108AbgHFSir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Aug 2020 14:38:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60656 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726899AbgHFSin (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 Aug 2020 14:38:43 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 878AF221E3;
+        Thu,  6 Aug 2020 18:38:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1596739123;
+        bh=2kQR9I4zXt/WNULI01GY/ypUOHIRns3YKmoIz1UaEr4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=fRTYpEGCjZWeocG4aY97dzfbZvAO437sqaVl2VpUuxiYy7sElhR1g3gUyoezzPBMS
+         9hojTb0yDIbtJjxuXpZpdoi+mIF/q0DYfIMi0exfQeg05CMS6LCSTCIOG/8qsYEX3X
+         ydTPApw7fIA7o+rGUqq8tYAhmdGBDpfk9d4phDC4=
+Date:   Thu, 6 Aug 2020 19:38:38 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Daniel Campello <campello@chromium.org>
+Cc:     LKML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org
+Subject: Re: [PATCH v5 11/15] iio: sx9310: Use variable to hold &client->dev
+Message-ID: <20200806193838.092d1567@archlinux>
+In-Reply-To: <20200803175559.v5.11.If9d9c0fe089e43ea2dbc7900b6d61cd05c66f1f7@changeid>
+References: <20200803235815.778997-1-campello@chromium.org>
+        <20200803175559.v5.11.If9d9c0fe089e43ea2dbc7900b6d61cd05c66f1f7@changeid>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add TPU support to R8A7742 SoC DT.
+On Mon,  3 Aug 2020 17:58:11 -0600
+Daniel Campello <campello@chromium.org> wrote:
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
----
- arch/arm/boot/dts/r8a7742.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+> Improves readability by storing &client->dev in a local variable.
+> 
+> Signed-off-by: Daniel Campello <campello@chromium.org>
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+This one needed some tweaking to apply as the parent is now
+set by the core code.
 
-diff --git a/arch/arm/boot/dts/r8a7742.dtsi b/arch/arm/boot/dts/r8a7742.dtsi
-index 41c89e04cf17..4a8d27dff9f7 100644
---- a/arch/arm/boot/dts/r8a7742.dtsi
-+++ b/arch/arm/boot/dts/r8a7742.dtsi
-@@ -328,6 +328,17 @@
- 			reg = <0 0xe6060000 0 0x250>;
- 		};
- 
-+		tpu: pwm@e60f0000 {
-+			compatible = "renesas,tpu-r8a7742", "renesas,tpu";
-+			reg = <0 0xe60f0000 0 0x148>;
-+			interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 304>;
-+			power-domains = <&sysc R8A7742_PD_ALWAYS_ON>;
-+			resets = <&cpg 304>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
- 		cpg: clock-controller@e6150000 {
- 			compatible = "renesas,r8a7742-cpg-mssr";
- 			reg = <0 0xe6150000 0 0x1000>;
--- 
-2.17.1
+Applied (and the ones before I didn't metion) to the togreg branch
+of iio.git and pushed out as testing,
+
+Thanks,
+
+Jonathan
+
+> ---
+> 
+> Changes in v5: None
+> Changes in v4: None
+> Changes in v3: None
+> Changes in v2:
+>  - Added '\n' to dev_err()
+> 
+>  drivers/iio/proximity/sx9310.c | 30 +++++++++++++++---------------
+>  1 file changed, 15 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/iio/proximity/sx9310.c b/drivers/iio/proximity/sx9310.c
+> index adb707e2d79612..589052d2d1146e 100644
+> --- a/drivers/iio/proximity/sx9310.c
+> +++ b/drivers/iio/proximity/sx9310.c
+> @@ -887,11 +887,12 @@ static int sx9310_set_indio_dev_name(struct device *dev,
+>  static int sx9310_probe(struct i2c_client *client)
+>  {
+>  	int ret;
+> +	struct device *dev = &client->dev;
+>  	struct iio_dev *indio_dev;
+>  	struct sx9310_data *data;
+>  
+> -	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
+> -	if (indio_dev == NULL)
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
+> +	if (!indio_dev)
+>  		return -ENOMEM;
+>  
+>  	data = iio_priv(indio_dev);
+> @@ -905,17 +906,16 @@ static int sx9310_probe(struct i2c_client *client)
+>  
+>  	ret = regmap_read(data->regmap, SX9310_REG_WHOAMI, &data->whoami);
+>  	if (ret) {
+> -		dev_err(&client->dev, "error in reading WHOAMI register: %d",
+> -			ret);
+> +		dev_err(dev, "error in reading WHOAMI register: %d\n", ret);
+>  		return ret;
+>  	}
+>  
+> -	ret = sx9310_set_indio_dev_name(&client->dev, indio_dev, data->whoami);
+> +	ret = sx9310_set_indio_dev_name(dev, indio_dev, data->whoami);
+>  	if (ret)
+>  		return ret;
+>  
+> -	ACPI_COMPANION_SET(&indio_dev->dev, ACPI_COMPANION(&client->dev));
+> -	indio_dev->dev.parent = &client->dev;
+> +	ACPI_COMPANION_SET(&indio_dev->dev, ACPI_COMPANION(dev));
+> +	indio_dev->dev.parent = dev;
+>  	indio_dev->channels = sx9310_channels;
+>  	indio_dev->num_channels = ARRAY_SIZE(sx9310_channels);
+>  	indio_dev->info = &sx9310_info;
+> @@ -927,7 +927,7 @@ static int sx9310_probe(struct i2c_client *client)
+>  		return ret;
+>  
+>  	if (client->irq) {
+> -		ret = devm_request_threaded_irq(&client->dev, client->irq,
+> +		ret = devm_request_threaded_irq(dev, client->irq,
+>  						sx9310_irq_handler,
+>  						sx9310_irq_thread_handler,
+>  						IRQF_TRIGGER_LOW | IRQF_ONESHOT,
+> @@ -935,29 +935,29 @@ static int sx9310_probe(struct i2c_client *client)
+>  		if (ret)
+>  			return ret;
+>  
+> -		data->trig =
+> -			devm_iio_trigger_alloc(&client->dev, "%s-dev%d",
+> -					       indio_dev->name, indio_dev->id);
+> +		data->trig = devm_iio_trigger_alloc(dev, "%s-dev%d",
+> +						    indio_dev->name,
+> +						    indio_dev->id);
+>  		if (!data->trig)
+>  			return -ENOMEM;
+>  
+> -		data->trig->dev.parent = &client->dev;
+> +		data->trig->dev.parent = dev;
+>  		data->trig->ops = &sx9310_trigger_ops;
+>  		iio_trigger_set_drvdata(data->trig, indio_dev);
+>  
+> -		ret = devm_iio_trigger_register(&client->dev, data->trig);
+> +		ret = devm_iio_trigger_register(dev, data->trig);
+>  		if (ret)
+>  			return ret;
+>  	}
+>  
+> -	ret = devm_iio_triggered_buffer_setup(&client->dev, indio_dev,
+> +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
+>  					      iio_pollfunc_store_time,
+>  					      sx9310_trigger_handler,
+>  					      &sx9310_buffer_setup_ops);
+>  	if (ret)
+>  		return ret;
+>  
+> -	return devm_iio_device_register(&client->dev, indio_dev);
+> +	return devm_iio_device_register(dev, indio_dev);
+>  }
+>  
+>  static int __maybe_unused sx9310_suspend(struct device *dev)
 
