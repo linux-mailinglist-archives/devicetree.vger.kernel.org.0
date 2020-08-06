@@ -2,267 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D98BE23DF87
-	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 19:48:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91E0A23DFE0
+	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 19:55:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730358AbgHFRsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Aug 2020 13:48:51 -0400
-Received: from mx0a-0014ca01.pphosted.com ([208.84.65.235]:46054 "EHLO
-        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727828AbgHFQfC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 12:35:02 -0400
-Received: from pps.filterd (m0042385.ppops.net [127.0.0.1])
-        by mx0a-0014ca01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 076BXLfH023898;
-        Thu, 6 Aug 2020 04:34:51 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=proofpoint;
- bh=/f7HkrmytE/6nI50+hg3kNfljvxjETqdByqS2nW53Uk=;
- b=Sv0VRya19mjajANMMfr3etif37eCMsmpvAm5TDuQh2LTJW4H8TmaWMrtGTlyWteOR3Nt
- f8qr0IaDI15cMoLTbu/GHL2IIPtjSaFohTCeOuUUvC/FLThu42jAONCJCk2ksluw9LR+
- kP+9I5/TioEZ85i557ExC2XS5MhYBzreiAC5e7o06q/L6gjnFYP5/YUHiI+uSn846w27
- RtVbZ5mAR47MpoGgmyOhwBw0FP/0sGIQkv2l07ieEHAWQozk/UPXC1xWCaGdPWaVDcHa
- y27cl7NyD72XzGxG10Jr6aknUDuJ2zKqT7q9j57GTmWw1fcNb5+YGd92+z4OxbUx+Fxh dA== 
-Received: from nam11-dm6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2174.outbound.protection.outlook.com [104.47.57.174])
-        by mx0a-0014ca01.pphosted.com with ESMTP id 32nme0g6n5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 06 Aug 2020 04:34:51 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OF0miTUYiyPO00Q5vrmTYiXZH2leqAYTaf5/zuFm+9Ts4oLXER76mmU+EYCVHfr+FT15XNntiX0bMkTrSV/xhvUtAvZk/tQUxV6CGGZ5M94Cka12np+AmfAL5g3frRclS83ABAJynMoxvshw920/5m2bFyDhranD2XR8xTRCEX1dGsqJCbl7FrneASFwx7gYN/I0wJpduLPzWGotA9OeMhPL6wj1cBArTFhoDLA+Qv2KEbba2SvvyAhoduwBePynmGySNaA3orOZgI/2rGlNf4ngTb4MT7l16V4quWfa04EHLRlBYFlQNu+sZYabU5jXpcx4soQJCdQIYtfjBna90g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/f7HkrmytE/6nI50+hg3kNfljvxjETqdByqS2nW53Uk=;
- b=LqMV38rhTY1YQv5thFOXKPisKUP5pO17SrpRJOIygKCLOeqqc0McKnwCt+cK2RhaJ80K/EBrIycqJ4xViMIHiADrSP+gwmuyOkE210wqAp38+2D1waSz+nP/x5BqZJh5Ir5Dk+W04osguxNBlgzYmWZxl+ndAucVnLJeofOnRGpKcSWd9dyY7DLhVTqjMoY/IgndVNKrh0MTyyFnVBD27QtRhAwQXSPTi5QD/e3xxcwZYEEvrIeLWTJQgY3230S4MR3QhNFJdozYeti9c1qGTLefOU2V8Yoz/X1BD0DlT+nNsZssVBbxXvRuVSNlJF4fQtR/D7XgLrKX+Re66OToSg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 64.207.220.244) smtp.rcpttodomain=samsung.com smtp.mailfrom=cadence.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=cadence.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/f7HkrmytE/6nI50+hg3kNfljvxjETqdByqS2nW53Uk=;
- b=ryoDGU7SiFmH4QUaSkCDsdza9w8wXo0wHZTdAoMbj9GSVl4Xi6e/zyKXkTRQZSYANb0U0oz81g7oeXYIrP/RBDVIQnWwSAPziM1oiQD+S0E0HhfOIIKtSOo3jsQhpOZC4tfJJcPUvPIMIexPYJYGXrqdd23DBS3vYdxy5GCl1aY=
-Received: from MWHPR1201CA0006.namprd12.prod.outlook.com
- (2603:10b6:301:4a::16) by BLAPR07MB7796.namprd07.prod.outlook.com
- (2603:10b6:208:29e::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3261.15; Thu, 6 Aug
- 2020 11:34:49 +0000
-Received: from MW2NAM12FT011.eop-nam12.prod.protection.outlook.com
- (2603:10b6:301:4a:cafe::44) by MWHPR1201CA0006.outlook.office365.com
- (2603:10b6:301:4a::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.18 via Frontend
- Transport; Thu, 6 Aug 2020 11:34:48 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 64.207.220.244)
- smtp.mailfrom=cadence.com; samsung.com; dkim=none (message not signed)
- header.d=none;samsung.com; dmarc=pass action=none header.from=cadence.com;
-Received-SPF: Pass (protection.outlook.com: domain of cadence.com designates
- 64.207.220.244 as permitted sender) receiver=protection.outlook.com;
- client-ip=64.207.220.244; helo=wcmailrelayl01.cadence.com;
-Received: from wcmailrelayl01.cadence.com (64.207.220.244) by
- MW2NAM12FT011.mail.protection.outlook.com (10.13.180.78) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3261.10 via Frontend Transport; Thu, 6 Aug 2020 11:34:47 +0000
-Received: from maileu3.global.cadence.com (maileu3.cadence.com [10.160.88.99])
-        by wcmailrelayl01.cadence.com (8.14.7/8.14.4) with ESMTP id 076BYZWn083124
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=OK);
-        Thu, 6 Aug 2020 04:34:46 -0700
-X-CrossPremisesHeadersFilteredBySendConnector: maileu3.global.cadence.com
-Received: from maileu3.global.cadence.com (10.160.88.99) by
- maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
- 15.0.1367.3; Thu, 6 Aug 2020 13:34:35 +0200
-Received: from vleu-orange.cadence.com (10.160.88.83) by
- maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
- 15.0.1367.3 via Frontend Transport; Thu, 6 Aug 2020 13:34:35 +0200
-Received: from vleu-orange.cadence.com (localhost.localdomain [127.0.0.1])
-        by vleu-orange.cadence.com (8.14.4/8.14.4) with ESMTP id 076BYZs4008200;
-        Thu, 6 Aug 2020 13:34:35 +0200
-Received: (from sjakhade@localhost)
-        by vleu-orange.cadence.com (8.14.4/8.14.4/Submit) id 076BYWq2008184;
-        Thu, 6 Aug 2020 13:34:32 +0200
-From:   Swapnil Jakhade <sjakhade@cadence.com>
-To:     <airlied@linux.ie>, <daniel@ffwll.ch>,
-        <Laurent.pinchart@ideasonboard.com>, <robh+dt@kernel.org>,
-        <a.hajda@samsung.com>, <narmstrong@baylibre.com>,
-        <jonas@kwiboo.se>, <jernej.skrabec@siol.net>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <mparab@cadence.com>, <sjakhade@cadence.com>,
-        <yamonkar@cadence.com>, <tomi.valkeinen@ti.com>, <jsarha@ti.com>,
-        <nsekhar@ti.com>, <praneeth@ti.com>
-Subject: [PATCH v8 0/3] drm: Add support for Cadence MHDP DPI/DP bridge and J721E wrapper.
-Date:   Thu, 6 Aug 2020 13:34:29 +0200
-Message-ID: <1596713672-8146-1-git-send-email-sjakhade@cadence.com>
-X-Mailer: git-send-email 2.4.5
+        id S1726844AbgHFQaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Aug 2020 12:30:10 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:41904 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725783AbgHFQ3Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 12:29:25 -0400
+Received: by mail-ot1-f68.google.com with SMTP id a65so27461392otc.8;
+        Thu, 06 Aug 2020 09:28:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=GfRNKclYJY9TFgLDludWTlpzguMceCfSaUZal/qDN6s=;
+        b=mucsV4XvZdLPQxIuifzETBesBUCVGlX5wh10vA6hs7DMJcqfZEeJRoYFy0Qstdp26z
+         dWDzFflwqajIGQk9ckIz++zQujOWL7HagizIRPK2zskVRYX9S8qqvgysDqX0acWwFpjP
+         hM/jzjBXUwNTLWPdPzBJTJ6l7lQL7hNVZ3Fbtf5AfmuPebkufn5i5pHbj0bdfsf9hFEC
+         zOg5SGURrR9Are5To1UFdHcB8modghHZmbkHjTIYClw4lhRXBgk22yR6A4lfHpkDMElN
+         FVmBpqqNdfcDvQiSH/rARb8NlhDS96slJgFrXwuPOVYHJF5QBkHNGAcqETd2PunleUAf
+         X+Fg==
+X-Gm-Message-State: AOAM533oCfizdYpwXQIXOZH0VxdJFyWGAcA1wczlg6qDS29Nn2k77/DE
+        7yWF52kGbJXnYuU+mOG4a/gvI3L46lf74I7tARo8Euib
+X-Google-Smtp-Source: ABdhPJxsjDZTTqPo+9e6awj5yV1LG1Imzyw5Civ8gt7ap18JuUVGKty3JozPE/qiMGjuARTMT9EOZFY2swizOMfqf1E=
+X-Received: by 2002:a05:6830:1b79:: with SMTP id d25mr6431613ote.107.1596714489705;
+ Thu, 06 Aug 2020 04:48:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-OrganizationHeadersPreserved: maileu3.global.cadence.com
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 292d4185-c75c-487d-8221-08d839fcb91e
-X-MS-TrafficTypeDiagnostic: BLAPR07MB7796:
-X-Microsoft-Antispam-PRVS: <BLAPR07MB779667B08B9A1394417636F7C5480@BLAPR07MB7796.namprd07.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lAsntKppxI1fOqJahNZ/xSh80L1VvFgivRfq8793cuA6g1pEeEW1qk1aoQJFHtBXEtc+G/keT/3L09VtmwTSsxzhmc56YqMfZX/gKDKuSK2aqV6wigPqFSGeyTjfVHq/qWc+t6CEGtRkghXLMM7ekLL1efcDE61X9VRghpUOP3CZ2vXYAfIbUyXzuDUV4l0nelqbfMDizEHjbXyAV/K4EojhjoFtVyXPs9Scm4GMtdg/9UWP+RZyJrtqii8gDRvbnxqoBhPRCb/Ot+LT1yaMoraydnhTXuivHqVT4qjGc0VOEuoamx6BcuqrBjx2cribjA2ItkwhaVf8zbL30u9hvaNl9M6WkQQY2EXlF05u3Wm90X+eRasA/bEwq8oErsLt3XWP9K4Bycfsnx1GlXVStdh7h8Z0S1JJcRcNvkBF6fLdZl5gwwRdYIIKr6pOd1p31GWYKKVz9WxBEKkB3TWgQdnK50nSu7ftqKYKotCAFEO2iN6ow6E3cJ3eiV9RgdZ9blhNaWIESOHrJelNeN7tf0cIoqJy/zevlT5vR/4oFSdgymi0zX2x3pNhO54zrpsB
-X-Forefront-Antispam-Report: CIP:64.207.220.244;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:wcmailrelayl01.cadence.com;PTR:ErrorRetry;CAT:NONE;SFTY:;SFS:(4636009)(396003)(136003)(39860400002)(346002)(376002)(36092001)(46966005)(83380400001)(26005)(36906005)(316002)(54906003)(4326008)(70206006)(2616005)(186003)(36756003)(70586007)(86362001)(6666004)(42186006)(110136005)(47076004)(82740400003)(966005)(356005)(478600001)(336012)(426003)(82310400002)(8676002)(5660300002)(7416002)(81166007)(8936002)(2906002)(921003)(2101003)(83996005);DIR:OUT;SFP:1101;
-X-OriginatorOrg: cadence.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2020 11:34:47.2621
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 292d4185-c75c-487d-8221-08d839fcb91e
-X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[64.207.220.244];Helo=[wcmailrelayl01.cadence.com]
-X-MS-Exchange-CrossTenant-AuthSource: MW2NAM12FT011.eop-nam12.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLAPR07MB7796
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-08-06_06:2020-08-06,2020-08-06 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0 spamscore=0
- phishscore=0 mlxlogscore=999 mlxscore=0 malwarescore=0 adultscore=0
- lowpriorityscore=0 suspectscore=0 impostorscore=0 priorityscore=1501
- bulkscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2008060084
+References: <1594919915-5225-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <1594919915-5225-21-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdVriWnPK8-=w=0mq8yj9+1jbsg9yH8aV=ygyHsQ0f-CQQ@mail.gmail.com> <CA+V-a8vXjhV-EeQb=bBhoRmuVA=0GSuFiV33N9nkhi39VNN6oA@mail.gmail.com>
+In-Reply-To: <CA+V-a8vXjhV-EeQb=bBhoRmuVA=0GSuFiV33N9nkhi39VNN6oA@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 6 Aug 2020 13:47:58 +0200
+Message-ID: <CAMuHMdXie+GfKBO22mFrn4oG_y7YUxU9ekQdWnp1hn-6z2mLuQ@mail.gmail.com>
+Subject: Re: [PATCH 20/20] arm64: dts: renesas: r8a774e1: Add VIN and CSI-2 nodes
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Jens Axboe <axboe@kernel.dk>, Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Mark Brown <broonie@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-ide@vger.kernel.org,
+        dmaengine <dmaengine@vger.kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        USB list <linux-usb@vger.kernel.org>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch series adds new DRM bridge driver for Cadence MHDP DPI/DP
-bridge. The Cadence Display Port IP is also referred as MHDP (Mobile High
-Definition Link, High-Definition Multimedia Interface, Display Port).
-Cadence Display Port complies with VESA DisplayPort (DP) and embedded
-Display Port (eDP) standards.
+Hi Prabhakar,
 
-The MHDP bridge driver currently implements Single Stream Transport (SST)
-mode. It also adds Texas Instruments j721e SoC specific wrapper and adds
-the device tree bindings in YAML format.
+On Thu, Aug 6, 2020 at 1:17 PM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Wed, Aug 5, 2020 at 12:19 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Thu, Jul 16, 2020 at 7:20 PM Lad Prabhakar
+> > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > > Add VIN and CSI-2 nodes to RZ/G2H (R8A774E1) SoC dtsi.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+> >
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> >
+> > However, before I queue this in renesas-devel for v5.10, I'd like to
+> > have some clarification about the issue below.
+> >
+> > > --- a/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
+> > > +++ b/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
+> >
+> > > +               vin4: video@e6ef4000 {
+> > > +                       compatible = "renesas,vin-r8a774e1";
+> > > +                       reg = <0 0xe6ef4000 0 0x1000>;
+> > > +                       interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
+> > > +                       clocks = <&cpg CPG_MOD 807>;
+> > > +                       power-domains = <&sysc R8A774E1_PD_ALWAYS_ON>;
+> > > +                       resets = <&cpg 807>;
+> > > +                       renesas,id = <4>;
+> > > +                       status = "disabled";
+> > > +
+> > > +                       ports {
+> > > +                               #address-cells = <1>;
+> > > +                               #size-cells = <0>;
+> > > +
+> > > +                               port@1 {
+> > > +                                       #address-cells = <1>;
+> > > +                                       #size-cells = <0>;
+> >
+> > "make dtbs W=1" says:
+> >
+> >     arch/arm64/boot/dts/renesas/r8a774e1.dtsi:1562.12-1572.7: Warning
+> > (graph_child_address): /soc/video@e6ef4000/ports/port@1: graph node
+> > has single child node 'endpoint@0', #address-cells/#size-cells are not
+> > necessary
+> >
+> > (same for vin5-7 below)
+> >
+> Referring to commit 5e53dbf4edb4d ("arm64: dts: renesas: r8a77990: Fix
+> VIN endpoint numbering") we definitely need endpoint numbering.
+> Probably the driver needs to be fixed to handle such cases.
 
-Some of the features that will be added later on include (but are not
-limited to):
-- Power Management (PM) support: We will implement the PM functions in
-  next stage once there will be a stable driver in upstream
-- Audio and MST support
+> > > +
+> > > +                                       reg = <1>;
+> > > +
+> > > +                                       vin4csi20: endpoint@0 {
+> > > +                                               reg = <0>;
+> > > +                                               remote-endpoint = <&csi20vin4>;
 
-The patch series has three patches in the below sequence:
-1. 0001-dt-bindings-drm-bridge-Document-Cadence-MHDP-brid.patch
-Documents the bindings in yaml format.
-2. 0002-drm-bridge-Add-support-for-Cadence-MHDP-DPI-DP-br.patch
-This patch adds new DRM bridge driver for Cadence MHDP Display Port.
-The patch implements support for single stream transport mode.
-3. 0003-drm-bridge-cdns-mhdp-Add-j721e-wrapper.patch
-Adds Texas Instruments (TI) j721e wrapper for MHDP. The wrapper configures
-MHDP clocks and muxes as required by SoC.
+On R-Car E3, the single endpoint is at address 2, so "make dtbs W=1"doesn't
+complain. Here it is at address 0.
 
-This patch series is dependent on PHY patch series [1] to add new PHY APIs
-to get/set PHY attributes which is under review and not merged yet.
+Niklas?
 
-[1] https://lkml.org/lkml/2020/7/17/158
+Gr{oetje,eeting}s,
 
-Version History:
-
-v8:
-
-In 1/3
-- Fix error reported by dt_binding_check
-- Fix indent in the example
-- Fix other comments given for v7 patches.
-
-In 2/3:
-- Implement bridge connector operations .get_edid() and .detect().
-- Make connector creation optional based on DRM_BRIDGE_ATTACH_NO_CONNECTOR
-  flag.
-- Fix other comments given for v7 patches.
-
-In 3/3
-- Fix comments given for v7 patches.
-
-v7:
-
-In 1/3
-- No change
-
-In 2/3
-- Switch to atomic versions of bridge operations
-- Implement atomic_check() handler to perform all validation checks
-- Add struct cdns_mhdp_bridge_state with subclassed bridge state
-- Use PHY API[1] to get PHY attributes instead of reading from PHY DT node
-- Updated HPD handling and link configuration in IRQ handler
-- Add "link_mutex" protecting the access to all the link parameters
-- Add support to check and print FW version information
-- Add separate function to initialize host parameters to simplify probe
-- Use waitqueue instead of manual loop in cdns_mhdp_remove
-- Add forward declarations and header files in cdns-mhdp-core.h file
-- Use bool instead of single bit values in struct cdns_mhdp_device
-- Fix for other minor comments given for v6 patches
-
-In 3/3
-- Use of_device_is_compatible() to set compatible string specific values
-- Move mhdp_ti_j721e_ops structure to cdns-mhdp-j721e.c
-- Remove duplicate Copyright message
-- Remove CONFIG_DRM_CDNS_MHDP_J721E check
-- Add Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-v6:
-- Added minor fixes in YAML file.
-- Added Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-  to the YAML patch.
-- Removed all the FIXME comments which are invalid in drm driver.
-- Reduced the mailbox timeout from 5s to 2s.
-- Added Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
-  to the 003-drm-mhdp-add-j721e-wrapper patch.
-- Added Signed-off all the module authors.
-- Fixed the compiler error Reported-by: kbuild test robot <lkp@intel.com>.
-
-v5:
-- Added Signed-off-by: Jyri Sarha <jsarha@ti.com> tag to
-  the code patches.
-
-v4:
-- Added SPDX dual license tag to YAML bindings.
-- Corrected indentation of the child node properties.
-- Removed the maxItems in the conditional statement.
-- Add Reviewed-by: Rob Herring <robh@kernel.org> tag to the
-  Document Cadence MHDP bridge bindings patch.
-- Renamed the DRM driver executable name from mhdp8546 to cdns-mhdp in
-  Makefile.
-- Renamed the DRM driver and header file from cdns-mhdp to cdns-mhdp-core.
-
-v3:
-- Added if / then clause to validate that the reg length is proper
-  based on the value of the compatible property.
-- Updated phy property description in YAML to a generic one.
-- Renamed num_lanes and max_bit_rate property strings to cdns,num-lanes
-  and cdns,max-bit-rate.
-
-v2:
-- Use enum in compatible property of YAML file.
-- Add reg-names property to YAML file
-- Add minItems and maxItems to reg property in YAML.
-- Remove cdns_mhdp_link_probe function to remove
-  duplication of reading dpcd capabilities.
-
-Swapnil Jakhade (2):
-  drm: bridge: Add support for Cadence MHDP DPI/DP bridge
-  drm: bridge: cdns-mhdp: Add j721e wrapper
-
-Yuti Amonkar (1):
-  dt-bindings: drm/bridge: Document Cadence MHDP bridge bindings
-
- .../bindings/display/bridge/cdns,mhdp.yaml    |  139 +
- drivers/gpu/drm/bridge/Kconfig                |   24 +
- drivers/gpu/drm/bridge/Makefile               |    4 +
- drivers/gpu/drm/bridge/cdns-mhdp-core.c       | 2562 +++++++++++++++++
- drivers/gpu/drm/bridge/cdns-mhdp-core.h       |  397 +++
- drivers/gpu/drm/bridge/cdns-mhdp-j721e.c      |   72 +
- drivers/gpu/drm/bridge/cdns-mhdp-j721e.h      |   19 +
- 7 files changed, 3217 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,mhdp.yaml
- create mode 100644 drivers/gpu/drm/bridge/cdns-mhdp-core.c
- create mode 100644 drivers/gpu/drm/bridge/cdns-mhdp-core.h
- create mode 100644 drivers/gpu/drm/bridge/cdns-mhdp-j721e.c
- create mode 100644 drivers/gpu/drm/bridge/cdns-mhdp-j721e.h
+                        Geert
 
 -- 
-2.26.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
