@@ -2,209 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6085523DCEA
-	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 18:58:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF82923DC98
+	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 18:54:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729602AbgHFQ46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Aug 2020 12:56:58 -0400
-Received: from mail-il1-f194.google.com ([209.85.166.194]:40758 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728723AbgHFQkm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 12:40:42 -0400
-Received: by mail-il1-f194.google.com with SMTP id x1so20675139ilp.7;
-        Thu, 06 Aug 2020 09:39:54 -0700 (PDT)
+        id S1729726AbgHFQxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Aug 2020 12:53:50 -0400
+Received: from mail-qt1-f195.google.com ([209.85.160.195]:44898 "EHLO
+        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729352AbgHFQxs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 12:53:48 -0400
+Received: by mail-qt1-f195.google.com with SMTP id h21so30458443qtp.11;
+        Thu, 06 Aug 2020 09:53:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=xk1+TxcE3QnIGMOvPraXoKHV6uIacnJL3Sj3a6NYZPM=;
-        b=N58pHWGrEBfXX6ulurZai9KKwSZKQyXXXeGIqHspMfWQ3boJDtauhQfgXIGMyS0jlC
-         h0JKwoll4DUykjdW23kB9e9urpcMdd7Vw1pkkP1nkeasL63Or4fkxoHrE/buXuNmTbvP
-         iHrrg/cJ28dwr7PYELBjFX8LKjqQLXHczvfz5xcNUqjnBwFpmNvkRsa9tuX2cIzkolM7
-         XJss5IvxakrXjZy/mVHtR0cphCWz8N18q4R0yqGcW17cvM3uca7xO2GzxK2dVSRFR79+
-         mQ32TAuukBpIPeTSJMOhZc/lqWCZRXsEszSsmcoE5eY60qQpTRbUyns20FmQj0qVEcYf
-         lMPQ==
-X-Gm-Message-State: AOAM531D69kdV7mzrS9XQI1KvdKCVlV3Chg9IGuv6m9BDe4L2oDtS+vF
-        eHb5OuWDNjLhQxYC+lsUQdHFXlI=
-X-Google-Smtp-Source: ABdhPJywUa1fS+mhDPPCoUj+LuP94rGkcgwbq8VHiTsnW6mBNPkpA3uSHzABW0gjnvpFFTpk6c+lhA==
-X-Received: by 2002:a05:6602:24d5:: with SMTP id h21mr10407216ioe.108.1596724757598;
-        Thu, 06 Aug 2020 07:39:17 -0700 (PDT)
+        bh=SgCMlkNPygbvmU3HrFba/PxFp5hi1G153yx66x79hj0=;
+        b=HroBpKqx6ctcuV9YTTXncCgaO4RMC+jUUvb3ClR+fLkKyM1HtydHkoItAgNbPIJte9
+         VEP3+8bgdRRxUlDNOXy72q7DhFzlhDU3WhsK+iit7K0mdgeLt2hU9Km7I3cqhoCXN+eZ
+         FQM+gKYVBACgLgwA5JJcVp7hQgC7jXa3fXcztIg/otfJDL+UfOuFw+b90XFjeEEt0fGw
+         5NT1yETrUfJ6jXcAPR7m5XJSWVo6eZ6yO2EPwnzrC0Qot/4P5wz5G9JDt64lbC8RV2oQ
+         xBiH4AwV95oWyl1/5/zjG6NqhIrsWrwAghCDdpmTEw8D3CHQDh8IptRC0veCkLo1TM8s
+         Z3Cg==
+X-Gm-Message-State: AOAM5311svnm+AQltet0wHOEjArVA5UUN3MdbXF6xC6pURY1aGUPNXt1
+        gcqcU3SVp65vuEfQ0lrU6CvYnBs=
+X-Google-Smtp-Source: ABdhPJzPkEr9rf/8BLhAY46DOssPh7LKZIJw6TequaQtxXBjF1VpMWpsZbUoIIIX/G8kSI9FFjY1+w==
+X-Received: by 2002:a05:6638:419:: with SMTP id q25mr12491976jap.85.1596725027758;
+        Thu, 06 Aug 2020 07:43:47 -0700 (PDT)
 Received: from xps15 ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id a18sm4061245ilp.52.2020.08.06.07.39.13
+        by smtp.gmail.com with ESMTPSA id m13sm2133599iov.35.2020.08.06.07.43.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Aug 2020 07:39:16 -0700 (PDT)
-Received: (nullmailer pid 822114 invoked by uid 1000);
-        Thu, 06 Aug 2020 14:39:12 -0000
-Date:   Thu, 6 Aug 2020 08:39:12 -0600
+        Thu, 06 Aug 2020 07:43:47 -0700 (PDT)
+Received: (nullmailer pid 829322 invoked by uid 1000);
+        Thu, 06 Aug 2020 14:43:45 -0000
+Date:   Thu, 6 Aug 2020 08:43:45 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Cheng-Yi Chiang <cychiang@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>, dianders@chromium.org,
-        dgreid@chromium.org, tzungbi@chromium.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org
-Subject: Re: [PATCH v4 1/2] ASoC: qcom: dt-bindings: Add sc7180 machine
- bindings
-Message-ID: <20200806143912.GA816294@bogus>
-References: <20200803040122.2063634-1-cychiang@chromium.org>
- <20200803040122.2063634-2-cychiang@chromium.org>
+To:     pisa@cmp.felk.cvut.cz
+Cc:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        mkl@pengutronix.de, socketcan@hartkopp.net, wg@grandegger.com,
+        davem@davemloft.net, mark.rutland@arm.com, c.emde@osadl.org,
+        armbru@redhat.com, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, martin.jerabek01@gmail.com,
+        ondrej.ille@gmail.com, jnovak@fel.cvut.cz, jara.beran@gmail.com,
+        porazil@pikron.com
+Subject: Re: [PATCH v4 2/6] dt-bindings: net: can: binding for CTU CAN FD
+ open-source IP core.
+Message-ID: <20200806144345.GA822372@bogus>
+References: <cover.1596408856.git.pisa@cmp.felk.cvut.cz>
+ <701442883f2b439637ff84544745725bdee7bcf8.1596408856.git.pisa@cmp.felk.cvut.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200803040122.2063634-2-cychiang@chromium.org>
+In-Reply-To: <701442883f2b439637ff84544745725bdee7bcf8.1596408856.git.pisa@cmp.felk.cvut.cz>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 03, 2020 at 12:01:21PM +0800, Cheng-Yi Chiang wrote:
-> Add devicetree bindings documentation file for sc7180 sound card.
+On Mon, Aug 03, 2020 at 08:34:50PM +0200, pisa@cmp.felk.cvut.cz wrote:
+> From: Pavel Pisa <pisa@cmp.felk.cvut.cz>
 > 
-> Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
+> The device-tree bindings for open-source CAN FD IP core
+> which design started at Department of Measurement
+> at Faculty of Electrical Engineering
+> of Czech Technical University in Prague.
+> The IP core main author is Ondrej Ille who continues
+> on the core development even after finishing the studies.
+> 
+> The CTU CAN FD IP core main repository
+> 
+>   https://gitlab.fel.cvut.cz/canbus/ctucanfd_ip_core
+> 
+> The list of related CAN bus projects which we participate in
+> 
+>    http://canbus.pages.fel.cvut.cz/
+> 
+> The commit text again to make checkpatch happy.
+> 
+> Signed-off-by: Pavel Pisa <pisa@cmp.felk.cvut.cz>
 > ---
->  .../bindings/sound/qcom,sc7180.yaml           | 113 ++++++++++++++++++
->  1 file changed, 113 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
+>  .../devicetree/bindings/net/can/ctu,ctucanfd.yaml  | 70 ++++++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/can/ctu,ctucanfd.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,sc7180.yaml b/Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
+> diff --git a/Documentation/devicetree/bindings/net/can/ctu,ctucanfd.yaml b/Documentation/devicetree/bindings/net/can/ctu,ctucanfd.yaml
 > new file mode 100644
-> index 000000000000..c74f0fe9fb3b
+> index 000000000000..b74bfc951062
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
-> @@ -0,0 +1,113 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/net/can/ctu,ctucanfd.yaml
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: GPL-2.0
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/sound/qcom,sc7180.yaml#
+> +$id: http://devicetree.org/schemas/net/can/ctu,ctucanfd.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Qualcomm Technologies Inc. SC7180 ASoC sound card driver
+> +title: CTU CAN FD Open-source IP Core Device Tree Bindings
+> +
+> +description: |
+> +  Open-source CAN FD IP core developed at the Czech Technical University in Prague
+> +
+> +  The core sources and documentation on project page
+> +    [1] sources : https://gitlab.fel.cvut.cz/canbus/ctucanfd_ip_core
+> +    [2] datasheet : https://canbus.pages.fel.cvut.cz/ctucanfd_ip_core/Progdokum.pdf
+> +
+> +  Integration in Xilinx Zynq SoC based system together with
+> +  OpenCores SJA1000 compatible controllers
+> +    [3] project : https://gitlab.fel.cvut.cz/canbus/zynq/zynq-can-sja1000-top
+> +  Martin Jerabek dimploma thesis with integration and testing
+> +  framework description
+> +    [4] PDF : https://dspace.cvut.cz/bitstream/handle/10467/80366/F3-DP-2019-Jerabek-Martin-Jerabek-thesis-2019-canfd.pdf
 > +
 > +maintainers:
-> +  - Rohit kumar <rohitkr@codeaurora.org>
-> +  - Cheng-Yi Chiang <cychiang@chromium.org>
-> +
-> +description:
-> +  This binding describes the SC7180 sound card which uses LPASS for audio.
+> +  - Pavel Pisa <pisa@cmp.felk.cvut.cz>
+> +  - Ondrej Ille <ondrej.ille@gmail.com>
+> +  - Martin Jerabek <martin.jerabek01@gmail.com>
 > +
 > +properties:
 > +  compatible:
-> +    contains:
-> +      const: qcom,sc7180-sndcard
+> +    oneOf:
+> +      - items:
+> +          - const: ctu,ctucanfd
+> +          - const: ctu,canfd-2
+
+The order is supposed to be be most specific compatible first, but this 
+seems backwards given 'ctu,ctucanfd' alone is allowed.
+
+> +      - const: ctu,ctucanfd
 > +
-> +  audio-routing:
-> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> +  reg:
 > +    description:
-> +      A list of the connections between audio components. Each entry is a
-> +      pair of strings, the first being the connection's sink, the second
-> +      being the connection's source.
-> +
-> +  model:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: User specified audio sound card name
-> +
-> +  aux-dev:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle of the codec for headset detection
-> +
-> +patternProperties:
-> +  "^dai-link(@[0-9]+)?$":
-> +    description:
-> +      Each subnode represents a dai link. Subnodes of each dai links would be
-> +      cpu/codec dais.
-> +
-> +    type: object
-> +
-> +    properties:
-> +      link-name:
-> +        description: Indicates dai-link name and PCM stream name.
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +        maxItems: 1
-> +
-> +      reg:
-> +        description: dai link address.
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        maxItems: 1
-> +
-> +      cpu:
-> +        description: Holds subnode which indicates cpu dai.
-> +        type: object
-> +        properties:
-> +          sound-dai: true
-> +
-> +      codec:
-> +        description: Holds subnode which indicates codec dai.
-> +        type: object
-> +        properties:
-> +          sound-dai: true
-> +
-> +    required:
-> +      - link-name
-> +      - cpu
-> +      - codec
-> +
-> +    additionalProperties: false
+> +      mapping into bus address space, offset and size
 
-Nothing required?
+No need to describe common properties unless you have something specific 
+to this device to say.
 
-Add:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: |
+> +      interrupt source. For Zynq SoC system, format is <(is_spi) (number) (type)>
+> +      where is_spi defines if it is SPI (shared peripheral) interrupt,
+> +      the second number is translated to the vector by addition of 32
+> +      on Zynq-7000 systems and type is IRQ_TYPE_LEVEL_HIGH (4) for Zynq.
 
-additionalProperties: false
+That's all outside the scope of this binding.
 
-(And you'll need to define #address-cells and #size-cells)
-
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: |
+> +      phandle of reference clock (100 MHz is appropriate
+> +      for FPGA implementation on Zynq-7000 system).
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +
+> +additionalProperties: false
 > +
 > +examples:
-> +
 > +  - |
-> +    sound {
-> +        compatible = "qcom,sc7180-sndcard";
-> +        model = "sc7180-snd-card";
-> +
-> +        audio-routing =
-> +                    "Headphone Jack", "HPOL",
-> +                    "Headphone Jack", "HPOR";
-> +
-> +        aux-dev = <&alc5682>;
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        dai-link@0 {
-> +            link-name = "MultiMedia0";
-> +            reg = <0>;
-> +            cpu {
-> +                sound-dai = <&lpass_cpu 0>;
-> +            };
-> +
-> +            codec {
-> +                sound-dai = <&alc5682 0>;
-> +            };
-> +        };
-> +
-> +        dai-link@1 {
-> +            link-name = "MultiMedia1";
-> +            reg = <1>;
-> +            cpu {
-> +                sound-dai = <&lpass_cpu 1>;
-> +            };
-> +
-> +            codec {
-> +                sound-dai = <&max98357a>;
-> +            };
-> +        };
+> +    ctu_can_fd_0: can@43c30000 {
+> +      compatible = "ctu,ctucanfd";
+> +      interrupts = <0 30 4>;
+> +      clocks = <&clkc 15>;
+> +      reg = <0x43c30000 0x10000>;
 > +    };
 > -- 
-> 2.28.0.163.g6104cc2f0b6-goog
+> 2.11.0
 > 
