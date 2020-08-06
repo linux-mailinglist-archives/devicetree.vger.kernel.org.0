@@ -2,146 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9771A23DEDD
-	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 19:33:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F72B23DFAA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 19:52:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728675AbgHFRcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Aug 2020 13:32:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55152 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730000AbgHFRcF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 Aug 2020 13:32:05 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AAE6A22DA9;
-        Thu,  6 Aug 2020 12:36:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1596717375;
-        bh=V1PSRo4eX8swYDgWsq71j+ws4CVRQUFXtfzrKm6Cs7g=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=YdOifq+YBdCEaRBYC/2UMY89UncYsccDHOtl9ip82PBoV1QXbyBcyhdkRqstYBDmg
-         92q4c79+Ym+cezlho5R9ZueuW9+3ku53CLnyxnaK6Hmfo/4TjYbuwT7zj4nE4Jg1Eh
-         2QRQZeKN1Hs73+lNjjbMFygLq9kJDYH7ZujeajtM=
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.92)
-        (envelope-from <maz@kernel.org>)
-        id 1k3f82-000H6F-3e; Thu, 06 Aug 2020 13:36:14 +0100
+        id S1727899AbgHFRvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Aug 2020 13:51:33 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:19467 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728570AbgHFQcV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 12:32:21 -0400
+X-UUID: c21eb5ad084c4d4583c72c78fe8f7549-20200806
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=3gLQcEfwtJI1Q0Ph3JAitnDfiUoVRJTnHH6hq25dato=;
+        b=B8RRnKd3HPHMdUq3sU1Y/9nIiP7NlY9nDLUnwXh8mJ+Uh4dCfC49erokAyAV8aeJ80pn9xeTomcWvJT1eyrcLK0DSf01b+QgrU1bpnnwKIrKknwJsTjD5DmPlnkOgfDBZ7f6AoJUKzklvwjDxVfiSTgmbYYOz+6SBhPMxqXTuzo=;
+X-UUID: c21eb5ad084c4d4583c72c78fe8f7549-20200806
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <mark-pk.tsai@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1258676737; Thu, 06 Aug 2020 22:08:14 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 6 Aug 2020 22:08:11 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 6 Aug 2020 22:08:11 +0800
+From:   Mark-PK Tsai <mark-pk.tsai@mediatek.com>
+To:     <daniel@0x0f.com>, Mark-PK Tsai <mark-pk.tsai@mediatek.com>
+CC:     <alix.wu@mediatek.com>, <devicetree@vger.kernel.org>,
+        <jason@lakedaemon.net>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
+        <maz@kernel.org>, <robh+dt@kernel.org>, <tglx@linutronix.de>,
+        <yj.chiang@mediatek.com>
+Subject: Re: [PATCH 0/2] irqchip: irq-mt58xx: Add mt58xx series interrupt
+Date:   Thu, 6 Aug 2020 22:07:39 +0800
+Message-ID: <20200806140739.31501-1-mark-pk.tsai@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <CAFr9PX=Gk9h6ASi6saBLhoZ45g-WqCzDQo2XWT033fJykFSY_g@mail.gmail.com>
+References: <CAFr9PX=Gk9h6ASi6saBLhoZ45g-WqCzDQo2XWT033fJykFSY_g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Date:   Thu, 06 Aug 2020 13:36:14 +0100
-From:   Marc Zyngier <maz@kernel.org>
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
-        tglx@linutronix.de, jason@lakedaemon.net,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Willy Tarreau <w@1wt.eu>,
-        mark-pk.tsai@mediatek.com
-Subject: Re: [PATCH 2/3] irqchip: mstar: msc313-intc interrupt controller
- driver
-In-Reply-To: <CAFr9PXmzZmHWv+DWppaXOih9p5pJK=3JYCCC+-XrnQ+S7sV+fw@mail.gmail.com>
-References: <20200805110052.2655487-1-daniel@0x0f.com>
- <20200805110052.2655487-3-daniel@0x0f.com>
- <a2ac8875d67ce7afe1b28f01683e0c9d@kernel.org>
- <CAFr9PXmzZmHWv+DWppaXOih9p5pJK=3JYCCC+-XrnQ+S7sV+fw@mail.gmail.com>
-User-Agent: Roundcube Webmail/1.4.5
-Message-ID: <3e177112a804b54589464853ff8ac8ad@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: daniel@0x0f.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org, arnd@arndb.de, w@1wt.eu, mark-pk.tsai@mediatek.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-08-06 11:03, Daniel Palmer wrote:
-> Hi Marc,
-> 
-> On Thu, 6 Aug 2020 at 01:26, Marc Zyngier <maz@kernel.org> wrote:
->> > +struct msc313_intc {
->> > +     struct irq_domain *domain;
->> > +     void __iomem *base;
->> > +     struct irq_chip irqchip;
->> 
->> Why do you need to embed the irq_chip on a per-controller basis?
-> 
-> Current chips have 1 instance of each type of controller but some of 
-> the
-> newer ones seem to have an extra copy of the non-FIQ version with 
-> different
-> offset to the GIC.
+RnJvbTogRGFuaWVsIFBhbG1lciA8ZGFuaWVsQDB4MGYuY29tPg0KDQo+IEhpIE1hcmstUEssDQo+
+IA0KPiBZb3VyIGRyaXZlciBzZWVtcyB0byBiZSBmb3IgdGhlIHNhbWUgaW50ZXJydXB0IGNvbnRy
+b2xsZXIgSVAgdGhhdCBpcw0KPiBwcmVzZW50IGluIE1TdGFyJ3MgVFYgYW5kIGNhbWVyYSBTb0Nz
+IGFuZCBub3cgU2lnbWFTdGFyJ3MgU29Dcy4NCj4gSSBzZW50IGEgc2VyaWVzWzBdIGZvciBhIGRy
+aXZlciB2ZXJ5IHNpbWlsYXIgdG8geW91cnMgYnV0IGZvciB0aGUNCj4gTVN0YXIgU29Dcy4gRG8g
+eW91IGtub3cgaWYgaXQgd291bGQgYmUgcG9zc2libGUgdG8gY29uZmlybSBpZiB0aGV5IGFyZQ0K
+PiB0aGUNCj4gc2FtZSB0aGluZz8gTWVkaWFUZWsgYm91Z2h0IE1TdGFyIGEgZmV3IHllYXJzIGFn
+byBzbyBpdCBzZWVtcyBsaWtlbHkNCj4gYnV0IEkgaGF2ZSBubyBoYXJkIGluZm9ybWF0aW9uLg0K
+PiANCg0KWWVzLCBpdCdzIGZvciB0aGUgc2FtZSBpbnRlcnJ1cHQgY29udHJvbGxlciBJUC4NCg0K
+PiBJZiB0aGV5IGFyZSB0aGUgc2FtZSB0aGluZyBjb3VsZCB3ZSB3b3JrIG9uIG1ha2luZyBvbmUg
+c2VyaWVzIHRoYXQNCj4gc3VwcG9ydHMgYm90aCB1c2UgY2FzZXM/DQoNClN1cmUsIGFuZCBJIHRo
+aW5rIHRoZSBpcnEgY29udHJvbGxlciBkcml2ZXIgc2hvdWxkIHN1cHBvcnQgYm90aCB1c2UgY2Fz
+ZXMuDQpTbyBob3cgYWJvdXQga2VlcCB0aGUgTVRLIHZlcnNpb24gZHJpdmVyPw0KSSdsbCBzZW5k
+IHBhdGNoIHYyIGFmdGVyIC1yYzEgYXMgSSBtZW50aW9uZWQgaW4gdGhlIHByZXZpb3VzIG1haWws
+DQphbmQga2VlcCB5b3UgcG9zdGVkLg0KQW5kIGFueSBzdWdnZXN0aW9uIGlzIHdlbGNvbWUuIDop
+DQoNCj4gSXQncyBhbHNvIHBvc3NpYmxlIHRoYXQgaWYgdGhlIGludGVycnVwdCBjb250cm9sbGVy
+IGlzIHRoZSBzYW1lIHNvbWUNCj4gb3RoZXIgdGhpbmdzIGxpa2UgdGhlIFNQSSBOT1IgY29udHJv
+bGxlciBldGMgYXJlIGFsc28gY29tbW9uIGFuZA0KPiB3b3JraW5nDQo+IG9uIGEgc2luZ2xlIGRy
+aXZlciBmb3IgdGhvc2Ugd291bGQgc2F2ZSB1cyBib3RoIHRpbWUuDQo+IA0KDQpJJ20gbm90IHN1
+cmUgYWJvdXQgdGhhdC4NCkknbGwgY2hlY2sgdGhlIHBhdGNoZXMgeW91IGNvbnRyaWJ1dGVkIGFu
+ZCBjb25maXJtIHdpdGggb3VyIGRyaXZlciBvd25lcnMu
 
-It is much better to have an irqchip structure per irqchip type,
-rather than one per instance, as you can then make the irqchip const.
-It also saves memory when you have more than a single instance.
-
-The only case where it doesn't work is when PM gets involved, as the
-parent_device pointer is stupidly stored in the irqchip device.
-
-> 
->> > +};
->> > +
->> > +static void msc313_intc_maskunmask(struct msc313_intc *intc, int
->> > hwirq, bool mask)
->> > +{
->> > +     int regoff = REGOFF(hwirq);
->> > +     void __iomem *addr = intc->base + REGOFF_MASK + regoff;
->> > +     u16 bit = IRQBIT(hwirq);
->> > +     u16 reg = readw_relaxed(addr);
->> > +
->> > +     if (mask)
->> > +             reg |= bit;
->> > +     else
->> > +             reg &= ~bit;
->> > +
->> > +     writew_relaxed(reg, addr);
->> 
->> RMW on a shared MMIO register. Not going to end well. This is valid
->> for all the callbacks, I believe.
-> 
-> Do you have any suggestions on how to resolve that? It seems usually
-> an interrupt controller has set and clear registers to get around this.
-> Would defining a spinlock at the top of the driver and using that 
-> around
-> the read and modify sequences be good enough?
-
-Yes, a spinlock is the conventional way to solve it. Make sure
-you use the irqsave/irqrestore versions, as mask/unmask can
-also occur whilst in interrupt context.
-
-> 
->> > +
->> > +     if (flow_type & (IRQ_TYPE_EDGE_FALLING | IRQ_TYPE_LEVEL_HIGH))
->> > +             reg &= ~bit;
->> > +     else
->> > +             reg |= bit;
->> 
->> I don't follow grasp the logic here. What happens on EDGE_BOTH, for
->> example?
-> 
-> To be honest I don't quite remember. I'll check and rewrite this.
-> 
->> This driver has a massive feeling of déja-vu. It is almost
->> a copy of the one posted at [1], which I reviewed early
->> this week. The issues are the exact same, and I'm 98%
->> sure this is the same IP block used by two SoC vendors.
-> 
-> This would make a lot of sense considering MediaTek bought MStar
-> for their TV SoCs. The weirdness with only using 16 bits in a register
-> suggests they've inherited the shared ARM/8051 bus that the MStar
-> chips have. Thanks for the tip off.
-
-It is indeed the 16bit accesses that reminded me of the MTK
-code, as that's very unusual.
-
-Hopefully you can work with the MTK guys to resolve this quickly.
-
-         M.
--- 
-Jazz is not dead. It just smells funny...
