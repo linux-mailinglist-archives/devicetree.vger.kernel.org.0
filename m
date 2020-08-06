@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47CE123DCF2
-	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 18:58:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECB8C23DC9B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 18:54:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729787AbgHFQ6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Aug 2020 12:58:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41658 "EHLO
+        id S1729436AbgHFQxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Aug 2020 12:53:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728975AbgHFQkm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 12:40:42 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35D5DC00216C;
-        Thu,  6 Aug 2020 09:10:56 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id k13so26439147lfo.0;
-        Thu, 06 Aug 2020 09:10:55 -0700 (PDT)
+        with ESMTP id S1729352AbgHFQut (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 12:50:49 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05AEEC002172;
+        Thu,  6 Aug 2020 09:13:44 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id d2so20782820lfj.1;
+        Thu, 06 Aug 2020 09:13:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=CARAOasIFak870VufiBClJ7GzwKqbGWjQPwUf4dCREk=;
-        b=OmngnfVzaAJ9jJNJdEi4kf1hA9P2f7ak2OMok4/yWOq+hkeBgCSKcgzjtw27fGmOWn
-         3Zr8eTtteML9DsrP8N8PGLMwnxXtz2X5uWtxhQ1b1Hp0lQ3K227+u3B9Y44NmKqsDiAI
-         PoGdUJrtbj5F5PHsAbCQ/Xlg8BGF/H+5Ji8upNSdPxqYHp69l0/gw5+WAhPBzdU851Y4
-         OZngM7HgmAS0C6TzfrcDz3JJ+k9LNjkmAOqZ2kkNckw+xhrNxNuoyiHIk+KPqIxMpngc
-         uoTKka3sq9RAXGa3rl6n/LiXS1X1o1Bw47L3qLOompZl1KYCytoql8VhP2iFa6gGlKSe
-         pKDw==
+        bh=MmVura5RdAnpr7fQMyfSzUsj8YChs1506fdeSTUofBA=;
+        b=cKtgqXyMnWAhAXx07h6MqHavPWnX+8vXN9E3//RSzZrZbRq/c5xK4c3KEh+FuEAUsr
+         sUmOhnTKG4o6G4tAlFBd34n2g7jgUAJ1pmlPWRXqeq4RIO6bYlb6uIIIVHUBGrlr3yCB
+         JVWuF90zqMAtaVrlgRDv2u5AOYCVWSTnQL7HKFCIDDRZT7ZgmLEg2YBkdE1/Yan5LJA9
+         vB2G/v8lSG5MgS23J6HzSe+XRoEjUSb/yAfBGuuXZd2PWH2glivmm7E7VVcQoPGzzShk
+         rl5AFSHzVbyAhRAzcIbLDbrT7vhF1A2E07b/dz7NNT4hVAy5scVNkcaYqKTo05qb/ELK
+         dm8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=CARAOasIFak870VufiBClJ7GzwKqbGWjQPwUf4dCREk=;
-        b=Rvn61SHyDSvs5LrCpe/XgfFQ3dEjZFqOttgbjSenDllbn2EbA24HCi3tXS7LHFkVKA
-         IpNwRX6sTVVqW8fo81W5muMITeogvfY0ca/Df1fKrGqLn/YfoZ/nO9rwQjg8HCZjVXQr
-         7MfdpUJhrbxXn1RasPv6VsbrGWNvv+xMVa66s0LlUvjzTACWpm7c3mh9aXwXWFxpz2qZ
-         RV8PG2IZTNTLsYsWprVkEF6wuQvLFqWXfQ84V+5PlbSQqHjT6vY90FMfMncdXPIUm6Lh
-         MyLqyxOW5AOy1NID9a6YJPT6QF3gYDdjKCpCy3/IdKrE6BdVeGH7yC6enWUOOleI9N8K
-         dmiw==
-X-Gm-Message-State: AOAM531GHmPIi40RDNQY+rUuoncj4bLLlHiwcWnqj8qg9a7DDmSsDT27
-        cEkOGxyyRw89HhhZF1KPf5Js9ujy
-X-Google-Smtp-Source: ABdhPJzuFA0l+OQL4YSNgzVA9hLB2nNjiEMtvYCJAZAFfYBW6wFxaQDOT3HDYMkQDm5DZYd2Vh+F6Q==
-X-Received: by 2002:ac2:5ec8:: with SMTP id d8mr4213855lfq.169.1596730253375;
-        Thu, 06 Aug 2020 09:10:53 -0700 (PDT)
+        bh=MmVura5RdAnpr7fQMyfSzUsj8YChs1506fdeSTUofBA=;
+        b=dMBv2BeMaxnRGmLhCxVasCTfvwSld5znC5C8FDaVmlgmvqfDUol9nNlwlPYW95siXE
+         tJLaoRVyXXdL5P3EkyU5ncKOzERw/2qd7znz60wdTLXLk90BFke7Qkf+qds5kCRXFg0l
+         BvR5UTc5jQ8LoGr994BJGRSUIaROy3DwGPsFf41s8MTsxmkuRnonBBC8WdvHQqgCNX17
+         QAkQ8o6RL6kks9eT6u+Z1ZWIVVrlz7jQEnD8GSLMmRj8sobOMLYscc14eBaltNS2eZgG
+         d4catp8WQ8wEda9NjoA5/OZNK37Bv+KniZ+j457qKK31XMxZDPwgO7hYWEtScT04HpUT
+         QNFQ==
+X-Gm-Message-State: AOAM533ovDejqT8diYMVSPhxp+Ja4nCKn2Bqw4+ITS7Av5OJyRdede7e
+        a92hX05cmLP+rVYIUI2NXJFgifpC
+X-Google-Smtp-Source: ABdhPJxyQ5DUwhm0mMp316XsoDHXatr2AKM4d69hS19HNWsjohoDpk8gx0kZj8bJ5qSAUfPGeLHkvw==
+X-Received: by 2002:a19:c68b:: with SMTP id w133mr4214252lff.189.1596730420623;
+        Thu, 06 Aug 2020 09:13:40 -0700 (PDT)
 Received: from [192.168.2.145] (94-29-41-50.dynamic.spd-mgts.ru. [94.29.41.50])
-        by smtp.googlemail.com with ESMTPSA id y1sm3096536lfb.45.2020.08.06.09.10.52
+        by smtp.googlemail.com with ESMTPSA id d13sm2905531lfl.89.2020.08.06.09.13.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Aug 2020 09:10:52 -0700 (PDT)
+        Thu, 06 Aug 2020 09:13:39 -0700 (PDT)
 Subject: Re: [PATCH v8 08/10] gpu: host1x: mipi: Keep MIPI clock enabled till
  calibration is done
 To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
@@ -75,8 +75,8 @@ References: <1596469346-937-1-git-send-email-skomatineni@nvidia.com>
  <4025a458-fa78-924d-c84f-166f82df0f8e@gmail.com>
  <4f15d655-3d62-cf9f-82da-eae379d60fa6@nvidia.com>
 From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <b5612e93-f1c4-4762-baa1-5d85eb1edbe1@gmail.com>
-Date:   Thu, 6 Aug 2020 19:10:51 +0300
+Message-ID: <9deaee09-c422-5694-7c19-d85354b9b703@gmail.com>
+Date:   Thu, 6 Aug 2020 19:13:39 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
@@ -90,37 +90,8 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 06.08.2020 18:59, Sowjanya Komatineni пишет:
-...
->>> Confirmed from HW designer, calibration FSM to finish takes worst case
->>> 72uS so by the time it gets to sensor stream it will be done its
->>> sequence and will be waiting for DONE bit.
->>>
->>> So disabling MIPI CAL clock on sensor stream fails is safe.
->>
->> 72us is quite a lot of time, what will happen if LP-11 happens before
->> FSM finished calibration?
->>
->> Maybe the finish_calibration() needs to split into two parts:
->>
->>   1. wait for CAL_STATUS_ACTIVE before enabling sensor
->>   2. wait for CAL_STATUS_DONE after enabling sensor
-> 
-> I don't think we need to split for active and done. Active will be 1 as
-> long as other pads are in calibration as well.
-> 
+..
 > We cant use active status check for specific pads under calibration.
 > This is common bit for all pads.
 
-Does hardware have a single FSM block shared by all pads or there is FSM
-per group of pads?
-
-> Unfortunately HW don't have separate status indicating when sequence is
-> done to indicate its waiting for LP11.
-> 
-> 
-> To avoid all this, will remove cancel_calibration() totally and use same
-> finish calibration even in case of stream failure then.
-> 
-
-What about to add 72us delay to the end of start_calibration() in order
-to ensure that FSM is finished before LP-11?
+I'm not sure why this is a problem.
