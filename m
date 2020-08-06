@@ -2,388 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEBDD23E17C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 20:51:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B097323E059
+	for <lists+devicetree@lfdr.de>; Thu,  6 Aug 2020 20:31:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729558AbgHFSuX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Aug 2020 14:50:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38662 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729551AbgHFSuW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 Aug 2020 14:50:22 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3A40422CA1;
-        Thu,  6 Aug 2020 18:15:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1596737759;
-        bh=cFE97YtjnWMrVeQFf9kyQ/VoWPcL7dE7L4x04xIYsf0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=xEblMEMe8FlQh+efAnFSl28036J0SUJ2ApmihlPBs3hXTxpwIrdbrUiSnlRVvfQf8
-         uubuZgQmp4Gnwq/sPxufuo6b624jrrhu5cPLj1qt8wClgoKRAUb07CdxoIw0ue+8dP
-         zTfKy8U9QK02qXGU7lw7wJgF88XXrcPIby88BJCQ=
-Date:   Thu, 6 Aug 2020 19:15:53 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Daniel Campello <campello@chromium.org>
-Cc:     LKML <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Gwendal Grignou <gwendal@chromium.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH v5 02/15] iio: sx9310: Update macros declarations
-Message-ID: <20200806191553.3d131981@archlinux>
-In-Reply-To: <20200803175559.v5.2.I30721195b2f20ec785715f7a2757930302a2a7e8@changeid>
-References: <20200803235815.778997-1-campello@chromium.org>
-        <20200803175559.v5.2.I30721195b2f20ec785715f7a2757930302a2a7e8@changeid>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1728537AbgHFSbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Aug 2020 14:31:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58876 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726824AbgHFSaI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Aug 2020 14:30:08 -0400
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B82DC0617A2;
+        Thu,  6 Aug 2020 11:18:39 -0700 (PDT)
+Received: by mail-lf1-x141.google.com with SMTP id b30so26611445lfj.12;
+        Thu, 06 Aug 2020 11:18:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=zyDgQ58yfMwWuCC3duccdkOno3vWVcRNh6nKRXhidek=;
+        b=MyRZbQfGm1TKcB+zBssqDMtxcidwjYO7hE4TlnATgTe0SqNa0BctoPeiVmFPhWxaxw
+         9HgsPi+ytgS6C+dLS5cbg0t0zGUI60l7w7qf/X76752INI/nDLHSPBvwvEwIxHkg72yr
+         t1fYK9Exm0UHawEzsVglsQvCFsKhh/WbzOc/0g23Wo7JMNB/zosNweCHyQ2LegAovw05
+         WJ3fpKjmLSt7TgLgMRKQU3ArR+P/c9OM3aRMi98LMDd/HJX3vg5qP+/AzIuUBlYSNOkA
+         oQyNWVqpRJlY7P35stTlbYDVn/6G4U4AAhKrSI/lKFSErmYn1AgtYwJ6iTmw+k9jSvsP
+         9WdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=zyDgQ58yfMwWuCC3duccdkOno3vWVcRNh6nKRXhidek=;
+        b=FhyP0Nfzr24jUSUFQ8fqTltCvBNEe8LZsNSLvoewUNY6us5ZV+uc4+4yoFMEKQNjDB
+         9GljJU84S5p+pAUZBWt5bJnl6TebTu+TgcRXHxhWPdVvJz/R6wtAvBRFwBk5J3IGWGy4
+         T533yTqL5lkDKBneHhlMwgd0bndgCKkCHWEKNs5JOQSUqPR6/LJuGPsZmW+vMEi3HnDm
+         RZwxmocv6A0sMC7sc8+VmDQLVlc+k2pMQ2+3Iz93vUWvoJOcdyoklMGBZxJRdizQ6vSn
+         MoqA3zqBJja5TNDX1OkIPuw052LzSe8VEUx+y488bnJuMIekgleSIceyokd43z+xOvLJ
+         +b3A==
+X-Gm-Message-State: AOAM530qLF2xi/+NlrRlTq0Pd+RyCpcAKc0S3CbFxTui5x4WomIuD8WU
+        VUvazRwHhNA1LM+T2k8PBu1D1lEA
+X-Google-Smtp-Source: ABdhPJwsXrrzhKIHd4U+0mxTpUSDS+7zShPN2F0Yc4n/A8sv96yqeEPFnojDg1v3UbYpBfNORZD/4A==
+X-Received: by 2002:ac2:5e2c:: with SMTP id o12mr4378022lfg.71.1596737916355;
+        Thu, 06 Aug 2020 11:18:36 -0700 (PDT)
+Received: from [192.168.2.145] (94-29-41-50.dynamic.spd-mgts.ru. [94.29.41.50])
+        by smtp.googlemail.com with ESMTPSA id 1sm2751561ljr.6.2020.08.06.11.18.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Aug 2020 11:18:35 -0700 (PDT)
+Subject: Re: [PATCH v8 08/10] gpu: host1x: mipi: Keep MIPI clock enabled till
+ calibration is done
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     jonathanh@nvidia.com, frankc@nvidia.com, hverkuil@xs4all.nl,
+        sakari.ailus@iki.fi, robh+dt@kernel.org, helen.koike@collabora.com,
+        gregkh@linuxfoundation.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1596469346-937-1-git-send-email-skomatineni@nvidia.com>
+ <6eede805-80fd-016f-22f8-b6d25f6587af@nvidia.com>
+ <1c12e40e-de7f-0599-a941-82760b4c7668@gmail.com>
+ <9ef0b875-e826-43e2-207e-168d2081ff6a@nvidia.com>
+ <4689cfe9-e7c4-48bf-217f-3a31b59b8bda@nvidia.com>
+ <0e78c5ca-c529-1e98-891d-30351c9aae81@gmail.com>
+ <b2098a68-d02f-b406-fc57-56e3ff5d8d1a@nvidia.com>
+ <309e3b66-9288-91ef-71b4-be73eacbbd62@nvidia.com>
+ <fde2431a-0585-ac32-ac25-73e198aaa948@nvidia.com>
+ <4025a458-fa78-924d-c84f-166f82df0f8e@gmail.com>
+ <4f15d655-3d62-cf9f-82da-eae379d60fa6@nvidia.com>
+ <b5612e93-f1c4-4762-baa1-5d85eb1edbe1@gmail.com>
+ <412f8c53-1aca-db31-99a1-a0ecb2081ca5@nvidia.com>
+ <61275bd6-58e7-887f-aa7d-8e60895e7b2b@nvidia.com>
+ <6ff57c38-9847-42b0-643b-0d167c13779f@gmail.com>
+ <c6ef5e77-2b0a-1712-ca58-dbd8d232e1f1@nvidia.com>
+ <ed79b201-85ba-f725-c5fa-fcde0761bc3d@nvidia.com>
+ <26ed2841-db5d-aeb0-11c7-cbe2ddd1d76b@gmail.com>
+ <eddfdaf0-818a-c4dd-e3b4-4d432af56982@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <e965076a-dc31-5774-dd27-98c992331bd2@gmail.com>
+Date:   Thu, 6 Aug 2020 21:18:34 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <eddfdaf0-818a-c4dd-e3b4-4d432af56982@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  3 Aug 2020 17:58:02 -0600
-Daniel Campello <campello@chromium.org> wrote:
+06.08.2020 21:07, Sowjanya Komatineni пишет:
+> 
+> On 8/6/20 11:01 AM, Dmitry Osipenko wrote:
+>> 06.08.2020 20:52, Sowjanya Komatineni пишет:
+>> ...
+>>> Right mutex_unlock should happen at end of finish_calibration.
+>>>
+>>> With keeping mutex locked in start, we dont have to check for active to
+>>> be 0 to issue start as mutex will keep it locked and other pads
+>>> calibration can only go thru when current one is done.
+>>>
+>>> So instead of below sequence, its simpler to do this way?
+>>>
+>>> start_calibration()
+>>>
+>>> - mutex_lock
+>>>
+>>> - wait for 72uS after start
+>>>
+>>> finish_calibration()
+>>>
+>>> - keep check for ACTIVE = 0 and DONE = 1
+>> I think only the DONE bits which correspond to the mipi_device->pads
+>> bitmask should be awaited.
+> 
+> As next START can't be triggered when auto cal is ACTIVE, we should keep
+> this in finish.
+> 
+> As we do mutex_unlock only at end of finish, other pads calibrations
+> dont go thru till the one in process is finished.
+> 
+> So in this case ACTIVE applies to current selected pads that are under
+> calibration.
 
-> Follows spec sheet for macro declarations.
-> 
-> Signed-off-by: Daniel Campello <campello@chromium.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-Applied,
+Should be better to check only the relevant bits in order to catch bugs,
+otherwise you may get a DONE status from the irrelevant pads.
 
-Thanks,
+>>> - mutex_unlock()
+>> Perhaps the start_calibration() also needs to be changed to not touch
+>> the MIPI_CAL_CONFIG bits of the unrelated pads?
+> Driver already takes care of programming corresponding pads config only.
 
-Jonathan
+It writes 0 to the config of the unrelated pads, which probably isn't
+nice if some pads use periodic auto-calibration.
 
-> ---
-> 
-> Changes in v5:
->  - Added #include <linux/bitfield.h>
-> 
-> Changes in v4:
->  - Updated macro SX9310_REG_STAT1_COMPSTAT_MASK at call site.
->  - Use FIELD_GET/FIELD_PREP instead of manual shift.
-> 
-> Changes in v3: None
-> Changes in v2: None
-> 
->  drivers/iio/proximity/sx9310.c | 146 +++++++++++++++------------------
->  1 file changed, 68 insertions(+), 78 deletions(-)
-> 
-> diff --git a/drivers/iio/proximity/sx9310.c b/drivers/iio/proximity/sx9310.c
-> index d161f3061e353d..d7c77fc661ba86 100644
-> --- a/drivers/iio/proximity/sx9310.c
-> +++ b/drivers/iio/proximity/sx9310.c
-> @@ -11,6 +11,7 @@
->   */
->  
->  #include <linux/acpi.h>
-> +#include <linux/bitfield.h>
->  #include <linux/delay.h>
->  #include <linux/i2c.h>
->  #include <linux/irq.h>
-> @@ -33,45 +34,44 @@
->  #define SX9310_REG_IRQ_SRC				0x00
->  #define SX9310_REG_STAT0				0x01
->  #define SX9310_REG_STAT1				0x02
-> +#define SX9310_REG_STAT1_COMPSTAT_MASK			GENMASK(3, 0)
->  #define SX9310_REG_IRQ_MSK				0x03
->  #define   SX9310_CONVDONE_IRQ				BIT(3)
->  #define   SX9310_FAR_IRQ				BIT(5)
->  #define   SX9310_CLOSE_IRQ				BIT(6)
-> -#define   SX9310_EVENT_IRQ				(SX9310_FAR_IRQ | \
-> -							 SX9310_CLOSE_IRQ)
->  #define SX9310_REG_IRQ_FUNC				0x04
->  
->  #define SX9310_REG_PROX_CTRL0				0x10
-> -#define   SX9310_REG_PROX_CTRL0_PROXSTAT2		0x10
-> -#define   SX9310_REG_PROX_CTRL0_EN_MASK			0x0F
-> +#define   SX9310_REG_PROX_CTRL0_SENSOREN_MASK		GENMASK(3, 0)
-> +#define   SX9310_REG_PROX_CTRL0_SCANPERIOD_MASK		GENMASK(7, 4)
-> +#define   SX9310_REG_PROX_CTRL0_SCANPERIOD_15MS		0x01
->  #define SX9310_REG_PROX_CTRL1				0x11
->  #define SX9310_REG_PROX_CTRL2				0x12
-> -#define   SX9310_REG_PROX_CTRL2_COMBMODE_ALL		0x80
-> -#define   SX9310_REG_PROX_CTRL2_SHIELDEN_DYNAMIC	0x04
-> +#define   SX9310_REG_PROX_CTRL2_COMBMODE_CS1_CS2	(0x02 << 6)
-> +#define   SX9310_REG_PROX_CTRL2_SHIELDEN_DYNAMIC	(0x01 << 2)
->  #define SX9310_REG_PROX_CTRL3				0x13
-> -#define   SX9310_REG_PROX_CTRL3_GAIN0_X8		0x0c
-> +#define   SX9310_REG_PROX_CTRL3_GAIN0_X8		(0x03 << 2)
->  #define   SX9310_REG_PROX_CTRL3_GAIN12_X4		0x02
->  #define SX9310_REG_PROX_CTRL4				0x14
->  #define   SX9310_REG_PROX_CTRL4_RESOLUTION_FINEST	0x07
->  #define SX9310_REG_PROX_CTRL5				0x15
-> -#define   SX9310_REG_PROX_CTRL5_RANGE_SMALL		0xc0
-> -#define   SX9310_REG_PROX_CTRL5_STARTUPSENS_CS1		0x04
-> +#define   SX9310_REG_PROX_CTRL5_RANGE_SMALL		(0x03 << 6)
-> +#define   SX9310_REG_PROX_CTRL5_STARTUPSENS_CS1		(0x01 << 2)
->  #define   SX9310_REG_PROX_CTRL5_RAWFILT_1P25		0x02
->  #define SX9310_REG_PROX_CTRL6				0x16
-> -#define   SX9310_REG_PROX_CTRL6_COMP_COMMON		0x20
-> +#define   SX9310_REG_PROX_CTRL6_AVGTHRESH_DEFAULT	0x20
->  #define SX9310_REG_PROX_CTRL7				0x17
-> -#define   SX9310_REG_PROX_CTRL7_AVGNEGFILT_2		0x08
-> +#define   SX9310_REG_PROX_CTRL7_AVGNEGFILT_2		(0x01 << 3)
->  #define   SX9310_REG_PROX_CTRL7_AVGPOSFILT_512		0x05
->  #define SX9310_REG_PROX_CTRL8				0x18
->  #define SX9310_REG_PROX_CTRL9				0x19
-> -#define   SX9310_REG_PROX_CTRL8_9_PTHRESH12_28		0x40
-> -#define   SX9310_REG_PROX_CTRL8_9_PTHRESH_96		0x88
-> +#define   SX9310_REG_PROX_CTRL8_9_PTHRESH_28		(0x08 << 3)
-> +#define   SX9310_REG_PROX_CTRL8_9_PTHRESH_96		(0x11 << 3)
->  #define   SX9310_REG_PROX_CTRL8_9_BODYTHRESH_900	0x03
->  #define   SX9310_REG_PROX_CTRL8_9_BODYTHRESH_1500	0x05
->  #define SX9310_REG_PROX_CTRL10				0x1a
-> -#define   SX9310_REG_PROX_CTRL10_HYST_6PCT		0x10
-> -#define   SX9310_REG_PROX_CTRL10_CLOSE_DEBOUNCE_8	0x12
-> -#define   SX9310_REG_PROX_CTRL10_FAR_DEBOUNCE_8		0x03
-> +#define   SX9310_REG_PROX_CTRL10_HYST_6PCT		(0x01 << 4)
-> +#define   SX9310_REG_PROX_CTRL10_FAR_DEBOUNCE_2		0x01
->  #define SX9310_REG_PROX_CTRL11				0x1b
->  #define SX9310_REG_PROX_CTRL12				0x1c
->  #define SX9310_REG_PROX_CTRL13				0x1d
-> @@ -82,8 +82,8 @@
->  #define SX9310_REG_PROX_CTRL18				0x22
->  #define SX9310_REG_PROX_CTRL19				0x23
->  #define SX9310_REG_SAR_CTRL0				0x2a
-> -#define   SX9310_REG_SAR_CTRL0_SARDEB_4_SAMPLES		0x40
-> -#define   SX9310_REG_SAR_CTRL0_SARHYST_8		0x10
-> +#define   SX9310_REG_SAR_CTRL0_SARDEB_4_SAMPLES		(0x02 << 5)
-> +#define   SX9310_REG_SAR_CTRL0_SARHYST_8		(0x02 << 3)
->  #define SX9310_REG_SAR_CTRL1				0x2b
->  /* Each increment of the slope register is 0.0078125. */
->  #define   SX9310_REG_SAR_CTRL1_SLOPE(_hnslope)		(_hnslope / 78125)
-> @@ -107,7 +107,7 @@
->  #define SX9310_REG_SAR_MSB				0x39
->  #define SX9310_REG_SAR_LSB				0x3a
->  
-> -#define SX9310_REG_I2CADDR				0x40
-> +#define SX9310_REG_I2C_ADDR				0x40
->  #define SX9310_REG_PAUSE				0x41
->  #define SX9310_REG_WHOAMI				0x42
->  #define   SX9310_WHOAMI_VALUE				0x01
-> @@ -116,14 +116,9 @@
->  #define SX9310_REG_RESET				0x7f
->  #define   SX9310_SOFT_RESET				0xde
->  
-> -#define SX9310_SCAN_PERIOD_MASK				GENMASK(7, 4)
-> -#define SX9310_SCAN_PERIOD_SHIFT			4
-> -
-> -#define SX9310_COMPSTAT_MASK				GENMASK(3, 0)
->  
->  /* 4 hardware channels, as defined in STAT0: COMB, CS2, CS1 and CS0. */
->  #define SX9310_NUM_CHANNELS				4
-> -#define SX9310_CHAN_ENABLED_MASK			GENMASK(3, 0)
->  
->  struct sx9310_data {
->  	/* Serialize access to registers and channel configuration */
-> @@ -251,7 +246,7 @@ static const struct regmap_range sx9310_readable_reg_ranges[] = {
->  	regmap_reg_range(SX9310_REG_PROX_CTRL0, SX9310_REG_PROX_CTRL19),
->  	regmap_reg_range(SX9310_REG_SAR_CTRL0, SX9310_REG_SAR_CTRL2),
->  	regmap_reg_range(SX9310_REG_SENSOR_SEL, SX9310_REG_SAR_LSB),
-> -	regmap_reg_range(SX9310_REG_I2CADDR, SX9310_REG_WHOAMI),
-> +	regmap_reg_range(SX9310_REG_I2C_ADDR, SX9310_REG_WHOAMI),
->  	regmap_reg_range(SX9310_REG_RESET, SX9310_REG_RESET),
->  };
->  
-> @@ -292,7 +287,7 @@ static int sx9310_update_chan_en(struct sx9310_data *data,
->  
->  	if ((data->chan_read | data->chan_event) != (chan_read | chan_event)) {
->  		ret = regmap_update_bits(data->regmap, SX9310_REG_PROX_CTRL0,
-> -					 SX9310_CHAN_ENABLED_MASK,
-> +					 SX9310_REG_PROX_CTRL0_SENSOREN_MASK,
->  					 chan_read | chan_event);
->  		if (ret)
->  			return ret;
-> @@ -361,7 +356,7 @@ static int sx9310_wait_for_sample(struct sx9310_data *data)
->  	if (ret < 0)
->  		return ret;
->  
-> -	val = (val & SX9310_SCAN_PERIOD_MASK) >> SX9310_SCAN_PERIOD_SHIFT;
-> +	val = FIELD_GET(SX9310_REG_PROX_CTRL0_SCANPERIOD_MASK, val);
->  
->  	msleep(sx9310_scan_period_table[val]);
->  
-> @@ -435,7 +430,7 @@ static int sx9310_read_samp_freq(struct sx9310_data *data, int *val, int *val2)
->  	if (ret < 0)
->  		return ret;
->  
-> -	regval = (regval & SX9310_SCAN_PERIOD_MASK) >> SX9310_SCAN_PERIOD_SHIFT;
-> +	regval = FIELD_GET(SX9310_REG_PROX_CTRL0_SCANPERIOD_MASK, regval);
->  	*val = sx9310_samp_freq_table[regval].val;
->  	*val2 = sx9310_samp_freq_table[regval].val2;
->  
-> @@ -482,9 +477,10 @@ static int sx9310_set_samp_freq(struct sx9310_data *data, int val, int val2)
->  
->  	mutex_lock(&data->mutex);
->  
-> -	ret = regmap_update_bits(data->regmap, SX9310_REG_PROX_CTRL0,
-> -				 SX9310_SCAN_PERIOD_MASK,
-> -				 i << SX9310_SCAN_PERIOD_SHIFT);
-> +	ret = regmap_update_bits(
-> +		data->regmap, SX9310_REG_PROX_CTRL0,
-> +		SX9310_REG_PROX_CTRL0_SCANPERIOD_MASK,
-> +		FIELD_PREP(SX9310_REG_PROX_CTRL0_SCANPERIOD_MASK, i));
->  
->  	mutex_unlock(&data->mutex);
->  
-> @@ -572,7 +568,7 @@ static irqreturn_t sx9310_irq_thread_handler(int irq, void *private)
->  		goto out;
->  	}
->  
-> -	if (val & SX9310_EVENT_IRQ)
-> +	if (val & (SX9310_FAR_IRQ | SX9310_CLOSE_IRQ))
->  		sx9310_push_events(indio_dev);
->  
->  	if (val & SX9310_CONVDONE_IRQ)
-> @@ -600,6 +596,7 @@ static int sx9310_write_event_config(struct iio_dev *indio_dev,
->  				     enum iio_event_direction dir, int state)
->  {
->  	struct sx9310_data *data = iio_priv(indio_dev);
-> +	unsigned int eventirq = SX9310_FAR_IRQ | SX9310_CLOSE_IRQ;
->  	int ret;
->  
->  	/* If the state hasn't changed, there's nothing to do. */
-> @@ -612,7 +609,7 @@ static int sx9310_write_event_config(struct iio_dev *indio_dev,
->  		if (ret < 0)
->  			goto out_unlock;
->  		if (!(data->chan_event & ~BIT(chan->channel))) {
-> -			ret = sx9310_enable_irq(data, SX9310_EVENT_IRQ);
-> +			ret = sx9310_enable_irq(data, eventirq);
->  			if (ret < 0)
->  				sx9310_put_event_channel(data, chan->channel);
->  		}
-> @@ -621,7 +618,7 @@ static int sx9310_write_event_config(struct iio_dev *indio_dev,
->  		if (ret < 0)
->  			goto out_unlock;
->  		if (!data->chan_event) {
-> -			ret = sx9310_disable_irq(data, SX9310_EVENT_IRQ);
-> +			ret = sx9310_disable_irq(data, eventirq);
->  			if (ret < 0)
->  				sx9310_get_event_channel(data, chan->channel);
->  		}
-> @@ -746,53 +743,46 @@ struct sx9310_reg_default {
->  	u8 def;
->  };
->  
-> -#define SX_INIT(_reg, _def)			\
-> -	{					\
-> -		.reg = SX9310_REG_##_reg,	\
-> -		.def = _def,			\
-> -	}
-> -
->  static const struct sx9310_reg_default sx9310_default_regs[] = {
-> -	SX_INIT(IRQ_MSK, 0x00),
-> -	SX_INIT(IRQ_FUNC, 0x00),
-> +	{ SX9310_REG_IRQ_MSK, 0x00 },
-> +	{ SX9310_REG_IRQ_FUNC, 0x00 },
->  	/*
->  	 * The lower 4 bits should not be set as it enable sensors measurements.
->  	 * Turning the detection on before the configuration values are set to
->  	 * good values can cause the device to return erroneous readings.
->  	 */
-> -	SX_INIT(PROX_CTRL0, SX9310_REG_PROX_CTRL0_PROXSTAT2),
-> -	SX_INIT(PROX_CTRL1, 0x00),
-> -	SX_INIT(PROX_CTRL2, SX9310_REG_PROX_CTRL2_COMBMODE_ALL |
-> -			    SX9310_REG_PROX_CTRL2_SHIELDEN_DYNAMIC),
-> -	SX_INIT(PROX_CTRL3, SX9310_REG_PROX_CTRL3_GAIN0_X8 |
-> -			    SX9310_REG_PROX_CTRL3_GAIN12_X4),
-> -	SX_INIT(PROX_CTRL4, SX9310_REG_PROX_CTRL4_RESOLUTION_FINEST),
-> -	SX_INIT(PROX_CTRL5, SX9310_REG_PROX_CTRL5_RANGE_SMALL |
-> -			    SX9310_REG_PROX_CTRL5_STARTUPSENS_CS1 |
-> -			    SX9310_REG_PROX_CTRL5_RAWFILT_1P25),
-> -	SX_INIT(PROX_CTRL6, SX9310_REG_PROX_CTRL6_COMP_COMMON),
-> -	SX_INIT(PROX_CTRL7, SX9310_REG_PROX_CTRL7_AVGNEGFILT_2 |
-> -			    SX9310_REG_PROX_CTRL7_AVGPOSFILT_512),
-> -	SX_INIT(PROX_CTRL8, SX9310_REG_PROX_CTRL8_9_PTHRESH_96 |
-> -			    SX9310_REG_PROX_CTRL8_9_BODYTHRESH_1500),
-> -	SX_INIT(PROX_CTRL9, SX9310_REG_PROX_CTRL8_9_PTHRESH12_28 |
-> -			    SX9310_REG_PROX_CTRL8_9_BODYTHRESH_900),
-> -	SX_INIT(PROX_CTRL10, SX9310_REG_PROX_CTRL10_HYST_6PCT |
-> -			     SX9310_REG_PROX_CTRL10_CLOSE_DEBOUNCE_8 |
-> -			     SX9310_REG_PROX_CTRL10_FAR_DEBOUNCE_8),
-> -	SX_INIT(PROX_CTRL11, 0x00),
-> -	SX_INIT(PROX_CTRL12, 0x00),
-> -	SX_INIT(PROX_CTRL13, 0x00),
-> -	SX_INIT(PROX_CTRL14, 0x00),
-> -	SX_INIT(PROX_CTRL15, 0x00),
-> -	SX_INIT(PROX_CTRL16, 0x00),
-> -	SX_INIT(PROX_CTRL17, 0x00),
-> -	SX_INIT(PROX_CTRL18, 0x00),
-> -	SX_INIT(PROX_CTRL19, 0x00),
-> -	SX_INIT(SAR_CTRL0, SX9310_REG_SAR_CTRL0_SARDEB_4_SAMPLES |
-> -			   SX9310_REG_SAR_CTRL0_SARHYST_8),
-> -	SX_INIT(SAR_CTRL1, SX9310_REG_SAR_CTRL1_SLOPE(10781250)),
-> -	SX_INIT(SAR_CTRL2, SX9310_REG_SAR_CTRL2_SAROFFSET_DEFAULT),
-> +	{ SX9310_REG_PROX_CTRL0, SX9310_REG_PROX_CTRL0_SCANPERIOD_15MS },
-> +	{ SX9310_REG_PROX_CTRL1, 0x00 },
-> +	{ SX9310_REG_PROX_CTRL2, SX9310_REG_PROX_CTRL2_COMBMODE_CS1_CS2 |
-> +				 SX9310_REG_PROX_CTRL2_SHIELDEN_DYNAMIC },
-> +	{ SX9310_REG_PROX_CTRL3, SX9310_REG_PROX_CTRL3_GAIN0_X8 |
-> +				 SX9310_REG_PROX_CTRL3_GAIN12_X4 },
-> +	{ SX9310_REG_PROX_CTRL4, SX9310_REG_PROX_CTRL4_RESOLUTION_FINEST },
-> +	{ SX9310_REG_PROX_CTRL5, SX9310_REG_PROX_CTRL5_RANGE_SMALL |
-> +				 SX9310_REG_PROX_CTRL5_STARTUPSENS_CS1 |
-> +				 SX9310_REG_PROX_CTRL5_RAWFILT_1P25 },
-> +	{ SX9310_REG_PROX_CTRL6, SX9310_REG_PROX_CTRL6_AVGTHRESH_DEFAULT },
-> +	{ SX9310_REG_PROX_CTRL7, SX9310_REG_PROX_CTRL7_AVGNEGFILT_2 |
-> +				 SX9310_REG_PROX_CTRL7_AVGPOSFILT_512 },
-> +	{ SX9310_REG_PROX_CTRL8, SX9310_REG_PROX_CTRL8_9_PTHRESH_96 |
-> +				 SX9310_REG_PROX_CTRL8_9_BODYTHRESH_1500 },
-> +	{ SX9310_REG_PROX_CTRL9, SX9310_REG_PROX_CTRL8_9_PTHRESH_28 |
-> +				 SX9310_REG_PROX_CTRL8_9_BODYTHRESH_900 },
-> +	{ SX9310_REG_PROX_CTRL10, SX9310_REG_PROX_CTRL10_HYST_6PCT |
-> +				  SX9310_REG_PROX_CTRL10_FAR_DEBOUNCE_2 },
-> +	{ SX9310_REG_PROX_CTRL11, 0x00 },
-> +	{ SX9310_REG_PROX_CTRL12, 0x00 },
-> +	{ SX9310_REG_PROX_CTRL13, 0x00 },
-> +	{ SX9310_REG_PROX_CTRL14, 0x00 },
-> +	{ SX9310_REG_PROX_CTRL15, 0x00 },
-> +	{ SX9310_REG_PROX_CTRL16, 0x00 },
-> +	{ SX9310_REG_PROX_CTRL17, 0x00 },
-> +	{ SX9310_REG_PROX_CTRL18, 0x00 },
-> +	{ SX9310_REG_PROX_CTRL19, 0x00 },
-> +	{ SX9310_REG_SAR_CTRL0, SX9310_REG_SAR_CTRL0_SARDEB_4_SAMPLES |
-> +				SX9310_REG_SAR_CTRL0_SARHYST_8 },
-> +	{ SX9310_REG_SAR_CTRL1, SX9310_REG_SAR_CTRL1_SLOPE(10781250) },
-> +	{ SX9310_REG_SAR_CTRL2, SX9310_REG_SAR_CTRL2_SAROFFSET_DEFAULT },
->  };
->  
->  /* Activate all channels and perform an initial compensation. */
-> @@ -809,7 +799,7 @@ static int sx9310_init_compensation(struct iio_dev *indio_dev)
->  
->  	/* run the compensation phase on all channels */
->  	ret = regmap_write(data->regmap, SX9310_REG_PROX_CTRL0,
-> -			   ctrl0 | SX9310_REG_PROX_CTRL0_EN_MASK);
-> +			   ctrl0 | SX9310_REG_PROX_CTRL0_SENSOREN_MASK);
->  	if (ret < 0)
->  		return ret;
->  
-> @@ -818,7 +808,7 @@ static int sx9310_init_compensation(struct iio_dev *indio_dev)
->  		ret = regmap_read(data->regmap, SX9310_REG_STAT1, &val);
->  		if (ret < 0)
->  			goto out;
-> -		if (!(val & SX9310_COMPSTAT_MASK))
-> +		if (!(val & SX9310_REG_STAT1_COMPSTAT_MASK))
->  			break;
->  	}
->  
-> @@ -992,7 +982,7 @@ static int __maybe_unused sx9310_suspend(struct device *dev)
->  	if (ret)
->  		goto out;
->  
-> -	ctrl0 = data->suspend_ctrl0 & ~SX9310_REG_PROX_CTRL0_EN_MASK;
-> +	ctrl0 = data->suspend_ctrl0 & ~SX9310_REG_PROX_CTRL0_SENSOREN_MASK;
->  	ret = regmap_write(data->regmap, SX9310_REG_PROX_CTRL0, ctrl0);
->  	if (ret)
->  		goto out;
+https://elixir.bootlin.com/linux/v5.8/source/drivers/gpu/host1x/mipi.c#L350
 
+Although looks like auto-calibration isn't supported by the current driver.
