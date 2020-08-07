@@ -2,24 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B807C23F23B
-	for <lists+devicetree@lfdr.de>; Fri,  7 Aug 2020 19:50:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8EAC23F334
+	for <lists+devicetree@lfdr.de>; Fri,  7 Aug 2020 21:48:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728244AbgHGRuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Aug 2020 13:50:19 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:29111 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728228AbgHGRuT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Aug 2020 13:50:19 -0400
-X-IronPort-AV: E=Sophos;i="5.75,446,1589209200"; 
-   d="scan'208";a="54150750"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 08 Aug 2020 02:50:18 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id A30534004BA6;
-        Sat,  8 Aug 2020 02:50:15 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        id S1726542AbgHGTsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Aug 2020 15:48:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37906 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725893AbgHGTsM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Aug 2020 15:48:12 -0400
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76FB0C061756;
+        Fri,  7 Aug 2020 12:48:12 -0700 (PDT)
+Received: by mail-lj1-x241.google.com with SMTP id 185so3410607ljj.7;
+        Fri, 07 Aug 2020 12:48:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=/OAIwEYgb5EsnCOJBCBI53WQmoKNdPN9sFAT/HuBiGM=;
+        b=rA/hxPg/cBBsL6bAS+rNWvYhRtIbOW7C8M0vmi2SgNiJ54zvP65TKyIbqD1hsHvkvS
+         U7BsWvNlW0fM2g8crodJORaa+6xrZO4LAIxF70NhlT4aniLWsOt0YlH+H0rMWD5HVDjp
+         e1z4CwOZtvwMokZdQ/+VXZFL5W6Br/QZsLGZ2kee1o1cxY3jJYjniQRvHWr2N8a6u1Ye
+         gO5m4DCTLEyQREynj8UgTn4yeIpXn3G5IARwAXYRfTC1XCvskkeqBJzmjuzGTxE1bfA3
+         EolmpKhPAKVepeb0TamsuYYEtxZEIk55G2gnn+CVXK/aFlXWvjlFJKBjFwsuU5mh13MT
+         zvNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=/OAIwEYgb5EsnCOJBCBI53WQmoKNdPN9sFAT/HuBiGM=;
+        b=dRUXKgacG9vOBjR29byo0USGqAzY5leZI5oZXHPRWML4PPCYMG/yFj7orbxgMXb8yn
+         ODk3cYm2hYEl5gm7VJOUQqMeIUfsp3e4l8rdfTu2hcWon9HraRHxUVimZZfcyx9lspOt
+         Rwl7ge/QI7P7c5sN9761DGrfqPER22pTiuNIX0kH0vRSLofdHWU1igbgYSryY403hLvp
+         v2lSz/NH7hRFA2nfzcQZTytwNnKO7lLmDx/k/udQsblnu/7LCRU0ut0luDVylCRWFZ+0
+         zVYuYzlg45G1Rmom3aWdRc5LBNOkLGb9/d9UmYZ0tZKnQoyNM8XDihP+eQZApVagfihF
+         U/FQ==
+X-Gm-Message-State: AOAM533Mt2glW2w2Dqzh0EHAgSs/FdyZlRrdpjy4oLmoIh8pkYILbHIv
+        yBITH6fPfYSKZkF+bPtFqVI=
+X-Google-Smtp-Source: ABdhPJzDPKqMkNqMCDgRhnAMLxrvo+wEVw3+nGA9tP5kHBSzcsRls18yvJQ+ewft2ZoRvQRTWzs36g==
+X-Received: by 2002:a2e:b689:: with SMTP id l9mr6614535ljo.393.1596829690811;
+        Fri, 07 Aug 2020 12:48:10 -0700 (PDT)
+Received: from wasted.omprussia.ru ([2a00:1fa0:445c:7ae3:e9a3:2354:9467:4eca])
+        by smtp.gmail.com with ESMTPSA id k4sm4171586ljc.50.2020.08.07.12.48.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Aug 2020 12:48:10 -0700 (PDT)
+Subject: Re: [PATCH 5/7] ARM: dts: r8a7742: Add DU support
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
         David Airlie <airlied@linux.ie>,
@@ -28,164 +59,36 @@ To:     Geert Uytterhoeven <geert+renesas@glider.be>,
         Daniel Vetter <daniel@ffwll.ch>,
         dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
 Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 7/7] ARM: dts: r8a7742-iwg21d-q7: Add LCD support
-Date:   Fri,  7 Aug 2020 18:49:54 +0100
-Message-Id: <20200807174954.14448-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200807174954.14448-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Prabhakar <prabhakar.csengg@gmail.com>
 References: <20200807174954.14448-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20200807174954.14448-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Message-ID: <e67a94e8-c9ed-dc9e-cab8-453a09441bcb@gmail.com>
+Date:   Fri, 7 Aug 2020 22:48:08 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20200807174954.14448-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The iwg21d comes with a 7" capacitive touch screen, therefore
-add support for it.
+Hello!
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
----
- arch/arm/boot/dts/r8a7742-iwg21d-q7.dts | 84 +++++++++++++++++++++++++
- 1 file changed, 84 insertions(+)
+On 8/7/20 8:49 PM, Lad Prabhakar wrote:
 
-diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
-index b3461a61a4bf..cf59fd61e422 100644
---- a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
-+++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
-@@ -30,6 +30,7 @@
- 
- /dts-v1/;
- #include "r8a7742-iwg21m.dtsi"
-+#include <dt-bindings/pwm/pwm.h>
- 
- / {
- 	model = "iWave Systems RainboW-G21D-Qseven board based on RZ/G1H";
-@@ -52,6 +53,50 @@
- 		clock-frequency = <26000000>;
- 	};
- 
-+	lcd_backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&tpu 2 5000000 0>;
-+		brightness-levels = <0 4 8 16 32 64 128 255>;
-+		pinctrl-0 = <&backlight_pins>;
-+		pinctrl-names = "default";
-+		default-brightness-level = <7>;
-+		enable-gpios = <&gpio3 11 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	lvds-receiver {
-+		compatible = "ti,ds90cf384a", "lvds-decoder";
-+		powerdown-gpios = <&gpio5 28 GPIO_ACTIVE_LOW>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				lvds_receiver_in: endpoint {
-+					remote-endpoint = <&lvds0_out>;
-+				};
-+			};
-+			port@1 {
-+				reg = <1>;
-+				lvds_receiver_out: endpoint {
-+					remote-endpoint = <&panel_in>;
-+				};
-+			};
-+		};
-+	};
-+
-+	panel {
-+		compatible = "edt,etm0700g0dh6";
-+		backlight = <&lcd_backlight>;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&lvds_receiver_out>;
-+			};
-+		};
-+	};
-+
- 	reg_1p5v: 1p5v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "1P5V";
-@@ -129,12 +174,31 @@
- 		VDDIO-supply = <&reg_3p3v>;
- 		VDDD-supply = <&reg_1p5v>;
- 	};
-+
-+	touch: touchpanel@38 {
-+		compatible = "edt,edt-ft5406";
-+		reg = <0x38>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <24 IRQ_TYPE_EDGE_FALLING>;
-+	};
- };
- 
- &cmt0 {
- 	status = "okay";
- };
- 
-+&du {
-+	status = "okay";
-+};
-+
-+&gpio0 {
-+	touch-interrupt {
-+		gpio-hog;
-+		gpios = <24 GPIO_ACTIVE_LOW>;
-+		input;
-+	};
-+};
-+
- &hsusb {
- 	pinctrl-0 = <&usb0_pins>;
- 	pinctrl-names = "default";
-@@ -165,6 +229,11 @@
- 		function = "avb";
- 	};
- 
-+	backlight_pins: backlight {
-+		groups = "tpu0_to2";
-+		function = "tpu0";
-+	};
-+
- 	i2c2_pins: i2c2 {
- 		groups = "i2c2_b";
- 		function = "i2c2";
-@@ -208,6 +277,17 @@
- 	};
- };
- 
-+&lvds0 {
-+	status = "okay";
-+	ports {
-+		port@1 {
-+			lvds0_out: endpoint {
-+				remote-endpoint = <&lvds_receiver_in>;
-+			};
-+		};
-+	};
-+};
-+
- &rcar_sound {
- 	pinctrl-0 = <&sound_pins>;
- 	pinctrl-names = "default";
-@@ -261,6 +341,10 @@
- 	shared-pin;
- };
- 
-+&tpu {
-+	status = "okay";
-+};
-+
- &usbphy {
- 	status = "okay";
- };
--- 
-2.17.1
+> Add du node to r8a7742 SoC DT. Boards that want to enable the DU
 
+  Both "du" and "DU" on a single line? :-)
+
+> need to specify the output topology.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+[...]
+
+MBR, Sergei
