@@ -2,125 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C85423EE51
-	for <lists+devicetree@lfdr.de>; Fri,  7 Aug 2020 15:37:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD25F23EE6C
+	for <lists+devicetree@lfdr.de>; Fri,  7 Aug 2020 15:43:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726217AbgHGNhO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Aug 2020 09:37:14 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:44167 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725970AbgHGNhM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Aug 2020 09:37:12 -0400
-Received: by mail-ot1-f68.google.com with SMTP id h22so1574149otq.11;
-        Fri, 07 Aug 2020 06:37:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=J44MR7fnREWFikV0B417NzGJrCU1jtFI1zOdoOpVzoU=;
-        b=jc5pMFsPG8CIHkWD+Q0HjtkDM6OoXi/RiIU3J/092hCKE4Nady7oEwUEZfdKJworGJ
-         7hzsiWZXxo8WNh2oCUyNwdM9xG1+x5LkSZXn34Yt5jPnKMDTK/ElNlOkkKwSI8W2y/ZH
-         PtO8P9gx2nSOSdzBSQSjFhvXvnaSUij3hrBNiPFfwd2ISSM0bbzR95hBo4hE2BefyHAJ
-         QRVB2+HIfK0Fvdi5wdlgU6GmAZ2w2zSg2JcwOvhRUmR6hfY0NKnnnNxok/DejHcHFMpn
-         7kprdeYVbcInpQb5eVyTnqJY5rwVwQqHyMn2BW5inSKSCEROX5/rWqIh4o3YbvwnNcsj
-         wLxg==
-X-Gm-Message-State: AOAM532+jmrEXYHKect2/zP4dpFMAcsUTZYpAq6Sw7lcs+1/kMt0D//F
-        K236S0GhbjeEA2zAvRnVFwnlnyWvM8HPwF9zShQ=
-X-Google-Smtp-Source: ABdhPJwafn0EQZaoR3TYnh1FhNdc6aBGm7a0d+hS9M2QCMy4MOn+llZ4cz0+MLff0cZgTShD75DW+6jOu4NPU5if2to=
-X-Received: by 2002:a9d:7d8c:: with SMTP id j12mr11805393otn.250.1596807430961;
- Fri, 07 Aug 2020 06:37:10 -0700 (PDT)
+        id S1726282AbgHGNno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Aug 2020 09:43:44 -0400
+Received: from [125.140.134.231] ([125.140.134.231]:49901 "EHLO
+        WIN-DAONO245HJF" rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726377AbgHGNnf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Aug 2020 09:43:35 -0400
+Received: from User ([185.191.231.247]) by WIN-DAONO245HJF with Microsoft SMTPSVC(8.5.9600.16384);
+         Fri, 7 Aug 2020 22:40:46 +0900
+Reply-To: <williiamrichard2999@yahoo.com>
+From:   "williams richard" <richardwilliamsrichard355@gmail.com>
+Subject: INVESTMENT PARTNER
+Date:   Fri, 7 Aug 2020 06:40:50 -0700
 MIME-Version: 1.0
-References: <20200417140920.22596-1-geert+renesas@glider.be> <20200430023237.GA23316@bogus>
-In-Reply-To: <20200430023237.GA23316@bogus>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 7 Aug 2020 15:36:59 +0200
-Message-ID: <CAMuHMdWSPDQBABXZVaPecETbSRsP2yyZXLHiL_+_R2n_-09jRg@mail.gmail.com>
-Subject: Re: [PATCH RFC] dt-bindings: pinctrl: sh-pfc: Convert to json-schema
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain;
+        charset="Windows-1251"
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook Express 6.00.2600.0000
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
+Message-ID: <WIN-DAONO245HJFkF5Z00ad7022@WIN-DAONO245HJF>
+X-OriginalArrivalTime: 07 Aug 2020 13:40:47.0245 (UTC) FILETIME=[5B217BD0:01D66CC0]
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Dear Sir/Madam
 
-On Thu, Apr 30, 2020 at 4:32 AM Rob Herring <robh@kernel.org> wrote:
-> On Fri, Apr 17, 2020 at 04:09:20PM +0200, Geert Uytterhoeven wrote:
-> > Convert the Renesas Pin Function Controller (PFC) Device Tree binding
-> > documentation to json-schema.
-> >
-> > Document missing properties.
-> > Drop deprecated and obsolete #gpio-range-cells property.
-> > Update the example to match reality.
-> > Drop consumer examples, as they do not belong here.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> > How to describe that pin configuration nodes can have subnodes?
-> > E.g.
-> >
-> >     arch/arm/boot/dts/sh73a0-kzm9g.dt.yaml: pin-controller@e6050000: mmc: Additional properties are not allowed ('cfg', 'mux' were unexpected)
->
-> I shouldn't tell you so no one does this again...
 
-Note that this is fairly common, as a device may need to configure
-multiple groups or pins, or pinmux and GPIO pins.  Hence the grouping
-under a container node.
+I work as an agent to some Investors. Do you need a business loan or
+funds for a business idea or want to expand but need huge funding? We
+are expanding our investment presence by granting debt loan to fund
+viable and lucrative projects. If you have any project that needs
+funding, kindly revert to me with your business plan and if we find
+your business to be worthy of investment, you will be promptly
+contacted and both parties will meet face to face and have a
+round-table meeting together.
 
-Cfr. Documentation/devicetree/bindings/pinctrl/pinmux-node.yaml
+Good documentation will be carried out between you and the Investor
+before putting down his funds.
 
-> I think you want something like this assuming you have either
-> grandchildren or properties, but not both in the child nodes:
->
-> patternProperties:
->   ".*":
+Regards
 
-[...]
 
-I couldn't get it to work with "patternProperties", but using
-"additionalProperties" like ingenic,pinctrl.yaml does work for me.
 
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pinctrl/renesas,pfc.yaml
+williams richard 
 
-> > +  interrupts-extended:
->
-> Just do 'interrupts'. It's fixed up in the tooling.
-
-Apparently not everywhere...
-
-> > +if:
-> > +  properties:
-> > +    compatible:
-> > +      items:
-> > +        enum:
-> > +          - renesas,pfc-r8a73a4
-> > +          - renesas,pfc-r8a7740
-> > +          - renesas,pfc-sh73a0
-> > +then:
-> > +  required:
-> > +    - interrupts-extended
-
-I have to keep it here, or I get:
-
-    Documentation/devicetree/bindings/pinctrl/renesas,pfc.example.dt.yaml:
-pin-controller@e6050000: 'interrupts' is a required property
-
-So I'll keep it in both places, for consistency.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+via  williiamrichard2999@yahoo.com
