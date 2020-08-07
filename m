@@ -2,71 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2481123ED21
-	for <lists+devicetree@lfdr.de>; Fri,  7 Aug 2020 14:11:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ABE723ED80
+	for <lists+devicetree@lfdr.de>; Fri,  7 Aug 2020 14:44:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727994AbgHGMLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Aug 2020 08:11:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52462 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727783AbgHGMLH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Aug 2020 08:11:07 -0400
-Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA417C061575
-        for <devicetree@vger.kernel.org>; Fri,  7 Aug 2020 05:11:05 -0700 (PDT)
-Received: from ramsan ([84.195.186.194])
-        by baptiste.telenet-ops.be with bizsmtp
-        id CcAz230074C55Sk01cAzZ2; Fri, 07 Aug 2020 14:11:02 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1k41D9-0000Z2-93; Fri, 07 Aug 2020 14:10:59 +0200
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1k41D9-0003hp-7L; Fri, 07 Aug 2020 14:10:59 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Mark Brown <broonie@kernel.org>, Clark Wang <xiaoning.wang@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Anson Huang <Anson.Huang@nxp.com>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: lpspi: Add missing boolean type for fsl,spi-only-use-cs1-sel
-Date:   Fri,  7 Aug 2020 14:10:57 +0200
-Message-Id: <20200807121057.14204-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
+        id S1728500AbgHGMo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Aug 2020 08:44:28 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:36778 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728478AbgHGMo1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Aug 2020 08:44:27 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 077CiGfW062478;
+        Fri, 7 Aug 2020 07:44:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1596804256;
+        bh=PGZa7kjLYyxaGRhEZYx5F3rjv14rpCPDFQflGcxKrRE=;
+        h=From:To:CC:Subject:Date;
+        b=imz9wDsgSjVWOgl/EJPUW1uReHyVLSrJCyFj9K0+UKnyMV88FDoKzqB/YqtBNQWFO
+         BQS15RDohb+cS5ckVySmHcUccb/wYT8Bjtf2lwvhbGWHrVlNPD+m2yqmyp9AEU6JtY
+         /YnixdqQsGtd7xlc2ERwo8O9VxyBqHLiFFrPRTYE=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 077CiGmQ131053
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 7 Aug 2020 07:44:16 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 7 Aug
+ 2020 07:44:16 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 7 Aug 2020 07:44:16 -0500
+Received: from ula0132425.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 077CiCeF072818;
+        Fri, 7 Aug 2020 07:44:13 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: [PATCH 0/2] arm64: dts: ti: k3-j7200: Add HyperFlash related nodes
+Date:   Fri, 7 Aug 2020 18:14:05 +0530
+Message-ID: <20200807124407.12604-1-vigneshr@ti.com>
+X-Mailer: git-send-email 2.28.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When running "make dt_binding_check" (even if restricted to an unrelated
-binding document using DT_SCHEMA_FILES=...):
+This series adds HyperBus and HyperFlash nodes for TI's J7200 SoC
 
-    Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml: ignoring, error in schema: properties: fsl,spi-only-use-cs1-sel
-    warning: no schema found in file: Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
+Based on top of https://lore.kernel.org/linux-arm-kernel/20200723084628.19241-1-lokeshvutla@ti.com/
+And earlier I2C DT patches:
+https://lore.kernel.org/linux-arm-kernel/20200730192600.1872-1-vigneshr@ti.com/
 
-Fix this by adding a proper type definition for the vendor-specific
-fsl,spi-only-use-cs1-sel property.
+Vignesh Raghavendra (2):
+  arm64: dts: ti: k3-j7200: Add HyperBus node
+  arm64: dts: ti: k3-j7200-som-p0: Add HyperFlash node
 
-Fixes: 7ac9bbf6ab3085c2 ("dt-bindings: lpspi: New property in document DT bindings for LPSPI")
-Suggested-by: Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 27 ++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   | 36 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j7200.dtsi          |  8 +++--
+ 3 files changed, 69 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml b/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
-index 22882e769e260f76..312d8fee9dbb8199 100644
---- a/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
-@@ -39,6 +39,7 @@ properties:
-       spi common code does not support use of CS signals discontinuously.
-       i.MX8DXL-EVK board only uses CS1 without using CS0. Therefore, add
-       this property to re-config the chipselect value in the LPSPI driver.
-+    type: boolean
- 
- required:
-   - compatible
 -- 
-2.17.1
+2.28.0
 
