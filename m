@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC2A023F9A3
-	for <lists+devicetree@lfdr.de>; Sun,  9 Aug 2020 01:36:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C09E123FBA2
+	for <lists+devicetree@lfdr.de>; Sun,  9 Aug 2020 01:50:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726958AbgHHXgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Aug 2020 19:36:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49186 "EHLO mail.kernel.org"
+        id S1726970AbgHHXgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Aug 2020 19:36:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49248 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726935AbgHHXgf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 8 Aug 2020 19:36:35 -0400
+        id S1726962AbgHHXgi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 8 Aug 2020 19:36:38 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3E837206C3;
-        Sat,  8 Aug 2020 23:36:34 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9E62B206C3;
+        Sat,  8 Aug 2020 23:36:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1596929795;
-        bh=uiIpGsEYTqwL6nQJ02O5kTo3YTu+/mkyN/E6AG/P8pM=;
+        s=default; t=1596929797;
+        bh=CD3HPUADLYe44TSi72mJmigB4TKXwZYje3mQ+Tm1oJA=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=M4HsklInVhAAE+r1pxZvszRr3vg6bs0tUrYr9JhyIH23SK41a+bOG1EstShHNE1Lh
-         +ZVHuGZHltKSyCD+qGfp4M3SL9OhozWnnlO37Z2lAWbo7y8ncdKPr7EWry6Wj7m+1p
-         7KZunv757XTYq63cgSW6QjQZxMYRnzmxJS7VVE8M=
+        b=RTTk8jV8xMHer0yyGJy0DQbaNE/Yc+2Cq2AfLjC4jqexbA2yfdqW2AeFD00zyWcgg
+         CFekU2/rrgmlQSvBXPlMaKtkOtj7zfoNYPxvvyAAzrfmIsLHPhwFZPKuHnS8yA+8Ba
+         ZRa0CIgFL0WavmlFOj1wTgJr9dFNJmk0izgBDqXc=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sasha Levin <sashal@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.8 34/72] ARM: dts: gose: Fix ports node name for adv7612
-Date:   Sat,  8 Aug 2020 19:35:03 -0400
-Message-Id: <20200808233542.3617339-34-sashal@kernel.org>
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Willy Wolff <willy.mh.wolff.ml@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.8 36/72] ARM: dts: exynos: Disable frequency scaling for FSYS bus on Odroid XU3 family
+Date:   Sat,  8 Aug 2020 19:35:05 -0400
+Message-Id: <20200808233542.3617339-36-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200808233542.3617339-1-sashal@kernel.org>
 References: <20200808233542.3617339-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
@@ -46,35 +46,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+From: Marek Szyprowski <m.szyprowski@samsung.com>
 
-[ Upstream commit 59692ac5a7bb8c97ff440fc8917828083fbc38d6 ]
+[ Upstream commit 9ff416cf45a08f28167b75045222c762a0347930 ]
 
-When adding the adv7612 device node the ports node was misspelled as
-port, fix this.
+Commit 1019fe2c7280 ("ARM: dts: exynos: Adjust bus related OPPs to the
+values correct for Exynos5422 Odroids") changed the parameters of the
+OPPs for the FSYS bus. Besides the frequency adjustments, it also removed
+the 'shared-opp' property from the OPP table used for FSYS_APB and FSYS
+busses.
 
-Fixes: bc63cd87f3ce924f ("ARM: dts: gose: add HDMI input")
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-Link: https://lore.kernel.org/r/20200713111016.523189-1-niklas.soderlund+renesas@ragnatech.se
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+This revealed that in fact the FSYS bus frequency scaling never worked.
+When one OPP table is marked as 'opp-shared', only the first bus which
+selects the OPP sets the rate of its clock. Then OPP core assumes that
+the other busses have been changed to that OPP and no change to their
+clock rates are needed. Thus when FSYS_APB bus, which was registered
+first, set the rate for its clock, the OPP core did not change the FSYS
+bus clock later.
+
+The mentioned commit removed that behavior, what introduced a regression
+on some Odroid XU3 boards. Frequency scaling of the FSYS bus causes
+instability of the USB host operation, what can be observed as network
+hangs. To restore old behavior, simply disable frequency scaling for the
+FSYS bus.
+
+Reported-by: Willy Wolff <willy.mh.wolff.ml@gmail.com>
+Fixes: 1019fe2c7280 ("ARM: dts: exynos: Adjust bus related OPPs to the values correct for Exynos5422 Odroids")
+Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/r8a7793-gose.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/exynos5422-odroid-core.dtsi | 6 ------
+ 1 file changed, 6 deletions(-)
 
-diff --git a/arch/arm/boot/dts/r8a7793-gose.dts b/arch/arm/boot/dts/r8a7793-gose.dts
-index a378b54867bb4..10c3536b8e3d9 100644
---- a/arch/arm/boot/dts/r8a7793-gose.dts
-+++ b/arch/arm/boot/dts/r8a7793-gose.dts
-@@ -394,7 +394,7 @@ hdmi-in@4c {
- 			interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
- 			default-input = <0>;
+diff --git a/arch/arm/boot/dts/exynos5422-odroid-core.dtsi b/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
+index ab27ff8bc3dca..afe090578e8fa 100644
+--- a/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
++++ b/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
+@@ -411,12 +411,6 @@ &bus_fsys_apb {
+ 	status = "okay";
+ };
  
--			port {
-+			ports {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 
+-&bus_fsys {
+-	operating-points-v2 = <&bus_fsys2_opp_table>;
+-	devfreq = <&bus_wcore>;
+-	status = "okay";
+-};
+-
+ &bus_fsys2 {
+ 	operating-points-v2 = <&bus_fsys2_opp_table>;
+ 	devfreq = <&bus_wcore>;
 -- 
 2.25.1
 
