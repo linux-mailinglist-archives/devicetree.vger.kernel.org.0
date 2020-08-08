@@ -2,35 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 401F823FB03
-	for <lists+devicetree@lfdr.de>; Sun,  9 Aug 2020 01:46:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBACB23FAF5
+	for <lists+devicetree@lfdr.de>; Sun,  9 Aug 2020 01:46:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728231AbgHHXiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Aug 2020 19:38:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52030 "EHLO mail.kernel.org"
+        id S1726677AbgHHXqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Aug 2020 19:46:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52250 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728225AbgHHXiQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 8 Aug 2020 19:38:16 -0400
+        id S1728278AbgHHXiX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 8 Aug 2020 19:38:23 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 57E0C20825;
-        Sat,  8 Aug 2020 23:38:15 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 54CD020825;
+        Sat,  8 Aug 2020 23:38:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1596929896;
-        bh=r9cARwlmRmQB2cn/JMr7t+CaD0wcuI04mAkfiugb6E4=;
+        s=default; t=1596929903;
+        bh=PkKczme5tW5pmLkOMAZI0L7Dfxsl6ApuLO0C0aQmgH4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ym3y3Fp/ibDwaN9PZkfamxMrSGDdLGikQG+FbuRKZ/Z7JhkJ+AqZgKxPJpko9dvkq
-         bCcuVXv4saxigxzHwlEIjCKiRL+sKUJdM7cdc+BPzBjXAs3wenrd94b9tM5+QqZSIZ
-         hrxbPeDCzozHuRozdiZymIFa4tXiURudsqPF3nDg=
+        b=0asBzYcDcPKJ1XcwNEWBgH7bvtXSBwxytS95onbG66uccHC8rsYxpP0t+LgqXhyXR
+         YgFCKfRQQWqOgAoX1rD6Aqq4t4wsjwHDho5My4qLhxaP0qHt35l0IAvkUdp1LlWRy9
+         0AKmis6WAT6M+QV1VWwmuEHY3ucScnveQJe80dlQ=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <maxime@cerno.tech>,
+Cc:     Christian Hewitt <christianshewitt@gmail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.7 36/58] ARM: dts: sunxi: bananapi-m2-plus-v1.2: Fix CPU supply voltages
-Date:   Sat,  8 Aug 2020 19:37:02 -0400
-Message-Id: <20200808233724.3618168-36-sashal@kernel.org>
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.7 42/58] arm64: dts: meson: fix mmc0 tuning error on Khadas VIM3
+Date:   Sat,  8 Aug 2020 19:37:08 -0400
+Message-Id: <20200808233724.3618168-42-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200808233724.3618168-1-sashal@kernel.org>
 References: <20200808233724.3618168-1-sashal@kernel.org>
@@ -43,47 +45,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chen-Yu Tsai <wens@csie.org>
+From: Christian Hewitt <christianshewitt@gmail.com>
 
-[ Upstream commit e4dae01bf08b754de79072441c357737220b873f ]
+[ Upstream commit f1bb924e8f5b50752a80fa5b48c43003680a7b64 ]
 
-The Bananapi M2+ uses a GPIO line to change the effective resistance of
-the CPU supply regulator's feedback resistor network. The voltages
-described in the device tree were given directly by the vendor. This
-turns out to be slightly off compared to the real values.
+Similar to other G12B devices using the W400 dtsi, I see reports of mmc0
+tuning errors on VIM3 after a few hours uptime:
 
-The updated voltages are based on calculations of the feedback resistor
-network, and verified down to three decimal places with a multi-meter.
+[12483.917391] mmc0: tuning execution failed: -5
+[30535.551221] mmc0: tuning execution failed: -5
+[35359.953671] mmc0: tuning execution failed: -5
+[35561.875332] mmc0: tuning execution failed: -5
+[61733.348709] mmc0: tuning execution failed: -5
 
-Fixes: 6eeb4180d4b9 ("ARM: dts: sunxi: h3-h5: Add Bananapi M2+ v1.2 device trees")
-Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-Link: https://lore.kernel.org/r/20200717160053.31191-4-wens@kernel.org
+I do not see the same on VIM3L, so remove sd-uhs-sdr50 from the common dtsi
+to silence the error, then (re)add it to the VIM3L dts.
+
+Fixes: 4f26cc1c96c9 ("arm64: dts: khadas-vim3: move common nodes into meson-khadas-vim3.dtsi")
+Fixes: 700ab8d83927 ("arm64: dts: khadas-vim3: add support for the SM1 based VIM3L")
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+Link: https://lore.kernel.org/r/20200721015950.11816-1-christianshewitt@gmail.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/sunxi-bananapi-m2-plus-v1.2.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi     | 1 -
+ arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts | 4 ++++
+ 2 files changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/sunxi-bananapi-m2-plus-v1.2.dtsi b/arch/arm/boot/dts/sunxi-bananapi-m2-plus-v1.2.dtsi
-index a628b5ee72b65..235994a4a2ebb 100644
---- a/arch/arm/boot/dts/sunxi-bananapi-m2-plus-v1.2.dtsi
-+++ b/arch/arm/boot/dts/sunxi-bananapi-m2-plus-v1.2.dtsi
-@@ -16,12 +16,12 @@ reg_vdd_cpux: vdd-cpux {
- 		regulator-type = "voltage";
- 		regulator-boot-on;
- 		regulator-always-on;
--		regulator-min-microvolt = <1100000>;
--		regulator-max-microvolt = <1300000>;
-+		regulator-min-microvolt = <1108475>;
-+		regulator-max-microvolt = <1308475>;
- 		regulator-ramp-delay = <50>; /* 4ms */
- 		gpios = <&r_pio 0 1 GPIO_ACTIVE_HIGH>; /* PL1 */
- 		gpios-states = <0x1>;
--		states = <1100000 0>, <1300000 1>;
-+		states = <1108475 0>, <1308475 1>;
- 	};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+index 1ef1e3672b967..ff5ba85b7562e 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+@@ -270,7 +270,6 @@ &sd_emmc_a {
+ 
+ 	bus-width = <4>;
+ 	cap-sd-highspeed;
+-	sd-uhs-sdr50;
+ 	max-frequency = <100000000>;
+ 
+ 	non-removable;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+index dbbf29a0dbf6d..026b21708b078 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+@@ -88,6 +88,10 @@ &pcie {
+ 	status = "okay";
  };
  
++&sd_emmc_a {
++	sd-uhs-sdr50;
++};
++
+ &usb {
+ 	phys = <&usb2_phy0>, <&usb2_phy1>;
+ 	phy-names = "usb2-phy0", "usb2-phy1";
 -- 
 2.25.1
 
