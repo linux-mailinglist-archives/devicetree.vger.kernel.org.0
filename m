@@ -2,41 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06D7A23FA75
-	for <lists+devicetree@lfdr.de>; Sun,  9 Aug 2020 01:43:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 597C123FA6A
+	for <lists+devicetree@lfdr.de>; Sun,  9 Aug 2020 01:42:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728690AbgHHXj5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Aug 2020 19:39:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55028 "EHLO mail.kernel.org"
+        id S1728739AbgHHXkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Aug 2020 19:40:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55446 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728683AbgHHXj4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 8 Aug 2020 19:39:56 -0400
+        id S1728733AbgHHXkI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 8 Aug 2020 19:40:08 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DAF352177B;
-        Sat,  8 Aug 2020 23:39:54 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 20D6620716;
+        Sat,  8 Aug 2020 23:40:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1596929995;
-        bh=MAmK02myBiOmRCCmZhei5NrKsLigcr8ZtSo2hj9UJi0=;
+        s=default; t=1596930007;
+        bh=ieYQdzrY3+Von0WGrYWU5T18p5B4q0CSlpJT2dOY+EM=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Rs/rL5AmO/FKJ5vncEWUgCAI+zJLe6lVqriPS2RwWWfNKlDp/NfnsKng0iLsWSQnW
-         7ynf7mBeboBhekkhXc9XKO/nO4Sr5P48Wlk+8Ri1W8G1vP59H0PHQ8QcOT+jIxsoEb
-         8Ehzo+TcnEYfk0v9AVwCgVlPrWI34j7yaS+5Aqk4=
+        b=YhiVjE/itkdfhtH9pQMgOaV7pGGDgae0EnBBmyDombtwkl7l/kad9yvZCjanJ+nDj
+         /85EqbsDEsqc4pSO4PlJwaFN7nZxlNPKFT1nPE0EduRIN2geWTCPsRoY99n3QKiGkK
+         /en1rWY1IL2QPi+TR79l/BjOKEawYYAqYQ8k8rzU=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 11/21] arm64: dts: exynos: Fix silent hang after boot on Espresso
-Date:   Sat,  8 Aug 2020 19:39:31 -0400
-Message-Id: <20200808233941.3619277-11-sashal@kernel.org>
+Cc:     =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 17/21] ARM: dts: gose: Fix ports node name for adv7180
+Date:   Sat,  8 Aug 2020 19:39:37 -0400
+Message-Id: <20200808233941.3619277-17-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200808233941.3619277-1-sashal@kernel.org>
 References: <20200808233941.3619277-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
@@ -45,35 +46,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alim Akhtar <alim.akhtar@samsung.com>
+From: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
-[ Upstream commit b072714bfc0e42c984b8fd6e069f3ca17de8137a ]
+[ Upstream commit d344234abde938ae1062edb6c05852b0bafb4a03 ]
 
-Once regulators are disabled after kernel boot, on Espresso board silent
-hang observed because of LDO7 being disabled.  LDO7 actually provide
-power to CPU cores and non-cpu blocks circuitries.  Keep this regulator
-always-on to fix this hang.
+When adding the adv7180 device node the ports node was misspelled as
+port, fix this.
 
-Fixes: 9589f7721e16 ("arm64: dts: Add S2MPS15 PMIC node on exynos7-espresso")
-Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Fixes: 8cae359049a88b75 ("ARM: dts: gose: add composite video input")
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Link: https://lore.kernel.org/r/20200704155856.3037010-2-niklas.soderlund+renesas@ragnatech.se
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/exynos/exynos7-espresso.dts | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm/boot/dts/r8a7793-gose.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos7-espresso.dts b/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-index 00dd89b92b427..d991eae5202f2 100644
---- a/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-@@ -152,6 +152,7 @@ ldo7_reg: LDO7 {
- 				regulator-min-microvolt = <700000>;
- 				regulator-max-microvolt = <1150000>;
- 				regulator-enable-ramp-delay = <125>;
-+				regulator-always-on;
- 			};
+diff --git a/arch/arm/boot/dts/r8a7793-gose.dts b/arch/arm/boot/dts/r8a7793-gose.dts
+index 6b2f3a4fd13d6..9235be8f0f007 100644
+--- a/arch/arm/boot/dts/r8a7793-gose.dts
++++ b/arch/arm/boot/dts/r8a7793-gose.dts
+@@ -339,7 +339,7 @@ composite-in@20 {
+ 			reg = <0x20>;
+ 			remote = <&vin1>;
  
- 			ldo8_reg: LDO8 {
+-			port {
++			ports {
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 
 -- 
 2.25.1
 
