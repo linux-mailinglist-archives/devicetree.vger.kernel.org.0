@@ -2,128 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A47123F60F
-	for <lists+devicetree@lfdr.de>; Sat,  8 Aug 2020 04:55:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D80623F632
+	for <lists+devicetree@lfdr.de>; Sat,  8 Aug 2020 05:38:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726656AbgHHCyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Aug 2020 22:54:51 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:31249 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726524AbgHHCyv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Aug 2020 22:54:51 -0400
-X-UUID: 4991f4db789642d0818e6d370a5b980f-20200808
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=Grs5ZKo+Kb4nPk8FUoPPdvMh04ElZQ3N2JhQRc+vMC4=;
-        b=p9+4C6+tJkbCm+JNcinwZfhFchqp9StP6mS7eNBqVl19NUYgWl+GHyPiq7u12udlDMTHfsmK4VBX3Rx+VysXkx5Ye4aOriwXwxh+5VXYYMocvf70XN82Lr1NkbHo/rDMHuFRw3OSxwk4nKYh3Ot4bKrVz+ie1vpwALDNrvtuttQ=;
-X-UUID: 4991f4db789642d0818e6d370a5b980f-20200808
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 2033817857; Sat, 08 Aug 2020 10:54:47 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sat, 8 Aug 2020 10:54:45 +0800
-Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 8 Aug 2020 10:54:44 +0800
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>
-Subject: [RESEND v7, PATCH 7/7] arm64: dts: add display nodes for mt8183
-Date:   Sat, 8 Aug 2020 10:53:51 +0800
-Message-ID: <1596855231-5782-8-git-send-email-yongqiang.niu@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1596855231-5782-1-git-send-email-yongqiang.niu@mediatek.com>
-References: <1596855231-5782-1-git-send-email-yongqiang.niu@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S1726511AbgHHDi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Aug 2020 23:38:29 -0400
+Received: from m12-15.163.com ([220.181.12.15]:54471 "EHLO m12-15.163.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726200AbgHHDi3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 7 Aug 2020 23:38:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+        s=s110527; h=From:Subject:Date:Message-Id; bh=oSfvozyc7WeaEkyabb
+        NkYFvPW4VQ5CKtVaQR9O+77CY=; b=VJ1FFaBKZnj1W+uBi8gA6LW1mhKDXJIFO2
+        vGRL+PdRBW+SuyaiVjHU/fxcMBSmO1QkQAgRHxZEPzGPr0LUKdjrbaK1EHAloN6G
+        EwvZJGqZn1GD7dEuvR9XR7cIHL8P8hW5DSXwGc+Txc/d47EEZhtYG5CugKtaOzje
+        5XSSx4MjI=
+Received: from localhost.localdomain (unknown [58.33.126.62])
+        by smtp11 (Coremail) with SMTP id D8CowACnoqoHHi5fN_NeEw--.35350S2;
+        Sat, 08 Aug 2020 11:37:48 +0800 (CST)
+From:   Grant Feng <von81@163.com>
+To:     von81@163.com, jacek.anaszewski@gmail.com, pavel@ucw.cz,
+        dmurphy@ti.com, robh+dt@kernel.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] leds: is31fl319x: Add sdb pin and generate a 5ms low pulse when startup
+Date:   Sat,  8 Aug 2020 11:37:30 +0800
+Message-Id: <20200808033731.15695-1-von81@163.com>
+X-Mailer: git-send-email 2.17.1
+X-CM-TRANSID: D8CowACnoqoHHi5fN_NeEw--.35350S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7AF17try5XFWUArW5AF4xZwb_yoW8AFyxpF
+        1qkFyFyFW3Jry7Kw12vFy7Za45t3W8tF4DArWxWayS93WvgFnagFyvvFnFv3ZxXFW8uFW5
+        JwsIyFW8Gr48ZrJanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jOAwsUUUUU=
+X-Originating-IP: [58.33.126.62]
+X-CM-SenderInfo: xyrqmii6rwjhhfrp/1tbiUQx6OlWBQVR0fwAAsX
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VGhpcyBwYXRjaCBhZGQgZGlzcGxheSBub2RlcyBmb3IgbXQ4MTgzDQoNClNpZ25lZC1vZmYtYnk6
-IFlvbmdxaWFuZyBOaXUgPHlvbmdxaWFuZy5uaXVAbWVkaWF0ZWsuY29tPg0KLS0tDQogYXJjaC9h
-cm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMuZHRzaSB8IDk4ICsrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrDQogMSBmaWxlIGNoYW5nZWQsIDk4IGluc2VydGlvbnMoKykNCg0KZGlm
-ZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLmR0c2kgYi9hcmNo
-L2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE4My5kdHNpDQppbmRleCA3Yjc4MWViLi40NDBj
-ZjIyIDEwMDY0NA0KLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMuZHRz
-aQ0KKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMuZHRzaQ0KQEAgLTMx
-LDYgKzMxLDExIEBADQogCQlpMmM5ID0gJmkyYzk7DQogCQlpMmMxMCA9ICZpMmMxMDsNCiAJCWky
-YzExID0gJmkyYzExOw0KKwkJb3ZsMCA9ICZvdmwwOw0KKwkJb3ZsXzJsMCA9ICZvdmxfMmwwOw0K
-KwkJb3ZsXzJsMSA9ICZvdmxfMmwxOw0KKwkJcmRtYTAgPSAmcmRtYTA7DQorCQlyZG1hMSA9ICZy
-ZG1hMTsNCiAJfTsNCiANCiAJY3B1cyB7DQpAQCAtNzA3LDkgKzcxMiwxMDIgQEANCiAJCW1tc3lz
-OiBzeXNjb25AMTQwMDAwMDAgew0KIAkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTgzLW1t
-c3lzIiwgInN5c2NvbiI7DQogCQkJcmVnID0gPDAgMHgxNDAwMDAwMCAwIDB4MTAwMD47DQorCQkJ
-cG93ZXItZG9tYWlucyA9IDwmc2Nwc3lzIE1UODE4M19QT1dFUl9ET01BSU5fRElTUD47DQogCQkJ
-I2Nsb2NrLWNlbGxzID0gPDE+Ow0KIAkJfTsNCiANCisJCW92bDA6IG92bEAxNDAwODAwMCB7DQor
-CQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxODMtZGlzcC1vdmwiOw0KKwkJCXJlZyA9IDww
-IDB4MTQwMDgwMDAgMCAweDEwMDA+Ow0KKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAyMjUgSVJR
-X1RZUEVfTEVWRUxfTE9XPjsNCisJCQlwb3dlci1kb21haW5zID0gPCZzY3BzeXMgTVQ4MTgzX1BP
-V0VSX0RPTUFJTl9ESVNQPjsNCisJCQljbG9ja3MgPSA8Jm1tc3lzIENMS19NTV9ESVNQX09WTDA+
-Ow0KKwkJfTsNCisNCisJCW92bF8ybDA6IG92bEAxNDAwOTAwMCB7DQorCQkJY29tcGF0aWJsZSA9
-ICJtZWRpYXRlayxtdDgxODMtZGlzcC1vdmwtMmwiOw0KKwkJCXJlZyA9IDwwIDB4MTQwMDkwMDAg
-MCAweDEwMDA+Ow0KKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAyMjYgSVJRX1RZUEVfTEVWRUxf
-TE9XPjsNCisJCQlwb3dlci1kb21haW5zID0gPCZzY3BzeXMgTVQ4MTgzX1BPV0VSX0RPTUFJTl9E
-SVNQPjsNCisJCQljbG9ja3MgPSA8Jm1tc3lzIENMS19NTV9ESVNQX09WTDBfMkw+Ow0KKwkJfTsN
-CisNCisJCW92bF8ybDE6IG92bEAxNDAwYTAwMCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRl
-ayxtdDgxODMtZGlzcC1vdmwtMmwiOw0KKwkJCXJlZyA9IDwwIDB4MTQwMGEwMDAgMCAweDEwMDA+
-Ow0KKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAyMjcgSVJRX1RZUEVfTEVWRUxfTE9XPjsNCisJ
-CQlwb3dlci1kb21haW5zID0gPCZzY3BzeXMgTVQ4MTgzX1BPV0VSX0RPTUFJTl9ESVNQPjsNCisJ
-CQljbG9ja3MgPSA8Jm1tc3lzIENMS19NTV9ESVNQX09WTDFfMkw+Ow0KKwkJfTsNCisNCisJCXJk
-bWEwOiByZG1hQDE0MDBiMDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE4My1k
-aXNwLXJkbWEiOw0KKwkJCXJlZyA9IDwwIDB4MTQwMGIwMDAgMCAweDEwMDA+Ow0KKwkJCWludGVy
-cnVwdHMgPSA8R0lDX1NQSSAyMjggSVJRX1RZUEVfTEVWRUxfTE9XPjsNCisJCQlwb3dlci1kb21h
-aW5zID0gPCZzY3BzeXMgTVQ4MTgzX1BPV0VSX0RPTUFJTl9ESVNQPjsNCisJCQljbG9ja3MgPSA8
-Jm1tc3lzIENMS19NTV9ESVNQX1JETUEwPjsNCisJCQltZWRpYXRlayxyZG1hX2ZpZm9fc2l6ZSA9
-IDw1MTIwPjsNCisJCX07DQorDQorCQlyZG1hMTogcmRtYUAxNDAwYzAwMCB7DQorCQkJY29tcGF0
-aWJsZSA9ICJtZWRpYXRlayxtdDgxODMtZGlzcC1yZG1hIjsNCisJCQlyZWcgPSA8MCAweDE0MDBj
-MDAwIDAgMHgxMDAwPjsNCisJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMjI5IElSUV9UWVBFX0xF
-VkVMX0xPVz47DQorCQkJcG93ZXItZG9tYWlucyA9IDwmc2Nwc3lzIE1UODE4M19QT1dFUl9ET01B
-SU5fRElTUD47DQorCQkJY2xvY2tzID0gPCZtbXN5cyBDTEtfTU1fRElTUF9SRE1BMT47DQorCQkJ
-bWVkaWF0ZWsscmRtYV9maWZvX3NpemUgPSA8MjA0OD47DQorCQl9Ow0KKw0KKwkJY29sb3IwOiBj
-b2xvckAxNDAwZTAwMCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxODMtZGlzcC1j
-b2xvciIsDQorCQkJCSAgICAgIm1lZGlhdGVrLG10ODE3My1kaXNwLWNvbG9yIjsNCisJCQlyZWcg
-PSA8MCAweDE0MDBlMDAwIDAgMHgxMDAwPjsNCisJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMjMx
-IElSUV9UWVBFX0xFVkVMX0xPVz47DQorCQkJcG93ZXItZG9tYWlucyA9IDwmc2Nwc3lzIE1UODE4
-M19QT1dFUl9ET01BSU5fRElTUD47DQorCQkJY2xvY2tzID0gPCZtbXN5cyBDTEtfTU1fRElTUF9D
-T0xPUjA+Ow0KKwkJfTsNCisNCisJCWNjb3JyMDogY2NvcnJAMTQwMGYwMDAgew0KKwkJCWNvbXBh
-dGlibGUgPSAibWVkaWF0ZWssbXQ4MTgzLWRpc3AtY2NvcnIiOw0KKwkJCXJlZyA9IDwwIDB4MTQw
-MGYwMDAgMCAweDEwMDA+Ow0KKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAyMzIgSVJRX1RZUEVf
-TEVWRUxfTE9XPjsNCisJCQlwb3dlci1kb21haW5zID0gPCZzY3BzeXMgTVQ4MTgzX1BPV0VSX0RP
-TUFJTl9ESVNQPjsNCisJCQljbG9ja3MgPSA8Jm1tc3lzIENMS19NTV9ESVNQX0NDT1JSMD47DQor
-CQl9Ow0KKw0KKwkJYWFsMDogYWFsQDE0MDEwMDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1lZGlh
-dGVrLG10ODE4My1kaXNwLWFhbCIsDQorCQkJCSAgICAgIm1lZGlhdGVrLG10ODE3My1kaXNwLWFh
-bCI7DQorCQkJcmVnID0gPDAgMHgxNDAxMDAwMCAwIDB4MTAwMD47DQorCQkJaW50ZXJydXB0cyA9
-IDxHSUNfU1BJIDIzMyBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KKwkJCXBvd2VyLWRvbWFpbnMgPSA8
-JnNjcHN5cyBNVDgxODNfUE9XRVJfRE9NQUlOX0RJU1A+Ow0KKwkJCWNsb2NrcyA9IDwmbW1zeXMg
-Q0xLX01NX0RJU1BfQUFMMD47DQorCQl9Ow0KKw0KKwkJZ2FtbWEwOiBnYW1tYUAxNDAxMTAwMCB7
-DQorCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxODMtZGlzcC1nYW1tYSIsDQorCQkJCSAg
-ICAgIm1lZGlhdGVrLG10ODE3My1kaXNwLWdhbW1hIjsNCisJCQlyZWcgPSA8MCAweDE0MDExMDAw
-IDAgMHgxMDAwPjsNCisJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMjM0IElSUV9UWVBFX0xFVkVM
-X0xPVz47DQorCQkJcG93ZXItZG9tYWlucyA9IDwmc2Nwc3lzIE1UODE4M19QT1dFUl9ET01BSU5f
-RElTUD47DQorCQkJY2xvY2tzID0gPCZtbXN5cyBDTEtfTU1fRElTUF9HQU1NQTA+Ow0KKwkJfTsN
-CisNCisJCWRpdGhlcjA6IGRpdGhlckAxNDAxMjAwMCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRp
-YXRlayxtdDgxODMtZGlzcC1kaXRoZXIiOw0KKwkJCXJlZyA9IDwwIDB4MTQwMTIwMDAgMCAweDEw
-MDA+Ow0KKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAyMzUgSVJRX1RZUEVfTEVWRUxfTE9XPjsN
-CisJCQlwb3dlci1kb21haW5zID0gPCZzY3BzeXMgTVQ4MTgzX1BPV0VSX0RPTUFJTl9ESVNQPjsN
-CisJCQljbG9ja3MgPSA8Jm1tc3lzIENMS19NTV9ESVNQX0RJVEhFUjA+Ow0KKwkJfTsNCisNCisJ
-CW11dGV4OiBtdXRleEAxNDAxNjAwMCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgx
-ODMtZGlzcC1tdXRleCI7DQorCQkJcmVnID0gPDAgMHgxNDAxNjAwMCAwIDB4MTAwMD47DQorCQkJ
-aW50ZXJydXB0cyA9IDxHSUNfU1BJIDIxNyBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KKwkJCXBvd2Vy
-LWRvbWFpbnMgPSA8JnNjcHN5cyBNVDgxODNfUE9XRVJfRE9NQUlOX0RJU1A+Ow0KKwkJfTsNCisN
-CiAJCXNtaV9jb21tb246IHNtaUAxNDAxOTAwMCB7DQogCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRl
-ayxtdDgxODMtc21pLWNvbW1vbiIsICJzeXNjb24iOw0KIAkJCXJlZyA9IDwwIDB4MTQwMTkwMDAg
-MCAweDEwMDA+Ow0KLS0gDQoxLjguMS4xLmRpcnR5DQo=
+generate a 5ms low pulse on sdb pin when startup, then the chip
+becomes more stable in the complex EM environment.
+
+Signed-off-by: Grant Feng <von81@163.com>
+---
+ drivers/leds/leds-is31fl319x.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+diff --git a/drivers/leds/leds-is31fl319x.c b/drivers/leds/leds-is31fl319x.c
+index ca6634b8683c..5c499a5895e0 100644
+--- a/drivers/leds/leds-is31fl319x.c
++++ b/drivers/leds/leds-is31fl319x.c
+@@ -16,6 +16,8 @@
+ #include <linux/of_device.h>
+ #include <linux/regmap.h>
+ #include <linux/slab.h>
++#include <linux/delay.h>
++#include <linux/gpio/consumer.h>
+ 
+ /* register numbers */
+ #define IS31FL319X_SHUTDOWN		0x00
+@@ -61,6 +63,7 @@
+ struct is31fl319x_chip {
+ 	const struct is31fl319x_chipdef *cdef;
+ 	struct i2c_client               *client;
++	struct gpio_desc		*sdb_gpio;
+ 	struct regmap                   *regmap;
+ 	struct mutex                    lock;
+ 	u32                             audio_gain_db;
+@@ -207,6 +210,15 @@ static int is31fl319x_parse_dt(struct device *dev,
+ 	if (!np)
+ 		return -ENODEV;
+ 
++	is31->sdb_gpio = devm_gpiod_get_optional(dev,
++						"sdb",
++						GPIOD_OUT_HIGH);
++	if (IS_ERR(is31->sdb_gpio)) {
++		ret = PTR_ERR(is31->sdb_gpio);
++		dev_err(dev, "Failed to get sdb gpio: %d\n", ret);
++		return ret;
++	}
++
+ 	of_dev_id = of_match_device(of_is31fl319x_match, dev);
+ 	if (!of_dev_id) {
+ 		dev_err(dev, "Failed to match device with supported chips\n");
+@@ -350,6 +362,12 @@ static int is31fl319x_probe(struct i2c_client *client,
+ 	if (err)
+ 		goto free_mutex;
+ 
++	if (is31->sdb_gpio) {
++		gpiod_direction_output(is31->sdb_gpio, 0);
++		mdelay(5);
++		gpiod_direction_output(is31->sdb_gpio, 1);
++	}
++
+ 	is31->client = client;
+ 	is31->regmap = devm_regmap_init_i2c(client, &regmap_config);
+ 	if (IS_ERR(is31->regmap)) {
+-- 
+2.17.1
+
 
