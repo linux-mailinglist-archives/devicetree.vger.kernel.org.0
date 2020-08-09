@@ -2,57 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA71223FD94
-	for <lists+devicetree@lfdr.de>; Sun,  9 Aug 2020 11:39:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59EE323FD9A
+	for <lists+devicetree@lfdr.de>; Sun,  9 Aug 2020 12:11:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726199AbgHIJjM convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 9 Aug 2020 05:39:12 -0400
-Received: from dedi2201.your-server.de ([188.40.3.101]:55884 "EHLO
-        dedi2201.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726175AbgHIJjL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Aug 2020 05:39:11 -0400
-X-Greylist: delayed 3349 seconds by postgrey-1.27 at vger.kernel.org; Sun, 09 Aug 2020 05:39:10 EDT
-Received: from sslproxy01.your-server.de ([78.46.139.224])
-        by dedi2201.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92.3)
-        (envelope-from <mathersdavid@sefiber.dk>)
-        id 1k4fw7-0000aN-B7; Sun, 09 Aug 2020 09:40:07 +0200
-Received: from [80.151.75.113] (helo=EX-Server.caritas.local)
-        by sslproxy01.your-server.de with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.92)
-        (envelope-from <mathersdavid@sefiber.dk>)
-        id 1k4fvz-000Peb-C4; Sun, 09 Aug 2020 09:39:59 +0200
-Received: from EX-Server.caritas.local (192.168.100.2) by
- EX-Server.caritas.local (192.168.100.2) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Sun, 9 Aug 2020 09:39:58 +0200
-Received: from [37.49.230.104] (37.49.230.104) by EX-Server.caritas.local
- (192.168.100.2) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Sun, 9 Aug 2020 09:39:57 +0200
-Content-Type: text/plain; charset="iso-8859-1"
+        id S1726199AbgHIKLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Aug 2020 06:11:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38406 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726175AbgHIKLG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 9 Aug 2020 06:11:06 -0400
+Received: from gaia (unknown [95.146.230.158])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 11818206B2;
+        Sun,  9 Aug 2020 10:11:02 +0000 (UTC)
+Date:   Sun, 9 Aug 2020 11:11:00 +0100
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Sumit Gupta <sumitg@nvidia.com>, rjw@rjwysocki.net,
+        viresh.kumar@linaro.org, will@kernel.org, thierry.reding@gmail.com,
+        robh+dt@kernel.org, mirq-linux@rere.qmqm.pl,
+        devicetree@vger.kernel.org, jonathanh@nvidia.com, talho@nvidia.com,
+        linux-pm@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        bbasu@nvidia.com, mperttunen@nvidia.com
+Subject: Re: [TEGRA194_CPUFREQ PATCH v6 3/3] cpufreq: Add Tegra194 cpufreq
+ driver
+Message-ID: <20200809101059.GA22286@gaia>
+References: <1594819885-31016-1-git-send-email-sumitg@nvidia.com>
+ <1594819885-31016-4-git-send-email-sumitg@nvidia.com>
+ <20200809004009.GA96704@roeck-us.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Description: Mail message body
-Subject: Planning business with you 
-To:     Recipients <mathersdavid@sefiber.dk>
-From:   DAVID MATHERS <mathersdavid@sefiber.dk>
-Date:   Sun, 9 Aug 2020 09:39:55 +0200
-Reply-To: <davidmather.private@gmail.com>
-Message-ID: <f11aee9c-8cea-4711-9a43-04ab544d3b94@EX-Server.caritas.local>
-X-Authenticated-Sender: log@mack-cms.de
-X-Virus-Scanned: Clear (ClamAV 0.102.4/25898/Sat Aug  8 14:44:31 2020)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200809004009.GA96704@roeck-us.net>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Friend,
+On Sat, Aug 08, 2020 at 05:40:09PM -0700, Guenter Roeck wrote:
+> On Wed, Jul 15, 2020 at 07:01:25PM +0530, Sumit Gupta wrote:
+> > Add support for CPU frequency scaling on Tegra194. The frequency
+> > of each core can be adjusted by writing a clock divisor value to
+> > a MSR on the core. The range of valid divisors is queried from
+> > the BPMP.
+> > 
+> > Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+> > Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
+> 
+> If built as module:
+> 
+> ERROR: modpost: "__cpu_logical_map" [drivers/cpufreq/tegra194-cpufreq.ko] undefined!
 
-My name is Mr. David Mathers a bank officer with credit suisse Bank of United Kingdom. I have a business proposal to discuss with you. The business is all about transferring $30,000,000.00 to your favor for investment purposes which is the reason I am contacting with you for our own benefits. For more details, please do contact me on my private email ( davidmather.private@gmail.com )
+The exporting of this arm64 symbol went in last night.
 
-Also kindly promise me that you will never betray me and my family after assisting us to claim this fund from the Bank.
-
-Thank you and may God bless you!
-
-Regards,
-Mr. David Mathers.
+-- 
+Catalin
