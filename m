@@ -2,95 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B192423FEC7
-	for <lists+devicetree@lfdr.de>; Sun,  9 Aug 2020 16:31:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5199223FF4A
+	for <lists+devicetree@lfdr.de>; Sun,  9 Aug 2020 18:45:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726207AbgHIObJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Aug 2020 10:31:09 -0400
-Received: from sonic315-20.consmr.mail.ne1.yahoo.com ([66.163.190.146]:34902
-        "EHLO sonic315-20.consmr.mail.ne1.yahoo.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726070AbgHIObJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Aug 2020 10:31:09 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1596983467; bh=DPYuw2gUpgtMJzJhlH/AVmRGu2wSKCY1C+f8nOCoxu0=; h=Date:From:Reply-To:Subject:References:From:Subject; b=pl/faMOiTYqZsIOwdyAlvoieB/tfXcQA/jdGG7LHwSESys7UMEJh1cCEMqo6tF9LClsejBdb7lOSSJJZd7ZmkNGhj0N58pTPKoiklsbOOAj/Y3B1P4cvpHprRhdMcj/yz5oPb+jTUnTccZIMcVw4C7kMeFbJWoM26RbDTFvNEBbaBJ/oU9AEArm+OJYF7ui2C+S7gHjZuN8N3C6pWzs6LTavnowiuHRAATju93GZkGqySIr/vFfRUCbJwjAIUUu4YmItBqYdqZ3lasikBEbHi6C6r6tKecfATGVPC2rBDAmXeaY/djl3SRqEfO205Q4stcwOqsgTIW5Rt3EoeF8onQ==
-X-YMail-OSG: EzM3xJMVM1lrIPBTkaYzrh.8nG5mbsJvPuAsTuDzQKk.m9D40LLde5WpNxA26HS
- rm3sVWv.y0WaOSmpL_DhnraSqoVpsKzoAhjrXbfu44vj3N_eWBqtbWQqguxTS5QZQHkVMQX0b4lj
- qll_GsrzSBr2iXPADNiFLasmtxyPLim1kGZa9SdfdMbIlmhzX1zDI4nQ6mWhMDShdpgh3aG_Uvf8
- ob1oMBpvQ78Uw1BZGDGZi8xvQom0ezUcVqFnh1DcDuPRzV91Llv7MU7_IYghAuOaX1bgm.96_5t1
- p.Hf1u9PPgpRVOOcxZL0vFB6p2UBZVswosvPtPXdPyi.5GsigIr2l6bIvqPfjfy87NQ40c.HdgSw
- fDI6PXGmXxfQ9x1hFCV0hCV.n2nBeXHxfq2BPmlrR1bUHfQZBPCxY407GE3sL08Ej7m2oB3X7g7Q
- 1_LwLCv5qU9cAJd8aSkAbfOxsxUVdZRsuUUkewCf22F5kxb8IBM4Doc6SFwXqGAN3Nc1zwv0oAE6
- sFuSEYSwCImtXwJkLEas89YKHip2o6Rx083XFgSO7xs54xuKwb6LwVCXP7a49R7dqkXAYoUzHaeJ
- s1TBWw2yCZnAMY40h7vjqkYLQQ38T228V6CGzuXBCafGQsvpXBjO1s0mSyZ_lkl4ehtzXCcIGA8N
- WcDu_nQWSU9fnbLaxqyqU.JN.NKz8cqzc9FLVlat_KtPxxrsLqMz_eWi9Efb697LuC9dZLJGYIXO
- BRPhvHwkjYJ6fN4hwcgicU2vttVf7hsSkh_kSUIh7ZqgHVF1ClUR23NDUShB6FLOmmewOuhcWfWv
- 16osjcgZv_cUwUWBpnzjmPghZE2dtofS.smEuNwAftqPm86Vcsn0OfMuZLcPZDgDbR027_3oVvjm
- SHsyLJmWvvzXwuR9YtATUyu3uRChk8y4N4f0xe8g8S9ZDCMPHiczHxGIJwe0MaE41ie5.9LgdSBc
- NPsrSF78bBwAqi_GC.cS2WO8GwCvvWJIIUqzimYtqTffj2yc55xj2TyGE3Lwyyy8nTbm4_OiNgrG
- 8SI7.naydOXjAHCcD7uBxpu5sj3EA0Jgm0fZXsCq_.XjOd5E06H8jdio4gRYAfu5saxtD.csWDFf
- wcHVeLCuWgpubPtt9tarnUbn06pUUcQ1HnBauhnZaZjBUSrvayIvqOth_15qbOQvoM0p.pWf14Q6
- rXoPPOGDSXCh6m_wYPG8WoqntK0QEdCwjhBtDl4.L.0Y5Z20FjCR.RMWSVuvRzsdx_w1.hNhvAqF
- U21qIYEwPnyy6uowLGOgg3B4BkIALjK4ZKYBtEsxoC2xf7SMl3wCdpmAIfn.Mquf22NujhW65enK
- Cy6mA9JtPTSt8oGOdzacqUMmnLj3zC7PgnLIji_BuBe386JC3HS7xvw--
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic315.consmr.mail.ne1.yahoo.com with HTTP; Sun, 9 Aug 2020 14:31:07 +0000
-Date:   Sun, 9 Aug 2020 14:31:06 +0000 (UTC)
-From:   "Mrs. Mina A. Brunel" <brunelminaa2@gmail.com>
-Reply-To: mrsminaabrunel653@gmail.com
-Message-ID: <1973287813.2142192.1596983466477@mail.yahoo.com>
-Subject: My Dear in the lord
+        id S1726299AbgHIQpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Aug 2020 12:45:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54252 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726175AbgHIQpC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Aug 2020 12:45:02 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7300AC061756;
+        Sun,  9 Aug 2020 09:45:02 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id m22so7057680eje.10;
+        Sun, 09 Aug 2020 09:45:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=V/7ORdIOTb173XCMu8rmzTqIYUKz1Qdd9CmYuO/q9kk=;
+        b=Ckxwpo7Wwje1tHWyYkFuCPjkk8lq361qN0fZq/Ot7NowxoRWYoR1g/tnfDhAXT926+
+         UJ3GFEp+yYfpWObFra7T19FkICr1y8sJzU90cTKPAzTGcjSjyecirRc0errKn7Y9RWLU
+         ko/zmsSo+BfGWHCNGJ/t5OiqDo/tSbSQVC08iSWu3/bgkFhiTdePj5Da3kGmCDcN+DWt
+         YhTLxhWnAxVWFjZO4nH5SActl/dxNgDwNrfWKhMP+XbsbWpvj4PO4Mv5XFFic3oCs8XP
+         Y+FullCakX/j2BvSpvvC2zlRXAfZRvQPqou3fnvYi+g77K98V9klPYfJCFmbANo2/RnQ
+         aTfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=V/7ORdIOTb173XCMu8rmzTqIYUKz1Qdd9CmYuO/q9kk=;
+        b=V5D85zztaVJUbAiX8Mir8KFatRtwWuAfpa0dFHEdOGPgl0niknbyR3Fnhhv6rzjWRc
+         XdSNhY5EwM2Rj6pdTmdI4p3gcXTrj37tZSlKq26rmkY84nNLCVhTlV4977HQFU/7Q4u1
+         5uUf7FEcYD4gTauAQ7uK+BP9oPAaPnOSIhTf5MjriKfSjNtqCfNgWOBaEoV2pjXKzGoJ
+         Fc8KKNMqnUkeGURODFoDuE1z8ayzLgRH+fJCuObKJbZatIjB79/DfUO1AK+Q7MFCCzJB
+         CGPyzX8P4gpyyVQFI/m2Yw2BW4Eycpay4fniZgW6XWXifUu7dpGQYZ9XFpUSa2MFBquQ
+         2wSw==
+X-Gm-Message-State: AOAM530OPMoUvDMjTCBU5Q5m7KhjyiYZx6+r6lW98Kj93wbKkTv6vvUP
+        Ew8NJX+FRKXDTJyTlODt8Bs=
+X-Google-Smtp-Source: ABdhPJxOfdaSkhY2zLWjUeQrTFtLLw4cyiNiCGj7cslQ38Ma5YOQwE6W1HZjpC+W2K79NY+GnMaQTg==
+X-Received: by 2002:a17:906:359b:: with SMTP id o27mr19174818ejb.103.1596991501120;
+        Sun, 09 Aug 2020 09:45:01 -0700 (PDT)
+Received: from blackhead.home ([2a01:112f:a1c:7900:7316:ce1e:7b0b:6bd7])
+        by smtp.gmail.com with ESMTPSA id b24sm10423215edn.33.2020.08.09.09.44.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Aug 2020 09:45:00 -0700 (PDT)
+From:   Marcin Sloniewski <marcin.sloniewski@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     robh+dt@kernel.org, mcoquelin.stm32@gmail.com,
+        alexandre.torgue@st.com, mani@kernel.org,
+        marcin.sloniewski@gmail.com, a.fatoum@pengutronix.de,
+        sam@ravnborg.org, linus.walleij@linaro.org, arnd@arndb.de,
+        broonie@kernel.org, lkundrak@v3.sk, daniel@0x0f.com,
+        kuninori.morimoto.gx@renesas.com, allen.chen@ite.com.tw,
+        robh@kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v7 1/3] dt-bindings: vendor-prefixes: add Seeed Studio
+Date:   Sun,  9 Aug 2020 18:44:48 +0200
+Message-Id: <20200809164450.289731-1-marcin.sloniewski@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-References: <1973287813.2142192.1596983466477.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.16436 YMailNodin Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36
-To:     unlisted-recipients:; (no To-header on input)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add the "seeed" vendor prefix for Seeed Technology Co., Ltd
+Website: https://www.seeedstudio.com/
 
+Signed-off-by: Marcin Sloniewski <marcin.sloniewski@gmail.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-My Dear in the lord
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index f3d847832fdc..cfde16a7084c 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -910,6 +910,8 @@ patternProperties:
+     description: Schindler
+   "^seagate,.*":
+     description: Seagate Technology PLC
++  "^seeed,.*":
++    description: Seeed Technology Co., Ltd
+   "^seirobotics,.*":
+     description: Shenzhen SEI Robotics Co., Ltd
+   "^semtech,.*":
+-- 
+2.27.0
 
-
-My name is Mrs. Mina A. Brunel I am a Norway Citizen who is living in Burki=
-na Faso, I am married to Mr. Brunel Patrice, a politicians who owns a small=
- gold company in Burkina Faso; He died of Leprosy and Radesyge, in year Feb=
-ruary 2010, During his lifetime he deposited the sum of =E2=82=AC 8.5 Milli=
-on Euro) Eight million, Five hundred thousand Euros in a bank in Ouagadougo=
-u the capital city of of Burkina in West Africa. The money was from the sal=
-e of his company and death benefits payment and entitlements of my deceased=
- husband by his company.
-
-I am sending you this message with heavy tears in my eyes and great sorrow =
-in my heart, and also praying that it will reach you in good health because=
- I am not in good health, I sleep every night without knowing if I may be a=
-live to see the next day. I am suffering from long time cancer and presentl=
-y I am partially suffering from Leprosy, which has become difficult for me =
-to move around. I was married to my late husband for more than 6 years with=
-out having a child and my doctor confided that I have less chance to live, =
-having to know when the cup of death will come, I decided to contact you to=
- claim the fund since I don't have any relation I grew up from an orphanage=
- home.
-
-I have decided to donate this money for the support of helping Motherless b=
-abies/Less privileged/Widows and churches also to build the house of God be=
-cause I am dying and diagnosed with cancer for about 3 years ago. I have de=
-cided to donate from what I have inherited from my late husband to you for =
-the good work of Almighty God; I will be going in for an operation surgery =
-soon.
-
-Now I want you to stand as my next of kin to claim the funds for charity pu=
-rposes. Because of this money remains unclaimed after my death, the bank ex=
-ecutives or the government will take the money as unclaimed fund and maybe =
-use it for selfishness and worthless ventures, I need a very honest person =
-who can claim this money and use it for Charity works, for orphanages, wido=
-ws and also build schools and churches for less privilege that will be name=
-d after my late husband and my name.
-
-I need your urgent answer to know if you will be able to execute this proje=
-ct, and I will give you more information on how the fund will be transferre=
-d to your bank account or online banking.
-
-Thanks
-Mrs. Mina A. Brunel
