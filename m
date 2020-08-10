@@ -2,77 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBC00240D3D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Aug 2020 20:58:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25B1D24104C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Aug 2020 21:29:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728272AbgHJS6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Aug 2020 14:58:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54122 "EHLO mail.kernel.org"
+        id S1729078AbgHJT3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Aug 2020 15:29:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38632 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728071AbgHJS6f (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Aug 2020 14:58:35 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1729069AbgHJTKw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Aug 2020 15:10:52 -0400
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 379432080C;
-        Mon, 10 Aug 2020 18:58:33 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 56B2222CF6;
+        Mon, 10 Aug 2020 19:10:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597085915;
-        bh=hQXDCWWlQ1DnxMOL5VXJ+bAuZfFOfBLepB41/sfErNQ=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=GWHXBAfhN9c4Xi+C3+oD1nMDSSew8bsntbkOwjZ/+ag8zD35AOfHxPWwsXUnZThvS
-         jrvuEk6mLKnUDO9vBgApfdOFqu0wSQ1elF60FWOGMS4CTu4Wjq+WNP31wilciH/D1z
-         N/LQKrlYdnltRo/tPLdHWEfmOtASnr6iEagbFTrQ=
-Date:   Mon, 10 Aug 2020 19:58:08 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Clark Wang <xiaoning.wang@nxp.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Anson Huang <Anson.Huang@nxp.com>, devicetree@vger.kernel.org,
-        linux-spi@vger.kernel.org
-In-Reply-To: <20200807121057.14204-1-geert+renesas@glider.be>
-References: <20200807121057.14204-1-geert+renesas@glider.be>
-Subject: Re: [PATCH] dt-bindings: lpspi: Add missing boolean type for fsl,spi-only-use-cs1-sel
-Message-Id: <159708588098.21609.11539908447717402760.b4-ty@kernel.org>
+        s=default; t=1597086652;
+        bh=zHckG6m84Zqzd5VIOruZMFe/2Q7NFzcOkZYzhVCARjw=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=ndhu2G2DkgNZ57RvqO2FRQc5Pgdomr0D079KRoG7F26j0StK8f39q1jxluTddnwN0
+         YCF+r6sb43G0YqrOe/IDGfwLfFOf1lzFmrvWuuxMSBepGL4NCEpQMPXlXLWrlzc1ok
+         bJJZkwI5t9wjZfyMP8xVwyTJf8+gNin9wd9T3/us=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     =?UTF-8?q?Ricardo=20Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Wei Xu <xuwei5@hisilicon.com>, Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.7 17/60] arm64: dts: hisilicon: hikey: fixes to comply with adi, adv7533 DT binding
+Date:   Mon, 10 Aug 2020 15:09:45 -0400
+Message-Id: <20200810191028.3793884-17-sashal@kernel.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200810191028.3793884-1-sashal@kernel.org>
+References: <20200810191028.3793884-1-sashal@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 7 Aug 2020 14:10:57 +0200, Geert Uytterhoeven wrote:
-> When running "make dt_binding_check" (even if restricted to an unrelated
-> binding document using DT_SCHEMA_FILES=...):
-> 
->     Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml: ignoring, error in schema: properties: fsl,spi-only-use-cs1-sel
->     warning: no schema found in file: Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
-> 
-> Fix this by adding a proper type definition for the vendor-specific
-> fsl,spi-only-use-cs1-sel property.
+From: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
 
-Applied to
+[ Upstream commit bbe28fc3cbabbef781bcdf847615d52ce2e26e42 ]
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+hi3660-hikey960.dts:
+  Define a 'ports' node for 'adv7533: adv7533@39' and the
+  'adi,dsi-lanes' property to make it compliant with the adi,adv7533 DT
+  binding.
 
-Thanks!
+  This fills the requirements to meet the binding requirements,
+  remote endpoints are not defined.
 
-[1/1] dt-bindings: lpspi: Add missing boolean type for fsl,spi-only-use-cs1-sel
-      commit: 0454357faaf8eea07af4f01a9e7afde175377b41
+hi6220-hikey.dts:
+  Change property name s/pd-gpio/pd-gpios, gpio properties should be
+  plural. This is just a cosmetic change.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
+Acked-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Signed-off-by: Wei Xu <xuwei5@hisilicon.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts | 11 +++++++++++
+ arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts    |  2 +-
+ 2 files changed, 12 insertions(+), 1 deletion(-)
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+diff --git a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
+index e035cf195b19a..8c4bfbaf3a806 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
++++ b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
+@@ -530,6 +530,17 @@ adv7533: adv7533@39 {
+ 		status = "ok";
+ 		compatible = "adi,adv7533";
+ 		reg = <0x39>;
++		adi,dsi-lanes = <4>;
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			port@0 {
++				reg = <0>;
++			};
++			port@1 {
++				reg = <1>;
++			};
++		};
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts b/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
+index c14205cd6bf5c..3e47150c05ec2 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
++++ b/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
+@@ -516,7 +516,7 @@ adv7533: adv7533@39 {
+ 		reg = <0x39>;
+ 		interrupt-parent = <&gpio1>;
+ 		interrupts = <1 2>;
+-		pd-gpio = <&gpio0 4 0>;
++		pd-gpios = <&gpio0 4 0>;
+ 		adi,dsi-lanes = <4>;
+ 		#sound-dai-cells = <0>;
+ 
+-- 
+2.25.1
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
