@@ -2,92 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B44B42403A2
-	for <lists+devicetree@lfdr.de>; Mon, 10 Aug 2020 10:53:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53D5B2403E9
+	for <lists+devicetree@lfdr.de>; Mon, 10 Aug 2020 11:22:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726177AbgHJIx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Aug 2020 04:53:29 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:36791 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725857AbgHJIx2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Aug 2020 04:53:28 -0400
-Received: by mail-ot1-f68.google.com with SMTP id x24so6711887otp.3;
-        Mon, 10 Aug 2020 01:53:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Xmzp7fk+vIO5KhMWu8O9IbD4bDIyRfJdP7iP0tIOvno=;
-        b=mOGdM88vJfUe0IjTNtwfTexNlHHBK7uHOmlybBGz/g4R6k9oPggbECbVtj36holqsR
-         k7QT3oL0xY024giKb/YQz19mQwhXMijoQ3jCCiQriglgjCMnq+A01BCHpFFV6TBrpOM5
-         YRQgmMjrTYZW1FFfUHDs42CoQeDXilaYx224qLxDWVpv1DOzxtbUB5r3kacDHqczXZ5F
-         7oz5GoV0wVaqT4/AWscfe5H191gRSDBawxGDhGcamMlOUBwqjVrxqITyC2m1fSInP5Q3
-         MR96+3GP7yrI+8brGHXae4KWNTutrLX0DAA39eHpsiTdzMXSSDhjnb5EFLaMQTiThzMx
-         2Xcw==
-X-Gm-Message-State: AOAM530BcwnSm6BBTRwh6JMSFf1uC8LvedlajFTy+OeRn7HwWCCWwMQ0
-        4sJILOivXhjQ0LYCA2ktr0Z40YJWrvtX9CBaE/c=
-X-Google-Smtp-Source: ABdhPJzSt76d0ygTKVbbokZXs04MvcLY5RinH8EKwMctMbjh/IruKDAr8twMrh9yrF5whd8fFKWBPfGLT5IiuTy66Aw=
-X-Received: by 2002:a9d:7d8c:: with SMTP id j12mr3284otn.250.1597049607701;
- Mon, 10 Aug 2020 01:53:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200807174954.14448-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20200807174954.14448-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <e67a94e8-c9ed-dc9e-cab8-453a09441bcb@gmail.com> <CA+V-a8snp3EUFRuMHLxVhnc=zPq-LaQL8du7LgGcswi+6NthLQ@mail.gmail.com>
-In-Reply-To: <CA+V-a8snp3EUFRuMHLxVhnc=zPq-LaQL8du7LgGcswi+6NthLQ@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 10 Aug 2020 10:53:16 +0200
-Message-ID: <CAMuHMdVEqc1JVeZrLdDfRo1EwyzaVq-ORStO39NyTqwwkh8YLQ@mail.gmail.com>
-Subject: Re: [PATCH 5/7] ARM: dts: r8a7742: Add DU support
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1726310AbgHJJWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Aug 2020 05:22:13 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:35017 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725846AbgHJJWN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Aug 2020 05:22:13 -0400
+X-IronPort-AV: E=Sophos;i="5.75,457,1589209200"; 
+   d="scan'208";a="54286650"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 10 Aug 2020 18:22:11 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id DDF1E41EF40F;
+        Mon, 10 Aug 2020 18:22:09 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Magnus Damm <magnus.damm@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/2] r8a774e1 add FCPF, FCPV and VSP nodes
+Date:   Mon, 10 Aug 2020 10:22:06 +0100
+Message-Id: <20200810092208.27320-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 7, 2020 at 10:22 PM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Fri, Aug 7, 2020 at 8:48 PM Sergei Shtylyov
-> <sergei.shtylyov@gmail.com> wrote:
-> > On 8/7/20 8:49 PM, Lad Prabhakar wrote:
-> > > Add du node to r8a7742 SoC DT. Boards that want to enable the DU
-> >
-> >   Both "du" and "DU" on a single line? :-)
-> >
-> Argh my bad.
+Hi All,
 
-No worries, I can replace the former one by "Display Unit (DU)" while
-applying.
+This patch series adds FCPF, FCPV and VSP nodes to r8a774e1
+SoC dtsi. Patches apply on top of series [1].
 
-> > > need to specify the output topology.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+[1] https://patchwork.kernel.org/project/linux-renesas-soc/
+    list/?series=319563
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.10, with the above fixed.
+Cheers,
+Prabhakar
 
-Gr{oetje,eeting}s,
+Marian-Cristian Rotariu (2):
+  arm64: dts: renesas: r8a774e1: Add FCPF and FCPV instances
+  arm64: dts: renesas: r8a774e1: Add VSP instances
 
-                        Geert
+ arch/arm64/boot/dts/renesas/r8a774e1.dtsi | 130 ++++++++++++++++++++++
+ 1 file changed, 130 insertions(+)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
