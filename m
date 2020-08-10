@@ -2,110 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CFC2240C58
-	for <lists+devicetree@lfdr.de>; Mon, 10 Aug 2020 19:49:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43510240CF2
+	for <lists+devicetree@lfdr.de>; Mon, 10 Aug 2020 20:27:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727872AbgHJRtv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Aug 2020 13:49:51 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:27402 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727003AbgHJRtv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Aug 2020 13:49:51 -0400
-X-IronPort-AV: E=Sophos;i="5.75,458,1589209200"; 
-   d="scan'208";a="54308205"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 11 Aug 2020 02:49:49 +0900
-Received: from localhost.localdomain (unknown [172.29.53.63])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id ED58A40B42F2;
-        Tue, 11 Aug 2020 02:49:46 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v3] ARM: dts: iwg20d-q7-common: Fix touch controller probe failure
-Date:   Mon, 10 Aug 2020 18:49:44 +0100
-Message-Id: <20200810174944.2892-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
+        id S1728071AbgHJS1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Aug 2020 14:27:17 -0400
+Received: from asavdk3.altibox.net ([109.247.116.14]:54584 "EHLO
+        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727982AbgHJS1Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Aug 2020 14:27:16 -0400
+Received: from ravnborg.org (unknown [188.228.123.71])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk3.altibox.net (Postfix) with ESMTPS id 4F7CB20023;
+        Mon, 10 Aug 2020 20:27:13 +0200 (CEST)
+Date:   Mon, 10 Aug 2020 20:27:12 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     allen <allen.chen@ite.com.tw>
+Cc:     Jau-Chih Tseng <Jau-Chih.Tseng@ite.com.tw>,
+        Hermes Wu <Hermes.Wu@ite.com.tw>,
+        Kenneth Hung <Kenneth.Hung@ite.com.tw>,
+        Pi-Hsun Shih <pihsun@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 1/2] ite-it6505 change trigger conditions
+Message-ID: <20200810182712.GA408647@ravnborg.org>
+References: <1597053278-25421-1-git-send-email-allen.chen@ite.com.tw>
+ <1597053278-25421-2-git-send-email-allen.chen@ite.com.tw>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1597053278-25421-2-git-send-email-allen.chen@ite.com.tw>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=f+hm+t6M c=1 sm=1 tr=0
+        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+        a=kj9zAlcOel0A:10 a=d2tX9T8KrmGLFF5Hj1IA:9 a=CjuIK1q_8ugA:10
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As per the iWave RZ/G1M schematic, the signal LVDS_PPEN controls supply
-voltage for touch panel, LVDS receiver and RGB LCD panel. Add regulator
-for these device nodes and remove powerdown-gpios property from
-lvds-receiver node as it results in touch controller driver probe failure.
+Hi Allen.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-This patch depend on below patches
+On Mon, Aug 10, 2020 at 05:53:17PM +0800, allen wrote:
+> it6505 changes trigger conditions.
+> ---
+>  Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+> index 2c50016..bf0e889 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+> @@ -73,7 +73,7 @@ examples:
+>  
+>          dp-bridge@5c {
+>              compatible = "ite,it6505";
+> -            interrupts = <152 IRQ_TYPE_EDGE_FALLING 152 0>;
+> +            interrupts = <152 IRQ_TYPE_LEVEL_LOW 152 0>;
+>              reg = <0x5c>;
+>              pinctrl-names = "default";
+>              pinctrl-0 = <&it6505_pins>;
+I fail to see the need for this. The example shall describe the binding
+and is not necessarily a correct description of the HW.
+People should look in the dts file for the HW descriptions, not the
+binding examples. So I have dropped this patch.
 
-1) https://patchwork.kernel.org/patch/11707595/
-2) https://patchwork.kernel.org/patch/11707593/
+	Sam
 
-v2->v3 : Added the missing part from the patch. removal of powerdown-gpios property.
-v1->v2 : Add regulator in touch panel, LVDS receiver and RGB LCD panel device nodes
-           (Ref: https://patchwork.kernel.org/patch/11707559/)
-v1 : https://patchwork.kernel.org/patch/11705819/
----
- arch/arm/boot/dts/iwg20d-q7-common.dtsi | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/iwg20d-q7-common.dtsi b/arch/arm/boot/dts/iwg20d-q7-common.dtsi
-index ebbe1518ef8a..056f93119d8a 100644
---- a/arch/arm/boot/dts/iwg20d-q7-common.dtsi
-+++ b/arch/arm/boot/dts/iwg20d-q7-common.dtsi
-@@ -57,7 +57,7 @@
- 
- 	lvds-receiver {
- 		compatible = "ti,ds90cf384a", "lvds-decoder";
--		powerdown-gpios = <&gpio7 25 GPIO_ACTIVE_LOW>;
-+		vcc-supply = <&vcc_3v3_tft1>;
- 
- 		ports {
- 			#address-cells = <1>;
-@@ -81,6 +81,7 @@
- 	panel {
- 		compatible = "edt,etm0700g0dh6";
- 		backlight = <&lcd_backlight>;
-+		power-supply = <&vcc_3v3_tft1>;
- 
- 		port {
- 			panel_in: endpoint {
-@@ -113,6 +114,17 @@
- 		};
- 	};
- 
-+	vcc_3v3_tft1: regulator-panel {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "Panel Vcc";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		enable-active-high;
-+		startup-delay-us = <70000>;
-+		gpio = <&gpio7 25 GPIO_ACTIVE_HIGH>;
-+	};
-+
- 	vcc_sdhi1: regulator-vcc-sdhi1 {
- 		compatible = "regulator-fixed";
- 
-@@ -207,6 +219,7 @@
- 		reg = <0x38>;
- 		interrupt-parent = <&gpio2>;
- 		interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
-+		vcc-supply = <&vcc_3v3_tft1>;
- 	};
- };
- 
--- 
-2.17.1
-
+> -- 
+> 1.9.1
