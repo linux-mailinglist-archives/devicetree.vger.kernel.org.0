@@ -2,131 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5361A2403EC
-	for <lists+devicetree@lfdr.de>; Mon, 10 Aug 2020 11:22:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C207240420
+	for <lists+devicetree@lfdr.de>; Mon, 10 Aug 2020 11:36:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726029AbgHJJWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Aug 2020 05:22:17 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:21575 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726304AbgHJJWQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Aug 2020 05:22:16 -0400
-X-IronPort-AV: E=Sophos;i="5.75,457,1589209200"; 
-   d="scan'208";a="54286667"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 10 Aug 2020 18:22:15 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 0F8FD41EF40F;
-        Mon, 10 Aug 2020 18:22:13 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 2/2] arm64: dts: renesas: r8a774e1: Add VSP instances
-Date:   Mon, 10 Aug 2020 10:22:08 +0100
-Message-Id: <20200810092208.27320-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200810092208.27320-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20200810092208.27320-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S1726657AbgHJJga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Aug 2020 05:36:30 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:11038 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725809AbgHJJg3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Aug 2020 05:36:29 -0400
+X-UUID: 961db87e583542018ad200db35459a15-20200810
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=VwRgWjEdkPYGkWZKNJSxx1FhonydZDDe5W6HPLrIeDY=;
+        b=eeEIpWvS96ga53cQzaNwO/MvUBF8zz1atKtNYY7cJmUcqxBmKHQcHUu0K5ycnuVXCq/zkJfe80j3nANG4mDhzL28sHSuTqop1eNwcSufHtxqL4tYHOiKZ9b91D45Kbpe+We/CeXO+bUFZYV85vVZorq48Tun943h9wkxLUCeN5Q=;
+X-UUID: 961db87e583542018ad200db35459a15-20200810
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <wendell.lin@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 746720287; Mon, 10 Aug 2020 17:36:27 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 10 Aug 2020 17:36:24 +0800
+Received: from [172.21.77.33] (172.21.77.33) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 10 Aug 2020 17:36:25 +0800
+Message-ID: <1597052186.27843.1.camel@mtkswgap22>
+Subject: Re: [PATCH 1/1] clk: Export clk_register_composite
+From:   Wendell Lin <wendell.lin@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <wsd_upstream@mediatek.com>
+Date:   Mon, 10 Aug 2020 17:36:26 +0800
+In-Reply-To: <1595493126-21611-1-git-send-email-wendell.lin@mediatek.com>
+References: <1595493126-21611-1-git-send-email-wendell.lin@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+MIME-Version: 1.0
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
-
-The RZ/G2H (R8A774E1) has 6 VSP instances.
-
-Based on the work done for r8a7795 SoC.
-
-Signed-off-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r8a774e1.dtsi | 66 +++++++++++++++++++++++
- 1 file changed, 66 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/r8a774e1.dtsi b/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
-index 1954a07f3e85..8f762bd2c9aa 100644
---- a/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
-@@ -2374,6 +2374,72 @@
- 			status = "disabled";
- 		};
- 
-+		vspbc: vsp@fe920000 {
-+			compatible = "renesas,vsp2";
-+			reg = <0 0xfe920000 0 0x8000>;
-+			interrupts = <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 624>;
-+			power-domains = <&sysc R8A774E1_PD_A3VP>;
-+			resets = <&cpg 624>;
-+
-+			renesas,fcp = <&fcpvb1>;
-+		};
-+
-+		vspbd: vsp@fe960000 {
-+			compatible = "renesas,vsp2";
-+			reg = <0 0xfe960000 0 0x8000>;
-+			interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 626>;
-+			power-domains = <&sysc R8A774E1_PD_A3VP>;
-+			resets = <&cpg 626>;
-+
-+			renesas,fcp = <&fcpvb1>;
-+		};
-+
-+		vspd0: vsp@fea20000 {
-+			compatible = "renesas,vsp2";
-+			reg = <0 0xfea20000 0 0x5000>;
-+			interrupts = <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 623>;
-+			power-domains = <&sysc R8A774E1_PD_ALWAYS_ON>;
-+			resets = <&cpg 623>;
-+
-+			renesas,fcp = <&fcpvd0>;
-+		};
-+
-+		vspd1: vsp@fea28000 {
-+			compatible = "renesas,vsp2";
-+			reg = <0 0xfea28000 0 0x5000>;
-+			interrupts = <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 622>;
-+			power-domains = <&sysc R8A774E1_PD_ALWAYS_ON>;
-+			resets = <&cpg 622>;
-+
-+			renesas,fcp = <&fcpvd1>;
-+		};
-+
-+		vspi0: vsp@fe9a0000 {
-+			compatible = "renesas,vsp2";
-+			reg = <0 0xfe9a0000 0 0x8000>;
-+			interrupts = <GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 631>;
-+			power-domains = <&sysc R8A774E1_PD_A3VP>;
-+			resets = <&cpg 631>;
-+
-+			renesas,fcp = <&fcpvi0>;
-+		};
-+
-+		vspi1: vsp@fe9b0000 {
-+			compatible = "renesas,vsp2";
-+			reg = <0 0xfe9b0000 0 0x8000>;
-+			interrupts = <GIC_SPI 445 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 630>;
-+			power-domains = <&sysc R8A774E1_PD_A3VP>;
-+			resets = <&cpg 630>;
-+
-+			renesas,fcp = <&fcpvi1>;
-+		};
-+
- 		fcpf0: fcp@fe950000 {
- 			compatible = "renesas,fcpf";
- 			reg = <0 0xfe950000 0 0x200>;
--- 
-2.17.1
+SGkgTWF0dGhpYXMgYW5kIGFsbCwNCg0KR2VudGxlIHBpbmcgb24gdGhpcyBwYXRjaC4NCg0KVGhh
+bmtzDQoNCldlbmRlbGwgTGluDQoNCg0KT24gVGh1LCAyMDIwLTA3LTIzIGF0IDE2OjMyICswODAw
+LCBXZW5kZWxsIExpbiB3cm90ZToNCj4gY2xrX3JlZ2lzdGVyX2NvbXBvc2l0ZSgpIHdpbGwgYmUg
+dXNlZCBpbiBtZWRpYXRlaydzDQo+IGNsb2NrIGtlcm5lbCBtb2R1bGUsIHNvIGV4cG9ydCBpdCB0
+byBHUEwgbW9kdWxlcy4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFdlbmRlbGwgTGluIDx3ZW5kZWxs
+LmxpbkBtZWRpYXRlay5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9jbGsvY2xrLWNvbXBvc2l0ZS5j
+IHwgICAgMSArDQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykNCj4gDQo+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2Nsay9jbGstY29tcG9zaXRlLmMgYi9kcml2ZXJzL2Nsay9jbGstY29t
+cG9zaXRlLmMNCj4gaW5kZXggNzM3NmY1Ny4uN2M2MDljMiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVy
+cy9jbGsvY2xrLWNvbXBvc2l0ZS5jDQo+ICsrKyBiL2RyaXZlcnMvY2xrL2Nsay1jb21wb3NpdGUu
+Yw0KPiBAQCAtMzYwLDYgKzM2MCw3IEBAIHN0cnVjdCBjbGsgKmNsa19yZWdpc3Rlcl9jb21wb3Np
+dGUoc3RydWN0IGRldmljZSAqZGV2LCBjb25zdCBjaGFyICpuYW1lLA0KPiAgCQlyZXR1cm4gRVJS
+X0NBU1QoaHcpOw0KPiAgCXJldHVybiBody0+Y2xrOw0KPiAgfQ0KPiArRVhQT1JUX1NZTUJPTF9H
+UEwoY2xrX3JlZ2lzdGVyX2NvbXBvc2l0ZSk7DQo+ICANCj4gIHN0cnVjdCBjbGsgKmNsa19yZWdp
+c3Rlcl9jb21wb3NpdGVfcGRhdGEoc3RydWN0IGRldmljZSAqZGV2LCBjb25zdCBjaGFyICpuYW1l
+LA0KPiAgCQkJY29uc3Qgc3RydWN0IGNsa19wYXJlbnRfZGF0YSAqcGFyZW50X2RhdGEsDQoNCg==
 
