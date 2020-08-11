@@ -2,61 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84AB7241CA9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Aug 2020 16:45:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8E37241C8D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Aug 2020 16:38:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728901AbgHKOpy convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 11 Aug 2020 10:45:54 -0400
-Received: from mx01.imigrasi.go.id ([36.91.73.239]:40406 "EHLO
-        pfp2-psdkmjkt.imigrasi.go.id" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728900AbgHKOpx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Aug 2020 10:45:53 -0400
-X-Greylist: delayed 21331 seconds by postgrey-1.27 at vger.kernel.org; Tue, 11 Aug 2020 10:45:51 EDT
-Received: from pps.filterd (pfp2-psdkmjkt.imigrasi.go.id [127.0.0.1])
-        by pfp2-psdkmjkt.imigrasi.go.id (8.16.0.27/8.16.0.27) with SMTP id 07B8h65m122092;
-        Tue, 11 Aug 2020 15:43:35 +0700
-Received: from mta02.imigrasi.go.id ([10.0.49.130])
-        by pfp2-psdkmjkt.imigrasi.go.id with ESMTP id 32scdu9uyp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Tue, 11 Aug 2020 15:43:35 +0700
-Received: from localhost (localhost [127.0.0.1])
-        by mta02.imigrasi.go.id (Postfix) with ESMTP id AF78930086BF0;
-        Tue, 11 Aug 2020 15:43:23 +0700 (WIB)
-Received: from mta02.imigrasi.go.id ([127.0.0.1])
-        by localhost (mta02.imigrasi.go.id [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id ckjy4XZ0Sg4D; Tue, 11 Aug 2020 15:43:23 +0700 (WIB)
-Received: from localhost (localhost [127.0.0.1])
-        by mta02.imigrasi.go.id (Postfix) with ESMTP id 3D8DA3009377E;
-        Tue, 11 Aug 2020 15:39:40 +0700 (WIB)
-X-Virus-Scanned: amavisd-new at 
-Received: from mta02.imigrasi.go.id ([127.0.0.1])
-        by localhost (mta02.imigrasi.go.id [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id KPM7DD88QkGS; Tue, 11 Aug 2020 15:39:40 +0700 (WIB)
-Received: from [192.168.100.12] (unknown [175.100.60.226])
-        by mta02.imigrasi.go.id (Postfix) with ESMTPSA id D2C3F30094E61;
-        Tue, 11 Aug 2020 15:36:34 +0700 (WIB)
-Content-Type: text/plain; charset="iso-8859-1"
+        id S1728829AbgHKOii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Aug 2020 10:38:38 -0400
+Received: from mga03.intel.com ([134.134.136.65]:63132 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728783AbgHKOih (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Aug 2020 10:38:37 -0400
+IronPort-SDR: eEfmuh2tYJIs8xG5mENvLyAFw9wP23wcuDvc42JEFxnpDHdiDiQL69dVZZ+UpMJOs64Af1DQNf
+ e2l6wT8/Ligw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9710"; a="153716507"
+X-IronPort-AV: E=Sophos;i="5.76,461,1592895600"; 
+   d="scan'208";a="153716507"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Aug 2020 07:38:36 -0700
+IronPort-SDR: Nx76xLg49REiDVzBeRo2QG4Jq1uLrDICOx6ARs93zhCQ9zngHeUpOitdEG8lGLwyKkq99SUwc5
+ o12gO+xe7jCw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,461,1592895600"; 
+   d="scan'208";a="398544463"
+Received: from kuha.fi.intel.com ([10.237.72.162])
+  by fmsmga001.fm.intel.com with SMTP; 11 Aug 2020 07:38:33 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 11 Aug 2020 17:38:33 +0300
+Date:   Tue, 11 Aug 2020 17:38:33 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Hans de Goede <hdegoede@redhat.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tobias Schramm <t.schramm@manjaro.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/4] usb: typec: Add
+ typec_port_register_altmodes_from_fwnode()
+Message-ID: <20200811143833.GC627773@kuha.fi.intel.com>
+References: <20200714113617.10470-1-hdegoede@redhat.com>
+ <20200714113617.10470-3-hdegoede@redhat.com>
+ <20200727130528.GB883641@kuha.fi.intel.com>
+ <469f369a-73f4-c348-b9ee-1662956f45be@redhat.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Description: Mail message body
-Subject: Good Day
-To:     Recipients <portal@imigrasi.go.id>
-From:   "Maggie Wang" <portal@imigrasi.go.id>
-Date:   Tue, 11 Aug 2020 15:36:33 +0700
-Reply-To: maggiemwang777@gmail.com
-Message-Id: <20200811083634.D2C3F30094E61@mta02.imigrasi.go.id>
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2020-01-03_04:,,
- signatures=0
-X-Proofpoint-Spam-Reason: safe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <469f369a-73f4-c348-b9ee-1662956f45be@redhat.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Greetings My Dear Friend,
+Hi,
 
-I have a business proposal to share with you. 
+> > > +void typec_port_register_altmodes_from_fwnode(struct typec_port *port,
+> > > +	const struct typec_altmode_ops *ops, void *drvdata,
+> > > +	struct typec_altmode **altmodes, size_t n,
+> > > +	struct fwnode_handle *fwnode)
+> > > +{
+> > > +	struct fwnode_handle *altmodes_node, *child;
+> > > +	struct typec_altmode_desc desc;
+> > > +	struct typec_altmode *alt;
+> > > +	size_t index = 0;
+> > > +	u32 svid, vdo;
+> > > +	int ret;
+> > > +
+> > > +	altmodes_node = fwnode_get_named_child_node(fwnode, "altmodes");
+> > > +	if (!altmodes_node)
+> > > +		return;
+> > 
+> > Do we need that? Why not just make the sub-nodes describing the
+> > alternate modes direct children of the connector node instead of
+> > grouping them under a special sub-node?
+> 
+> If you envision how this will look in e.g. DTS sources then I think
+> you will see that this grouping keeps the DTS source code more
+> readable. Grouping things together like this is somewhat normal in
+> devicetree files. E.g. PMIC's or other regulator providers typical
+> have a "regulators" node grouping all their regulators; and also the OF
+> graph bindings which are used in the USB-connector node start with a
+> "ports" parent / grouping node.
+> 
+> > If the child node of the connector has device properties "svid" and
+> > "vdo" then it is an alt mode that the connector supports, and it can't
+> > be anything else, no?
+> 
+> If you want to get rid of the altmodes parent/grouping node, then the
+> usual way to do this would be to add a compatible string to the nodes,
+> rather then check for the existence of some properties.
 
-Kind Regards,
-Maggie Wang
+I'm looking at this from ACPI PoW. We do not have compatible string in
+ACPI (and in case you are wondering, the _HID PRP0001 is not a
+reliable solution for that).
+
+If you wish to group the altmodes under a subnode, then that's fine, but
+the "altmodes" node will need to be optional, just like the "ports"
+OF-graph node is optional. So we need to be able to support systems
+where the alternate mode subnodes are directly under the connector as
+well.
+
+thanks,
+
+-- 
+heikki
