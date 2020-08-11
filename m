@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B769241F9A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Aug 2020 20:21:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DE11241FA0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Aug 2020 20:21:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726143AbgHKSVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Aug 2020 14:21:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58356 "EHLO
+        id S1726271AbgHKSVe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Aug 2020 14:21:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725886AbgHKSVS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Aug 2020 14:21:18 -0400
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9EAAC061787
-        for <devicetree@vger.kernel.org>; Tue, 11 Aug 2020 11:21:17 -0700 (PDT)
-Received: by mail-pg1-x542.google.com with SMTP id o13so7111790pgf.0
-        for <devicetree@vger.kernel.org>; Tue, 11 Aug 2020 11:21:17 -0700 (PDT)
+        with ESMTP id S1726020AbgHKSVV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Aug 2020 14:21:21 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DC29C06178A
+        for <devicetree@vger.kernel.org>; Tue, 11 Aug 2020 11:21:21 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id a79so8053983pfa.8
+        for <devicetree@vger.kernel.org>; Tue, 11 Aug 2020 11:21:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=DmcHWuf2v+3wV2AD0mGNYgT+VY5ydtvubi2qH/7HZXw=;
-        b=awMoBXKow61xwOaSEK8foUmARLBgX2Gjc5NemuqQ+u+zr/6iL8Wlsjmt57+TU5sw3T
-         7NVhcphc0qo/jF38mnBxS3Ox4C2E5WjVu9pDoWHl77+hseWYj0leqw+QDmOQxgihBiut
-         oML0ZtWsJ/clSU5Qiv5dviSFCcgouDXNxFVlfe8kaYX9XRtVRWXHmVd8x/3uA7PejlKh
-         xlyJ8OXubECBeXln5+g8YZTmPKeiTJtHKWPnKn6OEud8YkpsmWSROyPvDEDdaXpxJpD+
-         3QdyEi8Zu0NgdAfbEPmejz47s6bpMRKcLC6QFNFBP8ZHMnsecIkQ13ujRfP8h7AyAN7F
-         +Flg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=bdqyu7i6Nejyba3UvWvNRVJj3YGTPAvhIc5fFeKUFKA=;
+        b=qxl4KEdSUfstTNxTL9gtP+w44/d0mjBRVPbumXlZUhSciKYK+6oWGZGtCBkpoqE/Iy
+         30dr97E0QjDfEWp4WmKliileRs4VrqghvNr88HxWkmBxyfE+HGssaHtJoIadgveHulwI
+         /kMx143kmPWMYw6rUuyFAWrF20lR+6OTwV/DQgcZAYd6Aec2U38atXbvfUvNoakLedb7
+         H0HD68rBMR7DKH31FvaRLSEdthM1scOpsAZ7HRQaysuLE1rXTH4bnW+ugzew/kCIFDmm
+         jcBhtT8Ied7tXBJjxY5opt2u9r7/tsmofuXsExbPHmbTodDWaKZJNNeQ0H5vmpbFUv1e
+         35Hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=DmcHWuf2v+3wV2AD0mGNYgT+VY5ydtvubi2qH/7HZXw=;
-        b=gN+k1ntfw5+UECHRqVD/k9svePE8sFpSVYkji2T+svTjal/ZYI9dmJLJiUMRDvoF4u
-         QV2gwYSYY7FM6BdhJng83f+OiNfhDCFGyQhcgFuduLBLZIY+HwYLqzcP22HWOS/5lu9V
-         vluxFmzyYshhLTUjiaK2rNcRnGE+5fn9C9+6Q3hy9yHcA/1kkt5HPvHOWEXUWDU6Edyo
-         sAaGFgxtymqpAxuEPzKG/EyQ5CXgI/wWnW4IltyBcBYv8HeunHqQO3LVp8Yh7DcLx0/R
-         at5fzXEMGxX691j4rpVbNaMcrz+6u0kAATX9qAa/P0A+L9rxuL+U/XR1qbj1p1fvnFy9
-         KyFQ==
-X-Gm-Message-State: AOAM530eGRuGT1dDU7IIVi06sB1SM5L6FIolfOyPJHwE2KeZxGNyxI5u
-        XwBnkqN2ZCfXX23A9+Xco7QYwg==
-X-Google-Smtp-Source: ABdhPJxz0PuC4YfxRjlx/Cs0nOrfxWcypnJDNU7R3auDZe+MNSwJPMHKt+8nmemmZO+slEKvzzM6Yg==
-X-Received: by 2002:a62:1803:: with SMTP id 3mr7912192pfy.198.1597170077136;
-        Tue, 11 Aug 2020 11:21:17 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=bdqyu7i6Nejyba3UvWvNRVJj3YGTPAvhIc5fFeKUFKA=;
+        b=dSAhYaq3gu/g19SD3jfaScCXw/S0xPkGR2/fQnC1SXhEkSLhmwD7bUOi5eMd/T5IeQ
+         sUA6MedCGvqzhnib7+x73sclBepu9QSwHycwd0En3Hql9qrqyRlNzW3zCKFD4B5//4+4
+         fuXrXZsULU3Q401xD4gLmMOlwmIZ5zfWgMmoqfq3Qesr1FKdisKQ/lMNVsqB3htAGFG7
+         frAeOrSJwbPO46KAvZY142sqqwtTeE7xkYDqgUwtIz4TxJ3i1HvvTElGzH1/1U6MwgGF
+         7rcftD7xwSYplfeb50My93axOt2zcGhR3xdDYsscoOJP7iKSphdhmKVsc2/pv07HrgN2
+         4P3A==
+X-Gm-Message-State: AOAM532djZyqsBCXc7vNtARIioD6Qa7WnC3OhHkDXA4Lzss8EUGNImlS
+        c1CUjVsxF0tsOkeWCeZrIJou2g==
+X-Google-Smtp-Source: ABdhPJykZ+JozGGOFkpFth/UQvfXGGbzzjzLJSB8dpuc8Qgb0f4Pz0qrsPBgTWgJRl6p7GLf1sS2Ig==
+X-Received: by 2002:a63:5613:: with SMTP id k19mr1908920pgb.424.1597170080907;
+        Tue, 11 Aug 2020 11:21:20 -0700 (PDT)
 Received: from nagraj.local ([49.206.21.239])
-        by smtp.gmail.com with ESMTPSA id x7sm26595162pfc.209.2020.08.11.11.21.13
+        by smtp.gmail.com with ESMTPSA id x7sm26595162pfc.209.2020.08.11.11.21.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Aug 2020 11:21:16 -0700 (PDT)
+        Tue, 11 Aug 2020 11:21:20 -0700 (PDT)
 From:   Sumit Semwal <sumit.semwal@linaro.org>
 To:     Thierry Reding <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>
@@ -57,10 +57,12 @@ Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Sumit Semwal <sumit.semwal@linaro.org>
-Subject: [PATCH v4 0/2] Add support for Tianma nt36672a video mode panel
-Date:   Tue, 11 Aug 2020 23:51:05 +0530
-Message-Id: <20200811182107.6515-1-sumit.semwal@linaro.org>
+Subject: [PATCH v4 1/2] dt-bindings: display: panel: Add bindings for Tianma nt36672a panel
+Date:   Tue, 11 Aug 2020 23:51:06 +0530
+Message-Id: <20200811182107.6515-2-sumit.semwal@linaro.org>
 X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200811182107.6515-1-sumit.semwal@linaro.org>
+References: <20200811182107.6515-1-sumit.semwal@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -68,35 +70,122 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some Poco F1 phones from Xiaomi have an nt36672a video mode panel; add support
-for the same.
-Most of the panel data is taken from downstream panel dts, and is converted to
-drm-panel based driver by me.
-It has been validated with v5.8-rc5 on Poco F1 phone; my tree with other
-dependent patches is here [1]
+The nt36672a panel from Tianma is a FHD+ panel with a resolution of
+1080x2246 and 6.18 inches size. It is found in some of the Poco F1
+phones.
 
-[1]: https://git.linaro.org/people/sumit.semwal/linux-dev.git/log/?h=dev/poco-panel-upstreaming
+Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 ---
-v2: In dt-binding, removed ports node, making port@0 directly under panel@0 node.
-    Also updated the panel_on delay to a safer 200ms as needed for latest Android.
-v3: Replaced port@0 with just port in panel@0 node.
-v4: Since "0425662fdf05: drm: Nuke mode->vrefresh", we have to calculate
-    vrefresh on demand. Update for it.
-
-Sumit Semwal (2):
-  dt-bindings: display: panel: Add bindings for Tianma nt36672a panel
-  drm: panel: Add tianma nt36672a panel driver
-
- .../display/panel/tianma,nt36672a.yaml        |  95 ++
- MAINTAINERS                                   |   7 +
- drivers/gpu/drm/panel/Kconfig                 |  11 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- drivers/gpu/drm/panel/panel-tianma-nt36672a.c | 858 ++++++++++++++++++
- 5 files changed, 972 insertions(+)
+v2: remove ports node, making port@0 directly under panel@0 node.
+v3: updated to replace port@0 to just 'port'.
+---
+ .../display/panel/tianma,nt36672a.yaml        | 95 +++++++++++++++++++
+ 1 file changed, 95 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/display/panel/tianma,nt36672a.yaml
- create mode 100644 drivers/gpu/drm/panel/panel-tianma-nt36672a.c
 
+diff --git a/Documentation/devicetree/bindings/display/panel/tianma,nt36672a.yaml b/Documentation/devicetree/bindings/display/panel/tianma,nt36672a.yaml
+new file mode 100644
+index 000000000000..03dc323332a5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/tianma,nt36672a.yaml
+@@ -0,0 +1,95 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/tianma,nt36672a.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Tianma model NT36672A DSI Panel display driver
++
++maintainers:
++  - Sumit Semwal <sumit.semwal@linaro.org>
++
++description: |
++  The nt36672a panel from Tianma is a FHD+ LCD display panel with a resolution
++  of 1080x2246. It is a video mode DSI panel.
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    const: tianma,nt36672a
++
++  reg:
++    description: DSI virtual channel of the peripheral
++
++  reset-gpios:
++    description: phandle of gpio for reset line - This should be 8mA, gpio
++      can be configured using mux, pinctrl, pinctrl-names (active high)
++
++  vddio-supply:
++    description: phandle of the regulator that provides the supply voltage
++      Power IC supply
++
++  vddpos-supply:
++    description: phandle of the positive boost supply regulator
++
++  vddneg-supply:
++    description: phandle of the negative boost supply regulator
++
++  pinctrl-names:
++    description: Pinctrl for panel active and suspend
++
++  pinctrl-0:
++    description: Active pinctrls
++
++  pinctrl-1:
++    description: Suspend pinctrls
++
++  port: true
++
++required:
++  - compatible
++  - reg
++  - vddi0-supply
++  - vddpos-supply
++  - vddneg-supply
++  - reset-gpios
++  - pinctrl-names
++  - pinctrl-0
++  - pinctrl-1
++  - port
++
++unevaluatedProperties: false
++
++examples:
++  - |+
++    #include <dt-bindings/gpio/gpio.h>
++    dsi0 {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      panel@0 {
++        compatible = "tianma,nt36672a";
++        reg = <0>;
++        vddi0-supply = <&vreg_l14a_1p88>;
++        vddpos-supply = <&lab>;
++        vddneg-supply = <&ibb>;
++
++        reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
++
++        pinctrl-names = "panel_active", "panel_suspend";
++        pinctrl-0 = <&sde_dsi_active>;
++        pinctrl-1 = <&sde_dsi_suspend>;
++
++        #address-cells = <1>;
++        #size-cells = <0>;
++        port {
++          tianma_nt36672a_in_0: endpoint {
++            remote-endpoint = <&dsi0_out>;
++          };
++        };
++      };
++    };
++
++...
 -- 
 2.28.0
 
