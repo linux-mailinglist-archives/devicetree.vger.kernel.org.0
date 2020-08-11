@@ -2,81 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1251241943
-	for <lists+devicetree@lfdr.de>; Tue, 11 Aug 2020 12:02:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81328241995
+	for <lists+devicetree@lfdr.de>; Tue, 11 Aug 2020 12:20:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728584AbgHKKCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Aug 2020 06:02:24 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:42446 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728541AbgHKKCW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Aug 2020 06:02:22 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 64A00201F46;
-        Tue, 11 Aug 2020 12:02:20 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 83AA4201EEF;
-        Tue, 11 Aug 2020 12:02:13 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id B45DD40243;
-        Tue, 11 Aug 2020 12:02:04 +0200 (CEST)
-From:   Zhiqiang Hou <Zhiqiang.Hou@nxp.com>
-To:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org, robh+dt@kernel.org,
-        bhelgaas@google.com, lorenzo.pieralisi@arm.com,
-        shawnguo@kernel.org, leoyang.li@nxp.com, kishon@ti.com,
-        gustavo.pimentel@synopsys.com, roy.zang@nxp.com,
-        jingoohan1@gmail.com, andrew.murray@arm.com
-Cc:     mingkai.hu@nxp.com, minghuan.Lian@nxp.com,
-        Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-Subject: [PATCHv7 12/12] misc: pci_endpoint_test: Add driver data for Layerscape PCIe controllers
-Date:   Tue, 11 Aug 2020 17:54:41 +0800
-Message-Id: <20200811095441.7636-13-Zhiqiang.Hou@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200811095441.7636-1-Zhiqiang.Hou@nxp.com>
-References: <20200811095441.7636-1-Zhiqiang.Hou@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1728497AbgHKKUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Aug 2020 06:20:31 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:52836 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728448AbgHKKUb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Aug 2020 06:20:31 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id BB2661C0BD8; Tue, 11 Aug 2020 12:20:28 +0200 (CEST)
+Date:   Tue, 11 Aug 2020 12:20:28 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     jacek.anaszewski@gmail.com, robh@kernel.org, marek.behun@nic.cz,
+        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v32 1/6] dt: bindings: lp50xx: Introduce the lp50xx
+ family of RGB drivers
+Message-ID: <20200811102028.tjea7oqbzb5jjqip@duo.ucw.cz>
+References: <20200722153146.8767-1-dmurphy@ti.com>
+ <20200722153146.8767-2-dmurphy@ti.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="7jkgene5vcu5zbvy"
+Content-Disposition: inline
+In-Reply-To: <20200722153146.8767-2-dmurphy@ti.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 
-The commit 0a121f9bc3f5 ("misc: pci_endpoint_test: Use streaming DMA
-APIs for buffer allocation") changed to use streaming DMA APIs, however,
-dma_map_single() might not return a 4KB aligned address, so add the
-default_data as driver data for Layerscape PCIe controllers to make it
-4KB aligned.
+--7jkgene5vcu5zbvy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
----
-V7:
- - New patch.
+Hi!
+On Wed 2020-07-22 10:31:41, Dan Murphy wrote:
+> Introduce the bindings for the Texas Instruments LP5036, LP5030, LP5024,
+> LP5018, LP5012 and LP5009 RGB LED device driver.  The LP5036/30/24/18/12/9
+> can control RGB LEDs individually or as part of a control bank group.
+> These devices have the ability to adjust the mixing control for the RGB
+> LEDs to obtain different colors independent of the overall brightness of
+> the LED grouping.
+>=20
+> Datasheet:
+> http://www.ti.com/lit/ds/symlink/lp5012.pdf
+> http://www.ti.com/lit/ds/symlink/lp5024.pdf
+> http://www.ti.com/lit/ds/symlink/lp5036.pdf
+>=20
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Acked-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+> Signed-off-by: Dan Murphy <dmurphy@ti.com>
 
- drivers/misc/pci_endpoint_test.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+Acked-by: Pavel Machek <pavel@ucw.cz>
 
-diff --git a/drivers/misc/pci_endpoint_test.c b/drivers/misc/pci_endpoint_test.c
-index 4a17f08de60f..70a790cd14c5 100644
---- a/drivers/misc/pci_endpoint_test.c
-+++ b/drivers/misc/pci_endpoint_test.c
-@@ -946,8 +946,12 @@ static const struct pci_device_id pci_endpoint_test_tbl[] = {
- 	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_DRA72x),
- 	  .driver_data = (kernel_ulong_t)&default_data,
- 	},
--	{ PCI_DEVICE(PCI_VENDOR_ID_FREESCALE, 0x81c0) },
--	{ PCI_DEVICE(PCI_VENDOR_ID_FREESCALE, PCI_DEVICE_ID_LS1088A) },
-+	{ PCI_DEVICE(PCI_VENDOR_ID_FREESCALE, 0x81c0),
-+	  .driver_data = (kernel_ulong_t)&default_data,
-+	},
-+	{ PCI_DEVICE(PCI_VENDOR_ID_FREESCALE, PCI_DEVICE_ID_LS1088A),
-+	  .driver_data = (kernel_ulong_t)&default_data,
-+	},
- 	{ PCI_DEVICE_DATA(SYNOPSYS, EDDA, NULL) },
- 	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_AM654),
- 	  .driver_data = (kernel_ulong_t)&am654_data
--- 
-2.17.1
+> +           multi-led@1 {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +               reg =3D <0x1>;
+> +               color =3D <LED_COLOR_ID_MULTI>;
+> +               function =3D LED_FUNCTION_CHARGING;
 
+These are just examples, but we should really separate "MULTI" colors
+and "RGB".
+
+Best regards,
+									Pavel
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--7jkgene5vcu5zbvy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCXzJw7AAKCRAw5/Bqldv6
+8pbSAJ9s18t0lQR7n0nNMX/9cwncEkoDIwCgvjSqotB88Nj3mVWhq3SbaHJ4yq4=
+=k3hG
+-----END PGP SIGNATURE-----
+
+--7jkgene5vcu5zbvy--
