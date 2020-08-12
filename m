@@ -2,130 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FEAE242294
-	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 00:40:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB22E24235F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 02:28:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726333AbgHKWkd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Aug 2020 18:40:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41946 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726179AbgHKWkd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Aug 2020 18:40:33 -0400
-Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 109AEC06174A
-        for <devicetree@vger.kernel.org>; Tue, 11 Aug 2020 15:40:33 -0700 (PDT)
-Received: by mail-pg1-x541.google.com with SMTP id m34so7383303pgl.11
-        for <devicetree@vger.kernel.org>; Tue, 11 Aug 2020 15:40:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=oHyQTUvTUFNtPnfXB354eAFfqwmcdKEgh8qUciOM6ac=;
-        b=Q+Mr4NjN6PyImpPTNKKWFG/Z5AoMhj9JWM8jtgqV/wwe3AMGAtvjfyZBX6qbvMR4gS
-         jEE2gjM7SLo/oV7nYKYoE7s3SXRHNKUYSy71EhTAdC4vlNHYTXhjzxm8D16lKWy/9VP0
-         6GxhrytItisbuM1vsjS+C6vACracgq2Lu0gS5ePRWJayQXP8eBWqh4JOwgm/HnHHIoZs
-         adEqh/yuqxIdRaMkkMYVlk26ATTJQogmOkk3f2Jo0i+1j/1ewgf1n84x6ace81t5P2ks
-         D1v20OwnPrvV+L/Yunwv3j/HGI1tXyUYeNGTmircrYjn6G3f0UI70CIc57DEjbCFxUHL
-         YJdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=oHyQTUvTUFNtPnfXB354eAFfqwmcdKEgh8qUciOM6ac=;
-        b=m8NG5Az8mJZZh+YwGa4Unp2kFdZllqv7aiWNqYOcR926L6Xjxy4IuK/W0sERpldbfp
-         qE8uIC5DOTEwv1KGrWeM/XsALHf2iUXHlUm+UGYBPGLw0UHrF6m7JkB96WudssTbkwFJ
-         ivUrX4qab695QjVlo6MTKr44kZxAImServidLf+UAGcupWE6nkTSNm/2uMozu9BoOU0Z
-         vq0u5/d+2lATKmQbsYGJx/kSMLzrYTQrML1H2IYi4xyUkD3g6eqEBJIVdrmhiEeefWIZ
-         +900zJo8FkQrNCMTCVxCp4XZ+g6LhVaW9GdetzhWTrw3kObjiOXtuIEKcpJKVTFJS3CN
-         +hTQ==
-X-Gm-Message-State: AOAM533bIrSFcVRWxeLMQ9Ef0gBpqqEoGOa5iHgT2XYw6KR2fu37hB2U
-        sgjwbrMjLIAmLKKmVvBO/0dmLw==
-X-Google-Smtp-Source: ABdhPJxZbnhyHXEuAi6bn+/WtHF0uq2xziDKvJZWF/LkfqD8tkRi5PWfAoTWSGeKiZbvWFHQfirOrA==
-X-Received: by 2002:a62:6186:: with SMTP id v128mr8416919pfb.211.1597185632526;
-        Tue, 11 Aug 2020 15:40:32 -0700 (PDT)
-Received: from xps15 (S0106002369de4dac.cg.shawcable.net. [68.147.8.254])
-        by smtp.gmail.com with ESMTPSA id x136sm115500pfc.28.2020.08.11.15.40.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Aug 2020 15:40:31 -0700 (PDT)
-Date:   Tue, 11 Aug 2020 16:40:29 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     bjorn.andersson@linaro.org, o.rempel@pengutronix.de,
-        robh+dt@kernel.org, linux-remoteproc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 04/10] remoteproc: imx_rproc: make syscon optional
-Message-ID: <20200811224029.GE3370567@xps15>
-References: <20200724080813.24884-1-peng.fan@nxp.com>
- <20200724080813.24884-5-peng.fan@nxp.com>
+        id S1726368AbgHLA1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Aug 2020 20:27:47 -0400
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:11622 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726310AbgHLA1q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Aug 2020 20:27:46 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5f3337170000>; Tue, 11 Aug 2020 17:25:59 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Tue, 11 Aug 2020 17:27:45 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Tue, 11 Aug 2020 17:27:45 -0700
+Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 12 Aug
+ 2020 00:27:44 +0000
+Received: from rnnvemgw01.nvidia.com (10.128.109.123) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Wed, 12 Aug 2020 00:27:44 +0000
+Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.172.8]) by rnnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5f33377f0002>; Tue, 11 Aug 2020 17:27:44 -0700
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <frankc@nvidia.com>, <hverkuil@xs4all.nl>,
+        <sakari.ailus@iki.fi>, <robh+dt@kernel.org>,
+        <helen.koike@collabora.com>
+CC:     <digetx@gmail.com>, <gregkh@linuxfoundation.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v10 00/10] Support for Tegra video capture from external sensor
+Date:   Tue, 11 Aug 2020 17:27:11 -0700
+Message-ID: <1597192041-16949-1-git-send-email-skomatineni@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200724080813.24884-5-peng.fan@nxp.com>
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1597191959; bh=BkaOfeVRfBeOWmVevZWhx7jAg2Xxe4mBlWb2vvEL8W4=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=bOedF8cnW/Em1W68vtfDlR6BuUIPfVnQ1Ll6rJspDfDywFnkGHPT6vVp+vz5j6T6f
+         24N6o/9/1UTQxVrkjhIH/CQWuSuyozLwoSuQ7UazBG/ZK9Dc/zSVtcMV67PSbIle0u
+         DARlCDmrW8sSTQuJdtJCNBE+llv6NC13wVs6aS17v8lBnur376aJPLmHp2EaDeOOSd
+         Uj8LhiQAP9PUInKpLrjY4X1NMEflkRyxN1Uoo1DLCr2RYdQYFrM+tP2BUaLTOkj+uZ
+         Qha64b9SWhfH0/a9VEJLAJj0duLXD3HZHGAKFxmTYTPgRZuOaf9GQfMprNonbBFmTx
+         Bdesmk6HEmq5Q==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 24, 2020 at 04:08:07PM +0800, Peng Fan wrote:
-> Make syscon optional, since i.MX8QM/QXP/7ULP not have SRC to control M4.
-> But currently i.MX8QM/QXP/7ULP not added, so still check regmap
-> when start/stop to avoid unhappy things.
-> 
-> Reviewed-by: Richard Zhu <hongxing.zhu@nxp.com>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/remoteproc/imx_rproc.c | 11 +++++++++--
->  1 file changed, 9 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
-> index 82594a800a1b..4fad5c0b1c05 100644
-> --- a/drivers/remoteproc/imx_rproc.c
-> +++ b/drivers/remoteproc/imx_rproc.c
-> @@ -162,6 +162,9 @@ static int imx_rproc_start(struct rproc *rproc)
->  	struct device *dev = priv->dev;
->  	int ret;
->  
-> +	if (!priv->regmap)
-> +		return -EOPNOTSUPP;
+This series adds support for video capture from external camera sensor to
+Tegra video driver.
 
-Proceeding this way is hard to maintain.  I would perfer to add specific
-operations based on the scenario or coprocessor we are working with.
+Jetson TX1 has camera expansion connector and supports custom camera module
+designed as per TX1 design specification.
 
-> +
->  	ret = regmap_update_bits(priv->regmap, dcfg->src_reg,
->  				 dcfg->src_mask, dcfg->src_start);
->  	if (ret)
-> @@ -177,6 +180,9 @@ static int imx_rproc_stop(struct rproc *rproc)
->  	struct device *dev = priv->dev;
->  	int ret;
->  
-> +	if (!priv->regmap)
-> +		return -EOPNOTSUPP;
-> +
->  	ret = regmap_update_bits(priv->regmap, dcfg->src_reg,
->  				 dcfg->src_mask, dcfg->src_stop);
->  	if (ret)
-> @@ -325,9 +331,10 @@ static int imx_rproc_probe(struct platform_device *pdev)
->  	regmap = syscon_regmap_lookup_by_phandle(np, "syscon");
->  	if (IS_ERR(regmap)) {
->  		dev_err(dev, "failed to find syscon\n");
-> -		return PTR_ERR(regmap);
-> +		regmap = NULL;
-> +	} else {
-> +		regmap_attach_dev(dev, regmap, &config);
+This series also enables camera capture support for Jetson Nano which has
+Raspberry PI camera header.
 
-Here you are altering how all the existing implemenation are currently working.
-Add a new field to imx_rproc_dcfg and based on that, determine if a regmap is
-mandatory or not.
+This series is tested with IMX274 and IMX219 camera sensors.
 
->  	}
-> -	regmap_attach_dev(dev, regmap, &config);
->  
->  	/* set some other name then imx */
->  	rproc = rproc_alloc(dev, "imx-rproc", &imx_rproc_ops,
-> -- 
-> 2.16.4
-> 
+This series include,
+
+Tegra video driver updates
+- TPG Vs Non-TPG based on Kconfig
+- Support for external sensor video capture based on device graph from DT
+- Support for selection ioctl operations
+- Tegra MIPI CSI pads calibration
+- CSI T-CLK and T-HS settle time computation based on clock rates
+- dt-binding doc update
+
+Host1x driver updates
+- Keep MIPI clock enabled till calibration is done
+
+Delta between patch versions:
+[v10]:	Includes
+	- Patch-0009: correction to error variable used in dev_warn message.
+
+[v9]:	Includes below fix
+	- Remove cancel_calibration() added during v4 and use
+	  finish_calibrate for pass/fail paths after start_calibrate.
+	- Fix to keep MIPI clock enabled and mutex locked till end of
+	  calibration along with 75usec wait time after calibration start
+	  to make sure it finishes its finite sequence codes before waiting
+	  for pads LP-11 state.
+
+[v8]:	Includes below minor changes
+	- Fixed missing of_node_put and updated error message to be
+	  more informative in tegra_csi_channels_alloc() and
+	  tegra_vi_channels_alloc()
+
+	Patch-0006 has compilation dependency on
+	https://patchwork.kernel.org/patch/11659521/
+
+[v7]:	Includes minor feedback from v6
+	- Patch-0009 has minor update
+
+	Note:
+	Patch-0006 has compilation dependency on
+	https://patchwork.kernel.org/patch/11659521/
+
+[v6]:	Includes below changes based on v5 feedback
+	- Patches are based on latest linux-next.
+	- separated stream enable and disable implementations into
+	  separate functions for tegra_channel_set_stream() and
+	  tegra_csi_s_stream().
+	- changed dev_err to dev_warn on MIPI calibration failure after
+	  sensor streaming as its not critical error.
+
+	Note:
+	Patch-0006 has compilation dependency on
+	https://patchwork.kernel.org/patch/11659521/
+
+[v5]:	Includes below minor change based on v4 feedback
+	Patch-0012: renames APIs to use calibration instead of calibrate.
+
+	Note:
+	Patch-0010 has compilation dependency on
+	https://patchwork.kernel.org/patch/11659521/
+
+[v4]:	Includes below fix based on v3 feedback
+	- Patches are based on latest linux-next.
+	- With split of tegra_mipi_calibrate() and tegra_mipi_wait(), mipi
+	  clock is not left enabled till calibration done. This series adds
+	  a patch to fix this by keeping clock enabled till calibration is
+	  done.
+
+	Note:
+	Patch-0010 has compilation dependency on
+	https://patchwork.kernel.org/patch/11659521/
+
+[v3]:	Includes v2 feedback
+	- Uses separate helper function for retrieving remote csi subdevice
+	  and source subdevice.
+	- Added check for presence of subdevice ops set/get_selection
+	- dropped vb2_queue_release from driver and using
+	  vb2_video_unregister_device instead of video_unregister_device.
+	- video device register should happen in the last after all video
+	  device related setup is done in the driver. This is being addressed
+	  in below RFC patch. Once proper implementation of this is available
+	  will update Tegra video driver to use split APIs and do all setup
+	  prior to device register. Added this as TODO in the driver.
+	  https://www.spinics.net/lists/linux-media/msg172761.html
+
+	Note:
+	Patch-0012 has compilation dependency on
+	https://patchwork.kernel.org/patch/11659521/
+
+
+[v2]:	Includes below changes based on v1 feedback
+	- dt-binding document and the driver update for device graph to use
+	  separate ports for sink endpoint and source endpoint for csi.
+	- Use data-lanes endpoint property for csi.
+	- Update tegra_mipi_request() to take device node pointer argument
+	  rather than adding extra API.
+	- Remove checking for clk pointer before clk_disable.
+
+
+Sowjanya Komatineni (10):
+  media: tegra-video: Fix channel format alignment
+  media: tegra-video: Enable TPG based on kernel config
+  media: tegra-video: Update format lookup to offset based
+  dt-bindings: tegra: Update VI and CSI bindings with port info
+  media: tegra-video: Separate CSI stream enable and disable
+    implementations
+  media: tegra-video: Add support for external sensor capture
+  media: tegra-video: Add support for selection ioctl ops
+  gpu: host1x: mipi: Keep MIPI clock enabled and mutex locked till
+    calibration done
+  media: tegra-video: Add CSI MIPI pads calibration
+  media: tegra-video: Compute settle times based on the clock rate
+
+ .../display/tegra/nvidia,tegra20-host1x.txt        |  92 ++-
+ drivers/gpu/drm/tegra/dsi.c                        |   4 +-
+ drivers/gpu/host1x/mipi.c                          |  22 +-
+ drivers/staging/media/tegra-video/Kconfig          |   7 +
+ drivers/staging/media/tegra-video/TODO             |   6 -
+ drivers/staging/media/tegra-video/csi.c            | 314 +++++++-
+ drivers/staging/media/tegra-video/csi.h            |   8 +
+ drivers/staging/media/tegra-video/tegra210.c       |  25 +-
+ drivers/staging/media/tegra-video/vi.c             | 840 +++++++++++++++++++--
+ drivers/staging/media/tegra-video/vi.h             |  25 +-
+ drivers/staging/media/tegra-video/video.c          |  23 +-
+ include/linux/host1x.h                             |   4 +-
+ 12 files changed, 1250 insertions(+), 120 deletions(-)
+
+-- 
+2.7.4
+
