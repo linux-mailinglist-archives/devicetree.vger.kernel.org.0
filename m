@@ -2,129 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3520C242560
-	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 08:32:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6BB024258C
+	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 08:40:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726965AbgHLGb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Aug 2020 02:31:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57724 "EHLO
+        id S1726761AbgHLGkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Aug 2020 02:40:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726870AbgHLGbu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Aug 2020 02:31:50 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4AD1C061787;
-        Tue, 11 Aug 2020 23:31:49 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id p14so795588wmg.1;
-        Tue, 11 Aug 2020 23:31:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=D46f/adlCIjpniP6tnf1wrpS0UQoP11QhV6d5bOfafw=;
-        b=e3L1nvYltlsN4gX2Mr5cVOySM3MrqG6k8RQGX+kKqEF0D5+2dgnQKPz/El9M9Lh6yI
-         JrdjMZ39Vwkw8AoCPSDEPgLwVrO76xp7tEiCM+l+iQawRZgCsHGX5fFlksE+f0rWPO4J
-         P52QlD69tZA61uaq7+V8/zSEnOFsjBpdoJD5AdNxsBpRA0tyooRp1ci6c55aX8cL8H1m
-         HoaTZb0VnefSoyWzqZ3rRWLNBlyaDWkqh9jEmMtTE/0T/eiNq8FZB0vX1aF4FxjZ3uop
-         cn52URI5463elHXI10dcBxaDSPbr7Ge1tXpB/EEyS8Wfch7PxFQ2vU7sSILteCueqLup
-         1HUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=D46f/adlCIjpniP6tnf1wrpS0UQoP11QhV6d5bOfafw=;
-        b=XEOwNVmDgx+4SqHPLVrsBUcIuj3JBEYf6gBpC1QCvrpmg4NX6/w/NUOHstVt3pPpRE
-         1MHPbkjcEpukiiJjPnymLJxFkHkjiaTErK6mQdQ+dvmpFwi8FF3fgHt/MiMqU2kbsfEg
-         w7EI6PdenUKEYh5HbavWQHrJ0n/Ty/ZInArXHkC/CqE/RGT9XLcYDsKSaoy3Gi3b/r9U
-         vh0k+hwnd/eIQHuRIUeatm3z5WYgKJsK7201VQ56oXRR2nD5dVU2mW689z6u1Yif1kxE
-         ZQzk1Grjjz6Y/UOfNqPUHpP7My1skKD8MptWlwhgt0Mn7q01ZrCu/USbWQeTqR73ymMz
-         q3mA==
-X-Gm-Message-State: AOAM530POLOGFBzRnayrH8Zlw9yjKVA3W5Z2WQfJZDk5jnnPmqd0yYHT
-        Zt7hqvTLmO2jsPBRVVd+veE=
-X-Google-Smtp-Source: ABdhPJxFgsTbtzJqFrj0kqnGseZ/NPnoF9FvnAwozcsmV6x+B1pFI+zEeOpaa/xdQDhQ4a3QcJsJRg==
-X-Received: by 2002:a1c:7d55:: with SMTP id y82mr6926999wmc.186.1597213907659;
-        Tue, 11 Aug 2020 23:31:47 -0700 (PDT)
-Received: from skynet.lan (88.red-83-49-60.dynamicip.rima-tde.net. [83.49.60.88])
-        by smtp.gmail.com with ESMTPSA id m16sm2149945wrr.71.2020.08.11.23.31.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Aug 2020 23:31:47 -0700 (PDT)
-From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>
-To:     f.fainelli@gmail.com, robh+dt@kernel.org,
-        tsbogend@alpha.franken.de, jonas.gorski@gmail.com,
-        bcm-kernel-feedback-list@broadcom.com, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>
-Subject: [PATCH 14/14] mips: bmips: bcm63268: include and use dt-bindings
-Date:   Wed, 12 Aug 2020 08:31:29 +0200
-Message-Id: <20200812063129.361862-15-noltari@gmail.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200812063129.361862-1-noltari@gmail.com>
-References: <20200812063129.361862-1-noltari@gmail.com>
+        with ESMTP id S1726430AbgHLGkw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Aug 2020 02:40:52 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 708F6C06174A
+        for <devicetree@vger.kernel.org>; Tue, 11 Aug 2020 23:40:52 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1k5kRH-0007HF-PD; Wed, 12 Aug 2020 08:40:43 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1k5kRF-00072c-Ph; Wed, 12 Aug 2020 08:40:41 +0200
+Date:   Wed, 12 Aug 2020 08:40:41 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>
+Cc:     Rob Herring <robh@kernel.org>, linux-pwm@vger.kernel.org,
+        lee.jones@linaro.org, thierry.reding@gmail.com,
+        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, andriy.shevchenko@intel.com,
+        songjun.Wu@intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, rahul.tanwar.linux@gmail.com
+Subject: Re: [PATCH v6 1/2] Add DT bindings YAML schema for PWM fan
+ controller of LGM SoC
+Message-ID: <20200812064041.e75p5neq7wcg5dag@pengutronix.de>
+References: <cover.1595926036.git.rahul.tanwar@linux.intel.com>
+ <e61e6a05353f6242f5450da130b042f195ac7620.1595926036.git.rahul.tanwar@linux.intel.com>
+ <20200731181944.GB516550@bogus>
+ <e50f198d-42d4-28b1-d32c-32f4b1bbcb0b@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="5u42du46nfyz3lys"
+Content-Disposition: inline
+In-Reply-To: <e50f198d-42d4-28b1-d32c-32f4b1bbcb0b@linux.intel.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that there are proper device tree bindings we can start using them.
 
-Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
----
- arch/mips/boot/dts/brcm/bcm63268.dtsi | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+--5u42du46nfyz3lys
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/mips/boot/dts/brcm/bcm63268.dtsi b/arch/mips/boot/dts/brcm/bcm63268.dtsi
-index beec24145af7..17d744db8211 100644
---- a/arch/mips/boot/dts/brcm/bcm63268.dtsi
-+++ b/arch/mips/boot/dts/brcm/bcm63268.dtsi
-@@ -1,4 +1,8 @@
- // SPDX-License-Identifier: GPL-2.0
-+
-+#include "dt-bindings/clock/bcm63268-clock.h"
-+#include "dt-bindings/interrupt-controller/bcm63268-interrupt-controller.h"
-+
- / {
- 	#address-cells = <1>;
- 	#size-cells = <1>;
-@@ -87,7 +91,7 @@ uart0: serial@10000180 {
- 			reg = <0x10000180 0x18>;
- 
- 			interrupt-parent = <&periph_intc>;
--			interrupts = <5>;
-+			interrupts = <BCM63268_IRQ_UART0>;
- 
- 			clocks = <&periph_clk>;
- 			clock-names = "refclk";
-@@ -100,7 +104,7 @@ uart1: serial@100001a0 {
- 			reg = <0x100001a0 0x18>;
- 
- 			interrupt-parent = <&periph_intc>;
--			interrupts = <34>;
-+			interrupts = <BCM63268_IRQ_UART1>;
- 
- 			clocks = <&periph_clk>;
- 			clock-names = "refclk";
-@@ -123,7 +127,7 @@ ehci: usb@10002500 {
- 			big-endian;
- 
- 			interrupt-parent = <&periph_intc>;
--			interrupts = <10>;
-+			interrupts = <BCM63268_IRQ_EHCI>;
- 
- 			status = "disabled";
- 		};
-@@ -135,7 +139,7 @@ ohci: usb@10002600 {
- 			no-big-frame-no;
- 
- 			interrupt-parent = <&periph_intc>;
--			interrupts = <9>;
-+			interrupts = <BCM63268_IRQ_OHCI>;
- 
- 			status = "disabled";
- 		};
--- 
-2.28.0
+Hello Rahul,
 
+On Wed, Aug 12, 2020 at 11:49:14AM +0800, Tanwar, Rahul wrote:
+> Our PWM controller is actually a PWM fan controller dedicated for
+> controlling fan. I am looking for some suggestions from you on how
+> to handle fan related optional properties in such a scenario.
+>=20
+> Should i create a separate child node for fan with PWM node being
+> the parent? Is that what you are suggesting? Thanks.
+
+What is the problem of just using pwm-fan?
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--5u42du46nfyz3lys
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl8zjuYACgkQwfwUeK3K
+7AmRFgf9Hj3Ye4VVPi0Zsv+m8e6Jx6F1XgWaK/KLQ5sBH32RoBdkOarZFf2pqcsN
+LbNgvrLiCRQWOmo3VdslgqmS8hefjaGsJOsromvz80sh864KQhe9BxjiFjqSGjAd
+E9EG1i2kE/zKS9p0Hb41juerIOHns9LoztpCPGUO/CajGa3fFXRHJ0jcACYciXtH
+swWCJysH3jPl7Bfxx6nf8/sg038vALQObFwI8166gtk2cT5UzrwqVIpR0EGw4dbE
+5Enm9XTReWqzwd0VDPGAPmtnbfUS0EiOVmEsBNh7OxbMk0Tmv1jFngaOohkRkZiD
+OqTOL7Gq7DvyN+UfWmLG8C8xmXjIpA==
+=jsAe
+-----END PGP SIGNATURE-----
+
+--5u42du46nfyz3lys--
