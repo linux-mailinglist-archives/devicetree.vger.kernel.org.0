@@ -2,190 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3595824270D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 10:56:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BF3C24271A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 10:58:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727123AbgHLI4h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Aug 2020 04:56:37 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:53434 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727098AbgHLI4h (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Aug 2020 04:56:37 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6EF5D200040;
-        Wed, 12 Aug 2020 10:56:34 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 4E534200027;
-        Wed, 12 Aug 2020 10:56:28 +0200 (CEST)
-Received: from 10.192.242.69 (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id D3AE1402EB;
-        Wed, 12 Aug 2020 10:56:20 +0200 (CEST)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, gregkh@linuxfoundation.org,
-        galak@codeaurora.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH V2 5/5] dt-bindings: serial: Convert NXP lpuart to json-schema
-Date:   Wed, 12 Aug 2020 16:51:24 +0800
-Message-Id: <1597222284-32609-5-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1597222284-32609-1-git-send-email-Anson.Huang@nxp.com>
-References: <1597222284-32609-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726601AbgHLI66 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Aug 2020 04:58:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52134 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726572AbgHLI66 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Aug 2020 04:58:58 -0400
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA6C7C06174A
+        for <devicetree@vger.kernel.org>; Wed, 12 Aug 2020 01:58:57 -0700 (PDT)
+Received: by mail-lf1-x142.google.com with SMTP id d2so763917lfj.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Aug 2020 01:58:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XR829pUP5cLChd4zqV/cH8aq566vZipy/8mJiU3FYTY=;
+        b=mKuImcfjEOJa5U6e8r4Oy2S/3g8vafL/gjV+IfgGp/8JPqvEEUDaOZ0SiUip81VNwg
+         +3xBN84L9ziqvJPujY2o5pBMUYAEcTCuMLYgaxjkulnLjtLX2BvvirHb4yTsjwIX1VsO
+         dRLr1Agaoxh93uPOXsl0oKVMAAVDjBwW9RoQwC/A6XKWCI1ZWSgoRqheqTxfN14x7/co
+         n92xE3RLiemHvtTUq42uOXq9rhFY4iBPuTowinKxanXqn5eKtRSQltgnAIv0QdYcxx1J
+         ojeY9NWozkeN0R5Mm+jhlJbEJrJndAvuhBYiXuLvme0yndR0bd6qHOFIh9k8LM6cj8wU
+         2L7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XR829pUP5cLChd4zqV/cH8aq566vZipy/8mJiU3FYTY=;
+        b=KGk8uabBB1GH7bQlvR5Bi00lSgmcEd33FqClgkK6gRVqrxOX/qzubPg2GourL/Wwi3
+         5M431klTGFwZFSZnEvsUciaJwH5A4CXjH+m6cjKEyn3Rp4EUQYCiYjQXjDTCtS3HrIJz
+         DzZXV+a5vh1QXZ2ecbrKaGmdh3I4khyAFPo0MxYJKKcq3F5rrTF9kJW4hicr0i1lbP+P
+         KuSk0MAwpxoFvnqISIiXIqvw2dLeGPsVJEihqIZOcAtxyCNHPRFZERNaHQo6weyxMiQP
+         SciXMuurKuDewOZcFcZzztmYxIN/c7oXTub0V7xILZrJx3snQe1Wc3+dPAg+xpvsaE8O
+         wjmA==
+X-Gm-Message-State: AOAM531/emutjcYbduHoPHdsttigOz+Rvq1lPo5qfGTHxH43k3S4Fd7y
+        qMGQ1AAtso73DMSGPxmOau3e4w==
+X-Google-Smtp-Source: ABdhPJzF4FhFZlghHCbK3ZU7Y+VshjC75Tt5gKCXubxLdvdRGZB+h+0y1ygWCnWkw1vUXqnqbKAl5g==
+X-Received: by 2002:a19:814c:: with SMTP id c73mr5043801lfd.16.1597222736269;
+        Wed, 12 Aug 2020 01:58:56 -0700 (PDT)
+Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
+        by smtp.gmail.com with ESMTPSA id 132sm325676lfo.16.2020.08.12.01.58.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Aug 2020 01:58:55 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        dri-devel@lists.freedesktop.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>
+Subject: [PATCH 1/3 v2] dt-bindings: backlight: Add some common backlight properties
+Date:   Wed, 12 Aug 2020 10:58:48 +0200
+Message-Id: <20200812085850.2643820-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the NXP lpuart binding to DT schema format using json-schema.
+Let's use a common.yaml include for the backlight like we do with
+the LEDs. The LEDs are inherently incompatible so their bindings
+cannot be reused for backlight.
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+Cc: devicetree@vger.kernel.org
+Suggested-by: Sam Ravnborg <sam@ravnborg.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
-no change.
+ChangeLog v1->v2:
+- New patch as suggested by Sam.
 ---
- .../devicetree/bindings/serial/fsl-lpuart.txt      | 43 ------------
- .../devicetree/bindings/serial/fsl-lpuart.yaml     | 79 ++++++++++++++++++++++
- 2 files changed, 79 insertions(+), 43 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/serial/fsl-lpuart.txt
- create mode 100644 Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+ .../bindings/leds/backlight/common.yaml       | 42 +++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/common.yaml
 
-diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.txt b/Documentation/devicetree/bindings/serial/fsl-lpuart.txt
-deleted file mode 100644
-index e7448b9..0000000
---- a/Documentation/devicetree/bindings/serial/fsl-lpuart.txt
-+++ /dev/null
-@@ -1,43 +0,0 @@
--* Freescale low power universal asynchronous receiver/transmitter (lpuart)
--
--Required properties:
--- compatible :
--  - "fsl,vf610-lpuart" for lpuart compatible with the one integrated
--    on Vybrid vf610 SoC with 8-bit register organization
--  - "fsl,ls1021a-lpuart" for lpuart compatible with the one integrated
--    on LS1021A SoC with 32-bit big-endian register organization
--  - "fsl,ls1028a-lpuart" for lpuart compatible with the one integrated
--    on LS1028A SoC with 32-bit little-endian register organization
--  - "fsl,imx7ulp-lpuart" for lpuart compatible with the one integrated
--    on i.MX7ULP SoC with 32-bit little-endian register organization
--  - "fsl,imx8qxp-lpuart" for lpuart compatible with the one integrated
--    on i.MX8QXP SoC with 32-bit little-endian register organization
--  - "fsl,imx8qm-lpuart" for lpuart compatible with the one integrated
--    on i.MX8QM SoC with 32-bit little-endian register organization
--- reg : Address and length of the register set for the device
--- interrupts : Should contain uart interrupt
--- clocks : phandle + clock specifier pairs, one for each entry in clock-names
--- clock-names : For vf610/ls1021a/ls1028a/imx7ulp, "ipg" clock is for uart
--  bus/baud clock. For imx8qxp lpuart, "ipg" clock is bus clock that is used
--  to access lpuart controller registers, it also requires "baud" clock for
--  module to receive/transmit data.
--
--Optional properties:
--- dmas: A list of two dma specifiers, one for each entry in dma-names.
--- dma-names: should contain "tx" and "rx".
--- rs485-rts-active-low, linux,rs485-enabled-at-boot-time: see rs485.txt
--
--Note: Optional properties for DMA support. Write them both or both not.
--
--Example:
--
--uart0: serial@40027000 {
--		compatible = "fsl,vf610-lpuart";
--		reg = <0x40027000 0x1000>;
--		interrupts = <0 61 0x00>;
--		clocks = <&clks VF610_CLK_UART0>;
--		clock-names = "ipg";
--		dmas = <&edma0 0 2>,
--			<&edma0 0 3>;
--		dma-names = "rx","tx";
--	};
-diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+diff --git a/Documentation/devicetree/bindings/leds/backlight/common.yaml b/Documentation/devicetree/bindings/leds/backlight/common.yaml
 new file mode 100644
-index 0000000..1b955f3
+index 000000000000..8ae7e3818b0d
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-@@ -0,0 +1,79 @@
++++ b/Documentation/devicetree/bindings/leds/backlight/common.yaml
+@@ -0,0 +1,42 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/serial/fsl-lpuart.yaml#
++$id: http://devicetree.org/schemas/leds/backlight/common.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Freescale low power universal asynchronous receiver/transmitter (lpuart)
++title: Common backlight properties
 +
 +maintainers:
-+  - Kumar Gala <galak@codeaurora.org>
++  - Lee Jones <lee.jones@linaro.org>
++  - Daniel Thompson <daniel.thompson@linaro.org>
++  - Jingoo Han <jingoohan1@gmail.com>
 +
-+allOf:
-+  - $ref: "rs485.yaml"
++description: |
++  Backlight devices provide backlight for different types of graphical
++  displays. They are typically but not necessarilt implemented using a white
++  LED powered by a boost converter.
 +
 +properties:
-+  compatible:
-+    enum:
-+      - fsl,vf610-lpuart
-+      - fsl,ls1021a-lpuart
-+      - fsl,ls1028a-lpuart
-+      - fsl,imx7ulp-lpuart
-+      - fsl,imx8qxp-lpuart
-+      - fsl,imx8qm-lpuart
++  default-on:
++    description:
++      The initial state of the backlight can be set to be on with this
++      property. This is a state applied by the operating system so that the
++      backlight is always turned on at boot.
 +
-+  reg:
-+    maxItems: 1
++  default-brightness:
++    description:
++      The default brightness that should be applied to the LED by the operating
++      system on start-up. The brightness should not exceed the brightness the
++      LED can provide.
++    $ref: /schemas/types.yaml#definitions/uint32
++    minimum: 0
 +
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: ipg clock
-+      - description: baud clock
-+    minItems: 1
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: ipg
-+      - const: baud
-+    minItems: 1
-+    maxItems: 2
-+
-+  dmas:
-+    items:
-+      - description: DMA controller phandle and request line for RX
-+      - description: DMA controller phandle and request line for TX
-+
-+  dma-names:
-+    items:
-+      - const: rx
-+      - const: tx
-+
-+  rs485-rts-active-low: true
-+  linux,rs485-enabled-at-boot-time: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/vf610-clock.h>
-+
-+    serial@40027000 {
-+        compatible = "fsl,vf610-lpuart";
-+        reg = <0x40027000 0x1000>;
-+        interrupts = <0 61 0x00>;
-+        clocks = <&clks VF610_CLK_UART0>;
-+        clock-names = "ipg";
-+        dmas = <&edma0 0 2>, <&edma0 0 3>;
-+        dma-names = "rx","tx";
-+    };
++  max-brightness:
++    description:
++      Normally the maximum brightness is determined by the hardware and this
++      property is not required. This property is used to put a software limit
++      on the brightness apart from what the driver says, as it could happen
++      that a LED can be made so bright that it gets damaged or causes damage
++      due to restrictions in a specific system, such as mounting conditions.
++    $ref: /schemas/types.yaml#definitions/uint32
++    minimum: 0
 -- 
-2.7.4
+2.26.2
 
