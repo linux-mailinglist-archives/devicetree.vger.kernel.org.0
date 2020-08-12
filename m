@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29CA4242D51
-	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 18:31:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7782242D4D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 18:30:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726773AbgHLQaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Aug 2020 12:30:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48656 "EHLO mail.kernel.org"
+        id S1726870AbgHLQaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Aug 2020 12:30:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48846 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726745AbgHLQaJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Aug 2020 12:30:09 -0400
+        id S1726809AbgHLQaN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Aug 2020 12:30:13 -0400
 Received: from localhost.localdomain (unknown [194.230.155.117])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7B429207DA;
-        Wed, 12 Aug 2020 16:30:07 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id BAB1C20838;
+        Wed, 12 Aug 2020 16:30:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597249809;
-        bh=c2iqZxUTrABiC5JI7O9oyGOZzenMfnAdZyCso0axLWk=;
+        s=default; t=1597249813;
+        bh=aRNIdyFGDEVq5YbckPNv6Oi2knBVAOE2NwnDD8n86kQ=;
         h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=xafBkw9KEHK1Gan2ptNTHyC8BjTWkByLw4YrGnZbwpazmgkpPbYa8Rls4Ji+1IPBX
-         dymnbcGjrhPtjXKm9sYI79ySsDDudUWmV2hsyyjIY7NsEGO/CXtli9gr8LV5aTNrgg
-         n8ITfeRuClu4hshO/YtpXFMFnWrUL6cIB+fcvu+o=
+        b=hckRolMk/frqldIVx8MbphEyY0rtqnyRrksVVE7bOBIdVDRfz4utioX/h7SYLWEpT
+         iXPzSwHW9dYXL3VkggOrF4FXFU2EmSbjViDAxEpzNB4BwKGZaJw5KPVQpKhRz/c2rp
+         ub+mRvN5jkbe1mzAN0A94RtUrx/zDVdNDHWinWHU=
 From:   Krzysztof Kozlowski <krzk@kernel.org>
 To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
         Chanwoo Choi <cw00.choi@samsung.com>,
@@ -30,9 +30,9 @@ To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
         Krzysztof Kozlowski <krzk@kernel.org>,
         Vijai Kumar K <vijaikumar.kanagarajan@gmail.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 03/11] dt-bindings: extcon: ptn5150: Make 'vbus-gpios' optional
-Date:   Wed, 12 Aug 2020 18:29:50 +0200
-Message-Id: <20200812162958.6180-3-krzk@kernel.org>
+Subject: [PATCH 05/11] extcon: ptn5150: Use generic "interrupts" property
+Date:   Wed, 12 Aug 2020 18:29:52 +0200
+Message-Id: <20200812162958.6180-5-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200812162958.6180-1-krzk@kernel.org>
 References: <20200812162958.6180-1-krzk@kernel.org>
@@ -41,34 +41,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PTN5150 chip can be used in hardware designs with only reporting of
-USB Type-C connection, without the VBUS control.
+Interrupts do not have to be always GPIO based so instead of expecting
+"int-gpios" property and converting the GPIO to an interrupt, just
+accept any interrupt via generic "interrupts" property.
+
+Keep support for old "int-gpios" for backware compatibility.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/extcon/extcon-ptn5150.c | 33 ++++++++++++++++++---------------
+ 1 file changed, 18 insertions(+), 15 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
-index 1ddc97db3e61..4b0f414486d2 100644
---- a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
-+++ b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
-@@ -32,13 +32,13 @@ properties:
+diff --git a/drivers/extcon/extcon-ptn5150.c b/drivers/extcon/extcon-ptn5150.c
+index 5f5252752644..12e52ddbd77e 100644
+--- a/drivers/extcon/extcon-ptn5150.c
++++ b/drivers/extcon/extcon-ptn5150.c
+@@ -239,11 +239,6 @@ static int ptn5150_i2c_probe(struct i2c_client *i2c,
  
-   vbus-gpios:
-     description:
--      GPIO pin (output) used to control VBUS.
-+      GPIO pin (output) used to control VBUS. If skipped, no such control
-+      takes place.
+ 	info->dev = &i2c->dev;
+ 	info->i2c = i2c;
+-	info->int_gpiod = devm_gpiod_get(&i2c->dev, "int", GPIOD_IN);
+-	if (IS_ERR(info->int_gpiod)) {
+-		dev_err(dev, "failed to get INT GPIO\n");
+-		return PTR_ERR(info->int_gpiod);
+-	}
+ 	info->vbus_gpiod = devm_gpiod_get(&i2c->dev, "vbus", GPIOD_IN);
+ 	if (IS_ERR(info->vbus_gpiod)) {
+ 		dev_err(dev, "failed to get VBUS GPIO\n");
+@@ -267,22 +262,30 @@ static int ptn5150_i2c_probe(struct i2c_client *i2c,
+ 		return ret;
+ 	}
  
- required:
-   - compatible
-   - interrupts
-   - reg
--  - vbus-gpios
+-	if (info->int_gpiod) {
++	if (i2c->irq > 0) {
++		info->irq = i2c->irq;
++	} else {
++		info->int_gpiod = devm_gpiod_get(&i2c->dev, "int", GPIOD_IN);
++		if (IS_ERR(info->int_gpiod)) {
++			dev_err(dev, "failed to get INT GPIO\n");
++			return PTR_ERR(info->int_gpiod);
++		}
++
+ 		info->irq = gpiod_to_irq(info->int_gpiod);
+ 		if (info->irq < 0) {
+ 			dev_err(dev, "failed to get INTB IRQ\n");
+ 			return info->irq;
+ 		}
++	}
  
- additionalProperties: false
+-		ret = devm_request_threaded_irq(dev, info->irq, NULL,
+-						ptn5150_irq_handler,
+-						IRQF_TRIGGER_FALLING |
+-						IRQF_ONESHOT,
+-						i2c->name, info);
+-		if (ret < 0) {
+-			dev_err(dev, "failed to request handler for INTB IRQ\n");
+-			return ret;
+-		}
++	ret = devm_request_threaded_irq(dev, info->irq, NULL,
++					ptn5150_irq_handler,
++					IRQF_TRIGGER_FALLING |
++					IRQF_ONESHOT,
++					i2c->name, info);
++	if (ret < 0) {
++		dev_err(dev, "failed to request handler for INTB IRQ\n");
++		return ret;
+ 	}
  
+ 	/* Allocate extcon device */
 -- 
 2.17.1
 
