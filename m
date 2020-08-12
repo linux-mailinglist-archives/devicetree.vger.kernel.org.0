@@ -2,72 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13EB6242AD8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 16:03:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0B24242B14
+	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 16:13:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726609AbgHLODV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Aug 2020 10:03:21 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:3074 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726976AbgHLODV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Aug 2020 10:03:21 -0400
-X-IronPort-AV: E=Sophos;i="5.76,304,1592838000"; 
-   d="scan'208";a="54444371"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 12 Aug 2020 23:03:19 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 1A18A40078D1;
-        Wed, 12 Aug 2020 23:03:16 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 9/9] arm64: dts: renesas: r8a774e1-hihope-rzg2h: Setup DU clocks
-Date:   Wed, 12 Aug 2020 15:02:17 +0100
-Message-Id: <20200812140217.24251-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200812140217.24251-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20200812140217.24251-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S1726691AbgHLONS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Aug 2020 10:13:18 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:27303 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726634AbgHLONR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Aug 2020 10:13:17 -0400
+X-Originating-IP: 91.224.148.103
+Received: from localhost.localdomain (unknown [91.224.148.103])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 1DEAA24000C;
+        Wed, 12 Aug 2020 14:13:12 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Boris Brezillon <boris.brezillon@collabora.com>,
+        linux-i3c@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+Cc:     Nicolas Pitre <nico@fluxnic.net>,
+        Rajeev Huralikoppi <rajeev.huralikoppi@silvaco.com>,
+        Conor Culhane <conor.culhane@silvaco.com>,
+        <linux-kernel@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v2 1/4] dt-bindings: Add vendor prefix for Silvaco
+Date:   Wed, 12 Aug 2020 16:13:09 +0200
+Message-Id: <20200812141312.3331-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Setup up the required clocks for the DU to be functional.
+Silvaco, Inc. is an EDA provider of software tools used for process
+and device development and for analog/mixed-signal, power IC and
+memory design [1].
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+[1] https://www.silvaco.com/company/profile/profile.html
+
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- arch/arm64/boot/dts/renesas/r8a774e1-hihope-rzg2h.dts | 11 +++++++++++
- 1 file changed, 11 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a774e1-hihope-rzg2h.dts b/arch/arm64/boot/dts/renesas/r8a774e1-hihope-rzg2h.dts
-index cdbe527e9340..12f9242e263b 100644
---- a/arch/arm64/boot/dts/renesas/r8a774e1-hihope-rzg2h.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a774e1-hihope-rzg2h.dts
-@@ -24,3 +24,14 @@
- 		reg = <0x5 0x00000000 0x0 0x80000000>;
- 	};
- };
-+
-+&du {
-+	clocks = <&cpg CPG_MOD 724>,
-+		 <&cpg CPG_MOD 723>,
-+		 <&cpg CPG_MOD 721>,
-+		 <&versaclock5 1>,
-+		 <&x302_clk>,
-+		 <&versaclock5 2>;
-+	clock-names = "du.0", "du.1", "du.3",
-+		      "dclkin.0", "dclkin.1", "dclkin.3";
-+};
+Changes in v2:
+* Change the prefix 'svc,' -> 'silvaco,'.
+
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index f3d847832fdc..df780a2a5b78 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1014,6 +1014,8 @@ patternProperties:
+     description: Shenzhen Sunchip Technology Co., Ltd
+   "^SUNW,.*":
+     description: Sun Microsystems, Inc
++  "^silvaco,.*":
++    description: Silvaco, Inc.
+   "^swir,.*":
+     description: Sierra Wireless
+   "^syna,.*":
 -- 
-2.17.1
+2.20.1
 
