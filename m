@@ -2,74 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15C80242B12
-	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 16:13:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4B92242B33
+	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 16:19:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726718AbgHLONc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Aug 2020 10:13:32 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:62703 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726680AbgHLONT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Aug 2020 10:13:19 -0400
-X-Originating-IP: 91.224.148.103
-Received: from localhost.localdomain (unknown [91.224.148.103])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 46B90240008;
-        Wed, 12 Aug 2020 14:13:17 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Boris Brezillon <boris.brezillon@collabora.com>,
-        linux-i3c@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-Cc:     Nicolas Pitre <nico@fluxnic.net>,
-        Rajeev Huralikoppi <rajeev.huralikoppi@silvaco.com>,
-        Conor Culhane <conor.culhane@silvaco.com>,
-        <linux-kernel@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v2 4/4] MAINTAINERS: Add Silvaco I3C master
-Date:   Wed, 12 Aug 2020 16:13:12 +0200
-Message-Id: <20200812141312.3331-4-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200812141312.3331-1-miquel.raynal@bootlin.com>
-References: <20200812141312.3331-1-miquel.raynal@bootlin.com>
+        id S1726510AbgHLOT3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Aug 2020 10:19:29 -0400
+Received: from mout.gmx.net ([212.227.15.18]:48351 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726485AbgHLOT3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Aug 2020 10:19:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1597241944;
+        bh=2qIIIi+kVG7PNoSbul+CG9EF5Wr4xueF6mcdgIcW3EU=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=KjmsEoehBkJWt2WfLKDifatf+nhathRfdQWsUbieC3G4XEsJxHNktlZZq9HdNN4oE
+         JH2NtPH+SiluY9OBzFBhByu+/T+tMynOuKF+DqIGL7o3x6QsRhtkP/kGEvj31JOBEF
+         guug7jtkFazXpfY09Nqn46/088gEaBZ1+BAfB4to=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [185.53.41.139] ([185.53.41.139]) by web-mail.gmx.net
+ (3c-app-gmx-bs32.server.lan [172.19.170.84]) (via HTTP); Wed, 12 Aug 2020
+ 16:19:04 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Message-ID: <trinity-b7a0d7ed-cbc7-421d-810d-162fd178a8f3-1597241944268@3c-app-gmx-bs32>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Wenbin Mei <wenbin.mei@mediatek.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        srv_heupstream@mediatek.com, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>
+Subject: Aw: [v2,3/3] mmc: mediatek: add optional module reset property
+Content-Type: text/plain; charset=UTF-8
+Date:   Wed, 12 Aug 2020 16:19:04 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <20200812130129.13519-4-wenbin.mei@mediatek.com>
+References: <20200812130129.13519-1-wenbin.mei@mediatek.com>
+ <20200812130129.13519-4-wenbin.mei@mediatek.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:DI9ytn25Mt7akP/u6K+zVHv5f9HCrC6Cv16qnII6teMTpW2XwfNpVoOFjsieNPVwxH/l4
+ cU9JOsQ/EywXacZma3nl2x+nLnZRWJetq0muKjnIFXHkClEF1/JKMVLhiQGD47pDpFys17mtusRl
+ IZj0JuYw2/1ZQNpDUsRUHTLewSnpAmCMNyaFY3QyL81a+Exg1Hd9W45f5B3QKDiXi8YPcFl3ujSC
+ htEJ6QIHlc+SwUugRjsLYSIYvPxrpe1U85FJ2oxUj1HDNAkgp5/kWi3ABWD/dfqso+NKIE0XQUAB
+ MA=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:pT+4PmpTWt0=:MAHvXFTaSHTxJHOLIoWHrt
+ oieG5CBLtcg1W4OdS36hlQtCDvmdbxV16P+T5VgicjXog+nlR9AzaD1rc8OhGi9pfBxrkh6IF
+ N1BQtB/D649DurS3NpQSXn3DugHgBTDz8BIhxvccpJuvhkliYkmNM9ObXQmMTXrpsiFmYG3bX
+ K3ej55UX74QCj7oadVwk3Ml6YQ6+tB6DQ7Ab4eJjDDc9eSoIogYElzPQ4z//Zsvwq6VJgqFID
+ 7W+fnvwjUO6hUb5fE/Yct+QWj6rH46A/AEuGRsfBFDRUyytFj/ngG0b3WIXy8EvZHszgpO8nQ
+ i6jjqHuIJSZEZvlIbgfxHmQSMGVTfR3gcPfoFe6pcjkx/eRm6ZKIkCEJEshGVqTElrtikL3Yc
+ +mhl1GcwQcgkSYairRNGXtjkZvKH7A2/dALySYSkYWGa7UtZ8IwB03HXTPXe0VDJvcWRwJZ0n
+ YFcHDHDhLh+Ioyn9WTYMCTdsR3uCKjfrTHex4diVF1H9qMrsVBXNnHWcyMIL+G/dBt0nriNL8
+ o4NleJ1UuPAt05XXmA75uEJ0lMvjrMtGXBPetM3y+Mpzf6p5iupJ6PU4BXq38KLkvRmzXKccU
+ UdR+Ixupe4/pUkzw4pK7mJXlMxPvQZqdzZ3uMTb/5QFYmjQplOEtC9NeNEEH86EWZtWxHezUm
+ 5VjR2tYCGpgtxm3PBz4FgT28n6s4wMGzFHdRzJacbioG/hokFAsLHRZFufw2d3/VN8sI=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Conor and myself as maintainers.
+Hi,
+it looks like you missed Philipps comments in v1
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
+for stable i guess you need only add Cc: Stable-line to signed-off-area (not add it to CC of mail), sorry my mistake
 
-Changes in v2:
-* None.
+Cc: stable@vger.kernel.org
 
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e627ed60d75a..fedd10537723 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15764,6 +15764,14 @@ S:	Maintained
- F:	Documentation/fb/sm712fb.rst
- F:	drivers/video/fbdev/sm712*
- 
-+SILVACO I3C DUAL-ROLE MASTER
-+M:	Miquel Raynal <miquel.raynal@bootlin.com>
-+M:	Conor Culhane <conor.culhane@silvaco.com>
-+L:	linux-i3c@lists.infradead.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/i3c/svc,i3c-master.yaml
-+F:	drivers/i3c/master/svc-i3c-master.c
-+
- SIMPLE FIRMWARE INTERFACE (SFI)
- S:	Obsolete
- W:	http://simplefirmware.org/
--- 
-2.20.1
-
+regards Frank
