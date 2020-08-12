@@ -2,60 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E2ED2425D6
-	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 09:06:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7363E2425F2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 09:20:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725845AbgHLHGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Aug 2020 03:06:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34844 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726572AbgHLHGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Aug 2020 03:06:47 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5A7AC06174A
-        for <devicetree@vger.kernel.org>; Wed, 12 Aug 2020 00:06:44 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id m22so1066320ljj.5
-        for <devicetree@vger.kernel.org>; Wed, 12 Aug 2020 00:06:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=1K3oBY2TmVMmKmOQPQU9rGoPDuwC0BKmISYgxAAqZh0=;
-        b=sA2/JxzA87QKxFrPbrsRcibJjyOop9YGxHZfHVpWBOhpNgNBqF2M99mhzFO5usLltA
-         yCCieRwGJQ/Yz1qJniQBW62M4N/xu4mtFydfjbsroic7Qefl1yGqesIC/YTD0aN0RLb7
-         ctNAU3Ky8WocEYoPfnwd9+KZvgo6jYRwv8PfRH6l0riaFQsbqMqlPv2aOLlDTN0wfct0
-         l//OWg5HMlmaT0EWOoaKeUgagXCqZuIviho+rfl31HGYSMpuXsHQwBaUKok7bhrXlefp
-         AgXIcIMTFWzihEfQoEjqVaGgtbIgIxmp47OqxXypL9Lgs3lF6rQ13ZKlFv6n33XY16n7
-         iVkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=1K3oBY2TmVMmKmOQPQU9rGoPDuwC0BKmISYgxAAqZh0=;
-        b=IdYbwPMrwvUqOrGvuOeiXJpEaWQX5WmIutgqiGe1HQlQSlSEgFoT5Ol9lv71WnzEQm
-         cCY5x6EnA6vTI2KlvIvC0r6A5xJ2hc7JiqPf+KO2eCDxzlM0kWvp1q5hL//LlTh7h+EA
-         z+c+fA7WP0pkCa9N/6g7ES9c5x72rIshLlwv4pcr8m73QgZM8s175AR1clbZSc/IdDmG
-         J8rrxN4NorClaa1ygcr0RHIGhVgzV/gSTHES318Bkq+2/KJrxmdIXk99ULGf0PNgMHla
-         88qWx6crU5QA7n9j2Wv1bf+qlWdT+DmASP2YDQQhDnwzuLEXM4QhLtwBapz7uiYMLdmw
-         Y6xw==
-X-Gm-Message-State: AOAM533ZGg4QRLWDmS9hCL6ETYHQse5rnes6HeFMtyN9LzsqyOwJjCL8
-        F6BSvJpQeMbxgw4FSijQwiMd1mFX8ko=
-X-Google-Smtp-Source: ABdhPJzH6F+S+xoXqrRl1v1JHzHUOLZcg1CROsMwfaQqhrUi6WDHKFvTmk4NPXCT/bYpEAFBywq+LA==
-X-Received: by 2002:a2e:b00f:: with SMTP id y15mr4886274ljk.223.1597216003082;
-        Wed, 12 Aug 2020 00:06:43 -0700 (PDT)
-Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
-        by smtp.gmail.com with ESMTPSA id s2sm263317lfs.4.2020.08.12.00.06.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Aug 2020 00:06:42 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH] dt-bindings: pip command elaboration
-Date:   Wed, 12 Aug 2020 09:06:40 +0200
-Message-Id: <20200812070640.2543557-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.26.2
+        id S1726903AbgHLHT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Aug 2020 03:19:57 -0400
+Received: from mail29.static.mailgun.info ([104.130.122.29]:40977 "EHLO
+        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726572AbgHLHT5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Aug 2020 03:19:57 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1597216796; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=cZGt5u6crdZQn6DePSSB5wtmZuidIb+3i3BdUURPSf0=; b=B5GgdYPHiHHSfBcQVp9TZ0PQvGHVt540y+SBrkSvGwfe7BN0yotIX2qk6KiGawodRvKsh1Mo
+ BZKU5yCpsHTBTMHVyhjUbDHDVEXpsHYCoPP1FqmbY+L8rpVghkQOXd7up6SCe8GcuZKzuFfI
+ mnLEZNyWnDZs3pZUfqBZtiO4Qpo=
+X-Mailgun-Sending-Ip: 104.130.122.29
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n09.prod.us-west-2.postgun.com with SMTP id
+ 5f33981ac85a1092b07c16e6 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 12 Aug 2020 07:19:54
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id DF087C433C9; Wed, 12 Aug 2020 07:19:53 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from wcheng-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: wcheng)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id BD29AC433C6;
+        Wed, 12 Aug 2020 07:19:52 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org BD29AC433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=wcheng@codeaurora.org
+From:   Wesley Cheng <wcheng@codeaurora.org>
+To:     sboyd@kernel.org, heikki.krogerus@linux.intel.com,
+        agross@kernel.org, robh+dt@kernel.org, gregkh@linuxfoundation.org,
+        bjorn.andersson@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        Wesley Cheng <wcheng@codeaurora.org>
+Subject: [PATCH v8 0/4] Introduce PMIC based USB type C detection
+Date:   Wed, 12 Aug 2020 00:19:21 -0700
+Message-Id: <20200812071925.315-1-wcheng@codeaurora.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -63,41 +60,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-pip is now for most practical set-ups implied to be pip3, so
-just use "pip" rather than "pip3" in the instructions.
-Pass --user explicitly in the example so it is clear that this
-gets installed in the user home directory.
+Changes in v8:
+ - Simplified some property definitions, and corrected the
+   connector reference in the dt binding.
 
-Add an additional instruction on how to upgrade the project,
-not everyone is aware of how pip works.
+Changes in v7:
+ - Fixups in qcom-pmic-typec.c to remove uncesscary includes, printk formatting,
+   and revising some logic operations. 
 
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- Documentation/devicetree/writing-schema.rst | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+Changes in v6:
+ - Removed qcom_usb_vbus-regulator.c and qcom,usb-vbus-regulator.yaml from the
+   series as they have been merged on regulator.git
+ - Added separate references to the usb-connector.yaml in qcom,pmic-typec.yaml
+   instead of referencing the entire schema.
 
-diff --git a/Documentation/devicetree/writing-schema.rst b/Documentation/devicetree/writing-schema.rst
-index 8c74a99f95e2..a9cebfca8d31 100644
---- a/Documentation/devicetree/writing-schema.rst
-+++ b/Documentation/devicetree/writing-schema.rst
-@@ -115,11 +115,16 @@ The DT schema project must be installed in order to validate the DT schema
- binding documents and validate DTS files using the DT schema. The DT schema
- project can be installed with pip::
+Changes in v5:
+ - Fix dt_binding_check warning/error in qcom,pmic-typec.yaml
+
+Changes in v4:
+ - Modified qcom,pmic-typec binding to include the SS mux and the DRD remote
+   endpoint nodes underneath port@1, which is assigned to the SSUSB path
+   according to usb-connector
+ - Added usb-connector reference to the typec dt-binding
+ - Added tags to the usb type c and vbus nodes
+ - Removed "qcom" tags from type c and vbus nodes
+ - Modified Kconfig module name, and removed module alias from the typec driver
  
--    pip3 install git+https://github.com/devicetree-org/dt-schema.git@master
-+    pip install --user git+https://github.com/devicetree-org/dt-schema.git@master
+Changes in v3:
+ - Fix driver reference to match driver name in Kconfig for
+   qcom_usb_vbus-regulator.c
+ - Utilize regulator bitmap helpers for enable, disable and is enabled calls in
+   qcom_usb_vbus-regulator.c
+ - Use of_get_regulator_init_data() to initialize regulator init data, and to
+   set constraints in qcom_usb_vbus-regulator.c
+ - Remove the need for a local device structure in the vbus regulator driver
  
- Several executables (dt-doc-validate, dt-mk-schema, dt-validate) will be
- installed. Ensure they are in your PATH (~/.local/bin by default).
- 
-+We sometimes update th DT schema project, and then you can simply add the
-+"--upgrade" option to the above command to get to the latest version:
-+
-+    pip install --user --upgrade git+https://github.com/devicetree-org/dt-schema.git@master
-+
- dtc must also be built with YAML output support enabled. This requires that
- libyaml and its headers be installed on the host system. For some distributions
- that involves installing the development package, such as:
+Changes in v2:
+ - Use devm_kzalloc() in qcom_pmic_typec_probe()
+ - Add checks to make sure return value of typec_find_port_power_role() is
+   valid
+ - Added a VBUS output regulator driver, which will be used by the PMIC USB
+   type c driver to enable/disable the source
+ - Added logic to control vbus source from the PMIC type c driver when
+   UFP/DFP is detected
+ - Added dt-binding for this new regulator driver
+ - Fixed Kconfig typec notation to match others
+ - Leave type C block disabled until enabled by a platform DTS
+
+Add the required drivers for implementing type C orientation and role
+detection using the Qualcomm PMIC.  Currently, PMICs such as the PM8150B
+have an integrated type C block, which can be utilized for this.  This
+series adds the dt-binding, PMIC type C driver, and DTS nodes.
+
+The PMIC type C driver will register itself as a type C port w/ a
+registered type C switch for orientation, and will fetch a USB role switch
+handle for the role notifications.  It will also have the ability to enable
+the VBUS output to any connected devices based on if the device is behaving
+as a UFP or DFP.
+
+Wesley Cheng (4):
+  usb: typec: Add QCOM PMIC typec detection driver
+  dt-bindings: usb: Add Qualcomm PMIC type C controller dt-binding
+  arm64: boot: dts: qcom: pm8150b: Add node for USB type C block
+  arm64: boot: dts: qcom: pm8150b: Add DTS node for PMIC VBUS booster
+
+ .../bindings/usb/qcom,pmic-typec.yaml         | 112 ++++++++
+ arch/arm64/boot/dts/qcom/pm8150b.dtsi         |  13 +
+ arch/arm64/boot/dts/qcom/sm8150-mtp.dts       |   4 +
+ drivers/usb/typec/Kconfig                     |  12 +
+ drivers/usb/typec/Makefile                    |   1 +
+ drivers/usb/typec/qcom-pmic-typec.c           | 271 ++++++++++++++++++
+ 6 files changed, 413 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
+ create mode 100644 drivers/usb/typec/qcom-pmic-typec.c
+
 -- 
-2.26.2
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
