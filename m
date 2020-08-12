@@ -2,108 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EABDA2425F3
-	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 09:20:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25E4024260D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 09:29:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726941AbgHLHUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Aug 2020 03:20:05 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:32790 "EHLO m43-7.mailgun.net"
+        id S1726755AbgHLH25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Aug 2020 03:28:57 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:44566 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726898AbgHLHT5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Aug 2020 03:19:57 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1597216797; h=Content-Transfer-Encoding: MIME-Version:
- References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=OLPKTdSqqloYxw93IHUq14f5yJAcWoSaKHnlKyo6IBE=; b=YhcnryVP3NElyKfH7dFjRTprJlnMgxlDWomKBdTnVT3McWbZK97sYbOIObEIVZavJe7LBOSM
- YZaJHfKzzLW0FHPUVJCS7dyRXjlFjWfF5mquDmRdfXoWYfuCp/8882RCeZw6Nm/Oajg53uom
- kFY2QesjCnpZe7lcG/VITjCvnO4=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 5f33981c4c787f237b5a48e4 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 12 Aug 2020 07:19:56
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 97B00C43395; Wed, 12 Aug 2020 07:19:56 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from wcheng-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: wcheng)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 95146C433C9;
-        Wed, 12 Aug 2020 07:19:55 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 95146C433C9
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=wcheng@codeaurora.org
-From:   Wesley Cheng <wcheng@codeaurora.org>
-To:     sboyd@kernel.org, heikki.krogerus@linux.intel.com,
-        agross@kernel.org, robh+dt@kernel.org, gregkh@linuxfoundation.org,
-        bjorn.andersson@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        Wesley Cheng <wcheng@codeaurora.org>
-Subject: [PATCH v8 4/4] arm64: boot: dts: qcom: pm8150b: Add DTS node for PMIC VBUS booster
-Date:   Wed, 12 Aug 2020 00:19:25 -0700
-Message-Id: <20200812071925.315-5-wcheng@codeaurora.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200812071925.315-1-wcheng@codeaurora.org>
-References: <20200812071925.315-1-wcheng@codeaurora.org>
+        id S1726182AbgHLH24 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Aug 2020 03:28:56 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 5564120003C;
+        Wed, 12 Aug 2020 09:28:54 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 45412200002;
+        Wed, 12 Aug 2020 09:28:54 +0200 (CEST)
+Received: from localhost (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 3092B2030A;
+        Wed, 12 Aug 2020 09:28:54 +0200 (CEST)
+Date:   Wed, 12 Aug 2020 10:28:54 +0300
+From:   Abel Vesa <abel.vesa@nxp.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Mike Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Anson Huang <anson.huang@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, Fugang Duan <fugang.duan@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 11/17] clk: imx: Add blk_ctrl combo driver
+Message-ID: <20200812072854.4r4d6cz5cprezlof@fsr-ub1664-175>
+References: <1596024483-21482-1-git-send-email-abel.vesa@nxp.com>
+ <1596024483-21482-12-git-send-email-abel.vesa@nxp.com>
+ <d44e88a1408add6491897a8793b57ee0090fa4c6.camel@pengutronix.de>
+ <20200730085508.ddxhb4rjnzwooh2z@fsr-ub1664-175>
+ <3f4fd963bdf58e61715524fdb246481fb2b2d137.camel@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3f4fd963bdf58e61715524fdb246481fb2b2d137.camel@pengutronix.de>
+User-Agent: NeoMutt/20180622
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the required DTS node for the USB VBUS output regulator, which is
-available on PM8150B.  This will provide the VBUS source to connected
-peripherals.
+On 20-07-30 11:39:22, Philipp Zabel wrote:
+> On Thu, 2020-07-30 at 11:55 +0300, Abel Vesa wrote:
+> > On 20-07-29 14:46:28, Philipp Zabel wrote:
+> > > Hi Abel,
+> > > 
+> > > On Wed, 2020-07-29 at 15:07 +0300, Abel Vesa wrote:
+> > > > On i.MX8MP, there is a new type of IP which is called BLK_CTRL in
+> > 
+> > [...]
+> > 
+> > > > +
+> > > > +static int imx_blk_ctrl_reset_set(struct reset_controller_dev *rcdev,
+> > > > +				  unsigned long id, bool assert)
+> > > > +{
+> > > > +	struct imx_blk_ctrl_drvdata *drvdata = container_of(rcdev,
+> > > > +			struct imx_blk_ctrl_drvdata, rcdev);
+> > > > +	unsigned int offset = drvdata->rst_hws[id].offset;
+> > > > +	unsigned int shift = drvdata->rst_hws[id].shift;
+> > > > +	unsigned int mask = drvdata->rst_hws[id].mask;
+> > > > +	void __iomem *reg_addr = drvdata->base + offset;
+> > > > +	unsigned long flags;
+> > > > +	u32 reg;
+> > > > +
+> > > > +	if (assert) {
+> > > > +		pm_runtime_get_sync(rcdev->dev);
+> > > > +		spin_lock_irqsave(&drvdata->lock, flags);
+> > > > +		reg = readl(reg_addr);
+> > > > +		writel(reg & ~(mask << shift), reg_addr);
+> > > > +		spin_unlock_irqrestore(&drvdata->lock, flags);
+> > > > +	} else {
+> > > > +		spin_lock_irqsave(&drvdata->lock, flags);
+> > > > +		reg = readl(reg_addr);
+> > > > +		writel(reg | (mask << shift), reg_addr);
+> > > > +		spin_unlock_irqrestore(&drvdata->lock, flags);
+> > > > +		pm_runtime_put(rcdev->dev);
+> > > 
+> > > This still has the issue of potentially letting exclusive reset control
+> > > users break the device usage counter.
+> > > 
+> > > Also shared reset control users start with deassert(), and you end probe
+> > > with pm_runtime_put(), so the first shared reset control user that
+> > > deasserts its reset will decrement the dev->power.usage_count to -1 ?
+> > > For multiple resets being initially deasserted this would decrement
+> > > multiple times.
+> > > 
+> > > I think you'll have to track the (number of) asserted reset bits in this
+> > > reset controller and limit when to call pm_runtime_get/put_sync().
+> > > 
+> > 
+> > Yes, you're right.
+> > 
+> > I'll add a mask, and for each assert, the according bit will get set, and 
+> > for each deasssert the same bit will get cleared.
+> 
+> > And when the mask has at least one bit set, the pm_runtime_get gets called
+> 
+> ^ When the mask was 0 before but now has a bit set.
+> 
+> > and when the mask is 0, the pm_runtime_put_sync will be called.
+> 
+> ^ When the mask had a bit set but now is 0.
+> 
+> > Does that sound OK ?
+> 
+> And the mask starts out as 0, as after the pm_runtime_put() in probe all
+> reset lines are deasserted?
+> 
 
-Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/pm8150b.dtsi   | 6 ++++++
- arch/arm64/boot/dts/qcom/sm8150-mtp.dts | 4 ++++
- 2 files changed, 10 insertions(+)
+Yes, that is correct.
 
-diff --git a/arch/arm64/boot/dts/qcom/pm8150b.dtsi b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-index 053c659734a7..9e560c1ca30d 100644
---- a/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-@@ -53,6 +53,12 @@ power-on@800 {
- 			status = "disabled";
- 		};
- 
-+		pm8150b_vbus: dcdc@1100 {
-+			compatible = "qcom,pm8150b-vbus-reg";
-+			status = "disabled";
-+			reg = <0x1100>;
-+		};
-+
- 		pm8150b_typec: typec@1500 {
- 			compatible = "qcom,pm8150b-usb-typec";
- 			status = "disabled";
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-index 6c6325c3af59..ba3b5b802954 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-@@ -409,6 +409,10 @@ &ufs_mem_phy {
- 	vdda-pll-max-microamp = <19000>;
- };
- 
-+&pm8150b_vbus {
-+	status = "okay";
-+};
-+
- &usb_1_hsphy {
- 	status = "okay";
- 	vdda-pll-supply = <&vdd_usb_hs_core>;
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
-
+> > > > +	}
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static int imx_blk_ctrl_reset_reset(struct reset_controller_dev *rcdev,
+> > > > +					   unsigned long id)
+> > > > +{
+> > > > +	imx_blk_ctrl_reset_set(rcdev, id, true);
+> > > > +	return imx_blk_ctrl_reset_set(rcdev, id, false);
+> > > 
+> > > Does this work for all peripherals? Are there none that require the
+> > > reset line to be asserted for a certain number of bus clocks or similar?
+> > 
+> > As of now, there is no user that calls reset. All the users call the assert
+> > and then deassert. As for the number of clocks for reset, I'll try to have a
+> > chat to the HW design team and then come back with the information.
+> 
+> Ok. If this is not required or can't be guaranteed to work, it may be
+> better to just leave it out.
+> 
+> regards
+> Philipp
