@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FEFC242D38
-	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 18:30:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98DFB242D3B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 18:30:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726724AbgHLQaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Aug 2020 12:30:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48566 "EHLO mail.kernel.org"
+        id S1726799AbgHLQaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Aug 2020 12:30:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48754 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725872AbgHLQaH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Aug 2020 12:30:07 -0400
+        id S1726777AbgHLQaL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Aug 2020 12:30:11 -0400
 Received: from localhost.localdomain (unknown [194.230.155.117])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 795AD20829;
-        Wed, 12 Aug 2020 16:30:05 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7BBCC2080C;
+        Wed, 12 Aug 2020 16:30:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597249807;
-        bh=5VABsIIOTga9jxbpTZ9xoI/0EbnuZPCPq7dvahWwSbw=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=NGwsw6qgrFncoA3JUoHci5WNkSQFa83YxK1ZIs/n5ayPTkBq9ZeDxz1ysyK73qEvQ
-         PGS7KXmrF386lxMgSLzxZvftek4ZplsMApoke+PDrDur5Gyv/k7dYl/1jZz5qabDT+
-         oJelA5TB8Nk+hB5xFPNOfQU3TE/efKe5fCFEB+8Y=
+        s=default; t=1597249811;
+        bh=PYY8uXXlmytuiAxIl2R7A+XdZTSPkLshPeJXisdTWNM=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=YCwTRdCE2hn6nlGrHVLbyrJMJwRyiNiePioTtL7ih37L8H0uW8PKuV2y5NgcT9Hzn
+         AcDYVBigxBullrXTx+2BP7jBorEvQfGD/cCLUT61DJe3uxk/ubNZQAemmOie68MtYm
+         8rwQO8OmjCzt3cHbRptJesm6hzMiYLDv2PVWDt9w=
 From:   Krzysztof Kozlowski <krzk@kernel.org>
 To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
         Chanwoo Choi <cw00.choi@samsung.com>,
@@ -30,9 +30,10 @@ To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
         Krzysztof Kozlowski <krzk@kernel.org>,
         Vijai Kumar K <vijaikumar.kanagarajan@gmail.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 02/11] dt-bindings: extcon: ptn5150: Use generic "interrupts" property
-Date:   Wed, 12 Aug 2020 18:29:49 +0200
-Message-Id: <20200812162958.6180-2-krzk@kernel.org>
+Cc:     stable@vger.kernel.org
+Subject: [PATCH 04/11] extcon: ptn5150: Fix usage of atomic GPIO with sleeping GPIO chips
+Date:   Wed, 12 Aug 2020 18:29:51 +0200
+Message-Id: <20200812162958.6180-4-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200812162958.6180-1-krzk@kernel.org>
 References: <20200812162958.6180-1-krzk@kernel.org>
@@ -41,62 +42,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Interrupts do not have to be always GPIO based so instead of expecting
-"int-gpios" property and converting the GPIO to an interrupt, just
-accept any interrupt via generic "interrupts" property.
+The driver uses atomic version of gpiod_set_value() without any real
+reason.  It is called in a workqueue under mutex so it could sleep
+there.  Changing it to "can_sleep" flavor allows to use the driver with
+all GPIO chips.
 
-Mark the old "int-gpios" as deprecated.
-
+Fixes: 4ed754de2d66 ("extcon: Add support for ptn5150 extcon driver")
+Cc: <stable@vger.kernel.org>
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- .../devicetree/bindings/extcon/extcon-ptn5150.yaml    | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+ drivers/extcon/extcon-ptn5150.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
-index f6316f12028b..1ddc97db3e61 100644
---- a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
-+++ b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
-@@ -19,8 +19,13 @@ properties:
-     const: nxp,ptn5150
+diff --git a/drivers/extcon/extcon-ptn5150.c b/drivers/extcon/extcon-ptn5150.c
+index d1c997599390..5f5252752644 100644
+--- a/drivers/extcon/extcon-ptn5150.c
++++ b/drivers/extcon/extcon-ptn5150.c
+@@ -127,7 +127,7 @@ static void ptn5150_irq_work(struct work_struct *work)
+ 			case PTN5150_DFP_ATTACHED:
+ 				extcon_set_state_sync(info->edev,
+ 						EXTCON_USB_HOST, false);
+-				gpiod_set_value(info->vbus_gpiod, 0);
++				gpiod_set_value_cansleep(info->vbus_gpiod, 0);
+ 				extcon_set_state_sync(info->edev, EXTCON_USB,
+ 						true);
+ 				break;
+@@ -138,9 +138,9 @@ static void ptn5150_irq_work(struct work_struct *work)
+ 					PTN5150_REG_CC_VBUS_DETECTION_MASK) >>
+ 					PTN5150_REG_CC_VBUS_DETECTION_SHIFT);
+ 				if (vbus)
+-					gpiod_set_value(info->vbus_gpiod, 0);
++					gpiod_set_value_cansleep(info->vbus_gpiod, 0);
+ 				else
+-					gpiod_set_value(info->vbus_gpiod, 1);
++					gpiod_set_value_cansleep(info->vbus_gpiod, 1);
  
-   int-gpios:
-+    deprecated: true
-     description:
-       GPIO pin (input) connected to the PTN5150's INTB pin.
-+      Use "interrupts" instead.
-+
-+  interrupts:
-+    maxItems: 1
+ 				extcon_set_state_sync(info->edev,
+ 						EXTCON_USB_HOST, true);
+@@ -156,7 +156,7 @@ static void ptn5150_irq_work(struct work_struct *work)
+ 					EXTCON_USB_HOST, false);
+ 			extcon_set_state_sync(info->edev,
+ 					EXTCON_USB, false);
+-			gpiod_set_value(info->vbus_gpiod, 0);
++			gpiod_set_value_cansleep(info->vbus_gpiod, 0);
+ 		}
+ 	}
  
-   reg:
-     maxItems: 1
-@@ -31,7 +36,7 @@ properties:
- 
- required:
-   - compatible
--  - int-gpios
-+  - interrupts
-   - reg
-   - vbus-gpios
- 
-@@ -40,6 +45,7 @@ additionalProperties: false
- examples:
-   - |
-     #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-     i2c {
-         #address-cells = <1>;
-         #size-cells = <0>;
-@@ -47,7 +53,8 @@ examples:
-         ptn5150@1d {
-             compatible = "nxp,ptn5150";
-             reg = <0x1d>;
--            int-gpios = <&msmgpio 78 GPIO_ACTIVE_HIGH>;
-+            interrupt-parent = <&msmgpio>;
-+            interrupts = <78 IRQ_TYPE_LEVEL_HIGH>;
-             vbus-gpios = <&msmgpio 148 GPIO_ACTIVE_HIGH>;
-         };
-     };
 -- 
 2.17.1
 
