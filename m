@@ -2,134 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 739CD242B3C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 16:20:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE494242B87
+	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 16:44:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726542AbgHLOUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Aug 2020 10:20:05 -0400
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:62614 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726485AbgHLOUE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Aug 2020 10:20:04 -0400
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 07CECObX020969;
-        Wed, 12 Aug 2020 10:20:03 -0400
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com with ESMTP id 32sry4drtr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Aug 2020 10:20:03 -0400
-Received: from ASHBMBX9.ad.analog.com (ashbmbx9.ad.analog.com [10.64.17.10])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 07CEK2VJ013707
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Wed, 12 Aug 2020 10:20:02 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Wed, 12 Aug 2020 10:20:01 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Wed, 12 Aug 2020 10:20:01 -0400
-Received: from zeus.spd.analog.com (10.64.82.11) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Wed, 12 Aug 2020 10:20:00 -0400
-Received: from localhost.localdomain ([10.48.65.12])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 07CEJoT1020255;
-        Wed, 12 Aug 2020 10:19:59 -0400
-From:   <alexandru.tachici@analog.com>
-To:     <linux-hwmon@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <robh+dt@kernel.org>, <linux@roeck-us.net>,
-        Alexandru Tachici <alexandru.tachici@analog.com>
-Subject: [PATCH v8 6/6] dt-bindings: hwmon: Add bindings for ADM1266
-Date:   Wed, 12 Aug 2020 17:20:55 +0300
-Message-ID: <20200812142055.9213-7-alexandru.tachici@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200812142055.9213-1-alexandru.tachici@analog.com>
-References: <20200812142055.9213-1-alexandru.tachici@analog.com>
+        id S1726492AbgHLOoL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Aug 2020 10:44:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48756 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726434AbgHLOoL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Aug 2020 10:44:11 -0400
+Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2385FC061383;
+        Wed, 12 Aug 2020 07:44:11 -0700 (PDT)
+Received: by mail-ot1-x331.google.com with SMTP id a65so2102395otc.8;
+        Wed, 12 Aug 2020 07:44:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xHViXDWcaL5XfNSH272S9iDsrjwnvk4hUcO/qoZuaVs=;
+        b=VaA0+jQ74AeZSOrwygkYlWSRj0z7ACT7aZlVtDLpBi5z7N7CEUAlMJmjhsbvlcNBh+
+         gHU7bvyECTt/OMIXuH5HcA0paxBOB5E2E3mf1XwthH0vynG6EE1csykq0mpafmhxIg1k
+         i7p5lldt7ssk7xGcmKXT0igFJ328lQ6vkMyiNp7zXyeea5IZoI3rU4LOvOg5gnZxnc00
+         1QYjWT3Mo17KHjB12lXrmsBcPkNWHkWi0/49dhx70O9DGCzV+CjLuZVz/NI70lBQnH89
+         8yicIJz7L3lfR8C/2+3mhVMme/mhwecO84y9WAjYAk0WKYBugqPsvd3QNMa4DVXHCYa+
+         RtiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xHViXDWcaL5XfNSH272S9iDsrjwnvk4hUcO/qoZuaVs=;
+        b=I6hfwAjl9UROV9t8CnMfcGybGebwQ55xXYRgGDF2qxVDLOAUcPwvuy+Y4ZamGI+hqF
+         KDv15Fm7qNtdyg4HJZQFwlKFtETuDvwYR+z2pioE518PWXRg4PN8Y6uYdH1YulTQsbZv
+         JKNmnuSqKTiYgZ4zY+zLh+qwrpbI2RZtJPB0ASI6SK1HvN6SrTs+NFhLDwamTwxlAK53
+         /TkVMN9V7smydq+q43iv12/Y/qEgEOApl1NcWoZZsZDwvIn2KBo+4+L6R8P1CaKMRAB2
+         ebIluKl9RJcDEjbCdIhgHz1y4FEHOMUw9GKltckqAaLUzPz6iPRaTiT8+wlDKGa9bAfZ
+         N45g==
+X-Gm-Message-State: AOAM530lXDVITbJ2l9uWVX+gYRacWk64IAluuAdMyKpc1ivmBaAa33Yk
+        iFbMqydbVtx8Sw5FX1llpIJV8sj0p9vP6uwgMGU=
+X-Google-Smtp-Source: ABdhPJySHEBwiOi3qXSQCHV3l6a9l5hLKG96zwi1N2QEUT6FjWsrZwLXke9DhCaXu30Osnb4KgJRz45QoixNcPkNq00=
+X-Received: by 2002:a9d:22a5:: with SMTP id y34mr40314ota.0.1597243449856;
+ Wed, 12 Aug 2020 07:44:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ADIRoutedOnPrem: True
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-08-12_06:2020-08-11,2020-08-12 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 mlxscore=0
- lowpriorityscore=0 clxscore=1015 priorityscore=1501 adultscore=0
- phishscore=0 suspectscore=0 impostorscore=0 malwarescore=0 spamscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2008120101
+References: <CAGngYiVa9v9jGPNu4W+KHUnvemKU-BVE89-XNLcWOmoZjAPMTg@mail.gmail.com>
+ <24f1687c-043a-a15e-0be4-8392e7b5c96b@metux.net> <CAGngYiVokqYkEiQTcqAMnvif3qEWkPOb1cAk+4rvwgxBKZ5Ukw@mail.gmail.com>
+ <1acc987a-d844-fca7-77eb-cf1d466f35c1@metux.net>
+In-Reply-To: <1acc987a-d844-fca7-77eb-cf1d466f35c1@metux.net>
+From:   Sven Van Asbroeck <thesven73@gmail.com>
+Date:   Wed, 12 Aug 2020 10:43:58 -0400
+Message-ID: <CAGngYiUN4Cmf+bJDYJJwTi1DC1bZSa==AfATG+jdjmXqQxcL4A@mail.gmail.com>
+Subject: Re: [Q] devicetree overlays
+To:     "Enrico Weigelt, metux IT consult" <lkml@metux.net>
+Cc:     "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alexandru Tachici <alexandru.tachici@analog.com>
+On Wed, Aug 12, 2020 at 9:28 AM Enrico Weigelt, metux IT consult
+<lkml@metux.net> wrote:
+>
+> But I've still got another problem: how can I use DT along w/ ACPI ?
+>
 
-Add bindings for the Analog Devices ADM1266 sequencer.
-
-Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
----
- .../bindings/hwmon/adi,adm1266.yaml           | 51 +++++++++++++++++++
- 1 file changed, 51 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/adi,adm1266.yaml
-
-diff --git a/Documentation/devicetree/bindings/hwmon/adi,adm1266.yaml b/Documentation/devicetree/bindings/hwmon/adi,adm1266.yaml
-new file mode 100644
-index 000000000000..43b4f4f57b49
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/adi,adm1266.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/adi,adm1266.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices ADM1266 Cascadable Super Sequencer with Margin
-+  Control and Fault Recording
-+
-+maintainers:
-+  - Alexandru Tachici <alexandru.tachici@analog.com>
-+
-+description: |
-+  Analog Devices ADM1266 Cascadable Super Sequencer with Margin
-+  Control and Fault Recording.
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/ADM1266.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,adm1266
-+
-+  reg:
-+    description: |
-+      I2C address of slave device.
-+    items:
-+      minimum: 0x40
-+      maximum: 0x4F
-+
-+  avcc-supply:
-+    description: |
-+      Phandle to the Avcc power supply.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adm1266@40 {
-+                compatible = "adi,adm1266";
-+                reg = <0x40>;
-+        };
-+    };
-+...
--- 
-2.20.1
-
+That's a very good question. I focus on arm, so I'm unfamiliar with ACPI.
+Hopefully someone with ACPI knowledge can chime in.
