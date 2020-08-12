@@ -2,20 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0B24242B14
-	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 16:13:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34A1B242B0A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 16:13:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726691AbgHLONS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1726696AbgHLONS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 12 Aug 2020 10:13:18 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:27303 "EHLO
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:63699 "EHLO
         relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726634AbgHLONR (ORCPT
+        with ESMTP id S1726681AbgHLONR (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 12 Aug 2020 10:13:17 -0400
 X-Originating-IP: 91.224.148.103
 Received: from localhost.localdomain (unknown [91.224.148.103])
         (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 1DEAA24000C;
-        Wed, 12 Aug 2020 14:13:12 +0000 (UTC)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id AEFA1240009;
+        Wed, 12 Aug 2020 14:13:14 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Boris Brezillon <boris.brezillon@collabora.com>,
         linux-i3c@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
@@ -26,10 +26,12 @@ Cc:     Nicolas Pitre <nico@fluxnic.net>,
         <linux-kernel@vger.kernel.org>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v2 1/4] dt-bindings: Add vendor prefix for Silvaco
-Date:   Wed, 12 Aug 2020 16:13:09 +0200
-Message-Id: <20200812141312.3331-1-miquel.raynal@bootlin.com>
+Subject: [PATCH v2 2/4] dt-bindings: i3c: Describe Silvaco master binding
+Date:   Wed, 12 Aug 2020 16:13:10 +0200
+Message-Id: <20200812141312.3331-2-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200812141312.3331-1-miquel.raynal@bootlin.com>
+References: <20200812141312.3331-1-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -38,34 +40,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Silvaco, Inc. is an EDA provider of software tools used for process
-and device development and for analog/mixed-signal, power IC and
-memory design [1].
+Silvaco provide a dual-role I3C master.
 
-[1] https://www.silvaco.com/company/profile/profile.html
+Description is rather simple: it needs a register mapping, three
+clocks and an interrupt.
 
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
 
 Changes in v2:
-* Change the prefix 'svc,' -> 'silvaco,'.
+* Updated Rob's tool and fixed the mistake reported.
+* Updated the vendor prefix.
 
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../bindings/i3c/silvaco,i3c-master.yaml      | 59 +++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index f3d847832fdc..df780a2a5b78 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1014,6 +1014,8 @@ patternProperties:
-     description: Shenzhen Sunchip Technology Co., Ltd
-   "^SUNW,.*":
-     description: Sun Microsystems, Inc
-+  "^silvaco,.*":
-+    description: Silvaco, Inc.
-   "^swir,.*":
-     description: Sierra Wireless
-   "^syna,.*":
+diff --git a/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml b/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
+new file mode 100644
+index 000000000000..63731e8a9068
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/i3c/silvaco,i3c-master.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Silvaco I3C master
++
++maintainers:
++  - Conor Culhane <conor.culhane@silvaco.com>
++
++properties:
++  compatible:
++    const: silvaco,i3c-master
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clock-names:
++    description: |
++      There are three clocks:
++        pclk:     System clock
++        fast_clk: Fast clock (for the bus)
++        slow_clk: Slow clock (for other events)
++
++    items:
++      - const: pclk
++      - const: fast_clk
++      - const: slow_clk
++
++  clocks:
++    minItems: 3
++    maxItems: 3
++
++  resets:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clock-names
++  - clocks
++
++examples:
++  - |
++    i3c-master@a0000000 {
++        compatible = "silvaco,i3c-master";
++        clocks = <&zynqmp_clk 71>, <&fclk>, <&sclk>;
++        clock-names = "pclk", "fast_clk", "slow_clk";
++        interrupt-parent = <&gic>;
++        interrupts = <0 89 4>;
++        reg = <0xa0000000 0x1000>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++    };
 -- 
 2.20.1
 
