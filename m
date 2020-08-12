@@ -2,135 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D47B242C4A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 17:46:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EF90242CC4
+	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 18:00:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726492AbgHLPq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Aug 2020 11:46:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60068 "EHLO mail.kernel.org"
+        id S1726640AbgHLP5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Aug 2020 11:57:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45426 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726226AbgHLPq2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Aug 2020 11:46:28 -0400
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1726150AbgHLP5A (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Aug 2020 11:57:00 -0400
+Received: from mail.kernel.org (ip5f5ad5c5.dynamic.kabel-deutschland.de [95.90.213.197])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B05752080C
-        for <devicetree@vger.kernel.org>; Wed, 12 Aug 2020 15:46:27 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 47FC120838;
+        Wed, 12 Aug 2020 15:56:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597247187;
-        bh=8zjj45MDp5uQvFTIaQ4Tbj5ME5iYtUQlAllvKOxs1Bs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BU8KmdYOmx+Vc1hjIb4NWSAP8FA5RL1ADwPVMH3fhrd4N0mF+Dux1/ttl2cVM+5ZH
-         +uTukZXYWmH3q+5RbVPq1653WFW9YLMiQUg/iDe6WuwHUsBBHzuhYAf2nZalBVoaaB
-         Y/LFI7wM5+Yq6cvNj0o1ocif7wzBMEMGHr7MNwLg=
-Received: by mail-ot1-f54.google.com with SMTP id e11so2302970otk.4
-        for <devicetree@vger.kernel.org>; Wed, 12 Aug 2020 08:46:27 -0700 (PDT)
-X-Gm-Message-State: AOAM533J89gg0ZaYPFRBVYTFJg5nptiJvCdF3T53nwzEdOODfzf5PkjU
-        /2Mht/3rFbvnLN7omSw3xrsfDjR4giU5tzJq5w==
-X-Google-Smtp-Source: ABdhPJzIkz9fmUdhrhBihVEGFcNSEOVjprI3/DwicQgScfWx9wnTC83ZYLmwHWg/jDB8At5B5/84auzV3ufT8ZC6jHM=
-X-Received: by 2002:a05:6830:1d8e:: with SMTP id y14mr261568oti.129.1597247187002;
- Wed, 12 Aug 2020 08:46:27 -0700 (PDT)
+        s=default; t=1597247819;
+        bh=qGFs9JrB+b04B2G3TVM5XfHPg3jI3+wg5+FVNEksffE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=TzdBsEB9byzsy6EPq+XQIImU+5yJfJMUWKP5jxM/oOsLe8KPTj9Oo3TfWjVAOFuZ0
+         VnDtAkyr/zyr04JBj3ZMcZOS63rN1LjU1H+tN8XpflmEQM31S9OXb4i7Byk+fObFwj
+         b8SXaSi8qZAuVVYq6PDsY5GITY28+xCc1TyV/Bv4=
+Received: from mchehab by mail.kernel.org with local (Exim 4.94)
+        (envelope-from <mchehab@kernel.org>)
+        id 1k5t7Z-005t5W-4R; Wed, 12 Aug 2020 17:56:57 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Wei Xu <xuwei5@hisilicon.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>, devel@driverdev.osuosl.org,
+        linux-arm-msm@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: [PATCH 00/44] SPMI patches needed by Hikey 970
+Date:   Wed, 12 Aug 2020 17:56:10 +0200
+Message-Id: <cover.1597247164.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20200812085850.2643820-1-linus.walleij@linaro.org>
-In-Reply-To: <20200812085850.2643820-1-linus.walleij@linaro.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 12 Aug 2020 09:46:16 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLR3HEsbuNq7i+N3ETYVoMtUP90_Ev=tO8GJr+fF4QHWQ@mail.gmail.com>
-Message-ID: <CAL_JsqLR3HEsbuNq7i+N3ETYVoMtUP90_Ev=tO8GJr+fF4QHWQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3 v2] dt-bindings: backlight: Add some common backlight properties
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 12, 2020 at 2:58 AM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> Let's use a common.yaml include for the backlight like we do with
-> the LEDs. The LEDs are inherently incompatible so their bindings
-> cannot be reused for backlight.
->
-> Cc: devicetree@vger.kernel.org
-> Suggested-by: Sam Ravnborg <sam@ravnborg.org>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> ChangeLog v1->v2:
-> - New patch as suggested by Sam.
-> ---
->  .../bindings/leds/backlight/common.yaml       | 42 +++++++++++++++++++
->  1 file changed, 42 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/backlight/common.yaml
+Hi Greg,
 
-I'd expect some refactoring here with existing backlight schemas
-including the ones I just added for 5.9.
+This patch series is part of a work I'm doing in order to be able to support
+a HiKey 970 board that I recently got on my hands.
 
-Ideally, we shouldn't have any property have a type definition more
-than once. (We don't have any way to detect that though it wouldn't be
-hard to write a program to do so).
+I received some freedback from Mark and from Jonathan on a first
+attempt I made to upstream this.
 
-> diff --git a/Documentation/devicetree/bindings/leds/backlight/common.yaml b/Documentation/devicetree/bindings/leds/backlight/common.yaml
-> new file mode 100644
-> index 000000000000..8ae7e3818b0d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/backlight/common.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/backlight/common.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Common backlight properties
-> +
-> +maintainers:
-> +  - Lee Jones <lee.jones@linaro.org>
-> +  - Daniel Thompson <daniel.thompson@linaro.org>
-> +  - Jingoo Han <jingoohan1@gmail.com>
-> +
-> +description: |
+I'm opting to submit it via staging, because I had to start from the
+patch that originally added this driver on a 4.9 Kernel tree:
 
-You don't need '|' if there's no formatting to preserve.
+	https://github.com/96boards-hikey/linux/tree/hikey970-v4.9
 
-> +  Backlight devices provide backlight for different types of graphical
-> +  displays. They are typically but not necessarilt implemented using a white
+In order to preserve the original SOB from the driver's author.
 
-typo
+The patches following it are on the standard way: one patch per
+logical change.
 
-> +  LED powered by a boost converter.
-> +
-> +properties:
-> +  default-on:
-> +    description:
-> +      The initial state of the backlight can be set to be on with this
-> +      property. This is a state applied by the operating system so that the
-> +      backlight is always turned on at boot.
+This is part of a bigger work whose goal is to have upstream support
+for USB and DRM/KMS on such boards. 
 
-Needs a type.
+I suspect that, maybe except for the DT part, those 3 specific drivers
+are more or less ready to be moved from staging, but the other
+drivers that are also part of this attempt aren't ready. Specially the
+DRM driver has some bugs that came from the OOT version.
 
-> +
-> +  default-brightness:
-> +    description:
-> +      The default brightness that should be applied to the LED by the operating
-> +      system on start-up. The brightness should not exceed the brightness the
-> +      LED can provide.
-> +    $ref: /schemas/types.yaml#definitions/uint32
-> +    minimum: 0
+So, my current plan is to submit those drivers to staging for 5.9
+and move the ones that are ok out of staging on Kernel 5.10.
 
-It's an unsigned int, so the min is already 0.
+Regards,
+Mauro.
 
-> +
-> +  max-brightness:
-> +    description:
-> +      Normally the maximum brightness is determined by the hardware and this
-> +      property is not required. This property is used to put a software limit
-> +      on the brightness apart from what the driver says, as it could happen
-> +      that a LED can be made so bright that it gets damaged or causes damage
-> +      due to restrictions in a specific system, such as mounting conditions.
-> +    $ref: /schemas/types.yaml#definitions/uint32
-> +    minimum: 0
+Mauro Carvalho Chehab (41):
+  staging: spmi: hisi-spmi-controller: coding style fixup
+  staging: spmi: hisi-spmi-controller: fix it to probe successfully
+  staging: spmi: hisi-spmi-controller: fix a typo
+  staging: spmi: hisi-spmi-controller: adjust whitespaces at defines
+  staging: spmi: hisi-spmi-controller: use le32 macros where needed
+  staging: spmi: hisi-spmi-controller: add debug when values are
+    read/write
+  staging: spmi: hisi-spmi-controller: fix the dev_foo() logic
+  staging: spmi: hisi-spmi-controller: add it to the building system
+  staging: spmi: hisi-spmi-controller: do some code cleanups
+  staging: mfd: hi6421-spmi-pmic: get rid of unused code
+  staging: mfd: hi6421-spmi-pmic: deal with non-static functions
+  staging: mfd: hi6421-spmi-pmic: get rid of the static vars
+  staging: mfd: hi6421-spmi-pmic: cleanup hi6421-spmi-pmic.h header
+  staging: mfd: hi6421-spmi-pmic: change the binding logic
+  staging: mfd: hi6421-spmi-pmic: get rid of unused OF properties
+  staging: mfd: hi6421-spmi-pmic: cleanup OF properties
+  staging: mfd: hi6421-spmi-pmic: change namespace on its functions
+  staging: mfd: hi6421-spmi-pmic: fix some coding style issues
+  staging: mfd: hi6421-spmi-pmic: add it to the building system
+  staging: mfd: hi6421-spmi-pmic: cleanup the code
+  staging: regulator: hi6421v600-regulator: get rid of unused code
+  staging: regulator: hi6421v600-regulator: port it to upstream
+  staging: regulator: hi6421v600-regulator: coding style fixups
+  staging: regulator: hi6421v600-regulator: change the binding logic
+  staging: regulator: hi6421v600-regulator: cleanup struct
+    hisi_regulator
+  staging: regulator: hi6421v600-regulator: cleanup debug messages
+  staging: regulator: hi6421v600-regulator: use shorter names for OF
+    properties
+  staging: regulator: hi6421v600-regulator: better handle modes
+  staging: regulator: hi6421v600-regulator: change namespace
+  staging: regulator: hi6421v600-regulator: convert to use get/set
+    voltage_sel
+  staging: regulator: hi6421v600-regulator: don't use usleep_range for
+    off_on_delay
+  staging: regulator: hi6421v600-regulator: add a driver-specific debug
+    macro
+  staging: regulator: hi6421v600-regulator: initialize ramp_delay
+  staging: regulator: hi6421v600-regulator: cleanup DT settings
+  staging: regulator: hi6421v600-regulator: fix some coding style issues
+  staging: regulator: hi6421v600-regulator: add it to the building
+    system
+  staging: regulator: hi6421v600-regulator: code cleanup
+  staging: hikey9xx: add a TODO list
+  MAINTAINERS: add an entry for HiSilicon 6421v600 drivers
+  dt: document HiSilicon SPMI controller and mfd/regulator properties
+  dt: hisilicon: add support for the PMIC found on Hikey 970
+
+Mayulong (3):
+  staging: spmi: add Hikey 970 SPMI controller driver
+  staging: mfd: add a PMIC driver for HiSilicon 6421 SPMI version
+  staging: regulator: add a regulator driver for HiSilicon 6421v600 SPMI
+    PMIC
+
+ .../mfd/hisilicon,hi6421-spmi-pmic.yaml       | 182 +++++++
+ .../spmi/hisilicon,hisi-spmi-controller.yaml  |  54 ++
+ MAINTAINERS                                   |   6 +
+ .../boot/dts/hisilicon/hi3670-hikey970.dts    |  16 +-
+ .../boot/dts/hisilicon/hikey970-pmic.dtsi     | 200 ++++++++
+ drivers/staging/Kconfig                       |   2 +
+ drivers/staging/Makefile                      |   1 +
+ drivers/staging/hikey9xx/Kconfig              |  35 ++
+ drivers/staging/hikey9xx/Makefile             |   5 +
+ drivers/staging/hikey9xx/TODO                 |   5 +
+ drivers/staging/hikey9xx/hi6421-spmi-pmic.c   | 381 ++++++++++++++
+ .../staging/hikey9xx/hi6421v600-regulator.c   | 479 ++++++++++++++++++
+ .../staging/hikey9xx/hisi-spmi-controller.c   | 351 +++++++++++++
+ include/linux/mfd/hi6421-spmi-pmic.h          |  68 +++
+ 14 files changed, 1773 insertions(+), 12 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
+ create mode 100644 Documentation/devicetree/bindings/spmi/hisilicon,hisi-spmi-controller.yaml
+ create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
+ create mode 100644 drivers/staging/hikey9xx/Kconfig
+ create mode 100644 drivers/staging/hikey9xx/Makefile
+ create mode 100644 drivers/staging/hikey9xx/TODO
+ create mode 100644 drivers/staging/hikey9xx/hi6421-spmi-pmic.c
+ create mode 100644 drivers/staging/hikey9xx/hi6421v600-regulator.c
+ create mode 100644 drivers/staging/hikey9xx/hisi-spmi-controller.c
+ create mode 100644 include/linux/mfd/hi6421-spmi-pmic.h
+
+-- 
+2.26.2
+
+
