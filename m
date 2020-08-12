@@ -2,321 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE7DA242C94
-	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 17:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD220242CCE
+	for <lists+devicetree@lfdr.de>; Wed, 12 Aug 2020 18:00:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726735AbgHLP5h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Aug 2020 11:57:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46172 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726727AbgHLP5G (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Aug 2020 11:57:06 -0400
-Received: from mail.kernel.org (ip5f5ad5c5.dynamic.kabel-deutschland.de [95.90.213.197])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 75F9823110;
-        Wed, 12 Aug 2020 15:57:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597247821;
-        bh=1xTwSBaK0XrIWe9LbB9uGe8VVCvj3/yyWB6BQEgYbYI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=p1oxLthwueJZS1fIQ6xb35trXa3byng0WuSMJXgXp40nrqHbZxFfflQowzju+vrDL
-         c+l0Zj52jwEWAOjJAu+lvRFjb6So1hvAK4pkvwBRu57z/WwxxP6sgB+lpdppULuk6o
-         +n4cVwKNRPf/oeikfZ9Xvh7DMIRqcfoFzROPigfg=
-Received: from mchehab by mail.kernel.org with local (Exim 4.94)
-        (envelope-from <mchehab@kernel.org>)
-        id 1k5t7b-005t7c-Hj; Wed, 12 Aug 2020 17:56:59 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 44/44] dt: hisilicon: add support for the PMIC found on Hikey 970
-Date:   Wed, 12 Aug 2020 17:56:54 +0200
-Message-Id: <dd91299e8ef786b3ca7ecdf3e13dec675420cefe.1597247164.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <cover.1597247164.git.mchehab+huawei@kernel.org>
-References: <cover.1597247164.git.mchehab+huawei@kernel.org>
+        id S1726554AbgHLQAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Aug 2020 12:00:45 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:44740 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726540AbgHLQAp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Aug 2020 12:00:45 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07CG0T8O050082;
+        Wed, 12 Aug 2020 11:00:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1597248029;
+        bh=02ZEbPG60T+9TFX2JsaFFkktquPFZf1Si0VmO18RfTI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=H9w2mY6fm2wsqTgq5ZDyXKbESuoPz5xCTPTw7JcD1v+0frmNswa+/P16xRDrueRTq
+         BxxFRwmDae62UFwrI9pzsW/wOURR2wYtkG3oZNYI7RGKvUfxmRGQXdkeCabpSxLYXz
+         u0UE60yVj57QY2U2dVV0MljMtnwdtj0hAe30Rsus=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07CG0Tlf109184
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 12 Aug 2020 11:00:29 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 12
+ Aug 2020 11:00:29 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 12 Aug 2020 11:00:29 -0500
+Received: from [10.250.38.37] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07CG0Sa2007723;
+        Wed, 12 Aug 2020 11:00:29 -0500
+Subject: Re: [PATCH v32 2/6] leds: lp50xx: Add the LP50XX family of the RGB
+ LED driver
+To:     Pavel Machek <pavel@ucw.cz>
+CC:     <jacek.anaszewski@gmail.com>, <robh@kernel.org>,
+        <marek.behun@nic.cz>, <devicetree@vger.kernel.org>,
+        <linux-leds@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20200722153146.8767-1-dmurphy@ti.com>
+ <20200722153146.8767-3-dmurphy@ti.com>
+ <20200811105413.r2m2f7bubuz55rrt@duo.ucw.cz>
+ <935119fa-6d1f-8e99-51f9-87966b4d03ad@ti.com> <20200811220109.GA9105@amd>
+ <3ce38a31-a4f0-4cd7-ad09-6bdad27e6756@ti.com> <20200811222602.GA10181@amd>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <5efcba1b-995e-b6fd-9004-fbafaae5b8a3@ti.com>
+Date:   Wed, 12 Aug 2020 11:00:23 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20200811222602.GA10181@amd>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a device tree for the HiSilicon 6421v600 SPMI PMIC, used
-on HiKey970 board.
+Pavel
 
-As we now have support for it, change the fixed regulators
-used by the SD I/O to use the proper LDO supplies.
+On 8/11/20 5:26 PM, Pavel Machek wrote:
+> Hi!
+>
+>>>> Well it depends on where we want to create the default cache values.
+>>>>
+>>>> Either we run through a for..loop during driver probe and delay device start
+>>>> up or we keep the simple arrays and increase the driver total size.
+>>> for loop will be better.
+>>>
+>>> Plus, REGCACHE_RBTREE is very likely overkill.
+>> Well if I eliminate the reg_cache then I can eliminate the defaults too.
+> I'm not asking for that. But please investigate REGCACHE_FLAT.
+>
+> 									Pavel
 
-We'll keep the 3v3 fixed regulator, as this will be used
-by the DRM/KMS driver. So, let's just rename it.
+After looking at this a loop makes no sense here.  The regmap call back 
+values are determined at build time not during runtime.
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- .../boot/dts/hisilicon/hi3670-hikey970.dts    |  16 +-
- .../boot/dts/hisilicon/hikey970-pmic.dtsi     | 200 ++++++++++++++++++
- 2 files changed, 204 insertions(+), 12 deletions(-)
- create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
+Adding a loop here makes the code more complex just to reduce the 
+overall LoC.  In adding the loop the reg_default array will have to be 
+re-allocated and copied at run time and then be expanded to include the 
+additional values.
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-index 01234a175dcd..c8a72c0873bf 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-@@ -12,6 +12,7 @@
- 
- #include "hi3670.dtsi"
- #include "hikey970-pinctrl.dtsi"
-+#include "hikey970-pmic.dtsi"
- 
- / {
- 	model = "HiKey970";
-@@ -39,7 +40,7 @@ memory@0 {
- 		reg = <0x0 0x0 0x0 0x0>;
- 	};
- 
--	sd_1v8: regulator-1v8 {
-+	fixed_1v8: regulator-1v8 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-1.8V";
- 		regulator-min-microvolt = <1800000>;
-@@ -47,15 +48,6 @@ sd_1v8: regulator-1v8 {
- 		regulator-always-on;
- 	};
- 
--	sd_3v3: regulator-3v3 {
--		compatible = "regulator-fixed";
--		regulator-name = "fixed-3.3V";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--		regulator-boot-on;
--		regulator-always-on;
--	};
--
- 	wlan_en: wlan-en-1-8v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "wlan-en-regulator";
-@@ -402,8 +394,8 @@ &dwmmc1 {
- 	pinctrl-0 = <&sd_pmx_func
- 		     &sd_clk_cfg_func
- 		     &sd_cfg_func>;
--	vmmc-supply = <&sd_3v3>;
--	vqmmc-supply = <&sd_1v8>;
-+	vmmc-supply = <&ldo16>;
-+	vqmmc-supply = <&ldo9>;
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-new file mode 100644
-index 000000000000..2a6c366d9be6
---- /dev/null
-+++ b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-@@ -0,0 +1,200 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * dts file for Hi6421v600 SPMI PMIC used at the HiKey970 Development Board
-+ *
-+ * Copyright (C) 2020, Huawei Tech. Co., Ltd.
-+ */
-+
-+/ {
-+	spmi: spmi@fff24000 {
-+		compatible = "hisilicon,spmi-controller";
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+		status = "ok";
-+		reg = <0x0 0xfff24000 0x0 0x1000>;
-+		spmi-channel = <2>;
-+
-+		pmic: pmic@0 {
-+			compatible = "hisilicon,hi6421-spmi-pmic";
-+			slave_id = <0>;
-+			reg = <0 0>;
-+
-+			#interrupt-cells = <2>;
-+			interrupt-controller;
-+			gpios = <&gpio28 0 0>;
-+			irq-num = <16>;
-+			irq-array = <2>;
-+			irq-mask-addr = <0x202 2>;
-+			irq-addr = <0x212 2>;
-+
-+			regulators {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				ldo3: ldo3@16 {
-+					reg = <0x16>;
-+					vsel-reg = <0x51>;
-+
-+					regulator-name = "ldo3";
-+					regulator-min-microvolt = <1500000>;
-+					regulator-max-microvolt = <2000000>;
-+					regulator-boot-on;
-+
-+					enable-mask = <0x01>;
-+
-+					voltage-table = <1500000>, <1550000>,
-+							<1600000>, <1650000>,
-+							<1700000>, <1725000>,
-+							<1750000>, <1775000>,
-+							<1800000>, <1825000>,
-+							<1850000>, <1875000>,
-+							<1900000>, <1925000>,
-+							<1950000>, <2000000>;
-+					off-on-delay-us = <20000>;
-+					startup-delay-us = <120>;
-+				};
-+
-+				ldo4: ldo4@17 { /* 40 PIN */
-+					reg = <0x17>;
-+					vsel-reg = <0x52>;
-+
-+					regulator-name = "ldo4";
-+					regulator-min-microvolt = <1725000>;
-+					regulator-max-microvolt = <1900000>;
-+					regulator-boot-on;
-+
-+					enable-mask = <0x01>;
-+					idle-mode-mask = <0x10>;
-+					eco-microamp = <10000>;
-+
-+					hi6421-vsel = <0x52 0x07>;
-+					voltage-table = <1725000>, <1750000>,
-+							<1775000>, <1800000>,
-+							<1825000>, <1850000>,
-+							<1875000>, <1900000>;
-+					off-on-delay-us = <20000>;
-+					startup-delay-us = <120>;
-+				};
-+
-+				ldo9: ldo9@1C { /* SDCARD I/O */
-+					reg = <0x1C>;
-+					vsel-reg = <0x57>;
-+
-+					regulator-name = "ldo9";
-+					regulator-min-microvolt = <1750000>;
-+					regulator-max-microvolt = <3300000>;
-+					regulator-boot-on;
-+
-+					enable-mask = <0x01>;
-+					idle-mode-mask = <0x10>;
-+					eco-microamp = <10000>;
-+
-+					voltage-table = <1750000>, <1800000>,
-+							<1825000>, <2800000>,
-+							<2850000>, <2950000>,
-+							<3000000>, <3300000>;
-+					off-on-delay-us = <20000>;
-+					startup-delay-us = <360>;
-+				};
-+
-+				ldo15: ldo15@21 { /* UFS */
-+					reg = <0x21>;
-+					vsel-reg = <0x5c>;
-+
-+					regulator-name = "ldo15";
-+					regulator-min-microvolt = <1800000>;
-+					regulator-max-microvolt = <3000000>;
-+					regulator-always-on;
-+
-+					enable-mask = <0x01>;
-+					idle-mode-mask = <0x10>;
-+					eco-microamp = <10000>;
-+
-+					voltage-table = <1800000>, <1850000>,
-+							<2400000>, <2600000>,
-+							<2700000>, <2850000>,
-+							<2950000>, <3000000>;
-+					off-on-delay-us = <20000>;
-+					startup-delay-us = <120>;
-+				};
-+
-+				ldo16: ldo16@22 { /* SD */
-+					reg = <0x22>;
-+					vsel-reg = <0x5d>;
-+
-+					regulator-name = "ldo16";
-+					regulator-min-microvolt = <1800000>;
-+					regulator-max-microvolt = <3000000>;
-+					regulator-boot-on;
-+
-+					enable-mask = <0x01>;
-+					idle-mode-mask = <0x10>;
-+					eco-microamp = <10000>;
-+
-+					voltage-table = <1800000>, <1850000>,
-+							<2400000>, <2600000>,
-+							<2700000>, <2850000>,
-+							<2950000>, <3000000>;
-+					off-on-delay-us = <20000>;
-+					startup-delay-us = <360>;
-+				};
-+
-+				ldo17: ldo17@23 {
-+					reg = <0x23>;
-+					vsel-reg = <0x5e>;
-+
-+					regulator-name = "ldo17";
-+					regulator-min-microvolt = <2500000>;
-+					regulator-max-microvolt = <3300000>;
-+
-+					enable-mask = <0x01>;
-+					idle-mode-mask = <0x10>;
-+					eco-microamp = <10000>;
-+
-+					voltage-table = <2500000>, <2600000>,
-+							<2700000>, <2800000>,
-+							<3000000>, <3100000>,
-+							<3200000>, <3300000>;
-+					off-on-delay-us = <20000>;
-+					startup-delay-us = <120>;
-+				};
-+
-+				ldo33: ldo33@32 { /* PEX8606 */
-+					reg = <0x32>;
-+					vsel-reg = <0x6d>;
-+					regulator-name = "ldo33";
-+					regulator-min-microvolt = <2500000>;
-+					regulator-max-microvolt = <3300000>;
-+					regulator-boot-on;
-+
-+					enable-mask = <0x01>;
-+
-+					voltage-table = <2500000>, <2600000>,
-+							<2700000>, <2800000>,
-+							<3000000>, <3100000>,
-+							<3200000>, <3300000>;
-+					off-on-delay-us = <20000>;
-+					startup-delay-us = <120>;
-+				};
-+
-+				ldo34: ldo34@33 { /* GPS AUX IN VDD */
-+					reg = <0x33>;
-+					vsel-reg = <0x6e>;
-+
-+					regulator-name = "ldo34";
-+					regulator-min-microvolt = <2600000>;
-+					regulator-max-microvolt = <3300000>;
-+
-+					enable-mask = <0x01>;
-+
-+					voltage-table = <2600000>, <2700000>,
-+							<2800000>, <2900000>,
-+							<3000000>, <3100000>,
-+							<3200000>, <3300000>;
-+					off-on-delay-us = <20000>;
-+					startup-delay-us = <120>;
-+				};
-+			};
-+		};
-+	};
-+};
--- 
-2.26.2
+And the regmap defaults call backs will need to be updated to reflect 
+the new values.  And these are part of a const struct because the 
+devm_regmap_init declares the config as a const.
+
+     .reg_defaults = lp5012_reg_defs,
+     .num_reg_defaults = ARRAY_SIZE(lp5012_reg_defs),
+
+So I am not sure that adding a loop here just to eliminate some LoC is 
+adding any value here.  I can remove the #defines for the unused runtime 
+registers and hard code the additional register addresses in the default 
+array.  That will at least eliminate some LoC and reduce the object size.
+
+I have no issue with using the REGCACHE_FLAT so I will make that change.
+
+Dan
 
