@@ -2,61 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCCA9243E3E
-	for <lists+devicetree@lfdr.de>; Thu, 13 Aug 2020 19:25:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D312243EA4
+	for <lists+devicetree@lfdr.de>; Thu, 13 Aug 2020 20:02:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726244AbgHMRZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Aug 2020 13:25:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41308 "EHLO
+        id S1726249AbgHMSCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Aug 2020 14:02:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726174AbgHMRZD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Aug 2020 13:25:03 -0400
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FEF5C061383;
-        Thu, 13 Aug 2020 10:25:01 -0700 (PDT)
-Received: by mail-ej1-x643.google.com with SMTP id qc22so7039417ejb.4;
-        Thu, 13 Aug 2020 10:25:01 -0700 (PDT)
+        with ESMTP id S1726167AbgHMSCu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Aug 2020 14:02:50 -0400
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80D61C061757;
+        Thu, 13 Aug 2020 11:02:50 -0700 (PDT)
+Received: by mail-ej1-x644.google.com with SMTP id g19so7131350ejc.9;
+        Thu, 13 Aug 2020 11:02:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=JSziVWRJLj99fs/o9jvqTmAPB4w60TkQsdXXf0rek18=;
-        b=K94gyUdQRZPmB05+3k9Z1PSC0eQHaDF9c/bZGoTac1j0890sqK8Vt9xySvufBvy52n
-         E5eAM8x2Uz2LCkFpQ8MWR7lluDTuYrjrMZUSqN9qpOLvifamb1PsR/5acusPJQBN+XXB
-         7hwbeLXdiuy4aK7Scou98e6zLc/VBDJw+dQmaPageVPlRd62c8bzwL4OXqgXCfgjs1VJ
-         BL5k8c7Yjpm+CvVUbtd9rDA59CUdU0VgLkT++gs9YnYBCq40VEox65WzfkeLhQwHm8rk
-         2/nbfH8NHV1DSvw1NeIQM4iC83kbyEHjvWJGo59qqBF+g4WZ0Was9WhRLZ3PvevYyTp8
-         2vVA==
+        h=from:to:cc:subject:date:message-id;
+        bh=k+X7I3Dm91g0VsSZVIvYnQK6r71BRXtlbeCFbFsrk64=;
+        b=scDYOzozLAVzFpo2tbfIot2rR9/9IltAD0tuAFuZ7Q71nxeQbbQNCj22+aLiCqCYPQ
+         InGoDHYkp1iGqDUMlAuLtnqGrF2877ip1R9rbaQtVY7ZEHNotMQOeppIeqM/PtfskRMU
+         KvVpOm/lImRYi24xXHTpTqfuFjxCnrXVmFy36Hxa5+6bg5DIFQn4EIKo2SFkDYS3cFR0
+         IlgXGiudJyvnzZqs9lkCGMFd2GHvaVbMNAzKHXl7FxW5q1b5y5IH+w2iRy3ZVWO+xnx4
+         nm6tNRw9wlSmmNKr1mgK7BhWW7ucPcSE5m2hYkdNbbQ+i6zy5zNkZ6zEhSyYA2YD0fhe
+         BoHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=JSziVWRJLj99fs/o9jvqTmAPB4w60TkQsdXXf0rek18=;
-        b=JV0BC7+7nK+9rV2qASX5coqOR/oOcGjNyPFh145lbeFav22Y/b/bj5OqzvIjWvTs2f
-         VbqNTslkxp/EoQwU83CNTCyLRLuSGbtzsm8t9efR60+KKIaYHy+HMefhksD1L+lWSoDB
-         YNCLqAmh6s45AU6eti38F03B/T+1cKZhsTwPTMuL3OhthNynutdobh98ysvPIwxe+PgC
-         kf1Puek2KBNz8mFNK2lGXNO0mwSThBcrHui0lQQvdX7Xl1awuvEfK+olx4XefY2s7kah
-         LtP+tYHofI7ocBD6Hy9U+AEhUu2fgdAy/CNY2LO75S9mnUqW5lJSWrlWpXn4wpvweFwO
-         ZM3A==
-X-Gm-Message-State: AOAM531lWJd4AdwNVOVa0N6i6W7uJeW5DCz2cKMC2Js0L62I1q3iKQw6
-        kAXa/lTws7ShE1n5qlXL2PU=
-X-Google-Smtp-Source: ABdhPJz8ON0Jv1CjEw96HVcM4iHk0E1Oa/AAFcWQGJr05GyftdwWS0GRU2210nrlt3Aw7v7LJMTgsQ==
-X-Received: by 2002:a17:906:60d5:: with SMTP id f21mr5777833ejk.94.1597339500199;
-        Thu, 13 Aug 2020 10:25:00 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=k+X7I3Dm91g0VsSZVIvYnQK6r71BRXtlbeCFbFsrk64=;
+        b=cz4Agg23y1egc/4VYvSCljm7v2PzW5ebxhZbLCPKwHxmwRoMPN6q6A8KhzUj54UJpj
+         q91ZD4kpzYnfiD8Bj7fLF97/mWfWTdEUa9aijmchyeWWgZdUn+7x7+dRgNtqq6OLMY66
+         2RyQnV2hr02H8/u7OFuHKlW8xoRcWLY00hrhD7m8pegxGlOcTDETMIed+1dcLESILdii
+         X55wO8MDJv3g2oObO35Zud4l/vHXNQfSoyfUtMlCSKRgAY11vqlUFosl8rwmFWn4GO2c
+         aROPsJ3vzIhDY7tKefCdcrpIvjSMAK/AJ2EKQiS3Z22g6dU9N9gCGjvFGNHROojM/MJX
+         erKA==
+X-Gm-Message-State: AOAM533gUpEm55gVwg4+HWmsyUjn/pxitYnUYjYFUTMQnMHlepSsaPAC
+        7ccBxjRih+qUelJQGzi2q30=
+X-Google-Smtp-Source: ABdhPJxM58xedodB7DOsuuj57AwE9aKU+sUl+gC9XA4qMAErBNxt/zB0UcR4VAT9G/tRXl9btm+U4Q==
+X-Received: by 2002:a17:906:7f0e:: with SMTP id d14mr5917864ejr.400.1597341768898;
+        Thu, 13 Aug 2020 11:02:48 -0700 (PDT)
 Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id u4sm4369408edy.18.2020.08.13.10.24.59
+        by smtp.gmail.com with ESMTPSA id ci27sm5131051ejc.23.2020.08.13.11.02.47
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 13 Aug 2020 10:24:59 -0700 (PDT)
+        Thu, 13 Aug 2020 11:02:48 -0700 (PDT)
 From:   Johan Jonker <jbx6244@gmail.com>
 To:     heiko@sntech.de
 Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] ARM: dts: rockchip: update cpu supplies on rk3066a
-Date:   Thu, 13 Aug 2020 19:24:51 +0200
-Message-Id: <20200813172451.13754-2-jbx6244@gmail.com>
+Subject: [PATCH] ARM: dts: rockchip: update cpu supplies on rk3288
+Date:   Thu, 13 Aug 2020 20:02:41 +0200
+Message-Id: <20200813180241.14660-1-jbx6244@gmail.com>
 X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200813172451.13754-1-jbx6244@gmail.com>
-References: <20200813172451.13754-1-jbx6244@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -64,66 +61,116 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The use of cpu0-supply for cpu0 alone is deprecated,
 so add cpu-supply to each cpu separately and
-update all existing rk3066a boards.
+update all existing rk3288 boards that use this property.
 
 Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 ---
- arch/arm/boot/dts/rk3066a-bqcurie2.dts  | 6 +++++-
- arch/arm/boot/dts/rk3066a-marsboard.dts | 6 +++++-
- arch/arm/boot/dts/rk3066a-rayeager.dts  | 6 +++++-
- 3 files changed, 15 insertions(+), 3 deletions(-)
+ arch/arm/boot/dts/rk3288-miqi.dts     | 14 +++++++++++++-
+ arch/arm/boot/dts/rk3288-popmetal.dts | 14 +++++++++++++-
+ arch/arm/boot/dts/rk3288-r89.dts      | 14 +++++++++++++-
+ arch/arm/boot/dts/rk3288-vyasa.dts    | 14 +++++++++++++-
+ 4 files changed, 52 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm/boot/dts/rk3066a-bqcurie2.dts b/arch/arm/boot/dts/rk3066a-bqcurie2.dts
-index 0a56a2f1b..eba7a1344 100644
---- a/arch/arm/boot/dts/rk3066a-bqcurie2.dts
-+++ b/arch/arm/boot/dts/rk3066a-bqcurie2.dts
-@@ -63,7 +63,11 @@
+diff --git a/arch/arm/boot/dts/rk3288-miqi.dts b/arch/arm/boot/dts/rk3288-miqi.dts
+index 213c9eb84..8a3992105 100644
+--- a/arch/arm/boot/dts/rk3288-miqi.dts
++++ b/arch/arm/boot/dts/rk3288-miqi.dts
+@@ -81,7 +81,19 @@
  };
  
  &cpu0 {
--	cpu0-supply = <&vdd_arm>;
-+	cpu-supply = <&vdd_arm>;
+-	cpu0-supply = <&vdd_cpu>;
++	cpu-supply = <&vdd_cpu>;
 +};
 +
 +&cpu1 {
-+	cpu-supply = <&vdd_arm>;
++	cpu-supply = <&vdd_cpu>;
++};
++
++&cpu2 {
++	cpu-supply = <&vdd_cpu>;
++};
++
++&cpu3 {
++	cpu-supply = <&vdd_cpu>;
  };
  
- &i2c1 {
-diff --git a/arch/arm/boot/dts/rk3066a-marsboard.dts b/arch/arm/boot/dts/rk3066a-marsboard.dts
-index 7e01f6406..6b121658d 100644
---- a/arch/arm/boot/dts/rk3066a-marsboard.dts
-+++ b/arch/arm/boot/dts/rk3066a-marsboard.dts
-@@ -47,7 +47,11 @@
+ &emmc {
+diff --git a/arch/arm/boot/dts/rk3288-popmetal.dts b/arch/arm/boot/dts/rk3288-popmetal.dts
+index 6a5194039..160ed8b93 100644
+--- a/arch/arm/boot/dts/rk3288-popmetal.dts
++++ b/arch/arm/boot/dts/rk3288-popmetal.dts
+@@ -103,7 +103,19 @@
  };
  
  &cpu0 {
--	cpu0-supply = <&vdd_arm>;
-+	cpu-supply = <&vdd_arm>;
+-	cpu0-supply = <&vdd_cpu>;
++	cpu-supply = <&vdd_cpu>;
 +};
 +
 +&cpu1 {
-+	cpu-supply = <&vdd_arm>;
++	cpu-supply = <&vdd_cpu>;
++};
++
++&cpu2 {
++	cpu-supply = <&vdd_cpu>;
++};
++
++&cpu3 {
++	cpu-supply = <&vdd_cpu>;
  };
  
- &i2c1 {
-diff --git a/arch/arm/boot/dts/rk3066a-rayeager.dts b/arch/arm/boot/dts/rk3066a-rayeager.dts
-index f9db6bb9f..309518403 100644
---- a/arch/arm/boot/dts/rk3066a-rayeager.dts
-+++ b/arch/arm/boot/dts/rk3066a-rayeager.dts
-@@ -128,7 +128,11 @@
+ &emmc {
+diff --git a/arch/arm/boot/dts/rk3288-r89.dts b/arch/arm/boot/dts/rk3288-r89.dts
+index a258c7ae5..e5ba901c7 100644
+--- a/arch/arm/boot/dts/rk3288-r89.dts
++++ b/arch/arm/boot/dts/rk3288-r89.dts
+@@ -91,7 +91,19 @@
  };
  
  &cpu0 {
--	cpu0-supply = <&vdd_arm>;
-+	cpu-supply = <&vdd_arm>;
+-	cpu0-supply = <&vdd_cpu>;
++	cpu-supply = <&vdd_cpu>;
 +};
 +
 +&cpu1 {
-+	cpu-supply = <&vdd_arm>;
++	cpu-supply = <&vdd_cpu>;
++};
++
++&cpu2 {
++	cpu-supply = <&vdd_cpu>;
++};
++
++&cpu3 {
++	cpu-supply = <&vdd_cpu>;
  };
  
- &emac {
+ &gmac {
+diff --git a/arch/arm/boot/dts/rk3288-vyasa.dts b/arch/arm/boot/dts/rk3288-vyasa.dts
+index 1a20854a1..aa50f8ed4 100644
+--- a/arch/arm/boot/dts/rk3288-vyasa.dts
++++ b/arch/arm/boot/dts/rk3288-vyasa.dts
+@@ -125,7 +125,19 @@
+ };
+ 
+ &cpu0 {
+-	cpu0-supply = <&vdd_cpu>;
++	cpu-supply = <&vdd_cpu>;
++};
++
++&cpu1 {
++	cpu-supply = <&vdd_cpu>;
++};
++
++&cpu2 {
++	cpu-supply = <&vdd_cpu>;
++};
++
++&cpu3 {
++	cpu-supply = <&vdd_cpu>;
+ };
+ 
+ &emmc {
 -- 
 2.11.0
 
