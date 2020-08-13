@@ -2,146 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9ED6243283
-	for <lists+devicetree@lfdr.de>; Thu, 13 Aug 2020 04:34:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 576662432CF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Aug 2020 05:33:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726531AbgHMCex (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Aug 2020 22:34:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41984 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726419AbgHMCex (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Aug 2020 22:34:53 -0400
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B0315206B2
-        for <devicetree@vger.kernel.org>; Thu, 13 Aug 2020 02:34:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597286092;
-        bh=TAz5cCcHd4yqMqBvYJKy8U8P7gsxoLPKhwjFOZLWDIM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=u7NISzl7Yli6ona7KYhrl0rknhFMDrmUOybIArIa6PNnCnIAIG6LDNNLDcnEZt2CL
-         zvG2etBn5SPemQrpFB2II8E+Wayl7PnVBh4BHb1KmsY+Hh1mzgA04DWjTszDIo4QBq
-         Uc6ti+9tlAAzLatF/CIOjO3CgHWgIn8ASZ/tuvjQ=
-Received: by mail-oi1-f175.google.com with SMTP id a24so3743286oia.6
-        for <devicetree@vger.kernel.org>; Wed, 12 Aug 2020 19:34:52 -0700 (PDT)
-X-Gm-Message-State: AOAM53221GFEglji9Q3OaC7rgFMnWYeePHAVYOAUBOKAW22fudPgQo76
-        GQ9/GA1WJRWPCldDly/4Za6Nnzfsw/LFQ+Kv+w==
-X-Google-Smtp-Source: ABdhPJywFKo5UazHL3R0/K51u8Ssfvgo/4jzjVgwnfimP3//6zmigP5vJq0Ak/mfqsro52gy1NdAYAbs4OnuvkCvHeo=
-X-Received: by 2002:aca:90a:: with SMTP id 10mr519961oij.106.1597286092087;
- Wed, 12 Aug 2020 19:34:52 -0700 (PDT)
+        id S1726567AbgHMDcw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Aug 2020 23:32:52 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:7438 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726578AbgHMDcw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Aug 2020 23:32:52 -0400
+X-UUID: 6cf0ec8961014ac19540170ac67b094d-20200813
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=GXyvs9gvhHEWr1UkIPbeOiv49/Wc3S/k2qDEZ2S1xYI=;
+        b=jyhh3iR2ZpSIvxNkbT9EcJ8oZk9lkvrhSnqVbAz2nTpsrmyo0AdyGz8XOa6gjpmWFPBwbLhfUQmL/6D89scfB0FegeG7vogccqO3Uu4g/zAlOnC+eqnE0WjugKD1Gdza8BHM1IessAxGw9zoFvijMivs2AK90ZKRiHZU/xudcOE=;
+X-UUID: 6cf0ec8961014ac19540170ac67b094d-20200813
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <neal.liu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1170510967; Thu, 13 Aug 2020 11:32:47 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 13 Aug 2020 11:32:45 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 13 Aug 2020 11:32:45 +0800
+From:   Neal Liu <neal.liu@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Neal Liu <neal.liu@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>
+Subject: [PATCH v6] Add MediaTek MT6779 devapc driver
+Date:   Thu, 13 Aug 2020 11:32:42 +0800
+Message-ID: <1597289564-17030-1-git-send-email-neal.liu@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-References: <cover.1596631695.git.robin.murphy@arm.com> <91284e754802c37c303556a1cffbb46f0aebbd1f.1596631695.git.robin.murphy@arm.com>
-In-Reply-To: <91284e754802c37c303556a1cffbb46f0aebbd1f.1596631695.git.robin.murphy@arm.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 12 Aug 2020 20:34:41 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLcyhVRsdiPY_-F55aeE5kpVun12aMXqz=53fYMbYGuMQ@mail.gmail.com>
-Message-ID: <CAL_JsqLcyhVRsdiPY_-F55aeE5kpVun12aMXqz=53fYMbYGuMQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] perf: Add Arm CMN-600 DT binding
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        tuanphan@os.amperecomputing.com, tsahee@amazon.com,
-        harb@amperecomputing.com, james.yang@arm.com,
-        "Saidi, Ali" <alisaidi@amazon.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 5, 2020 at 6:57 AM Robin Murphy <robin.murphy@arm.com> wrote:
->
-> Document the requirements for the CMN-600 DT binding. The internal
-> topology is almost entirely discoverable by walking a tree of ID
-> registers, but sadly both the starting point for that walk and the
-> exact format of those registers are configuration-dependent and not
-> discoverable from some sane fixed location. Oh well.
->
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-> ---
->  .../devicetree/bindings/perf/arm-cmn.yaml     | 57 +++++++++++++++++++
+VGhlc2UgcGF0Y2ggc2VyaWVzIGludHJvZHVjZSBhIE1lZGlhVGVrIE1UNjc3OSBkZXZhcGMgZHJp
+dmVyLg0KDQpNZWRpYVRlayBidXMgZmFicmljIHByb3ZpZGVzIFRydXN0Wm9uZSBzZWN1cml0eSBz
+dXBwb3J0IGFuZCBkYXRhIHByb3RlY3Rpb24gdG8gcHJldmVudCBzbGF2ZXMgZnJvbSBiZWluZyBh
+Y2Nlc3NlZCBieSB1bmV4cGVjdGVkIG1hc3RlcnMuDQpUaGUgc2VjdXJpdHkgdmlvbGF0aW9uIGlz
+IGxvZ2dlZCBhbmQgc2VudCB0byB0aGUgcHJvY2Vzc29yIGZvciBmdXJ0aGVyIGFuYWx5c2lzIG9y
+IGNvdW50ZXJtZWFzdXJlcy4NCg0KQW55IG9jY3VycmVuY2Ugb2Ygc2VjdXJpdHkgdmlvbGF0aW9u
+IHdvdWxkIHJhaXNlIGFuIGludGVycnVwdCwgYW5kIGl0IHdpbGwgYmUgaGFuZGxlZCBieSBtdGst
+ZGV2YXBjIGRyaXZlci4NClRoZSB2aW9sYXRpb24gaW5mb3JtYXRpb24gaXMgcHJpbnRlZCBpbiBv
+cmRlciB0byBmaW5kIHRoZSBtdXJkZXJlci4NCg0KY2hhbmdlcyBzaW5jZSB2NToNCi0gcmVtb3Zl
+IHJlZHVuZGFudCB3cml0ZSByZWcgb3BlcmF0aW9uLg0KLSB1c2Ugc3RhdGljIHZhcmlhYmxlIG9m
+IHZpb19kYmdzIGluc3RlYWQuDQotIGFkZCBzdG9wX2RldmFwYygpIGlmIGRyaXZlciBpcyByZW1v
+dmVkLg0KDQpjaGFuZ2VzIHNpbmNlIHY0Og0KLSByZWZhY3RvciBkYXRhIHN0cnVjdHVyZS4NCi0g
+bWVyZ2UgdHdvIHNpbXBsZSBmdW5jdGlvbnMgaW50byBvbmUuDQotIHJlZmFjdG9yIHJlZ2lzdGVy
+IHNldHRpbmcgdG8gcHJldmVudCB0b28gbWFueSBmdW5jdGlvbiBjYWxsIG92ZXJoZWFkLg0KDQpj
+aGFuZ2VzIHNpbmNlIHYzOg0KLSByZXZpc2UgdmlvbGF0aW9uIGhhbmRsaW5nIGZsb3cgdG8gbWFr
+ZSBpdCBtb3JlIGVhc2lseSB0byB1bmRlcnN0YW5kDQogIGhhcmR3YXJlIGJlaGF2aW9yLg0KLSBh
+ZGQgbW9yZSBjb21tZW50cyB0byB1bmRlcnN0YW5kIGhvdyBoYXJkd2FyZSB3b3Jrcy4NCg0KY2hh
+bmdlcyBzaW5jZSB2MjoNCi0gcGFzcyBwbGF0Zm9ybSBpbmZvIHRocm91Z2ggRFQgZGF0YS4NCi0g
+cmVtb3ZlIHVubmVjZXNzYXJ5IGZ1bmN0aW9uLg0KLSByZW1vdmUgc2xhdmVfdHlwZSBiZWNhdXNl
+IGl0IGFsd2F5cyBlcXVhbHMgdG8gMSBpbiBjdXJyZW50IHN1cHBvcnQgU29DLg0KLSB1c2Ugdmlv
+X2lkeF9udW0gaW5zdHJlYWQgb2YgbGlzdCBhbGwgZGV2aWNlcycgaW5kZXguDQotIGFkZCBtb3Jl
+IGNvbW1lbnRzIHRvIGRlc2NyaWJlIGhhcmR3YXJlIGJlaGF2aW9yLg0KDQpjaGFuZ2VzIHNpbmNl
+IHYxOg0KLSBtb3ZlIFNvQyBzcGVjaWZpYyBwYXJ0IHRvIERUIGRhdGEuDQotIHJlbW92ZSB1bm5l
+Y2Vzc2FyeSBib3VuZGFyeSBjaGVjay4NCi0gcmVtb3ZlIHVubmVjZXNzYXJ5IGRhdGEgdHlwZSBk
+ZWNsYXJhdGlvbi4NCi0gdXNlIHJlYWRfcG9sbF90aW1lb3V0KCkgaW5zdHJlYWQgb2YgZm9yIGxv
+b3AgcG9sbGluZy4NCi0gcmV2aXNlIGNvZGluZyBzdHlsZSBlbGVnYW50bHkuDQoNCg0KKioqIEJM
+VVJCIEhFUkUgKioqDQoNCk5lYWwgTGl1ICgyKToNCiAgZHQtYmluZGluZ3M6IGRldmFwYzogYWRk
+IGJpbmRpbmdzIGZvciBtdGstZGV2YXBjDQogIHNvYzogbWVkaWF0ZWs6IGFkZCBtdDY3NzkgZGV2
+YXBjIGRyaXZlcg0KDQogLi4uL2JpbmRpbmdzL3NvYy9tZWRpYXRlay9kZXZhcGMueWFtbCAgICAg
+ICAgIHwgIDU4ICsrKysNCiBkcml2ZXJzL3NvYy9tZWRpYXRlay9LY29uZmlnICAgICAgICAgICAg
+ICAgICAgfCAgIDkgKw0KIGRyaXZlcnMvc29jL21lZGlhdGVrL01ha2VmaWxlICAgICAgICAgICAg
+ICAgICB8ICAgMSArDQogZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLWRldmFwYy5jICAgICAgICAg
+ICAgIHwgMzIwICsrKysrKysrKysrKysrKysrKw0KIDQgZmlsZXMgY2hhbmdlZCwgMzg4IGluc2Vy
+dGlvbnMoKykNCiBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL3NvYy9tZWRpYXRlay9kZXZhcGMueWFtbA0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2
+ZXJzL3NvYy9tZWRpYXRlay9tdGstZGV2YXBjLmMNCg0KLS0gDQoyLjE4LjANCg==
 
-arm,cmn.yaml
-
->  1 file changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/perf/arm-cmn.yaml
->
-> diff --git a/Documentation/devicetree/bindings/perf/arm-cmn.yaml b/Documentation/devicetree/bindings/perf/arm-cmn.yaml
-> new file mode 100644
-> index 000000000000..167491787088
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/perf/arm-cmn.yaml
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: GPL-2.0
-
-Dual license new bindings: (GPL-2.0-only OR BSD-2-Clause)
-
-> +# Copyright 2020 Arm Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/perf/arm-cmn.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Arm CMN (Coherent Mesh Network) Performance Monitors
-> +
-> +maintainers:
-> +  - Robin Murphy <robin.murphy@arm.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: arm,cmn-600
-> +
-> +  reg:
-> +    items:
-> +      - description: Physical address of the base (PERIPHBASE) and
-> +          size (up to 64MB) of the configuration address space.
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 4
-> +    items:
-> +      - description: Overflow interrupt for DTC0
-> +      - description: Overflow interrupt for DTC1
-> +      - description: Overflow interrupt for DTC2
-> +      - description: Overflow interrupt for DTC3
-> +    description: One interrupt for each DTC domain implemented must
-> +      be specified, in order. DTC0 is always present.
-> +
-> +  arm,root-node :
-
-extra space       ^
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Offset from PERIPHBASE of the configuration
-> +      discovery node (see TRM definition of ROOTNODEBASE).
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - arm,root-node
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    pmu@50000000 {
-> +        compatible = "arm,cmn-600";
-> +        reg = <0x50000000 0x4000000>;
-> +        /* 4x2 mesh with one DTC, and CFG node at 0,1,1,0 */
-> +        interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-> +        arm,root-node = <0x104000>;
-> +    };
-> +...
-> --
-> 2.28.0.dirty
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
