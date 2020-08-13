@@ -2,79 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85CCE244172
-	for <lists+devicetree@lfdr.de>; Fri, 14 Aug 2020 00:47:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B0E22441C5
+	for <lists+devicetree@lfdr.de>; Fri, 14 Aug 2020 01:39:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726526AbgHMWrC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Aug 2020 18:47:02 -0400
-Received: from retiisi.org.uk ([95.216.213.190]:45724 "EHLO
-        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726205AbgHMWrC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 Aug 2020 18:47:02 -0400
-Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 7AB1F634C87;
-        Fri, 14 Aug 2020 01:46:19 +0300 (EEST)
-Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
-        (envelope-from <sakari.ailus@retiisi.org.uk>)
-        id 1k6LzH-0001kc-9J; Fri, 14 Aug 2020 01:46:19 +0300
-Date:   Fri, 14 Aug 2020 01:46:19 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Eugen Hristev <eugen.hristev@microchip.com>
-Cc:     mchehab@kernel.org, hverkuil@xs4all.nl, robh+dt@kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: media: csi2dc: add bindings for
- microchip csi2dc
-Message-ID: <20200813224619.GN840@valkosipuli.retiisi.org.uk>
-References: <20200703074416.55272-1-eugen.hristev@microchip.com>
- <20200703074416.55272-2-eugen.hristev@microchip.com>
+        id S1726593AbgHMXj1 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 13 Aug 2020 19:39:27 -0400
+Received: from [186.47.21.114] ([186.47.21.114]:57388 "EHLO mail.hmvi.gob.ec"
+        rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726531AbgHMXj0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Aug 2020 19:39:26 -0400
+X-Greylist: delayed 15625 seconds by postgrey-1.27 at vger.kernel.org; Thu, 13 Aug 2020 19:39:26 EDT
+Received: from localhost (localhost [127.0.0.1])
+        by mail.hmvi.gob.ec (Postfix) with ESMTP id A2F0BC0323A8B;
+        Thu, 13 Aug 2020 12:34:50 -0500 (-05)
+Received: from mail.hmvi.gob.ec ([127.0.0.1])
+        by localhost (mail.hmvi.gob.ec [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id H5x0DT5BB2rE; Thu, 13 Aug 2020 12:34:50 -0500 (-05)
+Received: from localhost (localhost [127.0.0.1])
+        by mail.hmvi.gob.ec (Postfix) with ESMTP id 481A5C036F953;
+        Thu, 13 Aug 2020 12:22:37 -0500 (-05)
+X-Virus-Scanned: amavisd-new at hmvi.gob.ec
+Received: from mail.hmvi.gob.ec ([127.0.0.1])
+        by localhost (mail.hmvi.gob.ec [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id j_uXn-rKL4ZK; Thu, 13 Aug 2020 12:22:37 -0500 (-05)
+Received: from [10.73.80.190] (unknown [105.8.3.183])
+        by mail.hmvi.gob.ec (Postfix) with ESMTPSA id 87D53C0370255;
+        Thu, 13 Aug 2020 12:18:33 -0500 (-05)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200703074416.55272-2-eugen.hristev@microchip.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8BIT
+Content-Description: Mail message body
+Subject: =?utf-8?q?Covid_19_Wohlt=C3=A4tigkeitsfonds?=
+To:     Recipients <danny.puetate@mail.hmvi.gob.ec>
+From:   ''Tayeb Souami'' <danny.puetate@mail.hmvi.gob.ec>
+Date:   Thu, 13 Aug 2020 19:18:12 +0200
+Reply-To: Tayebsouam.spende@gmail.com
+Message-Id: <20200813171834.87D53C0370255@mail.hmvi.gob.ec>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Eugen,
+Lieber Freund,
 
-On Fri, Jul 03, 2020 at 10:44:13AM +0300, Eugen Hristev wrote:
-> Add bindings documentation for microchip CSI2 Demultiplexer controller.
+Ich bin Herr Tayeb Souami, New Jersey, Vereinigte Staaten von Amerika,
+der Mega-Gewinner von $ 315million In Mega Millions Jackpot, spende ich
+an 5 zufällige Personen, wenn Sie diese E-Mail erhalten, dann wurde Ihre
+E-Mail nach einem Spinball ausgewählt.Ich habe den größten Teil meines
+Vermögens auf eine Reihe von Wohltätigkeitsorganisationen und
+Organisationen verteilt.Ich habe mich freiwillig dazu entschieden, die
+Summe von € 2.000.000,00 an Sie als eine der ausgewählten 5 zu spenden,
+um meine Gewinne zu überprüfen, sehen Sie bitte meine You Tube Seite
+unten.
 
-...
 
-> +  port@1:
-> +    type: object
-> +    description:
-> +      Output port node, single endpoint, describing the output pad.
-> +
-> +    properties:
-> +      '#address-cells':
-> +        const: 1
-> +
-> +      '#size-cells':
-> +        const: 0
-> +
-> +      reg:
-> +        const: 1
-> +
-> +    patternProperties:
-> +      "^endpoint@[0-9a-f]$":
-> +        type: object
-> +
-> +        properties:
-> +          reg:
-> +            enum: [0, 1, 2, 3]
-> +            description: virtual channel for the endpoint
+UHR MICH HIER: https://www.youtube.com/watch?v=Z6ui8ZDQ6Ks
 
-Unless you need this right now I'd just hard code this to zero in the
-driver. You can't have more endpoints for active devices anyway, can you?
 
--- 
-Sakari Ailus
+Das ist dein Spendencode: [TS530342018]
+
+
+Antworten Sie mit dem SPENDE-CODE an diese
+
+E-Mail:Tayebsouam.spende@gmail.com
+
+
+Ich hoffe, Sie und Ihre Familie glücklich zu machen.
+
+
+Grüße
+
+Herr Tayeb Souami
