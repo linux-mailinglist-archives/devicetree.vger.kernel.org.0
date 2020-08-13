@@ -2,25 +2,25 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BFD11243212
-	for <lists+devicetree@lfdr.de>; Thu, 13 Aug 2020 03:29:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5838F243215
+	for <lists+devicetree@lfdr.de>; Thu, 13 Aug 2020 03:29:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726600AbgHMB3l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Aug 2020 21:29:41 -0400
+        id S1726609AbgHMB3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Aug 2020 21:29:43 -0400
 Received: from perceval.ideasonboard.com ([213.167.242.64]:57532 "EHLO
         perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726126AbgHMB3j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Aug 2020 21:29:39 -0400
+        with ESMTP id S1726518AbgHMB3n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Aug 2020 21:29:43 -0400
 Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D51BD1254;
-        Thu, 13 Aug 2020 03:29:33 +0200 (CEST)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9CF22186A;
+        Thu, 13 Aug 2020 03:29:34 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1597282174;
-        bh=QdJFLCHW5z2JsRZf06aTR0tpLstR64R1LL4ZN49zT+c=;
+        s=mail; t=1597282175;
+        bh=MZn8mLN17DKncF4EzGPQOwmCiHKdGcl5P1OVLaGPHuo=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=a8c1sfvvkWsx2oE3Em+HqJ7PoqxoHzcqhojSCZ8Kl3lT1svLi7mUb+xNaNUfVh6nw
-         eM/7+WIj/VSTaR9HuhyPgt5rLiAOFSi2FE0+DR6SH8UW9RpjaFloiPcQU5ollWbFil
-         LKy2qDHKzb4E9fmqa6KpTACJC5NPGt71RGe0n8W4=
+        b=hC8DF3IGTnkdKJuVftP62Dll0HeMlUKg7X9GIOiGpfhzYaiB3KlBE9h3d111eY1iy
+         g9a3nK3STdDR5d/eZuVP2Iib8JH4PxeNNToKsBq6uq2eoIJ6FSffptsPdLSexBotle
+         SNoCkdMosbhrmeDy0hspjo6zn5KATGBDfXI2M5/U=
 From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To:     dri-devel@lists.freedesktop.org
 Cc:     devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>,
@@ -29,9 +29,9 @@ Cc:     devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         linux-arm-kernel@lists.infradead.org,
         =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
-Subject: [PATCH 5/8] ARM: dts: imx: Fix LCDIF compatible strings
-Date:   Thu, 13 Aug 2020 04:29:07 +0300
-Message-Id: <20200813012910.13576-6-laurent.pinchart@ideasonboard.com>
+Subject: [PATCH 6/8] arm64: dts: imx8mq: Fix LCDIF compatible strings
+Date:   Thu, 13 Aug 2020 04:29:08 +0300
+Message-Id: <20200813012910.13576-7-laurent.pinchart@ideasonboard.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200813012910.13576-1-laurent.pinchart@ideasonboard.com>
 References: <20200813012910.13576-1-laurent.pinchart@ideasonboard.com>
@@ -42,79 +42,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The LCDIF in the i.MX6 SoCs has additional features compared to the
+The LCDIF in the i.MX8 SoCs has additional features compared to the
 i.MX28. Replace the fsl,imx28-lcdif fallback compatible string with
 fsl,imx6sx-lcdif to reflect that.
 
 Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 ---
- arch/arm/boot/dts/imx6sl.dtsi  | 2 +-
- arch/arm/boot/dts/imx6sll.dtsi | 2 +-
- arch/arm/boot/dts/imx6sx.dtsi  | 4 ++--
- arch/arm/boot/dts/imx6ul.dtsi  | 2 +-
- 4 files changed, 5 insertions(+), 5 deletions(-)
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/imx6sl.dtsi b/arch/arm/boot/dts/imx6sl.dtsi
-index 911d8cf77f2c..deeb647ffc3f 100644
---- a/arch/arm/boot/dts/imx6sl.dtsi
-+++ b/arch/arm/boot/dts/imx6sl.dtsi
-@@ -769,7 +769,7 @@ epdc: epdc@20f4000 {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index 978f8122c0d2..4731c3992179 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -506,7 +506,7 @@ sdma2: sdma@302c0000 {
  			};
  
- 			lcdif: lcdif@20f8000 {
--				compatible = "fsl,imx6sl-lcdif", "fsl,imx28-lcdif";
-+				compatible = "fsl,imx6sl-lcdif", "fsl,imx6sx-lcdif";
- 				reg = <0x020f8000 0x4000>;
- 				interrupts = <0 39 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6SL_CLK_LCDIF_PIX>,
-diff --git a/arch/arm/boot/dts/imx6sll.dtsi b/arch/arm/boot/dts/imx6sll.dtsi
-index edd3abb9a9f1..c51072bb43ba 100644
---- a/arch/arm/boot/dts/imx6sll.dtsi
-+++ b/arch/arm/boot/dts/imx6sll.dtsi
-@@ -644,7 +644,7 @@ pxp: pxp@20f0000 {
- 			};
- 
- 			lcdif: lcd-controller@20f8000 {
--				compatible = "fsl,imx6sll-lcdif", "fsl,imx28-lcdif";
-+				compatible = "fsl,imx6sll-lcdif", "fsl,imx6sx-lcdif";
- 				reg = <0x020f8000 0x4000>;
- 				interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6SLL_CLK_LCDIF_PIX>,
-diff --git a/arch/arm/boot/dts/imx6sx.dtsi b/arch/arm/boot/dts/imx6sx.dtsi
-index 94e3df47d1ad..67da3a2d48ec 100644
---- a/arch/arm/boot/dts/imx6sx.dtsi
-+++ b/arch/arm/boot/dts/imx6sx.dtsi
-@@ -1241,7 +1241,7 @@ csi2: csi@221c000 {
- 				};
- 
- 				lcdif1: lcdif@2220000 {
--					compatible = "fsl,imx6sx-lcdif", "fsl,imx28-lcdif";
-+					compatible = "fsl,imx6sx-lcdif";
- 					reg = <0x02220000 0x4000>;
- 					interrupts = <GIC_SPI 5 IRQ_TYPE_EDGE_RISING>;
- 					clocks = <&clks IMX6SX_CLK_LCDIF1_PIX>,
-@@ -1253,7 +1253,7 @@ lcdif1: lcdif@2220000 {
- 				};
- 
- 				lcdif2: lcdif@2224000 {
--					compatible = "fsl,imx6sx-lcdif", "fsl,imx28-lcdif";
-+					compatible = "fsl,imx6sx-lcdif";
- 					reg = <0x02224000 0x4000>;
- 					interrupts = <GIC_SPI 6 IRQ_TYPE_EDGE_RISING>;
- 					clocks = <&clks IMX6SX_CLK_LCDIF2_PIX>,
-diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
-index 5379a03391bd..b16cce1680a9 100644
---- a/arch/arm/boot/dts/imx6ul.dtsi
-+++ b/arch/arm/boot/dts/imx6ul.dtsi
-@@ -978,7 +978,7 @@ csi: csi@21c4000 {
- 			};
- 
- 			lcdif: lcdif@21c8000 {
--				compatible = "fsl,imx6ul-lcdif", "fsl,imx28-lcdif";
-+				compatible = "fsl,imx6ul-lcdif", "fsl,imx6sx-lcdif";
- 				reg = <0x021c8000 0x4000>;
+ 			lcdif: lcd-controller@30320000 {
+-				compatible = "fsl,imx8mq-lcdif", "fsl,imx28-lcdif";
++				compatible = "fsl,imx8mq-lcdif", "fsl,imx6sx-lcdif";
+ 				reg = <0x30320000 0x10000>;
  				interrupts = <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6UL_CLK_LCDIF_PIX>,
+ 				clocks = <&clk IMX8MQ_CLK_LCDIF_PIXEL>;
 -- 
 Regards,
 
