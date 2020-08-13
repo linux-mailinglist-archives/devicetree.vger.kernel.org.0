@@ -2,83 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B55D243DE9
-	for <lists+devicetree@lfdr.de>; Thu, 13 Aug 2020 19:03:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32F73243E41
+	for <lists+devicetree@lfdr.de>; Thu, 13 Aug 2020 19:25:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726673AbgHMRCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Aug 2020 13:02:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37876 "EHLO
+        id S1726384AbgHMRZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Aug 2020 13:25:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726658AbgHMRCt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Aug 2020 13:02:49 -0400
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75BADC061757;
-        Thu, 13 Aug 2020 10:02:49 -0700 (PDT)
-Received: by mail-pl1-x641.google.com with SMTP id bh1so2876534plb.12;
-        Thu, 13 Aug 2020 10:02:49 -0700 (PDT)
+        with ESMTP id S1726192AbgHMRZD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Aug 2020 13:25:03 -0400
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5EEAC061757;
+        Thu, 13 Aug 2020 10:25:00 -0700 (PDT)
+Received: by mail-ed1-x544.google.com with SMTP id v22so4805843edy.0;
+        Thu, 13 Aug 2020 10:25:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=w0HX6Ms7J59aY7v+H6lsDXSO/qCU5OzjkYB+jXfYoQE=;
-        b=QK+7kN6y7ySnkdkMTMLiLdrZA7aKAudDtauIMVgYHTB0n2KN3padLuBo9edFkbl4Q4
-         fYffiFSUzbUv2Z81C1j8IC47C3r1o8gJIo7LcmRGIMGhHxDMdPzOmJC9msICB4IOfmV3
-         b1abdjmH6U6RYI0/Uxsz0I6/ebSXcfIiDi8/+WFcO4ZX85iz8BnecoYgOLPnv98kPsri
-         HJbHxpQpwdYMwOiu5Wots6k6KE2ji30cZsjHrGeodQl6Wj9tJfKJ3OzitmNaFl1GZJ1X
-         30dMHXtXskfq3/MFla1cYMwHfRgPUYlaYYjJGhTi/UzccmXCbe7Y+nyOme3hbms7kuUW
-         Lp6A==
+        h=from:to:cc:subject:date:message-id;
+        bh=rSB8VVTvzJbQ2bhhJZj7hUI5mv93QDUUshAlmirOUtA=;
+        b=c+x3NSPqjwWvDSgs3rLRPS/myd6Ky3FgX8yuOwAPAlleEeiEqEEE2tzOl7fzjJdE0s
+         ssTQzwyAAb/RTFFgEMmqaFKMCO0NUfqOd8PyxwW1BGvOkxKw1Xg/BMarEPevtrCgoTjG
+         9xLki6fJBLkST2VXBNEGooWW+HkDoBg8z12yDZ1/oy2hhxZxLGfIM1fNzAW6u0l/lY1q
+         E8fjSh7idIZSivlQ+rotSlpY9Noh2AV1JD9muDoBsHv96F6rNVy8Z0w7jDj2tLxezKnl
+         Lc7kCFAO+/F7qi8rXbXyeOKPKAeFrrMZrVms4BW5RfUB9R51Tasq78gG82x/UEhPBUqK
+         YYHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=w0HX6Ms7J59aY7v+H6lsDXSO/qCU5OzjkYB+jXfYoQE=;
-        b=dbUtJK0jbGFsFTmYXH2REPk95XR2ppMAOnpsXi3OAePfWhD0PYmbQLJrGRBrDXiU/l
-         qLyXB5dNoP6fLWsB7qoejOJtr3I3jQR7tVf8eFG905pDXZpF+kfq1BNI6Tfao+uPK7if
-         ztGGfXieEb0sS2t6Qd7PbWe6nukVdWGGpDlcwq3Ww5P65o1LykRavWNkRmfNTW+EIa7M
-         SaTdnOLZZZeAN4SWpSE/ggwtLoiESNd8l9QHutc5XeEeszy4ERXlXmHQZYG2shuwerOL
-         KidEID8Y7KEonFNa73s3y3gDiVZ9IezpAmPnwnZd0F75EAsJBrnJWrRo1Ith166teFbs
-         daLg==
-X-Gm-Message-State: AOAM5322wLmwDtDcDREpGTI/sg+iaGho35NDBaA0KRbUd8owZ8hMiYad
-        H6Tv9FIf4fi6khdBUKQUlWwVnAkF
-X-Google-Smtp-Source: ABdhPJzJP/15Zem7Le6v8YgMOGYIN7zSd+czft4LonweRh71EHvEmXTaITMNh/3Tu8nIh8fAwf+H9Q==
-X-Received: by 2002:a17:902:8347:: with SMTP id z7mr4779952pln.20.1597338168631;
-        Thu, 13 Aug 2020 10:02:48 -0700 (PDT)
-Received: from [10.230.30.107] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id s61sm6020005pjb.57.2020.08.13.10.02.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Aug 2020 10:02:48 -0700 (PDT)
-Subject: Re: [PATCH 08/14] mips: bmips: add BCM63268 irq definitions
-To:     =?UTF-8?Q?=c3=81lvaro_Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
-        robh+dt@kernel.org, tsbogend@alpha.franken.de,
-        jonas.gorski@gmail.com, bcm-kernel-feedback-list@broadcom.com,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20200812063129.361862-1-noltari@gmail.com>
- <20200812063129.361862-9-noltari@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <46445978-d169-87fb-bdf6-18c1c61f4d8f@gmail.com>
-Date:   Thu, 13 Aug 2020 10:02:39 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.1.1
-MIME-Version: 1.0
-In-Reply-To: <20200812063129.361862-9-noltari@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=rSB8VVTvzJbQ2bhhJZj7hUI5mv93QDUUshAlmirOUtA=;
+        b=gul+f4AcuZYSeeBTQoRXsam7OkdEeALQoUbnKSkp5hrpAx7Fvi4uuDMmfpqFRSCYmm
+         3RlXfPvUOdJ/7ikC+sIlp0tCUQ85MhZgxfG+52DDPSkGGj+Z7WANY200ZAYJPfOMsM2h
+         od/aLJN/Kj0aIFr4dm+OF1m1GRp0wbg+nUPODcAUEhMTJ+6es9eqOxoChEdj/iJVy3Kl
+         Acu2dAmoM/4VpoD+GLBb3mSbtuO9s4l87viXDQdAaFk80+bZXneeUu5ymCLx3poVa48h
+         Pb63fKLBLxF7KctFK4K1eqZOAGf3HhuIXIVUNLR1zEcXWG+3BSG9l8tFQ3idmTZAHYfA
+         i9Qg==
+X-Gm-Message-State: AOAM530yVNIHqHwZrDN9ZVGWY5MIsvuPrAyX2cimNXslka9QfpvVSLRI
+        davbxWFVzJq/nhLj8jTcdvA=
+X-Google-Smtp-Source: ABdhPJwUpMviHhcDaq2Pfp/b+cSasXXDYlD4c2EJfbiFFCF9FcIzkMU6r1RZW7EUcBCrymI+g2F1TQ==
+X-Received: by 2002:aa7:cdc4:: with SMTP id h4mr5532080edw.252.1597339499335;
+        Thu, 13 Aug 2020 10:24:59 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id u4sm4369408edy.18.2020.08.13.10.24.58
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 13 Aug 2020 10:24:58 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] ARM: dts: rockchip: rk3066a: add label to cpu@1
+Date:   Thu, 13 Aug 2020 19:24:50 +0200
+Message-Id: <20200813172451.13754-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add label to cpu@1 for later use.
 
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm/boot/dts/rk3066a.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On 8/11/2020 11:31 PM, Álvaro Fernández Rojas wrote:
-> Add header with BCM63268 definitions in order to be able to include it from
-> device tree files.
-> 
-> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
-
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+diff --git a/arch/arm/boot/dts/rk3066a.dtsi b/arch/arm/boot/dts/rk3066a.dtsi
+index b599394d1..252750c97 100644
+--- a/arch/arm/boot/dts/rk3066a.dtsi
++++ b/arch/arm/boot/dts/rk3066a.dtsi
+@@ -36,7 +36,7 @@
+ 			clock-latency = <40000>;
+ 			clocks = <&cru ARMCLK>;
+ 		};
+-		cpu@1 {
++		cpu1: cpu@1 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a9";
+ 			next-level-cache = <&L2>;
 -- 
-Florian
+2.11.0
+
