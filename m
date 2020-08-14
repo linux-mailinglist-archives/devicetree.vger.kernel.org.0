@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA9F224457C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Aug 2020 09:15:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47FD1244665
+	for <lists+devicetree@lfdr.de>; Fri, 14 Aug 2020 10:22:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726228AbgHNHOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Aug 2020 03:14:00 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:41476 "EHLO
+        id S1726780AbgHNIWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Aug 2020 04:22:31 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:50416 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726798AbgHNHOA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Aug 2020 03:14:00 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07E7DdSD034276;
-        Fri, 14 Aug 2020 02:13:39 -0500
+        with ESMTP id S1726736AbgHNIWb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Aug 2020 04:22:31 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07E8MEot052857;
+        Fri, 14 Aug 2020 03:22:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1597389219;
-        bh=6HpcResJMgUsplZKJl9InYJFIkGZ0vKUjGDdIgYfgCs=;
+        s=ti-com-17Q1; t=1597393334;
+        bh=nN9rxIxe2PrNFTatI6qBHXFwgSY/cf8NzryVjn5ngHo=;
         h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=azmpoUWWOIKErTnQ7IQEMPyjuqShMOVh5rLf2IFmCQPUE4uF5C8Ki6IjMvGl6nKD6
-         syJ7Jo7EnMyftV676QxAGcObgWgR6VBrJw2eWVZES6Tw5/IQa9IDVYiwtpaB3O4Qor
-         aXvquofpqpRU5tqK0A9BqoCsPuZyQ3pspVF14m9A=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07E7DdGw019060
+        b=RV51vlfgmsP1JFGyB2rQcoIXuXoRwPANRcEX5Aj45esq4Zi5OMRUBg3XvvPEHFlu/
+         QO01N9js9Ij4EBMpZ+dESN+wLhFKxYabpmYY7SANfrztFk0umhZM+wsWxCBtM5KO4R
+         xZOAnRDmG+dHubwgF3K8y01Vy0UdnxhvMhzrJuxU=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07E8MD8R060005
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 14 Aug 2020 02:13:39 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+        Fri, 14 Aug 2020 03:22:14 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 14
- Aug 2020 02:13:39 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2020 03:22:13 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 14 Aug 2020 02:13:39 -0500
+ Frontend Transport; Fri, 14 Aug 2020 03:22:13 -0500
 Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07E7DZDS073565;
-        Fri, 14 Aug 2020 02:13:36 -0500
-Subject: Re: [PATCH v8 1/3] dt-bindings: drm/bridge: Document Cadence MHDP
- bridge bindings
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07E8MADr012933;
+        Fri, 14 Aug 2020 03:22:10 -0500
+Subject: Re: [PATCH v8 2/3] drm: bridge: Add support for Cadence MHDP DPI/DP
+ bridge
 To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Swapnil Jakhade <sjakhade@cadence.com>
 CC:     <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
@@ -48,15 +48,15 @@ CC:     <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
         <yamonkar@cadence.com>, <jsarha@ti.com>, <nsekhar@ti.com>,
         <praneeth@ti.com>
 References: <1596713672-8146-1-git-send-email-sjakhade@cadence.com>
- <1596713672-8146-2-git-send-email-sjakhade@cadence.com>
- <20200811003638.GB13513@pendragon.ideasonboard.com>
+ <1596713672-8146-3-git-send-email-sjakhade@cadence.com>
+ <20200811023622.GC13513@pendragon.ideasonboard.com>
 From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-Message-ID: <89942101-52c4-e1bb-3605-569b311da89f@ti.com>
-Date:   Fri, 14 Aug 2020 10:13:35 +0300
+Message-ID: <a2f2ff9d-0c52-12d9-23c5-bab35ef8f8f6@ti.com>
+Date:   Fri, 14 Aug 2020 11:22:09 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200811003638.GB13513@pendragon.ideasonboard.com>
+In-Reply-To: <20200811023622.GC13513@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -66,14 +66,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/08/2020 03:36, Laurent Pinchart wrote:
+On 11/08/2020 05:36, Laurent Pinchart wrote:
 
-> I've got a chance to study the J721E datasheet, and it shows the DP
-> bridge has 4 inputs, to support MST. Shouldn't this already be reflected
-> in the DT bindings ? I think it should be as simple as having 4 input
-> ports (port@0 to port@3) and one output port (port@4).
+>> +static int cdns_mhdp_connector_init(struct cdns_mhdp_device *mhdp)
+>> +{
+>> +	u32 bus_format = MEDIA_BUS_FMT_RGB121212_1X36;
+>> +	struct drm_connector *conn = &mhdp->connector;
+>> +	struct drm_bridge *bridge = &mhdp->bridge;
+>> +	int ret;
+>> +
+>> +	if (!bridge->encoder) {
+>> +		DRM_ERROR("Parent encoder object not found");
+>> +		return -ENODEV;
+>> +	}
+>> +
+>> +	conn->polled = DRM_CONNECTOR_POLL_HPD;
+>> +
+>> +	ret = drm_connector_init(bridge->dev, conn, &cdns_mhdp_conn_funcs,
+>> +				 DRM_MODE_CONNECTOR_DisplayPort);
+>> +	if (ret) {
+>> +		DRM_ERROR("Failed to initialize connector with drm\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	drm_connector_helper_add(conn, &cdns_mhdp_conn_helper_funcs);
+>> +
+>> +	ret = drm_display_info_set_bus_formats(&conn->display_info,
+>> +					       &bus_format, 1);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	conn->display_info.bus_flags = DRM_BUS_FLAG_DE_HIGH;
+> 
+> Aren't these supposed to be retrieved from the display ? Why do we need
+> to override them here ?
 
-I think this is a good point, mhdp has 4 input streams.
+DE_HIGH is meant for the display controller. I think this should be in bridge->timings->input_bus_flags
+
+>> +static int cdns_mhdp_atomic_check(struct drm_bridge *bridge,
+>> +				  struct drm_bridge_state *bridge_state,
+>> +				  struct drm_crtc_state *crtc_state,
+>> +				  struct drm_connector_state *conn_state)
+>> +{
+>> +	struct cdns_mhdp_device *mhdp = bridge_to_mhdp(bridge);
+>> +	const struct drm_display_mode *mode = &crtc_state->adjusted_mode;
+>> +	int ret;
+>> +
+>> +	if (!mhdp->plugged)
+>> +		return 0;
+>> +
+>> +	mutex_lock(&mhdp->link_mutex);
+>> +
+>> +	if (!mhdp->link_up) {
+>> +		ret = cdns_mhdp_link_up(mhdp);
+>> +		if (ret < 0)
+>> +			goto err_check;
+>> +	}
+> 
+> atomic_check isn't supposed to access the hardware. Is there a reason
+> this is needed ?
+
+We have been going back and forth with this. The basic problem is that to understand which
+videomodes can be used, you need to do link training to see the bandwidth available.
+
+I'm not sure if we strictly need to do LT in atomic check, though... It would then pass modes that
+can't be used, but perhaps that's not a big issue.
+
+I think the main point with doing LT in certain places is to filter the list of video modes passed
+to userspace, as we can't pass the modes from EDID directly without filtering them based on the link
+bandwidth.
 
  Tomi
 
