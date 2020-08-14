@@ -2,24 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 486A9244A7B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Aug 2020 15:36:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50B0C244AA6
+	for <lists+devicetree@lfdr.de>; Fri, 14 Aug 2020 15:39:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728613AbgHNNga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Aug 2020 09:36:30 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:43782 "EHLO honk.sigxcpu.org"
+        id S1726196AbgHNNgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Aug 2020 09:36:31 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:43810 "EHLO honk.sigxcpu.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726196AbgHNNga (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        id S1728611AbgHNNga (ORCPT <rfc822;devicetree@vger.kernel.org>);
         Fri, 14 Aug 2020 09:36:30 -0400
 Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 1E861FB07;
-        Fri, 14 Aug 2020 15:36:26 +0200 (CEST)
+        by honk.sigxcpu.org (Postfix) with ESMTP id CA88FFB02;
+        Fri, 14 Aug 2020 15:36:27 +0200 (CEST)
 X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
 Received: from honk.sigxcpu.org ([127.0.0.1])
         by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id q6Zfzkg2jRDO; Fri, 14 Aug 2020 15:36:24 +0200 (CEST)
+        with ESMTP id 2sdFtjjeNwml; Fri, 14 Aug 2020 15:36:24 +0200 (CEST)
 Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id EC786457CC; Fri, 14 Aug 2020 15:36:23 +0200 (CEST)
+        id 02B6E4576F; Fri, 14 Aug 2020 15:36:23 +0200 (CEST)
 From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
 To:     Thierry Reding <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
@@ -38,10 +38,12 @@ To:     Thierry Reding <thierry.reding@gmail.com>,
         "David S. Miller" <davem@davemloft.net>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 0/3] drm/panel: Add panel driver for the Mantix MLAF057WE51-X DSI panel
-Date:   Fri, 14 Aug 2020 15:36:20 +0200
-Message-Id: <cover.1597412076.git.agx@sigxcpu.org>
+Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: Add mantix vendor prefix
+Date:   Fri, 14 Aug 2020 15:36:21 +0200
+Message-Id: <b5f80625269a03a27828e3e6f22f316806c39d68.1597412076.git.agx@sigxcpu.org>
 X-Mailer: git-send-email 2.26.2
+In-Reply-To: <cover.1597412076.git.agx@sigxcpu.org>
+References: <cover.1597412076.git.agx@sigxcpu.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -50,26 +52,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The panel uses a Focaltech FT8006p, the touch part is handled by the already
-existing edt-ft5x06. It can be found in e.g. the Librem 5.
+Add prefix for Mantix Display Technology Co.,Ltd.
 
-This series is against next-20200814.
+Signed-off-by: Guido Günther <agx@sigxcpu.org>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Guido Günther (3):
-  dt-bindings: vendor-prefixes: Add mantix vendor prefix
-  dt-bindings: Add Mantix MLAF057WE51-X panel bindings
-  drm/panel: Add panel driver for the Mantix MLAF057WE51-X DSI panel
-
- .../display/panel/mantix,mlaf057we51-x.yaml   |  73 ++++
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- MAINTAINERS                                   |   7 +
- drivers/gpu/drm/panel/Kconfig                 |  11 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- .../gpu/drm/panel/panel-mantix-mlaf057we51.c  | 362 ++++++++++++++++++
- 6 files changed, 456 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
- create mode 100644 drivers/gpu/drm/panel/panel-mantix-mlaf057we51.c
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 2baee2c817c1a..59d4c8b068c4d 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -611,6 +611,8 @@ patternProperties:
+     description: Linux Automation GmbH
+   "^macnica,.*":
+     description: Macnica Americas
++  "^mantix,.*":
++    description: Mantix Display Technology Co.,Ltd.
+   "^mapleboard,.*":
+     description: Mapleboard.org
+   "^marvell,.*":
 -- 
 2.26.2
 
