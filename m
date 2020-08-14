@@ -2,85 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D7EB24480F
-	for <lists+devicetree@lfdr.de>; Fri, 14 Aug 2020 12:32:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 646B2244878
+	for <lists+devicetree@lfdr.de>; Fri, 14 Aug 2020 12:55:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726922AbgHNKcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Aug 2020 06:32:03 -0400
-Received: from imap2.colo.codethink.co.uk ([78.40.148.184]:46754 "EHLO
-        imap2.colo.codethink.co.uk" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726012AbgHNKcC (ORCPT
+        id S1727857AbgHNKxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Aug 2020 06:53:51 -0400
+Received: from mail29.static.mailgun.info ([104.130.122.29]:27407 "EHLO
+        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727074AbgHNKxu (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Aug 2020 06:32:02 -0400
-X-Greylist: delayed 1673 seconds by postgrey-1.27 at vger.kernel.org; Fri, 14 Aug 2020 06:32:02 EDT
-Received: from [188.210.212.0] (helo=localhost.localdomain)
-        by imap2.colo.codethink.co.uk with esmtpsa  (Exim 4.92 #3 (Debian))
-        id 1k6WZD-000572-AB; Fri, 14 Aug 2020 11:04:07 +0100
-From:   Thomas Preston <thomas.preston@codethink.co.uk>
-To:     linus.walleij@linaro.org, robh+dt@kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Fri, 14 Aug 2020 06:53:50 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1597402430; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=rlS6jtvmdtc8gXzY+6308pLXZafr54hh4AT7H4tFc6g=; b=O4Z2CsgBst+o/NMowb4TlRVOnixHHCMw/bcCYL4WGLLbuKu14Ws8p96uLAltggxwFWfI3s/s
+ VxGNH/wIqRr/MjQxqBYCDs0JlE5fC2JZfJLtVe594SDC6DXfUuSdmFVyMrmMLblfxvoF67Hb
+ Kz8oIAzaYx8x5rnf3r7wUmsybo8=
+X-Mailgun-Sending-Ip: 104.130.122.29
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n08.prod.us-east-1.postgun.com with SMTP id
+ 5f366d2ed48d4625ca4fdb2b (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 14 Aug 2020 10:53:34
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 31F11C43391; Fri, 14 Aug 2020 10:53:34 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from rohkumar-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rohitkr)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8FE86C433C6;
+        Fri, 14 Aug 2020 10:53:29 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 8FE86C433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=rohitkr@codeaurora.org
+From:   Rohit kumar <rohitkr@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     thomas.preston@codethink.co.uk
-Subject: [PATCH 3/3] devicetree: mcp23s08: Remove interrupt-controller
-Date:   Fri, 14 Aug 2020 11:03:57 +0100
-Message-Id: <20200814100357.209340-4-thomas.preston@codethink.co.uk>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200814100357.209340-1-thomas.preston@codethink.co.uk>
-References: <20200814100357.209340-1-thomas.preston@codethink.co.uk>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Cc:     Rohit kumar <rohitkr@codeaurora.org>
+Subject: [PATCH v6 00/12]  ASoC: qcom: Add support for SC7180 lpass variant
+Date:   Fri, 14 Aug 2020 16:22:56 +0530
+Message-Id: <1597402388-14112-1-git-send-email-rohitkr@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The mcp23s08 device and friends are interrupt /client/ nodes, and should
-not reference the interrupt controller device tree properties
-"interrupt-controller" and "interrupt-cells" [0].
+This patch chain add audio support for SC7180 soc by doing the required
+modification in existing common lpass-cpu/lpass-platform driver.
+This also fixes some concurrency issue.
 
-Remove the confusing "interrupt-controller" and "interrupt-cells"
-properties from the pinctrl-mcp23s08 devicetree bindings documentation.
+This patch series is already tested by Srinivas on Dragon Board 410c.
+Changes since v5:
+        - Fixed remove api in lpass-sc7180.c
+        - Addressed comments by Rob in yaml Documentation.
 
-[0] Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+Ajit Pandey (4):
+  ASoC: qcom: Add common array to initialize soc based core clocks
+  ASoC: qcom: lpass-platform: Replace card->dev with component->dev
+  include: dt-bindings: sound: Add sc7180-lpass bindings header
+  ASoC: qcom: lpass-sc7180: Add platform driver for lpass audio
 
-Signed-off-by: Thomas Preston <thomas.preston@codethink.co.uk>
----
- .../devicetree/bindings/pinctrl/pinctrl-mcp23s08.txt      | 8 --------
- 1 file changed, 8 deletions(-)
+Rohit kumar (8):
+  ASoC: qcom: lpass-cpu: Move ahbix clk to platform specific function
+  ASoC: qcom: lpass-platform: fix memory leak
+  ASoC: qcom: lpass: Use regmap_field for i2sctl and dmactl registers
+  ASoC: qcom: lpass-cpu: fix concurrency issue
+  dt-bindings: sound: lpass-cpu: Add sc7180 lpass cpu node
+  ASoC: qcom: lpass-cpu: Use platform_get_resource
+  ASoC: qcom: lpass-platform: Use platform_get_irq
+  dt-bindings: sound: lpass-cpu: Move to yaml format
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.txt
-index 8b94aa8f5971..bb1b53030552 100644
---- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.txt
-+++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.txt
-@@ -43,10 +43,6 @@ Required device specific properties (only for SPI chips):
- - spi-max-frequency = The maximum frequency this chip is able to handle
- 
- Optional properties:
--- #interrupt-cells : Should be two.
--  - first cell is the pin number
--  - second cell is used to specify flags.
--- interrupt-controller: Marks the device node as a interrupt controller.
- - drive-open-drain: Sets the ODR flag in the IOCON register. This configures
-         the IRQ output as open drain active low.
- 
-@@ -72,8 +68,6 @@ gpiom1: gpio@20 {
- 
-         interrupt-parent = <&gpio1>;
-         interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
--        interrupt-controller;
--        #interrupt-cells=<2>;
-         microchip,irq-mirror;
- };
- 
-@@ -130,8 +124,6 @@ gpio21: gpio@21 {
- 	interrupt-parent = <&socgpio>;
- 	interrupts = <0x17 0x8>;
- 	interrupt-names = "mcp23017@21 irq";
--	interrupt-controller;
--	#interrupt-cells = <0x2>;
- 	microchip,irq-mirror;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2cgpio0irq &gpio21pullups>;
+ .../devicetree/bindings/sound/qcom,lpass-cpu.txt   |  79 --------
+ .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  | 189 ++++++++++++++++++
+ include/dt-bindings/sound/sc7180-lpass.h           |  10 +
+ sound/soc/qcom/Kconfig                             |   5 +
+ sound/soc/qcom/Makefile                            |   2 +
+ sound/soc/qcom/lpass-apq8016.c                     |  86 ++++++--
+ sound/soc/qcom/lpass-cpu.c                         | 204 ++++++++++---------
+ sound/soc/qcom/lpass-ipq806x.c                     |  67 +++++++
+ sound/soc/qcom/lpass-lpaif-reg.h                   | 157 ++++++++-------
+ sound/soc/qcom/lpass-platform.c                    | 155 +++++++++++----
+ sound/soc/qcom/lpass-sc7180.c                      | 216 +++++++++++++++++++++
+ sound/soc/qcom/lpass.h                             |  63 +++++-
+ 12 files changed, 934 insertions(+), 299 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/qcom,lpass-cpu.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+ create mode 100644 include/dt-bindings/sound/sc7180-lpass.h
+ create mode 100644 sound/soc/qcom/lpass-sc7180.c
+
 -- 
-2.26.2
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
