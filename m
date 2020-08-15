@@ -2,115 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C38372452BE
-	for <lists+devicetree@lfdr.de>; Sat, 15 Aug 2020 23:54:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AB57245263
+	for <lists+devicetree@lfdr.de>; Sat, 15 Aug 2020 23:49:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729109AbgHOVym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Aug 2020 17:54:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45624 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729093AbgHOVwc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Aug 2020 17:52:32 -0400
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E39EC03B3D2;
-        Sat, 15 Aug 2020 01:45:40 -0700 (PDT)
-Received: by mail-lj1-x244.google.com with SMTP id h19so12311364ljg.13;
-        Sat, 15 Aug 2020 01:45:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Jwsjl5Yl1LFkiTpIfV4FC2pCDY0RlfTGIWFy5618czY=;
-        b=JscczZiBHiR/E30j1ODTRjEZ1J6tzdLICchjfKYD9oDq4hBTSw16cEKX38WSL3gIRR
-         xrnOqDQrO6y6nSFgZXIXzbnTdDu/52bbdqMewnXiQwAXD4xwaQ5W/NwThRCamidnVbmi
-         +OlUdBEBVMhTn2wgmOeXl6eQAS5m7c4rvBo0DLKI2UIO242DkP5o4nz2udq02GRUsqvU
-         nz5Syvq8CziHecgVZN5uKOS2Z/hKrUDqLlYS/7A+CIhHbPQO7h7h90xHiEBwYg/VpZsi
-         Hk/phvDKEAzoetTrUL85EGK3C692AW4EDjNNzVdsvul0ZuYBcZUwoFMdM1I+OhdgZN87
-         3y0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=Jwsjl5Yl1LFkiTpIfV4FC2pCDY0RlfTGIWFy5618czY=;
-        b=exEXvbWnvm/975OkswMu12dF470FkJxH/W2gACT96ituYQUvo4xznEJxaPEjqcp2hw
-         e5tx9r0Tfq8goRDeO493KT4dPz77mRmVv94IAsH4kvrBUGjZggPyiyJTIx/SWt+hbZaW
-         c2hCthKcuT1hjan4ZQpXgWal4Itk0wr238qLRrGLWt0+d/cgm933emLWn7bO58CPTH3U
-         R668z6UeSHR0inuw5bc8NcwNq9YDRce618SjXSZsZggby0haXDipZzJIBwWY/JxFneUq
-         pRhrIhtoD1ol6Z4w0Kk6Xkwb+xZfEVN3N7LLUmC3I5X9WENunrc0qCFjXREWT7g+Sffh
-         a7rQ==
-X-Gm-Message-State: AOAM530KkoUDm23CgyqT30bT/mFuRIe6+IQ03RnlBOPVAlKo/bcjcqH3
-        Iqprgt57QfFq/eRVtyKcCZk=
-X-Google-Smtp-Source: ABdhPJxfJPykrCx26X5MYrFKAvPWACW5EIexq2GfCBCd7z/Z++I/TIHakOXnD8XGsq3zFFne/FcS3Q==
-X-Received: by 2002:a2e:808f:: with SMTP id i15mr3244164ljg.151.1597481138853;
-        Sat, 15 Aug 2020 01:45:38 -0700 (PDT)
-Received: from ?IPv6:2a00:1fa0:6e9:851e:a10b:7957:433d:a960? ([2a00:1fa0:6e9:851e:a10b:7957:433d:a960])
-        by smtp.gmail.com with ESMTPSA id f3sm2331191ljo.81.2020.08.15.01.45.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Aug 2020 01:45:38 -0700 (PDT)
-Subject: Re: [PATCH 3/5] arm64: dts: renesas: r8a774a1: Add PCIe EP nodes
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        id S1726357AbgHOVt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Aug 2020 17:49:56 -0400
+Received: from asavdk4.altibox.net ([109.247.116.15]:48008 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726135AbgHOVt4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Aug 2020 17:49:56 -0400
+Received: from ravnborg.org (unknown [188.228.123.71])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk4.altibox.net (Postfix) with ESMTPS id 86FA780539;
+        Sat, 15 Aug 2020 12:02:31 +0200 (CEST)
+Date:   Sat, 15 Aug 2020 12:02:30 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
         Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20200814173037.17822-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20200814173037.17822-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Organization: Brain-dead Software
-Message-ID: <fcabccab-54fb-8b8a-7034-9b0da9d32339@gmail.com>
-Date:   Sat, 15 Aug 2020 11:45:23 +0300
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        allen <allen.chen@ite.com.tw>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] drm/panel: Add panel driver for the Mantix
+ MLAF057WE51-X DSI panel
+Message-ID: <20200815100230.GA1002374@ravnborg.org>
+References: <cover.1597412076.git.agx@sigxcpu.org>
+ <0a7539135cc46eec5636ca89f52695f4a1197841.1597412076.git.agx@sigxcpu.org>
 MIME-Version: 1.0
-In-Reply-To: <20200814173037.17822-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0a7539135cc46eec5636ca89f52695f4a1197841.1597412076.git.agx@sigxcpu.org>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=aP3eV41m c=1 sm=1 tr=0
+        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+        a=8nJEP1OIZ-IA:10 a=ze386MxoAAAA:8 a=e5mUnYsNAAAA:8
+        a=2VR2e5HfQ1QhP8mth8gA:9 a=wPNLvfGTeEIA:10 a=iBZjaW-pnkserzjvUTHh:22
+        a=Vxmtnl_E_bksehYqCbjh:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
+Hi Guido.
 
-On 14.08.2020 20:30, Lad Prabhakar wrote:
+> +static int mantix_probe(struct mipi_dsi_device *dsi)
+> +{
+> +	struct device *dev = &dsi->dev;
+> +	struct mantix *ctx;
+> +	int ret;
+> +
+> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+> +	if (!ctx)
+> +		return -ENOMEM;
+> +
+> +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
+> +	if (IS_ERR(ctx->reset_gpio)) {
+> +		DRM_DEV_ERROR(dev, "cannot get reset gpio\n");
+> +		return PTR_ERR(ctx->reset_gpio);
+> +	}
+> +
+> +	mipi_dsi_set_drvdata(dsi, ctx);
+> +	ctx->dev = dev;
+> +
+> +	dsi->lanes = 4;
+> +	dsi->format = MIPI_DSI_FMT_RGB888;
+> +	dsi->mode_flags = MIPI_DSI_MODE_VIDEO |
+> +		MIPI_DSI_MODE_VIDEO_BURST | MIPI_DSI_MODE_VIDEO_SYNC_PULSE;
+> +
+> +	ctx->avdd = devm_regulator_get(dev, "avdd");
+> +	if (IS_ERR(ctx->avdd)) {
+> +		ret = PTR_ERR(ctx->avdd);
+> +		if (ret != -EPROBE_DEFER)
+> +			DRM_DEV_ERROR(dev,
+> +				      "Failed to request avdd regulator: %d\n",
+> +				      ret);
+> +		return ret;
+> +	}
 
-> Add PCIe EP nodes to R8A774A1 (RZ/G2M) SoC dtsi.
+Consider to use the recently added dev_err_probe() here and below.
+Note: Not part of drm-misc-next yet - but hopefully after -rc1
+when a backmerge is done.
+
+	Sam
+
+> +	ctx->avee = devm_regulator_get(dev, "avee");
+> +	if (IS_ERR(ctx->avee)) {
+> +		ret = PTR_ERR(ctx->avee);
+> +		if (ret != -EPROBE_DEFER)
+> +			DRM_DEV_ERROR(dev,
+> +				      "Failed to request avee regulator: %d\n",
+> +				      ret);
+> +		return ret;
+> +	}
+> +	ctx->vddi = devm_regulator_get(dev, "vddi");
+> +	if (IS_ERR(ctx->vddi)) {
+> +		ret = PTR_ERR(ctx->vddi);
+> +		if (ret != -EPROBE_DEFER)
+> +			DRM_DEV_ERROR(dev,
+> +				      "Failed to request vddi regulator: %d\n",
+> +				      ret);
+> +		return ret;
+> +	}
+> +
+> +	drm_panel_init(&ctx->panel, dev, &mantix_drm_funcs,
+> +		       DRM_MODE_CONNECTOR_DSI);
+> +
+> +	ret = drm_panel_of_backlight(&ctx->panel);
+> +	if (ret)
+> +		return ret;
+> +	drm_panel_add(&ctx->panel);
+> +
+> +	ret = mipi_dsi_attach(dsi);
+> +	if (ret < 0) {
+> +		DRM_DEV_ERROR(dev,
+> +			      "mipi_dsi_attach failed (%d). Is host ready?\n",
+> +			      ret);
+> +		drm_panel_remove(&ctx->panel);
+> +		return ret;
+> +	}
+> +
+> +	DRM_DEV_INFO(dev, "%ux%u@%u %ubpp dsi %udl - ready\n",
+> +		     default_mode.hdisplay, default_mode.vdisplay,
+> +		     drm_mode_vrefresh(&default_mode),
+> +		     mipi_dsi_pixel_format_to_bpp(dsi->format), dsi->lanes);
+> +
+> +	return 0;
+> +}
+> +
+> +static void mantix_shutdown(struct mipi_dsi_device *dsi)
+> +{
+> +	struct mantix *ctx = mipi_dsi_get_drvdata(dsi);
+> +	int ret;
+> +
+> +	ret = drm_panel_unprepare(&ctx->panel);
+> +	if (ret < 0)
+> +		DRM_DEV_ERROR(&dsi->dev, "Failed to unprepare panel: %d\n",
+> +			      ret);
+> +
+> +	ret = drm_panel_disable(&ctx->panel);
+> +	if (ret < 0)
+> +		DRM_DEV_ERROR(&dsi->dev, "Failed to disable panel: %d\n",
+> +			      ret);
+> +}
+> +
+> +static int mantix_remove(struct mipi_dsi_device *dsi)
+> +{
+> +	struct mantix *ctx = mipi_dsi_get_drvdata(dsi);
+> +	int ret;
+> +
+> +	mantix_shutdown(dsi);
+> +
+> +	ret = mipi_dsi_detach(dsi);
+> +	if (ret < 0)
+> +		DRM_DEV_ERROR(&dsi->dev, "Failed to detach from DSI host: %d\n",
+> +			      ret);
+> +
+> +	drm_panel_remove(&ctx->panel);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id mantix_of_match[] = {
+> +	{ .compatible = "mantix,mlaf057we51-x" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, mantix_of_match);
+> +
+> +static struct mipi_dsi_driver mantix_driver = {
+> +	.probe	= mantix_probe,
+> +	.remove = mantix_remove,
+> +	.shutdown = mantix_shutdown,
+> +	.driver = {
+> +		.name = DRV_NAME,
+> +		.of_match_table = mantix_of_match,
+> +	},
+> +};
+> +module_mipi_dsi_driver(mantix_driver);
+> +
+> +MODULE_AUTHOR("Guido Günther <agx@sigxcpu.org>");
+> +MODULE_DESCRIPTION("DRM driver for Mantix MLAF057WE51-X MIPI DSI panel");
+> +MODULE_LICENSE("GPL v2");
+> -- 
+> 2.26.2
 > 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
->   arch/arm64/boot/dts/renesas/r8a774a1.dtsi | 38 +++++++++++++++++++++++
->   1 file changed, 38 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-> index a603d947970e..50e9ed16a36d 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-> @@ -2369,6 +2369,44 @@
->   			status = "disabled";
->   		};
->   
-> +		pciec0_ep: pcie_ep@fe000000 {
-
-    Hyphens are preferred over underscores in the node/prop names.
-
-[...]> +		pciec1_ep: pcie_ep@ee800000 {
-
-    Ditto, should be "pci-ep@ee800000".
-
-[...]
-
-MBR, Sergei
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
