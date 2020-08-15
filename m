@@ -2,119 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B568C2454A6
-	for <lists+devicetree@lfdr.de>; Sun, 16 Aug 2020 00:33:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F5292454B8
+	for <lists+devicetree@lfdr.de>; Sun, 16 Aug 2020 00:40:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728599AbgHOWdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Aug 2020 18:33:41 -0400
-Received: from asavdk3.altibox.net ([109.247.116.14]:50554 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728262AbgHOWdl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Aug 2020 18:33:41 -0400
-Received: from ravnborg.org (unknown [188.228.123.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id CA97720022;
-        Sat, 15 Aug 2020 12:46:52 +0200 (CEST)
-Date:   Sat, 15 Aug 2020 12:46:51 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        allen <allen.chen@ite.com.tw>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] drm/panel: Add panel driver for the Mantix
- MLAF057WE51-X DSI panel
-Message-ID: <20200815104651.GA1005928@ravnborg.org>
-References: <cover.1597412076.git.agx@sigxcpu.org>
- <0a7539135cc46eec5636ca89f52695f4a1197841.1597412076.git.agx@sigxcpu.org>
- <20200815100230.GA1002374@ravnborg.org>
- <20200815104022.GA5641@bogon.m.sigxcpu.org>
+        id S1729442AbgHOWkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Aug 2020 18:40:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53820 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728691AbgHOWkm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Aug 2020 18:40:42 -0400
+X-Greylist: delayed 1043 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 15 Aug 2020 12:52:13 PDT
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D7A3C0045A9
+        for <devicetree@vger.kernel.org>; Sat, 15 Aug 2020 12:52:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=NZz5P8BM3tHNzmWyW/tiN3l65bAUBW4lt4bzCJ66z68=; b=b8UR4KGgg/hxBQPpx9/tqMcMl2
+        tqYA8knKIqEx6tl2x/aEG057H+uEVufRQSbUUps3O/6wc8f/rWa1k3G1Zl1/3opJ8xtdwe7hANGUJ
+        VTvU7k14EF49TnPMSVmNs3gJ4oonTIxX24r6xWrKc4vPB7PNeIq31HWHgpPTNdp/OFEI=;
+Received: from p5dcc3368.dip0.t-ipconnect.de ([93.204.51.104] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1k71wl-0000Fp-4t; Sat, 15 Aug 2020 21:34:31 +0200
+Received: from andi by aktux with local (Exim 4.92)
+        (envelope-from <andreas@kemnade.info>)
+        id 1k71wk-0005dC-LK; Sat, 15 Aug 2020 21:34:30 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        andreas@kemnade.info, Anson.Huang@nxp.com,
+        marcel.ziswiler@toradex.com, sebastien.szymanski@armadeus.com,
+        michael@walle.cc, rjones@gateworks.com, leoyang.li@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, j.neuschaefer@gmx.net,
+        letux-kernel@openphoenux.org
+Subject: [PATCH 0/2] ARM: dts: add Tolino Shine 2 HD
+Date:   Sat, 15 Aug 2020 21:33:34 +0200
+Message-Id: <20200815193336.21598-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200815104022.GA5641@bogon.m.sigxcpu.org>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=f+hm+t6M c=1 sm=1 tr=0
-        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=8nJEP1OIZ-IA:10 a=T4MLU0igAHpipydq7w0A:9 a=wPNLvfGTeEIA:10
+X-Spam-Score: -1.0 (-)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 15, 2020 at 12:40:22PM +0200, Guido Günther wrote:
-> Hi Sam,
-> On Sat, Aug 15, 2020 at 12:02:30PM +0200, Sam Ravnborg wrote:
-> > Hi Guido.
-> > 
-> > > +static int mantix_probe(struct mipi_dsi_device *dsi)
-> > > +{
-> > > +	struct device *dev = &dsi->dev;
-> > > +	struct mantix *ctx;
-> > > +	int ret;
-> > > +
-> > > +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-> > > +	if (!ctx)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-> > > +	if (IS_ERR(ctx->reset_gpio)) {
-> > > +		DRM_DEV_ERROR(dev, "cannot get reset gpio\n");
-> > > +		return PTR_ERR(ctx->reset_gpio);
-> > > +	}
-> > > +
-> > > +	mipi_dsi_set_drvdata(dsi, ctx);
-> > > +	ctx->dev = dev;
-> > > +
-> > > +	dsi->lanes = 4;
-> > > +	dsi->format = MIPI_DSI_FMT_RGB888;
-> > > +	dsi->mode_flags = MIPI_DSI_MODE_VIDEO |
-> > > +		MIPI_DSI_MODE_VIDEO_BURST | MIPI_DSI_MODE_VIDEO_SYNC_PULSE;
-> > > +
-> > > +	ctx->avdd = devm_regulator_get(dev, "avdd");
-> > > +	if (IS_ERR(ctx->avdd)) {
-> > > +		ret = PTR_ERR(ctx->avdd);
-> > > +		if (ret != -EPROBE_DEFER)
-> > > +			DRM_DEV_ERROR(dev,
-> > > +				      "Failed to request avdd regulator: %d\n",
-> > > +				      ret);
-> > > +		return ret;
-> > > +	}
-> > 
-> > Consider to use the recently added dev_err_probe() here and below.
-> > Note: Not part of drm-misc-next yet - but hopefully after -rc1
-> > when a backmerge is done.
-> 
-> In fact I did decided against it since i was told that missing dev_* and
-> DRM_* logging shouldn't be done. So is that o.k. nowadays?
-s/missing/mixing/
+This adds a device tree for the Tolino Shine 2 HD Ebook reader.
 
-I often request that logging is consistent - so I recognize the
-argument.
+It is equipped with an i.MX6SL SoC. Except for backlight (via an EC) and
+the EPD, drivers are available and therefore things are defined in the
+dts.
 
-For panel/* I have not made up my mind what I think is the best
-approach. The DRM_DEV_* and DRM_* logging do not add much value.
-So I have been tempted several times to convert all logging in
-panel/ to dev_* and pr_* (when no struct device * is available).
-That would also avoid that we mix up logging.
+Andreas Kemnade (2):
+  dt-bindings: arm: fsl: add compatible string for Tolino Shine 2 HD
+  ARM: dts: imx: add devicetree for Tolino Shine 2 HD
 
-We have drm_* logging - but they require a valid drm_device * which we
-do not have in the the panel drivers. So they are ruled out here.
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts  | 582 ++++++++++++++++++
+ 3 files changed, 584 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts
 
-Do you have any opinions/comments on this?
+-- 
+2.20.1
 
-	Sam
