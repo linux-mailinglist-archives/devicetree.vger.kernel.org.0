@@ -2,157 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 487D82453F7
-	for <lists+devicetree@lfdr.de>; Sun, 16 Aug 2020 00:10:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBEFB245373
+	for <lists+devicetree@lfdr.de>; Sun, 16 Aug 2020 00:01:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729264AbgHOWK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Aug 2020 18:10:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41776 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728715AbgHOWK1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 15 Aug 2020 18:10:27 -0400
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2C87322E00;
-        Sat, 15 Aug 2020 03:03:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597460618;
-        bh=LWZ3gG05lyWwHbQNUP3ksCUHLVF4wFzI8rRKV3uiNak=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=aPLmc5XIVhNgOz/dUkmBwJHhTub2jfiFdCUnXPgEVZvsfdM60xwqSPiHXUjZo/gZg
-         W13nLli/i5dcL9+RLLKwoyKEj/1rS4pFIGP+81I7TUivDsE3PPl0LwR+oPRQbUf2eR
-         Zq7320V1UEnYBmGlW09/3R0ltEf9DMa1/eUQy5SE=
-Received: by mail-ej1-f53.google.com with SMTP id o18so11890552eje.7;
-        Fri, 14 Aug 2020 20:03:38 -0700 (PDT)
-X-Gm-Message-State: AOAM532l65Y/ZcRSYu08JznzZJX4t0VbxK+0NyP7fgsbMXobqvSx6uR6
-        V4hyvhlOtaj5s/12iSBYqiYEfVXTgvT5G9IeYQ==
-X-Google-Smtp-Source: ABdhPJyt/63tP7h7Rcip1YksjvsGO7WzFuUVEIVYhoFntsd6TkK7JtmalTJjkuyszotatOlhPqyFfaDNHeccHlw5oaU=
-X-Received: by 2002:a17:906:7492:: with SMTP id e18mr5232063ejl.375.1597460616714;
- Fri, 14 Aug 2020 20:03:36 -0700 (PDT)
+        id S1729297AbgHOWBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Aug 2020 18:01:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45642 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728747AbgHOVvZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Aug 2020 17:51:25 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2B6FC03B3C6
+        for <devicetree@vger.kernel.org>; Sat, 15 Aug 2020 00:50:49 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1k6qxZ-0008Au-Ql; Sat, 15 Aug 2020 09:50:37 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1k6qxW-0005H6-Cf; Sat, 15 Aug 2020 09:50:34 +0200
+Date:   Sat, 15 Aug 2020 09:50:32 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
+Cc:     thierry.reding@gmail.com, lee.jones@linaro.org, kernel@axis.com,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, oliver@schinagl.nl
+Subject: Re: [PATCH 2/2] pwm: Add GPIO PWM driver
+Message-ID: <20200815075032.k2xyw75l56sbl7nx@pengutronix.de>
+References: <20200814155513.31936-1-vincent.whitchurch@axis.com>
+ <20200814155513.31936-2-vincent.whitchurch@axis.com>
 MIME-Version: 1.0
-References: <1597289564-17030-1-git-send-email-neal.liu@mediatek.com> <1597289564-17030-3-git-send-email-neal.liu@mediatek.com>
-In-Reply-To: <1597289564-17030-3-git-send-email-neal.liu@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Sat, 15 Aug 2020 11:03:24 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_88YSHOvDEHm+rM1=fTv_y25nUh1tuLUH8YSxH5UD1bug@mail.gmail.com>
-Message-ID: <CAAOTY_88YSHOvDEHm+rM1=fTv_y25nUh1tuLUH8YSxH5UD1bug@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] soc: mediatek: add mt6779 devapc driver
-To:     Neal Liu <neal.liu@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org,
-        wsd_upstream <wsd_upstream@mediatek.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="rf5behupqocofi63"
+Content-Disposition: inline
+In-Reply-To: <20200814155513.31936-2-vincent.whitchurch@axis.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Neal:
 
-Neal Liu <neal.liu@mediatek.com> =E6=96=BC 2020=E5=B9=B48=E6=9C=8813=E6=97=
-=A5 =E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=8811:33=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> MediaTek bus fabric provides TrustZone security support and data
-> protection to prevent slaves from being accessed by unexpected
-> masters.
-> The security violation is logged and sent to the processor for
-> further analysis or countermeasures.
->
-> Any occurrence of security violation would raise an interrupt, and
-> it will be handled by mtk-devapc driver. The violation
-> information is printed in order to find the murderer.
->
-> Signed-off-by: Neal Liu <neal.liu@mediatek.com>
+--rf5behupqocofi63
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+On Fri, Aug 14, 2020 at 05:55:13PM +0200, Vincent Whitchurch wrote:
+> Add a software PWM which toggles a GPIO from a high-resolution timer.
+>=20
+> This will naturally not be as accurate or as efficient as a hardware
+> PWM, but it is useful in some cases.  I have for example used it for
+> evaluating LED brightness handling (via leds-pwm) on a board where the
+> LED was just hooked up to a GPIO, and for a simple verification of the
+> timer frequency on another platform.
+>=20
+> Since high-resolution timers are used, sleeping gpio chips are not
+> supported and are rejected in the probe function.
+>=20
+> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+
+Nice idea. IMHO this can serve as example about what we expect from pwm
+drivers. There is some improvement necessary however to reach that
+state.
+
 > ---
-
-[snip]
-
-> +/*
-> + * devapc_violation_irq - the devapc Interrupt Service Routine (ISR) wil=
-l dump
-> + *                        violation information including which master v=
-iolates
-> + *                        access slave.
-> + */
-> +static irqreturn_t devapc_violation_irq(int irq_number,
-> +                                       struct mtk_devapc_context *ctx)
-> +{
-> +       /*
-> +        * Mask slave's irq before clearing vio status.
-> +        * Must do it to avoid nested interrupt and prevent
-> +        * unexpected behavior.
-> +        */
-> +       mask_module_irq(ctx, true);
-
-I still don't understand why nested interrupt happen. If two CPU
-process different devapc interrupt at the same time, mask interrupt
-could not prevent these two CPU to sync vio dbg at the same time. As I
-know, in ARM CPU, only CPU0 process irq handler, and all devapc
-interrupt has the same priority, so why nested interrupt happen? Could
-you explain more detail about how nested interrupt happen?
-
+> While preparing this driver for posting, I found a pwm-gpio driver posted=
+ to
+> the lists way back in 2015 by Olliver Schinagl:
+>=20
+>  https://lore.kernel.org/linux-pwm/1445895161-2317-8-git-send-email-o.sch=
+inagl@ultimaker.com/
+>=20
+> This driver was developed independently, but since both drivers are trivi=
+al
+> they are quite similar.  The main difference I see (apart from the usage =
+of
+> newer APIs and DT schemas) is that this driver only supports one PWM per
+> instance, which makes for simpler code.  I also reject sleeping GPIO chips
+> explicitly while that driver uses gpio_set_value_cansleep() from a hrtime=
+r,
+> which is a no-no.
+>=20
+>  drivers/pwm/Kconfig    |  10 ++++
+>  drivers/pwm/Makefile   |   1 +
+>  drivers/pwm/pwm-gpio.c | 123 +++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 134 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-gpio.c
+>=20
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 7dbcf6973d33..20e4fda82e61 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -181,6 +181,16 @@ config PWM_FSL_FTM
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-fsl-ftm.
+> =20
+> +config PWM_GPIO
+> +	tristate "GPIO PWM support"
+> +	depends on OF && GPIOLIB
+> +	help
+> +	  Generic PWM framework driver for a software PWM toggling a GPIO pin
+> +	  from kernel high-resolution timers.
 > +
-> +       while (devapc_sync_vio_dbg(ctx))
-> +               devapc_extract_vio_dbg(ctx);
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-gpio.
 > +
-> +       /*
-> +        * Ensure that violation info are written
-> +        * before further operations
-> +        */
-> +       smp_mb();
+>  config PWM_HIBVT
+>  	tristate "HiSilicon BVT PWM support"
+>  	depends on ARCH_HISI || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index 2c2ba0a03557..2e045f063cd1 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -15,6 +15,7 @@ obj-$(CONFIG_PWM_CRC)		+=3D pwm-crc.o
+>  obj-$(CONFIG_PWM_CROS_EC)	+=3D pwm-cros-ec.o
+>  obj-$(CONFIG_PWM_EP93XX)	+=3D pwm-ep93xx.o
+>  obj-$(CONFIG_PWM_FSL_FTM)	+=3D pwm-fsl-ftm.o
+> +obj-$(CONFIG_PWM_GPIO)		+=3D pwm-gpio.o
+>  obj-$(CONFIG_PWM_HIBVT)		+=3D pwm-hibvt.o
+>  obj-$(CONFIG_PWM_IMG)		+=3D pwm-img.o
+>  obj-$(CONFIG_PWM_IMX1)		+=3D pwm-imx1.o
+> diff --git a/drivers/pwm/pwm-gpio.c b/drivers/pwm/pwm-gpio.c
+> new file mode 100644
+> index 000000000000..e579aca0f937
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-gpio.c
+> @@ -0,0 +1,123 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/* Copyright (C) 2020 Axis Communications AB */
 > +
-> +       clear_vio_status(ctx);
-> +       mask_module_irq(ctx, false);
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/hrtimer.h>
+> +#include <linux/module.h>
+> +#include <linux/slab.h>
+> +#include <linux/pwm.h>
+> +#include <linux/err.h>
+> +#include <linux/of.h>
 > +
-> +       return IRQ_HANDLED;
-> +}
-> +
-
-[snip]
-
-> +
-> +static int mtk_devapc_remove(struct platform_device *pdev)
-> +{
-> +       struct mtk_devapc_context *ctx =3D platform_get_drvdata(pdev);
-> +
-> +       stop_devapc(ctx);
-> +
-> +       if (ctx->infra_clk)
-
-This always true.
-
-Regards,
-Chun-Kuang.
-
-> +               clk_disable_unprepare(ctx->infra_clk);
-> +
-> +       return 0;
-> +}
-> +
-> +static struct platform_driver mtk_devapc_driver =3D {
-> +       .probe =3D mtk_devapc_probe,
-> +       .remove =3D mtk_devapc_remove,
-> +       .driver =3D {
-> +               .name =3D KBUILD_MODNAME,
-> +               .of_match_table =3D mtk_devapc_dt_match,
-> +       },
+> +struct pwm_gpio {
+> +	struct pwm_chip chip;
+> +	struct hrtimer hrtimer;
+> +	struct gpio_desc *gpio;
+> +	ktime_t on_interval;
+> +	ktime_t off_interval;
+> +	bool invert;
+> +	bool on;
 > +};
 > +
-> +module_platform_driver(mtk_devapc_driver);
+> +static enum hrtimer_restart pwm_gpio_timer(struct hrtimer *hrtimer)
+> +{
+> +	struct pwm_gpio *gpwm =3D container_of(hrtimer, struct pwm_gpio, hrtime=
+r);
+> +	bool newon =3D !gpwm->on;
 > +
-> +MODULE_DESCRIPTION("Mediatek Device APC Driver");
-> +MODULE_AUTHOR("Neal Liu <neal.liu@mediatek.com>");
-> +MODULE_LICENSE("GPL");
-> --
-> 1.7.9.5
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+> +	gpwm->on =3D newon;
+> +	gpiod_set_value(gpwm->gpio, newon ^ gpwm->invert);
+> +
+> +	hrtimer_forward_now(hrtimer, newon ? gpwm->on_interval : gpwm->off_inte=
+rval);
+
+If I understand correct this adds the new interval on top of "now" and
+not on top of the previous timestamp where an edge was expected. Would
+it make sense to change that?
+
+> +
+> +	return HRTIMER_RESTART;
+> +}
+> +
+> +static int pwm_gpio_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> +			  const struct pwm_state *state)
+> +{
+> +	struct pwm_gpio *gpwm =3D container_of(chip, struct pwm_gpio, chip);
+> +
+> +	hrtimer_cancel(&gpwm->hrtimer);
+> +
+> +	if (!state->enabled) {
+> +		gpiod_set_value(gpwm->gpio, 0);
+> +		return 0;
+> +	}
+> +
+> +	gpwm->on_interval =3D ns_to_ktime(state->duty_cycle);
+> +	gpwm->off_interval =3D ns_to_ktime(state->period - state->duty_cycle);
+> +	gpwm->invert =3D state->polarity =3D=3D PWM_POLARITY_INVERSED;
+> +
+> +	gpwm->on =3D !!gpwm->on_interval;
+> +	gpiod_set_value(gpwm->gpio, gpwm->on ^ gpwm->invert);
+> +
+> +	if (gpwm->on_interval && gpwm->off_interval)
+> +		hrtimer_start(&gpwm->hrtimer, gpwm->on_interval, HRTIMER_MODE_REL);
+
+Ideally the currently running period is completed before a period with
+the new configuration starts. Would be nice switch only on the next
+period end if the current configuration is enabled.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwm_ops pwm_gpio_ops =3D {
+> +	.owner =3D THIS_MODULE,
+> +	.apply =3D pwm_gpio_apply,
+
+Usually a .get_state callback is nice. Does it make sense to do
+something like:
+
+	if (driver is up)
+		report current setting
+	else
+		val =3D gpio_get_value()
+		report(period=3D1, duty_cycle=3Dval, enabled=3Dval, polarity=3DNORMAL)
+
+?
+
+> +};
+> +
+> +static int pwm_gpio_probe(struct platform_device *pdev)
+> +{
+> +	struct pwm_gpio *gpwm;
+> +	int ret;
+> +
+> +	gpwm =3D devm_kzalloc(&pdev->dev, sizeof(*gpwm), GFP_KERNEL);
+> +	if (!gpwm)
+> +		return -ENOMEM;
+> +
+> +	gpwm->gpio =3D devm_gpiod_get(&pdev->dev, NULL, GPIOD_OUT_LOW);
+> +	if (IS_ERR(gpwm->gpio))
+> +		return PTR_ERR(gpwm->gpio);
+> +
+> +	if (gpiod_cansleep(gpwm->gpio))
+> +		return -EINVAL;
+> +
+> +	gpwm->chip.dev =3D &pdev->dev;
+> +	gpwm->chip.ops =3D &pwm_gpio_ops;
+> +	gpwm->chip.base =3D pdev->id;
+> +	gpwm->chip.npwm =3D 1;
+> +
+> +	hrtimer_init(&gpwm->hrtimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+> +	gpwm->hrtimer.function =3D pwm_gpio_timer;
+> +
+> +	ret =3D pwmchip_add(&gpwm->chip);
+> +	if (ret < 0)
+> +		return ret;
+
+Error messages in the error paths please (preferably using
+dev_err_probe).
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--rf5behupqocofi63
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl83k8UACgkQwfwUeK3K
+7AmO4ggAlGQT0fMUFlmyKSdE6QjeZrDtyDSIyjZWS+PoicZ3xRQvF6X/Dvg4+QIL
+Q9+oSCx0gZqFUvqId/giJYlzbb+LtGkGbdrTJFHs0Fhd6HaUHO1JHqjlqGH2zuEx
+ZmvlkCPzr/b+HBK2uNz8PT/mk5RzOb31aQAjREgUXxRCNa2jaw1ec7KKso/uoez8
+w03RzCO4MEhLBBmBkhcWhVGNMaZ/5VosDaEJCpsPfuft8JI808Ek6hMQE0JIXn16
+AMqITGVdyZYloabrMy+8KkcJHSEDDN/WOqR0Kqq2IbLgBKngMBwyQ0dcGrV1jTuF
+wfbek89lLGGgn5gHuXOoVLkYVQuGNQ==
+=xFtm
+-----END PGP SIGNATURE-----
+
+--rf5behupqocofi63--
