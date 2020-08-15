@@ -2,128 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5CC22453EF
-	for <lists+devicetree@lfdr.de>; Sun, 16 Aug 2020 00:07:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 740C32453C0
+	for <lists+devicetree@lfdr.de>; Sun, 16 Aug 2020 00:05:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728312AbgHOWHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Aug 2020 18:07:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45596 "EHLO
+        id S1729316AbgHOWEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Aug 2020 18:04:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728172AbgHOVun (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Aug 2020 17:50:43 -0400
-X-Greylist: delayed 348 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 15 Aug 2020 09:41:39 PDT
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [IPv6:2001:67c:2050::465:101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA45AC0A3BF8
-        for <devicetree@vger.kernel.org>; Sat, 15 Aug 2020 09:41:39 -0700 (PDT)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:105:465:1:1:0])
-        (using TLSv1.2 with cipher ECDHE-RSA-CHACHA20-POLY1305 (256/256 bits))
+        with ESMTP id S1728477AbgHOVuy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Aug 2020 17:50:54 -0400
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82B00C00458C;
+        Sat, 15 Aug 2020 11:33:17 -0700 (PDT)
+Received: from zn.tnic (p200300ec2f1c7a00329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ec:2f1c:7a00:329c:23ff:fea6:a903])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4BTQsX1JBpzKmfP;
-        Sat, 15 Aug 2020 18:35:44 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-Received: from smtp1.mailbox.org ([80.241.60.240])
-        by spamfilter06.heinlein-hosting.de (spamfilter06.heinlein-hosting.de [80.241.56.125]) (amavisd-new, port 10030)
-        with ESMTP id NKSNmlr3lftj; Sat, 15 Aug 2020 18:35:41 +0200 (CEST)
-From:   Hauke Mehrtens <hauke@hauke-m.de>
-To:     tsbogend@alpha.franken.de
-Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, james.hartley@sondrel.com,
-        rahulbedarkar89@gmail.com, wigyori@uid0.hu,
-        Hauke Mehrtens <hauke@hauke-m.de>
-Subject: [PATCH 3/3] MIPS: DTS: img: marduk: Add NXP SC16IS752IPW
-Date:   Sat, 15 Aug 2020 18:35:14 +0200
-Message-Id: <20200815163514.11631-3-hauke@hauke-m.de>
-In-Reply-To: <20200815163514.11631-1-hauke@hauke-m.de>
-References: <20200815163514.11631-1-hauke@hauke-m.de>
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 56E951EC0277;
+        Sat, 15 Aug 2020 20:33:11 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1597516391;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=8BbZ63rk7VbMiYUQjJkYGKszCEMN5l41jgUUhvTPAOk=;
+        b=EhozzWmk+kL2/U5KxxkPgUx8K6UAmTLI1ZgR5AZbJMI0He/t8OVM5L7Ts1xYNrnz+/7MSc
+        0C4CT36Ji2ATnv3EboiqKdUzO3rBwwtyNqbKX5CQHqNvc/B1R9rOhQjFAbB9nwlgZyxNMR
+        zUQhBg+Jw9qsx/NC+CjSH9XlmeIKjbY=
+Date:   Sat, 15 Aug 2020 20:33:58 +0200
+From:   Borislav Petkov <bp@alien8.de>
+To:     Talel Shenhar <talel@amazon.com>
+Cc:     mchehab@kernel.org, james.morse@arm.com, davem@davemloft.net,
+        gregkh@linuxfoundation.org, nicolas.ferre@microchip.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, catalin.marinas@arm.com,
+        will@kernel.org, linux-edac@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, hhhawa@amazon.com,
+        ronenk@amazon.com, jonnyc@amazon.com, hanochu@amazon.com,
+        eitan@amazon.com
+Subject: Re: [PATCH v9 2/2] EDAC: al-mc-edac: Introduce Amazon's Annapurna
+ Labs Memory Controller EDAC
+Message-ID: <20200815183358.GE25814@zn.tnic>
+References: <20200728095155.18506-1-talel@amazon.com>
+ <20200728095155.18506-3-talel@amazon.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-SPAM-Probability: *
-X-Rspamd-Score: 0.84 / 15.00 / 15.00
-X-Rspamd-Queue-Id: 245BE182B
-X-Rspamd-UID: 3afc30
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200728095155.18506-3-talel@amazon.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add NXP SC16IS752IPW SPI-UART controller to device tree.
+On Tue, Jul 28, 2020 at 12:51:55PM +0300, Talel Shenhar wrote:
+> +static void al_mc_edac_check(struct mem_ctl_info *mci)
+> +{
+> +	struct al_mc_edac *al_mc = mci->pvt_info;
+> +
+> +	if (al_mc->irq_ue <= 0)
+> +		handle_ue(mci);
+> +
+> +	if (al_mc->irq_ce <= 0)
+> +		handle_ce(mci);
+> +}
+> +
+> +static irqreturn_t al_mc_edac_irq_handler_ue(int irq, void *info)
+> +{
+> +	struct platform_device *pdev = info;
+> +	struct mem_ctl_info *mci = platform_get_drvdata(pdev);
+> +
+> +	if (handle_ue(mci))
+> +		return IRQ_HANDLED;
+> +	return IRQ_NONE;
+> +}
+> +
+> +static irqreturn_t al_mc_edac_irq_handler_ce(int irq, void *info)
+> +{
+> +	struct platform_device *pdev = info;
+> +	struct mem_ctl_info *mci = platform_get_drvdata(pdev);
+> +
+> +	if (handle_ce(mci))
+> +		return IRQ_HANDLED;
+> +	return IRQ_NONE;
+> +}
+> +
+> +static enum scrub_type al_mc_edac_get_scrub_mode(void __iomem *mmio_base)
+> +{
+> +	u32 ecccfg0;
+> +
+> +	ecccfg0 = readl(mmio_base + AL_MC_ECC_CFG);
+> +
+> +	if (FIELD_GET(AL_MC_ECC_CFG_SCRUB_DISABLED, ecccfg0))
+> +		return SCRUB_NONE;
+> +	else
+> +		return SCRUB_HW_SRC;
+> +}
+> +
+> +static void devm_al_mc_edac_free(void *data)
+> +{
+> +	edac_mc_free(data);
+> +}
+> +
+> +static void devm_al_mc_edac_del(void *data)
+> +{
+> +	edac_mc_del_mc(data);
+> +}
 
-This controller drives 2 UARTs and 7 LEDs on the board.
+From a previous review:
 
-Signed-off-by: Hauke Mehrtens <hauke@hauke-m.de>
----
- arch/mips/boot/dts/img/pistachio_marduk.dts | 51 +++++++++++++++++++++
- 1 file changed, 51 insertions(+)
+I said:
 
-diff --git a/arch/mips/boot/dts/img/pistachio_marduk.dts b/arch/mips/boot/dts/img/pistachio_marduk.dts
-index 633a41954cc0..f4965a484b72 100644
---- a/arch/mips/boot/dts/img/pistachio_marduk.dts
-+++ b/arch/mips/boot/dts/img/pistachio_marduk.dts
-@@ -46,6 +46,46 @@
- 		regulator-max-microvolt = <1800000>;
- 	};
- 
-+	/* EXT clock from ca8210 is fed to sc16is752 */
-+	ca8210_ext_clk: ca8210-ext-clk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <16000000>;
-+		clock-output-names = "ca8210_ext_clock";
-+	};
-+
-+	gpioleds {
-+		compatible = "gpio-leds";
-+		user1 {
-+			label = "marduk:red:user1";
-+			gpios = <&sc16is752 0 GPIO_ACTIVE_LOW>;
-+		};
-+		user2 {
-+			label = "marduk:red:user2";
-+			gpios = <&sc16is752 1 GPIO_ACTIVE_LOW>;
-+		};
-+		user3 {
-+			label = "marduk:red:user3";
-+			gpios = <&sc16is752 2 GPIO_ACTIVE_LOW>;
-+		};
-+		user4 {
-+			label = "marduk:red:user4";
-+			gpios = <&sc16is752 3 GPIO_ACTIVE_LOW>;
-+		};
-+		user5 {
-+			label = "marduk:red:user5";
-+			gpios = <&sc16is752 4 GPIO_ACTIVE_LOW>;
-+		};
-+		user6 {
-+			label = "marduk:red:user6";
-+			gpios = <&sc16is752 5 GPIO_ACTIVE_LOW>;
-+		};
-+		user7 {
-+			label = "marduk:red:user7";
-+			gpios = <&sc16is752 6 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
- 	leds {
- 		compatible = "pwm-leds";
- 		heartbeat {
-@@ -95,6 +135,17 @@
- 		extclock-freq = <16000000>;
- 		extclock-gpio = <2>;
- 	};
-+
-+	sc16is752: sc16is752@1 {
-+		compatible = "nxp,sc16is752";
-+		reg = <1>;
-+		clocks = <&ca8210_ext_clk>;
-+		spi-max-frequency = <4000000>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
- };
- 
- &spfi1 {
+> Drop the "al_mc_edac_" prefix from most of the static functions. You can
+> leave it in the probe function or the IRQ handler so that it is visible
+> in stack traces but all those small functions don't need that prefix.
+
+You replied with:
+
+> Shall be part of v7.
+
+and yet it ain't part of any v<num>.
+
+Why?
+
 -- 
-2.20.1
+Regards/Gruss,
+    Boris.
 
+https://people.kernel.org/tglx/notes-about-netiquette
