@@ -2,152 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E9AD245200
-	for <lists+devicetree@lfdr.de>; Sat, 15 Aug 2020 23:35:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 487D82453F7
+	for <lists+devicetree@lfdr.de>; Sun, 16 Aug 2020 00:10:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726213AbgHOVe5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Aug 2020 17:34:57 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:46896 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726541AbgHOVe4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Aug 2020 17:34:56 -0400
-Received: from ravnborg.org (unknown [188.228.123.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1729264AbgHOWK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Aug 2020 18:10:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41776 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728715AbgHOWK1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 15 Aug 2020 18:10:27 -0400
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id 6EA3080548;
-        Sat, 15 Aug 2020 23:28:41 +0200 (CEST)
-Date:   Sat, 15 Aug 2020 23:28:40 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        allen <allen.chen@ite.com.tw>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: Add Mantix MLAF057WE51-X panel
- bindings
-Message-ID: <20200815212840.GC1244923@ravnborg.org>
-References: <cover.1597526107.git.agx@sigxcpu.org>
- <c171b488e883e26eaef7906c007a5cabcbf9e33d.1597526107.git.agx@sigxcpu.org>
+        by mail.kernel.org (Postfix) with ESMTPSA id 2C87322E00;
+        Sat, 15 Aug 2020 03:03:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1597460618;
+        bh=LWZ3gG05lyWwHbQNUP3ksCUHLVF4wFzI8rRKV3uiNak=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=aPLmc5XIVhNgOz/dUkmBwJHhTub2jfiFdCUnXPgEVZvsfdM60xwqSPiHXUjZo/gZg
+         W13nLli/i5dcL9+RLLKwoyKEj/1rS4pFIGP+81I7TUivDsE3PPl0LwR+oPRQbUf2eR
+         Zq7320V1UEnYBmGlW09/3R0ltEf9DMa1/eUQy5SE=
+Received: by mail-ej1-f53.google.com with SMTP id o18so11890552eje.7;
+        Fri, 14 Aug 2020 20:03:38 -0700 (PDT)
+X-Gm-Message-State: AOAM532l65Y/ZcRSYu08JznzZJX4t0VbxK+0NyP7fgsbMXobqvSx6uR6
+        V4hyvhlOtaj5s/12iSBYqiYEfVXTgvT5G9IeYQ==
+X-Google-Smtp-Source: ABdhPJyt/63tP7h7Rcip1YksjvsGO7WzFuUVEIVYhoFntsd6TkK7JtmalTJjkuyszotatOlhPqyFfaDNHeccHlw5oaU=
+X-Received: by 2002:a17:906:7492:: with SMTP id e18mr5232063ejl.375.1597460616714;
+ Fri, 14 Aug 2020 20:03:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c171b488e883e26eaef7906c007a5cabcbf9e33d.1597526107.git.agx@sigxcpu.org>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=aP3eV41m c=1 sm=1 tr=0
-        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=8nJEP1OIZ-IA:10 a=ze386MxoAAAA:8 a=7gkXJVJtAAAA:8 a=gEfo2CItAAAA:8
-        a=cjlgXKyR3KIVCA3-0ZEA:9 a=wPNLvfGTeEIA:10 a=iBZjaW-pnkserzjvUTHh:22
-        a=E9Po1WZjFZOl8hwRPBS3:22 a=sptkURWiP4Gy88Gu7hUp:22
+References: <1597289564-17030-1-git-send-email-neal.liu@mediatek.com> <1597289564-17030-3-git-send-email-neal.liu@mediatek.com>
+In-Reply-To: <1597289564-17030-3-git-send-email-neal.liu@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Sat, 15 Aug 2020 11:03:24 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_88YSHOvDEHm+rM1=fTv_y25nUh1tuLUH8YSxH5UD1bug@mail.gmail.com>
+Message-ID: <CAAOTY_88YSHOvDEHm+rM1=fTv_y25nUh1tuLUH8YSxH5UD1bug@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] soc: mediatek: add mt6779 devapc driver
+To:     Neal Liu <neal.liu@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org,
+        wsd_upstream <wsd_upstream@mediatek.com>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 15, 2020 at 11:16:21PM +0200, Guido Günther wrote:
-> The panel uses a Focaltech FT8006p, the touch part is handled by the
-> already existing edt-ft5x06.
-> 
-> Signed-off-by: Guido Günther <agx@sigxcpu.org>
-Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+Hi, Neal:
 
-I assume you will apply yourself, otherwise I will do so when we have
-seen a backmerge.
-
-	Sam
-
+Neal Liu <neal.liu@mediatek.com> =E6=96=BC 2020=E5=B9=B48=E6=9C=8813=E6=97=
+=A5 =E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=8811:33=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> MediaTek bus fabric provides TrustZone security support and data
+> protection to prevent slaves from being accessed by unexpected
+> masters.
+> The security violation is logged and sent to the processor for
+> further analysis or countermeasures.
+>
+> Any occurrence of security violation would raise an interrupt, and
+> it will be handled by mtk-devapc driver. The violation
+> information is printed in order to find the murderer.
+>
+> Signed-off-by: Neal Liu <neal.liu@mediatek.com>
 > ---
->  .../display/panel/mantix,mlaf057we51-x.yaml   | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
-> new file mode 100644
-> index 0000000000000..937323cc9aaac
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/mantix,mlaf057we51-x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+[snip]
+
+> +/*
+> + * devapc_violation_irq - the devapc Interrupt Service Routine (ISR) wil=
+l dump
+> + *                        violation information including which master v=
+iolates
+> + *                        access slave.
+> + */
+> +static irqreturn_t devapc_violation_irq(int irq_number,
+> +                                       struct mtk_devapc_context *ctx)
+> +{
+> +       /*
+> +        * Mask slave's irq before clearing vio status.
+> +        * Must do it to avoid nested interrupt and prevent
+> +        * unexpected behavior.
+> +        */
+> +       mask_module_irq(ctx, true);
+
+I still don't understand why nested interrupt happen. If two CPU
+process different devapc interrupt at the same time, mask interrupt
+could not prevent these two CPU to sync vio dbg at the same time. As I
+know, in ARM CPU, only CPU0 process irq handler, and all devapc
+interrupt has the same priority, so why nested interrupt happen? Could
+you explain more detail about how nested interrupt happen?
+
 > +
-> +title: Mantix MLAF057WE51-X 5.7" 720x1440 TFT LCD panel
+> +       while (devapc_sync_vio_dbg(ctx))
+> +               devapc_extract_vio_dbg(ctx);
 > +
-> +maintainers:
-> +  - Guido Günther <agx@sigxcpu.org>
+> +       /*
+> +        * Ensure that violation info are written
+> +        * before further operations
+> +        */
+> +       smp_mb();
 > +
-> +description:
-> +  Mantix MLAF057WE51 X is a 720x1440 TFT LCD panel connected using
-> +  a MIPI-DSI video interface.
+> +       clear_vio_status(ctx);
+> +       mask_module_irq(ctx, false);
 > +
-> +allOf:
-> +  - $ref: panel-common.yaml#
+> +       return IRQ_HANDLED;
+> +}
 > +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mantix,mlaf057we51-x
+
+[snip]
+
 > +
-> +  port: true
-> +  reg:
-> +    maxItems: 1
-> +    description: DSI virtual channel
+> +static int mtk_devapc_remove(struct platform_device *pdev)
+> +{
+> +       struct mtk_devapc_context *ctx =3D platform_get_drvdata(pdev);
 > +
-> +  avdd-supply:
-> +    description: Positive analog power supply
+> +       stop_devapc(ctx);
 > +
-> +  avee-supply:
-> +    description: Negative analog power supply
+> +       if (ctx->infra_clk)
+
+This always true.
+
+Regards,
+Chun-Kuang.
+
+> +               clk_disable_unprepare(ctx->infra_clk);
 > +
-> +  vddi-supply:
-> +    description: 1.8V I/O voltage supply
+> +       return 0;
+> +}
 > +
-> +  reset-gpios: true
+> +static struct platform_driver mtk_devapc_driver =3D {
+> +       .probe =3D mtk_devapc_probe,
+> +       .remove =3D mtk_devapc_remove,
+> +       .driver =3D {
+> +               .name =3D KBUILD_MODNAME,
+> +               .of_match_table =3D mtk_devapc_dt_match,
+> +       },
+> +};
 > +
-> +  backlight: true
+> +module_platform_driver(mtk_devapc_driver);
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - avdd-supply
-> +  - avee-supply
-> +  - vddi-supply
-> +  - reset-gpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    dsi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        panel@0 {
-> +            compatible = "mantix,mlaf057we51-x";
-> +            reg = <0>;
-> +            avdd-supply = <&reg_avdd>;
-> +            avee-supply = <&reg_avee>;
-> +            vddi-supply = <&reg_1v8_p>;
-> +            reset-gpios = <&gpio1 29 GPIO_ACTIVE_LOW>;
-> +            backlight = <&backlight>;
-> +        };
-> +    };
-> +
-> +...
-> -- 
-> 2.26.2
+> +MODULE_DESCRIPTION("Mediatek Device APC Driver");
+> +MODULE_AUTHOR("Neal Liu <neal.liu@mediatek.com>");
+> +MODULE_LICENSE("GPL");
+> --
+> 1.7.9.5
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
