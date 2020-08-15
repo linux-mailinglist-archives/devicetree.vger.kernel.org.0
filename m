@@ -2,90 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4AD424520A
-	for <lists+devicetree@lfdr.de>; Sat, 15 Aug 2020 23:37:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E9AD245200
+	for <lists+devicetree@lfdr.de>; Sat, 15 Aug 2020 23:35:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726745AbgHOVhV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Aug 2020 17:37:21 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:52714 "EHLO honk.sigxcpu.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726251AbgHOVhU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 15 Aug 2020 17:37:20 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id D21A2FB06;
-        Sat, 15 Aug 2020 23:28:40 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id YqhX1GbzLJgS; Sat, 15 Aug 2020 23:28:38 +0200 (CEST)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 8EE4B4576F; Sat, 15 Aug 2020 23:28:38 +0200 (CEST)
-Date:   Sat, 15 Aug 2020 23:28:38 +0200
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
+        id S1726213AbgHOVe5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Aug 2020 17:34:57 -0400
+Received: from asavdk4.altibox.net ([109.247.116.15]:46896 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726541AbgHOVe4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Aug 2020 17:34:56 -0400
+Received: from ravnborg.org (unknown [188.228.123.71])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk4.altibox.net (Postfix) with ESMTPS id 6EA3080548;
+        Sat, 15 Aug 2020 23:28:41 +0200 (CEST)
+Date:   Sat, 15 Aug 2020 23:28:40 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/8] dt-bindings: display: mxsfb: Add a bus-width
- endpoint property
-Message-ID: <20200815212838.GC134339@bogon.m.sigxcpu.org>
-References: <20200813012910.13576-1-laurent.pinchart@ideasonboard.com>
- <20200813012910.13576-4-laurent.pinchart@ideasonboard.com>
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        allen <allen.chen@ite.com.tw>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: Add Mantix MLAF057WE51-X panel
+ bindings
+Message-ID: <20200815212840.GC1244923@ravnborg.org>
+References: <cover.1597526107.git.agx@sigxcpu.org>
+ <c171b488e883e26eaef7906c007a5cabcbf9e33d.1597526107.git.agx@sigxcpu.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20200813012910.13576-4-laurent.pinchart@ideasonboard.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c171b488e883e26eaef7906c007a5cabcbf9e33d.1597526107.git.agx@sigxcpu.org>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=aP3eV41m c=1 sm=1 tr=0
+        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+        a=8nJEP1OIZ-IA:10 a=ze386MxoAAAA:8 a=7gkXJVJtAAAA:8 a=gEfo2CItAAAA:8
+        a=cjlgXKyR3KIVCA3-0ZEA:9 a=wPNLvfGTeEIA:10 a=iBZjaW-pnkserzjvUTHh:22
+        a=E9Po1WZjFZOl8hwRPBS3:22 a=sptkURWiP4Gy88Gu7hUp:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
-On Thu, Aug 13, 2020 at 04:29:05AM +0300, Laurent Pinchart wrote:
-> When the PCB routes the display data signals in an unconventional way,
-> the output bus width may differ from the bus width of the connected
-> panel or encoder. For instance, when a 18-bit RGB panel has its R[5:0],
-> G[5:0] and B[5:0] signals connected to LCD_DATA[7:2], LCD_DATA[15:10]
-> and LCD_DATA[23:18], the output bus width is 24 instead of 18 when the
-> signals are routed to LCD_DATA[5:0], LCD_DATA[11:6] and LCD_DATA[17:12].
+On Sat, Aug 15, 2020 at 11:16:21PM +0200, Guido Günther wrote:
+> The panel uses a Focaltech FT8006p, the touch part is handled by the
+> already existing edt-ft5x06.
 > 
-> Add a bus-width property to describe this data routing.
-> 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  Documentation/devicetree/bindings/display/mxsfb.yaml | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/mxsfb.yaml b/Documentation/devicetree/bindings/display/mxsfb.yaml
-> index ec6533b1d4a3..d15bb8edc29f 100644
-> --- a/Documentation/devicetree/bindings/display/mxsfb.yaml
-> +++ b/Documentation/devicetree/bindings/display/mxsfb.yaml
-> @@ -58,6 +58,18 @@ properties:
->          type: object
->  
->          properties:
-> +          data-shift:
-Shouldn't that be bus-width ?
- -- Guido
+> Signed-off-by: Guido Günther <agx@sigxcpu.org>
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
 
-> +            enum: [16, 18, 24]
-> +            description: |
-> +              The output bus width. This value overrides the configuration
-> +              derived from the connected device (encoder or panel). It should
-> +              only be specified when PCB routing of the data signals require a
-> +              different bus width on the LCDIF and the connected device. For
-> +              instance, when a 18-bit RGB panel has its R[5:0], G[5:0] and
-> +              B[5:0] signals connected to LCD_DATA[7:2], LCD_DATA[15:10] and
-> +              LCD_DATA[23:18] instead of LCD_DATA[5:0], LCD_DATA[11:6] and
-> +              LCD_DATA[17:12], bus-width should be set to 24.
+I assume you will apply yourself, otherwise I will do so when we have
+seen a backmerge.
+
+	Sam
+
+> ---
+>  .../display/panel/mantix,mlaf057we51-x.yaml   | 70 +++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
+> new file mode 100644
+> index 0000000000000..937323cc9aaac
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/mantix,mlaf057we51-x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->            remote-endpoint:
->              $ref: /schemas/types.yaml#/definitions/phandle
->  
+> +title: Mantix MLAF057WE51-X 5.7" 720x1440 TFT LCD panel
+> +
+> +maintainers:
+> +  - Guido Günther <agx@sigxcpu.org>
+> +
+> +description:
+> +  Mantix MLAF057WE51 X is a 720x1440 TFT LCD panel connected using
+> +  a MIPI-DSI video interface.
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mantix,mlaf057we51-x
+> +
+> +  port: true
+> +  reg:
+> +    maxItems: 1
+> +    description: DSI virtual channel
+> +
+> +  avdd-supply:
+> +    description: Positive analog power supply
+> +
+> +  avee-supply:
+> +    description: Negative analog power supply
+> +
+> +  vddi-supply:
+> +    description: 1.8V I/O voltage supply
+> +
+> +  reset-gpios: true
+> +
+> +  backlight: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - avdd-supply
+> +  - avee-supply
+> +  - vddi-supply
+> +  - reset-gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    dsi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        panel@0 {
+> +            compatible = "mantix,mlaf057we51-x";
+> +            reg = <0>;
+> +            avdd-supply = <&reg_avdd>;
+> +            avee-supply = <&reg_avee>;
+> +            vddi-supply = <&reg_1v8_p>;
+> +            reset-gpios = <&gpio1 29 GPIO_ACTIVE_LOW>;
+> +            backlight = <&backlight>;
+> +        };
+> +    };
+> +
+> +...
 > -- 
-> Regards,
-> 
-> Laurent Pinchart
-> 
+> 2.26.2
