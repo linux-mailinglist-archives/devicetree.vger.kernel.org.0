@@ -2,129 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2AC4245395
-	for <lists+devicetree@lfdr.de>; Sun, 16 Aug 2020 00:03:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EA46245483
+	for <lists+devicetree@lfdr.de>; Sun, 16 Aug 2020 00:24:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728688AbgHOWDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Aug 2020 18:03:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45600 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728678AbgHOVvL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Aug 2020 17:51:11 -0400
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2351DC02B8DE;
-        Sat, 15 Aug 2020 04:24:48 -0700 (PDT)
-Received: by mail-ej1-x643.google.com with SMTP id m22so12532900eje.10;
-        Sat, 15 Aug 2020 04:24:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=vsYRcSKJo5heCkEhByxTesr3qnuVqbFBvI7V/761LSM=;
-        b=RcfBisNl6UXEMchW7A5g1HzcineDtMdGJxg8pSBUgnHND0LmggU7y/FoNRZZeVV6LN
-         kNoLIXGm2vsaptDdsioIb7Q1olsgv5yc9DZ7ZGWYs84pZGUEaSrkLHHsauzmBWiliNLJ
-         80chWYLTncWt/Jn7133ZQq7xz08lJlaVVQg+nbfazl1Bn44rEMsKTlSa9ycZI25VWsv4
-         3tKh/FXwvsoemyuyw7up/EWnbpZvXB84YUjxwzz5HccfgU5N+sgEKI25flqUq8EgAKmH
-         Ot8Ll9fuLtHmGErjcgq0T57ZyaLQZta4Af5awtIVFZs5UMtVIg5YEQBNcaGl3mzJNPTP
-         4uHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=vsYRcSKJo5heCkEhByxTesr3qnuVqbFBvI7V/761LSM=;
-        b=AegSicRr+MwK7FTSe/hOJYPJHoXzsRdHLaeTJlE1BxS6hpDzRKPHYwS/ClRuPuaImY
-         XB5oJeJn4j/7OMBEAhWYB+oXJlB5pmJWqVUYONK78w1vq5fjguu6Eu5Gz1Wlkr60LdaR
-         je3j7G1Lgnyt2WYvUSZ9Ebf9uxs9Hbkq7Dla7iqGJhvcIaiFPBFu1utZ2FjVPDlnFX5u
-         2mUNbFCnXZE+gWa1la53gv8yjoqU6ZSjvfMyiD1K1LorPBeBl76s9eDumSN+5B4QJaln
-         t40z4eQMig0BvF0sfSs3QF4Uv5LyZdGT5l4tX+x9YxRN4tlotDExYm4E727bXaFTKUaM
-         E4sQ==
-X-Gm-Message-State: AOAM533mHRsHzGSh2K4CmO48DD+o27/Lu6/T/tGk8wvbd4Uf7aItzWzw
-        mPJA/88nm1FCSsbni4fi5v0=
-X-Google-Smtp-Source: ABdhPJyxOEsEOhMyUIA4+Iz32TqEEjVTsSegFwkW+dd6LEVTbpRkB7b+vARNNelBhUeQw25VyZM0Rg==
-X-Received: by 2002:a17:906:dd5:: with SMTP id p21mr6862906eji.416.1597490686713;
-        Sat, 15 Aug 2020 04:24:46 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id g19sm9106505ejz.5.2020.08.15.04.24.45
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 15 Aug 2020 04:24:46 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        sugar.zhang@rock-chips.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [RFC PATCH v1 2/2] arm64: dts: rockchip: change fallback string rockchip,rk3308-spdif
-Date:   Sat, 15 Aug 2020 13:24:37 +0200
-Message-Id: <20200815112437.6662-2-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200815112437.6662-1-jbx6244@gmail.com>
-References: <20200815112437.6662-1-jbx6244@gmail.com>
+        id S1728282AbgHOWYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Aug 2020 18:24:55 -0400
+Received: from asavdk4.altibox.net ([109.247.116.15]:50980 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726598AbgHOWYz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Aug 2020 18:24:55 -0400
+Received: from ravnborg.org (unknown [188.228.123.71])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk4.altibox.net (Postfix) with ESMTPS id E0DC280538;
+        Sat, 15 Aug 2020 14:55:45 +0200 (CEST)
+Date:   Sat, 15 Aug 2020 14:55:44 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
+Cc:     devicetree@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Arnd Bergmann <arnd@arndb.de>, David Airlie <airlied@linux.ie>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Daniel Palmer <daniel@0x0f.com>, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Lubomir Rintel <lkundrak@v3.sk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
+        "David S. Miller" <davem@davemloft.net>
+Subject: Re: [PATCH 3/3] drm/panel: Add panel driver for the Mantix
+ MLAF057WE51-X DSI panel
+Message-ID: <20200815125544.GA1153358@ravnborg.org>
+References: <cover.1597412076.git.agx@sigxcpu.org>
+ <0a7539135cc46eec5636ca89f52695f4a1197841.1597412076.git.agx@sigxcpu.org>
+ <20200815100230.GA1002374@ravnborg.org>
+ <20200815104022.GA5641@bogon.m.sigxcpu.org>
+ <20200815104651.GA1005928@ravnborg.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200815104651.GA1005928@ravnborg.org>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=aP3eV41m c=1 sm=1 tr=0
+        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+        a=kj9zAlcOel0A:10 a=bbTEvi9DXXvUDvUqyWQA:9 a=CjuIK1q_8ugA:10
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A test with the command below shows that the compatible string
+Hi Guido.
 
-"rockchip,rk3308-spdif", "rockchip,rk3328-spdif"
+> > In fact I did decided against it since i was told that missing dev_* and
+> > DRM_* logging shouldn't be done. So is that o.k. nowadays?
+> s/missing/mixing/
+> 
+> I often request that logging is consistent - so I recognize the
+> argument.
+> 
+> For panel/* I have not made up my mind what I think is the best
+> approach. The DRM_DEV_* and DRM_* logging do not add much value.
+> So I have been tempted several times to convert all logging in
+> panel/ to dev_* and pr_* (when no struct device * is available).
+> That would also avoid that we mix up logging.
+> 
+> We have drm_* logging - but they require a valid drm_device * which we
+> do not have in the the panel drivers. So they are ruled out here.
+> 
+> Do you have any opinions/comments on this?
+I went ahead and dropped the DRM_ logging in drm/panel, you are copied
+on the patchset. Feedback on the patches would be nice.
 
-is already in use, but is not added to a document.
-The current fallback string "rockchip,rk3328-spdif" points to a data
-set enum RK_SPDIF_RK3366 in rockchip_spdif.c that is not used both
-in the mainline as in the manufacturer kernel.
-(Of the enum only RK_SPDIF_RK3288 is used.)
-So if the properties don't change we might as well use the first SoC
-in line as fallback string and add the description for rk3308 as:
-
-"rockchip,rk3308-spdif", "rockchip,rk3066-spdif"
-
-make ARCH=arm64 dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/sound/rockchip-spdif.yaml
-
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
-enum rk_spdif_type {
-	RK_SPDIF_RK3066,
-	RK_SPDIF_RK3188,
-	RK_SPDIF_RK3288,
-	RK_SPDIF_RK3366,
-};
-
-static const struct of_device_id rk_spdif_match[] = {
-	{ .compatible = "rockchip,rk3066-spdif",
-	  .data = (void *)RK_SPDIF_RK3066 },
-	{ .compatible = "rockchip,rk3188-spdif",
-	  .data = (void *)RK_SPDIF_RK3188 },
-	{ .compatible = "rockchip,rk3228-spdif",
-	  .data = (void *)RK_SPDIF_RK3366 },
-	{ .compatible = "rockchip,rk3288-spdif",
-	  .data = (void *)RK_SPDIF_RK3288 },
-	{ .compatible = "rockchip,rk3328-spdif",
-	  .data = (void *)RK_SPDIF_RK3366 },
-	{ .compatible = "rockchip,rk3366-spdif",
-	  .data = (void *)RK_SPDIF_RK3366 },
-	{ .compatible = "rockchip,rk3368-spdif",
-	  .data = (void *)RK_SPDIF_RK3366 },
-	{ .compatible = "rockchip,rk3399-spdif",
-	  .data = (void *)RK_SPDIF_RK3366 },
-	{},
-};
----
- arch/arm64/boot/dts/rockchip/rk3308.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3308.dtsi b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-index e8b754d41..2560b9877 100644
---- a/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-@@ -574,7 +574,7 @@
- 	};
- 
- 	spdif_tx: spdif-tx@ff3a0000 {
--		compatible = "rockchip,rk3308-spdif", "rockchip,rk3328-spdif";
-+		compatible = "rockchip,rk3308-spdif", "rockchip,rk3066-spdif";
- 		reg = <0x0 0xff3a0000 0x0 0x1000>;
- 		interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
- 		clocks = <&cru SCLK_SPDIF_TX>, <&cru HCLK_SPDIFTX>;
--- 
-2.11.0
-
+	Sam
