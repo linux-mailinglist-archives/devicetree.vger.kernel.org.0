@@ -2,89 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D35382452A6
-	for <lists+devicetree@lfdr.de>; Sat, 15 Aug 2020 23:54:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B67F245206
+	for <lists+devicetree@lfdr.de>; Sat, 15 Aug 2020 23:37:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726357AbgHOVyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Aug 2020 17:54:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45598 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728082AbgHOVwh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Aug 2020 17:52:37 -0400
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [IPv6:2001:67c:2050::465:201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1690BC0A3BE8;
-        Sat, 15 Aug 2020 09:35:45 -0700 (PDT)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [80.241.60.240])
-        (using TLSv1.2 with cipher ECDHE-RSA-CHACHA20-POLY1305 (256/256 bits))
-        (No client certificate requested)
-        by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4BTQsW1dB1zQl1c;
-        Sat, 15 Aug 2020 18:35:43 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-Received: from smtp1.mailbox.org ([80.241.60.240])
-        by spamfilter01.heinlein-hosting.de (spamfilter01.heinlein-hosting.de [80.241.56.115]) (amavisd-new, port 10030)
-        with ESMTP id CwklkwhAjps1; Sat, 15 Aug 2020 18:35:40 +0200 (CEST)
-From:   Hauke Mehrtens <hauke@hauke-m.de>
-To:     tsbogend@alpha.franken.de
-Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, james.hartley@sondrel.com,
-        rahulbedarkar89@gmail.com, wigyori@uid0.hu,
-        Hauke Mehrtens <hauke@hauke-m.de>
-Subject: [PATCH 2/3] MIPS: DTS: img: marduk: Add Cascoda CA8210 6LoWPAN
-Date:   Sat, 15 Aug 2020 18:35:13 +0200
-Message-Id: <20200815163514.11631-2-hauke@hauke-m.de>
-In-Reply-To: <20200815163514.11631-1-hauke@hauke-m.de>
-References: <20200815163514.11631-1-hauke@hauke-m.de>
+        id S1726632AbgHOVhV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Aug 2020 17:37:21 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:52718 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726444AbgHOVhU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 15 Aug 2020 17:37:20 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id 6788EFB05;
+        Sat, 15 Aug 2020 18:47:39 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id rYMbM5R8wXQP; Sat, 15 Aug 2020 18:47:37 +0200 (CEST)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 4A9304576F; Sat, 15 Aug 2020 18:47:37 +0200 (CEST)
+Date:   Sat, 15 Aug 2020 18:47:37 +0200
+From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        allen <allen.chen@ite.com.tw>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: Add Mantix MLAF057WE51-X panel bindings
+Message-ID: <20200815164737.GA3640@bogon.m.sigxcpu.org>
+References: <cover.1597412076.git.agx@sigxcpu.org>
+ <9345739df02b8b8630e7dccb61a80a7a7f692526.1597412076.git.agx@sigxcpu.org>
+ <20200815083917.GA993113@ravnborg.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-MBO-SPAM-Probability: *
-X-Rspamd-Score: 0.89 / 15.00 / 15.00
-X-Rspamd-Queue-Id: 29BF51831
-X-Rspamd-UID: 66c5b7
+In-Reply-To: <20200815083917.GA993113@ravnborg.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Cascoda CA8210 6LoWPAN controller to device tree.
+Hi Sam,
+On Sat, Aug 15, 2020 at 10:39:17AM +0200, Sam Ravnborg wrote:
+> Hi Guido.
+> 
+> On Fri, Aug 14, 2020 at 03:36:22PM +0200, Guido Günther wrote:
+> > The panel uses a Focaltech FT8006p, the touch part is handled by the
+> > already existing edt-ft5x06.
+> > 
+> > Signed-off-by: Guido Günther <agx@sigxcpu.org>
+> 
+> A few trivialities.
 
-Signed-off-by: Hauke Mehrtens <hauke@hauke-m.de>
----
- arch/mips/boot/dts/img/pistachio_marduk.dts | 22 +++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+Thanks for having a look. One remark inline:
 
-diff --git a/arch/mips/boot/dts/img/pistachio_marduk.dts b/arch/mips/boot/dts/img/pistachio_marduk.dts
-index ea11a21b133b..633a41954cc0 100644
---- a/arch/mips/boot/dts/img/pistachio_marduk.dts
-+++ b/arch/mips/boot/dts/img/pistachio_marduk.dts
-@@ -75,6 +75,28 @@
- 	VDD-supply = <&internal_dac_supply>;
- };
- 
-+&spfi0 {
-+	status = "okay";
-+	pinctrl-0 = <&spim0_pins>, <&spim0_cs0_alt_pin>, <&spim0_cs2_alt_pin>, <&spim0_cs3_alt_pin>, <&spim0_cs4_alt_pin>;
-+	pinctrl-names = "default";
-+
-+	cs-gpios = <&gpio1 14 GPIO_ACTIVE_HIGH>, <&gpio0 2 GPIO_ACTIVE_HIGH>,
-+			<&gpio1 12 GPIO_ACTIVE_HIGH>, <&gpio1 13 GPIO_ACTIVE_HIGH>;
-+
-+	ca8210: ca8210@0 {
-+		status = "okay";
-+		compatible = "cascoda,ca8210";
-+		reg = <0>;
-+		spi-max-frequency = <4000000>;
-+		spi-cpol;
-+		reset-gpio = <&gpio0 12 GPIO_ACTIVE_HIGH>;
-+		irq-gpio = <&gpio2 12 GPIO_ACTIVE_HIGH>;
-+		extclock-enable;
-+		extclock-freq = <16000000>;
-+		extclock-gpio = <2>;
-+	};
-+};
-+
- &spfi1 {
- 	status = "okay";
- 
--- 
-2.20.1
+> 
+> > ---
+> >  .../display/panel/mantix,mlaf057we51-x.yaml   | 73 +++++++++++++++++++
+> >  1 file changed, 73 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
+> > new file mode 100644
+> > index 0000000000000..349f3380ac940
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
+> > @@ -0,0 +1,73 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/panel/mantix,mlaf057we51-x.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Mantix MLAF057WE51-X 5.7" 720x1440 TFT LCD panel
+> > +
+> > +maintainers:
+> > +  - Guido Günther <agx@sigxcpu.org>
+> > +
+> > +description: |
+> > +             Mantix MLAF057WE51 X is a 720x1440 TFT LCD panel
+> > +             connected using a MIPI-DSI video interface.
+> Indent text with two spaces only.
+> And I have learned that '|' is only needed to preserve formatting - so
+> it can be dropped.
+> 
+> > +
+> > +allOf:
+> > +  - $ref: panel-common.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - mantix,mlaf057we51-x
+> This is a list - so needs an extra 2 spaces indent.
+> See https://lore.kernel.org/linux-devicetree/f1963eb9-283f-e903-2a3a-4f324d71d418@lucaceresoli.net/T/#m65900317fb948f6c40e8fb521f2201fba3c301a7
+> for examples where Rob fixes this.
 
+Doesn't this only apply if the 'outer element' is a list too so e.g.:
+
+   - enum
+     - foo
+
+trips up yamllint but
+
+   enum
+     - foo
+
+doesn't. Since yamllint was happy i kept it as is (looking at your
+reference suggests that too).
+
+All the rest made sense and i fixed that for the upcoming v2.
+Thanks for having a look!
+ -- Guido
+
+> 
+> > +
+> > +  port: true
+> > +  reg:
+> > +    maxItems: 1
+> > +    description: DSI virtual channel
+> > +
+> > +  avdd-supply:
+> > +    description: Positive analog power supply
+> > +
+> > +  avee-supply:
+> > +    description: Negative analog power supply
+> > +
+> > +  vddi-supply:
+> > +    description: 1.8V I/O voltage supply
+> > +
+> > +  reset-gpios:
+> > +    description: GPIO used for the reset pin
+> > +    maxItems: 1
+> Use reset-gpios: true as we already have it in panel-common.yaml
+> 
+> > +
+> > +  backlight:
+> > +    description: Backlight used by the panel
+> > +    $ref: "/schemas/types.yaml#/definitions/phandle"
+> Use backlight from panel-common.yaml.
+> 
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - avdd-supply
+> > +  - avee-supply
+> > +  - vddi-supply
+> > +  - reset-gpios
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    dsi {
+> My personal preference is indent with 4 spaces in examples but there are
+> no rules so feel free to ignore.
+> > +      #address-cells = <1>;
+> > +      #size-cells = <0>;
+> > +      panel@0 {
+> > +        compatible = "mantix,mlaf057we51-x";
+> > +        reg = <0>;
+> > +        avdd-supply = <&reg_avdd>;
+> > +        avee-supply = <&reg_avee>;
+> > +        vddi-supply = <&reg_1v8_p>;
+> > +        reset-gpios = <&gpio1 29 GPIO_ACTIVE_LOW>;
+> > +        backlight = <&backlight>;
+> > +      };
+> > +    };
+> I think we need an ampty line here.
+> > +...
+> > -- 
+> > 2.26.2
+> > 
+> > _______________________________________________
+> > dri-devel mailing list
+> > dri-devel@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> 
