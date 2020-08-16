@@ -2,78 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 054742454EB
-	for <lists+devicetree@lfdr.de>; Sun, 16 Aug 2020 01:29:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37EEE24558D
+	for <lists+devicetree@lfdr.de>; Sun, 16 Aug 2020 05:27:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728753AbgHOX3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Aug 2020 19:29:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33044 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725984AbgHOX3a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Aug 2020 19:29:30 -0400
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85FADC061786
-        for <devicetree@vger.kernel.org>; Sat, 15 Aug 2020 16:29:30 -0700 (PDT)
-Received: by mail-ej1-x642.google.com with SMTP id d6so13672950ejr.5
-        for <devicetree@vger.kernel.org>; Sat, 15 Aug 2020 16:29:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:sender:from:date:message-id:subject:to;
-        bh=q9cG1eNNPb1Io7EXUgX+BaCEWqZJpJae2FSaDlYBKUE=;
-        b=NnqVHB1BcErTN9Ce2a082nfDoM6VyRuGB5kPyYqm/VHIlgswhf392gnSCehF3gc5gA
-         yDXA8ZMVY8OP0Dnrnx4V2VwXpzGihz2Ynis/PfPINj0hA1gF207+5+6yXCqxcic+psaL
-         IuMWVz3N/XPsMVv+aKOXymcSNC461ix6xt72BRC58syoVQiDvdKwtJk/HTCz1TRkWvQ7
-         NgA0j71P+py+dODxbvVsZOpV88y8esn7c2hOgQZfIzqU/zPB4hvVBxO5KBC2DsK4qr3g
-         kmcGaCz6WLkwR8Re5v+e34r6c5zR4e/3KugP6pJo/8YNQLNSfOfkFnIoVoBsXrXm9SkS
-         lJLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to;
-        bh=q9cG1eNNPb1Io7EXUgX+BaCEWqZJpJae2FSaDlYBKUE=;
-        b=KUpTMoPk6jKRScUlSBrlEll7JSkygMnkehF6PYFMoHeVxpmItq+ZfzzVr6rtEhzd1H
-         4O3tJ3CodmYWnl4bvbQte7/orOZxhIg0uG5N7S+8R+VfWHhzuorQUDOuiJOMD40vTssa
-         qu17AiHesz+sw0OBApjY+T/X9MVqt3z5rZ9VZln2LXD1I063Csa6Pk1IYh1afpsC4yat
-         5wT/4arYjPmo5COiRgwzXST9+XpVYBb7yZn/zQcZcKiYtTuxQYV7jgksrmo8GUNClF+u
-         fQiIrwuCxtcpmtScGpIthaXbIr5bTqWi6J2FdLARxIcThbIj/AJzCfVqy4EuEns/QKTD
-         AAWg==
-X-Gm-Message-State: AOAM53309E6PFxzY9tZJvnYyW01w6QGtD6+Pvym1/8Wu2ZOntRwAkEll
-        /eBCkLl+dmX1QNANSDbFOSl7/go4w1yWAcb5NcU=
-X-Google-Smtp-Source: ABdhPJwGGYmUbBUmkA8biF4muTd2BBeLiWReG6Km20aZDM31xm0DpnZ7eN/UnxOEwffe/AvVY3NqTz77EQZGJYJkMH0=
-X-Received: by 2002:a17:906:3ac4:: with SMTP id z4mr8188279ejd.65.1597534168928;
- Sat, 15 Aug 2020 16:29:28 -0700 (PDT)
+        id S1729976AbgHPD1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Aug 2020 23:27:04 -0400
+Received: from mail-vi1eur05on2040.outbound.protection.outlook.com ([40.107.21.40]:31073
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729521AbgHPD1E (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 15 Aug 2020 23:27:04 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RBERISH/YDa5ezsmnvrRmi5a0hcd9BDQWjc5ji49ovOZeqBlzuvpvcYcV9xgL6GE8ZuPxlUBg89R85o6iRaQh0RuZ8CKGWIDMUU295L85AQ2zlYDRIIx3e3ZO1GfbjK0I7EMSbcXY+VLKxduDSEFDpgsKyuHZGpfLtSmyIry31bXw2+UsTMZ7kRQlj+FQ6NKjOtzPwjHFrCr/BidtWcr1e71rgJ9Gt6CioTPv9hgi/kfiljOkVDfzvIfXgrTTyPyvfrflZ7Ky6gwEGjmQo58X1+wGDdDjt4yXnrQD28Tf66sw+O5VdbA73Zs6l0oTMXVh/sqSaBIfrF8389bsYKgbw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UgPpZCo3RnosbrpNizje2Id15dwBpyiUXg/WAn+Ih7U=;
+ b=chORHUm9rAJgs+ThAthzfPgABQHqpxrm0gdNhIieF1HJhdwAxEK+tOF6aGXlaaRuHi41gmyynxNi+HZIK4HVmUn3f5yWKqq7sASg5wERNotQVuSyfTTPKCjKh/wamdJkG7hlvKXu3ugSrH8ibhlUtX7StmttkKY3Pv9vwlVMjVr5wGhmYpUeBzSAae4TzP+ZYxszExKE8/oMc88rec5bC040h4w7S7sFGtTUziMHqvgcLnR0CDlcJpRWSbAc/pDXzSxKHzivrxvnpR1oAqdWRSrHJPwTqgDAyR5T2lGk1CwWNNizo7uZ0Zyfuo6pMlyRHejbKZzAcn1Bo95HrHPJqg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UgPpZCo3RnosbrpNizje2Id15dwBpyiUXg/WAn+Ih7U=;
+ b=VowYwSuYRudrTP9Q4HtaqDaKnZJyhDtAWUU67eDweK4uLLqItA4YOhToRhXNgDC1QilbDFX7ZXyiaYyOhZFLtgNLuKEueSIsj6p/kaYy8bsvuPys7Y8iQxx+t99vXJzwKN3gikEbmw4HbJ0YkMkIrMEtfB9pazCHV6icQ2mGDaQ=
+Received: from VE1PR04MB6528.eurprd04.prod.outlook.com (2603:10a6:803:127::18)
+ by VI1PR04MB4591.eurprd04.prod.outlook.com (2603:10a6:803:6e::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3283.22; Sun, 16 Aug
+ 2020 03:27:00 +0000
+Received: from VE1PR04MB6528.eurprd04.prod.outlook.com
+ ([fe80::acd3:d354:3f34:3af7]) by VE1PR04MB6528.eurprd04.prod.outlook.com
+ ([fe80::acd3:d354:3f34:3af7%4]) with mapi id 15.20.3283.026; Sun, 16 Aug 2020
+ 03:27:00 +0000
+From:   Jun Li <jun.li@nxp.com>
+To:     Jun Li <jun.li@nxp.com>, "kishon@ti.com" <kishon@ti.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>
+CC:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Peter Chen <peter.chen@nxp.com>
+Subject: RE: [PATCH 2/2] phy: freescale: imx8mq-usb: add support for imx8mp
+ usb phy
+Thread-Topic: [PATCH 2/2] phy: freescale: imx8mq-usb: add support for imx8mp
+ usb phy
+Thread-Index: AQHWPZq2S3C+qLdffUSUIoKgOaVEhqk6flPA
+Date:   Sun, 16 Aug 2020 03:26:59 +0000
+Message-ID: <VE1PR04MB6528E11B7728E167A7A4A878895E0@VE1PR04MB6528.eurprd04.prod.outlook.com>
+References: <1591621893-22363-1-git-send-email-jun.li@nxp.com>
+ <1591621893-22363-2-git-send-email-jun.li@nxp.com>
+In-Reply-To: <1591621893-22363-2-git-send-email-jun.li@nxp.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: nxp.com; dkim=none (message not signed)
+ header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [114.217.242.43]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 7226639a-c6cf-476a-d4d4-08d841943c9d
+x-ms-traffictypediagnostic: VI1PR04MB4591:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB4591BC911AF0B11C242829BF895E0@VI1PR04MB4591.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:341;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: cgutlo8y0H6QZbzCXjtXF7xh5Y3BhBP5nNy91JWT4nXX3DZDMHKrB18PefhW0RF4AfSnQbsDfpSyy5VQZZPszaWyosNZWNDaIQ6RUk9DEjTJh+OPns0HKNsum62wyoJeQjyYYmPMQo9c3BZsssRQgzCPuvWuD34C3lcTUAU5pkl7og2UlPsEJPzZU+8ajogOc9EvJ//wY0z3xxitOOn62+2S4/IiU9eKCUyftclm/lvA5zg0EyFVX2Kvpa/izYHGSHs6R+hI59hdx04+fYSQ/fKpZPYQC7hSGSV78IKl+0QQ7hKfdNyDKg6ev8maeryPnHeheZ/mWMzAFECAipe+JFCjWrD8S1NrCVyI95VWQkdqwjzepFC5aRNxzv6p1GAI
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6528.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(346002)(39850400004)(366004)(136003)(26005)(478600001)(52536014)(55016002)(86362001)(2906002)(83380400001)(9686003)(33656002)(186003)(5660300002)(66446008)(316002)(8676002)(110136005)(53546011)(71200400001)(7696005)(8936002)(66556008)(76116006)(66476007)(64756008)(66946007)(6506007)(4326008)(54906003)(44832011)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: gB80Y5sgo/FOcvY+3A9oDaH2pm9mE2JGTwJrJ07fLvIqNngArLAaNXXF/rwzbwSY+NScP0NBo1uL6Cy+A924oRScJfN6PZoat3iiJOj7LCoIkEy5PJirZsJ43SUt8ngLS31Fmhbt1apEa7JZN3Nt9lxbFvDVr4I8OFi6wTJPGRC5NLJebcY21/Qrafwz3C/da+PSn9jxlw8FsK8+wB6TBd7hlm9EK/StEsCUyNzvTBeo3z5ON+mUjMvV3fk4FF1WigF1ADsbomaNMAzw84bl+teAEWlLXFRwweMttJAbzMNAwaJ+jfprtP82dSvM90G12hLzp4CnQD8gRfqEZ0+xh8bPOZ/HANLaov9Mk88nSQe5oIRGo6stmJuc0lUKwvP5XqsIvYRkaqjKKP9KlXBae1QUTQ8/3JP26R27teiZx5kEIeDIr1wD6ibHvPSrP3X4OI6QictHixPXCpwdv/gbJbXcWmrn70ByFC3P0tJIotLBeyKtfZ04S3SmJQAzsaYKsSHR48DFZLgt8VcuJakgLrpkA3c8I/BgZP1SOct+clqXghLXStzHbf62zu3hl5YREJs+uTNwSD/Ij7nyHontQjZEFplajy8FmQHva9J0zK54qCz8WjUf9jfXrD4R9vMNlIiWKrIU/ALUxobkzzXhsA==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Received: by 2002:a05:6402:22c2:0:0:0:0 with HTTP; Sat, 15 Aug 2020 16:29:27
- -0700 (PDT)
-From:   Mrs Ayesha <2007aisha2007@gmail.com>
-Date:   Sat, 15 Aug 2020 16:29:27 -0700
-X-Google-Sender-Auth: 9uvCQGKHHBObkozm_d1nbribIgs
-Message-ID: <CAN6fNHqHaaf3QqQbWNvv4GJe=cPmdo=9Bmhaeg_AH+gTD2YbGw@mail.gmail.com>
-Subject: GOOD DAY.
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6528.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7226639a-c6cf-476a-d4d4-08d841943c9d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Aug 2020 03:27:00.0417
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: vUIYrfBmuiwHLgDjcrN8Jb3IplHV40GBKOvmQKGKEaRayEU5XjBxsfpsv1gAYS3J
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4591
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Assalamu Alaikum Wa Rahmatullahi Wa Barakatuh,
++Vinod
 
-My name is Aisha Gaddafi the only biological Daughter of Late Colonel
-Mohammad Muammar Gaddafi, Libyan formal President.
+> -----Original Message-----
+> From: Jun Li <jun.li@nxp.com>
+> Sent: Monday, June 8, 2020 9:43 PM
+> To: kishon@ti.com; robh+dt@kernel.org
+> Cc: shawnguo@kernel.org; s.hauer@pengutronix.de; kernel@pengutronix.de;
+> festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>; Jun Li <jun.li@nxp.=
+com>;
+> devicetree@vger.kernel.org; Peter Chen <peter.chen@nxp.com>
+> Subject: [PATCH 2/2] phy: freescale: imx8mq-usb: add support for imx8mp u=
+sb phy
+>=20
+> Add initial support for imx8mp usb phy support, imx8mp usb has a silimar =
+phy as
+> imx8mq, which has some different customizations on clock and low power de=
+sign when
+> SoC integration.
+>=20
+> Signed-off-by: Li Jun <jun.li@nxp.com>
+>=20
+> diff --git a/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
+> b/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
+> index 0c4833d..030bf4e 100644
+> --- a/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
+> +++ b/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
+> @@ -4,12 +4,16 @@
+>  #include <linux/clk.h>
+>  #include <linux/io.h>
+>  #include <linux/module.h>
+> +#include <linux/delay.h>
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/of_platform.h>
+>  #include <linux/regulator/consumer.h>
+>=20
+>  #define PHY_CTRL0			0x0
+>  #define PHY_CTRL0_REF_SSP_EN		BIT(2)
+> +#define PHY_CTRL0_FSEL_MASK		GENMASK(10, 5)
+> +#define PHY_CTRL0_FSEL_24M		(0x2a << 5)
+>=20
+>  #define PHY_CTRL1			0x4
+>  #define PHY_CTRL1_RESET			BIT(0)
+> @@ -20,6 +24,11 @@
+>=20
+>  #define PHY_CTRL2			0x8
+>  #define PHY_CTRL2_TXENABLEN0		BIT(8)
+> +#define PHY_CTRL2_OTG_DISABLE		BIT(9)
+> +
+> +#define PHY_CTRL6			0x18
+> +#define PHY_CTRL6_ALT_CLK_EN		BIT(1)
+> +#define PHY_CTRL6_ALT_CLK_SEL		BIT(0)
+>=20
+>  struct imx8mq_usb_phy {
+>  	struct phy *phy;
+> @@ -54,6 +63,44 @@ static int imx8mq_usb_phy_init(struct phy *phy)
+>  	return 0;
+>  }
+>=20
+> +static int imx8mp_usb_phy_init(struct phy *phy) {
+> +	struct imx8mq_usb_phy *imx_phy =3D phy_get_drvdata(phy);
+> +	u32 value;
+> +
+> +	/* USB3.0 PHY signal fsel for 24M ref */
+> +	value =3D readl(imx_phy->base + PHY_CTRL0);
+> +	value &=3D ~PHY_CTRL0_FSEL_MASK;
+> +	value |=3D PHY_CTRL0_FSEL_24M;
+> +	writel(value, imx_phy->base + PHY_CTRL0);
+> +
+> +	/* Disable alt_clk_en and use internal MPLL clocks */
+> +	value =3D readl(imx_phy->base + PHY_CTRL6);
+> +	value &=3D ~(PHY_CTRL6_ALT_CLK_SEL | PHY_CTRL6_ALT_CLK_EN);
+> +	writel(value, imx_phy->base + PHY_CTRL6);
+> +
+> +	value =3D readl(imx_phy->base + PHY_CTRL1);
+> +	value &=3D ~(PHY_CTRL1_VDATSRCENB0 | PHY_CTRL1_VDATDETENB0);
+> +	value |=3D PHY_CTRL1_RESET | PHY_CTRL1_ATERESET;
+> +	writel(value, imx_phy->base + PHY_CTRL1);
+> +
+> +	value =3D readl(imx_phy->base + PHY_CTRL0);
+> +	value |=3D PHY_CTRL0_REF_SSP_EN;
+> +	writel(value, imx_phy->base + PHY_CTRL0);
+> +
+> +	value =3D readl(imx_phy->base + PHY_CTRL2);
+> +	value |=3D PHY_CTRL2_TXENABLEN0 | PHY_CTRL2_OTG_DISABLE;
+> +	writel(value, imx_phy->base + PHY_CTRL2);
+> +
+> +	udelay(10);
+> +
+> +	value =3D readl(imx_phy->base + PHY_CTRL1);
+> +	value &=3D ~(PHY_CTRL1_RESET | PHY_CTRL1_ATERESET);
+> +	writel(value, imx_phy->base + PHY_CTRL1);
+> +
+> +	return 0;
+> +}
+> +
+>  static int imx8mq_phy_power_on(struct phy *phy)  {
+>  	struct imx8mq_usb_phy *imx_phy =3D phy_get_drvdata(phy); @@ -83,12 +130=
+,29 @@
+> static struct phy_ops imx8mq_usb_phy_ops =3D {
+>  	.owner		=3D THIS_MODULE,
+>  };
+>=20
+> +static struct phy_ops imx8mp_usb_phy_ops =3D {
+> +	.init		=3D imx8mp_usb_phy_init,
+> +	.power_on	=3D imx8mq_phy_power_on,
+> +	.power_off	=3D imx8mq_phy_power_off,
+> +	.owner		=3D THIS_MODULE,
+> +};
+> +
+> +static const struct of_device_id imx8mq_usb_phy_of_match[] =3D {
+> +	{.compatible =3D "fsl,imx8mq-usb-phy",
+> +	 .data =3D &imx8mq_usb_phy_ops,},
+> +	{.compatible =3D "fsl,imx8mp-usb-phy",
+> +	 .data =3D &imx8mp_usb_phy_ops,},
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, imx8mq_usb_phy_of_match);
+> +
+>  static int imx8mq_usb_phy_probe(struct platform_device *pdev)  {
+>  	struct phy_provider *phy_provider;
+>  	struct device *dev =3D &pdev->dev;
+>  	struct imx8mq_usb_phy *imx_phy;
+>  	struct resource *res;
+> +	const struct of_device_id *of_id;
+>=20
+>  	imx_phy =3D devm_kzalloc(dev, sizeof(*imx_phy), GFP_KERNEL);
+>  	if (!imx_phy)
+> @@ -105,7 +169,12 @@ static int imx8mq_usb_phy_probe(struct platform_devi=
+ce *pdev)
+>  	if (IS_ERR(imx_phy->base))
+>  		return PTR_ERR(imx_phy->base);
+>=20
+> -	imx_phy->phy =3D devm_phy_create(dev, NULL, &imx8mq_usb_phy_ops);
+> +	of_id =3D of_match_device(imx8mq_usb_phy_of_match, dev);
+> +	if (!of_id)
+> +		return -ENODEV;
+> +
+> +	imx_phy->phy =3D devm_phy_create(dev, NULL, (const struct phy_ops *)
+> +					of_id->data);
+>  	if (IS_ERR(imx_phy->phy))
+>  		return PTR_ERR(imx_phy->phy);
+>=20
+> @@ -120,12 +189,6 @@ static int imx8mq_usb_phy_probe(struct platform_devi=
+ce *pdev)
+>  	return PTR_ERR_OR_ZERO(phy_provider);
+>  }
+>=20
+> -static const struct of_device_id imx8mq_usb_phy_of_match[] =3D {
+> -	{.compatible =3D "fsl,imx8mq-usb-phy",},
+> -	{ },
+> -};
+> -MODULE_DEVICE_TABLE(of, imx8mq_usb_phy_of_match);
+> -
+>  static struct platform_driver imx8mq_usb_phy_driver =3D {
+>  	.probe	=3D imx8mq_usb_phy_probe,
+>  	.driver =3D {
+> --
+> 2.7.4
 
-I'm a Widow with three Children, presently living in Oman as a refugee
-with my three children, i have been under political asylum protection
-by the Government of Oman however, I have an investment funds
-deposited in the bank by my late father using my name as next of kin
-which i want to entrust on you as i have been commissioned by the Bank
-to present an interested investment manager/partner to represent me in
-the bank with an authorization letter to receive the fund from the
-bank for investment project in your country or your company due to my
-refugee status here in Oman.
+A gentle ping...
 
-PLease in the name of Allah/God, I hope to hear from you for more
-details if you're interested,
-
-Warmest regards
-Mrs Aisha Gaddafi
+Thanks
+Li Jun
