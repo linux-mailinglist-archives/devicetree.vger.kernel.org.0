@@ -2,101 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76471245749
-	for <lists+devicetree@lfdr.de>; Sun, 16 Aug 2020 13:22:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EC68245763
+	for <lists+devicetree@lfdr.de>; Sun, 16 Aug 2020 13:36:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728594AbgHPLWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Aug 2020 07:22:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56828 "EHLO
+        id S1729176AbgHPLgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Aug 2020 07:36:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728639AbgHPLWL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Aug 2020 07:22:11 -0400
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72E52C061786;
-        Sun, 16 Aug 2020 04:21:56 -0700 (PDT)
-Received: from zn.tnic (p200300ec2f26be005d37f199a58e243d.dip0.t-ipconnect.de [IPv6:2003:ec:2f26:be00:5d37:f199:a58e:243d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 3CC941EC027B;
-        Sun, 16 Aug 2020 13:21:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1597576910;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=cMXvEXkyTsrY8sFsp1lnP4ixT5jJSQ6YbHxQfH0FNg4=;
-        b=Krl/v7U3lVDL8glqCYGHcilbKhYp7xlwSoeGOYfIWisRhmgp569YSVCqhzsCaIfn8zjoc0
-        mC+uzv36mSVuWb++7yBXMOS+hyDvHpjaWPjVrT4ymB62HU4Xv+pfqAn+Eb9BtkifX2ovaW
-        60JxbV021VbIljRwwcb0rQgiuI1C5Ug=
-Date:   Sun, 16 Aug 2020 13:22:44 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     "Shenhar, Talel" <talel@amazon.com>
-Cc:     mchehab@kernel.org, james.morse@arm.com, davem@davemloft.net,
-        gregkh@linuxfoundation.org, nicolas.ferre@microchip.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, catalin.marinas@arm.com,
-        will@kernel.org, linux-edac@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, hhhawa@amazon.com,
-        ronenk@amazon.com, jonnyc@amazon.com, hanochu@amazon.com,
-        eitan@amazon.com
-Subject: Re: [PATCH v9 2/2] EDAC: al-mc-edac: Introduce Amazon's Annapurna
- Labs Memory Controller EDAC
-Message-ID: <20200816112244.GG21914@zn.tnic>
-References: <20200728095155.18506-1-talel@amazon.com>
- <20200728095155.18506-3-talel@amazon.com>
- <20200815183358.GE25814@zn.tnic>
- <5d516c64-ecd8-6f36-5f95-6708fe0f3fd5@amazon.com>
+        with ESMTP id S1729211AbgHPLe3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Aug 2020 07:34:29 -0400
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C6B6C061388;
+        Sun, 16 Aug 2020 04:34:03 -0700 (PDT)
+Received: by mail-ed1-x542.google.com with SMTP id m20so10123282eds.2;
+        Sun, 16 Aug 2020 04:34:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Xlb2qUCwKe4EF2PdUWQAuMEesAap269IMj+EUyQHrhw=;
+        b=WcqgIT8CuBXJOgYH0CDo9fZeXs5yfYVpiQpyz9mtfnlyE9GF0dEyyx+W1HELiJW0mH
+         o24rLo9hf2fkIJxclgaf9Ky9rPRO9DoNDdJ3huBU3hV7BkLvQldXDvVy8oEIuoRccxNC
+         r2ZyqgkMG3avvD4v7ya5wLKIFnPAFf520a0Lcu/8K3VK9Fw+Yws/lJ1lG0JIqnIvIRUX
+         DSKLNHNFlaKcnHUGPE1MppJXuygcty15vwgx+Rfd5u/cI4MyziENegTkEurZzw+eX9C1
+         jchStWEz358QXPa4R7ryihNVAIDfImjySy1IhRqTIHJ6i9cpTj0MpdhCbIePKcPVxphP
+         e28g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Xlb2qUCwKe4EF2PdUWQAuMEesAap269IMj+EUyQHrhw=;
+        b=D5rvEiUDYJau4MofiALIObiucMwX4jQ1esIyufNiHzV7m6xZGJU2Psx+pKZ1TfCRm6
+         V0mmg4WxYwsbJ+qk3BnhXTbveo7jfDEfDJ6YUPnOICgBi2YfYpq5TVPexq+uderUvFxp
+         l447aaXPkPGTqu1fawonjKBD2BmqEVn7d70IBIjulTqetMWaEA2N0V5MenKo43sRZcVO
+         V9KNt1eOQNhDnuhQO3LJnU5Kys/8x42nJQn/0bIORPX2mHm4dO0+e1VAoZR3swpGNKtk
+         3ndQOQT/yFXFHIwyKZ42MhvjZFqncXIjRW/sYjt1tIy1QNl3e9ZxfN+cfRmMjWUJezpv
+         Y3bA==
+X-Gm-Message-State: AOAM531cSULuaMCspYjZKIoUuRitS1seB/CLB+Ie27yA/iTVQOwy5YrB
+        jYykJVSZ4rSKJojKCoctqac=
+X-Google-Smtp-Source: ABdhPJz0ASv6aS4Q1vBhNQA5a64FC1jxRLAGQY0I15yYZvr3Y+/9ieznHix6dQsyT+xkFkWNa2Y32A==
+X-Received: by 2002:a50:dac6:: with SMTP id s6mr10458760edj.378.1597577639278;
+        Sun, 16 Aug 2020 04:33:59 -0700 (PDT)
+Received: from localhost.localdomain ([188.24.144.238])
+        by smtp.gmail.com with ESMTPSA id p1sm11272945edu.11.2020.08.16.04.33.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Aug 2020 04:33:58 -0700 (PDT)
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org
+Subject: [PATCH v4 0/3] Add Actions Semi Owl family sirq support
+Date:   Sun, 16 Aug 2020 14:33:53 +0300
+Message-Id: <cover.1597571397.git.cristian.ciocaltea@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <5d516c64-ecd8-6f36-5f95-6708fe0f3fd5@amazon.com>
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 16, 2020 at 12:17:31PM +0300, Shenhar, Talel wrote:
-> Let me know what you think.
+This patch series adds support for the external interrupt controller
+(SIRQ) found in Actions Semi Owl famil of SoC's (S500, S700 and S900).
+The controller allows connecting up to 3 external interrupt controllers
+through dedicated SIRQ pins.
 
-Well, devm_al_mc_edac_free() devm_al_mc_edac_del() look like useless
-wrappers to me and can be removed and you can use edac_mc_del_mc() and
-edac_mc_free() directly. But then you need to cast them in an ugly way
-so that it builds:
+This is a rework of the patch series submitted some time ago by 
+Parthiban Nallathambi: 
+https://lore.kernel.org/lkml/20181126100356.2840578-1-pn@denx.de/
 
-        ret = devm_add_action(&pdev->dev, (void (*)(void *data))edac_mc_free, mci);
+Please note I have dropped, for the moment, the S700 related patches 
+since I do not own a compatible hardware for testing. I'm using, 
+instead, an S500 SoC based board for which I have already provided an
+initial support:
+https://lore.kernel.org/lkml/cover.1592123160.git.cristian.ciocaltea@gmail.com/
 
-I guess we can leave them as is and then lift them into the EDAC core if
-someone else wants to do the same devm_* thing.
+The SIRQ controller support is a prerequisite of the soon to be
+submitted MFD driver for the Actions Semi ATC260x PMICs.
 
-al_mc_edac_get_scrub_mode() doesn't need a prefix because it is used
-only once and the compiler is simply inlining it so you can forget the
-stack trace visibility:
+Thanks and regards,
+Cristi
 
-$ readelf -s drivers/edac/al_mc_edac.ko | grep scrub
-$
+Changes in v4:
+- Simplified the DTS structure:
+  * dropped 'actions,sirq-shared-reg' node, now the differentiation
+    between SoC variants is handled now via the compatible property
+  * dropped 'actions,sirq-reg-offset', now controller base address in
+    DTS points to SIRQ0 register, so no additional information is 
+	required for S500 and S700, while for S900 SoC the offsets of SIRQ1
+	and SIRQ2 regs are provided by the driver
+  * 'actions,ext-irq-range' was replaced with 'actions,ext-interrupts',
+    an array of the GIC interrupts triggered by the controller
+- Fixed wrong INTC_EXTCTL_TYPE_MASK definition
+- Removed redundant irq_fwspec checks in owl_sirq_domain_alloc()
+- Improved error handling in owl_sirq_of_init()
+- Added yaml binding document
+- Dropped S700 related DTS patches for lack of testing hardware:
+  * arm64: dts: actions: Add sirq node for Actions Semi S700
+  * arm64: dts: actions: s700-cubieboard7: Enable SIRQ
+- Updated MAINTAINERS
+- Rebased patchset on kernel v5.8
+- Cosmetic changes
+ * Ordered include statements alphabetically
+ * Added comment to owl_sirq_set_type() describing conversion of falling
+   edge or active low signals
+ * Replaced IRQF_TRIGGER_* with corresponding IRQ_TYPE_* variants
+ * Ensured data types and function naming are consistent regarding the
+   'owl_sirq' prefix
 
-The others are fine, I guess, since they're function pointers and cannot be
-inlined as such so you want them prefixed:
+Changes in v3 (Parthiban Nallathambi):
+- Set default operating frequency to 24MHz
+- Falling edge and Low Level interrupts translated to rising edge and high level
+- Introduced common function with lock handling for register read and write
+- Used direct GIC interrupt number for interrupt local hwirq and finding offset
+using DT entry (range) when registers are shared 
+- Changed irq_ack to irq_eoi
+- Added translation method for irq_domain_ops
+- Clearing interrupt pending based on bitmask for edge triggered
+- Added pinctrl definition for sirq for cubieboard7. This depends on,
+https://lore.kernel.org/patchwork/patch/1012859/
 
-$ readelf -s drivers/edac/al_mc_edac.ko | grep al_mc_edac
-    23: 00000000     0 FILE    LOCAL  DEFAULT  ABS al_mc_edac.c
-    25: 00000000     4 FUNC    LOCAL  DEFAULT    1 devm_al_mc_edac_free
-    27: 00000004     4 FUNC    LOCAL  DEFAULT    1 devm_al_mc_edac_del
-    31: 00000124    24 FUNC    LOCAL  DEFAULT    1 al_mc_edac_irq_handler_ce
-    35: 00000260    24 FUNC    LOCAL  DEFAULT    1 al_mc_edac_irq_handler_ue
-    36: 00000278    56 FUNC    LOCAL  DEFAULT    1 al_mc_edac_check
-    37: 000002b0   680 FUNC    LOCAL  DEFAULT    1 al_mc_edac_probe
-    47: 00000000    20 FUNC    LOCAL  DEFAULT    3 al_mc_edac_driver_init
-    51: 00000000    12 FUNC    LOCAL  DEFAULT    5 al_mc_edac_driver_exit
-    53: 00000000   392 OBJECT  LOCAL  DEFAULT   16 al_mc_edac_of_match
-    59: 00000000   104 OBJECT  LOCAL  DEFAULT   20 al_mc_edac_driver
-    61: 00000000     0 FILE    LOCAL  DEFAULT  ABS al_mc_edac.mod.c
-    88: 00000000   392 OBJECT  GLOBAL DEFAULT   16 __mod_of__al_mc_edac_of_m
+Changes in v2 (Parthiban Nallathambi):
+- Added SIRQ as hierarchical chip
+        GIC <----> SIRQ <----> External interrupt controller/Child devices
+- Device binding updates with vendor prefix
+- Register sharing handled globally and common init sequence/data for all
+actions SoC family
 
-Thx.
+Cristian Ciocaltea (3):
+  dt-bindings: interrupt-controller: Add Actions SIRQ controller binding
+  irqchip: Add Actions Semi Owl SIRQ controller
+  MAINTAINERS: Add entries for Actions Semi Owl SIRQ controller
+
+ .../actions,owl-sirq.yaml                     |  69 ++++
+ MAINTAINERS                                   |   2 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-owl-sirq.c                | 318 ++++++++++++++++++
+ 4 files changed, 390 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/actions,owl-sirq.yaml
+ create mode 100644 drivers/irqchip/irq-owl-sirq.c
 
 -- 
-Regards/Gruss,
-    Boris.
+2.28.0
 
-https://people.kernel.org/tglx/notes-about-netiquette
