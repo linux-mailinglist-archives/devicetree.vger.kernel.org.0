@@ -2,96 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C50A62476B0
-	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 21:40:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A88F247647
+	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 21:35:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388360AbgHQTkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Aug 2020 15:40:37 -0400
-Received: from aserp2120.oracle.com ([141.146.126.78]:40396 "EHLO
-        aserp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729742AbgHQPZg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 11:25:36 -0400
-Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
-        by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 07HFBOO6039814;
-        Mon, 17 Aug 2020 15:25:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=corp-2020-01-29;
- bh=cjzdpdXq2OFDNjLcmDZq/8KMYSFbgoAYkIaLS/N63v8=;
- b=GQM5vTa3KX4tNW/94eDAc8RWkTJHAjkLps3epQpWFplyMpUccegmu+Y6TwGgGz7aUlEX
- b8S349zkTNIvIsueSXYeK4TbV6IDqZt4gYL3bQytMpRLGt7WM7AVvuIzhD3rSXzD9jOE
- 2fGAUYfealh2XYUl+m+DIVr3ojg3BUZD5GUuXfgDcNFJfRsKOULaZA4357ufHsYk4pTY
- muKIY0LMCLSAj0FGbFbKyNEoN6vgdIhK+FA1N1d9MOTrQkG5CChucs/wOlw2U9tV6iZG
- N5QHttGne1azWqbxNmQTDCXH96uVXRWjx1NyuZ7qt+GHDl+pbUJXkFiOlv9ws9ozRa6U UQ== 
-Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
-        by aserp2120.oracle.com with ESMTP id 32x7nm7ghs-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 17 Aug 2020 15:25:24 +0000
-Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
-        by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 07HFEQJZ133060;
-        Mon, 17 Aug 2020 15:25:23 GMT
-Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
-        by userp3020.oracle.com with ESMTP id 32xsfqp2e0-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 17 Aug 2020 15:25:23 +0000
-Received: from abhmp0020.oracle.com (abhmp0020.oracle.com [141.146.116.26])
-        by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 07HFPLAl022596;
-        Mon, 17 Aug 2020 15:25:21 GMT
-Received: from [10.74.111.253] (/10.74.111.253)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Mon, 17 Aug 2020 08:25:21 -0700
-Subject: Re: [PATCHv4 0/6] Add initial genpd support for omap PRM driver
-To:     Tony Lindgren <tony@atomide.com>, linux-omap@vger.kernel.org,
-        Santosh Shilimkar <ssantosh@kernel.org>
-Cc:     "Andrew F . Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
-        Tero Kristo <t-kristo@ti.com>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-References: <20200702154513.31859-1-tony@atomide.com>
- <20200817065300.GD2994@atomide.com>
-From:   santosh.shilimkar@oracle.com
-Organization: Oracle Corporation
-Message-ID: <f52bc6c2-1256-a3ca-fede-1d3ab441ef9f@oracle.com>
-Date:   Mon, 17 Aug 2020 08:25:18 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.9.0
+        id S1730056AbgHQTfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Aug 2020 15:35:42 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:37259 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730068AbgHQTfj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 15:35:39 -0400
+Received: by mail-il1-f194.google.com with SMTP id p13so15570268ilh.4;
+        Mon, 17 Aug 2020 12:35:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=iAgp3OtOJ2V/PDJ3pq372B1DRl70fIx00JIpk/BWygU=;
+        b=WD83jij1Rbas2aoH26bst4Wd2IAZsamOy69COePEP242UJVeliasG91aV7xS3fMGP7
+         zo0EoAACW4gJMuGLQzG8bVBwVR75yBOePYP0SdltQxjm0HZkGHZR8aOSkPGvxKNa47Ov
+         67WYEd3wShUexT/2jx7D0To8LCDs2sv6/L36akxJOoPvrKhGD258NT9JrZt539EEvH8c
+         F4V/SNEdalpsxdxOU9aJFXJN6IuS9lE4g91WF7jYaKUWy4eXK0xZqs5EALbR8Li1TPMj
+         VuEkuMB3qYv/moOZrGCJKKnlGpZQ/4/zcBSl97xhiHoBFpoDEX349nnSYl9XZYGaegQk
+         z12g==
+X-Gm-Message-State: AOAM530uBiw0LBvTLOCtcWudQw+5XmKkSmjJA6DAU44h66T4K+AAA6Hl
+        n9rK+N2iCKHFwhrM9tbbfw==
+X-Google-Smtp-Source: ABdhPJwXOJDDDq8HeKQf/PZk3gaBEkSGQVXO8CPg+FvLgAC1GUzXTU3b3o6z9o/yPeoBt4dX6qCiJw==
+X-Received: by 2002:a92:d4cc:: with SMTP id o12mr14429800ilm.90.1597692938320;
+        Mon, 17 Aug 2020 12:35:38 -0700 (PDT)
+Received: from xps15 ([64.188.179.249])
+        by smtp.gmail.com with ESMTPSA id f132sm9555787ioa.45.2020.08.17.12.35.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Aug 2020 12:35:37 -0700 (PDT)
+Received: (nullmailer pid 1415017 invoked by uid 1000);
+        Mon, 17 Aug 2020 19:35:35 -0000
+Date:   Mon, 17 Aug 2020 13:35:35 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Christian Eggers <ceggers@arri.de>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Subject: Re: [PATCH v3] dt-bindings: at25: convert the binding document to
+ yaml
+Message-ID: <20200817193535.GA1414886@bogus>
+References: <20200812200602.GA2612803@bogus>
+ <20200813085959.15946-1-ceggers@arri.de>
 MIME-Version: 1.0
-In-Reply-To: <20200817065300.GD2994@atomide.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9716 signatures=668679
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 mlxlogscore=999
- spamscore=0 suspectscore=0 mlxscore=0 phishscore=0 bulkscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2008170117
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9716 signatures=668679
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 spamscore=0
- impostorscore=0 priorityscore=1501 adultscore=0 mlxscore=0 mlxlogscore=999
- lowpriorityscore=0 bulkscore=0 phishscore=0 malwarescore=0 clxscore=1011
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
- definitions=main-2008170117
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200813085959.15946-1-ceggers@arri.de>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/16/20 11:53 PM, Tony Lindgren wrote:
-> Hi Santosh,
+On Thu, 13 Aug 2020 10:59:59 +0200, Christian Eggers wrote:
+> Convert the binding document for at25 EEPROMs from txt to yaml.
 > 
-> * Tony Lindgren <tony@atomide.com> [200702 18:46]:
->> Hi all,
->>
->> Here's v4 set of patches to add genpd support to the PRM (Power and Reset
->> Module) driver.
->>
->> Initially we just add one hardware accelerator power domain for sgx,
->> and one interconnect instance for l4_abe. The rest of the SoC specific
->> domain data is probably best added one SoC at a time based on generated
->> data.
+> Signed-off-by: Christian Eggers <ceggers@arri.de>
+> ---
+> On Wednesday, 12 August 2020, 22:06:02 CEST, Rob Herring wrote:
+> > > +This file has been moved to at25.yaml.
+> >
+> > We only do this to save updating a bunch of references and there aren't
+> > any, so just remove the file.
+> file removed.
 > 
-> Care to ack some of these patches? I'd like to get this into Linux next
-> for v5.10 :)
+> > I'd just fix it up, but this wouldn't apply for me on Linus' current
+> > master. Please rebase and resend (You can want til rc1 if you want
+> > because that's what I'll ultimately apply it too).
+> This was my fault. I forgot to revert my previous patch ("dt-bindings: at25: fix
+> syntax error in example code"). So v2 was created from a wrong base.
 > 
-Sure,
-Acked-by: Santosh Shilimkar <ssantosh@kernel.org>
+> I'll be unavailable until August, 23.
+> 
+> regards
+> Christian
+> 
+>  .../devicetree/bindings/eeprom/at25.txt       |  45 ------
+>  .../devicetree/bindings/eeprom/at25.yaml      | 129 ++++++++++++++++++
+>  2 files changed, 129 insertions(+), 45 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/eeprom/at25.txt
+>  create mode 100644 Documentation/devicetree/bindings/eeprom/at25.yaml
+> 
+
+Applied, thanks!
