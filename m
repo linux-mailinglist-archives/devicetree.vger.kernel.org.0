@@ -2,287 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3801247E62
-	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 08:23:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 844FC247EA7
+	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 08:48:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726403AbgHRGXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Aug 2020 02:23:13 -0400
-Received: from mail-eopbgr50073.outbound.protection.outlook.com ([40.107.5.73]:29071
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
+        id S1726482AbgHRGsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Aug 2020 02:48:25 -0400
+Received: from mail-eopbgr60052.outbound.protection.outlook.com ([40.107.6.52]:26446
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726382AbgHRGXK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Aug 2020 02:23:10 -0400
+        id S1726228AbgHRGsY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Aug 2020 02:48:24 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JrnfNT1TrKngAn67qb4/zpjuB6GOcZ0/6+6PABJmsg2SiPxJqxCW9R+etLZNb5qpOzhn7R+WhPBV509UF73tl+xVpTvJGvzKWCdHdJHtloxJcxJhDNwnNjrqWRHZ+w7Qyf2wJC+GGBeCGCw7/jl/2dXP1pB9DLN9XpftQmZI00gHkQ4Wg7WxwaESSN21Q06KFgfltilj3Z2QxCzHqByOzl0fhW3i22D1d4PiZMH8PHbwvRD2vJPV6mwQEoZkoEtlDubgZiDOG/OeFTE5ULsB3ldDp0mwAJKy+qdcAxeuXeqbseKk1XvcUhoJmg5xayMtUlhgrDw9ykzgvnyOZBzmmQ==
+ b=jJBwKnFFYvXvr/xYMitzSs5YYzYIIVjO76555hFUVLX1+ml7dqKY1sIiTNM6lHt0ann6uaBBpZUhqIJD6FuyaOmvxetd7ItZ8YPbP0K4hp3s3NrAs4Nh+ffvY0UWoBD2cCN4EyjmUB023XU9IOh85Ba1fP1CzRp2//WcBRAyzamV7wb7Z/l2JAVnHBV9G6Ndgv7+1n9T+26sVYSuxn6YiJ0jI0yAMk6kvB3ULKKAnS+bT5MShXdzoiJibo/pcZSPWVuEmRr7R7D3qiaXq0H1Gc0CD4jpMsxFU2LMyq/ZE7052QEpU78bRf2neSo5j8NJnLsuPCEpDZM4enfIA4c8nw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hW7OlGYbquDA4dCFpQ8Dfd24jGf0YQM3WQTRenFnLTI=;
- b=cV6r5y1RyOS2/w1sNQSFK8hNQHGkNRU6mNKBmvj59YYmAJvBbRqMLgxJKKJeAZKulh0P3jFXkcg2pdaXc8S2ZlJRrMtTTmprdxGajj5DoWcAhynq12osgQOVKYg6ZS8NdtdKFVcS9Cj+lIG2ezQnmVVAVN+c8Ws3hbkllrEq8KW3+7YI9UQ1UBCirFU7WyEO2PVO4Q7U7DSiReDizxTOxTXl1dCkmgdxsqoSig4gXAPnVh8tKeql8LQGp3m6clue1EB8VzeRWFP/aWF5Dp5Q6Qa8ImStR+s0MIW9QDoQFUnHVXe13CWnw/VbvVlGuiLDxF8SBi1VW9lBJ5VKI8pw5w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kococonnector.com; dmarc=pass action=none
- header.from=kococonnector.com; dkim=pass header.d=kococonnector.com; arc=none
+ bh=QpA0AEx8xzuaSMrwN5WI0m2klXLYN08vjJqOpZawb/0=;
+ b=ltbMMZ4rcQJFcbdZYbQFZiZBL/B9lDvqna8up4aUIUNV51PS1XUnSdUVhe7cycV8bV64fq7FlXPuB0zz9q9dbQdVR2YBiNUZCU/KwiySDzzGsyEEY2+mudg5n8iBboeMDnvJMIUO1j8gLKoSMefYvJgEzQ3z7zEqkf7601WP9tek6VDCyDwepG+z+XuTkubcDnVX4CcsmPSGZXTWCUkNGhb8tkBdhTVebFVnwtu02eTmdG1wGJgJMvcyG/d422dUD2gq9N8dPM6OV1eqTBrMFT6Tldd27fewxQgp8AWa8Grr8O2DvAmZd+YZ9FpFMNQ0/2ro01EBYCr6a5m8kRFYSA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=neutral (sender ip is
+ 193.240.239.45) smtp.rcpttodomain=linuxfoundation.org
+ smtp.mailfrom=diasemi.com; dmarc=fail (p=none sp=none pct=100) action=none
+ header.from=diasemi.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=KoCoConnector.onmicrosoft.com; s=selector2-KoCoConnector-onmicrosoft-com;
+ d=dialogsemiconductor.onmicrosoft.com;
+ s=selector1-dialogsemiconductor-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hW7OlGYbquDA4dCFpQ8Dfd24jGf0YQM3WQTRenFnLTI=;
- b=aD4v5buc9mC/CmUCwVJPawmcTUKDLWbgSmPyVzSiQTKtwJGZsDnKjc/S9GR6n/Pzp4T8Dy0eSsyKmZ/MIoJKvuGyBKcMQ9u5+Q9SANoRXbv2kTXZ7Od8c7QPsEeI5hTLsiw1KXWgLkzZJVdvCRhYgI2oA2PuKd5yUUJxFoM421s=
-Authentication-Results: nxp.com; dkim=none (message not signed)
- header.d=none;nxp.com; dmarc=none action=none header.from=kococonnector.com;
-Received: from AM0PR09MB4067.eurprd09.prod.outlook.com (2603:10a6:208:194::14)
- by AM0PR09MB2627.eurprd09.prod.outlook.com (2603:10a6:208:e3::24) with
+ bh=QpA0AEx8xzuaSMrwN5WI0m2klXLYN08vjJqOpZawb/0=;
+ b=sRA5rNfnlc/T8bZZrPmdRnUgBhLKSEZPrej6u0XaUkCK+YmGO5nA3hjqS7QFvZZ4JD9fIuyQG5dnbeguD+1Px2crFP2+5Q0kqqDukpSVRYOTPuU043WvBpurlvaPZL0Vqo19/Elu2r/FnVcwEbqAiytR1gRjHrlICckW9E7GptI=
+Received: from MR2P264CA0187.FRAP264.PROD.OUTLOOK.COM (2603:10a6:501::26) by
+ AM0PR10MB3668.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:15c::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3283.22; Tue, 18 Aug
- 2020 06:23:04 +0000
-Received: from AM0PR09MB4067.eurprd09.prod.outlook.com
- ([fe80::f9a5:ed5f:e58e:d4db]) by AM0PR09MB4067.eurprd09.prod.outlook.com
- ([fe80::f9a5:ed5f:e58e:d4db%9]) with mapi id 15.20.3283.026; Tue, 18 Aug 2020
- 06:23:04 +0000
-From:   Oliver Graute <oliver.graute@kococonnector.com>
-To:     aisheng.dong@nxp.com
-Cc:     fabio.estevam@nxp.com, kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org,
-        Oliver Graute <oliver.graute@kococonnector.com>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3283.18; Tue, 18 Aug
+ 2020 06:48:20 +0000
+Received: from VE1EUR02FT031.eop-EUR02.prod.protection.outlook.com
+ (2603:10a6:501:0:cafe::f4) by MR2P264CA0187.outlook.office365.com
+ (2603:10a6:501::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3283.15 via Frontend
+ Transport; Tue, 18 Aug 2020 06:48:20 +0000
+X-MS-Exchange-Authentication-Results: spf=neutral (sender IP is
+ 193.240.239.45) smtp.mailfrom=diasemi.com; linuxfoundation.org; dkim=none
+ (message not signed) header.d=none;linuxfoundation.org; dmarc=fail
+ action=none header.from=diasemi.com;
+Received-SPF: Neutral (protection.outlook.com: 193.240.239.45 is neither
+ permitted nor denied by domain of diasemi.com)
+Received: from mailrelay1.diasemi.com (193.240.239.45) by
+ VE1EUR02FT031.mail.protection.outlook.com (10.152.12.135) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.3283.16 via Frontend Transport; Tue, 18 Aug 2020 06:48:20 +0000
+Received: from krsrvapps-03.diasemi.com (10.93.17.2) by
+ NB-EX-CASHUB01.diasemi.com (10.1.16.140) with Microsoft SMTP Server id
+ 14.3.468.0; Tue, 18 Aug 2020 08:48:16 +0200
+Received: by krsrvapps-03.diasemi.com (Postfix, from userid 22266)      id
+ 58E1A13F671; Tue, 18 Aug 2020 15:48:15 +0900 (KST)
+Message-ID: <cover.1597706056.git.Roy.Im@diasemi.com>
+From:   Roy Im <roy.im.opensource@diasemi.com>
+Date:   Tue, 18 Aug 2020 08:14:16 +0900
+Subject: [RESEND PATCH v19 0/3]  da7280: haptic driver submission
+To:     "David S. Miller" <davem@davemloft.net>,
+        Uwe Kleine-Koenig <u.kleine-koenig@pengutronix.de>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Sebastien Fagard <sebastien.fagard@nxp.com>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: imx8qm: added lvds pwm
-Date:   Tue, 18 Aug 2020 08:20:47 +0200
-Message-Id: <20200818062051.16817-1-oliver.graute@kococonnector.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200813084547.20875-1-oliver.graute@kococonnector.com>
-References: <20200813084547.20875-1-oliver.graute@kococonnector.com>
-X-Patchwork-Bot: notify
-Content-Type: text/plain
-X-ClientProxiedBy: AM0PR01CA0121.eurprd01.prod.exchangelabs.com
- (2603:10a6:208:168::26) To AM0PR09MB4067.eurprd09.prod.outlook.com
- (2603:10a6:208:194::14)
+        Rob Herring <robh@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+CC:     Support Opensource <support.opensource@diasemi.com>,
+        <devicetree@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost (2.207.138.2) by AM0PR01CA0121.eurprd01.prod.exchangelabs.com (2603:10a6:208:168::26) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3283.16 via Frontend Transport; Tue, 18 Aug 2020 06:23:03 +0000
-X-Mailer: git-send-email 2.17.1
-X-Patchwork-Bot: notify
-X-Originating-IP: [2.207.138.2]
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 73980d17-846a-4585-767c-08d8433f29e4
-X-MS-TrafficTypeDiagnostic: AM0PR09MB2627:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <AM0PR09MB26271F554A928BBD87E14ADCEB5C0@AM0PR09MB2627.eurprd09.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
+X-MS-Office365-Filtering-Correlation-Id: 0b318110-d4be-49b7-2b55-08d84342b1d2
+X-MS-TrafficTypeDiagnostic: AM0PR10MB3668:
+X-Microsoft-Antispam-PRVS: <AM0PR10MB366812B8E4FED0380B8CD2E5A25C0@AM0PR10MB3668.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: M0reuO6HaZiRBDb+O5ZgQMkpAQdBYdFLZk89ghcIirAKZ/G7qbXigfijYYZ9NCqKhuFnMpzTr+dENe97SyUcdWbpfwjY9qaQBlwFTrtsWrS025HLRBQ315LGbsL7o9ixlDq+UahrMy3Y7M3ltF+zu93EJt3nNunYTfdOONXPUSKoUnFN7uCwB2CuiG/O1NF5I8CW/+Lbw4gtYGbrtrhseWnz5pGX1dTv6Ihdl4icrH+vgj0Hacx2K1h3iZY0y1zzHRz3+UTIWqW8+8g69FBji1GjD+eLerBSUfJF1utuo+nyu7Q5LtqzpztiJ5HxyZCLlI1jecAAxIB3t6SKr5T/93VLmDuD+aPilBdkQS/wH9LQ8NwUmP73Blp+A6Qj28PD
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR09MB4067.eurprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(136003)(376002)(396003)(346002)(39830400003)(26005)(52116002)(86362001)(36756003)(44832011)(6496006)(186003)(54906003)(6486002)(6916009)(4326008)(16526019)(7416002)(8936002)(316002)(8676002)(478600001)(66476007)(6666004)(66946007)(1076003)(5660300002)(83380400001)(2616005)(2906002)(956004)(66556008)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: RKT8Cwp5cjmFpoQc/NhL9TDVspki2wynZMJSXNZkn5hkrmc9UQsmsxR+Rmx7GCpwb5e4JkgZwbC2macTL2n1MDfMKdmAK0BAZXioUq9riZO0OTrKIaHuq4FshBEAXD0lFzrb3C4Bvjt6NwEoY/ajUU/eHUD6g2N+4Hl+LSTHsyZvtN3J0Uy6f6PooaB2DVRKeVImnXwgBA7uIeI+TaP3FbApcbmzy7VwneBBPzXZeyrBt2tg1ciiuNl+BtxOoUS2LgZ/lT19R2HylNXAGlymDUlqKOqYMD+cCy++4DvVWngm9wdXSFOj4TTcX7p1FwUzoXNc9BPFs02IYIOohuLw1bDbzEZBeh6nUEwRcRkPfq0cKixoFPeHjWnK9Fvo0AuANm1rv7rxe5EkpywCwiVSCTMDkN5If4VWgSbAQEjbNs+mgEL/dt2iPcLJuGZrxRgu380QLCyjk3QkuvwBZ4n0AR5X1YjWgdzoOO8VC52g/veLXcySnE/1pQUJ6t3f0tyt3I/delerAvlIW0pTtF2XgXwnLWB9SPwcEqGsXY9yEddVlI4Q52bT+VEZ+Yzv78EYEFAMhugTHSNVSINlDlgArQeD/mm/9sM7Qt20qqkX5r2NbxupJU6AR9kcSTBLkrwFa2doBHzTk6CtWWbv8rnE2g==
-X-OriginatorOrg: kococonnector.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 73980d17-846a-4585-767c-08d8433f29e4
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR09MB4067.eurprd09.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2020 06:23:04.0362
+X-Microsoft-Antispam-Message-Info: SqO7ZST2vYYYFWNzu8PdAyBBDY09e3NhJMjMoVSwzkh8PJZPhKipXQlwL9vXfBtPPvJM5wlYVRmQ4xpmsvIqsWH34U1TqbhH5ATg5oec5KF0etjbi9kl2HKU06Hm1blpxl10Lmx1xPRlUknn2+XqG/s3KVejzDus08uC06w5wh6ZPr8xrGBwdhxLF93OeTvMwzn4+quIb7HxYxJ1JtNpZgy4E7AR/Z4sWluZh5n0LK4J8isp3jLIzN/0En19kIxMEazbRuA0q/G3IjDHxQnDoODlPzJpfByd9yxIB6bHQlAjoY556ZVCdJK6S16quS5S8S3xbUxMoRgcRSLcsbh1ZlkKXhz/sfkP3zTsKtCD+uQ2JdZhBttZoGajK2jTzB2mBs6u9BaMEeC/8/1wy/U2Xe+revY13NFT2VN5l494fXnpmLXxP32I9QgdisCizuV4
+X-Forefront-Antispam-Report: CIP:193.240.239.45;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mailrelay1.diasemi.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(4636009)(396003)(39860400002)(136003)(346002)(376002)(46966005)(70586007)(33310700002)(70206006)(356005)(81166007)(47076004)(8936002)(426003)(8676002)(478600001)(4744005)(2616005)(336012)(82310400002)(6266002)(26005)(186003)(86362001)(82740400003)(316002)(42186006)(83380400001)(2906002)(36906005)(7416002)(36756003)(5660300002)(110136005)(54906003)(4326008)(921003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: diasemi.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2020 06:48:20.0662
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 59845429-0644-4099-bd7e-17fba65a2f2b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UfAgH47Cu5CYrbAEekCY8fuXqdWCFWqnT2Mb8GIEdlYdk042cZ/cwBkYpYglAH/t+0hLb9/nKrYf9C9XTo1VtSBFpSL0D1Z0RfYTKZRMPT4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR09MB2627
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b318110-d4be-49b7-2b55-08d84342b1d2
+X-MS-Exchange-CrossTenant-Id: 511e3c0e-ee96-486e-a2ec-e272ffa37b7c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=511e3c0e-ee96-486e-a2ec-e272ffa37b7c;Ip=[193.240.239.45];Helo=[mailrelay1.diasemi.com]
+X-MS-Exchange-CrossTenant-AuthSource: VE1EUR02FT031.eop-EUR02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3668
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes for lvds pwms
+This patch adds support for the Dialog DA7280 Haptic driver IC.
 
-Signed-off-by: Oliver Graute <oliver.graute@kococonnector.com>
----
- .../boot/dts/freescale/imx8-ss-lsio.dtsi      | 84 +++++++++++++++++++
- drivers/clk/imx/clk-imx8qxp.c                 | 14 +++-
- drivers/firmware/imx/scu-pd.c                 |  6 +-
- include/dt-bindings/clock/imx8-clock.h        | 12 +++
- 4 files changed, 112 insertions(+), 4 deletions(-)
+In this patch set the following is provided:
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-lsio.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-lsio.dtsi
-index c21e0818887b..be241813fbea 100644
---- a/arch/arm64/boot/dts/freescale/imx8-ss-lsio.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-ss-lsio.dtsi
-@@ -7,6 +7,90 @@
- #include <dt-bindings/clock/imx8-lpcg.h>
- #include <dt-bindings/firmware/imx/rsrc.h>
- 
-+lvds0_subsys: bus@56240000
-+{
-+	compatible = "simple-bus";
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+	ranges = <0x56240000 0x0 0x56240000 0x10000>;
-+
-+	lvds0_ipg_clk: clock-lvds-ipg {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <24000000>;
-+			clock-output-names = "lvds0_ipg_clk";
-+	};
-+
-+	lvds0_lpcg: clock-controller@5624300c {
-+		compatible = "fsl,imx8qxp-lpcg";
-+		reg = <0x5624300c 0x4>;
-+		#clock-cells = <1>;
-+		clocks = <&clk IMX_SC_R_LVDS_0_PWM_0 IMX_SC_PM_CLK_PER>,
-+			 <&lvds0_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "lvds0_pwm_lpcg_clk",
-+					     "lvds0_pwm_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_LVDS_0_PWM_0>;
-+	};
-+
-+	lvds0_pwm: pwm@56244000 {
-+		compatible = "fsl,imx8qm-pwm", "fsl,imx27-pwm";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		reg = <0x56244000 0x1000>;
-+		clocks = <&lvds0_lpcg IMX_LPCG_CLK_0>,
-+		 <&lvds0_lpcg IMX_LPCG_CLK_4>;
-+		clock-names = "per", "ipg";
-+		assigned-clocks = <&clk IMX_SC_R_LVDS_0_PWM_0 IMX_SC_PM_CLK_PER>;
-+		assigned-clock-rates = <24000000>;
-+		#pwm-cells = <2>;
-+		power-domains = <&pd IMX_SC_R_LVDS_0_PWM_0>;
-+		status = "disabled";
-+	};
-+};
-+
-+lvds1_subsys: bus@57240000
-+{
-+	compatible = "simple-bus";
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+	ranges = <0x57240000 0x0 0x57240000 0x10000>;
-+
-+	lvds1_ipg_clk: clock-lvds-ipg {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <24000000>;
-+			clock-output-names = "lvds1_ipg_clk";
-+		};
-+
-+	lvds1_lpcg: clock-controller@5724300c {
-+		compatible = "fsl,imx8qxp-lpcg";
-+		reg = <0x5724300c 0x4>;
-+		#clock-cells = <1>;
-+		clocks = <&clk IMX_SC_R_LVDS_1_PWM_0 IMX_SC_PM_CLK_PER>,
-+				 <&lvds1_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "lvds1_pwm_lpcg_clk",
-+				     "lvds1_pwm_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_LVDS_1_PWM_0>;
-+	};
-+
-+	lvds1_pwm: pwm@57244000 {
-+		compatible = "fsl,imx8qm-pwm", "fsl,imx27-pwm";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		reg = <0x57244000 0x1000>;
-+		clocks = <&lvds1_lpcg IMX_LPCG_CLK_0>,
-+			 <&lvds1_lpcg IMX_LPCG_CLK_4>;
-+		clock-names = "per", "ipg";
-+		assigned-clocks = <&clk IMX_SC_R_LVDS_1_PWM_0 IMX_SC_PM_CLK_PER>;
-+		assigned-clock-rates = <24000000>;
-+		#pwm-cells = <2>;
-+		power-domains = <&pd IMX_SC_R_LVDS_1_PWM_0>;
-+		status = "disabled";
-+	};
-+};
-+
- lsio_subsys: bus@5d000000 {
- 	compatible = "simple-bus";
- 	#address-cells = <1>;
-diff --git a/drivers/clk/imx/clk-imx8qxp.c b/drivers/clk/imx/clk-imx8qxp.c
-index a6b690d94025..45b63ed06619 100644
---- a/drivers/clk/imx/clk-imx8qxp.c
-+++ b/drivers/clk/imx/clk-imx8qxp.c
-@@ -97,8 +97,6 @@ static int imx8qxp_clk_probe(struct platform_device *pdev)
- 	clks[IMX_ADMA_FTM0_CLK]		= imx_clk_scu("ftm0_clk",  IMX_SC_R_FTM_0, IMX_SC_PM_CLK_PER, clk_cells);
- 	clks[IMX_ADMA_FTM1_CLK]		= imx_clk_scu("ftm1_clk",  IMX_SC_R_FTM_1, IMX_SC_PM_CLK_PER, clk_cells);
- 	clks[IMX_ADMA_ADC0_CLK]		= imx_clk_scu("adc0_clk",  IMX_SC_R_ADC_0, IMX_SC_PM_CLK_PER, clk_cells);
--	clks[IMX_ADMA_PWM_CLK]		= imx_clk_scu("pwm_clk",   IMX_SC_R_LCD_0_PWM_0, IMX_SC_PM_CLK_PER, clk_cells);
--	clks[IMX_ADMA_LCD_CLK]		= imx_clk_scu("lcd_clk",   IMX_SC_R_LCD_0, IMX_SC_PM_CLK_PER, clk_cells);
- 
- 	/* Connectivity */
- 	clks[IMX_CONN_SDHC0_CLK]	= imx_clk_scu("sdhc0_clk", IMX_SC_R_SDHC_0, IMX_SC_PM_CLK_PER, clk_cells);
-@@ -130,6 +128,18 @@ static int imx8qxp_clk_probe(struct platform_device *pdev)
- 	clks[IMX_CSI0_I2C0_CLK]		= imx_clk_scu("mipi_csi0_i2c0_clk", IMX_SC_R_CSI_0_I2C_0, IMX_SC_PM_CLK_PER, clk_cells);
- 	clks[IMX_CSI0_PWM0_CLK]		= imx_clk_scu("mipi_csi0_pwm0_clk", IMX_SC_R_CSI_0_PWM_0, IMX_SC_PM_CLK_PER, clk_cells);
- 
-+/*LVDS*/
-+	clks[IMX_LVDS0_PIXEL_CLK]       = imx_clk_scu("lvds0_pixel_clk", IMX_SC_R_LVDS_0, IMX_SC_PM_CLK_PER, clk_cells);
-+	clks[IMX_LVDS0_I2C0_CLK]        = imx_clk_scu("lvds0_i2c0_clk", IMX_SC_R_LVDS_0_I2C_0, IMX_SC_PM_CLK_PER, clk_cells);
-+	clks[IMX_LVDS0_I2C1_CLK]        = imx_clk_scu("lvds0_i2c1_clk", IMX_SC_R_LVDS_0_I2C_1, IMX_SC_PM_CLK_PER, clk_cells);
-+	clks[IMX_LVDS0_PWM0_CLK]        = imx_clk_scu("lvds0_pwm0_clk", IMX_SC_R_LVDS_0_PWM_0, IMX_SC_PM_CLK_PER, clk_cells);
-+	clks[IMX_LVDS0_PHY_CLK]         = imx_clk_scu("lvds0_phy_clk", IMX_SC_R_LVDS_0, IMX_SC_PM_CLK_PHY, clk_cells);
-+	clks[IMX_LVDS1_PIXEL_CLK]       = imx_clk_scu("lvds1_pixel_clk", IMX_SC_R_LVDS_1, IMX_SC_PM_CLK_PER, clk_cells);
-+	clks[IMX_LVDS1_I2C0_CLK]        = imx_clk_scu("lvds1_i2c0_clk", IMX_SC_R_LVDS_1_I2C_0, IMX_SC_PM_CLK_PER, clk_cells);
-+	clks[IMX_LVDS1_I2C1_CLK]        = imx_clk_scu("lvds1_i2c1_clk", IMX_SC_R_LVDS_1_I2C_1, IMX_SC_PM_CLK_PER, clk_cells);
-+	clks[IMX_LVDS1_PWM0_CLK]        = imx_clk_scu("lvds1_pwm0_clk", IMX_SC_R_LVDS_1_PWM_0, IMX_SC_PM_CLK_PER, clk_cells);
-+	clks[IMX_LVDS1_PHY_CLK]         = imx_clk_scu("lvds1_phy_clk", IMX_SC_R_LVDS_1, IMX_SC_PM_CLK_PHY, clk_cells);
-+
- 	/* GPU SS */
- 	clks[IMX_GPU0_CORE_CLK]		= imx_clk_scu("gpu_core0_clk",	 IMX_SC_R_GPU_0_PID0, IMX_SC_PM_CLK_PER, clk_cells);
- 	clks[IMX_GPU0_SHADER_CLK]	= imx_clk_scu("gpu_shader0_clk", IMX_SC_R_GPU_0_PID0, IMX_SC_PM_CLK_MISC, clk_cells);
-diff --git a/drivers/firmware/imx/scu-pd.c b/drivers/firmware/imx/scu-pd.c
-index e6ed965c2134..1c51a22bb72c 100644
---- a/drivers/firmware/imx/scu-pd.c
-+++ b/drivers/firmware/imx/scu-pd.c
-@@ -136,8 +136,6 @@ static const struct imx_sc_pd_range imx8qxp_scu_pd_ranges[] = {
- 	{ "ftm", IMX_SC_R_FTM_0, 2, true, 0 },
- 	{ "lpi2c", IMX_SC_R_I2C_0, 4, true, 0 },
- 	{ "adc", IMX_SC_R_ADC_0, 1, true, 0 },
--	{ "lcd", IMX_SC_R_LCD_0, 1, true, 0 },
--	{ "lcd0-pwm", IMX_SC_R_LCD_0_PWM_0, 1, true, 0 },
- 	{ "lpuart", IMX_SC_R_UART_0, 4, true, 0 },
- 	{ "lpspi", IMX_SC_R_SPI_0, 4, true, 0 },
- 	{ "irqstr_dsp", IMX_SC_R_IRQSTR_DSP, 1, false, 0 },
-@@ -163,6 +161,10 @@ static const struct imx_sc_pd_range imx8qxp_scu_pd_ranges[] = {
- 
- 	/* LVDS SS */
- 	{ "lvds0", IMX_SC_R_LVDS_0, 1, false, 0 },
-+	{ "lvds0-pwm0", IMX_SC_R_LVDS_0_PWM_0, 1, false, 0 },
-+	{ "lvds1", IMX_SC_R_LVDS_1, 1, false, 0 },
-+	{ "lvds1-i2c", IMX_SC_R_LVDS_1_I2C_0, 2, true, 0 },
-+	{ "lvds1-pwm0", IMX_SC_R_LVDS_1_PWM_0, 1, false, 0 },
- 
- 	/* DC SS */
- 	{ "dc0", IMX_SC_R_DC_0, 1, false, 0 },
-diff --git a/include/dt-bindings/clock/imx8-clock.h b/include/dt-bindings/clock/imx8-clock.h
-index 003b0293c9b5..d8d07833fbc2 100644
---- a/include/dt-bindings/clock/imx8-clock.h
-+++ b/include/dt-bindings/clock/imx8-clock.h
-@@ -135,6 +135,18 @@
- #define IMX_A72_CLK					191
- #define IMX_SCU_CLK_END					192
- 
-+/*LVDS*/
-+#define IMX_LVDS0_PIXEL_CLK				200
-+#define IMX_LVDS0_I2C0_CLK				201
-+#define IMX_LVDS0_I2C1_CLK				202
-+#define IMX_LVDS0_PWM0_CLK				203
-+#define IMX_LVDS0_PHY_CLK				204
-+#define IMX_LVDS1_PIXEL_CLK				205
-+#define IMX_LVDS1_I2C0_CLK				206
-+#define IMX_LVDS1_I2C1_CLK				207
-+#define IMX_LVDS1_PWM0_CLK				208
-+#define IMX_LVDS1_PHY_CLK				209
-+
- /* LPCG clocks */
- 
- /* LSIO SS LPCG */
+[PATCH v19 1/3] MAINTAINERS file update for DA7280
+[PATCH v19 2/3] DA7280 DT Binding
+[PATCH v19 3/3] DA7280 Driver
+
+This patch applies against linux-next and v5.8
+
+Thank you,
+Roy Im, Dialog Semiconductor Ltd.
+
+Roy Im (3):
+  MAINTAINERS: da7280 updates to the Dialog Semiconductor search terms
+  dt-bindings: input: Add document bindings for DA7280
+  Input: new da7280 haptic driver
+
+ .../devicetree/bindings/input/dlg,da7280.txt       |  109 ++
+ MAINTAINERS                                        |    2 +
+ drivers/input/misc/Kconfig                         |   12 +
+ drivers/input/misc/Makefile                        |    1 +
+ drivers/input/misc/da7280.c                        | 1476 ++++++++++++++++++++
+ 5 files changed, 1600 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/dlg,da7280.txt
+ create mode 100644 drivers/input/misc/da7280.c
+
 -- 
-2.26.0
+end-of-patch for RESEND PATCH v19
 
