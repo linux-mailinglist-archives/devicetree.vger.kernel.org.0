@@ -2,76 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B8632475E8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 21:30:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C50A62476B0
+	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 21:40:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731975AbgHQTa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Aug 2020 15:30:27 -0400
-Received: from mail-io1-f42.google.com ([209.85.166.42]:32911 "EHLO
-        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390306AbgHQTaO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 15:30:14 -0400
-Received: by mail-io1-f42.google.com with SMTP id g14so18889223iom.0;
-        Mon, 17 Aug 2020 12:30:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=e1YBnijyooiMmGUl6bQPbkF8jV9bZqxe6/wwsQeLU4Y=;
-        b=duOIGl3tJUPi0LSFzYrw4l6mxc5YGmtukkRRKLvPfmulJfmrv6a/vRtmLQhKmQf9gi
-         90YrKliXC+s0dOGkUqLcdNPvckE8U+DWh3lwH0pZueM/C5zmUbLmHQeoh9F3hdIGjaKY
-         xm4lVVsBoCAlSsBPNeo9i79jjmE8atJyEIbRXKNsPZw6nnBegOLmzrUBeahIm0mNlvgP
-         VHsD+54lhcvhQJI9XvtHHafSoUrkCD4NJSJQ8nULXcB1YaDQdG4BnfgGXI8ZeRDkA4aQ
-         KKqDkAZDpdwze0xLhMPlAMp6MBJeqCo5zWKqYcH37aUwUyunW0AGJ26kOiNLHS9nRhgJ
-         MWvA==
-X-Gm-Message-State: AOAM530QmIReZW4sv9J1BlnnbwTBx5blQyEFaafjVnZl0CJNt8ESLrWh
-        jVtxgl3NzKzrM1ihQVCDbHhLRfp4lw==
-X-Google-Smtp-Source: ABdhPJxdApwU9BTSt+xJsE5ExVFYthMwi7bNqm69vB6HcGf0tBcnBuOqHr+cHTH//FmicQwXhwGSPw==
-X-Received: by 2002:a6b:3f85:: with SMTP id m127mr13653516ioa.108.1597692613398;
-        Mon, 17 Aug 2020 12:30:13 -0700 (PDT)
-Received: from xps15 ([64.188.179.249])
-        by smtp.gmail.com with ESMTPSA id 187sm10347174ile.52.2020.08.17.12.30.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Aug 2020 12:30:12 -0700 (PDT)
-Received: (nullmailer pid 1405902 invoked by uid 1000);
-        Mon, 17 Aug 2020 19:30:12 -0000
-Date:   Mon, 17 Aug 2020 13:30:12 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Colin King <colin.king@canonical.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
-Subject: Re: [PATCH][V3] of/address: check for invalid range.cpu_addr
-Message-ID: <20200817193012.GA1405869@bogus>
-References: <20200817113208.523805-1-colin.king@canonical.com>
+        id S2388360AbgHQTkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Aug 2020 15:40:37 -0400
+Received: from aserp2120.oracle.com ([141.146.126.78]:40396 "EHLO
+        aserp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729742AbgHQPZg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 11:25:36 -0400
+Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
+        by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 07HFBOO6039814;
+        Mon, 17 Aug 2020 15:25:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=corp-2020-01-29;
+ bh=cjzdpdXq2OFDNjLcmDZq/8KMYSFbgoAYkIaLS/N63v8=;
+ b=GQM5vTa3KX4tNW/94eDAc8RWkTJHAjkLps3epQpWFplyMpUccegmu+Y6TwGgGz7aUlEX
+ b8S349zkTNIvIsueSXYeK4TbV6IDqZt4gYL3bQytMpRLGt7WM7AVvuIzhD3rSXzD9jOE
+ 2fGAUYfealh2XYUl+m+DIVr3ojg3BUZD5GUuXfgDcNFJfRsKOULaZA4357ufHsYk4pTY
+ muKIY0LMCLSAj0FGbFbKyNEoN6vgdIhK+FA1N1d9MOTrQkG5CChucs/wOlw2U9tV6iZG
+ N5QHttGne1azWqbxNmQTDCXH96uVXRWjx1NyuZ7qt+GHDl+pbUJXkFiOlv9ws9ozRa6U UQ== 
+Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
+        by aserp2120.oracle.com with ESMTP id 32x7nm7ghs-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 17 Aug 2020 15:25:24 +0000
+Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
+        by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 07HFEQJZ133060;
+        Mon, 17 Aug 2020 15:25:23 GMT
+Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
+        by userp3020.oracle.com with ESMTP id 32xsfqp2e0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 17 Aug 2020 15:25:23 +0000
+Received: from abhmp0020.oracle.com (abhmp0020.oracle.com [141.146.116.26])
+        by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 07HFPLAl022596;
+        Mon, 17 Aug 2020 15:25:21 GMT
+Received: from [10.74.111.253] (/10.74.111.253)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Mon, 17 Aug 2020 08:25:21 -0700
+Subject: Re: [PATCHv4 0/6] Add initial genpd support for omap PRM driver
+To:     Tony Lindgren <tony@atomide.com>, linux-omap@vger.kernel.org,
+        Santosh Shilimkar <ssantosh@kernel.org>
+Cc:     "Andrew F . Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
+        Tero Kristo <t-kristo@ti.com>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+References: <20200702154513.31859-1-tony@atomide.com>
+ <20200817065300.GD2994@atomide.com>
+From:   santosh.shilimkar@oracle.com
+Organization: Oracle Corporation
+Message-ID: <f52bc6c2-1256-a3ca-fede-1d3ab441ef9f@oracle.com>
+Date:   Mon, 17 Aug 2020 08:25:18 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
+ Gecko/20100101 Thunderbird/68.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200817113208.523805-1-colin.king@canonical.com>
+In-Reply-To: <20200817065300.GD2994@atomide.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9716 signatures=668679
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 mlxlogscore=999
+ spamscore=0 suspectscore=0 mlxscore=0 phishscore=0 bulkscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2008170117
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9716 signatures=668679
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 spamscore=0
+ impostorscore=0 priorityscore=1501 adultscore=0 mlxscore=0 mlxlogscore=999
+ lowpriorityscore=0 bulkscore=0 phishscore=0 malwarescore=0 clxscore=1011
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2008170117
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Aug 2020 12:32:08 +0100, Colin King wrote:
-> From: Colin Ian King <colin.king@canonical.com>
+On 8/16/20 11:53 PM, Tony Lindgren wrote:
+> Hi Santosh,
 > 
-> Currently invalid CPU addresses are not being sanity checked resulting in
-> SATA setup failure on a SynQuacer SC2A11 development machine. The original
-> check was removed by and earlier commit, so add a sanity check back in
-> to avoid this regression.
+> * Tony Lindgren <tony@atomide.com> [200702 18:46]:
+>> Hi all,
+>>
+>> Here's v4 set of patches to add genpd support to the PRM (Power and Reset
+>> Module) driver.
+>>
+>> Initially we just add one hardware accelerator power domain for sgx,
+>> and one interconnect instance for l4_abe. The rest of the SoC specific
+>> domain data is probably best added one SoC at a time based on generated
+>> data.
 > 
-> Fixes: 7a8b64d17e35 ("of/address: use range parser for of_dma_get_range")
-> Signed-off-by: Colin Ian King <colin.king@canonical.com>
-> ---
+> Care to ack some of these patches? I'd like to get this into Linux next
+> for v5.10 :)
 > 
-> V2: print message using pr_err and don't print range.cpu_addr as it's always
->     going to be OF_BAD_ADDR so the information is pointless.
-> V3: print the bus address to help diagnose issues
-> 
-> ---
->  drivers/of/address.c | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-
-Applied, thanks!
+Sure,
+Acked-by: Santosh Shilimkar <ssantosh@kernel.org>
