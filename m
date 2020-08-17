@@ -2,64 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 613512472C1
-	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 20:47:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 712842473E2
+	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 21:02:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388039AbgHQSrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Aug 2020 14:47:01 -0400
-Received: from mga06.intel.com ([134.134.136.31]:35786 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2391607AbgHQSq6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Aug 2020 14:46:58 -0400
-IronPort-SDR: iM7JMPgDl1SMpaEYb0MNNo+9icdl3D11PMZ+vS//g1N4Spj5RZ1E+YUzrtijlZ2NtEiCjHSeme
- Wb9ZisOhJZiw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9716"; a="216296295"
-X-IronPort-AV: E=Sophos;i="5.76,324,1592895600"; 
-   d="scan'208";a="216296295"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Aug 2020 11:46:56 -0700
-IronPort-SDR: es36+i1onmXPqW83f7u1/Q1fmWC0Un2m/tSACm7I0mIyVf6iSR9ZNsTqARmWaOvlBH2ZlSsai6
- 37iELQbJqWrg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,324,1592895600"; 
-   d="scan'208";a="292520047"
-Received: from martincl-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.45.150])
-  by orsmga003.jf.intel.com with ESMTP; 17 Aug 2020 11:46:53 -0700
-Date:   Mon, 17 Aug 2020 21:46:52 +0300
-From:   Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
-To:     Masahisa Kojima <masahisa.kojima@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        ardb@kernel.org, devicetree@vger.kernel.org,
-        linux-integrity@vger.kernel.org, peterhuewe@gmx.de, jgg@ziepe.ca,
-        Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v5 2/2] dt-bindings: Add SynQucer TPM MMIO as a trivial
- device
-Message-ID: <20200817184652.GA44714@linux.intel.com>
-References: <20200728031433.3370-1-masahisa.kojima@linaro.org>
- <20200728031433.3370-3-masahisa.kojima@linaro.org>
+        id S2404041AbgHQTCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Aug 2020 15:02:37 -0400
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:34422 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730767AbgHQPrI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 11:47:08 -0400
+Received: by mail-ed1-f68.google.com with SMTP id bs17so12661756edb.1;
+        Mon, 17 Aug 2020 08:47:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=2OOPWwPf31u6+1Sjh8PXYKYbvJooZ2RmnVEA6ydXQrY=;
+        b=g0scn3MQs7n0ElgSHwKEqhXX6rn/e91P3ryksEADiLu/oLo8HIAoQE37r2TzHbeIBC
+         NSHtwO2pynF3wu2qkJKBL1DT7z1XnJhUf5y09hPseictMuFBkNneUJ+exgHhvNgObac3
+         wJvGICe8vN6ZzTlbJdMEQUJsrVwheZaj3kbQHdSicExjJicKLiN7WL2lhEMw/JE4CyQk
+         5XENVeYbDqo0sulPnxmzqQBXBAQSLz0nGCeYWpA356KGtrEevRusWWVjSZZPu/G4w+HP
+         prD1r7x9HQLNTYRsQMsajzXhPJXT9Z8iUSiTRAf6BtAdYR614TyaO1NEPXw9tV5ZnHp3
+         b+Xg==
+X-Gm-Message-State: AOAM532xVxk+0qVXyH2jh1auRUJ4i6BTN6i76qJxXY6TaYu9QtOyiXqI
+        hqR5+P9Hnznfu4S+mHqQyy0=
+X-Google-Smtp-Source: ABdhPJwOhH8zi3STLsH1df8QWrCEbCpmOqWgZF/tMl4CTwAQjaelnyAYR/xa735yAwg3DI1So6yFhA==
+X-Received: by 2002:aa7:d410:: with SMTP id z16mr15198853edq.287.1597679227376;
+        Mon, 17 Aug 2020 08:47:07 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.216])
+        by smtp.googlemail.com with ESMTPSA id v13sm14947106edl.9.2020.08.17.08.47.06
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 17 Aug 2020 08:47:06 -0700 (PDT)
+Date:   Mon, 17 Aug 2020 17:47:04 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     broonie@kernel.org, simon@lineageos.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, b.zolnierkie@samsung.com,
+        m.szyprowski@samsung.com, linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] ARM: dts: exynos: Add sound support to Midas
+Message-ID: <20200817154704.GB15887@kozik-lap>
+References: <20200728131111.14334-1-s.nawrocki@samsung.com>
+ <CGME20200728131152eucas1p1d6794f603d1c3474eb6a7bfad04cec6b@eucas1p1.samsung.com>
+ <20200728131111.14334-3-s.nawrocki@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200728031433.3370-3-masahisa.kojima@linaro.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20200728131111.14334-3-s.nawrocki@samsung.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 28, 2020 at 12:14:32PM +0900, Masahisa Kojima wrote:
-> Add a compatible string for the SynQuacer TPM to the binding for a
-> TPM exposed via a memory mapped TIS frame. The MMIO window behaves
-> slightly differently on this hardware, so it requires its own
-> identifier.
+On Tue, Jul 28, 2020 at 03:11:11PM +0200, Sylwester Nawrocki wrote:
+> From: Simon Shields <simon@lineageos.org>
 > 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Ard Biesheuvel <ardb@kernel.org>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Masahisa Kojima <masahisa.kojima@linaro.org>
+> Update the never-mainlined "samsung,trats2-audio" binding and instead
+> use the new "samsung,midas-audio" binding.
+> 
+> Signed-off-by: Simon Shields <simon@lineageos.org>
+> [s.nawrocki: fixed DAPM routing entries for MICBIAS1/2, adjusted to
+>  new cpu/codec binding, corrected the regulator nodes indexing]
+> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+> ---
+> Changes for v3:
+>  - none.
+> 
+> Changes for v2:
+>  - reordering to maintain alphabetical order,
+>  - corrected the fixed voltage regulator nodes indexing,
 
-Acked-by: Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
+Thanks, applied.
 
-/Jarkko
+Best regards,
+Krzysztof
+
