@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1A24245ACF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 04:50:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9166E245ADC
+	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 05:04:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726990AbgHQCu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Aug 2020 22:50:29 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:55152 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726451AbgHQCu0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Aug 2020 22:50:26 -0400
-X-UUID: cad84e5fa4974dec912b7cfcf71b4926-20200817
+        id S1726739AbgHQDEn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Aug 2020 23:04:43 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:30617 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726424AbgHQDEm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Aug 2020 23:04:42 -0400
+X-UUID: 10613096b3cf44528ce0a95538465e74-20200817
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=MgYUQXlp69yp7mKaPcEZgq7fYcJApihBC9PfPYl1V5Y=;
-        b=T+a3pvn5Riwc1Td3C+29fVB27q6BnhS4e9ipbaKgZzGyi7o3qG1leAsvOd3ysWujeGihYELuCIkkVkn4D9o9ljC702X6Lpi7uYc9Yd2YW2F6DuCP+gRJOCodb26QxXTFY8F8xhmFT6rPmI39ujvtxkHXIjHgW0DaJBlZD/Os4tY=;
-X-UUID: cad84e5fa4974dec912b7cfcf71b4926-20200817
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=2z0RtoXOILn4N4IkKnkfphbCO4iJTa65Gx/fuN7b5FE=;
+        b=U2fujxznu0nP4YK5Ob+w8kaMWpON9iHmgJaHPPPTgRzRUzNai9dsuzORSU34+X0YL7IE3tW6c7Fv1HmozwTUGE+QJwTJRSk4sP2ne3UcTx29EE7/+vDzQxpzuNaa3zM3ZgBNaYRSMibPT1taEjRuGbSQXp3mPSFHZWlN3Yrqe7Q=;
+X-UUID: 10613096b3cf44528ce0a95538465e74-20200817
+Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
         (envelope-from <crystal.guo@mediatek.com>)
         (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1349151528; Mon, 17 Aug 2020 10:50:23 +0800
+        with ESMTP id 2128854509; Mon, 17 Aug 2020 11:04:40 +0800
 Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 17 Aug 2020 10:50:14 +0800
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 17 Aug 2020 11:04:38 +0800
 Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 17 Aug 2020 10:50:13 +0800
+ Transport; Mon, 17 Aug 2020 11:04:37 +0800
 From:   Crystal Guo <crystal.guo@mediatek.com>
 To:     <p.zabel@pengutronix.de>, <robh+dt@kernel.org>,
         <matthias.bgg@gmail.com>
@@ -35,17 +35,13 @@ CC:     <srv_heupstream@mediatek.com>,
         <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <s-anna@ti.com>, <afd@ti.com>, <seiya.wang@mediatek.com>,
         <stanley.chu@mediatek.com>, <yingjoe.chen@mediatek.com>,
-        <fan.chen@mediatek.com>, <yong.liang@mediatek.com>,
-        Crystal Guo <crystal.guo@mediatek.com>
-Subject: [v4,4/4] arm64: dts: mt8192: add infracfg_rst node
-Date:   Mon, 17 Aug 2020 10:48:42 +0800
-Message-ID: <20200817024842.5289-5-crystal.guo@mediatek.com>
+        <fan.chen@mediatek.com>, <yong.liang@mediatek.com>
+Subject: [v4,0/4] introduce TI reset controller for MT8192 SoC
+Date:   Mon, 17 Aug 2020 11:03:20 +0800
+Message-ID: <20200817030324.5690-1-crystal.guo@mediatek.com>
 X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20200817024842.5289-1-crystal.guo@mediatek.com>
-References: <20200817024842.5289-1-crystal.guo@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-TM-SNTS-SMTP: 5FFF82912C4D34533A815E971113554A0C15B8FFE38DEDC7CA39E726646117A82000:8
 X-MTK:  N
 Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
@@ -53,27 +49,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-YWRkIGluZnJhY2ZnX3JzdCBub2RlIHdoaWNoIGlzIGZvciBNVDgxOTIgcGxhdGZvcm0NCg0KU2ln
-bmVkLW9mZi1ieTogQ3J5c3RhbCBHdW8gPGNyeXN0YWwuZ3VvQG1lZGlhdGVrLmNvbT4NCi0tLQ0K
-IGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTkyLmR0c2kgfCAxMSArKysrKysrKysr
-LQ0KIDEgZmlsZSBjaGFuZ2VkLCAxMCBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pDQoNCmRp
-ZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi5kdHNpIGIvYXJj
-aC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxOTIuZHRzaQ0KaW5kZXggOTMxZTFjYTE3MjIw
-Li5hMGNiOTkwNDcwNmIgMTAwNjQ0DQotLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVr
-L210ODE5Mi5kdHNpDQorKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi5k
-dHNpDQpAQCAtMTAsNiArMTAsNyBAQA0KICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9pbnRlcnJ1cHQt
-Y29udHJvbGxlci9pcnEuaD4NCiAjaW5jbHVkZSA8ZHQtYmluZGluZ3MvcGluY3RybC9tdDgxOTIt
-cGluZnVuYy5oPg0KICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9wb3dlci9tdDgxOTItcG93ZXIuaD4N
-CisjaW5jbHVkZSA8ZHQtYmluZGluZ3MvcmVzZXQvdGktc3lzY29uLmg+DQogDQogLyB7DQogCWNv
-bXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTkyIjsNCkBAIC0yMTksOSArMjIwLDE3IEBADQogCQl9
-Ow0KIA0KIAkJaW5mcmFjZmc6IGluZnJhY2ZnQDEwMDAxMDAwIHsNCi0JCQljb21wYXRpYmxlID0g
-Im1lZGlhdGVrLG10ODE5Mi1pbmZyYWNmZyIsICJzeXNjb24iOw0KKwkJCWNvbXBhdGlibGUgPSAi
-bWVkaWF0ZWssbXQ4MTkyLWluZnJhY2ZnIiwgInN5c2NvbiIsICJzaW1wbGUtbWZkIjsNCiAJCQly
-ZWcgPSA8MCAweDEwMDAxMDAwIDAgMHgxMDAwPjsNCiAJCQkjY2xvY2stY2VsbHMgPSA8MT47DQor
-DQorCQkJaW5mcmFjZmdfcnN0OiByZXNldC1jb250cm9sbGVyIHsNCisJCQkJY29tcGF0aWJsZSA9
-ICJtZWRpYXRlayxpbmZyYS1yZXNldCIsICJ0aSxzeXNjb24tcmVzZXQiOw0KKwkJCQkjcmVzZXQt
-Y2VsbHMgPSA8MT47DQorCQkJCXRpLHJlc2V0LWJpdHMgPSA8DQorCQkJCQkweDE0MCAxNSAweDE0
-NCAxNSAwIDAgKEFTU0VSVF9TRVQgfCBERUFTU0VSVF9TRVQgfCBTVEFUVVNfTk9ORSkgLyogMDog
-cGNpZSAqLw0KKwkJCQk+Ow0KKwkJCX07DQogCQl9Ow0KIA0KIAkJcGVyaWNmZzogcGVyaWNmZ0Ax
-MDAwMzAwMCB7DQotLSANCjIuMTguMA0K
+djQ6DQpmaXggdHlwb3Mgb24gdjMgY29tbWl0IG1lc3NhZ2UuDQoNCnYzOg0KMS4gcmV2ZXJ0IHYy
+IGNoYW5nZXMuDQoyLiBhZGQgJ3Jlc2V0LWR1cmF0aW9uLXVzJyBwcm9wZXJ0eSB0byBkZWNsYXJl
+IGEgbWluaW11bSBkZWxheSwNCndoaWNoIG5lZWRzIHRvIGJlIHdhaXRlZCBiZXR3ZWVuIGFzc2Vy
+dCBhbmQgZGVhc3NlcnQuDQozLiBhZGQgJ21lZGlhdGVrLGluZnJhLXJlc2V0JyB0byBjb21wYXRp
+YmxlLg0KDQoNCnYyIGNoYW5nZXM6DQpodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3BhdGNo
+LzExNjk3MzcxLw0KMS4gYWRkICdhc3NlcnQtZGVhc3NlcnQtdG9nZXRoZXInIHByb3BlcnR5IHRv
+IGludHJvZHVjZSBhIG5ldyByZXNldCBoYW5kbGVyLA0Kd2hpY2ggYWxsb3dzIGRldmljZSB0byBk
+byBzZXJpYWxpemVkIGFzc2VydCBhbmQgZGVhc3NlcnQgb3BlcmF0aW9ucyBpbiBhIHNpbmdsZQ0K
+c3RlcCBieSAncmVzZXQnIG1ldGhvZC4NCjIuIGFkZCAndXBkYXRlLWZvcmNlJyBwcm9wZXJ0eSB0
+byBpbnRyb2R1Y2UgZm9yY2UtdXBkYXRlIG1ldGhvZCwgd2hpY2ggZm9yY2VzDQp0aGUgd3JpdGUg
+b3BlcmF0aW9uIGluIGNhc2UgdGhlIHJlYWQgYWxyZWFkeSBoYXBwZW5zIHRvIHJldHVybiB0aGUg
+Y29ycmVjdCB2YWx1ZS4NCjMuIGFkZCAnZ2VuZXJpYy1yZXNldCcgdG8gY29tcGF0aWJsZQ0KDQp2
+MSBjaGFuZ2VzOg0KaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wYXRjaC8xMTY5MDUyMy8N
+Cmh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTE2OTA1MjcvDQoNCkNyeXN0YWwg
+R3VvICg0KToNCiAgZHQtYmluZGluZzogcmVzZXQtY29udHJvbGxlcjogdGk6IGFkZCByZXNldC1k
+dXJhdGlvbi11cyBwcm9wZXJ0eQ0KICBkdC1iaW5kaW5nOiByZXNldC1jb250cm9sbGVyOiB0aTog
+YWRkICdtZWRpYXRlayxpbmZyYS1yZXNldCcgdG8NCiAgICBjb21wYXRpYmxlDQogIHJlc2V0LWNv
+bnRyb2xsZXI6IHRpOiBpbnRyb2R1Y2UgYSBuZXcgcmVzZXQgaGFuZGxlcg0KICBhcm02NDogZHRz
+OiBtdDgxOTI6IGFkZCBpbmZyYWNmZ19yc3Qgbm9kZQ0KDQogLi4uL2JpbmRpbmdzL3Jlc2V0L3Rp
+LXN5c2Nvbi1yZXNldC50eHQgICAgICAgIHwgIDYgKysrKysNCiBhcmNoL2FybTY0L2Jvb3QvZHRz
+L21lZGlhdGVrL210ODE5Mi5kdHNpICAgICAgfCAxMSArKysrKysrLQ0KIGRyaXZlcnMvcmVzZXQv
+cmVzZXQtdGktc3lzY29uLmMgICAgICAgICAgICAgICB8IDI2ICsrKysrKysrKysrKysrKysrLS0N
+CiAzIGZpbGVzIGNoYW5nZWQsIDQwIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pDQoNCg==
 
