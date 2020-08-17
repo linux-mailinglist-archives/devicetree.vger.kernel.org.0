@@ -2,97 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DDFE2468AD
-	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 16:50:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF5C3246915
+	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 17:09:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728881AbgHQOu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Aug 2020 10:50:29 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:54155 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728666AbgHQOu2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Aug 2020 10:50:28 -0400
-Received: from [78.134.86.56] (port=43576 helo=melee.fritz.box)
-        by hostingweb31.netsons.net with esmtpa (Exim 4.93)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1k7gSw-0003f6-Bq; Mon, 17 Aug 2020 16:50:26 +0200
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Luca Ceresoli <luca@lucaceresoli.net>, Keerthy <j-keerthy@ti.com>,
-        Axel Lin <axel.lin@ingics.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4 3/3] mfd: lp87565: add LP87524-Q1 variant
-Date:   Mon, 17 Aug 2020 16:50:18 +0200
-Message-Id: <20200817145018.3992-4-luca@lucaceresoli.net>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200817145018.3992-1-luca@lucaceresoli.net>
-References: <20200817145018.3992-1-luca@lucaceresoli.net>
+        id S1728881AbgHQPJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Aug 2020 11:09:16 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:51969 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728651AbgHQPJO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 11:09:14 -0400
+X-Originating-IP: 93.34.118.233
+Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 8DDEC4000A;
+        Mon, 17 Aug 2020 15:09:10 +0000 (UTC)
+Date:   Mon, 17 Aug 2020 17:12:53 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Jacopo Mondi <jacopo+renesas@jmondi.org>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, mchehab@kernel.org,
+        sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
+        laurent.pinchart@ideasonboard.com,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 0/8] dt-bindings: media: i2c: Convert to json-schema
+Message-ID: <20200817151253.drfgqojchbbfud5b@uno.localdomain>
+References: <20200715140951.90753-1-jacopo+renesas@jmondi.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200715140951.90753-1-jacopo+renesas@jmondi.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the LP87524B/J/P-Q1 Four 4-MHz Buck Converter. This is a
-variant of the LP87565 having 4 single-phase outputs and up to 10 A of
-total output current.
+Hello
+   Mauro, Hans or Sakari (whoever maintains the media patchwork
+instance), could you mark patches in this series as super-seded,
+as I will re-send them out for each individual sensor ?
 
-Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
-Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+Thanks
+   j
 
----
-
-Changes in v4: none
-
-Changes in v3: none
-
-Changes in v2:
- - replace "regulator" -> "mfd" in subject line (Lee Jones)
- - add Acked-for-MFD-by: from Lee Jones
----
- drivers/mfd/lp87565.c       | 4 ++++
- include/linux/mfd/lp87565.h | 1 +
- 2 files changed, 5 insertions(+)
-
-diff --git a/drivers/mfd/lp87565.c b/drivers/mfd/lp87565.c
-index 2268be9113f1..9c21483d9653 100644
---- a/drivers/mfd/lp87565.c
-+++ b/drivers/mfd/lp87565.c
-@@ -26,6 +26,10 @@ static const struct mfd_cell lp87565_cells[] = {
- 
- static const struct of_device_id of_lp87565_match_table[] = {
- 	{ .compatible = "ti,lp87565", },
-+	{
-+		.compatible = "ti,lp87524-q1",
-+		.data = (void *)LP87565_DEVICE_TYPE_LP87524_Q1,
-+	},
- 	{
- 		.compatible = "ti,lp87565-q1",
- 		.data = (void *)LP87565_DEVICE_TYPE_LP87565_Q1,
-diff --git a/include/linux/mfd/lp87565.h b/include/linux/mfd/lp87565.h
-index 43716aca46fa..d44ddfb6bb63 100644
---- a/include/linux/mfd/lp87565.h
-+++ b/include/linux/mfd/lp87565.h
-@@ -14,6 +14,7 @@
- 
- enum lp87565_device_type {
- 	LP87565_DEVICE_TYPE_UNKNOWN	= 0,
-+	LP87565_DEVICE_TYPE_LP87524_Q1,
- 	LP87565_DEVICE_TYPE_LP87561_Q1,
- 	LP87565_DEVICE_TYPE_LP87565_Q1,
- };
--- 
-2.28.0
-
+On Wed, Jul 15, 2020 at 04:09:43PM +0200, Jacopo Mondi wrote:
+> Convert to json schema the bindings file for the following sensor
+> drivers:
+>
+> - ov5640
+> - ov5645
+> - ov772x
+> - mt9v111
+> - imx214
+> - imx274
+> - imx290
+>
+> On top of the conversion to yaml, rename the files to include the
+> vendor prefix (I kept this separate as I'm not sure it's actually desired).
+>
+> The series requires:
+> [PATCH v3 0/3] dt-bidings: media: ov5647 bindings + small fix
+> which converts the ov5647 bindings to yaml which I sent separately
+> as it was already in review.
+>
+> Individual maintainers Cc-ed for each single patch where available.
+>
+> Thanks
+>   j
+>
+> Jacopo Mondi (8):
+>   dt-bindings: media: ov5640: Convert to json-schema
+>   dt-bindings: media: ov5645: Convert to json-schema
+>   dt-bindings: media: mt9v111: Convert to json-schema
+>   dt-bindings: media: imx290: Convert to json-schema
+>   dt-bindings: media: imx274: Convert to json-schema
+>   dt-bindings: media: imx214: Convert to json-schema
+>   dt-bindings: media: ov772x: Convert to json-schema
+>   dt-bindings: media: i2c: Add prefix to yaml bindings
+>
+>  .../bindings/media/i2c/aptina,mt9v111.txt     |  46 -----
+>  .../bindings/media/i2c/aptina,mt9v111.yaml    |  87 +++++++++
+>  .../devicetree/bindings/media/i2c/imx274.txt  |  33 ----
+>  .../devicetree/bindings/media/i2c/imx290.txt  |  57 ------
+>  .../devicetree/bindings/media/i2c/ov5640.txt  |  92 ---------
+>  .../devicetree/bindings/media/i2c/ov5645.txt  |  54 ------
+>  .../devicetree/bindings/media/i2c/ov772x.txt  |  40 ----
+>  .../bindings/media/i2c/ovti,ov5640.yaml       | 181 ++++++++++++++++++
+>  .../bindings/media/i2c/ovti,ov5645.yaml       | 123 ++++++++++++
+>  .../i2c/{ov5647.yaml => ovti,ov5647.yaml}     |   0
+>  .../bindings/media/i2c/ovti,ov772x.yaml       |  89 +++++++++
+>  .../i2c/{ov8856.yaml => ovti,ov8856.yaml}     |   0
+>  .../bindings/media/i2c/sony,imx214.txt        |  53 -----
+>  .../bindings/media/i2c/sony,imx214.yaml       | 124 ++++++++++++
+>  .../i2c/{imx219.yaml => sony,imx219.yaml}     |   0
+>  .../bindings/media/i2c/sony,imx274.yaml       |  74 +++++++
+>  .../bindings/media/i2c/sony,imx290.yaml       | 124 ++++++++++++
+>  MAINTAINERS                                   |  25 ++-
+>  18 files changed, 819 insertions(+), 383 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/media/i2c/imx274.txt
+>  delete mode 100644 Documentation/devicetree/bindings/media/i2c/imx290.txt
+>  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5640.txt
+>  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5645.txt
+>  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov772x.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+>  rename Documentation/devicetree/bindings/media/i2c/{ov5647.yaml => ovti,ov5647.yaml} (100%)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+>  rename Documentation/devicetree/bindings/media/i2c/{ov8856.yaml => ovti,ov8856.yaml} (100%)
+>  delete mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx214.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
+>  rename Documentation/devicetree/bindings/media/i2c/{imx219.yaml => sony,imx219.yaml} (100%)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
+>
+> --
+> 2.27.0
+>
