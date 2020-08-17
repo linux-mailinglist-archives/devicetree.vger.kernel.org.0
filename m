@@ -2,85 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FAE6245F86
-	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 10:23:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62D21245EDB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 10:08:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726366AbgHQIW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Aug 2020 04:22:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52132 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728338AbgHQIWs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 04:22:48 -0400
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C160C061388;
-        Mon, 17 Aug 2020 01:22:48 -0700 (PDT)
-Received: by mail-ej1-x643.google.com with SMTP id f24so16713856ejx.6;
-        Mon, 17 Aug 2020 01:22:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4vvUS3MsWiDgWXcdNJuKrD06TaaumHLEcVAY3eJQqbI=;
-        b=Z0e4OPRPwxORMLo/h2Jx5AMLsngyx/pXUhtSkZkqTuBNK6AKh2lwQ4I1lcZuUI7SlN
-         ff3cNA7Sk+QHsq9C+khSBjpZesdJEcHH9Y4xILlrbd3Vkpdg9cjydTS8XzCrT+ntfFxn
-         rxAyK0nItr2Ptll37DxIFkMe/NfxpI/8jK/kSzuhBpMoHetsmwGijoYRMjqRINRJty7N
-         ZD3bXKynFlrXWijEcaq5telZXkARlgQ3m2TMBAE7+aB5ExXriSJm1s4BZEr/849tlZBq
-         wbDfVCD4Avjfk5NqjCDpgrYhA/Qy1psnHFvT5EyNjJY80ONA0QGaCwgRIBT2nyGWLPA+
-         KWrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4vvUS3MsWiDgWXcdNJuKrD06TaaumHLEcVAY3eJQqbI=;
-        b=j3sYSyaNgamu+f5fi0/B5ML54Cq3gidiZM4jONhhQSQGzGaSIzreitt9PMHLKwwO/c
-         AE8H7avA1BG+Q7qzWaDrNg1YIJQeZVxv9KElyGXjAOkLjvBBIoAY+MLxWfcxwF/I2v0i
-         9ySjcrLM9lQVRe/E+NN8CkPqRD67v5TAzfjVjd90VzP9Eh+pyYJomnxxHJd3llz7BHZp
-         KzuAcWVK/i3eKU8RZcrlZBxoVFFuhdwmPErYN+W4xwbQ/0cb+blM9QyH4kDwYjfrHVJ0
-         9mV2dxUUrE1V/Aem4a6/bRhsGvvFU17iQmibbCXkvVEjPUa+FISTsPR4sLARbq5BTy3u
-         v3AQ==
-X-Gm-Message-State: AOAM531s9kV3+ZL7+jomDmwU8UcOa8mVv8vfHaMEr5wvLtfgbTO4CZ6a
-        yppB/NExyx+DK+fk9UnVtC1Rk9B9oCof8VqreX0=
-X-Google-Smtp-Source: ABdhPJynJYGy6+mtTZDN2BR36xcy5HcTLNM0YlY7cyrY0gq/xOcmt/zLd8HraV/Nj1cBiSyb//rwsLCQkG9ypFrXiuI=
-X-Received: by 2002:a17:907:7090:: with SMTP id yj16mr13634256ejb.73.1597652566928;
- Mon, 17 Aug 2020 01:22:46 -0700 (PDT)
+        id S1726976AbgHQIIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Aug 2020 04:08:02 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:52071 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726768AbgHQIIC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 04:08:02 -0400
+X-Originating-IP: 93.34.118.233
+Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id BB259FF80B;
+        Mon, 17 Aug 2020 08:07:55 +0000 (UTC)
+Date:   Mon, 17 Aug 2020 10:11:38 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: media: ov772x: Document endpoint
+ properties
+Message-ID: <20200817081138.dog5lhpmszbu2mgc@uno.localdomain>
+References: <1596454753-13612-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <1596454753-13612-2-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CA+V-a8sjxL-rbYAti8Djj2ch2+Zf+88_wNjbZHzKVBB66aZJ0g@mail.gmail.com>
 MIME-Version: 1.0
-References: <1597406966-13740-1-git-send-email-abel.vesa@nxp.com> <1597406966-13740-11-git-send-email-abel.vesa@nxp.com>
-In-Reply-To: <1597406966-13740-11-git-send-email-abel.vesa@nxp.com>
-From:   Dong Aisheng <dongas86@gmail.com>
-Date:   Mon, 17 Aug 2020 16:07:41 +0800
-Message-ID: <CAA+hA=S980MzGYn+TS56JnOJb_Sazc2eH1XUU++bYNQdrxU+MQ@mail.gmail.com>
-Subject: Re: [PATCH v2 10/17] Documentation: bindings: clk: Add bindings for
- i.MX BLK_CTRL
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Anson Huang <anson.huang@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fugang Duan <fugang.duan@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8sjxL-rbYAti8Djj2ch2+Zf+88_wNjbZHzKVBB66aZJ0g@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 14, 2020 at 8:14 PM Abel Vesa <abel.vesa@nxp.com> wrote:
->
-> Document the i.MX BLK_CTRL with its devicetree properties.
->
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+Hello Prabhakar,
 
-Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
+On Sat, Aug 15, 2020 at 11:34:33AM +0100, Lad, Prabhakar wrote:
+> Hi Jacopo,
+>
+> On Mon, Aug 3, 2020 at 12:39 PM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> >
+> > Document endpoint properties required for parallel interface
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  .../devicetree/bindings/media/i2c/ov772x.txt     | 16 ++++++++++++++++
+> >  1 file changed, 16 insertions(+)
+> >
+> I see you already have a patch for YAML conversion for OV772x binding
+> [1], if you plan to post a v2 would you be OK to pick these changes as
+> part of your conversion changes ?
 
-Regards
-Aisheng
+Sure thing, I'll add the following properties to the series!
+
+Thanks
+  j
+
+>
+> [1] https://www.spinics.net/lists/linux-media/msg173201.html
+>
+> Cheers,
+> Prabhakar
+>
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/ov772x.txt b/Documentation/devicetree/bindings/media/i2c/ov772x.txt
+> > index 0b3ede5b8e6a..1f4153484717 100644
+> > --- a/Documentation/devicetree/bindings/media/i2c/ov772x.txt
+> > +++ b/Documentation/devicetree/bindings/media/i2c/ov772x.txt
+> > @@ -21,6 +21,22 @@ subnode for its digital output video port, in accordance with the video
+> >  interface bindings defined in Documentation/devicetree/bindings/media/
+> >  video-interfaces.txt.
+> >
+> > +Endpoint node required properties for parallel connection are:
+> > +- remote-endpoint: a phandle to the bus receiver's endpoint node.
+> > +- bus-width: shall be set to <8> for 8 bits parallel bus
+> > +            or <10> for 10 bits parallel bus
+> > +- data-shift: shall be set to <2> for 8 bits parallel bus
+> > +             (lines 9:2 are used) or <0> for 10 bits parallel bus
+> > +- hsync-active: active state of the HSYNC signal, 0/1 for LOW/HIGH respectively.
+> > +               (Not required for bus-type equal 6)
+> > +- vsync-active: active state of the VSYNC signal, 0/1 for LOW/HIGH respectively.
+> > +               (Not required for bus-type equal 6)
+> > +- pclk-sample: sample data on rising (1) or falling (0) edge of the pixel clock
+> > +              signal. (Not required for bus-type equal 6)
+> > +- bus-type: data bus type. Possible values are:
+> > +           5 - Parallel
+> > +           6 - Bt.656
+> > +
+> >  Example:
+> >
+> >  &i2c0 {
+> > --
+> > 2.17.1
+> >
