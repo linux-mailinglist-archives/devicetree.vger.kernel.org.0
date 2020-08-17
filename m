@@ -2,96 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B3AF245ED2
-	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 10:07:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FAE6245F86
+	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 10:23:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725765AbgHQIHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Aug 2020 04:07:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53342 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726934AbgHQIHf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Aug 2020 04:07:35 -0400
-Received: from dragon (unknown [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 40D2720758;
-        Mon, 17 Aug 2020 08:07:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597651655;
-        bh=brGKh7glX5r5oiJ5N4dduRMuN53pF28YcimSGGrgpKQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=z9SiSTSNK4ZGq5qzaEX4UGpdRQLuI5evIPschXW1F8xJeSZfDBOKgyYOSkcv6GCGZ
-         bThQsKb6Tfdi/eQNHmA/gMjyPVVCBuAJaaKY0sybfjOmR5gAIt1FIYVETtj6zlPlyR
-         IZYI5SUsWrtU/ub0hx4bFP3T9FR8o4S4m86qE7MM=
-Date:   Mon, 17 Aug 2020 16:07:19 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Martin Kaiser <martin@kaiser.cx>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Franck Lenormand <franck.lenormand@nxp.com>,
-        Iuliana Prodan <iuliana.prodan@nxp.com>,
-        Silvano Di Ninno <silvano.dininno@nxp.com>,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 0/5] hwrng: add support for i.MX6 rngb
-Message-ID: <20200817080718.GD16951@dragon>
-References: <20200715152604.10407-1-horia.geanta@nxp.com>
+        id S1726366AbgHQIW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Aug 2020 04:22:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52132 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728338AbgHQIWs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 04:22:48 -0400
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C160C061388;
+        Mon, 17 Aug 2020 01:22:48 -0700 (PDT)
+Received: by mail-ej1-x643.google.com with SMTP id f24so16713856ejx.6;
+        Mon, 17 Aug 2020 01:22:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4vvUS3MsWiDgWXcdNJuKrD06TaaumHLEcVAY3eJQqbI=;
+        b=Z0e4OPRPwxORMLo/h2Jx5AMLsngyx/pXUhtSkZkqTuBNK6AKh2lwQ4I1lcZuUI7SlN
+         ff3cNA7Sk+QHsq9C+khSBjpZesdJEcHH9Y4xILlrbd3Vkpdg9cjydTS8XzCrT+ntfFxn
+         rxAyK0nItr2Ptll37DxIFkMe/NfxpI/8jK/kSzuhBpMoHetsmwGijoYRMjqRINRJty7N
+         ZD3bXKynFlrXWijEcaq5telZXkARlgQ3m2TMBAE7+aB5ExXriSJm1s4BZEr/849tlZBq
+         wbDfVCD4Avjfk5NqjCDpgrYhA/Qy1psnHFvT5EyNjJY80ONA0QGaCwgRIBT2nyGWLPA+
+         KWrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4vvUS3MsWiDgWXcdNJuKrD06TaaumHLEcVAY3eJQqbI=;
+        b=j3sYSyaNgamu+f5fi0/B5ML54Cq3gidiZM4jONhhQSQGzGaSIzreitt9PMHLKwwO/c
+         AE8H7avA1BG+Q7qzWaDrNg1YIJQeZVxv9KElyGXjAOkLjvBBIoAY+MLxWfcxwF/I2v0i
+         9ySjcrLM9lQVRe/E+NN8CkPqRD67v5TAzfjVjd90VzP9Eh+pyYJomnxxHJd3llz7BHZp
+         KzuAcWVK/i3eKU8RZcrlZBxoVFFuhdwmPErYN+W4xwbQ/0cb+blM9QyH4kDwYjfrHVJ0
+         9mV2dxUUrE1V/Aem4a6/bRhsGvvFU17iQmibbCXkvVEjPUa+FISTsPR4sLARbq5BTy3u
+         v3AQ==
+X-Gm-Message-State: AOAM531s9kV3+ZL7+jomDmwU8UcOa8mVv8vfHaMEr5wvLtfgbTO4CZ6a
+        yppB/NExyx+DK+fk9UnVtC1Rk9B9oCof8VqreX0=
+X-Google-Smtp-Source: ABdhPJynJYGy6+mtTZDN2BR36xcy5HcTLNM0YlY7cyrY0gq/xOcmt/zLd8HraV/Nj1cBiSyb//rwsLCQkG9ypFrXiuI=
+X-Received: by 2002:a17:907:7090:: with SMTP id yj16mr13634256ejb.73.1597652566928;
+ Mon, 17 Aug 2020 01:22:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200715152604.10407-1-horia.geanta@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <1597406966-13740-1-git-send-email-abel.vesa@nxp.com> <1597406966-13740-11-git-send-email-abel.vesa@nxp.com>
+In-Reply-To: <1597406966-13740-11-git-send-email-abel.vesa@nxp.com>
+From:   Dong Aisheng <dongas86@gmail.com>
+Date:   Mon, 17 Aug 2020 16:07:41 +0800
+Message-ID: <CAA+hA=S980MzGYn+TS56JnOJb_Sazc2eH1XUU++bYNQdrxU+MQ@mail.gmail.com>
+Subject: Re: [PATCH v2 10/17] Documentation: bindings: clk: Add bindings for
+ i.MX BLK_CTRL
+To:     Abel Vesa <abel.vesa@nxp.com>
+Cc:     Mike Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Anson Huang <anson.huang@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fugang Duan <fugang.duan@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 15, 2020 at 06:25:59PM +0300, Horia Geantă wrote:
-> Add support for RNGB found in some i.MX6 SoCs (6SL, 6SLL, 6ULL, 6ULZ),
-> based on RNGC driver (drivers/char/hw_random/imx-rngc.c).
-> 
-> This driver claims support also for RNGB (besides RNGC),
-> and is currently used only by i.MX25.
-> 
-> Note:
-> 
-> Several NXP SoC from QorIQ family (P1010, P1023, P4080, P3041, P5020)
-> also have a RNGB, however it's part of the CAAM
-> (Cryptograhic Accelerator and Assurance Module) crypto accelerator.
-> In this case, RNGB is managed in the caam driver
-> (drivers/crypto/caam/), since it's tightly related to
-> the caam "job ring" interface, not to mention CAAM internally relying on
-> RNGB as source of randomness.
-> 
-> On the other hand, the i.MX6 SoCs with RNGB have a DCP
-> (Data Co-Processor) crypto accelerator and this block and RNGB
-> are independent.
-> 
-> Changelog:
-> v4
-> -remove unneeded compatible strings from the driver
-> v3
-> -mention in the DT binding the compatibility with "fsl,imx25-rngb"
-> -collected Reviewed-by
-> v2
-> -update rngb DT binding with compatible strings for i.MX6 SoCs
-> 
-> Horia Geantă (5):
-...
->   ARM: dts: imx6sl: fix rng node
->   ARM: dts: imx6sll: add rng
->   ARM: dts: imx6ull: add rng
+On Fri, Aug 14, 2020 at 8:14 PM Abel Vesa <abel.vesa@nxp.com> wrote:
+>
+> Document the i.MX BLK_CTRL with its devicetree properties.
+>
+> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
 
-Applied these 3, thanks.
+Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
 
-Shawn
+Regards
+Aisheng
