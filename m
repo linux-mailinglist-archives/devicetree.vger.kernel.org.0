@@ -2,144 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C03F246781
-	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 15:42:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D99B3246795
+	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 15:44:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728605AbgHQNmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Aug 2020 09:42:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45298 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728677AbgHQNlo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 09:41:44 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1830CC061357
-        for <devicetree@vger.kernel.org>; Mon, 17 Aug 2020 06:41:03 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id w25so17479624ljo.12
-        for <devicetree@vger.kernel.org>; Mon, 17 Aug 2020 06:41:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=frzL2DLHwYvpLbcVF+BQ0a2PY0Hd2ua7rlCrnnnS4iw=;
-        b=UQ/wTmknQMhog1wmIO5rJfA79XJvlXor2LAoB70HRnID+sphf9o9+m7gJg3flV1w5O
-         uzF9+23Tp5eh1yYLY8A9bXI2HDhC4hZ+GMvRNPyjC8ZEKWR1ejvT1UjpKv0YE6yVPvRj
-         khZ/XsvmZkULDjFzlKm9uvxBy6PTfVk3NtYGAy/SnbiwDPMyIoG+CkqodY4aBhvBbUN6
-         XtZJkdxNE95L+s2E+dOGSeVXfgXQR4NlVEvdD23dCam8seLxHMDh2heb5+Cq5c6/ak8i
-         agWfUJ68D55vR1uU9TYOd8WM0beZfd+Jxrv8GEwZAfqyspwoT900Fhslzksxg/S+IcjT
-         XSSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=frzL2DLHwYvpLbcVF+BQ0a2PY0Hd2ua7rlCrnnnS4iw=;
-        b=ekFxi8Seh5NKYU1R/D2Y7dqSWwYGgz8JHMYF7ogzQAh+GjcNaR5T1vfYqSqcjaAR4f
-         M8bChod23WUoWxy8w/JTcTSWf6QCyJIkBpvXmwP21CaplvphWvywpJn8vJSvaLWjmlha
-         0ceynmQem28nhUtvrQoW88Eg3m5uHXEIWV8uejF8UXkNsS3kgelfRXvn/OdLQjg0p1cn
-         W44IDRW7+gu7XQPYT3UWz63iN/pCW19I/bM5i+4nvscNxkooecVIDw0UckDHyJqjtNTW
-         LfhsXn/Q1mW5eg8aXEzINYt/K4PXztDQ7XaEvg0YkkCCsMpSJtwuf15H80gTP0Be+Edb
-         fKRw==
-X-Gm-Message-State: AOAM531G4+UTuSbd9jdkTZXnGbXjZoPo4Hb5Xv7pj3OVotSNtDdtRLpr
-        sFvXId9u0jFm2sq8/RRQIvBd2A==
-X-Google-Smtp-Source: ABdhPJy4aaiF8qOICfByVONC0MVmCClxwRzY87w1wPh5D4T/z2ObxWuZzRUVuY6Nc3XgSrGHfxcUCA==
-X-Received: by 2002:a2e:3609:: with SMTP id d9mr7131951lja.106.1597671661262;
-        Mon, 17 Aug 2020 06:41:01 -0700 (PDT)
-Received: from gilgamesh.semihalf.com (193-106-246-138.noc.fibertech.net.pl. [193.106.246.138])
-        by smtp.gmail.com with ESMTPSA id g22sm3443791lja.29.2020.08.17.06.41.00
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 17 Aug 2020 06:41:00 -0700 (PDT)
-From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-To:     tglx@linutronix.de, jason@lakedaemon.net, maz@kernel.org,
-        s-anna@ti.com
-Cc:     grzegorz.jaszczyk@linaro.org, robh+dt@kernel.org,
-        lee.jones@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, david@lechnology.com,
-        praneeth@ti.com
-Subject: [PATCH v5 5/5] irqchip/irq-pruss-intc: Add support for ICSSG INTC on K3 SoCs
-Date:   Mon, 17 Aug 2020 15:40:13 +0200
-Message-Id: <1597671613-20879-6-git-send-email-grzegorz.jaszczyk@linaro.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1597671613-20879-1-git-send-email-grzegorz.jaszczyk@linaro.org>
-References: <1597671613-20879-1-git-send-email-grzegorz.jaszczyk@linaro.org>
+        id S1728643AbgHQNor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Aug 2020 09:44:47 -0400
+Received: from mail-vi1eur05on2049.outbound.protection.outlook.com ([40.107.21.49]:47670
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728588AbgHQNoq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Aug 2020 09:44:46 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ebrYNN5NNAVzn3Apk9BswLV50smSxovJQcwOlQmh82rnE8RN2BmK+cbdg0OhY3/WvpZZVtF6xBihvjv+5Li5F/QST3iZKW4mdb3fqYdyzLf3OrPOZuN7U/gp6X0CCasYXnnu/IZYtGNGUvoP6C7i+2FdzsQSWOiunQLjzjVdXFN2JHkFr4/Ko11iOd2MrSi0bqC+P5UM16RZ2DlCZ9S6VmCGcAXAhzGmZUG8upAkN2KlNJkyfm9DUdnBNwhbnWDg+eT5qwH4vwbMz7kRVUpS6IJ+pmZULW5F7slFiHrqECmItb3FVJUiy5w6FeKq50/f7uN9Yf0GGvYWxv+HgPkPUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BWTGhFA9DJ+idcpI4wdhpwqIvT/5X6BPJEodIHsPS2M=;
+ b=B0U/Q3F/wspvpgHk+eO5Ym/pfzFV2aNBOLRg8IWzKJ447rLfFReB9JFvGcEtswUtH34NenU8N0O3yLVFCh9Nacfiz7gQILE7s9/2q2Wjkie9vVRKxoFPD/wWiMPTDwu1cmTVuWp2Rp31PNY6lmx3PryZctcF8Mwxi/7TSVqsZGWRM5geutp83zJLcpQ46P8QqbJVcrd/LQpRVdjltwwYjAL0eBkxJCFeC5o7B/WgFXxufcCHZo0Df+1GcxSGHnG4FpxQ78sKUBavB+ZZ4czOdbq5nRdxI8GwVgMKY9/7w7Zg8aotUPI/of4ZMh0dQ/OsjpJkqQpWPVCP5QHxIGcYXA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BWTGhFA9DJ+idcpI4wdhpwqIvT/5X6BPJEodIHsPS2M=;
+ b=roh64oPASeLh2ZnkHOZC6u8Qtsd2UHQy5bK/sHA6+Aq9QVaAQL7mq8mfNFzsydUpiqPYYvDhk3XIxGsIeD6qdzwWFPgvAZXnhF+voD1yLKClf+8XBIOZSdKfqEhxT7xcrtbOCX0pLb2ABi64aDL5GVMMq7MWjge0GfcBAREaHkc=
+Received: from VI1PR0402MB3342.eurprd04.prod.outlook.com
+ (2603:10a6:803:11::14) by VI1PR04MB4174.eurprd04.prod.outlook.com
+ (2603:10a6:803:3d::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3283.20; Mon, 17 Aug
+ 2020 13:44:42 +0000
+Received: from VI1PR0402MB3342.eurprd04.prod.outlook.com
+ ([fe80::c1a:39dd:a2d5:3d2f]) by VI1PR0402MB3342.eurprd04.prod.outlook.com
+ ([fe80::c1a:39dd:a2d5:3d2f%7]) with mapi id 15.20.3283.027; Mon, 17 Aug 2020
+ 13:44:42 +0000
+From:   "S.j. Wang" <shengjiu.wang@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] ARM: dts: imx7d-sdb: Add notes for audio sound card
+Thread-Topic: [PATCH] ARM: dts: imx7d-sdb: Add notes for audio sound card
+Thread-Index: AdZ0nG79T94FsqlQSjOjVmae9L0DEA==
+Date:   Mon, 17 Aug 2020 13:44:41 +0000
+Message-ID: <VI1PR0402MB3342CA1812DF86434FABE918E35F0@VI1PR0402MB3342.eurprd04.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.68]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 0b581c09-6b0e-440c-c679-08d842b3b1ba
+x-ms-traffictypediagnostic: VI1PR04MB4174:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB417456C0BDCF55211FAC05ABE35F0@VI1PR04MB4174.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4941;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 3od7XLFWfx0ygVS0UezRVQvxrpqdWOXh8vX/DkCfTu92/utqTLBLesUMOweacHloAkHaSUCoetp+mfOfRAoIIoAzYa7N9sGCycQjMNSf3KennDyPQAe0ckDpCEaFGvFtT3HXwvO+Q4BmbGzZtIoWrFncA7LObN4KuMwJScrCwCBEoJJUv2gZi3EYHPSEGKqTd3ceBplrXkZhpoR4R/B/LXI2QZ8KqLG8Em33xajnaIZTYS2UJR4AUU2g8qlWsOKORa70CAH8BDTPVnQySAuTcyJYXKiZdmMO0IdePsiMvNsY9RGb8IX2sNDeZqIslOoQ0fQDgE8hr61q9kzhu2iwrg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3342.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(366004)(346002)(136003)(39860400002)(396003)(186003)(33656002)(26005)(76116006)(52536014)(2906002)(6506007)(71200400001)(478600001)(4326008)(54906003)(83380400001)(8676002)(558084003)(55016002)(6916009)(9686003)(86362001)(7696005)(66946007)(66476007)(64756008)(66446008)(66556008)(5660300002)(316002)(8936002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: brj1bJUqgSLp63k9jH5Uk/wP91ipsl22aVdJCQ3fkh5kE7wePefcXTpZmNVES8F+u5ASsAMKIXXWUXd1oGBkJlWxYuNNZyssxIO85EWrZC8Fizr8XeiZjjTvTezZ/vybX9sLbrPIrR9kVFEyGQr+IsLtlzSFG2sAVvbkBRKu0I+pepsH23ELlZo6M8T4JYM2vpCVBYUWrSuR5nrzUDOKoX4Aknzgl4z+oMXv7mkHOOZonXAGNpjM4/6bAqhy0iec3nrAuo/CLvGnojAFZOSjib6Bk9+jG63IRPArvjl1sEIo6ht8u9DYZ739EfBpNfWyTu9G0Aw8sek/1IiYVCI2ThOrN6H0MCcJpHsAMCg+GHuCTeEGMHTGx/eXYK/Or4Lt4qRFbvDEHrJNwhXHvcKdNhx9Dm3Y785sQjty+5I+DGE7XSKV9Jv2a1lABPbYhKiMeli6DrW8LnfH8rk36bsCGn8A4OA8QN9YsrpPZCBhmNa/PZKNa3rwz9iLkJSCSuGF6qbUV9kIRKqRQozrNmf9UQr99AFDYqXtkV27CZ1abMJY3KKHvzOAzuvczTKTE+eqflKY11pmGKOQdxZG4yf4LisQuzRnpe0DzIfQChwXvelcdIVI34/tJgsu6LYwip1YKEhKzaKrhP67zLjxDkpm4A==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3342.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b581c09-6b0e-440c-c679-08d842b3b1ba
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Aug 2020 13:44:41.9313
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: C9xwmXyQzhShOyf7E7NqvtyMGg+rJBC43tOwD8a15kMUrwc3GQFhd0EwkmXZW/3SAHOTU75/2BbwTlkYwDGslQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4174
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Suman Anna <s-anna@ti.com>
 
-The K3 AM65x and J721E SoCs have the next generation of the PRU-ICSS IP,
-commonly called ICSSG. The PRUSS INTC present within the ICSSG supports
-more System Events (160 vs 64), more Interrupt Channels and Host Interrupts
-(20 vs 10) compared to the previous generation PRUSS INTC instances. The
-first 2 and the last 10 of these host interrupt lines are used by the
-PRU and other auxiliary cores and sub-modules within the ICSSG, with 8
-host interrupts connected to MPU. The host interrupts 5, 6, 7 are also
-connected to the other ICSSG instances within the SoC and can be
-partitioned as per system integration through the board dts files.
+> > Configure the SAI device node, configure audio clock and pinctrl.
+> >
+> > Enable the audio sound card, which use the SAI1 and wm8960, and enable
+> > headphone detection.
+> >
+> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+>=20
+> s/notes/nodes in subject?
 
-Enhance the PRUSS INTC driver to add support for this ICSSG INTC
-instance.
+Yes.  Thanks for fixing it.
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
----
-v4->v5:
-- Rename: s/num_host_intrs/num_host_events/ regarding to change
-  introduced in patch #2.
-v3->v4:
-- Move generic part to "irqchip/irq-pruss-intc: Add a PRUSS irqchip
-  driver for PRUSS interrupts" patch and leave only platform related
-  code.
-v2->v3:
-- Change patch order: use it directly after "irqchip/irq-pruss-intc:
-  Implement irq_{get,set}_irqchip_state ops" and before new
-  "irqchip/irq-pruss-intc: Add event mapping support" in order to reduce
-  diff.
-v1->v2:
-- https://patchwork.kernel.org/patch/11069773/
----
- drivers/irqchip/Kconfig          | 2 +-
- drivers/irqchip/irq-pruss-intc.c | 9 +++++++++
- 2 files changed, 10 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-index a112a76..7fe4e30 100644
---- a/drivers/irqchip/Kconfig
-+++ b/drivers/irqchip/Kconfig
-@@ -495,7 +495,7 @@ config TI_SCI_INTA_IRQCHIP
- 
- config TI_PRUSS_INTC
- 	tristate "TI PRU-ICSS Interrupt Controller"
--	depends on ARCH_DAVINCI || SOC_AM33XX || SOC_AM43XX || SOC_DRA7XX || ARCH_KEYSTONE
-+	depends on ARCH_DAVINCI || SOC_AM33XX || SOC_AM43XX || SOC_DRA7XX || ARCH_KEYSTONE || ARCH_K3
- 	select IRQ_DOMAIN
- 	help
- 	   This enables support for the PRU-ICSS Local Interrupt Controller
-diff --git a/drivers/irqchip/irq-pruss-intc.c b/drivers/irqchip/irq-pruss-intc.c
-index 15f0407..9e540af 100644
---- a/drivers/irqchip/irq-pruss-intc.c
-+++ b/drivers/irqchip/irq-pruss-intc.c
-@@ -622,11 +622,20 @@ static const struct pruss_intc_match_data pruss_intc_data = {
- 	.num_host_events = 10,
- };
- 
-+static const struct pruss_intc_match_data icssg_intc_data = {
-+	.num_system_events = 160,
-+	.num_host_events = 20,
-+};
-+
- static const struct of_device_id pruss_intc_of_match[] = {
- 	{
- 		.compatible = "ti,pruss-intc",
- 		.data = &pruss_intc_data,
- 	},
-+	{
-+		.compatible = "ti,icssg-intc",
-+		.data = &icssg_intc_data,
-+	},
- 	{ /* sentinel */ },
- };
- MODULE_DEVICE_TABLE(of, pruss_intc_of_match);
--- 
-2.7.4
-
+Best regards
+Wang shengjiu
