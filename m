@@ -2,219 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C11CA24692B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 17:14:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23AF024693D
+	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 17:17:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728694AbgHQPOM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Aug 2020 11:14:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37804 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726630AbgHQPOL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Aug 2020 11:14:11 -0400
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1274A206FA;
-        Mon, 17 Aug 2020 15:14:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597677250;
-        bh=hqEMfNYoKv2H/A9NzWzm3pq6Ot1n4/y/J+WGuaOxqMY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Sj4XnJIEDsVqpYNelJN42gpLdtuvPyZFo+ro80ps5X1fNlN/EEWNnpxGm92khy4Lx
-         maruxkU2rTx7p++FLm8BfGzV8SdWIqHqPg3QRh0+IMhm1z9xBygMGnywg8GxrBQgC+
-         JPiQrofIkFExUoSg+dk7StvMEvdHJ0n3Dwi/NZ7o=
-Received: by mail-ej1-f50.google.com with SMTP id bo3so18126248ejb.11;
-        Mon, 17 Aug 2020 08:14:09 -0700 (PDT)
-X-Gm-Message-State: AOAM533ZI6LdQ9NKY2jaUFUXDNSxeIBTsKW3Yg3X9XmVr+/85tyjyjE3
-        s2Pl7OuRXbVSQgw7QN1zPg9kZf03zXDD1/k91g==
-X-Google-Smtp-Source: ABdhPJwbE2nEYvLa7dwJUU9IVHpeywzEtAxNOSighTuc9Ly6OaPt76S0xzF2xY1xirFF+T46DK/F0HVQWCkErsPlpOg=
-X-Received: by 2002:a17:906:2356:: with SMTP id m22mr15233703eja.124.1597677248601;
- Mon, 17 Aug 2020 08:14:08 -0700 (PDT)
+        id S1729048AbgHQPQh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Aug 2020 11:16:37 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:35790 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728778AbgHQPQd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 11:16:33 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07HFGUbe083374;
+        Mon, 17 Aug 2020 10:16:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1597677390;
+        bh=NP+m4DM9evitJfx1NGVBxAFzXwAe985/WtezLdTg1LI=;
+        h=From:To:CC:Subject:Date;
+        b=iQY2tb1eXX5BHuyCA7VBHBfddP9NivHqrzWo+U4YgpVk7KcUklAgy7vFAoLQZRXUb
+         8rj4apEdH0RPEhj9wl1prTlg+c69Wfeo3AwHt9bDoXwhVBEfYSsEylO3FAvsl34bKG
+         GUGBQmBeV+4nbOT6gHki2f67U0FPYhpun1fk2LV4=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07HFGUZ2093097
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 17 Aug 2020 10:16:30 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 17
+ Aug 2020 10:16:30 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 17 Aug 2020 10:16:30 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07HFGT3P040477;
+        Mon, 17 Aug 2020 10:16:30 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <sre@kernel.org>, <robh@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <r-rivera-matos@ti.com>,
+        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH v2 1/2] dt-bindings: power: Add the bq25790 dt bindings
+Date:   Mon, 17 Aug 2020 10:16:28 -0500
+Message-ID: <20200817151629.11019-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <1597289564-17030-1-git-send-email-neal.liu@mediatek.com>
- <1597289564-17030-3-git-send-email-neal.liu@mediatek.com> <CAAOTY_88YSHOvDEHm+rM1=fTv_y25nUh1tuLUH8YSxH5UD1bug@mail.gmail.com>
- <1597636953.3394.7.camel@mtkswgap22>
-In-Reply-To: <1597636953.3394.7.camel@mtkswgap22>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Mon, 17 Aug 2020 23:13:56 +0800
-X-Gmail-Original-Message-ID: <CAAOTY__7gmvp+U+xD12KJkxuya=CkD8xV67S3pfC60gyfajQiA@mail.gmail.com>
-Message-ID: <CAAOTY__7gmvp+U+xD12KJkxuya=CkD8xV67S3pfC60gyfajQiA@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] soc: mediatek: add mt6779 devapc driver
-To:     Neal Liu <neal.liu@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org,
-        wsd_upstream <wsd_upstream@mediatek.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Neal:
+Add the bindings for the bq25790.
 
-Neal Liu <neal.liu@mediatek.com> =E6=96=BC 2020=E5=B9=B48=E6=9C=8817=E6=97=
-=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=8812:02=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Hi Chun-Kuang,
->
-> On Sat, 2020-08-15 at 11:03 +0800, Chun-Kuang Hu wrote:
-> > Hi, Neal:
-> >
-> > Neal Liu <neal.liu@mediatek.com> =E6=96=BC 2020=E5=B9=B48=E6=9C=8813=E6=
-=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=8811:33=E5=AF=AB=E9=81=93=EF=BC=
-=9A
-> > >
-> > > MediaTek bus fabric provides TrustZone security support and data
-> > > protection to prevent slaves from being accessed by unexpected
-> > > masters.
-> > > The security violation is logged and sent to the processor for
-> > > further analysis or countermeasures.
-> > >
-> > > Any occurrence of security violation would raise an interrupt, and
-> > > it will be handled by mtk-devapc driver. The violation
-> > > information is printed in order to find the murderer.
-> > >
-> > > Signed-off-by: Neal Liu <neal.liu@mediatek.com>
-> > > ---
-> >
-> > [snip]
-> >
-> > > +/*
-> > > + * devapc_violation_irq - the devapc Interrupt Service Routine (ISR)=
- will dump
-> > > + *                        violation information including which mast=
-er violates
-> > > + *                        access slave.
-> > > + */
-> > > +static irqreturn_t devapc_violation_irq(int irq_number,
-> > > +                                       struct mtk_devapc_context *ct=
-x)
-> > > +{
-> > > +       /*
-> > > +        * Mask slave's irq before clearing vio status.
-> > > +        * Must do it to avoid nested interrupt and prevent
-> > > +        * unexpected behavior.
-> > > +        */
-> > > +       mask_module_irq(ctx, true);
-> >
-> > I still don't understand why nested interrupt happen. If two CPU
-> > process different devapc interrupt at the same time, mask interrupt
-> > could not prevent these two CPU to sync vio dbg at the same time. As I
-> > know, in ARM CPU, only CPU0 process irq handler, and all devapc
-> > interrupt has the same priority, so why nested interrupt happen? Could
-> > you explain more detail about how nested interrupt happen?
->
-> If there is another violation happened before previous violation is
-> fully handled, nested interrupt would happen.
->
-> Let's me take an example:
-> vio A happen
-> enter A ISR
-> ...             vio B happen
-> finish A ISR    enter B ISR
->                 ...
->                 finish B ISR
->
-> We mask all module's irq to avoid nested interrupt.
+Signed-off-by: Ricardo Rivera-Matos <r-rivera-matos@ti.com>
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
 
-This is not 'nested' interrupt. After A ISR is finished, B ISR happen.
-So A ISR and B ISR are consecutive interrupt, not nested interrupt.
-To compare mask irq and no mask irq, Let's consider this situation:
+v2 - Changed ti,watchdog property, documented the interrupts, fixed exxamples
+for input-current and input-voltage
 
-1. 1000 consecutive violation happen, the time period between two
-violation is 0.01 ms, so the total time is 10ms. (In 10ms, 1000
-violation happen)
-2. One ISR handle time is 1 ms, so in one ISR handler, 100 violation happen=
-.
+ .../bindings/power/supply/bq25790.yaml        | 95 +++++++++++++++++++
+ 1 file changed, 95 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/bq25790.yaml
 
-For mask irq solution, 10 ISR handler is trigger. For no mask irq
-solution, 11 ISR handler is trigger.
-I think these two solution have similar result, and no mask irq
-solution print more information (If these 1000 violation is trigger by
-20 different driver, no mask solution may show one more driver than
-mask solution)
-So I think it's not necessary to mask irq in irq handler.
+diff --git a/Documentation/devicetree/bindings/power/supply/bq25790.yaml b/Documentation/devicetree/bindings/power/supply/bq25790.yaml
+new file mode 100644
+index 000000000000..6d9178ce5a2b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/supply/bq25790.yaml
+@@ -0,0 +1,95 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2020 Texas Instruments Incorporated
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/power/supply/bq25790.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: TI BQ25790 Switch Mode Buck-Boost Charger
++
++maintainers:
++  - Dan Murphy <dmurphy@ti.com>
++
++description: |
++  BQ25790 is a highly integrated switch-mode buck-boost charger for 1-4 cell
++  Li-ion batteries and Li-polymer batteries. The device charges a battery from a
++  wide range of input sources including legacy USB adapters to high voltage USB
++  PD adapters and traditional barrel adapters.
++
++allOf:
++  - $ref: power-supply.yaml#
++
++properties:
++  compatible:
++    enum:
++      - ti,bq25790
++      - ti,bq25792
++
++  reg:
++    maxItems: 1
++
++  ti,watchdog-timeout-ms:
++    default: 0
++    description: |
++      Watchdog timer in milli seconds. 0 (default) disables the watchdog.
++    minimum: 0
++    maximum: 160000
++    enum: [ 0, 500, 1000, 2000, 20000, 40000, 80000, 160000]
++
++  input-voltage-limit-microvolt:
++    description: |
++      Minimum input voltage limit in micro volts with a 100000 micro volt step.
++    minimum: 3600000
++    maximum: 22000000
++
++  input-current-limit-microamp:
++    description: |
++      Maximum input current limit in micro amps with a 100000 micro amp step.
++    minimum: 100000
++    maximum: 3300000
++
++  monitored-battery:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: phandle to the battery node being monitored
++
++  interrupts:
++    maxItems: 1
++    description: |
++      Interrupt sends an active low, 256 μs pulse to host to report the charger
++      device status and faults.
++
++required:
++  - compatible
++  - reg
++  - monitored-battery
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    bat: battery {
++      compatible = "simple-battery";
++      constant-charge-current-max-microamp = <2000000>;
++      constant-charge-voltage-max-microvolt = <4200000>;
++      precharge-current-microamp = <160000>;
++      charge-term-current-microamp = <160000>;
++    };
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c0 {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      bq25790: charger@6b {
++          compatible = "ti,bq25790";
++          reg = <0x6b>;
++          interrupt-parent = <&gpio1>;
++          interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
++          ti,watchdog-timeout-ms = <2000>;
++          input-current-limit-microamp = <3000000>;
++          input-voltage-limit-microvolt = <4500000>;
++          monitored-battery = <&bat>;
++      };
++    };
++
++...
+-- 
+2.28.0
 
->
-> >
-> > > +
-> > > +       while (devapc_sync_vio_dbg(ctx))
-> > > +               devapc_extract_vio_dbg(ctx);
-> > > +
-> > > +       /*
-> > > +        * Ensure that violation info are written
-> > > +        * before further operations
-> > > +        */
-> > > +       smp_mb();
-> > > +
-> > > +       clear_vio_status(ctx);
-> > > +       mask_module_irq(ctx, false);
-> > > +
-> > > +       return IRQ_HANDLED;
-> > > +}
-> > > +
-> >
-> > [snip]
-> >
-> > > +
-> > > +static int mtk_devapc_remove(struct platform_device *pdev)
-> > > +{
-> > > +       struct mtk_devapc_context *ctx =3D platform_get_drvdata(pdev)=
-;
-> > > +
-> > > +       stop_devapc(ctx);
-> > > +
-> > > +       if (ctx->infra_clk)
-> >
-> > This always true.
->
-> Does it mean that remove function would be called only if probe function
-> is returned successfully?
-
-Yes.
-
-> Is there any chance this function would be called directly?
-
-No.
-
-Regards,
-Chun-Kuang.
-
->
-> >
-> > Regards,
-> > Chun-Kuang.
-> >
-> > > +               clk_disable_unprepare(ctx->infra_clk);
-> > > +
-> > > +       return 0;
-> > > +}
-> > > +
-> > > +static struct platform_driver mtk_devapc_driver =3D {
-> > > +       .probe =3D mtk_devapc_probe,
-> > > +       .remove =3D mtk_devapc_remove,
-> > > +       .driver =3D {
-> > > +               .name =3D KBUILD_MODNAME,
-> > > +               .of_match_table =3D mtk_devapc_dt_match,
-> > > +       },
-> > > +};
-> > > +
-> > > +module_platform_driver(mtk_devapc_driver);
-> > > +
-> > > +MODULE_DESCRIPTION("Mediatek Device APC Driver");
-> > > +MODULE_AUTHOR("Neal Liu <neal.liu@mediatek.com>");
-> > > +MODULE_LICENSE("GPL");
-> > > --
-> > > 1.7.9.5
-> > > _______________________________________________
-> > > Linux-mediatek mailing list
-> > > Linux-mediatek@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-mediatek
->
