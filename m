@@ -2,79 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 712842473E2
-	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 21:02:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B143C247506
+	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 21:18:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404041AbgHQTCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Aug 2020 15:02:37 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:34422 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730767AbgHQPrI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 11:47:08 -0400
-Received: by mail-ed1-f68.google.com with SMTP id bs17so12661756edb.1;
-        Mon, 17 Aug 2020 08:47:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=2OOPWwPf31u6+1Sjh8PXYKYbvJooZ2RmnVEA6ydXQrY=;
-        b=g0scn3MQs7n0ElgSHwKEqhXX6rn/e91P3ryksEADiLu/oLo8HIAoQE37r2TzHbeIBC
-         NSHtwO2pynF3wu2qkJKBL1DT7z1XnJhUf5y09hPseictMuFBkNneUJ+exgHhvNgObac3
-         wJvGICe8vN6ZzTlbJdMEQUJsrVwheZaj3kbQHdSicExjJicKLiN7WL2lhEMw/JE4CyQk
-         5XENVeYbDqo0sulPnxmzqQBXBAQSLz0nGCeYWpA356KGtrEevRusWWVjSZZPu/G4w+HP
-         prD1r7x9HQLNTYRsQMsajzXhPJXT9Z8iUSiTRAf6BtAdYR614TyaO1NEPXw9tV5ZnHp3
-         b+Xg==
-X-Gm-Message-State: AOAM532xVxk+0qVXyH2jh1auRUJ4i6BTN6i76qJxXY6TaYu9QtOyiXqI
-        hqR5+P9Hnznfu4S+mHqQyy0=
-X-Google-Smtp-Source: ABdhPJwOhH8zi3STLsH1df8QWrCEbCpmOqWgZF/tMl4CTwAQjaelnyAYR/xa735yAwg3DI1So6yFhA==
-X-Received: by 2002:aa7:d410:: with SMTP id z16mr15198853edq.287.1597679227376;
-        Mon, 17 Aug 2020 08:47:07 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.216])
-        by smtp.googlemail.com with ESMTPSA id v13sm14947106edl.9.2020.08.17.08.47.06
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 17 Aug 2020 08:47:06 -0700 (PDT)
-Date:   Mon, 17 Aug 2020 17:47:04 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     broonie@kernel.org, simon@lineageos.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, b.zolnierkie@samsung.com,
-        m.szyprowski@samsung.com, linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] ARM: dts: exynos: Add sound support to Midas
-Message-ID: <20200817154704.GB15887@kozik-lap>
-References: <20200728131111.14334-1-s.nawrocki@samsung.com>
- <CGME20200728131152eucas1p1d6794f603d1c3474eb6a7bfad04cec6b@eucas1p1.samsung.com>
- <20200728131111.14334-3-s.nawrocki@samsung.com>
+        id S1730270AbgHQTS1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Aug 2020 15:18:27 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:52256 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392131AbgHQTS0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 15:18:26 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07HJIEDF041828;
+        Mon, 17 Aug 2020 14:18:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1597691894;
+        bh=80uJ5kKs7K6ojF+rJ/lSvYTiOi3jFw4mNWv2W/UGfYA=;
+        h=From:To:CC:Subject:Date;
+        b=CXQWgNkTw+S21ozwtWoHygnVTOEVH1sVSDh3VZ+pUp+ftF1BeIUiBIvfJTcNGm1L+
+         K0N98YWUbw+7guB7liQbPtpa0ZATzm3ue2otVTjdHarb62aeSYMX6FFMYwrKBfMxJT
+         9FPT0BoWeuB/pak1zL0kTx5jnxKPfHsACTcMgvaA=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07HJIEM0102013
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 17 Aug 2020 14:18:14 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 17
+ Aug 2020 14:18:13 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 17 Aug 2020 14:18:13 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07HJIDeW094892;
+        Mon, 17 Aug 2020 14:18:13 -0500
+From:   Ricardo Rivera-Matos <r-rivera-matos@ti.com>
+To:     <sre@kernel.org>, <robh+dt@kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <dmurphy@ti.com>, Ricardo Rivera-Matos <r-rivera-matos@ti.com>
+Subject: [PATCH v1 0/2] Introduce the BQ256XX family of chargers
+Date:   Mon, 17 Aug 2020 14:17:21 -0500
+Message-ID: <20200817191723.22416-1-r-rivera-matos@ti.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200728131111.14334-3-s.nawrocki@samsung.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 28, 2020 at 03:11:11PM +0200, Sylwester Nawrocki wrote:
-> From: Simon Shields <simon@lineageos.org>
-> 
-> Update the never-mainlined "samsung,trats2-audio" binding and instead
-> use the new "samsung,midas-audio" binding.
-> 
-> Signed-off-by: Simon Shields <simon@lineageos.org>
-> [s.nawrocki: fixed DAPM routing entries for MICBIAS1/2, adjusted to
->  new cpu/codec binding, corrected the regulator nodes indexing]
-> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
-> ---
-> Changes for v3:
->  - none.
-> 
-> Changes for v2:
->  - reordering to maintain alphabetical order,
->  - corrected the fixed voltage regulator nodes indexing,
+Hello,
 
-Thanks, applied.
+This patchset introduces the bq256xx family of charging ICs. The bq256xx ICs
+are highly integrated, buck, switching chargers intended for use in 
+smartphones, tablets, and portable electronics.
 
-Best regards,
-Krzysztof
+Ricardo Rivera-Matos (2):
+  dt-bindings: power: Add the bq256xx dt bindings
+  power: supply: bq256xx: Introduce the BQ256XX charger driver
+
+ .../bindings/power/supply/bq256xx.yaml        |   99 +
+ drivers/power/supply/Kconfig                  |   11 +
+ drivers/power/supply/Makefile                 |    1 +
+ drivers/power/supply/bq256xx_charger.c        | 1769 +++++++++++++++++
+ 4 files changed, 1880 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/bq256xx.yaml
+ create mode 100644 drivers/power/supply/bq256xx_charger.c
+
+-- 
+2.28.0
 
