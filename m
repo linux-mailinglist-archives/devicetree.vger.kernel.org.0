@@ -2,208 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C302245EB6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 10:02:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B3AF245ED2
+	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 10:07:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726286AbgHQICt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Aug 2020 04:02:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50272 "EHLO mail.kernel.org"
+        id S1725765AbgHQIHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Aug 2020 04:07:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53342 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726089AbgHQICs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Aug 2020 04:02:48 -0400
+        id S1726934AbgHQIHf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Aug 2020 04:07:35 -0400
 Received: from dragon (unknown [80.251.214.228])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BFD9220758;
-        Mon, 17 Aug 2020 08:02:45 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 40D2720758;
+        Mon, 17 Aug 2020 08:07:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597651367;
-        bh=GFEJS3Rr7vYY2tqPLGzJrpsNU961dcnYNV4ZC8aZQJc=;
+        s=default; t=1597651655;
+        bh=brGKh7glX5r5oiJ5N4dduRMuN53pF28YcimSGGrgpKQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oWSW8ITpIE5G5BZuEXLG7Uhsc/3cXKV8I5Z98gLgTxD1NLb/kxTgGK/sEL5EMJMF0
-         SRrkxMpMFAgSQghzqRVOK6pMgfgcB50mOGDYcbUfz2hPpAu7sIxj79djDpHrNycQBa
-         irGiwtgQOfy2cMmsJPxLYIHGzlm/9crR5OlfVaoQ=
-Date:   Mon, 17 Aug 2020 16:02:34 +0800
+        b=z9SiSTSNK4ZGq5qzaEX4UGpdRQLuI5evIPschXW1F8xJeSZfDBOKgyYOSkcv6GCGZ
+         bThQsKb6Tfdi/eQNHmA/gMjyPVVCBuAJaaKY0sybfjOmR5gAIt1FIYVETtj6zlPlyR
+         IZYI5SUsWrtU/ub0hx4bFP3T9FR8o4S4m86qE7MM=
+Date:   Mon, 17 Aug 2020 16:07:19 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     andy.tang@nxp.com, amit.kucheria@linaro.org
-Cc:     leoyang.li@nxp.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2 v2] arm64: dts: ls1088a: add more thermal zone support
-Message-ID: <20200817080233.GC16951@dragon>
-References: <20200715064909.9161-1-andy.tang@nxp.com>
+To:     Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Martin Kaiser <martin@kaiser.cx>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Franck Lenormand <franck.lenormand@nxp.com>,
+        Iuliana Prodan <iuliana.prodan@nxp.com>,
+        Silvano Di Ninno <silvano.dininno@nxp.com>,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/5] hwrng: add support for i.MX6 rngb
+Message-ID: <20200817080718.GD16951@dragon>
+References: <20200715152604.10407-1-horia.geanta@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200715064909.9161-1-andy.tang@nxp.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200715152604.10407-1-horia.geanta@nxp.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 15, 2020 at 02:49:08PM +0800, andy.tang@nxp.com wrote:
-> From: Yuantian Tang <andy.tang@nxp.com>
+On Wed, Jul 15, 2020 at 06:25:59PM +0300, Horia Geantă wrote:
+> Add support for RNGB found in some i.MX6 SoCs (6SL, 6SLL, 6ULL, 6ULZ),
+> based on RNGC driver (drivers/char/hw_random/imx-rngc.c).
 > 
-> There are 2 thermal zones in ls1088a soc. Add the other thermal zone
-> node to enable it.
-> Also update the values in calibration table to make the temperatures
-> monitored more precise.
+> This driver claims support also for RNGB (besides RNGC),
+> and is currently used only by i.MX25.
 > 
-> Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
-> ---
-> v2:
-> 	- remove useless alert trip
+> Note:
+> 
+> Several NXP SoC from QorIQ family (P1010, P1023, P4080, P3041, P5020)
+> also have a RNGB, however it's part of the CAAM
+> (Cryptograhic Accelerator and Assurance Module) crypto accelerator.
+> In this case, RNGB is managed in the caam driver
+> (drivers/crypto/caam/), since it's tightly related to
+> the caam "job ring" interface, not to mention CAAM internally relying on
+> RNGB as source of randomness.
+> 
+> On the other hand, the i.MX6 SoCs with RNGB have a DCP
+> (Data Co-Processor) crypto accelerator and this block and RNGB
+> are independent.
+> 
+> Changelog:
+> v4
+> -remove unneeded compatible strings from the driver
+> v3
+> -mention in the DT binding the compatibility with "fsl,imx25-rngb"
+> -collected Reviewed-by
+> v2
+> -update rngb DT binding with compatible strings for i.MX6 SoCs
+> 
+> Horia Geantă (5):
+...
+>   ARM: dts: imx6sl: fix rng node
+>   ARM: dts: imx6sll: add rng
+>   ARM: dts: imx6ull: add rng
 
-@Amit, looks good to you?
+Applied these 3, thanks.
 
 Shawn
-
-> 
->  .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 94 +++++++++++--------
->  1 file changed, 56 insertions(+), 38 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> index 169f4742ae3b..b961a896ede7 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> @@ -130,19 +130,19 @@
->  	};
->  
->  	thermal-zones {
-> -		cpu_thermal: cpu-thermal {
-> +		core-cluster {
->  			polling-delay-passive = <1000>;
->  			polling-delay = <5000>;
->  			thermal-sensors = <&tmu 0>;
->  
->  			trips {
-> -				cpu_alert: cpu-alert {
-> +				core_cluster_alert: core-cluster-alert {
->  					temperature = <85000>;
->  					hysteresis = <2000>;
->  					type = "passive";
->  				};
->  
-> -				cpu_crit: cpu-crit {
-> +				core-cluster-crit {
->  					temperature = <95000>;
->  					hysteresis = <2000>;
->  					type = "critical";
-> @@ -151,7 +151,7 @@
->  
->  			cooling-maps {
->  				map0 {
-> -					trip = <&cpu_alert>;
-> +					trip = <&core_cluster_alert>;
->  					cooling-device =
->  						<&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->  						<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> @@ -164,6 +164,20 @@
->  				};
->  			};
->  		};
-> +
-> +		soc {
-> +			polling-delay-passive = <1000>;
-> +			polling-delay = <5000>;
-> +			thermal-sensors = <&tmu 1>;
-> +
-> +			trips {
-> +				soc-crit {
-> +					temperature = <95000>;
-> +					hysteresis = <2000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
->  	};
->  
->  	timer {
-> @@ -210,45 +224,49 @@
->  			compatible = "fsl,qoriq-tmu";
->  			reg = <0x0 0x1f80000 0x0 0x10000>;
->  			interrupts = <0 23 0x4>;
-> -			fsl,tmu-range = <0xb0000 0x9002a 0x6004c 0x30062>;
-> +			fsl,tmu-range = <0xb0000 0x9002a 0x6004c 0x70062>;
->  			fsl,tmu-calibration =
->  				/* Calibration data group 1 */
-> -				<0x00000000 0x00000026
-> -				0x00000001 0x0000002d
-> -				0x00000002 0x00000032
-> -				0x00000003 0x00000039
-> -				0x00000004 0x0000003f
-> -				0x00000005 0x00000046
-> -				0x00000006 0x0000004d
-> -				0x00000007 0x00000054
-> -				0x00000008 0x0000005a
-> -				0x00000009 0x00000061
-> -				0x0000000a 0x0000006a
-> -				0x0000000b 0x00000071
-> +				<0x00000000 0x00000023
-> +				0x00000001 0x0000002a
-> +				0x00000002 0x00000030
-> +				0x00000003 0x00000037
-> +				0x00000004 0x0000003d
-> +				0x00000005 0x00000044
-> +				0x00000006 0x0000004a
-> +				0x00000007 0x00000051
-> +				0x00000008 0x00000057
-> +				0x00000009 0x0000005e
-> +				0x0000000a 0x00000064
-> +				0x0000000b 0x0000006b
->  				/* Calibration data group 2 */
-> -				0x00010000 0x00000025
-> -				0x00010001 0x0000002c
-> -				0x00010002 0x00000035
-> -				0x00010003 0x0000003d
-> -				0x00010004 0x00000045
-> -				0x00010005 0x0000004e
-> -				0x00010006 0x00000057
-> -				0x00010007 0x00000061
-> -				0x00010008 0x0000006b
-> -				0x00010009 0x00000076
-> +				0x00010000 0x00000022
-> +				0x00010001 0x0000002a
-> +				0x00010002 0x00000032
-> +				0x00010003 0x0000003a
-> +				0x00010004 0x00000042
-> +				0x00010005 0x0000004a
-> +				0x00010006 0x00000052
-> +				0x00010007 0x0000005a
-> +				0x00010008 0x00000062
-> +				0x00010009 0x0000006a
->  				/* Calibration data group 3 */
-> -				0x00020000 0x00000029
-> -				0x00020001 0x00000033
-> -				0x00020002 0x0000003d
-> -				0x00020003 0x00000049
-> -				0x00020004 0x00000056
-> -				0x00020005 0x00000061
-> -				0x00020006 0x0000006d
-> +				0x00020000 0x00000021
-> +				0x00020001 0x0000002b
-> +				0x00020002 0x00000035
-> +				0x00020003 0x00000040
-> +				0x00020004 0x0000004a
-> +				0x00020005 0x00000054
-> +				0x00020006 0x0000005e
->  				/* Calibration data group 4 */
-> -				0x00030000 0x00000021
-> -				0x00030001 0x0000002a
-> -				0x00030002 0x0000003c
-> -				0x00030003 0x0000004e>;
-> +				0x00030000 0x00000010
-> +				0x00030001 0x0000001c
-> +				0x00030002 0x00000027
-> +				0x00030003 0x00000032
-> +				0x00030004 0x0000003e
-> +				0x00030005 0x00000049
-> +				0x00030006 0x00000054
-> +				0x00030007 0x00000060>;
->  			little-endian;
->  			#thermal-sensor-cells = <1>;
->  		};
-> -- 
-> 2.17.1
-> 
