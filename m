@@ -2,84 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A52F0247134
-	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 20:23:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D021A2472CE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 20:48:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390333AbgHQSWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Aug 2020 14:22:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36736 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390912AbgHQSVz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Aug 2020 14:21:55 -0400
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D1D9320738;
-        Mon, 17 Aug 2020 18:21:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597688515;
-        bh=ywvUa0thchGA9URPQznfjWIyxppEo/JGKZ107vVQVQQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Y/RXsrrpXvzRbb9Bjm/MkVRUSxhLxuGu8CSdYYwdyLHTiUloID/MsoZ+qpcnBzG9F
-         KAZVk+Kkuhw34IvZftks6NNv8s45M65L5zLJWiAaTCMkLiMXoZRaXy6vhf1N/5DAvd
-         yv/DYZ8GCSBvu2G6sDH/V7x5/+yPqDVxOT/nOGns=
-Received: by mail-oi1-f179.google.com with SMTP id b22so15611410oic.8;
-        Mon, 17 Aug 2020 11:21:54 -0700 (PDT)
-X-Gm-Message-State: AOAM533VrkiwNbLXRjAEHf/cEqtwBRnADOzy8YSjvDkz6IY+Mgy+Dk/H
-        EcOhc3QEAe83yUB1SHjOprTBLgaEsFo1kKID3Q==
-X-Google-Smtp-Source: ABdhPJxFsvl9kH86GxixpRdB5tPpGwqT2xFsCvdog8At58/krej8IRcOw7DKZn8zvJK2vP5cE27RU3JaNpXROwleBQs=
-X-Received: by 2002:aca:90a:: with SMTP id 10mr10338190oij.106.1597688514113;
- Mon, 17 Aug 2020 11:21:54 -0700 (PDT)
+        id S2403801AbgHQSr3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Aug 2020 14:47:29 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:47533 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388027AbgHQPzk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 11:55:40 -0400
+Received: from uno.lan (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id B10BD240011;
+        Mon, 17 Aug 2020 15:55:31 +0000 (UTC)
+From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
+To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org,
+        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>, mchehab@kernel.org,
+        sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
+        laurent.pinchart@ideasonboard.com,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH 0/3] dt-bindings: media: ov772x: Convert to json-schama
+Date:   Mon, 17 Aug 2020 17:59:07 +0200
+Message-Id: <20200817155910.255883-1-jacopo+renesas@jmondi.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20200814225637.702584-1-arch0.zheng@gmail.com>
-In-Reply-To: <20200814225637.702584-1-arch0.zheng@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 17 Aug 2020 12:21:42 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ7eK3HB_E8OeSbs=xVLYrvOcXD9GxpKr2N4dXZWnBP+g@mail.gmail.com>
-Message-ID: <CAL_JsqJ7eK3HB_E8OeSbs=xVLYrvOcXD9GxpKr2N4dXZWnBP+g@mail.gmail.com>
-Subject: Re: [PATCH] of/fdt: Remove duplicate check in early_init_dt_scan_memory()
-To:     Qi Zheng <arch0.zheng@gmail.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 14, 2020 at 4:57 PM Qi Zheng <arch0.zheng@gmail.com> wrote:
->
-> When the value of the first reg is not NULL, there will be
-> two repeated checks. So modify it.
+Convert to json-schema the ov772x bindings and add support for endpoint
+properties to pave the way for  Prabhakar's support for BT.656 in the driver.
 
-I prefer the way it was. I'm sure the compiler is smart enough to
-throw out the 2nd check. Plus, 'linux,usable-memory' being present is
-the exception, so usually 'reg' will be NULL.
+Prabhakar: could you confirm the properties defaults are sane according to your
+setup?
 
-> Signed-off-by: Qi Zheng <arch0.zheng@gmail.com>
-> ---
->  drivers/of/fdt.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index 4602e467ca8b..f54412c00642 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -1002,10 +1002,11 @@ int __init early_init_dt_scan_memory(unsigned long node, const char *uname,
->                 return 0;
->
->         reg = of_get_flat_dt_prop(node, "linux,usable-memory", &l);
-> -       if (reg == NULL)
-> +       if (reg == NULL) {
->                 reg = of_get_flat_dt_prop(node, "reg", &l);
-> -       if (reg == NULL)
-> -               return 0;
-> +               if (reg == NULL)
-> +                       return 0;
-> +       }
->
->         endp = reg + (l / sizeof(__be32));
->         hotpluggable = of_get_flat_dt_prop(node, "hotpluggable", NULL);
-> --
-> 2.25.1
->
+Thanks
+  j
+
+Jacopo Mondi (3):
+  dt-bindings: media: ov772x: Convert to json-schema
+  dt-bindings: media: ov772x: Make bus-type mandatory
+  dt-bindings: media: ov772x: Document endpoint props
+
+ .../devicetree/bindings/media/i2c/ov772x.txt  |  40 ------
+ .../devicetree/bindings/media/i2c/ov772x.yaml | 134 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ 3 files changed, 135 insertions(+), 41 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov772x.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ov772x.yaml
+
+--
+2.27.0
+
