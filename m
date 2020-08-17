@@ -2,100 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3A4E245A34
-	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 02:09:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A0D0245A3B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 02:18:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726585AbgHQAJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Aug 2020 20:09:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32946 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726108AbgHQAJZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Aug 2020 20:09:25 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BC56C061786
-        for <devicetree@vger.kernel.org>; Sun, 16 Aug 2020 17:09:25 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A3BA6F9;
-        Mon, 17 Aug 2020 02:09:23 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1597622963;
-        bh=0DixlhBTmdxj8HBI+2zbq1LpGmNVk/QcrtOPxI8AWFQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZevMh0c0dITM3LShxTFexCYRkfoZtdr0lEwEUM5vy0ipgtGdAQa191F83HX/KTtFP
-         MHdKiIiwMdbo8wAGMN/syGo46kKPZ0xvp+gc2M6xYelLOTl/UcPJNznZjA3x+NPsRp
-         SqC6QGgMacHEvI/X8Ql7RbC88ZceKTB8FIcpIEz0=
-Date:   Mon, 17 Aug 2020 03:09:08 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/8] dt-bindings: display: mxsfb: Add a bus-width
- endpoint property
-Message-ID: <20200817000908.GD7729@pendragon.ideasonboard.com>
-References: <20200813012910.13576-1-laurent.pinchart@ideasonboard.com>
- <20200813012910.13576-4-laurent.pinchart@ideasonboard.com>
- <20200815212838.GC134339@bogon.m.sigxcpu.org>
+        id S1726328AbgHQASW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Aug 2020 20:18:22 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:50947 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726165AbgHQASV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Aug 2020 20:18:21 -0400
+X-UUID: 01126bc963ff426d8b17113c6c33c77c-20200817
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=1S+vYeTE7vu8toawaEc6xhSra2zzhzuKWQJjR/BQbsg=;
+        b=td2cgV+pOkmYb9/beDcFY+zTPmR7NsU/df4SnAUl6RmGZCP0fea54+vTeZvaZ5HXW6HtJQZlavbdPZLE245gqtQatSQL08M6X7qQivW1biboYakYg4QqYfGXW7Z17WxTJk0q0PsniQcpZSsp1iZf6eAYdgEMls9Mzpu+NUy3Jlo=;
+X-UUID: 01126bc963ff426d8b17113c6c33c77c-20200817
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <zhiyong.tao@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 138724; Mon, 17 Aug 2020 08:18:09 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 17 Aug 2020 08:18:08 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 17 Aug 2020 08:18:06 +0800
+From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
+To:     <robh+dt@kernel.org>, <linus.walleij@linaro.org>,
+        <mark.rutland@arm.com>, <matthias.bgg@gmail.com>,
+        <sean.wang@kernel.org>
+CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <hui.liu@mediatek.com>, <eddie.huang@mediatek.com>,
+        <chuanjia.liu@mediatek.com>, <biao.huang@mediatek.com>,
+        <hongzhou.yang@mediatek.com>, <erin.lo@mediatek.com>,
+        <sean.wang@mediatek.com>, <sj.huang@mediatek.com>,
+        <seiya.wang@mediatek.com>, <jg_poxu@mediatek.com>,
+        <sin_jieyang@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>
+Subject: [PATCH v4 0/3] Mediatek pinctrl patch on mt8192
+Date:   Mon, 17 Aug 2020 08:16:59 +0800
+Message-ID: <20200817001702.1646-1-zhiyong.tao@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200815212838.GC134339@bogon.m.sigxcpu.org>
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guido,
+VGhpcyBzZXJpZXMgaW5jbHVkZXMgMyBwYXRjaGVzOg0KMS5hZGQgcGluY3RybCBmaWxlIG9uIG10
+ODE5Mi4NCjIuYWRkIHBpbmN0cmwgYmluZGluZyBkb2N1bWVudCBvbiBtdDgxOTIuDQozLmFkZCBw
+aW5jdHJsIGRyaXZlciBvbiBNVDgxOTIuDQoNCkNoYW5nZXMgaW4gcGF0Y2ggdjQ6DQoxKXJlbW92
+ZSBleGVjdXRlIHBlcm1pc3Npb24gb2YgJ3BpbmN0cmwtbXQ4MTkyLnlhbWwnLg0KMiljaGFuZ2Ug
+JyRyZWY6ICJwaW5tdXgtbm9kZS55YW1sIicgdW5kZXIgJ15waW5zJy4NCjMpYWRkIGEgcGluIG5v
+ZGUgc2FtcGxlIGluICdleGFtcGxlcycuDQoNCkNoYW5nZXMgaW4gcGF0Y2ggdjM6DQoxKWZpeCBy
+dW5uaW5nICdtYWtlIGR0X2JpbmRpbmdfY2hlY2snIGVycm9ycy4NCjIpY2hhbmdlICdub2RlJyB0
+byAncGluY29udHJvbGxlcicuDQozKWFkZCBhbiBhY3R1YWwgZXhhbXBsZS4NCjQpY2hhbmdlIHJl
+ZiBhcyAncGlubXV4LW5vZGUueWFtbCcuDQo1KXJlbW92ZSAnR0VORVJJQ19QSU5DT05GSUcnLg0K
+NilhZGQgJ2FkZHRpb25hbFByb3BlcnRpZXM6IGZhbHNlJy4NCg0KQ2hhbmdlcyBpbiBwYXRjaCB2
+MjoNCjEpY2hhbmdlIG1haW50YWluZXJzIG5hbWUgaW4gcGluY3RybC1tdDgxOTIueWFtbC4NCjIp
+cmVtb3ZlIHVudXNlZCBkZXNjcmlwdGlvbiBmb3IgInJlZy1uYW1lcyIuDQozKWNoYW5nZSAnc3Vi
+bm9kZSBmb3JtYXQ6JyB3aGljaCBpcyBub3QgYSBjaGlsZCBuYW1lIHRvICJecGlucyIuDQo0KWFk
+ZCAoJ3wnKSBhZnRlciAiZGVzY3JpcHRpb246Ii4NCjUpcmVtb3ZlICJpMmMwX3BpbnNfYTogaTJj
+MCIgYW5kICJpMmMwX3BpbnNfYTogaTJjMSIuDQo2KWFkZCBwcm9wZXJ0aWVzIGZvciBwaW4gY29u
+ZmlndXJhdGlvbiBub2Rlcy4NCg0KWmhpeW9uZyBUYW8gKDMpOg0KICBkdC1iaW5kaW5nczogcGlu
+Y3RybDogbXQ4MTkyOiBhZGQgcGluY3RybCBmaWxlDQogIGR0LWJpbmRpbmdzOiBwaW5jdHJsOiBt
+dDgxOTI6IGFkZCBiaW5kaW5nIGRvY3VtZW50DQogIHBpbmN0cmw6IGFkZCBwaW5jdHJsIGRyaXZl
+ciBvbiBtdDgxOTINCg0KIC4uLi9iaW5kaW5ncy9waW5jdHJsL3BpbmN0cmwtbXQ4MTkyLnlhbWwg
+ICAgICB8ICAxNTUgKysNCiBkcml2ZXJzL3BpbmN0cmwvbWVkaWF0ZWsvS2NvbmZpZyAgICAgICAg
+ICAgICAgfCAgICA3ICsNCiBkcml2ZXJzL3BpbmN0cmwvbWVkaWF0ZWsvTWFrZWZpbGUgICAgICAg
+ICAgICAgfCAgICAxICsNCiBkcml2ZXJzL3BpbmN0cmwvbWVkaWF0ZWsvcGluY3RybC1tdDgxOTIu
+YyAgICAgfCAxNDA5ICsrKysrKysrKysNCiBkcml2ZXJzL3BpbmN0cmwvbWVkaWF0ZWsvcGluY3Ry
+bC1tdGstbXQ4MTkyLmggfCAyMjc1ICsrKysrKysrKysrKysrKysrDQogaW5jbHVkZS9kdC1iaW5k
+aW5ncy9waW5jdHJsL210ODE5Mi1waW5mdW5jLmggIHwgMTM0NCArKysrKysrKysrDQogNiBmaWxl
+cyBjaGFuZ2VkLCA1MTkxIGluc2VydGlvbnMoKykNCiBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BpbmN0cmwvcGluY3RybC1tdDgxOTIueWFtbA0K
+IGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL3BpbmN0cmwvbWVkaWF0ZWsvcGluY3RybC1tdDgx
+OTIuYw0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL3BpbmN0cmwvbWVkaWF0ZWsvcGluY3Ry
+bC1tdGstbXQ4MTkyLmgNCiBjcmVhdGUgbW9kZSAxMDA2NDQgaW5jbHVkZS9kdC1iaW5kaW5ncy9w
+aW5jdHJsL210ODE5Mi1waW5mdW5jLmgNCg0KLS0NCjIuMjUuMQ0KDQo=
 
-On Sat, Aug 15, 2020 at 11:28:38PM +0200, Guido Günther wrote:
-> On Thu, Aug 13, 2020 at 04:29:05AM +0300, Laurent Pinchart wrote:
-> > When the PCB routes the display data signals in an unconventional way,
-> > the output bus width may differ from the bus width of the connected
-> > panel or encoder. For instance, when a 18-bit RGB panel has its R[5:0],
-> > G[5:0] and B[5:0] signals connected to LCD_DATA[7:2], LCD_DATA[15:10]
-> > and LCD_DATA[23:18], the output bus width is 24 instead of 18 when the
-> > signals are routed to LCD_DATA[5:0], LCD_DATA[11:6] and LCD_DATA[17:12].
-> > 
-> > Add a bus-width property to describe this data routing.
-> > 
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> >  Documentation/devicetree/bindings/display/mxsfb.yaml | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/mxsfb.yaml b/Documentation/devicetree/bindings/display/mxsfb.yaml
-> > index ec6533b1d4a3..d15bb8edc29f 100644
-> > --- a/Documentation/devicetree/bindings/display/mxsfb.yaml
-> > +++ b/Documentation/devicetree/bindings/display/mxsfb.yaml
-> > @@ -58,6 +58,18 @@ properties:
-> >          type: object
-> >  
-> >          properties:
-> > +          data-shift:
->
-> Shouldn't that be bus-width ?
-
-Absolutely. I'll fix that.
-
-> > +            enum: [16, 18, 24]
-> > +            description: |
-> > +              The output bus width. This value overrides the configuration
-> > +              derived from the connected device (encoder or panel). It should
-> > +              only be specified when PCB routing of the data signals require a
-> > +              different bus width on the LCDIF and the connected device. For
-> > +              instance, when a 18-bit RGB panel has its R[5:0], G[5:0] and
-> > +              B[5:0] signals connected to LCD_DATA[7:2], LCD_DATA[15:10] and
-> > +              LCD_DATA[23:18] instead of LCD_DATA[5:0], LCD_DATA[11:6] and
-> > +              LCD_DATA[17:12], bus-width should be set to 24.
-> > +
-> >            remote-endpoint:
-> >              $ref: /schemas/types.yaml#/definitions/phandle
-> >  
-
--- 
-Regards,
-
-Laurent Pinchart
