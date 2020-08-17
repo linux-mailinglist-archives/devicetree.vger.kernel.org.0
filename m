@@ -2,85 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B8E8245EA7
-	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 10:00:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18838245E60
+	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 09:50:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726369AbgHQIAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Aug 2020 04:00:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48580 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726196AbgHQIAL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 04:00:11 -0400
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E557C061388;
-        Mon, 17 Aug 2020 01:00:11 -0700 (PDT)
-Received: by mail-ed1-x543.google.com with SMTP id a14so11534532edx.7;
-        Mon, 17 Aug 2020 01:00:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=aT9GJIpoiVrp3AgKo147Q6EH+XasIbf7WIRMpBX/T1w=;
-        b=AG3nKFAVoMjTMCSMSRmk7b9H3f+0R/4aa2iNI7zZdIIvz8ICsDtmGxJTHk3BWDpIhw
-         fE1OccrxPVYeo3c0fPQrNV5STHPxlKGNm83tGdB8oRhbng856RBS/4hhENRxmFfJ6cyz
-         4Bg9/WfbajGy1uLQ0VYIKv2JQTCsbBOiarPQCheRChgNOM8ipOhp5Y0I3Rtcg/b1EmzK
-         ZV6nZJ+V/avYBFxMs9VGu/9/L+ew+vbttfNf1Mc+PQIMIW/C79rTVcFK+AlBDixMjOPv
-         Lfb24Wv/vazDiLMNFohHs7E9VJXngTvGVGo3gHDYIEmX07jFVNqLqUHRVgmlpSCdt7nT
-         5hug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aT9GJIpoiVrp3AgKo147Q6EH+XasIbf7WIRMpBX/T1w=;
-        b=Vg39AC/UV42Tcfh+mv9EOXJGa/pY/O79zJpF8/EhAqVRz4AOzL6GAiWBYTmXV/Pr7q
-         wYX71M1gTWRLMV7NfI+reHnP4+/E8+lW1YV4m2e2J3enVbWx5Wf/H3L2TljvGAU30vrS
-         Wr1myczBZ55S/iKde23dVKIklN0BNrTU/xCHD0S+bAGAnwTdsaAaPYjxwcDlgsex0pLz
-         Ww7hnlPsKr6cbr0+jIOZNATUIAk3F0FiB1/VnaKRvB/uF+ivkseGNZ5ZahXVWmoW9zFO
-         P6YA2glWWMQBWjniIVbEIoRcVfG3UbT2dPcGHZx2gdAthAC7JL1HPH3u28TSwlRyiKTd
-         JUPA==
-X-Gm-Message-State: AOAM531PH8myBSwUn/dL92THM9Gbqka+ywZWGok4MD18T4ojacJmq9bJ
-        xXy7IzDrPY59DX1GO+Y17Poyi7yvFyK/HP6d+mA=
-X-Google-Smtp-Source: ABdhPJy8jLjmlnCXvwzkcBRFsyOgE7O8bi4Qp4G5PeNMzUmy4Qqwl/YKje5iWwPNgcUOL1q322jqIBOR66HYb091mzA=
-X-Received: by 2002:a50:d9c6:: with SMTP id x6mr14190308edj.56.1597651210155;
- Mon, 17 Aug 2020 01:00:10 -0700 (PDT)
+        id S1726810AbgHQHuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Aug 2020 03:50:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45244 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726513AbgHQHuU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Aug 2020 03:50:20 -0400
+Received: from mail.kernel.org (ip5f5ad5a3.dynamic.kabel-deutschland.de [95.90.213.163])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id CEB9D207DF;
+        Mon, 17 Aug 2020 07:50:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1597650620;
+        bh=pEmZ0bJwP+2jy7JV6MazNJRUpimkMGqSRi6r/UUBXcE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=iO7lGho8i1sBtrmzrfWbT3D8qOHg90bwGxSGDCjffji/8hjWZ805E7LsJ41smtHML
+         YmMkrWO10hX92w47Sn53e6i9zgs85tWOyl5ZPn8xPMERnXY1CVRZ5O7ormvcXWfKzg
+         txOZJrIUz1gnaQIhcenhYVN+YbW+sDs8Ty9Q1ezI=
+Received: from mchehab by mail.kernel.org with local (Exim 4.94)
+        (envelope-from <mchehab@kernel.org>)
+        id 1k7ZuL-00Bfbr-OZ; Mon, 17 Aug 2020 09:50:17 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Wei Xu <xuwei5@hisilicon.com>, devicetree@vger.kernel.org,
+        Joerg Roedel <joro@8bytes.org>, Joerg Roedel <jroedel@suse.de>,
+        iommu@lists.linux-foundation.org,
+        Chenfeng <puck.chen@hisilicon.com>, devel@driverdev.osuosl.org,
+        Suzhuangluan <suzhuangluan@hisilicon.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 00/16] IOMMU driver for Kirin 960/970
+Date:   Mon, 17 Aug 2020 09:49:59 +0200
+Message-Id: <cover.1597650455.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <1597406966-13740-1-git-send-email-abel.vesa@nxp.com> <1597406966-13740-3-git-send-email-abel.vesa@nxp.com>
-In-Reply-To: <1597406966-13740-3-git-send-email-abel.vesa@nxp.com>
-From:   Dong Aisheng <dongas86@gmail.com>
-Date:   Mon, 17 Aug 2020 15:45:04 +0800
-Message-ID: <CAA+hA=S6m-4Ac4QwWnQeKNzKkW4ZPGvV7Psh7vHnRNoQ2UWTYA@mail.gmail.com>
-Subject: Re: [PATCH v2 02/17] dt-bindings: reset: imx8mp: Add audio blk_ctrl
- reset IDs
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Anson Huang <anson.huang@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fugang Duan <fugang.duan@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 14, 2020 at 8:13 PM Abel Vesa <abel.vesa@nxp.com> wrote:
->
-> These will be used by the imx8mp for blk-ctrl driver.
->
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+Add a driver for the Kirin 960/970 iommu.
 
-Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
+As on the past series, this starts from the original 4.9 driver from
+the 96boards tree:
 
-Regards
-Aisheng
+	https://github.com/96boards-hikey/linux/tree/hikey970-v4.9
+
+The remaining patches add SPDX headers and make it build and run with
+the upstream Kernel.
+
+Chenfeng (1):
+  iommu: add support for HiSilicon Kirin 960/970 iommu
+
+Mauro Carvalho Chehab (15):
+  iommu: hisilicon: remove default iommu_map_sg handler
+  iommu: hisilicon: map and unmap ops gained new arguments
+  iommu: hisi_smmu_lpae: rebase it to work with upstream
+  iommu: hisi_smmu: remove linux/hisi/hisi-iommu.h
+  iommu: hisilicon: cleanup its code style
+  iommu: hisi_smmu_lpae: get rid of IOMMU_SEC and IOMMU_DEVICE
+  iommu: get rid of map/unmap tile functions
+  iommu: hisi_smmu_lpae: use the right code to get domain-priv data
+  iommu: hisi_smmu_lpae: convert it to probe_device
+  iommu: add Hisilicon Kirin970 iommu at the building system
+  iommu: hisi_smmu_lpae: cleanup printk macros
+  iommu: hisi_smmu_lpae: make OF compatible more standard
+  dt: add an spec for the Kirin36x0 SMMU
+  dt: hi3670-hikey970.dts: load the SMMU driver on Hikey970
+  staging: hikey9xx: add an item about the iommu driver
+
+ .../iommu/hisilicon,kirin36x0-smmu.yaml       |  55 ++
+ .../boot/dts/hisilicon/hi3670-hikey970.dts    |   3 +
+ drivers/staging/hikey9xx/Kconfig              |   9 +
+ drivers/staging/hikey9xx/Makefile             |   1 +
+ drivers/staging/hikey9xx/TODO                 |   1 +
+ drivers/staging/hikey9xx/hisi_smmu.h          | 196 ++++++
+ drivers/staging/hikey9xx/hisi_smmu_lpae.c     | 648 ++++++++++++++++++
+ 7 files changed, 913 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iommu/hisilicon,kirin36x0-smmu.yaml
+ create mode 100644 drivers/staging/hikey9xx/hisi_smmu.h
+ create mode 100644 drivers/staging/hikey9xx/hisi_smmu_lpae.c
+
+-- 
+2.26.2
+
+
