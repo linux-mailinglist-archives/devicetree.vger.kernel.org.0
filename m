@@ -2,97 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4565245AD9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 05:04:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BC00245AF8
+	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 05:12:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726648AbgHQDEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Aug 2020 23:04:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59622 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726424AbgHQDES (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Aug 2020 23:04:18 -0400
-Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 005FFC061385;
-        Sun, 16 Aug 2020 20:04:17 -0700 (PDT)
-Received: by mail-pl1-x644.google.com with SMTP id s14so824292plp.4;
-        Sun, 16 Aug 2020 20:04:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=u2t9cZojup/XRAfOOohcGCISaz5vKpnzd7po0W7Brn4=;
-        b=mSek12SAv1BJ6ldCV8GbAcqWxHtmYqybitk2vnr8tEQJDg9njV0L2OK9MMFHwSVXB6
-         YnxwwLHYPWeXDaBxfiLBMJNil43M/nUv16OYieMI149G/rP1GXkdtR4wuNL8KZQK1V2h
-         72RLjJvdNFsND45+Dqdz59o/YGYH6O8TF7G1tsVJQrFcuVYfFm81Eughm0igkP+dKzc+
-         cwA9gKOIg45WjWBt8+BUkjutzNI6OoMVRcQgJd8iDr2OjsA6xlyj5Bn/JvToxwFtAjke
-         E6+ncpe2QToaQBOZ/pD5FoGq/pkTAwoXDkhjCfoQfizb44tH/JRrefhlaplYFbfTIMS2
-         pvCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=u2t9cZojup/XRAfOOohcGCISaz5vKpnzd7po0W7Brn4=;
-        b=gmZ88t34LBisXCXakfD980N43vwkXMoxJ/XEnhMKXCXSCUuCFkD7X78pQNXlHYWmEO
-         VoMoowSiacjQxzjWGPW4UOtaXk6836vZtB8Pg/DxWDRPhH70KIgymSRzxodMk0YyAnrO
-         IhGTsIL3nabIJuys/o0LjVCDHzY/S0TlCNTdK30TOz0c5m9LW/ZRbusgY47ZfyDvR/dX
-         aa+zFM97tIW6FLkVdAZjUV22RbEIbvgPM2fsXvtxuSWbKDnjBbv37zuo/7fBwAFOItOP
-         JHItk2xHlmgj0gS7F5hV9x6k6unQQXLp0NWk28hQZ1mdoiZo4pIqCAhwDYUl4/kQ5eo2
-         kvag==
-X-Gm-Message-State: AOAM533SbKS+sPWP3nwzNYeKTpquim//SP31deq43QOCbwfhnajD7KQ/
-        L2jQ4BuuzfL5ngCq9sqRE2M=
-X-Google-Smtp-Source: ABdhPJwcOR2+1quyxWqjQQMMyinCGbyTuuXsCkvKpAd0p7fdGw5BaRkRa1UqMLxTq/Loy1rvyTeCgw==
-X-Received: by 2002:a17:90a:2081:: with SMTP id f1mr11353865pjg.174.1597633457296;
-        Sun, 16 Aug 2020 20:04:17 -0700 (PDT)
-Received: from localhost.localdomain.com ([2605:e000:160b:911f:722f:a74:437d:fd3c])
-        by smtp.gmail.com with ESMTPSA id n22sm14869939pjq.25.2020.08.16.20.04.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Aug 2020 20:04:16 -0700 (PDT)
-From:   Chris Healy <cphealy@gmail.com>
-X-Google-Original-From: Chris Healy <cphealy@gmail.com
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        linux@rempel-privat.de, davem@davemloft.net,
-        philippe.schenker@toradex.com, andrew@lunn.ch,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Chris Healy <cphealy@gmail.com>
-Subject: [PATCH] ARM: dts: imx7d-zii-rmu2: fix rgmii phy-mode for ksz9031 phy
-Date:   Sun, 16 Aug 2020 20:04:01 -0700
-Message-Id: <20200817030401.3124855-1-cphealy@gmail.com>
-X-Mailer: git-send-email 2.26.2
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726402AbgHQDM5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Aug 2020 23:12:57 -0400
+Received: from mga18.intel.com ([134.134.136.126]:38840 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726235AbgHQDM4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 16 Aug 2020 23:12:56 -0400
+IronPort-SDR: o0Ih/1kZZShtLjfCXOjPWwM/n0fD+xOWHutOAdv9/bk4apAyour80EJ5XwCrBi+u3TQJ7KRE1H
+ M3jcG2FEHATQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9715"; a="142250870"
+X-IronPort-AV: E=Sophos;i="5.76,322,1592895600"; 
+   d="scan'208";a="142250870"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Aug 2020 20:12:55 -0700
+IronPort-SDR: M5r5OuFuobbfG2iocEG0ZGktlinSjJyIwvYVBtc1Gx/Qv5BDdy3v0kSQTtkjVA9p0X2U6P5yyV
+ jbq6rQCZuIUg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,322,1592895600"; 
+   d="scan'208";a="496337042"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by fmsmga006.fm.intel.com with ESMTP; 16 Aug 2020 20:12:52 -0700
+From:   "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+To:     linux-kernel@vger.kernel.org, kishon@ti.com, vkoul@kernel.org
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, p.zabel@pengutronix.de,
+        andriy.shevchenko@intel.com, balbi@kernel.org,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com, yin1.li@intel.com,
+        "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Subject: [PATCH v8 0/2] phy: Add USB PHY support on Intel LGM SoC
+Date:   Mon, 17 Aug 2020 11:12:47 +0800
+Message-Id: <20200817031249.36795-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chris Healy <cphealy@gmail.com>
-
-Since commit bcf3440c6dd7 ("net: phy: micrel: add phy-mode support for the
-KSZ9031 PHY") the networking is broken on the imx7d-zii-rmu2 board.
-
-Fix it by switching to phy-mode = "rgmii-id".
-
-Fixes: bcf3440c6dd7 ("net: phy: micrel: add phy-mode support for the KSZ9031 PHY")
-Signed-off-by: Chris Healy <cphealy@gmail.com>
+The USB PHY provides the optimized for low power dissipation while active, idle, or on standby.
+Requires minimal external components, a single resistor, for best operation.
+Supports 10/5-Gbps high-speed data transmission rates through 3-m USB 3.x cable
 ---
- arch/arm/boot/dts/imx7d-zii-rmu2.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+v8:
+  - Rebase to V5.9-rc1
+v7:
+  - No Change
+v6:
+  - No Change
+v5:
+  - As per Felipe and Greg's suggestion usb phy driver reviewed patches
+    changed the folder from drivers/usb/phy to drivers/phy
+  - Reviewed-By tag added in commit message
+v4:
+  - Andy's review comments addressed
+  - drop the excess error debug prints
+  - error check optimized
+  - merge the split line to one line
+v3:
+  - Andy's review comments update
+  - hardcode return value changed to actual return value from the callee
+  - add error check is fixed according to the above
+  - correct the assignment in redundant
+  - combine the split line into one line
+v2:
+  - Address Phillip's review comments
+  - replace devm_reset_control_get() by devm_reset_control_get_exclusive()
+  - re-design the assert and deassert fucntion calls as per review comments
+  - address kbuild bot warnings
+  - add the comments
+v1:
+  - initial version
 
-diff --git a/arch/arm/boot/dts/imx7d-zii-rmu2.dts b/arch/arm/boot/dts/imx7d-zii-rmu2.dts
-index e5e20b07f184..7cb6153fc650 100644
---- a/arch/arm/boot/dts/imx7d-zii-rmu2.dts
-+++ b/arch/arm/boot/dts/imx7d-zii-rmu2.dts
-@@ -58,7 +58,7 @@ &fec1 {
- 			  <&clks IMX7D_ENET1_TIME_ROOT_CLK>;
- 	assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
- 	assigned-clock-rates = <0>, <100000000>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- 	phy-handle = <&fec1_phy>;
- 	status = "okay";
- 
+---
+dt-bindings: usb: Add USB PHY support for Intel LGM SoC
+v8:
+  - No Change
+v7:
+  - Fixed the bot issue: usb-phy@e7e00000: '#phy-cells' is a required property
+v6:
+  - Fixed the bot issue.
+  - replace node-name by usb-phy@ in example
+v5:
+  - Reviewed-By tag added
+v4:
+  - No Change
+v3:
+  - No Change
+v2:
+  - No Change
+v1:
+  - initial version
+
+Ramuthevar Vadivel Murugan (2):
+  dt-bindings: phy: Add USB PHY support for Intel LGM SoC
+  phy: Add USB3 PHY support for Intel LGM SoC
+
+ .../devicetree/bindings/phy/intel,lgm-usb-phy.yaml |  58 +++++
+ drivers/phy/Kconfig                                |  11 +
+ drivers/phy/Makefile                               |   3 +-
+ drivers/phy/phy-lgm-usb.c                          | 278 +++++++++++++++++++++
+ 4 files changed, 349 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/intel,lgm-usb-phy.yaml
+ create mode 100644 drivers/phy/phy-lgm-usb.c
+
 -- 
-2.26.2
+2.11.0
 
