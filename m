@@ -2,136 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62A73246371
-	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 11:36:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2B2424643F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 12:17:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726694AbgHQJgq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Aug 2020 05:36:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46174 "EHLO mail.kernel.org"
+        id S1726196AbgHQKRr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Aug 2020 06:17:47 -0400
+Received: from mga03.intel.com ([134.134.136.65]:39462 "EHLO mga03.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726617AbgHQJgp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Aug 2020 05:36:45 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0928820758;
-        Mon, 17 Aug 2020 09:36:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597657004;
-        bh=U1qHP+qiwsmBgHRIfztUBNmpSWAG9yzGiWN9ezXPT3c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EiPymNhhY7J7Q5icOVcgegOaakU7Wjj2YeuMQ4pVPv3Gt2hSkda6W/zXFgy7bPR2g
-         1s1yOQryIIu8tw4Q6paCL1UA+CEPbhsX79w/h11fiqC5/Qp/OzQgdUow+hBGom1JeQ
-         lu+n17KSv+oNFc+3JxMUgVj2laBiqJyZFJX71MW4=
-Date:   Mon, 17 Aug 2020 11:37:03 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Christoph Hellwig <hch@infradead.org>, devel@driverdev.osuosl.org,
-        devicetree@vger.kernel.org, Joerg Roedel <jroedel@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, linuxarm@huawei.com,
-        Wei Xu <xuwei5@hisilicon.com>, linux-kernel@vger.kernel.org,
-        iommu@lists.linux-foundation.org, Rob Herring <robh+dt@kernel.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Chenfeng <puck.chen@hisilicon.com>, mauro.chehab@huawei.com,
-        Suzhuangluan <suzhuangluan@hisilicon.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 00/16] IOMMU driver for Kirin 960/970
-Message-ID: <20200817093703.GA2258686@kroah.com>
-References: <cover.1597650455.git.mchehab+huawei@kernel.org>
- <20200817082106.GA16296@infradead.org>
- <20200817112725.26f1b7d6@coco.lan>
+        id S1726165AbgHQKRq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Aug 2020 06:17:46 -0400
+IronPort-SDR: 73o/qQj0o8JQg1Yl0jCuUU8Cnzlts16jNm7dmfxQeLr7SUzIV5IA6eDDNYJX3QG/REjOHqK/9c
+ 34mz1EP4JOag==
+X-IronPort-AV: E=McAfee;i="6000,8403,9715"; a="154648037"
+X-IronPort-AV: E=Sophos;i="5.76,322,1592895600"; 
+   d="scan'208";a="154648037"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Aug 2020 03:17:46 -0700
+IronPort-SDR: CoYmT4vadO1YRsuKPGQNgqbHL2QoBwuuBnEmdEhmN4D2w6Rf93xKC2LYYk5ryOz2nq6A5VtH1w
+ NFRCdT2QDv/w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,322,1592895600"; 
+   d="scan'208";a="326368963"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga008.jf.intel.com with ESMTP; 17 Aug 2020 03:17:43 -0700
+Received: from andy by smile with local (Exim 4.94)
+        (envelope-from <andy.shevchenko@gmail.com>)
+        id 1k7bw6-009Hfg-BU; Mon, 17 Aug 2020 13:00:14 +0300
+Date:   Mon, 17 Aug 2020 13:00:14 +0300
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        linux-kernel@vger.kernel.org,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+Subject: Re: [PATCH v2 1/5] dt-bindings: dma: dw: Add optional DMA-channels
+ mask cell support
+Message-ID: <20200817100014.GG1891694@smile.fi.intel.com>
+References: <20200731200826.9292-1-Sergey.Semin@baikalelectronics.ru>
+ <20200731200826.9292-2-Sergey.Semin@baikalelectronics.ru>
+ <20200803215147.GA3201744@bogus>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200817112725.26f1b7d6@coco.lan>
+In-Reply-To: <20200803215147.GA3201744@bogus>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 17, 2020 at 11:27:25AM +0200, Mauro Carvalho Chehab wrote:
-> Hi Christoph,
-> 
-> Em Mon, 17 Aug 2020 09:21:06 +0100
-> Christoph Hellwig <hch@infradead.org> escreveu:
-> 
-> > On Mon, Aug 17, 2020 at 09:49:59AM +0200, Mauro Carvalho Chehab wrote:
-> > > Add a driver for the Kirin 960/970 iommu.
-> > > 
-> > > As on the past series, this starts from the original 4.9 driver from
-> > > the 96boards tree:
-> > > 
-> > > 	https://github.com/96boards-hikey/linux/tree/hikey970-v4.9
-> > > 
-> > > The remaining patches add SPDX headers and make it build and run with
-> > > the upstream Kernel.  
+On Mon, Aug 03, 2020 at 03:51:47PM -0600, Rob Herring wrote:
+> On Fri, 31 Jul 2020 23:08:22 +0300, Serge Semin wrote:
+> > Each DW DMA controller channel can be synthesized with different
+> > parameters like maximum burst-length, multi-block support, maximum data
+> > width, etc. Most of these parameters determine the DW DMAC channels
+> > performance in its own aspect. On the other hand these parameters can
+> > be implicitly responsible for the channels performance degradation
+> > (for instance multi-block support is a very useful feature, but having
+> > it disabled during the DW DMAC synthesize will provide a more optimized
+> > core). Since DMA slave devices may have critical dependency on the DMA
+> > engine performance, let's provide a way for the slave devices to have
+> > the DMA-channels allocated from a pool of the channels, which according
+> > to the system engineer fulfill their performance requirements.
 > > 
-> > Please don't add iommu drivers to staging, and just work with the
-> > maintainers to properly clean it up.
+> > The pool is determined by a mask optionally specified in the fifth
+> > DMA-cell of the DMA DT-property. If the fifth cell is omitted from the
+> > phandle arguments or the mask is zero, then the allocation will be
+> > performed from a set of all channels provided by the DMA controller.
 > 
-> I need to start from the original patch in order to preserve its
-> authorship.
-> 
-> My plan is to work with the iommu subsystem maintainers after
-> have this (and another pending patch series for DRM) merged.
-> 
-> > I also don't think adding a totally out of date not compiling version
-> > is a good idea.  Please do a proper rollup, and if required (probably
-> > not in this case), split it into useful chunks.
-> 
-> This series make this driver working as expected.
-> 
-> I mean, while patch 01/16 is against Kernel 4.9, the other patches
-> on this series ports it to upstream, cleans up the driver and
-> address several issues on it.
-> 
-> This specific IOMMU seems to be an specific part of the SoC dedicated for 
-> the display engine and by the encoding/decoding images via the ISP. 
-> With this series, this driver builds and runs as expected, providing
-> IOMMU support needed by the upcoming KMS/DRM driver.
-> 
-> The only issue on it (as far as I can tell) is that the DT bindings
-> require some work, as, instead of using dma-ranges, the DRM driver binds
-> into it with:
-> 
-> 	smmu_lpae {
->                  compatible = "hisilicon,smmu-lpae";
->          };
-> 
->          dpe: dpe@e8600000 {
->                  compatible = "hisilicon,kirin970-dpe";
-> ...
->                  iommu_info {
->                          start-addr = <0x8000>;
->                          size = <0xbfff8000>;
->                  };
->          };
-> 
-> In order to properly address it, the best would be to also have the
-> DRM driver merged upstream, as it relies on it. So, a change in DT will 
-> also mean a change at the way the DRM uses it.
-> 
-> The DRM itself should go via staging, as it has some bugs that I'd
-> like to fix before moving it to drivers/gpu/drm. Those are more
-> tricky to solve, as they seem to require using different settings for 
-> some hardware registers, and the downstream driver also have the same 
-> issues. Fixing them will likely require some time.
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-DRM drivers can't go through staging unless you get the DRM developers
-to agree with it, and last I heard, they were strongly against it.
+Rob, I have a question to clarify (it's not directly related to the series,
+but to this schema and property names).
 
-It's _always_ faster to just do the work out-of-tree for a week or so
-and then merge it correctly to the proper part of the kernel tree.  I'd
-recommend doing that here for the iommu driver, as well as the DRM
-driver.
+We have two drivers for DMA controllers from Synopsys (they are different)
+where properties with the same semantics (like block_size or data-width) have
+different pattern of naming (okay, block_size for older driver even has _
+instead of -), i.e. block_size vs. snps,block-size and data-width vs.
+snps,data-width.
 
-There's no issues with authorship and the like, just properly attribute
-it when you submit it and you are fine.
+I would like to unify them (*) in both drivers and would like to know which
+naming pattern is preferred in such case?
 
-Again, merging in staging always takes more work and energy, don't do it
-unless there is no other way.
+*) Yes, we have to leave support for deprecated properties in this case in
+   the code.
 
-thanks,
+-- 
+With Best Regards,
+Andy Shevchenko
 
-greg k-h
+
