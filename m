@@ -2,383 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7FD9245CF0
-	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 09:05:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7ABCE245DBC
+	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 09:14:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725765AbgHQHFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Aug 2020 03:05:35 -0400
-Received: from mga05.intel.com ([192.55.52.43]:63040 "EHLO mga05.intel.com"
+        id S1726901AbgHQHOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Aug 2020 03:14:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57238 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726511AbgHQHFa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Aug 2020 03:05:30 -0400
-IronPort-SDR: petFCSW7UzQBC6duDvh83bqFOltG8P8FovUJ/d0dCS4fxRiZwbwPpR1SIEK6wxRqgHkH5uUNai
- bR2tnU3jqkDw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9715"; a="239469626"
-X-IronPort-AV: E=Sophos;i="5.76,322,1592895600"; 
-   d="scan'208";a="239469626"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Aug 2020 00:05:30 -0700
-IronPort-SDR: H6433/XWDS/r54DT1wV2NcHOvpGHSiJj7Aiw8wsOgqaCJ71TZkDnPaqABPgwrXNWbnfV7Zpvxt
- zmOUjvhOrHBA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,322,1592895600"; 
-   d="scan'208";a="496389393"
-Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
-  by fmsmga006.fm.intel.com with ESMTP; 17 Aug 2020 00:05:25 -0700
-From:   "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-To:     linux-kernel@vger.kernel.org, kishon@ti.com, vkoul@kernel.org,
-        devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org, gregkh@linuxfoundation.org,
-        p.zabel@pengutronix.de, balbi@kernel.org,
-        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com, yin1.li@intel.com,
-        Ramuthevar Vadivel Murugan 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Subject: [RESEND PATCH v8 2/2] phy: Add USB3 PHY support for Intel LGM SoC
-Date:   Mon, 17 Aug 2020 15:05:13 +0800
-Message-Id: <20200817070513.34376-3-vadivel.muruganx.ramuthevar@linux.intel.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200817070513.34376-1-vadivel.muruganx.ramuthevar@linux.intel.com>
-References: <20200817070513.34376-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+        id S1726402AbgHQHLR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Aug 2020 03:11:17 -0400
+Received: from mail.kernel.org (ip5f5ad5a3.dynamic.kabel-deutschland.de [95.90.213.163])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id AED44207FB;
+        Mon, 17 Aug 2020 07:11:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1597648276;
+        bh=kXMV8wukE99rUYUOv+jkANRPnJMhnnypd20U67KLfaM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=jOAsnPYqqJ4qtBSn87nrOrPbEigb7xFFYFG8QCQ4rp/xTsR2UPFbZGd19UWPCV/vV
+         HcskDkPpEiYRvvhpHxz6Q5a1MCnRJNmboj2KF+K7HaLxiqH9IiwAsDEMLnMBPaHjUY
+         uYUGXE4Uls0X5F2zdmeiuWsXFDR57VpXqfnWmLIQ=
+Received: from mchehab by mail.kernel.org with local (Exim 4.94)
+        (envelope-from <mchehab@kernel.org>)
+        id 1k7ZIY-00BdjC-MB; Mon, 17 Aug 2020 09:11:14 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, Wei Xu <xuwei5@hisilicon.com>,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>
+Subject: [PATCH v3 00/44] SPMI patches needed by Hikey 970
+Date:   Mon, 17 Aug 2020 09:10:19 +0200
+Message-Id: <cover.1597647359.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+Hi Greg,
 
-Add support for USB PHY on Intel LGM SoC.
+This patch series is part of a work I'm doing in order to be able to support
+a HiKey 970 board that I recently got on my hands.
 
-Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
----
- drivers/phy/Kconfig       |  11 ++
- drivers/phy/Makefile      |   1 +
- drivers/phy/phy-lgm-usb.c | 278 ++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 290 insertions(+)
- create mode 100644 drivers/phy/phy-lgm-usb.c
+Regards,
+Mauro.
 
-diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-index de9362c25c07..01b53f86004c 100644
---- a/drivers/phy/Kconfig
-+++ b/drivers/phy/Kconfig
-@@ -49,6 +49,17 @@ config PHY_XGENE
- 	help
- 	  This option enables support for APM X-Gene SoC multi-purpose PHY.
- 
-+config USB_LGM_PHY
-+	tristate "INTEL Lightning Mountain USB PHY Driver"
-+	depends on USB_SUPPORT
-+	select USB_PHY
-+	select REGULATOR
-+	select REGULATOR_FIXED_VOLTAGE
-+	help
-+	  Enable this to support Intel DWC3 PHY USB phy. This driver provides
-+	  interface to interact with USB GEN-II and USB 3.x PHY that is part
-+	  of the Intel network SOC.
-+
- source "drivers/phy/allwinner/Kconfig"
- source "drivers/phy/amlogic/Kconfig"
- source "drivers/phy/broadcom/Kconfig"
-diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-index c27408e4daae..6eb2916773c5 100644
---- a/drivers/phy/Makefile
-+++ b/drivers/phy/Makefile
-@@ -8,6 +8,7 @@ obj-$(CONFIG_GENERIC_PHY_MIPI_DPHY)	+= phy-core-mipi-dphy.o
- obj-$(CONFIG_PHY_LPC18XX_USB_OTG)	+= phy-lpc18xx-usb-otg.o
- obj-$(CONFIG_PHY_XGENE)			+= phy-xgene.o
- obj-$(CONFIG_PHY_PISTACHIO_USB)		+= phy-pistachio-usb.o
-+obj-$(CONFIG_USB_LGM_PHY)		+= phy-lgm-usb.o
- obj-y					+= allwinner/	\
- 					   amlogic/	\
- 					   broadcom/	\
-diff --git a/drivers/phy/phy-lgm-usb.c b/drivers/phy/phy-lgm-usb.c
-new file mode 100644
-index 000000000000..1ec9ab266e08
---- /dev/null
-+++ b/drivers/phy/phy-lgm-usb.c
-@@ -0,0 +1,278 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Intel LGM USB PHY driver
-+ *
-+ * Copyright (C) 2020 Intel Corporation.
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/delay.h>
-+#include <linux/iopoll.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/reset.h>
-+#include <linux/usb/phy.h>
-+#include <linux/workqueue.h>
-+
-+#define CTRL1_OFFSET		0x14
-+#define SRAM_EXT_LD_DONE	BIT(25)
-+#define SRAM_INIT_DONE		BIT(26)
-+
-+#define TCPC_OFFSET		0x1014
-+#define TCPC_MUX_CTL		GENMASK(1, 0)
-+#define MUX_NC			0
-+#define MUX_USB			1
-+#define MUX_DP			2
-+#define MUX_USBDP		3
-+#define TCPC_FLIPPED		BIT(2)
-+#define TCPC_LOW_POWER_EN	BIT(3)
-+#define TCPC_VALID		BIT(4)
-+#define TCPC_CONN		\
-+	(TCPC_VALID | FIELD_PREP(TCPC_MUX_CTL, MUX_USB))
-+#define TCPC_DISCONN		\
-+	(TCPC_VALID | FIELD_PREP(TCPC_MUX_CTL, MUX_NC) | TCPC_LOW_POWER_EN)
-+
-+static const char *const PHY_RESETS[] = { "phy31", "phy", };
-+static const char *const CTL_RESETS[] = { "apb", "ctrl", };
-+
-+struct tca_apb {
-+	struct reset_control *resets[ARRAY_SIZE(PHY_RESETS)];
-+	struct regulator *vbus;
-+	struct work_struct wk;
-+	struct usb_phy phy;
-+
-+	bool phy_initialized;
-+	bool connected;
-+};
-+
-+static int get_flipped(struct tca_apb *ta, bool *flipped)
-+{
-+	union extcon_property_value property;
-+	int ret;
-+
-+	ret = extcon_get_property(ta->phy.edev, EXTCON_USB_HOST,
-+				  EXTCON_PROP_USB_TYPEC_POLARITY, &property);
-+	if (ret) {
-+		dev_err(ta->phy.dev, "no polarity property from extcon\n");
-+		return ret;
-+	}
-+
-+	*flipped = property.intval;
-+
-+	return ret;
-+}
-+
-+static int phy_init(struct usb_phy *phy)
-+{
-+	struct tca_apb *ta = container_of(phy, struct tca_apb, phy);
-+	void __iomem *ctrl1 = phy->io_priv + CTRL1_OFFSET;
-+	int val, ret, i;
-+
-+	if (ta->phy_initialized)
-+		return 0;
-+
-+	for (i = 0; i < ARRAY_SIZE(PHY_RESETS); i++)
-+		reset_control_deassert(ta->resets[i]);
-+
-+	ret = readl_poll_timeout(ctrl1, val, val & SRAM_INIT_DONE, 10, 10 * 1000);
-+	if (ret) {
-+		dev_err(ta->phy.dev, "SRAM init failed, 0x%x\n", val);
-+		return ret;
-+	}
-+
-+	writel(readl(ctrl1) | SRAM_EXT_LD_DONE, ctrl1);
-+
-+	ta->phy_initialized = true;
-+	if (!ta->phy.edev) {
-+		writel(TCPC_CONN, ta->phy.io_priv + TCPC_OFFSET);
-+		return phy->set_vbus(phy, true);
-+	}
-+
-+	schedule_work(&ta->wk);
-+
-+	return ret;
-+}
-+
-+static void phy_shutdown(struct usb_phy *phy)
-+{
-+	struct tca_apb *ta = container_of(phy, struct tca_apb, phy);
-+	int i;
-+
-+	if (!ta->phy_initialized)
-+		return;
-+
-+	ta->phy_initialized = false;
-+	flush_work(&ta->wk);
-+	ta->phy.set_vbus(&ta->phy, false);
-+
-+	ta->connected = false;
-+	writel(TCPC_DISCONN, ta->phy.io_priv + TCPC_OFFSET);
-+
-+	for (i = 0; i < ARRAY_SIZE(PHY_RESETS); i++)
-+		reset_control_assert(ta->resets[i]);
-+}
-+
-+static int phy_set_vbus(struct usb_phy *phy, int on)
-+{
-+	struct tca_apb *ta = container_of(phy, struct tca_apb, phy);
-+	int ret;
-+
-+	if (on) {
-+		ret = regulator_enable(ta->vbus);
-+		if (ret)
-+			dev_err(ta->phy.dev, "regulator not enabled\n");
-+	} else {
-+		ret = regulator_disable(ta->vbus);
-+		if (ret)
-+			dev_err(ta->phy.dev, "regulator not disabled\n");
-+	}
-+
-+	return ret;
-+}
-+
-+static void tca_work(struct work_struct *work)
-+{
-+	struct tca_apb *ta = container_of(work, struct tca_apb, wk);
-+	bool connected;
-+	bool flipped = false;
-+	u32 val;
-+	int ret;
-+
-+	ret = get_flipped(ta, &flipped);
-+	connected = extcon_get_state(ta->phy.edev, EXTCON_USB_HOST) && !ret;
-+	if (connected == ta->connected)
-+		return;
-+
-+	ta->connected = connected;
-+	if (connected) {
-+		val = TCPC_CONN;
-+		if (flipped)
-+			val |= TCPC_FLIPPED;
-+		dev_info(ta->phy.dev, "connected%s\n", flipped ? " flipped" : "");
-+	} else {
-+		val = TCPC_DISCONN;
-+		dev_info(ta->phy.dev, "disconnected\n");
-+	}
-+
-+	writel(val, ta->phy.io_priv + TCPC_OFFSET);
-+
-+	ret = ta->phy.set_vbus(&ta->phy, connected);
-+	if (ret)
-+		dev_err(ta->phy.dev, "failed to set VBUS\n");
-+}
-+
-+static int id_notifier(struct notifier_block *nb, unsigned long event, void *ptr)
-+{
-+	struct tca_apb *ta = container_of(nb, struct tca_apb, phy.id_nb);
-+
-+	if (ta->phy_initialized)
-+		schedule_work(&ta->wk);
-+
-+	return NOTIFY_DONE;
-+}
-+
-+static int vbus_notifier(struct notifier_block *nb, unsigned long evnt, void *ptr)
-+{
-+	return NOTIFY_DONE;
-+}
-+
-+static int phy_probe(struct platform_device *pdev)
-+{
-+	struct reset_control *resets[ARRAY_SIZE(CTL_RESETS)];
-+	struct device *dev = &pdev->dev;
-+	struct usb_phy *phy;
-+	struct tca_apb *ta;
-+	int i;
-+
-+	ta = devm_kzalloc(dev, sizeof(*ta), GFP_KERNEL);
-+	if (!ta)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, ta);
-+	INIT_WORK(&ta->wk, tca_work);
-+
-+	phy = &ta->phy;
-+	phy->dev = dev;
-+	phy->label = dev_name(dev);
-+	phy->type = USB_PHY_TYPE_USB3;
-+	phy->init = phy_init;
-+	phy->shutdown = phy_shutdown;
-+	phy->set_vbus = phy_set_vbus;
-+	phy->id_nb.notifier_call = id_notifier;
-+	phy->vbus_nb.notifier_call = vbus_notifier;
-+
-+	phy->io_priv = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(phy->io_priv))
-+		return PTR_ERR(phy->io_priv);
-+
-+	ta->vbus = devm_regulator_get(dev, "vbus");
-+	if (IS_ERR(ta->vbus))
-+		return PTR_ERR(ta->vbus);
-+
-+	for (i = 0; i < ARRAY_SIZE(CTL_RESETS); i++) {
-+		resets[i] = devm_reset_control_get_exclusive(dev, CTL_RESETS[i]);
-+		if (IS_ERR(resets[i])) {
-+			dev_err(dev, "%s reset not found\n", CTL_RESETS[i]);
-+			return PTR_ERR(resets[i]);
-+		}
-+	}
-+
-+	for (i = 0; i < ARRAY_SIZE(PHY_RESETS); i++) {
-+		ta->resets[i] = devm_reset_control_get_exclusive(dev, PHY_RESETS[i]);
-+		if (IS_ERR(ta->resets[i])) {
-+			dev_err(dev, "%s reset not found\n", PHY_RESETS[i]);
-+			return PTR_ERR(ta->resets[i]);
-+		}
-+	}
-+
-+	for (i = 0; i < ARRAY_SIZE(CTL_RESETS); i++)
-+		reset_control_assert(resets[i]);
-+
-+	for (i = 0; i < ARRAY_SIZE(PHY_RESETS); i++)
-+		reset_control_assert(ta->resets[i]);
-+	/*
-+	 * Out-of-band reset of the controller after PHY reset will cause
-+	 * controller malfunctioning, so we should use in-band controller
-+	 * reset only and leave the controller de-asserted here.
-+	 */
-+	for (i = 0; i < ARRAY_SIZE(CTL_RESETS); i++)
-+		reset_control_deassert(resets[i]);
-+
-+	/* Need to wait at least 20us after de-assert the controller */
-+	usleep_range(20, 100);
-+
-+	return usb_add_phy_dev(phy);
-+}
-+
-+static int phy_remove(struct platform_device *pdev)
-+{
-+	struct tca_apb *ta = platform_get_drvdata(pdev);
-+
-+	usb_remove_phy(&ta->phy);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id intel_usb_phy_dt_ids[] = {
-+	{ .compatible = "intel,lgm-usb-phy" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, intel_usb_phy_dt_ids);
-+
-+static struct platform_driver lgm_phy_driver = {
-+	.driver = {
-+		.name = "lgm-usb-phy",
-+		.of_match_table = intel_usb_phy_dt_ids,
-+	},
-+	.probe = phy_probe,
-+	.remove = phy_remove,
-+};
-+
-+module_platform_driver(lgm_phy_driver);
-+
-+MODULE_DESCRIPTION("Intel LGM USB PHY driver");
-+MODULE_AUTHOR("Li Yin <yin1.li@intel.com>");
-+MODULE_AUTHOR("Vadivel Murugan R <vadivel.muruganx.ramuthevar@linux.intel.com>");
-+MODULE_LICENSE("GPL v2");
+v1:
+   submitted to drivers/{mfd,spmi,regulator}
+
+v2:
+  - submitted via staging, mainly to preserve original
+    authorship and his SoB;
+  - as requested on previous review, patches were split per
+    target subsystem.
+
+v3:
+  - Some coding style changes, due to reviews from Joe Perches
+
+Patches were tested on a Hikey 970 board.
+
+Mauro Carvalho Chehab (41):
+  staging: spmi: hisi-spmi-controller: coding style fixup
+  staging: spmi: hisi-spmi-controller: fix it to probe successfully
+  staging: spmi: hisi-spmi-controller: fix a typo
+  staging: spmi: hisi-spmi-controller: adjust whitespaces at defines
+  staging: spmi: hisi-spmi-controller: use le32 macros where needed
+  staging: spmi: hisi-spmi-controller: add debug when values are
+    read/write
+  staging: spmi: hisi-spmi-controller: fix the dev_foo() logic
+  staging: spmi: hisi-spmi-controller: add it to the building system
+  staging: spmi: hisi-spmi-controller: do some code cleanups
+  staging: mfd: hi6421-spmi-pmic: get rid of unused code
+  staging: mfd: hi6421-spmi-pmic: deal with non-static functions
+  staging: mfd: hi6421-spmi-pmic: get rid of the static vars
+  staging: mfd: hi6421-spmi-pmic: cleanup hi6421-spmi-pmic.h header
+  staging: mfd: hi6421-spmi-pmic: change the binding logic
+  staging: mfd: hi6421-spmi-pmic: get rid of unused OF properties
+  staging: mfd: hi6421-spmi-pmic: cleanup OF properties
+  staging: mfd: hi6421-spmi-pmic: change namespace on its functions
+  staging: mfd: hi6421-spmi-pmic: fix some coding style issues
+  staging: mfd: hi6421-spmi-pmic: add it to the building system
+  staging: mfd: hi6421-spmi-pmic: cleanup the code
+  staging: regulator: hi6421v600-regulator: get rid of unused code
+  staging: regulator: hi6421v600-regulator: port it to upstream
+  staging: regulator: hi6421v600-regulator: coding style fixups
+  staging: regulator: hi6421v600-regulator: change the binding logic
+  staging: regulator: hi6421v600-regulator: cleanup struct
+    hisi_regulator
+  staging: regulator: hi6421v600-regulator: cleanup debug messages
+  staging: regulator: hi6421v600-regulator: use shorter names for OF
+    properties
+  staging: regulator: hi6421v600-regulator: better handle modes
+  staging: regulator: hi6421v600-regulator: change namespace
+  staging: regulator: hi6421v600-regulator: convert to use get/set
+    voltage_sel
+  staging: regulator: hi6421v600-regulator: don't use usleep_range for
+    off_on_delay
+  staging: regulator: hi6421v600-regulator: add a driver-specific debug
+    macro
+  staging: regulator: hi6421v600-regulator: initialize ramp_delay
+  staging: regulator: hi6421v600-regulator: cleanup DT settings
+  staging: regulator: hi6421v600-regulator: fix some coding style issues
+  staging: regulator: hi6421v600-regulator: add it to the building
+    system
+  staging: regulator: hi6421v600-regulator: code cleanup
+  staging: hikey9xx: add a TODO list
+  MAINTAINERS: add an entry for HiSilicon 6421v600 drivers
+  dt: document HiSilicon SPMI controller and mfd/regulator properties
+  dt: hisilicon: add support for the PMIC found on Hikey 970
+
+Mayulong (3):
+  staging: spmi: add Hikey 970 SPMI controller driver
+  staging: mfd: add a PMIC driver for HiSilicon 6421 SPMI version
+  staging: regulator: add a regulator driver for HiSilicon 6421v600 SPMI
+    PMIC
+
+ .../mfd/hisilicon,hi6421-spmi-pmic.yaml       | 182 +++++++
+ .../spmi/hisilicon,hisi-spmi-controller.yaml  |  54 ++
+ MAINTAINERS                                   |   6 +
+ .../boot/dts/hisilicon/hi3670-hikey970.dts    |  22 +-
+ .../boot/dts/hisilicon/hikey970-pmic.dtsi     | 200 ++++++++
+ drivers/staging/Kconfig                       |   2 +
+ drivers/staging/Makefile                      |   1 +
+ drivers/staging/hikey9xx/Kconfig              |  35 ++
+ drivers/staging/hikey9xx/Makefile             |   5 +
+ drivers/staging/hikey9xx/TODO                 |   5 +
+ drivers/staging/hikey9xx/hi6421-spmi-pmic.c   | 382 ++++++++++++++
+ .../staging/hikey9xx/hi6421v600-regulator.c   | 479 ++++++++++++++++++
+ .../staging/hikey9xx/hisi-spmi-controller.c   | 356 +++++++++++++
+ include/linux/mfd/hi6421-spmi-pmic.h          |  68 +++
+ 14 files changed, 1778 insertions(+), 19 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
+ create mode 100644 Documentation/devicetree/bindings/spmi/hisilicon,hisi-spmi-controller.yaml
+ create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
+ create mode 100644 drivers/staging/hikey9xx/Kconfig
+ create mode 100644 drivers/staging/hikey9xx/Makefile
+ create mode 100644 drivers/staging/hikey9xx/TODO
+ create mode 100644 drivers/staging/hikey9xx/hi6421-spmi-pmic.c
+ create mode 100644 drivers/staging/hikey9xx/hi6421v600-regulator.c
+ create mode 100644 drivers/staging/hikey9xx/hisi-spmi-controller.c
+ create mode 100644 include/linux/mfd/hi6421-spmi-pmic.h
+
 -- 
-2.11.0
+2.26.2
+
 
