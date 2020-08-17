@@ -2,87 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 248F6246D31
-	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 18:48:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80D40246E5B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Aug 2020 19:28:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388967AbgHQQso (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Aug 2020 12:48:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36282 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388953AbgHQQse (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Aug 2020 12:48:34 -0400
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9113920729;
-        Mon, 17 Aug 2020 16:48:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597682912;
-        bh=cr4ed1+wAP4LE1t7Olx9PbLZFx5mHkvQNQCN7Bnf8T8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=znYZ5yvsLRpkEdePuy6tC3joBPK0xJHf9nDYgKlmoXss0jHQtChfpKdYQzlPeK8hk
-         bMFX0uMubHOlONiKBZUp5AOnr9OE5khS40uNTCGY3DeRp9oeT6OGSkxKvtrkIoYaUd
-         dlw77GXtToNLsZPnE86uwrBNwgJPOP/GCnEVpWnU=
-Received: by mail-ot1-f41.google.com with SMTP id r21so13906281ota.10;
-        Mon, 17 Aug 2020 09:48:32 -0700 (PDT)
-X-Gm-Message-State: AOAM532rwmPD4ejIqcr+qjQpF2GuFvIy38LYsvpi//nEZqFBZ56YaicN
-        Rmkd/SHeT4RkFLb1B/Ye/eExq+rEXiNflrDuzw==
-X-Google-Smtp-Source: ABdhPJxaIJ/5yIBh3pYah1vkE3SudC65lsnoRMq8W4mfltRwx3uDQ1BoQvhIj5sBtTElnPyyUac/41RrgElt7gohyCw=
-X-Received: by 2002:a05:6830:1b79:: with SMTP id d25mr11034659ote.107.1597682911876;
- Mon, 17 Aug 2020 09:48:31 -0700 (PDT)
+        id S2389511AbgHQR2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Aug 2020 13:28:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49790 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389352AbgHQRMk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 13:12:40 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6472C061389
+        for <devicetree@vger.kernel.org>; Mon, 17 Aug 2020 10:12:39 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id l2so15720599wrc.7
+        for <devicetree@vger.kernel.org>; Mon, 17 Aug 2020 10:12:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AueLUpVNwOplEaRIeklXnlMpQk/hv9PNTq+/4iLo0R0=;
+        b=Gpu1742R6bQKiE7BaePK5diMLvF+iZfSSkZ0BOARPwt42lhi8nz00uW6K89/MGg4zm
+         hZXZDUrk/4N+XUcR0wbbQo713rcnKWaOX9p4s60ZhAx89+KzEZhhA4saULYqOxNRGYdx
+         hUyQy65h8Dy4+B9yFynN1Kh1R/12oHa6Gs3j4u3Q4o3r9uQOP6RgH+35nG01K9CZdK68
+         rzoGzIXjOR9WHXTKTHVQO9vD4+jdCw3iMYQLPoCTJcpW+4tvowsYeLvIo21HjWRa2vmV
+         04Cx09aiVDy2hFLu9lZ+jRZdQNHnPp6FILixg0q9oSK7M9y8md8BFE7vFrK7eGa8X8yl
+         WMrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AueLUpVNwOplEaRIeklXnlMpQk/hv9PNTq+/4iLo0R0=;
+        b=gZudH98jnn1Ib8Xu3MKVUwvSy4dK8WGfjPlpgE+vTFWFWTVCg7RESCXPB8Wi8H21D9
+         J9ifLPJnM5NfQvXS/YISa9Yic2LKeKnCNP7bOeK39PH8nL8vNJ4YIJ+kXi8Z5FiPm2UL
+         IY0oJ2jftvuSDCtKmCy6tj7oAcUWlrcN33ksDx4yF5er31Dts5Qhwdzrc8rByu0v9L2N
+         niCkM3IsCA+iFCclQyvU1IXDxen1w1noqb8CPx8F5K7iMIy/bVnQwiEnaPbWtdy+0VNH
+         ol4ntWvbM9Jgv+ayiP7Bnil6d4FJP+91pAL3QfxC4Lvy3PKzRInefdOL1vKt6gtliMlN
+         nZmQ==
+X-Gm-Message-State: AOAM533lryh/g+9TmbQ5z8Mi0ofVAr2caP046pctWzQv2RlzsN173tMW
+        atWZ0kItdPLjY7AZw9cnvy0anKLAqP5wGzWTQC9JdQ==
+X-Google-Smtp-Source: ABdhPJwzzJqqKP8Dz57WEH4mjrx29gWDTGQSyhqQk/3EQMn3h+P+wfHkvWUG7jnjma/rWD/FdEgspqJzfrhXMf85F+M=
+X-Received: by 2002:adf:fc06:: with SMTP id i6mr16257949wrr.79.1597684357045;
+ Mon, 17 Aug 2020 10:12:37 -0700 (PDT)
 MIME-Version: 1.0
-References: <1596795922-705-1-git-send-email-hayashi.kunihiko@socionext.com> <1596795922-705-6-git-send-email-hayashi.kunihiko@socionext.com>
-In-Reply-To: <1596795922-705-6-git-send-email-hayashi.kunihiko@socionext.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 17 Aug 2020 10:48:20 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+nGtrBpzNKU9+1cHYkuQ3KBHpgwZRQfDKKUMJVSx_b1A@mail.gmail.com>
-Message-ID: <CAL_Jsq+nGtrBpzNKU9+1cHYkuQ3KBHpgwZRQfDKKUMJVSx_b1A@mail.gmail.com>
-Subject: Re: [PATCH v6 5/6] PCI: uniphier: Add iATU register support
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Marc Zyngier <maz@kernel.org>, PCI <linux-pci@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
-        Jassi Brar <jaswinder.singh@linaro.org>
+References: <CAMi1Hd3Dv_T7kgThLTk2QLtfS7LBvhJ5R=6C3seUYK0GvNV6eA@mail.gmail.com>
+ <20200806223134.42748-1-konradybcio@gmail.com> <20200813070448.GA499758@builder.lan>
+In-Reply-To: <20200813070448.GA499758@builder.lan>
+From:   Amit Pundir <amit.pundir@linaro.org>
+Date:   Mon, 17 Aug 2020 22:42:00 +0530
+Message-ID: <CAMi1Hd3j-A1Se9swD0TQ9YzTBGicPDc1nFZbf4uisVk5A+u1GQ@mail.gmail.com>
+Subject: Re: your mail
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Konrad Dybcio <konradybcio@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        John Stultz <john.stultz@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 7, 2020 at 4:25 AM Kunihiko Hayashi
-<hayashi.kunihiko@socionext.com> wrote:
+On Thu, 13 Aug 2020 at 12:38, Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
 >
-> This gets iATU register area from reg property. In Synopsys DWC version
-> 4.80 or later, since iATU register area is separated from core register
-> area, this area is necessary to get from DT independently.
+> On Thu 06 Aug 15:31 PDT 2020, Konrad Dybcio wrote:
 >
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> ---
->  drivers/pci/controller/dwc/pcie-uniphier.c | 5 +++++
->  1 file changed, 5 insertions(+)
+> > Subject: Re: [PATCH v4] arm64: dts: qcom: Add support for Xiaomi Poco F1 (Beryllium)
+> >
+> > >// This removed_region is needed to boot the device
+> > >               // TODO: Find out the user of this reserved memory
+> > >               removed_region: memory@88f00000 {
+> >
+> > This region seems to belong to the Trust Zone. When Linux tries to access it, TZ bites and shuts the device down.
+> >
 >
-> diff --git a/drivers/pci/controller/dwc/pcie-uniphier.c b/drivers/pci/controller/dwc/pcie-uniphier.c
-> index 55a7166..93ef608 100644
-> --- a/drivers/pci/controller/dwc/pcie-uniphier.c
-> +++ b/drivers/pci/controller/dwc/pcie-uniphier.c
-> @@ -471,6 +471,11 @@ static int uniphier_pcie_probe(struct platform_device *pdev)
->         if (IS_ERR(priv->pci.dbi_base))
->                 return PTR_ERR(priv->pci.dbi_base);
->
-> +       priv->pci.atu_base =
-> +               devm_platform_ioremap_resource_byname(pdev, "atu");
-> +       if (IS_ERR(priv->pci.atu_base))
-> +               priv->pci.atu_base = NULL;
+> This is in line with what the documentation indicates and then it would
+> be better to just bump &tz_mem to a size of 0x4900000.
 
-Keystone has the same 'atu' resource setup. Please move its code to
-the DW core and use that.
+Hi, so just to be sure that I got this right, you want me to extend
+&tz_mem to the size of 0x4900000 from the default size of 0x2D00000 by
+including this downstream &removed_region (of size 0x1A00000) +
+previously unreserved downstream memory region (of size 0x200000), to
+align with the starting address of &qseecom_mem?
 
-Rob
+I just gave this &tz_mem change a spin and I do not see any obvious
+regression in my limited smoke testing (Boots AOSP to UI with
+v5.9-rc1. Touch/BT/WiFi works) so far, with 20+ out-of-tree patches.
+
+Regards,
+Amit Pundir
+
+>
+> Regards,
+> Bjorn
