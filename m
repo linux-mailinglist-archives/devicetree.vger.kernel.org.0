@@ -2,66 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C446247A53
-	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 00:14:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE9E8247A61
+	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 00:25:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730501AbgHQWOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Aug 2020 18:14:33 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:34242 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729002AbgHQWOc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 18:14:32 -0400
-Received: by mail-io1-f67.google.com with SMTP id q75so19315460iod.1;
-        Mon, 17 Aug 2020 15:14:32 -0700 (PDT)
+        id S1726545AbgHQWZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Aug 2020 18:25:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42432 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726315AbgHQWZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 18:25:54 -0400
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B83CFC061389;
+        Mon, 17 Aug 2020 15:18:58 -0700 (PDT)
+Received: by mail-pl1-x642.google.com with SMTP id g15so4351026plj.6;
+        Mon, 17 Aug 2020 15:18:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=IC+PLCb5BjjrXT4nXK1CE0auHVxv7INrZUJfLM7s8b0=;
+        b=OD6CK52yqlmbuPU8ShWjTmv4dQV5QdmDq4dADEWii8Heu1Da/BEe7At9MszRnoWCOx
+         hUaieFOvUxFCRy+B9DdomVp+HqDXZDPA3BWKjnN1mVJfh6Xnf4JqT5ISkGLcCxGIx0m2
+         vwAcYUpDSo10bFh+ZI7oHpopC4o0DvT63jh5aoU3x+RN1CCHy7ufqeihU/pBIG8sWwxt
+         GeCdXS/kMnuQpx0d3wq9sFOC914V1nqt6cI+it2iU/zmCyhwKCIsj2Qkb+KTF3fBrZiP
+         +M9Iz6ERW7HgndpieUliURMrXbK7GZ6VWZFOUGuDHf0EcPsCqo4bqIottMTyxt0ZesXT
+         KYUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=foBu7vlYY/G29ni82ikVQp52e4x8u1lhbM6/dC3GFtY=;
-        b=k1P+JgJqnjWNF/DtYeF+mRALWeR/7mCXHAP6Tnr1wMrre/lZNwQUOMQmvcIC9H2VTZ
-         8Oxcay+Bh60O4AsycrQROCoh4W6tv9zieLNDjaXOEEFWbm0yA2xewzGhw1ldhgC1bEX/
-         US8IAFkpZQQsU8y107EG478s0VEvzYyhnxOALqAHEXZci+m26dMN9pJoUugU7yazYBn2
-         aAj9A5eI8c1ZCmpxi69RyLl63QhzMcYUlwEJqUHhhKEwLZqeogVln44odXaiX1uYArZm
-         lHBqvv15iLhmR933ampsTw5FoH4Y1w1G8sbxw/NK+4H1eGHfziXDYhP4dd0tMXkbftqR
-         W3dw==
-X-Gm-Message-State: AOAM532iZgWqy1snZ48tkKvU3s7xA7PrmES0cn2/G39OWwsr6hOKmLBk
-        /DLTa2gLUf20Y3RiXOnMfyCyzFM6oQ==
-X-Google-Smtp-Source: ABdhPJyA+kTDNTLm1m9z8omYZQPX6Cegf0zN6kn5qehicaoRObp94mVMFnsOOcKT1dPXdV0V6bSOMQ==
-X-Received: by 2002:a6b:15c3:: with SMTP id 186mr14101098iov.161.1597702471632;
-        Mon, 17 Aug 2020 15:14:31 -0700 (PDT)
-Received: from xps15 ([64.188.179.249])
-        by smtp.gmail.com with ESMTPSA id s85sm10665693ilk.77.2020.08.17.15.14.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Aug 2020 15:14:31 -0700 (PDT)
-Received: (nullmailer pid 1670911 invoked by uid 1000);
-        Mon, 17 Aug 2020 22:14:29 -0000
-Date:   Mon, 17 Aug 2020 16:14:29 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Swapnil Jakhade <sjakhade@cadence.com>
-Cc:     kishon@ti.com, nsekhar@ti.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, mparab@cadence.com, vkoul@kernel.org,
-        p.zabel@pengutronix.de, yamonkar@cadence.com,
-        tomi.valkeinen@ti.com, jsarha@ti.com, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 04/13] dt-bindings: phy: Add PHY_TYPE_QSGMII definition
-Message-ID: <20200817221429.GA1670859@bogus>
-References: <1596800767-784-1-git-send-email-sjakhade@cadence.com>
- <1596800767-784-5-git-send-email-sjakhade@cadence.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=IC+PLCb5BjjrXT4nXK1CE0auHVxv7INrZUJfLM7s8b0=;
+        b=O8A7ZFZbIe1esNmPGumd4IxWSgBBsKLHIaEzCCqiDABAAGioYrDtMv9ftjDbb3jJO1
+         7gt4wU1D+l5KrQqKS9l0Mw9Jd0waJFPGtT+D81P0CB6shssis2Wa/eNzj5mfyYLICUGl
+         VLUbt/BneJtPcPPw+njok48wUV91ieqrAC1mxumriV/05LPaKficXbeAvB2eK0ZO/IEe
+         vYJZ8jQ/MC8xF00NGf8yaUEmGAVM1NOR36X9WWw8F/+5TEPIbcZ6ANoigClFfX9/HlLG
+         uwSu0mvjsveGBDdqroxHPXbeJfe2TpxrZGxSjQD150d4gO6oq0tPWRVRHlN+jejbxXfg
+         7ueg==
+X-Gm-Message-State: AOAM530X/iWi6pzDiXTeixxk4nvXIbddY5xHNU8C3vesnxKFlgGLrbbO
+        N61ryzrfwkZcWHDnOXZJlR7+xJnnMoc=
+X-Google-Smtp-Source: ABdhPJzd5z+TE/voo9ADy7aHL82gwXxsBXcvXOFCGJrwqsqSaKtsgR7Wd9hBDKiXtMq2vaUdyX07IQ==
+X-Received: by 2002:a17:902:b28a:: with SMTP id u10mr13206624plr.195.1597702737909;
+        Mon, 17 Aug 2020 15:18:57 -0700 (PDT)
+Received: from [0.0.0.0] ([149.28.25.175])
+        by smtp.gmail.com with ESMTPSA id 198sm20828568pfz.120.2020.08.17.15.18.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Aug 2020 15:18:57 -0700 (PDT)
+Subject: Re: [PATCH] of/fdt: Remove duplicate check in
+ early_init_dt_scan_memory()
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20200814225637.702584-1-arch0.zheng@gmail.com>
+ <CAL_JsqJ7eK3HB_E8OeSbs=xVLYrvOcXD9GxpKr2N4dXZWnBP+g@mail.gmail.com>
+From:   Qi Zheng <arch0.zheng@gmail.com>
+Message-ID: <f2d32b47-cf84-4e09-a8a1-08a323ddd134@gmail.com>
+Date:   Tue, 18 Aug 2020 06:18:51 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1596800767-784-5-git-send-email-sjakhade@cadence.com>
+In-Reply-To: <CAL_JsqJ7eK3HB_E8OeSbs=xVLYrvOcXD9GxpKr2N4dXZWnBP+g@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 07 Aug 2020 13:45:58 +0200, Swapnil Jakhade wrote:
-> Add definition for QSGMII phy type.
+On 2020/8/18 上午2:21, Rob Herring wrote:
+> On Fri, Aug 14, 2020 at 4:57 PM Qi Zheng <arch0.zheng@gmail.com> wrote:
+>>
+>> When the value of the first reg is not NULL, there will be
+>> two repeated checks. So modify it.
 > 
-> Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
-> ---
->  include/dt-bindings/phy/phy.h | 1 +
->  1 file changed, 1 insertion(+)
-> 
+> I prefer the way it was. I'm sure the compiler is smart enough to
+> throw out the 2nd check. Plus, 'linux,usable-memory' being present is
+> the exception, so usually 'reg' will be NULL.
 
-Acked-by: Rob Herring <robh@kernel.org>
+I got it, and thanks for your review.
+Please ignore this patch.
+
+> 
+>> Signed-off-by: Qi Zheng <arch0.zheng@gmail.com>
+>> ---
+>>   drivers/of/fdt.c | 7 ++++---
+>>   1 file changed, 4 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+>> index 4602e467ca8b..f54412c00642 100644
+>> --- a/drivers/of/fdt.c
+>> +++ b/drivers/of/fdt.c
+>> @@ -1002,10 +1002,11 @@ int __init early_init_dt_scan_memory(unsigned long node, const char *uname,
+>>                  return 0;
+>>
+>>          reg = of_get_flat_dt_prop(node, "linux,usable-memory", &l);
+>> -       if (reg == NULL)
+>> +       if (reg == NULL) {
+>>                  reg = of_get_flat_dt_prop(node, "reg", &l);
+>> -       if (reg == NULL)
+>> -               return 0;
+>> +               if (reg == NULL)
+>> +                       return 0;
+>> +       }
+>>
+>>          endp = reg + (l / sizeof(__be32));
+>>          hotpluggable = of_get_flat_dt_prop(node, "hotpluggable", NULL);
+>> --
+>> 2.25.1
+>>
