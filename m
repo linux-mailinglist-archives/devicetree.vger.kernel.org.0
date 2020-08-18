@@ -2,46 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45111248C25
-	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 18:57:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 895B7248C27
+	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 18:57:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728401AbgHRQ5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Aug 2020 12:57:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40076 "EHLO mail.kernel.org"
+        id S1728555AbgHRQ52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Aug 2020 12:57:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40674 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728542AbgHRQ5E (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Aug 2020 12:57:04 -0400
+        id S1728550AbgHRQ5Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Aug 2020 12:57:25 -0400
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1255420786;
-        Tue, 18 Aug 2020 16:57:03 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6639C20825;
+        Tue, 18 Aug 2020 16:57:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597769824;
-        bh=XZEu+054owukh/CD+zNMN7eD5GYsUepDZpyJCKR6s9o=;
+        s=default; t=1597769844;
+        bh=J7XeXrnf7EWLng0Ibi1VtPXm9pHCbnRQAorF/Vb5psk=;
         h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=kjl1W+h48zNGn1DkV/nuYz5gHXURZ/VOcNokiiHZY1MngzhZQkSWwLF3rmjIh5Zn6
-         a2IOMKFvbeFrmzIj3wm+I8XvySQB+zlqrnA3G0br10VOUamMW5gM/+iPkDs5AVPBPc
-         7w//2jRnS0JTH1rCfKZEvNoFsmS0397+iBbYFitg=
-Date:   Tue, 18 Aug 2020 17:56:33 +0100
+        b=uJtKoXYlAvw689386/D8cK4pqxSdmDWwlDLr4Toioy9PpWtmicYXPVzXBydgRfngY
+         DpxvPNvZvk6Z2K0ex+YwjET96/sIdlqOwaUBxeP8BUVdjgg9Yb1SWUBIncDh98m7AT
+         yItVFJjglJ7o9FM2UEv7onNJ5riYJ7mnKXqw4Xtk=
+Date:   Tue, 18 Aug 2020 17:56:54 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        cy_huang <u0084500@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        cy_huang@richtek.com, gene_chen@richtek.com
-In-Reply-To: <1597418824-15906-1-git-send-email-u0084500@gmail.com>
-References: <1597418824-15906-1-git-send-email-u0084500@gmail.com>
-Subject: Re: [PATCH 1/2] regulator: rt4801: Add support for RT4801 Display Bias regulator driver
-Message-Id: <159776976828.56451.5989906126815444846.b4-ty@kernel.org>
+To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20200803144436.5d2b7e54@xhacker.debian>
+References: <20200803144436.5d2b7e54@xhacker.debian>
+Subject: Re: [PATCH v3] dt-bindings: regulator: Convert sy8824x to json-schema
+Message-Id: <159776976828.56451.12856424120296708687.b4-ty@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 Aug 2020 23:27:03 +0800, cy_huang wrote:
-> Adds support for the RT4801 DSV. It has two regulators (DSVP/DSVN) with
-> an I2C interface. DSVP/DSVN can provide the display panel module for the
-> positive/negative voltage range from (+/-)4V to (+/-)6V.
+On Mon, 3 Aug 2020 14:44:36 +0800, Jisheng Zhang wrote:
+> Convert the sy8824x binding to DT schema format using json-schema.
 
 Applied to
 
@@ -49,10 +47,8 @@ Applied to
 
 Thanks!
 
-[1/2] regulator: rt4801: Add support for RT4801 Display Bias regulator driver
-      commit: 5bbbfc7f7f0a44b7a85ab3872dd2ccce7019f7b1
-[2/2] regulator: rt4801: Add DT binding documentation
-      commit: fd6b928db8a05fcd8629320c52eae214a8615aae
+[1/1] regulator: Convert sy8824x to json-schema
+      commit: aedf7451e7535bc93bb9cec0ebc91744934da95c
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
