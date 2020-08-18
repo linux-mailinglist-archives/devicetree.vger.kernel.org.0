@@ -2,80 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DDB225199F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 15:29:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BF6F251A0D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 15:46:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726610AbgHYN3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Aug 2020 09:29:45 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:44970 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726024AbgHYN3l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Aug 2020 09:29:41 -0400
-Received: by mail-oi1-f196.google.com with SMTP id h3so11579482oie.11;
-        Tue, 25 Aug 2020 06:29:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NlGcF353UvEOTKYyfpjwDftImPGsiStlKykiIRESN1M=;
-        b=QnRjfq1/BAzMIRRk7RS/m/pXubd4LBDzD1fRC0ty8fPqWKVBY4/ZZzz0vLmGHt98om
-         wADXP0HgDR84qvdDhFD+FscBsQCc2EEooAi9JCGXGTDojZcwgxJBqNzYkxAAVI+p/F9W
-         P9Y+376OpFiFRhj6u4f0c9kWsscpG/UBqIDCzbFrWr+llYmune0vWwLDPIItMXH82h3w
-         +yJ+hCigf6Z98VVxJy2Z4Uu/1zTaD8l3IaqJ72vlk1RmJlMRUAb6N/nj+g7H/JQf7s24
-         RIpzp1KsaUPg6cPHQLI7WqDhSStN+KeA5LkWwYoW774ritH1x/vLdtxL3FS3/ULzjyVF
-         lCqg==
-X-Gm-Message-State: AOAM530Q6uSxsR+CegVF1gLOv+E1ZOP+SzMT/8gyvKbdSqBgfIHLlRjG
-        4+SplyuL1vjDtSg4Oqe7NeBQc7o1cQgJ+gDHjXs8OikT
-X-Google-Smtp-Source: ABdhPJzZthb05n+gWg5spYhotIoaAgfZ5aJhCY+qYAIDFUR7B37VKtj16eZjem2uFKYXHyumQ8UnO/DtfPWwlqm8Vjc=
-X-Received: by 2002:aca:adc4:: with SMTP id w187mr931178oie.153.1598362180689;
- Tue, 25 Aug 2020 06:29:40 -0700 (PDT)
+        id S1726611AbgHYNqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Aug 2020 09:46:24 -0400
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:41899 "EHLO
+        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726551AbgHYNlk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Aug 2020 09:41:40 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id A45A3C3A;
+        Tue, 25 Aug 2020 09:35:28 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Tue, 25 Aug 2020 09:35:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=xTWDnflbQvjGc9pJORy0trBH/Hi
+        jBQsjxwEsTIAsojw=; b=qgNk/129ZMAdQFwYnTgnBFShZX/0z/9wi0B53VaumK5
+        BPoe7vG0j6ENPJlYhJ89s/Wah7rk6GGsNWZon6LoDVMAIhwTkecXqjxQ0B/2cFp5
+        q8bSNjdeI6G1t7xiaJsxntVqwfF0BCCHVbIbXml/lDRe7ltWp7TDu0O+uuBnqmWS
+        Cs/HRbJW60mt63Gp8M00kJzbfepXVuImrl6uqIXlNGLxYdCXvxr9ZYriqbAeuXmk
+        K+NwoIxZbmbVSvykR4jRZyMMQZklnKfhVNpkIFYWvxpAyF/+OhnMeqYIB69i2TOy
+        OixgqW8IqhkqfBQmlhKIAfjGtBmmJdyIXYhqUqXDM1Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=xTWDnf
+        lbQvjGc9pJORy0trBH/HijBQsjxwEsTIAsojw=; b=JN6U/R1d/ynU1n70jTUR4d
+        c9ubnk6cR4WCLYaGmKfmXTh4G2A6R4f4H0ezzZKw16E9dDO9z8hLFsw2fn4U5BYj
+        BPX8O26NEY4wHTLy3fg4TvwQ3Gr+wM9+S+QOrQWdKczyHYlQxySgJvcXAJAPEG8K
+        6Rdv7LbrZcraUkNrw68CZrJGZWWfwVLVk1CTvxhZ1BZgBqZu5EJduNevNFRtXR5n
+        4I6umJCocFUZWXozdCfQTQG7kYSB+d7MpxR9BL7cbUmdXwHkV6q9ebieCPxLBWpS
+        g4XjT9qaBZpxRw96wgXaZFh2B6+6dxd3hxaAME5S4pdk9N7r9sub/jvLG+k7KLbQ
+        ==
+X-ME-Sender: <xms:nxNFX6yxuvSuu-Z8Di38cWYcCKkhWufA1c57mmQ4U9hDgRlN8PlXAw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedruddvtddgieelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgepudenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:nxNFX2RKpCnmTKla08HUz3kF9C2W5doYQW8rA2h9Q0pBIY1Wz1nGzQ>
+    <xmx:nxNFX8XcWZkhIvpQt4NKJQX_-g95nfb29F_Nj3SUb2faSejoUidPkg>
+    <xmx:nxNFXwhqG6gZvjqhAM70OMNr1mvpOMw29cY2xznXN332cJHnVRNcPA>
+    <xmx:oBNFX_MIKJG3ugU8S1c_5NY6S6CFtYksfc9D6n6idfw_YTCjXWqvaw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 9BBDE3280059;
+        Tue, 25 Aug 2020 09:35:27 -0400 (EDT)
+Date:   Tue, 18 Aug 2020 11:04:09 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Alexander Kochetkov <al.kochet@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Alexander Kochetkov <akochetkov@lintech.ru>
+Subject: Re: [PATCH] arm64: dts: allwinner: replace numerical constant with
+ CCU_CLKX
+Message-ID: <20200818090409.te6oefjtuseclx4g@gilmour.lan>
+References: <20200803143022.25909-1-al.kochet@gmail.com>
 MIME-Version: 1.0
-References: <20200825104455.18000-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20200825104455.18000-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20200825104455.18000-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 25 Aug 2020 15:29:29 +0200
-Message-ID: <CAMuHMdUVi+y+D54s7-AUO4nE0nU8GqMcvpJRb=dPEfQMujedaQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: renesas,pwm-rcar: Add r8a774e1 support
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Linux PWM List <linux-pwm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="pga65g2vz6oo4kok"
+Content-Disposition: inline
+In-Reply-To: <20200803143022.25909-1-al.kochet@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 25, 2020 at 12:45 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> From: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
->
-> Document RZ/G2H (R8A774E1) SoC bindings.
->
-> No driver change is needed due to the fallback compatible value
-> "renesas,pwm-rcar".
->
-> Signed-off-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+--pga65g2vz6oo4kok
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Gr{oetje,eeting}s,
+On Mon, Aug 03, 2020 at 05:30:22PM +0300, Alexander Kochetkov wrote:
+> From: Alexander Kochetkov <akochetkov@lintech.ru>
+>=20
+> Signed-off-by: Alexander Kochetkov <al.kochet@gmail.com>
 
-                        Geert
+Applied, thanks
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Maxime
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--pga65g2vz6oo4kok
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHQEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXzuZiQAKCRDj7w1vZxhR
+xRD2APiHXOaxYjxcyyB920l1xxejOlrk/yVKF/YHdgQVWmQSAP9lU84Nbjf9wLwA
+nrvH0z9sV68fq/EbcHryPrKy++qdAw==
+=UJIV
+-----END PGP SIGNATURE-----
+
+--pga65g2vz6oo4kok--
