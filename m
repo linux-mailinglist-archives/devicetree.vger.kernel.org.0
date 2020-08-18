@@ -2,116 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B83E247C5F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 05:03:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56897247C68
+	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 05:04:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726365AbgHRDDO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Aug 2020 23:03:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56892 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726302AbgHRDDL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 23:03:11 -0400
-Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1EF9C061389
-        for <devicetree@vger.kernel.org>; Mon, 17 Aug 2020 20:03:10 -0700 (PDT)
-Received: by mail-io1-xd42.google.com with SMTP id h4so19768361ioe.5
-        for <devicetree@vger.kernel.org>; Mon, 17 Aug 2020 20:03:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=eKAWzYNYaU6JFfG0ymLmU9yELeTD/hTkpBoT+dVsEtU=;
-        b=RYHArkFoy/sHeUDVoHzXXD3Jk6Kic4vQEVoeYDt3H1laHzpN0tD49E/Xj2tcnwyH/i
-         W7BhVB4R1/h/02Y4qySmekwJTkK902ZrQGjjsX8Tzuug/oolz+2uynRYF9kV/WmP1MVX
-         SbQYvJ0FwZV4NGBfX+zIGo34iJs5jkKDhLX+0oLjfn8H2k4XfSazLH4zwyDH4HjLpabE
-         de5s7OWaGgfpP2a2YHRyZFuoz6cG3WcG+WHn/nBUqFqF+0TR4gB/4UJwWSfvP71gSJCt
-         0ZD4cVFJ2j+AfyhezV5M8bVIjC1tkdhI4/JBSmOqRebcmwTBgIJ3wYvpZL4w7/eeOpq1
-         svAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eKAWzYNYaU6JFfG0ymLmU9yELeTD/hTkpBoT+dVsEtU=;
-        b=hHZOoXGlvIO3rFQSMmFO712Ue+wiAqMrxPAbjezVkGkyfZlfA/jJ4phVa3qDI50GMQ
-         hZdel/l2BNOJBkgvKropeJu9sqvBHEH8tjDoOxk+0tZGoX+jx+jxId+bDHJJPqASNYXJ
-         +vQWKpaIYSgolY1wd2Zpez8VyhlogsQxvV8vdeTGZU5426zNAmqzUAvRyDtM87mzx76j
-         vmXnD2mizVk8kO7ZQSBT2xwp6f538OqOGu/lI0KsJ/sZq9qgyDtcr8y75zdr+tWLjNAX
-         OTOSMRoGUDuqpUa5urmZHKUUcau+QTXV/RrdAPNzyKmo7dYM7CgCkqYsXQZqkrm1MnRR
-         0p5w==
-X-Gm-Message-State: AOAM533NQ6XKtE0HaeS1Dccm/Rtt7t8fV2LrjW6jHg98+7/xoJQkptd6
-        wEKSMlcNhT8Oeohulu2IoU6rWBpQIbpSrsOTg9RxuFh53xs=
-X-Google-Smtp-Source: ABdhPJwO3NPmdxsDbX920pGQbMgZOsuQDFoUtU5IZdNYu9vR7YhfgcpgJed/o9z/0DY6T5dFcWS4dYqSQanbT+uXjf8=
-X-Received: by 2002:a05:6602:811:: with SMTP id z17mr14607839iow.110.1597719790018;
- Mon, 17 Aug 2020 20:03:10 -0700 (PDT)
+        id S1726652AbgHRDEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Aug 2020 23:04:22 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:53059 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726583AbgHRDEL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Aug 2020 23:04:11 -0400
+X-UUID: ccb16292f9334147aa0fb1d2597a1b34-20200818
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=xBoe6gt6wxqIzbSLaemhxTBncfJ0ORMMg2skOSe8MSA=;
+        b=rhgOsNBe53VNvhORlgJDR5uzkww/bGNSfyNXs/8HODj8FnuafiWu54n5fxbQupJqZJ+1eG0N4yN4Yk1ONz1JRqQX+4/AnKNsJ0Ce7GZyfeRlqjk9ogwwF5pizXGWRKWOYEltcIG5Lzj8TVUjtPuX163h5t8OFXtyqmxXfo3oTig=;
+X-UUID: ccb16292f9334147aa0fb1d2597a1b34-20200818
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <eastl.lee@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1383409060; Tue, 18 Aug 2020 11:04:02 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 18 Aug 2020 11:03:59 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 18 Aug 2020 11:03:59 +0800
+From:   EastL Lee <EastL.Lee@mediatek.com>
+To:     Sean Wang <sean.wang@mediatek.com>
+CC:     <vkoul@kernel.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <matthias.bgg@gmail.com>, <dmaengine@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <wsd_upstream@mediatek.com>, <cc.hwang@mediatek.com>
+Subject: [PATCH v7] dmaengine: mediatek-cqdma: add dt-bindings and remove redundant queue 
+Date:   Tue, 18 Aug 2020 11:03:50 +0800
+Message-ID: <1597719834-6675-1-git-send-email-EastL.Lee@mediatek.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-References: <20200817102122.434-1-linux.amoon@gmail.com> <20200817102122.434-2-linux.amoon@gmail.com>
- <CAFBinCCYgm83Vs+dq6G4+1wv7T=S0mzt=gtLaHDfgBrCeRkk5A@mail.gmail.com>
-In-Reply-To: <CAFBinCCYgm83Vs+dq6G4+1wv7T=S0mzt=gtLaHDfgBrCeRkk5A@mail.gmail.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Tue, 18 Aug 2020 08:33:00 +0530
-Message-ID: <CANAwSgTqAEyKFFan=opdF3MLtvkwj5MZ=oEizjeZNEfhL8ZzKA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] arm64: dts: meson-g12b-odroid-n2: Enable RTC
- controller node
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Christian Hewitt <christianshewitt@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-TM-SNTS-SMTP: AAEC054072CFE97947F8CDF899EAE91679FC3A35881BA561C49E25310D7FF1332000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+VGhpcyBwYXRjaCBzZXQgYWRkcyBkb2N1bWVudCB0aGUgZGV2aWNldHJlZSBiaW5kaW5ncyBmb3Ig
+TWVkaWFUZWsgQ29tbWFuZC1RdWV1ZSBETUEgY29udHJvbGxlciwNCmFuZCByZW1vdmUgcmVkdW5k
+YW50IHF1ZXVlIHN0cnVjdHVyZS4NCg0KaGFuZ2VzIHNpbmNlIHY2Og0KLSBmaXggZHQgYmluZGlu
+ZyBmb3JtYXQNCg0KaGFuZ2VzIHNpbmNlIHY1Og0KLSBmaXggZnVsbCBuYW1lDQoNCmhhbmdlcyBz
+aW5jZSB2NDoNCi0gZml4IHlhbWwgJiBkbWEtbWFzayBjb2RlIGZsb3cNCg0KaGFuZ2VzIHNpbmNl
+IHYzOg0KLSBmaXggZHRfYmluZGluZ19jaGVjayBlcnJvcnMNCg0KQ2hhbmdlcyBzaW5jZSB2MjoN
+Ci0gYWRkIGRldmljZXRyZWUgYmluZGluZ3MgZm9yIE1lZGlhVGVrIENvbW1hbmQtUXVldWUgRE1B
+IGNvbnRyb2xsZXINCg0KQ2hhbmdlcyBzaW5jZSB2MToNCi0gcmVtb3ZlIHJlZHVuZGFudCBxdWV1
+ZSBzdHJ1Y3R1cmUNCi0gZml4IHdyb25nIGRlc2NyaXB0aW9uIGFuZCB0YWdzIGluIHRoZSBlYXJs
+aWVyIHBhdGNoDQotIGFkZCBkbWEtY2hhbm5lbC1tYXNrIGZvciBETUEgY2FwYWJpbGl0eQ0KLSBm
+aXggY29tcGF0aWJsZSBmb3IgY29tbW9uDQoNCg==
 
-Thanks for your review comments .
-
-On Tue, 18 Aug 2020 at 01:06, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hi Anand,
->
-> thank you for updating this patch!
->
-> On Mon, Aug 17, 2020 at 12:21 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> [...]
-> > changes v2
-> > --Fix the missing INT (GPIOA.BIT7) pinctrl.
-> should I also expect an interrupt property somewhere below?
->
-> > --Fix the missing rtcwakeup.
-> > --Drop the clock not required clock property by the PCF8563 driver.
-> > ---
-> >  .../arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 13 +++++++++++++
-> >  1 file changed, 13 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> > index 34fffa6d859d..f08ae1b337ad 100644
-> > --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> > +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> > @@ -477,6 +477,19 @@ hdmi_tx_tmds_out: endpoint {
-> >         };
-> >  };
-> >
-> > +&i2c3 {
-> > +       pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-> > +       pinctrl-1 = <&tdm_c_din3_a_pins>;
-> > +       pinctrl-names = "default";
-> why is there pinctrl-1 without any corresponding "pinctrl-names" entry?
-> also I'm surprised to see a TDM (audio) related pin function as part
-> of an I2C controller. if this is correct then I'd appreciate a bit
-> information (for example as part of the patch description) why that is
->
->
-> Martin
-
-Opps, I could not figure the difference between GPIOA_7 and GPIOAO_7 pins
-I will try to figure out the correct configuration pin for this node.
-
-Best Regards
--Anand
