@@ -2,127 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68D40248B0F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 18:06:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92772248B24
+	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 18:09:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726974AbgHRQGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Aug 2020 12:06:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39034 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726790AbgHRQGW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Aug 2020 12:06:22 -0400
-Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com [IPv6:2607:f8b0:4864:20::841])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78638C061346
-        for <devicetree@vger.kernel.org>; Tue, 18 Aug 2020 09:06:21 -0700 (PDT)
-Received: by mail-qt1-x841.google.com with SMTP id f19so11014331qtp.2
-        for <devicetree@vger.kernel.org>; Tue, 18 Aug 2020 09:06:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Dfn9XeZmM4o8gTNJBJ38GDqi4Uncp7PQCAHP1+tddKA=;
-        b=kSCKLuVzVR+D06E9lB73szUHemddwXVMG4MoAb/6ide2+Wf6tLHmwY4DMkRWAfCHTb
-         jRlStFbygabD3fWSgpV/dsoMhJ9juDgT4UsPz4pD04B0H8ZnZbSOqwXjljrK5DrzWNG0
-         l5S6U8+KNt5MeyA4ZaRuFw7KwWLBV8RVyF1xvdljDnjbWJxal2Uzu0gEUnI5hmnqLGEr
-         cBHY6ZTIr/Tg8KQJ7iEOIIVIId8M5WFTKlLFuVxPDd5c7DyhHAoeU6XB6W1lyNfqFNZs
-         WLT8N+pDiKaaT153CdboD2/TrsW7RfIyVIfc5kRkLkFvMfic7LKuCCKriCTL4lskYow3
-         IfXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Dfn9XeZmM4o8gTNJBJ38GDqi4Uncp7PQCAHP1+tddKA=;
-        b=bExXmgLmqDDgAT0BCTtLT3iNohc7kMHGEMhrUsOybLoHGextlV3ammEoTZltBgsDr0
-         fs8N1YkwIZiVAbOadnLm/1sqBk7DgGa7zcv47VjHon4/A4ylpCplPnU7DOCEdmBK8I0T
-         bfOWr5r3iy4HYjviDJUKXlO0P+FoSsdkCiIK/Bd7FBJvRDeqLmIsjyASdNOQk1HeaWyF
-         WRABH5ejDpUK49csBIJ/fFvCu8Gure/vqr91YPIGLYoJez4bI4/wgjjOEq9T1MfZdt7O
-         R0L8rFiPCQLeuOMW6NV7gig2O+7nOm62cogxximmLmb8vVESpSwmm9UnXmaZbEE9CCV3
-         STrw==
-X-Gm-Message-State: AOAM530n/tF7YQyC+1zG5x6d/Tf/KjgUwA1yuV955j+4tdFrARHQ1LCI
-        RaG5mcINktBUZVfUMatiEhrIyQ==
-X-Google-Smtp-Source: ABdhPJwE8y60rTooAMYhCh7JKeLJCmjpZa3kARCDxoppqjc7CTVzkeUAgm7/Q4Pe3BcFjNlDc3ZOmA==
-X-Received: by 2002:ac8:5354:: with SMTP id d20mr19239770qto.120.1597766780682;
-        Tue, 18 Aug 2020 09:06:20 -0700 (PDT)
-Received: from localhost.localdomain ([147.253.86.153])
-        by smtp.gmail.com with ESMTPSA id 128sm21198034qkk.101.2020.08.18.09.06.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Aug 2020 09:06:20 -0700 (PDT)
-From:   Jonathan Marek <jonathan@marek.ca>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 3/3] arm64: dts: qcom: use sm8250 gpucc dt-bindings
-Date:   Tue, 18 Aug 2020 12:04:45 -0400
-Message-Id: <20200818160445.14008-3-jonathan@marek.ca>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20200818160445.14008-1-jonathan@marek.ca>
-References: <20200818160445.14008-1-jonathan@marek.ca>
+        id S1726670AbgHRQJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Aug 2020 12:09:15 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:59334 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726779AbgHRQJH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Aug 2020 12:09:07 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1k84AX-009vyk-Nw; Tue, 18 Aug 2020 18:09:01 +0200
+Date:   Tue, 18 Aug 2020 18:09:01 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Landen Chao <landen.chao@mediatek.com>
+Cc:     f.fainelli@gmail.com, vivien.didelot@savoirfairelinux.com,
+        matthias.bgg@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        davem@davemloft.net, sean.wang@mediatek.com, opensource@vdorst.com,
+        frank-w@public-files.de, dqfext@gmail.com
+Subject: Re: [PATCH net-next v2 5/7] net: dsa: mt7530: Add the support of
+ MT7531 switch
+Message-ID: <20200818160901.GF2330298@lunn.ch>
+References: <cover.1597729692.git.landen.chao@mediatek.com>
+ <e980fda45e0fb478f55e72765643bb641f352c65.1597729692.git.landen.chao@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e980fda45e0fb478f55e72765643bb641f352c65.1597729692.git.landen.chao@mediatek.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Constants were used to allow merging separately from the dt-bindings,
-switch to symbolic names now that dt-bindings have landed.
+On Tue, Aug 18, 2020 at 03:14:10PM +0800, Landen Chao wrote:
+> Add new support for MT7531:
+> 
+> MT7531 is the next generation of MT7530. It is also a 7-ports switch with
+> 5 giga embedded phys, 2 cpu ports, and the same MAC logic of MT7530. Cpu
+> port 6 only supports SGMII interface. Cpu port 5 supports either RGMII
+> or SGMII in different HW sku. Due to SGMII interface support, pll, and
+> pad setting are different from MT7530. This patch adds different initial
+> setting, and SGMII phylink handlers of MT7531.
+> 
+> MT7531 SGMII interface can be configured in following mode:
+> - 'SGMII AN mode' with in-band negotiation capability
+>     which is compatible with PHY_INTERFACE_MODE_SGMII.
+> - 'SGMII force mode' without in-bnad negotiation
 
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 15 ++++++++-------
- 1 file changed, 8 insertions(+), 7 deletions(-)
+band
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 377172e8967b..b82d8f40fa42 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -5,6 +5,7 @@
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/qcom,gcc-sm8250.h>
-+#include <dt-bindings/clock/qcom,gpucc-sm8250.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/mailbox/qcom-ipcc.h>
- #include <dt-bindings/power/qcom-aoss-qmp.h>
-@@ -1127,15 +1128,15 @@ gmu: gmu@3d6a000 {
- 				     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "hfi", "gmu";
- 
--			clocks = <&gpucc 0>,
--				 <&gpucc 3>,
--				 <&gpucc 6>,
-+			clocks = <&gpucc GPU_CC_AHB_CLK>,
-+				 <&gpucc GPU_CC_CX_GMU_CLK>,
-+				 <&gpucc GPU_CC_CXO_CLK>,
- 				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
- 				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>;
- 			clock-names = "ahb", "gmu", "cxo", "axi", "memnoc";
- 
--			power-domains = <&gpucc 0>,
--					<&gpucc 1>;
-+			power-domains = <&gpucc GPU_CX_GDSC>,
-+					<&gpucc GPU_GX_GDSC>;
- 			power-domain-names = "cx", "gx";
- 
- 			iommus = <&adreno_smmu 5 0x400>;
-@@ -1181,12 +1182,12 @@ adreno_smmu: iommu@3da0000 {
- 				     <GIC_SPI 683 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 684 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 685 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&gpucc 0>,
-+			clocks = <&gpucc GPU_CC_AHB_CLK>,
- 				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
- 				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>;
- 			clock-names = "ahb", "bus", "iface";
- 
--			power-domains = <&gpucc 0>;
-+			power-domains = <&gpucc GPU_CX_GDSC>;
- 		};
- 
- 		slpi: remoteproc@5c00000 {
--- 
-2.26.1
+>     which is compatible with 10B/8B encoding of
+>     PHY_INTERFACE_MODE_1000BASEX with fixed full-duplex and fixed pause.
+> - 2.5 times faster clocked 'SGMII force mode' without in-bnad negotiation
 
+band
+
+> +static int mt7531_rgmii_setup(struct mt7530_priv *priv, u32 port,
+> +			      phy_interface_t interface)
+> +{
+> +	u32 val;
+> +
+> +	if (!mt7531_is_rgmii_port(priv, port)) {
+> +		dev_err(priv->dev, "RGMII mode is not available for port %d\n",
+> +			port);
+> +		return -EINVAL;
+> +	}
+> +
+> +	val = mt7530_read(priv, MT7531_CLKGEN_CTRL);
+> +	val |= GP_CLK_EN;
+> +	val &= ~GP_MODE_MASK;
+> +	val |= GP_MODE(MT7531_GP_MODE_RGMII);
+> +	val &= ~(TXCLK_NO_REVERSE | RXCLK_NO_DELAY);
+> +	switch (interface) {
+> +	case PHY_INTERFACE_MODE_RGMII:
+> +		val |= TXCLK_NO_REVERSE;
+> +		val |= RXCLK_NO_DELAY;
+> +		break;
+> +	case PHY_INTERFACE_MODE_RGMII_RXID:
+> +		val |= TXCLK_NO_REVERSE;
+> +		break;
+> +	case PHY_INTERFACE_MODE_RGMII_TXID:
+> +		val |= RXCLK_NO_DELAY;
+> +		break;
+> +	case PHY_INTERFACE_MODE_RGMII_ID:
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+
+You need to be careful here. If the MAC is doing the RGMII delays, you
+need to ensure the PHY is not. What interface mode is passed to the
+PHY?
+
+	Andrew
