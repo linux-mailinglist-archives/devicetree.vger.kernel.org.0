@@ -2,126 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C49AB2482DF
-	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 12:25:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B00E2482F1
+	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 12:27:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726482AbgHRKZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Aug 2020 06:25:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41448 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726145AbgHRKZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Aug 2020 06:25:55 -0400
-Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D67FC061389
-        for <devicetree@vger.kernel.org>; Tue, 18 Aug 2020 03:25:55 -0700 (PDT)
-Received: by mail-io1-xd41.google.com with SMTP id u126so20536456iod.12
-        for <devicetree@vger.kernel.org>; Tue, 18 Aug 2020 03:25:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zgNQdUHzF8dSuVSaU+C3ewro8dSYma23rzEUG9sMehY=;
-        b=ZKS5CiYj3e/UXioFJ2eFJIzS3Dx5xjqimMKDtCCw+1PDnt2BV3C9wJdCqe94j3LVwk
-         15WJ58m96jgfqFrCt+LHMHR74MT9GWQFQemwFrMRcXL0T1PHhfPzTemp/myoV1e/HuhC
-         R1oIaYolr7xgePy+4AxlVxhyZXpuK9xMZ4z0emEeeJle2R8AgjVEOi0TiOZcZg7lKlRD
-         ftVBsZkM0LAsCtyG54ph0D0Bv/mSI91rHzWhmT4PWuJe7wmo8n7siTgWF+nlFOEYTzez
-         gvdfN9aePEGoSalN4DKMxNteFUPvU737joysw1KliSkO1xv3bgQYe+adAh2L6Ilegp2l
-         l5Gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zgNQdUHzF8dSuVSaU+C3ewro8dSYma23rzEUG9sMehY=;
-        b=IMDZ0zhyb/F+N8TDBNbl3NWngT24QGCN2WXYP3IahpaB/cE/Ta25VppZIN+5Rud7WM
-         aa70CEzpL8J2QUQ2wVrRvu1OpkkmVTTKPzOGjdxWK/9dmnLgHGh1TC2UjqGa+W4aKrbn
-         Y+zlgPXbk1//8r8VzD7Ih4poCqkXPu3abxjKaOCSxhTlJKiolEojAY+mj/Go1af+4yeU
-         dpfNvyN52pMXcUEp/QTOlUuQjnMciPb14kpyUYhEUIczYduKD6SDBZn7QLoDROI5y7f4
-         ofelDYf84NuSwUtxysbqXMK3MiABOHrKblpihVMqnfSsLEU0c5zHbLl2fLDrgZpZmJC5
-         X8Ag==
-X-Gm-Message-State: AOAM533qk/RlLs3ZUoBww/pdRvte+FrdxdZvMT+ByB+TflsNdFhvFbs2
-        SChVkqpq4LVbJbBnMT7tWBJ2Z8pxbE5C1aSWXuw=
-X-Google-Smtp-Source: ABdhPJzFOI9vNd7LzlXMLwcLhLc4bR4pD2Jeyh89ELFMK3se42heDlZ+wgkiyOxtRjkIGSjmvYRMMkHvstxLBk0TCTo=
-X-Received: by 2002:a6b:fe0f:: with SMTP id x15mr15944348ioh.173.1597746354429;
- Tue, 18 Aug 2020 03:25:54 -0700 (PDT)
+        id S1726422AbgHRK1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Aug 2020 06:27:47 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:40654 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726336AbgHRK1q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Aug 2020 06:27:46 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07IAReZO003390;
+        Tue, 18 Aug 2020 05:27:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1597746460;
+        bh=8xkBadz85cSC+Zl1n9wGXqzdc8DH2yqT3Qiku2kAblw=;
+        h=Subject:From:To:CC:References:Date:In-Reply-To;
+        b=BlejnWNNhXfa2jmfFm5+Gu9xiQFI5A98q/H1lZVldl6GAy/Oi1m5IsPFRdbjW5Vpi
+         MHGr7oy7vKwnat4RaZwpxih/DBIdRyrzMBsXwTCChBtDu+hvHFW2QoFXoHnw0ptwwu
+         83Ya/fJ/l2wop6gc1uYBWeUygoD0tlbd2Qj/Ea18=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07IAReWK096463;
+        Tue, 18 Aug 2020 05:27:40 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 18
+ Aug 2020 05:27:40 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 18 Aug 2020 05:27:40 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07IARbcJ057381;
+        Tue, 18 Aug 2020 05:27:38 -0500
+Subject: Re: [PATCH v5 2/2] Add Intel LGM soc DMA support.
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+To:     Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>,
+        <dmaengine@vger.kernel.org>, <vkoul@kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <andriy.shevchenko@intel.com>,
+        <cheol.yong.kim@intel.com>, <qi-ming.wu@intel.com>,
+        <chuanhua.lei@linux.intel.com>, <malliamireddy009@gmail.com>
+References: <cover.1597381889.git.mallikarjunax.reddy@linux.intel.com>
+ <cdd26d104000c060d85a0c5f8abe8492e4103de5.1597381889.git.mallikarjunax.reddy@linux.intel.com>
+ <fbc98cdb-3b50-cbcc-0e90-c9d6116566d1@ti.com>
+X-Pep-Version: 2.0
+Message-ID: <70848117-ec29-d293-6603-cbf47dec35d4@ti.com>
+Date:   Tue, 18 Aug 2020 13:29:12 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-References: <20200817102122.434-1-linux.amoon@gmail.com> <20200817102122.434-2-linux.amoon@gmail.com>
- <CAFBinCCYgm83Vs+dq6G4+1wv7T=S0mzt=gtLaHDfgBrCeRkk5A@mail.gmail.com>
- <CANAwSgTqAEyKFFan=opdF3MLtvkwj5MZ=oEizjeZNEfhL8ZzKA@mail.gmail.com>
- <CANAwSgTq+4KQJJLJPxV+afAYiqfpJ_JvwdJHn4sf5NVJgedbUQ@mail.gmail.com> <1j1rk4flh6.fsf@starbuckisacylon.baylibre.com>
-In-Reply-To: <1j1rk4flh6.fsf@starbuckisacylon.baylibre.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Tue, 18 Aug 2020 15:55:44 +0530
-Message-ID: <CANAwSgQwbAuHUnG1JwBQUxWJbn+MYwfhPSv=SH1g6+LLPKmsEg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] arm64: dts: meson-g12b-odroid-n2: Enable RTC
- controller node
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Christian Hewitt <christianshewitt@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <fbc98cdb-3b50-cbcc-0e90-c9d6116566d1@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin, Jerome,
 
-Thanks for your review comments.
 
-On Tue, 18 Aug 2020 at 13:13, Jerome Brunet <jbrunet@baylibre.com> wrote:
->
->
-> >> > >
-> >> > > +&i2c3 {
-> >> > > +       pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-> >> > > +       pinctrl-1 = <&tdm_c_din3_a_pins>;
-> >
-> > Note: without setting this *pinctrl-1* configuration RTC wake up
-> > feature works as expected.
->
-> As pointed out by Martin, the pinctrl-1 here makes no sense for RTC on
-> i2c. If the rtc is on an I2C of AO bank, the pinctrl-0 is likely to be
-> wrong as well.
+On 18/08/2020 13.16, Peter Ujfalusi wrote:
 
-Ok are you suggesting *I2C_AO_S0_SCL* and *I2C_AO_S0_SDA* pins.
+=2E..
 
-+&i2c_AO {
-+       status = "okay";
-+       pinctrl-0 = <&i2c_ao_sck_pins>, <&i2c_ao_sda_pins>;
-+       pinctrl-names = "default";
-+
-+       rtc@51 {
-+               compatible = "nxp,pcf8563";
-+               reg = <0x51>;
-+               #clock-cells = <0>;
-+       };
-+};
+>> +static void dma_issue_pending(struct dma_chan *chan)
+>> +{
+>> +	struct ldma_chan *c =3D to_ldma_chan(chan);
+>> +	struct ldma_dev *d =3D to_ldma_dev(c->vchan.chan.device);
+>> +	unsigned long flags;
+>> +
+>> +	if (d->ver =3D=3D DMA_VER22) {
+>> +		spin_lock_irqsave(&c->vchan.lock, flags);
+>> +		if (vchan_issue_pending(&c->vchan)) {
+>> +			struct virt_dma_desc *vdesc;
+>> +
+>> +			/* Get the next descriptor */
+>> +			vdesc =3D vchan_next_desc(&c->vchan);
+>> +			if (!vdesc) {
+>> +				c->ds =3D NULL;
+>> +				return;
+>> +			}
+>> +			list_del(&vdesc->node);
+>> +			c->ds =3D to_lgm_dma_desc(vdesc);
+>=20
+> you have set c->ds in dma_prep_slave_sg and the only way I can see that=
 
-But I get the following output with this configuration.
+> you will not leak memory is that the client must terminate_sync() after=
 
-[root@archl-on2e ~]# dmesg | grep rtc
-[    5.284632] rtc-pcf8563 0-0051: registered as rtc0
-[    5.300148] rtc-pcf8563 0-0051: hctosys: unable to read the hardware clock
+> each transfer so that the synchronize callback is invoked between each
+> prep_sg/issue_pending/competion.
+>=20
+>> +			spin_unlock_irqrestore(&c->vchan.lock, flags);
+>> +			ldma_chan_desc_hw_cfg(c, c->ds->desc_phys, c->ds->desc_cnt);
+>> +			ldma_chan_irq_en(c);
+>> +		}
+>=20
+> If there is nothing pending, you will leave the spinlock wide open...
 
-I also tried to move the my rtc nodes under i2c_AO, but I got the same result.
+you leave it locked...
 
-[root@archl-on2e ~]# dmesg | grep rtc
-[    5.447423] rtc-pcf8563 0-0051: registered as rtc0
-[    5.457465] rtc-pcf8563 0-0051: hctosys: unable to read the hardware clock
+>=20
+>> +	}
+>> +	ldma_chan_on(c);
+>> +}
 
-But as per the schematic RTC configured using GPIOA.BIT14 (SDA) and
-GPIOA.BIT15 (SCL)
-And with this configuration with i2c3 node RTC is getting configured correctly.
+- P=C3=A9ter
 
-[root@archl-on2e ~]#  dmesg | grep rtc
-[    5.240760] rtc-pcf8563 0-0051: registered as rtc0
-[    5.243225] rtc-pcf8563 0-0051: setting system clock to
-2020-08-18T10:23:04 UTC (1597746184)
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
-Best Regards
--Anand
