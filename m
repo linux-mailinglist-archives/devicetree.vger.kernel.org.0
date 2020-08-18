@@ -2,85 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 261F9247FA9
-	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 09:45:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCAA2247FF3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 09:51:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726628AbgHRHpe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Aug 2020 03:45:34 -0400
-Received: from mout.gmx.net ([212.227.17.20]:53699 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726582AbgHRHpd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Aug 2020 03:45:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1597736703;
-        bh=ap693LLFeqKCPEJc56ThJpeeYc97CmzfomkRjHhl5Lc=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=i6WRLedkh61h9EWnwL8+agH/ZhPLFobT8LQwX97RutWb02W8g51ojjqea5SoSJgRp
-         pSQiyHg4h+JQz5eDzRZs1LxBH/TqxomEq3UsfPl502I8Lh6YYHHTrIMneUNuc4cb8e
-         5CDlAxNeLU+UJvNobxpV58kb6BG/AZiC1d5daxlg=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [185.53.43.192] ([185.53.43.192]) by web-mail.gmx.net
- (3c-app-gmx-bap75.server.lan [172.19.172.175]) (via HTTP); Tue, 18 Aug 2020
- 09:45:03 +0200
-MIME-Version: 1.0
-Message-ID: <trinity-8b2a2966-9e61-4617-9cdc-fa496cfdd1af-1597736703797@3c-app-gmx-bap75>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     David Woodhouse <dwmw2@infradead.org>
-Cc:     linux-mediatek@lists.infradead.org,
-        chunkuang Hu <chunkuang.hu@kernel.org>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Aw: Re: [PATCH 1/2] arm: dts: mt7623: move more display-related
- nodes to mt7623n.dtsi
-Content-Type: text/plain; charset=UTF-8
-Date:   Tue, 18 Aug 2020 09:45:03 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <5EB39D93-57C0-47AD-B0F3-09AEE643CFBF@infradead.org>
-References: <20200807082754.6790-1-linux@fw-web.de>
- <20200807082754.6790-2-linux@fw-web.de>
- <trinity-f5a5deb1-c123-44d7-b7ca-1f7a8dbe1c1c-1596889651064@3c-app-gmx-bap69>
- <CAAOTY_9o_hBWxWBdDoeeJ6zuV4rb4R_yEoN5+L0uHBGMw4Kduw@mail.gmail.com>
- <cefc273c226c93c605f4dc76afa9eb5aacceaf26.camel@infradead.org>
- <trinity-bbc9a618-a916-40bb-b144-bffe715646a4-1597734987449@3c-app-gmx-bap75>
- <5EB39D93-57C0-47AD-B0F3-09AEE643CFBF@infradead.org>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:85BOu6BZdj2Wig1BiNK0aOOhPHhkbzUQavsJfIXv/VN9miFbvhQHTt6im8lCBMQ+0oeEh
- ulmrdb/qo9PZvIVceuhKSdzs1AwzuG3BlQu1U7nIKN8i83ItITsAAddk7nlIBOH3yzpz5+513U/i
- SNIY2EIoMsHRr0Ie7x0Y4AwbaqlOwtk26v8oAm463L+J4RSdi57ZXMdd8qlGrUeRx1p3yBeUaTJf
- BwmKDZbBDGdxpUrHoCgn8BohE0r2ZKbEJ8/M3M5a25LQVVOEK2lTGVNnJXBmK+7Jjlb1ts7L5hjx
- jA=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:s0ZG40dufYo=:hcHuqQMJtbMsOT9VqYBWd1
- 5p/sXKqEySlXE7TBgaELLBeCDvBjzNy77c0v6XFV8OKM2TKRv+vxm8n8FxDkg02DJLze2XBt3
- cVJk3BKRNUWpFhvPOsv6nYjHqh+vzFEnDyhoDEvnuefRBNMoUsbwj0FB66OTnrPAxHlzv5n63
- 12Vgg3CEqm2EAwXuO+K9A2gLbsMWV07KDVal8mgs+OMKvZ8GrgBfX/7WTlvkjj3v6JbIQmlQV
- huKSm0Gv+khQbdmAQThhd/klkRxRDDd8FEb6R5wl/9m9O3uGA1x5FkrIlPdr783oS4t4/Y/mp
- qwQkDUbuvyRsnR69V1HyIDZKMi8FuwofVnmZRgo1WqcviPLJW3PQKvVU1qh5/aIwnfrg1kin+
- vaNpUy9F5TspjPhlTf35KlZaQL56V9ATB1tKKKCHZoxvzOPIBpu7kST+iFyynL8aGT9sQTLrE
- jo98IAxuOET+LR16X7KNHuTGKGVPTTQnlerA0ogW2r2IoEce9z9WvthgXLEgKJYi5XBdQV7H+
- Nav2yK4ObULITv0KiYDRS9Pj69sPz2vO5ILFZLgv2AijdZpOZocWqOxK56CDdCu7TTeM0l3/Y
- dWbjLri1EvnJoSw51SJtecsfoegvllfufY3SCqaKRftqz77GtRaxdEaAfj7mwZ/gI+plZngd5
- Aw8siV1RZxJMrvJkn4npHJgzkq85+7yHb3Xy3Ksxi8iV55NKpBZFeDG9MotsEI8OwVOM=
+        id S1726514AbgHRHvq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Aug 2020 03:51:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44774 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726391AbgHRHvp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Aug 2020 03:51:45 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B6A1C061389
+        for <devicetree@vger.kernel.org>; Tue, 18 Aug 2020 00:51:45 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id g8so15374802wmk.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Aug 2020 00:51:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=2hez8cMOHm4MHzr6nKQb7EhEiKFqllAfu4DLeZkHauM=;
+        b=gIeO4zbtImu6zQZr18l+65t4Ccann9erqT18Erx9tFwDBwRM2wX9XJGk8gtrhA5Uyq
+         TnU/TrxGj+A2bT0yvAtlgMR5d6qdeFpk/JhzPxH22I3IKEO3GRBS5P+c/2yHRFoA/U58
+         rpuky+ij8r/M2WEV2Zahi+eY6bRhO2HMcCYQI4t56IyxM0/yYElHqeXG0pVRa/f9dRFa
+         2UdrGJTSw3U4KbDAwtrS47Vz9p7HZ4pSdDEfVg8f9pDM4Vz0evb3ZPweXfNuzlj7s5Qb
+         7cQhtwiQ1KaSB214sjB3yMVke86b0s7b0UW+IojE/6AEA4pciwvn4RivqoG9CerXmDL1
+         n7iA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=2hez8cMOHm4MHzr6nKQb7EhEiKFqllAfu4DLeZkHauM=;
+        b=rcIirNQs1nYn4KK1m6lof8kf3IsIY7JR96B2eA9r9zDb4eigCxSz3FHm7cjSuSjibc
+         jXSnwi+b6JfbWcLhFJOvYsJqUo9EIyQxpFTanroOkYMwW/nI7966i+WsB1c1h5sCs1ZK
+         nK3Dd9S+JJ1CLrXCWj4x4qKFOrOliaTEpXKgVqE8b6EW2p4zKOogs9Sj/DWQGEmnCP60
+         yQkrNlwNX7gbRo5wxw1jT20cqLUtnws90pFdyAVLuXjSF+u93CTP40DBYh4I2CQAX/NP
+         PvHm0SbBaPLH92r+PT92knTtmtqMPPOmymuZVlKZp5Uwc1KmY6bBYu2EeiHhxSBpgay7
+         faXA==
+X-Gm-Message-State: AOAM531f0JnPiz/Jh/B2WpgcEASc80tfjskIjxMUxRni3DtkQKGI6X+r
+        MTqEGRiBFTQiNRIxQOFWu44=
+X-Google-Smtp-Source: ABdhPJxWkppe7p4ENX4OrSeu+TJITQSE7fitTOnZmX8ICazVcUENCsw4cSRJoxRUXl1aHa5XMmsI6g==
+X-Received: by 2002:a05:600c:2189:: with SMTP id e9mr19126215wme.171.1597737102234;
+        Tue, 18 Aug 2020 00:51:42 -0700 (PDT)
+Received: from [172.16.20.20] ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id p6sm31305349wmg.0.2020.08.18.00.51.40
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 Aug 2020 00:51:41 -0700 (PDT)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.15\))
+Subject: Re: [PATCH v2 2/3] arm64: dts: meson-g12b-odroid-n2: Disable virtual
+ RTC driver
+From:   Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <1jzh6se6te.fsf@starbuckisacylon.baylibre.com>
+Date:   Tue, 18 Aug 2020 11:51:38 +0400
+Cc:     Anand Moon <linux.amoon@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>
 Content-Transfer-Encoding: quoted-printable
+Message-Id: <6B583170-3479-4DFB-B81A-431B5982C8D6@gmail.com>
+References: <20200817102122.434-1-linux.amoon@gmail.com>
+ <20200817102122.434-3-linux.amoon@gmail.com>
+ <1jzh6se6te.fsf@starbuckisacylon.baylibre.com>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+X-Mailer: Apple Mail (2.3445.104.15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Gesendet: Dienstag, 18. August 2020 um 09:36 Uhr
-> Von: "David Woodhouse" <dwmw2@infradead.org>
-> >David: is it ok to squash your mali-commit with mine moving the other
-> >display-related nodes and use me as author?
->
-> Absolutely. Can the U7623 patch go along for the ride too? Was there any=
-thing else you weren't including?
 
-i did not included the mt7623a-patches because they are not related to my =
-hdmi-series ;)
-but it should be easy to add them on top/separately
 
-regards Frank
+> On 18 Aug 2020, at 11:45 am, Jerome Brunet <jbrunet@baylibre.com> =
+wrote:
+>=20
+>=20
+> On Mon 17 Aug 2020 at 12:21, Anand Moon <linux.amoon@gmail.com> wrote:
+>=20
+>> Disable virtual RTC node on Odroid N2,
+>> since RTC PCF8563 support rtc wakeup.
+>>=20
+>> [    7.171149] meson-vrtc ff8000a8.rtc: registered as rtc0
+>> [    7.182875] meson-vrtc ff8000a8.rtc: setting system clock to =
+1970-01-01T00:00:07 UTC (7)
+>>=20
+>=20
+> Maybe I'm missing something but why should disable this ?
+> Can't the 2 RTCs co-exist ?
+
+aliases {
+	serial0 =3D &uart_AO;
+	ethernet0 =3D &ethmac;
+	rtc1 =3D &vrtc;
+};
+
+^ adding this alias moves vrtc to /dev/rtc1 allowing the on-board rtc to
+assume /dev/rtc0 which scripts/users and HOWTO guides assume to be a
+real clock device. Tested and working fine with my own experiments with
+enabling rtc on a bunch of G12B/SM1 boards.
+
+Christian=
