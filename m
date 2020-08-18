@@ -2,91 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80709248E33
-	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 20:54:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63087248E6D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 21:07:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726640AbgHRSyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Aug 2020 14:54:32 -0400
-Received: from mail29.static.mailgun.info ([104.130.122.29]:25148 "EHLO
-        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726576AbgHRSyc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Aug 2020 14:54:32 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1597776871; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=qgjBQdmGdWynaWSNQfVd0+hOTs1Zz97WJ7gQC5huOBE=; b=GdL4VIEsnEFXhAvvRCK6guKZ92Gt2aFEOrm/W1sqR4jpeLm32LnljKdmbKCybVZYWmtTS9sq
- RR4Axy5cpswN2/QKyqP+SjRCXUmFNfE5C96zv4WJFo6jsPmTN6PCdsCHEmrGyJ1gws0t+eXF
- NbR/iGSvxwgjiHrnYQIXAmhSU08=
-X-Mailgun-Sending-Ip: 104.130.122.29
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 5f3c23e4f2b697637a94ba27 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 18 Aug 2020 18:54:28
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 04650C433CA; Tue, 18 Aug 2020 18:54:27 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from eberman-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: eberman)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9F259C433A1;
-        Tue, 18 Aug 2020 18:54:25 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 9F259C433A1
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=eberman@codeaurora.org
-From:   Elliot Berman <eberman@codeaurora.org>
-To:     Sebastian Reichel <sre@kernel.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Elliot Berman <eberman@codeaurora.org>, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Trilok Soni <tsoni@codeaurora.org>,
-        Prasad Sodagudi <psodagud@codeaurora.org>
-Subject: [RESEND PATCH v1 4/4] arm64: dts: qcom: pm8150: Add reboot magic
-Date:   Tue, 18 Aug 2020 11:54:16 -0700
-Message-Id: <1597776856-12014-5-git-send-email-eberman@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1597776856-12014-1-git-send-email-eberman@codeaurora.org>
-References: <1597776856-12014-1-git-send-email-eberman@codeaurora.org>
+        id S1726529AbgHRTHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Aug 2020 15:07:02 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:49516 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726435AbgHRTHC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Aug 2020 15:07:02 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07IJ6teI012213;
+        Tue, 18 Aug 2020 14:06:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1597777615;
+        bh=ATT9YzBtFfOv6tpYe6xqvgONf4ZLmPGq3Z7H+UA4wq8=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=VBQLhkMmzhTnD3FER2HDMQbJDIv+qAZi+y0679ddInmb8qZF2jnzHs1cCw4G6bc7t
+         00aFty27gkNRGCbW+lXZCCaF8XiSRVv7kU3jRcSLiVYkLEcxCWCJFBp0eEaHYNjJXi
+         8HypjwHbTUTO+20io0KUxNaB5N2rF4pfa5twIz4E=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07IJ6tCl079230;
+        Tue, 18 Aug 2020 14:06:55 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 18
+ Aug 2020 14:06:55 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 18 Aug 2020 14:06:54 -0500
+Received: from [10.250.38.37] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07IJ6sbK107852;
+        Tue, 18 Aug 2020 14:06:54 -0500
+Subject: Re: [PATCH] dt: bindings: lp55xx: Updte yaml examples with new color
+ ID
+To:     <pavel@ucw.cz>, <robh@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-leds@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20200812193248.11325-1-dmurphy@ti.com>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <df82c0f7-8ea6-04f6-6da1-018dac7e4c6b@ti.com>
+Date:   Tue, 18 Aug 2020 14:06:54 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20200812193248.11325-1-dmurphy@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add reboot command magic values for pm8150 pon device.
+Pavel
 
-Signed-off-by: Elliot Berman <eberman@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/pm8150.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+On 8/12/20 2:32 PM, Dan Murphy wrote:
+> Update the binding examples for the color ID to LED_COLOR_ID_RGB
+>
+> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+> ---
+>   Documentation/devicetree/bindings/leds/leds-lp55xx.yaml | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+> index b1bb3feb0f4d..89f69d62493e 100644
+> --- a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+> +++ b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+> @@ -189,7 +189,7 @@ examples:
+>                  #address-cells = <1>;
+>                  #size-cells = <0>;
+>                  reg = <0x2>;
+> -               color = <LED_COLOR_ID_MULTI>;
+> +               color = <LED_COLOR_ID_RGB>;
+>                  function = LED_FUNCTION_STANDBY;
+>                  linux,default-trigger = "heartbeat";
+>   
 
-diff --git a/arch/arm64/boot/dts/qcom/pm8150.dtsi b/arch/arm64/boot/dts/qcom/pm8150.dtsi
-index 1b64069..afd6231 100644
---- a/arch/arm64/boot/dts/qcom/pm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8150.dtsi
-@@ -50,6 +50,11 @@
- 		pon: power-on@800 {
- 			compatible = "qcom,pm8916-pon";
- 			reg = <0x0800>;
-+
-+			reboot-mode-names = "bootloader", "recovery",
-+					    "dm-verity device corrupted";
-+			reboot-mode-magic = <0x1>, <0x2>, <0x4>;
-+
- 			pwrkey {
- 				compatible = "qcom,pm8941-pwrkey";
- 				interrupts = <0x0 0x8 0x0 IRQ_TYPE_EDGE_BOTH>;
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Don't forget this simple update to the LP55xx yaml file.
+
+Dan
 
