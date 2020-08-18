@@ -2,182 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 803D4247FB5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 09:46:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33EFF24804B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 10:16:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726424AbgHRHqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Aug 2020 03:46:22 -0400
-Received: from mailout4.samsung.com ([203.254.224.34]:34247 "EHLO
-        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726513AbgHRHp6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Aug 2020 03:45:58 -0400
-Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20200818074557epoutp0474c495da6838deb4e9c3c02873aa49d4~sTR2GD29b3250432504epoutp04G
-        for <devicetree@vger.kernel.org>; Tue, 18 Aug 2020 07:45:57 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20200818074557epoutp0474c495da6838deb4e9c3c02873aa49d4~sTR2GD29b3250432504epoutp04G
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1597736757;
-        bh=NYk4vyq4/Af59A9O7MoR71/hiPLvorK8FswSuJrxYj0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=AjkfkoJuNOTE90C4RP+PWEQApHAmmym/NgxeiJXkE5wXPBAQKz6sH67YU4blpc0lR
-         stBa292lreWLA+Ln8I1wSB7AdVxYXo+dRyXeyGq2UsUMxsbN5KDKoWp3FPzo5pJ71/
-         aGb/7dhLy88ZWuPBMR3QRzk3lfOGgaJ0SR4pa+n8=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas2p3.samsung.com (KnoxPortal) with ESMTP id
-        20200818074556epcas2p3e533cf487e0aedafeb49bf98bb3f95af~sTR1fFhvt3189631896epcas2p3O;
-        Tue, 18 Aug 2020 07:45:56 +0000 (GMT)
-Received: from epsmges2p4.samsung.com (unknown [182.195.40.190]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 4BW2yq0g06zMqYkw; Tue, 18 Aug
-        2020 07:45:55 +0000 (GMT)
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
-        B2.7B.27013.2378B3F5; Tue, 18 Aug 2020 16:45:54 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
-        20200818074554epcas2p2702e648ba975ea6fbe33c84396b152a9~sTRz60yJF2912929129epcas2p2P;
-        Tue, 18 Aug 2020 07:45:54 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20200818074554epsmtrp2a90715301aa5475ea0eb05387cb4b51a~sTRz5weJW3172931729epsmtrp2Y;
-        Tue, 18 Aug 2020 07:45:54 +0000 (GMT)
-X-AuditID: b6c32a48-d1fff70000006985-f0-5f3b8732f518
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        79.78.08303.2378B3F5; Tue, 18 Aug 2020 16:45:54 +0900 (KST)
-Received: from Dabang.dsn.sec.samsung.com (unknown [12.36.155.59]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20200818074554epsmtip2c2421d264027b33b380a1078e7784644~sTRzmy3cy2522425224epsmtip2U;
-        Tue, 18 Aug 2020 07:45:54 +0000 (GMT)
-From:   Hyesoo Yu <hyesoo.yu@samsung.com>
-To:     sumit.semwal@linaro.org
-Cc:     minchan@kernel.org, akpm@linux-foundation.org,
-        iamjoonsoo.kim@lge.com, joaodias@google.com, linux-mm@kvack.org,
-        pullip.cho@samsung.com, surenb@google.com, vbabka@suse.cz,
-        afd@ti.com, benjamin.gaignard@linaro.org, lmark@codeaurora.org,
-        labbott@redhat.com, Brian.Starkey@arm.com, john.stultz@linaro.org,
-        christian.koenig@amd.com, linux-media@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, Hyesoo Yu <hyesoo.yu@samsung.com>
-Subject: [PATCH 3/3] dma-heap: Devicetree binding for chunk heap
-Date:   Tue, 18 Aug 2020 17:04:15 +0900
-Message-Id: <20200818080415.7531-4-hyesoo.yu@samsung.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200818080415.7531-1-hyesoo.yu@samsung.com>
+        id S1726403AbgHRIQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Aug 2020 04:16:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48754 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726357AbgHRIP7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Aug 2020 04:15:59 -0400
+Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B223C061342
+        for <devicetree@vger.kernel.org>; Tue, 18 Aug 2020 01:15:59 -0700 (PDT)
+Received: by mail-io1-xd43.google.com with SMTP id z6so20335903iow.6
+        for <devicetree@vger.kernel.org>; Tue, 18 Aug 2020 01:15:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mVTJ27D4R3H6C6f0jdBIw50yJtblFxQuDJ6LjKOMP5s=;
+        b=qBojPTd7Q+0e6B8OJziPOJ9nn7uED4XQgwDpQNf996Pu0sWnuI7BWPbmuzmjvketsq
+         Nz46NgmdJ9KoR00KJGuDfmAfZGZtXB76eV1PVh1pVjJwFz09zLl4ZLiOxv5hK2d384du
+         1B3BD/3QQo24iogPuiSkD5HKTNsfefDaY+WlOZ34sSGaRkQh5lkE5QGzBdqSdhfTOqkF
+         6p1AUoRhtjl5E6apEJXb7AVYrnf3G7101Myby6rfj/hsYitV3mRo68qGXC5/HBEJO/Ry
+         /O4QVYQ2E9GaPz1po2qEkOkLnmncFpR7A0zxLVmj5Ic5SEUGnAYynHN7b0cB2UAsgjqB
+         BV7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mVTJ27D4R3H6C6f0jdBIw50yJtblFxQuDJ6LjKOMP5s=;
+        b=FqNysAoV2oIYjDcOEkrugSwK0UkY1e9gB657m4g0hUsqLR44JXoSEvJUInIk9CAmQ3
+         U9P7CFKuMlAraCXH1wHitS+VZH0FPrnDGY1cJ3BsPostoUozk505SwZ4a0nznZZAxhTo
+         dIoiIBRCzQV+SUHZcOufdFYjRzHi9zABn9NpyZkMtS/RcQENqLPG3WzN6wSmUHikQEJp
+         uTgw3neir4JEwuXT+OFBVk3tSDd1Uf+UGLn4PPRktqTnTzFT9v3YUB1hFUGv5IwCpzB9
+         cwU8+EsmBojUUXfCLWOcLt6Y2Rlhna5HD/YLCbCad6w0gmhE1mqdh1kRnNdm9ifjkSLn
+         Hw7w==
+X-Gm-Message-State: AOAM533ETCePaNzWE2ocuRw+un9fiXjpwTaRuygW7UCpqbLBBgH9nJW6
+        m9M1c/f375QroFoSOjSoFLyFODiQal4BMp9XKi4=
+X-Google-Smtp-Source: ABdhPJwoaSxUUmkYr7BSfO/yhNs7u20OUnmAeKOoAXMZAbbSOtGvZT9QCMhCfI4jY1MhXOJVcmRHUZ20H+AirlWZWg4=
+X-Received: by 2002:a6b:f801:: with SMTP id o1mr15423627ioh.43.1597738558213;
+ Tue, 18 Aug 2020 01:15:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Te0xTVxze6e29LWrNteg4wh7dZUYhFlqk5YAwcBBzI86RYJzbEruO3hVm
-        abu2sMmEuclDKiU8ssEKatkcUh5jIDgG4gRJCgQV5ZG6DRUQkjEBlTEmL9dSzPjv+32/7zvf
-        +f1ODhfj53I8uQlqA6NTy1UUsY596ZqPVLgra7dMNPsmmu7O56DS2moCfdXeTaCR7l6AJu+1
-        4Ohcxw0c9c9OE2gpuxdH1tMnCTRnGcFQz4IQWS//y0J/9w+zUF9zKYFyfmrE0d3qZzgydw2y
-        UPnsNActm9oAymjt4KDuoRkOKrxtIVDJl7kgwoPOuL1E0NVnqwHdl2ti0Zb6JLq+Mpug658U
-        cGjjZD+L/mPwMkF3Fi+w6XunbSz69+VRjJ6+MkDQuQ2VgO6xdHBom/1nFj1T/0oM+Z4qNJ6R
-        KxidgFHHaRQJamUYFR0ri5RJpCKxUByMgiiBWp7IhFFR+2OEexNUjlVQgmS5KslBxcj1esr/
-        jVCdJsnACOI1ekMYxWgVKq1YrPXTyxP1SWqlX5wmMUQsEgVIHMoPVPEFV8O1eRs/W776PfsE
-        yFtvBG5cSAbCB8sXWUawjssnmwC8k58NXMUTADMvWVY7MwDWlJ7Cn1tMtYurqmYAax/XEK5i
-        DsAm2wLHqSLI7bCzoRw48WbSCxZVVOBOEUZa2XCw0L7ScCcjYPv9h2wj4HLZ5DY4akt1Qh4Z
-        DIe+/sIV9irMLxkCTtqNDIFjVcFOmkdugl3fPmA7MeaQnGwswZynQ7LKDbbUtaxeNApW5AwA
-        F3aHE7YGjgt7wpmpVsKFP4XX00dwlzkdwFvfDKw2dkHzeNZKMEb6wNpmfyeEpDfs+G01dyM8
-        dW2J46J58FQm32X0hr+Wn2W78FY4UpOFuyQ0zJ70dy3KBGBXRhWWBwTmNdOY10xj/j/XArBK
-        8CKj1ScqGX2ANnDt89aDlY/hSzeBkslHfu2AxQXtAHIxajPvw84gGZ+nkB9LYXQamS5Jxejb
-        gcSx6HzMc0ucxvGz1AaZWBIglYqCJUgiDUCUB28qpPcIn1TKDcxRhtEyuuc+FtfN8wQrIl8+
-        cShNYU/2k2YyNcepp4e/i8x522vfeVP0P1l9qj1CJqPI2ndQFX1G1LZ+aNR7UzR2N3Ouqm6n
-        8HxverjGOvURMQ/rqi+Is8cvVPi8cC61xdB2J6YTN1jHFjvD8al3cuy4Rf4wsNbQf2yWt4Qd
-        5aT88HhCp5p/ahN0vJb15yfvfvzWbpPUGJuRXur1etGPCv/5lNjQA/tv/mKXFbwv9A1IbeR6
-        e8zt3R5VtjSbrdySWsNJ9q3bs4Ha4X7r4pD3dW3xjcWgm1X8fQepwjM7hw+VbU0ua7zyqLg1
-        5eUjw2Xbij3/SnjWO55WQeyg7CNpn98/EIibm186bB87HslWGns2UGx9vFzsi+n08v8A7LoL
-        oKEEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Rf1CLcRzHfZ89e/YsNx4z16MusTtilErOlxyO476hi7+cSGY9CtvqtiKc
-        XyUlmpQVG1rnRLVTJtplkZVr23XdbOlQ6bc4sqj8OIq2zp3/3vd+ve59n7sPyeJbcR/ygDyZ
-        UcjFUiHhhT+qF/oHhmaGxwZnpc2BLttlDrxeoSdgmtlGwB6bHcDBzsdsWNTQzIYtoy4Cjp23
-        s2HphXQCftf1sGDTr0BYavqBwZGWbgw6a64T8GLlQzZ8q//DhhprKwZLRl0cOJ7zDMCM2gYO
-        tHUMc2C+Q0dA7RkVWOeNMhxjBNLf1APkVOVgSGdIQYay8wQyfM3joOzBFgy1t5oIZLn6C0ed
-        Fxox1Dbey0KuJy8JpKoqA6hJ18BBja+qMTRsmLONivZaHcdIDxxmFEvX7PVKyKtbm5Q7LXW8
-        7hZ+GuROzQZckqbC6JyK3yAbeJF8ygjojos/8Ekwm9YMW7HJPJPuPNvAnpRGAf210A7cgKAC
-        aEtViScLKF+68O5dj8Si6nG6/t4rwg1mUutoc9eniVWSxKn5dG/jCXfkUSvpDvWpyX1/+rK2
-        A7hrLrWK7i9f6a75E4bRZPScwKNm0NZrfZ7TWBN6+kMtKxdQmv+Q5j+kA1gZmM0kKWXxMmVI
-        UqicORKkFMuUKfL4IEmizAA83xaJjMBUNhRkBhgJzIAmWUIBb59lRSyfFyc+eoxRJMYqUqSM
-        0gx8SVzozRvVFO/hU/HiZOYQwyQxin8UI7k+p7FI+8ai2hL1o2W84N5v3WHjY9LjNznbi1cv
-        9+2P2NI1EusnjDqm2hHTXCMO97M6mdShrIH+Tcuf3pckcCK/tSnm7uYGU9LsnV/uaKPvH66y
-        3k4V7+/DZqkOvkdhi0UVix6MiLCM5JP7vSOW5Duu+aUVHIxOd0yb1Vf90izbOlD5dkqyrTRQ
-        ov7JOztw43awZZeDWz03Kr92MOr5gvINn0NKTO/aT62qFmQp1JIrqd51QR9XnJsyvWcJg32o
-        ZJoEXSkBgs3lkp3GcP2lQJAnfV1kjMgEP+O+L3SdccllFUPtMSKLITLzg7T7jX+cz4JmuH6t
-        0/60a15BZs2yF9qYd9ApxJUJ4hARS6EU/wVwY7QAXAMAAA==
-X-CMS-MailID: 20200818074554epcas2p2702e648ba975ea6fbe33c84396b152a9
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20200818074554epcas2p2702e648ba975ea6fbe33c84396b152a9
-References: <20200818080415.7531-1-hyesoo.yu@samsung.com>
-        <CGME20200818074554epcas2p2702e648ba975ea6fbe33c84396b152a9@epcas2p2.samsung.com>
+References: <20200817102122.434-1-linux.amoon@gmail.com> <20200817102122.434-3-linux.amoon@gmail.com>
+ <1jzh6se6te.fsf@starbuckisacylon.baylibre.com> <6B583170-3479-4DFB-B81A-431B5982C8D6@gmail.com>
+In-Reply-To: <6B583170-3479-4DFB-B81A-431B5982C8D6@gmail.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Tue, 18 Aug 2020 13:45:48 +0530
+Message-ID: <CANAwSgS+MwbQHT=o3Bs7h_D7Gn3F2j4zDeT7dCnMwA2_YD4eDQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] arm64: dts: meson-g12b-odroid-n2: Disable virtual
+ RTC driver
+To:     Christian Hewitt <christianshewitt@gmail.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document devicetree binding for chunk heap on dma heap framework
+Hi Christian and Jerome,
 
-Signed-off-by: Hyesoo Yu <hyesoo.yu@samsung.com>
----
- .../devicetree/bindings/dma-buf/chunk_heap.yaml    | 46 ++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/dma-buf/chunk_heap.yaml
+Thanks for the review comments..
 
-diff --git a/Documentation/devicetree/bindings/dma-buf/chunk_heap.yaml b/Documentation/devicetree/bindings/dma-buf/chunk_heap.yaml
-new file mode 100644
-index 0000000..1ee8fad
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma-buf/chunk_heap.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma-buf/chunk_heap.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Device tree binding for chunk heap on DMA HEAP FRAMEWORK
-+
-+maintainers:
-+  - Sumit Semwal <sumit.semwal@linaro.org>
-+
-+description: |
-+  The chunk heap is backed by the Contiguous Memory Allocator (CMA) and
-+  allocates the buffers that are made up to a list of fixed size chunks
-+  taken from CMA. Chunk sizes are configurated when the heaps are created.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - dma_heap,chunk
-+
-+required:
-+  - compatible
-+  - memory-region
-+  - alignment
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    reserved-memory {
-+        #address-cells = <2>;
-+        #size-cells = <1>;
-+
-+        chunk_memory: chunk_memory {
-+            compatible = "shared-dma-pool";
-+            reusable;
-+            size = <0x10000000>;
-+        };
-+    };
-+
-+    chunk_default_heap: chunk_default_heap {
-+        compatible = "dma_heap,chunk";
-+        memory-region = <&chunk_memory>;
-+        alignment = <0x10000>;
-+    };
--- 
-2.7.4
+On Tue, 18 Aug 2020 at 13:21, Christian Hewitt
+<christianshewitt@gmail.com> wrote:
+>
+>
+>
+> > On 18 Aug 2020, at 11:45 am, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> >
+> >
+> > On Mon 17 Aug 2020 at 12:21, Anand Moon <linux.amoon@gmail.com> wrote:
+> >
+> >> Disable virtual RTC node on Odroid N2,
+> >> since RTC PCF8563 support rtc wakeup.
+> >>
+> >> [    7.171149] meson-vrtc ff8000a8.rtc: registered as rtc0
+> >> [    7.182875] meson-vrtc ff8000a8.rtc: setting system clock to 1970-01-01T00:00:07 UTC (7)
+> >>
+> >
+> > Maybe I'm missing something but why should disable this ?
+> > Can't the 2 RTCs co-exist ?
+>
+> aliases {
+>         serial0 = &uart_AO;
+>         ethernet0 = &ethmac;
+>         rtc1 = &vrtc;
+> };
+>
+> ^ adding this alias moves vrtc to /dev/rtc1 allowing the on-board rtc to
+> assume /dev/rtc0 which scripts/users and HOWTO guides assume to be a
+> real clock device. Tested and working fine with my own experiments with
+> enabling rtc on a bunch of G12B/SM1 boards.
+>
+> Christian
 
+I will drop this patch and add the alias in the next version.
+
+-Anand
