@@ -2,44 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BFEF2248C16
-	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 18:55:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37EE2248C10
+	for <lists+devicetree@lfdr.de>; Tue, 18 Aug 2020 18:54:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728447AbgHRQzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Aug 2020 12:55:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35002 "EHLO mail.kernel.org"
+        id S1728407AbgHRQyw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Aug 2020 12:54:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35826 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727995AbgHRQyU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Aug 2020 12:54:20 -0400
+        id S1728402AbgHRQyq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Aug 2020 12:54:46 -0400
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BF618207DA;
-        Tue, 18 Aug 2020 16:54:19 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 71D75207DE;
+        Tue, 18 Aug 2020 16:54:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597769660;
-        bh=8qiooKqbIY5buvznR0kFH1lZk03u/d1h4s6h+UzWh+w=;
+        s=default; t=1597769686;
+        bh=t1w93QEWEvokEoid6tjADACw7yv3h5hScfp7S15qTw0=;
         h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=KzyrYJRY/SUg2zTX0I7Qe3AjmpADPvAFy1Ho9yYgcUAqTKntd0HBNEZiVYlRCoGho
-         vL4oHNfjuIkQLJ76ShY6jXtC1fgVx0Gw/55CcmOFxiKmczA+8OpEhbfaOLnonsnGyy
-         Xxd/GkdFHy1e3XFPP7dS+jt7CBKR99x5qoG23YYE=
-Date:   Tue, 18 Aug 2020 17:53:49 +0100
+        b=fSLh9If/Ej7d50L2+kP020JW5koexmx3Wgwi7oFFgA/HvjWAbO+PMNqDzTKhdVvgD
+         OnoH2ly/oAupxb/psXSyQOy5itdHs5nGtq4NanH74VSQUBuyV8Xtx5nG5DzL2BMopT
+         53hV3JIV3hn0alEDgC7kF+BNSGCX6l4o3FzGgZbs=
+Date:   Tue, 18 Aug 2020 17:54:15 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     robh@kernel.org, tiwai@suse.com, lgirdwood@gmail.com,
-        Dan Murphy <dmurphy@ti.com>, perex@perex.cz
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20200817172151.26564-1-dmurphy@ti.com>
-References: <20200817172151.26564-1-dmurphy@ti.com>
-Subject: Re: [PATCH 1/2] dt-bindings: tas2562: Remove tas2562 text file
-Message-Id: <159776961933.56094.16343409470039919349.b4-ty@kernel.org>
+To:     devicetree@vger.kernel.org, tiwai@suse.com, robh+dt@kernel.org,
+        Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        perex@perex.cz
+In-Reply-To: <1597397561-2426-1-git-send-email-shengjiu.wang@nxp.com>
+References: <1597397561-2426-1-git-send-email-shengjiu.wang@nxp.com>
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: ak4458: Add power supply property
+Message-Id: <159776961933.56094.7304762190784166895.b4-ty@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Aug 2020 12:21:50 -0500, Dan Murphy wrote:
-> Remove the tas2562 text file as the tas2562.yaml is now available.
+On Fri, 14 Aug 2020 17:32:40 +0800, Shengjiu Wang wrote:
+> AVDD-supply is for Analog power supply
+> DVDD-supply is for Digital power supply
 
 Applied to
 
@@ -47,10 +48,10 @@ Applied to
 
 Thanks!
 
-[1/2] dt-bindings: tas2562: Remove tas2562 text file
-      commit: b1e78c9fcca83d3666bc149ba8ecc1e472759359
-[2/2] dt-bindings: tas2562: Add device specification links
-      commit: da9afe50ae2aac72d1b213d028d4e865c7ea9ba3
+[1/2] ASoC: dt-bindings: ak4458: Add power supply property
+      commit: 617a156f2ebae841bcd64ee5a21d0e12b5d733ab
+[2/2] ASoC: ak4458: Add regulator support
+      commit: 7e3096e8f823682c20e033113ec32dd590364774
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
