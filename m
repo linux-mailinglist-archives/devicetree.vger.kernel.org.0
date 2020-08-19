@@ -2,46 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D551A24A06B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 15:48:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2A9324A040
+	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 15:42:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728583AbgHSNsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Aug 2020 09:48:07 -0400
-Received: from [125.140.134.231] ([125.140.134.231]:63473 "EHLO
-        WIN-DAONO245HJF" rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728582AbgHSNrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 09:47:48 -0400
-Received: from User ([154.127.53.23]) by WIN-DAONO245HJF with Microsoft SMTPSVC(8.5.9600.16384);
-         Wed, 19 Aug 2020 22:37:47 +0900
-Reply-To: <robertdankworth@aol.com>
-From:   "ROBERT DANKWORTH" <robertdankworth@aol.com>
-Subject: INVESTMENT
-Date:   Wed, 19 Aug 2020 06:37:49 -0700
+        id S1727854AbgHSNmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Aug 2020 09:42:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55128 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727046AbgHSNmu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Aug 2020 09:42:50 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B3F5E204FD;
+        Wed, 19 Aug 2020 13:42:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1597844569;
+        bh=nRHlZ1MnhuRCWEVlVgqtKUWgqsrlzs+w4Nj+dZAbawc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=X2p4tG/lI4UDoGQ0sW7iBjo5mfR7OsNSzk2uNq3Xhim97qLQo2BUAax5CH6LxWxQ3
+         SyLd/JY3Anlf1Vkm7UkfpDCr9hyV2G5dviys/6P/0z35NeRRb/G3vtxR+wiuYLfK9Q
+         CM9M4FOLugd4F74QfZ7XQFOx/6L3XtyEgHhh141s=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.92)
+        (envelope-from <maz@kernel.org>)
+        id 1k8OMa-004DzN-87; Wed, 19 Aug 2020 14:42:48 +0100
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="Windows-1251"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-Priority: 3
-X-MSMail-Priority: Normal
-X-Mailer: Microsoft Outlook Express 6.00.2600.0000
-X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
-Message-ID: <WIN-DAONO245HJF7zT600c25473@WIN-DAONO245HJF>
-X-OriginalArrivalTime: 19 Aug 2020 13:37:48.0165 (UTC) FILETIME=[ED590B50:01D6762D]
-To:     unlisted-recipients:; (no To-header on input)
+Date:   Wed, 19 Aug 2020 14:42:48 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     Mark-PK Tsai <mark-pk.tsai@mediatek.com>
+Cc:     alix.wu@mediatek.com, daniel@0x0f.com, devicetree@vger.kernel.org,
+        jason@lakedaemon.net, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        matthias.bgg@gmail.com, robh+dt@kernel.org, tglx@linutronix.de,
+        yj.chiang@mediatek.com
+Subject: Re: [PATCH 1/2] irqchip: irq-mst: Add MStar interrupt controller
+ support
+In-Reply-To: <a8ee65eb4d86963bd2b56e86eec0ab3e@kernel.org> (raw)
+References: <a8ee65eb4d86963bd2b56e86eec0ab3e@kernel.org>
+ <a8ee65eb4d86963bd2b56e86eec0ab3e@kernel.org> (raw)
+User-Agent: Roundcube Webmail/1.4.7
+Message-ID: <f593f5e395c8558657a3f265b7038ec3@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: mark-pk.tsai@mediatek.com, alix.wu@mediatek.com, daniel@0x0f.com, devicetree@vger.kernel.org, jason@lakedaemon.net, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com, robh+dt@kernel.org, tglx@linutronix.de, yj.chiang@mediatek.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Good day,
+On 2020-08-19 14:31, Mark-PK Tsai wrote:
+> From: Marc Zyngier <maz@kernel.org>
+> 
+>> > +
+>> > +static int mst_intc_domain_alloc(struct irq_domain *domain, unsigned
+>> > int virq,
+>> > +				 unsigned int nr_irqs, void *data)
+>> > +{
+>> > +	int i;
+>> > +	irq_hw_number_t hwirq;
+>> > +	struct irq_fwspec parent_fwspec, *fwspec = data;
+>> > +	struct mst_intc_chip_data *cd = (struct mst_intc_chip_data
+>> > *)domain->host_data;
+>> 
+>> No cast necessary here.
+>> 
+>> > +
+>> > +	/* Not GIC compliant */
+>> > +	if (fwspec->param_count != 3)
+>> > +		return -EINVAL;
+>> > +
+>> > +	/* No PPI should point to this domain */
+>> > +	if (fwspec->param[0])
+>> > +		return -EINVAL;
+>> > +
+>> > +	if (fwspec->param[1] >= cd->nr_irqs)
+>> 
+>> This condition is bogus, as it doesn't take into account the nr_irqs
+>> parameter.
+>> 
+> 
+> 
+> The hwirq number need to be in the irq map range. (property:
+> mstar,irqs-map-range)
+> If it's not, it must be incorrect configuration.
 
-You were recommended by a mutual associate. I write you regarding an investment of bearer bonds I made on behalf of a client.
+I agree. And since you are checking whether the configuration is 
+correct,
+it'd better be completely correct.
 
-      The investment was made in 2009 and has been under my management. The said investor is deceased. The window is now available to assign these bonds to any name or company of my choice. I have all the necessary information to achieve this within 10 banking days.
-   
-      The total value of the bond is 100million pounds sterling, in a million pound denominations.
-   
-        If you can handle this, do contact me at your earliest convenience via my email robertdankworth@aol.com
-So we can discuss the final details Thank you.
+> So how about use the condition as following?
+> 
+> if (hwirq >= cd->nr_irqs)
+> 	return -EINVAL;
 
-Mr ROBERT DANKWORTH
+Again, this says nothing of the validity of (hwirq + nr_irqs - 1)...
+
+> 
+>> > +		return -EINVAL;
+>> > +
+>> > +	hwirq = fwspec->param[1];
+>> > +	for (i = 0; i < nr_irqs; i++)
+>> > +		irq_domain_set_hwirq_and_chip(domain, virq + i, hwirq + i,
+>> > +					      &mst_intc_chip,
+>> > +					      domain->host_data);
+
+... which you are using here.
+
+         M.
+-- 
+Jazz is not dead. It just smells funny...
