@@ -2,147 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B6B324989F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 10:52:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9685B249939
+	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 11:22:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726885AbgHSIvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Aug 2020 04:51:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54356 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726967AbgHSIv1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 04:51:27 -0400
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 195B0C061757;
-        Wed, 19 Aug 2020 01:51:27 -0700 (PDT)
-Received: by mail-ej1-x644.google.com with SMTP id o23so25390289ejr.1;
-        Wed, 19 Aug 2020 01:51:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=bD/V3oHfC4mdtWiSnBHrHT7AWlw0/W7HDJQKVaZ6gTQ=;
-        b=Ff3F/qoQER5XqG2ymWUd9ZJ7yj+Zot/32PJuaO2OyxWsWxHuNTebKo7DrvpNvVGrPf
-         W32vBZUXYuusDfszlWGS1H4YXohfvIPZTNIZJPo8DrM3drsyJbjOEymISGUhEuIAjBU+
-         hr3SCeaZoE2zn8M+J7bLanCAO6TVJ2KbYsj8qEzT7+bzF/Syn9PyahzY8VeiDONWiNYs
-         rQr+x7oF9ECjT3NcrNdj5jgiDY9sgOOd6W8SOGe7nGVsPv3caAp0++7luCjL/vXcXO0G
-         ySp3ZCW7CPUc+E/LPpgchLRQXgZ09C2d+yoDIk9/9j1uuTm2xu6hlTp7Smzxybpyd0sa
-         7SHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bD/V3oHfC4mdtWiSnBHrHT7AWlw0/W7HDJQKVaZ6gTQ=;
-        b=uRoYkdANFR9pPDed9WeUwC3eITH0mrNpJJNuKouwDjKj4E/S4gFKXAx6woNZpyjCX8
-         queE6V+CdzK8+YrdzCXG+rgf5BODXn1rTblNdsiJsfIxFIQh2MAUqFunVch6B7Yzd8xZ
-         GNkv5mDOfqpCAG05PGfcBdVfsv/wFkw6jf7BYGUxsCIgjO7+K6UhB6eIeOfeIuF4nfEh
-         X65VkLCd5/1fs517DMcDkCgwJSQaJv323AWyOca/y0iR9YPhyraIlBXpvTrlEJhYom+d
-         Be/de4McUG0TigPCKVlnwJEutEEpRh3Bm3umsjN9TCYiGMsY9OKJr4PH6wWL6hXGyHEa
-         QhHA==
-X-Gm-Message-State: AOAM531flpGJ+qnOU34UF/JzOGauA2V1gef8bnxycnnSNpubJOiewtAw
-        /cR3YUiujohcGeMqfYxSEksfORkCsLg=
-X-Google-Smtp-Source: ABdhPJwrCnrpCpI8Yx0K36plyOiwgjN7xbPdj34hvXofbPZKcbYpCn7GyAv9vKT6M42mUOsPcIvEQw==
-X-Received: by 2002:a17:907:40bf:: with SMTP id nu23mr23780441ejb.243.1597827085771;
-        Wed, 19 Aug 2020 01:51:25 -0700 (PDT)
-Received: from skbuf ([86.126.22.216])
-        by smtp.gmail.com with ESMTPSA id cm22sm17791480edb.44.2020.08.19.01.51.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Aug 2020 01:51:25 -0700 (PDT)
-Date:   Wed, 19 Aug 2020 11:51:22 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Landen Chao <landen.chao@mediatek.com>
-Cc:     "andrew@lunn.ch" <andrew@lunn.ch>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "vivien.didelot@savoirfairelinux.com" 
-        <vivien.didelot@savoirfairelinux.com>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        Sean Wang <Sean.Wang@mediatek.com>,
-        "opensource@vdorst.com" <opensource@vdorst.com>,
-        "frank-w@public-files.de" <frank-w@public-files.de>,
-        "dqfext@gmail.com" <dqfext@gmail.com>
-Subject: Re: [PATCH net-next v2 7/7] arm64: dts: mt7622: add mt7531 dsa to
- bananapi-bpi-r64 board
-Message-ID: <20200819085122.wiuq3fi23rebja6d@skbuf>
-References: <cover.1597729692.git.landen.chao@mediatek.com>
- <2a986604b49f7bfbee3898c8870bb0cf8182e879.1597729692.git.landen.chao@mediatek.com>
- <20200818162433.elqh3dxmk6vilq6u@skbuf>
- <1597824901.31846.42.camel@mtksdccf07>
+        id S1726876AbgHSJWL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Aug 2020 05:22:11 -0400
+Received: from gecko.sbs.de ([194.138.37.40]:60372 "EHLO gecko.sbs.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726110AbgHSJWJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Aug 2020 05:22:09 -0400
+X-Greylist: delayed 1150 seconds by postgrey-1.27 at vger.kernel.org; Wed, 19 Aug 2020 05:22:07 EDT
+Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
+        by gecko.sbs.de (8.15.2/8.15.2) with ESMTPS id 07J92gdZ019875
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 19 Aug 2020 11:02:42 +0200
+Received: from [167.87.31.209] ([167.87.31.209])
+        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 07J92fJD018281;
+        Wed, 19 Aug 2020 11:02:42 +0200
+Subject: Re: [PATCH v4 3/3] phy: omap-usb2-phy: disable PHY charger detect
+To:     Roger Quadros <rogerq@ti.com>, kishon@ti.com
+Cc:     robh+dt@kernel.org, nsekhar@ti.com, vigneshr@ti.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Bin Liu <b-liu@ti.com>
+References: <20200716082252.21266-1-rogerq@ti.com>
+ <20200716082252.21266-4-rogerq@ti.com>
+From:   Jan Kiszka <jan.kiszka@siemens.com>
+Message-ID: <ef391fb2-c75e-5b35-b3e2-96db21c66ab3@siemens.com>
+Date:   Wed, 19 Aug 2020 11:02:41 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1597824901.31846.42.camel@mtksdccf07>
+In-Reply-To: <20200716082252.21266-4-rogerq@ti.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 19, 2020 at 04:15:01PM +0800, Landen Chao wrote:
-> On Wed, 2020-08-19 at 00:24 +0800, Vladimir Oltean wrote:
-> > On Tue, Aug 18, 2020 at 03:14:12PM +0800, Landen Chao wrote:
-> > > Add mt7531 dsa to bananapi-bpi-r64 board for 5 giga Ethernet ports support.
-> > > 
-> > > Signed-off-by: Landen Chao <landen.chao@mediatek.com>
-> > > ---
-> > >  .../dts/mediatek/mt7622-bananapi-bpi-r64.dts  | 44 +++++++++++++++++++
-> > >  1 file changed, 44 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
-> > > index d174ad214857..c57b2571165f 100644
-> > > --- a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
-> > > +++ b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
-> > > @@ -143,6 +143,50 @@
-> > >  	mdio: mdio-bus {
-> > >  		#address-cells = <1>;
-> > >  		#size-cells = <0>;
-> > > +
-> > > +		switch@0 {
-> > > +			compatible = "mediatek,mt7531";
-> > > +
-> [snip]
-> > > +				port@6 {
-> > > +					reg = <6>;
-> > > +					label = "cpu";
-> > > +					ethernet = <&gmac0>;
-> > > +					phy-mode = "2500base-x";
-> > > +				};
-> > 
-> > Is there any reason why you're not specifying a fixed-link node here?
-> I got the below feedback in v1, so I follow the DSA common design in v2.
-> v2 can work with fixed-link node or without fixed-link node in CPU port
-> node.
+On 16.07.20 10:22, Roger Quadros wrote:
+> AM654x PG1.0 has a silicon bug that D+ is pulled high after POR, which
+> could cause enumeration failure with some USB hubs.  Disabling the
+> USB2_PHY Charger Detect function will put D+ into the normal state.
 > 
->   "This fixed-link should not be needed. The DSA driver is supposed to
->    configure the CPU port to its fastest speed by default. 2500 is
->    the fastest speed a 2500Base-X link can do..."
-
-See this discussion and the replies to it:
-
-https://www.spinics.net/lists/netdev/msg630102.html
-
-I think if mt7530 is using phylink for non-netdev ports (and it is), it
-would be good to have standard bindings that phylink can parse. For
-example, in lack of a "pause" specifier, will the CPU port use flow
-control or won't it? Why? I think there's simply no good reason why
-you'd omit 3 more lines now.
-
-> > > +			};
-> > > +		};
-> > > +
-> > >  	};
-> > >  };
-> > >  
-> > > -- 
-> > > 2.17.1
-> > 
-> > Thanks,
-> > -Vladimir
+> Using property "ti,disable-charger-det" in the DT usb2-phy node to
+> enable this workaround for AM654x PG1.0.
+> 
+> This addresses Silicon Errata:
+> i2075 - "USB2PHY: USB2PHY Charger Detect is Enabled by Default Without VBUS
+> Presence"
+> 
+> Signed-off-by: Bin Liu <b-liu@ti.com>
+> Signed-off-by: Sekhar Nori <nsekhar@ti.com>
+> Signed-off-by: Roger Quadros <rogerq@ti.com>
+> ---
+>  drivers/phy/ti/phy-omap-usb2.c | 35 +++++++++++++++++++++++++++-------
+>  1 file changed, 28 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/phy/ti/phy-omap-usb2.c b/drivers/phy/ti/phy-omap-usb2.c
+> index cb2dd3230fa7..21c3904d4efc 100644
+> --- a/drivers/phy/ti/phy-omap-usb2.c
+> +++ b/drivers/phy/ti/phy-omap-usb2.c
+> @@ -26,6 +26,10 @@
+>  #define USB2PHY_ANA_CONFIG1		0x4c
+>  #define USB2PHY_DISCON_BYP_LATCH	BIT(31)
+>  
+> +#define USB2PHY_CHRG_DET			0x14
+> +#define USB2PHY_CHRG_DET_USE_CHG_DET_REG	BIT(29)
+> +#define USB2PHY_CHRG_DET_DIS_CHG_DET		BIT(28)
+> +
+>  /* SoC Specific USB2_OTG register definitions */
+>  #define AM654_USB2_OTG_PD		BIT(8)
+>  #define AM654_USB2_VBUS_DET_EN		BIT(5)
+> @@ -43,6 +47,7 @@
+>  #define OMAP_USB2_HAS_START_SRP			BIT(0)
+>  #define OMAP_USB2_HAS_SET_VBUS			BIT(1)
+>  #define OMAP_USB2_CALIBRATE_FALSE_DISCONNECT	BIT(2)
+> +#define OMAP_USB2_DISABLE_CHRG_DET		BIT(3)
+>  
+>  struct omap_usb {
+>  	struct usb_phy		phy;
+> @@ -236,6 +241,13 @@ static int omap_usb_init(struct phy *x)
+>  		omap_usb_writel(phy->phy_base, USB2PHY_ANA_CONFIG1, val);
+>  	}
+>  
+> +	if (phy->flags & OMAP_USB2_DISABLE_CHRG_DET) {
+> +		val = omap_usb_readl(phy->phy_base, USB2PHY_CHRG_DET);
+> +		val |= USB2PHY_CHRG_DET_USE_CHG_DET_REG |
+> +		       USB2PHY_CHRG_DET_DIS_CHG_DET;
+> +		omap_usb_writel(phy->phy_base, USB2PHY_CHRG_DET, val);
+> +	}
+> +
+>  	return 0;
+>  }
+>  
+> @@ -366,14 +378,12 @@ static int omap_usb2_probe(struct platform_device *pdev)
+>  	phy->mask		= phy_data->mask;
+>  	phy->power_on		= phy_data->power_on;
+>  	phy->power_off		= phy_data->power_off;
+> +	phy->flags		= phy_data->flags;
+>  
+> -	if (phy_data->flags & OMAP_USB2_CALIBRATE_FALSE_DISCONNECT) {
+> -		res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> -		phy->phy_base = devm_ioremap_resource(&pdev->dev, res);
+> -		if (IS_ERR(phy->phy_base))
+> -			return PTR_ERR(phy->phy_base);
+> -		phy->flags |= OMAP_USB2_CALIBRATE_FALSE_DISCONNECT;
+> -	}
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	phy->phy_base = devm_ioremap_resource(&pdev->dev, res);
+> +	if (IS_ERR(phy->phy_base))
+> +		return PTR_ERR(phy->phy_base);
+>  
+>  	phy->syscon_phy_power = syscon_regmap_lookup_by_phandle(node,
+>  							"syscon-phy-power");
+> @@ -405,6 +415,17 @@ static int omap_usb2_probe(struct platform_device *pdev)
+>  		}
+>  	}
+>  
+> +	/*
+> +	 * Errata i2075: USB2PHY: USB2PHY Charger Detect is Enabled by
+> +	 * Default Without VBUS Presence.
+> +	 *
+> +	 * AM654x SR1.0 has a silicon bug due to which D+ is pulled high after
+> +	 * POR, which could cause enumeration failure with some USB hubs.
+> +	 * Disabling the USB2_PHY Charger Detect function will put D+
+> +	 * into the normal state.
+> +	 */
+> +	if (of_property_read_bool(node, "ti,disable-charger-det"))
+> +		phy->flags |= OMAP_USB2_DISABLE_CHRG_DET;
+>  
+>  	phy->wkupclk = devm_clk_get(phy->dev, "wkupclk");
+>  	if (IS_ERR(phy->wkupclk)) {
 > 
 
--Vladimir
+Why a property, rather than SoC detection like in [1] and your previous
+downstream version?
+
+Jan
+
+[1] https://patchwork.kernel.org/patch/11710643/
+
+-- 
+Siemens AG, Corporate Technology, CT RDA IOT SES-DE
+Corporate Competence Center Embedded Linux
