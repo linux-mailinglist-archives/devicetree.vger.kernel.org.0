@@ -2,36 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99E562499AB
-	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 11:53:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 960232499A2
+	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 11:50:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727005AbgHSJxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Aug 2020 05:53:20 -0400
-Received: from mailgw01.mediatek.com ([216.200.240.184]:41900 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726634AbgHSJxT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 05:53:19 -0400
-X-UUID: 3d9f66e13b7e40ffa8561b343d60f52a-20200819
+        id S1726970AbgHSJuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Aug 2020 05:50:40 -0400
+Received: from mailgw02.mediatek.com ([216.200.240.185]:48161 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726495AbgHSJui (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 05:50:38 -0400
+X-UUID: 1192dd65be0d4c80beae905e55f63a14-20200819
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=kQXoKdKVpI5uaXNaEF7rubWxdg60fBjIip1atnVNx4w=;
-        b=YimcZxgGzFRVHMuCF/1++lAbAs6pvMpBzF+FP/5HaxoW8aRy22AvuDuJtdfkRtssyteU6W7g0oGHGy4cum6VcyXxyvq8TH49+SEocIl6Cc8ktX7mwNSz8exXyCCMzI9j16bcAtuvtEHfxQ2RWURmw/PefF6gWBvpaGwfdBg5XfQ=;
-X-UUID: 3d9f66e13b7e40ffa8561b343d60f52a-20200819
-Received: from mtkcas66.mediatek.inc [(172.29.193.44)] by mailgw01.mediatek.com
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=uVPKfloKa5GwHkVwJn0RmJIN/Tl5KQ2eePuutn7nOAQ=;
+        b=dO+ybYB+ZMfqyhqSrEgUhWB1eHCNrnIY6xxoB3vofGTLCkPYzK6UTQ5+eX7J5fAjYkReioch2SFCdpfxTbheDMfYAHtdAJqlPmzqgKoFqByQrNJyroDW9XgOBdBoMgGxcQMUKJBwOvfvgIu3GWaW5hRnoKZeF/CAqdHthkbPO0w=;
+X-UUID: 1192dd65be0d4c80beae905e55f63a14-20200819
+Received: from mtkcas67.mediatek.inc [(172.29.193.45)] by mailgw02.mediatek.com
         (envelope-from <landen.chao@mediatek.com>)
         (musrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 1431888830; Wed, 19 Aug 2020 01:53:15 -0800
+        with ESMTP id 687292246; Wed, 19 Aug 2020 01:50:31 -0800
 Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- MTKMBS62N1.mediatek.inc (172.29.193.41) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 19 Aug 2020 02:44:08 -0700
+ MTKMBS62N2.mediatek.inc (172.29.193.42) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 19 Aug 2020 02:50:29 -0700
 Received: from [172.21.84.99] (172.21.84.99) by mtkcas08.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 19 Aug 2020 17:44:06 +0800
-Message-ID: <1597830248.31846.78.camel@mtksdccf07>
+ Transport; Wed, 19 Aug 2020 17:50:28 +0800
+Message-ID: <1597830629.31846.83.camel@mtksdccf07>
 Subject: Re: [PATCH net-next v2 5/7] net: dsa: mt7530: Add the support of
  MT7531 switch
 From:   Landen Chao <landen.chao@mediatek.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+To:     Jakub Kicinski <kuba@kernel.org>
+CC:     "andrew@lunn.ch" <andrew@lunn.ch>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
         "vivien.didelot@savoirfairelinux.com" 
         <vivien.didelot@savoirfairelinux.com>,
         "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
@@ -47,11 +48,11 @@ CC:     "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
         "opensource@vdorst.com" <opensource@vdorst.com>,
         "frank-w@public-files.de" <frank-w@public-files.de>,
         "dqfext@gmail.com" <dqfext@gmail.com>
-Date:   Wed, 19 Aug 2020 17:44:08 +0800
-In-Reply-To: <20200818160901.GF2330298@lunn.ch>
+Date:   Wed, 19 Aug 2020 17:50:29 +0800
+In-Reply-To: <20200818082347.353fe926@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
 References: <cover.1597729692.git.landen.chao@mediatek.com>
          <e980fda45e0fb478f55e72765643bb641f352c65.1597729692.git.landen.chao@mediatek.com>
-         <20200818160901.GF2330298@lunn.ch>
+         <20200818082347.353fe926@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.2.3-0ubuntu6 
 MIME-Version: 1.0
@@ -62,56 +63,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gV2VkLCAyMDIwLTA4LTE5IGF0IDAwOjA5ICswODAwLCBBbmRyZXcgTHVubiB3cm90ZToNCj4g
-T24gVHVlLCBBdWcgMTgsIDIwMjAgYXQgMDM6MTQ6MTBQTSArMDgwMCwgTGFuZGVuIENoYW8gd3Jv
-dGU6DQo+ID4gQWRkIG5ldyBzdXBwb3J0IGZvciBNVDc1MzE6DQo+ID4gDQo+ID4gTVQ3NTMxIGlz
-IHRoZSBuZXh0IGdlbmVyYXRpb24gb2YgTVQ3NTMwLiBJdCBpcyBhbHNvIGEgNy1wb3J0cyBzd2l0
-Y2ggd2l0aA0KPiA+IDUgZ2lnYSBlbWJlZGRlZCBwaHlzLCAyIGNwdSBwb3J0cywgYW5kIHRoZSBz
-YW1lIE1BQyBsb2dpYyBvZiBNVDc1MzAuIENwdQ0KPiA+IHBvcnQgNiBvbmx5IHN1cHBvcnRzIFNH
-TUlJIGludGVyZmFjZS4gQ3B1IHBvcnQgNSBzdXBwb3J0cyBlaXRoZXIgUkdNSUkNCj4gPiBvciBT
-R01JSSBpbiBkaWZmZXJlbnQgSFcgc2t1LiBEdWUgdG8gU0dNSUkgaW50ZXJmYWNlIHN1cHBvcnQs
-IHBsbCwgYW5kDQo+ID4gcGFkIHNldHRpbmcgYXJlIGRpZmZlcmVudCBmcm9tIE1UNzUzMC4gVGhp
-cyBwYXRjaCBhZGRzIGRpZmZlcmVudCBpbml0aWFsDQo+ID4gc2V0dGluZywgYW5kIFNHTUlJIHBo
-eWxpbmsgaGFuZGxlcnMgb2YgTVQ3NTMxLg0KPiA+IA0KPiA+IE1UNzUzMSBTR01JSSBpbnRlcmZh
-Y2UgY2FuIGJlIGNvbmZpZ3VyZWQgaW4gZm9sbG93aW5nIG1vZGU6DQo+ID4gLSAnU0dNSUkgQU4g
-bW9kZScgd2l0aCBpbi1iYW5kIG5lZ290aWF0aW9uIGNhcGFiaWxpdHkNCj4gPiAgICAgd2hpY2gg
-aXMgY29tcGF0aWJsZSB3aXRoIFBIWV9JTlRFUkZBQ0VfTU9ERV9TR01JSS4NCj4gPiAtICdTR01J
-SSBmb3JjZSBtb2RlJyB3aXRob3V0IGluLWJuYWQgbmVnb3RpYXRpb24NCj4gDQo+IGJhbmQNClNv
-cnJ5LCBJJ2xsIGZpeCBpdC4NCj4gDQo+ID4gICAgIHdoaWNoIGlzIGNvbXBhdGlibGUgd2l0aCAx
-MEIvOEIgZW5jb2Rpbmcgb2YNCj4gPiAgICAgUEhZX0lOVEVSRkFDRV9NT0RFXzEwMDBCQVNFWCB3
-aXRoIGZpeGVkIGZ1bGwtZHVwbGV4IGFuZCBmaXhlZCBwYXVzZS4NCj4gPiAtIDIuNSB0aW1lcyBm
-YXN0ZXIgY2xvY2tlZCAnU0dNSUkgZm9yY2UgbW9kZScgd2l0aG91dCBpbi1ibmFkIG5lZ290aWF0
-aW9uDQo+IA0KPiBiYW5kDQpTb3JyeSwgSSdsbCBmaXggaXQuDQo+IA0KPiA+ICtzdGF0aWMgaW50
-IG10NzUzMV9yZ21paV9zZXR1cChzdHJ1Y3QgbXQ3NTMwX3ByaXYgKnByaXYsIHUzMiBwb3J0LA0K
-PiA+ICsJCQkgICAgICBwaHlfaW50ZXJmYWNlX3QgaW50ZXJmYWNlKQ0KPiA+ICt7DQo+ID4gKwl1
-MzIgdmFsOw0KPiA+ICsNCj4gPiArCWlmICghbXQ3NTMxX2lzX3JnbWlpX3BvcnQocHJpdiwgcG9y
-dCkpIHsNCj4gPiArCQlkZXZfZXJyKHByaXYtPmRldiwgIlJHTUlJIG1vZGUgaXMgbm90IGF2YWls
-YWJsZSBmb3IgcG9ydCAlZFxuIiwNCj4gPiArCQkJcG9ydCk7DQo+ID4gKwkJcmV0dXJuIC1FSU5W
-QUw7DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICsJdmFsID0gbXQ3NTMwX3JlYWQocHJpdiwgTVQ3NTMx
-X0NMS0dFTl9DVFJMKTsNCj4gPiArCXZhbCB8PSBHUF9DTEtfRU47DQo+ID4gKwl2YWwgJj0gfkdQ
-X01PREVfTUFTSzsNCj4gPiArCXZhbCB8PSBHUF9NT0RFKE1UNzUzMV9HUF9NT0RFX1JHTUlJKTsN
-Cj4gPiArCXZhbCAmPSB+KFRYQ0xLX05PX1JFVkVSU0UgfCBSWENMS19OT19ERUxBWSk7DQo+ID4g
-Kwlzd2l0Y2ggKGludGVyZmFjZSkgew0KPiA+ICsJY2FzZSBQSFlfSU5URVJGQUNFX01PREVfUkdN
-SUk6DQo+ID4gKwkJdmFsIHw9IFRYQ0xLX05PX1JFVkVSU0U7DQo+ID4gKwkJdmFsIHw9IFJYQ0xL
-X05PX0RFTEFZOw0KPiA+ICsJCWJyZWFrOw0KPiA+ICsJY2FzZSBQSFlfSU5URVJGQUNFX01PREVf
-UkdNSUlfUlhJRDoNCj4gPiArCQl2YWwgfD0gVFhDTEtfTk9fUkVWRVJTRTsNCj4gPiArCQlicmVh
-azsNCj4gPiArCWNhc2UgUEhZX0lOVEVSRkFDRV9NT0RFX1JHTUlJX1RYSUQ6DQo+ID4gKwkJdmFs
-IHw9IFJYQ0xLX05PX0RFTEFZOw0KPiA+ICsJCWJyZWFrOw0KPiA+ICsJY2FzZSBQSFlfSU5URVJG
-QUNFX01PREVfUkdNSUlfSUQ6DQo+ID4gKwkJYnJlYWs7DQo+ID4gKwlkZWZhdWx0Og0KPiA+ICsJ
-CXJldHVybiAtRUlOVkFMOw0KPiA+ICsJfQ0KPiANCj4gWW91IG5lZWQgdG8gYmUgY2FyZWZ1bCBo
-ZXJlLiBJZiB0aGUgTUFDIGlzIGRvaW5nIHRoZSBSR01JSSBkZWxheXMsIHlvdQ0KPiBuZWVkIHRv
-IGVuc3VyZSB0aGUgUEhZIGlzIG5vdC4gV2hhdCBpbnRlcmZhY2UgbW9kZSBpcyBwYXNzZWQgdG8g
-dGhlDQo+IFBIWT8NCkhpIEFuZHJldywNCg0KbXQ3NTMxIFJHTUlJIHBvcnQgaXMgYSBNQUMtb25s
-eSBwb3J0LCBpdCBjYW4gYmUgY29ubmVjdGVkIHRvIENQVSBNQUMgb3INCmV4dGVybmFsIHBoeS4g
-SW4gYnBpLXI2NCBib2FyZCwgbXQ3NTMxIFJHTUlJIGlzIGNvbm5lY3RlZCB0byBDUFUgTUFDLCBz
-bw0KSSB0ZW5kIHRvIGltcGxlbWVudCBSR01JSSBsb2dpYyBmb3IgdXNlIGNhc2Ugb2YgYnBpLXI2
-NC4NCg0KSW4gZ2VuZXJhbCwgYWNjb3JkaW5nIHRvIHBoeS5yc3QsIFJHTUlJIGRlbGF5IHNob3Vs
-ZCBiZSBkb25lIGJ5IHBoeSwgYnV0DQpzb21lIE1vQ0EgcHJvZHVjdCBuZWVkIFJHTUlJIGRlbGF5
-IGluIE1BQy4gVGhlc2UgdHdvIHJlcXVpcmVtZW50cw0KY29uZmxpY3QuIElzIHRoZXJlIGFueSBz
-dWdnZXN0aW9uIHRvIHNvbHZlIHRoZSBjb25mbGljdD8NCg0KSWYgbXQ3NTMxIFJHTUlJIGltcGxl
-bWVudGF0aW9uIG5lZWRzIHRvIHNhdGlzZnkgZWl0aGVyIHBoeS5yc3Qgb3INCnNwZWNpYWwgTW9D
-QSBwcm9kdWN0LCBJIHdvdWxkIGxpa2UgdG8gc2F0aXNmeSBwaHkucnN0IGFuZCByZW1vdmUgTUFD
-DQpSR01JSSBkZWxheSBpbiB2My4gRm9yIHNwZWNpYWwgcHJvZHVjdCBuZWVkcyBNQUMgUkdNSUkg
-ZGVsYXksIHRoaXMgcGF0Y2gNCmNhbiBiZSB1c2VkIGluIGl0cyBsb2NhbCBjb2RlYmFzZS4NCg0K
-TGFuZGVuDQo+IA0KPiAJQW5kcmV3DQoNCg==
+SGkgSmFrdWIsDQoNClRoZXNlIDIgZnVuY3Rpb24gYXJlIHVzZWQgaW4gdGhlIHNhbWUgZmlsZSBv
+bmx5Lg0KSSdsbCBmaXggd2FybmluZ3MgYnkgbWFraW5nIDIgZnVuY3Rpb25zICdzdGF0aWMnIGlu
+IHYzLg0KDQpMYW5kZW4NCk9uIFR1ZSwgMjAyMC0wOC0xOCBhdCAyMzoyMyArMDgwMCwgSmFrdWIg
+S2ljaW5za2kgd3JvdGU6DQpbc25pcF0NCj4gUGxlYXNlIGZpeCB0aGVzZSBXPTEgd2FybmluZ3M6
+DQo+IA0KPiAuLi9kcml2ZXJzL25ldC9kc2EvbXQ3NTMwLmM6MTk3NjoxOiB3YXJuaW5nOiBubyBw
+cmV2aW91cyBwcm90b3R5cGUgZm9yIOKAmG10NzUzMV9zZ21paV9saW5rX3VwX2ZvcmNl4oCZIFst
+V21pc3NpbmctcHJvdG90eXBlc10NCj4gIDE5NzYgfCBtdDc1MzFfc2dtaWlfbGlua191cF9mb3Jj
+ZShzdHJ1Y3QgZHNhX3N3aXRjaCAqZHMsIGludCBwb3J0LA0KPiAgICAgICB8IF5+fn5+fn5+fn5+
+fn5+fn5+fn5+fn5+fn5+DQo+IC4uL2RyaXZlcnMvbmV0L2RzYS9tdDc1MzAuYzoyMDgxOjY6IHdh
+cm5pbmc6IG5vIHByZXZpb3VzIHByb3RvdHlwZSBmb3Ig4oCYbXQ3NTMxX3NnbWlpX3Jlc3RhcnRf
+YW7igJkgWy1XbWlzc2luZy1wcm90b3R5cGVzXQ0KPiAgMjA4MSB8IHZvaWQgbXQ3NTMxX3NnbWlp
+X3Jlc3RhcnRfYW4oc3RydWN0IGRzYV9zd2l0Y2ggKmRzLCBpbnQgcG9ydCkNCj4gICAgICAgfCAg
+ICAgIF5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+DQo+IC4uL2RyaXZlcnMvbmV0L2RzYS9tdDc1MzAu
+YzoxOTc2OjE6IHdhcm5pbmc6IHN5bWJvbCAnbXQ3NTMxX3NnbWlpX2xpbmtfdXBfZm9yY2UnIHdh
+cyBub3QgZGVjbGFyZWQuIFNob3VsZCBpdCBiZSBzdGF0aWM/DQo+IC4uL2RyaXZlcnMvbmV0L2Rz
+YS9tdDc1MzAuYzoyMDgxOjY6IHdhcm5pbmc6IHN5bWJvbCAnbXQ3NTMxX3NnbWlpX3Jlc3RhcnRf
+YW4nIHdhcyBub3QgZGVjbGFyZWQuIFNob3VsZCBpdCBiZSBzdGF0aWM/DQoNCg==
 
