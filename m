@@ -2,99 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30E63249349
-	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 05:12:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A36DA24935B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 05:17:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727838AbgHSDMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Aug 2020 23:12:47 -0400
-Received: from rtits2.realtek.com ([211.75.126.72]:45484 "EHLO
-        rtits2.realtek.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726751AbgHSDMq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Aug 2020 23:12:46 -0400
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.69 with qID 07J3CN4c8010285, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexmb06.realtek.com.tw[172.21.6.99])
-        by rtits2.realtek.com.tw (8.15.2/2.66/5.86) with ESMTPS id 07J3CN4c8010285
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Wed, 19 Aug 2020 11:12:23 +0800
-Received: from RTEXMB04.realtek.com.tw (172.21.6.97) by
- RTEXMB06.realtek.com.tw (172.21.6.99) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Wed, 19 Aug 2020 11:12:23 +0800
-Received: from RTEXMB04.realtek.com.tw (172.21.6.97) by
- RTEXMB04.realtek.com.tw (172.21.6.97) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Wed, 19 Aug 2020 11:12:23 +0800
-Received: from RTEXMB04.realtek.com.tw ([fe80::941:6388:7d34:5c44]) by
- RTEXMB04.realtek.com.tw ([fe80::941:6388:7d34:5c44%3]) with mapi id
- 15.01.1779.005; Wed, 19 Aug 2020 11:12:23 +0800
-From:   =?utf-8?B?VFlfQ2hhbmdb5by15a2Q6YC4XQ==?= <tychang@realtek.com>
-To:     =?utf-8?B?QW5kcmVhcyBGw6RyYmVy?= <afaerber@suse.de>,
-        Rob Herring <robh@kernel.org>
-CC:     "linux-realtek-soc@lists.infradead.org" 
-        <linux-realtek-soc@lists.infradead.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>
-Subject: RE: [PATCH v3 5/9] dt-bindings: pinctrl: realtek: Add Realtek DHC SoC rtd1295
-Thread-Topic: [PATCH v3 5/9] dt-bindings: pinctrl: realtek: Add Realtek DHC
- SoC rtd1295
-Thread-Index: AQHWcUZJlJ4JLjNahkCHOz3e6aEePqk8Qs4AgADkp4CAAI/acA==
-Date:   Wed, 19 Aug 2020 03:12:22 +0000
-Message-ID: <5f6355d6af724dc6b2e113e567e4ec5f@realtek.com>
-References: <20200813074908.889-1-tychang@realtek.com>
- <20200813074908.889-6-tychang@realtek.com> <20200817203358.GA1508879@bogus>
- <012eee35-6835-7244-0013-9fc6980107e0@suse.de>
-In-Reply-To: <012eee35-6835-7244-0013-9fc6980107e0@suse.de>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.181.134]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1727077AbgHSDRi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Aug 2020 23:17:38 -0400
+Received: from pb-smtp20.pobox.com ([173.228.157.52]:57225 "EHLO
+        pb-smtp20.pobox.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726751AbgHSDRi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Aug 2020 23:17:38 -0400
+Received: from pb-smtp20.pobox.com (unknown [127.0.0.1])
+        by pb-smtp20.pobox.com (Postfix) with ESMTP id B60DDE91D9;
+        Tue, 18 Aug 2020 23:17:34 -0400 (EDT)
+        (envelope-from nico@fluxnic.net)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=pobox.com; h=from:to:cc
+        :subject:date:message-id:mime-version:content-transfer-encoding;
+         s=sasl; bh=ECtNqBpX1KiG7sDXco5D3tp9GEI=; b=E3Jxw9StgpQOblzQL9+w
+        Uf81+1KLqrkKJkuSALqGlWEvMGuylE0WKANWONtW/eA0tX1jDMHbJn0+EEre9dBN
+        ItBDuzsjyhijRhJj4bpY/x/ngjW0LMhr/mGjVnQ7FxaOBjM12S0w9URDGlcUuclM
+        b9nBYDD2SiLyjTt2cG17rZ4=
+Received: from pb-smtp20.sea.icgroup.com (unknown [127.0.0.1])
+        by pb-smtp20.pobox.com (Postfix) with ESMTP id 85709E91D8;
+        Tue, 18 Aug 2020 23:17:34 -0400 (EDT)
+        (envelope-from nico@fluxnic.net)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=fluxnic.net;
+ h=from:to:cc:subject:date:message-id:mime-version:content-transfer-encoding;
+ s=2016-12.pbsmtp; bh=OHq8lowul/yS7KQtHipQH3zSCAQ8fvSd7S+l1QV4RxE=;
+ b=MfQABpbeGS7cpPTSE3Mq0kr7y61OMjWM/0Hd1ngJEP+qaCa2jN5jr7V71dBHJMXZhBZIyGaHIPUcVsvr+BxddfgqfjlizGxJiqLO+WP/NeO5ftkdWxMlMiZpcOz3pg2ebfguIEqkxWxMKT5owzVHCaX9RzNGiaJDcukI87h5kt0=
+Received: from yoda.home (unknown [24.203.50.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by pb-smtp20.pobox.com (Postfix) with ESMTPSA id F2F7BE91D7;
+        Tue, 18 Aug 2020 23:17:29 -0400 (EDT)
+        (envelope-from nico@fluxnic.net)
+Received: from xanadu.home (xanadu.home [192.168.2.2])
+        by yoda.home (Postfix) with ESMTP id 16B5D2DA0182;
+        Tue, 18 Aug 2020 23:17:28 -0400 (EDT)
+From:   Nicolas Pitre <nico@fluxnic.net>
+To:     Boris Brezillon <boris.brezillon@collabora.com>,
+        linux-i3c@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Nicolas Pitre <npitre@baylibre.com>,
+        Laura Nixon <laura.nixon@team.mipi.org>,
+        Robert Gough <robert.gough@intel.com>,
+        Matthew Schnoor <matthew.schnoor@intel.com>
+Subject: [PATCH v2 1/2] MIPI I3c HCI (Host Controller Interface) driver
+Date:   Tue, 18 Aug 2020 23:17:21 -0400
+Message-Id: <20200819031723.1398378-1-nico@fluxnic.net>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
+X-Pobox-Relay-ID: 83DC84BE-E1CA-11EA-96D7-F0EA2EB3C613-78420484!pb-smtp20.pobox.com
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgUm9iLCBBbmRyZWFzLA0KDQpUaGFua3MgZm9yIHRoZSByZXZpZXcuDQoNCj4gLS0tLS1Pcmln
-aW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQW5kcmVhcyBGw6RyYmVyIDxhZmFlcmJlckBzdXNl
-LmRlPg0KPiBTZW50OiBUdWVzZGF5LCBBdWd1c3QgMTgsIDIwMjAgNjoxMiBQTQ0KPiBUbzogUm9i
-IEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz47IFRZX0NoYW5nW+W8teWtkOmAuF0NCj4gPHR5Y2hh
-bmdAcmVhbHRlay5jb20+DQo+IENjOiBsaW51eC1yZWFsdGVrLXNvY0BsaXN0cy5pbmZyYWRlYWQu
-b3JnOyBsaW51eC1ncGlvQHZnZXIua2VybmVsLm9yZzsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5l
-bC5vcmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7IHJvYmgrZHRAa2VybmVsLm9yZzsN
-Cj4gbGludXMud2FsbGVpakBsaW5hcm8ub3JnDQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjMgNS85
-XSBkdC1iaW5kaW5nczogcGluY3RybDogcmVhbHRlazogQWRkIFJlYWx0ZWsgREhDIFNvQw0KPiBy
-dGQxMjk1DQo+IA0KPiBBbSAxNy4wOC4yMCB1bSAyMjozMyBzY2hyaWViIFJvYiBIZXJyaW5nOg0K
-PiA+IE9uIFRodSwgMTMgQXVnIDIwMjAgMTU6NDk6MDQgKzA4MDAsIFRZIENoYW5nIHdyb3RlOg0K
-PiA+PiBBZGQgZGV2aWNlIHRyZWUgYmluZGluZyBEb2N1bWVudGF0aW9uIGZvciBydGQxMjk1IHBp
-bmN0cmwgZHJpdmVyLg0KPiA+Pg0KPiA+PiBTaWduZWQtb2ZmLWJ5OiBUWSBDaGFuZyA8dHljaGFu
-Z0ByZWFsdGVrLmNvbT4NCj4gPj4gLS0tDQo+ID4+ICAuLi4vcGluY3RybC9yZWFsdGVrLHJ0ZDEy
-OTUtcGluY3RybC55YW1sICAgICAgfCAxOTIgKysrKysrKysrKysrKysrKysrDQo+ID4+ICAxIGZp
-bGUgY2hhbmdlZCwgMTkyIGluc2VydGlvbnMoKykNCj4gPj4gIGNyZWF0ZSBtb2RlIDEwMDY0NA0K
-PiA+PiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGluY3RybC9yZWFsdGVrLHJ0
-ZDEyOTUtcGluY3RybC55YW0NCj4gPj4gbA0KPiA+Pg0KPiA+DQo+ID4NCj4gPiBQbGVhc2UgYWRk
-IEFja2VkLWJ5L1Jldmlld2VkLWJ5IHRhZ3Mgd2hlbiBwb3N0aW5nIG5ldyB2ZXJzaW9ucy4NCj4g
-PiBIb3dldmVyLCB0aGVyZSdzIG5vIG5lZWQgdG8gcmVwb3N0IHBhdGNoZXMgKm9ubHkqIHRvIGFk
-ZCB0aGUgdGFncy4gVGhlDQo+ID4gdXBzdHJlYW0gbWFpbnRhaW5lciB3aWxsIGRvIHRoYXQgZm9y
-IGFja3MgcmVjZWl2ZWQgb24gdGhlIHZlcnNpb24gdGhleSBhcHBseS4NCj4gPg0KPiA+IElmIGEg
-dGFnIHdhcyBub3QgYWRkZWQgb24gcHVycG9zZSwgcGxlYXNlIHN0YXRlIHdoeSBhbmQgd2hhdCBj
-aGFuZ2VkLg0KPiANCj4gVGhlIHRoaW5nIHJlYWxseSBtaXNzaW5nIGhlcmUgaXMgYSBwZXItcGF0
-Y2ggY2hhbmdlIGxvZy4NCj4gDQo+IFRoaW5ncyB3ZXJlIGFkZGVkIGhlcmUgdGhhdCBJJ20gc3Vy
-ZSB5b3Ugd291bGQgbm90IGdpdmUgeW91ciBSZXZpZXdlZC1ieSBmb3IsDQo+IGluIHBhcnRpY3Vs
-YXIgbmV3IHByb3BlcnRpZXMgcHJlZml4ZWQgd2l0aCB1bnJlZ2lzdGVyZWQgcnRrIHByZWZpeCBp
-bnN0ZWFkIG9mIHRoZQ0KPiByZWdpc3RlcmVkIHJlYWx0ZWsgcHJlZml4Lg0KDQpJIHdpbGwgbW9k
-aWZ5IHRoZSBwcm9wZXJ0eSBuYW1lIHdpdGggcmVhbHRlayBwcmVmaXggaW4gcGF0Y2ggdjQuDQoN
-Cj4gDQo+IEBUWSwgaGlkaW5nIHN1Y2ggY2hhbmdlcyBpbiBhIGJpZyBwcmV2aW91c2x5IHJldmll
-d2VkIHBhdGNoIHdpdGhvdXQgYW55DQo+IG1lbnRpb24gaXMgcHJvYmxlbWF0aWMgLSBwbGVhc2Ug
-cmF0aGVyIGRvIHNtYWxsZXIgZm9sbG93LXVwIHBhdGNoZXMgdG8gbm90DQo+IGludmFsaWRhdGUg
-cHJldmlvdXMgcmV2aWV3cyB3aXRoIG5ldyBmZWF0dXJlcy4NCj4gDQoNCkknbSBzb3JyeSBhYm91
-dCB0aGF0LiBJIHdpbGwgYWRkIFJldmlld2VkLWJ5IHRhZ3MgaW4gdGhlIHByZXZpb3VzbHkgcmV2
-aWV3ZWQgcGF0Y2ggYW5kIGFkZCBmb2xsb3ctdXAgcGF0Y2hlcyBmb3IgbmV3IGZlYXR1cmVzIGlu
-IHBhdGNoIHY0Lg0KDQpCZXN0IFJlZ2FyZHMsDQpUWUNoYW5nDQoNCiANCj4gLS0tLS0tUGxlYXNl
-IGNvbnNpZGVyIHRoZSBlbnZpcm9ubWVudCBiZWZvcmUgcHJpbnRpbmcgdGhpcyBlLW1haWwuDQo=
+The MIPI I3C HCI (Host Controller Interface) specification defines
+a common software driver interface to support compliant MIPI I3C
+host controller hardware implementations from multiple vendors. This
+is the initial Linux driver implementing support for this specification.
+
+Due to limitations in the I3C subsystem, this driver doesn't implement
+everything the spec specifies. For example, scheduled commands,
+auto-commands and NCM are major features not yet supported.
+
+There are different revisions of the spec: v1.0, v1.1 (to be released
+imminently), and 2.0 (still under active development). All of them are
+supported with varying degree due to the above. And of course v2 support
+is likely to change as the spec is finalized, but it is included now
+in its preliminary form as all I have for testing at the moment is based
+on an early v2 draft.
+
+Even v1.0 hardware is still scarse so it hasn't been tested yet. As more
+hardware becomes available for testing it is expected that adjustments
+will be needed on top of this submission. But it is best to have the
+current code merged earlier so it gains better exposure for future
+contributions.
+
+Feedback appreciated.
+
+Changes from v1:
+
+- moved DT binding to schema format (Rob)
+- fix sparse warnings (kernel test robot)
+- fix build warnings on 32-bit targets (kernel test robot)
+- avoid PIO_OFFSET symbol conflict (kernel test robot)
+- minor cosmetic changes
+
+diffstat:
+
+ .../devicetree/bindings/i3c/mipi-i3c-hci.yaml   |  41 +
+ drivers/i3c/master/Kconfig                      |  13 +
+ drivers/i3c/master/Makefile                     |   1 +
+ drivers/i3c/master/mipi-i3c-hci/Makefile        |   9 +
+ drivers/i3c/master/mipi-i3c-hci/cmd.h           | 106 ++
+ drivers/i3c/master/mipi-i3c-hci/cmd_v1.c        | 362 +++++++
+ drivers/i3c/master/mipi-i3c-hci/cmd_v2.c        | 280 +++++
+ drivers/i3c/master/mipi-i3c-hci/core.c          | 801 +++++++++++++++
+ drivers/i3c/master/mipi-i3c-hci/dat.h           |  28 +
+ drivers/i3c/master/mipi-i3c-hci/dat_v1.c        | 170 ++++
+ drivers/i3c/master/mipi-i3c-hci/dct.h           |  16 +
+ drivers/i3c/master/mipi-i3c-hci/dct_v1.c        |  36 +
+ drivers/i3c/master/mipi-i3c-hci/debug.c         |  79 ++
+ drivers/i3c/master/mipi-i3c-hci/debug.h         |  17 +
+ drivers/i3c/master/mipi-i3c-hci/dma.c           | 781 ++++++++++++++
+ drivers/i3c/master/mipi-i3c-hci/ext_caps.c      | 249 +++++
+ drivers/i3c/master/mipi-i3c-hci/ext_caps.h      |  19 +
+ drivers/i3c/master/mipi-i3c-hci/hci.h           | 150 +++
+ drivers/i3c/master/mipi-i3c-hci/ibi.h           |  42 +
+ drivers/i3c/master/mipi-i3c-hci/pio.c           | 961 ++++++++++++++++++
+ 20 files changed, 4161 insertions(+)
+
+
