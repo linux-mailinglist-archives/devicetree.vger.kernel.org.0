@@ -2,72 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AD5424A567
-	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 19:59:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BC9624A5F7
+	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 20:27:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726867AbgHSR70 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Aug 2020 13:59:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35940 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726858AbgHSR7Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Aug 2020 13:59:24 -0400
-Received: from kozik-lap.mshome.net (unknown [194.230.155.216])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 42183207DE;
-        Wed, 19 Aug 2020 17:59:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597859964;
-        bh=oxZuekvIPEtXM6zB/IiVbn+wXbPMFca/PZzTAFdxW30=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Rza4KyGjkhaSeuTHw/gId1REqwnFuO1JZPzIYTt2vAkisBamb6jRtWgvbHG1UJQ3m
-         90x7E45t9u0VjIr8fWxKrmFfqnGpaHaMgNVLyMjKLbPGHzFv5bX83scFjoWtg59CHU
-         2DQKwfaimFtmmbpwqneci5aekMqDHvaWlH9pLv78=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Barry Song <baohua@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
+        id S1726685AbgHSS1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Aug 2020 14:27:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58960 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726729AbgHSS1O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 14:27:14 -0400
+Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com [IPv6:2607:f8b0:4864:20::843])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26841C061757
+        for <devicetree@vger.kernel.org>; Wed, 19 Aug 2020 11:27:14 -0700 (PDT)
+Received: by mail-qt1-x843.google.com with SMTP id d27so18539125qtg.4
+        for <devicetree@vger.kernel.org>; Wed, 19 Aug 2020 11:27:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AacBmJ1F+/EQU2Ta6hd78j336wiWeooUogfDqt5vhVU=;
+        b=MJ511LjL0Gf8T+5otwSMIHAYNGoOTa7oOz3vFzBU6AZJ6dAX+nI9cC7118htwG/ORX
+         eBs8xHYraAXfTg3+3J/RFpfkMga9Cj17oTb4p/TBhXJhoh4jgceQywdVOQqMSK/JOJ3l
+         PwBzJDQ8H04HrV4VQtbb6ovc5H+eRX5T4ho3g=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AacBmJ1F+/EQU2Ta6hd78j336wiWeooUogfDqt5vhVU=;
+        b=XZGqfHapNK8edrbi+v6+mhItf7ivoNDl6jFLiRqZDrRt3jmw4NWlvLBPiBfH+TFN5t
+         Ar5XuqVSsljSElsd2OhZ0u17XCbttVzPJ74NskcC/N3XTsbMSXDWG4WZvTT5b3zCGnmx
+         jOJzTuaGDLOb2a999E2iK+fB7sSw3JD9ajOK9q+pSCEABGFNN3+H4zmUITIkFxTkcbmU
+         rmxN67KIJbSAxT7m0f9UCqsOGEAxR/msN8lYuzPeHZm7bRO2Mv1Sg9FBM74wUK5yOPuh
+         b69hyB4vVH08W6BAYVzbdfDtyUu1DpSceTrCAXR3dhJdDnq0Q/EIbVNZXQB6N3nU8pj3
+         I5/g==
+X-Gm-Message-State: AOAM532rtImSuwOwv3ryI7TQR0L9soH03d/WGQ+vbDn/eSTvCUi01scT
+        0G/kBYPTaJle/rzJyq77r16d8Cqh5dMyCA==
+X-Google-Smtp-Source: ABdhPJxXTsFYwqNJg0Akk8xOlUvgtbgKAeypTVeHk4uNJ/8xXqmDJ86AUYXELoGxQJhtf9OLKlrtBA==
+X-Received: by 2002:aed:36aa:: with SMTP id f39mr24478631qtb.297.1597861633057;
+        Wed, 19 Aug 2020 11:27:13 -0700 (PDT)
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com. [209.85.219.44])
+        by smtp.gmail.com with ESMTPSA id r6sm27382439qtu.93.2020.08.19.11.27.12
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Aug 2020 11:27:12 -0700 (PDT)
+Received: by mail-qv1-f44.google.com with SMTP id b2so11727903qvp.9
+        for <devicetree@vger.kernel.org>; Wed, 19 Aug 2020 11:27:12 -0700 (PDT)
+X-Received: by 2002:a1f:2fc1:: with SMTP id v184mr15612583vkv.42.1597861257099;
+ Wed, 19 Aug 2020 11:20:57 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200817220238.603465-1-robdclark@gmail.com> <20200817220238.603465-11-robdclark@gmail.com>
+ <CAD=FV=VzYSL-3q0oFPPSP7FiEdLeTEN6Zy=kp-73B=8LAavmVw@mail.gmail.com> <CAF6AEGt=tGe3WQfyF_NuvJVXRbMH1=fnNK63MLpz0zxjZ9cwgQ@mail.gmail.com>
+In-Reply-To: <CAF6AEGt=tGe3WQfyF_NuvJVXRbMH1=fnNK63MLpz0zxjZ9cwgQ@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 19 Aug 2020 11:20:44 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XxtA_1gp=gahjZiPkCJUy9ZgRoEnnE4apUQ1WVX_cs4A@mail.gmail.com>
+Message-ID: <CAD=FV=XxtA_1gp=gahjZiPkCJUy9ZgRoEnnE4apUQ1WVX_cs4A@mail.gmail.com>
+Subject: Re: [PATCH 10/20] dt-bindings: arm-smmu: Add compatible string for
+ Adreno GPU SMMU
+To:     Rob Clark <robdclark@gmail.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Will Deacon <will@kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-        Marc Gonzalez <marc.w.gonzalez@free.fr>,
-        Mans Rullgard <mans@mansr.com>, Jun Nie <jun.nie@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [RESEND PATCH 5/5] ARM: dts: zx: Align L2 cache-controller nodename with dtschema
-Date:   Wed, 19 Aug 2020 19:58:53 +0200
-Message-Id: <20200819175853.21492-5-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200819175853.21492-1-krzk@kernel.org>
-References: <20200819175853.21492-1-krzk@kernel.org>
+        Sibi Sankar <sibis@codeaurora.org>,
+        Vivek Gautam <vivek.gautam@codeaurora.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Jordan Crouse <jcrouse@codeaurora.org>,
+        Rob Herring <robh@kernel.org>,
+        Rob Clark <robdclark@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "moderated list:ARM SMMU DRIVERS" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix dtschema validator warnings like:
-    l2-cache-controller@c00000: $nodename:0:
-        'l2-cache-controller@c00000' does not match '^(cache-controller|cpu)(@[0-9a-f,]+)*$'
+Hi,
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- arch/arm/boot/dts/zx296702.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Wed, Aug 19, 2020 at 10:36 AM Rob Clark <robdclark@gmail.com> wrote:
+>
+> On Wed, Aug 19, 2020 at 10:03 AM Doug Anderson <dianders@chromium.org> wrote:
+> >
+> > Hi,
+> >
+> > On Mon, Aug 17, 2020 at 3:03 PM Rob Clark <robdclark@gmail.com> wrote:
+> > >
+> > > From: Jordan Crouse <jcrouse@codeaurora.org>
+> > >
+> > > Every Qcom Adreno GPU has an embedded SMMU for its own use. These
+> > > devices depend on unique features such as split pagetables,
+> > > different stall/halt requirements and other settings. Identify them
+> > > with a compatible string so that they can be identified in the
+> > > arm-smmu implementation specific code.
+> > >
+> > > Signed-off-by: Jordan Crouse <jcrouse@codeaurora.org>
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > Signed-off-by: Rob Clark <robdclark@chromium.org>
+> > > ---
+> > >  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 4 ++++
+> > >  1 file changed, 4 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> > > index 503160a7b9a0..5ec5d0d691f6 100644
+> > > --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> > > +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> > > @@ -40,6 +40,10 @@ properties:
+> > >                - qcom,sm8150-smmu-500
+> > >                - qcom,sm8250-smmu-500
+> > >            - const: arm,mmu-500
+> > > +      - description: Qcom Adreno GPUs implementing "arm,smmu-v2"
+> > > +        items:
+> > > +          - const: qcom,adreno-smmu
+> > > +          - const: qcom,smmu-v2
+> >
+> > I know I'm kinda late to the game, but this seems weird to me,
+> > especially given the later patches in the series like:
+> >
+> > https://lore.kernel.org/r/20200817220238.603465-19-robdclark@gmail.com
+> >
+> > Specifically in that patch you can see that this IOMMU already had a
+> > compatible string and we're changing it and throwing away the
+> > model-specific string?  I'm guessing that you're just trying to make
+> > it easier for code to identify the adreno iommu, but it seems like a
+> > better way would have been to just add the adreno compatible in the
+> > middle, like:
+> >
+> >       - description: Qcom Adreno GPUs implementing "arm,smmu-v2"
+> >         items:
+> >           - enum:
+> >               - qcom,msm8996-smmu-v2
+> >               - qcom,msm8998-smmu-v2
+> >               - qcom,sc7180-smmu-v2
+> >               - qcom,sdm845-smmu-v2
+> >         - const: qcom,adreno-smmu
+> >         - const: qcom,smmu-v2
+> >
+> > Then we still have the SoC-specific compatible string in case we need
+> > it but we also have the generic one?  It also means that we're not
+> > deleting the old compatible string...
+>
+> I did bring up the thing about removing the compat string in an
+> earlier revision of the series.. but then we realized that
+> qcom,sc7180-smmu-v2 was never actually used anywhere.
 
-diff --git a/arch/arm/boot/dts/zx296702.dtsi b/arch/arm/boot/dts/zx296702.dtsi
-index afd98de029be..f378c661b3bf 100644
---- a/arch/arm/boot/dts/zx296702.dtsi
-+++ b/arch/arm/boot/dts/zx296702.dtsi
-@@ -58,7 +58,7 @@
- 			clocks = <&topclk ZX296702_A9_PERIPHCLK>;
- 		};
- 
--		l2cc: l2-cache-controller@c00000 {
-+		l2cc: cache-controller@c00000 {
- 			compatible = "arm,pl310-cache";
- 			reg = <0x00c00000 0x1000>;
- 			cache-unified;
--- 
-2.17.1
+Right, so at least there's not going to be weird issues where landing
+the dts before the code change will break anything.
 
+
+> But I guess we could:  compatible = "qcom,sc7180-smmu-v2",
+> "qcom,adreno-smmu", "qcom,smmu-v2";
+
+Yeah, that was what I was suggesting.
+
+-Doug
