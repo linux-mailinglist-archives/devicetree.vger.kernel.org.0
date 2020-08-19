@@ -2,126 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C31B7249B2B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 12:52:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31A24249BB4
+	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 13:26:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727906AbgHSKvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Aug 2020 06:51:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44706 "EHLO
+        id S1727987AbgHSL04 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Aug 2020 07:26:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728005AbgHSKvd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 06:51:33 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C5F6C061343
-        for <devicetree@vger.kernel.org>; Wed, 19 Aug 2020 03:51:29 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id p20so21055584wrf.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Aug 2020 03:51:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=jkwK21g5VFdynOOGr6pwZT15bIrSzS5HHZUTr6u93Bk=;
-        b=o6wcLOra6wVLGD3LShyd1CcBwNTFU7v/kixPKoLuyTZgV+ErdoUhW0QEJzVNCoPXYI
-         GVMuHyu9mGHZ6da1NSE2yas+EN30VVUhq3LL56yw4TGf4+WrjxxNIvw5MFEoTLEWYBST
-         lOg02JNxd3WiubgOJuCDuousdR/dux4jCBQxh/GETWsGhSCiSfO61Dsjg9Tn4LUgbFNR
-         HUcLGlOZkwm6/Y9xaRLkNSK8y5WRshXuQplnM/0wWDHgHpxVDCBHp46VIcQ++pd3yMp8
-         hK1v+LcPjY5IfmK5noOrvsjPWmOf2sfi23qBLJ8IvJBWayY+TAWD6+Mac7nMjW/5AdZT
-         qtFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=jkwK21g5VFdynOOGr6pwZT15bIrSzS5HHZUTr6u93Bk=;
-        b=OafJG7ulxERcOhyzDqoKdLftdqVOOWow/7Sl8FCUDuO9gh+DHrz5RFWEa4Rg5Rbrf6
-         kMAxjrw94A70GY6Ed/MbvZXTD3IweJEh56KrH5ScmsLlbYTClSuL48jZCqZFp6QD4RZ2
-         CzoIcnl/01nsIosJR4RYpFU+h+z4/F8+3KgLZ9utYyeAiDCinPop/+G2bJQP792wrql3
-         0q5Dq6Nxg8dk/n0FC25ej5MAk9No50viAXLK3INIxYaSA/ev5WO7CPRS7Zaf0SouqEx6
-         0llJb84Qq/mGsTInwWo5JoXWchP2C2GfnaneMiuP8MBQuBhUGrrw791EP07Ij3P/3pEx
-         lPYg==
-X-Gm-Message-State: AOAM530JgledVsEJ905+B4JRQC/4tU6FTPCh50+EADBPEeDsXYiwTlGv
-        voYN26XKTrTtpDyl+Jh/U5SbnA==
-X-Google-Smtp-Source: ABdhPJyXRU861CmmXhvzyM0K1yAJtYGdADvkQ1ImIfcucwdx9hjZDkswr6TS7g+o481n48uSjh4ZUQ==
-X-Received: by 2002:a5d:4a0b:: with SMTP id m11mr24001808wrq.407.1597834288094;
-        Wed, 19 Aug 2020 03:51:28 -0700 (PDT)
-Received: from dell ([95.149.164.62])
-        by smtp.gmail.com with ESMTPSA id q7sm40425011wra.56.2020.08.19.03.51.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Aug 2020 03:51:27 -0700 (PDT)
-Date:   Wed, 19 Aug 2020 11:51:24 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        with ESMTP id S1727884AbgHSL0m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 07:26:42 -0400
+Received: from mxout012.mail.hostpoint.ch (mxout012.mail.hostpoint.ch [IPv6:2a00:d70:0:e::312])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28F30C061757;
+        Wed, 19 Aug 2020 04:26:42 -0700 (PDT)
+Received: from [10.0.2.45] (helo=asmtp012.mail.hostpoint.ch)
+        by mxout012.mail.hostpoint.ch with esmtp (Exim 4.92.3 (FreeBSD))
+        (envelope-from <code@reto-schneider.ch>)
+        id 1k8MEa-000Pg6-IN; Wed, 19 Aug 2020 13:26:24 +0200
+Received: from [2a02:168:6182:1:2c96:ee1d:6a9a:1f33] (helo=ryzen2700.dss.husqvarnagroup.com)
+        by asmtp012.mail.hostpoint.ch with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92.3 (FreeBSD))
+        (envelope-from <code@reto-schneider.ch>)
+        id 1k8MEa-000HJu-FM; Wed, 19 Aug 2020 13:26:24 +0200
+X-Authenticated-Sender-Id: reto-schneider@reto-schneider.ch
+From:   Reto Schneider <code@reto-schneider.ch>
+To:     linux-arm-kernel@lists.infradead.org, alexandre.belloni@bootlin.com
+Cc:     Reto Schneider <reto.schneider@husqvarnagroup.com>,
+        Stefan Roese <sr@denx.de>,
+        Michael Zimmermann <michael.zimmermann@grandcentrix.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Pavel Machek <pavel@ucw.cz>
-Subject: Re: [PATCH v8 03/13] mfd: simple-mfd-i2c: add sl28cpld support
-Message-ID: <20200819105124.GA3248864@dell>
-References: <20200813124832.17349-1-michael@walle.cc>
- <20200813124832.17349-4-michael@walle.cc>
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Kamel Bouhara <kamel.bouhara@bootlin.com>,
+        Cristian Birsan <cristian.birsan@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v2] ARM: at91: Add GARDENA smart Gateway (Art. 19000) board
+Date:   Wed, 19 Aug 2020 13:25:47 +0200
+Message-Id: <20200819112550.16494-1-code@reto-schneider.ch>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20200810171921.8679-1-code@reto-schneider.ch>
+References: <20200810171921.8679-1-code@reto-schneider.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200813124832.17349-4-michael@walle.cc>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 13 Aug 2020, Michael Walle wrote:
+From: Reto Schneider <reto.schneider@husqvarnagroup.com>
 
-> Add the core support for the board management controller found on the
-> SMARC-sAL28 board.
-> 
-> Also add a virtual symbol which pulls in the simple-mfd-i2c driver and
-> provide a common symbol on which the subdevice drivers can depend on.
-> 
-> At the moment, this controller is used on the Kontron SMARC-sAL28 board.
-> 
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> ---
-> Changes since v7:
->  - added MFD_SL28CPLD virtual Kconfig symbol
->  - Please note, that I intentionally removed the Acked-for-MFD-by
->    because of this change.
-> 
-> Changes since v6:
->  - renamed "sl28cpld-r1" to "sl28cpld"
-> 
-> Changes since v5:
->  - none
-> 
-> Changes since v4:
->  - new patch
-> 
->  drivers/mfd/Kconfig          | 10 ++++++++++
->  drivers/mfd/simple-mfd-i2c.c |  1 +
->  2 files changed, 11 insertions(+)
+This patch adds support for the GARDENA smart Gateway, which is based on
+the Atmel AT91SAM9G25. It is equipped with 128 MiB of DDR2 RAM and
+256 MiB NAND storage.
 
-For my own reference (apply this as-is to your sign-off block):
+Please note that this gateway is not actually based on a AT91SAM9x5 EK
+board, but is close enough to allow its DT to be used.
 
-  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+Co-developed-by: Stefan Roese <sr@denx.de>
+Signed-off-by: Stefan Roese <sr@denx.de>
+Co-developed-by: Michael Zimmermann <michael.zimmermann@grandcentrix.net>
+Signed-off-by: Michael Zimmermann <michael.zimmermann@grandcentrix.net>
+Signed-off-by: Reto Schneider <reto.schneider@husqvarnagroup.com>
+---
+ .../devicetree/bindings/arm/atmel-at91.yaml   |   2 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../dts/at91sam9g25-gardena-smart-gateway.dts | 157 ++++++++++++++++++
+ 3 files changed, 160 insertions(+)
+ create mode 100644 arch/arm/boot/dts/at91sam9g25-gardena-smart-gateway.dts
 
+diff --git a/Documentation/devicetree/bindings/arm/atmel-at91.yaml b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
+index 31b0c54fa2cf..b8da32f5d0a7 100644
+--- a/Documentation/devicetree/bindings/arm/atmel-at91.yaml
++++ b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
+@@ -41,6 +41,8 @@ properties:
+               - overkiz,kizboxmini-mb   # Overkiz kizbox Mini Mother Board
+               - overkiz,kizboxmini-rd   # Overkiz kizbox Mini RailDIN
+               - overkiz,smartkiz        # Overkiz SmartKiz Board
++              - gardena,smart-gateway-at91sam" # GARDENA smart Gateway (Article
++                                               # No. 19000)
+           - const: atmel,at91sam9g25
+           - const: atmel,at91sam9x5
+           - const: atmel,at91sam9
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index e6a1cac0bfc7..6368dac016dd 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -44,6 +44,7 @@ dtb-$(CONFIG_SOC_AT91SAM9) += \
+ 	at91-wb45n.dtb \
+ 	at91sam9g15ek.dtb \
+ 	at91sam9g25ek.dtb \
++	at91sam9g25-gardena-smart-gateway.dtb \
+ 	at91sam9g35ek.dtb \
+ 	at91sam9x25ek.dtb \
+ 	at91sam9x35ek.dtb
+diff --git a/arch/arm/boot/dts/at91sam9g25-gardena-smart-gateway.dts b/arch/arm/boot/dts/at91sam9g25-gardena-smart-gateway.dts
+new file mode 100644
+index 000000000000..6dc6e14b5f58
+--- /dev/null
++++ b/arch/arm/boot/dts/at91sam9g25-gardena-smart-gateway.dts
+@@ -0,0 +1,157 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Device Tree file for the GARDENA smart Gateway (Article No. 19000)
++ *
++ *  Copyright (C) 2020 GARDENA GmbH
++ */
++
++/dts-v1/;
++
++#include "at91sam9g25.dtsi"
++#include "at91sam9x5ek.dtsi"
++#include <dt-bindings/input/input.h>
++
++/ {
++	model = "GARDENA smart Gateway (Article No. 19000)";
++	compatible = "gardena,smart-gateway-at91sam", "atmel,at91sam9g25", "atmel,at91sam9x5", "atmel,at91sam9";
++
++	aliases {
++		serial1 = &usart3;
++	};
++
++	gpio-keys {
++		compatible = "gpio-keys";
++
++		user_btn1 {
++			label = "USER_BTN1";
++			gpios = <&pioA 24 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_PROG1>;
++		};
++	};
++
++	1wire_cm {
++		status = "disabled";
++	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		power_blue {
++			label = "smartgw:power:blue";
++			gpios = <&pioC 21 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++
++		power_green {
++			label = "smartgw:power:green";
++			gpios = <&pioC 20 GPIO_ACTIVE_HIGH>;
++			default-state = "on";
++		};
++
++		power_red {
++			label = "smartgw:power:red";
++			gpios = <&pioC 19 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++
++		radio_blue {
++			label = "smartgw:radio:blue";
++			gpios = <&pioC 18 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++
++		radio_green {
++			label = "smartgw:radio:green";
++			gpios = <&pioC 17 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++
++		radio_red {
++			label = "smartgw:radio:red";
++			gpios = <&pioC 16 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++
++		internet_blue {
++			label = "smartgw:internet:blue";
++			gpios = <&pioC 15 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++
++		internet_green {
++			label = "smartgw:internet:green";
++			gpios = <&pioC 14 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++
++		internet_red {
++			label = "smartgw:internet:red";
++			gpios = <&pioC 13 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++
++		heartbeat {
++			label = "smartgw:heartbeat";
++			gpios = <&pioB 8 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "heartbeat";
++		};
++
++		pb18 {
++			status = "disabled";
++		};
++
++		pd21 {
++			status = "disabled";
++		};
++	};
++};
++
++&macb0 {
++	phy-mode = "rmii";
++	status = "okay";
++};
++
++&usart0 {
++	status = "disabled";
++};
++
++&usart2 {
++	status = "disabled";
++};
++
++&usart3 {
++	status = "okay";
++
++	pinctrl-0 = <&pinctrl_usart3
++		     &pinctrl_usart3_rts
++		     &pinctrl_usart3_cts
++		    >;
++};
++
++&watchdog {
++	status = "okay";
++};
++
++&mmc0 {
++	status = "disabled";
++};
++
++&mmc1 {
++	status = "disabled";
++};
++
++&spi0 {
++	status = "disabled";
++};
++
++&i2c0 {
++	status = "disabled";
++};
++
++&adc0 {
++	status = "disabled";
++};
++
++&ssc0 {
++	status = "disabled";
++};
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.27.0
+
