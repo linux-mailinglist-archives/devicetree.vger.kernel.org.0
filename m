@@ -2,87 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D73CD249DD3
-	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 14:28:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B4A3249E0A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 14:34:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727987AbgHSM2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Aug 2020 08:28:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59594 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727019AbgHSM2m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 08:28:42 -0400
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35271C061757
-        for <devicetree@vger.kernel.org>; Wed, 19 Aug 2020 05:28:42 -0700 (PDT)
-Received: from ramsan ([84.195.186.194])
-        by albert.telenet-ops.be with bizsmtp
-        id HQUf230184C55Sk06QUf0Z; Wed, 19 Aug 2020 14:28:39 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1k8NCp-00029M-8S; Wed, 19 Aug 2020 14:28:39 +0200
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1k8NCp-0004oL-5F; Wed, 19 Aug 2020 14:28:39 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2] h8300: dts: Fix /chosen:stdout-path
-Date:   Wed, 19 Aug 2020 14:28:38 +0200
-Message-Id: <20200819122838.18452-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
+        id S1728360AbgHSMeT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Aug 2020 08:34:19 -0400
+Received: from auth-smtp.nebula.fi ([217.149.52.145]:39688 "EHLO
+        auth-smtp.nebula.fi" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728306AbgHSMeB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 08:34:01 -0400
+Received: from developer-Precision-3630-Tower (82-203-173-204.bb.dnainternet.fi [82.203.173.204])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: xipheracom)
+        by auth-smtp.nebula.fi (Postfix) with ESMTPSA id 386C5444D;
+        Wed, 19 Aug 2020 15:22:03 +0300 (EEST)
+From:   Atte Tommiska <atte.tommiska@xiphera.com>
+To:     Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Atte Tommiska <atte.tommiska@xiphera.com>
+Subject: [PATCH 0/3] hwrng: add support for Xiphera XIP8001B
+Date:   Wed, 19 Aug 2020 15:21:32 +0300
+Message-Id: <20200819122135.25316-1-atte.tommiska@xiphera.com>
+X-Mailer: git-send-email 2.28.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.0 required=8.0 tests=none autolearn=unavailable
+        autolearn_force=no version=3.4.0
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        authsmtp1-hki2.nebula.fi
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-    arch/h8300/boot/dts/h8s_sim.dts:11.3-25: Warning (chosen_node_stdout_path): /chosen:stdout-path: property is not a string
-    arch/h8300/boot/dts/h8300h_sim.dts:11.3-25: Warning (chosen_node_stdout_path): /chosen:stdout-path: property is not a string
+This patchset introduces a linux driver for Xiphera's XIP8001B IP.
+The IP is an FPGA-based TRNG which can be used in various FPGA families.
+The IP is in use in multiple customer projects and in Xiphera's own products.
 
-Drop the angle brackets to fix this.
+Atte Tommiska (3):
+  dt-bindings: vendor-prefixes: Add Xiphera vendor prefix
+  dt-bindings: rng: add bindings for Xiphera XIP8001B hwnrg
+  hwrng: xiphera-trng: add support for XIP8001B hwrng
 
-A similar fix was already applied to arch/h8300/boot/dts/edosk2674.dts
-in commit 780ffcd51cb28717 ("h8300: register address fix").
+ .../bindings/rng/xiphera,xip8001b-trng.yaml   |  30 ++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/char/hw_random/Kconfig                |  10 ++
+ drivers/char/hw_random/Makefile               |   1 +
+ drivers/char/hw_random/xiphera-trng.c         | 151 ++++++++++++++++++
+ 5 files changed, 194 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rng/xiphera,xip8001b-trng.yaml
+ create mode 100644 drivers/char/hw_random/xiphera-trng.c
 
-Fixes: 38d6bded13084d50 ("h8300: devicetree source")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Masahiro Yamada <masahiroy@kernel.org>
----
-v2:
-  - Add Reviewed-by.
----
- arch/h8300/boot/dts/h8300h_sim.dts | 2 +-
- arch/h8300/boot/dts/h8s_sim.dts    | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/h8300/boot/dts/h8300h_sim.dts b/arch/h8300/boot/dts/h8300h_sim.dts
-index 595398b9d0180a80..e1d4d9b7f6b40c04 100644
---- a/arch/h8300/boot/dts/h8300h_sim.dts
-+++ b/arch/h8300/boot/dts/h8300h_sim.dts
-@@ -8,7 +8,7 @@
- 
- 	chosen {
- 		bootargs = "earlyprintk=h8300-sim";
--		stdout-path = <&sci0>;
-+		stdout-path = &sci0;
- 	};
- 	aliases {
- 		serial0 = &sci0;
-diff --git a/arch/h8300/boot/dts/h8s_sim.dts b/arch/h8300/boot/dts/h8s_sim.dts
-index 932cc3c5a81bcdd2..4848e40e607ecc1d 100644
---- a/arch/h8300/boot/dts/h8s_sim.dts
-+++ b/arch/h8300/boot/dts/h8s_sim.dts
-@@ -8,7 +8,7 @@
- 
- 	chosen {
- 		bootargs = "earlyprintk=h8300-sim";
--		stdout-path = <&sci0>;
-+		stdout-path = &sci0;
- 	};
- 	aliases {
- 		serial0 = &sci0;
+base-commit: 9123e3a74ec7b934a4a099e98af6a61c2f80bbf5
 -- 
-2.17.1
+2.28.0
 
