@@ -2,185 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0915C24A7F2
-	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 22:49:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 537F524A803
+	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 22:52:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726974AbgHSUtv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Aug 2020 16:49:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52896 "EHLO
+        id S1726729AbgHSUwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Aug 2020 16:52:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725997AbgHSUtu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 16:49:50 -0400
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FC22C061757;
-        Wed, 19 Aug 2020 13:49:50 -0700 (PDT)
-Received: by mail-ed1-x541.google.com with SMTP id l23so19223130edv.11;
-        Wed, 19 Aug 2020 13:49:50 -0700 (PDT)
+        with ESMTP id S1726689AbgHSUwC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 16:52:02 -0400
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F134C061757
+        for <devicetree@vger.kernel.org>; Wed, 19 Aug 2020 13:52:01 -0700 (PDT)
+Received: by mail-lf1-x142.google.com with SMTP id j22so12800896lfm.2
+        for <devicetree@vger.kernel.org>; Wed, 19 Aug 2020 13:52:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=K2zgoWJMVJSa/TNQOYcMLprt+kXYKK8dtG0LjjuZCoc=;
-        b=Pdzwz1e2rv9Embus7JEws1HnUGspCVHG2cS3m11g1KQ7xcV/CBtajPnm8coQB3M8Cf
-         lFzjr1HHim02CnT2r0i1136TYAY7qOgXMUoVu4Pc8R7FE/Kg+b0o4fGL/TcyXNkL4ZKI
-         69vu+99/3MGyT/t8D/O7kCf/gkQzpOtK1YxyZTB/G4+JKG2+qnNed+69aeo9m9SgqZHe
-         fJ5TPAymerYIAWI8wnmTRVB8A0fM4QqW+IWb9vmj329aImTdA0NqNMSMXeFI8ThY40Gi
-         YHJevJr2UTHfRtQi+2b1CyKgMUVxa14HV8YipEcfar2H46JMRg+MPgRoscW0wPQph/kf
-         LFPw==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DrnAOfNeMY45Zc2VAynDzTk+Pika+bbdhzqu0uIz8TM=;
+        b=LXqQ/fx4gASCmZtcHjHDguMZZ92GvjofBVvXPDlt6vO7HSmPDQfvI/a/1vyZzNRgCX
+         jZ12bFn+2i3bNm8Vwhp2CRp3Kf4137UrglxaGOSBJrPBn4EoOKc5erpsRjErMoF/aOK0
+         4mbTxt6DBylQ2k0lHNyEEDV/K9XjHFG7X27bDQoflaUbym7Zrb6zTkrPHbkyk+q/AWiw
+         NpxZzk75/qrynlhb8vXjuStzilomVCS4k1FHz1/ImOxhlq2jY/vkv8eDYBpoIr3wXeKp
+         BXY5Cd36msSs24beVkJdlDqGRkl+r2B5Tk2obFnE+Siy0Qmdz0M5aXogdXgPOhG3hOvX
+         Pi1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=K2zgoWJMVJSa/TNQOYcMLprt+kXYKK8dtG0LjjuZCoc=;
-        b=a19VQ6oo4aVwOVT7nv4u/V7V4b1eHywCzviG/9WT9IQNA02776oHCvp0ihAfzuToZ8
-         92Yr1FUaiST//ocqUGslhOldbt2WErL3VTsGOD3Z5jsDsD+nnavA34a0QRfsfSPev7Rh
-         2GNCM1vAESEqYG1jEAvqsN6aMiFjbal+sJD4UMAlJ23KXcutB7WNLE8XiU0gS84JgILi
-         kb751npnUAPE9LVyWVOsEDmncKKewTJCXqGMu75fEL3O0uXYZz+5k9OwGgAb95eOVelW
-         2P64mgwPG9oVBLHLilEopUzXl42UQFbNevupn992CVoAVxzaV8qyytYqj8rKrBtZBxyb
-         zAIw==
-X-Gm-Message-State: AOAM532oO2rAZCCoH81y4AtIQ+vvVfvbq416zZ6WxRagPvrNQJvciLll
-        Zm3Mug7UeIBwx2EVw9K+qSN2kO7Anuc=
-X-Google-Smtp-Source: ABdhPJyZmpCyVYq9115eormBuLkTdxhAUGIEG4kLQKfecG2vG8kdFo0MwgmrSWxjpY6tMR+Ul2uyMg==
-X-Received: by 2002:aa7:ccd5:: with SMTP id y21mr25745238edt.91.1597870189025;
-        Wed, 19 Aug 2020 13:49:49 -0700 (PDT)
-Received: from [10.67.50.75] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id l7sm18338674eds.47.2020.08.19.13.49.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Aug 2020 13:49:48 -0700 (PDT)
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Fix pin controller node
-To:     Christian Lamparter <chunkeey@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        "maintainer:BROADCOM BCM5301X ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20200819042308.19043-1-f.fainelli@gmail.com>
- <7501cb2f-ea5a-8339-40a0-6706fea32a06@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- G10n8gCguORqNGMsVRxrlLs7/himep7MrCc=
-Message-ID: <62f89d06-e6ef-9476-1797-bec153d8e6db@gmail.com>
-Date:   Wed, 19 Aug 2020 13:49:45 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DrnAOfNeMY45Zc2VAynDzTk+Pika+bbdhzqu0uIz8TM=;
+        b=oZw7zWt2jc5Jqd7UjVinYG2K6oBuyiFX5KVn1spdqY4J/y3K5UvxqahwZhrQdfF4mC
+         3gGh2dstFIs2wBWYU0FgcxBIG4W2smPJTTBKPhw5tIkxxYaLK6mjXv4ek8s/tbDVuxSi
+         pI2flDEIPZAKVM1kZAJ8whDMfjHyLvPBrF5RH3t1Z0FMbspri2UdbVmIFcWmVaB8a80h
+         9Fom3R/iGGt7EeGUoBiVwga+s4p5kVPWOv3/IoBvrSbePuIlyXvFthpecnEJdG5hBC7B
+         xdScyvwCgd39cWtSTJU1ryck0R3vxttjdTP/KZ5pL4yBS0LsCO7pJGdN/a5xyFefFset
+         icTw==
+X-Gm-Message-State: AOAM530FKqLQtPX0eHuUm8alK9m6LixCp/jrPnOkITmk5REHs7KBCO9h
+        /CGyaDd0qVqbQhlxz75mw9ZIZ50wZIR3fw==
+X-Google-Smtp-Source: ABdhPJyz+ohEqmEM1RkxQtUpRLw6wTd+k/jtb3NLYO4vG+UVH3YylURSMNIz97RIaO7LeQ91qbxsZw==
+X-Received: by 2002:a19:3f57:: with SMTP id m84mr1052364lfa.128.1597870320184;
+        Wed, 19 Aug 2020 13:52:00 -0700 (PDT)
+Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
+        by smtp.gmail.com with ESMTPSA id u10sm8188lfo.39.2020.08.19.13.51.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Aug 2020 13:51:59 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        dri-devel@lists.freedesktop.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>
+Subject: [PATCH 1/3 v3] dt-bindings: backlight: Add some common backlight properties
+Date:   Wed, 19 Aug 2020 22:51:48 +0200
+Message-Id: <20200819205150.164403-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <7501cb2f-ea5a-8339-40a0-6706fea32a06@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/19/20 1:48 PM, Christian Lamparter wrote:
-> On 2020-08-19 06:23, Florian Fainelli wrote:
->> The pin controller resources start at 0xc0 from the CRU base which is at
->> 0x100 from th DMU base, for a final address of 0x1800_c1c0, whereas we
->> are currently off by 0x100. The resource size of the CRU is also
->> incorrect and should end at 0x248 bytes from 0x100 which is the start
->> address. Finally, the compatibility strings defined for the
->> pin-controller node should reflect the SoC being used.
->>
->> Fixes: 9994241ac97c ("ARM: dts: BCM5301X: Describe Northstar pins mux
->> controller")
->> Reported-by: Christian Lamparter <chunkeey@gmail.com>
->> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
->> ---
->> Christian, can you test this as a preliminary patch for your Cisco
->> Meraki MR32 series? Thanks!
-> 
-> Hm, it looks like this is more complicated than this. We should have
-> looked at pinctrl-ns.c's ns_pinctrl_probe() [0] before calling it.
-> 
-> |    ns_pinctrl->regmap = syscon_node_to_regmap(of_get_parent(np));
-> |    if (IS_ERR(ns_pinctrl->regmap)) {
-> |        int err = PTR_ERR(ns_pinctrl->regmap);
-> |
-> |        dev_err(dev, "Failed to map pinctrl regs: %d\n", err);
-> |
-> |        return err;
-> |    }
-> |
-> |    if (of_property_read_u32(np, "offset", &ns_pinctrl->offset)) {
-> |        dev_err(dev, "Failed to get register offset\n");
-> |        return -ENOENT;
-> |    }
-> 
-> So, the ns_pinctrl_probe() takes the address of the parent node (cru)
-> and then looks for a "offset" property to add to this (which is missing
-> in the bcm5301x.dtsi [1]).
-> 
-> Thing is, for this to work, the parent-node should be a "simple-mfd" (so
-> a regmap is created for the reg), right? This would also mean that the
-> "reg" property in the pin-controller node is just cosmetic.
-> 
-> I guess the reason why this sort-of-works for me is because I'm using
-> this MR32 with OpenWrt (Rafał Miłecki is probably using it too ;) ).
-> 
-> (Note: We should not forget to update the binding-documentation as well!)
-> 
-> BTW: I'll reply my findings for the i2c issue with the MR32 in the other
-> mail.
+Let's use a common.yaml include for the backlight like we do with
+the LEDs. The LEDs are inherently incompatible so their bindings
+cannot be reused for backlight.
 
-Rafal, has this driver ever worked to begin with? None of this should be
-necessary, we should just be using a simple platform device resource here.
+Cc: devicetree@vger.kernel.org
+Suggested-by: Sam Ravnborg <sam@ravnborg.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v2->v3:
+- Drop the | for the description
+- Drop the "default-on" property, we're not using it.
+- Drop the minimum 0 for unsigned u32:s
+ChangeLog v1->v2:
+- New patch as suggested by Sam.
+---
+ .../bindings/leds/backlight/common.yaml       | 34 +++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/common.yaml
+
+diff --git a/Documentation/devicetree/bindings/leds/backlight/common.yaml b/Documentation/devicetree/bindings/leds/backlight/common.yaml
+new file mode 100644
+index 000000000000..4e7e95e331a5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/backlight/common.yaml
+@@ -0,0 +1,34 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/backlight/common.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Common backlight properties
++
++maintainers:
++  - Lee Jones <lee.jones@linaro.org>
++  - Daniel Thompson <daniel.thompson@linaro.org>
++  - Jingoo Han <jingoohan1@gmail.com>
++
++description:
++  Backlight devices provide backlight for different types of graphical
++  displays. They are typically but not necessarily implemented using a white
++  LED powered by a boost converter.
++
++properties:
++  default-brightness:
++    description:
++      The default brightness that should be applied to the LED by the operating
++      system on start-up. The brightness should not exceed the brightness the
++      LED can provide.
++    $ref: /schemas/types.yaml#definitions/uint32
++
++  max-brightness:
++    description:
++      Normally the maximum brightness is determined by the hardware and this
++      property is not required. This property is used to put a software limit
++      on the brightness apart from what the driver says, as it could happen
++      that a LED can be made so bright that it gets damaged or causes damage
++      due to restrictions in a specific system, such as mounting conditions.
++    $ref: /schemas/types.yaml#definitions/uint32
 -- 
-Florian
+2.26.2
+
