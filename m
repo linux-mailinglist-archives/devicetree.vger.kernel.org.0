@@ -2,100 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B04C24938B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 05:42:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C31502493AB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 05:54:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726783AbgHSDmu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Aug 2020 23:42:50 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:14811 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726318AbgHSDms (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Aug 2020 23:42:48 -0400
-X-UUID: 5160d2c900fd46c3838dbea551d4a832-20200819
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=kpBsxONTkkbc5bOYHR9hFMap17MiXFktP1dZs/pBlQA=;
-        b=RfSu+rcZUd3Cub/Xyz1jxH+TTd6MqM4ZtiXa3/zxdvv76GbCWgR25ZQ35bQz/wG0L+4OInFwm6XTG7K1ADSxbeQYBv0hhl/4SsyVGEOuGarLMt9RlMQKbKO4hmOFIo0lRk//LBHrIkXyvEBCXtrg30LGtwwra3NtPjCdbSLVEC4=;
-X-UUID: 5160d2c900fd46c3838dbea551d4a832-20200819
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <mark-pk.tsai@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1897202186; Wed, 19 Aug 2020 11:42:45 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 19 Aug 2020 11:42:43 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 19 Aug 2020 11:42:40 +0800
-From:   Mark-PK Tsai <mark-pk.tsai@mediatek.com>
-To:     <maz@kernel.org>
-CC:     <tglx@linutronix.de>, <jason@lakedaemon.net>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <mark-pk.tsai@mediatek.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <yj.chiang@mediatek.com>,
-        <alix.wu@mediatek.com>, <daniel@0x0f.com>
-Subject: [PATCH 2/2] dt-bindings: interrupt-controller: Add MStar interrupt controller
-Date:   Wed, 19 Aug 2020 11:42:31 +0800
-Message-ID: <20200819034231.20726-3-mark-pk.tsai@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20200819034231.20726-1-mark-pk.tsai@mediatek.com>
-References: <20200819034231.20726-1-mark-pk.tsai@mediatek.com>
+        id S1726435AbgHSDyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Aug 2020 23:54:06 -0400
+Received: from mailout4.samsung.com ([203.254.224.34]:56901 "EHLO
+        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726165AbgHSDyE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Aug 2020 23:54:04 -0400
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20200819035400epoutp048f50143a5a69ac1e1083b829c95bac18~sjwoC_9kU0186801868epoutp044
+        for <devicetree@vger.kernel.org>; Wed, 19 Aug 2020 03:54:00 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20200819035400epoutp048f50143a5a69ac1e1083b829c95bac18~sjwoC_9kU0186801868epoutp044
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1597809241;
+        bh=VWZYIWvbo8FyzZmp6q7gNu2nQM3g4xxG5QZg6Oj32mY=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=tiT8YkFLtBEN2v/C7UWZgWkMAFXuK6QhiHOH6XdeJfm0uHDmBLRUS8JVVWaogbRgm
+         TIYULmwPCH94ZgrrGoiBoUcvRBLKFjxaWhN8/XkO2RqOp+V4qAyD0vJa8LLP8G94oz
+         p8Bd03mbwjLZhCgAh88MdVFJ30N0rKxfQXTwRiDE=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+        20200819035359epcas2p1d07fa5ac07155cbde39ec139311ac897~sjwnFdAJ02461124611epcas2p1X;
+        Wed, 19 Aug 2020 03:53:59 +0000 (GMT)
+Received: from epsmges2p4.samsung.com (unknown [182.195.40.183]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4BWYmj4q7PzMqYlt; Wed, 19 Aug
+        2020 03:53:57 +0000 (GMT)
+Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
+        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+        AC.5E.27013.552AC3F5; Wed, 19 Aug 2020 12:53:57 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+        20200819035356epcas2p4bf6e672c27e14d4e0f728aae9a5f43fb~sjwjf74Jn2934829348epcas2p40;
+        Wed, 19 Aug 2020 03:53:56 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20200819035356epsmtrp2add31132847dd79bcb8bff3a29704536~sjwje1X0n0355803558epsmtrp2E;
+        Wed, 19 Aug 2020 03:53:56 +0000 (GMT)
+X-AuditID: b6c32a48-d35ff70000006985-2b-5f3ca2551cd4
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        71.85.08303.352AC3F5; Wed, 19 Aug 2020 12:53:55 +0900 (KST)
+Received: from KEI (unknown [12.36.155.227]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20200819035355epsmtip2ae445ec6236a53184e2ae990b7dada13~sjwjNPcQf0530505305epsmtip2C;
+        Wed, 19 Aug 2020 03:53:55 +0000 (GMT)
+Date:   Wed, 19 Aug 2020 12:46:26 +0900
+From:   Cho KyongHo <pullip.cho@samsung.com>
+To:     Brian Starkey <brian.starkey@arm.com>
+Cc:     Hyesoo Yu <hyesoo.yu@samsung.com>, sumit.semwal@linaro.org,
+        minchan@kernel.org, akpm@linux-foundation.org,
+        iamjoonsoo.kim@lge.com, joaodias@google.com, linux-mm@kvack.org,
+        surenb@google.com, vbabka@suse.cz, afd@ti.com,
+        benjamin.gaignard@linaro.org, lmark@codeaurora.org,
+        labbott@redhat.com, john.stultz@linaro.org,
+        christian.koenig@amd.com, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, nd@arm.com
+Subject: Re: [PATCH 0/3] Chunk Heap Support on DMA-HEAP
+Message-ID: <20200819034626.GB70898@KEI>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20200818105557.svky5c7gdvk6khzu@DESKTOP-E1NTVVP.localdomain>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Brightmail-Tracker: H4sIAAAAAAAAA02TbUxTZxTH8/S29xZm5VKhPgMyuztnhI2X8vqIMM2m5kYdAcn2gei6rr0D
+        Yim15U2zBNiGIBW0wBhiXTuGY1YWHDJEkG20GASBMMBiYIMBZnMwXkYByQi4lisJ337nn/M/
+        5znn5OFjQgPhxU9WpTEalUxJ4a7cRqsv8n+vKkoa9P1/YjTXpSeQoa4WR59aunA00dUH0MxY
+        Cw8Z23t5aHBpDkdrF/p46IbuMxw9M01gqHvVH924t8JBi4PjHDTQbMDRxVs/8tBo7XMequy0
+        cdC3S3ME6q65iKG81nYCdf1uJ1BpvwlHV3OLwcGddF7/Gk7XflUL6IHiIg5tqk+n680XcLp+
+        oYSgC2cGOfRvtns4/aBilUuP6To49Mj6JEbP/fQIp4sbzIDuNrUTdMfjOxzaXv9KLJmgjEpi
+        ZApGI2ZU8lRFsioxmjoWL31HGhYeJPGX7EMRlFglS2GiqUPHY/2PJCsdu6DEGTJlukOKlWm1
+        VOBbUZrU9DRGnJSqTYumGLVCqZZI1AFaWYo2XZUYIE9NiZQEBQWHOTI/VCa13f4FqKu8s2ar
+        h7g5YF5UCFz4kAyFZcN/EIXAlS8kmwC059Ry2WABwEclxTw2sAO4XKF3BPwNi3U6kNWbAayb
+        /wZ3lhKS4wCO/8U4mUu+Di8NGzAn46QfvHmtAzi9HqQvzDVInV6MvMaF/+TrNrw7yAhoNRdw
+        nSwg98I6/QLGsjvsvPJkQ3chj0Jd/ZONOp7kbjjVlu2sA0mrC5yZKAfsOIeg0cy+B5I74FRH
+        A8GyF7TPtuKs4UsAZ42WF0m3HZO1uLMcAiv/zN8ohJFJcGJlEGMHfg22D3NZeTsssK4RrCyA
+        BeeFrHM3vPuFjbvZqrj18Qum4fXGzR32ALjUbOBcBrsqt4xWuaUby29CU8sCXulogZHesGad
+        z6IvrGsONAGeGYgYtTYlkdEGq0O33roebHwTP7oJXJ2ZD7AADh9YAORjlIegqHW/VChQyM6e
+        YzSpUk26ktFaQJjjTnrMy1Oe6vhnqjSpJCw4PDxoXxgKCw9G1E7BbGTfB0IyUZbGnGYYNaPZ
+        9HH4Ll45nPKJ8mrNHkLOnXZpe1jW9Xy0aNkWEvf3nu0d6Tq7DjTqa0oOiJTvFtsIS/K/Fl3H
+        yOmKKl/tylhb1rapIUN8v72352TpD43TYttL1kVh89HD1JjPKPSJEW07+XZc3rJxlQqpfVBG
+        9XI97mYUTRrDVyw9cdLCTDeflEL3p1duGT/q14wYnh72fvnMpZt3GuSLkYKFUyc+X03McyuS
+        iVxDGpqWE459nen5ScLHTa+eG1Kcz7Z0Th4ZcF0xG90kB3/dFUNH5N4P9iFjsxd16+sFzzJP
+        vV96lpkVVQeeeSht0b8ReiBfbK3Jqiw/IQm8rzg+mTG/F7uu+E60v4+I+VkgV8ZTXG2STOKH
+        abSy/wFXMz7nrwQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrAIsWRmVeSWpSXmKPExsWy7bCSvG7wIpt4gycXLCzen5rIbjFn/Ro2
+        i6ZDp9gsHp26wGjx9v5uVov5R86xWlz5+p7N4m/nBVaLld3NbBbfFzxitjjzW9di5Z4fTBZf
+        rjxksri8aw6bRc+GrawW99b8Z7WYdfIak8Wyr+/ZLc4s72G2aN17hN3i1N3P7BaTLy1gs5jd
+        2MfoIO7Reukvm8eaeWsYPS739TJ5LNhU6rFpVSebx6ZPk9g9ut5eYfK4c20Pm8eJGb9ZPO53
+        H2fyuP3vMbPH+31X2Tz6tqxi9Diz4Ai7x/Eb25k8Pm+SCxCI4rJJSc3JLEst0rdL4Mp48UGj
+        4JFERd/NP2wNjCdFuhg5OCQETCQOv9bvYuTiEBLYwShx6tEl9i5GTqC4lMS87rVMELawxP2W
+        I6wQRfcZJTrPX2IFSbAIqEr035rDDGKzCWhJrJ57nBFkqIiApkTjnHiQemaBhSwSV2ctYwOp
+        ERYwlzi8qoMFxOYV0JBYP/ETM8TQs4wSs45/YodICEqcnPkErIgZaOiNfy+ZQIYyC0hLLP/H
+        ARLmFPCS6N70BGyXqICKxKuD9RMYBWchaZ6FpHkWQvMCRuZVjJKpBcW56bnFhgVGeanlesWJ
+        ucWleel6yfm5mxjBiUBLawfjnlUf9A4xMnEwHmKU4GBWEuHt3WsdL8SbklhZlVqUH19UmpNa
+        fIhRmoNFSZz366yFcUIC6YklqdmpqQWpRTBZJg5OqQamDvHtZ96YTP+kLjh1fs6bpW2/X+w7
+        ZPbir2/3Ma6/P4uv3VRoVNb3eMN5zK/UW9aY224zp8e/h0eEtl4MsilT3ZXz4pjYhj7lEO8X
+        Ai8UN3TG6DfwcT2Ka2ixrfz7ZKn7LJPGZr3j8ac0niZPki2/symt5RaL9ZJ5rdWiP+rPXNNf
+        vW1u/HcR1XmrOP2awzg4jSMm/7xQ4CjTl8Hd/udSzX055vPLPFZc0NKZPq02/G/fvA/PNdwD
+        bJZN1G9Lf8druSD9nRvj7sDzIQ91FTJLN1hc323KX9i3aEtl1yLPiMulImp3ltz5+ummaVxO
+        TtREpxTXHzcuf5ny5oitcCjvB2M+qdWR7ytc81jOlxcrsRRnJBpqMRcVJwIAVw1au3MDAAA=
+X-CMS-MailID: 20200819035356epcas2p4bf6e672c27e14d4e0f728aae9a5f43fb
+X-Msg-Generator: CA
+Content-Type: multipart/mixed;
+        boundary="----wn.C777VfLFf0j4dI6teQ5O7yZ9hP4.it_WB71vmM7CNsG.7=_322d9_"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20200818074547epcas2p21e0c2442873d03800c7bc2c3e76405d6
+References: <CGME20200818074547epcas2p21e0c2442873d03800c7bc2c3e76405d6@epcas2p2.samsung.com>
+        <20200818080415.7531-1-hyesoo.yu@samsung.com>
+        <20200818105557.svky5c7gdvk6khzu@DESKTOP-E1NTVVP.localdomain>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QWRkIGJpbmRpbmcgZm9yIE1TdGFyIGludGVycnVwdCBjb250cm9sbGVyLg0KDQpTaWduZWQtb2Zm
-LWJ5OiBNYXJrLVBLIFRzYWkgPG1hcmstcGsudHNhaUBtZWRpYXRlay5jb20+DQotLS0NCiAuLi4v
-aW50ZXJydXB0LWNvbnRyb2xsZXIvbXN0YXIsbXN0LWludGMueWFtbCAgfCA4MiArKysrKysrKysr
-KysrKysrKysrDQogMSBmaWxlIGNoYW5nZWQsIDgyIGluc2VydGlvbnMoKykNCiBjcmVhdGUgbW9k
-ZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2ludGVycnVwdC1jb250
-cm9sbGVyL21zdGFyLG1zdC1pbnRjLnlhbWwNCg0KZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy9pbnRlcnJ1cHQtY29udHJvbGxlci9tc3Rhcixtc3QtaW50Yy55
-YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2ludGVycnVwdC1jb250cm9s
-bGVyL21zdGFyLG1zdC1pbnRjLnlhbWwNCm5ldyBmaWxlIG1vZGUgMTAwNjQ0DQppbmRleCAwMDAw
-MDAwMDAwMDAuLjZlMzgzMzE1ZTUyOQ0KLS0tIC9kZXYvbnVsbA0KKysrIGIvRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL2ludGVycnVwdC1jb250cm9sbGVyL21zdGFyLG1zdC1pbnRj
-LnlhbWwNCkBAIC0wLDAgKzEsODIgQEANCisjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwt
-Mi4wDQorJVlBTUwgMS4yDQorLS0tDQorJGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1h
-cy9pbnRlcnJ1cHQtY29udHJvbGxlci9tc3Rhcixtc3QtaW50Yy55YW1sIw0KKyRzY2hlbWE6IGh0
-dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvY29yZS55YW1sIw0KKw0KK3RpdGxlOiBN
-U3RhciBJbnRlcnJ1cHQgQ29udHJvbGxlcg0KKw0KK21haW50YWluZXJzOg0KKyAgLSBNYXJrLVBL
-IFRzYWkgPG1hcmstcGsudHNhaUBtZWRpYXRlay5jb20+DQorDQorZGVzY3JpcHRpb246IHwrDQor
-ICBNU3RhciwgU2lnbWFTdGFyIGFuZCBNZWRpYXRlayBEVFYgU29DcyBjb250YWluIG11bHRpcGxl
-IGxlZ2FjeQ0KKyAgaW50ZXJydXB0IGNvbnRyb2xsZXJzIHRoYXQgcm91dGVzIGludGVycnVwdHMg
-dG8gdGhlIEdJQy4NCisNCisgIFRoZSBIVyBibG9jayBleHBvc2VzIGEgbnVtYmVyIG9mIGludGVy
-cnVwdCBjb250cm9sbGVycywgZWFjaA0KKyAgY2FuIHN1cHBvcnQgdXAgdG8gNjQgaW50ZXJydXB0
-cy4NCisNCithbGxPZjoNCisgIC0gJHJlZjogL3NjaGVtYXMvaW50ZXJydXB0LWNvbnRyb2xsZXIu
-eWFtbCMNCisNCitwcm9wZXJ0aWVzOg0KKyAgY29tcGF0aWJsZToNCisgICAgaXRlbXM6DQorICAg
-ICAgLSBjb25zdDogbXN0YXIsbXN0LWludGMNCisgICAgICAtIGVudW06DQorICAgICAgICAgIC0g
-bWVkaWF0ZWssbXQ1OHh4LWludGMNCisNCisgIGludGVycnVwdC1jb250cm9sbGVyOiB0cnVlDQor
-DQorICAiI2FkZHJlc3MtY2VsbHMiOg0KKyAgICBlbnVtOiBbIDAsIDEsIDIgXQ0KKw0KKyAgIiNz
-aXplLWNlbGxzIjoNCisgICAgZW51bTogWyAxLCAyIF0NCisNCisgICIjaW50ZXJydXB0LWNlbGxz
-IjoNCisgICAgY29uc3Q6IDMNCisgICAgZGVzY3JpcHRpb246IHwNCisgICAgICBVc2UgdGhlIHNh
-bWUgZm9ybWF0IGFzIHNwZWNpZmllZCBieSBHSUMgaW4gYXJtLGdpYy55YW1sLg0KKw0KKyAgcmVn
-Og0KKyAgICBkZXNjcmlwdGlvbjogfA0KKyAgICAgIFBoeXNpY2FsIGJhc2UgYWRkcmVzcyBvZiB0
-aGUgbXN0YXIgaW50ZXJydXB0IGNvbnRyb2xsZXINCisgICAgICByZWdpc3RlcnMgYW5kIGxlbmd0
-aCBvZiBtZW1vcnkgbWFwcGVkIHJlZ2lvbi4NCisgICAgbWluSXRlbXM6IDENCisNCisgIG1zdGFy
-LGlycXMtbWFwLXJhbmdlOg0KKyAgICBkZXNjcmlwdGlvbjogfA0KKyAgICAgIFRoZSByYW5nZSBv
-ZiBwYXJlbnQgaW50ZXJydXB0IGNvbnRyb2xsZXIncyBpbnRlcnJ1cHQgbGluZXMNCisgICAgICB0
-aGF0IGFyZSBoYXJkd2lyZWQgdG8gbXN0YXIgaW50ZXJydXB0IGNvbnRyb2xsZXIuDQorICAgICRy
-ZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQzMi1tYXRyaXgNCisgICAg
-aXRlbXM6DQorICAgICAgbWluSXRlbXM6IDINCisgICAgICBtYXhJdGVtczogMg0KKw0KKyAgbXN0
-YXIsaW50Yy1uby1lb2k6DQorICAgIGRlc2NyaXB0aW9uOiB8DQorICAgICAgTWFyayB0aGlzIGNv
-bnRyb2xsZXIgaGFzIG5vIEVuZCBPZiBJbnRlcnJ1cHQoRU9JKSBpbXBsZW1lbnRhdGlvbi4NCisg
-ICAgICBUaGlzIGlzIGEgZW1wdHksIGJvb2xlYW4gcHJvcGVydHkuDQorICAgIHR5cGU6IGJvb2xl
-YW4NCisNCityZXF1aXJlZDoNCisgIC0gY29tcGF0aWJsZQ0KKyAgLSByZWcNCisgIC0gbXN0YXIs
-aXJxcy1tYXAtcmFuZ2UNCisNCithZGRpdGlvbmFsUHJvcGVydGllczogZmFsc2UNCisNCitleGFt
-cGxlczoNCisgIC0gfA0KKyAgICBtc3RfaW50YzA6IGludGVycnVwdC1jb250cm9sbGVyQDFmMjAz
-MmQwIHsNCisgICAgICBjb21wYXRpYmxlID0gIm1zdGFyLG1zdC1pbnRjIiwgIm1lZGlhdGVrLG10
-NTh4eC1pbnRjIjsNCisgICAgICBpbnRlcnJ1cHQtY29udHJvbGxlcjsNCisgICAgICAjaW50ZXJy
-dXB0LWNlbGxzID0gPDM+Ow0KKyAgICAgICNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKyAgICAgICNz
-aXplLWNlbGxzID0gPDE+Ow0KKyAgICAgIGludGVycnVwdC1wYXJlbnQgPSA8JmdpYz47DQorICAg
-ICAgcmVnID0gPDB4MWYyMDMyZDAgMHgzMD47DQorICAgICAgbXN0YXIsaXJxcy1tYXAtcmFuZ2Ug
-PSA8MCA2Mz47DQorICAgIH07DQorLi4uDQotLSANCjIuMTguMA0K
+------wn.C777VfLFf0j4dI6teQ5O7yZ9hP4.it_WB71vmM7CNsG.7=_322d9_
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
+On Tue, Aug 18, 2020 at 11:55:57AM +0100, Brian Starkey wrote:
+> Hi,
+> 
+> On Tue, Aug 18, 2020 at 05:04:12PM +0900, Hyesoo Yu wrote:
+> > These patch series to introduce a new dma heap, chunk heap.
+> > That heap is needed for special HW that requires bulk allocation of
+> > fixed high order pages. For example, 64MB dma-buf pages are made up
+> > to fixed order-4 pages * 1024.
+> > 
+> > The chunk heap uses alloc_pages_bulk to allocate high order page.
+> > https://lore.kernel.org/linux-mm/20200814173131.2803002-1-minchan@kernel.org
+> > 
+> > The chunk heap is registered by device tree with alignment and memory node
+> > of contiguous memory allocator(CMA). Alignment defines chunk page size.
+> > For example, alignment 0x1_0000 means chunk page size is 64KB.
+> > The phandle to memory node indicates contiguous memory allocator(CMA).
+> > If device node doesn't have cma, the registration of chunk heap fails.
+> 
+> This reminds me of an ion heap developed at Arm several years ago:
+> https://protect2.fireeye.com/v1/url?k=aceed8af-f122140a-acef53e0-0cc47a30d446-0980fa451deb2df6&q=1&e=a58a9bb0-a837-4fc5-970e-907089bfe25e&u=https%3A%2F%2Fgit.linaro.org%2Flanding-teams%2Fworking%2Farm%2Fkernel.git%2Ftree%2Fdrivers%2Fstaging%2Fandroid%2Fion%2Fion_compound_page.c
+> 
+> Some more descriptive text here:
+> https://protect2.fireeye.com/v1/url?k=83dc3e8b-de10f22e-83ddb5c4-0cc47a30d446-a406aa201ca7dddc&q=1&e=a58a9bb0-a837-4fc5-970e-907089bfe25e&u=https%3A%2F%2Fgithub.com%2FARM-software%2FCPA
+> 
+> It maintains a pool of high-order pages with a worker thread to
+> attempt compaction and allocation to keep the pool filled, with high
+> and low watermarks to trigger freeing/allocating of chunks.
+> It implements a shrinker to allow the system to reclaim the pool under
+> high memory pressure.
+> 
+> Is maintaining a pool something you considered? From the
+> alloc_pages_bulk thread it sounds like you want to allocate 300M at a
+> time, so I expect if you tuned the pool size to match that it could
+> work quite well.
+> 
+> That implementation isn't using a CMA region, but a similar approach
+> could definitely be applied.
+> 
+I have seriously considered CPA in our product but we developed our own
+because of the pool in CPA.
+The high-order pages are required by some specific users like Netflix
+app. Moreover required number of bytes are dramatically increasing
+because of high resolution videos and displays in these days.
+
+Gathering lots of free high-order pages in the background during
+run-time means reserving that amount of pages from the entier available
+system memory. Moreover the gathered pages are soon reclaimed whenever
+the system is sufferring from memory pressure (i.e. camera recording,
+heavy games). So we had to consider allocating hundreds of megabytes at
+at time. Of course we don't allocate all buffers by a single call to
+alloc_pages_bulk(). But still a buffer is very large.
+A single frame of 8K HDR video needs 95MB (7680*4320*2*1.5). Even a
+single frame of HDR 4K video needs 24MB and 4K HDR is now popular in
+Netflix, YouTube and Google Play video.
+
+> Thanks,
+> -Brian
+
+Thank you!
+
+KyongHo
+
+------wn.C777VfLFf0j4dI6teQ5O7yZ9hP4.it_WB71vmM7CNsG.7=_322d9_
+Content-Type: text/plain; charset="utf-8"
+
+
+------wn.C777VfLFf0j4dI6teQ5O7yZ9hP4.it_WB71vmM7CNsG.7=_322d9_--
