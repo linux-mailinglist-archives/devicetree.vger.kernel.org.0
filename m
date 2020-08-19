@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80C32249C68
-	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 13:47:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6167E249CEB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 13:58:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728150AbgHSLrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Aug 2020 07:47:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44910 "EHLO mail.kernel.org"
+        id S1728382AbgHSL5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Aug 2020 07:57:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47176 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728022AbgHSLqX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Aug 2020 07:46:23 -0400
+        id S1728286AbgHSLtZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Aug 2020 07:49:25 -0400
 Received: from mail.kernel.org (ip5f5ad5a3.dynamic.kabel-deutschland.de [95.90.213.163])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7E29F20885;
-        Wed, 19 Aug 2020 11:46:21 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id A66812312B;
+        Wed, 19 Aug 2020 11:46:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597837581;
-        bh=+NoH4YjX5TxAfeB92q3/7g03nc1yFW/oR0B99A6AIA8=;
-        h=From:To:Cc:Subject:Date:From;
-        b=Ic+Hs2SPR5TjgN0Q8ckou8MEnmbrDMOVcj2W8hjSCq0u38W2GCsoGl09f2uLpU9Al
-         HIxIPeMTB6kZq5hWg169GVEsgyuyl159tEDpAj4/kGhH2B+yIwMzAR1ucVQJhR6B3l
-         BerRTWVmuFQT7pZZG3nReu4CGsxfb6mXqVE8M/QU=
+        s=default; t=1597837583;
+        bh=KR3x17k71nv+WZsdM0NYFQMSokf99W1AI+fOHiCMtjI=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=RdLMUM5Xi0M4wIe5eMeYRspaUaTagbNp3+Uu62CwqGQPWf8JjCegMi5LugjYO3zCF
+         KalT+ThEuqx3+7rcbxyYXE9e33yLI2Q4izRGfHmxqwvnUETV97KsnkrgS+IlhWkrCN
+         0dmmb0hjrfOi15lbpcWXhj50V7rrObFuZWYIHchs=
 Received: from mchehab by mail.kernel.org with local (Exim 4.94)
         (envelope-from <mchehab@kernel.org>)
-        id 1k8MXq-00EuZw-R7; Wed, 19 Aug 2020 13:46:18 +0200
+        id 1k8MXt-00Euc5-JA; Wed, 19 Aug 2020 13:46:21 +0200
 From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
@@ -34,40 +34,16 @@ Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
         Manivannan Sadhasivam <mani@kernel.org>,
         Daniel Vetter <daniel@ffwll.ch>,
         dri-devel <dri-devel@lists.freedesktop.org>,
-        Bogdan Togorean <bogdan.togorean@analog.com>,
-        Liwei Cai <cailiwei@hisilicon.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Daniel Borkmann <daniel@iogearbox.net>,
+        Wei Xu <xuwei5@hisilicon.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Xinliang Liu <xinliang.liu@linaro.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Wanchun Zheng <zhengwanchun@hisilicon.com>,
-        devel@driverdev.osuosl.org, bpf@vger.kernel.org,
-        Xiubin Zhang <zhangxiubin1@huawei.com>,
-        linux-media@vger.kernel.org,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Jesper Dangaard Brouer <hawk@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Xinwei Kong <kong.kongxinwei@hisilicon.com>,
-        Alexei Starovoitov <ast@kernel.org>,
-        devicetree@vger.kernel.org, Rob Clark <robdclark@chromium.org>,
-        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        John Fastabend <john.fastabend@gmail.com>,
-        Liuyao An <anliuyao@huawei.com>,
-        linaro-mm-sig@lists.linaro.org, Wei Xu <xuwei5@hisilicon.com>,
-        Rongrong Zou <zourongrong@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sam Ravnborg <sam@ravnborg.org>, netdev@vger.kernel.org,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Chen Feng <puck.chen@hisilicon.com>
-Subject: [PATCH 00/49] DRM driver for Hikey 970
-Date:   Wed, 19 Aug 2020 13:45:28 +0200
-Message-Id: <cover.1597833138.git.mchehab+huawei@kernel.org>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 44/49] dts: hisilicon: hi3670.dtsi: add I2C settings
+Date:   Wed, 19 Aug 2020 13:46:12 +0200
+Message-Id: <577acc4d4de8f812d4f58de167a731bfc6d1d32e.1597833138.git.mchehab+huawei@kernel.org>
 X-Mailer: git-send-email 2.26.2
+In-Reply-To: <cover.1597833138.git.mchehab+huawei@kernel.org>
+References: <cover.1597833138.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -75,164 +51,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch series port the out-of-tree driver for Hikey 970 (which
-should also support Hikey 960) from the official 96boards tree:
+The I2C buses are not declared at the device tree. As this will
+be needed by further patches, add them, keeping all in
+disabled state. Per-board settings can override it.
 
-   https://github.com/96boards-hikey/linux/tree/hikey970-v4.9
+Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+---
+ arch/arm64/boot/dts/hisilicon/hi3670.dtsi | 71 +++++++++++++++++++++++
+ 1 file changed, 71 insertions(+)
 
-Based on his history, this driver seems to be originally written
-for Kernel 4.4, and was later ported to Kernel 4.9. The original
-driver used to depend on ION (from Kernel 4.4) and had its own
-implementation for FB dev API.
-
-As I need to preserve the original history (with has patches from
-both HiSilicon and from Linaro),  I'm starting from the original
-patch applied there. The remaining patches are incremental,
-and port this driver to work with upstream Kernel.
-
-This driver doesn't depend on any firmware or on any special
-userspace code. It works as-is with both X11 and Wayland.
-
-Yet, I'm submitting it via staging due to the following reasons:
-
-- It depends on the LDO3 power supply, which is provided by
-  a regulator driver that it is currently on staging;
-- Due to legal reasons, I need to preserve the authorship of
-  each one responsbile for each patch. So, I need to start from
-  the original patch from Kernel 4.4;
-- There are still some problems I need to figure out how to solve:
-   - The adv7535 can't get EDID data. Maybe it is a timing issue,
-     but it requires more research to be sure about how to solve it;
-   - The driver only accept resolutions on a defined list, as there's
-     a known bug that this driver may have troubles with random
-     resolutions. Probably due to a bug at the pixel clock settings;
-   - Sometimes (at least with 1080p), it generates LDI underflow
-     errors, which in turn causes the DRM to stop working. That
-     happens for example when using gdm on Wayland and
-     gnome on X11;
-   - Probably related to the previous issue, when the monitor
-     suspends due to DPMS, it doesn't return back to life.
-
-So, IMO, the best is to keep it on staging for a while, until those
-remaining bugs gets solved.
-
-I added this series, together with the regulator driver and
-a few other patches (including a hack to fix a Kernel 5.8 
-regression at WiFi ) at:
-
-	https://gitlab.freedesktop.org/mchehab_kernel/hikey-970/-/commits/master
-
-
-Chen Feng (1):
-  staging: hikey9xx: Add hisilicon DRM driver for hikey960/970
-
-John Stultz (1):
-  staging: hikey9xx/gpu: port it to work with Kernel v4.9
-
-Liwei Cai (2):
-  staging: hikey9xx/gpu: solve tearing issue of display
-  staging: hikey9xx/gpu: resolve the performance issue by interrupt
-    mechanism
-
-Mauro Carvalho Chehab (38):
-  staging: hikey9xx/gpu: get rid of adv7535 fork
-  staging: hikey9xx/gpu: rename the Kirin9xx namespace
-  staging: hikey9xx/gpu: get rid of kirin9xx_fbdev.c
-  staging: hikey9xx/gpu: get rid of some ifdefs
-  staging: hikey9xx/gpu: rename the config option for Kirin970
-  staging: hikey9xx/gpu: change the includes to reflect upstream
-  staging: hikey9xx/gpu: port driver to upstream kAPIs
-  staging: hikey9xx/gpu: add a copy of set_reg() function there
-  staging: hikey9xx/gpu: get rid of ION headers
-  staging: hikey9xx/gpu: add support for using a reserved CMA memory
-  staging: hikey9xx/gpu: cleanup encoder attach logic
-  staging: hikey9xx/gpu: Change the logic which sets the burst mode
-  staging: hikey9xx/gpu: fix the DRM setting logic
-  staging: hikey9xx/gpu: do some code cleanups
-  staging: hikey9xx/gpu: use default GEM_CMA fops
-  staging: hikey9xx/gpu: place vblank enable/disable at the right place
-  staging: hikey9xx/gpu: remove an uneeded hack
-  staging: hikey9xx/gpu: add a possible implementation for
-    atomic_disable
-  staging: hikey9xx/gpu: register connector
-  staging: hikey9xx/gpu: fix driver name
-  staging: hikey9xx/gpu: get rid of iommu_format
-  staging: hikey9xx/gpu: re-work the mode validation code
-  staging: hikey9xx/gpu: add support for enable/disable ldo3 regulator
-  staging: hikey9xx/gpu: add SPMI headers
-  staging: hikey9xx/gpu: solve most coding style issues
-  staging: hikey9xx/gpu: don't use iommu code
-  staging: hikey9xx/gpu: add kirin9xx driver to the building system
-  staging: hikey9xx/gpu: get rid of typedefs
-  staging: hikey9xx/gpu: get rid of input/output macros
-  staging: hikey9xx/gpu: get rid of some unused data
-  staging: hikey9xx/gpu: place common definitions at kirin9xx_dpe.h
-  staging: hikey9xx/gpu: get rid of DRM_HISI_KIRIN970
-  dts: hisilicon: hi3670.dtsi: add I2C settings
-  dts: hikey970-pinctrl.dtsi: add missing pinctrl settings
-  dt: hisilicon: add support for the PMIC found on Hikey 970
-  dts: add support for Hikey 970 DRM
-  staging: hikey9xx/gpu: drop kirin9xx_pwm
-  dt: display: Add binds for the DPE and DSI controller for Kirin
-    960/970
-
-Xiubin Zhang (7):
-  staging: hikey9xx/gpu: add support to hikey970 HDMI and panel
-  staging: hikey9xx/gpu: Solve SR Cannot Display Problems.
-  staging: hikey9xx/gpu: Solve HDMI compatibility Problem.
-  staging: hikey9xx/gpu: Support MIPI DSI 3 lanes for hikey970.
-  staging: hikey9xx/gpu: Solve SR test reset problem for hikey970.
-  staging: hikey9xx/gpu: add debug prints for this driver
-  staging: hikey9xx/gpu: Add support 10.1 inch special HDMI displays.
-
- .../display/hisilicon,hi3660-dpe.yaml         |   99 +
- .../display/hisilicon,hi3660-dsi.yaml         |  102 +
- .../boot/dts/hisilicon/hi3670-hikey970.dts    |   56 +-
- arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |   77 +
- .../boot/dts/hisilicon/hikey970-drm.dtsi      |   93 +
- .../boot/dts/hisilicon/hikey970-pinctrl.dtsi  |  548 +++-
- .../boot/dts/hisilicon/hikey970-pmic.dtsi     |  197 ++
- drivers/staging/hikey9xx/Kconfig              |    3 +
- drivers/staging/hikey9xx/Makefile             |    1 +
- drivers/staging/hikey9xx/gpu/Kconfig          |   22 +
- drivers/staging/hikey9xx/gpu/Makefile         |    9 +
- drivers/staging/hikey9xx/gpu/kirin960_defs.c  |  378 +++
- .../staging/hikey9xx/gpu/kirin960_dpe_reg.h   |  233 ++
- drivers/staging/hikey9xx/gpu/kirin970_defs.c  |  381 +++
- .../staging/hikey9xx/gpu/kirin970_dpe_reg.h   | 1188 ++++++++
- drivers/staging/hikey9xx/gpu/kirin9xx_dpe.h   | 2437 +++++++++++++++++
- .../hikey9xx/gpu/kirin9xx_drm_dpe_utils.c     | 1178 ++++++++
- .../hikey9xx/gpu/kirin9xx_drm_dpe_utils.h     |  286 ++
- .../staging/hikey9xx/gpu/kirin9xx_drm_drv.c   |  368 +++
- .../staging/hikey9xx/gpu/kirin9xx_drm_drv.h   |   57 +
- .../staging/hikey9xx/gpu/kirin9xx_drm_dss.c   | 1063 +++++++
- .../hikey9xx/gpu/kirin9xx_drm_overlay_utils.c | 1005 +++++++
- .../hikey9xx/gpu/kirin9xx_dw_drm_dsi.c        | 2132 ++++++++++++++
- .../hikey9xx/gpu/kirin9xx_dw_dsi_reg.h        |  146 +
- .../staging/hikey9xx/gpu/kirin9xx_fb_panel.h  |  191 ++
- 25 files changed, 12229 insertions(+), 21 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/hisilicon,hi3660-dpe.yaml
- create mode 100644 Documentation/devicetree/bindings/display/hisilicon,hi3660-dsi.yaml
- create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-drm.dtsi
- create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
- create mode 100644 drivers/staging/hikey9xx/gpu/Kconfig
- create mode 100644 drivers/staging/hikey9xx/gpu/Makefile
- create mode 100644 drivers/staging/hikey9xx/gpu/kirin960_defs.c
- create mode 100644 drivers/staging/hikey9xx/gpu/kirin960_dpe_reg.h
- create mode 100644 drivers/staging/hikey9xx/gpu/kirin970_defs.c
- create mode 100644 drivers/staging/hikey9xx/gpu/kirin970_dpe_reg.h
- create mode 100644 drivers/staging/hikey9xx/gpu/kirin9xx_dpe.h
- create mode 100644 drivers/staging/hikey9xx/gpu/kirin9xx_drm_dpe_utils.c
- create mode 100644 drivers/staging/hikey9xx/gpu/kirin9xx_drm_dpe_utils.h
- create mode 100644 drivers/staging/hikey9xx/gpu/kirin9xx_drm_drv.c
- create mode 100644 drivers/staging/hikey9xx/gpu/kirin9xx_drm_drv.h
- create mode 100644 drivers/staging/hikey9xx/gpu/kirin9xx_drm_dss.c
- create mode 100644 drivers/staging/hikey9xx/gpu/kirin9xx_drm_overlay_utils.c
- create mode 100644 drivers/staging/hikey9xx/gpu/kirin9xx_dw_drm_dsi.c
- create mode 100644 drivers/staging/hikey9xx/gpu/kirin9xx_dw_dsi_reg.h
- create mode 100644 drivers/staging/hikey9xx/gpu/kirin9xx_fb_panel.h
-
+diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
+index b1acb4fb1d1c..416f69c782d7 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
+@@ -723,5 +723,76 @@ dwmmc2: dwmmc2@fc183000 {
+ 			card-detect-delay = <200>;
+ 			status = "disabled";
+ 		};
++
++		/* I2C */
++		i2c0: i2c@ffd71000 {
++			compatible = "snps,designware-i2c";
++			reg = <0x0 0xffd71000 0x0 0x1000>;
++			interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			clock-frequency = <400000>;
++			clocks = <&iomcu HI3670_CLK_GATE_I2C0>;
++			resets = <&iomcu_rst 0x20 3>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&i2c0_pmx_func &i2c0_cfg_func>;
++			status = "disabled";
++		};
++
++		i2c1: i2c@ffd72000 {
++			compatible = "snps,designware-i2c";
++			reg = <0x0 0xffd72000 0x0 0x1000>;
++			interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			clock-frequency = <400000>;
++			clocks = <&iomcu HI3670_CLK_GATE_I2C1>;
++			resets = <&iomcu_rst 0x20 4>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&i2c1_pmx_func &i2c1_cfg_func>;
++			status = "disabled";
++		};
++
++		i2c2: i2c@ffd73000 {
++			compatible = "snps,designware-i2c";
++			reg = <0x0 0xffd73000 0x0 0x1000>;
++			interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			clock-frequency = <400000>;
++			clocks = <&iomcu HI3670_CLK_GATE_I2C2>;
++			resets = <&iomcu_rst 0x20 5>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&i2c2_pmx_func &i2c2_cfg_func>;
++			status = "disabled";
++		};
++
++		i2c3: i2c@fdf0c000 {
++			compatible = "snps,designware-i2c";
++			reg = <0x0 0xfdf0c000 0x0 0x1000>;
++			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			clock-frequency = <400000>;
++			clocks = <&crg_ctrl HI3670_CLK_GATE_I2C3>;
++			resets = <&crg_rst 0x78 7>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&i2c3_pmx_func &i2c3_cfg_func>;
++			status = "disabled";
++		};
++
++		i2c4: i2c@fdf0d000 {
++			compatible = "snps,designware-i2c";
++			reg = <0x0 0xfdf0d000 0x0 0x1000>;
++			interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			clock-frequency = <400000>;
++			clocks = <&crg_ctrl HI3670_CLK_GATE_I2C4>;
++			resets = <&crg_rst 0x78 27>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&i2c4_pmx_func &i2c4_cfg_func>;
++			status = "disabled";
++		};
+ 	};
+ };
 -- 
 2.26.2
-
 
