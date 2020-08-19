@@ -2,104 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB01B24A6F6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 21:36:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C672E24A713
+	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 21:45:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726466AbgHSTg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Aug 2020 15:36:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41616 "EHLO
+        id S1726841AbgHSTo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Aug 2020 15:44:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726435AbgHSTg5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 15:36:57 -0400
-Received: from mail-il1-x141.google.com (mail-il1-x141.google.com [IPv6:2607:f8b0:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C48AC061757;
-        Wed, 19 Aug 2020 12:36:57 -0700 (PDT)
-Received: by mail-il1-x141.google.com with SMTP id k4so21699018ilr.12;
-        Wed, 19 Aug 2020 12:36:56 -0700 (PDT)
+        with ESMTP id S1726964AbgHSTox (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 15:44:53 -0400
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2431AC061757;
+        Wed, 19 Aug 2020 12:44:53 -0700 (PDT)
+Received: by mail-lj1-x243.google.com with SMTP id i10so26737946ljn.2;
+        Wed, 19 Aug 2020 12:44:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=M6zxHA2un35cI+Abs7EVx0JkYNoXLdt+Zt/XvLPlDXg=;
-        b=eFIKbADWPJzqOWgWLBKPNDwfXGBz6i9wY0NpNcT3g+TnnWMRdNmSLkv9VP/Qa+u97I
-         Bqu9YOVUqxLDNzpk9STOxLbzbfbV30DMr9/EVbvczNH5iO95cYyNj2Aq8Tv48DESfcLz
-         HBaavyNORq7C1A1cYsBfBSp4YhEu0b+jgnmYWOm2QuE62NORs4KTR/KG0ckueQSO8YbY
-         wRIUsYqMU2/sRwSdHEHx5hOjC5M13zKX8D/oxdid4YFd6rMdBhFKJtl0+cnAtLAxkqMp
-         GMzcqjckuXlXBo2pSMWl3ypFTE66/ZI3P6Pc7IE9kEROdtM5jFG9FfcVnFQ57184mMXM
-         mYyA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=E0UfOuh7cDb+wZe62bSKwsSBp/aO8BCgxv52BBuf4cU=;
+        b=lbIOSD1oIauZDpxA5QvPKSCX9E33WgWFlOHKsPF/9ojJ0Eh8VbPHn40QDvnGhKaoIf
+         aFuOoXy/PMjeHGFgJSTNnt5Unc3977KHCDioF3fslCgBTkT++SwX8STKKPa5pAhRZhNu
+         8Fiji6X1VtQHhVtE+oCBMyvJMqGsqZEAJPFwLhBs2ETRZPTzN/jhmDGTxs5MpHY4B1Db
+         NAyzr5e4iQg1nTiycnTOgmlAGkwpt3UA8WlnkJRuNrsx+cVqcD5y0P5VgW5t84EWZX4y
+         2gnLV4eNnM70VC32QGX56lxuYfqq+drDYLJg8h2rT5GvvJh2uX+5mMfOc2jUfpp6yPts
+         iP2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=M6zxHA2un35cI+Abs7EVx0JkYNoXLdt+Zt/XvLPlDXg=;
-        b=fR5Uy7c/SkR2OS7DbNOqLHSD1UUF/orpe6J3/z6NQXI4AaUHsRGlqpxfxMkGrFSme8
-         0S3GB2MFUNkGY3m00MRdFD/Dj8nm1A8VumtICgpMPmIkiaj4Hqn+IVMoP2MhmfZKl1ya
-         akPzb52JiJMKMeXLRyVZI8ceJfWv4O8fWYHh2+3Us+P6hSgcqEYb2nyy2Y7QXO3UFLy1
-         /7OXNWFk8WzLaTeyjc0OetBkigzivRfHIHyDMokd9NL/A+2W1uVH20wNXO4C15HfB+yx
-         v39NEu2j+heunpOMAALeVdmZVkkxUK36jKGz57/3Y0TJ3cfpHOleAfH3IU6zW95NvzPx
-         kShw==
-X-Gm-Message-State: AOAM532RZglPORHyjasA6SJXPcmoDJ7OH+39wkDiC0fUQ2DaPg1Zb+cC
-        mO6Uz8jJW2yABns4gnB15Ss=
-X-Google-Smtp-Source: ABdhPJx6w7SX2UWP3z0sbQ/vfQ6kdB21SEiG6pp3VnXzu6K635uPTwZCRy5Mcj5ppV8w/eMA4k4Pcg==
-X-Received: by 2002:a92:508:: with SMTP id q8mr22963688ile.181.1597865815965;
-        Wed, 19 Aug 2020 12:36:55 -0700 (PDT)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:b588:1a5f:55c3:870e])
-        by smtp.gmail.com with ESMTPSA id q200sm14063265iod.5.2020.08.19.12.36.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Aug 2020 12:36:55 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=E0UfOuh7cDb+wZe62bSKwsSBp/aO8BCgxv52BBuf4cU=;
+        b=kgAFgSvEedDaNCCytdL5uZ5d7P9c2K7X3LlNjt4NFZZ4+BJNOijlD4Z5kLgDkCcNDo
+         pbmBXZ0zhWt76JbE+XGT+KRQArLqkayzNoT4c6kUElTtFYAHNJuNfp7k3D+iSO+y6xKy
+         x0yEW1U82lIT+qYTGTg8Psc48S0hzt7GAqeVp4BrlAy8LySvfc4ZY/6jqTZOl/samTYQ
+         Clh/O6H6xla+hH5exFknQ/zK8xrV4QE+Gi7uFXFC0LgmjCdh2I6baFNTt3ydlO9keVlW
+         Im1f4WLrX0FBUpKsk593k7BYMPVXFzeaX+w7FbuiCgSf3ni9h/4tr/vIAg/k0xDGUZiy
+         GOhA==
+X-Gm-Message-State: AOAM530vWzsoFu0/GRAfEop4mgr+WYLWZWP6uHlN386njmjMAwuvS570
+        3wA1iCTf0Lf0b5/XvT4Yqr82QcyqY4HFfkRNiLs=
+X-Google-Smtp-Source: ABdhPJw6tL+wyIp0MDHfKSdcmHhYe6qsiXh4e7Drz7scl0ADjMdYpEwN8mEw7EV7H2/5kImwDaHtNdjArIttcSjXPU8=
+X-Received: by 2002:a2e:9899:: with SMTP id b25mr11649110ljj.178.1597866291520;
+ Wed, 19 Aug 2020 12:44:51 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200819193559.2865826-1-aford173@gmail.com>
+In-Reply-To: <20200819193559.2865826-1-aford173@gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Wed, 19 Aug 2020 16:44:40 -0300
+Message-ID: <CAOMZO5Cz+v_isXs1mH6kmF0Ubs5mN08QTMO9m4HuP7mqggz-wQ@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: imx6q-logicpd: Fix broken PWM
+To:     Adam Ford <aford173@gmail.com>
+Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
         Rob Herring <robh+dt@kernel.org>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: imx6q-logicpd: Fix broken PWM
-Date:   Wed, 19 Aug 2020 14:35:59 -0500
-Message-Id: <20200819193559.2865826-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DTC doesn't like the default PWM settings, because it's expecting
-three cells.  This patch reduces adds the extra entry of 0 to the PWM
-reference.
+Hi Adam,
 
-Fixes:  fa28d8212ede ("ARM: dts: imx: default to #pwm-cells = <3> in the SoC dtsi files")
+On Wed, Aug 19, 2020 at 4:36 PM Adam Ford <aford173@gmail.com> wrote:
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+>  &hdmi {
+>         ddc-i2c-bus = <&i2c3>;
+> -       status = "okay";
+> +       status = "disabled";
 
-diff --git a/arch/arm/boot/dts/imx6q-logicpd.dts b/arch/arm/boot/dts/imx6q-logicpd.dts
-index 7a3d1d3e54a9..07819532d48e 100644
---- a/arch/arm/boot/dts/imx6q-logicpd.dts
-+++ b/arch/arm/boot/dts/imx6q-logicpd.dts
-@@ -13,7 +13,7 @@ / {
- 
- 	backlight: backlight-lvds {
- 		compatible = "pwm-backlight";
--		pwms = <&pwm3 0 20000>;
-+		pwms = <&pwm3 0 20000 0>;
- 		brightness-levels = <0 4 8 16 32 64 128 255>;
- 		default-brightness-level = <6>;
- 		power-supply = <&reg_lcd>;
-@@ -70,7 +70,7 @@ &clks {
- 
- &hdmi {
- 	ddc-i2c-bus = <&i2c3>;
--	status = "okay";
-+	status = "disabled";
- };
- 
- &i2c1 {
--- 
-2.25.1
-
+Looks like an unrelated change.
