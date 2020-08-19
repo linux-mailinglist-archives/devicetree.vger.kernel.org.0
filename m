@@ -2,71 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B38EE249F0A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 15:05:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFE52249FD2
+	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 15:27:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728434AbgHSNE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Aug 2020 09:04:59 -0400
-Received: from mail.v3.sk ([167.172.186.51]:54584 "EHLO shell.v3.sk"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728605AbgHSNE4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Aug 2020 09:04:56 -0400
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 3D74DDFA44;
-        Wed, 19 Aug 2020 13:04:00 +0000 (UTC)
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id cWLOxwqKPIt6; Wed, 19 Aug 2020 13:03:59 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id A93C3DFA74;
-        Wed, 19 Aug 2020 13:03:59 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at zimbra.v3.sk
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id wl2dX1KjOX-V; Wed, 19 Aug 2020 13:03:59 +0000 (UTC)
-Received: from localhost (unknown [77.240.177.143])
-        by zimbra.v3.sk (Postfix) with ESMTPSA id 7F439DFA44;
-        Wed, 19 Aug 2020 13:03:59 +0000 (UTC)
-Date:   Wed, 19 Aug 2020 15:04:52 +0200
-From:   Lubomir Rintel <lkundrak@v3.sk>
-To:     Andrzej Hajda <a.hajda@samsung.com>
-Cc:     Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4 0/2] dt-bindings: display: himax,hx8837: Add Himax HX8837
- bindings
-Message-ID: <20200819130452.GB152043@furthur.local>
-References: <20200819102246.634039-1-lkundrak@v3.sk>
+        id S1728560AbgHSNNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Aug 2020 09:13:39 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:33328 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728477AbgHSNNQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Aug 2020 09:13:16 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1k8NtJ-00A5Kz-Mp; Wed, 19 Aug 2020 15:12:33 +0200
+Date:   Wed, 19 Aug 2020 15:12:33 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Landen Chao <landen.chao@mediatek.com>
+Cc:     "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "vivien.didelot@savoirfairelinux.com" 
+        <vivien.didelot@savoirfairelinux.com>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        Sean Wang <Sean.Wang@mediatek.com>,
+        "opensource@vdorst.com" <opensource@vdorst.com>,
+        "frank-w@public-files.de" <frank-w@public-files.de>,
+        "dqfext@gmail.com" <dqfext@gmail.com>
+Subject: Re: [PATCH net-next v2 5/7] net: dsa: mt7530: Add the support of
+ MT7531 switch
+Message-ID: <20200819131233.GA2403519@lunn.ch>
+References: <cover.1597729692.git.landen.chao@mediatek.com>
+ <e980fda45e0fb478f55e72765643bb641f352c65.1597729692.git.landen.chao@mediatek.com>
+ <20200818160901.GF2330298@lunn.ch>
+ <1597830248.31846.78.camel@mtksdccf07>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200819102246.634039-1-lkundrak@v3.sk>
-X-Mailer: git-send-email 2.26.2
+In-Reply-To: <1597830248.31846.78.camel@mtksdccf07>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-(Re-sending the cover letter here, because I left the subject empty and
-the archive didn't pick it up. Sorry.)
+> In general, according to phy.rst, RGMII delay should be done by phy, but
+> some MoCA product need RGMII delay in MAC. These two requirements
+> conflict. Is there any suggestion to solve the conflict?
 
-Hi,
+Implementing the delay in the PHY is just a recommendation, not a
+requirement. However, as i said, you need to be careful what is pass
+to phylib. If the MAC is implementing "rgmii-id", whatever makes it
+way down to phy_attach_direct() needs to be "rgmii". If the MAC
+implements "rgmii-rxid", the phy should be implementing "rgmii-txid",
+etc. If this is wrong, you get both the MAC and the PHY implementing
+delays, and bad things happen.
 
-please take a look at the patches chained to this messages and consider
-applying them. They add support for the controller that drives the panel
-on the OLPC XO laptops.
-
-Compared to the previous version the bindings have been converted to
-YAML and the driver itself has been rewritten without any fancy features
-such as the self-refresh so that the bare minimum works before the rest
-can be figured out. Detailed change logs are in individual patches.
-
-Tested on an OLPC XO-1.75 laptop.
-
-Thank you
-Lubo
+	Andrew
