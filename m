@@ -2,121 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C8D7249E8F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 14:47:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31F22249E84
+	for <lists+devicetree@lfdr.de>; Wed, 19 Aug 2020 14:47:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728489AbgHSMri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Aug 2020 08:47:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34024 "EHLO
+        id S1728155AbgHSMrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Aug 2020 08:47:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728540AbgHSMpl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 08:45:41 -0400
+        with ESMTP id S1728420AbgHSMrM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 08:47:12 -0400
 Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B038C061383
-        for <devicetree@vger.kernel.org>; Wed, 19 Aug 2020 05:45:40 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 262E9C061383
+        for <devicetree@vger.kernel.org>; Wed, 19 Aug 2020 05:47:12 -0700 (PDT)
 Received: from ramsan ([84.195.186.194])
         by michel.telenet-ops.be with bizsmtp
-        id HQlg230044C55Sk06Qlgcw; Wed, 19 Aug 2020 14:45:40 +0200
+        id HQnA2300U4C55Sk06QnArZ; Wed, 19 Aug 2020 14:47:10 +0200
 Received: from rox.of.borg ([192.168.97.57])
         by ramsan with esmtp (Exim 4.90_1)
         (envelope-from <geert@linux-m68k.org>)
-        id 1k8NTI-0002Nb-5r; Wed, 19 Aug 2020 14:45:40 +0200
+        id 1k8NUk-0002S9-LP; Wed, 19 Aug 2020 14:47:10 +0200
 Received: from geert by rox.of.borg with local (Exim 4.90_1)
         (envelope-from <geert@linux-m68k.org>)
-        id 1k8NTI-0005HL-4R; Wed, 19 Aug 2020 14:45:40 +0200
+        id 1k8NUk-0005Jq-KC; Wed, 19 Aug 2020 14:47:10 +0200
 From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     netdev@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org,
         Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2] dt-bindings: net: renesas,ether: Improve schema validation
-Date:   Wed, 19 Aug 2020 14:45:39 +0200
-Message-Id: <20200819124539.20239-1-geert+renesas@glider.be>
+Subject: [PATCH v2 resend 2] scripts/dtc: dtx_diff - make help text formatting consistent
+Date:   Wed, 19 Aug 2020 14:47:09 +0200
+Message-Id: <20200819124709.20401-1-geert+renesas@glider.be>
 X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  - Remove pinctrl consumer properties, as they are handled by core
-    dt-schema,
-  - Document missing properties,
-  - Document missing PHY child node,
-  - Add "additionalProperties: false".
+None of the help texts use capitalization, except the one for the -T
+option.  Drop the capitalization for consistency.
+Split the single long line that doesn't fit in 80 characters.
 
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Frank Rowand <frowand.list@gmail.com>
 ---
 v2:
   - Add Reviewed-by.
 ---
- .../bindings/net/renesas,ether.yaml           | 22 +++++++++++++------
- 1 file changed, 15 insertions(+), 7 deletions(-)
+ scripts/dtc/dtx_diff | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/net/renesas,ether.yaml b/Documentation/devicetree/bindings/net/renesas,ether.yaml
-index 08678af5ed9364cd..8ce5ed8a58dd76e6 100644
---- a/Documentation/devicetree/bindings/net/renesas,ether.yaml
-+++ b/Documentation/devicetree/bindings/net/renesas,ether.yaml
-@@ -59,9 +59,15 @@ properties:
-   clocks:
-     maxItems: 1
+diff --git a/scripts/dtc/dtx_diff b/scripts/dtc/dtx_diff
+index 541c432e7d199457..d3422ee15e300bc7 100755
+--- a/scripts/dtc/dtx_diff
++++ b/scripts/dtc/dtx_diff
+@@ -29,7 +29,8 @@ Usage:
+        -s SRCTREE   linux kernel source tree is at path SRCTREE
+                         (default is current directory)
+        -S           linux kernel source tree is at root of current git repo
+-       -T           Annotate output .dts with input source file and line (-T -T for more details)
++       -T           annotate output .dts with input source file and line
++                        (-T -T for more details)
+        -u           unsorted, do not sort DTx
  
--  pinctrl-0: true
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
  
--  pinctrl-names: true
-+  phy-mode: true
-+
-+  phy-handle: true
- 
-   renesas,no-ether-link:
-     type: boolean
-@@ -74,6 +80,11 @@ properties:
-       specify when the Ether LINK signal is active-low instead of normal
-       active-high
- 
-+patternProperties:
-+  "^ethernet-phy@[0-9a-f]$":
-+    type: object
-+    $ref: ethernet-phy.yaml#
-+
- required:
-   - compatible
-   - reg
-@@ -83,7 +94,8 @@ required:
-   - '#address-cells'
-   - '#size-cells'
-   - clocks
--  - pinctrl-0
-+
-+additionalProperties: false
- 
- examples:
-   # Lager board
-@@ -99,8 +111,6 @@ examples:
-         clocks = <&mstp8_clks R8A7790_CLK_ETHER>;
-         phy-mode = "rmii";
-         phy-handle = <&phy1>;
--        pinctrl-0 = <&ether_pins>;
--        pinctrl-names = "default";
-         renesas,ether-link-active-low;
-         #address-cells = <1>;
-         #size-cells = <0>;
-@@ -109,7 +119,5 @@ examples:
-             reg = <1>;
-             interrupt-parent = <&irqc0>;
-             interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
--            pinctrl-0 = <&phy1_pins>;
--            pinctrl-names = "default";
-         };
-     };
 -- 
 2.17.1
 
