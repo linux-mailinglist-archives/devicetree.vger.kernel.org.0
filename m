@@ -2,228 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDCF724C2E1
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 18:04:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D9EF24C31F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 18:13:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729374AbgHTQEl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Aug 2020 12:04:41 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:52934 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729289AbgHTQEi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 12:04:38 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 96C1A23D;
-        Thu, 20 Aug 2020 18:04:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1597939474;
-        bh=F1VgKHw+BMI5X9Ve96ajPLFVLW5J8X9PUB53EKuKqxA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=n4kbYVtXeaUIUnJ4ZuVoUMubMqYwPBWTZS2o0RjbzX6Pw5el5VtQgE0MuhIqr8FR4
-         khFv4Lg1vNyN9qKRvxQFY+84adNrDwClsyCqsFBCLRFwFMs9xnt7Er4q31UqZH7qz9
-         rjj0eD/pciCIswASHbUoaAZkP0OGx7Esxhx0Ca6Y=
-Date:   Thu, 20 Aug 2020 19:04:16 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jacopo Mondi <jacopo+renesas@jmondi.org>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, mchehab@kernel.org,
-        sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: media: mt9v111: Convert to json-schema
-Message-ID: <20200820160416.GW6593@pendragon.ideasonboard.com>
-References: <20200817160129.256085-1-jacopo+renesas@jmondi.org>
+        id S1729834AbgHTQNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Aug 2020 12:13:11 -0400
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:27756 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1729474AbgHTQMJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Aug 2020 12:12:09 -0400
+Received: from pps.filterd (m0098419.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 07KG14bW119116;
+        Thu, 20 Aug 2020 12:11:55 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=B/woJmbaBhftP0bFrk9uDS8GLJjz5yJGm5+afF2Vppo=;
+ b=eo2PKQWLHbsSf32pn/d1DXhxM1lL9aB7XWwtC62V9FzeEJn8c/Z/Djs7OsZaEBMJTNQQ
+ cxDiHBK3+kv8qLUqxDKJzutvP3v8hegLpbE3LzBLQN+9sXlmY8+a2RNkY3BePVV5kNZC
+ b2eDrDaW3pTU6bnBR8xw87v9819P23fUSbx2wVCnPA0AoQP3l2xtgaGvlebRtSrT3zeZ
+ eDLnJkXaWmV5sZjDJ26KbvZtV1lauuTLX3imTA3uSSIJJZzO7nXyI6djPzGb5vVOBXAI
+ F1v2P09FpvGjvsLXt5ibImNj+hPS2YTaLhgi6mLpY/qU4r5/X+wORVsrBnhkDAjt3t5f 7Q== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 331tkwmhqk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 20 Aug 2020 12:11:55 -0400
+Received: from m0098419.ppops.net (m0098419.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 07KG15Xx119151;
+        Thu, 20 Aug 2020 12:11:55 -0400
+Received: from ppma04wdc.us.ibm.com (1a.90.2fa9.ip4.static.sl-reverse.com [169.47.144.26])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 331tkwmhq2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 20 Aug 2020 12:11:55 -0400
+Received: from pps.filterd (ppma04wdc.us.ibm.com [127.0.0.1])
+        by ppma04wdc.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 07KGAhX3019319;
+        Thu, 20 Aug 2020 16:11:54 GMT
+Received: from b01cxnp23033.gho.pok.ibm.com (b01cxnp23033.gho.pok.ibm.com [9.57.198.28])
+        by ppma04wdc.us.ibm.com with ESMTP id 3304uewejr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 20 Aug 2020 16:11:54 +0000
+Received: from b01ledav004.gho.pok.ibm.com (b01ledav004.gho.pok.ibm.com [9.57.199.109])
+        by b01cxnp23033.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 07KGBsb955509490
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 20 Aug 2020 16:11:54 GMT
+Received: from b01ledav004.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id F2920112062;
+        Thu, 20 Aug 2020 16:11:53 +0000 (GMT)
+Received: from b01ledav004.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id B9E09112061;
+        Thu, 20 Aug 2020 16:11:52 +0000 (GMT)
+Received: from SHADE6A.ibmuc.com (unknown [9.163.70.74])
+        by b01ledav004.gho.pok.ibm.com (Postfix) with ESMTP;
+        Thu, 20 Aug 2020 16:11:52 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-input@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-aspeed@lists.ozlabs.org, linux-i2c@vger.kernel.org,
+        joel@jms.id.au, andrew@aj.id.au, benh@kernel.crashing.org,
+        brendanhiggins@google.com, dmitry.torokhov@gmail.com,
+        robh+dt@kernel.org, eajames@linux.ibm.com
+Subject: [PATCH 0/5] input: misc: Add IBM Operation Panel driver
+Date:   Thu, 20 Aug 2020 11:11:47 -0500
+Message-Id: <20200820161152.22751-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200817160129.256085-1-jacopo+renesas@jmondi.org>
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-08-20_03:2020-08-19,2020-08-20 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ lowpriorityscore=0 mlxlogscore=999 suspectscore=1 priorityscore=1501
+ mlxscore=0 spamscore=0 impostorscore=0 clxscore=1011 bulkscore=0
+ phishscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2006250000 definitions=main-2008200127
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
+This series adds support for input from the IBM Operation Panel, which is
+a simple controller with three buttons and an LCD display meant for
+interacting with a server. It's connected over I2C. This series only
+supports the input from the panel, in which the panel masters the I2C bus
+and sends data to the host system when someone presses a button on the
+controller.
 
-Thank you for the patch.
+Eddie James (5):
+  dt-bindings: input: Add documentation for IBM Operation Panel
+  input: misc: Add IBM Operation Panel driver
+  i2c: aspeed: Mask IRQ status to relevant bits
+  ARM: dts: Aspeed: Tacoma: Add IBM Operation Panel I2C device
+  ARM: dts: Aspeed: Rainier: Add IBM Operation Panel I2C device
 
-On Mon, Aug 17, 2020 at 06:01:29PM +0200, Jacopo Mondi wrote:
-> Convert the mt9v111 bindings document to json-schema and update
-> the MAINTAINERS file accordingly.
-> 
-> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> ---
->  .../bindings/media/i2c/aptina,mt9v111.txt     | 46 ----------
->  .../bindings/media/i2c/aptina,mt9v111.yaml    | 83 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 84 insertions(+), 47 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt b/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt
-> deleted file mode 100644
-> index bd896e9f67d1..000000000000
-> --- a/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt
-> +++ /dev/null
-> @@ -1,46 +0,0 @@
-> -* Aptina MT9V111 CMOS sensor
-> -----------------------------
-> -
-> -The Aptina MT9V111 is a 1/4-Inch VGA-format digital image sensor with a core
-> -based on Aptina MT9V011 sensor and an integrated Image Flow Processor (IFP).
-> -
-> -The sensor has an active pixel array of 640x480 pixels and can output a number
-> -of image resolution and formats controllable through a simple two-wires
-> -interface.
-> -
-> -Required properties:
-> ---------------------
-> -
-> -- compatible: shall be "aptina,mt9v111".
-> -- clocks: reference to the system clock input provider.
-> -
-> -Optional properties:
-> ---------------------
-> -
-> -- enable-gpios: output enable signal, pin name "OE#". Active low.
-> -- standby-gpios: low power state control signal, pin name "STANDBY".
-> -  Active high.
-> -- reset-gpios: chip reset signal, pin name "RESET#". Active low.
-> -
-> -The device node must contain one 'port' child node with one 'endpoint' child
-> -sub-node for its digital output video port, in accordance with the video
-> -interface bindings defined in:
-> -Documentation/devicetree/bindings/media/video-interfaces.txt
-> -
-> -Example:
-> ---------
-> -
-> -        &i2c1 {
-> -                camera@48 {
-> -                        compatible = "aptina,mt9v111";
-> -                        reg = <0x48>;
-> -
-> -                        clocks = <&camera_clk>;
-> -
-> -                        port {
-> -                                mt9v111_out: endpoint {
-> -                                        remote-endpoint = <&ceu_in>;
-> -                                };
-> -                        };
-> -                };
-> -        };
-> diff --git a/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml b/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
-> new file mode 100644
-> index 000000000000..54cc136aa239
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
-> @@ -0,0 +1,83 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/aptina,mt9v111.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Aptina MT9V111 CMOS sensor
-> +
-> +maintainers:
-> +  - Jacopo Mondi <jacopo@jmondi.org>
-> +
-> +description: -|
-> +  The Aptina MT9V111 is a 1/4-Inch VGA-format digital image sensor with a core
-> +  based on Aptina MT9V011 sensor and an integrated Image Flow Processor (IFP).
-> +
-> +  The sensor has an active pixel array of 640x480 pixels and can output a number
-> +  of image resolution and formats controllable through a simple two-wires
-
-s/resolution/resolutions/
-
-> +  interface.
-> +
-> +properties:
-> +  compatible:
-> +    const: aptina,mt9v111
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  enable-gpios:
-> +    description: Enable signal, pin name "OE#". Active low.
-> +    maxItems: 1
-> +
-> +  standby-gpios:
-> +    description: Low power state control signal, pin name "STANBY". Active high.
-
-s/STANBY/STANDBY/
-
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    description: Chip reset signal, pin name "RESET#". Active low.
-> +    maxItems: 1
-> +
-> +  port:
-> +    type: object
-> +    description: |
-> +      The device node must contain one 'port' child node for its digital output
-> +      video port, in accordance with the video interface bindings defined in
-> +      Documentation/devicetree/bindings/media/video-interfaces.txt.
-
-Just "Output video port. See ../video-interfaces.txt." should be enough.
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> +
-> +    properties:
-> +      endpoint:
-> +        type: object
-> +        properties:
-> +          remote-endpoint:
-> +            description: A phandle to the bus receiver's endpoint node.
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - port
-> +
-> +examples:
-> +  - |
-> +    i2c0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        camera@48 {
-> +            compatible = "aptina,mt9v111";
-> +            reg = <0x48>;
-> +            clocks = <&camera_clk>;
-> +
-> +            port {
-> +                mt9v111_out: endpoint {
-> +                    remote-endpoint = <&ceu_in>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 5392f00cec46..18bc4427e6b0 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -11688,7 +11688,7 @@ M:	Jacopo Mondi <jacopo@jmondi.org>
->  L:	linux-media@vger.kernel.org
->  S:	Maintained
->  T:	git git://linuxtv.org/media_tree.git
-> -F:	Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt
-> +F:	Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
->  F:	drivers/media/i2c/mt9v111.c
-> 
->  MULTIFUNCTION DEVICES (MFD)
+ .../bindings/input/ibm,op-panel.yaml          |  38 ++++
+ MAINTAINERS                                   |   7 +
+ arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts  |   6 +
+ arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts   |   6 +
+ drivers/i2c/busses/i2c-aspeed.c               |   1 +
+ drivers/input/misc/Kconfig                    |  10 +
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/input/misc/ibm-panel.c                | 186 ++++++++++++++++++
+ 8 files changed, 255 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/ibm,op-panel.yaml
+ create mode 100644 drivers/input/misc/ibm-panel.c
 
 -- 
-Regards,
+2.26.2
 
-Laurent Pinchart
