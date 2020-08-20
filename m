@@ -2,148 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8223224B97A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 13:48:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9903624B96A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 13:46:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726962AbgHTLqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Aug 2020 07:46:42 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:35512 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728936AbgHTLpG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 07:45:06 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07KBiLjh034621;
-        Thu, 20 Aug 2020 06:44:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1597923861;
-        bh=KekPuX5bW5OV7WGA42Ji5+dWGwrpNIKAh0IFJGWPkgw=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=wumWcYu2C1Uab0K7/BhHt6am8WARnusXkgQxTV42cLperHvWAMr73TNd+wDsAw3wy
-         hNKVGdTP4DXYch+0pLpm6EayzBWxfb8hWJXgwCbJaBPkYV500cFpib37witpJiU5fe
-         I4uAGHEHelb5GRoGXgpVe6o/YlhZ9+BiuU3VMDj8=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07KBiLbD128554
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 20 Aug 2020 06:44:21 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 20
- Aug 2020 06:44:20 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 20 Aug 2020 06:44:20 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07KBiK7d068400;
-        Thu, 20 Aug 2020 06:44:20 -0500
-Date:   Thu, 20 Aug 2020 06:44:20 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <soc@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Khuong Dinh <khuong@os.amperecomputing.com>,
-        Robert Richter <rrichter@marvell.com>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Tero Kristo <t-kristo@ti.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>,
-        <linux-rockchip@lists.infradead.org>
-Subject: Re: [PATCH] arm64: dts: Reformat PCI ranges/dma-ranges entries
-Message-ID: <20200820114420.sjlqvn2tbpa7vcbb@akan>
-References: <20200819221750.2055932-1-robh@kernel.org>
+        id S1729809AbgHTLqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Aug 2020 07:46:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59066 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729582AbgHTLp5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Aug 2020 07:45:57 -0400
+Received: from localhost (cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net [82.37.168.47])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E4CF12078B;
+        Thu, 20 Aug 2020 11:45:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1597923957;
+        bh=EmpcpyWUq8w0WNjTx0pP0rrQmAkwNgLkN1Z/MnuebcI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SiXurh7hS5kaPGz83qRaQPFIa3c10EcxMdG7VqJpmcAvQ1Kr2uVTFkz5T+BxZkuGc
+         Qud9WfkBlOnTh1eiEAJ+5+R7ke09jeNewuXlamTAN4LdniF9WirwON/WrYfCYGezDu
+         yuD0BvTXq5D151EW8HkiDvG8ChfiRGSL50q4s7+k=
+Date:   Thu, 20 Aug 2020 12:45:24 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Gene Chen <gene.chen.richtek@gmail.com>
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Gene Chen <gene_chen@richtek.com>
+Subject: Re: [PATCH v3 1/2] regulator: mt6360: Add support for MT6360
+ regulator
+Message-ID: <20200820114524.GC5854@sirena.org.uk>
+References: <1597910022-22617-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1597910022-22617-2-git-send-email-gene.chen.richtek@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jgbt6anitnjafjun"
+        protocol="application/pgp-signature"; boundary="jousvV0MzM2p6OtC"
 Content-Disposition: inline
-In-Reply-To: <20200819221750.2055932-1-robh@kernel.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <1597910022-22617-2-git-send-email-gene.chen.richtek@gmail.com>
+X-Cookie: Dead? No excuse for laying off work.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---jgbt6anitnjafjun
+
+--jousvV0MzM2p6OtC
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On 16:17-20200819, Rob Herring wrote:
-> While bracketing doesn't matter for a DTB, the DT schema checks rely on
-[..]
-> ---
-> SoC maintainers, please apply this directly.
-	  [...]
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/d=
-ts/ti/k3-am65-main.dtsi
-> index 9edfae5944f7..2c762e725d89 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> @@ -678,8 +678,8 @@ pcie0_rc: pcie@5500000 {
->  		power-domains =3D <&k3_pds 120 TI_SCI_PD_EXCLUSIVE>;
->  		#address-cells =3D <3>;
->  		#size-cells =3D <2>;
-> -		ranges =3D <0x81000000 0 0          0x0 0x10020000 0 0x00010000
-> -			  0x82000000 0 0x10030000 0x0 0x10030000 0 0x07FD0000>;
-> +		ranges =3D <0x81000000 0 0          0x0 0x10020000 0 0x00010000>,
-> +			 <0x82000000 0 0x10030000 0x0 0x10030000 0 0x07FD0000>;
->  		ti,syscon-pcie-id =3D <&pcie_devid>;
->  		ti,syscon-pcie-mode =3D <&pcie0_mode>;
->  		bus-range =3D <0x0 0xff>;
-> @@ -710,8 +710,8 @@ pcie1_rc: pcie@5600000 {
->  		power-domains =3D <&k3_pds 121 TI_SCI_PD_EXCLUSIVE>;
->  		#address-cells =3D <3>;
->  		#size-cells =3D <2>;
-> -		ranges =3D <0x81000000 0 0          0x0   0x18020000 0 0x00010000
-> -			  0x82000000 0 0x18030000 0x0   0x18030000 0 0x07FD0000>;
-> +		ranges =3D <0x81000000 0 0          0x0   0x18020000 0 0x00010000>,
-> +			 <0x82000000 0 0x18030000 0x0   0x18030000 0 0x07FD0000>;
->  		ti,syscon-pcie-id =3D <&pcie_devid>;
->  		ti,syscon-pcie-mode =3D <&pcie1_mode>;
->  		bus-range =3D <0x0 0xff>;
+On Thu, Aug 20, 2020 at 03:53:41PM +0800, Gene Chen wrote:
 
-For the TI chunk:
-Acked-by: Nishanth Menon <nm@ti.com>
---=20
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5=
- 849D 1736 249D
+> +	mrd->regmap = dev_get_regmap(pdev->dev.parent, NULL);
+> +	if (!mrd->regmap) {
+> +		dev_err(&pdev->dev, "Failed to get parent regmap\n");
+> +		return -ENODEV;
+> +	}
 
---jgbt6anitnjafjun
+> +static const struct of_device_id __maybe_unused mt6360_regulator_of_id[] = {
+> +	{ .compatible = "mediatek,mt6360-regulator", },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, mt6360_regulator_of_id);
+
+This device only exists in the context of a single parent device, there
+should be no need for a compatible string here - this is just a detail
+of how Linux does things.  The MFD should just instntiate the platform
+device.
+
+--jousvV0MzM2p6OtC
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEE+KKGk1TrgjIXoxo03bWEnRc2JJ0FAl8+YgwACgkQ3bWEnRc2
-JJ0WIg//YBZVg8WDT/O8r7i2UkktHsq0s0v55hHAOfcl47v8FQtw84RgUhFCn+9i
-U/VpPbU7ZvIUlpbADflEHrnXkYfhikLBFJ90DEde63M1DkFyvjnMXJVImmuiK7E7
-WbWZpo21fRKfbFje9l6upMgfiM4ZB7GS/NkKssavEX22oaG5+GTjNjEI1EJijNG/
-K0hD2jvRdQ59eyfdvKL8ezXthEaJdCyWuREOKCsE/VUDHC/KgXcpZjLA7BICegYn
-J/UeEhSJGtV2UaUkU621yg3gRF2f7on236lG4cs4QnYIzACww4MA2r3UdM+zsOI0
-RJR8/LbNzBtfzPUmyQldvvBKQ80HtgMe0jhuFGflT4rjzbMQXYbOdIFR0A2Jhw2/
-tt2YH0rmxV3rhRLsPtcmltMQW/2iccVbvHZaz8xQ9HirP2XaAvhTUfG5ayFTD3jb
-uxU9HV/SMapoo56gvFRkg09K4vNAtTwc8TZLOo29FbKSv0+PUXFDBODeygVgNYxL
-RI8OFjIgAiWTgAow/5CNkPwKLjR7F/dMj5T2hX1WVjwD5ds1bdl6dJP6WejEs3OU
-iEYUy5PR23cZoVrH6V4FMcyWv/6D+7C8UzHIqzkUulviPpSofpb8muTAlsyAe9gx
-YZPxS3DHyObqDoJbspVmD2acwVGz6KQBvvyEqvsC42qkJ0T5ByA=
-=TsAH
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl8+YlMACgkQJNaLcl1U
+h9DIKwf/ev1phumPNeX6i1SQql+DSte48x9dcwfsdVGdcUYYk9q6H6T5tUIKpzF7
+htv0KnJWujWXk9eYft25GnJTOdpzdkihP+bqHsc86o+2wfuI/9NGr2z6Al6sFwjf
+5neoBb9H3XMIHkkiAk/f8d4q5i9HDJA+5Gqe82/m7TV3qM7AYjeQH8X0BRnlGPTw
++H9wDCDmg/BkT4jq1spi0++fua58EtL58ex8OBPZpxFeG3ZPHZMLknJikpbEj3sG
+L2I+4nITn7sB4zrTbIZDcdZYJCcubV/rZ0lO7+K6a1SGDxw98eOOfy21ht4qM6RV
+R2n7uxfo+TjXqHqkdBGwQoqJdf2yJA==
+=7oEp
 -----END PGP SIGNATURE-----
 
---jgbt6anitnjafjun--
+--jousvV0MzM2p6OtC--
