@@ -2,239 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1493124B769
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 12:53:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEA8D24B8A7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 13:25:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731160AbgHTKxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Aug 2020 06:53:20 -0400
-Received: from mga06.intel.com ([134.134.136.31]:52351 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731514AbgHTKxC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Aug 2020 06:53:02 -0400
-IronPort-SDR: mTFY2IsmrTjA6seb/afrZwNU1L7tes2q0eqeR3QSAyZloyQIdIKO/+12EJNW19vwwFNoiriWL6
- iFtHE447+Vlg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9718"; a="216814278"
-X-IronPort-AV: E=Sophos;i="5.76,332,1592895600"; 
-   d="scan'208";a="216814278"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2020 03:53:01 -0700
-IronPort-SDR: F/MSpuvDJb0c+Fl311bQpLMxkIGXF5XvQ6IQk4EsJbAiffqOx9xUzw79vymMv2eshLsNtJO8RA
- U7BalIxgzuLw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,332,1592895600"; 
-   d="scan'208";a="327392777"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga008.jf.intel.com with ESMTP; 20 Aug 2020 03:52:58 -0700
-Received: from andy by smile with local (Exim 4.94)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1k8iBj-00A5k8-Ra; Thu, 20 Aug 2020 13:52:55 +0300
-Date:   Thu, 20 Aug 2020 13:52:55 +0300
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Rahul Tanwar <rahul.tanwar@linux.intel.com>
-Cc:     u.kleine-koenig@pengutronix.de, linux-pwm@vger.kernel.org,
-        lee.jones@linaro.org, thierry.reding@gmail.com,
-        p.zabel@pengutronix.de, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        songjun.Wu@intel.com, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com, rahul.tanwar.linux@gmail.com,
-        rtanwar@maxlinear.com
-Subject: Re: [PATCH v8 2/2] Add PWM fan controller driver for LGM SoC
-Message-ID: <20200820105255.GB1891694@smile.fi.intel.com>
-References: <cover.1597898872.git.rahul.tanwar@linux.intel.com>
- <b6d0a65625a2bc231c649c970c0a1af1ff3a5dd5.1597898872.git.rahul.tanwar@linux.intel.com>
+        id S1730336AbgHTLZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Aug 2020 07:25:34 -0400
+Received: from mail-oo1-f67.google.com ([209.85.161.67]:42045 "EHLO
+        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728514AbgHTKGm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 06:06:42 -0400
+Received: by mail-oo1-f67.google.com with SMTP id a6so283925oog.9;
+        Thu, 20 Aug 2020 03:06:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7+CSk1ksXzy7e0WIknvr7+ji8pZUrOi3fj0VsGs4weY=;
+        b=EXA02wWQsI5YuePA3VIgOVGGfySn9Nyv6KRdADkev9beQf15igej8ZcJYwdAqafunl
+         0nsIU5GeAzT41tL22DqSVj4gQIu5wBPfuXQ7IETeOb8grj+SsQi+wQhqdPFXqGiAfH6N
+         Ttvqnk082JjN2O+MoPp92mbjJX8IxjFpAsJctnAwLaYKwtJYQjIBXMjtWu3NCsqp30Tr
+         rNWJb41EQnLC/jWn/D5C3yJtaik8lb2S8nKgiSbHxydfmsntX7uJ9fkW8+j03ouQdR3m
+         TecMTKvVw8NY7VAV9NrjaFfjOMPHX5cZ2mwlVZ6JAOtTMerYKbsSMBY2cxiU38z2M8gC
+         UEZQ==
+X-Gm-Message-State: AOAM533/sBcqedcM2+5wXRGK25XzmS3U+kk0LaYQ0ZYIPWH9w5dOwWvS
+        vC4KIEnasnMf+U30xZNwp9OwUBkqpL1iqX7W0RQ=
+X-Google-Smtp-Source: ABdhPJzLpZOD1rs1p3nBtT5EFxS48HiVxoTkLH06KtZW1eQSDDDuEahrzdmBlpsHmdngJPIb1mx3MtQK7PAdAm1yD5w=
+X-Received: by 2002:a4a:4201:: with SMTP id h1mr1818497ooj.1.1597918001038;
+ Thu, 20 Aug 2020 03:06:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b6d0a65625a2bc231c649c970c0a1af1ff3a5dd5.1597898872.git.rahul.tanwar@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200807141345.6714-1-geert+renesas@glider.be>
+ <20200817233253.GA1819982@bogus> <CAMuHMdV-NVycDcPggYw4-pvSkkwo079bUevA2yB3XM5YfHi9mg@mail.gmail.com>
+In-Reply-To: <CAMuHMdV-NVycDcPggYw4-pvSkkwo079bUevA2yB3XM5YfHi9mg@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 20 Aug 2020 12:06:29 +0200
+Message-ID: <CAMuHMdWGu5+PYiYR9rdt97Hd1ribi0Yc0q68NBU6AFRBDCCg_g@mail.gmail.com>
+Subject: Re: [PATCH/RFC v2] dt-bindings: pinctrl: sh-pfc: Convert to json-schema
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 20, 2020 at 12:50:46PM +0800, Rahul Tanwar wrote:
-> Intel Lightning Mountain(LGM) SoC contains a PWM fan controller.
-> This PWM controller does not have any other consumer, it is a
-> dedicated PWM controller for fan attached to the system. Add
-> driver for this PWM fan controller.
+Hi Rob,
 
-...
+On Tue, Aug 18, 2020 at 9:10 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> On Tue, Aug 18, 2020 at 1:32 AM Rob Herring <robh@kernel.org> wrote:
+> > On Fri, Aug 07, 2020 at 04:13:45PM +0200, Geert Uytterhoeven wrote:
+> > > Convert the Renesas Pin Function Controller (PFC) Device Tree binding
+> > > documentation to json-schema.
+> > >
+> > > Document missing properties.
+> > > Drop deprecated and obsolete #gpio-range-cells property.
+> > > Update the example to match reality.
+> > > Drop consumer examples, as they do not belong here.
+> > >
+> > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > ---
+> > > Still RFC, due to the FIXMEs near the enum descriptions.
+> > > If I enable the enums checks, I get e.g.:
+> > >
+> > >     [[1800]] is not one of [1800, 3300]
+> > >
+> > > Note the double square brackets around 1800.
+> > > The usual error message doesn't have them, e.g.:
+> > >
+> > >     2000 is not one of [1800, 3300]
+> > >
+> > > So this looks like a bug in the tooling?
+> >
+> > Yes, we only recently started supporting schemas under
+> > 'additionalProperties', but failed to apply fixups.
+> >
+> > I have a fix I'm testing out. I'm bumping the version requirement in
+> > 5.10, so I'll make sure it is there.
+>
+> Thanks, looking forward to it.
 
-> +config PWM_INTEL_LGM
-> +	tristate "Intel LGM PWM support"
+I can confirm this is fixed in v2020.08.1.
 
-> +	depends on OF && HAS_IOMEM
-> +	depends on X86 || COMPILE_TEST
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/pinctrl/renesas,pfc.yaml
+>
+> > > +  interrupts-extended:
+> >
+> > Just use 'interrupts' here. 'interrupt-extended' is always magically
+> > supported.
+>
+> Apparently not everywhere...
+>
+>     Documentation/devicetree/bindings/pinctrl/renesas,pfc.example.dt.yaml:
+> pin-controller@e6050000: 'interrupts' is a required property
 
-For better test coverage you may rewrite this
+The existing fixup doesn't handle "required: interrupts"  if that is inside an
+if/then/else block.
 
-	depends on HAS_IOMEM
-	depends on (OF && X86) || COMPILE_TEST
+> > > +additionalProperties:
+> > > +  anyOf:
+> > > +    - type: object
+> > > +      allOf:
+> > > +        - $ref: pincfg-node.yaml#
+> > > +        - $ref: pinmux-node.yaml#
+> > > +
+> > > +      description:
+> > > +        Pin controller client devices use pin configuration subnodes (children
+> > > +        and grandchildren) for desired pin configuration.
+> > > +        Client device subnodes use below standard properties.
+> > > +
+> > > +      properties:
+> > > +        phandle: true
+> >
+> > Once fixed, this won't be necessary.
+>
+> OK.
 
-> +	select REGMAP_MMIO
-> +	help
-> +	  Generic PWM fan controller driver for LGM SoC.
-> +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called pwm-intel-lgm.
+Seems to be still an issue in v2020.08.1?
 
-...
+> > > +        function: true
+> > > +        groups: true
+> > > +        pins: true
+> > > +        bias-disable: true
+> > > +        bias-pull-down: true
+> > > +        bias-pull-up: true
+> > > +        drive-strength:
+> > > +          true # FIXME enum: [ 3, 6, 9, 12, 15, 18, 21, 24 ] # Superset of supported values
+> > > +          # avb:pins_mdio:drive-strength: [[24]] is not one of [3, 6, 9, 12, 15, 18, 21, 24]
+> > > +        power-source:
+> > > +          true # FIXME enum: [ 1800, 3300 ]
+> > > +          # sd0_uhs:power-source: [[1800]] is not one of [1800, 3300]
+> > > +        gpio-hog: true
+> > > +        gpios: true
+> > > +        input: true
+> > > +        output-high: true
+> > > +        output-low: true
+> > > +
+> > > +      additionalProperties: false
+> > > +
+> > > +    - type: object
+> > > +      properties:
+> > > +        phandle: true
+> >
+> > For this one, you can just link it back to the first entry:
+> >
+> > - type: object
+> >   additionalProperties:
+> >     $ref: "#/additionalProperties/anyOf/0"
+>
+> Thanks, cool!
 
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/module.h>
+Works great!
 
-> +#include <linux/of_device.h>
+Gr{oetje,eeting}s,
 
-This should be mod_devicetable.h.
-
-> +#include <linux/pwm.h>
-> +#include <linux/regmap.h>
-> +#include <linux/reset.h>
-
-...
-
-> +#define LGM_PWM_PERIOD_2WIRE_NSECS	40000000
-
-NSECS -> NS
-40000000 -> (40 * NSEC_PER_MSEC)
-
-...
-
-> +	if (state->polarity != PWM_POLARITY_NORMAL ||
-> +	    state->period < pc->period)
-
-It can be one line.
-
-> +		return -EINVAL;
-
-...
-
-> +	if (!state->enabled) {
-
-> +		ret = lgm_pwm_enable(chip, 0);
-> +		return ret;
-
-What is the point?
-
-> +	}
-
-...
-
-> +	ret = lgm_pwm_enable(chip, 1);
-> +
-> +	return ret;
-
-Ditto.
-
-...
-
-> +	state->duty_cycle = DIV_ROUND_UP(duty * pc->period,
-> +					 LGM_PWM_MAX_DUTY_CYCLE);
-
-One line?
-
-...
-
-> +	struct lgm_pwm_chip *pc;
-> +	struct device *dev = &pdev->dev;
-
-Use reversed xmas tree order.
-
-> +	void __iomem *io_base;
-> +	int ret;
-
-...
-
-> +	pc->regmap = devm_regmap_init_mmio(dev, io_base, &lgm_pwm_regmap_config);
-> +	if (IS_ERR(pc->regmap)) {
-
-> +		ret = PTR_ERR(pc->regmap);
-> +		if (ret != -EPROBE_DEFER)
-> +			dev_err(dev, "failed to init register map: %pe\n",
-> +				pc->regmap);
-> +		return ret;
-
-dev_err_probe()
-
-> +	}
-
-...
-
-> +	pc->clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(pc->clk)) {
-> +		ret = PTR_ERR(pc->clk);
-> +		if (ret != -EPROBE_DEFER)
-> +			dev_err(dev, "failed to get clock: %pe\n", pc->clk);
-> +		return ret;
-
-Ditto.
-
-> +	}
-> +
-> +	pc->rst = devm_reset_control_get_exclusive(dev, NULL);
-> +	if (IS_ERR(pc->rst)) {
-> +		ret = PTR_ERR(pc->rst);
-> +		if (ret != -EPROBE_DEFER)
-> +			dev_err(dev, "failed to get reset control: %pe\n",
-> +				pc->rst);
-> +		return ret;
-
-Ditto.
-
-> +	}
-> +
-> +	ret = reset_control_deassert(pc->rst);
-> +	if (ret) {
-> +		if (ret != -EPROBE_DEFER)
-> +			dev_err(dev, "cannot deassert reset control: %pe\n",
-> +				ERR_PTR(ret));
-> +		return ret;
-
-Ditto.
-
-> +	}
-
-...
-
-> +	ret = clk_prepare_enable(pc->clk);
-
-Wrap it with devm_add_action_or_reset(). Same for reset_control_deassert().
-You probably can even put them under one function.
-
-> +	if (ret) {
-> +		dev_err(dev, "failed to enable clock\n");
-> +		reset_control_assert(pc->rst);
-> +		return ret;
-> +	}
-
-...
-
-> +	ret = pwmchip_add(&pc->chip);
-
-> +	if (ret < 0) {
-
-Does ' < 0' have any meaning?
-
-> +		dev_err(dev, "failed to add PWM chip: %pe\n", ERR_PTR(ret));
-> +		clk_disable_unprepare(pc->clk);
-> +		reset_control_assert(pc->rst);
-> +		return ret;
-> +	}
-
-...
-
-> +	ret = pwmchip_remove(&pc->chip);
-> +	if (ret < 0)
-
-Ditto.
-
-> +		return ret;
+                        Geert
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
