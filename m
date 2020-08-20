@@ -2,54 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11EFA24B95C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 13:46:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8223224B97A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 13:48:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730883AbgHTLmp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Aug 2020 07:42:45 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:45208 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726786AbgHTLmm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 07:42:42 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07KBgdNg096474;
-        Thu, 20 Aug 2020 06:42:39 -0500
+        id S1726962AbgHTLqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Aug 2020 07:46:42 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:35512 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728936AbgHTLpG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 07:45:06 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07KBiLjh034621;
+        Thu, 20 Aug 2020 06:44:21 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1597923759;
-        bh=EIH1ECgBvoD2uN2VEYtoKj0pqSnYNbZnnh+P30Q9wzY=;
+        s=ti-com-17Q1; t=1597923861;
+        bh=KekPuX5bW5OV7WGA42Ji5+dWGwrpNIKAh0IFJGWPkgw=;
         h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=V80QP2Vk5DFaRAaiEz/9AYEcaFy/NUdLU/90Xp7yNt4/KnEc6gG7j1wDiPpb5ctnx
-         thJ9RImAZiouq8piZQwqhNvXxRNj58fGyW/f5dmD5AXqBovCEDwmEh83DhPwkGmXMT
-         lbCylLKgkmlqIGMM/97bsvjGMo5rzc1UlmIthSZw=
+        b=wumWcYu2C1Uab0K7/BhHt6am8WARnusXkgQxTV42cLperHvWAMr73TNd+wDsAw3wy
+         hNKVGdTP4DXYch+0pLpm6EayzBWxfb8hWJXgwCbJaBPkYV500cFpib37witpJiU5fe
+         I4uAGHEHelb5GRoGXgpVe6o/YlhZ9+BiuU3VMDj8=
 Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07KBgdjp007063
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07KBiLbD128554
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 20 Aug 2020 06:42:39 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE104.ent.ti.com
+        Thu, 20 Aug 2020 06:44:21 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE104.ent.ti.com
  (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 20
- Aug 2020 06:42:38 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2020 06:44:20 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 20 Aug 2020 06:42:38 -0500
+ Frontend Transport; Thu, 20 Aug 2020 06:44:20 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07KBgck6047929;
-        Thu, 20 Aug 2020 06:42:38 -0500
-Date:   Thu, 20 Aug 2020 06:42:38 -0500
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07KBiK7d068400;
+        Thu, 20 Aug 2020 06:44:20 -0500
+Date:   Thu, 20 Aug 2020 06:44:20 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     Suman Anna <s-anna@ti.com>
-CC:     Tero Kristo <t-kristo@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 2/7] arm64: dts: ti: k3-j721e-common-proc-board: Add
- mailboxes to C66x DSPs
-Message-ID: <20200820114238.7ovvxq5n3fogzowi@akan>
-References: <20200820010331.2911-1-s-anna@ti.com>
- <20200820010331.2911-3-s-anna@ti.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <soc@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Khuong Dinh <khuong@os.amperecomputing.com>,
+        Robert Richter <rrichter@marvell.com>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Tero Kristo <t-kristo@ti.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>,
+        <linux-rockchip@lists.infradead.org>
+Subject: Re: [PATCH] arm64: dts: Reformat PCI ranges/dma-ranges entries
+Message-ID: <20200820114420.sjlqvn2tbpa7vcbb@akan>
+References: <20200819221750.2055932-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="jgbt6anitnjafjun"
 Content-Disposition: inline
-In-Reply-To: <20200820010331.2911-3-s-anna@ti.com>
+In-Reply-To: <20200819221750.2055932-1-robh@kernel.org>
 User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
@@ -57,55 +79,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20:03-20200819, Suman Anna wrote:
-> Add the required 'mboxes' property to both the C66x DSP processors on the
-> TI J721E common processor board. The mailboxes and some shared memory
+--jgbt6anitnjafjun
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I am not sure I understand the logic here. The carveout is added to
-p0 SOM - and the mbox is added to common_proc_board. I am not sure I
-get the difference. The C66x processors are on the SoC, stack is as
-follows: - SoC - SoM - Common Proc board
-
-I am just wondering if the carveouts and mbox linkage should be in the
-common processor board? if that makes sense at all? I know we already
-have other definitions.. Trying to see if we are making it harder to
-understand the definition than that is necessary..
-
-> are required for running the Remote Processor Messaging (RPMsg) stack
-> between the host processor and each of the R5Fs. The chosen sub-mailboxes
-> match the values used in the current firmware images. This can be changed,
-> if needed, as per the system integration needs after making appropriate
-> changes on the firmware side as well.
-> 
-> Signed-off-by: Suman Anna <s-anna@ti.com>
+On 16:17-20200819, Rob Herring wrote:
+> While bracketing doesn't matter for a DTB, the DT schema checks rely on
+[..]
 > ---
->  arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-> index e8fc01d97ada..ff541dc09eca 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-> @@ -379,6 +379,14 @@ &mailbox0_cluster11 {
->  	status = "disabled";
->  };
->  
-> +&c66_0 {
-> +	mboxes = <&mailbox0_cluster3 &mbox_c66_0>;
-> +};
-> +
-> +&c66_1 {
-> +	mboxes = <&mailbox0_cluster3 &mbox_c66_1>;
-> +};
-> +
->  &main_sdhci0 {
->  	/* eMMC */
->  	non-removable;
-> -- 
-> 2.28.0
-> 
+> SoC maintainers, please apply this directly.
+	  [...]
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/d=
+ts/ti/k3-am65-main.dtsi
+> index 9edfae5944f7..2c762e725d89 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> @@ -678,8 +678,8 @@ pcie0_rc: pcie@5500000 {
+>  		power-domains =3D <&k3_pds 120 TI_SCI_PD_EXCLUSIVE>;
+>  		#address-cells =3D <3>;
+>  		#size-cells =3D <2>;
+> -		ranges =3D <0x81000000 0 0          0x0 0x10020000 0 0x00010000
+> -			  0x82000000 0 0x10030000 0x0 0x10030000 0 0x07FD0000>;
+> +		ranges =3D <0x81000000 0 0          0x0 0x10020000 0 0x00010000>,
+> +			 <0x82000000 0 0x10030000 0x0 0x10030000 0 0x07FD0000>;
+>  		ti,syscon-pcie-id =3D <&pcie_devid>;
+>  		ti,syscon-pcie-mode =3D <&pcie0_mode>;
+>  		bus-range =3D <0x0 0xff>;
+> @@ -710,8 +710,8 @@ pcie1_rc: pcie@5600000 {
+>  		power-domains =3D <&k3_pds 121 TI_SCI_PD_EXCLUSIVE>;
+>  		#address-cells =3D <3>;
+>  		#size-cells =3D <2>;
+> -		ranges =3D <0x81000000 0 0          0x0   0x18020000 0 0x00010000
+> -			  0x82000000 0 0x18030000 0x0   0x18030000 0 0x07FD0000>;
+> +		ranges =3D <0x81000000 0 0          0x0   0x18020000 0 0x00010000>,
+> +			 <0x82000000 0 0x18030000 0x0   0x18030000 0 0x07FD0000>;
+>  		ti,syscon-pcie-id =3D <&pcie_devid>;
+>  		ti,syscon-pcie-mode =3D <&pcie1_mode>;
+>  		bus-range =3D <0x0 0xff>;
 
--- 
+For the TI chunk:
+Acked-by: Nishanth Menon <nm@ti.com>
+--=20
 Regards,
 Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5=
+ 849D 1736 249D
+
+--jgbt6anitnjafjun
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE+KKGk1TrgjIXoxo03bWEnRc2JJ0FAl8+YgwACgkQ3bWEnRc2
+JJ0WIg//YBZVg8WDT/O8r7i2UkktHsq0s0v55hHAOfcl47v8FQtw84RgUhFCn+9i
+U/VpPbU7ZvIUlpbADflEHrnXkYfhikLBFJ90DEde63M1DkFyvjnMXJVImmuiK7E7
+WbWZpo21fRKfbFje9l6upMgfiM4ZB7GS/NkKssavEX22oaG5+GTjNjEI1EJijNG/
+K0hD2jvRdQ59eyfdvKL8ezXthEaJdCyWuREOKCsE/VUDHC/KgXcpZjLA7BICegYn
+J/UeEhSJGtV2UaUkU621yg3gRF2f7on236lG4cs4QnYIzACww4MA2r3UdM+zsOI0
+RJR8/LbNzBtfzPUmyQldvvBKQ80HtgMe0jhuFGflT4rjzbMQXYbOdIFR0A2Jhw2/
+tt2YH0rmxV3rhRLsPtcmltMQW/2iccVbvHZaz8xQ9HirP2XaAvhTUfG5ayFTD3jb
+uxU9HV/SMapoo56gvFRkg09K4vNAtTwc8TZLOo29FbKSv0+PUXFDBODeygVgNYxL
+RI8OFjIgAiWTgAow/5CNkPwKLjR7F/dMj5T2hX1WVjwD5ds1bdl6dJP6WejEs3OU
+iEYUy5PR23cZoVrH6V4FMcyWv/6D+7C8UzHIqzkUulviPpSofpb8muTAlsyAe9gx
+YZPxS3DHyObqDoJbspVmD2acwVGz6KQBvvyEqvsC42qkJ0T5ByA=
+=TsAH
+-----END PGP SIGNATURE-----
+
+--jgbt6anitnjafjun--
