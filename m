@@ -2,89 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9903624B96A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 13:46:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B9F524BAA1
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 14:14:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729809AbgHTLqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Aug 2020 07:46:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59066 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729582AbgHTLp5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Aug 2020 07:45:57 -0400
-Received: from localhost (cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net [82.37.168.47])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E4CF12078B;
-        Thu, 20 Aug 2020 11:45:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597923957;
-        bh=EmpcpyWUq8w0WNjTx0pP0rrQmAkwNgLkN1Z/MnuebcI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SiXurh7hS5kaPGz83qRaQPFIa3c10EcxMdG7VqJpmcAvQ1Kr2uVTFkz5T+BxZkuGc
-         Qud9WfkBlOnTh1eiEAJ+5+R7ke09jeNewuXlamTAN4LdniF9WirwON/WrYfCYGezDu
-         yuD0BvTXq5D151EW8HkiDvG8ChfiRGSL50q4s7+k=
-Date:   Thu, 20 Aug 2020 12:45:24 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Gene Chen <gene.chen.richtek@gmail.com>
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Gene Chen <gene_chen@richtek.com>
-Subject: Re: [PATCH v3 1/2] regulator: mt6360: Add support for MT6360
- regulator
-Message-ID: <20200820114524.GC5854@sirena.org.uk>
-References: <1597910022-22617-1-git-send-email-gene.chen.richtek@gmail.com>
- <1597910022-22617-2-git-send-email-gene.chen.richtek@gmail.com>
+        id S1730308AbgHTMNf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Aug 2020 08:13:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54150 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730141AbgHTMNc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 08:13:32 -0400
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29225C061386
+        for <devicetree@vger.kernel.org>; Thu, 20 Aug 2020 05:13:32 -0700 (PDT)
+Received: by mail-pl1-x642.google.com with SMTP id h2so960791plr.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Aug 2020 05:13:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2doVaeqHMIq6t5euMsS8lD+HylC+Pn28RLN5whjYgmM=;
+        b=kecqFKVD+AL538Wpa8QOeSpjP0b4QE3rnhDNMJeEa05G98KrWR0dQkqpldBVRM+zQl
+         wFjYLLkU+ICC9rBbV7GCFLACH9i0Wg3TIYaacfhi4m2KD1bRID/MgEpsnU6N1gIgnL68
+         y+NG+JGyCft7oTd0YfkRlDJSSasQ3KEIa/UaYCNfT6azmUIvZPPoMhtzriPhfYJNbPef
+         YtKJ1HRFn9ijb2FE6L7hDS4vqRdKGFMCOd1iv39sUfa7DXD7S8VWKw7k5GoyypJRhic2
+         nzvyJX/CqzX2VgUH76CQNaYBJpbDf+RGrIWoxt7MY/h+vRm/Q4NbFuR6vWYyfGjAxnRV
+         OrIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2doVaeqHMIq6t5euMsS8lD+HylC+Pn28RLN5whjYgmM=;
+        b=ZN+FoT64xjsHdp+IbXCp3vlfb54VgDwYFqabOLkchisQda3xulhG7ssI4Ii5FYQPr5
+         uOJ7MpQ7SZ+ajgp7C1DTpUpzE/0H50JpMYjrBr+eWEPqY9SqzYdPGJ3TVblvzWZ5xT3t
+         MS+DYK61YXqhWZKZir9rR+UBnKXFjCyAXQO8KwsEz4zQ3LF9GoGSUiYKwRA6smU3wk9p
+         O/7cSNnESCJ/kYc2U/mBls05+RTq26AAo/ZkJ6A0Vlsym/UkrRb5LCFh0mui05cLzv38
+         F9LkW57lQ/aFa7UfQKA5zmx0kpwXQukKmABGMJFvgGcQw9ndWVCoLnnHSc66xeZEWOqs
+         t+iQ==
+X-Gm-Message-State: AOAM530zHKyCqRi+kl0XVcurwhz2/IDmPMpDBBEK5Pf0U3qEVso39O2b
+        JfQNVwwgcxkAZ4T2K/AdNKjN1uHe7GY=
+X-Google-Smtp-Source: ABdhPJzgUWn6iNqf1YNd6Nz1hgdV1NAP4WZDvIpStKf8rWEuXtpr1RrAWUlFBOD7GEibXYQyKvZYkQ==
+X-Received: by 2002:a17:90a:3b09:: with SMTP id d9mr2441229pjc.210.1597925611491;
+        Thu, 20 Aug 2020 05:13:31 -0700 (PDT)
+Received: from localhost.localdomain ([45.114.62.137])
+        by smtp.gmail.com with ESMTPSA id p20sm1985937pjg.44.2020.08.20.05.13.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Aug 2020 05:13:31 -0700 (PDT)
+From:   Anand Moon <linux.amoon@gmail.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Christian Hewitt <christianshewitt@gmail.com>,
+        Anand Moon <linux.amoon@gmail.com>
+Subject: [PATCH v3 0/2]Enable RTC on Odroid N2
+Date:   Thu, 20 Aug 2020 17:43:21 +0530
+Message-Id: <20200820121323.564-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jousvV0MzM2p6OtC"
-Content-Disposition: inline
-In-Reply-To: <1597910022-22617-2-git-send-email-gene.chen.richtek@gmail.com>
-X-Cookie: Dead? No excuse for laying off work.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Inorder for test suspend/resume feature on Odroid N2
+we need to enable RTC module on this device.
 
---jousvV0MzM2p6OtC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Changes v3
+Drop the patch disable on VRTC driver.
+Drop the INT pinctrl for RTC - not required for I2C.
+Add the alias for RTC nodes.
 
-On Thu, Aug 20, 2020 at 03:53:41PM +0800, Gene Chen wrote:
+Changes v2
+Fix the missing INT pinctrl for RTC.
 
-> +	mrd->regmap = dev_get_regmap(pdev->dev.parent, NULL);
-> +	if (!mrd->regmap) {
-> +		dev_err(&pdev->dev, "Failed to get parent regmap\n");
-> +		return -ENODEV;
-> +	}
+Note: Now the rtcwake feature works occordingly,
+But after resume I have observed a Kernel Opps
+Hope some body able to repoduce this.
 
-> +static const struct of_device_id __maybe_unused mt6360_regulator_of_id[] = {
-> +	{ .compatible = "mediatek,mt6360-regulator", },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, mt6360_regulator_of_id);
+-Anand Moon
 
-This device only exists in the context of a single parent device, there
-should be no need for a compatible string here - this is just a detail
-of how Linux does things.  The MFD should just instntiate the platform
-device.
+Anand Moon (2):
+  arm64: dts: meson-g12b-odroid-n2: Enable RTC controller node
+  arm64: defconfig: Enable RTC devices for Amlogic boards
 
---jousvV0MzM2p6OtC
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../boot/dts/amlogic/meson-g12b-odroid-n2.dts      | 14 ++++++++++++++
+ arch/arm64/configs/defconfig                       |  1 +
+ 2 files changed, 15 insertions(+)
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.28.0
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl8+YlMACgkQJNaLcl1U
-h9DIKwf/ev1phumPNeX6i1SQql+DSte48x9dcwfsdVGdcUYYk9q6H6T5tUIKpzF7
-htv0KnJWujWXk9eYft25GnJTOdpzdkihP+bqHsc86o+2wfuI/9NGr2z6Al6sFwjf
-5neoBb9H3XMIHkkiAk/f8d4q5i9HDJA+5Gqe82/m7TV3qM7AYjeQH8X0BRnlGPTw
-+H9wDCDmg/BkT4jq1spi0++fua58EtL58ex8OBPZpxFeG3ZPHZMLknJikpbEj3sG
-L2I+4nITn7sB4zrTbIZDcdZYJCcubV/rZ0lO7+K6a1SGDxw98eOOfy21ht4qM6RV
-R2n7uxfo+TjXqHqkdBGwQoqJdf2yJA==
-=7oEp
------END PGP SIGNATURE-----
-
---jousvV0MzM2p6OtC--
