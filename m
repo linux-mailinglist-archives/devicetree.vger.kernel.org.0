@@ -2,60 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCEEB24B135
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 10:39:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A118024B165
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 10:52:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726431AbgHTIjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Aug 2020 04:39:49 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:55678 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726666AbgHTIjs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 04:39:48 -0400
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id E672A29A33B;
-        Thu, 20 Aug 2020 09:39:46 +0100 (BST)
-Date:   Thu, 20 Aug 2020 10:39:44 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Nicolas Pitre <nico@fluxnic.net>, linux-i3c@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Laura Nixon <laura.nixon@team.mipi.org>,
-        Robert Gough <robert.gough@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthew Schnoor <matthew.schnoor@intel.com>,
-        Nicolas Pitre <npitre@baylibre.com>
-Subject: Re: [PATCH 2/2] i3c/master: add the mipi-i3c-hci driver
-Message-ID: <20200820103944.08a55ba4@collabora.com>
-In-Reply-To: <20200820100829.0e44200a@xps13>
-References: <20200814034854.460830-1-nico@fluxnic.net>
-        <20200814034854.460830-3-nico@fluxnic.net>
-        <20200820100829.0e44200a@xps13>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1726885AbgHTIwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Aug 2020 04:52:01 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:58886 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726884AbgHTIvF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Aug 2020 04:51:05 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id C7F74FB07;
+        Thu, 20 Aug 2020 10:51:01 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id LCI2PGXCr712; Thu, 20 Aug 2020 10:51:00 +0200 (CEST)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 83CC7457CB; Thu, 20 Aug 2020 10:50:59 +0200 (CEST)
+From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Martin Kepplinger <martink@posteo.de>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        Anson Huang <Anson.Huang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        Li Jun <jun.li@nxp.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>, Arnd Bergmann <arnd@arndb.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Walle <michael@walle.cc>,
+        Olof Johansson <olof@lixom.net>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/4] arm64: dts: imx8mq: Add NWL DSI host controller to Librem 5 Devkit
+Date:   Thu, 20 Aug 2020 10:50:55 +0200
+Message-Id: <cover.1597913263.git.agx@sigxcpu.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 20 Aug 2020 10:08:29 +0200
-Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 
-> > +		/*
-> > +		 * TODO: Extend the subsystem layer to allow for registering
-> > +		 * new device and provide BCR/DCR/PID at the same time.  
-> 
-> Not sure this is needed if you don't use it directly as the core will
-> anyway (in its current form) send the relevant CCC to read these
-> registers.
+These patches add the NWL host controller to the imx8mq and make use of it on
+the Librem 5 Devkit enabling the built in MIPI DSI LCD panel.
 
-We considered optimizing that in the past but that means making the DAA
-and SETDASA registration different. I'm not sure it's worth it to be
-honest, PID/DCR/BCR only happens when initializing devices and I
-suspect the overhead of querying those DATA twice in case of DAA is
-negligible anyway.
+I opted to add imx8mq internal ports and endpoints between nwl and lcdif to the
+generic dtsi since those are SOC rather than board specific properties.
+
+Changes from v1
+- Add Reviewed-by from Fabio Estevam, thanks!
+  https://lore.kernel.org/linux-arm-kernel/CAOMZO5DUA5eS8apZPbte0EcSQ4Vwpg6YLK7D0YdjSUy+kdBu8Q@mail.gmail.com/
+  https://lore.kernel.org/linux-arm-kernel/CAOMZO5ANrd2JCmHyxZ0Sv0WNcU9T-q3MbaeADxbOwf+31MQ4LQ@mail.gmail.com/#t
+  https://lore.kernel.org/linux-arm-kernel/CAOMZO5Dg5NGpJ0SQkYny04Kv3ky0619J7YwT-0eE1dsK19o1-w@mail.gmail.com/
+- As per review comment by Fabio Estevam
+  Re-sync DRM related defconfig bits. I didn't resyc the whole defconfig since
+  this is pretty much kernel version dependent.
+
+Guido Günther (4):
+  arm64: dts: imx8mq: Add NWL MIPI DSI controller
+  arm64: dts: imx8mq-librem5-devkit: Enable the LCD panel
+  arm64: defconfig: re-sync DRM related defconfig bits
+  arm64: defconfig: Enable imx8mq-librem5-devkit display stack
+
+ .../dts/freescale/imx8mq-librem5-devkit.dts   | 33 +++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi     | 49 +++++++++++++++++++
+ arch/arm64/configs/defconfig                  |  6 ++-
+ 3 files changed, 87 insertions(+), 1 deletion(-)
+
+-- 
+2.26.2
+
