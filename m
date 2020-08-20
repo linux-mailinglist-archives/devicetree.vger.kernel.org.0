@@ -2,81 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15C4C24B914
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 13:39:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11EFA24B95C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 13:46:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727926AbgHTLil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Aug 2020 07:38:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38026 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730563AbgHTLax (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Aug 2020 07:30:53 -0400
-Received: from localhost (cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net [82.37.168.47])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 16321204EA;
-        Thu, 20 Aug 2020 11:30:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597923048;
-        bh=0zMYJ5oh5YMdX4pO293LF39UhxSYtvTe+EEHCB8h2oI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=U3iLBpGFiwiloH/TS9/0Rd657qBi5S3FKwoNOZHTEHHpXKuJzRwGAwMhI/BBvYzDt
-         cb486WvZEEZELB18sEf6e5LV89N12ykeAr7RdHoszbAsJoXc5OsKZ7RWCqFCEyTqNr
-         fFOmEtNwtxyjRdBv1EYnFHIKQOHtwNbEVUgAFQJI=
-Date:   Thu, 20 Aug 2020 12:30:15 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Gene Chen <gene.chen.richtek@gmail.com>
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Gene Chen <gene_chen@richtek.com>
-Subject: Re: [PATCH v3 2/2] regulator: mt6360: Add DT binding documentation
-Message-ID: <20200820113015.GB5854@sirena.org.uk>
-References: <1597910022-22617-1-git-send-email-gene.chen.richtek@gmail.com>
- <1597910022-22617-3-git-send-email-gene.chen.richtek@gmail.com>
+        id S1730883AbgHTLmp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Aug 2020 07:42:45 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:45208 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726786AbgHTLmm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 07:42:42 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07KBgdNg096474;
+        Thu, 20 Aug 2020 06:42:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1597923759;
+        bh=EIH1ECgBvoD2uN2VEYtoKj0pqSnYNbZnnh+P30Q9wzY=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=V80QP2Vk5DFaRAaiEz/9AYEcaFy/NUdLU/90Xp7yNt4/KnEc6gG7j1wDiPpb5ctnx
+         thJ9RImAZiouq8piZQwqhNvXxRNj58fGyW/f5dmD5AXqBovCEDwmEh83DhPwkGmXMT
+         lbCylLKgkmlqIGMM/97bsvjGMo5rzc1UlmIthSZw=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07KBgdjp007063
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 20 Aug 2020 06:42:39 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 20
+ Aug 2020 06:42:38 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 20 Aug 2020 06:42:38 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07KBgck6047929;
+        Thu, 20 Aug 2020 06:42:38 -0500
+Date:   Thu, 20 Aug 2020 06:42:38 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Suman Anna <s-anna@ti.com>
+CC:     Tero Kristo <t-kristo@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 2/7] arm64: dts: ti: k3-j721e-common-proc-board: Add
+ mailboxes to C66x DSPs
+Message-ID: <20200820114238.7ovvxq5n3fogzowi@akan>
+References: <20200820010331.2911-1-s-anna@ti.com>
+ <20200820010331.2911-3-s-anna@ti.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="rJwd6BRFiFCcLxzm"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <1597910022-22617-3-git-send-email-gene.chen.richtek@gmail.com>
-X-Cookie: Dead? No excuse for laying off work.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200820010331.2911-3-s-anna@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 20:03-20200819, Suman Anna wrote:
+> Add the required 'mboxes' property to both the C66x DSP processors on the
+> TI J721E common processor board. The mailboxes and some shared memory
 
---rJwd6BRFiFCcLxzm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I am not sure I understand the logic here. The carveout is added to
+p0 SOM - and the mbox is added to common_proc_board. I am not sure I
+get the difference. The C66x processors are on the SoC, stack is as
+follows: - SoC - SoM - Common Proc board
 
-On Thu, Aug 20, 2020 at 03:53:42PM +0800, Gene Chen wrote:
+I am just wondering if the carveouts and mbox linkage should be in the
+common processor board? if that makes sense at all? I know we already
+have other definitions.. Trying to see if we are making it harder to
+understand the definition than that is necessary..
 
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt6360-regulator
+> are required for running the Remote Processor Messaging (RPMsg) stack
+> between the host processor and each of the R5Fs. The chosen sub-mailboxes
+> match the values used in the current firmware images. This can be changed,
+> if needed, as per the system integration needs after making appropriate
+> changes on the firmware side as well.
+> 
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> index e8fc01d97ada..ff541dc09eca 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> @@ -379,6 +379,14 @@ &mailbox0_cluster11 {
+>  	status = "disabled";
+>  };
+>  
+> +&c66_0 {
+> +	mboxes = <&mailbox0_cluster3 &mbox_c66_0>;
+> +};
 > +
-> +  LDO_VIN3-supply:
-> +    description: Input supply phandle(s) for LDO3
+> +&c66_1 {
+> +	mboxes = <&mailbox0_cluster3 &mbox_c66_1>;
+> +};
 > +
+>  &main_sdhci0 {
+>  	/* eMMC */
+>  	non-removable;
+> -- 
+> 2.28.0
+> 
 
-Only LDO3 needs a supply?
-
---rJwd6BRFiFCcLxzm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl8+XscACgkQJNaLcl1U
-h9AlBAf/Rg+0tMXV5si2xJ024erGWC2hIyYtwI3+xCyY9sHhRgfsHGL0OavnQmH1
-XrzrHV2HlLPBpDOAsKc9FlToTqLxXHp6mWHlyl0AUgadrSqjIJKXKk53jrbAbWIo
-fx5TFc4o+WblH6MYd5sXUo5l5yzwESjU1zoT67WS4rIt/oVKOn5+e2VRUA+Y3nsy
-ThaA4Y1uYFRnH0IMEjw6TrHwWCHmDsSPoiNhcmt1GyQYrbVuroV3Nz4iQNS8MJDN
-zntnN8oAuDDVkPHkrSyY33fmOfKO+p7myQ+M/fR7E7gZvCNWU0f2D0hBTTLOmwXJ
-skfkHi2rhY3HPyKehk56JaL72atI7Q==
-=vywJ
------END PGP SIGNATURE-----
-
---rJwd6BRFiFCcLxzm--
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
