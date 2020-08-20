@@ -2,127 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B1BC24BE67
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 15:25:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC58A24BF73
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 15:49:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730845AbgHTNZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Aug 2020 09:25:29 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:50318 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730830AbgHTNZR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 09:25:17 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07KDPCbj060069;
-        Thu, 20 Aug 2020 08:25:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1597929912;
-        bh=y/l56dAGpjnshDm3cxwCsETuPKtCmIdz45bEU/nlU3Y=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Luk7a5dJiMJPu/WNwCJd94xOsRD4SxChJpgQylGZK0LBl4t3sit0cjYX6qw2eChrL
-         Xm6ZKi05oC0zUxkPdKbi3NqKsMroKjfc1F1PhAtx1AxTEab1itcZIkmaigPzjG+aLK
-         7Wn9ZTkzDJiTs+n1B+Qe9C/OohCoRLpDijNz4cGQ=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07KDPC4Z023311
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 20 Aug 2020 08:25:12 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 20
- Aug 2020 08:25:12 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 20 Aug 2020 08:25:12 -0500
-Received: from [10.250.32.29] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07KDPCtK095800;
-        Thu, 20 Aug 2020 08:25:12 -0500
-Subject: Re: [PATCH 2/7] arm64: dts: ti: k3-j721e-common-proc-board: Add
- mailboxes to C66x DSPs
-To:     Nishanth Menon <nm@ti.com>
-CC:     Tero Kristo <t-kristo@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20200820010331.2911-1-s-anna@ti.com>
- <20200820010331.2911-3-s-anna@ti.com> <20200820114238.7ovvxq5n3fogzowi@akan>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <8491a1bf-3665-8f23-6b75-34890566fcae@ti.com>
-Date:   Thu, 20 Aug 2020 08:25:12 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1729413AbgHTNj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Aug 2020 09:39:27 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:53019 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728139AbgHTJaP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 05:30:15 -0400
+Received: by mail-wm1-f68.google.com with SMTP id x5so976710wmi.2;
+        Thu, 20 Aug 2020 02:30:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=tUnRntDeM2Z0wZOlftJYnlbiTXDqBXyNsySaCh9zCmY=;
+        b=SvJm8/wDP+0NcFQQ6EcJiW2c1pBJodLfRnSCUH214i0B5bACBo/O0iTE+g6fMmP8xk
+         Pf9wsIVGgID6O8tuWskHpwHk8mkIhVIZrbF1yK00ZDNlP/QDshVMiBaHQrM+YjwLv2X7
+         U0xDcXE1ywTYcuu4qt1EdB5HJGdEfkK7CQbVs23P6lZmtlI4XNqKexGPthkqDA4hPcJc
+         IhPBcRS2Xz8vNoFtrNXsB0TnqzLvka+lthDfV0tOZLSOFOrIJ7Osfc+oVjPA290S3jF2
+         p8bJ8XriUzi8vDx9d1pe4ipOluGshbj1omGRrVb/C4vZWPKaBOenM/vsW2N2ljP5TCtV
+         hS5A==
+X-Gm-Message-State: AOAM533mZhB3cZ8YRh5T1ZgqMYGEYrJyQyvRg7/+2sYukQZMTzyaKYDq
+        l1/IrY5OgxO0SDTIW7dLYUI=
+X-Google-Smtp-Source: ABdhPJyodhIy3b6biA58amHmZjnvQq4nyDVjNDGAvrKAsLjjKYeZihDIwmPPHhe2+ewpkCAnODpbww==
+X-Received: by 2002:a1c:2808:: with SMTP id o8mr2510138wmo.108.1597915813392;
+        Thu, 20 Aug 2020 02:30:13 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.216])
+        by smtp.googlemail.com with ESMTPSA id z8sm3045868wmf.10.2020.08.20.02.30.11
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 20 Aug 2020 02:30:12 -0700 (PDT)
+Date:   Thu, 20 Aug 2020 11:30:10 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Barry Song <baohua@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
+        Marc Gonzalez <marc.w.gonzalez@free.fr>,
+        Mans Rullgard <mans@mansr.com>, Jun Nie <jun.nie@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [RESEND PATCH 5/5] ARM: dts: zx: Align L2 cache-controller
+ nodename with dtschema
+Message-ID: <20200820093010.GA15884@kozik-lap>
+References: <20200819175853.21492-1-krzk@kernel.org>
+ <20200819175853.21492-5-krzk@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20200820114238.7ovvxq5n3fogzowi@akan>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200819175853.21492-5-krzk@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
-
-On 8/20/20 6:42 AM, Nishanth Menon wrote:
-> On 20:03-20200819, Suman Anna wrote:
->> Add the required 'mboxes' property to both the C66x DSP processors on the
->> TI J721E common processor board. The mailboxes and some shared memory
+On Wed, Aug 19, 2020 at 07:58:53PM +0200, Krzysztof Kozlowski wrote:
+> Fix dtschema validator warnings like:
+>     l2-cache-controller@c00000: $nodename:0:
+>         'l2-cache-controller@c00000' does not match '^(cache-controller|cpu)(@[0-9a-f,]+)*$'
 > 
-> I am not sure I understand the logic here. The carveout is added to
-> p0 SOM - and the mbox is added to common_proc_board. I am not sure I
-> get the difference. The C66x processors are on the SoC, stack is as
-> follows: - SoC - SoM - Common Proc board
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+
+I forgot to add the tag from Jun provided on previous submission:
+Reviewed-by: Jun Nie <jun.nie@linaro.org>
+
+Best regards,
+Krzysztof
+
+> ---
+>  arch/arm/boot/dts/zx296702.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> I am just wondering if the carveouts and mbox linkage should be in the
-> common processor board? if that makes sense at all? I know we already
-> have other definitions.. Trying to see if we are making it harder to
-> understand the definition than that is necessary..
-
-In general, I consider these as stuff that needs to be added to the board dts
-files. You will see that this is what I have followed on all the TI
-AM57xx/DRA7xx boards. For J721E, we have a weird organization as the memory
-node, typically a board property, is defined in the som dtsi file, so the
-reserved memory nodes are also added in the som dtsi file. The convention I
-followed in general is to have the reserved-memory and memory nodes together.
-
-If you think the mailbox nodes should be moved into the SoM dts file, I could do
-it as a follow-on cleanup series, but would wait for the ABI 3.0 changes to be
-merged first.
-
-regards
-Suman
-
+> diff --git a/arch/arm/boot/dts/zx296702.dtsi b/arch/arm/boot/dts/zx296702.dtsi
+> index afd98de029be..f378c661b3bf 100644
+> --- a/arch/arm/boot/dts/zx296702.dtsi
+> +++ b/arch/arm/boot/dts/zx296702.dtsi
+> @@ -58,7 +58,7 @@
+>  			clocks = <&topclk ZX296702_A9_PERIPHCLK>;
+>  		};
+>  
+> -		l2cc: l2-cache-controller@c00000 {
+> +		l2cc: cache-controller@c00000 {
+>  			compatible = "arm,pl310-cache";
+>  			reg = <0x00c00000 0x1000>;
+>  			cache-unified;
+> -- 
+> 2.17.1
 > 
->> are required for running the Remote Processor Messaging (RPMsg) stack
->> between the host processor and each of the R5Fs. The chosen sub-mailboxes
->> match the values used in the current firmware images. This can be changed,
->> if needed, as per the system integration needs after making appropriate
->> changes on the firmware side as well.
->>
->> Signed-off-by: Suman Anna <s-anna@ti.com>
->> ---
->>  arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts | 8 ++++++++
->>  1 file changed, 8 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
->> index e8fc01d97ada..ff541dc09eca 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
->> @@ -379,6 +379,14 @@ &mailbox0_cluster11 {
->>  	status = "disabled";
->>  };
->>  
->> +&c66_0 {
->> +	mboxes = <&mailbox0_cluster3 &mbox_c66_0>;
->> +};
->> +
->> +&c66_1 {
->> +	mboxes = <&mailbox0_cluster3 &mbox_c66_1>;
->> +};
->> +
->>  &main_sdhci0 {
->>  	/* eMMC */
->>  	non-removable;
->> -- 
->> 2.28.0
->>
-> 
-
