@@ -2,96 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DF8424BA9D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 14:14:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07AA424BAE9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 14:20:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729181AbgHTMOT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Aug 2020 08:14:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54184 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730472AbgHTMNp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 08:13:45 -0400
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16D51C061386
-        for <devicetree@vger.kernel.org>; Thu, 20 Aug 2020 05:13:43 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id q93so1144566pjq.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Aug 2020 05:13:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Jn+5o4H6zeY7VyKGNupBFWwGj562wXXIPMMgccIApSA=;
-        b=A7lZ41k0rW3TynpNLvGqOj0lOKmL59ZV5z5ZoxheEImqxqwomvmgAaUx3cXChvhIvt
-         33gv9nx9PIKEWZN6hGKH5CHUzgPx3bciFbWy1rmxDuzGeU91HB1cAC8cf6uleexCthuJ
-         ZNA7Jw6I9yCYcFE75YQqil3kJhWgV2J2g9Bteor7tnLMDGVvlcRWlRAw4dKq0ZGpQORR
-         oiNj8NjMfcoWQBri3/UT3g0Wh/RJOXDb9Z/A8UDycj+74g5pI3fs0vIUiclGJh/iv0Vb
-         yZglv0PGLNYEuqleZ4pS55qyrU2BlbkjNVfn5/DzYdGTLsdRxq9dNIpFKjrLw3rWsqDr
-         s2dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Jn+5o4H6zeY7VyKGNupBFWwGj562wXXIPMMgccIApSA=;
-        b=GWKWpTYRMWnHZt8oqWE+7L320VoJQMtmQ3WWb+mGtvn7ixDHNNMT0fZ+m3kZGYQCzM
-         oOLxCVJxJFyz0GfkuGdBdQ+kLMDQU8/3uM1r+QWGHchWUG4rcrBd6rvLn6SABdG/TmHw
-         Gvk/f7BxetqN3vsw0TxBHGtpUjMeu9jAcjPPFixQuS74MBqpqYInXVIrA03q3WGwgG3B
-         QK/mw9nlewc+l3WlnMq1OcQRVM/aPzhm4p9ClaeDr/nXg3di1Bkc05tsXIC/W/GLidTZ
-         3d5fXOYk/Ax7HpjaBvC74A76BSAAQE1WAdOujn70HXK5v9Lxd3rJftnFqIEwkCwK/ppJ
-         G/Rw==
-X-Gm-Message-State: AOAM532wqvCyG3ZzIKB0+SKRbAkGJc6Dpb8BpotE2nquX6cFkaNlLGQ2
-        Sy9VSWickdmu3TeJ7kW5QvPASqG2IQ8=
-X-Google-Smtp-Source: ABdhPJxcQZ4Ph+CBUf/FlU6S+Ikk2Tw3836twRc+Mg/vKpx39hVWFfhDfq0hPl5C19/rsB4BAFnCkA==
-X-Received: by 2002:a17:90a:ea82:: with SMTP id h2mr2256290pjz.75.1597925621188;
-        Thu, 20 Aug 2020 05:13:41 -0700 (PDT)
-Received: from localhost.localdomain ([45.114.62.137])
-        by smtp.gmail.com with ESMTPSA id p20sm1985937pjg.44.2020.08.20.05.13.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Aug 2020 05:13:40 -0700 (PDT)
-From:   Anand Moon <linux.amoon@gmail.com>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Christian Hewitt <christianshewitt@gmail.com>,
-        Anand Moon <linux.amoon@gmail.com>
-Subject: [PATCH v3 2/2] arm64: defconfig: Enable RTC devices for Amlogic boards
-Date:   Thu, 20 Aug 2020 17:43:23 +0530
-Message-Id: <20200820121323.564-3-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200820121323.564-1-linux.amoon@gmail.com>
-References: <20200820121323.564-1-linux.amoon@gmail.com>
+        id S1730141AbgHTMUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Aug 2020 08:20:10 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:29791 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730320AbgHTMUH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Aug 2020 08:20:07 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1597926006; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=yHVAvexqEWvuHwpqCiJJpqti28GNOsRReJIvgdeT+YM=;
+ b=V0q9thPxxnCfrhENtw/OfnwN0QEDcGMtQyblZ1kMumbSNh/9fkQW7Ni/KxcehnGiN7+h5z2x
+ UHuXuC3XbRzkeDm4iWTPBB9vJaMQ00XqY5CD7CkuhsK4NYCkHzLhaBq4XxR89jqbW+ZNL4PR
+ M9doMhC1tG2sy6TWjtufjrBbTiw=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 5f3e6a6bc3a55812b159c542 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 20 Aug 2020 12:19:55
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 126D9C433AD; Thu, 20 Aug 2020 12:19:54 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: skakit)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id BB6EAC433C6;
+        Thu, 20 Aug 2020 12:19:53 +0000 (UTC)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 20 Aug 2020 17:49:53 +0530
+From:   skakit@codeaurora.org
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        gregkh@linuxfoundation.org, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, akashast@codeaurora.org,
+        rojay@codeaurora.org, msavaliy@qti.qualcomm.com
+Subject: Re: [PATCH V2 2/3] arm64: dts: qcom: sc7180: Add sleep pin ctrl for
+ BT uart
+In-Reply-To: <20200819161311.GF2995789@google.com>
+References: <1595563082-2353-1-git-send-email-skakit@codeaurora.org>
+ <1595563082-2353-3-git-send-email-skakit@codeaurora.org>
+ <20200817180158.GD2995789@google.com>
+ <1cbbc8cf5c918c6a9eee5ef349707fc6@codeaurora.org>
+ <20200819161311.GF2995789@google.com>
+Message-ID: <29d523f4a46ecce8e4a62a5310528969@codeaurora.org>
+X-Sender: skakit@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enables the RTC PCF8563 driver used on Amlogic Libretech-pc
-and Odroid-N2 boards supported in mainline kernel.
+Hi Matthias,
 
-Cc: Kevin Hilman <khilman@baylibre.com>
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+On 2020-08-19 21:43, Matthias Kaehlcke wrote:
+> On Wed, Aug 19, 2020 at 07:19:25PM +0530, skakit@codeaurora.org wrote:
+>> On 2020-08-17 23:31, Matthias Kaehlcke wrote:
+>> > On Fri, Jul 24, 2020 at 09:28:01AM +0530, satya priya wrote:
+>> > > Add sleep pin ctrl for BT uart, and also change the bias
+>> > > configuration to match Bluetooth module.
+>> > >
+>> > > Signed-off-by: satya priya <skakit@codeaurora.org>
+>> > > ---
+>> > > Changes in V2:
+>> > >  - This patch adds sleep state for BT UART. Newly added in V2.
+>> > >
+>> > >  arch/arm64/boot/dts/qcom/sc7180-idp.dts | 42
+>> > > ++++++++++++++++++++++++++++-----
+>> > >  1 file changed, 36 insertions(+), 6 deletions(-)
+>> > >
+>> > > diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+>> > > b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+>> > > index 26cc491..bc919f2 100644
+>> > > --- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+>> > > +++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+>> > > @@ -469,20 +469,50 @@
+>> > >
+>> > >  &qup_uart3_default {
+>> > >  	pinconf-cts {
+>> > > -		/*
+>> > > -		 * Configure a pull-down on 38 (CTS) to match the pull of
+>> > > -		 * the Bluetooth module.
+>> > > -		 */
+>> > > +		/* Configure no pull on 38 (CTS) to match Bluetooth module */
+>> >
+>> > Has the pull from the Bluetooth module been removed or did the previous
+>> > config
+>> > incorrectly claim that the Bluetooth module has a pull-down?
+>> >
+>> 
+>> The previous config was incorrect, so we corrected it to match the 
+>> pull of
+>> BT.
+> 
+> The pull config of the BT controller varies depending on its state, 
+> could
+> you clarify which state you intend to match?
+> 
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index e0f33826819f..3d9756833e0e 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -773,6 +773,7 @@ CONFIG_RTC_DRV_DS1307=m
- CONFIG_RTC_DRV_MAX77686=y
- CONFIG_RTC_DRV_RK808=m
- CONFIG_RTC_DRV_PCF85363=m
-+CONFIG_RTC_DRV_PCF8563=m
- CONFIG_RTC_DRV_RX8581=m
- CONFIG_RTC_DRV_RV8803=m
- CONFIG_RTC_DRV_S5M=y
--- 
-2.28.0
+Since this line is driven by BT SoC, they could change their 
+pull(although it's less likely). Recently on cherokee we worked with BT 
+team and came to an agreement to keep no-pull from our side in order to 
+not conflict with their pull in any state.
 
+>> 
+>> > >  		pins = "gpio38";
+>> > > +		bias-disable;
+>> > > +	};
+>> > > +
+>> > > +	pinconf-rts {
+>> > > +		/* We'll drive 39 (RTS), so configure pull-down */
+>> > > +		pins = "gpio39";
+>> > > +		drive-strength = <2>;
+>> > >  		bias-pull-down;
+>> > > +	};
+>> > > +
+>> > > +	pinconf-tx {
+>> > > +		/* We'll drive 40 (TX), so no pull */
+>> >
+>> > The rationales for RTS and TX contradict each other. According to the
+>> > comment
+>> > the reason to configure a pull-down on RTS is that it is driven by the
+>> > host.
+>> > Then for TX the reason to configure no pull is that it is driven by the
+>> > host.
+>> >
+>> > Please make sure the comments *really* describe the rationale, otherwise
+>> > they
+>> > are just confusing.
+>> 
+>> The rationale for RTS is that we don't want it to be floating and want 
+>> to
+>> make sure that it is pulled down, to receive bytes. Will modify the 
+>> comment
+>> mentioning the same.
+> 
+> Could you clarify what you mean with "to receive bytes"?
+> 
+
+When we keep no-pull(floating), sometimes it may be pulled high and UART 
+flow will be turned off(RFR_NOT_READY), due to this BT SoC wont be able 
+to send data even though host is ready.
+
+> Thanks
+> 
+> Matthias
+
+Thanks,
+Satya Priya
