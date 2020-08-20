@@ -2,76 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CC4124B281
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 11:32:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D953224B796
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 12:59:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728250AbgHTJbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Aug 2020 05:31:44 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:38410 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728227AbgHTJbX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 05:31:23 -0400
-Received: by mail-wr1-f68.google.com with SMTP id a14so1358797wra.5;
-        Thu, 20 Aug 2020 02:31:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=b1bNFiZgiP0kbWWwCg17EvjL33DK3FeILPEpJ0Dhl/Q=;
-        b=uA9edRSq25TmKCGVnHYoP5cHkYNbN41oRl3S0afOBoDXd5TLtLaExA7B33xt2MhSiJ
-         tynMT5tmW36TyXYGDl7xffBHurmHwGax/+S6tjoTX/P9gN3jD8iF+krSUTP/Hc+Kk6mR
-         lcKyg3SujxHl29mGtm1vGl/ZEgup7NFXxpjA0xaB6pJafcQjQQAJvaV3jgzhtVrZOa6+
-         zcPq0Y85hXtTTnLPVNIdJ4nG5+hiTBS/wHrHZ94ysK23SZi4Nft5nGZAJWpLaIAtFgcQ
-         dbX8ewA8PZpR9odN9OP6q2a6jOLHFnfcoC3tq0tn2S7siySvVqziRATeKZE1PBkjbWfy
-         3GHg==
-X-Gm-Message-State: AOAM533ZBSqaMRM6oNuol5vyFNIOeR0XYYluJov1DSv2EPYXr9WhnORU
-        3b1vtAvJ5tRtVBDlqXWTY6Y=
-X-Google-Smtp-Source: ABdhPJyp9/7bHjGRhaR63apXcQFn01iJGOXs1Poxb/moYU7gYPKQXpIuQVliKswmp5fn+tzr2fBnTw==
-X-Received: by 2002:a5d:4c45:: with SMTP id n5mr2319721wrt.68.1597915881386;
-        Thu, 20 Aug 2020 02:31:21 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.216])
-        by smtp.googlemail.com with ESMTPSA id z7sm3102928wmk.6.2020.08.20.02.31.20
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 20 Aug 2020 02:31:20 -0700 (PDT)
-Date:   Thu, 20 Aug 2020 11:31:18 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Barry Song <baohua@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-        Marc Gonzalez <marc.w.gonzalez@free.fr>,
-        Mans Rullgard <mans@mansr.com>, Jun Nie <jun.nie@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [RESEND PATCH 4/5] ARM: dts: tango: Align L2 cache-controller
- nodename with dtschema
-Message-ID: <20200820093118.GC15884@kozik-lap>
-References: <20200819175853.21492-1-krzk@kernel.org>
- <20200819175853.21492-4-krzk@kernel.org>
+        id S1730503AbgHTK7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Aug 2020 06:59:23 -0400
+Received: from auth-smtp.nebula.fi ([217.149.52.145]:57641 "EHLO
+        auth-smtp.nebula.fi" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731568AbgHTK60 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 06:58:26 -0400
+Received: from developer-Precision-3630-Tower (82-203-173-204.bb.dnainternet.fi [82.203.173.204])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: xipheracom)
+        by auth-smtp.nebula.fi (Postfix) with ESMTPSA id 610584468;
+        Thu, 20 Aug 2020 13:58:02 +0300 (EEST)
+From:   Atte Tommiska <atte.tommiska@xiphera.com>
+To:     Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Atte Tommiska <atte.tommiska@xiphera.com>
+Subject: [PATCH v2 0/3] hwrng: add support for Xiphera XIP8001B
+Date:   Thu, 20 Aug 2020 13:51:19 +0300
+Message-Id: <cover.1597914503.git.atte.tommiska@xiphera.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200819175853.21492-4-krzk@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.0 required=8.0 tests=none autolearn=unavailable
+        autolearn_force=no version=3.4.0
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        authsmtp1-hki2.nebula.fi
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 19, 2020 at 07:58:52PM +0200, Krzysztof Kozlowski wrote:
-> Fix dtschema validator warnings like:
->     l2-cache-controller@20100000: $nodename:0:
->         'l2-cache-controller@20100000' does not match '^(cache-controller|cpu)(@[0-9a-f,]+)*$'
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> ---
->  arch/arm/boot/dts/tango4-common.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+This patchset introduces a linux driver for Xiphera's XIP8001B IP.
+The IP is an FPGA-based TRNG which can be used in various FPGA families.
+The IP is in use in multiple customer projects and in Xiphera's own products.
 
-I forgot to add the tag provided on previous submission:
-Acked-by: Mans Rullgard <mans@mansr.com>
+v2: fixed the 'make dt_binding_check' errors in the devicetree schema.
 
-Best regards,
-Krzysztof
+Atte Tommiska (3):
+  dt-bindings: vendor-prefixes: Add Xiphera vendor prefix
+  dt-bindings: rng: add bindings for Xiphera XIP8001B hwnrg
+  hwrng: xiphera-trng: add support for XIP8001B hwrng
+
+ .../bindings/rng/xiphera,xip8001b-trng.yaml   |  33 ++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/char/hw_random/Kconfig                |  10 ++
+ drivers/char/hw_random/Makefile               |   1 +
+ drivers/char/hw_random/xiphera-trng.c         | 151 ++++++++++++++++++
+ 5 files changed, 197 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rng/xiphera,xip8001b-trng.yaml
+ create mode 100644 drivers/char/hw_random/xiphera-trng.c
+
+
+base-commit: bc752d2f345bf55d71b3422a6a24890ea03168dc
+-- 
+2.28.0
+
