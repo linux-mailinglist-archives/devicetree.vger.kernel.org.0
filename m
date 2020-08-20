@@ -2,24 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3A0324B161
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 10:52:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3115824B15A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 10:51:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727016AbgHTIvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Aug 2020 04:51:54 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:58914 "EHLO honk.sigxcpu.org"
+        id S1726840AbgHTIvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Aug 2020 04:51:40 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:59002 "EHLO honk.sigxcpu.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726885AbgHTIvG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Aug 2020 04:51:06 -0400
+        id S1726908AbgHTIvJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Aug 2020 04:51:09 -0400
 Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id CA300FB02;
-        Thu, 20 Aug 2020 10:51:02 +0200 (CEST)
+        by honk.sigxcpu.org (Postfix) with ESMTP id 985E9FB04;
+        Thu, 20 Aug 2020 10:51:06 +0200 (CEST)
 X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
 Received: from honk.sigxcpu.org ([127.0.0.1])
         by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id jylzmjecNnoq; Thu, 20 Aug 2020 10:51:00 +0200 (CEST)
+        with ESMTP id R6zaYU9mFBoC; Thu, 20 Aug 2020 10:51:04 +0200 (CEST)
 Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 9254445678; Thu, 20 Aug 2020 10:50:59 +0200 (CEST)
+        id 99FE7457CC; Thu, 20 Aug 2020 10:50:59 +0200 (CEST)
 From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
 To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
@@ -44,9 +44,9 @@ To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Michael Walle <michael@walle.cc>,
         Olof Johansson <olof@lixom.net>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/4] arm64: dts: imx8mq: Add NWL MIPI DSI controller
-Date:   Thu, 20 Aug 2020 10:50:56 +0200
-Message-Id: <138346192af1adb1277269a3cbd542dff00ba4a3.1597913263.git.agx@sigxcpu.org>
+Subject: [PATCH v2 2/4] arm64: dts: imx8mq-librem5-devkit: Enable the LCD panel
+Date:   Thu, 20 Aug 2020 10:50:57 +0200
+Message-Id: <f03b599160804142f738eb53d0fe8686234c4896.1597913263.git.agx@sigxcpu.org>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <cover.1597913263.git.agx@sigxcpu.org>
 References: <cover.1597913263.git.agx@sigxcpu.org>
@@ -58,82 +58,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a node for the Northwest Logic MIPI DSI IP core, "disabled" by
-default. This also adds the necessary port to LCDIF.
+Enable LCD panel output by adding nodes for the NWL DSI host controller,
+the Rocktech panel and the eLCDIF display controller.
 
 Signed-off-by: Guido Günther <agx@sigxcpu.org>
 Reviewed-by: Fabio Estevam <festevam@gmail.com>
 ---
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 49 +++++++++++++++++++++++
- 1 file changed, 49 insertions(+)
+ .../dts/freescale/imx8mq-librem5-devkit.dts   | 33 +++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index f70435cf9ad57..e5fa77e1dfe71 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -523,6 +523,12 @@ lcdif: lcd-controller@30320000 {
- 						  <&clk IMX8MQ_VIDEO_PLL1_OUT>;
- 				assigned-clock-rates = <0>, <0>, <0>, <594000000>;
- 				status = "disabled";
-+
-+				port@0 {
-+					lcdif_mipi_dsi: endpoint {
-+						remote-endpoint = <&mipi_dsi_lcdif_in>;
-+					};
-+				};
- 			};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+index e7b5c595ceed7..48e22e93a7a74 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+@@ -830,6 +830,39 @@ MX8MQ_IOMUXC_NAND_DATA03_GPIO3_IO9	0x19 /* WWAN_RESET */
+ 	};
+ };
  
- 			iomuxc: pinctrl@30330000 {
-@@ -899,6 +905,49 @@ sec_jr2: jr@3000 {
- 				};
- 			};
- 
-+			mipi_dsi: mipi-dsi@30a00000 {
-+				compatible = "fsl,imx8mq-nwl-dsi";
-+				reg = <0x30a00000 0x300>;
-+				clocks = <&clk IMX8MQ_CLK_DSI_CORE>,
-+					 <&clk IMX8MQ_CLK_DSI_AHB>,
-+					 <&clk IMX8MQ_CLK_DSI_IPG_DIV>,
-+					 <&clk IMX8MQ_CLK_DSI_PHY_REF>,
-+					 <&clk IMX8MQ_CLK_LCDIF_PIXEL>;
-+				clock-names = "core", "rx_esc", "tx_esc", "phy_ref", "lcdif";
-+				assigned-clocks = <&clk IMX8MQ_CLK_DSI_AHB>,
-+						  <&clk IMX8MQ_CLK_DSI_CORE>,
-+						  <&clk IMX8MQ_CLK_DSI_IPG_DIV>;
-+				assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_80M>,
-+							 <&clk IMX8MQ_SYS1_PLL_266M>;
-+				assigned-clock-rates = <80000000>, <266000000>, <20000000>;
-+				interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
-+				mux-controls = <&mux 0>;
-+				power-domains = <&pgc_mipi>;
-+				phys = <&dphy>;
-+				phy-names = "dphy";
-+				resets = <&src IMX8MQ_RESET_MIPI_DSI_RESET_BYTE_N>,
-+					 <&src IMX8MQ_RESET_MIPI_DSI_DPI_RESET_N>,
-+					 <&src IMX8MQ_RESET_MIPI_DSI_ESC_RESET_N>,
-+					 <&src IMX8MQ_RESET_MIPI_DSI_PCLK_RESET_N>;
-+				reset-names = "byte", "dpi", "esc", "pclk";
-+				status = "disabled";
++&lcdif {
++	status = "okay";
++};
 +
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
++&mipi_dsi {
++	status = "okay";
++	#address-cells = <1>;
++	#size-cells = <0>;
 +
-+					port@0 {
-+						reg = <0>;
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+						mipi_dsi_lcdif_in: endpoint@0 {
-+							reg = <0>;
-+							remote-endpoint = <&lcdif_mipi_dsi>;
-+						};
-+					};
-+				};
++	panel@0 {
++		compatible = "rocktech,jh057n00900";
++		reg = <0>;
++		backlight = <&backlight_dsi>;
++		reset-gpios = <&gpio3 13 GPIO_ACTIVE_LOW>;
++		iovcc-supply = <&reg_1v8_p>;
++		vcc-supply = <&reg_2v8_p>;
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&mipi_dsi_out>;
 +			};
++		};
++	};
 +
- 			dphy: dphy@30a00300 {
- 				compatible = "fsl,imx8mq-mipi-dphy";
- 				reg = <0x30a00300 0x100>;
++	ports {
++		port@1 {
++			reg = <1>;
++			mipi_dsi_out: endpoint {
++				remote-endpoint = <&panel_in>;
++			};
++		};
++	};
++};
++
+ &pgc_gpu {
+ 	power-supply = <&buck3_reg>;
+ };
 -- 
 2.26.2
 
