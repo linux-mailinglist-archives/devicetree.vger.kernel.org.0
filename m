@@ -2,50 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4813B24AC83
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 03:03:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3081F24AC7D
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 03:03:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726482AbgHTBDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Aug 2020 21:03:47 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:38748 "EHLO
+        id S1726609AbgHTBDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Aug 2020 21:03:42 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:38738 "EHLO
         lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726673AbgHTBDp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 21:03:45 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07K13avf125129;
-        Wed, 19 Aug 2020 20:03:36 -0500
+        with ESMTP id S1726362AbgHTBDl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 21:03:41 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07K13bXQ125136;
+        Wed, 19 Aug 2020 20:03:37 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1597885416;
-        bh=6kJbgIztwtOyZC+MYEW+cLzplJX1YTK6baG39qI5lm0=;
-        h=From:To:CC:Subject:Date;
-        b=sqFEG2SSD7MQjP8gwAP6pBr1AlheaOWCBXqfaGgRZKefLbZ+4i+1cFRQzRbWxDIQt
-         l7TyKYdSiqT3gUdqiCXPh/hbnteeVHMddFPNRxgjxlZIIV76mhxfL0RFd/cgIp9SL2
-         qOItHbBbxvsflOGROmwwjKwOQy0vpjuomnhszIIs=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07K13a1P064919;
-        Wed, 19 Aug 2020 20:03:36 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+        s=ti-com-17Q1; t=1597885417;
+        bh=HvcrdTewTyLrfnvj3w3sPW4V02Y3+YOtzRBAp/3q3dU=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=X9VPJoI8POPKJ2V5CNy6TEFSywGuN9597n0MJgM6oPol3kG7M/resz+O18/bnNvRG
+         ROI0d1a0BgMjFjz83lwquLBsAnqkXj2PbV3YP7O4H+KuwKVE59B1bZN3bPkPTfsI/r
+         C0UioV1MQ1c/WFBNnEj2DqHeSsAfl+uF8ZWPQrOI=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07K13bKq115722
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 19 Aug 2020 20:03:37 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 19
- Aug 2020 20:03:36 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2020 20:03:37 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 19 Aug 2020 20:03:36 -0500
+ Frontend Transport; Wed, 19 Aug 2020 20:03:37 -0500
 Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07K13alC009739;
-        Wed, 19 Aug 2020 20:03:36 -0500
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07K13beB075329;
+        Wed, 19 Aug 2020 20:03:37 -0500
 Received: from localhost ([10.250.32.29])
-        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 07K13ZeL022524;
-        Wed, 19 Aug 2020 20:03:36 -0500
+        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 07K13au7022528;
+        Wed, 19 Aug 2020 20:03:37 -0500
 From:   Suman Anna <s-anna@ti.com>
 To:     Nishanth Menon <nm@ti.com>, Tero Kristo <t-kristo@ti.com>
 CC:     <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH 0/7] Add C66x & C71x DSP nodes on J721E SoCs
-Date:   Wed, 19 Aug 2020 20:03:24 -0500
-Message-ID: <20200820010331.2911-1-s-anna@ti.com>
+Subject: [PATCH 1/7] arm64: dts: ti: k3-j721e-main: Add C66x DSP nodes
+Date:   Wed, 19 Aug 2020 20:03:25 -0500
+Message-ID: <20200820010331.2911-2-s-anna@ti.com>
 X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200820010331.2911-1-s-anna@ti.com>
+References: <20200820010331.2911-1-s-anna@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -55,42 +58,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth, Tero,
+The J721E SoCs have two TMS320C66x DSP Core Subsystems (C66x CorePacs)
+in the MAIN voltage domain, each with a C66x Fixed/Floating-Point DSP
+Core, and 32 KB of L1P & L1D configurable SRAMs/Cache and an additional
+288 KB of L2 configurable SRAM/Cache. These subsystems do not have
+an MMU but contain a Region Address Translator (RAT) sub-module for
+translating 32-bit processor addresses into larger bus addresses.
+The inter-processor communication between the main A72 cores and
+these processors is achieved through shared memory and Mailboxes.
+Add the DT nodes for these DSP processor sub-systems in the common
+k3-j721e-main.dtsi file.
 
-The following series adds the base dt nodes for the 2 C66x and 1 C71x
-DSP remote processors present in MAIN domain on J721E SoCs, and the
-required nodes to boot these successfully on J721E EVM board. The DSP
-remoteproc driver and bindings have been merged into 5.9-rc1. The
-series uses previously accepted mailbox nodes.
+The following firmware names are used by default for these cores, and
+can be overridden in a board dts file if desired:
+    C66x_0 DSP: j7-c66_0-fw
+    C66x_1 DSP: j7-c66_1-fw
 
-I have validated the IPC functionality using the latest System Firmware.
-The series itself is not directly influenced by the SYSFW version, only
-the referenced mailbox interrupts properties get modified as part of
-the ABI 3.0 changes. These are already handled in a pending pull-request
-for 5.9-rc2 [1].
+Signed-off-by: Suman Anna <s-anna@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 26 +++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-regards
-Suman
-
-[1] https://lore.kernel.org/patchwork/patch/1290231/
-
-Suman Anna (7):
-  arm64: dts: ti: k3-j721e-main: Add C66x DSP nodes
-  arm64: dts: ti: k3-j721e-common-proc-board: Add mailboxes to C66x DSPs
-  arm64: dts: ti: k3-j721e-som-p0: Add DDR carveout memory nodes for C66
-    DSPs
-  arm64: dts: ti: k3-j721e-main: Add C71x DSP node
-  arm64: dts: ti: k3-j721e-common-proc-board: Add mailboxes to C71x DSP
-  arm64: dts: ti: k3-j721e-som-p0: Add DDR carveout memory nodes for
-    C71x DSP
-  arm64: dts: ti: k3-j721e-som-p0: Reserve memory for IPC between RTOS
-    cores
-
- .../dts/ti/k3-j721e-common-proc-board.dts     | 12 ++++
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 38 +++++++++++++
- arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi   | 57 +++++++++++++++++++
- 3 files changed, 107 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+index 12ceea9b3c9a..46cde2677e17 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+@@ -1326,4 +1326,30 @@ watchdog1: watchdog@2210000 {
+ 		assigned-clocks = <&k3_clks 253 1>;
+ 		assigned-clock-parents = <&k3_clks 253 5>;
+ 	};
++
++	c66_0: dsp@4d80800000 {
++		compatible = "ti,j721e-c66-dsp";
++		reg = <0x4d 0x80800000 0x00 0x00048000>,
++		      <0x4d 0x80e00000 0x00 0x00008000>,
++		      <0x4d 0x80f00000 0x00 0x00008000>;
++		reg-names = "l2sram", "l1pram", "l1dram";
++		ti,sci = <&dmsc>;
++		ti,sci-dev-id = <142>;
++		ti,sci-proc-ids = <0x03 0xff>;
++		resets = <&k3_reset 142 1>;
++		firmware-name = "j7-c66_0-fw";
++	};
++
++	c66_1: dsp@4d81800000 {
++		compatible = "ti,j721e-c66-dsp";
++		reg = <0x4d 0x81800000 0x00 0x00048000>,
++		      <0x4d 0x81e00000 0x00 0x00008000>,
++		      <0x4d 0x81f00000 0x00 0x00008000>;
++		reg-names = "l2sram", "l1pram", "l1dram";
++		ti,sci = <&dmsc>;
++		ti,sci-dev-id = <143>;
++		ti,sci-proc-ids = <0x04 0xff>;
++		resets = <&k3_reset 143 1>;
++		firmware-name = "j7-c66_1-fw";
++	};
+ };
 -- 
 2.28.0
 
