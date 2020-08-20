@@ -2,209 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1C2F24BF22
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 15:41:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 927ED24BFB2
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 15:53:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728785AbgHTNlN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Aug 2020 09:41:13 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:41406 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730626AbgHTNlF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 09:41:05 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07KDevGI046097;
-        Thu, 20 Aug 2020 08:40:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1597930857;
-        bh=mCqsC8I7TNN41Xg66/1Y1+1+wh+JFrJTfp3db0LJpjs=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=ipCf1MHpGpcSVa5KXgsYhmukQmfffwOT9EJEJCrit4p1UPb5E5bNY2pmK7gKsY42g
-         o9j17wR8VAIAR4LUSxTt8rnHDzd8ptD/T1D+LnRy5AhP/WH4sqwwyr5ReJ8uIsRwxs
-         QxoXGlc+pbw6wZ9Wo6R8QlLkZPjPDnHMViPPFN0s=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07KDevoZ068958
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 20 Aug 2020 08:40:57 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 20
- Aug 2020 08:40:57 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 20 Aug 2020 08:40:57 -0500
-Received: from [192.168.2.14] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07KDetFR019331;
-        Thu, 20 Aug 2020 08:40:56 -0500
-Subject: Re: [PATCH v4 1/3] dt-binding: phy: convert ti,omap-usb2 to YAML
-To:     <kishon@ti.com>
-CC:     <robh+dt@kernel.org>, <nsekhar@ti.com>, <vigneshr@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20200716082252.21266-1-rogerq@ti.com>
- <20200716082252.21266-2-rogerq@ti.com>
-From:   Roger Quadros <rogerq@ti.com>
-Message-ID: <4032ac86-5f2e-98ca-180b-73a483bae6b6@ti.com>
-Date:   Thu, 20 Aug 2020 16:40:55 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20200716082252.21266-2-rogerq@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1726795AbgHTNwZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Aug 2020 09:52:25 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:11599 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728020AbgHTNwC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 09:52:02 -0400
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 20 Aug 2020 06:52:01 -0700
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 20 Aug 2020 06:52:00 -0700
+Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 20 Aug 2020 19:21:34 +0530
+Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
+        id 97B08440F; Thu, 20 Aug 2020 19:21:33 +0530 (IST)
+From:   satya priya <skakit@codeaurora.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>, gregkh@linuxfoundation.org,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, akashast@codeaurora.org,
+        rojay@codeaurora.org, msavaliy@qti.qualcomm.com,
+        satya priya <skakit@codeaurora.org>
+Subject: [PATCH V3 2/3] arm64: dts: qcom: sc7180: Add sleep pin ctrl for BT uart
+Date:   Thu, 20 Aug 2020 19:21:06 +0530
+Message-Id: <1597931467-24268-3-git-send-email-skakit@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1597931467-24268-1-git-send-email-skakit@codeaurora.org>
+References: <1597931467-24268-1-git-send-email-skakit@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Kishon,
+Add sleep pin ctrl for BT uart, and also change the bias
+configuration to match Bluetooth module.
 
-On 16/07/2020 11:22, Roger Quadros wrote:
-> Move ti,omap-usb2 to its own YAML schema.
-> 
-> Signed-off-by: Roger Quadros <rogerq@ti.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: satya priya <skakit@codeaurora.org>
+Reviewed-by: Akash Asthana <akashast@codeaurora.org>
+---
+Changes in V2:
+ - This patch adds sleep state for BT UART. Newly added in V2.
 
-Can you please pick just this one patch from this series for -next? Thanks.
+Changes in V3:
+ - Remove "output-high" for TX from both sleep and default states
+   as it is not required. Configure pull-up for TX in sleep state.
 
-cheers,
--roger
+ arch/arm64/boot/dts/qcom/sc7180-idp.dts | 54 +++++++++++++++++++++++++++------
+ 1 file changed, 45 insertions(+), 9 deletions(-)
 
-> ---
->   .../devicetree/bindings/phy/ti,omap-usb2.yaml | 72 +++++++++++++++++++
->   .../devicetree/bindings/phy/ti-phy.txt        | 37 ----------
->   2 files changed, 72 insertions(+), 37 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/phy/ti,omap-usb2.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/ti,omap-usb2.yaml b/Documentation/devicetree/bindings/phy/ti,omap-usb2.yaml
-> new file mode 100644
-> index 000000000000..a05110351814
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/ti,omap-usb2.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/ti,omap-usb2.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: OMAP USB2 PHY
-> +
-> +maintainers:
-> + - Kishon Vijay Abraham I <kishon@ti.com>
-> + - Roger Quadros <rogerq@ti.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +        - enum:
-> +          - ti,dra7x-usb2
-> +          - ti,dra7x-usb2-phy2
-> +          - ti,am654-usb2
-> +        - enum:
-> +          - ti,omap-usb2
-> +      - items:
-> +        - const: ti,omap-usb2
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#phy-cells":
-> +    const: 0
-> +
-> +  clocks:
-> +    minItems: 1
-> +    items:
-> +      - description: wakeup clock
-> +      - description: reference clock
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    items:
-> +      - const: wkupclk
-> +      - const: refclk
-> +
-> +  syscon-phy-power:
-> +    $ref: /schemas/types.yaml#definitions/phandle-array
-> +    description:
-> +      phandle/offset pair. Phandle to the system control module and
-> +      register offset to power on/off the PHY.
-> +
-> +  ctrl-module:
-> +    $ref: /schemas/types.yaml#definitions/phandle
-> +    description:
-> +      (deprecated) phandle of the control module used by PHY driver
-> +      to power on the PHY. Use syscon-phy-power instead.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#phy-cells"
-> +  - clocks
-> +  - clock-names
-> +
-> +examples:
-> +  - |
-> +    usb0_phy: phy@4100000 {
-> +      compatible = "ti,am654-usb2", "ti,omap-usb2";
-> +      reg = <0x4100000 0x54>;
-> +      syscon-phy-power = <&scm_conf 0x4000>;
-> +      clocks = <&k3_clks 151 0>, <&k3_clks 151 1>;
-> +      clock-names = "wkupclk", "refclk";
-> +      #phy-cells = <0>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/phy/ti-phy.txt b/Documentation/devicetree/bindings/phy/ti-phy.txt
-> index 8f93c3b694a7..60c9d0ac75e6 100644
-> --- a/Documentation/devicetree/bindings/phy/ti-phy.txt
-> +++ b/Documentation/devicetree/bindings/phy/ti-phy.txt
-> @@ -27,43 +27,6 @@ omap_control_usb: omap-control-usb@4a002300 {
->           reg-names = "otghs_control";
->   };
->   
-> -OMAP USB2 PHY
-> -
-> -Required properties:
-> - - compatible: Should be "ti,omap-usb2"
-> -	       Should be "ti,dra7x-usb2" for the 1st instance of USB2 PHY on
-> -	       DRA7x
-> -	       Should be "ti,dra7x-usb2-phy2" for the 2nd instance of USB2 PHY
-> -	       in DRA7x
-> -	       Should be "ti,am654-usb2" for the USB2 PHYs on AM654.
-> - - reg : Address and length of the register set for the device.
-> - - #phy-cells: determine the number of cells that should be given in the
-> -   phandle while referencing this phy.
-> - - clocks: a list of phandles and clock-specifier pairs, one for each entry in
-> -   clock-names.
-> - - clock-names: should include:
-> -   * "wkupclk" - wakeup clock.
-> -   * "refclk" - reference clock (optional).
-> -
-> -Deprecated properties:
-> - - ctrl-module : phandle of the control module used by PHY driver to power on
-> -   the PHY.
-> -
-> -Recommended properies:
-> -- syscon-phy-power : phandle/offset pair. Phandle to the system control
-> -  module and the register offset to power on/off the PHY.
-> -
-> -This is usually a subnode of ocp2scp to which it is connected.
-> -
-> -usb2phy@4a0ad080 {
-> -	compatible = "ti,omap-usb2";
-> -	reg = <0x4a0ad080 0x58>;
-> -	ctrl-module = <&omap_control_usb>;
-> -	#phy-cells = <0>;
-> -	clocks = <&usb_phy_cm_clk32k>, <&usb_otg_ss_refclk960m>;
-> -	clock-names = "wkupclk", "refclk";
-> -};
-> -
->   TI PIPE3 PHY
->   
->   Required properties:
-> 
-
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+index d8b5507..806f626 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+@@ -473,20 +473,20 @@
+ 
+ &qup_uart3_default {
+ 	pinconf-cts {
+-		/*
+-		 * Configure a pull-down on 38 (CTS) to match the pull of
+-		 * the Bluetooth module.
+-		 */
++		/* Configure no pull on 38 (CTS) to match Bluetooth module */
+ 		pins = "gpio38";
+-		bias-pull-down;
+-		output-high;
++		bias-disable;
+ 	};
+ 
+ 	pinconf-rts {
+-		/* We'll drive 39 (RTS), so no pull */
++		/*
++		 * Configure pull-down on 39 (RTS). This is needed to avoid a
++		 * floating pin which could mislead Bluetooth controller
++		 * with UART RFR state (READY/NOT_READY).
++		 */
+ 		pins = "gpio39";
+ 		drive-strength = <2>;
+-		bias-disable;
++		bias-pull-down;
+ 	};
+ 
+ 	pinconf-tx {
+@@ -494,7 +494,43 @@
+ 		pins = "gpio40";
+ 		drive-strength = <2>;
+ 		bias-disable;
+-		output-high;
++	};
++
++	pinconf-rx {
++		/*
++		 * Configure a pull-up on 41 (RX). This is needed to avoid
++		 * garbage data when the TX pin of the Bluetooth module is
++		 * in tri-state (module powered off or not driving the
++		 * signal yet).
++		 */
++		pins = "gpio41";
++		bias-pull-up;
++	};
++};
++
++&qup_uart3_sleep {
++	pinconf-cts {
++		/* Configure no-pull on 38 (CTS) to match Bluetooth module */
++		pins = "gpio38";
++		bias-disable;
++	};
++
++	pinconf-rts {
++		/*
++		 * Configure pull-down on 39 (RTS). This is needed to avoid a
++		 * floating pin which could mislead Bluetooth controller
++		 * with UART RFR state (READY/NOT_READY).
++		 */
++		pins = "gpio39";
++		drive-strength = <2>;
++		bias-pull-down;
++	};
++
++	pinconf-tx {
++		/* Configure pull-up on 40 (TX) when it isn't actively driven */
++		pins = "gpio40";
++		drive-strength = <2>;
++		bias-pull-up;
+ 	};
+ 
+ 	pinconf-rx {
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
+
