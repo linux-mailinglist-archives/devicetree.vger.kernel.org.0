@@ -2,50 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF36524AC82
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 03:03:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B55AB24AC84
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 03:03:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726362AbgHTBDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Aug 2020 21:03:47 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:36460 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726482AbgHTBDo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 21:03:44 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07K13fVr119179;
-        Wed, 19 Aug 2020 20:03:41 -0500
+        id S1726673AbgHTBDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Aug 2020 21:03:48 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:38750 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726681AbgHTBDp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Aug 2020 21:03:45 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07K13gMs125158;
+        Wed, 19 Aug 2020 20:03:42 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1597885421;
-        bh=x0k8xeCLis1DyQpNBVsG18vcpLEXm4cK+kWAkYgyze4=;
+        s=ti-com-17Q1; t=1597885422;
+        bh=fuqtcibFyfAnfIPJv9eRt9tO38sIyYu+EZMympBdU8I=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=R/yWMebwTAGUKdeOWocphXI891aoU0g0W8rX5LrPJ+JWms1BTsrBAgWjcWQuEcRaV
-         FHmGhucSXtCJd1u5CF7miEnrEgFJ3T9+d6qydo6ykSKaVsTp91OClnEau+QZTNO6ZP
-         IYqxQPG73xsDVTupVfg5YvJmioebI3CzCrrfOCtc=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07K13fej115766
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 19 Aug 2020 20:03:41 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+        b=UdPnw24s/7CfVlNOOPLX0WqQM2WRRlj8KyuF/mTTdAqqqyzLD7oKBsp3yTfuVW0Qv
+         EEsSkSJ2JjlnDl6O3wSNfcGxEyf13mRVIjqBWWrxN3hlmK31EZqCw9E+60AZZEf+fP
+         dAnLpazun1rWhNRu/EFVsA86de+9vG9u0dRRKZ5s=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07K13gfQ064989;
+        Wed, 19 Aug 2020 20:03:42 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 19
- Aug 2020 20:03:40 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2020 20:03:41 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 19 Aug 2020 20:03:40 -0500
+ Frontend Transport; Wed, 19 Aug 2020 20:03:41 -0500
 Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07K13eDJ009804;
-        Wed, 19 Aug 2020 20:03:40 -0500
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07K13fQk121623;
+        Wed, 19 Aug 2020 20:03:41 -0500
 Received: from localhost ([10.250.32.29])
-        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 07K13e84022551;
-        Wed, 19 Aug 2020 20:03:40 -0500
+        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 07K13fiF022556;
+        Wed, 19 Aug 2020 20:03:41 -0500
 From:   Suman Anna <s-anna@ti.com>
 To:     Nishanth Menon <nm@ti.com>, Tero Kristo <t-kristo@ti.com>
 CC:     <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH 6/7] arm64: dts: ti: k3-j721e-som-p0: Add DDR carveout memory nodes for C71x DSP
-Date:   Wed, 19 Aug 2020 20:03:30 -0500
-Message-ID: <20200820010331.2911-7-s-anna@ti.com>
+Subject: [PATCH 7/7] arm64: dts: ti: k3-j721e-som-p0: Reserve memory for IPC between RTOS cores
+Date:   Wed, 19 Aug 2020 20:03:31 -0500
+Message-ID: <20200820010331.2911-8-s-anna@ti.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20200820010331.2911-1-s-anna@ti.com>
 References: <20200820010331.2911-1-s-anna@ti.com>
@@ -58,60 +57,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Two carveout reserved memory nodes have been added for the lone C71x DSP
-remote processor device present within the MAIN voltage domain for the TI
-J721E EVM boards. These nodes are assigned to the respective rproc device
-node as well. The first region will be used as the DMA pool for the rproc
-device, and the second region will furnish the static carveout regions for
-the firmware memory.
-
-The current carveout addresses and sizes are defined statically for each
-device. The C71x DSP processor does support a MMU called CMMU, but is not
-currently supported and as such requires the exact memory used by the
-firmware to be set-aside. The firmware images currently do not need any
-RSC_CARVEOUT entries either in their resource tables to allocate the
-memory for firmware memory segments.
-
-The reserved memory nodes can be disabled later on if there is no use-case
-defined to use the C71x DSP remoteproc processor.
+Add a reserved memory node to reserve a portion of the DDR memory to be
+used for performing inter-processor communication between all the remote
+processors running RTOS on the TI J721E EVM boards. 28 MB of memory is
+reserved for this purpose, and this accounts for all the vrings and vring
+buffers between all the possible pairs of remote processors.
 
 Signed-off-by: Suman Anna <s-anna@ti.com>
 ---
- arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-index f1a8190e3b5a..600586cc22e5 100644
+index 600586cc22e5..d30a06248027 100644
 --- a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
 +++ b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-@@ -49,6 +49,18 @@ c66_1_memory_region: c66-memory@a7100000 {
- 			reg = <0x00 0xa7100000 0x00 0xf00000>;
+@@ -61,6 +61,12 @@ c71_0_memory_region: c71-memory@a8100000 {
+ 			reg = <0x00 0xa8100000 0x00 0xf00000>;
  			no-map;
  		};
 +
-+		c71_0_dma_memory_region: c71-dma-memory@a8000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa8000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		c71_0_memory_region: c71-memory@a8100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa8100000 0x00 0xf00000>;
++		rtos_ipc_memory_region: ipc-memories@aa000000 {
++			reg = <0x00 0xaa000000 0x00 0x01c00000>;
++			alignment = <0x1000>;
 +			no-map;
 +		};
  	};
  };
  
-@@ -106,3 +118,8 @@ &c66_1 {
- 	memory-region = <&c66_1_dma_memory_region>,
- 			<&c66_1_memory_region>;
- };
-+
-+&c71_0 {
-+	memory-region = <&c71_0_dma_memory_region>,
-+			<&c71_0_memory_region>;
-+};
 -- 
 2.28.0
 
