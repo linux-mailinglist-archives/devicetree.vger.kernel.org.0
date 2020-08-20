@@ -2,193 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32F7E24B086
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 09:54:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2B6724B0B6
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 10:05:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726861AbgHTHyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Aug 2020 03:54:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42136 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726759AbgHTHx6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 03:53:58 -0400
-Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D92CAC061757;
-        Thu, 20 Aug 2020 00:53:57 -0700 (PDT)
-Received: by mail-pj1-x1042.google.com with SMTP id t6so633310pjr.0;
-        Thu, 20 Aug 2020 00:53:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=L6XcNPt3VpQMDvZ0mNUdfcDjhf2wDDj8sz3vu9Nex4s=;
-        b=Rmbca0gZkTga9MvR06LWAq4amNuEK44vVuzhKpGlOK66VbqaaQBcLcyZDHaacflRoX
-         yMT92l+XipUiWyeRzF6Nr4iAWutE2EVR94uf8AooJr5QbCeXkVaguK4JHZqmKAcMheQy
-         wBL6u1Qpm/Jc0H/DuKGaTJd4LjXghUXF5yS+Ywg35yfpnLdurC04ysrmuR17HNAh4Vzs
-         JauwEupUVRAvoJVcPEURUOt2PVtQVYn2q7oWPXx86UUsEwSOKYK00VTZ40sZGIFIVtuY
-         7zzxXIq/WOTfEtr7hRypMYrGO7nkgOGKy9Ckn2giVnMsiwfafrTUvxdcwCwGKAz7N0Xp
-         iMQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=L6XcNPt3VpQMDvZ0mNUdfcDjhf2wDDj8sz3vu9Nex4s=;
-        b=WDpJHL/FmqhzejRwWJQuxb3/RbAvwr2YQf9ZgEDBJcy+gBacaNWrtfAlj9DXXr/6Gi
-         x8EDN2FVIx5O+fFrouMFQo+Kf7U3I+maAUE2BFnGYKGMaOG0BPUaEezeMUiK1f9ZNry9
-         Li0Wl05rlfL+guqCpuZZDtx/ZpaP4D3VQTJa2lY1mqmZ+Mm4spkKz602Qs4tdZdaox5/
-         2E8djOMv7G4KRXQF5ruT4zfKeP2G3tE6p8Ahi8o4eDJ/rMaJQRgzDlTyYUuDLlrUYgv+
-         sw7xLkeAuBE8BZrPe8e3L0XuiNa2msAW04uYTEceZXQsrI/YWkgep4d2kD1ixAdY8QhE
-         3cVw==
-X-Gm-Message-State: AOAM530ss3WD2+PfukCMMMj7fSTOVB3Vkv822CppreH48ydRKj819JFe
-        oyIuHW6M2eBC6j5HuaE2pxc=
-X-Google-Smtp-Source: ABdhPJyJ6SpAgxr95yJjkgAkUw8N+YqFNffE0rdoXSym5kZQv1YxN7wJw739dZQmvbBPN5uP1snR/g==
-X-Received: by 2002:a17:902:59dd:: with SMTP id d29mr1689481plj.170.1597910037468;
-        Thu, 20 Aug 2020 00:53:57 -0700 (PDT)
-Received: from localhost.localdomain ([2402:7500:577:c217:67e6:a40c:a3bf:1945])
-        by smtp.gmail.com with ESMTPSA id q71sm1273832pjq.7.2020.08.20.00.53.54
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 20 Aug 2020 00:53:56 -0700 (PDT)
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-To:     matthias.bgg@gmail.com, robh+dt@kernel.org
-Cc:     lgirdwood@gmail.com, broonie@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Gene Chen <gene_chen@richtek.com>
-Subject: [PATCH v3 2/2] regulator: mt6360: Add DT binding documentation
-Date:   Thu, 20 Aug 2020 15:53:42 +0800
-Message-Id: <1597910022-22617-3-git-send-email-gene.chen.richtek@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1597910022-22617-1-git-send-email-gene.chen.richtek@gmail.com>
-References: <1597910022-22617-1-git-send-email-gene.chen.richtek@gmail.com>
+        id S1725925AbgHTIE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Aug 2020 04:04:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44226 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725834AbgHTIEw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Aug 2020 04:04:52 -0400
+Received: from coco.lan (ip5f5ad5a3.dynamic.kabel-deutschland.de [95.90.213.163])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 494C22080C;
+        Thu, 20 Aug 2020 08:04:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1597910691;
+        bh=OWWu+MjMbXHrGQztQRN2ylfscy+5B8mChqzjsAWtscU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=h5b1/133ACDgHCMmw6/rHv5Gql/4zGLxnABbEKYeU9N378GO55Fy4cGxpFyfiCyTc
+         WwVI3HJOWwe4FuMDjQEAsUTVpHVI5X8qscPaThxTdaYlForCPtCHOG8P/p6r+Lu+8p
+         CMIQRH9B5IFg3ngYjdu3Dyp2r35gyzgNbeRNFh+w=
+Date:   Thu, 20 Aug 2020 10:04:40 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     John Stultz <john.stultz@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Bogdan Togorean <bogdan.togorean@analog.com>,
+        Liwei Cai <cailiwei@hisilicon.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Daniel Borkmann <daniel@iogearbox.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Xinliang Liu <xinliang.liu@linaro.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Wanchun Zheng <zhengwanchun@hisilicon.com>,
+        driverdevel <devel@driverdev.osuosl.org>,
+        BPF Mailing List <bpf@vger.kernel.org>,
+        Xiubin Zhang <zhangxiubin1@huawei.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Jesper Dangaard Brouer <hawk@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+        Alexei Starovoitov <ast@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Clark <robdclark@chromium.org>,
+        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        John Fastabend <john.fastabend@gmail.com>,
+        Liuyao An <anliuyao@huawei.com>,
+        "moderated list:DMA BUFFER SHARING FRAMEWORK" 
+        <linaro-mm-sig@lists.linaro.org>, Wei Xu <xuwei5@hisilicon.com>,
+        Rongrong Zou <zourongrong@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Network Development <netdev@vger.kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Jakub Kicinski <kuba@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Chen Feng <puck.chen@hisilicon.com>
+Subject: Re: [PATCH 00/49] DRM driver for Hikey 970
+Message-ID: <20200820100440.2d30dc02@coco.lan>
+In-Reply-To: <CALAqxLU3bt6fT4nGHZFSnzyQq4xJo2On=c_Oa9ONED9-jhaFgw@mail.gmail.com>
+References: <cover.1597833138.git.mchehab+huawei@kernel.org>
+        <CALAqxLU3bt6fT4nGHZFSnzyQq4xJo2On=c_Oa9ONED9-jhaFgw@mail.gmail.com>
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Gene Chen <gene_chen@richtek.com>
+Em Wed, 19 Aug 2020 14:36:52 -0700
+John Stultz <john.stultz@linaro.org> escreveu:
 
-Add a devicetree binding documentation for the mt6360 regulator driver.
+> On Wed, Aug 19, 2020 at 4:46 AM Mauro Carvalho Chehab
+> <mchehab+huawei@kernel.org> wrote:
+> > So, IMO, the best is to keep it on staging for a while, until those
+> > remaining bugs gets solved.
+> >
+> > I added this series, together with the regulator driver and
+> > a few other patches (including a hack to fix a Kernel 5.8
+> > regression at WiFi ) at:
+> >
+> >         https://gitlab.freedesktop.org/mchehab_kernel/hikey-970/-/commi=
+ts/master =20
+>=20
+> Sorry, one more small request: Could you create a branch that only has
+> the DRM driver changes in it?
+>=20
+> The reason I ask, is that since the HiKey960 isn't affected by the
+> majority of the problems you listed as motivation for going through
+> staging. So if we can validate that your tree works fine on HiKey960,
+> the series can be cleaned up and submitted properly upstream to enable
+> that SoC, and the outstanding 970 issues can be worked out afterwards
+> against mainline.
 
-Signed-off-by: Gene Chen <gene_chen@richtek.com>
----
- .../bindings/regulator/mt6360-regulator.yaml       | 109 +++++++++++++++++++++
- 1 file changed, 109 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/regulator/mt6360-regulator.yaml
+Well, if support for HiKey 960 is OK, I guess what we can do is to not=20
+push the patch with DT bindings for hikey970. We should probably fix
+the color swap thing at the driver first.
 
-diff --git a/Documentation/devicetree/bindings/regulator/mt6360-regulator.yaml b/Documentation/devicetree/bindings/regulator/mt6360-regulator.yaml
-new file mode 100644
-index 0000000..bd66754
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/mt6360-regulator.yaml
-@@ -0,0 +1,109 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/mt6360-regulator.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MT6360 Regulator from MediaTek Integrated
-+
-+maintainers:
-+  - Gene Chen <gene_chen@richtek.com>
-+
-+description: |
-+  list of regulators provided by this controller, must be named
-+  after their hardware counterparts buck1/2 or ldo1/2/3/5/6/7
-+
-+properties:
-+  compatible:
-+    const: mediatek,mt6360-regulator
-+
-+  LDO_VIN3-supply:
-+    description: Input supply phandle(s) for LDO3
-+
-+patternProperties:
-+  "^buck[12]$":
-+    $ref: "regulator.yaml#"
-+
-+  "^ldo[123567]$":
-+    $ref: "regulator.yaml#"
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/regulator/mediatek,mt6360-regulator.h>
-+    regulator {
-+      compatible = "mediatek,mt6360-regulator";
-+      LDO_VIN3-supply = <&BUCK2>;
-+      buck1 {
-+        regulator-compatible = "BUCK1";
-+        regulator-name = "mt6360,buck1";
-+        regulator-min-microvolt = <300000>;
-+        regulator-max-microvolt = <1300000>;
-+        regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+             MT6360_OPMODE_LP
-+             MT6360_OPMODE_ULP>;
-+      };
-+      BUCK2: buck2 {
-+        regulator-compatible = "BUCK2";
-+        regulator-name = "mt6360,buck2";
-+        regulator-min-microvolt = <300000>;
-+        regulator-max-microvolt = <1300000>;
-+        regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+             MT6360_OPMODE_LP
-+             MT6360_OPMODE_ULP>;
-+      };
-+      ldo6 {
-+        regulator-compatible = "LDO6";
-+        regulator-name = "mt6360,ldo6";
-+        regulator-min-microvolt = <500000>;
-+        regulator-max-microvolt = <2100000>;
-+        regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+             MT6360_OPMODE_LP>;
-+      };
-+      ldo7 {
-+        regulator-compatible = "LDO7";
-+        regulator-name = "mt6360,ldo7";
-+        regulator-min-microvolt = <500000>;
-+        regulator-max-microvolt = <2100000>;
-+        regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+             MT6360_OPMODE_LP>;
-+      };
-+      ldo1 {
-+        regulator-compatible = "LDO1";
-+        regulator-name = "mt6360,ldo1";
-+        regulator-min-microvolt = <1200000>;
-+        regulator-max-microvolt = <3600000>;
-+        regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+             MT6360_OPMODE_LP>;
-+      };
-+        ldo2 {
-+        regulator-compatible = "LDO2";
-+        regulator-name = "mt6360,ldo2";
-+        regulator-min-microvolt = <1200000>;
-+        regulator-max-microvolt = <3600000>;
-+        regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+             MT6360_OPMODE_LP>;
-+      };
-+      ldo3 {
-+        regulator-compatible = "LDO3";
-+        regulator-name = "mt6360,ldo3";
-+        regulator-min-microvolt = <1200000>;
-+        regulator-max-microvolt = <3600000>;
-+        regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+             MT6360_OPMODE_LP>;
-+      };
-+      ldo5 {
-+        regulator-compatible = "LDO5";
-+        regulator-name = "mt6360,ldo5";
-+        regulator-min-microvolt = <2700000>;
-+        regulator-max-microvolt = <3600000>;
-+        regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+             MT6360_OPMODE_LP>;
-+      };
-+    };
-+...
--- 
-2.7.4
+=46rom my side, provided that the history is preserved, I don't mind
+if this is merged:
 
+- via staging tree;
+- at dri-devel tree;
+- or having a the historic patchsets merged at /staging, with
+  a follow up patch moving it from staging/ into /gpu/drm/.
+
+Thanks,
+Mauro
