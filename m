@@ -2,122 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A75F24AD95
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 06:11:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 197E024AE0B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 06:50:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725852AbgHTELn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Aug 2020 00:11:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36318 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726132AbgHTELm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 00:11:42 -0400
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7F08C061757;
-        Wed, 19 Aug 2020 21:11:41 -0700 (PDT)
-Received: by mail-lf1-x143.google.com with SMTP id r25so274653lfe.5;
-        Wed, 19 Aug 2020 21:11:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=0nvDXpUHYyrFXqiJEgVmctUAZQeXchyr8nPgGxgcWW4=;
-        b=AA+KBoksk+3bdhNPirXE5NVQMpFgmxwgFd1rIFteGs//isYAsnnmOKhahi1tt1cW3w
-         oImLAOdfjZfYOAvm70WmD9pg1aOWsk/uAdv0ZsdE34CyFMnYb5LLA/ku4Zijgw1iYZfs
-         2V3uCqSZ5/lpshylygLh2WpLZ6myiVHqjbf+/zjERcKKZQDAPfA4/S0Qi7aJjFuAy3NF
-         BBMz6BN+1AxsPgzSbWgRALE5DED7UYYXzm/FyLJ4kx7fSympj0XjiCIDdspg95Ps9zck
-         4MeVwi9a1yTMZ5t6I/E7qUM+XF7t5H/h5G9FPYnBQBDpxu078ibwtJnDPeuIeLf9+69f
-         7eGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=0nvDXpUHYyrFXqiJEgVmctUAZQeXchyr8nPgGxgcWW4=;
-        b=MmH3rDllL3zSRYPCUerE8neSjFrhMz0ydU9G+i+TfWudH2WyFXQmLWlzgzU62Fn/MX
-         SND9JGFxhDt+81O0BUcSEfgk1N4yYMx88olrn76kZvwet5k4fXILHRtegZ2RWm4GZL/c
-         iA1hvVLgveMWc6hH0dsMi0XjHrmVBHN6ie67pvakp40/FQRI9c4zty6JdGPgGMLOoaZ8
-         grifKH3PJJuMuw2clSkPmXT/jLBJYiXMwPt9SUVoIIcIkgekmECkS1561o+z/1hv8FdU
-         nGnOBU4qq/pdH4TiGEIQokqmUGkSm3QZ4U08v8+cicPsdzoJK3eiqvQI2AKpbnNi6N6Q
-         tBng==
-X-Gm-Message-State: AOAM531Q08Wx9GTCJEb/WeWd3OIZuhlaM27FMbKytNa68Cwr9/XRi0eX
-        xymUtK8DYhM0zoJCo9/fgyTgv/56FGfb1PedJWQ=
-X-Google-Smtp-Source: ABdhPJy2/GeHjbpEQW5WLqhwV8Q1aByRAXrNwdzw3GOo2jSoOuRHDsnzsIVlpgW45YpR851BOuVbIVgaLv4O/9whFRY=
-X-Received: by 2002:a05:6512:3156:: with SMTP id s22mr642666lfi.140.1597896700160;
- Wed, 19 Aug 2020 21:11:40 -0700 (PDT)
+        id S1725906AbgHTEuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Aug 2020 00:50:54 -0400
+Received: from mga12.intel.com ([192.55.52.136]:2971 "EHLO mga12.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725768AbgHTEuw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Aug 2020 00:50:52 -0400
+IronPort-SDR: tD+hw2Y+QwhATIdnA0F7Dh269z6Slor/fo92Vq9l87PZBC6HnGRm2p7qKyBa9y2Rp0P9RjyWGM
+ 3tjTexWnnxmg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9718"; a="134756850"
+X-IronPort-AV: E=Sophos;i="5.76,332,1592895600"; 
+   d="scan'208";a="134756850"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Aug 2020 21:50:52 -0700
+IronPort-SDR: Rh1t6lmybtEH1Byb+M9kr3MHgeNlXOo006WlHgbajcitS5jq7NdbnpWH7Uw31y4IVWweu6/iWj
+ AkuHYf0u2AlA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,332,1592895600"; 
+   d="scan'208";a="320727641"
+Received: from sgsxdev001.isng.intel.com (HELO localhost) ([10.226.88.11])
+  by fmsmga004.fm.intel.com with ESMTP; 19 Aug 2020 21:50:49 -0700
+From:   Rahul Tanwar <rahul.tanwar@linux.intel.com>
+To:     u.kleine-koenig@pengutronix.de, linux-pwm@vger.kernel.org,
+        lee.jones@linaro.org
+Cc:     thierry.reding@gmail.com, p.zabel@pengutronix.de,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, andriy.shevchenko@intel.com,
+        songjun.Wu@intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, rahul.tanwar.linux@gmail.com,
+        rtanwar@maxlinear.com, Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Subject: [PATCH v8 0/2] pwm: intel: Add PWM driver for a new SoC
+Date:   Thu, 20 Aug 2020 12:50:44 +0800
+Message-Id: <cover.1597898872.git.rahul.tanwar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-References: <cover.1596025057.git.agx@sigxcpu.org> <a98acb7a0ed2ee6af78ba08354740d69b63b8c53.1596025057.git.agx@sigxcpu.org>
-In-Reply-To: <a98acb7a0ed2ee6af78ba08354740d69b63b8c53.1596025057.git.agx@sigxcpu.org>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Thu, 20 Aug 2020 01:11:28 -0300
-Message-ID: <CAOMZO5Dg5NGpJ0SQkYny04Kv3ky0619J7YwT-0eE1dsK19o1-w@mail.gmail.com>
-Subject: Re: [PATCH v1 3/3] arm64: defconfig: Enable imx8mq-librem5-devkit
- display stack
-To:     =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Martin Kepplinger <martink@posteo.de>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Anson Huang <Anson.Huang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Li Jun <jun.li@nxp.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Li Yang <leoyang.li@nxp.com>, Arnd Bergmann <arnd@arndb.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Walle <michael@walle.cc>,
-        Olof Johansson <olof@lixom.net>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=y
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guido,
+Patch 1 adds dt binding document in YAML format.
+Patch 2 add PWM fan controller driver for LGM SoC.
 
-On Wed, Jul 29, 2020 at 9:19 AM Guido G=C3=BCnther <agx@sigxcpu.org> wrote:
->
-> Enable the panel, NWL DSI host controller and dphy. This
-> also needs the reset controller.
->
-> Signed-off-by: Guido G=C3=BCnther <agx@sigxcpu.org>
-> ---
->  arch/arm64/configs/defconfig | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index e0f33826819f..608019f6408d 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -640,10 +640,12 @@ CONFIG_DRM_MSM=3Dm
->  CONFIG_DRM_TEGRA=3Dm
->  CONFIG_DRM_PANEL_LVDS=3Dm
->  CONFIG_DRM_PANEL_SIMPLE=3Dm
-> -CONFIG_DRM_SIMPLE_BRIDGE=3Dm
-> +CONFIG_DRM_PANEL_SITRONIX_ST7703=3Dm
->  CONFIG_DRM_PANEL_TRULY_NT35597_WQXGA=3Dm
->  CONFIG_DRM_DISPLAY_CONNECTOR=3Dm
-> +CONFIG_DRM_NWL_MIPI_DSI=3Dm
->  CONFIG_DRM_SII902X=3Dm
-> +CONFIG_DRM_SIMPLE_BRIDGE=3Dm
+v8:
+- Remove fan related optional properties usage, keep
+  them as default. If needed, change pwm-fan driver
+  separately in future to add them as generic properties.
 
-One nit: I suppose the CONFIG_DRM_SIMPLE_BRIDGE=3Dm move comes from a
-defconfig re-sync.
+v7:
+- Address code quality related review concerns.
+- Rename fan related property to pwm-*.
+- Fix one make dt_binding_check reported error.
 
-Maybe this re-sync could be part of a separate patch?
+v6:
+- Readjust .apply op as per review feedback.
+- Add back pwm-cells property to resolve make dt_binding_check error.
+  pwm-cells is a required property for PWM driver.
+- Add back fan related optional properties.
 
-Thanks for adding these options to the defconfig so that we could have
-MIPI DSI working by default on i.MX8M:
+v5:
+- Address below review concerns from Uwe Kleine-König.
+  * Improve comments about Limitations.
+  * Use return value of regmap_update_bits if container function returns
+    error code.
+  * Modify .apply op to have strict checking for fixed period supported
+    by PWM HW.
+  * Use u64 as type when use min_t for duty_cycle.
+  * Add reset_control_assert() in failure case in probe where it was missing
+    earlier.
+- Remove fan specific optional properties from pwm dt binding document (Rob Herring)
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+v4:
+- Address below review concerns from Uwe Kleine-König.
+  * Improve notes and limitations comments.
+  * Add common prefixes for all #defines.
+  * Modify/Improve logic in .apply & .get_state ops as advised.
+  * Skip error messages in probe when error is -EPROBE_DEFER.
+  * Add dependencies in Kconfig (OF & HAS_IOMEM) and add select REGMAP_MMIO.
+  * Address other code quality related review concerns.
+- Fix make dt_binding_check reported error in YAML file.
+
+v3:
+- Address below review concerns from Uwe Kleine-König.
+  * Remove fan rpm calibration task from the driver.
+  * Modify apply op as per the review feedback.
+  * Add roundup & round down where necessary.
+  * Address other misc code quality related review concerns.
+  * Use devm_reset_control_get_exclusive(). (Philipp Zabel)
+  * Improve dt binding document.
+
+v2:
+- Address below review concerns from Uwe Kleine-König.
+  * Add notes and limitations about PWM HW.
+  * Rename all functions and structure to lgm_pwm_* 
+  * Readjust space aligninment in structure fields to single space.
+  * Switch to using apply instead of config/enable/disable.
+  * Address other code quality related concerns.
+  * Rebase to 5.8-rc1.
+- Address review concerns in dt binding YAML from Rob Herring.
+
+v1:
+- Initial version.
+
+
+Rahul Tanwar (2):
+  Add DT bindings YAML schema for PWM fan controller of LGM SoC
+  Add PWM fan controller driver for LGM SoC
+
+ .../devicetree/bindings/pwm/intel,lgm-pwm.yaml     |  44 ++++
+ drivers/pwm/Kconfig                                |  11 +
+ drivers/pwm/Makefile                               |   1 +
+ drivers/pwm/pwm-intel-lgm.c                        | 244 +++++++++++++++++++++
+ 4 files changed, 300 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/intel,lgm-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-intel-lgm.c
+
+-- 
+2.11.0
+
