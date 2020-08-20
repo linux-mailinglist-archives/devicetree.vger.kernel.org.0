@@ -2,205 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BC3E24B1F8
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 11:17:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33F5924B1C9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 11:13:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725916AbgHTJRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Aug 2020 05:17:36 -0400
-Received: from mail-mw2nam10on2079.outbound.protection.outlook.com ([40.107.94.79]:58367
-        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726819AbgHTJQS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Aug 2020 05:16:18 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UMur2l4zsbE78PFb9spDhH4z0U5RPPuSOK1o/Ht+o6RBWSnu3LxX8agnis99rUR5fafuE8TYKk0DljYetU1puRswBCbgwcp5S+N2afX8viWKFQtHvTZ66W0TuWbwQJG0NEahMpeO8gFCZ7qrImqjSveDnUflrPWr/XV/L5FcIy+ojvdBk1ulIg+/MUkDhV4viAfVXnU9t60VehZSYpv6F1OfgnyHW+t9vLJo082UM9hAW+pFa0/EyNl9RCDkXRLINc+oA1y+lJrWVdGNAv1gVyht0BarZwloM0IXI4hA1EAlBWXQwHao6SVfA5hG2ke8o88RMmuWiGjdvHtgF+vEsA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kWP85sg+5B2N7GxqB5V/tlSIKHfhx9kgFns3KJl3sJ8=;
- b=jvTnRiMRtZ0Nc4YjAmJyWwpcYDp3NZ/j/95brK1SAtYZFar6E6IZi4DCla7vJYtzKnykdR5Q90nvM9ZWJvxRFNTi72tL7caiewRGE3JkFqIeh0NZiZGxp35mwmqKzm9To+zscEZqRkUYA+YC7sx/BnSlNhTdKKV0E7oGIRRly+3Mkny3SfSMCnPDSw7SEiznXp0sdBUO565yojIM9Ue4D+MHFpEI3ZFcHTRbFjuchgOJ+yceW6JPsYKQa61GgZnLTsgyD5EUeUF21OubJg4PsT9o9VXN8E/R/lm8P6YP7NnX6c3JMFBNAHwwYOHMgJsjwNRR87cRL4j0oqZDFbr8wg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synaptics.com; dmarc=pass action=none
- header.from=synaptics.com; dkim=pass header.d=synaptics.com; arc=none
+        id S1725834AbgHTJNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Aug 2020 05:13:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54300 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725820AbgHTJN3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 05:13:29 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC39AC061757;
+        Thu, 20 Aug 2020 02:13:28 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id c15so1271421wrs.11;
+        Thu, 20 Aug 2020 02:13:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Synaptics.onmicrosoft.com; s=selector2-Synaptics-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kWP85sg+5B2N7GxqB5V/tlSIKHfhx9kgFns3KJl3sJ8=;
- b=ZVXy4KY6c3rR/+PXCAjQjKKqVH44bHrFhZRhXUGIMhh8KbTG2jHwbXmrO+OLWfxC88yykrnzR/wpeiyg/IFbcyMDlfTs+DGAhwXmaT41y6z1E3hsVasvbi+2QO5KhZrNRZKWx9c5r8ZSBRQdxhZmWtypP52XuJGLYry6OTtgHLI=
-Authentication-Results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=synaptics.com;
-Received: from BN7PR03MB4547.namprd03.prod.outlook.com (2603:10b6:408:9::22)
- by BN8PR03MB4738.namprd03.prod.outlook.com (2603:10b6:408:6d::29) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.24; Thu, 20 Aug
- 2020 09:15:45 +0000
-Received: from BN7PR03MB4547.namprd03.prod.outlook.com
- ([fe80::3cda:7634:5802:df5f]) by BN7PR03MB4547.namprd03.prod.outlook.com
- ([fe80::3cda:7634:5802:df5f%7]) with mapi id 15.20.3305.024; Thu, 20 Aug 2020
- 09:15:45 +0000
-Date:   Thu, 20 Aug 2020 17:12:32 +0800
-From:   Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Saravanan Sekar <sravanhome@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v3 4/4] dt-bindings: regulator: Convert mp886x to
- json-schema
-Message-ID: <20200820171232.1fede9bc@xhacker.debian>
-In-Reply-To: <20200820171020.5df4683b@xhacker.debian>
-References: <20200820171020.5df4683b@xhacker.debian>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: TYAPR03CA0015.apcprd03.prod.outlook.com
- (2603:1096:404:14::27) To BN7PR03MB4547.namprd03.prod.outlook.com
- (2603:10b6:408:9::22)
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=0JbEGUpzUPbEtjAsVmRvH6bX5043+AS9qSE1XvD9D/U=;
+        b=HAqCRnYoKh4shWP1Bh6iF2OQL1zyAwfk3BldT7lyFCXSdpMbI5McqVXvAg1y2E5Fl/
+         PJRjYvURrqHmVTi6+1hqi+MzoxqmfJjkbsv2yAi3BiinfthNgiMYJFXnlbqQFxa6Z2+Q
+         9USt7O5dHznyME7cQG9Pc9EGe6vfd/GJApL4neO9QkscPj91V6pZwbPzo5LMTMmWFm4i
+         09CDuv2FV4cv8RPcIHCuHvYNgUP7CdFzpNOfobwbe7AYSX2EcHEDaEsgAxgG925H7BnC
+         rPm2/6G8Ne1qVDOcsLcg11RLDMNcmshDznM87XgprKE9l3MFiwpM9U3ZkEhOmcSSBTI4
+         n0UA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=0JbEGUpzUPbEtjAsVmRvH6bX5043+AS9qSE1XvD9D/U=;
+        b=AY0PFv3Mec3shPqTh4k0x1fJRZh7VV2+tiYipIwASwKjuzZ2KjPN5rnwIR4WAWxlOY
+         cclUHRpFrbmYQjH4lRXJdDvPyGxHm8josduALuYGpXm/cQhjTVUxut0O4a4jO0o98H1H
+         2i7bD1ggU6tV/TPXjMo7x1XsJBLZBxMBTKsK5qoRLINWItmTHqGgmN16tDTVc3i/fDFh
+         aYDRGJL8gAxeq9prvtmsDqryGuMw6msklcPwLrdIhPGPwZGdm/qjU6XXNSHLoNeDd4za
+         QUSIhlW7+Iuq7Bk+B3KDlUxkB3thTG60k0kkXPUQI1m7PzGHH/Z2OVB+Gi8lOa82oNBf
+         BbHg==
+X-Gm-Message-State: AOAM532VrK9KwDF/civLR8mtm2vCcKgtDCMxd7FsNfzqjnMX//s1GFSL
+        YDGJqLnmYvBgqbLtCDuNOA8FJxeZsWRDdg==
+X-Google-Smtp-Source: ABdhPJxoY9JmdC2hvKhv7zPTHozm34JZIknaHlVUcr+Fi116POuZOZYfQqOQ5WVjgvJwAFPP1yh0VA==
+X-Received: by 2002:a5d:464a:: with SMTP id j10mr2318764wrs.187.1597914807249;
+        Thu, 20 Aug 2020 02:13:27 -0700 (PDT)
+Received: from ziggy.stardust (81.172.57.81.dyn.user.ono.com. [81.172.57.81])
+        by smtp.gmail.com with ESMTPSA id a3sm3045157wme.34.2020.08.20.02.13.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Aug 2020 02:13:26 -0700 (PDT)
+Subject: Re: [PATCH v1 00/21] add drm support for MT8192
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        CK Hu <ck.hu@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <1597903458-8055-1-git-send-email-yongqiang.niu@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <d723ec4f-b251-5a94-4939-01f2df61f7d8@gmail.com>
+Date:   Thu, 20 Aug 2020 11:13:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from 255.255.255.255 (255.255.255.255) by TYAPR03CA0015.apcprd03.prod.outlook.com (2603:1096:404:14::27) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.10 via Frontend Transport; Thu, 20 Aug 2020 09:15:43 +0000
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-X-Originating-IP: [124.74.246.114]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e359bfa4-4ccd-4199-808e-08d844e99e95
-X-MS-TrafficTypeDiagnostic: BN8PR03MB4738:
-X-Microsoft-Antispam-PRVS: <BN8PR03MB4738A6CE0F535F5BAE722A01ED5A0@BN8PR03MB4738.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: XYSLPkgKsNYDDYhvH49w8jcdZJSN5A/EuO2aSr87+DGu3l9SqdIR3Bf9+fIJAqnWWwmLzIiVFnxKwty/Qj99n4KGNDnT51ckNrFkc3K6TKeXlYqf2YKgQl2CfySu61PQ1y94fcDgFS+kOxYDMnVoBlUL8AIbuCayTxqe6MQMO9vnpqWhY8z9YVdibYuDynQH6OTuFQDeD1CD+eIP9VDE9ztyxGIHlE/LpdL0Kcnsbk1noXqVpqz0DbuID/4MovJ/vNo1lHa/8kxRkcLHiDCioexoQ+keF7HPZMIknCqDPhV5B8wfMeSdKGCGc/r9Wsbu0VO4R8gvNl/jJjc9HL+3+cKq4nQ1kefoQxcBKo7y1KtOEVxlSzEyIhT0YvOmEjmh4JWcKURB2izA0HD3hZhDslZoe32Npe6OM460ivrQgwqoITPb9EHXqjB0KcKB8fFykDMTQnO7Im/Vqype0a4iRw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN7PR03MB4547.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(39860400002)(396003)(346002)(366004)(376002)(136003)(316002)(2906002)(110136005)(66476007)(6486002)(66556008)(66946007)(110011004)(966005)(16576012)(4326008)(8676002)(478600001)(5660300002)(26005)(86362001)(9686003)(6666004)(52116002)(956004)(186003)(1076003)(83380400001)(8936002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: vgzEO04YE4kGsNF1Apev1s7gMhSleIvhjepY6fRGEikvpjQVv+8Ay7Wgs+PBlsJDduRw2Gz4IcZzakA2WRBnCmDH7Fp+91V6SomHxXgiiF5j1nfOQuf8ZmR3ZufTdDJjX8tt8XoSpnsX3UAaffo63XXgjL1m4dwX5gGsJs6Ok1M4ToJariR+XLwPJfHmEpXXGKPfPppp1yvF/DWzoF5T75oG6MBQb5RgBcYV4IJz7TNv8jDgdTJFqS40+lXadpDF3wcj/lNaQyQAK1YGqT895nvB/qaKj8lODc9oarq+d9o8h6n6SZss64nUh+F8sS5FKv7tJBciYRZf6FM0/lhC5SEheIpJj/1sFGk9q0h6Nzob1xt9f3fITW38xIovUFU17r5xoQI49ym/gUhUzzTFXJ8gGgD60z6StEDMGbLBl71SqZx3ioGO//nohf11zU3yn7sw8m8g1cg6WBzmhfV6EDUED8DmgPMwNufn9odqJUhCaGbIgM1hpTKfsMX9PpAX+jPH0VdD93lIV/mrArbTige6P7ScfSTMOMZjeCwqBA+hzVdUDIkQFPEzVgxN1ekqp/RwAdvRmdCLMk7UubZgWuJDYcMNM8Kbc80FjGQ4bOP/2OaEbFSI9gckVnksWY+VglCFfnW2RxJP+OR1JqhvWQ==
-X-OriginatorOrg: synaptics.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e359bfa4-4ccd-4199-808e-08d844e99e95
-X-MS-Exchange-CrossTenant-AuthSource: BN7PR03MB4547.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2020 09:15:45.5339
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 335d1fbc-2124-4173-9863-17e7051a2a0e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uguMyUL6ge4d1wq2zJbaQMXqQwZ2xKIvwQF9UDzG9GeDG4KKsUogcLTaTwZs71G4QtVtQ1sfc11GFtyi2+JALw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR03MB4738
+In-Reply-To: <1597903458-8055-1-git-send-email-yongqiang.niu@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the mp886x binding to DT schema format using json-schema.
 
-Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
----
- .../devicetree/bindings/regulator/mp886x.txt  | 31 ----------
- .../bindings/regulator/mps,mp886x.yaml        | 61 +++++++++++++++++++
- 2 files changed, 61 insertions(+), 31 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/regulator/mp886x.txt
- create mode 100644 Documentation/devicetree/bindings/regulator/mps,mp886x.yaml
 
-diff --git a/Documentation/devicetree/bindings/regulator/mp886x.txt b/Documentation/devicetree/bindings/regulator/mp886x.txt
-deleted file mode 100644
-index b05307bbb0d9..000000000000
---- a/Documentation/devicetree/bindings/regulator/mp886x.txt
-+++ /dev/null
-@@ -1,31 +0,0 @@
--Monolithic Power Systems MP8867/MP8869 voltage regulator
--
--Required properties:
--- compatible: Must be one of the following.
--	"mps,mp8867"
--	"mps,mp8869"
--- reg: I2C slave address.
--- enable-gpios: enable gpios.
--- mps,fb-voltage-divider: An array of two integers containing the resistor
--  values R1 and R2 of the feedback voltage divider in kilo ohms.
--
--Optional properties:
--- mps,switch-frequency-hz: The valid switch frequency in Hertz. Available values
--  are: 500000, 750000, 1000000, 1250000, 1500000
--
--Any property defined as part of the core regulator binding, defined in
--./regulator.txt, can also be used.
--
--Example:
--
--	vcpu: regulator@62 {
--		compatible = "mps,mp8869";
--		regulator-name = "vcpu";
--		regulator-min-microvolt = <700000>;
--		regulator-max-microvolt = <850000>;
--		regulator-always-on;
--		regulator-boot-on;
--		enable-gpios = <&porta 1 GPIO_ACTIVE_LOW>;
--		mps,fb-voltage-divider = <80 240>;
--		reg = <0x62>;
--	};
-diff --git a/Documentation/devicetree/bindings/regulator/mps,mp886x.yaml b/Documentation/devicetree/bindings/regulator/mps,mp886x.yaml
-new file mode 100644
-index 000000000000..ba175b30f468
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/mps,mp886x.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/mps,mp886x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Monolithic Power Systems MP8867/MP8869 voltage regulator
-+
-+maintainers:
-+  - Jisheng Zhang <jszhang@kernel.org>
-+
-+allOf:
-+  - $ref: regulator.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mps,mp8867
-+      - mps,mp8869
-+
-+  reg:
-+    maxItems: 1
-+
-+  enable-gpios:
-+    description: GPIO to enable/disable the regulator.
-+    maxItems: 1
-+
-+  mps,fb-voltage-divider:
-+    description: An array of two integers containing the resistor
-+      values R1 and R2 of the feedback voltage divider in kilo ohms.
-+    $ref: "/schemas/types.yaml#/definitions/uint32-array"
-+    maxItems: 2
-+
-+  mps,switch-frequency-hz:
-+    description: The valid switch frequency in Hertz.
-+    enum: [500000, 750000, 1000000, 1250000, 1500000]
-+
-+required:
-+  - compatible
-+  - reg
-+  - enable-gpios
-+  - mps,fb-voltage-divider
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        regulator@62 {
-+          compatible = "mps,mp8869";
-+          regulator-name = "vcpu";
-+          regulator-min-microvolt = <800000>;
-+          regulator-max-microvolt = <1150000>;
-+          enable-gpios = <&porta 1 GPIO_ACTIVE_LOW>;
-+          mps,fb-voltage-divider = <80 240>;
-+          reg = <0x62>;
-+        };
-+    };
-+
-+...
--- 
-2.28.0
+On 20/08/2020 08:03, Yongqiang Niu wrote:
+> Changes in v1:
+> - add some more ddp component
+> - add mt8192 mmsys support
+> - add ovl mount on support
+> - add 2 more clock into mutex device
+> - fix ovl smi_id_en and fb null software bug
+> - fix ddp compoent size config bug
+> - add mt8192 drm support
+> - add ddp bypass shadow register function
+> - add 8192 dts description
+> 
+> Yongqiang Niu (21):
+>    drm/mediatek: add component OVL_2L2
+>    drm/mediatek: add component POSTMASK
+>    drm/mediatek: add component RDMA4
+>    mtk-mmsys: add mt8192 mmsys support
+>    mtk-mmsys: add ovl mout on  support
+>    drm/mediatek: add disp config and mm 26mhz clock into mutex device
+>    drm/mediatek: enable OVL_LAYER_SMI_ID_EN for multi-layer usecase
+>    drm/mediatek: check if fb is null
+>    drm/mediatek: fix aal size config
+>    drm/mediatek: fix dither size config
+>    drm/mediatek: fix gamma size config
+>    drm/mediatek: fix ccorr size config
+>    drm/mediatek: add support for mediatek SOC MT8192
+>    drm/mediatek: add bypass shadow register function call for ddp
+>      component
+>    drm/mediatek: add color bypass shadow register function
+>    drm/mediatek: add ovl bypass shadow register function
+>    drm/mediatek: add rdma bypass shadow register function
+>    drm/mediatek: add dither bypass shadow register function
+>    drm/mediatek: add aal bypass shadow register function
+>    drm/mediatek: add ccorr bypass shadow register function
+>    arm64: dts: mt8192: add display node
+> 
 
+At least regarding mmsys and dtsi patches, these are not based on upstream. 
+Please rebase.
+
+Regards,
+Matthias
+
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi    | 126 +++++++++++++++++++
+>   drivers/gpu/drm/mediatek/mtk_disp_color.c   |  22 ++++
+>   drivers/gpu/drm/mediatek/mtk_disp_ovl.c     |  41 ++++++-
+>   drivers/gpu/drm/mediatek/mtk_disp_rdma.c    |  27 +++++
+>   drivers/gpu/drm/mediatek/mtk_drm_crtc.c     |   3 +
+>   drivers/gpu/drm/mediatek/mtk_drm_ddp.c      |  84 +++++++++++--
+>   drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c |  80 +++++++++++-
+>   drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h |   8 ++
+>   drivers/gpu/drm/mediatek/mtk_drm_drv.c      |  48 ++++++++
+>   drivers/soc/mediatek/mmsys/Makefile         |   1 +
+>   drivers/soc/mediatek/mmsys/mt8192-mmsys.c   | 182 ++++++++++++++++++++++++++++
+>   drivers/soc/mediatek/mtk-mmsys.c            |   8 ++
+>   include/linux/soc/mediatek/mtk-mmsys.h      |   6 +
+>   13 files changed, 623 insertions(+), 13 deletions(-)
+>   create mode 100644 drivers/soc/mediatek/mmsys/mt8192-mmsys.c
+> 
