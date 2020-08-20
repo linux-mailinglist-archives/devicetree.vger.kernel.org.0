@@ -2,22 +2,23 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D9BA24C01C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 16:07:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9733024C00D
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 16:06:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728244AbgHTOHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Aug 2020 10:07:49 -0400
-Received: from comms.puri.sm ([159.203.221.185]:55512 "EHLO comms.puri.sm"
+        id S1728782AbgHTN7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Aug 2020 09:59:39 -0400
+Received: from comms.puri.sm ([159.203.221.185]:55664 "EHLO comms.puri.sm"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731164AbgHTN6U (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Aug 2020 09:58:20 -0400
+        id S1727103AbgHTN7T (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Aug 2020 09:59:19 -0400
 Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id D0AC9DF4A1;
-        Thu, 20 Aug 2020 06:58:07 -0700 (PDT)
+        by comms.puri.sm (Postfix) with ESMTP id 021E6DF4A1;
+        Thu, 20 Aug 2020 06:58:49 -0700 (PDT)
 Received: from comms.puri.sm ([127.0.0.1])
         by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id xW03P_UaoDsj; Thu, 20 Aug 2020 06:58:06 -0700 (PDT)
-Subject: Re: [PATCH v2 1/4] arm64: dts: imx8mq: Add NWL MIPI DSI controller
+        with ESMTP id 3msrRQTT8y4p; Thu, 20 Aug 2020 06:58:48 -0700 (PDT)
+Subject: Re: [PATCH v2 2/4] arm64: dts: imx8mq-librem5-devkit: Enable the LCD
+ panel
 To:     =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
         Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
@@ -41,7 +42,7 @@ To:     =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
         Olof Johansson <olof@lixom.net>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <cover.1597913263.git.agx@sigxcpu.org>
- <138346192af1adb1277269a3cbd542dff00ba4a3.1597913263.git.agx@sigxcpu.org>
+ <f03b599160804142f738eb53d0fe8686234c4896.1597913263.git.agx@sigxcpu.org>
 From:   Martin Kepplinger <martin.kepplinger@puri.sm>
 Autocrypt: addr=martin.kepplinger@puri.sm; keydata=
  mQINBFULfZABEADRxJqDOYAHfrp1w8Egcv88qoru37k1x0Ugy8S6qYtKLAAt7boZW+q5gPv3
@@ -117,11 +118,11 @@ Autocrypt: addr=martin.kepplinger@puri.sm; keydata=
  uV2Xzgbi3VEbw3GZr+EnDC7XNE2wUrnlD/w2W6RzVYjVT6IX4SamNlV+MWX0/1fYCutfqZl8
  6BSKmJjlWpfkPKzyzjhGQVZrTZYnKAu471hRv8/6Dx5JuZJgDCnYanNx3DDreRMu/nq6TfaO
  ekMtxgNYb/8oDry09UFHbGHLsWn6oBo=
-Message-ID: <e3c2f810-ebca-c750-d213-7eac2e809969@puri.sm>
-Date:   Thu, 20 Aug 2020 15:57:59 +0200
+Message-ID: <0a7c0d7b-0fb6-2914-b6d5-a2f7cedd20d1@puri.sm>
+Date:   Thu, 20 Aug 2020 15:58:41 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.11.0
-In-Reply-To: <138346192af1adb1277269a3cbd542dff00ba4a3.1597913263.git.agx@sigxcpu.org>
+In-Reply-To: <f03b599160804142f738eb53d0fe8686234c4896.1597913263.git.agx@sigxcpu.org>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
@@ -131,20 +132,20 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 20.08.20 10:50, Guido Günther wrote:
-> Add a node for the Northwest Logic MIPI DSI IP core, "disabled" by
-> default. This also adds the necessary port to LCDIF.
+> Enable LCD panel output by adding nodes for the NWL DSI host controller,
+> the Rocktech panel and the eLCDIF display controller.
 > 
 > Signed-off-by: Guido Günther <agx@sigxcpu.org>
 > Reviewed-by: Fabio Estevam <festevam@gmail.com>
 > ---
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 49 +++++++++++++++++++++++
->  1 file changed, 49 insertions(+)
+>  .../dts/freescale/imx8mq-librem5-devkit.dts   | 33 +++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+> 
+
 
 Hi Guido,
 
 Tested-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-
-on the librem5 devkit.
 
 thanks,
                               martin
