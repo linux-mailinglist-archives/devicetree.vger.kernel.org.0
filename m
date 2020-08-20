@@ -2,119 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DA5424C30C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 18:12:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D067324C34F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Aug 2020 18:27:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729845AbgHTQMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Aug 2020 12:12:43 -0400
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:57674 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729686AbgHTQMM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Aug 2020 12:12:12 -0400
-Received: from pps.filterd (m0098393.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 07KG20n8143921;
-        Thu, 20 Aug 2020 12:12:04 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pp1;
- bh=XmtgQdWKjYonczcloJW7pdHZMFXOrV+2fMSw/aDGw/k=;
- b=SY9kvCjp1DGYFbwJ4P5XSK+8mIrEPRfso7t1rQ988xus+AqVse7ysxZNmT6bJ0+GjA3G
- qVQjKXYNZDRTkOac4dRbyl1I9o+3EHVfAoI7FYF8XEbCXgwd8HxUy7C8sHbO99pwEIYz
- DGc/uT1TWAVMTNK3zGQrJ72/ydSPcSsqLL63DJ3NZRFmkoe7+QWW3JyVjxvjiX5pZnkk
- rKrb7Ryd5JVT7JqRPlD8+mW+NFePfAdP2xUTgwaXnijOmQmgzhJQJWjG1b3OblS0mgB5
- bmMnd7YVnlu7C2h1Kc2r5Zv0OHsrs37eepOJyU2FpiFMYtzXjeuJqSvUOV3lIsRTDiqq PQ== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 3313kyu8ax-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 20 Aug 2020 12:12:04 -0400
-Received: from m0098393.ppops.net (m0098393.ppops.net [127.0.0.1])
-        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 07KG23RR144382;
-        Thu, 20 Aug 2020 12:12:03 -0400
-Received: from ppma01wdc.us.ibm.com (fd.55.37a9.ip4.static.sl-reverse.com [169.55.85.253])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 3313kyu8a5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 20 Aug 2020 12:12:03 -0400
-Received: from pps.filterd (ppma01wdc.us.ibm.com [127.0.0.1])
-        by ppma01wdc.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 07KGAmlX011453;
-        Thu, 20 Aug 2020 16:12:02 GMT
-Received: from b01cxnp23034.gho.pok.ibm.com (b01cxnp23034.gho.pok.ibm.com [9.57.198.29])
-        by ppma01wdc.us.ibm.com with ESMTP id 3304tkwdvh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 20 Aug 2020 16:12:02 +0000
-Received: from b01ledav004.gho.pok.ibm.com (b01ledav004.gho.pok.ibm.com [9.57.199.109])
-        by b01cxnp23034.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 07KGC2ps52166940
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 20 Aug 2020 16:12:02 GMT
-Received: from b01ledav004.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 201CF112061;
-        Thu, 20 Aug 2020 16:12:02 +0000 (GMT)
-Received: from b01ledav004.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 8B0FC112062;
-        Thu, 20 Aug 2020 16:12:00 +0000 (GMT)
-Received: from SHADE6A.ibmuc.com (unknown [9.163.70.74])
-        by b01ledav004.gho.pok.ibm.com (Postfix) with ESMTP;
-        Thu, 20 Aug 2020 16:12:00 +0000 (GMT)
-From:   Eddie James <eajames@linux.ibm.com>
-To:     linux-input@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org, linux-i2c@vger.kernel.org,
-        joel@jms.id.au, andrew@aj.id.au, benh@kernel.crashing.org,
-        brendanhiggins@google.com, dmitry.torokhov@gmail.com,
-        robh+dt@kernel.org, eajames@linux.ibm.com
-Subject: [PATCH 5/5] ARM: dts: Aspeed: Rainier: Add IBM Operation Panel I2C device
-Date:   Thu, 20 Aug 2020 11:11:52 -0500
-Message-Id: <20200820161152.22751-6-eajames@linux.ibm.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200820161152.22751-1-eajames@linux.ibm.com>
-References: <20200820161152.22751-1-eajames@linux.ibm.com>
+        id S1729669AbgHTQ11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Aug 2020 12:27:27 -0400
+Received: from userp2120.oracle.com ([156.151.31.85]:46150 "EHLO
+        userp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727780AbgHTQ1Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Aug 2020 12:27:25 -0400
+Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
+        by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 07KGN5Ng185569;
+        Thu, 20 Aug 2020 16:27:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=corp-2020-01-29;
+ bh=EhcIkdT5kS+atUJAy+/F2IziSwuZSev4/FziC9JMbe8=;
+ b=es8IcqaQFxFBi8AOBf0kA9WnVstw9kZSFc/PyFOtBz+UWkIi7+UaU0ap4DkgJb91usSv
+ H8seDxM3PiHpvM98191tO72kGt2d62EQYQ4B3Tbrl73uxugsOJhTTxasnZ7k4wqngt6p
+ hBuCG1G+Rx0CGFvcj4/2GPoLjaoH6KUD/1+nfnc+OMRZvdMmnKn+F+wsiuFLt7y0Mfqj
+ O95wqHhFLezeBP6BbwNNDjPIpgrgryE5Xlfs1DWjzoTr/4T5kkdbhYY+YHbKwJzlzF2e
+ AGmv1p2TdlyaU3lIXloP2Q6BOE/oFOIeJ6EEEe/ap6VRhIkEAoh/x0RWSwk1VYW79TJk 1Q== 
+Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
+        by userp2120.oracle.com with ESMTP id 32x8bnheph-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 20 Aug 2020 16:27:12 +0000
+Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
+        by userp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 07KGN2tT109476;
+        Thu, 20 Aug 2020 16:27:12 GMT
+Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
+        by userp3030.oracle.com with ESMTP id 32xsn1k4gv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 20 Aug 2020 16:27:12 +0000
+Received: from abhmp0018.oracle.com (abhmp0018.oracle.com [141.146.116.24])
+        by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 07KGRAig010695;
+        Thu, 20 Aug 2020 16:27:10 GMT
+Received: from [10.74.106.11] (/10.74.106.11)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Thu, 20 Aug 2020 09:27:10 -0700
+Subject: Re: [PATCH 0/6] Add TI PRUSS platform driver
+To:     Suman Anna <s-anna@ti.com>,
+        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
+        ssantosh@kernel.org, Tony Lindgren <tony@atomide.com>
+Cc:     robh+dt@kernel.org, lee.jones@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        praneeth@ti.com
+References: <1596020528-19510-1-git-send-email-grzegorz.jaszczyk@linaro.org>
+ <12a7fc2a-4c48-655f-daa1-880fd1866fd1@ti.com>
+From:   santosh.shilimkar@oracle.com
+Organization: Oracle Corporation
+Message-ID: <2a64dcb7-d79e-7ef8-b3e6-4c2533a19c38@oracle.com>
+Date:   Thu, 20 Aug 2020 09:27:08 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
+ Gecko/20100101 Thunderbird/68.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-08-20_03:2020-08-19,2020-08-20 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- priorityscore=1501 impostorscore=0 adultscore=0 bulkscore=0 clxscore=1015
- mlxlogscore=991 malwarescore=0 suspectscore=1 phishscore=0 mlxscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2008200127
+In-Reply-To: <12a7fc2a-4c48-655f-daa1-880fd1866fd1@ti.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9718 signatures=668679
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 spamscore=0 bulkscore=0
+ mlxlogscore=999 phishscore=0 mlxscore=0 suspectscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2008200133
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9718 signatures=668679
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 lowpriorityscore=0
+ impostorscore=0 suspectscore=0 adultscore=0 spamscore=0 malwarescore=0
+ mlxlogscore=999 priorityscore=1501 bulkscore=0 clxscore=1011 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2008200133
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Set I2C bus 7 to multi-master mode and add the panel device that will
-register as a slave.
+On 8/20/20 7:43 AM, Suman Anna wrote:
+> Hi Santosh, Tony,
+> 
+> On 7/29/20 6:02 AM, Grzegorz Jaszczyk wrote:
+>> Hi,
+>>
+>> The Programmable Real-Time Unit and Industrial Communication Subsystem
+>> (PRU-ICSS) is present on various TI SoCs. The IP is present on multiple TI SoC
+>> architecture families including the OMAP architecture SoCs such as AM33xx,
+>> AM437x and AM57xx; and on a Keystone 2 architecture based 66AK2G SoC. It is also
+>> present on the Davinci based OMAPL138 SoCs and K3 architecture based AM65x and
+>> J721E SoCs as well.
+>>
+>> A PRUSS consists of dual 32-bit RISC cores (Programmable Real-Time Units, or
+>> PRUs), shared RAM, data and instruction RAMs, some internal peripheral modules
+>> to facilitate industrial communication, and an interrupt controller.
+>>
+>> The programmable nature of the PRUs provide flexibility to implement custom
+>> peripheral interfaces, fast real-time responses, or specialized data handling.
+>> The common peripheral modules include the following,
+>>    - an Ethernet MII_RT module with two MII ports
+>>    - an MDIO port to control external Ethernet PHYs
+>>    - an Industrial Ethernet Peripheral (IEP) to manage/generate Industrial
+>>      Ethernet functions
+>>    - an Enhanced Capture Module (eCAP)
+>>    - an Industrial Ethernet Timer with 7/9 capture and 16 compare events
+>>    - a 16550-compatible UART to support PROFIBUS
+>>    - Enhanced GPIO with async capture and serial support
+>>
+>>
+>> A typical usage scenario would be to load the application firmware into one or
+>> more of the PRU cores, initialize one or more of the peripherals and perform I/O
+>> through shared RAM from either a kernel driver or directly from userspace.
+>>
+>> This series contains the PRUSS platform driver. This is the parent driver for
+>> the entire PRUSS and is used for managing the subsystem level resources like
+>> various memories and the CFG module.  It is responsible for the creation and
+>> deletion of the platform devices for the child PRU devices and other child
+>> devices (like Interrupt Controller, MDIO node and some syscon nodes) so that
+>> they can be managed by specific platform drivers.
+>>
+>> Grzegorz Jaszczyk (1):
+>>    dt-bindings: soc: ti: Add TI PRUSS bindings
+>>
+>> Suman Anna (5):
+>>    soc: ti: pruss: Add a platform driver for PRUSS in TI SoCs
+>>    soc: ti: pruss: Add support for PRU-ICSSs on AM437x SoCs
+>>    soc: ti: pruss: Add support for PRU-ICSS subsystems on AM57xx SoCs
+>>    soc: ti: pruss: Add support for PRU-ICSS subsystems on 66AK2G SoC
+>>    soc: ti: pruss: enable support for ICSSG subsystems on K3 AM65x SoCs
+> 
+> Do you have any comments on the driver portions of this series before Greg posts
+> a v2 addressing the binding comments. This is one of the foundation series
+> towards enabling PRUSS, and is a dependency for the PRU remoteproc driver.
+> 
+No just post V2 addressing Rob's comment. I will line it up once
+rob acks it.
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
----
- arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-index b94421f6cbd5..f121f3c26a3a 100644
---- a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-@@ -698,6 +698,7 @@ eeprom@53 {
- };
- 
- &i2c7 {
-+	multi-master;
- 	status = "okay";
- 
- 	si7021-a20@20 {
-@@ -831,6 +832,11 @@ gpio@15 {
- 		};
- 	};
- 
-+	ibm-panel@62 {
-+		compatible = "ibm,op-panel";
-+		reg = <0x40000062>;	/* I2C_OWN_SLAVE_ADDRESS */
-+	};
-+
- 	dps: dps310@76 {
- 		compatible = "infineon,dps310";
- 		reg = <0x76>;
--- 
-2.26.2
-
+Regards,
+Santosh
