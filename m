@@ -2,164 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14AE524DD42
-	for <lists+devicetree@lfdr.de>; Fri, 21 Aug 2020 19:15:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5FF524DD71
+	for <lists+devicetree@lfdr.de>; Fri, 21 Aug 2020 19:19:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728431AbgHUROu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Aug 2020 13:14:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41722 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726990AbgHUROo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Aug 2020 13:14:44 -0400
-Received: from mail-il1-x142.google.com (mail-il1-x142.google.com [IPv6:2607:f8b0:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D1A6C061574
-        for <devicetree@vger.kernel.org>; Fri, 21 Aug 2020 10:14:44 -0700 (PDT)
-Received: by mail-il1-x142.google.com with SMTP id r13so2038134iln.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Aug 2020 10:14:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=lixom-net.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=RTvsFOhGC05ImvCGxAXHe80DLl0Vnoh8uhjw9uG61SY=;
-        b=qCziGrqPDSVtOLmbK1hFmaPBOq+huaVij1yQ263tMaWZonY5TWfaBxMerhZMu5VEP3
-         RoPEPwzz/xcjuV+sZCG1Saoia1u3YKqx63vETf1XPu5IrA200TfHKvEGxaOTNHo5W+mG
-         tCpVqh73Ai1QJJiviJSfv/he9dZ0cRwKhv0cdp7vo+LbX6FHoujL6bkQB7Qzicv6p2hE
-         x4koMTN4PnrpDrX8npHVGmmmPy8pj+MUkr0jW05+KtnOLdeBNgPBu3vwKyD3t1KNEL7u
-         BWwPpeGGTD5KgVYO5yUReKtkMR1+S+ZD4oeEDFdPiKx6JydchJQlt24N3BzYvr5uqc7g
-         MsXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=RTvsFOhGC05ImvCGxAXHe80DLl0Vnoh8uhjw9uG61SY=;
-        b=V61maIqeOIe7KjGEe4MTDTDm6r2J9fx5gNsBZ5uEevfdoEWSpGLoPUTyE+nkkVT5Ie
-         So9kKf5C8Bz0brRpBMySkg30sz5JChlTkyAPtYmHlNtw64J3jJ4/NENd0wZlWW4wQNIH
-         1tSMHJXxXxL166sPssoRN1KkmqxqpbgfECt+YayVgs6hkZEHbNPp/rcnZo5MSYd24JZH
-         1qafUJDucA1wIaOw7Ls4FGHtspHWFQMa56jXf7ZivqiGeti6tmmV2cvkdh6epDKV7nn/
-         ChvrDAX9oeVjSAiuaw9UbyrTwNlJwAwMXjWS9V2l0y1Rcltr9zqmqJWJy5xLuX1dATjv
-         Bm5w==
-X-Gm-Message-State: AOAM5329ZOcp9QzH9moWn+jgwHbVovRvIwlef3sysoTIcqBQEekbHYxF
-        f+rgH5MxdqTnXer55JDF/h5wUayyJB9U5QBP4kErUg==
-X-Google-Smtp-Source: ABdhPJzBtpIobytboUBjp0jMvWUO7qPOEborYgyUfFC+VcbkdjoC05hgYoAhDbvXVVliplquim8DuARZHvyU0DBp/us=
-X-Received: by 2002:a92:5209:: with SMTP id g9mr3383963ilb.72.1598030083248;
- Fri, 21 Aug 2020 10:14:43 -0700 (PDT)
+        id S1729022AbgHURRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Aug 2020 13:17:33 -0400
+Received: from asavdk3.altibox.net ([109.247.116.14]:52778 "EHLO
+        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729066AbgHURRE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Aug 2020 13:17:04 -0400
+Received: from ravnborg.org (unknown [188.228.123.71])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk3.altibox.net (Postfix) with ESMTPS id 0985F20022;
+        Fri, 21 Aug 2020 19:17:00 +0200 (CEST)
+Date:   Fri, 21 Aug 2020 19:16:59 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, robdclark@chromium.org,
+        David Airlie <airlied@linux.ie>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add KD116N21-30NV-A010
+ compatible
+Message-ID: <20200821171659.GA308295@ravnborg.org>
+References: <20200821083454.1.I61e6248813d797c9eeebfbb7019c713aa71c4419@changeid>
 MIME-Version: 1.0
-References: <20200819221750.2055932-1-robh@kernel.org> <20200821011237.GA4527@lx2k>
- <CAL_JsqLfzDMJXDdqtVBYWrvuB8kBDHECWmNkS5EJStiwSFtp-g@mail.gmail.com>
-In-Reply-To: <CAL_JsqLfzDMJXDdqtVBYWrvuB8kBDHECWmNkS5EJStiwSFtp-g@mail.gmail.com>
-From:   Olof Johansson <olof@lixom.net>
-Date:   Fri, 21 Aug 2020 10:14:31 -0700
-Message-ID: <CAOesGMhFGTZddCdusgfcUjfTP847am+F8jTAWrqYXjq1PLXxag@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: Reformat PCI ranges/dma-ranges entries
-To:     Rob Herring <robh@kernel.org>
-Cc:     SoC Team <soc@kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Khuong Dinh <khuong@os.amperecomputing.com>,
-        Robert Richter <rrichter@marvell.com>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200821083454.1.I61e6248813d797c9eeebfbb7019c713aa71c4419@changeid>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=f+hm+t6M c=1 sm=1 tr=0
+        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+        a=kj9zAlcOel0A:10 a=cm27Pg_UAAAA:8 a=Ivq3uMdIfu5b0hwgkMQA:9
+        a=CjuIK1q_8ugA:10 a=xmb-EsYY8bH0VWELuYED:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 21, 2020 at 9:14 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Aug 20, 2020 at 8:53 PM Olof Johansson <olof@lixom.net> wrote:
-> >
-> > On Wed, Aug 19, 2020 at 04:17:50PM -0600, Rob Herring wrote:
-> > > While bracketing doesn't matter for a DTB, the DT schema checks rely =
-on
-> > > bracketing around each distinct entry. Reformat ranges and dma-ranges
-> > > entries to fix warnings such as:
-> > >
-> > > arch/arm64/boot/dts/rockchip/rk3399-sapphire-excavator.dt.yaml: pcie@=
-f8000000: ranges: [[2197815296, 0, 4194304000, 0, 4194304000, 0, 31457280, =
-2164260864, 0, 4225761280, 0, 4225761280, 0, 1048576]] is not valid under a=
-ny of the given schemas (Possible causes of the failure):
-> > >         arch/arm64/boot/dts/rockchip/rk3399-sapphire-excavator.dt.yam=
-l: pcie@f8000000: ranges: True was expected
-> > >         arch/arm64/boot/dts/rockchip/rk3399-sapphire-excavator.dt.yam=
-l: pcie@f8000000: ranges:0: [2197815296, 0, 4194304000, 0, 4194304000, 0, 3=
-1457280, 2164260864, 0, 4225761280, 0, 4225761280, 0, 1048576] is too long
-> > >         arch/arm64/boot/dts/rockchip/rk3399-sapphire-excavator.dt.yam=
-l: pcie@f8000000: ranges:0:0: 2197815296 is not one of [16777216, 33554432,=
- 50331648, 1107296256, 1124073472]
-> >
-> > Seems like a bug in your tool? Why would we bother with this churn?
->
-> It's a feature. :)
+Hi Douglas.
 
-The feature is better linting of ranges, the new lack of being able to
-do that for the way we've always been allowed to write ranges is a
-bug.
+On Fri, Aug 21, 2020 at 08:35:14AM -0700, Douglas Anderson wrote:
+> The KD116N21-30NV-A010 is a pretty standard eDP panel.  Add it to the
+> list of compatible strings.
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 
-> In this case, with the entries bracketed, we can check the PCI top
-> address cell contents in the common PCI schema and check how many
-> ranges entries in the specific bridge schemas if they have some
-> constraints. The use of bracketing is useful to defining the number of
-> entries not just for ranges, but everywhere. A device binding defines
-> how many register regions or interrupts for example. It makes sense to
-> delineate entries in some way. While yes, we have #.*-cells, there's
-> not really any way to handle that in json-schema. And let's face it,
-> #.*-cells is an odd construct.
->
-> Currently, the dtc dts->yaml output maintains all this formatting. I
-> suppose we could change that such that we parse #.*-cells and define
-> the boundaries based on them. But then dtc has to know about every
-> case of #.*-cells. That's not impossible to do, but doesn't keep the
-> tool and binding data separate.
+Both patches applied to drm-misc-next.
 
-That's already the case, isn't it? Run that part of the check if you
-have a new enough dtc, otherwise warn that it's too old but do all the
-other checks.
+	Sam
 
-It's also just a change in one place: the tool, instead of evolving
-the language by adding ad-hoc restrictions that the compiler doesn't
-even know about, and requiring old code to change.
-
-This way DTC could even warn/recommend bracketing per cell, when you
-give it the ability to parse/handle it.
-
-> Looking at it another way, do we really want to just allow anything? A
-> device with 3 interrupts could be written as:
->
-> interrupts =3D <1>, <2>, <3>;
-> interrupts =3D <1 2 3>;
-> interrupts =3D <1>, <2 3>;
-> interrupts =3D [ 00 00 00 01 00 00 00 02 00 00 00 03 ];
->
-> Or can we have some coding standards that are no more onerous or
-> pedantic than what we have everywhere else?
-
-We're generally quite careful about applying new restrictions and
-expectations on coding standards all across the tree, and when we add
-new ones we usually don't require legacy code to change overnight,
-only when there are other relevant changes to those files.
-
-
--Olof
+> ---
+> 
+>  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> index 47247ace86ac..f2204f17a9dc 100644
+> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> @@ -161,6 +161,8 @@ properties:
+>        - innolux,n156bge-l21
+>          # Innolux Corporation 7.0" WSVGA (1024x600) TFT LCD panel
+>        - innolux,zj070na-01p
+> +        # King & Display KD116N21-30NV-A010 eDP TFT LCD panel
+> +      - kingdisplay,kd116n21-30nv-a010
+>          # Kaohsiung Opto-Electronics Inc. 5.7" QVGA (320 x 240) TFT LCD panel
+>        - koe,tx14d24vm1bpa
+>          # Kaohsiung Opto-Electronics Inc. 10.1" WUXGA (1920 x 1200) LVDS TFT LCD panel
+> -- 
+> 2.28.0.297.g1956fa8f8d-goog
