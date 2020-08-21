@@ -2,113 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E9EF24CF8F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Aug 2020 09:40:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 078E024CFF7
+	for <lists+devicetree@lfdr.de>; Fri, 21 Aug 2020 09:51:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728240AbgHUHkQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Aug 2020 03:40:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37150 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728107AbgHUHkJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Aug 2020 03:40:09 -0400
-Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38252C061385
-        for <devicetree@vger.kernel.org>; Fri, 21 Aug 2020 00:40:08 -0700 (PDT)
-Received: by mail-vs1-xe42.google.com with SMTP id i129so388681vsi.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Aug 2020 00:40:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bAU9iZW9yGALOB30mTlHDeoRf5CRh/Snlg+xCwRu8JU=;
-        b=kOxOuxMxSQ+ksSLjKg3Ni5aIYiY5w0RxKooi0DNSCKve7b14PccYxmywLlnGxld6mc
-         WqavXtK7TC9i0AqdD3XPTGzIoa5x8gqELOCV/+vAlvOIAyKSZztrQsMbO4Rg2Sd1UFPg
-         SiEMKltZUmr8lz2zr42CVDG7YdRtLuErHINARiW/rqVexyezip3RnwlVXtlEpgakssZH
-         NiFgJ9BjbUnADlw9BpI2N/RodkTY07zEH8wagrgldLZZX2bBReCzCGOX1V/M9Lb+z/Vk
-         +T51a1HYvojPzfuH4UOvwvYnJe1ukLKul84xO8Z6/4GZPuwyMPAeamxXv+di9soZ/b3m
-         KOmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bAU9iZW9yGALOB30mTlHDeoRf5CRh/Snlg+xCwRu8JU=;
-        b=PRJH+J997BJb5EhHOaPvutZS8rtqoZsBcA2LVB9p8RgE26H4zyD3vQZmZpcCuHhS1i
-         9cVPpLFVfibk75pkRqeCcsqMnz3IqlFDPYhV1egMy7bgn7Jd4tfE2QJUpy3Plhah4NZ2
-         hHjDHJF4xKMZAuR7Q6kHW7uF0cazjeB4SISs4H8kxyOCa8B1D5kEwCUgwMFNFZgLjlPH
-         qL6IFpxhxQn2Dsjl4g6QNNf62FejNr/TY+dgf86CvlBRAkQtbayAbhmTAZvBDpBFhIVD
-         IbP6RiWB7HRWif1q0s6f6k8PTzZq684G51zgYwca3kvU9H/xgDDSg4BBQh9WfeQ8Exs4
-         704Q==
-X-Gm-Message-State: AOAM533ni8ea6jAMRi6APKHu0SLwmTdBETRCf9+rEGRWd14aeQCVL4pb
-        MwYcEtHSqzY1j3E0e7g/xXOJzU7kAbcuDxn7frHWQw==
-X-Google-Smtp-Source: ABdhPJwcZWnwUZBTqM0sxN5IRp11B+ol/YTZpoa5qsJpj61ysTHH9tG19j4VKQcti7QxF7eU+rcXtzQeNyrlpU0p/zI=
-X-Received: by 2002:a67:e9d8:: with SMTP id q24mr887206vso.165.1597995607373;
- Fri, 21 Aug 2020 00:40:07 -0700 (PDT)
+        id S1727961AbgHUHv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Aug 2020 03:51:28 -0400
+Received: from mga18.intel.com ([134.134.136.126]:59609 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727846AbgHUHv0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Aug 2020 03:51:26 -0400
+IronPort-SDR: 9Tx6wnEmslE4sFm2fZnnK0nk+wn04qZD8YI1ncCVbF9Xu0H5KueAxQ3vTT8LLfduPBY4ewCWDf
+ GpnCWS51r/Jg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9719"; a="143119158"
+X-IronPort-AV: E=Sophos;i="5.76,335,1592895600"; 
+   d="scan'208";a="143119158"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2020 00:51:25 -0700
+IronPort-SDR: If98b8/s7kduG3CE2pUTKpwUC5swudFLNuRksqTdhyWOu3sn3Fd5p/3pXjY6v0hqTi7ttCy+Su
+ e0g0fUOZOpdg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,335,1592895600"; 
+   d="scan'208";a="280210579"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga008.fm.intel.com with ESMTP; 21 Aug 2020 00:51:25 -0700
+Received: from [10.226.38.22] (unknown [10.226.38.22])
+        by linux.intel.com (Postfix) with ESMTP id 998D258045A;
+        Fri, 21 Aug 2020 00:51:22 -0700 (PDT)
+Reply-To: vadivel.muruganx.ramuthevar@linux.intel.com
+Subject: Re: [PATCH v8 0/2] phy: Add USB PHY support on Intel LGM SoC
+To:     linux-kernel@vger.kernel.org, kishon@ti.com, vkoul@kernel.org
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, p.zabel@pengutronix.de,
+        andriy.shevchenko@intel.com, balbi@kernel.org,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com, yin1.li@intel.com
+References: <20200817031249.36795-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+From:   "Ramuthevar, Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Message-ID: <bf2301f3-7c70-06b1-898c-f18284babe75@linux.intel.com>
+Date:   Fri, 21 Aug 2020 15:51:21 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-References: <1596673949-1571-1-git-send-email-skomatineni@nvidia.com>
-In-Reply-To: <1596673949-1571-1-git-send-email-skomatineni@nvidia.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 21 Aug 2020 09:39:31 +0200
-Message-ID: <CAPDyKFre3Rpfd-XW=kMzuKJAfUcr4v-vEj9KVkPyAvkbTdRuGg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/6] Fix timeout clock used by hardware data timeout
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     Adrian Hunter <adrian.hunter@intel.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "# 4.0+" <stable@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20200817031249.36795-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 6 Aug 2020 at 02:32, Sowjanya Komatineni <skomatineni@nvidia.com> wrote:
->
-> Tegra210/Tegra186/Tegra194 has incorrectly enabled
-> SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK from the beginning of their support.
->
-> Tegra210 and later SDMMC hardware default uses sdmmc_legacy_tm (TMCLK)
-> all the time for hardware data timeout instead of SDCLK and this TMCLK
-> need to be kept enabled by Tegra sdmmc driver.
->
-> This series includes patches to fix this for Tegra210/Tegra186/Tegra194.
->
-> These patches need to be manually backported for 4.9, 4.14 and 4.19.
->
-> Will send patches to backport separately once these patches are ack'd.
->
-> Delta between patch versions:
-> [v3]:   Same as v2 with fixes tag
->
-> [v2]:   Includes minor fix
->         - Patch-0006: parentheses around operand of '!'
->
-> Sowjanya Komatineni (6):
->   sdhci: tegra: Remove SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK for Tegra210
->   sdhci: tegra: Remove SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK for Tegra186
->   arm64: tegra: Add missing timeout clock to Tegra210 SDMMC
->   arm64: tegra: Add missing timeout clock to Tegra186 SDMMC nodes
->   arm64: tegra: Add missing timeout clock to Tegra194 SDMMC nodes
->   sdhci: tegra: Add missing TMCLK for data timeout
->
->  arch/arm64/boot/dts/nvidia/tegra186.dtsi | 20 +++++++++------
->  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 15 ++++++-----
->  arch/arm64/boot/dts/nvidia/tegra210.dtsi | 20 +++++++++------
->  drivers/mmc/host/sdhci-tegra.c           | 43 ++++++++++++++++++++++++++++++--
->  4 files changed, 74 insertions(+), 24 deletions(-)
->
-> --
-> 2.7.4
->
+Hi Kishon, Vinod,
 
-This looks good to me.
+Gentle reminder!, kindly can you please merge this series of patches, as 
+those patches got Reviewed-By Philipp Zabel and Rob Herring, Thanks!
 
-If it helps, I can also pick the arm64 patches for my fixes branch,
-but I need an ack from Thierry/Jon to do that.
+Please do the needful.
 
-Kind regards
-Uffe
+Regards
+Vadivel
+
+On 17/8/2020 11:12 am, Ramuthevar,Vadivel MuruganX wrote:
+> The USB PHY provides the optimized for low power dissipation while active, idle, or on standby.
+> Requires minimal external components, a single resistor, for best operation.
+> Supports 10/5-Gbps high-speed data transmission rates through 3-m USB 3.x cable
+> ---
+> v8:
+>    - Rebase to V5.9-rc1
