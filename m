@@ -2,72 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B24CF24D5CC
-	for <lists+devicetree@lfdr.de>; Fri, 21 Aug 2020 15:07:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F54B24D60D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Aug 2020 15:21:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727850AbgHUNHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Aug 2020 09:07:47 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:36227 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726975AbgHUNHq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Aug 2020 09:07:46 -0400
-Received: by mail-oi1-f194.google.com with SMTP id l204so1448802oib.3;
-        Fri, 21 Aug 2020 06:07:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YzKd0UZ9F2/mk3D23hrvAicDaWPFtbfK/0mNbmP9U+0=;
-        b=E5277tRuoX9hAf8pob3VeHPWiQvgWnxCXdJL5AIYNESqHc4dkJccx7AgAdPD4ocXzW
-         RN5uGHABMbvG2u+VwzUM4eJKjWadYEpkmNqAGUWKp99YGevj5XlHuogdKU72ddqwqmlE
-         dazav9/hDsvZT9EgN/j14DaImW71mYSJtbvzey6yC/+mBMNp0Ye5efsWILgVEB1LaSMo
-         UUzPK455QwmuV9X8UQAE69hLC1VitR9nSOBvl2IugRDdfE+QrK8CbvOj7Je2bBO90qOO
-         m/q7TYZFcWGrEPHnT32sRNnVJDy9K6AvNNh73nb73EfwreqKb3UqdqCclh6PETArJJRh
-         jjbw==
-X-Gm-Message-State: AOAM533LCyeBQY8WkYJT28adqur5txUSi5BUk7HBjciiUV7pqKR7TloR
-        lFqGp7nescdG+B/uYyG2celUBdusjFmx78FlgNQ=
-X-Google-Smtp-Source: ABdhPJxlsf7XMYNRt7xfUACTd/ytge4ufWIvywA38RNX061Tl56msuHCXbpd+mz/3Yi0/VlhtU8eWctC6R/t7S/R+/8=
-X-Received: by 2002:aca:4b54:: with SMTP id y81mr1667023oia.54.1598015265301;
- Fri, 21 Aug 2020 06:07:45 -0700 (PDT)
+        id S1727843AbgHUNVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Aug 2020 09:21:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33734 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726975AbgHUNVJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Aug 2020 09:21:09 -0400
+Received: from mail.kmu-office.ch (mail.kmu-office.ch [IPv6:2a02:418:6a02::a2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A0CBC061573;
+        Fri, 21 Aug 2020 06:21:09 -0700 (PDT)
+Received: from webmail.kmu-office.ch (unknown [IPv6:2a02:418:6a02::a3])
+        by mail.kmu-office.ch (Postfix) with ESMTPSA id 449775C0160;
+        Fri, 21 Aug 2020 15:21:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
+        t=1598016060;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=jAmn351OrHHZYEgU6zTRjzq0M49ckKbBSek16/Foebc=;
+        b=mKcMiFnbPzsC8l9AFLdkncUV9EmSxcMITYQK9r8Mbook20kfNTEZhAmXrE/rB2GmTuYNog
+        4opHaOqUBdcKd5HT9d65OES7IknI6F77qRH604l5v04B6LM8tDr9Jedh5GgCk7i1F6n9Mn
+        eXKlbEnYBy2ozI6ebEvEx28pmLwTem4=
 MIME-Version: 1.0
-References: <20200816193316.7641-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20200816193316.7641-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20200816193316.7641-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 21 Aug 2020 15:07:34 +0200
-Message-ID: <CAMuHMdVT_rO=83SB7c4BP8-VoFwryTUj8Y7MEJv3iQrjsbYa8Q@mail.gmail.com>
-Subject: Re: [PATCH 2/3] ARM: dts: r8a7742-iwg21m: Add RTC support
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 21 Aug 2020 15:20:59 +0200
+From:   Stefan Agner <stefan@agner.ch>
+To:     Chris Healy <cphealy@gmail.com>
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        robh+dt@kernel.org, andrew.smirnov@gmail.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, festevam@gmail.com,
+        stable@vger.kernel.org
+Subject: Re: [PATCH v2] ARM: dts: vfxxx: Add syscon compatible with ocotp
+In-Reply-To: <20200820041055.75848-1-cphealy@gmail.com>
+References: <20200820041055.75848-1-cphealy@gmail.com>
+User-Agent: Roundcube Webmail/1.4.1
+Message-ID: <1bf1c9664d8c376c87dc55aeb27da6e4@agner.ch>
+X-Sender: stefan@agner.ch
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 16, 2020 at 9:33 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Enable BQ32000 RTC which is connected to I2C0 on the iWave RainboW-G21M-q7
-> SOM.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
+On 2020-08-20 06:10, Chris Healy wrote:
+> From: Chris Healy <cphealy@gmail.com>
+> 
+> Add syscon compatibility with Vybrid ocotp node. This is required to
+> access the UID.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.10.
+Hm, it seems today the SoC driver uses the specific compatible. It also
+should expose the UID as soc_id, see drivers/soc/imx/soc-imx.c.
 
-Gr{oetje,eeting}s,
+Maybe it does make sense exposing it as syscon, but then we should
+probably also adjust
+Documentation/devicetree/bindings/nvmem/vf610-ocotp.txt.
 
-                        Geert
+--
+Stefan
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> 
+> Fixes: fa8d20c8dbb77 ("ARM: dts: vfxxx: Add node corresponding to OCOTP")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Chris Healy <cphealy@gmail.com>
+> ---
+> Changes in v2:
+>  - Add Fixes line to commit message
+> 
+>  arch/arm/boot/dts/vfxxx.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/vfxxx.dtsi b/arch/arm/boot/dts/vfxxx.dtsi
+> index 0fe03aa0367f..2259d11af721 100644
+> --- a/arch/arm/boot/dts/vfxxx.dtsi
+> +++ b/arch/arm/boot/dts/vfxxx.dtsi
+> @@ -495,7 +495,7 @@ edma1: dma-controller@40098000 {
+>  			};
+>  
+>  			ocotp: ocotp@400a5000 {
+> -				compatible = "fsl,vf610-ocotp";
+> +				compatible = "fsl,vf610-ocotp", "syscon";
+>  				reg = <0x400a5000 0x1000>;
+>  				clocks = <&clks VF610_CLK_OCOTP>;
+>  			};
