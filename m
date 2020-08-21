@@ -2,72 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6100B24CD32
-	for <lists+devicetree@lfdr.de>; Fri, 21 Aug 2020 07:20:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8038224CD77
+	for <lists+devicetree@lfdr.de>; Fri, 21 Aug 2020 07:56:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726243AbgHUFUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Aug 2020 01:20:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52624 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726138AbgHUFUK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 Aug 2020 01:20:10 -0400
-Received: from localhost (unknown [122.171.38.130])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 38F9321744;
-        Fri, 21 Aug 2020 05:20:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597987210;
-        bh=4gfYIWi6sW03nsFwJ/3ZG4YAaY2BUfTA8WrCwf2NovE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qSJQ6YOfhCxCw7L0Tl2f4AJ4V8itLrELnjPgTmvcqkphfJQEzNfXQquW/m30ExQ7y
-         6hPxAQJ/WHbEnDfXpD5dkIUqGI3+lWwA34qpB+Ia6x7yNkxrp8G/dcJQ3p8O5HfMVZ
-         dJEXGObOvybaPdBWbJHyfVwcRPPLHt7efZU/lMGw=
-Date:   Fri, 21 Aug 2020 10:50:06 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Jun Li <jun.li@nxp.com>
-Cc:     "kishon@ti.com" <kishon@ti.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Peter Chen <peter.chen@nxp.com>
+        id S1725268AbgHUF44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Aug 2020 01:56:56 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:48119 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725867AbgHUF4z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Aug 2020 01:56:55 -0400
+X-Greylist: delayed 1195 seconds by postgrey-1.27 at vger.kernel.org; Fri, 21 Aug 2020 01:56:54 EDT
+Received: from [2001:67c:670:100:1d::c5] (helo=pty.hi.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1k8zjU-0004x7-IT; Fri, 21 Aug 2020 07:36:56 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1k8zjT-0003RB-CS; Fri, 21 Aug 2020 07:36:55 +0200
+Date:   Fri, 21 Aug 2020 07:36:55 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Li Jun <jun.li@nxp.com>
+Cc:     kishon@ti.com, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        peter.chen@nxp.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        linux-imx@nxp.com, kernel@pengutronix.de, festevam@gmail.com
 Subject: Re: [PATCH 2/2] phy: freescale: imx8mq-usb: add support for imx8mp
  usb phy
-Message-ID: <20200821052006.GN2639@vkoul-mobl>
+Message-ID: <20200821053655.mpbp4zhbavjpgdwy@pengutronix.de>
 References: <1591621893-22363-1-git-send-email-jun.li@nxp.com>
  <1591621893-22363-2-git-send-email-jun.li@nxp.com>
- <VE1PR04MB6528E11B7728E167A7A4A878895E0@VE1PR04MB6528.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <VE1PR04MB6528E11B7728E167A7A4A878895E0@VE1PR04MB6528.eurprd04.prod.outlook.com>
+In-Reply-To: <1591621893-22363-2-git-send-email-jun.li@nxp.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 07:35:05 up 279 days, 20:53, 257 users,  load average: 0.03, 0.06,
+ 0.04
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16-08-20, 03:26, Jun Li wrote:
-> +Vinod
+Hi,
 
-> > -static const struct of_device_id imx8mq_usb_phy_of_match[] = {
-> > -	{.compatible = "fsl,imx8mq-usb-phy",},
-> > -	{ },
-> > -};
-> > -MODULE_DEVICE_TABLE(of, imx8mq_usb_phy_of_match);
-> > -
-> >  static struct platform_driver imx8mq_usb_phy_driver = {
-> >  	.probe	= imx8mq_usb_phy_probe,
-> >  	.driver = {
-> > --
-> > 2.7.4
-> 
-> A gentle ping...
+On 20-06-08 21:11, Li Jun wrote:
 
-Sorry I dont have this in my inbox, can you please rebase and resend
+...
 
--- 
-~Vinod
+> +static int imx8mp_usb_phy_init(struct phy *phy)
+> +{
+> +	struct imx8mq_usb_phy *imx_phy = phy_get_drvdata(phy);
+> +	u32 value;
+> +
+> +	/* USB3.0 PHY signal fsel for 24M ref */
+> +	value = readl(imx_phy->base + PHY_CTRL0);
+> +	value &= ~PHY_CTRL0_FSEL_MASK;
+> +	value |= PHY_CTRL0_FSEL_24M;
+> +	writel(value, imx_phy->base + PHY_CTRL0);
+> +
+> +	/* Disable alt_clk_en and use internal MPLL clocks */
+> +	value = readl(imx_phy->base + PHY_CTRL6);
+> +	value &= ~(PHY_CTRL6_ALT_CLK_SEL | PHY_CTRL6_ALT_CLK_EN);
+> +	writel(value, imx_phy->base + PHY_CTRL6);
+> +
+> +	value = readl(imx_phy->base + PHY_CTRL1);
+> +	value &= ~(PHY_CTRL1_VDATSRCENB0 | PHY_CTRL1_VDATDETENB0);
+> +	value |= PHY_CTRL1_RESET | PHY_CTRL1_ATERESET;
+> +	writel(value, imx_phy->base + PHY_CTRL1);
+> +
+> +	value = readl(imx_phy->base + PHY_CTRL0);
+> +	value |= PHY_CTRL0_REF_SSP_EN;
+> +	writel(value, imx_phy->base + PHY_CTRL0);
+> +
+> +	value = readl(imx_phy->base + PHY_CTRL2);
+> +	value |= PHY_CTRL2_TXENABLEN0 | PHY_CTRL2_OTG_DISABLE;
+> +	writel(value, imx_phy->base + PHY_CTRL2);
+> +
+> +	udelay(10);
+
+Nit:
+Do we need the active wait here or is it also possible to use
+usleep_range() here?
+
+> +
+> +	value = readl(imx_phy->base + PHY_CTRL1);
+> +	value &= ~(PHY_CTRL1_RESET | PHY_CTRL1_ATERESET);
+> +	writel(value, imx_phy->base + PHY_CTRL1);
+> +
+> +	return 0;
+> +}
