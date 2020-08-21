@@ -2,173 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9207D24D425
-	for <lists+devicetree@lfdr.de>; Fri, 21 Aug 2020 13:38:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65C9C24D46E
+	for <lists+devicetree@lfdr.de>; Fri, 21 Aug 2020 13:48:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727964AbgHULiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Aug 2020 07:38:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45892 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728284AbgHULiD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Aug 2020 07:38:03 -0400
-Received: from mail-yb1-xb44.google.com (mail-yb1-xb44.google.com [IPv6:2607:f8b0:4864:20::b44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FA2CC061385;
-        Fri, 21 Aug 2020 04:38:03 -0700 (PDT)
-Received: by mail-yb1-xb44.google.com with SMTP id p191so887278ybg.0;
-        Fri, 21 Aug 2020 04:38:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OkIK/dZ2Mgt//fkmDHOJQ3SHXplluJWee1ZVxzLQD9E=;
-        b=cT/984PPUunLzXowyppHLeT4YU0JjTauMQNZzsugiYeMiLoHw6rZKaH3TbbmKAdJi1
-         ej91Eaq+KcwmvIFhjjFj4SMKoQNE1s0d5eZVF+EoXpUkm+AU+Tjk2zm8d2mmDk3jjAbm
-         fI0wgP8Q4lZBtFhs3lQz0d6WMyvbPoNnQ/n2R1NSxETDX2z2/cxZCmfIgzRxk9PCeAmI
-         i1HeRmJTKG6H9eYCW9y4/9rEuEgOFFjH7CvVofgGcshy6szHurdQ9hn046p/J+ROD9y2
-         A5LBZfLFYhFNxGcYg7N/FTNTW7y8D29myCFN+LU3tD28MPiKKqE9zp8DI26V4kqeO1w+
-         MCDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OkIK/dZ2Mgt//fkmDHOJQ3SHXplluJWee1ZVxzLQD9E=;
-        b=HuBJEzO4rqQaXfLD2WcTX4fibp8j3/W4XvZGQPgPs9U5gj5PfLGZnSG4Z7rlcSANOW
-         RlUIL6B+Ez+J193LSmsGiBcHLulDUSee7iUbf00lD6eL0dYHxKhMh4SIVGG2ZoX0/3PD
-         43LCyl+fjK+g6xE2UTpILvtQzEAgPqXI47HhuEdvoRL7yWjqdXzd4vBidsjB/PiT+6C4
-         YC61T9SM85lO+sXobjV+4jRXS5mU/y1HOKpg4Mj5pYsFSkhD5RApulbrNFjwVJJWZLkY
-         vleFHvYcoUlPEMAH/ZYvVcb6nS8OdekKWMe2Ard977B6ONX9wbwEs6T68lxcw3XSUJoH
-         eE9g==
-X-Gm-Message-State: AOAM532YDb0DmrLRDUKTFjASCm2g+fxl+qDAUm865GwvSFRFxl4wWbOG
-        xBwGXDbUCDWQmKC8MWw+j10GBMSdP5M0WLlTYaY=
-X-Google-Smtp-Source: ABdhPJzOUQ7z+wYHExuvCZTZfc4BvrCPM5gPv8JOYJe952Ot0fbk9SzYIqjPi/4vrcYDl96EqC1S8XBMBg26dzJtdNw=
-X-Received: by 2002:a25:2f4d:: with SMTP id v74mr2868323ybv.401.1598009881871;
- Fri, 21 Aug 2020 04:38:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200818122012.37956-1-jacopo+renesas@jmondi.org>
- <20200818122012.37956-4-jacopo+renesas@jmondi.org> <20200819135423.GL6049@pendragon.ideasonboard.com>
-In-Reply-To: <20200819135423.GL6049@pendragon.ideasonboard.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 21 Aug 2020 12:37:35 +0100
-Message-ID: <CA+V-a8sxDJXrGM-MYEwNS=D-eyA6oTRvDU3YT7Uu5Ph5kFh15w@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: media: ov772x: Document endpoint props
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-media <linux-media@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1728449AbgHULsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Aug 2020 07:48:05 -0400
+Received: from mga02.intel.com ([134.134.136.20]:14287 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728550AbgHULju (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Aug 2020 07:39:50 -0400
+IronPort-SDR: Y5K4zKlOqOXhkIeHxmflq9y3e5V83CXMLAo/MW/tfKfYTOU+bl4WBf53W+3yEKl3KDe7nC19tG
+ LfiJ5wHc59Cw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9719"; a="143305569"
+X-IronPort-AV: E=Sophos;i="5.76,335,1592895600"; 
+   d="scan'208";a="143305569"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2020 04:39:39 -0700
+IronPort-SDR: 8Sf87sfsDKabPw+QBy4GE2Sn2+XhoMzh7YDQ/CEJfaG8d3zBCBccMrQcd9YCuyf3tak5HIeRjv
+ BROt9xdMvj8A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,335,1592895600"; 
+   d="scan'208";a="327740407"
+Received: from wwanmoha-ilbpg2.png.intel.com ([10.88.227.42])
+  by orsmga008.jf.intel.com with ESMTP; 21 Aug 2020 04:39:37 -0700
+From:   Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+To:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
+        andriy.shevchenko@intel.com, eswara.kota@linux.intel.com,
+        vadivel.muruganx.ramuthevar@linux.intel.com,
+        lakshmi.bai.raja.subramanian@intel.com
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v7 0/3] phy: intel: Add Keem Bay eMMC PHY support
+Date:   Fri, 21 Aug 2020 19:37:44 +0800
+Message-Id: <20200821113747.2912-1-wan.ahmad.zainie.wan.mohamad@intel.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent and Jacopo
+Hi.
 
-On Wed, Aug 19, 2020 at 2:54 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Jacopo,
->
-> Thank you for the patch.
->
-> On Tue, Aug 18, 2020 at 02:20:12PM +0200, Jacopo Mondi wrote:
-> > Document endpoint properties for the parallel bus type and
-> > add them to the example.
-> >
-> > Specify a few constraints:
-> > - If the bus type is BT.656 no hsync or vsycn polarities can be
-> >   specified.
-> > - If the bus width is 10 bits, not data-shift can be applied.
-> >
-> > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> > ---
-> >  .../devicetree/bindings/media/i2c/ov772x.yaml | 43 +++++++++++++++++++
-> >  1 file changed, 43 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/ov772x.yaml b/Documentation/devicetree/bindings/media/i2c/ov772x.yaml
-> > index 75dad40f70cc..3fad5dffd19a 100644
-> > --- a/Documentation/devicetree/bindings/media/i2c/ov772x.yaml
-> > +++ b/Documentation/devicetree/bindings/media/i2c/ov772x.yaml
-> > @@ -50,9 +50,47 @@ properties:
-> >            bus-type:
-> >              enum: [5, 6]
-> >
-> > +          bus-width:
-> > +            enum: [8, 10]
-> > +            default: 10
-> > +
-> > +          data-shift:
-> > +            enum: [0, 2]
-> > +            default: 0
-> > +
-> > +          hsync-active:
-> > +            enum: [0, 1]
-> > +            default: 1
-> > +
-> > +          vsync-active:
-> > +            enum: [0, 1]
-> > +            default: 1
-> > +
-> > +          pclk-sample:
-> > +            enum: [0, 1]
-> > +            default: 1
-> > +
-> >            remote-endpoint:
-> >              description: A phandle to the bus receiver's endpoint node.
-> >
-> > +        allOf:
-> > +          - if:
-> > +              properties:
-> > +                bus-type:
-> > +                  const: 6
-> > +            then:
-> > +                properties:
-> > +                  hsync-active: false
-> > +                  vsync-active: false
-> > +
-> > +          - if:
-> > +              properties:
-> > +                bus-width:
-> > +                  const: 10
-> > +            then:
-> > +                properties:
-> > +                  data-shift:
-> > +                    const: 0
->
-> I'd add a blank line here.
->
-> >          required:
-> >            - bus-type
->
-> Should some of the properties be required ? Possibly conditioned on
-> bus-type ?
->
-Agreed, would be interesting to know how this can be handled (split
-out bus-type and add required properties for each) ?
+The first patch is new and added to rename rename
+phy-intel-{combo,emmc}.c to phy-intel-lgm-{combo,emmc}.c..
 
-Cheers,
-Prabhakar
+The second patch is to document DT bindings for Keem Bay eMMC PHY.
 
-> >
-> > @@ -82,6 +120,11 @@ examples:
-> >              port {
-> >                  ov772x_0: endpoint {
-> >                      bus-type = <5>;
-> > +                    vsync-active = <0>;
-> > +                    hsync-active = <0>;
-> > +                    pclk-sample = <0>;
-> > +                    bus-width = <8>;
-> > +                    data-shift = <0>;
-> >                      remote-endpoint = <&vcap1_in0>;
-> >                  };
-> >              };
->
-> --
-> Regards,
->
-> Laurent Pinchart
+The the third is the driver file, loosely based on phy-rockchip-emmc.c
+and phy-intel-emmc.c. The latter is not being reused as there are
+quite a number of differences i.e. registers offset, supported clock
+rates, bitfield to set.
+
+The patch was tested with Keem Bay evaluation module board.
+
+Thank you.
+
+Best regards,
+Zainie
+
+Changes since v6:
+- Add new patch to rename phy-intel-{combo,emmc}.c to
+  phy-intel-lgm-{combo,emmc}.c.
+- Add Reviewed-by: Rob Herring <robh@kernel.org> tag to 2nd patch.
+- In 3rd patch,
+  - add and use generic helper to update register bits,
+  - end module name with .ko in Kconfig help.
+
+Changes since resend v5:
+- In keembay_emmc_phy_power(), remove redundant return ret;.
+
+Resend v5:
+- Include missing changes done for phy-keembay-emmc.c (See Changes since
+  v3)
+
+Changes since v4:
+- In Kconfig file, add depends on ARM64 || COMPILE_TEST and
+  depends on OF && HAS_IOMEM.
+- In Kconfig file, reword the help section to be more verbose.
+
+Changes since v3:
+- Exit keembay_emmc_phy_power() with return ret;.
+- In keembay_emmc_phy_init(), use PTR_ERR_OR_ZERO(...).
+- In keembay_emmc_phy_probe(), devm_regmap_init_mmio(...) in single
+  line.
+
+Changes since v2:
+- Modify DT example to use single cell for address and size.
+
+Changes since v1:
+- Rework phy-keembay-emmc.c to make it similar to phy-intel-emmc.c.
+- Use regmap_mmio, and remove reference to intel,syscon.
+- Use node name phy@....
+- Update license i.e. use dual license.
+
+
+Wan Ahmad Zainie (3):
+  phy: intel: Rename phy-intel to phy-intel-lgm
+  dt-bindings: phy: intel: Add Keem Bay eMMC PHY bindings
+  phy: intel: Add Keem Bay eMMC PHY support
+
+ .../bindings/phy/intel,keembay-emmc-phy.yaml  |  44 +++
+ drivers/phy/intel/Kconfig                     |  22 +-
+ drivers/phy/intel/Makefile                    |   5 +-
+ drivers/phy/intel/phy-intel-keembay-emmc.c    | 310 ++++++++++++++++++
+ ...hy-intel-combo.c => phy-intel-lgm-combo.c} |   0
+ ...{phy-intel-emmc.c => phy-intel-lgm-emmc.c} |   0
+ 6 files changed, 374 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/intel,keembay-emmc-phy.yaml
+ create mode 100644 drivers/phy/intel/phy-intel-keembay-emmc.c
+ rename drivers/phy/intel/{phy-intel-combo.c => phy-intel-lgm-combo.c} (100%)
+ rename drivers/phy/intel/{phy-intel-emmc.c => phy-intel-lgm-emmc.c} (100%)
+
+-- 
+2.17.1
+
