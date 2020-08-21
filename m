@@ -2,131 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB97D24C8C8
-	for <lists+devicetree@lfdr.de>; Fri, 21 Aug 2020 01:53:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03CD524C998
+	for <lists+devicetree@lfdr.de>; Fri, 21 Aug 2020 03:39:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726738AbgHTXxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Aug 2020 19:53:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33172 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726347AbgHTXxp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Aug 2020 19:53:45 -0400
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3586422B3F;
-        Thu, 20 Aug 2020 23:48:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597967322;
-        bh=0+j/6QA0LygchhDILln1yfm2HCDRr0a88PJAPwRl+xo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=N+Qu4TRQ6I7L3UpaNQexsvv1BxlVF9FL/w9CTaKc1TkL+sYA14R3lE5YU2/F2TOXW
-         o63nm/yHlj80bBCLzUTPL3kFiAYQzbIWHBu9QKWQHoHazVpN1wNYJuhu+V3kE5qI4i
-         0mkvVoGLDRYSC88tpmH6zvH7FChQIVsjQ5lG8WIE=
-Received: by mail-ej1-f41.google.com with SMTP id o18so246933eje.7;
-        Thu, 20 Aug 2020 16:48:42 -0700 (PDT)
-X-Gm-Message-State: AOAM533wInGiJTAbUKr3XHiGk8aQb0nnbpsyRkHpmgXIAe3p5GmQaA1v
-        l0wgtE0wF214/9R923nqS5g6WPMKupzALVAYtA==
-X-Google-Smtp-Source: ABdhPJxWafAaj3k7lPbaruLTEUXILZXHlJiOWiA943fk40qr+NDtlxb9h2KyFzZEAanAf5GUY6rk5v906+J7wgBQIpo=
-X-Received: by 2002:a17:906:7492:: with SMTP id e18mr193241ejl.375.1597967320752;
- Thu, 20 Aug 2020 16:48:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <1597903458-8055-1-git-send-email-yongqiang.niu@mediatek.com> <1597903458-8055-15-git-send-email-yongqiang.niu@mediatek.com>
-In-Reply-To: <1597903458-8055-15-git-send-email-yongqiang.niu@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Fri, 21 Aug 2020 07:48:28 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_9xdn3VnU3nSBc4dvxcVOG34VSaDwxHga8=29GPW3zFsw@mail.gmail.com>
-Message-ID: <CAAOTY_9xdn3VnU3nSBc4dvxcVOG34VSaDwxHga8=29GPW3zFsw@mail.gmail.com>
-Subject: Re: [PATCH v1 14/21] drm/mediatek: add bypass shadow register
- function call for ddp component
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1725859AbgHUBjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Aug 2020 21:39:53 -0400
+Received: from mail-am6eur05on2062.outbound.protection.outlook.com ([40.107.22.62]:44672
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726819AbgHUBjs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Aug 2020 21:39:48 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UCrg/RBoBu+fr7ETMOLkJcDRag8BXsiYEcIxIBog7JZEjAzaElqrPGiVjw6owu70yqEHDWbM+jvyXK/CF4QEBaoPkZ2Nigq0LW9tr/p2WG5tk8TI+Qc1/A9tega0rZclU+//ndjF9HBjSwmB98+29NrpoGzlrbDZski6bkM8gMC+3PWTiMmHFPWvA3ykFYCUfTNCKmGuPCpOhRNpGcvCT4J/Fs2lRhn2ZTkal1siSdyOHnq8l/FIOC/EEE6QbID0+Z90OXjT4JIwt1V3q5hVkeFQ/E/6MA1uzReDLOdlHvtvrTvUDtp5p9aW2qH87ByvoSa8zdTLglQ8pQigP315NA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2E26P83qh6qUHmDG++MBPWcTeXfxsHO9ucmb063ch6I=;
+ b=kCzzoQzLrlqHSXYr//q2JDVcBvkzzvcftXvmwcErI2gYXVpR3HKHaJN6evr5zZCING1MgBbZhijgrr1eBJcNLY9KPme7Bqbu6iEm6BH4+8/4eOTwjSqyOT8qUUS3vLj+t1gawRJS65KrPGCyGZMWrAB9nFnrb+Njs+aFMfUgwq1cw2UpC1MVZaPI2XLz1v7bylBgpYO38/JUGzaaOaKD0qDn198u2hBwyNd4QV11UiBh9vwCpwB75AHUbq2GXZjC/mSpLHLTpoNSIRIbHDoJCp5JvwhC1fFi55qN2wH98X7rZZvuKhE92to7eit7Oxx059y96aDSAYnqsvepRHHBSw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2E26P83qh6qUHmDG++MBPWcTeXfxsHO9ucmb063ch6I=;
+ b=P3IYe87qOlx+gsfZttnqsbJ8QliWEmALTb8OAQlvvDNICuG43UphQ+yjYpcbGUu4JDnG/SO4+MXyW8IxxqAqtlE/9qht562lN2F3uIPJA8A8N2o3SHLi3XQW3N/bisXptAfWEDUeqnDBZs4tQCKBw6IdkOYFQgRA6KcdBF8mL1o=
+Received: from AM7PR04MB7157.eurprd04.prod.outlook.com (2603:10a6:20b:118::20)
+ by AM6PR04MB4856.eurprd04.prod.outlook.com (2603:10a6:20b:b::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.25; Fri, 21 Aug
+ 2020 01:39:44 +0000
+Received: from AM7PR04MB7157.eurprd04.prod.outlook.com
+ ([fe80::1023:be8d:40c:efe1]) by AM7PR04MB7157.eurprd04.prod.outlook.com
+ ([fe80::1023:be8d:40c:efe1%3]) with mapi id 15.20.3283.028; Fri, 21 Aug 2020
+ 01:39:44 +0000
+From:   Peter Chen <peter.chen@nxp.com>
+To:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
+Subject: Re: [PATCH v3 3/4] arm64: dts: imx8mm-evk: add two parameters for
+ samsung picophy tuning
+Thread-Topic: [PATCH v3 3/4] arm64: dts: imx8mm-evk: add two parameters for
+ samsung picophy tuning
+Thread-Index: AQHWYYCFfcI/EL75wkqE5gg4u6HvralB9JWA
+Date:   Fri, 21 Aug 2020 01:39:44 +0000
+Message-ID: <20200821013839.GA24960@b29397-desktop>
+References: <20200724060532.3878-1-peter.chen@nxp.com>
+ <20200724060532.3878-3-peter.chen@nxp.com>
+In-Reply-To: <20200724060532.3878-3-peter.chen@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.67]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 7a18fd7c-86c7-41cd-c43c-08d8457314b2
+x-ms-traffictypediagnostic: AM6PR04MB4856:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM6PR04MB48563F778474358ABB14B99F8B5B0@AM6PR04MB4856.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: EAkR3N4dGvJd19kf+QkkJLaN/Kgmf9/rPXeHWXi3PA+4NzQl6X0xdFT2mw5EO5fDJiHX99CZma033GXdo/pCFgCibkTtoDyh/13xaXfhFAG2CFqfmkqPgP6Lhg85E2VFEssX781H+UojXF7A+mL6DqtSu3rG4UPorkMbZirdzIy+tMir7hREuu9OkEc/LXuvg8xg4mIRoj2WFhKVuMcTp5Z3qGuc9qz00B5KVKZbgJ9pW1ePtiPiFZXeihiZaOx3UoRdjEsvI6yIHk1jTJHnde41MDmRGhjEG73qeu32STI4oI1syDpObBEctg79229WffqqEEE+fj3qNxD9Zw+rQhb0MZTeyxByvD1r4DgMlTgqy+HwpwquYVa3t8CzNVqW
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7157.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(4636009)(39860400002)(376002)(346002)(396003)(366004)(136003)(71200400001)(64756008)(66556008)(66446008)(66946007)(66476007)(53546011)(8676002)(478600001)(4326008)(91956017)(6486002)(76116006)(8936002)(33716001)(9686003)(33656002)(6512007)(6506007)(86362001)(1076003)(44832011)(316002)(26005)(4744005)(110136005)(2906002)(54906003)(186003)(5660300002)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: cPMUF5UBsdLbPNe5g1zvVhMSq+2tlcD9mY+do06GZ9G8eybqWoBUA+mEYMAWOdEVksPkYrw9rffHDjAKHU07q9a8RI5Y+KOyTpZbQMif9Gq5uQkFEkKGRSx6gGxw3jPVWjNVcV69jC5H/y0R5OhBL6Lz44NcDL5NQZvxYSlc4akkRGp0GMXwkR+nAJ8M4YYPA6/i5OQedSuUtaDuf+oqM5k7C0xYR8Ji2yIVS3OI78pTus9PWt3a52MLQfciIIYohNqpwfF082DZ+/hV4z43yoBkp222BqM4ubrKZ7Osj2IZFH/QYakzsQkgVrumDlTXsZCy4TXUSYfgO+JJz90X3MM18H8yglST31mx9o+J2zPnaaLbUyjukRPfJ1U5Xug6fp0F2UQxLp6DmGMe5IPbRpFXtrT6XrQnEqBZomr7V3i3+5wpenKwmRbRsY3uc+c5pkBycOOEqcnnDjz9au5D08ulqieTePARzp0grF6MpQjNtrAXbHm+kD92eajVXp/CMAJTa+jq+Pk4yrJnps1RKfgRtLZ1mi16lBhi3/INZfsLQN/LVvhjgTtBWf/U8lqwp7RepgkXYZ58J1lI2kffUd/O9Uu4DIe4TfiLQ49n0m50f0YVpV9Fbo6b7Epd7cJzYWKN7E+apfcAFG4fg58HUg==
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <C7FAC2D6C90BAE468A8E5158C48F9009@eurprd04.prod.outlook.com>
 Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7157.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7a18fd7c-86c7-41cd-c43c-08d8457314b2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Aug 2020 01:39:44.2655
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: jITiqyNNN3Jz7EmhtRRNDC/ptoCcCHPbxZiV3ap1GYk0ruPbdcFKhbpizCdGPnp7ZtZTZ4QuMpemRQ5JU2lyow==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB4856
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yongqiang:
-
-Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2020=E5=B9=B48=E6=9C=
-=8820=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=882:18=E5=AF=AB=E9=81=93=
-=EF=BC=9A
->
-> the shadow register for mt8192 ddp component is enable,
-> we need disable it before enable ddp component
-
-MT2701 has shadow register and use it. Why MT8192 have shadow register
-but disable it? I would like to use shadow register like MT2701.
-
-Regards,
-Chun-Kuang.
-
->
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+On 20-07-24 14:05:31, Peter Chen wrote:
+> With these two parameters tuning, it can pass USB eye diagram at evk boar=
+d.
+>=20
+> Reviewed-by: Jun Li <jun.li@nxp.com>
+> Signed-off-by: Peter Chen <peter.chen@nxp.com>
 > ---
->  drivers/gpu/drm/mediatek/mtk_drm_crtc.c     | 3 +++
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h | 7 +++++++
->  2 files changed, 10 insertions(+)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c b/drivers/gpu/drm/me=
-diatek/mtk_drm_crtc.c
-> index fe46c4b..16e9b88 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
-> @@ -299,6 +299,9 @@ static int mtk_crtc_ddp_hw_init(struct mtk_drm_crtc *=
-mtk_crtc)
->                 goto err_mutex_unprepare;
->         }
->
-> +       for (i =3D 0; i < mtk_crtc->ddp_comp_nr; i++)
-> +               mtk_ddp_comp_bypass_shadow(mtk_crtc->ddp_comp[i]);
-> +
->         DRM_DEBUG_DRIVER("mediatek_ddp_ddp_path_setup\n");
->         for (i =3D 0; i < mtk_crtc->ddp_comp_nr - 1; i++) {
->                 mtk_mmsys_ddp_connect(mtk_crtc->mmsys_dev,
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h b/drivers/gpu/dr=
-m/mediatek/mtk_drm_ddp_comp.h
-> index ae11b46..1f25705 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
-> @@ -45,6 +45,7 @@ struct mtk_ddp_comp_funcs {
->                        unsigned int bpc, struct cmdq_pkt *cmdq_pkt);
->         void (*start)(struct mtk_ddp_comp *comp);
->         void (*stop)(struct mtk_ddp_comp *comp);
-> +       void (*bypass_shadow)(struct mtk_ddp_comp *comp);
->         void (*enable_vblank)(struct mtk_ddp_comp *comp, struct drm_crtc =
-*crtc);
->         void (*disable_vblank)(struct mtk_ddp_comp *comp);
->         unsigned int (*supported_rotations)(struct mtk_ddp_comp *comp);
-> @@ -169,6 +170,12 @@ static inline void mtk_ddp_ctm_set(struct mtk_ddp_co=
-mp *comp,
->                 comp->funcs->ctm_set(comp, state);
->  }
->
-> +static inline void mtk_ddp_comp_bypass_shadow(struct mtk_ddp_comp *comp)
-> +{
-> +       if (comp->funcs && comp->funcs->bypass_shadow)
-> +               comp->funcs->bypass_shadow(comp);
-> +}
-> +
->  int mtk_ddp_comp_get_id(struct device_node *node,
->                         enum mtk_ddp_comp_type comp_type);
->  int mtk_ddp_comp_init(struct device *dev, struct device_node *comp_node,
-> --
-> 1.8.1.1.dirty
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+> Changes for v3:
+> - Using the new property name
+> Changes for v2
+> - Address Shawn's comment to change subject.
+>=20
+>  arch/arm64/boot/dts/freescale/imx8mm-evk.dts | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts b/arch/arm64/bo=
+ot/dts/freescale/imx8mm-evk.dts
+> index 0f1d7f8aeac4..7c652b898114 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+> @@ -324,6 +324,8 @@
+>  	srp-disable;
+>  	adp-disable;
+>  	usb-role-switch;
+> +	samsung,picophy-pre-emp-curr-control =3D <3>;
+> +	samsung,picophy-dc-vol-level-adjust =3D <7>;
+>  	status =3D "okay";
+> =20
+>  	port {
+> --=20
+
+Hi Shawn,
+
+Rob has already acked the binding-doc changes, would you please queue
+these two dts changes?
+
+--=20
+
+Thanks,
+Peter Chen=
