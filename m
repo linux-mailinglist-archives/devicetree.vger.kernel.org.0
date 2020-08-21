@@ -2,93 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4540024E144
-	for <lists+devicetree@lfdr.de>; Fri, 21 Aug 2020 21:54:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1103424E29E
+	for <lists+devicetree@lfdr.de>; Fri, 21 Aug 2020 23:21:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726805AbgHUTym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Aug 2020 15:54:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38400 "EHLO
+        id S1726495AbgHUVVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Aug 2020 17:21:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726870AbgHUTyf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Aug 2020 15:54:35 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01CADC061573
-        for <devicetree@vger.kernel.org>; Fri, 21 Aug 2020 12:54:35 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id r25so1490926lfe.5
-        for <devicetree@vger.kernel.org>; Fri, 21 Aug 2020 12:54:34 -0700 (PDT)
+        with ESMTP id S1726364AbgHUVVt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Aug 2020 17:21:49 -0400
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60ABAC061573;
+        Fri, 21 Aug 2020 14:21:49 -0700 (PDT)
+Received: by mail-pl1-x644.google.com with SMTP id t11so1447439plr.5;
+        Fri, 21 Aug 2020 14:21:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=lixom-net.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=KJANaxWQksktmcdpt1vpEvTKGf7eyf5hPRoBA+TJZ88=;
-        b=kJrVOdIXLOjbRM1ug3UwwnDKa3IM7/QSTo42xxKuh8+jtUB19alU08stSTGQR5gup3
-         ENyiHOCJo3yp515bEK4VfhDUBSG1L7C3JNxbiaWeJY0CdJBGAA3d7nsvW7Cq03BA5/is
-         qBZ5fyS6KRsAoeskWWRFyCeOhxo/qsmDjzQGkD54exKLZSvg8iZYxpRpFNbo/lB771F9
-         FGB+4wQvRWUnfGBQ9+ajB/YBTEt12oflRPTl8rf5SdXsRcRgompRq7As508+P3Vpll1N
-         BysX0xoshJnX468Ewgl55HUkJuOYt97kkZ5OBvbm4tZo2LgX54L3/XUHT2xBUTnt6zc5
-         3LOQ==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pzPVCiNoxUXnWve1pQAQQPwMv0Z5oM4+Bqr3t8jovHY=;
+        b=Ci/q1REoYfWyUw6ZpJqRjlMhi+lzKepr2JIbhqaL5o8UB2Mxj4bHRZ2G0sgu/fV7d6
+         M0995EDpW5abeDx099ojQ3/p9y47tRYNtLF/tsne43fH8IqKPYeYkyzTES7Go0S+nTaZ
+         anCrFNmNP8fF97M/fZkqfG6i/A7i6LT56LBphwzruIO1wHIMN541FmC6uHcigijtVimd
+         uZYpbKHqFH4QNCZ8dommKNCwsI4L0Fdcb9VB6xyF3vHKHD24N+425maVkP6xYogoKs9O
+         YKCsVPBg0YpN8/HPIF29dv2wfIoaGT6/VksZ32fLgdlpz0G7WjZhk1mihWr0PLDK7o4b
+         fWlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=KJANaxWQksktmcdpt1vpEvTKGf7eyf5hPRoBA+TJZ88=;
-        b=MK/A1v+b17pR0jkA4ilLoIJFP3DIgoM22yhLubffvOHbzj9QdOWg5gIn/alk/DQZjl
-         xSX9iS2cvBZD09MzicyrjLv3zwvfGjtCkD8eg9/+3GwjPB/PM9NfNTLqSNY9Q3g0rTuM
-         uyxlsQQnNMyHaRonITuf9MV0M8bbprBE7OtSZ7hosi37Bishl3OL9LWVPzMSPf3f/wAZ
-         h9w3xODwbdFg+Jy6j1eg8s5VgeXSe05/qWIoIW/rWZjjh4BXXZZGiQ3R5P3L8zYoArPW
-         OUDsjIGHcxn36P6UelVIdYCnhElzV11lzxXfFTm/GRYL5k1FViizs3T7hNE0TlbCPtF0
-         9P0g==
-X-Gm-Message-State: AOAM533jZ3rqIFWVtPc76Iz8qcYeX2zWaSfgUACP0imn5ay+t4vRUU1+
-        NE+si2IO0yL5wYiM8IN8VBkcug==
-X-Google-Smtp-Source: ABdhPJx61phnZE+0v199dWLX3X1fWs9S+cuOGQX5EkGw6DlUw0N2Dl3p+Q1wEGjH0LM9pfkmik+PQA==
-X-Received: by 2002:a05:6512:1048:: with SMTP id c8mr2032156lfb.101.1598039673364;
-        Fri, 21 Aug 2020 12:54:33 -0700 (PDT)
-Received: from localhost (h85-30-9-151.cust.a3fiber.se. [85.30.9.151])
-        by smtp.gmail.com with ESMTPSA id e14sm566846ljl.96.2020.08.21.12.54.32
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pzPVCiNoxUXnWve1pQAQQPwMv0Z5oM4+Bqr3t8jovHY=;
+        b=CYpJsLR966xhbjFZ5lwXTw3ykW19UEoZBTxC/0FeTSBSVZjLvTNclcAVJm9cgcCcL0
+         neTkEWwTODs3QEx2p6qSjV54skcpU65Azijnj9Frmsy+D5J0ISMB/vxgjmFniAoG9ibH
+         o1umLgZVun/OaoFbcegACyIHrjUadar+6QqJ8BmWcmkWG6YWROVQvDPR238arWs3HYA9
+         PtfBeq0GOcpvROS0oIGRSfmN3gwJ4VmXZrNM4QsjAppyRvoeC5fM/g84WZ1Ud7BQA7F0
+         UoN723eKgtqkMH36cuzrf1ePFDMocv9IikpGWEdSwK+6QzabrOaneYmEEBW25u4SctLP
+         o2sw==
+X-Gm-Message-State: AOAM532ffco1DDzcfYBS5oNQecKLrCqn/eT9dUbYWCJGQNUSUrM+eFM7
+        rPsqEzx/1++DgaSqMXftWAA=
+X-Google-Smtp-Source: ABdhPJwfsavDvEQmi7fVsJZkBWfl2Pp41P3rQqu5ti0QXM3W2MUqKWAvU6kzN3gnvSdi2VOIBOfGcA==
+X-Received: by 2002:a17:90a:6e0c:: with SMTP id b12mr3938034pjk.141.1598044908845;
+        Fri, 21 Aug 2020 14:21:48 -0700 (PDT)
+Received: from localhost.localdomain.com ([2605:e000:160b:911f:722f:a74:437d:fd3c])
+        by smtp.gmail.com with ESMTPSA id d81sm3488611pfd.174.2020.08.21.14.21.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Aug 2020 12:54:32 -0700 (PDT)
-Date:   Fri, 21 Aug 2020 11:46:03 -0700
-From:   Olof Johansson <olof@lixom.net>
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     soc@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux@armlinux.org.uk, w@1wt.eu
-Subject: Re: [RFC PATCH 2/3] ARM: mstar: msc313-intc interrupt controller
- driver
-Message-ID: <20200821184603.GA3407@lx2k>
-References: <20200730130044.2037509-1-daniel@0x0f.com>
- <20200730130044.2037509-3-daniel@0x0f.com>
+        Fri, 21 Aug 2020 14:21:47 -0700 (PDT)
+From:   Chris Healy <cphealy@gmail.com>
+X-Google-Original-From: Chris Healy <cphealy@gmail.com
+To:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, andrew.smirnov@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, stefan@agner.ch,
+        linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org,
+        festevam@gmail.com
+Cc:     Chris Healy <cphealy@gmail.com>
+Subject: [PATCH v3 1/2] dt-bindings: nvmem: Add syscon to Vybrid OCOTP driver
+Date:   Fri, 21 Aug 2020 14:21:01 -0700
+Message-Id: <20200821212102.137991-1-cphealy@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200730130044.2037509-3-daniel@0x0f.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Chris Healy <cphealy@gmail.com>
 
-On Thu, Jul 30, 2020 at 10:00:43PM +0900, Daniel Palmer wrote:
-> Add a driver for the two peripheral interrupt controllers
-> in MStar MSC313 and other MStar/Sigmastar Armv7 SoCs.
-> 
-> Supports both the "IRQ" and "FIQ" controllers that
-> forward interrupts from the various IP blocks inside the
-> SoC to the ARM GIC.
-> 
-> They are basically the same thing except for one difference:
-> The FIQ controller needs to clear the interrupt and the IRQ
-> controller doesn't.
+Add syscon compatibility with Vybrid OCOTP driver binding. This is
+required to access the UID.
 
-Sorry for the late response, going through patches we might have missed or that
-need replies now...
+Fixes: fa8d20c8dbb77 ("ARM: dts: vfxxx: Add node corresponding to OCOTP")
+Cc: stable@vger.kernel.org
+Signed-off-by: Chris Healy <cphealy@gmail.com>
+---
+ Documentation/devicetree/bindings/nvmem/vf610-ocotp.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-This needs to go to the irqchip maintainers for review. If you get their
-acked/reviewed-by, we can merge it through our tree if that is easier. But they
-need to sign off on it. Feel free to cc soc@kernel.org on them though, and we
-always merge the dts changes through our tree.
-
-
--Olof
+diff --git a/Documentation/devicetree/bindings/nvmem/vf610-ocotp.txt b/Documentation/devicetree/bindings/nvmem/vf610-ocotp.txt
+index 56ed481c3e26..5db39f399568 100644
+--- a/Documentation/devicetree/bindings/nvmem/vf610-ocotp.txt
++++ b/Documentation/devicetree/bindings/nvmem/vf610-ocotp.txt
+@@ -11,7 +11,7 @@ Required Properties:
+ Example for Vybrid VF5xx/VF6xx:
+ 
+ 	ocotp: ocotp@400a5000 {
+-		compatible = "fsl,vf610-ocotp";
++		compatible = "fsl,vf610-ocotp", "syscon";
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		reg = <0x400a5000 0xCF0>;
+-- 
+2.26.2
 
