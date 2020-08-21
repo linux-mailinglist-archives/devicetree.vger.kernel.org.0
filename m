@@ -2,107 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E64FC24D2B9
-	for <lists+devicetree@lfdr.de>; Fri, 21 Aug 2020 12:38:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A04A24D305
+	for <lists+devicetree@lfdr.de>; Fri, 21 Aug 2020 12:44:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727794AbgHUKiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Aug 2020 06:38:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36518 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728778AbgHUKhb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Aug 2020 06:37:31 -0400
-Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C90A1C06134C
-        for <devicetree@vger.kernel.org>; Fri, 21 Aug 2020 03:37:30 -0700 (PDT)
-Received: by mail-pg1-x541.google.com with SMTP id o13so822722pgf.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Aug 2020 03:37:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=p5ysidPZyRWdeECygkw5/tjlDUm7P4m3Td9H5p5iiOo=;
-        b=QllXcQvafwdxZtqCOWYNuOpr5bk3EVyJhW4ve3i3V6F8CPxZfPfuCYKOpteZvfbSWQ
-         jVDZ9ABjjKcr3jDHnLC+xDtUicUOM8Ld4koytB4iMeEd2VkFkAGxhoX/ZVNmFq4dX7iR
-         5FEkIlSTKHlJdiaGljctSN4bguGNRwS27iCXQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=p5ysidPZyRWdeECygkw5/tjlDUm7P4m3Td9H5p5iiOo=;
-        b=ACBoIL6RNGvLvGqqvyCjQlv20YFFUy2BCqfAFGePSB3ZyUWt/mzDw7vIfcDUoHHZ3g
-         UETSMqzdwMWvyVXDi5gBqPN+KlzkzsCOQznRpHbTzPkUaqGQASC54Szqo/GNA6BPH36g
-         Qov0sMIN7IYkz0Q2n+FOh+WKn9HxGUdqa48dbHSx8WX1r47qhooZjsvkp1I+zimCgVK7
-         UxqzNfT3SYW67jUz8wJD4/gELRNfNsuGMZFQRJpfxUmi2AZmCpX6StXuQq//PnsdVvO0
-         t9SE3rDT8zQOwETNI7VZPKMukUHl0b6IT8Lw8N0nNk2iFbZsIfo0JVQ2oY4mn8d7xBi/
-         i2iA==
-X-Gm-Message-State: AOAM531x52d5kft4Q9/uEocXUC67a9gQ6wdHqi5IgVkX5NC4H9UAs2Ch
-        GbjwLkm9A+QnZ1+9o6C/0WTVQQ==
-X-Google-Smtp-Source: ABdhPJwFeTw+XO7IIO3hIBMzDU1dUX0aLZcDBZNoCjlCGYvip1tLKkM+/8qFTxgpvgudTqGdGsdaUg==
-X-Received: by 2002:a65:480a:: with SMTP id h10mr1840003pgs.304.1598006250395;
-        Fri, 21 Aug 2020 03:37:30 -0700 (PDT)
-Received: from acourbot.tok.corp.google.com ([2401:fa00:8f:203:eeb1:d7ff:fe57:b7e5])
-        by smtp.gmail.com with ESMTPSA id y20sm2081525pfn.183.2020.08.21.03.37.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Aug 2020 03:37:29 -0700 (PDT)
-From:   Alexandre Courbot <acourbot@chromium.org>
-To:     Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
+        id S1728209AbgHUKop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Aug 2020 06:44:45 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:2578 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726975AbgHUKoo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Aug 2020 06:44:44 -0400
+X-UUID: 164008a0783f4e10821064424e09b522-20200821
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=1ocOMg8R4JEk6eqea+2BARp3pSG4ncS6Ih6Dkjd7KG0=;
+        b=LOLqLiS3N0VtayjcOaoKb1oaZErp16vUXl/4AunK6fLHt9DW7GOjgy/dy3MfeFPg5qMVj/KtODFiZfip7GbfIkPaANKQJ0F5wyp85gyEmruexnFLvPEn552lsRJmg2Uh5o4sncqBv+pLwfk4ASlnq2HxgN8KDd8neq6HnX6bucc=;
+X-UUID: 164008a0783f4e10821064424e09b522-20200821
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <hsin-hsiung.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 941271437; Fri, 21 Aug 2020 18:44:41 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 21 Aug 2020 18:44:37 +0800
+Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 21 Aug 2020 18:44:38 +0800
+From:   Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-media@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Alexandre Courbot <acourbot@chromium.org>
-Subject: [PATCH v4 17/17] media: mtk-vcodec: venc: fix invalid time per frame in S_PARM
-Date:   Fri, 21 Aug 2020 19:36:08 +0900
-Message-Id: <20200821103608.2310097-18-acourbot@chromium.org>
-X-Mailer: git-send-email 2.28.0.297.g1956fa8f8d-goog
-In-Reply-To: <20200821103608.2310097-1-acourbot@chromium.org>
-References: <20200821103608.2310097-1-acourbot@chromium.org>
+CC:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <srv_heupstream@mediatek.com>
+Subject: [PATCH v2 0/2] Add SPMI support for Mediatek MT6873/8192 SoC IC
+Date:   Fri, 21 Aug 2020 18:44:35 +0800
+Message-ID: <1598006677-7953-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+X-Mailer: git-send-email 2.6.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v4l2-compliance expects the driver to adjust the time per frame if it is
-invalid (numerator or denominator set to 0). Adjust it to the default
-value in these cases.
-
-Signed-off-by: Alexandre Courbot <acourbot@chromium.org>
----
- drivers/media/platform/mtk-vcodec/mtk_vcodec_enc.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc.c
-index 09baac2dbc36..82b04714f750 100644
---- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc.c
-+++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc.c
-@@ -200,14 +200,18 @@ static int vidioc_venc_s_parm(struct file *file, void *priv,
- 			      struct v4l2_streamparm *a)
- {
- 	struct mtk_vcodec_ctx *ctx = fh_to_ctx(priv);
-+	struct v4l2_fract *timeperframe = &a->parm.output.timeperframe;
- 
- 	if (a->type != V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
- 		return -EINVAL;
- 
--	ctx->enc_params.framerate_num =
--			a->parm.output.timeperframe.denominator;
--	ctx->enc_params.framerate_denom =
--			a->parm.output.timeperframe.numerator;
-+	if (timeperframe->numerator == 0 || timeperframe->denominator == 0) {
-+		timeperframe->numerator = MTK_DEFAULT_FRAMERATE_NUM;
-+		timeperframe->denominator = MTK_DEFAULT_FRAMERATE_DENOM;
-+	}
-+
-+	ctx->enc_params.framerate_num = timeperframe->denominator;
-+	ctx->enc_params.framerate_denom = timeperframe->numerator;
- 	ctx->param_change |= MTK_ENCODE_PARAM_FRAMERATE;
- 
- 	a->parm.output.capability = V4L2_CAP_TIMEPERFRAME;
--- 
-2.28.0.297.g1956fa8f8d-goog
+VGhpcyBzZXJpZXMgYWRkcyBzdXBwb3J0IGZvciBuZXcgU29DIE1UNjg3My84MTkyIHRvIHRoZSBz
+cG1pIGRyaXZlci4NCg0KY2hhbmdlcyBzaW5jZSB2MToNCi0gcmVtb3ZlIHVudXNlZCBmdW5jdGlv
+bi4NCi0gZml4IGNvcnJlY3QgY29kaW5nIHN0eWxlIGZvciBkZWJ1ZyBtZXNzYWdlLg0KLSBmaXgg
+dGhlIGJ1aWxkIGZhaWwgZm9yIHRoZSBlcnJvciByZXR1cm4gdmFsdWUuDQoNCkhzaW4tSHNpdW5n
+IFdhbmcgKDIpOg0KICBkdC1iaW5kaW5nczogc3BtaTogZG9jdW1lbnQgYmluZGluZyBmb3IgdGhl
+IE1lZGlhdGVrIFNQTUkgY29udHJvbGxlcg0KICBzcG1pOiBtZWRpYXRlazogQWRkIHN1cHBvcnQg
+Zm9yIE1UNjg3My84MTkyDQoNCiAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9zcG1pL3NwbWktbXRr
+LXBtaWYudHh0ICAgICB8ICAzMyArKw0KIGRyaXZlcnMvc3BtaS9LY29uZmlnICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIHwgICA5ICsNCiBkcml2ZXJzL3NwbWkvTWFrZWZpbGUgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICB8ICAgMSArDQogZHJpdmVycy9zcG1pL3NwbWktbXRrLXBt
+aWYuYyAgICAgICAgICAgICAgICAgICAgICAgfCA0NzQgKysrKysrKysrKysrKysrKysrKysrDQog
+NCBmaWxlcyBjaGFuZ2VkLCA1MTcgaW5zZXJ0aW9ucygrKQ0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBE
+b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc3BtaS9zcG1pLW10ay1wbWlmLnR4dA0K
+IGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL3NwbWkvc3BtaS1tdGstcG1pZi5jDQoNCi0tIA0K
+Mi42LjQNCg==
 
