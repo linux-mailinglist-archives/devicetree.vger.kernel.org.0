@@ -2,120 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CD0224E4CD
-	for <lists+devicetree@lfdr.de>; Sat, 22 Aug 2020 05:25:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D09F724E4DB
+	for <lists+devicetree@lfdr.de>; Sat, 22 Aug 2020 05:29:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726796AbgHVDZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Aug 2020 23:25:46 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:33522 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726773AbgHVDZp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Aug 2020 23:25:45 -0400
-Received: by mail-il1-f193.google.com with SMTP id r13so3058395iln.0;
-        Fri, 21 Aug 2020 20:25:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition;
-        bh=qSqyCkB8+mSR0rZwtTlPRNJYmpR982y/9gGfbXhSmyM=;
-        b=B4Ad5fd0AybT41vd0oQZqajw7EyzUnyIxhgsemWMw8ArsdZ2QJWaCnmdWu+7fZHw5O
-         LipRByrPI9ig5ypU8DyQRYw5Q/GcAfRmM3z0/aNJEXXw+CxKJT+vagB16A7M5JjrjI5p
-         IlPHSTdpFX3b3xN8Rtn7oCmvYC00/Qi3sl3vGsZX4gBGVw/+8xlQ0GSxUiBIf7S0GGhj
-         uBWJW2aBMK799KnDyo2GuK/g798p66pLNoEx79tw2SsY71hNowsPy9ZDj5ruxtZ4LyDA
-         XmpEjg8YzsrtPie5XVvAC9VRevGUxr3RG/4I9FV4wn2fr1qOimjgR4ci6aL6RYWJTqZj
-         nfxg==
-X-Gm-Message-State: AOAM5321t6yKeZJxo5Pju6QVWiV1BeLIBf9LJznrnDpc1RDE1++ryoTj
-        ek9zp4hmQs8WmH7HxC+YQg==
-X-Google-Smtp-Source: ABdhPJyrjLJDcHhwycd/UHxrLz/TRh62kzDFH4kLAmu7MDEwiPhBoLX59cpjoDc69tBscL/O8b2GrA==
-X-Received: by 2002:a92:1b85:: with SMTP id f5mr4699106ill.308.1598066744001;
-        Fri, 21 Aug 2020 20:25:44 -0700 (PDT)
-Received: from xps15 ([64.188.179.249])
-        by smtp.gmail.com with ESMTPSA id a9sm2415256iol.9.2020.08.21.20.25.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Aug 2020 20:25:43 -0700 (PDT)
-Received: (nullmailer pid 2217434 invoked by uid 1000);
-        Sat, 22 Aug 2020 03:25:40 -0000
-Date:   Fri, 21 Aug 2020 21:25:40 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: [GIT PULL] Devicetree fixes for v5.9, take 2
-Message-ID: <20200822032540.GA2215775@bogus>
+        id S1726995AbgHVD3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Aug 2020 23:29:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33130 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726887AbgHVD3o (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Aug 2020 23:29:44 -0400
+Received: from dragon (unknown [80.251.214.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E1708207CD;
+        Sat, 22 Aug 2020 03:29:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598066984;
+        bh=5Uk9flHxINPaa5OlAOFUuaAiQgeZi2oqIMu8KGSyZp8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BiuZfrbSc71mqso6tI2hpJ65cT4fbLCyz2Y7+9vPZ9QElh565xdNwbHTNjVQVnL1y
+         RO38xZUpZ3sxHSyrJApNW4PgEMivQzy3hcvRIq9IcCcGo6U6iJ+2FDtSH94nS0K0GD
+         dsQ5ThTtTF5whdyN3NHcMRgq42cf5DtHInJq8xcE=
+Date:   Sat, 22 Aug 2020 11:29:31 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     andy.tang@nxp.com
+Cc:     amit.kucheria@linaro.org, leoyang.li@nxp.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2 v2] arm64: dts: ls1088a: add more thermal zone support
+Message-ID: <20200822032930.GA27575@dragon>
+References: <20200715064909.9161-1-andy.tang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20200715064909.9161-1-andy.tang@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+On Wed, Jul 15, 2020 at 02:49:08PM +0800, andy.tang@nxp.com wrote:
+> From: Yuantian Tang <andy.tang@nxp.com>
+> 
+> There are 2 thermal zones in ls1088a soc. Add the other thermal zone
+> node to enable it.
+> Also update the values in calibration table to make the temperatures
+> monitored more precise.
+> 
+> Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
 
-Please pull another set of DT fixes.
-
-Rob
-
-
-The following changes since commit 9123e3a74ec7b934a4a099e98af6a61c2f80bbf5:
-
-  Linux 5.9-rc1 (2020-08-16 13:04:57 -0700)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.9-2
-
-for you to fetch changes up to 5cd841d2676a702e5f79a8bacbfbae3bfc2411f7:
-
-  dt-bindings: vendor-prefixes: Remove trailing whitespace (2020-08-21 16:27:57 -0600)
-
-----------------------------------------------------------------
-Devicetree fixes for v5.9, take 2:
-
-- Restore range parsing error check
-
-- Workaround PCI range parsing with missing 'device_type' now required
-
-- Correct description of 'phy-connection-type'
-
-- Fix erroneous matching on 'snps,dw-pcie' by 'intel,lgm-pcie' schema
-
-- A couple of grammar and whitespace fixes
-
-- Update Shawn Guo's email
-
-----------------------------------------------------------------
-Colin Ian King (1):
-      of/address: check for invalid range.cpu_addr
-
-Fabio Estevam (1):
-      dt-bindings: Use Shawn Guo's preferred e-mail for i.MX bindings
-
-Geert Uytterhoeven (2):
-      dt: writing-schema: Miscellaneous grammar fixes
-      dt-bindings: vendor-prefixes: Remove trailing whitespace
-
-Madalin Bucur (1):
-      dt-bindings: net: correct description of phy-connection-type
-
-Marc Zyngier (1):
-      of: address: Work around missing device_type property in pcie nodes
-
-Rob Herring (1):
-      dt-bindings: PCI: intel,lgm-pcie: Fix matching on all snps,dw-pcie instances
-
- .../devicetree/bindings/clock/imx23-clock.yaml      |  2 +-
- .../devicetree/bindings/clock/imx28-clock.yaml      |  2 +-
- .../devicetree/bindings/gpio/gpio-mxs.yaml          |  2 +-
- Documentation/devicetree/bindings/i2c/i2c-mxs.yaml  |  2 +-
- .../devicetree/bindings/mmc/fsl-imx-esdhc.yaml      |  2 +-
- Documentation/devicetree/bindings/mmc/mxs-mmc.yaml  |  2 +-
- .../bindings/net/ethernet-controller.yaml           |  3 ++-
- .../devicetree/bindings/pci/intel-gw-pcie.yaml      |  8 ++++++++
- Documentation/devicetree/bindings/pwm/mxs-pwm.yaml  |  2 +-
- .../devicetree/bindings/spi/fsl-imx-cspi.yaml       |  2 +-
- .../devicetree/bindings/thermal/imx-thermal.yaml    |  2 +-
- .../devicetree/bindings/vendor-prefixes.yaml        |  2 +-
- Documentation/devicetree/writing-schema.rst         |  4 ++--
- drivers/of/address.c                                | 21 ++++++++++++++++++++-
- 14 files changed, 42 insertions(+), 14 deletions(-)
+Applied both, thanks.
