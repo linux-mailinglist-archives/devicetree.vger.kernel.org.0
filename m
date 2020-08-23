@@ -2,201 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A154F24EED0
-	for <lists+devicetree@lfdr.de>; Sun, 23 Aug 2020 18:38:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6240124EEF8
+	for <lists+devicetree@lfdr.de>; Sun, 23 Aug 2020 19:20:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726664AbgHWQi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Aug 2020 12:38:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56384 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725887AbgHWQi1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Aug 2020 12:38:27 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92800C061573;
-        Sun, 23 Aug 2020 09:38:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=YGI9CUlHRdCGssJcQqqFI32/JdSs/OG4pNXNnIVDjlM=; b=Va45Xos9+GWduEXlVaM2nPXmrT
-        kNIIyeulu4SvMYVxkIDYzUGJYtXKC2XFEZzwYhiUjyxUTgBetHfBBOs1bNb1hQX1iMsY9508jeof3
-        uuvT50KEIZ5SnJ5kzshTU8mIljOvsZsa8+StULVXDSVkQ1DN23Chpw1WxkOZpjFah/vQ=;
-Received: from pd9e2f105.dip0.t-ipconnect.de ([217.226.241.5] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1k9t0R-0004GD-O8; Sun, 23 Aug 2020 18:38:07 +0200
-Date:   Sun, 23 Aug 2020 18:38:06 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, Anson.Huang@nxp.com,
-        marcel.ziswiler@toradex.com, sebastien.szymanski@armadeus.com,
-        michael@walle.cc, rjones@gateworks.com, leoyang.li@nxp.com,
+        id S1726569AbgHWRUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Aug 2020 13:20:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50826 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725887AbgHWRU2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 Aug 2020 13:20:28 -0400
+Received: from kozik-lap.proceq-device.com (unknown [194.230.155.216])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D407F20767;
+        Sun, 23 Aug 2020 17:20:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598203226;
+        bh=MTCNHI1J3CTFq9wsTXJ5Uw1+UYBYl714y/KonzIvP2I=;
+        h=From:To:Subject:Date:From;
+        b=TMPPq1Zo4pNSpM3P0EE5fSAKNJwrV02uNz7s3aEBZBuH28Wp0TINtSDu5/uBeczvo
+         tuEqG3FuJLytw90XNtjEAV50M7XDRg+FWSCOLK1kpwM/nA9RTmPBtqBtPByVCdyfVu
+         uwr9coNRcs9+rcQWPkoR5OgXPtVC2Ejz0Kyg5bC8=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, j.neuschaefer@gmx.net,
-        letux-kernel@openphoenux.org
-Subject: Re: [PATCH RFC 2/2] ARM: dts: imx: add devicetree for Tolino Shine
- 2 HD
-Message-ID: <20200823183806.4a5c4134@aktux>
-In-Reply-To: <20200823014226.GG30094@dragon>
-References: <20200815193336.21598-1-andreas@kemnade.info>
-        <20200815193336.21598-3-andreas@kemnade.info>
-        <20200823014226.GG30094@dragon>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: -1.0 (-)
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/5] dt-bindings: arm: fsl: Add Beacon i.MX8M Mini Development Kit binding
+Date:   Sun, 23 Aug 2020 19:20:15 +0200
+Message-Id: <20200823172019.18606-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 23 Aug 2020 09:42:31 +0800
-Shawn Guo <shawnguo@kernel.org> wrote:
+Document the binding for Beacon EmbeddedWorks i.MX8M Mini Development
+Kit board.
 
-> On Sat, Aug 15, 2020 at 09:33:36PM +0200, Andreas Kemnade wrote:
-> > This adds a devicetree for the Tolino Shine 2 HD Ebook reader. It is based
-> > on boards marked with "37NB-E60QF0+4A2". It is equipped with an i.MX6SL
-> > SoC.
-> > 
-> > Expected to work:
-> > - Buttons
-> > - Wifi
-> > - Touchscreen
-> > - LED
-> > - uSD
-> > - USB
-> > - RTC
-> > 
-> > Not working due to missing drivers:
-> > - Backlight (requires NTXEC driver)
-> > - EPD
-> > 
-> > Not working due to unknown reasons:
-> > - deep sleep (echo standby >/sys/power/state works),
-> >   wakeup fails when imx_gpc_pre_suspend(true) was called.
-> > 
-> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> > ---
-> > Reason for RFC: The suspend trouble might be caused by bad devicetree.
-> > But as the devicetree is already useful I decided to submit it.
-> > 
-> >  arch/arm/boot/dts/Makefile                   |   1 +
-> >  arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts | 582 +++++++++++++++++++
-> >  2 files changed, 583 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts
-> > 
-> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> > index e6a1cac0bfc7..c65fa3852246 100644
-> > --- a/arch/arm/boot/dts/Makefile
-> > +++ b/arch/arm/boot/dts/Makefile
-> > @@ -581,6 +581,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
-> >  	imx6qp-zii-rdu2.dtb
-> >  dtb-$(CONFIG_SOC_IMX6SL) += \
-> >  	imx6sl-evk.dtb \
-> > +	imx6sl-tolino-shine2hd.dtb \
-> >  	imx6sl-tolino-shine3.dtb \
-> >  	imx6sl-warp.dtb
-> >  dtb-$(CONFIG_SOC_IMX6SLL) += \
-> > diff --git a/arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts b/arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts
-> > new file mode 100644
-> > index 000000000000..7b28e19a1d98
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts
-> > @@ -0,0 +1,582 @@
-> > +// SPDX-License-Identifier: (GPL-2.0)
-> > +/*
-> > + * Device tree for the Tolino Shine 2 HD ebook reader
-> > + *
-> > + * Name on mainboard is: 37NB-E60QF0+4A2
-> > + * Serials start with: E60QF2
-> > + *
-> > + * Copyright 2020 Andreas Kemnade
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include <dt-bindings/input/input.h>
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include "imx6sl.dtsi"
-> > +
-> > +/ {
-> > +	model = "Tolino Shine 2 HD";
-> > +	compatible = "kobo,tolino-shine2hd", "fsl,imx6sl";
-> > +
-> > +	chosen {
-> > +		stdout-path = &uart1;
-> > +	};
-> > +
-> > +	gpio_keys: gpio-keys {
-> > +		compatible = "gpio-keys";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_gpio_keys>;
-> > +
-> > +		cover {
-> > +			label = "Cover";
-> > +			gpios = <&gpio5 12 GPIO_ACTIVE_LOW>;
-> > +			linux,code = <SW_LID>;
-> > +			linux,input-type = <EV_SW>;
-> > +			wakeup-source;
-> > +		};
-> > +
-> > +		fl {
-> > +			label = "Frontlight";
-> > +			gpios = <&gpio3 26 GPIO_ACTIVE_LOW>;
-> > +			linux,code = <KEY_BRIGHTNESS_CYCLE>;
-> > +		};
-> > +
-> > +		home {
-> > +			label = "Home";
-> > +			gpios = <&gpio3 25 GPIO_ACTIVE_LOW>;
-> > +			linux,code = <KEY_HOME>;
-> > +		};
-> > +
-> > +		power {
-> > +			label = "Power";
-> > +			gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
-> > +			linux,code = <KEY_POWER>;
-> > +			wakeup-source;
-> > +		};
-> > +	};
-> > +
-> > +	leds: leds {
-> > +		compatible = "gpio-leds";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_led>;
-> > +
-> > +		on {
-> > +			label = "tolinoshine2hd:white:on";
-> > +			gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
-> > +			linux,default-trigger = "timer";
-> > +		};
-> > +	};
-> > +
-> > +	memory@80000000 {
-> > +		device_type = "memory";
-> > +		reg = <0x80000000 0x20000000>;
-> > +	};
-> > +
-> > +	reg_wifi: regulator-wifi {
-> > +		compatible = "regulator-fixed";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_wifi_power>;
-> > +		regulator-name = "SD3_SPWR";
-> > +		regulator-min-microvolt = <3000000>;
-> > +		regulator-max-microvolt = <3000000>;
-> > +		gpio = <&gpio4 29 GPIO_ACTIVE_HIGH>;  
-> 
-> Missing enable-active-high?
-> 
-no. I should rather use GPIO_ACTIVE_LOW to avoid that confusion.
-corresponding code in vendor kernel is the function
-_ntx_wifi_power_ctrl()
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 6da9d734cdb7..37592e7bfee9 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -344,6 +344,7 @@ properties:
+       - description: i.MX8MM based Boards
+         items:
+           - enum:
++              - beacon,imx8mm-beacon-kit  # i.MX8MM Beacon Development Kit
+               - fsl,imx8mm-evk            # i.MX8MM EVK Board
+           - const: fsl,imx8mm
+ 
+-- 
+2.17.1
 
-Regards,
-Andreas
