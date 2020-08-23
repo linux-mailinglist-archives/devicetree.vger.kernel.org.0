@@ -2,201 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A75F24EEA0
-	for <lists+devicetree@lfdr.de>; Sun, 23 Aug 2020 18:19:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A154F24EED0
+	for <lists+devicetree@lfdr.de>; Sun, 23 Aug 2020 18:38:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726923AbgHWQTK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Aug 2020 12:19:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45718 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728086AbgHWQQq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 Aug 2020 12:16:46 -0400
-Received: from localhost (unknown [122.171.38.130])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E59D220767;
-        Sun, 23 Aug 2020 16:16:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598199405;
-        bh=ZP199cApduqjUECdPTuyeuu4g86xPAkTnEJsm5MqTRQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=o5dYxX1JdDwiq9jrx+ekb4DtP1LkO0uSBgh32D5f1yyeP8ohlUSdt7tqfZ3SjVkkV
-         0hgnP6TBsmlAF14KbZdg+FKtlPTCpgONbbt7UNWJ1TbZYNsSb+H0SmzTPVn4gelelS
-         bDnHs6LtvlVd2tZ6fzBfoID22DyFOJkG4QF4ftfU=
-Date:   Sun, 23 Aug 2020 21:46:41 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Li Jun <jun.li@nxp.com>
-Cc:     kishon@ti.com, robh+dt@kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, devicetree@vger.kernel.org
-Subject: Re: [RESEND PATCH 2/2] phy: freescale: imx8mq-usb: add support for
- imx8mp usb phy
-Message-ID: <20200823161641.GZ2639@vkoul-mobl>
-References: <1598011644-6219-1-git-send-email-jun.li@nxp.com>
- <1598011644-6219-2-git-send-email-jun.li@nxp.com>
+        id S1726664AbgHWQi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Aug 2020 12:38:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56384 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725887AbgHWQi1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Aug 2020 12:38:27 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92800C061573;
+        Sun, 23 Aug 2020 09:38:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=YGI9CUlHRdCGssJcQqqFI32/JdSs/OG4pNXNnIVDjlM=; b=Va45Xos9+GWduEXlVaM2nPXmrT
+        kNIIyeulu4SvMYVxkIDYzUGJYtXKC2XFEZzwYhiUjyxUTgBetHfBBOs1bNb1hQX1iMsY9508jeof3
+        uuvT50KEIZ5SnJ5kzshTU8mIljOvsZsa8+StULVXDSVkQ1DN23Chpw1WxkOZpjFah/vQ=;
+Received: from pd9e2f105.dip0.t-ipconnect.de ([217.226.241.5] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1k9t0R-0004GD-O8; Sun, 23 Aug 2020 18:38:07 +0200
+Date:   Sun, 23 Aug 2020 18:38:06 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, Anson.Huang@nxp.com,
+        marcel.ziswiler@toradex.com, sebastien.szymanski@armadeus.com,
+        michael@walle.cc, rjones@gateworks.com, leoyang.li@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, j.neuschaefer@gmx.net,
+        letux-kernel@openphoenux.org
+Subject: Re: [PATCH RFC 2/2] ARM: dts: imx: add devicetree for Tolino Shine
+ 2 HD
+Message-ID: <20200823183806.4a5c4134@aktux>
+In-Reply-To: <20200823014226.GG30094@dragon>
+References: <20200815193336.21598-1-andreas@kemnade.info>
+        <20200815193336.21598-3-andreas@kemnade.info>
+        <20200823014226.GG30094@dragon>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1598011644-6219-2-git-send-email-jun.li@nxp.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Score: -1.0 (-)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-08-20, 20:07, Li Jun wrote:
-> Add initial support for imx8mp usb phy support, imx8mp usb has
-> a silimar phy as imx8mq, which has some different customizations
-> on clock and low power design when SoC integration.
+On Sun, 23 Aug 2020 09:42:31 +0800
+Shawn Guo <shawnguo@kernel.org> wrote:
+
+> On Sat, Aug 15, 2020 at 09:33:36PM +0200, Andreas Kemnade wrote:
+> > This adds a devicetree for the Tolino Shine 2 HD Ebook reader. It is based
+> > on boards marked with "37NB-E60QF0+4A2". It is equipped with an i.MX6SL
+> > SoC.
+> > 
+> > Expected to work:
+> > - Buttons
+> > - Wifi
+> > - Touchscreen
+> > - LED
+> > - uSD
+> > - USB
+> > - RTC
+> > 
+> > Not working due to missing drivers:
+> > - Backlight (requires NTXEC driver)
+> > - EPD
+> > 
+> > Not working due to unknown reasons:
+> > - deep sleep (echo standby >/sys/power/state works),
+> >   wakeup fails when imx_gpc_pre_suspend(true) was called.
+> > 
+> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > ---
+> > Reason for RFC: The suspend trouble might be caused by bad devicetree.
+> > But as the devicetree is already useful I decided to submit it.
+> > 
+> >  arch/arm/boot/dts/Makefile                   |   1 +
+> >  arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts | 582 +++++++++++++++++++
+> >  2 files changed, 583 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts
+> > 
+> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> > index e6a1cac0bfc7..c65fa3852246 100644
+> > --- a/arch/arm/boot/dts/Makefile
+> > +++ b/arch/arm/boot/dts/Makefile
+> > @@ -581,6 +581,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
+> >  	imx6qp-zii-rdu2.dtb
+> >  dtb-$(CONFIG_SOC_IMX6SL) += \
+> >  	imx6sl-evk.dtb \
+> > +	imx6sl-tolino-shine2hd.dtb \
+> >  	imx6sl-tolino-shine3.dtb \
+> >  	imx6sl-warp.dtb
+> >  dtb-$(CONFIG_SOC_IMX6SLL) += \
+> > diff --git a/arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts b/arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts
+> > new file mode 100644
+> > index 000000000000..7b28e19a1d98
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts
+> > @@ -0,0 +1,582 @@
+> > +// SPDX-License-Identifier: (GPL-2.0)
+> > +/*
+> > + * Device tree for the Tolino Shine 2 HD ebook reader
+> > + *
+> > + * Name on mainboard is: 37NB-E60QF0+4A2
+> > + * Serials start with: E60QF2
+> > + *
+> > + * Copyright 2020 Andreas Kemnade
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include <dt-bindings/input/input.h>
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include "imx6sl.dtsi"
+> > +
+> > +/ {
+> > +	model = "Tolino Shine 2 HD";
+> > +	compatible = "kobo,tolino-shine2hd", "fsl,imx6sl";
+> > +
+> > +	chosen {
+> > +		stdout-path = &uart1;
+> > +	};
+> > +
+> > +	gpio_keys: gpio-keys {
+> > +		compatible = "gpio-keys";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_gpio_keys>;
+> > +
+> > +		cover {
+> > +			label = "Cover";
+> > +			gpios = <&gpio5 12 GPIO_ACTIVE_LOW>;
+> > +			linux,code = <SW_LID>;
+> > +			linux,input-type = <EV_SW>;
+> > +			wakeup-source;
+> > +		};
+> > +
+> > +		fl {
+> > +			label = "Frontlight";
+> > +			gpios = <&gpio3 26 GPIO_ACTIVE_LOW>;
+> > +			linux,code = <KEY_BRIGHTNESS_CYCLE>;
+> > +		};
+> > +
+> > +		home {
+> > +			label = "Home";
+> > +			gpios = <&gpio3 25 GPIO_ACTIVE_LOW>;
+> > +			linux,code = <KEY_HOME>;
+> > +		};
+> > +
+> > +		power {
+> > +			label = "Power";
+> > +			gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
+> > +			linux,code = <KEY_POWER>;
+> > +			wakeup-source;
+> > +		};
+> > +	};
+> > +
+> > +	leds: leds {
+> > +		compatible = "gpio-leds";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_led>;
+> > +
+> > +		on {
+> > +			label = "tolinoshine2hd:white:on";
+> > +			gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
+> > +			linux,default-trigger = "timer";
+> > +		};
+> > +	};
+> > +
+> > +	memory@80000000 {
+> > +		device_type = "memory";
+> > +		reg = <0x80000000 0x20000000>;
+> > +	};
+> > +
+> > +	reg_wifi: regulator-wifi {
+> > +		compatible = "regulator-fixed";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_wifi_power>;
+> > +		regulator-name = "SD3_SPWR";
+> > +		regulator-min-microvolt = <3000000>;
+> > +		regulator-max-microvolt = <3000000>;
+> > +		gpio = <&gpio4 29 GPIO_ACTIVE_HIGH>;  
 > 
-> Signed-off-by: Li Jun <jun.li@nxp.com>
+> Missing enable-active-high?
 > 
-> diff --git a/drivers/phy/freescale/phy-fsl-imx8mq-usb.c b/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
-> index 0c4833d..030bf4e 100644
-> --- a/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
-> +++ b/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
-> @@ -4,12 +4,16 @@
->  #include <linux/clk.h>
->  #include <linux/io.h>
->  #include <linux/module.h>
-> +#include <linux/delay.h>
->  #include <linux/phy/phy.h>
->  #include <linux/platform_device.h>
-> +#include <linux/of_platform.h>
->  #include <linux/regulator/consumer.h>
+no. I should rather use GPIO_ACTIVE_LOW to avoid that confusion.
+corresponding code in vendor kernel is the function
+_ntx_wifi_power_ctrl()
 
-keep this sorted alphabetically please
 
->  
->  #define PHY_CTRL0			0x0
->  #define PHY_CTRL0_REF_SSP_EN		BIT(2)
-> +#define PHY_CTRL0_FSEL_MASK		GENMASK(10, 5)
-> +#define PHY_CTRL0_FSEL_24M		(0x2a << 5)
-
-use FIELD_{GET,PREP} for this?
-
->  
->  #define PHY_CTRL1			0x4
->  #define PHY_CTRL1_RESET			BIT(0)
-> @@ -20,6 +24,11 @@
->  
->  #define PHY_CTRL2			0x8
->  #define PHY_CTRL2_TXENABLEN0		BIT(8)
-> +#define PHY_CTRL2_OTG_DISABLE		BIT(9)
-> +
-> +#define PHY_CTRL6			0x18
-> +#define PHY_CTRL6_ALT_CLK_EN		BIT(1)
-> +#define PHY_CTRL6_ALT_CLK_SEL		BIT(0)
->  
->  struct imx8mq_usb_phy {
->  	struct phy *phy;
-> @@ -54,6 +63,44 @@ static int imx8mq_usb_phy_init(struct phy *phy)
->  	return 0;
->  }
->  
-> +static int imx8mp_usb_phy_init(struct phy *phy)
-> +{
-> +	struct imx8mq_usb_phy *imx_phy = phy_get_drvdata(phy);
-> +	u32 value;
-> +
-> +	/* USB3.0 PHY signal fsel for 24M ref */
-> +	value = readl(imx_phy->base + PHY_CTRL0);
-> +	value &= ~PHY_CTRL0_FSEL_MASK;
-> +	value |= PHY_CTRL0_FSEL_24M;
-> +	writel(value, imx_phy->base + PHY_CTRL0);
-> +
-> +	/* Disable alt_clk_en and use internal MPLL clocks */
-> +	value = readl(imx_phy->base + PHY_CTRL6);
-> +	value &= ~(PHY_CTRL6_ALT_CLK_SEL | PHY_CTRL6_ALT_CLK_EN);
-> +	writel(value, imx_phy->base + PHY_CTRL6);
-> +
-> +	value = readl(imx_phy->base + PHY_CTRL1);
-> +	value &= ~(PHY_CTRL1_VDATSRCENB0 | PHY_CTRL1_VDATDETENB0);
-> +	value |= PHY_CTRL1_RESET | PHY_CTRL1_ATERESET;
-> +	writel(value, imx_phy->base + PHY_CTRL1);
-> +
-> +	value = readl(imx_phy->base + PHY_CTRL0);
-> +	value |= PHY_CTRL0_REF_SSP_EN;
-> +	writel(value, imx_phy->base + PHY_CTRL0);
-> +
-> +	value = readl(imx_phy->base + PHY_CTRL2);
-> +	value |= PHY_CTRL2_TXENABLEN0 | PHY_CTRL2_OTG_DISABLE;
-> +	writel(value, imx_phy->base + PHY_CTRL2);
-> +
-> +	udelay(10);
-> +
-> +	value = readl(imx_phy->base + PHY_CTRL1);
-> +	value &= ~(PHY_CTRL1_RESET | PHY_CTRL1_ATERESET);
-> +	writel(value, imx_phy->base + PHY_CTRL1);
-> +
-> +	return 0;
-> +}
-> +
->  static int imx8mq_phy_power_on(struct phy *phy)
->  {
->  	struct imx8mq_usb_phy *imx_phy = phy_get_drvdata(phy);
-> @@ -83,12 +130,29 @@ static struct phy_ops imx8mq_usb_phy_ops = {
->  	.owner		= THIS_MODULE,
->  };
->  
-> +static struct phy_ops imx8mp_usb_phy_ops = {
-> +	.init		= imx8mp_usb_phy_init,
-> +	.power_on	= imx8mq_phy_power_on,
-> +	.power_off	= imx8mq_phy_power_off,
-> +	.owner		= THIS_MODULE,
-> +};
-> +
-> +static const struct of_device_id imx8mq_usb_phy_of_match[] = {
-> +	{.compatible = "fsl,imx8mq-usb-phy",
-> +	 .data = &imx8mq_usb_phy_ops,},
-> +	{.compatible = "fsl,imx8mp-usb-phy",
-> +	 .data = &imx8mp_usb_phy_ops,},
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, imx8mq_usb_phy_of_match);
-> +
->  static int imx8mq_usb_phy_probe(struct platform_device *pdev)
->  {
->  	struct phy_provider *phy_provider;
->  	struct device *dev = &pdev->dev;
->  	struct imx8mq_usb_phy *imx_phy;
->  	struct resource *res;
-> +	const struct of_device_id *of_id;
->  
->  	imx_phy = devm_kzalloc(dev, sizeof(*imx_phy), GFP_KERNEL);
->  	if (!imx_phy)
-> @@ -105,7 +169,12 @@ static int imx8mq_usb_phy_probe(struct platform_device *pdev)
->  	if (IS_ERR(imx_phy->base))
->  		return PTR_ERR(imx_phy->base);
->  
-> -	imx_phy->phy = devm_phy_create(dev, NULL, &imx8mq_usb_phy_ops);
-> +	of_id = of_match_device(imx8mq_usb_phy_of_match, dev);
-
-You need of_id->data so why not get that using
-of_device_get_match_data()
-
-> +	if (!of_id)
-> +		return -ENODEV;
-> +
-> +	imx_phy->phy = devm_phy_create(dev, NULL, (const struct phy_ops *)
-> +					of_id->data);
->  	if (IS_ERR(imx_phy->phy))
->  		return PTR_ERR(imx_phy->phy);
->  
-> @@ -120,12 +189,6 @@ static int imx8mq_usb_phy_probe(struct platform_device *pdev)
->  	return PTR_ERR_OR_ZERO(phy_provider);
->  }
->  
-> -static const struct of_device_id imx8mq_usb_phy_of_match[] = {
-> -	{.compatible = "fsl,imx8mq-usb-phy",},
-> -	{ },
-> -};
-> -MODULE_DEVICE_TABLE(of, imx8mq_usb_phy_of_match);
-> -
->  static struct platform_driver imx8mq_usb_phy_driver = {
->  	.probe	= imx8mq_usb_phy_probe,
->  	.driver = {
-> -- 
-> 2.7.4
-
--- 
-~Vinod
+Regards,
+Andreas
