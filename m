@@ -2,160 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 181C024EEFB
-	for <lists+devicetree@lfdr.de>; Sun, 23 Aug 2020 19:20:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8D3F24EF1B
+	for <lists+devicetree@lfdr.de>; Sun, 23 Aug 2020 20:00:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726923AbgHWRUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Aug 2020 13:20:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51138 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726839AbgHWRUh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 Aug 2020 13:20:37 -0400
-Received: from kozik-lap.proceq-device.com (unknown [194.230.155.216])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7E0F320767;
-        Sun, 23 Aug 2020 17:20:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598203236;
-        bh=GPC6dtgA59vC4Oqq35IrVg7s73Pdwf2cg6vakqda9iw=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=pc2gblHrcsLrfURYd+8jA2qzY/xgJE9rjB5/ZzFzVdxZEliTMiKkO2G9e2mbL+Io7
-         yjsGaE5+5OrJnfxpT/b6+BlxbJGpKZThxKkFgg5svopU6Hys2d18U9HeDgToiN3JZ6
-         /nAwRmzCoicoAZCn/q/n7hVyWZNfDinHBsXN0D90=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 5/5] arm64: dts: imx8mm-evk: Align regulator names with schema
-Date:   Sun, 23 Aug 2020 19:20:19 +0200
-Message-Id: <20200823172019.18606-5-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200823172019.18606-1-krzk@kernel.org>
-References: <20200823172019.18606-1-krzk@kernel.org>
+        id S1727776AbgHWSAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Aug 2020 14:00:52 -0400
+Received: from mail.v3.sk ([167.172.186.51]:42328 "EHLO shell.v3.sk"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727945AbgHWSAu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 Aug 2020 14:00:50 -0400
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 3E84CDF106;
+        Sun, 23 Aug 2020 17:59:46 +0000 (UTC)
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id uzF78zdjqwmD; Sun, 23 Aug 2020 17:59:45 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 759FDDFA6B;
+        Sun, 23 Aug 2020 17:59:44 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at zimbra.v3.sk
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id uf-79zAqGnZt; Sun, 23 Aug 2020 17:59:44 +0000 (UTC)
+Received: from localhost (unknown [109.183.109.54])
+        by zimbra.v3.sk (Postfix) with ESMTPSA id DC182DF106;
+        Sun, 23 Aug 2020 17:59:43 +0000 (UTC)
+Date:   Sun, 23 Aug 2020 20:00:41 +0200
+From:   Lubomir Rintel <lkundrak@v3.sk>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 5/6] dt-bindings: mfd: ene-kb3930: Document
+ power-supplies and monitored-battery properties
+Message-ID: <20200823180041.GB209852@demiurge.local>
+References: <20200823140846.19299-1-digetx@gmail.com>
+ <20200823140846.19299-6-digetx@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200823140846.19299-6-digetx@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Device tree schema expects regulator names to be lowercase.  This fixes
-dtbs_check warnings like:
+Hi,
 
-    pmic@4b: regulators:LDO1:regulator-name:0: 'LDO1' does not match '^ldo[1-6]$'
+On Sun, Aug 23, 2020 at 05:08:45PM +0300, Dmitry Osipenko wrote:
+> Battery could be connected to the controller and in this case controller
+> will provide a battery-monitor function.
+> 
+> The power-supplies phandle property is needed in order to describe the
+> power supply which is used for charging of the battery, this allows to
+> determine whither battery is charging or discharging, depending on the
+> supply state.
+> 
+> The monitored-battery phandle provides information about the battery cell
+> characteristics.
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- arch/arm64/boot/dts/freescale/imx8mm-evk.dts | 22 ++++++++++----------
- 1 file changed, 11 insertions(+), 11 deletions(-)
+I believe it would be better if you created a new binding document
+instead of reusing this one -- the hardware part iseems to be a
+different one and the firmware it runs seems to be behaving totally
+differently than the usual ENE firmware [1].
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-index 0f1d7f8aeac4..b64b04f40b29 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-@@ -151,7 +151,7 @@
- 
- 		regulators {
- 			buck1_reg: BUCK1 {
--				regulator-name = "BUCK1";
-+				regulator-name = "buck1";
- 				regulator-min-microvolt = <700000>;
- 				regulator-max-microvolt = <1300000>;
- 				regulator-boot-on;
-@@ -160,7 +160,7 @@
- 			};
- 
- 			buck2_reg: BUCK2 {
--				regulator-name = "BUCK2";
-+				regulator-name = "buck2";
- 				regulator-min-microvolt = <700000>;
- 				regulator-max-microvolt = <1300000>;
- 				regulator-boot-on;
-@@ -172,7 +172,7 @@
- 
- 			buck3_reg: BUCK3 {
- 				// BUCK5 in datasheet
--				regulator-name = "BUCK3";
-+				regulator-name = "buck3";
- 				regulator-min-microvolt = <700000>;
- 				regulator-max-microvolt = <1350000>;
- 				regulator-boot-on;
-@@ -181,7 +181,7 @@
- 
- 			buck4_reg: BUCK4 {
- 				// BUCK6 in datasheet
--				regulator-name = "BUCK4";
-+				regulator-name = "buck4";
- 				regulator-min-microvolt = <3000000>;
- 				regulator-max-microvolt = <3300000>;
- 				regulator-boot-on;
-@@ -190,7 +190,7 @@
- 
- 			buck5_reg: BUCK5 {
- 				// BUCK7 in datasheet
--				regulator-name = "BUCK5";
-+				regulator-name = "buck5";
- 				regulator-min-microvolt = <1605000>;
- 				regulator-max-microvolt = <1995000>;
- 				regulator-boot-on;
-@@ -199,7 +199,7 @@
- 
- 			buck6_reg: BUCK6 {
- 				// BUCK8 in datasheet
--				regulator-name = "BUCK6";
-+				regulator-name = "buck6";
- 				regulator-min-microvolt = <800000>;
- 				regulator-max-microvolt = <1400000>;
- 				regulator-boot-on;
-@@ -207,7 +207,7 @@
- 			};
- 
- 			ldo1_reg: LDO1 {
--				regulator-name = "LDO1";
-+				regulator-name = "ldo1";
- 				regulator-min-microvolt = <1600000>;
- 				regulator-max-microvolt = <3300000>;
- 				regulator-boot-on;
-@@ -215,7 +215,7 @@
- 			};
- 
- 			ldo2_reg: LDO2 {
--				regulator-name = "LDO2";
-+				regulator-name = "ldo2";
- 				regulator-min-microvolt = <800000>;
- 				regulator-max-microvolt = <900000>;
- 				regulator-boot-on;
-@@ -223,7 +223,7 @@
- 			};
- 
- 			ldo3_reg: LDO3 {
--				regulator-name = "LDO3";
-+				regulator-name = "ldo3";
- 				regulator-min-microvolt = <1800000>;
- 				regulator-max-microvolt = <3300000>;
- 				regulator-boot-on;
-@@ -231,7 +231,7 @@
- 			};
- 
- 			ldo4_reg: LDO4 {
--				regulator-name = "LDO4";
-+				regulator-name = "ldo4";
- 				regulator-min-microvolt = <900000>;
- 				regulator-max-microvolt = <1800000>;
- 				regulator-boot-on;
-@@ -239,7 +239,7 @@
- 			};
- 
- 			ldo6_reg: LDO6 {
--				regulator-name = "LDO6";
-+				regulator-name = "ldo6";
- 				regulator-min-microvolt = <900000>;
- 				regulator-max-microvolt = <1800000>;
- 				regulator-boot-on;
--- 
-2.17.1
+[1] This eneec.c seems to be coming from ENE, so I'm assuming it's a
+    good enough description of how their firmware behaves:
+    https://git.kernel.org/pub/scm/linux/kernel/git/lkundrak/linux-mmp3-dell-ariel.git/tree/drivers/input/serio/eneec.c
 
+Cheers
+Lubo
+
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  .../devicetree/bindings/mfd/ene-kb3930.yaml    | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/ene-kb3930.yaml b/Documentation/devicetree/bindings/mfd/ene-kb3930.yaml
+> index 5a1c4a959d9c..435728054f3a 100644
+> --- a/Documentation/devicetree/bindings/mfd/ene-kb3930.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/ene-kb3930.yaml
+> @@ -29,6 +29,8 @@ properties:
+>      description: GPIO used with the shutdown protocol on Ariel
+>      maxItems: 2
+>  
+> +  monitored-battery: true
+> +  power-supplies: true
+>    system-power-controller: true
+>  
+>  required:
+> @@ -41,6 +43,19 @@ examples:
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+>  
+> +    battery: battery-cell {
+> +            compatible = "simple-battery";
+> +            charge-full-design-microamp-hours = <3260000>;
+> +            energy-full-design-microwatt-hours = <24000000>;
+> +            operating-range-celsius = <0 40>;
+> +    };
+> +
+> +    mains: ac-adapter {
+> +      compatible = "gpio-charger";
+> +      charger-type = "mains";
+> +      gpios = <&gpio 125 GPIO_ACTIVE_LOW>;
+> +    };
+> +
+>      i2c {
+>        #address-cells = <1>;
+>        #size-cells = <0>;
+> @@ -52,6 +67,9 @@ examples:
+>  
+>          off-gpios = <&gpio 126 GPIO_ACTIVE_HIGH>,
+>                      <&gpio 127 GPIO_ACTIVE_HIGH>;
+> +
+> +        monitored-battery = <&battery>;
+> +        power-supplies = <&mains>;
+>        };
+>      };
+>  
+> -- 
+> 2.27.0
+> 
