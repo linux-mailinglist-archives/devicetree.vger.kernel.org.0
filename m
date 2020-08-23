@@ -2,80 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6627224ECFC
-	for <lists+devicetree@lfdr.de>; Sun, 23 Aug 2020 13:15:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BA3B24ED43
+	for <lists+devicetree@lfdr.de>; Sun, 23 Aug 2020 14:51:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727066AbgHWLPg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Aug 2020 07:15:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52922 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726991AbgHWLP3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 Aug 2020 07:15:29 -0400
-Received: from kozik-lap.proceq-device.com (unknown [194.230.155.216])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A045B20774;
-        Sun, 23 Aug 2020 11:15:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598181328;
-        bh=h08QRaaw1ypKOkPJ9otVWYimg697b3mMn5IOwkzYYuc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=OgjZjO9YkNVgWWYlmIXPx5uzxwYtj0efm2RFwdrGI6lfPjt3Glf+msQO4PAV+S5Zs
-         L9c7GRN1kITZlpvZQE800G4J7U4IMNgGtbCR+vsrUKyBfNcbRx37heUL0wxQuVjA+V
-         i0AzmkQJHMDGm/vqNycrGcTxf5pYdJaRZzyzYcY0=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH 5/5] arm64: dts: imx8mq-thor96: Replace deprecated phy reset properties
-Date:   Sun, 23 Aug 2020 13:15:08 +0200
-Message-Id: <20200823111508.1165-5-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200823111508.1165-1-krzk@kernel.org>
-References: <20200823111508.1165-1-krzk@kernel.org>
+        id S1726345AbgHWMur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Aug 2020 08:50:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49616 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725926AbgHWMur (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Aug 2020 08:50:47 -0400
+X-Greylist: delayed 1894 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 23 Aug 2020 05:50:46 PDT
+Received: from wp003.webpack.hosteurope.de (wp003.webpack.hosteurope.de [IPv6:2a01:488:42:1000:50ed:840a::])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DBB1C061573;
+        Sun, 23 Aug 2020 05:50:46 -0700 (PDT)
+Received: from p200300d06f041cbacebfb77eca04950c.dip0.t-ipconnect.de ([2003:d0:6f04:1cba:cebf:b77e:ca04:950c] helo=localhost.localdomain); authenticated
+        by wp003.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        id 1k9oxa-0004Oa-9M; Sun, 23 Aug 2020 14:18:54 +0200
+From:   Kurt Kanzenbach <kurt@kmk-computers.de>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kurt Kanzenbach <kurt@linutronix.de>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, Kurt Kanzenbach <kurt@kmk-computers.de>
+Subject: [PATCH] dt-bindings: net: dsa: Fix typo
+Date:   Sun, 23 Aug 2020 14:18:36 +0200
+Message-Id: <20200823121836.16441-1-kurt@kmk-computers.de>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de;kurt@kmk-computers.de;1598187047;52d4deac;
+X-HE-SMSGID: 1k9oxa-0004Oa-9M
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use preferred properties of phy node instead of deprecated
-phy-reset-gpios (and others).  This avoids copying deprecated code into
-future DTSes.
+Fix spelling mistake documenation -> documentation.
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-
+Fixes: 5a18bb14c0f7 ("dt-bindings: net: dsa: Let dsa.txt refer to dsa.yaml")
+Signed-off-by: Kurt Kanzenbach <kurt@kmk-computers.de>
 ---
-
-Not tested on HW.
----
- arch/arm64/boot/dts/freescale/imx8mq-thor96.dts | 2 +-
+ Documentation/devicetree/bindings/net/dsa/dsa.txt | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-thor96.dts b/arch/arm64/boot/dts/freescale/imx8mq-thor96.dts
-index b4795a032fa2..5d5aa6537225 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-thor96.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-thor96.dts
-@@ -122,7 +122,6 @@
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_fec1>;
- 	phy-mode = "rgmii-id";
--	phy-reset-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
- 	phy-handle = <&ethphy>;
- 	fsl,magic-packet;
- 	status = "okay";
-@@ -134,6 +133,7 @@
- 		ethphy: ethernet-phy@3 {
- 			compatible = "ethernet-phy-ieee802.3-c22";
- 			reg = <3>;
-+			reset-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
- 		};
- 	};
- };
+Sorry, missed that earlier.
+
+diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.txt b/Documentation/devicetree/bindings/net/dsa/dsa.txt
+index bf7328aba330..dab208b5c7c7 100644
+--- a/Documentation/devicetree/bindings/net/dsa/dsa.txt
++++ b/Documentation/devicetree/bindings/net/dsa/dsa.txt
+@@ -1,4 +1,4 @@
+ Distributed Switch Architecture Device Tree Bindings
+ ----------------------------------------------------
+ 
+-See Documentation/devicetree/bindings/net/dsa/dsa.yaml for the documenation.
++See Documentation/devicetree/bindings/net/dsa/dsa.yaml for the documentation.
 -- 
-2.17.1
+2.26.2
 
