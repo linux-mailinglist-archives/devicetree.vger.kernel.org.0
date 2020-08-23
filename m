@@ -2,82 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBC3A24EE65
-	for <lists+devicetree@lfdr.de>; Sun, 23 Aug 2020 18:18:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A75F24EEA0
+	for <lists+devicetree@lfdr.de>; Sun, 23 Aug 2020 18:19:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726935AbgHWQSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Aug 2020 12:18:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47728 "EHLO mail.kernel.org"
+        id S1726923AbgHWQTK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Aug 2020 12:19:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45718 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728192AbgHWQRl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 Aug 2020 12:17:41 -0400
-Received: from kozik-lap.proceq-device.com (unknown [194.230.155.216])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1728086AbgHWQQq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 Aug 2020 12:16:46 -0400
+Received: from localhost (unknown [122.171.38.130])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9218120767;
-        Sun, 23 Aug 2020 16:17:36 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E59D220767;
+        Sun, 23 Aug 2020 16:16:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598199460;
-        bh=om9ESAnTN0kLIHeSYqTWxWWUBVqyKQ5oPt5eaHUA+2k=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=NoaAR81iHPTZTaeVWIysT1dgDiueIU1wsfTlQmwilaHTXOgNAp2Kiv1ZDYbmTEZyi
-         DbkAGv4UahUvhmnSz7YofRG8QUC2usXaH+ng4qRtMnjpwEwJ0MYFy+B7fPsiKiAjUy
-         4a6SBWOT+dxnoeMz6fUlewNe3Rk55M2pp2KWemUs=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-pwm@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH 22/22] arm64: dts: imx8mp: Remove i.MX7 compatible from DDR PMU
-Date:   Sun, 23 Aug 2020 18:15:50 +0200
-Message-Id: <20200823161550.3981-22-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200823161550.3981-1-krzk@kernel.org>
-References: <20200823161550.3981-1-krzk@kernel.org>
+        s=default; t=1598199405;
+        bh=ZP199cApduqjUECdPTuyeuu4g86xPAkTnEJsm5MqTRQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=o5dYxX1JdDwiq9jrx+ekb4DtP1LkO0uSBgh32D5f1yyeP8ohlUSdt7tqfZ3SjVkkV
+         0hgnP6TBsmlAF14KbZdg+FKtlPTCpgONbbt7UNWJ1TbZYNsSb+H0SmzTPVn4gelelS
+         bDnHs6LtvlVd2tZ6fzBfoID22DyFOJkG4QF4ftfU=
+Date:   Sun, 23 Aug 2020 21:46:41 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Li Jun <jun.li@nxp.com>
+Cc:     kishon@ti.com, robh+dt@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, devicetree@vger.kernel.org
+Subject: Re: [RESEND PATCH 2/2] phy: freescale: imx8mq-usb: add support for
+ imx8mp usb phy
+Message-ID: <20200823161641.GZ2639@vkoul-mobl>
+References: <1598011644-6219-1-git-send-email-jun.li@nxp.com>
+ <1598011644-6219-2-git-send-email-jun.li@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1598011644-6219-2-git-send-email-jun.li@nxp.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DDR PMU on i.MX 8MP has its own compatible described in bindings and
-used in the driver (with its own quirks).  Remove additional
-fsl,imx8m-ddr-pmu compatible to fix dtbs_check warnings like:
+On 21-08-20, 20:07, Li Jun wrote:
+> Add initial support for imx8mp usb phy support, imx8mp usb has
+> a silimar phy as imx8mq, which has some different customizations
+> on clock and low power design when SoC integration.
+> 
+> Signed-off-by: Li Jun <jun.li@nxp.com>
+> 
+> diff --git a/drivers/phy/freescale/phy-fsl-imx8mq-usb.c b/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
+> index 0c4833d..030bf4e 100644
+> --- a/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
+> +++ b/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
+> @@ -4,12 +4,16 @@
+>  #include <linux/clk.h>
+>  #include <linux/io.h>
+>  #include <linux/module.h>
+> +#include <linux/delay.h>
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/of_platform.h>
+>  #include <linux/regulator/consumer.h>
 
-  arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dt.yaml: ddr-pmu@3d800000:
-    compatible: ['fsl,imx8mq-ddr-pmu', 'fsl,imx8m-ddr-pmu'] is not valid under any of the given schemas (Possible causes of the failure):
-    arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dt.yaml: ddr-pmu@3d800000: compatible: ['fsl,imx8mq-ddr-pmu', 'fsl,imx8m-ddr-pmu'] is too long
-    From schema: Docmentation/devicetree/bindings/perf/fsl-imx-ddr.yaml
+keep this sorted alphabetically please
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+>  
+>  #define PHY_CTRL0			0x0
+>  #define PHY_CTRL0_REF_SSP_EN		BIT(2)
+> +#define PHY_CTRL0_FSEL_MASK		GENMASK(10, 5)
+> +#define PHY_CTRL0_FSEL_24M		(0x2a << 5)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 9de2aa1c573c..e34eff19fcae 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -746,7 +746,7 @@
- 		};
- 
- 		ddr-pmu@3d800000 {
--			compatible = "fsl,imx8mp-ddr-pmu", "fsl,imx8m-ddr-pmu";
-+			compatible = "fsl,imx8mp-ddr-pmu";
- 			reg = <0x3d800000 0x400000>;
- 			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
- 		};
+use FIELD_{GET,PREP} for this?
+
+>  
+>  #define PHY_CTRL1			0x4
+>  #define PHY_CTRL1_RESET			BIT(0)
+> @@ -20,6 +24,11 @@
+>  
+>  #define PHY_CTRL2			0x8
+>  #define PHY_CTRL2_TXENABLEN0		BIT(8)
+> +#define PHY_CTRL2_OTG_DISABLE		BIT(9)
+> +
+> +#define PHY_CTRL6			0x18
+> +#define PHY_CTRL6_ALT_CLK_EN		BIT(1)
+> +#define PHY_CTRL6_ALT_CLK_SEL		BIT(0)
+>  
+>  struct imx8mq_usb_phy {
+>  	struct phy *phy;
+> @@ -54,6 +63,44 @@ static int imx8mq_usb_phy_init(struct phy *phy)
+>  	return 0;
+>  }
+>  
+> +static int imx8mp_usb_phy_init(struct phy *phy)
+> +{
+> +	struct imx8mq_usb_phy *imx_phy = phy_get_drvdata(phy);
+> +	u32 value;
+> +
+> +	/* USB3.0 PHY signal fsel for 24M ref */
+> +	value = readl(imx_phy->base + PHY_CTRL0);
+> +	value &= ~PHY_CTRL0_FSEL_MASK;
+> +	value |= PHY_CTRL0_FSEL_24M;
+> +	writel(value, imx_phy->base + PHY_CTRL0);
+> +
+> +	/* Disable alt_clk_en and use internal MPLL clocks */
+> +	value = readl(imx_phy->base + PHY_CTRL6);
+> +	value &= ~(PHY_CTRL6_ALT_CLK_SEL | PHY_CTRL6_ALT_CLK_EN);
+> +	writel(value, imx_phy->base + PHY_CTRL6);
+> +
+> +	value = readl(imx_phy->base + PHY_CTRL1);
+> +	value &= ~(PHY_CTRL1_VDATSRCENB0 | PHY_CTRL1_VDATDETENB0);
+> +	value |= PHY_CTRL1_RESET | PHY_CTRL1_ATERESET;
+> +	writel(value, imx_phy->base + PHY_CTRL1);
+> +
+> +	value = readl(imx_phy->base + PHY_CTRL0);
+> +	value |= PHY_CTRL0_REF_SSP_EN;
+> +	writel(value, imx_phy->base + PHY_CTRL0);
+> +
+> +	value = readl(imx_phy->base + PHY_CTRL2);
+> +	value |= PHY_CTRL2_TXENABLEN0 | PHY_CTRL2_OTG_DISABLE;
+> +	writel(value, imx_phy->base + PHY_CTRL2);
+> +
+> +	udelay(10);
+> +
+> +	value = readl(imx_phy->base + PHY_CTRL1);
+> +	value &= ~(PHY_CTRL1_RESET | PHY_CTRL1_ATERESET);
+> +	writel(value, imx_phy->base + PHY_CTRL1);
+> +
+> +	return 0;
+> +}
+> +
+>  static int imx8mq_phy_power_on(struct phy *phy)
+>  {
+>  	struct imx8mq_usb_phy *imx_phy = phy_get_drvdata(phy);
+> @@ -83,12 +130,29 @@ static struct phy_ops imx8mq_usb_phy_ops = {
+>  	.owner		= THIS_MODULE,
+>  };
+>  
+> +static struct phy_ops imx8mp_usb_phy_ops = {
+> +	.init		= imx8mp_usb_phy_init,
+> +	.power_on	= imx8mq_phy_power_on,
+> +	.power_off	= imx8mq_phy_power_off,
+> +	.owner		= THIS_MODULE,
+> +};
+> +
+> +static const struct of_device_id imx8mq_usb_phy_of_match[] = {
+> +	{.compatible = "fsl,imx8mq-usb-phy",
+> +	 .data = &imx8mq_usb_phy_ops,},
+> +	{.compatible = "fsl,imx8mp-usb-phy",
+> +	 .data = &imx8mp_usb_phy_ops,},
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, imx8mq_usb_phy_of_match);
+> +
+>  static int imx8mq_usb_phy_probe(struct platform_device *pdev)
+>  {
+>  	struct phy_provider *phy_provider;
+>  	struct device *dev = &pdev->dev;
+>  	struct imx8mq_usb_phy *imx_phy;
+>  	struct resource *res;
+> +	const struct of_device_id *of_id;
+>  
+>  	imx_phy = devm_kzalloc(dev, sizeof(*imx_phy), GFP_KERNEL);
+>  	if (!imx_phy)
+> @@ -105,7 +169,12 @@ static int imx8mq_usb_phy_probe(struct platform_device *pdev)
+>  	if (IS_ERR(imx_phy->base))
+>  		return PTR_ERR(imx_phy->base);
+>  
+> -	imx_phy->phy = devm_phy_create(dev, NULL, &imx8mq_usb_phy_ops);
+> +	of_id = of_match_device(imx8mq_usb_phy_of_match, dev);
+
+You need of_id->data so why not get that using
+of_device_get_match_data()
+
+> +	if (!of_id)
+> +		return -ENODEV;
+> +
+> +	imx_phy->phy = devm_phy_create(dev, NULL, (const struct phy_ops *)
+> +					of_id->data);
+>  	if (IS_ERR(imx_phy->phy))
+>  		return PTR_ERR(imx_phy->phy);
+>  
+> @@ -120,12 +189,6 @@ static int imx8mq_usb_phy_probe(struct platform_device *pdev)
+>  	return PTR_ERR_OR_ZERO(phy_provider);
+>  }
+>  
+> -static const struct of_device_id imx8mq_usb_phy_of_match[] = {
+> -	{.compatible = "fsl,imx8mq-usb-phy",},
+> -	{ },
+> -};
+> -MODULE_DEVICE_TABLE(of, imx8mq_usb_phy_of_match);
+> -
+>  static struct platform_driver imx8mq_usb_phy_driver = {
+>  	.probe	= imx8mq_usb_phy_probe,
+>  	.driver = {
+> -- 
+> 2.7.4
+
 -- 
-2.17.1
-
+~Vinod
