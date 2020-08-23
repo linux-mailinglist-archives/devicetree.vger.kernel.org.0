@@ -2,70 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 831C424EC54
-	for <lists+devicetree@lfdr.de>; Sun, 23 Aug 2020 11:05:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF06E24ECF6
+	for <lists+devicetree@lfdr.de>; Sun, 23 Aug 2020 13:15:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728701AbgHWJF3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Aug 2020 05:05:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40536 "EHLO mail.kernel.org"
+        id S1726972AbgHWLPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Aug 2020 07:15:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52694 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728691AbgHWJF1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 Aug 2020 05:05:27 -0400
-Received: from localhost.localdomain (unknown [194.230.155.216])
+        id S1726371AbgHWLPS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 Aug 2020 07:15:18 -0400
+Received: from kozik-lap.proceq-device.com (unknown [194.230.155.216])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 762092072D;
-        Sun, 23 Aug 2020 09:05:24 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id C55C92074D;
+        Sun, 23 Aug 2020 11:15:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598173527;
-        bh=2uo/JEJs8YAZS6b2NkF8X/+7G50HlAMv/ZREDOinUng=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=LVXV8H6/FWm1NY+h8uiBifu0RS9SHBzj+PgvpYZ7pWxbqJiR2wcdcE0+IOy7RFZvj
-         d772vafq9BwHsW0Z8LjlX2uc5g7ZShrEY7G5sXgxY+tSglY6/X/WXUEoZvE8L7binB
-         p1mTxNJ6XMQ3F+k3CYVjciDR2qb/Fo6lCaQeIW3s=
+        s=default; t=1598181318;
+        bh=nBRSChcP1vaZwzxZFMFZYHjipXWONtsRrLat8s6I/KQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Vqy5UnHutEHs1Ynb6pNsCNmtC0NJGN10nPEi1DYS8xd4a0RPpXaehw5UyVI1DDLRi
+         bE89pcA2y7ehFaYonhZ7wBjPrmwasDm6X7DncLDsGy0R+gCQKTZ8O6zk85JdtPOGEo
+         gWMLjJlBvbcqhhLHNHHymS/3vadg7QEIrNDGX2K8=
 From:   Krzysztof Kozlowski <krzk@kernel.org>
 To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH 3/3] arm64: dts: imx8mp-evk: remove orphaned pinctrl-names property
-Date:   Sun, 23 Aug 2020 11:05:05 +0200
-Message-Id: <20200823090505.5579-3-krzk@kernel.org>
+Subject: [PATCH 1/5] arm64: dts: imx8mm-evk: Replace deprecated phy reset properties
+Date:   Sun, 23 Aug 2020 13:15:04 +0200
+Message-Id: <20200823111508.1165-1-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200823090505.5579-1-krzk@kernel.org>
-References: <20200823090505.5579-1-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "pinctrl-names" property in iomux node does not make sense on its
-own (without "pinctrl-X").
+Use preferred properties of phy node instead of deprecated
+phy-reset-gpios (and others).  This avoids copying deprecated code into
+future DTSes.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 2 --
- 1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-index 3da1fff3d6fd..3d535f1b3440 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-@@ -124,8 +124,6 @@
- };
+---
+
+Not tested on HW.
+---
+ arch/arm64/boot/dts/freescale/imx8mm-evk.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+index 19a22d0d0730..c1f7d44651df 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+@@ -119,8 +119,6 @@
+ 	pinctrl-0 = <&pinctrl_fec1>;
+ 	phy-mode = "rgmii-id";
+ 	phy-handle = <&ethphy0>;
+-	phy-reset-gpios = <&gpio4 22 GPIO_ACTIVE_LOW>;
+-	phy-reset-duration = <10>;
+ 	fsl,magic-packet;
+ 	status = "okay";
  
- &iomuxc {
--	pinctrl-names = "default";
--
- 	pinctrl_fec: fecgrp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SAI1_RXD2__ENET1_MDC		0x3
+@@ -131,6 +129,8 @@
+ 		ethphy0: ethernet-phy@0 {
+ 			compatible = "ethernet-phy-ieee802.3-c22";
+ 			reg = <0>;
++			reset-gpios = <&gpio4 22 GPIO_ACTIVE_LOW>;
++			reset-assert-us = <10000>;
+ 		};
+ 	};
+ };
 -- 
 2.17.1
 
