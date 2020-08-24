@@ -2,96 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 323B824FF31
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 15:42:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A152C24FF38
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 15:42:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728004AbgHXNl6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Aug 2020 09:41:58 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:53898 "EHLO honk.sigxcpu.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726967AbgHXNfa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Aug 2020 09:35:30 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 673CAFB03;
-        Mon, 24 Aug 2020 15:35:22 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id aJ1hfcJNSXF6; Mon, 24 Aug 2020 15:35:20 +0200 (CEST)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 4E43A45869; Mon, 24 Aug 2020 15:35:20 +0200 (CEST)
-Date:   Mon, 24 Aug 2020 15:35:20 +0200
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Martin Kepplinger <martink@posteo.de>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Anson Huang <Anson.Huang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Li Jun <jun.li@nxp.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Li Yang <leoyang.li@nxp.com>, Arnd Bergmann <arnd@arndb.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Walle <michael@walle.cc>,
-        Olof Johansson <olof@lixom.net>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 0/2] arm64: dts: imx8mq: Add NWL DSI host controller
- to Librem 5 Devkit
-Message-ID: <20200824133520.GA20386@bogon.m.sigxcpu.org>
-References: <cover.1598166983.git.agx@sigxcpu.org>
- <20200824124635.GE12776@dragon>
+        id S1727999AbgHXNmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Aug 2020 09:42:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54638 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728014AbgHXNmF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 09:42:05 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85CCBC061573;
+        Mon, 24 Aug 2020 06:42:04 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id f26so9666999ljc.8;
+        Mon, 24 Aug 2020 06:42:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=u/tcJcoNjBd65aqyixuPMYO1EjOL24DArTaKRcQSR00=;
+        b=BiZxRmOE+xC12DVhSxL3FViWBFtWVsV9ckYM1zZpmO2F4R4pYhAywA5QdYcVbJG/Ek
+         zy2Sd77F/NlVe767uNCBSSvCNi7PobDSlucyhApkqvpjIVxb6wEexBeARyugignsEuuz
+         MyJUv+RROyabcFliRWNawnSVSQCcXxrWJDpB/I4DAN1Xou/DcS4vwJ/olsUJ/mUGLdVY
+         WaJgcjnmBE4SNUm56xIzeWNT2rZRW3fLwhisypEvwzIMfBMPIX388LJwP+WTUbj+roY1
+         KKoa1PkXj6KtofZAl2OgoomKTu3SBSE9rKaa1VvA7NyMwrrwSqxcxnBq/x5H5OJXV2OY
+         XFkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=u/tcJcoNjBd65aqyixuPMYO1EjOL24DArTaKRcQSR00=;
+        b=T8BtSo+P7h9EBi/l5SrcgYHxI+Zx59MzAFD8vY/sBOkzXnHEWD0KkH+qsrCq4ZnvBr
+         cLMgw1MEGkvt1ApjVlyXPO/I47faWtxHLvq3OoH9FwLgrUv76WprlfOWBv1R+Dos1iWS
+         xv0E2rj60f1bE2SKXKClj9GyqLytALMcqQBMZYmfmXJG+6/HdFJdEXoMmOl6EMvZ7fZ5
+         POW2GJrvx766lh2oZ558RxE/ywiyKeF5gwSZlIav77O/0P2Y0P8jWFrdC4onjbk6qS+h
+         qG+irloh3uM0FaynDUpCnyYPScs5oVAL4k23a9Ql3rPOL+XCl/tY+EBKImrx29Rkk4bN
+         FrKA==
+X-Gm-Message-State: AOAM530zujV/JfrEFuJUzockq37UFP7MlPixFXbxQrYKG0l0Lb3g636R
+        ttJeouINONiLtezEDjIcEiUH94mdIBqf+lM+u8Y7TGgA
+X-Google-Smtp-Source: ABdhPJy99YCtFNmjhnje+8maJuYGXldM7qWMOvONoQmUneZSH8j64uwO12iXneGBihZRrBZ82TAwjMcXSKVjMwftwfs=
+X-Received: by 2002:a2e:5cc9:: with SMTP id q192mr2690924ljb.452.1598276520241;
+ Mon, 24 Aug 2020 06:42:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200824124635.GE12776@dragon>
+References: <1598255439-1193-1-git-send-email-shengjiu.wang@nxp.com>
+In-Reply-To: <1598255439-1193-1-git-send-email-shengjiu.wang@nxp.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 24 Aug 2020 10:41:48 -0300
+Message-ID: <CAOMZO5B74eiCH0bf-Dr3T8tNVm8wZzPAUaAn858HtVRQ0fUWGg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] Add headphone detection for sound card
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-On Mon, Aug 24, 2020 at 08:46:36PM +0800, Shawn Guo wrote:
-> On Sun, Aug 23, 2020 at 09:18:06AM +0200, Guido Günther wrote:
-> > These patches add the NWL host controller to the imx8mq and make use of it on
-> > the Librem 5 Devkit enabling the built in MIPI DSI LCD panel.
-> > 
-> > I opted to add imx8mq internal ports and endpoints between nwl and lcdif to the
-> > generic dtsi since those are SOC rather than board specific properties.
-> > 
-> > Changes from v3
-> > - Rebase patch 3 and 4 against Shawn's imx/defconfig
-> >   Patches 1 an 2 got already applies, thanks!
-> > 
-> > Changes from v2
-> > - Add Tested-by from Martin Kepplinger, thanks!
-> >   https://lore.kernel.org/linux-arm-kernel/cover.1597913263.git.agx@sigxcpu.org/T/#m067f2d659fcd1c0cb7792b22d0c4db06ed235815
-> >   https://lore.kernel.org/linux-arm-kernel/cover.1597913263.git.agx@sigxcpu.org/T/#m9aff315ee38fd9bbcd3a896876726c14b2fb7048
-> > 
-> > Changes from v1
-> > - Add Reviewed-by from Fabio Estevam, thanks!
-> >   https://lore.kernel.org/linux-arm-kernel/CAOMZO5DUA5eS8apZPbte0EcSQ4Vwpg6YLK7D0YdjSUy+kdBu8Q@mail.gmail.com/
-> >   https://lore.kernel.org/linux-arm-kernel/CAOMZO5ANrd2JCmHyxZ0Sv0WNcU9T-q3MbaeADxbOwf+31MQ4LQ@mail.gmail.com/#t
-> >   https://lore.kernel.org/linux-arm-kernel/CAOMZO5Dg5NGpJ0SQkYny04Kv3ky0619J7YwT-0eE1dsK19o1-w@mail.gmail.com/
-> > - As per review comment by Fabio Estevam
-> >   Re-sync DRM related defconfig bits. I didn't resyc the whole defconfig since
-> >   this is pretty much kernel version dependent.
-> > 
-> > Guido Günther (2):
-> >   arm64: defconfig: re-sync DRM related defconfig bits
-> >   arm64: defconfig: Enable imx8mq-librem5-devkit display stack
-> 
-> Applied both, thanks.
+Hi Wang,
 
-Thanks!
- -- Guido
+On Mon, Aug 24, 2020 at 4:56 AM Shengjiu Wang <shengjiu.wang@nxp.com> wrote:
+>
+> Add headphone detection for sound card
+> and add audio sound card node for imx6sll.
+>
+> Shengjiu Wang (3):
+>   ARM: dts: imx6sx-sdb: Add headphone detection for sound card
+>   ARM: dts: imx6sl-evk: Add headphone detection for sound card
+>   ARM: dts: imx6sll-evk: Add audio sound card node
+>
+> changes in v2
+> - add pinctrl_hp, don't add headphone detect GPIO in hog group
+
+Series looks good now:
+
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
