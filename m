@@ -2,177 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49E0D24F375
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 09:59:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D48D24F38E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 10:03:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726037AbgHXH7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Aug 2020 03:59:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56228 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725730AbgHXH7D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 03:59:03 -0400
-Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com [IPv6:2607:f8b0:4864:20::e44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4A0EC061573
-        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 00:59:02 -0700 (PDT)
-Received: by mail-vs1-xe44.google.com with SMTP id a1so3964366vsp.4
-        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 00:59:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=x5fetNBGlq6IDEbKDStVMl4rk13Z2lttGI7mVbBoANg=;
-        b=QHuXkUnpzno+kWLVS5giRuWiYCUzOhxOpcvPhkZp0VmzUF0E2y1n5YR13ShN+SPEFL
-         JJFQCYCGhqS8sEZpb45cYKnkILyJBPw7RzXpxvpYkPEoL2od3NMw2PQrnsr1vq1tfNCB
-         gWSsRvI6m2engpZqC9iA2xBjM7HH1j2f2jY8iaPNwkl0eMQgdzn49x9/Xk7f7RWWlocQ
-         c4WcvhRoh8vSIdL+U+glIqO7uWLlmEUoX35MgTQxlN4FHfXe6ZaerbYGPUDcHT7ERy7A
-         gfiibhBbuXTQqsVrPj4xGzj6dXRDMZVkyrIS9sUJ9jOPvSrHTHDGhkyT64WIPykCTCQZ
-         BuaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=x5fetNBGlq6IDEbKDStVMl4rk13Z2lttGI7mVbBoANg=;
-        b=Luw1HOSFQptfTLtra4kuYBWQ5jEDAO/QtEqkO8TRoVvSx8W91njpRJPOuqCNRyZSYX
-         GevRwp5u4HCL6vj6ei4Sz2YkoiO5PSZSO1pqMGQ7Fe0JqN6K23L35ekTpCg3jULzEG15
-         20/D7/tUmzAfestIH1of53m5+Bc/m9Gj11taIrrx49R7cSK090YrHY49f4BFLCxcgOfW
-         yb23i5loe8DL7RHw/LbJxU89rzqMF3K6LS4SDEQPOVZ/j+oLy2xBfV7H0Hfmdf0eB3th
-         xM2/u9hQhSA1LqgvsI/BeJxkJ6Xr3DzEEiOWyfrT/v90OzkCpHMzSask4wg3HdLp4pQH
-         +QKQ==
-X-Gm-Message-State: AOAM53022rCXdZTWrsLKrAtwPgq5y6pdZ3tkz31b9tQkc/F3rHoKKCqw
-        47D+KT53G5opfouhVgPsGZeXrwCkfJHkZX2ertlyiQ==
-X-Google-Smtp-Source: ABdhPJyTCnrU5j4N+bDMRKTXv/VoAO85MH3Zxse2PUmGY/gwR2eoAN6g9RWT58TPGUc6iYmOooJUjV6vconZcUFv3yY=
-X-Received: by 2002:a67:e9d8:: with SMTP id q24mr1800063vso.165.1598255941860;
- Mon, 24 Aug 2020 00:59:01 -0700 (PDT)
+        id S1726347AbgHXIDx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Aug 2020 04:03:53 -0400
+Received: from mga12.intel.com ([192.55.52.136]:9876 "EHLO mga12.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726225AbgHXIDp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Aug 2020 04:03:45 -0400
+IronPort-SDR: P/TR/vsPzETOh+Idt4yNcCRe1t/94fUDzlzQNDP7MP6gOSPBSnGChU0MTQAxeRkIIwSi0DDjRg
+ k1KxLufosl7Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9722"; a="135399630"
+X-IronPort-AV: E=Sophos;i="5.76,347,1592895600"; 
+   d="scan'208";a="135399630"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Aug 2020 01:03:45 -0700
+IronPort-SDR: nsuW3aUHJ28vqbV5G1i/JloVAVpwBrPSIpnluXRnHUS9A9AnCrkF/0gXwmUrvxpCkC/+vG8buR
+ HEGF2M3fcbIA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,347,1592895600"; 
+   d="scan'208";a="328410026"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga008.jf.intel.com with ESMTP; 24 Aug 2020 01:03:42 -0700
+Received: from andy by smile with local (Exim 4.94)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1kA7Ha-00AzUx-S4; Mon, 24 Aug 2020 10:52:46 +0300
+Date:   Mon, 24 Aug 2020 10:52:46 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     vineetha.g.jaya.kumaran@intel.com
+Cc:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        robh+dt@kernel.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, wan.ahmad.zainie.wan.mohamad@intel.com,
+        lakshmi.bai.raja.subramanian@intel.com
+Subject: Re: [PATCH v4 1/2] pwm: Add PWM driver for Intel Keem Bay
+Message-ID: <20200824075246.GZ1891694@smile.fi.intel.com>
+References: <1598106646-16595-1-git-send-email-vineetha.g.jaya.kumaran@intel.com>
+ <1598106646-16595-2-git-send-email-vineetha.g.jaya.kumaran@intel.com>
 MIME-Version: 1.0
-References: <1596673949-1571-1-git-send-email-skomatineni@nvidia.com> <1596673949-1571-7-git-send-email-skomatineni@nvidia.com>
-In-Reply-To: <1596673949-1571-7-git-send-email-skomatineni@nvidia.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 24 Aug 2020 09:58:25 +0200
-Message-ID: <CAPDyKFpSwcfu3NqM_uqpKfDBeWAvE7XguZntO=ZrnJx8m+vjeg@mail.gmail.com>
-Subject: Re: [PATCH v3 6/6] sdhci: tegra: Add missing TMCLK for data timeout
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     Adrian Hunter <adrian.hunter@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "# 4.0+" <stable@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1598106646-16595-2-git-send-email-vineetha.g.jaya.kumaran@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 6 Aug 2020 at 02:32, Sowjanya Komatineni <skomatineni@nvidia.com> wrote:
->
-> commit b5a84ecf025a ("mmc: tegra: Add Tegra210 support")
->
-> Tegra210 and later has a separate sdmmc_legacy_tm (TMCLK) used by Tegra
-> SDMMC hawdware for data timeout to achive better timeout than using
-> SDCLK and using TMCLK is recommended.
->
-> USE_TMCLK_FOR_DATA_TIMEOUT bit in Tegra SDMMC register
-> SDHCI_TEGRA_VENDOR_SYS_SW_CTRL can be used to choose either TMCLK or
-> SDCLK for data timeout.
->
-> Default USE_TMCLK_FOR_DATA_TIMEOUT bit is set to 1 and TMCLK is used
-> for data timeout by Tegra SDMMC hardware and having TMCLK not enabled
-> is not recommended.
->
-> So, this patch fixes it.
+On Sat, Aug 22, 2020 at 10:30:45PM +0800, vineetha.g.jaya.kumaran@intel.com wrote:
+> From: "Lai, Poey Seng" <poey.seng.lai@intel.com>
+> 
 
-Just realized that there should be an updated DT binding accordingly,
-stating that the "tmclk" is recommended but optional for some
-variants. Please re-spin.
+Side note, please use my @linux.intel.com address in the Cc list.
 
-Kind regards
-Uffe
+> Enable PWM support for the Intel Keem Bay SoC.
 
->
-> Fixes: b5a84ecf025a ("mmc: tegra: Add Tegra210 support")
-> Cc: stable <stable@vger.kernel.org> # 5.4
-> Acked-by: Adrian Hunter <adrian.hunter@intel.com>
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-> ---
->  drivers/mmc/host/sdhci-tegra.c | 41 +++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 41 insertions(+)
->
-> diff --git a/drivers/mmc/host/sdhci-tegra.c b/drivers/mmc/host/sdhci-tegra.c
-> index 31ed321..c0b9405 100644
-> --- a/drivers/mmc/host/sdhci-tegra.c
-> +++ b/drivers/mmc/host/sdhci-tegra.c
-> @@ -140,6 +140,7 @@ struct sdhci_tegra_autocal_offsets {
->  struct sdhci_tegra {
->         const struct sdhci_tegra_soc_data *soc_data;
->         struct gpio_desc *power_gpio;
-> +       struct clk *tmclk;
->         bool ddr_signaling;
->         bool pad_calib_required;
->         bool pad_control_available;
-> @@ -1611,6 +1612,44 @@ static int sdhci_tegra_probe(struct platform_device *pdev)
->                 goto err_power_req;
->         }
->
-> +       /*
-> +        * Tegra210 has a separate SDMMC_LEGACY_TM clock used for host
-> +        * timeout clock and SW can choose TMCLK or SDCLK for hardware
-> +        * data timeout through the bit USE_TMCLK_FOR_DATA_TIMEOUT of
-> +        * the register SDHCI_TEGRA_VENDOR_SYS_SW_CTRL.
-> +        *
-> +        * USE_TMCLK_FOR_DATA_TIMEOUT bit default is set to 1 and SDMMC uses
-> +        * 12Mhz TMCLK which is advertised in host capability register.
-> +        * With TMCLK of 12Mhz provides maximum data timeout period that can
-> +        * be achieved is 11s better than using SDCLK for data timeout.
-> +        *
-> +        * So, TMCLK is set to 12Mhz and kept enabled all the time on SoC's
-> +        * supporting SDR104 mode and when not using SDCLK for data timeout.
-> +        */
-> +
-> +       if ((soc_data->nvquirks & NVQUIRK_ENABLE_SDR104) &&
-> +           !(soc_data->pdata->quirks & SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK)) {
-> +               clk = devm_clk_get(&pdev->dev, "tmclk");
-> +               if (IS_ERR(clk)) {
-> +                       rc = PTR_ERR(clk);
-> +                       if (rc == -EPROBE_DEFER)
-> +                               goto err_power_req;
-> +
-> +                       dev_warn(&pdev->dev, "failed to get tmclk: %d\n", rc);
-> +                       clk = NULL;
-> +               }
-> +
-> +               clk_set_rate(clk, 12000000);
-> +               rc = clk_prepare_enable(clk);
-> +               if (rc) {
-> +                       dev_err(&pdev->dev,
-> +                               "failed to enable tmclk: %d\n", rc);
-> +                       goto err_power_req;
-> +               }
-> +
-> +               tegra_host->tmclk = clk;
-> +       }
-> +
->         clk = devm_clk_get(mmc_dev(host->mmc), NULL);
->         if (IS_ERR(clk)) {
->                 rc = PTR_ERR(clk);
-> @@ -1654,6 +1693,7 @@ static int sdhci_tegra_probe(struct platform_device *pdev)
->  err_rst_get:
->         clk_disable_unprepare(pltfm_host->clk);
->  err_clk_get:
-> +       clk_disable_unprepare(tegra_host->tmclk);
->  err_power_req:
->  err_parse_dt:
->         sdhci_pltfm_free(pdev);
-> @@ -1671,6 +1711,7 @@ static int sdhci_tegra_remove(struct platform_device *pdev)
->         reset_control_assert(tegra_host->rst);
->         usleep_range(2000, 4000);
->         clk_disable_unprepare(pltfm_host->clk);
-> +       clk_disable_unprepare(tegra_host->tmclk);
->
->         sdhci_pltfm_free(pdev);
->
-> --
-> 2.7.4
->
+...
+
+> + * Authors: Lai Poey Seng <poey.seng.lai@intel.com>
+> + *          Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
+
+Seems you missed Co-developed-by in the tag block of commit message.
+
+...
+
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+
+> +#include <linux/of.h>
+
+There is no user of this header. But mod_devicetable.h is missing.
+
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/regmap.h>
+
+...
+
+> +	/*
+> +	 * The upper 16 bits of the KMB_PWM_HIGHLOW_OFFSET register contain
+> +	 * the high time of the waveform, while the last 16 bits contain
+> +	 * the low time of the waveform, in terms of clock cycles.
+> +	 *
+> +	 * high time = clock rate * duty cycle / NSEC_PER_SEC
+> +	 * low time =  clock rate * (period - duty cycle) / NSEC_PER_SEC
+> +	 *
+> +	 * e.g. For period 50us, duty cycle 30us, and clock rate 500MHz:
+
+> +	 * high time = (500MHz * 30us) / 1000000000 = 0x3A98
+
+10^9 divisor now is redundant. It's school physics about units.
+
+> +	 * low time = (500MHz * 20us) / 1000000000 = 0x2710
+
+Ditto.
+
+> +	 * Value written to KMB_PWM_HIGHLOW_OFFSET = 0x3A982710
+> +	 */
+
+Note, in the code you are operating different units.
+
+...
+
+> +	div = clk_rate * state->duty_cycle;
+> +	div = DIV_ROUND_CLOSEST_ULL(div, NSEC_PER_SEC);
+
+For example, here you have clock rate in Hz, duty cycle in ns, that's why you
+need to use NSEC_PER_SEC divisor here.
+
+...
+
+> +	div = clk_rate * (state->period - state->duty_cycle);
+> +	div = DIV_ROUND_CLOSEST_ULL(div, NSEC_PER_SEC);
+
+Same here.
+
+(Just to be clear, code is okay!)
+
+...
+
+> +	priv->clk = devm_clk_get(&pdev->dev, NULL);
+> +	if (IS_ERR(priv->clk))
+> +		dev_err_probe(dev, PTR_ERR(priv->clk),
+> +			     "Failed to get clock\n");
+
+First of all, it can be one line, second, it misses something...
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
