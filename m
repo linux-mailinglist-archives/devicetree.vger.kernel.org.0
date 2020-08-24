@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC7CD24FF3F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 15:42:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A10724FEF3
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 15:32:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727873AbgHXNm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Aug 2020 09:42:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58256 "EHLO mail.kernel.org"
+        id S1727011AbgHXNci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Aug 2020 09:32:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58574 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727080AbgHXNcL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Aug 2020 09:32:11 -0400
+        id S1727110AbgHXNcW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Aug 2020 09:32:22 -0400
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7D4F721775;
-        Mon, 24 Aug 2020 13:32:10 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E297E2063A;
+        Mon, 24 Aug 2020 13:32:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598275931;
-        bh=kQqPOp5ZCYfc0mhvDYZD0wZbCw7iw9QkX4jllZTFUSI=;
+        s=default; t=1598275942;
+        bh=RwBqFz941Jt/SoLTcwza2Sjh1YRsxek+wKn59iLih64=;
         h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=eCklyBpBial1yRqp01SYpxNYkhwfj/NIYL96JuW77mjEGx35i2/NZPCwfnryUfF1D
-         fbmxsdpz8xFmdyUTemS9FlsbzZel+3JWmtqVjpKOWN+rOD/tilQ/2/lPtxuUT1wDgz
-         Y+9T6EyLbOgrJdWqXdJfR04934FWBFLCDkeOXFII=
-Date:   Mon, 24 Aug 2020 14:31:36 +0100
+        b=VDJob3z4g8SfZlGkZJdO47OAJ3aFcr1Pysg+cEPSPqc6ZdbgCzYTclHQKwmkRofP7
+         OR+Swz/nxkb+Iri0+EMFCZfLp5EISySn/gWdK3XMFGzCvpCqks8BEaVth9W/mxJnZ9
+         YMDRc6tqs4At4z4nENzBNfPmEgqf1uU8ud/Mux0I=
+Date:   Mon, 24 Aug 2020 14:31:48 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     tiwai@suse.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, Shengjiu Wang <shengjiu.wang@nxp.com>,
-        lgirdwood@gmail.com, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, perex@perex.cz
-In-Reply-To: <1598190877-9213-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1598190877-9213-1-git-send-email-shengjiu.wang@nxp.com>
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: ak5558: Add power supply property
-Message-Id: <159827589162.47809.9128717521868705111.b4-ty@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Jisheng Zhang <Jisheng.Zhang@synaptics.com>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20200824102402.4047fa5f@xhacker.debian>
+References: <20200824102402.4047fa5f@xhacker.debian>
+Subject: Re: [PATCH] regulator: mp886x: use "mps,switch-frequency-hz"
+Message-Id: <159827590802.48129.18246424059084988195.b4-ty@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 23 Aug 2020 21:54:36 +0800, Shengjiu Wang wrote:
-> AVDD-supply is for Analog power supply
-> DVDD-supply is for Digital power supply
+On Mon, 24 Aug 2020 10:32:14 +0800, Jisheng Zhang wrote:
+> As Rob suggested, use the "mps,switch-frequency-hz" instead of the
+> "mps,switch-frequency" for switch frequency. Fortunately, the switch
+> frequency support isn't released, so we can modify it now without
+> any concern.
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-[1/2] ASoC: dt-bindings: ak5558: Add power supply property
-      commit: 5edc8c4fe019b920ae9bd1e3413d66f6e8adf29b
-[2/2] ASoC: ak5558: Add regulator support
-      commit: 2ff6d5a108c6b7c07d1093c38e0def015edd325d
+[1/1] regulator: mp886x: use "mps,switch-frequency-hz"
+      commit: a5f7949570dc7262d3239739b0cdaa001f935d4b
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
