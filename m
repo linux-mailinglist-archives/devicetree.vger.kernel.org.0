@@ -2,114 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A54524FBC0
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 12:43:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C585924FBE4
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 12:47:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726704AbgHXKns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Aug 2020 06:43:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54732 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726638AbgHXKnl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 06:43:41 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A498BC061755
-        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 03:43:40 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id x9so3791915wmi.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 03:43:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=vfeJpdo+reXlUp8I9Xltf/bKT4P5/2EZI29RPHRcGTo=;
-        b=zYrP/1bzSHAaUnEcj4HL//n+vYvLSDc9feOiIUJl31IuKVau98RwHMSK/ozNps5bTR
-         oYKfl5nukEcPBR6oPloC6dUWnJMYinAJ5ZTA0uCMCnjENm12q3qNJLyM9fX7fpZsWKwf
-         sAjPWWliJ59AzuScUI1swcfCyVp7j0p8T+bs9qKTAtSAIjqsg799vQKGdoz1rKObLU80
-         SnesywaeXAUN22biSQs84mCq1cEZwFAayZBmrDkSk+3c1GHDVa2eLVFKtTdmZE4yO4bU
-         pDA3wJDt5ycrQrRl1889ScC1ZC/OoaxJjElqCH337TWJtCl4rjt6zn/82C+A0UGm+nIp
-         4SzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=vfeJpdo+reXlUp8I9Xltf/bKT4P5/2EZI29RPHRcGTo=;
-        b=GSUBENTPthHXENCbafHm+qhF0tsRxf07vNouNg3DxZvZ1iyD9rNsz2C5ZnTBhSsXQt
-         P33nufCQ5eZTCzu6JGWB2Carr84UDgShDiwD9p7aWlkj7oMSFUhDl1Elq6mHJzFXBy8g
-         1KZutZiAEftzIuhgsF8cqwG+NAcmWT53WR+HWnlvXVKtbyDxTvoEOumLvT+ZPRnzQWkR
-         vOt+e8qICSmCXQw5hYPuK9pzE/MvqfECQdtGlIEowz7yeoFls88+cT5hTmBQKMPdh2/H
-         QunZPmSaCgVyu9Qjw8qipK05KClhOumJN7myrcjyYUJIaN/6aPeb6bRIHe7CS0UshBH1
-         wqNw==
-X-Gm-Message-State: AOAM53146ZHO2e0UGcfw0GYBYN6KHhOEa1JaktVO0NCQeiXKERneL9iY
-        OA8snOlzkBtwwaUPu3UhZvmrmg==
-X-Google-Smtp-Source: ABdhPJyv9b5avO7XGdhprlSuqd/FKoiXA07sKRZlFBmahtp9hFgwnfD9BWbBCvoEh+hvSuNaA8PC7w==
-X-Received: by 2002:a1c:68c3:: with SMTP id d186mr5179539wmc.68.1598265818867;
-        Mon, 24 Aug 2020 03:43:38 -0700 (PDT)
-Received: from dell ([95.149.164.62])
-        by smtp.gmail.com with ESMTPSA id f9sm1783125wrm.5.2020.08.24.03.43.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Aug 2020 03:43:38 -0700 (PDT)
-Date:   Mon, 24 Aug 2020 11:43:36 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Lubomir Rintel <lkundrak@v3.sk>, Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/6] mfd: Add driver for Embedded Controller found on
- Acer Iconia Tab A500
-Message-ID: <20200824104336.GK3248864@dell>
-References: <20200823140846.19299-1-digetx@gmail.com>
- <20200823140846.19299-2-digetx@gmail.com>
- <20200823181653.GC209852@demiurge.local>
- <82abab10-9af6-a9c4-b241-d5a3af5b588d@gmail.com>
- <20200824073331.GG3248864@dell>
- <f12d287a-f088-4c43-479d-5c044e554b30@gmail.com>
+        id S1726051AbgHXKrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Aug 2020 06:47:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38486 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725968AbgHXKrf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Aug 2020 06:47:35 -0400
+Received: from dragon (unknown [80.251.214.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BF57F2071E;
+        Mon, 24 Aug 2020 10:47:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598266054;
+        bh=G1EuT7WRdVE2XHuuoDboS9gTa7E+TX7S2m2v/JaoZTs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=c/6rJ9cDMEh8WN0Di+Ss8+wulQMZcrXJZ0RtbJ2Vrqj5eS7W1BzvgoSEphYrUwT6g
+         ovdc8a8Scnywli4DYjN6NP+FsiIvAf0m4qROJ2f25yKKjb6HBg4B4XZjUFfeFYgCBm
+         1681B+Y0+T30BwX6IYJJ4CqYVscfn7ZLEeKU5dAc=
+Date:   Mon, 24 Aug 2020 18:47:19 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 4/4] arm64: dts: imx8mm-var-som-symphony: Add
+ Variscite Symphony board with VAR-SOM-MX8MM
+Message-ID: <20200824104718.GC12776@dragon>
+References: <20200817070120.4937-1-krzk@kernel.org>
+ <20200817070120.4937-4-krzk@kernel.org>
+ <20200823020051.GJ30094@dragon>
+ <20200823085847.GC2886@kozik-lap>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f12d287a-f088-4c43-479d-5c044e554b30@gmail.com>
+In-Reply-To: <20200823085847.GC2886@kozik-lap>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 Aug 2020, Dmitry Osipenko wrote:
-
-> 24.08.2020 10:33, Lee Jones пишет:
-> >> ...
-> >>>> +static struct a500_ec *a500_ec_scratch;
-> >>>
-> >>> If this is only used for power_off, please rename it. I've been told to
-> >>> do so in my driver: https://lore.kernel.org/lkml/20200519104933.GX271301@dell/
-> >>
-> >> I don't mind to rename the variable, but not sure whether it will be a
-> >> worthwhile change since _scratch is also a common naming scheme among
-> >> MFD drivers. Please see max77620_scratch for example, which I added
-> >> about a year ago.
+On Sun, Aug 23, 2020 at 10:58:47AM +0200, Krzysztof Kozlowski wrote:
+> On Sun, Aug 23, 2020 at 10:00:51AM +0800, Shawn Guo wrote:
+> > On Mon, Aug 17, 2020 at 09:01:20AM +0200, Krzysztof Kozlowski wrote:
+> > > Add a DTS for Variscite Symphony evaluation kit with VAR-SOM-MX8MM
+> > > System on Module.
+> > > 
+> > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > > 
+> > > ---
+> > > 
+> > > Changes since v1:
+> > > 1. Remove duplicated "leds" node,
+> > > 2. Fix heartbeat to active low,
+> > > 3. Add nxp,ptn5150 extcon.
+> > > ---
+> > >  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+> > >  .../dts/freescale/imx8mm-var-som-symphony.dts | 248 ++++++++++++++++++
+> > >  2 files changed, 249 insertions(+)
+> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> > > index a39f0a1723e0..dcfb8750cd78 100644
+> > > --- a/arch/arm64/boot/dts/freescale/Makefile
+> > > +++ b/arch/arm64/boot/dts/freescale/Makefile
+> > > @@ -29,6 +29,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-qds.dtb
+> > >  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-rdb.dtb
+> > >  
+> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
+> > > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
+> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
+> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
+> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
+> > > new file mode 100644
+> > > index 000000000000..2d3c30ac5e04
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
+> > > @@ -0,0 +1,248 @@
+> > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > > +/*
+> > > + * Copyright (C) 2020 Krzysztof Kozlowski <krzk@kernel.org>
+> > > + */
+> > > +
+> > > +/dts-v1/;
+> > > +
+> > > +#include "imx8mm-var-som.dtsi"
+> > > +
+> > > +/ {
+> > > +	model = "Variscite VAR-SOM-MX8MM Symphony evaluation board";
+> > > +	compatible = "variscite,var-som-mx8mm-symphony", "variscite,var-som-mx8mm", "fsl,imx8mm";
+> > > +
+> > > +	reg_usdhc2_vmmc: regulator-1 {
 > > 
-> > If something is used once, it does not make it 'common'.
-> > 
-> > Not sure how this slipped my notice before, but I don't like it.
-> > 
-> > Ensure any global struct used for power_off only includes items
-> > required for this purpose.  It's unfortunate this API requires a
-> > global variable at all.
-> > 
+> > regulator-usdhc2-vmmc
 > 
-> Okay! I'll change it in the v2, thanks!
+> You mean the node name? If so, it's not correct with device tree
+> specification:
+> "The node-name (...) should describe the general class of device.:
+> If appropriate, the name should be one of the following choices:
+> (...)
+>  - regulator"
 > 
-> Thierry Reding was working on the shutdown API which should replace the
-> global variables, unfortunately he doesn't have enough time to finish
-> that work yet.
+> Adding specific function/type/usage to the name of the node is a
+> opposite choice to "general class".
 
-That would be really good. :)
+Well, the node is named in general class, i.e. regulator-xxx, and we
+would like the suffix to be a bit more specific.  We have been using
+this name schema for fixed-regulator on i.MX platforms for long time.
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Shawn
