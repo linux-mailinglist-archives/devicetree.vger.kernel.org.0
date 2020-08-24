@@ -2,247 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 273F125037A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 18:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B4222505F4
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 19:25:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728816AbgHXQpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Aug 2020 12:45:17 -0400
-Received: from mail29.static.mailgun.info ([104.130.122.29]:19232 "EHLO
-        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728807AbgHXQpF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Aug 2020 12:45:05 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1598287504; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=f25qBDRyz/+Wy2bO5jdLv1vlQf8Rf9S6jdrVBNgyxYQ=; b=O09Tjlt27oflaScBXCBLRYnUE++xnCeQ+lXltZvf/0BAO/MrGA/H06haALpU5xeA2X4IvYaE
- GthxRdRVGLRCGCmdD6LbQEvGrhNVNDKLI/bwgbzeIea8Mi3ISGghG2i8RzG/ZvEvzAR1eAOK
- KDTNtqv51g8b/ItnnMXZQmv/qoQ=
-X-Mailgun-Sending-Ip: 104.130.122.29
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 5f43ee82e2cf79f0e2e6a42a (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 24 Aug 2020 16:44:50
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 89D24C433C6; Mon, 24 Aug 2020 16:44:50 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from vnaralas-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: akolli)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9B227C43391;
-        Mon, 24 Aug 2020 16:44:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 9B227C43391
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=akolli@codeaurora.org
-From:   Anilkumar Kolli <akolli@codeaurora.org>
-To:     ath11k@lists.infradead.org
-Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-        Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH v6 3/3] ath11k: add IPQ6018 support
-Date:   Mon, 24 Aug 2020 22:14:30 +0530
-Message-Id: <1598287470-1871-4-git-send-email-akolli@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1598287470-1871-1-git-send-email-akolli@codeaurora.org>
-References: <1598287470-1871-1-git-send-email-akolli@codeaurora.org>
+        id S1727973AbgHXRYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Aug 2020 13:24:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32996 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726513AbgHXRYq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 13:24:46 -0400
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA20EC061573
+        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 10:24:45 -0700 (PDT)
+Received: by mail-ed1-x544.google.com with SMTP id m20so8802608eds.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 10:24:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0pv9P9U6pxLlwMoplcSWHM0HVEAc+hsmuC2XIfXUykA=;
+        b=MQXLFuQXuwoKlu3fd4XyBErZA9e2H8z9kAXsrL9JfqOnhiArUFNm5rTXpHuyaca30B
+         j3+Hb+BLsOR6HAmseGR/njI2ubT9hInGmg3VFUve5o7gAsNT0w9XzR1I3+fUD512IgTP
+         eEEIU2xOtudBI0wVeRc4FJOElyTL0U0PmPFBg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0pv9P9U6pxLlwMoplcSWHM0HVEAc+hsmuC2XIfXUykA=;
+        b=sveL4l/pTvTM1cory6yC28hL/2Ed/AK1QGi7YU9t0FbDXiIrD0i39aXFZiivFvq+i+
+         mJwMKxHYCNSPYgNj6MBeFvDKlxbZGxGeyrzJbP4yU6PTTOuCpndppvRryElp+OXk/AdQ
+         jdh1IwoGeer8qdEtnyfQQi4Of8qvJMQJv/bir6Sb0AsF+fzxMAgJUOv1aVWoYfRFuUvB
+         y2eN06njEma8gGetq9xkMo2dyyECsKr5tePZiPWAyD8De6R+ShyXZprwFnoQmEGgWBGF
+         P/dYfk9ZPly28nHmwmqZb1jVDRWKZYLH/8kMJ3ETap7OrbovrXZWS++7xbLYPdb9PeyK
+         jmdA==
+X-Gm-Message-State: AOAM532XpRQ9tlOCoWurtp8Tahi5W6fYVD6rpLIqmhGvHSRimqNThWYU
+        GR/rgufuv/Jms2Sy/1otja2qXe7AZBkFzw==
+X-Google-Smtp-Source: ABdhPJw0cwJ3t8t3OuAjmRQF19dd5zQnPYAdfZFRqwfz68841jgFpAwfhLRFvZBZFXWjyw6R2aGuRw==
+X-Received: by 2002:a50:de04:: with SMTP id z4mr6535984edk.10.1598289880135;
+        Mon, 24 Aug 2020 10:24:40 -0700 (PDT)
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com. [209.85.128.47])
+        by smtp.gmail.com with ESMTPSA id q14sm10074365edv.54.2020.08.24.10.24.38
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Aug 2020 10:24:38 -0700 (PDT)
+Received: by mail-wm1-f47.google.com with SMTP id a65so5621678wme.5
+        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 10:24:38 -0700 (PDT)
+X-Received: by 2002:a05:600c:2314:: with SMTP id 20mr256519wmo.183.1598289877815;
+ Mon, 24 Aug 2020 10:24:37 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200728050140.996974-1-tientzu@chromium.org> <20200728050140.996974-5-tientzu@chromium.org>
+ <20200731205804.GB756942@bogus> <CALiNf2-BGQ+8Lm6A61oM6v+6N1zRTJYvod7LQLsCmK-ADsrMaw@mail.gmail.com>
+ <CAAFQd5Cm+ZGx9ia2sAdvHQC6zC1U=+9AWs7iW7o-qE4g7wZgsw@mail.gmail.com> <CAAFQd5AfbN0V3sGCs8vhmeD-MNn3bTvfWBCaT-OY3hgjBUs-LQ@mail.gmail.com>
+In-Reply-To: <CAAFQd5AfbN0V3sGCs8vhmeD-MNn3bTvfWBCaT-OY3hgjBUs-LQ@mail.gmail.com>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Mon, 24 Aug 2020 19:24:25 +0200
+X-Gmail-Original-Message-ID: <CAAFQd5B_LAb0uU3J9umGWBhaVSKT3N9SynnvTxw_PVEwHu4Cww@mail.gmail.com>
+Message-ID: <CAAFQd5B_LAb0uU3J9umGWBhaVSKT3N9SynnvTxw_PVEwHu4Cww@mail.gmail.com>
+Subject: Re: [RFC v2 4/5] dt-bindings: of: Add plumbing for restricted DMA pool
+To:     Rob Herring <robh@kernel.org>, Robin Murphy <robin.murphy@arm.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>, suzuki.poulose@arm.com,
+        dan.j.williams@intel.com, heikki.krogerus@linux.intel.com,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Claire Chang <tientzu@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IPQ6018 has one 5G and one 2G radio with 2x2,
-shares ipq8074 configurations.
+On Tue, Aug 11, 2020 at 11:15 AM Tomasz Figa <tfiga@chromium.org> wrote:
+>
+> On Mon, Aug 3, 2020 at 5:15 PM Tomasz Figa <tfiga@chromium.org> wrote:
+> >
+> > Hi Claire and Rob,
+> >
+> > On Mon, Aug 3, 2020 at 4:26 PM Claire Chang <tientzu@chromium.org> wrote:
+> > >
+> > > On Sat, Aug 1, 2020 at 4:58 AM Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Tue, Jul 28, 2020 at 01:01:39PM +0800, Claire Chang wrote:
+> > > > > Introduce the new compatible string, device-swiotlb-pool, for restricted
+> > > > > DMA. One can specify the address and length of the device swiotlb memory
+> > > > > region by device-swiotlb-pool in the device tree.
+> > > > >
+> > > > > Signed-off-by: Claire Chang <tientzu@chromium.org>
+> > > > > ---
+> > > > >  .../reserved-memory/reserved-memory.txt       | 35 +++++++++++++++++++
+> > > > >  1 file changed, 35 insertions(+)
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+> > > > > index 4dd20de6977f..78850896e1d0 100644
+> > > > > --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+> > > > > +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+> > > > > @@ -51,6 +51,24 @@ compatible (optional) - standard definition
+> > > > >            used as a shared pool of DMA buffers for a set of devices. It can
+> > > > >            be used by an operating system to instantiate the necessary pool
+> > > > >            management subsystem if necessary.
+> > > > > +        - device-swiotlb-pool: This indicates a region of memory meant to be
+> > > >
+> > > > swiotlb is a Linux thing. The binding should be independent.
+> > > Got it. Thanks for pointing this out.
+> > >
+> > > >
+> > > > > +          used as a pool of device swiotlb buffers for a given device. When
+> > > > > +          using this, the no-map and reusable properties must not be set, so the
+> > > > > +          operating system can create a virtual mapping that will be used for
+> > > > > +          synchronization. Also, there must be a restricted-dma property in the
+> > > > > +          device node to specify the indexes of reserved-memory nodes. One can
+> > > > > +          specify two reserved-memory nodes in the device tree. One with
+> > > > > +          shared-dma-pool to handle the coherent DMA buffer allocation, and
+> > > > > +          another one with device-swiotlb-pool for regular DMA to/from system
+> > > > > +          memory, which would be subject to bouncing. The main purpose for
+> > > > > +          restricted DMA is to mitigate the lack of DMA access control on
+> > > > > +          systems without an IOMMU, which could result in the DMA accessing the
+> > > > > +          system memory at unexpected times and/or unexpected addresses,
+> > > > > +          possibly leading to data leakage or corruption. The feature on its own
+> > > > > +          provides a basic level of protection against the DMA overwriting buffer
+> > > > > +          contents at unexpected times. However, to protect against general data
+> > > > > +          leakage and system memory corruption, the system needs to provide a
+> > > > > +          way to restrict the DMA to a predefined memory region.
+> > > >
+> > > > I'm pretty sure we already support per device carveouts and I don't
+> > > > understand how this is different.
+> > > We use this to bounce streaming DMA in and out of a specially allocated region.
+> > > I'll try to merge this with the existing one (i.e., shared-dma-pool)
+> > > to see if that
+> > > makes things clearer.
+> > >
+> >
+> > Indeed, from the firmware point of view, this is just a carveout, for
+> > which we have the "shared-dma-pool" compatible string defined already.
+> >
+> > However, depending on the device and firmware setup, the way the
+> > carevout is used may change. I can see the following scenarios:
+> >
+> > 1) coherent DMA (dma_alloc_*) within a reserved pool and no
+> > non-coherent DMA (dma_map_*).
+> >
+> > This is how the "memory-region" property is handled today in Linux for
+> > devices which can only DMA from/to the given memory region. However,
+> > I'm not sure if no non-coherent DMA is actually enforced in any way by
+> > the DMA subsystem.
+> >
+> > 2) coherent DMA from a reserved pool and non-coherent DMA from system memory
+> >
+> > This is the case for the systems which have some dedicated part of
+> > memory which is guaranteed to be coherent with the DMA, but still can
+> > do non-coherent DMA to any part of the system memory. Linux handles it
+> > the same way as 1), which is what made me believe that 1) might not
+> > actually be handled correctly.
+> >
+> > 3) coherent DMA and bounced non-coherent DMA within a reserved pool
+> > 4) coherent DMA within one pool and bounced non-coherent within another pool
+> >
+> > These are the two cases we're interested in. Basically they make it
+> > possible for non-coherent DMA from arbitrary system memory to be
+> > bounced through a reserved pool, which the device has access to. The
+> > current series implements 4), but I'd argue that it:
+> >
+> > - is problematic from the firmware point of view, because on most of
+> > the systems, both pools would be just some carveouts and the fact that
+> > Linux would use one for coherent and the other for non-coherent DMA
+> > would be an OS implementation detail,
+> > - suffers from the static memory split between coherent and
+> > non-coherent DMA, which could either result in some wasted memory or
+> > the DMA stopped working after a kernel update if the driver changes
+> > its allocation pattern,
+> >
+> > and so we should rather go with 3).
+> >
+> > Now, from the firmware point of view, it doesn't matter how the OS
+> > uses the carveout, but I think it's still necessary to tell the OS
+> > about the device DMA capability. Right now we use "memory-region" for
+> > any kind of reserved memory, but looking at the above scenarios, there
+> > are 2 cases:
+> >
+> > a) the memory region is preferred for the device, e.g. it enables
+> > coherency, but the device can still DMA across the rest of the system
+> > memory. This is the case in scenario 2) and is kind of assumed in the
+> > Linux DMA subsystem, although it's certainly not the case for a lot of
+> > hardware, even if they use the "memory-region" binding.
+> >
+> > b) the memory region is the only region that the device can access.
+> > This is the case in scenarios 1), 3) and 4).
+> >
+> > For this, I'd like to propose a "restricted-dma-region" (feel free to
+> > suggest a better name) binding, which is explicitly specified to be
+> > the only DMA-able memory for this device and make Linux use the given
+> > pool for coherent DMA allocations and bouncing non-coherent DMA.
+> >
+> > What do you think?
+>
+> Rob, Robin, we'd appreciate your feedback on this when you have a
+> chance to take a look again. Thanks!
 
-Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/ahb.c  | 115 ++++++++++++++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/core.c |  12 ++++
- drivers/net/wireless/ath/ath11k/core.h |   1 +
- 3 files changed, 126 insertions(+), 2 deletions(-)
+Gentle ping.
 
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index a45a7d62f283..f9e1c4001015 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -20,6 +20,9 @@ static const struct of_device_id ath11k_ahb_of_match[] = {
- 	{ .compatible = "qcom,ipq8074-wifi",
- 	  .data = (void *)ATH11K_HW_IPQ8074,
- 	},
-+	{ .compatible = "qcom,ipq6018-wifi",
-+	  .data = (void *)ATH11K_HW_IPQ6018,
-+	},
- 	{ }
- };
- 
-@@ -271,6 +274,108 @@ static const struct service_to_pipe target_service_to_ce_map_wlan_ipq8074[] = {
- 	{ /* terminator entry */ }
- };
- 
-+static const struct service_to_pipe target_service_to_ce_map_wlan_ipq6018[] = {
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VO),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VO),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_BK),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_BK),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_BE),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_BE),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VI),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VI),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_CONTROL),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_CONTROL),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_CONTROL_MAC1),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(7),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_CONTROL_MAC1),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_RSVD_CTRL),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(0),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_RSVD_CTRL),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(1),
-+	},
-+	{ /* not used */
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_TEST_RAW_STREAMS),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(0),
-+	},
-+	{ /* not used */
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_TEST_RAW_STREAMS),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(1),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_HTT_DATA_MSG),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(4),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_HTT_DATA_MSG),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(1),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_PKT_LOG),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(5),
-+	},
-+
-+	/* (Additions here) */
-+
-+	{ /* terminator entry */ }
-+};
-+
- #define ATH11K_IRQ_CE0_OFFSET 4
- 
- static const char *irq_name[ATH11K_IRQ_NUM_MAX] = {
-@@ -890,9 +995,15 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 		goto err_hal_srng_deinit;
- 	}
- 
--	ab->hw_params.svc_to_ce_map_len =
-+	if (ab->hw_rev == ATH11K_HW_IPQ8074) {
-+		ab->hw_params.svc_to_ce_map_len =
- 			ARRAY_SIZE(target_service_to_ce_map_wlan_ipq8074);
--	ab->hw_params.svc_to_ce_map = target_service_to_ce_map_wlan_ipq8074;
-+		ab->hw_params.svc_to_ce_map = target_service_to_ce_map_wlan_ipq8074;
-+	} else if (ab->hw_rev == ATH11K_HW_IPQ6018) {
-+		ab->hw_params.svc_to_ce_map_len =
-+			ARRAY_SIZE(target_service_to_ce_map_wlan_ipq6018);
-+		ab->hw_params.svc_to_ce_map = target_service_to_ce_map_wlan_ipq6018;
-+	}
- 
- 	ath11k_ahb_init_qmi_ce_config(ab);
- 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 61a6f395c436..d7b015ea40c2 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -69,6 +69,18 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.htt_peer_map_v2 = false,
- 		.tcl_0_only = true,
- 	},
-+	{
-+		.hw_rev = ATH11K_HW_IPQ6018,
-+		.name = "ipq6018 hw1.0",
-+		.fw = {
-+			.dir = "IPQ6018/hw1.0",
-+			.board_size = 256 * 1024,
-+			.cal_size = 256 * 1024,
-+		},
-+		.max_radios = 2,
-+		.bdf_addr = 0x4ABC0000,
-+		.hw_ops = &ipq6018_ops,
-+	},
- };
- 
- static int ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index d21191c51e10..b9b6dc6f179f 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -90,6 +90,7 @@ struct ath11k_skb_rxcb {
- 
- enum ath11k_hw_rev {
- 	ATH11K_HW_IPQ8074,
-+	ATH11K_HW_IPQ6018,
- 	ATH11K_HW_QCA6390_HW20,
- };
- 
--- 
-2.7.4
-
+>
+> Best regards,
+> Tomasz
+>
+> >
+> > Best regards,
+> > Tomasz
+> >
+> > > >
+> > > > What is the last sentence supposed to imply? You need an IOMMU?
+> > > The main purpose is to mitigate the lack of DMA access control on
+> > > systems without an IOMMU.
+> > > For example, we plan to use this plus a MPU for our PCIe WiFi which is
+> > > not behind an IOMMU.
+> > >
+> > > >
+> > > > >          - vendor specific string in the form <vendor>,[<device>-]<usage>
+> > > > >  no-map (optional) - empty property
+> > > > >      - Indicates the operating system must not create a virtual mapping
+> > > > > @@ -117,6 +135,16 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
+> > > > >                       compatible = "acme,multimedia-memory";
+> > > > >                       reg = <0x77000000 0x4000000>;
+> > > > >               };
+> > > > > +
+> > > > > +             wifi_coherent_mem_region: wifi_coherent_mem_region {
+> > > > > +                     compatible = "shared-dma-pool";
+> > > > > +                     reg = <0x50000000 0x400000>;
+> > > > > +             };
+> > > > > +
+> > > > > +             wifi_device_swiotlb_region: wifi_device_swiotlb_region {
+> > > > > +                     compatible = "device-swiotlb-pool";
+> > > > > +                     reg = <0x50400000 0x4000000>;
+> > > > > +             };
+> > > > >       };
+> > > > >
+> > > > >       /* ... */
+> > > > > @@ -135,4 +163,11 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
+> > > > >               memory-region = <&multimedia_reserved>;
+> > > > >               /* ... */
+> > > > >       };
+> > > > > +
+> > > > > +     pcie_wifi: pcie_wifi@0,0 {
+> > > > > +             memory-region = <&wifi_coherent_mem_region>,
+> > > > > +                      <&wifi_device_swiotlb_region>;
+> > > > > +             restricted-dma = <0>, <1>;
+> > > > > +             /* ... */
+> > > > > +     };
+> > > > >  };
+> > > > > --
+> > > > > 2.28.0.rc0.142.g3c755180ce-goog
+> > > > >
