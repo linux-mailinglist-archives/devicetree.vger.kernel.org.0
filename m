@@ -2,80 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1348024FF56
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 15:57:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9083624FF5B
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 15:57:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725921AbgHXN5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Aug 2020 09:57:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57034 "EHLO
+        id S1726356AbgHXN5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Aug 2020 09:57:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725780AbgHXN5Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 09:57:24 -0400
-Received: from mail-il1-x142.google.com (mail-il1-x142.google.com [IPv6:2607:f8b0:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9909EC061573
-        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 06:57:23 -0700 (PDT)
-Received: by mail-il1-x142.google.com with SMTP id q14so7300713ilm.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 06:57:23 -0700 (PDT)
+        with ESMTP id S1725780AbgHXN5t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 09:57:49 -0400
+Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21E49C061573
+        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 06:57:49 -0700 (PDT)
+Received: by mail-io1-xd44.google.com with SMTP id m23so8110265iol.8
+        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 06:57:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=QpNNtbUPIEnzzdJdWVbDvtTLPkQ1sOHB0r3DVoWmNtg=;
-        b=Q/PWLSIJPaCOX+bCMgEg1BJWWvmCuDZ0qPR44YU/d5U9tLnOhlklSBkpOSnfXAFQEh
-         7L4v+DochEt8n9YTZX9o74gNGGiUdZFK27k2KRmY1rgFzKuD8AGbojBD+cye9S8h9Ef2
-         Tl20P8XJbhQQD0e1MCFKbVuaFjeDbRzRZPzKc61KBaP5pDVuRmgFjVvzrYZo7TeZqkZv
-         hHlK+voAEyrRhBmBp2wFa8NjzdvPidO1QyZ0BGBPCq42wzePGBgydCXn/K4mlfd9v2Ea
-         +wW4680TTCWlBvoCXPhzQzU6s/NlVrmzWdaHRpqObxvmeLLTg5Iw9kboGqfuLKu6P/CI
-         Jprg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dMeguMm96pDyAxCNEWFE6tm74xeCtyVll4TegHbBwcA=;
+        b=C0r8fn3rtGIqTXG84StIGa8c91BO2qgo5z2OsnJIDt20bxO6byuQwT0b3H7LNVi4+C
+         JYOeUYLo93Uh9C4ggps/W+xiOllb82xPFhAXp+ZDFhEgLNWn1Z2ywvLhlI5WKSM4nWG8
+         LKZWhCU7GH2RsuRywILfNLk4V2vrVl0LpAv3pcGjmDd1sHscEiQNR5pSztBq0HRDd39v
+         e/11XBOxxXcovZVWfgSd5OtLpqHywfeTktXPV6/JQH24XpppLdTXhogkHUYkEwFa6fN7
+         duzHCqU3vJBWxQI2Ezm1rp+Pgv/WH4JnC6fNJcCZVDa2SqeuF+LqEYfPxNGAO1tXEYF5
+         vfeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=QpNNtbUPIEnzzdJdWVbDvtTLPkQ1sOHB0r3DVoWmNtg=;
-        b=cSbtZLj9BcuVQ86jSAinrczS82gF9tWkbqc3nvG6qz0W+9Jv188co23vY6dY/pnS1M
-         6JWOH4UdkI0j/lf4ZH9N6Fg2YGrjnv2GwUerzpiIaVKqHK1zDg5kkUBDmTg5Ufh25k4z
-         oYQqw5Lkq9RW4HKz4N1pWnqq8i1h3yCpU1KaWEjbmYdgAONzJra93nUrxJ/ulZN3EEr1
-         TzES2EbV0JeATmxGCozb/RI2/B8ls90T7ltruV9LcI8idRqR/wocjExRHFHEAVE09yOO
-         16bBVSIc5LxACOq76AnNQSMiV14VF4h1GmTPFjHm185LAoCjeY2iLM6/sYVGsYVczVVS
-         RYnA==
-X-Gm-Message-State: AOAM532lDdpxwfM6d8Y7vCcDvx0SlUqhktKC5DstrleJQJjBYozlKhUZ
-        i3IdYBm7wS3q8tmvob/Zhw6zziIm9Mk0Bugz+x0=
-X-Google-Smtp-Source: ABdhPJx0Plo85AT/I7tzG3vgQVoZG+MBNiv0dOt9+C6yjCuAbi8bvyJB3CfEZpOLPdDu0CuHJPmOEZ4tTUnCG0UdZUw=
-X-Received: by 2002:a92:c090:: with SMTP id h16mr5101792ile.103.1598277442786;
- Mon, 24 Aug 2020 06:57:22 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dMeguMm96pDyAxCNEWFE6tm74xeCtyVll4TegHbBwcA=;
+        b=Ycsk32/GdqpE1jD/3VA0pgTXS1uelTbUGg351I4Fs5bqV2uKHDWh5LjcLQ76lWWlKB
+         S2UvJ6CutIbjcg9Z/f83cAESgncde7Jj0K4giwToonOL3FEIuKHleRRE4EFPKDenMqaX
+         xcLYMrw48EH5tcvlZDjxiziNxOLLVNesrtxa+2zUALvk+U38bOlDcapFB2oQ2UqxILuG
+         UOQSWP5E1SiNVg/1XBb5nGx46gBcD4ACXY/hvuuMbUQX5IyfRNlR0efjKN+5GMaPExgG
+         mhEi94ugNOuaxm7mfQnVPqp5Ftofan9MowapOvNx9l/jRaobuHqxGrbYzkOozdRdvN2p
+         4Xxg==
+X-Gm-Message-State: AOAM531nDy+mak+SvftcNXZ2LZ5cPCeeKetsm1NfFdLm01nS5QTKM1A3
+        M5d5Q+Kc5K3U1cSz0EWmoknyRIvPCg3sUgo+cOg=
+X-Google-Smtp-Source: ABdhPJxv7Fzjo4etNqTn4asSi5M9XwBcfHBkl94QtZjSYX2e0e/pRxGvEnYwh72t4jk6oMt1yyR0pJZAEKXCjQqimjw=
+X-Received: by 2002:a02:a90f:: with SMTP id n15mr5809057jam.120.1598277468498;
+ Mon, 24 Aug 2020 06:57:48 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a6b:b60a:0:0:0:0:0 with HTTP; Mon, 24 Aug 2020 06:57:22
- -0700 (PDT)
-Reply-To: susanwilliam1502@citromail.hu
-From:   Susan William <victoria.atkins1967@gmail.com>
-Date:   Mon, 24 Aug 2020 06:57:22 -0700
-Message-ID: <CAJ28r_ZE4YCu+z_ZAJ4C+40tU5Y3O8vCm2-ECPKxAd-MaWs4bg@mail.gmail.com>
-Subject: Guten Morgen,
-To:     undisclosed-recipients:;
+References: <20200820121323.564-1-linux.amoon@gmail.com> <20200820121323.564-2-linux.amoon@gmail.com>
+ <7hlfi9xgch.fsf@baylibre.com> <CANAwSgTZ23jFPAO46vRg1Dx_Bzi=4Bg6KHE0ozLQGky4p_fgKQ@mail.gmail.com>
+ <CANAwSgQLnqDnuQvLv4cvaeTPeBW=H_g5F2aaNue_hb4nKLdovg@mail.gmail.com> <f7e6ce5f-02b0-065b-ffcf-2826159f926a@baylibre.com>
+In-Reply-To: <f7e6ce5f-02b0-065b-ffcf-2826159f926a@baylibre.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Mon, 24 Aug 2020 19:27:37 +0530
+Message-ID: <CANAwSgRm3yKgqrW50L0w4bzhrGF1GNe08oMgd4T59uK1D=fb=Q@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] arm64: dts: meson-g12b-odroid-n2: Enable RTC
+ controller node
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     Kevin Hilman <khilman@baylibre.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Christian Hewitt <christianshewitt@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Guten Morgen,
+Hi Neil,
 
-  Ich wei=C3=9F, dass Sie =C3=BCberrascht sein werden, wenn Sie diese Mail =
-heute
-von mir erhalten.
-Ich bin Susan William, ich arbeite mit der Royal Bank of Scotland,
-Dieser Brief ist sehr privilegiert und erfordert Ihre sofortige
-Aufmerksamkeit, da wir einen unserer Kunden verloren haben, der
-zuf=C3=A4llig aus Ihrem Land stammt und denselben sicheren Namen bei Ihnen
-hat und einen hatte befristete Einzahlung bei unserer Bank vor seinem
-Tod. Angesichts Ihrer Nationalit=C3=A4t mit unserem verstorbenen Kunden
-Eichinger, .
+On Mon, 24 Aug 2020 at 19:20, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> On 24/08/2020 15:41, Anand Moon wrote:
+> > hi All,
+> >
+> > On Fri, 21 Aug 2020 at 10:13, Anand Moon <linux.amoon@gmail.com> wrote:
+> >>
+> >> Hi Kevin,
+> >>
+> >> Thanks for your review comments.
+> >>
+> >> On Fri, 21 Aug 2020 at 01:03, Kevin Hilman <khilman@baylibre.com> wrote:
+> >>>
+> >>> Anand Moon <linux.amoon@gmail.com> writes:
+> >>>
+> >>>> Enable RTC PCF8563 node on Odroid-N2 SBC, In order to
+> >>>> support the RTC wakealarm feature for suspend and resume.
+> >>>> Also assign an alias to the pcf8563 to rtc0 and meson-vrtc to rtc1
+> >>>> timer device to prevent it being assigned to /dev/rtc0
+> >>>> which disto userspace tools assume is a clock device.
+> >>>>
+> >>>> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> >>>> Cc: Kevin Hilman <khilman@baylibre.com>
+> >>>> Suggested-by: Christian Hewitt <christianshewitt@gmail.com>
+> >>>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> >>>> ---
+> >>>> Changes V3
+> >>>> --Drop the INI GPIOAO.BIT7 pinctrl.
+> >>>
+> >>> Why did you drop this GPIO?  Isn't this the GPIO that the RTC uses to
+> >>> wakeup the system?  If so, this should be included as part of this
+> >>> patch.
+> >>>
+> >>> It probably still works because the bootloader configures this GPIO as
+> >>> input, but the kernel should not rely on the booloader for that, so
+> >>> please include as part of this patch.
+> >>>
+> >>
+> >> Ok I will figure out the correct pinctrl need for this settings.
+> >> looking into the Odroid N2 schematics.
+> >>
+> >
+> > I am trying to map the RTC INT pinctrl, ie RTC INT GPIOAO.BIT7.
+>
+>
+> Simply add:
+>
+> interrupt-parent = <&gpio_intc>;
+> interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
+>
+> to reflect the interrupt connection.
+>
+> No need to setup pinctrl here since the GPIO input is always connected to the gpio irq generator whatever pinctrl mode is set.
+>
+> Neil
+>
 
-  Ich m=C3=B6chte Sie der Bank als Beg=C3=BCnstigten des Erbschaftsfonds
-vorstellen, und wir beide teilen uns die Mittel zu 50% bis 50%, sobald
-das Geld auf Ihr Konto =C3=BCberwiesen wurde.
-Ich freue mich auf Ihre sofortige Antwort.
+Thanks for this input.
 
-Mit freundlichen Gr=C3=BC=C3=9Fen,
-  Susan William.
+Best Regards
+-Anand Moon
