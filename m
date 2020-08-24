@@ -2,84 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75AC224F307
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 09:22:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6649E24F31F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 09:33:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725977AbgHXHWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Aug 2020 03:22:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50550 "EHLO
+        id S1725836AbgHXHdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Aug 2020 03:33:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725946AbgHXHWJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 03:22:09 -0400
-Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47E4AC061573;
-        Mon, 24 Aug 2020 00:22:09 -0700 (PDT)
-Received: by mail-io1-xd42.google.com with SMTP id s1so7614525iot.10;
-        Mon, 24 Aug 2020 00:22:09 -0700 (PDT)
+        with ESMTP id S1725963AbgHXHdf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 03:33:35 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BB0BC061574
+        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 00:33:35 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id a5so7619665wrm.6
+        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 00:33:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=wURU5CfyuxeoiAiYavrkiUF7W5jzEOVatHlGY5b9gAQ=;
-        b=KHA8P/9ihR89353Mtkzi/vVjvBcx53K3IXfueYKDlkg/QsU4ejz37+W1Qkr21BTuQO
-         uarEanWspS+m4mrc29EEHBFYViYwC5LcntKr+HX+TIxj8zSJTTZUooZQAmzo2OkULEkF
-         HaT4zLagzVpbGGTGXsNK2hyJKh4tIQVaQlxbJiojEhP5LTVoygt34t2J/bv1ZUap4Ijd
-         isKG8e8XNwf5bStU8wTnS5FwC5rE+1twCqB7acg5rSvMgHM/Et+m7INu/s4GpmVhqJpK
-         7nO57UAhsUlXHiYbXd57ywY6/Ag0kzdytffxOH6dFjqWG9McB95EfT7JBk9fcKXcvimQ
-         aK8w==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=9b6JStI+Pc7Gan44H9Zai7qTn63i//epl6t/+SyCbvI=;
+        b=QtU30oREihjyaqVpYIPlh7uBHK/+lhu3kH4oL78qeud837ZI7zpawFKbrvXu6gEeF7
+         lirP1Q5eX5PgM10QHCj806++kYW29bWS1XHPniLoLJmno35vPnyrxiKHV7p3aodMTbfn
+         Y04755PuaOjBiEiyjPx6oxKlWUTs8W/nrEsTE3D3EiVIAnqck+zGCO2Kq8GPGxqS88WV
+         f4gu+gKuQuMYYK3aNi2V+GEfSaNUiYjGZVV3Uw2wOTjSE1MiKI50ALupBV4fO60Qx61C
+         dqwaeZn9bWLrQ8yqRwpZvWKQJqdQJBPxLU4x9pO0dXGyofFd0dRNrP7PqtDNr3k7hB5u
+         E43g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=wURU5CfyuxeoiAiYavrkiUF7W5jzEOVatHlGY5b9gAQ=;
-        b=JIXaAqKOlM6i68JdqsTQIpNhUvBvmX6qRr2bclETeMJp+hD9TKTPwRAqvHDjCYl47Z
-         lNFSh3qQrZNOGWhI9iMcx15Z/4iP2H3YcPxIJH6d0Z/W67goJOtsQHP1x5V/AtQFcKfe
-         BIkcDqqntYFMGdckLVqpYTsBb7NMZ6l8jakaHqbERzk+VYm1CdyE28J/ID3Cv0JOk/+B
-         wiOPbHNTisRoywTNh1nQgH5vPpqaMqXtHxOX+UAZJGuJ2xf778EsxNS9GaG/q7DO2zL6
-         VDxHPNBOT0nfhPZpIo30pM8xCk3sjY+p4KEyV/FXVxML1TOMfyDz0Ej2lVH5uQAMSJBj
-         Qn/A==
-X-Gm-Message-State: AOAM531ePh/WZV+Az08nVICzVsOjFHHhMIdQH5kCs45s0npTEqvsIMfp
-        Ty0zg4y3XLEHDoAfuCRA9AZQzS4ZEVOtj1ibAoM=
-X-Google-Smtp-Source: ABdhPJyIuC2hH0bMEkHUPoarTiWp84gpsTAg9EGOmVfRzmTGMZ8A+G1fLCxwQ3GK4nI52FU0ZMjkUMBCMELoFMhkp5k=
-X-Received: by 2002:a05:6638:1489:: with SMTP id j9mr4514597jak.22.1598253728521;
- Mon, 24 Aug 2020 00:22:08 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=9b6JStI+Pc7Gan44H9Zai7qTn63i//epl6t/+SyCbvI=;
+        b=ojUN5vtYQoerRJMVNsWFB/DjomvSk5iEPWy+oQdQ/P/z/gl4ScNJDor4rx2Lgllp/p
+         QeGCmXa0Yqr3qm4liVBZMqPPvltvqqHrQvl7dKj/kViK0rvU9NOdsLHETSn9nrd3uneC
+         veDYNF7K6VvRV+u3CBEIPD6GZMJYS8B2aaKqwM/2gfd0AgdMMDGqYFSYRxK3/VEgyDRQ
+         S99l+T7EwOaTjBa0Mbw83wadE8zqgHgWjk2tamoqn0PAmVFeZEMU756N7hvCmZIB5p1p
+         Dpq8iH9eWaCWNvI3nwHXmqXYZ8U70Ad94Pe7Lefzb8S6fSsTVZp6AOm0XLZvxIjLoZ5+
+         ak0A==
+X-Gm-Message-State: AOAM533Ed4/zghjzDW0uQwSekKtXZWsqO5hwtIDT0i3tbCUMtU/4SsqB
+        FBWPNwaNAsG79pqE9BhfVBHsOQ==
+X-Google-Smtp-Source: ABdhPJyrXOh+fiqV7Y/t9Tokf2adkKintBDcUuhkhcJ9lId4930V3lXNU3Dgrt+bFOeg/VRmD57z0w==
+X-Received: by 2002:adf:9ec1:: with SMTP id b1mr4456180wrf.171.1598254413967;
+        Mon, 24 Aug 2020 00:33:33 -0700 (PDT)
+Received: from dell ([95.149.164.62])
+        by smtp.gmail.com with ESMTPSA id t14sm21197697wrv.14.2020.08.24.00.33.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Aug 2020 00:33:33 -0700 (PDT)
+Date:   Mon, 24 Aug 2020 08:33:31 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Lubomir Rintel <lkundrak@v3.sk>, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/6] mfd: Add driver for Embedded Controller found on
+ Acer Iconia Tab A500
+Message-ID: <20200824073331.GG3248864@dell>
+References: <20200823140846.19299-1-digetx@gmail.com>
+ <20200823140846.19299-2-digetx@gmail.com>
+ <20200823181653.GC209852@demiurge.local>
+ <82abab10-9af6-a9c4-b241-d5a3af5b588d@gmail.com>
 MIME-Version: 1.0
-References: <1597910022-22617-1-git-send-email-gene.chen.richtek@gmail.com>
- <1597910022-22617-3-git-send-email-gene.chen.richtek@gmail.com> <20200820113015.GB5854@sirena.org.uk>
-In-Reply-To: <20200820113015.GB5854@sirena.org.uk>
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-Date:   Mon, 24 Aug 2020 15:21:57 +0800
-Message-ID: <CAE+NS36C0AwbrFJdYGY6_n_g3DVitp_e1GfZUxjMbKu1bJ_t4w@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] regulator: mt6360: Add DT binding documentation
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>, robh+dt@kernel.org,
-        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Gene Chen <gene_chen@richtek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <82abab10-9af6-a9c4-b241-d5a3af5b588d@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=E2=8A=95
+On Sun, 23 Aug 2020, Dmitry Osipenko wrote:
 
-Mark Brown <broonie@kernel.org> =E6=96=BC 2020=E5=B9=B48=E6=9C=8820=E6=97=
-=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=887:30=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Thu, Aug 20, 2020 at 03:53:42PM +0800, Gene Chen wrote:
->
-> > +properties:
-> > +  compatible:
-> > +    const: mediatek,mt6360-regulator
-> > +
-> > +  LDO_VIN3-supply:
-> > +    description: Input supply phandle(s) for LDO3
-> > +
->
-> Only LDO3 needs a supply?
+> 23.08.2020 21:16, Lubomir Rintel пишет:
+> > Hello,
+> ...
+> >> +config MFD_ACER_A500_EC
+> >> +	tristate "Embedded Controller driver for Acer Iconia Tab A500"
+> >> +	depends on (I2C_TEGRA && ARCH_TEGRA_2x_SOC) || COMPILE_TEST
+> > 
+> > This seems to also depend on I2C and OF. Perhaps I2C_TEGRA and
+> > ARCH_TEGRA_2x_SOC imply that, but it could lead to build failures with
+> > COMPILE_TEST=y. 
+> 
+> Hello, Lubomir! You're right about the I2C because it could be compiled
+> as a loadable module, good catch! The OF seems should fine as-is.
+> 
+> ...
+> >> +static struct a500_ec *a500_ec_scratch;
+> > 
+> > If this is only used for power_off, please rename it. I've been told to
+> > do so in my driver: https://lore.kernel.org/lkml/20200519104933.GX271301@dell/
+> 
+> I don't mind to rename the variable, but not sure whether it will be a
+> worthwhile change since _scratch is also a common naming scheme among
+> MFD drivers. Please see max77620_scratch for example, which I added
+> about a year ago.
 
-LDO_VIN1/LDO_VIN2 is real MT6360 pin supply from VSYS to LDO1/2/3/5
-LDO_VIN3 is also real pin supply from BUCK2 to LDO6/7
+If something is used once, it does not make it 'common'.
+
+Not sure how this slipped my notice before, but I don't like it.
+
+Ensure any global struct used for power_off only includes items
+required for this purpose.  It's unfortunate this API requires a
+global variable at all.
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
