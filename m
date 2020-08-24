@@ -2,83 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45D0D250A8E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 23:10:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9182D250AAF
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 23:20:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726995AbgHXVKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Aug 2020 17:10:31 -0400
-Received: from asavdk3.altibox.net ([109.247.116.14]:54670 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726138AbgHXVK3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 17:10:29 -0400
-Received: from ravnborg.org (unknown [188.228.123.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id 74F5C2004C;
-        Mon, 24 Aug 2020 23:10:22 +0200 (CEST)
-Date:   Mon, 24 Aug 2020 23:10:21 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Xinliang Liu <xinliang.liu@linaro.org>,
-        Wanchun Zheng <zhengwanchun@hisilicon.com>,
-        linuxarm@huawei.com, dri-devel <dri-devel@lists.freedesktop.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        devel@driverdev.osuosl.org, Daniel Borkmann <daniel@iogearbox.net>,
-        John Fastabend <john.fastabend@gmail.com>,
-        Xiubin Zhang <zhangxiubin1@huawei.com>,
-        Wei Xu <xuwei5@hisilicon.com>, David Airlie <airlied@linux.ie>,
-        Xinwei Kong <kong.kongxinwei@hisilicon.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Bogdan Togorean <bogdan.togorean@analog.com>,
-        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Liwei Cai <cailiwei@hisilicon.com>,
-        Jesper Dangaard Brouer <hawk@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Chen Feng <puck.chen@hisilicon.com>,
-        Alexei Starovoitov <ast@kernel.org>,
-        linaro-mm-sig@lists.linaro.org, Rob Herring <robh+dt@kernel.org>,
-        Jakub Kicinski <kuba@kernel.org>, mauro.chehab@huawei.com,
-        Rob Clark <robdclark@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Liuyao An <anliuyao@huawei.com>,
-        Rongrong Zou <zourongrong@gmail.com>, bpf@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>
-Subject: Re: [PATCH 00/49] DRM driver for Hikey 970
-Message-ID: <20200824211021.GA106986@ravnborg.org>
-References: <cover.1597833138.git.mchehab+huawei@kernel.org>
- <20200819152120.GA106437@ravnborg.org>
- <20200819174027.70b39ee9@coco.lan>
- <20200819173558.GA3733@ravnborg.org>
- <20200821155801.0b820fc6@coco.lan>
- <20200821155505.GA300361@ravnborg.org>
- <20200824180225.1a515b6a@coco.lan>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200824180225.1a515b6a@coco.lan>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=f+hm+t6M c=1 sm=1 tr=0
-        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=kj9zAlcOel0A:10 a=lX9GyBD3xfA9ErMBXk8A:9 a=CjuIK1q_8ugA:10
+        id S1727879AbgHXVT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Aug 2020 17:19:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41560 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726090AbgHXVT4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 17:19:56 -0400
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D6B5C061574;
+        Mon, 24 Aug 2020 14:19:56 -0700 (PDT)
+Received: by mail-pj1-x1041.google.com with SMTP id g6so105692pjl.0;
+        Mon, 24 Aug 2020 14:19:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=Ubn8Ygt3LOORDEBZIqrY09E37xtge/HiuDXDH6cz5po=;
+        b=JVBFGmcGmSWsz9bYllOKTJ2ZeE9TP2Kw+25wP3wiTjEs/w8rXBS3cY6HAo7tZ9b6qq
+         z9d2tviGGmc+rYAsiIH/YXjcOj2TeuM4TFih4RDUGQ2fORwBCTHGhNbp51SdUgxpvV5j
+         hBqlWgYC5NZO+wsKW7oWPKBersSSzu9iZIQn0MOUJunMyllfdzD65zkVQ7mYC4Y9Ax3P
+         tuzsTK6IZ4ccnYcvd5o1+XIGRWxeuHjsmcwbKj5GB/5Ep2/rcPTRNesCfGQxPSQ2L7kT
+         1sZZ9ggD3o+v72/YOlmVz6AH6PAqiHsO+q+d/5o+saMWqoitT6AN9JkTeNy8/ND+fiR4
+         UZYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Ubn8Ygt3LOORDEBZIqrY09E37xtge/HiuDXDH6cz5po=;
+        b=PZuPxghQ4jUZa3nLP5s/Z2+Qt5IzPQ4xSIqN6JWDUiZAvqDtGxKz5/Si/W+LM3v+YU
+         YxwiaCNuce5ur6M115Km3APYJTFzMTkuYmMUcqY13iestxrs9SskQtts76TZxgYeddw5
+         GHSdej7Xnam6qlqIwM+tDspt0FSFhF8Pfwz1NmKKwr7144vlnkuWXOA/h87zVlHK7rYm
+         II36LN07z16ntHVWikS+Xphzgunk+SvQqe5VpMH45y5lSTXm7/WVM5g3a7+oStEamoqF
+         w6hMYmauUhDkR+55KVjOpk0FUCf+IW+3wrUozT2c8UyRvyYsoVxZpFvyiT2iLRKvdSKT
+         cXYg==
+X-Gm-Message-State: AOAM530I0R7xz7wtZJnDJYR9QquTgFGrwk+L8RbRPimj8xGEFOXKht/v
+        xeA5r9syanH2HKTS+BVk42K57rs2tHWrFZkc
+X-Google-Smtp-Source: ABdhPJxg+9Q3F3q7vivl+srkbNQE74Bxef4gWwHaXun2cCyrH8AN+9ABF5qNI94MyZFjOgkAml3BMQ==
+X-Received: by 2002:a17:90a:ccd:: with SMTP id 13mr915003pjt.123.1598303995731;
+        Mon, 24 Aug 2020 14:19:55 -0700 (PDT)
+Received: from taoren-ubuntu-R90MNF91.thefacebook.com (c-73-252-146-110.hsd1.ca.comcast.net. [73.252.146.110])
+        by smtp.gmail.com with ESMTPSA id t10sm97788pfq.77.2020.08.24.14.19.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Aug 2020 14:19:55 -0700 (PDT)
+From:   rentao.bupt@gmail.com
+To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org, taoren@fb.com
+Cc:     Tao Ren <rentao.bupt@gmail.com>
+Subject: [PATCH 0/5] ARM: dts: aspeed: Add Facebook Wedge400 (AST2500) BMC
+Date:   Mon, 24 Aug 2020 14:19:43 -0700
+Message-Id: <20200824211948.12852-1-rentao.bupt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mauro
+From: Tao Ren <rentao.bupt@gmail.com>
+
+The patch series adds Facebook Wedge400 (AST2500) BMC device tree, and
+FMC flash layout is re-structured because flash size and layout varies
+across different Facebook AST2500 OpenBMC platforms.
+
+Patch #1 removes flash layout from ast2500-facebook-netbmc-common.dtsi
+because now we have 32MB, 64MB an 128MB flashes on different Facebook
+AST2500 OpenBMC platforms.
+
+Patch #2, #3 and #4 sets FMC flash layout in CMM, Yamp and Minipack
+device tree explicitly because the original layout settings were removed
+from ast2500-facebook-netbmc-common.dtsi (in patch #1).
+
+Patch #5 adds Facebook Wedge400 AST2500 BMC device tree.
 
 
+Tao Ren (5):
+  ARM: dts: aspeed: Remove flash layout from Facebook AST2500 Common
+    dtsi
+  ARM: dts: aspeed: cmm: Set 32MB FMC flash layout
+  ARM: dts: aspeed: yamp: Set 32MB FMC flash layout
+  ARM: dts: aspeed: minipack: Update 64MB FMC flash layout
+  ARM: dts: aspeed: Add Facebook Wedge400 BMC
 
-> kirin9xx_fb_panel.h b/drivers/staging/hikey9xx/gpu/kirin9xx_fb_panel.h
-> new file mode 100644
-> index 000000000000..a69c20470f1d
-> --- /dev/null
-> +++ b/drivers/staging/hikey9xx/gpu/kirin9xx_fb_panel.h
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/aspeed-bmc-facebook-cmm.dts |  17 +
+ .../boot/dts/aspeed-bmc-facebook-minipack.dts |  47 +-
+ .../boot/dts/aspeed-bmc-facebook-wedge400.dts | 420 ++++++++++++++++++
+ .../arm/boot/dts/aspeed-bmc-facebook-yamp.dts |  17 +
+ .../dts/ast2500-facebook-netbmc-common.dtsi   |  13 -
+ 6 files changed, 500 insertions(+), 15 deletions(-)
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-wedge400.dts
 
-This file is not referenced and should be deleted.
+-- 
+2.17.1
 
-	Sam
