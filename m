@@ -2,238 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91EC324F400
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 10:28:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C22224F410
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 10:32:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726027AbgHXI2c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Aug 2020 04:28:32 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:34427 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725926AbgHXI2b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 04:28:31 -0400
+        id S1726391AbgHXIcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Aug 2020 04:32:13 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:58461 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726365AbgHXIcL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 04:32:11 -0400
+X-Originating-IP: 93.34.118.233
 Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
         (Authenticated sender: jacopo@jmondi.org)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 74CE324000D;
-        Mon, 24 Aug 2020 08:28:25 +0000 (UTC)
-Date:   Mon, 24 Aug 2020 10:32:11 +0200
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 7E4B81BF207;
+        Mon, 24 Aug 2020 08:32:06 +0000 (UTC)
+Date:   Mon, 24 Aug 2020 10:35:52 +0200
 From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>, mchehab@kernel.org,
-        sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: media: ov772x: Convert to json-schema
-Message-ID: <20200824083211.u2zm4o6f4wrxlu6k@uno.localdomain>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-media <linux-media@vger.kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH 3/3] dt-bindings: media: ov772x: Document endpoint props
+Message-ID: <20200824083552.v7s5gggqcviigvzu@uno.localdomain>
 References: <20200818122012.37956-1-jacopo+renesas@jmondi.org>
- <20200818122012.37956-2-jacopo+renesas@jmondi.org>
- <20200819135204.GJ6049@pendragon.ideasonboard.com>
+ <20200818122012.37956-4-jacopo+renesas@jmondi.org>
+ <20200819135423.GL6049@pendragon.ideasonboard.com>
+ <CA+V-a8sxDJXrGM-MYEwNS=D-eyA6oTRvDU3YT7Uu5Ph5kFh15w@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200819135204.GJ6049@pendragon.ideasonboard.com>
+In-Reply-To: <CA+V-a8sxDJXrGM-MYEwNS=D-eyA6oTRvDU3YT7Uu5Ph5kFh15w@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+Hi Laurent, Prabhakar,
 
-On Wed, Aug 19, 2020 at 04:52:04PM +0300, Laurent Pinchart wrote:
-> Hi Jacopo,
+On Fri, Aug 21, 2020 at 12:37:35PM +0100, Lad, Prabhakar wrote:
+> Hi Laurent and Jacopo
 >
-> Thank you for the patch.
->
-> On Tue, Aug 18, 2020 at 02:20:10PM +0200, Jacopo Mondi wrote:
-> > Convert the ov772x binding document to json-schema and update
-> > the MAINTAINERS file accordingly.
+> On Wed, Aug 19, 2020 at 2:54 PM Laurent Pinchart
+> <laurent.pinchart@ideasonboard.com> wrote:
 > >
-> > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> > ---
-> >  .../devicetree/bindings/media/i2c/ov772x.txt  | 40 ---------
-> >  .../devicetree/bindings/media/i2c/ov772x.yaml | 84 +++++++++++++++++++
->
-> Could yuo rename this to ovti,ov772x.yaml ?
->
-> >  MAINTAINERS                                   |  2 +-
-> >  3 files changed, 85 insertions(+), 41 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov772x.txt
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov772x.yaml
+> > Hi Jacopo,
 > >
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/ov772x.txt b/Documentation/devicetree/bindings/media/i2c/ov772x.txt
-> > deleted file mode 100644
-> > index 0b3ede5b8e6a..000000000000
-> > --- a/Documentation/devicetree/bindings/media/i2c/ov772x.txt
-> > +++ /dev/null
-> > @@ -1,40 +0,0 @@
-> > -* Omnivision OV7720/OV7725 CMOS sensor
-> > -
-> > -The Omnivision OV7720/OV7725 sensor supports multiple resolutions output,
-> > -such as VGA, QVGA, and any size scaling down from CIF to 40x30. It also can
-> > -support the YUV422, RGB565/555/444, GRB422 or raw RGB output formats.
-> > -
-> > -Required Properties:
-> > -- compatible: shall be one of
-> > -	"ovti,ov7720"
-> > -	"ovti,ov7725"
-> > -- clocks: reference to the xclk input clock.
-> > -
-> > -Optional Properties:
-> > -- reset-gpios: reference to the GPIO connected to the RSTB pin which is
-> > -  active low, if any.
-> > -- powerdown-gpios: reference to the GPIO connected to the PWDN pin which is
-> > -  active high, if any.
-> > -
-> > -The device node shall contain one 'port' child node with one child 'endpoint'
-> > -subnode for its digital output video port, in accordance with the video
-> > -interface bindings defined in Documentation/devicetree/bindings/media/
-> > -video-interfaces.txt.
-> > -
-> > -Example:
-> > -
-> > -&i2c0 {
-> > -	ov772x: camera@21 {
-> > -		compatible = "ovti,ov7725";
-> > -		reg = <0x21>;
-> > -		reset-gpios = <&axi_gpio_0 0 GPIO_ACTIVE_LOW>;
-> > -		powerdown-gpios = <&axi_gpio_0 1 GPIO_ACTIVE_LOW>;
-> > -		clocks = <&xclk>;
-> > -
-> > -		port {
-> > -			ov772x_0: endpoint {
-> > -				remote-endpoint = <&vcap1_in0>;
-> > -			};
-> > -		};
-> > -	};
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/ov772x.yaml b/Documentation/devicetree/bindings/media/i2c/ov772x.yaml
-> > new file mode 100644
-> > index 000000000000..2b84fefeb4aa
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/ov772x.yaml
-> > @@ -0,0 +1,84 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/i2c/ov772x.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title:  Omnivision OV7720/OV7725 CMOS sensor
-> > +
-> > +maintainers:
-> > +  - Jacopo Mondi <jacopo@jmondi.org>
-> > +
-> > +description: -|
-> > +  The Omnivision OV7720/OV7725 sensor supports multiple resolutions output,
-> > +  such as VGA, QVGA, and any size scaling down from CIF to 40x30. It also can
-> > +  support the YUV422, RGB565/555/444, GRB422 or raw RGB output formats.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - ovti,ov7720
-> > +      - ovti,ov7725
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  reset-gpios:
-> > +    description: -|
-> > +      Reference to the GPIO connected to the RSTB pin which is active low.
-> > +    maxItems: 1
-> > +
-> > +  powerdown-gpios:
-> > +    description: -|
-> > +      Reference to the GPIO connected to the PWDN pin which is active high.
-> > +    maxItems: 1
-> > +
-> > +  port:
-> > +    type: object
-> > +    description: |
-> > +      The device node must contain one 'port' child node for its digital output
-> > +      video port, in accordance with the video interface bindings defined in
-> > +      Documentation/devicetree/bindings/media/video-interfaces.txt.
->
-> You can simply write
->
->       Digital input video port. See ../video-interfaces.txt.
->
-> > +
-> > +    properties:
-> > +      endpoint:
-> > +        type: object
-> > +        properties:
-> > +          remote-endpoint:
-> > +            description: A phandle to the bus receiver's endpoint node.
->
->            required:
-> 	     - remote-endpoint
->
->            additionalProperties: false
+> > Thank you for the patch.
+> >
+> > On Tue, Aug 18, 2020 at 02:20:12PM +0200, Jacopo Mondi wrote:
+> > > Document endpoint properties for the parallel bus type and
+> > > add them to the example.
+> > >
+> > > Specify a few constraints:
+> > > - If the bus type is BT.656 no hsync or vsycn polarities can be
+> > >   specified.
+> > > - If the bus width is 10 bits, not data-shift can be applied.
+> > >
+> > > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> > > ---
+> > >  .../devicetree/bindings/media/i2c/ov772x.yaml | 43 +++++++++++++++++++
+> > >  1 file changed, 43 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/i2c/ov772x.yaml b/Documentation/devicetree/bindings/media/i2c/ov772x.yaml
+> > > index 75dad40f70cc..3fad5dffd19a 100644
+> > > --- a/Documentation/devicetree/bindings/media/i2c/ov772x.yaml
+> > > +++ b/Documentation/devicetree/bindings/media/i2c/ov772x.yaml
+> > > @@ -50,9 +50,47 @@ properties:
+> > >            bus-type:
+> > >              enum: [5, 6]
+> > >
+> > > +          bus-width:
+> > > +            enum: [8, 10]
+> > > +            default: 10
+> > > +
+> > > +          data-shift:
+> > > +            enum: [0, 2]
+> > > +            default: 0
+> > > +
+> > > +          hsync-active:
+> > > +            enum: [0, 1]
+> > > +            default: 1
+> > > +
+> > > +          vsync-active:
+> > > +            enum: [0, 1]
+> > > +            default: 1
+> > > +
+> > > +          pclk-sample:
+> > > +            enum: [0, 1]
+> > > +            default: 1
+> > > +
+> > >            remote-endpoint:
+> > >              description: A phandle to the bus receiver's endpoint node.
+> > >
+> > > +        allOf:
+> > > +          - if:
+> > > +              properties:
+> > > +                bus-type:
+> > > +                  const: 6
+> > > +            then:
+> > > +                properties:
+> > > +                  hsync-active: false
+> > > +                  vsync-active: false
+> > > +
+> > > +          - if:
+> > > +              properties:
+> > > +                bus-width:
+> > > +                  const: 10
+> > > +            then:
+> > > +                properties:
+> > > +                  data-shift:
+> > > +                    const: 0
+> >
+> > I'd add a blank line here.
+> >
+> > >          required:
+> > >            - bus-type
+> >
+> > Should some of the properties be required ? Possibly conditioned on
+> > bus-type ?
+> >
 
-I receveied a reply to you on previous json-schema conversion attempt
-where you suggested to not set remote-endpoint as required, as we
-allow empty ones to be later filled in in, maybe with an overlay.
+I am not sure. They all have defaults, as reported here and as
+supported by the driver. There's nothing -strictly- required, as long
+as the here reported defaults are correct.
 
-Which Laurent should I listen to ? I tend to agree with the one that
-said to drop remote-endpoint from the required properties list.
+> Agreed, would be interesting to know how this can be handled (split
+> out bus-type and add required properties for each) ?
+>
+
+That already happens with
+
++          - if:
++              properties:
++                bus-type:
++                  const: 6
++            then:
++                properties:
++                  hsync-active: false
++                  vsync-active: false
+
+And could be expanded, if we want any of these to be required.
 
 Thanks
   j
+
+> Cheers,
+> Prabhakar
 >
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->
-> > +
-> > +    additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - reset-gpios
-> > +  - powerdown-gpios
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    i2c0 {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +        ov772x: camera@21 {
-> > +            compatible = "ovti,ov7725";
-> > +            reg = <0x21>;
-> > +            reset-gpios = <&axi_gpio_0 0 GPIO_ACTIVE_LOW>;
-> > +            powerdown-gpios = <&axi_gpio_0 1 GPIO_ACTIVE_LOW>;
-> > +            clocks = <&xclk>;
-> > +
-> > +            port {
-> > +                ov772x_0: endpoint {
-> > +                    remote-endpoint = <&vcap1_in0>;
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > +
-> > +...
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index d1a6173d3b64..d0a20214eaaf 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -12666,7 +12666,7 @@ M:	Jacopo Mondi <jacopo@jmondi.org>
-> >  L:	linux-media@vger.kernel.org
-> >  S:	Odd fixes
-> >  T:	git git://linuxtv.org/media_tree.git
-> > -F:	Documentation/devicetree/bindings/media/i2c/ov772x.txt
-> > +F:	Documentation/devicetree/bindings/media/i2c/ov772x.yaml
-> >  F:	drivers/media/i2c/ov772x.c
-> >  F:	include/media/i2c/ov772x.h
+> > >
+> > > @@ -82,6 +120,11 @@ examples:
+> > >              port {
+> > >                  ov772x_0: endpoint {
+> > >                      bus-type = <5>;
+> > > +                    vsync-active = <0>;
+> > > +                    hsync-active = <0>;
+> > > +                    pclk-sample = <0>;
+> > > +                    bus-width = <8>;
+> > > +                    data-shift = <0>;
+> > >                      remote-endpoint = <&vcap1_in0>;
+> > >                  };
+> > >              };
 > >
->
-> --
-> Regards,
->
-> Laurent Pinchart
+> > --
+> > Regards,
+> >
+> > Laurent Pinchart
