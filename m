@@ -2,261 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F92E24FD81
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 14:11:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F068D24FDDF
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 14:32:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726466AbgHXMLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Aug 2020 08:11:34 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:57805 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726243AbgHXMLc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 08:11:32 -0400
-X-Originating-IP: 93.34.118.233
-Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 997F0C000E;
-        Mon, 24 Aug 2020 12:11:27 +0000 (UTC)
-Date:   Mon, 24 Aug 2020 14:15:13 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>, mchehab@kernel.org,
-        sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: media: ov772x: Convert to json-schema
-Message-ID: <20200824121513.gvsr5sdodgpyv4w5@uno.localdomain>
-References: <20200818122012.37956-1-jacopo+renesas@jmondi.org>
- <20200818122012.37956-2-jacopo+renesas@jmondi.org>
- <20200819135204.GJ6049@pendragon.ideasonboard.com>
- <20200824083211.u2zm4o6f4wrxlu6k@uno.localdomain>
- <20200824113440.GC6002@pendragon.ideasonboard.com>
+        id S1726747AbgHXMcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Aug 2020 08:32:12 -0400
+Received: from mo-csw1516.securemx.jp ([210.130.202.155]:48302 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726986AbgHXMbK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 08:31:10 -0400
+Received: by mo-csw.securemx.jp (mx-mo-csw1516) id 07OCUFCW008407; Mon, 24 Aug 2020 21:30:15 +0900
+X-Iguazu-Qid: 34tKqQuZ1Z6XOyg01R
+X-Iguazu-QSIG: v=2; s=0; t=1598272214; q=34tKqQuZ1Z6XOyg01R; m=0DGIeiVNDYKEpxos3ryeH+4Y90hiRq1zOgB8MCzSYtU=
+Received: from imx2.toshiba.co.jp (imx2.toshiba.co.jp [106.186.93.51])
+        by relay.securemx.jp (mx-mr1511) id 07OCUDTf019981;
+        Mon, 24 Aug 2020 21:30:13 +0900
+Received: from enc03.toshiba.co.jp ([106.186.93.13])
+        by imx2.toshiba.co.jp  with ESMTP id 07OCUCOT027301;
+        Mon, 24 Aug 2020 21:30:12 +0900 (JST)
+Received: from hop001.toshiba.co.jp ([133.199.164.63])
+        by enc03.toshiba.co.jp  with ESMTP id 07OCUCbA016568;
+        Mon, 24 Aug 2020 21:30:12 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org, Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@misterjones.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Subject: [PATCH v2 0/8] Add Toshiba Visconti ARM64 Platform support
+Date:   Mon, 24 Aug 2020 21:29:49 +0900
+X-TSB-HOP: ON
+Message-Id: <20200824122957.1392870-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200824113440.GC6002@pendragon.ideasonboard.com>
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+Hi,
 
-On Mon, Aug 24, 2020 at 02:34:40PM +0300, Laurent Pinchart wrote:
-> Hi Jacopo,
->
-> On Mon, Aug 24, 2020 at 10:32:11AM +0200, Jacopo Mondi wrote:
-> > On Wed, Aug 19, 2020 at 04:52:04PM +0300, Laurent Pinchart wrote:
-> > > On Tue, Aug 18, 2020 at 02:20:10PM +0200, Jacopo Mondi wrote:
-> > > > Convert the ov772x binding document to json-schema and update
-> > > > the MAINTAINERS file accordingly.
-> > > >
-> > > > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> > > > ---
-> > > >  .../devicetree/bindings/media/i2c/ov772x.txt  | 40 ---------
-> > > >  .../devicetree/bindings/media/i2c/ov772x.yaml | 84 +++++++++++++++++++
-> > >
-> > > Could yuo rename this to ovti,ov772x.yaml ?
-> > >
-> > > >  MAINTAINERS                                   |  2 +-
-> > > >  3 files changed, 85 insertions(+), 41 deletions(-)
-> > > >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov772x.txt
-> > > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov772x.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/media/i2c/ov772x.txt b/Documentation/devicetree/bindings/media/i2c/ov772x.txt
-> > > > deleted file mode 100644
-> > > > index 0b3ede5b8e6a..000000000000
-> > > > --- a/Documentation/devicetree/bindings/media/i2c/ov772x.txt
-> > > > +++ /dev/null
-> > > > @@ -1,40 +0,0 @@
-> > > > -* Omnivision OV7720/OV7725 CMOS sensor
-> > > > -
-> > > > -The Omnivision OV7720/OV7725 sensor supports multiple resolutions output,
-> > > > -such as VGA, QVGA, and any size scaling down from CIF to 40x30. It also can
-> > > > -support the YUV422, RGB565/555/444, GRB422 or raw RGB output formats.
-> > > > -
-> > > > -Required Properties:
-> > > > -- compatible: shall be one of
-> > > > -	"ovti,ov7720"
-> > > > -	"ovti,ov7725"
-> > > > -- clocks: reference to the xclk input clock.
-> > > > -
-> > > > -Optional Properties:
-> > > > -- reset-gpios: reference to the GPIO connected to the RSTB pin which is
-> > > > -  active low, if any.
-> > > > -- powerdown-gpios: reference to the GPIO connected to the PWDN pin which is
-> > > > -  active high, if any.
-> > > > -
-> > > > -The device node shall contain one 'port' child node with one child 'endpoint'
-> > > > -subnode for its digital output video port, in accordance with the video
-> > > > -interface bindings defined in Documentation/devicetree/bindings/media/
-> > > > -video-interfaces.txt.
-> > > > -
-> > > > -Example:
-> > > > -
-> > > > -&i2c0 {
-> > > > -	ov772x: camera@21 {
-> > > > -		compatible = "ovti,ov7725";
-> > > > -		reg = <0x21>;
-> > > > -		reset-gpios = <&axi_gpio_0 0 GPIO_ACTIVE_LOW>;
-> > > > -		powerdown-gpios = <&axi_gpio_0 1 GPIO_ACTIVE_LOW>;
-> > > > -		clocks = <&xclk>;
-> > > > -
-> > > > -		port {
-> > > > -			ov772x_0: endpoint {
-> > > > -				remote-endpoint = <&vcap1_in0>;
-> > > > -			};
-> > > > -		};
-> > > > -	};
-> > > > -};
-> > > > diff --git a/Documentation/devicetree/bindings/media/i2c/ov772x.yaml b/Documentation/devicetree/bindings/media/i2c/ov772x.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..2b84fefeb4aa
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/media/i2c/ov772x.yaml
-> > > > @@ -0,0 +1,84 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/media/i2c/ov772x.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title:  Omnivision OV7720/OV7725 CMOS sensor
-> > > > +
-> > > > +maintainers:
-> > > > +  - Jacopo Mondi <jacopo@jmondi.org>
-> > > > +
-> > > > +description: -|
-> > > > +  The Omnivision OV7720/OV7725 sensor supports multiple resolutions output,
-> > > > +  such as VGA, QVGA, and any size scaling down from CIF to 40x30. It also can
-> > > > +  support the YUV422, RGB565/555/444, GRB422 or raw RGB output formats.
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - ovti,ov7720
-> > > > +      - ovti,ov7725
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  clocks:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  reset-gpios:
-> > > > +    description: -|
-> > > > +      Reference to the GPIO connected to the RSTB pin which is active low.
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  powerdown-gpios:
-> > > > +    description: -|
-> > > > +      Reference to the GPIO connected to the PWDN pin which is active high.
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  port:
-> > > > +    type: object
-> > > > +    description: |
-> > > > +      The device node must contain one 'port' child node for its digital output
-> > > > +      video port, in accordance with the video interface bindings defined in
-> > > > +      Documentation/devicetree/bindings/media/video-interfaces.txt.
-> > >
-> > > You can simply write
-> > >
-> > >       Digital input video port. See ../video-interfaces.txt.
-> > >
-> > > > +
-> > > > +    properties:
-> > > > +      endpoint:
-> > > > +        type: object
-> > > > +        properties:
-> > > > +          remote-endpoint:
-> > > > +            description: A phandle to the bus receiver's endpoint node.
-> > >
-> > >            required:
-> > > 	     - remote-endpoint
-> > >
-> > >            additionalProperties: false
-> >
-> > I receveied a reply to you on previous json-schema conversion attempt
-> > where you suggested to not set remote-endpoint as required, as we
-> > allow empty ones to be later filled in in, maybe with an overlay.
-> >
-> > Which Laurent should I listen to ? I tend to agree with the one that
-> > said to drop remote-endpoint from the required properties list.
->
-> Maybe I recall incorrectly, didn't I say that endpoint shouldn't be
-> mandatory ? Ports should be mandatory as they describe the hardware,
-> endpoints describe a connection, and within a connection, I'm not sure
-> to see a use-case for not setting remote-endpoint. Maybe I need to look
-> better ? :-)
->
+Visconti is a series of Toshiba's SoCs targeting image processing
+applications[0]. These set of patches adds support for Visconti5 a Arm
+v8 based SoC.
 
-I might be confused as well, but to me port and endpoint should be
-there as they represent the available endpoints of the devices connections.
-Connections to external devices that can be established (or overwritten)
-by applying an overlay, and such are not mandatory.
+The series add minimal support for the Visconti5 SoC and the TMPV7708 RM
+main board. Peripherals such as UART, SPI, I2c and timer use Arm's
+IP and work with the existing kernel drivers in the tree. The series
+includes a pinctrl driver to select appropriate functions on the pins.
 
-As I see it:
-- port/endpoints: establish the available device connection endpoitns
-  and shall be mandatory (also to give a known place where to 'plug'
-  the connections)
+NOTE: Because Visconti5 does not have PSCI, it uses spin-table with enable-method.
+      And this patch series does not include a clock framework, so it is a
+      device-tree file that uses clocks with fixed-clock. This will be replaced by
+      the clock driver in the future.
 
-- remote-endpoints: data connections to external devices, which might
-  depend on the board assembly or installed 'capes' and expansions. As
-  such, they can be modeled as an overlay fragment to be applied on the
-  (known layout of the) device.
+[0]: https://toshiba.semicon-storage.com/ap-en/semiconductor/product/image-recognition-processors-visconti.html
 
+dt-bindings: pinctrl: Add bindings for Toshiba Visconti TMPV7700 SoC
+  v1 -> v2:
+    - Fix warning by make dt_binding_check.
+    - Use '-pins$' instead of ''^.*$':''.
+    - Remove if/then.
+    - Add $ref to the common pinctrl schemas.
 
-> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > >
-> > > > +
-> > > > +    additionalProperties: false
-> > > > +
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - reg
-> > > > +  - clocks
-> > > > +  - reset-gpios
-> > > > +  - powerdown-gpios
-> > > > +
-> > > > +examples:
-> > > > +  - |
-> > > > +    #include <dt-bindings/gpio/gpio.h>
-> > > > +
-> > > > +    i2c0 {
-> > > > +        #address-cells = <1>;
-> > > > +        #size-cells = <0>;
-> > > > +        ov772x: camera@21 {
-> > > > +            compatible = "ovti,ov7725";
-> > > > +            reg = <0x21>;
-> > > > +            reset-gpios = <&axi_gpio_0 0 GPIO_ACTIVE_LOW>;
-> > > > +            powerdown-gpios = <&axi_gpio_0 1 GPIO_ACTIVE_LOW>;
-> > > > +            clocks = <&xclk>;
-> > > > +
-> > > > +            port {
-> > > > +                ov772x_0: endpoint {
-> > > > +                    remote-endpoint = <&vcap1_in0>;
-> > > > +                };
-> > > > +            };
-> > > > +        };
-> > > > +    };
-> > > > +
-> > > > +...
-> > > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > > index d1a6173d3b64..d0a20214eaaf 100644
-> > > > --- a/MAINTAINERS
-> > > > +++ b/MAINTAINERS
-> > > > @@ -12666,7 +12666,7 @@ M:	Jacopo Mondi <jacopo@jmondi.org>
-> > > >  L:	linux-media@vger.kernel.org
-> > > >  S:	Odd fixes
-> > > >  T:	git git://linuxtv.org/media_tree.git
-> > > > -F:	Documentation/devicetree/bindings/media/i2c/ov772x.txt
-> > > > +F:	Documentation/devicetree/bindings/media/i2c/ov772x.yaml
-> > > >  F:	drivers/media/i2c/ov772x.c
-> > > >  F:	include/media/i2c/ov772x.h
-> > > >
->
-> --
-> Regards,
->
-> Laurent Pinchart
+pinctrl: visconti: Add Toshiba Visconti SoCs pinctrl support
+  v1 -> v2:
+    - No update
+
+dt-bindings: arm: toshiba: add Toshiba Visconti ARM SoCs
+  v1 -> v2:
+    - No update
+
+dt-bindings: arm: toshiba: Add the TMPV7708 RM main board
+  v1 -> v2:
+    - No update
+
+arm64: visconti: Add initial support for Toshiba Visconti platform
+  v1 -> v2:
+    - No update
+
+arm64: dts: visconti: Add device tree for TMPV7708 RM main board
+  v1 -> v2:
+    - Remove always-on property from timer.
+    - Add interrputs for GIC.
+    - Remove bootargs from chosen.
+      stdout-path is not deleted because the boot loader cannot handle it.
+      It will be removed in the future.
+    - Update dtsi for using new binding of pinctrl.
+
+MAINTAINERS: Add information for Toshiba Visconti ARM SoCs
+  v1 -> v2:
+    - No update
+
+arm64: defconfig: Enable configs for Toshiba Visconti    
+  v1 -> v2:
+    - No update
+
+--
+
+Nobuhiro Iwamatsu (8):
+  dt-bindings: pinctrl: Add bindings for Toshiba Visconti TMPV7700 SoC
+  pinctrl: visconti: Add Toshiba Visconti SoCs pinctrl support
+  dt-bindings: arm: toshiba: add Toshiba Visconti ARM SoCs
+  dt-bindings: arm: toshiba: Add the TMPV7708 RM main board
+  arm64: visconti: Add initial support for Toshiba Visconti platform
+  arm64: dts: visconti: Add device tree for TMPV7708 RM main board
+  MAINTAINERS: Add information for Toshiba Visconti ARM SoCs
+  arm64: defconfig: Enable configs for Toshiba Visconti
+
+ .../devicetree/bindings/arm/toshiba.yaml      |  22 +
+ .../pinctrl/toshiba,visconti-pinctrl.yaml     |  92 +++++
+ MAINTAINERS                                   |  11 +
+ arch/arm64/Kconfig.platforms                  |   7 +
+ arch/arm64/boot/dts/Makefile                  |   1 +
+ arch/arm64/boot/dts/toshiba/Makefile          |   2 +
+ .../boot/dts/toshiba/tmpv7708-rm-mbrc.dts     |  43 ++
+ arch/arm64/boot/dts/toshiba/tmpv7708.dtsi     | 390 ++++++++++++++++++
+ .../arm64/boot/dts/toshiba/tmpv7708_pins.dtsi |  93 +++++
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/pinctrl/Kconfig                       |   1 +
+ drivers/pinctrl/Makefile                      |   1 +
+ drivers/pinctrl/visconti/Kconfig              |  14 +
+ drivers/pinctrl/visconti/Makefile             |   3 +
+ drivers/pinctrl/visconti/pinctrl-common.c     | 320 ++++++++++++++
+ drivers/pinctrl/visconti/pinctrl-common.h     |  96 +++++
+ drivers/pinctrl/visconti/pinctrl-tmpv7700.c   | 355 ++++++++++++++++
+ 17 files changed, 1452 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/toshiba.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/toshiba,visconti-pinctrl.yaml
+ create mode 100644 arch/arm64/boot/dts/toshiba/Makefile
+ create mode 100644 arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts
+ create mode 100644 arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
+ create mode 100644 arch/arm64/boot/dts/toshiba/tmpv7708_pins.dtsi
+ create mode 100644 drivers/pinctrl/visconti/Kconfig
+ create mode 100644 drivers/pinctrl/visconti/Makefile
+ create mode 100644 drivers/pinctrl/visconti/pinctrl-common.c
+ create mode 100644 drivers/pinctrl/visconti/pinctrl-common.h
+ create mode 100644 drivers/pinctrl/visconti/pinctrl-tmpv7700.c
+
+-- 
+2.27.0
+
