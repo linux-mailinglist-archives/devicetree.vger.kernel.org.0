@@ -2,142 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF2E724F2E6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 09:07:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F5B924F2F5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 09:15:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725906AbgHXHHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Aug 2020 03:07:11 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:40907 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725730AbgHXHHK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 03:07:10 -0400
-Received: by mail-wm1-f68.google.com with SMTP id k20so7114138wmi.5;
-        Mon, 24 Aug 2020 00:07:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=jMkESQ6/qDeh8yFOp5ut20DDKvKP8Egt8HrPQWgV3hI=;
-        b=qO1tdIinoFPIXWPm5/19KfBpyFAwq8uKSg7EQU1L8V6ovQx9nJWVqyn3VV5ax8kBxQ
-         pbVqTRVoiDADr0KvqztcBve3TkrN3Fl9lFP1UXt+MjKM+BULUR6gOD7v2Zhusjq4JE6W
-         PzNQzwmCMMpsOIyNMIOA0r7/IZ6GjQyzxV8g4uEdQmkom9Zl5Wc4naHb4zWQicafXGE+
-         ZBZfmBbEr3kyOvrivi2+KJJN9VY4xshpgyieT9qL2aC/lW3Zdm8z3E7U62EPJScgJYHS
-         rZDR3h+FNeOgElnSHLwSH/Qkfq6sJmMvHVFSA1T6JeHKf6x2mv2hDTBPb4P6UFBtA1J4
-         dwpg==
-X-Gm-Message-State: AOAM530XgyTPKsoaliYNEw6PrdoDEeX2dCtCpr8HI1/B5ZGAHNi9rttZ
-        zxzwkG2bBffmUngDYt1gm9g=
-X-Google-Smtp-Source: ABdhPJyU61NszbES0k6p1PAHajV48Erw/hGcjANLVNAFBKqGCzpj1Y19Wb9rD9qlokEO4JMhFKYb8w==
-X-Received: by 2002:a7b:c1c1:: with SMTP id a1mr4297940wmj.137.1598252826663;
-        Mon, 24 Aug 2020 00:07:06 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.216])
-        by smtp.googlemail.com with ESMTPSA id m1sm21788437wmc.28.2020.08.24.00.07.04
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 24 Aug 2020 00:07:06 -0700 (PDT)
-Date:   Mon, 24 Aug 2020 09:07:03 +0200
+        id S1726222AbgHXHPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Aug 2020 03:15:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54060 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725850AbgHXHPx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Aug 2020 03:15:53 -0400
+Received: from kozik-lap.mshome.net (unknown [194.230.155.216])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8FB5220720;
+        Mon, 24 Aug 2020 07:15:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598253352;
+        bh=HsUuNkVSd/8OOPLUALtgwBOCnA4t+XeARd/JsxEFnzA=;
+        h=From:To:Subject:Date:From;
+        b=2e5cIF8QLfBRuwYw8HrgVGN6aimaE0rxlrn/SczbT9SBrURv4GxNYmEwWaBuqsv8i
+         lrJYH/gAXay+6nJvc3MiiTwG7x5NLmCr0p3D59usKNkyAfe8Q+yt+5sZ818txOoBdL
+         +3Ht+9v2ozDeR3Jt7nk1LrwlzZ6lG6Yd+dT6i46A=
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Shawn Guo <shawnguo@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-pwm@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Anson Huang <Anson.Huang@nxp.com>
-Subject: Re: [PATCH 02/22] dt-bindings: gpio: fsl-imx-gpio: Add gpio-ranges
- property
-Message-ID: <20200824070703.GA5382@kozik-lap>
-References: <20200823161550.3981-1-krzk@kernel.org>
- <20200823161550.3981-2-krzk@kernel.org>
- <20200824052446.GE13023@pengutronix.de>
- <20200824063806.GA2497@kozik-lap>
- <20200824065801.GH13023@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200824065801.GH13023@pengutronix.de>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Adam Ford <aford173@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mm-beacon-baseboard: Correct LED default state
+Date:   Mon, 24 Aug 2020 09:15:46 +0200
+Message-Id: <20200824071546.10050-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 24, 2020 at 08:58:01AM +0200, Sascha Hauer wrote:
-> On Mon, Aug 24, 2020 at 08:38:06AM +0200, Krzysztof Kozlowski wrote:
-> > On Mon, Aug 24, 2020 at 07:24:46AM +0200, Sascha Hauer wrote:
-> > > On Sun, Aug 23, 2020 at 06:15:30PM +0200, Krzysztof Kozlowski wrote:
-> > > > The GPIO controller node can have gpio-ranges property.  This fixes
-> > > > dtbs_check warnings like:
-> > > > 
-> > > >   arch/arm64/boot/dts/freescale/imx8mm-evk.dt.yaml: gpio@30200000: 'gpio-ranges' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > > >     From schema: Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
-> > > > 
-> > > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > > > ---
-> > > >  .../devicetree/bindings/gpio/fsl-imx-gpio.yaml    | 15 +++++++++++++++
-> > > >  1 file changed, 15 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
-> > > > index 454db20c2d1a..1fac69573bb9 100644
-> > > > --- a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
-> > > > +++ b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
-> > > > @@ -51,6 +51,9 @@ properties:
-> > > >  
-> > > >    gpio-controller: true
-> > > >  
-> > > > +  gpio-ranges:
-> > > > +    maxItems: 1
-> > > > +
-> > > >  required:
-> > > >    - compatible
-> > > >    - reg
-> > > > @@ -62,6 +65,18 @@ required:
-> > > >  
-> > > >  additionalProperties: false
-> > > >  
-> > > > +allOf:
-> > > > +  - if:
-> > > > +      properties:
-> > > > +        compatible:
-> > > > +          contains:
-> > > > +            const: fsl,imx8mp-gpio
-> > > > +    then:
-> > > > +      properties:
-> > > > +        gpio-ranges:
-> > > > +          minItems: 1
-> > > > +          maxItems: 2
-> > > 
-> > > Why do you limit this to fsl,imx8mp-gpio? The i.MX5,6,7 dtsi files use
-> > > gpio-ranges as well and other i.MX dtsi files could also use it.
-> > 
-> > All other cases use maximum one element in gpio-ranges, so they are
-> > covered so I assumed they are continuous. But if it not the case, I can
-> > make all them maximum 2.
-> 
-> I misread this, I thought you allow gpio-ranges only for imx8mp, but
-> it's only the maxItems you set differently for that SoC. Anyway,
-> arch/arm/boot/dts/imx6dl.dtsi has this:
-> 
-> &gpio1 {
->         gpio-ranges = <&iomuxc  0 131 2>, <&iomuxc  2 137 8>, <&iomuxc 10 189 2>,
->                       <&iomuxc 12 194 1>, <&iomuxc 13 193 1>, <&iomuxc 14 192 1>,
->                       <&iomuxc 15 191 1>, <&iomuxc 16 185 2>, <&iomuxc 18 184 1>,
->                       <&iomuxc 19 187 1>, <&iomuxc 20 183 1>, <&iomuxc 21 188 1>,
->                       <&iomuxc 22 123 3>, <&iomuxc 25 121 1>, <&iomuxc 26 127 1>,
->                       <&iomuxc 27 126 1>, <&iomuxc 28 128 1>, <&iomuxc 29 130 1>,
->                       <&iomuxc 30 129 1>, <&iomuxc 31 122 1>;
-> };
-> 
-> I don't think it makes sense to specify maxItems.
+There is no LED default state "none".  leds-gpio driver maps it to
+"off", so correct them to fix dtbs_check warnings like:
 
-Indeed, I will skip the max limit.
+  arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dt.yaml:
+    leds: led0:default-state:0: 'none' is not one of ['on', 'off', 'keep']
 
-Best regards,
-Krzysztof
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+ arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
+index baa5f997d018..bf0859f1e1fa 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
+@@ -10,19 +10,19 @@
+ 		led0 {
+ 			label = "gen_led0";
+ 			gpios = <&pca6416_1 4 GPIO_ACTIVE_HIGH>;
+-			default-state = "none";
++			default-state = "off";
+ 		};
+ 
+ 		led1 {
+ 			label = "gen_led1";
+ 			gpios = <&pca6416_1 5 GPIO_ACTIVE_HIGH>;
+-			default-state = "none";
++			default-state = "off";
+ 		};
+ 
+ 		led2 {
+ 			label = "gen_led2";
+ 			gpios = <&pca6416_1 6 GPIO_ACTIVE_HIGH>;
+-			default-state = "none";
++			default-state = "off";
+ 		};
+ 
+ 		led3 {
+-- 
+2.17.1
 
