@@ -2,95 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A3002509C3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 22:08:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E05C32509F8
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 22:30:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726222AbgHXUIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Aug 2020 16:08:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58584 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725904AbgHXUIB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 16:08:01 -0400
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6215EC061573;
-        Mon, 24 Aug 2020 13:08:01 -0700 (PDT)
-Received: by mail-lf1-x143.google.com with SMTP id c15so5166318lfi.3;
-        Mon, 24 Aug 2020 13:08:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4hEOJDy5VpY/6gwUau8NPAOLJV8wtmaTzguYs5BYd4s=;
-        b=kQddYGaOjOGa9RJhgb6w3LT/vF+N7ObNoa4VwX8jngRhh/xFAWm3lyg92kYN1hpfZT
-         bd2whc7oFU0tGl0t+fPiGTbxlMlzHVjwXlSaq13j2RdpPXar6z+lCFcEhYTmPNS2mCSM
-         PIwpNub9tetSKh4iqu/r9GoBauRjnkU08yjuCasVcAvjeHEOcCoCuBMuzxRWFygqc+YB
-         haLOVIueiFh0LRhtFh7YREN46exas9OebZvaUz+Lt8YYeVvAQUZVwZOsMqfyN77vXrOM
-         won13lN5ZIbI/9qEuTrptYPDsWppwGErKsRYU2ahC3zTd2OO04iKoyy7MCMakyPBV6I3
-         PJOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4hEOJDy5VpY/6gwUau8NPAOLJV8wtmaTzguYs5BYd4s=;
-        b=FYOcmDv+Z6U+R4NtMywz1h5+LH5rTcnmI9pyOtHfjf/wwA+8y+sgEsfYJaPOd9M/WW
-         RY0Cx55vTNhHegfe5mwBZgBXneIT43ckTnjHCFHemQlGqthjTT3ZZEC3Bvp7mISG4Cho
-         Isvcy83i8m5Ez01egpev1fS8nbTArEPk3eiklBUTuky4PWbZdlSLz2rgbTNvJSJadQ3v
-         rkkugo9xrGiSJ3DyuGk73pW8RlQgHyexNV6vQfoaRI5XFHUo0Ju5sBeDtNz6Hbf0kq9T
-         /L9dmB60KbSANpQhofBR0DrlFh8Y4U8v4hSPw6E703WzlaH1uOA/yBtWPFBfaHxu0dTh
-         FrwA==
-X-Gm-Message-State: AOAM533jih6Ji15HUpp63BvjIXlD9GsujOGwmWooIZtPd8dAUIRu64MU
-        2Zr6XDLpcPkGjDB0AeOOc3mpiJ9Sh9/+3VCwjFeKzqWNwZs=
-X-Google-Smtp-Source: ABdhPJyDWK54OaNTznXHTHtxiBDJUsjV7st4S/DmUVjYLMEuSdDcBlmLrgy/zRKgFobf79N1zm3VopVh0dKl9vknAHM=
-X-Received: by 2002:a19:4ace:: with SMTP id x197mr3295387lfa.70.1598299679565;
- Mon, 24 Aug 2020 13:07:59 -0700 (PDT)
+        id S1726752AbgHXUad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Aug 2020 16:30:33 -0400
+Received: from esa1.microchip.iphmx.com ([68.232.147.91]:1130 "EHLO
+        esa1.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725904AbgHXUaa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 16:30:30 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1598301029; x=1629837029;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=7oFAii9lyA4lIaQ8JCE+tvw5Jg9aKR2Pa8NNZaZzymw=;
+  b=CBpYfJ5TuSwXo36upy+QPhqQAQ596doiIehHCXOGRnBv5XHcn/INsVdb
+   c9pa0g/JWLij5ZWHNe4EQEL04d3mJwJMZpJJIm6Gpf1347SyR4rr9KOGN
+   7fOIGNYzYyt+ITs335CS6QgzLOzYV6LEhyeI8UJGJqVvRU8gUtYgamXM4
+   6OpUy5RELPlXHMG9zMXMcZ815xYdhzP4dDLG5xHLjWeFxnnDauMmn3v6R
+   GWy4aM4m5igZ/xIDwBf9/ffGeSct0nSHSijiztGTDe7i4Ts6XVSPxZG+n
+   +o0Jv4/AHWkqg+SB4OL+41vwVM9hSvvsdkQltqg2PgbePs+D0avzmwI5w
+   Q==;
+IronPort-SDR: Jr42Kf2odZaGMYdGcDDQFr0x4tsxGSQT5OXB4NBYP7JaL0IKHeXgPbnhQMz74q4AaW32COvVcr
+ srbNsYcrPi53SjK4Y+bKuIqxuZqELq2ObB7azUgdTu6W1rN6vR42fRqzja0VOxRh51lPE3BlWG
+ Cqe47QYC4OBQmytUoNmq5yd5SJ/J1YhVcB57i1piBdWlSCSSyYxF0ulCNB+SUw+U0BlIc4hdNe
+ 9zc58zwTcQGlNIRy339rl3rkRpYcT+ciHRuooiig72N1xCWj11EIN6nFHJ0kopJ/QNjEgSparc
+ F4g=
+X-IronPort-AV: E=Sophos;i="5.76,349,1592895600"; 
+   d="scan'208";a="92961876"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 Aug 2020 13:30:28 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Mon, 24 Aug 2020 13:30:23 -0700
+Received: from soft-dev15.microsemi.net (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Mon, 24 Aug 2020 13:29:48 -0700
+From:   Lars Povlsen <lars.povlsen@microchip.com>
+To:     Mark Brown <broonie@kernel.org>, Peter Rosin <peda@axentia.se>
+CC:     Lars Povlsen <lars.povlsen@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Subject: [PATCH v5 0/6] spi: Adding support for Microchip Sparx5 SoC
+Date:   Mon, 24 Aug 2020 22:30:04 +0200
+Message-ID: <20200824203010.2033-1-lars.povlsen@microchip.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20200824190701.8447-1-krzk@kernel.org> <20200824190701.8447-4-krzk@kernel.org>
-In-Reply-To: <20200824190701.8447-4-krzk@kernel.org>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 24 Aug 2020 17:07:48 -0300
-Message-ID: <CAOMZO5BgqJba+-Lqq_Js1Opkii8SZ3p66O7xOQibV1zgrXxS=Q@mail.gmail.com>
-Subject: Re: [PATCH 04/16] arm64: dts: imx8mm-beacon-baseboard: Correct SPI CS polarity
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Adam Ford <aford173@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Robin Gong <yibin.gong@nxp.com>, Li Jun <jun.li@nxp.com>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Han Xu <han.xu@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-mtd@lists.infradead.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+The series add support for the Sparx5 SoC SPI controller in the
+spi-dw-mmio.c spi driver.
 
-On Mon, Aug 24, 2020 at 4:07 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+v5 changes:
+- rx-sample-delay-ns documentation changes from Rob Herring:
+ - Drop superfluous type $ref
+ - Add default value = 0
 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
-> index bf0859f1e1fa..5b5af8b381df 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
-> @@ -70,7 +70,7 @@
->  &ecspi2 {
->         pinctrl-names = "default";
->         pinctrl-0 = <&pinctrl_espi2>;
-> -       cs-gpios = <&gpio5 9 0>;
-> +       cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
+v4 changes:
+- Changed snps,rx-sample-delay-ns to snps,rx-sample-delay-ns
+  suggested by Rob Herring (rockchip also has this property).
+- Added support for controller-level rx-sample-delay-ns value as
+  well as per SPI slave value (rockchip has controller-level property).
+- Dropped internal mux in favor of suggested spi-mux to
+  control bus inteface selection.
 
-I have already sent a patch fixing this:
-https://www.spinics.net/lists/arm-kernel/msg830895.html
+v3 changes:
+- Added mux support for controlling SPI bus interface. This is new mux
+  driver, bindings and added to sparx5 base DT.
+- Removed "microchip,spi-interface2" property in favour of
+  "mux-controls" property in SPI controller (sparx5 only).
+- Changed dw_spi_sparx5_set_cs() to use the mux control instead of
+  directly acessing "mux" register. Associated code/defines moved to mux
+  driver.
+- Changed dw_spi_sparx5_set_cs() to match other similar functions in
+  signature and avoid explicit CS toggling.
+- Spun off duplicated NAND device DT chunks into separate DT file.
+
+v2 changes:
+- Moved all RX sample delay into spi-dw-core.c, using
+  the "snps,rx-sample-delay-ns" device property.
+- Integrated Sparx5 support directly in spi-dw-mmio.c
+- Changed SPI2 configuration to per-slave "microchip,spi-interface2"
+  property.
+- Added bindings to existing snps,dw-apb-ssi.yaml file
+- Dropped patches for polled mode and SPI memory operations.
+
+Lars Povlsen (6):
+  spi: dw: Add support for RX sample delay register
+  spi: dw: Add Microchip Sparx5 support
+  arm64: dts: sparx5: Add SPI controller and associated mmio-mux
+  dt-bindings: snps,dw-apb-ssi: Add sparx5 support, plus
+    rx-sample-delay-ns property
+  arm64: dts: sparx5: Add spi-nor support
+  arm64: dts: sparx5: Add spi-nand devices
+
+ .../bindings/spi/snps,dw-apb-ssi.yaml         | 21 ++++++
+ arch/arm64/boot/dts/microchip/sparx5.dtsi     | 47 ++++++++++++-
+ .../arm64/boot/dts/microchip/sparx5_nand.dtsi | 31 ++++++++
+ .../boot/dts/microchip/sparx5_pcb125.dts      | 30 ++++++++
+ .../boot/dts/microchip/sparx5_pcb134.dts      |  1 +
+ .../dts/microchip/sparx5_pcb134_board.dtsi    | 16 +++++
+ .../boot/dts/microchip/sparx5_pcb135.dts      |  1 +
+ .../dts/microchip/sparx5_pcb135_board.dtsi    | 16 +++++
+ drivers/spi/spi-dw-core.c                     | 26 +++++++
+ drivers/spi/spi-dw-mmio.c                     | 70 ++++++++++++++++++-
+ drivers/spi/spi-dw.h                          |  3 +
+ 11 files changed, 260 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/microchip/sparx5_nand.dtsi
+
+-- 
+2.27.0
+
