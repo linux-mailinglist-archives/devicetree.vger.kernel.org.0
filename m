@@ -2,203 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1B8F24FC0E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 12:55:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FF8124FC2C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 13:01:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727104AbgHXKzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Aug 2020 06:55:47 -0400
-Received: from relay11.mail.gandi.net ([217.70.178.231]:59575 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726532AbgHXKzn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 06:55:43 -0400
-Received: from uno.lan (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 4A705100009;
-        Mon, 24 Aug 2020 10:55:38 +0000 (UTC)
-From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
-To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>, mchehab@kernel.org,
-        sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
-        laurent.pinchart@ideasonboard.com,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: media: mt9v111: Convert to json-schema
-Date:   Mon, 24 Aug 2020 12:59:19 +0200
-Message-Id: <20200824105919.28123-1-jacopo+renesas@jmondi.org>
-X-Mailer: git-send-email 2.27.0
+        id S1726673AbgHXLB2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Aug 2020 07:01:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50674 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726483AbgHXLBU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Aug 2020 07:01:20 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 560C2206B5;
+        Mon, 24 Aug 2020 11:01:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598266879;
+        bh=6SZzRMN5GGlyh79co29gSLTZO76H+8JYL5VE28sGF20=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=e23Bob6o6Xo0hBCl442jnXgXQlakT98GnZpvR/3dAMkOWhgYz0m51RsIAvILsTzlg
+         1qScDMQv4rSd6Go0kH9xUQkOIomoMoFi6WN0w2dPPPhCgmOPc0yvIWeU2vNQ8w2qfJ
+         vRNQJmC6J0WQWl1hlDoM4WBydqnrrehLjrrRhP2Y=
+Date:   Mon, 24 Aug 2020 12:00:45 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v2 3/6] regulator: Add regulator driver for ATC260x PMICs
+Message-ID: <20200824110045.GA4676@sirena.org.uk>
+References: <cover.1598043782.git.cristian.ciocaltea@gmail.com>
+ <8da70f0b19de17fb8edead7ff06461ae2451b0e9.1598043782.git.cristian.ciocaltea@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="2fHTh5uZTiUOsy+g"
+Content-Disposition: inline
+In-Reply-To: <8da70f0b19de17fb8edead7ff06461ae2451b0e9.1598043782.git.cristian.ciocaltea@gmail.com>
+X-Cookie: Weekend, where are you?
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the mt9v111 bindings document to json-schema and update
-the MAINTAINERS file accordingly.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
----
- .../bindings/media/i2c/aptina,mt9v111.txt     | 46 -----------
- .../bindings/media/i2c/aptina,mt9v111.yaml    | 82 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 83 insertions(+), 47 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt
- create mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
+--2fHTh5uZTiUOsy+g
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt b/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt
-deleted file mode 100644
-index bd896e9f67d1..000000000000
---- a/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt
-+++ /dev/null
-@@ -1,46 +0,0 @@
--* Aptina MT9V111 CMOS sensor
------------------------------
--
--The Aptina MT9V111 is a 1/4-Inch VGA-format digital image sensor with a core
--based on Aptina MT9V011 sensor and an integrated Image Flow Processor (IFP).
--
--The sensor has an active pixel array of 640x480 pixels and can output a number
--of image resolution and formats controllable through a simple two-wires
--interface.
--
--Required properties:
----------------------
--
--- compatible: shall be "aptina,mt9v111".
--- clocks: reference to the system clock input provider.
--
--Optional properties:
----------------------
--
--- enable-gpios: output enable signal, pin name "OE#". Active low.
--- standby-gpios: low power state control signal, pin name "STANDBY".
--  Active high.
--- reset-gpios: chip reset signal, pin name "RESET#". Active low.
--
--The device node must contain one 'port' child node with one 'endpoint' child
--sub-node for its digital output video port, in accordance with the video
--interface bindings defined in:
--Documentation/devicetree/bindings/media/video-interfaces.txt
--
--Example:
----------
--
--        &i2c1 {
--                camera@48 {
--                        compatible = "aptina,mt9v111";
--                        reg = <0x48>;
--
--                        clocks = <&camera_clk>;
--
--                        port {
--                                mt9v111_out: endpoint {
--                                        remote-endpoint = <&ceu_in>;
--                                };
--                        };
--                };
--        };
-diff --git a/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml b/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
-new file mode 100644
-index 000000000000..ccc6fd58a39a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
-@@ -0,0 +1,82 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/aptina,mt9v111.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Aptina MT9V111 CMOS sensor
-+
-+maintainers:
-+  - Jacopo Mondi <jacopo@jmondi.org>
-+
-+description: -|
-+  The Aptina MT9V111 is a 1/4-Inch VGA-format digital image sensor with a core
-+  based on Aptina MT9V011 sensor and an integrated Image Flow Processor (IFP).
-+
-+  The sensor has an active pixel array of 640x480 pixels and can output a number
-+  of image resolutions and formats controllable through a simple two-wires
-+  interface.
-+
-+properties:
-+  compatible:
-+    const: aptina,mt9v111
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  enable-gpios:
-+    description: Enable signal, pin name "OE#". Active low.
-+    maxItems: 1
-+
-+  standby-gpios:
-+    description: -|
-+      Low power state control signal, pin name "STANDBY". Active high.
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description: Chip reset signal, pin name "RESET#". Active low.
-+    maxItems: 1
-+
-+  port:
-+    type: object
-+    description: |
-+      Output video port. See ../video-interfaces.txt.
-+
-+    properties:
-+      endpoint:
-+        type: object
-+        properties:
-+          remote-endpoint:
-+            description: A phandle to the bus receiver's endpoint node.
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - port
-+
-+examples:
-+  - |
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        camera@48 {
-+            compatible = "aptina,mt9v111";
-+            reg = <0x48>;
-+            clocks = <&camera_clk>;
-+
-+            port {
-+                mt9v111_out: endpoint {
-+                    remote-endpoint = <&ceu_in>;
-+                };
-+            };
-+        };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index deaafb617361..9503ea17aa28 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11806,7 +11806,7 @@ M:	Jacopo Mondi <jacopo@jmondi.org>
- L:	linux-media@vger.kernel.org
- S:	Maintained
- T:	git git://linuxtv.org/media_tree.git
--F:	Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt
-+F:	Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
- F:	drivers/media/i2c/mt9v111.c
+On Sat, Aug 22, 2020 at 01:19:49AM +0300, Cristian Ciocaltea wrote:
 
- MULTIFUNCTION DEVICES (MFD)
---
-2.27.0
+> +static int atc260x_set_voltage_time_sel(struct regulator_dev *rdev,
+> +					unsigned int old_selector,
+> +					unsigned int new_selector)
+> +{
+> +	struct atc260x_regulator_data *data = rdev_get_drvdata(rdev);
+> +	int id = rdev_get_id(rdev);
+> +
+> +	if (new_selector > old_selector)
+> +		return id > data->last_dcdc_reg_id ? data->voltage_time_ldo
+> +						   : data->voltage_time_dcdc;
 
+Please write normal conditional statements to make things easier to
+read.  It also looks like this would be more robustly written by just
+having separate ops for DCDCs and LDOs, this could easily break if
+another device is supported in the driver.
+
+> +static const struct of_device_id atc260x_regulator_of_match[] = {
+> +	{ .compatible = "actions,atc2603c-regulator" },
+> +	{ .compatible = "actions,atc2609a-regulator" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, atc260x_regulator_of_match);
+
+We don't need compatibles here, this is just reflecting the current
+Linux device model into the OS neutral DT bindings.  Another OS may
+choose to split regulators up differently.  We should just instantiate
+the regulator device from the MFD based on identifying the chip overall.
+
+--2fHTh5uZTiUOsy+g
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9DndwACgkQJNaLcl1U
+h9CXoAf6AzUFwxgd0S5ClrLwTuv/z8XNl93mNAnQI+Lgte0VWytWqrO+qCtOPcAq
+sQgGC4jUOMfZR2vcx+UGMuCCoYjDO75ApLLyN4Z79wUeNApY/VVVoSpMCy1/yvtf
+wneUL9d6TNL0S/Po6/RBm0kII2vbhPcRXdJxGo1JAefjao0cc6OC7ep6OtxsnQF9
+sr9aCXfvloI95sl6bc/QVaWqd5/dP7WuPINxzY6Xd20TJ4bL9gVmwv87uBdZXLZZ
+8jjoAg+/7ma13fxdt7CuaGJLuXZNW+WusMKy/Bx5CqFwqpDkEPuRpA5zXXPI8/5c
+axFmXEOlJ7MAB8WZg4fNbeBHCsbekg==
+=H2HJ
+-----END PGP SIGNATURE-----
+
+--2fHTh5uZTiUOsy+g--
