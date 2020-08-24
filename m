@@ -2,47 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C83C324F131
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 04:36:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B911D24F14A
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 04:49:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727108AbgHXCgc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Aug 2020 22:36:32 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:52917 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726635AbgHXCgc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Aug 2020 22:36:32 -0400
-X-UUID: 33aabed618234360a425b73f3b99570a-20200824
+        id S1727024AbgHXCtK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Aug 2020 22:49:10 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:41199 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726635AbgHXCtK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Aug 2020 22:49:10 -0400
+X-UUID: d9b9316a0d9d4d6b8b0c3a0901db0127-20200824
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=DGXAb/0Vl5Dez9+vEDFYuUVf9EcPLGR8eaFdhVWVXVQ=;
-        b=NkEM55mqaTTFbe9ofPB2EPse6Ev1uXSjFyTDSKG1xnK+iIVkvAWzUO1CZDrNM9jX+bXsZfh3gwwXa8MPfsewfZoJmyr9hdJs05kLnMR2gnLc4mreJbPkJ/Tpk7ZFKwT92LTizzMD7/iOY9JwSATfY8Z6e2mc+oTgWVbOXwVtpzk=;
-X-UUID: 33aabed618234360a425b73f3b99570a-20200824
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=MQ+lWRIMzlLcIAlBgmbEN4Xfo27oGH4DXQdB75/Yr0g=;
+        b=Y7K6vJzVgIzjrVzAZBU2NeknkxBwY5bq0dUA1qjHPEoHRMl9v239GpDXy2cHTXpWbt5xzAwcj3L3HDDg/I8Kiinp127Ow55bJ2YrYn4vKQ9rzUS6MrADIMu+iIx6IaEU9AgozcKncn3k7e0OG54kphJCYe+Br6HmV2slyNAq0hY=;
+X-UUID: d9b9316a0d9d4d6b8b0c3a0901db0127-20200824
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
         (envelope-from <mark-pk.tsai@mediatek.com>)
         (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1536756996; Mon, 24 Aug 2020 10:36:27 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+        with ESMTP id 1682917385; Mon, 24 Aug 2020 10:49:00 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
  mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 24 Aug 2020 10:36:25 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
+ 15.0.1497.2; Mon, 24 Aug 2020 10:48:58 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 24 Aug 2020 10:36:24 +0800
+ Transport; Mon, 24 Aug 2020 10:48:54 +0800
 From:   Mark-PK Tsai <mark-pk.tsai@mediatek.com>
-To:     <daniel@0x0f.com>, Mark-PK Tsai <mark-pk.tsai@mediatek.com>
-CC:     <alix.wu@mediatek.com>, <devicetree@vger.kernel.org>,
-        <jason@lakedaemon.net>, <linux-arm-kernel@lists.infradead.org>,
+To:     <mark-pk.tsai@mediatek.com>
+CC:     <alix.wu@mediatek.com>, <daniel@0x0f.com>,
+        <devicetree@vger.kernel.org>, <jason@lakedaemon.net>,
+        <linux-arm-kernel@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>,
         <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
         <maz@kernel.org>, <robh+dt@kernel.org>, <tglx@linutronix.de>,
         <yj.chiang@mediatek.com>
-Subject: Re: [PATCH v2 1/2] irqchip: irq-mst: Add MStar interrupt controller support
-Date:   Mon, 24 Aug 2020 10:36:08 +0800
-Message-ID: <20200824023608.12694-1-mark-pk.tsai@mediatek.com>
+Subject: [PATCH] MAINTAINERS: Add maintenance information for MStar Interrupt Controller
+Date:   Mon, 24 Aug 2020 10:48:56 +0800
+Message-ID: <20200824024856.12845-1-mark-pk.tsai@mediatek.com>
 X-Mailer: git-send-email 2.18.0
-In-Reply-To: <CAFr9PXni=BmDY6_iuJPnYb3d6XB1VrxE6WP3YtSBxT6NciZMMA@mail.gmail.com>
-References: <CAFr9PXni=BmDY6_iuJPnYb3d6XB1VrxE6WP3YtSBxT6NciZMMA@mail.gmail.com>
+In-Reply-To: <20200819153757.28993-1-mark-pk.tsai@mediatek.com>
+References: <20200819153757.28993-1-mark-pk.tsai@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-TM-SNTS-SMTP: 6E4C3BF49D4DFB9E466CFBA5624D59848AA25DE09D0CFEF9A30BC7D17FB7468C2000:8
+X-TM-SNTS-SMTP: 5ECEB2847F83711C8D72F1725AB1012FAAD0F315FAF4E860FF3A8DD04AE7A0CA2000:8
 X-MTK:  N
 Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
@@ -50,32 +51,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogRGFuaWVsIFBhbG1lciA8ZGFuaWVsQDB4MGYuY29tPg0KDQo+SGkgTWFyay1QSywNCj4N
-Cj5PbiBUaHUsIDIwIEF1ZyAyMDIwIGF0IDAwOjM4LCBNYXJrLVBLIFRzYWkgPG1hcmstcGsudHNh
-aUBtZWRpYXRlay5jb20+IHdyb3RlOg0KPj4NCj4+IEFkZCBNU3RhciBpbnRlcnJ1cHQgY29udHJv
-bGxlciBzdXBwb3J0IHVzaW5nIGhpZXJhcmNoeSBpcnENCj4+IGRvbWFpbi4NCj4+DQo+PiBTaWdu
-ZWQtb2ZmLWJ5OiBNYXJrLVBLIFRzYWkgPG1hcmstcGsudHNhaUBtZWRpYXRlay5jb20+DQo+DQo+
-SSd2ZSBpbnRlZ3JhdGVkIHRoaXMgdmVyc2lvbiBpbnRvIG15IE1TdGFyL1NpZ21hU3RhciB0cmVl
-IGFuZCB0ZXN0ZWQNCj5vbiBhbiBNU3RhciBNU0MzMTNFDQo+YmFzZWQgYm9hcmQgKEJyZWFkQmVl
-KSBhbmQgSSdtIGhhcHB5IHRvIHNheSBpdCBzZWVtcyB0byBiZSB3b3JraW5nOg0KPg0KPiQgY2F0
-IC9wcm9jL2ludGVycnVwdHMNCj4gICAgICAgICAgQ1BVMA0KPjE3OiAgICAgICAxMjE5ICAgICBH
-SUMtMCAgMjkgTGV2ZWwgICAgIGFyY2hfdGltZXINCj4xODogICAgICAgICAgMCAgICAgR0lDLTAg
-IDMwIExldmVsICAgICBhcmNoX3RpbWVyDQo+MjE6ICAgICAgICAgIDAgICAgIEdJQy0wICA0MiBM
-ZXZlbCAgICAgYXJtLXBtdQ0KPjI0OiAgICAgICAgICAwICBtc3QtaW50YyAgNDQgTGV2ZWwgICAg
-IDFmMDAyNDAwLnJ0Yw0KPjMwOiAgICAgICAgICAwICBtc3QtaW50YyAgIDIgTGV2ZWwgICAgIDFm
-MDA2MDAwLndkdA0KPjMxOiAgICAgICAgICAwICBtc3QtaW50YyAgIDAgTGV2ZWwgICAgIDFmMDA2
-MDQwLnRpbWVyDQo+MzI6ICAgICAgICAgIDAgIG1zdC1pbnRjICAgMSBMZXZlbCAgICAgMWYwMDYw
-ODAudGltZXINCj4zMzogICAgICAgICAgMCAgbXN0LWludGMgIDEyIExldmVsICAgICAxZjAwNjBj
-MC50aW1lcg0KPjM0OiAgICAgICAgICAwICBtc3QtaW50YyAgNDAgTGV2ZWwgICAgIDFmMjAwNDAw
-LmJkbWENCj4zNTogICAgICAgMzk3NyAgbXN0LWludGMgIDQxIExldmVsICAgICAxZjIwMDQwMC5i
-ZG1hDQo+Mzc6ICAgICAgICAxOTYgIG1zdC1pbnRjICAzNCBMZXZlbCAgICAgdHR5UzANCj40MDog
-ICAgICAgICAgMCAgbXN0LWludGMgIDMwIExldmVsICAgICBzb2M6dXNicGh5QDANCj48c25pcD4N
-Cj4NCj5TbyBoZXJlJ3MgbXkgdGVzdGVkIGJ5Og0KPg0KPlRlc3RlZC1ieTogRGFuaWVsIFBhbG1l
-ciA8ZGFuaWVsQHRoaW5neS5qcD4NCj4NCg0KVGhhbmtzIGZvciB5b3VyIHRlc3QuDQoNCj5JIGRv
-bid0IHRoaW5rIHlvdXIgc2VyaWVzIGNvbnRhaW5lZCBhbiB1cGRhdGUgdG8gTUFJTlRBSU5FUlMu
-DQo+SWYvd2hlbiB5b3UgYWRkIHRoaXMgY291bGQgeW91IGFkZCBteSBhZGRyZXNzIGFib3ZlIGFz
-IGEgcmV2aWV3ZXIgc28NCj5JJ20gaW4gdGhlIGxvb3AgaWYgYW55b25lIG1ha2VzIGNoYW5nZXMg
-dG8gdGhpcyBnb2luZyBmb3J3YXJkPw0KPg0KDQpTdXJlLCBJIHdpbGwgYWRkIHlvdXIgYWRkcmVz
-cyBpbiB0aGVyZS4gOikNCkNhbiBJIGp1c3QgYWRkIGEgcGF0Y2ggaW4gdGhpcyB0aHJlYWQgd2hp
-Y2ggb25seSBjb250YWluIE1BSU5UQUlORVJTIHVwZGF0ZT8=
+QWRkIGVudHJ5IGZvciBNU3RhciBJbnRlcnJ1cHQgQ29udHJvbGxlci4NCg0KU2lnbmVkLW9mZi1i
+eTogTWFyay1QSyBUc2FpIDxtYXJrLXBrLnRzYWlAbWVkaWF0ZWsuY29tPg0KLS0tDQogTUFJTlRB
+SU5FUlMgfCA3ICsrKysrKysNCiAxIGZpbGUgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspDQoNCmRp
+ZmYgLS1naXQgYS9NQUlOVEFJTkVSUyBiL01BSU5UQUlORVJTDQppbmRleCBkZWFhZmI2MTczNjEu
+LjhhYjA4ZmNjZDkxNSAxMDA2NDQNCi0tLSBhL01BSU5UQUlORVJTDQorKysgYi9NQUlOVEFJTkVS
+Uw0KQEAgLTExNzU0LDYgKzExNzU0LDEzIEBAIFE6CWh0dHA6Ly9wYXRjaHdvcmsubGludXh0di5v
+cmcvcHJvamVjdC9saW51eC1tZWRpYS9saXN0Lw0KIFQ6CWdpdCBnaXQ6Ly9saW51eHR2Lm9yZy9h
+bnR0aXAvbWVkaWFfdHJlZS5naXQNCiBGOglkcml2ZXJzL21lZGlhL3VzYi9tc2kyNTAwLw0KIA0K
+K01TVEFSIElOVEVSUlVQVCBDT05UUk9MTEVSIERSSVZFUg0KK006CU1hcmstUEsgVHNhaSA8bWFy
+ay1way50c2FpQG1lZGlhdGVrLmNvbT4NCitNOglEYW5pZWwgUGFsbWVyIDxkYW5pZWxAdGhpbmd5
+LmpwPg0KK1M6CU1haW50YWluZWQNCitGOglEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
+Z3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvbXN0YXIsbXN0LWludGMueWFtbA0KK0Y6CWRyaXZlcnMv
+aXJxY2hpcC9pcnEtbXN0LWludGMuYw0KKw0KIE1TWVNURU1TIERJU0tPTkNISVAgRzMgTVREIERS
+SVZFUg0KIE06CVJvYmVydCBKYXJ6bWlrIDxyb2JlcnQuamFyem1pa0BmcmVlLmZyPg0KIEw6CWxp
+bnV4LW10ZEBsaXN0cy5pbmZyYWRlYWQub3JnDQotLSANCjIuMTguMA0K
 
