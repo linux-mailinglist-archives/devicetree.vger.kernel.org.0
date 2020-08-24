@@ -2,62 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B09824F3E6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 10:25:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C228524F403
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 10:28:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726037AbgHXIZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Aug 2020 04:25:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60782 "EHLO
+        id S1726218AbgHXI2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Aug 2020 04:28:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725962AbgHXIZb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 04:25:31 -0400
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3D37C061573
-        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 01:25:30 -0700 (PDT)
-Received: by mail-ej1-x641.google.com with SMTP id l2so4733738eji.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 01:25:30 -0700 (PDT)
+        with ESMTP id S1725962AbgHXI2s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 04:28:48 -0400
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD3A4C061573
+        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 01:28:47 -0700 (PDT)
+Received: by mail-ed1-x544.google.com with SMTP id di22so7253085edb.12
+        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 01:28:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
         h=sender:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=z9oTVILcEoKhcccMH8Kmzts+hEsa+rrjmDS9KdukcGo=;
-        b=QkOD4DH+C9AvSJExM71LMV3f244OyhiicXeduasp62I8qmFlrSclVkwx0QwJsQGHL2
-         NGG2RrO18R+b5uXDL22fmvCAPYHavaR3egODQD1s6QaqNmP3YjycrVzZAc6FsHtc2mEx
-         NJHUVF6/Rs/UfneP286oOLUvkFY8+++cVH6WwLdEJwdtVxkKZQmGr6sY6tytXjjMcpGv
-         FgtoKg9GOKrWuLfMPP6f3Jhu3DjlauKIbKjzWnCK/IaPUmzIdN4caVYrFrMYoZljIH2N
-         Corlf1y90A+lUgLdyiWex/Me+GPs97dMj4/B/ChAVpuxF445QiZLRk9OYlV2RF5tRXoL
-         mY1g==
+        bh=VJdZxE/y/ZWFHMLl1jOIxfMQEHtM7AeHNk1ErzUcyxc=;
+        b=BbgUsbwbLVLw2AiTwU/gHmj2IDYL+2kZn5nlxDFnqmrUXbaRroQUVA3s6NGiuwu3qB
+         cQiapZjS/llynrOMoBMxUXtBuWmnbTen8LFK4MJ1bBXeSagQENJwyMVL9fjYrwnZa30y
+         +foEqC0q8iiq3RKjbOWB+OcT7s3IFSyVHXdjTaxjPm8EOYXMalhtl0kL+qHHl2WPAWh9
+         2QP9XXr903CLxVSYQfhe6y/Al2GNQ4U+XCdya6HfnLzUsN3vzw2YZLH5xv6EUBiyp+vh
+         NQw/u5xQgIcjK6lOfqA82knVqvZryx2XxlpjT+hqr0oDyqmaf2sY3PSTfT8cu/MSO8RY
+         BXIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :mime-version:content-transfer-encoding;
-        bh=z9oTVILcEoKhcccMH8Kmzts+hEsa+rrjmDS9KdukcGo=;
-        b=CXq8QAuQW8GQf2/Zjdi7T/OL4KTcTndw0OIQlmm0vXS5pk4U3x6jM5ldvKptVdaOTZ
-         P1YPMOSKzAfDEgqrAwEIw9MXysGX9VwU1+7eo8uoA/mheceIufOjdTXUxw/AeY9d7ghl
-         yYiXKAaInB9raBAvFZGRXT0bX2QhoLpW9YJ6hVcZA4vlWD/vNVjLuv0kZx4C1NHJPWKc
-         4VxPZlVb3HXLnbm0SCvLMig1+TqHu2tPe6Agz8lUOwtE5WGjmQ1Iff17N68bks1aGBDq
-         SEeFS+hl0pVI5fPv1v40msGQpDY7OweFdBagig+TJEw2Uq+9jgOBQZ7kt1qsezBErwaQ
-         Fnkw==
-X-Gm-Message-State: AOAM531bhnilqjQPBQG2hfXQL1RPZYw25IaQOKE4muGLWSuBDiiEQ9F+
-        ve+kUhM1L/XHGR8QHV21ib3ifeGjBRflrw==
-X-Google-Smtp-Source: ABdhPJx/gRQO+lspQ0C4EzCH2fjjj+XXJGCT3s18ptH3clpVXsV8/k/VYVvJrLU9MzryHM8VVndp6w==
-X-Received: by 2002:a17:906:840c:: with SMTP id n12mr4288944ejx.246.1598257529645;
-        Mon, 24 Aug 2020 01:25:29 -0700 (PDT)
+        bh=VJdZxE/y/ZWFHMLl1jOIxfMQEHtM7AeHNk1ErzUcyxc=;
+        b=kuos1RryKEPMEMS1RGYYl0v4Ohvn/GLjb6/z4hbmuOb4e2T9lhokYdP8VrEiFj0VAd
+         P29FA+6mwozj0QOJRzNrCaxj3pr/iSAwBm39dFVQIwC/KQBrs2eocAyBXB2gRRupl7z6
+         37GSB/al/FjM0y8+Q0AarBi5K/Fbq7smSIN0iFYOqyOWpHtRi0rgOxwDFasxJg3+c8PO
+         gWfIDUHhbA5KWz+VwWqXDKJB67Y10ReDBjkSDnCcYAEEWIvlFgdZl4Smm3Q2GoIdiGhp
+         xL9v6OotrQpfEfinwl3X+qLM63euGj14zGYHFUT2XzXyuq7ha6CvM0ZmyJya4kAsqvXs
+         czuw==
+X-Gm-Message-State: AOAM533YOfijAjAYmtDNijU24s2OOrMFnDuShDlDwEN88RILRlKd1BSH
+        TQnj5hSx2FxTx8X19iYr81eNOw==
+X-Google-Smtp-Source: ABdhPJxTJYfNQWScPNlLbLAhMRkcA5iR1YwjMiQo2KcF690VugvDAQQ5/Gz3prKZ4xAUH/ZSKl1xjw==
+X-Received: by 2002:aa7:c596:: with SMTP id g22mr4362781edq.109.1598257726595;
+        Mon, 24 Aug 2020 01:28:46 -0700 (PDT)
 Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id ar2sm9248075ejc.61.2020.08.24.01.25.28
+        by smtp.gmail.com with ESMTPSA id a26sm7418266eje.78.2020.08.24.01.28.45
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 24 Aug 2020 01:25:28 -0700 (PDT)
+        Mon, 24 Aug 2020 01:28:46 -0700 (PDT)
 From:   Michal Simek <michal.simek@xilinx.com>
 To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
-        michal.simek@xilinx.com, git@xilinx.com, manish.narani@xilinx.com
-Cc:     Adrian Hunter <adrian.hunter@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org
-Subject: [PATCH] dt-bindings: mmc: Add missing description for clk_in/out_sd1
-Date:   Mon, 24 Aug 2020 10:25:23 +0200
-Message-Id: <aef586778921c93377ec2f31c86e151b6e93f6c7.1598257520.git.michal.simek@xilinx.com>
+        michal.simek@xilinx.com, git@xilinx.com
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Manish Narani <manish.narani@xilinx.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Nava kishore Manne <nava.manne@xilinx.com>,
+        Rajan Vaja <rajan.vaja@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] arm64: dts: zynqmp: Remove undocumented u-boot properties
+Date:   Mon, 24 Aug 2020 10:28:45 +0200
+Message-Id: <8ba339425b9c9f319bdedce7741367055a30713c.1598257720.git.michal.simek@xilinx.com>
 X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -66,42 +69,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The commit a8fdb80f4d47 ("arm64: zynqmp: Add ZynqMP SDHCI compatible
-string") added clock-output-names for both SDHCIs before DT binding yaml
-conversion. But only clk_in/out_sd0 clock names have been covered by
-DT binding which ends up with dt yaml checking warnings as:
-From schema: .../Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-... mmc@ff170000: clock-output-names:0: 'clk_out_sd0' was expected
-... mmc@ff170000: clock-output-names:1: 'clk_in_sd0' was expected
+u-boot, DT properties are not documented anywhere in Linux DT binding
+that's why remove them.
 
-Fixes: 16ecd8f33c6e ("dt-bindings: mmc: convert arasan sdhci bindings to yaml")
 Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 ---
 
- .../devicetree/bindings/mmc/arasan,sdhci.yaml          | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi | 5 -----
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi         | 1 -
+ 2 files changed, 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-index 5887c917d480..58fe9d02a781 100644
---- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-+++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-@@ -30,9 +30,13 @@ allOf:
-     then:
-       properties:
-         clock-output-names:
--          items:
--            - const: clk_out_sd0
--            - const: clk_in_sd0
-+          oneOf:
-+            - items:
-+              - const: clk_out_sd0
-+              - const: clk_in_sd0
-+            - items:
-+              - const: clk_out_sd1
-+              - const: clk_in_sd1
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+index 9868ca15dfc5..c94c3bb67edc 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+@@ -10,35 +10,30 @@
+ #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
+ / {
+ 	pss_ref_clk: pss_ref_clk {
+-		u-boot,dm-pre-reloc;
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+ 		clock-frequency = <33333333>;
+ 	};
  
- properties:
-   compatible:
+ 	video_clk: video_clk {
+-		u-boot,dm-pre-reloc;
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+ 		clock-frequency = <27000000>;
+ 	};
+ 
+ 	pss_alt_ref_clk: pss_alt_ref_clk {
+-		u-boot,dm-pre-reloc;
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+ 		clock-frequency = <0>;
+ 	};
+ 
+ 	gt_crx_ref_clk: gt_crx_ref_clk {
+-		u-boot,dm-pre-reloc;
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+ 		clock-frequency = <108000000>;
+ 	};
+ 
+ 	aux_ref_clk: aux_ref_clk {
+-		u-boot,dm-pre-reloc;
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+ 		clock-frequency = <27000000>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+index d1e9a5eb4f70..6a8ff4bcc09b 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+@@ -131,7 +131,6 @@ zynqmp_power: zynqmp-power {
+ 			};
+ 
+ 			zynqmp_clk: clock-controller {
+-				u-boot,dm-pre-reloc;
+ 				#clock-cells = <1>;
+ 				compatible = "xlnx,zynqmp-clk";
+ 				clocks = <&pss_ref_clk>,
 -- 
 2.28.0
 
