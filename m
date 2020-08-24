@@ -2,135 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C228524F403
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 10:28:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC7EF24F3F5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 10:26:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726218AbgHXI2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Aug 2020 04:28:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33204 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725962AbgHXI2s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 04:28:48 -0400
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD3A4C061573
-        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 01:28:47 -0700 (PDT)
-Received: by mail-ed1-x544.google.com with SMTP id di22so7253085edb.12
-        for <devicetree@vger.kernel.org>; Mon, 24 Aug 2020 01:28:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VJdZxE/y/ZWFHMLl1jOIxfMQEHtM7AeHNk1ErzUcyxc=;
-        b=BbgUsbwbLVLw2AiTwU/gHmj2IDYL+2kZn5nlxDFnqmrUXbaRroQUVA3s6NGiuwu3qB
-         cQiapZjS/llynrOMoBMxUXtBuWmnbTen8LFK4MJ1bBXeSagQENJwyMVL9fjYrwnZa30y
-         +foEqC0q8iiq3RKjbOWB+OcT7s3IFSyVHXdjTaxjPm8EOYXMalhtl0kL+qHHl2WPAWh9
-         2QP9XXr903CLxVSYQfhe6y/Al2GNQ4U+XCdya6HfnLzUsN3vzw2YZLH5xv6EUBiyp+vh
-         NQw/u5xQgIcjK6lOfqA82knVqvZryx2XxlpjT+hqr0oDyqmaf2sY3PSTfT8cu/MSO8RY
-         BXIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :mime-version:content-transfer-encoding;
-        bh=VJdZxE/y/ZWFHMLl1jOIxfMQEHtM7AeHNk1ErzUcyxc=;
-        b=kuos1RryKEPMEMS1RGYYl0v4Ohvn/GLjb6/z4hbmuOb4e2T9lhokYdP8VrEiFj0VAd
-         P29FA+6mwozj0QOJRzNrCaxj3pr/iSAwBm39dFVQIwC/KQBrs2eocAyBXB2gRRupl7z6
-         37GSB/al/FjM0y8+Q0AarBi5K/Fbq7smSIN0iFYOqyOWpHtRi0rgOxwDFasxJg3+c8PO
-         gWfIDUHhbA5KWz+VwWqXDKJB67Y10ReDBjkSDnCcYAEEWIvlFgdZl4Smm3Q2GoIdiGhp
-         xL9v6OotrQpfEfinwl3X+qLM63euGj14zGYHFUT2XzXyuq7ha6CvM0ZmyJya4kAsqvXs
-         czuw==
-X-Gm-Message-State: AOAM533YOfijAjAYmtDNijU24s2OOrMFnDuShDlDwEN88RILRlKd1BSH
-        TQnj5hSx2FxTx8X19iYr81eNOw==
-X-Google-Smtp-Source: ABdhPJxTJYfNQWScPNlLbLAhMRkcA5iR1YwjMiQo2KcF690VugvDAQQ5/Gz3prKZ4xAUH/ZSKl1xjw==
-X-Received: by 2002:aa7:c596:: with SMTP id g22mr4362781edq.109.1598257726595;
-        Mon, 24 Aug 2020 01:28:46 -0700 (PDT)
-Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id a26sm7418266eje.78.2020.08.24.01.28.45
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 24 Aug 2020 01:28:46 -0700 (PDT)
-From:   Michal Simek <michal.simek@xilinx.com>
-To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
-        michal.simek@xilinx.com, git@xilinx.com
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Nava kishore Manne <nava.manne@xilinx.com>,
-        Rajan Vaja <rajan.vaja@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] arm64: dts: zynqmp: Remove undocumented u-boot properties
-Date:   Mon, 24 Aug 2020 10:28:45 +0200
-Message-Id: <8ba339425b9c9f319bdedce7741367055a30713c.1598257720.git.michal.simek@xilinx.com>
-X-Mailer: git-send-email 2.28.0
+        id S1726581AbgHXI0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Aug 2020 04:26:25 -0400
+Received: from relay12.mail.gandi.net ([217.70.178.232]:55365 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726580AbgHXI0Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 04:26:25 -0400
+Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id B6B9A200007;
+        Mon, 24 Aug 2020 08:26:21 +0000 (UTC)
+Date:   Mon, 24 Aug 2020 10:30:07 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] pinctrl: rza1: Switch to using "output-enable"
+Message-ID: <20200824083007.x3l6ujn3mi5xhrsy@uno.localdomain>
+References: <20200821111401.4021-1-geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200821111401.4021-1-geert+renesas@glider.be>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-u-boot, DT properties are not documented anywhere in Linux DT binding
-that's why remove them.
+Hi Geert,
 
-Signed-off-by: Michal Simek <michal.simek@xilinx.com>
----
+On Fri, Aug 21, 2020 at 01:14:01PM +0200, Geert Uytterhoeven wrote:
+> For pins requiring software driven IO output operations, the RZ/A1 Pin
+> Controller uses either the "output-high" or "output-low" DT property to
+> enable the corresponding output buffer.  The actual line value doesn't
+> matter, as it is ignored.
+>
+> Commit 425562429d4f3b13 ("pinctrl: generic: Add output-enable property")
+> introduced a new DT property for this specific use case.
+>
+> Update the RZ/A1 Pin Controller DT bindings and driver to use this new
+> property instead.  Preserve backwards compatibility with old DTBs in the
+> driver, as this comes at a very small cost.
+>
+> Notes:
+>   - The DT binding examples already used the new property,
+>   - There are no upstream users of the old properties.
+>
 
- arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi | 5 -----
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi         | 1 -
- 2 files changed, 6 deletions(-)
+Did we introduce output-enable after the rza1 pinctrl and forgot to
+update ? Good catch anyway
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-index 9868ca15dfc5..c94c3bb67edc 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-@@ -10,35 +10,30 @@
- #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
- / {
- 	pss_ref_clk: pss_ref_clk {
--		u-boot,dm-pre-reloc;
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <33333333>;
- 	};
- 
- 	video_clk: video_clk {
--		u-boot,dm-pre-reloc;
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <27000000>;
- 	};
- 
- 	pss_alt_ref_clk: pss_alt_ref_clk {
--		u-boot,dm-pre-reloc;
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <0>;
- 	};
- 
- 	gt_crx_ref_clk: gt_crx_ref_clk {
--		u-boot,dm-pre-reloc;
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <108000000>;
- 	};
- 
- 	aux_ref_clk: aux_ref_clk {
--		u-boot,dm-pre-reloc;
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <27000000>;
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index d1e9a5eb4f70..6a8ff4bcc09b 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -131,7 +131,6 @@ zynqmp_power: zynqmp-power {
- 			};
- 
- 			zynqmp_clk: clock-controller {
--				u-boot,dm-pre-reloc;
- 				#clock-cells = <1>;
- 				compatible = "xlnx,zynqmp-clk";
- 				clocks = <&pss_ref_clk>,
--- 
-2.28.0
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> To be queued in sh-pfc for v5.10.
+>
+>  .../devicetree/bindings/pinctrl/renesas,rza1-pinctrl.txt     | 5 ++---
+>  drivers/pinctrl/pinctrl-rza1.c                               | 3 ++-
+>  2 files changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/pinctrl/renesas,rza1-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/renesas,rza1-pinctrl.txt
+> index fd3696eb36bf307e..38cdd23d3498e74a 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/renesas,rza1-pinctrl.txt
+> +++ b/Documentation/devicetree/bindings/pinctrl/renesas,rza1-pinctrl.txt
+> @@ -117,10 +117,9 @@ function or a GPIO controller alternatively.
+>      - input-enable:
+>        enable input bufer for pins requiring software driven IO input
+>        operations.
+> -    - output-high:
+> +    - output-enable:
+>        enable output buffer for pins requiring software driven IO output
+> -      operations. output-low can be used alternatively, as line value is
+> -      ignored by the driver.
+> +      operations.
+>
 
+Seems like no upstream DTS uses any output-* property for the pinctrl.
+
+>    The hardware reference manual specifies when a pin has to be configured to
+>    work in bi-directional mode and when the IO direction has to be specified
+> diff --git a/drivers/pinctrl/pinctrl-rza1.c b/drivers/pinctrl/pinctrl-rza1.c
+> index 511f232ab7bc290c..944466ef34d33f51 100644
+> --- a/drivers/pinctrl/pinctrl-rza1.c
+> +++ b/drivers/pinctrl/pinctrl-rza1.c
+> @@ -928,7 +928,8 @@ static int rza1_parse_pinmux_node(struct rza1_pinctrl *rza1_pctl,
+>  		case PIN_CONFIG_INPUT_ENABLE:
+>  			pinmux_flags |= MUX_FLAGS_SWIO_INPUT;
+>  			break;
+> -		case PIN_CONFIG_OUTPUT:
+> +		case PIN_CONFIG_OUTPUT:	/* for DT backwards compatibility */
+> +		case PIN_CONFIG_OUTPUT_ENABLE:
+>  			pinmux_flags |= MUX_FLAGS_SWIO_OUTPUT;
+>  		default:
+>  			break;
+
+Great! For both parts:
+Acked-by: Jacopo Mondi <jacopo@jmondi.org>
+
+Thanks
+  j
+> --
+> 2.17.1
+>
