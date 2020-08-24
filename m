@@ -2,178 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73F3824F24C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 08:10:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6FFE24F2AD
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 08:40:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725998AbgHXGKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Aug 2020 02:10:52 -0400
-Received: from Galois.linutronix.de ([193.142.43.55]:40522 "EHLO
-        galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725836AbgHXGKw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 02:10:52 -0400
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1598249449;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=ir6fINy3N3sxAruK420IofSpHlFqJK8LbAjfvaW+DJE=;
-        b=TITEt5oeLfJhtYPd1SL6CaEABWKyHHkzqz02ODqV2+dV/QYkoX4miaa+A2wD5YlMQxwDds
-        DnMRWh+wmk09Nz7vhKhrotQhRqvVCYP1GAeYuO9gJzFVVsvZAAozYVAj5fNgy7G0GWwfAl
-        9ZRq1sZBJWEzW6Bzex+2iXdpToOOTwnfy/Onk69CoC8uirbxjvlw9F7F4qRulipK/Sgoyh
-        sfcYembALM1yBlq+X1uE1fH6Iln57O2HEacapY5npfw42BWZtkV1RBJmMTv654GpVwX4cT
-        OpXK5Uko0ZuEatXATiMBmHMmKYnx4BmFWPO3/ZUYjBYHYI94eslJhXYVLLQdLw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1598249449;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=ir6fINy3N3sxAruK420IofSpHlFqJK8LbAjfvaW+DJE=;
-        b=kVJ6XsCBeZexi4YM0vCM7OM35ynpbRCUSnkZRVqk+jGDsnbRdNuBeHy7kU9N5ldZUahvGq
-        wqf0vTZSNG4JDpDg==
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        ilias.apalodimas@linaro.org
-Subject: Re: [PATCH v3 5/8] net: dsa: hellcreek: Add TAPRIO offloading support
-In-Reply-To: <20200822143922.frjtog4mcyaegtyg@skbuf>
-References: <20200820081118.10105-1-kurt@linutronix.de> <20200820081118.10105-6-kurt@linutronix.de> <20200822143922.frjtog4mcyaegtyg@skbuf>
-Date:   Mon, 24 Aug 2020 08:10:36 +0200
-Message-ID: <87imd8zi8z.fsf@kurt>
+        id S1725906AbgHXGkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Aug 2020 02:40:22 -0400
+Received: from mail-vi1eur05on2042.outbound.protection.outlook.com ([40.107.21.42]:7329
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725850AbgHXGkV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Aug 2020 02:40:21 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mm57wXA2IUz656rpJ4qR/RlbJFx6De5aA0YjJljBUcmrk37UVvkoXxfPwsVsawFfnRwVs687aJO81aJbo50QlUVKi5SN07y5o2IHFTleyJnbqvSuMW3JKICDHX3/UdBRGqRlxKvu9VD1SosrCYkQuYQRYe/8yCAayXsZ+0bVe7KDbZ2l7v+5jQjrCgyP4oUcdYt2dQVf/d61f0CB0H4dwY94JlB274QaOTR9iH1VWcGX0ZAcfbGmQhyWVjWcwprPXoech1Npzg1j8yMsCQke0AmMlyaE4J0vhd+aUh80vRtybpONXyGk+eshFVfZ8RhJXyY9AlpXwGAogqY/sK5N3Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cnvtcYErtpfavCYO8ey7LEchycGHdk3LJau+E/xLtjg=;
+ b=nvIquL2SemlxhPAXoe8gYfBAaZ/3Ww/IkyZ4kJgD38iu2BTHiQwdWNxZtuJcpmKrctTY86cJ9oO6+2A/9lOyFd1CNWUWA89JvX0kw1/E8bHx2+Tf8AdzrfHwpY3cYyYDdM0R/CJHOyQBpNmMpql5nxIppMLfWwAepx7+n6h6fBW2d5HhdtbrMDTmGrooeciVwV0HszKU9Tr8xgWHKaKnzHBH39ZePmkL5vI1EvPtXCIneahHlVWUPBwOz/lOzLbytxwuTrFcxNRPuopDgogAntVkgD5X6QE4Rb3CQXos8iqYF+DZt6TH/QN8j2cxB5LVM603Yb9Mtjq5G+n60yTdsQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cnvtcYErtpfavCYO8ey7LEchycGHdk3LJau+E/xLtjg=;
+ b=aDB6RzoRySDDwvMNy5xfTXRd2knBLhUyiA/H/+NcU2/kjmyUREvYQapplUjDS7duGbT6N/p5RjTYHMbxfR9RzmXfWS2PP+wn4PeFMSj8MN/hmPKQtCtKQi6H7xX28vKPj/JDrJbEc5ksVAQsSAkAzhOduba+qUefVC/hozT6C/o=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from VE1PR04MB6528.eurprd04.prod.outlook.com (2603:10a6:803:127::18)
+ by VI1PR04MB6221.eurprd04.prod.outlook.com (2603:10a6:803:f6::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.24; Mon, 24 Aug
+ 2020 06:40:18 +0000
+Received: from VE1PR04MB6528.eurprd04.prod.outlook.com
+ ([fe80::acd3:d354:3f34:3af7]) by VE1PR04MB6528.eurprd04.prod.outlook.com
+ ([fe80::acd3:d354:3f34:3af7%4]) with mapi id 15.20.3305.026; Mon, 24 Aug 2020
+ 06:40:18 +0000
+From:   Li Jun <jun.li@nxp.com>
+To:     vkoul@kernel.org
+Cc:     kishon@ti.com, robh+dt@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, jun.li@nxp.com, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: phy-imx8mq-usb: add compatible string for imx8mp usb phy
+Date:   Mon, 24 Aug 2020 14:34:37 +0800
+Message-Id: <1598250878-28055-1-git-send-email-jun.li@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR06CA0202.apcprd06.prod.outlook.com (2603:1096:4:1::34)
+ To VE1PR04MB6528.eurprd04.prod.outlook.com (2603:10a6:803:127::18)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from 10.192.242.69 (119.31.174.67) by SG2PR06CA0202.apcprd06.prod.outlook.com (2603:1096:4:1::34) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3305.25 via Frontend Transport; Mon, 24 Aug 2020 06:40:14 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [119.31.174.67]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: e3f60c6f-4d05-4c7f-2797-08d847f890aa
+X-MS-TrafficTypeDiagnostic: VI1PR04MB6221:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR04MB62219AA1591EBDF2742012C889560@VI1PR04MB6221.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: aT6l0wl5yU8sJ06JDJY/PMTzt/0sA3vLLuigX4MXs5e+y8a6jtVJ8lnnpL6mUyDnfVecqtWxSd8eAlThPUKrFUzCXMplrqss0lk/iNkbsasjMvIjItJ49jU1omrBkJFT6qgGVnfCK9PTFkmHBAOAPS0zSa7RpYNI2glQChEwEfb538SFztrgjfIfdLY29/eFbTwk6IfWgZBzJoTe6fiblVWj9eg9NWGLpyObBtzS0cMA81H+1SmgjniedWwylxBKUcXhAWTuuPOdp+GDiuQdLbe/f4Z2RRHvSEBQS0cHMGPUwynciemNWRce63imzdNibtibEKgvZ0q4Kq9T6q8atlctVLny9Rur2HbNoa3MTQPFIMh7YRyGMPYNBjWjzLzB
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6528.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(376002)(346002)(39860400002)(396003)(366004)(16526019)(8936002)(16576012)(8676002)(6486002)(5660300002)(36756003)(52116002)(316002)(2906002)(186003)(26005)(478600001)(6916009)(2616005)(4326008)(956004)(66476007)(66556008)(66946007)(86362001)(83380400001)(6666004)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: W82x8n/s+PTORELkiU7KjwKyy/m2vQX5kgeC9cjRk6UvN6EHxT8II8Bw5BxhmScgI2ZL01scwE5PLTsl3H1Oyzt8iIIXPsjTlGuI+jg4ZxuRu90RrnC+Z5reiLWmYfl17MshQZCFa39qUgxcaV+1zo8OP8C53Pf9oY562eryCngmKeNFZM3oL5moWY2dDCAMixj9Oe45Q50mUDI9id85UwHAyw12xwfL6oV/cPAaIUIJwqXmcm6qOGRP+MFDnh8RXypNakLIpMEr4LOziQKymVieurezGeRG/otvlJaRxwFInunvbhhj0CYtIEUH/0z5ArGORsHUbKZ8F0TUe1lDb6rCNhS6gi7Ju71qFL2BDIpDrN8OeijXEU3TZfgvoX0vfNurlZNOwpcL2lkbEqW3VFpgq9vX3gGjYtCMwlJyPGBw3jdMmf49vjLByiCBAMx/W+Svgh+BiYr8Ml5uUe4HkgP2ldcgiwXuT8E/4oeL79o3auqysabPgoJM7cfgOjmuOb/TTudtR5Yq02bFA/i+SBQwo2zqyQp+rEFjJoKce7KHGTI9pcfDfzETL1pmxqkztLxDrSGV9pXraxVbzpU7m/DMdHQuQQy+W4+xVlJvqm0B6Qg2zFt6f/buBUchLEir/kBHj/IIupetxkWekCSpOA==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e3f60c6f-4d05-4c7f-2797-08d847f890aa
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6528.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2020 06:40:18.0535
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hCh/1d/q0X1jy0eG9fOr6oB2rtijw7ctAIw4YcGUNWf7xq0WfR4hqb19SxOyxC+9
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6221
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+Add "fsl,imx8mp-usb-phy" compatible string for imx8mp usb phy, which is
+similar with imx8mq usb phy but with some different customizations.
 
-On Sat Aug 22 2020, Vladimir Oltean wrote:
-> Hi Kurt,
->
-> On Thu, Aug 20, 2020 at 10:11:15AM +0200, Kurt Kanzenbach wrote:
->> The switch has support for the 802.1Qbv Time Aware Shaper (TAS). Traffic
->> schedules may be configured individually on each front port. Each port h=
-as eight
->> egress queues. The traffic is mapped to a traffic class respectively via=
- the PCP
->> field of a VLAN tagged frame.
->>=20
->> The TAPRIO Qdisc already implements that. Therefore, this interface can =
-simply
->> be reused. Add .port_setup_tc() accordingly.
->>=20
->> The activation of a schedule on a port is split into two parts:
->>=20
->>  * Programming the necessary gate control list (GCL)
->>  * Setup hrtimer for starting the schedule
->>=20
->> The hardware supports starting a schedule up to eight seconds in the fut=
-ure. The
->> TAPRIO interface provides an absolute base time. Therefore, hrtimers are
->> leveraged.
->>=20
->> Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
->> ---
->>  drivers/net/dsa/hirschmann/hellcreek.c | 294 +++++++++++++++++++++++++
->>  drivers/net/dsa/hirschmann/hellcreek.h |  21 ++
->>  2 files changed, 315 insertions(+)
->>=20
->> diff --git a/drivers/net/dsa/hirschmann/hellcreek.c b/drivers/net/dsa/hi=
-rschmann/hellcreek.c
->> index 745ca60342b4..e5b54f42c635 100644
->> --- a/drivers/net/dsa/hirschmann/hellcreek.c
->> +++ b/drivers/net/dsa/hirschmann/hellcreek.c
->> @@ -22,7 +22,9 @@
->>  #include <linux/spinlock.h>
->>  #include <linux/delay.h>
->>  #include <linux/ktime.h>
->> +#include <linux/time.h>
->>  #include <net/dsa.h>
->> +#include <net/pkt_sched.h>
->>=20=20
->>  #include "hellcreek.h"
->>  #include "hellcreek_ptp.h"
->> @@ -153,6 +155,15 @@ static void hellcreek_select_vlan(struct hellcreek =
-*hellcreek, int vid,
->>  	hellcreek_write(hellcreek, val, HR_VIDCFG);
->>  }
->>=20=20
->> +static void hellcreek_select_tgd(struct hellcreek *hellcreek, int port)
->> +{
->> +	u16 val =3D 0;
->> +
->> +	val |=3D port << TR_TGDSEL_TDGSEL_SHIFT;
->> +
->> +	hellcreek_write(hellcreek, val, TR_TGDSEL);
->> +}
->> +
->>  static int hellcreek_wait_until_ready(struct hellcreek *hellcreek)
->>  {
->>  	u16 val;
->> @@ -958,6 +969,24 @@ static void __hellcreek_setup_tc_identity_mapping(s=
-truct hellcreek *hellcreek)
->>  	}
->>  }
->>=20=20
->> +static void hellcreek_setup_tc_mapping(struct hellcreek *hellcreek,
->> +				       struct net_device *netdev)
->> +{
->> +	int i, j;
->> +
->> +	/* Setup mapping between traffic classes and port queues. */
->> +	for (i =3D 0; i < netdev_get_num_tc(netdev); ++i) {
->> +		for (j =3D 0; j < netdev->tc_to_txq[i].count; ++j) {
->> +			const int queue =3D j + netdev->tc_to_txq[i].offset;
->> +
->> +			hellcreek_select_prio(hellcreek, i);
->> +			hellcreek_write(hellcreek,
->> +					queue << HR_PRTCCFG_PCP_TC_MAP_SHIFT,
->> +					HR_PRTCCFG);
->> +		}
->> +	}
->> +}
->
-> What other driver have you seen that does this?
->
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Li Jun <jun.li@nxp.com>
+---
+no changes.
 
-Probably none.
+ Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-With TAPRIO traffic classes and the mapping to queues can be
-configured. The switch can also map traffic classes. That sounded like a
-good match to me.
+diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.txt b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.txt
+index ed47e5c..7c70f2a 100644
+--- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.txt
++++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.txt
+@@ -1,7 +1,7 @@
+ * Freescale i.MX8MQ USB3 PHY binding
+ 
+ Required properties:
+-- compatible:	Should be "fsl,imx8mq-usb-phy"
++- compatible:	Should be "fsl,imx8mq-usb-phy" or "fsl,imx8mp-usb-phy"
+ - #phys-cells:	must be 0 (see phy-bindings.txt in this directory)
+ - reg:		The base address and length of the registers
+ - clocks:	phandles to the clocks for each clock listed in clock-names
+-- 
+2.7.4
 
-Thanks,
-Kurt
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl9DWdwACgkQeSpbgcuY
-8KaY6hAAjzRy8J2bN+84vK3lOAWesijRbxOy8c34j78vsszIYb3i4U9kxBBZkNE3
-cDDEF5MDfm8CTBvQkbJAX1NG1fSsR8vez64AGO4OwN+F4oPttAlwEPuGJrN2kKGS
-j/dHTlt0jCggnjZiNjyXqpxqEyMxGOhAO0hJdiLc/c9acrkuaYGQjvsJ8wU3/m3T
-6NfAVClZNsbHr9JBVzc2G7DBCZtgoAjYmjmr5KTh2Bj15UFFDfifnPlrqGBAB0Fw
-orTpvRtLKinvnXCtQW7OR217gyR7o9p5bR9vpQkltHi6ziscZCUVCiv5ME0dEpwK
-c/VRnsg6oc3JbWTZnjPyFn5bzuET9rEZpStnB1TquLcwXQSVj5A0o4N7GD8nSfcZ
-dOzZwx1NCwQjEbix7tZPdtk2v4K52+ctWusAI2AxbcNVcxW05st8mTcQFKiF+2Y/
-fCzHgYKZJ+9CFKcxzBctEc/O3Se/BcjY8sz5Jdo42NA7tLQQ1J4u/NlnhZajpmnK
-b+24WF/pUKmB98xRG6wDuE+4OSMzyGs4hx91xeSgrwDQBwhD1Gw2c5o2YupZzHUj
-tbfaxN/VYyenBtfJBp2vEqTYVa3pYPtX0c+C99Vf3MqVtoPOd22K4nTFteJr3BS6
-5+N0v0nF49kPLAcmJr/GDE4PvcgqgbykB9Ga8YoIqIdq7iUn0tM=
-=yOid
------END PGP SIGNATURE-----
---=-=-=--
