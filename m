@@ -2,83 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77EE92508E4
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 21:09:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E5D7250913
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 21:16:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726845AbgHXTJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Aug 2020 15:09:25 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:53280 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725976AbgHXTJW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 15:09:22 -0400
-Received: by mail-wm1-f68.google.com with SMTP id u18so9781804wmc.3;
-        Mon, 24 Aug 2020 12:09:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=lkYuZ+AU/xmAHBPjtK9v9v+eSex3YmMEccb9nQ0uFOg=;
-        b=YDbdWh6Sf+rnXJK525OJXzbExo+KGCvF7M9T2/tnRY0ZGHjg6y0KgtDqvGHWPRLdS1
-         YxP5bD0RVtWohGGfP0KQQxmVOl9vspQbZE3et/y5aod64ap6UpkwBeuVdyn5s/zo6g+p
-         yIvzw0RkG3cOU1u29tc6i/AI0v++d02mdee9ThYC6k7j+GdvA58sD95zEBNO6MGKuh9Q
-         Hmni0aauuziq03Cpt1M6qP68GjPQbd4URfARf/H5g5pItJJNeGoKgvGOp0dDbAe5zcKj
-         IN1H1MLz8k2KNuljUi6CoKvNWEJMBl8QwLtPp8qzq8ObhMmSdSDbDLbdsgayNPetGIfG
-         VyEg==
-X-Gm-Message-State: AOAM5319HyF/l7dLtPmAhB7xqUYrzNzh4pICffzDvpzEYANqw8voa4s4
-        r7bU0FyXBYJaLjv8wooULFI=
-X-Google-Smtp-Source: ABdhPJyqfbE+cdOfZ4IGBp4XY991J2Mg2zGm1lFpUETzbAozdFqX/22fzbavZUIVBbh0wo3qFzcasA==
-X-Received: by 2002:a1c:4b0e:: with SMTP id y14mr672535wma.60.1598296160696;
-        Mon, 24 Aug 2020 12:09:20 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.216])
-        by smtp.googlemail.com with ESMTPSA id o66sm954229wmb.27.2020.08.24.12.09.19
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 24 Aug 2020 12:09:20 -0700 (PDT)
-Date:   Mon, 24 Aug 2020 21:09:17 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 3/4] arm64: dts: imx8mm-var-som: Add Variscite
- VAR-SOM-MX8MM System on Module
-Message-ID: <20200824190917.GA8631@kozik-lap>
-References: <20200824160247.19032-1-krzk@kernel.org>
- <20200824160247.19032-3-krzk@kernel.org>
- <CAOMZO5DquPR9BmQP0kZfTqNJmRabPe1Vtc801M9CVCPFCd1usQ@mail.gmail.com>
- <20200824185713.GA5343@kozik-lap>
- <CAOMZO5B71L7+d_bUY2D=fjhhg5QFEnTsq=U84+7k9nhhmxV04g@mail.gmail.com>
+        id S1726374AbgHXTQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Aug 2020 15:16:03 -0400
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:7898 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725946AbgHXTQC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 15:16:02 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5f4411e40002>; Mon, 24 Aug 2020 12:15:48 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Mon, 24 Aug 2020 12:16:02 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Mon, 24 Aug 2020 12:16:02 -0700
+Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 24 Aug
+ 2020 19:16:00 +0000
+Received: from rnnvemgw01.nvidia.com (10.128.109.123) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Mon, 24 Aug 2020 19:16:00 +0000
+Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.174.186]) by rnnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5f4411ef0002>; Mon, 24 Aug 2020 12:16:00 -0700
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     <adrian.hunter@intel.com>, <ulf.hansson@linaro.org>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <robh+dt@kernel.org>
+CC:     <skomatineni@nvidia.com>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <stable@vger.kernel.org>
+Subject: [PATCH v4 0/7] Fix timeout clock used by hardware data timeout
+Date:   Mon, 24 Aug 2020 12:15:50 -0700
+Message-ID: <1598296557-32020-1-git-send-email-skomatineni@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAOMZO5B71L7+d_bUY2D=fjhhg5QFEnTsq=U84+7k9nhhmxV04g@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1598296548; bh=mW6MeP2iOU3Fc2Kxb88P6mogFG3buNVYe9PqrpY910w=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=brZDqkME0E/izfVwIhupHb3rXUULOTCDnGU89OUndJrW3PIHMmqmax9zZTrem2HF0
+         jlZ32gKyucoUziV/V8v/dvQgpg0hcS8fGedO6AcjxZ3wK9KL/jA+WnmFMNJoz01hzE
+         o1Rj+rvl8YyfoCMAzDqnlS7arJk2mEHnNPXvkKrXTRFB2CWj+lExteWhA3teLnX3wW
+         P9nLzs3/8TIWrbrbraNdze7m7wbhvHnpefpHx5CxWHEYQSIDfgD93L69TQetzYaIr/
+         JMsLGNUzhlABue0Jj2QZDKeBG2jPoSLYH0e7wz8dbzxHPsgGJRBueEM/bx4oWLfsWt
+         FdRRdiHV28rzg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 24, 2020 at 04:03:53PM -0300, Fabio Estevam wrote:
-> On Mon, Aug 24, 2020 at 3:57 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> 
-> > True, I'll fix it up, thanks.
-> >
-> > Any comments for the Symphony DTS before v4?
-> 
-> It looks good.
-> 
-> One suggestion is to remove pinctrl_pcie0 for now and add it when PCI
-> support is in place.
+Tegra210/Tegra186/Tegra194 has incorrectly enabled
+SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK from the beginning of their support.
 
-Indeed, a left over from a removed PCIe node.
+Tegra210 and later SDMMC hardware default uses sdmmc_legacy_tm (TMCLK)
+all the time for hardware data timeout instead of SDCLK and this TMCLK
+need to be kept enabled by Tegra sdmmc driver.
 
-Thanks for review.
+This series includes patches to fix this for Tegra210/Tegra186/Tegra194.
 
-Best regards,
-Krzysztof
+These patches need to be manually backported for 4.9, 4.14 and 4.19.
+
+Will send patches to backport separately once these patches are ack'd.
+
+Delta between patch versions:
+[v4]:	Include additional dt-binding patch
+
+[v3]:	Same as v2 with fixes tag
+
+[v2]:	Includes minor fix
+	- Patch-0006: parentheses around operand of '!'
+
+Sowjanya Komatineni (7):
+  sdhci: tegra: Remove SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK for Tegra210
+  sdhci: tegra: Remove SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK for Tegra186
+  dt-bindings: mmc: tegra: Add tmclk for Tegra210 and later
+  arm64: tegra: Add missing timeout clock to Tegra210 SDMMC
+  arm64: tegra: Add missing timeout clock to Tegra186 SDMMC nodes
+  arm64: tegra: Add missing timeout clock to Tegra194 SDMMC nodes
+  sdhci: tegra: Add missing TMCLK for data timeout
+
+ .../bindings/mmc/nvidia,tegra20-sdhci.txt          | 23 +++++++++++-
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi           | 20 ++++++----
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi           | 15 +++++---
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi           | 20 ++++++----
+ drivers/mmc/host/sdhci-tegra.c                     | 43 +++++++++++++++++++++-
+ 5 files changed, 96 insertions(+), 25 deletions(-)
+
+-- 
+2.7.4
 
