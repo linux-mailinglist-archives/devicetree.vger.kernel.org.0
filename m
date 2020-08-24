@@ -2,98 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A2E1250A6B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 23:01:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42D1D250A6D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Aug 2020 23:02:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726845AbgHXVBV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Aug 2020 17:01:21 -0400
-Received: from mail2.sp2max.com.br ([138.185.4.9]:51508 "EHLO
-        mail2.sp2max.com.br" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726365AbgHXVBV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 17:01:21 -0400
-X-Greylist: delayed 428 seconds by postgrey-1.27 at vger.kernel.org; Mon, 24 Aug 2020 17:01:19 EDT
-Received: from [172.17.0.6] (37-247-245-190.fibertel.com.ar [190.245.247.37])
-        (Authenticated sender: pablo@fliagreco.com.ar)
-        by mail2.sp2max.com.br (Postfix) with ESMTPSA id B81627B3207;
-        Mon, 24 Aug 2020 17:54:03 -0300 (-03)
-Subject: Re: [linux-sunxi] [PATCH] ARM: dts: sun8i: r40: bananapi-m2-ultra:
- Fix dcdc1 regulator
-To:     jernej.skrabec@siol.net, mripard@kernel.org, wens@csie.org
+        id S1727869AbgHXVCR convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 24 Aug 2020 17:02:17 -0400
+Received: from mailoutvs45.siol.net ([185.57.226.236]:55130 "EHLO
+        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726541AbgHXVCO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Aug 2020 17:02:14 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTP id DAF8D5255E6;
+        Mon, 24 Aug 2020 23:02:10 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at psrvmta09.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta09.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id 8smrMg2Df_S6; Mon, 24 Aug 2020 23:02:10 +0200 (CEST)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTPS id 836F5525654;
+        Mon, 24 Aug 2020 23:02:10 +0200 (CEST)
+Received: from jernej-laptop.localnet (89-212-178-211.dynamic.t-2.net [89.212.178.211])
+        (Authenticated sender: jernej.skrabec@siol.net)
+        by mail.siol.net (Postfix) with ESMTPA id 31CFF5255E6;
+        Mon, 24 Aug 2020 23:02:10 +0200 (CEST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To:     mripard@kernel.org, wens@csie.org,
+        Pablo =?ISO-8859-1?Q?Sebasti=E1n?= Greco 
+        <pgreco@centosproject.org>
 Cc:     robh+dt@kernel.org, icenowy@aosc.io, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-sunxi@googlegroups.com
-References: <20200824193649.978197-1-jernej.skrabec@siol.net>
-From:   =?UTF-8?Q?Pablo_Sebasti=c3=a1n_Greco?= <pgreco@centosproject.org>
-Message-ID: <a25ee214-5316-f6c8-53ce-676aa3c8a8ca@centosproject.org>
-Date:   Mon, 24 Aug 2020 17:54:01 -0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+Subject: Re: [linux-sunxi] [PATCH] ARM: dts: sun8i: r40: bananapi-m2-ultra: Fix dcdc1 regulator
+Date:   Mon, 24 Aug 2020 23:02:09 +0200
+Message-ID: <2982591.9ztLHtxLPI@jernej-laptop>
+In-Reply-To: <a25ee214-5316-f6c8-53ce-676aa3c8a8ca@centosproject.org>
+References: <20200824193649.978197-1-jernej.skrabec@siol.net> <a25ee214-5316-f6c8-53ce-676aa3c8a8ca@centosproject.org>
 MIME-Version: 1.0
-In-Reply-To: <20200824193649.978197-1-jernej.skrabec@siol.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-SP2Max-MailScanner-Information: Please contact the ISP for more information
-X-SP2Max-MailScanner-ID: B81627B3207.A21CE
-X-SP2Max-MailScanner: Sem Virus encontrado
-X-SP2Max-MailScanner-SpamCheck: nao spam, SpamAssassin (not cached,
-        escore=-5.15, requerido 6, autolearn=not spam, ALL_TRUSTED -1.00,
-        BAYES_00 -1.90, NICE_REPLY_A -2.25)
-X-SP2Max-MailScanner-From: pgreco@centosproject.org
-X-Spam-Status: No
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dne ponedeljek, 24. avgust 2020 ob 22:54:01 CEST je Pablo Sebastián Greco 
+napisal(a):
+> On 24/8/20 16:36, Jernej Skrabec wrote:
+> > DCDC1 regulator powers many different subsystems. While some of them can
+> > work at 3.0 V, some of them can not. For example, VCC-HDMI can only work
+> > between 3.24 V and 3.36 V. According to OS images provided by the board
+> > manufacturer this regulator should be set to 3.3 V.
+> > 
+> > Set DCDC1 and DCDC1SW to 3.3 V in order to fix this.
+> > 
+> > Fixes: da7ac948fa93 ("ARM: dts: sun8i: Add board dts file for Banana Pi M2
+> > 
+> > 		      Ultra")
+> > 
+> > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> > ---
+> > 
+> >   arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts | 10 +++++-----
+> >   1 file changed, 5 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
+> > b/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts index
+> > 42d62d1ba1dc..ea15073f0c79 100644
+> > --- a/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
+> > +++ b/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
+> > @@ -223,16 +223,16 @@ &reg_aldo3 {
+> > 
+> >   };
+> >   
+> >   &reg_dc1sw {
+> > 
+> > -	regulator-min-microvolt = <3000000>;
+> > -	regulator-max-microvolt = <3000000>;
+> > +	regulator-min-microvolt = <3300000>;
+> > +	regulator-max-microvolt = <3300000>;
+> > 
+> >   	regulator-name = "vcc-gmac-phy";
+> >   
+> >   };
+> >   
+> >   &reg_dcdc1 {
+> >   
+> >   	regulator-always-on;
+> > 
+> > -	regulator-min-microvolt = <3000000>;
+> > -	regulator-max-microvolt = <3000000>;
+> > -	regulator-name = "vcc-3v0";
+> > +	regulator-min-microvolt = <3300000>;
+> > +	regulator-max-microvolt = <3300000>;
+> > +	regulator-name = "vcc-3v3";
+> > 
+> >   };
+> >   
+> >   &reg_dcdc2 {
+> 
+> Should this be done also for the bananapi-m2-berry?, it is basically the
+> same device
+> sun8i-v40-bananapi-m2-berry.dts
 
-On 24/8/20 16:36, Jernej Skrabec wrote:
-> DCDC1 regulator powers many different subsystems. While some of them can
-> work at 3.0 V, some of them can not. For example, VCC-HDMI can only work
-> between 3.24 V and 3.36 V. According to OS images provided by the board
-> manufacturer this regulator should be set to 3.3 V.
->
-> Set DCDC1 and DCDC1SW to 3.3 V in order to fix this.
->
-> Fixes: da7ac948fa93 ("ARM: dts: sun8i: Add board dts file for Banana Pi M2
-> 		      Ultra")
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> ---
->   arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts | 10 +++++-----
->   1 file changed, 5 insertions(+), 5 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts b/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
-> index 42d62d1ba1dc..ea15073f0c79 100644
-> --- a/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
-> +++ b/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
-> @@ -223,16 +223,16 @@ &reg_aldo3 {
->   };
->   
->   &reg_dc1sw {
-> -	regulator-min-microvolt = <3000000>;
-> -	regulator-max-microvolt = <3000000>;
-> +	regulator-min-microvolt = <3300000>;
-> +	regulator-max-microvolt = <3300000>;
->   	regulator-name = "vcc-gmac-phy";
->   };
->   
->   &reg_dcdc1 {
->   	regulator-always-on;
-> -	regulator-min-microvolt = <3000000>;
-> -	regulator-max-microvolt = <3000000>;
-> -	regulator-name = "vcc-3v0";
-> +	regulator-min-microvolt = <3300000>;
-> +	regulator-max-microvolt = <3300000>;
-> +	regulator-name = "vcc-3v3";
->   };
->   
->   &reg_dcdc2 {
+I think so but I would rather not do that without testing and I don't have 
+that board.
+
+Best regards,
+Jernej
 
 
-Should this be done also for the bananapi-m2-berry?, it is basically the 
-same device
-sun8i-v40-bananapi-m2-berry.dts
-
-
-Pablo
 
