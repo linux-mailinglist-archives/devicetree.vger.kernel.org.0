@@ -2,79 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0BFF2519B0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 15:32:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 175E7251A01
+	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 15:46:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726015AbgHYNcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Aug 2020 09:32:21 -0400
-Received: from mail-oo1-f68.google.com ([209.85.161.68]:38839 "EHLO
-        mail-oo1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725805AbgHYNcU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Aug 2020 09:32:20 -0400
-Received: by mail-oo1-f68.google.com with SMTP id z11so2701465oon.5;
-        Tue, 25 Aug 2020 06:32:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AoPa6tIoCK3whU9pBPzOcV5Uo3NIFh12F5Ac6ptY9h0=;
-        b=esWBPYuF9HYbSZYb8jEJOvte00O/TlqL1NLTlwOPPS2phgFLg4vg/MboaHH6bJ2sDL
-         yDcz646gKiAuHlZ1kDiBeN46mUK1pdkEq2AegPk3tIACBkFftyEbvB0j07d3LOeZeElS
-         sZNBMq/D25swdqtf3yuECW1b1YjDbFO+c06JCLsZVehjhry4HPhmhXChO1EzA954iteR
-         rpbJXwtFWsLemvfKtVRUm7bNZMKgfqI9WfH0JHW4E2rOMgrJ3onikuCC5zb8iryuw3vV
-         iefDq3C/oi3t4bELUTF4ov0zIIzufwyr6u/Cwuri723wFNWqqPNOOA39Znhys7t688va
-         +kzQ==
-X-Gm-Message-State: AOAM531QmEgY66wkH+OMM1hr/RrFmTOhk65t7YwpZnK1GJDAVQ2rPkoq
-        NYSs423cB7ZJP7pyf2x9x0sS0eAIHxD8gVxz8ng=
-X-Google-Smtp-Source: ABdhPJxLl4LjPnUw0osPkN7eyYfOkhZhX2vApW9KSn7zpZVt5FQDuryRNu96u+tAJACetGF/gPNsVbXqowakQy6v1oQ=
-X-Received: by 2002:a4a:275e:: with SMTP id w30mr7058474oow.40.1598362339606;
- Tue, 25 Aug 2020 06:32:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200825104455.18000-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20200825104455.18000-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20200825104455.18000-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 25 Aug 2020 15:32:08 +0200
-Message-ID: <CAMuHMdWmvcA8x-t=FgNOuMnAtw6j3OAgo8irmD5e2wrB+LfhHg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a774e1: Add PWM device nodes
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Linux PWM List <linux-pwm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726767AbgHYNp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Aug 2020 09:45:58 -0400
+Received: from mx1.tq-group.com ([62.157.118.193]:40528 "EHLO mx1.tq-group.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726730AbgHYNpx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Aug 2020 09:45:53 -0400
+IronPort-SDR: EWepCS+1mazOO+d5eLqNjy3LCf4T4rGNVIZfE5RnWj3/mC2fy6VwcCarTx4PlRW7xqYxs4CTPD
+ x80tyrxo8qkNz+DY8xVh2QFvDzdlAhbVa43SSt5g6n1B6UTgYOhmw21wQeYNGe1KMsRjejO8Fb
+ d9d8RwdDrPJz5AxUt3C6NrZ3yU/gNET2YTixcYyHJjYgwOtC2GEdHiMED8760kPj6RmZnhjpjG
+ O6Vj+s51HhXAvLFL4atetCaB0RusqjKtnML2e9MoWcTREqNWpj2LLoPRNCjPIdJC8KzJoIGj7g
+ QIs=
+X-IronPort-AV: E=Sophos;i="5.76,352,1592863200"; 
+   d="scan'208";a="13592257"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 25 Aug 2020 15:45:34 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 25 Aug 2020 15:45:34 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 25 Aug 2020 15:45:34 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1598363134; x=1629899134;
+  h=from:to:cc:subject:date:message-id;
+  bh=fUqsPE/ZO4LWYoE8Q40E9k79iF8jdqLY6H5vK/D03uU=;
+  b=N1MxhvFBkHSgLoGTAkYNUnrzhNL2SLQIPQaUmt1EpiBJhtMP9HiTRPto
+   Y2qbpaWRZKtKM1AkgGNdZlFOLRQeGH6Z9MwW/yq6A7wi3JJ/Mn7Jx2JDX
+   loGCItdOZnJwfy5hEqp6WsTWpg5kp+jir/k+a2vp7PvcrQpGfmVfdmpQd
+   pueFlhDZQ7oPL5gQCLH/HNp9+LlOaJyd9QVtsHDRvAUkXBKYdD0mpRpIP
+   CsebwOAEMcEpWeVsPapwvKn2LyFEEEhsUOEF9GCfmSH2pTz8WWZdKjx8Q
+   pY+6+HAkdLJvjd7Y2q5ydTvpgbze+6rqZPE8KIBfH5mIGTzuVydzhU4bR
+   A==;
+IronPort-SDR: T2F+3bqy5rZURdVPnteiUoZlsLwR7+OAK9TaRMfSCf3g99BUQOIVMLEFNQBnxLRx6covkVmJ8F
+ L8fSAClNtpW+amrJ7JA80xz0KKAV3tt0JhPKdVKMSg44qp6BuxD+GWJGilfNGUbiqlxCxuREGK
+ pG6y41bO1TUk51ontoPE7lywW2c9TJZKKS+utz39F5e3QcnFF/VoaIkU7S8vptiXampI1z1DXd
+ nHm1qawYEaVwD/yGWA8vbcksMGTJQxiW2IyUiw8PKStaM+6Y4o14+eWSYzN9Qe3ospvV07VwsA
+ zKY=
+X-IronPort-AV: E=Sophos;i="5.76,352,1592863200"; 
+   d="scan'208";a="13592256"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 25 Aug 2020 15:45:34 +0200
+Received: from schifferm-ubuntu4.tq-net.de (schifferm-ubuntu4.tq-net.de [10.117.49.26])
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id 7E1E9280065;
+        Tue, 25 Aug 2020 15:45:34 +0200 (CEST)
+From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Subject: [PATCH mmc-next v3 1/2] dt-bindings: mmc: add alias example
+Date:   Tue, 25 Aug 2020 15:44:40 +0200
+Message-Id: <20200825134441.17537-1-matthias.schiffer@ew.tq-group.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 25, 2020 at 12:45 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> From: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
->
-> This patch adds PWM[0123456] device nodes to the RZ/G2H (a.k.a R8A774E1)
-> device tree.
->
-> Signed-off-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+As for I2C and SPI, it now is possible to reserve a fixed index for
+mmc/mmcblk devices.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.10.
+Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+---
 
-Gr{oetje,eeting}s,
+v3: new patch
 
-                        Geert
+ Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+index b96da0c7f819..22ed4a36c65d 100644
+--- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
++++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+@@ -367,6 +367,14 @@ examples:
+     };
+ 
+   - |
++    /*
++     * Optionally define an alias to reserve a fixed index for the
++     * mmc and mmcblk devices
++     */
++    aliases {
++        mmc0 = &mmc3;
++    };
++
+     mmc3: mmc@1c12000 {
+         #address-cells = <1>;
+         #size-cells = <0>;
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
