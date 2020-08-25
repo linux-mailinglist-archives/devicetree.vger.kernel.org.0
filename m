@@ -2,125 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BCDD8251AA3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 16:18:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A271251ACD
+	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 16:30:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726570AbgHYOSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Aug 2020 10:18:16 -0400
-Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:34201 "EHLO
-        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725893AbgHYOSK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Aug 2020 10:18:10 -0400
-Received: from compute7.internal (compute7.nyi.internal [10.202.2.47])
-        by mailout.west.internal (Postfix) with ESMTP id 8C501D3E;
-        Tue, 25 Aug 2020 10:18:09 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute7.internal (MEProxy); Tue, 25 Aug 2020 10:18:10 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=QmEs8/Z0/o2w/oQl3zJBNrpba7k
-        QG47nIMOSPlw4dkQ=; b=IUgbMKUuJGl2klzpvew5RZOXzxgT4oxejy6EcWkXt4c
-        UmyCtEnguOaFbzspswsQsu5s5TsfByHsUqtkVTCZoE+LkCMIYulwRO7mePSc4BKH
-        WnTfha7iIJK4fnOi8soaGNQ6pIu6ae0Xt7R3HaRnAV63iXkR5at9V2hpdn/Vwz5B
-        kevUcTmVG8VhWaCjgB41Dj+ANMU2XXMD2vC5f08GYP0dhP4uWwGvnh0LrXyz9wRj
-        J53F5jLvUNWKvGeY1z+ggp4ZWs5LLXJPWWLJCGX7/C6iJMGm0safbUnMB5Eax7TI
-        41ldXbU8p1pUY0sSTqXWT4eeEpXT+ha+x5cBJdpEAbQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=QmEs8/
-        Z0/o2w/oQl3zJBNrpba7kQG47nIMOSPlw4dkQ=; b=nHb4Xtuo+K7SOY6c/qS+IU
-        YTsTc0DPytVZGtDx3dgxVumIGtrYkZSs1jEsDfPCG/22iA+CHNHdTwmQ4bHMBKz/
-        DRIM032/qsTPORddjzPW7avZdhY7AfjUjCCVPgtj+nuCMhwEeMwAZ5MYAiiQ0E1w
-        ZIC0GM6qLyiqoj4fCNp3ptjh/X0djxHKYv8F+oELfCE52e/DCyOhet6zuPDPxuPh
-        3dRD1earO1ucHV9D7NDXJylSe86RW7tKmQnpF4M4/nBOLd2V7KNBE+zcwPvxpoSk
-        H+TFpbnd4hjXkwQs4NW7fmbFGlcQ3AwNDa7NWkPpyEU3uyQ+PIPODHMYywugBcPQ
-        ==
-X-ME-Sender: <xms:oB1FXwslh79Ia_3uIbKVs_-iycyPE_Uhv1YJck48pSUI5NDS78DQGQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedruddvtddgjeejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    gfrhhlucfvnfffucdlfeehmdenucfjughrpeffhffvuffkfhggtggujgesghdtreertddt
-    vdenucfhrhhomheprfgrthhrihgtkhcuhghilhhlihgrmhhsuceophgrthhrihgtkhessh
-    htfigtgidrgiihiieqnecuggftrfgrthhtvghrnhepgeehheefffegkeevhedthffgudfh
-    geefgfdthefhkedtleffveekgfeuffehtdeinecukfhppeejiedrvdehtddrkeegrddvfe
-    einecuvehluhhsthgvrhfuihiivgepfeenucfrrghrrghmpehmrghilhhfrhhomhepphgr
-    thhrihgtkhesshhtfigtgidrgiihii
-X-ME-Proxy: <xmx:oR1FX9fD7O9Uu6rejzrAklCAVWAPVPlLVRaloHh_uErln5vbASUbcg>
-    <xmx:oR1FX7zkVtPHNmeLkTKeVixGVexe5wTRWm2uf66wOQUwyB_0R3SpmQ>
-    <xmx:oR1FXzO4szcvhvCBvmRI0uxmX7Dg5vdUjq_-7Z3XlHW-lIvk2j28Bw>
-    <xmx:oR1FXwzjA0Tse1MRnIqNuiKAyXDNXBKJPYxX2z_ZpgezICBQxLaygQ>
-Received: from localhost (76-250-84-236.lightspeed.austtx.sbcglobal.net [76.250.84.236])
-        by mail.messagingengine.com (Postfix) with ESMTPA id BB28130600B9;
-        Tue, 25 Aug 2020 10:18:08 -0400 (EDT)
-Date:   Tue, 25 Aug 2020 09:18:08 -0500
-From:   Patrick Williams <patrick@stwcx.xyz>
-To:     rentao.bupt@gmail.com
-Cc:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org, taoren@fb.com
-Subject: Re: [PATCH 4/5] ARM: dts: aspeed: minipack: Update 64MB FMC flash
- layout
-Message-ID: <20200825141808.GH3532@heinlein>
-References: <20200824211948.12852-1-rentao.bupt@gmail.com>
- <20200824211948.12852-5-rentao.bupt@gmail.com>
+        id S1726158AbgHYOaY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Aug 2020 10:30:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33670 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726104AbgHYOaX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Aug 2020 10:30:23 -0400
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B82BC061574
+        for <devicetree@vger.kernel.org>; Tue, 25 Aug 2020 07:30:22 -0700 (PDT)
+Received: by mail-ej1-x643.google.com with SMTP id a21so858046ejp.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Aug 2020 07:30:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=references:user-agent:from:to:cc:subject:in-reply-to:date
+         :message-id:mime-version;
+        bh=ZdXw+gzbskoX8H1mxygEd0s91nu0t19+/xojv0RSuX8=;
+        b=IJQWeCoGzir8E9IhX9rAY/Bc6IeARVKlNiU9ZkBU0/0yibpLv4cjbyr96f1p0vhhHh
+         Rv7YarCPFmu2TeTR2ztbxdtMw8cqE189SzCNEgyhVIdrsBhW3XO13PWgF+epl737p59v
+         P80XdyjTHuP+/KyDzSK+FbAp3N84s3eIFk+NGFW/JaHGd6QDrbZBkMAbsTXCBKQqFlet
+         Uw86hWEVV2y4TBWuSly7w6JPCQaSfpJHOluyE9rbWFSlJrlmFj6c5lIkbDnSJted85K9
+         t8tIg4cHG3LxFSGbo3Urg+hhpSpWLg044N4qh9AWIRSMHHiZVmPdGAExEJmFmWl7KjJd
+         g6cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:references:user-agent:from:to:cc:subject
+         :in-reply-to:date:message-id:mime-version;
+        bh=ZdXw+gzbskoX8H1mxygEd0s91nu0t19+/xojv0RSuX8=;
+        b=YGQ3RNv8FbRlzlwXEe+1Y82xG583/fBadkhDPqmDzInZt2mpIE0CLuuuToFsqtoYzk
+         u+OKg6CFycJJJrDLQTPmgYKFxLRCfqcGiN6s/uoP+crAKm4qiXB1408Z92M+DLKWNa9/
+         64j4/UW2YTL8u8Eaj0A4jd+rZYsvJKYXWrF9HrMV84t69JQAkFV8CVcNpHm3/PZNIJGh
+         sFiP7TxfcgOzrKjb8nMTIptk5yoD0sh9AEskXj0mzNARMrV5AoBr/JWoYb/BlVpMecrL
+         8+NAi/fRkWjmMSEp/BWhxYYXaS8HBeuTq2V4xltXqGijTteNa+FyY/8s6h+QhahttGL/
+         KChg==
+X-Gm-Message-State: AOAM5339UtbeC+ZG14ARFNyZl1IVUMn+NvMDtxue+am+J0/lHYp4ycBS
+        stzsQbLfRdwNgxlBwyvFsaubEg==
+X-Google-Smtp-Source: ABdhPJyv9q0WZs4EBQ9N2uAlkPmF7aGcdCaZUOfdv1FKhsKBZ811vlnQ9VKtvqi1WNIv1Io/39b50w==
+X-Received: by 2002:a17:906:80d3:: with SMTP id a19mr11461547ejx.217.1598365821066;
+        Tue, 25 Aug 2020 07:30:21 -0700 (PDT)
+Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net. [82.243.161.21])
+        by smtp.gmail.com with ESMTPSA id e14sm13266895edl.86.2020.08.25.07.30.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Aug 2020 07:30:20 -0700 (PDT)
+References: <20200820121323.564-1-linux.amoon@gmail.com> <20200820121323.564-2-linux.amoon@gmail.com> <7hlfi9xgch.fsf@baylibre.com> <CANAwSgTZ23jFPAO46vRg1Dx_Bzi=4Bg6KHE0ozLQGky4p_fgKQ@mail.gmail.com> <CANAwSgQLnqDnuQvLv4cvaeTPeBW=H_g5F2aaNue_hb4nKLdovg@mail.gmail.com> <f7e6ce5f-02b0-065b-ffcf-2826159f926a@baylibre.com> <1j7dto3ylq.fsf@starbuckisacylon.baylibre.com> <CANAwSgQ1Miu73hfdK+cgL3howpekn2xj_5qwGasQZwtQpSGj5Q@mail.gmail.com>
+User-agent: mu4e 1.3.3; emacs 26.3
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Anand Moon <linux.amoon@gmail.com>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Christian Hewitt <christianshewitt@gmail.com>
+Subject: Re: [PATCH v3 1/2] arm64: dts: meson-g12b-odroid-n2: Enable RTC controller node
+In-reply-to: <CANAwSgQ1Miu73hfdK+cgL3howpekn2xj_5qwGasQZwtQpSGj5Q@mail.gmail.com>
+Date:   Tue, 25 Aug 2020 16:30:19 +0200
+Message-ID: <1j4koq4x38.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="smOfPzt+Qjm5bNGJ"
-Content-Disposition: inline
-In-Reply-To: <20200824211948.12852-5-rentao.bupt@gmail.com>
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---smOfPzt+Qjm5bNGJ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue 25 Aug 2020 at 11:01, Anand Moon <linux.amoon@gmail.com> wrote:
 
-On Mon, Aug 24, 2020 at 02:19:47PM -0700, rentao.bupt@gmail.com wrote:
-> From: Tao Ren <rentao.bupt@gmail.com>
->=20
-> Set 64Mb FMC flash layout in Minipack device tree explicitly because the
-> flash layout was removed from "ast2500-facebook-netbmc-common.dtsi".
->=20
-> Please note "data0" partition' size is updated to 4MB to be consistent
-> with other Facebook OpenBMC platforms.
->=20
-> Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
-> ---
->  .../boot/dts/aspeed-bmc-facebook-minipack.dts | 47 ++++++++++++++++++-
->  1 file changed, 45 insertions(+), 2 deletions(-)
->=20
+> Hi Jerome
+>
+> On Mon, 24 Aug 2020 at 20:00, Jerome Brunet <jbrunet@baylibre.com> wrote:
+>>
+>>
+>> On Mon 24 Aug 2020 at 15:50, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>
+>> > On 24/08/2020 15:41, Anand Moon wrote:
+>> >> hi All,
+>> >>
+>> >> On Fri, 21 Aug 2020 at 10:13, Anand Moon <linux.amoon@gmail.com> wrote:
+>> >>>
+>> >>> Hi Kevin,
+>> >>>
+>> >>> Thanks for your review comments.
+>> >>>
+>> >>> On Fri, 21 Aug 2020 at 01:03, Kevin Hilman <khilman@baylibre.com> wrote:
+>> >>>>
+>> >>>> Anand Moon <linux.amoon@gmail.com> writes:
+>> >>>>
+>> >>>>> Enable RTC PCF8563 node on Odroid-N2 SBC, In order to
+>> >>>>> support the RTC wakealarm feature for suspend and resume.
+>> >>>>> Also assign an alias to the pcf8563 to rtc0 and meson-vrtc to rtc1
+>> >>>>> timer device to prevent it being assigned to /dev/rtc0
+>> >>>>> which disto userspace tools assume is a clock device.
+>> >>>>>
+>> >>>>> Cc: Neil Armstrong <narmstrong@baylibre.com>
+>> >>>>> Cc: Kevin Hilman <khilman@baylibre.com>
+>> >>>>> Suggested-by: Christian Hewitt <christianshewitt@gmail.com>
+>> >>>>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+>> >>>>> ---
+>> >>>>> Changes V3
+>> >>>>> --Drop the INI GPIOAO.BIT7 pinctrl.
+>> >>>>
+>> >>>> Why did you drop this GPIO?  Isn't this the GPIO that the RTC uses to
+>> >>>> wakeup the system?  If so, this should be included as part of this
+>> >>>> patch.
+>> >>>>
+>> >>>> It probably still works because the bootloader configures this GPIO as
+>> >>>> input, but the kernel should not rely on the booloader for that, so
+>> >>>> please include as part of this patch.
+>> >>>>
+>> >>>
+>> >>> Ok I will figure out the correct pinctrl need for this settings.
+>> >>> looking into the Odroid N2 schematics.
+>> >>>
+>> >>
+>> >> I am trying to map the RTC INT pinctrl, ie RTC INT GPIOAO.BIT7.
+>> >
+>> >
+>> > Simply add:
+>> >
+>> > interrupt-parent = <&gpio_intc>;
+>> > interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
+>> >
+>> > to reflect the interrupt connection.
+>
+> I have tried this setting, but it is not working.
+>
+> [alarm@archl-on2e ~]$ dmesg| grep rtc
+> [    5.378002] meson-vrtc ff8000a8.rtc: registered as rtc1
+> [    5.942307] rtc-pcf8563 0-0051: pcf8563_write_block_data: err=-110
+> addr=0e, data=03
+> [    5.942316] rtc-pcf8563 0-0051: pcf8563_probe: write error
+> [    5.945983] rtc-pcf8563: probe of 0-0051 failed with error -5
+>
 
-Reviewed-by: Patrick Williams <patrick@stwcx.xyz>
+-110 is timeout ... either you i2c bus is broken and you device is not
+at 0x51. In both case, it has nothing to do with the interrupt configuration
 
---=20
-Patrick Williams
+>
+>> >
+>> > No need to setup pinctrl here since the GPIO input is always connected
+>> > to the gpio irq generator whatever pinctrl mode is set.
+>>
+>> It is actually better to setup pinctrl. Yes the irq controller can work
+>> whatever the pin setup but if an output function is active it can mess with
+>> what the irq controller gets.
+>>
+>> Think about applying/removing bias if necessary too.
+>>
+>
+> Ok, I am trying to add a new pinctrl configuration for
+> TSIN_A_DIN0 //  TDMB_FS // TDMB_SLV_FS
+> But it's still not working at my end.
 
---smOfPzt+Qjm5bNGJ
-Content-Type: application/pgp-signature; name="signature.asc"
+Either you are quite confused when it comes to pinctrl or I am.
+TSIN and TDM have nothing to do with an i2c RTC.
 
------BEGIN PGP SIGNATURE-----
+>
+> -Anand
 
-iQIzBAABCAAdFiEEBGD9ii4LE9cNbqJBqwNHzC0AwRkFAl9FHZ8ACgkQqwNHzC0A
-wRmoQA/7BzbYGmsNhCqDgSK2BBGRdfOQXzsHB7RX5l1njoX0+O85xoTB5XUVuqP2
-DhjGuc4+QprGKmCnHeatfbQUOwDqWPQvFvKnEIjRlsnXSK2xYVubqHkJQnz6Is+5
-LP0Zw3lIZVYVXFmjM3WOaRlnNkPSAz0UoyxwAwZzSodN/0Vp9udCHnIpIT8IafB9
-4+wtW4KqfuFpJ721upa/9KrxsBB2+P0tQcmCwBEROIcL3Cj5HQz606T96vVAI+Y7
-7Hh4GfLCpkePKECh+vWlQmGUp6ASUXnm3GHwX55/l+QZM4EWI5W9i8C3feJ9XYu3
-aL0RD3gMbhKIykUnciO3UPGYWPPGAdqepk7/t4kEP6+ygMieYPvTO+6gHpd99XOG
-NMhkNvQObj+Ypuvg88/LZZwgMXO/MmPerZ8HULEukSm20qblGgjTY1BMyAbraEld
-Mtn4Q7axAuN3QeSlCgrtlJOvdhVaJdorznfuTM9LkW6+8Ct5ZMS+f3lyMRMT8Ch8
-fBqVNIXVS7uCWRRZrDamDE32ioO0xQEZtDBIy2ZAaW0UMtNNkYWPBytsxIRrok1R
-yFHZBON12LtqCXXtycVCCFBspH9FzpXeJixAAsCp3o0DpMf1W1QznwbYtyzsRJBP
-9lp4G+UBpOsmFWpVK01kOaLv6URm7f+zBWfQKN2AV5Yy7XFHZoI=
-=YxTc
------END PGP SIGNATURE-----
-
---smOfPzt+Qjm5bNGJ--
