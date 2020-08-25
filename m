@@ -2,115 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E6DE2518E0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 14:48:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98BC4251909
+	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 14:51:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728893AbgHYMsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Aug 2020 08:48:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45680 "EHLO
+        id S1726853AbgHYMvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Aug 2020 08:51:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727941AbgHYMsJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Aug 2020 08:48:09 -0400
-Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99104C061574;
-        Tue, 25 Aug 2020 05:48:08 -0700 (PDT)
-Received: by mail-pg1-x541.google.com with SMTP id o13so6768693pgf.0;
-        Tue, 25 Aug 2020 05:48:08 -0700 (PDT)
+        with ESMTP id S1726336AbgHYMvF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Aug 2020 08:51:05 -0400
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15346C061574;
+        Tue, 25 Aug 2020 05:51:05 -0700 (PDT)
+Received: by mail-lj1-x244.google.com with SMTP id y2so13676079ljc.1;
+        Tue, 25 Aug 2020 05:51:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=4269fKP33XlJpXg8yjCtAkVnsXDMAY6w7aJ7rv3Q3M0=;
-        b=cXoZCcdhfytkmnTMsokXvLlvrp+x9/j5jLJpaflRFfXKbkLI8fNXIoVs2NJVWTXVCl
-         CbygMLkkVo3e1I0wxWWbEosJkqHRLxfOR7WH+HmcWtVcLNm+6QhC+SlRMyCDuoVaO++l
-         3u77s46eU8Fti9PGm4wrerGQU4lRaZ+8JgKRRc47TGwBMYMYe2WyDmQNpW08Tk48vV8J
-         EWBbsR3Tj3LJu2UtGGTdCXZZSdg0csCGc+vIioXNGWlSVEokqFcnzCUcttuOnQFOFcIX
-         Su3SAfZDF9FyhvdGdAKvW7D4jjLfbkVxx1BrpD/t3ItTJ1PtfXlLCEIvy2UyRhD4mfY7
-         8kNA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4z0t3K+QLoeioxTOOGGcWlYv6LhGdZE1xgkuzCwfl6I=;
+        b=BslcMvlA00KIenKbUhG69iU/HgJJyCGKkU9LCQGUJg4hzTV1AF7AtA3IfXyHYynqkj
+         E584RJXo+mJRSbQ0t1i3M9BS4bWr9T9tpRsi17etVCkqu+a45wbxGP5C6h3ZLn34T+mz
+         F6HNbTKtgGDK639gCsCx+yvuI/IoQ6asl1cGmoC95/cTtCAiJ7RhdZwaNiCyfNikrywR
+         c6wFUV9CXtNpOj4Y2Uath3LcmZaB++Cw6hTngDM8HpXsq+17+ebKIFcj3+sX1cU93ZPX
+         6sWVaCJ/AZPViXuGBBYD9Z6KbC8z9Zc7mmF1RlQHXDKnFdpWc/ExxDbE/X9cN+pJRCxk
+         J7kA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=4269fKP33XlJpXg8yjCtAkVnsXDMAY6w7aJ7rv3Q3M0=;
-        b=kcrrted2cL65oBDx313u7t2pQVLPqhsK06eLg4/tIJV/wGK6HzNux0GXTy0UXaEfpI
-         YgvXcgS6OTE/6xAhKywiJLLuWMQCaXhvDgo5bW9IWN93igM0dorwH+VpGHOQQbGv4cAh
-         PTo4cmigLGALiTqfYvjBufekMWM/bMj/b2ha4Ros1zt/8R4ePPmCGbEUmFRPHOqvavfr
-         cyLpQIRRC4nQYvO3yLyWximgBIFc5bYgi/tasPjsmmKBIGPlDdUk00SELbjFDdfwdPDB
-         WQTYoTfyaFJ5LbfkjbRiJ6TI3I5VkE3MZ7SYjRLo26cTqQrBzEPaDK6/9r1qL6LgJfYq
-         Ek+g==
-X-Gm-Message-State: AOAM5309dos15yXEkcB7mRgiA8rdl6Ha/2K/70qF+4ooduzRfnEjqU99
-        ydYPNJQsyLinl7rR/iUQjGM=
-X-Google-Smtp-Source: ABdhPJyKqLBHjOHXcKbgxx6YQqv8L76E4HOjzEbGrQ+8+X5EMajVHExAlrgCk3/r9dhSPzwIYbVZBQ==
-X-Received: by 2002:a63:161d:: with SMTP id w29mr6416171pgl.16.1598359688232;
-        Tue, 25 Aug 2020 05:48:08 -0700 (PDT)
-Received: from nish-HP-Pavilion ([2409:4072:619:dc6c:a526:a3b6:4686:f6fb])
-        by smtp.gmail.com with ESMTPSA id a20sm5675597pfi.11.2020.08.25.05.48.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Aug 2020 05:48:07 -0700 (PDT)
-From:   Nishant Malpani <nish.malpani25@gmail.com>
-To:     jic23@kernel.org, robh+dt@kernel.org
-Cc:     dragos.bogdan@analog.com, darius.berghe@analog.com,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Nishant Malpani <nish.malpani25@gmail.com>
-Subject: [PATCH 3/3] iio: gyro: adxrs290: Add debugfs register access support
-Date:   Tue, 25 Aug 2020 18:17:11 +0530
-Message-Id: <20200825124711.11455-4-nish.malpani25@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200825124711.11455-1-nish.malpani25@gmail.com>
-References: <20200825124711.11455-1-nish.malpani25@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4z0t3K+QLoeioxTOOGGcWlYv6LhGdZE1xgkuzCwfl6I=;
+        b=gKynM1Ztp9jkZF0328284qIQyvpWklQbgcGaGGNJ4cPTNq9YsfMoRxzxT8befaciql
+         llYwH9enWgHfo/H+tRLaehFVSd0QceXU5+QkMndKrZnRXCEwsy7l+JW0Y5zlhmK9tbEj
+         pmXOSb5saFtd/2reQq/PBEM7A3ZraDdu2DuYX/ljv2+jcW+UKBwpOkZ6nS0l/6XM68m/
+         V1MWlapOhuhnhK9onjtxjoHBK2jfSAp3Cuzc0Zl0shVUH5qmxcBmHta082jZLnLnz6j+
+         igZQpxi1jueBHPP14qc2U7cs/sOJa7WJCGef92ZwuwlSEFnm93zHW9Z80P+nwI9ZchLe
+         1WoQ==
+X-Gm-Message-State: AOAM531TS7L0UuLLGqxSwp81i02KwLhwZv5mZ+0hN01og7sTRAtK4Z/P
+        lQf1GpbekKQQfpPDP8xwZSoW6d6pWblBzeu2YC4=
+X-Google-Smtp-Source: ABdhPJwmAXSB4sPIlEhiDhTQQ4uyWKneA5ej6i1dzJ0HZftooX5KdSQEzmLDZQNCBJ71+jbZrBVTfavtSJ1qlp4VYFA=
+X-Received: by 2002:a2e:8ed4:: with SMTP id e20mr5152175ljl.403.1598359863461;
+ Tue, 25 Aug 2020 05:51:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200825030406.373623-1-cphealy@gmail.com>
+In-Reply-To: <20200825030406.373623-1-cphealy@gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 25 Aug 2020 09:50:51 -0300
+Message-ID: <CAOMZO5C3MpiV_c0iwQHmf74O35WpT1kkwtkASSBoFnL+=JXvJA@mail.gmail.com>
+Subject: Re: [PATCH v4] dt-bindings: nvmem: Add syscon to Vybrid OCOTP driver
+To:     Chris Healy <cphealy@gmail.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sanchayan Maity <maitysanchayan@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stefan Agner <stefan@agner.ch>,
+        stable <stable@vger.kernel.org>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Extend support to read/write byte data from/to the device using
-debugfs iio interface.
+Hi Chris,
 
-Signed-off-by: Nishant Malpani <nish.malpani25@gmail.com>
----
- drivers/iio/gyro/adxrs290.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+On Tue, Aug 25, 2020 at 12:04 AM Chris Healy <cphealy@gmail.com> wrote:
+>
+> From: Chris Healy <cphealy@gmail.com>
+>
+> Add syscon compatibility with Vybrid OCOTP driver binding. This is
+> required to access the UID.
+>
+> Fixes: 623069946952 ("nvmem: Add DT binding documentation for Vybrid
+> OCOTP driver")
 
-diff --git a/drivers/iio/gyro/adxrs290.c b/drivers/iio/gyro/adxrs290.c
-index 25046590761e..b0050cdd2b90 100644
---- a/drivers/iio/gyro/adxrs290.c
-+++ b/drivers/iio/gyro/adxrs290.c
-@@ -435,6 +435,24 @@ static int adxrs290_read_avail(struct iio_dev *indio_dev,
- 	}
- }
- 
-+static int adxrs290_reg_access(struct iio_dev *indio_dev, unsigned int reg,
-+			       unsigned int writeval, unsigned int *readval)
-+{
-+	struct adxrs290_state *st = iio_priv(indio_dev);
-+	int ret;
-+
-+	if (!readval)
-+		return adxrs290_spi_write_reg(st->spi, reg, writeval);
-+
-+	ret = spi_w8r8(st->spi, ADXRS290_READ_REG(reg));
-+	if (ret < 0)
-+		return ret;
-+
-+	*readval = ret;
-+
-+	return 0;
-+}
-+
- static int adxrs290_data_rdy_trigger_set_state(struct iio_trigger *trig, bool state)
- {
- 	struct iio_dev *indio_dev = iio_trigger_get_drvdata(trig);
-@@ -547,6 +565,7 @@ static const struct iio_info adxrs290_info = {
- 	.read_raw = &adxrs290_read_raw,
- 	.write_raw = &adxrs290_write_raw,
- 	.read_avail = &adxrs290_read_avail,
-+	.debugfs_reg_access = &adxrs290_reg_access,
- };
- 
- static int adxrs290_probe_trigger(struct iio_dev *indio_dev)
--- 
-2.20.1
+Fixes line should not be split even when greater than 80 columns.
 
+Shawn can probably fix while applying it.
+
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
