@@ -2,68 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8832252351
-	for <lists+devicetree@lfdr.de>; Wed, 26 Aug 2020 00:05:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9041325235E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Aug 2020 00:09:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726578AbgHYWF3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Aug 2020 18:05:29 -0400
-Received: from mail-il1-f195.google.com ([209.85.166.195]:39969 "EHLO
-        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726336AbgHYWF3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Aug 2020 18:05:29 -0400
-Received: by mail-il1-f195.google.com with SMTP id p18so90502ilm.7;
-        Tue, 25 Aug 2020 15:05:28 -0700 (PDT)
+        id S1726466AbgHYWJS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Aug 2020 18:09:18 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:35620 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726336AbgHYWJQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Aug 2020 18:09:16 -0400
+Received: by mail-il1-f194.google.com with SMTP id q14so122031ilm.2;
+        Tue, 25 Aug 2020 15:09:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=yr8pBKNlRBBu/zVmrZurbm8nwnQCAlAISsxv0Pfzf/I=;
-        b=r4Sp/zAeiKPw/MRxiQSMziiLH+ZPG7fIazX1ngR0NlypPQlPPY7X0OOlQbq11TMYRL
-         DMb9nrfBVUauF06OkU0QNTvvurGWnLL9r5RIKWbCD/YqhDWo2Vd+t5ynXoK8gEJUy+v+
-         54VIVC47ppcPIAX4hAGT72ZzR21BSEyXu16VZ8tJqZlPTfHmaU3SmiAMOSreD1KpJFhL
-         ks1K3V9SwPb3baz9AdnpNcsANHCF3QeNrnLTej4/rS3TfyG/9PdOA51fuYGtLxvcPI2y
-         aCNgE+u8Qni8LjjIXUgZY9yNYszw8Jjgylc8wG1+dwpauoavx3kWyd9pzU2xF3flN7v/
-         F0/w==
-X-Gm-Message-State: AOAM53031SXNdidfJdwv7V3J3VlVsRQv1WGZAi7t9bRPKMcTRuVHPy/y
-        714Wd6E7lZtrJtWsGOsPxvTYS4M7du7T
-X-Google-Smtp-Source: ABdhPJxOmo+9qg9pF8+1gjfj0EnflJQ6hmc5SfUGFqzzf966Oud70qdfbnoCRy8B38rIr9FQ7Tt2aw==
-X-Received: by 2002:a92:dccd:: with SMTP id b13mr9418297ilr.12.1598393128429;
-        Tue, 25 Aug 2020 15:05:28 -0700 (PDT)
+        bh=BLKrtDPioAUBLdZ6oe5KeScwSDtIqCbNdo8WBPjs1eA=;
+        b=ooQMt37K0HYFlofYfjX5p5HCY0cg5LMFZ5F+EdFcteWJ9KOOqKyvZRvsZV+uvu/SVx
+         r3MD9Sa7uFzdp28dYCVuBGWRLIzxNpXccIXwgNULI9jPURQa/g+iaEbAqAPNE1oZeOcO
+         fWn7hnibC9dSunoTX4CqPpXEeLUxOW7H9blFRS0oWZXAuNGI8HBmE1vp50MBrCmow0pT
+         WjO/lBAZqNyXdyMkxOgD4ltxz5ReXy9qeYHVW3VhLlk5gDk7n2UND578Fp59w4ibMTsT
+         kq6j9kvEH4WEJeiYOQqSNBboQgiDxpTCUGgKpoFtW2U9QAv809AFNV/+qDK4sCg3ISVJ
+         nXKA==
+X-Gm-Message-State: AOAM532UFwnrhkzcGPYvu9Fbfdo5Bd7FeUEd5ZLuhLNrnoq7gMGIJIkc
+        OHewcjPkZ6i7qY0rbifCEQ==
+X-Google-Smtp-Source: ABdhPJwfitAczHxFgEpj40L+UcJQ4elxja7tGAVv1BecnVUuns4Xh8xcC4bbofLEa/jynI/Aush6KQ==
+X-Received: by 2002:a92:d646:: with SMTP id x6mr11132185ilp.237.1598393355818;
+        Tue, 25 Aug 2020 15:09:15 -0700 (PDT)
 Received: from xps15 ([64.188.179.249])
-        by smtp.gmail.com with ESMTPSA id h13sm58819iob.33.2020.08.25.15.05.27
+        by smtp.gmail.com with ESMTPSA id u89sm199111ili.87.2020.08.25.15.09.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Aug 2020 15:05:27 -0700 (PDT)
-Received: (nullmailer pid 1423326 invoked by uid 1000);
-        Tue, 25 Aug 2020 22:05:26 -0000
-Date:   Tue, 25 Aug 2020 16:05:26 -0600
+        Tue, 25 Aug 2020 15:09:14 -0700 (PDT)
+Received: (nullmailer pid 1429315 invoked by uid 1000);
+        Tue, 25 Aug 2020 22:09:13 -0000
+Date:   Tue, 25 Aug 2020 16:09:13 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Daire.McNamara@microchip.com
-Cc:     linux-pci@vger.kernel.org, lorenzo.pieralisi@arm.com,
-        bhelgaas@google.com, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, david.abdurachmanov@gmail.com
-Subject: Re: [PATCH v15 1/2] dt-bindings: PCI: microchip: Add Microchip
- PolarFire host binding
-Message-ID: <20200825220526.GA1423268@bogus>
-References: <954a9f86bbfe929bc37653f1e616e8acff8b4bd8.camel@microchip.com>
- <9228b6315ba92e9e74b3f6484df6f4957ec4faae.camel@microchip.com>
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org
+Subject: Re: [PATCH v5 1/3] dt-bindings: interrupt-controller: Add Actions
+ SIRQ controller binding
+Message-ID: <20200825220913.GA1423455@bogus>
+References: <cover.1597852360.git.cristian.ciocaltea@gmail.com>
+ <6bd99d4a7e50904b57bb3ad050725fbb418874b7.1597852360.git.cristian.ciocaltea@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9228b6315ba92e9e74b3f6484df6f4957ec4faae.camel@microchip.com>
+In-Reply-To: <6bd99d4a7e50904b57bb3ad050725fbb418874b7.1597852360.git.cristian.ciocaltea@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 19 Aug 2020 16:32:01 +0000, Daire.McNamara@microchip.com wrote:
-> Add device tree bindings for the Microchip PolarFire PCIe controller
-> when configured in host (Root Complex) mode.
+On Wed, Aug 19, 2020 at 07:37:56PM +0300, Cristian Ciocaltea wrote:
+> Actions Semi Owl SoCs SIRQ interrupt controller is found in S500, S700
+> and S900 SoCs and provides support for handling up to 3 external
+> interrupt lines.
 > 
-> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
 > ---
->  .../bindings/pci/microchip,pcie-host.yaml     | 93 +++++++++++++++++++
->  1 file changed, 93 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> Changes in v5:
+>  - Updated controller description statements both in the commit message
+>    and the binding doc
 > 
+>  .../actions,owl-sirq.yaml                     | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/actions,owl-sirq.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/actions,owl-sirq.yaml b/Documentation/devicetree/bindings/interrupt-controller/actions,owl-sirq.yaml
+> new file mode 100644
+> index 000000000000..cf9b7a514e4e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/actions,owl-sirq.yaml
+> @@ -0,0 +1,68 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interrupt-controller/actions,owl-sirq.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Actions Semi Owl SoCs SIRQ interrupt controller
+> +
+> +maintainers:
+> +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> +  - Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> +
+> +description: |
+> +  This interrupt controller is found in the Actions Semi Owl SoCs (S500, S700
+> +  and S900) and provides support for handling up to 3 external interrupt lines.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +        - enum:
+> +          - actions,s500-sirq
+> +          - actions,s700-sirq
+> +          - actions,s900-sirq
+> +        - const: actions,owl-sirq
+> +      - const: actions,owl-sirq
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+This should be dropped. You should always have the SoC specific 
+compatible.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    const: 2
+> +    description:
+> +      The first cell is the input IRQ number, between 0 and 2, while the second
+> +      cell is the trigger type as defined in interrupt.txt in this directory.
+> +
+> +  'actions,ext-interrupts':
+> +    description: |
+> +      Contains the GIC SPI IRQ numbers mapped to the external interrupt
+> +      lines. They shall be specified sequentially from output 0 to 2.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 3
+> +    maxItems: 3
+
+Can't you use 'interrupts' here?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupt-controller
+> +  - '#interrupt-cells'
+> +  - 'actions,ext-interrupts'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    sirq: interrupt-controller@b01b0200 {
+> +      compatible = "actions,s500-sirq", "actions,owl-sirq";
+> +      reg = <0xb01b0200 0x4>;
+> +      interrupt-controller;
+> +      #interrupt-cells = <2>;
+> +      actions,ext-interrupts = <13>, /* SIRQ0 */
+> +                               <14>, /* SIRQ1 */
+> +                               <15>; /* SIRQ2 */
+> +    };
+> +
+> +...
+> -- 
+> 2.28.0
+> 
