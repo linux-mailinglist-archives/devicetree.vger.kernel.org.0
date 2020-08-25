@@ -2,156 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3CE825181A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 14:03:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86120251836
+	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 14:06:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730006AbgHYMDS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Aug 2020 08:03:18 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:34682 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730022AbgHYMDO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Aug 2020 08:03:14 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07PC1ASu022670;
-        Tue, 25 Aug 2020 07:01:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1598356870;
-        bh=nZf8uuMxaL10/OqfPfcuo5MhsldrclyKP8O5HMXbXtU=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=nmmegrVvUzAIZLonej0MLHSgqK0JwzS4rVjuOCbMdd1nMMUNsd4PLucLmzVjPQAdj
-         GiN9NEIB6kohXI7E3pmA/05pXgC2K0unP0dgQBLyyxP7MkT9NnquwIVaNsmuvCOkoS
-         gM0DVKz3MaKFh/ZqJ9SYI3Oevw7Tjha4OfMi4ogI=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07PC1Aix015138
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 25 Aug 2020 07:01:10 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 25
- Aug 2020 07:01:10 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 25 Aug 2020 07:01:10 -0500
-Received: from lta0400828a.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07PC10LD024089;
-        Tue, 25 Aug 2020 07:01:08 -0500
-From:   Roger Quadros <rogerq@ti.com>
-To:     <balbi@kernel.org>
-CC:     <pawell@cadence.com>, <kurahul@cadence.com>, <nsekhar@ti.com>,
-        <vigneshr@ti.com>, <robh+dt@kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Roger Quadros <rogerq@ti.com>
-Subject: [PATCH 3/3] usb: cdns3: Enable workaround for USB2.0 PHY Rx compliance test PHY lockup
-Date:   Tue, 25 Aug 2020 15:00:59 +0300
-Message-ID: <20200825120059.12436-4-rogerq@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200825120059.12436-1-rogerq@ti.com>
-References: <20200825120059.12436-1-rogerq@ti.com>
-MIME-Version: 1.0
+        id S1729172AbgHYMGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Aug 2020 08:06:43 -0400
+Received: from mail-bn8nam12on2054.outbound.protection.outlook.com ([40.107.237.54]:53856
+        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728093AbgHYMGm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Aug 2020 08:06:42 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kjmz51EcgBVq0/QKnIpo2l3Gk8AnWxZZ96FGxdA5gfk+JhUym9VfblAlXRyXL1p0j/OhpKvznvbQGOvLAtoZfMDpEsqREAt3PSAGbSpelcRzxxNtyjFH8/uVGNYztsSnYMzpCpF8KETEEkiYCkJ3XwSFrO31AXTudT4HWLQYsFxrQP5tWPfZLSV7jPPBXchJfGT5V8qJorXtGICcfRsoFdzoOIH/c+Igg7vQi6BcI/KT+sw1Tt8wbQQXJ8BdCOZHgUaiQGPAPvtUogFoi5xyT/uiRj3x/j5gho/MxTA9xcMs25AxTDsaBqJXrlDjNtI1gYK5mlNqQcm+AQgBFuvkRw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4Rekb6uX1LL7EeX7g/5W1Ayw40lIC967hBLVFRu8ENc=;
+ b=U2bTWeVeEKMIe6+XAb1vZ56HxnKI9207WzNDaeFCl5Kp8zxym/9VYdYb/PU+wTkc9TxCRL00taTr0fZth9U+gVJe78/h7L0LNb7ewGubd+BrmG5u7xojrR6rNcu3eD9tEph/b0NJZvqULOalumXdxXbDxNOxpQPpX5RXbO9slPVIWEZ9b4Yk1FKp+jtsvtj9xubBLvSi3Oe4I2e98TFzBiry/jVCbpc8O1d07DkuaMw+Eh+0vaHZFvp4dGCBv7MkK+/GTObpUkmyBosDC52acXRMcWvpvPTbJIptAEF4mGCSOdc3SlOBbyl8jMhFCCMKQ7MCZcgvWWZ1JZN+zv0L/w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=openfive.com; dmarc=pass action=none header.from=sifive.com;
+ dkim=pass header.d=sifive.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sifive.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4Rekb6uX1LL7EeX7g/5W1Ayw40lIC967hBLVFRu8ENc=;
+ b=rUnxFenL5Nz/e6V/sVfkBwdmGClIW4IHXDp9zLemAHHKy1aK7cGeY15e+914MXDTVf52DTL9agv7vWUk2ebE/y3NG5+ufp/DD6eP/DXYqTPAnUaytR1mw6b81MTwCuG02yed91SYArL/u9BG/5srV1WFzyYr2yc0bQDQOQpUgiA=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=sifive.com;
+Received: from BN6PR1301MB2020.namprd13.prod.outlook.com
+ (2603:10b6:405:34::34) by BN6PR1301MB1873.namprd13.prod.outlook.com
+ (2603:10b6:405:34::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.11; Tue, 25 Aug
+ 2020 12:06:39 +0000
+Received: from BN6PR1301MB2020.namprd13.prod.outlook.com
+ ([fe80::a446:9877:b346:93ad]) by BN6PR1301MB2020.namprd13.prod.outlook.com
+ ([fe80::a446:9877:b346:93ad%5]) with mapi id 15.20.3326.019; Tue, 25 Aug 2020
+ 12:06:39 +0000
+From:   Yash Shah <yash.shah@sifive.com>
+To:     robh+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
+        bp@alien8.de, mchehab@kernel.org, tony.luck@intel.com
+Cc:     aou@eecs.berkeley.edu, james.morse@arm.com, rrichter@marvell.com,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org,
+        sachin.ghadi@sifive.com, Yash Shah <yash.shah@sifive.com>
+Subject: [PATCH 0/3] SiFive DDR controller and EDAC support
+Date:   Tue, 25 Aug 2020 17:36:19 +0530
+Message-Id: <1598357182-4226-1-git-send-email-yash.shah@sifive.com>
+X-Mailer: git-send-email 2.7.4
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-ClientProxiedBy: BMXPR01CA0023.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:b00:d::33) To BN6PR1301MB2020.namprd13.prod.outlook.com
+ (2603:10b6:405:34::34)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from 255.255.255.255 (255.255.255.255) by BMXPR01CA0023.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:d::33) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3305.24 via Frontend Transport; Tue, 25 Aug 2020 12:06:34 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [159.117.144.156]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 393b4aa6-0c28-4ee0-5409-08d848ef5252
+X-MS-TrafficTypeDiagnostic: BN6PR1301MB1873:
+X-LD-Processed: 22f88e9d-ae0d-4ed9-b984-cdc9be1529f1,ExtAddr
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BN6PR1301MB18738F9E0C8911A42143089D82570@BN6PR1301MB1873.namprd13.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: m2Kbwzw+ffYLZsCovJCsOBGebB6c0onZn++f0vAKuEb4SBQmlw7k7MTBgIng52zFuLYqb0xKnyqef5Er3BC3oYiOPqvLD6wwvEFkkvJOtyRC9Iucxlcvp8TNFKXODco1hDMCs0U4IFGWvDcwzYt/g8oWkTTbyUz/gFFJhLPeENieQ/o+NduCXYIVw75sm/6AnGthzZvtgmadOzmqqNK4PAcLYFlxjQzmCEEGjpOTshxAggAy6s/7GKRFfl2WETy0/O73HZ7FyWjqo2y0JN8At9FartHXKOytfCFnM5WJ7EZHMEY5AP6KWxSYoBRou192IXlBH6La8r8G5hjtFh93PA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR1301MB2020.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(6029001)(396003)(366004)(136003)(346002)(39850400004)(376002)(7416002)(4326008)(6486002)(66556008)(52116002)(26005)(66476007)(186003)(107886003)(8936002)(316002)(83170400001)(16576012)(42882007)(5660300002)(66946007)(6666004)(478600001)(36756003)(2616005)(83380400001)(956004)(2906002)(8676002)(44832011);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: PfZ4cxIv+XUx6jwsJtewtIyynGYJ3HcF4u4RoEOYcj7A/akI1+UOs82OumQ/l3N1JVQa0+ySUyWA1SxVYHFKlazg116AlhPLKK+zglRRMoSZeDAPjEMvKzJIq49roCTizV0TdwoL12BjBP0BuGgIaMvTIbJ+L7UkEIC4kft5lM1fYTU2BVfnd+zRTg2aL63/s1EeLQj1NqNxsRw2yduVeO/9w7xuphaZkuvxnEG9GlZj4V2b/JCbDecma2GtqiZjsleod9LKDOyJy/Fy3j3kyeQKefIWvQ3lWzUQ5xvLwklYu+cVFS5DjpECPk5Pqf4GmC2gS32l358DYQsUxkmHLyc/xnDIFYV4V5CPCWKg43SFKj2nuQxPR1Dx6OCe7cEkKALDvodG3SpQ4yF6DzYlm/g+ovXFHtmG5aMqszOJGTwIr7k5DrFotqTk/dUJTS38J4OjAigGZHOU5KQMlSyvapDY5DlLJMk01HptLSQc/BSQdOxw2eY3vMFEg6FGaWuK/cZekSL8EZL0Qw/u9hkB3a0HIxRENz+RzxrIIYTR7Tr70gureWjjY9bsSh+lnSueiTp+DGdkIkOP6ZmPtRlO4UC6P7xeD8UFQMHIenpad2Iuy2KwMJRk8TigditxaeC8B5DIK+12kfo66XVJoFaNdQ==
+X-OriginatorOrg: sifive.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 393b4aa6-0c28-4ee0-5409-08d848ef5252
+X-MS-Exchange-CrossTenant-AuthSource: BN6PR1301MB2020.namprd13.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2020 12:06:39.1754
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 22f88e9d-ae0d-4ed9-b984-cdc9be1529f1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +KanYP9o44S5UlbKe5pWlQnJQViKn20gBt9WZstjw0aT+3MWkzCJdkA3fcLBD0U5BYtxbU2dkyMLwkmQ58YwKw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1301MB1873
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Pawel Laszczak <pawell@cadence.com>
+The series add supports for SiFive DDR controller driver. This driver
+is use to manage the Cadence DDR controller present in SiFive SoCs.
+Currently it manages only the EDAC feature of the DDR controller.
+The series also adds Memory controller EDAC support for SiFive platform.
+It register for notifier event from SiFive DDR controller driver.
 
-USB2.0 PHY hangs in Rx Compliance test when the incoming packet
-amplitude is varied below and above the Squelch Level of
-Receiver during the active packet multiple times.
+The series is tested and based on Linux v5.8.
 
-Version 1 of the controller allows PHY to be reset when RX fail condition
-is detected to work around the above issue. This feature is
-disabled by default and needs to be enabled using a bit from
-the newly added PHYRST_CFG register. This patch enables the workaround.
+For testing on Hifive Unleashed:
+1. Enable the ECC bit of DDR controller during DDR initialization
+2. Erase the entire DRAM in bootloader stage
+3. Using FWC feature of DDR controller force ecc error to test
 
-As there is no way to distinguish between the controller version
-before the device controller is started we need to rely on a
-DT property to decide when to apply the workaround.
+Yash Shah (3):
+  dt-bindings: riscv: Add DT documentation for DDR Controller in SiFive
+    SoCs
+  soc: sifive: Add SiFive specific Cadence DDR controller driver
+  edac: sifive: Add EDAC support for Memory Controller in SiFive SoCs
 
-Signed-off-by: Pawel Laszczak <pawell@cadence.com>
-Signed-off-by: Roger Quadros <rogerq@ti.com>
----
- drivers/usb/cdns3/core.c |  2 ++
- drivers/usb/cdns3/core.h |  1 +
- drivers/usb/cdns3/drd.c  | 12 ++++++++++++
- drivers/usb/cdns3/drd.h  |  5 ++++-
- 4 files changed, 19 insertions(+), 1 deletion(-)
+ .../devicetree/bindings/riscv/sifive-ddr.yaml      |  41 ++++
+ drivers/edac/Kconfig                               |   2 +-
+ drivers/edac/sifive_edac.c                         | 117 ++++++++++++
+ drivers/soc/sifive/Kconfig                         |   6 +
+ drivers/soc/sifive/Makefile                        |   3 +-
+ drivers/soc/sifive/sifive_ddr.c                    | 207 +++++++++++++++++++++
+ include/soc/sifive/sifive_ddr.h                    |  73 ++++++++
+ 7 files changed, 447 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/riscv/sifive-ddr.yaml
+ create mode 100644 drivers/soc/sifive/sifive_ddr.c
+ create mode 100644 include/soc/sifive/sifive_ddr.h
 
-diff --git a/drivers/usb/cdns3/core.c b/drivers/usb/cdns3/core.c
-index 5c1586ec7824..34b36487682b 100644
---- a/drivers/usb/cdns3/core.c
-+++ b/drivers/usb/cdns3/core.c
-@@ -443,6 +443,8 @@ static int cdns3_probe(struct platform_device *pdev)
- 		return -ENXIO;
- 	}
- 
-+	cdns->phyrst_a_enable = device_property_read_bool(dev, "cdns,phyrst-a-enable");
-+
- 	cdns->otg_res = *res;
- 
- 	mutex_init(&cdns->mutex);
-diff --git a/drivers/usb/cdns3/core.h b/drivers/usb/cdns3/core.h
-index 1ad1f1fe61e9..24cf0f1b5726 100644
---- a/drivers/usb/cdns3/core.h
-+++ b/drivers/usb/cdns3/core.h
-@@ -76,6 +76,7 @@ struct cdns3 {
- #define CDNS3_CONTROLLER_V0	0
- #define CDNS3_CONTROLLER_V1	1
- 	u32				version;
-+	bool				phyrst_a_enable;
- 
- 	int				otg_irq;
- 	int				dev_irq;
-diff --git a/drivers/usb/cdns3/drd.c b/drivers/usb/cdns3/drd.c
-index 6234bcd6158a..b74803e9703d 100644
---- a/drivers/usb/cdns3/drd.c
-+++ b/drivers/usb/cdns3/drd.c
-@@ -42,6 +42,18 @@ int cdns3_set_mode(struct cdns3 *cdns, enum usb_dr_mode mode)
- 			reg = readl(&cdns->otg_v1_regs->override);
- 			reg |= OVERRIDE_IDPULLUP;
- 			writel(reg, &cdns->otg_v1_regs->override);
-+
-+			/*
-+			 * Enable work around feature built into the
-+			 * controller to address issue with RX Sensitivity
-+			 * est (EL_17) for USB2 PHY. The issue only occures
-+			 * for 0x0002450D controller version.
-+			 */
-+			if (cdns->phyrst_a_enable) {
-+				reg = readl(&cdns->otg_v1_regs->phyrst_cfg);
-+				reg |= PHYRST_CFG_PHYRST_A_ENABLE;
-+				writel(reg, &cdns->otg_v1_regs->phyrst_cfg);
-+			}
- 		} else {
- 			reg = readl(&cdns->otg_v0_regs->ctrl1);
- 			reg |= OVERRIDE_IDPULLUP_V0;
-diff --git a/drivers/usb/cdns3/drd.h b/drivers/usb/cdns3/drd.h
-index 7e7cf7fa2dd3..f1ccae285a16 100644
---- a/drivers/usb/cdns3/drd.h
-+++ b/drivers/usb/cdns3/drd.h
-@@ -31,7 +31,7 @@ struct cdns3_otg_regs {
- 	__le32 simulate;
- 	__le32 override;
- 	__le32 susp_ctrl;
--	__le32 reserved4;
-+	__le32 phyrst_cfg;
- 	__le32 anasts;
- 	__le32 adp_ramp_time;
- 	__le32 ctrl1;
-@@ -153,6 +153,9 @@ struct cdns3_otg_common_regs {
- /* Only for CDNS3_CONTROLLER_V0 version */
- #define OVERRIDE_IDPULLUP_V0		BIT(24)
- 
-+/* PHYRST_CFG - bitmasks */
-+#define PHYRST_CFG_PHYRST_A_ENABLE     BIT(0)
-+
- #define CDNS3_ID_PERIPHERAL		1
- #define CDNS3_ID_HOST			0
- 
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+2.7.4
 
