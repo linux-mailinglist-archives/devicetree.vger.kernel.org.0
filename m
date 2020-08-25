@@ -2,94 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1CF92512A7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 09:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5299D2512C6
+	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 09:11:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729350AbgHYHKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Aug 2020 03:10:16 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:35150 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729287AbgHYHKP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Aug 2020 03:10:15 -0400
-Received: by mail-ot1-f65.google.com with SMTP id w10so3235231oti.2;
-        Tue, 25 Aug 2020 00:10:14 -0700 (PDT)
+        id S1729371AbgHYHKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Aug 2020 03:10:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48674 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729276AbgHYHKf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Aug 2020 03:10:35 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F571C061574;
+        Tue, 25 Aug 2020 00:10:35 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id bo3so15114705ejb.11;
+        Tue, 25 Aug 2020 00:10:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gPWggGnZfKXzYv43SZ5/w/OGptcwgH/cYoepbnpuXSU=;
+        b=YQx6miclATuS6VbE6jZFDWN40JxQ/1nlhUefrciReWKCPK1PB5FiMSBPlYM1zxuGwz
+         DPQCBv3VBF0bfZxCQGjeVhyw94aZ2SuYv34fLToG/A3EJPKRqfmIU8jB3mKcre2iEphq
+         gf1mzRXOzxB/Ek7w8xs6x3QkGetykd+ka7NaU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=9nDSEan/YQK8xpD3cMjTRl5PnART66gSZqfe7bk+3Dk=;
-        b=o7HSZLMLH9LmTRwPHwrV9QJK3dBPuh+lY6IP3vbvY99skGz+exym6EGHHA1yCgtvuG
-         zSjfpQU6Hr7JC+H9q+VR2hvStmRDe28dN9Q/5iAetMdOfm/Q0+hGLEL/8pmpUkplc6YQ
-         zOpzIB+zIsiFmU5gAuTrf97ed6x9pPHJCTt0tErD03gDE6Hrz+zW/o7Qe80n6TW2o2hr
-         sYzz0niRl+PL6Y8Qn8eXuOASK+J67RJP2YoanEsh4ro9twuuAZkjoFyJXBVUrFQ1F8RD
-         BFi8o/bNNBVszIk9so9KeUvGEvCfDGrlh9gS8PF1thKh8f/M68gnwaDcYE2SExqJyWGI
-         vRDQ==
-X-Gm-Message-State: AOAM531/K46z9r5tK/BFmz65Sz3NVhI+DvGwcf2cIZ4bCARd16X+qJO/
-        AnRtm9NugKbqpdylF4Z/6np2mIEpFEtCbuOqzq+i4JGU
-X-Google-Smtp-Source: ABdhPJzktU2jr2lEJIVOdCGe2RQWv3GyPKEPdccH+4NA5/fJfRoBro6fywfIEEM8c3bRhFK0bkb/aHmDD5Fw9XKE6gQ=
-X-Received: by 2002:a9d:32e5:: with SMTP id u92mr5545078otb.107.1598339414496;
- Tue, 25 Aug 2020 00:10:14 -0700 (PDT)
+        bh=gPWggGnZfKXzYv43SZ5/w/OGptcwgH/cYoepbnpuXSU=;
+        b=hqhve2arDBbz7elUYiSxB2lOMOu7xgnllKMqI5cH389PO/qf2P1MaBfLrAz51Fl4wa
+         wACZiGlE/lYx4tTzdXi8YQEASlwbDElX7TaS64TFqkmlurf/48LK1eM8MwRZb4l/PsQK
+         GRjnzMrfz4Nbj60lqg5lkTVgfL4kc0QJNiD9soh4UWknYIRTZHGW8TT9aLkrXL9uDQm6
+         NdGndeyNoyV8JqPEVpim+gbb22UjTL4d5m0LwiKdQkTmfaPeM/3nhWTmb5DXeCjtXNxy
+         8Iux5dzIqXQiVnyqdye0hrHz3OYdDZA7f0gUUCYVlVPFp59yzGNTKr9yfyROrPPJCK6m
+         rHOw==
+X-Gm-Message-State: AOAM531Y6VwBiF/02Lkamhy2EYQIAejUwHW7FxmaymnhX4fvMMB1KJNh
+        Tl5BwTEceI2WpFf3dMKS5kZhfNc4jWbOuge0IALK3EqIjROx7g==
+X-Google-Smtp-Source: ABdhPJxT7sLAof3wgdsZrFIY0FgjJ9rUTWN5mlEBLHxkNznDjkfvRa3dUDnJhYrwxtShLAiGNnWtLnIVtbS/FI/GNSM=
+X-Received: by 2002:a17:906:b34c:: with SMTP id cd12mr8653384ejb.504.1598339433785;
+ Tue, 25 Aug 2020 00:10:33 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200821111401.4021-1-geert+renesas@glider.be> <20200824083007.x3l6ujn3mi5xhrsy@uno.localdomain>
-In-Reply-To: <20200824083007.x3l6ujn3mi5xhrsy@uno.localdomain>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 25 Aug 2020 09:10:02 +0200
-Message-ID: <CAMuHMdVaaNx2MbUiNKmvy=SnaDFEqpDVUNE7f+ftw4kw7Z=5gw@mail.gmail.com>
-Subject: Re: [PATCH] pinctrl: rza1: Switch to using "output-enable"
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+References: <20200820170228.42053-1-eajames@linux.ibm.com> <20200820170228.42053-3-eajames@linux.ibm.com>
+ <20200820171257.GG5854@sirena.org.uk> <660034d2-c808-3a4b-6ecc-be1769e8a017@linux.ibm.com>
+In-Reply-To: <660034d2-c808-3a4b-6ecc-be1769e8a017@linux.ibm.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 25 Aug 2020 07:10:21 +0000
+Message-ID: <CACPK8XcJnDjt6N9KHNEG7Mhy7=mWX2OYA-Z0tfBbvHdsJC7apA@mail.gmail.com>
+Subject: Re: [PATCH 2/7] spi: fsi: Fix clock running too fast
+To:     Eddie James <eajames@linux.ibm.com>
+Cc:     Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Brad Bishop <bradleyb@fuzziesquirrel.com>,
+        Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
-
-On Mon, Aug 24, 2020 at 10:26 AM Jacopo Mondi <jacopo@jmondi.org> wrote:
-> On Fri, Aug 21, 2020 at 01:14:01PM +0200, Geert Uytterhoeven wrote:
-> > For pins requiring software driven IO output operations, the RZ/A1 Pin
-> > Controller uses either the "output-high" or "output-low" DT property to
-> > enable the corresponding output buffer.  The actual line value doesn't
-> > matter, as it is ignored.
-> >
-> > Commit 425562429d4f3b13 ("pinctrl: generic: Add output-enable property")
-> > introduced a new DT property for this specific use case.
-> >
-> > Update the RZ/A1 Pin Controller DT bindings and driver to use this new
-> > property instead.  Preserve backwards compatibility with old DTBs in the
-> > driver, as this comes at a very small cost.
-> >
-> > Notes:
-> >   - The DT binding examples already used the new property,
-> >   - There are no upstream users of the old properties.
-> >
+On Thu, 20 Aug 2020 at 21:06, Eddie James <eajames@linux.ibm.com> wrote:
 >
-> Did we introduce output-enable after the rza1 pinctrl and forgot to
-> update ? Good catch anyway
+>
+> On 8/20/20 12:12 PM, Mark Brown wrote:
+> > On Thu, Aug 20, 2020 at 12:02:23PM -0500, Eddie James wrote:
+> >> From: Brad Bishop <bradleyb@fuzziesquirrel.com>
+> >>
+> >> Use a clock divider tuned to a 200MHz FSI clock.  Use of the previous
+> >> divider at 200MHz results in corrupt data from endpoint devices. Ideally
+> >> the clock divider would be calculated from the FSI clock, but that
+> >> would require some significant work on the FSI driver.
+> > Presumably this divider was chosen for FSI clocks that aren't 200MHz -
+> > how will those be handled?
+>
+>
+> They aren't handled at the moment, but 200MHz FSI represents the worst
+> case, as it's the maximum. Slower FSI clocks will simply result in
+> slower SPI clocks.
 
-"output-enable" was introduced in response to early review comments
-on the rza1 pinctrl driver, and both changes went upstream through
-the same sh-pfc pull request.  Seems like part of the update was just
-forgotten.
+That would be a good addition to the commit message, as I had the same
+question too.
 
-> Great! For both parts:
-> Acked-by: Jacopo Mondi <jacopo@jmondi.org>
+Cheers,
 
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Joel
