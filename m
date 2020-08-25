@@ -2,104 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56C17251CD4
-	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 18:03:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3669A251CDF
+	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 18:05:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726749AbgHYQDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Aug 2020 12:03:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48168 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726351AbgHYQDN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Aug 2020 12:03:13 -0400
-Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEC2EC06179A
-        for <devicetree@vger.kernel.org>; Tue, 25 Aug 2020 09:02:55 -0700 (PDT)
-Received: by mail-pj1-x1043.google.com with SMTP id j13so1462188pjd.4
-        for <devicetree@vger.kernel.org>; Tue, 25 Aug 2020 09:02:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
-        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Ev7YebnrMJC5hGp27fNNwdoImL+JDFARELNBma0/uAA=;
-        b=okyPVVy74yhlMZQCWF4kzfTd4X55KXDYOqzLJQnAIW0h1IFAYQXbSPLOVAMXMA3C3j
-         tL/HLBWDHQzpJj4ci2GUYu5lisDQtceXxLtpRS3C1N6QiXc629q7MzAhIlKzsE/O6Jxp
-         hxXjODLVSsA6omJuJUBYBjG3837I0mbscmwd9DDiSmJNrH7kgNiRNwtZuorFkk/LFb9S
-         8UetkH/uOhJseG0AECV3EuEvJy1vGwu2TbWICNUOLQB0uPtfvydMA8RjobjPyJ5HGasI
-         na6uzBxKd/6d/1odYvw97QotgbrYy+3q+PDbivrnLe7VTnK7Y1ItmndVIMa2H90PXS1/
-         vWZQ==
+        id S1726457AbgHYQFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Aug 2020 12:05:40 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:33218 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726222AbgHYQFh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Aug 2020 12:05:37 -0400
+Received: by mail-io1-f66.google.com with SMTP id g14so13034505iom.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Aug 2020 09:05:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=Ev7YebnrMJC5hGp27fNNwdoImL+JDFARELNBma0/uAA=;
-        b=Dmku7v//PjaSMnSh8C0exGgjSyyNBszFlkYeU9G7Ys29Q2mGwRZHosya8GOGnm3tvS
-         KvJjWESeVxFq0aYGnjrTxxw4Cgt1L8OWMrOSkBhDho7BHOA4xyKtf6O/Q86CjysQxCCA
-         dpY0Q44yR46Ef4cQW9DDM87fLOIyUg8B652PIZAPj9x6xcVbN8+YB0/hyV4yjkceXsbf
-         YOtP5Li4UflfdcRBN0wpoW6y20BLye0dTW71Fniz9xy2ZEyJX9W/WXkqeIDqCzGLf6Va
-         Czdj44PJ67UjJcmJrSLSydz5OAxOBzXSz/vsVo1bP+NFYNq2GlIXpN3taaGi2pxfVSP+
-         euWg==
-X-Gm-Message-State: AOAM533jvpNqwrh8k2trr2AyBH0vKU3JhnvB2Xh5qFQIVR10AkZRWQ2K
-        ThT6e9mYiIxhLDq73N9cDqDjfA==
-X-Google-Smtp-Source: ABdhPJxVMLNNcoGNUamsRb6XNuw5Pw/vE4Xo0oCs/JaO+Bek+U4WRn0q62JXgjoWyYfGNhJmC9XG0Q==
-X-Received: by 2002:a17:90a:f994:: with SMTP id cq20mr2218207pjb.229.1598371375255;
-        Tue, 25 Aug 2020 09:02:55 -0700 (PDT)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id t19sm15483792pfq.179.2020.08.25.09.02.54
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=USbVo7pdWQ2iWUYfdtVits61UbxkogYWPU+SGBVoiSM=;
+        b=rCY2F8rIJtHxQEcFWEPLZwWQmyE4fKQW+A/kET5q3GtBdgkMFdSMLFPEQHH3PpBUOT
+         8JRbzjOyA+8D9Vy8mtUM4Etc6kCJWcr8dV0MqnflLScvH6iqGjoQgZG5IhkvzCjtbMkA
+         EN0L0cpYrbrTM9Z2MDQF1d5gQFmQNPe2nBAXfRHXFm7ifo0EqrUMFWMkOY7Yke4evce6
+         9iYEkVY2md+Bi7Mw3ezGWlp8cFyxkNqjazfbezQnYLqD7fdxzs69C+W0eyHdybjj5pF9
+         iol0IeicDl75MkCavz0utCFOmnNfbL6GIef5GJU1rzRXGDyAvRObV+BCeUnxzjWV3CXr
+         8RzA==
+X-Gm-Message-State: AOAM531DZLGOx4lanxlVLssKQcPWRhSfnVzfJkiF7PukTDnL7scag4Wb
+        QVAME848E1szkASOEriFaA==
+X-Google-Smtp-Source: ABdhPJyrmxHLtqigmu8qg0y8JrSWYH0+kDFnN8rsGoDoBHrPo16Cm4OAj/Vy435rF8nD8peSSuII4g==
+X-Received: by 2002:a02:950e:: with SMTP id y14mr11193741jah.106.1598371535869;
+        Tue, 25 Aug 2020 09:05:35 -0700 (PDT)
+Received: from xps15 ([64.188.179.249])
+        by smtp.gmail.com with ESMTPSA id z9sm9234336ilm.78.2020.08.25.09.05.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Aug 2020 09:02:54 -0700 (PDT)
-Date:   Tue, 25 Aug 2020 09:02:54 -0700 (PDT)
-X-Google-Original-Date: Tue, 25 Aug 2020 09:02:48 PDT (-0700)
-Subject:     Re: [PATCH 0/3] SiFive DDR controller and EDAC support
-In-Reply-To: <1598357182-4226-1-git-send-email-yash.shah@sifive.com>
-CC:     robh+dt@kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
-        bp@alien8.de, mchehab@kernel.org, tony.luck@intel.com,
-        aou@eecs.berkeley.edu, james.morse@arm.com, rrichter@marvell.com,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org,
-        sachin.ghadi@sifive.com, yash.shah@sifive.com
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     yash.shah@sifive.com
-Message-ID: <mhng-eeb15e05-0af6-42bd-8c35-0b7e9bbedba7@palmerdabbelt-glaptop1>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        Tue, 25 Aug 2020 09:05:35 -0700 (PDT)
+Received: (nullmailer pid 862704 invoked by uid 1000);
+        Tue, 25 Aug 2020 16:05:32 -0000
+Date:   Tue, 25 Aug 2020 10:05:32 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 2/2] ASoC: dt-bindings: renesas, rsnd: switch to yaml
+ base Documentation
+Message-ID: <20200825160532.GA862290@bogus>
+References: <87wo1nwdft.wl-kuninori.morimoto.gx@renesas.com>
+ <87tuwrwdf0.wl-kuninori.morimoto.gx@renesas.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87tuwrwdf0.wl-kuninori.morimoto.gx@renesas.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Aug 2020 05:06:19 PDT (-0700), yash.shah@sifive.com wrote:
-> The series add supports for SiFive DDR controller driver. This driver
-> is use to manage the Cadence DDR controller present in SiFive SoCs.
-> Currently it manages only the EDAC feature of the DDR controller.
-> The series also adds Memory controller EDAC support for SiFive platform.
-> It register for notifier event from SiFive DDR controller driver.
->
-> The series is tested and based on Linux v5.8.
->
-> For testing on Hifive Unleashed:
-> 1. Enable the ECC bit of DDR controller during DDR initialization
-> 2. Erase the entire DRAM in bootloader stage
-> 3. Using FWC feature of DDR controller force ecc error to test
->
-> Yash Shah (3):
->   dt-bindings: riscv: Add DT documentation for DDR Controller in SiFive
->     SoCs
->   soc: sifive: Add SiFive specific Cadence DDR controller driver
->   edac: sifive: Add EDAC support for Memory Controller in SiFive SoCs
->
->  .../devicetree/bindings/riscv/sifive-ddr.yaml      |  41 ++++
->  drivers/edac/Kconfig                               |   2 +-
->  drivers/edac/sifive_edac.c                         | 117 ++++++++++++
->  drivers/soc/sifive/Kconfig                         |   6 +
->  drivers/soc/sifive/Makefile                        |   3 +-
->  drivers/soc/sifive/sifive_ddr.c                    | 207 +++++++++++++++++++++
->  include/soc/sifive/sifive_ddr.h                    |  73 ++++++++
->  7 files changed, 447 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/riscv/sifive-ddr.yaml
->  create mode 100644 drivers/soc/sifive/sifive_ddr.c
->  create mode 100644 include/soc/sifive/sifive_ddr.h
+On Tue, 25 Aug 2020 13:37:54 +0900, Kuninori Morimoto wrote:
+> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> 
+> This patch switches from .txt base to .yaml base Document.
+> It is still keeping detail explanations at .txt
+> 
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  .../bindings/sound/renesas,rsnd.txt           | 520 ------------------
+>  .../bindings/sound/renesas,rsnd.yaml          | 454 +++++++++++++++
+>  2 files changed, 454 insertions(+), 520 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> 
 
-Thanks.  These look good to me and I'm happy to take them through the RISC-V
-tree, but I'm going to wait for a bit to see if there are any comments from the
-maintainers of the various subsystems before doing so.
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/renesas,rsnd.example.dt.yaml: example-0: sound@ec500000:reg:0: [0, 3964665856, 0, 4096] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/renesas,rsnd.example.dt.yaml: example-0: sound@ec500000:reg:1: [0, 3965321216, 0, 256] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/renesas,rsnd.example.dt.yaml: example-0: sound@ec500000:reg:2: [0, 3964928000, 0, 4096] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/renesas,rsnd.example.dt.yaml: example-0: sound@ec500000:reg:3: [0, 3964932096, 0, 4736] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/renesas,rsnd.example.dt.yaml: example-0: sound@ec500000:reg:4: [0, 3967025152, 0, 512] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+
+
+See https://patchwork.ozlabs.org/patch/1350780
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
+
