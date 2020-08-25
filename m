@@ -2,95 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EFE0251DF3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 19:14:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83158251E02
+	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 19:17:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726825AbgHYRO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Aug 2020 13:14:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59244 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726803AbgHYROV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Aug 2020 13:14:21 -0400
-Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 602C0C061574;
-        Tue, 25 Aug 2020 10:14:21 -0700 (PDT)
-Received: by mail-pj1-x1043.google.com with SMTP id kx11so1129760pjb.5;
-        Tue, 25 Aug 2020 10:14:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=nC0CGa0DhQLywOaSN+bsM9yIH3pm94jbNUPQgdZ88Zc=;
-        b=UrPh53BImtLFBcv+cCSnb2qNXo6lIQxjvbEe5IvkiLrUqCkvCd0vLMoTGJ33ldyijB
-         5jG3uzkNRQI4r42LVWK5lVeOtDkTlJhqLRmfH/yZ899mxP4JFtPFQjcqGSH2H7mz4Cu7
-         uetACryJmuPdWieQ29zfPJMjyfXscYG+Ok97mXqWRwEkWKcRN6sbbKj9S1SETrVb4Iwg
-         a63GIEAuK9eZpTX+Fr/qiLnz72/kyKwlA6kShPSGfw++voig8J1arLJD3U3fzcFHrire
-         l///LWgSxJmGXZ+nRaDpYhAyoYsJCVlMpuE3OG4h9+G5S2Dhb1Tskuvfriid8xcEByoZ
-         Vrjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=nC0CGa0DhQLywOaSN+bsM9yIH3pm94jbNUPQgdZ88Zc=;
-        b=aGaQ6hYJ4ZwnvaEPqtvMIOm2w/wMAFTrT+RR34rQse3F4i2xffTFboMsqJ6hFipMBz
-         382PMdlmaCO9fQbhlABzez1gbM2MW8gNKe/hw9BGNhYX4s5g3M3eFVD0m7x5z6aRW4kR
-         7a8Pz8U/E8pqQF3GGzR3LBg0PWx/xpjlqg6oVB4m+dXeDnRfdBQFgNRSkykJSeGnFbMJ
-         cKSCtZ9ure9aI+hmNwCDxBp/HnOWLAd4OXPwBW9d35c2Qoyr3lgVqSEWvFfNSafp791B
-         6y0RDkAz5D3esuBioj3G3JvrFnMAU0HsG8BrShMpUq1JMOJB2GglncYcdny88qQ3+Q4l
-         8IMA==
-X-Gm-Message-State: AOAM533JPKiJDRKgHBHO/ieHRLXyXox/JQ82Fyx0dNEScDScMW+XuFdR
-        dyjwkRoGIieEwi/2x1DqPBZfqntEWD0=
-X-Google-Smtp-Source: ABdhPJz0hdCt6dO/xZHDgu7EfQeIWkH/2zYpyMfqRxlMXWDKzR+FSmzEGgyr71G/fTK5jRzr117JKA==
-X-Received: by 2002:a17:90a:bc09:: with SMTP id w9mr2380318pjr.43.1598375660814;
-        Tue, 25 Aug 2020 10:14:20 -0700 (PDT)
-Received: from [10.69.79.32] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id c15sm15746867pfo.115.2020.08.25.10.14.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Aug 2020 10:14:19 -0700 (PDT)
-Subject: Re: [PATCH v3 0/8] Hirschmann Hellcreek DSA driver
-To:     Kurt Kanzenbach <kurt@linutronix.de>,
-        David Miller <davem@davemloft.net>, olteanv@gmail.com
-Cc:     kuba@kernel.org, andrew@lunn.ch, vivien.didelot@gmail.com,
-        netdev@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, bigeasy@linutronix.de,
-        richardcochran@gmail.com, kamil.alkhouri@hs-offenburg.de,
-        ilias.apalodimas@linaro.org, ivan.khoronzhuk@linaro.org,
-        vinicius.gomes@intel.com, xiaoliang.yang_1@nxp.com, Po.Liu@nxp.com
-References: <20200820081118.10105-1-kurt@linutronix.de>
- <20200824143110.43f4619f@kicinski-fedora-PC1C0HJN>
- <20200824220203.atjmjrydq4qyt33x@skbuf>
- <20200824.153518.700546598086140133.davem@davemloft.net>
- <87sgcbynr9.fsf@kurt>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <efd98ac6-baaa-ae44-9630-ba1241ac315a@gmail.com>
-Date:   Tue, 25 Aug 2020 10:14:17 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.1.1
-MIME-Version: 1.0
-In-Reply-To: <87sgcbynr9.fsf@kurt>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1726514AbgHYRQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Aug 2020 13:16:57 -0400
+Received: from mail29.static.mailgun.info ([104.130.122.29]:48045 "EHLO
+        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726483AbgHYRQz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Aug 2020 13:16:55 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1598375814; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=KLK4RTTuf3ksuy/5zrVG85yqJucbVICT8rtcZnGayM0=; b=tE2luUpLcW81GEoNjkugNl+8CKkXqVLDAtFTT8uxskHrnsNtpvJ8cBdh2MUFJi79ZTZX4bX9
+ D54FRrZOwOuNt+1IKLwEIWNXYPDtVTk2vqm27H+m9J8H8RtPPHHuyZhdmP8K8ufOf+5/oKwt
+ aLqCTW9UxfSN2uyfPNiNPvtlNAs=
+X-Mailgun-Sending-Ip: 104.130.122.29
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 5f454785f558dbf280451a77 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 25 Aug 2020 17:16:53
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id EEA04C43387; Tue, 25 Aug 2020 17:16:52 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C939FC433C6;
+        Tue, 25 Aug 2020 17:16:47 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C939FC433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Srinivasa Rao <srivasam@codeaurora.org>
+Subject: [PATCH 0/5]: Qualcomm's lpass-hdmi ASoC driver to support audio over dp port
+Date:   Tue, 25 Aug 2020 22:46:23 +0530
+Message-Id: <1598375788-1882-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+These patches are to support audio over DP port on Qualcomm's SC7180 LPASS Asoc.
+It includes machine driver, cpu driver, platform driver updates for HDMI path support, 
+device tree documention, lpass variant structure optimization and configuration changes.
+These patches depends on the DP patch series 
+https://patchwork.kernel.org/project/dri-devel/list/?series=332029
 
+vsujithk (5):
+  dt-bindings: Add sc7180-lpass HDMI header define
+  dt-bindings: Add dts entry for lpass-hdmi dp audio
+  ASoC: qcom: add support for lpass hdmi driver
+  ASoC: qcom: Add support for audio over DP
+  Optimise lpass variant structure
 
-On 8/25/2020 4:21 AM, Kurt Kanzenbach wrote:
-> On Mon Aug 24 2020, David Miller wrote:
->> Agreed, Kurt can you repost this series without the TAPRIO support for
->> now since it's controversial and needs more discussion and changes?
-> 
-> OK. It seems like the TAPRIO implementation has to be discussed more and
-> it might be good to do that separately.
-> 
-> I'll replace the spinlocks (which were only introduced for the hrtimers)
-> with mutexes and post a sane version of the driver without the TAPRIO
-> support.
+ .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  |  42 ++
+ include/dt-bindings/sound/sc7180-lpass.h           |   1 +
+ sound/soc/qcom/Kconfig                             |   5 +
+ sound/soc/qcom/Makefile                            |   2 +
+ sound/soc/qcom/lpass-apq8016.c                     |  25 +-
+ sound/soc/qcom/lpass-cpu.c                         |  92 ++-
+ sound/soc/qcom/lpass-hdmi.c                        | 685 +++++++++++++++++++++
+ sound/soc/qcom/lpass-hdmi.h                        | 129 ++++
+ sound/soc/qcom/lpass-ipq806x.c                     |  25 +-
+ sound/soc/qcom/lpass-lpaif-reg.h                   |  51 +-
+ sound/soc/qcom/lpass-platform.c                    | 287 +++++++--
+ sound/soc/qcom/lpass-sc7180.c                      | 147 ++++-
+ sound/soc/qcom/lpass.h                             | 123 +++-
+ 13 files changed, 1467 insertions(+), 147 deletions(-)
+ create mode 100644 sound/soc/qcom/lpass-hdmi.c
+ create mode 100644 sound/soc/qcom/lpass-hdmi.h
 
-Sounds great, thanks!
 -- 
-Florian
+2.7.4
+
