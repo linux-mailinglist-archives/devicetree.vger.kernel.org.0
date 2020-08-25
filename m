@@ -2,76 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C78A82513D3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 10:08:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 272362513EA
+	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 10:14:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725947AbgHYIIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Aug 2020 04:08:44 -0400
-Received: from m12-11.163.com ([220.181.12.11]:38465 "EHLO m12-11.163.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725890AbgHYIIn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Aug 2020 04:08:43 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-        s=s110527; h=From:Subject:Date:Message-Id; bh=G2OJv28gTelM13Lm7C
-        9HowOCR4AZItrH4dcNL0B8Ex8=; b=nr6iwu32JLeJPujrfQrjdLIEqvGaA/9WOa
-        sB7vj8yTUGjs6XKZ41b8sHuLY31Eunc3qypQTehB4etoUO6NmyE8Sk9Iu+57jM2N
-        0nv4346fSSa8SPOaEGBTD7ZLi9rNxmJbuB7tS+9VhPNe8O+t78uQBCIc5g+kmTWK
-        nm5ESjVEs=
-Received: from localhost.localdomain (unknown [58.33.102.45])
-        by smtp7 (Coremail) with SMTP id C8CowAD3rDXqxkRfAWr+DA--.63807S3;
-        Tue, 25 Aug 2020 16:08:17 +0800 (CST)
-From:   Grant Feng <von81@163.com>
-To:     von81@163.com, jacek.anaszewski@gmail.com, pavel@ucw.cz,
-        dmurphy@ti.com, robh+dt@kernel.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] leds: Add an optional property named 'shutdown-gpios'
-Date:   Tue, 25 Aug 2020 16:07:58 +0800
-Message-Id: <20200825080758.5283-2-von81@163.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200825080758.5283-1-von81@163.com>
-References: <20200825080758.5283-1-von81@163.com>
-X-CM-TRANSID: C8CowAD3rDXqxkRfAWr+DA--.63807S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWrKw4fCFWfXFW7XFy3XrWfAFb_yoWkJFb_Ja
-        4xCr4IgFZ8uF4vg3WDZr1avr48Cw4xAr1DCa1IqF18Zw1xt3sIgF92qw1Yyr1UGana9r13
-        Ca97KFyUJ3ZrKjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-        9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0AcTDUUUUU==
-X-Originating-IP: [58.33.102.45]
-X-CM-SenderInfo: xyrqmii6rwjhhfrp/1tbiNxKLOlWBhwgskQAAsy
+        id S1726191AbgHYIOM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Aug 2020 04:14:12 -0400
+Received: from esa2.microchip.iphmx.com ([68.232.149.84]:10977 "EHLO
+        esa2.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725936AbgHYIOM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Aug 2020 04:14:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1598343251; x=1629879251;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=g0oeSZlVpkf2Kzf0aWXXwlGNTwXvDpPW9GbL9juy12M=;
+  b=eU6bzw/L480AjZueaHDRy+xI0PLXTFsIloiV9KY0I6gObO+Zj/4IEdok
+   jKVUClfX799xuA3zoIBJWUBd884rH9Q4odWcTpfybBajDbflA3LKlLXEf
+   K50SA2BstfhDuXOC01qOCTHoUJTPlQ+dUptLXEQYWLAw5xiseNAtUMj9U
+   /6747HrvFpUHzwXSrefimG/QKw57wERU8W4H6TxaBjq6qfl+mfZDxpuZH
+   GKqlhisggP0bchccOdA6LPZ891GEnftBxNY7O7D2r4uF/A4LfgWywRviP
+   urcDlzUAeD2BH66fWUPg0kFcxfCrz3VACXiqVONU8uccmENZ8L0PmSG2Q
+   Q==;
+IronPort-SDR: /wZRFZLMaC+FjjwakJmXc7gnUIOu6foIdLH8Cp825Cq/gPdvA98qu5moD2NNYiQzpp3w6tX0GN
+ VS0U7j05HD+k9rfXdYWnfK+AIpca/dmjnDuQPWkc8r4eZK7cuFzkNuqY+Jr4pWiKNY+ePMp28/
+ rdph1RlRy0fi2fn70mFrYroAB1gOPIw59ZpAbhblYirvohScFia4oNxfz4JKxrI0Q8i6UOXOdS
+ eGnte/DjDGrUfd9vGguVA0CdJGVkYzMnrZnfhfCYDdxlTip/h5fB7YletARsvCxyzEYFQ5TZ+0
+ MAk=
+X-IronPort-AV: E=Sophos;i="5.76,351,1592895600"; 
+   d="scan'208";a="86802294"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Aug 2020 01:14:06 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Tue, 25 Aug 2020 01:14:05 -0700
+Received: from soft-dev15.microsemi.net (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Tue, 25 Aug 2020 01:13:23 -0700
+From:   Lars Povlsen <lars.povlsen@microchip.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        SoC Team <soc@kernel.org>
+CC:     Lars Povlsen <lars.povlsen@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: [PATCH v5 0/3] mmc: Adding support for Microchip Sparx5 SoC
+Date:   Tue, 25 Aug 2020 10:13:54 +0200
+Message-ID: <20200825081357.32354-1-lars.povlsen@microchip.com>
+X-Mailer: git-send-email 2.27.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The chip enters hardware shutdown when the SDB pin is pulled low.
-The chip releases hardware shutdown when the SDB pin is pulled high.
+The patch adds eMMC support for Sparx5, by adding a driver for the SoC
+SDHCI controller, DT configuration and DT binding documentation.
 
-Signed-off-by: Grant Feng <von81@163.com>
----
- Documentation/devicetree/bindings/leds/leds-is31fl32xx.txt | 3 +++
- 1 file changed, 3 insertions(+)
+Changes in v5:
+- DT+yaml: Change (mmc|sdhci)@600800000 to mmc0@600800000
+- Add missing "static" attribute to probe function
+- Drop MMC_SDHCI_IO_ACCESSORS, as it is not required (anymore)
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-is31fl32xx.txt b/Documentation/devicetree/bindings/leds/leds-is31fl32xx.txt
-index 926c2117942c..ee761abb98a7 100644
---- a/Documentation/devicetree/bindings/leds/leds-is31fl32xx.txt
-+++ b/Documentation/devicetree/bindings/leds/leds-is31fl32xx.txt
-@@ -15,6 +15,8 @@ Required properties:
- - reg: I2C slave address
- - address-cells : must be 1
- - size-cells : must be 0
-+- shutdown-gpios : (optional)
-+  Specifier of the GPIO connected to SDB pin of the chip.
- 
- LED sub-node properties:
- - reg : LED channel number (1..N)
-@@ -31,6 +33,7 @@ is31fl3236: led-controller@3c {
- 	reg = <0x3c>;
- 	#address-cells = <1>;
- 	#size-cells = <0>;
-+	shutdown-gpios = <&gpio0 11 GPIO_ACTIVE_HIGH>;
- 
- 	led@1 {
- 		reg = <1>;
+Changes in v4:
+- Disable clock if sdhci_add_host() fails
+- Remove dev_err if sdhci_add_host() fails
+
+Changes in v3:
+- Add dt-bindings for property "microchip,clock-delay"
+- Enforce "microchip,clock-delay" valid range in driver
+- Removed a noisy pr_debug() in sdhci_sparx5_adma_write_desc()
+
+Changes in v2:
+- Changes in driver as per review comments
+ - Drop debug code
+ - Drop sysfs code
+ - use usleep_range()
+ - use mmc_hostname() in pr_debug()
+ - Remove deactivated code
+ - Minor cosmetics
+
+Lars Povlsen (3):
+  dt-bindings: mmc: Add Sparx5 SDHCI controller bindings
+  sdhci: sparx5: Add Sparx5 SoC eMMC driver
+  arm64: dts: sparx5: Add Sparx5 eMMC support
+
+ .../mmc/microchip,dw-sparx5-sdhci.yaml        |  65 +++++
+ arch/arm64/boot/dts/microchip/sparx5.dtsi     |  24 ++
+ .../boot/dts/microchip/sparx5_pcb125.dts      |  23 ++
+ .../boot/dts/microchip/sparx5_pcb134_emmc.dts |  23 ++
+ .../boot/dts/microchip/sparx5_pcb135_emmc.dts |  23 ++
+ drivers/mmc/host/Kconfig                      |  12 +
+ drivers/mmc/host/Makefile                     |   1 +
+ drivers/mmc/host/sdhci-of-sparx5.c            | 269 ++++++++++++++++++
+ 8 files changed, 440 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mmc/microchip,dw-sparx5-sdhci.yaml
+ create mode 100644 drivers/mmc/host/sdhci-of-sparx5.c
+
 -- 
-2.17.1
-
+2.27.0
 
