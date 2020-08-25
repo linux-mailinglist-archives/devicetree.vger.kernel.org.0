@@ -2,210 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC6EC2517CD
-	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 13:39:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3445D251826
+	for <lists+devicetree@lfdr.de>; Tue, 25 Aug 2020 14:04:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730058AbgHYLjg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Aug 2020 07:39:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34510 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728993AbgHYLi6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Aug 2020 07:38:58 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6B3DC061755;
-        Tue, 25 Aug 2020 04:38:57 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9193E29E;
-        Tue, 25 Aug 2020 13:38:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1598355529;
-        bh=oP1EjEnIIX7C41Y3YV+hfiXso0su8fK+nrUt1wKEF9Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=V8LDzF9P8hldB1tNCUwNJ/7EKxSr62Gp1cWVZMi/+ekcPHd96IW+rWoq5QdRJlTqH
-         dQ0DWxLi6Lzl6uAqGyxMgjAeEx/ru0IdXvNGSXFnSHtZYbvQMxELXOraGf4t8piTKA
-         ZndhWp0G8aMHKXNn/qTcdYqI4v37quU1a+7p0eyo=
-Date:   Tue, 25 Aug 2020 14:38:28 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Dave Airlie <airlied@gmail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        David Airlie <airlied@linux.ie>,
-        Wanchun Zheng <zhengwanchun@hisilicon.com>,
-        linuxarm@huawei.com, dri-devel <dri-devel@lists.freedesktop.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Daniel Borkmann <daniel@iogearbox.net>,
-        John Fastabend <john.fastabend@gmail.com>,
-        Xiubin Zhang <zhangxiubin1@huawei.com>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Xinliang Liu <xinliang.liu@linaro.org>,
-        Xinwei Kong <kong.kongxinwei@hisilicon.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Bogdan Togorean <bogdan.togorean@analog.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Liwei Cai <cailiwei@hisilicon.com>,
-        Jesper Dangaard Brouer <hawk@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Chen Feng <puck.chen@hisilicon.com>,
-        Alexei Starovoitov <ast@kernel.org>,
-        "moderated list:DMA BUFFER SHARING FRAMEWORK" 
-        <linaro-mm-sig@lists.linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        mauro.chehab@huawei.com, Rob Clark <robdclark@chromium.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Liuyao An <anliuyao@huawei.com>,
-        Network Development <netdev@vger.kernel.org>,
-        Rongrong Zou <zourongrong@gmail.com>,
-        BPF Mailing List <bpf@vger.kernel.org>,
-        "David S. Miller" <davem@davemloft.net>
-Subject: Re: [PATCH 00/49] DRM driver for Hikey 970
-Message-ID: <20200825113815.GA6767@pendragon.ideasonboard.com>
-References: <cover.1597833138.git.mchehab+huawei@kernel.org>
- <20200819152120.GA106437@ravnborg.org>
- <20200819153045.GA18469@pendragon.ideasonboard.com>
- <CALAqxLUXnPRec3UYbMKge8yNKBagLOatOeRCagF=JEyPEfWeKA@mail.gmail.com>
- <20200820090326.3f400a15@coco.lan>
- <20200820100205.GA5962@pendragon.ideasonboard.com>
- <CAPM=9twzsw7T=GD6Jc1EFenXq9ZhTgf_Nuo71uLfX2W33oa=6w@mail.gmail.com>
- <20200825133025.13f047f0@coco.lan>
+        id S1730016AbgHYMEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Aug 2020 08:04:25 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:27549 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730015AbgHYMBB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Aug 2020 08:01:01 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1598356861; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=RaE0nvM6498cSacjZ1LSCxECdE3SWE7NKgmJN9JMbME=;
+ b=v/V1OJWovO+qbfHYDAyOk74JcfzxVYcIEeNk1R6N37fjvCWUTnRPk94SUfVhRl32A1YewHTC
+ BHEwftiEiFbkCGcsazog6wpmxNXmFv2JnVhR92pYcsY4uinNXw/bDWdt3UO/b/6JqyeJ9e7p
+ CEVmA8aQ5+d/ROl6IQ45b3uAl/0=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 5f44fd4476c283d04f086864 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 25 Aug 2020 12:00:04
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 87070C43387; Tue, 25 Aug 2020 12:00:03 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: gokulsri)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0114EC433CB;
+        Tue, 25 Aug 2020 12:00:02 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200825133025.13f047f0@coco.lan>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 25 Aug 2020 17:30:02 +0530
+From:   gokulsri@codeaurora.org
+To:     bjorn.andersson@linaro.org, linux-remoteproc@vger.kernel.org,
+        sboyd@kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, linux-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, govinds@codeaurora.org,
+        sricharan@codeaurora.org
+Subject: Re: [PATCH v8 0/4] Add non PAS wcss Q6 support for QCS404
+In-Reply-To: <1596111244-28411-1-git-send-email-gokulsri@codeaurora.org>
+References: <1596111244-28411-1-git-send-email-gokulsri@codeaurora.org>
+Message-ID: <3476a019b5b847de979fb327183c3239@codeaurora.org>
+X-Sender: gokulsri@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mauro,
+Bjorn,
 
-On Tue, Aug 25, 2020 at 01:30:25PM +0200, Mauro Carvalho Chehab wrote:
-> Em Tue, 25 Aug 2020 05:29:29 +1000
-> Dave Airlie <airlied@gmail.com> escreveu:
-> 
-> > On Thu, 20 Aug 2020 at 20:02, Laurent Pinchart
-> > <laurent.pinchart@ideasonboard.com> wrote:
-> > >
-> > > Hi Mauro,
-> > >
-> > > On Thu, Aug 20, 2020 at 09:03:26AM +0200, Mauro Carvalho Chehab wrote:  
-> > > > Em Wed, 19 Aug 2020 12:52:06 -0700 John Stultz escreveu:  
-> > > > > On Wed, Aug 19, 2020 at 8:31 AM Laurent Pinchart wrote:  
-> > > > > > On Wed, Aug 19, 2020 at 05:21:20PM +0200, Sam Ravnborg wrote:  
-> > > > > > > On Wed, Aug 19, 2020 at 01:45:28PM +0200, Mauro Carvalho Chehab wrote:  
-> > > > > > > > This patch series port the out-of-tree driver for Hikey 970 (which
-> > > > > > > > should also support Hikey 960) from the official 96boards tree:
-> > > > > > > >
-> > > > > > > >    https://github.com/96boards-hikey/linux/tree/hikey970-v4.9
-> > > > > > > >
-> > > > > > > > Based on his history, this driver seems to be originally written
-> > > > > > > > for Kernel 4.4, and was later ported to Kernel 4.9. The original
-> > > > > > > > driver used to depend on ION (from Kernel 4.4) and had its own
-> > > > > > > > implementation for FB dev API.
-> > > > > > > >
-> > > > > > > > As I need to preserve the original history (with has patches from
-> > > > > > > > both HiSilicon and from Linaro),  I'm starting from the original
-> > > > > > > > patch applied there. The remaining patches are incremental,
-> > > > > > > > and port this driver to work with upstream Kernel.
-> > > > > > > >  
-> > > > > ...  
-> > > > > > > > - Due to legal reasons, I need to preserve the authorship of
-> > > > > > > >   each one responsbile for each patch. So, I need to start from
-> > > > > > > >   the original patch from Kernel 4.4;  
-> > > > > ...  
-> > > > > > > I do acknowledge you need to preserve history and all -
-> > > > > > > but this patchset is not easy to review.  
-> > > > > >
-> > > > > > Why do we need to preserve history ? Adding relevant Signed-off-by and
-> > > > > > Co-developed-by should be enough, shouldn't it ? Having a public branch
-> > > > > > that contains the history is useful if anyone is interested, but I don't
-> > > > > > think it's required in mainline.  
-> > > > >
-> > > > > Yea. I concur with Laurent here. I'm not sure what legal reasoning you
-> > > > > have on this but preserving the "absolute" history here is actively
-> > > > > detrimental for review and understanding of the patch set.
-> > > > >
-> > > > > Preserving Authorship, Signed-off-by lines and adding Co-developed-by
-> > > > > lines should be sufficient to provide both atribution credit and DCO
-> > > > > history.  
-> > > >
-> > > > I'm not convinced that, from legal standpoint, folding things would
-> > > > be enough. See, there are at least 3 legal systems involved here
-> > > > among the different patch authors:
-> > > >
-> > > >       - civil law;
-> > > >       - common law;
-> > > >       - customary law + common law.
-> > > >
-> > > > Merging stuff altogether from different law systems can be problematic,
-> > > > and trying to discuss this with experienced IP property lawyers will
-> > > > for sure take a lot of time and efforts. I also bet that different
-> > > > lawyers will have different opinions, because laws are subject to
-> > > > interpretation. With that matter I'm not aware of any court rules
-> > > > with regards to folded patches. So, it sounds to me that folding
-> > > > patches is something that has yet to be proofed in courts around
-> > > > the globe.
-> > > >
-> > > > At least for US legal system, it sounds that the Country of
-> > > > origin of a patch is relevant, as they have a concept of
-> > > > "national technology" that can be subject to export regulations.
-> > > >
-> > > > From my side, I really prefer to play safe and stay out of any such
-> > > > legal discussions.  
-> > >
-> > > Let's be serious for a moment. If you think there are legal issues in
-> > > taking GPL-v2.0-only patches and squashing them while retaining
-> > > authorship information through tags, the Linux kernel if *full* of that.
-> > > You also routinely modify patches that you commit to the media subsystem
-> > > to fix "small issues".
-> > >
-> > > The country of origin argument makes no sense either, the kernel code
-> > > base if full of code coming from pretty much all country on the planet.
-> > >
-> > > Keeping the patches separate make this hard to review. Please squash
-> > > them.  
-> > 
-> > I'm inclined to agree with Laurent here.
-> > 
-> > Patches submitted as GPL-v2 with DCO lines and author names/companies
-> > should be fine to be squashed and rearranged,
-> > as long as the DCO and Authorship is kept somewhere in the new patch
-> > that is applied.
-> > 
-> > Review is more important here.
-> 
-> Sorry, but I can't agree that review is more important than to be able
-> to properly indicate copyrights in a valid way at the legal systems that
-> it would apply ;-)
-> 
-> In any case, there's an easy way to make the code easy to review:
-> I can write the patches against staging (where it is OK to submit
-> preserving the history) and then add a final patch moving it out
-> of staging.
-> 
-> You can then just review the last patch, as it will contain the
-> entire code on it.
-> 
-> Another alternative, as I'm already doing with Sam, is for me to
-> submit the folded code as a reply to 00/xx. You can then just 
-> review the final code, without concerning about how the code reached
-> there.
-> 
-> From review point of the view, this will be the same as reviewing
-> a folded patch, but, from legal standpoint, the entire copyright
-> chain will be preserved.
+Awaiting your rewiew on this series [PATCH v8 0/4] Add non PAS wcss Q6 
+support for QCS404 and the dependant series [v7,0/9] remoteproc: qcom: 
+q6v5-wcss: Add support for secure pil 
+(https://patchwork.kernel.org/cover/11692941/)
 
-Let's stop with the legal FUD please. Squashing patches is done
-routinely in the kernel. If you have evidence this causes legal issues,
-please bring it up with the TAB or the LF to make this practice stop.
-Otherwise, please squash this series.
 
--- 
-Regards,
+Thanks,
+Gokul
 
-Laurent Pinchart
+On 2020-07-30 17:44, Gokul Sriram Palanisamy wrote:
+> Changes since v7:
+>  Addressed review comments from	Stephen Boyd
+> 
+> Changes since v6:
+>  Removed duplicate structure entry added during rebase in v5
+> 
+> Changes since v5:
+>  Rebased all the unmerged patches on top of linux-5.8-rc3
+>  Added dt-binding for qcom,qcs404-wcss-pil
+>  Removed typo
+> 
+> Changes since v4:
+>  removed QDSP6SS clock controls and moved to wcss rproc.
+>  renamed wcsccc to q6sstopcc.
+>  cleanup/refactoring.
+> 
+> Changes since v3:
+>  dt binding cleanup.
+>  Fixed remoteproc recovery.
+>  Added remoteproc dump support.
+>  wcsscc cleanup/refactoring.
+> 
+> Changes since v2:
+>  Removed unused properties.
+>  Refactored code to have common logic b/w ipq8074 and QCS404, wherever 
+> possible.
+>  Added compatible example.
+>  Removed wcss-protected bool.
+> 
+> Changes since v1:
+>   Corrected clock names as per comments in v1 patch.
+> 
+> Govind Singh (4):
+>   remoteproc: qcom: wcss: populate hardcoded param using driver data
+>   dt-bindings: remoteproc: qcom: Add Q6V5 Modem PIL binding for QCS404
+>   remoteproc: qcom: wcss: Add non pas wcss Q6 support for QCS404
+>   remoteproc: qcom: wcss: explicitly request exclusive reset control
+> 
+>  .../devicetree/bindings/remoteproc/qcom,q6v5.txt   |   9 +
+>  drivers/remoteproc/qcom_q6v5_wcss.c                | 591 
+> +++++++++++++++++++--
+>  2 files changed, 558 insertions(+), 42 deletions(-)
