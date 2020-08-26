@@ -2,233 +2,283 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB4222531AD
-	for <lists+devicetree@lfdr.de>; Wed, 26 Aug 2020 16:44:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66DFF2531DC
+	for <lists+devicetree@lfdr.de>; Wed, 26 Aug 2020 16:49:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726905AbgHZOoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Aug 2020 10:44:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60868 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726806AbgHZOod (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Aug 2020 10:44:33 -0400
-Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com [IPv6:2607:f8b0:4864:20::842])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D62CDC061757
-        for <devicetree@vger.kernel.org>; Wed, 26 Aug 2020 07:44:32 -0700 (PDT)
-Received: by mail-qt1-x842.google.com with SMTP id d27so1538315qtg.4
-        for <devicetree@vger.kernel.org>; Wed, 26 Aug 2020 07:44:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20150623.gappssmtp.com; s=20150623;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=3fltz4Tid80yvbd7ycd5CEvXCm5Dl/pplKlQTmdAxKA=;
-        b=k4m5mEJBWpHKc8UCyiMSoWpLFbB9PLsFXQSse1GeHDwA4DKW/bxLFf2oq06iweP+iL
-         M8bgXdl0A9155UGa8Nz8VJmE6L39gWW8oVIXtrtnNW2XbaFdQ7/KhobmLnk55ujnHV/2
-         tPPob3cH4BlQEISinoXdsc01CEIIJiQYM7T+gkUDqRjYhkY6CbBd83M1+SskyHHbWLvL
-         rHtzPGZUMHG7eDyNL2Q4ZV/nAiZIzogvhqr+a2Knoik0r52ut2ISFzGOCWsps3sZCmxq
-         fBsjIPcK+lwVA+ap0kK3kVNC6i6d4qEdXhZRr9MSKdg1iPVBdKJXwariY86XZf+E2JPH
-         +9mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=3fltz4Tid80yvbd7ycd5CEvXCm5Dl/pplKlQTmdAxKA=;
-        b=Wj93pWhbd17AWkidywyOaJHDqDYod9BHYzHmD/BMyjRxGVB7C+tvefMJv1SsTAKBu7
-         63+07bjw1OKQ/GBexuhUoS7DSNOhIFhk5ASOQ1Svu+XgrJ6jptAGesHTCLbAThhiXZF2
-         RutBvnWgcHRze3K7wrUIfaipiYBpom5Gz5fJbbggnt3vqC6zUqNOlUQO757Q0u/0m/V9
-         STR3aj7ERTqEjIkKTVeW+QrtLesPZn/d1mEZ9NNLSwD+TltUw62UUD9IKdMBHd3FhhFT
-         VaGkxlJZfuCk3UjMT86rx4GfjLAsrzm828c3Tm6ltYDN4SvUP82n4b71ftI1SW+pTbwh
-         wxlA==
-X-Gm-Message-State: AOAM530oieuR56u5N4FcZfp9dtziqcHxBiCvM0QzfmXixhvPF2A7z7fW
-        Y00+uoaxp2C758DRssAmo0OW7w==
-X-Google-Smtp-Source: ABdhPJzCRDv2m2NsfRzSYdU3punl1WmSuoZIWY3X6Qrw3w/UZAKmzNkoM0/3I601SkHanbswK7RLyw==
-X-Received: by 2002:ac8:33a1:: with SMTP id c30mr10693591qtb.156.1598453071797;
-        Wed, 26 Aug 2020 07:44:31 -0700 (PDT)
-Received: from skullcanyon ([192.222.193.21])
-        by smtp.gmail.com with ESMTPSA id a203sm1862906qkg.30.2020.08.26.07.44.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Aug 2020 07:44:31 -0700 (PDT)
-Message-ID: <aade022eeea9d9196774d0f21cbdaa118de8f885.camel@ndufresne.ca>
-Subject: Re: [PATCH 00/49] DRM driver for Hikey 970
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Dave Airlie <airlied@gmail.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        David Airlie <airlied@linux.ie>,
-        Wanchun Zheng <zhengwanchun@hisilicon.com>,
-        linuxarm@huawei.com, dri-devel <dri-devel@lists.freedesktop.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Daniel Borkmann <daniel@iogearbox.net>,
-        John Fastabend <john.fastabend@gmail.com>,
-        Xiubin Zhang <zhangxiubin1@huawei.com>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Xinliang Liu <xinliang.liu@linaro.org>,
-        Xinwei Kong <kong.kongxinwei@hisilicon.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Bogdan Togorean <bogdan.togorean@analog.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Liwei Cai <cailiwei@hisilicon.com>,
-        Jesper Dangaard Brouer <hawk@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Chen Feng <puck.chen@hisilicon.com>,
-        Alexei Starovoitov <ast@kernel.org>,
-        "moderated list:DMA BUFFER SHARING FRAMEWORK" 
-        <linaro-mm-sig@lists.linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        mauro.chehab@huawei.com, Rob Clark <robdclark@chromium.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Liuyao An <anliuyao@huawei.com>,
-        Network Development <netdev@vger.kernel.org>,
-        Rongrong Zou <zourongrong@gmail.com>,
-        BPF Mailing List <bpf@vger.kernel.org>,
-        "David S. Miller" <davem@davemloft.net>
-Date:   Wed, 26 Aug 2020 10:44:28 -0400
-In-Reply-To: <20200825133025.13f047f0@coco.lan>
-References: <cover.1597833138.git.mchehab+huawei@kernel.org>
-         <20200819152120.GA106437@ravnborg.org>
-         <20200819153045.GA18469@pendragon.ideasonboard.com>
-         <CALAqxLUXnPRec3UYbMKge8yNKBagLOatOeRCagF=JEyPEfWeKA@mail.gmail.com>
-         <20200820090326.3f400a15@coco.lan>
-         <20200820100205.GA5962@pendragon.ideasonboard.com>
-         <CAPM=9twzsw7T=GD6Jc1EFenXq9ZhTgf_Nuo71uLfX2W33oa=6w@mail.gmail.com>
-         <20200825133025.13f047f0@coco.lan>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.5 (3.36.5-1.fc32) 
+        id S1727115AbgHZOtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Aug 2020 10:49:20 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.80]:28191 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726845AbgHZOtL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Aug 2020 10:49:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1598453348;
+        s=strato-dkim-0002; d=gerhold.net;
+        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=WtPyyCfNYRDGNlRLhnTbAOZUqz018Ne4S7uPqstOy3k=;
+        b=ZKF7HKI63jLWVLrusi6lW0rDx12aW26hCGhQUqpCuj8/t2eqlep86sAzuXgB59nfeH
+        mYYR7tcfWNxOogMqPUzBBIR6+Map0GZ2Jc5YNsjrZPBWAEsHwMGjCY2kYlGpC13jGPbO
+        ySXRBCZ3i5hcQGlLV2XcFexH3yxiIHwCKvKrMzToV3QXnEgynMIDB8rasLBZfUFN4gdg
+        lgOQtyWaWEJ3gvYgyBE0GbbP604wh/ercxpyJ2wefv2KSon2xUc2JaV9ofb4yI48pDSZ
+        iUxT2pCitRbQHiqd7Cez087tqFkLeaP22mcKQF6vzwWz/6xj+/eLNutqcLjVsLk+8pum
+        Cacw==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j7Ic/Fboo="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+        by smtp.strato.de (RZmta 46.10.7 DYNA|AUTH)
+        with ESMTPSA id g0b6c1w7QElPnl9
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Wed, 26 Aug 2020 16:47:25 +0200 (CEST)
+Date:   Wed, 26 Aug 2020 16:47:18 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Cheng-Yi Chiang <cychiang@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        dianders@chromium.org, dgreid@chromium.org, tzungbi@chromium.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, Ajit Pandey <ajitp@codeaurora.org>,
+        Tzung-Bi Shih <tzungbi@google.com>
+Subject: Re: [PATCH v6 2/2] ASoC: qcom: sc7180: Add machine driver for sound
+ card registration
+Message-ID: <20200826144718.GA854@gerhold.net>
+References: <20200826110454.1811352-1-cychiang@chromium.org>
+ <20200826110454.1811352-3-cychiang@chromium.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200826110454.1811352-3-cychiang@chromium.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le mardi 25 août 2020 à 13:30 +0200, Mauro Carvalho Chehab a écrit :
-> Em Tue, 25 Aug 2020 05:29:29 +1000
-> Dave Airlie <airlied@gmail.com> escreveu:
+On Wed, Aug 26, 2020 at 07:04:54PM +0800, Cheng-Yi Chiang wrote:
+> From: Ajit Pandey <ajitp@codeaurora.org>
 > 
-> > On Thu, 20 Aug 2020 at 20:02, Laurent Pinchart
-> > <laurent.pinchart@ideasonboard.com> wrote:
-> > > Hi Mauro,
-> > > 
-> > > On Thu, Aug 20, 2020 at 09:03:26AM +0200, Mauro Carvalho Chehab wrote:  
-> > > > Em Wed, 19 Aug 2020 12:52:06 -0700 John Stultz escreveu:  
-> > > > > On Wed, Aug 19, 2020 at 8:31 AM Laurent Pinchart wrote:  
-> > > > > > On Wed, Aug 19, 2020 at 05:21:20PM +0200, Sam Ravnborg wrote:  
-> > > > > > > On Wed, Aug 19, 2020 at 01:45:28PM +0200, Mauro Carvalho Chehab wrote:  
-> > > > > > > > This patch series port the out-of-tree driver for Hikey 970 (which
-> > > > > > > > should also support Hikey 960) from the official 96boards tree:
-> > > > > > > > 
-> > > > > > > >    https://github.com/96boards-hikey/linux/tree/hikey970-v4.9
-> > > > > > > > 
-> > > > > > > > Based on his history, this driver seems to be originally written
-> > > > > > > > for Kernel 4.4, and was later ported to Kernel 4.9. The original
-> > > > > > > > driver used to depend on ION (from Kernel 4.4) and had its own
-> > > > > > > > implementation for FB dev API.
-> > > > > > > > 
-> > > > > > > > As I need to preserve the original history (with has patches from
-> > > > > > > > both HiSilicon and from Linaro),  I'm starting from the original
-> > > > > > > > patch applied there. The remaining patches are incremental,
-> > > > > > > > and port this driver to work with upstream Kernel.
-> > > > > > > >  
-> > > > > ...  
-> > > > > > > > - Due to legal reasons, I need to preserve the authorship of
-> > > > > > > >   each one responsbile for each patch. So, I need to start from
-> > > > > > > >   the original patch from Kernel 4.4;  
-> > > > > ...  
-> > > > > > > I do acknowledge you need to preserve history and all -
-> > > > > > > but this patchset is not easy to review.  
-> > > > > > 
-> > > > > > Why do we need to preserve history ? Adding relevant Signed-off-by and
-> > > > > > Co-developed-by should be enough, shouldn't it ? Having a public branch
-> > > > > > that contains the history is useful if anyone is interested, but I don't
-> > > > > > think it's required in mainline.  
-> > > > > 
-> > > > > Yea. I concur with Laurent here. I'm not sure what legal reasoning you
-> > > > > have on this but preserving the "absolute" history here is actively
-> > > > > detrimental for review and understanding of the patch set.
-> > > > > 
-> > > > > Preserving Authorship, Signed-off-by lines and adding Co-developed-by
-> > > > > lines should be sufficient to provide both atribution credit and DCO
-> > > > > history.  
-> > > > 
-> > > > I'm not convinced that, from legal standpoint, folding things would
-> > > > be enough. See, there are at least 3 legal systems involved here
-> > > > among the different patch authors:
-> > > > 
-> > > >       - civil law;
-> > > >       - common law;
-> > > >       - customary law + common law.
-> > > > 
-> > > > Merging stuff altogether from different law systems can be problematic,
-> > > > and trying to discuss this with experienced IP property lawyers will
-> > > > for sure take a lot of time and efforts. I also bet that different
-> > > > lawyers will have different opinions, because laws are subject to
-> > > > interpretation. With that matter I'm not aware of any court rules
-> > > > with regards to folded patches. So, it sounds to me that folding
-> > > > patches is something that has yet to be proofed in courts around
-> > > > the globe.
-> > > > 
-> > > > At least for US legal system, it sounds that the Country of
-> > > > origin of a patch is relevant, as they have a concept of
-> > > > "national technology" that can be subject to export regulations.
-> > > > 
-> > > > From my side, I really prefer to play safe and stay out of any such
-> > > > legal discussions.  
-> > > 
-> > > Let's be serious for a moment. If you think there are legal issues in
-> > > taking GPL-v2.0-only patches and squashing them while retaining
-> > > authorship information through tags, the Linux kernel if *full* of that.
-> > > You also routinely modify patches that you commit to the media subsystem
-> > > to fix "small issues".
-> > > 
-> > > The country of origin argument makes no sense either, the kernel code
-> > > base if full of code coming from pretty much all country on the planet.
-> > > 
-> > > Keeping the patches separate make this hard to review. Please squash
-> > > them.  
-> > 
-> > I'm inclined to agree with Laurent here.
-> > 
-> > Patches submitted as GPL-v2 with DCO lines and author names/companies
-> > should be fine to be squashed and rearranged,
-> > as long as the DCO and Authorship is kept somewhere in the new patch
-> > that is applied.
-> > 
-> > Review is more important here.
+> Add new driver to register sound card on sc7180 trogdor board and
+> do the required configuration for lpass cpu dai and external codecs
+> connected over MI2S interfaces.
 > 
-> Sorry, but I can't agree that review is more important than to be able
-> to properly indicate copyrights in a valid way at the legal systems that
-> it would apply ;-)
+> Signed-off-by: Ajit Pandey <ajitp@codeaurora.org>
+> Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
+> Reviewed-by: Tzung-Bi Shih <tzungbi@google.com>
+> ---
+>  sound/soc/qcom/Kconfig  |  12 ++
+>  sound/soc/qcom/Makefile |   2 +
+>  sound/soc/qcom/sc7180.c | 244 ++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 258 insertions(+)
+>  create mode 100644 sound/soc/qcom/sc7180.c
+> 
+> diff --git a/sound/soc/qcom/Kconfig b/sound/soc/qcom/Kconfig
+> index a607ace8b089..63678b746299 100644
+> --- a/sound/soc/qcom/Kconfig
+> +++ b/sound/soc/qcom/Kconfig
+> @@ -116,4 +116,16 @@ config SND_SOC_SDM845
+>  	  SDM845 SoC-based systems.
+>  	  Say Y if you want to use audio device on this SoCs.
+>  
+> +config SND_SOC_SC7180
+> +	tristate "SoC Machine driver for SC7180 boards"
+> +	depends on SND_SOC_QCOM
+> +	select SND_SOC_QCOM_COMMON
+> +	select SND_SOC_LPASS_SC7180
+> +	select SND_SOC_MAX98357A
+> +	select SND_SOC_RT5682
+> +	help
+> +	  To add support for audio on Qualcomm Technologies Inc.
+> +	  SC7180 SoC-based systems.
+> +	  Say Y if you want to use audio device on this SoCs.
+> +
+>  endif #SND_SOC_QCOM
+> diff --git a/sound/soc/qcom/Makefile b/sound/soc/qcom/Makefile
+> index 7972c9479ab0..0cdcbf367ef1 100644
+> --- a/sound/soc/qcom/Makefile
+> +++ b/sound/soc/qcom/Makefile
+> @@ -17,12 +17,14 @@ snd-soc-storm-objs := storm.o
+>  snd-soc-apq8016-sbc-objs := apq8016_sbc.o
+>  snd-soc-apq8096-objs := apq8096.o
+>  snd-soc-sdm845-objs := sdm845.o
+> +snd-soc-sc7180-objs := sc7180.o
+>  snd-soc-qcom-common-objs := common.o
+>  
+>  obj-$(CONFIG_SND_SOC_STORM) += snd-soc-storm.o
+>  obj-$(CONFIG_SND_SOC_APQ8016_SBC) += snd-soc-apq8016-sbc.o
+>  obj-$(CONFIG_SND_SOC_MSM8996) += snd-soc-apq8096.o
+>  obj-$(CONFIG_SND_SOC_SDM845) += snd-soc-sdm845.o
+> +obj-$(CONFIG_SND_SOC_SC7180) += snd-soc-sc7180.o
+>  obj-$(CONFIG_SND_SOC_QCOM_COMMON) += snd-soc-qcom-common.o
+>  
+>  #DSP lib
+> diff --git a/sound/soc/qcom/sc7180.c b/sound/soc/qcom/sc7180.c
+> new file mode 100644
+> index 000000000000..7849376f63ba
+> --- /dev/null
+> +++ b/sound/soc/qcom/sc7180.c
+> @@ -0,0 +1,244 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +//
+> +// Copyright (c) 2020, The Linux Foundation. All rights reserved.
+> +//
+> +// sc7180.c -- ALSA SoC Machine driver for SC7180
+> +
+> +#include <dt-bindings/sound/sc7180-lpass.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <sound/core.h>
+> +#include <sound/jack.h>
+> +#include <sound/pcm.h>
+> +#include <sound/pcm_params.h>
+> +#include <sound/soc.h>
+> +#include <uapi/linux/input-event-codes.h>
+> +
+> +#include "../codecs/rt5682.h"
+> +#include "common.h"
+> +#include "lpass.h"
+> +
+> +#define DEFAULT_SAMPLE_RATE_48K		48000
+> +#define DEFAULT_MCLK_RATE		19200000
+> +#define RT5682_PLL1_FREQ (48000 * 512)
+> +
+> +struct sc7180_snd_data {
+> +	struct snd_soc_jack jack;
+> +	u32 pri_mi2s_clk_count;
+> +};
+> +
+> +static void sc7180_jack_free(struct snd_jack *jack)
+> +{
+> +	struct snd_soc_component *component = jack->private_data;
+> +
+> +	snd_soc_component_set_jack(component, NULL, NULL);
+> +}
+> +
+> +static int sc7180_headset_init(struct snd_soc_component *component)
+> +{
+> +	struct snd_soc_card *card = component->card;
+> +	struct sc7180_snd_data *pdata = snd_soc_card_get_drvdata(card);
+> +	struct snd_jack *jack;
+> +	int rval;
+> +
+> +	rval = snd_soc_card_jack_new(
+> +			card, "Headset Jack",
+> +			SND_JACK_HEADSET |
+> +			SND_JACK_HEADPHONE |
+> +			SND_JACK_BTN_0 | SND_JACK_BTN_1 |
+> +			SND_JACK_BTN_2 | SND_JACK_BTN_3,
+> +			&pdata->jack, NULL, 0);
+> +
+> +	if (rval < 0) {
+> +		dev_err(card->dev, "Unable to add Headset Jack\n");
+> +		return rval;
+> +	}
+> +
+> +	jack = pdata->jack.jack;
+> +
+> +	snd_jack_set_key(jack, SND_JACK_BTN_0, KEY_PLAYPAUSE);
+> +	snd_jack_set_key(jack, SND_JACK_BTN_1, KEY_VOICECOMMAND);
+> +	snd_jack_set_key(jack, SND_JACK_BTN_2, KEY_VOLUMEUP);
+> +	snd_jack_set_key(jack, SND_JACK_BTN_3, KEY_VOLUMEDOWN);
+> +
+> +	jack->private_data = component;
+> +	jack->private_free = sc7180_jack_free;
+> +
+> +	rval = snd_soc_component_set_jack(component,
+> +					  &pdata->jack, NULL);
+> +	if (rval != 0 && rval != -EOPNOTSUPP) {
+> +		dev_warn(card->dev, "Failed to set jack: %d\n", rval);
+> +		return rval;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static struct snd_soc_aux_dev sc7180_headset_dev = {
+> +	.dlc = COMP_EMPTY(),
+> +	.init = sc7180_headset_init,
+> +};
+> +
 
-Regardless of the "review-ability", our users distribute the Linux
-Kernel as a whole, so who contributed which specific line of code is
-already lost in a way. All we see in the distribution if a list of
-copyright holder and licenses. In this context, the per patches
-ownership have no legal implication. My two, non lawyer cents.
+[...]
 
-> 
-> In any case, there's an easy way to make the code easy to review:
-> I can write the patches against staging (where it is OK to submit
-> preserving the history) and then add a final patch moving it out
-> of staging.
-> 
-> You can then just review the last patch, as it will contain the
-> entire code on it.
-> 
-> Another alternative, as I'm already doing with Sam, is for me to
-> submit the folded code as a reply to 00/xx. You can then just 
-> review the final code, without concerning about how the code reached
-> there.
-> 
-> From review point of the view, this will be the same as reviewing
-> a folded patch, but, from legal standpoint, the entire copyright
-> chain will be preserved.
-> 
-> Thanks,
-> Mauro
+> +static struct snd_soc_card sc7180_card = {
+> +	.owner = THIS_MODULE,
+> +	.aux_dev = &sc7180_headset_dev,
+> +	.num_aux_devs = 1,
+> +	.dapm_widgets = sc7180_snd_widgets,
+> +	.num_dapm_widgets = ARRAY_SIZE(sc7180_snd_widgets),
+> +};
+> +
+> +static int sc7180_parse_aux_of(struct device *dev)
+> +{
+> +	sc7180_headset_dev.dlc.of_node = of_parse_phandle(
+> +			dev->of_node, "aux-dev", 0);
+> +
+> +	if (!sc7180_headset_dev.dlc.of_node)
+> +		return -EINVAL;
+> +	return 0;
+> +}
+> +
 
+Thanks for noting that this conflicts with my patch set that adds the
+"aux-devs" property for the device tree [1], I didn't see this before.
+
+The use of aux-dev in this patch looks a bit weird to me...
+
+As I understand, the "auxiliary devices" of a sound card are intended to
+be used for components that should be probed even though they don't
+appear within one of the DAI links. Examples for that are especially
+analog amplifiers and other components that do not have digital audio
+input/output.
+
+On the other hand, in this patch it seems to be just a way to mark the
+DAI component that will provide the headphone jack detection. In your
+example, the component that provides the headphone jack then appears
+both as DAI component and as auxiliary device:
+
+	aux-dev = <&alc5682>;
+
+	dai-link@0 {
+		link-name = "MultiMedia0";
+		reg = <0>;
+		cpu {
+			sound-dai = <&lpass_cpu 0>;
+		};
+		codec {
+			sound-dai = <&alc5682 0>;
+		};
+	};
+
+Adding &alc5682 to snd_soc_card->aux_dev is kind of pointless in this
+case because it will already be probed as part of the DAI link.
+
+The only thing you gain is that you have the init() callback which gives
+you the component that provides the headphone jack. But if someone wants
+to add an actual auxiliary device later (e.g. an analog amplifier),
+they would run into trouble...
+
+I wonder if it would be better to just have some sort of phandle, e.g.
+
+	audio-jack = <&alc5682>;
+
+but instead of creating an auxiliary device for this you would e.g.
+iterate over the list of components to find the one the phandle refers to.
+
+Or maybe someone else can comment if using an auxiliary device for this
+does really make sense?
+
+Thanks,
+Stephan
+
+[1]: https://lore.kernel.org/alsa-devel/20200826095141.94017-1-stephan@gerhold.net/
