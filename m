@@ -2,158 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 406F8252CCF
-	for <lists+devicetree@lfdr.de>; Wed, 26 Aug 2020 13:48:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 632F7252D09
+	for <lists+devicetree@lfdr.de>; Wed, 26 Aug 2020 13:54:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728780AbgHZLR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Aug 2020 07:17:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56828 "EHLO
+        id S1729145AbgHZLyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Aug 2020 07:54:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728718AbgHZLQ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Aug 2020 07:16:59 -0400
-Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E5B4C061574;
-        Wed, 26 Aug 2020 04:16:58 -0700 (PDT)
-Received: by mail-pg1-x541.google.com with SMTP id o5so884204pgb.2;
-        Wed, 26 Aug 2020 04:16:58 -0700 (PDT)
+        with ESMTP id S1729142AbgHZLul (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Aug 2020 07:50:41 -0400
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02815C061757
+        for <devicetree@vger.kernel.org>; Wed, 26 Aug 2020 04:50:41 -0700 (PDT)
+Received: by mail-pl1-x644.google.com with SMTP id 10so772454plg.8
+        for <devicetree@vger.kernel.org>; Wed, 26 Aug 2020 04:50:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=9BLb5SG/442AGlteVEU+VMTqxtoAM2EGD3L4sUWx4Zo=;
-        b=RTM9eShaWBULpfiCRgbWc2dfnQ8mzP3UIe6PD9REcR2jFelRuQgY09d5O441gFQ6VO
-         D9oO87xWRZNIVvhOanS8SIn4qAUSIE5hSC0QV9OZr/R1PGgA70tXR1XXT2yxGoDCCVh8
-         k9DcqEJCygohr8Tp+SAGy4k6aq/7yODQ+f3HKMYSPE9HNJNCUURn96Zzn/ZEuuJ+HdwN
-         lFKP+ic/cFUz/eJIsM3GX3eDZ6Lb2LRk/2cydMrII6CYeh5fuBkansErTfOtBjKTm7lo
-         eHN8vdd7HPcLirjZpABpPEhp8zbHXq9ZFgG/ZyN+IW9LrDyM1EGCJXO685nidCgwtov2
-         zTfg==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YamHvfkP8QzJYhuEjb0/KnD0eM3ZI++KpyFGM28MyaU=;
+        b=mBiZVZxDCvUt6hLD48mg3Q12FL0jsNUjeakdVaFYreSg+6zLizvcH7tOYA4wRmTTut
+         wIRIJ8dVERDNCPc+80jOIqaToeBcOSL5ZS7Tpm2PL7/CPYx06WJ+MsEAxd8bvpIq9Z/7
+         MTCNTwed9PIYasztEIAiWwLt68PZEymEWPKIT39Je/TA/Dnsdys/fb6XzLofGnbYc3Kf
+         60p2IGvt1TF5ERJbECNEeCRD1GO27gjcKJXwNgBV6+JsRjVFoa3iQG3gE1Qj0/P4dqgy
+         GfD4vA4g7BHKFEjT23GkDssilnM5F4pYiUVuLOoDfvedhc+7jePoG1R9fxG8HtR8dTex
+         2asQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=9BLb5SG/442AGlteVEU+VMTqxtoAM2EGD3L4sUWx4Zo=;
-        b=m7jtrtcFNJ+vlZcWgIBV8DDc5KY1iKAIWOtfazRQhrf47mCwnMZEmGLpbin1Yl6pwu
-         Pf26IQbjssEQs+UMA40pGXDb5dsJR3jQh1UVpNRS0IdwIQlHEx8tZIk5cXuSjUh49A+6
-         UJ+O3iyD1Jdw5bd0JKGYWSJcVwLRxJ4aIChuC64dzjo9++Hy0tYLlc7FIQ9H02OD0TAo
-         SmFkPtWNSAM9ybxcyALOsXHGpY1+DBlqoXmBN5g9bzZKNLdOy9jLhdOaiCiecc8X732X
-         WpvlK+qIec+g99ofUcdH2VYsDBPwLUDU+g00pT4H6pG7oOKU8PP6EWzHKVKTId0inPMZ
-         95iA==
-X-Gm-Message-State: AOAM531yh22QgnLngV0NjJAy7PlTIcCqkreqLkcbgRWwsakzOF8I7Ap5
-        dsSvVdbcaC8HRLDSDpvSLzDYnA7lVXzYEw==
-X-Google-Smtp-Source: ABdhPJwxUqjX5J9QraoEj7Vzj2jbbfcOOIZC6fx+JhfutgFaUIROtDcRQOSSk3ooISjmDYHh8woMpA==
-X-Received: by 2002:a63:6f02:: with SMTP id k2mr10069642pgc.191.1598440617709;
-        Wed, 26 Aug 2020 04:16:57 -0700 (PDT)
-Received: from localhost.localdomain ([2402:7500:464:1646:7076:aae7:15f:eca9])
-        by smtp.gmail.com with ESMTPSA id g129sm2628872pfb.33.2020.08.26.04.16.53
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YamHvfkP8QzJYhuEjb0/KnD0eM3ZI++KpyFGM28MyaU=;
+        b=XDO7XS6w9fgchsJHKxwvk1Uhqk6vJNfGbhgx8655SRHsWhvuWRm34Z2jwDUYTt9tKA
+         1WlJ8tCGyGNwO0XGqkGswPwz+cVcvQRCQuyNL8a4tRVzTY3aEnebLKTsUJQGozn8Bztu
+         ygY8CtSO+Nm+NIoKA7GSq4FWxREToeY6ILg55aosUX2gsu7ii0eI0tgUjge/FUQiFgsQ
+         dITtgibSTKW3/gz/lnZ7d+J57vUmV8fnGAdy+qnFnFN6L+TesA7pVSUgD7VPo9BpIE46
+         0bMw+9Xd3nlvji/87wvMv6AkQhquH2XA7M8KafchUsevbRzzhmzjcTz6mDJaWMCstTuX
+         AkDQ==
+X-Gm-Message-State: AOAM531U3tZ+vsuwuMSfpjr6QhYCRkEhIY7eWCG+EL7GOU1KZRtUsNXd
+        7SPmq7K/5gYE+NND3Is5TPvAF7LjU39A+A==
+X-Google-Smtp-Source: ABdhPJw8Oo/HMnBPg30gLaQd8tsLpFWkUn2/9H03cnOA39gJU2XV4GJz2To+Kk1+/bfcON40cB1AdA==
+X-Received: by 2002:a17:90a:550e:: with SMTP id b14mr5698261pji.64.1598442640224;
+        Wed, 26 Aug 2020 04:50:40 -0700 (PDT)
+Received: from localhost ([122.172.43.13])
+        by smtp.gmail.com with ESMTPSA id q2sm2261270pgs.90.2020.08.26.04.50.39
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 26 Aug 2020 04:16:57 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, linux@roeck-us.net,
-        heikki.krogerus@linux.intel.com
-Cc:     cy_huang@richtek.com, gene_chen@richtek.com,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] usb typec: mt6360: Add MT6360 Type-C DT binding documentation
-Date:   Wed, 26 Aug 2020 19:16:42 +0800
-Message-Id: <1598440602-8648-2-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1598440602-8648-1-git-send-email-u0084500@gmail.com>
-References: <1598440602-8648-1-git-send-email-u0084500@gmail.com>
+        Wed, 26 Aug 2020 04:50:39 -0700 (PDT)
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Jonathan Hunter <jonathanh@nvidia.com>, Nishanth Menon <nm@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>, linux-pm@vger.kernel.org,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Rafael Wysocki <rjw@rjwysocki.net>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH 0/3] opp: Allow opp-supported-hw to contain multiple versions
+Date:   Wed, 26 Aug 2020 17:20:27 +0530
+Message-Id: <cover.1598442485.git.viresh.kumar@linaro.org>
+X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+Stephan and Dmitry,
 
-Add a devicetree binding documentation for the MT6360 Type-C driver.
+Here is an attempt to solve the problem you guys faced, I have tested it
+locally and works with my expectations. Please see if they solve your
+problems.
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
- .../bindings/usb/mediatek,mt6360-tcpc.yaml         | 73 ++++++++++++++++++++++
- 1 file changed, 73 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
+Dmitry: I sent another message for you in patch 3's comments section.
 
-diff --git a/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml b/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
-new file mode 100644
-index 00000000..9e8ab0d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/usb/mediatek,mt6360-tcpc.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Mediatek MT6360 Type-C Port Switch and Power Delivery controller DT bindings
-+
-+maintainers:
-+  - ChiYuan Huang <cy_huang@richtek.com>
-+
-+description: |
-+  Mediatek MT6360 is a multi-functional device. It integrates charger, ADC, flash, RGB indicators,
-+  regulators (BUCKs/LDOs), and TypeC Port Switch with Power Delivery controller.
-+  This document only describes MT6360 Type-C Port Switch and Power Delivery controller.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt6360-tcpc
-+
-+  interrupts-extended:
-+    maxItems: 1
-+
-+  interrupt-names:
-+    items:
-+      - const: PD_IRQB
-+
-+patternProperties:
-+  "connector":
-+    type: object
-+    $ref: ../connector/usb-connector.yaml#
-+    description:
-+      Properties for usb c connector.
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - interrupts-extended
-+  - interrupt-names
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/usb/pd.h>
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        mt6360@34 {
-+            compatible = "mediatek,mt6360";
-+            reg = <0x34>;
-+
-+            tcpc {
-+                compatible = "mediatek,mt6360-tcpc";
-+                interrupts-extended = <&gpio26 3 IRQ_TYPE_LEVEL_LOW>;
-+                interrupt-names = "PD_IRQB";
-+
-+                connector {
-+                        compatible = "usb-c-connector";
-+                        label = "USB-C";
-+                        data-role = "dual";
-+                        power-role = "dual";
-+                        try-power-role = "sink";
-+                        source-pdos = <PDO_FIXED(5000, 1000, PDO_FIXED_DUAL_ROLE | PDO_FIXED_DATA_SWAP)>;
-+                        sink-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_DUAL_ROLE | PDO_FIXED_DATA_SWAP)>;
-+                        op-sink-microwatt = <10000000>;
-+                };
-+            };
-+        };
-+    };
-+...
+--
+viresh
+
+Viresh Kumar (3):
+  dt-bindings: opp: Allow opp-supported-hw to contain multiple versions
+  opp: Allow opp-supported-hw to contain multiple versions
+  ARM: tegra: Pass multiple versions in opp-supported-hw property
+
+ Documentation/devicetree/bindings/opp/opp.txt |  53 +-
+ .../boot/dts/tegra20-cpu-opp-microvolt.dtsi   |  36 -
+ arch/arm/boot/dts/tegra20-cpu-opp.dtsi        |  67 +-
+ .../boot/dts/tegra30-cpu-opp-microvolt.dtsi   | 512 ---------
+ arch/arm/boot/dts/tegra30-cpu-opp.dtsi        | 986 +++---------------
+ drivers/opp/of.c                              |  47 +-
+ 6 files changed, 214 insertions(+), 1487 deletions(-)
+
 -- 
-2.7.4
+2.25.0.rc1.19.g042ed3e048af
 
