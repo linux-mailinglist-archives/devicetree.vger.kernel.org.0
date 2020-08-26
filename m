@@ -2,113 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1340625295E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Aug 2020 10:41:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E996252966
+	for <lists+devicetree@lfdr.de>; Wed, 26 Aug 2020 10:42:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727790AbgHZIl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Aug 2020 04:41:28 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53]:16638 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727000AbgHZIlW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Aug 2020 04:41:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1598431280;
-        s=strato-dkim-0002; d=gerhold.net;
-        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=MzchAeja0jhJdsQle33hb0rxs0PfxumQcdXnX+NQdaU=;
-        b=lDku1tLiDOx+k9RlcEHcgMuVTVWN01vUXwptskb62e3ekrOkmZ326PZQwZ6yTaRVkG
-        BbU46f+qh+dYg8MR7qfLcyJpGCmScPPl4GWr63BX4uqAAkX09xPirmILmcrsemub30nZ
-        sG7FUaVolt6zvhvvghcCY8uSGoo/Vmt71trw/JoQ4celiba/ETmSBb/YLwGeOh5Z23eq
-        yUveRSDSHfCzhlpKKkzqBibYQxejJOsJ0IvzRZefSVlNfMGcEq3oQqlTDrgxLvpto8O0
-        KbaTtp/Sdwulu1OIEJclM2rKZTUSv1aiDdNmdf5cInRcwNIRJVqbjUmAUm2De6z5XR0E
-        eOMQ==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j7Ic/Fboo="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-        by smtp.strato.de (RZmta 46.10.7 DYNA|AUTH)
-        with ESMTPSA id g0b6c1w7Q8fJkcs
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-        Wed, 26 Aug 2020 10:41:19 +0200 (CEST)
-Date:   Wed, 26 Aug 2020 10:41:18 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: qcom: Document "aux-devs" property
-Message-ID: <20200826084118.GB869@gerhold.net>
-References: <20200819091533.2334-1-stephan@gerhold.net>
- <20200819091533.2334-2-stephan@gerhold.net>
- <20200825215253.GA1397515@bogus>
+        id S1727037AbgHZIml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Aug 2020 04:42:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32958 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726817AbgHZImk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Aug 2020 04:42:40 -0400
+Received: from mail-yb1-xb41.google.com (mail-yb1-xb41.google.com [IPv6:2607:f8b0:4864:20::b41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7D25C061574;
+        Wed, 26 Aug 2020 01:42:39 -0700 (PDT)
+Received: by mail-yb1-xb41.google.com with SMTP id e187so527678ybc.5;
+        Wed, 26 Aug 2020 01:42:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5ViRH3laE2QbcXmDZtwWF8vjYiOD2tb9bGM2bDxMEN8=;
+        b=X0VVbmuUJHi6o5GDPu5Rii7Jn/Fo8SgPsvLw/ez1EoYyPNAEMbIhIqEtb8L3eUXbEB
+         v3OyK5N9Z4r9C6Coen1ap1iN1J8pP81oVIAiZ1zCS/VIRPVXdZigVv3sl0r8s1XpxRJF
+         lgtV1tDHzgDwUw62d/V2vMUwvHw4qEVL7cDZmxsH5bgiwnocbPCE6kw2fQaodfOlPuiD
+         ATF3K/hFS27Pnh1Hcq80exFSgA0s44mjOnAGufxdwYvodR+ptOg6qe7BO+rH0CLpHlh0
+         0ivEWiu+cMDdRCV59zzJsam8m831izTlLsPTAPgXlafjuMx/w2l5ZQWfhtv2Ib2jJHHs
+         cUcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5ViRH3laE2QbcXmDZtwWF8vjYiOD2tb9bGM2bDxMEN8=;
+        b=uToHZRSiulkRnREmbc0zKOOx4zq6mwbsf56LIzvrTPM8yMhe58KGe5r9l1CpZNdasi
+         1ZtlZpAz3bGATLtLzEzaGhQj8IaRmGkKMhnhgjLg0G3w6LfseC7sVSjQFL2rakfVgxch
+         7FffL0/3UtnXPgVm4aSGMHXaXga1sCpYP+6cskrhBe4CoKZMOBZDIpeu86HsrLiRJmPc
+         xJZvg+Ct7jywygTNgpvJBzlJtfFoP8x2LKja8ki8kTpX2T0ULezj2j0x3TnbmBP/iaoy
+         /zeTo2XKpw25I5uFOArrs+OMsdvo9ZVzWy7GYqdWbo7tIXbZNSuVLWCzjI3KMjh6ew+H
+         W69g==
+X-Gm-Message-State: AOAM530sqRsRKh9gR+MlvF0eUxT9UwB5SIOTsvpCHYuJmEFrKEGX9HHd
+        ACmrOnvM9RtWcZnmBXGvJB+2BdN+OGgN/HNpcC9eRVez4ww=
+X-Google-Smtp-Source: ABdhPJydZXzgmPSm5JZRguhED1DhJVJC8Twsauvyt4K0uczjLU0+k0YjqfEeXomhfbtwgHveaq2Z2SnvbsMz60CworU=
+X-Received: by 2002:a25:8149:: with SMTP id j9mr20646722ybm.214.1598431358936;
+ Wed, 26 Aug 2020 01:42:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200825215253.GA1397515@bogus>
+References: <20200818122012.37956-1-jacopo+renesas@jmondi.org>
+ <20200818122012.37956-4-jacopo+renesas@jmondi.org> <20200819135423.GL6049@pendragon.ideasonboard.com>
+ <CA+V-a8sxDJXrGM-MYEwNS=D-eyA6oTRvDU3YT7Uu5Ph5kFh15w@mail.gmail.com> <20200822013558.GN5967@pendragon.ideasonboard.com>
+In-Reply-To: <20200822013558.GN5967@pendragon.ideasonboard.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 26 Aug 2020 09:42:12 +0100
+Message-ID: <CA+V-a8uUp1XLEo_w=5vaVgXfCeepCg6SdXz_27RX6=gYR4bM8w@mail.gmail.com>
+Subject: Re: [PATCH 3/3] dt-bindings: media: ov772x: Document endpoint props
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-media <linux-media@vger.kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 25, 2020 at 03:52:53PM -0600, Rob Herring wrote:
-> On Wed, Aug 19, 2020 at 11:15:32AM +0200, Stephan Gerhold wrote:
-> > In some cases we need to probe additional audio components that do
-> > not appear as part of the DAI links specified in the device tree.
-> > Examples for this are auxiliary devices such as analog amplifiers
-> > or codecs.
-> > 
-> > To make them work they need to be added as part of "aux-devs"
-> > and connected to some other audio component using the audio routes
-> > configurable using "(qcom,)audio-routing".
-> > 
-> > Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> > ---
-> >  .../devicetree/bindings/sound/qcom,apq8016-sbc.txt        | 7 +++++++
-> >  Documentation/devicetree/bindings/sound/qcom,apq8096.txt  | 8 ++++++++
-> >  Documentation/devicetree/bindings/sound/qcom,sdm845.txt   | 8 ++++++++
-> >  3 files changed, 23 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/sound/qcom,apq8016-sbc.txt b/Documentation/devicetree/bindings/sound/qcom,apq8016-sbc.txt
-> > index 84b28dbe9f15..23998262a0a7 100644
-> > --- a/Documentation/devicetree/bindings/sound/qcom,apq8016-sbc.txt
-> > +++ b/Documentation/devicetree/bindings/sound/qcom,apq8016-sbc.txt
-> > @@ -34,6 +34,13 @@ Required properties:
-> >  			  * DMIC
-> >  			  * Ext Spk
-> >  
-> > +Optional properties:
-> > +
-> > +- aux-devs		: A list of phandles for auxiliary devices (e.g. analog
-> > +			  amplifiers) that do not appear directly within the DAI
-> > +			  links. Should be connected to another audio component
-> > +			  using "qcom,audio-routing".
-> > +
-> >  Dai-link subnode properties and subnodes:
-> >  
-> >  Required dai-link subnodes:
-> > diff --git a/Documentation/devicetree/bindings/sound/qcom,apq8096.txt b/Documentation/devicetree/bindings/sound/qcom,apq8096.txt
-> > index c814e867850f..248df5056fec 100644
-> > --- a/Documentation/devicetree/bindings/sound/qcom,apq8096.txt
-> > +++ b/Documentation/devicetree/bindings/sound/qcom,apq8096.txt
-> > @@ -55,6 +55,14 @@ This binding describes the APQ8096 sound card, which uses qdsp for audio.
-> >  	Value type: <stringlist>
-> >  	Definition: The user-visible name of this sound card.
-> >  
-> > +- aux-devs
-> > +	Usage: optional
-> > +	Value type: <phandles with arguments>
-> 
-> How do you know how many arguments? It either has to be fixed or needs a 
-> #.*cells in the phandles. For the latter, you'd need to come up with a 
-> common binding.
-> 
+Hi Laurent,
 
-Actually the phandle should not have any arguments, seems like I just
-copied this from some other entry. Will fix this, thank you!
+On Sat, Aug 22, 2020 at 2:36 AM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Prabhakar,
+>
+> On Fri, Aug 21, 2020 at 12:37:35PM +0100, Lad, Prabhakar wrote:
+> > On Wed, Aug 19, 2020 at 2:54 PM Laurent Pinchart wrote:
+> > > On Tue, Aug 18, 2020 at 02:20:12PM +0200, Jacopo Mondi wrote:
+> > > > Document endpoint properties for the parallel bus type and
+> > > > add them to the example.
+> > > >
+> > > > Specify a few constraints:
+> > > > - If the bus type is BT.656 no hsync or vsycn polarities can be
+> > > >   specified.
+> > > > - If the bus width is 10 bits, not data-shift can be applied.
+> > > >
+> > > > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> > > > ---
+> > > >  .../devicetree/bindings/media/i2c/ov772x.yaml | 43 +++++++++++++++++++
+> > > >  1 file changed, 43 insertions(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/media/i2c/ov772x.yaml b/Documentation/devicetree/bindings/media/i2c/ov772x.yaml
+> > > > index 75dad40f70cc..3fad5dffd19a 100644
+> > > > --- a/Documentation/devicetree/bindings/media/i2c/ov772x.yaml
+> > > > +++ b/Documentation/devicetree/bindings/media/i2c/ov772x.yaml
+> > > > @@ -50,9 +50,47 @@ properties:
+> > > >            bus-type:
+> > > >              enum: [5, 6]
+> > > >
+> > > > +          bus-width:
+> > > > +            enum: [8, 10]
+> > > > +            default: 10
+> > > > +
+> > > > +          data-shift:
+> > > > +            enum: [0, 2]
+> > > > +            default: 0
+> > > > +
+> > > > +          hsync-active:
+> > > > +            enum: [0, 1]
+> > > > +            default: 1
+> > > > +
+> > > > +          vsync-active:
+> > > > +            enum: [0, 1]
+> > > > +            default: 1
+> > > > +
+> > > > +          pclk-sample:
+> > > > +            enum: [0, 1]
+> > > > +            default: 1
+> > > > +
+> > > >            remote-endpoint:
+> > > >              description: A phandle to the bus receiver's endpoint node.
+> > > >
+> > > > +        allOf:
+> > > > +          - if:
+> > > > +              properties:
+> > > > +                bus-type:
+> > > > +                  const: 6
+> > > > +            then:
+> > > > +                properties:
+> > > > +                  hsync-active: false
+> > > > +                  vsync-active: false
+> > > > +
+> > > > +          - if:
+> > > > +              properties:
+> > > > +                bus-width:
+> > > > +                  const: 10
+> > > > +            then:
+> > > > +                properties:
+> > > > +                  data-shift:
+> > > > +                    const: 0
+> > >
+> > > I'd add a blank line here.
+> > >
+> > > >          required:
+> > > >            - bus-type
+> > >
+> > > Should some of the properties be required ? Possibly conditioned on
+> > > bus-type ?
+> >
+> > Agreed, would be interesting to know how this can be handled (split
+> > out bus-type and add required properties for each) ?
+>
+> We can add required: statements to the above if/then/else.
+>
+Aha thanks for pointing out. (I hadn't come across such cases)
 
-Stephan
+Cheers,
+Prabhakar
