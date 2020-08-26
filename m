@@ -2,142 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58C16252F39
-	for <lists+devicetree@lfdr.de>; Wed, 26 Aug 2020 15:02:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8838252F51
+	for <lists+devicetree@lfdr.de>; Wed, 26 Aug 2020 15:07:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730160AbgHZNCS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Aug 2020 09:02:18 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:8470 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1730099AbgHZNCI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Aug 2020 09:02:08 -0400
-X-UUID: f8140fc064ba44e9b42d3d5d93a22512-20200826
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=CxyzFCyyAUAD9dzrQYeXJkejylJ8fCzMCpGiZ2fc9dM=;
-        b=rD/I6SIHcSYN6197sgB1VsqSANMyY0y/y8dYpJzbXw7kLFL9rjbezDlLxCwacem6eNILCkF8fs9RK+n4ny36CH2VZ7p9jGw9ZZTZ3zX493U4jYv4WuX2xreFZ0hEQWWk5UVaEiWwyy2lto31jQu66sw3I4Ea3u+PG63coxxevZg=;
-X-UUID: f8140fc064ba44e9b42d3d5d93a22512-20200826
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <hector.yuan@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 273996754; Wed, 26 Aug 2020 21:02:03 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 26 Aug 2020 21:01:59 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 26 Aug 2020 21:01:59 +0800
-From:   Hector Yuan <hector.yuan@mediatek.com>
-To:     <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
+        id S1730075AbgHZNHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Aug 2020 09:07:02 -0400
+Received: from mga04.intel.com ([192.55.52.120]:64060 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729415AbgHZNHA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Aug 2020 09:07:00 -0400
+IronPort-SDR: /607Am9j0FiDmdz6acy05rZYaIVZTEwE5T/nH+7gU+dtyCSY3YGk7pW1MgfjqHitkBW5h6avBU
+ v5iSXsPmJZSA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9724"; a="153707315"
+X-IronPort-AV: E=Sophos;i="5.76,355,1592895600"; 
+   d="scan'208";a="153707315"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2020 06:06:59 -0700
+IronPort-SDR: vhWikEF2x91gbE3FLX3rzmF9JvPFIj9WUTUiu8X2AEkNoJGHiQGqb/KXJmqL8dnA/XB73Zmtsr
+ Wl1d9ntDLUrA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,355,1592895600"; 
+   d="scan'208";a="403059104"
+Received: from kuha.fi.intel.com ([10.237.72.162])
+  by fmsmga001.fm.intel.com with SMTP; 26 Aug 2020 06:06:57 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 26 Aug 2020 16:06:56 +0300
+Date:   Wed, 26 Aug 2020 16:06:56 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Hans de Goede <hdegoede@redhat.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Vinod Koul <vkoul@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Olof Johansson <olof@lixom.net>
-CC:     <wsd_upstream@mediatek.com>, <hector.yuan@mediatek.com>
-Subject: [PATCH v3 2/2] dt-bindings: cpufreq: add bindings for MediaTek cpufreq HW
-Date:   Wed, 26 Aug 2020 21:01:53 +0800
-Message-ID: <1598446913-24325-3-git-send-email-hector.yuan@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1598446913-24325-1-git-send-email-hector.yuan@mediatek.com>
-References: <1598446913-24325-1-git-send-email-hector.yuan@mediatek.com>
+        Tobias Schramm <t.schramm@manjaro.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/4] usb: typec: Add
+ typec_port_register_altmodes_from_fwnode()
+Message-ID: <20200826130656.GA813478@kuha.fi.intel.com>
+References: <20200714113617.10470-1-hdegoede@redhat.com>
+ <20200714113617.10470-3-hdegoede@redhat.com>
+ <20200727130528.GB883641@kuha.fi.intel.com>
+ <469f369a-73f4-c348-b9ee-1662956f45be@redhat.com>
+ <20200811143833.GC627773@kuha.fi.intel.com>
+ <6c223f20-cf63-392e-f694-869cb231c46d@redhat.com>
+ <20200812124955.GB1169992@kuha.fi.intel.com>
+ <38f09a2a-4c6c-69b0-a61d-a67d2dc79546@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <38f09a2a-4c6c-69b0-a61d-a67d2dc79546@redhat.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogIkhlY3Rvci5ZdWFuIiA8aGVjdG9yLnl1YW5AbWVkaWF0ZWsuY29tPg0KDQpBZGQgZGV2
-aWNldHJlZSBiaW5kaW5ncyBmb3IgTWVkaWFUZWsgSFcgZHJpdmVyLg0KDQpTaWduZWQtb2ZmLWJ5
-OiBIZWN0b3IuWXVhbiA8aGVjdG9yLnl1YW5AbWVkaWF0ZWsuY29tPg0KLS0tDQogLi4uL2JpbmRp
-bmdzL2NwdWZyZXEvY3B1ZnJlcS1tZWRpYXRlay1ody55YW1sICAgICAgfCAgMTQxICsrKysrKysr
-KysrKysrKysrKysrDQogMSBmaWxlIGNoYW5nZWQsIDE0MSBpbnNlcnRpb25zKCspDQogY3JlYXRl
-IG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9jcHVmcmVxL2Nw
-dWZyZXEtbWVkaWF0ZWstaHcueWFtbA0KDQpkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL2NwdWZyZXEvY3B1ZnJlcS1tZWRpYXRlay1ody55YW1sIGIvRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2NwdWZyZXEvY3B1ZnJlcS1tZWRpYXRlay1ody55
-YW1sDQpuZXcgZmlsZSBtb2RlIDEwMDY0NA0KaW5kZXggMDAwMDAwMC4uNWJlNTg2Nw0KLS0tIC9k
-ZXYvbnVsbA0KKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2NwdWZyZXEv
-Y3B1ZnJlcS1tZWRpYXRlay1ody55YW1sDQpAQCAtMCwwICsxLDE0MSBAQA0KKyMgU1BEWC1MaWNl
-bnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKQ0KKyVZQU1MIDEu
-Mg0KKy0tLQ0KKyRpZDogaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvY3B1ZnJlcS9jcHVm
-cmVxLW1lZGlhdGVrLWh3LnlhbWwjDQorJHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUub3JnL21l
-dGEtc2NoZW1hcy9jb3JlLnlhbWwjDQorDQordGl0bGU6IE1lZGlhVGVrJ3MgQ1BVRlJFUSBCaW5k
-aW5ncw0KKw0KK21haW50YWluZXJzOg0KKyAgLSBIZWN0b3IgWXVhbiA8aGVjdG9yLnl1YW5AbWVk
-aWF0ZWsuY29tPg0KKw0KK2Rlc2NyaXB0aW9uOg0KKyAgQ1BVRlJFUSBIVyBpcyBhIGhhcmR3YXJl
-IGVuZ2luZSB1c2VkIGJ5IE1lZGlhVGVrDQorICBTb0NzIHRvIG1hbmFnZSBmcmVxdWVuY3kgaW4g
-aGFyZHdhcmUuIEl0IGlzIGNhcGFibGUgb2YgY29udHJvbGxpbmcgZnJlcXVlbmN5DQorICBmb3Ig
-bXVsdGlwbGUgY2x1c3RlcnMuDQorDQorcHJvcGVydGllczoNCisgIGNvbXBhdGlibGU6DQorICAg
-IGNvbnN0OiBtZWRpYXRlayxjcHVmcmVxLWh3DQorDQorICByZWc6DQorICAgIG1pbkl0ZW1zOiAx
-DQorICAgIG1heEl0ZW1zOiAyDQorICAgIGRlc2NyaXB0aW9uOiB8DQorICAgICAgQWRkcmVzc2Vz
-IGFuZCBzaXplcyBmb3IgdGhlIG1lbW9yeSBvZiB0aGUgSFcgYmFzZXMgaW4gZWFjaCBmcmVxdWVu
-Y3kgZG9tYWluLg0KKw0KKyAgcmVnLW5hbWVzOg0KKyAgICBpdGVtczoNCisgICAgICAtIGNvbnN0
-OiAiZnJlcS1kb21haW4wIg0KKyAgICAgIC0gY29uc3Q6ICJmcmVxLWRvbWFpbjEiDQorICAgIGRl
-c2NyaXB0aW9uOiB8DQorICAgICAgRnJlcXVlbmN5IGRvbWFpbiBuYW1lLiBpLmUuDQorICAgICAg
-ImZyZXEtZG9tYWluMCIsICJmcmVxLWRvbWFpbjEiLg0KKw0KKyAgIiNmcmVxLWRvbWFpbi1jZWxs
-cyI6DQorICAgIGNvbnN0OiAxDQorICAgIGRlc2NyaXB0aW9uOiB8DQorICAgICAgTnVtYmVyIG9m
-IGNlbGxzIGluIGEgZnJlcWVuY3kgZG9tYWluIHNwZWNpZmllci4NCisNCisgIG10ay1mcmVxLWRv
-bWFpbjoNCisgICAgbWF4SXRlbXM6IDENCisgICAgZGVzY3JpcHRpb246IHwNCisgICAgICBEZWZp
-bmUgdGhpcyBjcHUgYmVsb25ncyB0byB3aGljaCBmcmVxdWVuY3kgZG9tYWluLiBpLmUuDQorICAg
-ICAgY3B1MC0zIGJlbG9uZyB0byBmcmVxdWVuY3kgZG9tYWluMCwNCisgICAgICBjcHU0LTYgYmVs
-b25nIHRvIGZyZXF1ZW5jeSBkb21haW4xLg0KKw0KK3JlcXVpcmVkOg0KKyAgLSBjb21wYXRpYmxl
-DQorICAtIHJlZw0KKyAgLSByZWctbmFtZXMNCisgIC0gIiNmcmVxLWRvbWFpbi1jZWxscyINCisN
-CitleGFtcGxlczoNCisgIC0gfA0KKyAgICBjcHVzIHsNCisgICAgICAgICAgICAjYWRkcmVzcy1j
-ZWxscyA9IDwxPjsNCisgICAgICAgICAgICAjc2l6ZS1jZWxscyA9IDwwPjsNCisNCisgICAgICAg
-ICAgICBjcHUwOiBjcHVAMCB7DQorICAgICAgICAgICAgICAgIGRldmljZV90eXBlID0gImNwdSI7
-DQorICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNTUiOw0KKyAgICAg
-ICAgICAgICAgICBlbmFibGUtbWV0aG9kID0gInBzY2kiOw0KKyAgICAgICAgICAgICAgICBtdGst
-ZnJlcS1kb21haW4gPSA8JmNwdWZyZXFfaHcgMD47DQorICAgICAgICAgICAgICAgIHJlZyA9IDww
-eDAwMD47DQorICAgICAgICAgICAgfTsNCisNCisgICAgICAgICAgICBjcHUxOiBjcHVAMSB7DQor
-ICAgICAgICAgICAgICAgIGRldmljZV90eXBlID0gImNwdSI7DQorICAgICAgICAgICAgICAgIGNv
-bXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNTUiOw0KKyAgICAgICAgICAgICAgICBlbmFibGUtbWV0
-aG9kID0gInBzY2kiOw0KKyAgICAgICAgICAgICAgICBtdGstZnJlcS1kb21haW4gPSA8JmNwdWZy
-ZXFfaHcgMD47DQorICAgICAgICAgICAgICAgIHJlZyA9IDwweDEwMD47DQorICAgICAgICAgICAg
-fTsNCisNCisgICAgICAgICAgICBjcHUyOiBjcHVAMiB7DQorICAgICAgICAgICAgICAgIGRldmlj
-ZV90eXBlID0gImNwdSI7DQorICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAiYXJtLGNvcnRl
-eC1hNTUiOw0KKyAgICAgICAgICAgICAgICBlbmFibGUtbWV0aG9kID0gInBzY2kiOw0KKyAgICAg
-ICAgICAgICAgICBtdGstZnJlcS1kb21haW4gPSA8JmNwdWZyZXFfaHcgMD47DQorICAgICAgICAg
-ICAgICAgIHJlZyA9IDwweDIwMD47DQorICAgICAgICAgICAgfTsNCisNCisgICAgICAgICAgICBj
-cHUzOiBjcHVAMyB7DQorICAgICAgICAgICAgICAgIGRldmljZV90eXBlID0gImNwdSI7DQorICAg
-ICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNTUiOw0KKyAgICAgICAgICAg
-ICAgICBlbmFibGUtbWV0aG9kID0gInBzY2kiOw0KKyAgICAgICAgICAgICAgICBtdGstZnJlcS1k
-b21haW4gPSA8JmNwdWZyZXFfaHcgMD47DQorICAgICAgICAgICAgICAgIHJlZyA9IDwweDMwMD47
-DQorICAgICAgICAgICAgfTsNCisNCisgICAgICAgICAgICBjcHU0OiBjcHVANCB7DQorICAgICAg
-ICAgICAgICAgIGRldmljZV90eXBlID0gImNwdSI7DQorICAgICAgICAgICAgICAgIGNvbXBhdGli
-bGUgPSAiYXJtLGNvcnRleC1hNTUiOw0KKyAgICAgICAgICAgICAgICBlbmFibGUtbWV0aG9kID0g
-InBzY2kiOw0KKyAgICAgICAgICAgICAgICBtdGstZnJlcS1kb21haW4gPSA8JmNwdWZyZXFfaHcg
-MT47DQorICAgICAgICAgICAgICAgIHJlZyA9IDwweDQwMD47DQorICAgICAgICAgICAgfTsNCisN
-CisgICAgICAgICAgICBjcHU1OiBjcHVANSB7DQorICAgICAgICAgICAgICAgIGRldmljZV90eXBl
-ID0gImNwdSI7DQorICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNTUi
-Ow0KKyAgICAgICAgICAgICAgICBlbmFibGUtbWV0aG9kID0gInBzY2kiOw0KKyAgICAgICAgICAg
-ICAgICBtdGstZnJlcS1kb21haW4gPSA8JmNwdWZyZXFfaHcgMT47DQorICAgICAgICAgICAgICAg
-IHJlZyA9IDwweDUwMD47DQorICAgICAgICAgICAgfTsNCisNCisgICAgICAgICAgICBjcHU2OiBj
-cHVANiB7DQorICAgICAgICAgICAgICAgIGRldmljZV90eXBlID0gImNwdSI7DQorICAgICAgICAg
-ICAgICAgIGNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNzUiOw0KKyAgICAgICAgICAgICAgICBl
-bmFibGUtbWV0aG9kID0gInBzY2kiOw0KKyAgICAgICAgICAgICAgICBtdGstZnJlcS1kb21haW4g
-PSA8JmNwdWZyZXFfaHcgMT47DQorICAgICAgICAgICAgICAgIHJlZyA9IDwweDYwMD47DQorICAg
-ICAgICAgICAgfTsNCisNCisgICAgICAgICAgICBjcHU3OiBjcHVANyB7DQorICAgICAgICAgICAg
-ICAgIGRldmljZV90eXBlID0gImNwdSI7DQorICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAi
-YXJtLGNvcnRleC1hNzUiOw0KKyAgICAgICAgICAgICAgICBlbmFibGUtbWV0aG9kID0gInBzY2ki
-Ow0KKyAgICAgICAgICAgICAgICBtdGstZnJlcS1kb21haW4gPSA8JmNwdWZyZXFfaHcgMT47DQor
-ICAgICAgICAgICAgICAgIHJlZyA9IDwweDcwMD47DQorICAgICAgICAgICAgfTsNCisgICAgfTsN
-CisNCisgICAgLyogLi4uICovDQorDQorICAgIHNvYyB7DQorICAgICAgICAjYWRkcmVzcy1jZWxs
-cyA9IDwyPjsNCisgICAgICAgICNzaXplLWNlbGxzID0gPDI+Ow0KKw0KKyAgICAgICAgY3B1ZnJl
-cV9odzogY3B1ZnJlcUAxMWJjMDAgew0KKyAgICAgICAgICAgIGNvbXBhdGlibGUgPSAibWVkaWF0
-ZWssY3B1ZnJlcS1odyI7DQorICAgICAgICAgICAgcmVnID0gPDAgMHgxMWJjMTAgMCAweDhjPiwN
-CisgICAgICAgICAgICAgICA8MCAweDExYmNhMCAwIDB4OGM+Ow0KKyAgICAgICAgICAgIHJlZy1u
-YW1lcyA9ICJmcmVxLWRvbWFpbjAiLCAiZnJlcS1kb21haW4xIjsNCisgICAgICAgICAgICAjZnJl
-cS1kb21haW4tY2VsbHMgPSA8MT47DQorICAgICAgICB9Ow0KKyAgICB9Ow0KKw0KKw0KKw0KKw0K
-LS0gDQoxLjcuOS41DQo=
+On Wed, Aug 26, 2020 at 02:37:28PM +0200, Hans de Goede wrote:
+> Hi,
+> 
+> On 8/12/20 2:49 PM, Heikki Krogerus wrote:
+> > On Wed, Aug 12, 2020 at 10:36:32AM +0200, Hans de Goede wrote:
+> > > Hi,
+> > > 
+> > > On 8/11/20 4:38 PM, Heikki Krogerus wrote:
+> > > > Hi,
+> > > > 
+> > > > > > > +void typec_port_register_altmodes_from_fwnode(struct typec_port *port,
+> > > > > > > +	const struct typec_altmode_ops *ops, void *drvdata,
+> > > > > > > +	struct typec_altmode **altmodes, size_t n,
+> > > > > > > +	struct fwnode_handle *fwnode)
+> > > > > > > +{
+> > > > > > > +	struct fwnode_handle *altmodes_node, *child;
+> > > > > > > +	struct typec_altmode_desc desc;
+> > > > > > > +	struct typec_altmode *alt;
+> > > > > > > +	size_t index = 0;
+> > > > > > > +	u32 svid, vdo;
+> > > > > > > +	int ret;
+> > > > > > > +
+> > > > > > > +	altmodes_node = fwnode_get_named_child_node(fwnode, "altmodes");
+> > > > > > > +	if (!altmodes_node)
+> > > > > > > +		return;
+> > > > > > 
+> > > > > > Do we need that? Why not just make the sub-nodes describing the
+> > > > > > alternate modes direct children of the connector node instead of
+> > > > > > grouping them under a special sub-node?
+> > > > > 
+> > > > > If you envision how this will look in e.g. DTS sources then I think
+> > > > > you will see that this grouping keeps the DTS source code more
+> > > > > readable. Grouping things together like this is somewhat normal in
+> > > > > devicetree files. E.g. PMIC's or other regulator providers typical
+> > > > > have a "regulators" node grouping all their regulators; and also the OF
+> > > > > graph bindings which are used in the USB-connector node start with a
+> > > > > "ports" parent / grouping node.
+> > > > > 
+> > > > > > If the child node of the connector has device properties "svid" and
+> > > > > > "vdo" then it is an alt mode that the connector supports, and it can't
+> > > > > > be anything else, no?
+> > > > > 
+> > > > > If you want to get rid of the altmodes parent/grouping node, then the
+> > > > > usual way to do this would be to add a compatible string to the nodes,
+> > > > > rather then check for the existence of some properties.
+> > > > 
+> > > > I'm looking at this from ACPI PoW. We do not have compatible string in
+> > > > ACPI (and in case you are wondering, the _HID PRP0001 is not a
+> > > > reliable solution for that).
+> > > 
+> > > Note my main use-case for this is the ACPI case too, remember the
+> > > infamous drivers/platform/x86/intel_cht_int33fe_typec.c that is my
+> > > main consumer for this patch. Although there the info is lacking in ACPI
+> > > so I need to inject it with c-code.
+> > > 
+> > > > If you wish to group the altmodes under a subnode, then that's fine, but
+> > > > the "altmodes" node will need to be optional, just like the "ports"
+> > > > OF-graph node is optional. So we need to be able to support systems
+> > > > where the alternate mode subnodes are directly under the connector as
+> > > > well.
+> > > 
+> > > So for the ports case, AFAIK not having a ports subnode to group them
+> > > is only used in the case there are no other type of subnodes.
+> > > 
+> > > With the existing usb-connector devicetree-bindings we will have both
+> > > ports subnodes and altmode subnodes. The usb-connector devicetree-bindings
+> > > already specify that the port subnodes *must* be grouped together under
+> > > a single ports subnode (for usb-connector nodes).
+> > > 
+> > > So it seems logical and much cleaner to me to also group the altmodes
+> > > together under an altmodes subnode. This also solves the problem of
+> > > having to due heuristics to tell different kinds of subnodes apart.
+> > > 
+> > > Question: why do you write: "we need to be able to support systems
+> > > where the alternate mode subnodes are directly under the connector as
+> > > well" are there already systems out there (or on their way) which
+> > > contain ACPI table which contain a fwnode adhering to the usb-connector
+> > > bindings + having subnodes which set a svid + vdo ?
+> > 
+> > There are indeed platforms on their way, but I'll see if I can still
+> > influence what goes into the ACPI tables of those platforms.
+> > 
+> > > Because unless such systems already exist I don't see why we need to
+> > > be able to support them ?  New systems can use whatever scheme we
+> > > can come-up with and unless existing systems already have what we
+> > > need, except for the altmodes grouping node, then we will need some
+> > > translating code which generates the expected swnodes anyways and
+> > > then the translator can easily inject the grouping node.
+> > > 
+> > > So I do not see why we would " need to be able to support systems
+> > > where the alternate mode subnodes are directly under the connector as
+> > > well" ?
+> > > 
+> > > If you insist I can make the altmodes node optional and simply
+> > > skip any child nodes which do not have both a svid and a vdo
+> > > property, but having the subnode (and then logging an error on
+> > > missing svid or vdo props) seems cleaner to me.
+> > 
+> > I'm trying to get the way the USB Type-C connectors are described
+> > in ACPI (including the alternate modes) documented somewhere. I think
+> > I already mentioned that to you already. There is now a discussion
+> > with our Windows folks how to move forward with that. In any case,
+> > additional nodes like that "altmodes" node are really problematic in
+> > Windows because of way they handle the nodes, and to be honest, I
+> > don't see any way I could convince those guys to accept it.
+> > 
+> > But all that is really not your problem. I have now a feeling that the
+> > way we will end up describing the alternate modes in ACPI will not be
+> > compatible with DT :-(. So I guess we can just go ahead with this, and
+> > then add support for ACPI later?
+> 
+> So since you wrote "So I guess we can just go ahead with this" O was
+> wondering what the next steps are for getting this series (minus the
+> DT-binding patch) upstream ?
 
+Sorry Hans. I forgot about this topic. I do have one question. I'll
+ask it separately against the patch.
+
+thanks,
+
+-- 
+heikki
