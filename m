@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C39925344B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Aug 2020 18:03:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10123253451
+	for <lists+devicetree@lfdr.de>; Wed, 26 Aug 2020 18:04:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726862AbgHZQDl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1727068AbgHZQDl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 26 Aug 2020 12:03:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45012 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726990AbgHZQDV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Aug 2020 12:03:21 -0400
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27505C061574
-        for <devicetree@vger.kernel.org>; Wed, 26 Aug 2020 09:03:21 -0700 (PDT)
-Received: by mail-pf1-x443.google.com with SMTP id k15so1199055pfc.12
-        for <devicetree@vger.kernel.org>; Wed, 26 Aug 2020 09:03:21 -0700 (PDT)
+        with ESMTP id S1727901AbgHZQDZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Aug 2020 12:03:25 -0400
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7736FC0613ED
+        for <devicetree@vger.kernel.org>; Wed, 26 Aug 2020 09:03:25 -0700 (PDT)
+Received: by mail-pl1-x642.google.com with SMTP id y6so1100942plk.10
+        for <devicetree@vger.kernel.org>; Wed, 26 Aug 2020 09:03:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=1MaekrRirwKyLzs9+Fv4keJH6CPIXWhtw9U0PCRkCag=;
-        b=je8FKIC9TGkUAFpMpoOz6n/MZ2qY+MYbDAsxEvFByHYwAys46YPtfyvinT5Tc5VoLm
-         VfkjkpM0XzmxkSRNqoO9LHL6c+xnl99zoU8PzEayCX+rnKFVJjS1sNMeZlXdPasbmsSk
-         asoFQHgi0de+x4c1buK756hG3y3ggRi50Iq0QQmTizbxaLpb7POgmp/WdQK7HHERY5Ha
-         AqW78nNYRwAMtRXUrGe4zBbA4Tjaj8x8EO2FtzIq0gcqZLkTIM1SFym6ke4Aly7Pmat/
-         SNHnLNOMjlNdyBA0LsE0m3nB0cl/BiNF09/fY31IomJ77dFQVxqN60hnWdxEHdp5KUXZ
-         WyGg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=gOJ2wsgRzvVRKckZeydkoWsG77ZYsewrKloG8nTk710=;
+        b=u7y2Uh5YZGN9nMLWxRDS6HRYwt2+2SPr2lWkM/5QvASQ4iAGJGcyoH52Lk9ebk3I+y
+         bdVfivs0fxD5OXqsIM6hrs3bJI7GwUZYkIhIjYiMyEuoeY4U05vxbNTksNII0z5OTYuY
+         tf2e9jPijn6R05nDnaYRtFNpfbiR/AWVfHhuzWC3uIwrmAh9IbCQd8Uob3kzQXPPrwlS
+         gRKbt1MxjyUapwHaVxWAFjs1jgyPR6fNXwKcZXOk2UmRu3giyuL0pYlRJX/ZAmlOoaQp
+         LgfjX8V83K66sgRxj8e/y24yYopZI7D874u7TmcD34ygtW34au7bsh3NEbTWUMWMFg1g
+         csUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=1MaekrRirwKyLzs9+Fv4keJH6CPIXWhtw9U0PCRkCag=;
-        b=VtETEzFaHoeLWdH8DybZCbFcIAwqojnsYVLgCwJ06BmO6m4XS3zJDzYDIDqtcCI7TF
-         xlAQaAoMOg+r7bByTiR0hQhxHY1XIaG7R5Vans4OoNBbmBdksmT+DLTNN1ljOzyjwCxK
-         Npn31m0Hd40Z++ONKDV7iu1Mg+1Qwz+rs3u58xDQNLBqa4APA8mgTnT9AAKMJH9TT6cr
-         EiMqCL7B/JyUkxx9J7WSNDTAGqbc06pMOJpiw4v5AFfoLd36pjdn91w4cdnqMmP9equW
-         5G9qoF1i9VRtHcxd5CpFHNgNSZ5lMd3KpdoCiz1ZKNcw4JcDGcpH3iJHTl+w7Nu6ONo+
-         g8pw==
-X-Gm-Message-State: AOAM530FuUhPuBA3V+HkRiH5yRCNGVoZBFd/bqjQoFKK+z8snT/7ZJ7E
-        CJML1sJlMeVwk9dlNkyJBBfhOw==
-X-Google-Smtp-Source: ABdhPJwUwvdLJh8d8dcPiKqwY4ilUtCue79cXTiTu10Mk7sjBJ9ZeCIllA/nQ9aqa41q8vlo1XzY9w==
-X-Received: by 2002:a63:471b:: with SMTP id u27mr11023159pga.139.1598457800565;
-        Wed, 26 Aug 2020 09:03:20 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=gOJ2wsgRzvVRKckZeydkoWsG77ZYsewrKloG8nTk710=;
+        b=pvDA4JNw20raW6Q2KR98/N7V7gyfJnjDKZtcbzE/z7k/VDRJ7j7QhqdsRVn+KlftWG
+         blycdk8OF14gA6D5doxFedDVl0FA8iBoowcIssVTe/ZerK+qRVsNMctyZH4I96w49C+V
+         Y6d+w/wNIYxYBf7TxjgMgCsGuHmmQrKTzg34+2i5+v3ynyEU8fs5n7JyotADP9XGq6CK
+         2Ben5K6ty68x0RusJu1W0M0SiA571qlLADz3lz34dw0ZyLWfMuSmTO4i4nEJsEdD+zcO
+         mRNTUPPiQeR1D+2DUfR5iFm9L+eM6qIIT2AulZrqRMPNc4fLPhNJ/pIlJpYYUv/N3jgW
+         fZMQ==
+X-Gm-Message-State: AOAM532UTdW1vOR3gsZzump4d0Ycg3ZkY3k9uGK5ys3II8Ch9NArewdd
+        UTT8vyz06aBaae9ckcwTUDQ64A==
+X-Google-Smtp-Source: ABdhPJx3zgfkCLWuhwB9Ncl+xylskuKGkxZ5BPvawfalxKyVUr95qHmDSMim1JB1vRjdaVphcFzgBw==
+X-Received: by 2002:a17:902:aa41:: with SMTP id c1mr12271225plr.224.1598457804850;
+        Wed, 26 Aug 2020 09:03:24 -0700 (PDT)
 Received: from nagraj.local ([49.206.21.239])
-        by smtp.gmail.com with ESMTPSA id u3sm2487555pjn.29.2020.08.26.09.03.16
+        by smtp.gmail.com with ESMTPSA id u3sm2487555pjn.29.2020.08.26.09.03.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Aug 2020 09:03:19 -0700 (PDT)
+        Wed, 26 Aug 2020 09:03:23 -0700 (PDT)
 From:   Sumit Semwal <sumit.semwal@linaro.org>
 To:     Thierry Reding <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
@@ -57,10 +57,12 @@ Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         Sumit Semwal <sumit.semwal@linaro.org>
-Subject: [PATCH v5 0/2] Add support for Tianma nt36672a video mode panel
-Date:   Wed, 26 Aug 2020 21:33:06 +0530
-Message-Id: <20200826160308.18911-1-sumit.semwal@linaro.org>
+Subject: [PATCH v5 1/2] dt-bindings: display: panel: Add bindings for Novatek nt36672a
+Date:   Wed, 26 Aug 2020 21:33:07 +0530
+Message-Id: <20200826160308.18911-2-sumit.semwal@linaro.org>
 X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200826160308.18911-1-sumit.semwal@linaro.org>
+References: <20200826160308.18911-1-sumit.semwal@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -68,48 +70,114 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some Poco F1 phones from Xiaomi have a FHD+ video mode panel based on the
-Novatek NT36672A display controller; Add support for the same.
+Novatek nt36672a is a display driver IC that can drive DSI panel. It
+is also present in the Tianma video mode panel, which is a FHD+ panel
+with a resolution of 1080x2246 and 6.18 inches size. It is found in
+some of the Poco F1 phones.
 
-Most of the panel data is taken from downstream panel dts, and is converted to
-drm-panel based driver by me.
+This patch adds the display driver for the IC, with support added for
+this tianma fhd video mode panel.
 
-It has been validated with v5.9-rc1 based drm-misc-next on Poco F1 phone; my tree with other
-dependent patches is here [1]
-
-[1]: https://git.linaro.org/people/sumit.semwal/linux-dev.git/log/?h=dev/poco-panel-upstreaming
+Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 ---
-v2: In dt-binding, removed ports node, making port@0 directly under panel@0 node.
-     Also updated the panel_on delay to a safer 200ms as needed for latest Android.
-v3: Replaced port@0 with just port in panel@0 node.
-v4: Since "0425662fdf05: drm: Nuke mode->vrefresh", we have to calculate
-     vrefresh on demand. Update for it.
-v5: Fixed review comments from Sam:
-      - rebased on top of drm-misc-next
-           remove return of drm_panel_add()
-           remove drm_panel_detach()
-      - renamed the panel driver file to reflect that this is a novatek
-           nt36672a display driver and not only for tianma panels.
-           Adjusted some internal names also to reflect the same.
-      - corrected changelog to add info about the generic Novatek DSI IC
-      - corrected compatible string accordingly
-      - removed pinctrl
-      - used drm_panel* API for prepare/unprepare/disable/remove
-
-Sumit Semwal (2):
-  dt-bindings: display: panel: Add bindings for Novatek nt36672a
-  drm: panel: Add novatek nt36672a panel driver
-
- .../display/panel/novatek,nt36672a.yaml       |  81 ++
- MAINTAINERS                                   |   7 +
- drivers/gpu/drm/panel/Kconfig                 |  10 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- .../gpu/drm/panel/panel-novatek-nt36672a.c    | 767 ++++++++++++++++++
- 5 files changed, 866 insertions(+)
+v2: remove ports node, making port@0 directly under panel@0 node.
+v3: updated to replace port@0 to just 'port'.
+v5: renamed to novatek,nt36672a, since the binding is for the IC and not
+      the panel.
+---
+ .../display/panel/novatek,nt36672a.yaml       | 81 +++++++++++++++++++
+ 1 file changed, 81 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
- create mode 100644 drivers/gpu/drm/panel/panel-novatek-nt36672a.c
 
+diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
+new file mode 100644
+index 000000000000..7f8d1097bee0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
+@@ -0,0 +1,81 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/novatek,nt36672a.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Novatek NT36672A based DSI display Panels
++
++maintainers:
++  - Sumit Semwal <sumit.semwal@linaro.org>
++
++description: |
++  The nt36672a IC from Novatek is a generic DSI Panel IC used to drive dsi
++  panels.
++  Right now, support is added only for a Tianma FHD+ LCD display panel with a
++  resolution of 1080x2246. It is a video mode DSI panel.
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    items:
++      - const: tianma,fhd-video
++      - const: novatek,nt36672a
++    description: This indicates the panel manufacturer of the panel that is
++      in turn using the NT36672A panel driver. This compatible string
++      determines how the NT36672A panel driver is configured for the indicated
++      panel. The novatek,nt36672a compatible shall always be provided as a fallback.
++
++  reg: true
++  reset-gpios:
++    description: phandle of gpio for reset line - This should be 8mA, gpio
++      can be configured using mux, pinctrl, pinctrl-names (active high)
++  vddio-supply:
++    description: phandle of the regulator that provides the supply voltage
++      Power IC supply
++  vddpos-supply:
++    description: phandle of the positive boost supply regulator
++  vddneg-supply:
++    description: phandle of the negative boost supply regulator
++  port: true
++
++required:
++  - compatible
++  - reg
++  - vddi0-supply
++  - vddpos-supply
++  - vddneg-supply
++  - reset-gpios
++  - port
++
++unevaluatedProperties: false
++
++examples:
++  - |+
++    #include <dt-bindings/gpio/gpio.h>
++    dsi0 {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      panel@0 {
++        compatible = "tianma,fhd-video", "novatek,nt36672a";
++        reg = <0>;
++        vddi0-supply = <&vreg_l14a_1p88>;
++        vddpos-supply = <&lab>;
++        vddneg-supply = <&ibb>;
++
++        reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
++
++        #address-cells = <1>;
++        #size-cells = <0>;
++        port {
++          tianma_nt36672a_in_0: endpoint {
++            remote-endpoint = <&dsi0_out>;
++          };
++        };
++      };
++    };
++
++...
 -- 
 2.28.0
 
