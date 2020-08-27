@@ -2,137 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8AFE25466D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Aug 2020 16:05:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AE592547C5
+	for <lists+devicetree@lfdr.de>; Thu, 27 Aug 2020 16:54:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728007AbgH0OFs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Aug 2020 10:05:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42550 "EHLO mail.kernel.org"
+        id S1726322AbgH0NLt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Aug 2020 09:11:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48948 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727103AbgH0OFj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Aug 2020 10:05:39 -0400
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1727112AbgH0NKf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Aug 2020 09:10:35 -0400
+Received: from saruman (91-155-214-58.elisa-laajakaista.fi [91.155.214.58])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D1C5322BEB;
-        Thu, 27 Aug 2020 14:04:33 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2095B207CD;
+        Thu, 27 Aug 2020 13:02:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598537073;
-        bh=1Q7icZS15ds10bV/JJK72QK64oZ3hVx5Gs5UoRmJ98Y=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=tl+yRPpvVOC0YrftA4sgCJVWFb/LkR2nLxpNX/VePMfSIVcRbEGhau8fsoeZ/d0OI
-         xZVlxtTFY0i9XDknPddK0qCJFqCIZIVnM5Jy8AdvN+sYQySrA7Gyqi1qPPd0cpud5u
-         A+WpomofAz4jpRAwffXZ2g9Nlh3BGC56idJL5K74=
-Received: by mail-oi1-f176.google.com with SMTP id u24so4683389oic.7;
-        Thu, 27 Aug 2020 07:04:33 -0700 (PDT)
-X-Gm-Message-State: AOAM532y2h6usRQxL5jap9cB06BgUtqUreMOzehGtv0elTye4BBOOhZ8
-        Cp/nc3r64PSAj4oZfD9CHL1abLAc0Pa+uze9tQ==
-X-Google-Smtp-Source: ABdhPJySPH2tJLgDSKWk2U/55xGLS0GwXwFCXhvqFf81XQitZVSXlRxK+ZH8toMGrmTkit0oRI8rP5SnLYAKkUAuRpc=
-X-Received: by 2002:aca:e1d6:: with SMTP id y205mr7123657oig.152.1598537073171;
- Thu, 27 Aug 2020 07:04:33 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200824084712.2526079-1-vkoul@kernel.org> <20200824084712.2526079-2-vkoul@kernel.org>
- <20200824174009.GA2948650@bogus> <20200825145131.GS2639@vkoul-mobl>
- <20200826063246.GW2639@vkoul-mobl> <CAL_JsqKwwirYhrQxCkoUCVnZa_7yNsBDaqgc5TWbLLpeGv17Zw@mail.gmail.com>
- <20200827045053.GG2639@vkoul-mobl>
-In-Reply-To: <20200827045053.GG2639@vkoul-mobl>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 27 Aug 2020 08:04:21 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJw0q4QLGr+Akaxm8YUnLMnUtgJdO5uMqJF7yKuSrX_YA@mail.gmail.com>
-Message-ID: <CAL_JsqJw0q4QLGr+Akaxm8YUnLMnUtgJdO5uMqJF7yKuSrX_YA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: dmaengine: Document qcom,gpi dma binding
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
+        s=default; t=1598533367;
+        bh=LzWZBpCw/l+Ix/GXPE6nae42Wme8sXfeIYoOLqaRLsQ=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=y0Z196NIPvRRFED15YhQtorRsjOAL/5EHRTli8FDYNANC23zGBgTup+7OEOHNLZU6
+         yjR68sJL4gcNocA9V4maauV4CZLScAgY4aBIvQ56F73mQ0ZDQz2pwgAcE+d6Fjy4v6
+         tjj2go46yC/493h+pidRAT7l+Uzv/tpbV0gPSOx0=
+From:   Felipe Balbi <balbi@kernel.org>
+To:     Roger Quadros <rogerq@ti.com>, Peter Chen <peter.chen@nxp.com>
+Cc:     Pawel Laszczak <pawell@cadence.com>,
+        Rahul Kumar <kurahul@cadence.com>,
+        "nsekhar@ti.com" <nsekhar@ti.com>,
+        "vigneshr@ti.com" <vigneshr@ti.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
-        <dmaengine@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 3/3] usb: cdns3: Enable workaround for USB2.0 PHY Rx
+ compliance test PHY lockup
+In-Reply-To: <b083883d-b8c3-ee16-6b02-8987cade17ed@ti.com>
+References: <20200825120059.12436-1-rogerq@ti.com>
+ <20200825120059.12436-4-rogerq@ti.com>
+ <20200826031948.GA7646@b29397-desktop>
+ <DM6PR07MB5529A43AFDEB25993595DB59DD540@DM6PR07MB5529.namprd07.prod.outlook.com>
+ <20200826071504.GA19661@b29397-desktop>
+ <DM6PR07MB5529EB2FB7E3380321191B44DD540@DM6PR07MB5529.namprd07.prod.outlook.com>
+ <AM7PR04MB71576DF6C03387C7628DBE3A8B540@AM7PR04MB7157.eurprd04.prod.outlook.com>
+ <ab38721a-ef48-c6a7-aa33-3085ca7b8852@ti.com>
+ <20200827002339.GA17559@b29397-desktop>
+ <b083883d-b8c3-ee16-6b02-8987cade17ed@ti.com>
+Date:   Thu, 27 Aug 2020 16:02:39 +0300
+Message-ID: <87sgc8i6mo.fsf@kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha256; protocol="application/pgp-signature"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 26, 2020 at 10:50 PM Vinod Koul <vkoul@kernel.org> wrote:
->
-> On 26-08-20, 08:35, Rob Herring wrote:
-> > On Wed, Aug 26, 2020 at 12:32 AM Vinod Koul <vkoul@kernel.org> wrote:
-> > >
-> > > On 25-08-20, 20:21, Vinod Koul wrote:
-> > > > Hey Rob,
-> > > >
-> > > > On 24-08-20, 11:40, Rob Herring wrote:
-> > > > > On Mon, 24 Aug 2020 14:17:10 +0530, Vinod Koul wrote:
-> > > > > > Add devicetree binding documentation for GPI DMA controller
-> > > > > > implemented on Qualcomm SoCs
-> > > > > >
-> > > > > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > > > > > ---
-> > > > > >  .../devicetree/bindings/dma/qcom-gpi.yaml     | 87 +++++++++++=
-++++++++
-> > > > > >  1 file changed, 87 insertions(+)
-> > > > > >  create mode 100644 Documentation/devicetree/bindings/dma/qcom-=
-gpi.yaml
-> > > > > >
-> > > > >
-> > > > >
-> > > > > My bot found errors running 'make dt_binding_check' on your patch=
-:
-> > > > >
-> > > > > /builds/robherring/linux-dt-review/Documentation/devicetree/bindi=
-ngs/dma/qcom-gpi.yaml: properties:qcom,ev-factor: {'description': 'Event ri=
-ng transfer size compare to channel transfer ring. Event ring length =3D ev=
--factor * transfer ring size', 'maxItems': 1} is not valid under any of the=
- given schemas (Possible causes of the failure):
-> > > > >     /builds/robherring/linux-dt-review/Documentation/devicetree/b=
-indings/dma/qcom-gpi.yaml: properties:qcom,ev-factor: 'not' is a required p=
-roperty
-> > > >
-> > > > Okay updating dt-schema I do see this, now the question is what is =
-this
-> > > > and what does it mean ;-) I am not sure I comprehend the error mess=
-age.
-> > > > I see this for all the new properties I added as required for this
-> > > > device node
-> > >
-> > > Okay I think I have figured it out, I need to provide ref to
-> > > /schemas/types.yaml#definitions/uint32 for this to work, which does
-> > > makes sense to me.
-> > >
-> > >   qcom,max-num-gpii:
-> > >     $ref: /schemas/types.yaml#definitions/uint32
-> > >     maxItems: 1
-> >
-> > uint32 is always 1 item, so drop. Is there a max value you can define?
->
-> Sorry not sure I follow, to clarify you mean drop uint32, if so which
-> type to use u8? I can use u8 as max wont be beyond 255.
+--=-=-=
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
-maxItems applies to arrays. A uint32 is not an array, so drop 'maxItems'.
 
->
-> Yes I will define min as well max values too.
->
-> > Otherwise, up to 2^32 - 1 is valid.
->
-> I see one more warning given by your bot which I am able to reproduce as
-> well:
-> Documentation/devicetree/bindings/dma/qcom,gpi.example.dt.yaml: example-0=
-: dma-controller@800000:reg:0: [0, 8388608, 0, 393216] is too long
->
-> So to fix this I added the #address-cells and #size-cells
->
->         #address-cells =3D <2>;
->         #size-cells =3D <2>;
->         reg =3D <0x0 0x00800000 0x0 0x60000>;
->
-> But I am getting the warning, what am I doing incorrect
+Hi,
 
-The cell sizes for reg come from the parent node. The default for
-examples is 1 cell each. The easiest thing to do is change reg to
-'<0x00800000 0x60000>'. Otherwise, you'd need to define a parent bus
-node.
+Roger Quadros <rogerq@ti.com> writes:
+>>>>>>>>> From: Pawel Laszczak <pawell@cadence.com>
+>>>>>>>>>
+>>>>>>>>> USB2.0 PHY hangs in Rx Compliance test when the incoming packet
+>>>>>>>>> amplitude is varied below and above the Squelch Level of Receiver
+>>>>>>>>> during the active packet multiple times.
+>>>>>>>>>
+>>>>>>>>> Version 1 of the controller allows PHY to be reset when RX fail
+>>>>>>>>> condition is detected to work around the above issue. This feature
+>>>>>>>>> is disabled by default and needs to be enabled using a bit from
+>>>>>>>>> the newly added PHYRST_CFG register. This patch enables the worka=
+round.
+>>>>>>>>>
+>>>>>>>>> As there is no way to distinguish between the controller version
+>>>>>>>>> before the device controller is started we need to rely on a DT
+>>>>>>>>> property to decide when to apply the workaround.
+>>>>>>>>
+>>>>>>>> Pawel, it could know the controller version at cdns3_gadget_start,
+>>>>>>>> but the controller starts when it tries to bind gadget driver, at
+>>>>>>>> that time, it has already known the controller version.
+>>>>>>>>
+>>>>>>>> For me, the device controller starts is using USB_CONF.DEVEN (Devi=
+ce
+>>>>>>>> Enable) through usb_gadget_connect, I am not sure if it is the same
+>>>>>>>> with yours.
+>>>>>>>>
+>>>>>>>
+>>>>>>> Yes in device mode driver knows controller version but this
+>>>>>>> workaround Must be enabled also in host mode. In host mode the
+>>>>>>> controller doesn't have access to device registers. The controller
+>>>>>>> version is placed in device register.
+>>>>>>>
+>>>>>>
+>>>>>> You may suggest your design team adding CHIP_VER register at global
+>>>>>> register region, it will easy the software engineer life.
+>>>>>>
+>>>>> >From what I read, this register is only enabling USB2 PHY reset
+>>>>>> software control, it needs for all chips with rev 0x0002450D, and the
+>>>>>> place you current change is only for 0x0002450D, right?
+>>>>>
+>>>>> Even I could say that this workaround should be enabled only for Spec=
+ific USB2
+>>>>> PHY  (only 0x0002450D)
+>>>>>
+>>>>> This bit should not have any impact for Cadence PHY but it can has Im=
+pact for third
+>>>>> party PHYs.
+>>>>>
+>>>>
+>>>> So, it is related to specific PHY, but enable this specific PHY reset =
+bit is at controller region, why don't
+>>>> put this enable bit at PHY region?
+>>>
+>>> I think this is related to Controller + PHY combination.
+>>> The fix for the issue is via a bit in the controller, so it needs to be=
+ managed by the
+>>> controller driver.
+>>>
+>>>>
+>>>> So, you use controller's device property to know this specific PHY, ca=
+n controller know this specific
+>>>> PHY dynamically?
+>>>
+>>> Still the PHY will have to tell the controller the enable that bit. How=
+ to do that?
+>>>
+>>> Adding a dt-property that vendors can used was the simplest option.
+>>>
+>>=20
+>> Ok, does all controllers with ver 0x0002450D need this fix? I just think
+>> if we introduce a flag stands for ver 0x0002450D in case this ver has
+>> other issues in future or just using phy reset enable property?
+>>=20
+>> Pawel & Roger, what's your opinion?
+>>=20
+> I think it is best to keep the flags specific to the issue rather than
+> a one flag for all issues with a specific version. This way you can
+> re-use the flag irrespective of IP version.
 
-Rob
+I second that. Specially when some SoC-manufacturers may implement ECO
+fixes and not change IP revision.
+
+> But best case is that Cadence put a IP revision register in common area a=
+s you
+> have previously suggested so driver can automatically apply quirks to spe=
+cific
+> versions.
+
+little too late for that :-)
+
+=2D-=20
+balbi
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJFBAEBCAAvFiEElLzh7wn96CXwjh2IzL64meEamQYFAl9Hru8RHGJhbGJpQGtl
+cm5lbC5vcmcACgkQzL64meEamQY8xg//WHz2GcqK1+sGxk+5lOGCP/rWdOLo+WMg
+UgBC36W9zMY0Cchh0rRluRfliavEkvtnIF12d8aQSg1tpqWQ+Mu2S8QwWUJCleaa
+wO77Ocyg3PfAOjHWEnWBJxrOoplNwnza/3uoKVfpPeJrHlqzwH9ibhe7MKdYlO13
+tTEHyGXL2G9tTiiF4KhEC0Q9W86i4lYscTfu9BZaRD0GESrnN+6BkLnBQHG7Eo2R
+fmj0ydezud89ezWtMhfSEXnsxRsylP/Nho5Rrd3mKyY4kL6A07JlGTzsZ5RDQmkp
+6V9MAyvw2IEIe41swFNf3VChP95c7eHmSVXlu0vuoJC+nluTqfHdCSq8LU6G1TQT
+BobJOm8/gSLfgNUua41wOf2HSDg0tNOzQ1FBPwJvphcLfDRJ0ExVjY12poRsaYV8
+ZISZzXrHddMVLOh5f36FeUkzEOVHl4Q13H9CjqOg+ehfqeXaY+iX7i3mVMkfpmsO
+eGCm5UUXxkcyvvlvCFYIcUTiWQ10y+M5Oql/HR5grD2MVEkUbWZyRU56WKRYkYgL
+VsOJ+lHx09MAo7aH2twsq/lf/A5zeo9f9qA/fyV0ppfCJBqeQOzuLGODD5r0zVWG
+F+tOI4MEAJyuQ4bKBPfENenFSck5oonFWZBtpMKYBD3JlG6u53MUFEIrMGTyUnl8
++ZbqFHkObCI=
+=7clK
+-----END PGP SIGNATURE-----
+--=-=-=--
