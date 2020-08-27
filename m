@@ -2,108 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0C0F254273
-	for <lists+devicetree@lfdr.de>; Thu, 27 Aug 2020 11:33:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2FF625428B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Aug 2020 11:37:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728351AbgH0Jdd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Aug 2020 05:33:33 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:31883 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728185AbgH0JdV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Aug 2020 05:33:21 -0400
-X-UUID: 769124425ee14970af7de22d87642884-20200827
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=jsb359q+NGh2miLjbc2pS9a2c+qg5R24NLYz1yPyyVs=;
-        b=rwNtUAX92pp2645XUIWWpaXH3s8VntsbPZnnw9SLC/j41zm2vhKgT5OYx5uBg3AZn4Hc1oGlM8Yk6yJ0ah5cAT7HCdtYuglfXBizId0SnEwrBYoy8R0Tm1gN2syszM2iSUzJJCPik1TVE749ouqgFVkdONWWxIiuyC930TM5rIY=;
-X-UUID: 769124425ee14970af7de22d87642884-20200827
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <chun-hung.wu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 946813072; Thu, 27 Aug 2020 17:33:11 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 27 Aug 2020 17:33:09 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 27 Aug 2020 17:33:09 +0800
-From:   Chun-Hung Wu <chun-hung.wu@mediatek.com>
-To:     <mirq-linux@rere.qmqm.pl>, Jonathan Hunter <jonathanh@nvidia.com>,
-        Al Cooper <alcooperx@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Mao Yong <yong.mao@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Kate Stewart <kstewart@linuxfoundation.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Pan Bian <bianpan2016@163.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Allison Randal <allison@lohutok.net>,
-        Mathieu Malaterre <malat@debian.org>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Ritesh Harjani <riteshh@codeaurora.org>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Kuohong Wang <kuohong.wang@mediatek.com>
-CC:     <kernel-team@android.com>, <linux-kernel@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <wsd_upstream@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        Chun-Hung Wu <chun-hung.wu@mediatek.com>
-Subject: [PATCH  v1 2/2] mmc: mediatek: add pre_enable() and post_disable() hook function
-Date:   Thu, 27 Aug 2020 17:33:03 +0800
-Message-ID: <1598520783-25250-3-git-send-email-chun-hung.wu@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1598520783-25250-1-git-send-email-chun-hung.wu@mediatek.com>
-References: <1598520783-25250-1-git-send-email-chun-hung.wu@mediatek.com>
+        id S1726826AbgH0Jg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Aug 2020 05:36:56 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:56550 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726882AbgH0Jgz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Aug 2020 05:36:55 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07R9anEk086876;
+        Thu, 27 Aug 2020 04:36:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1598521009;
+        bh=gq9PsmCr2b2hlhGa81Jfhi1VEMeq5fSGg/TFRp1g5+s=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=wTHDnESgv8vwzPcqsnOtcCasnTKXCPJAI3NJcewfw9MGKGMOlRbbxG2O6LP/eaG72
+         VkbzNEdZFV3qhtZCkBM9D+XH2n90HzW+oeNQr5vNhqmG9JrIpQCzlUlaZojzjHdOw7
+         HVrqw9J/VShiR6RnYhV0t/EWNGpnev0rcp0DMjQU=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07R9an7A111323
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 27 Aug 2020 04:36:49 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 27
+ Aug 2020 04:36:49 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 27 Aug 2020 04:36:48 -0500
+Received: from [192.168.2.14] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07R9ak6O018513;
+        Thu, 27 Aug 2020 04:36:47 -0500
+Subject: Re: [PATCH 3/3] usb: cdns3: Enable workaround for USB2.0 PHY Rx
+ compliance test PHY lockup
+To:     Peter Chen <peter.chen@nxp.com>
+CC:     Pawel Laszczak <pawell@cadence.com>,
+        "balbi@kernel.org" <balbi@kernel.org>,
+        Rahul Kumar <kurahul@cadence.com>,
+        "nsekhar@ti.com" <nsekhar@ti.com>,
+        "vigneshr@ti.com" <vigneshr@ti.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20200825120059.12436-1-rogerq@ti.com>
+ <20200825120059.12436-4-rogerq@ti.com> <20200826031948.GA7646@b29397-desktop>
+ <DM6PR07MB5529A43AFDEB25993595DB59DD540@DM6PR07MB5529.namprd07.prod.outlook.com>
+ <20200826071504.GA19661@b29397-desktop>
+ <DM6PR07MB5529EB2FB7E3380321191B44DD540@DM6PR07MB5529.namprd07.prod.outlook.com>
+ <AM7PR04MB71576DF6C03387C7628DBE3A8B540@AM7PR04MB7157.eurprd04.prod.outlook.com>
+ <ab38721a-ef48-c6a7-aa33-3085ca7b8852@ti.com>
+ <20200827002339.GA17559@b29397-desktop>
+From:   Roger Quadros <rogerq@ti.com>
+Message-ID: <b083883d-b8c3-ee16-6b02-8987cade17ed@ti.com>
+Date:   Thu, 27 Aug 2020 12:36:46 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: CEDAC856A48AA8E85B313FDFD3A88ACA8C2DE2FDB18C66AA2FE8F852F30379052000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20200827002339.GA17559@b29397-desktop>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Q1FIQ0lfRU5BQkxFIGJpdCBpbiBDUUhDSV9DRkcgc2hvdWxkIGJlIGRpc2FibGVkDQphZnRlciBt
-c2RjX2NxZV9kaXNhYmxlKCksIGFuZCBzaG91bGQgYmUgZW5hYmxlZCBiZWZvcmUNCm1zZGNfY2Vx
-X2VuYWJsZSgpIGZvciBNVEsgcGxhdGZvcm0uDQpBZGQgaG9vayBmdW5jdGlvbnMgZm9yIGNxaGNp
-X2hvc3Rfb3BzLT5wcmVfZW5hYmxlKCkgYW5kDQpjcWhjaV9ob3N0X29wcy0+cG9zdF9kaXNhYmxl
-KCkuDQoNClNpZ25lZC1vZmYtYnk6IENodW4tSHVuZyBXdSA8Y2h1bi1odW5nLnd1QG1lZGlhdGVr
-LmNvbT4NCi0tLQ0KIGRyaXZlcnMvbW1jL2hvc3QvbXRrLXNkLmMgfCAgIDIyICsrKysrKysrKysr
-KysrKysrKysrKysNCiAxIGZpbGUgY2hhbmdlZCwgMjIgaW5zZXJ0aW9ucygrKQ0KDQpkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9tbWMvaG9zdC9tdGstc2QuYyBiL2RyaXZlcnMvbW1jL2hvc3QvbXRrLXNk
-LmMNCmluZGV4IDRlMjU4M2YuLmY1M2UxMWIgMTAwNjQ0DQotLS0gYS9kcml2ZXJzL21tYy9ob3N0
-L210ay1zZC5jDQorKysgYi9kcml2ZXJzL21tYy9ob3N0L210ay1zZC5jDQpAQCAtMjI4Miw2ICsy
-MjgyLDI2IEBAIHN0YXRpYyB2b2lkIG1zZGNfY3FlX2Rpc2FibGUoc3RydWN0IG1tY19ob3N0ICpt
-bWMsIGJvb2wgcmVjb3ZlcnkpDQogCX0NCiB9DQogDQorc3RhdGljIHZvaWQgbXNkY19jcWVfcHJl
-X2VuYWJsZShzdHJ1Y3QgbW1jX2hvc3QgKm1tYykNCit7DQorCXN0cnVjdCBjcWhjaV9ob3N0ICpj
-cV9ob3N0ID0gbW1jLT5jcWVfcHJpdmF0ZTsNCisJdTMyIHJlZzsNCisNCisJcmVnID0gY3FoY2lf
-cmVhZGwoY3FfaG9zdCwgQ1FIQ0lfQ0ZHKTsNCisJcmVnIHw9IENRSENJX0VOQUJMRTsNCisJY3Fo
-Y2lfd3JpdGVsKGNxX2hvc3QsIHJlZywgQ1FIQ0lfQ0ZHKTsNCit9DQorDQorc3RhdGljIHZvaWQg
-bXNkY19jcWVfcG9zdF9kaXNhYmxlKHN0cnVjdCBtbWNfaG9zdCAqbW1jKQ0KK3sNCisJc3RydWN0
-IGNxaGNpX2hvc3QgKmNxX2hvc3QgPSBtbWMtPmNxZV9wcml2YXRlOw0KKwl1MzIgcmVnOw0KKw0K
-KwlyZWcgPSBjcWhjaV9yZWFkbChjcV9ob3N0LCBDUUhDSV9DRkcpOw0KKwlyZWcgJj0gfkNRSENJ
-X0VOQUJMRTsNCisJY3FoY2lfd3JpdGVsKGNxX2hvc3QsIHJlZywgQ1FIQ0lfQ0ZHKTsNCit9DQor
-DQogc3RhdGljIGNvbnN0IHN0cnVjdCBtbWNfaG9zdF9vcHMgbXRfbXNkY19vcHMgPSB7DQogCS5w
-b3N0X3JlcSA9IG1zZGNfcG9zdF9yZXEsDQogCS5wcmVfcmVxID0gbXNkY19wcmVfcmVxLA0KQEAg
-LTIzMDEsNiArMjMyMSw4IEBAIHN0YXRpYyB2b2lkIG1zZGNfY3FlX2Rpc2FibGUoc3RydWN0IG1t
-Y19ob3N0ICptbWMsIGJvb2wgcmVjb3ZlcnkpDQogc3RhdGljIGNvbnN0IHN0cnVjdCBjcWhjaV9o
-b3N0X29wcyBtc2RjX2NtZHFfb3BzID0gew0KIAkuZW5hYmxlICAgICAgICAgPSBtc2RjX2NxZV9l
-bmFibGUsDQogCS5kaXNhYmxlICAgICAgICA9IG1zZGNfY3FlX2Rpc2FibGUsDQorCS5wcmVfZW5h
-YmxlID0gbXNkY19jcWVfcHJlX2VuYWJsZSwNCisJLnBvc3RfZGlzYWJsZSA9IG1zZGNfY3FlX3Bv
-c3RfZGlzYWJsZSwNCiB9Ow0KIA0KIHN0YXRpYyB2b2lkIG1zZGNfb2ZfcHJvcGVydHlfcGFyc2Uo
-c3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldiwNCi0tIA0KMS43LjkuNQ0K
 
+
+On 27/08/2020 03:24, Peter Chen wrote:
+> On 20-08-26 15:49:57, Roger Quadros wrote:
+>> Peter,
+>>
+>> On 26/08/2020 11:07, Peter Chen wrote:
+>>>>
+>>>>
+>>>>>
+>>>>> On 20-08-26 04:04:01, Pawel Laszczak wrote:
+>>>>>>> On 20-08-25 15:00:59, Roger Quadros wrote:
+>>>>>>>> From: Pawel Laszczak <pawell@cadence.com>
+>>>>>>>>
+>>>>>>>> USB2.0 PHY hangs in Rx Compliance test when the incoming packet
+>>>>>>>> amplitude is varied below and above the Squelch Level of Receiver
+>>>>>>>> during the active packet multiple times.
+>>>>>>>>
+>>>>>>>> Version 1 of the controller allows PHY to be reset when RX fail
+>>>>>>>> condition is detected to work around the above issue. This feature
+>>>>>>>> is disabled by default and needs to be enabled using a bit from
+>>>>>>>> the newly added PHYRST_CFG register. This patch enables the workaround.
+>>>>>>>>
+>>>>>>>> As there is no way to distinguish between the controller version
+>>>>>>>> before the device controller is started we need to rely on a DT
+>>>>>>>> property to decide when to apply the workaround.
+>>>>>>>
+>>>>>>> Pawel, it could know the controller version at cdns3_gadget_start,
+>>>>>>> but the controller starts when it tries to bind gadget driver, at
+>>>>>>> that time, it has already known the controller version.
+>>>>>>>
+>>>>>>> For me, the device controller starts is using USB_CONF.DEVEN (Device
+>>>>>>> Enable) through usb_gadget_connect, I am not sure if it is the same
+>>>>>>> with yours.
+>>>>>>>
+>>>>>>
+>>>>>> Yes in device mode driver knows controller version but this
+>>>>>> workaround Must be enabled also in host mode. In host mode the
+>>>>>> controller doesn't have access to device registers. The controller
+>>>>>> version is placed in device register.
+>>>>>>
+>>>>>
+>>>>> You may suggest your design team adding CHIP_VER register at global
+>>>>> register region, it will easy the software engineer life.
+>>>>>
+>>>> >From what I read, this register is only enabling USB2 PHY reset
+>>>>> software control, it needs for all chips with rev 0x0002450D, and the
+>>>>> place you current change is only for 0x0002450D, right?
+>>>>
+>>>> Even I could say that this workaround should be enabled only for Specific USB2
+>>>> PHY  (only 0x0002450D)
+>>>>
+>>>> This bit should not have any impact for Cadence PHY but it can has Impact for third
+>>>> party PHYs.
+>>>>
+>>>
+>>> So, it is related to specific PHY, but enable this specific PHY reset bit is at controller region, why don't
+>>> put this enable bit at PHY region?
+>>
+>> I think this is related to Controller + PHY combination.
+>> The fix for the issue is via a bit in the controller, so it needs to be managed by the
+>> controller driver.
+>>
+>>>
+>>> So, you use controller's device property to know this specific PHY, can controller know this specific
+>>> PHY dynamically?
+>>
+>> Still the PHY will have to tell the controller the enable that bit. How to do that?
+>>
+>> Adding a dt-property that vendors can used was the simplest option.
+>>
+> 
+> Ok, does all controllers with ver 0x0002450D need this fix? I just think
+> if we introduce a flag stands for ver 0x0002450D in case this ver has
+> other issues in future or just using phy reset enable property?
+> 
+> Pawel & Roger, what's your opinion?
+> 
+I think it is best to keep the flags specific to the issue rather than a one flag for
+all issues with a specific version. This way you can re-use the flag irrespective
+of IP version.
+
+But best case is that Cadence put a IP revision register in common area as you
+have previously suggested so driver can automatically apply quirks to specific
+versions.
+
+cheers,
+-roger
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
