@@ -2,202 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2EC0254C1C
-	for <lists+devicetree@lfdr.de>; Thu, 27 Aug 2020 19:22:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 255A1254C35
+	for <lists+devicetree@lfdr.de>; Thu, 27 Aug 2020 19:34:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728051AbgH0RWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Aug 2020 13:22:10 -0400
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:3045 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727884AbgH0RV2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Aug 2020 13:21:28 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5f47eb1d0004>; Thu, 27 Aug 2020 10:19:25 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Thu, 27 Aug 2020 10:21:27 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Thu, 27 Aug 2020 10:21:27 -0700
-Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 27 Aug
- 2020 17:21:27 +0000
-Received: from hqnvemgw03.nvidia.com (10.124.88.68) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Thu, 27 Aug 2020 17:21:27 +0000
-Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.174.186]) by hqnvemgw03.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5f47eb960002>; Thu, 27 Aug 2020 10:21:26 -0700
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     <adrian.hunter@intel.com>, <ulf.hansson@linaro.org>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <robh+dt@kernel.org>
-CC:     <skomatineni@nvidia.com>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <stable@vger.kernel.org>
-Subject: [PATCH v7 7/7] sdhci: tegra: Add missing TMCLK for data timeout
-Date:   Thu, 27 Aug 2020 10:21:01 -0700
-Message-ID: <1598548861-32373-8-git-send-email-skomatineni@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1598548861-32373-1-git-send-email-skomatineni@nvidia.com>
-References: <1598548861-32373-1-git-send-email-skomatineni@nvidia.com>
-X-NVConfidentiality: public
+        id S1726887AbgH0Rep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Aug 2020 13:34:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58988 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726217AbgH0Rep (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Aug 2020 13:34:45 -0400
+Received: from mail-yb1-xb41.google.com (mail-yb1-xb41.google.com [IPv6:2607:f8b0:4864:20::b41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 023AEC061264;
+        Thu, 27 Aug 2020 10:34:45 -0700 (PDT)
+Received: by mail-yb1-xb41.google.com with SMTP id h20so2983637ybj.8;
+        Thu, 27 Aug 2020 10:34:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=GxmsvrLcpOeXkCsHlYXOAwY7VKh0UFsLAGO+5hEpk1Q=;
+        b=lkTRJ1mKgk4cIPuJ5IMvWG7ijG3umHYB9nYkL+oAJE0t4OsJ46F+wrtWGJyoATCPDe
+         VgjH7PdTEqWZlvirOE9s9TVibxiJkkuQ6kXyEKqIMRpTeuPee5ss5QhmULBlaR1vuwey
+         XxS5NHbuxWiLkMAHuN/JURh/tsxhhFe/K8KNqu+Qzax9sHpZQmbIDX8O/jFU+Y0Od+1e
+         W+h5Z0Xk41k+qJEnvjnCG47zj4+oe+aLNkKv+y40anEwRnpVhdFU2OhpFC/f1n1D5KSs
+         VIeIMfApZ/AOVKQ3UA5neQ3owEIe4rKaJR8UoqRGR+0wBAaEOIUDt3IUif5ANx5IkZy9
+         YGOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=GxmsvrLcpOeXkCsHlYXOAwY7VKh0UFsLAGO+5hEpk1Q=;
+        b=uUKFCl0BiS4ma1xTAEAj9eYp/xmmqQ0xiw1P7eNYM61ZEDZ0XZmdJYP6TzbafE1GVp
+         pvbHf98Qm5LWbQtS+Ken/SBDAYU/q+LJfrGd71OCXMb0cP+KqqeJFrEETTm9RjGlkgew
+         DxK3khucCbSZrNXp4dr9gSLo5Hti5nb0zFPHKlBCUxlh2yMe5OM6gpUSBNOwgiU/61bi
+         +Z3PRUhFJVD+Xs8qDTk+Qb8ppbqAXFFECT2K8rLZbWaGoA8/Vtk8Eqb8ucydwFJCKgHP
+         ASkWelP22O4l4G2tmvG2TA89xpLHIQanSxlh/IcrTdmRcnIPDixWgsxiRtz0zbYH0nuj
+         IW3g==
+X-Gm-Message-State: AOAM5308HyJkvGyMJV2nLveWfBQ89AAikRHtbl82K4C9hg8O7a+7T4U5
+        RN42zJP8kUezcf0/8mEB5EDztUXT3enIFgJA2Wk=
+X-Google-Smtp-Source: ABdhPJxYWuCSYXqkPcWE01ctXjzSlgjHoDui1b/Nonl6BZbG1ITby8r+A827hGsYXxn7sV4XEbLGCqrkeleiozi355w=
+X-Received: by 2002:a25:2f4d:: with SMTP id v74mr28532113ybv.401.1598549684365;
+ Thu, 27 Aug 2020 10:34:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1598548765; bh=tjotC2T52Q6aN9v1RhNQ817xoX6eCGpWnGkexId3YdM=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=ejjAdHLu/VEVyL3si4NTYUEauYJiBkQ640BUyTV5U5GYmig1kyMrZBms6tZawG8rG
-         lSZ0+6AhVTobZ7Qm2G0c5ELmWDGLJoL3fVAPS3+qawkApqaePyNq+J21xtWlHexgKN
-         ns02mffxxX6qPdKmu+lBlcegBBZlRh2GbBlKaRh/Q9pbtcng4BMtKF/NhLl2VX1pjc
-         PkIBjDkg7uz3WCt98cjX4R0r0G9NKy8QG8aQ8UiC6stM+KJU1jp3pUUFvBki90X9Rm
-         cTzsfdMJjv62sH6sBsGPnn4o3be7uNSaz+BKvn9lJ4X/5msBBgdcqbtLAf8FsfU0hj
-         Z5sNd4Knbt+Qw==
+References: <1594919915-5225-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <1594919915-5225-2-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <1594919915-5225-2-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Thu, 27 Aug 2020 18:34:18 +0100
+Message-ID: <CA+V-a8sn1_fKbHt6cy-27+j2HWFp7Fjt8XBRZPLpvN47C3E3hQ@mail.gmail.com>
+Subject: Re: [PATCH 01/20] dt-bindings: pci: rcar-pci: Add device tree support
+ for r8a774e1
+To:     Bjorn Helgaas <bhelgaas@google.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Jens Axboe <axboe@kernel.dk>, Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Mark Brown <broonie@kernel.org>,
+        Niklas <niklas.soderlund@ragnatech.se>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-ide@vger.kernel.org,
+        dmaengine <dmaengine@vger.kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-media <linux-media@vger.kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        alsa-devel <alsa-devel@alsa-project.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        USB list <linux-usb@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-commit b5a84ecf025a ("mmc: tegra: Add Tegra210 support")
+Hi Bjorn,
 
-Tegra210 and later has a separate sdmmc_legacy_tm (TMCLK) used by Tegra
-SDMMC hawdware for data timeout to achive better timeout than using
-SDCLK and using TMCLK is recommended.
+On Thu, Jul 16, 2020 at 6:18 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+>
+> Add PCIe support for the RZ/G2H (a.k.a. R8A774E1).
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+> ---
+>  Documentation/devicetree/bindings/pci/rcar-pci.txt | 1 +
+>  1 file changed, 1 insertion(+)
+>
+Gentle ping.
 
-USE_TMCLK_FOR_DATA_TIMEOUT bit in Tegra SDMMC register
-SDHCI_TEGRA_VENDOR_SYS_SW_CTRL can be used to choose either TMCLK or
-SDCLK for data timeout.
-
-Default USE_TMCLK_FOR_DATA_TIMEOUT bit is set to 1 and TMCLK is used
-for data timeout by Tegra SDMMC hardware and having TMCLK not enabled
-is not recommended.
-
-So, this patch adds quirk NVQUIRK_HAS_TMCLK for SoC having separate
-timeout clock and keeps TMCLK enabled all the time.
-
-Fixes: b5a84ecf025a ("mmc: tegra: Add Tegra210 support")
-Cc: stable <stable@vger.kernel.org> # 5.4
-Tested-by: Jon Hunter <jonathanh@nvidia.com>
-Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
-Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
----
- drivers/mmc/host/sdhci-tegra.c | 53 ++++++++++++++++++++++++++++++++++++++++--
- 1 file changed, 51 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/mmc/host/sdhci-tegra.c b/drivers/mmc/host/sdhci-tegra.c
-index 31ed321..13fbf70 100644
---- a/drivers/mmc/host/sdhci-tegra.c
-+++ b/drivers/mmc/host/sdhci-tegra.c
-@@ -110,6 +110,12 @@
- #define NVQUIRK_DIS_CARD_CLK_CONFIG_TAP			BIT(8)
- #define NVQUIRK_CQHCI_DCMD_R1B_CMD_TIMING		BIT(9)
- 
-+/*
-+ * NVQUIRK_HAS_TMCLK is for SoC's having separate timeout clock for Tegra
-+ * SDMMC hardware data timeout.
-+ */
-+#define NVQUIRK_HAS_TMCLK				BIT(10)
-+
- /* SDMMC CQE Base Address for Tegra Host Ver 4.1 and Higher */
- #define SDHCI_TEGRA_CQE_BASE_ADDR			0xF000
- 
-@@ -140,6 +146,7 @@ struct sdhci_tegra_autocal_offsets {
- struct sdhci_tegra {
- 	const struct sdhci_tegra_soc_data *soc_data;
- 	struct gpio_desc *power_gpio;
-+	struct clk *tmclk;
- 	bool ddr_signaling;
- 	bool pad_calib_required;
- 	bool pad_control_available;
-@@ -1433,7 +1440,8 @@ static const struct sdhci_tegra_soc_data soc_data_tegra210 = {
- 		    NVQUIRK_HAS_PADCALIB |
- 		    NVQUIRK_DIS_CARD_CLK_CONFIG_TAP |
- 		    NVQUIRK_ENABLE_SDR50 |
--		    NVQUIRK_ENABLE_SDR104,
-+		    NVQUIRK_ENABLE_SDR104 |
-+		    NVQUIRK_HAS_TMCLK,
- 	.min_tap_delay = 106,
- 	.max_tap_delay = 185,
- };
-@@ -1471,6 +1479,7 @@ static const struct sdhci_tegra_soc_data soc_data_tegra186 = {
- 		    NVQUIRK_DIS_CARD_CLK_CONFIG_TAP |
- 		    NVQUIRK_ENABLE_SDR50 |
- 		    NVQUIRK_ENABLE_SDR104 |
-+		    NVQUIRK_HAS_TMCLK |
- 		    NVQUIRK_CQHCI_DCMD_R1B_CMD_TIMING,
- 	.min_tap_delay = 84,
- 	.max_tap_delay = 136,
-@@ -1483,7 +1492,8 @@ static const struct sdhci_tegra_soc_data soc_data_tegra194 = {
- 		    NVQUIRK_HAS_PADCALIB |
- 		    NVQUIRK_DIS_CARD_CLK_CONFIG_TAP |
- 		    NVQUIRK_ENABLE_SDR50 |
--		    NVQUIRK_ENABLE_SDR104,
-+		    NVQUIRK_ENABLE_SDR104 |
-+		    NVQUIRK_HAS_TMCLK,
- 	.min_tap_delay = 96,
- 	.max_tap_delay = 139,
- };
-@@ -1611,6 +1621,43 @@ static int sdhci_tegra_probe(struct platform_device *pdev)
- 		goto err_power_req;
- 	}
- 
-+	/*
-+	 * Tegra210 has a separate SDMMC_LEGACY_TM clock used for host
-+	 * timeout clock and SW can choose TMCLK or SDCLK for hardware
-+	 * data timeout through the bit USE_TMCLK_FOR_DATA_TIMEOUT of
-+	 * the register SDHCI_TEGRA_VENDOR_SYS_SW_CTRL.
-+	 *
-+	 * USE_TMCLK_FOR_DATA_TIMEOUT bit default is set to 1 and SDMMC uses
-+	 * 12Mhz TMCLK which is advertised in host capability register.
-+	 * With TMCLK of 12Mhz provides maximum data timeout period that can
-+	 * be achieved is 11s better than using SDCLK for data timeout.
-+	 *
-+	 * So, TMCLK is set to 12Mhz and kept enabled all the time on SoC's
-+	 * supporting separate TMCLK.
-+	 */
-+
-+	if (soc_data->nvquirks & NVQUIRK_HAS_TMCLK) {
-+		clk = devm_clk_get(&pdev->dev, "tmclk");
-+		if (IS_ERR(clk)) {
-+			rc = PTR_ERR(clk);
-+			if (rc == -EPROBE_DEFER)
-+				goto err_power_req;
-+
-+			dev_warn(&pdev->dev, "failed to get tmclk: %d\n", rc);
-+			clk = NULL;
-+		}
-+
-+		clk_set_rate(clk, 12000000);
-+		rc = clk_prepare_enable(clk);
-+		if (rc) {
-+			dev_err(&pdev->dev,
-+				"failed to enable tmclk: %d\n", rc);
-+			goto err_power_req;
-+		}
-+
-+		tegra_host->tmclk = clk;
-+	}
-+
- 	clk = devm_clk_get(mmc_dev(host->mmc), NULL);
- 	if (IS_ERR(clk)) {
- 		rc = PTR_ERR(clk);
-@@ -1654,6 +1701,7 @@ static int sdhci_tegra_probe(struct platform_device *pdev)
- err_rst_get:
- 	clk_disable_unprepare(pltfm_host->clk);
- err_clk_get:
-+	clk_disable_unprepare(tegra_host->tmclk);
- err_power_req:
- err_parse_dt:
- 	sdhci_pltfm_free(pdev);
-@@ -1671,6 +1719,7 @@ static int sdhci_tegra_remove(struct platform_device *pdev)
- 	reset_control_assert(tegra_host->rst);
- 	usleep_range(2000, 4000);
- 	clk_disable_unprepare(pltfm_host->clk);
-+	clk_disable_unprepare(tegra_host->tmclk);
- 
- 	sdhci_pltfm_free(pdev);
- 
--- 
-2.7.4
-
+Cheers,
+Prabhakar
