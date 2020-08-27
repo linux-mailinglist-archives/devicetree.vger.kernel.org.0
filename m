@@ -2,102 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 845F3254BE5
-	for <lists+devicetree@lfdr.de>; Thu, 27 Aug 2020 19:17:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E788C254C15
+	for <lists+devicetree@lfdr.de>; Thu, 27 Aug 2020 19:22:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726858AbgH0RRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Aug 2020 13:17:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56286 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726157AbgH0RRV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Aug 2020 13:17:21 -0400
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B39DFC061264;
-        Thu, 27 Aug 2020 10:17:20 -0700 (PDT)
-Received: by mail-ed1-x543.google.com with SMTP id c8so5595195edn.8;
-        Thu, 27 Aug 2020 10:17:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:from:to:cc:subject:references:date:in-reply-to:message-id
-         :user-agent:mime-version;
-        bh=rMb9LJxrcGiTyNyXwwyZ6syio89Yz2hnJzYevmI52VE=;
-        b=dB9WcXqWXys8obmbtsB0NyXuam4s3n3sqAJ2FO6MZJziZgF/U2ynJXCnc9PrqpC5lz
-         btmeqnTmPPM68itNNSwrCzFE0WnEs1uvNCT8xwHVWmboUN09RG6elHINBAOcw3iqNTa1
-         n2IyTmgJeFz/2cRfLv1X9kY/jnySuyrnFe4ani1nQ2Cob+Ksaky6eWsAb7mfnN6kbTLv
-         76Tj9XOg2XfiNGpT0y61jIITf20G9IwvOcUKhDQ+mVtQbgcxrx8Ivb4zli+1UqJ1tlxN
-         fVuQo1vgNqeA2yCN5zQo0tOx1qmSFcQZRKDAewJTcchnXH4rI3r37SbDhXgs/cSGGYr0
-         BGDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:references:date
-         :in-reply-to:message-id:user-agent:mime-version;
-        bh=rMb9LJxrcGiTyNyXwwyZ6syio89Yz2hnJzYevmI52VE=;
-        b=pmGylB5IH3qV90drfTtjSzlU17+tec8ZYy3Mx1hWqdZpqZ+T0LAYRvSB1yl0J66+z9
-         WVZqVi8oBxYBAZs+fRfF0b2jy0zROvny73jaYDVUBcew6hTUp+47CwXSwCXyQIBojiiL
-         /yurd7B2n116huy90g3JPVIaAE4pmdXSQbgv0cZK8mgxWVj2wZLynRoSaQk4bzDQX2VO
-         BGH/ItO7nO8fbxwcgu4IlF9FEr00OsGwTs9vLo5C2tTHH0/t16kfEzOrm8RfQ6G5qTfH
-         ne2HptaaQNlzFCXexnTN4n7d5ep7YGejwhDmLjmmiF1HaQjUC5CVGNTPMljJX9YI6svs
-         9WwQ==
-X-Gm-Message-State: AOAM533uO6w/CzbUn+RLL5YgJIQlhG2jliip0+s5biibn/uBxP+aJ3Uu
-        2QAmeKiH1CRjTZQHxgIKzk0=
-X-Google-Smtp-Source: ABdhPJwcBvHTnG9Xg7kXrNUUX+KbvFG59tNLBgd8D/deEo5TMVFE72bHs1NgF1Ey6p8ITpDfcQmxLQ==
-X-Received: by 2002:aa7:c596:: with SMTP id g22mr21145561edq.109.1598548639333;
-        Thu, 27 Aug 2020 10:17:19 -0700 (PDT)
-Received: from dell.be.48ers.dk (d51A5BC31.access.telenet.be. [81.165.188.49])
-        by smtp.gmail.com with ESMTPSA id v13sm2336389ejq.59.2020.08.27.10.17.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Aug 2020 10:17:18 -0700 (PDT)
-Received: from peko by dell.be.48ers.dk with local (Exim 4.92)
-        (envelope-from <peter@korsgaard.com>)
-        id 1kBLWX-0007qi-IQ; Thu, 27 Aug 2020 19:17:17 +0200
-From:   Peter Korsgaard <peter@korsgaard.com>
-To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Andreas =?utf-8?Q?F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 4/4] arm: dts: owl-s500: Add RoseapplePi
-References: <cover.1592123160.git.cristian.ciocaltea@gmail.com>
-        <2d12521d196e2c08a30aacd0ab20d93593f94707.1592123160.git.cristian.ciocaltea@gmail.com>
-        <87v9h4y4dj.fsf@dell.be.48ers.dk>
-        <20200827141520.GD2451538@BV030612LT>
-Date:   Thu, 27 Aug 2020 19:17:17 +0200
-In-Reply-To: <20200827141520.GD2451538@BV030612LT> (Cristian Ciocaltea's
-        message of "Thu, 27 Aug 2020 17:15:20 +0300")
-Message-ID: <87r1rsxb36.fsf@dell.be.48ers.dk>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S1727888AbgH0RV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Aug 2020 13:21:28 -0400
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:3029 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727105AbgH0RV1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Aug 2020 13:21:27 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5f47eb1c0001>; Thu, 27 Aug 2020 10:19:24 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Thu, 27 Aug 2020 10:21:26 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Thu, 27 Aug 2020 10:21:26 -0700
+Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 27 Aug
+ 2020 17:21:23 +0000
+Received: from hqnvemgw03.nvidia.com (10.124.88.68) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Thu, 27 Aug 2020 17:21:23 +0000
+Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.174.186]) by hqnvemgw03.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5f47eb930000>; Thu, 27 Aug 2020 10:21:23 -0700
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     <adrian.hunter@intel.com>, <ulf.hansson@linaro.org>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <robh+dt@kernel.org>
+CC:     <skomatineni@nvidia.com>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <stable@vger.kernel.org>
+Subject: [PATCH v7 0/7] Fix timeout clock used by hardware data timeout
+Date:   Thu, 27 Aug 2020 10:20:54 -0700
+Message-ID: <1598548861-32373-1-git-send-email-skomatineni@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
 MIME-Version: 1.0
 Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1598548764; bh=e1JLqlJk7EjViWZ1Uf+05+ElVBscJJUBK0gRnJRnjq8=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=hFWZkDU7nDfzmjlOiH8cz/4JnoSH/V8iDoIQ/1t0eZ/jVjxatQl6b/WK2qQtlX3Bn
+         EaoJWO5he50tZfh4AQB5c/Rrp7wEr5UUHVKp4f1tG8D1HN9TYK2kv8+mKQBckbZxCo
+         lO08yu/sIfeoDxnUn4+TCcSJR+KpazKJI488Oq6dNWR3qpVxKMm+ojx7r30Qnfax5I
+         GFsm/zRwYxoFZixNSHKkzL4mZoDXGjaHcydCSSq2nIJZWRMI22YkMGjlFjPsYc+/J2
+         qwxUHStVJy6lYMvjrEFTnOqW7YZWT5pU/FBfB7UWMIX8BF9zJmp6FHUtP/37FApOnt
+         6J9uDjz7c88Aw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->>>>> "Cristian" == Cristian Ciocaltea <cristian.ciocaltea@gmail.com> writes:
+Tegra210/Tegra186/Tegra194 has incorrectly enabled
+SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK from the beginning of their support.
 
- > Hi Peter,
- > Thanks for the review!
+Tegra210 and later SDMMC hardware default uses sdmmc_legacy_tm (TMCLK)
+all the time for hardware data timeout instead of SDCLK and this TMCLK
+need to be kept enabled by Tegra sdmmc driver.
 
- > On Thu, Aug 27, 2020 at 08:44:40AM +0200, Peter Korsgaard wrote:
- >> >>>>> "Cristian" == Cristian Ciocaltea <cristian.ciocaltea@gmail.com> writes:
- >> 
- >> > Add a Device Tree for the RoseapplePi SBC.
- >> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
- >> 
- >> Reviewed-by: Peter Korsgaard <peter@korsgaard.com>
- >> 
- >> On a related note: There is now an owl-mmc driver for the s900. From a
- >> quick look at the datasheet it looks compatible with the controller on
- >> the s500. Did you have a look at hooking that up?
+This series includes patches to fix this for Tegra210/Tegra186/Tegra194.
 
- > Yes, please see:
- > https://lore.kernel.org/lkml/cover.1593124368.git.cristian.ciocaltea@gmail.com/
+These patches need to be manually backported to 4.19.
 
- > The clock related patches have been already applied to v5.9 and
- > hopefully the pinctrl driver will follow in v5.10.
+Will send patches for 4.19 backport separately.
 
-Cool, I must have missed that series Great, thanks!
+Delta between patch versions:
+[v7]:	v7 has below change
+	- v6 has implementation for retrieving tmclk irrespective of
+	  clocks order. But based in internal discussion with Thierry
+	  this is not required as typically order specified in DT
+	  bindings is the order validator want to see in DT.
+
+[v6]:	v5 is sent out mistakenly with incorrect patches.
+	v6 includes proper patches addressing v4 feedback
+	- updated dt-binding doc to be more clear
+	- updated Tegra sdhci driver to retrieve sdhci and tmclk clocks
+	  based on no. of clocks in sdhci device node as old device trees
+	  do not use sdhci clock name and this allows proper clock retrival
+	  irrespective of sdhci and tmclk clocks order in device tree.	  
+	- Added separate quirk for identifying SoC's supporting separate
+	  timeout clock to be more clear.
+
+[v5]:	Include below changes based on v4 feedback
+	- updated dt-binding doc to be more clear
+	- updated Tegra sdhci driver to retrieve sdhci and tmclk clocks
+	  based on no. of clocks in sdhci device node as old device trees
+	  do not use sdhci clock name and this allows proper clock retrival
+	  irrespective of sdhci and tmclk clocks order in device tree.	  
+	- Added separate quirk for identifying SoC's supporting separate
+	  timeout clock to be more clear.
+
+[v4]:	Include additional dt-binding patch
+
+[v3]:	Same as v2 with fixes tag
+
+[v2]:	Includes minor fix
+	- Patch-0006: parentheses around operand of '!'
+
+Sowjanya Komatineni (7):
+  sdhci: tegra: Remove SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK for Tegra210
+  sdhci: tegra: Remove SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK for Tegra186
+  dt-bindings: mmc: tegra: Add tmclk for Tegra210 and later
+  arm64: tegra: Add missing timeout clock to Tegra210 SDMMC
+  arm64: tegra: Add missing timeout clock to Tegra186 SDMMC nodes
+  arm64: tegra: Add missing timeout clock to Tegra194 SDMMC nodes
+  sdhci: tegra: Add missing TMCLK for data timeout
+
+ .../bindings/mmc/nvidia,tegra20-sdhci.txt          | 32 +++++++++++--
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi           | 20 ++++----
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi           | 15 +++---
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi           | 20 ++++----
+ drivers/mmc/host/sdhci-tegra.c                     | 55 ++++++++++++++++++++--
+ 5 files changed, 113 insertions(+), 29 deletions(-)
 
 -- 
-Bye, Peter Korsgaard
+2.7.4
+
