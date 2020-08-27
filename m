@@ -2,115 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F12A254603
-	for <lists+devicetree@lfdr.de>; Thu, 27 Aug 2020 15:35:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB955254651
+	for <lists+devicetree@lfdr.de>; Thu, 27 Aug 2020 15:57:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727986AbgH0Nen (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Aug 2020 09:34:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48794 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727926AbgH0Naj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Aug 2020 09:30:39 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 692B2C061236
-        for <devicetree@vger.kernel.org>; Thu, 27 Aug 2020 06:30:13 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id l7so1571528wrx.8
-        for <devicetree@vger.kernel.org>; Thu, 27 Aug 2020 06:30:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=p33Zl85F48xSFFwh9Fvb6fYwVy/Jt4DGVFmz86MHbko=;
-        b=CUujgUZRienGvENy9ZeNSE4OLq/gTozkw9vqhnndn3e+Pp27upZYxzcOy348qWT4x6
-         fZ9HzhrGd6ok0/lpV6XJMXIHbIrfSS3H2kc5d+JTd1lletPZjVOkUQ8WZMoDnSSylgRw
-         zOHH0JLxrQJsHR8v5+SGQOGgwwu7dIE6xp9Po=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=p33Zl85F48xSFFwh9Fvb6fYwVy/Jt4DGVFmz86MHbko=;
-        b=WJZyrk/LMhEI5coi6m6PIwh4Weyy06Xb0fsT+PAL4Lek56HpChkyOkmVoD371LKJ2m
-         kHLoo1xN9pzfY6T73LDRhQd0XRdJ8e4+meHbVp5rA/OZ9WWoK2d7HkmjgG38FIBcIPJJ
-         6KmXrVBEcnffSUZUG+70oAoV/PSLr+ZV8XePskp8jUJ93oI/bh834GYv1FhURAn48Kyk
-         1itt2USmV4WuyGdi/Y3oQjyF4dqSwAFBdWDfXE/WatjSZyIbvlCa/TTZGYbK5YBJJcPB
-         AnlHBVtOK+wjenELALf6geujTIa+Nk3fqacDpKVwR+7H3eqsYx0Y/bK6gzQ3w/q33Jda
-         K+lA==
-X-Gm-Message-State: AOAM5321tzsmOAw26X1FOl9OFGvlz2xBCjU00f8QILD4jf/AIM/tNIxq
-        ucCckcolXyTSobMyKJTDjieqNcXcTx4MVIrERoGQIw==
-X-Google-Smtp-Source: ABdhPJyMtaFishcwtzNCj7DHN/faPMoK+tSF7O0vKJaBGS+gpAIRdF6geUez9pCQeleah1w6P5SJ7nzMgTS0KKpMqRI=
-X-Received: by 2002:adf:bb54:: with SMTP id x20mr19609148wrg.413.1598535011238;
- Thu, 27 Aug 2020 06:30:11 -0700 (PDT)
+        id S1727971AbgH0Npq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Aug 2020 09:45:46 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:59052 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726903AbgH0Npl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Aug 2020 09:45:41 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07RDjANF022101;
+        Thu, 27 Aug 2020 08:45:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1598535910;
+        bh=5VjrUweBUoddKIWA5DoHoSgzJyOyTNTEfVyDIdJ2VIk=;
+        h=From:To:CC:Subject:Date;
+        b=sXob2MhH3tufPGq4B+lDTCnp2UgNk+1HVfyoLTkgNs+gUyAob0HeJNHhNWHH5fvyg
+         kTXIKIa6R1sGK49mQgYhaLKFwav4GJSl6AlTAvrmp5JiEshZZJgGkkENnvGYqb8Vpq
+         cHMXVlwQKhQyw8/TeTmhbu0vLn+zlWKwslvIL/6c=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07RDjAdc108223
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 27 Aug 2020 08:45:10 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 27
+ Aug 2020 08:45:10 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 27 Aug 2020 08:45:10 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07RDj9xn058230;
+        Thu, 27 Aug 2020 08:45:09 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <andrew@lunn.ch>, <f.fainelli@gmail.com>, <hkallweit1@gmail.com>,
+        <davem@davemloft.net>, <robh@kernel.org>
+CC:     <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH net-next v3 0/2] Enable Fiber on DP83822 PHY
+Date:   Thu, 27 Aug 2020 08:45:07 -0500
+Message-ID: <20200827134509.23854-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20200824193036.6033-1-james.quinlan@broadcom.com>
- <b19bc982-a0c4-c6ff-d8f5-650f2b3a83c8@gmail.com> <20200827063517.GA4637@lst.de>
-In-Reply-To: <20200827063517.GA4637@lst.de>
-From:   Jim Quinlan <james.quinlan@broadcom.com>
-Date:   Thu, 27 Aug 2020 09:29:59 -0400
-Message-ID: <CA+-6iNy3U9pO0Bykzgvb9n9fcsBi6FiatLdpA1s0HgQNWZ49mg@mail.gmail.com>
-Subject: Re: [PATCH v11 00/11] PCI: brcmstb: enable PCIe for STB chips
-To:     Christoph Hellwig <hch@lst.de>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        "open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" 
-        <linux-pci@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>,
-        "open list:DRM DRIVERS FOR ALLWINNER A10" 
-        <dri-devel@lists.freedesktop.org>, Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        "open list:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Joerg Roedel <jroedel@suse.de>,
-        Julien Grall <julien.grall@arm.com>,
-        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>,
-        "moderated list:ARM PORT" <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:ALLWINNER A10 CSI DRIVER" <linux-media@vger.kernel.org>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "open list:SUPERH" <linux-sh@vger.kernel.org>,
-        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Stefano Stabellini <sstabellini@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 27, 2020 at 2:35 AM Christoph Hellwig <hch@lst.de> wrote:
->
-> On Tue, Aug 25, 2020 at 10:40:27AM -0700, Florian Fainelli wrote:
-> > Hi,
-> >
-> > On 8/24/2020 12:30 PM, Jim Quinlan wrote:
-> >>
-> >> Patchset Summary:
-> >>    Enhance a PCIe host controller driver.  Because of its unusual design
-> >>    we are foced to change dev->dma_pfn_offset into a more general role
-> >>    allowing multiple offsets.  See the 'v1' notes below for more info.
-> >
-> > We are version 11 and counting, and it is not clear to me whether there is
-> > any chance of getting these patches reviewed and hopefully merged for the
-> > 5.10 merge window.
-> >
-> > There are a lot of different files being touched, so what would be the
-> > ideal way of routing those changes towards inclusion?
->
-> FYI, I offered to take the dma-mapping bits through the dma-mapping tree.
-> I have a bit of a backlog, but plan to review and if Jim is ok with that
-> apply the current version.
-Sounds good to me.
-Thanks, Jim
+Hello
+
+The DP83822 Ethernet PHY has the ability to connect via a Fiber port.  The
+derivative PHYs DP83825 and DP83826 do not have this ability. In fiber mode
+the DP83822 disables auto negotiation and has a fixed 100Mbps speed with
+support for full or half duplex modes.
+
+A devicetree binding was added to set the signal polarity for the fiber
+connection.  This property is only applicable if the FX_EN strap is set in
+hardware other wise the signal loss detection is disabled on the PHY.
+
+If the FX_EN is not strapped the device can be configured to run in fiber mode
+via the device tree. All be it the PHY will not perform signal loss detection.
+
+v2 review from a long time ago can be found here - https://lore.kernel.org/patchwork/patch/1270958/
+
+Dan
+
+Dan Murphy (2):
+  dt-bindings: net: dp83822: Add TI dp83822 phy
+  net: phy: DP83822: Add ability to advertise Fiber connection
+
+ .../devicetree/bindings/net/ti,dp83822.yaml   |  80 +++++++
+ drivers/net/phy/dp83822.c                     | 225 +++++++++++++++++-
+ 2 files changed, 298 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/ti,dp83822.yaml
+
+-- 
+2.28.0
+
