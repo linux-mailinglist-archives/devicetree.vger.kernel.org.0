@@ -2,141 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4BE625474B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Aug 2020 16:48:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F8FD2546E2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Aug 2020 16:31:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728070AbgH0OsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Aug 2020 10:48:06 -0400
-Received: from mx0a-00010702.pphosted.com ([148.163.156.75]:49520 "EHLO
-        mx0b-00010702.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728043AbgH0OsB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Aug 2020 10:48:01 -0400
-X-Greylist: delayed 3506 seconds by postgrey-1.27 at vger.kernel.org; Thu, 27 Aug 2020 10:47:52 EDT
-Received: from pps.filterd (m0098781.ppops.net [127.0.0.1])
-        by mx0a-00010702.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 07RDitBC012196;
-        Thu, 27 Aug 2020 08:47:45 -0500
-Received: from nam02-sn1-obe.outbound.protection.outlook.com (mail-sn1nam02lp2051.outbound.protection.outlook.com [104.47.36.51])
-        by mx0a-00010702.pphosted.com with ESMTP id 332yd26r2g-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Aug 2020 08:47:45 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ez6aI/WDLGWO4m0FyoH2ZPLStT9/1pZy7hasLUbIgc820KCUzVs/0cSvEBnhKuBc6aae4Fa9CeRJyNabk471UQCrZ+IVmPlNDrbWYD5oKch3VlY9qGb2UA5UlOY3H0A/MIHedkklioe5UsivkFIa+AwNcxq0evV67rEecTnUOtBgKNwEt+IXJbgH+MQCgDqGp04KYLMv+neF9hhNBv3t17p+iJCLO61nUPPOuGTpFEMTfaJGydJfM9MJ9WNAxiNP73iwicDZt88/s2/yBvKKk7kVjPhClVQjBJByo5UT6oiSQpDIIw0XSVOls4FUyQ4sQpn/MFIC+hwL/LYE+eIFEA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KnzD30OSqbBlP3TKzzQR2rHtCNCizQB4pKMSVRPdM3Y=;
- b=C7DnxnC6wWzWuRLABowfk+hJ95IEPXg0F+n/kOuLQLQgj+K6MQhQ+VViH7LHyjtdSg52kJ49SOluQ+9DLf7BIHZb7Fw/ZXD/yVJtGQ3ADrVxsZOOWbN2mqDxTV7waXqAGzNwxKtugDZraFLPmpNxe0+IPfWjoZMRdmbe3qOo4LTClwCo91xf9WE1revegTfe5734ImaUpSHNNJ9JiX//EbMZtMwa5Fi1HIOk1sqcilGrrK5ud8QReW0qHmDwawXBMemwtS9u+AMVesG2hqxVdls0o2zvHa4eqG3yLywzYFYmGN7RrqnMbfRPnI8tdkq/JPVZbbIm9QqNiHge6NGLOw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
- header.d=ni.com; arc=none
+        id S1727990AbgH0O0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Aug 2020 10:26:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57546 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727993AbgH0O0f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Aug 2020 10:26:35 -0400
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9142CC06121B;
+        Thu, 27 Aug 2020 07:15:28 -0700 (PDT)
+Received: by mail-ed1-x542.google.com with SMTP id u1so5068416edi.4;
+        Thu, 27 Aug 2020 07:15:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nio365.onmicrosoft.com; s=selector2-nio365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KnzD30OSqbBlP3TKzzQR2rHtCNCizQB4pKMSVRPdM3Y=;
- b=EenSbI5igwG0DV2YbMoNxjrI6AXkRc2qhsprUisZELEjlWAjSF9AexR2VUfwPPO4fyB+/+olRlZvbz3Wv3SiEppZCMYlxs9aoEhE06IPYoEJ0atezP+hgjmdepEQ6YzwNaPrFzazALTn5PMgghRpye5+yiBAq65QGzjHDt4RGsQ=
-Authentication-Results: xilinx.com; dkim=none (message not signed)
- header.d=none;xilinx.com; dmarc=none action=none header.from=ni.com;
-Received: from SN4PR0401MB3646.namprd04.prod.outlook.com
- (2603:10b6:803:4b::29) by SN6PR04MB4829.namprd04.prod.outlook.com
- (2603:10b6:805:b0::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.19; Thu, 27 Aug
- 2020 13:47:43 +0000
-Received: from SN4PR0401MB3646.namprd04.prod.outlook.com
- ([fe80::30f8:af2b:efff:2750]) by SN4PR0401MB3646.namprd04.prod.outlook.com
- ([fe80::30f8:af2b:efff:2750%3]) with mapi id 15.20.3305.026; Thu, 27 Aug 2020
- 13:47:43 +0000
-Date:   Thu, 27 Aug 2020 08:47:42 -0500
-From:   Michael Auchter <michael.auchter@ni.com>
-To:     Ben Levinsky <ben.levinsky@xilinx.com>
-Cc:     stefano.stabellini@xilinx.com, michals@xilinx.com,
-        devicetree@vger.kernel.org, mathieu.poirier@linaro.org,
-        emooring@xilinx.com, linux-remoteproc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, jliang@xilinx.com,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org
-Message-ID: <20200827134742.GB404249@xaphan>
-References: <20200827015810.11157-1-ben.levinsky@xilinx.com>
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=NXkLLdStZAp/ZkgGou+K3F4imj0vfXH+Hp3m3xXWcro=;
+        b=MWBEgGPw8K6mkTY5BsXwDG/tkAjCutG31ed3J4GGXW64ymyLGydPe5Y+l849kuTZL6
+         yv84qalw1kG2lf823+h65AY4/B9+NSJY481zea/luna/GIkP0oPfmhFJn/8keppiM8HL
+         /SU0jHblLyZ6Fdb2IXT2VWwSI1VqCq4c/opm/cTdpwosuw4J1RGDXrwcpv1HHQci5LJJ
+         L1kcIGvLFSYC8PXfNMj+9hz0zT2sAos9PBYkcQU0K/b0JWfRf/H1E6qpHc0kZMYFCkgQ
+         SQC6ndi9zdcpr+n2uqrG+rN5p/AlMePr1/S/lLgE+JHjac1tRZlNrHZdP+7SstWj8Y0h
+         i14w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=NXkLLdStZAp/ZkgGou+K3F4imj0vfXH+Hp3m3xXWcro=;
+        b=VOFIH7BUGkMYOi9stquBflk04DoViY9QegEYo/4amKCMW2uG+8rt3VCwrSvACvtQUO
+         KHmWU0prCHzqKWc/CO5kk904rDMJRM+AyXsjjbsrvTkFO858xywSEHzHsf4YcTInu3dJ
+         uLafhg7zYoA6B3jWDrVyeNxj92TdbqnGkVb/KQBhYmnrv1P8u4TV4eajjCw5VE2aQfJM
+         SS+vZ8JxFBktKgnr5CPUq+xUSzdOLCCifB+3zutvN37EWGSlo19YerY9ThSelJeLWYae
+         ttecVha57YVQCIVvk/p2oXZrqvmdA4JMt+E0mFXLRW0surZ7Xe9dv0bGJzOiPqzLrAD2
+         jvHA==
+X-Gm-Message-State: AOAM5306j13rnhjQ+FAicpcSjLFhHersIo7EguJkfAB/xQ8msoVWk2Ne
+        GoVnTVTX+h/CzQ6lX9IgnM8=
+X-Google-Smtp-Source: ABdhPJwr1Ohh7U+k+NbwwlGg9XlS6X9acHkKu4ucrrjGVFuW8d6WFhqWj8pq3Nfa8c8Ce6BBYEZeNQ==
+X-Received: by 2002:a50:9d8a:: with SMTP id w10mr19602085ede.16.1598537723356;
+        Thu, 27 Aug 2020 07:15:23 -0700 (PDT)
+Received: from BV030612LT ([188.24.159.61])
+        by smtp.gmail.com with ESMTPSA id d17sm1575988edr.78.2020.08.27.07.15.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Aug 2020 07:15:22 -0700 (PDT)
+Date:   Thu, 27 Aug 2020 17:15:20 +0300
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Peter Korsgaard <peter@korsgaard.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 4/4] arm: dts: owl-s500: Add RoseapplePi
+Message-ID: <20200827141520.GD2451538@BV030612LT>
+References: <cover.1592123160.git.cristian.ciocaltea@gmail.com>
+ <2d12521d196e2c08a30aacd0ab20d93593f94707.1592123160.git.cristian.ciocaltea@gmail.com>
+ <87v9h4y4dj.fsf@dell.be.48ers.dk>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200827015810.11157-1-ben.levinsky@xilinx.com>
-X-ClientProxiedBy: SA0PR11CA0016.namprd11.prod.outlook.com
- (2603:10b6:806:d3::21) To SN4PR0401MB3646.namprd04.prod.outlook.com
- (2603:10b6:803:4b::29)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from 255.255.255.255 (255.255.255.255) by SA0PR11CA0016.namprd11.prod.outlook.com (2603:10b6:806:d3::21) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.19 via Frontend Transport; Thu, 27 Aug 2020 13:47:42 +0000
-X-Originating-IP: [2605:a601:ab6f:2000:2739:a39e:9b12:ab20]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: cd5453c7-6bb2-460d-4803-08d84a8fc59a
-X-MS-TrafficTypeDiagnostic: SN6PR04MB4829:
-X-Microsoft-Antispam-PRVS: <SN6PR04MB48294F21CE7DF9312522F53B87550@SN6PR04MB4829.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: oQ9m2qXaJu5z/mODUVbNUvWAmLxtHoGgut3rEi2EZHNiN3UN1X+Ib1icNvIEoV+wBZxewXtn05a07v7+65IXXmw++HES8M896cAkkzFuc7kFnxUF3IA4ccl9cfGcp/6J8PdMihlyS8nNhjhW9pNMTulD1yI792+u06i2/fimjEjf0L9Xxz+KvuiMGAJNZ4oTFiFIDrz9gdOXHpzHRFKHmK4two4c45/nklb6bYM+hiLnTB2AP2cya/Fn/+XCnD6i9AkS5hg3ucHCrVSFDSIYf1WGo608haWDV4fKCDmpW6H20DiglX3SWcjxnVf66IrQeAbSGVHKmISfQrp5jaWzuw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0401MB3646.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(346002)(396003)(366004)(376002)(136003)(39860400002)(5660300002)(86362001)(7416002)(478600001)(33656002)(44832011)(2906002)(6486002)(9686003)(316002)(186003)(8676002)(52116002)(1076003)(6916009)(66556008)(4326008)(66946007)(66476007)(83380400001)(16576012)(956004)(8936002)(33716001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: D6q8zs2YATuyC2VFWcOHTd5gszxC2DPvLPTkymqe6O2TlI84u/JKFfZYjMytjYx3EQsM2kAAn2ejHw5WDmUmn8vuzHRyMJyqZrvHrBR4K1ABKcOpu/h9dTLdgWz6VToWXvoatZ9KDOyPteNmxFdasoqB7iSiYkjLMXfpbsmdSzNXNvc7iJkPrM5Zv2E6pdbFwD5tGSsuOFNksH0Ww0ctHOMONLWUFYt3hWgQKCKQDz1FMtJTrUTX6vbbbwfcawjNirD4Un4I9j4UpsCiRP8UUsfPUHJ3+9zbcQ++Aq00mtzrN9T/Y67wRohyRUE5OuUC7KeOwcbOT1dTfi0bSeuy2H4EsyeNeOmuJpBACZD+zNlHGl/h6EVnPgJaAOEDSPGmnUZIa61DRrTSkymYOXroFgD6LPLyp3jFAGHd0EyVUIXiiLPOI4A5OMY8o9nNkmMDHSup0CY9qLJM0B1x5n9q+UnzBFmFfBvjELOjmfVotiLDfgM8FzKK4bQ/0rv5yzaL+WyrNpYonUFDqAR13+yvcT2vaLN/vbmpZsqcOX8bDE6Mv9gpPpnNrp7ajCOVQpgEMZU3Z+IzSo9gFIw843M8x8LrwP2w29NoXMNsp1KzEaQiPvy4hEk15Y5XmBUGNPZRQQWsPpeGH8W96eQn/k3Yf2P+8t7aXZXXi3kdS9b8hSeEZkPEIQbSoXj1jOvfw7lY0YxMqpDN5eq6rY05FLGLQQ==
-X-OriginatorOrg: ni.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cd5453c7-6bb2-460d-4803-08d84a8fc59a
-X-MS-Exchange-CrossTenant-AuthSource: SN4PR0401MB3646.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2020 13:47:43.1654
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: adb81k0fCiBBH+IGYajJWWI2eDQeUc0i1Dnnsa5ESW3HtUVBg6DLotRIa40qCBR+pZTVtAQ9ihNFqQGNwLGG9A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR04MB4829
-Subject: Re: [PATCH v9 0/5] Provide basic driver to control Arm R5 co-processor
- found on Xilinx ZynqMP
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-08-27_07:2020-08-27,2020-08-27 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_policy_notspam policy=outbound_policy score=30 mlxscore=0
- lowpriorityscore=0 spamscore=0 suspectscore=1 adultscore=0
- priorityscore=1501 phishscore=0 clxscore=1015 malwarescore=0
- impostorscore=0 mlxlogscore=634 bulkscore=0 classifier=spam adjust=30
- reason=mlx scancount=1 engine=8.12.0-2006250000
- definitions=main-2008270104
+In-Reply-To: <87v9h4y4dj.fsf@dell.be.48ers.dk>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Ben,
+Hi Peter,
 
-On Wed, Aug 26, 2020 at 06:58:05PM -0700, Ben Levinsky wrote:
-> v10:
-> - add include types.h to xlnx-zynqmp.h for compilation
+Thanks for the review!
 
-I appreciate the quick turnaround on v10, but it looks like much of my
-feedback on v9 went unacknowledged. 
-
-Most concerning is the fact that loading firmware on to R5 1 is _still_
-broken in v10 due to the incorrect TCM banks being used.
-
-Thanks,
- Michael
-
+On Thu, Aug 27, 2020 at 08:44:40AM +0200, Peter Korsgaard wrote:
+> >>>>> "Cristian" == Cristian Ciocaltea <cristian.ciocaltea@gmail.com> writes:
 > 
-> Ben Levinsky (5):
->   firmware: xilinx: Add ZynqMP firmware ioctl enums for RPU
->     configuration.
->   firmware: xilinx: Add shutdown/wakeup APIs
->   firmware: xilinx: Add RPU configuration APIs
->   dt-bindings: remoteproc: Add documentation for ZynqMP R5 rproc
->     bindings
->   remoteproc: Add initial zynqmp R5 remoteproc driver
+>  > Add a Device Tree for the RoseapplePi SBC.
+>  > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
 > 
->  .../xilinx,zynqmp-r5-remoteproc.yaml          | 113 +++
->  drivers/firmware/xilinx/zynqmp.c              |  86 ++
->  drivers/remoteproc/Kconfig                    |  10 +
->  drivers/remoteproc/Makefile                   |   1 +
->  drivers/remoteproc/zynqmp_r5_remoteproc.c     | 898 ++++++++++++++++++
->  include/linux/firmware/xlnx-zynqmp.h          |  63 ++
->  6 files changed, 1171 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml
->  create mode 100644 drivers/remoteproc/zynqmp_r5_remoteproc.c
+> Reviewed-by: Peter Korsgaard <peter@korsgaard.com>
 > 
+> On a related note: There is now an owl-mmc driver for the s900. From a
+> quick look at the datasheet it looks compatible with the controller on
+> the s500. Did you have a look at hooking that up?
+
+Yes, please see:
+https://lore.kernel.org/lkml/cover.1593124368.git.cristian.ciocaltea@gmail.com/
+
+The clock related patches have been already applied to v5.9 and
+hopefully the pinctrl driver will follow in v5.10.
+
 > -- 
-> 2.17.1
-> 
+> Bye, Peter Korsgaard
+
+Regards,
+Cristi
