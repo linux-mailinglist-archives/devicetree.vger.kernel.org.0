@@ -2,150 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D02D255BEF
-	for <lists+devicetree@lfdr.de>; Fri, 28 Aug 2020 16:06:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B96A8255BC9
+	for <lists+devicetree@lfdr.de>; Fri, 28 Aug 2020 16:00:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727885AbgH1OFz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Aug 2020 10:05:55 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:46516 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727846AbgH1OFo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Aug 2020 10:05:44 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07SBFRav012670;
-        Fri, 28 Aug 2020 06:15:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1598613327;
-        bh=LpqrOHF44XfOEG7neuggXZZ3FacN1nbqF6F4qL4SNjQ=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=ip3yFS34DLh4CPtLcj8I7JkeKE8wFi7RHZjNiSW2xQdhgxCcEzYx8wBLlPSnPDbv3
-         sBV4xBmdi+SjuuaKpkOwwrxXT6QBrsjFmWCJ8pw6CT6HJIdyeh6ZjKFWsY1WC62Tsq
-         3NLu/sZw3PTmKamSYjIybMSnj8z382yA8BEKad3g=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07SBFRYR100008
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 28 Aug 2020 06:15:27 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 28
- Aug 2020 06:15:26 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 28 Aug 2020 06:15:26 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07SBFO20074789;
-        Fri, 28 Aug 2020 06:15:24 -0500
-Subject: Re: [PATCH v5 2/2] Add Intel LGM soc DMA support.
-To:     "Reddy, MallikarjunaX" <mallikarjunax.reddy@linux.intel.com>,
-        <dmaengine@vger.kernel.org>, <vkoul@kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <andriy.shevchenko@intel.com>,
-        <cheol.yong.kim@intel.com>, <qi-ming.wu@intel.com>,
-        <chuanhua.lei@linux.intel.com>, <malliamireddy009@gmail.com>
-References: <cover.1597381889.git.mallikarjunax.reddy@linux.intel.com>
- <cdd26d104000c060d85a0c5f8abe8492e4103de5.1597381889.git.mallikarjunax.reddy@linux.intel.com>
- <fbc98cdb-3b50-cbcc-0e90-c9d6116566d1@ti.com>
- <bf3e4422-b023-4148-9aa6-60c4d74fe5a9@linux.intel.com>
- <3aea19e6-de96-12ba-495c-94b3b313074d@ti.com>
- <51ed096a-d211-9bab-bf1e-44f912b2a20e@linux.intel.com>
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-X-Pep-Version: 2.0
-Message-ID: <831fadff-8127-7634-32be-0000e69e0d94@ti.com>
-Date:   Fri, 28 Aug 2020 14:17:06 +0300
+        id S1727046AbgH1OAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Aug 2020 10:00:49 -0400
+Received: from foss.arm.com ([217.140.110.172]:50010 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727040AbgH1OAY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Aug 2020 10:00:24 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E22081FB;
+        Fri, 28 Aug 2020 07:00:10 -0700 (PDT)
+Received: from [192.168.2.22] (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 82F923F71F;
+        Fri, 28 Aug 2020 07:00:09 -0700 (PDT)
+Subject: Re: [PATCH 3/6] ARM: dts: broadcom: Fix SP804 node
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Haojian Zhuang <haojian.zhuang@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com
+References: <20200826183805.19369-1-andre.przywara@arm.com>
+ <20200826183805.19369-4-andre.przywara@arm.com>
+ <c401554a-36ce-7e05-5ef0-5c05a2ca2868@gmail.com>
+ <44992125-7eaa-f35b-3344-16ae0d48f646@arm.com>
+ <3a3ce1d4-ddd5-f000-9cf0-5d06e2cc2047@gmail.com>
+ <ecb277f9-1328-c64c-dd42-7a346ba61f8e@gmail.com>
+From:   =?UTF-8?Q?Andr=c3=a9_Przywara?= <andre.przywara@arm.com>
+Autocrypt: addr=andre.przywara@arm.com; prefer-encrypt=mutual; keydata=
+ xsFNBFNPCKMBEAC+6GVcuP9ri8r+gg2fHZDedOmFRZPtcrMMF2Cx6KrTUT0YEISsqPoJTKld
+ tPfEG0KnRL9CWvftyHseWTnU2Gi7hKNwhRkC0oBL5Er2hhNpoi8x4VcsxQ6bHG5/dA7ctvL6
+ kYvKAZw4X2Y3GTbAZIOLf+leNPiF9175S8pvqMPi0qu67RWZD5H/uT/TfLpvmmOlRzNiXMBm
+ kGvewkBpL3R2clHquv7pB6KLoY3uvjFhZfEedqSqTwBVu/JVZZO7tvYCJPfyY5JG9+BjPmr+
+ REe2gS6w/4DJ4D8oMWKoY3r6ZpHx3YS2hWZFUYiCYovPxfj5+bOr78sg3JleEd0OB0yYtzTT
+ esiNlQpCo0oOevwHR+jUiaZevM4xCyt23L2G+euzdRsUZcK/M6qYf41Dy6Afqa+PxgMEiDto
+ ITEH3Dv+zfzwdeqCuNU0VOGrQZs/vrKOUmU/QDlYL7G8OIg5Ekheq4N+Ay+3EYCROXkstQnf
+ YYxRn5F1oeVeqoh1LgGH7YN9H9LeIajwBD8OgiZDVsmb67DdF6EQtklH0ycBcVodG1zTCfqM
+ AavYMfhldNMBg4vaLh0cJ/3ZXZNIyDlV372GmxSJJiidxDm7E1PkgdfCnHk+pD8YeITmSNyb
+ 7qeU08Hqqh4ui8SSeUp7+yie9zBhJB5vVBJoO5D0MikZAODIDwARAQABzS1BbmRyZSBQcnp5
+ d2FyYSAoQVJNKSA8YW5kcmUucHJ6eXdhcmFAYXJtLmNvbT7CwXsEEwECACUCGwMGCwkIBwMC
+ BhUIAgkKCwQWAgMBAh4BAheABQJTWSV8AhkBAAoJEAL1yD+ydue63REP/1tPqTo/f6StS00g
+ NTUpjgVqxgsPWYWwSLkgkaUZn2z9Edv86BLpqTY8OBQZ19EUwfNehcnvR+Olw+7wxNnatyxo
+ D2FG0paTia1SjxaJ8Nx3e85jy6l7N2AQrTCFCtFN9lp8Pc0LVBpSbjmP+Peh5Mi7gtCBNkpz
+ KShEaJE25a/+rnIrIXzJHrsbC2GwcssAF3bd03iU41J1gMTalB6HCtQUwgqSsbG8MsR/IwHW
+ XruOnVp0GQRJwlw07e9T3PKTLj3LWsAPe0LHm5W1Q+euoCLsZfYwr7phQ19HAxSCu8hzp43u
+ zSw0+sEQsO+9wz2nGDgQCGepCcJR1lygVn2zwRTQKbq7Hjs+IWZ0gN2nDajScuR1RsxTE4WR
+ lj0+Ne6VrAmPiW6QqRhliDO+e82riI75ywSWrJb9TQw0+UkIQ2DlNr0u0TwCUTcQNN6aKnru
+ ouVt3qoRlcD5MuRhLH+ttAcmNITMg7GQ6RQajWrSKuKFrt6iuDbjgO2cnaTrLbNBBKPTG4oF
+ D6kX8Zea0KvVBagBsaC1CDTDQQMxYBPDBSlqYCb/b2x7KHTvTAHUBSsBRL6MKz8wwruDodTM
+ 4E4ToV9URl4aE/msBZ4GLTtEmUHBh4/AYwk6ACYByYKyx5r3PDG0iHnJ8bV0OeyQ9ujfgBBP
+ B2t4oASNnIOeGEEcQ2rjzsFNBFNPCKMBEACm7Xqafb1Dp1nDl06aw/3O9ixWsGMv1Uhfd2B6
+ it6wh1HDCn9HpekgouR2HLMvdd3Y//GG89irEasjzENZPsK82PS0bvkxxIHRFm0pikF4ljIb
+ 6tca2sxFr/H7CCtWYZjZzPgnOPtnagN0qVVyEM7L5f7KjGb1/o5EDkVR2SVSSjrlmNdTL2Rd
+ zaPqrBoxuR/y/n856deWqS1ZssOpqwKhxT1IVlF6S47CjFJ3+fiHNjkljLfxzDyQXwXCNoZn
+ BKcW9PvAMf6W1DGASoXtsMg4HHzZ5fW+vnjzvWiC4pXrcP7Ivfxx5pB+nGiOfOY+/VSUlW/9
+ GdzPlOIc1bGyKc6tGREH5lErmeoJZ5k7E9cMJx+xzuDItvnZbf6RuH5fg3QsljQy8jLlr4S6
+ 8YwxlObySJ5K+suPRzZOG2+kq77RJVqAgZXp3Zdvdaov4a5J3H8pxzjj0yZ2JZlndM4X7Msr
+ P5tfxy1WvV4Km6QeFAsjcF5gM+wWl+mf2qrlp3dRwniG1vkLsnQugQ4oNUrx0ahwOSm9p6kM
+ CIiTITo+W7O9KEE9XCb4vV0ejmLlgdDV8ASVUekeTJkmRIBnz0fa4pa1vbtZoi6/LlIdAEEt
+ PY6p3hgkLLtr2GRodOW/Y3vPRd9+rJHq/tLIfwc58ZhQKmRcgrhtlnuTGTmyUqGSiMNfpwAR
+ AQABwsFfBBgBAgAJBQJTTwijAhsMAAoJEAL1yD+ydue64BgP/33QKczgAvSdj9XTC14wZCGE
+ U8ygZwkkyNf021iNMj+o0dpLU48PIhHIMTXlM2aiiZlPWgKVlDRjlYuc9EZqGgbOOuR/pNYA
+ JX9vaqszyE34JzXBL9DBKUuAui8z8GcxRcz49/xtzzP0kH3OQbBIqZWuMRxKEpRptRT0wzBL
+ O31ygf4FRxs68jvPCuZjTGKELIo656/Hmk17cmjoBAJK7JHfqdGkDXk5tneeHCkB411p9WJU
+ vMO2EqsHjobjuFm89hI0pSxlUoiTL0Nuk9Edemjw70W4anGNyaQtBq+qu1RdjUPBvoJec7y/
+ EXJtoGxq9Y+tmm22xwApSiIOyMwUi9A1iLjQLmngLeUdsHyrEWTbEYHd2sAM2sqKoZRyBDSv
+ ejRvZD6zwkY/9nRqXt02H1quVOP42xlkwOQU6gxm93o/bxd7S5tEA359Sli5gZRaucpNQkwd
+ KLQdCvFdksD270r4jU/rwR2R/Ubi+txfy0dk2wGBjl1xpSf0Lbl/KMR5TQntELfLR4etizLq
+ Xpd2byn96Ivi8C8u9zJruXTueHH8vt7gJ1oax3yKRGU5o2eipCRiKZ0s/T7fvkdq+8beg9ku
+ fDO4SAgJMIl6H5awliCY2zQvLHysS/Wb8QuB09hmhLZ4AifdHyF1J5qeePEhgTA+BaUbiUZf
+ i4aIXCH3Wv6K
+Organization: ARM Ltd.
+Message-ID: <60929faf-fdcf-a434-1acb-c77f92818955@arm.com>
+Date:   Fri, 28 Aug 2020 14:59:52 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.11.0
 MIME-Version: 1.0
-In-Reply-To: <51ed096a-d211-9bab-bf1e-44f912b2a20e@linux.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <ecb277f9-1328-c64c-dd42-7a346ba61f8e@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 26/08/2020 21:55, Florian Fainelli wrote:
+> On 8/26/20 11:59 AM, Florian Fainelli wrote:
+>> On 8/26/20 11:53 AM, André Przywara wrote:
+>>> On 26/08/2020 19:42, Florian Fainelli wrote:
 
-On 27/08/2020 17.41, Reddy, MallikarjunaX wrote:
->>>>> +
->>>>> +=C2=A0=C2=A0=C2=A0 dma_dev->device_alloc_chan_resources =3D
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 d->inst->ops->device_al=
-loc_chan_resources;
->>>>> +=C2=A0=C2=A0=C2=A0 dma_dev->device_free_chan_resources =3D
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 d->inst->ops->device_fr=
-ee_chan_resources;
->>>>> +=C2=A0=C2=A0=C2=A0 dma_dev->device_terminate_all =3D
->>>>> d->inst->ops->device_terminate_all;
->>>>> +=C2=A0=C2=A0=C2=A0 dma_dev->device_issue_pending =3D
->>>>> d->inst->ops->device_issue_pending;
->>>>> +=C2=A0=C2=A0=C2=A0 dma_dev->device_tx_status =3D d->inst->ops->dev=
-ice_tx_status;
->>>>> +=C2=A0=C2=A0=C2=A0 dma_dev->device_resume =3D d->inst->ops->device=
-_resume;
->>>>> +=C2=A0=C2=A0=C2=A0 dma_dev->device_pause =3D d->inst->ops->device_=
-pause;
->>>>> +=C2=A0=C2=A0=C2=A0 dma_dev->device_config =3D d->inst->ops->device=
-_config;
->>>>> +=C2=A0=C2=A0=C2=A0 dma_dev->device_prep_slave_sg =3D
->>>>> d->inst->ops->device_prep_slave_sg;
->>>>> +=C2=A0=C2=A0=C2=A0 dma_dev->device_synchronize =3D d->inst->ops->d=
-evice_synchronize;
->>>>> +
->>>>> +=C2=A0=C2=A0=C2=A0 if (d->ver =3D=3D DMA_VER22) {
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma_dev->src_addr_width=
-s =3D BIT(DMA_SLAVE_BUSWIDTH_4_BYTES);
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma_dev->dst_addr_width=
-s =3D BIT(DMA_SLAVE_BUSWIDTH_4_BYTES);
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma_dev->directions =3D=
- BIT(DMA_MEM_TO_DEV) |
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 BIT(DMA_DEV_=
-TO_MEM);
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma_dev->residue_granul=
-arity =3D
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 DMA_RESIDUE_GRANULARITY_=
-DESCRIPTOR;
->>>>> +=C2=A0=C2=A0=C2=A0 }
->>>> So, if version is !=3D DMA_VER22, then you don't support any directi=
-on?
->>>> Why register the DMA device if it can not do any transfer?
->>> Only dma0 instance (intel,lgm-cdma) is used as a general purpose slav=
-e
->>> DMA. we set both control and datapath here.
->>> Other instances we set only control path. data path is taken care by =
-dma
->>> client(GSWIP).
->> How the client (GSWIP) can request a channel from intel,lgm-* ? Don't
->> you need some capabilities for the DMA device so core can sort out the=
+Hi Florian,
 
->> request?
-> client request channel by name, dma_request_slave_channel(dev, name);
+>>>
+>>> Hi,
+>>>
+>>>> On 8/26/20 11:38 AM, Andre Przywara wrote:
+>>>>> The DT binding for SP804 requires to have an "arm,primecell" compatible
+>>>>> string.
+>>>>> Add this string so that the Linux primecell bus driver picks the device
+>>>>> up and activates the clock.
+>>>>>
+>>>>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+>>>>
+>>>> The commit subject should be:
+>>>>
+>>>> ARM: dts: NSP: Fix SP804 compatible node
+>>>>
+>>>> and we should probably have a Fixes tag that is:
+>>>>
+>>>> Fixes: a0efb0d28b77 ("ARM: dts: NSP: Add SP804 Support to DT")
+>>>>
+>>>> Could you please re-submit with those things corrected? Thanks
+>>>
+>>> Sure, will include that in a v2.
+>>>
+>>> Out of curiosity, do you have the hardware and can check the impact that
+>>> has?
+>>
+>> I have the hardware and could run some tests if you would like.
+>>
+>>> Not sure we actually create the device without the primecell compatible?
+>>> Or is the sp804 an exception here, compared to the other AMBA devices
+>>> (SP805, PL011)?
+>>
+>> No idea, I have never used those timers personally, and I doubt that
+>> anybody besides me within broadcom and hobbyists actually care about NSP
+>> these days.
+> 
+> Seems to be working fine for me with your patch applied, it probes:
+> 
+> # dmesg | grep sp804
+> [    0.035363] clocksource: arm,sp804: mask: 0xffffffff max_cycles:
+> 0xffffffff, max_idle_ns: 15290083572 ns
+> 
+> and it is usable:
+> 
+> # cat clocksource0/available_clocksource
+> arm_global_timer arm,sp804
+> 
+> and appears to work:
+> 
+> # echo "arm,sp804" > clocksource0/current_clocksource
+> [  105.108547] clocksource: Switched to clocksource arm,sp804
+> 
+> # date; sleep 5; date
+> Thu Jan  1 00:01:51 UTC 1970
+> Thu Jan  1 00:01:56 UTC 1970
+> 
+> Feel free to add Tested-by: Florian Fainelli <f.fainelli@gmail.com> in
+> your v2, thanks André!
 
-clients should use dma_request_chan(dev, name);
+Wow, thanks a lot for this test!
 
-If the channel can be requested via DT or ACPI then we don't check the
-capabilities at all, so yes, that could work.
+Sending out a v2 in a minute.
 
->>> Only thing needs to do is get the channel, set the descriptor and jus=
-t
->>> on the channel.
->> How do you 'on' the channel?
-> we on the channel in issue_pending.
-
-Right.
-Basically you only prep_slave_sg/single for the DMA_VER22? Or do you
-that for the others w/o direction support?
-
-For the intel,lgm-* DMAs you only call issue_pending() and probably
-terminate_all?
-
-Interesting setup ;)
-
-- P=C3=A9ter
-
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-
+Cheers,
+Andre
