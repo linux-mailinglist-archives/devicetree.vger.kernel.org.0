@@ -2,100 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0E3225631A
-	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 00:26:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3929F256328
+	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 00:29:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727885AbgH1W0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Aug 2020 18:26:50 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:33397 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727863AbgH1W0q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Aug 2020 18:26:46 -0400
-Received: by mail-io1-f67.google.com with SMTP id g14so641578iom.0;
-        Fri, 28 Aug 2020 15:26:45 -0700 (PDT)
+        id S1726804AbgH1W3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Aug 2020 18:29:32 -0400
+Received: from mail-il1-f195.google.com ([209.85.166.195]:32810 "EHLO
+        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726649AbgH1W3a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Aug 2020 18:29:30 -0400
+Received: by mail-il1-f195.google.com with SMTP id o16so2001146ilq.0;
+        Fri, 28 Aug 2020 15:29:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=beCKEWR+2oQoP1iLca7XLO6xgI6N1F/W6UJQBTH3DqY=;
-        b=Ko9KQpvKIsxNwtB/dhkjCgjWerfusOFduegC4KGLQVqH+uZgQepUt93NwpIm7UsC/G
-         Dgu8/fS0NWgFuZ1YcCYBve6GqovtONMwWxSabhj+oN5T6S0Abn2u4rs6ypSQjnaWB2OG
-         ZNyeyd5YKxq0hKXF1OmPXzKBxgvfjEkgvc90NkEB4BCFcW1Xyr4gVCI8E0bvsiEtck5p
-         36K3gVl6lCg/cnC/PHzz/KK1TY4e9kbd3GuFm09bZUp43tT3ryobADb9wc11yAn8iJun
-         q+TxRJcVo7mteMidGQvSkjp5chcb0SVASB3aKn2pDdty49bNSlW7xJliNN/eaNGGm0B5
-         I8bw==
-X-Gm-Message-State: AOAM532aXkoBA8WI8pBsEq8iDVYqpfMDvg/jMrBHkia2gTMhd3oLtrzi
-        VBrDCaMSMB7oMZMZcthFDg==
-X-Google-Smtp-Source: ABdhPJyDswgrN+BluIgdLCgk2oMwkfO3ihCsb+7kbjBf1nAUVnPwHEtq+pfxrTZ7lhQpsLVbL5AMYw==
-X-Received: by 2002:a05:6602:1589:: with SMTP id e9mr701184iow.85.1598653604968;
-        Fri, 28 Aug 2020 15:26:44 -0700 (PDT)
+        bh=iQFt0CihdxULy68nCcZYRd5kNaVJz8UvKS1N864J1BU=;
+        b=OKFFFD/IAjuDSWXRbefgts2fsucj+XfO9ReDxaY6ig8vR9APKxYNZ4tkTtun8BCdOP
+         lHX8/Dfy+RFp1eJxAaCW83YdgHQo7cXOJWLyssFa2Beh9rVa4TD/RX9UHcQyXjoaD48o
+         2rBFIJVM5ZmKxmQv4zgG+/rbQdNzpTHZFeC+WaIJkR4Tt8htE55liG7BwXEgLMWfZouk
+         HqcwXO2lOo2FPSyin/J5jEMQ76/NSBe0EZYQX4rGrkNX4KRKkqqqSFyAnhng4GU5DIoL
+         7/YAel5o5Nf+V2RkEiy01pn2djjqLjtfoHpGs/vSPeWjCFGfPSSq0C6z6Rl5FY9VXR/R
+         sNig==
+X-Gm-Message-State: AOAM53151fzs9OLjPeRjsrF0NeG3nsAuByu8MiWh9fb8lbgso/5FQgM+
+        IVizcPPSvS0JprCU+wMAAVyM1ccYtSax
+X-Google-Smtp-Source: ABdhPJyj1oI54kmO0VXet0M6Wnlx/AtnPO4DySgp+eMvr8ExcaO1uBfFrUQ2jyrnEZyhLuZlNMukGQ==
+X-Received: by 2002:a92:c502:: with SMTP id r2mr867409ilg.223.1598653769307;
+        Fri, 28 Aug 2020 15:29:29 -0700 (PDT)
 Received: from xps15 ([64.188.179.249])
-        by smtp.gmail.com with ESMTPSA id b5sm317699ilr.58.2020.08.28.15.26.40
+        by smtp.gmail.com with ESMTPSA id t16sm353320ili.75.2020.08.28.15.29.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Aug 2020 15:26:43 -0700 (PDT)
-Received: (nullmailer pid 3515429 invoked by uid 1000);
-        Fri, 28 Aug 2020 22:26:39 -0000
-Date:   Fri, 28 Aug 2020 16:26:39 -0600
+        Fri, 28 Aug 2020 15:29:28 -0700 (PDT)
+Received: (nullmailer pid 3519224 invoked by uid 1000);
+        Fri, 28 Aug 2020 22:29:27 -0000
+Date:   Fri, 28 Aug 2020 16:29:27 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        linux-kernel@vger.kernel.org, Fugang Duan <fugang.duan@nxp.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Frank Li <frank.li@nxp.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mtd@lists.infradead.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-watchdog@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Anson Huang <Anson.Huang@nxp.com>, linux-pwm@vger.kernel.org,
-        Han Xu <han.xu@nxp.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-serial@vger.kernel.org, linux-mmc@vger.kernel.org,
-        Fabio Estevam <festevam@gmail.com>,
-        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH v3 17/19] dt-bindings: serial: fsl-lpuart: Fix compatible
- matching
-Message-ID: <20200828222639.GA3515379@bogus>
-References: <20200825193536.7332-1-krzk@kernel.org>
- <20200825193536.7332-18-krzk@kernel.org>
+To:     Eugen Hristev <eugen.hristev@microchip.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        sakari.ailus@iki.fi, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: media: atmel: csi2dc: add bindings
+ for microchip csi2dc
+Message-ID: <20200828222927.GA3519178@bogus>
+References: <20200826065142.205000-1-eugen.hristev@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200825193536.7332-18-krzk@kernel.org>
+In-Reply-To: <20200826065142.205000-1-eugen.hristev@microchip.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Aug 2020 21:35:34 +0200, Krzysztof Kozlowski wrote:
-> The i.MX 8QXP DTSes use two compatibles so update the binding to fix
-> dtbs_check warnings like:
+On Wed, 26 Aug 2020 09:51:40 +0300, Eugen Hristev wrote:
+> Add bindings documentation for Microchip CSI2 Demultiplexer controller.
 > 
->   arch/arm64/boot/dts/freescale/imx8qxp-mek.dt.yaml: serial@5a060000:
->     compatible: ['fsl,imx8qxp-lpuart', 'fsl,imx7ulp-lpuart'] is too long
->     From schema: Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+> CSI2DC is a demultiplexer from Synopsys IDI interface specification to
+> parallel interface connection or direct memory access.
 > 
->   arch/arm64/boot/dts/freescale/imx8qxp-mek.dt.yaml: serial@5a060000:
->     compatible: Additional items are not allowed ('fsl,imx7ulp-lpuart' was unexpected)
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
+> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
 > ---
+> Changes in v3:
+> - Removed some text from description, as it was explained in the schema
+> - fixed other things as per Rob's review
+> - moved some text inside the schema, like the clock description
 > 
-> Changes since v2:
-> 1. Remove moved compatibles.
+> Changes in v2:
+> - fixed warnings reported by dt_binding_check
 > 
-> Changes since v1:
-> 1. New patch.
-> ---
->  .../devicetree/bindings/serial/fsl-lpuart.yaml  | 17 ++++++++++-------
->  1 file changed, 10 insertions(+), 7 deletions(-)
+>  .../bindings/media/microchip,csi2dc.yaml      | 174 ++++++++++++++++++
+>  1 file changed, 174 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/microchip,csi2dc.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
