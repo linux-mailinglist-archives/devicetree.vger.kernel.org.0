@@ -2,157 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0244255E04
-	for <lists+devicetree@lfdr.de>; Fri, 28 Aug 2020 17:38:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C2A1255E15
+	for <lists+devicetree@lfdr.de>; Fri, 28 Aug 2020 17:45:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726321AbgH1Pi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Aug 2020 11:38:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38340 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728104AbgH1PiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Aug 2020 11:38:08 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BEDAC061264
-        for <devicetree@vger.kernel.org>; Fri, 28 Aug 2020 08:38:07 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id b18so1704480wrs.7
-        for <devicetree@vger.kernel.org>; Fri, 28 Aug 2020 08:38:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zF4wjuq7NlXDCWxwqRlprq8+YIO3EP/prTKpLCQVawE=;
-        b=XQR50PRzIDXP7atHlwU9Y4qtYH28bhVuN+nc6jOAmcqiR2nOALvWYBMqVBfos581P7
-         XGuz8fAztk6pjkS4VSz1i+BrPic5yobLkfpI+3tqM0DZ+225Umxxb14UGnoxugMMwDYV
-         x+L4fm0kLLr7OwOHtl8k3RTEFMTZC5zlrXj/PfItUmfoa0XNfo8m1fX3TvKoIs/sF4Dm
-         ERf6IkH4uup+VWncdtaax3E7liZHFGEQq07Yl+ikmZwcm7SH86z5AYK4p+pOIWBgzfKY
-         oPh/N/V4D+w+z8aCU/f8HsXnQ03i+Y425UyDnihNH9AJ9fJSueAzXi8Uqx8LfCNf5Jrg
-         zGWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zF4wjuq7NlXDCWxwqRlprq8+YIO3EP/prTKpLCQVawE=;
-        b=g2aJ2eEAh3hS45FQEpDlSlnbc3Jp1IGIf8/PJGcYDDG6yXrUjCMRRCrzzMJI5EG5PK
-         fs2d4yp27PzJdjlgQ6wiJOJBqxAIMVEBGJjN+l6Xju5F8kphGYsLeiFknMCPL+e7Ziog
-         FW/C4Ahwj7wfvU/VaVH2fCY8T5ipnozkYis82xi80zeZgrA1vZYK98s0x4ZojZfqBpq2
-         aUzg/4kuYeKw3QfHTLWNS+pif3rfkIzbSr7w95MHsNeGC3KAI0YccF9qpDImN7Ox+k7j
-         U8HQXwL3ed3JFuOPrZKbzCR+/92VQbZVET0ap/zPZgeglGgsNi3W27f83npARhd83b5b
-         9tJw==
-X-Gm-Message-State: AOAM531fNpasPl9oL8K1i0W/M37lFyidtjnSC9lUVWdxQF8QuIP2sMem
-        rbU16L6TAP2Wl8KQjcmTiLS1XknFDhqFUcHnvJnWWQ==
-X-Google-Smtp-Source: ABdhPJxHuvA/mBiuIknMdmiA5hSVY4oW2N955fzVP5r0eRNvMn3H/kQnCuEvq9cPXPwP9snvFO3LG6RV314TaQhSdqo=
-X-Received: by 2002:a5d:43c7:: with SMTP id v7mr2146163wrr.27.1598629086231;
- Fri, 28 Aug 2020 08:38:06 -0700 (PDT)
+        id S1726418AbgH1Po6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Aug 2020 11:44:58 -0400
+Received: from foss.arm.com ([217.140.110.172]:52206 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726197AbgH1Pos (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Aug 2020 11:44:48 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EC94DD6E;
+        Fri, 28 Aug 2020 08:44:47 -0700 (PDT)
+Received: from [192.168.2.22] (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BBFED3F71F;
+        Fri, 28 Aug 2020 08:44:45 -0700 (PDT)
+Subject: Re: [PATCH v2 0/6] dt-bindings: Convert SP804 to Json-schema (and fix
+ users)
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Haojian Zhuang <haojian.zhuang@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Chanho Min <chanho.min@lge.com>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Wei Xu <xuwei5@hisilicon.com>
+References: <20200828142018.43298-1-andre.przywara@arm.com>
+ <CACRpkdZUrPeUbpNeCZcw8kq5k3egijAuh7R1_3TkbPz5wN+=Lw@mail.gmail.com>
+From:   =?UTF-8?Q?Andr=c3=a9_Przywara?= <andre.przywara@arm.com>
+Autocrypt: addr=andre.przywara@arm.com; prefer-encrypt=mutual; keydata=
+ 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
+ i4aIXCH3Wv6K
+Organization: ARM Ltd.
+Message-ID: <28acf821-fa6f-7259-ec1b-4810ca1ff48f@arm.com>
+Date:   Fri, 28 Aug 2020 16:44:28 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-References: <20200821071045.24501-1-hoegeun.kwon@samsung.com>
- <CGME20200821071122epcas1p3d00dda4665f94192ac5e9ee829d0557d@epcas1p3.samsung.com>
- <20200821071045.24501-4-hoegeun.kwon@samsung.com> <61c199bf-852f-82d3-089a-a0a435343acf@i2se.com>
- <80749dcd-d4b2-68a1-f3ca-c19a120f6f7b@samsung.com> <84c423e8-25a6-8f23-cc80-7a17ce03fd1d@i2se.com>
- <a19de8d5-2b01-cb62-38a2-b0732068025c@samsung.com> <a3231281-3bd0-e7c9-1bb0-f05848621e82@i2se.com>
- <20200828152510.jhhqvka6fmouozff@gilmour.lan>
-In-Reply-To: <20200828152510.jhhqvka6fmouozff@gilmour.lan>
-From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date:   Fri, 28 Aug 2020 16:37:50 +0100
-Message-ID: <CAPY8ntDeLOb+GvpLDX1BFrhtYyGQzJ01pWHiS30r-2ZUJTg8Gw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] drm/vc4: hdmi: Add pixel bvb clock control
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Hoegeun Kwon <hoegeun.kwon@samsung.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Eric Anholt <eric@anholt.net>, devicetree@vger.kernel.org,
-        Tim Gover <tim.gover@raspberrypi.com>, kdasu.kdev@gmail.com,
-        sboyd@kernel.org, mturquette@baylibre.com,
-        LKML <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Phil Elwell <phil@raspberrypi.com>, robh+dt@kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CACRpkdZUrPeUbpNeCZcw8kq5k3egijAuh7R1_3TkbPz5wN+=Lw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime, Stefan, and Hoegeun
+On 28/08/2020 15:54, Linus Walleij wrote:
 
-On Fri, 28 Aug 2020 at 16:25, Maxime Ripard <maxime@cerno.tech> wrote:
->
-> Hi,
->
-> On Fri, Aug 28, 2020 at 02:45:49PM +0200, Stefan Wahren wrote:
-> > Am 28.08.20 um 08:30 schrieb Hoegeun Kwon:
-> > > On 8/27/20 6:49 PM, Stefan Wahren wrote:
-> > >> Am 27.08.20 um 06:35 schrieb Hoegeun Kwon:
-> > >>> Hi Stefan,
-> > >>>
-> > >>> Thank you for your review.
-> > >>>
-> > >>>
-> > >>> On 8/26/20 7:04 PM, Stefan Wahren wrote:
-> > >>>> Hi Hoeguen,
-> > >>>>
-> > >>>> Am 21.08.20 um 09:10 schrieb Hoegeun Kwon:
-> > >>>>> There is a problem that the output does not work at a resolution
-> > >>>>> exceeding FHD. To solve this, we need to adjust the bvb clock at a
-> > >>>>> resolution exceeding FHD.
-> > >>>> this patch introduces a mandatory clock, please update
-> > >>>> brcm,bcm2835-hdmi.yaml first.
-> > >>>>
-> > >>>> Is this clock physically available on BCM283x or only on BCM2711?
-> > >>> As far as I know, BCM2711 raspberry pi 4 supports 4k,
-> > >>>
-> > >>> don't supported on pi 3 and pi 3+.
-> > >>>
-> > >>> Since 4k is not supported in versions prior to Raspberry Pi 4,
-> > >>>
-> > >>> I don't think we need to modify the bvb clock.
-> > >>>
-> > >>>
-> > >>> So I think it is better to update 'brcm,bcm2711-hdmi.yaml'
-> > >>>
-> > >>> instead of 'brcm,bcm2835-hdmi.yaml'.
-> > >> You are correct please update only brcm,bcm2711-hdmi.yaml.
-> > >>
-> > >> My concern was that the function vc4_hdmi_encoder_pre_crtc_configure()
-> > >> is called on a non-bcm2711 platform or on a Raspberry Pi 4 with an older
-> > >> DTB. So making the BVB clock optional might be better?
-> > > You are right, if use old dtb, we have a problem with the hdmi driver.
-> > >
-> > > So how about modifying it like this?
-> > >
-> > > @@ -1614,8 +1614,8 @@ static int vc5_hdmi_init_resources(struct vc4_hdmi
-> > > *vc4_hdmi)
-> > >
-> > >          vc4_hdmi->pixel_bvb_clock = devm_clk_get(dev, "bvb");
-> > >          if (IS_ERR(vc4_hdmi->pixel_bvb_clock)) {
-> > > -               DRM_ERROR("Failed to get pixel bvb clock\n");
-> > > -               return PTR_ERR(vc4_hdmi->pixel_bvb_clock);
-> > > +               DRM_WARN("Failed to get pixel bvb clock\n");
-> > > +               vc4_hdmi->pixel_bvb_clock = NULL;
-> > >          }
-> >
-> > i think the better solution would be devm_clk_get_optional(), which
-> > return NULL in case the clock doesn't exist.
->
-> It's not really optional though. BCM2711 will require it in order to run
-> properly (as Hoegeun experienced), and the previous SoCs won't.
->
-> If we use clk_get_optional and that the DT is missing the clock on the
-> BCM2711, we will silently ignore it which doesn't sound great.
+Hi,
 
-Am I missing something here? (I know I missed this earlier)
-We're in vc5_hdmi_init_resources, which is inherently bcm2711 only.
-bcm283x will go through vc4_hdmi_init_resources.
+> On Fri, Aug 28, 2020 at 4:20 PM Andre Przywara <andre.przywara@arm.com> wrote:
+> 
+>> This is the second attempt at converting the SP804 timer binding to yaml.
+>> Compared to v1, I forbid additional properties, and included the primecell
+>> binding. Also the clock-names property is now listed, although without
+>> further requirements on the names. Changelog below.
+> 
+> The series:
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+> 
+>> I couldn't test any of those DT files on actual machines, but tried
+>> to make the changes in a way that would be transparent to at least the
+>> Linux driver. The only other SP804 DT user I could find is FreeBSD,
+>> but they seem to use a different binding (no clocks, but a
+>> clock-frequency property).
+> 
+> That's annoying. I suppose FreeBSD just made that up and doesn't
+> even have a binding document for it?
 
-As long as vc4_hdmi_init_resources has left vc4_hdmi->pixel_bvb_clock
-at NULL, then the clock framework will be happy to do a nop.
+I couldn't find bindings at all in their git tree. I don't think they
+treat this very formally, it seems to be more use-case driven.
+Their SP804 driver does not know how to handle clock properties, so most
+of the DTs (in sys/gnu/dts, so apparently copied from Linux) would not
+work really well, because the driver assumes a hardcoded frequency of
+1MHz by default.
+There is only one DT (Annapurna Alpine with Cortex-A15) that provides
+this clock-frequency property. The Linux DT does not mention the SP804
+in there at all, interestingly.
 
-For BCM2711 an old DT would have issues, but, as Maxime has stated, no
-binding or upstream DTB has been merged yet, so it can be made
-mandatory.
-Making it optional drops you back on whatever the firmware might have
-set it to, which may be sufficient for some resolutions but not
-others.
+> In an ideal world I suppose we should go and fix FreeBSD but I have
+> no idea how easy or hard that is.
 
-  Dave
+It seems to be messy, at least in this case, and I guess unifying DTs
+means some work on drivers as well.
+But AFAIK most of the more modern platforms copy the DTs (and thus
+implicitly the bindings) from Linux, so there is probably much less
+deviation for many more relevant boards.
+
+Cheers,
+Andre
