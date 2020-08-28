@@ -2,70 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB007255AEF
-	for <lists+devicetree@lfdr.de>; Fri, 28 Aug 2020 15:10:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1298C255AF7
+	for <lists+devicetree@lfdr.de>; Fri, 28 Aug 2020 15:10:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729579AbgH1NKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Aug 2020 09:10:12 -0400
-Received: from foss.arm.com ([217.140.110.172]:48828 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729461AbgH1NHh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Aug 2020 09:07:37 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 74B9D1509;
-        Fri, 28 Aug 2020 06:06:28 -0700 (PDT)
-Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.195.35])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3E2CD3F66B;
-        Fri, 28 Aug 2020 06:06:27 -0700 (PDT)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Wei Xu <xuwei5@hisilicon.com>
-Subject: [PATCH 10/10] ARM: dts: hisilicon: Fix SP805 clocks
-Date:   Fri, 28 Aug 2020 14:06:02 +0100
-Message-Id: <20200828130602.42203-11-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200828130602.42203-1-andre.przywara@arm.com>
-References: <20200828130602.42203-1-andre.przywara@arm.com>
+        id S1729461AbgH1NKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Aug 2020 09:10:35 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:39128 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729455AbgH1NHd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Aug 2020 09:07:33 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07SD78NA041901;
+        Fri, 28 Aug 2020 08:07:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1598620028;
+        bh=ekVVOEWqdgbGbUmbraegt5QvlLGNEUCePCEa+IFZYP4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=h6hW5yaRX5gi/dKUHVJbd6+5XEu51buMJcM6mX2tqtS8kKeaChcnRzoBW7544Qdhm
+         t7bHyUUrv2ErG/AOa/uy+OG0x3qiC3VySAE4MtZTXVMwoyPnOIrtEDU8Zf1dXLiuD8
+         ZQvjLO5emljhoPJhuTeq05tAUqFB0ZoQ8fnYNGYs=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07SD78xV130749
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 28 Aug 2020 08:07:08 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 28
+ Aug 2020 08:07:07 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 28 Aug 2020 08:07:07 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07SD77KX025722;
+        Fri, 28 Aug 2020 08:07:07 -0500
+Date:   Fri, 28 Aug 2020 08:07:07 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Lokesh Vutla <lokeshvutla@ti.com>
+CC:     Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Sekhar Nori <nsekhar@ti.com>, Suman Anna <s-anna@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: arm: ti: Convert K3 board/soc
+ bindings to DT schema
+Message-ID: <20200828130707.gwjh7zht3om72qxe@akan>
+References: <20200827065144.17683-1-lokeshvutla@ti.com>
+ <20200827065144.17683-2-lokeshvutla@ti.com>
+ <20200828004105.givypeu3vextefc6@akan>
+ <1c9508ce-9336-e20a-5b58-5dd257247273@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1c9508ce-9336-e20a-5b58-5dd257247273@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SP805 DT binding requires two clocks to be specified, but
-Hisilicon platform DTs currently only specify one clock.
+On 08:44-20200828, Lokesh Vutla wrote:
+> Hi Nishanth,
+> 
+> On 28/08/20 6:11 am, Nishanth Menon wrote:
+> > On 12:21-20200827, Lokesh Vutla wrote:
+> >> Convert TI K3 Board/SoC bindings to DT schema format.
+> >>
+> >> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
+> >> ---
+> >>  .../devicetree/bindings/arm/ti/k3.txt         | 26 ----------------
+> >>  .../devicetree/bindings/arm/ti/k3.yaml        | 31 +++++++++++++++++++
+> >>  MAINTAINERS                                   |  2 +-
+> >>  3 files changed, 32 insertions(+), 27 deletions(-)
+> >>  delete mode 100644 Documentation/devicetree/bindings/arm/ti/k3.txt
+> >>  create mode 100644 Documentation/devicetree/bindings/arm/ti/k3.yaml
+> > 
+> > 
+> > Thanks for doing this, but I have a problem with dbs_check and dtbs
+> > W=2 build warnings on existing dts files that this exposes further..
+> 
+> IMHO, that should not block the conversion to yaml bindings. May I know the
+> problem you are seeing?
 
-In practice, Linux would pick a clock named "apb_pclk" for the bus
-clock, and the Linux and U-Boot SP805 driver would use the first clock
-to derive the actual watchdog counter frequency.
 
-Since currently both are the very same clock, we can just double the
-clock reference, and add the correct clock-names, to match the binding.
+Things are starting to literally bitrot and I saw Rob's[1] attempt to try
+and clean up the cruft of warnings we had introduced. we should fix all that up
+before introducing new platforms. I am going to see how much cleanup I
+can do today, but will help if more folks pitch in.
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- arch/arm/boot/dts/hisi-x5hd2.dtsi | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> > Do you mind pulling this patch out of this j7200 series ? I would
+> > rather us cleanup the warnings a bit as well, and deal with yaml
+> > conversion seperate from j7200 bindings?
+> 
+> Ill wait for Rob's view on this. He already asked to convert it during J721e
+> binding update. Not sure we would like to delay any further.
+> 
 
-diff --git a/arch/arm/boot/dts/hisi-x5hd2.dtsi b/arch/arm/boot/dts/hisi-x5hd2.dtsi
-index 3ee7967c202d..e2dbf1d8a67b 100644
---- a/arch/arm/boot/dts/hisi-x5hd2.dtsi
-+++ b/arch/arm/boot/dts/hisi-x5hd2.dtsi
-@@ -370,8 +370,9 @@
- 				arm,primecell-periphid = <0x00141805>;
- 				reg = <0xa2c000 0x1000>;
- 				interrupts = <0 29 4>;
--				clocks = <&clock HIX5HD2_WDG0_RST>;
--				clock-names = "apb_pclk";
-+				clocks = <&clock HIX5HD2_WDG0_RST>,
-+					 <&clock HIX5HD2_WDG0_RST>;
-+				clock-names = "wdog_clk", "apb_pclk";
- 			};
- 		};
- 
+Sure.
+
+
+[1] https://lore.kernel.org/linux-arm-kernel/CAL_JsqLqVdyKkVKJP0EG7s7m4A=r-+DjY+X4kVs9boFfPoHsfw@mail.gmail.com/#r
 -- 
-2.17.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
