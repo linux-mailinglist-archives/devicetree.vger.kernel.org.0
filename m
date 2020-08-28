@@ -2,135 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E78525595D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Aug 2020 13:30:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 607BD255968
+	for <lists+devicetree@lfdr.de>; Fri, 28 Aug 2020 13:32:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728936AbgH1L37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Aug 2020 07:29:59 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:53360 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728709AbgH1L3w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Aug 2020 07:29:52 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07SBSubY057960;
-        Fri, 28 Aug 2020 06:28:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1598614136;
-        bh=K6J1dxqpyjkqrS/MebKa8sgd6/5VHr1CiLNX3jpx7pw=;
-        h=From:To:CC:Subject:Date;
-        b=qWvhfPBPFpUdwKJGs7+w7SHCWETcn124eVl+LPdMUmLNya2liW/NM8mAwMbM1wprG
-         zioL7jtMPyJ7cbuhOP2ENK+lBv1rtBfTcZjwrlZhgyaujt/wxgFfNi5F5t4yLn33Xu
-         jnCNEN0QFrpeySO3fchJ9ljMo9zkedIF7AjfY0E4=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07SBSuas117700
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 28 Aug 2020 06:28:56 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 28
- Aug 2020 06:28:56 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 28 Aug 2020 06:28:56 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07SBStBb116292;
-        Fri, 28 Aug 2020 06:28:55 -0500
-From:   Dan Murphy <dmurphy@ti.com>
-To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
-        <tiwai@suse.com>, <robh@kernel.org>
-CC:     <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
-Subject: [PATCH] ASoC: tlv320adcx140: Add digital mic channel enable routing
-Date:   Fri, 28 Aug 2020 06:28:55 -0500
-Message-ID: <20200828112855.10112-1-dmurphy@ti.com>
-X-Mailer: git-send-email 2.27.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1729243AbgH1LcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Aug 2020 07:32:08 -0400
+Received: from mail-eopbgr130073.outbound.protection.outlook.com ([40.107.13.73]:41602
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729040AbgH1Lbo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Aug 2020 07:31:44 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WtNP0qae2U4lSlUsq+94g8iV2tkiI7jSbQUIjMWtPWRfyVnpDFV6CLgjbuToFoI/X6Id1yYKwbTXU3YYbq8vxtKT+KMkl2o2OFTe+BtK4CJEEX20H5hil0ccVQnrX0Nu5Pc2IwalRLBYeKoSBoqLOm/HHxpY0vFMknBNpewz3xQBKEsGkuPg9dzCBc4XxFZrK2Pn7kC2TTPPPIZGn+m4lDmiaGig32Anzcd6lg1uyvbK9DAWewSOU+CV+bI5066VIsaQjluV4ghBqgvGD9sG+CEd8rI5OD+oSAyW+ClQK4AzBvngVeUheGFMqBjN+p3gnzWCPwgVWTyz8KVCIjGiag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CyE00kQNXiIxREz+e+Xc4qA0kHJwdxlBf0U6bN3psDs=;
+ b=U2f44k6Qz39sltzw4Mtlx+C8u1xdDK8P+P+Kn1tuvwBUsClmbGs12vfVyXn8+f5uymChmGVMOu4jofvRoRDwlkmhjIvcXF9ha2bqD3YFmPBLBToVALv9IsLd1mCjTp0iLvzEV5R0MeP9XsP2oPVzh6JjnpQIAc4Wx4CI5Z9+DO40CTyhstWo21EcBfq6hylL8zTeNCfBZBOUw/apSYWTo1NejfDbRR4ns5Kbe87Alrt+dCdyJWqQiJXjIAi4hqrH6ztkaDfx+/cBLaqSORIru5Y4k0fUrg+9oV5+/oB8cp797wkOJ9E/MMq27S/Cyg957EuSns7Id8PlFQX9davN2A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CyE00kQNXiIxREz+e+Xc4qA0kHJwdxlBf0U6bN3psDs=;
+ b=iqWKzCUZDxmGjHCTZaEONfB7QRMpRfxMfYq80zO6FpXDshoHVAYCgFcfQqOtglZyJsxOpA1m/bM2lRo+kvAwVVBoQAwcYZCQeWhinjsE9YlD3FEUOC8ilpRb92HlGNDa25n220LXyRN53BfZHzj3n+eRXsCUX/aMTYS6dPDb5EY=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
+Received: from DB6PR0401MB2598.eurprd04.prod.outlook.com (2603:10a6:4:39::7)
+ by DBAPR04MB7413.eurprd04.prod.outlook.com (2603:10a6:10:1a6::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.21; Fri, 28 Aug
+ 2020 11:13:41 +0000
+Received: from DB6PR0401MB2598.eurprd04.prod.outlook.com
+ ([fe80::19ed:520c:8c98:e334]) by DB6PR0401MB2598.eurprd04.prod.outlook.com
+ ([fe80::19ed:520c:8c98:e334%4]) with mapi id 15.20.3326.023; Fri, 28 Aug 2020
+ 11:13:41 +0000
+From:   "Robert Chiras (OSS)" <robert.chiras@oss.nxp.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Ondrej Jirman <megous@megous.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com
+Subject: [PATCH 0/5] Add new features to nwl-dsi driver
+Date:   Fri, 28 Aug 2020 14:13:27 +0300
+Message-Id: <1598613212-1113-1-git-send-email-robert.chiras@oss.nxp.com>
+X-Mailer: git-send-email 2.7.4
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-ClientProxiedBy: AM3PR07CA0114.eurprd07.prod.outlook.com
+ (2603:10a6:207:7::24) To DB6PR0401MB2598.eurprd04.prod.outlook.com
+ (2603:10a6:4:39::7)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from fsr-ub1664-120.ea.freescale.net (83.217.231.2) by AM3PR07CA0114.eurprd07.prod.outlook.com (2603:10a6:207:7::24) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3348.7 via Frontend Transport; Fri, 28 Aug 2020 11:13:39 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [83.217.231.2]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: d2944dc5-1007-468b-e177-08d84b436b50
+X-MS-TrafficTypeDiagnostic: DBAPR04MB7413:
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DBAPR04MB7413760D877F262316946E35A2520@DBAPR04MB7413.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: FB/2yxdrPU6oQwbctooBH2cHCt/cH5x8WYjOGeMd85/5H6of3beEga37Ph+oRexjH5g7x7u321RHoyHrvahxA0XtAAD/yJNlcYYAAotaMml4tEWa/HZEx3xb31eKJHcgGqI7wwYy3GOqoAeZO7xzStV0fHy5Et6EZf+EaVest5Gqycg0kveniRjkHp7Dz8qCVIvjmKw+dqI3mNN7nWU7WyBblaX6AWCRh/XumLaJeywSbgnt5sg3aNEGX/IMIY6zsat5o9Z6xRxwY4NWlCoyylS810OO9QOQSogE0GrXq+y/78bHktivXCjMg7XVGmdDivvGHgwq5nOO3XQWCG+jfT7YRQxtYX3mqie8Pur4sMwoxijdwb+UcwDYPcFf7SQX
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0401MB2598.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(396003)(366004)(136003)(39860400002)(16526019)(52116002)(86362001)(26005)(316002)(8676002)(6486002)(66556008)(8936002)(2616005)(54906003)(66946007)(6512007)(6506007)(186003)(478600001)(66476007)(7416002)(110136005)(2906002)(83380400001)(6666004)(5660300002)(956004)(4326008)(921003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: ZGSOZez02lTg28dGurWy7DIsgvpIcQq+Z5zWs0B/X8ED8RTkrWs8V9ePD+tn9k+NBZZjVM49YEOcl4Ar25aLOx4MQDbqbIxr5nFxCf+aTA/XRTAEo+l1xhoLcQSlC/7v6/7dw5ag6uwPqw7t9LK0GYb5Qmib4Az31xeDswwEJApgZTZsHohyP8eNeqd8iI8+Xd8eJTGd/QsgWPJU4j1v0l0xz2e5m0TcoJpkMc9Lp1mTa6eRs+7DHGdbbSHLVIkgwTsFhqtaMZyPAwAbfprC72vWvvWPNHJpMkAWXrGFsVSdrlAOioKpYRgmd+/znY6cP68fIzMjtbCxvqSF+ayeMLsygHjVTYbL5tZkm0mmjMipLrXcQrG5MoqQX/w1f/E9KJoF5LeRMabwx7zQ2dWLRc8/RzFghUSDW4fFul/K3txSB+lvoOKbdXY2QBADzmmeGrOL1TfgA4n2DT7BUmHtpUnYNQxpJzNoSiJS+Emie2m9SefvygktAT7N1n3tXW+upoz6+ZLkJHCeNJU4qCf5+ShCndlBqOFMzdkxjPZtmob9uCYC8fQ0Tz6tgFz0xdhZaLu8unSReTBf9gOfLA6HRGC8s1K05AT4yg2zdOvMer7x/0oibaFTdFMVLlmfdMrWS31zoA5gC+4zA8uiZJlr1g==
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d2944dc5-1007-468b-e177-08d84b436b50
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0401MB2598.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2020 11:13:41.1248
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: H9krY5WFpudZXnApwiigAZwlRTeeE+OqS7HCgi/r9M9RPMO3PNGUGsRHC/gmTE+sjkKAU4wuo1c6RXYKqJQ1Ig==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7413
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the audio routing map to enable the digital mic paths when the
-analog mic paths are not enabled.
+From: Robert Chiras <robert.chiras@nxp.com>
 
-Signed-off-by: Dan Murphy <dmurphy@ti.com>
----
- sound/soc/codecs/tlv320adcx140.c | 37 ++++++++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+This patch-set adds the new following features to the nwl-dsi bridge driver:
 
-diff --git a/sound/soc/codecs/tlv320adcx140.c b/sound/soc/codecs/tlv320adcx140.c
-index 5cd50d841177..5d1b2a03f0ac 100644
---- a/sound/soc/codecs/tlv320adcx140.c
-+++ b/sound/soc/codecs/tlv320adcx140.c
-@@ -412,6 +412,16 @@ static const struct snd_soc_dapm_widget adcx140_dapm_widgets[] = {
- 	SND_SOC_DAPM_ADC("CH3_ADC", "CH3 Capture", ADCX140_IN_CH_EN, 5, 0),
- 	SND_SOC_DAPM_ADC("CH4_ADC", "CH4 Capture", ADCX140_IN_CH_EN, 4, 0),
- 
-+	SND_SOC_DAPM_ADC("CH1_DIG", "CH1 Capture", ADCX140_IN_CH_EN, 7, 0),
-+	SND_SOC_DAPM_ADC("CH2_DIG", "CH2 Capture", ADCX140_IN_CH_EN, 6, 0),
-+	SND_SOC_DAPM_ADC("CH3_DIG", "CH3 Capture", ADCX140_IN_CH_EN, 5, 0),
-+	SND_SOC_DAPM_ADC("CH4_DIG", "CH4 Capture", ADCX140_IN_CH_EN, 4, 0),
-+	SND_SOC_DAPM_ADC("CH5_DIG", "CH5 Capture", ADCX140_IN_CH_EN, 3, 0),
-+	SND_SOC_DAPM_ADC("CH6_DIG", "CH6 Capture", ADCX140_IN_CH_EN, 2, 0),
-+	SND_SOC_DAPM_ADC("CH7_DIG", "CH7 Capture", ADCX140_IN_CH_EN, 1, 0),
-+	SND_SOC_DAPM_ADC("CH8_DIG", "CH8 Capture", ADCX140_IN_CH_EN, 0, 0),
-+
-+
- 	SND_SOC_DAPM_SWITCH("CH1_ASI_EN", SND_SOC_NOPM, 0, 0,
- 			    &adcx140_dapm_ch1_en_switch),
- 	SND_SOC_DAPM_SWITCH("CH2_ASI_EN", SND_SOC_NOPM, 0, 0,
-@@ -470,6 +480,15 @@ static const struct snd_soc_dapm_route adcx140_audio_map[] = {
- 	{"CH3_ASI_EN", "Switch", "CH3_ADC"},
- 	{"CH4_ASI_EN", "Switch", "CH4_ADC"},
- 
-+	{"CH1_ASI_EN", "Switch", "CH1_DIG"},
-+	{"CH2_ASI_EN", "Switch", "CH2_DIG"},
-+	{"CH3_ASI_EN", "Switch", "CH3_DIG"},
-+	{"CH4_ASI_EN", "Switch", "CH4_DIG"},
-+	{"CH5_ASI_EN", "Switch", "CH5_DIG"},
-+	{"CH6_ASI_EN", "Switch", "CH6_DIG"},
-+	{"CH7_ASI_EN", "Switch", "CH7_DIG"},
-+	{"CH8_ASI_EN", "Switch", "CH8_DIG"},
-+
- 	{"CH5_ASI_EN", "Switch", "CH5_OUT"},
- 	{"CH6_ASI_EN", "Switch", "CH6_OUT"},
- 	{"CH7_ASI_EN", "Switch", "CH7_OUT"},
-@@ -541,6 +560,15 @@ static const struct snd_soc_dapm_route adcx140_audio_map[] = {
- 	{"PDM Clk Div Select", "705.6 kHz", "MIC1P Input Mux"},
- 	{"PDM Clk Div Select", "5.6448 MHz", "MIC1P Input Mux"},
- 
-+	{"MIC1P Input Mux", NULL, "CH1_DIG"},
-+	{"MIC1M Input Mux", NULL, "CH2_DIG"},
-+	{"MIC2P Input Mux", NULL, "CH3_DIG"},
-+	{"MIC2M Input Mux", NULL, "CH4_DIG"},
-+	{"MIC3P Input Mux", NULL, "CH5_DIG"},
-+	{"MIC3M Input Mux", NULL, "CH6_DIG"},
-+	{"MIC4P Input Mux", NULL, "CH7_DIG"},
-+	{"MIC4M Input Mux", NULL, "CH8_DIG"},
-+
- 	{"MIC1 Analog Mux", "Line In", "MIC1P"},
- 	{"MIC2 Analog Mux", "Line In", "MIC2P"},
- 	{"MIC3 Analog Mux", "Line In", "MIC3P"},
-@@ -554,6 +582,15 @@ static const struct snd_soc_dapm_route adcx140_audio_map[] = {
- 	{"MIC3M Input Mux", "Analog", "MIC3M"},
- 	{"MIC4P Input Mux", "Analog", "MIC4P"},
- 	{"MIC4M Input Mux", "Analog", "MIC4M"},
-+
-+	{"MIC1P Input Mux", "Digital", "MIC1P"},
-+	{"MIC1M Input Mux", "Digital", "MIC1M"},
-+	{"MIC2P Input Mux", "Digital", "MIC2P"},
-+	{"MIC2M Input Mux", "Digital", "MIC2M"},
-+	{"MIC3P Input Mux", "Digital", "MIC3P"},
-+	{"MIC3M Input Mux", "Digital", "MIC3M"},
-+	{"MIC4P Input Mux", "Digital", "MIC4P"},
-+	{"MIC4M Input Mux", "Digital", "MIC4M"},
- };
- 
- static const struct snd_kcontrol_new adcx140_snd_controls[] = {
+1. Control Video PLL from nwl-dsi driver
+
+Add support for the Video PLL into the nwl-dsi driver, in order
+to better control it's rate, depending on the requested video mode.
+Controlling the Video PLL from nwl-dsi is usefull, since it both drives the DC
+pixel-clock and DPHY phy_ref clock.
+On i.MX8MQ, the DC can be either DCSS or LCDIF.
+
+2. Add new property to nwl-dsi: clock-drop-level
+
+This new property is usefull in order to use DSI panels with the nwl-dsi
+driver which require a higher overhead to the pixel-clock.
+For example, the Raydium RM67191 DSI Panel works with 132M pixel-clock,
+but it needs an overhead in order to work properly. So, the actual pixel-clock
+fed into the DSI DPI interface needs to be lower than the one used ad DSI output.
+This new property addresses this matter.
+
+3. Add support to handle both inputs for nwl-dsi: DCSS and LCDIF
+
+Laurentiu Palcu (1):
+  drm/bridge: nwl-dsi: add support for DCSS
+
+Robert Chiras (4):
+  drm/bridge: nwl-dsi: Add support for video_pll
+  dt-bindings: display/bridge: nwl-dsi: Document video_pll clock
+  drm/bridge: nwl-dsi: Add support for clock-drop-level
+  dt-bindings: display/bridge: nwl-dsi: Document fsl,clock-drop-level
+    property
+
+ .../bindings/display/bridge/nwl-dsi.yaml           |   7 +
+ drivers/gpu/drm/bridge/nwl-dsi.c                   | 338 ++++++++++++++++++++-
+ 2 files changed, 336 insertions(+), 9 deletions(-)
+
 -- 
-2.28.0
+2.7.4
 
