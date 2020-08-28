@@ -2,94 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB9B3255806
-	for <lists+devicetree@lfdr.de>; Fri, 28 Aug 2020 11:51:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA19B25580F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Aug 2020 11:54:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728362AbgH1JvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Aug 2020 05:51:22 -0400
-Received: from mail-ej1-f50.google.com ([209.85.218.50]:39742 "EHLO
-        mail-ej1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728218AbgH1JvU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Aug 2020 05:51:20 -0400
-Received: by mail-ej1-f50.google.com with SMTP id s19so709543eju.6
-        for <devicetree@vger.kernel.org>; Fri, 28 Aug 2020 02:51:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
-         :content-disposition;
-        bh=DpBBWUcbEuSZLEDqa9iOVvsqKufJuPVuZV7SdH0Df6g=;
-        b=jn4Ep1Wsj8y+Oin0G/nREVVUVO1Qh3t6Yu9f8BJ3gSsN8Ebm5FQQqEuGl4p6/T6n98
-         kDWBcpGBaUM52R027LKCnCZd9pkO8hdYAVQrRZebIFP3R3ff5Qi7UhfqjzQ4aCM4RRs+
-         3+zlqFhLkvsS5to53wjVuyE9sBq0GoPNdqjGquke0PgBdGr2x9dlYAXEaME/dvDqfAey
-         3jCFD0RD1gJW/O1aCb5TyJN2At7R8ZBuvhVldOMJZ4G0y4nmivTnBtV0w0/JkAEZKj5y
-         rBkc+g0+nO+ZMWAibxPwqDcqNLDUPIsLS+HC3OBp5QoffW/trzfiiNBY5WoTF128LXf+
-         Ggrw==
-X-Gm-Message-State: AOAM533Sqq/6+WYaFa9ArQsRn0LqOVXW3PkjiEt36AFIrmJK2/f+i+ua
-        xKbs08BaD0PwC2bwMKubVp5kh/VdQaK88DeC
-X-Google-Smtp-Source: ABdhPJxe6OZifw0Tw0GZM/HNQkslEocp2yE9jVzINE9JReFOaWe5K2WvqKCdk956l2wrj1aYcvlGCA==
-X-Received: by 2002:a17:906:780f:: with SMTP id u15mr974961ejm.259.1598608277965;
-        Fri, 28 Aug 2020 02:51:17 -0700 (PDT)
-Received: from pi3 ([194.230.155.216])
-        by smtp.googlemail.com with ESMTPSA id dk28sm565457edb.90.2020.08.28.02.51.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Aug 2020 02:51:17 -0700 (PDT)
-Date:   Fri, 28 Aug 2020 11:51:15 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: dtschema v2020.08.1 json.decoder.JSONDecodeError error
-Message-ID: <20200828095115.GA18030@pi3>
+        id S1728886AbgH1JyZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Aug 2020 05:54:25 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:16630 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728016AbgH1JyZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Aug 2020 05:54:25 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 07S9aj4Q007515;
+        Fri, 28 Aug 2020 11:54:17 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=th8nEc7OFj8YSYgcJlorABSYkKgwnGO3yKrwpGSpweY=;
+ b=U4tOtbIbYf+FXXANLL9Ldt/lIhIUGVZXxXmOXNZGd6EZwOEg5vTBa8oCzN0aLDWUI4zG
+ BIAlaKmI10I0jn9Jsd10wUjIEsyoMjFlJA+VGEMK5khL4b8iIjwDHXbzxtzZlnTzVS22
+ q0DKxMlRdCtRzkPMqzhAiWjrkxKsaFmiNY8nYfA0VfAsuIrWP8BvuV8jDSEtmYF/wugJ
+ iGtyRChF7UsBbMv7LmtQlIrQnbN10/q7qHJJf1dJeU4OgrbEou66R+ubvFehZly7AVZ3
+ CqilFPvOekTcTjHpP8DUptrm1EAC/AVRPj1HsE8opcM45kuAeN87pys4CWPkkf+msYXb Qg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 333b2n2weq-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 28 Aug 2020 11:54:17 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 414EA10002A;
+        Fri, 28 Aug 2020 11:54:17 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3531A2AE6C9;
+        Fri, 28 Aug 2020 11:54:17 +0200 (CEST)
+Received: from lmecxl0912.lme.st.com (10.75.127.45) by SFHDAG3NODE2.st.com
+ (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 28 Aug
+ 2020 11:54:16 +0200
+Subject: Re: [PATCH] ARM: dts: stm32: use stm32h7 usart compatible string for
+ stm32h743
+To:     Tobias Schramm <t.schramm@manjaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20200814181125.3202399-1-t.schramm@manjaro.org>
+From:   Alexandre Torgue <alexandre.torgue@st.com>
+Message-ID: <37d194f3-a9d5-625d-13b7-d749c7b21855@st.com>
+Date:   Fri, 28 Aug 2020 11:54:14 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+In-Reply-To: <20200814181125.3202399-1-t.schramm@manjaro.org>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG7NODE1.st.com (10.75.127.19) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-08-28_05:2020-08-28,2020-08-28 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Tobias
 
-I am trying dt_bindings_check with on top of next-20200826 with dtschema
-v2020.08.01 and got errors on all schemas:
+On 8/14/20 8:11 PM, Tobias Schramm wrote:
+> Previously the FIFO on the stm32h743 usart was not utilized, because
+> the stm32f7 compatible configures it without FIFO support.
+> 
+> Signed-off-by: Tobias Schramm <t.schramm@manjaro.org>
+> ---
+>   arch/arm/boot/dts/stm32h743.dtsi | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/stm32h743.dtsi b/arch/arm/boot/dts/stm32h743.dtsi
+> index 69e2f1e78ed6..9dd58974bf8d 100644
+> --- a/arch/arm/boot/dts/stm32h743.dtsi
+> +++ b/arch/arm/boot/dts/stm32h743.dtsi
+> @@ -126,7 +126,7 @@ spi3: spi@40003c00 {
+>   		};
+>   
+>   		usart2: serial@40004400 {
+> -			compatible = "st,stm32f7-uart";
+> +			compatible = "st,stm32h7-uart";
+>   			reg = <0x40004400 0x400>;
+>   			interrupts = <38>;
+>   			status = "disabled";
+> @@ -194,7 +194,7 @@ dac2: dac@2 {
+>   		};
+>   
+>   		usart1: serial@40011000 {
+> -			compatible = "st,stm32f7-uart";
+> +			compatible = "st,stm32h7-uart";
+>   			reg = <0x40011000 0x400>;
+>   			interrupts = <37>;
+>   			status = "disabled";
+> 
 
-=======
-Traceback (most recent call last):
-  File "/home/krzk/.local/lib/python3.5/site-packages/jsonschema/validators.py", line 777, in resolve_from_url
-    document = self.resolve_remote(url)
-  File "/home/krzk/.local/lib/python3.5/site-packages/jsonschema/validators.py", line 860, in resolve_remote
-    result = requests.get(uri).json()
-  File "/home/krzk/.local/lib/python3.5/site-packages/requests/models.py", line 897, in json
-    return complexjson.loads(self.text, **kwargs)
-  File "/usr/lib/python3.5/json/__init__.py", line 319, in loads
-    return _default_decoder.decode(s)
-  File "/usr/lib/python3.5/json/decoder.py", line 339, in decode
-  DTEX    Documentation/devicetree/bindings/net/allwinner,sun7i-a20-gmac.example.dts
-    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
-  File "/usr/lib/python3.5/json/decoder.py", line 357, in raw_decode
-    raise JSONDecodeError("Expecting value", s, err.value) from None
-json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+Applied on stm32-next.
 
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/krzk/.local/bin/dt-doc-validate", line 67, in <module>
-    ret = check_doc(f)
-  File "/home/krzk/.local/bin/dt-doc-validate", line 33, in check_doc
-    for error in sorted(dtschema.DTValidator.iter_schema_errors(testtree), key=lambda e: e.linecol):
-  File "/home/krzk/.local/lib/python3.5/site-packages/dtschema/lib.py", line 663, in iter_schema_errors
-    meta_schema = cls.resolver.resolve_from_url(schema['$schema'])
-  File "/home/krzk/.local/lib/python3.5/site-packages/jsonschema/validators.py", line 779, in resolve_from_url
-    raise exceptions.RefResolutionError(exc)
-jsonschema.exceptions.RefResolutionError: Expecting value: line 1 column 1 (char 0)
-=======
-
-
-Python v3.5.2
-Ubuntu 16.04
-
-Direct dependencies of dtschema updated via pip3.
-
-Any hints?
-
-Best regards,
-Krzysztof
-
+Thanks.
+Alex
