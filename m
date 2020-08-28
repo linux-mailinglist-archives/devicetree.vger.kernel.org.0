@@ -2,52 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8C55255AB9
-	for <lists+devicetree@lfdr.de>; Fri, 28 Aug 2020 15:00:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0120E255ACF
+	for <lists+devicetree@lfdr.de>; Fri, 28 Aug 2020 15:08:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729324AbgH1NAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Aug 2020 09:00:40 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:57956 "EHLO vps0.lunn.ch"
+        id S1729499AbgH1NIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Aug 2020 09:08:16 -0400
+Received: from foss.arm.com ([217.140.110.172]:48666 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729306AbgH1NAh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Aug 2020 09:00:37 -0400
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1kBdze-00CHCw-7p; Fri, 28 Aug 2020 15:00:34 +0200
-Date:   Fri, 28 Aug 2020 15:00:34 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] of: of_match_node: Make stub an inline function to avoid
- W=1 warnings
-Message-ID: <20200828130034.GA2912863@lunn.ch>
-References: <20200828021939.2912798-1-andrew@lunn.ch>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200828021939.2912798-1-andrew@lunn.ch>
+        id S1729172AbgH1NGX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Aug 2020 09:06:23 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4216B1FB;
+        Fri, 28 Aug 2020 06:06:11 -0700 (PDT)
+Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.195.35])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D0ADB3F66B;
+        Fri, 28 Aug 2020 06:06:08 -0700 (PDT)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Chanho Min <chanho.min@lge.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Wei Xu <xuwei5@hisilicon.com>
+Subject: [PATCH 00/10] dt-bindings: Convert SP805 to Json-schema (and fix users)
+Date:   Fri, 28 Aug 2020 14:05:52 +0100
+Message-Id: <20200828130602.42203-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 28, 2020 at 04:19:39AM +0200, Andrew Lunn wrote:
-> When building without CONFIG_OF and W=1, errors are given about unused
-> arrays of match data, because of_match_node is stubbed as a macro. The
-> compile does not see it takes parameters when not astub, so it
-> generates warnings about unused variables. Replace the stub with an
-> inline function to avoid these false warnings.
+This is an attempt to convert the SP805 watchdog DT binding to yaml.
+This is done in the first patch, the remaining nine fix some DT users.
 
-Hi Rob
+I couldn't test any of those DT files on actual machines, but tried
+to make the changes in a way that would be transparent to at least the
+Linux driver. The only other SP805 DT user I could find is U-Boot, which
+seems to only use a very minimal subset of the binding (just the first
+clock).
+I only tried to fix those DTs that were easily and reliably fixable.
+AFAICT, a missing primecell compatible string, for instance, would
+prevent the Linux driver from probing the device at all, so I didn't
+dare to touch those DTs at all. Missing clocks are equally fatal.
 
-So 0-day shows some people have worked around this with #ifdef
-CONFIG_OF around the match table.
+Cheers,
+Andre
 
-I checked the object code for the file i'm interested in.  The
-optimiser has correctly throw away the match table and all code around
-it with the inline stub.
+Andre Przywara (10):
+  dt-bindings: watchdog: sp-805: Convert to Json-schema
+  arm64: dts: arm: Fix SP805 clock-names
+  arm64: dts: broadcom: Fix SP805 clock-names
+  arm64: dts: freescale: Fix SP805 clock-names
+  arm64: dts: hisilicon: Fix SP805 clocks
+  arm64: dts: lg: Fix SP805 clocks
+  ARM: dts: arm: Fix SP805 clocks
+  ARM: dts: Cygnus: Fix SP805 clocks
+  ARM: dts: NSP: Fix SP805 clock-names
+  ARM: dts: hisilicon: Fix SP805 clocks
 
-Which do you prefer? This patch and i remove the #ifdef, or the old
-stub and if add #ifdef around the driver i'm getting warnings from?
+ .../bindings/watchdog/arm,sp805.txt           | 32 ---------
+ .../bindings/watchdog/arm,sp805.yaml          | 72 +++++++++++++++++++
+ arch/arm/boot/dts/arm-realview-eb.dtsi        |  2 +-
+ arch/arm/boot/dts/arm-realview-pb11mp.dts     |  4 +-
+ arch/arm/boot/dts/arm-realview-pbx.dtsi       |  4 +-
+ arch/arm/boot/dts/bcm-cygnus.dtsi             |  4 +-
+ arch/arm/boot/dts/bcm-nsp.dtsi                |  2 +-
+ arch/arm/boot/dts/hisi-x5hd2.dtsi             |  5 +-
+ arch/arm/boot/dts/mps2.dtsi                   |  4 +-
+ arch/arm/boot/dts/vexpress-v2m-rs1.dtsi       |  2 +-
+ arch/arm/boot/dts/vexpress-v2m.dtsi           |  2 +-
+ arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts   |  4 +-
+ arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts    |  2 +-
+ arch/arm/boot/dts/vexpress-v2p-ca9.dts        |  2 +-
+ arch/arm64/boot/dts/arm/juno-motherboard.dtsi |  2 +-
+ .../boot/dts/arm/rtsm_ve-motherboard.dtsi     |  2 +-
+ .../boot/dts/broadcom/northstar2/ns2.dtsi     |  2 +-
+ .../boot/dts/broadcom/stingray/stingray.dtsi  |  2 +-
+ .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi |  4 +-
+ .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 16 ++---
+ .../arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 16 ++---
+ arch/arm64/boot/dts/hisilicon/hi3660.dtsi     | 10 +--
+ arch/arm64/boot/dts/hisilicon/hi6220.dtsi     |  5 +-
+ arch/arm64/boot/dts/lg/lg1312.dtsi            |  4 +-
+ arch/arm64/boot/dts/lg/lg1313.dtsi            |  4 +-
+ 25 files changed, 126 insertions(+), 82 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/arm,sp805.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
 
-     Andrew
+-- 
+2.17.1
+
