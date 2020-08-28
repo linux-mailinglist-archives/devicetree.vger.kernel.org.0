@@ -2,73 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82D5D256352
-	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 01:10:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E95CF25635F
+	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 01:15:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726550AbgH1XKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Aug 2020 19:10:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45162 "EHLO mail.kernel.org"
+        id S1726677AbgH1XPi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Aug 2020 19:15:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48770 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726536AbgH1XKF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Aug 2020 19:10:05 -0400
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1726386AbgH1XPi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Aug 2020 19:15:38 -0400
+Received: from localhost (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 727412086A;
-        Fri, 28 Aug 2020 23:10:04 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E8CA0205CB;
+        Fri, 28 Aug 2020 23:15:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598656204;
-        bh=cuzIipgBvlguG990N/YxERo27x/8SCCyR8Aa2meH1IU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=oui75MntViOoplgl+Tc3SLIcjQ+hsfAAenAmW0GSBwQOZbM4d3b0h1BdONgTUV3W0
-         hqps76DCyv6YFuSYThWWdSZXRibH2XDDHZRjfIdUPz75FBXqCzxq3cEduqnnCDNJIM
-         M29s4ztjnnJsJzm0D1+3dQ38XaHwWJcq1CZS897c=
-Received: by mail-ot1-f49.google.com with SMTP id i11so636106otr.5;
-        Fri, 28 Aug 2020 16:10:04 -0700 (PDT)
-X-Gm-Message-State: AOAM531qBPwIwZZRuR0zacqAMQH7/F96iBQShkGjEzJ1LAvO3lm6xU7K
-        mmpTzC+tZWPyISOu/K+w6v6mvwX0jJHqyrSUsA==
-X-Google-Smtp-Source: ABdhPJzjDUg54XSBKQFWzL3Kiv6AKutLQFPS6idWqVm+lWPNPPnQ22CiTHLkuFJm61VlJ3fFHj86WY0RjuOlhLhE9Hc=
-X-Received: by 2002:a05:6830:1d94:: with SMTP id y20mr655920oti.129.1598656203809;
- Fri, 28 Aug 2020 16:10:03 -0700 (PDT)
+        s=default; t=1598656538;
+        bh=iyf7cavY7WRDPtQqVpmEbIXLW2KxfUTGJWKiWuKdl7I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nRmh7mzqw8myRiDq+jE0VGkCEBjopmS41NUfGb5VmfqunNZM58oLi7HaxIRv2t6Ug
+         ATybOaVm/GR+u/74atyY3z3dbng4Cu+KKU+z/cMzIeg7uWDzBhzIBov9ZEkb4OYGC6
+         sHeLzIzDe5NmYS9xukpXWgH0IiCEoxwMHj7Atfdo=
+Date:   Fri, 28 Aug 2020 19:15:36 -0400
+From:   Sasha Levin <sashal@kernel.org>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, robh+dt@kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        stable@vger.kernel.org
+Subject: Re: [PATCH 4.19 1/7] sdhci: tegra: Remove
+ SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK for Tegra210
+Message-ID: <20200828231536.GU8670@sasha-vm>
+References: <1598653517-13658-1-git-send-email-skomatineni@nvidia.com>
+ <1598653517-13658-2-git-send-email-skomatineni@nvidia.com>
 MIME-Version: 1.0
-References: <20200828021939.2912798-1-andrew@lunn.ch> <20200828130034.GA2912863@lunn.ch>
-In-Reply-To: <20200828130034.GA2912863@lunn.ch>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 28 Aug 2020 17:09:52 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK18GoqkNPePh1+jiEk0JoLH01yPr0dD0AkswXP1N+qzA@mail.gmail.com>
-Message-ID: <CAL_JsqK18GoqkNPePh1+jiEk0JoLH01yPr0dD0AkswXP1N+qzA@mail.gmail.com>
-Subject: Re: [PATCH] of: of_match_node: Make stub an inline function to avoid
- W=1 warnings
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <1598653517-13658-2-git-send-email-skomatineni@nvidia.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 28, 2020 at 7:00 AM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> On Fri, Aug 28, 2020 at 04:19:39AM +0200, Andrew Lunn wrote:
-> > When building without CONFIG_OF and W=1, errors are given about unused
-> > arrays of match data, because of_match_node is stubbed as a macro. The
-> > compile does not see it takes parameters when not astub, so it
-> > generates warnings about unused variables. Replace the stub with an
-> > inline function to avoid these false warnings.
->
-> Hi Rob
->
-> So 0-day shows some people have worked around this with #ifdef
-> CONFIG_OF around the match table.
->
-> I checked the object code for the file i'm interested in.  The
-> optimiser has correctly throw away the match table and all code around
-> it with the inline stub.
->
-> Which do you prefer? This patch and i remove the #ifdef, or the old
-> stub and if add #ifdef around the driver i'm getting warnings from?
+On Fri, Aug 28, 2020 at 03:25:11PM -0700, Sowjanya Komatineni wrote:
+>commit b5a84ecf025a ("mmc: tegra: Add Tegra210 support")
 
-Use of_device_get_match_data instead of of_match_node.
+What does this line above represent?
 
-Rob
+>SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK is set for Tegra210 from the
+>beginning of Tegra210 support in the driver.
+>
+>Tegra210 SDMMC hardware by default uses timeout clock (TMCLK)
+>instead of SDCLK and this quirk should not be set.
+>
+>So, this patch remove this quirk for Tegra210.
+>
+>Fixes: b5a84ecf025a ("mmc: tegra: Add Tegra210 support")
+>Cc: stable <stable@vger.kernel.org> # 4.19
+>Tested-by: Jon Hunter <jonathanh@nvidia.com>
+>Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
+>Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+>Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+
+-- 
+Thanks,
+Sasha
