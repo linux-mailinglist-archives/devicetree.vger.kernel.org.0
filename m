@@ -2,100 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD4C8256341
-	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 00:59:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 714B3256358
+	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 01:13:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726550AbgH1W7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Aug 2020 18:59:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36456 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726536AbgH1W7M (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Aug 2020 18:59:12 -0400
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6D0A9207DA
-        for <devicetree@vger.kernel.org>; Fri, 28 Aug 2020 22:59:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598655551;
-        bh=Rie8awG8Ju1llyZ+xBh1qthfe8dvOp5LXDt7W4Ycgvg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=hCnkfFo5wb3IOy9OvGA9u8Qtzbk0Jv4YQNJMo8NMOiq5W4KpRt9COaZ4jw0YFoXKm
-         ByeqWyS2ZlVmrdoCMJuoh7KGp9NqQszImIwblckpTxXB6NFPcY8fe9Y9tqVgLUabn0
-         3tBHjq0d/xFKBfpgwn4i/Ru+gPFG8mu1Pm73YbdE=
-Received: by mail-oi1-f178.google.com with SMTP id z195so2072096oia.6
-        for <devicetree@vger.kernel.org>; Fri, 28 Aug 2020 15:59:11 -0700 (PDT)
-X-Gm-Message-State: AOAM531+JJ/14/hW5tNoA3IHS7wyExFqCycXB8xWEU4+b9gMiQSOBqSA
-        k5O7wLmocr/M6JixiOPdMBZflAIx2g69BbBckA==
-X-Google-Smtp-Source: ABdhPJxUqqfVr9W2waCR8LJe1ZsNUZqAE7l7U7GnXZXf9gfvWlUVH/oUJnR0Tppn/Z+XZcb+8bbhUobAWHqUJTjV9aM=
-X-Received: by 2002:aca:4cc7:: with SMTP id z190mr788795oia.147.1598655550794;
- Fri, 28 Aug 2020 15:59:10 -0700 (PDT)
+        id S1726851AbgH1XNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Aug 2020 19:13:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52740 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726536AbgH1XNy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Aug 2020 19:13:54 -0400
+Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9C99C061264
+        for <devicetree@vger.kernel.org>; Fri, 28 Aug 2020 16:13:54 -0700 (PDT)
+Received: by mail-vs1-xe42.google.com with SMTP id y140so487270vsc.3
+        for <devicetree@vger.kernel.org>; Fri, 28 Aug 2020 16:13:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=eTKdXiRCKS6tUmMOhEk7xSRiz3K0QjMIqXKfgOUTwVI=;
+        b=DTx98g6eHjR9eWZ8L8pNZvzNzyyoyGJGoCSVzxnwe383QCEf6CiPXBYd7KGVxtcyWM
+         imHYSMTzYzDKbP9GdybbwuCc5YWmZJB/nMyEkOnXnO1PMF4GDNLmCJ3JJQnnthHL+c6q
+         B4VizqndaVWBqtihAlgf8low/9/yvPUV9bIiU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=eTKdXiRCKS6tUmMOhEk7xSRiz3K0QjMIqXKfgOUTwVI=;
+        b=QPk31HxHPwDNOQYWoXNokstc41j8UYCDay6rWW5mOcfLaQUGZ6NIaOe4GCo9kUP90t
+         lf1scnQGIhqUTpY5qMbm+2q+jPhGDC2T8A24tuMoygfROnskTNIeh1QoANEORmLkLGJK
+         UTOkRQ3PSorOgmYg4IbFPeHdKlb+Yde2mGyGaEGFkmONvA27lSPueP2U+2jNIf7xQkPe
+         yeEhi4xIu8aoMY6dJu9sIh5ULst5x6gd6+CmQabJ3nn68uEvOpJ60VEVkyWjxl7HbEE0
+         Li3Egt1q8vwDnmwiwKRcO6RQU0nTCkkvvhc3qdWcZHjTBUqEH85XCSaEqpFKByHEjUBU
+         adCg==
+X-Gm-Message-State: AOAM530g2NUKWVo3Zr6M6L9Bj89YH7zyxbhkPNV6kUL2ltkIqhov8wle
+        rq2as/2clVTbKLSkht/ZboVLCplBY9L00A==
+X-Google-Smtp-Source: ABdhPJziWtEO2IyoU9+Ul9K6Y1oDO77yRrUutEEThLNcvGl8b9nlA7k26FXe/npvRvw/kkWUxOId5g==
+X-Received: by 2002:a67:b345:: with SMTP id b5mr716083vsm.45.1598656433789;
+        Fri, 28 Aug 2020 16:13:53 -0700 (PDT)
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
+        by smtp.gmail.com with ESMTPSA id l84sm126418vkl.36.2020.08.28.16.13.53
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Aug 2020 16:13:53 -0700 (PDT)
+Received: by mail-vs1-f43.google.com with SMTP id a13so451397vso.12
+        for <devicetree@vger.kernel.org>; Fri, 28 Aug 2020 16:13:53 -0700 (PDT)
+X-Received: by 2002:a1f:d6c4:: with SMTP id n187mr874772vkg.65.1598655985575;
+ Fri, 28 Aug 2020 16:06:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200828095115.GA18030@pi3>
-In-Reply-To: <20200828095115.GA18030@pi3>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 28 Aug 2020 16:58:59 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLKKagxyJPRK=_Xze7jWYAsqSBPbyZC3CLBeDZp5H49hQ@mail.gmail.com>
-Message-ID: <CAL_JsqLKKagxyJPRK=_Xze7jWYAsqSBPbyZC3CLBeDZp5H49hQ@mail.gmail.com>
-Subject: Re: dtschema v2020.08.1 json.decoder.JSONDecodeError error
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     devicetree@vger.kernel.org
+References: <20200826110454.1811352-1-cychiang@chromium.org> <20200826110454.1811352-3-cychiang@chromium.org>
+In-Reply-To: <20200826110454.1811352-3-cychiang@chromium.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 28 Aug 2020 16:06:14 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XaCt6V+VXfk8T+2mS4d5sKQzMC12AcH9a=MNkgguvmjQ@mail.gmail.com>
+Message-ID: <CAD=FV=XaCt6V+VXfk8T+2mS4d5sKQzMC12AcH9a=MNkgguvmjQ@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] ASoC: qcom: sc7180: Add machine driver for sound
+ card registration
+To:     Cheng-Yi Chiang <cychiang@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Dylan Reid <dgreid@chromium.org>, tzungbi@chromium.org,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+        Ajit Pandey <ajitp@codeaurora.org>,
+        Tzung-Bi Shih <tzungbi@google.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 28, 2020 at 3:51 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> Hi Rob,
->
-> I am trying dt_bindings_check with on top of next-20200826 with dtschema
-> v2020.08.01 and got errors on all schemas:
->
-> =======
-> Traceback (most recent call last):
->   File "/home/krzk/.local/lib/python3.5/site-packages/jsonschema/validators.py", line 777, in resolve_from_url
->     document = self.resolve_remote(url)
->   File "/home/krzk/.local/lib/python3.5/site-packages/jsonschema/validators.py", line 860, in resolve_remote
->     result = requests.get(uri).json()
->   File "/home/krzk/.local/lib/python3.5/site-packages/requests/models.py", line 897, in json
->     return complexjson.loads(self.text, **kwargs)
->   File "/usr/lib/python3.5/json/__init__.py", line 319, in loads
->     return _default_decoder.decode(s)
->   File "/usr/lib/python3.5/json/decoder.py", line 339, in decode
->   DTEX    Documentation/devicetree/bindings/net/allwinner,sun7i-a20-gmac.example.dts
->     obj, end = self.raw_decode(s, idx=_w(s, 0).end())
->   File "/usr/lib/python3.5/json/decoder.py", line 357, in raw_decode
->     raise JSONDecodeError("Expecting value", s, err.value) from None
-> json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
->
-> During handling of the above exception, another exception occurred:
->
-> Traceback (most recent call last):
->   File "/home/krzk/.local/bin/dt-doc-validate", line 67, in <module>
->     ret = check_doc(f)
->   File "/home/krzk/.local/bin/dt-doc-validate", line 33, in check_doc
->     for error in sorted(dtschema.DTValidator.iter_schema_errors(testtree), key=lambda e: e.linecol):
->   File "/home/krzk/.local/lib/python3.5/site-packages/dtschema/lib.py", line 663, in iter_schema_errors
->     meta_schema = cls.resolver.resolve_from_url(schema['$schema'])
->   File "/home/krzk/.local/lib/python3.5/site-packages/jsonschema/validators.py", line 779, in resolve_from_url
->     raise exceptions.RefResolutionError(exc)
-> jsonschema.exceptions.RefResolutionError: Expecting value: line 1 column 1 (char 0)
-> =======
->
->
-> Python v3.5.2
-> Ubuntu 16.04
->
-> Direct dependencies of dtschema updated via pip3.
+Hi,
 
-Not sure. I'm on version 2.0.9 for the json module which I guess is
-what comes with python 3.8 (I'm on ubuntu 20.04).
+On Wed, Aug 26, 2020 at 4:05 AM Cheng-Yi Chiang <cychiang@chromium.org> wrote:
+>
+> +config SND_SOC_SC7180
+> +       tristate "SoC Machine driver for SC7180 boards"
+> +       depends on SND_SOC_QCOM
+> +       select SND_SOC_QCOM_COMMON
+> +       select SND_SOC_LPASS_SC7180
+> +       select SND_SOC_MAX98357A
+> +       select SND_SOC_RT5682
 
-Nothing jumps out at me looking at the module history:
-https://github.com/python/cpython/commits/master/Lib/json
+I haven't done any significant testing / review of your patch (I'm
+mostly sound-clueless), but I believe that the above needs to be
+"select SND_SOC_RT5682_I2C" atop the current top of the sound tree.
+When I fix that I can confirm that I see the rt5682 probe on
+sc7180-trogdor with Rob Clark's dts patch.
 
-I'll try some older versions.
-
-Rob
+-Doug
