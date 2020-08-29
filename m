@@ -2,29 +2,29 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1603D256940
+	by mail.lfdr.de (Postfix) with ESMTP id 973B0256941
 	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 19:09:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728478AbgH2RJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Aug 2020 13:09:41 -0400
-Received: from foss.arm.com ([217.140.110.172]:45080 "EHLO foss.arm.com"
+        id S1728472AbgH2RJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Aug 2020 13:09:42 -0400
+Received: from foss.arm.com ([217.140.110.172]:45064 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728472AbgH2RJj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 29 Aug 2020 13:09:39 -0400
+        id S1728452AbgH2RJk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 29 Aug 2020 13:09:40 -0400
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0525D1396;
-        Sat, 29 Aug 2020 10:09:38 -0700 (PDT)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 38C0B142F;
+        Sat, 29 Aug 2020 10:09:39 -0700 (PDT)
 Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 05FDD3F71F;
-        Sat, 29 Aug 2020 10:09:36 -0700 (PDT)
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 393263F71F;
+        Sat, 29 Aug 2020 10:09:38 -0700 (PDT)
 From:   Sudeep Holla <sudeep.holla@arm.com>
 To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 Cc:     Sudeep Holla <sudeep.holla@arm.com>, kernel-team@android.com,
         Will Deacon <will@kernel.org>, tsoni@quicinc.com,
         pratikp@quicinc.com
-Subject: [PATCH 5/9] firmware: arm_ffa: Add initial FFA bus support for device enumeration
-Date:   Sat, 29 Aug 2020 18:09:19 +0100
-Message-Id: <20200829170923.29949-6-sudeep.holla@arm.com>
+Subject: [PATCH 6/9] firmware: arm_ffa: Add initial Arm FFA driver support
+Date:   Sat, 29 Aug 2020 18:09:20 +0100
+Message-Id: <20200829170923.29949-7-sudeep.holla@arm.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200829170923.29949-1-sudeep.holla@arm.com>
 References: <20200829170923.29949-1-sudeep.holla@arm.com>
@@ -33,374 +33,352 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Arm FF for Armv8-A specification has concept of endpoints or
-partitions. In the Normal world, a partition could be a VM when
-the Virtualization extension is enabled or the kernel itself.
-
-In order to handle multiple partitions, we can create a FFA device for
-each partition on a dedicated FFA bus. Similarly, different drivers
-requiring FFA transport can be registered on the same bus. We can match
-the device and drivers using UUID. This is mostly for the in-kernel
-users with FFA drivers.
-
-However, to support usage of FFA transport from user-space, there is also
-a provision to create character device interface for the same.
+This just add a basic driver that sets up the transport(e.g. SMCCC),
+checks the FFA version implemented, get the partition ID for self and
+sets up the Tx/Rx buffers for communication.
 
 Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
 ---
- drivers/firmware/Kconfig          |   1 +
- drivers/firmware/Makefile         |   1 +
- drivers/firmware/arm_ffa/Kconfig  |  16 +++
- drivers/firmware/arm_ffa/Makefile |   3 +
- drivers/firmware/arm_ffa/bus.c    | 193 ++++++++++++++++++++++++++++++
- include/linux/arm_ffa.h           |  81 +++++++++++++
- 6 files changed, 295 insertions(+)
- create mode 100644 drivers/firmware/arm_ffa/Kconfig
- create mode 100644 drivers/firmware/arm_ffa/Makefile
- create mode 100644 drivers/firmware/arm_ffa/bus.c
- create mode 100644 include/linux/arm_ffa.h
+ drivers/firmware/arm_ffa/Makefile |   3 +-
+ drivers/firmware/arm_ffa/common.h |  23 +++
+ drivers/firmware/arm_ffa/driver.c | 288 ++++++++++++++++++++++++++++++
+ 3 files changed, 313 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/firmware/arm_ffa/common.h
+ create mode 100644 drivers/firmware/arm_ffa/driver.c
 
-diff --git a/drivers/firmware/Kconfig b/drivers/firmware/Kconfig
-index fbd785dd0513..8660014e9ec7 100644
---- a/drivers/firmware/Kconfig
-+++ b/drivers/firmware/Kconfig
-@@ -296,6 +296,7 @@ config TURRIS_MOX_RWTM
- 	  other manufacturing data and also utilize the Entropy Bit Generator
- 	  for hardware random number generation.
- 
-+source "drivers/firmware/arm_ffa/Kconfig"
- source "drivers/firmware/broadcom/Kconfig"
- source "drivers/firmware/google/Kconfig"
- source "drivers/firmware/efi/Kconfig"
-diff --git a/drivers/firmware/Makefile b/drivers/firmware/Makefile
-index 99510be9f5ed..cd990d411f89 100644
---- a/drivers/firmware/Makefile
-+++ b/drivers/firmware/Makefile
-@@ -22,6 +22,7 @@ obj-$(CONFIG_TI_SCI_PROTOCOL)	+= ti_sci.o
- obj-$(CONFIG_TRUSTED_FOUNDATIONS) += trusted_foundations.o
- obj-$(CONFIG_TURRIS_MOX_RWTM)	+= turris-mox-rwtm.o
- 
-+obj-y				+= arm_ffa/
- obj-$(CONFIG_ARM_SCMI_PROTOCOL)	+= arm_scmi/
- obj-y				+= broadcom/
- obj-y				+= meson/
-diff --git a/drivers/firmware/arm_ffa/Kconfig b/drivers/firmware/arm_ffa/Kconfig
-new file mode 100644
-index 000000000000..261a3660650a
---- /dev/null
-+++ b/drivers/firmware/arm_ffa/Kconfig
-@@ -0,0 +1,16 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+config ARM_FFA_TRANSPORT
-+	tristate "Arm Firmware Framework for Armv8-A"
-+	depends on OF
-+	depends on ARM64
-+	default n
-+	help
-+	  This Firmware Framework(FF) for Arm A-profile processors describes
-+	  interfaces that standardize communication between the various
-+	  software images which includes communication between images in
-+	  the Secure world and Normal world. It also leverages the
-+	  virtualization extension to isolate software images provided
-+	  by an ecosystem of vendors from each other.
-+
-+	  This driver provides interface for all the client drivers making
-+	  use of the features offered by ARM FF-A.
 diff --git a/drivers/firmware/arm_ffa/Makefile b/drivers/firmware/arm_ffa/Makefile
-new file mode 100644
-index 000000000000..fadb325ee888
---- /dev/null
+index fadb325ee888..1a9bd2bf8752 100644
+--- a/drivers/firmware/arm_ffa/Makefile
 +++ b/drivers/firmware/arm_ffa/Makefile
-@@ -0,0 +1,3 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+obj-$(CONFIG_ARM_FFA_TRANSPORT) = ffa-bus.o
-+ffa-bus-y = bus.o
-diff --git a/drivers/firmware/arm_ffa/bus.c b/drivers/firmware/arm_ffa/bus.c
+@@ -1,3 +1,4 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-obj-$(CONFIG_ARM_FFA_TRANSPORT) = ffa-bus.o
++obj-$(CONFIG_ARM_FFA_TRANSPORT) = ffa-bus.o ffa-driver.o
+ ffa-bus-y = bus.o
++ffa-driver-y = driver.o
+diff --git a/drivers/firmware/arm_ffa/common.h b/drivers/firmware/arm_ffa/common.h
 new file mode 100644
-index 000000000000..b5789bd4dfcd
+index 000000000000..720c8425dfd6
 --- /dev/null
-+++ b/drivers/firmware/arm_ffa/bus.c
-@@ -0,0 +1,193 @@
-+// SPDX-License-Identifier: GPL-2.0
++++ b/drivers/firmware/arm_ffa/common.h
+@@ -0,0 +1,23 @@
++/* SPDX-License-Identifier: GPL-2.0 */
 +/*
 + * Copyright (C) 2020 ARM Ltd.
 + */
 +
-+#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
++#ifndef _FFA_COMMON_H
++#define _FFA_COMMON_H
 +
-+#include <linux/arm_ffa.h>
-+#include <linux/device.h>
-+#include <linux/fs.h>
-+#include <linux/kernel.h>
++#include <linux/arm-smccc.h>
++#include <linux/err.h>
++
++typedef struct arm_smccc_v1_2_res ffa_res_t;
++
++typedef ffa_res_t
++(ffa_fn)(unsigned long, unsigned long, unsigned long, unsigned long,
++	 unsigned long, unsigned long, unsigned long, unsigned long);
++
++static inline int __init ffa_transport_init(ffa_fn **invoke_ffa_fn)
++{
++	return -EOPNOTSUPP;
++}
++
++#endif /* _FFA_COMMON_H */
+diff --git a/drivers/firmware/arm_ffa/driver.c b/drivers/firmware/arm_ffa/driver.c
+new file mode 100644
+index 000000000000..3670ba400f89
+--- /dev/null
++++ b/drivers/firmware/arm_ffa/driver.c
+@@ -0,0 +1,288 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Arm Firmware Framework for ARMv8-A(FFA) interface driver
++ *
++ * The Arm FFA specification[1] describes a software architecture to
++ * leverages the virtualization extension to isolate software images
++ * provided by an ecosystem of vendors from each other and describes
++ * interfaces that standardize communication between the various software
++ * images including communication between images in the Secure world and
++ * Normal world. Any Hypervisor could use the FFA interfaces to enable
++ * communication between VMs it manages.
++ *
++ * The Hypervisor a.k.a Partition managers in FFA terminology can assign
++ * system resources(Memory regions, Devices, CPU cycles) to the partitions
++ * and manage isolation amongst them.
++ *
++ * [1] https://developer.arm.com/docs/den0077/latest
++ *
++ * Copyright (C) 2020 Arm Ltd.
++ */
++
++#define DRIVER_NAME "ARM FF-A"
++#define pr_fmt(fmt) DRIVER_NAME ": " fmt
++
++#include <linux/bitfield.h>
++#include <linux/io.h>
 +#include <linux/module.h>
 +#include <linux/slab.h>
-+#include <linux/types.h>
++#include <linux/arm_ffa.h>
 +
-+#define DEVICE_NAME "arm_ffa"
-+#define FFA_MAX_CDEVS	32
++#include "common.h"
 +
-+static DEFINE_IDA(ffa_dev_id);
-+static dev_t ffa_devt;
++#define FFA_SMC(calling_convention, func_num)				\
++	ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL, (calling_convention),	\
++			   ARM_SMCCC_OWNER_STANDARD, (func_num))
 +
-+static int ffa_device_match(struct device *dev, struct device_driver *drv)
-+{
-+	const struct ffa_device_id *id_table;
-+	struct ffa_device *ffa_dev;
++#define FFA_SMC_32(func_num)	FFA_SMC(ARM_SMCCC_SMC_32, (func_num))
++#define FFA_SMC_64(func_num)	FFA_SMC(ARM_SMCCC_SMC_64, (func_num))
 +
-+	id_table = to_ffa_driver(drv)->id_table;
-+	ffa_dev = to_ffa_dev(dev);
++#define FFA_ERROR			FFA_SMC_32(0x60)
++#define FFA_SUCCESS			FFA_SMC_32(0x61)
++#define FFA_INTERRUPT			FFA_SMC_32(0x62)
++#define FFA_VERSION			FFA_SMC_32(0x63)
++#define FFA_FEATURES			FFA_SMC_32(0x64)
++#define FFA_RX_RELEASE			FFA_SMC_32(0x65)
++#define FFA_RXTX_MAP			FFA_SMC_32(0x66)
++#define FFA_RXTX_UNMAP			FFA_SMC_32(0x67)
++#define FFA_PARTITION_INFO_GET		FFA_SMC_32(0x68)
++#define FFA_ID_GET			FFA_SMC_32(0x69)
++#define FFA_MSG_POLL			FFA_SMC_32(0x6A)
++#define FFA_MSG_WAIT			FFA_SMC_32(0x6B)
++#define FFA_YIELD			FFA_SMC_32(0x6C)
++#define FFA_RUN				FFA_SMC_32(0x6D)
++#define FFA_MSG_SEND			FFA_SMC_32(0x6E)
++#define FFA_MSG_SEND_DIRECT_REQ		FFA_SMC_32(0x6F)
++#define FFA_FN64_MSG_SEND_DIRECT_REQ	FFA_SMC_64(0x6F)
++#define FFA_MSG_SEND_DIRECT_RESP	FFA_SMC_32(0x70)
++#define FFA_FN64_MSG_SEND_DIRECT_RESP	FFA_SMC_64(0x70)
++#define FFA_MEM_DONATE			FFA_SMC_32(0x71)
++#define FFA_FN64_MEM_DONATE		FFA_SMC_32(0x71)
++#define FFA_MEM_LEND			FFA_SMC_32(0x72)
++#define FFA_FN64_MEM_LEND		FFA_SMC_32(0x72)
++#define FFA_MEM_SHARE			FFA_SMC_32(0x73)
++#define FFA_FN64_MEM_SHARE		FFA_SMC_64(0x73)
++#define FFA_MEM_RETRIEVE_REQ		FFA_SMC_32(0x74)
++#define FFA_FN64_MEM_RETRIEVE_REQ	FFA_SMC_64(0x74)
++#define FFA_MEM_RETRIEVE_RESP		FFA_SMC_32(0x75)
++#define FFA_MEM_RELINQUISH		FFA_SMC_32(0x76)
++#define FFA_MEM_RECLAIM			FFA_SMC_32(0x77)
++#define FFA_MEM_OP_PAUSE		FFA_SMC_32(0x78)
++#define FFA_MEM_OP_RESUME		FFA_SMC_32(0x79)
++#define FFA_MEM_FRAG_RX			FFA_SMC_32(0x7A)
++#define FFA_MEM_FRAG_TX			FFA_SMC_32(0x7B)
++#define FFA_NORMAL_WORLD_RESUME		FFA_SMC_32(0x7C)
 +
-+	while (!uuid_is_null(&id_table->uuid)) {
-+		if (uuid_equal(&ffa_dev->uuid, &id_table->uuid))
-+			return 1;
-+		id_table++;
-+	}
-+
-+	return 0;
-+}
-+
-+static int ffa_device_uevent(struct device *dev, struct kobj_uevent_env *env)
-+{
-+	uuid_t *dev_id = &to_ffa_dev(dev)->uuid;
-+
-+	return add_uevent_var(env, "MODALIAS=arm_ffa:%pUb", dev_id);
-+}
-+
-+struct bus_type ffa_bus_type = {
-+	.name		= "arm_ffa",
-+	.match		= ffa_device_match,
-+	.uevent		= ffa_device_uevent,
-+};
-+EXPORT_SYMBOL_GPL(ffa_bus_type);
-+
-+int ffa_driver_register(struct ffa_driver *driver, struct module *owner,
-+			const char *mod_name)
-+{
-+	int ret;
-+
-+	driver->driver.bus = &ffa_bus_type;
-+	driver->driver.name = driver->name;
-+	driver->driver.owner = owner;
-+	driver->driver.mod_name = mod_name;
-+
-+	ret = driver_register(&driver->driver);
-+	if (!ret)
-+		pr_debug("registered new ffa driver %s\n", driver->name);
-+
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(ffa_driver_register);
-+
-+void ffa_driver_unregister(struct ffa_driver *driver)
-+{
-+	driver_unregister(&driver->driver);
-+}
-+EXPORT_SYMBOL_GPL(ffa_driver_unregister);
-+
-+static void ffa_release_device(struct device *dev)
-+{
-+	struct ffa_device *ffa_dev = to_ffa_dev(dev);
-+
-+	kfree(ffa_dev);
-+}
-+
-+static int __ffa_devices_unregister(struct device *dev, void *data)
-+{
-+	ffa_release_device(dev);
-+
-+	return 0;
-+}
-+
-+static void ffa_devices_unregister(void)
-+{
-+	bus_for_each_dev(&ffa_bus_type, NULL, NULL,
-+			 __ffa_devices_unregister);
-+}
-+
-+static char *
-+ffa_devnode(struct device *dev, umode_t *mode, kuid_t *uid, kgid_t *gid)
-+{
-+	return kasprintf(GFP_KERNEL, DEVICE_NAME "/%s", dev_name(dev));
-+}
-+
-+static struct device_type ffa_dev_type = {
-+	.devnode = ffa_devnode,
-+};
-+
-+int ffa_device_register(struct ffa_device *ffa_dev)
-+{
-+	int ret;
-+	struct cdev *cdev;
-+	struct device *dev;
-+
-+	if (!ffa_dev)
-+		return -EINVAL;
-+
-+	dev = &ffa_dev->dev;
-+	cdev = &ffa_dev->cdev;
-+
-+	dev->bus = &ffa_bus_type;
-+	dev->type = &ffa_dev_type;
-+	dev->release = ffa_release_device;
-+
-+	device_initialize(dev);
-+
-+	if (cdev->ops) {
-+		ret = ida_simple_get(&ffa_dev_id, 0, FFA_MAX_CDEVS, GFP_KERNEL);
-+		if (ret < 0) {
-+			put_device(dev);
-+			return ret;
-+		}
-+
-+		dev->devt = MKDEV(MAJOR(ffa_devt), ret);
-+
-+		cdev->owner = cdev->ops->owner;
-+	}
-+
-+	ret = cdev_device_add(cdev, dev);
-+	if (ret) {
-+		dev_err(dev, "unable to cdev_device_add() %s, major %d, minor %d, err=%d\n",
-+			dev_name(dev), MAJOR(dev->devt), MINOR(dev->devt),
-+			ret);
-+		put_device(dev);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(ffa_device_register);
-+
-+void ffa_device_unregister(struct ffa_device *ffa_dev)
-+{
-+	if (!ffa_dev)
-+		return;
-+
-+	cdev_device_del(&ffa_dev->cdev, &ffa_dev->dev);
-+
-+	put_device(&ffa_dev->dev);
-+}
-+EXPORT_SYMBOL_GPL(ffa_device_unregister);
-+
-+static int __init arm_ffa_bus_init(void)
-+{
-+	int ret;
-+
-+	ret = alloc_chrdev_region(&ffa_devt, 0, FFA_MAX_CDEVS, DEVICE_NAME);
-+	if (ret) {
-+		pr_err("failed to allocate char dev region\n");
-+		return ret;
-+	}
-+
-+	ret = bus_register(&ffa_bus_type);
-+	if (ret) {
-+		pr_err("ffa bus register failed (%d)\n", ret);
-+		unregister_chrdev_region(ffa_devt, FFA_MAX_CDEVS);
-+	}
-+
-+	return ret;
-+}
-+subsys_initcall(arm_ffa_bus_init);
-+
-+static void __exit arm_ffa_bus_exit(void)
-+{
-+	ffa_devices_unregister();
-+	bus_unregister(&ffa_bus_type);
-+	unregister_chrdev_region(ffa_devt, FFA_MAX_CDEVS);
-+}
-+
-+module_exit(arm_ffa_bus_exit);
-+
-+MODULE_ALIAS("arm-ffa-bus");
-+MODULE_AUTHOR("Sudeep Holla <sudeep.holla@arm.com>");
-+MODULE_DESCRIPTION("Arm FF-A bus driver");
-+MODULE_LICENSE("GPL v2");
-diff --git a/include/linux/arm_ffa.h b/include/linux/arm_ffa.h
-new file mode 100644
-index 000000000000..2fe16176149f
---- /dev/null
-+++ b/include/linux/arm_ffa.h
-@@ -0,0 +1,81 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
 +/*
-+ * Copyright (C) 2020 ARM Ltd.
++ * For some calls it is necessary to use SMC64 to pass or return 64-bit values.
++ * For such calls FFA_FN_NATIVE(name) will choose the appropriate
++ * (native-width) function ID.
 + */
-+
-+#ifndef _LINUX_ARM_FFA_H
-+#define _LINUX_ARM_FFA_H
-+
-+#include <linux/cdev.h>
-+#include <linux/device.h>
-+#include <linux/module.h>
-+#include <linux/types.h>
-+#include <linux/uuid.h>
-+
-+struct ffa_device {
-+	u32 vm_id;
-+	uuid_t uuid;
-+	struct device dev;
-+	struct cdev cdev;
-+};
-+
-+#define to_ffa_dev(d) container_of(d, struct ffa_device, dev)
-+
-+struct ffa_device_id {
-+	uuid_t uuid;
-+};
-+
-+struct ffa_driver {
-+	const char *name;
-+	int (*probe)(struct ffa_device *sdev);
-+	void (*remove)(struct ffa_device *sdev);
-+	const struct ffa_device_id *id_table;
-+
-+	struct device_driver driver;
-+};
-+
-+#define to_ffa_driver(d) container_of(d, struct ffa_driver, driver)
-+
-+#if IS_REACHABLE(CONFIG_ARM_FFA_TRANSPORT)
-+int ffa_device_register(struct ffa_device *ffa_dev);
-+void ffa_device_unregister(struct ffa_device *ffa_dev);
-+int ffa_driver_register(struct ffa_driver *driver, struct module *owner,
-+			const char *mod_name);
-+void ffa_driver_unregister(struct ffa_driver *driver);
-+
++#ifdef CONFIG_64BIT
++#define FFA_FN_NATIVE(name)	FFA_FN64_##name
 +#else
-+static inline int ffa_device_register(struct ffa_device *ffa_dev)
-+{
-+	return -EINVAL;
-+}
++#define FFA_FN_NATIVE(name)	FFA_##name
++#endif
 +
-+static inline void ffa_device_unregister(struct ffa_device *dev) {}
++/* FFA error codes. */
++#define FFA_RET_SUCCESS            (0)
++#define FFA_RET_NOT_SUPPORTED      (-1)
++#define FFA_RET_INVALID_PARAMETERS (-2)
++#define FFA_RET_NO_MEMORY          (-3)
++#define FFA_RET_BUSY               (-4)
++#define FFA_RET_INTERRUPTED        (-5)
++#define FFA_RET_DENIED             (-6)
++#define FFA_RET_RETRY              (-7)
++#define FFA_RET_ABORTED            (-8)
 +
-+static inline int
-+ffa_driver_register(struct ffa_driver *driver, struct module *owner,
-+		    const char *mod_name)
-+{
-+	return -EINVAL;
-+}
++#define MAJOR_VERSION_MASK	GENMASK(30, 16)
++#define MINOR_VERSION_MASK	GENMASK(15, 0)
++#define MAJOR_VERSION(x)	(u16)(FIELD_GET(MAJOR_VERSION_MASK, (x)))
++#define MINOR_VERSION(x)	(u16)(FIELD_GET(MINOR_VERSION_MASK, (x)))
++#define PACK_VERSION_INFO(major, minor)			\
++	(FIELD_PREP(MAJOR_VERSION_MASK, (major)) |	\
++	 FIELD_PREP(MINOR_VERSION_MASK, (minor)))
++#define FFA_VERSION_1_0	PACK_VERSION_INFO(1, 0)
++#define FFA_MIN_VERSION	FFA_VERSION_1_0
++#define FFA_DRIVER_VERSION	FFA_VERSION_1_0
 +
-+static inline void ffa_driver_unregister(struct ffa_driver *driver) {}
-+
-+#endif /* CONFIG_ARM_FFA_TRANSPORT */
-+
-+#define ffa_register(driver) \
-+	ffa_driver_register(driver, THIS_MODULE, KBUILD_MODNAME)
-+#define ffa_unregister(driver) \
-+	ffa_driver_unregister(driver)
++#define SENDER_ID_MASK		GENMASK(31, 16)
++#define RECEIVER_ID_MASK	GENMASK(15, 0)
++#define SENDER_ID(x)		(u16)(FIELD_GET(SENDER_ID_MASK, (x)))
++#define RECEIVER_ID(x)		(u16)(FIELD_GET(RECEIVER_ID_MASK, (x)))
++#define PACK_TARGET_INFO(s, r)		\
++	(FIELD_PREP(SENDER_ID_MASK, (s)) | FIELD_PREP(RECEIVER_ID_MASK, (r)))
 +
 +/**
-+ * module_ffa_driver() - Helper macro for registering a psa_ffa driver
-+ * @__ffa_driver: ffa_driver structure
-+ *
-+ * Helper macro for psa_ffa drivers to set up proper module init / exit
-+ * functions.  Replaces module_init() and module_exit() and keeps people from
-+ * printing pointless things to the kernel log when their driver is loaded.
++ * FF-A specification mentions explicitly about '4K pages'. This should
++ * not be confused with the kernel PAGE_SIZE, which is the translation
++ * granule kernel is configured and may be one among 4K, 16K and 64K.
 + */
-+#define module_ffa_driver(__ffa_driver)	\
-+	module_driver(__ffa_driver, ffa_register, ffa_unregister)
++#define FFA_PAGE_SIZE		SZ_4K
++/* Keeping RX TX buffer size as 64K for now */
++#define RXTX_BUFFER_SIZE	SZ_64K
 +
-+#endif /* _LINUX_ARM_FFA_H */
++static ffa_fn *invoke_ffa_fn;
++
++static const int ffa_linux_errmap[] = {
++	/* better than switch case as long as return value is continuous */
++	0,		/* FFA_RET_SUCCESS */
++	-EOPNOTSUPP,	/* FFA_RET_NOT_SUPPORTED */
++	-EINVAL,	/* FFA_RET_INVALID_PARAMETERS */
++	-ENOMEM,	/* FFA_RET_NO_MEMORY */
++	-EBUSY,		/* FFA_RET_BUSY */
++	-EINTR,		/* FFA_RET_INTERRUPTED */
++	-EACCES,	/* FFA_RET_DENIED */
++	-EAGAIN,	/* FFA_RET_RETRY */
++	-ECANCELED,	/* FFA_RET_ABORTED */
++};
++
++static inline int ffa_to_linux_errno(int errno)
++{
++	if (errno < FFA_RET_SUCCESS && errno >= FFA_RET_ABORTED)
++		return ffa_linux_errmap[-errno];
++	return -EINVAL;
++}
++
++struct ffa_drv_info {
++	u32 version;
++	u16 vm_id;
++	struct mutex rx_lock; /* lock to protect Rx buffer */
++	struct mutex tx_lock; /* lock to protect Tx buffer */
++	void *rx_buffer;
++	void *tx_buffer;
++};
++
++static struct ffa_drv_info *drv_info;
++
++static int ffa_version_check(u32 *version)
++{
++	ffa_res_t ver;
++
++	ver = invoke_ffa_fn(FFA_VERSION, FFA_DRIVER_VERSION, 0, 0, 0, 0, 0, 0);
++
++	if (ver.a0 == FFA_RET_NOT_SUPPORTED) {
++		pr_info("FFA_VERSION returned not supported\n");
++		return -EOPNOTSUPP;
++	}
++
++	if (ver.a0 < FFA_MIN_VERSION || ver.a0 > FFA_DRIVER_VERSION) {
++		pr_err("Incompatible version %d.%d found\n",
++		       MAJOR_VERSION(ver.a0), MINOR_VERSION(ver.a0));
++		return -EINVAL;
++	}
++
++	*version = ver.a0;
++	pr_info("Version %d.%d found\n", MAJOR_VERSION(ver.a0),
++		MINOR_VERSION(ver.a0));
++	return 0;
++}
++
++static int ffa_rxtx_map(phys_addr_t tx_buf, phys_addr_t rx_buf, u32 pg_cnt)
++{
++	ffa_res_t ret;
++
++	ret = invoke_ffa_fn(FFA_RXTX_MAP, tx_buf, rx_buf, pg_cnt, 0, 0, 0, 0);
++
++	if (ret.a0 == FFA_ERROR)
++		return ffa_to_linux_errno((int)ret.a2);
++
++	return 0;
++}
++
++static int ffa_rxtx_unmap(u16 vm_id)
++{
++	ffa_res_t ret;
++
++	ret = invoke_ffa_fn(FFA_RXTX_UNMAP, vm_id, 0, 0, 0, 0, 0, 0);
++
++	if (ret.a0 == FFA_ERROR)
++		return ffa_to_linux_errno((int)ret.a2);
++
++	return 0;
++}
++
++#define VM_ID_MASK	GENMASK(15, 0)
++static int ffa_id_get(u16 *vm_id)
++{
++	ffa_res_t id;
++
++	id = invoke_ffa_fn(FFA_ID_GET, 0, 0, 0, 0, 0, 0, 0);
++
++	if (id.a0 == FFA_ERROR)
++		return ffa_to_linux_errno((int)id.a2);
++
++	*vm_id = FIELD_GET(VM_ID_MASK, (id.a2));
++
++	return 0;
++}
++
++static int __init ffa_init(void)
++{
++	int ret;
++
++	ret = ffa_transport_init(&invoke_ffa_fn);
++	if (ret)
++		return ret;
++
++	drv_info = kzalloc(sizeof(*drv_info), GFP_KERNEL);
++	if (!drv_info)
++		return -ENOMEM;
++
++	ret = ffa_version_check(&drv_info->version);
++	if (ret)
++		goto free_drv_info;
++
++	if (ffa_id_get(&drv_info->vm_id)) {
++		pr_err("failed to obtain VM id for self\n");
++		ret = -ENODEV;
++		goto free_drv_info;
++	}
++
++	drv_info->rx_buffer = alloc_pages_exact(RXTX_BUFFER_SIZE, GFP_KERNEL);
++	if (!drv_info->rx_buffer) {
++		ret = -ENOMEM;
++		goto free_pages;
++	}
++
++	drv_info->tx_buffer = alloc_pages_exact(RXTX_BUFFER_SIZE, GFP_KERNEL);
++	if (!drv_info->tx_buffer) {
++		ret = -ENOMEM;
++		goto free_pages;
++	}
++
++	ret = ffa_rxtx_map(virt_to_phys(drv_info->tx_buffer),
++			   virt_to_phys(drv_info->rx_buffer),
++			   RXTX_BUFFER_SIZE / FFA_PAGE_SIZE);
++	if (ret) {
++		pr_err("failed to register FFA RxTx buffers\n");
++		goto free_pages;
++	}
++
++	mutex_init(&drv_info->rx_lock);
++	mutex_init(&drv_info->tx_lock);
++
++	return 0;
++free_pages:
++	if (drv_info->tx_buffer)
++		free_pages_exact(drv_info->tx_buffer, RXTX_BUFFER_SIZE);
++	free_pages_exact(drv_info->rx_buffer, RXTX_BUFFER_SIZE);
++free_drv_info:
++	kfree(drv_info);
++	return ret;
++}
++module_init(ffa_init);
++
++static void __exit ffa_exit(void)
++{
++	ffa_rxtx_unmap(drv_info->vm_id);
++	free_pages_exact(drv_info->tx_buffer, RXTX_BUFFER_SIZE);
++	free_pages_exact(drv_info->rx_buffer, RXTX_BUFFER_SIZE);
++	kfree(drv_info);
++}
++module_exit(ffa_exit);
++
++MODULE_ALIAS("arm-ffa");
++MODULE_AUTHOR("Sudeep Holla <sudeep.holla@arm.com>");
++MODULE_DESCRIPTION("Arm FF-A interface driver");
++MODULE_LICENSE("GPL v2");
 -- 
 2.17.1
 
