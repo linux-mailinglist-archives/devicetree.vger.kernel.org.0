@@ -2,82 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A603256A36
-	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 22:54:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30F74256A41
+	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 23:06:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728462AbgH2UyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Aug 2020 16:54:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55546 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728406AbgH2UyU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Aug 2020 16:54:20 -0400
-Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com [IPv6:2607:f8b0:4864:20::743])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51388C061573
-        for <devicetree@vger.kernel.org>; Sat, 29 Aug 2020 13:54:20 -0700 (PDT)
-Received: by mail-qk1-x743.google.com with SMTP id p4so2952941qkf.0
-        for <devicetree@vger.kernel.org>; Sat, 29 Aug 2020 13:54:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dionne-riel-com.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:mime-version
-         :content-transfer-encoding;
-        bh=j/CPzCzCNcZc4EM9Sbx1bxir7B3lrQX0EShcWmII8d4=;
-        b=SYXcHueut7A7pp1eHLqirWq1qIEt/2F8f8Vq1AoqtoQwSGJGd59MVBitjFj4ACYCll
-         uOM5yYt/QZeQiKmr4663HDelhco9FaJvaq3VZ3s8u2yYyKqDqmOH9eRFDYdNieCT2pj3
-         OWbEwyInYPWrvD0f3/OsppkLEAPvy/v+Wt8SdM6WBVHVNTluGIs3KZtwQiFZgh74aHDz
-         sklDVe9LnLJ0XnQQ9oh3ucLmK2RE0t4T87NUmDosYEOXIdn4+WnlsNqPFG3H3jSBh9XB
-         qQ0k+pLY8P5QTif+YjpgqPebUxy8pOikYD3mroDduugJR/BvR2Rym8muI91w8IOLUSGj
-         3BBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-transfer-encoding;
-        bh=j/CPzCzCNcZc4EM9Sbx1bxir7B3lrQX0EShcWmII8d4=;
-        b=BGXSjSyhJKPasMjuKT+WCP/PubA/zXXX1penc7Iu1J1y3lrjjugGhFgKV0FI2n3B65
-         xd+Pyf36jjABRpO64DnZ0pLrsL5R+jibU66b6ZhmhB/BdWJo0whMOEYDbXqBgtqU5Ct6
-         2VioDRp9KeYqePAKhAVP5KAlgirtJYHjUzBzrq3yxllPaZzTrUaAnT0LBT1E0afaUV0C
-         c1rMax5CmML3TDNCo7YRWPs3hn/Vzt9c5YYDNobaixpDoOsbIliQsQbB10f5g3fIjdeF
-         99cXwoKH5nZKMakARB71BYLrrBEAFUV1WW86UT1xWWar/95lXCTggTOJAWID/0oon1BT
-         JbFQ==
-X-Gm-Message-State: AOAM533/zeHy86udQZaPTmvnxdc7sN3ppQkS2RtkcPjr2R+7NSIpW+Jq
-        gukHKMAqHtM8TPs2AuWaxVm2doesxtOUMins
-X-Google-Smtp-Source: ABdhPJy67I8GvGYeO2A4p6Y9BM+ALK7/Wb+Bj0pHtj9bkPRUW0wovpgq81q1Z8aPj912wNmDYYHB0A==
-X-Received: by 2002:a05:620a:122c:: with SMTP id v12mr4996469qkj.113.1598734458809;
-        Sat, 29 Aug 2020 13:54:18 -0700 (PDT)
-Received: from DUFFMAN (135-23-195-85.cpe.pppoe.ca. [135.23.195.85])
-        by smtp.gmail.com with ESMTPSA id 73sm3765801qtf.74.2020.08.29.13.54.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 29 Aug 2020 13:54:18 -0700 (PDT)
-Date:   Sat, 29 Aug 2020 16:54:16 -0400
-From:   Samuel Dionne-Riel <samuel@dionne-riel.com>
-To:     devicetree@vger.kernel.org
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Marc Zyngier <maz@kernel.org>
-Subject: Boot failure on gru-scarlet-inx with 5.9-rc2
-Message-ID: <20200829164920.7d28e01a@DUFFMAN>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1728417AbgH2VGD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Aug 2020 17:06:03 -0400
+Received: from asavdk4.altibox.net ([109.247.116.15]:51528 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728273AbgH2VGD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Aug 2020 17:06:03 -0400
+Received: from ravnborg.org (unknown [188.228.123.71])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk4.altibox.net (Postfix) with ESMTPS id 02FCA804A4;
+        Sat, 29 Aug 2020 23:06:00 +0200 (CEST)
+Date:   Sat, 29 Aug 2020 23:05:59 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: simple: Add
+ AM-1280800N3TZQW-T00H
+Message-ID: <20200829210559.GC796939@ravnborg.org>
+References: <20200829163328.249211-1-jagan@amarulasolutions.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200829163328.249211-1-jagan@amarulasolutions.com>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=A5ZCwZeG c=1 sm=1 tr=0
+        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+        a=kj9zAlcOel0A:10 a=iP-xVBlJAAAA:8 a=B3g72izkqJmtQJUIFioA:9
+        a=CjuIK1q_8ugA:10 a=lHLH-nfn2y1bM_0xSXwp:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Jagan.
 
-The patch "of: address: Work around missing device_type property in
-pcie nodes" by Marc Zyngier, d1ac0002dd297069bb8448c2764c9c31c4668441,
-causes the "DUMO" variant of the gru-scarlet-inx, at the very least,
-to not boot. A gru-kevin reportedly had no issues booting (further),
-though it most likely had a different kernel configuration.
+On Sat, Aug 29, 2020 at 10:03:27PM +0530, Jagan Teki wrote:
+> Add dt-bindings for 10.1" TFT LCD module from Ampire Co. Ltd.
+> as part of panel-simple.
+> 
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 
-Using a SuzyQ cable, there is absolutely no serial output at boot,
-while reverting the commit (and this commit alone) on top of v5.9-rc2
-works just as it did with v5.9-rc1.
+Thanks for the quick update.
+Applied both patches to drm-misc-next.
 
-=46rom this point on, I don't know what's the usual process, so bear with
-me if I forgot to provide relevant information, or made a faux-pas by
-CC-ing too many people or not enough.
+	Sam
 
-Thanks.
+> ---
+> Changes for v2:
+> - none
+> 
+>  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> index d6cca1479633..f629d04f7737 100644
+> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> @@ -29,6 +29,8 @@ properties:
+>      # compatible must be listed in alphabetical order, ordered by compatible.
+>      # The description in the comment is mandatory for each compatible.
+>  
+> +        # Ampire AM-1280800N3TZQW-T00H 10.1" WQVGA TFT LCD panel
+> +      - ampire,am-1280800n3tzqw-t00h
+>          # Ampire AM-480272H3TMQW-T01H 4.3" WQVGA TFT LCD panel
+>        - ampire,am-480272h3tmqw-t01h
+>          # Ampire AM-800480R3TMQW-A1H 7.0" WVGA TFT LCD panel
+> -- 
+> 2.25.1
