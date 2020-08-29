@@ -2,205 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08E072566BF
-	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 12:00:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23716256706
+	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 13:12:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727793AbgH2KAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Aug 2020 06:00:34 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:35689 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726869AbgH2KAd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Aug 2020 06:00:33 -0400
-X-Originating-IP: 2.224.242.101
-Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id AB400FF804;
-        Sat, 29 Aug 2020 10:00:27 +0000 (UTC)
-Date:   Sat, 29 Aug 2020 12:04:13 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        Leon Luo <leonl@leopardimaging.com>, mchehab@kernel.org,
-        sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
-        laurent.pinchart@ideasonboard.com,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: media: imx274: Convert to json-schema
-Message-ID: <20200829100413.75mpuntlezfknqts@uno.localdomain>
-References: <20200824105850.28002-1-jacopo+renesas@jmondi.org>
- <20200828221225.GA3491712@bogus>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200828221225.GA3491712@bogus>
+        id S1726981AbgH2LMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Aug 2020 07:12:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38582 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726876AbgH2LMR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 29 Aug 2020 07:12:17 -0400
+Received: from localhost.localdomain (unknown [194.230.155.216])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 960DF207DF;
+        Sat, 29 Aug 2020 11:12:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598699537;
+        bh=1rZZTHYv2srzGJyq4r3KsvCUUvcAAp36hZsvCxBAaik=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Y5+2Zu9+0ji/9k7BPULSt0zGyr8h/eAh8E6Swaxpm1Snyc4wseqJl0n/17yvNiJak
+         ZiC6vJQliFizVeC36aSg879gIi/bDZPpaGOOlYWqGPxv2yOauRnmIkyVqL4GMqeYTu
+         ivcUCAn/nuyYsJpXnalLThSyDN9oipFTs8FJEp1M=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH] arm64: dts: qcom: msm8992: Fix UART interrupt property
+Date:   Sat, 29 Aug 2020 13:12:09 +0200
+Message-Id: <20200829111209.32685-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+"interrupt" is not a valid property.
 
-On Fri, Aug 28, 2020 at 04:12:25PM -0600, Rob Herring wrote:
-> On Mon, Aug 24, 2020 at 12:58:50PM +0200, Jacopo Mondi wrote:
-> > Convert the imx274 bindings document to json-schema and update
-> > the MAINTAINERS file accordingly.
-> >
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> > ---
-> >  .../devicetree/bindings/media/i2c/imx274.txt  | 38 -----------
-> >  .../bindings/media/i2c/sony,imx274.yaml       | 68 +++++++++++++++++++
-> >  MAINTAINERS                                   |  2 +-
-> >  3 files changed, 69 insertions(+), 39 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/imx274.txt
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/imx274.txt b/Documentation/devicetree/bindings/media/i2c/imx274.txt
-> > deleted file mode 100644
-> > index 0727079d2410..000000000000
-> > --- a/Documentation/devicetree/bindings/media/i2c/imx274.txt
-> > +++ /dev/null
-> > @@ -1,38 +0,0 @@
-> > -* Sony 1/2.5-Inch 8.51Mp CMOS Digital Image Sensor
-> > -
-> > -The Sony imx274 is a 1/2.5-inch CMOS active pixel digital image sensor with
-> > -an active array size of 3864H x 2202V. It is programmable through I2C
-> > -interface. The I2C address is fixed to 0x1a as per sensor data sheet.
-> > -Image data is sent through MIPI CSI-2, which is configured as 4 lanes
-> > -at 1440 Mbps.
-> > -
-> > -
-> > -Required Properties:
-> > -- compatible: value should be "sony,imx274" for imx274 sensor
-> > -- reg: I2C bus address of the device
-> > -
-> > -Optional Properties:
-> > -- reset-gpios: Sensor reset GPIO
-> > -- clocks: Reference to the input clock.
-> > -- clock-names: Should be "inck".
-> > -- VANA-supply: Sensor 2.8v analog supply.
-> > -- VDIG-supply: Sensor 1.8v digital core supply.
-> > -- VDDL-supply: Sensor digital IO 1.2v supply.
-> > -
-> > -The imx274 device node should contain one 'port' child node with
-> > -an 'endpoint' subnode. For further reading on port node refer to
-> > -Documentation/devicetree/bindings/media/video-interfaces.txt.
-> > -
-> > -Example:
-> > -	sensor@1a {
-> > -		compatible = "sony,imx274";
-> > -		reg = <0x1a>;
-> > -		#address-cells = <1>;
-> > -		#size-cells = <0>;
-> > -		reset-gpios = <&gpio_sensor 0 0>;
-> > -		port {
-> > -			sensor_out: endpoint {
-> > -				remote-endpoint = <&csiss_in>;
-> > -			};
-> > -		};
-> > -	};
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-> > new file mode 100644
-> > index 000000000000..7ae47a614d2e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-> > @@ -0,0 +1,68 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/i2c/sony,imx274.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Sony 1/2.5-Inch 8.51MP CMOS Digital Image Sensor
-> > +
-> > +maintainers:
-> > +  - Leon Luo <leonl@leopardimaging.com>
-> > +
-> > +description: -|
-> > +  The Sony IMX274 is a 1/2.5-inch CMOS active pixel digital image sensor with an
-> > +  active array size of 3864H x 2202V. It is programmable through I2C interface.
-> > +  Image data is sent through MIPI CSI-2, which is configured as 4 lanes at 1440
-> > +  Mbps.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: sony,imx274
-> > +
-> > +  reg:
-> > +    const: 0x1a
-> > +
-> > +  reset-gpios:
-> > +    maxItems: 1
-> > +
-> > +  port:
-> > +    type: object
-> > +    description: |
-> > +      The device node must contain one 'port' child node for its digital output
-> > +      video port, in accordance with the video interface bindings defined in
-> > +      Documentation/devicetree/bindings/media/video-interfaces.txt.
-> > +
-> > +    properties:
-> > +      endpoint:
-> > +        type: object
-> > +        properties:
-> > +          remote-endpoint:
-> > +            description: A phandle to the bus receiver's endpoint node.
->
-> As discussed, drop 'endpoint'.
->
+Fixes: 7f8bcc0c4cfe ("arm64: dts: qcom: msm8992: Add BLSP2_UART2 and I2C nodes")
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+ arch/arm64/boot/dts/qcom/msm8992.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Yes indeed. Discussion has been finalized after I sent this one out.
-Same for the mt9v111 bindings you can skip review of.
+diff --git a/arch/arm64/boot/dts/qcom/msm8992.dtsi b/arch/arm64/boot/dts/qcom/msm8992.dtsi
+index 188fff2095f1..8626b3a50eda 100644
+--- a/arch/arm64/boot/dts/qcom/msm8992.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8992.dtsi
+@@ -335,7 +335,7 @@
+ 		blsp2_uart2: serial@f995e000 {
+ 			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
+ 			reg = <0xf995e000 0x1000>;
+-			interrupt = <GIC_SPI 146 IRQ_TYPE_LEVEL_LOW>;
++			interrupts = <GIC_SPI 146 IRQ_TYPE_LEVEL_LOW>;
+ 			clock-names = "core", "iface";
+ 			clocks = <&gcc GCC_BLSP2_UART2_APPS_CLK>,
+ 				<&gcc GCC_BLSP2_AHB_CLK>;
+-- 
+2.17.1
 
-I'll drop endpoint and defer it to a future of-graph.yaml
-
-Thanks
-   j
-
-> > +
-> > +    additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - port
->
-> additionalProperties: false
->
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c0 {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        imx274: camera-sensor@1a {
-> > +            compatible = "sony,imx274";
-> > +            reg = <0x1a>;
-> > +            reset-gpios = <&gpio_sensor 0 0>;
-> > +
-> > +            port {
-> > +                sensor_out: endpoint {
-> > +                    remote-endpoint = <&csiss_in>;
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > +
-> > +...
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 9503ea17aa28..dc7b1ea8e7b3 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -16125,7 +16125,7 @@ M:	Leon Luo <leonl@leopardimaging.com>
-> >  L:	linux-media@vger.kernel.org
-> >  S:	Maintained
-> >  T:	git git://linuxtv.org/media_tree.git
-> > -F:	Documentation/devicetree/bindings/media/i2c/imx274.txt
-> > +F:	Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-> >  F:	drivers/media/i2c/imx274.c
-> >
-> >  SONY IMX290 SENSOR DRIVER
-> > --
-> > 2.27.0
-> >
