@@ -2,90 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80F41256378
-	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 01:24:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 333E22563A1
+	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 02:12:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726912AbgH1XYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Aug 2020 19:24:21 -0400
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:2982 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726386AbgH1XYU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Aug 2020 19:24:20 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5f4991f80001>; Fri, 28 Aug 2020 16:23:36 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Fri, 28 Aug 2020 16:24:20 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Fri, 28 Aug 2020 16:24:20 -0700
-Received: from [10.2.174.186] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 28 Aug
- 2020 23:24:17 +0000
-Subject: Re: [PATCH 4.19 1/7] sdhci: tegra: Remove
- SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK for Tegra210
-To:     Sasha Levin <sashal@kernel.org>
-CC:     <adrian.hunter@intel.com>, <ulf.hansson@linaro.org>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <robh+dt@kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <stable@vger.kernel.org>
-References: <1598653517-13658-1-git-send-email-skomatineni@nvidia.com>
- <1598653517-13658-2-git-send-email-skomatineni@nvidia.com>
- <20200828231536.GU8670@sasha-vm>
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-Message-ID: <dc6bfd08-baaf-e1ad-6b3f-77ff82d110bb@nvidia.com>
-Date:   Fri, 28 Aug 2020 16:23:48 -0700
+        id S1726775AbgH2AM5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Aug 2020 20:12:57 -0400
+Received: from mga18.intel.com ([134.134.136.126]:24037 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726584AbgH2AM4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Aug 2020 20:12:56 -0400
+IronPort-SDR: SlUZ12gOD/aVhSZ9C7qk9jQyBgNINfY/t+G1287Q5kZkl6/uIqYjnG+u+HmCtHBrJfbDAh32H1
+ RsPfmveC3cqQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9727"; a="144440466"
+X-IronPort-AV: E=Sophos;i="5.76,365,1592895600"; 
+   d="scan'208";a="144440466"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Aug 2020 17:11:54 -0700
+IronPort-SDR: h4/orcg6Gn8nZ9ohrRYk+lZSm+43zkLVdgDI4N9Y2stHaHJZBEYbeRpB1m00xdjqKyRt5YQyWb
+ VxfQI2pIm4Eg==
+X-IronPort-AV: E=Sophos;i="5.76,365,1592895600"; 
+   d="scan'208";a="340050304"
+Received: from fvera1-mobl.amr.corp.intel.com (HELO [10.212.55.68]) ([10.212.55.68])
+  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Aug 2020 17:11:52 -0700
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Subject: Re: [PATCH v6 2/2] ASoC: qcom: sc7180: Add machine driver for sound
+ card registration
+To:     Doug Anderson <dianders@chromium.org>,
+        Cheng-Yi Chiang <cychiang@chromium.org>
+Cc:     Taniya Das <tdas@codeaurora.org>,
+        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Ajit Pandey <ajitp@codeaurora.org>,
+        Tzung-Bi Shih <tzungbi@google.com>,
+        Andy Gross <agross@kernel.org>,
+        Dylan Reid <dgreid@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, tzungbi@chromium.org,
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>
+References: <20200826110454.1811352-1-cychiang@chromium.org>
+ <20200826110454.1811352-3-cychiang@chromium.org>
+ <CAD=FV=XaCt6V+VXfk8T+2mS4d5sKQzMC12AcH9a=MNkgguvmjQ@mail.gmail.com>
+Message-ID: <7b3bb666-c53e-e385-e153-1383f2831c2e@linux.intel.com>
+Date:   Fri, 28 Aug 2020 19:11:51 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200828231536.GU8670@sasha-vm>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <CAD=FV=XaCt6V+VXfk8T+2mS4d5sKQzMC12AcH9a=MNkgguvmjQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1598657016; bh=TyI6d2Ju+76mqOnwS5pcHvlDKt8Y0bBRO/8b8AY+sio=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=m0nMr+yfVLhgIys6rwPF6LX8naSK2+gxL0PP7QhiyvQPFO863yuJ+SaQacGrCHG1H
-         xEsHzIaIWsNQ4oh28IGenzYpHSIs570ezt5RjJqwy2odFXi7RAlFQbd7L6UAV7LuOT
-         sRN4VtmzWSXN6H0ZUtj2xKBxCQ8LbZhPENXYZ+qolIpcHa7hRo3KLdJeSq2J6y9GJk
-         yCZFe8pkti8C9ORNSf0COFrb5SYp4k7KZQhZ7b7Ejx8qmMZAgD8xpjBNJecaFEqD0g
-         OnxoaqullDImlBSPCFcF/JKOG1v8WaD4GIUsAgA87YTlaAL7ikfqa1pHUQU7bj3kh8
-         HE2iWChSJyW1g==
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 8/28/20 4:15 PM, Sasha Levin wrote:
-> On Fri, Aug 28, 2020 at 03:25:11PM -0700, Sowjanya Komatineni wrote:
->> commit b5a84ecf025a ("mmc: tegra: Add Tegra210 support")
->
-> What does this line above represent?
->
-SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK is set incorrectly in above commit
+>> +config SND_SOC_SC7180
+>> +       tristate "SoC Machine driver for SC7180 boards"
+>> +       depends on SND_SOC_QCOM
 
-when Tegra210 support was added.
+this depends is probably not necessary, the code is already in an if case.
 
+>> +       select SND_SOC_QCOM_COMMON
+>> +       select SND_SOC_LPASS_SC7180
+>> +       select SND_SOC_MAX98357A
+>> +       select SND_SOC_RT5682
+> 
+> I haven't done any significant testing / review of your patch (I'm
+> mostly sound-clueless), but I believe that the above needs to be
+> "select SND_SOC_RT5682_I2C" atop the current top of the sound tree.
+> When I fix that I can confirm that I see the rt5682 probe on
+> sc7180-trogdor with Rob Clark's dts patch.
 
->> SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK is set for Tegra210 from the
->> beginning of Tegra210 support in the driver.
->>
->> Tegra210 SDMMC hardware by default uses timeout clock (TMCLK)
->> instead of SDCLK and this quirk should not be set.
->>
->> So, this patch remove this quirk for Tegra210.
->>
->> Fixes: b5a84ecf025a ("mmc: tegra: Add Tegra210 support")
->> Cc: stable <stable@vger.kernel.org> # 4.19
->> Tested-by: Jon Hunter <jonathanh@nvidia.com>
->> Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
->> Acked-by: Adrian Hunter <adrian.hunter@intel.com>
->> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->
+Ack, no one should select SND_SOC_RT5682 directly in machine drivers. 
+now that the code is split between I2C and SoundWire parts.
+
+There should probably be a depends on I2C as well?
