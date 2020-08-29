@@ -2,100 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB778256A44
-	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 23:06:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 606FE256A4F
+	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 23:17:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728406AbgH2VG4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Aug 2020 17:06:56 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:51596 "EHLO
+        id S1728445AbgH2VRR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Aug 2020 17:17:17 -0400
+Received: from asavdk4.altibox.net ([109.247.116.15]:52324 "EHLO
         asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728273AbgH2VG4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Aug 2020 17:06:56 -0400
+        with ESMTP id S1728417AbgH2VRR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Aug 2020 17:17:17 -0400
 Received: from ravnborg.org (unknown [188.228.123.71])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id 8C45F80487;
-        Sat, 29 Aug 2020 23:06:53 +0200 (CEST)
-Date:   Sat, 29 Aug 2020 23:06:52 +0200
+        by asavdk4.altibox.net (Postfix) with ESMTPS id 5ED11804A4;
+        Sat, 29 Aug 2020 23:17:12 +0200 (CEST)
+Date:   Sat, 29 Aug 2020 23:17:11 +0200
 From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
+To:     Sumit Semwal <sumit.semwal@linaro.org>
 Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Hoegeun Kwon <hoegeun.kwon@samsung.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-Subject: Re: [PATCH 1/4] dt-bindings: display: samsung,amoled-mipi-dsi: Do
- not require enable-gpios on samsung,s6e63j0x03
-Message-ID: <20200829210652.GD796939@ravnborg.org>
-References: <20200829172532.29358-1-krzk@kernel.org>
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: display: panel: Add bindings for
+ Novatek nt36672a
+Message-ID: <20200829211711.GG796939@ravnborg.org>
+References: <20200826160308.18911-1-sumit.semwal@linaro.org>
+ <20200826160308.18911-2-sumit.semwal@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200829172532.29358-1-krzk@kernel.org>
+In-Reply-To: <20200826160308.18911-2-sumit.semwal@linaro.org>
 X-CMAE-Score: 0
 X-CMAE-Analysis: v=2.3 cv=A5ZCwZeG c=1 sm=1 tr=0
         a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=kj9zAlcOel0A:10 a=VwQbUJbxAAAA:8 a=7gkXJVJtAAAA:8
-        a=sbQQ0qVRGQwO19CD9CoA:9 a=CjuIK1q_8ugA:10 a=AjGcO6oz07-iQ99wixmX:22
-        a=E9Po1WZjFZOl8hwRPBS3:22
+        a=kj9zAlcOel0A:10 a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8 a=gEfo2CItAAAA:8
+        a=xFcjBYEOGyEuSvEduM8A:9 a=Db_w-kWPBOb70CbA:21 a=7NJuBFbGk0mHmiph:21
+        a=CjuIK1q_8ugA:10 a=cvBusfyB2V15izCimMoJ:22 a=AjGcO6oz07-iQ99wixmX:22
+        a=sptkURWiP4Gy88Gu7hUp:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 29, 2020 at 07:25:29PM +0200, Krzysztof Kozlowski wrote:
-> The samsung,s6e63j0x03 does not have enable GPIO, so do not require it.
-> This fixes dtbs_check warning:
-> 
->   arch/arm/boot/dts/exynos3250-rinato.dt.yaml: panel@0: 'enable-gpios' is a required property
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
+Hi Sumit.
 
-I expect this patch is picked up with the dts fixes.
+On Wed, Aug 26, 2020 at 09:33:07PM +0530, Sumit Semwal wrote:
+> Novatek nt36672a is a display driver IC that can drive DSI panel. It
+> is also present in the Tianma video mode panel, which is a FHD+ panel
+> with a resolution of 1080x2246 and 6.18 inches size. It is found in
+> some of the Poco F1 phones.
+> 
+> This patch adds the display driver for the IC, with support added for
+> this tianma fhd video mode panel.
+> 
+> Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+
+Looks fine, just a few comments in the following.
+Should be easy to fix.
 
 	Sam
 
-> ---
->  .../display/panel/samsung,amoled-mipi-dsi.yaml       | 12 +++++++++++-
->  1 file changed, 11 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,amoled-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/panel/samsung,amoled-mipi-dsi.yaml
-> index 96bdde9298e0..ccc482570d6a 100644
-> --- a/Documentation/devicetree/bindings/display/panel/samsung,amoled-mipi-dsi.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/samsung,amoled-mipi-dsi.yaml
-> @@ -12,6 +12,17 @@ maintainers:
->  allOf:
->    - $ref: panel-common.yaml#
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - samsung,s6e3ha2
-> +              - samsung,s6e3hf2
-> +    then:
-> +      required:
-> +        - enable-gpios
+> ---
+> v2: remove ports node, making port@0 directly under panel@0 node.
+> v3: updated to replace port@0 to just 'port'.
+> v5: renamed to novatek,nt36672a, since the binding is for the IC and not
+>       the panel.
+> ---
+>  .../display/panel/novatek,nt36672a.yaml       | 81 +++++++++++++++++++
+>  1 file changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
+> new file mode 100644
+> index 000000000000..7f8d1097bee0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
+> @@ -0,0 +1,81 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/novatek,nt36672a.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  properties:
->    compatible:
->      enum:
-> @@ -39,7 +50,6 @@ required:
->    - vdd3-supply
->    - vci-supply
->    - reset-gpios
-> -  - enable-gpios
->  
->  additionalProperties: false
->  
+> +title: Novatek NT36672A based DSI display Panels
+> +
+> +maintainers:
+> +  - Sumit Semwal <sumit.semwal@linaro.org>
+> +
+> +description: |
+> +  The nt36672a IC from Novatek is a generic DSI Panel IC used to drive dsi
+> +  panels.
+> +  Right now, support is added only for a Tianma FHD+ LCD display panel with a
+> +  resolution of 1080x2246. It is a video mode DSI panel.
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: tianma,fhd-video
+> +      - const: novatek,nt36672a
+
+Similar bindings uses following pattaern:
+properties:
+  compatible:
+    items:
+      - enum:
+          - dlink,dir-685-panel
+      - const: ilitek,ili9322
+
+See ow an "- enum" is used for the part where we expect to add more
+compatible in the future. And const for the fixed part.
+Notice the indent - this is right.
+
+
+> +    description: This indicates the panel manufacturer of the panel that is
+> +      in turn using the NT36672A panel driver. This compatible string
+> +      determines how the NT36672A panel driver is configured for the indicated
+> +      panel. The novatek,nt36672a compatible shall always be provided as a fallback.
+> +
+> +  reg: true
+> +  reset-gpios:
+> +    description: phandle of gpio for reset line - This should be 8mA, gpio
+> +      can be configured using mux, pinctrl, pinctrl-names (active high)
+add empty line, or rely on the generic description in panel-common.
+> +  vddio-supply:
+> +    description: phandle of the regulator that provides the supply voltage
+> +      Power IC supply
+add empty line
+> +  vddpos-supply:
+> +    description: phandle of the positive boost supply regulator
+add empty line
+> +  vddneg-supply:
+> +    description: phandle of the negative boost supply regulator
+add empty line
+> +  port: true
+Maybe group all the ": true" properties.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vddi0-supply
+> +  - vddpos-supply
+> +  - vddneg-supply
+> +  - reset-gpios
+> +  - port
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |+
+> +    #include <dt-bindings/gpio/gpio.h>
+empty line
+> +    dsi0 {
+My personal preference is indent examples with 4 spaces - it increased
+readability.
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      panel@0 {
+> +        compatible = "tianma,fhd-video", "novatek,nt36672a";
+> +        reg = <0>;
+> +        vddi0-supply = <&vreg_l14a_1p88>;
+> +        vddpos-supply = <&lab>;
+> +        vddneg-supply = <&ibb>;
+> +
+> +        reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        port {
+> +          tianma_nt36672a_in_0: endpoint {
+> +            remote-endpoint = <&dsi0_out>;
+> +          };
+> +        };
+> +      };
+> +    };
+> +
+> +...
 > -- 
-> 2.17.1
+> 2.28.0
