@@ -2,192 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23A17256A1D
-	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 22:31:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A603256A36
+	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 22:54:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728403AbgH2Ubr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Aug 2020 16:31:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52030 "EHLO
+        id S1728462AbgH2UyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Aug 2020 16:54:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728380AbgH2Ubp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Aug 2020 16:31:45 -0400
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC057C061236;
-        Sat, 29 Aug 2020 13:31:44 -0700 (PDT)
-Received: by mail-ed1-x544.google.com with SMTP id a12so2080897eds.13;
-        Sat, 29 Aug 2020 13:31:44 -0700 (PDT)
+        with ESMTP id S1728406AbgH2UyU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Aug 2020 16:54:20 -0400
+Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com [IPv6:2607:f8b0:4864:20::743])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51388C061573
+        for <devicetree@vger.kernel.org>; Sat, 29 Aug 2020 13:54:20 -0700 (PDT)
+Received: by mail-qk1-x743.google.com with SMTP id p4so2952941qkf.0
+        for <devicetree@vger.kernel.org>; Sat, 29 Aug 2020 13:54:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=tAoCr0VCeK5KcMwknjMyq6oj1L3l2+lCy1t0IF04zBc=;
-        b=iVoIE2zjoHSzIAK+z94dBG3y14lZJ37XXCfKo2FMoOM65p6Yagm8YGW83fSq/BO4Lw
-         5bWxjxN7srhtFDY3J5Q1IiWfcP4G31LaxWztdc7mz63QiMBtLNg49Ygc8HiGgYfwmFfV
-         rc4v+RS12QGHxUZG/fK9DqUjOsR3A14/UzYURb7RxgfAAb0adA+HrUXJBEgOosA6DUB9
-         piYQA3khcctdGezFgcE0CixbgaLVFM8EnJRlKQg0WDNjQSo2n8Iw5oIqXMlrE5lMatQw
-         SExLpD7jrAFoG0ePEeLEjRzuChHoiRUGRoSl3X9t3eXMMbq5QfA4Hja+CCJlLchREDHw
-         nwBA==
+        d=dionne-riel-com.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:mime-version
+         :content-transfer-encoding;
+        bh=j/CPzCzCNcZc4EM9Sbx1bxir7B3lrQX0EShcWmII8d4=;
+        b=SYXcHueut7A7pp1eHLqirWq1qIEt/2F8f8Vq1AoqtoQwSGJGd59MVBitjFj4ACYCll
+         uOM5yYt/QZeQiKmr4663HDelhco9FaJvaq3VZ3s8u2yYyKqDqmOH9eRFDYdNieCT2pj3
+         OWbEwyInYPWrvD0f3/OsppkLEAPvy/v+Wt8SdM6WBVHVNTluGIs3KZtwQiFZgh74aHDz
+         sklDVe9LnLJ0XnQQ9oh3ucLmK2RE0t4T87NUmDosYEOXIdn4+WnlsNqPFG3H3jSBh9XB
+         qQ0k+pLY8P5QTif+YjpgqPebUxy8pOikYD3mroDduugJR/BvR2Rym8muI91w8IOLUSGj
+         3BBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
          :content-transfer-encoding;
-        bh=tAoCr0VCeK5KcMwknjMyq6oj1L3l2+lCy1t0IF04zBc=;
-        b=Vo2z1X9zBv36YhBQ3pLCLphiyDjsTrVVVqQ4jGMYj9b8or2M6XhsgfMHisvy6CoxeP
-         Gn5eWVvYGpodnh1TO/38OCTqRccj1EmksUDVlRGhawDlNXrgzNO2IvI+M9fcXejkwUM6
-         HhdUHW8NWCCVfOyv1ttylI5MQMfnvuZxHPFtdvC+6xkHGRZG/7s1blPSrXIUBAQMqZsa
-         bTBdWvFz0mbm05QHmhbt2Gwpi2f/CnPJo8Zmh3zuKT6MFBmbprOBsdt/+CCfnZ5UFgBf
-         kPNueyM/mSKFCGv5hcdG4EnfaOFahO0FXiD687hbSs9O0265VPiE000Crj5HbHiY38if
-         NKwg==
-X-Gm-Message-State: AOAM530Xr9uuH6HxwARmJut+S3oESCkqrxEnR101fudeNipDgsMGmZKM
-        nHEPz11LFDi63z/JD7aCu7AjSHCRado=
-X-Google-Smtp-Source: ABdhPJwR+ih3tePsg9LFgIH5cWODQaSiv61g5vPSa38l0AkmEBEQ645GZAoQGieS4pSUYtigmIDT+A==
-X-Received: by 2002:aa7:d68f:: with SMTP id d15mr4844255edr.69.1598733102724;
-        Sat, 29 Aug 2020 13:31:42 -0700 (PDT)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id dm22sm69847edb.49.2020.08.29.13.31.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 29 Aug 2020 13:31:42 -0700 (PDT)
-Subject: Re: [PATCH v2 2/7] arm64: dts: rockchip: px30: Add Engicam EDIMM2.2
- Starter Kit
-To:     Jagan Teki <jagan@amarulasolutions.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        Suniel Mahesh <sunil@amarulasolutions.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20200829155823.247360-1-jagan@amarulasolutions.com>
- <20200829155823.247360-3-jagan@amarulasolutions.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <25b87188-bd06-90da-b2ce-bbfdb716e00a@gmail.com>
-Date:   Sat, 29 Aug 2020 22:31:40 +0200
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        bh=j/CPzCzCNcZc4EM9Sbx1bxir7B3lrQX0EShcWmII8d4=;
+        b=BGXSjSyhJKPasMjuKT+WCP/PubA/zXXX1penc7Iu1J1y3lrjjugGhFgKV0FI2n3B65
+         xd+Pyf36jjABRpO64DnZ0pLrsL5R+jibU66b6ZhmhB/BdWJo0whMOEYDbXqBgtqU5Ct6
+         2VioDRp9KeYqePAKhAVP5KAlgirtJYHjUzBzrq3yxllPaZzTrUaAnT0LBT1E0afaUV0C
+         c1rMax5CmML3TDNCo7YRWPs3hn/Vzt9c5YYDNobaixpDoOsbIliQsQbB10f5g3fIjdeF
+         99cXwoKH5nZKMakARB71BYLrrBEAFUV1WW86UT1xWWar/95lXCTggTOJAWID/0oon1BT
+         JbFQ==
+X-Gm-Message-State: AOAM533/zeHy86udQZaPTmvnxdc7sN3ppQkS2RtkcPjr2R+7NSIpW+Jq
+        gukHKMAqHtM8TPs2AuWaxVm2doesxtOUMins
+X-Google-Smtp-Source: ABdhPJy67I8GvGYeO2A4p6Y9BM+ALK7/Wb+Bj0pHtj9bkPRUW0wovpgq81q1Z8aPj912wNmDYYHB0A==
+X-Received: by 2002:a05:620a:122c:: with SMTP id v12mr4996469qkj.113.1598734458809;
+        Sat, 29 Aug 2020 13:54:18 -0700 (PDT)
+Received: from DUFFMAN (135-23-195-85.cpe.pppoe.ca. [135.23.195.85])
+        by smtp.gmail.com with ESMTPSA id 73sm3765801qtf.74.2020.08.29.13.54.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 29 Aug 2020 13:54:18 -0700 (PDT)
+Date:   Sat, 29 Aug 2020 16:54:16 -0400
+From:   Samuel Dionne-Riel <samuel@dionne-riel.com>
+To:     devicetree@vger.kernel.org
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Marc Zyngier <maz@kernel.org>
+Subject: Boot failure on gru-scarlet-inx with 5.9-rc2
+Message-ID: <20200829164920.7d28e01a@DUFFMAN>
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20200829155823.247360-3-jagan@amarulasolutions.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jagan,
+Hi,
 
-On 8/29/20 5:58 PM, Jagan Teki wrote:
-> Engicam EDIMM2.2 Starter Kit is an EDIMM 2.2 Form Factor Capacitive
-> Evaluation Board.
-> 
-> Genaral features:
-> - LCD 7" C.Touch
-> - microSD slot
-> - Ethernet 1Gb
-> - Wifi/BT
-> - 2x LVDS Full HD interfaces
-> - 3x USB 2.0
-> - 1x USB 3.0
-> - HDMI Out
-> - Mini PCIe
-> - MIPI CSI
-> - 2x CAN
-> - Audio Out
-> 
-> SOM's like PX30.Core needs to mount on top of this Evaluation board
-> for creating complete PX30.Core EDIMM2.2 Starter Kit.
-> 
-> Add support for it.
-> 
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
-> Changes for v2:
-> - move carrier enablement nodes in carrier dtsi
-> 
->  .../dts/rockchip/px30-engicam-common.dtsi     | 39 +++++++++++++++++++
->  .../dts/rockchip/px30-engicam-edimm2.2.dtsi   |  7 ++++
->  2 files changed, 46 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-common.dtsi
->  create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-edimm2.2.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/px30-engicam-common.dtsi b/arch/arm64/boot/dts/rockchip/px30-engicam-common.dtsi
-> new file mode 100644
-> index 000000000000..4e85c1a690e5
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/px30-engicam-common.dtsi
-> @@ -0,0 +1,39 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2020 Engicam srl
-> + * Copyright (c) 2020 Amarula Solutions(India)
-> + */
-> +
-> +/ {
-> +	vcc5v0_sys: vcc5v0-sys {
-> +		compatible = "regulator-fixed";
+The patch "of: address: Work around missing device_type property in
+pcie nodes" by Marc Zyngier, d1ac0002dd297069bb8448c2764c9c31c4668441,
+causes the "DUMO" variant of the gru-scarlet-inx, at the very least,
+to not boot. A gru-kevin reportedly had no issues booting (further),
+though it most likely had a different kernel configuration.
 
-Just one of the exceptions to the sort rule...
+Using a SuzyQ cable, there is absolutely no serial output at boot,
+while reverting the commit (and this commit alone) on top of v5.9-rc2
+works just as it did with v5.9-rc1.
 
-		regulator-name = "vcc5v0_sys";	/* +5V */
+=46rom this point on, I don't know what's the usual process, so bear with
+me if I forgot to provide relevant information, or made a faux-pas by
+CC-ing too many people or not enough.
 
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-
-> +		regulator-name = "vcc5v0_sys";	/* +5V */
-
-Move on top of the other regulator properties.
-Same goes for the regulators in px30-px30-core.dtsi.
-
-> +	};
-> +};
-> +
-> +&gmac {
-> +	clock_in_out = "output";
-> +	phy-supply = <&vcc_3v3>;	/* +3V3_SOM */
-> +	snps,reset-active-low;
-> +	snps,reset-delays-us = <0 50000 50000>;
-> +	snps,reset-gpio = <&gpio2 RK_PB5 GPIO_ACTIVE_HIGH>;
-> +	status = "okay";
-> +};
-> +
-> +&sdmmc {
-
-> +	cap-mmc-highspeed;
-
-Remove.
-Board only has a micro-SD card.
-
-> +	cap-sd-highspeed;
-> +	card-detect-delay = <800>;
-
-> +	vqmmc-supply = <&vcc_3v3>;
-> +	vmmc-supply = <&vcc_3v3>;	/* +3V3_SOM */
-
-sort
-
-> +	status = "okay";
-> +};
-> +
-> +&uart2 {
-> +	pinctrl-0 = <&uart2m1_xfer>;
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/rockchip/px30-engicam-edimm2.2.dtsi b/arch/arm64/boot/dts/rockchip/px30-engicam-edimm2.2.dtsi
-> new file mode 100644
-> index 000000000000..cb00988953e9
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/px30-engicam-edimm2.2.dtsi
-> @@ -0,0 +1,7 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2020 Engicam srl
-> + * Copyright (c) 2020 Amarula Solutions(India)
-> + */
-> +
-> +#include "px30-engicam-common.dtsi"
-> 
-
+Thanks.
