@@ -2,152 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F11FE2564FB
-	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 07:59:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAD76256505
+	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 08:24:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726873AbgH2F7v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Aug 2020 01:59:51 -0400
-Received: from mail29.static.mailgun.info ([104.130.122.29]:11297 "EHLO
-        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726820AbgH2F7a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sat, 29 Aug 2020 01:59:30 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1598680770; h=Content-Transfer-Encoding: MIME-Version:
- References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=zbtKWEe/ycA4XfAazELEies/9m6qkiUjWQM6OfnRcUs=; b=Lgb1ANpj9qt6DaLQ4qCwum795GqRvyrZBRXJCEyXSh1XvSf5ZZHVbGSzrBzFi0QcPc4sXr4W
- 3Es6HDFZkZc/jJaw449wepa9+4WfgfmxQ5PSFm07ev8Tg4vcMyk7QJhED10fHoL0H3c4iLQX
- NIAcUaJra8F/8IdfxCT+KKrnOaU=
-X-Mailgun-Sending-Ip: 104.130.122.29
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 5f49eea0d70e1f492d204325 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sat, 29 Aug 2020 05:58:56
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 6FA3EC433C6; Sat, 29 Aug 2020 05:58:56 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from wcheng-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        id S1726301AbgH2GYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Aug 2020 02:24:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56310 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725886AbgH2GYe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 29 Aug 2020 02:24:34 -0400
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        (Authenticated sender: wcheng)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 20BE8C43391;
-        Sat, 29 Aug 2020 05:58:54 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 20BE8C43391
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=wcheng@codeaurora.org
-From:   Wesley Cheng <wcheng@codeaurora.org>
-To:     robh+dt@kernel.org, bjorn.andersson@linaro.org, balbi@kernel.org,
-        gregkh@linuxfoundation.org, agross@kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        jackp@codeaurora.org, Wesley Cheng <wcheng@codeaurora.org>
-Subject: [RFC v5 6/6] usb: dwc3: gadget: Ensure enough TXFIFO space for USB configuration
-Date:   Fri, 28 Aug 2020 22:58:46 -0700
-Message-Id: <20200829055846.19034-7-wcheng@codeaurora.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200829055846.19034-1-wcheng@codeaurora.org>
-References: <20200829055846.19034-1-wcheng@codeaurora.org>
+        by mail.kernel.org (Postfix) with ESMTPSA id 23B6220E65;
+        Sat, 29 Aug 2020 06:24:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598682273;
+        bh=rO56MVIvVtBfpXUiJzwAJauYsn+0k3epFv4DZf0v930=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=QlJAZyqSAmECnl4bbQSHcum5VHSkJCTsozVueyferoSttjlBPB/FITNMUinzNR1BP
+         5xEy1WY8WdAAqz+oR5fUnewT/d2Jrxy4VwXsfln3ZXy7B0hLk/iwFmCmwHnYd+3zn6
+         ALHbwBKZkLSF2l/4sgXjHvhaGv2AGyHDtZdZk/UA=
+Received: by mail-ej1-f41.google.com with SMTP id o18so1918888eje.7;
+        Fri, 28 Aug 2020 23:24:33 -0700 (PDT)
+X-Gm-Message-State: AOAM531dv0fxsJg5a958//jsj61rs8FEMmgBm/sEsYn8VDBZAmI7ooJw
+        2K6Z7nScYxwExkLkuDekajpfaWPRfRmgT7QT9LI=
+X-Google-Smtp-Source: ABdhPJxPqtl25Mm9VQlnooxEKiADTie13uCG9BQK2ZeTNWjK59f8umoolhx1AO7I9ld//ckn9tNf3hs4c0nADZ6+a0Y=
+X-Received: by 2002:a17:906:3b4b:: with SMTP id h11mr2194097ejf.381.1598682271779;
+ Fri, 28 Aug 2020 23:24:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200825193536.7332-1-krzk@kernel.org> <20200825193536.7332-13-krzk@kernel.org>
+ <20200828213850.GA3444012@bogus>
+In-Reply-To: <20200828213850.GA3444012@bogus>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Sat, 29 Aug 2020 08:24:20 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPcMApvGpVAy4HSrNXu+LAdQS83FqHy+cfu3bdMBYE3jnA@mail.gmail.com>
+Message-ID: <CAJKOXPcMApvGpVAy4HSrNXu+LAdQS83FqHy+cfu3bdMBYE3jnA@mail.gmail.com>
+Subject: Re: [PATCH v3 12/19] dt-bindings: mmc: fsl-imx-esdhc: Fix i.MX 8
+ compatible matching
+To:     Rob Herring <robh@kernel.org>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Fugang Duan <fugang.duan@nxp.com>, linux-pm@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-gpio@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Anson Huang <Anson.Huang@nxp.com>, Han Xu <han.xu@nxp.com>,
+        linux-serial@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Frank Li <frank.li@nxp.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If TXFIFO resizing is enabled, then based on if endpoint bursting is
-required or not, a larger amount of FIFO space is benefical.  Sometimes
-a particular interface can take all the available FIFO space, leading
-to other interfaces not functioning properly.  This callback ensures that
-the minimum fifo requirements, a single fifo per endpoint, can be met,
-otherwise the configuration binding will fail.  This will be based on the
-maximum number of eps existing in all configurations.
+On Fri, 28 Aug 2020 at 23:38, Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, 25 Aug 2020 21:35:29 +0200, Krzysztof Kozlowski wrote:
+> > The i.MX 8 DTSes use two compatibles so update the binding to fix
+> > dtbs_check warnings like:
+> >
+> >   arch/arm64/boot/dts/freescale/imx8mn-evk.dt.yaml: mmc@30b40000:
+> >     compatible: ['fsl,imx8mn-usdhc', 'fsl,imx7d-usdhc'] is too long
+> >     From schema: Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> >
+> >   arch/arm64/boot/dts/freescale/imx8mn-evk.dt.yaml: mmc@30b40000:
+> >     compatible: Additional items are not allowed ('fsl,imx7d-usdhc' was unexpected)
+> >
+> >   arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dt.yaml: mmc@30b40000:
+> >     compatible: ['fsl,imx8mn-usdhc', 'fsl,imx7d-usdhc'] is too long
+> >
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> >
+> > ---
+> >
+> > Changes since v2:
+> > 1. Remove moved compatibles.
+> >
+> > Changes since v1:
+> > 1. Handle also fsl,imx8mm-usdhc and fsl,imx8qxp-usdhc
+> > ---
+> >  .../bindings/mmc/fsl-imx-esdhc.yaml           | 37 ++++++++++---------
+> >  1 file changed, 20 insertions(+), 17 deletions(-)
+> >
+>
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.example.dt.yaml: mmc@5b010000: compatible: ['fsl,imx8qxp-usdhc'] is not valid under any of the given schemas (Possible causes of the failure):
+>         /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.example.dt.yaml: mmc@5b010000: compatible: ['fsl,imx8qxp-usdhc'] is too short
 
-Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
----
- drivers/usb/dwc3/core.h   |  1 +
- drivers/usb/dwc3/gadget.c | 35 +++++++++++++++++++++++++++++++++++
- 2 files changed, 36 insertions(+)
+I will send a v4 just for this one patch. All others seem to be good.
 
-diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-index e85c1ec70cc3..0559b0a82c4d 100644
---- a/drivers/usb/dwc3/core.h
-+++ b/drivers/usb/dwc3/core.h
-@@ -1249,6 +1249,7 @@ struct dwc3 {
- 	u16			imod_interval;
- 	int			last_fifo_depth;
- 	int			num_ep_resized;
-+	int			max_cfg_eps;
- };
- 
- #define INCRX_BURST_MODE 0
-diff --git a/drivers/usb/dwc3/gadget.c b/drivers/usb/dwc3/gadget.c
-index 53e5220f9893..e8f7ea560920 100644
---- a/drivers/usb/dwc3/gadget.c
-+++ b/drivers/usb/dwc3/gadget.c
-@@ -2411,6 +2411,7 @@ static int dwc3_gadget_stop(struct usb_gadget *g)
- 
- out:
- 	dwc->gadget_driver	= NULL;
-+	dwc->max_cfg_eps = 0;
- 	spin_unlock_irqrestore(&dwc->lock, flags);
- 
- 	free_irq(dwc->irq_gadget, dwc->ev_buf);
-@@ -2518,6 +2519,39 @@ static void dwc3_gadget_set_speed(struct usb_gadget *g,
- 	spin_unlock_irqrestore(&dwc->lock, flags);
- }
- 
-+static int dwc3_gadget_check_config(struct usb_gadget *g, unsigned long ep_map)
-+{
-+	struct dwc3 *dwc = gadget_to_dwc(g);
-+	unsigned long in_ep_map;
-+	int fifo_size = 0;
-+	int ram1_depth;
-+	int ep_num;
-+
-+	if (!dwc->needs_fifo_resize)
-+		return 0;
-+
-+	/* Only interested in the IN endpoints */
-+	in_ep_map = ep_map >> 16;
-+	ep_num = hweight_long(in_ep_map);
-+
-+	if (ep_num <= dwc->max_cfg_eps)
-+		return 0;
-+
-+	/* Update the max number of eps in the composition */
-+	dwc->max_cfg_eps = ep_num;
-+
-+	fifo_size = dwc3_gadget_calc_tx_fifo_size(dwc, dwc->max_cfg_eps);
-+	/* Based on the equation, increment by one for every ep */
-+	fifo_size += dwc->max_cfg_eps;
-+
-+	/* Check if we can fit a single fifo per endpoint */
-+	ram1_depth = DWC3_RAM1_DEPTH(dwc->hwparams.hwparams7);
-+	if (fifo_size > ram1_depth)
-+		return -ENOMEM;
-+
-+	return 0;
-+}
-+
- static const struct usb_gadget_ops dwc3_gadget_ops = {
- 	.get_frame		= dwc3_gadget_get_frame,
- 	.wakeup			= dwc3_gadget_wakeup,
-@@ -2527,6 +2561,7 @@ static const struct usb_gadget_ops dwc3_gadget_ops = {
- 	.udc_stop		= dwc3_gadget_stop,
- 	.udc_set_speed		= dwc3_gadget_set_speed,
- 	.get_config_params	= dwc3_gadget_config_params,
-+	.check_config		= dwc3_gadget_check_config,
- };
- 
- /* -------------------------------------------------------------------------- */
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
-
+Best regards,
+Krzysztof
