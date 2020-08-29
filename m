@@ -2,107 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53EB2256929
-	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 18:51:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7C7825693B
+	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 19:09:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728374AbgH2QvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Aug 2020 12:51:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48136 "EHLO mail.kernel.org"
+        id S1728442AbgH2RJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Aug 2020 13:09:33 -0400
+Received: from foss.arm.com ([217.140.110.172]:45022 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726562AbgH2QvI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 29 Aug 2020 12:51:08 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DFAC420791;
-        Sat, 29 Aug 2020 16:51:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598719868;
-        bh=+4y/zm7LOZ5NDYCgf6voOuYKjfVaIocA+7p7h19uZnk=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Gm/PrC51rewIoHxwXQHWLdHyJmVEf1wm0AGQbgH6kniR8iJAiAO+B0kCQBND5oCij
-         GzvtD+zuCx4fRnGHbG27O9YsuDag8ZdcN3j2Ry7p8sJsohpv7dImPfdbgLbR5QLUrK
-         X3E9s7Rvf7G7U2SwqeBqlrBfjCIpO2pafF7eV98I=
-Date:   Sat, 29 Aug 2020 17:51:04 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Nishant Malpani <nish.malpani25@gmail.com>
-Cc:     robh+dt@kernel.org, dragos.bogdan@analog.com,
-        darius.berghe@analog.com, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] iio: gyro: adxrs290: Add debugfs register access
- support
-Message-ID: <20200829175104.62142a31@archlinux>
-In-Reply-To: <20200825124711.11455-4-nish.malpani25@gmail.com>
-References: <20200825124711.11455-1-nish.malpani25@gmail.com>
-        <20200825124711.11455-4-nish.malpani25@gmail.com>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S1728410AbgH2RJd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 29 Aug 2020 13:09:33 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E7D1D101E;
+        Sat, 29 Aug 2020 10:09:31 -0700 (PDT)
+Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id E18ED3F71F;
+        Sat, 29 Aug 2020 10:09:30 -0700 (PDT)
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Sudeep Holla <sudeep.holla@arm.com>, kernel-team@android.com,
+        Will Deacon <will@kernel.org>, tsoni@quicinc.com,
+        pratikp@quicinc.com
+Subject: [PATCH 0/9] firmware: Add initial support for Arm FF-A
+Date:   Sat, 29 Aug 2020 18:09:14 +0100
+Message-Id: <20200829170923.29949-1-sudeep.holla@arm.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Aug 2020 18:17:11 +0530
-Nishant Malpani <nish.malpani25@gmail.com> wrote:
+Hi all,
 
-> Extend support to read/write byte data from/to the device using
-> debugfs iio interface.
-> 
-> Signed-off-by: Nishant Malpani <nish.malpani25@gmail.com>
-Hi Nishant,
+Let me start stating this is just initial implementation to check on
+the idea of providing more in-kernel and userspace support. Lot of things
+are still work in progress, I am posting just to get the early feedback
+before building lot of things on this idea. Consider this more as RFC
+though not tagged explicity(just to avoid it being ignored :))
 
-I'm always a bit unsure on whether I want drivers to provide this
-interface, as it isn't something that should be of much use once
-initial driver debugging is done.
+Arm Firmware Framework for Armv8-A specification[1] describes a software
+architecture that provides mechanism to utilise the virtualization
+extension to isolate software images and describes interfaces that
+standardize communication between the various software images. This
+includes communication between images in the Secure and Normal world.
 
-However, the patch is good so if you want to add it fair enough.
-I'll pick it up once patches 1 and 2 are ready.
+The main idea here is to create FFA device to establish any communication
+with a partition(secure or normal world VM).
 
-Thanks,
+If it is a partition managed by hypervisor, then we will register chardev
+associated with each of those partition FFA device.
 
-Jonathan
+/dev/arm_ffa:
 
-> ---
->  drivers/iio/gyro/adxrs290.c | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
-> diff --git a/drivers/iio/gyro/adxrs290.c b/drivers/iio/gyro/adxrs290.c
-> index 25046590761e..b0050cdd2b90 100644
-> --- a/drivers/iio/gyro/adxrs290.c
-> +++ b/drivers/iio/gyro/adxrs290.c
-> @@ -435,6 +435,24 @@ static int adxrs290_read_avail(struct iio_dev *indio_dev,
->  	}
->  }
->  
-> +static int adxrs290_reg_access(struct iio_dev *indio_dev, unsigned int reg,
-> +			       unsigned int writeval, unsigned int *readval)
-> +{
-> +	struct adxrs290_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	if (!readval)
-> +		return adxrs290_spi_write_reg(st->spi, reg, writeval);
-> +
-> +	ret = spi_w8r8(st->spi, ADXRS290_READ_REG(reg));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	*readval = ret;
-> +
-> +	return 0;
-> +}
-> +
->  static int adxrs290_data_rdy_trigger_set_state(struct iio_trigger *trig, bool state)
->  {
->  	struct iio_dev *indio_dev = iio_trigger_get_drvdata(trig);
-> @@ -547,6 +565,7 @@ static const struct iio_info adxrs290_info = {
->  	.read_raw = &adxrs290_read_raw,
->  	.write_raw = &adxrs290_write_raw,
->  	.read_avail = &adxrs290_read_avail,
-> +	.debugfs_reg_access = &adxrs290_reg_access,
->  };
->  
->  static int adxrs290_probe_trigger(struct iio_dev *indio_dev)
+self
+e3a48fa5-dc54-4a8b-898b-bdc4dfeeb7b8
+49f65057-d002-4ae2-b4ee-d31c7940a13d
+
+For in-kernel usage(mostly communication with secure partitions), only
+in-kernel APIs are accessible(no userspace). There may be a need to
+provide userspace access instead of in-kernel, it is not yet support
+in this series as we need way to identify those and I am not sure if
+that belong to DT.
+
+--
+Regards,
+Sudeep
+
+[1] https://developer.arm.com/documentation/den0077/latest
+
+Sudeep Holla (8):
+  dt-bindings: Arm: Extend FF-A binding to support in-kernel usage of
+    partitions
+  arm64: smccc: Add support for SMCCCv1.2 input/output registers
+  firmware: smccc: export both smccc functions
+  firmware: arm_ffa: Add initial FFA bus support for device enumeration
+  firmware: arm_ffa: Add initial Arm FFA driver support
+  firmware: arm_ffa: Add support for SMCCC as transport to FFA driver
+  firmware: arm_ffa: Setup and register all the KVM managed partitions
+  firmware: arm_ffa: Setup in-kernel users of FFA partitions
+
+Will Deacon (1):
+  dt-bindings: Arm: Add Firmware Framework for Armv8-A (FF-A) binding
+
+ .../devicetree/bindings/arm/arm,ffa.yaml      | 132 +++
+ .../reserved-memory/arm,ffa-memory.yaml       |  71 ++
+ arch/arm64/kernel/asm-offsets.c               |   4 +
+ arch/arm64/kernel/smccc-call.S                |  22 +
+ drivers/firmware/Kconfig                      |   1 +
+ drivers/firmware/Makefile                     |   1 +
+ drivers/firmware/arm_ffa/Kconfig              |  21 +
+ drivers/firmware/arm_ffa/Makefile             |   5 +
+ drivers/firmware/arm_ffa/bus.c                | 195 +++++
+ drivers/firmware/arm_ffa/common.h             |  27 +
+ drivers/firmware/arm_ffa/driver.c             | 755 ++++++++++++++++++
+ drivers/firmware/arm_ffa/smccc.c              |  54 ++
+ drivers/firmware/smccc/smccc.c                |   2 +
+ include/linux/arm-smccc.h                     |  50 ++
+ include/linux/arm_ffa.h                       |  96 +++
+ include/uapi/linux/arm_ffa.h                  |  56 ++
+ 16 files changed, 1492 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/arm,ffa.yaml
+ create mode 100644 Documentation/devicetree/bindings/reserved-memory/arm,ffa-memory.yaml
+ create mode 100644 drivers/firmware/arm_ffa/Kconfig
+ create mode 100644 drivers/firmware/arm_ffa/Makefile
+ create mode 100644 drivers/firmware/arm_ffa/bus.c
+ create mode 100644 drivers/firmware/arm_ffa/common.h
+ create mode 100644 drivers/firmware/arm_ffa/driver.c
+ create mode 100644 drivers/firmware/arm_ffa/smccc.c
+ create mode 100644 include/linux/arm_ffa.h
+ create mode 100644 include/uapi/linux/arm_ffa.h
+
+-- 
+2.17.1
 
