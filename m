@@ -2,103 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E98992569EE
-	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 21:56:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23A17256A1D
+	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 22:31:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728391AbgH2T4l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Aug 2020 15:56:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46690 "EHLO
+        id S1728403AbgH2Ubr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Aug 2020 16:31:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728380AbgH2T4k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Aug 2020 15:56:40 -0400
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC784C061236
-        for <devicetree@vger.kernel.org>; Sat, 29 Aug 2020 12:56:39 -0700 (PDT)
-Received: by mail-ed1-x541.google.com with SMTP id c10so2074836edk.6
-        for <devicetree@vger.kernel.org>; Sat, 29 Aug 2020 12:56:39 -0700 (PDT)
+        with ESMTP id S1728380AbgH2Ubp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Aug 2020 16:31:45 -0400
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC057C061236;
+        Sat, 29 Aug 2020 13:31:44 -0700 (PDT)
+Received: by mail-ed1-x544.google.com with SMTP id a12so2080897eds.13;
+        Sat, 29 Aug 2020 13:31:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hS82gtSU74N51St4WJZJCm2YeYvE2fwgxXoJTtDqHK0=;
-        b=t5ZCDcA1+op0bSc6ISVEnhiucQl+pLFcfA1CKUb1cw41VbjOvpuQzmPhYSHs6XYSrA
-         kaKjUY1XlqMqoaqzXFfirCnKk5HgJ/GfxWOyrKy1LWr9b7s2/zynqcJ7iMsVhxfkTh/J
-         blBnGZ8nBj9UKeDW9r+qxiX1bHMa7RoQ91INIuFjxjxYBMr3tWYBX6OsUsYaI1+xFkKC
-         BSPxgPEjecZYV4DsJJSWEetCKVpVBv5BG86Sqag4Xk2bdXvRQnTT/UeZTvCZjQk+4Mlk
-         sIA4B1Hs1P6fe0znv9CyB9aI51zmkWV6+sr2UTIS2wMdRV/HV6oQnZwmS5xU9EthA5hj
-         kdBA==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=tAoCr0VCeK5KcMwknjMyq6oj1L3l2+lCy1t0IF04zBc=;
+        b=iVoIE2zjoHSzIAK+z94dBG3y14lZJ37XXCfKo2FMoOM65p6Yagm8YGW83fSq/BO4Lw
+         5bWxjxN7srhtFDY3J5Q1IiWfcP4G31LaxWztdc7mz63QiMBtLNg49Ygc8HiGgYfwmFfV
+         rc4v+RS12QGHxUZG/fK9DqUjOsR3A14/UzYURb7RxgfAAb0adA+HrUXJBEgOosA6DUB9
+         piYQA3khcctdGezFgcE0CixbgaLVFM8EnJRlKQg0WDNjQSo2n8Iw5oIqXMlrE5lMatQw
+         SExLpD7jrAFoG0ePEeLEjRzuChHoiRUGRoSl3X9t3eXMMbq5QfA4Hja+CCJlLchREDHw
+         nwBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hS82gtSU74N51St4WJZJCm2YeYvE2fwgxXoJTtDqHK0=;
-        b=h1EIEEbzrkni8otv1T8rjXliaMHeC2wfNt7/xQu7kF01GjJ3NBqw5meBdWvac/kYG2
-         HFipkVUwVIq/tnnzgaabiGSsBal4hrorVLB2JP9jJTL2FypunkjCHMzH+Dtnuzz+IaM/
-         iLKp9dsdyDLcVWXPtndydndT0t1kJz1bvy5KeFVvHXTDdNomiPP+vvPpN87TkXNQ/a7I
-         WxmLm3ya3iMVFI3EdebWUkc4HdNBicIsSxUtxIdl1Ey4PYW3PtaTdufdEdI/incgKoH1
-         JLvqrFNe/Q8wWrvQmn2qOXcFaICtLG6N3LQTkla3QwNp6h//fs4+Hd88ldgm2RciJrLA
-         5ZPA==
-X-Gm-Message-State: AOAM531n3nzOcCdpNLzRnJ6n0/VyHN6pHeMKWwIH/h6BFgLNgx2fB2ar
-        luXfXYPpyVCZ7Lp1Jkucn974uBvuODmYg2tOvrc=
-X-Google-Smtp-Source: ABdhPJykbW3aRLfm36R75esNYyv4HCTY6wsWHSwILu8lvVGZ/d7SktNUWbCljnAFCgBro8I9Z5/Okj7tNME68q85bmI=
-X-Received: by 2002:aa7:cf08:: with SMTP id a8mr4583047edy.98.1598730997785;
- Sat, 29 Aug 2020 12:56:37 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=tAoCr0VCeK5KcMwknjMyq6oj1L3l2+lCy1t0IF04zBc=;
+        b=Vo2z1X9zBv36YhBQ3pLCLphiyDjsTrVVVqQ4jGMYj9b8or2M6XhsgfMHisvy6CoxeP
+         Gn5eWVvYGpodnh1TO/38OCTqRccj1EmksUDVlRGhawDlNXrgzNO2IvI+M9fcXejkwUM6
+         HhdUHW8NWCCVfOyv1ttylI5MQMfnvuZxHPFtdvC+6xkHGRZG/7s1blPSrXIUBAQMqZsa
+         bTBdWvFz0mbm05QHmhbt2Gwpi2f/CnPJo8Zmh3zuKT6MFBmbprOBsdt/+CCfnZ5UFgBf
+         kPNueyM/mSKFCGv5hcdG4EnfaOFahO0FXiD687hbSs9O0265VPiE000Crj5HbHiY38if
+         NKwg==
+X-Gm-Message-State: AOAM530Xr9uuH6HxwARmJut+S3oESCkqrxEnR101fudeNipDgsMGmZKM
+        nHEPz11LFDi63z/JD7aCu7AjSHCRado=
+X-Google-Smtp-Source: ABdhPJwR+ih3tePsg9LFgIH5cWODQaSiv61g5vPSa38l0AkmEBEQ645GZAoQGieS4pSUYtigmIDT+A==
+X-Received: by 2002:aa7:d68f:: with SMTP id d15mr4844255edr.69.1598733102724;
+        Sat, 29 Aug 2020 13:31:42 -0700 (PDT)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id dm22sm69847edb.49.2020.08.29.13.31.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 29 Aug 2020 13:31:42 -0700 (PDT)
+Subject: Re: [PATCH v2 2/7] arm64: dts: rockchip: px30: Add Engicam EDIMM2.2
+ Starter Kit
+To:     Jagan Teki <jagan@amarulasolutions.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        Suniel Mahesh <sunil@amarulasolutions.com>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20200829155823.247360-1-jagan@amarulasolutions.com>
+ <20200829155823.247360-3-jagan@amarulasolutions.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <25b87188-bd06-90da-b2ce-bbfdb716e00a@gmail.com>
+Date:   Sat, 29 Aug 2020 22:31:40 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-References: <20200820121323.564-1-linux.amoon@gmail.com> <20200820121323.564-2-linux.amoon@gmail.com>
- <7hlfi9xgch.fsf@baylibre.com> <CANAwSgTZ23jFPAO46vRg1Dx_Bzi=4Bg6KHE0ozLQGky4p_fgKQ@mail.gmail.com>
- <CANAwSgQLnqDnuQvLv4cvaeTPeBW=H_g5F2aaNue_hb4nKLdovg@mail.gmail.com>
- <f7e6ce5f-02b0-065b-ffcf-2826159f926a@baylibre.com> <1j7dto3ylq.fsf@starbuckisacylon.baylibre.com>
- <CANAwSgQ1Miu73hfdK+cgL3howpekn2xj_5qwGasQZwtQpSGj5Q@mail.gmail.com>
- <1j4koq4x38.fsf@starbuckisacylon.baylibre.com> <CANAwSgTWnHXRFRUrbdCph+eBxL2PNXe6Q4aTXxEU32i7dGS=dw@mail.gmail.com>
- <CANAwSgQV7_4VdGRMgJDMjPFvOS3Nabkqbf2ucE5vqo6zrhxPDw@mail.gmail.com>
-In-Reply-To: <CANAwSgQV7_4VdGRMgJDMjPFvOS3Nabkqbf2ucE5vqo6zrhxPDw@mail.gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sat, 29 Aug 2020 21:56:26 +0200
-Message-ID: <CAFBinCCEJJT_kfJ4qfTEz0R7Mo3ciCGDSw_MJYi_5PyNJA6x5w@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] arm64: dts: meson-g12b-odroid-n2: Enable RTC
- controller node
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Christian Hewitt <christianshewitt@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20200829155823.247360-3-jagan@amarulasolutions.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anand
+Hi Jagan,
 
-(I haven't re-read all of this discussion, so apologies if something
-in my reply doesn't make sense)
+On 8/29/20 5:58 PM, Jagan Teki wrote:
+> Engicam EDIMM2.2 Starter Kit is an EDIMM 2.2 Form Factor Capacitive
+> Evaluation Board.
+> 
+> Genaral features:
+> - LCD 7" C.Touch
+> - microSD slot
+> - Ethernet 1Gb
+> - Wifi/BT
+> - 2x LVDS Full HD interfaces
+> - 3x USB 2.0
+> - 1x USB 3.0
+> - HDMI Out
+> - Mini PCIe
+> - MIPI CSI
+> - 2x CAN
+> - Audio Out
+> 
+> SOM's like PX30.Core needs to mount on top of this Evaluation board
+> for creating complete PX30.Core EDIMM2.2 Starter Kit.
+> 
+> Add support for it.
+> 
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+> Changes for v2:
+> - move carrier enablement nodes in carrier dtsi
+> 
+>  .../dts/rockchip/px30-engicam-common.dtsi     | 39 +++++++++++++++++++
+>  .../dts/rockchip/px30-engicam-edimm2.2.dtsi   |  7 ++++
+>  2 files changed, 46 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-common.dtsi
+>  create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-edimm2.2.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/px30-engicam-common.dtsi b/arch/arm64/boot/dts/rockchip/px30-engicam-common.dtsi
+> new file mode 100644
+> index 000000000000..4e85c1a690e5
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/px30-engicam-common.dtsi
+> @@ -0,0 +1,39 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2020 Engicam srl
+> + * Copyright (c) 2020 Amarula Solutions(India)
+> + */
+> +
+> +/ {
+> +	vcc5v0_sys: vcc5v0-sys {
+> +		compatible = "regulator-fixed";
 
-On Sat, Aug 29, 2020 at 6:31 PM Anand Moon <linux.amoon@gmail.com> wrote:
-[...]
-> Just want to clear my confusion on RTC INT gpio setting is not needed.
-> I did not find any other example to support this changes.
-> So I have enable the debug logs on rtc-pcf8563.c with this current
-> patch at my end.
-my understanding is that your testing procedure is to simply use your
-original patch and see if rtc wake-up is working.
-since GPIOAO_7 is not explicitly mentioned in your testing procedure
-I'm assuming that you're not configuring it anywhere.
-Kevin's concern is what happens when that GPIO is configured
-incorrectly (for example by some u-boot bug, firmware issue, ...). for
-example: have you tried to configure GPIOAO_7 in u-boot as output low
-pin and see if rtc wake-up is still working?
+Just one of the exceptions to the sort rule...
 
-In your previous replies you mentioned various pin mux settings
-related to TSIN_A_DIN0 //  TDMB_FS // TDMB_SLV_FS
-I don't know how those are related to the RTC
-My suggestion is to look at
-arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi - it has a
-eth_phy_irq_pins definition and apply something similar on Odroid-N2
+		regulator-name = "vcc5v0_sys";	/* +5V */
 
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
 
-Best regards,
-Martin
+> +		regulator-name = "vcc5v0_sys";	/* +5V */
+
+Move on top of the other regulator properties.
+Same goes for the regulators in px30-px30-core.dtsi.
+
+> +	};
+> +};
+> +
+> +&gmac {
+> +	clock_in_out = "output";
+> +	phy-supply = <&vcc_3v3>;	/* +3V3_SOM */
+> +	snps,reset-active-low;
+> +	snps,reset-delays-us = <0 50000 50000>;
+> +	snps,reset-gpio = <&gpio2 RK_PB5 GPIO_ACTIVE_HIGH>;
+> +	status = "okay";
+> +};
+> +
+> +&sdmmc {
+
+> +	cap-mmc-highspeed;
+
+Remove.
+Board only has a micro-SD card.
+
+> +	cap-sd-highspeed;
+> +	card-detect-delay = <800>;
+
+> +	vqmmc-supply = <&vcc_3v3>;
+> +	vmmc-supply = <&vcc_3v3>;	/* +3V3_SOM */
+
+sort
+
+> +	status = "okay";
+> +};
+> +
+> +&uart2 {
+> +	pinctrl-0 = <&uart2m1_xfer>;
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/rockchip/px30-engicam-edimm2.2.dtsi b/arch/arm64/boot/dts/rockchip/px30-engicam-edimm2.2.dtsi
+> new file mode 100644
+> index 000000000000..cb00988953e9
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/px30-engicam-edimm2.2.dtsi
+> @@ -0,0 +1,7 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2020 Engicam srl
+> + * Copyright (c) 2020 Amarula Solutions(India)
+> + */
+> +
+> +#include "px30-engicam-common.dtsi"
+> 
+
