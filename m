@@ -2,41 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59940256996
-	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 19:59:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 054D125699E
+	for <lists+devicetree@lfdr.de>; Sat, 29 Aug 2020 20:04:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728335AbgH2R7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Aug 2020 13:59:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55370 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728244AbgH2R7r (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 29 Aug 2020 13:59:47 -0400
+        id S1728351AbgH2SEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Aug 2020 14:04:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57624 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728265AbgH2SEo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Aug 2020 14:04:44 -0400
+X-Greylist: delayed 402 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 29 Aug 2020 11:04:43 PDT
+Received: from saturn.retrosnub.co.uk (saturn.retrosnub.co.uk [IPv6:2a00:1098:86::1:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2889FC061236
+        for <devicetree@vger.kernel.org>; Sat, 29 Aug 2020 11:04:43 -0700 (PDT)
 Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 19B412071B;
-        Sat, 29 Aug 2020 17:59:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598723987;
-        bh=JqZ1JVWG2haY6cklZE91trDyQn6HRQiwNKCKAXA53Rw=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ELt5mY8PRSa88TsIBfX0byJPUUjZ1d9jwi/KLaTsBacsBfxA96nGFSUwItOaQRA5d
-         9byjXYlh1rn5aBsTxnHPiqThcqK2jKRTeTNQqz8xJLos4/G12aevsX99fpo3M8sHi3
-         vMoYxI3G7lxh3c2n0sbV5LBCNgbs1pwbsMfGTRF0=
-Date:   Sat, 29 Aug 2020 18:59:43 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        devicetree@vger.kernel.org, Phil Reid <preid@electromag.com.au>,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH 13/13] dt-bindings: iio: adc: ti,tlc4541 binding
- conversion
-Message-ID: <20200829185943.6f69f310@archlinux>
-In-Reply-To: <20200818023243.GA2176224@bogus>
+        by saturn.retrosnub.co.uk (Postfix; Retrosnub mail submission) with ESMTPSA id 317669E01D1;
+        Sat, 29 Aug 2020 18:57:55 +0100 (BST)
+Date:   Sat, 29 Aug 2020 18:57:53 +0100
+From:   Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
+To:     linux-iio@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Phil Reid <preid@electromag.com.au>,
+        Rob Herring <robh@kernel.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH 12/13] dt-bindings: iio: adc: tlc4541 - recover
+ accidentally dropped binding doc
+Message-ID: <20200829185753.5d6bef4a@archlinux>
+In-Reply-To: <20200809111753.156236-13-jic23@kernel.org>
 References: <20200809111753.156236-1-jic23@kernel.org>
-        <20200809111753.156236-14-jic23@kernel.org>
-        <20200818023243.GA2176224@bogus>
+        <20200809111753.156236-13-jic23@kernel.org>
 X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -46,33 +40,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Aug 2020 20:32:43 -0600
-Rob Herring <robh@kernel.org> wrote:
+On Sun,  9 Aug 2020 12:17:52 +0100
+Jonathan Cameron <jic23@kernel.org> wrote:
 
-> On Sun, 09 Aug 2020 12:17:53 +0100, Jonathan Cameron wrote:
-> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > 
-> > Simple binding so easy to convert.
-> > Dropped the stated value of maximum spi bus frequency as it does
-> > not seem to correspond to the datasheet.  The value of 200kHz
-> > is the max sampling frequency of the ADC, not the clock frequency of
-> > the SPI bus.
-> > 
-> > Added #io-channel-cells to allow use as a provider of channels to
-> > other devices via the consumer binding.
-> > 
-> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > Cc: Phil Reid <preid@electromag.com.au>
-> > ---
-> >  .../bindings/iio/adc/ti,tlc4541.yaml          | 52 +++++++++++++++++++
-> >  .../bindings/iio/adc/ti-tlc4541.txt           | 17 ------
-> >  2 files changed, 52 insertions(+), 17 deletions(-)
-> >   
+> From: Phil Reid <preid@electromag.com.au>
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> JC: Seems that I messed up applying the original driver patches, and
+> this file never actually made it into the tree.
+> 
+> I have picked up original Ack and Sign-off so as to record the
+> history.
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Phil Reid <preid@electromag.com.au>
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Applied.
 
-Applied. Thanks.  I'll fix up the remaining patches that need it and send a v2.
+> ---
+>  .../devicetree/bindings/iio/adc/ti-tlc4541.txt  | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/ti-tlc4541.txt b/Documentation/devicetree/bindings/iio/adc/ti-tlc4541.txt
+> new file mode 100644
+> index 000000000000..6b2692723a04
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/ti-tlc4541.txt
+> @@ -0,0 +1,17 @@
+> +* Texas Instruments' TLC4541
+> +
+> +Required properties:
+> + - compatible: Should be one of
+> +	* "ti,tlc4541"
+> +	* "ti,tlc3541"
+> +	- reg: SPI chip select number for the device
+> + - vref-supply: The regulator supply for ADC reference voltage
+> + - spi-max-frequency: Max SPI frequency to use (<= 200000)
+> +
+> +Example:
+> +adc@0 {
+> +	compatible = "ti,tlc4541";
+> +	reg = <0>;
+> +	vref-supply = <&vdd_supply>;
+> +	spi-max-frequency = <200000>;
+> +};
 
-Thanks,
-
-Jonathan
