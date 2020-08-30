@@ -2,86 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5408256E09
-	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 15:15:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAE26256E0F
+	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 15:16:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728761AbgH3NPJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 09:15:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58882 "EHLO mail.kernel.org"
+        id S1728916AbgH3NQj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 09:16:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34418 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726030AbgH3NPI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 30 Aug 2020 09:15:08 -0400
+        id S1728911AbgH3NQd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 30 Aug 2020 09:16:33 -0400
 Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C3A6F20757;
-        Sun, 30 Aug 2020 13:15:05 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 29E29206FA;
+        Sun, 30 Aug 2020 13:16:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598793308;
-        bh=L0UEGoE0XoSNof1CQ/i74GslohOVgHMvBPV1kDOSfnY=;
+        s=default; t=1598793393;
+        bh=QIHti4fzrTTRrC5YYUzy/q6isrvYJdx1GM7ladRfNJ0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gOsVjxFZfIg3lmX6HYHO4XnTxB1AmjIMBHVW9wIhWgdRFAlvmOTZEiEohhDB0fnhM
-         Vj3IHebJ8V227P9Mas3YeSwE63uuNRMbV1i/wsdVZ8zJLjgRp0IwlyKWT2TQ4UJ0pH
-         yNd8Hd2zn5RR+RfqgSMvi1ZrxaFFfqTKHz/QJZGk=
-Date:   Sun, 30 Aug 2020 21:15:02 +0800
+        b=jKEKPVozdfekayquSnLbBLcpBcnTWd0G6yjBQkQA5ROqOimHdYy8WESq8cx1IvDAc
+         dhwJwg5SRhkQlJmtAr324K42ZYHmKr4bSe64DwTSDwPGvZwRQ2gBw41DO83L+lhoYe
+         nm+k3HO2xw+OBn4myJdvO4aoNaECiCanoEoiJeHU=
+Date:   Sun, 30 Aug 2020 21:16:28 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     robh@kernel.org, kernel@puri.sm, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        mchehab@kernel.org, Anson.Huang@nxp.com, agx@sigxcpu.org,
-        angus@akkea.ca, broonie@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 2/3] MAINTAINERS: Add Purism Librem 5 section to the
- list
-Message-ID: <20200830131459.GL32096@dragon>
-References: <20200821121755.24599-1-martin.kepplinger@puri.sm>
- <20200821121755.24599-2-martin.kepplinger@puri.sm>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Adam Ford <aford173@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mm-beacon-baseboard: Correct LED default
+ state
+Message-ID: <20200830131627.GM32096@dragon>
+References: <20200824071546.10050-1-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200821121755.24599-2-martin.kepplinger@puri.sm>
+In-Reply-To: <20200824071546.10050-1-krzk@kernel.org>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 21, 2020 at 02:17:54PM +0200, Martin Kepplinger wrote:
-> Add development information for the devicetree files for hardware
-> by Purism SPC.
+On Mon, Aug 24, 2020 at 09:15:46AM +0200, Krzysztof Kozlowski wrote:
+> There is no LED default state "none".  leds-gpio driver maps it to
+> "off", so correct them to fix dtbs_check warnings like:
 > 
-> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-
-I decided to drop this patch from my queue, as I took the suggestion
-from Joe and sent a patch to have get_maintainer report email address
-in the dts file.
-
-Shawn
-
-[1] https://lkml.org/lkml/2020/8/30/118
-
-> ---
->  MAINTAINERS | 7 +++++++
->  1 file changed, 7 insertions(+)
+>   arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dt.yaml:
+>     leds: led0:default-state:0: 'none' is not one of ['on', 'off', 'keep']
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index ac79fdbdf8d0..70a09eb3e6d6 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14061,6 +14061,13 @@ T:	git git://linuxtv.org/media_tree.git
->  F:	Documentation/admin-guide/media/pulse8-cec.rst
->  F:	drivers/media/cec/usb/pulse8/
->  
-> +PURISM LIBREM 5
-> +M:	Purism Kernel Team <kernel@puri.sm>
-> +S:	Supported
-> +B:	https://source.puri.sm/Librem5/linux-next/issues
-> +T:	https://source.puri.sm/Librem5/linux-next
-> +F:	arch/arm64/boot/dts/freescale/imx8mq-librem5*
-> +
->  PVRUSB2 VIDEO4LINUX DRIVER
->  M:	Mike Isely <isely@pobox.com>
->  L:	pvrusb2@isely.net	(subscribers-only)
-> -- 
-> 2.20.1
-> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+
+Applied, thanks.
