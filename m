@@ -2,47 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA18625702B
-	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 21:34:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A5BC25702C
+	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 21:36:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726155AbgH3TeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 15:34:05 -0400
-Received: from mout.kundenserver.de ([212.227.17.24]:43887 "EHLO
+        id S1726178AbgH3Tgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 15:36:45 -0400
+Received: from mout.kundenserver.de ([212.227.126.187]:41153 "EHLO
         mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726150AbgH3TeD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 15:34:03 -0400
+        with ESMTP id S1726150AbgH3Tgm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 15:36:42 -0400
 Received: from buildfff.adridolf.com ([188.192.134.246]) by
- mrelayeu.kundenserver.de (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1MMnnm-1jvtdg04oO-00IiNX; Sun, 30 Aug 2020 21:33:56 +0200
+ mrelayeu.kundenserver.de (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis)
+ id 1Mt7Ll-1kRNPb2Sgz-00tRzn; Sun, 30 Aug 2020 21:36:30 +0200
 From:   Adrian Schmutzler <freifunk@adrianschmutzler.de>
-To:     Santosh Shilimkar <ssantosh@kernel.org>,
+To:     Jason Cooper <jason@lakedaemon.net>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH] ARM: dts: keystone: replace status value "ok" by "okay"
-Date:   Sun, 30 Aug 2020 21:32:49 +0200
-Message-Id: <20200830193249.21526-1-freifunk@adrianschmutzler.de>
+Subject: [PATCH] ARM: dts: kirkwood: replace status value "ok" by "okay"
+Date:   Sun, 30 Aug 2020 21:35:43 +0200
+Message-Id: <20200830193543.50530-1-freifunk@adrianschmutzler.de>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:TDyLsDFXG0TCIirzFPX542KseELh+4Kn1dn3sw31jDGVehalMHK
- rnurePHATcPjeWlYszNLPDCJ/ov8y4tAowilMBEmIUyByGzF5AJ3RuXqh+DozEzZ7pZ1rRD
- plye/4/M3dp0cclRwv01BJHUiXn3nu+snmBZcxgcYoXXb8BBQMJ+ew4eLQFAQLrmS6xnInH
- DChJgfX7By4TR4srdkXyA==
+X-Provags-ID: V03:K1:ZkNFdP/6mYiGIULJPLWWsgs8EUMa/1GYF4H/+AjaKoDFEigBh7K
+ zgUPQagDLXIqTD3T4ndBccvYqzr5S/0h0K1KcIjRlrOg7+0UWGuYZHPUPhvfsdNB2Rra3Qo
+ u3wMcMgzmXqH6wTa98NU5zy4s/nXhAKoYFLtM/Ca19Wtx6tnj6GSJwcbuCmdJJdJpJs8BTH
+ f2aZYI6GUz76LYVM3Vyog==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:BdnXlKfQWA8=:09thwm72UbBC6ukePWGAmE
- ivYYaNDstf5R+9I9+T/FQqqChXpaeGod5O4khO+h21pk7LbvssCCl8CYCDLwd/yUWUAIkUC4E
- RAqZE17SBxcuhCkLRJ0O5gwdXh1woCPH5xI8e2xOPA/migl4EKWQLX6cTmddbHMwI9fU+q0mC
- X8gH3L13TqpTXIRTr7sSmM1IjQ9/kQGI4YUd157vO8e/PvmS1G1ThifjsNA14uPSL8XR8sBFg
- k2u3n/J2dt1WfQlW8gL41zvbk/pGnnbg5l/EBwlFekh8v+qSRF3nVzdVvTohq9l5686Id637r
- EVagG3tDHnHTip/sxFx2NK2gJWGg+lAlP9Cp3wIvTC5T6p97vjJvrp99iU0+e6tDfBqOiJcvO
- vLWE/N8xILjRQ0FF0zDTiNn3z6EitGQ5z+lbNbyTCq2qhMJK16HAG1EGOAn8GfvvNj/jrXRkY
- 4LaWjwJ8+s2U3a/pHXHtvjz/Q2aINwJ91Qr8BUjIlA5Y1xYMCCjGawpJBOBZmt4cTAN5kp0O0
- hPQcvzMw8IXemfwHt15l0D2WXaCo2sKGf2PYi0FAHG0wYlzp+PSJ6Zi2I2qyKyH47OuTbOwr+
- 7AH8/WS7Agpx/nh+/j41JpDuttd2//V/7buwbSPMv4bXzl7DUg64uW3saBE81EBUA/j165JXh
- jLWx4qWqTRmGk9plQDEgwDOA1A5j8/5B6M3mmrBO49GPg4eYHqZi4v1y//DofWyNZp6dLYG6T
- /NgU9IsMieYRm2T+yCUb/ROIWkDM8ZmurskwJ5zhBlRYac/7o3sJbXsoRamtC51gkRwRpzoOu
- WywQLE1uUO4yHfom4/CYt8ogj12j9TvaLEJ73gpiqH+wxUNiYeOMoCmIwG/XVEW4kLvQUKBRN
- fyT2TuGDoVH7glultlvw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:UIRnrar2Vfg=:cuzCcD2ZrsKc4xpETkOa+H
+ 1md+NLFLo1kpIsD97HGVBfM1GDLpo0lgQz0JV1KTvAGa3hxcSAxL01HtMqbmPlgdLEF2vSaN1
+ 25/BYnAzVTu1qc1L++bmQI3//jIyARNgd0OCFsUMvDHsIXB4TIxt6Lj5T/vXV6iRW3Mk6TrXt
+ dNWqidR5ERCbpALzh05jUijdNteCgNVCqECKMD1wdFW17dydMQ6Y+Jwq8XT9mm9+6O2E/quGV
+ GtkdEu7nvROf8/ziHDELaN+RKtt4EuG8h5Eqp/LsetbZjyHesCCaGVm2t/mlCP2bP1CgITvT8
+ uifGG/6AwRSDVq1c5jq4CT6GwEt+CdyljqpePdYOCb0r5lBqaZtFWEy9GiyfsScC1u9jmLyo1
+ wmkzNuczttOfHPDhi4lofCoB1weaNgNZNGabvQJ7GyjmglEH4YQQXQfOzaBiwPhxiBDUgQbEc
+ iE7b1Ivtz3mAehcSEjPecwJtmzyYVFdwErHpMMong9RWOrqudIAMlHoQgdmG7OgxprTh6ipou
+ TcBYDOI7aFX2WC5d84+3IMBaoL/173CbGxIx8gEhrZIy2LOfNO048+UYzJmRtcRyLWoGkBEBh
+ q4V1/iAUhPcu5Viszg9n0VZFPEWcPx9SRKZ0uLeRC+7TQ+rlbNjLZ8HWi0ehk1Z4MWO38Ywhs
+ 1qSLd6lspJwnd68owfUBYBFp6e0ejxvVv8KpbjdlbnD1L1oF+vwkKWKif27HwI9vDZBOqTuzC
+ Vh8iiVLSu1+GaY9cf/5CeoIJz3HbNvbrVRy2T1XTzTBJ9klVXxzKdKe7ftCshiJqLIIWWeD61
+ E0h5//XSyVVXEGnH2C/M3pdnjwc8kE/rmDRHgE7ZY4DZuXSmkgAx9PJhlc3dgPYfIPrQtIZBX
+ oFP9DPnykOgmuIkqZzRA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -55,64 +57,129 @@ already.
 
 Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
 ---
- arch/arm/boot/dts/keystone-k2e-evm.dts  | 2 +-
- arch/arm/boot/dts/keystone-k2g-evm.dts  | 2 +-
- arch/arm/boot/dts/keystone-k2hk-evm.dts | 2 +-
- arch/arm/boot/dts/keystone-k2l-evm.dts  | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
+ arch/arm/boot/dts/kirkwood-dockstar.dts             | 2 +-
+ arch/arm/boot/dts/kirkwood-dreamplug.dts            | 2 +-
+ arch/arm/boot/dts/kirkwood-goflexnet.dts            | 2 +-
+ arch/arm/boot/dts/kirkwood-guruplug-server-plus.dts | 2 +-
+ arch/arm/boot/dts/kirkwood-iconnect.dts             | 2 +-
+ arch/arm/boot/dts/kirkwood-iomega_ix2_200.dts       | 2 +-
+ arch/arm/boot/dts/kirkwood-nsa3x0-common.dtsi       | 2 +-
+ arch/arm/boot/dts/kirkwood.dtsi                     | 4 ++--
+ 8 files changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm/boot/dts/keystone-k2e-evm.dts b/arch/arm/boot/dts/keystone-k2e-evm.dts
-index 66fec5f5d081..acac242ebdf7 100644
---- a/arch/arm/boot/dts/keystone-k2e-evm.dts
-+++ b/arch/arm/boot/dts/keystone-k2e-evm.dts
-@@ -159,7 +159,7 @@
- };
+diff --git a/arch/arm/boot/dts/kirkwood-dockstar.dts b/arch/arm/boot/dts/kirkwood-dockstar.dts
+index 6a3f1bf6d9f1..264938dfa4d9 100644
+--- a/arch/arm/boot/dts/kirkwood-dockstar.dts
++++ b/arch/arm/boot/dts/kirkwood-dockstar.dts
+@@ -34,7 +34,7 @@
+ 			};
+ 		};
+ 		serial@12000 {
+-			status = "ok";
++			status = "okay";
+ 		};
+ 	};
+ 	gpio-leds {
+diff --git a/arch/arm/boot/dts/kirkwood-dreamplug.dts b/arch/arm/boot/dts/kirkwood-dreamplug.dts
+index 7f326e267494..328516351e84 100644
+--- a/arch/arm/boot/dts/kirkwood-dreamplug.dts
++++ b/arch/arm/boot/dts/kirkwood-dreamplug.dts
+@@ -34,7 +34,7 @@
+ 			};
+ 		};
+ 		serial@12000 {
+-			status = "ok";
++			status = "okay";
+ 		};
  
- &mdio {
--	status = "ok";
-+	status = "okay";
- 	ethphy0: ethernet-phy@0 {
- 		compatible = "marvell,88E1514", "marvell,88E1510", "ethernet-phy-ieee802.3-c22";
- 		reg = <0>;
-diff --git a/arch/arm/boot/dts/keystone-k2g-evm.dts b/arch/arm/boot/dts/keystone-k2g-evm.dts
-index 8b3d64c913d8..a11457c7fc88 100644
---- a/arch/arm/boot/dts/keystone-k2g-evm.dts
-+++ b/arch/arm/boot/dts/keystone-k2g-evm.dts
-@@ -449,7 +449,7 @@
- &dss {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&vout_pins>;
--	status = "ok";
-+	status = "okay";
+ 		spi@10600 {
+diff --git a/arch/arm/boot/dts/kirkwood-goflexnet.dts b/arch/arm/boot/dts/kirkwood-goflexnet.dts
+index 02d87e0a1061..d4cb3cd3e2a2 100644
+--- a/arch/arm/boot/dts/kirkwood-goflexnet.dts
++++ b/arch/arm/boot/dts/kirkwood-goflexnet.dts
+@@ -66,7 +66,7 @@
+ 			};
+ 		};
+ 		serial@12000 {
+-			status = "ok";
++			status = "okay";
+ 		};
  
- 	port {
- 		dpi_out: endpoint {
-diff --git a/arch/arm/boot/dts/keystone-k2hk-evm.dts b/arch/arm/boot/dts/keystone-k2hk-evm.dts
-index ad4e22afe133..5e85f000acc3 100644
---- a/arch/arm/boot/dts/keystone-k2hk-evm.dts
-+++ b/arch/arm/boot/dts/keystone-k2hk-evm.dts
-@@ -183,7 +183,7 @@
- };
+ 		sata@80000 {
+diff --git a/arch/arm/boot/dts/kirkwood-guruplug-server-plus.dts b/arch/arm/boot/dts/kirkwood-guruplug-server-plus.dts
+index ff1260ee3fe8..dfb41393941d 100644
+--- a/arch/arm/boot/dts/kirkwood-guruplug-server-plus.dts
++++ b/arch/arm/boot/dts/kirkwood-guruplug-server-plus.dts
+@@ -38,7 +38,7 @@
+ 			};
+ 		};
+ 		serial@12000 {
+-			status = "ok";
++			status = "okay";
+ 		};
  
- &mdio {
--	status = "ok";
-+	status = "okay";
- 	ethphy0: ethernet-phy@0 {
- 		compatible = "marvell,88E1111", "ethernet-phy-ieee802.3-c22";
- 		reg = <0>;
-diff --git a/arch/arm/boot/dts/keystone-k2l-evm.dts b/arch/arm/boot/dts/keystone-k2l-evm.dts
-index e200533d26a4..a6cbff4cfe20 100644
---- a/arch/arm/boot/dts/keystone-k2l-evm.dts
-+++ b/arch/arm/boot/dts/keystone-k2l-evm.dts
-@@ -132,7 +132,7 @@
- };
+ 		sata@80000 {
+diff --git a/arch/arm/boot/dts/kirkwood-iconnect.dts b/arch/arm/boot/dts/kirkwood-iconnect.dts
+index 4a512d80912c..95af7aa1fdcb 100644
+--- a/arch/arm/boot/dts/kirkwood-iconnect.dts
++++ b/arch/arm/boot/dts/kirkwood-iconnect.dts
+@@ -72,7 +72,7 @@
+ 			};
+ 		};
+ 		serial@12000 {
+-			status = "ok";
++			status = "okay";
+ 		};
+ 	};
  
- &mdio {
--	status = "ok";
-+	status = "okay";
- 	ethphy0: ethernet-phy@0 {
- 		compatible = "marvell,88E1514", "marvell,88E1510", "ethernet-phy-ieee802.3-c22";
- 		reg = <0>;
+diff --git a/arch/arm/boot/dts/kirkwood-iomega_ix2_200.dts b/arch/arm/boot/dts/kirkwood-iomega_ix2_200.dts
+index 62272d58664f..2338f495d517 100644
+--- a/arch/arm/boot/dts/kirkwood-iomega_ix2_200.dts
++++ b/arch/arm/boot/dts/kirkwood-iomega_ix2_200.dts
+@@ -112,7 +112,7 @@
+ 		};
+ 
+ 		serial@12000 {
+-			status = "ok";
++			status = "okay";
+ 		};
+ 
+ 		sata@80000 {
+diff --git a/arch/arm/boot/dts/kirkwood-nsa3x0-common.dtsi b/arch/arm/boot/dts/kirkwood-nsa3x0-common.dtsi
+index 2c4037b07282..8f73197f251a 100644
+--- a/arch/arm/boot/dts/kirkwood-nsa3x0-common.dtsi
++++ b/arch/arm/boot/dts/kirkwood-nsa3x0-common.dtsi
+@@ -45,7 +45,7 @@
+ 		};
+ 
+ 		serial@12000 {
+-			status = "ok";
++			status = "okay";
+ 		};
+ 
+ 		sata@80000 {
+diff --git a/arch/arm/boot/dts/kirkwood.dtsi b/arch/arm/boot/dts/kirkwood.dtsi
+index 6c8d94beae78..fca31a5d5ac7 100644
+--- a/arch/arm/boot/dts/kirkwood.dtsi
++++ b/arch/arm/boot/dts/kirkwood.dtsi
+@@ -369,7 +369,7 @@
+ 			clocks = <&gate_clk 14>;
+ 			clock-names = "sata";
+ 			#phy-cells = <0>;
+-			status = "ok";
++			status = "okay";
+ 		};
+ 
+ 		sata_phy1: sata-phy@84000 {
+@@ -378,7 +378,7 @@
+ 			clocks = <&gate_clk 15>;
+ 			clock-names = "sata";
+ 			#phy-cells = <0>;
+-			status = "ok";
++			status = "okay";
+ 		};
+ 
+ 		audio0: audio-controller@a0000 {
 -- 
 2.20.1
 
