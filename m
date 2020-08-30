@@ -2,66 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DC45257039
-	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 21:42:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A32C257047
+	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 21:50:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726456AbgH3Tmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 15:42:40 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:48010 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726264AbgH3Tmh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 30 Aug 2020 15:42:37 -0400
-Received: from p508fca7b.dip0.t-ipconnect.de ([80.143.202.123] helo=phil.fritz.box)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1kCTDl-0002KX-UO; Sun, 30 Aug 2020 21:42:33 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] rk3318 A95X Z2 board
-Date:   Sun, 30 Aug 2020 21:42:30 +0200
-Message-Id: <159881654154.22245.1067280987036121454.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200808160618.15445-1-jbx6244@gmail.com>
-References: <20200808160618.15445-1-jbx6244@gmail.com>
+        id S1726282AbgH3TuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 15:50:06 -0400
+Received: from mout.kundenserver.de ([212.227.126.135]:33371 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726179AbgH3TuB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 15:50:01 -0400
+Received: from buildfff.adridolf.com ([188.192.134.246]) by
+ mrelayeu.kundenserver.de (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis)
+ id 1N3bnP-1kdvyC3bIB-010bc4; Sun, 30 Aug 2020 21:49:55 +0200
+From:   Adrian Schmutzler <freifunk@adrianschmutzler.de>
+To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH] ARM: dts: dra7xx: replace status value "ok" by "okay"
+Date:   Sun, 30 Aug 2020 21:48:41 +0200
+Message-Id: <20200830194841.60766-1-freifunk@adrianschmutzler.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:JgLlJVc9nZLH9H4+BlEn7RI0+CWPcWf/3TF7WobNVZUSuFMzejC
+ U/M9x7FLQt5RecGfo/VcdMZijIHQOe236bhFm3LOraxh3WLNpooc9oKkNOcPAI9LxWydMfs
+ pRElXaOMK+EPf3cqa1lVZFNT/ufWmHPbI1SUo+CdSjwL3/44P3X4sBGVNSPAPFkqLZ/VAXn
+ RHIe7hfUCsy4w4NGx+mOw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:aC9tBLW0Dbs=:vPGWQmSon4leYuQK6u5dq/
+ Jtfwj+mbyHusYpZGOmBI9R+uFTFbApbJHTLygkfj51OnhTitn8mvGrx/Od3eNo9h6B0EIryli
+ 0qNfzr3SsRfT+47IPe4xu/bd0c9y/uoySWEu2Y1Q2jpKup+YUEaCs3aQ/l/vPo4tjN13d5mIx
+ 1WvLhqaPVUzKlgZzkmK5yCRaS2J14k8i0Wgy7kNZ+VibeqqP1p0ampQqBocr6gJeOjJ0AJPsX
+ eEYfEmkEDl/IsP2qvQcZs0T0DaVCrh+loVJhqWNWMAIy+b+l05imdel1xJBS6H+HHi5ij5IZX
+ fkI1iaU7KGJQsW0HsZObSycBgGYDzvgwJrBdWfQFGfF4i8Hkq6/U3eMz1Jg/r1QT/XC/r5wND
+ IgX3wX4x54r9ZhGBCZlDXL0e4fy2TPSfl5g05Yo5+1eYawGJd5rOhaLxjrE8O33jFydOIifZr
+ Dm31JQwDIdFx/5S8xgNSCsbdV1Nfr+GO5M43rs9XzBrOmwx2YiQbwsjsV5rrH3c6+paYuu7Md
+ R2nJHcbtef0Ff5DwP6sFLhK7vXSvXkG+wExhcK5A0OqfASIkRhpJW0oyH8DN8kJdSfq/lTnKy
+ HfmpkuCI3qxjf8Dxj9dcTs0IBGavVnSsdJQ9dZfSioQq0zAkV3OH6FFwh0w4paF21NCjUvBfZ
+ ypab1XcBpY4j5HZVmyhqYhxCdJf+jl1C8xmUYU/OkXbBWn8C+etrFoCchfcUf9vV+nQtKniwH
+ 1Q2Dti4SMguqiyyYFBlRbGSrFecLVIsLLgMGzr1mukadQ27gavm0SAv9AKIwZ6ix3oYDPe+Qz
+ sVji1YMKXpe8XyK6lEvFKAJacawO6kMazMqpwyPSQx1bGVxAFRA0PsLL/vr69XM6sc8rHdPNO
+ TEVAyLftlGr816gQ4ZcQ==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 8 Aug 2020 18:06:15 +0200, Johan Jonker wrote:
-> Add rk3318 A95X Z2 board.
-> 
-> What works:
->  adc key
->  emmc
->  ethernet
->  hdmi
->  gpu
->  ir
->  mmc
->  sd card
->  vop
->  usb2
->  uart2
-> 
-> [...]
+While the DT parser recognizes "ok" as a valid value for the
+"status" property, it is actually mentioned nowhere. Use the
+proper value "okay" instead, as done in the majority of files
+already.
 
-Applied, thanks!
+Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
+---
+ arch/arm/boot/dts/am57xx-beagle-x15-common.dtsi | 6 +++---
+ arch/arm/boot/dts/am57xx-sbc-am57x.dts          | 4 ++--
+ arch/arm/boot/dts/dra7-evm.dts                  | 2 +-
+ arch/arm/boot/dts/dra72-evm-common.dtsi         | 6 +++---
+ arch/arm/boot/dts/dra76-evm.dts                 | 4 ++--
+ 5 files changed, 11 insertions(+), 11 deletions(-)
 
-[1/3] dt-bindings: Add vendor prefix for Shenzhen Zkmagic Technology Co., Ltd.
-      commit: cb1cc137a2c148cbe60e5065afa1a09e176e0269
-[2/3] dt-bindings: arm: rockchip: add Zkmagic A95X Z2 description
-      commit: 0dc8c62c92d4df35a001b613ebe10f95e4ebf776
-[3/3] arm64: dts: rockchip: add rk3318 A95X Z2 board
-      commit: 964ed0807b5f7b42b8a6ad48531ae9312e19599d
-
-Best regards,
+diff --git a/arch/arm/boot/dts/am57xx-beagle-x15-common.dtsi b/arch/arm/boot/dts/am57xx-beagle-x15-common.dtsi
+index b3a0206ebd6c..1809f97d491d 100644
+--- a/arch/arm/boot/dts/am57xx-beagle-x15-common.dtsi
++++ b/arch/arm/boot/dts/am57xx-beagle-x15-common.dtsi
+@@ -582,13 +582,13 @@
+ };
+ 
+ &dss {
+-	status = "ok";
++	status = "okay";
+ 
+ 	vdda_video-supply = <&ldoln_reg>;
+ };
+ 
+ &hdmi {
+-	status = "ok";
++	status = "okay";
+ 	vdda-supply = <&ldo4_reg>;
+ 
+ 	port {
+@@ -599,7 +599,7 @@
+ };
+ 
+ &pcie1_rc {
+-	status = "ok";
++	status = "okay";
+ 	gpios = <&gpio2 8 GPIO_ACTIVE_LOW>;
+ };
+ 
+diff --git a/arch/arm/boot/dts/am57xx-sbc-am57x.dts b/arch/arm/boot/dts/am57xx-sbc-am57x.dts
+index ce5bf1d92eab..beef63e8a005 100644
+--- a/arch/arm/boot/dts/am57xx-sbc-am57x.dts
++++ b/arch/arm/boot/dts/am57xx-sbc-am57x.dts
+@@ -120,7 +120,7 @@
+ };
+ 
+ &dss {
+-	status = "ok";
++	status = "okay";
+ 
+ 	vdda_video-supply = <&ldoln_reg>;
+ 
+@@ -148,7 +148,7 @@
+ };
+ 
+ &hdmi {
+-	status = "ok";
++	status = "okay";
+ 	vdda-supply = <&ldo4_reg>;
+ 
+ 	pinctrl-names = "default";
+diff --git a/arch/arm/boot/dts/dra7-evm.dts b/arch/arm/boot/dts/dra7-evm.dts
+index a952d934fcf2..bda6f7eeef4f 100644
+--- a/arch/arm/boot/dts/dra7-evm.dts
++++ b/arch/arm/boot/dts/dra7-evm.dts
+@@ -565,7 +565,7 @@
+ };
+ 
+ &dcan1 {
+-	status = "ok";
++	status = "okay";
+ 	pinctrl-names = "default", "sleep", "active";
+ 	pinctrl-0 = <&dcan1_pins_sleep>;
+ 	pinctrl-1 = <&dcan1_pins_sleep>;
+diff --git a/arch/arm/boot/dts/dra72-evm-common.dtsi b/arch/arm/boot/dts/dra72-evm-common.dtsi
+index 9273a7d6fa29..7506e415b08f 100644
+--- a/arch/arm/boot/dts/dra72-evm-common.dtsi
++++ b/arch/arm/boot/dts/dra72-evm-common.dtsi
+@@ -467,7 +467,7 @@
+ };
+ 
+ &dcan1 {
+-	status = "ok";
++	status = "okay";
+ 	pinctrl-names = "default", "sleep", "active";
+ 	pinctrl-0 = <&dcan1_pins_sleep>;
+ 	pinctrl-1 = <&dcan1_pins_sleep>;
+@@ -536,11 +536,11 @@
+ };
+ 
+ &dss {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &hdmi {
+-	status = "ok";
++	status = "okay";
+ 
+ 	port {
+ 		hdmi_out: endpoint {
+diff --git a/arch/arm/boot/dts/dra76-evm.dts b/arch/arm/boot/dts/dra76-evm.dts
+index 803981cc762e..81590ef36937 100644
+--- a/arch/arm/boot/dts/dra76-evm.dts
++++ b/arch/arm/boot/dts/dra76-evm.dts
+@@ -522,12 +522,12 @@
+ };
+ 
+ &dss {
+-	status = "ok";
++	status = "okay";
+ 	vdda_video-supply = <&ldo5_reg>;
+ };
+ 
+ &hdmi {
+-	status = "ok";
++	status = "okay";
+ 
+ 	vdda-supply = <&ldo1_reg>;
+ 
 -- 
-Heiko Stuebner <heiko@sntech.de>
+2.20.1
+
