@@ -2,130 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 066CD256E56
-	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 16:05:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F06E256EC7
+	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 16:52:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726547AbgH3OFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 10:05:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44962 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726394AbgH3OEk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 10:04:40 -0400
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C340BC061573
-        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 07:04:36 -0700 (PDT)
-Received: by mail-ej1-x643.google.com with SMTP id a26so5141154ejc.2
-        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 07:04:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=izMbgQfEUi4HL4B+upohBntCKcFRXHLkyQlubMj8LG8=;
-        b=p0ZYmxxOJHsfHd9Q2GDtq6MQ7xqTDKUo/vPf5POGGiXKf090Udjkk15rpHRabtP6++
-         SyDvkw+xi0u8sHt+pP9fuDNUDejViWNLt8LLh7A3uEAsVCi/2Z12pbZzJJs6zrQsLQol
-         vgis1TpqDt1mwgk6QPohinqqssokoCNxabicXMB3GfuiRZSuYQFnShP8Bk3OQ4DwN+id
-         gk5Io3bxBV3+Wlf/M9A1mAqhj/vFVtE329K+GxyLYFiyKLuy3Q1NG0QlwtBgirMZcTNR
-         PIY8j92twehblQgyCbQGSfkmNbQl6s3vDhIGA+6FVljK3G6JjMrDIgLBV1tohakSjuaX
-         n+XQ==
+        id S1726134AbgH3OwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 10:52:17 -0400
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:45807 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725898AbgH3OwQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 10:52:16 -0400
+Received: by mail-ed1-f66.google.com with SMTP id l17so1792114edq.12;
+        Sun, 30 Aug 2020 07:52:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=izMbgQfEUi4HL4B+upohBntCKcFRXHLkyQlubMj8LG8=;
-        b=m0HlHQxPt8V8YHwmbcuTBDayADev8H49pXhc+eKybJ8PyvKmT7uUfNr6mJE9zfRcr2
-         Kr1xt/fq3z/ECjmBZAlFR68niKWtXLHvt/byMj3NpyYmV8BDSm2pRJctCpLEK6Mzr+W3
-         T6768TdDNWMu7KPd79szLUu4PdrX0ShB1amuZL0Hy8oCvcenMrywKpNEVY9uEmr2Jgwh
-         fQopuVdB5oQqgaWT2ggZiLChWwdHvUbh4Var/wwysack1hjI1MSshUMhuUlesn9gdZeQ
-         a3lY8uTu8FPxSdMiOZop1zv8FbWryNNuTVaiToAsCq3WHh+S8J+kYu5b/HKB7vVslXXa
-         /txA==
-X-Gm-Message-State: AOAM531UCt6YU2Y8NX9xqJET0NuVo1JgyLyp6y/QZTMk6jwnK4rdesdR
-        a8MHYuSERl8VbqcXiToq72RIqZS07Z9gk755TC8hsIYusNc=
-X-Google-Smtp-Source: ABdhPJz60cc6Eu/ea3CES5e/4h0O82BakquR4RA7pyDNYs8Pbcdv+oMR4aU2gv5UAPivxnq+qHhEkX0DNO7qNfP7l4M=
-X-Received: by 2002:a17:907:7094:: with SMTP id yj20mr7631941ejb.471.1598796275391;
- Sun, 30 Aug 2020 07:04:35 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+         :content-disposition:user-agent;
+        bh=JInRKa5P/pXOvzGMuyZb8WwOS1qKpjTCXU9RADDlcoQ=;
+        b=gN/ETr/b1EzH139iEP0mJ2xvvMExMkHf40Ld8WvJul6jdQPFKxhIWza34a8sFXA0/2
+         ZaAIKzAnT5iuoKNuCAqPCorM5BhWEROiBdu83/O2BripVf6UE3bm3wonHiitxw0ibiiB
+         ISilWhosxepV4punrBVLM9uOkWK+KdePTHS5yvXsf189/TCtCC2g1X4toO98VEkWZozj
+         XWEydQn33UFlQj61p4+NNGJUd/Yc+1i5joj7Mx9jfVHA9Kyp1kIzBVZ8XqJaxRVI9gEg
+         oK0ClRtzUA8lbl+pTebYjj8da6PfrGLqIRvDs4WC7/XkM2O/B95LEwmgZKGMZsBBA0zy
+         3TUw==
+X-Gm-Message-State: AOAM533yflyNEGvp9dhO+s2yarSHvfLIjlapRyAro+6xz+dav9ESE9D2
+        KfWxSkG3XJW26PKztJ+AQ14=
+X-Google-Smtp-Source: ABdhPJyk1tNpQR3IAXH58BjB0/xsboXGviduJJzQXUkMXdep+WLwQmONDT7CuD1yMT9iExAOvT0o1g==
+X-Received: by 2002:a05:6402:1bc2:: with SMTP id ch2mr7505694edb.235.1598799134825;
+        Sun, 30 Aug 2020 07:52:14 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.216])
+        by smtp.googlemail.com with ESMTPSA id c90sm5139905edf.43.2020.08.30.07.52.13
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 30 Aug 2020 07:52:14 -0700 (PDT)
+Date:   Sun, 30 Aug 2020 16:52:12 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Proper ranges for memory controller (exynos5410-smdk5410)
+Message-ID: <20200830145212.GA29592@kozik-lap>
 MIME-Version: 1.0
-References: <20200820121323.564-1-linux.amoon@gmail.com> <20200820121323.564-2-linux.amoon@gmail.com>
- <7hlfi9xgch.fsf@baylibre.com> <CANAwSgTZ23jFPAO46vRg1Dx_Bzi=4Bg6KHE0ozLQGky4p_fgKQ@mail.gmail.com>
- <CANAwSgQLnqDnuQvLv4cvaeTPeBW=H_g5F2aaNue_hb4nKLdovg@mail.gmail.com>
- <f7e6ce5f-02b0-065b-ffcf-2826159f926a@baylibre.com> <1j7dto3ylq.fsf@starbuckisacylon.baylibre.com>
- <CANAwSgQ1Miu73hfdK+cgL3howpekn2xj_5qwGasQZwtQpSGj5Q@mail.gmail.com>
- <1j4koq4x38.fsf@starbuckisacylon.baylibre.com> <CANAwSgTWnHXRFRUrbdCph+eBxL2PNXe6Q4aTXxEU32i7dGS=dw@mail.gmail.com>
- <CANAwSgQV7_4VdGRMgJDMjPFvOS3Nabkqbf2ucE5vqo6zrhxPDw@mail.gmail.com>
- <CAFBinCCEJJT_kfJ4qfTEz0R7Mo3ciCGDSw_MJYi_5PyNJA6x5w@mail.gmail.com> <CANAwSgRV8y3Cc72CtppfJMPFKDSfpddzAKLeBGExn8G4OBVJ6g@mail.gmail.com>
-In-Reply-To: <CANAwSgRV8y3Cc72CtppfJMPFKDSfpddzAKLeBGExn8G4OBVJ6g@mail.gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sun, 30 Aug 2020 16:04:24 +0200
-Message-ID: <CAFBinCCpM=ea=zzormJ_m5RcsMtE6hUkq5-UkYpNpXK8fbXdAQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] arm64: dts: meson-g12b-odroid-n2: Enable RTC
- controller node
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Christian Hewitt <christianshewitt@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anand,
+Hi Rob,
 
-On Sun, Aug 30, 2020 at 3:12 PM Anand Moon <linux.amoon@gmail.com> wrote:
-[...]
-> +       /* Make sure the rtc irq pin is properly configured as input */
-> +       rtc_irq_pins: rtc-pin-irq {
-> +               mux {
-> +                       groups = "GPIOAO_7";
-> +                       function = "gpio_periphs";
-check meson_g12a_aobus_functions in drivers/pinctrl/meson/pinctrl-meson-g12a.c
-GPIOAO_7 doesn't support "gpio_periphs", instead I think it should be
-"gpio_aobus"
+Maybe you could help me here as I am trying to understand where is the
+error (cross compiling on ARM):
 
-I'm surprised that you don't seem to be getting errors from the pin
-controller driver about this.
-On the other hand you have not attached the full kernel log, so maybe
-it's in there but hidden somewhere
+    $ make exynos_defconfig
+    $ make dtbs_check
 
-> +                       bias-disable;
-shouldn't there be output-disable or input-enable here?
+    arch/arm/boot/dts/exynos5410-smdk5410.dt.yaml: soc: memory-controller@12250000:ranges: [[0, 0, 67108864, 131072, 1, 0, 83886080, 131072, 2, 0, 100663296, 131072, 3, 0, 117440512, 131072]] is not valid under any of the given schemas (Possible causes of the failure):
+    arch/arm/boot/dts/exynos5410-smdk5410.dt.yaml: soc: memory-controller@12250000:ranges: [[0, 0, 67108864, 131072, 1, 0, 83886080, 131072, 2, 0, 100663296, 131072, 3, 0, 117440512, 131072]] is not of type 'boolean'
+    arch/arm/boot/dts/exynos5410-smdk5410.dt.yaml: soc: memory-controller@12250000:ranges:0: [0, 0, 67108864, 131072, 1, 0, 83886080, 131072, 2, 0, 100663296, 131072, 3, 0, 117440512, 131072] is too long
+    From schema: local/lib/python3.6/site-packages/dtschema/schemas/simple-bus.yaml
 
-> +               };
-> +       };
-> +
->         hdmi-connector {
->                 compatible = "hdmi-connector";
->                 type = "a";
-> @@ -481,7 +490,8 @@ hdmi_tx_tmds_out: endpoint {
->
->  &i2c3 {
->         pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-> -       pinctrl-names = "default";
-> +       pinctrl-1 = <&rtc_irq_pins>;
-> +       pinctrl-names = "default", "gpio_periphs";
-I am not expecting this to work because it means that the I2C driver
-would have to manage the "gpio_periphs" pin state (but there's no
-pinctrl_* call in drivers/i2c/busses/i2c-meson.c)
-instead I would try:
-&i2c3 {
-  pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>, <&rtc_irq_pins>;
-  pinctrl-names = "default";
+This is a Exynos SROM memory controller with four banks like this:
 
-  ...
-};
+arch/arm/boot/dts/exynos5410.dtsi
+    376 &sromc {
+    377         #address-cells = <2>;
+    378         #size-cells = <1>;
+    379         ranges = <0 0 0x04000000 0x20000
+    380                   1 0 0x05000000 0x20000
+    381                   2 0 0x06000000 0x20000
+    382                   3 0 0x07000000 0x20000>;
+    383 };
 
-or even:
-rtc0: rtc@51 {
-  pinctrl-0 = <&rtc_irq_pins>;
-  pinctrl-names = "default";
-
-  ...
-};
-
+Converting it to:
+    376 &sromc {
+    377         #address-cells = <2>;
+    378         #size-cells = <1>;
+    379         ranges = <0 0 0x04000000 0x20000>,
+    380                  <1 0 0x05000000 0x20000>,
+    381                  <2 0 0x06000000 0x20000>,
+    382                  <3 0 0x07000000 0x20000>;
+    383 };
+silences the error although I cannot check whether this even works
+(I don't have this HW).  Is it because of simple-bus schema which
+expects an array of arrays of 3 to 7 size?
 
 Best regards,
-Martin
+Krzysztof
