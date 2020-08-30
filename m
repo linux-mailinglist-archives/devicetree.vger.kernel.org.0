@@ -2,90 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F06E256EC7
-	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 16:52:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93119256ECE
+	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 16:58:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726134AbgH3OwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 10:52:17 -0400
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:45807 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725898AbgH3OwQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 10:52:16 -0400
-Received: by mail-ed1-f66.google.com with SMTP id l17so1792114edq.12;
-        Sun, 30 Aug 2020 07:52:15 -0700 (PDT)
+        id S1726264AbgH3O6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 10:58:25 -0400
+Received: from mail-ej1-f68.google.com ([209.85.218.68]:44476 "EHLO
+        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725898AbgH3O6X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 10:58:23 -0400
+Received: by mail-ej1-f68.google.com with SMTP id bo3so5166330ejb.11;
+        Sun, 30 Aug 2020 07:58:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
-         :content-disposition:user-agent;
-        bh=JInRKa5P/pXOvzGMuyZb8WwOS1qKpjTCXU9RADDlcoQ=;
-        b=gN/ETr/b1EzH139iEP0mJ2xvvMExMkHf40Ld8WvJul6jdQPFKxhIWza34a8sFXA0/2
-         ZaAIKzAnT5iuoKNuCAqPCorM5BhWEROiBdu83/O2BripVf6UE3bm3wonHiitxw0ibiiB
-         ISilWhosxepV4punrBVLM9uOkWK+KdePTHS5yvXsf189/TCtCC2g1X4toO98VEkWZozj
-         XWEydQn33UFlQj61p4+NNGJUd/Yc+1i5joj7Mx9jfVHA9Kyp1kIzBVZ8XqJaxRVI9gEg
-         oK0ClRtzUA8lbl+pTebYjj8da6PfrGLqIRvDs4WC7/XkM2O/B95LEwmgZKGMZsBBA0zy
-         3TUw==
-X-Gm-Message-State: AOAM533yflyNEGvp9dhO+s2yarSHvfLIjlapRyAro+6xz+dav9ESE9D2
-        KfWxSkG3XJW26PKztJ+AQ14=
-X-Google-Smtp-Source: ABdhPJyk1tNpQR3IAXH58BjB0/xsboXGviduJJzQXUkMXdep+WLwQmONDT7CuD1yMT9iExAOvT0o1g==
-X-Received: by 2002:a05:6402:1bc2:: with SMTP id ch2mr7505694edb.235.1598799134825;
-        Sun, 30 Aug 2020 07:52:14 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=yLdu6brDWJDDXexjV3/nXBgg6pnnhqUXBpD1PlhzB94=;
+        b=i2YYQ5A3XHobp7LzR7rHNAEq2B+qB3RA74PZDd4iRVrUmHVYvYatMClnS6kEcAOcWv
+         6Q/G30KDD5X/9jjgnyuLOgGW+3A0zEWoRkAUplT7vSDYNZZUdnkvkcSqJp57lzkNmeew
+         JO9o/sRkCGS5CfaKMEYSEDanbH1VETFt/+35gt2NUisOS+I72O6Ltsi0owjgrVh8QW7x
+         S/UA5pckBOC5PYwQo4XY9N4gO1eZzE/Z776zbNxGhol4+NYHZJYONjbUZtltzawOIe3U
+         +H08HqczMSUF/0MJVo2sB6qB31DBcH57ox0XuAK8JL95sCGNZyaYxGsK7Cx1DAIRnvhL
+         PdBw==
+X-Gm-Message-State: AOAM531Anu2byySym0aLv9fXFQYeT5HI7ueAGJ5Dv8oK1mLkv0TI8hrv
+        94OAY3zqCbgqXx0CJhh+g2w=
+X-Google-Smtp-Source: ABdhPJzmu7wboTsmbAgNBd2kGcqxNX+jO6kQBtq3muCwmdaSCJrd9tb2Bd6LWPTEamm9vdB6SfptdA==
+X-Received: by 2002:a17:906:b154:: with SMTP id bt20mr8439716ejb.272.1598799502027;
+        Sun, 30 Aug 2020 07:58:22 -0700 (PDT)
 Received: from kozik-lap ([194.230.155.216])
-        by smtp.googlemail.com with ESMTPSA id c90sm5139905edf.43.2020.08.30.07.52.13
+        by smtp.googlemail.com with ESMTPSA id a18sm5389900ejy.71.2020.08.30.07.58.20
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 30 Aug 2020 07:52:14 -0700 (PDT)
-Date:   Sun, 30 Aug 2020 16:52:12 +0200
+        Sun, 30 Aug 2020 07:58:21 -0700 (PDT)
+Date:   Sun, 30 Aug 2020 16:58:18 +0200
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Proper ranges for memory controller (exynos5410-smdk5410)
-Message-ID: <20200830145212.GA29592@kozik-lap>
+To:     Tsahee Zidenberg <tsahee@annapurnalabs.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RESEND PATCH 1/3] ARM: dts: alpine: Align GIC nodename with
+ dtschema
+Message-ID: <20200830145818.GB31461@kozik-lap>
+References: <20200819175816.21398-1-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
+In-Reply-To: <20200819175816.21398-1-krzk@kernel.org>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Wed, Aug 19, 2020 at 07:58:14PM +0200, Krzysztof Kozlowski wrote:
+> Fix dtschema validator warnings like:
+>     gic@fb001000: $nodename:0:
+>         'gic@fb001000' does not match '^interrupt-controller(@[0-9a-f,]+)*$'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  arch/arm/boot/dts/alpine.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Maybe you could help me here as I am trying to understand where is the
-error (cross compiling on ARM):
+Hi,
 
-    $ make exynos_defconfig
-    $ make dtbs_check
-
-    arch/arm/boot/dts/exynos5410-smdk5410.dt.yaml: soc: memory-controller@12250000:ranges: [[0, 0, 67108864, 131072, 1, 0, 83886080, 131072, 2, 0, 100663296, 131072, 3, 0, 117440512, 131072]] is not valid under any of the given schemas (Possible causes of the failure):
-    arch/arm/boot/dts/exynos5410-smdk5410.dt.yaml: soc: memory-controller@12250000:ranges: [[0, 0, 67108864, 131072, 1, 0, 83886080, 131072, 2, 0, 100663296, 131072, 3, 0, 117440512, 131072]] is not of type 'boolean'
-    arch/arm/boot/dts/exynos5410-smdk5410.dt.yaml: soc: memory-controller@12250000:ranges:0: [0, 0, 67108864, 131072, 1, 0, 83886080, 131072, 2, 0, 100663296, 131072, 3, 0, 117440512, 131072] is too long
-    From schema: local/lib/python3.6/site-packages/dtschema/schemas/simple-bus.yaml
-
-This is a Exynos SROM memory controller with four banks like this:
-
-arch/arm/boot/dts/exynos5410.dtsi
-    376 &sromc {
-    377         #address-cells = <2>;
-    378         #size-cells = <1>;
-    379         ranges = <0 0 0x04000000 0x20000
-    380                   1 0 0x05000000 0x20000
-    381                   2 0 0x06000000 0x20000
-    382                   3 0 0x07000000 0x20000>;
-    383 };
-
-Converting it to:
-    376 &sromc {
-    377         #address-cells = <2>;
-    378         #size-cells = <1>;
-    379         ranges = <0 0 0x04000000 0x20000>,
-    380                  <1 0 0x05000000 0x20000>,
-    381                  <2 0 0x06000000 0x20000>,
-    382                  <3 0 0x07000000 0x20000>;
-    383 };
-silences the error although I cannot check whether this even works
-(I don't have this HW).  Is it because of simple-bus schema which
-expects an array of arrays of 3 to 7 size?
+Any comments here? Is anyone maintaing these files?
 
 Best regards,
 Krzysztof
