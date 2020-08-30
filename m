@@ -2,141 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEBF5256F9A
-	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 19:53:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3149F256FD7
+	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 20:55:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726035AbgH3RxO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 13:53:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51996 "EHLO
+        id S1726456AbgH3SzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 14:55:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726394AbgH3RxF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 13:53:05 -0400
-Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com [IPv6:2607:f8b0:4864:20::841])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAA7FC061236
-        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 10:53:02 -0700 (PDT)
-Received: by mail-qt1-x841.google.com with SMTP id n18so3296380qtw.0
-        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 10:53:02 -0700 (PDT)
+        with ESMTP id S1726282AbgH3SzE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 14:55:04 -0400
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D957DC061573;
+        Sun, 30 Aug 2020 11:55:03 -0700 (PDT)
+Received: by mail-lf1-x143.google.com with SMTP id d2so2318593lfj.1;
+        Sun, 30 Aug 2020 11:55:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=yH1J8hCQGCEZj5x88WC5CgJLue5izK8xcUhAdJYu3aA=;
-        b=X9jDW+WqEr6Qd3xz4JS91mS4qm67XNj7+gQA1hLCr+ozEP3K6HAMzADL6YT177DB1G
-         /uXyuMAfgt83xMKn/rq89+mSfzY6INhLIl6lcn7ZKAl7lPxVpA4eXz8WA0RU86VKw67o
-         ww+X3E6VPh93mlAJGXCRhS7DA/pDcSthwfFU04SiCw2onUUgH5NtkjZ6RicWIrCtyLzH
-         /Js8Tbm6nyA9zsLKOEbbGxfghiJF0RlQQrO5bKrbS5n02Q7etZMlSnjZzme0cC2tZ9bh
-         gdcic7T+o+OecISpXqBh7G9HV5xVLKn/kI5Uw2phbDzc+XjVbFJURc5vYZ1QeYdupAGY
-         fqGA==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KB/orVYY3/iyi1+OEIa3l5Zb1NRAkevYQaE0xhLNDhY=;
+        b=VGHVZ9FEWLfnTHug243P4hrtTxperC/kE3E0vF1ZeYaI0NEfmOXsDz/tlFNOyyoXJO
+         VHVbFyRVRpJGdnfBBnhG5nIx4FwKXEfDs4oPII6dsE354utxZJavTfqHr2bERsDWi19N
+         5ffZpKRR7KeVCo2el9CMtjXlZ/zj+KTbnPWgb+fhnUNsFSvOg+4Q+G28wxoRfD92xGeP
+         zJQAlhJW73evGxJ+4MwHpo5qjU/vI7OzbB8Xu1ei0lpV0r2q1by9iOAULtX9cXi2cCt5
+         d2SiqViqCGZI+ZjjcBe8ays+IdqFBa7y0JfZHzs5diwS3G9QFRrUHws/dkwBLl8oQpWf
+         eBLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=yH1J8hCQGCEZj5x88WC5CgJLue5izK8xcUhAdJYu3aA=;
-        b=h0SNeVHS5pemwd3kAmsjyw4pzsQKmWKYLPM3cnzqFyD+kpGkRxefR8yDAETXRtz0xJ
-         RTLNzgVVz0H+U2DBidagE43eY84YiB+1APiN7a3P6RA2/qO5/+Dm6iHirhyAUbugMrOv
-         TZ6WNRC6xfZotngbk0GXFPa94yfTCkDMjOBLc8YNEts4/2yT7j+w1HSXla7QyCrwSd/F
-         d+PmWjiNhlzU4GmAsCq7bvCzpBjoN0JzSs/nWaiKzJSpcdL6knpjhDC5PssXsLbGuTy5
-         kRaGi9RGL3IzwcIkqHkIF0Z9yCn4xOol7R0wF1wVBQgilKknSPG2DhGPGNq7S5Lo7hyl
-         MwMg==
-X-Gm-Message-State: AOAM533NcO9wfPDsq0DFxKnFrYTi6JBSa1crDMe5Ujfn5DDcCz/sgQnT
-        yReUbb38zojavP4SE+s0yzvCIQ==
-X-Google-Smtp-Source: ABdhPJxlJuKK9dY0j5/s+p7Qz0nZTmqAnQO0yYzGoJC44cJ1LxMP6cZVfZIvfKOT/cENF+n/xibkEQ==
-X-Received: by 2002:ac8:292a:: with SMTP id y39mr9431959qty.89.1598809979234;
-        Sun, 30 Aug 2020 10:52:59 -0700 (PDT)
-Received: from uller (ec2-34-197-84-77.compute-1.amazonaws.com. [34.197.84.77])
-        by smtp.gmail.com with ESMTPSA id b199sm4988671qkg.116.2020.08.30.10.52.58
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KB/orVYY3/iyi1+OEIa3l5Zb1NRAkevYQaE0xhLNDhY=;
+        b=qSZ8OmOeIP7SDgIn9MBEUlg3r72XdAnQsF0TYiZqjOGGM8kEhBnV7gCNeYLl4J/+j9
+         ixK3u+YPRgNZKvuJhQN2gRWA91vE9QF8t/aU7Q9YBtkZL7ojNoUoKuM70KkFvnAqJqlH
+         AxVBEj8TsS7pz9hal5C3ZOMElkPlouurDFLl8PtziyG7kugHGLNH7DmzpAQzyZ3ESTcY
+         ZbIKthr0p1VwAQ+lMCWWPPLGNEnjhoFk0C84MbqGO54cGIULc7+ehVmFeRdVVo9SD61e
+         fR5HoGipL9mwoVG7FiRRhLEHr0DvVXEstoXjCjAeegBHj42IzWmYTgA3CtOC63ih+Z7V
+         7RhQ==
+X-Gm-Message-State: AOAM5304v27W9h2U5wX0UUpU897ZC/qs7dMZdmjLP6fOqSs40imRJuhY
+        +zm2rvHJQoSy6nTdJtq8PRY=
+X-Google-Smtp-Source: ABdhPJxGQoR/UevvS7mGsEvM7E+6XaqGsRNUGzs6zBl/GWHaA1SVMDWljN1/Xw5Fab/puIiqg7EYNw==
+X-Received: by 2002:ac2:4d0f:: with SMTP id r15mr3955240lfi.114.1598813702322;
+        Sun, 30 Aug 2020 11:55:02 -0700 (PDT)
+Received: from localhost.localdomain (109-252-170-211.dynamic.spd-mgts.ru. [109.252.170.211])
+        by smtp.gmail.com with ESMTPSA id n21sm21630ljc.89.2020.08.30.11.55.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Aug 2020 10:52:58 -0700 (PDT)
-Date:   Sun, 30 Aug 2020 17:52:57 +0000
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Wesley Cheng <wcheng@codeaurora.org>
-Cc:     Sergei Shtylyov <sergei.shtylyov@gmail.com>, sboyd@kernel.org,
-        heikki.krogerus@linux.intel.com, agross@kernel.org,
-        robh+dt@kernel.org, gregkh@linuxfoundation.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v8 4/4] arm64: boot: dts: qcom: pm8150b: Add DTS node for
- PMIC VBUS booster
-Message-ID: <20200830175257.GA1947@uller>
-References: <20200812071925.315-1-wcheng@codeaurora.org>
- <20200812071925.315-5-wcheng@codeaurora.org>
- <1ed0a34c-6219-fe3d-7d9c-13a74ce2d4d0@gmail.com>
- <02111c69-73fd-5e8c-5594-27393865d458@codeaurora.org>
+        Sun, 30 Aug 2020 11:55:01 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-leds@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/6] Introduce Embedded Controller driver for Acer A500
+Date:   Sun, 30 Aug 2020 21:53:50 +0300
+Message-Id: <20200830185356.5365-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <02111c69-73fd-5e8c-5594-27393865d458@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 20 Aug 07:47 UTC 2020, Wesley Cheng wrote:
+Hello!
 
-> 
-> 
-> On 8/12/2020 2:34 AM, Sergei Shtylyov wrote:
-> > Hello!
-> > 
-> > On 12.08.2020 10:19, Wesley Cheng wrote:
-> > 
-> >> Add the required DTS node for the USB VBUS output regulator, which is
-> >> available on PM8150B.  This will provide the VBUS source to connected
-> >> peripherals.
-> >>
-> >> Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
-> >> ---
-> >>   arch/arm64/boot/dts/qcom/pm8150b.dtsi   | 6 ++++++
-> >>   arch/arm64/boot/dts/qcom/sm8150-mtp.dts | 4 ++++
-> >>   2 files changed, 10 insertions(+)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-> >> b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-> >> index 053c659734a7..9e560c1ca30d 100644
-> >> --- a/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-> >> +++ b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-> >> @@ -53,6 +53,12 @@ power-on@800 {
-> >>               status = "disabled";
-> >>           };
-> >>   +        pm8150b_vbus: dcdc@1100 {
-> > 
-> >    s/dcdc/regulator/? What is "dcdc", anyway?
-> >    The device nodes must have the generic names, according to the DT spec.
-> > 
-> 
-> Hi Sergei,
-> 
-> Thanks for the comment!
-> 
-> DCDC is the label that we use for the DC to DC converter block, since
-> the VBUS booster will output 5V to the connected devices.  Would it make
-> more sense to have "dc-dc?"
-> 
+This series adds support for the Embedded Controller which is found on
+Acer Iconia Tab A500 (Android tablet device).
 
-At this level it's just a regulator at 0x1100, so it should be
-"regulator@1100". If you would like a more useful name in the running
-system you should be able to use the "regulator-name" property.
+The Embedded Controller is ENE KB930 and it's running firmware customized
+for the A500. The firmware interface may be reused by some other sibling
+Acer tablets, although none of those tablets are supported in upstream yet.
+Please review and apply, thanks in advance!
 
-Regards,
-Bjorn
+Changelog:
 
-> Thanks
-> Wesley
-> 
-> >> +            compatible = "qcom,pm8150b-vbus-reg";
-> >> +            status = "disabled";
-> >> +            reg = <0x1100>;
-> >> +        };
-> >> +
-> >>           pm8150b_typec: typec@1500 {
-> >>               compatible = "qcom,pm8150b-usb-typec";
-> >>               status = "disabled";
-> > [...]
-> > 
-> > MBR, Sergei
-> 
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
+v2: - Factored out KB930 device-tree binding into a separate file, like it
+      was suggested by Lubomir Rintel.
+
+    - Switched to use regmap API like it was suggested by Lubomir Rintel.
+
+    - Added patch "regmap: Use flexible sleep" which allows not to hog
+      CPU while LED is switching state.
+
+    - Corrected MODULE_LICENSE to use "GPL" in all patches.
+
+    - Corrected MFD driver Kconfig entry like it was suggested by
+      Lubomir Rintel, it now depends on I2C.
+
+    - Switched to use I2C probe_new() in the MFD driver.
+
+    - Renamed the global pm_off variable, like it was suggested by
+      Lubomir Rintel and Lee Jones.
+
+    - Dropped serial number from the battery driver because I realized
+      that it's not a battery serial, but a device serial.
+
+    - Battery driver now uses dev_err_probe(), like it was suggested by
+      Sebastian Reichel.
+
+    - Dropped legacy LED_ON usage from the LED driver and renamed the
+      LEDs, like it was suggested by Pavel Machek. I also checked whether
+      LED-name customization via device-tree could be needed by other
+      potentially compatible devices and it shouldn't be needed, anyways it
+      won't be difficult to extend the code even if I'm wrong.
+
+Dmitry Osipenko (6):
+  dt-bindings: mfd: Add ENE KB930 Embedded Controller binding
+  regmap: Use flexible sleep
+  mfd: Add driver for Embedded Controller found on Acer Iconia Tab A500
+  power: supply: Add battery gauge driver for Acer Iconia Tab A500
+  leds: Add driver for Acer Iconia Tab A500
+  ARM: tegra: acer-a500: Add Embedded Controller
+
+ .../devicetree/bindings/mfd/ene-kb930.yaml    |  66 ++++
+ .../boot/dts/tegra20-acer-a500-picasso.dts    |  17 +
+ drivers/base/regmap/regmap.c                  |   4 +-
+ drivers/leds/Kconfig                          |   7 +
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-acer-a500.c                 | 130 ++++++++
+ drivers/mfd/Kconfig                           |  12 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/acer-ec-a500.c                    | 203 ++++++++++++
+ drivers/power/supply/Kconfig                  |   6 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/acer_a500_battery.c      | 297 ++++++++++++++++++
+ 12 files changed, 743 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/ene-kb930.yaml
+ create mode 100644 drivers/leds/leds-acer-a500.c
+ create mode 100644 drivers/mfd/acer-ec-a500.c
+ create mode 100644 drivers/power/supply/acer_a500_battery.c
+
+-- 
+2.27.0
+
