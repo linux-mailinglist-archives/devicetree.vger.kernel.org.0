@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4FAD256E6B
-	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 16:09:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6143256E64
+	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 16:08:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726804AbgH3OIx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 10:08:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55720 "EHLO mail.kernel.org"
+        id S1728947AbgH3Ny4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 09:54:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55826 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728932AbgH3Nyo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 30 Aug 2020 09:54:44 -0400
+        id S1728936AbgH3Nyr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 30 Aug 2020 09:54:47 -0400
 Received: from localhost.localdomain (unknown [194.230.155.216])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D3CB0208DB;
-        Sun, 30 Aug 2020 13:54:40 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id D3CD82145D;
+        Sun, 30 Aug 2020 13:54:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598795683;
-        bh=TJtlygoY/w0YlAC0Y0RpJRO7BKHHMoo0CEZk3p9WflY=;
+        s=default; t=1598795686;
+        bh=j77CktKo3T9lOAIW0GGqvgAET3t3oeLi6WGf+te7xiU=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=NbrFTJu+Plki7WU9nsnZnOp0gTSCYfuO/EDNkowUAG74VGP0BbeR6r+abmkGlDzqo
-         qnplg66HY9FikwXcmkcpRWqCLEdLzq1yKw6Gvntxq+0MbX232caNAF7xRSNReJRYQ6
-         vGf2bd7PsUQW1yf46bIhOtrEgCa22649XJpd2fbI=
+        b=Ddfgfj+GfV+bDD537Y7xdMhWXrxjfVOH1up1ZICU7i2Mma97xCV9UIDAK9Dr4ooDO
+         iMqFopjvTMn+2FLfiFSXDEt4b3Ljlm4gSYoxHL1fbq+XyIP5G5VvcevKVbYTgNWGCS
+         ZRIWE7/yM79SowZEJhXGcig6cO/57LgKqALDTrhM=
 From:   Krzysztof Kozlowski <krzk@kernel.org>
 To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
         Krzysztof Kozlowski <krzk@kernel.org>,
@@ -33,9 +33,9 @@ To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
 Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
         Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
         Sylwester Nawrocki <snawrocki@kernel.org>
-Subject: [PATCH 16/33] ARM: dts: exynos: Override thermal by label in Exynos4210
-Date:   Sun, 30 Aug 2020 15:51:43 +0200
-Message-Id: <20200830135200.24304-16-krzk@kernel.org>
+Subject: [PATCH 17/33] ARM: dts: exynos: Override thermal by label in Galaxy I9000
+Date:   Sun, 30 Aug 2020 15:51:44 +0200
+Message-Id: <20200830135200.24304-17-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200830135200.24304-1-krzk@kernel.org>
 References: <20200830135200.24304-1-krzk@kernel.org>
@@ -54,57 +54,55 @@ A mistyped label on the other hand, will cause a dtc compile error
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- arch/arm/boot/dts/exynos4210.dtsi | 36 +++++++++++++++----------------
- 1 file changed, 17 insertions(+), 19 deletions(-)
+ arch/arm/boot/dts/exynos4210-i9100.dts | 28 ++++++++++++--------------
+ 1 file changed, 13 insertions(+), 15 deletions(-)
 
-diff --git a/arch/arm/boot/dts/exynos4210.dtsi b/arch/arm/boot/dts/exynos4210.dtsi
-index 73360f29d53e..fddc661ded28 100644
---- a/arch/arm/boot/dts/exynos4210.dtsi
-+++ b/arch/arm/boot/dts/exynos4210.dtsi
-@@ -365,26 +365,24 @@
- 			};
+diff --git a/arch/arm/boot/dts/exynos4210-i9100.dts b/arch/arm/boot/dts/exynos4210-i9100.dts
+index 5623e17889a5..799b69e1a93a 100644
+--- a/arch/arm/boot/dts/exynos4210-i9100.dts
++++ b/arch/arm/boot/dts/exynos4210-i9100.dts
+@@ -217,21 +217,6 @@
+ 			clock-frequency = <32768>;
  		};
  	};
-+};
- 
+-
 -	thermal-zones {
 -		cpu_thermal: cpu-thermal {
--			polling-delay-passive = <0>;
--			polling-delay = <0>;
--			thermal-sensors = <&tmu 0>;
--
--			trips {
--				cpu_alert0: cpu-alert-0 {
--					temperature = <85000>; /* millicelsius */
+-			cooling-maps {
+-				map0 {
+-					/* Corresponds to 800MHz */
+-					cooling-device = <&cpu0 2 2>;
 -				};
--				cpu_alert1: cpu-alert-1 {
--					temperature = <100000>; /* millicelsius */
--				};
--				cpu_alert2: cpu-alert-2 {
--					temperature = <110000>; /* millicelsius */
+-				map1 {
+-					/* Corresponds to 200MHz */
+-					cooling-device = <&cpu0 4 4>;
 -				};
 -			};
 -		};
 -	};
-+&cpu_alert0 {
-+	temperature = <85000>; /* millicelsius */
-+};
-+
-+&cpu_alert1 {
-+	temperature = <100000>; /* millicelsius */
-+};
-+
-+&cpu_alert2 {
-+	temperature = <110000>; /* millicelsius */
-+};
-+
-+&cpu_thermal {
-+	polling-delay-passive = <0>;
-+	polling-delay = <0>;
-+	thermal-sensors = <&tmu 0>;
  };
  
- &gic {
+ &camera {
+@@ -242,6 +227,19 @@
+ 	cpu0-supply = <&varm_breg>;
+ };
+ 
++&cpu_thermal {
++	cooling-maps {
++		map0 {
++			/* Corresponds to 800MHz */
++			cooling-device = <&cpu0 2 2>;
++		};
++		map1 {
++			/* Corresponds to 200MHz */
++			cooling-device = <&cpu0 4 4>;
++		};
++	};
++};
++
+ &ehci {
+ 	status = "okay";
+ 
 -- 
 2.17.1
 
