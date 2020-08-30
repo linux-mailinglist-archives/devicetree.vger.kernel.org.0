@@ -2,173 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B30C1256FF8
-	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 21:09:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F8B9256FFA
+	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 21:11:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726430AbgH3TJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 15:09:28 -0400
-Received: from mout.kundenserver.de ([217.72.192.74]:54637 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726178AbgH3TJ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 15:09:26 -0400
-Received: from buildfff.adridolf.com ([188.192.134.246]) by
- mrelayeu.kundenserver.de (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1N2m7O-1kbW2X31fI-0134bK; Sun, 30 Aug 2020 21:09:13 +0200
-From:   Adrian Schmutzler <freifunk@adrianschmutzler.de>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH] ARM: dts: rockchip: replace status value "ok" by "okay"
-Date:   Sun, 30 Aug 2020 21:08:20 +0200
-Message-Id: <20200830190820.20583-1-freifunk@adrianschmutzler.de>
-X-Mailer: git-send-email 2.20.1
+        id S1726326AbgH3TL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 15:11:57 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:54128 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726178AbgH3TL5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 15:11:57 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6A0CE258;
+        Sun, 30 Aug 2020 21:11:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1598814713;
+        bh=fel0reShl8gyxHac+/RDk7fZq+macGvIPWGmYF2KvpI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nNDmHo8Njma2Cg5b6MZJDWkkayMD+7XR2NTBLh8vbW6FREhHNg44gWKvRWkwOCDx8
+         vwCNZg7U9sTxsRIbAbb/q21RWvS+0oJFMADArVTp2dd8EGL4b29Y8W6pXN7oXrvR5V
+         BHPfAl6SAy/bnHwTZkkDjW1sDO4mfG5IlaWufAyY=
+Date:   Sun, 30 Aug 2020 22:11:33 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     =?utf-8?B?5L2V5bCP6b6Z?= <Leon.He@unisoc.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Noralf Tronnes <noralf@tronnes.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, od@zcrc.me,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: =?utf-8?B?562U5aSNOiBbUEFUQw==?= =?utf-8?Q?H?= v2 6/6]
+ drm/panel: Add Ilitek ILI9341 DBI panel driver
+Message-ID: <20200830191133.GB6043@pendragon.ideasonboard.com>
+References: <20200822163250.63664-1-paul@crapouillou.net>
+ <20200822163250.63664-7-paul@crapouillou.net>
+ <edf38d68214247f486db3cc1f81ec404@shmbx04.spreadtrum.com>
+ <COYVFQ.2IA7KFB6BF4C3@crapouillou.net>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:VMILs0fc/lgB4bgokLKf5qhOXV1lUMnyG4d1PXDT2qD2vO+JfPX
- Pshp2VwJE/pqLFM6IMjBUfLqt5evqw5PIpnfzcs+VbwU+ew3h/UdZyF4glc3TFTu3KGOasu
- kT8mHnV4h+MIt8zMxyvCHDriJd8sc0+o+XBXgQIY7wSMzfbmFToxCqQGebRCMhRpc7BXYeZ
- JksywrS9gs8wt9Gu+TH0w==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:XNncUYEP9JI=:SdTCP6QJu3AZtSp01fdciX
- aK4wQDrsrOGzJGm3uDKvJrF8/Mf1/Imo9iCXKWY/S4d6BcBdt4brpWjSGcicpy7DscrifZbpV
- c2f1goQjVcp7Z2h6CSm2ZMG785pSEHzEJpkufg3EVrQRGZ8fG3+zbxzsvUGX5qe7ZAMJxR/5q
- 4mkbHk/uogmGGdka/yb6xFqfOMa0Zay8FfCeFVkH5/SoiWkDSOs49BffGIxTC52in1Cw61Q4F
- 14VLFj/4lPr41tLjRlClrz3ewJho4IPJEqo1dh90E7V0d3sUeSytSIjcPm8M/9ugP6dKZqTo8
- lcPdUaG9cbeVzGpwe+Roh36uL1wG1ZAQ7aeS4Lwjhxbi5BDrj/IkScyxE6ekuPOw+0m6ziRRT
- NOg8M4NN4K5H622AReJBH86KIZqJOrVRPiqo6IRc0Ab6nYnWajdRFo75A4bH7uohlYq15jndb
- EP3Bm0G5sIYTz3ik5tyMKIjlj5CDQhN/oub+QmakmVlMFX1NHHMOSzKqKL6r/3LmrEJISUJrS
- jKne5qUQYzB9/Q+hQH9VH6lShMiHrzX0kC4mmEimzI26ZaJAATuAHwnAMk5HSv5mbMxa4Nxlc
- ekw1f9PYhJqO2nMKCQ+rTKp+YfYKGzPcYKVIcAdixxEyscFR8KUBCPbsU+g//vMIwFuOqtLzv
- 7aN03AU5XFBUymTXctr/sc+OlXhQOtD6yb8Kfq5yvFUQHL+FS8lN29FXXjA3eBk/mSubA1f9y
- 8e+knfnpg70ar6jaBs+JKRaPYr/ExmJFW03qmkkjLxGYGQ3kG14aO6cmGnL5uAzws+bDyAeNH
- 418S9u6gB3fxp18ePqLnphebARxD6eoAxd+5NTgqhNx0MaLoXWcxBKMOty05nMXW++9tt9DFU
- j1NNFC/xTda+LtZZZwhw==
+In-Reply-To: <COYVFQ.2IA7KFB6BF4C3@crapouillou.net>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-While the DT parser recognizes "ok" as a valid value for the
-"status" property, it is actually mentioned nowhere. Use the
-proper value "okay" instead, as done in the majority of files
-already.
+Hi Paul,
 
-Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
----
- arch/arm/boot/dts/rk3288-evb.dtsi                 | 2 +-
- arch/arm/boot/dts/rk3288-firefly-reload-core.dtsi | 2 +-
- arch/arm/boot/dts/rk3288-firefly.dtsi             | 2 +-
- arch/arm/boot/dts/rk3288-miqi.dts                 | 2 +-
- arch/arm/boot/dts/rk3288-popmetal.dts             | 2 +-
- arch/arm/boot/dts/rk3288-r89.dts                  | 2 +-
- arch/arm/boot/dts/rk3288-rock2-square.dts         | 2 +-
- arch/arm/boot/dts/rk3288-tinker.dtsi              | 2 +-
- 8 files changed, 8 insertions(+), 8 deletions(-)
+On Sun, Aug 30, 2020 at 06:48:12PM +0200, Paul Cercueil wrote:
+> Le dim. 30 août 2020 à 16:36, 何小龙 (Leon He) a écrit :
+> >>  +struct ili9341 {
+> >>  +       struct drm_panel panel;
+> >>  +       struct mipi_dsi_device *dsi;
+> >>  +       const struct ili9341_pdata *pdata;
+> >>  +
+> >>  +       struct gpio_desc        *reset_gpiod;
+> >>  +       u32 rotation;
+> >>  +};
+> >>  +
+> > 
+> > Hi Paul, you put the mipi_dsi_device inside the struct. I think it 
+> > maybe not
+> > a good idea. That means the panel has a MIPI-DSI interface but it 
+> > doesn't
+> > have actually.
+> > 
+> >>  +static int ili9341_probe(struct mipi_dsi_device *dsi)
+> >>  +{
+> >>  +       struct device *dev = &dsi->dev;
+> >>  +       struct ili9341 *priv;
+> >>  +       int ret;
+> >>  +
+> >>  +       /* See comment for mipi_dbi_spi_init() */
+> >>  +       if (!dev->coherent_dma_mask) {
+> >>  +               ret = dma_coerce_mask_and_coherent(dev, 
+> >> DMA_BIT_MASK(32));
+> >>  +               if (ret) {
+> >>  +                       dev_warn(dev, "Failed to set dma mask 
+> >> %d\n", ret);
+> >>  +                       return ret;
+> >>  +               }
+> >>  +       }
+> >>  +
+> >>  +       priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> >>  +       if (!priv)
+> >>  +               return -ENOMEM;
+> >>  +
+> >>  +       mipi_dsi_set_drvdata(dsi, priv);
+> >>  +       priv->dsi = dsi;
+> >>  +
+> >>  +       device_property_read_u32(dev, "rotation", &priv->rotation);
+> >>  +
+> >>  +       priv->pdata = device_get_match_data(dev);
+> >>  +       if (!priv->pdata)
+> >>  +               return -EINVAL;
+> >>  +
+> >>  +       drm_panel_init(&priv->panel, dev, &ili9341_funcs,
+> >>  +                      DRM_MODE_CONNECTOR_DPI);
+> >>  +
+> >>  +       priv->reset_gpiod = devm_gpiod_get(dev, "reset", 
+> >> GPIOD_OUT_HIGH);
+> >>  +       if (IS_ERR(priv->reset_gpiod)) {
+> >>  +               dev_err(dev, "Couldn't get our reset GPIO\n");
+> >>  +               return PTR_ERR(priv->reset_gpiod);
+> >>  +       }
+> >>  +
+> >>  +       ret = drm_panel_of_backlight(&priv->panel);
+> >>  +       if (ret < 0) {
+> >>  +               if (ret != -EPROBE_DEFER)
+> >>  +                       dev_err(dev, "Failed to get backlight 
+> >> handle\n");
+> >>  +               return ret;
+> >>  +       }
+> >>  +
+> >>  +       drm_panel_add(&priv->panel);
+> >>  +
+> >>  +       dsi->bus_type = priv->pdata->bus_type;
+> >>  +       dsi->lanes = priv->pdata->lanes;
+> >>  +       dsi->format = MIPI_DSI_FMT_RGB565;
+> >>  +
+> >>  +       ret = mipi_dsi_attach(dsi);
+> >>  +       if (ret) {
+> >>  +               dev_err(dev, "Failed to attach DSI panel\n");
+> >>  +               goto err_panel_remove;
+> >>  +       }
+> >>  +
+> >>  +       ret = mipi_dsi_maybe_register_tiny_driver(dsi);
+> >>  +       if (ret) {
+> >>  +               dev_err(dev, "Failed to init TinyDRM driver\n");
+> >>  +               goto err_mipi_dsi_detach;
+> >>  +       }
+> >>  +
+> >>  +       return 0;
+> >>  +
+> >>  +err_mipi_dsi_detach:
+> >>  +       mipi_dsi_detach(dsi);
+> >>  +err_panel_remove:
+> >>  +       drm_panel_remove(&priv->panel);
+> >>  +       return ret;
+> >>  +}
+> >>  +
+> >>  +static int ili9341_remove(struct mipi_dsi_device *dsi)
+> >>  +{
+> >>  +       struct ili9341 *priv = mipi_dsi_get_drvdata(dsi);
+> >>  +
+> >>  +       mipi_dsi_detach(dsi);
+> >>  +       drm_panel_remove(&priv->panel);
+> >>  +
+> >>  +       drm_panel_disable(&priv->panel);
+> >>  +       drm_panel_unprepare(&priv->panel);
+> >>  +
+> >>  +       return 0;
+> >>  +}
+> >>  +
+> >>  +static const struct ili9341_pdata yx240qv29_pdata = {
+> >>  +       .mode = { DRM_SIMPLE_MODE(240, 320, 37, 49) },
+> >>  +       .width_mm = 0, // TODO
+> >>  +       .height_mm = 0, // TODO
+> >>  +       .bus_type = MIPI_DCS_BUS_TYPE_DBI_SPI_C3,
+> >>  +       .lanes = 1,
+> >>  +};
+> >>  +
+> >>  +static const struct of_device_id ili9341_of_match[] = {
+> >>  +       { .compatible = "adafruit,yx240qv29", .data = 
+> >> &yx240qv29_pdata },
+> >>  +       { }
+> >>  +};
+> >>  +MODULE_DEVICE_TABLE(of, ili9341_of_match);
+> >>  +
+> >>  +static struct mipi_dsi_driver ili9341_dsi_driver = {
+> >>  +       .probe          = ili9341_probe,
+> >>  +       .remove         = ili9341_remove,
+> >>  +       .driver = {
+> >>  +               .name           = "ili9341-dsi",
+> >>  +               .of_match_table = ili9341_of_match,
+> >>  +       },
+> >>  +};
+> >>  +module_mipi_dsi_driver(ili9341_dsi_driver);
+> > 
+> > Again, you treat this driver as a mipi dsi driver but for a MIPI-DBI 
+> > (I8080/SPI)
+> > panel device. That will make developers confused.
+> > 
+> > Is it possible to just add a mipi_dbi_driver for I8080/SPI interface 
+> > panel?
+> > Thanks!
+> 
+> Please read the cover letter, it explains why it's done this way. The 
+> whole point of this patchset is to merge DSI and DBI frameworks in a 
+> way that can be maintained.
 
-diff --git a/arch/arm/boot/dts/rk3288-evb.dtsi b/arch/arm/boot/dts/rk3288-evb.dtsi
-index 018802df4c0e..c4ca73b40d4a 100644
---- a/arch/arm/boot/dts/rk3288-evb.dtsi
-+++ b/arch/arm/boot/dts/rk3288-evb.dtsi
-@@ -247,7 +247,7 @@
- 	pinctrl-0 = <&rgmii_pins>;
- 	tx_delay = <0x30>;
- 	rx_delay = <0x10>;
--	status = "ok";
-+	status = "okay";
- };
- 
- &gpu {
-diff --git a/arch/arm/boot/dts/rk3288-firefly-reload-core.dtsi b/arch/arm/boot/dts/rk3288-firefly-reload-core.dtsi
-index 61435d8ee37b..36efa36b7190 100644
---- a/arch/arm/boot/dts/rk3288-firefly-reload-core.dtsi
-+++ b/arch/arm/boot/dts/rk3288-firefly-reload-core.dtsi
-@@ -61,7 +61,7 @@
- 	snps,reset-gpio = <&gpio4 RK_PB0 GPIO_ACTIVE_LOW>;
- 	tx_delay = <0x30>;
- 	rx_delay = <0x10>;
--	status = "ok";
-+	status = "okay";
- };
- 
- &i2c0 {
-diff --git a/arch/arm/boot/dts/rk3288-firefly.dtsi b/arch/arm/boot/dts/rk3288-firefly.dtsi
-index e5c4fd4ea67e..7fb582302b32 100644
---- a/arch/arm/boot/dts/rk3288-firefly.dtsi
-+++ b/arch/arm/boot/dts/rk3288-firefly.dtsi
-@@ -191,7 +191,7 @@
- 	snps,reset-gpio = <&gpio4 RK_PB0 GPIO_ACTIVE_LOW>;
- 	tx_delay = <0x30>;
- 	rx_delay = <0x10>;
--	status = "ok";
-+	status = "okay";
- };
- 
- &gpu {
-diff --git a/arch/arm/boot/dts/rk3288-miqi.dts b/arch/arm/boot/dts/rk3288-miqi.dts
-index 213c9eb84f76..e3d13d66f405 100644
---- a/arch/arm/boot/dts/rk3288-miqi.dts
-+++ b/arch/arm/boot/dts/rk3288-miqi.dts
-@@ -108,7 +108,7 @@
- 	snps,reset-gpio = <&gpio4 RK_PB0 GPIO_ACTIVE_LOW>;
- 	tx_delay = <0x30>;
- 	rx_delay = <0x10>;
--	status = "ok";
-+	status = "okay";
- };
- 
- &hdmi {
-diff --git a/arch/arm/boot/dts/rk3288-popmetal.dts b/arch/arm/boot/dts/rk3288-popmetal.dts
-index 6a51940398b5..e738eb732800 100644
---- a/arch/arm/boot/dts/rk3288-popmetal.dts
-+++ b/arch/arm/boot/dts/rk3288-popmetal.dts
-@@ -149,7 +149,7 @@
- 	pinctrl-0 = <&rgmii_pins>;
- 	tx_delay = <0x30>;
- 	rx_delay = <0x10>;
--	status = "ok";
-+	status = "okay";
- };
- 
- &hdmi {
-diff --git a/arch/arm/boot/dts/rk3288-r89.dts b/arch/arm/boot/dts/rk3288-r89.dts
-index a258c7ae5329..527c529c8934 100644
---- a/arch/arm/boot/dts/rk3288-r89.dts
-+++ b/arch/arm/boot/dts/rk3288-r89.dts
-@@ -107,7 +107,7 @@
- 	pinctrl-0 = <&rgmii_pins>;
- 	tx_delay = <0x30>;
- 	rx_delay = <0x10>;
--	status = "ok";
-+	status = "okay";
- };
- 
- &hdmi {
-diff --git a/arch/arm/boot/dts/rk3288-rock2-square.dts b/arch/arm/boot/dts/rk3288-rock2-square.dts
-index 3cca4d0f9b09..c4d1d142d8c6 100644
---- a/arch/arm/boot/dts/rk3288-rock2-square.dts
-+++ b/arch/arm/boot/dts/rk3288-rock2-square.dts
-@@ -156,7 +156,7 @@
- };
- 
- &gmac {
--	status = "ok";
-+	status = "okay";
- };
- 
- &hdmi {
-diff --git a/arch/arm/boot/dts/rk3288-tinker.dtsi b/arch/arm/boot/dts/rk3288-tinker.dtsi
-index 90e9be443fe6..9c1e38c54eae 100644
---- a/arch/arm/boot/dts/rk3288-tinker.dtsi
-+++ b/arch/arm/boot/dts/rk3288-tinker.dtsi
-@@ -137,7 +137,7 @@
- 	snps,reset-delays-us = <0 10000 1000000>;
- 	tx_delay = <0x30>;
- 	rx_delay = <0x10>;
--	status = "ok";
-+	status = "okay";
- };
- 
- &gpu {
+I think this proves the point that the proposed naming is confusing. At
+least a rename would be required.
+
 -- 
-2.20.1
+Regards,
 
+Laurent Pinchart
