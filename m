@@ -2,96 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE593256F1F
-	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 17:32:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 622EB256F38
+	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 17:55:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727103AbgH3Pcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 11:32:53 -0400
-Received: from smtprelay0126.hostedemail.com ([216.40.44.126]:42808 "EHLO
-        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727957AbgH3PcV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 30 Aug 2020 11:32:21 -0400
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
-        by smtprelay04.hostedemail.com (Postfix) with ESMTP id 8F66818009132;
-        Sun, 30 Aug 2020 15:32:05 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 50,0,0,,d41d8cd98f00b204,joe@perches.com,,RULES_HIT:41:355:379:599:800:960:966:967:973:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1541:1593:1594:1711:1730:1747:1777:1792:2196:2199:2393:2525:2553:2566:2682:2685:2828:2859:2892:2933:2937:2939:2942:2945:2947:2951:2954:3022:3138:3139:3140:3141:3142:3353:3622:3865:3867:3868:3870:3872:3874:3934:3936:3938:3941:3944:3947:3950:3953:3956:3959:4250:4321:4385:5007:6119:6742:7903:9012:9025:10004:10400:10848:11232:11658:11914:12043:12296:12297:12555:12679:12740:12760:12895:12903:13069:13072:13311:13357:13439:14096:14097:14181:14659:14721:14777:21080:21324:21433:21451:21611:21627:21819:21990:30003:30012:30022:30025:30054:30055:30075:30090:30091,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:1,LUA_SUMMARY:none
-X-HE-Tag: vest59_190bab027088
-X-Filterd-Recvd-Size: 2726
-Received: from XPS-9350.home (unknown [47.151.133.149])
-        (Authenticated sender: joe@perches.com)
-        by omf08.hostedemail.com (Postfix) with ESMTPA;
-        Sun, 30 Aug 2020 15:32:02 +0000 (UTC)
-Message-ID: <1d7c6ef2794bedca7e3164e5435f46864eacddfa.camel@perches.com>
-Subject: Re: [PATCH v6 2/3] MAINTAINERS: Add Purism Librem 5 section to the
- list
-From:   Joe Perches <joe@perches.com>
-To:     Shawn Guo <shawnguo@kernel.org>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     robh@kernel.org, kernel@puri.sm, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        mchehab@kernel.org, Anson.Huang@nxp.com, agx@sigxcpu.org,
-        angus@akkea.ca, broonie@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Date:   Sun, 30 Aug 2020 08:32:01 -0700
-In-Reply-To: <20200830131459.GL32096@dragon>
-References: <20200821121755.24599-1-martin.kepplinger@puri.sm>
-         <20200821121755.24599-2-martin.kepplinger@puri.sm>
-         <20200830131459.GL32096@dragon>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.36.4-0ubuntu1 
+        id S1726456AbgH3PzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 11:55:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52388 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726067AbgH3PzQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 30 Aug 2020 11:55:16 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A52492071B;
+        Sun, 30 Aug 2020 15:55:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598802915;
+        bh=ZBg3bBtwaWRb6Xrh+TIV/MiNssG4YfxqbbeBnrqADxQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=RaAjUUb5InR4+1c1c/QsTHoW9uCaW8Qmd6pRMAx3Ho+zWVOXIKsVlmWjPGHyJuxUI
+         +xVxmowXnG9kJoP/k8hsw8r3EKxJgkbWvQ3rI19V0P815q63V4L1dnVC9UWmzAEvew
+         EOWGJnZc00u23WxZ0+uX7x3qv9HFWZHCqk8a8kTM=
+Date:   Sun, 30 Aug 2020 16:55:11 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     David Lechner <david@lechnology.com>
+Cc:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH 10/13] dt-bindings: iio: adc: ti,ads7950 binding
+ conversion
+Message-ID: <20200830165511.0058fa33@archlinux>
+In-Reply-To: <5a4f6244-8840-e871-4a15-b63ad461be4a@lechnology.com>
+References: <20200809111753.156236-1-jic23@kernel.org>
+        <20200809111753.156236-11-jic23@kernel.org>
+        <5a4f6244-8840-e871-4a15-b63ad461be4a@lechnology.com>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 2020-08-30 at 21:15 +0800, Shawn Guo wrote:
-> On Fri, Aug 21, 2020 at 02:17:54PM +0200, Martin Kepplinger wrote:
-> > Add development information for the devicetree files for hardware
-> > by Purism SPC.
+On Wed, 12 Aug 2020 11:30:28 -0500
+David Lechner <david@lechnology.com> wrote:
+
+> On 8/9/20 6:17 AM, Jonathan Cameron wrote:
+> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 > > 
-> > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> > Simple conversion.  This binding already had the
+> > that is necessary, I'm happy to leave it as previously documented.  
 > 
-> I decided to drop this patch from my queue, as I took the suggestion
-> from Joe and sent a patch to have get_maintainer report email address
-> in the dts file.
+> This commit message doesn't make sense to me. It should probably
+> just say "this converts the device tree bindings to yml" or so.
 
-It's OK to find maintainers in files, but what about the
-B: bug reporting and T: source code repository location lines,
+I'm not sure what happened there. I think perhaps a line got accidentally
+removed.  It was meant to talk about the fact #io-channel-cells is
+marked as required which may not make sense for all boards with this
+part.  Will rewrite for v2.
 
-Those seem useful.
+Jonathan
 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-[]
-> > @@ -14061,6 +14061,13 @@ T:	git git://linuxtv.org/media_tree.git
-> >  F:	Documentation/admin-guide/media/pulse8-cec.rst
-> >  F:	drivers/media/cec/usb/pulse8/
-> >  
-> > +PURISM LIBREM 5
-> > +M:	Purism Kernel Team <kernel@puri.sm>
-
-People feel like their mails go into a void when no
-responses happen after sending to nameless addresses.
-
-It's better to have a named individual as a maintainer
-rather than an unspecified exploder address.
-
-It's OK to have both, but just the exploder doesn't
-really have that much value as it's faceless.
-
-> > +S:	Supported
-> > +B:	https://source.puri.sm/Librem5/linux-next/issues
-> > +T:	https://source.puri.sm/Librem5/linux-next
-
-This T: line should be something else.
-
-Perhaps
-W;	https://source.puri.sm/Librem5/linux-next
-T:	git https://source.puri.sm/Librem5/linux-next.git
-
-> > +F:	arch/arm64/boot/dts/freescale/imx8mq-librem5*
-
+> 
+> > 
+> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > Cc: David Lechner <david@lechnology.com>
+> > ---
+> >   .../bindings/iio/adc/ti,ads7950.yaml          | 64 +++++++++++++++++++
+> >   .../bindings/iio/adc/ti-ads7950.txt           | 23 -------
+> >   2 files changed, 64 insertions(+), 23 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads7950.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads7950.yaml
+> > new file mode 100644
+> > index 000000000000..a759d9064718
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads7950.yaml
+> > @@ -0,0 +1,64 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/adc/ti,ads7950.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Texas Instruments ADS7950 and similar ADCs
+> > +
+> > +maintainers:
+> > +  - David Lechner <david@lechnology.com>
+> > +
+> > +description: |
+> > +  Family of 4-16 channel, 8-12 bit ADCs with SPI interface.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - ti,ads7950
+> > +      - ti,ads7951
+> > +      - ti,ads7952
+> > +      - ti,ads7953
+> > +      - ti,ads7954
+> > +      - ti,ads7955
+> > +      - ti,ads7956
+> > +      - ti,ads7957
+> > +      - ti,ads7958
+> > +      - ti,ads7959
+> > +      - ti,ads7960
+> > +      - ti,ads7961
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  spi-max-frequency: true  
+> 
+> According to the datasheet, max frequency is 20MHz, so this can be:
+> 
+> spi-max-frequency:
+>    maximum: 20000000
+> 
+> > +
+> > +  vref-supply:
+> > +    description: Supply the 2.5V or 5V reference voltage  
+> 
+> Should this say "Supplies ..."?
+> 
+> > +
+> > +  "#io-channel-cells":
+> > +    const: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - vref-supply
+> > +  - "#io-channel-cells"
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    spi {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        adc@0 {
+> > +            compatible = "ti,ads7957";
+> > +            reg = <0>;
+> > +            vref-supply = <&refin_supply>;
+> > +            spi-max-frequency = <10000000>;
+> > +            #io-channel-cells = <1>;
+> > +        };
+> > +    };  
+> 
+> 
 
