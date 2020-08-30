@@ -2,79 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E960256EFF
-	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 17:23:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE593256F1F
+	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 17:32:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726067AbgH3PXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 11:23:36 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:60878 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725993AbgH3PXf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 30 Aug 2020 11:23:35 -0400
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1kCPB6-00CXF4-Sq; Sun, 30 Aug 2020 17:23:32 +0200
-Date:   Sun, 30 Aug 2020 17:23:32 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] of: of_match_node: Make stub an inline function to avoid
- W=1 warnings
-Message-ID: <20200830152332.GE2966560@lunn.ch>
-References: <20200828021939.2912798-1-andrew@lunn.ch>
- <20200828130034.GA2912863@lunn.ch>
- <CAL_JsqK18GoqkNPePh1+jiEk0JoLH01yPr0dD0AkswXP1N+qzA@mail.gmail.com>
+        id S1727103AbgH3Pcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 11:32:53 -0400
+Received: from smtprelay0126.hostedemail.com ([216.40.44.126]:42808 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727957AbgH3PcV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 30 Aug 2020 11:32:21 -0400
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay04.hostedemail.com (Postfix) with ESMTP id 8F66818009132;
+        Sun, 30 Aug 2020 15:32:05 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 50,0,0,,d41d8cd98f00b204,joe@perches.com,,RULES_HIT:41:355:379:599:800:960:966:967:973:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1541:1593:1594:1711:1730:1747:1777:1792:2196:2199:2393:2525:2553:2566:2682:2685:2828:2859:2892:2933:2937:2939:2942:2945:2947:2951:2954:3022:3138:3139:3140:3141:3142:3353:3622:3865:3867:3868:3870:3872:3874:3934:3936:3938:3941:3944:3947:3950:3953:3956:3959:4250:4321:4385:5007:6119:6742:7903:9012:9025:10004:10400:10848:11232:11658:11914:12043:12296:12297:12555:12679:12740:12760:12895:12903:13069:13072:13311:13357:13439:14096:14097:14181:14659:14721:14777:21080:21324:21433:21451:21611:21627:21819:21990:30003:30012:30022:30025:30054:30055:30075:30090:30091,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:1,LUA_SUMMARY:none
+X-HE-Tag: vest59_190bab027088
+X-Filterd-Recvd-Size: 2726
+Received: from XPS-9350.home (unknown [47.151.133.149])
+        (Authenticated sender: joe@perches.com)
+        by omf08.hostedemail.com (Postfix) with ESMTPA;
+        Sun, 30 Aug 2020 15:32:02 +0000 (UTC)
+Message-ID: <1d7c6ef2794bedca7e3164e5435f46864eacddfa.camel@perches.com>
+Subject: Re: [PATCH v6 2/3] MAINTAINERS: Add Purism Librem 5 section to the
+ list
+From:   Joe Perches <joe@perches.com>
+To:     Shawn Guo <shawnguo@kernel.org>,
+        Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     robh@kernel.org, kernel@puri.sm, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        mchehab@kernel.org, Anson.Huang@nxp.com, agx@sigxcpu.org,
+        angus@akkea.ca, broonie@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Date:   Sun, 30 Aug 2020 08:32:01 -0700
+In-Reply-To: <20200830131459.GL32096@dragon>
+References: <20200821121755.24599-1-martin.kepplinger@puri.sm>
+         <20200821121755.24599-2-martin.kepplinger@puri.sm>
+         <20200830131459.GL32096@dragon>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.36.4-0ubuntu1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqK18GoqkNPePh1+jiEk0JoLH01yPr0dD0AkswXP1N+qzA@mail.gmail.com>
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 28, 2020 at 05:09:52PM -0600, Rob Herring wrote:
-> On Fri, Aug 28, 2020 at 7:00 AM Andrew Lunn <andrew@lunn.ch> wrote:
-> >
-> > On Fri, Aug 28, 2020 at 04:19:39AM +0200, Andrew Lunn wrote:
-> > > When building without CONFIG_OF and W=1, errors are given about unused
-> > > arrays of match data, because of_match_node is stubbed as a macro. The
-> > > compile does not see it takes parameters when not astub, so it
-> > > generates warnings about unused variables. Replace the stub with an
-> > > inline function to avoid these false warnings.
-> >
-> > Hi Rob
-> >
-> > So 0-day shows some people have worked around this with #ifdef
-> > CONFIG_OF around the match table.
-> >
-> > I checked the object code for the file i'm interested in.  The
-> > optimiser has correctly throw away the match table and all code around
-> > it with the inline stub.
-> >
-> > Which do you prefer? This patch and i remove the #ifdef, or the old
-> > stub and if add #ifdef around the driver i'm getting warnings from?
+On Sun, 2020-08-30 at 21:15 +0800, Shawn Guo wrote:
+> On Fri, Aug 21, 2020 at 02:17:54PM +0200, Martin Kepplinger wrote:
+> > Add development information for the devicetree files for hardware
+> > by Purism SPC.
+> > 
+> > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
 > 
-> Use of_device_get_match_data instead of of_match_node.
-> 
+> I decided to drop this patch from my queue, as I took the suggestion
+> from Joe and sent a patch to have get_maintainer report email address
+> in the dts file.
 
-Hi Rob
+It's OK to find maintainers in files, but what about the
+B: bug reporting and T: source code repository location lines,
 
-That does not work in the use case i'm interested in, which is giving
-a W=1 warning. Take a look at the last example in
-Documentation/devicetree/bindings/net/dsa/marvell.txt
+Those seem useful.
 
-We have an Ethernet switch, using the compatible string
-"marvell,mv88e6390". Embedded within the hardware, and within the same
-driver, we have two MDIO busses. One is internal, for the PHYs
-integrated into the switch, and one is external, of discrete PHY
-connected to the switch. The external MDIO bus has its own compatible
-string. However, there is no struct driver for it, the switch driver
-is driving the MDIO bus. So of_device_get_match_data() will use the
-wrong match table.
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+[]
+> > @@ -14061,6 +14061,13 @@ T:	git git://linuxtv.org/media_tree.git
+> >  F:	Documentation/admin-guide/media/pulse8-cec.rst
+> >  F:	drivers/media/cec/usb/pulse8/
+> >  
+> > +PURISM LIBREM 5
+> > +M:	Purism Kernel Team <kernel@puri.sm>
 
-      Andrew
+People feel like their mails go into a void when no
+responses happen after sending to nameless addresses.
 
+It's better to have a named individual as a maintainer
+rather than an unspecified exploder address.
+
+It's OK to have both, but just the exploder doesn't
+really have that much value as it's faceless.
+
+> > +S:	Supported
+> > +B:	https://source.puri.sm/Librem5/linux-next/issues
+> > +T:	https://source.puri.sm/Librem5/linux-next
+
+This T: line should be something else.
+
+Perhaps
+W;	https://source.puri.sm/Librem5/linux-next
+T:	git https://source.puri.sm/Librem5/linux-next.git
+
+> > +F:	arch/arm64/boot/dts/freescale/imx8mq-librem5*
 
 
