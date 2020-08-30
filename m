@@ -2,166 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8D43256F4C
-	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 18:14:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A77D8256F69
+	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 18:42:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726179AbgH3QOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 12:14:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43020 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726143AbgH3QOg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 30 Aug 2020 12:14:36 -0400
-Received: from localhost.localdomain (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 214922076D;
-        Sun, 30 Aug 2020 16:14:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598804076;
-        bh=zHXD/PCu82qJRWgV9nLv9wM61eKP2NkJ37PcGcCZ6k4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=kzww6d5tORvl8RvGOs4hLlmTZMR/D0I4aOWsRZBlprjm5ySwT0KA3r69kQxDgy1Z0
-         lQecCqzJP6dJS+81pyPPgDeLi8+GD9fKozCdO85WDLeQmSLV28WtL769RNOV6zwIMv
-         B91PICzWkT/tDdlkqplhY4n2ZOp3rX9qiYZaTYRU=
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     linux-iio@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        David Lechner <david@lechnology.com>
-Subject: [PATCH v2 2/2] dt-bindings: iio: adc: ti,ads7950 binding conversion
-Date:   Sun, 30 Aug 2020 17:11:54 +0100
-Message-Id: <20200830161154.3201-3-jic23@kernel.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200830161154.3201-1-jic23@kernel.org>
-References: <20200830161154.3201-1-jic23@kernel.org>
+        id S1726178AbgH3QmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 12:42:12 -0400
+Received: from mx1.unisoc.com ([222.66.158.135]:26039 "EHLO
+        SHSQR01.spreadtrum.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726155AbgH3QmK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 12:42:10 -0400
+Received: from ig2.spreadtrum.com (shmbx02.spreadtrum.com [10.0.1.204])
+        by SHSQR01.spreadtrum.com with ESMTPS id 07UGalxD024044
+        (version=TLSv1 cipher=AES256-SHA bits=256 verify=NO);
+        Mon, 31 Aug 2020 00:36:47 +0800 (CST)
+        (envelope-from Leon.He@unisoc.com)
+Received: from SHMBX04.spreadtrum.com (10.0.1.214) by SHMBX02.spreadtrum.com
+ (10.0.1.204) with Microsoft SMTP Server (TLS) id 15.0.847.32; Mon, 31 Aug
+ 2020 00:36:43 +0800
+Received: from SHMBX04.spreadtrum.com ([fe80::8532:ef18:9217:26f5]) by
+ shmbx04.spreadtrum.com ([fe80::8532:ef18:9217:26f5%13]) with mapi id
+ 15.00.0847.030; Mon, 31 Aug 2020 00:36:43 +0800
+From:   =?gb2312?B?us7QocH6IChMZW9uIEhlKQ==?= <Leon.He@unisoc.com>
+To:     Paul Cercueil <paul@crapouillou.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Noralf Tronnes <noralf@tronnes.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "od@zcrc.me" <od@zcrc.me>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Subject: =?gb2312?B?tPC4tDogW1BBVENIIHYyIDYvNl0gZHJtL3BhbmVsOiBBZGQgSWxpdGVrIElM?=
+ =?gb2312?Q?I9341_DBI_panel_driver?=
+Thread-Topic: [PATCH v2 6/6] drm/panel: Add Ilitek ILI9341 DBI panel driver
+Thread-Index: AQHWeePNyyv5zmRbwEG1Gp1RC5T8uKlQ281x
+Date:   Sun, 30 Aug 2020 16:36:42 +0000
+Message-ID: <edf38d68214247f486db3cc1f81ec404@shmbx04.spreadtrum.com>
+References: <20200822163250.63664-1-paul@crapouillou.net>,<20200822163250.63664-7-paul@crapouillou.net>
+In-Reply-To: <20200822163250.63664-7-paul@crapouillou.net>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.0.1.253]
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MAIL: SHSQR01.spreadtrum.com 07UGalxD024044
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-
-Conversion from txt to yaml.  The binding documents that
-as not all boards will make use of the ADC channels via a consumer
-driver.  It does no harm however, so we will leave it as required.
-
-Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc: David Lechner <david@lechnology.com>
----
-
-Changes:
-* Fix patch description to make sense.
-* Fix a supplies instead of supply.
-* Add maximum value for spi-bus-frequency
-
- .../bindings/iio/adc/ti,ads7950.yaml          | 65 +++++++++++++++++++
- .../bindings/iio/adc/ti-ads7950.txt           | 23 -------
- 2 files changed, 65 insertions(+), 23 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads7950.yaml
- delete mode 100644 Documentation/devicetree/bindings/iio/adc/ti-ads7950.txt
-
-diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads7950.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads7950.yaml
-new file mode 100644
-index 000000000000..5ab5027be97e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/ti,ads7950.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/ti,ads7950.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments ADS7950 and similar ADCs
-+
-+maintainers:
-+  - David Lechner <david@lechnology.com>
-+
-+description: |
-+  Family of 4-16 channel, 8-12 bit ADCs with SPI interface.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,ads7950
-+      - ti,ads7951
-+      - ti,ads7952
-+      - ti,ads7953
-+      - ti,ads7954
-+      - ti,ads7955
-+      - ti,ads7956
-+      - ti,ads7957
-+      - ti,ads7958
-+      - ti,ads7959
-+      - ti,ads7960
-+      - ti,ads7961
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-max-frequency:
-+    maximum: 20000000
-+
-+  vref-supply:
-+    description: Supplies the 2.5V or 5V reference voltage
-+
-+  "#io-channel-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - vref-supply
-+  - "#io-channel-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@0 {
-+            compatible = "ti,ads7957";
-+            reg = <0>;
-+            vref-supply = <&refin_supply>;
-+            spi-max-frequency = <10000000>;
-+            #io-channel-cells = <1>;
-+        };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/iio/adc/ti-ads7950.txt b/Documentation/devicetree/bindings/iio/adc/ti-ads7950.txt
-deleted file mode 100644
-index e77a6f7e1001..000000000000
---- a/Documentation/devicetree/bindings/iio/adc/ti-ads7950.txt
-+++ /dev/null
-@@ -1,23 +0,0 @@
--* Texas Instruments ADS7950 family of A/DC chips
--
--Required properties:
-- - compatible: Must be one of "ti,ads7950", "ti,ads7951", "ti,ads7952",
--   "ti,ads7953", "ti,ads7954", "ti,ads7955", "ti,ads7956", "ti,ads7957",
--   "ti,ads7958", "ti,ads7959", "ti,ads7960", or "ti,ads7961"
-- - reg: SPI chip select number for the device
-- - #io-channel-cells: Must be 1 as per ../iio-bindings.txt
-- - vref-supply: phandle to a regulator node that supplies the 2.5V or 5V
--   reference voltage
--
--Recommended properties:
-- - spi-max-frequency: Definition as per
--		Documentation/devicetree/bindings/spi/spi-bus.txt
--
--Example:
--adc@0 {
--	compatible = "ti,ads7957";
--	reg = <0>;
--	#io-channel-cells = <1>;
--	vref-supply = <&refin_supply>;
--	spi-max-frequency = <10000000>;
--};
--- 
-2.28.0
-
+PiArc3RydWN0IGlsaTkzNDEgew0KPiArICAgICAgIHN0cnVjdCBkcm1fcGFuZWwgcGFuZWw7DQo+
+ICsgICAgICAgc3RydWN0IG1pcGlfZHNpX2RldmljZSAqZHNpOw0KPiArICAgICAgIGNvbnN0IHN0
+cnVjdCBpbGk5MzQxX3BkYXRhICpwZGF0YTsNCj4gKw0KPiArICAgICAgIHN0cnVjdCBncGlvX2Rl
+c2MgICAgICAgICpyZXNldF9ncGlvZDsNCj4gKyAgICAgICB1MzIgcm90YXRpb247DQo+ICt9Ow0K
+PiArDQoNCkhpIFBhdWwsIHlvdSBwdXQgdGhlIG1pcGlfZHNpX2RldmljZSBpbnNpZGUgdGhlIHN0
+cnVjdC4gSSB0aGluayBpdCBtYXliZSBub3QNCmEgZ29vZCBpZGVhLiBUaGF0IG1lYW5zIHRoZSBw
+YW5lbCBoYXMgYSBNSVBJLURTSSBpbnRlcmZhY2UgYnV0IGl0IGRvZXNuJ3QNCmhhdmUgYWN0dWFs
+bHkuDQoNCj4gK3N0YXRpYyBpbnQgaWxpOTM0MV9wcm9iZShzdHJ1Y3QgbWlwaV9kc2lfZGV2aWNl
+ICpkc2kpDQo+ICt7DQo+ICsgICAgICAgc3RydWN0IGRldmljZSAqZGV2ID0gJmRzaS0+ZGV2Ow0K
+PiArICAgICAgIHN0cnVjdCBpbGk5MzQxICpwcml2Ow0KPiArICAgICAgIGludCByZXQ7DQo+ICsN
+Cj4gKyAgICAgICAvKiBTZWUgY29tbWVudCBmb3IgbWlwaV9kYmlfc3BpX2luaXQoKSAqLw0KPiAr
+ICAgICAgIGlmICghZGV2LT5jb2hlcmVudF9kbWFfbWFzaykgew0KPiArICAgICAgICAgICAgICAg
+cmV0ID0gZG1hX2NvZXJjZV9tYXNrX2FuZF9jb2hlcmVudChkZXYsIERNQV9CSVRfTUFTSygzMikp
+Ow0KPiArICAgICAgICAgICAgICAgaWYgKHJldCkgew0KPiArICAgICAgICAgICAgICAgICAgICAg
+ICBkZXZfd2FybihkZXYsICJGYWlsZWQgdG8gc2V0IGRtYSBtYXNrICVkXG4iLCByZXQpOw0KPiAr
+ICAgICAgICAgICAgICAgICAgICAgICByZXR1cm4gcmV0Ow0KPiArICAgICAgICAgICAgICAgfQ0K
+PiArICAgICAgIH0NCj4gKw0KPiArICAgICAgIHByaXYgPSBkZXZtX2t6YWxsb2MoZGV2LCBzaXpl
+b2YoKnByaXYpLCBHRlBfS0VSTkVMKTsNCj4gKyAgICAgICBpZiAoIXByaXYpDQo+ICsgICAgICAg
+ICAgICAgICByZXR1cm4gLUVOT01FTTsNCj4gKw0KPiArICAgICAgIG1pcGlfZHNpX3NldF9kcnZk
+YXRhKGRzaSwgcHJpdik7DQo+ICsgICAgICAgcHJpdi0+ZHNpID0gZHNpOw0KPiArDQo+ICsgICAg
+ICAgZGV2aWNlX3Byb3BlcnR5X3JlYWRfdTMyKGRldiwgInJvdGF0aW9uIiwgJnByaXYtPnJvdGF0
+aW9uKTsNCj4gKw0KPiArICAgICAgIHByaXYtPnBkYXRhID0gZGV2aWNlX2dldF9tYXRjaF9kYXRh
+KGRldik7DQo+ICsgICAgICAgaWYgKCFwcml2LT5wZGF0YSkNCj4gKyAgICAgICAgICAgICAgIHJl
+dHVybiAtRUlOVkFMOw0KPiArDQo+ICsgICAgICAgZHJtX3BhbmVsX2luaXQoJnByaXYtPnBhbmVs
+LCBkZXYsICZpbGk5MzQxX2Z1bmNzLA0KPiArICAgICAgICAgICAgICAgICAgICAgIERSTV9NT0RF
+X0NPTk5FQ1RPUl9EUEkpOw0KPiArDQo+ICsgICAgICAgcHJpdi0+cmVzZXRfZ3Bpb2QgPSBkZXZt
+X2dwaW9kX2dldChkZXYsICJyZXNldCIsIEdQSU9EX09VVF9ISUdIKTsNCj4gKyAgICAgICBpZiAo
+SVNfRVJSKHByaXYtPnJlc2V0X2dwaW9kKSkgew0KPiArICAgICAgICAgICAgICAgZGV2X2Vycihk
+ZXYsICJDb3VsZG4ndCBnZXQgb3VyIHJlc2V0IEdQSU9cbiIpOw0KPiArICAgICAgICAgICAgICAg
+cmV0dXJuIFBUUl9FUlIocHJpdi0+cmVzZXRfZ3Bpb2QpOw0KPiArICAgICAgIH0NCj4gKw0KPiAr
+ICAgICAgIHJldCA9IGRybV9wYW5lbF9vZl9iYWNrbGlnaHQoJnByaXYtPnBhbmVsKTsNCj4gKyAg
+ICAgICBpZiAocmV0IDwgMCkgew0KPiArICAgICAgICAgICAgICAgaWYgKHJldCAhPSAtRVBST0JF
+X0RFRkVSKQ0KPiArICAgICAgICAgICAgICAgICAgICAgICBkZXZfZXJyKGRldiwgIkZhaWxlZCB0
+byBnZXQgYmFja2xpZ2h0IGhhbmRsZVxuIik7DQo+ICsgICAgICAgICAgICAgICByZXR1cm4gcmV0
+Ow0KPiArICAgICAgIH0NCj4gKw0KPiArICAgICAgIGRybV9wYW5lbF9hZGQoJnByaXYtPnBhbmVs
+KTsNCj4gKw0KPiArICAgICAgIGRzaS0+YnVzX3R5cGUgPSBwcml2LT5wZGF0YS0+YnVzX3R5cGU7
+DQo+ICsgICAgICAgZHNpLT5sYW5lcyA9IHByaXYtPnBkYXRhLT5sYW5lczsNCj4gKyAgICAgICBk
+c2ktPmZvcm1hdCA9IE1JUElfRFNJX0ZNVF9SR0I1NjU7DQo+ICsNCj4gKyAgICAgICByZXQgPSBt
+aXBpX2RzaV9hdHRhY2goZHNpKTsNCj4gKyAgICAgICBpZiAocmV0KSB7DQo+ICsgICAgICAgICAg
+ICAgICBkZXZfZXJyKGRldiwgIkZhaWxlZCB0byBhdHRhY2ggRFNJIHBhbmVsXG4iKTsNCj4gKyAg
+ICAgICAgICAgICAgIGdvdG8gZXJyX3BhbmVsX3JlbW92ZTsNCj4gKyAgICAgICB9DQo+ICsNCj4g
+KyAgICAgICByZXQgPSBtaXBpX2RzaV9tYXliZV9yZWdpc3Rlcl90aW55X2RyaXZlcihkc2kpOw0K
+PiArICAgICAgIGlmIChyZXQpIHsNCj4gKyAgICAgICAgICAgICAgIGRldl9lcnIoZGV2LCAiRmFp
+bGVkIHRvIGluaXQgVGlueURSTSBkcml2ZXJcbiIpOw0KPiArICAgICAgICAgICAgICAgZ290byBl
+cnJfbWlwaV9kc2lfZGV0YWNoOw0KPiArICAgICAgIH0NCj4gKw0KPiArICAgICAgIHJldHVybiAw
+Ow0KPiArDQo+ICtlcnJfbWlwaV9kc2lfZGV0YWNoOg0KPiArICAgICAgIG1pcGlfZHNpX2RldGFj
+aChkc2kpOw0KPiArZXJyX3BhbmVsX3JlbW92ZToNCj4gKyAgICAgICBkcm1fcGFuZWxfcmVtb3Zl
+KCZwcml2LT5wYW5lbCk7DQo+ICsgICAgICAgcmV0dXJuIHJldDsNCj4gK30NCj4gKw0KPiArc3Rh
+dGljIGludCBpbGk5MzQxX3JlbW92ZShzdHJ1Y3QgbWlwaV9kc2lfZGV2aWNlICpkc2kpDQo+ICt7
+DQo+ICsgICAgICAgc3RydWN0IGlsaTkzNDEgKnByaXYgPSBtaXBpX2RzaV9nZXRfZHJ2ZGF0YShk
+c2kpOw0KPiArDQo+ICsgICAgICAgbWlwaV9kc2lfZGV0YWNoKGRzaSk7DQo+ICsgICAgICAgZHJt
+X3BhbmVsX3JlbW92ZSgmcHJpdi0+cGFuZWwpOw0KPiArDQo+ICsgICAgICAgZHJtX3BhbmVsX2Rp
+c2FibGUoJnByaXYtPnBhbmVsKTsNCj4gKyAgICAgICBkcm1fcGFuZWxfdW5wcmVwYXJlKCZwcml2
+LT5wYW5lbCk7DQo+ICsNCj4gKyAgICAgICByZXR1cm4gMDsNCj4gK30NCj4gKw0KPiArc3RhdGlj
+IGNvbnN0IHN0cnVjdCBpbGk5MzQxX3BkYXRhIHl4MjQwcXYyOV9wZGF0YSA9IHsNCj4gKyAgICAg
+ICAubW9kZSA9IHsgRFJNX1NJTVBMRV9NT0RFKDI0MCwgMzIwLCAzNywgNDkpIH0sDQo+ICsgICAg
+ICAgLndpZHRoX21tID0gMCwgLy8gVE9ETw0KPiArICAgICAgIC5oZWlnaHRfbW0gPSAwLCAvLyBU
+T0RPDQo+ICsgICAgICAgLmJ1c190eXBlID0gTUlQSV9EQ1NfQlVTX1RZUEVfREJJX1NQSV9DMywN
+Cj4gKyAgICAgICAubGFuZXMgPSAxLA0KPiArfTsNCj4gKw0KPiArc3RhdGljIGNvbnN0IHN0cnVj
+dCBvZl9kZXZpY2VfaWQgaWxpOTM0MV9vZl9tYXRjaFtdID0gew0KPiArICAgICAgIHsgLmNvbXBh
+dGlibGUgPSAiYWRhZnJ1aXQseXgyNDBxdjI5IiwgLmRhdGEgPSAmeXgyNDBxdjI5X3BkYXRhIH0s
+DQo+ICsgICAgICAgeyB9DQo+ICt9Ow0KPiArTU9EVUxFX0RFVklDRV9UQUJMRShvZiwgaWxpOTM0
+MV9vZl9tYXRjaCk7DQo+ICsNCj4gK3N0YXRpYyBzdHJ1Y3QgbWlwaV9kc2lfZHJpdmVyIGlsaTkz
+NDFfZHNpX2RyaXZlciA9IHsNCj4gKyAgICAgICAucHJvYmUgICAgICAgICAgPSBpbGk5MzQxX3By
+b2JlLA0KPiArICAgICAgIC5yZW1vdmUgICAgICAgICA9IGlsaTkzNDFfcmVtb3ZlLA0KPiArICAg
+ICAgIC5kcml2ZXIgPSB7DQo+ICsgICAgICAgICAgICAgICAubmFtZSAgICAgICAgICAgPSAiaWxp
+OTM0MS1kc2kiLA0KPiArICAgICAgICAgICAgICAgLm9mX21hdGNoX3RhYmxlID0gaWxpOTM0MV9v
+Zl9tYXRjaCwNCj4gKyAgICAgICB9LA0KPiArfTsNCj4gK21vZHVsZV9taXBpX2RzaV9kcml2ZXIo
+aWxpOTM0MV9kc2lfZHJpdmVyKTsNCg0KQWdhaW4sIHlvdSB0cmVhdCB0aGlzIGRyaXZlciBhcyBh
+IG1pcGkgZHNpIGRyaXZlciBidXQgZm9yIGEgTUlQSS1EQkkgKEk4MDgwL1NQSSkNCnBhbmVsIGRl
+dmljZS4gVGhhdCB3aWxsIG1ha2UgZGV2ZWxvcGVycyBjb25mdXNlZC4NCg0KSXMgaXQgcG9zc2li
+bGUgdG8ganVzdCBhZGQgYSBtaXBpX2RiaV9kcml2ZXIgZm9yIEk4MDgwL1NQSSBpbnRlcmZhY2Ug
+cGFuZWw/DQpUaGFua3MhDQoNCg0KQmVzdCByZWdhcmRzDQoNCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fDQogVGhpcyBlbWFpbCAoaW5jbHVkaW5nIGl0cyBhdHRhY2htZW50cykgaXMg
+aW50ZW5kZWQgb25seSBmb3IgdGhlIHBlcnNvbiBvciBlbnRpdHkgdG8gd2hpY2ggaXQgaXMgYWRk
+cmVzc2VkIGFuZCBtYXkgY29udGFpbiBpbmZvcm1hdGlvbiB0aGF0IGlzIHByaXZpbGVnZWQsIGNv
+bmZpZGVudGlhbCBvciBvdGhlcndpc2UgcHJvdGVjdGVkIGZyb20gZGlzY2xvc3VyZS4gVW5hdXRo
+b3JpemVkIHVzZSwgZGlzc2VtaW5hdGlvbiwgZGlzdHJpYnV0aW9uIG9yIGNvcHlpbmcgb2YgdGhp
+cyBlbWFpbCBvciB0aGUgaW5mb3JtYXRpb24gaGVyZWluIG9yIHRha2luZyBhbnkgYWN0aW9uIGlu
+IHJlbGlhbmNlIG9uIHRoZSBjb250ZW50cyBvZiB0aGlzIGVtYWlsIG9yIHRoZSBpbmZvcm1hdGlv
+biBoZXJlaW4sIGJ5IGFueW9uZSBvdGhlciB0aGFuIHRoZSBpbnRlbmRlZCByZWNpcGllbnQsIG9y
+IGFuIGVtcGxveWVlIG9yIGFnZW50IHJlc3BvbnNpYmxlIGZvciBkZWxpdmVyaW5nIHRoZSBtZXNz
+YWdlIHRvIHRoZSBpbnRlbmRlZCByZWNpcGllbnQsIGlzIHN0cmljdGx5IHByb2hpYml0ZWQuIElm
+IHlvdSBhcmUgbm90IHRoZSBpbnRlbmRlZCByZWNpcGllbnQsIHBsZWFzZSBkbyBub3QgcmVhZCwg
+Y29weSwgdXNlIG9yIGRpc2Nsb3NlIGFueSBwYXJ0IG9mIHRoaXMgZS1tYWlsIHRvIG90aGVycy4g
+UGxlYXNlIG5vdGlmeSB0aGUgc2VuZGVyIGltbWVkaWF0ZWx5IGFuZCBwZXJtYW5lbnRseSBkZWxl
+dGUgdGhpcyBlLW1haWwgYW5kIGFueSBhdHRhY2htZW50cyBpZiB5b3UgcmVjZWl2ZWQgaXQgaW4g
+ZXJyb3IuIEludGVybmV0IGNvbW11bmljYXRpb25zIGNhbm5vdCBiZSBndWFyYW50ZWVkIHRvIGJl
+IHRpbWVseSwgc2VjdXJlLCBlcnJvci1mcmVlIG9yIHZpcnVzLWZyZWUuIFRoZSBzZW5kZXIgZG9l
+cyBub3QgYWNjZXB0IGxpYWJpbGl0eSBmb3IgYW55IGVycm9ycyBvciBvbWlzc2lvbnMuDQqxvtPK
+vP68sMbkuL28/r7f09Cxo8Pc0NTWyqOsyty3qMLJsaO7pLK7tcPQucK2o6y99reiy824+LG+08q8
+/sv51rjM2LaoytW8/sjLoaPRz737t8e+rcrayKjKudPDoaLQ+7SroaK3orK8u/K4tNbGsb7Tyrz+
+u/LG5MTayN2ho8j0t8e4w8zYtqjK1bz+yMujrMfrzvDUxLbBoaK4tNbGoaIgyrnTw7vyxfvCtrG+
+08q8/rXEyM66zsTayN2ho8j0zvPK1bG+08q8/qOsx+u008+1zbPW0NPAvsPQ1Mm+s/2xvtPKvP68
+sMv509C4vbz+o6yyotLUu9i4tNPKvP61xLe9yr28tL/MuObWqreivP7Iy6Gjzt63qLGj1qS7pcGq
+zfjNqNDFvLDKsaGisLLIq6Gizt7O87vyt8C2vqGjt6K8/sjLttTIzrrOtO3Cqb75sruz0LWj1PDI
+zqGjDQo=
