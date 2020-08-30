@@ -2,108 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE016256FD3
-	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 20:55:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06829256FEE
+	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 20:59:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726528AbgH3Szd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 14:55:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33326 "EHLO
+        id S1726178AbgH3S7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 14:59:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726485AbgH3SzZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 14:55:25 -0400
-Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com [IPv6:2607:f8b0:4864:20::841])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC8FC061575
-        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 11:55:24 -0700 (PDT)
-Received: by mail-qt1-x841.google.com with SMTP id d27so3341266qtg.4
-        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 11:55:24 -0700 (PDT)
+        with ESMTP id S1726179AbgH3S7C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 14:59:02 -0400
+Received: from mail-qv1-xf44.google.com (mail-qv1-xf44.google.com [IPv6:2607:f8b0:4864:20::f44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92FC7C061575
+        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 11:59:01 -0700 (PDT)
+Received: by mail-qv1-xf44.google.com with SMTP id s15so1892402qvv.7
+        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 11:59:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=jXrSKvfqB4+Buys69P+bVAXzX+bSR1lG5u67Zo5PRtY=;
-        b=HanuPX9hVfAaMBoIfhMzUGtXvCQIwGuqg/HblZb3DrJni5pvpRIa3CRkw4jG2r8bHO
-         hsqbcu2htVUmpJgjv/+fI0Z8Q/8l+eaSGKv3cZChM2I7NcBXuleldlMZXuMGMHjxHbYF
-         2hDfSeHNE6kSxhWCtRhVkuOpIil+/+6wN9u86iRw4S59y5q9AQo8zy6rlWy0X7wWdZkB
-         mNV6Okhmg32GafV37F7sdpOrBSjpnTK7wDe9fyvjbp4L/+powrCCQma6RPFkaYuN+v5o
-         wVxvZwVq8fsuX7U+jPTejQXc++1sEE4Yf1OYwwmgHonIgdSAQn57yKX3ombFN4kTpLGh
-         aXlA==
+        bh=lUMKQLlBSJCarKsSu0GjI45SsOuLiQU3I20h0koncyY=;
+        b=WvWUDcguQ3mKtncotDNXG+mBPq9NyvJv9t7WpxvwJ96ZIj6fnKG2qm6ZK8LIqVQAr+
+         kYOvS0hYk8MXGbZucOJqZJKKUDQ6tj/dr5bGEaYICOO2pIbEj9Rm5xWZDJOBIS6RlOL7
+         ngPuGNcAIgjrI7fWarHAncCoHq21UoDkbGfwkeQ9O6gc0SAv5oHS6N8k8kvbP7yFqKUr
+         yTDkP9ELUKo9roSiT+rEP+wYlDVeVLGGSd9gE1OjCWchS1e4YlTAaiGzYqfw5lcLFFVo
+         jVPIQko0qxMHSHXZeeGRkU+iV3Czu8PZydpLfptDKlw/UldaEFGp7A8VxDJV8vjirIe3
+         xgrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=jXrSKvfqB4+Buys69P+bVAXzX+bSR1lG5u67Zo5PRtY=;
-        b=FeOmIB5IPUPHginE9LUQ02j1T7sh8bwDK0gZa9+YiJy0lM5DfMidpd+PoOqcq6pCKF
-         9wd09DvQH3R35gvoxWRvVyUqZGN6z/M0+vJ7aGvtyis+yDLKql+LJ5Dij4agcO7JFIpb
-         NZdqSJe5CyAD2D7nQ/jXs1VpQdIPNct0XiVJ4itl4mAnPnY5OZOK1Jqvy0KazIXBkqRi
-         lK3G331JyeHy7cbM7OgrsMGgXnl0fjYWiR0nDoqTFvRQcvNBlbn2envREG9+75MSXHC1
-         gt9JSfXB8fCv87FcaZl+ikLuD0QuaM+FXeA+3zJeyhvjlbidQdHKDNApSqgDw563oA4W
-         Braw==
-X-Gm-Message-State: AOAM531kkzCs2n+TZR7rQP2eTJeE2bjHGzUTmyRMwRwaIVBqqUSBNJ3D
-        JJrVm1EeylD50dTnTAi64eV8cTNjq5NJlQ==
-X-Google-Smtp-Source: ABdhPJy/ocA9TsLg/Ih3oR4Qq4aGqIWbqqqZHo0pVWvRyYt7k/l2EHjr6jEpGm4Wn1jbuQIKEgf/6g==
-X-Received: by 2002:aed:2352:: with SMTP id i18mr10442115qtc.167.1598813723414;
-        Sun, 30 Aug 2020 11:55:23 -0700 (PDT)
+        bh=lUMKQLlBSJCarKsSu0GjI45SsOuLiQU3I20h0koncyY=;
+        b=qvDmLyj7KbS23syjNJbK07neOIm4bdQNx2/KIWcLSUnoBz7Et9lRW0mk/ECNBk6N+8
+         De/ngv2Cb7pTRyYMNjH7wq4sguBOFt9ButoPVyYQirhLTUdH9ly99Pwg1eGMBPNhJEbe
+         hy7HQSvXuSITunxN+J62BiRvJqWPP5O4JY3sStflIPbPzU/ciFhAJaA4yw2vYjRBaULp
+         x366Sap7u+cG+dbH1dlH16MJU1NusML2LnkKuUtzbbbyO2NNVdpXX9eG3KFaWEZ96v0x
+         VlTZIR5f+rQcqPDCl7owBot4De5p13/lWuL2mQk9sMCfhWnZO3JItRxlWAPIvbJLog9n
+         YMbw==
+X-Gm-Message-State: AOAM532GuC3OPB3je2UGjyVNG2FsfDnh/j0HSGbZCuliUFFtKoNoCDyJ
+        MpWeXP+AnwVB0De7pKncV3JJKQ==
+X-Google-Smtp-Source: ABdhPJzVuLSEAXfc5i2H+uVW+pqJ7JPE9Po3NtUqrMnVy/uGx1VZFC8jdwxXC/5i+jNQ+IcThz62+A==
+X-Received: by 2002:a0c:fdc4:: with SMTP id g4mr3795975qvs.30.1598813940154;
+        Sun, 30 Aug 2020 11:59:00 -0700 (PDT)
 Received: from uller (ec2-34-197-84-77.compute-1.amazonaws.com. [34.197.84.77])
-        by smtp.gmail.com with ESMTPSA id d16sm7632575qte.19.2020.08.30.11.55.22
+        by smtp.gmail.com with ESMTPSA id c9sm265256qkg.46.2020.08.30.11.58.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Aug 2020 11:55:22 -0700 (PDT)
-Date:   Sun, 30 Aug 2020 18:55:21 +0000
+        Sun, 30 Aug 2020 11:58:59 -0700 (PDT)
+Date:   Sun, 30 Aug 2020 18:58:57 +0000
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Wesley Cheng <wcheng@codeaurora.org>
-Cc:     sboyd@kernel.org, heikki.krogerus@linux.intel.com,
-        agross@kernel.org, robh+dt@kernel.org, gregkh@linuxfoundation.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v8 3/4] arm64: boot: dts: qcom: pm8150b: Add node for USB
- type C block
-Message-ID: <20200830185521.GC1947@uller>
-References: <20200812071925.315-1-wcheng@codeaurora.org>
- <20200812071925.315-4-wcheng@codeaurora.org>
+To:     Amit Pundir <amit.pundir@linaro.org>
+Cc:     Konrad Dybcio <konradybcio@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        John Stultz <john.stultz@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>
+Subject: Re: your mail
+Message-ID: <20200830185857.GD1947@uller>
+References: <CAMi1Hd3Dv_T7kgThLTk2QLtfS7LBvhJ5R=6C3seUYK0GvNV6eA@mail.gmail.com>
+ <20200806223134.42748-1-konradybcio@gmail.com>
+ <20200813070448.GA499758@builder.lan>
+ <CAMi1Hd3j-A1Se9swD0TQ9YzTBGicPDc1nFZbf4uisVk5A+u1GQ@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200812071925.315-4-wcheng@codeaurora.org>
+In-Reply-To: <CAMi1Hd3j-A1Se9swD0TQ9YzTBGicPDc1nFZbf4uisVk5A+u1GQ@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 12 Aug 07:19 UTC 2020, Wesley Cheng wrote:
+On Mon 17 Aug 17:12 UTC 2020, Amit Pundir wrote:
 
-> The PM8150B has a dedicated USB type C block, which can be used for type C
-> orientation and role detection.  Create the reference node to this type C
-> block for further use.
+> On Thu, 13 Aug 2020 at 12:38, Bjorn Andersson
+> <bjorn.andersson@linaro.org> wrote:
+> >
+> > On Thu 06 Aug 15:31 PDT 2020, Konrad Dybcio wrote:
+> >
+> > > Subject: Re: [PATCH v4] arm64: dts: qcom: Add support for Xiaomi Poco F1 (Beryllium)
+> > >
+> > > >// This removed_region is needed to boot the device
+> > > >               // TODO: Find out the user of this reserved memory
+> > > >               removed_region: memory@88f00000 {
+> > >
+> > > This region seems to belong to the Trust Zone. When Linux tries to access it, TZ bites and shuts the device down.
+> > >
+> >
+> > This is in line with what the documentation indicates and then it would
+> > be better to just bump &tz_mem to a size of 0x4900000.
+> 
+> Hi, so just to be sure that I got this right, you want me to extend
+> &tz_mem to the size of 0x4900000 from the default size of 0x2D00000 by
+> including this downstream &removed_region (of size 0x1A00000) +
+> previously unreserved downstream memory region (of size 0x200000), to
+> align with the starting address of &qseecom_mem?
 > 
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Yes
 
 Regards,
 Bjorn
 
-> Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/pm8150b.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
+> I just gave this &tz_mem change a spin and I do not see any obvious
+> regression in my limited smoke testing (Boots AOSP to UI with
+> v5.9-rc1. Touch/BT/WiFi works) so far, with 20+ out-of-tree patches.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/pm8150b.dtsi b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-> index e112e8876db6..053c659734a7 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-> @@ -53,6 +53,13 @@ power-on@800 {
->  			status = "disabled";
->  		};
->  
-> +		pm8150b_typec: typec@1500 {
-> +			compatible = "qcom,pm8150b-usb-typec";
-> +			status = "disabled";
-> +			reg = <0x1500>;
-> +			interrupts = <0x2 0x15 0x5 IRQ_TYPE_EDGE_RISING>;
-> +		};
-> +
->  		pm8150b_temp: temp-alarm@2400 {
->  			compatible = "qcom,spmi-temp-alarm";
->  			reg = <0x2400>;
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
+> Regards,
+> Amit Pundir
 > 
+> >
+> > Regards,
+> > Bjorn
