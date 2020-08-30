@@ -2,112 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EBD49257067
-	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 22:12:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D522B25706A
+	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 22:15:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726178AbgH3UMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 16:12:08 -0400
-Received: from mout.kundenserver.de ([212.227.126.133]:47951 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726150AbgH3UMH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 16:12:07 -0400
-Received: from buildfff.adridolf.com ([188.192.134.246]) by
- mrelayeu.kundenserver.de (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis)
- id 1MCKO2-1kLrcE1XNK-009NWS; Sun, 30 Aug 2020 22:11:56 +0200
-From:   Adrian Schmutzler <freifunk@adrianschmutzler.de>
-To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH] arm64: dts: rockchip: replace status value "ok" by "okay"
-Date:   Sun, 30 Aug 2020 22:11:12 +0200
-Message-Id: <20200830201112.1934-1-freifunk@adrianschmutzler.de>
-X-Mailer: git-send-email 2.20.1
+        id S1726178AbgH3UPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 16:15:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45758 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726150AbgH3UPu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 16:15:50 -0400
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3319C061573;
+        Sun, 30 Aug 2020 13:15:50 -0700 (PDT)
+Received: by mail-pg1-x543.google.com with SMTP id h12so3135692pgm.7;
+        Sun, 30 Aug 2020 13:15:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uN5su8o3xsbvCOgWhY0UzbAHV++yuovb1ibI32bJbhI=;
+        b=OZ9vgJDoErBur4ViHs9sOePZI0qBL1x/3N3seJxZCGqlZ5QLwQEnSxLHF6YqDlqW8I
+         xBGjqJ5vgak4670DiMXxxSMs3fXMkJjj3e4AXuATL6IuYmV7stn2FnHMPnm7QDiYn2Ym
+         nB/6dMf5bxF+F8cbX1TnzCGQjXskNhK9Ix81MfyJ3+spsZGrIFyFa8RtfIRf2//H1H/S
+         8Dhj7Mqb3ENy013DktbfTp4Zx9Dvdfxk8SE8P4NDtQcs34YnSQT/sm1+7057Cgg15O4E
+         aq7CcSs0bI12REcNIxB4jHVw/J6vfKbsZQ1U7MKMCk3/pdm1sxRguZSdsBaw/ykCYqrb
+         O83g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uN5su8o3xsbvCOgWhY0UzbAHV++yuovb1ibI32bJbhI=;
+        b=ZxvSaFoVO69gqMuKhmKaGUDKTk/X/27KmKpbVc5DCCTCVJLaGxaUAmHFmm5zLA/pNQ
+         uS6rYsVSVs4NvH0u8NKtIioRj04mno+6L+XxlSNdLK0J/iNyZd+fmNY3vd4be3NRTmge
+         ccozeS3+V0TiKuvFN011RI0hRzpS7dhSKyV3m07JhlKa1dZJ2a50Sc6BKbYtuFP62z+w
+         6yncxOmCDh+9SoeNan5Q7sj2txXyyfcakdt1Pzi4Fct+C/Rw2xqVglHJlpWFMxXMYUk5
+         zWIRlzY2TwK3twHLekbL2iuxg1NWcspjXPIJxmcFq1tra3Hq+o3kIFzcKYBUnG1NIowL
+         SQ9A==
+X-Gm-Message-State: AOAM532pQblrG8TjXoIE/yOusGSVSRv7j7Z3WYbfcMM9VDh6GMnOvw8U
+        /8ooHxzosnwAWRzCh38hlTI8KLmQAy3hugKhl0k=
+X-Google-Smtp-Source: ABdhPJynKyxo87BjNt2aLZoSW+tfeQGcmaaGm3ORU9EpaNo+zbAim0QhxmamgpjDqx+iuGg2e2oMSOBwfB8/OBNleg8=
+X-Received: by 2002:a63:c543:: with SMTP id g3mr6051803pgd.203.1598818548769;
+ Sun, 30 Aug 2020 13:15:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:uf6YlynqW3NquFxGS1zExJAHcdSff5eY3WC+TNDcjw1QG0P+tt1
- ZsOUv3XQdQadCyBQoa8Zjlk36Tx5/81+F2htn460uZyc5sgkMZWFs8vp+znZcyz1Ol7xzwI
- JEjKZ1KkxEShlBiUQOWFWlgIA5SwffcHUz87cFUP4pey+joZFpG/v6jgdJg1QyqXUx+vAPK
- w7tUj5YDm1tUNPPuQJeMA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:iJ9lBfz7u5Q=:3xEeAracVWTLwrvg4wITTS
- ZLrcgNzvdAXiPV+6QPLzjMOTzoUp91U4xyQIcM1Gcj3JmgGO8W9ZuMQbdSb+5GzwABMRUxqte
- lDsM6VcMfR+e3oO7Kz+g8ozTyouerhs6TeB29wjiar9UHlMFiUTV9YaAw/aTHkqu4Jqxr46M9
- FZiAuhA/oTp5eCvDAciMgqMyKl+hNzt9Ysww5YQOix5nufe7WUN1yUj9/5r7uzjC/VeyKNk0Y
- kewlTtk/aLx7XtGVhxQv9XyGCeEeuTqKBkW0Qhnn1Mw16jUc2HYLrsQ3YoQpyqXCSfyy+RdiJ
- b6WL1OSzWthkmRzbV6Y8Td1LbF1Fxd6SGinhxJTWuVecpbru8CQ1orEF4FjphhEnFUUGjcmZm
- MCIGEoR4E21jPYbDGttk+wzKY17wcixqzQWIgmDrNNmqHk2R1KsavyItRcGIHKH6f0RATR4Nr
- O/qPw8230fF+gnK1jytJlmJN4bdMqUu9PkF4DN8A1tEHqlywmrl7ojhTuS1RUbXn8+lIUVWro
- zUeAuX2b1xvltoL6OwpWSDWh9rpeugGR6R5ciR9vx7a0k15O2FwU8B3/PuDbOdyNL9f2dwoA/
- evFnSjG6DdOoXKAutnVMJtFxnmHh6vpdTzY2XVPyiH8BDDw7c9HXbrN+5hgCegApURylnUj75
- jIqfflNvAP5uBs7iOu/gAz4lS53Vdw8V6MVET8V4Os4fUEHEjXI0gCrQDjNpgUMwgVyS9c4YB
- nX1bA3MRBPYk7oBuIVyKmZYYtPC3oaoQ7JMqsr1tiAvKq0LE4pCwpC+q4t0q3zCqyf4F846Pm
- rjLRqbRYM3PyIKX6zSjb/fwI0uBdWoUsosSI2ZD3HBSv1RbxazEv7LaCas01BKUQE/cR5VqWn
- vUkZZxMNsFPBY6FHagzw==
+References: <20200828021939.2912798-1-andrew@lunn.ch> <20200828130034.GA2912863@lunn.ch>
+ <CAL_JsqK18GoqkNPePh1+jiEk0JoLH01yPr0dD0AkswXP1N+qzA@mail.gmail.com> <20200830152332.GE2966560@lunn.ch>
+In-Reply-To: <20200830152332.GE2966560@lunn.ch>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Sun, 30 Aug 2020 23:15:32 +0300
+Message-ID: <CAHp75Vd5WXdYPvrr=_CChCHGdWR1iJqxwnMVtgggHGJ6hnVd5Q@mail.gmail.com>
+Subject: Re: [PATCH] of: of_match_node: Make stub an inline function to avoid
+ W=1 warnings
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-While the DT parser recognizes "ok" as a valid value for the
-"status" property, it is actually mentioned nowhere. Use the
-proper value "okay" instead, as done in the majority of files
-already.
+On Sun, Aug 30, 2020 at 6:25 PM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> On Fri, Aug 28, 2020 at 05:09:52PM -0600, Rob Herring wrote:
+> > On Fri, Aug 28, 2020 at 7:00 AM Andrew Lunn <andrew@lunn.ch> wrote:
+> > >
+> > > On Fri, Aug 28, 2020 at 04:19:39AM +0200, Andrew Lunn wrote:
+> > > > When building without CONFIG_OF and W=1, errors are given about unused
+> > > > arrays of match data, because of_match_node is stubbed as a macro. The
+> > > > compile does not see it takes parameters when not astub, so it
+> > > > generates warnings about unused variables. Replace the stub with an
+> > > > inline function to avoid these false warnings.
+> > >
+> > > Hi Rob
+> > >
+> > > So 0-day shows some people have worked around this with #ifdef
+> > > CONFIG_OF around the match table.
+> > >
+> > > I checked the object code for the file i'm interested in.  The
+> > > optimiser has correctly throw away the match table and all code around
+> > > it with the inline stub.
+> > >
+> > > Which do you prefer? This patch and i remove the #ifdef, or the old
+> > > stub and if add #ifdef around the driver i'm getting warnings from?
+> >
+> > Use of_device_get_match_data instead of of_match_node.
+> >
+>
+> Hi Rob
+>
+> That does not work in the use case i'm interested in, which is giving
+> a W=1 warning. Take a look at the last example in
+> Documentation/devicetree/bindings/net/dsa/marvell.txt
+>
+> We have an Ethernet switch, using the compatible string
+> "marvell,mv88e6390". Embedded within the hardware, and within the same
+> driver, we have two MDIO busses. One is internal, for the PHYs
+> integrated into the switch, and one is external, of discrete PHY
+> connected to the switch. The external MDIO bus has its own compatible
+> string. However, there is no struct driver for it, the switch driver
+> is driving the MDIO bus. So of_device_get_match_data() will use the
+> wrong match table.
 
-Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
----
- arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi           | 2 +-
- arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dts | 2 +-
- arch/arm64/boot/dts/rockchip/rk3368-r88.dts            | 4 ++--
- 3 files changed, 4 insertions(+), 4 deletions(-)
+Looks like in that code you may use of_device_is_compatible().
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi b/arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi
-index 1c52f47c43a6..87fabc64cc39 100644
---- a/arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi
-@@ -134,7 +134,7 @@
- 	pinctrl-0 = <&rmii_pins>;
- 	tx_delay = <0x30>;
- 	rx_delay = <0x10>;
--	status = "ok";
-+	status = "okay";
- };
- 
- &i2c0 {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dts b/arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dts
-index b058ce999e3b..ecce16ecc9c3 100644
---- a/arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dts
-@@ -183,7 +183,7 @@
- 	snps,reset-delays-us = <0 10000 1000000>;
- 	tx_delay = <0x30>;
- 	rx_delay = <0x10>;
--	status = "ok";
-+	status = "okay";
- };
- 
- &i2c0 {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3368-r88.dts b/arch/arm64/boot/dts/rockchip/rk3368-r88.dts
-index 236ab0f1b206..2582fa4b90e2 100644
---- a/arch/arm64/boot/dts/rockchip/rk3368-r88.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3368-r88.dts
-@@ -167,7 +167,7 @@
- 	pinctrl-0 = <&rmii_pins>;
- 	tx_delay = <0x30>;
- 	rx_delay = <0x10>;
--	status = "ok";
-+	status = "okay";
- };
- 
- &i2c0 {
-@@ -198,7 +198,7 @@
- };
- 
- &io_domains {
--	status = "ok";
-+	status = "okay";
- 
- 	audio-supply = <&vcc_io>;
- 	gpio30-supply = <&vcc_io>;
 -- 
-2.20.1
-
+With Best Regards,
+Andy Shevchenko
