@@ -2,203 +2,1065 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87239256F6C
-	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 18:51:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E6E7256F83
+	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 19:32:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726105AbgH3Qsa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 12:48:30 -0400
-Received: from crapouillou.net ([89.234.176.41]:40920 "EHLO crapouillou.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726030AbgH3Qs2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 30 Aug 2020 12:48:28 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1598806105; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=dpiKqvqWt50oYWkDZ/C8i5w2dOneeK046AHbWiBzqtY=;
-        b=w07y+HIVSnOUB9g6Qd+qpuEjTYThdHnCaIpCek14hSmCiv/fOGBVLpZsMGg8v58/0MKLfu
-        CWCqlL8pRNSQDOD/z0qgvCrxfCCyxIY2CnVQ60EN1b6l5RF2JSfMNB/I9DhbQgm2EeZOdq
-        anVvItIYUIgBaV2nq/mEokPvYCtpGOc=
-Date:   Sun, 30 Aug 2020 18:48:12 +0200
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: =?UTF-8?B?562U5aSNOg==?= [PATCH v2 6/6] drm/panel: Add Ilitek
- ILI9341 DBI panel driver
-To:     =?UTF-8?b?5L2V5bCP6b6Z?= <Leon.He@unisoc.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Noralf Tronnes <noralf@tronnes.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, od@zcrc.me,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Message-Id: <COYVFQ.2IA7KFB6BF4C3@crapouillou.net>
-In-Reply-To: <edf38d68214247f486db3cc1f81ec404@shmbx04.spreadtrum.com>
-References: <20200822163250.63664-1-paul@crapouillou.net>
-        <20200822163250.63664-7-paul@crapouillou.net>
-        <edf38d68214247f486db3cc1f81ec404@shmbx04.spreadtrum.com>
+        id S1725825AbgH3Rc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 13:32:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48776 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725934AbgH3RcZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 13:32:25 -0400
+Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com [IPv6:2607:f8b0:4864:20::741])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D79FC061575
+        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 10:32:23 -0700 (PDT)
+Received: by mail-qk1-x741.google.com with SMTP id p4so4272503qkf.0
+        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 10:32:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=00JR9ukFetlDnryUhIxM1v6G61MzZP/r+pghfvV9++A=;
+        b=BGykhYTyPvB+uD7szX1YEBm6LQZLgg4diOk8Sv6QKeOx9WP+FCTpklmOLR0Ya+2/Wt
+         DMtK1c0OZ9uaOwIEAwQXY2o7InrfBSH4Ai5uaNxh+DnSbUAqnQth2gP+Rhw7FeeoM9kJ
+         ePnvBauh3KXQpebV0/VFHljmTeCGz+ZOusPPTbrDzyWsgsaBSNXEIYCWha3uR1Ptt2Qq
+         ZjoAZdokH8819jhhu9Uy5e9SvV/LqpnCBNduxDiFQEkb05zCsifrWl1fO7JUEQ/Xr7MH
+         HNxBzebid9AnG0M/sPXGS+qVfdAGBJ1AOcKlLdvloaQ/gzrhybhgxLgQQUPerinyySAw
+         huiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=00JR9ukFetlDnryUhIxM1v6G61MzZP/r+pghfvV9++A=;
+        b=PZG7QUS0C/DS6s94n3SCHQv6tarUgo4htoL4kFWWc1dFDr7FByVkOgdJHWTudbNTwY
+         IUXPxU7+iOmv3uzLoKK8WvqzslFWtuf+5U485BD8sSr/L8EmdThVr9KGLmshD89BqXHO
+         /F0x6xio6AoBLgbn6NXSNZAWzva2QXmvcWI8/7WXBqFD34SkDi7c593zGdU+jVoffDFX
+         aTsviXJ5MS4qaOgDdNC8wM2bEOtEyAJZzPpsPFAnpp5Vvf3LD2WkEPijnN3NDy8O2n9n
+         qfAGb6GVzZ5tbjWGjQKEb3kSodtpmVs0PbNwOjWaQRxm1phdXW+VX3j9G/xAp131IiKs
+         j1lA==
+X-Gm-Message-State: AOAM530rQMYO2OyS0RcuMKb0+UYvmLzDV69RGRMmq/PFfiXFnGJu3vyX
+        Kw/RJv/JlrNdKqIM/ysPDR2BmjB4Mt35hg==
+X-Google-Smtp-Source: ABdhPJxU+cKLj6LpEZnI2e1tgB94ZLJbV6TXFyIESt/We+KJUVvZok+vHtBg5KS9GJu+0mRr4Vl6aA==
+X-Received: by 2002:a37:96c5:: with SMTP id y188mr7423607qkd.412.1598808742342;
+        Sun, 30 Aug 2020 10:32:22 -0700 (PDT)
+Received: from uller (ec2-34-197-84-77.compute-1.amazonaws.com. [34.197.84.77])
+        by smtp.gmail.com with ESMTPSA id u41sm6847991qth.42.2020.08.30.10.32.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 30 Aug 2020 10:32:21 -0700 (PDT)
+Date:   Sun, 30 Aug 2020 17:32:19 +0000
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Adrian Schmutzler <freifunk@adrianschmutzler.de>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: replace status value "ok" by "okay"
+Message-ID: <20200830173219.GA483@uller>
+References: <20200817223214.62179-1-freifunk@adrianschmutzler.de>
+ <20200817223214.62179-2-freifunk@adrianschmutzler.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200817223214.62179-2-freifunk@adrianschmutzler.de>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Leon,
+On Mon 17 Aug 22:32 UTC 2020, Adrian Schmutzler wrote:
 
-Le dim. 30 ao=C3=BBt 2020 =C3=A0 16:36, =E4=BD=95=E5=B0=8F=E9=BE=99 (Leon H=
-e)=20
-<Leon.He@unisoc.com> a =C3=A9crit :
->>  +struct ili9341 {
->>  +       struct drm_panel panel;
->>  +       struct mipi_dsi_device *dsi;
->>  +       const struct ili9341_pdata *pdata;
->>  +
->>  +       struct gpio_desc        *reset_gpiod;
->>  +       u32 rotation;
->>  +};
->>  +
->=20
-> Hi Paul, you put the mipi_dsi_device inside the struct. I think it=20
-> maybe not
-> a good idea. That means the panel has a MIPI-DSI interface but it=20
-> doesn't
-> have actually.
->=20
->>  +static int ili9341_probe(struct mipi_dsi_device *dsi)
->>  +{
->>  +       struct device *dev =3D &dsi->dev;
->>  +       struct ili9341 *priv;
->>  +       int ret;
->>  +
->>  +       /* See comment for mipi_dbi_spi_init() */
->>  +       if (!dev->coherent_dma_mask) {
->>  +               ret =3D dma_coerce_mask_and_coherent(dev,=20
->> DMA_BIT_MASK(32));
->>  +               if (ret) {
->>  +                       dev_warn(dev, "Failed to set dma mask=20
->> %d\n", ret);
->>  +                       return ret;
->>  +               }
->>  +       }
->>  +
->>  +       priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
->>  +       if (!priv)
->>  +               return -ENOMEM;
->>  +
->>  +       mipi_dsi_set_drvdata(dsi, priv);
->>  +       priv->dsi =3D dsi;
->>  +
->>  +       device_property_read_u32(dev, "rotation", &priv->rotation);
->>  +
->>  +       priv->pdata =3D device_get_match_data(dev);
->>  +       if (!priv->pdata)
->>  +               return -EINVAL;
->>  +
->>  +       drm_panel_init(&priv->panel, dev, &ili9341_funcs,
->>  +                      DRM_MODE_CONNECTOR_DPI);
->>  +
->>  +       priv->reset_gpiod =3D devm_gpiod_get(dev, "reset",=20
->> GPIOD_OUT_HIGH);
->>  +       if (IS_ERR(priv->reset_gpiod)) {
->>  +               dev_err(dev, "Couldn't get our reset GPIO\n");
->>  +               return PTR_ERR(priv->reset_gpiod);
->>  +       }
->>  +
->>  +       ret =3D drm_panel_of_backlight(&priv->panel);
->>  +       if (ret < 0) {
->>  +               if (ret !=3D -EPROBE_DEFER)
->>  +                       dev_err(dev, "Failed to get backlight=20
->> handle\n");
->>  +               return ret;
->>  +       }
->>  +
->>  +       drm_panel_add(&priv->panel);
->>  +
->>  +       dsi->bus_type =3D priv->pdata->bus_type;
->>  +       dsi->lanes =3D priv->pdata->lanes;
->>  +       dsi->format =3D MIPI_DSI_FMT_RGB565;
->>  +
->>  +       ret =3D mipi_dsi_attach(dsi);
->>  +       if (ret) {
->>  +               dev_err(dev, "Failed to attach DSI panel\n");
->>  +               goto err_panel_remove;
->>  +       }
->>  +
->>  +       ret =3D mipi_dsi_maybe_register_tiny_driver(dsi);
->>  +       if (ret) {
->>  +               dev_err(dev, "Failed to init TinyDRM driver\n");
->>  +               goto err_mipi_dsi_detach;
->>  +       }
->>  +
->>  +       return 0;
->>  +
->>  +err_mipi_dsi_detach:
->>  +       mipi_dsi_detach(dsi);
->>  +err_panel_remove:
->>  +       drm_panel_remove(&priv->panel);
->>  +       return ret;
->>  +}
->>  +
->>  +static int ili9341_remove(struct mipi_dsi_device *dsi)
->>  +{
->>  +       struct ili9341 *priv =3D mipi_dsi_get_drvdata(dsi);
->>  +
->>  +       mipi_dsi_detach(dsi);
->>  +       drm_panel_remove(&priv->panel);
->>  +
->>  +       drm_panel_disable(&priv->panel);
->>  +       drm_panel_unprepare(&priv->panel);
->>  +
->>  +       return 0;
->>  +}
->>  +
->>  +static const struct ili9341_pdata yx240qv29_pdata =3D {
->>  +       .mode =3D { DRM_SIMPLE_MODE(240, 320, 37, 49) },
->>  +       .width_mm =3D 0, // TODO
->>  +       .height_mm =3D 0, // TODO
->>  +       .bus_type =3D MIPI_DCS_BUS_TYPE_DBI_SPI_C3,
->>  +       .lanes =3D 1,
->>  +};
->>  +
->>  +static const struct of_device_id ili9341_of_match[] =3D {
->>  +       { .compatible =3D "adafruit,yx240qv29", .data =3D=20
->> &yx240qv29_pdata },
->>  +       { }
->>  +};
->>  +MODULE_DEVICE_TABLE(of, ili9341_of_match);
->>  +
->>  +static struct mipi_dsi_driver ili9341_dsi_driver =3D {
->>  +       .probe          =3D ili9341_probe,
->>  +       .remove         =3D ili9341_remove,
->>  +       .driver =3D {
->>  +               .name           =3D "ili9341-dsi",
->>  +               .of_match_table =3D ili9341_of_match,
->>  +       },
->>  +};
->>  +module_mipi_dsi_driver(ili9341_dsi_driver);
->=20
-> Again, you treat this driver as a mipi dsi driver but for a MIPI-DBI=20
-> (I8080/SPI)
-> panel device. That will make developers confused.
->=20
-> Is it possible to just add a mipi_dbi_driver for I8080/SPI interface=20
-> panel?
-> Thanks!
+> While the DT parser recognizes "ok" as a valid value for the
+> "status" property, it is actually mentioned nowhere. Use the
+> proper value "okay" instead, as done in the majority of files
+> already.
+> 
+> Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
 
-Please read the cover letter, it explains why it's done this way. The=20
-whole point of this patchset is to merge DSI and DBI frameworks in a=20
-way that can be maintained.
+The content of this looks good Adrian.
 
-Cheers,
--Paul
+But you're lacking most maintainers among the recipients of these
+patches and I would expect if applied in the current form we will
+have merge issues as the patches travels towards Linus' tree.
 
+So please split it per vendor and ensure that the various maintainers
+are copied (use ./scripts/get_maintainer.pl)
 
+Thanks,
+Bjorn
+
+> ---
+>  .../boot/dts/amd/amd-overdrive-rev-b0.dts     | 22 ++++++------
+>  .../boot/dts/amd/amd-overdrive-rev-b1.dts     | 24 ++++++-------
+>  arch/arm64/boot/dts/amd/amd-overdrive.dts     | 14 ++++----
+>  arch/arm64/boot/dts/amd/husky.dts             | 20 +++++------
+>  arch/arm64/boot/dts/apm/apm-merlin.dts        | 16 ++++-----
+>  arch/arm64/boot/dts/apm/apm-mustang.dts       | 16 ++++-----
+>  arch/arm64/boot/dts/apm/apm-storm.dtsi        | 12 +++----
+>  .../dts/broadcom/stingray/bcm958742-base.dtsi |  2 +-
+>  .../boot/dts/hisilicon/hi3660-hikey960.dts    |  6 ++--
+>  .../boot/dts/hisilicon/hi3670-hikey970.dts    |  2 +-
+>  .../arm64/boot/dts/hisilicon/hi6220-hikey.dts | 18 +++++-----
+>  arch/arm64/boot/dts/hisilicon/hi6220.dtsi     |  2 +-
+>  arch/arm64/boot/dts/hisilicon/hip05-d02.dts   |  6 ++--
+>  arch/arm64/boot/dts/hisilicon/hip06-d03.dts   | 18 +++++-----
+>  arch/arm64/boot/dts/hisilicon/hip07-d05.dts   | 20 +++++------
+>  arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi     |  4 +--
+>  arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts  |  6 ++--
+>  arch/arm64/boot/dts/qcom/ipq8074-hk01.dts     | 34 +++++++++----------
+>  arch/arm64/boot/dts/qcom/qcs404-evb-4000.dts  |  2 +-
+>  arch/arm64/boot/dts/qcom/qcs404-evb.dtsi      | 12 +++----
+>  arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |  2 +-
+>  arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi  |  2 +-
+>  .../dts/rockchip/rk3368-orion-r68-meta.dts    |  2 +-
+>  arch/arm64/boot/dts/rockchip/rk3368-r88.dts   |  4 +--
+>  24 files changed, 133 insertions(+), 133 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amd/amd-overdrive-rev-b0.dts b/arch/arm64/boot/dts/amd/amd-overdrive-rev-b0.dts
+> index 8e341be9a399..a77f19ac63cd 100644
+> --- a/arch/arm64/boot/dts/amd/amd-overdrive-rev-b0.dts
+> +++ b/arch/arm64/boot/dts/amd/amd-overdrive-rev-b0.dts
+> @@ -25,7 +25,7 @@
+>  };
+>  
+>  &ccp0 {
+> -	status = "ok";
+> +	status = "okay";
+>  	amd,zlib-support = <1>;
+>  };
+>  
+> @@ -33,39 +33,39 @@
+>   * NOTE: In Rev.B, gpio0 is reserved.
+>   */
+>  &gpio1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &gpio2 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &gpio3 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &gpio4 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &i2c0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &i2c1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &pcie0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &spi0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &spi1 {
+> -	status = "ok";
+> +	status = "okay";
+>  	sdcard0: sdcard@0 {
+>  		compatible = "mmc-spi-slot";
+>  		reg = <0>;
+> @@ -80,7 +80,7 @@
+>  };
+>  
+>  &ipmi_kcs {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &smb0 {
+> diff --git a/arch/arm64/boot/dts/amd/amd-overdrive-rev-b1.dts b/arch/arm64/boot/dts/amd/amd-overdrive-rev-b1.dts
+> index 92cef05c6b74..09fc9c3ac60f 100644
+> --- a/arch/arm64/boot/dts/amd/amd-overdrive-rev-b1.dts
+> +++ b/arch/arm64/boot/dts/amd/amd-overdrive-rev-b1.dts
+> @@ -25,7 +25,7 @@
+>  };
+>  
+>  &ccp0 {
+> -	status = "ok";
+> +	status = "okay";
+>  	amd,zlib-support = <1>;
+>  };
+>  
+> @@ -33,43 +33,43 @@
+>   * NOTE: In Rev.B, gpio0 is reserved.
+>   */
+>  &gpio1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &gpio2 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &gpio3 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &gpio4 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &i2c0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &i2c1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &pcie0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &sata1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &spi0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &spi1 {
+> -	status = "ok";
+> +	status = "okay";
+>  	sdcard0: sdcard@0 {
+>  		compatible = "mmc-spi-slot";
+>  		reg = <0>;
+> @@ -84,7 +84,7 @@
+>  };
+>  
+>  &ipmi_kcs {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &smb0 {
+> diff --git a/arch/arm64/boot/dts/amd/amd-overdrive.dts b/arch/arm64/boot/dts/amd/amd-overdrive.dts
+> index 41b3a6c0993d..56f27c71a15b 100644
+> --- a/arch/arm64/boot/dts/amd/amd-overdrive.dts
+> +++ b/arch/arm64/boot/dts/amd/amd-overdrive.dts
+> @@ -19,31 +19,31 @@
+>  };
+>  
+>  &ccp0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &gpio0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &gpio1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &i2c0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &pcie0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &spi0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &spi1 {
+> -	status = "ok";
+> +	status = "okay";
+>  	sdcard0: sdcard@0 {
+>  		compatible = "mmc-spi-slot";
+>  		reg = <0>;
+> diff --git a/arch/arm64/boot/dts/amd/husky.dts b/arch/arm64/boot/dts/amd/husky.dts
+> index 7acde34772cb..f68c95fe0e90 100644
+> --- a/arch/arm64/boot/dts/amd/husky.dts
+> +++ b/arch/arm64/boot/dts/amd/husky.dts
+> @@ -25,7 +25,7 @@
+>  };
+>  
+>  &ccp0 {
+> -	status = "ok";
+> +	status = "okay";
+>  	amd,zlib-support = <1>;
+>  };
+>  
+> @@ -33,39 +33,39 @@
+>   * NOTE: In Rev.B, gpio0 is reserved.
+>   */
+>  &gpio1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &gpio2 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &gpio3 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &gpio4 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &i2c0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &i2c1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &pcie0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &spi0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &spi1 {
+> -	status = "ok";
+> +	status = "okay";
+>  	sdcard0: sdcard@0 {
+>  		compatible = "mmc-spi-slot";
+>  		reg = <0>;
+> diff --git a/arch/arm64/boot/dts/apm/apm-merlin.dts b/arch/arm64/boot/dts/apm/apm-merlin.dts
+> index 217d7728b63a..a538dd333f1a 100644
+> --- a/arch/arm64/boot/dts/apm/apm-merlin.dts
+> +++ b/arch/arm64/boot/dts/apm/apm-merlin.dts
+> @@ -45,38 +45,38 @@
+>  };
+>  
+>  &serial0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &sata1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &sata2 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &sata3 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &sgenet0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &xgenet1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &mmc0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &i2c4 {
+>  	rtc68: rtc@68 {
+>  		compatible = "dallas,ds1337";
+>  		reg = <0x68>;
+> -		status = "ok";
+> +		status = "okay";
+>  	};
+>  };
+>  
+> diff --git a/arch/arm64/boot/dts/apm/apm-mustang.dts b/arch/arm64/boot/dts/apm/apm-mustang.dts
+> index e927811ade28..f8d0f9926a4d 100644
+> --- a/arch/arm64/boot/dts/apm/apm-mustang.dts
+> +++ b/arch/arm64/boot/dts/apm/apm-mustang.dts
+> @@ -45,36 +45,36 @@
+>  };
+>  
+>  &pcie0clk {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &pcie0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &serial0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &menet {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &sgenet0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &sgenet1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &xgenet {
+> -	status = "ok";
+> +	status = "okay";
+>  	rxlos-gpios = <&sbgpio 12 1>;
+>  };
+>  
+>  &mmc0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &mdio {
+> diff --git a/arch/arm64/boot/dts/apm/apm-storm.dtsi b/arch/arm64/boot/dts/apm/apm-storm.dtsi
+> index 8c802d87e751..d8572f683367 100644
+> --- a/arch/arm64/boot/dts/apm/apm-storm.dtsi
+> +++ b/arch/arm64/boot/dts/apm/apm-storm.dtsi
+> @@ -270,7 +270,7 @@
+>  				reg = <0x0 0x1f22c000 0x0 0x1000>;
+>  				reg-names = "csr-reg";
+>  				clock-output-names = "sataphy2clk";
+> -				status = "ok";
+> +				status = "okay";
+>  				csr-offset = <0x4>;
+>  				csr-mask = <0x3a>;
+>  				enable-offset = <0x0>;
+> @@ -284,7 +284,7 @@
+>  				reg = <0x0 0x1f23c000 0x0 0x1000>;
+>  				reg-names = "csr-reg";
+>  				clock-output-names = "sataphy3clk";
+> -				status = "ok";
+> +				status = "okay";
+>  				csr-offset = <0x4>;
+>  				csr-mask = <0x3a>;
+>  				enable-offset = <0x0>;
+> @@ -864,7 +864,7 @@
+>  			reg = <0x0 0x1f22a000 0x0 0x100>;
+>  			#phy-cells = <1>;
+>  			clocks = <&sataphy2clk 0>;
+> -			status = "ok";
+> +			status = "okay";
+>  			apm,tx-boost-gain = <30 30 30 30 30 30>;
+>  			apm,tx-eye-tuning = <1 10 10 2 10 10>;
+>  		};
+> @@ -874,7 +874,7 @@
+>  			reg = <0x0 0x1f23a000 0x0 0x100>;
+>  			#phy-cells = <1>;
+>  			clocks = <&sataphy3clk 0>;
+> -			status = "ok";
+> +			status = "okay";
+>  			apm,tx-boost-gain = <31 31 31 31 31 31>;
+>  			apm,tx-eye-tuning = <2 10 10 2 10 10>;
+>  		};
+> @@ -903,7 +903,7 @@
+>  			      <0x0 0x1f227000 0x0 0x1000>;
+>  			interrupts = <0x0 0x87 0x4>;
+>  			dma-coherent;
+> -			status = "ok";
+> +			status = "okay";
+>  			clocks = <&sata23clk 0>;
+>  			phys = <&phy2 0>;
+>  			phy-names = "sata-phy";
+> @@ -917,7 +917,7 @@
+>  			      <0x0 0x1f23e000 0x0 0x1000>;
+>  			interrupts = <0x0 0x88 0x4>;
+>  			dma-coherent;
+> -			status = "ok";
+> +			status = "okay";
+>  			clocks = <&sata45clk 0>;
+>  			phys = <&phy3 0>;
+>  			phy-names = "sata-phy";
+> diff --git a/arch/arm64/boot/dts/broadcom/stingray/bcm958742-base.dtsi b/arch/arm64/boot/dts/broadcom/stingray/bcm958742-base.dtsi
+> index a9b92e52d50e..43aa5e9c0020 100644
+> --- a/arch/arm64/boot/dts/broadcom/stingray/bcm958742-base.dtsi
+> +++ b/arch/arm64/boot/dts/broadcom/stingray/bcm958742-base.dtsi
+> @@ -151,7 +151,7 @@
+>  };
+>  
+>  &nand {
+> -	status = "ok";
+> +	status = "okay";
+>  	nandcs@0 {
+>  		compatible = "brcm,nandcs";
+>  		reg = <0>;
+> diff --git a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
+> index c1b614dabb8e..963300eede17 100644
+> --- a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
+> +++ b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
+> @@ -530,7 +530,7 @@
+>  	rt1711h: rt1711h@4e {
+>  		compatible = "richtek,rt1711h";
+>  		reg = <0x4e>;
+> -		status = "ok";
+> +		status = "okay";
+>  		interrupt-parent = <&gpio27>;
+>  		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+>  		pinctrl-names = "default";
+> @@ -570,7 +570,7 @@
+>  	};
+>  
+>  	adv7533: adv7533@39 {
+> -		status = "ok";
+> +		status = "okay";
+>  		compatible = "adi,adv7533";
+>  		reg = <0x39>;
+>  		adi,dsi-lanes = <4>;
+> @@ -656,7 +656,7 @@
+>  		     &sdio_cfg_func>;
+>  	/* WL_EN */
+>  	vmmc-supply = <&wlan_en>;
+> -	status = "ok";
+> +	status = "okay";
+>  
+>  	wlcore: wlcore@2 {
+>  		compatible = "ti,wl1837";
+> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
+> index 7dac33d4fd5c..7f9f9886c349 100644
+> --- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
+> +++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
+> @@ -418,7 +418,7 @@
+>  		     &sdio_cfg_func>;
+>  	/* WL_EN */
+>  	vmmc-supply = <&wlan_en>;
+> -	status = "ok";
+> +	status = "okay";
+>  
+>  	wlcore: wlcore@2 {
+>  		compatible = "ti,wl1837";
+> diff --git a/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts b/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
+> index 533ed523888d..91d08673c02e 100644
+> --- a/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
+> +++ b/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
+> @@ -267,7 +267,7 @@
+>  &uart1 {
+>  	assigned-clocks = <&sys_ctrl HI6220_UART1_SRC>;
+>  	assigned-clock-rates = <150000000>;
+> -	status = "ok";
+> +	status = "okay";
+>  
+>  	bluetooth {
+>  		compatible = "ti,wl1835-st";
+> @@ -278,21 +278,21 @@
+>  };
+>  
+>  &uart2 {
+> -	status = "ok";
+> +	status = "okay";
+>  	label = "LS-UART0";
+>  };
+>  
+>  &uart3 {
+> -	status = "ok";
+> +	status = "okay";
+>  	label = "LS-UART1";
+>  };
+>  
+>  &ade {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &dsi {
+> -	status = "ok";
+> +	status = "okay";
+>  
+>  	ports {
+>  		/* 1 for output port */
+> @@ -489,17 +489,17 @@
+>  
+>  
+>  &i2c0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &i2c1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &i2c2 {
+>  	#address-cells = <1>;
+>  	#size-cells = <0>;
+> -	status = "ok";
+> +	status = "okay";
+>  
+>  	adv7533: adv7533@39 {
+>  		compatible = "adi,adv7533";
+> @@ -541,5 +541,5 @@
+>  };
+>  
+>  &spi0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+> diff --git a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+> index 3d189d9f0d24..3bab4bc6ff99 100644
+> --- a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+> +++ b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+> @@ -371,7 +371,7 @@
+>  			clocks = <&sys_ctrl HI6220_EDMAC_ACLK>;
+>  			dma-no-cci;
+>  			dma-type = "hi6220_dma";
+> -			status = "ok";
+> +			status = "okay";
+>  		};
+>  
+>  		dual_timer0: timer@f8008000 {
+> diff --git a/arch/arm64/boot/dts/hisilicon/hip05-d02.dts b/arch/arm64/boot/dts/hisilicon/hip05-d02.dts
+> index e93c65ede06c..369b69b17b91 100644
+> --- a/arch/arm64/boot/dts/hisilicon/hip05-d02.dts
+> +++ b/arch/arm64/boot/dts/hisilicon/hip05-d02.dts
+> @@ -42,15 +42,15 @@
+>  };
+>  
+>  &uart0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &peri_gpio0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &lbc {
+> -	status = "ok";
+> +	status = "okay";
+>  	#address-cells = <2>;
+>  	#size-cells = <1>;
+>  	ranges = <0 0 0x0 0x90000000 0x08000000>,
+> diff --git a/arch/arm64/boot/dts/hisilicon/hip06-d03.dts b/arch/arm64/boot/dts/hisilicon/hip06-d03.dts
+> index 677862beebef..9f4a930e734d 100644
+> --- a/arch/arm64/boot/dts/hisilicon/hip06-d03.dts
+> +++ b/arch/arm64/boot/dts/hisilicon/hip06-d03.dts
+> @@ -22,37 +22,37 @@
+>  };
+>  
+>  &ipmi0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &uart0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &eth0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &eth1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &eth2 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &eth3 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &sas1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &usb_ohci {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &usb_ehci {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+> diff --git a/arch/arm64/boot/dts/hisilicon/hip07-d05.dts b/arch/arm64/boot/dts/hisilicon/hip07-d05.dts
+> index fcbdffe0868b..81a2312c8a26 100644
+> --- a/arch/arm64/boot/dts/hisilicon/hip07-d05.dts
+> +++ b/arch/arm64/boot/dts/hisilicon/hip07-d05.dts
+> @@ -50,41 +50,41 @@
+>  };
+>  
+>  &uart0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &ipmi0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &usb_ohci {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &usb_ehci {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &eth0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &eth1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &eth2 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &eth3 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &sas1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &p0_pcie2_a {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+> diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+> index 194343510dcb..8665d3464e9b 100644
+> --- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+> @@ -585,7 +585,7 @@
+>  };
+>  
+>  &camss {
+> -	status = "ok";
+> +	status = "okay";
+>  	ports {
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+> @@ -602,7 +602,7 @@
+>  };
+>  
+>  &cci {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &cci_i2c0 {
+> diff --git a/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts b/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
+> index b31117a93995..e8eaa958c199 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
+> @@ -26,18 +26,18 @@
+>  &blsp1_uart3 {
+>  	pinctrl-0 = <&serial_3_pins>;
+>  	pinctrl-names = "default";
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &i2c_1 {
+>  	pinctrl-0 = <&i2c_1_pins>;
+>  	pinctrl-names = "default";
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &spi_0 {
+>  	cs-select = <0>;
+> -	status = "ok";
+> +	status = "okay";
+>  
+>  	m25p80@0 {
+>  		#address-cells = <1>;
+> diff --git a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
+> index f4a76162ab5f..e8c37a1693d3 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
+> @@ -27,11 +27,11 @@
+>  };
+>  
+>  &blsp1_i2c2 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &blsp1_spi1 {
+> -	status = "ok";
+> +	status = "okay";
+>  
+>  	m25p80@0 {
+>  		#address-cells = <1>;
+> @@ -43,37 +43,37 @@
+>  };
+>  
+>  &blsp1_uart3 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &blsp1_uart5 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &pcie0 {
+> -	status = "ok";
+> +	status = "okay";
+>  	perst-gpio = <&tlmm 61 0x1>;
+>  };
+>  
+>  &pcie1 {
+> -	status = "ok";
+> +	status = "okay";
+>  	perst-gpio = <&tlmm 58 0x1>;
+>  };
+>  
+>  &pcie_phy0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &pcie_phy1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &qpic_bam {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &qpic_nand {
+> -	status = "ok";
+> +	status = "okay";
+>  
+>  	nand@0 {
+>  		reg = <0>;
+> @@ -84,29 +84,29 @@
+>  };
+>  
+>  &sdhc_1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &qusb_phy_0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &qusb_phy_1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &ssphy_0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &ssphy_1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &usb_0 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &usb_1 {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+> diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb-4000.dts b/arch/arm64/boot/dts/qcom/qcs404-evb-4000.dts
+> index 479ad3ac6c28..08d5d51221cf 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs404-evb-4000.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs404-evb-4000.dts
+> @@ -13,7 +13,7 @@
+>  };
+>  
+>  &ethernet {
+> -	status = "ok";
+> +	status = "okay";
+>  
+>  	snps,reset-gpio = <&tlmm 60 GPIO_ACTIVE_LOW>;
+>  	snps,reset-active-low;
+> diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+> index 6422cf9d5855..a80c578484ba 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+> @@ -97,7 +97,7 @@
+>  };
+>  
+>  &pcie {
+> -	status = "ok";
+> +	status = "okay";
+>  
+>  	perst-gpio = <&tlmm 43 GPIO_ACTIVE_LOW>;
+>  
+> @@ -106,22 +106,22 @@
+>  };
+>  
+>  &pcie_phy {
+> -	status = "ok";
+> +	status = "okay";
+>  
+>  	vdda-vp-supply = <&vreg_l3_1p05>;
+>  	vdda-vph-supply = <&vreg_l5_1p8>;
+>  };
+>  
+>  &remoteproc_adsp {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &remoteproc_cdsp {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &remoteproc_wcss {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &rpm_requests {
+> @@ -215,7 +215,7 @@
+>  };
+>  
+>  &sdcc1 {
+> -	status = "ok";
+> +	status = "okay";
+>  
+>  	supports-cqe;
+>  	mmc-ddr-1_8v;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> index a2a98680ccf5..8443451ac8cd 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> @@ -1103,7 +1103,7 @@
+>  };
+>  
+>  &cci {
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &cci_i2c0 {
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi b/arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi
+> index 1c52f47c43a6..87fabc64cc39 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi
+> @@ -134,7 +134,7 @@
+>  	pinctrl-0 = <&rmii_pins>;
+>  	tx_delay = <0x30>;
+>  	rx_delay = <0x10>;
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &i2c0 {
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dts b/arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dts
+> index b058ce999e3b..ecce16ecc9c3 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dts
+> @@ -183,7 +183,7 @@
+>  	snps,reset-delays-us = <0 10000 1000000>;
+>  	tx_delay = <0x30>;
+>  	rx_delay = <0x10>;
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &i2c0 {
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3368-r88.dts b/arch/arm64/boot/dts/rockchip/rk3368-r88.dts
+> index 236ab0f1b206..2582fa4b90e2 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3368-r88.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3368-r88.dts
+> @@ -167,7 +167,7 @@
+>  	pinctrl-0 = <&rmii_pins>;
+>  	tx_delay = <0x30>;
+>  	rx_delay = <0x10>;
+> -	status = "ok";
+> +	status = "okay";
+>  };
+>  
+>  &i2c0 {
+> @@ -198,7 +198,7 @@
+>  };
+>  
+>  &io_domains {
+> -	status = "ok";
+> +	status = "okay";
+>  
+>  	audio-supply = <&vcc_io>;
+>  	gpio30-supply = <&vcc_io>;
+> -- 
+> 2.20.1
+> 
