@@ -2,83 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C234256ED8
-	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 17:00:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E960256EFF
+	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 17:23:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726579AbgH3PAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 11:00:21 -0400
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:33295 "EHLO
-        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726264AbgH3PAR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 11:00:17 -0400
-Received: by mail-ed1-f65.google.com with SMTP id w14so3236466eds.0;
-        Sun, 30 Aug 2020 08:00:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=8f10Pn0g1AkB3s/S4iP1tBrGAB+OycQ7IuFHYDJH2OI=;
-        b=mAQr9ZNCXJhsxI1eg501IMDyK9GD3lKNsRU3ltIuwajAzKetInZ9glJHUh3FHly/Fw
-         UksQLRqMp8+EmJURMaWBRaAktClvDqtKyEL7ukDhvSzQj6YooEmGAbfj8MpEXfLb810P
-         QRkhuZYqF6p3DdLYD2NMT5xHEAKCbLtJ1RN6tINrNEIuZeb9nDsbbftcTa0s7NpqufCW
-         7gAE25z2Z6lkU3H4HRpzVtZiMzytsnklxXyTv8p8vYjkPB+UuY7+tMye3oj6+aHc1Azb
-         yq+3JTYN3Rvi05JcL5FMtSvLrj+RR1yswgDOhavKdCWS/WJPY9LVpduz1iHQ3lPFnn76
-         1Taw==
-X-Gm-Message-State: AOAM531EwCKMPirRxPcunAle46UkK2vYUGxtxxUDym53lnLN7ZJcUfv1
-        nA8z8WFRZOVVzsgxhCKZ6Ag=
-X-Google-Smtp-Source: ABdhPJwDIFgs7QFDh3dvTWrjd4AwOLqNbWFJ/ReTtIGnvRW8SBiMV+ERpeOi0oZ6qh6q2yyJtm2ATw==
-X-Received: by 2002:a50:a6d1:: with SMTP id f17mr7753345edc.379.1598799614832;
-        Sun, 30 Aug 2020 08:00:14 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.216])
-        by smtp.googlemail.com with ESMTPSA id cf7sm2637445edb.78.2020.08.30.08.00.12
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 30 Aug 2020 08:00:14 -0700 (PDT)
-Date:   Sun, 30 Aug 2020 17:00:11 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Barry Song <baohua@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-        Marc Gonzalez <marc.w.gonzalez@free.fr>,
-        Mans Rullgard <mans@mansr.com>, Jun Nie <jun.nie@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [RESEND PATCH 5/5] ARM: dts: zx: Align L2 cache-controller
- nodename with dtschema
-Message-ID: <20200830150011.GE31461@kozik-lap>
-References: <20200819175853.21492-1-krzk@kernel.org>
- <20200819175853.21492-5-krzk@kernel.org>
- <20200820093010.GA15884@kozik-lap>
+        id S1726067AbgH3PXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 11:23:36 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:60878 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725993AbgH3PXf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 30 Aug 2020 11:23:35 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1kCPB6-00CXF4-Sq; Sun, 30 Aug 2020 17:23:32 +0200
+Date:   Sun, 30 Aug 2020 17:23:32 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] of: of_match_node: Make stub an inline function to avoid
+ W=1 warnings
+Message-ID: <20200830152332.GE2966560@lunn.ch>
+References: <20200828021939.2912798-1-andrew@lunn.ch>
+ <20200828130034.GA2912863@lunn.ch>
+ <CAL_JsqK18GoqkNPePh1+jiEk0JoLH01yPr0dD0AkswXP1N+qzA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200820093010.GA15884@kozik-lap>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <CAL_JsqK18GoqkNPePh1+jiEk0JoLH01yPr0dD0AkswXP1N+qzA@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 20, 2020 at 11:30:10AM +0200, Krzysztof Kozlowski wrote:
-> On Wed, Aug 19, 2020 at 07:58:53PM +0200, Krzysztof Kozlowski wrote:
-> > Fix dtschema validator warnings like:
-> >     l2-cache-controller@c00000: $nodename:0:
-> >         'l2-cache-controller@c00000' does not match '^(cache-controller|cpu)(@[0-9a-f,]+)*$'
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+On Fri, Aug 28, 2020 at 05:09:52PM -0600, Rob Herring wrote:
+> On Fri, Aug 28, 2020 at 7:00 AM Andrew Lunn <andrew@lunn.ch> wrote:
+> >
+> > On Fri, Aug 28, 2020 at 04:19:39AM +0200, Andrew Lunn wrote:
+> > > When building without CONFIG_OF and W=1, errors are given about unused
+> > > arrays of match data, because of_match_node is stubbed as a macro. The
+> > > compile does not see it takes parameters when not astub, so it
+> > > generates warnings about unused variables. Replace the stub with an
+> > > inline function to avoid these false warnings.
+> >
+> > Hi Rob
+> >
+> > So 0-day shows some people have worked around this with #ifdef
+> > CONFIG_OF around the match table.
+> >
+> > I checked the object code for the file i'm interested in.  The
+> > optimiser has correctly throw away the match table and all code around
+> > it with the inline stub.
+> >
+> > Which do you prefer? This patch and i remove the #ifdef, or the old
+> > stub and if add #ifdef around the driver i'm getting warnings from?
 > 
-> I forgot to add the tag from Jun provided on previous submission:
-> Reviewed-by: Jun Nie <jun.nie@linaro.org>
-> 
-> Best regards,
-> Krzysztof
+> Use of_device_get_match_data instead of of_match_node.
 > 
 
-Hi,
+Hi Rob
 
-Ping, any comments here? Can anyone pick it up?
+That does not work in the use case i'm interested in, which is giving
+a W=1 warning. Take a look at the last example in
+Documentation/devicetree/bindings/net/dsa/marvell.txt
 
-Best regards,
-Krzysztof
+We have an Ethernet switch, using the compatible string
+"marvell,mv88e6390". Embedded within the hardware, and within the same
+driver, we have two MDIO busses. One is internal, for the PHYs
+integrated into the switch, and one is external, of discrete PHY
+connected to the switch. The external MDIO bus has its own compatible
+string. However, there is no struct driver for it, the switch driver
+is driving the MDIO bus. So of_device_get_match_data() will use the
+wrong match table.
+
+      Andrew
+
+
+
