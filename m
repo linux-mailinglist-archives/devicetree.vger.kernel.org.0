@@ -2,143 +2,292 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82FA925705F
-	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 22:06:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DDE7257064
+	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 22:09:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726282AbgH3UGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 16:06:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44270 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726150AbgH3UGK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 16:06:10 -0400
-Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1A61C061573
-        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 13:06:10 -0700 (PDT)
-Received: by mail-il1-x143.google.com with SMTP id o16so4847450ilq.0
-        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 13:06:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3z5XdXsgvD+nH7zCf5Gwtyiq31V0gPdWkz0sp8uWVaY=;
-        b=tEcjKtkOLoWym+8QvlohWzXDduWWS4m9nWpY6QDnGvKIl4nyhUW04uniBLOhiW03nE
-         mDr+nT6OiupIb+cAADY3pPB8c+YSVYEKKjOUmcXwPKjItjACnr9NXVaWhiGQYta47Gs6
-         64bnHSXKfygzzTsmibzszE7oUPafm7j7zmJsd+0aIn1Z4wKW7lz2TCUuGHh35yF2IyHz
-         ONkQX/bRrAZma925jXwnTHVdr8ddC33RatYf6I5+PDke61vtNwO97b/GE0CBxhsPRh9W
-         Ll8iS0bNDuxm31j94TL7CaetooRq7v5BFZqAWrWpmyzREGjo7Nbek34igYMIeJRv/ZIf
-         7TMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3z5XdXsgvD+nH7zCf5Gwtyiq31V0gPdWkz0sp8uWVaY=;
-        b=dESeg3im8Z11kbY6MEX/2wHW5+sSCn+6N8oRMqA23nMU1H3YLkP9PGYX6wlHT3TaFs
-         Jsedgs7QbQYLi5oX7P+CJnEo0KFbZfvDMYM13H1IRSAloxQZFNljiZQUjhj/Hajc/3Jx
-         /eSKwAbYZE+lmxckEvuyyKSOKYcmmMtQsqwiAH+e3L19GTx7T1OYM65fVMOqiyKlGLo0
-         7eZ/RCvY/iJ3TB0rXffL546JzqiW5OJ6Ptf6jnWLz9abZA91heNz09DuSOIJ0rngQXKP
-         z6g9lRVE4He+XFEz1If4ZO6MZ1FrC9z1kESg5sIpr4quq0mMocPwtAgYdY3QOQ21XuqL
-         NO2Q==
-X-Gm-Message-State: AOAM53379QLevjBTdhjC22/sk12d05CQ9d9IXvUpmnMK2gHGo1eb1cvF
-        fRy0pQwppAjRxxDfw2QgofyIHCWKpBjJyx4S0Rk=
-X-Google-Smtp-Source: ABdhPJy2xzukOmZ6jrpihqoZ6Lo/wS1efaLMrUJNQstm/cK3YHqa5tts6ZqEA3sNyC5n2UPVnXv+3lEim//csX/BZsQ=
-X-Received: by 2002:a92:d8cb:: with SMTP id l11mr6141767ilo.221.1598817970039;
- Sun, 30 Aug 2020 13:06:10 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200820121323.564-1-linux.amoon@gmail.com> <20200820121323.564-2-linux.amoon@gmail.com>
- <7hlfi9xgch.fsf@baylibre.com> <CANAwSgTZ23jFPAO46vRg1Dx_Bzi=4Bg6KHE0ozLQGky4p_fgKQ@mail.gmail.com>
- <CANAwSgQLnqDnuQvLv4cvaeTPeBW=H_g5F2aaNue_hb4nKLdovg@mail.gmail.com>
- <f7e6ce5f-02b0-065b-ffcf-2826159f926a@baylibre.com> <1j7dto3ylq.fsf@starbuckisacylon.baylibre.com>
- <CANAwSgQ1Miu73hfdK+cgL3howpekn2xj_5qwGasQZwtQpSGj5Q@mail.gmail.com>
- <1j4koq4x38.fsf@starbuckisacylon.baylibre.com> <CANAwSgTWnHXRFRUrbdCph+eBxL2PNXe6Q4aTXxEU32i7dGS=dw@mail.gmail.com>
- <CANAwSgQV7_4VdGRMgJDMjPFvOS3Nabkqbf2ucE5vqo6zrhxPDw@mail.gmail.com>
- <CAFBinCCEJJT_kfJ4qfTEz0R7Mo3ciCGDSw_MJYi_5PyNJA6x5w@mail.gmail.com>
- <CANAwSgRV8y3Cc72CtppfJMPFKDSfpddzAKLeBGExn8G4OBVJ6g@mail.gmail.com> <CAFBinCCpM=ea=zzormJ_m5RcsMtE6hUkq5-UkYpNpXK8fbXdAQ@mail.gmail.com>
-In-Reply-To: <CAFBinCCpM=ea=zzormJ_m5RcsMtE6hUkq5-UkYpNpXK8fbXdAQ@mail.gmail.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Mon, 31 Aug 2020 01:35:58 +0530
-Message-ID: <CANAwSgTf0jCPtfLP7bc1VxATdGbdSMR4DKjojJWtpqrwCeS27A@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] arm64: dts: meson-g12b-odroid-n2: Enable RTC
- controller node
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
+        id S1726178AbgH3UJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 16:09:36 -0400
+Received: from mout.kundenserver.de ([217.72.192.73]:47367 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726150AbgH3UJe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 16:09:34 -0400
+Received: from buildfff.adridolf.com ([188.192.134.246]) by
+ mrelayeu.kundenserver.de (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1Mw8gc-1kTB772Z1A-00s5Em; Sun, 30 Aug 2020 22:09:29 +0200
+From:   Adrian Schmutzler <freifunk@adrianschmutzler.de>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Christian Hewitt <christianshewitt@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: replace status value "ok" by "okay"
+Date:   Sun, 30 Aug 2020 22:08:45 +0200
+Message-Id: <20200830200845.1771-1-freifunk@adrianschmutzler.de>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:+tc2JPteRMO/gXsjFaKAfgwusfC5BheWA1niOsDAyiHjM51tUzF
+ du/oKvkXZWGH5EOYwnBSV3MqwK5IKdcCEusZn+kZMte2UNxLJKNqCPtVNzYob3p+eRpfG8d
+ 1Ah5qkE6gALNq2w5oQX3iKIpJEjS4pv337/bcC0WNrlne0MdT8iNzA8V/r6OMomjKTfOZDP
+ uMGNQ66KQeBTRKNygJHBg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:R9KLd9E+K1M=:mazZc6MF2D/Y42HxrXwgIT
+ 9vJuHrtLCit/BeohWwkEqrfrJNvN41krWKrZrNws4m2XQTJ2S2LyoB9LuVBmu8ZSg12FkvtT+
+ kXXO4n6hg3QnVpgUap8VjynemOkY4h8IRawgdMTp1WYgDzjxKE7xGiiwXsg0JDSTra7UZiYTy
+ HTRHI8Kntn39Wfo6kYsn6P3xf8ue8CqXZfkIipQf9YYsFJhVjRqiPtTR1t2JQJf+El6/lSKPc
+ PVyyAameed3gaqnxNiF9kvFNQqMwFmH9xmMSR1mKnhMdvqpnaPsnpkdf01wb6O9rmqkk1TUTu
+ dLBSfZKuGcizYGbR+VxAoghea0sihYBRQjTXBBHIvnQH34ll+A6oRX3eaAy9DerT8gml0hiwn
+ ojz0U5wSd9VUHytMSYGCWlMQCSaHdSZp8wRDXs9ZI5cflo+jiu2tFAtyKXSYt/ymXODxbgJ5v
+ 6nKk3UnKlpxpiIVP5H1h3iAzW1wODeEeTuvS6xWWxShhAFB4zFdjhRKMGACDQlgVUjMC3iFjg
+ eNmxvaobUb32+Lvq7TEbXGRjTB93m9oGWCGaFmZGwFdYgEgrw6EOcyuW7rEJT646z3pSJTs1d
+ wGQ03YZwjiiuptISV/tjKrxEIA38RXrLQwYOhYaGMRjKZF6CZNBUtN2wrFvO2brgIi8kf/5yQ
+ nhMYvvLez+pOYheX2bIZRdohBl8a1qpda1QkvGvrWaapvStd2SaeMyCenkfVyLJ7Y2cYPgI5I
+ faG6XTBBFAsp0rv7kQGEeYGh7ARDH89Ylf+ziMx1qajJa+J82dGZrYIKN610tPt08pxjzQDMh
+ YEYv5kLmwym1d1gdx91y+dAXOi15Vjjw9NvctkownAhqnVLp+a8v2sBdC6ZRcjC3m/u4QkfhE
+ 26s3d1doxM7Zfz/wmbCg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin.
+While the DT parser recognizes "ok" as a valid value for the
+"status" property, it is actually mentioned nowhere. Use the
+proper value "okay" instead, as done in the majority of files
+already.
 
-On Sun, 30 Aug 2020 at 19:34, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hi Anand,
->
-> On Sun, Aug 30, 2020 at 3:12 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> [...]
-> > +       /* Make sure the rtc irq pin is properly configured as input */
-> > +       rtc_irq_pins: rtc-pin-irq {
-> > +               mux {
-> > +                       groups = "GPIOAO_7";
-> > +                       function = "gpio_periphs";
-> check meson_g12a_aobus_functions in drivers/pinctrl/meson/pinctrl-meson-g12a.c
-> GPIOAO_7 doesn't support "gpio_periphs", instead I think it should be
-> "gpio_aobus"
->
-Thanks for this information, I really learned a lot on this feature..
+Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
+---
+ arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi    |  4 +--
+ arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts |  6 ++--
+ arch/arm64/boot/dts/qcom/ipq8074-hk01.dts    | 34 ++++++++++----------
+ arch/arm64/boot/dts/qcom/qcs404-evb-4000.dts |  2 +-
+ arch/arm64/boot/dts/qcom/qcs404-evb.dtsi     | 12 +++----
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts   |  2 +-
+ 6 files changed, 30 insertions(+), 30 deletions(-)
 
-> I'm surprised that you don't seem to be getting errors from the pin
-> controller driver about this.
-> On the other hand you have not attached the full kernel log, so maybe
-> it's in there but hidden somewhere
->
-> > +                       bias-disable;
-> shouldn't there be output-disable or input-enable here?
->
-Thanks for this information and correction.
+diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+index 194343510dcb..8665d3464e9b 100644
+--- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
++++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+@@ -585,7 +585,7 @@
+ };
+ 
+ &camss {
+-	status = "ok";
++	status = "okay";
+ 	ports {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+@@ -602,7 +602,7 @@
+ };
+ 
+ &cci {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &cci_i2c0 {
+diff --git a/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts b/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
+index b31117a93995..e8eaa958c199 100644
+--- a/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
++++ b/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
+@@ -26,18 +26,18 @@
+ &blsp1_uart3 {
+ 	pinctrl-0 = <&serial_3_pins>;
+ 	pinctrl-names = "default";
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &i2c_1 {
+ 	pinctrl-0 = <&i2c_1_pins>;
+ 	pinctrl-names = "default";
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &spi_0 {
+ 	cs-select = <0>;
+-	status = "ok";
++	status = "okay";
+ 
+ 	m25p80@0 {
+ 		#address-cells = <1>;
+diff --git a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
+index f4a76162ab5f..e8c37a1693d3 100644
+--- a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
++++ b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
+@@ -27,11 +27,11 @@
+ };
+ 
+ &blsp1_i2c2 {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &blsp1_spi1 {
+-	status = "ok";
++	status = "okay";
+ 
+ 	m25p80@0 {
+ 		#address-cells = <1>;
+@@ -43,37 +43,37 @@
+ };
+ 
+ &blsp1_uart3 {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &blsp1_uart5 {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &pcie0 {
+-	status = "ok";
++	status = "okay";
+ 	perst-gpio = <&tlmm 61 0x1>;
+ };
+ 
+ &pcie1 {
+-	status = "ok";
++	status = "okay";
+ 	perst-gpio = <&tlmm 58 0x1>;
+ };
+ 
+ &pcie_phy0 {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &pcie_phy1 {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &qpic_bam {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &qpic_nand {
+-	status = "ok";
++	status = "okay";
+ 
+ 	nand@0 {
+ 		reg = <0>;
+@@ -84,29 +84,29 @@
+ };
+ 
+ &sdhc_1 {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &qusb_phy_0 {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &qusb_phy_1 {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &ssphy_0 {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &ssphy_1 {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &usb_0 {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &usb_1 {
+-	status = "ok";
++	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb-4000.dts b/arch/arm64/boot/dts/qcom/qcs404-evb-4000.dts
+index 479ad3ac6c28..08d5d51221cf 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404-evb-4000.dts
++++ b/arch/arm64/boot/dts/qcom/qcs404-evb-4000.dts
+@@ -13,7 +13,7 @@
+ };
+ 
+ &ethernet {
+-	status = "ok";
++	status = "okay";
+ 
+ 	snps,reset-gpio = <&tlmm 60 GPIO_ACTIVE_LOW>;
+ 	snps,reset-active-low;
+diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+index 6422cf9d5855..a80c578484ba 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+@@ -97,7 +97,7 @@
+ };
+ 
+ &pcie {
+-	status = "ok";
++	status = "okay";
+ 
+ 	perst-gpio = <&tlmm 43 GPIO_ACTIVE_LOW>;
+ 
+@@ -106,22 +106,22 @@
+ };
+ 
+ &pcie_phy {
+-	status = "ok";
++	status = "okay";
+ 
+ 	vdda-vp-supply = <&vreg_l3_1p05>;
+ 	vdda-vph-supply = <&vreg_l5_1p8>;
+ };
+ 
+ &remoteproc_adsp {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &remoteproc_cdsp {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &remoteproc_wcss {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &rpm_requests {
+@@ -215,7 +215,7 @@
+ };
+ 
+ &sdcc1 {
+-	status = "ok";
++	status = "okay";
+ 
+ 	supports-cqe;
+ 	mmc-ddr-1_8v;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index a2a98680ccf5..8443451ac8cd 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -1103,7 +1103,7 @@
+ };
+ 
+ &cci {
+-	status = "ok";
++	status = "okay";
+ };
+ 
+ &cci_i2c0 {
+-- 
+2.20.1
 
-> > +               };
-> > +       };
-> > +
-> >         hdmi-connector {
-> >                 compatible = "hdmi-connector";
-> >                 type = "a";
-> > @@ -481,7 +490,8 @@ hdmi_tx_tmds_out: endpoint {
-> >
-> >  &i2c3 {
-> >         pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-> > -       pinctrl-names = "default";
-> > +       pinctrl-1 = <&rtc_irq_pins>;
-> > +       pinctrl-names = "default", "gpio_periphs";
-> I am not expecting this to work because it means that the I2C driver
-> would have to manage the "gpio_periphs" pin state (but there's no
-> pinctrl_* call in drivers/i2c/busses/i2c-meson.c)
-> instead I would try:
-> &i2c3 {
->   pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>, <&rtc_irq_pins>;
->   pinctrl-names = "default";
->
->   ...
-> };
->
-> or even:
-> rtc0: rtc@51 {
->   pinctrl-0 = <&rtc_irq_pins>;
->   pinctrl-names = "default";
->
->   ...
-> };
->
-
-Thanks for the input on the IRC,
-I followed Neil's suggestion to work for me.
-
-Best regards,
--Anand
