@@ -2,162 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F67E2575DA
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 10:52:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F57A2575E8
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 10:58:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728266AbgHaIwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 04:52:14 -0400
-Received: from mail.skyhub.de ([5.9.137.197]:52078 "EHLO mail.skyhub.de"
+        id S1727979AbgHaI6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 04:58:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56340 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725978AbgHaIwN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 Aug 2020 04:52:13 -0400
-Received: from zn.tnic (p200300ec2f085000813a34d1eba5207f.dip0.t-ipconnect.de [IPv6:2003:ec:2f08:5000:813a:34d1:eba5:207f])
+        id S1726102AbgHaI6O (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 Aug 2020 04:58:14 -0400
+Received: from localhost (unknown [122.171.38.130])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id C27221EC02F2;
-        Mon, 31 Aug 2020 10:52:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1598863927;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=2FzP/LvkqUgFGgtj8Jdm6U/F975hJtQOcYmgKmxdTew=;
-        b=f6Bmje31otGkvraw5KTpsx4FRsRfwx8yvp2U8CfixJu6w2daX7PKI70wy6ktlQJakpMJGE
-        SvPG660bCO0X5LAxbQHfEbYbcui6cRng5yj3PCltWtTga0uSzRY1A0PeIF+S1pJdm3DA7r
-        zFeYYwTxuxv+SJat3BZg1DoX4Ct+aK8=
-Date:   Mon, 31 Aug 2020 10:52:03 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Yash Shah <yash.shah@sifive.com>
-Cc:     robh+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
-        mchehab@kernel.org, tony.luck@intel.com, aou@eecs.berkeley.edu,
-        james.morse@arm.com, rrichter@marvell.com,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org,
-        sachin.ghadi@sifive.com
-Subject: Re: [PATCH 3/3] edac: sifive: Add EDAC support for Memory Controller
- in SiFive SoCs
-Message-ID: <20200831085203.GB27517@zn.tnic>
-References: <1598357182-4226-1-git-send-email-yash.shah@sifive.com>
- <1598357182-4226-4-git-send-email-yash.shah@sifive.com>
+        by mail.kernel.org (Postfix) with ESMTPSA id D4A2F206F0;
+        Mon, 31 Aug 2020 08:58:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598864292;
+        bh=DtuiTyTPlbNpTA2byzKBYpsv3Gb5wq32dSg4ovUNU+4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=0dFj3J2LKxL4IKMiAgun2F2EsEzVjMpoVMd0xm6me12vdtgd2QhwGCw49ka9ICVno
+         j2CmTsxpqb5qoNJDOezZtnhYOxhm0UhZZrd6JisPoJtKjtnRsgFpBAhMhJ97cPaniw
+         PLbcIONjw9uo+eWjJ0+TBA13ymfNQTDDoTRM8MSg=
+Date:   Mon, 31 Aug 2020 14:28:08 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Lubomir Rintel <lkundrak@v3.sk>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [RESEND PATCH v3 3/3] phy: Add USB HSIC PHY driver for Marvell
+ MMP3 SoC
+Message-ID: <20200831085808.GH2639@vkoul-mobl>
+References: <20200817223400.403505-1-lkundrak@v3.sk>
+ <20200817223400.403505-4-lkundrak@v3.sk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1598357182-4226-4-git-send-email-yash.shah@sifive.com>
+In-Reply-To: <20200817223400.403505-4-lkundrak@v3.sk>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-> Subject: Re: [PATCH 3/3] edac: sifive: Add EDAC support for Memory Controller in SiFive SoCs
-
-Fix subject prefix: "EDAC/sifive: ..."
-
-On Tue, Aug 25, 2020 at 05:36:22PM +0530, Yash Shah wrote:
-> Add Memory controller EDAC support in exisiting SiFive platform EDAC
-
-s/in exisiting/to the/
-
-> driver. It registers for notifier events from the SiFive DDR controller
-> driver for DDR ECC events.
-
-Simplify:
-
-"It registers for ECC notifier events from the memory controller."
-
-> Signed-off-by: Yash Shah <yash.shah@sifive.com>
-> ---
->  drivers/edac/Kconfig       |   2 +-
->  drivers/edac/sifive_edac.c | 117 +++++++++++++++++++++++++++++++++++++++++++++
->  2 files changed, 118 insertions(+), 1 deletion(-)
+On 18-08-20, 00:34, Lubomir Rintel wrote:
+> Add PHY driver for the HSICs found on Marvell MMP3 SoC. The driver is
+> rather straightforward -- the PHY essentially just needs to be enabled.
 > 
-> diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
-> index 7b6ec30..f8b3b53 100644
-> --- a/drivers/edac/Kconfig
-> +++ b/drivers/edac/Kconfig
-> @@ -462,7 +462,7 @@ config EDAC_ALTERA_SDMMC
+> Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
+> 
+> ---
+> Changes since v1:
+> - Explicitely cast drvdata pointer to make sparse happy
+> 
+>  drivers/phy/marvell/Kconfig         | 12 +++++
+>  drivers/phy/marvell/Makefile        |  1 +
+>  drivers/phy/marvell/phy-mmp3-hsic.c | 82 +++++++++++++++++++++++++++++
+>  3 files changed, 95 insertions(+)
+>  create mode 100644 drivers/phy/marvell/phy-mmp3-hsic.c
+> 
+> diff --git a/drivers/phy/marvell/Kconfig b/drivers/phy/marvell/Kconfig
+> index 8f6273c837ec3..6c96f2bf52665 100644
+> --- a/drivers/phy/marvell/Kconfig
+> +++ b/drivers/phy/marvell/Kconfig
+> @@ -116,3 +116,15 @@ config PHY_MMP3_USB
+>  	  The PHY driver will be used by Marvell udc/ehci/otg driver.
 >  
->  config EDAC_SIFIVE
->  	bool "Sifive platform EDAC driver"
-> -	depends on EDAC=y && SIFIVE_L2
-> +	depends on EDAC=y && (SIFIVE_L2 || SIFIVE_DDR)
->  	help
->  	  Support for error detection and correction on the SiFive SoCs.
->  
-> diff --git a/drivers/edac/sifive_edac.c b/drivers/edac/sifive_edac.c
-> index 3a3dcb1..cf032685 100644
-> --- a/drivers/edac/sifive_edac.c
-> +++ b/drivers/edac/sifive_edac.c
-> @@ -11,14 +11,120 @@
->  #include <linux/platform_device.h>
->  #include "edac_module.h"
->  #include <soc/sifive/sifive_l2_cache.h>
-> +#include <soc/sifive/sifive_ddr.h>
->  
->  #define DRVNAME "sifive_edac"
-> +#define SIFIVE_EDAC_MOD_NAME "Sifive ECC Manager"
-
-s/SIFIVE_EDAC_MOD_NAME/EDAC_MOD_NAME/g
-
-like the other EDAC drivers.
-
-...
-
-> +static int ecc_mc_register(struct platform_device *pdev)
+>  	  To compile this driver as a module, choose M here.
+> +
+> +config PHY_MMP3_HSIC
+> +	tristate "Marvell MMP3 USB HSIC PHY Driver"
+> +	depends on MACH_MMP3_DT || COMPILE_TEST
+> +	select GENERIC_PHY
+> +	help
+> +	  Enable this to support Marvell MMP3 USB HSIC PHY driver for
+> +	  Marvell MMP3 SoC. This driver will be used my the Marvell EHCI
+> +	  driver to initialize the interface to internal USB HSIC
+> +	  components on MMP3-based boards.
+> +
+> +	  To compile this driver as a module, choose M here.
+> diff --git a/drivers/phy/marvell/Makefile b/drivers/phy/marvell/Makefile
+> index 5a106b1549f41..7f296ef028292 100644
+> --- a/drivers/phy/marvell/Makefile
+> +++ b/drivers/phy/marvell/Makefile
+> @@ -3,6 +3,7 @@ obj-$(CONFIG_ARMADA375_USBCLUSTER_PHY)	+= phy-armada375-usb2.o
+>  obj-$(CONFIG_PHY_BERLIN_SATA)		+= phy-berlin-sata.o
+>  obj-$(CONFIG_PHY_BERLIN_USB)		+= phy-berlin-usb.o
+>  obj-$(CONFIG_PHY_MMP3_USB)		+= phy-mmp3-usb.o
+> +obj-$(CONFIG_PHY_MMP3_HSIC)		+= phy-mmp3-hsic.o
+>  obj-$(CONFIG_PHY_MVEBU_A3700_COMPHY)	+= phy-mvebu-a3700-comphy.o
+>  obj-$(CONFIG_PHY_MVEBU_A3700_UTMI)	+= phy-mvebu-a3700-utmi.o
+>  obj-$(CONFIG_PHY_MVEBU_A38X_COMPHY)	+= phy-armada38x-comphy.o
+> diff --git a/drivers/phy/marvell/phy-mmp3-hsic.c b/drivers/phy/marvell/phy-mmp3-hsic.c
+> new file mode 100644
+> index 0000000000000..47c1e8894939f
+> --- /dev/null
+> +++ b/drivers/phy/marvell/phy-mmp3-hsic.c
+> @@ -0,0 +1,82 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (C) 2020 Lubomir Rintel <lkundrak@v3.sk>
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/platform_device.h>
+> +
+> +#define HSIC_CTRL	0x08
+> +#define HSIC_ENABLE	BIT(7)
+> +#define PLL_BYPASS	BIT(4)
+> +
+> +static int mmp3_hsic_phy_init(struct phy *phy)
 > +{
-> +	struct sifive_edac_mc_priv *p;
-> +	struct edac_mc_layer layers[1];
-> +	int ret;
+> +	void __iomem *base = (void __iomem *)phy_get_drvdata(phy);
+
+you are casting away from void * and casting to another void *,
+something doesn't look correct!
+
+> +	u32 hsic_ctrl;
 > +
-> +	p = devm_kzalloc(&pdev->dev, sizeof(*p), GFP_KERNEL);
-> +	if (!p)
-> +		return -ENOMEM;
+> +	hsic_ctrl = readl_relaxed(base + HSIC_CTRL);
+> +	hsic_ctrl |= HSIC_ENABLE;
+> +	hsic_ctrl |= PLL_BYPASS;
+> +	writel_relaxed(hsic_ctrl, base + HSIC_CTRL);
 > +
-> +	p->notifier.notifier_call = ecc_mc_err_event;
-> +	platform_set_drvdata(pdev, p);
+> +	return 0;
+> +}
 > +
-> +	layers[0].type = EDAC_MC_LAYER_CHIP_SELECT;
-> +	layers[0].size = 1;
-> +	layers[0].is_virt_csrow = true;
+> +static const struct phy_ops mmp3_hsic_phy_ops = {
+> +	.init		= mmp3_hsic_phy_init,
+> +	.owner		= THIS_MODULE,
+> +};
 > +
-> +	p->mci = edac_mc_alloc(0, ARRAY_SIZE(layers), layers, 0);
-> +	if (!p->mci) {
-> +		dev_err(&pdev->dev, "Failed mem allocation for mc instance\n");
-> +		return -ENOMEM;
+> +static const struct of_device_id mmp3_hsic_phy_of_match[] = {
+> +	{ .compatible = "marvell,mmp3-hsic-phy", },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, mmp3_hsic_phy_of_match);
+> +
+> +static int mmp3_hsic_phy_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct phy_provider *provider;
+> +	struct resource *resource;
+> +	void __iomem *base;
+> +	struct phy *phy;
+> +
+> +	resource = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	base = devm_ioremap_resource(dev, resource);
+> +	if (IS_ERR(base)) {
+> +		dev_err(dev, "failed to remap PHY regs\n");
+> +		return PTR_ERR(base);
 > +	}
 > +
-> +	p->mci->pdev = &pdev->dev;
-> +	/* Initialize controller capabilities */
-> +	p->mci->mtype_cap = MEM_FLAG_DDR4;
-> +	p->mci->edac_ctl_cap = EDAC_FLAG_NONE | EDAC_FLAG_SECDED;
-> +	p->mci->edac_cap = EDAC_FLAG_SECDED;
-> +	p->mci->scrub_cap = SCRUB_UNKNOWN;
-> +	p->mci->scrub_mode = SCRUB_HW_PROG;
-> +	p->mci->ctl_name = dev_name(&pdev->dev);
-> +	p->mci->dev_name = dev_name(&pdev->dev);
-> +	p->mci->mod_name = SIFIVE_EDAC_MOD_NAME;
-> +	p->mci->ctl_page_to_phys = NULL;
-> +
-> +	/* Interrupt feature is supported by cadence mc */
-> +	edac_op_state = EDAC_OPSTATE_INT;
-> +
-> +	ret = edac_mc_add_mc(p->mci);
-> +	if (ret) {
-> +		edac_printk(KERN_ERR, SIFIVE_EDAC_MOD_NAME,
-> +			    "Failed to register with EDAC core\n");
-> +		goto err;
+> +	phy = devm_phy_create(dev, NULL, &mmp3_hsic_phy_ops);
+> +	if (IS_ERR(phy)) {
+> +		dev_err(dev, "failed to create PHY\n");
+> +		return PTR_ERR(phy);
 > +	}
 > +
-> +#ifdef CONFIG_SIFIVE_DDR
+> +	phy_set_drvdata(phy, (void *)base);
 
-It seems all that ifdeffery can be replaced with
+again skip the cast
 
-	if (IS_ENABLED(CONFIG_...))
-
-Thx.
+> +	provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+> +	if (IS_ERR(provider)) {
+> +		dev_err(dev, "failed to register PHY provider\n");
+> +		return PTR_ERR(provider);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static struct platform_driver mmp3_hsic_phy_driver = {
+> +	.probe		= mmp3_hsic_phy_probe,
+> +	.driver		= {
+> +		.name	= "mmp3-hsic-phy",
+> +		.of_match_table = mmp3_hsic_phy_of_match,
+> +	},
+> +};
+> +module_platform_driver(mmp3_hsic_phy_driver);
+> +
+> +MODULE_AUTHOR("Lubomir Rintel <lkundrak@v3.sk>");
+> +MODULE_DESCRIPTION("Marvell MMP3 USB HSIC PHY Driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.26.2
 
 -- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+~Vinod
