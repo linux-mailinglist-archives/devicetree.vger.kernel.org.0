@@ -2,50 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3DC72570B4
-	for <lists+devicetree@lfdr.de>; Sun, 30 Aug 2020 23:29:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DE46257172
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 03:19:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726179AbgH3V3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 17:29:31 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:48554 "EHLO gloria.sntech.de"
+        id S1726454AbgHaBTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 21:19:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45406 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726178AbgH3V3b (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 30 Aug 2020 17:29:31 -0400
-Received: from p508fca7b.dip0.t-ipconnect.de ([80.143.202.123] helo=phil.fritz.box)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1kCUtB-0003Bx-V8; Sun, 30 Aug 2020 23:29:26 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Adrian Schmutzler <freifunk@adrianschmutzler.de>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH] arm64: dts: rockchip: replace status value "ok" by "okay"
-Date:   Sun, 30 Aug 2020 23:29:24 +0200
-Message-Id: <159882296016.30005.15088296328562827915.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200830201112.1934-1-freifunk@adrianschmutzler.de>
-References: <20200830201112.1934-1-freifunk@adrianschmutzler.de>
+        id S1726452AbgHaBTO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 30 Aug 2020 21:19:14 -0400
+Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 66E5F2076D;
+        Mon, 31 Aug 2020 01:19:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598836754;
+        bh=mgkYqqYUY/6gm3kecIYTT61uw6xviBxBd6zQOEXZCAM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GXNEbO+SnauOYu3JJOlhkAe3HD9/ab4KZUF0PKhs1z2rbVWpvjXn6bmcQkGQgCMro
+         cRY4/DUigBPD/m5bIGkMpap2xO0PLtqJDZDbl7GstMwkDEkOuzBKFkV4ji1ZbpDsHB
+         jovmN2oGap9fbOAWOzezTNuR4KstOSl97MprfXhI=
+Date:   Mon, 31 Aug 2020 09:19:07 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Joe Perches <joe@perches.com>
+Cc:     Martin Kepplinger <martin.kepplinger@puri.sm>, robh@kernel.org,
+        kernel@puri.sm, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, mchehab@kernel.org,
+        Anson.Huang@nxp.com, agx@sigxcpu.org, angus@akkea.ca,
+        broonie@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 2/3] MAINTAINERS: Add Purism Librem 5 section to the
+ list
+Message-ID: <20200831011906.GB4488@dragon>
+References: <20200821121755.24599-1-martin.kepplinger@puri.sm>
+ <20200821121755.24599-2-martin.kepplinger@puri.sm>
+ <20200830131459.GL32096@dragon>
+ <1d7c6ef2794bedca7e3164e5435f46864eacddfa.camel@perches.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1d7c6ef2794bedca7e3164e5435f46864eacddfa.camel@perches.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 30 Aug 2020 22:11:12 +0200, Adrian Schmutzler wrote:
-> While the DT parser recognizes "ok" as a valid value for the
-> "status" property, it is actually mentioned nowhere. Use the
-> proper value "okay" instead, as done in the majority of files
-> already.
+On Sun, Aug 30, 2020 at 08:32:01AM -0700, Joe Perches wrote:
+> On Sun, 2020-08-30 at 21:15 +0800, Shawn Guo wrote:
+> > On Fri, Aug 21, 2020 at 02:17:54PM +0200, Martin Kepplinger wrote:
+> > > Add development information for the devicetree files for hardware
+> > > by Purism SPC.
+> > > 
+> > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> > 
+> > I decided to drop this patch from my queue, as I took the suggestion
+> > from Joe and sent a patch to have get_maintainer report email address
+> > in the dts file.
+> 
+> It's OK to find maintainers in files, but what about the
+> B: bug reporting and T: source code repository location lines,
+> 
+> Those seem useful.
 
-Applied, thanks!
+Hmm, I doubt they are practically useful for just a number of dts files.
+They are more used for out-of-tree Librem5 kernel drivers, I guess.
 
-[1/1] arm64: dts: rockchip: replace status value "ok" by "okay"
-      commit: 9caff35d7eba8e15c996c694a282fd38b2ea345e
+Shawn
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+> 
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> []
+> > > @@ -14061,6 +14061,13 @@ T:	git git://linuxtv.org/media_tree.git
+> > >  F:	Documentation/admin-guide/media/pulse8-cec.rst
+> > >  F:	drivers/media/cec/usb/pulse8/
+> > >  
+> > > +PURISM LIBREM 5
+> > > +M:	Purism Kernel Team <kernel@puri.sm>
+> 
+> People feel like their mails go into a void when no
+> responses happen after sending to nameless addresses.
+> 
+> It's better to have a named individual as a maintainer
+> rather than an unspecified exploder address.
+> 
+> It's OK to have both, but just the exploder doesn't
+> really have that much value as it's faceless.
+> 
+> > > +S:	Supported
+> > > +B:	https://source.puri.sm/Librem5/linux-next/issues
+> > > +T:	https://source.puri.sm/Librem5/linux-next
+> 
+> This T: line should be something else.
+> 
+> Perhaps
+> W;	https://source.puri.sm/Librem5/linux-next
+> T:	git https://source.puri.sm/Librem5/linux-next.git
+> 
+> > > +F:	arch/arm64/boot/dts/freescale/imx8mq-librem5*
+> 
+> 
