@@ -2,159 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2E12257F3E
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 19:06:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 520C3257F59
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 19:12:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728531AbgHaRGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 13:06:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41942 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727044AbgHaRGU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 13:06:20 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0CBEC061573;
-        Mon, 31 Aug 2020 10:06:19 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id l23so6122515edv.11;
-        Mon, 31 Aug 2020 10:06:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=u4sKpJRBaQSUXgG3D6yX9pvNnzDpclOknSCxOcHgR7c=;
-        b=gYYSC4hYqEORnDcxwSsnSWRBf3ioYjiJ3xLqskImUlkf9jryYq5DWuPxdtFtHmGd6F
-         CH9GULdP3JJjBC5ZgWaPjCRqmoYgtokuZmvIWJmNjc6EjrX/3P7ox7YP/AHdjSbiSYKM
-         GbDrv/yHMJY6uLr0fowgqm8Mo7gm6Zo4+ouX1iyOd4RVB3NVDE71ow8qG3KiTOVqLUqa
-         btBlVX9TrYbFyz/+wQHEbtirDdi0/P1DqCeiI2ereAw48vXA/xS1UrpRGuo5c3/GDKEI
-         dgrpQAxQqUwfjXAjak4xjU0kGojxsz5jW89xd19ghRqYQquEW18TQAdzZWWOPYMssRME
-         w1Iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=u4sKpJRBaQSUXgG3D6yX9pvNnzDpclOknSCxOcHgR7c=;
-        b=Pe9qf7dc4XNYRUlQE+IXi9bO6+tix9LGPpuI6mDbbXjKkkZE3hbrOIkDWt87IYjagu
-         eAW4/0XaSsgUpi36R1zkm0Cdlve86y1J11b6gnqSsz2TED/O4R4OeRPjYLGI75jkgEix
-         ZHs7BZCsblgy4N+P+LR2X32dc1vQnX1vAMxxeNCk7n9Z5ckVIzqG5VvtErOp3+xDD2rS
-         H2AJ8EcUThcgA+kzu0GDIT8ZCyZCMB+jCgNYAQX15m7UcCzMXoczQigKgFZWX01oJZgp
-         FIvqeKrAwgG4RYDWXdTeM4NWMT9vqSrJMdt0tzvgNXGrkMhJoCFkhRBgoFWWc4Zc2H3H
-         sUww==
-X-Gm-Message-State: AOAM530Jq9ne0neowCDX2pNjcoy+0N8sbuNgAG3BaXO3b2lvX35YhQj9
-        4+HCnlBV7vxg8ox4GxJ1qpE=
-X-Google-Smtp-Source: ABdhPJydJI4mOY5eMb7W8MUzEfAXm3D6CazcHI5jOSApGYesoRPd1Pl94XA/SpLRu0LMoRSBHzmwWw==
-X-Received: by 2002:a50:fc04:: with SMTP id i4mr2063666edr.14.1598893578432;
-        Mon, 31 Aug 2020 10:06:18 -0700 (PDT)
-Received: from BV030612LT ([188.24.159.61])
-        by smtp.gmail.com with ESMTPSA id k6sm7238260ejr.104.2020.08.31.10.06.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Aug 2020 10:06:17 -0700 (PDT)
-Date:   Mon, 31 Aug 2020 20:06:15 +0300
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Peter Korsgaard <peter@korsgaard.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org
-Subject: Re: [PATCH v2 4/4] arm: dts: owl-s500: Add RoseapplePi
-Message-ID: <20200831170615.GB2551342@BV030612LT>
-References: <cover.1598621459.git.cristian.ciocaltea@gmail.com>
- <5a6fc55341b346439ba32b5a3e14087edbaa6226.1598621459.git.cristian.ciocaltea@gmail.com>
- <20200831092648.GD4154@mani>
+        id S1728419AbgHaRLl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 13:11:41 -0400
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:39217 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727044AbgHaRLk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 13:11:40 -0400
+X-Originating-IP: 90.66.108.79
+Received: from localhost (lfbn-lyo-1-1932-79.w90-66.abo.wanadoo.fr [90.66.108.79])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 814B560004;
+        Mon, 31 Aug 2020 17:11:37 +0000 (UTC)
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: [PATCH 0/5] ARM: dts: at91: fix dtbs_check warnings
+Date:   Mon, 31 Aug 2020 19:11:22 +0200
+Message-Id: <20200831171129.3886857-1-alexandre.belloni@bootlin.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200831092648.GD4154@mani>
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 31, 2020 at 02:56:48PM +0530, Manivannan Sadhasivam wrote:
-> On 0828, Cristian Ciocaltea wrote:
-> > Add a Device Tree for the RoseapplePi SBC.
-> > 
-> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-> > Reviewed-by: Peter Korsgaard <peter@korsgaard.com>
-> 
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Hi,
 
-Thanks,
-Cristi
+This series fixes some of the dtbs_check warnings. The remaining ones
+are mainly missing documentation or the documentation has not been
+converted to yaml.
 
-> Thanks,
-> Mani
-> 
-> > ---
-> >  arch/arm/boot/dts/Makefile                 |  1 +
-> >  arch/arm/boot/dts/owl-s500-roseapplepi.dts | 47 ++++++++++++++++++++++
-> >  2 files changed, 48 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/owl-s500-roseapplepi.dts
-> > 
-> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> > index 4572db3fa5ae..bff9ef996fbb 100644
-> > --- a/arch/arm/boot/dts/Makefile
-> > +++ b/arch/arm/boot/dts/Makefile
-> > @@ -868,6 +868,7 @@ dtb-$(CONFIG_ARCH_ORION5X) += \
-> >  dtb-$(CONFIG_ARCH_ACTIONS) += \
-> >  	owl-s500-cubieboard6.dtb \
-> >  	owl-s500-guitar-bb-rev-b.dtb \
-> > +	owl-s500-roseapplepi.dtb \
-> >  	owl-s500-sparky.dtb
-> >  dtb-$(CONFIG_ARCH_PRIMA2) += \
-> >  	prima2-evb.dtb
-> > diff --git a/arch/arm/boot/dts/owl-s500-roseapplepi.dts b/arch/arm/boot/dts/owl-s500-roseapplepi.dts
-> > new file mode 100644
-> > index 000000000000..a2087e617cb2
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/owl-s500-roseapplepi.dts
-> > @@ -0,0 +1,47 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Roseapple Pi
-> > + *
-> > + * Copyright (C) 2020 Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "owl-s500.dtsi"
-> > +
-> > +/ {
-> > +	compatible = "roseapplepi,roseapplepi", "actions,s500";
-> > +	model = "Roseapple Pi";
-> > +
-> > +	aliases {
-> > +		serial2 = &uart2;
-> > +	};
-> > +
-> > +	chosen {
-> > +		stdout-path = "serial2:115200n8";
-> > +	};
-> > +
-> > +	memory@0 {
-> > +		device_type = "memory";
-> > +		reg = <0x0 0x80000000>; /* 2GB */
-> > +	};
-> > +
-> > +	uart2_clk: uart2-clk {
-> > +		compatible = "fixed-clock";
-> > +		clock-frequency = <921600>;
-> > +		#clock-cells = <0>;
-> > +	};
-> > +};
-> > +
-> > +&twd_timer {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&timer {
-> > +	clocks = <&hosc>;
-> > +};
-> > +
-> > +&uart2 {
-> > +	status = "okay";
-> > +	clocks = <&uart2_clk>;
-> > +};
-> > -- 
-> > 2.28.0
-> > 
+Alexandre Belloni (5):
+  ARM: dts: at91: fix cpu node
+  ARM: dts: at91: fix sram nodes
+  ARM: dts: at91: move mmc pinctrl-names property to board dts
+  ARM: dts: at91: add unit-address to memory node
+  ARM: dts: at91: sama5d2: add missing flexcom spi node properties
+
+ arch/arm/boot/dts/animeo_ip.dts               |  3 ++-
+ arch/arm/boot/dts/at91-ariag25.dts            |  3 ++-
+ arch/arm/boot/dts/at91-ariettag25.dts         |  3 ++-
+ arch/arm/boot/dts/at91-cosino.dtsi            |  3 ++-
+ arch/arm/boot/dts/at91-cosino_mega2560.dts    |  1 +
+ arch/arm/boot/dts/at91-foxg20.dts             |  3 ++-
+ arch/arm/boot/dts/at91-kizbox.dts             |  2 +-
+ arch/arm/boot/dts/at91-kizbox2-common.dtsi    |  2 +-
+ arch/arm/boot/dts/at91-kizboxmini-common.dtsi |  2 +-
+ arch/arm/boot/dts/at91-linea.dtsi             |  2 +-
+ arch/arm/boot/dts/at91-qil_a9260.dts          |  3 ++-
+ arch/arm/boot/dts/at91-sam9_l9260.dts         |  3 ++-
+ arch/arm/boot/dts/at91-sama5d3_xplained.dts   |  2 +-
+ arch/arm/boot/dts/at91-sama5d4_ma5d4.dtsi     |  2 +-
+ arch/arm/boot/dts/at91-sama5d4_xplained.dts   |  2 +-
+ arch/arm/boot/dts/at91-sama5d4ek.dts          |  2 +-
+ arch/arm/boot/dts/at91-som60.dtsi             |  2 +-
+ arch/arm/boot/dts/at91-vinco.dts              |  2 +-
+ arch/arm/boot/dts/at91-wb45n.dtsi             |  3 ++-
+ arch/arm/boot/dts/at91-wb50n.dtsi             |  2 +-
+ arch/arm/boot/dts/at91rm9200.dtsi             | 11 +++++++----
+ arch/arm/boot/dts/at91rm9200ek.dts            |  2 +-
+ arch/arm/boot/dts/at91sam9260.dtsi            | 11 +++++++----
+ arch/arm/boot/dts/at91sam9260ek.dts           |  3 ++-
+ arch/arm/boot/dts/at91sam9261.dtsi            | 10 +++++++---
+ arch/arm/boot/dts/at91sam9261ek.dts           |  2 +-
+ arch/arm/boot/dts/at91sam9263.dtsi            | 15 ++++++++++-----
+ arch/arm/boot/dts/at91sam9263ek.dts           |  3 ++-
+ arch/arm/boot/dts/at91sam9g20.dtsi            |  5 ++++-
+ arch/arm/boot/dts/at91sam9g20ek_common.dtsi   |  3 ++-
+ arch/arm/boot/dts/at91sam9g45.dtsi            | 12 +++++++-----
+ arch/arm/boot/dts/at91sam9m10g45ek.dts        |  4 +++-
+ arch/arm/boot/dts/at91sam9n12.dtsi            | 10 +++++++---
+ arch/arm/boot/dts/at91sam9n12ek.dts           |  2 +-
+ arch/arm/boot/dts/at91sam9rl.dtsi             | 10 +++++++---
+ arch/arm/boot/dts/at91sam9rlek.dts            |  2 +-
+ arch/arm/boot/dts/at91sam9x5.dtsi             | 12 +++++++-----
+ arch/arm/boot/dts/at91sam9x5cm.dtsi           |  2 +-
+ arch/arm/boot/dts/at91sam9x5ek.dtsi           |  2 ++
+ arch/arm/boot/dts/at91sam9xe.dtsi             |  3 +++
+ arch/arm/boot/dts/ethernut5.dts               |  2 +-
+ arch/arm/boot/dts/mpa1600.dts                 |  2 +-
+ arch/arm/boot/dts/pm9g45.dts                  |  3 ++-
+ arch/arm/boot/dts/sam9x60.dtsi                | 10 +++++++---
+ arch/arm/boot/dts/sama5d2.dtsi                | 19 ++++++++++++++++++-
+ arch/arm/boot/dts/sama5d3.dtsi                |  8 +++++++-
+ arch/arm/boot/dts/sama5d3xcm.dtsi             |  2 +-
+ arch/arm/boot/dts/sama5d3xcm_cmp.dtsi         |  2 +-
+ arch/arm/boot/dts/sama5d4.dtsi                |  8 +++++++-
+ arch/arm/boot/dts/tny_a9260_common.dtsi       |  2 +-
+ arch/arm/boot/dts/tny_a9263.dts               |  2 +-
+ arch/arm/boot/dts/usb_a9260.dts               |  2 +-
+ arch/arm/boot/dts/usb_a9263.dts               |  2 +-
+ arch/arm/boot/dts/usb_a9g20_common.dtsi       |  2 +-
+ 54 files changed, 160 insertions(+), 77 deletions(-)
+
+-- 
+2.26.2
+
