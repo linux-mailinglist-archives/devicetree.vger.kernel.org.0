@@ -2,261 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F29272582B3
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 22:38:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA66A2582E8
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 22:40:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728915AbgHaUiq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 16:38:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47194 "EHLO
+        id S1727903AbgHaUkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 16:40:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728872AbgHaUio (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 16:38:44 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92E55C061573
-        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 13:38:44 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D6419277;
-        Mon, 31 Aug 2020 22:38:42 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1598906323;
-        bh=oDDV/UROROeX9EXENJv08hi0BXI+4vhTWVGFosE7BEI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UQ87pikt1v+OeY5xFm2UsbYNeUsdInn8EoXZ6cbfwnZDsRvHS8t+gN5xg2FDbbyFs
-         fbMVeX4l4VcvwtsbtIyV48KRovdsKSew/QZ+IcXLgQoiskbkXMF7Oe6qF7BTSVXFXR
-         1+DU4CKbLEU/NQGTfdjJTrg+Vln4AIVS6u8elK/M=
-Date:   Mon, 31 Aug 2020 23:38:21 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Chen-Yu Tsai <wens@csie.org>, dri-devel@lists.freedesktop.org,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/4] drm/sun4i: tcon: Refactor the LVDS and panel
- probing
-Message-ID: <20200831203821.GV16155@pendragon.ideasonboard.com>
-References: <cover.7029eefe5c5350920f91d4cd4cbc061466752f3c.1596101672.git-series.maxime@cerno.tech>
- <1df5a7bcafa091e008edb439ee9de4262ae4d5d1.1596101672.git-series.maxime@cerno.tech>
+        with ESMTP id S1726102AbgHaUkX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 16:40:23 -0400
+Received: from hillosipuli.retiisi.org.uk (hillosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::81:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1244C061573;
+        Mon, 31 Aug 2020 13:40:22 -0700 (PDT)
+Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 5F523634C87;
+        Mon, 31 Aug 2020 23:40:05 +0300 (EEST)
+Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
+        (envelope-from <sakari.ailus@retiisi.org.uk>)
+        id 1kCqaz-0000zO-9s; Mon, 31 Aug 2020 23:40:05 +0300
+Date:   Mon, 31 Aug 2020 23:40:05 +0300
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, hverkuil@xs4all.nl,
+        luca@lucaceresoli.net, leonl@leopardimaging.com,
+        robh+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/4] dt-bindings: media: imx274: Move clock and
+ supplies to required properties
+Message-ID: <20200831204005.GF844@valkosipuli.retiisi.org.uk>
+References: <1598903558-9691-1-git-send-email-skomatineni@nvidia.com>
+ <1598903558-9691-4-git-send-email-skomatineni@nvidia.com>
+ <20200831201757.GC844@valkosipuli.retiisi.org.uk>
+ <5c341ed9-6077-e935-de50-ff9f5f17edcf@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1df5a7bcafa091e008edb439ee9de4262ae4d5d1.1596101672.git-series.maxime@cerno.tech>
+In-Reply-To: <5c341ed9-6077-e935-de50-ff9f5f17edcf@nvidia.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
-
-Thank you for the patch.
-
-On Thu, Jul 30, 2020 at 11:35:02AM +0200, Maxime Ripard wrote:
-> The current code to parse the DT, deal with the older device trees, and
-> register either the RGB or LVDS output has so far grown organically into
-> the bind function and has become quite hard to extend properly.
+On Mon, Aug 31, 2020 at 01:37:21PM -0700, Sowjanya Komatineni wrote:
 > 
-> Let's move it into a single function that grabs all the resources it needs
-> and registers the proper panel output.
-> 
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> ---
->  drivers/gpu/drm/sun4i/sun4i_tcon.c | 139 +++++++++++++++---------------
->  1 file changed, 70 insertions(+), 69 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.c b/drivers/gpu/drm/sun4i/sun4i_tcon.c
-> index 2a5a9903c4c6..d03ad75f9900 100644
-> --- a/drivers/gpu/drm/sun4i/sun4i_tcon.c
-> +++ b/drivers/gpu/drm/sun4i/sun4i_tcon.c
-> @@ -875,6 +875,75 @@ static int sun4i_tcon_init_regmap(struct device *dev,
->  	return 0;
->  }
->  
-> +static int sun4i_tcon_register_panel(struct drm_device *drm,
-> +				     struct sun4i_tcon *tcon)
-> +{
-> +	struct device_node *companion;
-> +	struct device_node *remote;
-> +	struct device *dev = tcon->dev;
-> +	bool has_lvds_alt;
-> +	bool has_lvds_rst;
-> +	int ret;
-> +
-> +	/*
-> +	 * If we have an LVDS panel connected to the TCON, we should
-> +	 * just probe the LVDS connector. Otherwise, let's just register
-> +	 * an RGB panel.
-> +	 */
-> +	remote = of_graph_get_remote_node(dev->of_node, 1, 0);
-> +	if (!tcon->quirks->supports_lvds ||
-> +	    !of_device_is_compatible(remote, "panel-lvds"))
+> On 8/31/20 1:17 PM, Sakari Ailus wrote:
+> > Hi Sowjanya,
+> > 
+> > On Mon, Aug 31, 2020 at 12:52:37PM -0700, Sowjanya Komatineni wrote:
+> > > Clock and supplies are external to IMX274 sensor and are dependent
+> > > on camera module design.
+> > > 
+> > > So, this patch moves them to required properties.
+> > > 
+> > > Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> > > ---
+> > >   Documentation/devicetree/bindings/media/i2c/imx274.txt | 6 +++---
+> > >   1 file changed, 3 insertions(+), 3 deletions(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/media/i2c/imx274.txt b/Documentation/devicetree/bindings/media/i2c/imx274.txt
+> > > index d0a5c899..b43bed6 100644
+> > > --- a/Documentation/devicetree/bindings/media/i2c/imx274.txt
+> > > +++ b/Documentation/devicetree/bindings/media/i2c/imx274.txt
+> > > @@ -10,15 +10,15 @@ at 1440 Mbps.
+> > >   Required Properties:
+> > >   - compatible: value should be "sony,imx274" for imx274 sensor
+> > >   - reg: I2C bus address of the device
+> > > -
+> > > -Optional Properties:
+> > > -- reset-gpios: Sensor reset GPIO
+> > >   - clocks: Reference to the input clock.
+> > >   - clock-names: Should be "inck".
+> > >   - vana-supply: Sensor 2.8v analog supply.
+> > >   - vdig-supply: Sensor 1.8v digital core supply.
+> > >   - vddl-supply: Sensor digital IO 1.2v supply.
+> > If these have been optional in the past I don't think we can start
+> > requiring them now.
+> > 
+> > The framework will just give the driver a dummy regulator if one isn't
+> > found.
+> These were added recently with my patches. So I hope should be ok to make
+> them required as they are external to sensor
 
-This isn't very nice :-S Not a candidate for a fix in this patch, but
-something that should be addressed in the future. As Chen-Yu mentioned,
-there are LVDS panels supported by the panel-simple driver.
-
-> +		return sun4i_rgb_init(drm, tcon);
-> +
-> +	/*
-> +	 * This can only be made optional since we've had DT
-> +	 * nodes without the LVDS reset properties.
-> +	 *
-> +	 * If the property is missing, just disable LVDS, and
-> +	 * print a warning.
-> +	 */
-> +	tcon->lvds_rst = devm_reset_control_get_optional(dev, "lvds");
-> +	if (IS_ERR(tcon->lvds_rst)) {
-> +		dev_err(dev, "Couldn't get our reset line\n");
-> +		return PTR_ERR(tcon->lvds_rst);
-> +	} else if (tcon->lvds_rst) {
-> +		has_lvds_rst = true;
-> +		reset_control_reset(tcon->lvds_rst);
-> +	} else {
-> +		has_lvds_rst = false;
-> +	}
-> +
-> +	/*
-> +	 * This can only be made optional since we've had DT
-> +	 * nodes without the LVDS reset properties.
-
-Shouldn't this mention clock, not reset ?
-
-> +	 *
-> +	 * If the property is missing, just disable LVDS, and
-> +	 * print a warning.
-> +	 */
-> +	if (tcon->quirks->has_lvds_alt) {
-> +		tcon->lvds_pll = devm_clk_get(dev, "lvds-alt");
-> +		if (IS_ERR(tcon->lvds_pll)) {
-> +			if (PTR_ERR(tcon->lvds_pll) == -ENOENT) {
-> +				has_lvds_alt = false;
-> +			} else {
-> +				dev_err(dev, "Couldn't get the LVDS PLL\n");
-> +				return PTR_ERR(tcon->lvds_pll);
-> +			}
-> +		} else {
-> +			has_lvds_alt = true;
-> +		}
-> +	}
-> +
-> +	if (!has_lvds_rst ||
-> +	    (tcon->quirks->has_lvds_alt && !has_lvds_alt)) {
-> +		dev_warn(dev, "Missing LVDS properties, Please upgrade your DT\n");
-> +		dev_warn(dev, "LVDS output disabled\n");
-
-Would it make sense to move this to the has_lvds_rst = false and
-has_lvds_alt = false code sections about ? You could then print which
-property is missing.
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> +		return -ENODEV;
-> +	}
-> +
-> +	return sun4i_lvds_init(drm, tcon);
-> +}
-> +
->  /*
->   * On SoCs with the old display pipeline design (Display Engine 1.0),
->   * the TCON is always tied to just one backend. Hence we can traverse
-> @@ -1122,10 +1191,8 @@ static int sun4i_tcon_bind(struct device *dev, struct device *master,
->  	struct drm_device *drm = data;
->  	struct sun4i_drv *drv = drm->dev_private;
->  	struct sunxi_engine *engine;
-> -	struct device_node *remote;
->  	struct sun4i_tcon *tcon;
->  	struct reset_control *edp_rstc;
-> -	bool has_lvds_rst, has_lvds_alt, can_lvds;
->  	int ret;
->  
->  	engine = sun4i_tcon_find_engine(drv, dev->of_node);
-> @@ -1170,58 +1237,6 @@ static int sun4i_tcon_bind(struct device *dev, struct device *master,
->  		return ret;
->  	}
->  
-> -	if (tcon->quirks->supports_lvds) {
-> -		/*
-> -		 * This can only be made optional since we've had DT
-> -		 * nodes without the LVDS reset properties.
-> -		 *
-> -		 * If the property is missing, just disable LVDS, and
-> -		 * print a warning.
-> -		 */
-> -		tcon->lvds_rst = devm_reset_control_get_optional(dev, "lvds");
-> -		if (IS_ERR(tcon->lvds_rst)) {
-> -			dev_err(dev, "Couldn't get our reset line\n");
-> -			return PTR_ERR(tcon->lvds_rst);
-> -		} else if (tcon->lvds_rst) {
-> -			has_lvds_rst = true;
-> -			reset_control_reset(tcon->lvds_rst);
-> -		} else {
-> -			has_lvds_rst = false;
-> -		}
-> -
-> -		/*
-> -		 * This can only be made optional since we've had DT
-> -		 * nodes without the LVDS reset properties.
-> -		 *
-> -		 * If the property is missing, just disable LVDS, and
-> -		 * print a warning.
-> -		 */
-> -		if (tcon->quirks->has_lvds_alt) {
-> -			tcon->lvds_pll = devm_clk_get(dev, "lvds-alt");
-> -			if (IS_ERR(tcon->lvds_pll)) {
-> -				if (PTR_ERR(tcon->lvds_pll) == -ENOENT) {
-> -					has_lvds_alt = false;
-> -				} else {
-> -					dev_err(dev, "Couldn't get the LVDS PLL\n");
-> -					return PTR_ERR(tcon->lvds_pll);
-> -				}
-> -			} else {
-> -				has_lvds_alt = true;
-> -			}
-> -		}
-> -
-> -		if (!has_lvds_rst ||
-> -		    (tcon->quirks->has_lvds_alt && !has_lvds_alt)) {
-> -			dev_warn(dev, "Missing LVDS properties, Please upgrade your DT\n");
-> -			dev_warn(dev, "LVDS output disabled\n");
-> -			can_lvds = false;
-> -		} else {
-> -			can_lvds = true;
-> -		}
-> -	} else {
-> -		can_lvds = false;
-> -	}
-> -
->  	ret = sun4i_tcon_init_clocks(dev, tcon);
->  	if (ret) {
->  		dev_err(dev, "Couldn't init our TCON clocks\n");
-> @@ -1256,21 +1271,7 @@ static int sun4i_tcon_bind(struct device *dev, struct device *master,
->  	}
->  
->  	if (tcon->quirks->has_channel_0) {
-> -		/*
-> -		 * If we have an LVDS panel connected to the TCON, we should
-> -		 * just probe the LVDS connector. Otherwise, just probe RGB as
-> -		 * we used to.
-> -		 */
-> -		remote = of_graph_get_remote_node(dev->of_node, 1, 0);
-> -		if (of_device_is_compatible(remote, "panel-lvds"))
-> -			if (can_lvds)
-> -				ret = sun4i_lvds_init(drm, tcon);
-> -			else
-> -				ret = -EINVAL;
-> -		else
-> -			ret = sun4i_rgb_init(drm, tcon);
-> -		of_node_put(remote);
-> -
-> +		ret = sun4i_tcon_register_panel(drm, tcon);
->  		if (ret < 0)
->  			goto err_free_dotclock;
->  	}
+The bindings were added back in 2017, so they're not really recent.
 
 -- 
-Regards,
-
-Laurent Pinchart
+Sakari Ailus
