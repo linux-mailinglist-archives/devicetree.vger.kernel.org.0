@@ -2,142 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22DCF2583E9
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 00:06:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 518CE258427
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 00:42:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730389AbgHaWGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 18:06:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33056 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730395AbgHaWGU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 18:06:20 -0400
-Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com [IPv6:2607:f8b0:4864:20::844])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0742FC061755;
-        Mon, 31 Aug 2020 15:06:19 -0700 (PDT)
-Received: by mail-qt1-x844.google.com with SMTP id e5so5963850qth.5;
-        Mon, 31 Aug 2020 15:06:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=f06cvpi9PWuBoxMm0Gzuv9nuHcw9zMoeEWnf83uw1Mo=;
-        b=dYGwCZahF4QF7kwO9xlGvLqbRlBAYcp0VWBlaMsUJnhVmbGXW/Mx0pOvWgp3n4x39+
-         WyxSnh/ec2fzsRn3ZV77+WHdd35R3Egl2neA6TA3BkNdOU/JaNExuCAm9jTNfhVBhNhj
-         3BuiPhVS6HhevL0iAv31d+wZZKEX0fPWF/HtYkcpFO9acOg7h851geN7EerCnkCMeJjD
-         RD2Azb1tl9bZpLxRv467mFhRatm3b0uxpU3uGwJE4UPHn4sMeX8T8XaX1vFdu9VFdrZs
-         r6LcHxpdT8GaVkUq69KrKu+JSrocgwAa6qOeJ83SJQRCYYXT8P3ScSIKUrosVlD9VCe6
-         EFSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=f06cvpi9PWuBoxMm0Gzuv9nuHcw9zMoeEWnf83uw1Mo=;
-        b=CXpzEFvZhY3KhOa4CDLKO9LQrWCzEvQMLLuTSpOlLxJTQng9HhiCnbj17C5FfJh1/X
-         ErdhpUKHgUhfHXvARr/+BcqbrcDbiGB0bNzsng8jmShGV6Z8jgrI2R8GuLt+VsercwGY
-         wouZZSA9sGaTOmG4nbGH7kjGrbGr6l3+Bmrq/TZnpDTcNWadfeM+0RuCJyNZqeVF9Lji
-         EfkXV8/sKyZ+kWnRCkwKnmMFFEoOHHb8nRvuxzA9/QHea9Ir04k73GeSXCTS7JjCBgal
-         arFz5VugTNKhWrdlBBzLfJXKsoYoXWgKMVMW7tZIIjvPWXahWL+6U5vzT0xZZBQa+6bx
-         DKgA==
-X-Gm-Message-State: AOAM531v9G8GRI+gH3c4RmXS9MxHSYkiRBphUE67rRgKDv9yNfVmJB9V
-        B+jCBNyJ+lgIG5VMJE37PlVPV0PHF/C7/w+m
-X-Google-Smtp-Source: ABdhPJzSiuTNIbOGmR+7k+q7vYYVas6DZOv6cS0taRrbi/uRO8oxA5bhQ5v6DVEIA4ac691SF203hg==
-X-Received: by 2002:ac8:742:: with SMTP id k2mr3506683qth.101.1598911577953;
-        Mon, 31 Aug 2020 15:06:17 -0700 (PDT)
-Received: from localhost.localdomain ([190.189.67.136])
-        by smtp.gmail.com with ESMTPSA id d10sm3051232qkk.1.2020.08.31.15.06.15
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 31 Aug 2020 15:06:17 -0700 (PDT)
-From:   Santiago Hormazabal <santiagohssl@gmail.com>
-To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-kernel@vger.kernel.org
-Cc:     Santiago Hormazabal <santiagohssl@gmail.com>
-Subject: [PATCH 3/3] media: kt0913: device tree binding
-Date:   Mon, 31 Aug 2020 19:06:01 -0300
-Message-Id: <20200831220601.20794-4-santiagohssl@gmail.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200831220601.20794-1-santiagohssl@gmail.com>
-References: <20200831220601.20794-1-santiagohssl@gmail.com>
+        id S1726144AbgHaWmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 18:42:04 -0400
+Received: from mo-csw1514.securemx.jp ([210.130.202.153]:41970 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726117AbgHaWmD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 18:42:03 -0400
+Received: by mo-csw.securemx.jp (mx-mo-csw1514) id 07VMfQSQ026490; Tue, 1 Sep 2020 07:41:27 +0900
+X-Iguazu-Qid: 34tKqQuZ1lisVLW7Od
+X-Iguazu-QSIG: v=2; s=0; t=1598913686; q=34tKqQuZ1lisVLW7Od; m=kz073COEC8/Vz1JSdsSGiLpapgpCT8FOcPrf0uIS8pA=
+Received: from imx2.toshiba.co.jp (imx2.toshiba.co.jp [106.186.93.51])
+        by relay.securemx.jp (mx-mr1510) id 07VMfOGm033713;
+        Tue, 1 Sep 2020 07:41:24 +0900
+Received: from enc03.toshiba.co.jp ([106.186.93.13])
+        by imx2.toshiba.co.jp  with ESMTP id 07VMfO3q001106;
+        Tue, 1 Sep 2020 07:41:24 +0900 (JST)
+Received: from hop001.toshiba.co.jp ([133.199.164.63])
+        by enc03.toshiba.co.jp  with ESMTP id 07VMfNBT004239;
+        Tue, 1 Sep 2020 07:41:23 +0900
+Date:   Tue, 1 Sep 2020 07:41:22 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Olof Johansson <olof@lixom.net>,
+        punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@misterjones.org>
+Subject: Re: [PATCH v3 0/8] Add Toshiba Visconti ARM64 Platform support
+X-TSB-HOP: ON
+Message-ID: <20200831224122.i5tau3atlty4ikeu@toshiba.co.jp>
+References: <20200831081025.2721320-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <CAK8P3a2xD-zp3ov=3vobSSAmyfvPCMe0mGgP3F7mZkk8WieUpw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAK8P3a2xD-zp3ov=3vobSSAmyfvPCMe0mGgP3F7mZkk8WieUpw@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document bindings for the kt0913 AM/FM radio tuner.
+Hi,
 
-Signed-off-by: Santiago Hormazabal <santiagohssl@gmail.com>
----
- .../bindings/media/i2c/ktm,kt0913.yaml        | 56 +++++++++++++++++++
- 1 file changed, 56 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/ktm,kt0913.yaml
+Thanks for your review and comment.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ktm,kt0913.yaml b/Documentation/devicetree/bindings/media/i2c/ktm,kt0913.yaml
-new file mode 100644
-index 000000000000..2c3d1795da43
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/ktm,kt0913.yaml
-@@ -0,0 +1,56 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (c) 2020 Santiago Hormazabal <santiagohssl@gmail.com>
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/ktm,kt0913.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Device-Tree bindings for the KTMicro KT0913 FM/AM radio tuner.
-+
-+maintainers:
-+  - Santiago Hormazabal <santiagohssl@gmail.com>
-+
-+description: |-
-+  The KT0913 is a low cost, low components FM/AM radio chip.
-+  It uses the I2C protocol for operation.
-+
-+properties:
-+  compatible:
-+    const: ktm,kt0913
-+
-+  reg:
-+    description: I2C device address
-+    const: 0x35
-+
-+  ktm,anti-pop:
-+    description:  |
-+      Selects the DAC Anti-Pop capacitor. Possible values are
-+      0 thru 3, which corresponds to 100uF (default), 60uF, 20uF or 10uF.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    enum: [0, 1, 2, 3]
-+
-+  ktm,refclk:
-+    description:  |
-+      Selects the reference clock used on the KT0913. Possible
-+      values are 0 thru 9, which corresponds to 32.768kHz (default),
-+      6.5MHz, 7.6MHz, 12MHz, 13MHz, 15.2MHz, 19.2MHz, 24MHz, 26MHz, 38kHz.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        kt0913: fm-am-tuner@35 {
-+            compatible = "ktm,kt0913";
-+            reg = <0x35>;
-+            ktm,anti-pop = <0x01>;
-+            ktm,refclk = <0x00>;
-+        };
-+    };
-+...
--- 
-2.24.1
+On Mon, Aug 31, 2020 at 11:19:02AM +0200, Arnd Bergmann wrote:
+> On Mon, Aug 31, 2020 at 10:10 AM Nobuhiro Iwamatsu
+> <nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
+> >
+> > Visconti is a series of Toshiba's SoCs targeting image processing
+> > applications[0]. These set of patches adds support for Visconti5 a Arm
+> > v8 based SoC.
+> >
+> > The series add minimal support for the Visconti5 SoC and the TMPV7708 RM
+> > main board. Peripherals such as UART, SPI, I2c and timer use Arm's
+> > IP and work with the existing kernel drivers in the tree. The series
+> > includes a pinctrl driver to select appropriate functions on the pins.
+> 
+> The arch/arm64 series looks all reasonable to me, nice work!
+> 
+> Once the review from the DT and pinctrl maintainers is completed
+> and you have received their Acked-by or Reviewed-by tags, please
+> send the series with those tags to soc@kernel.org for inclusion, keeping
+> everyone else on Cc.
+> 
+> I'd leave it up to Linus Walleij whether he wants to merge the pinctrl driver
+> through his subsystem tree, or whether we should pick it up through
+> the soc tree, either way works for the initial merge. For any updates to
+> the pinctrl driver and additional subsystem support (clk, media, ...)
+> in later releases there is no need to Cc the SoC maintainers as those
+> should just get merged through the subsystem while we take care
+> of the DT files.
 
+Thank you for the explanation. I will do that.
+BTW, I searched the process for this but I couldn't find any detailed
+documentation. Could you tell me if you know?
+
+> 
+> > NOTE: Because Visconti5 does not have PSCI, it uses spin-table with enable-method.
+> 
+> This sounds like an odd choice. Is this a permanent defect in the SoC
+> or the firmware, or do you expect to change this later once the firmware
+> has been fixed?
+
+I will change it later when the firmware is fixed.
+
+> 
+> Note that most systems require PSCI anyway for cpuidle support. If there
+> is any EL2 or EL3 mode firmware already, this is where support for
+> processor bringup should be implemented. If there is none, you can
+> usually implement it using a small EL3 trampoline in the bootloader.
+> 
+
+Yes, I understand that.
+Our firmware team and I are currently considering a fix.
+
+> >       And this patch series does not include a clock framework, so it is a
+> >       device-tree file that uses clocks with fixed-clock. This will be replaced by
+> >       the clock driver in the future.
+> 
+> This is ok for bringup, though we usually recommend to merge the clk driver
+> at the same time as the SoC, in order to avoid having an incompatible DT
+> change when adding the clk driver.
+
+Yes, I do this with caution.
+
+> 
+>        Arnd
+>
+
+Best regards,
+  Nobuhiro
