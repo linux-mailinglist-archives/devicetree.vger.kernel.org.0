@@ -2,317 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D59DA2578F5
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 14:09:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DB0C257900
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 14:14:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726479AbgHaMJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 08:09:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52104 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726224AbgHaMJO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 08:09:14 -0400
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AB7BC061573;
-        Mon, 31 Aug 2020 05:09:12 -0700 (PDT)
-Received: by mail-ej1-x642.google.com with SMTP id d11so8087929ejt.13;
-        Mon, 31 Aug 2020 05:09:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=/Unu49ykbOe62UJ6hfhQMQxQUKYYTm838oAdPCMhX9Y=;
-        b=mO71JFCw5R6VlX2+LMfNXQHMxMK9WagGkJUUYEOQ8iePyeVPAftHQvGTJy0OeQN35W
-         WRgu+KE4H42Pf4fh7IWWux5Dk15Vy/fyOyO3+sCGqQDPW/KRKmcmuMHzfmlhezcB6RbP
-         p2gcc2nvUSJgO09EbLOPHW0dKcPwyHTntnyyp2vjRaBKge5W53ionoOBkBE9ueyOrmys
-         ij4VVAt9ftqkQxZKqtiM50W3UEDbdXhvvDH2J7YWV0L4eQH7K/6vk6JpMRFyu6X9iy2c
-         l/tcKRfvPuohV6j5y2UNYXLWttpPU6YRdhKTteI+/VtqvZtuVqsh+idEtwygYHznaR67
-         qOBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=/Unu49ykbOe62UJ6hfhQMQxQUKYYTm838oAdPCMhX9Y=;
-        b=IDTxWXWlwMRf4iOcHQPysqN/MZKVRJZ6cE1CwleUugm+EZXszcN/bEHIN4p1jSomzs
-         1dfhjaeGPlLZUP419q7n8LR4sEFC6HHupvWx1i1AzT3IcDtdhrOPcyWKJvyCmB9YeAxH
-         C7TRQlGaDBhv08aI7tc2fWbOpK3m+XVxWAFRxEnuFw7fN0aoeoGWeojypnU0N0xrQUdV
-         pdHkO5AL2ikLrzpDRhnzsgwAB67upfPwYV8bxZuP9gSOA+Cdkkp2D27TvruGLdkGTNOk
-         MRwdvOJN4rdmTYF8v/dQ1vj08qpt8Y0XYge1HIcVsUGrLzPpvT1AQefGKXZTgpBxxih0
-         NdjA==
-X-Gm-Message-State: AOAM531CIE1kkGK7kYIjfb2rfZtQ2I7lQylEJxsKkJr5zxDdKmhmALXC
-        BhtjKIx7ukQpuPbjHTThTgs=
-X-Google-Smtp-Source: ABdhPJxSF7PvESnsLyseSn1BrphMlvXxYC2Q7IdafnhrEJI6Y40jd4vGdMUcqIlrlshBTLgxnGhWnA==
-X-Received: by 2002:a17:906:3c47:: with SMTP id i7mr843963ejg.554.1598875751255;
-        Mon, 31 Aug 2020 05:09:11 -0700 (PDT)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id r12sm7520787edx.59.2020.08.31.05.09.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Aug 2020 05:09:10 -0700 (PDT)
-Date:   Mon, 31 Aug 2020 14:09:08 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     JC Kuo <jckuo@nvidia.com>
-Cc:     gregkh@linuxfoundation.org, robh@kernel.org, jonathanh@nvidia.com,
-        kishon@ti.com, linux-tegra@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, nkristam@nvidia.com
-Subject: Re: [PATCH v2 06/12] soc/tegra: pmc: provide usb sleepwalk register
- map
-Message-ID: <20200831120908.GD1689119@ulmo>
-References: <20200831044043.1561074-1-jckuo@nvidia.com>
- <20200831044043.1561074-7-jckuo@nvidia.com>
+        id S1726521AbgHaMOr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 08:14:47 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:59702 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726144AbgHaMOp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 08:14:45 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20200831121444euoutp02af1c268e03eaa53a61825f15425c05ef~wWVPXbLml1254612546euoutp02F
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 12:14:44 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20200831121444euoutp02af1c268e03eaa53a61825f15425c05ef~wWVPXbLml1254612546euoutp02F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1598876084;
+        bh=zSTEE6uLKLGM4J7inGc+ik3l31ISpa3neweh8a9wkwA=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=VRC0Rew75h7ZHwWO9Ez9fHM0LHWKyDTID87cKS5km3frCw7P3eQS2PYeHd9q26HD4
+         aO1DMzAzzdGoYOi9pKc6mUOojZiUKMiDYh69NFY4EwYDGEGnyst3tbgWo0O/rjD3lc
+         xLboCMl8Xgq/IB+2n+QwlY5QH2a/vgjSLhAahYKk=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20200831121443eucas1p16c64fd440125b982299ee0a6c435ea39~wWVOxQ4kH2219922199eucas1p1f;
+        Mon, 31 Aug 2020 12:14:43 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id B7.3C.05997.3B9EC4F5; Mon, 31
+        Aug 2020 13:14:43 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20200831121442eucas1p2c7b4735411874067468cef6958c952fa~wWVN_tcvo1552615526eucas1p2r;
+        Mon, 31 Aug 2020 12:14:42 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20200831121442eusmtrp1ec2536821be4246eadbc590adda0c8e2~wWVN6AO4k2625426254eusmtrp1T;
+        Mon, 31 Aug 2020 12:14:42 +0000 (GMT)
+X-AuditID: cbfec7f4-677ff7000000176d-f1-5f4ce9b362aa
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 52.5F.06017.2B9EC4F5; Mon, 31
+        Aug 2020 13:14:42 +0100 (BST)
+Received: from [106.210.123.115] (unknown [106.210.123.115]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20200831121440eusmtip1abde50978bbd948d7c4dd98620c12f37~wWVMP1Wck2307523075eusmtip1I;
+        Mon, 31 Aug 2020 12:14:40 +0000 (GMT)
+Subject: Re: [PATCH 01/10] dt-bindings: arm: samsung: pmu: Use
+ unevaluatedProperties
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sangbeom Kim <sbkim73@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        alsa-devel@alsa-project.org
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Inki Dae <inki.dae@samsung.com>
+From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
+Message-ID: <ec9deeb1-8599-d755-cbfa-5db9787368e1@samsung.com>
+Date:   Mon, 31 Aug 2020 14:14:40 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+        Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="wLAMOaPNJ0fu1fTG"
-Content-Disposition: inline
-In-Reply-To: <20200831044043.1561074-7-jckuo@nvidia.com>
-User-Agent: Mutt/1.14.6 (2020-07-11)
+In-Reply-To: <20200829142501.31478-1-krzk@kernel.org>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0xbVRzHPffcF7CSQ0H5hQ1dummcyTZR506caeYj8Wb6xxLjNCY8KtzA
+        lMfopVOMyYBlyspD3AbMhkdjjMOaBSjPgcWsAxpG1m6CYAakEkAHWBhrIcwNkHJZxn+f7+/3
+        Oef8fskRsfY8HyMez8yRjZmGdB0fyrb23vfsbZp+L/HFipXnaIm7j6GDt5wMbbxYz9Hy8Ume
+        Dgf+4WiNP5autX6HaW23m6ODi/M8PectY+m3E7OYejwNAvUu9iC6NFjIUPvEEEcHOqp4etHT
+        xdDL3WMCPePoFuitugBDv5maxrTJXo4PPyU1+At4ybFkZaUrljFBstvO8tLo0K+8NOd2C1Lb
+        0l+c5C1yMVLTj6ek0mYbkvz2p4+GfRz6eoqcfvykbNyvTwpNa6/uxSfm8RfXVgdwHrJhMwoR
+        gbwC3oW/uSBrSR2CvLkwMwpd5wCC2ocNnBr8CC7MOfhHJ24uWrHauIRgxuzYDAsIXJ7ZDSuS
+        HIPKeyVMsBFFRlgImBuEYMBkBMHy7LwQtHgSByU9pSjIGqKHq3WujTpLnoWiqbtMkJ8kCdDi
+        +oNRnQjo+36SDXIIOQD5NueGj0k03J6sZVR+Btp8VRsjAbkpguXepXVJXA9vw8rpMHWHSJhx
+        NQsq74D+88Ws6p9GUNw5IqihDIHXZUWqdQhG3f/xwYsw2QP1HfvV8hswMHMBq/eHw5++CHWG
+        cDjXWrlZ1kDh11rV3g0PbJWMyjFQNLnGliGdZctmli3bWLZsY3n8rhWxNhQtm5SMVFl5KVP+
+        fJ9iyFBMman7krMy7Gj9q/avugLtqOPhJ05ERKTbplnueTdRyxlOKrkZTgQi1kVp3rzRn6DV
+        pBhyv5SNWYlGU7qsONF2kdVFa17+YTpeS1INOfJnsnxCNj7qMmJITB6qWfnl8PM5B6/N/WYP
+        11mP/Hx55+38XUdj33+isy/GYU7W1x9zSDf0dwaj4KfxJGM891FXcWPFwZTY0d0avab4LV+s
+        3hSSupAd1579e8vwBz3voH8/PbJmoq+WKwWN1T6czl73j+31ya/V+EmEvaYa7apykqJRY27F
+        zrsF4x8ufKVjlTRD3AvYqBj+BwATMVemAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrCKsWRmVeSWpSXmKPExsVy+t/xu7qbXvrEG8ydqWXRe+4kk8WVi4eY
+        LDbOWM9qMfXhEzaL61+es1rM+yxr8X/bRGaL+UfOsVpc+fqezWLS/QksFv2PXzNbnD+/gd3i
+        /tejjBbfrnQwWWx6fI3V4vKuOWwWM87vY7JYe+Quu0Xr3iPsFhdXfGGyaH/6ktli86apzA5i
+        Hhs+N7F57P22gMVj56y77B6bVnWyedy5tofN4925c+we2789YPW4332cyWPzknqPvi2rGD0+
+        b5IL4I7SsynKLy1JVcjILy6xVYo2tDDSM7S00DMysdQzNDaPtTIyVdK3s0lJzcksSy3St0vQ
+        y9gx9xhzwXvmisP/LjM3MK5i7mLk5JAQMJG48HUBkM3FISSwlFGi+/QSpi5GDqCElMT8FiWI
+        GmGJP9e62EBsIYH3jBK/79mC2MICYRLTP/UygfSKCNxmkXhx8xnYUGaBu4wSZ+dLQQztYJRY
+        8PkWO0iCTcBQovdoHyOIzStgJ3FwxXGwOIuAqkT30w9MILaoQJzE497/zBA1ghInZz5hAbE5
+        BUwlGlcdYodYoC7xZ94lqGXiEreezGeCsOUltr+dwzyBUWgWkvZZSFpmIWmZhaRlASPLKkaR
+        1NLi3PTcYiO94sTc4tK8dL3k/NxNjMAUsu3Yzy07GLveBR9iFOBgVOLh/XHUO16INbGsuDL3
+        EKMEB7OSCK/T2dNxQrwpiZVVqUX58UWlOanFhxhNgZ6byCwlmpwPTG95JfGGpobmFpaG5sbm
+        xmYWSuK8HQIHY4QE0hNLUrNTUwtSi2D6mDg4pRoYZ1+culd/JWvjK50skaCTGZ2zdt/s9XK6
+        O0mjbvKWVxZLP/mLvYnV+LznvJHozi931q8O9FNU/u3mv5iX85JJtOaP2s2TGie6/982jfWz
+        nffnZstferatB9g/9n6dJ3P8TNmNw/IBBw/y99y5+cid5dfriZrGqzYYumft8/7DvOwF79VQ
+        R78nO5VYijMSDbWYi4oTAQSvoU43AwAA
+X-CMS-MailID: 20200831121442eucas1p2c7b4735411874067468cef6958c952fa
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20200829142522eucas1p2ecc9517be9060d7291b27deba1be8fe4
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20200829142522eucas1p2ecc9517be9060d7291b27deba1be8fe4
+References: <CGME20200829142522eucas1p2ecc9517be9060d7291b27deba1be8fe4@eucas1p2.samsung.com>
+        <20200829142501.31478-1-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 29.08.2020 16:24, Krzysztof Kozlowski wrote:
+> Additional properties actually might appear (e.g. assigned-clocks) so
+> use unevaluatedProperties to fix dtbs_check warnings like:
+> 
+>   arch/arm64/boot/dts/exynos/exynos5433-tm2.dt.yaml: system-controller@105c0000:
+>     'assigned-clock-parents', 'assigned-clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
---wLAMOaPNJ0fu1fTG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
 
-On Mon, Aug 31, 2020 at 12:40:37PM +0800, JC Kuo wrote:
-> This commit implements a register map which grants USB (UTMI and HSIC)
-> sleepwalk registers access to USB phy drivers. The USB sleepwalk logic
-> is in PMC hardware block but USB phy drivers have the best knowledge
-> of proper programming sequence. This approach prevents using custom
-> pmc APIs.
->=20
-> Signed-off-by: JC Kuo <jckuo@nvidia.com>
-> ---
->  drivers/soc/tegra/pmc.c | 89 +++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 89 insertions(+)
-
-Same comment as in earlier patches regarding the subject and "USB PHY"
-in the commit message.
-
-> diff --git a/drivers/soc/tegra/pmc.c b/drivers/soc/tegra/pmc.c
-> index d332e5d9abac..03317978915a 100644
-> --- a/drivers/soc/tegra/pmc.c
-> +++ b/drivers/soc/tegra/pmc.c
-> @@ -43,6 +43,7 @@
->  #include <linux/seq_file.h>
->  #include <linux/slab.h>
->  #include <linux/spinlock.h>
-> +#include <linux/regmap.h>
-> =20
->  #include <soc/tegra/common.h>
->  #include <soc/tegra/fuse.h>
-> @@ -102,6 +103,9 @@
-> =20
->  #define PMC_PWR_DET_VALUE		0xe4
-> =20
-> +#define PMC_USB_DEBOUNCE_DEL		0xec
-> +#define PMC_USB_AO			0xf0
-> +
->  #define PMC_SCRATCH41			0x140
-> =20
->  #define PMC_WAKE2_MASK			0x160
-> @@ -133,6 +137,13 @@
->  #define IO_DPD2_STATUS			0x1c4
->  #define SEL_DPD_TIM			0x1c8
-> =20
-> +#define PMC_UTMIP_UHSIC_TRIGGERS	0x1ec
-> +#define PMC_UTMIP_UHSIC_SAVED_STATE	0x1f0
-> +
-> +#define PMC_UTMIP_TERM_PAD_CFG		0x1f8
-> +#define PMC_UTMIP_UHSIC_SLEEP_CFG	0x1fc
-> +#define PMC_UTMIP_UHSIC_FAKE		0x218
-> +
->  #define PMC_SCRATCH54			0x258
->  #define  PMC_SCRATCH54_DATA_SHIFT	8
->  #define  PMC_SCRATCH54_ADDR_SHIFT	0
-> @@ -145,8 +156,18 @@
->  #define  PMC_SCRATCH55_CHECKSUM_SHIFT	16
->  #define  PMC_SCRATCH55_I2CSLV1_SHIFT	0
-> =20
-> +#define  PMC_UTMIP_UHSIC_LINE_WAKEUP	0x26c
-> +
-> +#define PMC_UTMIP_BIAS_MASTER_CNTRL	0x270
-> +#define PMC_UTMIP_MASTER_CONFIG		0x274
-> +#define PMC_UTMIP_UHSIC2_TRIGGERS	0x27c
-> +#define PMC_UTMIP_MASTER2_CONFIG	0x29c
-> +
->  #define GPU_RG_CNTRL			0x2d4
-> =20
-> +#define PMC_UTMIP_PAD_CFG0		0x4c0
-> +#define PMC_UTMIP_UHSIC_SLEEP_CFG1	0x4d0
-> +#define PMC_UTMIP_SLEEPWALK_P3		0x4e0
->  /* Tegra186 and later */
->  #define WAKE_AOWAKE_CNTRL(x) (0x000 + ((x) << 2))
->  #define WAKE_AOWAKE_CNTRL_LEVEL (1 << 3)
-> @@ -334,6 +355,7 @@ struct tegra_pmc_soc {
->  	const struct pmc_clk_init_data *pmc_clks_data;
->  	unsigned int num_pmc_clks;
->  	bool has_blink_output;
-> +	bool has_usb_sleepwalk;
->  };
-> =20
->  static const char * const tegra186_reset_sources[] =3D {
-> @@ -2495,6 +2517,67 @@ static void tegra_pmc_clock_register(struct tegra_=
-pmc *pmc,
->  			 err);
->  }
-> =20
-> +#define regmap_reg(x) regmap_reg_range(x, x)
-
-This doesn't seem like a good idea. What if anyone ever thought it was a
-good idea to add this to the core regmap header? We'd get a naming
-conflict that would first have to get resolved.
-
-> +static const struct regmap_range pmc_usb_sleepwalk_ranges[] =3D {
-> +	regmap_reg_range(PMC_USB_DEBOUNCE_DEL, PMC_USB_AO),
-> +	regmap_reg_range(PMC_UTMIP_UHSIC_TRIGGERS, PMC_UTMIP_UHSIC_SAVED_STATE),
-> +	regmap_reg_range(PMC_UTMIP_TERM_PAD_CFG, PMC_UTMIP_UHSIC_FAKE),
-> +	regmap_reg(PMC_UTMIP_UHSIC_LINE_WAKEUP),
-> +	regmap_reg_range(PMC_UTMIP_BIAS_MASTER_CNTRL, PMC_UTMIP_MASTER_CONFIG),
-> +	regmap_reg_range(PMC_UTMIP_UHSIC2_TRIGGERS, PMC_UTMIP_MASTER2_CONFIG),
-> +	regmap_reg_range(PMC_UTMIP_PAD_CFG0, PMC_UTMIP_UHSIC_SLEEP_CFG1),
-> +	regmap_reg(PMC_UTMIP_SLEEPWALK_P3),
-> +};
-
-Since we only have two usages of the regmap_reg() macro, perhaps just
-use regmap_reg_range() with the same parameter used twice?
-
-> +
-> +static const struct regmap_access_table pmc_usb_sleepwalk_table =3D {
-> +	.yes_ranges =3D pmc_usb_sleepwalk_ranges,
-> +	.n_yes_ranges =3D ARRAY_SIZE(pmc_usb_sleepwalk_ranges),
-> +};
-> +
-> +static int tegra_pmc_regmap_readl(void *context, unsigned int reg, unsig=
-ned int *val)
-
-s/reg/offset/ to make it clearer what this really is. Also: s/val/value/ to
-avoid potential confusion with "valid".
-
-> +{
-> +	struct tegra_pmc *pmc =3D context;
-> +
-> +	*val =3D tegra_pmc_readl(pmc, reg);
-> +	return 0;
-> +}
-> +
-> +static int tegra_pmc_regmap_writel(void *context, unsigned int reg, unsi=
-gned int val)
-> +{
-> +	struct tegra_pmc *pmc =3D context;
-> +
-> +	tegra_pmc_writel(pmc, val, reg);
-> +	return 0;
-> +}
-
-Same here.
-
-> +
-> +static const struct regmap_config usb_sleepwalk_regmap_config =3D {
-> +	.name =3D "usb_sleepwalk",
-> +	.reg_bits =3D 32,
-> +	.val_bits =3D 32,
-> +	.reg_stride =3D 4,
-> +	.fast_io =3D true,
-> +	.rd_table =3D &pmc_usb_sleepwalk_table,
-> +	.wr_table =3D &pmc_usb_sleepwalk_table,
-> +	.reg_read =3D tegra_pmc_regmap_readl,
-> +	.reg_write =3D tegra_pmc_regmap_writel,
-> +};
-> +
-> +static int tegra_pmc_regmap_init(struct tegra_pmc *pmc)
-> +{
-> +	struct regmap *regmap;
-> +
-> +	if (pmc->soc->has_usb_sleepwalk) {
-> +		regmap =3D devm_regmap_init(pmc->dev, NULL, (__force void *)pmc,
-
-Do you really need that __force in there?
-
-> +					  &usb_sleepwalk_regmap_config);
-> +		if (IS_ERR(regmap)) {
-> +			dev_err(pmc->dev, "failed to allocate register map\n");
-
-Maybe output the error code here?
-
-> +			return PTR_ERR(regmap);
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int tegra_pmc_probe(struct platform_device *pdev)
->  {
->  	void __iomem *base;
-> @@ -2613,6 +2696,10 @@ static int tegra_pmc_probe(struct platform_device =
-*pdev)
->  	pmc->base =3D base;
->  	mutex_unlock(&pmc->powergates_lock);
-> =20
-> +	err =3D tegra_pmc_regmap_init(pmc);
-> +	if (err < 0)
-> +		goto cleanup_powergates;
-
-You could call this perhaps a little bit earlier to avoid having to
-clean up powergates? Since you register with devm_regmap_init() you
-won't have to clean this up manually.
-
-For that reason it makes sense as a general rule to initialize devm
-things before anything that's not managed (unless, of course, if it
-doesn't make any sense).
-
-> +
->  	tegra_pmc_clock_register(pmc, pdev->dev.of_node);
->  	platform_set_drvdata(pdev, pmc);
-> =20
-> @@ -2976,6 +3063,7 @@ static const struct tegra_pmc_soc tegra124_pmc_soc =
-=3D {
->  	.pmc_clks_data =3D tegra_pmc_clks_data,
->  	.num_pmc_clks =3D ARRAY_SIZE(tegra_pmc_clks_data),
->  	.has_blink_output =3D true,
-> +	.has_usb_sleepwalk =3D true,
->  };
-> =20
->  static const char * const tegra210_powergates[] =3D {
-> @@ -3094,6 +3182,7 @@ static const struct tegra_pmc_soc tegra210_pmc_soc =
-=3D {
->  	.pmc_clks_data =3D tegra_pmc_clks_data,
->  	.num_pmc_clks =3D ARRAY_SIZE(tegra_pmc_clks_data),
->  	.has_blink_output =3D true,
-> +	.has_usb_sleepwalk =3D true,
->  };
-> =20
->  #define TEGRA186_IO_PAD_TABLE(_pad)                                     =
-     \
-
-I'd prefer if we explicitly set this to false on SoC generations where
-we don't have sleepwalk support (or don't need to deal with it in the
-kernel). That avoids confusion as to whether this was simply forgotten
-or whether the omission was on purpose.
-
-Thierry
-
---wLAMOaPNJ0fu1fTG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl9M6GIACgkQ3SOs138+
-s6EaqxAAmPRgHbu6YpzkiKoq+XbNk+lFnWWy7ZVbp680XlcbUXFC14Li1NsWoNDb
-XVmk2NIfxIpZWR1oPNlOYKCMZTF8cg3XeL4lTanUQDkpFLMCpa/dYjs8BdOu0EyS
-yhz2ICzzt71Przr4FUxsJznmXPak10JIkq8SCF2vXRv5UhM1KiPzmUII7VE16UY4
-OXkyQoFhF6NmrVHumw1yFPiHiRFwM506yraFBZULyBvJrkYfH5COocy5n1oIFO0P
-u4wr3wwvf5XAlCSYeR3GynsGCc2e1qZ1pIw9FrptAgBnuyHOwGrzBZ+l/FWgrEo1
-2t8v2eim/Jb5IvL5C/rs/67tAvY0zITf4N+0iH0JYA8RZ5NSlWxKOo7QhUP/0ixd
-r1vlbceA8wYfTarrKnl26HMf1iJAqawxD/7nNgptRo179w8vaWPNN8eZZfmtkO9n
-w/95A4hIf5lV+OpLH6jt91qeKgIpX/lCXW2L61ZW3DGHrc9W7EJ942HtV6MKrk5U
-Z3Mar/SVM1fAv590MlVTlYhyfgAyMGyhzhJ0K8n6/fbVK0htAhkBKR5+ovwAxAx+
-bzTQsB1k48GyFf9oO+JHJa1D0q7QAjVo/iw+vYLbhAoRKFkc/3OkzXL3idX8Kwso
-BT/jqEvd5pMOxoAmkh4ZREk1GT0uTkxhzLG+guWTvKKId9hRgqM=
-=G5F3
------END PGP SIGNATURE-----
-
---wLAMOaPNJ0fu1fTG--
