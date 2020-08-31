@@ -2,61 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EE1A257663
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 11:19:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E880525766E
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 11:25:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728152AbgHaJTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 05:19:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55198 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728103AbgHaJTl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 Aug 2020 05:19:41 -0400
-Received: from localhost (unknown [122.171.38.130])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CC4DF2073A;
-        Mon, 31 Aug 2020 09:19:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598865580;
-        bh=VbOMNr9+mlKhviNnhhuAnntR0pqtI1g4GOH3sYhR2rk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pYmVfXeYXprV+l9Ii2m95YRdQE1u0CZ2sGQXb89oayh7pHNcWGejr4Z+IsUA9+9o8
-         DJ+rSfKQV0Zk2gL8HEQWveffbA6/CRSnIme71+fXGJLN9FxTehkzrb5iq6Dns5vWI+
-         Xj6gWxTR94UlPEHvT+JFXM+Dff1NwyZZbSGRC6ik=
-Date:   Mon, 31 Aug 2020 14:49:36 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
-Cc:     kishon@ti.com, robh+dt@kernel.org, andriy.shevchenko@intel.com,
-        eswara.kota@linux.intel.com,
-        vadivel.muruganx.ramuthevar@linux.intel.com,
-        lakshmi.bai.raja.subramanian@intel.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 3/3] phy: intel: Add Keem Bay eMMC PHY support
-Message-ID: <20200831091936.GM2639@vkoul-mobl>
-References: <20200821113747.2912-1-wan.ahmad.zainie.wan.mohamad@intel.com>
- <20200821113747.2912-4-wan.ahmad.zainie.wan.mohamad@intel.com>
+        id S1728184AbgHaJZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 05:25:17 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:51031 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727810AbgHaJZO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 05:25:14 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20200831092512euoutp01b924f5880c402fe6e35ef97c761872b1~wUBOdkpQo3109331093euoutp01a
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 09:25:12 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20200831092512euoutp01b924f5880c402fe6e35ef97c761872b1~wUBOdkpQo3109331093euoutp01a
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1598865912;
+        bh=27ver/+sncw91cQvHNYvzmH/OzPk0oFElsklYtQMeAA=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=GgiI1R1Eurn8EHu2lyl7oshDlHogzPFprD3uHwnPWB7MzE9ogcfNGtirnXAj0NHSd
+         Z8oxzlnTFa8DcftH6dDGZJ+lG97QbSUOE98NevUcYaY4Yy+r68qd+9tzRFQ48KTfJr
+         SNCeCEeauaNN4bRkkrvtricWwUP0u22Gt3fNRQEY=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20200831092512eucas1p112a0bb336cc057cac47bc1f009f7fbfc~wUBOA1upE1108311083eucas1p1s;
+        Mon, 31 Aug 2020 09:25:12 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id 95.54.06456.8F1CC4F5; Mon, 31
+        Aug 2020 10:25:12 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20200831092512eucas1p1d6ea26db5585f850165ea13477f25b50~wUBNuMt-x1108311083eucas1p1r;
+        Mon, 31 Aug 2020 09:25:12 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20200831092512eusmtrp2b9426955777d764c605f82c77aabdffb~wUBNteigB1806518065eusmtrp2q;
+        Mon, 31 Aug 2020 09:25:12 +0000 (GMT)
+X-AuditID: cbfec7f2-809ff70000001938-e3-5f4cc1f8cdbc
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id F1.38.06017.7F1CC4F5; Mon, 31
+        Aug 2020 10:25:12 +0100 (BST)
+Received: from [106.210.88.143] (unknown [106.210.88.143]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20200831092511eusmtip1e983ea2b263177fe9219a4bf7a4a4945~wUBNJZG_c1160911609eusmtip1B;
+        Mon, 31 Aug 2020 09:25:11 +0000 (GMT)
+Subject: Re: [RFT 14/33] ARM: dts: exynos: Replace deprecated GPIO spi-gpio
+ properties in Universal C210
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Denis GNUtoo Carikli <GNUtoo@cyberdimension.org>,
+        Simon Shields <simon@lineageos.org>
+Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+Message-ID: <d2237c0f-a52f-df61-b3c6-841a1b8bd5dc@samsung.com>
+Date:   Mon, 31 Aug 2020 11:25:11 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+        Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200821113747.2912-4-wan.ahmad.zainie.wan.mohamad@intel.com>
+In-Reply-To: <20200830135200.24304-14-krzk@kernel.org>
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrMKsWRmVeSWpSXmKPExsWy7djPc7o/DvrEG6z9JGaxccZ6Vov5R86x
+        WrRef8xu0f/4NbPF+fMb2C02Pb7GanF51xw2ixnn9zFZtO49wm6x5cxtNov2py+ZHbg9jh5o
+        ZPbYtKqTzaNl/SY2j81L6j36tqxi9Pi8SS6ALYrLJiU1J7MstUjfLoEr48cRgYL9nBX3mlay
+        NzC+YO9i5OSQEDCROPf9O2MXIxeHkMAKRonzx64xQThfGCW+v5rEBFIlJPCZUeLuiQCYjj07
+        HkB1LGeUWDjvASuE855R4sWu5WAdwgJZEqd//AQbJSJwhkni77crzCAJZoFUid1vj7GC2GwC
+        hhJdb7vYQGxeATuJHYu/soDYLAKqEq+vPQYbJCoQJ3Hs1CMWiBpBiZMzn4DZnAJmEtP2/2SB
+        mCkvsf3tHKj54hK3nswHWywhcIld4vf6eUwQd7tIzNt6ig3CFpZ4dXwLNARkJP7vhGloZpR4
+        eG4tO4TTwyhxuWkGI0SVtcSdc7+AujmAVmhKrN+lDxF2lLg66R8jSFhCgE/ixltBiCP4JCZt
+        m84MEeaV6GgTgqhWk5h1fB3c2oMXLjFPYFSaheS1WUjemYXknVkIexcwsqxiFE8tLc5NTy02
+        zEst1ytOzC0uzUvXS87P3cQITFqn/x3/tIPx66WkQ4wCHIxKPLw/jnrHC7EmlhVX5h5ilOBg
+        VhLhdTp7Ok6INyWxsiq1KD++qDQntfgQozQHi5I4r/Gil7FCAumJJanZqakFqUUwWSYOTqkG
+        RtF3+/TvNW7Uipysy7nuxbNX0bP3LL17yNDVUeakXhc/e8qNngnHO2aG6tcG8714I+TENid1
+        sezuUJHUoFkHGE9cPbpW587+tJC2sKoeTZffy/vnyBy1br9o5LWYceLOFfKss7i9Ky63SVwI
+        PLFPMvTdvGnd7/dFtUpu9A9dI7ytultGaRsPuxJLcUaioRZzUXEiAFk9dipWAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrKIsWRmVeSWpSXmKPExsVy+t/xu7o/DvrEG9w4wWSxccZ6Vov5R86x
+        WrRef8xu0f/4NbPF+fMb2C02Pb7GanF51xw2ixnn9zFZtO49wm6x5cxtNov2py+ZHbg9jh5o
+        ZPbYtKqTzaNl/SY2j81L6j36tqxi9Pi8SS6ALUrPpii/tCRVISO/uMRWKdrQwkjP0NJCz8jE
+        Us/Q2DzWyshUSd/OJiU1J7MstUjfLkEv48cRgYL9nBX3mlayNzC+YO9i5OSQEDCR2LPjASOI
+        LSSwlFFi4g9/iLiMxMlpDawQtrDEn2tdbF2MXEA1bxklPi+/wwySEBbIkjj94ycTSEJE4ByT
+        xMyF/WBTmQVSJSY2TWWC6NjCKHH2xV2wFWwChhJdb0FGcXLwCthJ7Fj8lQXEZhFQlXh97TET
+        iC0qECdxpucFVI2gxMmZT8BqOAXMJKbt/8kCscBMYt7mh8wQtrzE9rdzoGxxiVtP5jNNYBSa
+        haR9FpKWWUhaZiFpWcDIsopRJLW0ODc9t9hIrzgxt7g0L10vOT93EyMwSrcd+7llB2PXu+BD
+        jAIcjEo8vD+OescLsSaWFVfmHmKU4GBWEuF1Ons6Tog3JbGyKrUoP76oNCe1+BCjKdBzE5ml
+        RJPzgQkkryTe0NTQ3MLS0NzY3NjMQkmct0PgYIyQQHpiSWp2ampBahFMHxMHp1QDY1CeWKac
+        Xuejrta12l9ulfuIzJkhd2Dbzpc3pT588pWJ1GlkKd5ZvefvQ55d0zISi6bc048OfcH15Pvp
+        14l9y52LbP6Z67tEnzVL0mqZ+Xrdjg3K1+akRH5wfmN4UyZ/69uznuoz24/PmnpIJ2ajoLUq
+        1/uKhc2RLcH/v6S8uCypv3jFtFgHNyWW4oxEQy3mouJEAMWjBkjoAgAA
+X-CMS-MailID: 20200831092512eucas1p1d6ea26db5585f850165ea13477f25b50
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20200830135440eucas1p2e72db4f3b1ee2c20119c56ea9f2cd8ae
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20200830135440eucas1p2e72db4f3b1ee2c20119c56ea9f2cd8ae
+References: <20200830135200.24304-1-krzk@kernel.org>
+        <CGME20200830135440eucas1p2e72db4f3b1ee2c20119c56ea9f2cd8ae@eucas1p2.samsung.com>
+        <20200830135200.24304-14-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-08-20, 19:37, Wan Ahmad Zainie wrote:
+On 30.08.2020 15:51, Krzysztof Kozlowski wrote:
+> "gpio-sck" and "gpio-mosi" are deprecated so update the DTS to fix
+> dtbs_checks warnings like:
+>
+>    arch/arm/boot/dts/exynos4210-universal_c210.dt.yaml: spi-lcd:
+>      gpio-sck: False schema does not allow [[85, 1, 0]]
+>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> ---
+>   arch/arm/boot/dts/exynos4210-universal_c210.dts | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/exynos4210-universal_c210.dts b/arch/arm/boot/dts/exynos4210-universal_c210.dts
+> index 3509fdf8f245..279f0f8f86ed 100644
+> --- a/arch/arm/boot/dts/exynos4210-universal_c210.dts
+> +++ b/arch/arm/boot/dts/exynos4210-universal_c210.dts
+> @@ -124,8 +124,8 @@
+>   		#address-cells = <1>;
+>   		#size-cells = <0>;
+>   
+> -		gpio-sck = <&gpy3 1 GPIO_ACTIVE_HIGH>;
+> -		gpio-mosi = <&gpy3 3 GPIO_ACTIVE_HIGH>;
+> +		sck-gpios = <&gpy3 1 GPIO_ACTIVE_HIGH>;
+> +		mosi-gpios = <&gpy3 3 GPIO_ACTIVE_HIGH>;
+>   		num-chipselects = <1>;
+>   		cs-gpios = <&gpy4 3 GPIO_ACTIVE_LOW>;
+>   
 
-> +/* From ACS_eMMC51_16nFFC_RO1100_Userguide_v1p0.pdf p17 */
-> +#define FREQSEL_200M_170M	0x0
-> +#define FREQSEL_170M_140M	0x1
-> +#define FREQSEL_140M_110M	0x2
-> +#define FREQSEL_110M_80M	0x3
-> +#define FREQSEL_80M_50M		0x4
-> +
-> +#define maskval(mask, val)	(((val) << (ffs(mask) - 1)) & mask)
-
-Kernel has a macro do this for you, please use FIELD_PREP instead of
-
-your own macro
+Best regards
 -- 
-~Vinod
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
+
