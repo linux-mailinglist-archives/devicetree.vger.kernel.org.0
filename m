@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5073C257274
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 05:51:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED93D257278
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 05:52:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726584AbgHaDv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 23:51:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59300 "EHLO
+        id S1726657AbgHaDwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 23:52:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726573AbgHaDv2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 23:51:28 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 342CBC061573
-        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 20:51:26 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id b124so2128494pfg.13
-        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 20:51:26 -0700 (PDT)
+        with ESMTP id S1726573AbgHaDwA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 23:52:00 -0400
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74B07C061573
+        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 20:52:00 -0700 (PDT)
+Received: by mail-pf1-x442.google.com with SMTP id o20so981204pfp.11
+        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 20:52:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=HAhFdDv2blwJh6v5iPIFizBa4Arz5FNOw9PDVuoe9JA=;
-        b=iCn3C2o0ifeo9xs6/7UZDB6culCB6Njawa/B88V/zNNNkqBZBSEMsBAhqduIAxrCRy
-         PzfUT31skoYiZtXs0Cv20luzKMhvTONoLwOSBpg0xM3xIKwRG3A7a1FTJpvm5wUDiUWs
-         NLBgUTuWYVo4i7hISnku9lD6GQaAoJfAHfHUZXiOAnFUYem09XnwsogKQzEuqSwQOg9M
-         OZMsfrMWXzuiY+RkfC7N53Nx2gZjn0Ery2mMRTi/IvgDlDHiMHbFZ2XaDbJNOrHSI5Tl
-         H0rU4Y6SQLuisc61uKSkKSeOAgqPggWASwdilrAOOnB6dG9lrM6ziq24aalsNFqBXUhS
-         Sglw==
+        bh=CfugyM+91vqu6xYcWLhSglzQTO3ypDbdsELgG1k6e0w=;
+        b=H6XNjOOl4LPIJ8SEhf16VpIC1u3Ua5LVS4igevO/4rD/jpPM+DXL6fo2CNK5XrIt9w
+         f4/sSXD0NiTh7IWxgF8WGGN1DXRsNvMZFoxBE50Cx53kzfySdn+1Q7cXFOeF/glPqDnm
+         BdvWjBDvx36Q5WHRjQsgXWtDy5Sbprwu/BsbrAX4syM+q83Pfc1cySPwnZmh3ap/eupL
+         fUsVckSYa9qbqVS+QOPPO9LLXd4zGyW5SPO3c8WTwJ+KrrD19qPW2jznTVRwyqhhSOjU
+         5ONLtK6oUS+Vyj3J1dZ0asP72qIAQHfnrBplt0Hm17qUhwyiOUiCDL40GCRclDslI3XW
+         UJbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=HAhFdDv2blwJh6v5iPIFizBa4Arz5FNOw9PDVuoe9JA=;
-        b=bSHWmJgYOw3jb9ranNuB6JBouzs+X1SM+KLz9XBls+qH8e7BuB4hXUCvP3McgeAmUR
-         Md4pRwN8pN+qgHTNTEFJFAlqDUHsOLOCCd9iVQrsHFaORamoP9Qh7VBJWVLNqhjlVCuM
-         jjr9W9JJLWuym8Z9OR0b7lTcvNeR/gYOSOQCoO6edqm5HDmRHHe+7Dzt32pTgAUV78VQ
-         89gN6C3AKj5qbdHIkzvCnU4xo8sgnPgdMCS6oU/K8n1iih2HrFjslmxPVxrQsEN/2sln
-         I6d/W1yWT2k4Ba9Vh+zFLr/cn8yjC0DKYbrqn2o8hPKzqUBlHCvdX6/6Cwr89L2sQ8p6
-         ZVrQ==
-X-Gm-Message-State: AOAM531RwZc5WFHbrFQa7wUi6zMcTLQOHfEKvEL3610iTZpv4c5eGa1n
-        z/mz4cVMb2uVVO0whHUIBi4=
-X-Google-Smtp-Source: ABdhPJwqSh667rGqzDHoGl0YwfHmYeSWgcB2uiCUMck4y+BTKiZ1vCob8oav9fGUFI+Lm1P+krM5GQ==
-X-Received: by 2002:a63:2d83:: with SMTP id t125mr6735290pgt.441.1598845881768;
-        Sun, 30 Aug 2020 20:51:21 -0700 (PDT)
+        bh=CfugyM+91vqu6xYcWLhSglzQTO3ypDbdsELgG1k6e0w=;
+        b=UuS10GWwCOclDrRGvjR2vvYNnuillyYJ9PYoQbD8VW4SDnpPKVHVoBv7ZZjnoi92tv
+         tMJbaKR4JPGtXzALompcHxjAQxw74mfif0YfMg+J6lxXEDxfh2bz99W7ks0rR7+YAanC
+         pTXnbIyBVvy7V2nW7cKtK+q2rQ4ZrMJvJ39sUt7J9w3Zmch1fXdI24iWmlXuX6FgeVNI
+         1MzQ3phz84g1Va0akub3Bgp16Dr53NCF2ImKfMRgERVOyyDBLL+1CRSmJAnsh3i8liP+
+         +CgrU88qEw/QHWyB1CEdGbldtMhOEJ622K0nwpnRiGkiW6X5rOo872zZoOCLIAc9dzFL
+         HqIw==
+X-Gm-Message-State: AOAM530wuM9Q249bTUW7dEhEcyO//Cdt71danttxJbTpGrp9kMcrovpn
+        hklLHNVcCRyYG0V6Y4HAMzU=
+X-Google-Smtp-Source: ABdhPJzev38FxoUjPluO5RoMuZYKhiFhlivi6L2eeyaAxqM48pwXTAV4CZ/5ljqOV/brSH9yIIuX/A==
+X-Received: by 2002:a62:1616:: with SMTP id 22mr7621605pfw.207.1598845920013;
+        Sun, 30 Aug 2020 20:52:00 -0700 (PDT)
 Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id ep4sm1639099pjb.39.2020.08.30.20.51.20
+        by smtp.gmail.com with ESMTPSA id w66sm6461797pfb.126.2020.08.30.20.51.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Aug 2020 20:51:21 -0700 (PDT)
+        Sun, 30 Aug 2020 20:51:59 -0700 (PDT)
 From:   Florian Fainelli <f.fainelli@gmail.com>
 To:     bcm-kernel-feedback-list@broadcom.com,
         Adrian Schmutzler <freifunk@adrianschmutzler.de>,
         Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
         Scott Branden <sbranden@broadcom.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: NSP: replace status value "ok" by "okay"
-Date:   Sun, 30 Aug 2020 20:51:19 -0700
-Message-Id: <20200831035119.1331770-1-f.fainelli@gmail.com>
+Subject: Re: [PATCH] arm64: dts: broadcom: replace status value "ok" by "okay"
+Date:   Sun, 30 Aug 2020 20:51:58 -0700
+Message-Id: <20200831035158.1331925-1-f.fainelli@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200830195441.798-1-freifunk@adrianschmutzler.de>
-References: <20200830195441.798-1-freifunk@adrianschmutzler.de>
+In-Reply-To: <20200830200333.1333-1-freifunk@adrianschmutzler.de>
+References: <20200830200333.1333-1-freifunk@adrianschmutzler.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -66,7 +66,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 30 Aug 2020 21:54:41 +0200, Adrian Schmutzler <freifunk@adrianschmutzler.de> wrote:
+On Sun, 30 Aug 2020 22:03:33 +0200, Adrian Schmutzler <freifunk@adrianschmutzler.de> wrote:
 > While the DT parser recognizes "ok" as a valid value for the
 > "status" property, it is actually mentioned nowhere. Use the
 > proper value "okay" instead, as done in the majority of files
@@ -75,6 +75,6 @@ On Sun, 30 Aug 2020 21:54:41 +0200, Adrian Schmutzler <freifunk@adrianschmutzler
 > Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
 > ---
 
-Applied to devicetree/next, thanks!
+Applied to devicetree-arm64/next, thanks!
 --
 Florian
