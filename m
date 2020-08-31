@@ -2,192 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F57A2575E8
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 10:58:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B35425757D
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 10:35:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727979AbgHaI6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 04:58:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56340 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726102AbgHaI6O (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 Aug 2020 04:58:14 -0400
-Received: from localhost (unknown [122.171.38.130])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D4A2F206F0;
-        Mon, 31 Aug 2020 08:58:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598864292;
-        bh=DtuiTyTPlbNpTA2byzKBYpsv3Gb5wq32dSg4ovUNU+4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=0dFj3J2LKxL4IKMiAgun2F2EsEzVjMpoVMd0xm6me12vdtgd2QhwGCw49ka9ICVno
-         j2CmTsxpqb5qoNJDOezZtnhYOxhm0UhZZrd6JisPoJtKjtnRsgFpBAhMhJ97cPaniw
-         PLbcIONjw9uo+eWjJ0+TBA13ymfNQTDDoTRM8MSg=
-Date:   Mon, 31 Aug 2020 14:28:08 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Lubomir Rintel <lkundrak@v3.sk>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [RESEND PATCH v3 3/3] phy: Add USB HSIC PHY driver for Marvell
- MMP3 SoC
-Message-ID: <20200831085808.GH2639@vkoul-mobl>
-References: <20200817223400.403505-1-lkundrak@v3.sk>
- <20200817223400.403505-4-lkundrak@v3.sk>
+        id S1726198AbgHaIfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 04:35:00 -0400
+Received: from mail-db8eur05on2044.outbound.protection.outlook.com ([40.107.20.44]:52704
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725954AbgHaIe4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 Aug 2020 04:34:56 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KK9bxCaY5e8fN3IInaNJRwPlglT5n2grscQ4nAojZ30VOt5oQkWM2RTBHGjpKJUlhkIEJGgXoVZueqLbnc9C+k1NKPzwxYQsycZSeCN7d27fzRH7B2pQSSnSt+D7xDDseNLdXVycQBgPSv15+lloSrw3h6ng5kOWBmfKIK0fKA5LkPxna/ohJp4xyE82fJchu1NcP9R6Uji3wz2D6SjXN4119DWBYaYUetrNJmrcP7aMullP1ht7PwGrKL3dRkvHAsFTemrTRwDpa9PybEoiP9iyHmTHu+CHfMgzHchPwCPxR5W6LuxkvR/7Ca0qTkCpQefJ856PakqwTmIYcJiO1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8NWR7mLAxfQMrXg9i1cspYVYSmEWRc1ljJvmjr3Gk+I=;
+ b=MNRzEAvSGqEBMnNf+MoPrCuHcYR4+mry5CVPU2jQwfpFUaAhqdGlxjJ2JH3kT5uhKVvL5ovd1H3Xee3F/k9B04BhgalZ12sIAsmBBxL3JmfAbbj3pMWQjGqQ5p1i71ao/GvhS7lPS6jCaUG8b1xWix2JElbsvMQ/MmTQ+guVyPvJJHFeCUi+rFZjvcU3YAcBTE9jRv4OwzyadHzwUUchdUlwq34250mAGpr0Plv2K0D9utDZQ5c37F+JinHhSlhoKFH2zyCxjdtrgaC1as6DyEZ76REYpp3/H2gTuHNyxu602FfuVOB6JK7A7HbXGovi7slNjagvVYsqE5fiCAJcEA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8NWR7mLAxfQMrXg9i1cspYVYSmEWRc1ljJvmjr3Gk+I=;
+ b=VhIucfpVKyU2uqeoc7qaXGOBItfjeiDRb8uwa36dsG2hip6YXc+2+hCx/DmeG6T7ntrZt648ZBU88v3l9UX00RWXTGaWxd05wp8xQwXO5yxBmv44AkBaShUCSP5yE4iPJe4PShLeQWAZpKkdllcFgUeHo7Yg2ZvtyOyUL7S0qLM=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com (2603:10a6:803:119::15)
+ by VI1PR0402MB3549.eurprd04.prod.outlook.com (2603:10a6:803:8::30) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.24; Mon, 31 Aug
+ 2020 08:34:51 +0000
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::ad7f:d95a:5413:a950]) by VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::ad7f:d95a:5413:a950%3]) with mapi id 15.20.3326.025; Mon, 31 Aug 2020
+ 08:34:51 +0000
+From:   Robin Gong <yibin.gong@nxp.com>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        festevam@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
+        Anson.Huang@nxp.com
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 1/2] regulator: pca9450: add enable_val for all bucks
+Date:   Tue,  1 Sep 2020 00:48:34 +0800
+Message-Id: <1598892515-30950-1-git-send-email-yibin.gong@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: SGBP274CA0010.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::22)
+ To VE1PR04MB6638.eurprd04.prod.outlook.com (2603:10a6:803:119::15)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200817223400.403505-4-lkundrak@v3.sk>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from robin-OptiPlex-790.ap.freescale.net (119.31.174.67) by SGBP274CA0010.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::22) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3326.19 via Frontend Transport; Mon, 31 Aug 2020 08:34:46 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [119.31.174.67]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: eb8e329d-ad5b-4509-9e06-08d84d88ba97
+X-MS-TrafficTypeDiagnostic: VI1PR0402MB3549:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR0402MB35494BF167AF35E100EBE86E89510@VI1PR0402MB3549.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: fNfVovH+xwSeduVMONG+Ahw+RGEkbgw+I7xCioif2OcRetLoxbaRJE/F7VpYkz0XbNUOGAe++CH0zQRdPDgkPpFUgsIYa2j4Dr0lbBVPjvNVM2TIh3jSZqP4eJRKHwCFm3UJNaZpCeEMnl4hw0tHhCJoCIfyi/0bbWWgABTuE3YpRHS1AeItcE8KtOwwAn7FSw4RY62CJvRR8U93S+nWZt2ktWVfMQE40ZpYHGVRiFGMajzdQZkrwuGFyl7Ux3oNFoaY5P4PgBuFieXU6WjkwqvJflmEam9X4c6WGc7SGJKGPJoX8YzBUhuAcQtwGXDOpZ27turIjrI/caDe9+FfHg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6638.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(136003)(346002)(366004)(376002)(39860400002)(4326008)(186003)(52116002)(8676002)(26005)(8936002)(86362001)(66556008)(36756003)(66476007)(5660300002)(956004)(6506007)(6486002)(2616005)(66946007)(316002)(6512007)(16526019)(7416002)(2906002)(6636002)(6666004)(478600001)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: Lr/afptECpY68AVxMse4bz6zChbsY3WYH7FHMfvWYnFi9GHtLsHziM5nxfr7qqah4rADHjxXQ9Qp3oJb2R38Yx+VXrkvzTaxeCQHmJpgF/kBhn4N/olacFGXnM0bI0iIYSvBsEUM7dMM08S6aRv1L1I80Y+9vLanHjReh8OK+2zfPJjeWKj9ajBt4NxXUWUh3msMg7UVgpFKdAFv6quh/7grXofqspIiXW9FuUzlJTRYfm7BEtaNbiwxpFDZsf7XR4FgPmimW8xp8x8YUm+ivH/34Y0JetkFG64SarekOVZgBRSnBoJRW68NGfSo0fv6kmEHmWsk40nNastDsVdHZ+5w3auWmrTWCmOB7K/9AkaZXThEmFoy9fcxuk0gWmC+wFmftB6kdeITphvFz+X4PCLxdSn8ONYhMqFxDQtV8Zq2PvuC/S+wckLfxrWx5zTClwFvyJw1WT8G4xIFog83jFc6RVexz1WRSmL9cZ4NS16Bk9Ehlhz1Bo3mB++xzyNCa07jlIcb10QkLP7Rm2jd8pAnCigyUcp6zj+xLkhu0jnqmRXttLuEaRbFwWwXXY7caCbGdmSzN6DBJcIHNZv0ckstMRxQq41CXj4UEKHhB1DTw7iyLDxiA9T8kKWsTxAKmLRd3uDSS/Z3j8NIGAq8lw==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eb8e329d-ad5b-4509-9e06-08d84d88ba97
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6638.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2020 08:34:51.7332
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Wc5+H044LMhBkBaFSo6CQ/HJhfKP5BGVYAX3Bl4a+bZfdX2EQr+gFg+znzPwYqk09LQF6sXoqyHykHGSXNJ2nA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3549
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18-08-20, 00:34, Lubomir Rintel wrote:
-> Add PHY driver for the HSICs found on Marvell MMP3 SoC. The driver is
-> rather straightforward -- the PHY essentially just needs to be enabled.
-> 
-> Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
-> 
-> ---
-> Changes since v1:
-> - Explicitely cast drvdata pointer to make sparse happy
-> 
->  drivers/phy/marvell/Kconfig         | 12 +++++
->  drivers/phy/marvell/Makefile        |  1 +
->  drivers/phy/marvell/phy-mmp3-hsic.c | 82 +++++++++++++++++++++++++++++
->  3 files changed, 95 insertions(+)
->  create mode 100644 drivers/phy/marvell/phy-mmp3-hsic.c
-> 
-> diff --git a/drivers/phy/marvell/Kconfig b/drivers/phy/marvell/Kconfig
-> index 8f6273c837ec3..6c96f2bf52665 100644
-> --- a/drivers/phy/marvell/Kconfig
-> +++ b/drivers/phy/marvell/Kconfig
-> @@ -116,3 +116,15 @@ config PHY_MMP3_USB
->  	  The PHY driver will be used by Marvell udc/ehci/otg driver.
->  
->  	  To compile this driver as a module, choose M here.
-> +
-> +config PHY_MMP3_HSIC
-> +	tristate "Marvell MMP3 USB HSIC PHY Driver"
-> +	depends on MACH_MMP3_DT || COMPILE_TEST
-> +	select GENERIC_PHY
-> +	help
-> +	  Enable this to support Marvell MMP3 USB HSIC PHY driver for
-> +	  Marvell MMP3 SoC. This driver will be used my the Marvell EHCI
-> +	  driver to initialize the interface to internal USB HSIC
-> +	  components on MMP3-based boards.
-> +
-> +	  To compile this driver as a module, choose M here.
-> diff --git a/drivers/phy/marvell/Makefile b/drivers/phy/marvell/Makefile
-> index 5a106b1549f41..7f296ef028292 100644
-> --- a/drivers/phy/marvell/Makefile
-> +++ b/drivers/phy/marvell/Makefile
-> @@ -3,6 +3,7 @@ obj-$(CONFIG_ARMADA375_USBCLUSTER_PHY)	+= phy-armada375-usb2.o
->  obj-$(CONFIG_PHY_BERLIN_SATA)		+= phy-berlin-sata.o
->  obj-$(CONFIG_PHY_BERLIN_USB)		+= phy-berlin-usb.o
->  obj-$(CONFIG_PHY_MMP3_USB)		+= phy-mmp3-usb.o
-> +obj-$(CONFIG_PHY_MMP3_HSIC)		+= phy-mmp3-hsic.o
->  obj-$(CONFIG_PHY_MVEBU_A3700_COMPHY)	+= phy-mvebu-a3700-comphy.o
->  obj-$(CONFIG_PHY_MVEBU_A3700_UTMI)	+= phy-mvebu-a3700-utmi.o
->  obj-$(CONFIG_PHY_MVEBU_A38X_COMPHY)	+= phy-armada38x-comphy.o
-> diff --git a/drivers/phy/marvell/phy-mmp3-hsic.c b/drivers/phy/marvell/phy-mmp3-hsic.c
-> new file mode 100644
-> index 0000000000000..47c1e8894939f
-> --- /dev/null
-> +++ b/drivers/phy/marvell/phy-mmp3-hsic.c
-> @@ -0,0 +1,82 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright (C) 2020 Lubomir Rintel <lkundrak@v3.sk>
-> + */
-> +
-> +#include <linux/delay.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
-> +
-> +#define HSIC_CTRL	0x08
-> +#define HSIC_ENABLE	BIT(7)
-> +#define PLL_BYPASS	BIT(4)
-> +
-> +static int mmp3_hsic_phy_init(struct phy *phy)
-> +{
-> +	void __iomem *base = (void __iomem *)phy_get_drvdata(phy);
+BuckX enable mode
+00b = OFF
+01b = ON by PMIC_ON_REQ = H
+10b = ON by PMIC_ON_REQ = H && PMIC_STBY_REQ = L
+11b = Always ON
 
-you are casting away from void * and casting to another void *,
-something doesn't look correct!
+For such enable mode, enable_value should be clearly set in requlator desc,
+00/11 is not enough, correct it now for different bucks. For example, buck2
+is designed for vddarm which could be off in 'PMIC_STBY_REQ = H' after kernel
+enter suspend, so should be set '10b' as ON, while others is '01b' as ON.
+All are the same as the default setting which means bucks no need to be
+enabled again during kernel boot even if they have been enabled already after
+pmic on.
 
-> +	u32 hsic_ctrl;
-> +
-> +	hsic_ctrl = readl_relaxed(base + HSIC_CTRL);
-> +	hsic_ctrl |= HSIC_ENABLE;
-> +	hsic_ctrl |= PLL_BYPASS;
-> +	writel_relaxed(hsic_ctrl, base + HSIC_CTRL);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct phy_ops mmp3_hsic_phy_ops = {
-> +	.init		= mmp3_hsic_phy_init,
-> +	.owner		= THIS_MODULE,
-> +};
-> +
-> +static const struct of_device_id mmp3_hsic_phy_of_match[] = {
-> +	{ .compatible = "marvell,mmp3-hsic-phy", },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, mmp3_hsic_phy_of_match);
-> +
-> +static int mmp3_hsic_phy_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct phy_provider *provider;
-> +	struct resource *resource;
-> +	void __iomem *base;
-> +	struct phy *phy;
-> +
-> +	resource = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	base = devm_ioremap_resource(dev, resource);
-> +	if (IS_ERR(base)) {
-> +		dev_err(dev, "failed to remap PHY regs\n");
-> +		return PTR_ERR(base);
-> +	}
-> +
-> +	phy = devm_phy_create(dev, NULL, &mmp3_hsic_phy_ops);
-> +	if (IS_ERR(phy)) {
-> +		dev_err(dev, "failed to create PHY\n");
-> +		return PTR_ERR(phy);
-> +	}
-> +
-> +	phy_set_drvdata(phy, (void *)base);
+Signed-off-by: Robin Gong <yibin.gong@nxp.com>
+---
+ drivers/regulator/pca9450-regulator.c | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
 
-again skip the cast
-
-> +	provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> +	if (IS_ERR(provider)) {
-> +		dev_err(dev, "failed to register PHY provider\n");
-> +		return PTR_ERR(provider);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static struct platform_driver mmp3_hsic_phy_driver = {
-> +	.probe		= mmp3_hsic_phy_probe,
-> +	.driver		= {
-> +		.name	= "mmp3-hsic-phy",
-> +		.of_match_table = mmp3_hsic_phy_of_match,
-> +	},
-> +};
-> +module_platform_driver(mmp3_hsic_phy_driver);
-> +
-> +MODULE_AUTHOR("Lubomir Rintel <lkundrak@v3.sk>");
-> +MODULE_DESCRIPTION("Marvell MMP3 USB HSIC PHY Driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.26.2
-
+diff --git a/drivers/regulator/pca9450-regulator.c b/drivers/regulator/pca9450-regulator.c
+index eb5822b..79f2a5a 100644
+--- a/drivers/regulator/pca9450-regulator.c
++++ b/drivers/regulator/pca9450-regulator.c
+@@ -249,6 +249,7 @@ static const struct pca9450_regulator_desc pca9450a_regulators[] = {
+ 			.vsel_mask = BUCK1OUT_DVS0_MASK,
+ 			.enable_reg = PCA9450_REG_BUCK1CTRL,
+ 			.enable_mask = BUCK1_ENMODE_MASK,
++			.enable_val = BUCK_ENMODE_ONREQ,
+ 			.owner = THIS_MODULE,
+ 			.of_parse_cb = pca9450_set_dvs_levels,
+ 		},
+@@ -273,7 +274,8 @@ static const struct pca9450_regulator_desc pca9450a_regulators[] = {
+ 			.vsel_reg = PCA9450_REG_BUCK2OUT_DVS0,
+ 			.vsel_mask = BUCK2OUT_DVS0_MASK,
+ 			.enable_reg = PCA9450_REG_BUCK2CTRL,
+-			.enable_mask = BUCK1_ENMODE_MASK,
++			.enable_mask = BUCK2_ENMODE_MASK,
++			.enable_val = BUCK_ENMODE_ONREQ_STBYREQ,
+ 			.owner = THIS_MODULE,
+ 			.of_parse_cb = pca9450_set_dvs_levels,
+ 		},
+@@ -299,6 +301,7 @@ static const struct pca9450_regulator_desc pca9450a_regulators[] = {
+ 			.vsel_mask = BUCK3OUT_DVS0_MASK,
+ 			.enable_reg = PCA9450_REG_BUCK3CTRL,
+ 			.enable_mask = BUCK3_ENMODE_MASK,
++			.enable_val = BUCK_ENMODE_ONREQ,
+ 			.owner = THIS_MODULE,
+ 			.of_parse_cb = pca9450_set_dvs_levels,
+ 		},
+@@ -324,6 +327,7 @@ static const struct pca9450_regulator_desc pca9450a_regulators[] = {
+ 			.vsel_mask = BUCK4OUT_MASK,
+ 			.enable_reg = PCA9450_REG_BUCK4CTRL,
+ 			.enable_mask = BUCK4_ENMODE_MASK,
++			.enable_val = BUCK_ENMODE_ONREQ,
+ 			.owner = THIS_MODULE,
+ 		},
+ 	},
+@@ -342,6 +346,7 @@ static const struct pca9450_regulator_desc pca9450a_regulators[] = {
+ 			.vsel_mask = BUCK5OUT_MASK,
+ 			.enable_reg = PCA9450_REG_BUCK5CTRL,
+ 			.enable_mask = BUCK5_ENMODE_MASK,
++			.enable_val = BUCK_ENMODE_ONREQ,
+ 			.owner = THIS_MODULE,
+ 		},
+ 	},
+@@ -360,6 +365,7 @@ static const struct pca9450_regulator_desc pca9450a_regulators[] = {
+ 			.vsel_mask = BUCK6OUT_MASK,
+ 			.enable_reg = PCA9450_REG_BUCK6CTRL,
+ 			.enable_mask = BUCK6_ENMODE_MASK,
++			.enable_val = BUCK_ENMODE_ONREQ,
+ 			.owner = THIS_MODULE,
+ 		},
+ 	},
+@@ -475,6 +481,7 @@ static const struct pca9450_regulator_desc pca9450bc_regulators[] = {
+ 			.vsel_mask = BUCK1OUT_DVS0_MASK,
+ 			.enable_reg = PCA9450_REG_BUCK1CTRL,
+ 			.enable_mask = BUCK1_ENMODE_MASK,
++			.enable_val = BUCK_ENMODE_ONREQ,
+ 			.owner = THIS_MODULE,
+ 			.of_parse_cb = pca9450_set_dvs_levels,
+ 		},
+@@ -499,7 +506,8 @@ static const struct pca9450_regulator_desc pca9450bc_regulators[] = {
+ 			.vsel_reg = PCA9450_REG_BUCK2OUT_DVS0,
+ 			.vsel_mask = BUCK2OUT_DVS0_MASK,
+ 			.enable_reg = PCA9450_REG_BUCK2CTRL,
+-			.enable_mask = BUCK1_ENMODE_MASK,
++			.enable_mask = BUCK2_ENMODE_MASK,
++			.enable_val = BUCK_ENMODE_ONREQ_STBYREQ,
+ 			.owner = THIS_MODULE,
+ 			.of_parse_cb = pca9450_set_dvs_levels,
+ 		},
+@@ -525,6 +533,7 @@ static const struct pca9450_regulator_desc pca9450bc_regulators[] = {
+ 			.vsel_mask = BUCK4OUT_MASK,
+ 			.enable_reg = PCA9450_REG_BUCK4CTRL,
+ 			.enable_mask = BUCK4_ENMODE_MASK,
++			.enable_val = BUCK_ENMODE_ONREQ,
+ 			.owner = THIS_MODULE,
+ 		},
+ 	},
+@@ -543,6 +552,7 @@ static const struct pca9450_regulator_desc pca9450bc_regulators[] = {
+ 			.vsel_mask = BUCK5OUT_MASK,
+ 			.enable_reg = PCA9450_REG_BUCK5CTRL,
+ 			.enable_mask = BUCK5_ENMODE_MASK,
++			.enable_val = BUCK_ENMODE_ONREQ,
+ 			.owner = THIS_MODULE,
+ 		},
+ 	},
+@@ -561,6 +571,7 @@ static const struct pca9450_regulator_desc pca9450bc_regulators[] = {
+ 			.vsel_mask = BUCK6OUT_MASK,
+ 			.enable_reg = PCA9450_REG_BUCK6CTRL,
+ 			.enable_mask = BUCK6_ENMODE_MASK,
++			.enable_val = BUCK_ENMODE_ONREQ,
+ 			.owner = THIS_MODULE,
+ 		},
+ 	},
 -- 
-~Vinod
+2.7.4
+
