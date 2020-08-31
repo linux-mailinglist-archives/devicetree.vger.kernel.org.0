@@ -2,120 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 010FE2582EA
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 22:41:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FDFF2582F1
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 22:44:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726173AbgHaUlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 16:41:14 -0400
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:19703 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726102AbgHaUlN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 16:41:13 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5f4d605b0000>; Mon, 31 Aug 2020 13:40:59 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Mon, 31 Aug 2020 13:41:13 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Mon, 31 Aug 2020 13:41:13 -0700
-Received: from [10.2.173.243] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 31 Aug
- 2020 20:41:12 +0000
-Subject: Re: [PATCH v4 3/4] dt-bindings: media: imx274: Move clock and
- supplies to required properties
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-CC:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <hverkuil@xs4all.nl>, <luca@lucaceresoli.net>,
-        <leonl@leopardimaging.com>, <robh+dt@kernel.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1598903558-9691-1-git-send-email-skomatineni@nvidia.com>
- <1598903558-9691-4-git-send-email-skomatineni@nvidia.com>
- <20200831201757.GC844@valkosipuli.retiisi.org.uk>
- <5c341ed9-6077-e935-de50-ff9f5f17edcf@nvidia.com>
-Message-ID: <e0fe49a4-f52c-91d7-bdbf-e0026f61a432@nvidia.com>
-Date:   Mon, 31 Aug 2020 13:41:02 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726537AbgHaUoC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 16:44:02 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:46512 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726102AbgHaUoB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 16:44:01 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DBFBC277;
+        Mon, 31 Aug 2020 22:43:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1598906639;
+        bh=GWc1kc2ZYMRzT4RklTX/9TamGTAXwPTp8ETTg6O8suA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OhB1coHrSP/iW/x30PtlAPrlM5c0tj8EdwS5afCTsmXePE0nLEQ8cuBmfnewcJRPq
+         NCn8Cw+vH8QuW0vmE+cH29aC5aT51ly/JqlYzr6YuXx9J95YZZrfMY+NYaVaLyN5v2
+         BA9iZ9lLrt1VPlIMprAdpgVyQn8kTNOfltTG7fW4=
+Date:   Mon, 31 Aug 2020 23:43:37 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Chen-Yu Tsai <wens@csie.org>, dri-devel@lists.freedesktop.org,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 3/4] drm/sun4i: tcon: Support the LVDS Dual-Link on
+ the A20
+Message-ID: <20200831204337.GW16155@pendragon.ideasonboard.com>
+References: <cover.7029eefe5c5350920f91d4cd4cbc061466752f3c.1596101672.git-series.maxime@cerno.tech>
+ <100f5fe3391366e9bbc76ebec1edbf8c0aeb715a.1596101672.git-series.maxime@cerno.tech>
 MIME-Version: 1.0
-In-Reply-To: <5c341ed9-6077-e935-de50-ff9f5f17edcf@nvidia.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1598906459; bh=0PRiVPO6ujz6K0EzzICGEoJlqFT3wY1llIkCkcKabOk=;
-        h=X-PGP-Universal:Subject:From:To:CC:References:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=dNu0FNMqGvwUxuU+6smkqkTH9slTE+L6FiUt7uqfL9s2SF8FDel9KUAWOA16elrVz
-         FdBTNMRklx+1sEZ56LfN9mIJh6lOeIJAAw752zyk4mLEkWu2vEE1yWKd1b+fG+QKPD
-         g3zEV9vDTWlE5wOYeOIKVhtYqCVo/j33vhyfgpCcXrD2tn4WE9VgRovXNTLHeA3XjW
-         1FhvWAaoUUW+VA1leUeQmTFUUm/Pc90ReROc5rTJkLZszOBhSfNhv63gmaOD4+r+4I
-         ZdO+dnX8c1PKnt+5IHw+bwOMEp439Avb3+QbpeERK5iK+P2joQbnJEX5gLTZQkmRHj
-         0jd4jGSZmfZYg==
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <100f5fe3391366e9bbc76ebec1edbf8c0aeb715a.1596101672.git-series.maxime@cerno.tech>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Maxime,
 
-On 8/31/20 1:37 PM, Sowjanya Komatineni wrote:
->
-> On 8/31/20 1:17 PM, Sakari Ailus wrote:
->> Hi Sowjanya,
->>
->> On Mon, Aug 31, 2020 at 12:52:37PM -0700, Sowjanya Komatineni wrote:
->>> Clock and supplies are external to IMX274 sensor and are dependent
->>> on camera module design.
->>>
->>> So, this patch moves them to required properties.
->>>
->>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->>> ---
->>> =C2=A0 Documentation/devicetree/bindings/media/i2c/imx274.txt | 6 +++--=
--
->>> =C2=A0 1 file changed, 3 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/media/i2c/imx274.txt=20
->>> b/Documentation/devicetree/bindings/media/i2c/imx274.txt
->>> index d0a5c899..b43bed6 100644
->>> --- a/Documentation/devicetree/bindings/media/i2c/imx274.txt
->>> +++ b/Documentation/devicetree/bindings/media/i2c/imx274.txt
->>> @@ -10,15 +10,15 @@ at 1440 Mbps.
->>> =C2=A0 Required Properties:
->>> =C2=A0 - compatible: value should be "sony,imx274" for imx274 sensor
->>> =C2=A0 - reg: I2C bus address of the device
->>> -
->>> -Optional Properties:
->>> -- reset-gpios: Sensor reset GPIO
->>> =C2=A0 - clocks: Reference to the input clock.
->>> =C2=A0 - clock-names: Should be "inck".
->>> =C2=A0 - vana-supply: Sensor 2.8v analog supply.
->>> =C2=A0 - vdig-supply: Sensor 1.8v digital core supply.
->>> =C2=A0 - vddl-supply: Sensor digital IO 1.2v supply.
->> If these have been optional in the past I don't think we can start
->> requiring them now.
->>
->> The framework will just give the driver a dummy regulator if one isn't
->> found.
-> These were added recently with my patches. So I hope should be ok to=20
-> make them required as they are external to sensor
+Thank you for the patch.
 
-Also made them required as they are external to sensor and also to use=20
-bulk_enable/disable APIs, devm_regulator_bulk_get()
+On Thu, Jul 30, 2020 at 11:35:03AM +0200, Maxime Ripard wrote:
+> The A20 can use its second TCON as the secondary LVDS link in a dual-link
+> setup, with the TCON0 being the main link. Extend a bit the parsing code to
+> leverage the DRM dual-link code, register only the LVDS output on the
+> primary TCON, and add the needed bits to setup the TCON properly.
+> 
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> ---
+>  drivers/gpu/drm/sun4i/sun4i_tcon.c | 36 +++++++++++++++++++++++++++++++-
+>  drivers/gpu/drm/sun4i/sun4i_tcon.h |  4 +++-
+>  2 files changed, 40 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.c b/drivers/gpu/drm/sun4i/sun4i_tcon.c
+> index d03ad75f9900..ed2abf6eb18b 100644
+> --- a/drivers/gpu/drm/sun4i/sun4i_tcon.c
+> +++ b/drivers/gpu/drm/sun4i/sun4i_tcon.c
+> @@ -487,6 +487,9 @@ static void sun4i_tcon0_mode_set_lvds(struct sun4i_tcon *tcon,
+>  	else
+>  		reg |= SUN4I_TCON0_LVDS_IF_DATA_POL_NORMAL;
+>  
+> +	if (tcon->lvds_dual_link)
+> +		reg |= SUN4I_TCON0_LVDS_IF_DUAL_LINK;
+> +
+>  	if (sun4i_tcon_get_pixel_depth(encoder) == 24)
+>  		reg |= SUN4I_TCON0_LVDS_IF_BITWIDTH_24BITS;
+>  	else
+> @@ -896,6 +899,16 @@ static int sun4i_tcon_register_panel(struct drm_device *drm,
+>  		return sun4i_rgb_init(drm, tcon);
+>  
+>  	/*
+> +	 * Only the TCON0 will be relevant for the LVDS output, so if
+> +	 * our ID is something else, let's prevent our TCON from
+> +	 * registering its own LVDS output
+> +	 */
+> +	if (tcon->id) {
+> +		dev_info(dev, "Secondary TCON, disabling panel output");
 
-does not use OPTIONAL_GET.
+This may worry the user unnecessarily. I'd make it a debug message, or
+drop it completely, and like reword it a bit as pointed out by Chen-Yu.
 
->>
->>> =C2=A0 +Optional Properties:
->>> +- reset-gpios: Sensor reset GPIO
->>> +
->>> =C2=A0 The imx274 device node should contain one 'port' child node with
->>> =C2=A0 an 'endpoint' subnode. For further reading on port node refer to
->>> Documentation/devicetree/bindings/media/video-interfaces.txt.
+> +		return 0;
+> +	}
+> +
+> +	/*
+>  	 * This can only be made optional since we've had DT
+>  	 * nodes without the LVDS reset properties.
+>  	 *
+> @@ -941,6 +954,28 @@ static int sun4i_tcon_register_panel(struct drm_device *drm,
+>  		return -ENODEV;
+>  	}
+>  
+> +	/*
+> +	 * If we don't have a second TCON, we will never be able to do
+> +	 * dual-link LVDS, so we don't have much more to do.
+> +	 */
+> +	companion = of_parse_phandle(dev->of_node, "allwinner,lvds-companion", 0);
+
+Should there be a patch to add this property to the DT bindings ?
+
+> +	if (!companion)
+> +		return 0;
+> +
+> +	/*
+> +	 * Let's do a sanity check on the dual-link setup to make sure
+> +	 * everything is properly described.
+> +	 */
+> +	ret = drm_of_lvds_get_dual_link_pixel_order(dev->of_node, 1, 0,
+> +						    companion, 1, 0);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Invalid Dual-Link Configuration.\n");
+> +		return ret;
+> +	}
+> +
+> +	dev_info(dev, "Primary TCON, enabling LVDS Dual-Link");
+> +	tcon->lvds_dual_link = true;
+> +
+>  	return sun4i_lvds_init(drm, tcon);
+>  }
+>  
+> @@ -1500,6 +1535,7 @@ static const struct sun4i_tcon_quirks sun7i_a20_tcon0_quirks = {
+>  };
+>  
+>  static const struct sun4i_tcon_quirks sun7i_a20_quirks = {
+> +	.supports_lvds		= true,
+
+Should this be split to a separate patch, or at least mentioned in the
+commit message ?
+
+>  	.has_channel_0		= true,
+>  	.has_channel_1		= true,
+>  	.dclk_min_div		= 4,
+> diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.h b/drivers/gpu/drm/sun4i/sun4i_tcon.h
+> index cfbf4e6c1679..51c4e09cdd13 100644
+> --- a/drivers/gpu/drm/sun4i/sun4i_tcon.h
+> +++ b/drivers/gpu/drm/sun4i/sun4i_tcon.h
+> @@ -98,6 +98,7 @@
+>  
+>  #define SUN4I_TCON0_LVDS_IF_REG			0x84
+>  #define SUN4I_TCON0_LVDS_IF_EN				BIT(31)
+> +#define SUN4I_TCON0_LVDS_IF_DUAL_LINK			BIT(30)
+>  #define SUN4I_TCON0_LVDS_IF_BITWIDTH_MASK		BIT(26)
+>  #define SUN4I_TCON0_LVDS_IF_BITWIDTH_18BITS		(1 << 26)
+>  #define SUN4I_TCON0_LVDS_IF_BITWIDTH_24BITS		(0 << 26)
+> @@ -274,6 +275,9 @@ struct sun4i_tcon {
+>  	/* Associated crtc */
+>  	struct sun4i_crtc		*crtc;
+>  
+> +	/* Is the LVDS link a dual-channel link? */
+> +	bool				lvds_dual_link;
+> +
+>  	int				id;
+>  
+>  	/* TCON list management */
+
+-- 
+Regards,
+
+Laurent Pinchart
