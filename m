@@ -2,100 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91028257B80
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 16:50:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2134257BB6
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 17:10:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726384AbgHaOuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 10:50:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48988 "EHLO
+        id S1728219AbgHaPJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 11:09:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727902AbgHaOuG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 10:50:06 -0400
-Received: from mxwww.masterlogin.de (mxwww.masterlogin.de [IPv6:2a03:2900:1:1::a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D783FC061575
-        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 07:50:05 -0700 (PDT)
-Received: from mxout2.routing.net (unknown [192.168.10.82])
-        by backup.mxwww.masterlogin.de (Postfix) with ESMTPS id C8FE52C202
-        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 14:40:01 +0000 (UTC)
-Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
-        by mxout2.routing.net (Postfix) with ESMTP id BDE1F5FC42;
-        Mon, 31 Aug 2020 14:39:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1598884787;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=RdOFWohILbsEDDDJFVfgHhbn+dw2QRxvLWyTIr2kZpU=;
-        b=QG9Bcy4D86OBecjJqWP/tcMdwIDTmE3hui2EQ3NEBrH3qBuuFq8y7TPOkYLJ74hzHCBfqO
-        GdVDgwMDOXnAwgRC2dO/ece+hky352oQocmZjea1+DndpMN5MpSeAQ3HrfuD3Oge125XMv
-        BA3xEHZYF/djXMSn2ohFAMZquyS9WN4=
-Received: from localhost.localdomain (fttx-pool-217.61.158.151.bambit.de [217.61.158.151])
-        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id EEE3C1005C3;
-        Mon, 31 Aug 2020 14:39:46 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-mediatek@lists.infradead.org
-Cc:     Alex Ryabchenko <d3adme4t@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        chunkuang.hu@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Frank Wunderlich <frank-w@public-files.de>
-Subject: [PATCH] arm: dts: mt7623: add lima related regulator
-Date:   Mon, 31 Aug 2020 16:39:37 +0200
-Message-Id: <20200831143937.28259-1-linux@fw-web.de>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S1728148AbgHaPJr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 11:09:47 -0400
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5842C061575
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 08:09:46 -0700 (PDT)
+Received: by mail-lf1-x141.google.com with SMTP id x77so3707874lfa.0
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 08:09:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=m+ousw4fXr79+y3y64jWSrgKPSzonc7IxBJ1mGORPXc=;
+        b=oxU1FAWkMAdlZNofP3Lz0EkAx+ley9wg9Sx9jjQQ4URQ+XnKMUyalJ9n4R1ITqQNY8
+         zH8oWA2z44OCkJtwldUGo4AF8wC9aAadul21JlM4bgVWsrGzqhRlrf1ptBhtWXZMi3Eq
+         OFV+dHajvGnbRLrgAX3DLD77kxYX2E1teXA/WpMbtfFS9VMBn312R9eiGCCaboCjr+ki
+         e2UzaAk6tROAdQputt3xy4WQoiqqRDRav6pQ4Q2VNX3bBRAHPZZwelsgKvatj+VpX9+C
+         kalDx6pnXBODp/P56GV5O9gwDFxXzsIKUrwNlzMqErWq4pHLuhHitVorXFJpCepq3c0f
+         sqcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=m+ousw4fXr79+y3y64jWSrgKPSzonc7IxBJ1mGORPXc=;
+        b=KAU7hzww+5+TBENzheaXEKQ5WPX/LE15+bH0ByV7xlSt+h1wZfRAoEjD5hjKsi/HGa
+         bnoJWBzbn1kFlyFbIv220fyQzxYIE8qoGgCFphQzRfW2Lyyw5QAO4e45j+odlMAULkZU
+         zPTlTg1AXhVbtkyzdJMkLnQQEyjrSsknTWd5HuCScViED7xbQ3GB9IhmoRhIMfZ59NXW
+         gHs4spZVoe6uPTUMBvtHWV4aKtbvr/hFCmoMOY78ak46dIjOVj6S/NB1MhfKJ1vS+RYR
+         xU5DNfb/Pd1P38Y8NwnQQ10cSzzgzgwk8oD+mV9Wlt1LoeFbfy8cj6CUYRBfz4R3X/EY
+         mo1Q==
+X-Gm-Message-State: AOAM5309BTwR15ICDX4BvguLuH3WGVp6rZwB+Um3UlQl62Opsxp9VW9L
+        YHqpNDpJe2jLtdI2arttH0uYXQ==
+X-Google-Smtp-Source: ABdhPJzdInn/v+/RHibWaNevmUbn23GSxa4f5Tmg5SIRq9zj/nOaSGRUihEyUSP8g9u+sdBwql02tA==
+X-Received: by 2002:ac2:42c2:: with SMTP id n2mr894835lfl.117.1598886584936;
+        Mon, 31 Aug 2020 08:09:44 -0700 (PDT)
+Received: from gilgamesh.semihalf.com (193-106-246-138.noc.fibertech.net.pl. [193.106.246.138])
+        by smtp.gmail.com with ESMTPSA id w6sm2034388lfn.73.2020.08.31.08.09.42
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 31 Aug 2020 08:09:43 -0700 (PDT)
+From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+To:     tglx@linutronix.de, jason@lakedaemon.net, maz@kernel.org,
+        s-anna@ti.com
+Cc:     grzegorz.jaszczyk@linaro.org, robh+dt@kernel.org,
+        lee.jones@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, david@lechnology.com,
+        praneeth@ti.com
+Subject: [RESEND PATCH v5 0/5] Add TI PRUSS Local Interrupt Controller IRQChip driver
+Date:   Mon, 31 Aug 2020 17:09:13 +0200
+Message-Id: <1598886558-16546-1-git-send-email-grzegorz.jaszczyk@linaro.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alex Ryabchenko <d3adme4t@gmail.com>
+Hi All,
 
-GPU needs additional regulator, add it to devicetree of bpi-r2
+The following is a v4 version of the series [1-4] that adds an IRQChip
+driver for the local interrupt controller present within a Programmable
+Real-Time Unit and Industrial Communication Subsystem (PRU-ICSS) present on a
+number of TI SoCs including OMAP architecture based AM335x, AM437x, AM57xx SoCs,
+Keystone 2 architecture based 66AK2G SoCs, Davinci architecture based
+OMAP-L138/DA850 SoCs and the latest K3 architecture based AM65x and J721E SoCs.
+Please see the v1 cover-letter [1] for details about the features of this
+interrupt controller.  More details can be found in any of the supported SoC
+TRMs.  Eg: Chapter 30.1.6 of AM5728 TRM [5]
 
-Signed-off-by: Alex Ryabchenko <d3adme4t@gmail.com>
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+Please see the individual patches for exact changes in each patch, following are
+the main changes from v4:
+ - Update dt-binding description (no functional changes).
+ - Use more meaningful define/variable names, drop redundant error messages, fix
+   error handling in case of irq == 0 (patch #2).
 
-diff --git a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
-index f41f221e56ca..826912545ef1 100644
---- a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
-+++ b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
-@@ -79,6 +79,13 @@ reg_5v: regulator-5v {
- 		regulator-always-on;
- 	};
- 
-+	reg_vgpu: fixedregulator@0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_fixed_vgpu";
-+		regulator-min-microvolt = <1150000>;
-+		regulator-max-microvolt = <1150000>;
-+	};
-+
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 		pinctrl-names = "default";
-@@ -283,6 +290,11 @@ &i2c1 {
- 	status = "okay";
- };
- 
-+&mali {
-+	mali-supply = <&reg_vgpu>;
-+	status = "okay";
-+};
-+
- &mmc0 {
- 	pinctrl-names = "default", "state_uhs";
- 	pinctrl-0 = <&mmc0_pins_default>;
-@@ -402,4 +414,3 @@ &u3phy1 {
- &u3phy2 {
- 	status = "okay";
- };
--
+[1] https://patchwork.kernel.org/cover/11034561/
+[2] https://patchwork.kernel.org/cover/11069749/
+[3] https://patchwork.kernel.org/cover/11639055/
+[4] https://patchwork.kernel.org/cover/11688727/
+[5] http://www.ti.com/lit/pdf/spruhz6
+
+Best regards
+Grzegorz
+
+David Lechner (1):
+  irqchip/irq-pruss-intc: Implement irq_{get,set}_irqchip_state ops
+
+Grzegorz Jaszczyk (1):
+  irqchip/irq-pruss-intc: Add a PRUSS irqchip driver for PRUSS
+    interrupts
+
+Suman Anna (3):
+  dt-bindings: irqchip: Add PRU-ICSS interrupt controller bindings
+  irqchip/irq-pruss-intc: Add logic for handling reserved interrupts
+  irqchip/irq-pruss-intc: Add support for ICSSG INTC on K3 SoCs
+
+ .../interrupt-controller/ti,pruss-intc.yaml        | 158 +++++
+ drivers/irqchip/Kconfig                            |  10 +
+ drivers/irqchip/Makefile                           |   1 +
+ drivers/irqchip/irq-pruss-intc.c                   | 658 +++++++++++++++++++++
+ 4 files changed, 827 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+ create mode 100644 drivers/irqchip/irq-pruss-intc.c
+
 -- 
-2.25.1
+2.7.4
 
