@@ -2,311 +2,821 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75E4D257854
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 13:26:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97D7C257861
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 13:28:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726326AbgHaL0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 07:26:41 -0400
-Received: from mail-eopbgr30072.outbound.protection.outlook.com ([40.107.3.72]:22803
-        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726249AbgHaLY4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 Aug 2020 07:24:56 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Zfog0AdE8UUZr7GXucJwhLtvgbbveuSK5QQ2wUOqwhHkOnlgTXe7KG+3EWP0NhC32HZn7fPJZgSH/ypq7aqvJJGJdUmU9qPs1gvK24MOYK68m0aEFnzh6btrIcYSn845pzNOjqQwAY0jbHzEXPZzbRJP+jlaAxYivwWnLPKAD8yqIaMAo6M7wqvMblB6S6DXqXffWU/64O0TrXiGek4BKU5fh13nH8W+f7rykVst6zkjkUxwXoeik9M/jxHS93wZIdefz1V4/MBxN0ycL2orMWVHsOryUfyTbBz1Vw6B7MFgP7yOMezEOnO3cWAcW0Gr2U7jMHCBgy6+5OC2wrSwEw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Hamm6KS6NJGLFJvKrxsg21nrCHfdKKBaU17T70QtK70=;
- b=SQOV4PpC6facYhsyvToHOuFwm/DWOpICs1gy+v0TWxz3Ir1DrPtAELfp4hUMFpkaBJQPG9Lz/qPclnYB5i8r65zPYQzZpJ8t8mJb1c5RtfE9DtAgHdDLcVevPHJqnLfsG0iUUymuuRucDMwDppbSlB+Ym2H4fFeUCAJPsQeZCYIPKwuRZrCMSuiaD4obLkjV1nuZ7qZI73cHNR7tLlpWsCmqrwbRMWzdnFaloyGFC3Vr/pZPt7fatgeaIsff/gnPCvxVCbO1RzQKZFfUWpgJ3INIowGtv7V2YQOZv+6raav8UtX3yg/WA+4GJ/EamZgsemdayJLqoBa5vq5qfFaHvw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Hamm6KS6NJGLFJvKrxsg21nrCHfdKKBaU17T70QtK70=;
- b=HPWjm4/GElsO+xs8AarpH+D9GaZVIlP8Qnudn8GofJGRjpj3SZIn4xECSZt4BpMQKyqG9VRSRQYEBi+sF0HMaZCUT59pSt7cGj/qEg9GuNzzhvO79+Bl/R7gxcGNBlBsjP4byiM4gKCi5MwiHGBON0zt9IEX5NCAECr4qSFuvzg=
-Authentication-Results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none header.from=oss.nxp.com;
-Received: from VI1PR0402MB3902.eurprd04.prod.outlook.com
- (2603:10a6:803:22::27) by VI1PR04MB5933.eurprd04.prod.outlook.com
- (2603:10a6:803:ec::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.21; Mon, 31 Aug
- 2020 11:24:49 +0000
-Received: from VI1PR0402MB3902.eurprd04.prod.outlook.com
- ([fe80::5d66:84a7:26de:67c3]) by VI1PR0402MB3902.eurprd04.prod.outlook.com
- ([fe80::5d66:84a7:26de:67c3%6]) with mapi id 15.20.3326.025; Mon, 31 Aug 2020
- 11:24:49 +0000
-Date:   Mon, 31 Aug 2020 14:24:45 +0300
-From:   Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        lukas@mntmn.com, agx@sigxcpu.org
-Subject: Re: [PATCH v9 0/5] Add support for iMX8MQ Display Controller
- Subsystem
-Message-ID: <20200831112445.t4xfz33avdyx5w6p@fsr-ub1864-141>
-References: <20200731081836.3048-1-laurentiu.palcu@oss.nxp.com>
- <20200828083620.6m5yhcv7rg5tckzh@fsr-ub1864-141>
- <e882838158cb9e81440c8cdeb25d80bf3310e8a8.camel@pengutronix.de>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e882838158cb9e81440c8cdeb25d80bf3310e8a8.camel@pengutronix.de>
-User-Agent: NeoMutt/20171215
-X-ClientProxiedBy: AM0P190CA0001.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:208:190::11) To VI1PR0402MB3902.eurprd04.prod.outlook.com
- (2603:10a6:803:22::27)
+        id S1726686AbgHaL2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 07:28:45 -0400
+Received: from mga18.intel.com ([134.134.136.126]:14576 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726948AbgHaL1X (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 Aug 2020 07:27:23 -0400
+IronPort-SDR: XViYvO8cktSyX9saqfxmxnPQKy4Jh0o7oat47ZNU2HTNFIewEUD5IAPJlwsecyEGHY5ZXjjuky
+ NqpeldO5KvkA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9729"; a="144630442"
+X-IronPort-AV: E=Sophos;i="5.76,375,1592895600"; 
+   d="scan'208";a="144630442"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Aug 2020 04:27:02 -0700
+IronPort-SDR: 1xV2pquFsaGjw3mtZA1MovnlSWITnFm0PqH1G+omTXVLucJpwD/XWyb0J899iV09DiDGyWrlfz
+ I+UaPFDXNz4Q==
+X-IronPort-AV: E=Sophos;i="5.76,375,1592895600"; 
+   d="scan'208";a="501299957"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Aug 2020 04:26:59 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 1557620623; Mon, 31 Aug 2020 14:26:57 +0300 (EEST)
+Date:   Mon, 31 Aug 2020 14:26:57 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     =?iso-8859-1?Q?K=E9vin_L'h=F4pital?= <kevin.lhopital@bootlin.com>
+Cc:     linux-media@vger.kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, mripard@kernel.org, wens@csie.org,
+        yong.deng@magewell.com, mchehab+samsung@kernel.org,
+        p.zabel@pengutronix.de, hans.verkuil@cisco.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        paul.kocialkowski@bootlin.com, thomas.petazzoni@bootlin.com
+Subject: Re: [PATCH v2 3/4] media: sunxi: sun6i-csi: Add support of MIPI
+ CSI-2 for A83T
+Message-ID: <20200831112656.GK31019@paasikivi.fi.intel.com>
+References: <20200828131737.12483-1-kevin.lhopital@bootlin.com>
+ <20200828131737.12483-4-kevin.lhopital@bootlin.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from fsr-ub1864-141 (83.217.231.2) by AM0P190CA0001.EURP190.PROD.OUTLOOK.COM (2603:10a6:208:190::11) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.19 via Frontend Transport; Mon, 31 Aug 2020 11:24:47 +0000
-X-Originating-IP: [83.217.231.2]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: fae6cbb7-f554-4f31-4aa2-08d84da078d3
-X-MS-TrafficTypeDiagnostic: VI1PR04MB5933:
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR04MB593308E9C1DE0026CA1F25FFBE510@VI1PR04MB5933.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: v8B0HjicfuFoJDGUqwtwDD0lW08TP5HIwcHTy3gNN807wBE2H9v+QP1kPZOExwOQ+rL9dIGdyvrRE09FsZfLFR5Q6KkJQKbrbcD/NyTDCezrkqWFTcEjPS9aBz5e6WS1A5r0YL/ZoWCp107eRfHUuROU0tqkRfFcDVpAmyEYKDsrffP0yqM2zKwMIFsUhTDLhfYAQEfdjJz5Upyss/IP/D/OnyFHYXp3jafReZfZvtSUguAQEBDbeJ2OrKpCp7tRRjEFA0c8GPR8mnPBbCpnsfOZ3k9lFR53yzija0Rx2a4qGCIXQnUl7hBVrPfRTiNnALHZcKEJth/jAULyyjefZ+zWcoy6R1zuH+e8vu4LOfVKtGfLWXV0vFlQpo5JNDyq6LZCLxPUN4NgWTThprcWj4pHSxBcVQCrVABxjtiK4HE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3902.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(39860400002)(396003)(136003)(366004)(44832011)(7416002)(8936002)(956004)(110136005)(4326008)(66946007)(316002)(2906002)(86362001)(54906003)(55016002)(66476007)(66556008)(5660300002)(26005)(83380400001)(186003)(8676002)(52116002)(9686003)(16526019)(6496006)(1076003)(33716001)(966005)(478600001)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: vMVvIorO3F4oo8tL1wwBZ5Qz/EOXe1g3uiMZWgpF8VhQQnDvzPEqN1IPpqJYYH0i6X+uUKUPZgnEogDAP++Hdz1xupbVl7WcM83nyiDvQEwtsqV7UA8DrjULnIHCtL2poXq6Vqz39yXkzi3gNZBbHIhTnfxWqgfzMSSOV4fDe2VLB2XV5z3nAQH0c+E01T8m4NRlK+RgeJzynhhRQOSYRgyUV8In53gu9HV4EQoggMP5qMVvJT+LeQH9dNvOLCajWBmW92W84WdIbJNudptCdQ0jg15GK1/hum43crT2OzWBfwlwRlK2+YSudL/HPFf4R3pYZYe3xZ4O4runzt+4qpViC4Ocd55ZgNStrk5EI1snJM2h+I7c37SXfLaj9/hW1XUdK/dPdRADMdcuD61k5oOHyBsyuzID18y93Bk4u3WiT9+qSrUfQ2rk1roQ6admbMDXYlpsOuWv/jO5A9bDBXB13q5wTIQekDFjtZs1V86jECmQDvwxdfZloB76wQeildriNaXivtku9hH6McP6sbxh36Hi97AtqLYdL355cC4iT0/xx9BlbJTW75bS9KtdrfwyCH5pZCZIhabOkJbjiUDFJmCchXJBvC23Ks5QEdi7DIxws0bNioE9tx3jPUTTSt5hgN/v+m6szeCKF+frkg==
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fae6cbb7-f554-4f31-4aa2-08d84da078d3
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3902.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2020 11:24:49.2513
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: E5oQUCIGl9CptX+VcqNDpxbcSWt0IVzL8JgUNKlR/bWkUeYqVTJspPqoC3odyDj6cql7vvWoQx0vn5i9sHpUow==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5933
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200828131737.12483-4-kevin.lhopital@bootlin.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lucas, Sam,
+Hi Kévin,
 
-On Mon, Aug 31, 2020 at 12:37:23PM +0200, Lucas Stach wrote:
-> Hi Laurentiu,
+On Fri, Aug 28, 2020 at 03:17:35PM +0200, Kévin L'hôpital wrote:
+> This patch add the support only for the Allwinner A83T MIPI CSI-2.
+> Currently, the driver does not support the  V3s MIPI CSI-2 controller.
+> On the A83T, the CSI controller is the same as the other V3s Soc, but
+> the MIPI CSI2 controller is not.
 > 
-> On Fr, 2020-08-28 at 11:36 +0300, Laurentiu Palcu wrote:
-> > Hi Lucas,
-> > 
-> > I was wondering about the plans to merge this series. Since not many
-> > people can test it properly due to lack of DCSS support in the upstream
-> > NWL driver (which I heard it's coming soon) and a completely nonexistent
-> > HDP driver, are we going to take a leap of faith and merge it as is? Or
-> > should we wait?
+> It was tested with the ov8865 image sensor.
 > 
-> I think even if the bridges aren't ready yet, the driver is in a good
-> enough shape to merge it. There's no point in letting it accumulate
-> bitrot while waiting for the bridges to land. Also I guess it will make
-> bridge driver development a lot easier when the DCSS driver is in-tree.
+> Signed-off-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
+> ---
+>  .../media/platform/sunxi/sun6i-csi/Makefile   |   2 +-
+>  .../platform/sunxi/sun6i-csi/sun6i_csi.c      |  84 +++++--
+>  .../sunxi/sun6i-csi/sun8i_a83t_dphy.c         |  39 ++++
+>  .../sunxi/sun6i-csi/sun8i_a83t_dphy.h         |  16 ++
+>  .../sunxi/sun6i-csi/sun8i_a83t_dphy_reg.h     |  39 ++++
+>  .../sunxi/sun6i-csi/sun8i_a83t_mipi_csi2.c    | 217 ++++++++++++++++++
+>  .../sunxi/sun6i-csi/sun8i_a83t_mipi_csi2.h    |  16 ++
+>  .../sun6i-csi/sun8i_a83t_mipi_csi2_reg.h      | 179 +++++++++++++++
+>  8 files changed, 575 insertions(+), 17 deletions(-)
+>  create mode 100644 drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_dphy.c
+>  create mode 100644 drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_dphy.h
+>  create mode 100644 drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_dphy_reg.h
+>  create mode 100644 drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_mipi_csi2.c
+>  create mode 100644 drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_mipi_csi2.h
+>  create mode 100644 drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_mipi_csi2_reg.h
+> 
+> diff --git a/drivers/media/platform/sunxi/sun6i-csi/Makefile b/drivers/media/platform/sunxi/sun6i-csi/Makefile
+> index e7e315347804..0f3849790463 100644
+> --- a/drivers/media/platform/sunxi/sun6i-csi/Makefile
+> +++ b/drivers/media/platform/sunxi/sun6i-csi/Makefile
+> @@ -1,4 +1,4 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+> -sun6i-csi-y += sun6i_video.o sun6i_csi.o
+> +sun6i-csi-y += sun6i_video.o sun6i_csi.o sun8i_a83t_mipi_csi2.o sun8i_a83t_dphy.o
+>  
+>  obj-$(CONFIG_VIDEO_SUN6I_CSI) += sun6i-csi.o
+> diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c
+> index 680fa31f380a..cf346e536959 100644
+> --- a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c
+> +++ b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c
+> @@ -26,6 +26,7 @@
+>  
+>  #include "sun6i_csi.h"
+>  #include "sun6i_csi_reg.h"
+> +#include "sun8i_a83t_mipi_csi2.h"
+>  
+>  #define MODULE_NAME	"sun6i-csi"
+>  
+> @@ -160,10 +161,14 @@ int sun6i_csi_set_power(struct sun6i_csi *csi, bool enable)
+>  		regmap_update_bits(regmap, CSI_EN_REG, CSI_EN_CSI_EN, 0);
+>  
+>  		clk_disable_unprepare(sdev->clk_ram);
+> +
+>  		if (of_device_is_compatible(dev->of_node,
+>  					    "allwinner,sun50i-a64-csi"))
+>  			clk_rate_exclusive_put(sdev->clk_mod);
+>  		clk_disable_unprepare(sdev->clk_mod);
+> +		if (csi->v4l2_ep.bus_type == V4L2_MBUS_CSI2_DPHY)
+> +			sun6i_mipi_csi_clk_disable(csi);
+> +
+>  		reset_control_assert(sdev->rstc_bus);
+>  		return 0;
+>  	}
+> @@ -189,10 +194,18 @@ int sun6i_csi_set_power(struct sun6i_csi *csi, bool enable)
+>  		goto clk_ram_disable;
+>  	}
+>  
+> +	if (csi->v4l2_ep.bus_type == V4L2_MBUS_CSI2_DPHY) {
+> +		ret = sun6i_mipi_csi_clk_enable(csi);
+> +		if (ret)
+> +			goto reset_control_assert;
+> +	}
+> +
+>  	regmap_update_bits(regmap, CSI_EN_REG, CSI_EN_CSI_EN, CSI_EN_CSI_EN);
+>  
+>  	return 0;
+>  
+> +reset_control_assert:
+> +	reset_control_assert(sdev->rstc_bus);
+>  clk_ram_disable:
+>  	clk_disable_unprepare(sdev->clk_ram);
+>  clk_mod_disable:
+> @@ -421,27 +434,34 @@ static void sun6i_csi_setup_bus(struct sun6i_csi_dev *sdev)
+>  		if (flags & V4L2_MBUS_PCLK_SAMPLE_FALLING)
+>  			cfg |= CSI_IF_CFG_CLK_POL_FALLING_EDGE;
+>  		break;
+> +	case V4L2_MBUS_CSI2_DPHY:
+> +		cfg |= CSI_IF_CFG_MIPI_IF_MIPI;
+> +		sun6i_mipi_csi_setup_bus(csi);
+> +		break;
+>  	default:
+>  		dev_warn(sdev->dev, "Unsupported bus type: %d\n",
+>  			 endpoint->bus_type);
+>  		break;
+>  	}
+>  
+> -	switch (bus_width) {
+> -	case 8:
+> -		cfg |= CSI_IF_CFG_IF_DATA_WIDTH_8BIT;
+> -		break;
+> -	case 10:
+> -		cfg |= CSI_IF_CFG_IF_DATA_WIDTH_10BIT;
+> -		break;
+> -	case 12:
+> -		cfg |= CSI_IF_CFG_IF_DATA_WIDTH_12BIT;
+> -		break;
+> -	case 16: /* No need to configure DATA_WIDTH for 16bit */
+> -		break;
+> -	default:
+> -		dev_warn(sdev->dev, "Unsupported bus width: %u\n", bus_width);
+> -		break;
+> +	/* Bus width only applies to parallel bus. */
+> +	if (endpoint->bus_type != V4L2_MBUS_CSI2_DPHY) {
+> +		switch (bus_width) {
+> +		case 8:
+> +			cfg |= CSI_IF_CFG_IF_DATA_WIDTH_8BIT;
+> +			break;
+> +		case 10:
+> +			cfg |= CSI_IF_CFG_IF_DATA_WIDTH_10BIT;
+> +			break;
+> +		case 12:
+> +			cfg |= CSI_IF_CFG_IF_DATA_WIDTH_12BIT;
+> +			break;
+> +		case 16: /* No need to configure DATA_WIDTH for 16bit */
+> +			break;
+> +		default:
+> +			dev_warn(sdev->dev, "Unsupported bus width: %u\n", bus_width);
+> +			break;
+> +		}
+>  	}
+>  
+>  	regmap_write(sdev->regmap, CSI_IF_CFG_REG, cfg);
+> @@ -593,6 +613,9 @@ void sun6i_csi_set_stream(struct sun6i_csi *csi, bool enable)
+>  	struct regmap *regmap = sdev->regmap;
+>  
+>  	if (!enable) {
+> +		if (csi->v4l2_ep.bus_type == V4L2_MBUS_CSI2_DPHY)
+> +			sun6i_mipi_csi_set_stream(csi, 0);
+> +
+>  		regmap_update_bits(regmap, CSI_CAP_REG, CSI_CAP_CH0_VCAP_ON, 0);
+>  		regmap_write(regmap, CSI_CH_INT_EN_REG, 0);
+>  		return;
+> @@ -609,6 +632,9 @@ void sun6i_csi_set_stream(struct sun6i_csi *csi, bool enable)
+>  
+>  	regmap_update_bits(regmap, CSI_CAP_REG, CSI_CAP_CH0_VCAP_ON,
+>  			   CSI_CAP_CH0_VCAP_ON);
+> +
+> +	if (csi->v4l2_ep.bus_type == V4L2_MBUS_CSI2_DPHY)
+> +		sun6i_mipi_csi_set_stream(csi, 1);
+>  }
+>  
+>  /* -----------------------------------------------------------------------------
+> @@ -685,6 +711,7 @@ static int sun6i_csi_fwnode_parse(struct device *dev,
+>  				  struct v4l2_async_subdev *asd)
+>  {
+>  	struct sun6i_csi *csi = dev_get_drvdata(dev);
+> +	struct sun6i_csi_dev *sdev = sun6i_csi_to_dev(csi);
+>  
+>  	if (vep->base.port || vep->base.id) {
+>  		dev_warn(dev, "Only support a single port with one endpoint\n");
+> @@ -692,6 +719,17 @@ static int sun6i_csi_fwnode_parse(struct device *dev,
+>  	}
+>  
+>  	switch (vep->bus_type) {
+> +	case V4L2_MBUS_CSI2_DPHY:
+> +		if (!sdev->clk_mipi) {
+> +			dev_err(sdev->dev, "Use MIPI-CSI2 device with no MIPI clock\n");
+> +			return -ENOTCONN;
+> +		}
+> +		if (!sdev->clk_misc) {
+> +			dev_err(sdev->dev, "Use MIPI-CSI2 device with no misc clock\n");
+> +			return -ENOTCONN;
+> +		}
+> +		csi->v4l2_ep = *vep;
+> +		return 0;
+>  	case V4L2_MBUS_PARALLEL:
+>  	case V4L2_MBUS_BT656:
+>  		csi->v4l2_ep = *vep;
+> @@ -812,12 +850,13 @@ static const struct regmap_config sun6i_csi_regmap_config = {
+>  	.reg_bits       = 32,
+>  	.reg_stride     = 4,
+>  	.val_bits       = 32,
+> -	.max_register	= 0x9c,
+> +	.max_register	= 0x2000,
+>  };
+>  
+>  static int sun6i_csi_resource_request(struct sun6i_csi_dev *sdev,
+>  				      struct platform_device *pdev)
+>  {
+> +	struct device *dev = sdev->dev;
+>  	struct resource *res;
+>  	void __iomem *io_base;
+>  	int ret;
+> @@ -847,6 +886,19 @@ static int sun6i_csi_resource_request(struct sun6i_csi_dev *sdev,
+>  		return PTR_ERR(sdev->clk_ram);
+>  	}
+>  
+> +	if (of_device_is_compatible(dev->of_node, "allwinner,sun8i-a83t-csi")) {
 
-OK, fair enough.
+It'd be cleaner to rely on of_device_get_match_data() attached to a
+compatible string instead.
 
-> 
-> > As to who is going to do the actual merge, I know we had a brief
-> > discussion about it some time ago and I was supposed to apply for
-> > drm-misc rights, however it feels a little awkward to merge my own
-> > code... :) Though, I might not even qualify for drm-misc rights anyway,
-> > considering I haven't been very active in this area... :/
-> 
-> Please consider applying for drm-misc merge rights. Even if you don't
-> do the initial merge I think it will come in handy in the long run.
+> +		sdev->clk_mipi = devm_clk_get(&pdev->dev, "mipi");
+> +		if (IS_ERR(sdev->clk_mipi)) {
+> +			sdev->clk_mipi = NULL;
+> +			dev_warn(&pdev->dev, "Unable to acquire mipi clock. No mipi support\n");
+> +		}
+> +
+> +		sdev->clk_misc = devm_clk_get(&pdev->dev, "misc");
+> +		if (IS_ERR(sdev->clk_misc)) {
+> +			sdev->clk_misc = NULL;
+> +			dev_warn(&pdev->dev, "Unable to acquire misc clock. No mipi support\n");
+> +		}
+> +	}
+>  	sdev->rstc_bus = devm_reset_control_get_shared(&pdev->dev, NULL);
+>  	if (IS_ERR(sdev->rstc_bus)) {
+>  		dev_err(&pdev->dev, "Cannot get reset controller\n");
+> diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_dphy.c b/drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_dphy.c
+> new file mode 100644
+> index 000000000000..bb9599c3bde9
+> --- /dev/null
+> +++ b/drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_dphy.c
+> @@ -0,0 +1,39 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * sun6i_dphy.c
+> + * Copyright Kévin L'hôpital (C) 2020
+> + */
+> +
+> +#include "sun8i_a83t_dphy.h"
+> +#include "sun8i_a83t_dphy_reg.h"
+> +
+> +/* First initialization to turn on the dphy for the MIPI CSI2 controller
+> + * initialization.
+> + */
+> +
+> +void sun6i_dphy_first_init(struct sun6i_csi_dev *sdev)
+> +{
+> +	regmap_update_bits(sdev->regmap, DPHY_CTRL_REG, DPHY_CTRL_REG_DBG,
+> +			   DPHY_CTRL_REG_DBG);
+> +	regmap_update_bits(sdev->regmap, DPHY_CTRL_REG, DPHY_CTRL_REG_SHUT, 0);
+> +	regmap_update_bits(sdev->regmap, DPHY_CTRL_REG, DPHY_CTRL_REG_RSTN,
+> +			   DPHY_CTRL_REG_RSTN);
+> +}
+> +
+> +/* Second initialization to turn off the dphy and do its initialization. */
+> +void sun6i_dphy_second_init(struct sun6i_csi_dev *sdev)
+> +{
+> +	regmap_update_bits(sdev->regmap, DPHY_CTRL_REG, DPHY_CTRL_REG_DBG, 0);
+> +	regmap_update_bits(sdev->regmap, DPHY_CTRL_REG, DPHY_CTRL_REG_SHUT,
+> +			   DPHY_CTRL_REG_SHUT);
+> +	regmap_update_bits(sdev->regmap, DPHY_CTRL_REG, DPHY_CTRL_REG_RSTN,
+> +			   DPHY_CTRL_REG_RSTN);
+> +	regmap_update_bits(sdev->regmap, DPHY_ANA0_REG, DPHY_ANA0_REG_SNK_MASK,
+> +			   DPHY_ANA0_REG_SNK(0x02));
+> +	regmap_update_bits(sdev->regmap, DPHY_ANA0_REG, DPHY_ANA0_REG_RINT_MASK,
+> +			   DPHY_ANA0_REG_RINT(0x02));
+> +	regmap_update_bits(sdev->regmap, DPHY_ANA0_REG, DPHY_ANA0_REG_REXT, 0);
+> +	regmap_update_bits(sdev->regmap, DPHY_ANA0_REG, DPHY_ANA0_REG_ENREXT,
+> +			   DPHY_ANA0_REG_ENREXT);
+> +}
+> +
+> diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_dphy.h b/drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_dphy.h
+> new file mode 100644
+> index 000000000000..f776ed098cb3
+> --- /dev/null
+> +++ b/drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_dphy.h
+> @@ -0,0 +1,16 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * sun6i_dphy.h
+> + * Copyright Kévin L'hôpital (C) 2020
+> + */
+> +
+> +#ifndef __SUN8I_A83T_DPHY_H__
+> +#define __SUN8I_A83T_DPHY_H__
+> +
+> +#include <linux/regmap.h>
+> +#include "sun6i_csi.h"
+> +
+> +void sun6i_dphy_first_init(struct sun6i_csi_dev *sdev);
+> +void sun6i_dphy_second_init(struct sun6i_csi_dev *sdev);
+> +
+> +#endif /* __SUN8I_A83T_DPHY_H__ */
+> diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_dphy_reg.h b/drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_dphy_reg.h
+> new file mode 100644
+> index 000000000000..815692b112d2
+> --- /dev/null
+> +++ b/drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_dphy_reg.h
+> @@ -0,0 +1,39 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Allwinner A83t DPHY register description
+> + * Copyright Kévin L'hôpital (C) 2020
+> + */
+> +
+> +#ifndef __SUN8I_A83T_DPHY_REG_H__
+> +#define __SUN8I_A83T_DPHY_REG_H__
+> +
+> +
+> +#define DPHY_OFFSET			0x1000
+> +
+> +#define DPHY_CTRL_REG			(DPHY_OFFSET + 0x010)
+> +#define DPHY_CTRL_REG_RSTN		BIT(31)
+> +#define DPHY_CTRL_REG_SHUT              BIT(15)
+> +#define DPHY_CTRL_REG_DBG               BIT(8)
+> +
+> +#define DPHY_STATUS_REG			(DPHY_OFFSET + 0x014)
+> +#define DPHY_STATUS_REG_CLK_STOP	BIT(10)
+> +#define DPHY_STATUS_REG_CLK_UPLS        BIT(9)
+> +#define DPHY_STATUS_REG_HSCLK           BIT(8)
+> +#define DPHY_STATUS_REG_D3_STOP         BIT(7)
+> +#define DPHY_STATUS_REG_D2_STOP         BIT(6)
+> +#define DPHY_STATUS_REG_D1_STOP         BIT(5)
+> +#define DPHY_STATUS_REG_D0_STOP         BIT(4)
+> +#define DPHY_STATUS_REG_D3_UPLS         BIT(3)
+> +#define DPHY_STATUS_REG_D2_UPLS         BIT(2)
+> +#define DPHY_STATUS_REG_D1_UPLS         BIT(1)
+> +#define DPHY_STATUS_REG_D0_UPLS         BIT(0)
+> +
+> +#define DPHY_ANA0_REG			(DPHY_OFFSET + 0x030)
+> +#define DPHY_ANA0_REG_ENREXT		BIT(31)
+> +#define DPHY_ANA0_REG_REXT              BIT(30)
+> +#define DPHY_ANA0_REG_RINT_MASK         GENMASK(29, 28)
+> +#define DPHY_ANA0_REG_RINT(v)           ((v) << 28)
+> +#define DPHY_ANA0_REG_SNK_MASK          GENMASK(22, 20)
+> +#define DPHY_ANA0_REG_SNK(v)            ((v) << 20)
+> +
+> +#endif /* __SUN8I_A83T_DPHY_REG_H__ */
+> diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_mipi_csi2.c b/drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_mipi_csi2.c
+> new file mode 100644
+> index 000000000000..2933238cbc95
+> --- /dev/null
+> +++ b/drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_mipi_csi2.c
+> @@ -0,0 +1,217 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Allwinner A83t MIPI Camera Sensor Interface 2 driver
+> + * Copyright Kévin L'hôpital (C) 2020
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include "sun8i_a83t_mipi_csi2.h"
+> +#include "sun8i_a83t_mipi_csi2_reg.h"
+> +#include "sun8i_a83t_dphy.h"
+> +#include <linux/delay.h>
+> +
+> +#define IS_FLAG(x, y) (((x) & (y)) == y)
+> +
+> +enum mipi_csi2_pkt_fmt {
+> +	MIPI_FS           = 0X00,
+> +	MIPI_FE           = 0X01,
+> +	MIPI_LS           = 0X02,
+> +	MIPI_LE           = 0X03,
+> +	MIPI_SDAT0          = 0X08,
+> +	MIPI_SDAT1          = 0X09,
+> +	MIPI_SDAT2          = 0X0A,
+> +	MIPI_SDAT3          = 0X0B,
+> +	MIPI_SDAT4          = 0X0C,
+> +	MIPI_SDAT5          = 0X0D,
+> +	MIPI_SDAT6          = 0X0E,
+> +	MIPI_SDAT7          = 0X0F,
+> +	MIPI_BLK            = 0X11,
+> +	MIPI_EMBD         = 0X12,
+> +	MIPI_YUV420       = 0X18,
+> +	MIPI_YUV420_10    = 0X19,
+> +	MIPI_YUV420_CSP   = 0X1C,
+> +	MIPI_YUV420_CSP_10 =  0X1D,
+> +	MIPI_YUV422       = 0X1E,
+> +	MIPI_YUV422_10    = 0X1F,
+> +	MIPI_RGB565       = 0X22,
+> +	MIPI_RGB888       = 0X24,
+> +	MIPI_RAW8         = 0X2A,
+> +	MIPI_RAW10          = 0X2B,
+> +	MIPI_RAW12          = 0X2C,
+> +	MIPI_USR_DAT0     = 0X30,
+> +	MIPI_USR_DAT1     = 0X31,
+> +	MIPI_USR_DAT2     = 0X32,
+> +	MIPI_USR_DAT3     = 0X33,
+> +	MIPI_USR_DAT4     = 0X34,
+> +	MIPI_USR_DAT5     = 0X35,
+> +	MIPI_USR_DAT6     = 0X36,
+> +	MIPI_USR_DAT7     = 0X37,
+> +};
+> +
+> +static inline struct sun6i_csi_dev *sun6i_csi_to_dev(struct sun6i_csi *csi)
+> +{
+> +	return container_of(csi, struct sun6i_csi_dev, csi);
+> +}
+> +
+> +static enum mipi_csi2_pkt_fmt get_pkt_fmt(u16 bus_pix_code)
+> +{
+> +	switch (bus_pix_code) {
+> +	case MEDIA_BUS_FMT_RGB565_1X16:
+> +		return MIPI_RGB565;
+> +	case MEDIA_BUS_FMT_UYVY8_2X8:
+> +	case MEDIA_BUS_FMT_UYVY8_1X16:
+> +		return MIPI_YUV422;
+> +	case MEDIA_BUS_FMT_UYVY10_2X10:
+> +		return MIPI_YUV422_10;
+> +	case MEDIA_BUS_FMT_RGB888_1X24:
+> +		return MIPI_RGB888;
+> +	case MEDIA_BUS_FMT_SBGGR8_1X8:
+> +	case MEDIA_BUS_FMT_SGBRG8_1X8:
+> +	case MEDIA_BUS_FMT_SGRBG8_1X8:
+> +	case MEDIA_BUS_FMT_SRGGB8_1X8:
+> +		return MIPI_RAW8;
+> +	case MEDIA_BUS_FMT_SBGGR10_1X10:
+> +	case MEDIA_BUS_FMT_SGBRG10_1X10:
+> +	case MEDIA_BUS_FMT_SGRBG10_1X10:
+> +	case MEDIA_BUS_FMT_SRGGB10_1X10:
+> +		return MIPI_RAW10;
+> +	case MEDIA_BUS_FMT_SBGGR12_1X12:
+> +	case MEDIA_BUS_FMT_SGBRG12_1X12:
+> +	case MEDIA_BUS_FMT_SGRBG12_1X12:
+> +	case MEDIA_BUS_FMT_SRGGB12_1X12:
+> +		return MIPI_RAW12;
+> +	default:
+> +		return MIPI_RAW8;
+> +	}
+> +}
+> +
+> +void sun6i_mipi_csi_set_stream(struct sun6i_csi *csi, bool enable)
+> +{
+> +	struct sun6i_csi_dev *sdev = sun6i_csi_to_dev(csi);
+> +
+> +	if (enable)
+> +		regmap_update_bits(sdev->regmap, MIPI_CSI2_CFG_REG,
+> +				   MIPI_CSI2_CFG_REG_SYNC_EN,
+> +				   MIPI_CSI2_CFG_REG_SYNC_EN);
+> +	else
+> +		regmap_update_bits(sdev->regmap, MIPI_CSI2_CFG_REG,
+> +				   MIPI_CSI2_CFG_REG_SYNC_EN, 0);
+> +}
+> +
+> +void sun6i_mipi_csi_init(struct sun6i_csi_dev *sdev)
+> +{
+> +	regmap_update_bits(sdev->regmap, MIPI_CSI2_CTRL_REG,
+> +			   MIPI_CSI2_CTRL_REG_RSTN, MIPI_CSI2_CTRL_REG_RSTN);
+> +	regmap_write(sdev->regmap, MIPI_CSI2_RX_PKT_NUM_REG, 0xb8d257f8);
+> +	sun6i_dphy_first_init(sdev);
+> +	regmap_write(sdev->regmap, MIPI_CSI2_RSVD1_REG,
+> +		     HW_LOCK_REGISTER_VALUE_1);
+> +	regmap_write(sdev->regmap, MIPI_CSI2_RSVD2_REG,
+> +		     HW_LOCK_REGISTER_VALUE_2);
+> +	regmap_write(sdev->regmap, MIPI_CSI2_RX_PKT_NUM_REG, 0);
+> +	regmap_write(sdev->regmap, MIPI_CSI2_VCDT0_REG, 0);
+> +	regmap_update_bits(sdev->regmap, MIPI_CSI2_CFG_REG,
+> +			   MIPI_CSI2_CFG_REG_SYNC_DLY_CYCLE_MASK,
+> +			   MIPI_CSI2_CFG_REG_SYNC_DLY_CYCLE(0x11));
+> +	regmap_update_bits(sdev->regmap, MIPI_CSI2_CFG_REG,
+> +			   MIPI_CSI2_CFG_REG_N_BYTE, 0);
+> +	regmap_update_bits(sdev->regmap, MIPI_CSI2_CFG_REG,
+> +			   MIPI_CSI2_CFG_REG_YC_SWAB, 0);
+> +	regmap_update_bits(sdev->regmap, MIPI_CSI2_CFG_REG,
+> +			   MIPI_CSI2_CFG_REG_NONE_UNPKT_RX_MODE,
+> +			   MIPI_CSI2_CFG_REG_NONE_UNPKT_RX_MODE);
+> +	regmap_update_bits(sdev->regmap, MIPI_CSI2_CFG_REG,
+> +			   MIPI_CSI2_CFG_REG_UNPKT_EN,
+> +			   MIPI_CSI2_CFG_REG_UNPKT_EN);
+> +	regmap_update_bits(sdev->regmap, MIPI_CSI2_CFG_REG,
+> +			   MIPI_CSI2_CFG_REG_BYPASS_ECC_EN,
+> +			   MIPI_CSI2_CFG_REG_BYPASS_ECC_EN);
+> +	regmap_update_bits(sdev->regmap, MIPI_CSI2_CFG_REG,
+> +			   MIPI_CSI2_CFG_REG_SYNC_EN,
+> +			   MIPI_CSI2_CFG_REG_SYNC_EN);
+> +	sun6i_dphy_second_init(sdev);
+> +	regmap_update_bits(sdev->regmap, MIPI_CSI2_CTRL_REG,
+> +			   MIPI_CSI2_CTRL_REG_RSTN, MIPI_CSI2_CTRL_REG_RSTN);
+> +	regmap_update_bits(sdev->regmap, MIPI_CSI2_CFG_REG,
+> +			   MIPI_CSI2_CFG_REG_SYNC_DLY_CYCLE_MASK,
+> +			   MIPI_CSI2_CFG_REG_SYNC_DLY_CYCLE(0x08));
+> +	regmap_update_bits(sdev->regmap, MIPI_CSI2_CFG_REG,
+> +			   MIPI_CSI2_CFG_REG_NONE_UNPKT_RX_MODE, 0);
+> +	regmap_update_bits(sdev->regmap, MIPI_CSI2_CFG_REG,
+> +			   MIPI_CSI2_CFG_REG_BYPASS_ECC_EN, 0);
+> +	regmap_update_bits(sdev->regmap, MIPI_CSI2_CFG_REG,
+> +			   MIPI_CSI2_CFG_REG_SYNC_EN, 0);
+> +}
+> +
+> +void sun6i_mipi_csi_setup_bus(struct sun6i_csi *csi)
+> +{
+> +	struct v4l2_fwnode_endpoint *endpoint = &csi->v4l2_ep;
+> +	struct sun6i_csi_dev *sdev = sun6i_csi_to_dev(csi);
+> +	int lane_num = endpoint->bus.mipi_csi2.num_data_lanes;
+> +	int flags = endpoint->bus.mipi_csi2.flags;
+> +	int total_rx_ch = 0;
+> +	int vc;
+> +
+> +	sun6i_mipi_csi_init(sdev);
+> +
+> +	if (IS_FLAG(flags, V4L2_MBUS_CSI2_CHANNEL_0)) {
+> +		vc = 0;
+> +		total_rx_ch++;
+> +	}
+> +
+> +	if (!total_rx_ch) {
+> +		dev_dbg(sdev->dev,
+> +			 "No receive channel assigned, using channel 0.\n");
+> +		vc = 0;
+> +		total_rx_ch++;
+> +	}
+> +	/* Set lane. */
+> +	regmap_write_bits(sdev->regmap, MIPI_CSI2_CFG_REG,
+> +			  MIPI_CSI2_CFG_REG_N_LANE_MASK, (lane_num - 1) <<
+> +			  MIPI_CSI2_CFG_REG_N_LANE_SHIFT);
+> +	/* Set total channels. */
+> +	regmap_write_bits(sdev->regmap, MIPI_CSI2_CFG_REG,
+> +			  MIPI_CSI2_CFG_REG_N_CHANNEL_MASK, (total_rx_ch - 1) <<
+> +			  MIPI_CSI2_CFG_REG_N_CHANNEL_SHIFT);
+> +
+> +	regmap_write_bits(sdev->regmap, MIPI_CSI2_VCDT0_REG,
+> +			  MIPI_CSI2_VCDT0_REG_CH0_DT_MASK,
+> +			  get_pkt_fmt(csi->config.code));
+> +	regmap_write_bits(sdev->regmap, MIPI_CSI2_VCDT0_REG,
+> +			  MIPI_CSI2_VCDT0_REG_CH0_VC_MASK,
+> +			  vc << MIPI_CSI2_VCDT0_REG_CH0_VC_SHIFT);
+> +}
+> +
+> +int sun6i_mipi_csi_clk_enable(struct sun6i_csi *csi)
+> +{
+> +	struct sun6i_csi_dev *sdev = sun6i_csi_to_dev(csi);
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(sdev->clk_mipi);
+> +	if (ret) {
+> +		dev_err(sdev->dev, "Enable clk_mipi clk err %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = clk_prepare_enable(sdev->clk_misc);
+> +	if (ret) {
+> +		dev_err(sdev->dev, "Enable clk_misc clk err %d\n", ret);
+> +		goto clk_mipi_disable;
+> +	}
+> +
+> +	return 0;
+> +
+> +clk_mipi_disable:
+> +	clk_disable_unprepare(sdev->clk_mipi);
+> +	return ret;
+> +}
+> +
+> +void sun6i_mipi_csi_clk_disable(struct sun6i_csi *csi)
+> +{
+> +	struct sun6i_csi_dev *sdev = sun6i_csi_to_dev(csi);
+> +
+> +	clk_disable_unprepare(sdev->clk_misc);
+> +	clk_disable_unprepare(sdev->clk_mipi);
+> +}
+> +
+> +
+> diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_mipi_csi2.h b/drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_mipi_csi2.h
+> new file mode 100644
+> index 000000000000..a94c69ccee39
+> --- /dev/null
+> +++ b/drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_mipi_csi2.h
+> @@ -0,0 +1,16 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright Kévin L'hôpital (C) 2020
+> + */
+> +
+> +#ifndef __SUN8I_A83T_MIPI_CSI2_H__
+> +#define __SUN8I_A83T_MIPI_CSI2_H__
+> +#include <linux/regmap.h>
+> +#include "sun6i_csi.h"
+> +
+> +void sun6i_mipi_csi_set_stream(struct sun6i_csi *csi, bool enable);
+> +void sun6i_mipi_csi_setup_bus(struct sun6i_csi *csi);
+> +int sun6i_mipi_csi_clk_enable(struct sun6i_csi *csi);
+> +void sun6i_mipi_csi_clk_disable(struct sun6i_csi *csi);
+> +
+> +#endif /* __SUN8I_A83T_MIPI_CSI2_H__ */
+> diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_mipi_csi2_reg.h b/drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_mipi_csi2_reg.h
+> new file mode 100644
+> index 000000000000..43cc46ea1aec
+> --- /dev/null
+> +++ b/drivers/media/platform/sunxi/sun6i-csi/sun8i_a83t_mipi_csi2_reg.h
+> @@ -0,0 +1,179 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Allwinner A83t MIPI CSI-2 register description
+> + * Copyright Kévin L'hôpital (C) 2020
+> + */
+> +
+> +#ifndef __SUN8I_A83T_MIPI_CSI2_REG_H__
+> +#define __SUN8I_A83T_MIPI_CSI2_REG_H__
+> +
+> +
+> +#define MIPI_CSI2_OFFSET				0x1000
+> +
+> +#define MIPI_CSI2_VERSION_REG				(MIPI_CSI2_OFFSET + 0x000)
+> +#define MIPI_CSI2_CTRL_REG				(MIPI_CSI2_OFFSET + 0x004)
+> +#define MIPI_CSI2_CTRL_REG_RSTN				BIT(31)
+> +
+> +#define MIPI_CSI2_RX_PKT_NUM_REG			(MIPI_CSI2_OFFSET + 0x008)
+> +#define MIPI_CSI2_RSVD0_REG				(MIPI_CSI2_OFFSET + 0x00c)
+> +
+> +#define MIPI_CSI2_RSVD1_REG				(MIPI_CSI2_OFFSET + 0x018)
+> +/* Value found in the BSP and need to be present but it is not describe in the
+> + * datasheet.
+> + */
+> +#define HW_LOCK_REGISTER_VALUE_1			0xb8c8a30c
+> +#define MIPI_CSI2_RSVD2_REG				(MIPI_CSI2_OFFSET + 0x01c)
+> +/* Value found in the BSP and need to be present but it is not describe in the
+> + * datasheet.
+> + */
+> +#define HW_LOCK_REGISTER_VALUE_2			0xb8df8ad7
+> +
+> +#define MIPI_CSI2_INT_STA0_REG				(MIPI_CSI2_OFFSET + 0x020)
+> +#define MIPI_CSI2_INT_STA0_REG_ECC_ERR_DBL              BIT(28)
+> +#define MIPI_CSI2_INT_STA0_REG_LINE_CKSM_ERR_VC3        BIT(27)
+> +#define MIPI_CSI2_INT_STA0_REG_LINE_CKSM_ERR_VC2        BIT(26)
+> +#define MIPI_CSI2_INT_STA0_REG_LINE_CKSM_ERR_VC1        BIT(25)
+> +#define MIPI_CSI2_INT_STA0_REG_LINE_CKSM_ERR_VC0        BIT(24)
+> +#define MIPI_CSI2_INT_STA0_REG_LINE_SEQ_ERR_DT3         BIT(23)
+> +#define MIPI_CSI2_INT_STA0_REG_LINE_SEQ_ERR_DT2         BIT(22)
+> +#define MIPI_CSI2_INT_STA0_REG_LINE_SEQ_ERR_DT1         BIT(21)
+> +#define MIPI_CSI2_INT_STA0_REG_LINE_SEQ_ERR_DT0         BIT(20)
+> +#define MIPI_CSI2_INT_STA0_REG_LS_LE_ERR_DT3            BIT(19)
+> +#define MIPI_CSI2_INT_STA0_REG_LS_LE_ERR_DT2            BIT(18)
+> +#define MIPI_CSI2_INT_STA0_REG_LS_LE_ERR_DT1            BIT(17)
+> +#define MIPI_CSI2_INT_STA0_REG_LS_LE_ERR_DT0            BIT(16)
+> +#define MIPI_CSI2_INT_STA0_REG_CRC_ERR_VC3              BIT(15)
+> +#define MIPI_CSI2_INT_STA0_REG_CRC_ERR_VC2              BIT(14)
+> +#define MIPI_CSI2_INT_STA0_REG_CRC_ERR_VC1              BIT(13)
+> +#define MIPI_CSI2_INT_STA0_REG_CRC_ERR_VC0              BIT(12)
+> +#define MIPI_CSI2_INT_STA0_REG_FRM_SEQ_ERR_VC3          BIT(11)
+> +#define MIPI_CSI2_INT_STA0_REG_FRM_SEQ_ERR_VC2          BIT(10)
+> +#define MIPI_CSI2_INT_STA0_REG_FRM_SEQ_ERR_VC1          BIT(9)
+> +#define MIPI_CSI2_INT_STA0_REG_FRM_SEQ_ERR_VC0          BIT(8)
+> +#define MIPI_CSI2_INT_STA0_REG_FS_FE_ERR_VC3            BIT(7)
+> +#define MIPI_CSI2_INT_STA0_REG_FS_FE_ERR_VC2            BIT(6)
+> +#define MIPI_CSI2_INT_STA0_REG_FS_FE_ERR_VC1            BIT(5)
+> +#define MIPI_CSI2_INT_STA0_REG_FS_FE_ERR_VC0            BIT(4)
+> +#define MIPI_CSI2_INT_STA0_REG_SOT_SYNC_ERR_3           BIT(3)
+> +#define MIPI_CSI2_INT_STA0_REG_SOT_SYNC_ERR_2           BIT(2)
+> +#define MIPI_CSI2_INT_STA0_REG_SOT_SYNC_ERR_1           BIT(1)
+> +#define MIPI_CSI2_INT_STA0_REG_SOT_SYNC_ERR_0		BIT(0)
+> +
+> +#define MIPI_CSI2_INT_STA1_REG				(MIPI_CSI2_OFFSET + 0x024)
+> +#define MIPI_CSI2_INT_STA1_REG_LINE_SEQ_ERR_DT7         BIT(23)
+> +#define MIPI_CSI2_INT_STA1_REG_LINE_SEQ_ERR_DT6         BIT(22)
+> +#define MIPI_CSI2_INT_STA1_REG_LINE_SEQ_ERR_DT5         BIT(21)
+> +#define MIPI_CSI2_INT_STA1_REG_LINE_SEQ_ERR_DT4         BIT(20)
+> +#define MIPI_CSI2_INT_STA1_REG_LS_LE_ERR_DT7            BIT(19)
+> +#define MIPI_CSI2_INT_STA1_REG_LS_LE_ERR_DT6            BIT(18)
+> +#define MIPI_CSI2_INT_STA1_REG_LS_LE_ERR_DT5            BIT(17)
+> +#define MIPI_CSI2_INT_STA1_REG_LS_LE_ERR_DT4            BIT(16)
+> +#define MIPI_CSI2_INT_STA1_REG_DT_ERR_VC3               BIT(15)
+> +#define MIPI_CSI2_INT_STA1_REG_DT_ERR_VC2               BIT(14)
+> +#define MIPI_CSI2_INT_STA1_REG_DT_ERR_VC1               BIT(13)
+> +#define MIPI_CSI2_INT_STA1_REG_DT_ERR_VC0               BIT(12)
+> +#define MIPI_CSI2_INT_STA1_REG_ECC_ERR1_VC3             BIT(11)
+> +#define MIPI_CSI2_INT_STA1_REG_ECC_ERR1_VC2             BIT(10)
+> +#define MIPI_CSI2_INT_STA1_REG_ECC_ERR1_VC1             BIT(9)
+> +#define MIPI_CSI2_INT_STA1_REG_ECC_ERR1_VC0             BIT(8)
+> +#define MIPI_CSI2_INT_STA1_REG_SOT_ERR_3                BIT(7)
+> +#define MIPI_CSI2_INT_STA1_REG_SOT_ERR_2                BIT(6)
+> +#define MIPI_CSI2_INT_STA1_REG_SOT_ERR_1                BIT(5)
+> +#define MIPI_CSI2_INT_STA1_REG_SOT_ERR_0                BIT(4)
+> +#define MIPI_CSI2_INT_STA1_REG_ESC_ENTRY_ERR_3          BIT(3)
+> +#define MIPI_CSI2_INT_STA1_REG_ESC_ENTRY_ERR_2          BIT(2)
+> +#define MIPI_CSI2_INT_STA1_REG_ESC_ENTRY_ERR_1          BIT(1)
+> +#define MIPI_CSI2_INT_STA1_REG_ESC_ENTRY_ERR_0		BIT(0)
+> +
+> +#define MIPI_CSI2_INT_MSK0_REG				(MIPI_CSI2_OFFSET + 0x028)
+> +#define MIPI_CSI2_INT_MSK0_REG_ECC_ERR_DBL_MSK          BIT(28)
+> +#define MIPI_CSI2_INT_MSK0_REG_CKSM_ERR_VC3_MSK         BIT(27)
+> +#define MIPI_CSI2_INT_MSK0_REG_CKSM_ERR_VC2_MSK         BIT(26)
+> +#define MIPI_CSI2_INT_MSK0_REG_CKSM_ERR_VC1_MSK         BIT(25)
+> +#define MIPI_CSI2_INT_MSK0_REG_CKSM_ERR_VC0_MSK         BIT(24)
+> +#define MIPI_CSI2_INT_MSK0_REG_LINE_SEQ_ERR_DT3_MSK     BIT(23)
+> +#define MIPI_CSI2_INT_MSK0_REG_LINE_SEQ_ERR_DT2_MSK     BIT(22)
+> +#define MIPI_CSI2_INT_MSK0_REG_LINE_SEQ_ERR_DT1_MSK     BIT(21)
+> +#define MIPI_CSI2_INT_MSK0_REG_LINE_SEQ_ERR_DT0_MSK     BIT(20)
+> +#define MIPI_CSI2_INT_MSK0_REG_LS_LE_ERR_DT3_MSK        BIT(19)
+> +#define MIPI_CSI2_INT_MSK0_REG_LS_LE_ERR_DT2_MSK        BIT(18)
+> +#define MIPI_CSI2_INT_MSK0_REG_LS_LE_ERR_DT1_MSK        BIT(17)
+> +#define MIPI_CSI2_INT_MSK0_REG_LS_LE_ERR_DT0_MSK        BIT(16)
+> +#define MIPI_CSI2_INT_MSK0_REG_CRC_ERR_VC3_MSK          BIT(15)
+> +#define MIPI_CSI2_INT_MSK0_REG_CRC_ERR_VC2_MSK          BIT(14)
+> +#define MIPI_CSI2_INT_MSK0_REG_CRC_ERR_VC1_MSK          BIT(13)
+> +#define MIPI_CSI2_INT_MSK0_REG_CRC_ERR_VC0_MSK          BIT(12)
+> +#define MIPI_CSI2_INT_MSK0_REG_FRM_SEQ_ERR_VC3_MSK      BIT(11)
+> +#define MIPI_CSI2_INT_MSK0_REG_FRM_SEQ_ERR_VC2_MSK      BIT(10)
+> +#define MIPI_CSI2_INT_MSK0_REG_FRM_SEQ_ERR_VC1_MSK      BIT(9)
+> +#define MIPI_CSI2_INT_MSK0_REG_FRM_SEQ_ERR_VC0_MSK      BIT(8)
+> +#define MIPI_CSI2_INT_MSK0_REG_FS_FE_ERR_VC3_MSK        BIT(7)
+> +#define MIPI_CSI2_INT_MSK0_REG_FS_FE_ERR_VC2_MSK        BIT(6)
+> +#define MIPI_CSI2_INT_MSK0_REG_FS_FE_ERR_VC1_MSK        BIT(5)
+> +#define MIPI_CSI2_INT_MSK0_REG_FS_FE_ERR_VC0_MSK        BIT(4)
+> +#define MIPI_CSI2_INT_MSK0_REG_SOT_SYNC_ERR_3_MSK       BIT(3)
+> +#define MIPI_CSI2_INT_MSK0_REG_SOT_SYNC_ERR_2_MSK       BIT(2)
+> +#define MIPI_CSI2_INT_MSK0_REG_SOT_SYNC_ERR_1_MSK       BIT(1)
+> +#define MIPI_CSI2_INT_MSK0_REG_SOT_SYNC_ERR_0_MSK	BIT(0)
+> +
+> +#define MIPI_CSI2_INT_MSK1_REG				(MIPI_CSI2_OFFSET + 0x02c)
+> +#define MIPI_CSI2_INT_MSK1_REG_DT_ERR_VC3_MSK           BIT(15)
+> +#define MIPI_CSI2_INT_MSK1_REG_DT_ERR_VC2_MSK           BIT(14)
+> +#define MIPI_CSI2_INT_MSK1_REG_DT_ERR_VC1_MSK           BIT(13)
+> +#define MIPI_CSI2_INT_MSK1_REG_DT_ERR_VC0_MSK           BIT(12)
+> +#define MIPI_CSI2_INT_MSK1_REG_ECC_ERR1_VC3_MSK         BIT(11)
+> +#define MIPI_CSI2_INT_MSK1_REG_ECC_ERR1_VC2_MSK         BIT(10)
+> +#define MIPI_CSI2_INT_MSK1_REG_ECC_ERR1_VC1_MSK         BIT(9)
+> +#define MIPI_CSI2_INT_MSK1_REG_ECC_ERR1_VC0_MSK         BIT(8)
+> +#define MIPI_CSI2_INT_MSK1_REG_SOT_ERR_3_MSK            BIT(7)
+> +#define MIPI_CSI2_INT_MSK1_REG_SOT_ERR_2_MSK            BIT(6)
+> +#define MIPI_CSI2_INT_MSK1_REG_SOT_ERR_1_MSK            BIT(5)
+> +#define MIPI_CSI2_INT_MSK1_REG_SOT_ERR_0_MSK            BIT(4)
+> +#define MIPI_CSI2_INT_MSK1_REG_ESC_ENTRY_ERR_3_MSK      BIT(3)
+> +#define MIPI_CSI2_INT_MSK1_REG_ESC_ENTRY_ERR_2_MSK      BIT(2)
+> +#define MIPI_CSI2_INT_MSK1_REG_ESC_ENTRY_ERR_1_MSK      BIT(1)
+> +#define MIPI_CSI2_INT_MSK1_REG_ESC_ENTRY_ERR_0_MSK	BIT(0)
+> +
+> +#define MIPI_CSI2_CFG_REG				(MIPI_CSI2_OFFSET + 0x100)
+> +#define MIPI_CSI2_CFG_REG_SYNC_EN                       BIT(31)
+> +#define MIPI_CSI2_CFG_REG_BYPASS_ECC_EN                 BIT(29)
+> +#define MIPI_CSI2_CFG_REG_UNPKT_EN                      BIT(28)
+> +#define MIPI_CSI2_CFG_REG_NONE_UNPKT_RX_MODE            BIT(27)
+> +#define MIPI_CSI2_CFG_REG_YC_SWAB                       BIT(26)
+> +#define MIPI_CSI2_CFG_REG_N_BYTE                        BIT(24)
+> +#define MIPI_CSI2_CFG_REG_SYNC_DLY_CYCLE(v)             ((v) << 18)
+> +#define MIPI_CSI2_CFG_REG_SYNC_DLY_CYCLE_MASK           GENMASK(22, 18)
+> +#define MIPI_CSI2_CFG_REG_N_CHANNEL_MASK                GENMASK(17, 16)
+> +#define MIPI_CSI2_CFG_REG_N_CHANNEL_SHIFT               16
+> +#define MIPI_CSI2_CFG_REG_N_LANE_MASK                   GENMASK(5, 4)
+> +#define MIPI_CSI2_CFG_REG_N_LANE_SHIFT			4
+> +
+> +#define MIPI_CSI2_VCDT0_REG				(MIPI_CSI2_OFFSET + 0x104)
+> +#define MIPI_CSI2_VCDT0_REG_DEFAULT                     0xc0804000
+> +#define MIPI_CSI2_VCDT0_REG_CH3_VC_MASK                 GENMASK(31, 30)
+> +#define MIPI_CSI2_VCDT0_REG_CH3_VC_SHIFT                30
+> +#define MIPI_CSI2_VCDT0_REG_CH3_DT_MASK                 GENMASK(29, 24)
+> +#define MIPI_CSI2_VCDT0_REG_CH3_DT_SHIFT                24
+> +#define MIPI_CSI2_VCDT0_REG_CH2_VC_MASK                 GENMASK(23, 22)
+> +#define MIPI_CSI2_VCDT0_REG_CH2_VC_SHIFT                22
+> +#define MIPI_CSI2_VCDT0_REG_CH2_DT_MASK                 GENMASK(21, 16)
+> +#define MIPI_CSI2_VCDT0_REG_CH2_DT_SHIFT                16
+> +#define MIPI_CSI2_VCDT0_REG_CH1_VC_MASK                 GENMASK(15, 14)
+> +#define MIPI_CSI2_VCDT0_REG_CH1_VC_SHIFT                14
+> +#define MIPI_CSI2_VCDT0_REG_CH1_DT_MASK                 GENMASK(13, 8)
+> +#define MIPI_CSI2_VCDT0_REG_CH1_DT_SHIFT                8
+> +#define MIPI_CSI2_VCDT0_REG_CH0_VC_MASK                 GENMASK(7, 6)
+> +#define MIPI_CSI2_VCDT0_REG_CH0_VC_SHIFT                6
+> +#define MIPI_CSI2_VCDT0_REG_CH0_DT_MASK			GENMASK(5, 0)
+> +
+> +#define MIPI_CSI2_VCDT1_REG				(MIPI_CSI2_OFFSET + 0x108)
+> +#define MIPI_CSI2_VCDT1_REG_CH7_VC_MASK                 GENMASK(31, 30)
+> +#define MIPI_CSI2_VCDT1_REG_CH7_DT_MASK                 GENMASK(29, 24)
+> +#define MIPI_CSI2_VCDT1_REG_CH6_VC_MASK                 GENMASK(23, 22)
+> +#define MIPI_CSI2_VCDT1_REG_CH6_DT_MASK                 GENMASK(21, 16)
+> +#define MIPI_CSI2_VCDT1_REG_CH5_VC_MASK                 GENMASK(15, 14)
+> +#define MIPI_CSI2_VCDT1_REG_CH5_DT_MASK                 GENMASK(13, 8)
+> +#define MIPI_CSI2_VCDT1_REG_CH4_VC_MASK                 GENMASK(7, 6)
+> +#define MIPI_CSI2_VCDT1_REG_CH4_DT_MASK			GENMASK(5, 0)
+> +
+> +#endif /* __SUN8I_A83T_MIPI_CSI2_REG_H__ */
 
-OK, I'll apply for drm-misc rights. Sam also encouraged me to do this in
-a previous email. Since this series will be followed by a bunch of other
-patches, enabling support for video planes, among other things, I guess
-I'll need the rights anyway.
+-- 
+Kind regards,
 
-> 
-> > On that note, I will probably need help with the merging, provided it's
-> > still happenning. Will you be able to help me out with this?
-> 
-> Sure, I'm having some time available this week. I'll give this v9
-> another spin on my boards and will do the merge after that.
-
-Thanks Lucas. As a matter of fact, after Sam's email, I was preparing a
-v10 after rebasing to latest drm-next. However, no conflicts were encountered
-and the v9 series applied cleanly. Let me know if you encounter any
-issues and I can resend it.
-
-Thanks,
-Laurentiu
-
-> 
-> Regards,
-> Lucas
-> 
-> > Thanks,
-> > laurentiu
-> > 
-> > On Fri, Jul 31, 2020 at 11:18:28AM +0300, Laurentiu Palcu wrote:
-> > > From: Laurentiu Palcu <laurentiu.palcu@nxp.com>
-> > > 
-> > > Hi,
-> > > 
-> > > This patchset adds initial DCSS support for iMX8MQ chip. Initial support
-> > > includes only graphics plane support (no video planes), no HDR10 capabilities,
-> > > no graphics decompression (only linear, tiled and super-tiled buffers allowed).
-> > > 
-> > > Support for the rest of the features will be added incrementally, in subsequent
-> > > patches.
-> > > 
-> > > The patchset was tested with both HDP driver (in the downstream tree) and the upstream
-> > > MIPI-DSI driver (with a couple of patches on top, to make it work correctly with DCSS).
-> > > 
-> > > Thanks,
-> > > Laurentiu
-> > > 
-> > > Changes in v9:
-> > >  * Fixed a compilation issue found by Guido in his setup: 'select
-> > >    VIDEOMODE_HELPERS' was missing from Kconfig;
-> > >  * Use imx8mq-clock.h in the bindings file so one can understand what
-> > >    those clock values mean;
-> > >  * no other changes done. Couldn't address the hang Guido reported as
-> > >    it's not happening in my setup. However, in my tree, there are some
-> > >    extra NWL and ADV patches applied on top of upstream ones... Also,
-> > >    removing them and testing only with upstream, even if there's no
-> > >    image out, does not produce a hang... :/
-> > > 
-> > > Changes in v8:
-> > >  * Removed 'select RESET_CONTROLLER" from Kconfig as Philipp pointed
-> > >    out. SRC is not used in DCSS driver;
-> > >  * Nothing else changed;
-> > > 
-> > > Changes in v7:
-> > >  * Added a patch to initialize the connector using the drm_bridge_connector
-> > >    API as Sam suggested. Tested it using NWL_DSI and ADV7535 with
-> > >    Guido's patch [1] applied and one fix for ADV [2]. Also, some extra
-> > >    patches for ADV and NWL were needed, from our downstream tree, which
-> > >    will be upstreamed soon by their author;
-> > >  * Rest of the patches are untouched;
-> > > 
-> > > [1] https://lists.freedesktop.org/archives/dri-devel/2020-July/273025.html
-> > > [2] https://lists.freedesktop.org/archives/dri-devel/2020-July/273132.html
-> > > 
-> > > Changes in v6:
-> > >  * Addressed Rob's comment and added "additionalProperties: false" at
-> > >    the end of the bindings' properties. However, this change surfaced
-> > >    an issue with the assigned-clock* properties not being documented in
-> > >    the properties section. Added the descriptions and the bindings patch
-> > >    will need another review;
-> > >  * Added an entry for DCSS driver in the MAINTAINERS file;
-> > >  * Removed the component framework patch altogether;
-> > > 
-> > > Changes in v5:
-> > >  * Rebased to latest;
-> > >  * Took out component framework support and made it a separate patch so
-> > >    that people can still test with HDP driver, which makes use of it.
-> > >    But the idea is to get rid of it once HDP driver's next versions
-> > >    will remove component framework as well;
-> > >  * Slight improvement to modesetting: avoid cutting off the pixel clock
-> > >    if the new mode and the old one are equal. Also, in this case, is
-> > >    not necessary to wait for DTG to shut off. This would allow to switch
-> > >    from 8b RGB to 12b YUV422, for example, with no interruptions (at least
-> > >    from DCSS point of view);
-> > >  * Do not fire off CTXLD when going to suspend, unless it still has
-> > >    entries that need to be committed to DCSS;
-> > >  * Addressed Rob's comments on bindings;
-> > > 
-> > > Changes in v4:
-> > >  * Addressed Lucas and Philipp's comments:
-> > >    * Added DRM_KMS_CMA_HELPER dependency in Kconfig;
-> > >    * Removed usage of devm_ functions since I'm already doing all the
-> > >      clean-up in the submodules_deinit();
-> > >    * Moved the drm_crtc_arm_vblank_event() in dcss_crtc_atomic_flush();
-> > >    * Removed en_completion variable from dcss_crtc since this was
-> > >      introduced mainly to avoid vblank timeout warnings which were fixed
-> > >      by arming the vblank event in flush() instead of begin();
-> > >    * Removed clks_on and irq_enabled flags since all the calls to
-> > >      enabling/disabling clocks and interrupts were balanced;
-> > >    * Removed the custom atomic_commit callback and used the DRM core
-> > >      helper and, in the process, got rid of a workqueue that wasn't
-> > >      necessary anymore;
-> > >    * Fixed some minor DT binding issues flagged by Philipp;
-> > >    * Some other minor changes suggested by Lucas;
-> > >  * Removed YUV formats from the supported formats as these cannot work
-> > >    without the HDR10 module CSCs and LUTs. Will add them back when I
-> > >    will add support for video planes;
-> > > 
-> > > Changes in v3:
-> > >  * rebased to latest linux-next and made it compile as drmP.h was
-> > >    removed;
-> > >  * removed the patch adding the VIDEO2_PLL clock. It's already applied;
-> > >  * removed an unnecessary 50ms sleep in the dcss_dtg_sync_set();
-> > >  * fixed a a spurious hang reported by Lukas Hartmann and encountered
-> > >    by me several times;
-> > >  * mask DPR and DTG interrupts by default, as they may come enabled from
-> > >    U-boot;
-> > > 
-> > > Changes in v2:
-> > >  * Removed '0x' in node's unit-address both in DT and yaml;
-> > >  * Made the address region size lowercase, to be consistent;
-> > >  * Removed some left-over references to P010;
-> > >  * Added a Kconfig dependency of DRM && ARCH_MXC. This will also silence compilation
-> > >    issues reported by kbuild for other architectures;
-> > > 
-> > > 
-> > > Laurentiu Palcu (5):
-> > >   drm/imx: compile imx directory by default
-> > >   drm/imx: Add initial support for DCSS on iMX8MQ
-> > >   drm/imx/dcss: use drm_bridge_connector API
-> > >   MAINTAINERS: Add entry for i.MX 8MQ DCSS driver
-> > >   dt-bindings: display: imx: add bindings for DCSS
-> > > 
-> > >  .../bindings/display/imx/nxp,imx8mq-dcss.yaml | 108 +++
-> > >  MAINTAINERS                                   |   8 +
-> > >  drivers/gpu/drm/Makefile                      |   2 +-
-> > >  drivers/gpu/drm/imx/Kconfig                   |   2 +
-> > >  drivers/gpu/drm/imx/Makefile                  |   1 +
-> > >  drivers/gpu/drm/imx/dcss/Kconfig              |   9 +
-> > >  drivers/gpu/drm/imx/dcss/Makefile             |   6 +
-> > >  drivers/gpu/drm/imx/dcss/dcss-blkctl.c        |  70 ++
-> > >  drivers/gpu/drm/imx/dcss/dcss-crtc.c          | 219 +++++
-> > >  drivers/gpu/drm/imx/dcss/dcss-ctxld.c         | 424 +++++++++
-> > >  drivers/gpu/drm/imx/dcss/dcss-dev.c           | 325 +++++++
-> > >  drivers/gpu/drm/imx/dcss/dcss-dev.h           | 177 ++++
-> > >  drivers/gpu/drm/imx/dcss/dcss-dpr.c           | 562 ++++++++++++
-> > >  drivers/gpu/drm/imx/dcss/dcss-drv.c           | 138 +++
-> > >  drivers/gpu/drm/imx/dcss/dcss-dtg.c           | 409 +++++++++
-> > >  drivers/gpu/drm/imx/dcss/dcss-kms.c           | 198 +++++
-> > >  drivers/gpu/drm/imx/dcss/dcss-kms.h           |  44 +
-> > >  drivers/gpu/drm/imx/dcss/dcss-plane.c         | 405 +++++++++
-> > >  drivers/gpu/drm/imx/dcss/dcss-scaler.c        | 826 ++++++++++++++++++
-> > >  drivers/gpu/drm/imx/dcss/dcss-ss.c            | 180 ++++
-> > >  20 files changed, 4112 insertions(+), 1 deletion(-)
-> > >  create mode 100644 Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.yaml
-> > >  create mode 100644 drivers/gpu/drm/imx/dcss/Kconfig
-> > >  create mode 100644 drivers/gpu/drm/imx/dcss/Makefile
-> > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-blkctl.c
-> > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-crtc.c
-> > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-ctxld.c
-> > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dev.c
-> > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dev.h
-> > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dpr.c
-> > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-drv.c
-> > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dtg.c
-> > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-kms.c
-> > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-kms.h
-> > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-plane.c
-> > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-scaler.c
-> > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-ss.c
-> > > 
-> > > -- 
-> > > 2.23.0
-> > > 
-> 
+Sakari Ailus
