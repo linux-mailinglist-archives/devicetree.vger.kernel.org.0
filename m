@@ -2,73 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6566257457
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 09:32:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2DBA257460
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 09:35:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726102AbgHaHcd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 03:32:33 -0400
-Received: from gw.c-home.cz ([89.24.150.100]:41466 "EHLO dmz.c-home.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726618AbgHaHcc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 Aug 2020 03:32:32 -0400
-Received: from ubuntu1804.c-home.cz (intra-239.c-home.cz [192.168.1.239])
-        by dmz.c-home.cz (8.14.4+Sun/8.14.4) with ESMTP id 07V7VPlJ005879;
-        Mon, 31 Aug 2020 09:31:37 +0200 (CEST)
-From:   Martin Cerveny <m.cerveny@computer.org>
-To:     Corentin Labbe <clabbe.montjoie@gmail.com>
-Cc:     Martin Cerveny <m.cerveny@computer.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v2 3/3] crypto: sun4i-ss - add the V3s variant of SS
-Date:   Mon, 31 Aug 2020 09:31:01 +0200
-Message-Id: <20200831073101.3608-4-m.cerveny@computer.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200831073101.3608-1-m.cerveny@computer.org>
-References: <20200831073101.3608-1-m.cerveny@computer.org>
+        id S1727869AbgHaHfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 03:35:04 -0400
+Received: from mail29.static.mailgun.info ([104.130.122.29]:18969 "EHLO
+        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726573AbgHaHe7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 Aug 2020 03:34:59 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1598859298; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=jgiqhD6mEWmgkZ8iCooIwuov0Mq1aYTRhNXeEovmpSI=; b=jDzy3d8NM3huca/bHqbIDRGHBJz+1+BhyX7a/jAwnxt3AS6wOumi0jo6yzCMa6NLH+Rj4nAO
+ PfHvF0BGj+XdZCY88gDqGK/MPyfcV3oqLMBsylm1nqqjpEC+bnQAGrQuKIKzQ4IHt84mbt5G
+ 9O15mLPzABzb8FRsB0V06/bcHSA=
+X-Mailgun-Sending-Ip: 104.130.122.29
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 5f4ca81ea816b7fb48d07ee3 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 31 Aug 2020 07:34:54
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 6A6EEC43395; Mon, 31 Aug 2020 07:34:53 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.1 required=2.0 tests=ALL_TRUSTED,NICE_REPLY_A,
+        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [10.110.39.192] (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: wcheng)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0F497C433CA;
+        Mon, 31 Aug 2020 07:34:51 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 0F497C433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=wcheng@codeaurora.org
+Subject: Re: [RFC v5 4/6] usb: gadget: configfs: Check USB configuration
+ before adding
+To:     Peter Chen <peter.chen@nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "balbi@kernel.org" <balbi@kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "agross@kernel.org" <agross@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "jackp@codeaurora.org" <jackp@codeaurora.org>
+References: <20200829055846.19034-1-wcheng@codeaurora.org>
+ <20200829055846.19034-5-wcheng@codeaurora.org>
+ <20200831022825.GA15756@b29397-desktop>
+From:   Wesley Cheng <wcheng@codeaurora.org>
+Message-ID: <2631cd0b-66d4-aabc-dc41-9ae5e84fa90d@codeaurora.org>
+Date:   Mon, 31 Aug 2020 00:34:51 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
+MIME-Version: 1.0
+In-Reply-To: <20200831022825.GA15756@b29397-desktop>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Like A33 "sun4i-ss" has a difference, it give SHA1 digest
-directly in BE. So add new compatible.
 
-Tested-by: Martin Cerveny <m.cerveny@computer.org>
-Signed-off-by: Martin Cerveny <m.cerveny@computer.org>
----
- drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c | 7 +++++++
- 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c
-index a2b67f7f8..d24496cac 100644
---- a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c
-+++ b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c
-@@ -31,6 +31,10 @@ static const struct ss_variant ss_a33_variant = {
- 	.sha1_in_be = true,
- };
- 
-+static const struct ss_variant ss_v3s_variant = {
-+	.sha1_in_be = true,
-+};
-+
- static struct sun4i_ss_alg_template ss_algs[] = {
- {       .type = CRYPTO_ALG_TYPE_AHASH,
- 	.mode = SS_OP_MD5,
-@@ -505,6 +509,9 @@ static const struct of_device_id a20ss_crypto_of_match_table[] = {
- 	{ .compatible = "allwinner,sun8i-a33-crypto",
- 	  .data = &ss_a33_variant
- 	},
-+	{ .compatible = "allwinner,sun8i-v3s-crypto",
-+	  .data = &ss_v3s_variant
-+	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, a20ss_crypto_of_match_table);
+On 8/30/2020 7:29 PM, Peter Chen wrote:
+> On 20-08-28 22:58:44, Wesley Cheng wrote:
+>> Ensure that the USB gadget is able to support the configuration being
+>> added based on the number of endpoints required from all interfaces.  This
+>> is for accounting for any bandwidth or space limitations.
+>>
+>> Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
+>> ---
+>>  drivers/usb/gadget/configfs.c | 22 ++++++++++++++++++++++
+>>  1 file changed, 22 insertions(+)
+>>
+>> diff --git a/drivers/usb/gadget/configfs.c b/drivers/usb/gadget/configfs.c
+>> index 56051bb97349..7c74c04b1d8c 100644
+>> --- a/drivers/usb/gadget/configfs.c
+>> +++ b/drivers/usb/gadget/configfs.c
+>> @@ -1361,6 +1361,7 @@ static int configfs_composite_bind(struct usb_gadget *gadget,
+>>  		struct usb_function *f;
+>>  		struct usb_function *tmp;
+>>  		struct gadget_config_name *cn;
+>> +		unsigned long ep_map = 0;
+>>  
+>>  		if (gadget_is_otg(gadget))
+>>  			c->descriptors = otg_desc;
+>> @@ -1390,7 +1391,28 @@ static int configfs_composite_bind(struct usb_gadget *gadget,
+>>  				list_add(&f->list, &cfg->func_list);
+>>  				goto err_purge_funcs;
+>>  			}
+>> +			if (f->ss_descriptors) {
+>> +				struct usb_descriptor_header **d;
+>> +
+>> +				d = f->ss_descriptors;
+>> +				for (; *d; ++d) {
+>> +					struct usb_endpoint_descriptor *ep;
+>> +					int addr;
+>> +
+>> +					if ((*d)->bDescriptorType != USB_DT_ENDPOINT)
+>> +						continue;
+>> +
+>> +					ep = (struct usb_endpoint_descriptor *)*d;
+>> +					addr = ((ep->bEndpointAddress & 0x80) >> 3) |
+>> +						(ep->bEndpointAddress & 0x0f);
+> 
+> ">> 3" or "<< 3?
+> 
+
+Hi Peter,
+
+Thanks for your comments.  It should be ">> 3" as we want to utilize the
+corresponding USB_DIR_IN bit in the bitmap to set the correct bit.
+(USB_DIR_IN = 0x80)
+
+>> +					set_bit(addr, &ep_map);
+> 
+> You want to record all endpoints on ep_map? Considering there are
+> four EP_IN (1-4), and four EP_OUT (1-4), what the value of ep_map
+> would like?
+> 
+
+So for example, if a configuration uses EP8IN and EP9OUT, then the
+ep_map will look like:
+
+EP8-IN:
+addr = ((0x88 & 0x80) >> 3) | (0x88 & 0xf) --> 0x18
+
+EP9-OUT:
+addr = ((0x9 & 0x80) >> 3) | (0x9 & 0xf) --> 0x9
+
+ep_map = ep_map = 0x01000200
+
+The lower 16 bits will carry the OUT endpoints, whereas the upper 16
+bits are the IN endpoints. (ie bit16 = ep0in, bit0 = ep0out)
+
+>> +				}
+>> +			}
+>>  		}
+>> +		ret = usb_gadget_check_config(cdev->gadget, ep_map);
+>> +		if (ret)
+>> +			goto err_purge_funcs;
+>> +
+> 
+> You may move this patch after your 4nd patch to avoid "git bisect"
+> issue.
+> 
+
+Sure, thanks for the suggestion, will do that in the next rev.
+
+Thanks
+Wesley
+
+>>  		usb_ep_autoconfig_reset(cdev->gadget);
+>>  	}
+>>  	if (cdev->use_os_string) {
+>> -- 
+>> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+>> a Linux Foundation Collaborative Project
+>>
+> 
+
 -- 
-2.17.1
-
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
