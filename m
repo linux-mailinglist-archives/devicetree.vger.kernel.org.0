@@ -2,146 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD9A02575B5
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 10:44:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 243F32575D2
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 10:50:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728177AbgHaIon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 04:44:43 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:33864 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727810AbgHaIom (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 04:44:42 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20200831084440euoutp011a3454670c618a9694d9cf5781a8d9e9~wTd1lJJG82872628726euoutp01M
-        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 08:44:40 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20200831084440euoutp011a3454670c618a9694d9cf5781a8d9e9~wTd1lJJG82872628726euoutp01M
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1598863481;
-        bh=kEAACSpDUP9iD+P6ziLCS1tlWwTb6u8yQL3yoqPQHso=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=oS6Iro0dE+Qtro7p5IAkUjCF5RQB2fgJOngUQwhkrVdN1anoeA6GsWtzOxhwtSKSJ
-         R/brZLGdKjnVKh7DE1VlUkE36FkgA3oAyiD4UuG76dJOZXvjpGcZAdqpOUu6NVtWku
-         y3aSMLOQTAvuYAssSJb55JLmrruyPuyLrBpMdmhA=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20200831084440eucas1p1f578012994a77cab14d7e9264faa4f0c~wTd1U3wx31400814008eucas1p1u;
-        Mon, 31 Aug 2020 08:44:40 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id 47.6D.06456.878BC4F5; Mon, 31
-        Aug 2020 09:44:40 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20200831084440eucas1p168ff4960505f1350d35746343a61d19b~wTd0rgc381357513575eucas1p1y;
-        Mon, 31 Aug 2020 08:44:40 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20200831084440eusmtrp24d2f9a40bf2392721e8bf5c3a86f9430~wTd0qsuWp2515925159eusmtrp2k;
-        Mon, 31 Aug 2020 08:44:40 +0000 (GMT)
-X-AuditID: cbfec7f2-809ff70000001938-3b-5f4cb878b04a
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 2C.F1.06017.778BC4F5; Mon, 31
-        Aug 2020 09:44:39 +0100 (BST)
-Received: from [106.210.88.143] (unknown [106.210.88.143]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20200831084439eusmtip2358c9e420a371bb2d56d43bf45373be8~wTd0FKpCx2809128091eusmtip2B;
-        Mon, 31 Aug 2020 08:44:39 +0000 (GMT)
-Subject: Re: [PATCH 23/33] ARM: dts: exynos: Remove empty camera pinctrl
- configuration in Odroid X/U3
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Denis GNUtoo Carikli <GNUtoo@cyberdimension.org>,
-        Simon Shields <simon@lineageos.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <5d0ce951-4472-f7f4-31be-b1f7dc8f05cb@samsung.com>
-Date:   Mon, 31 Aug 2020 10:44:39 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
-        Thunderbird/68.12.0
+        id S1728149AbgHaIuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 04:50:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44540 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726102AbgHaIuc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 Aug 2020 04:50:32 -0400
+Received: from localhost (unknown [122.171.38.130])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1AAA3206F0;
+        Mon, 31 Aug 2020 08:50:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598863832;
+        bh=w7GILwlnmbwNn51e2hei6U35hUGZv7Y4UBF1UqN+VkY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qFxZb6il+5SsynJ67x29zLpIox8zm3XWOtZcm9S2JOE5ZFix1+4cwEE7vIePPlsEK
+         St3EOgPQ6mUX8WyBy8y32oIr9m+Wn7K639mdQWdoCoxQwc3B+YbhfHvQK6GKnv/KlQ
+         17i5/uj/8MAo/SVOWhMJ+R+bNrjgeoC6hLtwUgxI=
+Date:   Mon, 31 Aug 2020 14:20:28 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Nagarjuna Kristam <nkristam@nvidia.com>
+Cc:     kishon@ti.com, thierry.reding@gmail.com,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V5 5/7] phy: tegra: xusb: Add support for charger detect
+Message-ID: <20200831085028.GG2639@vkoul-mobl>
+References: <1595238948-20531-1-git-send-email-nkristam@nvidia.com>
+ <1595238948-20531-6-git-send-email-nkristam@nvidia.com>
 MIME-Version: 1.0
-In-Reply-To: <CAJKOXPfR8YVmBqCd5+8B2TdM_tXZbWobK0pLxXxxkrsDEMR-vw@mail.gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0hTYRjG+Xa2s+NsdpyWLyqFC0UzXVLQCS+paAwyKISoIHXqQSU3bceZ
-        RpG6TB2SIpQ2pFKE8lLqGssLirc5vJsrFQvKtNC8QZaloOV2svzv9z7v894+PgITdfOciSRF
-        Gq1UyJLFuIBr6F0f8cloiog+WpjjRTWW1fOoxz3DPCp3YoZPFc0sYNTISAOf0s2M8yhzSzlO
-        lY20c6jcth4+pR98h1N5n+exYFupsSMbk+pqCnDpnXodLn1ZdVt6T1+DpKu6A+fwy4KAeDo5
-        KZ1WSoJiBImL9w0odcgmY8U4gGehDb4G2RBAHgdDXSvSIAEhIp8hWK4owdjgO4LNuUEeG6wi
-        ME3N4jsl2V8mORYWkU8RjBfgrGkFQXtOP7IkHMgEWBo1YhZ2JL1gYvOntRNGvsZgvanNWo2T
-        fqBZ0li7CskgaH2r51qYS7pDdve4Vd9HRkFv/ycu67GHvoezVrYhz4P6Y6O1D0YehFdL5RjL
-        TjA1+5jDbjrOh7mxQyyHQW/fIsayA3w16f8+gCv8brb4BdusRjA9/JzPBoUIzDlliHX5w/vh
-        je2NiO0JXlDfImHlECgub+RbZCDtYHLJnt3BDkoMpRgrCyH/roh1e4DW9OLf2M7RMawYibW7
-        LtPuuka76xrt/7lPELcGOdEqRp5AM34K+rovI5MzKkWCb1yKXIe2v9bAlulbE/oxFtuFSAKJ
-        9wh/Gc9Ei3iydCZT3oWAwMSOwtChgSiRMF6WeYNWpkQrVck004VcCK7YSXiscv6KiEyQpdFX
-        aTqVVu5kOYSNcxa6mLpVtz81/hZ+StzkYeeTOBo6XdTsXZnf0RlP7T2rjHogNdRx1mpPvMmr
-        dC0yO6K1sEsxcZHrao3JMTxkgdNVLa6qQsmNEvXkYINbt+fpWFeFKqZCEBGs8ZCsuJNutsvX
-        /D8EYierkwJQoLHUXHszt5dJD/eMvODyqEN/xFvMZRJlfocxJSP7A6CAB0tWAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrOIsWRmVeSWpSXmKPExsVy+t/xe7rlO3ziDV5ts7HYOGM9q8X8I+dY
-        LVqvP2a36H/8mtni/PkN7BabHl9jtbi8aw6bxYzz+5gsWvceYbfYcuY2m0X705fMDtweRw80
-        MntsWtXJ5tGyfhObx+Yl9R59W1YxenzeJBfAFqVnU5RfWpKqkJFfXGKrFG1oYaRnaGmhZ2Ri
-        qWdobB5rZWSqpG9nk5Kak1mWWqRvl6CX8WbqNsaCs5wV74+eZmtg/MXexcjJISFgItH47AZT
-        FyMXh5DAUkaJG8vfsUAkZCROTmtghbCFJf5c62KDKHrLKHHtyTVGkISwQLrE2wtHmUFsEQFN
-        iet/v7OCFDELXGaW2L2inx2iYwOTxJuDh8Gq2AQMJbregozi5OAVsJPYfXUL2DoWAVWJxsPX
-        wOKiAnESZ3peQNUISpyc+QSshlMgUKL5wUYmEJtZwExi3uaHzBC2vMT2t3OgbHGJW0/mM01g
-        FJqFpH0WkpZZSFpmIWlZwMiyilEktbQ4Nz232EivODG3uDQvXS85P3cTIzBStx37uWUHY9e7
-        4EOMAhyMSjy8P456xwuxJpYVV+YeYpTgYFYS4XU6ezpOiDclsbIqtSg/vqg0J7X4EKMp0HMT
-        maVEk/OBSSSvJN7Q1NDcwtLQ3Njc2MxCSZy3Q+BgjJBAemJJanZqakFqEUwfEwenVAMjX3SY
-        ZPL0mPD0VsbzitWv/3ffbS6a3mDdMVVw2SXLpWvW7HHJOSaZ7/B/jpRU7eGj01OZopWTT8xr
-        qa6ZNb0l+l/AwiMhz+eKS379vlTkamjn6x0vf5l5l1tEnneYXxu+wVRs462Ec/GMfx4xhbvd
-        ia/pWq1c05WVFqz+okRv/QaprqJjkdOUWIozEg21mIuKEwEwl2Y26gIAAA==
-X-CMS-MailID: 20200831084440eucas1p168ff4960505f1350d35746343a61d19b
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20200830135508eucas1p21ad0d4f6a2ef78f854fc74750db3fa2a
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20200830135508eucas1p21ad0d4f6a2ef78f854fc74750db3fa2a
-References: <20200830135200.24304-1-krzk@kernel.org>
-        <CGME20200830135508eucas1p21ad0d4f6a2ef78f854fc74750db3fa2a@eucas1p2.samsung.com>
-        <20200830135200.24304-23-krzk@kernel.org>
-        <c9daff05-dca7-f1b1-8cfe-46b185bf60dd@samsung.com>
-        <CAJKOXPfR8YVmBqCd5+8B2TdM_tXZbWobK0pLxXxxkrsDEMR-vw@mail.gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1595238948-20531-6-git-send-email-nkristam@nvidia.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On 20-07-20, 15:25, Nagarjuna Kristam wrote:
 
-On 31.08.2020 10:38, Krzysztof Kozlowski wrote:
-> On Mon, 31 Aug 2020 at 10:31, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
->> On 30.08.2020 15:51, Krzysztof Kozlowski wrote:
->>> The camera's pinctrl configuration is simply empty and not effective.
->>> Remove it to fix dtbs_check warning:
->>>
->>>     arch/arm/boot/dts/exynos4412-odroidx.dt.yaml: camera: pinctrl-0: True is not of type 'array'
->>>
->>> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
->> I think that this was intentional to properly enable support for
->> mem-2-mem mode in Exynos4-IS (FIMC), but I'm not sure what are the
->> default values if no pinctrl properties are provided. Sylwester, could
->> you comment?
-> Indeed it could be intentional... I see now errors:
-> [   33.752203] s5p-fimc-md soc:camera: Failed to get pinctrl: -19
->
-> I wonder why getting an empty pinctrl is needed... maybe the driver
-> should accept missing pinctrl?
+> +#define USB2_BATTERY_CHRG_OTGPADX_CTL0(x)	(0x80 + (x) * 0x40)
+> +#define  PD_CHG					BIT(0)
+> +#define  VDCD_DET_FILTER_EN			BIT(4)
+> +#define  VDAT_DET				BIT(5)
+> +#define  VDAT_DET_FILTER_EN			BIT(8)
+> +#define  OP_SINK_EN				BIT(9)
+> +#define  OP_SRC_EN				BIT(10)
+> +#define  ON_SINK_EN				BIT(11)
+> +#define  ON_SRC_EN				BIT(12)
+> +#define  OP_I_SRC_EN				BIT(13)
+> +#define  ZIP_FILTER_EN				BIT(21)
+> +#define  ZIN_FILTER_EN				BIT(25)
+> +#define  DCD_DETECTED				BIT(26)
+> +
+> +#define USB2_BATTERY_CHRG_OTGPADX_CTL1(x)	(0x84 + (x) * 0x40)
+> +#define  PD_VREG				BIT(6)
+> +#define  VREG_LEV(x)				(((x) & 0x3) << 7)
+> +#define  VREG_DIR(x)				(((x) & 0x3) << 11)
 
-Please ensure that you have those patches applied:
+GENMASK and FIELD_PREP please
 
-https://patchwork.kernel.org/patch/11707579/
+> +static void
+> +tegra_xusb_padctl_set_debounce_time(struct tegra_xusb_padctl *padctl,
+> +				    u32 debounce)
+> +{
+> +	u32 value;
+> +
+> +	value = padctl_readl(padctl,
+> +		XUSB_PADCTL_USB2_BATTERY_CHRG_TDCD_DBNC_TIMER_0);
 
-https://patchwork.kernel.org/patch/11707577/
+Single line
 
-https://patchwork.kernel.org/patch/11705409/
+> +static void
+> +tegra_xusb_padctl_charger_detect_on(struct tegra_xusb_padctl *padctl, u32 index)
+> +{
+> +	u32 value;
+> +
+> +	value = padctl_readl(padctl, XUSB_PADCTL_USB2_OTG_PADX_CTL0(index));
+> +	value &= ~USB2_OTG_PD_ZI;
+> +	padctl_writel(padctl, value, XUSB_PADCTL_USB2_OTG_PADX_CTL0(index));
+> +
+> +	value = padctl_readl(padctl, XUSB_PADCTL_USB2_OTG_PADX_CTL0(index));
+> +	value |= (USB2_OTG_PD2 | USB2_OTG_PD2_OVRD_EN);
+> +	padctl_writel(padctl, value, XUSB_PADCTL_USB2_OTG_PADX_CTL0(index));
+> +
+> +	value = padctl_readl(padctl, USB2_BATTERY_CHRG_OTGPADX_CTL0(index));
+> +	value &= ~PD_CHG;
+> +	padctl_writel(padctl, value, USB2_BATTERY_CHRG_OTGPADX_CTL0(index));
 
+maybe a padctl_updatel() helper to do read, modify and write
 
-Best regards
+> +static void tegra_xusb_padctl_dcd(struct tegra_xusb_padctl *padctl, u32 index)
+> +{
+> +	u32 value;
+> +	unsigned int offset;
+> +	bool ret = false;
+> +
+> +	/* Turn on IDP_SRC */
+> +	value = padctl_readl(padctl, USB2_BATTERY_CHRG_OTGPADX_CTL0(index));
+> +	value |= OP_I_SRC_EN;
+> +	padctl_writel(padctl, value, USB2_BATTERY_CHRG_OTGPADX_CTL0(index));
+> +
+> +	/* Turn on D- pull-down resistor */
+> +	value = padctl_readl(padctl, USB2_BATTERY_CHRG_OTGPADX_CTL1(index));
+> +	value |= USBON_RPD_OVRD_VAL;
+> +	padctl_writel(padctl, value, USB2_BATTERY_CHRG_OTGPADX_CTL1(index));
+> +
+> +	/* Wait for TDCD_DBNC (DCD debounce), refer to BC1.2 spec Table 5 */
+> +	usleep_range(10000, 20000);
+> +
+> +	offset = USB2_BATTERY_CHRG_OTGPADX_CTL0(index);
+> +	ret = readl_poll_timeout(padctl->regs + offset, value,
+> +				 value & DCD_DETECTED, 20000,
+> +				 TDCD_TIMEOUT_MS * 1000);
+> +	if (!ret)
+> +		dev_warn(padctl->dev, "%s: DCD timeout.", __func__);
+
+Not dev_err() ? and continue after this?
+
+> +static bool
+> +tegra_xusb_padctl_primary_secondary(struct tegra_xusb_padctl *padctl, u32 index,
+> +				    bool is_primary)
+> +{
+> +	u32 value;
+> +	u32 config = is_primary ? (OP_SRC_EN | ON_SINK_EN) :
+> +				  (ON_SRC_EN | OP_SINK_EN);
+> +	bool ret = false;
+> +
+> +	if (is_primary)
+> +		/* data contact detection */
+> +		tegra_xusb_padctl_dcd(padctl, index);
+> +
+> +	/* Source D- to D+ */
+> +	value = padctl_readl(padctl, USB2_BATTERY_CHRG_OTGPADX_CTL0(index));
+> +	value |= config;
+> +	padctl_writel(padctl, value, USB2_BATTERY_CHRG_OTGPADX_CTL0(index));
+> +
+> +	/*
+> +	 * Wait for TVDPSRC_ON/TVDMSRC_ON(D+/- voltage source on time),
+> +	 * refer to BC1.2 spec Table 5
+> +	 */
+> +	msleep(40);
+> +
+> +	value = padctl_readl(padctl, USB2_BATTERY_CHRG_OTGPADX_CTL0(index));
+> +	if (is_primary)
+> +		ret = !!(value & VDAT_DET);
+> +	else
+> +		ret = !(value & VDAT_DET);
+
+How about 
+
+        ret = !(value & VDAT_DET);
+        if (is_primary)
+                ret = !ret;
+
+> +#define VON_DIV2P0_DET BIT(0)
+> +#define VON_DIV2P7_DET BIT(1)
+> +#define VOP_DIV2P0_DET BIT(2)
+> +#define VOP_DIV2P7_DET BIT(3)
+> +
+> +#define VREG_CUR_LEVEL_0        500
+> +#define VREG_CUR_LEVEL_1        900
+> +#define VREG_CUR_LEVEL_2        1500
+> +#define VREG_CUR_LEVEL_3        2000
+
+tabs or spaces, pick one please, not both
+
+> +
+> +#define IS_CUR_IN_RANGE(ma, low, high)  \
+> +	((ma >= VREG_CUR_LEVEL_##low) && (ma <= (VREG_CUR_LEVEL_##high - 1)))
+> +#define VREG_LVL(ma, level)     IS_CUR_IN_RANGE(ma, level, level + 1)
+> +
+> +static void tegra_xusb_padctl_vbus_pad_portection(struct tegra_xusb_port *port)
+> +{
+> +	struct tegra_xusb_padctl *padctl = port->padctl;
+> +	int level = 0;
+> +	enum tegra_vbus_dir dir = TEGRA_VBUS_SINK;
+> +	int max_ua, min_ua;
+
+reverse christmas tree please
+
+> +static enum usb_charger_type tegra_xusb_charger_detect(struct usb_phy *usb_phy)
+> +{
+> +	struct tegra_xusb_port *port = container_of(usb_phy,
+> +						    struct tegra_xusb_port,
+> +						    usb_phy);
+
+how about:
+
+        struct tegra_xusb_port *port = 
+                        container_of(usb_phy, struct tegra_xusb_port, usb_phy);
 -- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
-
+~Vinod
