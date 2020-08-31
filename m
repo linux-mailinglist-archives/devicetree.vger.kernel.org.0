@@ -2,160 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AD622573BE
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 08:34:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE77D2573C9
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 08:39:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726255AbgHaGeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 02:34:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56286 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725848AbgHaGea (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 02:34:30 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 822CAC061573;
-        Sun, 30 Aug 2020 23:34:30 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id q9so4279963wmj.2;
-        Sun, 30 Aug 2020 23:34:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ZP1iGX70R6WBiUNO1tOXFyMcuHcjl1P18JgeTI2dD4c=;
-        b=GJ8cF7PTYPGqReRtR4re5LgMZeUffjNB2POodeR5VWXtozhKn1QnVm9UGIGIV/YDGn
-         ECBu6Ltxw/XVa/OG3q/hSDF/cr+L26H5usMZQW7NC4tHUeoVUH+X5a1csICElBJWDXWD
-         xjJoW/3lKtyLLjDx/53+ZgW9pPYDJ2allVLRY4aWJTfTiE0VNdODR2Lh/Zbx5X+3RsxJ
-         A7+Hlzv1lQfF/H3InZltg1ePkJcbEfF1a8y7DgL2xCLAzfhhuyA5Hr+C5cJQEjq6gaZb
-         pIYQhjUPMmOKyYSlJMNT9+jSpvpgwLjjEgiBWOjhEQ9O04H1IVlg36iBUqoe83jl+ipQ
-         stxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZP1iGX70R6WBiUNO1tOXFyMcuHcjl1P18JgeTI2dD4c=;
-        b=jVTJk/xFmklqWLoqimhCS7bcDdCI4jDS89LAXA5q8v9lkDokOEaoogjOAOY8CxgAJB
-         wqN5yQYZc0hDKbZK7e6wxKJfHX8U0M3taJHXVVZCjnyGYZT2benlJAYBgHtDl3hiDeop
-         BiWrwxlAqnAhJBG+aqr57xLC48PaeENzzM5DWpFajXLl5ET5AMqBNminSeqVgQIDddg2
-         dqi//gaK5YWbqvGtMR6ALTwaUoxAzbDfAl+ETMxetnbbiXXDNtPeQuOY7KIil/ZxxeFX
-         rISlSXYfDJ76uAV81FOzW9rFnoz46tJfH4AY5Q2waREmCzpH9bwfG9jYjONrJby88mpY
-         M6vw==
-X-Gm-Message-State: AOAM530BwpQF6d4rx9epPvvxnast+hh088eiuBhDiLhuy2asZjZlnlNV
-        gu8LhPwVzGgE1SfeMMXfvr5z94Q4fvE=
-X-Google-Smtp-Source: ABdhPJzF0UppAc4MASa721wAZz4ZjrCxQwb20+xfqZzysOU4TggFFq5EbI81tQEF4nDVs7iIdOjAQQ==
-X-Received: by 2002:a1c:4054:: with SMTP id n81mr269837wma.81.1598855668861;
-        Sun, 30 Aug 2020 23:34:28 -0700 (PDT)
-Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
-        by smtp.googlemail.com with ESMTPSA id f6sm11682451wme.32.2020.08.30.23.34.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Aug 2020 23:34:28 -0700 (PDT)
-Date:   Mon, 31 Aug 2020 08:34:26 +0200
-From:   Corentin Labbe <clabbe.montjoie@gmail.com>
-To:     Martin Cerveny <m.cerveny@computer.org>
-Cc:     davem@davemloft.net, herbert@gondor.apana.org.au,
-        robh+dt@kernel.org, mripard@kernel.org, wens@csie.org,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: sun8i: v3s: Enable crypto engine
-Message-ID: <20200831063426.GA18853@Red>
-References: <20200827180027.6254-1-m.cerveny@computer.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200827180027.6254-1-m.cerveny@computer.org>
+        id S1726756AbgHaGjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 02:39:49 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:12284 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725949AbgHaGjp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 Aug 2020 02:39:45 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1598855985; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=avckrwYFEozKXmUhvp7Wi5KC3VIiONL98Qh2vw0wCrM=; b=ZaqVvdnBCcsUB1KBPhYfROgmsqQAKJuyR4DxYke6sVktR5WffIMGAlsdySmzQ+J2b7QrNzyy
+ FSDQhqyvj4eYld5I9smKHrpDOOUNMNr0oXHSPKw6dO4aE5Ovii8iagDmpwRE3oizhNiWX7xC
+ kJzxYXBO18EzjdmBW5mRk/iz/eQ=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 5f4c9b30ebeeb261069c6579 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 31 Aug 2020 06:39:44
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 1E998C433CB; Mon, 31 Aug 2020 06:39:43 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4847BC433C6;
+        Mon, 31 Aug 2020 06:39:38 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4847BC433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH v3 0/5] Qualcomm's lpass-hdmi ASoC driver to support audio over dp port
+Date:   Mon, 31 Aug 2020 12:09:19 +0530
+Message-Id: <1598855964-1042-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 27, 2020 at 08:00:27PM +0200, Martin Cerveny wrote:
-> V3S contains crypto engine that is compatible with "sun4i-ss".
-> 
-> Tested-by: Martin Cerveny <m.cerveny@computer.org>
-> Signed-off-by: Martin Cerveny <m.cerveny@computer.org>
-> ---
->  .../bindings/crypto/allwinner,sun4i-a10-crypto.yaml    |  5 ++++-
->  arch/arm/boot/dts/sun8i-v3s.dtsi                       | 10 ++++++++++
->  drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c      |  7 +++++++
->  3 files changed, 21 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
-> index fc823572b..180efd13a 100644
-> --- a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
-> +++ b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
-> @@ -25,6 +25,7 @@ properties:
->            - const: allwinner,sun4i-a10-crypto
->        - items:
->            - const: allwinner,sun8i-a33-crypto
-> +      - const: allwinner,sun8i-v3s-crypto
->  
->    reg:
->      maxItems: 1
-> @@ -59,7 +60,9 @@ if:
->    properties:
->      compatible:
->        contains:
-> -        const: allwinner,sun6i-a31-crypto
-> +        oneOf:
-> +          - const: allwinner,sun6i-a31-crypto
-> +          - const: allwinner,sun8i-v3s-crypto
->  
->  then:
->    required:
-> diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v3s.dtsi
-> index e5312869c..4fec84c40 100644
-> --- a/arch/arm/boot/dts/sun8i-v3s.dtsi
-> +++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
-> @@ -234,6 +234,16 @@
->  			#size-cells = <0>;
->  		};
->  
-> +		crypto: crypto@1c15000 {
-> +			compatible = "allwinner,sun8i-v3s-crypto";
-> +			reg = <0x01c15000 0x1000>;
-> +			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&ccu CLK_BUS_CE>, <&ccu CLK_CE>;
-> +			clock-names = "ahb", "mod";
-> +			resets = <&ccu RST_BUS_CE>;
-> +			reset-names = "ahb";
-> +		};
-> +
->  		usb_otg: usb@1c19000 {
->  			compatible = "allwinner,sun8i-h3-musb";
->  			reg = <0x01c19000 0x0400>;
-> diff --git a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c
-> index a2b67f7f8..d24496cac 100644
-> --- a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c
-> +++ b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c
-> @@ -31,6 +31,10 @@ static const struct ss_variant ss_a33_variant = {
->  	.sha1_in_be = true,
->  };
->  
-> +static const struct ss_variant ss_v3s_variant = {
-> +	.sha1_in_be = true,
-> +};
-> +
->  static struct sun4i_ss_alg_template ss_algs[] = {
->  {       .type = CRYPTO_ALG_TYPE_AHASH,
->  	.mode = SS_OP_MD5,
-> @@ -505,6 +509,9 @@ static const struct of_device_id a20ss_crypto_of_match_table[] = {
->  	{ .compatible = "allwinner,sun8i-a33-crypto",
->  	  .data = &ss_a33_variant
->  	},
-> +	{ .compatible = "allwinner,sun8i-v3s-crypto",
-> +	  .data = &ss_v3s_variant
-> +	},
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, a20ss_crypto_of_match_table);
-> -- 
-> 2.17.1
-> 
+These patches are to support audio over DP port on Qualcomm's SC7180 LPASS Asoc.
+It includes machine driver, cpu driver, platform driver updates for HDMI path support, 
+device tree documention, lpass variant structure optimization and configuration changes.
+These patches depends on the DP patch series 
+https://patchwork.kernel.org/project/dri-devel/list/?series=332029
 
-You should split at least drivers/crypto and the dts part, as drivers/crypto patchs are merged via the cryptodev tree and dts/doc will be merged via the sunxi tree.
-And ideally split patch in 3, the doc, the dts and the crypto.
-See how I added the same for A33 in:
-https://lore.kernel.org/linux-arm-kernel/20191120152833.20443-1-clabbe.montjoie@gmail.com/
+Changes Since v2:
+	-- Audio buffer size(i.e. LPASS_PLATFORM_BUFFER_SIZE) in lpass-platform.c increased.
 
-Anyway the content is good.
-Acked-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+V Sujith Kumar Reddy (5):
+  ASoC: Add sc7180-lpass binding header hdmi define
+  ASoC: dt-bindings: Add dt binding for lpass hdmi
+  ASoC: qcom: Add support for lpass hdmi driver
+  ASoC: qcom: Add support for audio over DP
+  ASoC: qcom: Optimise lpass variant structure
 
-Thanks
+ .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  |  51 +-
+ include/dt-bindings/sound/sc7180-lpass.h           |   1 +
+ sound/soc/qcom/Kconfig                             |   5 +
+ sound/soc/qcom/Makefile                            |   2 +
+ sound/soc/qcom/lpass-apq8016.c                     |  25 +-
+ sound/soc/qcom/lpass-cpu.c                         |  92 ++-
+ sound/soc/qcom/lpass-hdmi.c                        | 685 +++++++++++++++++++++
+ sound/soc/qcom/lpass-hdmi.h                        | 129 ++++
+ sound/soc/qcom/lpass-ipq806x.c                     |  25 +-
+ sound/soc/qcom/lpass-lpaif-reg.h                   |  51 +-
+ sound/soc/qcom/lpass-platform.c                    | 287 +++++++--
+ sound/soc/qcom/lpass-sc7180.c                      | 147 ++++-
+ sound/soc/qcom/lpass.h                             | 123 +++-
+ 13 files changed, 1472 insertions(+), 151 deletions(-)
+ create mode 100644 sound/soc/qcom/lpass-hdmi.c
+ create mode 100644 sound/soc/qcom/lpass-hdmi.h
+
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+
