@@ -2,74 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F7F8257B4E
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 16:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91028257B80
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 16:50:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726968AbgHaOad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 10:30:33 -0400
-Received: from vern.gendns.com ([98.142.107.122]:35994 "EHLO vern.gendns.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726144AbgHaOad (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 Aug 2020 10:30:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=5TL6L87Gzfsxb0AUsJo+hT5Ayv6C3WC26qszeZyu2eU=; b=o78UIN6TbbtduZdZn4L5JdaDdO
-        pWhPp6f3peOTypia2uTzOwAo8+ZZaIf/uwWJaAS4TDqRVdRASaiHQJGTvkIN26mG3SyURtrOY+b8r
-        i1BR+Z6LBKBztkbcETSH/VsTzB7vRTU6h0s7ga7Sm6U7i3tYS/xjHPCR3RHVLJhjpm9jgGseUIQI7
-        gRmD+kO4T1nYa/WJUv7jW42krbhx9xoAkOc7J7vxzBVOBJTpXNI5oGNflWPTY7afUK545ABzIHVWe
-        GjVByQ3Vekwyz8VGxin5ZtkpizU8hAm+RPd8LFxSFPPZ8t4WCDzi2qmWoUO7P9Kag4K/pBaR0fqf9
-        Eqv8nkLQ==;
-Received: from [2600:1700:4830:165f::19e] (port=53058)
-        by vern.gendns.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <david@lechnology.com>)
-        id 1kCkpJ-0002q9-2b; Mon, 31 Aug 2020 10:30:29 -0400
-Subject: Re: [PATCH v2 2/2] dt-bindings: iio: adc: ti,ads7950 binding
- conversion
-To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-References: <20200830161154.3201-1-jic23@kernel.org>
- <20200830161154.3201-3-jic23@kernel.org>
-From:   David Lechner <david@lechnology.com>
-Message-ID: <f8da562f-0111-6c86-9331-aebebd562bc1@lechnology.com>
-Date:   Mon, 31 Aug 2020 09:30:28 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726384AbgHaOuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 10:50:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48988 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727902AbgHaOuG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 10:50:06 -0400
+Received: from mxwww.masterlogin.de (mxwww.masterlogin.de [IPv6:2a03:2900:1:1::a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D783FC061575
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 07:50:05 -0700 (PDT)
+Received: from mxout2.routing.net (unknown [192.168.10.82])
+        by backup.mxwww.masterlogin.de (Postfix) with ESMTPS id C8FE52C202
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 14:40:01 +0000 (UTC)
+Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
+        by mxout2.routing.net (Postfix) with ESMTP id BDE1F5FC42;
+        Mon, 31 Aug 2020 14:39:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1598884787;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=RdOFWohILbsEDDDJFVfgHhbn+dw2QRxvLWyTIr2kZpU=;
+        b=QG9Bcy4D86OBecjJqWP/tcMdwIDTmE3hui2EQ3NEBrH3qBuuFq8y7TPOkYLJ74hzHCBfqO
+        GdVDgwMDOXnAwgRC2dO/ece+hky352oQocmZjea1+DndpMN5MpSeAQ3HrfuD3Oge125XMv
+        BA3xEHZYF/djXMSn2ohFAMZquyS9WN4=
+Received: from localhost.localdomain (fttx-pool-217.61.158.151.bambit.de [217.61.158.151])
+        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id EEE3C1005C3;
+        Mon, 31 Aug 2020 14:39:46 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     linux-mediatek@lists.infradead.org
+Cc:     Alex Ryabchenko <d3adme4t@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        chunkuang.hu@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Frank Wunderlich <frank-w@public-files.de>
+Subject: [PATCH] arm: dts: mt7623: add lima related regulator
+Date:   Mon, 31 Aug 2020 16:39:37 +0200
+Message-Id: <20200831143937.28259-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20200830161154.3201-3-jic23@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - vern.gendns.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lechnology.com
-X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/30/20 11:11 AM, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> 
-> Conversion from txt to yaml.  The binding documents that
-> as not all boards will make use of the ADC channels via a consumer
-> driver.  It does no harm however, so we will leave it as required.
-> 
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Cc: David Lechner <david@lechnology.com>
-> ---
+From: Alex Ryabchenko <d3adme4t@gmail.com>
 
-Reviewed-by: David Lechner <david@lechnology.com>
+GPU needs additional regulator, add it to devicetree of bpi-r2
+
+Signed-off-by: Alex Ryabchenko <d3adme4t@gmail.com>
+Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+---
+ arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
+index f41f221e56ca..826912545ef1 100644
+--- a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
++++ b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
+@@ -79,6 +79,13 @@ reg_5v: regulator-5v {
+ 		regulator-always-on;
+ 	};
+ 
++	reg_vgpu: fixedregulator@0 {
++		compatible = "regulator-fixed";
++		regulator-name = "vdd_fixed_vgpu";
++		regulator-min-microvolt = <1150000>;
++		regulator-max-microvolt = <1150000>;
++	};
++
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+ 		pinctrl-names = "default";
+@@ -283,6 +290,11 @@ &i2c1 {
+ 	status = "okay";
+ };
+ 
++&mali {
++	mali-supply = <&reg_vgpu>;
++	status = "okay";
++};
++
+ &mmc0 {
+ 	pinctrl-names = "default", "state_uhs";
+ 	pinctrl-0 = <&mmc0_pins_default>;
+@@ -402,4 +414,3 @@ &u3phy1 {
+ &u3phy2 {
+ 	status = "okay";
+ };
+-
+-- 
+2.25.1
 
