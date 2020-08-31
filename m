@@ -2,90 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3D472574BD
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 09:54:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5502B2574D4
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 09:58:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726244AbgHaHyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 03:54:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40424 "EHLO
+        id S1726198AbgHaH6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 03:58:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725794AbgHaHy2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 03:54:28 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ACCDC061573;
-        Mon, 31 Aug 2020 00:54:28 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id t23so5570718ljc.3;
-        Mon, 31 Aug 2020 00:54:28 -0700 (PDT)
+        with ESMTP id S1725829AbgHaH6R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 03:58:17 -0400
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C41CC061573;
+        Mon, 31 Aug 2020 00:58:16 -0700 (PDT)
+Received: by mail-ed1-x544.google.com with SMTP id l21so4519979eds.7;
+        Mon, 31 Aug 2020 00:58:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=5ySzm6C/N6GusO8+WhnjxU91a+LGFeV0ennCZHd0ftc=;
-        b=MEdOC3oE13B00ncD1A6e6iOxKon2hzwKox6osA0eizVeUIreNnL8oos+aiT/XyJqKk
-         hltR48w4oCofK42giql4vItyWqwFd8FuOjCPnHnhMbYAN2hbVTMXAmANej0HnVkcA7rq
-         xJXwSXnPtIzhRhmWznurRyJs9m0NDozyp46DYhsvmkuiDg1ZugsDAr+fKOsp1YPC6AhK
-         S0tQBl12Joo7m3hL9meJoFTDXyUdHVb4Rl+h+/D/4q7CCqJk/zR9EKAzlZJaEQMJtLR3
-         Wg0C9djknj4KMQHagDYOdiTcRuUHz/IkaAjdctGvgglq3TxjNnSmIyuMrox5scjWE1Nw
-         qBow==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=huQdyM+q9reHAMotsMXMrR+uvxt0zB89ISm5NsTKcqY=;
+        b=cj+8D5tQCSmxfAdRNPAPmuTudMTpVoAPeOSrZRptzQ9EhDEPiOuSrmIXydsDMC+IeB
+         KiWnCQxbIr9VmNhmjBuWIJNcYSz0fR7DGnIqjOs89G7ZOSCNSd4uUdBC/+VoIYOCm2Ug
+         bag1Qks2Ap1zSsyUVQwE6/t2STKAtjsFe4VxvfYryowvEC6R/zSSoasSY0gBbLtpdOWI
+         V9V/LvGoRfx9PsVevepeL/OpGnrrSmB8c3+pKeIPMwAQBzJp9EGr45gCIG7Z8rB3mx7a
+         oaJm6l+/FCsoGio3O55Cy9zRlcqCOZ9rzgHzEcMtCww4c7Z8OoLasFoK7bMVvoJi4/0f
+         sRDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=5ySzm6C/N6GusO8+WhnjxU91a+LGFeV0ennCZHd0ftc=;
-        b=lCJDsVZl0vkAD38DW2FcTbLVnS6C68esi0bcukzGpNORChRHa27BJfZQ9qXUsx9fOj
-         +nMl6rXDEalHchSc9yfxzRJfWgG+0eooL3sF7/q+ifsz3DnAGmO4qgGpZ/2b/5gWR+wZ
-         Fzfzvjr6m+WlHt03d8tC4fy1nFjouePiBd1uTbsaed7gxVTQzXBFp3uqdECDy0v/ZOTE
-         GOFnTmGTY/ayIV3s22gxfcwqi3bkDeBWT35gKNz95ecwZsoQU0ojzt2bzn+aUlNIv3ZH
-         Gj7yhEvRde62RpMW7J/OSdkDYUIDBso3S/SGKEKgESqodWBTf8okJ/Yi2dBybUnyl3Xr
-         AcOQ==
-X-Gm-Message-State: AOAM531vzIuwaEEA7hwJuwyjpAF/xnGS30KJrqF+6raLUP+ArC17cA55
-        FjpvgsbzzD0xLfYhTKSPNQu03HarsvQ=
-X-Google-Smtp-Source: ABdhPJyfAmv+rH3T+J72qv5jTB//Lv7QImhS4MJT95CpUpBllj6cC+IS0RzeX3pMInMMiuJqUVsJ2w==
-X-Received: by 2002:a2e:a28b:: with SMTP id k11mr63428lja.405.1598860466583;
-        Mon, 31 Aug 2020 00:54:26 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-170-211.dynamic.spd-mgts.ru. [109.252.170.211])
-        by smtp.googlemail.com with ESMTPSA id t25sm1805516lfq.7.2020.08.31.00.54.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 Aug 2020 00:54:25 -0700 (PDT)
-Subject: Re: [PATCH 3/3] ARM: tegra: Pass multiple versions in
- opp-supported-hw property
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        linux-pm@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Rafael Wysocki <rjw@rjwysocki.net>,
-        Stephen Boyd <sboyd@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <cover.1598442485.git.viresh.kumar@linaro.org>
- <b13f1b112532fe0189d1f7bbb50903d9e1defb07.1598442485.git.viresh.kumar@linaro.org>
- <b0763074-859f-fccb-dde4-03d1a50ea021@gmail.com>
- <20200831043908.mtw4dglybcmcabjb@vireshk-i7>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <0da380c2-9161-d450-afd2-4b159c8cfb7d@gmail.com>
-Date:   Mon, 31 Aug 2020 10:54:24 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=huQdyM+q9reHAMotsMXMrR+uvxt0zB89ISm5NsTKcqY=;
+        b=cUERPBR8WsfrdQpqm04iC4r6PVteMRJojU2nVlbbadms8SRvRcLoVJtSUJwUYmL5OB
+         +XpN6fLWydUSK5vJgHuh1U4XB6e9PDZzkB4iIBu1foLR5TFN8j+lhZCKOk6QxgAYLYKB
+         Q8oEQ+PxH7N8JxmUG3bAS9nFnlwMGKBjiNjAxd6qFSm3H1GeLJLbvNr2Za56s2sLFeO0
+         foqbXMe4O7ofT9RJm64O5o870bYQJ84odtc++k+8Anvn6WeUz9TIgdJyjQiyijPshqBf
+         Df2XkUZ2/B4b3KRjsdcDAxLOpIzGIZS6G66QK4FPjqeANzW80ersPknljGjiENqft6QW
+         xadw==
+X-Gm-Message-State: AOAM5310vQSiTVb/repF31VCITzsAjeJC19+RyRd6jozIzXtVMqt5nSx
+        b2nvjhEPZ9KY/E0jBQMuIAaf3YESi1/EI7eH4NrEVIiA5EM=
+X-Google-Smtp-Source: ABdhPJyYEmEjgTlSTI3u2NEAheWGVf1siQ0TfcnMk8UQJ0LD/ssFBMKoiOcwk2Zx1mkLhm0A/hOUiN2gs3xnvJ0Zz2M=
+X-Received: by 2002:aa7:c4c8:: with SMTP id p8mr59745edr.231.1598860695181;
+ Mon, 31 Aug 2020 00:58:15 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200831043908.mtw4dglybcmcabjb@vireshk-i7>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <1598851448-5493-1-git-send-email-amit.pundir@linaro.org> <CAMi1Hd3n2rfr+k09L8WO1S1Tn1s3xJencmr1q3a6e-FOgXr5Qg@mail.gmail.com>
+In-Reply-To: <CAMi1Hd3n2rfr+k09L8WO1S1Tn1s3xJencmr1q3a6e-FOgXr5Qg@mail.gmail.com>
+From:   Konrad Dybcio <konradybcio@gmail.com>
+Date:   Mon, 31 Aug 2020 09:57:39 +0200
+Message-ID: <CAMS8qEXcANkb-HoTk8zrXQEzkQO4cnFw4hj5tMp82UEVKd+eHQ@mail.gmail.com>
+Subject: Re: [PATCH v6] arm64: dts: qcom: Add support for Xiaomi Poco F1 (Beryllium)
+To:     Amit Pundir <amit.pundir@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-31.08.2020 07:39, Viresh Kumar пишет:
-...
->>> Dmitry, I think there is further scope of simplifying stuff here by
->>> using the opp-microvolt-<name> property and corresponding
->>> dev_pm_opp_set_prop_name() call.
-> 
-> Any inputs on this Dmitry ?
+> Hi Konrad,
+>
+> I couldn't find answer to your question around missing
+> (regulatorname)-supply properties. Need help in figuring out that
+> part.
 
-Could you please give an example?
+When the phone boots up and RPM(H) kicks in, you should see regulators
+probing like "s1 supplied by foo". Without the *-supply stuff, you
+will likely get "supplied by regulator-dummy". This happens here [1]
+and to my knowledge it is the "eletrical wiring" for Linux, as in it
+makes Linux aware of which regulators are connected electrically to
+the same supply (so that kernel knows when the supply is on and what
+voltage it's at). For qcom platforms, this is common per-pmic (afaik,
+please check if you are able to!), so you can likely just copy-paste
+that part from msm8998-mtp.dtsi, which also uses pm(i)8998.
+
+Konrad
