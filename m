@@ -2,71 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8174257ACD
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 15:49:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3ABE0257AC6
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 15:49:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728045AbgHaNtG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 09:49:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39560 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727993AbgHaNs4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 09:48:56 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4190C061236
-        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 06:48:55 -0700 (PDT)
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kCkAw-0000Li-If; Mon, 31 Aug 2020 15:48:46 +0200
-Received: from mfe by dude02.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kCkAr-0005HK-4q; Mon, 31 Aug 2020 15:48:41 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        andrew@lunn.ch, f.fainelli@gmail.com, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, zhengdejin5@gmail.com,
-        richard.leitner@skidata.com
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: [PATCH 5/5] net: phy: smsc: LAN8710/LAN8720: remove PHY_RST_AFTER_CLK_EN flag
-Date:   Mon, 31 Aug 2020 15:48:36 +0200
-Message-Id: <20200831134836.20189-6-m.felsch@pengutronix.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200831134836.20189-1-m.felsch@pengutronix.de>
-References: <20200831134836.20189-1-m.felsch@pengutronix.de>
+        id S1726858AbgHaNtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 09:49:00 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:34134 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728021AbgHaNs7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 Aug 2020 09:48:59 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1kCkB0-00CeIv-0F; Mon, 31 Aug 2020 15:48:50 +0200
+Date:   Mon, 31 Aug 2020 15:48:49 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Adrian Schmutzler <freifunk@adrianschmutzler.de>
+Cc:     Jason Cooper <jason@lakedaemon.net>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: kirkwood: replace status value "ok" by "okay"
+Message-ID: <20200831134849.GC2403519@lunn.ch>
+References: <20200830193543.50530-1-freifunk@adrianschmutzler.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200830193543.50530-1-freifunk@adrianschmutzler.de>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Don't reset the phy without respect to the phy-state-machine because
-this breaks the phy IRQ mode. We can archive the same behaviour if the
-refclk in is specified.
+On Sun, Aug 30, 2020 at 09:35:43PM +0200, Adrian Schmutzler wrote:
+> While the DT parser recognizes "ok" as a valid value for the
+> "status" property, it is actually mentioned nowhere. Use the
+> proper value "okay" instead, as done in the majority of files
+> already.
+> 
+> Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
 
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
----
- drivers/net/phy/smsc.c | 1 -
- 1 file changed, 1 deletion(-)
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-diff --git a/drivers/net/phy/smsc.c b/drivers/net/phy/smsc.c
-index b98a7845681f..67adf11ef958 100644
---- a/drivers/net/phy/smsc.c
-+++ b/drivers/net/phy/smsc.c
-@@ -337,7 +337,6 @@ static struct phy_driver smsc_phy_driver[] = {
- 	.name		= "SMSC LAN8710/LAN8720",
- 
- 	/* PHY_BASIC_FEATURES */
--	.flags		= PHY_RST_AFTER_CLK_EN,
- 
- 	.probe		= smsc_phy_probe,
- 
--- 
-2.20.1
-
+    Andrew
