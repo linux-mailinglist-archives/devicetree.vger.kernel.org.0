@@ -2,99 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6548325728B
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 05:59:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3215E2572E5
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 06:39:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726573AbgHaD7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 23:59:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60562 "EHLO
+        id S1725747AbgHaEjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 00:39:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726126AbgHaD7j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 23:59:39 -0400
-Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50695C061573;
-        Sun, 30 Aug 2020 20:59:39 -0700 (PDT)
-Received: by mail-pj1-x1043.google.com with SMTP id q1so2296181pjd.1;
-        Sun, 30 Aug 2020 20:59:39 -0700 (PDT)
+        with ESMTP id S1725810AbgHaEjR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 00:39:17 -0400
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B36AEC061575
+        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 21:39:16 -0700 (PDT)
+Received: by mail-pj1-x1041.google.com with SMTP id np15so753191pjb.0
+        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 21:39:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=CAK2taVhKaOL1VPAdPF1CAKiLijCzZCiNCOhkBkdyH8=;
-        b=FcHToBAC1G99IbYmEIWo5XdC31xWX1mAvUYwRIEeyPf6LAcLV0bBBKOv3knx/NLUBs
-         lVSx9HmaCeudrJPN2zSRnI3Go52uZVcxayDN/Uw7NZWqvLCo9BMnb4cq1RDrEMQJ5vq7
-         Un5H8lUqMaO2qQ/WW+UWWucylH6r8UNWVCAuZmYPDm6lgcB5GHyET72Z2VKUdPWBKyTl
-         QnS5U4OhaDRx8nr0ODgTNELx8uyjwSoU20qCWtMp9Y7v72ypOzY7S18io5+LX+txQBDs
-         xWqRFCy2B5nL2jVSKUAtfybALPfGuR/8J0t1ilIpzHmeFI671mJOrv85Ezw+SVqUqTIe
-         M4HA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=eK4HJEXVysJqY3H0HRpuKE64bWmfk+MIff/zDDdh058=;
+        b=dgF7DfsfgxuT9oJTzh49Q55n+VQFmgp6g1F2K862ACF6INQXaDDqnOAFaIM+pWb91x
+         bPyOS+Rx+5UGnULEhSocC6LP2ytaeNXvqVRy2kXIcQBz8LJeZWECPUVnNGyfpJkce+nQ
+         RsnWO7OFQqYBFkyFL3XfSDGQsrxI3YbH+tNVI1UYHGMX4RiEacjEq11YsUIv//Zaonvj
+         oOT21Wx8sS66bVnNuz7Xom8Ti1w9JZ2tlmenJfaZlAiPxdfGIjY0yHk3zHXD2+7lKivI
+         BWWHzsQukeg1cmIoFebvX8xOjr1PisXH9ZIMA1cL9hvLoPnBLuyq6BEMnJO/VSSJjLOq
+         WRaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=CAK2taVhKaOL1VPAdPF1CAKiLijCzZCiNCOhkBkdyH8=;
-        b=BvdlzhSAci6mwsAS7XongTB3U4xXgBd9cLv6UAryr3SFj5vnY16EoXV14Nj5ssdrMd
-         DPueAg3RpshED74b4EwV7Uh72C7QuloxVagthS8paohQIHsUyOeMV9eSWdhZgd55Y8B6
-         JLsHkr7Y796pvMOzYO2Tx35Rd+cn4p5p40oh4f1iUqRAhHN6e0DIF8ipW2yyAFZpsrZb
-         RymBPQedIQmReFWmYzuLRUNOIvHzYZLBRpM+dHcaPS+Xo0OuYCGBfHyFjLZrAaV/seTp
-         u6ICSQJQTLsZeBuuIAJ+T01eglbfGKfX3mbKizqpKnRv9Tkgf8amdRe7xHjSuSEOZ8eV
-         XAaQ==
-X-Gm-Message-State: AOAM533M4VIZjmVA7+7RijJJIdPKhoosxuHHfhwLAs6zRZsV7WGcNl3l
-        THGu7q9vIs5SXW2lzNfcwABszZ6vIDw=
-X-Google-Smtp-Source: ABdhPJwdKhsm6eCvXoumm3qIA5WBUjkkxHjtzGkZCwEMFQfwgrNR762FTqfxn8sm57bC0WNKDj6xEA==
-X-Received: by 2002:a17:90a:eb15:: with SMTP id j21mr9366185pjz.83.1598846378718;
-        Sun, 30 Aug 2020 20:59:38 -0700 (PDT)
-Received: from [10.230.30.107] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id m22sm5479595pja.36.2020.08.30.20.59.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 30 Aug 2020 20:59:38 -0700 (PDT)
-Subject: Re: [PATCH 08/10] ARM: dts: Cygnus: Fix SP805 clocks
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        Andre Przywara <andre.przywara@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>
-References: <20200828130602.42203-1-andre.przywara@arm.com>
- <20200828130602.42203-9-andre.przywara@arm.com>
- <20200831035506.1332109-1-f.fainelli@gmail.com>
-Message-ID: <4d9e64dd-c081-f68e-0682-a9e30e8e4793@gmail.com>
-Date:   Sun, 30 Aug 2020 20:59:35 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.1.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=eK4HJEXVysJqY3H0HRpuKE64bWmfk+MIff/zDDdh058=;
+        b=uIPfvKJaBTJv8t8w7b5JVIJP3tRZsj5bMXbviLNqxJDX2qKivXdcNRA1RIVNBaui2l
+         Rychrf5EA1s8V5HtZJR7cSZWlqrDe0IGnq2/z9HEwZT/Q0dBTOaA23+p8JpGj7cLmfLA
+         be6kVrftxItH9MssEDmZrlKQRicCjlmxNduX9yMzluQuyHBVaL295gjdm99gVs/WkwTl
+         sUPFsqG3zYmSoKHKZwIGsePar+H+jni/MA+o/PzaTkoDXxTDiu8k0a6bGilzR7+iGl/z
+         k7flnKhw560oYGuhyVa2zPkDZ5bVmJp4ga3ordMs5HcbQ0H6fSee8Ab8eZMG0PNjbXzQ
+         Qdhw==
+X-Gm-Message-State: AOAM532TFKyEhObQPKFiXLgPULSffNIjpFxJl0jJ6CzLQsNcAVysHR7r
+        53T9g0IdAHx+3826g6+AVBcvON1pqpXZ6w==
+X-Google-Smtp-Source: ABdhPJxaL3cyZNWOP2NQ3q4g/ZNU7QIPjGKqARj3Y782jHZtc3+5BbYdDk8M94yhDr8nn2UtuztSiw==
+X-Received: by 2002:a17:90a:1741:: with SMTP id 1mr9611028pjm.173.1598848756361;
+        Sun, 30 Aug 2020 21:39:16 -0700 (PDT)
+Received: from localhost ([122.167.135.199])
+        by smtp.gmail.com with ESMTPSA id t5sm5487141pji.51.2020.08.30.21.39.15
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 30 Aug 2020 21:39:15 -0700 (PDT)
+Date:   Mon, 31 Aug 2020 10:09:08 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        linux-pm@vger.kernel.org,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Rafael Wysocki <rjw@rjwysocki.net>,
+        Stephen Boyd <sboyd@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] ARM: tegra: Pass multiple versions in
+ opp-supported-hw property
+Message-ID: <20200831043908.mtw4dglybcmcabjb@vireshk-i7>
+References: <cover.1598442485.git.viresh.kumar@linaro.org>
+ <b13f1b112532fe0189d1f7bbb50903d9e1defb07.1598442485.git.viresh.kumar@linaro.org>
+ <b0763074-859f-fccb-dde4-03d1a50ea021@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20200831035506.1332109-1-f.fainelli@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b0763074-859f-fccb-dde4-03d1a50ea021@gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 28-08-20, 10:37, Dmitry Osipenko wrote:
+> 26.08.2020 14:50, Viresh Kumar пишет:
+> > We can now pass multiple versions in "opp-supported-hw" property, lets
+> > do that and simplify the tables a bit.
+> > 
+> > Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+> > 
+> > ---
+> > Dmitry, I think there is further scope of simplifying stuff here by
+> > using the opp-microvolt-<name> property and corresponding
+> > dev_pm_opp_set_prop_name() call.
 
+Any inputs on this Dmitry ?
 
-On 8/30/2020 8:55 PM, Florian Fainelli wrote:
-> On Fri, 28 Aug 2020 14:06:00 +0100, Andre Przywara <andre.przywara@arm.com> wrote:
->> The SP805 DT binding requires two clocks to be specified, but the
->> Broadcom Cygnus DT currently only specifies one clock.
->>
->> In practice, Linux would pick a clock named "apb_pclk" for the bus
->> clock, and the Linux and U-Boot SP805 driver would use the first clock
->> to derive the actual watchdog counter frequency.
->>
->> Since currently both are the very same clock, we can just double the
->> clock reference, and add the correct clock-names, to match the binding.
->>
->> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
->> ---
+> > diff --git a/arch/arm/boot/dts/tegra30-cpu-opp.dtsi b/arch/arm/boot/dts/tegra30-cpu-opp.dtsi
+> ...
+> > -		opp@1000000000,975,3,7 {
+> > -			clock-latency-ns = <100000>;
+> > -			opp-supported-hw = <0x08 0x0080>;
+> > -			opp-hz = /bits/ 64 <1000000000>;
+> > +			opp-supported-hw = <0x0F 0x0001>,
+> > +				<0x01 0x0002>,
+> > +				<0x01 0x0010>,
+> > +				<0x01 0x0080>,
+> > +				<0x01 0x0100>;
+> > +			opp-hz = /bits/ 64 <475000000>;
+> >  		};
 > 
-> Applied to qspi-fixes, thanks!
+> The only very minor difference between my OPP-gen result and yours is
+> that the above hunk has inconsistent single-column formatting, while all
+> others are two-column.
 
-Applied to devicetree/next actually, likewise for the next patch.
+Ah, my mistake. Fixed and pushed now.
+
+> Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
+> Tested-by: Dmitry Osipenko <digetx@gmail.com>
+
+Thanks.
+
 -- 
-Florian
+viresh
