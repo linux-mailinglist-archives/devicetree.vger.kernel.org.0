@@ -2,103 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A90E92575A8
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 10:41:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD9A02575B5
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 10:44:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728255AbgHaIlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 04:41:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47706 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727984AbgHaIlU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 04:41:20 -0400
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 721F2C061755
-        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 01:41:20 -0700 (PDT)
-Received: by mail-pl1-x643.google.com with SMTP id bh1so2679643plb.12
-        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 01:41:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=eYb5KpT1V07RPnlSuRsMWwBmtGIT5ttBS72iMXyylIc=;
-        b=c9DSp+F/t4Lv/naJp2z8zanWeIlwgvVuwoKE5H7UcvekIrgvh7vO/uqf3/+c8tUpgR
-         r/z3VIZJphzh0KSYCvPPKNv8PglIG7J2wkU8Y96/WoTTK4DZVBjrjq+uWQ2s5oKVHLsO
-         sn/cYjp8yLJoJAg3yeU1AZ9/nHY7VEG6bDh4sPzEv3leruDXjHOZ7eAXFo/ORUVvNFXB
-         ELX0HnU/KYt38VTTVqmzYdumStOxWDB/C3JvhFKYoMoejdUJDRGMoN08PkEz6mwCtyJ6
-         qeSEBfDhuKjtPIyRG+xsw05nsIPWsxaPkM9y8R9WKZisjHx7cFS2PbFEUgvNomuIuzyM
-         ecyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=eYb5KpT1V07RPnlSuRsMWwBmtGIT5ttBS72iMXyylIc=;
-        b=CcoO7dxIbIkjiCOiW6oBWtp8zhV2F9nUC37+jznbQViQ1sZHgEZd3RPhnik5nszlGY
-         8sXtS0fMjtbnVMm3V8v8C7lEfY3/NxBReWLpSPrtYHhAJNiezLGxD/CRGka5cR5eAJVq
-         JfINKAV7+iYvYXs6GkoeNe/qlZ4PTzYYSRgClcQqgkA3Foyag5lJOKxNFy4d7oO8MHcD
-         AHAmWi+/g7bgdT8+0g4fY/Y+z4IIIbgGJyWkz6zfG9WKFFudyzr2RRN682RU/yADRtaV
-         XICqwIfanMBMXK7i0ybgd/wy45xVOpfFsgqSV7B2sq12gSTldaP74J/lgW7x0DWJSHc0
-         NnAA==
-X-Gm-Message-State: AOAM530yr0aov/kiEz9Lv4V0HNJp6QARjZuklAD3O+nss47VMGisPzOI
-        Fgz3easOyvYiIvpzwHk/7MpAIQ==
-X-Google-Smtp-Source: ABdhPJzVGSLNLHl/Fg5vdyWAY70juhup0Vyl2NaEKnZepVk/rNvw4WAFyMHDYLPrAJz6toDsdvf2eg==
-X-Received: by 2002:a17:90a:17cb:: with SMTP id q69mr429283pja.56.1598863279409;
-        Mon, 31 Aug 2020 01:41:19 -0700 (PDT)
-Received: from localhost ([122.167.135.199])
-        by smtp.gmail.com with ESMTPSA id o23sm6939940pgm.18.2020.08.31.01.41.18
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 31 Aug 2020 01:41:18 -0700 (PDT)
-Date:   Mon, 31 Aug 2020 14:11:11 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        linux-pm@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Rafael Wysocki <rjw@rjwysocki.net>,
-        Stephen Boyd <sboyd@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] ARM: tegra: Pass multiple versions in
- opp-supported-hw property
-Message-ID: <20200831084111.6udzvrdonxgzju4l@vireshk-i7>
-References: <cover.1598442485.git.viresh.kumar@linaro.org>
- <b13f1b112532fe0189d1f7bbb50903d9e1defb07.1598442485.git.viresh.kumar@linaro.org>
- <b0763074-859f-fccb-dde4-03d1a50ea021@gmail.com>
- <20200831043908.mtw4dglybcmcabjb@vireshk-i7>
- <0da380c2-9161-d450-afd2-4b159c8cfb7d@gmail.com>
+        id S1728177AbgHaIon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 04:44:43 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:33864 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727810AbgHaIom (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 04:44:42 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20200831084440euoutp011a3454670c618a9694d9cf5781a8d9e9~wTd1lJJG82872628726euoutp01M
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 08:44:40 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20200831084440euoutp011a3454670c618a9694d9cf5781a8d9e9~wTd1lJJG82872628726euoutp01M
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1598863481;
+        bh=kEAACSpDUP9iD+P6ziLCS1tlWwTb6u8yQL3yoqPQHso=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=oS6Iro0dE+Qtro7p5IAkUjCF5RQB2fgJOngUQwhkrVdN1anoeA6GsWtzOxhwtSKSJ
+         R/brZLGdKjnVKh7DE1VlUkE36FkgA3oAyiD4UuG76dJOZXvjpGcZAdqpOUu6NVtWku
+         y3aSMLOQTAvuYAssSJb55JLmrruyPuyLrBpMdmhA=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20200831084440eucas1p1f578012994a77cab14d7e9264faa4f0c~wTd1U3wx31400814008eucas1p1u;
+        Mon, 31 Aug 2020 08:44:40 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id 47.6D.06456.878BC4F5; Mon, 31
+        Aug 2020 09:44:40 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20200831084440eucas1p168ff4960505f1350d35746343a61d19b~wTd0rgc381357513575eucas1p1y;
+        Mon, 31 Aug 2020 08:44:40 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20200831084440eusmtrp24d2f9a40bf2392721e8bf5c3a86f9430~wTd0qsuWp2515925159eusmtrp2k;
+        Mon, 31 Aug 2020 08:44:40 +0000 (GMT)
+X-AuditID: cbfec7f2-809ff70000001938-3b-5f4cb878b04a
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 2C.F1.06017.778BC4F5; Mon, 31
+        Aug 2020 09:44:39 +0100 (BST)
+Received: from [106.210.88.143] (unknown [106.210.88.143]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20200831084439eusmtip2358c9e420a371bb2d56d43bf45373be8~wTd0FKpCx2809128091eusmtip2B;
+        Mon, 31 Aug 2020 08:44:39 +0000 (GMT)
+Subject: Re: [PATCH 23/33] ARM: dts: exynos: Remove empty camera pinctrl
+ configuration in Odroid X/U3
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Denis GNUtoo Carikli <GNUtoo@cyberdimension.org>,
+        Simon Shields <simon@lineageos.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+Message-ID: <5d0ce951-4472-f7f4-31be-b1f7dc8f05cb@samsung.com>
+Date:   Mon, 31 Aug 2020 10:44:39 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+        Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0da380c2-9161-d450-afd2-4b159c8cfb7d@gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <CAJKOXPfR8YVmBqCd5+8B2TdM_tXZbWobK0pLxXxxkrsDEMR-vw@mail.gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0hTYRjG+Xa2s+NsdpyWLyqFC0UzXVLQCS+paAwyKISoIHXqQSU3bceZ
+        RpG6TB2SIpQ2pFKE8lLqGssLirc5vJsrFQvKtNC8QZaloOV2svzv9z7v894+PgITdfOciSRF
+        Gq1UyJLFuIBr6F0f8cloiog+WpjjRTWW1fOoxz3DPCp3YoZPFc0sYNTISAOf0s2M8yhzSzlO
+        lY20c6jcth4+pR98h1N5n+exYFupsSMbk+pqCnDpnXodLn1ZdVt6T1+DpKu6A+fwy4KAeDo5
+        KZ1WSoJiBImL9w0odcgmY8U4gGehDb4G2RBAHgdDXSvSIAEhIp8hWK4owdjgO4LNuUEeG6wi
+        ME3N4jsl2V8mORYWkU8RjBfgrGkFQXtOP7IkHMgEWBo1YhZ2JL1gYvOntRNGvsZgvanNWo2T
+        fqBZ0li7CskgaH2r51qYS7pDdve4Vd9HRkFv/ycu67GHvoezVrYhz4P6Y6O1D0YehFdL5RjL
+        TjA1+5jDbjrOh7mxQyyHQW/fIsayA3w16f8+gCv8brb4BdusRjA9/JzPBoUIzDlliHX5w/vh
+        je2NiO0JXlDfImHlECgub+RbZCDtYHLJnt3BDkoMpRgrCyH/roh1e4DW9OLf2M7RMawYibW7
+        LtPuuka76xrt/7lPELcGOdEqRp5AM34K+rovI5MzKkWCb1yKXIe2v9bAlulbE/oxFtuFSAKJ
+        9wh/Gc9Ei3iydCZT3oWAwMSOwtChgSiRMF6WeYNWpkQrVck004VcCK7YSXiscv6KiEyQpdFX
+        aTqVVu5kOYSNcxa6mLpVtz81/hZ+StzkYeeTOBo6XdTsXZnf0RlP7T2rjHogNdRx1mpPvMmr
+        dC0yO6K1sEsxcZHrao3JMTxkgdNVLa6qQsmNEvXkYINbt+fpWFeFKqZCEBGs8ZCsuJNutsvX
+        /D8EYierkwJQoLHUXHszt5dJD/eMvODyqEN/xFvMZRJlfocxJSP7A6CAB0tWAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrOIsWRmVeSWpSXmKPExsVy+t/xe7rlO3ziDV5ts7HYOGM9q8X8I+dY
+        LVqvP2a36H/8mtni/PkN7BabHl9jtbi8aw6bxYzz+5gsWvceYbfYcuY2m0X705fMDtweRw80
+        MntsWtXJ5tGyfhObx+Yl9R59W1YxenzeJBfAFqVnU5RfWpKqkJFfXGKrFG1oYaRnaGmhZ2Ri
+        qWdobB5rZWSqpG9nk5Kak1mWWqRvl6CX8WbqNsaCs5wV74+eZmtg/MXexcjJISFgItH47AZT
+        FyMXh5DAUkaJG8vfsUAkZCROTmtghbCFJf5c62KDKHrLKHHtyTVGkISwQLrE2wtHmUFsEQFN
+        iet/v7OCFDELXGaW2L2inx2iYwOTxJuDh8Gq2AQMJbregozi5OAVsJPYfXUL2DoWAVWJxsPX
+        wOKiAnESZ3peQNUISpyc+QSshlMgUKL5wUYmEJtZwExi3uaHzBC2vMT2t3OgbHGJW0/mM01g
+        FJqFpH0WkpZZSFpmIWlZwMiyilEktbQ4Nz232EivODG3uDQvXS85P3cTIzBStx37uWUHY9e7
+        4EOMAhyMSjy8P456xwuxJpYVV+YeYpTgYFYS4XU6ezpOiDclsbIqtSg/vqg0J7X4EKMp0HMT
+        maVEk/OBSSSvJN7Q1NDcwtLQ3Njc2MxCSZy3Q+BgjJBAemJJanZqakFqEUwfEwenVAMjX3SY
+        ZPL0mPD0VsbzitWv/3ffbS6a3mDdMVVw2SXLpWvW7HHJOSaZ7/B/jpRU7eGj01OZopWTT8xr
+        qa6ZNb0l+l/AwiMhz+eKS379vlTkamjn6x0vf5l5l1tEnneYXxu+wVRs462Ec/GMfx4xhbvd
+        ia/pWq1c05WVFqz+okRv/QaprqJjkdOUWIozEg21mIuKEwEwl2Y26gIAAA==
+X-CMS-MailID: 20200831084440eucas1p168ff4960505f1350d35746343a61d19b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20200830135508eucas1p21ad0d4f6a2ef78f854fc74750db3fa2a
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20200830135508eucas1p21ad0d4f6a2ef78f854fc74750db3fa2a
+References: <20200830135200.24304-1-krzk@kernel.org>
+        <CGME20200830135508eucas1p21ad0d4f6a2ef78f854fc74750db3fa2a@eucas1p2.samsung.com>
+        <20200830135200.24304-23-krzk@kernel.org>
+        <c9daff05-dca7-f1b1-8cfe-46b185bf60dd@samsung.com>
+        <CAJKOXPfR8YVmBqCd5+8B2TdM_tXZbWobK0pLxXxxkrsDEMR-vw@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31-08-20, 10:54, Dmitry Osipenko wrote:
-> 31.08.2020 07:39, Viresh Kumar пишет:
-> ...
-> >>> Dmitry, I think there is further scope of simplifying stuff here by
-> >>> using the opp-microvolt-<name> property and corresponding
-> >>> dev_pm_opp_set_prop_name() call.
-> > 
-> > Any inputs on this Dmitry ?
-> 
-> Could you please give an example?
+Hi Krzysztof,
 
-There are many users of it in the kernel. grep for "opp-microvolt-" in
-the DT files and you will see.
+On 31.08.2020 10:38, Krzysztof Kozlowski wrote:
+> On Mon, 31 Aug 2020 at 10:31, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
+>> On 30.08.2020 15:51, Krzysztof Kozlowski wrote:
+>>> The camera's pinctrl configuration is simply empty and not effective.
+>>> Remove it to fix dtbs_check warning:
+>>>
+>>>     arch/arm/boot/dts/exynos4412-odroidx.dt.yaml: camera: pinctrl-0: True is not of type 'array'
+>>>
+>>> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+>> I think that this was intentional to properly enable support for
+>> mem-2-mem mode in Exynos4-IS (FIMC), but I'm not sure what are the
+>> default values if no pinctrl properties are provided. Sylwester, could
+>> you comment?
+> Indeed it could be intentional... I see now errors:
+> [   33.752203] s5p-fimc-md soc:camera: Failed to get pinctrl: -19
+>
+> I wonder why getting an empty pinctrl is needed... maybe the driver
+> should accept missing pinctrl?
 
-The use of this property is to specific multiple microvolt properties
-to the same frequency without a need to create separate nodes for them
-all. The right microvolt property will be selected based on the call
-made to dev_pm_opp_set_prop_name(), search for that too in kernel.
+Please ensure that you have those patches applied:
 
+https://patchwork.kernel.org/patch/11707579/
+
+https://patchwork.kernel.org/patch/11707577/
+
+https://patchwork.kernel.org/patch/11705409/
+
+
+Best regards
 -- 
-viresh
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
+
