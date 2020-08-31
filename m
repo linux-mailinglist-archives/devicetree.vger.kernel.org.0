@@ -2,112 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8FC62576F4
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 11:54:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9AC6257722
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 12:08:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726326AbgHaJyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 05:54:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59048 "EHLO
+        id S1726167AbgHaKIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 06:08:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726334AbgHaJyl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 05:54:41 -0400
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D6A2C061573;
-        Mon, 31 Aug 2020 02:54:22 -0700 (PDT)
-Received: by mail-lj1-x241.google.com with SMTP id g6so5882570ljn.11;
-        Mon, 31 Aug 2020 02:54:22 -0700 (PDT)
+        with ESMTP id S1726081AbgHaKIg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 06:08:36 -0400
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C902DC061573;
+        Mon, 31 Aug 2020 03:08:35 -0700 (PDT)
+Received: by mail-ed1-x541.google.com with SMTP id a12so4832365eds.13;
+        Mon, 31 Aug 2020 03:08:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=TSm8Xir2qHLM4KnvUNa9QAiKGDLz5dH6Zq6NNkg0IXQ=;
-        b=kurhuhNueqi6Go7ZBSzHHlC2VATfsEJ18kcOG0TtB7QnuhDk2JAqZNyWAev7TBzYkz
-         CiP5BBA5nDhYGxWPvdTHEM3NhEE76P/YLA+6sVzE9ptTSR4lvQ6U9Fz3VCaIPnv32BAL
-         FZ6kHKgDbxvcOlstFWUomxLz9Gs2BNXfsfP9Gg6Z0voNpQrkTh1RmAnL5VAwZthtO2fg
-         I1B/orxzR62QrpHX62BXGDknIrnk2A7vD1sCjZnI8chUENqi6RoZGQ8FvyKNJPYkZ+bb
-         OKa9i4zJ4xkwbKdT3lpLqL/M4W2gl+hmPOVXCmvkZ8ZiSG9OYoJIcawMs5XiuHyCSFjy
-         7Aug==
+        bh=i8mDMEkMlEKb7YAMGET4QjohLG3lZw/hOxyAJzH3u8k=;
+        b=WEwUCWrglXyoan/T/4uUfI0wUuwhac//uqp5zLQmnbUYajGE2FMcVhgReaIf0QR9e5
+         ur2y3QvrYINxyl5xnMmQBOfmXInLcf0ha3OUCihv23tK2ceO7NEN+XDftvp8ZW4PxMN3
+         wR8wDpLMqhgovV4eGum10KsLmRq8j7FzimCXkwPqaXCtwTr3g3D7buNlmaXkjNiwMXE5
+         EU2L6azgMfmj1XpsfpIKxUvYoHsZVcnQ9asJ7LzWEIW0E6qWo+94amkrXDcNuCgZsRDs
+         cpA/npXjf8hhU96gx6CJbpElmtxFA54eFfd37fc8sVDSSj01VFLDrzkZDAjNzMhduVRj
+         x/nQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=TSm8Xir2qHLM4KnvUNa9QAiKGDLz5dH6Zq6NNkg0IXQ=;
-        b=SnN6pldGoJQInx/m1zeGmteApodgzbnlZJmK2f5pYudoBhyVOdvKvoFg5N5sdS4S5S
-         D6dsnbGmgY4ooudUKVMW/uocyfaW70OwF9D6Fhw53GrvqTRp+h2OTlvuArTqcg6Lo8vz
-         AZmhBvGagNx3BG8kLa6zUqcTzVae0P4hmRYF8SJNVFOwGlA5Di12RkqW606ie/revFGw
-         20/myo5p31UNvdfJoCQdnPNAg66jIsz5Vn9IJXW7lPjwuCFKijKEXUjnSUhM8TrSktZK
-         uUOGyf9DEAcs1pvdPnsvbR1hdy2Q05LAKhQhTsQLaBgutc7C4CKQbvXZtXju4gk3IBbI
-         PVxA==
-X-Gm-Message-State: AOAM5333RUoiFysFOzYMo0KGwZH15LB0KdqOXgTW3trd1BSiNIzey+Z5
-        6C1Jx9rtFr2IIaTtg33URT8oxyTUPKM=
-X-Google-Smtp-Source: ABdhPJy8KZjk72a5eEDT0IuSYdmnLR/C/55LTP2RBCq87JBLCuN6xfMUdvGBtMMHsODr7dV4jftXMg==
-X-Received: by 2002:a2e:b4f4:: with SMTP id s20mr251794ljm.339.1598867660906;
-        Mon, 31 Aug 2020 02:54:20 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-170-211.dynamic.spd-mgts.ru. [109.252.170.211])
-        by smtp.googlemail.com with ESMTPSA id f20sm1863068lfk.70.2020.08.31.02.54.19
+        bh=i8mDMEkMlEKb7YAMGET4QjohLG3lZw/hOxyAJzH3u8k=;
+        b=E7hOJHHlfLanmoSZFtUgLsGAnP/MEz4OnAigncRXS3xCrnifjsEbIdTLEYRQ79tf0c
+         MGYAf56cf7pOp8YvFxaBLQF580KYe0UZyPeBoiGzjUjmdzBPucLD+TQMswH1VOK8rvhJ
+         CUpxpm2Fh1lUfrZKqN1DaQddLbJbxbWiqSJufabQPDOI4wP97nRv0/Rj5E+T4AtS5VMw
+         t88/nhfCC00Rkj+SXgTElTTMGG+KN0XHO9/P6YnQ/pLQ4Odk2grXCBlzRaqIDqppjNqk
+         OEcx9low/vI2pyN6JC9udUidNp1sqkJRgS6kTlyml5QsAFUu3Tc5E1GL1/qQ66Za/tNr
+         /snw==
+X-Gm-Message-State: AOAM532GP6MaNGjOWBDlkTIRl49DRwy3hKVS7LhxPMDJpUN1LsMO8xay
+        ezWw4i6yb1XvXGPoctFJRl4=
+X-Google-Smtp-Source: ABdhPJzoo5VnXqrCIaiiNgpxdD7Ek9UGl4eBBccGJaHD/tjO8nJ8Ivcxxni7HOtuM9GyjXuMDwajqw==
+X-Received: by 2002:aa7:dd94:: with SMTP id g20mr481362edv.238.1598868514539;
+        Mon, 31 Aug 2020 03:08:34 -0700 (PDT)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id r3sm7643620ejy.95.2020.08.31.03.08.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 Aug 2020 02:54:20 -0700 (PDT)
-Subject: Re: [PATCH 3/3] ARM: tegra: Pass multiple versions in
- opp-supported-hw property
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        linux-pm@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Rafael Wysocki <rjw@rjwysocki.net>,
-        Stephen Boyd <sboyd@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <cover.1598442485.git.viresh.kumar@linaro.org>
- <b13f1b112532fe0189d1f7bbb50903d9e1defb07.1598442485.git.viresh.kumar@linaro.org>
- <b0763074-859f-fccb-dde4-03d1a50ea021@gmail.com>
- <20200831043908.mtw4dglybcmcabjb@vireshk-i7>
- <0da380c2-9161-d450-afd2-4b159c8cfb7d@gmail.com>
- <20200831084111.6udzvrdonxgzju4l@vireshk-i7>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <cbfa012b-8f50-e460-972c-c51fa52bb858@gmail.com>
-Date:   Mon, 31 Aug 2020 12:54:19 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Mon, 31 Aug 2020 03:08:34 -0700 (PDT)
+Subject: Re: [PATCH v3 6/7] arm64: dts: rockchip: px30: Add Engicam C.TOUCH
+ 2.0
+To:     Jagan Teki <jagan@amarulasolutions.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        Suniel Mahesh <sunil@amarulasolutions.com>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20200831082917.17117-1-jagan@amarulasolutions.com>
+ <20200831082917.17117-7-jagan@amarulasolutions.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <0e286dbd-36e7-54cf-b901-4718d5f7ee6d@gmail.com>
+Date:   Mon, 31 Aug 2020 12:08:32 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-In-Reply-To: <20200831084111.6udzvrdonxgzju4l@vireshk-i7>
+In-Reply-To: <20200831082917.17117-7-jagan@amarulasolutions.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-31.08.2020 11:41, Viresh Kumar пишет:
-> On 31-08-20, 10:54, Dmitry Osipenko wrote:
->> 31.08.2020 07:39, Viresh Kumar пишет:
->> ...
->>>>> Dmitry, I think there is further scope of simplifying stuff here by
->>>>> using the opp-microvolt-<name> property and corresponding
->>>>> dev_pm_opp_set_prop_name() call.
->>>
->>> Any inputs on this Dmitry ?
->>
->> Could you please give an example?
+Hi Jagan,
+
+A dtsi file with only an include and no changes isn't useful.
+Are you planning to add something to it?
+Else combine in single dts file for now.
+Same for px30-engicam-edimm2.2.dtsi
+
+On 8/31/20 10:29 AM, Jagan Teki wrote:
+> Engicam C.TOUCH 2.0 is an EDIMM compliant general purpose
+> carrier board with capacitive touch interface.
 > 
-> There are many users of it in the kernel. grep for "opp-microvolt-" in
-> the DT files and you will see.
+> Genaral features:
+> - TFT 10.1" industrial, 1280x800 LVDS display
+> - Ethernet 10/100
+> - Wifi/BT
+> - USB Type A/OTG
+> - Audio Out
+> - CAN
+> - LVDS panel connector
 > 
-> The use of this property is to specific multiple microvolt properties
-> to the same frequency without a need to create separate nodes for them
-> all. The right microvolt property will be selected based on the call
-> made to dev_pm_opp_set_prop_name(), search for that too in kernel.
+> SOM's like PX30.Core needs to mount on top of this Carrier board
+> for creating complete PX30.Core C.TOUCH 2.0 board.
+> 
+> Add support for it.
+> 
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
+> ---
+> Changes for v3:
+> - add Amarula Solutions copyright
+> Changes for v2:
+> - none
+> 
+>  arch/arm64/boot/dts/rockchip/px30-engicam-ctouch2.dtsi | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-ctouch2.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/px30-engicam-ctouch2.dtsi b/arch/arm64/boot/dts/rockchip/px30-engicam-ctouch2.dtsi
+> new file mode 100644
+> index 000000000000..58425b1e559f
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/px30-engicam-ctouch2.dtsi
+> @@ -0,0 +1,8 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2020 Engicam srl
+> + * Copyright (c) 2020 Amarula Solutions
+> + * Copyright (c) 2020 Amarula Solutions(India)
+> + */
+> +
+> +#include "px30-engicam-common.dtsi"
 > 
 
-It's not clear to me how it could be applicable to the Tegra CPU OPP
-because Tegra depends on a combination of SPEEDO + PROCESS versions.
-
-It's not like all voltages are the same for all OPPs that have the same
-PROCESS ID, otherwise it indeed would be nice to have
-"opp-microvolt-process0", but unfortunately this variant is not suitable
-for Tegra because some freqs have different voltages using the same
-PROCESS ID and the same applies to the SPEEDO ID.
