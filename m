@@ -2,124 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4EEB2574F5
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 10:07:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEBA9257510
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 10:11:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728135AbgHaIHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 04:07:38 -0400
-Received: from mga03.intel.com ([134.134.136.65]:63312 "EHLO mga03.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727833AbgHaIHf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 Aug 2020 04:07:35 -0400
-IronPort-SDR: r8tHsmEkoe1PPO1GFd2ok8HibGUAnccOp/P1FQuAZ8m2ThZBuCfqBc5vvc6WmZO0E6MhIyd1qu
- 2WCIFJ4Mq3tg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9729"; a="156930880"
-X-IronPort-AV: E=Sophos;i="5.76,374,1592895600"; 
-   d="scan'208";a="156930880"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Aug 2020 01:07:34 -0700
-IronPort-SDR: MiWim/TS860g5bef5EVAeDlZ5D121AhKj2ox6xZdszaQmZ3jbP8eyegM//Kg1juQhBlDVf/MG2
- QbJyMhx03R1w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,374,1592895600"; 
-   d="scan'208";a="501249961"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga006.fm.intel.com with ESMTP; 31 Aug 2020 01:07:33 -0700
-Received: from [10.213.47.150] (mreddy3x-MOBL.gar.corp.intel.com [10.213.47.150])
-        by linux.intel.com (Postfix) with ESMTP id D92D15803C5;
-        Mon, 31 Aug 2020 01:07:30 -0700 (PDT)
-Subject: Re: [PATCH v5 2/2] Add Intel LGM soc DMA support.
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>, dmaengine@vger.kernel.org,
-        vkoul@kernel.org, devicetree@vger.kernel.org, robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, andriy.shevchenko@intel.com,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        chuanhua.lei@linux.intel.com, malliamireddy009@gmail.com
-References: <cover.1597381889.git.mallikarjunax.reddy@linux.intel.com>
- <cdd26d104000c060d85a0c5f8abe8492e4103de5.1597381889.git.mallikarjunax.reddy@linux.intel.com>
- <fbc98cdb-3b50-cbcc-0e90-c9d6116566d1@ti.com>
- <bf3e4422-b023-4148-9aa6-60c4d74fe5a9@linux.intel.com>
- <3aea19e6-de96-12ba-495c-94b3b313074d@ti.com>
- <51ed096a-d211-9bab-bf1e-44f912b2a20e@linux.intel.com>
- <831fadff-8127-7634-32be-0000e69e0d94@ti.com>
-From:   "Reddy, MallikarjunaX" <mallikarjunax.reddy@linux.intel.com>
-Message-ID: <6a2e572e-c169-21d5-d36f-23972a24cc54@linux.intel.com>
-Date:   Mon, 31 Aug 2020 16:07:29 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1728213AbgHaIL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 04:11:28 -0400
+Received: from mo-csw1514.securemx.jp ([210.130.202.153]:46122 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728083AbgHaILZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 04:11:25 -0400
+Received: by mo-csw.securemx.jp (mx-mo-csw1514) id 07V8AoDS026106; Mon, 31 Aug 2020 17:10:50 +0900
+X-Iguazu-Qid: 34tMJPQphthGLpgayj
+X-Iguazu-QSIG: v=2; s=0; t=1598861449; q=34tMJPQphthGLpgayj; m=aNgpFGsTMxvZ/3qQczZhzrnS39015j1mZ6S0vqecCGA=
+Received: from imx2.toshiba.co.jp (imx2.toshiba.co.jp [106.186.93.51])
+        by relay.securemx.jp (mx-mr1513) id 07V8AlaV038522;
+        Mon, 31 Aug 2020 17:10:47 +0900
+Received: from enc03.toshiba.co.jp ([106.186.93.13])
+        by imx2.toshiba.co.jp  with ESMTP id 07V8AknE025504;
+        Mon, 31 Aug 2020 17:10:46 +0900 (JST)
+Received: from hop001.toshiba.co.jp ([133.199.164.63])
+        by enc03.toshiba.co.jp  with ESMTP id 07V8AkZc026346;
+        Mon, 31 Aug 2020 17:10:46 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>
+Cc:     punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org, Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@misterjones.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Subject: [PATCH v3 0/8] Add Toshiba Visconti ARM64 Platform support
+Date:   Mon, 31 Aug 2020 17:10:17 +0900
+X-TSB-HOP: ON
+Message-Id: <20200831081025.2721320-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-In-Reply-To: <831fadff-8127-7634-32be-0000e69e0d94@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Visconti is a series of Toshiba's SoCs targeting image processing
+applications[0]. These set of patches adds support for Visconti5 a Arm
+v8 based SoC.
 
-On 8/28/2020 7:17 PM, Peter Ujfalusi wrote:
-> Hi,
->
-> On 27/08/2020 17.41, Reddy, MallikarjunaX wrote:
->>>>>> +
->>>>>> +    dma_dev->device_alloc_chan_resources =
->>>>>> +        d->inst->ops->device_alloc_chan_resources;
->>>>>> +    dma_dev->device_free_chan_resources =
->>>>>> +        d->inst->ops->device_free_chan_resources;
->>>>>> +    dma_dev->device_terminate_all =
->>>>>> d->inst->ops->device_terminate_all;
->>>>>> +    dma_dev->device_issue_pending =
->>>>>> d->inst->ops->device_issue_pending;
->>>>>> +    dma_dev->device_tx_status = d->inst->ops->device_tx_status;
->>>>>> +    dma_dev->device_resume = d->inst->ops->device_resume;
->>>>>> +    dma_dev->device_pause = d->inst->ops->device_pause;
->>>>>> +    dma_dev->device_config = d->inst->ops->device_config;
->>>>>> +    dma_dev->device_prep_slave_sg =
->>>>>> d->inst->ops->device_prep_slave_sg;
->>>>>> +    dma_dev->device_synchronize = d->inst->ops->device_synchronize;
->>>>>> +
->>>>>> +    if (d->ver == DMA_VER22) {
->>>>>> +        dma_dev->src_addr_widths = BIT(DMA_SLAVE_BUSWIDTH_4_BYTES);
->>>>>> +        dma_dev->dst_addr_widths = BIT(DMA_SLAVE_BUSWIDTH_4_BYTES);
->>>>>> +        dma_dev->directions = BIT(DMA_MEM_TO_DEV) |
->>>>>> +                      BIT(DMA_DEV_TO_MEM);
->>>>>> +        dma_dev->residue_granularity =
->>>>>> +                    DMA_RESIDUE_GRANULARITY_DESCRIPTOR;
->>>>>> +    }
->>>>> So, if version is != DMA_VER22, then you don't support any direction?
->>>>> Why register the DMA device if it can not do any transfer?
->>>> Only dma0 instance (intel,lgm-cdma) is used as a general purpose slave
->>>> DMA. we set both control and datapath here.
->>>> Other instances we set only control path. data path is taken care by dma
->>>> client(GSWIP).
->>> How the client (GSWIP) can request a channel from intel,lgm-* ? Don't
->>> you need some capabilities for the DMA device so core can sort out the
->>> request?
->> client request channel by name, dma_request_slave_channel(dev, name);
-> clients should use dma_request_chan(dev, name);
->
-> If the channel can be requested via DT or ACPI then we don't check the
-> capabilities at all, so yes, that could work.
->
->>>> Only thing needs to do is get the channel, set the descriptor and just
->>>> on the channel.
->>> How do you 'on' the channel?
->> we on the channel in issue_pending.
-> Right.
-> Basically you only prep_slave_sg/single for the DMA_VER22? Or do you
-> that for the others w/o direction support?
-Yes. prep_slave_sg/single only for the DMA_VER22.
->
-> For the intel,lgm-* DMAs you only call issue_pending() and probably
-> terminate_all?
-Yes, correct.
->
-> Interesting setup ;)
->
-> - Péter
->
-> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
->
+The series add minimal support for the Visconti5 SoC and the TMPV7708 RM
+main board. Peripherals such as UART, SPI, I2c and timer use Arm's
+IP and work with the existing kernel drivers in the tree. The series
+includes a pinctrl driver to select appropriate functions on the pins.
+
+NOTE: Because Visconti5 does not have PSCI, it uses spin-table with enable-method.
+      And this patch series does not include a clock framework, so it is a
+      device-tree file that uses clocks with fixed-clock. This will be replaced by
+      the clock driver in the future.
+
+[0]: https://toshiba.semicon-storage.com/ap-en/semiconductor/product/image-recognition-processors-visconti.html
+
+dt-bindings: pinctrl: Add bindings for Toshiba Visconti TMPV7700 SoC
+  v2 -> v3:
+    - no update.
+  v1 -> v2:
+    - Fix warning by make dt_binding_check.
+    - Use '-pins$' instead of ''^.*$':''.
+    - Remove if/then.
+    - Add $ref to the common pinctrl schemas.
+
+pinctrl: visconti: Add Toshiba Visconti SoCs pinctrl support
+  v2 -> v3:
+    -  Delete SET_BIT and CLR_BIT for easy to read a source.
+    -  Add a comment for spinlock_t.
+    -  Use DIV_ROUND_CLOSEST().
+    -  Use GENMASK with #define.
+    -  Fix spelling.
+    -  Remove visconti_gpio_request_enable().
+
+  v1 -> v2:
+    - No update.
+
+dt-bindings: arm: toshiba: add Toshiba Visconti ARM SoCs
+  v2 -> v3:
+    - no update.
+  v1 -> v2:
+    - No update.
+
+dt-bindings: arm: toshiba: Add the TMPV7708 RM main board
+  v2 -> v3:
+    - no update.
+  v1 -> v2:
+    - No update.
+
+arm64: visconti: Add initial support for Toshiba Visconti platform
+  v2 -> v3:
+    - no update.
+  v1 -> v2:
+    - No update.
+
+arm64: dts: visconti: Add device tree for TMPV7708 RM main board
+  v2 -> v3:
+    - no update.
+  v1 -> v2:
+    - Remove always-on property from timer.
+    - Add interrputs for GIC.
+    - Remove bootargs from chosen.
+      stdout-path is not deleted because the boot loader cannot handle it.
+      It will be removed in the future.
+    - Update dtsi for using new binding of pinctrl.
+
+MAINTAINERS: Add information for Toshiba Visconti ARM SoCs
+  v2 -> v3:
+    - no update.
+  v1 -> v2:
+    - No update.
+
+arm64: defconfig: Enable configs for Toshiba Visconti    
+  v2 -> v3:
+    - no update.
+  v1 -> v2:
+    - No update.
+
+Nobuhiro Iwamatsu (8):
+  dt-bindings: pinctrl: Add bindings for Toshiba Visconti TMPV7700 SoC
+  pinctrl: visconti: Add Toshiba Visconti SoCs pinctrl support
+  dt-bindings: arm: toshiba: add Toshiba Visconti ARM SoCs
+  dt-bindings: arm: toshiba: Add the TMPV7708 RM main board
+  arm64: visconti: Add initial support for Toshiba Visconti platform
+  arm64: dts: visconti: Add device tree for TMPV7708 RM main board
+  MAINTAINERS: Add information for Toshiba Visconti ARM SoCs
+  arm64: defconfig: Enable configs for Toshiba Visconti
+
+ .../devicetree/bindings/arm/toshiba.yaml      |  22 +
+ .../pinctrl/toshiba,visconti-pinctrl.yaml     |  92 +++++
+ MAINTAINERS                                   |  11 +
+ arch/arm64/Kconfig.platforms                  |   7 +
+ arch/arm64/boot/dts/Makefile                  |   1 +
+ arch/arm64/boot/dts/toshiba/Makefile          |   2 +
+ .../boot/dts/toshiba/tmpv7708-rm-mbrc.dts     |  43 ++
+ arch/arm64/boot/dts/toshiba/tmpv7708.dtsi     | 390 ++++++++++++++++++
+ .../arm64/boot/dts/toshiba/tmpv7708_pins.dtsi |  93 +++++
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/pinctrl/Kconfig                       |   1 +
+ drivers/pinctrl/Makefile                      |   1 +
+ drivers/pinctrl/visconti/Kconfig              |  14 +
+ drivers/pinctrl/visconti/Makefile             |   3 +
+ drivers/pinctrl/visconti/pinctrl-common.c     | 305 ++++++++++++++
+ drivers/pinctrl/visconti/pinctrl-common.h     |  96 +++++
+ drivers/pinctrl/visconti/pinctrl-tmpv7700.c   | 355 ++++++++++++++++
+ 17 files changed, 1437 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/toshiba.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/toshiba,visconti-pinctrl.yaml
+ create mode 100644 arch/arm64/boot/dts/toshiba/Makefile
+ create mode 100644 arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts
+ create mode 100644 arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
+ create mode 100644 arch/arm64/boot/dts/toshiba/tmpv7708_pins.dtsi
+ create mode 100644 drivers/pinctrl/visconti/Kconfig
+ create mode 100644 drivers/pinctrl/visconti/Makefile
+ create mode 100644 drivers/pinctrl/visconti/pinctrl-common.c
+ create mode 100644 drivers/pinctrl/visconti/pinctrl-common.h
+ create mode 100644 drivers/pinctrl/visconti/pinctrl-tmpv7700.c
+
+-- 
+2.27.0
+
