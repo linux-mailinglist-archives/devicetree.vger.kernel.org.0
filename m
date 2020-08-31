@@ -2,273 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1ECE25829A
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 22:29:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C8A62582AC
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 22:37:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728406AbgHaU3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 16:29:18 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:46354 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728324AbgHaU3R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 16:29:17 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CCC56277;
-        Mon, 31 Aug 2020 22:29:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1598905754;
-        bh=EvAXkE8Z/z99LNoYcJZMHh8N4EBCtxHEmLCwlv3ZdPU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=vuqz20FCM3JnbW1dHZdUHIOCgW2F5FUv3eRGMBGBVtVHDuTE1j5fwzH0wH02igV/r
-         Hg/npGuCsSWMb3NItcY3WvRZcGWow3GHJgAnC/TjoPUdi0u6yv7RNhBGz90+VJzsAz
-         YjT/RuKCdjbH2IgqwbGXJtIlaCu2D29Nv3leFi08=
-Date:   Mon, 31 Aug 2020 23:28:52 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Chen-Yu Tsai <wens@csie.org>, dri-devel@lists.freedesktop.org,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/4] drm/of: Change the prototype of
- drm_of_lvds_get_dual_link_pixel_order
-Message-ID: <20200831202852.GU16155@pendragon.ideasonboard.com>
-References: <cover.7029eefe5c5350920f91d4cd4cbc061466752f3c.1596101672.git-series.maxime@cerno.tech>
- <6169dd15782627c8415583881fa94ba39c4f5221.1596101672.git-series.maxime@cerno.tech>
+        id S1728590AbgHaUhd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 16:37:33 -0400
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:19271 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726167AbgHaUhd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 16:37:33 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5f4d5f7e0005>; Mon, 31 Aug 2020 13:37:18 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Mon, 31 Aug 2020 13:37:32 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Mon, 31 Aug 2020 13:37:32 -0700
+Received: from [10.2.173.243] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 31 Aug
+ 2020 20:37:31 +0000
+Subject: Re: [PATCH v4 3/4] dt-bindings: media: imx274: Move clock and
+ supplies to required properties
+To:     Sakari Ailus <sakari.ailus@iki.fi>
+CC:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <hverkuil@xs4all.nl>, <luca@lucaceresoli.net>,
+        <leonl@leopardimaging.com>, <robh+dt@kernel.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <1598903558-9691-1-git-send-email-skomatineni@nvidia.com>
+ <1598903558-9691-4-git-send-email-skomatineni@nvidia.com>
+ <20200831201757.GC844@valkosipuli.retiisi.org.uk>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <5c341ed9-6077-e935-de50-ff9f5f17edcf@nvidia.com>
+Date:   Mon, 31 Aug 2020 13:37:21 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <6169dd15782627c8415583881fa94ba39c4f5221.1596101672.git-series.maxime@cerno.tech>
+In-Reply-To: <20200831201757.GC844@valkosipuli.retiisi.org.uk>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1598906238; bh=H1WH+m4HtI2EGHXBWwRjqqQ+z0hMsWiIPo2ajT3gcbE=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=WojcGWlL0gJPIaerKq14GWOlTI6hEKPE7hOSVI16rTPCBz853XZLSJwbodlvTOyAA
+         B4JUVKeLKd1elrlCvVGI1NpAtQoUOAAbdLzwLkf39tjSQHWhdhtDjTFsKOttS2tGeF
+         dTjKUyD9UCLCrSWZush3W6vcN/bncG+JMPYJQW0Z0/+ZRdavBw6LIdhEGARwpL0kap
+         R/Pd6M5ZOdIAnnu9gop7tDgiwwAKNPSserDMrrI0UNJntMIp+ZEtbhGOtBQC4DynWp
+         JPdP/Nf/NuhjI/4oXgLPrW0I1YQL8skv/3AkeU/cGdE3QecHfAYZ18HiRlSLZZJ51d
+         JkGZM8HDE25IA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
 
-Thank you for the patch.
-
-On Thu, Jul 30, 2020 at 11:35:01AM +0200, Maxime Ripard wrote:
-> The drm_of_lvds_get_dual_link_pixel_order() function took so far the
-> device_node of the two ports used together to make up a dual-link LVDS
-> output.
-> 
-> This assumes that a binding would use an entire port for the LVDS output.
-> However, some bindings have used endpoints instead and thus we need to
-> operate at the endpoint level. Change slightly the arguments to allow that.
-
-Is this still needed ? Unless I'm mistaken, the Allwinner platform now
-uses two TCON instances for the two links, so there are two ports.
-
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> ---
->  drivers/gpu/drm/drm_of.c            | 98 +++++++++++++++---------------
->  drivers/gpu/drm/rcar-du/rcar_lvds.c |  8 +--
->  include/drm/drm_of.h                | 16 +++--
->  3 files changed, 63 insertions(+), 59 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_of.c b/drivers/gpu/drm/drm_of.c
-> index b50b44e76279..2dcb49b0401b 100644
-> --- a/drivers/gpu/drm/drm_of.c
-> +++ b/drivers/gpu/drm/drm_of.c
-> @@ -291,50 +291,34 @@ static int drm_of_lvds_get_port_pixels_type(struct device_node *port_node)
->  	       (odd_pixels ? DRM_OF_LVDS_ODD : 0);
->  }
->  
-> -static int drm_of_lvds_get_remote_pixels_type(
-> -			const struct device_node *port_node)
-> +static int drm_of_lvds_get_remote_pixels_type(const struct device_node *endpoint)
->  {
-> -	struct device_node *endpoint = NULL;
-> -	int pixels_type = -EPIPE;
-> +	struct device_node *remote_port;
-> +	int pixels_type;
->  
-> -	for_each_child_of_node(port_node, endpoint) {
-> -		struct device_node *remote_port;
-> -		int current_pt;
-> -
-> -		if (!of_node_name_eq(endpoint, "endpoint"))
-> -			continue;
-> -
-> -		remote_port = of_graph_get_remote_port(endpoint);
-> -		if (!remote_port) {
-> -			of_node_put(remote_port);
-> -			return -EPIPE;
-> -		}
-> -
-> -		current_pt = drm_of_lvds_get_port_pixels_type(remote_port);
-> +	remote_port = of_graph_get_remote_port(endpoint);
-> +	if (!remote_port) {
->  		of_node_put(remote_port);
-> -		if (pixels_type < 0)
-> -			pixels_type = current_pt;
-> -
-> -		/*
-> -		 * Sanity check, ensure that all remote endpoints have the same
-> -		 * pixel type. We may lift this restriction later if we need to
-> -		 * support multiple sinks with different dual-link
-> -		 * configurations by passing the endpoints explicitly to
-> -		 * drm_of_lvds_get_dual_link_pixel_order().
-> -		 */
-> -		if (!current_pt || pixels_type != current_pt) {
-> -			of_node_put(remote_port);
-> -			return -EINVAL;
-> -		}
-> +		return -EPIPE;
->  	}
->  
-> +	pixels_type = drm_of_lvds_get_port_pixels_type(remote_port);
-> +	of_node_put(remote_port);
-> +
-> +	if (pixels_type < 0)
-> +		pixels_type = -EPIPE;
-> +
->  	return pixels_type;
->  }
->  
->  /**
->   * drm_of_lvds_get_dual_link_pixel_order - Get LVDS dual-link pixel order
-> - * @port1: First DT port node of the Dual-link LVDS source
-> - * @port2: Second DT port node of the Dual-link LVDS source
-> + * @dev1: First DT device node of the Dual-Link LVDS source
-> + * @port1_id: ID of the first DT port node of the Dual-Link LVDS source
-> + * @endpoint1_id: ID of the first DT port node of the Dual-Link LVDS source
-> + * @dev2: First DT device node of the Dual-Link LVDS source
-> + * @port2_id: ID of the first DT port node of the Dual-Link LVDS source
-> + * @endpoint2_id: ID of the first DT port node of the Dual-Link LVDS source
->   *
->   * An LVDS dual-link connection is made of two links, with even pixels
->   * transitting on one link, and odd pixels on the other link. This function
-> @@ -348,32 +332,48 @@ static int drm_of_lvds_get_remote_pixels_type(
->   *
->   * If either port is not connected, this function returns -EPIPE.
->   *
-> - * @port1 and @port2 are typically DT sibling nodes, but may have different
-> - * parents when, for instance, two separate LVDS encoders carry the even and odd
-> - * pixels.
-> + * @port1_id and @port2_id are typically DT sibling nodes, but may have
-> + * different parents when, for instance, two separate LVDS encoders carry the
-> + * even and odd pixels.
-> + *
-> + * If @port1_id, @port2_id, @endpoint1_id or @endpoint2_id are set to -1, their
-> + * value is going to be ignored.
->   *
->   * Return:
-> - * * DRM_LVDS_DUAL_LINK_EVEN_ODD_PIXELS - @port1 carries even pixels and @port2
-> - *   carries odd pixels
-> - * * DRM_LVDS_DUAL_LINK_ODD_EVEN_PIXELS - @port1 carries odd pixels and @port2
-> - *   carries even pixels
-> - * * -EINVAL - @port1 and @port2 are not connected to a dual-link LVDS sink, or
-> - *   the sink configuration is invalid
-> - * * -EPIPE - when @port1 or @port2 are not connected
-> + * * DRM_LVDS_DUAL_LINK_EVEN_ODD_PIXELS - @endpoint1_id carries even pixels and
-> + *   @endpoint2_id carries odd pixels
-> + * * DRM_LVDS_DUAL_LINK_ODD_EVEN_PIXELS - @endpoint1_id carries odd pixels and
-> + *   @endpoint2_id carries even pixels
-> + * * -EINVAL - @endpoint1_id and @endpoint2_id are not connected to a dual-link
-> + *   LVDS sink, or the sink configuration is invalid
-> + * * -EPIPE - when @endpoint1_id or @endpoint2_id are not connected
->   */
-> -int drm_of_lvds_get_dual_link_pixel_order(const struct device_node *port1,
-> -					  const struct device_node *port2)
-> +int drm_of_lvds_get_dual_link_pixel_order(const struct device_node *dev1,
-> +					  int port1_id,
-> +					  int endpoint1_id,
-> +					  const struct device_node *dev2,
-> +					  int port2_id,
-> +					  int endpoint2_id)
->  {
-> +	struct device_node *endpoint1, *endpoint2;
->  	int remote_p1_pt, remote_p2_pt;
->  
-> -	if (!port1 || !port2)
-> +	if (!dev1 || !dev2)
-> +		return -EINVAL;
-> +
-> +	endpoint1 = of_graph_get_endpoint_by_regs(dev1, port1_id, endpoint1_id);
-> +	if (!endpoint1)
-> +		return -EINVAL;
-> +
-> +	endpoint2 = of_graph_get_endpoint_by_regs(dev2, port2_id, endpoint2_id);
-> +	if (!endpoint2)
->  		return -EINVAL;
->  
-> -	remote_p1_pt = drm_of_lvds_get_remote_pixels_type(port1);
-> +	remote_p1_pt = drm_of_lvds_get_remote_pixels_type(endpoint1);
->  	if (remote_p1_pt < 0)
->  		return remote_p1_pt;
->  
-> -	remote_p2_pt = drm_of_lvds_get_remote_pixels_type(port2);
-> +	remote_p2_pt = drm_of_lvds_get_remote_pixels_type(endpoint2);
->  	if (remote_p2_pt < 0)
->  		return remote_p2_pt;
->  
-> diff --git a/drivers/gpu/drm/rcar-du/rcar_lvds.c b/drivers/gpu/drm/rcar-du/rcar_lvds.c
-> index ab0d49618cf9..02d8c4ce820e 100644
-> --- a/drivers/gpu/drm/rcar-du/rcar_lvds.c
-> +++ b/drivers/gpu/drm/rcar-du/rcar_lvds.c
-> @@ -715,7 +715,6 @@ static int rcar_lvds_parse_dt_companion(struct rcar_lvds *lvds)
->  {
->  	const struct of_device_id *match;
->  	struct device_node *companion;
-> -	struct device_node *port0, *port1;
->  	struct rcar_lvds *companion_lvds;
->  	struct device *dev = lvds->dev;
->  	int dual_link;
-> @@ -743,11 +742,8 @@ static int rcar_lvds_parse_dt_companion(struct rcar_lvds *lvds)
->  	 * connected to, if they are marked as expecting even pixels and
->  	 * odd pixels than we need to enable vertical stripe output.
->  	 */
-> -	port0 = of_graph_get_port_by_id(dev->of_node, 1);
-> -	port1 = of_graph_get_port_by_id(companion, 1);
-> -	dual_link = drm_of_lvds_get_dual_link_pixel_order(port0, port1);
-> -	of_node_put(port0);
-> -	of_node_put(port1);
-> +	dual_link = drm_of_lvds_get_dual_link_pixel_order(dev->of_node, 1, -1,
-> +							  companion, 1, -1);
->  
->  	switch (dual_link) {
->  	case DRM_LVDS_DUAL_LINK_ODD_EVEN_PIXELS:
-> diff --git a/include/drm/drm_of.h b/include/drm/drm_of.h
-> index b9b093add92e..7bb1f6603beb 100644
-> --- a/include/drm/drm_of.h
-> +++ b/include/drm/drm_of.h
-> @@ -47,8 +47,12 @@ int drm_of_find_panel_or_bridge(const struct device_node *np,
->  				int port, int endpoint,
->  				struct drm_panel **panel,
->  				struct drm_bridge **bridge);
-> -int drm_of_lvds_get_dual_link_pixel_order(const struct device_node *port1,
-> -					  const struct device_node *port2);
-> +int drm_of_lvds_get_dual_link_pixel_order(const struct device_node *dev1,
-> +					  int port1_id,
-> +					  int endpoint1_id,
-> +					  const struct device_node *dev2,
-> +					  int port2_id,
-> +					  int endpoint2_id);
->  #else
->  static inline uint32_t drm_of_crtc_port_mask(struct drm_device *dev,
->  					  struct device_node *port)
-> @@ -93,8 +97,12 @@ static inline int drm_of_find_panel_or_bridge(const struct device_node *np,
->  }
->  
->  static inline int
-> -drm_of_lvds_get_dual_link_pixel_order(const struct device_node *port1,
-> -				      const struct device_node *port2)
-> +drm_of_lvds_get_dual_link_pixel_order(const struct device_node *dev1,
-> +				      int port1_id,
-> +				      int endpoint1_id,
-> +				      const struct device_node *dev2,
-> +				      int port2_id,
-> +				      int endpoint2_id)
->  {
->  	return -EINVAL;
->  }
-
--- 
-Regards,
-
-Laurent Pinchart
+On 8/31/20 1:17 PM, Sakari Ailus wrote:
+> Hi Sowjanya,
+>
+> On Mon, Aug 31, 2020 at 12:52:37PM -0700, Sowjanya Komatineni wrote:
+>> Clock and supplies are external to IMX274 sensor and are dependent
+>> on camera module design.
+>>
+>> So, this patch moves them to required properties.
+>>
+>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>> ---
+>>   Documentation/devicetree/bindings/media/i2c/imx274.txt | 6 +++---
+>>   1 file changed, 3 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/i2c/imx274.txt b/Documentation/devicetree/bindings/media/i2c/imx274.txt
+>> index d0a5c899..b43bed6 100644
+>> --- a/Documentation/devicetree/bindings/media/i2c/imx274.txt
+>> +++ b/Documentation/devicetree/bindings/media/i2c/imx274.txt
+>> @@ -10,15 +10,15 @@ at 1440 Mbps.
+>>   Required Properties:
+>>   - compatible: value should be "sony,imx274" for imx274 sensor
+>>   - reg: I2C bus address of the device
+>> -
+>> -Optional Properties:
+>> -- reset-gpios: Sensor reset GPIO
+>>   - clocks: Reference to the input clock.
+>>   - clock-names: Should be "inck".
+>>   - vana-supply: Sensor 2.8v analog supply.
+>>   - vdig-supply: Sensor 1.8v digital core supply.
+>>   - vddl-supply: Sensor digital IO 1.2v supply.
+> If these have been optional in the past I don't think we can start
+> requiring them now.
+>
+> The framework will just give the driver a dummy regulator if one isn't
+> found.
+These were added recently with my patches. So I hope should be ok to 
+make them required as they are external to sensor
+>
+>>   
+>> +Optional Properties:
+>> +- reset-gpios: Sensor reset GPIO
+>> +
+>>   The imx274 device node should contain one 'port' child node with
+>>   an 'endpoint' subnode. For further reading on port node refer to
+>>   Documentation/devicetree/bindings/media/video-interfaces.txt.
