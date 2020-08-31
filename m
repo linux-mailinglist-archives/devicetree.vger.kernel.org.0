@@ -2,190 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41DA62577C1
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 12:53:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A89842577E6
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 13:05:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726326AbgHaKxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 06:53:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39994 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725964AbgHaKxM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 06:53:12 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C51DC061573
-        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 03:53:12 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kChQv-0005Ks-5w; Mon, 31 Aug 2020 12:53:05 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kChQu-0005Or-Ia; Mon, 31 Aug 2020 12:53:04 +0200
-Date:   Mon, 31 Aug 2020 12:53:04 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Robin Gong <yibin.gong@nxp.com>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
-        Anson.Huang@nxp.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] regulator: pca9450: add enable_val for all bucks
-Message-ID: <20200831105304.6qcpjfmranay6q4y@pengutronix.de>
-References: <1598892515-30950-1-git-send-email-yibin.gong@nxp.com>
+        id S1726326AbgHaLEc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 07:04:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54562 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726224AbgHaLBT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 Aug 2020 07:01:19 -0400
+Received: from localhost (unknown [122.171.38.130])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A6F482072D;
+        Mon, 31 Aug 2020 11:00:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598871636;
+        bh=C+1fKhJBNw/Y3PJKxGvNWyUc7dhncI98yBJO4d14IJo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WfQm7zL27aM+2aGqyAcsedQ8Dko+y1Kwvx25LUAl+6/suNTRdkCJhJbgYopap3ZIR
+         uScl0ijE0IlvZu3amNL60oaIxi7/6b1o5xnnK/lj5pIGpgjIGR+Bo76uf7Uw2xT3Hu
+         3jo3iO1ofbIm0W3j2MhexTl2pwXlZqHridtCUqQM=
+Date:   Mon, 31 Aug 2020 16:30:32 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     "Reddy, MallikarjunaX" <mallikarjunax.reddy@linux.intel.com>
+Cc:     Rob Herring <robh@kernel.org>, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, chuanhua.lei@linux.intel.com,
+        malliamireddy009@gmail.com
+Subject: Re: [PATCH v5 1/2] dt-bindings: dma: Add bindings for intel LGM SOC
+Message-ID: <20200831110032.GN2639@vkoul-mobl>
+References: <cover.1597381889.git.mallikarjunax.reddy@linux.intel.com>
+ <68c77fd2ffb477aa4a52a58f8a26bfb191d3c5d1.1597381889.git.mallikarjunax.reddy@linux.intel.com>
+ <20200814203222.GA2674896@bogus>
+ <7cdc0587-8b4f-4360-a303-1541c9ad57b2@linux.intel.com>
+ <20200825112107.GN2639@vkoul-mobl>
+ <ffa5ba4d-f1b2-6a30-f2f1-f4578a77bce2@linux.intel.com>
+ <20200828104530.GT2639@vkoul-mobl>
+ <09547b0e-1c2e-d916-d4c0-f66b0110e173@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <1598892515-30950-1-git-send-email-yibin.gong@nxp.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 12:45:32 up 290 days,  2:04, 282 users,  load average: 0.13, 0.09,
- 0.06
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <09547b0e-1c2e-d916-d4c0-f66b0110e173@linux.intel.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robin,
-
-On 20-09-01 00:48, Robin Gong wrote:
-> BuckX enable mode
-> 00b = OFF
-> 01b = ON by PMIC_ON_REQ = H
-> 10b = ON by PMIC_ON_REQ = H && PMIC_STBY_REQ = L
-> 11b = Always ON
+On 31-08-20, 16:06, Reddy, MallikarjunaX wrote:
+> Hi Vinod,
 > 
-> For such enable mode, enable_value should be clearly set in requlator desc,
-> 00/11 is not enough, correct it now for different bucks. For example, buck2
-> is designed for vddarm which could be off in 'PMIC_STBY_REQ = H' after kernel
-> enter suspend, so should be set '10b' as ON, while others is '01b' as ON.
-> All are the same as the default setting which means bucks no need to be
-> enabled again during kernel boot even if they have been enabled already after
-> pmic on.
-
-I wouldn't hard-code the regulator behaviour because the behaviour comes
-from the system design which in most cases are comming from our hw-guys.
-Till now I saw a few intelligent designs don't following the pmic user
-recommendations to save money. I would love to specify the regulator
-behaviour/mode within the dt or acpi.
-
-> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
-> ---
->  drivers/regulator/pca9450-regulator.c | 15 +++++++++++++--
->  1 file changed, 13 insertions(+), 2 deletions(-)
+> Thanks for the review. Please see my comment inline.
 > 
-> diff --git a/drivers/regulator/pca9450-regulator.c b/drivers/regulator/pca9450-regulator.c
-> index eb5822b..79f2a5a 100644
-> --- a/drivers/regulator/pca9450-regulator.c
-> +++ b/drivers/regulator/pca9450-regulator.c
-> @@ -249,6 +249,7 @@ static const struct pca9450_regulator_desc pca9450a_regulators[] = {
->  			.vsel_mask = BUCK1OUT_DVS0_MASK,
->  			.enable_reg = PCA9450_REG_BUCK1CTRL,
->  			.enable_mask = BUCK1_ENMODE_MASK,
-> +			.enable_val = BUCK_ENMODE_ONREQ,
->  			.owner = THIS_MODULE,
->  			.of_parse_cb = pca9450_set_dvs_levels,
->  		},
-> @@ -273,7 +274,8 @@ static const struct pca9450_regulator_desc pca9450a_regulators[] = {
->  			.vsel_reg = PCA9450_REG_BUCK2OUT_DVS0,
->  			.vsel_mask = BUCK2OUT_DVS0_MASK,
->  			.enable_reg = PCA9450_REG_BUCK2CTRL,
-> -			.enable_mask = BUCK1_ENMODE_MASK,
-> +			.enable_mask = BUCK2_ENMODE_MASK,
+> On 8/28/2020 6:45 PM, Vinod Koul wrote:
+> > On 27-08-20, 17:54, Reddy, MallikarjunaX wrote:
+> > > Hi Vinod,
+> > > Thanks for the review comments.
+> > > 
+> > > On 8/25/2020 7:21 PM, Vinod Koul wrote:
+> > > > On 18-08-20, 15:00, Reddy, MallikarjunaX wrote:
+> > > > 
+> > > > > > > +
+> > > > > > > +            intel,chans:
+> > > > > > > +              $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > > > > > +              description:
+> > > > > > > +                 The channels included on this port. Format is channel start
+> > > > > > > +                 number and how many channels on this port.
+> > > > > > Why does this need to be in DT? This all seems like it can be in the dma
+> > > > > > cells for each client.
+> > > > > (*ABC)
+> > > > > Yes. We need this.
+> > > > > for dma0(lgm-cdma) old SOC supports 16 channels and the new SOC supports 22
+> > > > > channels. and the logical channel mapping for the peripherals also differ
+> > > > > b/w old and new SOCs.
+> > > > > 
+> > > > > Because of this hardware limitation we are trying to configure the total
+> > > > > channels and port-channel mapping dynamically from device tree.
+> > > > > 
+> > > > > based on port name we are trying to configure the default values for
+> > > > > different peripherals(ports).
+> > > > > Example: burst length is not same for all ports, so using port name to do
+> > > > > default configurations.
+> > > > Sorry that does not make sense to me, why not specify the values to be
+> > > > used here instead of defining your own name scheme!
+> > > OK. Agreed. I will remove port name from DT and only use intel,chans
+> > what is intel,chans, why not use dma-channels?
+>  The intel,chans says about the channels included on the correspondng port.
 
-Unrelated change?
+What do you mean by a port here?
 
-> +			.enable_val = BUCK_ENMODE_ONREQ_STBYREQ,
->  			.owner = THIS_MODULE,
->  			.of_parse_cb = pca9450_set_dvs_levels,
->  		},
-> @@ -299,6 +301,7 @@ static const struct pca9450_regulator_desc pca9450a_regulators[] = {
->  			.vsel_mask = BUCK3OUT_DVS0_MASK,
->  			.enable_reg = PCA9450_REG_BUCK3CTRL,
->  			.enable_mask = BUCK3_ENMODE_MASK,
-> +			.enable_val = BUCK_ENMODE_ONREQ,
->  			.owner = THIS_MODULE,
->  			.of_parse_cb = pca9450_set_dvs_levels,
->  		},
-> @@ -324,6 +327,7 @@ static const struct pca9450_regulator_desc pca9450a_regulators[] = {
->  			.vsel_mask = BUCK4OUT_MASK,
->  			.enable_reg = PCA9450_REG_BUCK4CTRL,
->  			.enable_mask = BUCK4_ENMODE_MASK,
-> +			.enable_val = BUCK_ENMODE_ONREQ,
->  			.owner = THIS_MODULE,
->  		},
->  	},
-> @@ -342,6 +346,7 @@ static const struct pca9450_regulator_desc pca9450a_regulators[] = {
->  			.vsel_mask = BUCK5OUT_MASK,
->  			.enable_reg = PCA9450_REG_BUCK5CTRL,
->  			.enable_mask = BUCK5_ENMODE_MASK,
-> +			.enable_val = BUCK_ENMODE_ONREQ,
->  			.owner = THIS_MODULE,
->  		},
->  	},
-> @@ -360,6 +365,7 @@ static const struct pca9450_regulator_desc pca9450a_regulators[] = {
->  			.vsel_mask = BUCK6OUT_MASK,
->  			.enable_reg = PCA9450_REG_BUCK6CTRL,
->  			.enable_mask = BUCK6_ENMODE_MASK,
-> +			.enable_val = BUCK_ENMODE_ONREQ,
->  			.owner = THIS_MODULE,
->  		},
->  	},
-> @@ -475,6 +481,7 @@ static const struct pca9450_regulator_desc pca9450bc_regulators[] = {
->  			.vsel_mask = BUCK1OUT_DVS0_MASK,
->  			.enable_reg = PCA9450_REG_BUCK1CTRL,
->  			.enable_mask = BUCK1_ENMODE_MASK,
-> +			.enable_val = BUCK_ENMODE_ONREQ,
->  			.owner = THIS_MODULE,
->  			.of_parse_cb = pca9450_set_dvs_levels,
->  		},
-> @@ -499,7 +506,8 @@ static const struct pca9450_regulator_desc pca9450bc_regulators[] = {
->  			.vsel_reg = PCA9450_REG_BUCK2OUT_DVS0,
->  			.vsel_mask = BUCK2OUT_DVS0_MASK,
->  			.enable_reg = PCA9450_REG_BUCK2CTRL,
-> -			.enable_mask = BUCK1_ENMODE_MASK,
-> +			.enable_mask = BUCK2_ENMODE_MASK,
+> Format is channel start number and how many channels on this port.
 
-Unrelated change?
+It is perfectly reasonable to have 16 channels but linux not use use all, lets
+say from 5th channel channel onwards
 
-Regards,
-  Marco
-> +			.enable_val = BUCK_ENMODE_ONREQ_STBYREQ,
->  			.owner = THIS_MODULE,
->  			.of_parse_cb = pca9450_set_dvs_levels,
->  		},
-> @@ -525,6 +533,7 @@ static const struct pca9450_regulator_desc pca9450bc_regulators[] = {
->  			.vsel_mask = BUCK4OUT_MASK,
->  			.enable_reg = PCA9450_REG_BUCK4CTRL,
->  			.enable_mask = BUCK4_ENMODE_MASK,
-> +			.enable_val = BUCK_ENMODE_ONREQ,
->  			.owner = THIS_MODULE,
->  		},
->  	},
-> @@ -543,6 +552,7 @@ static const struct pca9450_regulator_desc pca9450bc_regulators[] = {
->  			.vsel_mask = BUCK5OUT_MASK,
->  			.enable_reg = PCA9450_REG_BUCK5CTRL,
->  			.enable_mask = BUCK5_ENMODE_MASK,
-> +			.enable_val = BUCK_ENMODE_ONREQ,
->  			.owner = THIS_MODULE,
->  		},
->  	},
-> @@ -561,6 +571,7 @@ static const struct pca9450_regulator_desc pca9450bc_regulators[] = {
->  			.vsel_mask = BUCK6OUT_MASK,
->  			.enable_reg = PCA9450_REG_BUCK6CTRL,
->  			.enable_mask = BUCK6_ENMODE_MASK,
-> +			.enable_val = BUCK_ENMODE_ONREQ,
->  			.owner = THIS_MODULE,
->  		},
->  	},
-> -- 
-> 2.7.4
+So you need to use standard dma-channels also with dma-channel-mask to
+specify which channels linux can use
+
+>  The reasong behind using this attribute instead of standrad dma-channels
+> is...
 > 
+> 
+> DMA_VER22 HW supports 22 channels. But there is a hole in HW, total it can
+> use only 16.
+> 
+> Old soc supports 4ports and 16 channels.
+> New soc supports 6ports and 22 channels.
+> (old and new soc carry the same version VER22)
+> 
+> port channel mapping for the old and new soc also not the same.
+> old soc: logical channels:(Rx, Tx)
+> 0, 1 - SPI0
+> 2, 3 - SPI1
+> 4, 5 - HSNAND
+> 12, 14, 13, 15 - Memcopy
+> 
+> New soc: Logical channels(Rx, Tx)
+> 0, 1 - SPI0
+> 2, 3 - SPI1
+> 4, 5 - SPI2
+> 6, 7 - SPI3
+> 8, 9 - HSNAND
+> 10 to 21 - Mcopy
+
+Mapping is different, client can set that channel required in dmas
+property and use a specific required channel.
+
+> Because of these reasons we are trying to use "intel,chans" attribute, and
+> reading then number of channels from the dt.
+> Advantaage:
+> 1. we can map the channels correspondign to port
+> 2. Dynamically configure the channels (due to hw limitation)
+> 
+> If this is not ok, please suggest us the better way to handle this.
+> > 
+
+-- 
+~Vinod
