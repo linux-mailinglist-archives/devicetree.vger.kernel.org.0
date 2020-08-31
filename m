@@ -2,357 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D56B258222
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 21:53:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8C31258239
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 22:06:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728671AbgHaTxF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 15:53:05 -0400
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:2974 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729833AbgHaTww (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 15:52:52 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5f4d54950000>; Mon, 31 Aug 2020 12:50:45 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Mon, 31 Aug 2020 12:52:51 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Mon, 31 Aug 2020 12:52:51 -0700
-Received: from HQMAIL111.nvidia.com (172.20.187.18) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 31 Aug
- 2020 19:52:51 +0000
-Received: from hqnvemgw03.nvidia.com (10.124.88.68) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Mon, 31 Aug 2020 19:52:51 +0000
-Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.173.243]) by hqnvemgw03.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5f4d55120003>; Mon, 31 Aug 2020 12:52:51 -0700
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <sakari.ailus@iki.fi>,
-        <hverkuil@xs4all.nl>, <luca@lucaceresoli.net>,
-        <leonl@leopardimaging.com>, <robh+dt@kernel.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>
-CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 4/4] media: i2c: imx274: Add IMX274 power on and off sequence
-Date:   Mon, 31 Aug 2020 12:52:38 -0700
-Message-ID: <1598903558-9691-5-git-send-email-skomatineni@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1598903558-9691-1-git-send-email-skomatineni@nvidia.com>
-References: <1598903558-9691-1-git-send-email-skomatineni@nvidia.com>
-X-NVConfidentiality: public
+        id S1729818AbgHaUGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 16:06:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42152 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726939AbgHaUGu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 16:06:50 -0400
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67DD5C061573
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 13:06:48 -0700 (PDT)
+Received: by mail-pl1-x641.google.com with SMTP id l9so2050418plt.8
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 13:06:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=JUW9gm/nl25ik5jwFKwNgsXGCdSG3GrconQ9EVhdMRw=;
+        b=UnJIrKmHOKphDtVOTCMa/DRSdcOJMv5hCVZICzCrJmj41LSIJnYOYQiJRRPH96s58M
+         EDFB7+02i+2ramMA+tmEpnat2idgwyrZlYEZGfcW0QIGd/mYgBrDBHGJvkl0b+Hvcdbu
+         rIU5vPQIkw30plG+hlZrqLqzz8JYZoOW/S++BoBrLBJoxmGkOT7TFbWX6TTh55xdBjZM
+         2170othIwMfNYa5bZiVVVQjxWDKfhlxhoHBjbkdtJ6C3RyfxBX5Ig+YuwA+vFyZA1HWM
+         d97fXyC6wD0PFzJ9eJ/ZcyvHOp5OBHCzIeWGB/Pjoy92W4eb5xZnK+vpDdpz1sipnS7P
+         /UcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=JUW9gm/nl25ik5jwFKwNgsXGCdSG3GrconQ9EVhdMRw=;
+        b=MclLnA+ao2h90NRRmoND8NWbp4GW4UH277P9Dp+i1p8NMsg3woEFck22pq1Xw0Tvli
+         UBeN35mVHnjjcECVjjUxe5+3FHmQyqoRFraoa5+kIuiUHIFkr4uiUug1OVXp157hdWRb
+         TMUvs8mCs4CLOlJWDJ3kfAsnnsxkn3KRZDShuBsqLWBg7A3WwdkckK3TXzJIsuloe/15
+         /7ETFMqq4g7N5VssqbJANVRYH7YFzDi51/FxYTYUAFu2AvwVhVDGA7iGbb1oOBX/0M/c
+         fwMxxgSzDQ6R0TDhmG2MoxHDcGzv8QUF/YS5ybLqZexl+BuRd+QB7+iA875SyiTnpSPD
+         YcgA==
+X-Gm-Message-State: AOAM531CQEcsN/ma3hyavRync6WxNtL7UZg6MtEs4Ry9N125IJ125pso
+        PQG3fLkHVVC8Y1SsWyAp1cCoRA==
+X-Google-Smtp-Source: ABdhPJz5h4x9XPAVBo9ANHEfC5q1GiU88DSNih/MnLipjJR0UHizUYXYRgBPZUcS/1X3OjHGEB9yiA==
+X-Received: by 2002:a17:902:a607:: with SMTP id u7mr2333711plq.45.1598904407625;
+        Mon, 31 Aug 2020 13:06:47 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id s129sm8888367pfb.39.2020.08.31.13.06.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Aug 2020 13:06:46 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Anand Moon <linux.amoon@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Christian Hewitt <christianshewitt@gmail.com>,
+        Anand Moon <linux.amoon@gmail.com>
+Subject: Re: [PATCH v4 1/2] arm64: dts: meson-g12b-odroid-n2: Enable RTC controller node
+In-Reply-To: <20200831075911.434-2-linux.amoon@gmail.com>
+References: <20200831075911.434-1-linux.amoon@gmail.com> <20200831075911.434-2-linux.amoon@gmail.com>
+Date:   Mon, 31 Aug 2020 13:06:46 -0700
+Message-ID: <7hpn767f6x.fsf@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1598903445; bh=lP1zhiAy94Lt2N8VXq4yZb/bmC1XQ1c+uwH/BIDJqd8=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=WkneU/+8H0TRxL7R3LjZ4xADK1bfCpq/647GSFvSF1bodE7Qg4Xbd0Ioj3Z6ZkzkO
-         W2HP1DpgQoYO3MiFtecQO6Hs0jZ0l9t8kXM9Kip+R5aFfsxaI+T53MjHeeAPGWdPxV
-         nCDVEjD8yKJFtiuZwbe3Dovz/fb/ZVGmMXMtntPB6Is4cQv9Qr3Gq6B2HTnWc8qGvR
-         qjgQV+20+RMGOFUrc920KYDr8NQObzsw9mYlYOPLbuw8VP6Y9DU8p9Gwg94UBiQmqk
-         wwklZIe7Em868tL3ACKR630WlXenQI4O+9ZP0xa7oF70OnQFyqBq1WGOTYnaptq4Xo
-         u1HNokKGco/Ow==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IMX274 has VANA analog 2.8V supply, VDIG digital core 1.8V supply,
-and VDDL digital io 1.2V supply which are optional based on camera
-module design.
+Anand Moon <linux.amoon@gmail.com> writes:
 
-IMX274 also need external 24Mhz clock and is optional based on
-camera module design.
+> Enable RTC PCF8563 node on Odroid-N2 SBC, In order to
+> support the RTC wakealarm feature for suspend and resume.
+> Also assign an alias to the pcf8563 to rtc0 and meson-vrtc to rtc1
+> timer device to prevent it being assigned to /dev/rtc0
+> which disto userspace tools assume is a clock device.
+>
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Suggested-by: Christian Hewitt <christianshewitt@gmail.com>
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+> Changes v4
+> --Add gpio interrupt for GPIOAO.BIT7 as suggested by Neil.
+> Changes v3
+> --Drop the INI GPIOAO.BIT7 pinctrl.
+> --Added missing RTC alias so that rtc get assigned correcly,
+>   as suggested by Chris Hewitt.
+> changes v2
+> --Fix the missing INT (GPIOAO.BIT7) pinctrl.
+> --Fix the missing rtcwakeup.
+> --Drop the clock not required clock property by the PCF8563 driver.
+> ---
+>  .../boot/dts/amlogic/meson-g12b-odroid-n2.dts   | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+> index 34fffa6d859d..3e2aaa6f48e5 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+> @@ -19,6 +19,8 @@ / {
+>  	aliases {
+>  		serial0 = &uart_AO;
+>  		ethernet0 = &ethmac;
+> +		rtc0 = &rtc0;
+> +		rtc1 = &vrtc;
+>  	};
+>  
+>  	dioo2133: audio-amplifier-0 {
+> @@ -477,6 +479,21 @@ hdmi_tx_tmds_out: endpoint {
+>  	};
+>  };
+>  
+> +&i2c3 {
+> +	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +
+> +	rtc0: rtc@51 {
+> +		reg = <0x51>;
+> +		compatible = "nxp,pcf8563";
+> +		/* RTC INT */
+> +		interrupts = <GPIOAO_7 IRQ_TYPE_LEVEL_LOW>;
+> +		interrupt-parent = <&gpio_intc>;
+> +		wakeup-source;
+> +	};
+> +};
 
-This patch adds support for IMX274 power on and off to enable and
-disable these supplies and external clock.
+There's still no pinctrl definition for the GPIO pin being used as the
+IRQ.  It looks like you discussed this with Martin and he pointed you in
+the right direction in your v3 series, but I don't see it in this
+patch.  
 
-Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
-Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
----
- drivers/media/i2c/imx274.c | 151 ++++++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 148 insertions(+), 3 deletions(-)
+You can see the GPIOs that the kernel knows about using the GPIO
+debugfs.  For example:
 
-diff --git a/drivers/media/i2c/imx274.c b/drivers/media/i2c/imx274.c
-index a4b9dfd..18a1e87 100644
---- a/drivers/media/i2c/imx274.c
-+++ b/drivers/media/i2c/imx274.c
-@@ -18,7 +18,9 @@
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/of_gpio.h>
-+#include <linux/pm_runtime.h>
- #include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
- #include <linux/slab.h>
- #include <linux/v4l2-mediabus.h>
- #include <linux/videodev2.h>
-@@ -131,6 +133,15 @@
- #define IMX274_TABLE_WAIT_MS			0
- #define IMX274_TABLE_END			1
- 
-+/* regulator supplies */
-+static const char * const imx274_supply_names[] = {
-+	"vddl",  /* IF (1.2V) supply */
-+	"vdig",  /* Digital Core (1.8V) supply */
-+	"vana",  /* Analog (2.8V) supply */
-+};
-+
-+#define IMX274_NUM_SUPPLIES ARRAY_SIZE(imx274_supply_names)
-+
- /*
-  * imx274 I2C operation related structure
-  */
-@@ -501,6 +512,8 @@ struct imx274_ctrls {
-  * @frame_rate: V4L2 frame rate structure
-  * @regmap: Pointer to regmap structure
-  * @reset_gpio: Pointer to reset gpio
-+ * @supplies: imx274 analog and digital supplies
-+ * @inck: input clock to imx274
-  * @lock: Mutex structure
-  * @mode: Parameters for the selected readout mode
-  */
-@@ -514,6 +527,8 @@ struct stimx274 {
- 	struct v4l2_fract frame_interval;
- 	struct regmap *regmap;
- 	struct gpio_desc *reset_gpio;
-+	struct regulator_bulk_data supplies[IMX274_NUM_SUPPLIES];
-+	struct clk *inck;
- 	struct mutex lock; /* mutex lock for operations */
- 	const struct imx274_mode *mode;
- };
-@@ -767,6 +782,75 @@ static void imx274_reset(struct stimx274 *priv, int rst)
- 	usleep_range(IMX274_RESET_DELAY1, IMX274_RESET_DELAY2);
- }
- 
-+/*
-+ * imx274_power_on - Function called to power on the sensor
-+ * @imx274: Pointer to device structure
-+ */
-+static int imx274_power_on(struct device *dev)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-+	struct stimx274 *imx274 = to_imx274(sd);
-+	int ret;
-+
-+	/* keep sensor in reset before power on */
-+	imx274_reset(imx274, 0);
-+
-+	ret = clk_prepare_enable(imx274->inck);
-+	if (ret) {
-+		dev_err(&imx274->client->dev,
-+			"Failed to enable input clock: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = regulator_bulk_enable(IMX274_NUM_SUPPLIES, imx274->supplies);
-+	if (ret) {
-+		dev_err(&imx274->client->dev,
-+			"Failed to enable regulators: %d\n", ret);
-+		goto fail_reg;
-+	}
-+
-+	usleep_range(1, 2);
-+	imx274_reset(imx274, 1);
-+
-+	return 0;
-+
-+fail_reg:
-+	regulator_bulk_disable(IMX274_NUM_SUPPLIES, imx274->supplies);
-+	clk_disable_unprepare(imx274->inck);
-+	return ret;
-+}
-+
-+/*
-+ * imx274_power_off - Function called to power off the sensor
-+ * @imx274: Pointer to device structure
-+ */
-+static int imx274_power_off(struct device *dev)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-+	struct stimx274 *imx274 = to_imx274(sd);
-+
-+	imx274_reset(imx274, 0);
-+
-+	regulator_bulk_disable(IMX274_NUM_SUPPLIES, imx274->supplies);
-+
-+	clk_disable_unprepare(imx274->inck);
-+
-+	return 0;
-+}
-+
-+static int imx274_get_regulators(struct device *dev, struct stimx274 *imx274)
-+{
-+	int i;
-+
-+	for (i = 0; i < IMX274_NUM_SUPPLIES; i++)
-+		imx274->supplies[i].supply = imx274_supply_names[i];
-+
-+	return devm_regulator_bulk_get(dev, IMX274_NUM_SUPPLIES,
-+					imx274->supplies);
-+}
-+
- /**
-  * imx274_s_ctrl - This is used to set the imx274 V4L2 controls
-  * @ctrl: V4L2 control to be set
-@@ -781,6 +865,9 @@ static int imx274_s_ctrl(struct v4l2_ctrl *ctrl)
- 	struct stimx274 *imx274 = to_imx274(sd);
- 	int ret = -EINVAL;
- 
-+	if (!pm_runtime_get_if_in_use(&imx274->client->dev))
-+		return 0;
-+
- 	dev_dbg(&imx274->client->dev,
- 		"%s : s_ctrl: %s, value: %d\n", __func__,
- 		ctrl->name, ctrl->val);
-@@ -811,6 +898,8 @@ static int imx274_s_ctrl(struct v4l2_ctrl *ctrl)
- 		break;
- 	}
- 
-+	pm_runtime_put(&imx274->client->dev);
-+
- 	return ret;
- }
- 
-@@ -1327,6 +1416,13 @@ static int imx274_s_stream(struct v4l2_subdev *sd, int on)
- 	mutex_lock(&imx274->lock);
- 
- 	if (on) {
-+		ret = pm_runtime_get_sync(&imx274->client->dev);
-+		if (ret < 0) {
-+			pm_runtime_put_noidle(&imx274->client->dev);
-+			mutex_unlock(&imx274->lock);
-+			return ret;
-+		}
-+
- 		/* load mode registers */
- 		ret = imx274_mode_regs(imx274);
- 		if (ret)
-@@ -1362,6 +1458,7 @@ static int imx274_s_stream(struct v4l2_subdev *sd, int on)
- 		ret = imx274_write_table(imx274, imx274_stop);
- 		if (ret)
- 			goto fail;
-+		pm_runtime_put(&imx274->client->dev);
- 	}
- 
- 	mutex_unlock(&imx274->lock);
-@@ -1369,6 +1466,7 @@ static int imx274_s_stream(struct v4l2_subdev *sd, int on)
- 	return 0;
- 
- fail:
-+	pm_runtime_put(&imx274->client->dev);
- 	mutex_unlock(&imx274->lock);
- 	dev_err(&imx274->client->dev, "s_stream failed\n");
- 	return ret;
-@@ -1834,6 +1932,14 @@ static int imx274_probe(struct i2c_client *client)
- 
- 	mutex_init(&imx274->lock);
- 
-+	imx274->inck = devm_clk_get_optional(&client->dev, "inck");
-+	ret = imx274_get_regulators(&client->dev, imx274);
-+	if (ret) {
-+		dev_err(&client->dev,
-+			"Failed to get power regulators, err: %d\n", ret);
-+		return ret;
-+	}
-+
- 	/* initialize format */
- 	imx274->mode = &imx274_modes[IMX274_DEFAULT_BINNING];
- 	imx274->crop.width = IMX274_MAX_WIDTH;
-@@ -1881,15 +1987,23 @@ static int imx274_probe(struct i2c_client *client)
- 		goto err_me;
- 	}
- 
--	/* pull sensor out of reset */
--	imx274_reset(imx274, 1);
-+	/* power on the sensor */
-+	ret = imx274_power_on(&client->dev);
-+	if (ret < 0) {
-+		dev_err(&client->dev,
-+			"%s : imx274 power on failed\n", __func__);
-+		goto err_me;
-+	}
-+
-+	pm_runtime_set_active(&client->dev);
-+	pm_runtime_enable(&client->dev);
- 
- 	/* initialize controls */
- 	ret = v4l2_ctrl_handler_init(&imx274->ctrls.handler, 4);
- 	if (ret < 0) {
- 		dev_err(&client->dev,
- 			"%s : ctrl handler init Failed\n", __func__);
--		goto err_me;
-+		goto err_disable_rpm;
- 	}
- 
- 	imx274->ctrls.handler.lock = &imx274->lock;
-@@ -1951,11 +2065,16 @@ static int imx274_probe(struct i2c_client *client)
- 		goto err_ctrls;
- 	}
- 
-+	pm_runtime_idle(&client->dev);
-+
- 	dev_info(&client->dev, "imx274 : imx274 probe success !\n");
- 	return 0;
- 
- err_ctrls:
- 	v4l2_ctrl_handler_free(&imx274->ctrls.handler);
-+err_disable_rpm:
-+	pm_runtime_disable(&client->dev);
-+	pm_runtime_set_suspended(&client->dev);
- err_me:
- 	media_entity_cleanup(&sd->entity);
- err_regmap:
-@@ -1968,19 +2087,45 @@ static int imx274_remove(struct i2c_client *client)
- 	struct v4l2_subdev *sd = i2c_get_clientdata(client);
- 	struct stimx274 *imx274 = to_imx274(sd);
- 
-+	pm_runtime_get_sync(&imx274->client->dev);
-+
- 	/* stop stream */
- 	imx274_write_table(imx274, imx274_stop);
- 
- 	v4l2_async_unregister_subdev(sd);
- 	v4l2_ctrl_handler_free(&imx274->ctrls.handler);
-+
-+	pm_runtime_put(&client->dev);
-+	pm_runtime_disable(&client->dev);
-+	pm_runtime_set_suspended(&client->dev);
-+
- 	media_entity_cleanup(&sd->entity);
- 	mutex_destroy(&imx274->lock);
- 	return 0;
- }
- 
-+static int __maybe_unused imx274_runtime_suspend(struct device *dev)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+
-+	return imx274_power_off(&client->dev);
-+}
-+
-+static int __maybe_unused imx274_runtime_resume(struct device *dev)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+
-+	return imx274_power_on(&client->dev);
-+}
-+
-+static const struct dev_pm_ops imx274_pm_ops = {
-+	SET_RUNTIME_PM_OPS(imx274_runtime_suspend, imx274_runtime_resume, NULL)
-+};
-+
- static struct i2c_driver imx274_i2c_driver = {
- 	.driver = {
- 		.name	= DRIVER_NAME,
-+		.pm = &imx274_pm_ops,
- 		.of_match_table	= imx274_of_id_table,
- 	},
- 	.probe_new	= imx274_probe,
--- 
-2.7.4
+/ # cat /sys/kernel/debug/gpio                                                                                                            
+gpiochip1: GPIOs 412-426, parent: platform/ff800000.sys-ctrl:pinctrl@14, aobus-banks:                                                     
+ gpio-414 (                    |enable              ) out lo                                                                              
+ gpio-420 (                    |regulator-tflash_vdd) out hi                                                                              
+ gpio-421 (                    |TF_IO               ) out lo                           
+ gpio-423 (                    |n2:blue             ) out lo                  
+                                                                                           
+gpiochip0: GPIOs 427-511, parent: platform/ff634400.bus:pinctrl@40, periphs-banks:
+ gpio-442 (                    |PHY reset           ) out hi ACTIVE LOW                    
+ gpio-447 (                    |usb-hub-reset       ) out hi              
+ gpio-448 (                    |regulator-hub_5v    ) out hi                               
+ gpio-449 (                    |regulator-usb_pwr_en) out lo
+ gpio-464 (                    |reset               ) out hi ACTIVE LOW              
+ gpio-474 (                    |cd                  ) in  lo ACTIVE LOW
+
+
+Also, I tested this on my odroid-n2, and it does not fully wakeup[1].
+At the end of the log, you can see the "resume rate" of the big and
+little cores, which suggests that the SoC has woken and trying to
+resume, but it never makes it back to the kernel.
+
+Could you be more specific with exactly what u-boot you're running
+(mainline version and Khadas version.)
+
+I'm running an older version of mainline u-boot:
+U-Boot 2019.07-rc3-00029-g47bebaa4a3-dirty (Jun 04 2019 - 17:16:32 +0200) odroid-n2 
+
+Kevin
+
+
+[1]
+/ # dmesg |grep -i rtc                                           
+[   14.799773] meson-vrtc ff8000a8.rtc: registered as rtc1   
+[   14.871365] rtc-pcf8563 0-0051: low voltage detected, date/time is not reliable.
+[   14.871519] rtc-pcf8563 0-0051: registered as rtc0
+[   14.873536] rtc-pcf8563 0-0051: low voltage detected, date/time is not reliable.
+[   14.886474] rtc-pcf8563 0-0051: hctosys: unable to read the hardware clock
+/ # rtcwake -d rtc0 -m mem -s5                              
+rtcwake: assuming RTC uses UTC ...                          
+rtcwake: wakeup from "mem" using rtc0 at Mon Aug 31 19:58:15 2020
+[  119.297633] PM: suspend entry (deep)
+[  119.297722] Filesystems sync: 0.000 seconds
+[  119.300330] Freezing user space processes ... (elapsed 0.003 seconds) done.
+[  119.306667] OOM killer disabled.
+[  119.309828] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[  119.317184] printk: Suspending console(s) (use no_console_suspend to debug)
+bl30 get wakeup sources!
+process command 00000006
+bl30 enter suspend!
+Little core clk suspend rate 1200000000
+Big core clk suspend rate 24000000
+store restore gp0 pll
+suspend_counter: 1
+Enter ddr suspend
+ddr suspend time: 17us
+alarm=0S
+process command 00000001
+cec ver:2018/04/19
+CEC cfg:0x0000
+WAKEUP GPIO cfg:0x00000000
+use vddee new table!
+WAKEUP GPIO FAIL - invalid key
+fffffe71
+use vddee new table!
+exit_reason:0x03
+Enter ddr resume
+ddr resume time: 125us
+store restore gp0 pll
+cfg15 3b00000
+cfg15 33b00000
+Little core clk resume rate 1200000000
+Big core clk resume rate 50000000
+
 
