@@ -2,142 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E880525766E
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 11:25:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAE3E257677
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 11:27:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728184AbgHaJZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 05:25:17 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:51031 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727810AbgHaJZO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 05:25:14 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20200831092512euoutp01b924f5880c402fe6e35ef97c761872b1~wUBOdkpQo3109331093euoutp01a
-        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 09:25:12 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20200831092512euoutp01b924f5880c402fe6e35ef97c761872b1~wUBOdkpQo3109331093euoutp01a
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1598865912;
-        bh=27ver/+sncw91cQvHNYvzmH/OzPk0oFElsklYtQMeAA=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=GgiI1R1Eurn8EHu2lyl7oshDlHogzPFprD3uHwnPWB7MzE9ogcfNGtirnXAj0NHSd
-         Z8oxzlnTFa8DcftH6dDGZJ+lG97QbSUOE98NevUcYaY4Yy+r68qd+9tzRFQ48KTfJr
-         SNCeCEeauaNN4bRkkrvtricWwUP0u22Gt3fNRQEY=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20200831092512eucas1p112a0bb336cc057cac47bc1f009f7fbfc~wUBOA1upE1108311083eucas1p1s;
-        Mon, 31 Aug 2020 09:25:12 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id 95.54.06456.8F1CC4F5; Mon, 31
-        Aug 2020 10:25:12 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20200831092512eucas1p1d6ea26db5585f850165ea13477f25b50~wUBNuMt-x1108311083eucas1p1r;
-        Mon, 31 Aug 2020 09:25:12 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20200831092512eusmtrp2b9426955777d764c605f82c77aabdffb~wUBNteigB1806518065eusmtrp2q;
-        Mon, 31 Aug 2020 09:25:12 +0000 (GMT)
-X-AuditID: cbfec7f2-809ff70000001938-e3-5f4cc1f8cdbc
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id F1.38.06017.7F1CC4F5; Mon, 31
-        Aug 2020 10:25:12 +0100 (BST)
-Received: from [106.210.88.143] (unknown [106.210.88.143]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20200831092511eusmtip1e983ea2b263177fe9219a4bf7a4a4945~wUBNJZG_c1160911609eusmtip1B;
-        Mon, 31 Aug 2020 09:25:11 +0000 (GMT)
-Subject: Re: [RFT 14/33] ARM: dts: exynos: Replace deprecated GPIO spi-gpio
- properties in Universal C210
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        id S1726121AbgHaJ07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 05:26:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54812 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726112AbgHaJ05 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 05:26:57 -0400
+Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E8D4C061575
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 02:26:57 -0700 (PDT)
+Received: by mail-pj1-x1042.google.com with SMTP id o16so1446888pjr.2
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 02:26:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=cE6tbCI2FK1spDu2EWGHl52dUoomgzZk3UG4ySpVivk=;
+        b=GgnV7T2zwkVAz2Ck+rOkM0vrXa0VA5BB7eyoHuXsIJ9gtCMP0LsEc0J9ZJR2WNMqRd
+         VvwPJu3iU7wa0IFHaQsgwj2RjanOo/8qWnALRAnUhzLOJadHxMlPDEEQIi4BD2fzO30N
+         dhDfm2lZgMU0/QPsqMRJkjKtU6GGU6csI7W5ebXGDaOz/DK/F5V26NKS9FW6SNvpdxVZ
+         +eHR+mgRlpEU5eDJv3zHozBrz7YV8F5J0Uzt7jFCz/YScys08QI/WJ8Ob+8b1vVHejAP
+         Ygjj+q934ElRMl8dutFwwUB+0rbpbqTACM6MKUVj/lpcfRdzXDHxl2ZAuFT+Uk6a3GHS
+         Y9cQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=cE6tbCI2FK1spDu2EWGHl52dUoomgzZk3UG4ySpVivk=;
+        b=qiQ+9WnvAa6wAEZscumZpXUiBKWZfN34rviQzo1hKHWpZbP2PJJTmTVm0XFImWtQqU
+         wIrqHAKaaUZ+RSfy88K32M0OlgPxO2VwrsAMfGlFNmfkzSthWfULzCmzdyMMe6SLdG4O
+         CPbeFsCwf6Y49EdC6hk6FmfNhKmIG9GZRe7hqPlDs7rjL9s+Ku+yRrUYToW68qNCQcya
+         iJjv1+B2CKAEx6L97YbxYSX5g88ai/SNHhJfWAeSdv+RRx92e7qe4Ch+XR6oPLxhcttd
+         WtO8Hw5qpzU+D4ExWuy1rEe+X6NsMDzDHkk1T6opr7gW/ptpkqhlKVRohEZlwrbXv+vL
+         Goag==
+X-Gm-Message-State: AOAM532F7lGa8yOBdbr9npeA2NV+xcdT3DBg1Ne0VWGUnJWvACuEIYce
+        sfc46LAuBkLo859Jhd72nb3Z
+X-Google-Smtp-Source: ABdhPJyukiMgta+UgmTqi9LwaARd2wmCD0A9V+10E/aJgrh4r5nu3wI16YpE31+xthJA7ak5I3A5mQ==
+X-Received: by 2002:a17:902:a60e:: with SMTP id u14mr393643plq.179.1598866016646;
+        Mon, 31 Aug 2020 02:26:56 -0700 (PDT)
+Received: from mani ([2409:4072:70f:fdfa:1d6f:524d:c4d3:917e])
+        by smtp.gmail.com with ESMTPSA id 128sm7234595pfy.132.2020.08.31.02.26.52
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 31 Aug 2020 02:26:56 -0700 (PDT)
+Date:   Mon, 31 Aug 2020 14:56:48 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Denis GNUtoo Carikli <GNUtoo@cyberdimension.org>,
-        Simon Shields <simon@lineageos.org>
-Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <d2237c0f-a52f-df61-b3c6-841a1b8bd5dc@samsung.com>
-Date:   Mon, 31 Aug 2020 11:25:11 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
-        Thunderbird/68.12.0
+        Peter Korsgaard <peter@korsgaard.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org
+Subject: Re: [PATCH v2 4/4] arm: dts: owl-s500: Add RoseapplePi
+Message-ID: <20200831092648.GD4154@mani>
+References: <cover.1598621459.git.cristian.ciocaltea@gmail.com>
+ <5a6fc55341b346439ba32b5a3e14087edbaa6226.1598621459.git.cristian.ciocaltea@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20200830135200.24304-14-krzk@kernel.org>
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrMKsWRmVeSWpSXmKPExsWy7djPc7o/DvrEG6z9JGaxccZ6Vov5R86x
-        WrRef8xu0f/4NbPF+fMb2C02Pb7GanF51xw2ixnn9zFZtO49wm6x5cxtNov2py+ZHbg9jh5o
-        ZPbYtKqTzaNl/SY2j81L6j36tqxi9Pi8SS6ALYrLJiU1J7MstUjfLoEr48cRgYL9nBX3mlay
-        NzC+YO9i5OSQEDCROPf9O2MXIxeHkMAKRonzx64xQThfGCW+v5rEBFIlJPCZUeLuiQCYjj07
-        HkB1LGeUWDjvASuE855R4sWu5WAdwgJZEqd//AQbJSJwhkni77crzCAJZoFUid1vj7GC2GwC
-        hhJdb7vYQGxeATuJHYu/soDYLAKqEq+vPQYbJCoQJ3Hs1CMWiBpBiZMzn4DZnAJmEtP2/2SB
-        mCkvsf3tHKj54hK3nswHWywhcIld4vf6eUwQd7tIzNt6ig3CFpZ4dXwLNARkJP7vhGloZpR4
-        eG4tO4TTwyhxuWkGI0SVtcSdc7+AujmAVmhKrN+lDxF2lLg66R8jSFhCgE/ixltBiCP4JCZt
-        m84MEeaV6GgTgqhWk5h1fB3c2oMXLjFPYFSaheS1WUjemYXknVkIexcwsqxiFE8tLc5NTy02
-        zEst1ytOzC0uzUvXS87P3cQITFqn/x3/tIPx66WkQ4wCHIxKPLw/jnrHC7EmlhVX5h5ilOBg
-        VhLhdTp7Ok6INyWxsiq1KD++qDQntfgQozQHi5I4r/Gil7FCAumJJanZqakFqUUwWSYOTqkG
-        RtF3+/TvNW7Uipysy7nuxbNX0bP3LL17yNDVUeakXhc/e8qNngnHO2aG6tcG8714I+TENid1
-        sezuUJHUoFkHGE9cPbpW587+tJC2sKoeTZffy/vnyBy1br9o5LWYceLOFfKss7i9Ky63SVwI
-        PLFPMvTdvGnd7/dFtUpu9A9dI7ytultGaRsPuxJLcUaioRZzUXEiAFk9dipWAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrKIsWRmVeSWpSXmKPExsVy+t/xu7o/DvrEG9w4wWSxccZ6Vov5R86x
-        WrRef8xu0f/4NbPF+fMb2C02Pb7GanF51xw2ixnn9zFZtO49wm6x5cxtNov2py+ZHbg9jh5o
-        ZPbYtKqTzaNl/SY2j81L6j36tqxi9Pi8SS6ALUrPpii/tCRVISO/uMRWKdrQwkjP0NJCz8jE
-        Us/Q2DzWyshUSd/OJiU1J7MstUjfLkEv48cRgYL9nBX3mlayNzC+YO9i5OSQEDCR2LPjASOI
-        LSSwlFFi4g9/iLiMxMlpDawQtrDEn2tdbF2MXEA1bxklPi+/wwySEBbIkjj94ycTSEJE4ByT
-        xMyF/WBTmQVSJSY2TWWC6NjCKHH2xV2wFWwChhJdb0FGcXLwCthJ7Fj8lQXEZhFQlXh97TET
-        iC0qECdxpucFVI2gxMmZT8BqOAXMJKbt/8kCscBMYt7mh8wQtrzE9rdzoGxxiVtP5jNNYBSa
-        haR9FpKWWUhaZiFpWcDIsopRJLW0ODc9t9hIrzgxt7g0L10vOT93EyMwSrcd+7llB2PXu+BD
-        jAIcjEo8vD+OescLsSaWFVfmHmKU4GBWEuF1Ons6Tog3JbGyKrUoP76oNCe1+BCjKdBzE5ml
-        RJPzgQkkryTe0NTQ3MLS0NzY3NjMQkmct0PgYIyQQHpiSWp2ampBahFMHxMHp1QDY1CeWKac
-        Xuejrta12l9ulfuIzJkhd2Dbzpc3pT588pWJ1GlkKd5ZvefvQ55d0zISi6bc048OfcH15Pvp
-        14l9y52LbP6Z67tEnzVL0mqZ+Xrdjg3K1+akRH5wfmN4UyZ/69uznuoz24/PmnpIJ2ajoLUq
-        1/uKhc2RLcH/v6S8uCypv3jFtFgHNyWW4oxEQy3mouJEAMWjBkjoAgAA
-X-CMS-MailID: 20200831092512eucas1p1d6ea26db5585f850165ea13477f25b50
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20200830135440eucas1p2e72db4f3b1ee2c20119c56ea9f2cd8ae
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20200830135440eucas1p2e72db4f3b1ee2c20119c56ea9f2cd8ae
-References: <20200830135200.24304-1-krzk@kernel.org>
-        <CGME20200830135440eucas1p2e72db4f3b1ee2c20119c56ea9f2cd8ae@eucas1p2.samsung.com>
-        <20200830135200.24304-14-krzk@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5a6fc55341b346439ba32b5a3e14087edbaa6226.1598621459.git.cristian.ciocaltea@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30.08.2020 15:51, Krzysztof Kozlowski wrote:
-> "gpio-sck" and "gpio-mosi" are deprecated so update the DTS to fix
-> dtbs_checks warnings like:
->
->    arch/arm/boot/dts/exynos4210-universal_c210.dt.yaml: spi-lcd:
->      gpio-sck: False schema does not allow [[85, 1, 0]]
->
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+On 0828, Cristian Ciocaltea wrote:
+> Add a Device Tree for the RoseapplePi SBC.
+> 
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> Reviewed-by: Peter Korsgaard <peter@korsgaard.com>
+
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+Thanks,
+Mani
+
 > ---
->   arch/arm/boot/dts/exynos4210-universal_c210.dts | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/exynos4210-universal_c210.dts b/arch/arm/boot/dts/exynos4210-universal_c210.dts
-> index 3509fdf8f245..279f0f8f86ed 100644
-> --- a/arch/arm/boot/dts/exynos4210-universal_c210.dts
-> +++ b/arch/arm/boot/dts/exynos4210-universal_c210.dts
-> @@ -124,8 +124,8 @@
->   		#address-cells = <1>;
->   		#size-cells = <0>;
->   
-> -		gpio-sck = <&gpy3 1 GPIO_ACTIVE_HIGH>;
-> -		gpio-mosi = <&gpy3 3 GPIO_ACTIVE_HIGH>;
-> +		sck-gpios = <&gpy3 1 GPIO_ACTIVE_HIGH>;
-> +		mosi-gpios = <&gpy3 3 GPIO_ACTIVE_HIGH>;
->   		num-chipselects = <1>;
->   		cs-gpios = <&gpy4 3 GPIO_ACTIVE_LOW>;
->   
-
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
-
+>  arch/arm/boot/dts/Makefile                 |  1 +
+>  arch/arm/boot/dts/owl-s500-roseapplepi.dts | 47 ++++++++++++++++++++++
+>  2 files changed, 48 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/owl-s500-roseapplepi.dts
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 4572db3fa5ae..bff9ef996fbb 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -868,6 +868,7 @@ dtb-$(CONFIG_ARCH_ORION5X) += \
+>  dtb-$(CONFIG_ARCH_ACTIONS) += \
+>  	owl-s500-cubieboard6.dtb \
+>  	owl-s500-guitar-bb-rev-b.dtb \
+> +	owl-s500-roseapplepi.dtb \
+>  	owl-s500-sparky.dtb
+>  dtb-$(CONFIG_ARCH_PRIMA2) += \
+>  	prima2-evb.dtb
+> diff --git a/arch/arm/boot/dts/owl-s500-roseapplepi.dts b/arch/arm/boot/dts/owl-s500-roseapplepi.dts
+> new file mode 100644
+> index 000000000000..a2087e617cb2
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/owl-s500-roseapplepi.dts
+> @@ -0,0 +1,47 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Roseapple Pi
+> + *
+> + * Copyright (C) 2020 Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "owl-s500.dtsi"
+> +
+> +/ {
+> +	compatible = "roseapplepi,roseapplepi", "actions,s500";
+> +	model = "Roseapple Pi";
+> +
+> +	aliases {
+> +		serial2 = &uart2;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial2:115200n8";
+> +	};
+> +
+> +	memory@0 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x80000000>; /* 2GB */
+> +	};
+> +
+> +	uart2_clk: uart2-clk {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <921600>;
+> +		#clock-cells = <0>;
+> +	};
+> +};
+> +
+> +&twd_timer {
+> +	status = "okay";
+> +};
+> +
+> +&timer {
+> +	clocks = <&hosc>;
+> +};
+> +
+> +&uart2 {
+> +	status = "okay";
+> +	clocks = <&uart2_clk>;
+> +};
+> -- 
+> 2.28.0
+> 
