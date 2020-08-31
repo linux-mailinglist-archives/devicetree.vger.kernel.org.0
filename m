@@ -2,133 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1217C25742F
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 09:18:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04CD925743F
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 09:24:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725954AbgHaHSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 03:18:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34892 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725848AbgHaHSm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 03:18:42 -0400
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com [IPv6:2607:f8b0:4864:20::742])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88F29C061573
-        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 00:18:42 -0700 (PDT)
-Received: by mail-qk1-x742.google.com with SMTP id u3so5234626qkd.9
-        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 00:18:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dionne-riel-com.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Tx9ov1TElvort7snu1dO9tw8+TDzzQ8tlnTaQit8sLw=;
-        b=zfzwPgqs3JY0RMkQw5fCYwOxQ5+Gzj/R0aK+1z3vowOSibxcc9RhaemlClQyFWQNDb
-         SJpVhZj5BzDadsx8rNSERuKmjVA559/EJCgl7W9aNpave4wH8yJgyLAOG8C77ZJ/XQFV
-         DM8pmnZCZ+svxW0pgnD4TqTmwbjVWggPsurjsn3u2iwhIQjWZ9iWNC9eUwIgWmjU7gNX
-         2wrEdfYE25MppFRuawUyTgO9CjLy5M+xD2iJHMKwdVUk577j7nLDIlwKS0Vd6r5AYrx3
-         miDH7NWaBpsqm9jN+E8lr4nGxfVqRyRcFY5IcqoeBst7o4nuSllnzDMwNTrNWeJJbH0g
-         30bA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Tx9ov1TElvort7snu1dO9tw8+TDzzQ8tlnTaQit8sLw=;
-        b=OQMdT7sMY7eMi/trX43Apoaq6I/m3Zt6iyT/5AJ9NlFYUENMzpqNoe9Rh2kMCkMpkH
-         tfeI3xML4ySiT2CLhHkIZWksspqsZOwS/2oZTmphyYMuxXHHcjJprE5CCBVEgdBqzFbU
-         CisGNGA5/+a+jP/67CNCDWLHPgLlS+6Aek/7vLf+90BIswwgDaer7rt88j6bB5eyYECm
-         OzlVV3dlgG6V+3NZWUmSzGxRef7M+7ER3WRbW0jzF9zNmORq39mJmzDTP/ibppVpEs36
-         Bksds7ISbeyJIXFRw2WJBObMvjuzPRtIbPwcv/mThuOvnvu9oap5hOwgjFM5hwLwF93R
-         u6UQ==
-X-Gm-Message-State: AOAM533slVNG360G8LzzUHdCgw9wfsuMdnivSBHQ6/9gjuE6gsrvWOA8
-        fGQc/5oycKGpcs/81HeqIWZORg==
-X-Google-Smtp-Source: ABdhPJx4uXyqr4fpHbdkcEoQU/Kpaq4fal2Z+s+LzuwDIo2Zr1YuzHgvKu+zAgkwOIvK5gApuAV82Q==
-X-Received: by 2002:a05:620a:4f6:: with SMTP id b22mr66998qkh.489.1598858321407;
-        Mon, 31 Aug 2020 00:18:41 -0700 (PDT)
-Received: from DUFFMAN (135-23-195-85.cpe.pppoe.ca. [135.23.195.85])
-        by smtp.gmail.com with ESMTPSA id 64sm5768514qko.117.2020.08.31.00.18.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Aug 2020 00:18:41 -0700 (PDT)
-Date:   Mon, 31 Aug 2020 03:18:38 -0400
-From:   Samuel Dionne-Riel <samuel@dionne-riel.com>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: Boot failure on gru-scarlet-inx with 5.9-rc2
-Message-ID: <20200831031838.2d6d76d9@DUFFMAN>
-In-Reply-To: <65d88bdd0888a69849327501a2aad186@kernel.org>
-References: <20200829164920.7d28e01a@DUFFMAN>
-        <65d88bdd0888a69849327501a2aad186@kernel.org>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726102AbgHaHY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 03:24:26 -0400
+Received: from mo-csw1115.securemx.jp ([210.130.202.157]:39376 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725829AbgHaHYZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 03:24:25 -0400
+Received: by mo-csw.securemx.jp (mx-mo-csw1115) id 07V7Nik5032133; Mon, 31 Aug 2020 16:23:44 +0900
+X-Iguazu-Qid: 2wGqu78fjRd5hM4Wan
+X-Iguazu-QSIG: v=2; s=0; t=1598858623; q=2wGqu78fjRd5hM4Wan; m=5/i1HO5KCK+RAMPX55FPKqg96uinqqHLZmftlCHQKAA=
+Received: from imx2.toshiba.co.jp (imx2.toshiba.co.jp [106.186.93.51])
+        by relay.securemx.jp (mx-mr1110) id 07V7Nf3K004863;
+        Mon, 31 Aug 2020 16:23:42 +0900
+Received: from enc03.toshiba.co.jp ([106.186.93.13])
+        by imx2.toshiba.co.jp  with ESMTP id 07V7NfT4025310;
+        Mon, 31 Aug 2020 16:23:41 +0900 (JST)
+Received: from hop001.toshiba.co.jp ([133.199.164.63])
+        by enc03.toshiba.co.jp  with ESMTP id 07V7NeAq010613;
+        Mon, 31 Aug 2020 16:23:41 +0900
+Date:   Mon, 31 Aug 2020 16:23:39 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, punit1.agrawal@toshiba.co.jp,
+        yuji2.ishikawa@toshiba.co.jp,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@misterjones.org>
+Subject: Re: [PATCH v2 2/8] pinctrl: visconti: Add Toshiba Visconti SoCs
+ pinctrl support
+X-TSB-HOP: ON
+Message-ID: <20200831072339.tkc7v2fyzzq5lhfn@toshiba.co.jp>
+References: <20200824122957.1392870-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20200824122957.1392870-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <CACRpkdarxKSQOvoA4yvjFUkXmZR1OzHYfQRKqLR+8TQoV+oCyw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACRpkdarxKSQOvoA4yvjFUkXmZR1OzHYfQRKqLR+8TQoV+oCyw@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 30 Aug 2020 10:41:42 +0100
-Marc Zyngier <maz@kernel.org> wrote:
-
 Hi,
 
+Thanks for your review.
+
+On Fri, Aug 28, 2020 at 02:41:05PM +0200, Linus Walleij wrote:
+> Hi Nobuhiro!
 > 
-> Could you try replacing the problematic patch with [1], and let me
-> know whether this changes anything on your end? This patch probably
-> isn't the right approach, but it would certainly help pointing me
-> in the right direction.
+> Thanks for your patch. Some review comments below!
 > 
-> [1]
-> https://lore.kernel.org/lkml/20200815125112.462652-2-maz@kernel.org/
+> On Mon, Aug 24, 2020 at 2:30 PM Nobuhiro Iwamatsu
+> <nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
+> >
+> > Add pinctrl support to Toshiba Visconti SoCs.
+> >
+> > Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> 
+> > +config PINCTRL_VISCONTI
+> > +       bool
+> > +       select PINMUX
+> > +       select GENERIC_PINCONF
+> > +       select GENERIC_PINCTRL_GROUPS
+> > +       select GENERIC_PINMUX_FUNCTIONS
+> 
+> Thanks for using generic stuff!
+> 
+> > +#define SET_BIT(data, idx)     ((data) |= BIT(idx))
+> > +#define CLR_BIT(data, idx)     ((data) &= ~BIT(idx))
+> 
+> Please do not reinvent things like this. Either open code
+> it, and if you want optimizations (probably not relevant in
+> this case) you would use:
+> 
+> #include <linux/bitmap.h>
+> 
+> set_bit() and clear_bit() if you want atomic bit ops
+> __set_bit() and __clear_bit() for nonatomic
+> 
+> The upside to using these standard calls is that they will
+> unfold into assembly optimizations for the architecture if
+> possible.
+> 
+> If you roll your own locking use the latter primitives.
+> 
 
-Following through a bisect session to figure out why the Wi-Fi broke
-between 5.8 and 5.9-rc1, I figured out something that you might have in
-mind already.
+I understood this.
+Since this is a bit control for variables, clear_bit() and other are not
+used. As you write in the comment below, I fix not using unnecessary macros.
 
-It seems that anything that makes of_bus_pci_match return true will
-cause this to happen. This is why your initial fix also fails.
+> > +/* private data */
+> > +struct visconti_pinctrl {
+> > +       void __iomem *base;
+> > +       struct device *dev;
+> > +       struct pinctrl_dev *pctl;
+> > +       struct pinctrl_desc pctl_desc;
+> > +
+> > +       const struct visconti_pinctrl_devdata  *devdata;
+> > +
+> > +       spinlock_t lock;
+> 
+> At least add a comment to this lock to say what it is locking.
+> 
 
-I believe my understanding is right since applying the following on top
-of 5.9-rc1 also produces the same result.
+OK, I will add a commnent.
 
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -227,6 +227,7 @@ dmac_peri: dma-controller@ff6e0000 {
-        };
- 
-        pcie0: pcie@f8000000 {
-+               device_type = "pci";
-                compatible = "rockchip,rk3399-pcie";
-                reg = <0x0 0xf8000000 0x0 0x2000000>,
-                      <0x0 0xfd000000 0x0 0x1000000>;
+> > +                       /* update pudsel setting */
+> > +                       val = readl(priv->base + pin->pudsel_offset);
+> > +                       CLR_BIT(val, pin->pud_shift);
+> > +                       val |= set_val << pin->pud_shift;
+> 
+> I would just inline the &= operation but it is up to you.
+> 
+
+OK, I will fix not using this macro.
+
+> > +               case PIN_CONFIG_DRIVE_STRENGTH:
+> > +                       arg = pinconf_to_config_argument(configs[i]);
+> > +                       dev_dbg(priv->dev, "DRV_STR arg = %d\n", arg);
+> > +                       switch (arg) {
+> > +                       case 2:
+> > +                       case 4:
+> > +                       case 8:
+> > +                       case 16:
+> > +                       case 24:
+> > +                       case 32:
+> > +                               set_val = (arg / 2) - 1;
+> 
+> This looks like you want to use
+> 
+> set_val = DIV_ROUND_CLOSEST(arg, 2);
+> 
+> Also add a comment on WHY you do this.
+> 
+
+OK, I will fix using DIV_ROUND_CLOSEST and comment.
+
+> > +                       /* update drive setting */
+> > +                       val = readl(priv->base + pin->dsel_offset);
+> > +                       val &= ~(GENMASK(3, 0) << pin->dsel_shift);
+> 
+> Could this GENMASK be a #define so we know what it is?
+> 
+> > +/* pinmnux */
+> 
+> Spelling
+
+Thanks, I will this.
+
+> 
+> > +       /* update mux */
+> > +       val = readl(priv->base + mux->offset);
+> > +       val &= ~mux->mask;
+> > +       val |= mux->val;
+> 
+> So here you do things explicitly and in the other case with custom
+> macros. I think this is better because it is easy to read.
+
+OK.
+
+> 
+> > +static int visconti_gpio_request_enable(struct pinctrl_dev *pctldev,
+> > +                                     struct pinctrl_gpio_range *range,
+> > +                                     unsigned int pin)
+> 
+> Since you implement this, what GPIO driver are you using this with?
+> 
+
+Certainly this feature is not called and is not needed, because there
+is no GPIO driver for this SoC now. I will remove these.
 
 
-This was found out since the Wi-Fi pci-based ath10k Wi-Fi broke, with
-2f96593ecc37e98bf99525f0629128080533867f, which changes stuff around
-pci bus... things...
+> Other than that it looks all right, also the plugin for SoC is nicely designed.
+> 
+> Thanks!
+> Linus Walleij
+>
 
-Am I understanding right that your fix(es) were related to the change
-set where the commit is found?
-
-My intuition is that the commit causing the boot issue could be related
-to changes with PCI or PCIe subsystems, and that your fix for
-of_bus_pci_match is a red herring, that only surfaced the existing
-issue.
-
-This is backed by applying the previous dts patch on top of 2f96593e,
-and having Wi-Fi work. I would assume that between that commit and
-5.9-rc1 there is a commit that causes the complete failure to boot,
-which is unrelated to the first identified commit on 5.9-rc2.
-
-And backed by a further bisection with this that points to
-d84c572de1a360501d2e439ac632126f5facf59d being the actual change that
-causes the tablet to fail to boot, as long as the pcie0 node is
-identified as pci properly.
-
-I am unsure if I should add as a Cc everyone involved in that change
-set, though the author (coincidentally) is already in the original list
-of recipients.
-
-Any additional thoughts from this additional information?
-
--- 
-Samuel Dionne-Riel
+Best regards,
+  Nobuhiro
