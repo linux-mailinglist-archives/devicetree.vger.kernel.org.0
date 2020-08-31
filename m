@@ -2,97 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E338257F51
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 19:12:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFC1D257F94
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 19:26:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728878AbgHaRMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 13:12:02 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:37419 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728644AbgHaRLq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 13:11:46 -0400
-X-Originating-IP: 90.66.108.79
-Received: from localhost (lfbn-lyo-1-1932-79.w90-66.abo.wanadoo.fr [90.66.108.79])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 1F896C000C;
-        Mon, 31 Aug 2020 17:11:44 +0000 (UTC)
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        id S1726927AbgHaR0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 13:26:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45092 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726249AbgHaR0f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 13:26:35 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EF70C061573;
+        Mon, 31 Aug 2020 10:26:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=Fa0TE/spR8TRl2qaszsHnN5nwhWH0fFgL63n1neXNqA=; b=kGffVCRzzcp71qqEjjF/3413k3
+        b1yC+PMg1abpwWX97m247qEQ4Kx/U4KGGezhgx0gE0OS/qH2NEgm4Mhg/hjVo4Err+kFg7bUQ1v4t
+        vcQ3yRCeZg8uBX2i+ALpj2WU3490kwskNEb2NMoPF1tJ7pIxf1sGFtlRSBzhoMeOrVhY=;
+Received: from p5dcc3c5d.dip0.t-ipconnect.de ([93.204.60.93] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1kCnZT-0008BJ-5j; Mon, 31 Aug 2020 19:26:19 +0200
+Date:   Mon, 31 Aug 2020 19:26:17 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Jonathan =?UTF-8?B?TmV1c2Now6RmZXI=?= <j.neuschaefer@gmx.net>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        Anson.Huang@nxp.com, marcel.ziswiler@toradex.com,
+        sebastien.szymanski@armadeus.com, michael@walle.cc,
+        rjones@gateworks.com, leoyang.li@nxp.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: [PATCH 5/5] ARM: dts: at91: sama5d2: add missing flexcom spi node properties
-Date:   Mon, 31 Aug 2020 19:11:29 +0200
-Message-Id: <20200831171129.3886857-8-alexandre.belloni@bootlin.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200831171129.3886857-1-alexandre.belloni@bootlin.com>
-References: <20200831171129.3886857-1-alexandre.belloni@bootlin.com>
+        linux-arm-kernel@lists.infradead.org, letux-kernel@openphoenux.org
+Subject: Re: [PATCH v2 2/2] ARM: dts: imx: add devicetree for Tolino Shine 2
+ HD
+Message-ID: <20200831192617.3af13f1b@aktux>
+In-Reply-To: <20200827183323.GE103070@latitude>
+References: <20200826204251.5082-1-andreas@kemnade.info>
+        <20200826204251.5082-3-andreas@kemnade.info>
+        <20200827183323.GE103070@latitude>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Score: -1.0 (-)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SPI nodes require #address-cells and #size-cells add those properties in
-the flexcom spi nodes.
+Hi,
 
-Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
----
- arch/arm/boot/dts/sama5d2.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+On Thu, 27 Aug 2020 20:33:23 +0200
+Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net> wrote:
 
-diff --git a/arch/arm/boot/dts/sama5d2.dtsi b/arch/arm/boot/dts/sama5d2.dtsi
-index c4aecfa4a2be..2ddc85dff8ce 100644
---- a/arch/arm/boot/dts/sama5d2.dtsi
-+++ b/arch/arm/boot/dts/sama5d2.dtsi
-@@ -542,6 +542,8 @@ spi2: spi@400 {
- 					compatible = "atmel,at91rm9200-spi";
- 					reg = <0x400 0x200>;
- 					interrupts = <19 IRQ_TYPE_LEVEL_HIGH 7>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
- 					clocks = <&pmc PMC_TYPE_PERIPHERAL 19>;
- 					clock-names = "spi_clk";
- 					dmas = <&dma0
-@@ -610,6 +612,8 @@ spi3: spi@400 {
- 					compatible = "atmel,at91rm9200-spi";
- 					reg = <0x400 0x200>;
- 					interrupts = <20 IRQ_TYPE_LEVEL_HIGH 7>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
- 					clocks = <&pmc PMC_TYPE_PERIPHERAL 20>;
- 					clock-names = "spi_clk";
- 					dmas = <&dma0
-@@ -817,6 +821,8 @@ spi4: spi@400 {
- 					compatible = "atmel,at91rm9200-spi";
- 					reg = <0x400 0x200>;
- 					interrupts = <21 IRQ_TYPE_LEVEL_HIGH 7>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
- 					clocks = <&pmc PMC_TYPE_PERIPHERAL 21>;
- 					clock-names = "spi_clk";
- 					dmas = <&dma0
-@@ -885,6 +891,8 @@ spi5: spi@400 {
- 					compatible = "atmel,at91rm9200-spi";
- 					reg = <0x400 0x200>;
- 					interrupts = <22 IRQ_TYPE_LEVEL_HIGH 7>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
- 					clocks = <&pmc PMC_TYPE_PERIPHERAL 22>;
- 					clock-names = "spi_clk";
- 					dmas = <&dma0
-@@ -954,6 +962,8 @@ spi6: spi@400 {
- 					compatible = "atmel,at91rm9200-spi";
- 					reg = <0x400 0x200>;
- 					interrupts = <23 IRQ_TYPE_LEVEL_HIGH 7>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
- 					clocks = <&pmc PMC_TYPE_PERIPHERAL 23>;
- 					clock-names = "spi_clk";
- 					dmas = <&dma0
--- 
-2.26.2
+> On Wed, Aug 26, 2020 at 10:42:51PM +0200, Andreas Kemnade wrote:
+> > This adds a devicetree for the Tolino Shine 2 HD Ebook reader. It is ba=
+sed
+> > on boards marked with "37NB-E60QF0+4A2". It is equipped with an i.MX6SL
+> > SoC.
+> >=20
+> > Expected to work:
+> > - Buttons
+> > - Wifi
+> > - Touchscreen
+> > - LED
+> > - uSD
+> > - USB
+> > - RTC
+> >=20
+> > Not working due to missing drivers:
+> > - Backlight (requires NTXEC driver)
+> > - EPD
+> >=20
+> > Not working due to unknown reasons:
+> > - deep sleep (echo standby >/sys/power/state works),
+> >   wakeup fails when imx_gpc_pre_suspend(true) was called.
+> >=20
+> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > --- =20
+> [...]
+> > +		fl {
+> > +			label =3D "Frontlight";
+> > +			gpios =3D <&gpio3 26 GPIO_ACTIVE_LOW>;
+> > +			linux,code =3D <KEY_BRIGHTNESS_CYCLE>;
+> > +		}; =20
+>=20
+> Another option might be KEY_BRIGHTNESS_TOGGLE/KEY_DISPLAYTOGGLE, but
+> it's not a perfect match, either. (And perhaps a worse match due to the
+> connotation of turning the display off.)
+>=20
+I have also thought about these, but came to the same conclusion as you,
+the connotation of turning the display off does not feel right.
 
+>=20
+> Reviewed-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+>=20
+> Thanks
+
+Regards,
+Andreas
