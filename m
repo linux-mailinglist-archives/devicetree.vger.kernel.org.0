@@ -2,394 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC9DE2573AC
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 08:26:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AD622573BE
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 08:34:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725829AbgHaG0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 02:26:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55034 "EHLO
+        id S1726255AbgHaGeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 02:34:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725794AbgHaG02 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 02:26:28 -0400
-Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com [IPv6:2607:f8b0:4864:20::843])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4774C061573;
-        Sun, 30 Aug 2020 23:26:26 -0700 (PDT)
-Received: by mail-qt1-x843.google.com with SMTP id n18so4034768qtw.0;
-        Sun, 30 Aug 2020 23:26:26 -0700 (PDT)
+        with ESMTP id S1725848AbgHaGea (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 02:34:30 -0400
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 822CAC061573;
+        Sun, 30 Aug 2020 23:34:30 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id q9so4279963wmj.2;
+        Sun, 30 Aug 2020 23:34:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ncYcfPMOgylHs3AbwbUsJDFMZYVoo80dUyXRIbMUPGo=;
-        b=iJ+1J26VGIg06J5hanIusfC3WIfFG/+51TdIBJc4ElPdu2yW4LitgF+xZdyvt1AVC4
-         26R+mFASCZYswrHldRC3Ol5y55mnSTJ2+50Xv0uwXlFYU0A+vtNESbsgRTivnQmtYJyo
-         /rQCsUNudC9LzGjSE487SNVTF7HbWu1ZHVg7IEQl4jFKRIQUWXRDjmHTdtzg8CLN1nHg
-         oZrzCiQZs/6lp1DyQk3CaoAic1wABOuuVpEYAu9Iw+8FSixdx7sH9jFkjgjGZ2H4pZUJ
-         mLDqtUO7YYdUnrvjf7RQPC5ZB25en0+X3RMObbHxxKE+ZBg3JzjnKX5aXY+fALtESV1q
-         c5MA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ZP1iGX70R6WBiUNO1tOXFyMcuHcjl1P18JgeTI2dD4c=;
+        b=GJ8cF7PTYPGqReRtR4re5LgMZeUffjNB2POodeR5VWXtozhKn1QnVm9UGIGIV/YDGn
+         ECBu6Ltxw/XVa/OG3q/hSDF/cr+L26H5usMZQW7NC4tHUeoVUH+X5a1csICElBJWDXWD
+         xjJoW/3lKtyLLjDx/53+ZgW9pPYDJ2allVLRY4aWJTfTiE0VNdODR2Lh/Zbx5X+3RsxJ
+         A7+Hlzv1lQfF/H3InZltg1ePkJcbEfF1a8y7DgL2xCLAzfhhuyA5Hr+C5cJQEjq6gaZb
+         pIYQhjUPMmOKyYSlJMNT9+jSpvpgwLjjEgiBWOjhEQ9O04H1IVlg36iBUqoe83jl+ipQ
+         stxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ncYcfPMOgylHs3AbwbUsJDFMZYVoo80dUyXRIbMUPGo=;
-        b=U0h4uNPoDAjcdkwUc4nApt5K/fpSd5oP5/wIGQQVTqVynwlVVf721Zh8wtTKA1wrvz
-         /muzQd+aRsK570kqvGkMux5MnvpYnQ2u9QJ7GkCbJAjCReYPoFx4ZDOUoPMeAKTjHzdI
-         SGCngxEbC8UBxd6v0v7kvCv1yvE67UOoUeSHiAOx1Tb5NenRrX49yx1b3C6vQhirDe52
-         D8lCyYUagTxsNsV4dgCP/ZymvfsvERR24heE1SGk7MEHOmKIeZNoFXVnrj1dOTR7neum
-         cSO7Md4JEY9Ix32zYKVrBZ+5xNnZWXlEoPCYble+cTLAfqEto3oIMgy6NWaLRPnIlZhf
-         Mkzg==
-X-Gm-Message-State: AOAM532eHpCFWhzG97/9BsXgMj0copBm3KpSBNARneGe6QUcOhplR8IW
-        9Lx5v33F8ryiGQwKCzSiOgPsL4PIqyo3jtQYZ6o=
-X-Google-Smtp-Source: ABdhPJwdJSuDCmRWqqThWrapKnJnDxka/yPuuMxXGDth/6AuqXsalnqKesZc1Eq80on3CYrC+eMYl0cOWYq9qYTTo8E=
-X-Received: by 2002:ac8:22fb:: with SMTP id g56mr11557199qta.141.1598855184981;
- Sun, 30 Aug 2020 23:26:24 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ZP1iGX70R6WBiUNO1tOXFyMcuHcjl1P18JgeTI2dD4c=;
+        b=jVTJk/xFmklqWLoqimhCS7bcDdCI4jDS89LAXA5q8v9lkDokOEaoogjOAOY8CxgAJB
+         wqN5yQYZc0hDKbZK7e6wxKJfHX8U0M3taJHXVVZCjnyGYZT2benlJAYBgHtDl3hiDeop
+         BiWrwxlAqnAhJBG+aqr57xLC48PaeENzzM5DWpFajXLl5ET5AMqBNminSeqVgQIDddg2
+         dqi//gaK5YWbqvGtMR6ALTwaUoxAzbDfAl+ETMxetnbbiXXDNtPeQuOY7KIil/ZxxeFX
+         rISlSXYfDJ76uAV81FOzW9rFnoz46tJfH4AY5Q2waREmCzpH9bwfG9jYjONrJby88mpY
+         M6vw==
+X-Gm-Message-State: AOAM530BwpQF6d4rx9epPvvxnast+hh088eiuBhDiLhuy2asZjZlnlNV
+        gu8LhPwVzGgE1SfeMMXfvr5z94Q4fvE=
+X-Google-Smtp-Source: ABdhPJzF0UppAc4MASa721wAZz4ZjrCxQwb20+xfqZzysOU4TggFFq5EbI81tQEF4nDVs7iIdOjAQQ==
+X-Received: by 2002:a1c:4054:: with SMTP id n81mr269837wma.81.1598855668861;
+        Sun, 30 Aug 2020 23:34:28 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id f6sm11682451wme.32.2020.08.30.23.34.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 30 Aug 2020 23:34:28 -0700 (PDT)
+Date:   Mon, 31 Aug 2020 08:34:26 +0200
+From:   Corentin Labbe <clabbe.montjoie@gmail.com>
+To:     Martin Cerveny <m.cerveny@computer.org>
+Cc:     davem@davemloft.net, herbert@gondor.apana.org.au,
+        robh+dt@kernel.org, mripard@kernel.org, wens@csie.org,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: sun8i: v3s: Enable crypto engine
+Message-ID: <20200831063426.GA18853@Red>
+References: <20200827180027.6254-1-m.cerveny@computer.org>
 MIME-Version: 1.0
-References: <20200818124815.11029-1-vaishnav@beagleboard.org>
- <20200818124815.11029-2-vaishnav@beagleboard.org> <CALudOK4R-Fu-xMXbip8e_Cuu0o4DQwjc=SMGdMBVsH=XTUShNw@mail.gmail.com>
-In-Reply-To: <CALudOK4R-Fu-xMXbip8e_Cuu0o4DQwjc=SMGdMBVsH=XTUShNw@mail.gmail.com>
-From:   Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date:   Mon, 31 Aug 2020 08:26:13 +0200
-Message-ID: <CAGAf8Lztap9af9kuCiFgY8gUP7KoOrHZ_2KBbJt-NtKkp=atVg@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 1/3] add mikrobus descriptors to greybus_manifest
-To:     Vaishnav M A <vaishnav@beagleboard.org>
-Cc:     greybus-dev@lists.linaro.org, linux-kernel@vger.kernel.org,
-        Greg KH <gregkh@linuxfoundation.org>, arnd@arndb.de,
-        johan@kernel.org, elder@kernel.org, robh@kernel.org,
-        mchehab+huawei@kernel.org, davem@davemloft.net,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Drew Fustini <drew@beagleboard.org>,
-        Robert Nelson <robertcnelson@beagleboard.org>,
-        =?UTF-8?Q?Ivan_Rajkovi=C4=87?= <rajkovic@mikroe.com>,
-        chrisfriedt@gmail.com, Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200827180027.6254-1-m.cerveny@computer.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Vaishnav,
+On Thu, Aug 27, 2020 at 08:00:27PM +0200, Martin Cerveny wrote:
+> V3S contains crypto engine that is compatible with "sun4i-ss".
+> 
+> Tested-by: Martin Cerveny <m.cerveny@computer.org>
+> Signed-off-by: Martin Cerveny <m.cerveny@computer.org>
+> ---
+>  .../bindings/crypto/allwinner,sun4i-a10-crypto.yaml    |  5 ++++-
+>  arch/arm/boot/dts/sun8i-v3s.dtsi                       | 10 ++++++++++
+>  drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c      |  7 +++++++
+>  3 files changed, 21 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
+> index fc823572b..180efd13a 100644
+> --- a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
+> @@ -25,6 +25,7 @@ properties:
+>            - const: allwinner,sun4i-a10-crypto
+>        - items:
+>            - const: allwinner,sun8i-a33-crypto
+> +      - const: allwinner,sun8i-v3s-crypto
+>  
+>    reg:
+>      maxItems: 1
+> @@ -59,7 +60,9 @@ if:
+>    properties:
+>      compatible:
+>        contains:
+> -        const: allwinner,sun6i-a31-crypto
+> +        oneOf:
+> +          - const: allwinner,sun6i-a31-crypto
+> +          - const: allwinner,sun8i-v3s-crypto
+>  
+>  then:
+>    required:
+> diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v3s.dtsi
+> index e5312869c..4fec84c40 100644
+> --- a/arch/arm/boot/dts/sun8i-v3s.dtsi
+> +++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
+> @@ -234,6 +234,16 @@
+>  			#size-cells = <0>;
+>  		};
+>  
+> +		crypto: crypto@1c15000 {
+> +			compatible = "allwinner,sun8i-v3s-crypto";
+> +			reg = <0x01c15000 0x1000>;
+> +			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&ccu CLK_BUS_CE>, <&ccu CLK_CE>;
+> +			clock-names = "ahb", "mod";
+> +			resets = <&ccu RST_BUS_CE>;
+> +			reset-names = "ahb";
+> +		};
+> +
+>  		usb_otg: usb@1c19000 {
+>  			compatible = "allwinner,sun8i-h3-musb";
+>  			reg = <0x01c19000 0x0400>;
+> diff --git a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c
+> index a2b67f7f8..d24496cac 100644
+> --- a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c
+> +++ b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c
+> @@ -31,6 +31,10 @@ static const struct ss_variant ss_a33_variant = {
+>  	.sha1_in_be = true,
+>  };
+>  
+> +static const struct ss_variant ss_v3s_variant = {
+> +	.sha1_in_be = true,
+> +};
+> +
+>  static struct sun4i_ss_alg_template ss_algs[] = {
+>  {       .type = CRYPTO_ALG_TYPE_AHASH,
+>  	.mode = SS_OP_MD5,
+> @@ -505,6 +509,9 @@ static const struct of_device_id a20ss_crypto_of_match_table[] = {
+>  	{ .compatible = "allwinner,sun8i-a33-crypto",
+>  	  .data = &ss_a33_variant
+>  	},
+> +	{ .compatible = "allwinner,sun8i-v3s-crypto",
+> +	  .data = &ss_v3s_variant
+> +	},
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, a20ss_crypto_of_match_table);
+> -- 
+> 2.17.1
+> 
 
-I should say, an excellent work on the greybus_manifest.h file.
+You should split at least drivers/crypto and the dts part, as drivers/crypto patchs are merged via the cryptodev tree and dts/doc will be merged via the sunxi tree.
+And ideally split patch in 3, the doc, the dts and the crypto.
+See how I added the same for A33 in:
+https://lore.kernel.org/linux-arm-kernel/20191120152833.20443-1-clabbe.montjoie@gmail.com/
 
-Actually, my thoughts will be to have a two-stage commit of the whole
-MikroBUS patch.
+Anyway the content is good.
+Acked-by: Corentin Labbe <clabbe.montjoie@gmail.com>
 
-The first one are these changes with greybus_manifest.h, followed by
-dependent mikrobus_core.h and mikrobus_manifest.h.
-
-These two should have included #include
-<linux/greybus/greybus_manifest.h> to reflect the correct hierarchical
-structure.
-
-The rest is with the mikrobus driver .c code.
-
-It is just an observation from me, I guess, it is obvious.
-
-My two cent worth comment,
-Zoran
-_______
-
-On Thu, Aug 20, 2020 at 2:49 AM Vaishnav M A <vaishnav@beagleboard.org> wrote:
->
-> Hi,
->
-> Trying to add more information regarding the newly added
-> descriptors and describe how they are used now within the
-> mikroBUS driver.
->
-> On Tue, Aug 18, 2020 at 6:18 PM Vaishnav M A <vaishnav@beagleboard.org> wrote:
-> >
-> > This patch adds new descriptors used in the manifest parsing inside
-> > the mikrobus driver, the device descriptor help to describe the
-> > devices on a mikroBUS port, mikrobus descriptor is used to set up
-> > the mikrobus port pinmux and GPIO states and property descriptor
-> > to pass named properties to device drivers through the Unified
-> > Properties API under linux/property.h
-> >
-> > The corresponding pull request for manifesto is updated
-> > at : https://github.com/projectara/manifesto/pull/2
-> >
-> > Signed-off-by: Vaishnav M A <vaishnav@beagleboard.org>
-> > ---
-> >  include/linux/greybus/greybus_manifest.h | 47 ++++++++++++++++++++++++
-> >  1 file changed, 47 insertions(+)
-> >
-> > diff --git a/include/linux/greybus/greybus_manifest.h b/include/linux/greybus/greybus_manifest.h
-> > index 6e62fe478712..821661ea7f01 100644
-> > --- a/include/linux/greybus/greybus_manifest.h
-> > +++ b/include/linux/greybus/greybus_manifest.h
-> > @@ -23,6 +23,9 @@ enum greybus_descriptor_type {
-> >         GREYBUS_TYPE_STRING             = 0x02,
-> >         GREYBUS_TYPE_BUNDLE             = 0x03,
-> >         GREYBUS_TYPE_CPORT              = 0x04,
-> > +       GREYBUS_TYPE_MIKROBUS           = 0x05,
->
-> The mikrobus descriptor is used to pass information about
-> the specific pinmux settings and the default GPIO states on
-> the mikrobus port to be set up for the add-on board to work
-> correctly, this descriptor has 12 u8 fields(corresponding  to the
-> 12 pins on the mikrobus port) which includes information
-> about the prior setup required on the mikroBUS port for the
-> device(s) on the add-on board to work correctly. The mikrobus
-> descriptor is a fixed-length descriptor and there will be only a
-> single instance of mikrobus descriptor per add-on board manifest.
->
-> > +       GREYBUS_TYPE_PROPERTY           = 0x06,
->
-> The property descriptors are used to pass named properties
-> to the device drivers through the Unified device property interface
-> under linux/property.h , so that device drivers using the
-> device_property_read_* call can get the named properties,
-> the mikrobus driver fetches the information from the manifest
-> binary and forms a corresponding `struct property_entry` which
-> will be attached to the `struct device`.
-> The property descriptor is a variable-length descriptor similar
-> to the string descriptor and there can be multiple instances of
-> property descriptor per add-on board manifest.
->
-> > +       GREYBUS_TYPE_DEVICE             = 0x07,
->
-> The device descriptor is used to describe a device on the
-> mikrobus port and has necessary fields from `struct i2c_board_info`
-> and `struct spi_board_info` to describe a device on these buses
-> in a mikrobus port, even though  SPI/I2C device info structs are used
-> this descriptor has enough information to describe other kinds of
-> devices relevant to mikrobus as well.(serdev/platform devices).
-> The device descriptor is a fixed-length descriptor and there can be
-> multiple instances of device descriptors in an add-on board manifest
-> in cases where the add-on board presents more than one device
-> to the host.
->
-> >  };
-> >
-> >  enum greybus_protocol {
-> > @@ -151,6 +154,47 @@ struct greybus_descriptor_cport {
-> >         __u8    protocol_id;    /* enum greybus_protocol */
-> >  } __packed;
-> >
-> > +/*
-> > + * A mikrobus descriptor is used to describe the details
-> > + * about the bus ocnfiguration for the add-on board
-> > + * connected to the mikrobus port.
-> > + */
-> > +struct greybus_descriptor_mikrobus {
-> > +       __u8 pin_state[12];
-> > +} __packed;
-> > +
->
-> These 12 u8 fields describe the state of the pins in the
-> mikrobus port(in clock wise order starting from the PWM
-> pin)
-> mikrobus v2 standard specification :
-> https://download.mikroe.com/documents/standards/mikrobus/mikrobus-standard-specification-v200.pdf
-> This struct is filled from the mikrobus-descriptor
-> in the manifest and can have one of the values
-> for each pin group:
-> MIKROBUS_STATE_INPUT = 0x01,
-> MIKROBUS_STATE_OUTPUT_HIGH = 0x02,
-> MIKROBUS_STATE_OUTPUT_LOW = 0x03,
-> MIKROBUS_STATE_PWM = 0x04,  ( applicable only to  PWM pin)
-> MIKROBUS_STATE_SPI = 0x05, ( applicable only to
-> the group of MOSI, MISO, SCK , CS pins on mikroBUS port)
-> MIKROBUS_STATE_I2C = 0x06, (applicable only to the SCL, SDA
-> pins on the mikrobus port)
-> MIKROBUS_STATE_UART = 0x07,(applicable only to the RX, TX
-> pins on the mikrobus port)
-> There are two purposes for adding this descriptor,
-> 1) for some add-on boards some of the pins might need to
-> be configured as GPIOs deviating from their reserved purposes
-> An example for this case is an SHT15 Click (https://www.mikroe.com/sht1x-click),
-> where the SCL and SDA Pins need to be configured as GPIOs
-> for the driver (drivers/hwmon/sht15.c) to work. The mikrobus
-> descriptor for this case would look like this :
-> [mikrobus-descriptor]
-> pwm-state = 4 (default, pwm)
-> int-state = 1 (default, input)
-> rx-state = 7 (default, uart)
-> tx-state = 7 (default, uart)
-> scl-state = 3 (note the SCL Pin configured as GPIO)
-> sda-state = 3 (note the SCL Pin configured as GPIO)
-> mosi-state = 5 (default, spi)
-> miso-state = 5 (default, spi)
-> sck-state = 5 (default, spi)
-> cs-state = 5 (default, spi)
-> rst-state = 2 (default, GPIO)
-> an-state = 1 (default, input)
-> 2) for some add-on boards the driver may not take care
-> of some additional signals like reset/wake-up/other thus
-> the mikrobus driver can set-up these GPIOs to a required
-> default state from the information from the manifest, a good
-> example for this is the  ENC28J60 click (https://www.mikroe.com/eth-click)
-> where the reset line(RST pin on the mikrobus port) needs to be
-> pulled high. The manifest example for this add-on board can
-> be found here :
-> https://github.com/vaishnav98/manifesto/blob/mikrobusv3/manifests/ETH-CLICK.mnfs
->
-> > +/*
-> > + * A property descriptor is used to pass named properties
-> > + * to device drivers through the unified device properties
-> > + * interface under linux/property.h
-> > + */
-> > +struct greybus_descriptor_property {
-> > +       __u8 length;
-> > +       __u8 id;
-> > +       __u8 propname_stringid;
-> > +       __u8 type;
-> > +       __u8 value[0];
-> > +} __packed;
-> > +
->
-> This descriptor is used to fill in `struct property_entry`
-> (linux/property.h), the propname_stringid
-> field is used to map to the corresponding string descriptor
-> which has the property name, the type field has the types
-> under dev_prop_type (linux/property.h) and there are
-> some new types which are used within the mikrobus
-> driver, these are the new types :
-> MIKROBUS_PROPERTY_TYPE_LINK = 0x01
-> MIKROBUS_PROPERTY_TYPE_GPIO = 0x02
->
-> The property-link type is used to attach an array of properties
-> to the corresponding device, for example, consider an SPI
-> EEPROM device which works with the AT25 driver(
-> drivers/misc/eeprom/at25.c), The device and property
-> descriptor parts of the manifest will look like this.
->
-> [device-descriptor 1]
-> driver-string-id = 3
-> prop-link = 1 (The ID of the property-descriptor which
-> contains the list of IDs of the actual properties to attach with
-> the device)
-> protocol = 0xb
-> reg = 0
-> mode = 0x3
-> max-speed-hz = 5000000
-> [string-descriptor 3]
-> string = at25 (driver string)
->
-> [property-descriptor 1]
-> name-string-id = 4
-> type = 0x01 (type is property-link)
-> value = <2 3 4>(attach properties with id 2,3,4 to the device)
-> [string-descriptor 4]
-> string = prop-link
->
-> [property-descriptor 2]
-> name-string-id = 5 (string id for the property name string)
-> type = 0x05 (U32, driver uses device_property_read_u32 call
-> to read the value)
-> value = <262144>
-> [string-descriptor 5]
-> string = size (property name string)
->
-> [property-descriptor 3]
-> name-string-id = 6
-> type = 0x05
-> value = <256>
-> [string-descriptor 6]
-> string = pagesize
->
-> [property-descriptor 4]
-> name-string-id = 7
-> type = 0x05
-> value = <24>
-> [string-descriptor 7]
-> string = address-width
->
-> The gpio-link type is very similar to property descriptor and is used to
-> pass an array of named gpios to the device driver through GPIO lookup tables,
-> consider an example for a SHT15 device (drivers/hwmon/sht15.c),
-> the device and the property(gpio) descriptors are as follows :
->
-> [device-descriptor 1]
-> driver-string-id = 3
-> protocol = 0xfe
-> reg = 0
-> gpio-link = 1 (The ID of the property-descriptor which
-> contains the list of IDs of the named gpio properties to attach with
-> the device)
->
-> [string-descriptor 3]
-> string = sht11 (device_id string)
->
-> [property-descriptor 1]
-> name-string-id = 4
-> type = 0x02 (gpio-link)
-> value = <2 3> (attach properties with id 2,3 as named gpios to the device)
-> [string-descriptor 4]
-> string = gpio-link
->
-> [property-descriptor 2]
-> name-string-id = 5
-> type = 0x03
-> value = <4>
-> [string-descriptor 5]
-> string = clk (name of the GPIO, the driver uses
-> devm_gpiod_get or similar calls to get the GPIO)
->
-> [property-descriptor 3]
-> name-string-id = 6
-> type = 0x03
-> value = <5>
-> [string-descriptor 6]
-> string = data
->
-> Note that the values here 4 and 5 for the GPIOs are
-> the offset numbers(clockwise starting from PWM pin)
-> within a mikrobus port, the mikrobus drivers translates this
-> offset information to the actual GPIO while creating the GPIO
-> lookup table, this ensures that the manifest doesn't have any
-> port-specific information and a single manifest can be used for
-> an add-on board over different platforms/sockets.
->
-> > +/*
-> > + * A device descriptor is used to describe the
-> > + * details required by a add-on board device
-> > + * driver.
-> > + */
-> > +struct greybus_descriptor_device {
-> > +       __u8 id;
-> > +       __u8 driver_stringid;
-> > +       __u8 protocol;
-> > +       __u8 reg;
-> > +       __le32 max_speed_hz;
-> > +       __u8 irq;
-> > +       __u8 irq_type;
-> > +       __u8 mode;
-> > +       __u8 prop_link;
-> > +       __u8 gpio_link;
-> > +       __u8 pad[3];
-> > +} __packed;
-> > +
->
-> The device descriptor is used to describe a device on the
-> mikrobus port and has necessary fields from `struct i2c_board_info`
-> and `struct spi_board_info`, of these fields, the irq field is similar to
-> the gpio descriptor value above in that the value under irq is also
-> the pin offset within the mikrobus port which will be translated to the
-> actual GPIO within the mikrobus driver and the irq-type takes types
-> defined under linux/interrupt.h . For a device with a
-> IRQF_TRIGGER_RISING interrupt on the INT pin on the mikrobus port
-> the fields will be :
-> irq = 1 (offset of INT pin)
-> irq_type = 1 ( IRQF_TRIGGER_RISING)
->
-> >  struct greybus_descriptor_header {
-> >         __le16  size;
-> >         __u8    type;           /* enum greybus_descriptor_type */
-> > @@ -164,6 +208,9 @@ struct greybus_descriptor {
-> >                 struct greybus_descriptor_interface     interface;
-> >                 struct greybus_descriptor_bundle        bundle;
-> >                 struct greybus_descriptor_cport         cport;
-> > +               struct greybus_descriptor_mikrobus      mikrobus;
-> > +               struct greybus_descriptor_property      property;
-> > +               struct greybus_descriptor_device        device;
-> >         };
-> >  } __packed;
-> >
-> > --
-> > 2.25.1
-> >
-> Thanks and Regards,
-> Vaishnav
+Thanks
