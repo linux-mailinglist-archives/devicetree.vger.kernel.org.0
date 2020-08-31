@@ -2,69 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2EBC257259
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 05:25:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5073C257274
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 05:51:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727855AbgHaDZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 23:25:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56762 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727043AbgHaDZK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 30 Aug 2020 23:25:10 -0400
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E36D4206A5;
-        Mon, 31 Aug 2020 03:25:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598844309;
-        bh=OTw00Oc3Wju4RQXg/5vC2M1kiJAGqeJnd4hSVyX2Nho=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rVLLTDyxwzW/PJVfK7yIzJrqtfSe/2PHz//izP4j8Y1/zK30FLylp1/r8uA1YD9EQ
-         O/Eo6rpof3wr8IQspo+5OD8HskGGJ+jFmTGDC2D7EL/pU3JUHqIWUqAfFfnhCYU3Y9
-         GIa7il8sA0rs8/VrFkDjwwIbiGp4mlzE94bl2Bvo=
-Date:   Mon, 31 Aug 2020 11:25:01 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>, Han Xu <han.xu@nxp.com>,
-        Frank Li <frank.li@nxp.com>, Fugang Duan <fugang.duan@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-pwm@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH v3 19/19] arm64: dts: imx8mq-zii-ultra: Add hog suffixes
- to GPIO hogs
-Message-ID: <20200831032501.GI4488@dragon>
-References: <20200825193536.7332-1-krzk@kernel.org>
- <20200825193536.7332-20-krzk@kernel.org>
+        id S1726584AbgHaDv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 23:51:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59300 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726573AbgHaDv2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 23:51:28 -0400
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 342CBC061573
+        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 20:51:26 -0700 (PDT)
+Received: by mail-pf1-x444.google.com with SMTP id b124so2128494pfg.13
+        for <devicetree@vger.kernel.org>; Sun, 30 Aug 2020 20:51:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=HAhFdDv2blwJh6v5iPIFizBa4Arz5FNOw9PDVuoe9JA=;
+        b=iCn3C2o0ifeo9xs6/7UZDB6culCB6Njawa/B88V/zNNNkqBZBSEMsBAhqduIAxrCRy
+         PzfUT31skoYiZtXs0Cv20luzKMhvTONoLwOSBpg0xM3xIKwRG3A7a1FTJpvm5wUDiUWs
+         NLBgUTuWYVo4i7hISnku9lD6GQaAoJfAHfHUZXiOAnFUYem09XnwsogKQzEuqSwQOg9M
+         OZMsfrMWXzuiY+RkfC7N53Nx2gZjn0Ery2mMRTi/IvgDlDHiMHbFZ2XaDbJNOrHSI5Tl
+         H0rU4Y6SQLuisc61uKSkKSeOAgqPggWASwdilrAOOnB6dG9lrM6ziq24aalsNFqBXUhS
+         Sglw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=HAhFdDv2blwJh6v5iPIFizBa4Arz5FNOw9PDVuoe9JA=;
+        b=bSHWmJgYOw3jb9ranNuB6JBouzs+X1SM+KLz9XBls+qH8e7BuB4hXUCvP3McgeAmUR
+         Md4pRwN8pN+qgHTNTEFJFAlqDUHsOLOCCd9iVQrsHFaORamoP9Qh7VBJWVLNqhjlVCuM
+         jjr9W9JJLWuym8Z9OR0b7lTcvNeR/gYOSOQCoO6edqm5HDmRHHe+7Dzt32pTgAUV78VQ
+         89gN6C3AKj5qbdHIkzvCnU4xo8sgnPgdMCS6oU/K8n1iih2HrFjslmxPVxrQsEN/2sln
+         I6d/W1yWT2k4Ba9Vh+zFLr/cn8yjC0DKYbrqn2o8hPKzqUBlHCvdX6/6Cwr89L2sQ8p6
+         ZVrQ==
+X-Gm-Message-State: AOAM531RwZc5WFHbrFQa7wUi6zMcTLQOHfEKvEL3610iTZpv4c5eGa1n
+        z/mz4cVMb2uVVO0whHUIBi4=
+X-Google-Smtp-Source: ABdhPJwqSh667rGqzDHoGl0YwfHmYeSWgcB2uiCUMck4y+BTKiZ1vCob8oav9fGUFI+Lm1P+krM5GQ==
+X-Received: by 2002:a63:2d83:: with SMTP id t125mr6735290pgt.441.1598845881768;
+        Sun, 30 Aug 2020 20:51:21 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id ep4sm1639099pjb.39.2020.08.30.20.51.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 30 Aug 2020 20:51:21 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        Adrian Schmutzler <freifunk@adrianschmutzler.de>,
+        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: NSP: replace status value "ok" by "okay"
+Date:   Sun, 30 Aug 2020 20:51:19 -0700
+Message-Id: <20200831035119.1331770-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200830195441.798-1-freifunk@adrianschmutzler.de>
+References: <20200830195441.798-1-freifunk@adrianschmutzler.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200825193536.7332-20-krzk@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 25, 2020 at 09:35:36PM +0200, Krzysztof Kozlowski wrote:
-> According to device tree specification, device node names should be
-> somewhat generic and reflecting the function of the device so add the
-> "hog" suffixes to all GPIO hog nodes.
+On Sun, 30 Aug 2020 21:54:41 +0200, Adrian Schmutzler <freifunk@adrianschmutzler.de> wrote:
+> While the DT parser recognizes "ok" as a valid value for the
+> "status" property, it is actually mentioned nowhere. Use the
+> proper value "okay" instead, as done in the majority of files
+> already.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
+> ---
 
-Applied, thanks.
+Applied to devicetree/next, thanks!
+--
+Florian
