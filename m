@@ -2,95 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F25B258055
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 20:08:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD9D2258132
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 20:37:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726929AbgHaSIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 14:08:51 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:56404 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729472AbgHaSIV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 14:08:21 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07VI8HAF094391;
-        Mon, 31 Aug 2020 13:08:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1598897297;
-        bh=XKwif/t4YcOKrMQqOHdEhp8yvpBOEJdx3YvaGfE99xI=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=I8O484J1kYBvwxzSN14to7YxL9JmLOopEvGCFZirNb4YgUuIL6opMtnJaAbjYLt7M
-         POVETDQCQeUjXcxuKUKwdTKPYDO98uTRwnjjHSt3dsPdkjvAh5LeUywtBEEWBddNiJ
-         zOyzsJFZBSbMeiz3TkYo6DYw8UxBud/pIk0nWCe0=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07VI8HxX053903
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 31 Aug 2020 13:08:17 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 31
- Aug 2020 13:08:16 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 31 Aug 2020 13:08:16 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07VI8G42085672;
-        Mon, 31 Aug 2020 13:08:16 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Tero Kristo <t-kristo@ti.com>, Suman Anna <s-anna@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 0/8] Add C66x & C71x DSP nodes on J721E SoCs
-Date:   Mon, 31 Aug 2020 13:08:15 -0500
-Message-ID: <159887493854.19735.39662308799452025.b4-ty@ti.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200825172145.13186-1-s-anna@ti.com>
-References: <20200825172145.13186-1-s-anna@ti.com>
+        id S1729289AbgHaSh3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 14:37:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56402 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729272AbgHaSh0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 14:37:26 -0400
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBBB2C061573
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 11:37:25 -0700 (PDT)
+Received: by mail-pf1-x444.google.com with SMTP id m8so1082039pfh.3
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 11:37:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=SveiT/5kj8J/XpkQbrlj1c/DpZ1YRM/MbxFxZwhMGhA=;
+        b=DcOqbErvi8FYyI7mmMYwJcPUkX8ek3DMRXZ+XzKVPNnbw9aFKDy6yZxSCgVTc1Q2RN
+         JCYWngxEWp27yYY3GDVMwgbdbBhy+IsBo8oaBLBFXOnhctYy/7l80IOFQTmgDwjzZpxk
+         P52lPmLJl58ID+urry8EsuKNaIok/Ka9fAGnM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=SveiT/5kj8J/XpkQbrlj1c/DpZ1YRM/MbxFxZwhMGhA=;
+        b=LEYwJ9Gr5p6Vz1hqA0doE1aviFQMgYavOyExaOvNjOgXNrO7DMTPG2n8IEEYcaviHm
+         VhfQaSU7GOPkKqQ1w6gShDDLIctvHMkzFNQ6M/hdrkEzqgjaYoAL8iaK6HaJbN5iq9Ul
+         vjYVm/SDsy+bzO92hYARn1YD4TF8TRu8j411Tds3ebN2e/6wDC9iPCDv0Ivx0E6H/eh6
+         CMCTpThAUM9uW7nZjolFQozbWPrZlmRBDn3rzKRYH9gJNL6X8u/WLs4F08xNdnfyXQoD
+         cbzZrYbCC5Yszxsar1HoXnX5UWWb29bkzXP5dmJbhYI/ImPTchUE8ocFFmoRpGNW9Bss
+         e0Qw==
+X-Gm-Message-State: AOAM53338/qhKr3SUYj38H/ocUV2OG+N3wCCRBRRkd6BqwunzTiiRjDn
+        3O+PjoMvQj14GwKerbfKHb9wTg==
+X-Google-Smtp-Source: ABdhPJwiHXMI3GRZtXeIFfp4uk2QHY5P8pnjJS+ma3vUvGUCC0E7YRgZIy4k5yALgMRKaj1QxXEChQ==
+X-Received: by 2002:a65:4208:: with SMTP id c8mr2220936pgq.266.1598899044897;
+        Mon, 31 Aug 2020 11:37:24 -0700 (PDT)
+Received: from [10.230.30.107] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id u14sm8380290pfm.103.2020.08.31.11.37.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Aug 2020 11:37:24 -0700 (PDT)
+Subject: Re: [PATCH 0/5] qspi binding and DTS fixes
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Kamal Dasu <kdasu.kdev@gmail.com>,
+        "maintainer:BROADCOM SPI DRIVER" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Mark Brown <broonie@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Yendapally Reddy Dhananjaya Reddy 
+        <yendapally.reddy@broadcom.com>,
+        "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20200827181842.1000451-1-f.fainelli@gmail.com>
+From:   Florian Fainelli <florian.fainelli@broadcom.com>
+Message-ID: <9c5a7728-a8fa-a6a8-b9fb-c66afebc78f1@broadcom.com>
+Date:   Mon, 31 Aug 2020 11:37:21 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.1.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20200827181842.1000451-1-f.fainelli@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Aug 2020 12:21:37 -0500, Suman Anna wrote:
-> The following is a revised version of the series [1] that adds the base
-> dt nodes for the 2 C66x and 1 C71x DSP remote processors present in MAIN
-> domain on J721E SoCs, and the required nodes to boot these successfully
-> on J721E EVM board. It addresses the cleanup comments from you.
+
+
+On 8/27/2020 11:18 AM, Florian Fainelli wrote:
+> Hi all,
 > 
-> The patches are based on top of the pending ABI 3.0 pull-request [2] and
-> I have used your temporary staging branch [3] as the baseline.
+> This patch series fixes incorrectly defined compatible strings for the
+> Broadcom QSPI controller which resulted in the strings not being
+> ordered from most to least compatible.
 > 
-> [...]
+> We will need to apply some changes to the spi-bcm-qspi.c driver in
+> the future to assume no revision register exist, and these patches
+> are a preliminary step towards that goal.
 
-Hi Suman Anna,
+Rob, can I get your tag for this patch series so it can be sent out? Thanks!
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+> 
+> Florian Fainelli (5):
+>    dt-bindings: spi: Fix spi-bcm-qspi compatible ordering
+>    ARM: dts: bcm: HR2: Fixed QSPI compatible string
+>    ARM: dts: NSP: Fixed QSPI compatible string
+>    ARM: dts: BCM5301X: Fixed QSPI compatible string
+>    arm64: dts: ns2: Fixed QSPI compatible string
+> 
+>   .../bindings/spi/brcm,spi-bcm-qspi.txt           | 16 ++++++++--------
+>   arch/arm/boot/dts/bcm-hr2.dtsi                   |  2 +-
+>   arch/arm/boot/dts/bcm-nsp.dtsi                   |  2 +-
+>   arch/arm/boot/dts/bcm5301x.dtsi                  |  2 +-
+>   arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi |  2 +-
+>   5 files changed, 12 insertions(+), 12 deletions(-)
+> 
 
-[1/8] arm64: dts: ti: k3-j721e-som-p0: Move mailbox nodes from board dts file
-      commit: 74b5742b59b19f4ae9c53ae719161928d9768879
-[2/8] arm64: dts: ti: k3-j721e-main: Add C66x DSP nodes
-      commit: eb9a2a637ae5b23d7881f28fb83d11c88a371229
-[3/8] arm64: dts: ti: k3-j721e-som-p0: Add mailboxes to C66x DSPs
-      commit: a55babbf00d71f285bbd52433a859862cc3223fb
-[4/8] arm64: dts: ti: k3-j721e-som-p0: Add DDR carveout memory nodes for C66 DSPs
-      commit: e379ba840a7e2c8fb275722226154339077b8f37
-[5/8] arm64: dts: ti: k3-j721e-main: Add C71x DSP node
-      commit: 804a4cc7fe3cc7207b25c63f21ea82f1b77d19ae
-[6/8] arm64: dts: ti: k3-j721e-som-p0: Add mailboxes to C71x DSP
-      commit: cf53928fa0d9120d9c5336504e1c836e453f446a
-[7/8] arm64: dts: ti: k3-j721e-som-p0: Add DDR carveout memory nodes for C71x DSP
-      commit: 1939d37f94937cf5082ee2612b76106cb3d90978
-[8/8] arm64: dts: ti: k3-j721e-som-p0: Reserve memory for IPC between RTOS cores
-      commit: 67cfbb62132e4210b4c4785b0ca1fbe4cafb7c4d
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+Florian
