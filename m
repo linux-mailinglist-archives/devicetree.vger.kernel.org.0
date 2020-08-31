@@ -2,149 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DF2B2571F9
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 05:00:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03634257225
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 05:22:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726984AbgHaDAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Aug 2020 23:00:08 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:56157 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726692AbgHaDAF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Aug 2020 23:00:05 -0400
-X-UUID: 83132b0db23946a2a501e9fa94dcfc33-20200831
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=sxA4q5kZv1gPdhXKXWhBUtYma0O+/4Q3ZgXNHmoU+Js=;
-        b=LUoYkR/WmFRSKppCxbv+gLdg84HG68hd7KB0bX/USBtwBP4y5+3M8tj7OUsFNaMdnUfuf672LOkhWUfXQZ+zRt+epT2Pr0h7p5lFwVkprMOf7Cff6jXbAHgIf657s6LzRewB5fFXEiediSKgv05UeD2waUnRPwoRss2PlNlh+Ys=;
-X-UUID: 83132b0db23946a2a501e9fa94dcfc33-20200831
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1559049207; Mon, 31 Aug 2020 10:59:53 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS32N1.mediatek.inc
- (172.27.4.71) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 31 Aug
- 2020 10:59:51 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 31 Aug 2020 10:59:50 +0800
-Message-ID: <1598842698.11403.2.camel@mhfsdcap03>
-Subject: Re: [PATCH v4 2/2] usb typec: mt6360: Add MT6360 Type-C DT binding
- documentation
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     ChiYuan Huang <u0084500@gmail.com>
-CC:     Rob Herring <robh@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>, <matthias.bgg@gmail.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        cy_huang <cy_huang@richtek.com>, <gene_chen@richtek.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Date:   Mon, 31 Aug 2020 10:58:18 +0800
-In-Reply-To: <CADiBU39P7jeSOV2_GcXh6A=b8SCViURCsS8SZFmy+oY2hS74tg@mail.gmail.com>
-References: <1598610636-4939-1-git-send-email-u0084500@gmail.com>
-         <1598610636-4939-2-git-send-email-u0084500@gmail.com>
-         <20200828220520.GA3482472@bogus>
-         <CADiBU3-pd7nvtf2_1ssYVLQc4HOHX6PUyyx6GiJ_gH-4DaGmog@mail.gmail.com>
-         <CADiBU39P7jeSOV2_GcXh6A=b8SCViURCsS8SZFmy+oY2hS74tg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1727972AbgHaDWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Aug 2020 23:22:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54098 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726687AbgHaDWb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 30 Aug 2020 23:22:31 -0400
+Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D0F62206A5;
+        Mon, 31 Aug 2020 03:22:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598844150;
+        bh=41IsEe2nqK+mBIBJZKAilYQUgzH6n8IzJt8WNyWroZM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mYyIc44uwfLmY/eyFTuvLvDK+TATNyuPbhEpAq4DgcS7R6NqZ2HdflWx7EtL1FEGr
+         MADFZF6/yPWRvqeLE0b71ap1LBcI9DHZsjFmY5m/vIL5Tb2AAJ/9twrbWoPtAkZ+J5
+         Ucv05I7a8+/mpLMAbFIkE6DQ7o77w466IRECylx4=
+Date:   Mon, 31 Aug 2020 11:22:22 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, Han Xu <han.xu@nxp.com>,
+        Frank Li <frank.li@nxp.com>, Fugang Duan <fugang.duan@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-pwm@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v3 14/19] dt-bindings: arm: fsl: Fix Toradex Colibri i.MX
+ 8 binding
+Message-ID: <20200831032221.GF4488@dragon>
+References: <20200825193536.7332-1-krzk@kernel.org>
+ <20200825193536.7332-15-krzk@kernel.org>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 2140C069E5EBD92A1DA8B8FF4EC85146537652C50164FEE7A5993EA1D23FCBB42000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200825193536.7332-15-krzk@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gU2F0LCAyMDIwLTA4LTI5IGF0IDEwOjQ5ICswODAwLCBDaGlZdWFuIEh1YW5nIHdyb3RlOg0K
-PiBDaGlZdWFuIEh1YW5nIDx1MDA4NDUwMEBnbWFpbC5jb20+IOaWvCAyMDIw5bm0OOaciDI55pel
-IOmAseWFrSDkuIrljYg4OjMy5a+r6YGT77yaDQo+ID4NCj4gPiBSb2IgSGVycmluZyA8cm9iaEBr
-ZXJuZWwub3JnPiDmlrwgMjAyMOW5tDjmnIgyOeaXpSDpgLHlha0g5LiK5Y2INjowNeWvq+mBk++8
-mg0KPiA+ID4NCj4gPiA+IE9uIEZyaSwgQXVnIDI4LCAyMDIwIGF0IDA2OjMwOjM2UE0gKzA4MDAs
-IGN5X2h1YW5nIHdyb3RlOg0KPiA+ID4gPiBGcm9tOiBDaGlZdWFuIEh1YW5nIDxjeV9odWFuZ0By
-aWNodGVrLmNvbT4NCj4gPiA+ID4NCj4gPiA+ID4gQWRkIGEgZGV2aWNldHJlZSBiaW5kaW5nIGRv
-Y3VtZW50YXRpb24gZm9yIHRoZSBNVDYzNjAgVHlwZS1DIGRyaXZlci4NCj4gPiA+ID4NCj4gPiA+
-ID4gdXNiIHR5cGVjOiBtdDYzNjA6IFJlbmFtZSBEVCBiaW5kaW5nIGRvdW1lbnQgZnJvbSBtdDYz
-NjAgdG8gbXQ2MzZ4DQo+ID4gPiA+DQo+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IENoaVl1YW4gSHVh
-bmcgPGN5X2h1YW5nQHJpY2h0ZWsuY29tPg0KPiA+ID4gPiAtLS0NCj4gPiA+ID4gIC4uLi9iaW5k
-aW5ncy91c2IvbWVkaWF0ZWssbXQ2MzYwLXRjcGMueWFtbCAgICAgICAgIHwgNzMgKysrKysrKysr
-KysrKysrKysrKysrKw0KPiA+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDczIGluc2VydGlvbnMoKykN
-Cj4gPiA+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvdXNiL21lZGlhdGVrLG10NjM2MC10Y3BjLnlhbWwNCj4gPiA+ID4NCj4gPiA+ID4gZGlm
-ZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvbWVkaWF0ZWss
-bXQ2MzYwLXRjcGMueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2Iv
-bWVkaWF0ZWssbXQ2MzYwLXRjcGMueWFtbA0KPiA+ID4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0K
-PiA+ID4gPiBpbmRleCAwMDAwMDAwMC4uOWU4YWIwZA0KPiA+ID4gPiAtLS0gL2Rldi9udWxsDQo+
-ID4gPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvbWVkaWF0
-ZWssbXQ2MzYwLXRjcGMueWFtbA0KPiA+ID4gPiBAQCAtMCwwICsxLDczIEBADQo+ID4gPiA+ICsj
-IFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMC1vbmx5IE9SIEJTRC0yLUNsYXVzZSkN
-Cj4gPiA+ID4gKyVZQU1MIDEuMg0KPiA+ID4gPiArLS0tDQo+ID4gPiA+ICskaWQ6ICJodHRwOi8v
-ZGV2aWNldHJlZS5vcmcvc2NoZW1hcy91c2IvbWVkaWF0ZWssbXQ2MzYwLXRjcGMueWFtbCMiDQo+
-ID4gPiA+ICskc2NoZW1hOiAiaHR0cDovL2RldmljZXRyZWUub3JnL21ldGEtc2NoZW1hcy9jb3Jl
-LnlhbWwjIg0KPiA+ID4gPiArDQo+ID4gPiA+ICt0aXRsZTogTWVkaWF0ZWsgTVQ2MzYwIFR5cGUt
-QyBQb3J0IFN3aXRjaCBhbmQgUG93ZXIgRGVsaXZlcnkgY29udHJvbGxlciBEVCBiaW5kaW5ncw0K
-PiA+ID4gPiArDQo+ID4gPiA+ICttYWludGFpbmVyczoNCj4gPiA+ID4gKyAgLSBDaGlZdWFuIEh1
-YW5nIDxjeV9odWFuZ0ByaWNodGVrLmNvbT4NCj4gPiA+ID4gKw0KPiA+ID4gPiArZGVzY3JpcHRp
-b246IHwNCj4gPiA+ID4gKyAgTWVkaWF0ZWsgTVQ2MzYwIGlzIGEgbXVsdGktZnVuY3Rpb25hbCBk
-ZXZpY2UuIEl0IGludGVncmF0ZXMgY2hhcmdlciwgQURDLCBmbGFzaCwgUkdCIGluZGljYXRvcnMs
-DQo+ID4gPiA+ICsgIHJlZ3VsYXRvcnMgKEJVQ0tzL0xET3MpLCBhbmQgVHlwZUMgUG9ydCBTd2l0
-Y2ggd2l0aCBQb3dlciBEZWxpdmVyeSBjb250cm9sbGVyLg0KPiA+ID4gPiArICBUaGlzIGRvY3Vt
-ZW50IG9ubHkgZGVzY3JpYmVzIE1UNjM2MCBUeXBlLUMgUG9ydCBTd2l0Y2ggYW5kIFBvd2VyIERl
-bGl2ZXJ5IGNvbnRyb2xsZXIuDQo+ID4gPiA+ICsNCj4gPiA+ID4gK3Byb3BlcnRpZXM6DQo+ID4g
-PiA+ICsgIGNvbXBhdGlibGU6DQo+ID4gPiA+ICsgICAgZW51bToNCj4gPiA+ID4gKyAgICAgIC0g
-bWVkaWF0ZWssbXQ2MzYwLXRjcGMNCj4gPiA+ID4gKw0KPiA+ID4gPiArICBpbnRlcnJ1cHRzLWV4
-dGVuZGVkOg0KPiA+ID4NCj4gPiA+IFVzZSAnaW50ZXJydXB0cycuIFRoZSB0b29saW5nIHdpbGwg
-YXV0b21hdGljYWxseSBzdXBwb3J0DQo+ID4gPiAnaW50ZXJydXB0cy1leHRlbmRlZCcuDQo+ID4g
-T2theS4NCj4gPiA+DQo+ID4gPiA+ICsgICAgbWF4SXRlbXM6IDENCj4gPiA+ID4gKw0KPiA+ID4g
-PiArICBpbnRlcnJ1cHQtbmFtZXM6DQo+ID4gPiA+ICsgICAgaXRlbXM6DQo+ID4gPiA+ICsgICAg
-ICAtIGNvbnN0OiBQRF9JUlFCDQo+ID4gPiA+ICsNCj4gPiA+ID4gK3BhdHRlcm5Qcm9wZXJ0aWVz
-Og0KPiA+ID4gPiArICAiY29ubmVjdG9yIjoNCj4gPiA+ID4gKyAgICB0eXBlOiBvYmplY3QNCj4g
-PiA+ID4gKyAgICAkcmVmOiAuLi9jb25uZWN0b3IvdXNiLWNvbm5lY3Rvci55YW1sIw0KPiA+ID4g
-PiArICAgIGRlc2NyaXB0aW9uOg0KPiA+ID4gPiArICAgICAgUHJvcGVydGllcyBmb3IgdXNiIGMg
-Y29ubmVjdG9yLg0KPiA+ID4gPiArDQo+ID4gPiA+ICthZGRpdGlvbmFsUHJvcGVydGllczogZmFs
-c2UNCj4gPiA+ID4gKw0KPiA+ID4gPiArcmVxdWlyZWQ6DQo+ID4gPiA+ICsgIC0gY29tcGF0aWJs
-ZQ0KPiA+ID4gPiArICAtIGludGVycnVwdHMtZXh0ZW5kZWQNCj4gPiA+ID4gKyAgLSBpbnRlcnJ1
-cHQtbmFtZXMNCj4gPiA+ID4gKw0KPiA+ID4gPiArZXhhbXBsZXM6DQo+ID4gPiA+ICsgIC0gfA0K
-PiA+ID4gPiArICAgICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9pbnRlcnJ1cHQtY29udHJvbGxlci9p
-cnEuaD4NCj4gPiA+ID4gKyAgICAjaW5jbHVkZSA8ZHQtYmluZGluZ3MvdXNiL3BkLmg+DQo+ID4g
-PiA+ICsgICAgaTJjMCB7DQo+ID4gPiA+ICsgICAgICAgICNhZGRyZXNzLWNlbGxzID0gPDE+Ow0K
-PiA+ID4gPiArICAgICAgICAjc2l6ZS1jZWxscyA9IDwwPjsNCj4gPiA+ID4gKw0KPiA+ID4gPiAr
-ICAgICAgICBtdDYzNjBAMzQgew0KPiA+ID4gPiArICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJt
-ZWRpYXRlayxtdDYzNjAiOw0KPiA+ID4gPiArICAgICAgICAgICAgcmVnID0gPDB4MzQ+Ow0KPiA+
-ID4gPiArDQo+ID4gPiA+ICsgICAgICAgICAgICB0Y3BjIHsNCj4gPiA+ID4gKyAgICAgICAgICAg
-ICAgICBjb21wYXRpYmxlID0gIm1lZGlhdGVrLG10NjM2MC10Y3BjIjsNCj4gPiA+ID4gKyAgICAg
-ICAgICAgICAgICBpbnRlcnJ1cHRzLWV4dGVuZGVkID0gPCZncGlvMjYgMyBJUlFfVFlQRV9MRVZF
-TF9MT1c+Ow0KPiA+ID4gPiArICAgICAgICAgICAgICAgIGludGVycnVwdC1uYW1lcyA9ICJQRF9J
-UlFCIjsNCj4gPiA+ID4gKw0KPiA+ID4gPiArICAgICAgICAgICAgICAgIGNvbm5lY3RvciB7DQo+
-ID4gPg0KPiA+ID4gV2hlcmUncyB0aGUgZGF0YSBjb25uZWN0aW9ucz8gVGhlIGFzc3VtcHRpb24g
-b2YgdGhlIGJpbmRpbmcgaXMgdGhlIFVTQg0KPiA+ID4gKDIgYW5kIDMpIGNvbm5lY3Rpb25zIGNv
-bWUgZnJvbSB0aGUgcGFyZW50IGlmIHRoZXJlJ3Mgbm8gZ3JhcGggdG8gdGhlDQo+ID4gPiBVU0Ig
-Y29udHJvbGxlcihzKS4NCj4gPiBNVDYzNjAgaXMgb25seSBhIHN1YnBtaWMuIFR5cGVDIHBhcnQg
-b25seSBoYW5kbGUgdGhlIENDIGxvZ2ljIHRvIHN1cHBvcnQgVVNCUEQuDQo+ID4gRm9yIHRoZSB1
-c2IgY29ubmVjdGlvbiBsaWtlIGFzIHVzYmhzL3VzYnNzLCAgaXQgbmVlZCB0byBiZSBoYW5kbGVk
-DQo+ID4gYnkvY29ubmVjdCB0byBhcHBsaWNhdGlvbiBwcm9jZXNzb3Igc2lkZS4NCj4gPiBMSWtl
-IGFzIGNvbm5lY3Rvci91c2ItY29ubmVjdG9yLnlhbWwgZGVjcmliZWQsIGl0ICBzcGVjaWZ5IHRo
-ZSBwb3J0DQo+ID4gcHJvcGVydHkgdG8gYmluZCBVU0IgSFMvU1MuDQo+ID4NCj4gRG8gaSBuZWVk
-IHRvIGFkZCB0aGUgcG9ydHMgaW50byB0aGUgY29ubmVjdG9yIG5vZGUgZm9yIGV4YW1wbGU/DQo+
-IExpa2UgYXMgaHMvc3MvYXV4LCB0byBtYWtlIHRoZSB1c2VyIGtub3cgdG8gdXNlIDYzNjAncyB0
-Y3BjPw0KPiANCj4gSSBjaGVjayB0aGUgIHN0eWxlIGluIGNvbm5lY3Rvci91c2ItY29ubmVjdC55
-YW1sDQo+IERvIEkgYWxzbyBuZWVkIHRvIHJlcGxhY2UgdHdvIHNwYWNlIGluc3RlYWQgb2Ygb25l
-IHRhYiBpbiB0aGUgYmluZGluZyBleGFtcGxlPw0KDQpzZWUgd3JpdGluZy1zY2hlbWEucnN0IGFi
-b3V0IGV4YW1wbGVzOg0KDQoiTm90ZTogWUFNTCBkb2Vzbid0IGFsbG93IGxlYWRpbmcgdGFicywg
-c28gc3BhY2VzIG11c3QgYmUgdXNlZCBpbnN0ZWFkLiINCj4gDQo+ID4gPg0KPiA+ID4gPiArICAg
-ICAgICAgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJ1c2ItYy1jb25uZWN0b3IiOw0KPiA+
-ID4gPiArICAgICAgICAgICAgICAgICAgICAgICAgbGFiZWwgPSAiVVNCLUMiOw0KPiA+ID4gPiAr
-ICAgICAgICAgICAgICAgICAgICAgICAgZGF0YS1yb2xlID0gImR1YWwiOw0KPiA+ID4gPiArICAg
-ICAgICAgICAgICAgICAgICAgICAgcG93ZXItcm9sZSA9ICJkdWFsIjsNCj4gPiA+ID4gKyAgICAg
-ICAgICAgICAgICAgICAgICAgIHRyeS1wb3dlci1yb2xlID0gInNpbmsiOw0KPiA+ID4gPiArICAg
-ICAgICAgICAgICAgICAgICAgICAgc291cmNlLXBkb3MgPSA8UERPX0ZJWEVEKDUwMDAsIDEwMDAs
-IFBET19GSVhFRF9EVUFMX1JPTEUgfCBQRE9fRklYRURfREFUQV9TV0FQKT47DQo+ID4gPiA+ICsg
-ICAgICAgICAgICAgICAgICAgICAgICBzaW5rLXBkb3MgPSA8UERPX0ZJWEVEKDUwMDAsIDIwMDAs
-IFBET19GSVhFRF9EVUFMX1JPTEUgfCBQRE9fRklYRURfREFUQV9TV0FQKT47DQo+ID4gPiA+ICsg
-ICAgICAgICAgICAgICAgICAgICAgICBvcC1zaW5rLW1pY3Jvd2F0dCA9IDwxMDAwMDAwMD47DQo+
-ID4gPiA+ICsgICAgICAgICAgICAgICAgfTsNCj4gPiA+ID4gKyAgICAgICAgICAgIH07DQo+ID4g
-PiA+ICsgICAgICAgIH07DQo+ID4gPiA+ICsgICAgfTsNCj4gPiA+ID4gKy4uLg0KPiA+ID4gPiAt
-LQ0KPiA+ID4gPiAyLjcuNA0KPiA+ID4gPg0KDQo=
+On Tue, Aug 25, 2020 at 09:35:31PM +0200, Krzysztof Kozlowski wrote:
+> The Toradex Colibri i.MX 8 Evaluation board has two Toradex compatibles
+> so it needs separate entry.  This fixes dtbs_check warning:
+> 
+>   arch/arm64/boot/dts/freescale/imx8qxp-colibri-eval-v3.dt.yaml: /:
+>     compatible: ['toradex,colibri-imx8x-eval-v3', 'toradex,colibri-imx8x', 'fsl,imx8qxp'] is not valid under any of the given schemas (Possible causes of the failure):
+>     arch/arm64/boot/dts/freescale/imx8qxp-colibri-eval-v3.dt.yaml: /: compatible: ['toradex,colibri-imx8x-eval-v3', 'toradex,colibri-imx8x', 'fsl,imx8qxp'] is too long
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
+Applied, thanks.
