@@ -2,155 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EAE3E257677
-	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 11:27:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43B8925767B
+	for <lists+devicetree@lfdr.de>; Mon, 31 Aug 2020 11:27:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726121AbgHaJ07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 05:26:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54812 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726112AbgHaJ05 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 05:26:57 -0400
-Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E8D4C061575
-        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 02:26:57 -0700 (PDT)
-Received: by mail-pj1-x1042.google.com with SMTP id o16so1446888pjr.2
-        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 02:26:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=cE6tbCI2FK1spDu2EWGHl52dUoomgzZk3UG4ySpVivk=;
-        b=GgnV7T2zwkVAz2Ck+rOkM0vrXa0VA5BB7eyoHuXsIJ9gtCMP0LsEc0J9ZJR2WNMqRd
-         VvwPJu3iU7wa0IFHaQsgwj2RjanOo/8qWnALRAnUhzLOJadHxMlPDEEQIi4BD2fzO30N
-         dhDfm2lZgMU0/QPsqMRJkjKtU6GGU6csI7W5ebXGDaOz/DK/F5V26NKS9FW6SNvpdxVZ
-         +eHR+mgRlpEU5eDJv3zHozBrz7YV8F5J0Uzt7jFCz/YScys08QI/WJ8Ob+8b1vVHejAP
-         Ygjj+q934ElRMl8dutFwwUB+0rbpbqTACM6MKUVj/lpcfRdzXDHxl2ZAuFT+Uk6a3GHS
-         Y9cQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=cE6tbCI2FK1spDu2EWGHl52dUoomgzZk3UG4ySpVivk=;
-        b=qiQ+9WnvAa6wAEZscumZpXUiBKWZfN34rviQzo1hKHWpZbP2PJJTmTVm0XFImWtQqU
-         wIrqHAKaaUZ+RSfy88K32M0OlgPxO2VwrsAMfGlFNmfkzSthWfULzCmzdyMMe6SLdG4O
-         CPbeFsCwf6Y49EdC6hk6FmfNhKmIG9GZRe7hqPlDs7rjL9s+Ku+yRrUYToW68qNCQcya
-         iJjv1+B2CKAEx6L97YbxYSX5g88ai/SNHhJfWAeSdv+RRx92e7qe4Ch+XR6oPLxhcttd
-         WtO8Hw5qpzU+D4ExWuy1rEe+X6NsMDzDHkk1T6opr7gW/ptpkqhlKVRohEZlwrbXv+vL
-         Goag==
-X-Gm-Message-State: AOAM532F7lGa8yOBdbr9npeA2NV+xcdT3DBg1Ne0VWGUnJWvACuEIYce
-        sfc46LAuBkLo859Jhd72nb3Z
-X-Google-Smtp-Source: ABdhPJyukiMgta+UgmTqi9LwaARd2wmCD0A9V+10E/aJgrh4r5nu3wI16YpE31+xthJA7ak5I3A5mQ==
-X-Received: by 2002:a17:902:a60e:: with SMTP id u14mr393643plq.179.1598866016646;
-        Mon, 31 Aug 2020 02:26:56 -0700 (PDT)
-Received: from mani ([2409:4072:70f:fdfa:1d6f:524d:c4d3:917e])
-        by smtp.gmail.com with ESMTPSA id 128sm7234595pfy.132.2020.08.31.02.26.52
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 31 Aug 2020 02:26:56 -0700 (PDT)
-Date:   Mon, 31 Aug 2020 14:56:48 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-Cc:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Peter Korsgaard <peter@korsgaard.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org
-Subject: Re: [PATCH v2 4/4] arm: dts: owl-s500: Add RoseapplePi
-Message-ID: <20200831092648.GD4154@mani>
-References: <cover.1598621459.git.cristian.ciocaltea@gmail.com>
- <5a6fc55341b346439ba32b5a3e14087edbaa6226.1598621459.git.cristian.ciocaltea@gmail.com>
+        id S1726255AbgHaJ1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 05:27:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60076 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725964AbgHaJ1j (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 Aug 2020 05:27:39 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E17E42073A;
+        Mon, 31 Aug 2020 09:27:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598866059;
+        bh=DrHloDABVgOOM+XRYJ0A+dG8Nq8q3jEeLOViCmEba4E=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=GFv0wLhg+Ji+EwB14dxJs3wxpxWs9OKGcAAxx5CdUCWXp0AfxeoqtPvm6ef9aZFda
+         r/Xsy86vEda6tAmFqBo2w/uel7m3Ru0tEAmofvst5C3ur5KQu76ILp9GDGSg6k/bJu
+         IO8iQjjqiNjhBip7SUav8DmJaiN8h2hvHOYN7n/o=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.92)
+        (envelope-from <maz@kernel.org>)
+        id 1kCg6D-007yrR-BW; Mon, 31 Aug 2020 10:27:37 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5a6fc55341b346439ba32b5a3e14087edbaa6226.1598621459.git.cristian.ciocaltea@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 31 Aug 2020 10:27:37 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     Samuel Dionne-Riel <samuel@dionne-riel.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: Boot failure on gru-scarlet-inx with 5.9-rc2
+In-Reply-To: <20200831031838.2d6d76d9@DUFFMAN>
+References: <20200829164920.7d28e01a@DUFFMAN>
+ <65d88bdd0888a69849327501a2aad186@kernel.org>
+ <20200831031838.2d6d76d9@DUFFMAN>
+User-Agent: Roundcube Webmail/1.4.8
+Message-ID: <90731ebb54fe03003dce03bc7ec4872e@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: samuel@dionne-riel.com, robh@kernel.org, devicetree@vger.kernel.org, frowand.list@gmail.com, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 0828, Cristian Ciocaltea wrote:
-> Add a Device Tree for the RoseapplePi SBC.
+On 2020-08-31 08:18, Samuel Dionne-Riel wrote:
+> On Sun, 30 Aug 2020 10:41:42 +0100
+> Marc Zyngier <maz@kernel.org> wrote:
 > 
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-> Reviewed-by: Peter Korsgaard <peter@korsgaard.com>
+> Hi,
+> 
+>> 
+>> Could you try replacing the problematic patch with [1], and let me
+>> know whether this changes anything on your end? This patch probably
+>> isn't the right approach, but it would certainly help pointing me
+>> in the right direction.
+>> 
+>> [1]
+>> https://lore.kernel.org/lkml/20200815125112.462652-2-maz@kernel.org/
+> 
+> Following through a bisect session to figure out why the Wi-Fi broke
+> between 5.8 and 5.9-rc1, I figured out something that you might have in
+> mind already.
+> 
+> It seems that anything that makes of_bus_pci_match return true will
+> cause this to happen. This is why your initial fix also fails.
+> 
+> I believe my understanding is right since applying the following on top
+> of 5.9-rc1 also produces the same result.
+> 
+> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> @@ -227,6 +227,7 @@ dmac_peri: dma-controller@ff6e0000 {
+>         };
+> 
+>         pcie0: pcie@f8000000 {
+> +               device_type = "pci";
+>                 compatible = "rockchip,rk3399-pcie";
+>                 reg = <0x0 0xf8000000 0x0 0x2000000>,
+>                       <0x0 0xfd000000 0x0 0x1000000>;
+> 
+> 
+> This was found out since the Wi-Fi pci-based ath10k Wi-Fi broke, with
+> 2f96593ecc37e98bf99525f0629128080533867f, which changes stuff around
+> pci bus... things...
+> 
+> Am I understanding right that your fix(es) were related to the change
+> set where the commit is found?
+> 
+> My intuition is that the commit causing the boot issue could be related
+> to changes with PCI or PCIe subsystems, and that your fix for
+> of_bus_pci_match is a red herring, that only surfaced the existing
+> issue.
+> 
+> This is backed by applying the previous dts patch on top of 2f96593e,
+> and having Wi-Fi work. I would assume that between that commit and
+> 5.9-rc1 there is a commit that causes the complete failure to boot,
+> which is unrelated to the first identified commit on 5.9-rc2.
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Ah, so actually anything that *enables pcie* kills your system.
+Great investigative work!
+
+> 
+> And backed by a further bisection with this that points to
+> d84c572de1a360501d2e439ac632126f5facf59d being the actual change that
+> causes the tablet to fail to boot, as long as the pcie0 node is
+> identified as pci properly.
+> 
+> I am unsure if I should add as a Cc everyone involved in that change
+> set, though the author (coincidentally) is already in the original list
+> of recipients.
+
+I've deliberately moved Rob from Cc to To... ;-)
+
+> Any additional thoughts from this additional information?
+
+What you could do is to start looking at which of the pci_is_root_bus()
+changes breaks PCIe on this system.  The fact that it breaks on your
+system and not on mine is a bit puzzling.
 
 Thanks,
-Mani
 
-> ---
->  arch/arm/boot/dts/Makefile                 |  1 +
->  arch/arm/boot/dts/owl-s500-roseapplepi.dts | 47 ++++++++++++++++++++++
->  2 files changed, 48 insertions(+)
->  create mode 100644 arch/arm/boot/dts/owl-s500-roseapplepi.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 4572db3fa5ae..bff9ef996fbb 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -868,6 +868,7 @@ dtb-$(CONFIG_ARCH_ORION5X) += \
->  dtb-$(CONFIG_ARCH_ACTIONS) += \
->  	owl-s500-cubieboard6.dtb \
->  	owl-s500-guitar-bb-rev-b.dtb \
-> +	owl-s500-roseapplepi.dtb \
->  	owl-s500-sparky.dtb
->  dtb-$(CONFIG_ARCH_PRIMA2) += \
->  	prima2-evb.dtb
-> diff --git a/arch/arm/boot/dts/owl-s500-roseapplepi.dts b/arch/arm/boot/dts/owl-s500-roseapplepi.dts
-> new file mode 100644
-> index 000000000000..a2087e617cb2
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/owl-s500-roseapplepi.dts
-> @@ -0,0 +1,47 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Roseapple Pi
-> + *
-> + * Copyright (C) 2020 Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "owl-s500.dtsi"
-> +
-> +/ {
-> +	compatible = "roseapplepi,roseapplepi", "actions,s500";
-> +	model = "Roseapple Pi";
-> +
-> +	aliases {
-> +		serial2 = &uart2;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial2:115200n8";
-> +	};
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x80000000>; /* 2GB */
-> +	};
-> +
-> +	uart2_clk: uart2-clk {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <921600>;
-> +		#clock-cells = <0>;
-> +	};
-> +};
-> +
-> +&twd_timer {
-> +	status = "okay";
-> +};
-> +
-> +&timer {
-> +	clocks = <&hosc>;
-> +};
-> +
-> +&uart2 {
-> +	status = "okay";
-> +	clocks = <&uart2_clk>;
-> +};
-> -- 
-> 2.28.0
-> 
+         M.
+-- 
+Jazz is not dead. It just smells funny...
