@@ -2,204 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 636662590BC
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 16:38:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D876B2590F5
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 16:42:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727950AbgIAOiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 10:38:15 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:11263 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728498AbgIAOiK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 10:38:10 -0400
-X-UUID: ea3eaabc06e74213be15d770f4b12098-20200901
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=i/M1pWATEggY6t0efcPJUKkWQXwt7jVFmbATAeUxAOU=;
-        b=WPViX5arQEPmhHroEBtIthd2K8MW5tszJ75w/0TpTcC5ghDvgba9iXViq0YidLleYH5OT+x35VMsfMp+eVrE5B+/6Z8RDp60TZY9xxGjTr4fSZVHHjqUxnEEqiSX6twGwwmxkdaXJ+2dOrkzupSa795x1JE152/6YpThCZnDXH4=;
-X-UUID: ea3eaabc06e74213be15d770f4b12098-20200901
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <dongchun.zhu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2070487602; Tue, 01 Sep 2020 22:37:13 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 1 Sep
- 2020 22:37:12 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 1 Sep 2020 22:37:11 +0800
-Message-ID: <1598970937.4733.21.camel@mhfsdcap03>
-Subject: Re: [PATCH v13 1/2] media: dt-bindings: media: i2c: Document
- OV02A10 bindings
-From:   Dongchun Zhu <dongchun.zhu@mediatek.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Tomasz Figa <tfiga@chromium.org>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Cao Bing Bu <bingbu.cao@intel.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg 
-        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
-        Sj Huang <sj.huang@mediatek.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        <matrix.zhu@aliyun.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Louis Kuo <louis.kuo@mediatek.com>,
-        Shengnan Wang =?UTF-8?Q?=28=E7=8E=8B=E5=9C=A3=E7=94=B7=29?= 
-        <shengnan.wang@mediatek.com>, <matrix.zhu@aliyun.com>,
-        <dongchun.zhu@mediatek.com>
-Date:   Tue, 1 Sep 2020 22:35:37 +0800
-In-Reply-To: <20200831160644.GL31019@paasikivi.fi.intel.com>
-References: <20200710101850.4604-1-dongchun.zhu@mediatek.com>
-         <20200710101850.4604-2-dongchun.zhu@mediatek.com>
-         <CAAFQd5BB3c9nvruY0jcVbRZtbUyiFj0v8=D6KA7EPtN4rz=+wA@mail.gmail.com>
-         <20200831160644.GL31019@paasikivi.fi.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1728275AbgIAOmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 10:42:38 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:55886 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728360AbgIAOme (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 10:42:34 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: gtucker)
+        with ESMTPSA id 46FC8299AB2
+Subject: Re: [PATCH v2 1/4] ARM: exynos: clear L310_AUX_CTRL_NS_LOCKDOWN in
+ default l2c_aux_val
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Russell King <linux@armlinux.org.uk>
+Cc:     Kukjin Kim <kgene@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        kernel@collabora.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <267a81e550a0b5d479c82b5908e2a2caa4c9c874.1597061474.git.guillaume.tucker@collabora.com>
+ <c0509b5f-a064-2e73-7e04-51f41a56d222@collabora.com>
+ <CAJKOXPczS_RpSFpjGygZ_1MCYxJ_cUDRjriZvrHd6+zhmq=c8Q@mail.gmail.com>
+ <CAJKOXPfT7LvHVpTdaQ1voVi=OtC4aV6hbyzcekmrPMkb+5ebNg@mail.gmail.com>
+From:   Guillaume Tucker <guillaume.tucker@collabora.com>
+Message-ID: <fd1a34c4-dcc1-1480-1e96-8bd94ada9846@collabora.com>
+Date:   Tue, 1 Sep 2020 15:42:28 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 445E85A69E8366B468046E9E6B70917AF91F340655DCFA76B1105FB898ACB8272000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <CAJKOXPfT7LvHVpTdaQ1voVi=OtC4aV6hbyzcekmrPMkb+5ebNg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgVG9tYXN6LCBTYWthcmksDQoNClRoYW5rcyBmb3IgZGlnZ2luZyBpbnRvIHRoZSBpbXBlcmZl
-Y3Rpb25zLg0KDQpPbiBNb24sIDIwMjAtMDgtMzEgYXQgMTk6MDYgKzAzMDAsIFNha2FyaSBBaWx1
-cyB3cm90ZToNCj4gSGkgVG9tYXN6LA0KPiANCj4gVGhhbmtzIGZvciBkcmVzc2luZyB0aGlzIGlu
-dG8gd29yZHMuDQo+IA0KPiBPbiBNb24sIEF1ZyAzMSwgMjAyMCBhdCAwMTo0NDoyN1BNICswMjAw
-LCBUb21hc3ogRmlnYSB3cm90ZToNCj4gPiBIaSBEb25nY2h1biwNCj4gPiANCj4gPiBPbiBGcmks
-IEp1bCAxMCwgMjAyMCBhdCAxMjoxOSBQTSBEb25nY2h1biBaaHUgPGRvbmdjaHVuLnpodUBtZWRp
-YXRlay5jb20+IHdyb3RlOg0KPiA+ID4NCj4gPiA+IEFkZCBZQU1MIGRldmljZSB0cmVlIGJpbmRp
-bmcgZm9yIE9WMDJBMTAgQ01PUyBpbWFnZSBzZW5zb3IsDQo+ID4gPiBhbmQgdGhlIHJlbGV2YW50
-IE1BSU5UQUlORVJTIGVudHJpZXMuDQo+ID4gPg0KPiA+ID4gUmV2aWV3ZWQtYnk6IFRvbWFzeiBG
-aWdhIDx0ZmlnYUBjaHJvbWl1bS5vcmc+DQo+ID4gPiBSZXZpZXdlZC1ieTogUm9iIEhlcnJpbmcg
-PHJvYmhAa2VybmVsLm9yZz4NCj4gPiA+IFNpZ25lZC1vZmYtYnk6IERvbmdjaHVuIFpodSA8ZG9u
-Z2NodW4uemh1QG1lZGlhdGVrLmNvbT4NCj4gPiA+IC0tLQ0KPiA+ID4gIC4uLi9iaW5kaW5ncy9t
-ZWRpYS9pMmMvb3Z0aSxvdjAyYTEwLnlhbWwgICAgICAgICAgIHwgMTcyICsrKysrKysrKysrKysr
-KysrKysrKw0KPiA+ID4gIE1BSU5UQUlORVJTICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIHwgICA3ICsNCj4gPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDE3OSBpbnNlcnRpb25z
-KCspDQo+ID4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
-aW5kaW5ncy9tZWRpYS9pMmMvb3Z0aSxvdjAyYTEwLnlhbWwNCj4gPiA+DQo+ID4gPiBkaWZmIC0t
-Z2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21lZGlhL2kyYy9vdnRpLG92
-MDJhMTAueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZWRpYS9pMmMv
-b3Z0aSxvdjAyYTEwLnlhbWwNCj4gPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gPiBpbmRl
-eCAwMDAwMDAwLi4zYTkxNmNjDQo+ID4gPiAtLS0gL2Rldi9udWxsDQo+ID4gPiArKysgYi9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVkaWEvaTJjL292dGksb3YwMmExMC55YW1s
-DQo+ID4gPiBAQCAtMCwwICsxLDE3MiBAQA0KPiA+ID4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZp
-ZXI6IChHUEwtMi4wIE9SIEJTRC0yLUNsYXVzZSkNCj4gPiA+ICsjIENvcHlyaWdodCAoYykgMjAy
-MCBNZWRpYVRlayBJbmMuDQo+ID4gPiArJVlBTUwgMS4yDQo+ID4gPiArLS0tDQo+ID4gPiArJGlk
-OiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9tZWRpYS9pMmMvb3Z0aSxvdjAyYTEwLnlh
-bWwjDQo+ID4gPiArJHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUub3JnL21ldGEtc2NoZW1hcy9j
-b3JlLnlhbWwjDQo+ID4gPiArDQo+ID4gPiArdGl0bGU6IE9tbml2aXNpb24gT1YwMkExMCBDTU9T
-IFNlbnNvciBEZXZpY2UgVHJlZSBCaW5kaW5ncw0KPiA+ID4gKw0KPiA+ID4gK21haW50YWluZXJz
-Og0KPiA+ID4gKyAgLSBEb25nY2h1biBaaHUgPGRvbmdjaHVuLnpodUBtZWRpYXRlay5jb20+DQo+
-ID4gPiArDQo+ID4gPiArZGVzY3JpcHRpb246IHwtDQo+ID4gPiArICBUaGUgT21uaXZpc2lvbiBP
-VjAyQTEwIGlzIGEgbG93LWNvc3QsIGhpZ2ggcGVyZm9ybWFuY2UsIDEvNS1pbmNoLCAyIG1lZ2Fw
-aXhlbA0KPiA+ID4gKyAgaW1hZ2Ugc2Vuc29yLCB3aGljaCBpcyB0aGUgbGF0ZXN0IHByb2R1Y3Rp
-b24gZGVyaXZlZCBmcm9tIE9tbml2aXNpb24ncyBDTU9TDQo+ID4gPiArICBpbWFnZSBzZW5zb3Ig
-dGVjaG5vbG9neS4gSWhpcyBjaGlwIHN1cHBvcnRzIGhpZ2ggZnJhbWUgcmF0ZSBzcGVlZHMgdXAg
-dG8gMzBmcHMNCj4gPiA+ICsgIEAgMTYwMHgxMjAwIChVWEdBKSByZXNvbHV0aW9uIHRyYW5zZmVy
-cmVkIG92ZXIgYSAxLWxhbmUgTUlQSSBpbnRlcmZhY2UuIFRoZQ0KPiA+ID4gKyAgc2Vuc29yIG91
-dHB1dCBpcyBhdmFpbGFibGUgdmlhIENTSS0yIHNlcmlhbCBkYXRhIG91dHB1dC4NCj4gPiA+ICsN
-Cj4gPiA+ICtwcm9wZXJ0aWVzOg0KPiA+ID4gKyAgY29tcGF0aWJsZToNCj4gPiA+ICsgICAgY29u
-c3Q6IG92dGksb3YwMmExMA0KPiA+ID4gKw0KPiA+ID4gKyAgcmVnOg0KPiA+ID4gKyAgICBtYXhJ
-dGVtczogMQ0KPiA+ID4gKw0KPiA+ID4gKyAgY2xvY2tzOg0KPiA+ID4gKyAgICBpdGVtczoNCj4g
-PiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiB0b3AgbXV4IGNhbXRnIGNsb2NrDQo+ID4gPiArICAg
-ICAgLSBkZXNjcmlwdGlvbjogZGl2aWRlciBjbG9jaw0KPiA+ID4gKw0KPiA+ID4gKyAgY2xvY2st
-bmFtZXM6DQo+ID4gPiArICAgIGl0ZW1zOg0KPiA+ID4gKyAgICAgIC0gY29uc3Q6IGVjbGsNCj4g
-PiA+ICsgICAgICAtIGNvbnN0OiBmcmVxX211eA0KPiA+IA0KPiA+IFdoeSBkbyB3ZSBoYXZlIHR3
-byBjbG9ja3MgaGVyZT8gTG9va2luZyBhdCB0aGUgZXhhbXBsZSBzdWdnZXN0cyB0aGF0DQo+ID4g
-dGhleSBtYXkgYmUgdGhlIGNsb2NrcyBvZiB0aGUgU29DIHRoYXQgdGhlIGludGVncmF0aW9uIHdh
-cyBkb25lIHdpdGguDQo+ID4gSG93ZXZlciwgdGhlIGJpbmRpbmcgbXVzdCBvbmx5IGRlZmluZSB0
-aGUgYXNwZWN0cyBvZiB0aGUgcGFydGljdWxhcg0KPiA+IGRldmljZSwgaS5lLiB0aGlzIHNlbnNv
-ci4NCj4gPiANCj4gPiBJIHN1cHBvc2Ugd2Ugc2hvdWxkIG9ubHkgaGF2ZSAiZWNsayIgaGVyZSBh
-bmQgaXQgc2hvdWxkIGJlIGRlc2NyaWJlZA0KPiA+IGFzICJleHRlcm5hbCBjbG9jayBmb3IgdGhl
-IHNlbnNvciIuDQo+ID4gDQoNCkkgY2Fubm90IGFncmVlIHdpdGggeW91IG1vcmUsIGl0IHdvdWxk
-IGJlIGZpeGVkIGluIG5leHQgcmVsZWFzZS4NCg0KPiA+ID4gKw0KPiA+ID4gKyAgY2xvY2stZnJl
-cXVlbmN5Og0KPiA+ID4gKyAgICBkZXNjcmlwdGlvbjoNCj4gPiA+ICsgICAgICBGcmVxdWVuY3kg
-b2YgdGhlIGVjbGsgY2xvY2sgaW4gSGVydHouDQo+ID4gDQo+ID4gbml0OiBtYXliZSBIej8NCj4g
-PiANCg0KQm90aCBzaGFsbCBiZSBva2F5LCBsZXQncyB1c2UgSHogaW5zdGVhZCwgd2hpY2ggc2Vl
-bXMgdG8gYmUgbW9yZSBzaW1wbGUuDQoNCj4gPiA+ICsNCj4gPiA+ICsgIGRvdmRkLXN1cHBseToN
-Cj4gPiA+ICsgICAgZGVzY3JpcHRpb246DQo+ID4gPiArICAgICAgRGVmaW5pdGlvbiBvZiB0aGUg
-cmVndWxhdG9yIHVzZWQgYXMgRGlnaXRhbCBJL08gdm9sdGFnZSBzdXBwbHkuDQo+ID4gPiArDQo+
-ID4gPiArICBhdmRkLXN1cHBseToNCj4gPiA+ICsgICAgZGVzY3JpcHRpb246DQo+ID4gPiArICAg
-ICAgRGVmaW5pdGlvbiBvZiB0aGUgcmVndWxhdG9yIHVzZWQgYXMgQW5hbG9nIHZvbHRhZ2Ugc3Vw
-cGx5Lg0KPiA+ID4gKw0KPiA+ID4gKyAgZHZkZC1zdXBwbHk6DQo+ID4gPiArICAgIGRlc2NyaXB0
-aW9uOg0KPiA+ID4gKyAgICAgIERlZmluaXRpb24gb2YgdGhlIHJlZ3VsYXRvciB1c2VkIGFzIERp
-Z2l0YWwgY29yZSB2b2x0YWdlIHN1cHBseS4NCj4gPiA+ICsNCj4gPiA+ICsgIHBvd2VyZG93bi1n
-cGlvczoNCj4gPiA+ICsgICAgZGVzY3JpcHRpb246DQo+ID4gPiArICAgICAgTXVzdCBiZSB0aGUg
-ZGV2aWNlIHRyZWUgaWRlbnRpZmllciBvZiB0aGUgR1BJTyBjb25uZWN0ZWQgdG8gdGhlDQo+ID4g
-PiArICAgICAgUERfUEFEIHBpbi4gVGhpcyBwaW4gaXMgdXNlZCB0byBwbGFjZSB0aGUgT1YwMkEx
-MCBpbnRvIHN0YW5kYnkgbW9kZQ0KPiA+ID4gKyAgICAgIG9yIHNodXRkb3duIG1vZGUuIEFzIHRo
-ZSBsaW5lIG5lZWRzIHRvIGJlIGhpZ2ggZm9yIHRoZSBwb3dlcmRvd24gbW9kZQ0KPiA+ID4gKyAg
-ICAgIHRvIGJlIGFjdGl2ZSwgaXQgc2hvdWxkIGJlIG1hcmtlZCBHUElPX0FDVElWRV9ISUdILg0K
-PiA+ID4gKyAgICBtYXhJdGVtczogMQ0KPiA+ID4gKw0KPiA+ID4gKyAgcmVzZXQtZ3Bpb3M6DQo+
-ID4gPiArICAgIGRlc2NyaXB0aW9uOg0KPiA+ID4gKyAgICAgIE11c3QgYmUgdGhlIGRldmljZSB0
-cmVlIGlkZW50aWZpZXIgb2YgdGhlIEdQSU8gY29ubmVjdGVkIHRvIHRoZQ0KPiA+ID4gKyAgICAg
-IFJTVF9QRCBwaW4uIElmIHNwZWNpZmllZCwgaXQgd2lsbCBiZSBhc3NlcnRlZCBkdXJpbmcgZHJp
-dmVyIHByb2JlLg0KPiA+ID4gKyAgICAgIEFzIHRoZSBsaW5lIG5lZWRzIHRvIGJlIGxvdyBmb3Ig
-dGhlIHJlc2V0IHRvIGJlIGFjdGl2ZSwgaXQgc2hvdWxkIGJlDQo+ID4gPiArICAgICAgbWFya2Vk
-IEdQSU9fQUNUSVZFX0xPVy4NCj4gPiA+ICsgICAgbWF4SXRlbXM6IDENCj4gPiA+ICsNCj4gPiA+
-ICsgIHJvdGF0aW9uOg0KPiA+ID4gKyAgICBkZXNjcmlwdGlvbjoNCj4gPiA+ICsgICAgICBEZWZp
-bml0aW9uIG9mIHRoZSBzZW5zb3IncyBwbGFjZW1lbnQuDQo+ID4gPiArICAgIGFsbE9mOg0KPiA+
-ID4gKyAgICAgIC0gJHJlZjogIi9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQz
-MiINCj4gPiA+ICsgICAgICAtIGVudW06DQo+ID4gPiArICAgICAgICAgIC0gMCAgICAjIFNlbnNv
-ciBNb3VudGVkIFVwcmlnaHQNCj4gPiA+ICsgICAgICAgICAgLSAxODAgICMgU2Vuc29yIE1vdW50
-ZWQgVXBzaWRlIERvd24NCj4gPiA+ICsgICAgICAgIGRlZmF1bHQ6IDANCj4gPiA+ICsNCj4gPiA+
-ICsgIG92dGksbWlwaS10eC1zcGVlZDoNCj4gPiA+ICsgICAgZGVzY3JpcHRpb246DQo+ID4gPiAr
-ICAgICAgSW5kaWNhdGlvbiBvZiBNSVBJIHRyYW5zbWlzc2lvbiBzcGVlZCBzZWxlY3QsIHdoaWNo
-IGlzIHRvIGNvbnRyb2wgRC1QSFkNCj4gPiA+ICsgICAgICB0aW1pbmcgc2V0dGluZyBieSBhZGp1
-c3RpbmcgTUlQSSBjbG9jayB2b2x0YWdlIHRvIGltcHJvdmUgdGhlIGNsb2NrDQo+ID4gPiArICAg
-ICAgZHJpdmVyIGNhcGFiaWxpdHkuDQo+ID4gDQo+ID4gVGhlIGRlc2NyaXB0aW9uIHNheXMgdGhh
-dCB0aGUgdmFsdWUgYWRqdXN0cyAiTUlQSSBjbG9jayB2b2x0YWdlIi4NCj4gPiBTaG91bGQgdGhl
-IHByb3BlcnR5IGJlIHJlbmFtZWQgdG8gIm92dGksbWlwaS1jbG9jay12b2x0YWdlIj8NCj4gPiAN
-Cg0KU3VyZSwgbWlwaS1jbG9jay12b2x0YWdlIHNlZW1zIG1vcmUgY2xlYXIsIHBlcmZlY3QgbmFt
-aW5nIDotKQ0KDQo+ID4gPiArICAgIGFsbE9mOg0KPiA+ID4gKyAgICAgIC0gJHJlZjogIi9zY2hl
-bWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQzMiINCj4gPiA+ICsgICAgICAtIGVudW06
-DQo+ID4gPiArICAgICAgICAgIC0gMCAgICAjICAyME1IeiAtICAzME1Ieg0KPiA+ID4gKyAgICAg
-ICAgICAtIDEgICAgIyAgMzBNSHogLSAgNTBNSHoNCj4gPiA+ICsgICAgICAgICAgLSAyICAgICMg
-IDUwTUh6IC0gIDc1TUh6DQo+ID4gPiArICAgICAgICAgIC0gMyAgICAjICA3NU1IeiAtIDEwME1I
-eg0KPiA+ID4gKyAgICAgICAgICAtIDQgICAgIyAxMDBNSHogLSAxMzBNSHoNCj4gPiA+ICsgICAg
-ICAgIGRlZmF1bHQ6IDMNCj4gPiA+ICsNCj4gPiANCj4gPiBJJ3ZlIGRpc2N1c3NlZCB0aGlzIG9u
-IElSQyB3aXRoIFNha2FyaS4gSXQgc291bmRzIGxpa2UgdGhpcyB3b3JrcyBhcw0KPiA+IGlzIGZv
-ciB1cyBiZWNhdXNlIHRoZSBkcml2ZXIgY3VycmVudGx5IG9ubHkgc3VwcG9ydHMgMSBtb2RlLCBh
-bHdheXMNCj4gPiBydW5uaW5nIHRoZSBsaW5rIGF0IDM5MCBNSHouIFRoaXMgd29uJ3Qgc2NhbGUg
-aWYgb25lIGludGVuZHMgdG8gYWRkDQo+ID4gbW9yZSBtb2RlcywgYmVjYXVzZSBEVCBjYW4ndCBi
-ZSBleHBlY3RlZCB0byBiZSB1cGRhdGVkIHdoZW4gdGhlIGRyaXZlcg0KPiA+IGNoYW5nZXMuIFRo
-ZSB0d28gYXJlIGV4cGVjdGVkIHRvIGJlIHNlcGFyYXRlIGFuZCBiYWNrd2FyZHMgY29tcGF0aWJs
-ZS4NCj4gPiANCj4gPiBJIHRoaW5rIHdlIGNvdWxkIG1vZGVsIHRoaXMgaW4gRFQgYXMgYW4gYXJy
-YXkgb2YgPGxpbmsgc3BlZWQsIGNsb2NrDQo+ID4gdm9sdGFnZT4gcGFpcnMuIFNpbWlsYXJseSB0
-byB0aGUgT1BQIGJpbmRpbmdzIFsxXS4gQW4gZXhhbXBsZSB0byBoYXZlDQo+ID4gYWxsIGxpbmsg
-c3BlZWRzIHVwIHRvIDM5MCBNSHogdXNlIHRoZSB2YWx1ZSA0Og0KPiA+IA0KPiA+IG92dGksbWlw
-aS1jbG9jay12b2x0YWdlcyA9IDwNCj4gPiAgICAgICAgICAgICAgIC8qIEtIeiAgICAgICAgIGNs
-b2NrIHZvbHRhZ2UgdW5pdCAqLw0KPiA+ICAgICAgICAgICAgICAgICAgMzkwMDAwICAgIDQNCj4g
-PiA+Ow0KPiA+IA0KPiA+IGlmIG9uZSB3YW50cyB0byBzZWxlY3QgZGlmZmVyZW50IHZvbHRhZ2Ug
-Zm9yIGRpZmZlcmVudCBsaW5rLCB0aGV5DQo+ID4gY291bGQgZG8gc28gYXMgd2VsbC4gV2l0aCB0
-aGUgZXhhbXBsZSBiZWxvdywgdGhlIGRyaXZlciBzaG91bGQNCj4gPiBjb25maWd1cmUgIjMiIGZv
-ciBsaW5rIGZyZXF1ZW5jaWVzIDw9IDE1MCBNSHogYW5kICI0IiBmb3IgPiAxNTAgTUh6IDw9DQo+
-ID4gMzkwIE1Iei4gTGluayBmcmVxdWVuY2llcyA+IDM5MCBNSHogc2hvdWxkIGJlIGRpc2FsbG93
-ZWQuDQo+ID4gDQo+ID4gb3Z0aSxtaXBpLWNsb2NrLXZvbHRhZ2VzID0gPA0KPiA+ICAgICAgICAg
-ICAgICAgLyogS0h6ICAgICAgICAgY2xvY2sgdm9sdGFnZSB1bml0ICovDQo+ID4gICAgICAgICAg
-ICAgICAgICAxNTAwMDAgICAgMw0KPiA+ICAgICAgICAgICAgICAgICAgMzkwMDAwICAgIDQNCj4g
-PiA+Ow0KPiA+IA0KPiA+IFdoYXQgZG8geW91IHRoaW5rPw0KPiANCg0KU28gbm93IHdlIGRlZmlu
-ZSB0aGUgTUlQSSBjbG9jayB2b2x0YWdlICh1bml0KSBhcyBvbmUgZnVuY3Rpb24gb2YgbGluaw0K
-ZnJlcXVlbmN5Pw0KDQpGb3IgY3VycmVudCBzZW5zb3IgbW9kZSAoMTYwMHgxMjAwLCAzOTBNSHog
-bGluayBmcmVxdWVuY3kpLCB3ZSB0aGVuDQpzaGFsbCBhbHdheXMgdXNlIHRoZSB2YWx1ZSA0IHRv
-IGNvbmZpZ3VyZSB0aGUgTUlQSSB0cmFuc21pc3Npb24gc3BlZWQNCnNlbGVjdGlvbiAoUDE6MHhB
-MSkuIEFtIEkgY29ycmVjdCBpbiB0aGlua2luZyB0aGF0Pw0KDQo+IE9uZSBtb3JlIG5vdGUgb24g
-bXkgcHJvcG9zYWw6IHVzZSB0aGUgaW5kZXggb2YgdGhlIGxpbmsgZnJlcXVlbmN5IHRvIGFjY2Vz
-cw0KPiB0aGUgb3Z0aSxtaXBpLWNsb2NrLXZvbHRhZ2VzIGFycmF5LiBUaGF0IHNob3VsZCBiZSBt
-b3JlIHNpbXBsZSBmb3IgdGhlDQo+IGRyaXZlciwgYXMgdGhlIGRyaXZlciBpcyBleHBlY3RlZCB0
-byB1c2Ugb25seSBsaW5rIGZyZXF1ZW5jaWVzIGxpc3RlZCBpbiBEVA0KPiBiaW5kaW5ncyBhbnl3
-YXkuDQo+IA0KDQpHb29kIGlkZWEhIFRoYXQncyBleGFjdGx5IHdoYXQgSSBtZWFuLg0KSnVzdCBz
-dWJtaXR0ZWQgb25lIGRyYWZ0IGNoYW5nZSB0byBoYW5kbGUgdGhlIG5ldyBwcm9wZXJ0eSBpbiBE
-VC4NCkBTYWthcmkgQFRvbWFzeiBwbGVhc2UgaGVscCB0byByZXZpZXcgaXQuDQpodHRwczovL2No
-cm9taXVtLXJldmlldy5nb29nbGVzb3VyY2UuY29tL2MvY2hyb21pdW1vcy90aGlyZF9wYXJ0eS9r
-ZXJuZWwvKy8yMzg3OTgwLzEvZHJpdmVycy9tZWRpYS9pMmMvb3YwMmExMC5jIzg4Mw0KDQo=
+On 01/09/2020 14:51, Krzysztof Kozlowski wrote:
+> On Tue, 1 Sep 2020 at 15:45, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On Tue, 1 Sep 2020 at 15:34, Guillaume Tucker
+>> <guillaume.tucker@collabora.com> wrote:
+>>>
+>>> Hi Krzysztof, Russell,
+>>>
+>>> On 10/08/2020 13:22, Guillaume Tucker wrote:
+>>>> The L310_AUX_CTRL_NS_LOCKDOWN flag is set during the L2C enable
+>>>> sequence.  There is no need to set it in the default register value,
+>>>> this was done before support for it was implemented in the code.  It
+>>>> is not set in the hardware initial value either.
+>>>>
+>>>> Clean this up by removing this flag from the default l2c_aux_val, and
+>>>> add it to the l2c_aux_mask to print an alert message if it was already
+>>>> set before the kernel initialisation.
+>>>>
+>>>> Signed-off-by: Guillaume Tucker <guillaume.tucker@collabora.com>
+>>>> ---
+>>>>
+>>>> Notes:
+>>>>     v2: fix flag name L310_AUX_CTRL_NS_LOCKDOWN
+>>>>
+>>>>  arch/arm/mach-exynos/exynos.c | 4 ++--
+>>>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>>
+>>> I believe this v2 series has addressed all previous comments and
+>>> you were waiting for the 5.9 merge window to end.  The patches
+>>> all still apply cleanly on v5.9-rc3.  Do you want me to resend
+>>> the series anyway or is there anything else needed at this point?
+>>>
+>>> Maybe one thing that wasn't completely clear in v1 was whether
+>>> patch 2/4 was the right approach.  I've explained the reason
+>>> behind it but didn't get a final reply from Russell[1].
+>>
+>> I am sorry, my bad. I already applied this one and 3/4 (dts).
+>> Apparently I forgot to reply with confirmation and Patchwork did not
+>> notify you for some reason.
 
+No problem, I see them in linux-next now.  Thanks!
+
+>> Patch 2/4 does not look like one for me so I would need ack from
+>> Russell to take. Did you submit it to the ARM patches queue?
+
+I've CC-ed linux-arm-kernel@lists.infradead.org on the whole
+series.  Did you mean anything else by the ARM patches queue?
+
+>> Patch 4/4 will wait for v5.10-rc1 as it depends on 1/4 and it is DTS patch.
+> 
+> Correct: Patch 4/4 will wait for v5.10 because it depends on the DTS patch.
+
+Sure, in fact patch 4/4 depends on the DTS one (3/4) and also on
+the l2c fix (2/4) as otherwise prefetch would actually not be
+enabled.  So it sounds like both remaining ones 2/4 and 4/4 are
+actually now pending Russell's ack.
+
+Best wishes,
+Guillaume
+
+
+[1] https://lore.kernel.org/lkml/46fa1159-fcd6-b528-b8e8-2fba048236b2@collabora.com/
