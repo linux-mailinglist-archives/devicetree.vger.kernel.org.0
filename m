@@ -2,81 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 878A9258A04
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 10:03:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01B7A258A0B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 10:04:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726020AbgIAIDt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 04:03:49 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:49046 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726044AbgIAIDr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 04:03:47 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08183U9n038807;
-        Tue, 1 Sep 2020 03:03:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1598947410;
-        bh=rTdSKw6jc2hIcyQD34V8CbUn0PeOh3Lnz/RojDEQl28=;
-        h=Subject:From:To:CC:References:Date:In-Reply-To;
-        b=P7+W7+njHjsDoAJNb7Bq8ex3fOF316aSw/LTChMzasA/ZxG+qD3lIeGf5tb/erTxs
-         y0HuN8y5mM+QxMUiZBrQk/aNwOEIUkbM7Yhqsi6CCn+jCp0ARuSm413t1pHbD1hoWG
-         7TuyuY3QnlujSButsKyhNmrTAh0tU0cpTuKte/4Y=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08183UL6058781
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 1 Sep 2020 03:03:30 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 1 Sep
- 2020 03:03:29 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 1 Sep 2020 03:03:29 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08183Pql056860;
-        Tue, 1 Sep 2020 03:03:26 -0500
-Subject: Re: [PATCH v9 2/3] drm: bridge: Add support for Cadence MHDP8546
- DPI/DP bridge
-From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-To:     Swapnil Jakhade <sjakhade@cadence.com>,
-        <Laurent.pinchart@ideasonboard.com>,
-        <dri-devel@lists.freedesktop.org>
-CC:     <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <a.hajda@samsung.com>, <narmstrong@baylibre.com>,
-        <jonas@kwiboo.se>, <jernej.skrabec@siol.net>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <mparab@cadence.com>, <yamonkar@cadence.com>, <jsarha@ti.com>,
-        <nsekhar@ti.com>, <praneeth@ti.com>, <nikhil.nd@ti.com>
-References: <1598862215-10222-1-git-send-email-sjakhade@cadence.com>
- <1598862215-10222-3-git-send-email-sjakhade@cadence.com>
- <71452de7-80e7-0144-4802-e3370c00854b@ti.com>
-Message-ID: <44d5f9de-61e6-9345-d65b-b56f804e6550@ti.com>
-Date:   Tue, 1 Sep 2020 11:03:25 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726311AbgIAIEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 04:04:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41822 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726307AbgIAIEq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 04:04:46 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4B86C061245
+        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 01:04:45 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1kD1HS-0001KG-5e; Tue, 01 Sep 2020 10:04:38 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1kD1HR-0005Qc-On; Tue, 01 Sep 2020 10:04:37 +0200
+Date:   Tue, 1 Sep 2020 10:04:37 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        f.fainelli@gmail.com, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        zhengdejin5@gmail.com, richard.leitner@skidata.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH 4/5] net: phy: smsc: add phy refclk in support
+Message-ID: <20200901080437.w5og2l5toa57wkdk@pengutronix.de>
+References: <20200831134836.20189-1-m.felsch@pengutronix.de>
+ <20200831134836.20189-5-m.felsch@pengutronix.de>
+ <20200831140847.GE2403519@lunn.ch>
 MIME-Version: 1.0
-In-Reply-To: <71452de7-80e7-0144-4802-e3370c00854b@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200831140847.GE2403519@lunn.ch>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:01:48 up 290 days, 23:20, 278 users,  load average: 0.17, 0.16,
+ 0.10
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/09/2020 10:46, Tomi Valkeinen wrote:
+On 20-08-31 16:08, Andrew Lunn wrote:
+> > +	priv->refclk = devm_clk_get_optional(dev, NULL);
+> > +	if (IS_ERR(priv->refclk)) {
+> > +		if (PTR_ERR(priv->refclk) == -EPROBE_DEFER)
+> > +			return -EPROBE_DEFER;
+> > +
+> > +		/* Clocks are optional all errors should be ignored here */
+> > +		return 0;
+> 
+> Since you are calling devm_clk_get_optional() isn't an error a real
+> error, not that the clock is missing? It probably should be returned
+> as an error code.
 
-> I think the above suggests that the driver is not properly updating all the registers based on the
-> new mode and link. I tried adding cdns_mhdp_validate_mode_params() call to
-> cdns_mhdp_atomic_enable(), so that tu-size etc will be calculated, but that did not fix the problem.
+Yes you're right. Actually I can't remember why went this way... I will
+change this to dev_err_probe() and this gets a oneliner.
 
-Oh, it actually did fix the problem. It was just that my first hack updated the old state, but after
-changing the code to call cdns_mhdp_atomic_enable() with new_state I see it helps with the issue.
+Regards,
+  Marco
 
- Tomi
+> 
+>    Andrew
+> 
 
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
