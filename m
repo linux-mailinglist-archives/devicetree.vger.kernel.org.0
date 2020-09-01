@@ -2,122 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 518CE258427
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 00:42:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54E6B2584E4
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 02:35:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726144AbgHaWmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 18:42:04 -0400
-Received: from mo-csw1514.securemx.jp ([210.130.202.153]:41970 "EHLO
-        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726117AbgHaWmD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 18:42:03 -0400
-Received: by mo-csw.securemx.jp (mx-mo-csw1514) id 07VMfQSQ026490; Tue, 1 Sep 2020 07:41:27 +0900
-X-Iguazu-Qid: 34tKqQuZ1lisVLW7Od
-X-Iguazu-QSIG: v=2; s=0; t=1598913686; q=34tKqQuZ1lisVLW7Od; m=kz073COEC8/Vz1JSdsSGiLpapgpCT8FOcPrf0uIS8pA=
-Received: from imx2.toshiba.co.jp (imx2.toshiba.co.jp [106.186.93.51])
-        by relay.securemx.jp (mx-mr1510) id 07VMfOGm033713;
-        Tue, 1 Sep 2020 07:41:24 +0900
-Received: from enc03.toshiba.co.jp ([106.186.93.13])
-        by imx2.toshiba.co.jp  with ESMTP id 07VMfO3q001106;
-        Tue, 1 Sep 2020 07:41:24 +0900 (JST)
-Received: from hop001.toshiba.co.jp ([133.199.164.63])
-        by enc03.toshiba.co.jp  with ESMTP id 07VMfNBT004239;
-        Tue, 1 Sep 2020 07:41:23 +0900
-Date:   Tue, 1 Sep 2020 07:41:22 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Olof Johansson <olof@lixom.net>,
-        punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@misterjones.org>
-Subject: Re: [PATCH v3 0/8] Add Toshiba Visconti ARM64 Platform support
-X-TSB-HOP: ON
-Message-ID: <20200831224122.i5tau3atlty4ikeu@toshiba.co.jp>
-References: <20200831081025.2721320-1-nobuhiro1.iwamatsu@toshiba.co.jp>
- <CAK8P3a2xD-zp3ov=3vobSSAmyfvPCMe0mGgP3F7mZkk8WieUpw@mail.gmail.com>
+        id S1726173AbgIAAfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 20:35:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57224 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726130AbgIAAfI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 20:35:08 -0400
+Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com [IPv6:2607:f8b0:4864:20::742])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDFA4C061755
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 17:35:07 -0700 (PDT)
+Received: by mail-qk1-x742.google.com with SMTP id p185so7955714qkb.11
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 17:35:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=marek-ca.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=u1h+Z4m7wDNO0C3YgQOk9ULf7HqqBVP3DARz2vlWcqM=;
+        b=0YgfD29KFW61aSUj03zT3rqIuzjSwn2XOBZ1dmV1pogKfTpds/qLyxwjGE9+oq++WR
+         fcSrnLAgNOL3yVIw52uMfN1U9ofohgkfVdOIMPtC/kgkXfZm4ZnvBQuLWU3kifQUcKPu
+         MdBnHdibUg+/Gn9IzNvEHFVnjZ8tgkOLsoF67ZLwOLah2qHkgrTQqBcCrQThfD6ROUtR
+         ZC56KqRtJw0sZiz/aFRpZjeNHYKjMbTZrJ2j+m7EUh/Zqny7XjkNxUMlLyfyh1QoFwJK
+         o5dUPof0R31BnyEvroneXQz/CWnwvXVgeEj4YNb1C4lucR8gMMjWZzENoEiaTEt0BZ01
+         2MSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=u1h+Z4m7wDNO0C3YgQOk9ULf7HqqBVP3DARz2vlWcqM=;
+        b=gs7gU3YseiBspcLe3JChDBFCtvvriBW3ECXCdPk+wcDxhrTxSRCNbW2VIT7XUUwP1g
+         O4lfAHeVaxaqTGzwzzOG8JUKsqZOw+p9Tj8QEoUy+nhofEc7JWrTnU396zHZmFpTfvWP
+         14qtxf8zBpwIqj4HCTuVAaHbEGFRb/O7Hy4rWL5LWEkcYW+DAFXrw9Tz0PcTYOOpcGWu
+         cdmM7Pq03h38GuvilsgakEZRkgyIQOctY893mzZ5iDqak60NDp/OggUEQr+RRbrXY7bX
+         +LAZ50b79clJR7gIzb4BTX/Vf1x4XKSulpeqMaPlC9P7SD+VEWWsTq22l36suJKzV2hr
+         MuXQ==
+X-Gm-Message-State: AOAM533Pf/epBjp0pfaNxdfz0E5y4iHP8Rs/Gzas5ukNh8FG7+f5HFw/
+        r+rfjUBpmsxmRYlhK44ILRHx9w==
+X-Google-Smtp-Source: ABdhPJzkk38aCbZ8lDflnNZZa3DrorTjRhUVl4b8Gm3wfJppKByyt10onThah9H/JwFhC+CC8K4kXg==
+X-Received: by 2002:a05:620a:16b8:: with SMTP id s24mr4057084qkj.67.1598920506032;
+        Mon, 31 Aug 2020 17:35:06 -0700 (PDT)
+Received: from localhost.localdomain ([147.253.86.153])
+        by smtp.gmail.com with ESMTPSA id q185sm11438597qke.25.2020.08.31.17.35.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Aug 2020 17:35:05 -0700 (PDT)
+From:   Jonathan Marek <jonathan@marek.ca>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] arm64: dts: qcom: add sm8250 fastrpc nodes
+Date:   Mon, 31 Aug 2020 20:33:46 -0400
+Message-Id: <20200901003346.12210-1-jonathan@marek.ca>
+X-Mailer: git-send-email 2.26.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAK8P3a2xD-zp3ov=3vobSSAmyfvPCMe0mGgP3F7mZkk8WieUpw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add fastrpc nodes for sDSP, cDSP, and aDSP.
 
-Thanks for your review and comment.
+Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+---
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 115 ++++++++++++++++++++++++++-
+ 1 file changed, 113 insertions(+), 2 deletions(-)
 
-On Mon, Aug 31, 2020 at 11:19:02AM +0200, Arnd Bergmann wrote:
-> On Mon, Aug 31, 2020 at 10:10 AM Nobuhiro Iwamatsu
-> <nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
-> >
-> > Visconti is a series of Toshiba's SoCs targeting image processing
-> > applications[0]. These set of patches adds support for Visconti5 a Arm
-> > v8 based SoC.
-> >
-> > The series add minimal support for the Visconti5 SoC and the TMPV7708 RM
-> > main board. Peripherals such as UART, SPI, I2c and timer use Arm's
-> > IP and work with the existing kernel drivers in the tree. The series
-> > includes a pinctrl driver to select appropriate functions on the pins.
-> 
-> The arch/arm64 series looks all reasonable to me, nice work!
-> 
-> Once the review from the DT and pinctrl maintainers is completed
-> and you have received their Acked-by or Reviewed-by tags, please
-> send the series with those tags to soc@kernel.org for inclusion, keeping
-> everyone else on Cc.
-> 
-> I'd leave it up to Linus Walleij whether he wants to merge the pinctrl driver
-> through his subsystem tree, or whether we should pick it up through
-> the soc tree, either way works for the initial merge. For any updates to
-> the pinctrl driver and additional subsystem support (clk, media, ...)
-> in later releases there is no need to Cc the SoC maintainers as those
-> should just get merged through the subsystem while we take care
-> of the DT files.
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index 345934fbc251..6d13e60ee6a9 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -1500,8 +1500,35 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
+ 				mboxes = <&ipcc IPCC_CLIENT_SLPI
+ 						IPCC_MPROC_SIGNAL_GLINK_QMP>;
+ 
+-				label = "lpass";
++				label = "slpi";
+ 				qcom,remote-pid = <3>;
++
++				fastrpc {
++					compatible = "qcom,fastrpc";
++					qcom,glink-channels = "fastrpcglink-apps-dsp";
++					label = "dsps";
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					compute-cb@1 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <1>;
++						iommus = <&apps_smmu 0x0541 0x0>;
++					};
++
++					compute-cb@2 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <2>;
++						iommus = <&apps_smmu 0x0542 0x0>;
++					};
++
++					compute-cb@3 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <3>;
++						iommus = <&apps_smmu 0x0543 0x0>;
++						/* note: shared-cb = <4> in downstream */
++					};
++				};
+ 			};
+ 		};
+ 
+@@ -1538,8 +1565,66 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
+ 				mboxes = <&ipcc IPCC_CLIENT_CDSP
+ 						IPCC_MPROC_SIGNAL_GLINK_QMP>;
+ 
+-				label = "lpass";
++				label = "cdsp";
+ 				qcom,remote-pid = <5>;
++
++				fastrpc {
++					compatible = "qcom,fastrpc";
++					qcom,glink-channels = "fastrpcglink-apps-dsp";
++					label = "cdsp";
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					compute-cb@1 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <1>;
++						iommus = <&apps_smmu 0x1001 0x0460>;
++					};
++
++					compute-cb@2 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <2>;
++						iommus = <&apps_smmu 0x1002 0x0460>;
++					};
++
++					compute-cb@3 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <3>;
++						iommus = <&apps_smmu 0x1003 0x0460>;
++					};
++
++					compute-cb@4 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <4>;
++						iommus = <&apps_smmu 0x1004 0x0460>;
++					};
++
++					compute-cb@5 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <5>;
++						iommus = <&apps_smmu 0x1005 0x0460>;
++					};
++
++					compute-cb@6 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <6>;
++						iommus = <&apps_smmu 0x1006 0x0460>;
++					};
++
++					compute-cb@7 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <7>;
++						iommus = <&apps_smmu 0x1007 0x0460>;
++					};
++
++					compute-cb@8 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <8>;
++						iommus = <&apps_smmu 0x1008 0x0460>;
++					};
++
++					/* note: secure cb9 in downstream */
++				};
+ 			};
+ 		};
+ 
+@@ -3112,6 +3197,32 @@ q6routing: routing {
+ 						};
+ 					};
+ 				};
++
++				fastrpc {
++					compatible = "qcom,fastrpc";
++					qcom,glink-channels = "fastrpcglink-apps-dsp";
++					label = "adsp";
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					compute-cb@3 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <3>;
++						iommus = <&apps_smmu 0x1803 0x0>;
++					};
++
++					compute-cb@4 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <4>;
++						iommus = <&apps_smmu 0x1804 0x0>;
++					};
++
++					compute-cb@5 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <5>;
++						iommus = <&apps_smmu 0x1805 0x0>;
++					};
++				};
+ 			};
+ 		};
+ 
+-- 
+2.26.1
 
-Thank you for the explanation. I will do that.
-BTW, I searched the process for this but I couldn't find any detailed
-documentation. Could you tell me if you know?
-
-> 
-> > NOTE: Because Visconti5 does not have PSCI, it uses spin-table with enable-method.
-> 
-> This sounds like an odd choice. Is this a permanent defect in the SoC
-> or the firmware, or do you expect to change this later once the firmware
-> has been fixed?
-
-I will change it later when the firmware is fixed.
-
-> 
-> Note that most systems require PSCI anyway for cpuidle support. If there
-> is any EL2 or EL3 mode firmware already, this is where support for
-> processor bringup should be implemented. If there is none, you can
-> usually implement it using a small EL3 trampoline in the bootloader.
-> 
-
-Yes, I understand that.
-Our firmware team and I are currently considering a fix.
-
-> >       And this patch series does not include a clock framework, so it is a
-> >       device-tree file that uses clocks with fixed-clock. This will be replaced by
-> >       the clock driver in the future.
-> 
-> This is ok for bringup, though we usually recommend to merge the clk driver
-> at the same time as the SoC, in order to avoid having an incompatible DT
-> change when adding the clk driver.
-
-Yes, I do this with caution.
-
-> 
->        Arnd
->
-
-Best regards,
-  Nobuhiro
