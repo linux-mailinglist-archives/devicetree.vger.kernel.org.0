@@ -2,85 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01B7A258A0B
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 10:04:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAC1A258A15
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 10:10:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726311AbgIAIEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 04:04:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41822 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726307AbgIAIEq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 04:04:46 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4B86C061245
-        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 01:04:45 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kD1HS-0001KG-5e; Tue, 01 Sep 2020 10:04:38 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kD1HR-0005Qc-On; Tue, 01 Sep 2020 10:04:37 +0200
-Date:   Tue, 1 Sep 2020 10:04:37 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        f.fainelli@gmail.com, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        zhengdejin5@gmail.com, richard.leitner@skidata.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH 4/5] net: phy: smsc: add phy refclk in support
-Message-ID: <20200901080437.w5og2l5toa57wkdk@pengutronix.de>
-References: <20200831134836.20189-1-m.felsch@pengutronix.de>
- <20200831134836.20189-5-m.felsch@pengutronix.de>
- <20200831140847.GE2403519@lunn.ch>
+        id S1726020AbgIAIKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 04:10:45 -0400
+Received: from mga06.intel.com ([134.134.136.31]:62349 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726050AbgIAIKp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Sep 2020 04:10:45 -0400
+IronPort-SDR: KbETmduCJU25KeHQOkCP5B6z5sueyhbu6jaNGvEgWoJfI5sqtpj+OlGQmVMNh9xh8Cj2zLuX23
+ anWDw68o9RkA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9730"; a="218679195"
+X-IronPort-AV: E=Sophos;i="5.76,378,1592895600"; 
+   d="scan'208";a="218679195"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Sep 2020 01:10:44 -0700
+IronPort-SDR: dovm96Q6dXJ+SFXqtKOvg2fPhMEdFiCL95D039Vxn1+8RSZLF2FfnTXohAqzaMgD32DD4pZ8nv
+ tBnVd9tV64fg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,378,1592895600"; 
+   d="scan'208";a="330988244"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga008.jf.intel.com with ESMTP; 01 Sep 2020 01:10:42 -0700
+Received: from andy by smile with local (Exim 4.94)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1kD1NI-00DFCj-4D; Tue, 01 Sep 2020 11:10:40 +0300
+Date:   Tue, 1 Sep 2020 11:10:40 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+Cc:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        vadivel.muruganx.ramuthevar@linux.intel.com,
+        eswara.kota@linux.intel.com, lakshmi.bai.raja.subramanian@intel.com
+Subject: Re: [PATCH v8 1/3] phy: intel: Rename phy-intel to phy-intel-lgm
+Message-ID: <20200901081040.GN1891694@smile.fi.intel.com>
+References: <20200901044201.20978-1-wan.ahmad.zainie.wan.mohamad@intel.com>
+ <20200901044201.20978-2-wan.ahmad.zainie.wan.mohamad@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200831140847.GE2403519@lunn.ch>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 10:01:48 up 290 days, 23:20, 278 users,  load average: 0.17, 0.16,
- 0.10
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20200901044201.20978-2-wan.ahmad.zainie.wan.mohamad@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-08-31 16:08, Andrew Lunn wrote:
-> > +	priv->refclk = devm_clk_get_optional(dev, NULL);
-> > +	if (IS_ERR(priv->refclk)) {
-> > +		if (PTR_ERR(priv->refclk) == -EPROBE_DEFER)
-> > +			return -EPROBE_DEFER;
-> > +
-> > +		/* Clocks are optional all errors should be ignored here */
-> > +		return 0;
+On Tue, Sep 01, 2020 at 12:41:59PM +0800, Wan Ahmad Zainie wrote:
+> Rename phy-intel-{combo,emmc}.c to phy-intel-lgm-{combo,emmc}.c
+> to make drivers/phy/intel directory more generic for future use.
 > 
-> Since you are calling devm_clk_get_optional() isn't an error a real
-> error, not that the clock is missing? It probably should be returned
-> as an error code.
+> Signed-off-by: Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
 
-Yes you're right. Actually I can't remember why went this way... I will
-change this to dev_err_probe() and this gets a oneliner.
+> Reviewed-by: Ramuthevar Vadivel Murugan
+> <vadivel.muruganx.ramuthevar@linux.intel.com>
 
-Regards,
-  Marco
+This shall be one line.
 
+> ---
+>  drivers/phy/intel/Kconfig                              | 10 +++++-----
+>  drivers/phy/intel/Makefile                             |  4 ++--
+>  .../intel/{phy-intel-combo.c => phy-intel-lgm-combo.c} |  0
+>  .../intel/{phy-intel-emmc.c => phy-intel-lgm-emmc.c}   |  0
+>  4 files changed, 7 insertions(+), 7 deletions(-)
+>  rename drivers/phy/intel/{phy-intel-combo.c => phy-intel-lgm-combo.c} (100%)
+>  rename drivers/phy/intel/{phy-intel-emmc.c => phy-intel-lgm-emmc.c} (100%)
 > 
->    Andrew
+> diff --git a/drivers/phy/intel/Kconfig b/drivers/phy/intel/Kconfig
+> index 7b47682a4e0e..db8586c3eed8 100644
+> --- a/drivers/phy/intel/Kconfig
+> +++ b/drivers/phy/intel/Kconfig
+> @@ -1,9 +1,9 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  #
+> -# Phy drivers for Intel Lightning Mountain(LGM) platform
+> +# Phy drivers for Intel platforms
+>  #
+> -config PHY_INTEL_COMBO
+> -	bool "Intel ComboPHY driver"
+> +config PHY_INTEL_LGM_COMBO
+> +	bool "Intel Lightning Mountain ComboPHY driver"
+>  	depends on X86 || COMPILE_TEST
+>  	depends on OF && HAS_IOMEM
+>  	select MFD_SYSCON
+> @@ -16,8 +16,8 @@ config PHY_INTEL_COMBO
+>  	  chipsets which provides PHYs for various controllers, EMAC,
+>  	  SATA and PCIe.
+>  
+> -config PHY_INTEL_EMMC
+> -	tristate "Intel EMMC PHY driver"
+> +config PHY_INTEL_LGM_EMMC
+> +	tristate "Intel Lightning Mountain EMMC PHY driver"
+>  	depends on X86 || COMPILE_TEST
+>  	select GENERIC_PHY
+>  	help
+> diff --git a/drivers/phy/intel/Makefile b/drivers/phy/intel/Makefile
+> index 233d530dadde..662385d0a366 100644
+> --- a/drivers/phy/intel/Makefile
+> +++ b/drivers/phy/intel/Makefile
+> @@ -1,3 +1,3 @@
+>  # SPDX-License-Identifier: GPL-2.0
+> -obj-$(CONFIG_PHY_INTEL_COMBO)		+= phy-intel-combo.o
+> -obj-$(CONFIG_PHY_INTEL_EMMC)            += phy-intel-emmc.o
+> +obj-$(CONFIG_PHY_INTEL_LGM_COMBO)	+= phy-intel-lgm-combo.o
+> +obj-$(CONFIG_PHY_INTEL_LGM_EMMC)	+= phy-intel-lgm-emmc.o
+> diff --git a/drivers/phy/intel/phy-intel-combo.c b/drivers/phy/intel/phy-intel-lgm-combo.c
+> similarity index 100%
+> rename from drivers/phy/intel/phy-intel-combo.c
+> rename to drivers/phy/intel/phy-intel-lgm-combo.c
+> diff --git a/drivers/phy/intel/phy-intel-emmc.c b/drivers/phy/intel/phy-intel-lgm-emmc.c
+> similarity index 100%
+> rename from drivers/phy/intel/phy-intel-emmc.c
+> rename to drivers/phy/intel/phy-intel-lgm-emmc.c
+> -- 
+> 2.17.1
 > 
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+With Best Regards,
+Andy Shevchenko
+
+
