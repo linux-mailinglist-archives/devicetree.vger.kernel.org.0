@@ -2,178 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9785258AB0
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 10:50:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF3E1258BA2
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 11:33:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727780AbgIAIuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 04:50:32 -0400
-Received: from mx1.tq-group.com ([62.157.118.193]:47171 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726618AbgIAIu3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Sep 2020 04:50:29 -0400
-IronPort-SDR: DntSZN5tGB4ASbg9nzfAw3YQJ+xIADwOOiv8/XVySIDrLfh5tTFgosz8kEAdlCfr6fzrCV1dlP
- 75cOHyv5u6tc/HdHQaNlonF7HeXlZ969m0/Mm2Ue5roqmdKFdujlzuRL5kXUDzqAIVFr7S1r/t
- d3b2hM7o+gJ1gNnQNuD2bVEjg4MOeFyKIrNWoT9HlwtsuXMPzP610wqX5ifuUqFM4KMbiwXlPM
- JYGRR8VoEDIrQNA/wVQycQGoVx7wP34pWI1ZuvLijGSgp988YFAZF8ywz++IBuBEpg/UvwNviv
- aRQ=
-X-IronPort-AV: E=Sophos;i="5.76,378,1592863200"; 
-   d="scan'208";a="13677468"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 01 Sep 2020 10:50:24 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 01 Sep 2020 10:50:24 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 01 Sep 2020 10:50:24 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1598950224; x=1630486224;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references;
-  bh=F5d5x7a68Mh3YNvlXxZUiOS79u4ypZUgcPmdt4Ds/hM=;
-  b=Jfr9CnwhvSf8sZxF/3/Vs+H0zhwmemAYQ65ebSxF2O7DzCeT7QDAmYaK
-   cmRjZbexmBj7iAYyVgMVpPyrkCXAkKldPe4DpZyAOV0RuLkSSgfmZ9h95
-   V2dej/ypB/+d8qIOpybuknyLx+HfDQeR8ClX3+37yWS4zj3aTcvrP5T69
-   irRM/Z+NSXO2S0j46t3AoeTOVM7DOKAVXeDrzLuIBB4mzkCt4d0tolpv4
-   xPqGSxgni94SfQ3/sOexluOflGk5WLvahY15VJmpoxqdCSjApziRYV2AK
-   +mls7Nn67JpPs5dW+Eo2ssu+9qWG5rVYnmrFMGeIohYO816jDzvIuVVNZ
-   A==;
-IronPort-SDR: Z5fhJvCA+6HsG/4wH70+J6SxeVrpPa7O/CKZwE4AJxSOAc2ZTTh+OG/e6IRFaMtW12XqGi6Nwt
- PQdYMec6xxfMrCaVrUa4ow0jOJaj2OM59kGwh4m5ouTbMPK6PDCGARW3LGdoICio4HvSJHF1Tt
- 472M5ejoQ3Mv3hcUFDTl1VMsG/cdZZCa5bs7EcnWIwzMo0LT9bjwHRrGK/7xXSp1vI+llFi1nS
- A8XEBfa1+CXFb5pTSLJrL3u2/sqMbb8Zwj8ypcveduU8Zh/pi1MOBAl6UMcHTc8t23P1mnXGgY
- jkU=
-X-IronPort-AV: E=Sophos;i="5.76,378,1592863200"; 
-   d="scan'208";a="13677467"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 01 Sep 2020 10:50:24 +0200
-Received: from schifferm-ubuntu4.tq-net.de (schifferm-ubuntu4.tq-net.de [10.117.49.26])
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id 3C04E280070;
-        Tue,  1 Sep 2020 10:50:24 +0200 (CEST)
-From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-Subject: [PATCH mmc-next v4 2/2] mmc: allow setting slot index via device tree alias
-Date:   Tue,  1 Sep 2020 10:50:04 +0200
-Message-Id: <20200901085004.2512-2-matthias.schiffer@ew.tq-group.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200901085004.2512-1-matthias.schiffer@ew.tq-group.com>
-References: <20200901085004.2512-1-matthias.schiffer@ew.tq-group.com>
+        id S1726078AbgIAJc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 05:32:58 -0400
+Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:49071 "EHLO
+        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726064AbgIAJc4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 05:32:56 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id C4BA659D;
+        Tue,  1 Sep 2020 05:32:54 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Tue, 01 Sep 2020 05:32:55 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=yIMO5rI2UI9aNW11XZSdXqbn1PQ
+        yhmBmZc0nKtxCGM8=; b=X+18kR/dcIcBZlSEKNZXOhlDi6oOIpZCYa/PTp89lmL
+        3Sv/TeqqeIqazxg2SKt5L+lfDxSy1AJqwZv8TcPBBBo54xavcK6SGp9btwrWBEqT
+        ft4/+FpJ/1KMaRPb0XmjkRvi5Ro+Urd1QsHFSAywSIrPiZP/MqO5EONRCsaO4Tf/
+        MHVEAyxcE5lJpT22Z3Xcnj57kHuAdFiVpgu5dCZg+h5pabBVUEcgr8pdvAbRsC8p
+        aAx5YWbT0HZAyMJkDE7ANuDB9KOgGlx3LMJXpYJkCvJaLpj2rz96nQok0UbZUanQ
+        WY60O4HwzKEOq3EhqfDSfQNsaAe4Sv6kFRO4EwVA5YA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=yIMO5r
+        I2UI9aNW11XZSdXqbn1PQyhmBmZc0nKtxCGM8=; b=rRijvwHG7QMBE4mEd+P+wt
+        /0C1D5h47o1xdCddxPgYcBm5LbgXJT0mq/qkEoRvA6HlnUm7KmRFvMW+Mw5L+Dip
+        iZFtCFKFqW/9XI6ydJ4azqYYw8IfYYY1ljXj3o3Jb7/T5bMClRKJlFTxmtu7isGH
+        hFDJrt5P+TDmCEsBHaCxyQ+1Ixk6+cr/k5Y8QmNk/tDVLwf0smpRblOEjO3GbJwJ
+        7Z3S450xVbiESk60nl1u7iIgfMIfd1VXfN/fTF36gnu86sye4c/6V8potpw2GcPn
+        71Re7XB6A/0jgXv6P0LO236LhERlRvdiGcgBoZlmMxFPIbs0BGdF7xslU0T5jFqA
+        ==
+X-ME-Sender: <xms:RBVOX2ac15VheW_otOioHv7wRO6gfzaQiD0DFJO1_-Du53ZMyA_8eg>
+    <xme:RBVOX5ZXT21KpxqdG5NGrBuG3B4zE1hCuonIR64npDTZKuOR7-TGhy-VSKgqjZnu5
+    rC4LatSNpmpu2LiLD4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudefjedgudekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:RBVOXw9nIZ2dK33-qTY2qPLabpT_d-N1DJi9wVsfM9n9IEbWvfkSWA>
+    <xmx:RBVOX4rHhzIuONgF4_EPiGdzMWD2eTorFOPfnFjJat7vZAJcC-LNyg>
+    <xmx:RBVOXxq2kVzR3R5hqm_iuUShSdhHaNfxfBu3uhuBAPx1-ACTrFHuLg>
+    <xmx:RhVOX1LzNUK-ynqTU9D6E9_IhRaZ0unxXqrWL8ybjYYdamPAhEBrpg>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 2B5D1328005A;
+        Tue,  1 Sep 2020 05:32:52 -0400 (EDT)
+Date:   Tue, 1 Sep 2020 11:32:49 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Martin Cerveny <m.cerveny@computer.org>
+Cc:     Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: crypto: add new compatible for V3s
+Message-ID: <20200901093249.orwyc5sr3z2y43fz@gilmour.lan>
+References: <20200831073101.3608-1-m.cerveny@computer.org>
+ <20200831073101.3608-2-m.cerveny@computer.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ywkqrhvkhmefty2q"
+Content-Disposition: inline
+In-Reply-To: <20200831073101.3608-2-m.cerveny@computer.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As with GPIO, UART and others, allow specifying the device index via the
-aliases node in the device tree.
 
-On embedded devices, there is often a combination of removable (e.g.
-SD card) and non-removable MMC devices (e.g. eMMC).
-Therefore the index might change depending on
+--ywkqrhvkhmefty2q
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-* host of removable device
-* removable card present or not
+On Mon, Aug 31, 2020 at 09:30:59AM +0200, Martin Cerveny wrote:
+> Like A33 "sun4i-ss" has a difference, it give SHA1 digest
+> directly in BE. So add new compatible.
+>=20
+> Tested-by: Martin Cerveny <m.cerveny@computer.org>
 
-This makes it difficult to hardcode the root device, if it is on the
-non-removable device. E.g. if SD card is present eMMC will be mmcblk1,
-if SD card is not present at boot, eMMC will be mmcblk0.
+The Tested-by tag is for the other developpers. You're very much
+expected to have tested your patch before contributing it.
 
-Alternative solutions like PARTUUIDs do not cover the case where multiple
-mmcblk devices contain the same image. This is a common issue on devices
-that can boot both from eMMC (for regular boot) and SD cards (as a
-temporary boot medium for development). When a firmware image is
-installed to eMMC after a test boot via SD card, there will be no
-reliable way to refer to a specific device using (PART)UUIDs oder
-LABELs.
+> Signed-off-by: Martin Cerveny <m.cerveny@computer.org>
+> ---
+>  .../bindings/crypto/allwinner,sun4i-a10-crypto.yaml          | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10=
+-crypto.yaml b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10=
+-crypto.yaml
+> index fc823572b..180efd13a 100644
+> --- a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto=
+=2Eyaml
+> +++ b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto=
+=2Eyaml
+> @@ -25,6 +25,7 @@ properties:
+>            - const: allwinner,sun4i-a10-crypto
+>        - items:
+>            - const: allwinner,sun8i-a33-crypto
+> +      - const: allwinner,sun8i-v3s-crypto
 
-The demand for this feature has led to multiple attempts to implement
-it, dating back at least to 2012 (see
-https://www.spinics.net/lists/linux-mmc/msg26586.html for a previous
-discussion from 2014).
+If it's compatible with the A33, why do we need to introduce a new compatib=
+le?
 
-All indices defined in the aliases node will be reserved for use by the
-respective MMC device, moving the indices of devices that don't have an
-alias up into the non-reserved range. If the aliases node is not found,
-the driver will act as before.
+> =20
+>    reg:
+>      maxItems: 1
+> @@ -59,7 +60,9 @@ if:
+>    properties:
+>      compatible:
+>        contains:
+> -        const: allwinner,sun6i-a31-crypto
+> +        oneOf:
+> +          - const: allwinner,sun6i-a31-crypto
+> +          - const: allwinner,sun8i-v3s-crypto
 
-This is a rebased and cleaned up version of
-https://www.spinics.net/lists/linux-mmc/msg26588.html .
+I guess the A33 compatible should be on that list as well?
 
-Based-on-patch-by: Sascha Hauer <s.hauer@pengutronix.de>
-Link: https://lkml.org/lkml/2020/8/5/194
-Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
----
+Maxime
 
-v4:
-- minor adjustments to commit message
+--ywkqrhvkhmefty2q
+Content-Type: application/pgp-signature; name="signature.asc"
 
-v3:
-- remove unneeded mmcblock changes
-- remove most helper functions to simplify code
-- extended commit message
+-----BEGIN PGP SIGNATURE-----
 
-v2:
-- fix missing symbols for modular mmcblock
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX04VNwAKCRDj7w1vZxhR
+xUoPAP0aRVMtT5aReBzaR1rKfHMozA+BGin5xSE3NDdtc42+KgEAsOJOAuG0uraq
+QzryFy0SRC8lrKJdLsGgk3G1Xt6Uxgg=
+=YS/W
+-----END PGP SIGNATURE-----
 
-
-
- drivers/mmc/core/host.c | 26 +++++++++++++++++++++++++-
- 1 file changed, 25 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
-index c8fae6611b73..96b2ca1f1b06 100644
---- a/drivers/mmc/core/host.c
-+++ b/drivers/mmc/core/host.c
-@@ -376,6 +376,20 @@ int mmc_of_parse_voltage(struct device_node *np, u32 *mask)
- }
- EXPORT_SYMBOL(mmc_of_parse_voltage);
- 
-+/**
-+ * mmc_first_nonreserved_index() - get the first index that is not reserved
-+ */
-+static int mmc_first_nonreserved_index(void)
-+{
-+	int max;
-+
-+	max = of_alias_get_highest_id("mmc");
-+	if (max < 0)
-+		return 0;
-+
-+	return max + 1;
-+}
-+
- /**
-  *	mmc_alloc_host - initialise the per-host structure.
-  *	@extra: sizeof private data structure
-@@ -387,6 +401,7 @@ struct mmc_host *mmc_alloc_host(int extra, struct device *dev)
- {
- 	int err;
- 	struct mmc_host *host;
-+	int alias_id, min_idx, max_idx;
- 
- 	host = kzalloc(sizeof(struct mmc_host) + extra, GFP_KERNEL);
- 	if (!host)
-@@ -395,7 +410,16 @@ struct mmc_host *mmc_alloc_host(int extra, struct device *dev)
- 	/* scanning will be enabled when we're ready */
- 	host->rescan_disable = 1;
- 
--	err = ida_simple_get(&mmc_host_ida, 0, 0, GFP_KERNEL);
-+	alias_id = of_alias_get_id(dev->of_node, "mmc");
-+	if (alias_id >= 0) {
-+		min_idx = alias_id;
-+		max_idx = alias_id + 1;
-+	} else {
-+		min_idx = mmc_first_nonreserved_index();
-+		max_idx = 0;
-+	}
-+
-+	err = ida_simple_get(&mmc_host_ida, min_idx, max_idx, GFP_KERNEL);
- 	if (err < 0) {
- 		kfree(host);
- 		return NULL;
--- 
-2.17.1
-
+--ywkqrhvkhmefty2q--
