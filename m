@@ -2,115 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DEC51258CAD
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 12:23:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A70C8258CB7
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 12:25:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725949AbgIAKXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 06:23:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34930 "EHLO
+        id S1726654AbgIAKZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 06:25:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725848AbgIAKW5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 06:22:57 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30F3CC061244;
-        Tue,  1 Sep 2020 03:22:56 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B816AAF2;
-        Tue,  1 Sep 2020 12:22:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1598955764;
-        bh=G2KxxwOoj3SLhv+55AScVVlthMBdTAjzgzoR3gW/fpI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hUU3u2VK3RPHLpz6FEx/Rt7Pr/x4znpdWCUJcYze2Weml+JL0bjRWL1SU3uuuKj4/
-         HU00eonCUlfHgPigEjW+nwB/bOxlW+aoBhofBG7Hf6D+E8N2T7WqPUixxnvCEk1Snw
-         /oC489rVMLHKIXGXMU/Q8+iXwKgIm30Q9Sxyhqf8=
-Date:   Tue, 1 Sep 2020 13:22:23 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh@kernel.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: bridge: lvds-codec:
- Document vcc-supply property
-Message-ID: <20200901102223.GB5821@pendragon.ideasonboard.com>
-References: <20200810152219.6254-1-biju.das.jz@bp.renesas.com>
- <20200810152219.6254-2-biju.das.jz@bp.renesas.com>
- <20200824230458.GA3489164@bogus>
- <TYBPR01MB5309756E7E19EF34562FAB5E86540@TYBPR01MB5309.jpnprd01.prod.outlook.com>
+        with ESMTP id S1726244AbgIAKZm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 06:25:42 -0400
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13264C061245
+        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 03:25:41 -0700 (PDT)
+Received: by mail-ej1-x643.google.com with SMTP id lo4so864436ejb.8
+        for <devicetree@vger.kernel.org>; Tue, 01 Sep 2020 03:25:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DBY03aljOyI/2fhPi5fgkXmtcr1ZgjsMqOgg6fOIlH8=;
+        b=ZvssPmbeG6XDh2TWAE2Wd4jboUyecQ9Z9B7+kp1ntN0VP2oEbf7XObj9ZD2vPNS9Q0
+         asc6ijuQ/UyS8orgtyeO9KVXLLCLoCG8KDIeKTX94lP9x0TCB7DiBoIAwFI8W/vSD1z2
+         G6Wdnk6WR9iltPjeKLoH3vq6U9J+Wr8LdXqbo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DBY03aljOyI/2fhPi5fgkXmtcr1ZgjsMqOgg6fOIlH8=;
+        b=oEAGCUXgCGjWp2nlEyhhZsBQteqexqWRqVMQlorqeKpR8F64lxEXF7pgIE6nSAQaNg
+         lecFB3anOPY+4nAr8eyUDVq/KrNq22kLKlyewdOC5gfROPfAvEVMq2j8EEljrPat14na
+         qghJPxejYucu9vuvabmQ8lRFJM+HJIMW8Icf+IuNShkie9XWPU6evx/OH0pgEgH9HqTS
+         p03NmOWjN/PeOh6VTZMgI2YyWPagPneiV6AxqR6aVBXFCCmLJSG2qoYWB+tLYEA6Fkz5
+         mo/VKF7/qzwoVliKJu5oDyKiTwkdO6i1u/maKBqNQGeYCfbKrGLwslZsZw2kmQVRePvZ
+         P61w==
+X-Gm-Message-State: AOAM533RMvrqisKWtVGcR89hTP5Jw57Rtm1QQXKI7c++5fDH9FO98ops
+        wLkk6t7Jw02dO5AGOAodmSjaYjiOSVhoHSCEKAh87iBco+E=
+X-Google-Smtp-Source: ABdhPJxoLwkmE9GI/4RYl7jfvvcWo/Kls6xYJUneBBMoNdmQ04dudp2j2v1X//3rzOVafeyuohPwjIghls3Gymh8JzU=
+X-Received: by 2002:a17:906:150b:: with SMTP id b11mr840127ejd.234.1598955940451;
+ Tue, 01 Sep 2020 03:25:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <TYBPR01MB5309756E7E19EF34562FAB5E86540@TYBPR01MB5309.jpnprd01.prod.outlook.com>
+References: <20200831082917.17117-1-jagan@amarulasolutions.com>
+ <20200831082917.17117-7-jagan@amarulasolutions.com> <0e286dbd-36e7-54cf-b901-4718d5f7ee6d@gmail.com>
+In-Reply-To: <0e286dbd-36e7-54cf-b901-4718d5f7ee6d@gmail.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Tue, 1 Sep 2020 15:55:29 +0530
+Message-ID: <CAMty3ZCux4dz_qE4ie1r3mOeEzxTfrCkb_riiV-9694poEd+tg@mail.gmail.com>
+Subject: Re: [PATCH v3 6/7] arm64: dts: rockchip: px30: Add Engicam C.TOUCH 2.0
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Suniel Mahesh <sunil@amarulasolutions.com>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Hi Johan,
 
-On Wed, Aug 26, 2020 at 06:58:50AM +0000, Biju Das wrote:
-> > Subject: Re: [PATCH v2 1/3] dt-bindings: display: bridge: lvds-codec:
-> > Document vcc-supply property
-> >
-> > On Mon, Aug 10, 2020 at 04:22:17PM +0100, Biju Das wrote:
-> > > Document optional vcc-supply property that may be used as VCC source.
-> > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > ---
-> > > New patch Ref: Ref:https://patchwork.kernel.org/patch/11705819/
-> > > ---
-> > >  .../devicetree/bindings/display/bridge/lvds-codec.yaml         | 3 +++
-> > >  1 file changed, 3 insertions(+)
-> > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> > > b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> > > index 68951d56ebba..3248be31eceb 100644
-> > > --- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> > > @@ -79,6 +79,9 @@ properties:
-> > >        The GPIO used to control the power down line of this device.
-> > >      maxItems: 1
-> > >
-> > > +  vcc-supply:
-> > > +    maxItems: 1
-> >
-> > Probably should be 'power-supply' to align with the 'simple' panels.
-> > That's also to signify there's only 1 supply. Using 'vcc' would encourage
-> > adding 'vdd-supply', 'vddio-supply', etc. A second supply I'll NAK because at
-> > that point it's not a simple bridge with no configuration (it's arguably already
-> > there).
-> 
-> Yes, I am ok with 'power-supply', since LVDS CODEC driver is  generic
-> and also to align with terminology used in generic 'simple' panels.
-> 
-> In our case this Receiver converts LVDS signals to RGB signals and fed
-> this signal to simple panel.
-> On the receiver part, We need to supply  power to TTL output,  PLL and
-> LVDS input. It all derived from the single power source.
-> 
-> Laurent, Please share you opinion on this.
+On Mon, Aug 31, 2020 at 3:38 PM Johan Jonker <jbx6244@gmail.com> wrote:
+>
+> Hi Jagan,
+>
+> A dtsi file with only an include and no changes isn't useful.
+> Are you planning to add something to it?
 
-Acked-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Yes, some WiFi/BT bits (with LVDS if OF used), but the idea of having
+separate dtsi is as per the Engicam's hardware topology. C.TOUCH2.0 is
+a Carrier board like EDIMM2.2 and each as its own purpose and possible
+to use or update as per customer needs. Maintaining separate dtsi
+files for a carrier board will easy for customers to use the same SOM
+and create their own carrier hardware. This was the customers can just
+add their own custom carrier and reuse existing topoply in Mainline.
 
-That is, I think it's a good idea to rename it, and I agree with Rob
-about not adding a second supply.
+Hope you understand, the structure of these dtsi files.
 
-I've applied the modified patch to my tree, and will send a pull request
-this week.
-
--- 
-Regards,
-
-Laurent Pinchart
+Jagan.
