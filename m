@@ -2,393 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5F4725A17F
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 00:31:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7B7425A1A0
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 00:46:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727957AbgIAWbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 18:31:39 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:47148 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728236AbgIAWbR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 18:31:17 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 081MV7Ci011960;
-        Tue, 1 Sep 2020 17:31:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1598999467;
-        bh=Yd3vtqhEXUYBJs790wvZthLwGwrz+f/3CptyNXimaQA=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=PFNW8z3Twn1dXApk/wUnCLzdW/F2YrsJR/I9kGGhU6nhNsWMIf1IS89Z3C8tb5hGX
-         cZgwiSsdTdjGtZn8Q1gNCEfkqzwtmXMwB/fM5NblkhYR6ASj7QzJaZpQXvlAvEljBQ
-         0e4wGT1mstY8aBFfclcSCOOoXhG/z4HbKGC5Hrns=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 081MV6Uf053956
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 1 Sep 2020 17:31:07 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 1 Sep
- 2020 17:31:06 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 1 Sep 2020 17:31:06 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 081MV6sb025399;
-        Tue, 1 Sep 2020 17:31:06 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <t-kristo@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>, <lokeshvutla@ti.com>,
-        <grygorii.strashko@ti.com>, <nsekhar@ti.com>,
-        Nishanth Menon <nm@ti.com>
-Subject: [PATCH 7/7] arm64: dts: ti: k3-*: Fix up node_name_chars_strict errors
-Date:   Tue, 1 Sep 2020 17:30:59 -0500
-Message-ID: <20200901223059.14801-8-nm@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200901223059.14801-1-nm@ti.com>
-References: <20200901223059.14801-1-nm@ti.com>
+        id S1726947AbgIAWqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 18:46:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36888 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726814AbgIAWqI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 18:46:08 -0400
+Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3429C061246
+        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 15:46:07 -0700 (PDT)
+Received: by mail-vs1-xe42.google.com with SMTP id y3so1558909vsn.1
+        for <devicetree@vger.kernel.org>; Tue, 01 Sep 2020 15:46:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fDDm7I6FV6Bqqr5usz7Hzdqdt8ambZ3kJcMzathm/Fw=;
+        b=YmFrRabunY+wHuIzrsqFTd6yEBSh0pO/hiai7YfVLPckGRW5hL+SJHblXsstTEqRyo
+         m6+h4ELMAsdKWdhcymJTML16NYn9qW6fVrlI+HNupVUyLWrpxOtYLcqW9v32VQ2wTewU
+         xMa5tEwgA97rk8/MybDfgs/enICL02jbOzOpA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fDDm7I6FV6Bqqr5usz7Hzdqdt8ambZ3kJcMzathm/Fw=;
+        b=E7bO1r6Tz7RJ1knuOxPsFH2GZivndOQbO1KDe1AFWhDq+pKhLh0zj4bmMLwDHHOK41
+         KsUA2wDH2QNM2y1MyVsSctK+EzSOYmKOuTsUKM0f8s6PBa+2yf0UynMlTqX6Gz/oSRh3
+         wA5nTl/l9OU0yqFtbqLwB0VV3lbNYUWR8QdPVJTECI89n1SnjQsiQ8+GZRdLSzcaze9G
+         Tv84ECyOPEtnITi6uzED4KWufL7wgP0FuDFbotzYoLKiwydHPINpXbFNChQMmO5DuTOV
+         e1X4RFzNa/leNtETcGKLELajEfY+c2pvRFksFLBrbLEhNsvyvSdEFvIHKD+Izu3c3gZ9
+         mQ1A==
+X-Gm-Message-State: AOAM532EBXf5MJ7BeFIQ5eEyKuP1R4+QG82DT4BEn5okdlQ1Ibb1NvKp
+        Bthft1I4cLRE9eVOUc+ilV5oMgxsS9Yrdg==
+X-Google-Smtp-Source: ABdhPJxUSsAjrWCktYe4Aj3xf86OYekU5FAJn+U7Hh3S/yg++vCnVQ0LAmIuR7EOBECFX4L8ovMTtQ==
+X-Received: by 2002:a67:7795:: with SMTP id s143mr3612364vsc.94.1599000366363;
+        Tue, 01 Sep 2020 15:46:06 -0700 (PDT)
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
+        by smtp.gmail.com with ESMTPSA id y84sm149126vsc.33.2020.09.01.15.46.05
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Sep 2020 15:46:05 -0700 (PDT)
+Received: by mail-vs1-f43.google.com with SMTP id v138so1551117vsv.7
+        for <devicetree@vger.kernel.org>; Tue, 01 Sep 2020 15:46:05 -0700 (PDT)
+X-Received: by 2002:a05:6102:30a3:: with SMTP id y3mr3765414vsd.201.1599000364461;
+ Tue, 01 Sep 2020 15:46:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20200813113030.1.I89c33c4119eaffb986b1e8c1bc6f0e30267089cd@changeid>
+ <20200901170745.GA3419728@google.com> <CAD=FV=Xv0FLtWWcQcRy7p2LPNdDtSjdarsvNHRHaLkWwABnwJw@mail.gmail.com>
+ <20200901213319.GB3419728@google.com>
+In-Reply-To: <20200901213319.GB3419728@google.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 1 Sep 2020 15:45:52 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XDjsg314RGV1e5jRA+qa3s9LQWN8zk-ARZAQEjNeH8Kw@mail.gmail.com>
+Message-ID: <CAD=FV=XDjsg314RGV1e5jRA+qa3s9LQWN8zk-ARZAQEjNeH8Kw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Add 'sustainable_power' for CPU
+ thermal zones
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Building with W=2 throws up a bunch of easy to fixup errors..
-node_name_chars_strict is one of them.. Knock those out.
+Hi,
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi       |  6 +++---
- arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi        |  4 ++--
- arch/arm64/boot/dts/ti/k3-am654-base-board.dts | 16 ++++++++--------
- .../dts/ti/k3-am654-industrial-thermal.dtsi    | 12 ++++++------
- .../boot/dts/ti/k3-j721e-common-proc-board.dts | 18 +++++++++---------
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi      |  6 +++---
- .../arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi |  2 +-
- arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi    |  2 +-
- 8 files changed, 33 insertions(+), 33 deletions(-)
+On Tue, Sep 1, 2020 at 2:33 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+>
+> Hi Doug,
+>
+> On Tue, Sep 01, 2020 at 01:19:10PM -0700, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Tue, Sep 1, 2020 at 10:07 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+> > >
+> > > On Thu, Aug 13, 2020 at 11:30:33AM -0700, Matthias Kaehlcke wrote:
+> > > > The 'sustainable_power' attribute provides an estimate of the sustained
+> > > > power that can be dissipated at the desired control temperature. One
+> > > > could argue that this value is not necessarily the same for all devices
+> > > > with the same SoC, which may have different form factors or thermal
+> > > > designs. However there are reasons to specify a (default) value at SoC
+> > > > level for SC7180: most importantly, if no value is specified at all the
+> > > > power_allocator thermal governor (aka 'IPA') estimates a value, using the
+> > > > minimum power of all cooling devices of the zone, which can result in
+> > > > overly aggressive thermal throttling. For most devices an approximate
+> > > > conservative value should be more useful than the minimum guesstimate
+> > > > of power_allocator. Devices that need a different value can overwrite
+> > > > it in their <device>.dts. Also the thermal zones for SC7180 have a high
+> > > > level of granularity (essentially one for each function block), which
+> > > > makes it more likely that the default value just works for many devices.
+> > > >
+> > > > The values correspond to 1901 MHz for the big cores, and 1804 MHz for
+> > > > the small cores. The values were determined by limiting the CPU
+> > > > frequencies to different max values and launching a bunch of processes
+> > > > that cause high CPU load ('while true; do true; done &' is simple and
+> > > > does a good job). A frequency is deemed sustainable if the CPU
+> > > > temperatures don't rise (consistently) above the second trip point
+> > > > ('control temperature', 95 degC in this case). Once the highest
+> > > > sustainable frequency is found, the sustainable power can be calculated
+> > > > by multiplying the energy consumption per core at this frequency (which
+> > > > can be found in /sys/kernel/debug/energy_model/) with the number of
+> > > > cores that are specified as cooling devices.
+> > > >
+> > > > The sustainable frequencies were determined at room temperature
+> > > > on a device without heat sink or other passive cooling elements.
+> >
+> > I'm curious: was this a bare board, or a device in a case?  Hrm, I'm
+> > not sure which one would be worse at heat dissipation, but I would
+> > imagine that being inside a plastic case might be worse?
+>
+> This was with a device in a plastic case.
+>
+> > > > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > > > ---
+> > > > If maintainers think 'sustainable_power' should be specified at
+> > > > device level (with which I conceptually agree) I'm fine with
+> > > > doing that, just seemed it could be useful to have a reasonable
+> > > > 'default' at SoC level in this case.
+> > >
+> > > Any comments on this?
+> >
+> > I'm not massively familiar with this area of the code, but I guess I
+> > shouldn't let that stop me from having an opinion!  :-P
+> >
+> > * I would agree that it seems highly unlikely that someone would put
+> > one of these chips in a device that could only dissipate the heat from
+> > the lowest OPP, so having some higher estimate definitely makes sense.
+> >
+> > * In terms of the numbers here, I believe that you're claiming that we
+> > can dissipate 768 mW * 6 + 1202 mW * 2 = ~7 Watts of power.
+>
+> No, I'm claiming it's 768 mW + 1202 mW = ~2 W.
+>
+> SC7180 has a 6 thermal zones for the 6 little cores and 4 zones for the
+> 2 big cores. Each of these thermal zones uses either all little or all big
+> cores as cooling devices, hence the power sustainable power of the
+> individual zones doesn't add up. 768 mW corresponds to 6x 128 mW (aka all
+> little cores at 1.8 GHz), and 1202 mW to 2x 601 mW (both big cores at 1.9 GHz).
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index 9c96e3f58c86..ff3e38408dbc 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -305,7 +305,7 @@
- 		no-1-8-v;
- 	};
- 
--	scm_conf: scm_conf@100000 {
-+	scm_conf: scm-conf@100000 {
- 		compatible = "syscon", "simple-mfd";
- 		reg = <0 0x00100000 0 0x1c000>;
- 		#address-cells = <1>;
-@@ -344,7 +344,7 @@
- 					<0x4090 0x3>; /* SERDES1 lane select */
- 		};
- 
--		dss_oldi_io_ctrl: dss_oldi_io_ctrl@41E0 {
-+		dss_oldi_io_ctrl: dss-oldi-io-ctrl@41E0 {
- 			compatible = "syscon";
- 			reg = <0x0000041E0 0x14>;
- 		};
-@@ -445,7 +445,7 @@
- 		ti,interrupt-ranges = <0 392 32>;
- 	};
- 
--	main_navss {
-+	main-navss {
- 		compatible = "simple-mfd";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-index 6dfec68ac865..435e51019287 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-@@ -6,7 +6,7 @@
-  */
- 
- &cbass_mcu {
--	mcu_conf: scm_conf@40f00000 {
-+	mcu_conf: scm-conf@40f00000 {
- 		compatible = "syscon", "simple-mfd";
- 		reg = <0x0 0x40f00000 0x0 0x20000>;
- 		#address-cells = <1>;
-@@ -116,7 +116,7 @@
- 		};
- 	};
- 
--	mcu_navss {
-+	mcu-navss {
- 		compatible = "simple-mfd";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-index 86c9074cb070..d12dd89f3405 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-@@ -29,7 +29,7 @@
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges;
--		secure_ddr: secure_ddr@9e800000 {
-+		secure_ddr: secure-ddr@9e800000 {
- 			reg = <0 0x9e800000 0 0x01800000>; /* for OP-TEE */
- 			alignment = <0x1000>;
- 			no-map;
-@@ -70,14 +70,14 @@
- 		>;
- 	};
- 
--	push_button_pins_default: push_button__pins_default {
-+	push_button_pins_default: push-button-pins-default {
- 		pinctrl-single,pins = <
- 			AM65X_WKUP_IOPAD(0x0030, PIN_INPUT, 7) /* (R5) WKUP_GPIO0_24 */
- 			AM65X_WKUP_IOPAD(0x003c, PIN_INPUT, 7) /* (P2) WKUP_GPIO0_27 */
- 		>;
- 	};
- 
--	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-pins_default {
-+	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-pins-default {
- 		pinctrl-single,pins = <
- 			AM65X_WKUP_IOPAD(0x0000, PIN_OUTPUT, 0) /* (V1) MCU_OSPI0_CLK */
- 			AM65X_WKUP_IOPAD(0x0008, PIN_INPUT, 0)	 /* (U2) MCU_OSPI0_DQS */
-@@ -93,13 +93,13 @@
- 		>;
- 	};
- 
--	wkup_pca554_default: wkup_pca554_default {
-+	wkup_pca554_default: wkup-pca554-default {
- 		pinctrl-single,pins = <
- 			AM65X_WKUP_IOPAD(0x0034, PIN_INPUT, 7) /* (T1) MCU_OSPI1_CLK.WKUP_GPIO0_25 */
- 		>;
- 	};
- 
--	mcu_cpsw_pins_default: mcu_cpsw_pins_default {
-+	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
- 		pinctrl-single,pins = <
- 			AM65X_WKUP_IOPAD(0x0058, PIN_OUTPUT, 0) /* (N4) MCU_RGMII1_TX_CTL */
- 			AM65X_WKUP_IOPAD(0x005c, PIN_INPUT, 0) /* (N5) MCU_RGMII1_RX_CTL */
-@@ -116,7 +116,7 @@
- 		>;
- 	};
- 
--	mcu_mdio_pins_default: mcu_mdio1_pins_default {
-+	mcu_mdio_pins_default: mcu-mdio1-pins-default {
- 		pinctrl-single,pins = <
- 			AM65X_WKUP_IOPAD(0x008c, PIN_OUTPUT, 0) /* (L1) MCU_MDIO0_MDC */
- 			AM65X_WKUP_IOPAD(0x0088, PIN_INPUT, 0) /* (L4) MCU_MDIO0_MDIO */
-@@ -167,7 +167,7 @@
- 		>;
- 	};
- 
--	main_mmc1_pins_default: main_mmc1_pins_default {
-+	main_mmc1_pins_default: main-mmc1-pins-default {
- 		pinctrl-single,pins = <
- 			AM65X_IOPAD(0x02d4, PIN_INPUT_PULLDOWN, 0) /* (C27) MMC1_CLK */
- 			AM65X_IOPAD(0x02d8, PIN_INPUT_PULLUP, 0) /* (C28) MMC1_CMD */
-@@ -180,7 +180,7 @@
- 		>;
- 	};
- 
--	usb1_pins_default: usb1_pins_default {
-+	usb1_pins_default: usb1-pins-default {
- 		pinctrl-single,pins = <
- 			AM65X_IOPAD(0x02c0, PIN_OUTPUT, 0) /* (AC8) USB1_DRVVBUS */
- 		>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi b/arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi
-index cdc3d40c3f60..9021c738056b 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi
-@@ -2,13 +2,13 @@
- 
- #include <dt-bindings/thermal/thermal.h>
- 
--mpu0_thermal: mpu0_thermal {
-+mpu0_thermal: mpu0-thermal {
- 	polling-delay-passive = <250>; /* milliseconds */
- 	polling-delay = <500>; /* milliseconds */
- 	thermal-sensors = <&wkup_vtm0 0>;
- 
- 	trips {
--		mpu0_crit: mpu0_crit {
-+		mpu0_crit: mpu0-crit {
- 			temperature = <125000>; /* milliCelsius */
- 			hysteresis = <2000>; /* milliCelsius */
- 			type = "critical";
-@@ -16,13 +16,13 @@ mpu0_thermal: mpu0_thermal {
- 	};
- };
- 
--mpu1_thermal: mpu1_thermal {
-+mpu1_thermal: mpu1-thermal {
- 	polling-delay-passive = <250>; /* milliseconds */
- 	polling-delay = <500>; /* milliseconds */
- 	thermal-sensors = <&wkup_vtm0 1>;
- 
- 	trips {
--		mpu1_crit: mpu1_crit {
-+		mpu1_crit: mpu1-crit {
- 			temperature = <125000>; /* milliCelsius */
- 			hysteresis = <2000>; /* milliCelsius */
- 			type = "critical";
-@@ -30,13 +30,13 @@ mpu1_thermal: mpu1_thermal {
- 	};
- };
- 
--mcu_thermal: mcu_thermal {
-+mcu_thermal: mcu-thermal {
- 	polling-delay-passive = <250>; /* milliseconds */
- 	polling-delay = <500>; /* milliseconds */
- 	thermal-sensors = <&wkup_vtm0 2>;
- 
- 	trips {
--		mcu_crit: mcu_crit {
-+		mcu_crit: mcu-crit {
- 			temperature = <125000>; /* milliCelsius */
- 			hysteresis = <2000>; /* milliCelsius */
- 			type = "critical";
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-index c355692796a9..648267284582 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-@@ -86,13 +86,13 @@
- };
- 
- &main_pmx0 {
--	sw10_button_pins_default: sw10_button_pins_default {
-+	sw10_button_pins_default: sw10-button-pins-default {
- 		pinctrl-single,pins = <
- 			J721E_IOPAD(0x0, PIN_INPUT, 7) /* (AC18) EXTINTn.GPIO0_0 */
- 		>;
- 	};
- 
--	main_mmc1_pins_default: main_mmc1_pins_default {
-+	main_mmc1_pins_default: main-mmc1-pins-default {
- 		pinctrl-single,pins = <
- 			J721E_IOPAD(0x254, PIN_INPUT, 0) /* (R29) MMC1_CMD */
- 			J721E_IOPAD(0x250, PIN_INPUT, 0) /* (P25) MMC1_CLK */
-@@ -106,14 +106,14 @@
- 		>;
- 	};
- 
--	main_usbss0_pins_default: main_usbss0_pins_default {
-+	main_usbss0_pins_default: main-usbss0-pins-default {
- 		pinctrl-single,pins = <
- 			J721E_IOPAD(0x290, PIN_OUTPUT, 0) /* (U6) USB0_DRVVBUS */
- 			J721E_IOPAD(0x210, PIN_INPUT, 7) /* (W3) MCAN1_RX.GPIO1_3 */
- 		>;
- 	};
- 
--	main_usbss1_pins_default: main_usbss1_pins_default {
-+	main_usbss1_pins_default: main-usbss1-pins-default {
- 		pinctrl-single,pins = <
- 			J721E_IOPAD(0x214, PIN_OUTPUT, 4) /* (V4) MCAN1_TX.USB1_DRVVBUS */
- 		>;
-@@ -153,7 +153,7 @@
- 		>;
- 	};
- 
--	mcasp10_pins_default: mcasp10_pins_default {
-+	mcasp10_pins_default: mcasp10-pins-default {
- 		pinctrl-single,pins = <
- 			J721E_IOPAD(0x158, PIN_OUTPUT_PULLDOWN, 12) /* (U23) RGMII5_TX_CTL.MCASP10_ACLKX */
- 			J721E_IOPAD(0x15c, PIN_OUTPUT_PULLDOWN, 12) /* (U26) RGMII5_RX_CTL.MCASP10_AFSX */
-@@ -167,7 +167,7 @@
- 		>;
- 	};
- 
--	audi_ext_refclk2_pins_default: audi_ext_refclk2_pins_default {
-+	audi_ext_refclk2_pins_default: audi-ext-refclk2-pins-default {
- 		pinctrl-single,pins = <
- 			J721E_IOPAD(0x1a4, PIN_OUTPUT, 3) /* (W26) RGMII6_RXC.AUDIO_EXT_REFCLK2 */
- 		>;
-@@ -175,7 +175,7 @@
- };
- 
- &wkup_pmx0 {
--	sw11_button_pins_default: sw11_button_pins_default {
-+	sw11_button_pins_default: sw11-button-pins-default {
- 		pinctrl-single,pins = <
- 			J721E_WKUP_IOPAD(0xcc, PIN_INPUT, 7) /* (G28) WKUP_GPIO0_7 */
- 		>;
-@@ -194,7 +194,7 @@
- 		>;
- 	};
- 
--	mcu_cpsw_pins_default: mcu_cpsw_pins_default {
-+	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
- 		pinctrl-single,pins = <
- 			J721E_WKUP_IOPAD(0x0058, PIN_OUTPUT, 0) /* MCU_RGMII1_TX_CTL */
- 			J721E_WKUP_IOPAD(0x005c, PIN_INPUT, 0) /* MCU_RGMII1_RX_CTL */
-@@ -211,7 +211,7 @@
- 		>;
- 	};
- 
--	mcu_mdio_pins_default: mcu_mdio1_pins_default {
-+	mcu_mdio_pins_default: mcu-mdio1-pins-default {
- 		pinctrl-single,pins = <
- 			J721E_WKUP_IOPAD(0x008c, PIN_OUTPUT, 0) /* MCU_MDIO0_MDC */
- 			J721E_WKUP_IOPAD(0x0088, PIN_INPUT, 0) /* MCU_MDIO0_MDIO */
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index 1d2a7c05b6f3..ea57d07777ba 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -86,7 +86,7 @@
- 		ti,interrupt-ranges = <8 392 56>;
- 	};
- 
--	main_navss {
-+	main-navss {
- 		compatible = "simple-mfd";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -888,7 +888,7 @@
- 		no-1-8-v;
- 	};
- 
--	usbss0: cdns_usb@4104000 {
-+	usbss0: cdns-usb@4104000 {
- 		compatible = "ti,j721e-usb";
- 		reg = <0x00 0x4104000 0x00 0x100>;
- 		dma-coherent;
-@@ -918,7 +918,7 @@
- 		};
- 	};
- 
--	usbss1: cdns_usb@4114000 {
-+	usbss1: cdns-usb@4114000 {
- 		compatible = "ti,j721e-usb";
- 		reg = <0x00 0x4114000 0x00 0x100>;
- 		dma-coherent;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-index 81801f519a61..03fa69c0a038 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-@@ -249,7 +249,7 @@
- 		};
- 	};
- 
--	mcu_navss {
-+	mcu-navss {
- 		compatible = "simple-mfd";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-index d69d90c8b5e3..5dc3ba739131 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-@@ -71,7 +71,7 @@
- };
- 
- &wkup_pmx0 {
--	wkup_i2c0_pins_default: wkup_i2c0_pins_default {
-+	wkup_i2c0_pins_default: wkup-i2c0-pins-default {
- 		pinctrl-single,pins = <
- 			J721E_WKUP_IOPAD(0xf8, PIN_INPUT_PULLUP, 0) /* (J25) WKUP_I2C0_SCL */
- 			J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
--- 
-2.17.1
+Ah!  Thanks for explaining.
 
+
+> > My memory
+> > of how much power we could dissipate in previous laptops I worked on
+> > is a little fuzzy, but that doesn't seem insane for a passively-cooled
+> > laptop.  However, I think someone could conceivably put this chip in a
+> > smaller form factor.  In such a case, it seems like we'd want these
+> > things to sum up to ~2000 (if it would ever make sense for someone to
+> > put this chip in a phone) or ~4000 (if it would ever make sense for
+> > someone to put this chip in a small tablet).
+>
+> See above, the sustainable power with this patch only adds up to ~2000.
+> It is possible though that it would be lower in a smaller form factor
+> device.
+>
+> I'd be ok with posting something lower for SC7180 (it would be a guess
+> though) and use the specific numbers in the device specific DT.
+
+Given the advice in the bindings it seems like 2W should be fine.
+
+
+> > It seems possible that,
+> > to achieve this, we might have to tweak the
+> > "dynamic-power-coefficient".  I don't know how much thought was put
+> > into those numbers, but the fact that the little cores have a super
+> > round 100 for their dynamic-power-coefficient makes me feel like they
+> > might have been more schwags than anything.  Rajendra maybe knows?
+>
+> Yeah, it's possible that that was just an approximation
+>
+> > * I'm curious about the fact that there are two numbers here: one for
+> > littles and one for bigs.  If I had to guess I'd say that since all
+> > the cores are in one package so the contributions kinda need to be
+> > thought of together, right?  If we're sitting there thermally
+> > throttled then we'd want to pick the best perf-per-watt for the
+> > overall package.  This is why your patch says we can sustain the
+> > little cores at max and the big cores get whatever is left over,
+> > right?
+>
+> It's derived from how Qualcomm specified the thermal zones and cooling
+> devices. Any ("cpu") zone is either cooled by (all) big cores or by (all)
+> little cores, but not a mix of them. In my tests I also saw that the big
+> cores seemed to have little impact on the little ones. The little cores
+> are at max because even running at max frequency the temperature in the
+> 'little zones' wouldn't come close to the trip point.
+
+OK, crazy.  I suppose that this makes sense,especially without a
+heatsink and over a short burst of time.  I'd imagine that with a
+heatsink things might look different, but trying to model everything
+is impossible and seems like what't there works OK until someone can
+say why it doesn't.  :-)
+
+
+> > * Should we be leaving some room in here for the GPU?  ...or I guess
+> > once we list it as a cooling device we'll have to decrease the amount
+> > the CPUs can use?
+>
+> I don't know for sure, but judging from the CPU zones I wouldn't be
+> surprised if the GPU was managed exclusively in the dedicated GPU
+> thermal zones (I guess that's what 'gpuss0-thermal' and 'gpuss1-thermal'
+> are). If that's not the case the values in the CPU zones can be
+> adjusted when specific data is available.
+
+Sounds good.
+
+
+> > So I guess the tl; dr is:
+> >
+> > a) We should check "dynamic-power-coefficient" and possibly adjust.
+>
+> ok, lets see if Rajendra can check if there is room for tweaking.
+>
+> > b) I don't think the "conservative" by-default numbers should add up
+> > to 7 Watts.  I could be convinced that this chip is not intended for
+> > phones and thus we could have it add up to 4 Watts, but 7 Watts seems
+> > too much.
+>
+> I suppose this is mostly addressed by my explications above, unless we
+> think that 2 Watts in CPU power might still be too aggressive as a
+> default.
+
+With all your explanations, I'm happy to add:
+
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+
+-Doug
