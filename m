@@ -2,176 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08B08259182
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 16:52:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92B01259223
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 17:03:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728441AbgIAOwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 10:52:18 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:44796 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728791AbgIAOwK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 10:52:10 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 081Eq5D5072509;
-        Tue, 1 Sep 2020 09:52:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1598971925;
-        bh=7WwUQEK0QlMirnCVFFz8/M6oa2rEBJ2EnkKCl/BwZCc=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=LSVZ4rdr493g0Ssd0nJePMxsdxf4bXNDeb70IFYneuvqdPF8TTGXJ8314hLsjyRCo
-         vic3j4z/oWykXE8M/p69HfxT/D3zXkfCitXrV7ojzEPuVVyAbO/mCXoIGIUE+gESFd
-         eo5yOCPsdz2cUtGSrebq1j/USp+UHfo2i20nZ8rQ=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 081Eq5jo110207;
-        Tue, 1 Sep 2020 09:52:05 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 1 Sep
- 2020 09:52:05 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 1 Sep 2020 09:52:05 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 081Eq4Hv125864;
-        Tue, 1 Sep 2020 09:52:04 -0500
-Date:   Tue, 1 Sep 2020 09:52:04 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-CC:     Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [RESEND PATCH 1/2] arm64: dts: ti: k3-j721e-main: Add PCIe
- device tree nodes
-Message-ID: <20200901145204.ayybrzqjcfhiqnfq@akan>
-References: <20200901140628.8800-1-kishon@ti.com>
- <20200901140628.8800-2-kishon@ti.com>
+        id S1728235AbgIAPDb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 11:03:31 -0400
+Received: from mga01.intel.com ([192.55.52.88]:8666 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726285AbgIAPD2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Sep 2020 11:03:28 -0400
+IronPort-SDR: 32ERPcARan7kfUuzk7XhINayhrcZe/iDU0pUXTYNgqbH0L9EYqmtD9b3L/RaGb7rPkna8M+NJb
+ WmZRIIXASWoA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9730"; a="175228547"
+X-IronPort-AV: E=Sophos;i="5.76,379,1592895600"; 
+   d="scan'208";a="175228547"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Sep 2020 08:03:26 -0700
+IronPort-SDR: tq2ofberLy/TtBiy1TXtfKoNDJCWHtd/CgWV3yrDjhKJhi/RhfjSgsQmUe1g3/r0AjKslti7ZU
+ KAaRi4wbJgzw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,379,1592895600"; 
+   d="scan'208";a="314756852"
+Received: from linux.intel.com ([10.54.29.200])
+  by orsmga002.jf.intel.com with ESMTP; 01 Sep 2020 08:03:25 -0700
+Received: from [10.214.152.83] (mreddy3x-MOBL.gar.corp.intel.com [10.214.152.83])
+        by linux.intel.com (Postfix) with ESMTP id 4A7D5580679;
+        Tue,  1 Sep 2020 08:03:23 -0700 (PDT)
+Subject: Re: [PATCH v5 1/2] dt-bindings: dma: Add bindings for intel LGM SOC
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, chuanhua.lei@linux.intel.com,
+        malliamireddy009@gmail.com
+References: <cover.1597381889.git.mallikarjunax.reddy@linux.intel.com>
+ <68c77fd2ffb477aa4a52a58f8a26bfb191d3c5d1.1597381889.git.mallikarjunax.reddy@linux.intel.com>
+ <20200814203222.GA2674896@bogus>
+ <7cdc0587-8b4f-4360-a303-1541c9ad57b2@linux.intel.com>
+ <20200825112107.GN2639@vkoul-mobl>
+ <ffa5ba4d-f1b2-6a30-f2f1-f4578a77bce2@linux.intel.com>
+ <20200828104530.GT2639@vkoul-mobl>
+ <09547b0e-1c2e-d916-d4c0-f66b0110e173@linux.intel.com>
+ <20200831110032.GN2639@vkoul-mobl>
+From:   "Reddy, MallikarjunaX" <mallikarjunax.reddy@linux.intel.com>
+Message-ID: <b2f3df54-40b2-b90b-8696-48de2abadd34@linux.intel.com>
+Date:   Tue, 1 Sep 2020 23:03:22 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200901140628.8800-2-kishon@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20200831110032.GN2639@vkoul-mobl>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19:36-20200901, Kishon Vijay Abraham I wrote:
-> Add PCIe device tree node (both RC and EP) for the four
-> PCIe instances here.
-> 
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 218 ++++++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-j721e.dtsi      |   5 +-
->  2 files changed, 222 insertions(+), 1 deletion(-)
+Hi Vinod,
+Thanks for the review, please see my comments inline.
 
-
-Did you look at the diff of the dtbs_check before and after this
-series? I see: https://pastebin.ubuntu.com/p/9fyfrTjx9M/
-
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> index 00a36a14efe7..a36909d8b8c3 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> @@ -28,6 +28,26 @@
->  		#size-cells = <1>;
->  		ranges = <0x0 0x0 0x00100000 0x1c000>;
->  
-> +		pcie0_ctrl: pcie-ctrl@4070 {
-https://github.com/devicetree-org/devicetree-specification/releases/download/v0.3/devicetree-specification-v0.3.pdf
-Section 2.2.2: why not use syscon@4070 and so on?
-
-> +			compatible = "syscon";
-> +			reg = <0x00004070 0x4>;
-> +		};
-> +
-> +		pcie1_ctrl: pcie-ctrl@4074 {
-> +			compatible = "syscon";
-> +			reg = <0x00004074 0x4>;
-> +		};
-> +
-> +		pcie2_ctrl: pcie-ctrl@4078 {
-> +			compatible = "syscon";
-> +			reg = <0x00004078 0x4>;
-> +		};
-> +
-> +		pcie3_ctrl: pcie-ctrl@407c {
-> +			compatible = "syscon";
-> +			reg = <0x0000407c 0x4>;
-> +		};
-> +
->  		serdes_ln_ctrl: serdes-ln-ctrl@4080 {
->  			compatible = "mmio-mux";
->  			reg = <0x00004080 0x50>;
-> @@ -576,6 +596,204 @@
->  		};
->  	};
->  
-> +	pcie0_rc: pcie@2900000 {
-> +		compatible = "ti,j721e-pcie-host";
-> +		reg = <0x00 0x02900000 0x00 0x1000>,
-> +		      <0x00 0x02907000 0x00 0x400>,
-> +		      <0x00 0x0d000000 0x00 0x00800000>,
-> +		      <0x00 0x10000000 0x00 0x00001000>;
-> +		reg-names = "intd_cfg", "user_cfg", "reg", "cfg";
-> +		interrupt-names = "link_state";
-> +		interrupts = <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
-> +		device_type = "pci";
-> +		ti,syscon-pcie-ctrl = <&pcie0_ctrl>;
-> +		max-link-speed = <3>;
-> +		num-lanes = <2>;
-> +		power-domains = <&k3_pds 239 TI_SCI_PD_EXCLUSIVE>;
-> +		clocks = <&k3_clks 239 1>;
-> +		clock-names = "fck";
-> +		#address-cells = <3>;
-> +		#size-cells = <2>;
-> +		bus-range = <0x0 0xf>;
-> +		vendor-id = <0x104c>;
-> +		device-id = <0xb00d>;
-> +		msi-map = <0x0 &gic_its 0x0 0x10000>;
-> +		dma-coherent;
-> +		ranges = <0x01000000 0x0 0x10001000 0x0 0x10001000 0x0 0x0010000>,
-> +			 <0x02000000 0x0 0x10011000 0x0 0x10011000 0x0 0x7fef000>;
-> +		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
-> +	};
-> +
-> +	pcie0_ep: pcie-ep@2900000 {
-Not related to this patch, but just a suggestion: pcie-ep -> do we
-need to add that to the Generic names in DT spec?
-
-[...]
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> index f787aa73aaae..eeb02115b966 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> @@ -132,9 +132,12 @@
->  			 <0x00 0x06400000 0x00 0x06400000 0x00 0x00400000>, /* USBSS1 */
->  			 <0x00 0x01000000 0x00 0x01000000 0x00 0x0af02400>, /* Most peripherals */
->  			 <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>, /* MAIN NAVSS */
-> -			 <0x00 0x0d000000 0x00 0x0d000000 0x00 0x01000000>, /* PCIe Core*/
-> +			 <0x00 0x0d000000 0x00 0x0d000000 0x00 0x01800000>, /* PCIe Core*/
-> +			 <0x00 0x0e000000 0x00 0x0e000000 0x00 0x01800000>, /* PCIe Core*/
->  			 <0x00 0x10000000 0x00 0x10000000 0x00 0x10000000>, /* PCIe DAT */
-										^^
-									should be PCIe1?
-Just because you are introducing PCIe2,3 in this patch, the net result
-does'nt look consistent? Also might want to cover this change in the
-$commit_message.
-[...]
->  			 <0x00 0x64800000 0x00 0x64800000 0x00 0x00800000>, /* C71 */
-> +			 <0x44 0x00000000 0x44 0x00000000 0x00 0x08000000>, /* PCIe2 DAT */
-> +			 <0x44 0x10000000 0x44 0x10000000 0x00 0x08000000>, /* PCIe3 DAT */
->  			 <0x4d 0x80800000 0x4d 0x80800000 0x00 0x00800000>, /* C66_0 */
->  			 <0x4d 0x81800000 0x4d 0x81800000 0x00 0x00800000>, /* C66_1 */
->  			 <0x4e 0x20000000 0x4e 0x20000000 0x00 0x00080000>, /* GPU */
-> -- 
-> 2.17.1
-> 
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+On 8/31/2020 7:00 PM, Vinod Koul wrote:
+> On 31-08-20, 16:06, Reddy, MallikarjunaX wrote:
+>> Hi Vinod,
+>>
+>> Thanks for the review. Please see my comment inline.
+>>
+>> On 8/28/2020 6:45 PM, Vinod Koul wrote:
+>>> On 27-08-20, 17:54, Reddy, MallikarjunaX wrote:
+>>>> Hi Vinod,
+>>>> Thanks for the review comments.
+>>>>
+>>>> On 8/25/2020 7:21 PM, Vinod Koul wrote:
+>>>>> On 18-08-20, 15:00, Reddy, MallikarjunaX wrote:
+>>>>>
+>>>>>>>> +
+>>>>>>>> +            intel,chans:
+>>>>>>>> +              $ref: /schemas/types.yaml#/definitions/uint32-array
+>>>>>>>> +              description:
+>>>>>>>> +                 The channels included on this port. Format is channel start
+>>>>>>>> +                 number and how many channels on this port.
+>>>>>>> Why does this need to be in DT? This all seems like it can be in the dma
+>>>>>>> cells for each client.
+>>>>>> (*ABC)
+>>>>>> Yes. We need this.
+>>>>>> for dma0(lgm-cdma) old SOC supports 16 channels and the new SOC supports 22
+>>>>>> channels. and the logical channel mapping for the peripherals also differ
+>>>>>> b/w old and new SOCs.
+>>>>>>
+>>>>>> Because of this hardware limitation we are trying to configure the total
+>>>>>> channels and port-channel mapping dynamically from device tree.
+>>>>>>
+>>>>>> based on port name we are trying to configure the default values for
+>>>>>> different peripherals(ports).
+>>>>>> Example: burst length is not same for all ports, so using port name to do
+>>>>>> default configurations.
+>>>>> Sorry that does not make sense to me, why not specify the values to be
+>>>>> used here instead of defining your own name scheme!
+>>>> OK. Agreed. I will remove port name from DT and only use intel,chans
+>>> what is intel,chans, why not use dma-channels?
+>>   The intel,chans says about the channels included on the correspondng port.
+> What do you mean by a port here?
+Here Port is nothing but Peripheral(SPI, HSNAND...)
+>
+>> Format is channel start number and how many channels on this port.
+> It is perfectly reasonable to have 16 channels but linux not use use all, lets
+> say from 5th channel channel onwards
+>
+> So you need to use standard dma-channels also with dma-channel-mask to
+> specify which channels linux can use
+Ok, let me verify and use the standard dma-channels also dma-channel-mask.
+>
+>>   The reasong behind using this attribute instead of standrad dma-channels
+>> is...
+>>
+>>
+>> DMA_VER22 HW supports 22 channels. But there is a hole in HW, total it can
+>> use only 16.
+>>
+>> Old soc supports 4ports and 16 channels.
+>> New soc supports 6ports and 22 channels.
+>> (old and new soc carry the same version VER22)
+>>
+>> port channel mapping for the old and new soc also not the same.
+>> old soc: logical channels:(Rx, Tx)
+>> 0, 1 - SPI0
+>> 2, 3 - SPI1
+>> 4, 5 - HSNAND
+>> 12, 14, 13, 15 - Memcopy
+>>
+>> New soc: Logical channels(Rx, Tx)
+>> 0, 1 - SPI0
+>> 2, 3 - SPI1
+>> 4, 5 - SPI2
+>> 6, 7 - SPI3
+>> 8, 9 - HSNAND
+>> 10 to 21 - Mcopy
+> Mapping is different, client can set that channel required in dmas
+> property and use a specific required channel.
+OK.
+>
+>> Because of these reasons we are trying to use "intel,chans" attribute, and
+>> reading then number of channels from the dt.
+>> Advantaage:
+>> 1. we can map the channels correspondign to port
+>> 2. Dynamically configure the channels (due to hw limitation)
+>>
+>> If this is not ok, please suggest us the better way to handle this.
