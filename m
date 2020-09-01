@@ -2,115 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90497258CCC
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 12:30:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EA06258D11
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 12:57:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726107AbgIAKaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 06:30:10 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:42314 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726105AbgIAKaI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 06:30:08 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20200901103006euoutp016418b6ea318a7b2c38095dd1bb79ed80~wojLIkM6N0935109351euoutp01S
-        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 10:30:06 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20200901103006euoutp016418b6ea318a7b2c38095dd1bb79ed80~wojLIkM6N0935109351euoutp01S
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1598956206;
-        bh=wt/lfrYvi6NYE+rsChJGWO7vqFppDLQ0HZIW/Allo4E=;
-        h=Subject:To:From:Date:In-Reply-To:References:From;
-        b=XAzAG68LmG1G0IJVDdTTsUkMGGc9poz+j6ErBgtpJGYCssSn9jZpvy1j0athjoEGj
-         2KDHDNqYY4IVBWcqZwv5yGXzbrJa4B6R5yjL76fo7qNnwwFeijvy1e6lR8/KartGy3
-         Fll7KzoIuarg+EeEgYz6gm8ISEhO66heWaCLvI6E=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20200901103006eucas1p129f50fc9ee5c81d9bf33b83d202c66f3~wojKySMEl2238822388eucas1p1a;
-        Tue,  1 Sep 2020 10:30:06 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 2F.11.05997.EA22E4F5; Tue,  1
-        Sep 2020 11:30:06 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20200901103005eucas1p1c28f849d841ec56d87459314fae85654~wojKU4q1B2243422434eucas1p1Y;
-        Tue,  1 Sep 2020 10:30:05 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20200901103005eusmtrp1c0efa6dcd6cc9fcbbfd87099073d25c9~wojKUGJJA1923319233eusmtrp1Z;
-        Tue,  1 Sep 2020 10:30:05 +0000 (GMT)
-X-AuditID: cbfec7f4-65dff7000000176d-d6-5f4e22ae50b7
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 38.68.06017.DA22E4F5; Tue,  1
-        Sep 2020 11:30:05 +0100 (BST)
-Received: from [106.210.123.115] (unknown [106.210.123.115]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20200901103004eusmtip1cd15b079b2a68327794223d5d080e177~wojJEvRQA0142501425eusmtip1Q;
-        Tue,  1 Sep 2020 10:30:04 +0000 (GMT)
-Subject: Re: [PATCH 1/2] dt-bindings: sound: midas-audio: Correct parsing
- sound-dai phandles
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Sangbeom Kim <sbkim73@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
-Message-ID: <7a30c1c3-d243-9952-4f13-d26380f31bcc@samsung.com>
-Date:   Tue, 1 Sep 2020 12:30:04 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
-        Thunderbird/68.11.0
+        id S1726050AbgIAK52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 06:57:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40254 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725989AbgIAK50 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 06:57:26 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A1B1C061244;
+        Tue,  1 Sep 2020 03:57:24 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id b79so698904wmb.4;
+        Tue, 01 Sep 2020 03:57:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Qv+hrnb2xjD7g2xlHs9VRxTYEef/MpVBAkk7Wae12HI=;
+        b=mu+mJXCUgEHYzQ+AFoW3Gg4lYPpS4akRS7goCqjfdIKp9raZbie4Nmrn0RuuaScL/e
+         jemoLvra7j6h57dg1fgOFWXgDn8egNhyO8fiUAthllj3NuikyA7VT/JJl/gO2qkJfIUM
+         uPoQTEvptvFx97Hd01omR+u25wP8rYi47TP+fpDmzWDgC9YjEbu7hjryzXMxzNVg4Av8
+         hbZAvwN7yp6zc0WslAo64D+ZBJqGl68qwOytmxlBCMnPv31kSu0QAGiVWqxBG8oQpEBD
+         j/9xDyVszlgn//azc8cHtVt4Rkl1QSEz1bXWU4F/JIIrgNQ736yV+qjZfczF20eZgr8j
+         PoZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Qv+hrnb2xjD7g2xlHs9VRxTYEef/MpVBAkk7Wae12HI=;
+        b=AIokNeJToo5LY3AeUbUUDQ21ghqkJZFSoxL06XkuaQnxNuQruLehH0ArWI2ecFwYUF
+         f5IfU0MUAya6o4Gj3Gi0F4ZijdYuhioL6AW2QV6oheEw8nSThO6f6Hlj/nPDW6axF7To
+         g22vTHzHaWFoTqlLuDO5mIvUBQCO7K3wyiUJ5B1PIag6epk6TnTfejeW3pTOzSjbfQqM
+         eMCfKigNjSgkCUsMrJeTf7U479AgRJM4za8ZoQjtxoSP+2jQhT6tikMTjkRVl2KjA99p
+         LNjIjqmfZ/7g5uO/RAjyjm+e4aB/7ehj6v1VdW7jWLxJf/7XX4+pvwFKAInf0diS0ZUg
+         Xjuw==
+X-Gm-Message-State: AOAM530UHhf96Rmf+MBP5tLBHsDTJrQxt995p2WfZ//DfQpVBjDQPuhB
+        jewYdKZH7xR1LjFSIB1H9nQ=
+X-Google-Smtp-Source: ABdhPJxf1HCw5Tu8IqyBGh3pF6XKP/k09RVwN+hWe/n7E3woOGkKY0if2RchLQp4XKTyzk6Ghuv0YA==
+X-Received: by 2002:a7b:cd09:: with SMTP id f9mr1144870wmj.184.1598957842588;
+        Tue, 01 Sep 2020 03:57:22 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id s5sm1650905wrm.33.2020.09.01.03.57.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Sep 2020 03:57:21 -0700 (PDT)
+Date:   Tue, 1 Sep 2020 12:57:19 +0200
+From:   Corentin Labbe <clabbe.montjoie@gmail.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Martin Cerveny <m.cerveny@computer.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: crypto: add new compatible for V3s
+Message-ID: <20200901105719.GA2639@Red>
+References: <20200831073101.3608-1-m.cerveny@computer.org>
+ <20200831073101.3608-2-m.cerveny@computer.org>
+ <20200901093249.orwyc5sr3z2y43fz@gilmour.lan>
 MIME-Version: 1.0
-In-Reply-To: <20200830112633.6732-1-krzk@kernel.org>
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Sb0hTcRT1997b23M0eW6GF4uioR8U0kyDF4VUFO1DiFGBWWlTHyq5qZta
-        BoVo5VIzSUV8jZQi0iVmyz/TdMQ0l00npv3TTMuhqEiGw7Ay8/kW+e2cc8/hnguXwmWNIj8q
-        RZPJajWqVAUpIVp6lh07GxSRcbsK6uTM8KAVYyq+OEmmutshYgYGGsXM0rAeY4baDSRzvbNb
-        zAzWurADlLJxMY9UtnFjYqXJeJNUljQZkXLRtC1KFCPZn8impmSz2pCI85LkhndmMr2IuNRr
-        1RO5qAMvRJ4U0OFQoH+FFSIJJaNrEbjynxECcSFY4PrdZBHBg9pr5L/I1OCYO/IIwdI9PRLI
-        dwSWhnGMd8npWBiv6Fof+NDlGNh760X8gKRD4dbLEsRjKR0BnU6O4DFB+8Ocs3o9vHkt3Gx7
-        iwkeb+itcq55KMpzbfVyUxAv47QvjLjtOL0dWucNOL8L6AYxlE8vi4Sqh+FH2Qs3lsOsrUks
-        4K1gLysmhEA+guLno2KBlCIYt9UgwbUPPjl+kvxmnA6EJ+0hgnwQTLmvcV4G2gs+zHsLJbzg
-        TkulW5aC/oZMcPvDL2MlJmA/KHKuEoJFCX2TKaVoB7fhSG7DZdyGy7j/FWoQYUS+bJZOncTq
-        dmvYi8E6lVqXpUkKTkhTm9DaH9n/2Fxm1P473opoCik2SaNcx+JkIlW2LkdtRUDhCh/poX57
-        rEyaqMq5zGrT4rRZqazOirZQhMJXGnZ/5pyMTlJlshdYNp3V/ptilKdfLrqdXbuiPRv7NVJ+
-        pSIhQML0vPE3nGgLt5TNvt/TaulSH+k73unxEe4OL8RzRweMHrK9eSLZinbSPBco98mY9s4Y
-        dUhcoXWPJ4IMYU9XP2ND0S0W7upSVfXEqT5D8pmqicIp20zHt9mTAc1JsacfmtHMYjSJV9Yo
-        6kdifEPS4xSELlkVGoRrdaq/9mXi00MDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrKIsWRmVeSWpSXmKPExsVy+t/xu7prlfziDW7cNbC4cvEQk8XUh0/Y
-        LOYfOcdqcf78BnaLb1c6mCwu75rDZtG69wi7xcUVX5gcODw2fG5i89g56y67x6ZVnWwefVtW
-        MXp83iQXwBqlZ1OUX1qSqpCRX1xiqxRtaGGkZ2hpoWdkYqlnaGwea2VkqqRvZ5OSmpNZllqk
-        b5egl7Hu2g62gm6WipOHOlgaGPcwdzFyckgImEg8u3iXCcQWEljKKNF0orSLkQMoLiUxv0UJ
-        okRY4s+1LrYuRi6gkveMEl/ufgSrFxaIk7g/9TAjSEJEYAqTxK1vT9khqtoZJZb8nc8CUsUm
-        YCjRe7SPEcTmFbCT2PtkFlicRUBF4vWT+WCTRIEmPe79zwxRIyhxcuYTFpArOIGu+7lFCyTM
-        LKAu8WfeJWYIW1ziFlQrs4C8xPa3c5gnMArOQtI9C0nLLCQts5C0LGBkWcUoklpanJueW2yk
-        V5yYW1yal66XnJ+7iREYZduO/dyyg7HrXfAhRgEORiUe3oAvPvFCrIllxZW5hxglOJiVRHid
-        zp6OE+JNSaysSi3Kjy8qzUktPsRoCvTbRGYp0eR8YALIK4k3NDU0t7A0NDc2NzazUBLn7RA4
-        GCMkkJ5YkpqdmlqQWgTTx8TBKdXAqHVeTKXlSDVbWnfDrRNiB5Qm3l604VTjLGOus7Fbqh7t
-        fD/hFc8jgb1HLSQ6fDYmPvMWC3+gEXORccYj02op3b2GOwrfHxNaWq726GLMmhqJH5P3XFCu
-        WXxSu7dZi2tGQMXttw8TTAM/v1ay2qCeuKKjoc9B/AmX94bWpGrOzLYzW4SFjr4RV2Ipzkg0
-        1GIuKk4EAKc7/27IAgAA
-X-CMS-MailID: 20200901103005eucas1p1c28f849d841ec56d87459314fae85654
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20200830112644eucas1p284d918eef5dcc6039ca27d8f52be89ab
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20200830112644eucas1p284d918eef5dcc6039ca27d8f52be89ab
-References: <CGME20200830112644eucas1p284d918eef5dcc6039ca27d8f52be89ab@eucas1p2.samsung.com>
-        <20200830112633.6732-1-krzk@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200901093249.orwyc5sr3z2y43fz@gilmour.lan>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30.08.2020 13:26, Krzysztof Kozlowski wrote:
-> The "sound-dai" property has cells therefore phandle-array should be
-> used, even if it is just one phandle.  This fixes dtbs_check warnings
-> like:
+On Tue, Sep 01, 2020 at 11:32:49AM +0200, Maxime Ripard wrote:
+> On Mon, Aug 31, 2020 at 09:30:59AM +0200, Martin Cerveny wrote:
+> > Like A33 "sun4i-ss" has a difference, it give SHA1 digest
+> > directly in BE. So add new compatible.
+> > 
+> > Tested-by: Martin Cerveny <m.cerveny@computer.org>
 > 
->   arch/arm/boot/dts/exynos4412-trats2.dt.yaml: sound: cpu:sound-dai:0:1: missing phandle tag in 0
->   arch/arm/boot/dts/exynos4412-trats2.dt.yaml: sound: cpu:sound-dai:0: [158, 0] is too long
+> The Tested-by tag is for the other developpers. You're very much
+> expected to have tested your patch before contributing it.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > Signed-off-by: Martin Cerveny <m.cerveny@computer.org>
+> > ---
+> >  .../bindings/crypto/allwinner,sun4i-a10-crypto.yaml          | 5 ++++-
+> >  1 file changed, 4 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
+> > index fc823572b..180efd13a 100644
+> > --- a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
+> > +++ b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
+> > @@ -25,6 +25,7 @@ properties:
+> >            - const: allwinner,sun4i-a10-crypto
+> >        - items:
+> >            - const: allwinner,sun8i-a33-crypto
+> > +      - const: allwinner,sun8i-v3s-crypto
+> 
+> If it's compatible with the A33, why do we need to introduce a new compatible?
+> 
+> >  
+> >    reg:
+> >      maxItems: 1
+> > @@ -59,7 +60,9 @@ if:
+> >    properties:
+> >      compatible:
+> >        contains:
+> > -        const: allwinner,sun6i-a31-crypto
+> > +        oneOf:
+> > +          - const: allwinner,sun6i-a31-crypto
+> > +          - const: allwinner,sun8i-v3s-crypto
+> 
+> I guess the A33 compatible should be on that list as well?
 
-Reviewed-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+This is the list of "need reset".
+So we cannot use allwinner,sun8i-a33-crypto
+Probably this explanation should be in the commit message.
+
+Regards
