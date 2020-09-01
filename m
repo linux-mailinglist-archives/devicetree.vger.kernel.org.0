@@ -2,574 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28F5425A0C3
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 23:22:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6169525A0D3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 23:33:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729104AbgIAVWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 17:22:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52182 "EHLO
+        id S1729107AbgIAVdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 17:33:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726247AbgIAVWE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 17:22:04 -0400
-Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com [IPv6:2607:f8b0:4864:20::e44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CA95C061244
-        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 14:22:04 -0700 (PDT)
-Received: by mail-vs1-xe44.google.com with SMTP id o184so1469311vsc.0
-        for <devicetree@vger.kernel.org>; Tue, 01 Sep 2020 14:22:04 -0700 (PDT)
+        with ESMTP id S1728254AbgIAVdX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 17:33:23 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 404F2C061246
+        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 14:33:22 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id v15so1399547pgh.6
+        for <devicetree@vger.kernel.org>; Tue, 01 Sep 2020 14:33:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RCrcISXlvz8nFoK6wl3h6Ah6HMM2MCSO7iNHraksBOc=;
-        b=YaqtzTUiKfC0pwAdgHfb8BZnNwzoBntZt1BKtxZg/v5ugnfKcWhBzcpy/om+/DnBrE
-         KWwZ6T+hA/yz+dpISA8yuT7uxduu/yGneB1+b1Z9S5bggQAFoOFWyTib0zIKFGxHpspl
-         zcMJwc4INhRQKn6373PgwJhIpCGvIP69cJWwg=
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=pvLsGduWx0E8K+wceg+r+H/s1jFVYqOrCrnNL0psKc0=;
+        b=OJUlyhirNd28tcl108Epcqydig3iQ40qQ8XVyxlySbazi3KGOsYzVoQIf2UefhqTLM
+         fCocMJqzX3y20C7PJF8L3KE2zusYFghg22qb5PkTphCHHkEd1brqVg9xC9QQGyPeL+dh
+         zR8ssnBHG3zlGhV968hPfm3N97TZnG5aMVLj4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RCrcISXlvz8nFoK6wl3h6Ah6HMM2MCSO7iNHraksBOc=;
-        b=bNSXj6IMGgIU32iFxs0q5lK8+5aoc/wOs32qJmvq0D2kOeXIQb3H6g4E1H+sZX9gnS
-         xY/gCQPdPPNtLk3oqD/zz22FbN08FwMLB4CSEuxr0+XffXdAg9m7PT+SWfQhea5MKUNb
-         AipFGFHWVkWyEB9VZYDRjCOTmjlLkB2ZjucpqlxEPEa3m/nfmx6E+NzzHMDVN9YQWrsv
-         MqaCKGCZuH6G/MAAmBxLZldm4ucGGQjrX+b1b8soSVf/VNxWgsdY0Z3sGUUyzRjmU9eX
-         M3amL63XjIRVzx5+KM0vzxHg+UooqeCBPhxJsqlUQhCjicrfLaiZB0hpYECA/y+1inXP
-         0G5Q==
-X-Gm-Message-State: AOAM5329WmNducOsQbjEjLmRJG99hXivWXwGXkNGwxJ/TSyS1+Sm4YoQ
-        Gf8TPjbSUb42AtU1zRz3DwmavgmjafXxvw==
-X-Google-Smtp-Source: ABdhPJzKt3Mw5rgLZl5op+Z9szHwm8VEnVMYGGBddy/DLPqnKFgL2F6PYNwSU+xg+/y9sMnsxCmq7w==
-X-Received: by 2002:a67:c916:: with SMTP id w22mr3602632vsk.22.1598995322667;
-        Tue, 01 Sep 2020 14:22:02 -0700 (PDT)
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com. [209.85.217.49])
-        by smtp.gmail.com with ESMTPSA id j20sm383258vsg.18.2020.09.01.14.22.01
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=pvLsGduWx0E8K+wceg+r+H/s1jFVYqOrCrnNL0psKc0=;
+        b=i5UwwxhArDi6jP/i0BnvYLTHOouD/M+dRyHhEzJKxsyBh6t9raTK7C0bbcALDTuSia
+         Tg///IEPAW7LQpPvxs4hRIlqxfTg4tbYemgZMKvT1Td0D7mpdKZf2epa1XxG05HQ5S3z
+         nLVT2ufUDWHA3cvNY+izgN/+lmgaolFHhRk+wNxwwBwn9ssZQiyCorb9n8ocTq2POn1V
+         mobQ+a5huBWP3Gip6fA3XdCOjy0SbcVzdHJYufd8pAvPar3nODIrFe19oGoLNS5drQXw
+         xeCSXOvkSHk8wZHGpbtGEfS3MwBIFLiFD81tnZ8AbukIUZ7dyUJRp18TRjbOeNQFbhNS
+         ajxw==
+X-Gm-Message-State: AOAM530r7AiTpiSKes9Gv5PMHpry28RkLHu3EZm45aITI4wU+WYRpBwl
+        C2F8BqHRInwEq0IpIBq4AyQcyw==
+X-Google-Smtp-Source: ABdhPJxMTFOYZvPWJLWe8g1gB2XSic2YEjoiKLT+iuOjQyUquM4MffyoBuppQad/j7EWZDh1tsesuQ==
+X-Received: by 2002:a63:3241:: with SMTP id y62mr3256991pgy.305.1598996001313;
+        Tue, 01 Sep 2020 14:33:21 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id lb1sm2227642pjb.26.2020.09.01.14.33.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Sep 2020 14:22:02 -0700 (PDT)
-Received: by mail-vs1-f49.google.com with SMTP id e14so1449843vsa.9
-        for <devicetree@vger.kernel.org>; Tue, 01 Sep 2020 14:22:01 -0700 (PDT)
-X-Received: by 2002:a67:cf49:: with SMTP id f9mr3421049vsm.208.1598995320819;
- Tue, 01 Sep 2020 14:22:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200901132005.RFC.1.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
-In-Reply-To: <20200901132005.RFC.1.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 1 Sep 2020 14:21:49 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=V+T-8wxiufFEq6Tyq+KcTDLgnMfxNo6K1WxaRLWEKmtQ@mail.gmail.com>
-Message-ID: <CAD=FV=V+T-8wxiufFEq6Tyq+KcTDLgnMfxNo6K1WxaRLWEKmtQ@mail.gmail.com>
-Subject: Re: [RFC PATCH] USB: misc: Add usb_hub_pwr driver
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>, linux-usb@vger.kernel.org,
-        Alan Stern <stern@rowland.harvard.edu>,
-        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        Masahiro Yamada <masahiroy@kernel.org>,
+        Tue, 01 Sep 2020 14:33:20 -0700 (PDT)
+Date:   Tue, 1 Sep 2020 14:33:19 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Add 'sustainable_power' for
+ CPU thermal zones
+Message-ID: <20200901213319.GB3419728@google.com>
+References: <20200813113030.1.I89c33c4119eaffb986b1e8c1bc6f0e30267089cd@changeid>
+ <20200901170745.GA3419728@google.com>
+ <CAD=FV=Xv0FLtWWcQcRy7p2LPNdDtSjdarsvNHRHaLkWwABnwJw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=Xv0FLtWWcQcRy7p2LPNdDtSjdarsvNHRHaLkWwABnwJw@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Doug,
 
-On Tue, Sep 1, 2020 at 1:21 PM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> The driver combo usb_hub_pwr/usb_hub_psupply allows to control
-> the power supply of an onboard USB hub.
->
-> The drivers address two issues:
->  - a USB hub needs to be powered before it can be discovered
->  - battery powered devices may want to switch the USB hub off
->    during suspend to extend battery life
->
-> The regulator of the hub is controlled by the usb_hub_psupply
-> platform driver. The regulator is switched on when the platform
-> device is initialized, which enables discovery of the hub. The
-> driver provides an external interface to enable/disable the
-> power supply which is used by the usb_hub_pwr driver.
->
-> The usb_hub_pwr extends the generic USB hub driver. The device is
-> initialized when the hub is discovered by the USB subsystem. It
-> uses the usb_hub_psupply interface to make its own request to
-> enable the regulator (increasing the use count to 2).
->
-> During system suspend usb_hub_pwr checks if any wakeup capable
-> devices are connected to the hub. If not it 'disables' the hub
-> regulator (decreasing the use count to 1, hence the regulator
-> stays enabled for now). When the usb_hub_psupply device suspends
-> it disables the hub regulator unconditionally (decreasing the use
-> count to 0 or 1, depending on the actions of usb_hub_pwr). This
-> is done to allow the usb_hub_pwr device to control the state of
-> the regulator during system suspend.
->
-> Upon resume usb_hub_psupply enables the regulator again, the
-> usb_hub_pwr device does the same if it disabled the regulator
-> during resume.
->
-> Co-developed-by: Ravi Chandra Sadineni <ravisadineni@chromium.org>
-> Signed-off-by: Ravi Chandra Sadineni <ravisadineni@chromium.org>
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
-> The driver currently only supports a single power supply. This should
-> work for most/many configurations/hubs, support for multiple power
-> supplies can be added later if needed.
->
-> No DT bindings are included since this is just a RFC. Here is a DT
-> example:
->
-> usb_hub_psupply: usb-hub-psupply {
->     compatible = "linux,usb_hub_psupply";
->     vdd-supply = <&pp3300_hub>;
-> };
+On Tue, Sep 01, 2020 at 01:19:10PM -0700, Doug Anderson wrote:
+> Hi,
+> 
+> On Tue, Sep 1, 2020 at 10:07 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+> >
+> > On Thu, Aug 13, 2020 at 11:30:33AM -0700, Matthias Kaehlcke wrote:
+> > > The 'sustainable_power' attribute provides an estimate of the sustained
+> > > power that can be dissipated at the desired control temperature. One
+> > > could argue that this value is not necessarily the same for all devices
+> > > with the same SoC, which may have different form factors or thermal
+> > > designs. However there are reasons to specify a (default) value at SoC
+> > > level for SC7180: most importantly, if no value is specified at all the
+> > > power_allocator thermal governor (aka 'IPA') estimates a value, using the
+> > > minimum power of all cooling devices of the zone, which can result in
+> > > overly aggressive thermal throttling. For most devices an approximate
+> > > conservative value should be more useful than the minimum guesstimate
+> > > of power_allocator. Devices that need a different value can overwrite
+> > > it in their <device>.dts. Also the thermal zones for SC7180 have a high
+> > > level of granularity (essentially one for each function block), which
+> > > makes it more likely that the default value just works for many devices.
+> > >
+> > > The values correspond to 1901 MHz for the big cores, and 1804 MHz for
+> > > the small cores. The values were determined by limiting the CPU
+> > > frequencies to different max values and launching a bunch of processes
+> > > that cause high CPU load ('while true; do true; done &' is simple and
+> > > does a good job). A frequency is deemed sustainable if the CPU
+> > > temperatures don't rise (consistently) above the second trip point
+> > > ('control temperature', 95 degC in this case). Once the highest
+> > > sustainable frequency is found, the sustainable power can be calculated
+> > > by multiplying the energy consumption per core at this frequency (which
+> > > can be found in /sys/kernel/debug/energy_model/) with the number of
+> > > cores that are specified as cooling devices.
+> > >
+> > > The sustainable frequencies were determined at room temperature
+> > > on a device without heat sink or other passive cooling elements.
+> 
+> I'm curious: was this a bare board, or a device in a case?  Hrm, I'm
+> not sure which one would be worse at heat dissipation, but I would
+> imagine that being inside a plastic case might be worse?
 
-Definitely bikeshedding, but I would name this differently.  The
-name/compatible you have makes this sound as if it's a software
-concept that we're sticking into DT.  That's generally discouraged.
-...if we name it slightly different then I think the driver can work
-the same but be more in the spirit of DT describing hardware.
-Specifically, I think it'd be better as:
+This was with a device in a plastic case.
 
-usb_hub: usb-hub {
-  compatible = "realtek,rts5411", "onboard-usb-hub";
-  vdd-supply = <&pp3300_hub>;
-};
+> > > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > > ---
+> > > If maintainers think 'sustainable_power' should be specified at
+> > > device level (with which I conceptually agree) I'm fine with
+> > > doing that, just seemed it could be useful to have a reasonable
+> > > 'default' at SoC level in this case.
+> >
+> > Any comments on this?
+> 
+> I'm not massively familiar with this area of the code, but I guess I
+> shouldn't let that stop me from having an opinion!  :-P
+> 
+> * I would agree that it seems highly unlikely that someone would put
+> one of these chips in a device that could only dissipate the heat from
+> the lowest OPP, so having some higher estimate definitely makes sense.
+> 
+> * In terms of the numbers here, I believe that you're claiming that we
+> can dissipate 768 mW * 6 + 1202 mW * 2 = ~7 Watts of power.
 
-Now we're describing hardware that's on the board.  We have a RTS5411
-hub and we've described its power supply.  There's also precedent for
-describing an on-board USB hub in a lop-level node like this
-(smsc,usb3503).
+No, I'm claiming it's 768 mW + 1202 mW = ~2 W.
 
-Now, I know what you're saying: we're already describing this hub
-underneath the USB port node below.  I think this is OK to have
-different aspects of the device described in two places in the DT,
-though of course I could be corrected by someone more knowledgeable.
+SC7180 has a 6 thermal zones for the 6 little cores and 4 zones for the
+2 big cores. Each of these thermal zones uses either all little or all big
+cores as cooling devices, hence the power sustainable power of the
+individual zones doesn't add up. 768 mW corresponds to 6x 128 mW (aka all
+little cores at 1.8 GHz), and 1202 mW to 2x 601 mW (both big cores at 1.9 GHz).
 
+> My memory
+> of how much power we could dissipate in previous laptops I worked on
+> is a little fuzzy, but that doesn't seem insane for a passively-cooled
+> laptop.  However, I think someone could conceivably put this chip in a
+> smaller form factor.  In such a case, it seems like we'd want these
+> things to sum up to ~2000 (if it would ever make sense for someone to
+> put this chip in a phone) or ~4000 (if it would ever make sense for
+> someone to put this chip in a small tablet).
 
-> &usb_1_dwc3 {
->     /* 2.0 hub on port 1 */
->     hub@1 {
->         compatible = "usbbda,5411";
+See above, the sustainable power with this patch only adds up to ~2000.
+It is possible though that it would be lower in a smaller form factor
+device.
 
-What is "usbbda"?  I would probably just call this:
+I'd be ok with posting something lower for SC7180 (it would be a guess
+though) and use the specific numbers in the device specific DT.
 
-compatible = "realtek,rts5411-usb2", "onboard-usb-hub-usb2"
+> It seems possible that,
+> to achieve this, we might have to tweak the
+> "dynamic-power-coefficient".  I don't know how much thought was put
+> into those numbers, but the fact that the little cores have a super
+> round 100 for their dynamic-power-coefficient makes me feel like they
+> might have been more schwags than anything.  Rajendra maybe knows?
 
+Yeah, it's possible that that was just an approximation
 
->         reg = <1>;
->         psupply = <&usb_hub_psupply>;
+> * I'm curious about the fact that there are two numbers here: one for
+> littles and one for bigs.  If I had to guess I'd say that since all
+> the cores are in one package so the contributions kinda need to be
+> thought of together, right?  If we're sitting there thermally
+> throttled then we'd want to pick the best perf-per-watt for the
+> overall package.  This is why your patch says we can sustain the
+> little cores at max and the big cores get whatever is left over,
+> right?
 
-Calling this psupply sounds a bit too much like you're referring to a
-regulator (with the -supply suffix).  Given that I've proposed calling
-the main device "usb-hub" what about just saying "hub = <&usb_hub>;"
+It's derived from how Qualcomm specified the thermal zones and cooling
+devices. Any ("cpu") zone is either cooled by (all) big cores or by (all)
+little cores, but not a mix of them. In my tests I also saw that the big
+cores seemed to have little impact on the little ones. The little cores
+are at max because even running at max frequency the temperature in the
+'little zones' wouldn't come close to the trip point.
 
+> * Should we be leaving some room in here for the GPU?  ...or I guess
+> once we list it as a cooling device we'll have to decrease the amount
+> the CPUs can use?
 
->     };
->
->     /* 3.0 hub on port 2 */
->     hub@2 {
->         compatible = "usbbda,411";
+I don't know for sure, but judging from the CPU zones I wouldn't be
+surprised if the GPU was managed exclusively in the dedicated GPU
+thermal zones (I guess that's what 'gpuss0-thermal' and 'gpuss1-thermal'
+are). If that's not the case the values in the CPU zones can be
+adjusted when specific data is available.
 
-Similar to above:
+> So I guess the tl; dr is:
+> 
+> a) We should check "dynamic-power-coefficient" and possibly adjust.
 
-compatible = "realtek,rts5411-usb3", "onboard-usb-hub-usb3"
+ok, lets see if Rajendra can check if there is room for tweaking.
 
+> b) I don't think the "conservative" by-default numbers should add up
+> to 7 Watts.  I could be convinced that this chip is not intended for
+> phones and thus we could have it add up to 4 Watts, but 7 Watts seems
+> too much.
 
->         reg = <2>;
->         psupply = <&usb_hub_psupply>;
->     };
-> };
->
->  drivers/usb/misc/Kconfig           |  14 +++
->  drivers/usb/misc/Makefile          |   1 +
->  drivers/usb/misc/usb_hub_psupply.c | 112 ++++++++++++++++++
->  drivers/usb/misc/usb_hub_psupply.h |   9 ++
->  drivers/usb/misc/usb_hub_pwr.c     | 177 +++++++++++++++++++++++++++++
->  5 files changed, 313 insertions(+)
->  create mode 100644 drivers/usb/misc/usb_hub_psupply.c
->  create mode 100644 drivers/usb/misc/usb_hub_psupply.h
->  create mode 100644 drivers/usb/misc/usb_hub_pwr.c
->
-> diff --git a/drivers/usb/misc/Kconfig b/drivers/usb/misc/Kconfig
-> index 6818ea689cd9..79ed50e6a7bf 100644
-> --- a/drivers/usb/misc/Kconfig
-> +++ b/drivers/usb/misc/Kconfig
-> @@ -275,3 +275,17 @@ config USB_CHAOSKEY
->
->           To compile this driver as a module, choose M here: the
->           module will be called chaoskey.
-> +
-> +config USB_HUB_PWR
-> +       tristate "Control power supply for onboard USB hubs"
-> +       depends on PM
-> +       help
-> +         Say Y here if you want to control the power supply of an
-> +         onboard USB hub. The driver switches the power supply of the
-> +         hub on, to make sure the hub can be discovered. During system
-> +         suspend the power supply is switched off, unless a wakeup
-> +         capable device is connected to the hub. This may reduce power
-> +         consumption on battery powered devices.
-> +
-> +         To compile this driver as a module, choose M here: the
-> +         module will be called usb_hub_pwr.
-> diff --git a/drivers/usb/misc/Makefile b/drivers/usb/misc/Makefile
-> index da39bddb0604..2bd02388ca62 100644
-> --- a/drivers/usb/misc/Makefile
-> +++ b/drivers/usb/misc/Makefile
-> @@ -31,3 +31,4 @@ obj-$(CONFIG_USB_CHAOSKEY)            += chaoskey.o
->
->  obj-$(CONFIG_USB_SISUSBVGA)            += sisusbvga/
->  obj-$(CONFIG_USB_LINK_LAYER_TEST)      += lvstest.o
-> +obj-$(CONFIG_USB_HUB_PWR)              += usb_hub_pwr.o usb_hub_psupply.o
-> diff --git a/drivers/usb/misc/usb_hub_psupply.c b/drivers/usb/misc/usb_hub_psupply.c
-> new file mode 100644
-> index 000000000000..6a155ae1f831
-> --- /dev/null
-> +++ b/drivers/usb/misc/usb_hub_psupply.c
-> @@ -0,0 +1,112 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2020, Google LLC
-> + */
-> +
-> +#include <linux/init.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regulator/consumer.h>
-> +
-> +struct usb_hub_psupply_dev {
-> +       struct regulator *vdd;
-> +};
+I suppose this is mostly addressed by my explications above, unless we
+think that 2 Watts in CPU power might still be too aggressive as a
+default.
 
-Until someone has a need for more, I'd just pass your "struct
-regulator *" as the driver data and get rid of this pointless wrapper.
+Thanks
 
-
-> +int usb_hub_psupply_on(struct device *dev)
-> +{
-> +       struct usb_hub_psupply_dev *usb_hub_psupply = dev_get_drvdata(dev);
-> +       int err;
-> +
-> +       err = regulator_enable(usb_hub_psupply->vdd);
-> +       if (err) {
-> +               dev_err(dev, "failed to enable regulator: %d\n", err);
-> +               return err;
-> +       }
-> +
-> +       return 0;
-> +
-
-nit: blank line
-
-
-> +}
-> +EXPORT_SYMBOL_GPL(usb_hub_psupply_on);
-> +
-> +int usb_hub_psupply_off(struct device *dev)
-> +{
-> +       struct usb_hub_psupply_dev *usb_hub_psupply = dev_get_drvdata(dev);
-> +       int err;
-> +
-> +       err = regulator_disable(usb_hub_psupply->vdd);
-> +       if (err) {
-> +               dev_err(dev, "failed to enable regulator: %d\n", err);
-> +               return err;
-> +       }
-> +
-> +       return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(usb_hub_psupply_off);
-> +
-> +static int usb_hub_psupply_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev = &pdev->dev;
-> +       struct usb_hub_psupply_dev *usb_hub_psupply;
-> +
-> +       usb_hub_psupply = devm_kzalloc(dev, sizeof(*usb_hub_psupply), GFP_KERNEL);
-> +       if (!usb_hub_psupply)
-> +               return -ENOMEM;
-> +
-> +       dev_set_drvdata(dev, usb_hub_psupply);
-> +
-> +       usb_hub_psupply->vdd = devm_regulator_get(dev, "vdd");
-> +       if (IS_ERR(usb_hub_psupply->vdd))
-> +               return PTR_ERR(usb_hub_psupply->vdd);
-> +
-> +       return usb_hub_psupply_on(dev);
-> +}
-> +
-> +static int usb_hub_psupply_remove(struct platform_device *pdev)
-> +{
-> +       return usb_hub_psupply_off(&pdev->dev);
-> +}
-> +
-> +static int usb_hub_psupply_suspend(struct platform_device *pdev, pm_message_t msg)
-> +{
-> +       return usb_hub_psupply_off(&pdev->dev);
-> +}
-> +
-> +static int usb_hub_psupply_resume(struct platform_device *pdev)
-> +{
-> +       return usb_hub_psupply_on(&pdev->dev);
-> +}
-> +
-> +static const struct of_device_id usb_hub_psupply_match[] = {
-> +       { .compatible = "linux,usb_hub_psupply" },
-> +       {}
-> +};
-> +MODULE_DEVICE_TABLE(of, usb_hub_psupply_match);
-> +
-> +static struct platform_driver usb_hub_psupply_driver = {
-> +       .probe = usb_hub_psupply_probe,
-> +       .remove = usb_hub_psupply_remove,
-> +       .suspend = usb_hub_psupply_suspend,
-
-SET_SYSTEM_SLEEP_PM_OPS?  Then you also need to add "__maybe_unused"
-to your suspend/resume functions.
-
-
-> +       .resume = usb_hub_psupply_resume,
-> +       .driver = {
-> +               .name = "usb-hub-psupply",
-> +               .of_match_table = usb_hub_psupply_match,
-> +       },
-> +};
-> +
-> +static int __init usb_hub_psupply_init(void)
-> +{
-> +       return platform_driver_register(&usb_hub_psupply_driver);
-> +}
-> +device_initcall(usb_hub_psupply_init);
-> +
-> +static void __exit usb_hub_psupply_exit(void)
-> +{
-> +       platform_driver_unregister(&usb_hub_psupply_driver);
-> +}
-> +module_exit(usb_hub_psupply_exit);
-> +
-> +MODULE_AUTHOR("Matthias Kaehlcke <mka@chromium.org>");
-> +MODULE_DESCRIPTION("USB Hub Power Supply");
-> +MODULE_LICENSE("GPL v2");
-> diff --git a/drivers/usb/misc/usb_hub_psupply.h b/drivers/usb/misc/usb_hub_psupply.h
-> new file mode 100644
-> index 000000000000..284e88f45fcf
-> --- /dev/null
-> +++ b/drivers/usb/misc/usb_hub_psupply.h
-> @@ -0,0 +1,9 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +
-> +#ifndef _USB_HUB_PSUPPLY_H
-> +#define _USB_HUB_PSUPPLY_H
-> +
-> +int usb_hub_psupply_on(struct device *dev);
-> +int usb_hub_psupply_off(struct device *dev);
-> +
-> +#endif /* _USB_HUB_PSUPPLY_H */
-> diff --git a/drivers/usb/misc/usb_hub_pwr.c b/drivers/usb/misc/usb_hub_pwr.c
-> new file mode 100644
-> index 000000000000..33945ca4a8c0
-> --- /dev/null
-> +++ b/drivers/usb/misc/usb_hub_pwr.c
-> @@ -0,0 +1,177 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * USB hub power control
-> + *
-> + * Copyright (c) 2020, Google LLC
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/power_supply.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/slab.h>
-> +#include <linux/usb.h>
-> +#include <linux/usb/hcd.h>
-> +#include "../core/usb.h"
-> +#include "usb_hub_psupply.h"
-> +
-> +#define VENDOR_ID_REALTEK      0x0bda
-> +
-> +struct usb_hub_pwr_dev {
-> +       struct regulator *vdd;
-
-You don't use the regulator directly, right?  So get rid of "vdd" here?
-
-
-> +       struct device *psupply_dev;
-> +       bool powered_off;
-> +};
-> +
-> +static struct device *usb_pwr_find_psupply_dev(struct device *dev)
-> +{
-> +       const phandle *ph;
-> +       struct device_node *np;
-> +       struct platform_device *pdev;
-> +
-> +       ph = of_get_property(dev->of_node, "psupply", NULL);
-> +       if (!ph) {
-> +               dev_err(dev, "failed to read 'psupply' property\n");
-> +               return ERR_PTR(-EINVAL);
-> +       }
-> +
-> +       np = of_find_node_by_phandle(be32_to_cpu(*ph));
-> +       if (!np) {
-> +               dev_err(dev, "failed find device node for power supply\n");
-> +               return ERR_PTR(-EINVAL);
-> +       }
-> +
-> +       pdev = of_find_device_by_node(np);
-> +       of_node_put(np);
-> +       if (!pdev)
-> +               return ERR_PTR(-EPROBE_DEFER);
-> +
-> +       return &pdev->dev;
-> +}
-> +
-> +static int usb_hub_pwr_probe(struct usb_device *udev)
-> +{
-> +       struct device *dev = &udev->dev;
-> +       struct usb_hub_pwr_dev *uhpw;
-> +       struct device *psupply_dev;
-> +       int err;
-> +
-> +       /* ignore supported hubs without device tree node */
-> +       if (!dev->of_node)
-> +               return -ENODEV;
-
-I can dig through the code if you don't know, but I'm hoping that
--ENODEV means it'll fall back to the regular hub driver?
-
-
-> +       psupply_dev = usb_pwr_find_psupply_dev(dev);
-> +       if (IS_ERR(psupply_dev))
-> +               return PTR_ERR(psupply_dev);
-> +
-> +       err = usb_generic_driver_probe(udev);
-> +       if (err) {
-> +               put_device(psupply_dev);
-> +               return err;
-> +       }
-> +
-> +       uhpw = devm_kzalloc(dev, sizeof(*uhpw), GFP_KERNEL);
-> +       if (!uhpw) {
-> +               put_device(psupply_dev);
-> +               return -ENOMEM;
-> +       }
-> +
-> +       dev_set_drvdata(&udev->dev, uhpw);
-> +
-> +       uhpw->psupply_dev = psupply_dev;
-> +
-> +       err = usb_hub_psupply_on(psupply_dev);
-> +       if (err) {
-> +               dev_err(dev, "failed to enable regulator: %d\n", err);
-> +               put_device(psupply_dev);
-> +               return err;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static void usb_hub_pwr_disconnect(struct usb_device *udev)
-> +{
-> +       struct usb_hub_pwr_dev *uhpw = dev_get_drvdata(&udev->dev);
-> +
-> +       usb_hub_psupply_off(uhpw->psupply_dev);
-> +       put_device(uhpw->psupply_dev);
-> +}
-> +
-> +static int usb_hub_pwr_suspend(struct usb_device *udev, pm_message_t msg)
-> +{
-> +       struct usb_hub_pwr_dev *uhpw = dev_get_drvdata(&udev->dev);
-> +       int err;
-> +
-> +       err = usb_generic_driver_suspend(udev, msg);
-> +       if (err)
-> +               return err;
-> +
-> +       if (!usb_wakeup_enabled_descendants(udev)) {
-> +               usb_port_disable(udev);
-> +
-> +               err = usb_hub_psupply_off(uhpw->psupply_dev);
-> +               if (err)
-> +                       return err;
-> +
-> +               uhpw->powered_off = true;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int usb_hub_pwr_resume(struct usb_device *udev, pm_message_t msg)
-> +{
-> +       struct usb_hub_pwr_dev *uhpw = dev_get_drvdata(&udev->dev);
-> +       int err;
-> +
-> +       if (uhpw->powered_off) {
-> +               err = usb_hub_psupply_on(uhpw->psupply_dev);
-> +               if (err)
-> +                       return err;
-> +
-> +               uhpw->powered_off = false;
-> +       }
-> +
-> +       return usb_generic_driver_resume(udev, msg);
-> +}
-> +
-> +static const struct usb_device_id hub_id_table[] = {
-> +       { .idVendor = VENDOR_ID_REALTEK,
-> +         .idProduct = 0x0411, /* RTS5411 USB 3.0 */
-> +         .match_flags = USB_DEVICE_ID_MATCH_DEVICE },
-> +       { .idVendor = VENDOR_ID_REALTEK,
-> +         .idProduct = 0x5411, /* RTS5411 USB 2.0 */
-> +         .match_flags = USB_DEVICE_ID_MATCH_DEVICE },
-> +       {},
-> +};
-> +
-> +MODULE_DEVICE_TABLE(usb, hub_id_table);
-> +
-> +static struct usb_device_driver usb_hub_pwr_driver = {
-> +
-> +       .name = "usb-hub-pwr",
-> +       .probe = usb_hub_pwr_probe,
-> +       .disconnect = usb_hub_pwr_disconnect,
-> +       .suspend = usb_hub_pwr_suspend,
-> +       .resume = usb_hub_pwr_resume,
-> +       .id_table = hub_id_table,
-
-I'm not an expert, but do you need "supports_autosuspend"?  I think we
-want autosuspend enabled so nothing is plugged into the hub (or only
-things that can autosuspend) then we can save power.  I can dig more
-too, if you don't know.
-
-
-> +};
-> +
-> +static int __init usb_hub_pwr_driver_init(void)
-> +{
-> +       return usb_register_device_driver(&usb_hub_pwr_driver, THIS_MODULE);
-> +}
-> +
-> +static void __exit usb_hub_pwr_driver_exit(void)
-> +{
-> +       usb_deregister_device_driver(&usb_hub_pwr_driver);
-> +}
-> +
-> +module_init(usb_hub_pwr_driver_init);
-> +module_exit(usb_hub_pwr_driver_exit);
-> +
-> +MODULE_AUTHOR("Matthias Kaehlcke <mka@chromium.org>");
-> +MODULE_DESCRIPTION("USB Hub Power Control");
-> +MODULE_LICENSE("GPL v2");
-
-All the above is mostly just nits.  To me the concept here seems sane.
-
--Doug
+m.
