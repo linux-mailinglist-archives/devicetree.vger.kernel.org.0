@@ -2,241 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7B7425A1A0
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 00:46:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B582225A1BB
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 00:59:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726947AbgIAWqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 18:46:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36888 "EHLO
+        id S1726928AbgIAW7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 18:59:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726814AbgIAWqI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 18:46:08 -0400
-Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3429C061246
-        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 15:46:07 -0700 (PDT)
-Received: by mail-vs1-xe42.google.com with SMTP id y3so1558909vsn.1
-        for <devicetree@vger.kernel.org>; Tue, 01 Sep 2020 15:46:07 -0700 (PDT)
+        with ESMTP id S1726091AbgIAW7S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 18:59:18 -0400
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F67FC061244;
+        Tue,  1 Sep 2020 15:59:18 -0700 (PDT)
+Received: by mail-pf1-x441.google.com with SMTP id c142so1710825pfb.7;
+        Tue, 01 Sep 2020 15:59:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=fDDm7I6FV6Bqqr5usz7Hzdqdt8ambZ3kJcMzathm/Fw=;
-        b=YmFrRabunY+wHuIzrsqFTd6yEBSh0pO/hiai7YfVLPckGRW5hL+SJHblXsstTEqRyo
-         m6+h4ELMAsdKWdhcymJTML16NYn9qW6fVrlI+HNupVUyLWrpxOtYLcqW9v32VQ2wTewU
-         xMa5tEwgA97rk8/MybDfgs/enICL02jbOzOpA=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4jS/NdDL0jR/GxH0UkvOA/rOyTppb7860U24VxNbz6Q=;
+        b=Cu1gz2rkND3wStNEAaro1bXjDG6xSAkEJfJIQBs3jdEQMihqqKaHKWQaHmqrGtnbRS
+         v4D7eDKaiBX90mJPQi89whPu2j4CS3XOECvP3sP7K0UBInjBlHet8l84Ea9YMcz+xOpW
+         FFDucObCAKdiP7+U3hKLU8HPvIxFEuUHr7/FRb1cnlWM3dZ+sinxGPNa/jxKRDKCkjZE
+         2tFWJyFUjkslh+ZVz/VwOnpsz3sqM+EFtimGonKDdc/GR+xk9vqt3ft4bugOGXvCQwIN
+         qr0uvCprK72UU5MF+W1JxotEExi8UK0DRS5i25SUvwEEdk/vCHoxOxSCeR4YSoimE/7r
+         4q1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fDDm7I6FV6Bqqr5usz7Hzdqdt8ambZ3kJcMzathm/Fw=;
-        b=E7bO1r6Tz7RJ1knuOxPsFH2GZivndOQbO1KDe1AFWhDq+pKhLh0zj4bmMLwDHHOK41
-         KsUA2wDH2QNM2y1MyVsSctK+EzSOYmKOuTsUKM0f8s6PBa+2yf0UynMlTqX6Gz/oSRh3
-         wA5nTl/l9OU0yqFtbqLwB0VV3lbNYUWR8QdPVJTECI89n1SnjQsiQ8+GZRdLSzcaze9G
-         Tv84ECyOPEtnITi6uzED4KWufL7wgP0FuDFbotzYoLKiwydHPINpXbFNChQMmO5DuTOV
-         e1X4RFzNa/leNtETcGKLELajEfY+c2pvRFksFLBrbLEhNsvyvSdEFvIHKD+Izu3c3gZ9
-         mQ1A==
-X-Gm-Message-State: AOAM532EBXf5MJ7BeFIQ5eEyKuP1R4+QG82DT4BEn5okdlQ1Ibb1NvKp
-        Bthft1I4cLRE9eVOUc+ilV5oMgxsS9Yrdg==
-X-Google-Smtp-Source: ABdhPJxUSsAjrWCktYe4Aj3xf86OYekU5FAJn+U7Hh3S/yg++vCnVQ0LAmIuR7EOBECFX4L8ovMTtQ==
-X-Received: by 2002:a67:7795:: with SMTP id s143mr3612364vsc.94.1599000366363;
-        Tue, 01 Sep 2020 15:46:06 -0700 (PDT)
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
-        by smtp.gmail.com with ESMTPSA id y84sm149126vsc.33.2020.09.01.15.46.05
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Sep 2020 15:46:05 -0700 (PDT)
-Received: by mail-vs1-f43.google.com with SMTP id v138so1551117vsv.7
-        for <devicetree@vger.kernel.org>; Tue, 01 Sep 2020 15:46:05 -0700 (PDT)
-X-Received: by 2002:a05:6102:30a3:: with SMTP id y3mr3765414vsd.201.1599000364461;
- Tue, 01 Sep 2020 15:46:04 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4jS/NdDL0jR/GxH0UkvOA/rOyTppb7860U24VxNbz6Q=;
+        b=XkCIRbMump2E2XmrFj9SXTky9SA3mlZ8uH+NaFuc/m1oeSvrByUO32BuCpr728S0WG
+         Xci4wg20Gc/vGd1fsySw87XAhzYR922r09+RYc5nLA3rGWY9LJAjAoSKdVtgxn92a1ni
+         fJT41Ag/u87ykygjJvPOztmhnJso05QeyxsL5YREPPGfqPh2AxJdgeZkC7tdVqE6Wldd
+         Gnga3q9SSDM6ZNyh1WW0EHB9pdOfVK4Pemdn3KCMbofLU0G4TQKFJcBJtvOTcUYcQTHQ
+         jYPi733pafDGubI9Qn5QfBhUvAtGUccrytZ3cvIPQc/CkbHj4Jcrcu6RDkc6+hVFEGtT
+         nRvg==
+X-Gm-Message-State: AOAM530aNHaYQJyh54Hb3Mu2VpVSG/bNBELTFIZMYJFvIfmAUwLP2LnD
+        Nk6LagDd4NLQ/eLk9pDIqs2Ktn7CMQ0=
+X-Google-Smtp-Source: ABdhPJzMpLjTU5htMiK2FZlKuyLiFPYwhEW98jAI2f+GW+NM7agnDAiIJJ38Stc7XeofN9qZOzE04Q==
+X-Received: by 2002:a63:754:: with SMTP id 81mr3321778pgh.435.1599001157605;
+        Tue, 01 Sep 2020 15:59:17 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id m188sm2952750pfm.220.2020.09.01.15.59.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Sep 2020 15:59:16 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     netdev@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH net-next 0/3] net: dsa: bcm_sf2: Clock support
+Date:   Tue,  1 Sep 2020 15:59:10 -0700
+Message-Id: <20200901225913.1587628-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20200813113030.1.I89c33c4119eaffb986b1e8c1bc6f0e30267089cd@changeid>
- <20200901170745.GA3419728@google.com> <CAD=FV=Xv0FLtWWcQcRy7p2LPNdDtSjdarsvNHRHaLkWwABnwJw@mail.gmail.com>
- <20200901213319.GB3419728@google.com>
-In-Reply-To: <20200901213319.GB3419728@google.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 1 Sep 2020 15:45:52 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XDjsg314RGV1e5jRA+qa3s9LQWN8zk-ARZAQEjNeH8Kw@mail.gmail.com>
-Message-ID: <CAD=FV=XDjsg314RGV1e5jRA+qa3s9LQWN8zk-ARZAQEjNeH8Kw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Add 'sustainable_power' for CPU
- thermal zones
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Amit Kucheria <amit.kucheria@linaro.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi David,
 
-On Tue, Sep 1, 2020 at 2:33 PM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> Hi Doug,
->
-> On Tue, Sep 01, 2020 at 01:19:10PM -0700, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Tue, Sep 1, 2020 at 10:07 AM Matthias Kaehlcke <mka@chromium.org> wrote:
-> > >
-> > > On Thu, Aug 13, 2020 at 11:30:33AM -0700, Matthias Kaehlcke wrote:
-> > > > The 'sustainable_power' attribute provides an estimate of the sustained
-> > > > power that can be dissipated at the desired control temperature. One
-> > > > could argue that this value is not necessarily the same for all devices
-> > > > with the same SoC, which may have different form factors or thermal
-> > > > designs. However there are reasons to specify a (default) value at SoC
-> > > > level for SC7180: most importantly, if no value is specified at all the
-> > > > power_allocator thermal governor (aka 'IPA') estimates a value, using the
-> > > > minimum power of all cooling devices of the zone, which can result in
-> > > > overly aggressive thermal throttling. For most devices an approximate
-> > > > conservative value should be more useful than the minimum guesstimate
-> > > > of power_allocator. Devices that need a different value can overwrite
-> > > > it in their <device>.dts. Also the thermal zones for SC7180 have a high
-> > > > level of granularity (essentially one for each function block), which
-> > > > makes it more likely that the default value just works for many devices.
-> > > >
-> > > > The values correspond to 1901 MHz for the big cores, and 1804 MHz for
-> > > > the small cores. The values were determined by limiting the CPU
-> > > > frequencies to different max values and launching a bunch of processes
-> > > > that cause high CPU load ('while true; do true; done &' is simple and
-> > > > does a good job). A frequency is deemed sustainable if the CPU
-> > > > temperatures don't rise (consistently) above the second trip point
-> > > > ('control temperature', 95 degC in this case). Once the highest
-> > > > sustainable frequency is found, the sustainable power can be calculated
-> > > > by multiplying the energy consumption per core at this frequency (which
-> > > > can be found in /sys/kernel/debug/energy_model/) with the number of
-> > > > cores that are specified as cooling devices.
-> > > >
-> > > > The sustainable frequencies were determined at room temperature
-> > > > on a device without heat sink or other passive cooling elements.
-> >
-> > I'm curious: was this a bare board, or a device in a case?  Hrm, I'm
-> > not sure which one would be worse at heat dissipation, but I would
-> > imagine that being inside a plastic case might be worse?
->
-> This was with a device in a plastic case.
->
-> > > > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > > > ---
-> > > > If maintainers think 'sustainable_power' should be specified at
-> > > > device level (with which I conceptually agree) I'm fine with
-> > > > doing that, just seemed it could be useful to have a reasonable
-> > > > 'default' at SoC level in this case.
-> > >
-> > > Any comments on this?
-> >
-> > I'm not massively familiar with this area of the code, but I guess I
-> > shouldn't let that stop me from having an opinion!  :-P
-> >
-> > * I would agree that it seems highly unlikely that someone would put
-> > one of these chips in a device that could only dissipate the heat from
-> > the lowest OPP, so having some higher estimate definitely makes sense.
-> >
-> > * In terms of the numbers here, I believe that you're claiming that we
-> > can dissipate 768 mW * 6 + 1202 mW * 2 = ~7 Watts of power.
->
-> No, I'm claiming it's 768 mW + 1202 mW = ~2 W.
->
-> SC7180 has a 6 thermal zones for the 6 little cores and 4 zones for the
-> 2 big cores. Each of these thermal zones uses either all little or all big
-> cores as cooling devices, hence the power sustainable power of the
-> individual zones doesn't add up. 768 mW corresponds to 6x 128 mW (aka all
-> little cores at 1.8 GHz), and 1202 mW to 2x 601 mW (both big cores at 1.9 GHz).
+This patch series adds support for controlling the SF2 switch core and
+divider clock (where applicable).
 
-Ah!  Thanks for explaining.
+Florian Fainelli (3):
+  dt-bindings: net: Document Broadcom SF2 switch clocks
+  net: dsa: bcm_sf2: request and handle clocks
+  net: dsa: bcm_sf2: recalculate switch clock rate based on ports
 
+ .../bindings/net/brcm,bcm7445-switch-v4.0.txt |  7 ++
+ drivers/net/dsa/bcm_sf2.c                     | 84 ++++++++++++++++++-
+ drivers/net/dsa/bcm_sf2.h                     |  4 +
+ 3 files changed, 93 insertions(+), 2 deletions(-)
 
-> > My memory
-> > of how much power we could dissipate in previous laptops I worked on
-> > is a little fuzzy, but that doesn't seem insane for a passively-cooled
-> > laptop.  However, I think someone could conceivably put this chip in a
-> > smaller form factor.  In such a case, it seems like we'd want these
-> > things to sum up to ~2000 (if it would ever make sense for someone to
-> > put this chip in a phone) or ~4000 (if it would ever make sense for
-> > someone to put this chip in a small tablet).
->
-> See above, the sustainable power with this patch only adds up to ~2000.
-> It is possible though that it would be lower in a smaller form factor
-> device.
->
-> I'd be ok with posting something lower for SC7180 (it would be a guess
-> though) and use the specific numbers in the device specific DT.
+-- 
+2.25.1
 
-Given the advice in the bindings it seems like 2W should be fine.
-
-
-> > It seems possible that,
-> > to achieve this, we might have to tweak the
-> > "dynamic-power-coefficient".  I don't know how much thought was put
-> > into those numbers, but the fact that the little cores have a super
-> > round 100 for their dynamic-power-coefficient makes me feel like they
-> > might have been more schwags than anything.  Rajendra maybe knows?
->
-> Yeah, it's possible that that was just an approximation
->
-> > * I'm curious about the fact that there are two numbers here: one for
-> > littles and one for bigs.  If I had to guess I'd say that since all
-> > the cores are in one package so the contributions kinda need to be
-> > thought of together, right?  If we're sitting there thermally
-> > throttled then we'd want to pick the best perf-per-watt for the
-> > overall package.  This is why your patch says we can sustain the
-> > little cores at max and the big cores get whatever is left over,
-> > right?
->
-> It's derived from how Qualcomm specified the thermal zones and cooling
-> devices. Any ("cpu") zone is either cooled by (all) big cores or by (all)
-> little cores, but not a mix of them. In my tests I also saw that the big
-> cores seemed to have little impact on the little ones. The little cores
-> are at max because even running at max frequency the temperature in the
-> 'little zones' wouldn't come close to the trip point.
-
-OK, crazy.  I suppose that this makes sense,especially without a
-heatsink and over a short burst of time.  I'd imagine that with a
-heatsink things might look different, but trying to model everything
-is impossible and seems like what't there works OK until someone can
-say why it doesn't.  :-)
-
-
-> > * Should we be leaving some room in here for the GPU?  ...or I guess
-> > once we list it as a cooling device we'll have to decrease the amount
-> > the CPUs can use?
->
-> I don't know for sure, but judging from the CPU zones I wouldn't be
-> surprised if the GPU was managed exclusively in the dedicated GPU
-> thermal zones (I guess that's what 'gpuss0-thermal' and 'gpuss1-thermal'
-> are). If that's not the case the values in the CPU zones can be
-> adjusted when specific data is available.
-
-Sounds good.
-
-
-> > So I guess the tl; dr is:
-> >
-> > a) We should check "dynamic-power-coefficient" and possibly adjust.
->
-> ok, lets see if Rajendra can check if there is room for tweaking.
->
-> > b) I don't think the "conservative" by-default numbers should add up
-> > to 7 Watts.  I could be convinced that this chip is not intended for
-> > phones and thus we could have it add up to 4 Watts, but 7 Watts seems
-> > too much.
->
-> I suppose this is mostly addressed by my explications above, unless we
-> think that 2 Watts in CPU power might still be too aggressive as a
-> default.
-
-With all your explanations, I'm happy to add:
-
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-
--Doug
