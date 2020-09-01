@@ -2,323 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EBA7259053
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 16:26:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FB632590FB
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 16:43:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728297AbgIAO0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 10:26:35 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:41658 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728402AbgIAOZJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 10:25:09 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 081E6kST006073;
-        Tue, 1 Sep 2020 09:06:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1598969206;
-        bh=I+bDqaa6CJJpsxu988YGODOrvSnoHvdknuQLCh1PA+Q=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=GxI+k/Pl1ApNg/EexLA3UMd+kCiPbNRTP+Eh8/3Hp0X6X+g/4sniPupDAxrLQjw6u
-         hXkdrRUc4xH0QGGIwra5V0WCCBfoM+fWx272+Dizo7WH6HArnOty+uy6r7ToQaIkXW
-         q2z1IgeZJ/T7ShXKL2Cj21KvonLycCIzjtt2Hqnc=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 081E6kqV017737
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 1 Sep 2020 09:06:46 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 1 Sep
- 2020 09:06:46 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 1 Sep 2020 09:06:46 -0500
-Received: from a0393678-ssd.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 081E6Zlg034944;
-        Tue, 1 Sep 2020 09:06:43 -0500
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: [RESEND PATCH 1/2] arm64: dts: ti: k3-j721e-main: Add PCIe device tree nodes
-Date:   Tue, 1 Sep 2020 19:36:27 +0530
-Message-ID: <20200901140628.8800-2-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200901140628.8800-1-kishon@ti.com>
-References: <20200901140628.8800-1-kishon@ti.com>
+        id S1726326AbgIAOnG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 10:43:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42808 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728114AbgIAOQo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 10:16:44 -0400
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14C28C061247;
+        Tue,  1 Sep 2020 07:05:46 -0700 (PDT)
+From:   Kurt Kanzenbach <kurt@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1598969144;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Z8QqyLda18GvzgzEa2BZRAqbRhiaUAxD4HcskwEK9y8=;
+        b=OA/2WXHYfEL1UR/++jUzmCJejoAGIwlRpnMjkUSVgubq1FeRHr3OfZ9USQ1gE/CI5PT7Lj
+        RQoIowDNkgN2P3pGTSOfIn/h1ejWaWrGDqhrIiJRW8d2O63VzqJ3Zv27hezntXkpSjpwUo
+        mzXh2yi8rhhOx7j//aop9Z2O4794QHgiG6XvfTUhXZ+3mLcD2JdGee4KzM+hUfvshbu383
+        9re5Ckx1XS2hN9v0blaNStaXIjoZ5QeC9vzCGYVMPiuaVJqoDSSKw7Snx3Y+9B3/01cqNI
+        MPtCGDjI+6cboSqfFLsZtHFgP6DKpc+QKFYLNPnT09e9HoEuWyYgH8O6Wx8GWg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1598969144;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Z8QqyLda18GvzgzEa2BZRAqbRhiaUAxD4HcskwEK9y8=;
+        b=VfTHIMCqtnFBoB0HPkuNE5jEiWNFnb6IXieWGVDnItFZKuERS7C5XshV7FxiY73RqYCouS
+        SEgC49JeOGSoU0Cg==
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
+        ilias.apalodimas@linaro.org
+Subject: Re: [PATCH v4 2/7] net: dsa: Add DSA driver for Hirschmann Hellcreek switches
+In-Reply-To: <20200901134020.53vob6fis5af7nig@skbuf>
+References: <20200901125014.17801-1-kurt@linutronix.de> <20200901125014.17801-3-kurt@linutronix.de> <20200901134020.53vob6fis5af7nig@skbuf>
+Date:   Tue, 01 Sep 2020 16:05:42 +0200
+Message-ID: <87y2ltegnd.fsf@kurt>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha512; protocol="application/pgp-signature"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PCIe device tree node (both RC and EP) for the four
-PCIe instances here.
+--=-=-=
+Content-Type: text/plain
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 218 ++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-j721e.dtsi      |   5 +-
- 2 files changed, 222 insertions(+), 1 deletion(-)
+Hi Vladimir,
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index 00a36a14efe7..a36909d8b8c3 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -28,6 +28,26 @@
- 		#size-cells = <1>;
- 		ranges = <0x0 0x0 0x00100000 0x1c000>;
- 
-+		pcie0_ctrl: pcie-ctrl@4070 {
-+			compatible = "syscon";
-+			reg = <0x00004070 0x4>;
-+		};
-+
-+		pcie1_ctrl: pcie-ctrl@4074 {
-+			compatible = "syscon";
-+			reg = <0x00004074 0x4>;
-+		};
-+
-+		pcie2_ctrl: pcie-ctrl@4078 {
-+			compatible = "syscon";
-+			reg = <0x00004078 0x4>;
-+		};
-+
-+		pcie3_ctrl: pcie-ctrl@407c {
-+			compatible = "syscon";
-+			reg = <0x0000407c 0x4>;
-+		};
-+
- 		serdes_ln_ctrl: serdes-ln-ctrl@4080 {
- 			compatible = "mmio-mux";
- 			reg = <0x00004080 0x50>;
-@@ -576,6 +596,204 @@
- 		};
- 	};
- 
-+	pcie0_rc: pcie@2900000 {
-+		compatible = "ti,j721e-pcie-host";
-+		reg = <0x00 0x02900000 0x00 0x1000>,
-+		      <0x00 0x02907000 0x00 0x400>,
-+		      <0x00 0x0d000000 0x00 0x00800000>,
-+		      <0x00 0x10000000 0x00 0x00001000>;
-+		reg-names = "intd_cfg", "user_cfg", "reg", "cfg";
-+		interrupt-names = "link_state";
-+		interrupts = <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
-+		device_type = "pci";
-+		ti,syscon-pcie-ctrl = <&pcie0_ctrl>;
-+		max-link-speed = <3>;
-+		num-lanes = <2>;
-+		power-domains = <&k3_pds 239 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 239 1>;
-+		clock-names = "fck";
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		bus-range = <0x0 0xf>;
-+		vendor-id = <0x104c>;
-+		device-id = <0xb00d>;
-+		msi-map = <0x0 &gic_its 0x0 0x10000>;
-+		dma-coherent;
-+		ranges = <0x01000000 0x0 0x10001000 0x0 0x10001000 0x0 0x0010000>,
-+			 <0x02000000 0x0 0x10011000 0x0 0x10011000 0x0 0x7fef000>;
-+		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
-+	};
-+
-+	pcie0_ep: pcie-ep@2900000 {
-+		compatible = "ti,j721e-pcie-ep";
-+		reg = <0x00 0x02900000 0x00 0x1000>,
-+		      <0x00 0x02907000 0x00 0x400>,
-+		      <0x00 0x0d000000 0x00 0x00800000>,
-+		      <0x00 0x10000000 0x00 0x08000000>;
-+		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
-+		interrupt-names = "link_state";
-+		interrupts = <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
-+		ti,syscon-pcie-ctrl = <&pcie0_ctrl>;
-+		max-link-speed = <3>;
-+		num-lanes = <2>;
-+		power-domains = <&k3_pds 239 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 239 1>;
-+		clock-names = "fck";
-+		cdns,max-outbound-regions = <16>;
-+		max-functions = /bits/ 8 <6>;
-+		max-virtual-functions = /bits/ 16 <4 4 4 4 0 0>;
-+		dma-coherent;
-+	};
-+
-+	pcie1_rc: pcie@2910000 {
-+		compatible = "ti,j721e-pcie-host";
-+		reg = <0x00 0x02910000 0x00 0x1000>,
-+		      <0x00 0x02917000 0x00 0x400>,
-+		      <0x00 0x0d800000 0x00 0x00800000>,
-+		      <0x00 0x18000000 0x00 0x00001000>;
-+		reg-names = "intd_cfg", "user_cfg", "reg", "cfg";
-+		interrupt-names = "link_state";
-+		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
-+		device_type = "pci";
-+		ti,syscon-pcie-ctrl = <&pcie1_ctrl>;
-+		max-link-speed = <3>;
-+		num-lanes = <2>;
-+		power-domains = <&k3_pds 240 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 240 1>;
-+		clock-names = "fck";
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		bus-range = <0x0 0xf>;
-+		vendor-id = <0x104c>;
-+		device-id = <0xb00d>;
-+		msi-map = <0x0 &gic_its 0x10000 0x10000>;
-+		dma-coherent;
-+		ranges = <0x01000000 0x0 0x18001000 0x0 0x18001000 0x0 0x0010000>,
-+			 <0x02000000 0x0 0x18011000 0x0 0x18011000 0x0 0x7fef000>;
-+		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
-+	};
-+
-+	pcie1_ep: pcie-ep@2910000 {
-+		compatible = "ti,j721e-pcie-ep";
-+		reg = <0x00 0x02910000 0x00 0x1000>,
-+		      <0x00 0x02917000 0x00 0x400>,
-+		      <0x00 0x0d800000 0x00 0x00800000>,
-+		      <0x00 0x18000000 0x00 0x08000000>;
-+		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
-+		interrupt-names = "link_state";
-+		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
-+		ti,syscon-pcie-ctrl = <&pcie1_ctrl>;
-+		max-link-speed = <3>;
-+		num-lanes = <2>;
-+		power-domains = <&k3_pds 240 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 240 1>;
-+		clock-names = "fck";
-+		cdns,max-outbound-regions = <16>;
-+		max-functions = /bits/ 8 <6>;
-+		max-virtual-functions = /bits/ 16 <4 4 4 4 0 0>;
-+		dma-coherent;
-+	};
-+
-+	pcie2_rc: pcie@2920000 {
-+		compatible = "ti,j721e-pcie-host";
-+		reg = <0x00 0x02920000 0x00 0x1000>,
-+		      <0x00 0x02927000 0x00 0x400>,
-+		      <0x00 0x0e000000 0x00 0x00800000>,
-+		      <0x44 0x00000000 0x00 0x00001000>;
-+		reg-names = "intd_cfg", "user_cfg", "reg", "cfg";
-+		interrupt-names = "link_state";
-+		interrupts = <GIC_SPI 342 IRQ_TYPE_EDGE_RISING>;
-+		device_type = "pci";
-+		ti,syscon-pcie-ctrl = <&pcie2_ctrl>;
-+		max-link-speed = <3>;
-+		num-lanes = <2>;
-+		power-domains = <&k3_pds 241 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 241 1>;
-+		clock-names = "fck";
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		bus-range = <0x0 0xf>;
-+		vendor-id = <0x104c>;
-+		device-id = <0xb00d>;
-+		msi-map = <0x0 &gic_its 0x20000 0x10000>;
-+		dma-coherent;
-+		ranges = <0x01000000 0x0 0x00001000 0x44 0x00001000 0x0 0x0010000>,
-+			 <0x02000000 0x0 0x00011000 0x44 0x00011000 0x0 0x7fef000>;
-+		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
-+	};
-+
-+	pcie2_ep: pcie-ep@2920000 {
-+		compatible = "ti,j721e-pcie-ep";
-+		reg = <0x00 0x02920000 0x00 0x1000>,
-+		      <0x00 0x02927000 0x00 0x400>,
-+		      <0x00 0x0e000000 0x00 0x00800000>,
-+		      <0x44 0x00000000 0x00 0x08000000>;
-+		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
-+		interrupt-names = "link_state";
-+		interrupts = <GIC_SPI 342 IRQ_TYPE_EDGE_RISING>;
-+		ti,syscon-pcie-ctrl = <&pcie2_ctrl>;
-+		max-link-speed = <3>;
-+		num-lanes = <2>;
-+		power-domains = <&k3_pds 241 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 241 1>;
-+		clock-names = "fck";
-+		cdns,max-outbound-regions = <16>;
-+		max-functions = /bits/ 8 <6>;
-+		max-virtual-functions = /bits/ 16 <4 4 4 4 0 0>;
-+		dma-coherent;
-+	};
-+
-+	pcie3_rc: pcie@2930000 {
-+		compatible = "ti,j721e-pcie-host";
-+		reg = <0x00 0x02930000 0x00 0x1000>,
-+		      <0x00 0x02937000 0x00 0x400>,
-+		      <0x00 0x0e800000 0x00 0x00800000>,
-+		      <0x44 0x10000000 0x00 0x00001000>;
-+		reg-names = "intd_cfg", "user_cfg", "reg", "cfg";
-+		interrupt-names = "link_state";
-+		interrupts = <GIC_SPI 354 IRQ_TYPE_EDGE_RISING>;
-+		device_type = "pci";
-+		ti,syscon-pcie-ctrl = <&pcie3_ctrl>;
-+		max-link-speed = <3>;
-+		num-lanes = <2>;
-+		power-domains = <&k3_pds 242 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 242 1>;
-+		clock-names = "fck";
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		bus-range = <0x0 0xf>;
-+		vendor-id = <0x104c>;
-+		device-id = <0xb00d>;
-+		msi-map = <0x0 &gic_its 0x30000 0x10000>;
-+		dma-coherent;
-+		ranges = <0x01000000 0x0 0x00001000 0x44 0x10001000 0x0 0x0010000>,
-+			 <0x02000000 0x0 0x00011000 0x44 0x10011000 0x0 0x7fef000>;
-+		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
-+	};
-+
-+	pcie3_ep: pcie-ep@2930000 {
-+		compatible = "ti,j721e-pcie-ep";
-+		reg = <0x00 0x02930000 0x00 0x1000>,
-+		      <0x00 0x02937000 0x00 0x400>,
-+		      <0x00 0x0e800000 0x00 0x00800000>,
-+		      <0x44 0x10000000 0x00 0x08000000>;
-+		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
-+		interrupt-names = "link_state";
-+		interrupts = <GIC_SPI 354 IRQ_TYPE_EDGE_RISING>;
-+		ti,syscon-pcie-ctrl = <&pcie3_ctrl>;
-+		max-link-speed = <3>;
-+		num-lanes = <2>;
-+		power-domains = <&k3_pds 242 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 242 1>;
-+		clock-names = "fck";
-+		cdns,max-outbound-regions = <16>;
-+		max-functions = /bits/ 8 <6>;
-+		max-virtual-functions = /bits/ 16 <4 4 4 4 0 0>;
-+		dma-coherent;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+	};
-+
- 	main_uart0: serial@2800000 {
- 		compatible = "ti,j721e-uart", "ti,am654-uart";
- 		reg = <0x00 0x02800000 0x00 0x100>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-index f787aa73aaae..eeb02115b966 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-@@ -132,9 +132,12 @@
- 			 <0x00 0x06400000 0x00 0x06400000 0x00 0x00400000>, /* USBSS1 */
- 			 <0x00 0x01000000 0x00 0x01000000 0x00 0x0af02400>, /* Most peripherals */
- 			 <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>, /* MAIN NAVSS */
--			 <0x00 0x0d000000 0x00 0x0d000000 0x00 0x01000000>, /* PCIe Core*/
-+			 <0x00 0x0d000000 0x00 0x0d000000 0x00 0x01800000>, /* PCIe Core*/
-+			 <0x00 0x0e000000 0x00 0x0e000000 0x00 0x01800000>, /* PCIe Core*/
- 			 <0x00 0x10000000 0x00 0x10000000 0x00 0x10000000>, /* PCIe DAT */
- 			 <0x00 0x64800000 0x00 0x64800000 0x00 0x00800000>, /* C71 */
-+			 <0x44 0x00000000 0x44 0x00000000 0x00 0x08000000>, /* PCIe2 DAT */
-+			 <0x44 0x10000000 0x44 0x10000000 0x00 0x08000000>, /* PCIe3 DAT */
- 			 <0x4d 0x80800000 0x4d 0x80800000 0x00 0x00800000>, /* C66_0 */
- 			 <0x4d 0x81800000 0x4d 0x81800000 0x00 0x00800000>, /* C66_1 */
- 			 <0x4e 0x20000000 0x4e 0x20000000 0x00 0x00080000>, /* GPU */
--- 
-2.17.1
+On Tue Sep 01 2020, Vladimir Oltean wrote:
+> Hi Kurt,
+>
+> On Tue, Sep 01, 2020 at 02:50:09PM +0200, Kurt Kanzenbach wrote:
+[snip]
+>> +struct hellcreek {
+>> +	const struct hellcreek_platform_data *pdata;
+>> +	struct device *dev;
+>> +	struct dsa_switch *ds;
+>> +	struct hellcreek_port *ports;
+>> +	struct mutex reg_lock;	/* Switch IP register lock */
+>
+> Pardon me asking, but I went back through the previous review comments
+> and I didn't see this being asked.
 
+It was asked multiple times, why there was a spinlock without interrupts
+being registered (see e.g. [1], [2]). I've used the spinlock variant,
+because the previously used hrtimers act like interrupts. As there are
+no timers anymore, there's no need for spinlocks and mutexes can be
+used.
+
+Florian Fainelli also asked if the reg lock can be removed
+completely. See below.
+
+>
+> What is the register lock protecting against, exactly?
+
+A lot of the register operations work by:
+
+ * Select port, priority, vlan or counter
+ * Configure it
+
+These sequences have to be atomic. That's what I wanted to ensure.
+
+Thanks,
+Kurt
+
+[1] - https://lkml.kernel.org/netdev/def49ff6-72fe-7ca0-9e00-863c314c1c3d@gmail.com/
+[2] - https://lkml.kernel.org/netdev/20200624130318.GD7247@localhost/
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl9OVTYACgkQeSpbgcuY
+8KZR9A//fUpNGkg2ivJeRvLXtvr4FbLG0ASFeE+pyc9dVBWa1RY+yP6H0fpOP9jR
+jlPqYVUlqxtiqlwHOd8GJ/PbnBlmKHcdf8BKnbM75fffeJjZm3Y+cl+CFJwJXkGe
+sKWFxGzQVbNmUsblEUWVOpuiU8XRRD8RjPCxMBW8FC5bVbhMKK1Fw7AT5K5M2e+d
+J3hhEa3qHsIqTSQhcb27N5Z94C6k9oKcRpkyTECngcX1IfNqcit6+OY7h5u4lqLz
+RVva3j1+tQJk7TgDWG+emcY5T7dpmnC2EgquPh3fs/peF1rfNswO2QqleFM8NHkI
+1nHanLeutnkIrs5sGPHU5VM9Cb3ctnLIAQh/VpB5cUdAXfDSN/qJvlTo/ATN4rBM
+3eL9dslrMt1dBXMteI4YMBj/CMHnQOP2HE0V2AXgAs4MRUn5ZWPInap/MCUMCWQC
+L0sOgb4Ye5k8uJH8dNS5j+sPqI6oeRBeTyZixLe9uTLdbH74o7nGpN4TGlQvpO04
+OZ2vvDwoyRKVnYqsbYySZo7b6phqK5nUmDzzZRuGZKW9b/q0WWxCbJYgIjSBUVhU
+h/JrGFrnZ2uQ6B/VhbS0E5moFHob92uItlwFVl9tH81jn64cDg2Z4gI2E9WUNve6
+enD+VGtnu4+BLbZ4a6wM6mmO9m2GdXaId6sKBQzs4nVvDC4AOHk=
+=Ww3M
+-----END PGP SIGNATURE-----
+--=-=-=--
