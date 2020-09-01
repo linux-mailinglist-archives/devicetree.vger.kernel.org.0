@@ -2,101 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDD46259A46
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 18:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48240259CCA
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 19:20:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732292AbgIAQr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 12:47:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37992 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730268AbgIAQrp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 12:47:45 -0400
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9F60C061244;
-        Tue,  1 Sep 2020 09:47:43 -0700 (PDT)
-Received: by mail-pg1-x543.google.com with SMTP id g29so984280pgl.2;
-        Tue, 01 Sep 2020 09:47:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=eTzVI35DRVJv330Nqj3ET+6aUZCHukORN2vVqCI+diU=;
-        b=Q9J0siRiCBTUvlTt1kvK7tVe6kE41TN+kIDNXErBGCMEu1mS9WGl+7HnaY7AizAAhM
-         MGgJn5r7Rof/eu1Uou0PMSTw5hFRpugiRYy1Zicok/Tfuyw1H3V1tq3kahNYERz3c8YT
-         bXHl75p+tvjsOILMrKaZDr3cZEd5sXyOpNnNhuqDgkx3L6L6Kb3YuoljJJBZkNLHwbFo
-         soPQIChGhslKZccNHRLkXXS2dp3278kCoXtym2UYyH9+JavhTLC8/CcPIIx8CECq/6fQ
-         wY6/1CctuejLklrAEC2Nb6tplD1fgnMzEIXMROD7R3A/ASkM5gP75Pv1ZPmEFTZQnh5W
-         DuSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=eTzVI35DRVJv330Nqj3ET+6aUZCHukORN2vVqCI+diU=;
-        b=VAWZfuhfSKn0hTqZeWTT7OCeqA+NkxkNVuZJC7sDNZEigCU1Oh6hrA1J6VAljnpX0y
-         hlkbq1nE3XhhTpv28W5Ka6imnTv9Zny0YxH1Rm+91wjiqJ7YAXx/g4PaPLtdcAkHuVvK
-         jvg3iuhOqxhr28dGDMWpiXiLBok5uZ3EuuHLzybOaVEicbwC21FOb8y8kJx7niR3wGvX
-         hgRDk2Usqpniqim89Jn9hG71A0MUXdo87TqePesFKAVk3/sjqB5aaFqZJ0BEn+6FYCT7
-         a21SmhsIoopJQDj7vL/oCkyeHKKQsb/+epuFA7O3ZpcyGB8WaTN/icae22xV96v3IIXy
-         5Tmw==
-X-Gm-Message-State: AOAM531+JUxHrBAQsYVoYEzaQ3m+CXtxwZ6R6mLFcFJzVEu4fweBakpG
-        yyxiYD8VRZbcENOfcoGMHbk=
-X-Google-Smtp-Source: ABdhPJy7payz3Vghp5VrIVR/57rRNtRm4gc2iwL+b/6W66VztvW4dVIOty7fJYRx21hhgXmVGY0cFg==
-X-Received: by 2002:a62:928d:: with SMTP id o135mr2763620pfd.22.1598978863218;
-        Tue, 01 Sep 2020 09:47:43 -0700 (PDT)
-Received: from localhost ([2601:1c0:5200:a6:307:a401:7b76:c6e5])
-        by smtp.gmail.com with ESMTPSA id w66sm2622381pfb.126.2020.09.01.09.47.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Sep 2020 09:47:41 -0700 (PDT)
-From:   Rob Clark <robdclark@gmail.com>
-To:     dri-devel@lists.freedesktop.org, iommu@lists.linux-foundation.org,
-        linux-arm-msm@vger.kernel.org, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Vivek Gautam <vivek.gautam@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Akhil P Oommen <akhilpo@codeaurora.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v16 20/20] arm: dts: qcom: sc7180: Set the compatible string for the GPU SMMU
-Date:   Tue,  1 Sep 2020 09:46:37 -0700
-Message-Id: <20200901164707.2645413-21-robdclark@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200901164707.2645413-1-robdclark@gmail.com>
-References: <20200901164707.2645413-1-robdclark@gmail.com>
+        id S1732582AbgIARTx convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 1 Sep 2020 13:19:53 -0400
+Received: from mx.metalurgs.lv ([81.198.125.103]:53995 "EHLO mx.metalurgs.lv"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732657AbgIARTv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Sep 2020 13:19:51 -0400
+Received: from mx.metalurgs.lv (localhost [127.0.0.1])
+        by mx.metalurgs.lv (Postfix) with ESMTP id DD8D233042
+        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 20:12:15 +0300 (EEST)
+Received: from kas30pipe.localhost (localhost [127.0.0.1])
+        by mx.metalurgs.lv (Postfix) with ESMTP id 5AD9B314BA
+        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 19:53:21 +0300 (EEST)
+Received: by mx.metalurgs.lv (Postfix, from userid 1005)
+        id 464423241B; Tue,  1 Sep 2020 18:59:19 +0300 (EEST)
+Received: from [192.168.8.10] (ip168-243-231-195.intercom.com.sv [168.243.231.195])
+        (Authenticated sender: admin)
+        by mx.metalurgs.lv (Postfix) with ESMTPA id 41B9E5DF70
+        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 18:06:38 +0300 (EEST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Description: Mail message body
+To:     devicetree@vger.kernel.org
+From:   "Angel Investors" <info@unituscapital.com>
+Date:   Tue, 01 Sep 2020 09:06:31 -0600
+Reply-To: andrewmacklin12@gmail.com
+X-SpamTest-Envelope-From: info@unituscapital.com
+X-SpamTest-Group-ID: 00000000
+X-SpamTest-Info: Profiles 71303 [Jan 01 2015]
+X-SpamTest-Info: {RECEIVED: dynamic ip detected}
+X-SpamTest-Info: {DATE: unreal year}
+X-SpamTest-Method: none
+X-SpamTest-Rate: 35
+X-SpamTest-Status: Not detected
+X-SpamTest-Status-Extended: not_detected
+X-SpamTest-Version: SMTP-Filter Version 3.0.0 [0284], KAS30/Release
+Message-ID: <20200901161548.464423241B@mx.metalurgs.lv>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8BIT
+Subject: GREETINGS!!!
+X-Anti-Virus: Kaspersky Anti-Virus for Linux Mail Server 5.6.39/RELEASE,
+         bases: 20140401 #7726142, check: 20200901 notchecked
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rob Clark <robdclark@chromium.org>
-
-Set the qcom,adreno-smmu compatible string for the GPU SMMU to enable
-split pagetables and per-instance pagetables for drm/msm.
-
-Signed-off-by: Rob Clark <robdclark@chromium.org>
----
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index d46b3833e52f..f3bef1cad889 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -1937,7 +1937,7 @@ opp-180000000 {
- 		};
- 
- 		adreno_smmu: iommu@5040000 {
--			compatible = "qcom,sc7180-smmu-v2", "qcom,smmu-v2";
-+			compatible = "qcom,sc7180-smmu-v2", "qcom,adreno-smmu", "qcom,smmu-v2";
- 			reg = <0 0x05040000 0 0x10000>;
- 			#iommu-cells = <1>;
- 			#global-interrupts = <2>;
--- 
-2.26.2
-
+Attention To Email : devicetree@vger.kernel.org
+Good Day Sir,
+Our Group have the financial capability to finance any investment portfolio as far as is genuine, all we need is a capable business partner that possesses investment strategies for profitable business information for good turn over within 10-30years. Our Partners are willing to invest 10million — 5billon USD. We can provide proof of funds on demand, after certification of your documents/details. Please write me back if you can work with me on this project. Thank You,
+Best Regards
+Andrew Macklin
