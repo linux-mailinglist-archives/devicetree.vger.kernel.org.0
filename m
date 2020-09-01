@@ -2,88 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FEA3258697
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 06:04:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B0872586AF
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 06:09:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725930AbgIAEEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 00:04:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33110 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726006AbgIAEEs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 00:04:48 -0400
-Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 565B5C0612FF
-        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 21:04:48 -0700 (PDT)
-Received: by mail-ot1-x342.google.com with SMTP id 109so17597otv.3
-        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 21:04:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7tF5yri2JrvbpuG08PkKfHvaUZh8WWw0hbP0EluJihY=;
-        b=M1WvaDgYP5swmd9Trqsx8z670mDBsLaKq+qcBaK8y2jBn33lZ2hEfjX+tQ+0a4BJwi
-         wsXsfhClQG0zZeP+DwK5HhxO4pz9BJFCVypqoT+H1oYoH7FxHMYIbQiDJ71MqDdJXo+a
-         24VCN3nmoP531xyuidmBEtfBsqq7AEgXQhrTYOQ6dkkjMe+8abBzlrsDVF2BR9a1Yjp+
-         Kn1BA4zk/jS/wqFYTQBvFFeF0Kaaa9E66+oiZ+qSGD6242mh1yt9beKM6hE/r9ClFelO
-         XEw+b+rAb8UU0SBQw56hfj+v10dou7juYR8rLQRYGF94Bzk8LEanBjhpSViLpoIJlPeS
-         7yiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7tF5yri2JrvbpuG08PkKfHvaUZh8WWw0hbP0EluJihY=;
-        b=NC1vu+BXL8YEJMimkKdQnocgNq+8mjb0naTMCQChOJrNnXdd2OKoImUvdo/Nydduj8
-         1xZcjQP3A7862DvoiX4nhXcLhL0+1k1ePlC4cRlJ7NAiOVZueAFzP+zuDmu0r/ehxlCA
-         F2NxZLnXVpQ9K1ff2B0jBYLWMhsyE1b5Hqw/UvH+qml/HB1oGCPs7F+NMZ0TCKl074Pf
-         n2scVMQJguBjoMoAVDtDxbKBdloP/kTM594rJNyMf58mguSVHcrJpz7VUVWp6cUQMysQ
-         wJslkHR043WkGBqoGuO0CxDirs7ZH2OcCaTIsVnQviXNtiD1GmeTw+8hiEcQK0SI+o18
-         LjWg==
-X-Gm-Message-State: AOAM533bFt4Fly+bUpmv9Hy+m8PGqSRXqaPo7Dm1kPimHZfIw2AO0VXQ
-        gBbPELgG97ZJq082pHmGZlmyQdLNve6wiZhfiNr+dA==
-X-Google-Smtp-Source: ABdhPJw58JZ5LU2bTsgeGqMMWY9gbABpuH1aV0WA7Wgxvfh8rLe/Y37yR+nWxMGI9FEU3rLnm6Z5elAOeiqV3NLqrPg=
-X-Received: by 2002:a9d:6004:: with SMTP id h4mr51911otj.102.1598933087465;
- Mon, 31 Aug 2020 21:04:47 -0700 (PDT)
-MIME-Version: 1.0
-References: <1597227730-16477-1-git-send-email-rnayak@codeaurora.org>
-In-Reply-To: <1597227730-16477-1-git-send-email-rnayak@codeaurora.org>
-From:   John Stultz <john.stultz@linaro.org>
-Date:   Mon, 31 Aug 2020 21:04:36 -0700
-Message-ID: <CALAqxLVQ1uB5Zy1DrFP6K4FgZ0U9rwGterhvzcTws_9O9wWE2g@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: sdm845: Fixup OPP table for all qup devices
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
-        Amit Pundir <amit.pundir@linaro.org>, tdas@codeaurora.org
-Content-Type: text/plain; charset="UTF-8"
+        id S1726501AbgIAEJS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 00:09:18 -0400
+Received: from mailout4.samsung.com ([203.254.224.34]:17441 "EHLO
+        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725930AbgIAEI6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 00:08:58 -0400
+Received: from epcas1p4.samsung.com (unknown [182.195.41.48])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20200901040854epoutp04dff745498275aa77d5ce15c1dceb90d2~wjWVmrfJE2185021850epoutp04u
+        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 04:08:54 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20200901040854epoutp04dff745498275aa77d5ce15c1dceb90d2~wjWVmrfJE2185021850epoutp04u
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1598933334;
+        bh=WExuTwPYkapG2SXJhxW+OhQE+hDZ5ydXARug+Z0VSb4=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=Nv62K3KFqZoT3UUUCNmBREMOIbYF2171+m0NDwX+brxV7EC7aZQ60MlMNQFgwGLhk
+         qLmHHTAiSRFQIwVeYkD5L4rkQRbSs/l/i04Dp3og233/x5H2cR3Ui/6kIQYivFOHKD
+         IDVD1gTa3UJjAldZMkwxvtAlXa1yGeMhdgv1s5qY=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20200901040853epcas1p1b0dff5806037df1d0e429a7804bd3506~wjWU6gNSI1138411384epcas1p1N;
+        Tue,  1 Sep 2020 04:08:53 +0000 (GMT)
+Received: from epsmges1p1.samsung.com (unknown [182.195.40.153]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4BgYTv267QzMqYkk; Tue,  1 Sep
+        2020 04:08:51 +0000 (GMT)
+Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
+        epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        F1.75.18978.359CD4F5; Tue,  1 Sep 2020 13:08:51 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20200901040850epcas1p2150ea195dfb20b46d6421af63b1f5129~wjWSPcyAU0064000640epcas1p2_;
+        Tue,  1 Sep 2020 04:08:50 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20200901040850epsmtrp100d80fa9760de5402200175b55f8a5f7~wjWSOkwgt3200232002epsmtrp1-;
+        Tue,  1 Sep 2020 04:08:50 +0000 (GMT)
+X-AuditID: b6c32a35-5edff70000004a22-a6-5f4dc953b37a
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        6C.9F.08303.259CD4F5; Tue,  1 Sep 2020 13:08:50 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.113.111.64]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20200901040850epsmtip16e6b0306a7440b7e3e4209ce230f06ac~wjWRx5E280395603956epsmtip1z;
+        Tue,  1 Sep 2020 04:08:50 +0000 (GMT)
+From:   Hoegeun Kwon <hoegeun.kwon@samsung.com>
+To:     nsaenzjulienne@suse.de, eric@anholt.net, maxime@cerno.tech,
+        stefan.wahren@i2se.com, dave.stevenson@raspberrypi.com
+Cc:     devicetree@vger.kernel.org, tim.gover@raspberrypi.com,
+        sboyd@kernel.org, mturquette@baylibre.com, kdasu.kdev@gmail.com,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-clk@vger.kernel.org, robh+dt@kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org, phil@raspberrypi.com,
+        linux-arm-kernel@lists.infradead.org, hoegeun.kwon@samsung.com
+Subject: [PATCH v2 0/4] drm/vc4: Support HDMI QHD or higher output
+Date:   Tue,  1 Sep 2020 13:07:55 +0900
+Message-Id: <20200901040759.29992-1-hoegeun.kwon@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA01SbUxTVxjeaW9vC7PupoCekE3KDTBwAXotleMijkzGbua2sLH9wMR0N3BX
+        CPSD3rKh+yFDcIgwREFZhbAJysfA8SXSxs4OhCoyl1lGsUOYWyaTr4JaJJrJWorb/j3v+zzP
+        Oc97ziviSzrwYFGWxsDqNUwOiftjvQNRsujUa+8oZQ7XBtRePoih+boGDNVfuSFAo24Xjqyf
+        2wFyNZXiyDTajqGuP8YEaKlsUoDs5locVf7aIUQ1K08B+nn4DdRrbMLReecsjootV4To6Vin
+        x9A8jqPfq6dAYgBd6BrCadd4sZA2Tv2I0xM3fsJpk/G2kL7gVNBdrUdweuqojUd3Nx6kiwcf
+        Y/SXPa2A7r7+Gf2ga0uKeG/2zkyWyWD1UlaTrs3I0qgSyD2pyt1KxXYZFU3tQPGkVMOo2QQy
+        6e2U6OSsHM+YpPQTJifP00phOI6M3bVTr80zsNJMLWdIIFldRo5uhy6GY9RcnkYVk65Vv0rJ
+        ZNsUHuFH2ZkNI0NC3TFRvt22ghUAI14K/ESQiIMrtxc82F8kIfoAfLxi4vuK+wCeuloh8BUP
+        APxi9ZDwmcVy3IclhBnAwrYP/xXZnozxvQROREN3mYPnxYFEPvx+2gG8Ij5RzYd/1p5bIwKI
+        12FT+RnMizEiHJrOT62FEhMJ8M6gc/22EPhth3UtEySsIrjQUMX3EUlwyV23PkUAnLH1rBuC
+        4b2Kw+uYg6NfzWA+cwGAFZWn1wk5vHz2hCeFyBMpCn5njvW1Q6HpSR3wYj6xES64ywReCSTE
+        sOSwxCeJgHcLrAIffhEOlzfxfJiGQ2dOY165hNgHj87GHwMvGf87/2sAWsEmVsepVSxH6aj/
+        /1IXWFvdrYo+UDm/GNMPeCLQD6CITwaKreY9Sok4g9l/gNVrlfq8HJbrBwrPe1Xyg4PStZ7d
+        1xiUlGKbXC5HcdR2BUWRm8V3nFKlhFAxBjabZXWs/pmPJ/ILLuAVHn/fTRrnrLR6d1xbWvuj
+        hHi/mpTUzqgTuS9sFrb/fbbYMKIK7kmjsz5eUL9lHxirEquNxNx0+MwrdqqXKnwOU8qbz23Y
+        d28+sT8kxBH4zcPcopZL9Rc3BcmT22y3Ikqnl+sGxJfnkk65QspK7BeXhiYmqn9YNrlGVmpl
+        t06WxASFRI/XTdZfcx0pmv8tfFLeW7F/8eWoIuaSf+h71/Off3P2gsvpSLQMN2o/2Lv6aVzH
+        /WRL2KhxBpn1yCJplNzEagfcW8ruNleFLS81VEon+vLePfRLx8GNseaayIjc0O7FuMiWjL/I
+        lp5e6+QqHnYgMm3XzdHOR+EPXxurGEq6Wk1iXCZDbeXrOeYfx2yR5EMEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrHLMWRmVeSWpSXmKPExsWy7bCSnG7QSd94g/lv1C3W9h5lsXg7dzGL
+        xfwj51gtrnx9z2ZxoPEyo8X75V1sFjuvrGWx2PT4GqvFx557rBaXd81hs5h4ewO7xYwf/xgt
+        Lp5ytdg2azmbxbpbr9ksWvceYbf4d20jUMOKG2wWj6beZ3QQ9mh6f4zN4/2NVnaPWffPsnnc
+        OXeezWPnrLvsHltvmXpsWtXJ5nG/+ziTx+Yl9R6tR3+xePRtWcXosfl0tcfnTXIBvFFcNimp
+        OZllqUX6dglcGYvPHGMvmMBRcfn4D5YGxllsXYycHBICJhJ7JzWzdzFycQgJ7GCUeLPiCBNE
+        QkZiVf8W1i5GDiBbWOLw4WKImo+MEh+uXWUFqWET0JX42nMdrF5EoE7iSUcjC4jNLLCUWaJl
+        kgKILSzgJLG8dxFYnEVAVWLnuvtgi3kFbCUeHr3FDrFLXmL1hgPMExh5FjAyrGKUTC0ozk3P
+        LTYsMMpLLdcrTswtLs1L10vOz93ECI4CLa0djHtWfdA7xMjEwXiIUYKDWUmE98Au73gh3pTE
+        yqrUovz4otKc1OJDjNIcLErivF9nLYwTEkhPLEnNTk0tSC2CyTJxcEo1MC1atUUn6N3ROX/P
+        cR9Mm7tnb9LPyLMum1oOTlryyZyN9WyP5fxldnXXH+cX7s9cPv+niG9UkGLy7OgC93tr73dL
+        2P3ucQxUWMsU3FKuMX3q58k1E3l5J70XnujcJGnM5v42YX96af/uf3Ntdgi9bvGYsKyM1+XK
+        /x6hZe+Pb72w53OE0+/DN03dp4iyB6koca19tDwxb+WNay86NPeuvm6kOzPVP3pnKtepYoWV
+        j7X+5E9nz7P/+zUvcPvr0mUR8vY7wp7tNJWsMY9aJlw4x+bo69P1PL7t6omlH3KPi+5+lJr5
+        h637TYf2q/2dxoGMZ2fOUfi3O+j20UMvZxq8mifE9MWRMbPHcZ4N16JYcQclluKMREMt5qLi
+        RADgZUCF8QIAAA==
+X-CMS-MailID: 20200901040850epcas1p2150ea195dfb20b46d6421af63b1f5129
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20200901040850epcas1p2150ea195dfb20b46d6421af63b1f5129
+References: <CGME20200901040850epcas1p2150ea195dfb20b46d6421af63b1f5129@epcas1p2.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 12, 2020 at 3:23 AM Rajendra Nayak <rnayak@codeaurora.org> wrote:
->
-> This OPP table was based on the clock VDD-FMAX tables seen in
-> downstream code, however it turns out the downstream clock
-> driver does update these tables based on later/production
-> rev of the chip and whats seen in the tables belongs to an
-> early engineering rev of the SoC.
-> Fix up the OPP tables such that it now matches with the
-> production rev of sdm845 SoC.
->
-> Fixes: 13cadb34e593 ("arm64: dts: sdm845: Add OPP table for all qup
-> devices")
-> Reported-by: John Stultz <john.stultz@linaro.org>
-> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-> ---
+Hi everyone,
 
-Just wanted to follow up on this, as it's still missing from 5.9-rc3
-and is needed to fix a bluetooth regression on db845c from 5.9-rc1.
+There is a problem that the output does not work at a resolution
+exceeding FHD. To solve this, we need to adjust the bvb clock at a
+resolution exceeding FHD.
 
-Amit has already validated it (on PocoF1 as well), but just in case its useful:
-Tested-by: John Stultz <john.stultz@linaro.org>
+Rebased on top of next-20200708 and [1].
 
-thanks
--john
+[1] : [PATCH v4 00/78] drm/vc4: Support BCM2711 Display Pipeline (Maxime's patchset)
+
+Changes from v1:
+  - Added dt-bindings documents
+  - Change patch order, first fix driver and then device tree
+
+Hoegeun Kwon (4):
+  clk: bcm: rpi: Add register to control pixel bvb clk
+  drm/vc4: hdmi: Add pixel bvb clock control
+  dt-bindings: display: vc4: hdmi: Add bvb clock-names property
+  ARM: dts: bcm2711: Add bvb clock for hdmi-pixel
+
+ .../bindings/display/brcm,bcm2711-hdmi.yaml   | 12 ++++++---
+ arch/arm/boot/dts/bcm2711-rpi-4-b.dts         |  6 +++--
+ drivers/clk/bcm/clk-raspberrypi.c             |  1 +
+ drivers/gpu/drm/vc4/vc4_hdmi.c                | 25 +++++++++++++++++++
+ drivers/gpu/drm/vc4/vc4_hdmi.h                |  1 +
+ 5 files changed, 39 insertions(+), 6 deletions(-)
+
+-- 
+2.17.1
+
