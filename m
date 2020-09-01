@@ -2,121 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C736258BA5
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 11:33:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9872258BBB
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 11:35:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725949AbgIAJd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 05:33:56 -0400
-Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:38467 "EHLO
-        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725848AbgIAJdz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 05:33:55 -0400
+        id S1726192AbgIAJfv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 05:35:51 -0400
+Received: from wnew3-smtp.messagingengine.com ([64.147.123.17]:59981 "EHLO
+        wnew3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726116AbgIAJft (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 05:35:49 -0400
 Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id 8C4F86B6;
-        Tue,  1 Sep 2020 05:33:54 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Tue, 01 Sep 2020 05:33:55 -0400
+        by mailnew.west.internal (Postfix) with ESMTP id 7045C7ED;
+        Tue,  1 Sep 2020 05:35:46 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Tue, 01 Sep 2020 05:35:48 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=Qy4b3a/hLwELlQ2WPf1CFiGP2Qo
-        vg9KIAFeu1mPDSvY=; b=bXqlA4Z9klRetsp0xQ+5HE3UnzcTecZnfqfMwuNbxQW
-        nKN27FxeDoUeQvmGYxNt1m4rWTV8q0lGmPw1n08fnCy++RZfdJL1Naon43Ke0fcr
-        huEXpYAnsNLO7hobdXA6JL9B/Mpz0Jkt6wDsBP2HF9933c79Sv5HOUQJmNOzHk8i
-        as4jb0HSsxAgb3+lLaDLanWh6gVmVSC56wmJFNI8mbYAzAXpMEr3yzUbSn6QzC/N
-        5f5anOuvNl6CxdKvSYfh0ZM4PXGv48lJgcfb8UxUGdL676OzFo9ggZALM9/HbPZi
-        Df0ome1i0HeSaMT8ub/IMGdezVrrjAehJl61IO9aCpA==
+        :content-type:in-reply-to; s=fm3; bh=ybNui0l/20dWyLlPF/bim7Hxg13
+        OT0asUU1YsmRFd3M=; b=InbWVd9kzW1+gJl9OPC3vc2zMnyiKfUyJ6KsorIcPZr
+        XQhZBVEpP+X96IylJS61QFcqRNaQtXohz4CKkXAMYOziN4IJo58u1P/sg43CRc3P
+        +ro10z7MnmPUzPnMzoyhnGgpFCwuTsrdGQLEvv9j9UKgUwAEo7egUHpvgq/x51Py
+        tnZom+fH0HUOb26OP+FlS4fFtQqpQNPMRdkivqc0uoPdfiRhHXl019eeS7Eqfbb0
+        rpRvJUvcS8kxqx80bKRcB4wwfttgp21xEkuITxvFrEOSsvrf/xMaSwuxVgjWTm8G
+        UI+KxDpDPfKJtYWqNr6/OVxgj0jPR+7UOr2K4J8ixPg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Qy4b3a
-        /hLwELlQ2WPf1CFiGP2Qovg9KIAFeu1mPDSvY=; b=Uv3BaHiMJilb1E4oxUzS6B
-        cWP2Vk4F8XQLCH0Csxuj6zjYoauCzDDWZI3eTuk4uAdxKlYQN1c2DYPT90pVY8/l
-        5NaxKU8JXaG1dkM/gB0gB00tButTTEih7iAPByQjzx7tLLW3Ne/0z5ILgGlqPeai
-        JXg0el3BE9wX70b3s34UMWepXKZ42awgNe9T/Wt/tC/T2UYz4Qe5oWUwBNSYhNTZ
-        aaIt9zHCHH49lZtyQ5H/aakXZQtC2qVTHeJcBBe6pQsnqZ6EfTN9xWn8R/PhUAG4
-        iISkG8gPux3BSVWUhjzrGJ945T+KJtcwkCM/sACwK9WwRjs50dz3Xi/CWF4TW/YQ
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=ybNui0
+        l/20dWyLlPF/bim7Hxg13OT0asUU1YsmRFd3M=; b=QztGerPcWYjLyP8Q0Dmnjx
+        sZVtcAsE1lVN8/UlQalJQDSW8BMOL9FJws5mmf8h8rLfGXEqTV70pO2psPD3STo4
+        F03hIh6PRnwqEX+KRISPWbp3ANWU5AC0J+bAJKgB8/h21lj2ViYxqk+5OCqFaih5
+        RTVLjtM8oHQhGgdvZ9cUfL4P03SopEzV4PWxChG+MQDPqRmwPGph8idpDdk/szck
+        /2hSIsB6yriaGctX2rLNBlOcTMJA/jIJXqjtKZ2EcfhJELyxAwhJa4U7Y0tT9NIV
+        P4J4CST6LQyqVDrRnrey5s+pzTEbQibXQ6+SdtlX78jtl1ehMR4tO9KyuhCas+wg
         ==
-X-ME-Sender: <xms:gBVOX8GlwPPYStN1Nc7gNuuKCUxCVQhJy2yyKP3YqnBzenRJIv8zdw>
-    <xme:gBVOX1UV1FEQT_-L_HRnoQXWFuGBPoZ1fqxwDXwj48qfLiOUfi-Aiw84j_bUeUoNI
-    nfq3wq2x_s4gOuN5bM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudefjedgudekucetufdoteggodetrfdotf
+X-ME-Sender: <xms:7hVOX4qWzIiGipLxj_QxYxJj6h3ChTrUgyLIR9VasGLbrp7SaZn8xA>
+    <xme:7hVOX-owiskxps2zscZIsu-_pPU0q8Pn7m33s5EsR2Vz7aFkOp12WIDzU4G-EbNYy
+    D-ojwfszA0Q_zbsDPo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudefjedgudelucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
     cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
     vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
     htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgepudenuc
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
     frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:gBVOX2LLM7pj61Qht8MsBO8PlnZHWumqoUU6kjlpnkOBeik-_OLHYg>
-    <xmx:gBVOX-EQA5AXpTMe2tpgecHq7j-AFk8Uq7JKGPNUAODoytHG-Gb37g>
-    <xmx:gBVOXyUaKPxIuNG3gT7Mm3jB1X63KbLPBFwSjhoggtpXU2UwHxIQww>
-    <xmx:ghVOX9Ge8evUprixSAcEG5QSfWvmg8LuleapqSpiP-1fopuBpjQqwg>
+X-ME-Proxy: <xmx:7hVOX9Nn4fIoFZO5Cb2I4B3Iuv8g77ecZDCjSSn4rMA2vPsyv7CGGA>
+    <xmx:7hVOX_4yqOKb4S8pnNAbYgthEKlQqpkMpF_JckeMP3dAJl0CY9X8Hw>
+    <xmx:7hVOX36u2SHcawjAHAAY2jfHOOuNkM-0yUOV4zJJ0HtM_VzTi4xArA>
+    <xmx:8hVOXzMpaJiXXLn0b7AL-1t_9cYJARjGGNoP_Aq-hgEiG0zuNhhLqWtTF4Q>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 773523060067;
-        Tue,  1 Sep 2020 05:33:52 -0400 (EDT)
-Date:   Tue, 1 Sep 2020 11:33:51 +0200
+        by mail.messagingengine.com (Postfix) with ESMTPA id 8C76F328005A;
+        Tue,  1 Sep 2020 05:35:42 -0400 (EDT)
+Date:   Tue, 1 Sep 2020 11:35:41 +0200
 From:   Maxime Ripard <maxime@cerno.tech>
-To:     Martin Cerveny <m.cerveny@computer.org>
-Cc:     Corentin Labbe <clabbe.montjoie@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 2/3] ARM: dts: sun8i: v3s: Enable crypto engine
-Message-ID: <20200901093351.hvhllu56trn2jzbq@gilmour.lan>
-References: <20200831073101.3608-1-m.cerveny@computer.org>
- <20200831073101.3608-3-m.cerveny@computer.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Frank Lee <frank@allwinnertech.com>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        Frank Lee <tiny.windzz@gmail.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amit.kucheria@verdurent.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Ondrej Jirman <megous@megous.com>,
+        Corentin Labbe <clabbe@baylibre.com>, bage@linutronix.de,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>
+Subject: Re: [PATCH v5 00/16] Allwinner A100 Initial support
+Message-ID: <20200901093541.d6swquja2zcyiqy7@gilmour.lan>
+References: <cover.1595572867.git.frank@allwinnertech.com>
+ <CACRpkdYOKOj4r-9U2iHCkdB74fWkm2J0xHqsnH_sE81SV5g1=w@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="3n7a522liw5fr4d4"
+        protocol="application/pgp-signature"; boundary="7g3sl2lx6xhwh5sz"
 Content-Disposition: inline
-In-Reply-To: <20200831073101.3608-3-m.cerveny@computer.org>
+In-Reply-To: <CACRpkdYOKOj4r-9U2iHCkdB74fWkm2J0xHqsnH_sE81SV5g1=w@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---3n7a522liw5fr4d4
+--7g3sl2lx6xhwh5sz
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 31, 2020 at 09:31:00AM +0200, Martin Cerveny wrote:
-> V3s contains crypto engine that is compatible with "sun4i-ss".
->=20
-> Tested-by: Martin Cerveny <m.cerveny@computer.org>
-> Signed-off-by: Martin Cerveny <m.cerveny@computer.org>
-> ---
->  arch/arm/boot/dts/sun8i-v3s.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
->=20
-> diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v=
-3s.dtsi
-> index e5312869c..4fec84c40 100644
-> --- a/arch/arm/boot/dts/sun8i-v3s.dtsi
-> +++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
-> @@ -234,6 +234,16 @@
->  			#size-cells =3D <0>;
->  		};
-> =20
-> +		crypto: crypto@1c15000 {
+Hi Linus
 
-Do you really need a label here?
+On Fri, Aug 28, 2020 at 12:02:29PM +0200, Linus Walleij wrote:
+> On Fri, Jul 24, 2020 at 8:53 AM Frank Lee <frank@allwinnertech.com> wrote:
+>=20
+> > This patch set adds initial support for allwinner a100 soc,
+> > which is a 64-bit tablet chip.
+>=20
+> Shall I commit the pinctrl patches (if Maxime ACKed) separately
+> or not? Once Maxime is happy, I am usually happy too.
 
+Yeah, you can apply it to your tree
+
+Thanks!
 Maxime
 
---3n7a522liw5fr4d4
+--7g3sl2lx6xhwh5sz
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX04VfwAKCRDj7w1vZxhR
-xU5rAP9EZzoPtiehJZAM5q3RHCY7jB2ixyZnn96TaezyRsNLKAD+Kh56vYnRtYRW
-haFBNIyLoNukqd38YOGVkPIWEEmQJg0=
-=NvL5
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX04V7QAKCRDj7w1vZxhR
+xah4AQCxUZNxHo6NRo5x9Zj2xDrcVA422l6tyXJJ4rgQSHuZ9AD/co9QajnIDf1z
+KHXkMKfgF9/nNGoBzctcsBYfyMKrSAc=
+=FxAG
 -----END PGP SIGNATURE-----
 
---3n7a522liw5fr4d4--
+--7g3sl2lx6xhwh5sz--
