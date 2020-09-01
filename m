@@ -2,78 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2A342589C3
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 09:55:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 437902589F4
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 10:00:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728012AbgIAHzd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 03:55:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47424 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727970AbgIAHzU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Sep 2020 03:55:20 -0400
-Received: from kozik-lap.mshome.net (unknown [194.230.155.106])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9D9062083B;
-        Tue,  1 Sep 2020 07:55:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598946920;
-        bh=zApmnDF9Ii9NjM8St9RUBDwhe2Focy2FrYiga7i/r7Q=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=T5LPiGw/g9O4Z77CpiahKBkbcMz3DQQMBXlcVnwOfFUlk8v4mf+kg1YQoNGD1iwb/
-         kymBEr6EFE1HnBAKP/pSuH3/vR7Yla/0RVAzsgKQ9ys0vxg/RWW/7U4eIG43aitJ48
-         xvkpVSMFpZMuIZqzUR/Su+NyDWaI3oYyA8W36mYE=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-Subject: [PATCH 13/13] ARM: dts: exynos: Use S2MPS11 clock in S3C RTC in SMDK5420
-Date:   Tue,  1 Sep 2020 09:54:17 +0200
-Message-Id: <20200901075417.22481-14-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200901075417.22481-1-krzk@kernel.org>
-References: <20200901075417.22481-1-krzk@kernel.org>
+        id S1727121AbgIAIAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 04:00:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41104 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727112AbgIAIAJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 04:00:09 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26420C061245
+        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 01:00:09 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1kD1Cy-0000No-U9; Tue, 01 Sep 2020 10:00:00 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1kD1Cu-0004l6-3W; Tue, 01 Sep 2020 09:59:56 +0200
+Date:   Tue, 1 Sep 2020 09:59:56 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        f.fainelli@gmail.com, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        zhengdejin5@gmail.com, richard.leitner@skidata.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH 1/5] net: phy: smsc: skip ENERGYON interrupt if disabled
+Message-ID: <20200901075956.3r6cyibq4gdyl3jj@pengutronix.de>
+References: <20200831134836.20189-1-m.felsch@pengutronix.de>
+ <20200831134836.20189-2-m.felsch@pengutronix.de>
+ <20200831140240.GD2403519@lunn.ch>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200831140240.GD2403519@lunn.ch>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 09:57:32 up 290 days, 23:16, 278 users,  load average: 0.09, 0.15,
+ 0.09
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use the 32 kHz clock from S2MPS11 PMIC in the S3C RTC node. Except
-making the S3C RTC working, this also fixes dtbs_check warnings:
+Hi Andrew,
 
-  arch/arm/boot/dts/exynos5420-smdk5420.dt.yaml: rtc@101e0000: clocks: [[2, 317]] is too short
-  arch/arm/boot/dts/exynos5420-smdk5420.dt.yaml: rtc@101e0000: clock-names: ['rtc'] is too short
+thanks for your fast response :)
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- arch/arm/boot/dts/exynos5420-smdk5420.dts | 3 +++
- 1 file changed, 3 insertions(+)
+On 20-08-31 16:02, Andrew Lunn wrote:
+> On Mon, Aug 31, 2020 at 03:48:32PM +0200, Marco Felsch wrote:
+> > Don't enable the interrupt if the platform disable the energy detection
+> > by "smsc,disable-energy-detect".
+> > 
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > ---
+> >  drivers/net/phy/smsc.c | 15 +++++++++++----
+> >  1 file changed, 11 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/net/phy/smsc.c b/drivers/net/phy/smsc.c
+> > index 74568ae16125..fa539a867de6 100644
+> > --- a/drivers/net/phy/smsc.c
+> > +++ b/drivers/net/phy/smsc.c
+> > @@ -37,10 +37,17 @@ struct smsc_phy_priv {
+> >  
+> >  static int smsc_phy_config_intr(struct phy_device *phydev)
+> >  {
+> > -	int rc = phy_write (phydev, MII_LAN83C185_IM,
+> > -			((PHY_INTERRUPT_ENABLED == phydev->interrupts)
+> > -			? MII_LAN83C185_ISF_INT_PHYLIB_EVENTS
+> > -			: 0));
+> > +	struct smsc_phy_priv *priv = phydev->priv;
+> > +	u16 intmask = 0;
+> > +	int rc;
+> > +
+> > +	if (phydev->interrupts) {
+> > +		intmask = MII_LAN83C185_ISF_INT4 | MII_LAN83C185_ISF_INT6;
+> > +		if (priv->energy_enable)
+> > +			intmask |= MII_LAN83C185_ISF_INT7;
+> 
+> Hi Marco
+> 
+> These names are not particularly helpful. The include file does
+> actually document the bits.
+> 
+> #define MII_LAN83C185_ISF_INT1 (1<<1) /* Auto-Negotiation Page Received */
+> #define MII_LAN83C185_ISF_INT2 (1<<2) /* Parallel Detection Fault */
+> #define MII_LAN83C185_ISF_INT3 (1<<3) /* Auto-Negotiation LP Ack */
+> #define MII_LAN83C185_ISF_INT4 (1<<4) /* Link Down */
+> #define MII_LAN83C185_ISF_INT5 (1<<5) /* Remote Fault Detected */
+> #define MII_LAN83C185_ISF_INT6 (1<<6) /* Auto-Negotiation complete */
+> #define MII_LAN83C185_ISF_INT7 (1<<7) /* ENERGYON */
+> 
+> If you feel like it, maybe add another patch which renames these to
+> something better. MII_LAN83C185_ISF_DOWN, MII_LAN83C185_ISF_ENERGY_ON,
+> etc?
 
-diff --git a/arch/arm/boot/dts/exynos5420-smdk5420.dts b/arch/arm/boot/dts/exynos5420-smdk5420.dts
-index 83fa800fa1eb..4e49d8095b29 100644
---- a/arch/arm/boot/dts/exynos5420-smdk5420.dts
-+++ b/arch/arm/boot/dts/exynos5420-smdk5420.dts
-@@ -9,6 +9,7 @@
- /dts-v1/;
- #include "exynos5420.dtsi"
- #include "exynos5420-cpus.dtsi"
-+#include <dt-bindings/clock/samsung,s2mps11.h>
- #include <dt-bindings/gpio/gpio.h>
- 
- / {
-@@ -401,6 +402,8 @@
- 
- &rtc {
- 	status = "okay";
-+	clocks = <&clock CLK_RTC>, <&s2mps11_osc S2MPS11_CLK_AP>;
-+	clock-names = "rtc", "rtc_src";
- };
- 
- &usbdrd_phy0 {
+I know.. I will add a patch to change this after we get the clock
+discussion done.
+
+Regards,
+  Marco
+
+> For this patch:
+> 
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> 
+>     Andrew
+> 
+
 -- 
-2.17.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
