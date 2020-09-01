@@ -2,40 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FB632590FB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 16:43:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F21652590B2
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 16:37:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726326AbgIAOnG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 10:43:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42808 "EHLO
+        id S1727869AbgIAOU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 10:20:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728114AbgIAOQo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 10:16:44 -0400
+        with ESMTP id S1728149AbgIAOUE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 10:20:04 -0400
 Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14C28C061247;
-        Tue,  1 Sep 2020 07:05:46 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A94FC06124F;
+        Tue,  1 Sep 2020 07:20:03 -0700 (PDT)
 From:   Kurt Kanzenbach <kurt@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1598969144;
+        s=2020; t=1598970001;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=Z8QqyLda18GvzgzEa2BZRAqbRhiaUAxD4HcskwEK9y8=;
-        b=OA/2WXHYfEL1UR/++jUzmCJejoAGIwlRpnMjkUSVgubq1FeRHr3OfZ9USQ1gE/CI5PT7Lj
-        RQoIowDNkgN2P3pGTSOfIn/h1ejWaWrGDqhrIiJRW8d2O63VzqJ3Zv27hezntXkpSjpwUo
-        mzXh2yi8rhhOx7j//aop9Z2O4794QHgiG6XvfTUhXZ+3mLcD2JdGee4KzM+hUfvshbu383
-        9re5Ckx1XS2hN9v0blaNStaXIjoZ5QeC9vzCGYVMPiuaVJqoDSSKw7Snx3Y+9B3/01cqNI
-        MPtCGDjI+6cboSqfFLsZtHFgP6DKpc+QKFYLNPnT09e9HoEuWyYgH8O6Wx8GWg==
+        bh=EzXhOWsJJTl/hJbRWWE+RCFJeBmDtvEQ/oNbCJfaYgg=;
+        b=yDZNSAQRfYKaEpdbWiHiaX86IocigSeiu8kS4ExpJ5txpDEwrzW0CTfYTGw66V5PBIkYH4
+        wnU1+hBn/29UBtyjFtKu78vfcnjUqu9X4RMiSohSI2FTXLGWzkMV3z1zJ3LlKI/zJr05ii
+        UHQqsOGI0zIMpHomno679XZOM7Okk85tkSMpDSe88HZByrvt0kfOp2YCH1wTBAczvvB/tc
+        DEdsw+6C2FuUOC4NHdKZxnZlak7J+QhgY2Ugq7Hs8ynrCQVCa1ES8HgPwrlNXFWT1hEuyy
+        /pAsDgzT3mPP0EYrOfkT9Zot1SK+8NiAyaEx2bSeDqg0aIWCnkao0A35TLVQig==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1598969144;
+        s=2020e; t=1598970001;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=Z8QqyLda18GvzgzEa2BZRAqbRhiaUAxD4HcskwEK9y8=;
-        b=VfTHIMCqtnFBoB0HPkuNE5jEiWNFnb6IXieWGVDnItFZKuERS7C5XshV7FxiY73RqYCouS
-        SEgC49JeOGSoU0Cg==
+        bh=EzXhOWsJJTl/hJbRWWE+RCFJeBmDtvEQ/oNbCJfaYgg=;
+        b=gjV3avv5uMXe0coacwOWCMRjx4JBuXbLT8wkr0D7CcBNdNfdgCudYPlg90miinYvPeDJAc
+        J5ld9ixg0gjf0DBA==
 To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
+Cc:     Vinicius Costa Gomes <vinicius.gomes@intel.com>,
+        Andrew Lunn <andrew@lunn.ch>,
         Vivien Didelot <vivien.didelot@gmail.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
         "David S. Miller" <davem@davemloft.net>,
@@ -45,11 +46,11 @@ Cc:     Andrew Lunn <andrew@lunn.ch>,
         Richard Cochran <richardcochran@gmail.com>,
         Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
         ilias.apalodimas@linaro.org
-Subject: Re: [PATCH v4 2/7] net: dsa: Add DSA driver for Hirschmann Hellcreek switches
-In-Reply-To: <20200901134020.53vob6fis5af7nig@skbuf>
-References: <20200901125014.17801-1-kurt@linutronix.de> <20200901125014.17801-3-kurt@linutronix.de> <20200901134020.53vob6fis5af7nig@skbuf>
-Date:   Tue, 01 Sep 2020 16:05:42 +0200
-Message-ID: <87y2ltegnd.fsf@kurt>
+Subject: Re: [PATCH v3 5/8] net: dsa: hellcreek: Add TAPRIO offloading support
+In-Reply-To: <20200825093219.bybzzpyfbbccjanf@skbuf>
+References: <20200820081118.10105-1-kurt@linutronix.de> <20200820081118.10105-6-kurt@linutronix.de> <87pn7ftx6b.fsf@intel.com> <87bliz13kj.fsf@kurt> <20200825093219.bybzzpyfbbccjanf@skbuf>
+Date:   Tue, 01 Sep 2020 16:20:00 +0200
+Message-ID: <87v9gxefzj.fsf@kurt>
 MIME-Version: 1.0
 Content-Type: multipart/signed; boundary="=-=-=";
         micalg=pgp-sha512; protocol="application/pgp-signature"
@@ -60,66 +61,63 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 --=-=-=
 Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
-Hi Vladimir,
-
-On Tue Sep 01 2020, Vladimir Oltean wrote:
-> Hi Kurt,
+On Tue Aug 25 2020, Vladimir Oltean wrote:
+> On Tue, Aug 25, 2020 at 11:23:56AM +0200, Kurt Kanzenbach wrote:
+>> On Mon Aug 24 2020, Vinicius Costa Gomes wrote:
+>> > Hi,
+>> >
+>> > Kurt Kanzenbach <kurt@linutronix.de> writes:
+>> >
+>> [snip]
+>> >> +	/* Setup timer for schedule switch: The IP core only allows to set a
+>> >> +	 * cycle start timer 8 seconds in the future. This is why we setup =
+the
+>> >> +	 * hritmer to base_time - 5 seconds. Then, we have enough time to
+>> >> +	 * activate IP core's EST timer.
+>> >> +	 */
+>> >> +	start =3D ktime_sub_ns(schedule->base_time, (u64)5 * NSEC_PER_SEC);
+>> >> +	hrtimer_start_range_ns(&hellcreek_port->cycle_start_timer, start,
+>> >> +			       NSEC_PER_SEC, HRTIMER_MODE_ABS);
+>> >
+>> > If we are talking about seconds here, I don't think you need to use a
+>> > hrtimer, you could use a workqueue/delayed_work. Should make things a
+>> > bit simpler.
+>>=20
+>> I've used hrtimers for one reason: The hrtimer provides a way to fire at
+>> an absolute base time based on CLOCK_TAI. All the other facilities such
+>> as workqueues, timer list timers, etc do not.
 >
-> On Tue, Sep 01, 2020 at 02:50:09PM +0200, Kurt Kanzenbach wrote:
-[snip]
->> +struct hellcreek {
->> +	const struct hellcreek_platform_data *pdata;
->> +	struct device *dev;
->> +	struct dsa_switch *ds;
->> +	struct hellcreek_port *ports;
->> +	struct mutex reg_lock;	/* Switch IP register lock */
->
-> Pardon me asking, but I went back through the previous review comments
-> and I didn't see this being asked.
+> That still doesn't justify the complexity of irqsave spinlocks and such.
+> You could just as well schedule a workqueue from that hrtimer and have
+> process context...
 
-It was asked multiple times, why there was a spinlock without interrupts
-being registered (see e.g. [1], [2]). I've used the spinlock variant,
-because the previously used hrtimers act like interrupts. As there are
-no timers anymore, there's no need for spinlocks and mutexes can be
-used.
-
-Florian Fainelli also asked if the reg lock can be removed
-completely. See below.
-
->
-> What is the register lock protecting against, exactly?
-
-A lot of the register operations work by:
-
- * Select port, priority, vlan or counter
- * Configure it
-
-These sequences have to be atomic. That's what I wanted to ensure.
+After giving this a bit more thought, it can be implemented by using
+workqueues only. That ptp time is "cached" anyway the we could just
+periodically check for the base time arrival. That should solve the
+irqsave and the being synchronized problem.
 
 Thanks,
 Kurt
-
-[1] - https://lkml.kernel.org/netdev/def49ff6-72fe-7ca0-9e00-863c314c1c3d@gmail.com/
-[2] - https://lkml.kernel.org/netdev/20200624130318.GD7247@localhost/
 
 --=-=-=
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl9OVTYACgkQeSpbgcuY
-8KZR9A//fUpNGkg2ivJeRvLXtvr4FbLG0ASFeE+pyc9dVBWa1RY+yP6H0fpOP9jR
-jlPqYVUlqxtiqlwHOd8GJ/PbnBlmKHcdf8BKnbM75fffeJjZm3Y+cl+CFJwJXkGe
-sKWFxGzQVbNmUsblEUWVOpuiU8XRRD8RjPCxMBW8FC5bVbhMKK1Fw7AT5K5M2e+d
-J3hhEa3qHsIqTSQhcb27N5Z94C6k9oKcRpkyTECngcX1IfNqcit6+OY7h5u4lqLz
-RVva3j1+tQJk7TgDWG+emcY5T7dpmnC2EgquPh3fs/peF1rfNswO2QqleFM8NHkI
-1nHanLeutnkIrs5sGPHU5VM9Cb3ctnLIAQh/VpB5cUdAXfDSN/qJvlTo/ATN4rBM
-3eL9dslrMt1dBXMteI4YMBj/CMHnQOP2HE0V2AXgAs4MRUn5ZWPInap/MCUMCWQC
-L0sOgb4Ye5k8uJH8dNS5j+sPqI6oeRBeTyZixLe9uTLdbH74o7nGpN4TGlQvpO04
-OZ2vvDwoyRKVnYqsbYySZo7b6phqK5nUmDzzZRuGZKW9b/q0WWxCbJYgIjSBUVhU
-h/JrGFrnZ2uQ6B/VhbS0E5moFHob92uItlwFVl9tH81jn64cDg2Z4gI2E9WUNve6
-enD+VGtnu4+BLbZ4a6wM6mmO9m2GdXaId6sKBQzs4nVvDC4AOHk=
-=Ww3M
+iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl9OWJAACgkQeSpbgcuY
+8KYTTxAAzDMvQIXyzghTI8d0w/3qvioIEiOO/t/UGnf6PH6kR/aKxYsX82XZ8ahG
+knDrsGE62KZm5oAgeeJhBLfxJc2cLbbs809g2zu/7SYeE1ONiJ5cEOmto/dGaB+R
+NDLbipZV8SwbiSdXqnCjtjYccjGkmEwcg3fTIHO7oYCT7+x4g0tsjex2x/J0btBH
+X0lUI2ON1aMQP75pDEpXA2ELnrpIAq3DVLWQWlh558H7KPpLdIkPSwOSpz7rPOhR
+dWfclVDH3cZDaodbvbw2n/84O6iDBRdvr4XYmI0i407Xop0gCr8n8Db7oO4GXg3l
+pHrxlFuPCkFwfBooQRzRc79DGdRQLOOt8S0i6h3tVe4puVc4Ytnvm4yvkv9KTXrj
+F5NMrb4HVGKZVOcUAbWvRSzPedQ7Zygvu7F1BPUgEJBUyOLkuNhr4EVVRNtkTWWP
+l73RXFkAMB/eySXeOI7nWmMuWXidC23TfWIeksgFLxmY/w0Q7u1vR4AL2ErkSsX9
+vjC32uCKSXrSG06z866c13cGtFYwUnvJQ95ONNR9Um0iK1d64SbPp6RCvyzwkI7Q
+9uNKVPQSeAFhw6Qynw4cWEH2lsB/Wgsom9Ce7YlARRxQnj+7vKyFoNxHxKos4wNM
+rWQtjUHDQZmmhJ9nL0RoDVpmiEvAsixM2rQ0Z2/tjxPEbJJAvi4=
+=VIAt
 -----END PGP SIGNATURE-----
 --=-=-=--
