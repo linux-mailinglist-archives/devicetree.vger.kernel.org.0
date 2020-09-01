@@ -2,112 +2,348 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ED21258589
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 04:08:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 996092585B6
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 04:41:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726068AbgIACIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 22:08:09 -0400
-Received: from mail-am6eur05on2076.outbound.protection.outlook.com ([40.107.22.76]:64865
-        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726020AbgIACII (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 Aug 2020 22:08:08 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MRNmVoz5z6dpciCVwa1zQtXFaNYKEsWAcbnfWhKIba4j6NHJm6dVSKA7AVTupgNboJ1LwV/8H3qv7I2g8wBTcgnGabkg4ng2/D+b6nodcrO429ykY8J2eYNCQD1bFhL1Icak+2ojcXbiZH7geNCW6mch6pK/OzwkkdAoknQYC90qv1M89cLZZi7zoLWCYw8krXy+o242K0wbliCjsNn7kmH4o3SLMU7mKMhkxxURKeN3eoMMXsIBV0uGSc0ysKBrwRs2STFL88gLcGCJcSS96V0rb7MSGM1qbcbr0JRRkh+ukT3wGbzo3LafeKse6RLkSBLPuA+qPRetZbL08vKrAQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M+NazmLuNG8c9HYs1fDjzbg2LB4YU4yl5HPQ3Tk7LkA=;
- b=H26mlhe5vCPyxxhGaEgPLg6ZwqL0SyyIBG4nfPf48G2VJxc5G05XcHSHlA2iH30+LA8hvlczl5zrVWWEHp0B3aTBx20r5ARe2xI0IJipt4K6CfF146MFlpsQJm389xNwLVtBF2KD3DmYp7rvbTvySYmOQk94eAa9fTUUY22J/BRewL1YvpNS/jbBe/baaGJoc5rKUDAXE5No2x3VNMtJfx7NhNu2SLw6Pax61mrHvOQPsEb13g3gOjgOduJi9YbI7EzHm6aXjaqkzqVmJkCL1trFJQTkbmEU4I1QrN6BkdPdzB2WzNe37bnpLEdVuIWgQIURcTaF0QsI6CSBU0DYKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M+NazmLuNG8c9HYs1fDjzbg2LB4YU4yl5HPQ3Tk7LkA=;
- b=IssFgC/eKtV7aG+GQqWVXKylB0kjj0fm5hMzfsu9nFV/JMLd6eCRdQN6xw/Xj78+x3T0+Ftgre4zgrQWu0unsN1GDPNZuOdRFTEd/q3C03ILn3r3iMaUPAeJYUOX8FxAvTPbxSsvlgfWxHw/04LWINunrYu8Vjgt2PFe+KezYcM=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from VE1PR04MB6638.eurprd04.prod.outlook.com (2603:10a6:803:119::15)
- by VI1PR0401MB2302.eurprd04.prod.outlook.com (2603:10a6:800:2b::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.23; Tue, 1 Sep
- 2020 02:08:03 +0000
-Received: from VE1PR04MB6638.eurprd04.prod.outlook.com
- ([fe80::ad7f:d95a:5413:a950]) by VE1PR04MB6638.eurprd04.prod.outlook.com
- ([fe80::ad7f:d95a:5413:a950%3]) with mapi id 15.20.3326.025; Tue, 1 Sep 2020
- 02:08:03 +0000
-From:   Robin Gong <yibin.gong@nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com, Anson.Huang@nxp.com
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 RESEND] ARM64: dts: imx8mp: correct sdma1 clk setting
-Date:   Tue,  1 Sep 2020 18:21:49 +0800
-Message-Id: <1598955709-28688-1-git-send-email-yibin.gong@nxp.com>
+        id S1726301AbgIACk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 22:40:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48328 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726020AbgIACkz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 22:40:55 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35923C06136D;
+        Mon, 31 Aug 2020 19:40:55 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id w186so1834333pgb.8;
+        Mon, 31 Aug 2020 19:40:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=XgSMDKovWrXPZObAnCDSbopO8IOH/Wu5SJIfR8in4pw=;
+        b=KiRVaznv72M48i0QVeOO1wPJn1ALbaohzQdBZtFY1slniisBOdX0nxqjuoyofY90ct
+         FRPn3fk+wVzmX7lU/6kVXoWhKqGLyPJr5qZEEym/RK6wJl1Ui4YCaNqTZUX4Lkkd9dsj
+         dQw+YSs3/QQSL0qCHeApUDuEMpSEeM/qUrhQD5xf0Ki0+Q11NnaJ9/de9RKtHgnpwKnS
+         cb0ibLRgOkiKxb0XWD3YN1+O9Soa9oP+7zn5D0ImhpWBu6sv71Hu+uABxKmAJRSSE1jd
+         Q4gwdypNh3I44eoV70VlUaPXfLLPAMg1nRscl3hOqlQlI9HqTs5duUpVusC3LukIxWJT
+         6+ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=XgSMDKovWrXPZObAnCDSbopO8IOH/Wu5SJIfR8in4pw=;
+        b=fyZj3x1tZenP/UOjxtm6vWfhH/uR4qekkkIp8dHAR1N1WXetceRxgL8PyA1dNWsOw9
+         2ixoeKq+GpD6j/aFhMj75PhAUK1PmwGgLcEvtlEqhj10L3nToBKk9xDiXVy8WVt6Y7N0
+         pxxQ24GqHhW2o3ebZsXPn0wkpofb/pXGtKpUSM5dG6W30kBazhhQgRDxu0qVGaUBJm8D
+         x1c50MwhKCMTyb8plGLPa0SSGXcG39k/74Q0Mv6WlIYYp4aT/8J5K8dPOGd/PWKEj08z
+         +NJDIj3fEUOIr2mLoBsYFun52V/qVyLvA9pTwvlNFM9iLxx41EnwM8io4ySCTeGqelZh
+         MuQQ==
+X-Gm-Message-State: AOAM531ExyY8x2ptUHvZStmUON9xhNMhiJCJ1ZvZ6CnF8VJ5MOvgRmvx
+        4cwUJwJzxRjSRJR9I5rOn+4=
+X-Google-Smtp-Source: ABdhPJwj/E2xUfMOnGLl0sKHDsv/0/qIdXYtES19cpiiFRWCNmpnKtgetMmKHH+F+UNgIWRYxr/AnQ==
+X-Received: by 2002:a63:5b42:: with SMTP id l2mr3562510pgm.197.1598928054366;
+        Mon, 31 Aug 2020 19:40:54 -0700 (PDT)
+Received: from localhost.localdomain ([2402:7500:587:32f7:442c:d2ca:adcb:b859])
+        by smtp.gmail.com with ESMTPSA id u2sm933743pjj.57.2020.08.31.19.40.49
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 31 Aug 2020 19:40:53 -0700 (PDT)
+From:   cy_huang <u0084500@gmail.com>
+To:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        matthias.bgg@gmail.com, linux@roeck-us.net,
+        heikki.krogerus@linux.intel.com
+Cc:     cy_huang@richtek.com, gene_chen@richtek.com,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v5 1/2] usb typec: mt6360: Add support for mt6360 Type-C driver
+Date:   Tue,  1 Sep 2020 10:40:41 +0800
+Message-Id: <1598928042-22115-1-git-send-email-u0084500@gmail.com>
 X-Mailer: git-send-email 2.7.4
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR04CA0135.apcprd04.prod.outlook.com
- (2603:1096:3:16::19) To VE1PR04MB6638.eurprd04.prod.outlook.com
- (2603:10a6:803:119::15)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from robin-OptiPlex-790.ap.freescale.net (119.31.174.66) by SG2PR04CA0135.apcprd04.prod.outlook.com (2603:1096:3:16::19) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3326.19 via Frontend Transport; Tue, 1 Sep 2020 02:08:00 +0000
-X-Mailer: git-send-email 2.7.4
-X-Originating-IP: [119.31.174.66]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 70d9755d-b698-4136-f471-08d84e1bdbdd
-X-MS-TrafficTypeDiagnostic: VI1PR0401MB2302:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR0401MB230208228AC11B6DD255B838892E0@VI1PR0401MB2302.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:311;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3QRsh/gb94/wTU8ck0CZZ+z7fk4ssuce7Y1j5TZOmL7K05SmH3PMGzDbGI8L4oCcQmRRXD1ZbJfMQbUBTQhT5Mv4/H4Nz444PKM6Xdr5RP4d9LZZhua+iHFh8I/Svl5BTcXGVf4YD7IL5vsloIlLyXBMKLDJ0LcBizhrmIfBYfg0M3+S4yVvfsSPr2WkHyzfVtH+c6N0e3/Z2nBne0bFvQmGHiMS7fftSc8Nn0eJ8i1l47lhM4i4kxDm2Dhylsvg7i8/FNWlm/j4vR1mL6neYKYOkt0IenphoFTr7RKLbYoiyJGzsaEvuHDUnCmk9u4OT7NCuBXMEsc3bwjzf9+lpkkgzy8d59Rrk3vekPE0el1MVrvlWlh/UiKNf8E2ACgE
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6638.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(39860400002)(136003)(346002)(366004)(396003)(66556008)(16526019)(4744005)(6506007)(6636002)(956004)(316002)(2616005)(186003)(26005)(52116002)(86362001)(66476007)(66946007)(6486002)(6512007)(36756003)(8676002)(2906002)(5660300002)(478600001)(6666004)(4326008)(83380400001)(8936002)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: bPnOO750MHdaqV9owwSmp2vEqljKdzukZbHrZzDfggG/LLsz+wMPiXP2H/NyyE/77o346VCFbbAzHOISHexyomrgxBKb4aT/I0ckTFvqB76d5EHkyn4lwPOU4ovQSnz2ZRPkrPPH666p/Kf8rF8L+0ciHElDvQIsW6gKkDSSFCyu6OPBALA4rxfsb7Z/rXBC3aDArBWaxtR5QhlFHRDiMlXXU9DkdOcAFo1fCzeU3nkeNLLgSKHcKX0AikIPnepoCHit9UGKD5arL1X5QstXbFSGXViroDw7oVx2HqQG2yqtuIAw+vYEheFWvLRSkXCjPgnQ605z09Z7GQY2AuAVB5fJKg9TQhS39WHcsUzlkEeTcp+A1dtHeYrvkZQyO2iev3RwIlMNvqgY/W0QmVuiCtZFh4nMz9v81JlNE6ZBUrsS/NtHYm28n6NU717IBL6mgeP30ld2ZTX73THciYCNwjIzS4iUC54rsmg5PdwUY5J7bjOF23jAX+kxeUylIwvBftTeISyLvoFBArR15eA3+6QnVCadS6qL1F5tV4SNIrsBLB9bIUVFlzC+uOmM5OaiLeUu2y7Cy1FznTlS+N2Q4vt+mv0SvG5ZLUM6khnbVIvSzCkHl9n6cPYVSr+nRYHeQcLK2OmoCVcy8TpAZTdObw==
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 70d9755d-b698-4136-f471-08d84e1bdbdd
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6638.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Sep 2020 02:08:03.6023
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XZ6RPURIJiR6wmQZ9rUw5G9h1oWdSx2QyLzstgS6o6G9aBaSsrt034n2QDHTBrslQBElV1gCluGamLnoAatYCg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2302
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Correct sdma1 ahb clk, otherwise wrong 1:1 clk ratio will be chosed so
-that sdma1 function broken. sdma1 should use 1:2 clk, while sdma2/3 use
-1:1.
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-Fixes: 6d9b8d20431f ("arm64: dts: freescale: Add i.MX8MP dtsi support")
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Robin Gong <yibin.gong@nxp.com>
+Mediatek MT6360 is a multi-functional IC that includes USB Type-C.
+It works with Type-C Port Controller Manager to provide USB PD
+and USB Type-C functionalities.
+
+Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
 ---
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+v1 to v2
+1. Add fix to Prevent the race condition from interrupt and tcpci port
+   unregister during module remove.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index cad2dd7..6038f66 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -702,7 +702,7 @@
- 				reg = <0x30bd0000 0x10000>;
- 				interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX8MP_CLK_SDMA1_ROOT>,
--					 <&clk IMX8MP_CLK_SDMA1_ROOT>;
-+					 <&clk IMX8MP_CLK_AHB>;
- 				clock-names = "ipg", "ahb";
- 				#dma-cells = <3>;
- 				fsl,sdma-ram-script-name = "imx/sdma/sdma-imx7d.bin";
+v2 to v3
+1. Change comment style for the head of source code.
+2. No need to print error for platform_get_irq_byname.
+3. Fix tcpci_register_port check from IS_ERR_OR_NULL to IS_ERR.
+4. Rename driver/Kconfig/Makefile form mt6360 to mt636x.
+5. Rename DT binding documents from mt6360 to mt636x.
+
+v3 to v4
+1. revert v3 item 4 for mt636x patch in driver/Kconfig/Makefile
+2. revert v3 item 5 for mt636x DT binding document.
+
+v4 to v5
+All changes are for DT binding document. See patch 2.
+1. Fix schema style (using spaces instead of tabs)
+2. move connector into the properties block.
+3. Add ports node into the binding example refer to USB HS/SS/DPMux.
+
+---
+ drivers/usb/typec/tcpm/Kconfig        |   8 ++
+ drivers/usb/typec/tcpm/Makefile       |   1 +
+ drivers/usb/typec/tcpm/tcpci_mt6360.c | 212 ++++++++++++++++++++++++++++++++++
+ 3 files changed, 221 insertions(+)
+ create mode 100644 drivers/usb/typec/tcpm/tcpci_mt6360.c
+
+diff --git a/drivers/usb/typec/tcpm/Kconfig b/drivers/usb/typec/tcpm/Kconfig
+index fa3f393..58a64e1 100644
+--- a/drivers/usb/typec/tcpm/Kconfig
++++ b/drivers/usb/typec/tcpm/Kconfig
+@@ -27,6 +27,14 @@ config TYPEC_RT1711H
+ 	  Type-C Port Controller Manager to provide USB PD and USB
+ 	  Type-C functionalities.
+ 
++config TYPEC_MT6360
++	tristate "Mediatek MT6360 Type-C driver"
++	depends on MFD_MT6360
++	help
++	  Mediatek MT6360 is a multi-functional IC that includes
++	  USB Type-C. It works with Type-C Port Controller Manager
++	  to provide USB PD and USB Type-C functionalities.
++
+ endif # TYPEC_TCPCI
+ 
+ config TYPEC_FUSB302
+diff --git a/drivers/usb/typec/tcpm/Makefile b/drivers/usb/typec/tcpm/Makefile
+index a5ff6c8..7592ccb 100644
+--- a/drivers/usb/typec/tcpm/Makefile
++++ b/drivers/usb/typec/tcpm/Makefile
+@@ -5,3 +5,4 @@ obj-$(CONFIG_TYPEC_WCOVE)	+= typec_wcove.o
+ typec_wcove-y			:= wcove.o
+ obj-$(CONFIG_TYPEC_TCPCI)	+= tcpci.o
+ obj-$(CONFIG_TYPEC_RT1711H)	+= tcpci_rt1711h.o
++obj-$(CONFIG_TYPEC_MT6360)	+= tcpci_mt6360.o
+diff --git a/drivers/usb/typec/tcpm/tcpci_mt6360.c b/drivers/usb/typec/tcpm/tcpci_mt6360.c
+new file mode 100644
+index 00000000..f1bd9e0
+--- /dev/null
++++ b/drivers/usb/typec/tcpm/tcpci_mt6360.c
+@@ -0,0 +1,212 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright (C) 2020 MediaTek Inc.
++ *
++ * Author: ChiYuan Huang <cy_huang@richtek.com>
++ */
++
++#include <linux/interrupt.h>
++#include <linux/kernel.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/platform_device.h>
++#include <linux/regmap.h>
++#include <linux/usb/tcpm.h>
++
++#include "tcpci.h"
++
++#define MT6360_REG_VCONNCTRL1	0x8C
++#define MT6360_REG_MODECTRL2	0x8F
++#define MT6360_REG_SWRESET	0xA0
++#define MT6360_REG_DEBCTRL1	0xA1
++#define MT6360_REG_DRPCTRL1	0xA2
++#define MT6360_REG_DRPCTRL2	0xA3
++#define MT6360_REG_I2CTORST	0xBF
++#define MT6360_REG_RXCTRL2	0xCF
++#define MT6360_REG_CTDCTRL2	0xEC
++
++/* MT6360_REG_VCONNCTRL1 */
++#define MT6360_VCONNCL_ENABLE	BIT(0)
++/* MT6360_REG_RXCTRL2 */
++#define MT6360_OPEN40M_ENABLE	BIT(7)
++/* MT6360_REG_CTDCTRL2 */
++#define MT6360_RPONESHOT_ENABLE	BIT(6)
++
++struct mt6360_tcpc_info {
++	struct tcpci_data tdata;
++	struct tcpci *tcpci;
++	struct device *dev;
++	int irq;
++};
++
++static inline int mt6360_tcpc_read16(struct regmap *regmap,
++				     unsigned int reg, u16 *val)
++{
++	return regmap_raw_read(regmap, reg, val, sizeof(u16));
++}
++
++static inline int mt6360_tcpc_write16(struct regmap *regmap,
++				      unsigned int reg, u16 val)
++{
++	return regmap_raw_write(regmap, reg, &val, sizeof(u16));
++}
++
++static int mt6360_tcpc_init(struct tcpci *tcpci, struct tcpci_data *tdata)
++{
++	struct regmap *regmap = tdata->regmap;
++	int ret;
++
++	ret = regmap_write(regmap, MT6360_REG_SWRESET, 0x01);
++	if (ret)
++		return ret;
++
++	/* after reset command, wait 1~2ms to wait IC action */
++	usleep_range(1000, 2000);
++
++	/* write all alert to masked */
++	ret = mt6360_tcpc_write16(regmap, TCPC_ALERT_MASK, 0);
++	if (ret)
++		return ret;
++
++	/* config I2C timeout reset enable , and timeout to 200ms */
++	ret = regmap_write(regmap, MT6360_REG_I2CTORST, 0x8F);
++	if (ret)
++		return ret;
++
++	/* config CC Detect Debounce : 26.7*val us */
++	ret = regmap_write(regmap, MT6360_REG_DEBCTRL1, 0x10);
++	if (ret)
++		return ret;
++
++	/* DRP Toggle Cycle : 51.2 + 6.4*val ms */
++	ret = regmap_write(regmap, MT6360_REG_DRPCTRL1, 4);
++	if (ret)
++		return ret;
++
++	/* DRP Duyt Ctrl : dcSRC: /1024 */
++	ret = mt6360_tcpc_write16(regmap, MT6360_REG_DRPCTRL2, 330);
++	if (ret)
++		return ret;
++
++	/* Enable VCONN Current Limit function */
++	ret = regmap_update_bits(regmap, MT6360_REG_VCONNCTRL1, MT6360_VCONNCL_ENABLE,
++				 MT6360_VCONNCL_ENABLE);
++	if (ret)
++		return ret;
++
++	/* Enable cc open 40ms when pmic send vsysuv signal */
++	ret = regmap_update_bits(regmap, MT6360_REG_RXCTRL2, MT6360_OPEN40M_ENABLE,
++				 MT6360_OPEN40M_ENABLE);
++	if (ret)
++		return ret;
++
++	/* Enable Rpdet oneshot detection */
++	ret = regmap_update_bits(regmap, MT6360_REG_CTDCTRL2, MT6360_RPONESHOT_ENABLE,
++				 MT6360_RPONESHOT_ENABLE);
++	if (ret)
++		return ret;
++
++	/* Set shipping mode off, AUTOIDLE on */
++	return regmap_write(regmap, MT6360_REG_MODECTRL2, 0x7A);
++}
++
++static irqreturn_t mt6360_irq(int irq, void *dev_id)
++{
++	struct mt6360_tcpc_info *mti = dev_id;
++
++	return tcpci_irq(mti->tcpci);
++}
++
++static int mt6360_tcpc_probe(struct platform_device *pdev)
++{
++	struct mt6360_tcpc_info *mti;
++	int ret;
++
++	mti = devm_kzalloc(&pdev->dev, sizeof(*mti), GFP_KERNEL);
++	if (!mti)
++		return -ENOMEM;
++
++	mti->dev = &pdev->dev;
++
++	mti->tdata.regmap = dev_get_regmap(pdev->dev.parent, NULL);
++	if (!mti->tdata.regmap) {
++		dev_err(&pdev->dev, "Failed to get parent regmap\n");
++		return -ENODEV;
++	}
++
++	mti->irq = platform_get_irq_byname(pdev, "PD_IRQB");
++	if (mti->irq < 0)
++		return mti->irq;
++
++	mti->tdata.init = mt6360_tcpc_init;
++	mti->tcpci = tcpci_register_port(&pdev->dev, &mti->tdata);
++	if (IS_ERR(mti->tcpci)) {
++		dev_err(&pdev->dev, "Failed to register tcpci port\n");
++		return PTR_ERR(mti->tcpci);
++	}
++
++	ret = devm_request_threaded_irq(mti->dev, mti->irq, NULL, mt6360_irq, IRQF_ONESHOT,
++					dev_name(&pdev->dev), mti);
++	if (ret) {
++		dev_err(mti->dev, "Failed to register irq\n");
++		tcpci_unregister_port(mti->tcpci);
++		return ret;
++	}
++
++	device_init_wakeup(&pdev->dev, true);
++	platform_set_drvdata(pdev, mti);
++
++	return 0;
++}
++
++static int mt6360_tcpc_remove(struct platform_device *pdev)
++{
++	struct mt6360_tcpc_info *mti = platform_get_drvdata(pdev);
++
++	disable_irq(mti->irq);
++	tcpci_unregister_port(mti->tcpci);
++	return 0;
++}
++
++static int __maybe_unused mt6360_tcpc_suspend(struct device *dev)
++{
++	struct mt6360_tcpc_info *mti = dev_get_drvdata(dev);
++
++	if (device_may_wakeup(dev))
++		enable_irq_wake(mti->irq);
++
++	return 0;
++}
++
++static int __maybe_unused mt6360_tcpc_resume(struct device *dev)
++{
++	struct mt6360_tcpc_info *mti = dev_get_drvdata(dev);
++
++	if (device_may_wakeup(dev))
++		disable_irq_wake(mti->irq);
++
++	return 0;
++}
++
++static SIMPLE_DEV_PM_OPS(mt6360_tcpc_pm_ops, mt6360_tcpc_suspend, mt6360_tcpc_resume);
++
++static const struct of_device_id __maybe_unused mt6360_tcpc_of_id[] = {
++	{ .compatible = "mediatek,mt6360-tcpc", },
++	{},
++};
++MODULE_DEVICE_TABLE(of, mt6360_tcpc_of_id);
++
++static struct platform_driver mt6360_tcpc_driver = {
++	.driver = {
++		.name = "mt6360-tcpc",
++		.pm = &mt6360_tcpc_pm_ops,
++		.of_match_table = mt6360_tcpc_of_id,
++	},
++	.probe = mt6360_tcpc_probe,
++	.remove = mt6360_tcpc_remove,
++};
++module_platform_driver(mt6360_tcpc_driver);
++
++MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
++MODULE_DESCRIPTION("MT6360 USB Type-C Port Controller Interface Driver");
++MODULE_LICENSE("GPL v2");
 -- 
 2.7.4
 
