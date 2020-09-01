@@ -2,103 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CCA72589FD
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 10:01:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 971A7258A00
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 10:02:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726140AbgIAIBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 04:01:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41274 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726020AbgIAIBL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 04:01:11 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEBC4C061244
-        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 01:01:10 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kD1Dy-0000jk-1f; Tue, 01 Sep 2020 10:01:02 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kD1Dx-0005PP-Ev; Tue, 01 Sep 2020 10:01:01 +0200
-Date:   Tue, 1 Sep 2020 10:01:01 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        f.fainelli@gmail.com, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        zhengdejin5@gmail.com, richard.leitner@skidata.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH 5/5] net: phy: smsc: LAN8710/LAN8720: remove
- PHY_RST_AFTER_CLK_EN flag
-Message-ID: <20200901080101.yxwnf4l3q26vq2qi@pengutronix.de>
-References: <20200831134836.20189-1-m.felsch@pengutronix.de>
- <20200831134836.20189-6-m.felsch@pengutronix.de>
- <20200831141121.GF2403519@lunn.ch>
+        id S1726183AbgIAICa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 04:02:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35400 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726020AbgIAIC2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Sep 2020 04:02:28 -0400
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5EDCA20684;
+        Tue,  1 Sep 2020 08:02:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598947347;
+        bh=1ixyDmyvcaJ6E2SVwbMiNbYKv4p2xcy+KPlAYk9T7dc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=KDKCTEFr23hMRnHeyr8wpDArZR3TQEJxgkrqovKuVY0MIxr0eHB51K6LV+f6YFhNM
+         nQ5GHqO+KaoJFWWRxdsc+Putqp1hN/PjqxAFKpMvqbOH6I8AebBFf/xkOI9mdfyMDJ
+         BqYcRcCcYTYehYgNOPglgnPr/tjulxgACGDD53TA=
+Received: by mail-ed1-f49.google.com with SMTP id n22so542451edt.4;
+        Tue, 01 Sep 2020 01:02:27 -0700 (PDT)
+X-Gm-Message-State: AOAM532j0AjpL5dZV1OhMWQhsiWn1yABOZiu+aUY16cbfzhC/iF+ut0g
+        dPMMSyXIlHETaC17BzkkPao8fAPbDZNuivI+Wb8=
+X-Google-Smtp-Source: ABdhPJxzRZwLG3+aqG4PWcon7WQdTeVl3OeiA0Um4gFj1J9eQYrlyjti7W1jAmtXx8V5+WIPwX7dMnM/rCr8rI37z/E=
+X-Received: by 2002:a05:6402:ca7:: with SMTP id cn7mr668084edb.143.1598947345919;
+ Tue, 01 Sep 2020 01:02:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200831141121.GF2403519@lunn.ch>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 10:00:01 up 290 days, 23:18, 278 users,  load average: 0.07, 0.10,
- 0.08
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20200901075417.22481-1-krzk@kernel.org>
+In-Reply-To: <20200901075417.22481-1-krzk@kernel.org>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Tue, 1 Sep 2020 10:02:14 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPddQNCnLWoFx__VWnhGWA4B3DGXGDe=muh0r5r0Z61dgQ@mail.gmail.com>
+Message-ID: <CAJKOXPddQNCnLWoFx__VWnhGWA4B3DGXGDe=muh0r5r0Z61dgQ@mail.gmail.com>
+Subject: Re: [PATCH 00/13] ARM: dts: exynos: dtschema cleanups for Exynos5
+To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+On Tue, 1 Sep 2020 at 09:54, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> Hi,
+>
+> This is continuation of my series of dtschema cleanup for Exynos SoCs.
+>
+> The previous series are here:
+> https://lore.kernel.org/linux-samsung-soc/20200830135200.24304-1-krzk@kernel.org/T/#t
 
-On 20-08-31 16:11, Andrew Lunn wrote:
-> On Mon, Aug 31, 2020 at 03:48:36PM +0200, Marco Felsch wrote:
-> > Don't reset the phy without respect to the phy-state-machine because
-> > this breaks the phy IRQ mode. We can archive the same behaviour if the
-> > refclk in is specified.
-> > 
-> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > ---
-> >  drivers/net/phy/smsc.c | 1 -
-> >  1 file changed, 1 deletion(-)
-> > 
-> > diff --git a/drivers/net/phy/smsc.c b/drivers/net/phy/smsc.c
-> > index b98a7845681f..67adf11ef958 100644
-> > --- a/drivers/net/phy/smsc.c
-> > +++ b/drivers/net/phy/smsc.c
-> > @@ -337,7 +337,6 @@ static struct phy_driver smsc_phy_driver[] = {
-> >  	.name		= "SMSC LAN8710/LAN8720",
-> >  
-> >  	/* PHY_BASIC_FEATURES */
-> > -	.flags		= PHY_RST_AFTER_CLK_EN,
-> >  
-> >  	.probe		= smsc_phy_probe,
-> 
-> Hi Marco
-> 
-> There are two PHYs using PHY_RST_AFTER_CLK_EN. What about the other
-> one?
+Except the first one, other links are wrong. Here are correct:
+https://lore.kernel.org/linux-samsung-soc/20200829142948.32365-1-krzk@kernel.org/T/#t
+https://lore.kernel.org/linux-samsung-soc/ec9deeb1-8599-d755-cbfa-5db9787368e1@samsung.com/T/#t
+https://lore.kernel.org/linux-samsung-soc/20200829210652.GD796939@ravnborg.org/T/#t
 
-I think that they are broken too but I can't verify this therefore I
-left them out.
-
-Regards,
-  Marco
-
-> 
-> 	Andrew
-> 
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Best regards,
+Krzysztof
