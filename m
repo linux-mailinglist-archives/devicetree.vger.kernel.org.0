@@ -2,80 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5133B258D40
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 13:13:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2504D258D92
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 13:45:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726064AbgIALNn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 07:13:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53258 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725949AbgIALFg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Sep 2020 07:05:36 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B6A09206EF;
-        Tue,  1 Sep 2020 11:04:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598958269;
-        bh=sCpI4sCnV3VGw7tpt2uhRXxYsas+I7NB/Odw+Dl23IY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FDd3LEddcQgT0dEr51HuI/Fty7nNad3vVXzB/Minh19fwULeTvHYJBVc55s4eLpbi
-         Ezharmx8LU+LlA4FUvouooc2+VAvv/clRrm1h0zLWfMr02QvnX/a0TPzJTnB2FUQJz
-         OGJ6uDai7gdiYK0TaEVL7t8ylfh+2c7WS7AXdI2g=
-Date:   Tue, 1 Sep 2020 12:03:49 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Sangbeom Kim <sbkim73@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: sound: midas-audio: Correct parsing
- sound-dai phandles
-Message-ID: <20200901110349.GC6262@sirena.org.uk>
-References: <20200830112633.6732-1-krzk@kernel.org>
+        id S1727088AbgIALot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 07:44:49 -0400
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:59123 "EHLO
+        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727046AbgIALl4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 07:41:56 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id A5635E85;
+        Tue,  1 Sep 2020 07:40:19 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Tue, 01 Sep 2020 07:40:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=9azO1dZNqCpcvjOzPEkevlaB/dN
+        EkdBBbt08o9p7OMQ=; b=FaF/YWwkEtJgACjyc2uHponLFGWFEGR3ROixkHhvnb6
+        Xssz8kcZxNs5cGu7UuvuY0s8NI0eAiPcwHb8XRZOuQ7i+TbS0Um7LeMq3hSPg6E1
+        TVSl26AnyIjWe/7rc4VJLb+Y2ApN7lgqaK+UStkyBpRYht5fsHdgZjqjZ2Qyvwlf
+        SYP2Zf27I1T5I/d41Zp7aDuRLqpUJ3+9VsWKKI93W+8XtpLmO6LCWQKudxxzATCW
+        OC1yiMT5AdbY3/piMfT/7XNLQPEPLr/uA7BI2Tc3OLlLrUd/EjYFRj99HcbuLNlO
+        TwNfHyhX9x48Cu5kFpy8xKthjWwFMEgFxq8efBQD4Rg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=9azO1d
+        ZNqCpcvjOzPEkevlaB/dNEkdBBbt08o9p7OMQ=; b=umchNfyaf/QvFjAE9hF9XK
+        2P5nENuThzppKBSmtEaBKLazC/MrALvwJtUBjMWuSVqVAKnt5whSuzLVqopP8CiU
+        bamRAkyhv8sLpdk4kZX4rNUY/8M4b/vqSkHoi8hS9sTquhb1zez9tTX0+nrfDcI6
+        J2GNLYI0UeDjs34c3Uk+nT7ugNUfpRRj+/s2rWBHprMVNcgtwbssNVEeFWEt4a0V
+        TPbaox9nZQ+cRQ/bcw41Bqdqa0JTGZs2188Bi0EMBqKtF+BkynHYs3cJqwldTS78
+        yle2qCrcUDpqlsO22pq8VnF+WtGr2Qe0QJ+o6snsREEcTBh2UvPZmOYd0FE0U6Ww
+        ==
+X-ME-Sender: <xms:ITNOXxeRzxPtwPqC_EbQgd_R8AlVqXzC9GmK7cqbLvBpZYL34VE3iw>
+    <xme:ITNOX_OM5eZH9kemW44j1p9_XPVWITxmrJVR4g3bFrickZr_1gLTwy5_oJFFNR3Zg
+    jTo9n4pcDaK6iNdPRY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudefjedggeegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:ITNOX6itwy3K-fwLF2qSs9nVGKU0SGt8MYX8UPLMNnsVHc4-HD__og>
+    <xmx:ITNOX69MGVYxkZyI_NnbWslaIU-mbmQkedMDUoKLB5Aqact_4aVxPw>
+    <xmx:ITNOX9ukQhMvJzXxhr_k4F-pjfB2KjoFmt1k4C5OIuyCl0SR9qeG-A>
+    <xmx:IzNOX-856FswgbWULPhNp89561mwgvcITuqV2hnDYquClKT9D2AvXg>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id A4631328005D;
+        Tue,  1 Sep 2020 07:40:17 -0400 (EDT)
+Date:   Tue, 1 Sep 2020 13:40:15 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Corentin Labbe <clabbe.montjoie@gmail.com>
+Cc:     Martin Cerveny <m.cerveny@computer.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: crypto: add new compatible for V3s
+Message-ID: <20200901114015.qivovvjqvmhkicdl@gilmour.lan>
+References: <20200831073101.3608-1-m.cerveny@computer.org>
+ <20200831073101.3608-2-m.cerveny@computer.org>
+ <20200901093249.orwyc5sr3z2y43fz@gilmour.lan>
+ <20200901105719.GA2639@Red>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="zCKi3GIZzVBPywwA"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="d4zgxzgmrbrrtklg"
 Content-Disposition: inline
-In-Reply-To: <20200830112633.6732-1-krzk@kernel.org>
-X-Cookie: Equal bytes for women.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200901105719.GA2639@Red>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---zCKi3GIZzVBPywwA
+--d4zgxzgmrbrrtklg
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, Aug 30, 2020 at 01:26:32PM +0200, Krzysztof Kozlowski wrote:
-> The "sound-dai" property has cells therefore phandle-array should be
-> used, even if it is just one phandle.  This fixes dtbs_check warnings
-> like:
+On Tue, Sep 01, 2020 at 12:57:19PM +0200, Corentin Labbe wrote:
+> On Tue, Sep 01, 2020 at 11:32:49AM +0200, Maxime Ripard wrote:
+> > On Mon, Aug 31, 2020 at 09:30:59AM +0200, Martin Cerveny wrote:
+> > > Like A33 "sun4i-ss" has a difference, it give SHA1 digest
+> > > directly in BE. So add new compatible.
+> > >=20
+> > > Tested-by: Martin Cerveny <m.cerveny@computer.org>
+> >=20
+> > The Tested-by tag is for the other developpers. You're very much
+> > expected to have tested your patch before contributing it.
+> >=20
+> > > Signed-off-by: Martin Cerveny <m.cerveny@computer.org>
+> > > ---
+> > >  .../bindings/crypto/allwinner,sun4i-a10-crypto.yaml          | 5 +++=
++-
+> > >  1 file changed, 4 insertions(+), 1 deletion(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/crypto/allwinner,sun4i=
+-a10-crypto.yaml b/Documentation/devicetree/bindings/crypto/allwinner,sun4i=
+-a10-crypto.yaml
+> > > index fc823572b..180efd13a 100644
+> > > --- a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-cr=
+ypto.yaml
+> > > +++ b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-cr=
+ypto.yaml
+> > > @@ -25,6 +25,7 @@ properties:
+> > >            - const: allwinner,sun4i-a10-crypto
+> > >        - items:
+> > >            - const: allwinner,sun8i-a33-crypto
+> > > +      - const: allwinner,sun8i-v3s-crypto
+> >=20
+> > If it's compatible with the A33, why do we need to introduce a new comp=
+atible?
+> >=20
+> > > =20
+> > >    reg:
+> > >      maxItems: 1
+> > > @@ -59,7 +60,9 @@ if:
+> > >    properties:
+> > >      compatible:
+> > >        contains:
+> > > -        const: allwinner,sun6i-a31-crypto
+> > > +        oneOf:
+> > > +          - const: allwinner,sun6i-a31-crypto
+> > > +          - const: allwinner,sun8i-v3s-crypto
+> >=20
+> > I guess the A33 compatible should be on that list as well?
+>=20
+> This is the list of "need reset".
+> So we cannot use allwinner,sun8i-a33-crypto
+> Probably this explanation should be in the commit message.
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+But the A33 has a reset in the DTSI
 
---zCKi3GIZzVBPywwA
+Maxime
+
+--d4zgxzgmrbrrtklg
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9OKpQACgkQJNaLcl1U
-h9DsLwgAhvsY22laZUsm46wBuYEqas5QBnB4KMgxezBwkPaRr5NrJsVQMp2S9QI1
-gZzZ5eFVZZYB6Ij8hFNZKlgGp5W+D1negXAJ8WhH8zFXsgg1F+SZmFFD9/6reT5M
-1gab7+yPGHs6FLLJ1VbQnyv0xEcV6RnNgTKC3KuUH4Y2LHSDj6qzwYMZWl29Xu8t
-p9VZtWTg5g/upxDxbsW8vLVddkjb6KcdhbVsZQ+qb0QxibK8nX+8XbTWyH6T3OeS
-4FtJYdEsaHXhkrSDJtf1XpnXVG9RfBgNReqwmHTxdP2PSLDpFR7sCB6FLtNrJfAI
-fpab8x1a5104UrbblCQD6ny1IGwvQg==
-=Emty
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX04zHwAKCRDj7w1vZxhR
+xXtfAQCBNwO0KHktfVHdqJ1A31xqeae+JkhAoO14ISBQKDyKbgEAhtvQBryHrXgM
+Ts2NqtdzP/w7zF4ZtCJvTt3J9AKJmAo=
+=cE+X
 -----END PGP SIGNATURE-----
 
---zCKi3GIZzVBPywwA--
+--d4zgxzgmrbrrtklg--
