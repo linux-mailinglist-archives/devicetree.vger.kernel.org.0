@@ -2,189 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92F53258951
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 09:36:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A5D8258987
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 09:46:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727109AbgIAHgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 03:36:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37460 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726044AbgIAHgg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 03:36:36 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DB69C061244
-        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 00:36:36 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id t9so312692pfq.8
-        for <devicetree@vger.kernel.org>; Tue, 01 Sep 2020 00:36:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=kB+SZnK0sJkXPueegsNdekLuZ/MjR9UpX90Irxxyzvk=;
-        b=VnhVnWJCP27/mVmO155ONgdwRlS85VvnyJzWOT7jautIZGGqr3zliTS6J4SRsFI+3J
-         sd+uwQ245EwDzVeb0Roq/gsPN09BWfu7bIcGYX+BrByvVqXdEJWtwtySa9erBzpCTdZ0
-         4tIvtJ+5bT84mJLGYgPCLNPN5qHhTgNOwLOnI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=kB+SZnK0sJkXPueegsNdekLuZ/MjR9UpX90Irxxyzvk=;
-        b=aCgvQ9WhpX8DYcOmMR1bGCKpK3SFqZaThu2U+z9UXci6FaR7TCgwFBW9SMdyPVDaUI
-         1YnM4cb+PzGFnbmP5vrSvVoN66NqNdzKVy22JmF3tR+e0424ww7XID6HgPjCWzRXkn5z
-         zG4Nf3BnvXFXWwdNhDB4vGHikpd/rItqfpcXDddA5G3ZgAYelCx7myVrjymKAw/SY4bX
-         QLVbEwqmHPgXF6vr0x7gcfuohXJtplgycA0oo8XEGO8KI95eZ/mynwDP40SxdqM4EPim
-         3H0m5k0WujMY88vuLLV3LJmSc8Cg06M/soPiu7uTrAU9wSnGsee5gWWw3sDKyrlxGv3g
-         mThw==
-X-Gm-Message-State: AOAM531P+QhfAhliuTyeT6v878uNesPihYsz8lcbDPO8rFyhXLWeLeBG
-        XoN5VLjruAwpnge6Jqje75KuTw==
-X-Google-Smtp-Source: ABdhPJzi+NLQOZhIdhFlcTmDLitfZg6ADPeHNPuMjIk1v4PT7eu3PAfHn2YnOHJeIOK0+6SWgm123g==
-X-Received: by 2002:a63:cd57:: with SMTP id a23mr438823pgj.10.1598945796121;
-        Tue, 01 Sep 2020 00:36:36 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:3e52:82ff:fe6c:83ab])
-        by smtp.gmail.com with ESMTPSA id e124sm692938pfa.87.2020.09.01.00.36.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Sep 2020 00:36:35 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        id S1726078AbgIAHq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 03:46:27 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:51448 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726050AbgIAHq1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 03:46:27 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0817k83L056118;
+        Tue, 1 Sep 2020 02:46:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1598946368;
+        bh=IArKfXZjgWen9X3q7V/DQYJ14EV6u7IF2HjW9A6oRts=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=S3yYZOhgjNY+2Pafmm6vxaksZY3A6sXjztPLPMIHZ2lpaGx/hCS/oQEdZ74sq0E0L
+         auF29YHwaaLT7+VLZe+VwoWhf5/OP6jY6wVzu12JzzKaeMD6qNErJj8RsPtVGMffVz
+         CqVIiGTV/MXvKG/oGWxSnyxjB8d8JN+U7Zvp5AdI=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0817k8vJ130624;
+        Tue, 1 Sep 2020 02:46:08 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 1 Sep
+ 2020 02:46:07 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 1 Sep 2020 02:46:07 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0817k3oJ118971;
+        Tue, 1 Sep 2020 02:46:04 -0500
+Subject: Re: [PATCH v9 2/3] drm: bridge: Add support for Cadence MHDP8546
+ DPI/DP bridge
+To:     Swapnil Jakhade <sjakhade@cadence.com>,
+        <Laurent.pinchart@ideasonboard.com>,
+        <dri-devel@lists.freedesktop.org>
+CC:     <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <a.hajda@samsung.com>, <narmstrong@baylibre.com>,
+        <jonas@kwiboo.se>, <jernej.skrabec@siol.net>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <mparab@cadence.com>, <yamonkar@cadence.com>, <jsarha@ti.com>,
+        <nsekhar@ti.com>, <praneeth@ti.com>, <nikhil.nd@ti.com>
+References: <1598862215-10222-1-git-send-email-sjakhade@cadence.com>
+ <1598862215-10222-3-git-send-email-sjakhade@cadence.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+Message-ID: <71452de7-80e7-0144-4802-e3370c00854b@ti.com>
+Date:   Tue, 1 Sep 2020 10:46:03 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1598855964-1042-4-git-send-email-srivasam@codeaurora.org>
-References: <1598855964-1042-1-git-send-email-srivasam@codeaurora.org> <1598855964-1042-4-git-send-email-srivasam@codeaurora.org>
-Subject: Re: [PATCH v3 3/5] ASoC: qcom: Add support for lpass hdmi driver
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
-        Srinivasa Rao <srivasam@codeaurora.org>
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, perex@perex.cz, plai@codeaurora.org,
-        robh+dt@kernel.org, rohitkr@codeaurora.org,
-        srinivas.kandagatla@linaro.org, tiwai@suse.com
-Date:   Tue, 01 Sep 2020 00:36:34 -0700
-Message-ID: <159894579447.334488.1604209140945740724@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+In-Reply-To: <1598862215-10222-3-git-send-email-sjakhade@cadence.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2020-08-30 23:39:22)
-> diff --git a/sound/soc/qcom/lpass-hdmi.c b/sound/soc/qcom/lpass-hdmi.c
-> new file mode 100644
-> index 0000000..7e18113
-> --- /dev/null
-> +++ b/sound/soc/qcom/lpass-hdmi.c
-> @@ -0,0 +1,684 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-[...]
-> +
-> +static int lpass_hdmi_daiops_hw_params(struct snd_pcm_substream *substre=
-am,
-> +               struct snd_pcm_hw_params *params, struct snd_soc_dai *dai)
+Hi Swapnil,
+
+On 31/08/2020 11:23, Swapnil Jakhade wrote:
+
+> +static int cdns_mhdp_validate_mode_params(struct cdns_mhdp_device *mhdp,
+> +					  const struct drm_display_mode *mode,
+> +					  struct drm_bridge_state *bridge_state)
 > +{
-[...]
-> +       data_format =3D LPASS_DATA_FORMAT_LINEAR;
-> +       ch_sts_buf0 =3D (((data_format << LPASS_DATA_FORMAT_SHIFT) & LPAS=
-S_DATA_FORMAT_MASK)
-> +                               | ((sampling_freq << LPASS_FREQ_BIT_SHIFT=
-) & LPASS_FREQ_BIT_MASK));
-> +       ch_sts_buf1 =3D (word_length) & LPASS_WORDLENGTH_MASK;
+> +	u32 tu_size = 30, line_thresh1, line_thresh2, line_thresh = 0;
+> +	u32 rate, vs, vs_f, required_bandwidth, available_bandwidth;
+> +	struct cdns_mhdp_bridge_state *state;
+> +	int pxlclock;
+> +	u32 bpp;
 > +
-> +       ret =3D regmap_field_write(drvdata->tx_ctl->soft_reset, LPASS_TX_=
-CTL_RESET);
-> +       if (ret) {
-> +               dev_err(dai->dev, "%s error writing to softreset enable :=
- %d\n",
-
-All of these strings bloat the kernel image. Can we just return ret
-instead and if something goes wrong we can use a debug patch to figure
-out which register write failed? Would a register write even fail to
-begin with?
-
-> +                                       __func__, ret);
-> +               return ret;
-> +       }
+> +	state = to_cdns_mhdp_bridge_state(bridge_state);
 > +
-> +       ret =3D regmap_field_write(drvdata->tx_ctl->soft_reset, LPASS_TX_=
-CTL_CLEAR);
-> +       if (ret) {
-> +               dev_err(dai->dev, "%s error writing to softreset disable =
-: %d\n",
-> +                                       __func__, ret);
-> +               return ret;
-> +       }
+> +	pxlclock = mode->crtc_clock;
 > +
-> +       ret =3D regmap_field_write(drvdata->legacy->legacy_en,
-> +                               LPASS_HDMITX_LEGACY_DISABLE);
-> +       if (ret) {
-> +               dev_err(dai->dev, "%s error writing to legacy_en field : =
-%d\n",
-> +                                       __func__, ret);
-> +               return ret;
-> +       }
+> +	/* Get rate in MSymbols per second per lane */
+> +	rate = mhdp->link.rate / 1000;
 > +
-[...]
->  #define LPAIF_DMACTL_REG(v, chan, dir) __LPAIF_DMA_REG(v, chan, dir, CTL)
->  #define LPAIF_DMABASE_REG(v, chan, dir) __LPAIF_DMA_REG(v, chan, dir, BA=
-SE)
-> diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platf=
-orm.c
-> index df692ed..607f4c4 100644
-> --- a/sound/soc/qcom/lpass-platform.c
-> +++ b/sound/soc/qcom/lpass-platform.c
-> @@ -553,7 +702,21 @@ static irqreturn_t lpass_platform_lpaif_irq(int irq,=
- void *data)
-> =20
->         /* Handle per channel interrupts */
->         for (chan =3D 0; chan < LPASS_MAX_DMA_CHANNELS; chan++) {
-> -               if (irqs & LPAIF_IRQ_ALL(chan) && drvdata->substream[chan=
-]) {
-> +               switch (v->id) {
-> +               case HDMI_INTERFACE:
-> +                       val =3D LPAIF_IRQ_HDMI_REQ_ON_PRELOAD(chan) |
-> +                               LPAIF_IRQ_HDMI_METADONE |
-> +                               LPAIF_IRQ_HDMI_SDEEP_AUD_DIS(chan);
-> +                       break;
-> +               case I2S_INTERFACE:
-> +                       val =3D 0;
-> +                       break;
-> +               default:
-> +                       pr_err("%s: invalid  %d interface\n", __func__, v=
-->id);
+> +	bpp = cdns_mhdp_get_bpp(&mhdp->display_fmt);
 
-Any reason we can't use dev_err() here?
+None of the above are used when calling cdns_mhdp_bandwidth_ok(). For clarity, I'd move the above
+lines a bit closer to where they are needed, as currently it makes me think the above values are
+used when checking the bandwidth.
 
-> +                       return -EINVAL;
-> +               }
-> +               if (irqs & (LPAIF_IRQ_ALL(chan) | val)
-> +                       && drvdata->substream[chan]) {
->                         rv =3D lpass_dma_interrupt_handler(
->                                                 drvdata->substream[chan],
->                                                 drvdata, chan, irqs);
-> @@ -644,15 +807,15 @@ int asoc_qcom_lpass_platform_register(struct platfo=
-rm_device *pdev)
-> =20
->         /* ensure audio hardware is disabled */
->         ret =3D regmap_write(drvdata->lpaif_map,
-> -                       LPAIF_IRQEN_REG(v, LPAIF_IRQ_PORT_HOST), 0);
-> +                       IRQ_EN(v, LPAIF_IRQ_PORT_HOST), 0);
->         if (ret) {
->                 dev_err(&pdev->dev, "error writing to irqen reg: %d\n", r=
-et);
->                 return ret;
->         }
-> =20
->         ret =3D devm_request_irq(&pdev->dev, drvdata->lpaif_irq,
-> -                       lpass_platform_lpaif_irq, IRQF_TRIGGER_RISING,
-> -                       "lpass-irq-lpaif", drvdata);
-> +               lpass_platform_lpaif_irq, IRQF_TRIGGER_RISING,
+> +	if (!cdns_mhdp_bandwidth_ok(mhdp, mode, mhdp->link.num_lanes,
+> +				    mhdp->link.rate)) {
+> +		dev_err(mhdp->dev, "%s: Not enough BW for %s (%u lanes at %u Mbps)\n",
+> +			__func__, mode->name, mhdp->link.num_lanes,
+> +			mhdp->link.rate / 100);
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* find optimal tu_size */
+> +	required_bandwidth = pxlclock * bpp / 8;
+> +	available_bandwidth = mhdp->link.num_lanes * rate;
+> +	do {
+> +		tu_size += 2;
+> +
+> +		vs_f = tu_size * required_bandwidth / available_bandwidth;
+> +		vs = vs_f / 1000;
+> +		vs_f = vs_f % 1000;
+> +		/* Downspreading is unused currently */
+> +	} while ((vs == 1 || ((vs_f > 850 || vs_f < 100) && vs_f != 0) ||
+> +		 tu_size - vs < 2) && tu_size < 64);
+> +
+> +	if (vs > 64) {
+> +		dev_err(mhdp->dev,
+> +			"%s: No space for framing %s (%u lanes at %u Mbps)\n",
+> +			__func__, mode->name, mhdp->link.num_lanes,
+> +			mhdp->link.rate / 100);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (vs == tu_size)
+> +		vs = tu_size - 1;
+> +
+> +	line_thresh1 = ((vs + 1) << 5) * 8 / bpp;
+> +	line_thresh2 = (pxlclock << 5) / 1000 / rate * (vs + 1) - (1 << 5);
+> +	line_thresh = line_thresh1 - line_thresh2 / mhdp->link.num_lanes;
+> +	line_thresh = (line_thresh >> 5) + 2;
+> +
+> +	state->vs = vs;
+> +	state->tu_size = tu_size;
+> +	state->line_thresh = line_thresh;
+> +
+> +	return 0;
+> +}
+> +
+> +static int cdns_mhdp_atomic_check(struct drm_bridge *bridge,
+> +				  struct drm_bridge_state *bridge_state,
+> +				  struct drm_crtc_state *crtc_state,
+> +				  struct drm_connector_state *conn_state)
+> +{
+> +	struct cdns_mhdp_device *mhdp = bridge_to_mhdp(bridge);
+> +	const struct drm_display_mode *mode = &crtc_state->adjusted_mode;
+> +	int ret;
+> +
+> +	mutex_lock(&mhdp->link_mutex);
+> +
+> +	if (!mhdp->plugged) {
+> +		mhdp->link.rate = mhdp->host.link_rate;
+> +		mhdp->link.num_lanes = mhdp->host.lanes_cnt;
+> +	}
+> +
+> +	ret = cdns_mhdp_validate_mode_params(mhdp, mode, bridge_state);
+> +
+> +	mutex_unlock(&mhdp->link_mutex);
+> +
+> +	return ret;
+> +}
 
-Can we use the irq flags from the firmware, i.e. whatever the DT or ACPI
-tables say?
+Laurent mentioned that atomic_check should not change state. Note that
+cdns_mhdp_validate_mode_params also changes state, as it calculates tu_size, vs and line_thresh.
 
-> +               pdev->name, drvdata);
->         if (ret) {
->                 dev_err(&pdev->dev, "irq request failed: %d\n", ret);
->                 return ret;
+There seems to be issues with mode changes, but I think the first step would be to clarify the
+related code a bit. cdns_mhdp_validate_mode_params() is misnamed, I think it should be renamed to
+calculate_tu or something like that.
+
+cdns_mhdp_bandwidth_ok() should take display_fmt or bpp as a parameter, as currently it digs that up
+from the current state.
+
+Probably cdns_mhdp_validate_mode_params() would be better if it doesn't write the result to the
+state, but returns the values. That way it could also be used to verify if suitable settings can be
+found, without changing the state.
+
+The are two issues I see with some testing, which are probably related.
+
+The first one is that if I run kmstest with a new mode, I see tu-size & co being calculated. But the
+calculation happens before link training, which doesn't make sense. So I think what's done here is
+that atomic_check causes tu-size calculations, then atomic_enable does link training and enables the
+video.
+
+The second happens when my monitor fails with the first CR after power-on, and the driver drops
+number-of-lanes to 2. It goes like this:
+
+The driver is loaded. Based on EDID, fbdev is created with 1920x1200. Link training is done, which
+has the CR issue, and because of that the actual mode that we get is 1280x960. I get a proper
+picture here, so far so good.
+
+Then if I run kmstest, it only allows 1280x960 as the link doesn't support higher modes (that's ok).
+It the does link training and gets a 4 lane link, and enables 1280x960. But the picture is not ok.
+
+If I then exit kmstest, it goes back to fbdev, but now that picture is broken also.
+
+Running kmstest again gives me 1920x1200 (as the link has been 4 lane now), and the picture is fine.
+
+I think the above suggests that the driver is not properly updating all the registers based on the
+new mode and link. I tried adding cdns_mhdp_validate_mode_params() call to
+cdns_mhdp_atomic_enable(), so that tu-size etc will be calculated, but that did not fix the problem.
+
+ Tomi
+
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
