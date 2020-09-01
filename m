@@ -2,226 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1475C2585C0
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 04:43:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A3C2258659
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 05:40:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726044AbgIACnr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 22:43:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48792 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725901AbgIACnq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 22:43:46 -0400
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBFA9C061366;
-        Mon, 31 Aug 2020 19:43:45 -0700 (PDT)
-Received: by mail-lj1-x241.google.com with SMTP id t23so9112191ljc.3;
-        Mon, 31 Aug 2020 19:43:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=3goilOQjfvmalan6T70oSxy71Eb7b8sm1pFq3tCaMuE=;
-        b=MY5WPUa+HHogDSqFdmZN/aCR9qyBTb6OaEgBTqAsiSyJgABd9t/VWCw4tbJYfnzZ8G
-         d0+MTOLQaEnz7tyRFaKxiXvTzWSDXl8YjOGYNbigIqBOlCrkVmaJxr9bdjWPoyN2+bgW
-         yz4HFihFint+E5ACPR7aUJs6tr8fW7kCrhGtg1rqt67/2czpnaj6sMO0a1W0wGc81U7e
-         4jMU1Zt/BhGJYkWoNlNsh4Sb3c+b3gA/GmMjimr6uZCdO8lV17BDX99kwWYVt+PBV5Ea
-         hGWmc6UBmjs19wZHnYRllBQx71junPviNxMH4g1XNiAujqIMxQPhr8h2dKhttjhKXC5d
-         nGkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=3goilOQjfvmalan6T70oSxy71Eb7b8sm1pFq3tCaMuE=;
-        b=Uts8kTojlxbLQ6pc3j0mNc+QBpZck8yuTUecwz23bN+Z6EFVwW7JkyMGgCCoZCeptm
-         EdkfltJvwcubnNQUfsObA71pEG8le6uss/KUhIitW7VkdHoXyhtaASnYP5y8tRyYlgvL
-         yCfoZ8PS4naz9x1H3gfx7j4b73Cs7gP4yGXDsM0KDyFJrQLD5PXYOhwSBIb1+eFwU+tg
-         zEuXoA6u6pxIf9rjsXailMtSTAt6NJY4QtKVmeDD8ZvbAc1vtfJDKU51YdZsD3sliCqJ
-         tzhDeG6EhPhJ7Ir+lDXokrYWnRYRuCffYvys0zSGARFJwTbIsNV57ytaGO33QrsdTGHc
-         lNxw==
-X-Gm-Message-State: AOAM531wB8hzEW/0BGD9WpPvunKGcUBwgVx6tSP46GjirENyz9iC7rAN
-        isZjyMaqbgQmkm23euIirGV284X721iYnSuUnf1v99Ea+rs=
-X-Google-Smtp-Source: ABdhPJw2GiGKDIYf1rIY1lllTSYEgOj3YL6lMrCt6V7USlF65aqaEo1Y3GK64n82UuB3QstIXlXNMPO7W71OWL3x/0A=
-X-Received: by 2002:a2e:9b08:: with SMTP id u8mr1851982lji.208.1598928223917;
- Mon, 31 Aug 2020 19:43:43 -0700 (PDT)
+        id S1726968AbgIADkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 23:40:55 -0400
+Received: from mo-csw-fb1515.securemx.jp ([210.130.202.171]:60930 "EHLO
+        mo-csw-fb.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727041AbgIADky (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 23:40:54 -0400
+Received: by mo-csw-fb.securemx.jp (mx-mo-csw-fb1515) id 0813AjOS022722; Tue, 1 Sep 2020 12:10:45 +0900
+Received: by mo-csw.securemx.jp (mx-mo-csw1516) id 0813A9v3005103; Tue, 1 Sep 2020 12:10:10 +0900
+X-Iguazu-Qid: 34tKGq3o2x4XDvaAFg
+X-Iguazu-QSIG: v=2; s=0; t=1598929809; q=34tKGq3o2x4XDvaAFg; m=gOyIt5w97KptMW7no7110cJkGdRGRzTxNKtQMOCbjKY=
+Received: from imx12.toshiba.co.jp (imx12.toshiba.co.jp [61.202.160.132])
+        by relay.securemx.jp (mx-mr1511) id 0813A7hF023278;
+        Tue, 1 Sep 2020 12:10:07 +0900
+Received: from enc02.toshiba.co.jp ([61.202.160.51])
+        by imx12.toshiba.co.jp  with ESMTP id 0813A6sq028940;
+        Tue, 1 Sep 2020 12:10:06 +0900 (JST)
+Received: from hop101.toshiba.co.jp ([133.199.85.107])
+        by enc02.toshiba.co.jp  with ESMTP id 0813A6tb020018;
+        Tue, 1 Sep 2020 12:10:06 +0900
+From:   Punit Agrawal <punit1.agrawal@toshiba.co.jp>
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     Arnd Bergmann <arnd@arndb.de>, DTML <devicetree@vger.kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        yuji2.ishikawa@toshiba.co.jp,
+        "open list\:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marc Zyngier <maz@misterjones.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Olof Johansson <olof@lixom.net>, Will Deacon <will@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 0/8] Add Toshiba Visconti ARM64 Platform support
+References: <20200831081025.2721320-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+        <CAK8P3a2xD-zp3ov=3vobSSAmyfvPCMe0mGgP3F7mZkk8WieUpw@mail.gmail.com>
+        <20200831224122.i5tau3atlty4ikeu@toshiba.co.jp>
+Date:   Tue, 01 Sep 2020 12:10:01 +0900
+In-Reply-To: <20200831224122.i5tau3atlty4ikeu@toshiba.co.jp> (Nobuhiro
+        Iwamatsu's message of "Tue, 1 Sep 2020 07:41:22 +0900")
+X-TSB-HOP: ON
+Message-ID: <87zh6ary46.fsf@kokedama.swc.toshiba.co.jp>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.3 (gnu/linux)
 MIME-Version: 1.0
-References: <1598610636-4939-1-git-send-email-u0084500@gmail.com>
- <1598610636-4939-2-git-send-email-u0084500@gmail.com> <20200828220520.GA3482472@bogus>
- <CADiBU3-pd7nvtf2_1ssYVLQc4HOHX6PUyyx6GiJ_gH-4DaGmog@mail.gmail.com>
- <CADiBU39P7jeSOV2_GcXh6A=b8SCViURCsS8SZFmy+oY2hS74tg@mail.gmail.com> <1598842698.11403.2.camel@mhfsdcap03>
-In-Reply-To: <1598842698.11403.2.camel@mhfsdcap03>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Tue, 1 Sep 2020 10:43:32 +0800
-Message-ID: <CADiBU39ippYd2EvFBhesOVU4CPa9C9fsiSTaB9BdnYFZjOt4_w@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] usb typec: mt6360: Add MT6360 Type-C DT binding documentation
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>, matthias.bgg@gmail.com,
-        Guenter Roeck <linux@roeck-us.net>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        cy_huang <cy_huang@richtek.com>, gene_chen@richtek.com,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Chunfeng Yun <chunfeng.yun@mediatek.com> =E6=96=BC 2020=E5=B9=B48=E6=9C=883=
-1=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8A=E5=8D=8811:00=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> On Sat, 2020-08-29 at 10:49 +0800, ChiYuan Huang wrote:
-> > ChiYuan Huang <u0084500@gmail.com> =E6=96=BC 2020=E5=B9=B48=E6=9C=8829=
-=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8A=E5=8D=888:32=E5=AF=AB=E9=81=93=EF=BC=
-=9A
-> > >
-> > > Rob Herring <robh@kernel.org> =E6=96=BC 2020=E5=B9=B48=E6=9C=8829=E6=
-=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8A=E5=8D=886:05=E5=AF=AB=E9=81=93=EF=BC=9A
-> > > >
-> > > > On Fri, Aug 28, 2020 at 06:30:36PM +0800, cy_huang wrote:
-> > > > > From: ChiYuan Huang <cy_huang@richtek.com>
-> > > > >
-> > > > > Add a devicetree binding documentation for the MT6360 Type-C driv=
-er.
-> > > > >
-> > > > > usb typec: mt6360: Rename DT binding doument from mt6360 to mt636=
-x
-> > > > >
-> > > > > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > > > > ---
-> > > > >  .../bindings/usb/mediatek,mt6360-tcpc.yaml         | 73 ++++++++=
-++++++++++++++
-> > > > >  1 file changed, 73 insertions(+)
-> > > > >  create mode 100644 Documentation/devicetree/bindings/usb/mediate=
-k,mt6360-tcpc.yaml
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/usb/mediatek,mt636=
-0-tcpc.yaml b/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.ya=
-ml
-> > > > > new file mode 100644
-> > > > > index 00000000..9e8ab0d
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.=
-yaml
-> > > > > @@ -0,0 +1,73 @@
-> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > > +%YAML 1.2
-> > > > > +---
-> > > > > +$id: "http://devicetree.org/schemas/usb/mediatek,mt6360-tcpc.yam=
-l#"
-> > > > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > > > > +
-> > > > > +title: Mediatek MT6360 Type-C Port Switch and Power Delivery con=
-troller DT bindings
-> > > > > +
-> > > > > +maintainers:
-> > > > > +  - ChiYuan Huang <cy_huang@richtek.com>
-> > > > > +
-> > > > > +description: |
-> > > > > +  Mediatek MT6360 is a multi-functional device. It integrates ch=
-arger, ADC, flash, RGB indicators,
-> > > > > +  regulators (BUCKs/LDOs), and TypeC Port Switch with Power Deli=
-very controller.
-> > > > > +  This document only describes MT6360 Type-C Port Switch and Pow=
-er Delivery controller.
-> > > > > +
-> > > > > +properties:
-> > > > > +  compatible:
-> > > > > +    enum:
-> > > > > +      - mediatek,mt6360-tcpc
-> > > > > +
-> > > > > +  interrupts-extended:
-> > > >
-> > > > Use 'interrupts'. The tooling will automatically support
-> > > > 'interrupts-extended'.
-> > > Okay.
-> > > >
-> > > > > +    maxItems: 1
-> > > > > +
-> > > > > +  interrupt-names:
-> > > > > +    items:
-> > > > > +      - const: PD_IRQB
-> > > > > +
-> > > > > +patternProperties:
-> > > > > +  "connector":
-> > > > > +    type: object
-> > > > > +    $ref: ../connector/usb-connector.yaml#
-> > > > > +    description:
-> > > > > +      Properties for usb c connector.
-> > > > > +
-> > > > > +additionalProperties: false
-> > > > > +
-> > > > > +required:
-> > > > > +  - compatible
-> > > > > +  - interrupts-extended
-> > > > > +  - interrupt-names
-> > > > > +
-> > > > > +examples:
-> > > > > +  - |
-> > > > > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > > > > +    #include <dt-bindings/usb/pd.h>
-> > > > > +    i2c0 {
-> > > > > +        #address-cells =3D <1>;
-> > > > > +        #size-cells =3D <0>;
-> > > > > +
-> > > > > +        mt6360@34 {
-> > > > > +            compatible =3D "mediatek,mt6360";
-> > > > > +            reg =3D <0x34>;
-> > > > > +
-> > > > > +            tcpc {
-> > > > > +                compatible =3D "mediatek,mt6360-tcpc";
-> > > > > +                interrupts-extended =3D <&gpio26 3 IRQ_TYPE_LEVE=
-L_LOW>;
-> > > > > +                interrupt-names =3D "PD_IRQB";
-> > > > > +
-> > > > > +                connector {
-> > > >
-> > > > Where's the data connections? The assumption of the binding is the =
-USB
-> > > > (2 and 3) connections come from the parent if there's no graph to t=
-he
-> > > > USB controller(s).
-> > > MT6360 is only a subpmic. TypeC part only handle the CC logic to supp=
-ort USBPD.
-> > > For the usb connection like as usbhs/usbss,  it need to be handled
-> > > by/connect to application processor side.
-> > > LIke as connector/usb-connector.yaml decribed, it  specify the port
-> > > property to bind USB HS/SS.
-> > >
-> > Do i need to add the ports into the connector node for example?
-> > Like as hs/ss/aux, to make the user know to use 6360's tcpc?
-> >
-> > I check the  style in connector/usb-connect.yaml
-> > Do I also need to replace two space instead of one tab in the binding e=
-xample?
->
-> see writing-schema.rst about examples:
->
-> "Note: YAML doesn't allow leading tabs, so spaces must be used instead."
+Hi Iwamatsu-san,
 
-Thx. I have followed by Rob's comment in the previous mail to add the
-fix and sent the patch v5.
-> >
-> > > >
-> > > > > +                        compatible =3D "usb-c-connector";
-> > > > > +                        label =3D "USB-C";
-> > > > > +                        data-role =3D "dual";
-> > > > > +                        power-role =3D "dual";
-> > > > > +                        try-power-role =3D "sink";
-> > > > > +                        source-pdos =3D <PDO_FIXED(5000, 1000, P=
-DO_FIXED_DUAL_ROLE | PDO_FIXED_DATA_SWAP)>;
-> > > > > +                        sink-pdos =3D <PDO_FIXED(5000, 2000, PDO=
-_FIXED_DUAL_ROLE | PDO_FIXED_DATA_SWAP)>;
-> > > > > +                        op-sink-microwatt =3D <10000000>;
-> > > > > +                };
-> > > > > +            };
-> > > > > +        };
-> > > > > +    };
-> > > > > +...
-> > > > > --
-> > > > > 2.7.4
-> > > > >
+Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp> writes:
+
+> Hi,
 >
+> Thanks for your review and comment.
+>
+> On Mon, Aug 31, 2020 at 11:19:02AM +0200, Arnd Bergmann wrote:
+>> On Mon, Aug 31, 2020 at 10:10 AM Nobuhiro Iwamatsu
+>> <nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
+>> >
+>> > Visconti is a series of Toshiba's SoCs targeting image processing
+>> > applications[0]. These set of patches adds support for Visconti5 a Arm
+>> > v8 based SoC.
+>> >
+>> > The series add minimal support for the Visconti5 SoC and the TMPV7708 RM
+>> > main board. Peripherals such as UART, SPI, I2c and timer use Arm's
+>> > IP and work with the existing kernel drivers in the tree. The series
+>> > includes a pinctrl driver to select appropriate functions on the pins.
+>> 
+>> The arch/arm64 series looks all reasonable to me, nice work!
+>> 
+>> Once the review from the DT and pinctrl maintainers is completed
+>> and you have received their Acked-by or Reviewed-by tags, please
+>> send the series with those tags to soc@kernel.org for inclusion, keeping
+>> everyone else on Cc.
+>> 
+>> I'd leave it up to Linus Walleij whether he wants to merge the pinctrl driver
+>> through his subsystem tree, or whether we should pick it up through
+>> the soc tree, either way works for the initial merge. For any updates to
+>> the pinctrl driver and additional subsystem support (clk, media, ...)
+>> in later releases there is no need to Cc the SoC maintainers as those
+>> should just get merged through the subsystem while we take care
+>> of the DT files.
+>
+> Thank you for the explanation. I will do that.
+> BTW, I searched the process for this but I couldn't find any detailed
+> documentation. Could you tell me if you know?
+
+I am not sure if this is documented, but SoC support (device tree, some
+drivers, and config changes) usually go through the arm-soc tree curated
+by Arnd, Olof and Kevin.
+
+The MAINTAINERS entry for ARM64 port tries to call this out but it is
+not obvious that architecture and platforms support is maintained
+separately though in coordination.
+
+Hope this helps.
+
+Thanks,
+Punit
+
+
+[...]
+
