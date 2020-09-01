@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 448B6258919
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 09:32:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92F53258951
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 09:36:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727046AbgIAHcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 03:32:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36760 "EHLO
+        id S1727109AbgIAHgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 03:36:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726006AbgIAHcM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 03:32:12 -0400
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13E5AC061244
-        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 00:32:12 -0700 (PDT)
-Received: by mail-pj1-x1041.google.com with SMTP id g6so199326pjl.0
-        for <devicetree@vger.kernel.org>; Tue, 01 Sep 2020 00:32:12 -0700 (PDT)
+        with ESMTP id S1726044AbgIAHgg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 03:36:36 -0400
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DB69C061244
+        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 00:36:36 -0700 (PDT)
+Received: by mail-pf1-x444.google.com with SMTP id t9so312692pfq.8
+        for <devicetree@vger.kernel.org>; Tue, 01 Sep 2020 00:36:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:content-transfer-encoding:in-reply-to:references
          :subject:from:cc:to:date:message-id:user-agent;
-        bh=7c8FWHabhNiA3wbCJBExE1cm7AjheLEh6XznHaWmc4E=;
-        b=R/N6oSU+eal314kD3fWO6djHTfaPEATfyxlCCCU4c7McGN2WDgMEPHnURJDKXCNs7O
-         +jn9s1fzze39k6OboAs9nfqpGB+YzHzHutVWc6iKIBbwuF0nM1T+KkqZKQRJrhUe4+4b
-         TiE/7mGv5J6hIuc/YmXgrqHWfDElxuztPilVU=
+        bh=kB+SZnK0sJkXPueegsNdekLuZ/MjR9UpX90Irxxyzvk=;
+        b=VnhVnWJCP27/mVmO155ONgdwRlS85VvnyJzWOT7jautIZGGqr3zliTS6J4SRsFI+3J
+         sd+uwQ245EwDzVeb0Roq/gsPN09BWfu7bIcGYX+BrByvVqXdEJWtwtySa9erBzpCTdZ0
+         4tIvtJ+5bT84mJLGYgPCLNPN5qHhTgNOwLOnI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:content-transfer-encoding
          :in-reply-to:references:subject:from:cc:to:date:message-id
          :user-agent;
-        bh=7c8FWHabhNiA3wbCJBExE1cm7AjheLEh6XznHaWmc4E=;
-        b=SKhQdMdBDRyZH74WfgcQUOoDOj/ygYgMUOLSZlW/+EUtQrwozXey3BIGb8cjkZHnM3
-         fmT3YAkyGMghmo5VHxiJRqA92VmE8YGMnh7qlT5LRdM3Z/wqZ9p6xY4vXoBjm+zvlF8r
-         1g18GeUS8GlJ12nCGZYisuNCUk4MtKmnPjw2kh1CoIy7A6gQxUV8GKS5XGNl+0FGZEDw
-         xufTTWD4Pr0YddFN6lvPSaH9WPBolXFi35aNeAEYe8Kgt885cUi2wBXvs0m02QoFypqo
-         F44YcDlrslgG3O2rfsPBABQHqfPirAbRYhKjUgPqL+SgKZV7mdqhyzCCGlB422+QGnsm
-         mjTw==
-X-Gm-Message-State: AOAM532SYZNEwOURRIW+3bWNq7/C9ZsxaNcFNXvziGuLQqBe0adlsei3
-        heAztTIh2L0PW0wKR8WWaG6Jjw==
-X-Google-Smtp-Source: ABdhPJxRSerQ9wQoir2LSEhPgWfjzSr+4YbUaBQJByGGsoMetPbz0tzh/DADiqm589TbU5OdIhh8TA==
-X-Received: by 2002:a17:90a:e609:: with SMTP id j9mr313486pjy.129.1598945531556;
-        Tue, 01 Sep 2020 00:32:11 -0700 (PDT)
+        bh=kB+SZnK0sJkXPueegsNdekLuZ/MjR9UpX90Irxxyzvk=;
+        b=aCgvQ9WhpX8DYcOmMR1bGCKpK3SFqZaThu2U+z9UXci6FaR7TCgwFBW9SMdyPVDaUI
+         1YnM4cb+PzGFnbmP5vrSvVoN66NqNdzKVy22JmF3tR+e0424ww7XID6HgPjCWzRXkn5z
+         zG4Nf3BnvXFXWwdNhDB4vGHikpd/rItqfpcXDddA5G3ZgAYelCx7myVrjymKAw/SY4bX
+         QLVbEwqmHPgXF6vr0x7gcfuohXJtplgycA0oo8XEGO8KI95eZ/mynwDP40SxdqM4EPim
+         3H0m5k0WujMY88vuLLV3LJmSc8Cg06M/soPiu7uTrAU9wSnGsee5gWWw3sDKyrlxGv3g
+         mThw==
+X-Gm-Message-State: AOAM531P+QhfAhliuTyeT6v878uNesPihYsz8lcbDPO8rFyhXLWeLeBG
+        XoN5VLjruAwpnge6Jqje75KuTw==
+X-Google-Smtp-Source: ABdhPJzi+NLQOZhIdhFlcTmDLitfZg6ADPeHNPuMjIk1v4PT7eu3PAfHn2YnOHJeIOK0+6SWgm123g==
+X-Received: by 2002:a63:cd57:: with SMTP id a23mr438823pgj.10.1598945796121;
+        Tue, 01 Sep 2020 00:36:36 -0700 (PDT)
 Received: from chromium.org ([2620:15c:202:1:3e52:82ff:fe6c:83ab])
-        by smtp.gmail.com with ESMTPSA id i7sm910801pgh.58.2020.09.01.00.32.11
+        by smtp.gmail.com with ESMTPSA id e124sm692938pfa.87.2020.09.01.00.36.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Sep 2020 00:32:11 -0700 (PDT)
+        Tue, 01 Sep 2020 00:36:35 -0700 (PDT)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1598855964-1042-5-git-send-email-srivasam@codeaurora.org>
-References: <1598855964-1042-1-git-send-email-srivasam@codeaurora.org> <1598855964-1042-5-git-send-email-srivasam@codeaurora.org>
-Subject: Re: [PATCH v3 4/5] ASoC: qcom: Add support for audio over DP
+In-Reply-To: <1598855964-1042-4-git-send-email-srivasam@codeaurora.org>
+References: <1598855964-1042-1-git-send-email-srivasam@codeaurora.org> <1598855964-1042-4-git-send-email-srivasam@codeaurora.org>
+Subject: Re: [PATCH v3 3/5] ASoC: qcom: Add support for lpass hdmi driver
 From:   Stephen Boyd <swboyd@chromium.org>
 Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
         Srinivasa Rao <srivasam@codeaurora.org>
@@ -62,129 +62,129 @@ To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
         linux-kernel@vger.kernel.org, perex@perex.cz, plai@codeaurora.org,
         robh+dt@kernel.org, rohitkr@codeaurora.org,
         srinivas.kandagatla@linaro.org, tiwai@suse.com
-Date:   Tue, 01 Sep 2020 00:32:09 -0700
-Message-ID: <159894552988.334488.8290895362888910651@swboyd.mtv.corp.google.com>
+Date:   Tue, 01 Sep 2020 00:36:34 -0700
+Message-ID: <159894579447.334488.1604209140945740724@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2020-08-30 23:39:23)
-> diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
-> index 167bf2c..cea7ae7 100644
-> --- a/sound/soc/qcom/lpass-sc7180.c
-> +++ b/sound/soc/qcom/lpass-sc7180.c
-> @@ -190,15 +232,92 @@ static struct lpass_variant sc7180_data =3D {
->                                    "mi2s-bit-clk0",
->                                    "mi2s-bit-clk1",
->                                 },
-> +       .id                             =3D I2S_INTERFACE,
->         .init                   =3D sc7180_lpass_init,
->         .exit                   =3D sc7180_lpass_exit,
->         .alloc_dma_channel      =3D sc7180_lpass_alloc_dma_channel,
->         .free_dma_channel       =3D sc7180_lpass_free_dma_channel,
->  };
+Quoting Srinivasa Rao Mandadapu (2020-08-30 23:39:22)
+> diff --git a/sound/soc/qcom/lpass-hdmi.c b/sound/soc/qcom/lpass-hdmi.c
+> new file mode 100644
+> index 0000000..7e18113
+> --- /dev/null
+> +++ b/sound/soc/qcom/lpass-hdmi.c
+> @@ -0,0 +1,684 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+[...]
+> +
+> +static int lpass_hdmi_daiops_hw_params(struct snd_pcm_substream *substre=
+am,
+> +               struct snd_pcm_hw_params *params, struct snd_soc_dai *dai)
+> +{
+[...]
+> +       data_format =3D LPASS_DATA_FORMAT_LINEAR;
+> +       ch_sts_buf0 =3D (((data_format << LPASS_DATA_FORMAT_SHIFT) & LPAS=
+S_DATA_FORMAT_MASK)
+> +                               | ((sampling_freq << LPASS_FREQ_BIT_SHIFT=
+) & LPASS_FREQ_BIT_MASK));
+> +       ch_sts_buf1 =3D (word_length) & LPASS_WORDLENGTH_MASK;
+> +
+> +       ret =3D regmap_field_write(drvdata->tx_ctl->soft_reset, LPASS_TX_=
+CTL_RESET);
+> +       if (ret) {
+> +               dev_err(dai->dev, "%s error writing to softreset enable :=
+ %d\n",
+
+All of these strings bloat the kernel image. Can we just return ret
+instead and if something goes wrong we can use a debug patch to figure
+out which register write failed? Would a register write even fail to
+begin with?
+
+> +                                       __func__, ret);
+> +               return ret;
+> +       }
+> +
+> +       ret =3D regmap_field_write(drvdata->tx_ctl->soft_reset, LPASS_TX_=
+CTL_CLEAR);
+> +       if (ret) {
+> +               dev_err(dai->dev, "%s error writing to softreset disable =
+: %d\n",
+> +                                       __func__, ret);
+> +               return ret;
+> +       }
+> +
+> +       ret =3D regmap_field_write(drvdata->legacy->legacy_en,
+> +                               LPASS_HDMITX_LEGACY_DISABLE);
+> +       if (ret) {
+> +               dev_err(dai->dev, "%s error writing to legacy_en field : =
+%d\n",
+> +                                       __func__, ret);
+> +               return ret;
+> +       }
+> +
+[...]
+>  #define LPAIF_DMACTL_REG(v, chan, dir) __LPAIF_DMA_REG(v, chan, dir, CTL)
+>  #define LPAIF_DMABASE_REG(v, chan, dir) __LPAIF_DMA_REG(v, chan, dir, BA=
+SE)
+> diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platf=
+orm.c
+> index df692ed..607f4c4 100644
+> --- a/sound/soc/qcom/lpass-platform.c
+> +++ b/sound/soc/qcom/lpass-platform.c
+> @@ -553,7 +702,21 @@ static irqreturn_t lpass_platform_lpaif_irq(int irq,=
+ void *data)
 > =20
-> +static struct lpass_variant sc7180_hdmi_data =3D {
+>         /* Handle per channel interrupts */
+>         for (chan =3D 0; chan < LPASS_MAX_DMA_CHANNELS; chan++) {
+> -               if (irqs & LPAIF_IRQ_ALL(chan) && drvdata->substream[chan=
+]) {
+> +               switch (v->id) {
+> +               case HDMI_INTERFACE:
+> +                       val =3D LPAIF_IRQ_HDMI_REQ_ON_PRELOAD(chan) |
+> +                               LPAIF_IRQ_HDMI_METADONE |
+> +                               LPAIF_IRQ_HDMI_SDEEP_AUD_DIS(chan);
+> +                       break;
+> +               case I2S_INTERFACE:
+> +                       val =3D 0;
+> +                       break;
+> +               default:
+> +                       pr_err("%s: invalid  %d interface\n", __func__, v=
+->id);
 
-Can this be const?
+Any reason we can't use dev_err() here?
 
-> +       .hdmi_tx_ctl_addr       =3D 0x1000,
-> +       .hdmi_legacy_addr       =3D 0x1008,
-> +       .hdmi_vbit_addr         =3D 0x610c0,
-> +       .hdmi_ch_lsb_addr       =3D 0x61048,
-> +       .hdmi_ch_msb_addr       =3D 0x6104c,
-> +       .ch_stride              =3D 0x8,
-> +       .hdmi_parity_addr       =3D 0x61034,
-> +       .hdmi_dmactl_addr       =3D 0x61038,
-> +       .hdmi_dma_stride        =3D 0x4,
-> +       .hdmi_DP_addr           =3D 0x610c8,
-> +       .hdmi_sstream_addr      =3D 0x6101c,
-> +       .irq_reg_base           =3D 0x63000,
-> +       .irq_ports              =3D 1,
-> +       .rdma_reg_base          =3D 0x64000,
-> +       .rdma_reg_stride        =3D 0x1000,
-> +       .rdma_channels          =3D 4,
-> +
-> +       .rdma_dyncclk           =3D REG_FIELD_ID(0x64000, 14, 14, 4, 0x10=
-00),
-> +       .rdma_bursten           =3D REG_FIELD_ID(0x64000, 13, 13, 4, 0x10=
-00),
-> +       .rdma_burst8            =3D REG_FIELD_ID(0x64000, 15, 15, 4, 0x10=
-00),
-> +       .rdma_burst16           =3D REG_FIELD_ID(0x64000, 16, 16, 4, 0x10=
-00),
-> +       .rdma_dynburst          =3D REG_FIELD_ID(0x64000, 18, 18, 4, 0x10=
-00),
-> +       .rdma_wpscnt            =3D REG_FIELD_ID(0x64000, 10, 12, 4, 0x10=
-00),
-> +       .rdma_fifowm            =3D REG_FIELD_ID(0x64000, 1, 5, 4, 0x1000=
-),
-> +       .rdma_enable            =3D REG_FIELD_ID(0x64000, 0, 0, 4, 0x1000=
-),
-> +
-> +       .sstream_en             =3D REG_FIELD(0x6101c, 0, 0),
-> +       .dma_sel                        =3D REG_FIELD(0x6101c, 1, 2),
-> +       .auto_bbit_en   =3D REG_FIELD(0x6101c, 3, 3),
-> +       .layout                 =3D REG_FIELD(0x6101c, 4, 4),
-> +       .layout_sp              =3D REG_FIELD(0x6101c, 5, 8),
-> +       .set_sp_on_en   =3D REG_FIELD(0x6101c, 10, 10),
-> +       .dp_audio               =3D REG_FIELD(0x6101c, 11, 11),
-> +       .dp_staffing_en =3D REG_FIELD(0x6101c, 12, 12),
-> +       .dp_sp_b_hw_en  =3D REG_FIELD(0x6101c, 13, 13),
-> +
-> +       .mute                   =3D REG_FIELD(0x610c8, 0, 0),
-> +       .as_sdp_cc              =3D REG_FIELD(0x610c8, 1, 3),
-> +       .as_sdp_ct              =3D REG_FIELD(0x610c8, 4, 7),
-> +       .aif_db4                        =3D REG_FIELD(0x610c8, 8, 15),
-> +       .frequency              =3D REG_FIELD(0x610c8, 16, 21),
-> +       .mst_index              =3D REG_FIELD(0x610c8, 28, 29),
-> +       .dptx_index             =3D REG_FIELD(0x610c8, 30, 31),
-> +
-> +       .soft_reset             =3D REG_FIELD(0x1000, 31, 31),
-> +       .force_reset    =3D REG_FIELD(0x1000, 30, 30),
-> +
-> +       .use_hw_chs             =3D REG_FIELD(0x61038, 0, 0),
-> +       .use_hw_usr             =3D REG_FIELD(0x61038, 1, 1),
-> +       .hw_chs_sel             =3D REG_FIELD(0x61038, 2, 4),
-> +       .hw_usr_sel             =3D REG_FIELD(0x61038, 5, 6),
-> +
-> +       .replace_vbit   =3D REG_FIELD(0x610c0, 0, 0),
-> +       .vbit_stream    =3D REG_FIELD(0x610c0, 1, 1),
-> +
-> +       .legacy_en              =3D  REG_FIELD(0x1008, 0, 0),
-> +       .calc_en                =3D  REG_FIELD(0x61034, 0, 0),
-> +       .lsb_bits               =3D  REG_FIELD(0x61048, 0, 31),
-> +       .msb_bits               =3D  REG_FIELD(0x6104c, 0, 31),
-> +
-> +       .clk_name               =3D (const char*[]) {
-> +                                       "pcnoc-sway-clk",
-> +                                       "audio-core",
-> +                                       "pcnoc-mport-clk",
-> +                               },
-> +       .num_clks               =3D 3,
-> +       .id                     =3D HDMI_INTERFACE,
-> +       .dai_driver             =3D sc7180_lpass_cpu_hdmi_dai_driver,
-> +       .num_dai                =3D ARRAY_SIZE(sc7180_lpass_cpu_hdmi_dai_=
-driver),
-> +       .init                   =3D sc7180_lpass_init,
-> +       .exit                   =3D sc7180_lpass_exit,
-> +       .alloc_dma_channel =3D sc7180_lpass_alloc_hdmi_dma_channel,
-> +       .free_dma_channel =3D sc7180_lpass_free_hdmi_dma_channel,
-> +
-> +};
+> +                       return -EINVAL;
+> +               }
+> +               if (irqs & (LPAIF_IRQ_ALL(chan) | val)
+> +                       && drvdata->substream[chan]) {
+>                         rv =3D lpass_dma_interrupt_handler(
+>                                                 drvdata->substream[chan],
+>                                                 drvdata, chan, irqs);
+> @@ -644,15 +807,15 @@ int asoc_qcom_lpass_platform_register(struct platfo=
+rm_device *pdev)
+> =20
+>         /* ensure audio hardware is disabled */
+>         ret =3D regmap_write(drvdata->lpaif_map,
+> -                       LPAIF_IRQEN_REG(v, LPAIF_IRQ_PORT_HOST), 0);
+> +                       IRQ_EN(v, LPAIF_IRQ_PORT_HOST), 0);
+>         if (ret) {
+>                 dev_err(&pdev->dev, "error writing to irqen reg: %d\n", r=
+et);
+>                 return ret;
+>         }
+> =20
+>         ret =3D devm_request_irq(&pdev->dev, drvdata->lpaif_irq,
+> -                       lpass_platform_lpaif_irq, IRQF_TRIGGER_RISING,
+> -                       "lpass-irq-lpaif", drvdata);
+> +               lpass_platform_lpaif_irq, IRQF_TRIGGER_RISING,
 
-Add a newline here?
+Can we use the irq flags from the firmware, i.e. whatever the DT or ACPI
+tables say?
 
->  static const struct of_device_id sc7180_lpass_cpu_device_id[] =3D {
->         {.compatible =3D "qcom,sc7180-lpass-cpu", .data =3D &sc7180_data},
-> -       {}
-> +       {.compatible =3D "qcom,sc7180-lpass-hdmi", .data =3D &sc7180_hdmi=
-_data}
-
-This most likely needs to keep the sentinel around so that a match can
-be made or stop if nothing is found.
-
->  };
->
+> +               pdev->name, drvdata);
+>         if (ret) {
+>                 dev_err(&pdev->dev, "irq request failed: %d\n", ret);
+>                 return ret;
