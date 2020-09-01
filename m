@@ -2,155 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2504D258D92
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 13:45:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C928C258E29
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 14:25:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727088AbgIALot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 07:44:49 -0400
-Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:59123 "EHLO
-        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727046AbgIALl4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 07:41:56 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id A5635E85;
-        Tue,  1 Sep 2020 07:40:19 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Tue, 01 Sep 2020 07:40:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=9azO1dZNqCpcvjOzPEkevlaB/dN
-        EkdBBbt08o9p7OMQ=; b=FaF/YWwkEtJgACjyc2uHponLFGWFEGR3ROixkHhvnb6
-        Xssz8kcZxNs5cGu7UuvuY0s8NI0eAiPcwHb8XRZOuQ7i+TbS0Um7LeMq3hSPg6E1
-        TVSl26AnyIjWe/7rc4VJLb+Y2ApN7lgqaK+UStkyBpRYht5fsHdgZjqjZ2Qyvwlf
-        SYP2Zf27I1T5I/d41Zp7aDuRLqpUJ3+9VsWKKI93W+8XtpLmO6LCWQKudxxzATCW
-        OC1yiMT5AdbY3/piMfT/7XNLQPEPLr/uA7BI2Tc3OLlLrUd/EjYFRj99HcbuLNlO
-        TwNfHyhX9x48Cu5kFpy8xKthjWwFMEgFxq8efBQD4Rg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=9azO1d
-        ZNqCpcvjOzPEkevlaB/dNEkdBBbt08o9p7OMQ=; b=umchNfyaf/QvFjAE9hF9XK
-        2P5nENuThzppKBSmtEaBKLazC/MrALvwJtUBjMWuSVqVAKnt5whSuzLVqopP8CiU
-        bamRAkyhv8sLpdk4kZX4rNUY/8M4b/vqSkHoi8hS9sTquhb1zez9tTX0+nrfDcI6
-        J2GNLYI0UeDjs34c3Uk+nT7ugNUfpRRj+/s2rWBHprMVNcgtwbssNVEeFWEt4a0V
-        TPbaox9nZQ+cRQ/bcw41Bqdqa0JTGZs2188Bi0EMBqKtF+BkynHYs3cJqwldTS78
-        yle2qCrcUDpqlsO22pq8VnF+WtGr2Qe0QJ+o6snsREEcTBh2UvPZmOYd0FE0U6Ww
-        ==
-X-ME-Sender: <xms:ITNOXxeRzxPtwPqC_EbQgd_R8AlVqXzC9GmK7cqbLvBpZYL34VE3iw>
-    <xme:ITNOX_OM5eZH9kemW44j1p9_XPVWITxmrJVR4g3bFrickZr_1gLTwy5_oJFFNR3Zg
-    jTo9n4pcDaK6iNdPRY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudefjedggeegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:ITNOX6itwy3K-fwLF2qSs9nVGKU0SGt8MYX8UPLMNnsVHc4-HD__og>
-    <xmx:ITNOX69MGVYxkZyI_NnbWslaIU-mbmQkedMDUoKLB5Aqact_4aVxPw>
-    <xmx:ITNOX9ukQhMvJzXxhr_k4F-pjfB2KjoFmt1k4C5OIuyCl0SR9qeG-A>
-    <xmx:IzNOX-856FswgbWULPhNp89561mwgvcITuqV2hnDYquClKT9D2AvXg>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id A4631328005D;
-        Tue,  1 Sep 2020 07:40:17 -0400 (EDT)
-Date:   Tue, 1 Sep 2020 13:40:15 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Corentin Labbe <clabbe.montjoie@gmail.com>
-Cc:     Martin Cerveny <m.cerveny@computer.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: crypto: add new compatible for V3s
-Message-ID: <20200901114015.qivovvjqvmhkicdl@gilmour.lan>
-References: <20200831073101.3608-1-m.cerveny@computer.org>
- <20200831073101.3608-2-m.cerveny@computer.org>
- <20200901093249.orwyc5sr3z2y43fz@gilmour.lan>
- <20200901105719.GA2639@Red>
+        id S1726144AbgIAMZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 08:25:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54614 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728169AbgIAMZ1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Sep 2020 08:25:27 -0400
+Received: from saruman (91-155-214-58.elisa-laajakaista.fi [91.155.214.58])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9A53A206EB;
+        Tue,  1 Sep 2020 12:15:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598962519;
+        bh=w1eqcuExBwNC/dwFeUGjiY+pkVmT0T28v6Rbi4XthJ4=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=tbLlda0K5g5tuBPuhM2C+d3cU+xjdFgqP6DvILxucbbT6avDl32SZtaXQDDvexkCk
+         E2wb/nyz3H2yZ1Htid3oP7zVDaidIh8DJPPxKZ24VOm+r+28N7Yc8aZKTeBTuLex73
+         UhwfU4lPFeOVs+L3PwSPYkOFDbzgRdQ3bqpH9fe0=
+From:   Felipe Balbi <balbi@kernel.org>
+To:     Manish Narani <MNARANI@xilinx.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Michal Simek <michals@xilinx.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+Cc:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        git <git@xilinx.com>
+Subject: RE: [PATCH 2/2] usb: dwc3: Add driver for Xilinx platforms
+In-Reply-To: <BYAPR02MB5896669D47783D06F779608BC1520@BYAPR02MB5896.namprd02.prod.outlook.com>
+References: <1598467441-124203-1-git-send-email-manish.narani@xilinx.com>
+ <1598467441-124203-3-git-send-email-manish.narani@xilinx.com>
+ <87y2m0ioql.fsf@kernel.org>
+ <BYAPR02MB5896669D47783D06F779608BC1520@BYAPR02MB5896.namprd02.prod.outlook.com>
+Date:   Tue, 01 Sep 2020 15:15:11 +0300
+Message-ID: <877dtd7kxc.fsf@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="d4zgxzgmrbrrtklg"
-Content-Disposition: inline
-In-Reply-To: <20200901105719.GA2639@Red>
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha256; protocol="application/pgp-signature"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---d4zgxzgmrbrrtklg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--=-=-=
+Content-Type: text/plain
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 01, 2020 at 12:57:19PM +0200, Corentin Labbe wrote:
-> On Tue, Sep 01, 2020 at 11:32:49AM +0200, Maxime Ripard wrote:
-> > On Mon, Aug 31, 2020 at 09:30:59AM +0200, Martin Cerveny wrote:
-> > > Like A33 "sun4i-ss" has a difference, it give SHA1 digest
-> > > directly in BE. So add new compatible.
-> > >=20
-> > > Tested-by: Martin Cerveny <m.cerveny@computer.org>
-> >=20
-> > The Tested-by tag is for the other developpers. You're very much
-> > expected to have tested your patch before contributing it.
-> >=20
-> > > Signed-off-by: Martin Cerveny <m.cerveny@computer.org>
-> > > ---
-> > >  .../bindings/crypto/allwinner,sun4i-a10-crypto.yaml          | 5 +++=
-+-
-> > >  1 file changed, 4 insertions(+), 1 deletion(-)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/crypto/allwinner,sun4i=
--a10-crypto.yaml b/Documentation/devicetree/bindings/crypto/allwinner,sun4i=
--a10-crypto.yaml
-> > > index fc823572b..180efd13a 100644
-> > > --- a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-cr=
-ypto.yaml
-> > > +++ b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-cr=
-ypto.yaml
-> > > @@ -25,6 +25,7 @@ properties:
-> > >            - const: allwinner,sun4i-a10-crypto
-> > >        - items:
-> > >            - const: allwinner,sun8i-a33-crypto
-> > > +      - const: allwinner,sun8i-v3s-crypto
-> >=20
-> > If it's compatible with the A33, why do we need to introduce a new comp=
-atible?
-> >=20
-> > > =20
-> > >    reg:
-> > >      maxItems: 1
-> > > @@ -59,7 +60,9 @@ if:
-> > >    properties:
-> > >      compatible:
-> > >        contains:
-> > > -        const: allwinner,sun6i-a31-crypto
-> > > +        oneOf:
-> > > +          - const: allwinner,sun6i-a31-crypto
-> > > +          - const: allwinner,sun8i-v3s-crypto
-> >=20
-> > I guess the A33 compatible should be on that list as well?
->=20
-> This is the list of "need reset".
-> So we cannot use allwinner,sun8i-a33-crypto
-> Probably this explanation should be in the commit message.
 
-But the A33 has a reset in the DTSI
+Hi,
 
-Maxime
+(remember to break your lines at 80-columns)
 
---d4zgxzgmrbrrtklg
+Manish Narani <MNARANI@xilinx.com> writes:
+
+<snip>
+
+>> > +		goto err;
+>> > +	}
+>> > +
+>> > +	ret =3D dwc3_xlnx_rst_assert(priv_data->apbrst);
+>> > +	if (ret < 0) {
+>> > +		dev_err(dev, "%s: %d: Failed to assert reset\n",
+>> > +			__func__, __LINE__);
+>>=20
+>> 		dev_err(dev, "Failed to assert APB reset\n");
+>>=20
+>> > +		goto err;
+>> > +	}
+>> > +
+>> > +	ret =3D phy_init(priv_data->usb3_phy);
+>>=20
+>> dwc3 core should be handling this already
+>
+> The USB controller used in Xilinx ZynqMP platform uses xilinx GT phy
+> which has 4 GT lanes and can used by 4 peripherals at a time.
+
+At the same time or are they mutually exclusive?
+
+> This USB controller uses 1 GT phy lane among the 4 GT lanes. To
+> configure the GT lane for USB controller, the below sequence is
+> expected.
+>
+> 1. Assert the USB controller resets.
+> 2. Configure the Xilinx GT phy lane for USB controller (phy_init).
+> 3. De-assert the USB controller resets and configure PIPE.
+> 4. Wait for PLL of the GT lane used by USB to be locked
+>    (phy_power_on).
+
+it seems like you need to extend the PHY framework and teach it about
+lane configuration.
+
+> The dwc3 core by default does the phy_init() and phy_power_on() but
+> the default sequence doesn't work with Xilinx platforms. Because of
+> this reason, we have introduced this new driver to support the new
+> sequence.
+
+Instead of teaching the relevant framework about your new requirements
+;-)
+
+>> > +	if (ret < 0) {
+>> > +		dev_err(dev, "%s: %d: Failed to release reset\n",
+>> > +			__func__, __LINE__);
+>> > +		goto err;
+>> > +	}
+>> > +
+>> > +	/* Set PIPE power present signal */
+>> > +	writel(PIPE_POWER_ON, priv_data->regs + PIPE_POWER_OFFSET);
+>> > +
+>> > +	/* Clear PIPE CLK signal */
+>> > +	writel(PIPE_CLK_OFF, priv_data->regs + PIPE_CLK_OFFSET);
+>>=20
+>> shouldn't this be hidden under clk_enable()?
+>
+> Though its naming suggests something related to clock framework, it is
+> a register in the Xilinx USB controller space which configures the
+> PIPE clock coming from Serdes.
+
+PIPE clock is a clock. It just so happens that the source is the PHY
+itself.
+
+>> > +static int dwc3_xlnx_resume(struct device *dev)
+>> > +{
+>> > +	struct dwc3_xlnx *priv_data =3D dev_get_drvdata(dev);
+>> > +
+>> > +	return clk_bulk_enable(priv_data->num_clocks, priv_data->clks);
+>> > +}
+>>=20
+>> you have the same implementation for both types of suspend/resume. Maybe
+>> extract dwc3_xlnx_{suspend,resume}_common() and just call it from both
+>> callbacks?
+>
+> Going forward we have a plan to add Hibernation handling calls in
+> dwc3_xlnx_suspend/resume functions.
+
+at that moment and only at that moment, should you be worried about
+splitting them.
+
+> For that reason, these APIs are kept separate. If you insist, I can
+> make them common for now and separate them later when I add
+> hibernation code.
+
+It would be a little better, no?
+
+cheers
+
+=2D-=20
+balbi
+
+--=-=-=
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX04zHwAKCRDj7w1vZxhR
-xXtfAQCBNwO0KHktfVHdqJ1A31xqeae+JkhAoO14ISBQKDyKbgEAhtvQBryHrXgM
-Ts2NqtdzP/w7zF4ZtCJvTt3J9AKJmAo=
-=cE+X
+iQJFBAEBCAAvFiEElLzh7wn96CXwjh2IzL64meEamQYFAl9OO08RHGJhbGJpQGtl
+cm5lbC5vcmcACgkQzL64meEamQbnZhAAogpmjBBuZIXS7unOPfqYJzaDn/sbVhxl
+5XjfTD972ymt0FUMyegO3k7iSdh24mUA1F4O3HBDai5FnOloo3SY1f1BXAImeSGW
+qg8xSr9hDWg9cUX5znkpch5W3KCLwHU9IASBPqAsW4AWGstIt5cXkiREYA4G0jf+
+I64Bnwxhd8gQ85OjYTSu8c2+Sj/HYrvuLLZyO4rBBjRNQNTLodMVIQ8mgDERGMW3
+/s76/RGTedS+/k2XWDN6fKyu8p2ojWM++J9k2K9r74dzUK0DLMrhlxXU81OCWPY/
+dBZYJIUMk1WbB5w0lzZRXIbOkNP44ryF5R7ReEJvRc/4RtxapJD0Vkk/jrVAW1fQ
+IBzgSoigsEW5TQoRtH68CqeA/QVen0DH4SAFjWolnsJ2OBEiqlg1I+vgs7lHVc8G
+EBk9qfpJ1JDIiveH8tcoLuSjbWJjKhBObEdxEaQuDlxpU3LdlTAPLWghtQtTYV2U
+N2rVej79rSz6j6TnQ3f6pJVLlXV5GmeOcir1iR/0EDkGjM/0zSuzi489vvJWHP8z
+ejL19F4+kxwxiacvLsyRhcaaLzSRatGqdcoBzwaav5Eu26YfUlt/QNCQdGbJVaLH
+gwNWLbeBeBlv0PGbnHB/YBfGoOgaREb1vDfIOe4h7QWqF9Yfo3TDXmpHr1TWQqsM
+7R7Rhz2c1QU=
+=dH1X
 -----END PGP SIGNATURE-----
-
---d4zgxzgmrbrrtklg--
+--=-=-=--
