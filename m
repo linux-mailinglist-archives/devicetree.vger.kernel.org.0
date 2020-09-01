@@ -2,169 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E9E525866D
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 05:45:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FEA3258697
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 06:04:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726020AbgIADps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 23:45:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58444 "EHLO
+        id S1725930AbgIAEEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 00:04:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725987AbgIADpr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 23:45:47 -0400
-Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com [IPv6:2607:f8b0:4864:20::842])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCE5DC0612FF
-        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 20:45:46 -0700 (PDT)
-Received: by mail-qt1-x842.google.com with SMTP id d27so6470671qtg.4
-        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 20:45:46 -0700 (PDT)
+        with ESMTP id S1726006AbgIAEEs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 00:04:48 -0400
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 565B5C0612FF
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 21:04:48 -0700 (PDT)
+Received: by mail-ot1-x342.google.com with SMTP id 109so17597otv.3
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 21:04:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dionne-riel-com.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Sb15qLWva7b5eccs+rAtHW207dq5g5GxXtdLjsQxg3E=;
-        b=p+DLtz7WvZ7g/1FEoh9amfFpz7eFYZxiSbjhiDaOyDTkIowmmAKSmS4KeP9Z+9hxTo
-         ROWSFXHQgVaVpnjkJXvwngQ9y35iINpSi6zTbx0lORgmnBlPMYh2pyEidc2tsX9m0tME
-         RXB5+GRrqz5uVE3ZpDX2uC242n2ycolauL/vA1HqDsFfwwgvB5RP39jj15E9K0l2dlYi
-         3Lle9LoWLxdXrNRrgl/aUEBIgdvpmfwnUH1+KiEokL7pMR1yzJ82wmuOtc7mqtShLVRM
-         wvRKH0JiBw02cynF9aPycAVhonAaTK2OrlttLMUY/eRYRS+tazmzR+KSWsGG74gMcWtg
-         wJRw==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7tF5yri2JrvbpuG08PkKfHvaUZh8WWw0hbP0EluJihY=;
+        b=M1WvaDgYP5swmd9Trqsx8z670mDBsLaKq+qcBaK8y2jBn33lZ2hEfjX+tQ+0a4BJwi
+         wsXsfhClQG0zZeP+DwK5HhxO4pz9BJFCVypqoT+H1oYoH7FxHMYIbQiDJ71MqDdJXo+a
+         24VCN3nmoP531xyuidmBEtfBsqq7AEgXQhrTYOQ6dkkjMe+8abBzlrsDVF2BR9a1Yjp+
+         Kn1BA4zk/jS/wqFYTQBvFFeF0Kaaa9E66+oiZ+qSGD6242mh1yt9beKM6hE/r9ClFelO
+         XEw+b+rAb8UU0SBQw56hfj+v10dou7juYR8rLQRYGF94Bzk8LEanBjhpSViLpoIJlPeS
+         7yiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Sb15qLWva7b5eccs+rAtHW207dq5g5GxXtdLjsQxg3E=;
-        b=A9Yueaw8Ca0hZkTeSvCKjDVXcj24raGKOndRzS5q3mKlgG5gm3Zmnph1Y6JLGP5uMk
-         3kmGf1sEvKFQ6FT+3x2Flju8YTj7oIXuUCLMEtUus2vvVdsOXT7uqT6dQ0E6hvIbQqcn
-         NBrtxaif6U9Q+DJpEsny9IhDyLuK/sthgpKEo4eCLppKVgy/lVTk1dpRIwORjA5D0pn/
-         bD3LosYz0zfTQHsUFUPfj/eKdNTtS7mPd4QLEPI/KEQyAHkKhX0VJ3x/79vUOaNRqCM5
-         ZON4ZeVwJMmn0RjDib2JuqPFk37Kpxouxi2TeP9izsBaM3aRCSKFcNfUIv3mT7ucXIxX
-         CKww==
-X-Gm-Message-State: AOAM532e+jVuA8A0yDfSQMPe7m+qWNIsAqBbK8tEPH4NpsJC+BuSDXdQ
-        quTqM0plSmpkRTaHQKt0RGzx3pnmAFXRKjXEklA=
-X-Google-Smtp-Source: ABdhPJytKLui/iELEzCyDiiipRYaftb3La6isv90YSp0yFSiuo20xYRbxtdXV+Nd4vBPGaXncxF/dA==
-X-Received: by 2002:ac8:ec7:: with SMTP id w7mr4676763qti.118.1598931945770;
-        Mon, 31 Aug 2020 20:45:45 -0700 (PDT)
-Received: from DUFFMAN (135-23-195-85.cpe.pppoe.ca. [135.23.195.85])
-        by smtp.gmail.com with ESMTPSA id s17sm13489048qte.50.2020.08.31.20.45.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Aug 2020 20:45:45 -0700 (PDT)
-Date:   Mon, 31 Aug 2020 23:45:42 -0400
-From:   Samuel Dionne-Riel <samuel@dionne-riel.com>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: Boot failure on gru-scarlet-inx with 5.9-rc2
-Message-ID: <20200831234542.295b1275@DUFFMAN>
-In-Reply-To: <90731ebb54fe03003dce03bc7ec4872e@kernel.org>
-References: <20200829164920.7d28e01a@DUFFMAN>
-        <65d88bdd0888a69849327501a2aad186@kernel.org>
-        <20200831031838.2d6d76d9@DUFFMAN>
-        <90731ebb54fe03003dce03bc7ec4872e@kernel.org>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7tF5yri2JrvbpuG08PkKfHvaUZh8WWw0hbP0EluJihY=;
+        b=NC1vu+BXL8YEJMimkKdQnocgNq+8mjb0naTMCQChOJrNnXdd2OKoImUvdo/Nydduj8
+         1xZcjQP3A7862DvoiX4nhXcLhL0+1k1ePlC4cRlJ7NAiOVZueAFzP+zuDmu0r/ehxlCA
+         F2NxZLnXVpQ9K1ff2B0jBYLWMhsyE1b5Hqw/UvH+qml/HB1oGCPs7F+NMZ0TCKl074Pf
+         n2scVMQJguBjoMoAVDtDxbKBdloP/kTM594rJNyMf58mguSVHcrJpz7VUVWp6cUQMysQ
+         wJslkHR043WkGBqoGuO0CxDirs7ZH2OcCaTIsVnQviXNtiD1GmeTw+8hiEcQK0SI+o18
+         LjWg==
+X-Gm-Message-State: AOAM533bFt4Fly+bUpmv9Hy+m8PGqSRXqaPo7Dm1kPimHZfIw2AO0VXQ
+        gBbPELgG97ZJq082pHmGZlmyQdLNve6wiZhfiNr+dA==
+X-Google-Smtp-Source: ABdhPJw58JZ5LU2bTsgeGqMMWY9gbABpuH1aV0WA7Wgxvfh8rLe/Y37yR+nWxMGI9FEU3rLnm6Z5elAOeiqV3NLqrPg=
+X-Received: by 2002:a9d:6004:: with SMTP id h4mr51911otj.102.1598933087465;
+ Mon, 31 Aug 2020 21:04:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <1597227730-16477-1-git-send-email-rnayak@codeaurora.org>
+In-Reply-To: <1597227730-16477-1-git-send-email-rnayak@codeaurora.org>
+From:   John Stultz <john.stultz@linaro.org>
+Date:   Mon, 31 Aug 2020 21:04:36 -0700
+Message-ID: <CALAqxLVQ1uB5Zy1DrFP6K4FgZ0U9rwGterhvzcTws_9O9wWE2g@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: sdm845: Fixup OPP table for all qup devices
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        Amit Pundir <amit.pundir@linaro.org>, tdas@codeaurora.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 31 Aug 2020 10:27:37 +0100
-Marc Zyngier <maz@kernel.org> wrote:
-> 
-> Ah, so actually anything that *enables pcie* kills your system.
-> Great investigative work!
-> 
-> > 
-> > And backed by a further bisection with this that points to
-> > d84c572de1a360501d2e439ac632126f5facf59d being the actual change
-> > that causes the tablet to fail to boot, as long as the pcie0 node is
-> > identified as pci properly.
-> > 
-> > I am unsure if I should add as a Cc everyone involved in that change
-> > set, though the author (coincidentally) is already in the original
-> > list of recipients.
-> 
-> I've deliberately moved Rob from Cc to To... ;-)
+On Wed, Aug 12, 2020 at 3:23 AM Rajendra Nayak <rnayak@codeaurora.org> wrote:
+>
+> This OPP table was based on the clock VDD-FMAX tables seen in
+> downstream code, however it turns out the downstream clock
+> driver does update these tables based on later/production
+> rev of the chip and whats seen in the tables belongs to an
+> early engineering rev of the SoC.
+> Fix up the OPP tables such that it now matches with the
+> production rev of sdm845 SoC.
+>
+> Fixes: 13cadb34e593 ("arm64: dts: sdm845: Add OPP table for all qup
+> devices")
+> Reported-by: John Stultz <john.stultz@linaro.org>
+> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+> ---
 
-Thanks, I don't actually know who to write to exactly.
+Just wanted to follow up on this, as it's still missing from 5.9-rc3
+and is needed to fix a bluetooth regression on db845c from 5.9-rc1.
 
-> > Any additional thoughts from this additional information?  
-> 
-> What you could do is to start looking at which of the
-> pci_is_root_bus() changes breaks PCIe on this system.  The fact that
-> it breaks on your system and not on mine is a bit puzzling.
+Amit has already validated it (on PocoF1 as well), but just in case its useful:
+Tested-by: John Stultz <john.stultz@linaro.org>
 
-Let me show you, on top of v5.9-rc3 I can successfully boot using this
-partial revert / adaptation of d84c572d. In addition, it also allows
-the Wi-Fi to work again, compared to how it didn't in 5.9-rc1 or
-5.9-rc[23] with the dumb revert of your fix.
-
-So, if we number each pci_is_root_bus by order appearance, it is only
-the second use, in rockchip_pcie_valid_device, which seem to cause
-scarlet not to boot.
-
-The patch (not actually a patch submission) reverts only that instance
-of pci_is_root_bus, while also doing some leg work to put back some
-functionally equivalent code that was refactored away since.
-
-If there's anything else you want me to try, don't hesitate.
-
----
- drivers/pci/controller/pcie-rockchip-host.c | 8 +++++++-
- drivers/pci/controller/pcie-rockchip.h      | 1 +
- 2 files changed, 8 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/pci/controller/pcie-rockchip-host.c b/drivers/pci/controller/pcie-rockchip-host.c
-index 0bb2fb3e8a0b..5a27fa833fbd 100644
---- a/drivers/pci/controller/pcie-rockchip-host.c
-+++ b/drivers/pci/controller/pcie-rockchip-host.c
-@@ -79,7 +79,7 @@ static int rockchip_pcie_valid_device(struct rockchip_pcie *rockchip,
- 	 * do not read more than one device on the bus directly attached
- 	 * to RC's downstream side.
- 	 */
--	if (pci_is_root_bus(bus->parent) && dev > 0)
-+	if (bus->primary == rockchip->root_bus_nr && dev > 0)
- 		return 0;
- 
- 	return 1;
-@@ -944,6 +944,7 @@ static int rockchip_pcie_probe(struct platform_device *pdev)
- 	struct rockchip_pcie *rockchip;
- 	struct device *dev = &pdev->dev;
- 	struct pci_host_bridge *bridge;
-+	struct resource *bus_res;
- 	int err;
- 
- 	if (!dev->of_node)
-@@ -983,6 +984,11 @@ static int rockchip_pcie_probe(struct platform_device *pdev)
- 	if (err < 0)
- 		goto err_deinit_port;
- 
-+	/* HACK; ~equiv to last param of pci_parse_request_of_pci_ranges */
-+	bus_res = (resource_list_first_type(&bridge->windows, IORESOURCE_MEM))->res;
-+
-+	rockchip->root_bus_nr = bus_res->start;
-+
- 	err = rockchip_pcie_cfg_atu(rockchip);
- 	if (err)
- 		goto err_remove_irq_domain;
-diff --git a/drivers/pci/controller/pcie-rockchip.h b/drivers/pci/controller/pcie-rockchip.h
-index c7d0178fc8c2..0952fec7e34d 100644
---- a/drivers/pci/controller/pcie-rockchip.h
-+++ b/drivers/pci/controller/pcie-rockchip.h
-@@ -298,6 +298,7 @@ struct rockchip_pcie {
- 	struct	gpio_desc *ep_gpio;
- 	u32	lanes;
- 	u8      lanes_map;
-+	u8      root_bus_nr;
- 	int	link_gen;
- 	struct	device *dev;
- 	struct	irq_domain *irq_domain;
--- 
-2.25.4
-
-
-Thanks again!
-
--- 
-Samuel Dionne-Riel
+thanks
+-john
