@@ -2,157 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8006E259665
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 18:02:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68E3A259725
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 18:11:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731664AbgIAQBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 12:01:48 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:54170 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729047AbgIAQBp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 12:01:45 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 081E6nQY059182;
-        Tue, 1 Sep 2020 09:06:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1598969209;
-        bh=RixAWEvCOs5TI6IoAywsdosmAxAkvKzfEAycZgP8sUM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=O/ijain6PDeOatHWv00hghgs347uxtwuBcIuuR+fAy7Ha25GfzHTLsy6vBM2BwOud
-         kkO1sp5sQprOxNCjfcWuElMy1710Ibe+d4N5M58LKqU36+RCk74yNW3i+vCViivkHc
-         w+Xf7t2QsHRjJ0kAPdL7uRnMLpBQHF2iCGfCpp/0=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 081E6ndi072961
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 1 Sep 2020 09:06:49 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 1 Sep
- 2020 09:06:49 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 1 Sep 2020 09:06:49 -0500
-Received: from a0393678-ssd.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 081E6Zlh034944;
-        Tue, 1 Sep 2020 09:06:46 -0500
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: [RESEND PATCH 2/2] arm64: dts: ti: k3-j721e-common-proc-board: Configure the PCIe instances
-Date:   Tue, 1 Sep 2020 19:36:28 +0530
-Message-ID: <20200901140628.8800-3-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200901140628.8800-1-kishon@ti.com>
-References: <20200901140628.8800-1-kishon@ti.com>
+        id S1731214AbgIAPhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 11:37:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46124 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731356AbgIAPhp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Sep 2020 11:37:45 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 07C1B205F4;
+        Tue,  1 Sep 2020 15:37:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598974664;
+        bh=3xhdGOns6oOOFP+YeaR4IoE2mY67v6Wf2ZDw6rOAw1g=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=quk1xz8e8vnQbb/b0D+2H5SxYpUmCd5x1DQWc3AV+vsbl6hbm9UsA6Qogq692bXPX
+         gWXYC4iCb1kuAVejFf1fF3SFj93OqZS4k07KxlJE+yIUzagIW2D1Y2Ghz9OdraTXYh
+         erg6egmsedJQNcA9UxEk8fBQN4IwMZXIX8gL55SQ=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.92)
+        (envelope-from <maz@kernel.org>)
+        id 1kD8Lu-008K6i-C6; Tue, 01 Sep 2020 16:37:42 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 01 Sep 2020 16:37:42 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     Samuel Dionne-Riel <samuel@dionne-riel.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: Boot failure on gru-scarlet-inx with 5.9-rc2
+In-Reply-To: <20200831234542.295b1275@DUFFMAN>
+References: <20200829164920.7d28e01a@DUFFMAN>
+ <65d88bdd0888a69849327501a2aad186@kernel.org>
+ <20200831031838.2d6d76d9@DUFFMAN>
+ <90731ebb54fe03003dce03bc7ec4872e@kernel.org>
+ <20200831234542.295b1275@DUFFMAN>
+User-Agent: Roundcube Webmail/1.4.8
+Message-ID: <5db50a8e5b251714cebe0a719ee9dc73@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: samuel@dionne-riel.com, lorenzo.pieralisi@arm.com, bhelgaas@google.com, robh@kernel.org, devicetree@vger.kernel.org, frowand.list@gmail.com, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-J721E Common Processor Board has PCIe connectors for the 1st three PCIe
-instances. Configure the three PCIe instances in RC mode and disable the
-4th PCIe instance.
+On 2020-09-01 04:45, Samuel Dionne-Riel wrote:
+> On Mon, 31 Aug 2020 10:27:37 +0100
+> Marc Zyngier <maz@kernel.org> wrote:
+>> 
+>> Ah, so actually anything that *enables pcie* kills your system.
+>> Great investigative work!
+>> 
+>> >
+>> > And backed by a further bisection with this that points to
+>> > d84c572de1a360501d2e439ac632126f5facf59d being the actual change
+>> > that causes the tablet to fail to boot, as long as the pcie0 node is
+>> > identified as pci properly.
+>> >
+>> > I am unsure if I should add as a Cc everyone involved in that change
+>> > set, though the author (coincidentally) is already in the original
+>> > list of recipients.
+>> 
+>> I've deliberately moved Rob from Cc to To... ;-)
+> 
+> Thanks, I don't actually know who to write to exactly.
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- .../dts/ti/k3-j721e-common-proc-board.dts     | 80 +++++++++++++++++++
- 1 file changed, 80 insertions(+)
+Given that this is a PCI regression, I guess the PCI maintainers
+are the likely victims. Adding Bjorn and Lorenzo to the list in
+addition to Rob.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-index c355692796a9..8b57d22ca3cc 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-@@ -558,3 +558,83 @@
- 
- 	status = "okay";
- };
-+
-+&serdes0 {
-+	serdes0_pcie_link: link@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <1>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_PCIE>;
-+		resets = <&serdes_wiz0 1>;
-+	};
-+};
-+
-+&serdes1 {
-+	serdes1_pcie_link: link@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <2>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_PCIE>;
-+		resets = <&serdes_wiz1 1>, <&serdes_wiz1 2>;
-+	};
-+};
-+
-+&serdes2 {
-+	serdes2_pcie_link: link@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <2>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_PCIE>;
-+		resets = <&serdes_wiz2 1>, <&serdes_wiz2 2>;
-+	};
-+};
-+
-+&pcie0_rc {
-+	reset-gpios = <&exp1 6 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <1>;
-+};
-+
-+&pcie1_rc {
-+	reset-gpios = <&exp1 2 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes1_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <2>;
-+};
-+
-+&pcie2_rc {
-+	reset-gpios = <&exp2 20 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes2_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <2>;
-+};
-+
-+&pcie0_ep {
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <1>;
-+	status = "disabled";
-+};
-+
-+&pcie1_ep {
-+	phys = <&serdes1_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <2>;
-+	status = "disabled";
-+};
-+
-+&pcie2_ep {
-+	phys = <&serdes2_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <2>;
-+	status = "disabled";
-+};
-+
-+&pcie3_rc {
-+	status = "disabled";
-+};
-+
-+&pcie3_ep {
-+	status = "disabled";
-+};
+You can find the relevant people by looking at the MAINTAINERS
+file.
+
+>> > Any additional thoughts from this additional information?
+>> 
+>> What you could do is to start looking at which of the
+>> pci_is_root_bus() changes breaks PCIe on this system.  The fact that
+>> it breaks on your system and not on mine is a bit puzzling.
+> 
+> Let me show you, on top of v5.9-rc3 I can successfully boot using this
+> partial revert / adaptation of d84c572d. In addition, it also allows
+> the Wi-Fi to work again, compared to how it didn't in 5.9-rc1 or
+> 5.9-rc[23] with the dumb revert of your fix.
+> 
+> So, if we number each pci_is_root_bus by order appearance, it is only
+> the second use, in rockchip_pcie_valid_device, which seem to cause
+> scarlet not to boot.
+> 
+> The patch (not actually a patch submission) reverts only that instance
+> of pci_is_root_bus, while also doing some leg work to put back some
+> functionally equivalent code that was refactored away since.
+> 
+> If there's anything else you want me to try, don't hesitate.
+> 
+> ---
+>  drivers/pci/controller/pcie-rockchip-host.c | 8 +++++++-
+>  drivers/pci/controller/pcie-rockchip.h      | 1 +
+>  2 files changed, 8 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-rockchip-host.c
+> b/drivers/pci/controller/pcie-rockchip-host.c
+> index 0bb2fb3e8a0b..5a27fa833fbd 100644
+> --- a/drivers/pci/controller/pcie-rockchip-host.c
+> +++ b/drivers/pci/controller/pcie-rockchip-host.c
+> @@ -79,7 +79,7 @@ static int rockchip_pcie_valid_device(struct
+> rockchip_pcie *rockchip,
+>  	 * do not read more than one device on the bus directly attached
+>  	 * to RC's downstream side.
+>  	 */
+> -	if (pci_is_root_bus(bus->parent) && dev > 0)
+> +	if (bus->primary == rockchip->root_bus_nr && dev > 0)
+>  		return 0;
+> 
+>  	return 1;
+> @@ -944,6 +944,7 @@ static int rockchip_pcie_probe(struct 
+> platform_device *pdev)
+>  	struct rockchip_pcie *rockchip;
+>  	struct device *dev = &pdev->dev;
+>  	struct pci_host_bridge *bridge;
+> +	struct resource *bus_res;
+>  	int err;
+> 
+>  	if (!dev->of_node)
+> @@ -983,6 +984,11 @@ static int rockchip_pcie_probe(struct
+> platform_device *pdev)
+>  	if (err < 0)
+>  		goto err_deinit_port;
+> 
+> +	/* HACK; ~equiv to last param of pci_parse_request_of_pci_ranges */
+> +	bus_res = (resource_list_first_type(&bridge->windows, 
+> IORESOURCE_MEM))->res;
+> +
+> +	rockchip->root_bus_nr = bus_res->start;
+> +
+>  	err = rockchip_pcie_cfg_atu(rockchip);
+>  	if (err)
+>  		goto err_remove_irq_domain;
+> diff --git a/drivers/pci/controller/pcie-rockchip.h
+> b/drivers/pci/controller/pcie-rockchip.h
+> index c7d0178fc8c2..0952fec7e34d 100644
+> --- a/drivers/pci/controller/pcie-rockchip.h
+> +++ b/drivers/pci/controller/pcie-rockchip.h
+> @@ -298,6 +298,7 @@ struct rockchip_pcie {
+>  	struct	gpio_desc *ep_gpio;
+>  	u32	lanes;
+>  	u8      lanes_map;
+> +	u8      root_bus_nr;
+>  	int	link_gen;
+>  	struct	device *dev;
+>  	struct	irq_domain *irq_domain;
+> --
+> 2.25.4
+> 
+> 
+> Thanks again!
+
+Hmmm. It seems that the original commit (d84c572d) considered that
+root_bus_nr was always zero, while it may not have been.
+
+Rob, Lorenzo: do you guys have any idea what is going on here?
+
+Thanks,
+
+         M.
 -- 
-2.17.1
-
+Jazz is not dead. It just smells funny...
