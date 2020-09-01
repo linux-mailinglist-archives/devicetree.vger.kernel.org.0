@@ -2,122 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F21652590B2
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 16:37:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F6B52590AE
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 16:36:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727869AbgIAOU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 10:20:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43344 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728149AbgIAOUE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 10:20:04 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A94FC06124F;
-        Tue,  1 Sep 2020 07:20:03 -0700 (PDT)
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1598970001;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=EzXhOWsJJTl/hJbRWWE+RCFJeBmDtvEQ/oNbCJfaYgg=;
-        b=yDZNSAQRfYKaEpdbWiHiaX86IocigSeiu8kS4ExpJ5txpDEwrzW0CTfYTGw66V5PBIkYH4
-        wnU1+hBn/29UBtyjFtKu78vfcnjUqu9X4RMiSohSI2FTXLGWzkMV3z1zJ3LlKI/zJr05ii
-        UHQqsOGI0zIMpHomno679XZOM7Okk85tkSMpDSe88HZByrvt0kfOp2YCH1wTBAczvvB/tc
-        DEdsw+6C2FuUOC4NHdKZxnZlak7J+QhgY2Ugq7Hs8ynrCQVCa1ES8HgPwrlNXFWT1hEuyy
-        /pAsDgzT3mPP0EYrOfkT9Zot1SK+8NiAyaEx2bSeDqg0aIWCnkao0A35TLVQig==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1598970001;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=EzXhOWsJJTl/hJbRWWE+RCFJeBmDtvEQ/oNbCJfaYgg=;
-        b=gjV3avv5uMXe0coacwOWCMRjx4JBuXbLT8wkr0D7CcBNdNfdgCudYPlg90miinYvPeDJAc
-        J5ld9ixg0gjf0DBA==
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Vinicius Costa Gomes <vinicius.gomes@intel.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        ilias.apalodimas@linaro.org
-Subject: Re: [PATCH v3 5/8] net: dsa: hellcreek: Add TAPRIO offloading support
-In-Reply-To: <20200825093219.bybzzpyfbbccjanf@skbuf>
-References: <20200820081118.10105-1-kurt@linutronix.de> <20200820081118.10105-6-kurt@linutronix.de> <87pn7ftx6b.fsf@intel.com> <87bliz13kj.fsf@kurt> <20200825093219.bybzzpyfbbccjanf@skbuf>
-Date:   Tue, 01 Sep 2020 16:20:00 +0200
-Message-ID: <87v9gxefzj.fsf@kurt>
-MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
+        id S1728480AbgIAOgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 10:36:50 -0400
+Received: from mail29.static.mailgun.info ([104.130.122.29]:57915 "EHLO
+        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728327AbgIAOU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 10:20:58 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1598970056; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=hVBikNs7XDrVNGsdyCS7qGWenwga/b9zJ4BT0UQd/Tk=; b=RqUO9rr504lVGfQhEOGqr2X2Dw26d8d1+FSFV7wA0HCoroPGunkhhNxD4gXu/IXfMjulUOsa
+ Bu3O0TRp08GSqXqtbmxtTuyU/eeA4vVEXfgVpOnhdMcvAkOaMDO6gAtpf8uCzsqpys2UOdDS
+ YlVmsanSgxUXKBmbd0pNR/7dWRY=
+X-Mailgun-Sending-Ip: 104.130.122.29
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
+ 5f4e58bc54e87432be4770b7 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 01 Sep 2020 14:20:44
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 5427DC433C9; Tue,  1 Sep 2020 14:20:43 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id E3F44C433C9;
+        Tue,  1 Sep 2020 14:20:39 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E3F44C433C9
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=rnayak@codeaurora.org
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+To:     stanimir.varbanov@linaro.org, robh+dt@kernel.org,
+        agross@kernel.org, bjorn.andersson@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mka@chromium.org, Rajendra Nayak <rnayak@codeaurora.org>
+Subject: [PATCH v6 0/5] DVFS support for Venus
+Date:   Tue,  1 Sep 2020 19:50:21 +0530
+Message-Id: <1598970026-7199-1-git-send-email-rnayak@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+Rob, can you pick PATCH 1 since its already reviewed by you.
+Stan, Patch 2 and 3 will need to be picked by you and they both have your ACKs
+Patch 4 and 5 will need to be merged via the qcom tree once we have them reviewed.
 
-On Tue Aug 25 2020, Vladimir Oltean wrote:
-> On Tue, Aug 25, 2020 at 11:23:56AM +0200, Kurt Kanzenbach wrote:
->> On Mon Aug 24 2020, Vinicius Costa Gomes wrote:
->> > Hi,
->> >
->> > Kurt Kanzenbach <kurt@linutronix.de> writes:
->> >
->> [snip]
->> >> +	/* Setup timer for schedule switch: The IP core only allows to set a
->> >> +	 * cycle start timer 8 seconds in the future. This is why we setup =
-the
->> >> +	 * hritmer to base_time - 5 seconds. Then, we have enough time to
->> >> +	 * activate IP core's EST timer.
->> >> +	 */
->> >> +	start =3D ktime_sub_ns(schedule->base_time, (u64)5 * NSEC_PER_SEC);
->> >> +	hrtimer_start_range_ns(&hellcreek_port->cycle_start_timer, start,
->> >> +			       NSEC_PER_SEC, HRTIMER_MODE_ABS);
->> >
->> > If we are talking about seconds here, I don't think you need to use a
->> > hrtimer, you could use a workqueue/delayed_work. Should make things a
->> > bit simpler.
->>=20
->> I've used hrtimers for one reason: The hrtimer provides a way to fire at
->> an absolute base time based on CLOCK_TAI. All the other facilities such
->> as workqueues, timer list timers, etc do not.
->
-> That still doesn't justify the complexity of irqsave spinlocks and such.
-> You could just as well schedule a workqueue from that hrtimer and have
-> process context...
+v6: No changes, rebased on 5.9-rc3
 
-After giving this a bit more thought, it can be implemented by using
-workqueues only. That ptp time is "cached" anyway the we could just
-periodically check for the base time arrival. That should solve the
-irqsave and the being synchronized problem.
+v5: Fixed the opp-tables (patch 4/5) to avoid -ERANGE from
+dev_pm_opp_set_rate
 
-Thanks,
-Kurt
+v4: Moved code from probe/remove/runtime_suspend into
+different pm_ops callbacks
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+v3: Renamed the optional power domain as cx
 
------BEGIN PGP SIGNATURE-----
+v2: Fixed up the labels of OPP nodes in patch 4
+    Included the bindings update patch as part of this series,
+    a resend of https://lore.kernel.org/patchwork/patch/1241077/
 
-iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl9OWJAACgkQeSpbgcuY
-8KYTTxAAzDMvQIXyzghTI8d0w/3qvioIEiOO/t/UGnf6PH6kR/aKxYsX82XZ8ahG
-knDrsGE62KZm5oAgeeJhBLfxJc2cLbbs809g2zu/7SYeE1ONiJ5cEOmto/dGaB+R
-NDLbipZV8SwbiSdXqnCjtjYccjGkmEwcg3fTIHO7oYCT7+x4g0tsjex2x/J0btBH
-X0lUI2ON1aMQP75pDEpXA2ELnrpIAq3DVLWQWlh558H7KPpLdIkPSwOSpz7rPOhR
-dWfclVDH3cZDaodbvbw2n/84O6iDBRdvr4XYmI0i407Xop0gCr8n8Db7oO4GXg3l
-pHrxlFuPCkFwfBooQRzRc79DGdRQLOOt8S0i6h3tVe4puVc4Ytnvm4yvkv9KTXrj
-F5NMrb4HVGKZVOcUAbWvRSzPedQ7Zygvu7F1BPUgEJBUyOLkuNhr4EVVRNtkTWWP
-l73RXFkAMB/eySXeOI7nWmMuWXidC23TfWIeksgFLxmY/w0Q7u1vR4AL2ErkSsX9
-vjC32uCKSXrSG06z866c13cGtFYwUnvJQ95ONNR9Um0iK1d64SbPp6RCvyzwkI7Q
-9uNKVPQSeAFhw6Qynw4cWEH2lsB/Wgsom9Ce7YlARRxQnj+7vKyFoNxHxKos4wNM
-rWQtjUHDQZmmhJ9nL0RoDVpmiEvAsixM2rQ0Z2/tjxPEbJJAvi4=
-=VIAt
------END PGP SIGNATURE-----
---=-=-=--
+These patches add DVFS support for Venus
+
+Rajendra Nayak (5):
+  dt-bindings: media: venus: Add an optional power domain for perf
+    voting
+  media: venus: core: Fix error handling in probe
+  media: venus: core: Add support for opp tables/perf voting
+  arm64: dts: sdm845: Add OPP tables and power-domains for venus
+  arm64: dts: sc7180: Add OPP tables and power-domains for venus
+
+ .../bindings/media/qcom,sc7180-venus.yaml          |  6 +-
+ .../bindings/media/qcom,sdm845-venus-v2.yaml       |  6 +-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi               | 35 +++++++-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               | 40 +++++++++-
+ drivers/media/platform/qcom/venus/core.c           | 17 ++--
+ drivers/media/platform/qcom/venus/core.h           |  5 ++
+ drivers/media/platform/qcom/venus/pm_helpers.c     | 92 ++++++++++++++++++++--
+ 7 files changed, 183 insertions(+), 18 deletions(-)
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
+
