@@ -2,157 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A268E25857A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 03:58:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1622B258583
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 04:07:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726078AbgIAB6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 21:58:11 -0400
-Received: from mail-eopbgr30080.outbound.protection.outlook.com ([40.107.3.80]:65505
-        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725941AbgIAB6K (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 Aug 2020 21:58:10 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XEL1YUhpcxWI7VMc4AqUMbWGsSU8Lt8goU7z3zvP8jv4WuiLHyKi84i+Vkv5oCEf0FH5urE+T7bb3/46wFLD5/oOZRE283UKH0/F09C2r/Krr3ZJTWaeh44RnF73ZWJd8MDkkpk0RrUaiJHwURJsFUjXoVptHYvws9QzhBcWA2j5msFabrq7wTtmZ5Ojms1nGvQQmkybQMSuyvCHeuyNpLGcS9B4Ppkj0Xp3SBHg6akNkQi8jS9FsnQ08N80F+NI+1m/+vwiRgTJtRV6Pwn2Gj8wxexPuEOStrUYms2+2iK5nkQQJ7oztqyzb8wLkA+uJTNs3jOJUQMy1vPhVbxMdA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lZJ60Od6ajNhV7N0bXwL/Sg171PT7nNFBeF2CJ/g5no=;
- b=grNmU0UxetupqO1//RB04N61Flya7DWqHVJm0IXMxfzdntF149DXJG4yT6i1om7rtwGxTcUiL2wT/tFGBc8P7A3J2YCUxPVWRI22RlfL5DXFeQMLmCj3INQ+bmKqjuwc/KgXm6ABC95h6qPZkdYH0ekMRLWb81Ov3ACSwHs08OT/TsOyUAeIAxBHYXU/tx731AIiy//kGeWYDIQ/3xXlcxtiiQfvSsesBGDCzsNIylZf8OLd8rCvlsuPy55niOR7GurA7eY5hQv3s+U/IJOF9s5jKwbNvINWY83OgsDM2CY/KoRc4G9d5fJOufqoKzT/7BXJWIynvqiauYmSgl7qGQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lZJ60Od6ajNhV7N0bXwL/Sg171PT7nNFBeF2CJ/g5no=;
- b=FTd/dDbqyGQYf9/3atpkmFy4eVodMwgCMwCC4e/cFq+WnoAe1/FWKwNEE+7DCLpy8068z+QZkd7l0++DbUjMbuoAXUnAZFHakld0IlXRH8vi99wPElLwkLkiQSgbmkkkTaYONbBEErHFm5K8U9RtTsHPQxMMvQARkuDlJDtmcro=
-Received: from VE1PR04MB6638.eurprd04.prod.outlook.com (2603:10a6:803:119::15)
- by VE1PR04MB7374.eurprd04.prod.outlook.com (2603:10a6:800:1ac::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.19; Tue, 1 Sep
- 2020 01:58:07 +0000
-Received: from VE1PR04MB6638.eurprd04.prod.outlook.com
- ([fe80::ad7f:d95a:5413:a950]) by VE1PR04MB6638.eurprd04.prod.outlook.com
- ([fe80::ad7f:d95a:5413:a950%3]) with mapi id 15.20.3326.025; Tue, 1 Sep 2020
- 01:58:07 +0000
-From:   Robin Gong <yibin.gong@nxp.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        Anson Huang <anson.huang@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v1 1/2] regulator: pca9450: add enable_val for all bucks
-Thread-Topic: [PATCH v1 1/2] regulator: pca9450: add enable_val for all bucks
-Thread-Index: AQHWf3GYvz7pHbbwy0Oh0swEP0rom6lSCuoAgAD5ICA=
-Date:   Tue, 1 Sep 2020 01:58:07 +0000
-Message-ID: <VE1PR04MB6638767DC4367488F9104913892E0@VE1PR04MB6638.eurprd04.prod.outlook.com>
-References: <1598892515-30950-1-git-send-email-yibin.gong@nxp.com>
- <20200831105304.6qcpjfmranay6q4y@pengutronix.de>
-In-Reply-To: <20200831105304.6qcpjfmranay6q4y@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [119.31.174.67]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 982f6fbd-5359-4c3e-9b71-08d84e1a78b3
-x-ms-traffictypediagnostic: VE1PR04MB7374:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VE1PR04MB73743F6D20039D2E4F7E0A96892E0@VE1PR04MB7374.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2803;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: vPkOsqqqmesGkclrZQtV1XvlpGuIbNRa2z8NLtBJ+v6JLyIqgLX51jowUFRzeV1wY+SBiLiwV3tFSVmK4Qq1FyMW2ylp1m6BdZ4j7nhJBsC5A1XsibfbzwhLsLXC+DVRW6hgSTVDdfZSUs/NGCKMkyDsmwAHTlF3KlRxCF5/IMk7VlYtvQasj9lJih25Sh118Pl5/qH8OhGGDEA0TE/1gb8z6eZ8YJ5FQvsAUy5g2gBNVDIXzprw8FMofj6T+EDK9DYOn7RAiR5OxkT6B5ZrcUarmliPXB9C8vFwYVOzRn2JPWcl0jbJAfKbEJB7KPROBS2iGq0poU2Pd0SvqvEdhA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6638.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(366004)(136003)(376002)(396003)(39860400002)(6506007)(9686003)(186003)(53546011)(83380400001)(54906003)(71200400001)(55016002)(478600001)(4326008)(26005)(6916009)(52536014)(8936002)(2906002)(76116006)(7696005)(66476007)(5660300002)(66556008)(8676002)(86362001)(66446008)(66946007)(33656002)(316002)(7416002)(64756008);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: 8faGh7lNArnxTFqmwt61iPFppOMubhI+mITYwLn0/ZCFrtqlZ9SE8CCFmiahnaP464HFiGiAjk0w6oegHFNne3O3e6GELACSHgizyum/Th438MucVS1aTZM47j5AheHhD2k5av9um+wSL5MkIQGcm7ewqIxkiqfbX4GzNYvw71hhUYBnxf1lwUfM8azNMzmeho3Pz27vZiYBXiMy+m0djmaxnU8jRmiHqXHFmKbkc6wQHpgrUgRIHMLJdmvLx+3GVuCLAdCnb75SxlRWOCCToUaNWPFihqP3OkxE6vlAxxfznVnI5st3Otsjyw8Boiy0xUSrduZQ/PPIWoNN87EXdB5x1WRbwm6J5w3F/zwC4JHBLGzexzcrJitoSHJnLNnyk3V89diag8S5CyXgUDiUqyWSuY/uATBNexAvNVA/DyFxYzbdYpyvFGgeej8WCMxJulaG8AEsqNoS6eKdx1PLhiJeffGiMpdXZfW0Nro8VZYC2ZIX34zlCxSpE9qhvqiAYO71Xltdg7MfaHhrwm2atis3lBuH+uGAR0VbpVWflgGwJhAck260FQUnI7a8XkXMe1nDg6bK49pYD9s8K4Cu7deU8UPoeqSj0E+r3ZRwnYIL+hInnCc7byeU+yovKSa9ThLLMBmhdUfgV9zkTl8ztQ==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726044AbgIACHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 22:07:55 -0400
+Received: from mailout3.samsung.com ([203.254.224.33]:24931 "EHLO
+        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725993AbgIACHz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 22:07:55 -0400
+Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20200901020750epoutp037dba4b4a573c7014f8aeb2f1ef305d24~whspAkiJ_3110031100epoutp031
+        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 02:07:50 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20200901020750epoutp037dba4b4a573c7014f8aeb2f1ef305d24~whspAkiJ_3110031100epoutp031
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1598926070;
+        bh=URBVDctkmVqca9PXVLh3E1qepQ6UHAxy0LP6rzedCbQ=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=eNjqB8RLW9SsgNuX3Fj1Ai1tixx0K/O0l8jZD52wlo3FT1nmNlSdp5P5Z8YlMJSVj
+         ZITvX9Ta1qRJIbODLsRto3ZhPAAi45AeXvRN6mmSbvWzK0vc2PrOvImwi3oHIXEr3l
+         XSGu1Zoen1qNC34QG0mjPnm0I/JZXwtQ2rRCHTA0=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20200901020750epcas1p2d70205ed0566b254540c0bc25c9ac072~whsoQQHJp2039520395epcas1p2b;
+        Tue,  1 Sep 2020 02:07:50 +0000 (GMT)
+Received: from epsmges1p5.samsung.com (unknown [182.195.40.152]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4BgVpC1JpBzMqYm7; Tue,  1 Sep
+        2020 02:07:47 +0000 (GMT)
+Received: from epcas1p2.samsung.com ( [182.195.41.46]) by
+        epsmges1p5.samsung.com (Symantec Messaging Gateway) with SMTP id
+        E3.04.28578.1FCAD4F5; Tue,  1 Sep 2020 11:07:46 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas1p3.samsung.com (KnoxPortal) with ESMTPA id
+        20200901020745epcas1p33a9988253efe06f536ece4c24c830137~whsj6j1wS2865628656epcas1p3F;
+        Tue,  1 Sep 2020 02:07:45 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20200901020745epsmtrp2d906f389fe4a7a416ff22089a5800a88~whsj5FVt21929619296epsmtrp2P;
+        Tue,  1 Sep 2020 02:07:45 +0000 (GMT)
+X-AuditID: b6c32a39-8dfff70000006fa2-85-5f4dacf11fcf
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        43.03.08303.1FCAD4F5; Tue,  1 Sep 2020 11:07:45 +0900 (KST)
+Received: from [10.113.111.64] (unknown [10.113.111.64]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20200901020745epsmtip1ab493178da14b7dbe6bd1200a8620199~whsjiI7Pv0918909189epsmtip1h;
+        Tue,  1 Sep 2020 02:07:45 +0000 (GMT)
+Subject: Re: [PATCH 3/3] drm/vc4: hdmi: Add pixel bvb clock control
+To:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Maxime Ripard <maxime@cerno.tech>
+Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Eric Anholt <eric@anholt.net>, devicetree@vger.kernel.org,
+        Tim Gover <tim.gover@raspberrypi.com>, kdasu.kdev@gmail.com,
+        sboyd@kernel.org, mturquette@baylibre.com,
+        LKML <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Phil Elwell <phil@raspberrypi.com>, robh+dt@kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Hoegeun Kwon <hoegeun.kwon@samsung.com>
+From:   Hoegeun Kwon <hoegeun.kwon@samsung.com>
+Message-ID: <f84797d1-22b6-7673-d0dd-398d339a5ed2@samsung.com>
+Date:   Tue, 1 Sep 2020 11:07:26 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+        Thunderbird/68.10.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6638.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 982f6fbd-5359-4c3e-9b71-08d84e1a78b3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Sep 2020 01:58:07.2798
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fIYXVZI9siblfWeZVZXY0Z92KfaP1q2SSZaHXpdgyLUZt+qUN6SUjgGWIpC6lGd2GDVGZDS4LkeoDcLEWUPJ6Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7374
+In-Reply-To: <CAPY8ntDeLOb+GvpLDX1BFrhtYyGQzJ01pWHiS30r-2ZUJTg8Gw@mail.gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA02TfVBUVRjGO7t37y7kNpev9kQUcMsUJj4WWD04fDQD1i38oKgx+KP1xt6A
+        WHZ39oJjZAQUybegELLAgGBCiyiBEiAbKwo7gWgFCEO6lLhOYrAIQ2M0YbtcnPjved/ze857
+        nnPmiPjOq7i7KEWVzmhVtJLEHbGuKz7+fktn98oDx4w81FYyiKH5uiYM1V+9LkDjK1YcGXPG
+        ALI2F+KoZ7wNQx2zNwXoYbFZgMZ6a3FU/mu7EJ18tAbQz8O7UZeuGUfnph/gKM9wVYjWbn5n
+        M7RM4ehO5Qx4zYXKtQ7hlHUqT0jpZkZx6tb1GzjVo7stpC5Oy6gOfQFOzRSZeFTn6c+pvMFV
+        jCq9oAdU58in1HLHi7HihNSwZIZWMFovRpWoVqSoksLJmDh5lFy2I1DqJw1FO0kvFZ3GhJPR
+        e2L9Xk9R2mKSXodoZYatFUuzLBkQEaZVZ6QzXslqNj2cZDQKpSZU48/SaWyGKsk/UZ22SxoY
+        GCSzgQdTk09apvia2y8c7tdN4tngB0khcBBBIgS2990SFgJHkTPRDeDYwH3AFUsAHn3cJ+CK
+        ZQC75ur5Tyz6qZENqhdA8xnzBjUPoMlSuk65EFGw8tFlgV27Eu/Da8aidQefmMRgVckCbl/A
+        CT+4UjzJs2sxEQFXF//E7BojXoZ3ZoeBXbsR8bDHcl/IMU7wx+q764wD8TYsaGpY34dPeMLv
+        52v5nJbA6bv1PPswSNQ4wL8HxoTcuaPh+faJjQwucM50YaPvDpcXDDinWThePYdx5mwAj5XX
+        bEDBsP+bE7ZdRbYJPvB8bwDX9oY9/9QBbvAzcGGlWGBHICGG+V85c8gr8F62UcBpDzhc0szj
+        NAWtJ64Iy4C3blM03aY4uk1xdP8PbgCYHjzLaNi0JIaVamSb37sDrH8C39BuUDW/6D8AeCIw
+        AKCIT7qKjb0xcmexgv4kk9Gq5doMJcMOAJntssv57m6JatsvUqXLpbKg4OBgFCLdIZNKSYn4
+        92kvuTORRKczqQyjYbRPfDyRg3s277Q2PDLuAJO6NORUGuBmHt0/KjmVdeTUe8PB8Q/fjdxm
+        kbTnYtD6Rv5ZfdCZhJzWoNzDsuKoyMYJC/bTS6bFrZn7DrgsPN3aaj7kWyb0VDusSRIOdp/b
+        2+R3qSDSUpeM8TwR6dpwby3nsewtNn7/8Zrjf/gox6s9Luqk2eOoXJGv/uw5a0HPHkPJq9u/
+        3tJocIopW9uZtWXrzL5vh6uibjg2xv3WUmwQeLdsr5gVVFz70LOKHzGzANT0Xx7bhEXm/sHO
+        lIlay1MeYUc/uFyRNcU3/vLRv/NfTl5KqWxTv5lzhIl+Z2jZpDMoRoriMnfpP+7LwaczviB3
+        Pz8HcVNhSN+DOBJjk2mpL1/L0v8BV5IXro0EAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrGIsWRmVeSWpSXmKPExsWy7bCSnO7HNb7xBh2nBC3W9h5lsXg7dzGL
+        xfwj51gtrnx9z2ZxoPEyo8X75V1sFjuvrGWx2PT4GqvFx557rBaXd81hs5h4ewO7xYwf/xgt
+        Lp5ytdg2azmbxbpbr9ksWvceYbf4d20jUMOKG2wWj6beZ3QQ9mh6f4zN4/2NVnaPWffPsnnc
+        OXeezWPnrLvsHltvmXpsWtXJ5nG/+ziTx+Yl9R6tR3+xePRtWcXosfl0tcfnTXIBvFFcNimp
+        OZllqUX6dglcGTOe3mAuuCtbsX/WdbYGxn3iXYycHBICJhKrbpxm7GLk4hAS2MEo8f/YP0aI
+        hIzEqv4trF2MHEC2sMThw8UQNa8ZJSYsu8sKUiMs4Cwx9cdBMFtEIELizKq5YIOYBW6ySGzq
+        /8oOkhAS2MMiMfWYFIjNJqAr8bXnOhOIzStgJ/HrwxsWEJtFQEXi0eNTjCDLRAUiJXbusIQo
+        EZQ4OfMJWAmnQKBE5+IFbCA2s4CZxLzND5khbHmJ7W/nQNniEreezGeawCg0C0n7LCQts5C0
+        zELSsoCRZRWjZGpBcW56brFhgVFearlecWJucWleul5yfu4mRnDUa2ntYNyz6oPeIUYmDsZD
+        jBIczEoivAd2eccL8aYkVlalFuXHF5XmpBYfYpTmYFES5/06a2GckEB6YklqdmpqQWoRTJaJ
+        g1OqgenAjguskjrnQqSU/Z0fOnw2yJW42O5ipfYpwpt52YO2+KaSDGm2qKlsWr/+ql4xjY1n
+        2e1aUPRGxeW30xQT7Y3hJ6X8z23R18r9e9hp8bxPojEVf5iL5EIWTt+6J7lmYpf28z8pgp8Y
+        4j2PiEex2t67wvFuWqnM+Yq9NxTV6wqfvr9dFPd6yu3lTq1X2xYeWKUkejsooZ6rUnNFpfD0
+        m+mX+8I6LWoPP9YVM9wrPe1if/3LNQsC85YaXtwX4cX0O6jnEEPHynjuCumWft/Uh9Ocfr1Z
+        eWy5jVHEXSfl5jyPZMGNTa42rT7F8wzMA3Iyqqx/axw4XyJi1d1aeWLe1LRJ+hM+2WwM3Bm9
+        cIWaEktxRqKhFnNRcSIA/lK3z2kDAAA=
+X-CMS-MailID: 20200901020745epcas1p33a9988253efe06f536ece4c24c830137
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20200821071122epcas1p3d00dda4665f94192ac5e9ee829d0557d
+References: <20200821071045.24501-1-hoegeun.kwon@samsung.com>
+        <CGME20200821071122epcas1p3d00dda4665f94192ac5e9ee829d0557d@epcas1p3.samsung.com>
+        <20200821071045.24501-4-hoegeun.kwon@samsung.com>
+        <61c199bf-852f-82d3-089a-a0a435343acf@i2se.com>
+        <80749dcd-d4b2-68a1-f3ca-c19a120f6f7b@samsung.com>
+        <84c423e8-25a6-8f23-cc80-7a17ce03fd1d@i2se.com>
+        <a19de8d5-2b01-cb62-38a2-b0732068025c@samsung.com>
+        <a3231281-3bd0-e7c9-1bb0-f05848621e82@i2se.com>
+        <20200828152510.jhhqvka6fmouozff@gilmour.lan>
+        <CAPY8ntDeLOb+GvpLDX1BFrhtYyGQzJ01pWHiS30r-2ZUJTg8Gw@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020/08/31 18:53 Marco Felsch <m.felsch@pengutronix.de> wrote:
-> Hi Robin,
->=20
-> On 20-09-01 00:48, Robin Gong wrote:
-> > BuckX enable mode
-> > 00b =3D OFF
-> > 01b =3D ON by PMIC_ON_REQ =3D H
-> > 10b =3D ON by PMIC_ON_REQ =3D H && PMIC_STBY_REQ =3D L 11b =3D Always O=
-N
-> >
-> > For such enable mode, enable_value should be clearly set in requlator
-> > desc,
-> > 00/11 is not enough, correct it now for different bucks. For example,
-> > buck2 is designed for vddarm which could be off in 'PMIC_STBY_REQ =3D H=
-'
-> > after kernel enter suspend, so should be set '10b' as ON, while others =
-is '01b'
-> as ON.
-> > All are the same as the default setting which means bucks no need to
-> > be enabled again during kernel boot even if they have been enabled
-> > already after pmic on.
->=20
-> I wouldn't hard-code the regulator behaviour because the behaviour comes
-> from the system design which in most cases are comming from our hw-guys.
-> Till now I saw a few intelligent designs don't following the pmic user
-> recommendations to save money. I would love to specify the regulator
-> behaviour/mode within the dt or acpi.
-Well, if so the better way is moving into dts. Will implement it in v2.
+Thank you reviews by Dave, Maxime and Stefan.
 
->=20
-> > Signed-off-by: Robin Gong <yibin.gong@nxp.com>
-> > ---
-> >  drivers/regulator/pca9450-regulator.c | 15 +++++++++++++--
-> >  1 file changed, 13 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/regulator/pca9450-regulator.c
-> > b/drivers/regulator/pca9450-regulator.c
-> > index eb5822b..79f2a5a 100644
-> > --- a/drivers/regulator/pca9450-regulator.c
-> > +++ b/drivers/regulator/pca9450-regulator.c
-> > @@ -249,6 +249,7 @@ static const struct pca9450_regulator_desc
-> pca9450a_regulators[] =3D {
-> >  			.vsel_mask =3D BUCK1OUT_DVS0_MASK,
-> >  			.enable_reg =3D PCA9450_REG_BUCK1CTRL,
-> >  			.enable_mask =3D BUCK1_ENMODE_MASK,
-> > +			.enable_val =3D BUCK_ENMODE_ONREQ,
-> >  			.owner =3D THIS_MODULE,
-> >  			.of_parse_cb =3D pca9450_set_dvs_levels,
-> >  		},
-> > @@ -273,7 +274,8 @@ static const struct pca9450_regulator_desc
-> pca9450a_regulators[] =3D {
-> >  			.vsel_reg =3D PCA9450_REG_BUCK2OUT_DVS0,
-> >  			.vsel_mask =3D BUCK2OUT_DVS0_MASK,
-> >  			.enable_reg =3D PCA9450_REG_BUCK2CTRL,
-> > -			.enable_mask =3D BUCK1_ENMODE_MASK,
-> > +			.enable_mask =3D BUCK2_ENMODE_MASK,
->=20
-> Unrelated change?
-Yes, that's just correct it minor literal since that's BUCK2 although
-they're the same, will split it anyway.
+On 8/29/20 12:37 AM, Dave Stevenson wrote:
+> Hi Maxime, Stefan, and Hoegeun
+>
+> On Fri, 28 Aug 2020 at 16:25, Maxime Ripard <maxime@cerno.tech> wrote:
+>> Hi,
+>>
+>> On Fri, Aug 28, 2020 at 02:45:49PM +0200, Stefan Wahren wrote:
+>>> Am 28.08.20 um 08:30 schrieb Hoegeun Kwon:
+>>>> On 8/27/20 6:49 PM, Stefan Wahren wrote:
+>>>>> Am 27.08.20 um 06:35 schrieb Hoegeun Kwon:
+>>>>>> Hi Stefan,
+>>>>>>
+>>>>>> Thank you for your review.
+>>>>>>
+>>>>>>
+>>>>>> On 8/26/20 7:04 PM, Stefan Wahren wrote:
+>>>>>>> Hi Hoeguen,
+>>>>>>>
+>>>>>>> Am 21.08.20 um 09:10 schrieb Hoegeun Kwon:
+>>>>>>>> There is a problem that the output does not work at a resolution
+>>>>>>>> exceeding FHD. To solve this, we need to adjust the bvb clock at a
+>>>>>>>> resolution exceeding FHD.
+>>>>>>> this patch introduces a mandatory clock, please update
+>>>>>>> brcm,bcm2835-hdmi.yaml first.
+>>>>>>>
+>>>>>>> Is this clock physically available on BCM283x or only on BCM2711?
+>>>>>> As far as I know, BCM2711 raspberry pi 4 supports 4k,
+>>>>>>
+>>>>>> don't supported on pi 3 and pi 3+.
+>>>>>>
+>>>>>> Since 4k is not supported in versions prior to Raspberry Pi 4,
+>>>>>>
+>>>>>> I don't think we need to modify the bvb clock.
+>>>>>>
+>>>>>>
+>>>>>> So I think it is better to update 'brcm,bcm2711-hdmi.yaml'
+>>>>>>
+>>>>>> instead of 'brcm,bcm2835-hdmi.yaml'.
+>>>>> You are correct please update only brcm,bcm2711-hdmi.yaml.
+>>>>>
+>>>>> My concern was that the function vc4_hdmi_encoder_pre_crtc_configure()
+>>>>> is called on a non-bcm2711 platform or on a Raspberry Pi 4 with an older
+>>>>> DTB. So making the BVB clock optional might be better?
+>>>> You are right, if use old dtb, we have a problem with the hdmi driver.
+>>>>
+>>>> So how about modifying it like this?
+>>>>
+>>>> @@ -1614,8 +1614,8 @@ static int vc5_hdmi_init_resources(struct vc4_hdmi
+>>>> *vc4_hdmi)
+>>>>
+>>>>           vc4_hdmi->pixel_bvb_clock = devm_clk_get(dev, "bvb");
+>>>>           if (IS_ERR(vc4_hdmi->pixel_bvb_clock)) {
+>>>> -               DRM_ERROR("Failed to get pixel bvb clock\n");
+>>>> -               return PTR_ERR(vc4_hdmi->pixel_bvb_clock);
+>>>> +               DRM_WARN("Failed to get pixel bvb clock\n");
+>>>> +               vc4_hdmi->pixel_bvb_clock = NULL;
+>>>>           }
+>>> i think the better solution would be devm_clk_get_optional(), which
+>>> return NULL in case the clock doesn't exist.
+>> It's not really optional though. BCM2711 will require it in order to run
+>> properly (as Hoegeun experienced), and the previous SoCs won't.
+>>
+>> If we use clk_get_optional and that the DT is missing the clock on the
+>> BCM2711, we will silently ignore it which doesn't sound great.
+> Am I missing something here? (I know I missed this earlier)
+> We're in vc5_hdmi_init_resources, which is inherently bcm2711 only.
+> bcm283x will go through vc4_hdmi_init_resources.
+>
+> As long as vc4_hdmi_init_resources has left vc4_hdmi->pixel_bvb_clock
+> at NULL, then the clock framework will be happy to do a nop.
+>
+> For BCM2711 an old DT would have issues, but, as Maxime has stated, no
+> binding or upstream DTB has been merged yet, so it can be made
+> mandatory.
+
+If so, it seems good to set bvb_clock to mandatory without taking into
+
+account the BCM2711 an old DTB as it hasn't been merged yet.
+
+I will send version 2 patches.
+
+> Making it optional drops you back on whatever the firmware might have
+> set it to, which may be sufficient for some resolutions but not
+> others.
+
+As a result of checking by adding bvb_clock when I operated it with
+
+the firmware, it was confirmed that the firmware increased the bvb_clock
+
+from 75000000 to 150000000 when the FHD was exceeded.
+
+
+Best regards
+
+Hoegeun
+
+>
+>    Dave
+>
