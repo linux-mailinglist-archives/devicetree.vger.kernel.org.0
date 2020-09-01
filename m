@@ -2,102 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05348258F7E
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 15:52:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75138258F90
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 15:55:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728018AbgIANwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 09:52:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43194 "EHLO mail.kernel.org"
+        id S1728273AbgIANyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 09:54:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45914 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728204AbgIANvy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Sep 2020 09:51:54 -0400
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1728267AbgIANyq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Sep 2020 09:54:46 -0400
+Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E6AF920FC3;
-        Tue,  1 Sep 2020 13:51:21 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 21121206EF;
+        Tue,  1 Sep 2020 13:54:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598968282;
-        bh=mI5loyu1Y/tc5SvQVWEfX8DOvn19LmCbUnJb4i42P7M=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=X9hapkz+lJuyZ2B5tbcXH7w2Ufo8Rp920wemATCR6WhjDBQ6pEjEHX2Tb5PxLWHBL
-         IBPFLC/24evBLDPiFKZALPta4JpAVw8TaZPVNgqtqt7OVkIuZg7xLb3VFq57LM/I1C
-         /Vd3AEnS9RCLLC0OCsS599zf++IRqnwoekab5SoI=
-Received: by mail-ej1-f54.google.com with SMTP id h4so1794320ejj.0;
-        Tue, 01 Sep 2020 06:51:21 -0700 (PDT)
-X-Gm-Message-State: AOAM530iXAbM2/yql9A1d9qDNzOmk0VDd4Qjf7ii0rIJ/4Drf3D9acae
-        oTqpDltgDqtbVBv0tKF0BaxU5URUJs1IfAWQIHU=
-X-Google-Smtp-Source: ABdhPJyMVdPxgQ8C7jJmzqSXYOjNfFjncTudLd43V/VYCjvhae0wrEHggzpOadKxMi2piJ5FsJnbe7lg9Da8X1RKcKo=
-X-Received: by 2002:a17:906:ca4f:: with SMTP id jx15mr1530807ejb.454.1598968280357;
- Tue, 01 Sep 2020 06:51:20 -0700 (PDT)
+        s=default; t=1598968485;
+        bh=fgdQbvNKfrT9RQxxwbrS+G3c51w2CaurFPEVweTkSFs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=foEI5kCGhAdHd4Lc751iDhiFVCWbPPfNcIr92QxDyn3UHDswkD+id1vtNBkV1y7Cy
+         WfRn3Dz3pzF+lfzQ60RdprxObBsaeOpcqgut597Zbdm26EejvLtQh58icB6LxAWsau
+         sUd7M0EMs0QUirzh+WA6y4pe1Yl9VE4Du6yiE8+k=
+Date:   Tue, 1 Sep 2020 15:55:13 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     Sasha Levin <sashal@kernel.org>, adrian.hunter@intel.com,
+        ulf.hansson@linaro.org, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, robh+dt@kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        stable@vger.kernel.org
+Subject: Re: [PATCH 4.19 1/7] sdhci: tegra: Remove
+ SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK for Tegra210
+Message-ID: <20200901135513.GA397411@kroah.com>
+References: <1598653517-13658-1-git-send-email-skomatineni@nvidia.com>
+ <1598653517-13658-2-git-send-email-skomatineni@nvidia.com>
+ <20200828231536.GU8670@sasha-vm>
+ <dc6bfd08-baaf-e1ad-6b3f-77ff82d110bb@nvidia.com>
 MIME-Version: 1.0
-References: <267a81e550a0b5d479c82b5908e2a2caa4c9c874.1597061474.git.guillaume.tucker@collabora.com>
- <c0509b5f-a064-2e73-7e04-51f41a56d222@collabora.com> <CAJKOXPczS_RpSFpjGygZ_1MCYxJ_cUDRjriZvrHd6+zhmq=c8Q@mail.gmail.com>
-In-Reply-To: <CAJKOXPczS_RpSFpjGygZ_1MCYxJ_cUDRjriZvrHd6+zhmq=c8Q@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Tue, 1 Sep 2020 15:51:09 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPfT7LvHVpTdaQ1voVi=OtC4aV6hbyzcekmrPMkb+5ebNg@mail.gmail.com>
-Message-ID: <CAJKOXPfT7LvHVpTdaQ1voVi=OtC4aV6hbyzcekmrPMkb+5ebNg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] ARM: exynos: clear L310_AUX_CTRL_NS_LOCKDOWN in
- default l2c_aux_val
-To:     Guillaume Tucker <guillaume.tucker@collabora.com>
-Cc:     Russell King <linux@armlinux.org.uk>,
-        Kukjin Kim <kgene@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, kernel@collabora.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <dc6bfd08-baaf-e1ad-6b3f-77ff82d110bb@nvidia.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 1 Sep 2020 at 15:45, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On Tue, 1 Sep 2020 at 15:34, Guillaume Tucker
-> <guillaume.tucker@collabora.com> wrote:
-> >
-> > Hi Krzysztof, Russell,
-> >
-> > On 10/08/2020 13:22, Guillaume Tucker wrote:
-> > > The L310_AUX_CTRL_NS_LOCKDOWN flag is set during the L2C enable
-> > > sequence.  There is no need to set it in the default register value,
-> > > this was done before support for it was implemented in the code.  It
-> > > is not set in the hardware initial value either.
-> > >
-> > > Clean this up by removing this flag from the default l2c_aux_val, and
-> > > add it to the l2c_aux_mask to print an alert message if it was already
-> > > set before the kernel initialisation.
-> > >
-> > > Signed-off-by: Guillaume Tucker <guillaume.tucker@collabora.com>
-> > > ---
-> > >
-> > > Notes:
-> > >     v2: fix flag name L310_AUX_CTRL_NS_LOCKDOWN
-> > >
-> > >  arch/arm/mach-exynos/exynos.c | 4 ++--
-> > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > I believe this v2 series has addressed all previous comments and
-> > you were waiting for the 5.9 merge window to end.  The patches
-> > all still apply cleanly on v5.9-rc3.  Do you want me to resend
-> > the series anyway or is there anything else needed at this point?
-> >
-> > Maybe one thing that wasn't completely clear in v1 was whether
-> > patch 2/4 was the right approach.  I've explained the reason
-> > behind it but didn't get a final reply from Russell[1].
->
-> I am sorry, my bad. I already applied this one and 3/4 (dts).
-> Apparently I forgot to reply with confirmation and Patchwork did not
-> notify you for some reason.
->
-> Patch 2/4 does not look like one for me so I would need ack from
-> Russell to take. Did you submit it to the ARM patches queue?
-> Patch 4/4 will wait for v5.10-rc1 as it depends on 1/4 and it is DTS patch.
+On Fri, Aug 28, 2020 at 04:23:48PM -0700, Sowjanya Komatineni wrote:
+> 
+> On 8/28/20 4:15 PM, Sasha Levin wrote:
+> > On Fri, Aug 28, 2020 at 03:25:11PM -0700, Sowjanya Komatineni wrote:
+> > > commit b5a84ecf025a ("mmc: tegra: Add Tegra210 support")
+> > 
+> > What does this line above represent?
+> > 
+> SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK is set incorrectly in above commit
+> 
+> when Tegra210 support was added.
 
-Correct: Patch 4/4 will wait for v5.10 because it depends on the DTS patch.
+Odd, that's a new format to send to us to apply :)
 
-Best regards,
-Krzysztof
+Can you please provide the git commit id of the original commit in
+Linus's tree, as per the documentation, so we know what this is, and can
+document that?
+
+Look at all of the commits in the stable trees for examples of how to do
+this.
+
+Can y ou fix that up and resend this whole series?
+
+thanks,
+
+greg k-h
