@@ -2,145 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DD4525887A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 08:49:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 448B6258919
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 09:32:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726012AbgIAGtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 02:49:33 -0400
-Received: from mx.blih.net ([212.83.155.74]:46689 "EHLO mx.blih.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726006AbgIAGtc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Sep 2020 02:49:32 -0400
-X-Greylist: delayed 399 seconds by postgrey-1.27 at vger.kernel.org; Tue, 01 Sep 2020 02:49:31 EDT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bidouilliste.com;
-        s=mx; t=1598942569;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=nZvkdgfEsx8IUABfhx71Dpoxee70fmEUTqE8AA7jJGE=;
-        b=YrKuyRgS7QNfdF7qc4hPTROgfFajA7Fk9Ph+iwvL4aPMHfAkWgKP6nOnmArJ1pn+u1TWq2
-        Cd91ByVr7E2rDIilyqYa/3Zyd/93ANKbFJxeHCP+m8YDm64qxE65dqaI+MukDy6JM7NyRu
-        rCmQsqbvJSUHjiMTKOj+S6geJCxe3A0=
-Received: from amy.home (lfbn-idf2-1-1138-237.w90-92.abo.wanadoo.fr [90.92.20.237])
-        by mx.blih.net (OpenSMTPD) with ESMTPSA id 8cb32919 (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO);
-        Tue, 1 Sep 2020 06:42:49 +0000 (UTC)
-Date:   Tue, 1 Sep 2020 08:42:49 +0200
-From:   Emmanuel Vadot <manu@bidouilliste.com>
-To:     =?ISO-8859-1?Q?Andr=E9?= Przywara <andre.przywara@arm.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Ray Jui <rjui@broadcom.com>, Chanho Min <chanho.min@lge.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Haojian Zhuang <haojian.zhuang@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 0/6] dt-bindings: Convert SP804 to Json-schema (and
- fix users)
-Message-Id: <20200901084249.b72bb69d617cc32733432da1@bidouilliste.com>
-In-Reply-To: <28acf821-fa6f-7259-ec1b-4810ca1ff48f@arm.com>
-References: <20200828142018.43298-1-andre.przywara@arm.com>
-        <CACRpkdZUrPeUbpNeCZcw8kq5k3egijAuh7R1_3TkbPz5wN+=Lw@mail.gmail.com>
-        <28acf821-fa6f-7259-ec1b-4810ca1ff48f@arm.com>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.32; amd64-portbld-freebsd13.0)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=ISO-8859-1
+        id S1727046AbgIAHcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 03:32:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36760 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726006AbgIAHcM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 03:32:12 -0400
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13E5AC061244
+        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 00:32:12 -0700 (PDT)
+Received: by mail-pj1-x1041.google.com with SMTP id g6so199326pjl.0
+        for <devicetree@vger.kernel.org>; Tue, 01 Sep 2020 00:32:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=7c8FWHabhNiA3wbCJBExE1cm7AjheLEh6XznHaWmc4E=;
+        b=R/N6oSU+eal314kD3fWO6djHTfaPEATfyxlCCCU4c7McGN2WDgMEPHnURJDKXCNs7O
+         +jn9s1fzze39k6OboAs9nfqpGB+YzHzHutVWc6iKIBbwuF0nM1T+KkqZKQRJrhUe4+4b
+         TiE/7mGv5J6hIuc/YmXgrqHWfDElxuztPilVU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=7c8FWHabhNiA3wbCJBExE1cm7AjheLEh6XznHaWmc4E=;
+        b=SKhQdMdBDRyZH74WfgcQUOoDOj/ygYgMUOLSZlW/+EUtQrwozXey3BIGb8cjkZHnM3
+         fmT3YAkyGMghmo5VHxiJRqA92VmE8YGMnh7qlT5LRdM3Z/wqZ9p6xY4vXoBjm+zvlF8r
+         1g18GeUS8GlJ12nCGZYisuNCUk4MtKmnPjw2kh1CoIy7A6gQxUV8GKS5XGNl+0FGZEDw
+         xufTTWD4Pr0YddFN6lvPSaH9WPBolXFi35aNeAEYe8Kgt885cUi2wBXvs0m02QoFypqo
+         F44YcDlrslgG3O2rfsPBABQHqfPirAbRYhKjUgPqL+SgKZV7mdqhyzCCGlB422+QGnsm
+         mjTw==
+X-Gm-Message-State: AOAM532SYZNEwOURRIW+3bWNq7/C9ZsxaNcFNXvziGuLQqBe0adlsei3
+        heAztTIh2L0PW0wKR8WWaG6Jjw==
+X-Google-Smtp-Source: ABdhPJxRSerQ9wQoir2LSEhPgWfjzSr+4YbUaBQJByGGsoMetPbz0tzh/DADiqm589TbU5OdIhh8TA==
+X-Received: by 2002:a17:90a:e609:: with SMTP id j9mr313486pjy.129.1598945531556;
+        Tue, 01 Sep 2020 00:32:11 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:3e52:82ff:fe6c:83ab])
+        by smtp.gmail.com with ESMTPSA id i7sm910801pgh.58.2020.09.01.00.32.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Sep 2020 00:32:11 -0700 (PDT)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1598855964-1042-5-git-send-email-srivasam@codeaurora.org>
+References: <1598855964-1042-1-git-send-email-srivasam@codeaurora.org> <1598855964-1042-5-git-send-email-srivasam@codeaurora.org>
+Subject: Re: [PATCH v3 4/5] ASoC: qcom: Add support for audio over DP
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
+        Srinivasa Rao <srivasam@codeaurora.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
+        broonie@kernel.org, devicetree@vger.kernel.org,
+        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, perex@perex.cz, plai@codeaurora.org,
+        robh+dt@kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org, tiwai@suse.com
+Date:   Tue, 01 Sep 2020 00:32:09 -0700
+Message-ID: <159894552988.334488.8290895362888910651@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 Aug 2020 16:44:28 +0100
-Andr=E9 Przywara <andre.przywara@arm.com> wrote:
+Quoting Srinivasa Rao Mandadapu (2020-08-30 23:39:23)
+> diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
+> index 167bf2c..cea7ae7 100644
+> --- a/sound/soc/qcom/lpass-sc7180.c
+> +++ b/sound/soc/qcom/lpass-sc7180.c
+> @@ -190,15 +232,92 @@ static struct lpass_variant sc7180_data =3D {
+>                                    "mi2s-bit-clk0",
+>                                    "mi2s-bit-clk1",
+>                                 },
+> +       .id                             =3D I2S_INTERFACE,
+>         .init                   =3D sc7180_lpass_init,
+>         .exit                   =3D sc7180_lpass_exit,
+>         .alloc_dma_channel      =3D sc7180_lpass_alloc_dma_channel,
+>         .free_dma_channel       =3D sc7180_lpass_free_dma_channel,
+>  };
+> =20
+> +static struct lpass_variant sc7180_hdmi_data =3D {
 
-> On 28/08/2020 15:54, Linus Walleij wrote:
->=20
-> Hi,
->=20
-> > On Fri, Aug 28, 2020 at 4:20 PM Andre Przywara <andre.przywara@arm.com>=
- wrote:
-> >=20
-> >> This is the second attempt at converting the SP804 timer binding to ya=
-ml.
-> >> Compared to v1, I forbid additional properties, and included the prime=
-cell
-> >> binding. Also the clock-names property is now listed, although without
-> >> further requirements on the names. Changelog below.
-> >=20
-> > The series:
-> > Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> >=20
-> >> I couldn't test any of those DT files on actual machines, but tried
-> >> to make the changes in a way that would be transparent to at least the
-> >> Linux driver. The only other SP804 DT user I could find is FreeBSD,
-> >> but they seem to use a different binding (no clocks, but a
-> >> clock-frequency property).
-> >=20
-> > That's annoying. I suppose FreeBSD just made that up and doesn't
-> > even have a binding document for it?
->=20
-> I couldn't find bindings at all in their git tree.
+Can this be const?
 
- That's because I don't merge the bindings in the main branch.
+> +       .hdmi_tx_ctl_addr       =3D 0x1000,
+> +       .hdmi_legacy_addr       =3D 0x1008,
+> +       .hdmi_vbit_addr         =3D 0x610c0,
+> +       .hdmi_ch_lsb_addr       =3D 0x61048,
+> +       .hdmi_ch_msb_addr       =3D 0x6104c,
+> +       .ch_stride              =3D 0x8,
+> +       .hdmi_parity_addr       =3D 0x61034,
+> +       .hdmi_dmactl_addr       =3D 0x61038,
+> +       .hdmi_dma_stride        =3D 0x4,
+> +       .hdmi_DP_addr           =3D 0x610c8,
+> +       .hdmi_sstream_addr      =3D 0x6101c,
+> +       .irq_reg_base           =3D 0x63000,
+> +       .irq_ports              =3D 1,
+> +       .rdma_reg_base          =3D 0x64000,
+> +       .rdma_reg_stride        =3D 0x1000,
+> +       .rdma_channels          =3D 4,
+> +
+> +       .rdma_dyncclk           =3D REG_FIELD_ID(0x64000, 14, 14, 4, 0x10=
+00),
+> +       .rdma_bursten           =3D REG_FIELD_ID(0x64000, 13, 13, 4, 0x10=
+00),
+> +       .rdma_burst8            =3D REG_FIELD_ID(0x64000, 15, 15, 4, 0x10=
+00),
+> +       .rdma_burst16           =3D REG_FIELD_ID(0x64000, 16, 16, 4, 0x10=
+00),
+> +       .rdma_dynburst          =3D REG_FIELD_ID(0x64000, 18, 18, 4, 0x10=
+00),
+> +       .rdma_wpscnt            =3D REG_FIELD_ID(0x64000, 10, 12, 4, 0x10=
+00),
+> +       .rdma_fifowm            =3D REG_FIELD_ID(0x64000, 1, 5, 4, 0x1000=
+),
+> +       .rdma_enable            =3D REG_FIELD_ID(0x64000, 0, 0, 4, 0x1000=
+),
+> +
+> +       .sstream_en             =3D REG_FIELD(0x6101c, 0, 0),
+> +       .dma_sel                        =3D REG_FIELD(0x6101c, 1, 2),
+> +       .auto_bbit_en   =3D REG_FIELD(0x6101c, 3, 3),
+> +       .layout                 =3D REG_FIELD(0x6101c, 4, 4),
+> +       .layout_sp              =3D REG_FIELD(0x6101c, 5, 8),
+> +       .set_sp_on_en   =3D REG_FIELD(0x6101c, 10, 10),
+> +       .dp_audio               =3D REG_FIELD(0x6101c, 11, 11),
+> +       .dp_staffing_en =3D REG_FIELD(0x6101c, 12, 12),
+> +       .dp_sp_b_hw_en  =3D REG_FIELD(0x6101c, 13, 13),
+> +
+> +       .mute                   =3D REG_FIELD(0x610c8, 0, 0),
+> +       .as_sdp_cc              =3D REG_FIELD(0x610c8, 1, 3),
+> +       .as_sdp_ct              =3D REG_FIELD(0x610c8, 4, 7),
+> +       .aif_db4                        =3D REG_FIELD(0x610c8, 8, 15),
+> +       .frequency              =3D REG_FIELD(0x610c8, 16, 21),
+> +       .mst_index              =3D REG_FIELD(0x610c8, 28, 29),
+> +       .dptx_index             =3D REG_FIELD(0x610c8, 30, 31),
+> +
+> +       .soft_reset             =3D REG_FIELD(0x1000, 31, 31),
+> +       .force_reset    =3D REG_FIELD(0x1000, 30, 30),
+> +
+> +       .use_hw_chs             =3D REG_FIELD(0x61038, 0, 0),
+> +       .use_hw_usr             =3D REG_FIELD(0x61038, 1, 1),
+> +       .hw_chs_sel             =3D REG_FIELD(0x61038, 2, 4),
+> +       .hw_usr_sel             =3D REG_FIELD(0x61038, 5, 6),
+> +
+> +       .replace_vbit   =3D REG_FIELD(0x610c0, 0, 0),
+> +       .vbit_stream    =3D REG_FIELD(0x610c0, 1, 1),
+> +
+> +       .legacy_en              =3D  REG_FIELD(0x1008, 0, 0),
+> +       .calc_en                =3D  REG_FIELD(0x61034, 0, 0),
+> +       .lsb_bits               =3D  REG_FIELD(0x61048, 0, 31),
+> +       .msb_bits               =3D  REG_FIELD(0x6104c, 0, 31),
+> +
+> +       .clk_name               =3D (const char*[]) {
+> +                                       "pcnoc-sway-clk",
+> +                                       "audio-core",
+> +                                       "pcnoc-mport-clk",
+> +                               },
+> +       .num_clks               =3D 3,
+> +       .id                     =3D HDMI_INTERFACE,
+> +       .dai_driver             =3D sc7180_lpass_cpu_hdmi_dai_driver,
+> +       .num_dai                =3D ARRAY_SIZE(sc7180_lpass_cpu_hdmi_dai_=
+driver),
+> +       .init                   =3D sc7180_lpass_init,
+> +       .exit                   =3D sc7180_lpass_exit,
+> +       .alloc_dma_channel =3D sc7180_lpass_alloc_hdmi_dma_channel,
+> +       .free_dma_channel =3D sc7180_lpass_free_hdmi_dma_channel,
+> +
+> +};
 
-> I don't think they
-> treat this very formally, it seems to be more use-case driven.
-> Their SP804 driver does not know how to handle clock properties, so most
-> of the DTs (in sys/gnu/dts, so apparently copied from Linux) would not
-> work really well, because the driver assumes a hardcoded frequency of
-> 1MHz by default.
+Add a newline here?
 
- In addition to sys/gnu/dts we also have sys/dts/ which are our own DTs
-before we used the Linux ones (a long time ago but some platform
-weren't converted, they will just die sometime in the futur if nobody
-takes care of them I guess).
+>  static const struct of_device_id sc7180_lpass_cpu_device_id[] =3D {
+>         {.compatible =3D "qcom,sc7180-lpass-cpu", .data =3D &sc7180_data},
+> -       {}
+> +       {.compatible =3D "qcom,sc7180-lpass-hdmi", .data =3D &sc7180_hdmi=
+_data}
 
-> There is only one DT (Annapurna Alpine with Cortex-A15) that provides
-> this clock-frequency property. The Linux DT does not mention the SP804
-> in there at all, interestingly.
+This most likely needs to keep the sentinel around so that a match can
+be made or stop if nothing is found.
 
- I'm not familiar with this platform at all, it was done under
-contract by Semihalf and I'm sure that if something fails and their
-client starts to complain they will fix it.
-
-> > In an ideal world I suppose we should go and fix FreeBSD but I have
-> > no idea how easy or hard that is.
->=20
-> It seems to be messy, at least in this case, and I guess unifying DTs
-> means some work on drivers as well.
-
- I wouldn't worry about us on this case, this binding requirements
-seems to have be done a long time ago before we had any clock framework
-and if our drivers needs to be updated we will do it when we imports
-DTS from whatever Linux version this will be merged in.
-
-> But AFAIK most of the more modern platforms copy the DTs (and thus
-> implicitly the bindings) from Linux, so there is probably much less
-> deviation for many more relevant boards.
-
- Yes, I (and others) insist on using the DTs from Linux and not doing
-any patches to it without sending them to the Linux ML.
-
-> Cheers,
-> Andre
-
- Cheers,
-
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-
-
---=20
-Emmanuel Vadot <manu@bidouilliste.com>
+>  };
+>
