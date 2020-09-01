@@ -2,78 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17C27258A90
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 10:42:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D5B7258A96
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 10:44:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726770AbgIAImr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 04:42:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52944 "EHLO mail.kernel.org"
+        id S1726212AbgIAIoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 04:44:39 -0400
+Received: from uho.ysoft.cz ([81.19.3.130]:38910 "EHLO uho.ysoft.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725949AbgIAImq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Sep 2020 04:42:46 -0400
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E448D2071B;
-        Tue,  1 Sep 2020 08:42:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598949766;
-        bh=BapteVP8tE+4r4nW5BxhF7ZHdNQsLqYAF+RC1XokMIs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=0nyRHeoqCNiiBFP6QF7Vu8TKPFCF/ZRSGmdVMD7HeLiHvOg67mL4E03ckk6IhSwRP
-         VK5WjfXuB9wd54tvydBoGx0/97L3E7PBtfpJBq9Rxcxenq5GnOcPQxW+iV0GLJM31g
-         epLZ5NQBJVu/9MBBTz3pSKRcShnXIM0d5WVcXcWo=
-Received: by mail-ed1-f44.google.com with SMTP id w14so649973eds.0;
-        Tue, 01 Sep 2020 01:42:45 -0700 (PDT)
-X-Gm-Message-State: AOAM532farUAxaZ5Xyv3QkwmdXlmy+ePshAljLuScQk2PveWz9yaMMMb
-        XKzJM8bV2wbNl/1KtYZZLU9/qPoyTkEo1FKikCw=
-X-Google-Smtp-Source: ABdhPJyBJ2bEFjwMxy7tdkMWyLN4O9t/L+1SErRbMO8hnZ3DI56BaUruK44RZr/8zIeyeWpaxM3wT0lH/YX9S/NSYp4=
-X-Received: by 2002:a50:fd0b:: with SMTP id i11mr785806eds.298.1598949764527;
- Tue, 01 Sep 2020 01:42:44 -0700 (PDT)
+        id S1726102AbgIAIoh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Sep 2020 04:44:37 -0400
+Received: from [10.1.8.111] (unknown [10.1.8.111])
+        by uho.ysoft.cz (Postfix) with ESMTP id 8046CA00D7;
+        Tue,  1 Sep 2020 10:44:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+        s=20160406-ysoft-com; t=1598949875;
+        bh=mIdANwWwlPqHszzYGjhQKPmy/JsZ+HrTUgoApsidgoY=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=hgJzV6bbgTlG6jqkhi4G/K86n/3yxvlWgkaIxznqz/g03TnZpxBUf5V6impw8wE+S
+         HCuYNUHOmAQxJ7F1ihLVdNHeK6I8xK/JG9LNmPtoK1rf5XJoTDPR1krxDh5i04phrI
+         YQHWNRRSjTghnlmtZvgDNYl8L3cUh3GLPirE+++o=
+Subject: Re: [PATCH v4] video: fbdev: ssd1307fb: Added support to Column
+ offset
+To:     b.zolnierkie@samsung.com
+Cc:     Rodrigo Alencar <455.rodrigo.alencar@gmail.com>,
+        linux-fbdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+References: <1595622138-3965-1-git-send-email-455.rodrigo.alencar@gmail.com>
+From:   =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
+Message-ID: <d15729dd-63d1-7a06-f957-22eab6d74c9f@ysoft.com>
+Date:   Tue, 1 Sep 2020 10:44:35 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20200901075417.22481-1-krzk@kernel.org> <CGME20200901075518eucas1p252ef2b85cf5e1a83d88f8de2dd4a8196@eucas1p2.samsung.com>
- <20200901075417.22481-12-krzk@kernel.org> <800d8fa8-7fd4-6221-f8be-ef422e5642d9@samsung.com>
- <CAJKOXPd+Mr0c7ype1KTseBc2=qx0NNKKj5Ku0w0HBOgjEsGvKg@mail.gmail.com>
- <CAJKOXPfKnzsRA3D8b3z=iG4oD6P+M7Q7YMVbrOAmLTiNgZ5mXA@mail.gmail.com> <4836dc12-df88-5936-c208-8f6ff2a6bdc1@samsung.com>
-In-Reply-To: <4836dc12-df88-5936-c208-8f6ff2a6bdc1@samsung.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Tue, 1 Sep 2020 10:42:33 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPf9rFVbMnEYURw-QTzJPvVu56BBoThsWq=teHggrRDAGw@mail.gmail.com>
-Message-ID: <CAJKOXPf9rFVbMnEYURw-QTzJPvVu56BBoThsWq=teHggrRDAGw@mail.gmail.com>
-Subject: Re: [PATCH 11/13] ARM: dts: exynos: Silence SATA PHY warning in
- Exynos5250 Arndale
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <1595622138-3965-1-git-send-email-455.rodrigo.alencar@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 1 Sep 2020 at 10:36, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
+On 24. 07. 20 22:22, Rodrigo Alencar wrote:
+> This patch provides support for displays like VGM128064B0W10,
+> which requires a column offset of 2, i.e., its segments starts
+> in SEG2 and ends in SEG129.
+> 
+> Signed-off-by: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
 
-> >>> I'm not against the rename, but frankly, the above node and all i2c
-> >>> parameters should be moved to exynos5250.dtsi. This is a SoC internal
-> >>> things (the same way as hdmiphy in exynos4.dtsi), so the board dts
-> >>> should only contain information like status = "enabled" for i2c_8 and
-> >>> hdmi_i2c_phy nodes. No need to duplicate it here and in smdk5250.dts.
-> >> Good point, the I2C bus used here is an internal part of SoC.
-> >>
-> >> I will squash these two changes into a new one. Thanks for the review!
-> > While at it, I wonder about the samsung,i2c-slave-addr property. Is it
-> > really needed? Are there multiple masters on this bus?
->
-> This might be some cargo-cult, probably copied from HDMI DDC (I'm not
-> sure if it is needed there). I've removed it and SATA still works fine
-> on Exynos5250 Arndale board.
+Hi Bartlomiej,
+what is the status of this patch? I would like to see this merged so I can send
+patches for our in-tree imx6dl-yapp4 device trees that need exactly this change.
 
-Cool, thanks!
-
-Best regards,
-Krzysztof
+Thank you,
+Michal
