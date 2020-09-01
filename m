@@ -2,114 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27D4E259374
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 17:26:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3530F2595E0
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 17:57:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730057AbgIAPZi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 11:25:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50310 "EHLO mail.kernel.org"
+        id S1731831AbgIAP4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 11:56:55 -0400
+Received: from foss.arm.com ([217.140.110.172]:44610 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730052AbgIAPZh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Sep 2020 11:25:37 -0400
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 02D64206FA;
-        Tue,  1 Sep 2020 15:25:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598973936;
-        bh=dt0uPCgqA2UkzByRpvH836C/HijSVdlozfTi2rrAOao=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=C7uOrhsVqPRlHMAta5eV8ksbBFNCUpIBGOOrdMg7foI7teaTc1REKWNu5TxY3Es0S
-         e6lOqcIlrvmJToIoMes2VDNaHEZjlMpxy29Jma4MlAk0c72oK1cl9LoPBjQcrjLxOI
-         cCjvgm2xS9BjFEOYNSVYWDzOwFwvWS5MHeBnvW3M=
-Received: by mail-ej1-f53.google.com with SMTP id d26so2276846ejr.1;
-        Tue, 01 Sep 2020 08:25:35 -0700 (PDT)
-X-Gm-Message-State: AOAM531FcbFJvbC9qYlWLcLIsQGPEPf1ZlCIOas2rX/18AIq1+86lLu2
-        KEXcGNFGpHeRmJUejmenw7AyQ/fliVpl/sE8a3g=
-X-Google-Smtp-Source: ABdhPJzh1hNetH5rZ60C9AUx80r4SPqL6nutQWfXz6QlHt16bwsP6Lk4YkuJbUpSKMu3AEV2K/P421eyp+7Rtv3kzNc=
-X-Received: by 2002:a17:906:9356:: with SMTP id p22mr1858821ejw.119.1598973934455;
- Tue, 01 Sep 2020 08:25:34 -0700 (PDT)
+        id S1731364AbgIAP4f (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Sep 2020 11:56:35 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BFAE91045;
+        Tue,  1 Sep 2020 08:56:34 -0700 (PDT)
+Received: from [192.168.2.22] (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 17F3C3F71F;
+        Tue,  1 Sep 2020 08:56:31 -0700 (PDT)
+Subject: Re: [PATCH 00/10] dt-bindings: Convert SP805 to Json-schema (and fix
+ users)
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Chanho Min <chanho.min@lge.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Wei Xu <xuwei5@hisilicon.com>
+References: <20200828130602.42203-1-andre.przywara@arm.com>
+ <19c6a67e-48f0-c0b6-3653-32a5a1f09e07@gmail.com>
+ <CAL_JsqKvcGAotS6xL7pu+wM8X33PLCQCuoaXYmWrA3j3OdoR5A@mail.gmail.com>
+ <bbba0345-f1e3-a240-eaca-d67fa5f8259b@gmail.com>
+From:   =?UTF-8?Q?Andr=c3=a9_Przywara?= <andre.przywara@arm.com>
+Autocrypt: addr=andre.przywara@arm.com; prefer-encrypt=mutual; keydata=
+ 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
+ i4aIXCH3Wv6K
+Organization: ARM Ltd.
+Message-ID: <5fc1f463-7d48-e1e1-e316-3083becf8c34@arm.com>
+Date:   Tue, 1 Sep 2020 16:56:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-References: <267a81e550a0b5d479c82b5908e2a2caa4c9c874.1597061474.git.guillaume.tucker@collabora.com>
- <c0509b5f-a064-2e73-7e04-51f41a56d222@collabora.com> <CAJKOXPczS_RpSFpjGygZ_1MCYxJ_cUDRjriZvrHd6+zhmq=c8Q@mail.gmail.com>
- <CAJKOXPfT7LvHVpTdaQ1voVi=OtC4aV6hbyzcekmrPMkb+5ebNg@mail.gmail.com> <fd1a34c4-dcc1-1480-1e96-8bd94ada9846@collabora.com>
-In-Reply-To: <fd1a34c4-dcc1-1480-1e96-8bd94ada9846@collabora.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Tue, 1 Sep 2020 17:25:23 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPdQiXc3zVRK25AsfYPBwL1Rm6y1niFt5wxkC5gH5baiZA@mail.gmail.com>
-Message-ID: <CAJKOXPdQiXc3zVRK25AsfYPBwL1Rm6y1niFt5wxkC5gH5baiZA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] ARM: exynos: clear L310_AUX_CTRL_NS_LOCKDOWN in
- default l2c_aux_val
-To:     Guillaume Tucker <guillaume.tucker@collabora.com>
-Cc:     Russell King <linux@armlinux.org.uk>,
-        Kukjin Kim <kgene@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, kernel@collabora.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <bbba0345-f1e3-a240-eaca-d67fa5f8259b@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 1 Sep 2020 at 16:42, Guillaume Tucker
-<guillaume.tucker@collabora.com> wrote:
->
-> On 01/09/2020 14:51, Krzysztof Kozlowski wrote:
-> > On Tue, 1 Sep 2020 at 15:45, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >>
-> >> On Tue, 1 Sep 2020 at 15:34, Guillaume Tucker
-> >> <guillaume.tucker@collabora.com> wrote:
-> >>>
-> >>> Hi Krzysztof, Russell,
-> >>>
-> >>> On 10/08/2020 13:22, Guillaume Tucker wrote:
-> >>>> The L310_AUX_CTRL_NS_LOCKDOWN flag is set during the L2C enable
-> >>>> sequence.  There is no need to set it in the default register value,
-> >>>> this was done before support for it was implemented in the code.  It
-> >>>> is not set in the hardware initial value either.
-> >>>>
-> >>>> Clean this up by removing this flag from the default l2c_aux_val, and
-> >>>> add it to the l2c_aux_mask to print an alert message if it was already
-> >>>> set before the kernel initialisation.
-> >>>>
-> >>>> Signed-off-by: Guillaume Tucker <guillaume.tucker@collabora.com>
-> >>>> ---
-> >>>>
-> >>>> Notes:
-> >>>>     v2: fix flag name L310_AUX_CTRL_NS_LOCKDOWN
-> >>>>
-> >>>>  arch/arm/mach-exynos/exynos.c | 4 ++--
-> >>>>  1 file changed, 2 insertions(+), 2 deletions(-)
-> >>>
-> >>> I believe this v2 series has addressed all previous comments and
-> >>> you were waiting for the 5.9 merge window to end.  The patches
-> >>> all still apply cleanly on v5.9-rc3.  Do you want me to resend
-> >>> the series anyway or is there anything else needed at this point?
-> >>>
-> >>> Maybe one thing that wasn't completely clear in v1 was whether
-> >>> patch 2/4 was the right approach.  I've explained the reason
-> >>> behind it but didn't get a final reply from Russell[1].
-> >>
-> >> I am sorry, my bad. I already applied this one and 3/4 (dts).
-> >> Apparently I forgot to reply with confirmation and Patchwork did not
-> >> notify you for some reason.
->
-> No problem, I see them in linux-next now.  Thanks!
->
-> >> Patch 2/4 does not look like one for me so I would need ack from
-> >> Russell to take. Did you submit it to the ARM patches queue?
->
-> I've CC-ed linux-arm-kernel@lists.infradead.org on the whole
-> series.  Did you mean anything else by the ARM patches queue?
+On 28/08/2020 22:32, Florian Fainelli wrote:
 
-Unless anything changed, so far all ARM-core related patches had to be
-submitted to Russell's system. I didn't submit anything for 3 years so
-maybe something changed...
-https://www.arm.linux.org.uk/developer/patches/
+Hi,
 
-Best regards,
-Krzysztof
+Florian, thanks for queueing the Broadcom specific patches!
+
+> On 8/28/20 2:28 PM, Rob Herring wrote:
+>> On Fri, Aug 28, 2020 at 1:34 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
+>>>
+>>> On 8/28/20 6:05 AM, Andre Przywara wrote:
+>>>> This is an attempt to convert the SP805 watchdog DT binding to yaml.
+>>>> This is done in the first patch, the remaining nine fix some DT users.
+>>>>
+>>>> I couldn't test any of those DT files on actual machines, but tried
+>>>> to make the changes in a way that would be transparent to at least the
+>>>> Linux driver. The only other SP805 DT user I could find is U-Boot, which
+>>>> seems to only use a very minimal subset of the binding (just the first
+>>>> clock).
+>>>> I only tried to fix those DTs that were easily and reliably fixable.
+>>>> AFAICT, a missing primecell compatible string, for instance, would
+>>>> prevent the Linux driver from probing the device at all, so I didn't
+>>>> dare to touch those DTs at all. Missing clocks are equally fatal.
+>>>
+>>> What is the plan for merging this series? Should Rob pick up all changes
+>>> or since those are non critical changes, should we just leave it to the
+>>> SoC maintainers to pick up the changes in their tree?
+>>
+>> I don't take .dts files. Either subarch maintainers can pick up
+>> individual patches or send a PR to SoC maintainers.
+> 
+> OK, so we are fine, to say make sure this all lands in v5.10-rc1 at some
+> point and the warnings should no longer exist by then?
+
+So yes, I would be very grateful if subsystem maintainers take this at
+their discretion.
+For once, I didn't actually change anything in the binding, so most
+things were already slightly wrong according to the .txt binding, just
+nobody realised or cared. So those .dts files changes are actually
+independent and justified even without patch 01/10.
+
+Secondly, there are already so many warnings in many .dts files at the
+moment, that (in the worst case) a few more - for a brief period of time
+- do not really matter. But at the end it will improve the situation.
+
+Rob, if you are fine with the actual binding, I would try to pursue the
+remaining subsystem maintainers to get the .dts changes merged.
+
+Thanks,
+Andre.
