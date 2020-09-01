@@ -2,109 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03945258A40
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 10:19:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36719258A4C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 10:24:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726117AbgIAITw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 04:19:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48104 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725848AbgIAITv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Sep 2020 04:19:51 -0400
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AE1F12098B;
-        Tue,  1 Sep 2020 08:19:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598948391;
-        bh=nlTjzcTguTfrzCTXIUOPN/HlzyEFA6DAUkpPteDfSFE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=QmcfH1LT6XD0PZHu9wSVLSQjTtyskWxy1+HOl7O1K/jRXTNCcXz0lZtOzgIjo7kwo
-         it2UBojqsZy9No5C2hoJ9590MLKXUQztkcX0VFo+N+IQZSPzPlHjaGDx62g05DflKy
-         VpQcGHLWJ4Hrje1pCLRhehbSLuJyufAx6+xzmePQ=
-Received: by mail-ed1-f47.google.com with SMTP id l17so565369edq.12;
-        Tue, 01 Sep 2020 01:19:50 -0700 (PDT)
-X-Gm-Message-State: AOAM530ofbh8qqYQOvnkoQWuO6k7Ld9xxhkDqthEqLo3x1S8zzyWtVWI
-        u6aZA5GDOVekPr9CHHC5ZUOowv6+xkTKOkpzHrs=
-X-Google-Smtp-Source: ABdhPJzJWtDRO06V6iyD2YgKfVKZZxVA5CsrCMB9GkqU+xNVzliLbn6VCQZSEDIEKY+4PicwivC9FlnBexNjLYV1/Jw=
-X-Received: by 2002:a05:6402:515:: with SMTP id m21mr765717edv.348.1598948389218;
- Tue, 01 Sep 2020 01:19:49 -0700 (PDT)
+        id S1726112AbgIAIYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 04:24:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44832 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725989AbgIAIYV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 04:24:21 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D684C061245
+        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 01:24:20 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1kD1aP-0003FN-Rb; Tue, 01 Sep 2020 10:24:13 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1kD1aP-0006NQ-28; Tue, 01 Sep 2020 10:24:13 +0200
+Date:   Tue, 1 Sep 2020 10:24:13 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        zhengdejin5@gmail.com, richard.leitner@skidata.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH 4/5] net: phy: smsc: add phy refclk in support
+Message-ID: <20200901082413.cjnmy3s4lb5pfhv5@pengutronix.de>
+References: <20200831134836.20189-1-m.felsch@pengutronix.de>
+ <20200831134836.20189-5-m.felsch@pengutronix.de>
+ <2993e0ed-ebe9-fd85-4650-7e53c15cfe34@gmail.com>
 MIME-Version: 1.0
-References: <20200901075417.22481-1-krzk@kernel.org> <CGME20200901075518eucas1p252ef2b85cf5e1a83d88f8de2dd4a8196@eucas1p2.samsung.com>
- <20200901075417.22481-12-krzk@kernel.org> <800d8fa8-7fd4-6221-f8be-ef422e5642d9@samsung.com>
- <CAJKOXPd+Mr0c7ype1KTseBc2=qx0NNKKj5Ku0w0HBOgjEsGvKg@mail.gmail.com>
-In-Reply-To: <CAJKOXPd+Mr0c7ype1KTseBc2=qx0NNKKj5Ku0w0HBOgjEsGvKg@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Tue, 1 Sep 2020 10:19:38 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPfKnzsRA3D8b3z=iG4oD6P+M7Q7YMVbrOAmLTiNgZ5mXA@mail.gmail.com>
-Message-ID: <CAJKOXPfKnzsRA3D8b3z=iG4oD6P+M7Q7YMVbrOAmLTiNgZ5mXA@mail.gmail.com>
-Subject: Re: [PATCH 11/13] ARM: dts: exynos: Silence SATA PHY warning in
- Exynos5250 Arndale
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2993e0ed-ebe9-fd85-4650-7e53c15cfe34@gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:05:27 up 290 days, 23:24, 279 users,  load average: 0.11, 0.14,
+ 0.09
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 1 Sep 2020 at 10:17, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On Tue, 1 Sep 2020 at 10:13, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
-> >
-> > Hi Krzysztof,
-> >
-> > On 01.09.2020 09:54, Krzysztof Kozlowski wrote:
-> > > The SATA PHY in Exynos5250 SoCs has two interfaces and two device nodes:
-> > > 1. sata-phy@12170000
-> > > 2. i2c-9/i2c@38
-> > >
-> > > The first node represents the actual SATA PHY device with phy-cells.
-> > > The second represents additional I2C interface, needed by the driver
-> > > to communicate with the SATA PHY device.  It is not a PHY-provider in
-> > > the terms of dtschema so rename it to silence dtbs_check warning:
-> > >
-> > >    arch/arm/boot/dts/exynos5250-arndale.dt.yaml: sata-phy@38: '#phy-cells' is a required property
-> > >      From schema: lib/python3.6/site-packages/dtschema/schemas/phy/phy-provider.yaml
-> > >
-> > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > > ---
-> > >   arch/arm/boot/dts/exynos5250-arndale.dts | 2 +-
-> > >   1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > > diff --git a/arch/arm/boot/dts/exynos5250-arndale.dts b/arch/arm/boot/dts/exynos5250-arndale.dts
-> > > index f2bcce167b2d..3c401c82905c 100644
-> > > --- a/arch/arm/boot/dts/exynos5250-arndale.dts
-> > > +++ b/arch/arm/boot/dts/exynos5250-arndale.dts
-> > > @@ -544,7 +544,7 @@
-> > >       samsung,i2c-max-bus-freq = <40000>;
-> > >       samsung,i2c-slave-addr = <0x38>;
-> > >
-> > > -     sata_phy_i2c: sata-phy@38 {
-> > > +     sata_phy_i2c: sata-phy-i2c@38 {
-> > >               compatible = "samsung,exynos-sataphy-i2c";
-> > >               reg = <0x38>;
-> > >       };
-> >
-> > I'm not against the rename, but frankly, the above node and all i2c
-> > parameters should be moved to exynos5250.dtsi. This is a SoC internal
-> > things (the same way as hdmiphy in exynos4.dtsi), so the board dts
-> > should only contain information like status = "enabled" for i2c_8 and
-> > hdmi_i2c_phy nodes. No need to duplicate it here and in smdk5250.dts.
->
-> Good point, the I2C bus used here is an internal part of SoC.
->
-> I will squash these two changes into a new one. Thanks for the review!
+On 20-08-31 09:32, Florian Fainelli wrote:
+> 
+> 
+> On 8/31/2020 6:48 AM, Marco Felsch wrote:
+> > Add support to specify the clock provider for the phy refclk and don't
+> > rely on 'magic' host clock setup. [1] tried to address this by
+> > introducing a flag and fixing the corresponding host. But this commit
+> > breaks the IRQ support since the irq setup during .config_intr() is
+> > thrown away because the reset comes from the side without respecting the
+> > current phy-state within the phy-state-machine. Furthermore the commit
+> > fixed the problem only for FEC based hosts other hosts acting like the
+> > FEC are not covered.
+> > 
+> > This commit goes the other way around to address the bug fixed by [1].
+> > Instead of resetting the device from the side every time the refclk gets
+> > (re-)enabled it requests and enables the clock till the device gets
+> > removed. The phy is still rest but now within the phylib and  with
+> > respect to the phy-state-machine.
+> > 
+> > [1] commit 7f64e5b18ebb ("net: phy: smsc: LAN8710/20: add
+> >      PHY_RST_AFTER_CLK_EN flag")
+> > 
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > ---
+> >   drivers/net/phy/smsc.c | 30 ++++++++++++++++++++++++++++++
+> >   1 file changed, 30 insertions(+)
+> > 
+> > diff --git a/drivers/net/phy/smsc.c b/drivers/net/phy/smsc.c
+> > index 79574fcbd880..b98a7845681f 100644
+> > --- a/drivers/net/phy/smsc.c
+> > +++ b/drivers/net/phy/smsc.c
+> > @@ -12,6 +12,7 @@
+> >    *
+> >    */
+> > +#include <linux/clk.h>
+> >   #include <linux/kernel.h>
+> >   #include <linux/module.h>
+> >   #include <linux/mii.h>
+> > @@ -33,6 +34,7 @@ static struct smsc_hw_stat smsc_hw_stats[] = {
+> >   struct smsc_phy_priv {
+> >   	bool energy_enable;
+> > +	struct clk *refclk;
+> >   };
+> >   static int smsc_phy_config_intr(struct phy_device *phydev)
+> > @@ -194,11 +196,19 @@ static void smsc_get_stats(struct phy_device *phydev,
+> >   		data[i] = smsc_get_stat(phydev, i);
+> >   }
+> > +static void smsc_clk_disable_action(void *data)
+> > +{
+> > +	struct smsc_phy_priv *priv = data;
+> > +
+> > +	clk_disable_unprepare(priv->refclk);
+> > +}
+> > +
+> >   static int smsc_phy_probe(struct phy_device *phydev)
+> >   {
+> >   	struct device *dev = &phydev->mdio.dev;
+> >   	struct device_node *of_node = dev->of_node;
+> >   	struct smsc_phy_priv *priv;
+> > +	int ret;
+> >   	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> >   	if (!priv)
+> > @@ -211,6 +221,26 @@ static int smsc_phy_probe(struct phy_device *phydev)
+> >   	phydev->priv = priv;
+> > +	priv->refclk = devm_clk_get_optional(dev, NULL);
+> > +	if (IS_ERR(priv->refclk)) {
+> > +		if (PTR_ERR(priv->refclk) == -EPROBE_DEFER)
+> > +			return -EPROBE_DEFER;
+> > +
+> > +		/* Clocks are optional all errors should be ignored here */
+> > +		return 0;
+> > +	}
+> > +
+> > +	/* Starting from here errors should not be ignored anymore */
+> > +	ret = clk_set_rate(priv->refclk, 50 * 1000 * 1000);
+> > +	if (ret)
+> > +		return ret;
+> 
+> The clock should be enabled first before attempting a rate change
 
-While at it, I wonder about the samsung,i2c-slave-addr property. Is it
-really needed? Are there multiple masters on this bus?
+Is this the way to use the API? My understanding was to set the correct
+clk value before we enable the clk value can be out-of-range for the
+phy. But you have a point, we should:
 
-Best regards,
-Krzysztof
+ret = clk_prepare(priv->refclk);
+if (ret)
+	return ret;
+
+ret = clk_set_rate(priv->refclk, 50 * 1000 * 1000);
+if (ret)
+	return ret;
+
+ret = clk_enable(priv->refclk);
+if (ret)
+	return ret;
+
+to avoide the usage of unprepared clocks.
+
+>, and this
+> also causes a more fundamental question: what is the sate of the clock when
+> the PHY driver is probed, and is the reference clock feeding into the MDIO
+> logic of the PHY.
+
+Currently this state is defined by the bootloader if the clk is provided
+by the host.
+
+> By that I mean that if the reference clock was disabled, would the PHY still
+> respond to MDIO reads such that you would be able to probe and identify it?
+
+Pls correct me if I'm wrong but currently all phy drivers relying on the
+settings made by the bootloader/firmware.
+
+> If not, your demv_clk_get_optional() is either too late
+
+Yes, I got this.
+
+> , or assuming a prior state,
+
+This is the our case. Isn't it the purpose of the bootloader to setup
+the HW?
+
+> or you are working around this in Device Tree by using a compatible
+> string with the form "^ethernet-phy-id[a-f0-9]{4}\\.[a-f0-9]{4}$" in which
+> case, this is a making assumptions about how the OF MDIO layer works which
+> is not ideal.
+
+Nope, I'm using "ethernet-phy-ieee802.3-c22".
+
+> I am preparing some patches that aim at enabling a given MDIO device's clock
+> prior to probing it and should be able to post them by today.
+
+Create :) Can you provide me a link? What I can say for now is: This
+solution was used by the micrel driver too and it seems to work. I
+wanted to keep the change smaller/more local because the current
+upstream state is: SMSC-Phy <-> FEC-Host ==> IRQ broken. If your patch
+fixes this too in a more general matter I'm fine with it and we can drop
+this patch but we should fix this as soon as possible.
+
+Regards,
+  Marco
+
+> > +
+> > +	ret = clk_prepare_enable(priv->refclk);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	devm_add_action_or_reset(dev, smsc_clk_disable_action, priv);
+> > +
+> >   	return 0;
+> >   }
+> > 
+> 
+> -- 
+> Florian
+> 
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
