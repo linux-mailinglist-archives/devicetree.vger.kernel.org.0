@@ -2,105 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CE3F258E89
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 14:49:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A323258E3B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 14:32:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728027AbgIAMGD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 08:06:03 -0400
-Received: from foss.arm.com ([217.140.110.172]:40882 "EHLO foss.arm.com"
+        id S1728223AbgIAMb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 08:31:59 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:35802 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728060AbgIAMAx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Sep 2020 08:00:53 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 463E01FB;
-        Tue,  1 Sep 2020 05:00:30 -0700 (PDT)
-Received: from [10.57.40.122] (unknown [10.57.40.122])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 937E73F68F;
-        Tue,  1 Sep 2020 05:00:28 -0700 (PDT)
-Subject: Re: [PATCH 2/2] usb: dwc3: Add driver for Xilinx platforms
-To:     Manish Narani <MNARANI@xilinx.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Michal Simek <michals@xilinx.com>,
-        "balbi@kernel.org" <balbi@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        git <git@xilinx.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <1598467441-124203-1-git-send-email-manish.narani@xilinx.com>
- <1598467441-124203-3-git-send-email-manish.narani@xilinx.com>
- <0927fb9f-1044-38b3-d6f3-76edffefd99c@arm.com>
- <DM6PR02MB589878EB45E441F87B6D177CC1520@DM6PR02MB5898.namprd02.prod.outlook.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <98c17481-e9c5-ce03-ad30-3653ec2305d4@arm.com>
-Date:   Tue, 1 Sep 2020 13:00:27 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1728193AbgIAMbo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Sep 2020 08:31:44 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1kD5Qk-00ClTG-QI; Tue, 01 Sep 2020 14:30:30 +0200
+Date:   Tue, 1 Sep 2020 14:30:30 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>, davem@davemloft.net,
+        kuba@kernel.org, robh+dt@kernel.org, hkallweit1@gmail.com,
+        linux@armlinux.org.uk, zhengdejin5@gmail.com,
+        richard.leitner@skidata.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH 4/5] net: phy: smsc: add phy refclk in support
+Message-ID: <20200901123030.GA3030381@lunn.ch>
+References: <20200831134836.20189-1-m.felsch@pengutronix.de>
+ <20200831134836.20189-5-m.felsch@pengutronix.de>
+ <2993e0ed-ebe9-fd85-4650-7e53c15cfe34@gmail.com>
+ <20200901082413.cjnmy3s4lb5pfhv5@pengutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <DM6PR02MB589878EB45E441F87B6D177CC1520@DM6PR02MB5898.namprd02.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200901082413.cjnmy3s4lb5pfhv5@pengutronix.de>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-08-28 18:53, Manish Narani wrote:
-> Hi Robin,
+> Yes, I got this.
 > 
-> Thanks for the review. Please find my comment below inline.
+> > , or assuming a prior state,
 > 
->> -----Original Message-----
->> From: Robin Murphy <robin.murphy@arm.com>
->> Sent: Friday, August 28, 2020 12:17 AM
->> To: Manish Narani <MNARANI@xilinx.com>; gregkh@linuxfoundation.org;
->> robh+dt@kernel.org; Michal Simek <michals@xilinx.com>; balbi@kernel.org;
->> p.zabel@pengutronix.de
->> Cc: devicetree@vger.kernel.org; linux-usb@vger.kernel.org; linux-
->> kernel@vger.kernel.org; git <git@xilinx.com>; linux-arm-
->> kernel@lists.infradead.org
->> Subject: Re: [PATCH 2/2] usb: dwc3: Add driver for Xilinx platforms
->>
->> On 2020-08-26 19:44, Manish Narani wrote:
->> [...]
->>> +	/*
->>> +	 * This routes the usb dma traffic to go through CCI path instead
->>> +	 * of reaching DDR directly. This traffic routing is needed to
->>> +	 * make SMMU and CCI work with USB dma.
->>> +	 */
->>> +	if (of_dma_is_coherent(dev->of_node) || dev->iommu_group) {
->>> +		reg = readl(priv_data->regs + XLNX_USB_COHERENCY);
->>> +		reg |= XLNX_USB_COHERENCY_ENABLE;
->>> +		writel(reg, priv_data->regs + XLNX_USB_COHERENCY);
->>> +	}
->>
->> This looks rather suspect - coherency should be based on coherency, not
->> on whether an IOMMU group is present. If the device isn't described as
->> coherent in the DT, then any SMMU mappings will end up using attributes
->> that will downgrade traffic to be non-snooping anyway. And if the SMMU
->> is enabled but not translating (e.g. "iommu.passthrough=1") then
->> enabling hardware coherency when the DMA layer hasn't been told about it
->> can potentially lead to nasty subtle problems and data loss.
-> 
-> May be the description needs to be updated in this. This is not the actual coherency enabling bit, but this is needed when coherency is enabled.
-> This is a register inside Xilinx USB controller which handles USB (which is in LPD) traffic route switching from LPD (Low Power Domain) to FPD (Full Power Domain)  path in the Xilinx SoC in either of the below scenarios:
-> 1. Device is described coherent in  DT.
-> 2. SMMU is enabled.
-> 
-> I will update the same in v2.
+> This is the our case. Isn't it the purpose of the bootloader to setup
+> the HW?
 
-Ah, OK, so it's just that the control bit itself has a terrible name :)
+This is a bit of a philosophical discussion. For PCs developers would
+definitely agree, the firmware should be setting up most of the
+hardware. And the firmware is involved in driving the hardware, via
+ACPI. That works because you mostly cannot replaces the firmware.
 
- From the available information I had assumed that this controlled the 
-output attributes, and that the interconnect might then steer traffic 
-based on those. Explaining a bit more clearly in the comment probably 
-would be a good idea. In that case, I'd concur that the current logic is 
-in fact appropriate, but please use the device_iommu_mapped() helper for 
-cleanliness.
+In the ARM world we tend to take the opposite view. The bootloader
+does the minimum to get the OS running, and the OS then setups up
+everything. Often there are a choice of bootloaders, you have no idea
+if the vendor bootload has been replaced by a mainline one with extra
+features, etc. And we have no idea what the bootloader is actually
+doing, so we try to assume nothing.
 
-Cheers,
-Robin.
+       Andrew
