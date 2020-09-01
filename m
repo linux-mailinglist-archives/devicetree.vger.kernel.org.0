@@ -2,203 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A5D8258987
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 09:46:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3028C258998
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 09:51:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726078AbgIAHq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 03:46:27 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:51448 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726050AbgIAHq1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 03:46:27 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0817k83L056118;
-        Tue, 1 Sep 2020 02:46:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1598946368;
-        bh=IArKfXZjgWen9X3q7V/DQYJ14EV6u7IF2HjW9A6oRts=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=S3yYZOhgjNY+2Pafmm6vxaksZY3A6sXjztPLPMIHZ2lpaGx/hCS/oQEdZ74sq0E0L
-         auF29YHwaaLT7+VLZe+VwoWhf5/OP6jY6wVzu12JzzKaeMD6qNErJj8RsPtVGMffVz
-         CqVIiGTV/MXvKG/oGWxSnyxjB8d8JN+U7Zvp5AdI=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0817k8vJ130624;
-        Tue, 1 Sep 2020 02:46:08 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 1 Sep
- 2020 02:46:07 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 1 Sep 2020 02:46:07 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0817k3oJ118971;
-        Tue, 1 Sep 2020 02:46:04 -0500
-Subject: Re: [PATCH v9 2/3] drm: bridge: Add support for Cadence MHDP8546
- DPI/DP bridge
-To:     Swapnil Jakhade <sjakhade@cadence.com>,
-        <Laurent.pinchart@ideasonboard.com>,
-        <dri-devel@lists.freedesktop.org>
-CC:     <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <a.hajda@samsung.com>, <narmstrong@baylibre.com>,
-        <jonas@kwiboo.se>, <jernej.skrabec@siol.net>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <mparab@cadence.com>, <yamonkar@cadence.com>, <jsarha@ti.com>,
-        <nsekhar@ti.com>, <praneeth@ti.com>, <nikhil.nd@ti.com>
-References: <1598862215-10222-1-git-send-email-sjakhade@cadence.com>
- <1598862215-10222-3-git-send-email-sjakhade@cadence.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-Message-ID: <71452de7-80e7-0144-4802-e3370c00854b@ti.com>
-Date:   Tue, 1 Sep 2020 10:46:03 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726224AbgIAHvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 03:51:16 -0400
+Received: from mout.kundenserver.de ([212.227.17.13]:55335 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726078AbgIAHvP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 03:51:15 -0400
+Received: from mail-qk1-f169.google.com ([209.85.222.169]) by
+ mrelayeu.kundenserver.de (mreue108 [212.227.15.145]) with ESMTPSA (Nemesis)
+ id 1MTANt-1k14ow22hD-00UWsr; Tue, 01 Sep 2020 09:51:13 +0200
+Received: by mail-qk1-f169.google.com with SMTP id w186so149613qkd.1;
+        Tue, 01 Sep 2020 00:51:13 -0700 (PDT)
+X-Gm-Message-State: AOAM533+DlebdLJcLt9tRUnz5LtCfFsKH00ZOI/H4ALuS+6ir34IzSsr
+        FSjQlH25nKTZ3ibzUEIWjmVYzAzL3OJlnTJLtN4=
+X-Google-Smtp-Source: ABdhPJxvMigd3aZcpcYcmxYsKNOay3F7nmzvJdUVHhpU00gYPHRbFWJizCtRrMfbUrwuD1KCLNzE272tD74H/N9Xw1Y=
+X-Received: by 2002:a37:a04b:: with SMTP id j72mr653021qke.352.1598946672202;
+ Tue, 01 Sep 2020 00:51:12 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1598862215-10222-3-git-send-email-sjakhade@cadence.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20200831081025.2721320-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <CAK8P3a2xD-zp3ov=3vobSSAmyfvPCMe0mGgP3F7mZkk8WieUpw@mail.gmail.com> <20200831224122.i5tau3atlty4ikeu@toshiba.co.jp>
+In-Reply-To: <20200831224122.i5tau3atlty4ikeu@toshiba.co.jp>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 1 Sep 2020 09:50:56 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a2O_-jiiRe41Dci3yAsN7s==u5b_fHGsXh6m6y-Ki7WAQ@mail.gmail.com>
+Message-ID: <CAK8P3a2O_-jiiRe41Dci3yAsN7s==u5b_fHGsXh6m6y-Ki7WAQ@mail.gmail.com>
+Subject: Re: [PATCH v3 0/8] Add Toshiba Visconti ARM64 Platform support
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Olof Johansson <olof@lixom.net>,
+        punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@misterjones.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:wQ9CPiep6VAWNF72502KqBKxBLpZiDj/iYLuNRlz4WIUgFIVdZ+
+ CBI/LPrk8tl94nnztETv4Dd8snurEymMzupJQM1hQ8Vz1CEegI3ThgKkR+cxxILw82AHI8n
+ SMJyGwVLfvoUQnsAWZ7jpnmGlHqMCSfKqyzyB8dG+Sk1+igD5/NDv7AaBQPL2/4vsut3U2V
+ BjJKAY65WzYEYN/xlNV8g==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:elgd04rZvM8=:LtKaC8Xeu6TBNljDzSHwzf
+ vAMLk44PqkRClbdNRO9KRTE4lLmVJeC5qro0LQocdWSE9xYPLKQ1sdiCru0Tlhmr5C9/elH7i
+ /lVK21yIHjWuL9r6uUcq7DvgRmDeabPJv+BVqIibZbvyZZ7WDuAumBFjwm3E6Uxtsv0OowczS
+ a3YZuyoR9cJ6GoJvI8h8b6zr3Y+z9mXKnje80QM3441x8r4cjEeo2MnDmSHmMYCqnHN9W7uVM
+ umZpBX6WT4VBBsvbX0mycp2wQGrtaTzwYnbfZNCI6M8B7IS3wBMlvZD6r5UjJ0cZue/+IRMBG
+ axyPOemZsAlt9crJF8679PJntmpOOmXhJ5mVoQIu/GyKTM5Eq1VHNirnUzgrbLwSRdsACJNkN
+ 1ovHgaNR3nW9jT8ddKt6hsr+hAGALuKnYVz4byVXjkc75rEu+qqP3tVoleAldqzKDz3cYVzOE
+ Jc8+0uKLBzPpbo3I+w52cRE1teUp5vEkd9NNRnnxM4aNJBuGDO1lAZw7wD6HnF5b3o51medmu
+ USEZ5U8zlry5XRRlxBpskGHU0XGiuSd5QEWToatxgEr357Rp3K5zTa14C2u2lE2fDvHvngmiE
+ YYRa5F8uiG4tFpm7/y4e3ocnu4+q/DIxCqWXzTyK4VnOmlIGw2dMsHUpR7oGL7wORMmeNnaG/
+ zEK0Y2yE27zOSpYzVCIIb7gB+5vjivRZjowtsPNiSYIYnLOiT0T6qC40SrU09g42AJgc42+4X
+ L+nVaOjwoQZ5Mg7zkZjLYzhafJ1k6lZ9bItN5d43YZKAkMIKzWocp7BwN8Y9QbL7yNy9fIrO7
+ GCKoZTAsCq+EKTKBrq3YAI/rOV8WG1Y6rAnrvDd9IZEZYCjIhXI9eRCfJtVVgT11AaCjkIO/2
+ TZx6OWjqbUffzhpzCs/DHHd2FJ0HBpqOdPxR9lSMz+VCoDB0NWEgCaZRznADp11GrJXRQNZSx
+ aVYsfu9lyZpFbEqY6AL6+Wz16Vw6vorUKQXD12u4W9ZtJ8mKmlVa1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Swapnil,
+On Tue, Sep 1, 2020 at 12:41 AM Nobuhiro Iwamatsu
+<nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
+> On Mon, Aug 31, 2020 at 11:19:02AM +0200, Arnd Bergmann wrote:
+> > On Mon, Aug 31, 2020 at 10:10 AM Nobuhiro Iwamatsu
+> > <nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
+> > >
+> > > Visconti is a series of Toshiba's SoCs targeting image processing
+> > > applications[0]. These set of patches adds support for Visconti5 a Arm
+> > > v8 based SoC.
+> > >
+> > > The series add minimal support for the Visconti5 SoC and the TMPV7708 RM
+> > > main board. Peripherals such as UART, SPI, I2c and timer use Arm's
+> > > IP and work with the existing kernel drivers in the tree. The series
+> > > includes a pinctrl driver to select appropriate functions on the pins.
+> >
+> > The arch/arm64 series looks all reasonable to me, nice work!
+> >
+> > Once the review from the DT and pinctrl maintainers is completed
+> > and you have received their Acked-by or Reviewed-by tags, please
+> > send the series with those tags to soc@kernel.org for inclusion, keeping
+> > everyone else on Cc.
+> >
+> > I'd leave it up to Linus Walleij whether he wants to merge the pinctrl driver
+> > through his subsystem tree, or whether we should pick it up through
+> > the soc tree, either way works for the initial merge. For any updates to
+> > the pinctrl driver and additional subsystem support (clk, media, ...)
+> > in later releases there is no need to Cc the SoC maintainers as those
+> > should just get merged through the subsystem while we take care
+> > of the DT files.
+>
+> Thank you for the explanation. I will do that.
+> BTW, I searched the process for this but I couldn't find any detailed
+> documentation. Could you tell me if you know?
 
-On 31/08/2020 11:23, Swapnil Jakhade wrote:
+We never documented this well, sorry about that.
 
-> +static int cdns_mhdp_validate_mode_params(struct cdns_mhdp_device *mhdp,
-> +					  const struct drm_display_mode *mode,
-> +					  struct drm_bridge_state *bridge_state)
-> +{
-> +	u32 tu_size = 30, line_thresh1, line_thresh2, line_thresh = 0;
-> +	u32 rate, vs, vs_f, required_bandwidth, available_bandwidth;
-> +	struct cdns_mhdp_bridge_state *state;
-> +	int pxlclock;
-> +	u32 bpp;
-> +
-> +	state = to_cdns_mhdp_bridge_state(bridge_state);
-> +
-> +	pxlclock = mode->crtc_clock;
-> +
-> +	/* Get rate in MSymbols per second per lane */
-> +	rate = mhdp->link.rate / 1000;
-> +
-> +	bpp = cdns_mhdp_get_bpp(&mhdp->display_fmt);
+Generally speaking, if you only have small updates (a few patches
+at a time), feel free to send those patches to soc@kernel.org once
+you consider them ready for inclusion.
 
-None of the above are used when calling cdns_mhdp_bandwidth_ok(). For clarity, I'd move the above
-lines a bit closer to where they are needed, as currently it makes me think the above values are
-used when checking the bandwidth.
+On 32-bit architectures as well as the more widely used 64-bit
+platforms with many .dts files, please send pull requests that group
+the patches into logical topics. Once you are listed in the
+MAINTAINERS file and you want to host a git tree on git.kernel.org
+for that purpose, you can apply for a kernel.org account and
+send pull request from there as well as have the tree integrated
+into linux-next for earlier testing. On the more specialized platforms
+without third-party machine support in the kernel, that is usually not
+necessary.
 
-> +	if (!cdns_mhdp_bandwidth_ok(mhdp, mode, mhdp->link.num_lanes,
-> +				    mhdp->link.rate)) {
-> +		dev_err(mhdp->dev, "%s: Not enough BW for %s (%u lanes at %u Mbps)\n",
-> +			__func__, mode->name, mhdp->link.num_lanes,
-> +			mhdp->link.rate / 100);
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* find optimal tu_size */
-> +	required_bandwidth = pxlclock * bpp / 8;
-> +	available_bandwidth = mhdp->link.num_lanes * rate;
-> +	do {
-> +		tu_size += 2;
-> +
-> +		vs_f = tu_size * required_bandwidth / available_bandwidth;
-> +		vs = vs_f / 1000;
-> +		vs_f = vs_f % 1000;
-> +		/* Downspreading is unused currently */
-> +	} while ((vs == 1 || ((vs_f > 850 || vs_f < 100) && vs_f != 0) ||
-> +		 tu_size - vs < 2) && tu_size < 64);
-> +
-> +	if (vs > 64) {
-> +		dev_err(mhdp->dev,
-> +			"%s: No space for framing %s (%u lanes at %u Mbps)\n",
-> +			__func__, mode->name, mhdp->link.num_lanes,
-> +			mhdp->link.rate / 100);
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (vs == tu_size)
-> +		vs = tu_size - 1;
-> +
-> +	line_thresh1 = ((vs + 1) << 5) * 8 / bpp;
-> +	line_thresh2 = (pxlclock << 5) / 1000 / rate * (vs + 1) - (1 << 5);
-> +	line_thresh = line_thresh1 - line_thresh2 / mhdp->link.num_lanes;
-> +	line_thresh = (line_thresh >> 5) + 2;
-> +
-> +	state->vs = vs;
-> +	state->tu_size = tu_size;
-> +	state->line_thresh = line_thresh;
-> +
-> +	return 0;
-> +}
-> +
-> +static int cdns_mhdp_atomic_check(struct drm_bridge *bridge,
-> +				  struct drm_bridge_state *bridge_state,
-> +				  struct drm_crtc_state *crtc_state,
-> +				  struct drm_connector_state *conn_state)
-> +{
-> +	struct cdns_mhdp_device *mhdp = bridge_to_mhdp(bridge);
-> +	const struct drm_display_mode *mode = &crtc_state->adjusted_mode;
-> +	int ret;
-> +
-> +	mutex_lock(&mhdp->link_mutex);
-> +
-> +	if (!mhdp->plugged) {
-> +		mhdp->link.rate = mhdp->host.link_rate;
-> +		mhdp->link.num_lanes = mhdp->host.lanes_cnt;
-> +	}
-> +
-> +	ret = cdns_mhdp_validate_mode_params(mhdp, mode, bridge_state);
-> +
-> +	mutex_unlock(&mhdp->link_mutex);
-> +
-> +	return ret;
-> +}
+In either case, patches and pull requests should be based on
+an early -rc tag from mainline Linux (normally -rc1) and get sent
+between -rc1 and roughly -rc5 for new features. Bug fixes can
+be sent at any time regardless of the current -rc, with a balance
+between sending them quickly and collecting multiple of them
+into a pull request to reduce the number of merges. Please let
+us know whether bug fixes should be applied only at the next
+merge window, on current kernels, or backported to previous
+releases, using the "Fixes:"  and "Cc: stable@vger.kernel.org"
+tags as appropriate. The default is to backport bug fixes as far
+back as they apply, unless there is a reason not to.
 
-Laurent mentioned that atomic_check should not change state. Note that
-cdns_mhdp_validate_mode_params also changes state, as it calculates tu_size, vs and line_thresh.
-
-There seems to be issues with mode changes, but I think the first step would be to clarify the
-related code a bit. cdns_mhdp_validate_mode_params() is misnamed, I think it should be renamed to
-calculate_tu or something like that.
-
-cdns_mhdp_bandwidth_ok() should take display_fmt or bpp as a parameter, as currently it digs that up
-from the current state.
-
-Probably cdns_mhdp_validate_mode_params() would be better if it doesn't write the result to the
-state, but returns the values. That way it could also be used to verify if suitable settings can be
-found, without changing the state.
-
-The are two issues I see with some testing, which are probably related.
-
-The first one is that if I run kmstest with a new mode, I see tu-size & co being calculated. But the
-calculation happens before link training, which doesn't make sense. So I think what's done here is
-that atomic_check causes tu-size calculations, then atomic_enable does link training and enables the
-video.
-
-The second happens when my monitor fails with the first CR after power-on, and the driver drops
-number-of-lanes to 2. It goes like this:
-
-The driver is loaded. Based on EDID, fbdev is created with 1920x1200. Link training is done, which
-has the CR issue, and because of that the actual mode that we get is 1280x960. I get a proper
-picture here, so far so good.
-
-Then if I run kmstest, it only allows 1280x960 as the link doesn't support higher modes (that's ok).
-It the does link training and gets a 4 lane link, and enables 1280x960. But the picture is not ok.
-
-If I then exit kmstest, it goes back to fbdev, but now that picture is broken also.
-
-Running kmstest again gives me 1920x1200 (as the link has been 4 lane now), and the picture is fine.
-
-I think the above suggests that the driver is not properly updating all the registers based on the
-new mode and link. I tried adding cdns_mhdp_validate_mode_params() call to
-cdns_mhdp_atomic_enable(), so that tu-size etc will be calculated, but that did not fix the problem.
-
- Tomi
-
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+     Arnd
