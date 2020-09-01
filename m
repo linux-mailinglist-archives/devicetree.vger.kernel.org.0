@@ -2,174 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60A03259FE8
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 22:19:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D8F925A00B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 22:33:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729183AbgIAUT2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 16:19:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42540 "EHLO
+        id S1728336AbgIAUdh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 16:33:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728960AbgIAUTZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 16:19:25 -0400
-Received: from mail-ua1-x941.google.com (mail-ua1-x941.google.com [IPv6:2607:f8b0:4864:20::941])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8410BC061245
-        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 13:19:25 -0700 (PDT)
-Received: by mail-ua1-x941.google.com with SMTP id r13so844227uah.10
-        for <devicetree@vger.kernel.org>; Tue, 01 Sep 2020 13:19:25 -0700 (PDT)
+        with ESMTP id S1727020AbgIAUdh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 16:33:37 -0400
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B33ADC061244;
+        Tue,  1 Sep 2020 13:33:36 -0700 (PDT)
+Received: by mail-lf1-x143.google.com with SMTP id w11so1548640lfn.2;
+        Tue, 01 Sep 2020 13:33:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1VKBcJEVgXpEQSE9Kzd33ZLKO0VljC636ojqCeo9h3I=;
-        b=WrzkXZQzZQCBi4vGkTcaDxbln+mO7AxjXs64AxTU2AjQFV0rCNb9yjm24G3Ycyy6No
-         KwICKhDbCYDvGwDlSr6ExEhUkc4wzaKMzSJSaggEc/r4j3fAWQPmnoJicfyGuQZ3HSme
-         Oh7LP9j6tRCprXEtoEjaK+rWcDifd5VJ5S/NQ=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=uMvjAk+nxWvX0I1JzrW7E+XD7v7r9ADHqj5mbd2nFMw=;
+        b=mpRSn2J6rpmefoS47GinejDgOe0o4tFYROf0zGDNdrXymbIMz2e4MZ9O7IYRr2wtpp
+         nXajYm5X8UbPqH40Wn9kFH+BjcKDB3Zs8jVZeXOICjm+7kUoczvaXSgjB+0TMNFYXv2P
+         /4GoRdV66dtLP4y62+uGKyJ1jGetlF395Td1CZyE14bzf4Ovu6I/H7z4G9lD/ZHNVoA+
+         sgARA2jxGYPuXJK+1HaiMqEVbMWb/AInhjkanLUSfik9XYvlX2XupX/Hs8EHR2Em4MzF
+         IcrzecD7l62jWxgMBeDMM1wUdWuDO9rKPv0utBSJGfuShqvcl6vdkxB/QhqPIDDdkZMR
+         PV+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1VKBcJEVgXpEQSE9Kzd33ZLKO0VljC636ojqCeo9h3I=;
-        b=t8YZBC0kpI2TCF6dX9vfhDzYUONIDN8S5ylMOi/XaGg/y1O97bHIjYYz0VvuKsTp3Q
-         MUUUw69yf95vtRZsvPe346sLNbA35zrHlpcWl4NUlU0SL94WxLSYObQGh4+JcxjpJntb
-         KLnPCZlRbhjItf9W9SlatlzDfkg8GbrGA1C5wYRyE8AvaqN8nGWpasDX0IggDQv3Mz79
-         T7j+pdhSVEQE1pNI/SFk/1MHabRTa1CQ2nmTRglCsTAdsBfSjZVKxKoz22JbIvTPTjUN
-         OJpLbtCPJpLVteZpuo3/JFZemn1AgeOe/9tx0RbBKL8CLon0XP8Q4W3uTAbTUvsWcR6l
-         8EtQ==
-X-Gm-Message-State: AOAM5312CBrgCQDr7Nu4NrshU675QVkzq07ZFXPk3cd75cbRT9GAa/6b
-        qOxSPOoZuLUF4MS1zdY0wf5+fj24y6K1IQ==
-X-Google-Smtp-Source: ABdhPJxJeAaoSx68q1gfV0zCF9/qPhIUVBIG+UsJywHLh5kcjHWYmO08njr2qx7eBXizIUkEI3CxNQ==
-X-Received: by 2002:ab0:5a22:: with SMTP id l31mr2918668uad.32.1598991564011;
-        Tue, 01 Sep 2020 13:19:24 -0700 (PDT)
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
-        by smtp.gmail.com with ESMTPSA id e62sm395663vkh.12.2020.09.01.13.19.22
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=uMvjAk+nxWvX0I1JzrW7E+XD7v7r9ADHqj5mbd2nFMw=;
+        b=HmZXry+R/p7cdTC5NmL343fdPlIuMaJADFxGHTMnmjleV1nDO2JL3WQuDyEb7tXAPK
+         mnDd1r5H2/tXDfqYMZ71oB3sJM9RqNWd2qkV4V7a1Cn2ngnG4V+NotaVEm4WNO2S3fag
+         NILnsQhy+NHBLvx+beNije4LPxnw38S/k1EFdzXsGAZIfOFGY931uNItlEmTbj94oZlR
+         1Y+7qdB++VpJtIRMsT7ZY1hBQI9iW5hvcC9emCcNW03ksCH2oVvFXbheA7xS4Is7Z/iS
+         BSeoKyJEP+PzEmbeGqGKI00SbFWjJ+dKIyDs5s5CVIeNG7jG5XEHwkPOXa1/uwEH7/tv
+         UwXA==
+X-Gm-Message-State: AOAM532Tu7iLY/4vsLRs2e6ELHUOe32DybGvH7tTnSPxtcqGunDxEpuo
+        KYFesVbpTygrFiBEeF+rSVCenE6RiQA=
+X-Google-Smtp-Source: ABdhPJzYXisUBNsWhl7gcSu7elDpSD8O5RhRgjJz0HR9QFRL6thZ4jx9YAEQIizHmwO4wJ9qYIq1PA==
+X-Received: by 2002:ac2:5547:: with SMTP id l7mr1507860lfk.153.1598992415179;
+        Tue, 01 Sep 2020 13:33:35 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-170-211.dynamic.spd-mgts.ru. [109.252.170.211])
+        by smtp.googlemail.com with ESMTPSA id t19sm485622ljc.137.2020.09.01.13.33.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Sep 2020 13:19:23 -0700 (PDT)
-Received: by mail-vs1-f41.google.com with SMTP id p185so1350612vsp.8
-        for <devicetree@vger.kernel.org>; Tue, 01 Sep 2020 13:19:22 -0700 (PDT)
-X-Received: by 2002:a67:ecd4:: with SMTP id i20mr3418843vsp.68.1598991561827;
- Tue, 01 Sep 2020 13:19:21 -0700 (PDT)
+        Tue, 01 Sep 2020 13:33:34 -0700 (PDT)
+Subject: Re: [PATCH v2 12/12] xhci: tegra: enable ELPG for runtime/system PM
+To:     JC Kuo <jckuo@nvidia.com>, gregkh@linuxfoundation.org,
+        thierry.reding@gmail.com, robh@kernel.org, jonathanh@nvidia.com,
+        kishon@ti.com
+Cc:     linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        nkristam@nvidia.com
+References: <20200831044043.1561074-1-jckuo@nvidia.com>
+ <20200831044043.1561074-13-jckuo@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <68b57be4-a924-6b0a-a853-9cced2eead60@gmail.com>
+Date:   Tue, 1 Sep 2020 23:33:33 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20200813113030.1.I89c33c4119eaffb986b1e8c1bc6f0e30267089cd@changeid>
- <20200901170745.GA3419728@google.com>
-In-Reply-To: <20200901170745.GA3419728@google.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 1 Sep 2020 13:19:10 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Xv0FLtWWcQcRy7p2LPNdDtSjdarsvNHRHaLkWwABnwJw@mail.gmail.com>
-Message-ID: <CAD=FV=Xv0FLtWWcQcRy7p2LPNdDtSjdarsvNHRHaLkWwABnwJw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Add 'sustainable_power' for CPU
- thermal zones
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Amit Kucheria <amit.kucheria@linaro.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20200831044043.1561074-13-jckuo@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+31.08.2020 07:40, JC Kuo пишет:
+> +	err = devm_request_threaded_irq(&pdev->dev, tegra->padctl_irq,
+> +		NULL,
+> +		tegra_xusb_padctl_irq,
+> +		IRQF_ONESHOT |
 
-On Tue, Sep 1, 2020 at 10:07 AM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> On Thu, Aug 13, 2020 at 11:30:33AM -0700, Matthias Kaehlcke wrote:
-> > The 'sustainable_power' attribute provides an estimate of the sustained
-> > power that can be dissipated at the desired control temperature. One
-> > could argue that this value is not necessarily the same for all devices
-> > with the same SoC, which may have different form factors or thermal
-> > designs. However there are reasons to specify a (default) value at SoC
-> > level for SC7180: most importantly, if no value is specified at all the
-> > power_allocator thermal governor (aka 'IPA') estimates a value, using the
-> > minimum power of all cooling devices of the zone, which can result in
-> > overly aggressive thermal throttling. For most devices an approximate
-> > conservative value should be more useful than the minimum guesstimate
-> > of power_allocator. Devices that need a different value can overwrite
-> > it in their <device>.dts. Also the thermal zones for SC7180 have a high
-> > level of granularity (essentially one for each function block), which
-> > makes it more likely that the default value just works for many devices.
-> >
-> > The values correspond to 1901 MHz for the big cores, and 1804 MHz for
-> > the small cores. The values were determined by limiting the CPU
-> > frequencies to different max values and launching a bunch of processes
-> > that cause high CPU load ('while true; do true; done &' is simple and
-> > does a good job). A frequency is deemed sustainable if the CPU
-> > temperatures don't rise (consistently) above the second trip point
-> > ('control temperature', 95 degC in this case). Once the highest
-> > sustainable frequency is found, the sustainable power can be calculated
-> > by multiplying the energy consumption per core at this frequency (which
-> > can be found in /sys/kernel/debug/energy_model/) with the number of
-> > cores that are specified as cooling devices.
-> >
-> > The sustainable frequencies were determined at room temperature
-> > on a device without heat sink or other passive cooling elements.
+> +		IRQF_TRIGGER_HIGH,
 
-I'm curious: was this a bare board, or a device in a case?  Hrm, I'm
-not sure which one would be worse at heat dissipation, but I would
-imagine that being inside a plastic case might be worse?
-
-
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > ---
-> > If maintainers think 'sustainable_power' should be specified at
-> > device level (with which I conceptually agree) I'm fine with
-> > doing that, just seemed it could be useful to have a reasonable
-> > 'default' at SoC level in this case.
->
-> Any comments on this?
-
-I'm not massively familiar with this area of the code, but I guess I
-shouldn't let that stop me from having an opinion!  :-P
-
-* I would agree that it seems highly unlikely that someone would put
-one of these chips in a device that could only dissipate the heat from
-the lowest OPP, so having some higher estimate definitely makes sense.
-
-* In terms of the numbers here, I believe that you're claiming that we
-can dissipate 768 mW * 6 + 1202 mW * 2 = ~7 Watts of power.  My memory
-of how much power we could dissipate in previous laptops I worked on
-is a little fuzzy, but that doesn't seem insane for a passively-cooled
-laptop.  However, I think someone could conceivably put this chip in a
-smaller form factor.  In such a case, it seems like we'd want these
-things to sum up to ~2000 (if it would ever make sense for someone to
-put this chip in a phone) or ~4000 (if it would ever make sense for
-someone to put this chip in a small tablet).  It seems possible that,
-to achieve this, we might have to tweak the
-"dynamic-power-coefficient".  I don't know how much thought was put
-into those numbers, but the fact that the little cores have a super
-round 100 for their dynamic-power-coefficient makes me feel like they
-might have been more schwags than anything.  Rajendra maybe knows?
-
-* I'm curious about the fact that there are two numbers here: one for
-littles and one for bigs.  If I had to guess I'd say that since all
-the cores are in one package so the contributions kinda need to be
-thought of together, right?  If we're sitting there thermally
-throttled then we'd want to pick the best perf-per-watt for the
-overall package.  This is why your patch says we can sustain the
-little cores at max and the big cores get whatever is left over,
-right?
-
-* Should we be leaving some room in here for the GPU?  ...or I guess
-once we list it as a cooling device we'll have to decrease the amount
-the CPUs can use?
-
-
-So I guess the tl; dr is:
-
-a) We should check "dynamic-power-coefficient" and possibly adjust.
-
-b) I don't think the "conservative" by-default numbers should add up
-to 7 Watts.  I could be convinced that this chip is not intended for
-phones and thus we could have it add up to 4 Watts, but 7 Watts seems
-too much.
-
-
--Doug
+Specifying trigger levels is meaningless for interrupts coming from a
+device-tree because DT levels always take precedence.
