@@ -2,218 +2,406 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36719258A4C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 10:24:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60BD3258A63
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 10:34:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726112AbgIAIYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 04:24:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44832 "EHLO
+        id S1726226AbgIAIeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 04:34:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725989AbgIAIYV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 04:24:21 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D684C061245
-        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 01:24:20 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kD1aP-0003FN-Rb; Tue, 01 Sep 2020 10:24:13 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kD1aP-0006NQ-28; Tue, 01 Sep 2020 10:24:13 +0200
-Date:   Tue, 1 Sep 2020 10:24:13 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        zhengdejin5@gmail.com, richard.leitner@skidata.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH 4/5] net: phy: smsc: add phy refclk in support
-Message-ID: <20200901082413.cjnmy3s4lb5pfhv5@pengutronix.de>
-References: <20200831134836.20189-1-m.felsch@pengutronix.de>
- <20200831134836.20189-5-m.felsch@pengutronix.de>
- <2993e0ed-ebe9-fd85-4650-7e53c15cfe34@gmail.com>
+        with ESMTP id S1727101AbgIAId6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 04:33:58 -0400
+Received: from mail-il1-x144.google.com (mail-il1-x144.google.com [IPv6:2607:f8b0:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B874C061245
+        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 01:33:58 -0700 (PDT)
+Received: by mail-il1-x144.google.com with SMTP id t13so465598ile.9
+        for <devicetree@vger.kernel.org>; Tue, 01 Sep 2020 01:33:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WI7TQvN0deTgP+sTResPqejW59cn1EO4FNSX7vuMmJo=;
+        b=Ps2ecUPRmakW1ai27d66481LdkfCkhqIXE9cWtpjAw25KqoaRSCL3BFhKZsy09d8y2
+         Jg45JDTgnl8xzAbdZ6Z1lZCARGYpQRGYVnfm6r1KxbWFILh3hrRFbZ3S1QppOg6k5eGi
+         rcbFjLqfEr62Jk8F92qIqe9/nAXj1OD+9+8M4XXYkoYeXRVV7zj6SXs2lzBkFG3j8raF
+         6VVP2ZZohVC0pmIRHBCSp6Z9n/IVGz9bUJRCQ4tU+o4WsPGFYBMoCi426Cj9E++0Sgc3
+         t/TtDTByqK48wWDngoeLnh+iHBpcyo2QBC7G1Zq+Gm+Ngd8Z9jG+Y1QIIkp4Pd21bVBs
+         QuAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WI7TQvN0deTgP+sTResPqejW59cn1EO4FNSX7vuMmJo=;
+        b=uNGbEQvFrxHUVRosU7jcyNoOqGiXgydWmeGBp/RyseGEYXPWa8DSR90Nmipw73t3Ut
+         bB5ZD0afXESlTbritONYIHLEmLzM4+jEDEVDGy9HFuj8bkuTSh45XjODBTkJuiPzBXb8
+         fg5+ldlXOw4sWEFAm9J1LdEzpnt/vaopvtZxnsy2AyHCXcpnygLKM3tlnS2uxTBqexHu
+         Y4XPJ0jLE90Nmq3of5jf7m/2+EtVcphdqakPg1aG1Q+zLFD9C7YJB8faUnmjkqs3tKrb
+         yqnYrsK1XR8zT8R3i4EI52HvwbTI4mB6b9qYN3MT2xdIyWxOv3dbPWnbXsjhjyRjCIrQ
+         gsmQ==
+X-Gm-Message-State: AOAM5306co9vtodLPoV3rIlykofEOtodT+RrgHkmRozKJiLzhRrAjZU9
+        O0vcLLZryhtvw8vXKc0T8jomYg/oRqXcxtwVVF4E
+X-Google-Smtp-Source: ABdhPJx7yj0gVIj4m/1269JmFaM7YOJl74M1HMp5KXs+1oi9VBetJmfsvNCm8o0X4o8WB5/CyR1uuMy7jPxbruO9wTo=
+X-Received: by 2002:a92:91dc:: with SMTP id e89mr371143ill.27.1598949237263;
+ Tue, 01 Sep 2020 01:33:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2993e0ed-ebe9-fd85-4650-7e53c15cfe34@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 10:05:27 up 290 days, 23:24, 279 users,  load average: 0.11, 0.14,
- 0.09
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20200818124815.11029-1-vaishnav@beagleboard.org>
+ <20200818124815.11029-2-vaishnav@beagleboard.org> <CALudOK4R-Fu-xMXbip8e_Cuu0o4DQwjc=SMGdMBVsH=XTUShNw@mail.gmail.com>
+ <CAGAf8Lztap9af9kuCiFgY8gUP7KoOrHZ_2KBbJt-NtKkp=atVg@mail.gmail.com>
+In-Reply-To: <CAGAf8Lztap9af9kuCiFgY8gUP7KoOrHZ_2KBbJt-NtKkp=atVg@mail.gmail.com>
+From:   Vaishnav M A <vaishnav@beagleboard.org>
+Date:   Tue, 1 Sep 2020 14:03:45 +0530
+Message-ID: <CALudOK7boLhBsD4tQ+wf0E_K4ZW2PcbKH=jm_bHVU3pMcoiGxg@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 1/3] add mikrobus descriptors to greybus_manifest
+To:     Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Cc:     greybus-dev@lists.linaro.org, linux-kernel@vger.kernel.org,
+        Greg KH <gregkh@linuxfoundation.org>, arnd@arndb.de,
+        johan@kernel.org, elder@kernel.org, Rob Herring <robh@kernel.org>,
+        mchehab+huawei@kernel.org, davem@davemloft.net,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Drew Fustini <drew@beagleboard.org>,
+        Robert Nelson <robertcnelson@beagleboard.org>,
+        =?UTF-8?Q?Ivan_Rajkovi=C4=87?= <rajkovic@mikroe.com>,
+        chrisfriedt@gmail.com, Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-08-31 09:32, Florian Fainelli wrote:
-> 
-> 
-> On 8/31/2020 6:48 AM, Marco Felsch wrote:
-> > Add support to specify the clock provider for the phy refclk and don't
-> > rely on 'magic' host clock setup. [1] tried to address this by
-> > introducing a flag and fixing the corresponding host. But this commit
-> > breaks the IRQ support since the irq setup during .config_intr() is
-> > thrown away because the reset comes from the side without respecting the
-> > current phy-state within the phy-state-machine. Furthermore the commit
-> > fixed the problem only for FEC based hosts other hosts acting like the
-> > FEC are not covered.
-> > 
-> > This commit goes the other way around to address the bug fixed by [1].
-> > Instead of resetting the device from the side every time the refclk gets
-> > (re-)enabled it requests and enables the clock till the device gets
-> > removed. The phy is still rest but now within the phylib and  with
-> > respect to the phy-state-machine.
-> > 
-> > [1] commit 7f64e5b18ebb ("net: phy: smsc: LAN8710/20: add
-> >      PHY_RST_AFTER_CLK_EN flag")
-> > 
-> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > ---
-> >   drivers/net/phy/smsc.c | 30 ++++++++++++++++++++++++++++++
-> >   1 file changed, 30 insertions(+)
-> > 
-> > diff --git a/drivers/net/phy/smsc.c b/drivers/net/phy/smsc.c
-> > index 79574fcbd880..b98a7845681f 100644
-> > --- a/drivers/net/phy/smsc.c
-> > +++ b/drivers/net/phy/smsc.c
-> > @@ -12,6 +12,7 @@
-> >    *
-> >    */
-> > +#include <linux/clk.h>
-> >   #include <linux/kernel.h>
-> >   #include <linux/module.h>
-> >   #include <linux/mii.h>
-> > @@ -33,6 +34,7 @@ static struct smsc_hw_stat smsc_hw_stats[] = {
-> >   struct smsc_phy_priv {
-> >   	bool energy_enable;
-> > +	struct clk *refclk;
-> >   };
-> >   static int smsc_phy_config_intr(struct phy_device *phydev)
-> > @@ -194,11 +196,19 @@ static void smsc_get_stats(struct phy_device *phydev,
-> >   		data[i] = smsc_get_stat(phydev, i);
-> >   }
-> > +static void smsc_clk_disable_action(void *data)
-> > +{
-> > +	struct smsc_phy_priv *priv = data;
-> > +
-> > +	clk_disable_unprepare(priv->refclk);
-> > +}
-> > +
-> >   static int smsc_phy_probe(struct phy_device *phydev)
-> >   {
-> >   	struct device *dev = &phydev->mdio.dev;
-> >   	struct device_node *of_node = dev->of_node;
-> >   	struct smsc_phy_priv *priv;
-> > +	int ret;
-> >   	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> >   	if (!priv)
-> > @@ -211,6 +221,26 @@ static int smsc_phy_probe(struct phy_device *phydev)
-> >   	phydev->priv = priv;
-> > +	priv->refclk = devm_clk_get_optional(dev, NULL);
-> > +	if (IS_ERR(priv->refclk)) {
-> > +		if (PTR_ERR(priv->refclk) == -EPROBE_DEFER)
-> > +			return -EPROBE_DEFER;
-> > +
-> > +		/* Clocks are optional all errors should be ignored here */
-> > +		return 0;
-> > +	}
-> > +
-> > +	/* Starting from here errors should not be ignored anymore */
-> > +	ret = clk_set_rate(priv->refclk, 50 * 1000 * 1000);
-> > +	if (ret)
-> > +		return ret;
-> 
-> The clock should be enabled first before attempting a rate change
+Hi Zoran,
 
-Is this the way to use the API? My understanding was to set the correct
-clk value before we enable the clk value can be out-of-range for the
-phy. But you have a point, we should:
-
-ret = clk_prepare(priv->refclk);
-if (ret)
-	return ret;
-
-ret = clk_set_rate(priv->refclk, 50 * 1000 * 1000);
-if (ret)
-	return ret;
-
-ret = clk_enable(priv->refclk);
-if (ret)
-	return ret;
-
-to avoide the usage of unprepared clocks.
-
->, and this
-> also causes a more fundamental question: what is the sate of the clock when
-> the PHY driver is probed, and is the reference clock feeding into the MDIO
-> logic of the PHY.
-
-Currently this state is defined by the bootloader if the clk is provided
-by the host.
-
-> By that I mean that if the reference clock was disabled, would the PHY still
-> respond to MDIO reads such that you would be able to probe and identify it?
-
-Pls correct me if I'm wrong but currently all phy drivers relying on the
-settings made by the bootloader/firmware.
-
-> If not, your demv_clk_get_optional() is either too late
-
-Yes, I got this.
-
-> , or assuming a prior state,
-
-This is the our case. Isn't it the purpose of the bootloader to setup
-the HW?
-
-> or you are working around this in Device Tree by using a compatible
-> string with the form "^ethernet-phy-id[a-f0-9]{4}\\.[a-f0-9]{4}$" in which
-> case, this is a making assumptions about how the OF MDIO layer works which
-> is not ideal.
-
-Nope, I'm using "ethernet-phy-ieee802.3-c22".
-
-> I am preparing some patches that aim at enabling a given MDIO device's clock
-> prior to probing it and should be able to post them by today.
-
-Create :) Can you provide me a link? What I can say for now is: This
-solution was used by the micrel driver too and it seems to work. I
-wanted to keep the change smaller/more local because the current
-upstream state is: SMSC-Phy <-> FEC-Host ==> IRQ broken. If your patch
-fixes this too in a more general matter I'm fine with it and we can drop
-this patch but we should fix this as soon as possible.
-
-Regards,
-  Marco
-
-> > +
-> > +	ret = clk_prepare_enable(priv->refclk);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	devm_add_action_or_reset(dev, smsc_clk_disable_action, priv);
-> > +
-> >   	return 0;
-> >   }
-> > 
-> 
-> -- 
-> Florian
-> 
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Thank you for your review,
+On Mon, Aug 31, 2020 at 11:56 AM Zoran Stojsavljevic
+<zoran.stojsavljevic@gmail.com> wrote:
+>
+> Hello Vaishnav,
+>
+> I should say, an excellent work on the greybus_manifest.h file.
+>
+> Actually, my thoughts will be to have a two-stage commit of the whole
+> MikroBUS patch.
+>
+> The first one are these changes with greybus_manifest.h, followed by
+> dependent mikrobus_core.h and mikrobus_manifest.h.
+>
+> These two should have included #include
+> <linux/greybus/greybus_manifest.h> to reflect the correct hierarchical
+> structure.
+>
+> The rest is with the mikrobus driver .c code.
+>
+> It is just an observation from me, I guess, it is obvious.
+>
+Sure, we can split up the mikrobus driver patch into two parts and
+still ensure that each patch builds without errors, will fix this in the
+next version.
+> My two cent worth comment,
+> Zoran
+> _______
+>
+> On Thu, Aug 20, 2020 at 2:49 AM Vaishnav M A <vaishnav@beagleboard.org> wrote:
+> >
+> > Hi,
+> >
+> > Trying to add more information regarding the newly added
+> > descriptors and describe how they are used now within the
+> > mikroBUS driver.
+> >
+> > On Tue, Aug 18, 2020 at 6:18 PM Vaishnav M A <vaishnav@beagleboard.org> wrote:
+> > >
+> > > This patch adds new descriptors used in the manifest parsing inside
+> > > the mikrobus driver, the device descriptor help to describe the
+> > > devices on a mikroBUS port, mikrobus descriptor is used to set up
+> > > the mikrobus port pinmux and GPIO states and property descriptor
+> > > to pass named properties to device drivers through the Unified
+> > > Properties API under linux/property.h
+> > >
+> > > The corresponding pull request for manifesto is updated
+> > > at : https://github.com/projectara/manifesto/pull/2
+> > >
+> > > Signed-off-by: Vaishnav M A <vaishnav@beagleboard.org>
+> > > ---
+> > >  include/linux/greybus/greybus_manifest.h | 47 ++++++++++++++++++++++++
+> > >  1 file changed, 47 insertions(+)
+> > >
+> > > diff --git a/include/linux/greybus/greybus_manifest.h b/include/linux/greybus/greybus_manifest.h
+> > > index 6e62fe478712..821661ea7f01 100644
+> > > --- a/include/linux/greybus/greybus_manifest.h
+> > > +++ b/include/linux/greybus/greybus_manifest.h
+> > > @@ -23,6 +23,9 @@ enum greybus_descriptor_type {
+> > >         GREYBUS_TYPE_STRING             = 0x02,
+> > >         GREYBUS_TYPE_BUNDLE             = 0x03,
+> > >         GREYBUS_TYPE_CPORT              = 0x04,
+> > > +       GREYBUS_TYPE_MIKROBUS           = 0x05,
+> >
+> > The mikrobus descriptor is used to pass information about
+> > the specific pinmux settings and the default GPIO states on
+> > the mikrobus port to be set up for the add-on board to work
+> > correctly, this descriptor has 12 u8 fields(corresponding  to the
+> > 12 pins on the mikrobus port) which includes information
+> > about the prior setup required on the mikroBUS port for the
+> > device(s) on the add-on board to work correctly. The mikrobus
+> > descriptor is a fixed-length descriptor and there will be only a
+> > single instance of mikrobus descriptor per add-on board manifest.
+> >
+> > > +       GREYBUS_TYPE_PROPERTY           = 0x06,
+> >
+> > The property descriptors are used to pass named properties
+> > to the device drivers through the Unified device property interface
+> > under linux/property.h , so that device drivers using the
+> > device_property_read_* call can get the named properties,
+> > the mikrobus driver fetches the information from the manifest
+> > binary and forms a corresponding `struct property_entry` which
+> > will be attached to the `struct device`.
+> > The property descriptor is a variable-length descriptor similar
+> > to the string descriptor and there can be multiple instances of
+> > property descriptor per add-on board manifest.
+> >
+> > > +       GREYBUS_TYPE_DEVICE             = 0x07,
+> >
+> > The device descriptor is used to describe a device on the
+> > mikrobus port and has necessary fields from `struct i2c_board_info`
+> > and `struct spi_board_info` to describe a device on these buses
+> > in a mikrobus port, even though  SPI/I2C device info structs are used
+> > this descriptor has enough information to describe other kinds of
+> > devices relevant to mikrobus as well.(serdev/platform devices).
+> > The device descriptor is a fixed-length descriptor and there can be
+> > multiple instances of device descriptors in an add-on board manifest
+> > in cases where the add-on board presents more than one device
+> > to the host.
+> >
+> > >  };
+> > >
+> > >  enum greybus_protocol {
+> > > @@ -151,6 +154,47 @@ struct greybus_descriptor_cport {
+> > >         __u8    protocol_id;    /* enum greybus_protocol */
+> > >  } __packed;
+> > >
+> > > +/*
+> > > + * A mikrobus descriptor is used to describe the details
+> > > + * about the bus ocnfiguration for the add-on board
+> > > + * connected to the mikrobus port.
+> > > + */
+> > > +struct greybus_descriptor_mikrobus {
+> > > +       __u8 pin_state[12];
+> > > +} __packed;
+> > > +
+> >
+> > These 12 u8 fields describe the state of the pins in the
+> > mikrobus port(in clock wise order starting from the PWM
+> > pin)
+> > mikrobus v2 standard specification :
+> > https://download.mikroe.com/documents/standards/mikrobus/mikrobus-standard-specification-v200.pdf
+> > This struct is filled from the mikrobus-descriptor
+> > in the manifest and can have one of the values
+> > for each pin group:
+> > MIKROBUS_STATE_INPUT = 0x01,
+> > MIKROBUS_STATE_OUTPUT_HIGH = 0x02,
+> > MIKROBUS_STATE_OUTPUT_LOW = 0x03,
+> > MIKROBUS_STATE_PWM = 0x04,  ( applicable only to  PWM pin)
+> > MIKROBUS_STATE_SPI = 0x05, ( applicable only to
+> > the group of MOSI, MISO, SCK , CS pins on mikroBUS port)
+> > MIKROBUS_STATE_I2C = 0x06, (applicable only to the SCL, SDA
+> > pins on the mikrobus port)
+> > MIKROBUS_STATE_UART = 0x07,(applicable only to the RX, TX
+> > pins on the mikrobus port)
+> > There are two purposes for adding this descriptor,
+> > 1) for some add-on boards some of the pins might need to
+> > be configured as GPIOs deviating from their reserved purposes
+> > An example for this case is an SHT15 Click (https://www.mikroe.com/sht1x-click),
+> > where the SCL and SDA Pins need to be configured as GPIOs
+> > for the driver (drivers/hwmon/sht15.c) to work. The mikrobus
+> > descriptor for this case would look like this :
+> > [mikrobus-descriptor]
+> > pwm-state = 4 (default, pwm)
+> > int-state = 1 (default, input)
+> > rx-state = 7 (default, uart)
+> > tx-state = 7 (default, uart)
+> > scl-state = 3 (note the SCL Pin configured as GPIO)
+> > sda-state = 3 (note the SCL Pin configured as GPIO)
+> > mosi-state = 5 (default, spi)
+> > miso-state = 5 (default, spi)
+> > sck-state = 5 (default, spi)
+> > cs-state = 5 (default, spi)
+> > rst-state = 2 (default, GPIO)
+> > an-state = 1 (default, input)
+> > 2) for some add-on boards the driver may not take care
+> > of some additional signals like reset/wake-up/other thus
+> > the mikrobus driver can set-up these GPIOs to a required
+> > default state from the information from the manifest, a good
+> > example for this is the  ENC28J60 click (https://www.mikroe.com/eth-click)
+> > where the reset line(RST pin on the mikrobus port) needs to be
+> > pulled high. The manifest example for this add-on board can
+> > be found here :
+> > https://github.com/vaishnav98/manifesto/blob/mikrobusv3/manifests/ETH-CLICK.mnfs
+> >
+> > > +/*
+> > > + * A property descriptor is used to pass named properties
+> > > + * to device drivers through the unified device properties
+> > > + * interface under linux/property.h
+> > > + */
+> > > +struct greybus_descriptor_property {
+> > > +       __u8 length;
+> > > +       __u8 id;
+> > > +       __u8 propname_stringid;
+> > > +       __u8 type;
+> > > +       __u8 value[0];
+> > > +} __packed;
+> > > +
+> >
+> > This descriptor is used to fill in `struct property_entry`
+> > (linux/property.h), the propname_stringid
+> > field is used to map to the corresponding string descriptor
+> > which has the property name, the type field has the types
+> > under dev_prop_type (linux/property.h) and there are
+> > some new types which are used within the mikrobus
+> > driver, these are the new types :
+> > MIKROBUS_PROPERTY_TYPE_LINK = 0x01
+> > MIKROBUS_PROPERTY_TYPE_GPIO = 0x02
+> >
+> > The property-link type is used to attach an array of properties
+> > to the corresponding device, for example, consider an SPI
+> > EEPROM device which works with the AT25 driver(
+> > drivers/misc/eeprom/at25.c), The device and property
+> > descriptor parts of the manifest will look like this.
+> >
+> > [device-descriptor 1]
+> > driver-string-id = 3
+> > prop-link = 1 (The ID of the property-descriptor which
+> > contains the list of IDs of the actual properties to attach with
+> > the device)
+> > protocol = 0xb
+> > reg = 0
+> > mode = 0x3
+> > max-speed-hz = 5000000
+> > [string-descriptor 3]
+> > string = at25 (driver string)
+> >
+> > [property-descriptor 1]
+> > name-string-id = 4
+> > type = 0x01 (type is property-link)
+> > value = <2 3 4>(attach properties with id 2,3,4 to the device)
+> > [string-descriptor 4]
+> > string = prop-link
+> >
+> > [property-descriptor 2]
+> > name-string-id = 5 (string id for the property name string)
+> > type = 0x05 (U32, driver uses device_property_read_u32 call
+> > to read the value)
+> > value = <262144>
+> > [string-descriptor 5]
+> > string = size (property name string)
+> >
+> > [property-descriptor 3]
+> > name-string-id = 6
+> > type = 0x05
+> > value = <256>
+> > [string-descriptor 6]
+> > string = pagesize
+> >
+> > [property-descriptor 4]
+> > name-string-id = 7
+> > type = 0x05
+> > value = <24>
+> > [string-descriptor 7]
+> > string = address-width
+> >
+> > The gpio-link type is very similar to property descriptor and is used to
+> > pass an array of named gpios to the device driver through GPIO lookup tables,
+> > consider an example for a SHT15 device (drivers/hwmon/sht15.c),
+> > the device and the property(gpio) descriptors are as follows :
+> >
+> > [device-descriptor 1]
+> > driver-string-id = 3
+> > protocol = 0xfe
+> > reg = 0
+> > gpio-link = 1 (The ID of the property-descriptor which
+> > contains the list of IDs of the named gpio properties to attach with
+> > the device)
+> >
+> > [string-descriptor 3]
+> > string = sht11 (device_id string)
+> >
+> > [property-descriptor 1]
+> > name-string-id = 4
+> > type = 0x02 (gpio-link)
+> > value = <2 3> (attach properties with id 2,3 as named gpios to the device)
+> > [string-descriptor 4]
+> > string = gpio-link
+> >
+> > [property-descriptor 2]
+> > name-string-id = 5
+> > type = 0x03
+> > value = <4>
+> > [string-descriptor 5]
+> > string = clk (name of the GPIO, the driver uses
+> > devm_gpiod_get or similar calls to get the GPIO)
+> >
+> > [property-descriptor 3]
+> > name-string-id = 6
+> > type = 0x03
+> > value = <5>
+> > [string-descriptor 6]
+> > string = data
+> >
+> > Note that the values here 4 and 5 for the GPIOs are
+> > the offset numbers(clockwise starting from PWM pin)
+> > within a mikrobus port, the mikrobus drivers translates this
+> > offset information to the actual GPIO while creating the GPIO
+> > lookup table, this ensures that the manifest doesn't have any
+> > port-specific information and a single manifest can be used for
+> > an add-on board over different platforms/sockets.
+> >
+> > > +/*
+> > > + * A device descriptor is used to describe the
+> > > + * details required by a add-on board device
+> > > + * driver.
+> > > + */
+> > > +struct greybus_descriptor_device {
+> > > +       __u8 id;
+> > > +       __u8 driver_stringid;
+> > > +       __u8 protocol;
+> > > +       __u8 reg;
+> > > +       __le32 max_speed_hz;
+> > > +       __u8 irq;
+> > > +       __u8 irq_type;
+> > > +       __u8 mode;
+> > > +       __u8 prop_link;
+> > > +       __u8 gpio_link;
+> > > +       __u8 pad[3];
+> > > +} __packed;
+> > > +
+> >
+> > The device descriptor is used to describe a device on the
+> > mikrobus port and has necessary fields from `struct i2c_board_info`
+> > and `struct spi_board_info`, of these fields, the irq field is similar to
+> > the gpio descriptor value above in that the value under irq is also
+> > the pin offset within the mikrobus port which will be translated to the
+> > actual GPIO within the mikrobus driver and the irq-type takes types
+> > defined under linux/interrupt.h . For a device with a
+> > IRQF_TRIGGER_RISING interrupt on the INT pin on the mikrobus port
+> > the fields will be :
+> > irq = 1 (offset of INT pin)
+> > irq_type = 1 ( IRQF_TRIGGER_RISING)
+> >
+> > >  struct greybus_descriptor_header {
+> > >         __le16  size;
+> > >         __u8    type;           /* enum greybus_descriptor_type */
+> > > @@ -164,6 +208,9 @@ struct greybus_descriptor {
+> > >                 struct greybus_descriptor_interface     interface;
+> > >                 struct greybus_descriptor_bundle        bundle;
+> > >                 struct greybus_descriptor_cport         cport;
+> > > +               struct greybus_descriptor_mikrobus      mikrobus;
+> > > +               struct greybus_descriptor_property      property;
+> > > +               struct greybus_descriptor_device        device;
+> > >         };
+> > >  } __packed;
+> > >
+> > > --
+> > > 2.25.1
+> > >
+> > Thanks and Regards,
+> > Vaishnav
+Thanks and Regards,
+Vaishnav
