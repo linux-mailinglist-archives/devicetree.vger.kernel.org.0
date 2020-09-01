@@ -2,645 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CAA3258682
-	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 05:53:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E9E525866D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Sep 2020 05:45:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726102AbgIADxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Aug 2020 23:53:50 -0400
-Received: from mo-csw-fb1516.securemx.jp ([210.130.202.172]:42076 "EHLO
-        mo-csw-fb.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726068AbgIADxu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 23:53:50 -0400
-Received: by mo-csw-fb.securemx.jp (mx-mo-csw-fb1516) id 0813D4qY013600; Tue, 1 Sep 2020 12:13:05 +0900
-Received: by mo-csw.securemx.jp (mx-mo-csw1514) id 0813Cf89024565; Tue, 1 Sep 2020 12:12:41 +0900
-X-Iguazu-Qid: 34tKBCMUDa3O4Q59A5
-X-Iguazu-QSIG: v=2; s=0; t=1598929960; q=34tKBCMUDa3O4Q59A5; m=wVN2SqZ3chKF2uBZkI+DPgmuSvqvaDUx4zcCoacxtSU=
-Received: from imx12.toshiba.co.jp (imx12.toshiba.co.jp [61.202.160.132])
-        by relay.securemx.jp (mx-mr1511) id 0813CdS7028684;
-        Tue, 1 Sep 2020 12:12:39 +0900
-Received: from enc02.toshiba.co.jp ([61.202.160.51])
-        by imx12.toshiba.co.jp  with ESMTP id 0813CdrB000018;
-        Tue, 1 Sep 2020 12:12:39 +0900 (JST)
-Received: from hop101.toshiba.co.jp ([133.199.85.107])
-        by enc02.toshiba.co.jp  with ESMTP id 0813Cctp021414;
-        Tue, 1 Sep 2020 12:12:38 +0900
-From:   Punit Agrawal <punit1.agrawal@toshiba.co.jp>
-To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@misterjones.org>,
-        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 6/8] arm64: dts: visconti: Add device tree for TMPV7708 RM main board
-References: <20200831081025.2721320-1-nobuhiro1.iwamatsu@toshiba.co.jp>
-        <20200831081025.2721320-7-nobuhiro1.iwamatsu@toshiba.co.jp>
-Date:   Tue, 01 Sep 2020 12:12:35 +0900
-X-TSB-HOP: ON
-Message-ID: <87r1rmqjfg.fsf@kokedama.swc.toshiba.co.jp>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.3 (gnu/linux)
+        id S1726020AbgIADps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Aug 2020 23:45:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58444 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725987AbgIADpr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Aug 2020 23:45:47 -0400
+Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com [IPv6:2607:f8b0:4864:20::842])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCE5DC0612FF
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 20:45:46 -0700 (PDT)
+Received: by mail-qt1-x842.google.com with SMTP id d27so6470671qtg.4
+        for <devicetree@vger.kernel.org>; Mon, 31 Aug 2020 20:45:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dionne-riel-com.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Sb15qLWva7b5eccs+rAtHW207dq5g5GxXtdLjsQxg3E=;
+        b=p+DLtz7WvZ7g/1FEoh9amfFpz7eFYZxiSbjhiDaOyDTkIowmmAKSmS4KeP9Z+9hxTo
+         ROWSFXHQgVaVpnjkJXvwngQ9y35iINpSi6zTbx0lORgmnBlPMYh2pyEidc2tsX9m0tME
+         RXB5+GRrqz5uVE3ZpDX2uC242n2ycolauL/vA1HqDsFfwwgvB5RP39jj15E9K0l2dlYi
+         3Lle9LoWLxdXrNRrgl/aUEBIgdvpmfwnUH1+KiEokL7pMR1yzJ82wmuOtc7mqtShLVRM
+         wvRKH0JiBw02cynF9aPycAVhonAaTK2OrlttLMUY/eRYRS+tazmzR+KSWsGG74gMcWtg
+         wJRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Sb15qLWva7b5eccs+rAtHW207dq5g5GxXtdLjsQxg3E=;
+        b=A9Yueaw8Ca0hZkTeSvCKjDVXcj24raGKOndRzS5q3mKlgG5gm3Zmnph1Y6JLGP5uMk
+         3kmGf1sEvKFQ6FT+3x2Flju8YTj7oIXuUCLMEtUus2vvVdsOXT7uqT6dQ0E6hvIbQqcn
+         NBrtxaif6U9Q+DJpEsny9IhDyLuK/sthgpKEo4eCLppKVgy/lVTk1dpRIwORjA5D0pn/
+         bD3LosYz0zfTQHsUFUPfj/eKdNTtS7mPd4QLEPI/KEQyAHkKhX0VJ3x/79vUOaNRqCM5
+         ZON4ZeVwJMmn0RjDib2JuqPFk37Kpxouxi2TeP9izsBaM3aRCSKFcNfUIv3mT7ucXIxX
+         CKww==
+X-Gm-Message-State: AOAM532e+jVuA8A0yDfSQMPe7m+qWNIsAqBbK8tEPH4NpsJC+BuSDXdQ
+        quTqM0plSmpkRTaHQKt0RGzx3pnmAFXRKjXEklA=
+X-Google-Smtp-Source: ABdhPJytKLui/iELEzCyDiiipRYaftb3La6isv90YSp0yFSiuo20xYRbxtdXV+Nd4vBPGaXncxF/dA==
+X-Received: by 2002:ac8:ec7:: with SMTP id w7mr4676763qti.118.1598931945770;
+        Mon, 31 Aug 2020 20:45:45 -0700 (PDT)
+Received: from DUFFMAN (135-23-195-85.cpe.pppoe.ca. [135.23.195.85])
+        by smtp.gmail.com with ESMTPSA id s17sm13489048qte.50.2020.08.31.20.45.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Aug 2020 20:45:45 -0700 (PDT)
+Date:   Mon, 31 Aug 2020 23:45:42 -0400
+From:   Samuel Dionne-Riel <samuel@dionne-riel.com>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: Boot failure on gru-scarlet-inx with 5.9-rc2
+Message-ID: <20200831234542.295b1275@DUFFMAN>
+In-Reply-To: <90731ebb54fe03003dce03bc7ec4872e@kernel.org>
+References: <20200829164920.7d28e01a@DUFFMAN>
+        <65d88bdd0888a69849327501a2aad186@kernel.org>
+        <20200831031838.2d6d76d9@DUFFMAN>
+        <90731ebb54fe03003dce03bc7ec4872e@kernel.org>
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp> writes:
+On Mon, 31 Aug 2020 10:27:37 +0100
+Marc Zyngier <maz@kernel.org> wrote:
+> 
+> Ah, so actually anything that *enables pcie* kills your system.
+> Great investigative work!
+> 
+> > 
+> > And backed by a further bisection with this that points to
+> > d84c572de1a360501d2e439ac632126f5facf59d being the actual change
+> > that causes the tablet to fail to boot, as long as the pcie0 node is
+> > identified as pci properly.
+> > 
+> > I am unsure if I should add as a Cc everyone involved in that change
+> > set, though the author (coincidentally) is already in the original
+> > list of recipients.
+> 
+> I've deliberately moved Rob from Cc to To... ;-)
 
-> Add basic support for the Visconti TMPV7708 SoC peripherals -
->   - CPU
->     - CA53 x 4 and 2 cluster.
->     - not support PSCI, currently only spin-table is supported.
->   - Interrupt controller (ARM Generic Interrupt Controller)
->   - Timer (ARM architected timer)
->   - UART (ARM PL011 UART controller)
->   - SPI (ARM PL022 SPI controller)
->   - I2C (Synopsys DesignWare APB I2C Controller)
->   - Pin control (Visconti specific)
->
-> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> ---
->  arch/arm64/boot/dts/Makefile                  |   1 +
->  arch/arm64/boot/dts/toshiba/Makefile          |   2 +
->  .../boot/dts/toshiba/tmpv7708-rm-mbrc.dts     |  43 ++
->  arch/arm64/boot/dts/toshiba/tmpv7708.dtsi     | 390 ++++++++++++++++++
->  .../arm64/boot/dts/toshiba/tmpv7708_pins.dtsi |  93 +++++
->  5 files changed, 529 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/toshiba/Makefile
->  create mode 100644 arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts
->  create mode 100644 arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
->  create mode 100644 arch/arm64/boot/dts/toshiba/tmpv7708_pins.dtsi
->
-> diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
-> index 270e8aabbac8..9b1170658d60 100644
-> --- a/arch/arm64/boot/dts/Makefile
-> +++ b/arch/arm64/boot/dts/Makefile
-> @@ -27,5 +27,6 @@ subdir-y += socionext
->  subdir-y += sprd
->  subdir-y += synaptics
->  subdir-y += ti
-> +subdir-y += toshiba
->  subdir-y += xilinx
->  subdir-y += zte
-> diff --git a/arch/arm64/boot/dts/toshiba/Makefile b/arch/arm64/boot/dts/toshiba/Makefile
-> new file mode 100644
-> index 000000000000..8cd460d5b68e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/toshiba/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +dtb-$(CONFIG_ARCH_VISCONTI) += tmpv7708-rm-mbrc.dtb
-> diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts b/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts
-> new file mode 100644
-> index 000000000000..ed0bf7f13f54
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts
-> @@ -0,0 +1,43 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Device Tree File for TMPV7708 RM main board
-> + *
-> + * (C) Copyright 2020, Toshiba Corporation.
-> + * (C) Copyright 2020, Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "tmpv7708.dtsi"
-> +
-> +/ {
-> +	model = "Toshiba TMPV7708 RM main board";
-> +	compatible = "toshiba,tmpv7708-rm-mbrc", "toshiba,tmpv7708";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		serial1 = &uart1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	/* 768MB memory */
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x80000000 0x0 0x30000000>;
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	status = "okay";
-> +	clocks = <&uart_clk>;
-> +	clock-names = "apb_pclk";
-> +};
-> +
-> +&uart1 {
-> +	status = "okay";
-> +	clocks = <&uart_clk>;
-> +	clock-names = "apb_pclk";
-> +};
-> diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi b/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-> new file mode 100644
-> index 000000000000..242f25f4e12a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-> @@ -0,0 +1,390 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Device Tree Source for the TMPV7708
-> + *
-> + * (C) Copyright 2018 - 2020, Toshiba Corporation.
-> + * (C) Copyright 2020, Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> + *
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/memreserve/ 0x81000000 0x00300000;	/* cpu-release-addr */
-> +
-> +/ {
-> +	compatible = "toshiba,tmpv7708";
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu-map {
-> +			cluster0 {
-> +				core0 {
-> +					cpu = <&cpu0>;
-> +				};
-> +				core1 {
-> +					cpu = <&cpu1>;
-> +				};
-> +				core2 {
-> +					cpu = <&cpu2>;
-> +				};
-> +				core3 {
-> +					cpu = <&cpu3>;
-> +				};
-> +			};
-> +
-> +			cluster1 {
-> +				core0 {
-> +					cpu = <&cpu4>;
-> +				};
-> +				core1 {
-> +					cpu = <&cpu5>;
-> +				};
-> +				core2 {
-> +					cpu = <&cpu6>;
-> +				};
-> +				core3 {
-> +					cpu = <&cpu7>;
-> +				};
-> +			};
-> +		};
-> +
-> +		cpu0: cpu@0 {
-> +			compatible = "arm,cortex-a53";
-> +			device_type = "cpu";
-> +			enable-method = "spin-table";
-> +			cpu-release-addr = <0x0 0x81100000>;
-> +			reg = <0x00>;
-> +		};
-> +
-> +		cpu1: cpu@1 {
-> +			compatible = "arm,cortex-a53";
-> +			device_type = "cpu";
-> +			enable-method = "spin-table";
-> +			cpu-release-addr = <0x0 0x81100000>;
-> +			reg = <0x01>;
-> +		};
-> +
-> +		cpu2: cpu@2 {
-> +			compatible = "arm,cortex-a53";
-> +			device_type = "cpu";
-> +			enable-method = "spin-table";
-> +			cpu-release-addr = <0x0 0x81100000>;
-> +			reg = <0x02>;
-> +		};
-> +
-> +		cpu3: cpu@3 {
-> +			compatible = "arm,cortex-a53";
-> +			device_type = "cpu";
-> +			enable-method = "spin-table";
-> +			cpu-release-addr = <0x0 0x81100000>;
-> +			reg = <0x03>;
-> +		};
-> +
-> +		cpu4: cpu@100 {
-> +			compatible = "arm,cortex-a53";
-> +			device_type = "cpu";
-> +			enable-method = "spin-table";
-> +			cpu-release-addr = <0x0 0x81100000>;
-> +			reg = <0x100>;
-> +		};
-> +
-> +		cpu5: cpu@101 {
-> +			compatible = "arm,cortex-a53";
-> +			device_type = "cpu";
-> +			enable-method = "spin-table";
-> +			cpu-release-addr = <0x0 0x81100000>;
-> +			reg = <0x101>;
-> +		};
-> +
-> +		cpu6: cpu@102 {
-> +			compatible = "arm,cortex-a53";
-> +			device_type = "cpu";
-> +			enable-method = "spin-table";
-> +			cpu-release-addr = <0x0 0x81100000>;
-> +			reg = <0x102>;
-> +		};
-> +
-> +		cpu7: cpu@103 {
-> +			compatible = "arm,cortex-a53";
-> +			device_type = "cpu";
-> +			enable-method = "spin-table";
-> +			cpu-release-addr = <0x0 0x81100000>;
-> +			reg = <0x103>;
-> +		};
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupt-parent = <&gic>;
-> +		interrupts =
-> +			<GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-> +	};
-> +
-> +	uart_clk: uart-clk {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <150000000>;
-> +		#clock-cells = <0>;
-> +	};
-> +
-> +	soc {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		compatible = "simple-bus";
-> +		interrupt-parent = <&gic>;
-> +		ranges;
-> +
-> +		gic: interrupt-controller@24001000 {
-> +			compatible = "arm,gic-400";
-> +			interrupt-controller;
-> +			#interrupt-cells = <3>;
-> +			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-> +			reg = <0 0x24001000 0 0x1000>,
-> +			      <0 0x24002000 0 0x2000>,
-> +			      <0 0x24004000 0 0x2000>,
-> +			      <0 0x24006000 0 0x2000>;
-> +		};
-> +
-> +		pmux: pmux@24190000 {
-> +			compatible = "toshiba,tmpv7708-pinctrl";
-> +			reg = <0 0x24190000 0 0x10000>;
-> +		};
-> +
-> +		uart0: serial@28200000 {
-> +			compatible = "arm,pl011", "arm,primecell";
-> +			reg = <0 0x28200000 0 0x1000>;
-> +			interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&uart0_pins>;
-> +			status = "disabled";
-> +		};
-> +
-> +		uart1: serial@28201000 {
-> +			compatible = "arm,pl011", "arm,primecell";
-> +			reg = <0 0x28201000 0 0x1000>;
-> +			interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&uart1_pins>;
-> +			status = "disabled";
-> +		};
-> +
-> +		uart2: serial@28202000 {
-> +			compatible = "arm,pl011", "arm,primecell";
-> +			reg = <0 0x28202000 0 0x1000>;
-> +			interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&uart2_pins>;
-> +			status = "disabled";
-> +		};
-> +
-> +		uart3: serial@28203000 {
-> +			compatible = "arm,pl011", "arm,primecell";
-> +			reg = <0 0x28203000 0 0x1000>;
-> +			interrupts = <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&uart3_pins>;
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c0: i2c@28030000 {
-> +			compatible = "snps,designware-i2c";
-> +			reg = <0 0x28030000 0 0x1000>;
-> +			interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&i2c0_pins>;
-> +			clock-frequency = <400000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c1: i2c@28031000 {
-> +			compatible = "snps,designware-i2c";
-> +			reg = <0 0x28031000 0 0x1000>;
-> +			interrupts = <GIC_SPI 139 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&i2c1_pins>;
-> +			clock-frequency = <400000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c2: i2c@28032000 {
-> +			compatible = "snps,designware-i2c";
-> +			reg = <0 0x28032000 0 0x1000>;
-> +			interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&i2c2_pins>;
-> +			clock-frequency = <400000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c3: i2c@28033000 {
-> +			compatible = "snps,designware-i2c";
-> +			reg = <0 0x28033000 0 0x1000>;
-> +			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&i2c3_pins>;
-> +			clock-frequency = <400000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c4: i2c@28034000 {
-> +			compatible = "snps,designware-i2c";
-> +			reg = <0 0x28034000 0 0x1000>;
-> +			interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&i2c4_pins>;
-> +			clock-frequency = <400000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c5: i2c@28035000 {
-> +			compatible = "snps,designware-i2c";
-> +			reg = <0 0x28035000 0 0x1000>;
-> +			interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&i2c5_pins>;
-> +			clock-frequency = <400000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c6: i2c@28036000 {
-> +			compatible = "snps,designware-i2c";
-> +			reg = <0 0x28036000 0 0x1000>;
-> +			interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&i2c6_pins>;
-> +			clock-frequency = <400000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c7: i2c@28037000 {
-> +			compatible = "snps,designware-i2c";
-> +			reg = <0 0x28037000 0 0x1000>;
-> +			interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&i2c7_pins>;
-> +			clock-frequency = <400000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c8: i2c@28038000 {
-> +			compatible = "snps,designware-i2c";
-> +			reg = <0 0x28038000 0 0x1000>;
-> +			interrupts = <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&i2c8_pins>;
-> +			clock-frequency = <400000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		spi0: spi@28140000 {
-> +			compatible = "arm,pl022", "arm,primecell";
-> +			reg = <0 0x28140000 0 0x1000>;
-> +			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&spi0_pins>;
-> +			num-cs = <1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		spi1: spi@28141000 {
-> +			compatible = "arm,pl022", "arm,primecell";
-> +			reg = <0 0x28141000 0 0x1000>;
-> +			interrupts = <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&spi1_pins>;
-> +			num-cs = <1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		spi2: spi@28142000 {
-> +			compatible = "arm,pl022", "arm,primecell";
-> +			reg = <0 0x28142000 0 0x1000>;
-> +			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&spi2_pins>;
-> +			num-cs = <1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		spi3: spi@28143000 {
-> +			compatible = "arm,pl022", "arm,primecell";
-> +			reg = <0 0x28143000 0 0x1000>;
-> +			interrupts = <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&spi3_pins>;
-> +			num-cs = <1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		spi4: spi@28144000 {
-> +			compatible = "arm,pl022", "arm,primecell";
-> +			reg = <0 0x28144000 0 0x1000>;
-> +			interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&spi4_pins>;
-> +			num-cs = <1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		spi5: spi@28145000 {
-> +			compatible = "arm,pl022", "arm,primecell";
-> +			reg = <0 0x28145000 0 0x1000>;
-> +			interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&spi5_pins>;
-> +			num-cs = <1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		spi6: spi@28146000 {
-> +			compatible = "arm,pl022", "arm,primecell";
-> +			reg = <0 0x28146000 0 0x1000>;
-> +			interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&spi6_pins>;
-> +			num-cs = <1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +	};
-> +};
-> +
-> +#include "tmpv7708_pins.dtsi"
-> diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708_pins.dtsi b/arch/arm64/boot/dts/toshiba/tmpv7708_pins.dtsi
-> new file mode 100644
-> index 000000000000..34de00015a7f
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/toshiba/tmpv7708_pins.dtsi
-> @@ -0,0 +1,93 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +
-> +&pmux {
-> +	spi0_pins: spi0-pins {
-> +		function = "spi0";
-> +		groups = "spi0_grp";
-> +	};
-> +	spi1_pins: spi1-pins {
-> +		function = "spi1";
-> +		groups = "spi1_grp";
-> +	};
-> +	spi2_pins: spi2-pins {
-> +		function = "spi2";
-> +		groups = "spi2_grp";
-> +	};
-> +	spi3_pins: spi3-pins {
-> +		function = "spi3";
-> +		groups = "spi3_grp";
-> +	};
-> +	spi4_pins: spi4-pins {
-> +		function = "spi4";
-> +		groups = "spi4_grp";
-> +	};
-> +	spi5_pins: spi5-pins {
-> +		function = "spi5";
-> +		groups = "spi5_grp";
-> +	};
-> +	spi6_pins: spi6-pins {
-> +		function = "spi6";
-> +		groups = "spi6_grp";
-> +	};
-> +	uart0_pins: uart0-pins {
-> +		function = "uart0";
-> +		groups = "uart0_grp";
-> +	};
-> +	uart1_pins: uart1-pins {
-> +		function = "uart1";
-> +		groups = "uart1_grp";
-> +	};
-> +	uart2_pins: uart2-pins {
-> +		function = "uart2";
-> +		groups = "uart2_grp";
-> +	};
-> +	uart3_pins: uart3-pins {
-> +		function = "uart3";
-> +		groups = "uart3_grp";
-> +	};
-> +	i2c0_pins: i2c0-pins {
-> +		function = "i2c0";
-> +		groups = "i2c0_grp";
-> +		bias-pull-up;
-> +	};
-> +	i2c1_pins: i2c1-pins {
-> +		function = "i2c1";
-> +		groups = "i2c1_grp";
-> +		bias-pull-up;
-> +	};
-> +	i2c2_pins: i2c2-pins {
-> +		function = "i2c2";
-> +		groups = "i2c2_grp";
-> +		bias-pull-up;
-> +	};
-> +	i2c3_pins: i2c3-pins {
-> +		function = "i2c3";
-> +		groups = "i2c3_grp";
-> +		bias-pull-up;
-> +	};
-> +	i2c4_pins: i2c4-pins {
-> +		function = "i2c4";
-> +		groups = "i2c4_grp";
-> +		bias-pull-up;
-> +	};
-> +	i2c5_pins: i2c5-pins {
-> +		function = "i2c5";
-> +		groups = "i2c5_grp";
-> +		bias-pull-up;
-> +	};
-> +	i2c6_pins: i2c6-pins {
-> +		function = "i2c6";
-> +		groups = "i2c6_grp";
-> +		bias-pull-up;
-> +	};
-> +	i2c7_pins: i2c7-pins {
-> +		function = "i2c7";
-> +		groups = "i2c7_grp";
-> +		bias-pull-up;
-> +	};
-> +	i2c8_pins: i2c8-pins {
-> +		function = "i2c8";
-> +		groups = "i2c8_grp";
-> +		bias-pull-up;
-> +	};
-> +};
+Thanks, I don't actually know who to write to exactly.
 
-FWIW,
+> > Any additional thoughts from this additional information?  
+> 
+> What you could do is to start looking at which of the
+> pci_is_root_bus() changes breaks PCIe on this system.  The fact that
+> it breaks on your system and not on mine is a bit puzzling.
 
-Reviewed-by: Punit Agrawal <punit1.agrawal@toshiba.co.jp>
+Let me show you, on top of v5.9-rc3 I can successfully boot using this
+partial revert / adaptation of d84c572d. In addition, it also allows
+the Wi-Fi to work again, compared to how it didn't in 5.9-rc1 or
+5.9-rc[23] with the dumb revert of your fix.
 
-Thanks,
-Punit
+So, if we number each pci_is_root_bus by order appearance, it is only
+the second use, in rockchip_pcie_valid_device, which seem to cause
+scarlet not to boot.
+
+The patch (not actually a patch submission) reverts only that instance
+of pci_is_root_bus, while also doing some leg work to put back some
+functionally equivalent code that was refactored away since.
+
+If there's anything else you want me to try, don't hesitate.
+
+---
+ drivers/pci/controller/pcie-rockchip-host.c | 8 +++++++-
+ drivers/pci/controller/pcie-rockchip.h      | 1 +
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/pci/controller/pcie-rockchip-host.c b/drivers/pci/controller/pcie-rockchip-host.c
+index 0bb2fb3e8a0b..5a27fa833fbd 100644
+--- a/drivers/pci/controller/pcie-rockchip-host.c
++++ b/drivers/pci/controller/pcie-rockchip-host.c
+@@ -79,7 +79,7 @@ static int rockchip_pcie_valid_device(struct rockchip_pcie *rockchip,
+ 	 * do not read more than one device on the bus directly attached
+ 	 * to RC's downstream side.
+ 	 */
+-	if (pci_is_root_bus(bus->parent) && dev > 0)
++	if (bus->primary == rockchip->root_bus_nr && dev > 0)
+ 		return 0;
+ 
+ 	return 1;
+@@ -944,6 +944,7 @@ static int rockchip_pcie_probe(struct platform_device *pdev)
+ 	struct rockchip_pcie *rockchip;
+ 	struct device *dev = &pdev->dev;
+ 	struct pci_host_bridge *bridge;
++	struct resource *bus_res;
+ 	int err;
+ 
+ 	if (!dev->of_node)
+@@ -983,6 +984,11 @@ static int rockchip_pcie_probe(struct platform_device *pdev)
+ 	if (err < 0)
+ 		goto err_deinit_port;
+ 
++	/* HACK; ~equiv to last param of pci_parse_request_of_pci_ranges */
++	bus_res = (resource_list_first_type(&bridge->windows, IORESOURCE_MEM))->res;
++
++	rockchip->root_bus_nr = bus_res->start;
++
+ 	err = rockchip_pcie_cfg_atu(rockchip);
+ 	if (err)
+ 		goto err_remove_irq_domain;
+diff --git a/drivers/pci/controller/pcie-rockchip.h b/drivers/pci/controller/pcie-rockchip.h
+index c7d0178fc8c2..0952fec7e34d 100644
+--- a/drivers/pci/controller/pcie-rockchip.h
++++ b/drivers/pci/controller/pcie-rockchip.h
+@@ -298,6 +298,7 @@ struct rockchip_pcie {
+ 	struct	gpio_desc *ep_gpio;
+ 	u32	lanes;
+ 	u8      lanes_map;
++	u8      root_bus_nr;
+ 	int	link_gen;
+ 	struct	device *dev;
+ 	struct	irq_domain *irq_domain;
+-- 
+2.25.4
+
+
+Thanks again!
+
+-- 
+Samuel Dionne-Riel
