@@ -2,108 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E61425B3A4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 20:21:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DAF025B3B6
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 20:29:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726858AbgIBSVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 14:21:35 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:37730 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726821AbgIBSVe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 14:21:34 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 082ILVdm058293;
-        Wed, 2 Sep 2020 13:21:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599070891;
-        bh=nlUAMnNqJxMawe84yF+TSG/fCesyBZpd/y2oc4hXuVk=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=wnyOWz5ZiDKFQtlwlkIZePnIONIsi0IQHtCFU+QZwHTv9OClh0yDx1DGslavTLxn8
-         dnwTVlFNMuR7hvCxPvxJleKU2joZ2muQzJ3F1LyAkV9d54KjUBnB/QEMVQbDglwTie
-         /0mDZx/uP+z6JqwQsnW9BMMi7HTh3gHEI9VBqAIw=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 082ILULd012165
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Sep 2020 13:21:30 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 2 Sep
- 2020 13:21:30 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 2 Sep 2020 13:21:30 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 082ILUqT112616;
-        Wed, 2 Sep 2020 13:21:30 -0500
-Date:   Wed, 2 Sep 2020 13:21:30 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Suman Anna <s-anna@ti.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <t-kristo@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, <lokeshvutla@ti.com>,
-        <grygorii.strashko@ti.com>, <nsekhar@ti.com>
-Subject: Re: [PATCH 2/7] arm64: dts: ti: k3-am65*: Use generic clock for
- serdes clock name
-Message-ID: <20200902182130.r3etp3fo4lclsdl4@akan>
-References: <20200901223059.14801-1-nm@ti.com>
- <20200901223059.14801-3-nm@ti.com>
- <762671ff-d78a-95aa-2817-62d3ebed104e@ti.com>
+        id S1726567AbgIBS3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 14:29:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42586 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726124AbgIBS3N (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Sep 2020 14:29:13 -0400
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id AA887207EA
+        for <devicetree@vger.kernel.org>; Wed,  2 Sep 2020 18:29:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599071352;
+        bh=+z+Ye1t/Ezpg3mcCoGI3xdkvtQs/AAApX31W1h4xglE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=0u9RnZRpflGLdjzp8fwT/eAU+/O5dJB+KUFbtMiRJEKquAZwKMoyHinNZiSghRCtK
+         o+5gJB8z7RFt0ahfwtllHu/uFW4GSz5e6k1ytM+n4dBOS6FsZ3tEaAs4tLXg2U88/C
+         EJ0hxdhIvRXCcCMNQflHV3NEorvPrHO4oDwpFGS8=
+Received: by mail-ot1-f42.google.com with SMTP id a65so138437otc.8
+        for <devicetree@vger.kernel.org>; Wed, 02 Sep 2020 11:29:12 -0700 (PDT)
+X-Gm-Message-State: AOAM532D1pREvV1DTxMH5mF3bFrx0rS9nfIMW+RfXKGgDLQ01YcI7xrF
+        k/1n23noW3Dd/qwU1WpwcNxzSkGVfYRjy36ICQ==
+X-Google-Smtp-Source: ABdhPJwx6EGJNaIk87ezTTRXYXtWyfMWvyZxdtrnwGAxQFNwzLBfaiXapMo6nRfjqc1LGUzA10+u8B3oL7XtdrnPwQo=
+X-Received: by 2002:a9d:6b0d:: with SMTP id g13mr1911945otp.129.1599071351985;
+ Wed, 02 Sep 2020 11:29:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <762671ff-d78a-95aa-2817-62d3ebed104e@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20200828095115.GA18030@pi3> <CAL_JsqLKKagxyJPRK=_Xze7jWYAsqSBPbyZC3CLBeDZp5H49hQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqLKKagxyJPRK=_Xze7jWYAsqSBPbyZC3CLBeDZp5H49hQ@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 2 Sep 2020 12:29:00 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLLPmirYSLqOuvoXrmxA7ST_iG01xL6ypqSraZCbR-ADw@mail.gmail.com>
+Message-ID: <CAL_JsqLLPmirYSLqOuvoXrmxA7ST_iG01xL6ypqSraZCbR-ADw@mail.gmail.com>
+Subject: Re: dtschema v2020.08.1 json.decoder.JSONDecodeError error
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12:45-20200902, Suman Anna wrote:
-> On 9/1/20 5:30 PM, Nishanth Menon wrote:
-> > Use clock@ naming for nodes following standard conventions of device
-> > tree (section 2.2.2 Generic Names recommendation in [1]).
-> > 
-> > [1] https://github.com/devicetree-org/devicetree-specification/tree/v0.3
-> > 
-> > Suggested-by: Suman Anna <s-anna@ti.com>
-> > Signed-off-by: Nishanth Menon <nm@ti.com>
-> 
-> Acked-by: Suman Anna <s-anna@ti.com>
-> 
-> > ---
-> >  arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> > index 336d09d6fec7..03e28fc256de 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> > @@ -327,12 +327,12 @@
-> >  			reg = <0x00000210 0x4>;
-> >  		};
-> >  
-> > -		serdes0_clk: serdes_clk@4080 {
-> > +		serdes0_clk: clock@4080 {
-> >  			compatible = "syscon";
-> >  			reg = <0x00004080 0x4>;
-> >  		};
-> >  
-> > -		serdes1_clk: serdes_clk@4090 {
-> > +		serdes1_clk: clock@4090 {
-> >  			compatible = "syscon";
-> >  			reg = <0x00004090 0x4>;
-> >  		};
-> > 
-> 
-> Btw, there is also ehrpwm_tbclk alongside these nodes which is currently defined
-> as a syscon, but is actually a clock.
+On Fri, Aug 28, 2020 at 4:58 PM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Fri, Aug 28, 2020 at 3:51 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >
+> > Hi Rob,
+> >
+> > I am trying dt_bindings_check with on top of next-20200826 with dtschema
+> > v2020.08.01 and got errors on all schemas:
+> >
+> > =======
 
-aah, good catch.. I can fix that in the follow on V2.
+Did you miss some of the traceback?:
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Traceback (most recent call last):
+  File "/home/rob/.local/lib/python3.6/site-packages/jsonschema-3.2.0-py3.6.egg/jsonschema/validators.py",
+line 774,
+ in resolve_from_url
+    document = self.store[url]
+  File "/home/rob/.local/lib/python3.6/site-packages/jsonschema-3.2.0-py3.6.egg/jsonschema/_utils.py",
+line 22, in _
+_getitem__
+    return self.store[self.normalize(uri)]
+KeyError: 'https://protect2.fireeye.com/url?k=59835ffc-05905d01-59822c67-0cc47a336902-306bd2691e458c36&q=1&u=http%3A
+%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23'
+
+
+I get this and then the same traceback as you. This is now fixed in -next.
+
+Rob
