@@ -2,83 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0524E25B45D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 21:22:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BA4D25B51F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 22:11:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728253AbgIBTWQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 15:22:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33794 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726567AbgIBTWO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Sep 2020 15:22:14 -0400
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0B6FC207EA
-        for <devicetree@vger.kernel.org>; Wed,  2 Sep 2020 19:22:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599074534;
-        bh=MoxyjGubKVcLokYUQvkOYUQjKjieOpc0NUk6iwWWGKc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=B/zk8gjZhgfZyjvGHAaLLccIRltZFrypGvL7pGDsJNkJZL4k8kdPFYLvYezVM7j5i
-         NYD4b6ttQwOWcGSM/gO+F0+jCnOdU167PQHXklJgP234OMm/iN+oQya1QybDwFD7k3
-         SIowdO6UKjifdxRLYmwXnqrAPdT9DO0BBRrvGYcM=
-Received: by mail-ej1-f54.google.com with SMTP id i22so298440eja.5
-        for <devicetree@vger.kernel.org>; Wed, 02 Sep 2020 12:22:13 -0700 (PDT)
-X-Gm-Message-State: AOAM5307yVqrXbLK/DH7Ky9Zfs0PKzWagkhkKF7YT3Ffx6jRSPinLlmK
-        vMT0vRjMwSeO9vSWK6gXpmOC4hDAde+aQbC5+GI=
-X-Google-Smtp-Source: ABdhPJyNVuttNfK3ifzv8byRMWJKwyLfbF9LUg/os4vLdl62YycCIwfC4Y046bFT2wOGyvKZE1Xw+jphkUeyMt98/kA=
-X-Received: by 2002:a17:906:3b4b:: with SMTP id h11mr1507119ejf.381.1599074532647;
- Wed, 02 Sep 2020 12:22:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200828095115.GA18030@pi3> <CAL_JsqLKKagxyJPRK=_Xze7jWYAsqSBPbyZC3CLBeDZp5H49hQ@mail.gmail.com>
- <CAL_JsqLLPmirYSLqOuvoXrmxA7ST_iG01xL6ypqSraZCbR-ADw@mail.gmail.com>
-In-Reply-To: <CAL_JsqLLPmirYSLqOuvoXrmxA7ST_iG01xL6ypqSraZCbR-ADw@mail.gmail.com>
+        id S1726479AbgIBULf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 16:11:35 -0400
+Received: from mail-ej1-f68.google.com ([209.85.218.68]:41302 "EHLO
+        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726226AbgIBULe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 16:11:34 -0400
+Received: by mail-ej1-f68.google.com with SMTP id lo4so462739ejb.8;
+        Wed, 02 Sep 2020 13:11:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=/QIIG488RewWIV6fZ1YyUiiA1gfOjB33gWTwgLTvdpk=;
+        b=pQMDzUC7/Ld9YlcneUfTBickEGtC/OLxk1CGfO6gLt/x3XkYv2BSmyim20uvkmlmd4
+         TQK7hJ25jyiR7ybxvACVzcoBVfMcjPoo1xuy53pJLpZQ1Tq1boGfCj0ydnSIrGH5d+1H
+         vWUY0YhGcWoDOiWFK+4JABegqpxpiym9wMm2iggS5XvMWvHNfYVWQixkIO432gWTxVNb
+         f/sI2fOfb77PaF9NjQskERR7rkRnZF/of/RM8jqybKRCK/MgRI0bowQivWh4OnzD7ZgJ
+         zUsPK1v6RoGxlz3h2sFF6/k4gW0GK3IHapHCfx6BbDCHsvJBHxNnxX8IXFWVs5SAJDoD
+         iSqA==
+X-Gm-Message-State: AOAM531/07t+Kh2m1X72ocJpwQBMX/FcwZmxGdiQUoJO+VV2YFiW5HIL
+        JlTbEM2E8dxtT7SryaPOsDo=
+X-Google-Smtp-Source: ABdhPJz2DxULA55daC+aYgKP0v9NC+Adj2VVDd/+P9M5UwP8nqX6GSc+9O+cvMhJsAm+Th1nwnA0xg==
+X-Received: by 2002:a17:906:1542:: with SMTP id c2mr1810821ejd.533.1599077491970;
+        Wed, 02 Sep 2020 13:11:31 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.106])
+        by smtp.googlemail.com with ESMTPSA id yh29sm628951ejb.0.2020.09.02.13.11.30
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 02 Sep 2020 13:11:31 -0700 (PDT)
+Date:   Wed, 2 Sep 2020 22:11:28 +0200
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Wed, 2 Sep 2020 21:22:01 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPfbkouwnTRyFYOv7bOcGrPJzLZLPm40gZJtkWVbzC7mFw@mail.gmail.com>
-Message-ID: <CAJKOXPfbkouwnTRyFYOv7bOcGrPJzLZLPm40gZJtkWVbzC7mFw@mail.gmail.com>
-Subject: Re: dtschema v2020.08.1 json.decoder.JSONDecodeError error
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+To:     Jonathan Bakker <xc-racer2@live.ca>
+Cc:     kgene@kernel.org, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: s5pv210: Enable audio on Aries boards
+Message-ID: <20200902201128.GA29361@kozik-lap>
+References: <BN6PR04MB0660CFA802E03E73D58029CCCB2F0@BN6PR04MB0660.namprd04.prod.outlook.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <BN6PR04MB0660CFA802E03E73D58029CCCB2F0@BN6PR04MB0660.namprd04.prod.outlook.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Sep 2020 at 20:29, Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Fri, Aug 28, 2020 at 4:58 PM Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > On Fri, Aug 28, 2020 at 3:51 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > >
-> > > Hi Rob,
-> > >
-> > > I am trying dt_bindings_check with on top of next-20200826 with dtschema
-> > > v2020.08.01 and got errors on all schemas:
-> > >
-> > > =======
->
-> Did you miss some of the traceback?:
->
-> Traceback (most recent call last):
->   File "/home/rob/.local/lib/python3.6/site-packages/jsonschema-3.2.0-py3.6.egg/jsonschema/validators.py",
-> line 774,
->  in resolve_from_url
->     document = self.store[url]
->   File "/home/rob/.local/lib/python3.6/site-packages/jsonschema-3.2.0-py3.6.egg/jsonschema/_utils.py",
-> line 22, in _
-> _getitem__
->     return self.store[self.normalize(uri)]
-> KeyError: 'https://protect2.fireeye.com/url?k=59835ffc-05905d01-59822c67-0cc47a336902-306bd2691e458c36&q=1&u=http%3A
-> %2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23'
+On Tue, Sep 01, 2020 at 05:38:58PM -0700, Jonathan Bakker wrote:
+> Both the galaxys and the fascinate4g have a wm8994 codec,
+> but they differ slightly in their jack detection and micbias
+> configuration.
+> 
+> Signed-off-by: Jonathan Bakker <xc-racer2@live.ca>
+> ---
+>  arch/arm/boot/dts/s5pv210-aries.dtsi      | 10 +++
+>  arch/arm/boot/dts/s5pv210-fascinate4g.dts | 98 +++++++++++++++++++++++
+>  arch/arm/boot/dts/s5pv210-galaxys.dts     | 85 ++++++++++++++++++++
 
-No, I think I did not have it.
-
-> I get this and then the same traceback as you. This is now fixed in -next.
-
-Yes, I noticed it today, thanks!
+Thanks, applied.
 
 Best regards,
 Krzysztof
+
