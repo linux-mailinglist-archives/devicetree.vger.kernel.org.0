@@ -2,71 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D7FF25B740
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 01:26:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7FEB25B752
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 01:29:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726528AbgIBX0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 19:26:20 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:37782 "EHLO
+        id S1726523AbgIBX3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 19:29:53 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:38112 "EHLO
         lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726312AbgIBX0Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 19:26:16 -0400
+        with ESMTP id S1726310AbgIBX3w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 19:29:52 -0400
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 082NQ0C5022347;
-        Wed, 2 Sep 2020 18:26:00 -0500
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 082NTg7N023002;
+        Wed, 2 Sep 2020 18:29:42 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599089160;
-        bh=HlAs1wgxV8DXY4mBeHgZx/mwNEWUVkjB7NzPw810ZHI=;
+        s=ti-com-17Q1; t=1599089382;
+        bh=5ismlKMcchJg6W6QoumUCgvbzAC8BXk4SjpAViJ4qts=;
         h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=yGg2rh9Pr23KfE3TOCb4MWQLWIBp6pJrxqWekCjjbl1sjaH6TbLojmkRDEzaJke4e
-         gxtcr5dsqEIWpvE8TnJDMdGgbdrSpFJPtY+KkvMuPT00ioz0BfBMBAZnVl5TEeyNDi
-         AS4VlsadUXUYBbFC1lXZLpDy1cuw5Yxv1ImoR/rM=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 082NQ0Pm062378
+        b=T+if4hZPcBLlHYJ6RddogpPBKvM+LOIs76Kcmmi5a7euud7ZIX0A3u6rSz+Q0MYxS
+         YM/ns7UgKhc+OZkWjq/7VBP9DQWEV3HfnHpCfXbL6+pCLX8c5R4IcFRKpfGNdXiDVm
+         9f5vBGDdAgy/4z7sSoVAQ7yzdxWYcHk29EUV/kTo=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 082NTgES068502
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Sep 2020 18:26:00 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 2 Sep 2020 18:29:42 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 2 Sep
- 2020 18:25:59 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ 2020 18:29:42 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 2 Sep 2020 18:25:59 -0500
+ Frontend Transport; Wed, 2 Sep 2020 18:29:42 -0500
 Received: from [10.250.34.112] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 082NPwxZ121283;
-        Wed, 2 Sep 2020 18:25:59 -0500
-Subject: Re: [v4,2/4] dt-binding: reset-controller: ti: add
- 'mediatek,infra-reset' to compatible
-To:     Crystal Guo <crystal.guo@mediatek.com>,
-        Rob Herring <robh@kernel.org>
-CC:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "linux-mediatek@lists.infradead.org" 
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 082NTfUQ128253;
+        Wed, 2 Sep 2020 18:29:41 -0500
+Subject: Re: [v4,4/4] arm64: dts: mt8192: add infracfg_rst node
+To:     Crystal Guo <crystal.guo@mediatek.com>, <p.zabel@pengutronix.de>,
+        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>
+CC:     <srv_heupstream@mediatek.com>,
         <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?B?U2VpeWEgV2FuZyAo546L6L+65ZCbKQ==?= 
-        <seiya.wang@mediatek.com>,
-        =?UTF-8?B?U3RhbmxleSBDaHUgKOacseWOn+mZnik=?= 
-        <stanley.chu@mediatek.com>,
-        =?UTF-8?B?WWluZ2pvZSBDaGVuICjpmbPoi7HmtLIp?= 
-        <Yingjoe.Chen@mediatek.com>,
-        =?UTF-8?B?RmFuIENoZW4gKOmZs+WHoSk=?= <fan.chen@mediatek.com>,
-        =?UTF-8?B?WW9uZyBMaWFuZyAo5qKB5YuHKQ==?= <Yong.Liang@mediatek.com>
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <seiya.wang@mediatek.com>, <stanley.chu@mediatek.com>,
+        <yingjoe.chen@mediatek.com>, <fan.chen@mediatek.com>,
+        <yong.liang@mediatek.com>
 References: <20200817030324.5690-1-crystal.guo@mediatek.com>
- <20200817030324.5690-3-crystal.guo@mediatek.com>
- <20200825190219.GA1125997@bogus> <1598440183.30048.14.camel@mhfsdcap03>
+ <20200817030324.5690-5-crystal.guo@mediatek.com>
 From:   Suman Anna <s-anna@ti.com>
-Message-ID: <6c292056-1cb1-bc6c-0422-46e047dcf08f@ti.com>
-Date:   Wed, 2 Sep 2020 18:25:58 -0500
+Message-ID: <211bd78f-3b70-1e65-eea9-75cc73a3dfdd@ti.com>
+Date:   Wed, 2 Sep 2020 18:29:41 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <1598440183.30048.14.camel@mhfsdcap03>
+In-Reply-To: <20200817030324.5690-5-crystal.guo@mediatek.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -76,62 +64,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Crystal,
 
-On 8/26/20 6:09 AM, Crystal Guo wrote:
-> On Wed, 2020-08-26 at 03:02 +0800, Rob Herring wrote:
->> On Mon, Aug 17, 2020 at 11:03:22AM +0800, Crystal Guo wrote:
->>> The TI syscon reset controller provides a common reset management,
->>> and is suitable for MTK SoCs. Add compatible 'mediatek,infra-reset',
->>> which denotes to use ti reset-controller driver directly.
->>>
->>> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
->>> ---
->>>  Documentation/devicetree/bindings/reset/ti-syscon-reset.txt | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt b/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt
->>> index ab041032339b..5a0e9365b51b 100644
->>> --- a/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt
->>> +++ b/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt
->>> @@ -25,6 +25,7 @@ Required properties:
->>>  			    "ti,k2l-pscrst"
->>>  			    "ti,k2hk-pscrst"
->>>  			    "ti,syscon-reset"
->>> +			    "mediatek,infra-reset", "ti,syscon-reset"
->>
->> You need your own binding doc. If you can use the same driver then fine, 
->> but that's a separate issue. There's also reset-simple driver if you 
->> have just array of 32-bit registers with a bit per reset.
->>
->> Don't repeat 'ti,reset-bits' either.
+On 8/16/20 10:03 PM, Crystal Guo wrote:
+> add infracfg_rst node which is for MT8192 platform
 > 
-> Do you mean I should add a Mediatek reset binding doc, although Mediatek
-> reuse the TI reset controller directly?
+> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
 
-Hmm, how do you envision not repeating the same bits in a separate binding?
-Does it help if I convert this to YAML first without a ti, prefix in the file name?
-
-The usage philosophy definitely was to use a <soc-compatible> followed by the
-<generic-compatible>. This is how all of our reset nodes were added as well.
-
-Looks like Andrew may have misinterpreted your comment [1] during the original
-binding and changed "syscon-reset" to "ti,syscon-reset" in the final version [2].
+I understand you are posting these together for complete reference, but driver
+subsystem maintainers typically don't pick dts patches. In anycase, can you
+clarify if your registers are self-clearing registers?
 
 regards
 Suman
 
-[1] https://lore.kernel.org/patchwork/comment/876688/
-[2] https://lore.kernel.org/patchwork/patch/693172/
-
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 11 ++++++++++-
+>  1 file changed, 10 insertions(+), 1 deletion(-)
 > 
-> Best Regards
-> Crystal
->>
->>>   - #reset-cells		: Should be 1. Please see the reset consumer node below
->>>  			  for usage details
->>>   - ti,reset-bits	: Contains the reset control register information
->>> -- 
->>> 2.18.0
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 931e1ca17220..a0cb9904706b 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -10,6 +10,7 @@
+>  #include <dt-bindings/interrupt-controller/irq.h>
+>  #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
+>  #include <dt-bindings/power/mt8192-power.h>
+> +#include <dt-bindings/reset/ti-syscon.h>
+>  
+>  / {
+>  	compatible = "mediatek,mt8192";
+> @@ -219,9 +220,17 @@
+>  		};
+>  
+>  		infracfg: infracfg@10001000 {
+> -			compatible = "mediatek,mt8192-infracfg", "syscon";
+> +			compatible = "mediatek,mt8192-infracfg", "syscon", "simple-mfd";
+>  			reg = <0 0x10001000 0 0x1000>;
+>  			#clock-cells = <1>;
+> +
+> +			infracfg_rst: reset-controller {
+> +				compatible = "mediatek,infra-reset", "ti,syscon-reset";
+> +				#reset-cells = <1>;
+> +				ti,reset-bits = <
+> +					0x140 15 0x144 15 0 0 (ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* 0: pcie */
+> +				>;
+> +			};
+>  		};
+>  
+>  		pericfg: pericfg@10003000 {
 > 
 
