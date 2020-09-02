@@ -2,78 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A8CE25A85C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 11:10:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C53A225A874
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 11:17:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726637AbgIBJKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 05:10:46 -0400
-Received: from mail-ej1-f65.google.com ([209.85.218.65]:34540 "EHLO
-        mail-ej1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726618AbgIBJKp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 05:10:45 -0400
-Received: by mail-ej1-f65.google.com with SMTP id d26so5627308ejr.1;
-        Wed, 02 Sep 2020 02:10:42 -0700 (PDT)
+        id S1726210AbgIBJR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 05:17:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49170 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726140AbgIBJR1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 05:17:27 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 651CAC061244;
+        Wed,  2 Sep 2020 02:17:26 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id g4so3929508wrs.5;
+        Wed, 02 Sep 2020 02:17:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=K4YsaDFC3Pt4ZknV5E5TYlw0op731bQlj4z6J8XbD9o=;
+        b=e56ChxsFl3Oaxk5No/V0xghZwXJmc+Hu0yfeeV/sfFexFl+dFaZfJxj5nphuqu1i/I
+         VV5c2zFcWDhpLikL1qEWkynHM16+wtMH/OC71fKvOewVluFVyzshMchZWXKntFb1nvEB
+         LdUDNQ3tbrUtI/dLC4lqj3tOks4XjlNIEnml9CET6Z7Pag4pAMv431PEd43yBaU4Y/TH
+         TAVdYqHNOtSguDXUpY/At+QUanwVnBbJrsfIJyYuq8p0USVNq1t3R3VptI/r5cm6Us0T
+         LIC+EWXEpyqd2I3TtIqn/fiCjrL/yyF83aVQEJA5V+oDnkjXyxm3aRS22ZplEuTWJ6yg
+         PX4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=E4fh5/MeVusZ4b0N/tjFHVUKNTWkPzDCAhh11fSrU6A=;
-        b=oQNAPd0+odkIrjosh5I44L9RwirngUdsQc4vn8gHUk18EUOgwD55LLJZs1hYX/JW6P
-         zWZlUV1De5RH016R5xQ5WEQZzlcXLmxt4DJ9vQhWXgPFSITizc79pfQlHJFUG/2S2YvM
-         xhPG+oJtn0Wmn35qzwBcMpdarAvlOoK2Ozo+VCukX3T3DGyyPpYcJxfO57fgLBZRYjUy
-         AUjClMK9sCBJhFUbVEheYLOEY+Fpb6jgAEjvKV6oxwIsVrsq8VCzS0zZgax6ggAMKLYO
-         ILi4dK28sh5UFw3S+u0OeCjCWE7je0naYQEAsZkGwji5GgrQwEVA8sagrUf3qQwTjdrK
-         ExNQ==
-X-Gm-Message-State: AOAM5336dsfzjMmhSLpx2a+L5pqmoKWI1hTVo/V45Td+PAs7jWdxouG8
-        CGMh3K/RPRzK2KpYp0HBRJE=
-X-Google-Smtp-Source: ABdhPJwSWg4FBr7OY7AxzYwDMv1nLEAHRO8crmn+qZHgmfPLuyez3KEx8mKobZPHm50gu/Snkusk3A==
-X-Received: by 2002:a17:906:2b87:: with SMTP id m7mr5278949ejg.210.1599037841796;
-        Wed, 02 Sep 2020 02:10:41 -0700 (PDT)
-Received: from pi3 ([194.230.155.106])
-        by smtp.googlemail.com with ESMTPSA id n20sm1704793ejs.14.2020.09.02.02.10.39
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=K4YsaDFC3Pt4ZknV5E5TYlw0op731bQlj4z6J8XbD9o=;
+        b=ZQAgDjh5aXiRtGlBFaeliyY8osM6olD/nJ1omA/0fP1R0Lufh0FgcKFAAmkwc8wxl8
+         jfTQsE+Xotszmu2vH51h9XSA86W+i4UjrA2Zm2FvJcQa8dN+sGIceA96DcIKj7+9erS8
+         l4aJaP+emXOwfH/phoihjD5Po2mmBJXWcHuLksD20Uu8oQnsMRJ9sKKctQgLjhTIoKS1
+         uXHtZi42jNm6luBVjf/eeLTHzdiWBg8v9sMWh71/Bill6usQP8D6CjsCGiq5mpwUF8Mk
+         AzSiY/I1csK7fapcFdKs8zj0cg3hS4ge4mcSbZ3ZwbN6haaMp4OX1637+7vF4k5Sg43y
+         HfHg==
+X-Gm-Message-State: AOAM532wP25PK3efALeqoC7iJx1aEsegDxPZk5at8SXZ9mq1PUABecJI
+        nbmbtFadf7RRZEFhrnyqXH8=
+X-Google-Smtp-Source: ABdhPJziga6cVnGwqodUAGTuzDSoW5dwcnCBj0weg4cfDUXNmX8rvlXqTeMVVRIW4jd65+tmx+jdFw==
+X-Received: by 2002:adf:eb0a:: with SMTP id s10mr6214329wrn.83.1599038245240;
+        Wed, 02 Sep 2020 02:17:25 -0700 (PDT)
+Received: from Red.localdomain ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id j7sm6335778wrw.35.2020.09.02.02.17.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Sep 2020 02:10:41 -0700 (PDT)
-Date:   Wed, 2 Sep 2020 11:10:38 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Sangbeom Kim <sbkim73@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: sound: midas-audio: Correct parsing
- sound-dai phandles
-Message-ID: <20200902091038.GB13726@pi3>
-References: <20200830112633.6732-1-krzk@kernel.org>
- <20200901110349.GC6262@sirena.org.uk>
+        Wed, 02 Sep 2020 02:17:24 -0700 (PDT)
+From:   Corentin Labbe <clabbe.montjoie@gmail.com>
+To:     davem@davemloft.net, herbert@gondor.apana.org.au,
+        mripard@kernel.org, robh+dt@kernel.org, robh@kernel.org,
+        wens@csie.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com, m.cerveny@computer.org,
+        Corentin Labbe <clabbe.montjoie@gmail.com>
+Subject: [PATCH] dt-bindings: crypto: Specify that allwinner,sun8i-a33-crypto needs reset
+Date:   Wed,  2 Sep 2020 11:17:16 +0200
+Message-Id: <20200902091716.22650-1-clabbe.montjoie@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200901110349.GC6262@sirena.org.uk>
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 01, 2020 at 12:03:49PM +0100, Mark Brown wrote:
-> On Sun, Aug 30, 2020 at 01:26:32PM +0200, Krzysztof Kozlowski wrote:
-> > The "sound-dai" property has cells therefore phandle-array should be
-> > used, even if it is just one phandle.  This fixes dtbs_check warnings
-> > like:
-> 
-> Please submit patches using subject lines reflecting the style for the
-> subsystem, this makes it easier for people to identify relevant patches.
-> Look at what existing commits in the area you're changing are doing and
-> make sure your subject lines visually resemble what they're doing.
-> There's no need to resubmit to fix this alone.
+When adding allwinner,sun8i-a33-crypto, I forgot to add that it needs reset.
+Furthermore, there are no need to use items to list only one compatible
+in compatible list.
 
-The usual prefix for bindings is "dt-bindings: ..." so I wonder what
-type of prefix you expect:
-1. ASoC: dt-bindings: ...
-2. dt-bindings: ASoC: ...
+Fixes: f81547ba7a98 ("dt-bindings: crypto: add new compatible for A33 SS")
+Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+---
+ .../bindings/crypto/allwinner,sun4i-a10-crypto.yaml        | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-Which one of these?
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
+index fc823572bcff..1075f0e75368 100644
+--- a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
++++ b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
+@@ -23,8 +23,7 @@ properties:
+       - items:
+           - const: allwinner,sun7i-a20-crypto
+           - const: allwinner,sun4i-a10-crypto
+-      - items:
+-          - const: allwinner,sun8i-a33-crypto
++      - const: allwinner,sun8i-a33-crypto
+ 
+   reg:
+     maxItems: 1
+@@ -59,7 +58,9 @@ if:
+   properties:
+     compatible:
+       contains:
+-        const: allwinner,sun6i-a31-crypto
++        oneOf:
++          - const: allwinner,sun6i-a31-crypto
++          - const: allwinner,sun8i-a33-crypto
+ 
+ then:
+   required:
+-- 
+2.26.2
 
