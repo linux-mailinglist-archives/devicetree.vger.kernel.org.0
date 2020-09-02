@@ -2,140 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1F7925AE20
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 16:59:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E7D725AD8C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 16:44:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726173AbgIBO7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 10:59:16 -0400
-Received: from wnew1-smtp.messagingengine.com ([64.147.123.26]:59977 "EHLO
-        wnew1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726528AbgIBNwf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 09:52:35 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.west.internal (Postfix) with ESMTP id 679675DD;
-        Wed,  2 Sep 2020 09:52:33 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Wed, 02 Sep 2020 09:52:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=uYl4BPHJHJwCu+IH/QSOVmLDopG
-        QR9pU8iqrt6n2QJ0=; b=XXkBZ0AU1gPtIpCT7UwgtStXIxC4oVjC5FcJH6iX5uu
-        wU8wjbZRK+1vICtZ/tqPMGhwhPvsfFVbDVuin0kFLguFYqVV50GOYS1zHOhHen3i
-        KeeHo1QhqbPDsysn7wll3hIotJ3Cd69FKxgIqtbZiAv8H7Jo/lo/wDHUs51Fhjl9
-        Fxy9ABtJ1odVwjWjiKsdTFMRZSER7IySA/+KejSIreeCxel/DIYZJrl5wO1a1XjI
-        wTEZSN5YjXCj98GWwBOo4QxYVOoU4rTGY5oHFSPX87u2PX5ER6llcTj63hVJ94Be
-        79kH65Z/JoTSk1DYXlsSCpgWMBQVshsyTTo1SRScd2w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=uYl4BP
-        HJHJwCu+IH/QSOVmLDopGQR9pU8iqrt6n2QJ0=; b=tWoJdaczodYmxy9J3bFBoX
-        buLaM3YefbPsTm0YESK7pU2fH2O4d9bhnx1mMLYb1e1MGPjUJw7DmKqkOSn3vAaH
-        cii0IYzDwoc2KYriGH/w0x0dFr+WoE6aqxDPL2QYIvF7Q/WVfWXoLhLsrrrsWxLn
-        lr2YERIwgcuvlIt832jKJXsjfJx7w0lDm5b+6+nCr5UJNKSznDikAtCKmUL479i/
-        fjkPOhVgHUdNr15aa//iCKtzrtFsRV7TfH4ysy0syrENwm/Y674NDOiM2pt2KOpX
-        Avh4zd2A2sjHztEX+71YVf57YMP608BpfL4z0JIavPbzsDUbBut785e9GvY7HTYQ
-        ==
-X-ME-Sender: <xms:n6NPX_qTozjzfe7fC4apLu9gBl2-reHQmCuC-doz2DB5lGMOkSgSGw>
-    <xme:n6NPX5q5BpOf_e2Ys3Ec66brJ63DJNPwSSkiJuqz4WccZWPmi824aRCXvQJL7t0rq
-    LjXYDTPN53sumIMlp0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudefledgjedtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepuddvudfhkeekhefgffetffelgffftdehffduffegveetffehueeivddvjedv
-    gfevnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:n6NPX8O69UHTuexuOmoIizn2havGvGAJxVqtDwjneINQxnWDPV_KXg>
-    <xmx:n6NPXy4jE2Y_PBTupPEGBJBijeDTFyEWOj9ThEqavfUXNml4oOyjcQ>
-    <xmx:n6NPX-4SbTbPsnGqG7FfpQFxNJ0FpD68ZtoqHuh7YL63anamrGAenw>
-    <xmx:oaNPX9RvhgC5IuuXK-6wp4pu4tPY8NNdvcBQt_Nnj2BubG8zLBazXVNhzPg>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id B013D328005E;
-        Wed,  2 Sep 2020 09:52:31 -0400 (EDT)
-Date:   Wed, 2 Sep 2020 15:52:30 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Hoegeun Kwon <hoegeun.kwon@samsung.com>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Eric Anholt <eric@anholt.net>, devicetree@vger.kernel.org,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Kamal Dasu <kdasu.kdev@gmail.com>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-clk@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Phil Elwell <phil@raspberrypi.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 00/78] drm/vc4: Support BCM2711 Display Pipeline
-Message-ID: <20200902135230.5hpvfjqsamot5zg6@gilmour.lan>
-References: <CGME20200709070649epcas1p13664bacc66a0f73443bf4d3e8940f933@epcas1p1.samsung.com>
- <cover.7a1aa1784976093af26cb31fd283cf5b3ed568bb.1594230107.git-series.maxime@cerno.tech>
- <1a39aedf-b708-e490-6acb-9a07e1b73300@samsung.com>
- <20200902133220.avp6dhfv2fhpiyf3@gilmour.lan>
+        id S1727961AbgIBOo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 10:44:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42426 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727951AbgIBOlC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 10:41:02 -0400
+Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com [IPv6:2607:f8b0:4864:20::e43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ED26C061245
+        for <devicetree@vger.kernel.org>; Wed,  2 Sep 2020 07:41:02 -0700 (PDT)
+Received: by mail-vs1-xe43.google.com with SMTP id a16so2660914vsp.12
+        for <devicetree@vger.kernel.org>; Wed, 02 Sep 2020 07:41:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=B/zlgCI9QrJNPU4JJlp1UP/IMi9j+4O0vRWsFWmv0KI=;
+        b=VLaaxBL3UFPDYVUJ5u3qnhXXYiWouCcUpbGhcl8mkRK7KVGFsfz0SiYYjhEZeqM6ev
+         kLwMmuI2R1ybRDGdb62aq4/OF0wCpEegWeULD0pDxvQvQOYdsqWMqsQeAS2Reo9i5x5/
+         q3Pj+eXZKms7JnqjKxS3W+KSojCcZudHAlWt9N4kJIusQD/NA3fN6BjnG+ZzVxveCxP0
+         fjiTplf6t9cfgtQFRLmsTZPxJBxWO0rDplJuR+eYWn/uJvMpbzs4bqoGe1znbGzedqNS
+         6Div+I9dOBnHLRefDLL+pXF2AJyMinxm8k5BWY7L7wyVghBHL/1XrzKok+a9FLkC8/x9
+         EIyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=B/zlgCI9QrJNPU4JJlp1UP/IMi9j+4O0vRWsFWmv0KI=;
+        b=GnTvJ58CUFv26P3N+jOVt39bVFoFSkavr4ZQa0RgjcXsbNjT0gsxqk5e3bRMi87gPK
+         zPqLQgIlKX1RoZPQ1BGHePTmAn75TtqMcI+h1V/aLB0+aNCcZhJ3SjY/i/uRVJbI/Jti
+         OHdcaagcJsTZFR0CjmyzT+Xi/kl3yFZ/UR1s/x6o/ruqoXUr0aPG3X6CMQ2VEyqJcvlp
+         gSpkPKGH8r4n8T3OfA9vEpDVyVOclViKIpE9eSYT9gbOd7sm/Gb87lP9w7FLQQBUkBMF
+         8/N8snwH1dqgb0bicC0XLpCZHsbjJPM5qTYdJNOtrTrufkyV1Rtp2zpJ2/8E4IjDeS4t
+         55qA==
+X-Gm-Message-State: AOAM533RWSv5PFFYGP+EGwtLavgykMiZELRuHUxw3+2j/LkwVWoe/Al2
+        5oWCBGK+qyAwDNzJgww65r7sTT6ztjERxu0y98/Ukg==
+X-Google-Smtp-Source: ABdhPJzlxTPaTI8JwFZQXPJBSSUSFEsHPrWt06u3qPZOY9J3wJyukGwQHEqGAZWmHxk7I65dz6qnkslKhZ6rX4tFp/8=
+X-Received: by 2002:a67:e9d4:: with SMTP id q20mr5209551vso.83.1599057661252;
+ Wed, 02 Sep 2020 07:41:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="hfgqy6buhvjnpemx"
-Content-Disposition: inline
-In-Reply-To: <20200902133220.avp6dhfv2fhpiyf3@gilmour.lan>
+References: <20191112110330.179649-1-pihsun@chromium.org> <20191112110330.179649-5-pihsun@chromium.org>
+ <2abf8fdd-7b7c-73b0-beea-9c9ac56869dc@gmail.com>
+In-Reply-To: <2abf8fdd-7b7c-73b0-beea-9c9ac56869dc@gmail.com>
+From:   Naresh Kamboju <naresh.kamboju@linaro.org>
+Date:   Wed, 2 Sep 2020 20:10:49 +0530
+Message-ID: <CA+G9fYt9AujG6gyfeV5AaAv0EgggUfGT1jow8DJjVfetVWV3EA@mail.gmail.com>
+Subject: Re: [PATCH v21 4/4] arm64: dts: mt8183: add scp node
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Linux-Next Mailing List <linux-next@vger.kernel.org>
+Cc:     Pi-Hsun Shih <pihsun@chromium.org>, Erin Lo <erin.lo@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Anders Roxell <anders.roxell@linaro.org>,
+        lkft-triage@lists.linaro.org,
+        Stephen Rothwell <sfr@canb.auug.org.au>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 27 Aug 2020 at 15:44, Matthias Brugger <matthias.bgg@gmail.com> wrote:
+>
+>
+>
+> On 12/11/2019 12:03, Pi-Hsun Shih wrote:
+> > From: Eddie Huang <eddie.huang@mediatek.com>
+> >
+> > Add scp node to mt8183 and mt8183-evb
+> >
+> > Signed-off-by: Erin Lo <erin.lo@mediatek.com>
+> > Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
+> > Signed-off-by: Eddie Huang <eddie.huang@mediatek.com>
+>
+> Sorry I somehow oversaw this. Next time please don't doubt to ping me.
+>
+> Bjorn, do I understand correctly that you don't send emails to the list
+> informing of the inclusion of a patch/series in your tree?
+>
+> Anyway applied now to v5.9-next/dts64 :)
 
---hfgqy6buhvjnpemx
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+arm64 build dtbs failed on linux next 20200902.
 
-On Wed, Sep 02, 2020 at 03:32:20PM +0200, Maxime Ripard wrote:
-> Hi Hoegeun
->=20
-> On Fri, Aug 21, 2020 at 04:18:34PM +0900, Hoegeun Kwon wrote:
-> > Hi Maxime,
-> >=20
-> > Thank you for your version 4 patch.
-> > I tested all 78 patches based on the next-20200708.
-> >=20
-> >=20
-> > Dual HDMI opearation does not work normally.
-> > flip_done timed out occurs and doesn't work.
-> > Could you check please it.
-> >=20
-> > [=A0 105.694541] [drm:drm_atomic_helper_wait_for_dependencies] *ERROR*=
-=20
-> > [CRTC:64:crtc-3] flip_done timed out
-> > [=A0 115.934994] [drm:drm_atomic_helper_wait_for_dependencies] *ERROR*=
-=20
-> > [CONNECTOR:32:HDMI-A-1] flip_done timed out
-> > [=A0 126.174545] [drm:drm_atomic_helper_wait_for_dependencies] *ERROR*=
-=20
-> > [PLANE:60:plane-3] flip_done timed out
->=20
-> Thanks for testing and reporting this. I've been looking into it, and it
-> seems that it's not just the dual output that's broken, but HDMI1
-> entirely (so even a single display connected to HDMI1 doesn't work).
->=20
-> Is it happening for you as well?
+mt8183.dtsi:342.21-352.5: ERROR (phandle_references):
+/soc/scp@10500000: Reference to non-existent node or label
+"scp_mem_reserved"
 
-Nevermind, I had the DSI panel connected and it was interfering
+build log,
 
-Maxime
+make -sk KBUILD_BUILD_USER=TuxBuild -C/linux ARCH=arm64
+CROSS_COMPILE=aarch64-linux-gnu- HOSTCC=gcc CC="sccache
+aarch64-linux-gnu-gcc" O=build dtbs
+#
+../arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14:
+Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges"
+property but its #address-cells (1) differs from / (2)
+../arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14:
+Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges"
+property but its #size-cells (1) differs from / (2)
+../arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14:
+Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges"
+property but its #address-cells (1) differs from / (2)
+../arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14:
+Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges"
+property but its #size-cells (1) differs from / (2)
+../arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14:
+Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges"
+property but its #address-cells (1) differs from / (2)
+../arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14:
+Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges"
+property but its #size-cells (1) differs from / (2)
+../arch/arm64/boot/dts/mediatek/mt8183.dtsi:342.21-352.5: ERROR
+(phandle_references): /soc/scp@10500000: Reference to non-existent
+node or label "scp_mem_reserved"
 
 
---hfgqy6buhvjnpemx
-Content-Type: application/pgp-signature; name="signature.asc"
+>
+> Thanks!
+>
+> > ---
+> > Changes from v20 ... v14:
+> >   - No change.
+> >
+> > Changes from v13:
+> >   - Change the size of the cfg register region.
+> >
+> > Changes from v12 ... v10:
+> >   - No change.
+> >
+> > Changes from v9:
+> >   - Remove extra reserve-memory-vpu_share node.
+> >
+> > Changes from v8:
+> >   - New patch.
+> > ---
+> >   arch/arm64/boot/dts/mediatek/mt8183-evb.dts | 11 +++++++++++
+> >   arch/arm64/boot/dts/mediatek/mt8183.dtsi    | 12 ++++++++++++
+> >   2 files changed, 23 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+> > index 1fb195c683c3..ddb7a7ac9655 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+> > @@ -24,6 +24,17 @@ memory@40000000 {
+> >       chosen {
+> >               stdout-path = "serial0:921600n8";
+> >       };
+> > +
+> > +     reserved-memory {
+> > +             #address-cells = <2>;
+> > +             #size-cells = <2>;
+> > +             ranges;
+> > +             scp_mem_reserved: scp_mem_region {
+> > +                     compatible = "shared-dma-pool";
+> > +                     reg = <0 0x50000000 0 0x2900000>;
+> > +                     no-map;
+> > +             };
+> > +     };
+> >   };
+> >
+> >   &auxadc {
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> > index 10b32471bc7b..e582f5e6691d 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> > @@ -269,6 +269,18 @@ pwrap: pwrap@1000d000 {
+> >                       clock-names = "spi", "wrap";
+> >               };
+> >
+> > +             scp: scp@10500000 {
+> > +                     compatible = "mediatek,mt8183-scp";
+> > +                     reg = <0 0x10500000 0 0x80000>,
+> > +                           <0 0x105c0000 0 0x19080>;
+> > +                     reg-names = "sram", "cfg";
+> > +                     interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     clocks = <&infracfg CLK_INFRA_SCPSYS>;
+> > +                     clock-names = "main";
+> > +                     memory-region = <&scp_mem_reserved>;
+> > +                     status = "disabled";
+> > +             };
+> > +
+> >               systimer: timer@10017000 {
+> >                       compatible = "mediatek,mt8183-timer",
+> >                                    "mediatek,mt6765-timer";
+> >
 
------BEGIN PGP SIGNATURE-----
+full build log,
+https://builds.tuxbuild.com/_IfeLhOWMWxIkRkmAtAwOQ/build.log
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX0+jngAKCRDj7w1vZxhR
-xVSHAQCnCDlA/SJLCP5PetU7Iyf4P2mZvBCHHAz/RyMCctXhaAEA+AQnVnAQhqZZ
-mmLYhcaotKt4KrJuuhWp61WNWd0RMwQ=
-=1Ln2
------END PGP SIGNATURE-----
 
---hfgqy6buhvjnpemx--
+-- 
+Linaro LKFT
+https://lkft.linaro.org
