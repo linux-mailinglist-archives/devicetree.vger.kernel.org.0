@@ -2,155 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D3CB25B5F3
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 23:37:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFAFD25B5F6
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 23:37:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727035AbgIBVd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 17:33:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49686 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726994AbgIBVd4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 17:33:56 -0400
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E78CC061245;
-        Wed,  2 Sep 2020 14:33:56 -0700 (PDT)
-Received: by mail-pf1-x442.google.com with SMTP id o20so420188pfp.11;
-        Wed, 02 Sep 2020 14:33:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=4kk+T1HfVLH9UnnPxrYNLNlYNhDqwqvqKumUeDWS3JQ=;
-        b=OcxWYM9I1S0nYRyIiEpmze7EpUyRt5TTJVkcMdyw+moqmQGN4FGyWtzMqouaWNlon9
-         XgNDvSghoyxBttYvKDr3i7AR1COPeY9SEWEWleXrKNo6kqtWYSVwKsynEzNmUS5sXq2L
-         EeO+D27H8ca8ZmUpxLrYNJC5Z3hVgE81vcd74Mz3Dp3h+oh+Gh+RFVTMOV47mDwD2AEE
-         o9Z/r+NC4yXJCJiNytRND90ixSxixBQe2rC0IFPVghSEdRvs+GPxqlvJU3sgLvIdKQGD
-         f7aRdTD2hqAawnedbYyOzH7OgIgtCO4t6xs+oMPtL39RRUOuaox9mPUxeG+sd/xylF08
-         nWgw==
+        id S1726312AbgIBVgz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 17:36:55 -0400
+Received: from mail-il1-f195.google.com ([209.85.166.195]:36170 "EHLO
+        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726298AbgIBVgz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 17:36:55 -0400
+Received: by mail-il1-f195.google.com with SMTP id p13so604851ils.3
+        for <devicetree@vger.kernel.org>; Wed, 02 Sep 2020 14:36:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=4kk+T1HfVLH9UnnPxrYNLNlYNhDqwqvqKumUeDWS3JQ=;
-        b=kfkzvUO4uqwzYvJkYgr/Yq24oi3mUPWBOGYQ1o8LeX59J9OcVQmh4xji6BJKgh8K+M
-         FMKYnlth9P18OFNxIW1uiU7e2HKUx7KY92bhWy8diOGKg9PUI1M+CmnhVTcnfqXPpn2z
-         egjMfleqs+AUWSgaQ5na4AmgTNxqFcKwQgPZ7CEcV4ZmEX4DE+R4acS+5Qm2rmzKQKw/
-         3tdxXeBlLLU2xieo57V37vovyLpiSZszeL5gKCqHK25Q1c7NXvdZw6fwwlpLoiz2JZZG
-         AI1rwriwaQX9d4w6NF1UdsAyaMoaF2ihmyElxRB53WIaDAFpTgEstthO9IOKFjJ5StBS
-         JfgA==
-X-Gm-Message-State: AOAM530KwlZa4SwSEnpREkCvX05hnBMVxsLAkEuG5FPRRs34Ly51R28+
-        sNgmCxXokXyAIkgUD6sGhsaXxXdZb2M=
-X-Google-Smtp-Source: ABdhPJwlyfccYGDlLlkHPvW/UGVj2yiW2J3a1EEJs75B4faKGdzGpci8n7B6qFo62q813JqAJXxbzg==
-X-Received: by 2002:a65:5a4c:: with SMTP id z12mr1059pgs.10.1599082435076;
-        Wed, 02 Sep 2020 14:33:55 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id g5sm466881pfh.168.2020.09.02.14.33.53
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=AEWdZ2EvoE7+VzEELCc1s9zY9GOHLD1KmRpGN6qmpio=;
+        b=blI6yqkHE+wSnbwJT7y0YvnCi7IFdw0Os+ySi4NoxDfTi4xciqgPGd/UE+l9nvrezm
+         6i5VVTIs3fI6MyX8/JiyDPPYhzh0q2rEGpkb5r++ccYVwgl9uL/XN+bEWAqJbyRhD4a3
+         exOURDVcIjQ+G+jr2kuXmGUpskTviW49swhdTaj266l6U3sr3OT6KdptSxss7L/Wb92z
+         EcLRpy6kdsJGH6XZp2LFxOxV5ANLOL7HtPO+wTZkFlYseD63M9g5RC6D14UwLFm0i5rh
+         5PZc3xNGoS7MtPAWpChlaWzjpXoHOtMLpJC3cH0MbKc4NERzYNUHH5h1EubkdaVNdpeI
+         LGYQ==
+X-Gm-Message-State: AOAM533OgJCRHrpSIKq1hwmvJywDDYn6IJMgQIIAHjN0dMneJS0ZbrAP
+        YC8pRJW5Vcz4dtfgR/XKHg==
+X-Google-Smtp-Source: ABdhPJyarj6G/iqVZKXQz8HL1M22qulKMKM6kx59DMtmez9yEN6qzOJoTIUVxw4aFsYL5Lizrwr3Cw==
+X-Received: by 2002:a92:dad1:: with SMTP id o17mr250544ilq.22.1599082613845;
+        Wed, 02 Sep 2020 14:36:53 -0700 (PDT)
+Received: from xps15 ([64.188.179.249])
+        by smtp.gmail.com with ESMTPSA id g15sm430212ilb.37.2020.09.02.14.36.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Sep 2020 14:33:54 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     netdev@vger.kernel.org
-Cc:     Florian Fainelli <f.fainelli@gmail.com>, andrew@lunn.ch,
-        adam.rudzinski@arf.net.pl, m.felsch@pengutronix.de,
-        hkallweit1@gmail.com, richard.leitner@skidata.com,
-        zhengdejin5@gmail.com, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, kuba@kernel.org, robh+dt@kernel.org
-Subject: [RFC net-next 2/2] net: phy: bcm7xxx: request and manage GPHY clock
-Date:   Wed,  2 Sep 2020 14:33:47 -0700
-Message-Id: <20200902213347.3177881-3-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200902213347.3177881-1-f.fainelli@gmail.com>
-References: <20200902213347.3177881-1-f.fainelli@gmail.com>
+        Wed, 02 Sep 2020 14:36:53 -0700 (PDT)
+Received: (nullmailer pid 1414006 invoked by uid 1000);
+        Wed, 02 Sep 2020 21:36:52 -0000
+Date:   Wed, 2 Sep 2020 15:36:52 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     devicetree@vger.kernel.org, kernel-team@android.com,
+        linux-arm-kernel@lists.infradead.org,
+        Will Deacon <will@kernel.org>, tsoni@quicinc.com,
+        pratikp@quicinc.com
+Subject: Re: [PATCH 2/9] dt-bindings: Arm: Extend FF-A binding to support
+ in-kernel usage of partitions
+Message-ID: <20200902213652.GA1410716@bogus>
+References: <20200829170923.29949-1-sudeep.holla@arm.com>
+ <20200829170923.29949-3-sudeep.holla@arm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200829170923.29949-3-sudeep.holla@arm.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The internal Gigabit PHY on Broadcom STB chips has a digital clock which
-drives its MDIO interface among other things, the driver now requests
-and manage that clock during .probe() and .remove() accordingly.
+On Sat, 29 Aug 2020 18:09:16 +0100, Sudeep Holla wrote:
+> Since the FF-A v1.0 specification doesn't list the UUID of all the
+> partitions in the discovery API, we need to specify the UUID of the
+> partitions that need to be accessed by drivers within the kernel.
+> 
+> This extends the binding to provide the list of partitions that kernel
+> drivers may need to access and are not part of the partitions managed
+> by the hypervisor.
+> 
+> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+> ---
+>  .../devicetree/bindings/arm/arm,ffa.yaml      | 34 +++++++++++++++++--
+>  1 file changed, 32 insertions(+), 2 deletions(-)
+> 
+> Hi,
+> 
+> I am sure this is incomplete, but I couldn't figure out how to make all
+> the child properties optional if it is not managed by hypervisor.
+> 
+> Moreover, if we don't like the idea of adding UUID of all the partitions
+> that in-kernel drivers may need to communicate to, one alternative I can
+> think of is to allow the creation of FFA device from the FFA driver
+> itself.
+> 
+> Regards,
+> Sudeep
+> 
 
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
----
- drivers/net/phy/bcm7xxx.c | 29 ++++++++++++++++++++++++++++-
- 1 file changed, 28 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/phy/bcm7xxx.c b/drivers/net/phy/bcm7xxx.c
-index 692048d86ab1..2b81a11e3167 100644
---- a/drivers/net/phy/bcm7xxx.c
-+++ b/drivers/net/phy/bcm7xxx.c
-@@ -11,6 +11,8 @@
- #include "bcm-phy-lib.h"
- #include <linux/bitops.h>
- #include <linux/brcmphy.h>
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/mdio.h>
- 
- /* Broadcom BCM7xxx internal PHY registers */
-@@ -39,6 +41,7 @@
- 
- struct bcm7xxx_phy_priv {
- 	u64	*stats;
-+	struct clk *clk;
- };
- 
- static int bcm7xxx_28nm_d0_afe_config_init(struct phy_device *phydev)
-@@ -521,6 +524,7 @@ static void bcm7xxx_28nm_get_phy_stats(struct phy_device *phydev,
- static int bcm7xxx_28nm_probe(struct phy_device *phydev)
- {
- 	struct bcm7xxx_phy_priv *priv;
-+	int ret = 0;
- 
- 	priv = devm_kzalloc(&phydev->mdio.dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
-@@ -534,7 +538,28 @@ static int bcm7xxx_28nm_probe(struct phy_device *phydev)
- 	if (!priv->stats)
- 		return -ENOMEM;
- 
--	return 0;
-+	priv->clk = devm_clk_get_optional(&phydev->mdio.dev, "sw_gphy");
-+	if (IS_ERR(priv->clk))
-+		return PTR_ERR(priv->clk);
-+
-+	/* To get there, the mdiobus registration logic already enabled our
-+	 * clock otherwise we would not have probed this device since we would
-+	 * not be able to read its ID. To avoid artificially bumping up the
-+	 * clock reference count, only do the clock enable from a phy_remove ->
-+	 * phy_probe path (driver unbind, then rebind).
-+	 */
-+	if (!__clk_is_enabled(priv->clk))
-+		ret = clk_prepare_enable(priv->clk);
-+
-+	return ret;
-+}
-+
-+static void bcm7xxx_28nm_remove(struct phy_device *phydev)
-+{
-+	struct bcm7xxx_phy_priv *priv = phydev->priv;
-+
-+	clk_disable_unprepare(priv->clk);
-+	devm_clk_put(&phydev->mdio.dev, priv->clk);
- }
- 
- #define BCM7XXX_28NM_GPHY(_oui, _name)					\
-@@ -552,6 +577,7 @@ static int bcm7xxx_28nm_probe(struct phy_device *phydev)
- 	.get_strings	= bcm_phy_get_strings,				\
- 	.get_stats	= bcm7xxx_28nm_get_phy_stats,			\
- 	.probe		= bcm7xxx_28nm_probe,				\
-+	.remove		= bcm7xxx_28nm_remove,				\
- }
- 
- #define BCM7XXX_28NM_EPHY(_oui, _name)					\
-@@ -567,6 +593,7 @@ static int bcm7xxx_28nm_probe(struct phy_device *phydev)
- 	.get_strings	= bcm_phy_get_strings,				\
- 	.get_stats	= bcm7xxx_28nm_get_phy_stats,			\
- 	.probe		= bcm7xxx_28nm_probe,				\
-+	.remove		= bcm7xxx_28nm_remove,				\
- }
- 
- #define BCM7XXX_40NM_EPHY(_oui, _name)					\
--- 
-2.25.1
+My bot found errors running 'make dt_binding_check' on your patch:
+
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 45, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 850, in _ruamel_yaml.CParser._compose_sequence_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 731, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.scanner.ScannerError: while scanning for the next token
+found character that cannot start any token
+  in "<unicode string>", line 98, column 1
+make[1]: *** [Documentation/devicetree/bindings/Makefile:18: Documentation/devicetree/bindings/arm/arm,ffa.example.dts] Error 1
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/arm/arm,ffa.example.dts'
+make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/arm/arm,ffa.yaml:  while scanning for the next token
+found character that cannot start any token
+  in "<unicode string>", line 98, column 1
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/arm,ffa.yaml: ignoring, error parsing file
+warning: no schema found in file: ./Documentation/devicetree/bindings/arm/arm,ffa.yaml
+make: *** [Makefile:1366: dt_binding_check] Error 2
+
+
+See https://patchwork.ozlabs.org/patch/1353741
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
 
