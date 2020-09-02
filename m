@@ -2,208 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E7D725AD8C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 16:44:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73F4625AE89
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 17:14:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727961AbgIBOo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 10:44:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42426 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727951AbgIBOlC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 10:41:02 -0400
-Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com [IPv6:2607:f8b0:4864:20::e43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ED26C061245
-        for <devicetree@vger.kernel.org>; Wed,  2 Sep 2020 07:41:02 -0700 (PDT)
-Received: by mail-vs1-xe43.google.com with SMTP id a16so2660914vsp.12
-        for <devicetree@vger.kernel.org>; Wed, 02 Sep 2020 07:41:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=B/zlgCI9QrJNPU4JJlp1UP/IMi9j+4O0vRWsFWmv0KI=;
-        b=VLaaxBL3UFPDYVUJ5u3qnhXXYiWouCcUpbGhcl8mkRK7KVGFsfz0SiYYjhEZeqM6ev
-         kLwMmuI2R1ybRDGdb62aq4/OF0wCpEegWeULD0pDxvQvQOYdsqWMqsQeAS2Reo9i5x5/
-         q3Pj+eXZKms7JnqjKxS3W+KSojCcZudHAlWt9N4kJIusQD/NA3fN6BjnG+ZzVxveCxP0
-         fjiTplf6t9cfgtQFRLmsTZPxJBxWO0rDplJuR+eYWn/uJvMpbzs4bqoGe1znbGzedqNS
-         6Div+I9dOBnHLRefDLL+pXF2AJyMinxm8k5BWY7L7wyVghBHL/1XrzKok+a9FLkC8/x9
-         EIyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=B/zlgCI9QrJNPU4JJlp1UP/IMi9j+4O0vRWsFWmv0KI=;
-        b=GnTvJ58CUFv26P3N+jOVt39bVFoFSkavr4ZQa0RgjcXsbNjT0gsxqk5e3bRMi87gPK
-         zPqLQgIlKX1RoZPQ1BGHePTmAn75TtqMcI+h1V/aLB0+aNCcZhJ3SjY/i/uRVJbI/Jti
-         OHdcaagcJsTZFR0CjmyzT+Xi/kl3yFZ/UR1s/x6o/ruqoXUr0aPG3X6CMQ2VEyqJcvlp
-         gSpkPKGH8r4n8T3OfA9vEpDVyVOclViKIpE9eSYT9gbOd7sm/Gb87lP9w7FLQQBUkBMF
-         8/N8snwH1dqgb0bicC0XLpCZHsbjJPM5qTYdJNOtrTrufkyV1Rtp2zpJ2/8E4IjDeS4t
-         55qA==
-X-Gm-Message-State: AOAM533RWSv5PFFYGP+EGwtLavgykMiZELRuHUxw3+2j/LkwVWoe/Al2
-        5oWCBGK+qyAwDNzJgww65r7sTT6ztjERxu0y98/Ukg==
-X-Google-Smtp-Source: ABdhPJzlxTPaTI8JwFZQXPJBSSUSFEsHPrWt06u3qPZOY9J3wJyukGwQHEqGAZWmHxk7I65dz6qnkslKhZ6rX4tFp/8=
-X-Received: by 2002:a67:e9d4:: with SMTP id q20mr5209551vso.83.1599057661252;
- Wed, 02 Sep 2020 07:41:01 -0700 (PDT)
+        id S1726871AbgIBPOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 11:14:08 -0400
+Received: from mail-eopbgr30052.outbound.protection.outlook.com ([40.107.3.52]:31663
+        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728149AbgIBPNx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Sep 2020 11:13:53 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ka4WHpf+eK5HAH8PUiG0AkMc0iLzI60u9VgpXn5IoEUCNoeOhYK6bTXdiWMdHEtX2OV88fZWwtImTKGh/VJAGuyH0R85YrwJYnArGcbm327I0yMGidBfdMcAdbDhcNTWqE+sdc4LtPBqfwcDoDHgKSgOo6zOUrpxnnHEXIRx4FHW1HrwGUkJJi2PUyzH2FiLue2+SHnkiOfmE70qzVdcebjzL573R+J+hg3WX3Z5Vl24Qe6WwxBkoG6UW0uKOW6yMJPw8c02SNIAysEfMh7f014f2o8pertUY6m9/GHf8m1vQxpxk0iIBqiWlEgL1sZ4K4zWgLT7o1co6ZhSzdQJnQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rUKk4CDxUn//JaGG3abfJhc1RqmCVGzArMGsDhB2kKQ=;
+ b=HkMf43w/88KL21lD5El3gE7wZYVBEe65E1kI2YIRb6HMNIhpee1vQLwf/iwzsLGR3cSCpVw2TCUUU8KO3AW3N5cdphu7un8G5dOysJlsyEF6Pf9vjwt/hhUyGwjRXYZUL+/GAg3XViZFhzZl7V/GCxj8TYa9Yh93pdAAVl+KroJ/gZEniCRQ9ALgp+pmZkgEXenFL55Q3kCM8LdpQYKCUp3zLSL3htB+g0xFODkKdURm2DdPaMH1zafP+bmw/4zqeGa0Mb69KmViPh8G0ad95tZ5R0SW/i8OIkY4dzVWyrOFd5Y+yy/qnqYyHYmGUZqr3sac59GuSeiGx2LYWxkmeA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rUKk4CDxUn//JaGG3abfJhc1RqmCVGzArMGsDhB2kKQ=;
+ b=T258nlBgCxCQ2DVSiG40kEXZY5iuKrN2Vma2bZcOoAMluGYVDGYAf/EcfcrvdP82bifSE2MXxT2BCVQuA2m8a40JBhKHNj3SoIx8waP5gCL2+ofwEbbVdkNMr/OGfEslOoehLLrHbOnV7KSdME5VagQigpKLP/Vq7vHTswPBInc=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB6885.eurprd04.prod.outlook.com (2603:10a6:20b:10d::24)
+ by AM6PR04MB3957.eurprd04.prod.outlook.com (2603:10a6:209:40::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.15; Wed, 2 Sep
+ 2020 15:13:45 +0000
+Received: from AM7PR04MB6885.eurprd04.prod.outlook.com
+ ([fe80::f431:1df6:f18b:ad99]) by AM7PR04MB6885.eurprd04.prod.outlook.com
+ ([fe80::f431:1df6:f18b:ad99%7]) with mapi id 15.20.3348.015; Wed, 2 Sep 2020
+ 15:13:44 +0000
+From:   meenakshi.aggarwal@nxp.com
+To:     shawnguo@kernel.org, robh+dt@kernel.org, V.sethi@nxp.com,
+        leoyang.li@nxp.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Meenakshi Aggarwal <meenakshi.aggarwal@nxp.com>
+Subject: [PATCH 1/2] dt-bindings: arm64: add compatible for LX2162A QDS Board
+Date:   Wed,  2 Sep 2020 20:43:29 +0530
+Message-Id: <1599059610-7570-1-git-send-email-meenakshi.aggarwal@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR03CA0147.apcprd03.prod.outlook.com
+ (2603:1096:4:c8::20) To AM7PR04MB6885.eurprd04.prod.outlook.com
+ (2603:10a6:20b:10d::24)
 MIME-Version: 1.0
-References: <20191112110330.179649-1-pihsun@chromium.org> <20191112110330.179649-5-pihsun@chromium.org>
- <2abf8fdd-7b7c-73b0-beea-9c9ac56869dc@gmail.com>
-In-Reply-To: <2abf8fdd-7b7c-73b0-beea-9c9ac56869dc@gmail.com>
-From:   Naresh Kamboju <naresh.kamboju@linaro.org>
-Date:   Wed, 2 Sep 2020 20:10:49 +0530
-Message-ID: <CA+G9fYt9AujG6gyfeV5AaAv0EgggUfGT1jow8DJjVfetVWV3EA@mail.gmail.com>
-Subject: Re: [PATCH v21 4/4] arm64: dts: mt8183: add scp node
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Linux-Next Mailing List <linux-next@vger.kernel.org>
-Cc:     Pi-Hsun Shih <pihsun@chromium.org>, Erin Lo <erin.lo@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Anders Roxell <anders.roxell@linaro.org>,
-        lkft-triage@lists.linaro.org,
-        Stephen Rothwell <sfr@canb.auug.org.au>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from 255.255.255.255 (255.255.255.255) by SG2PR03CA0147.apcprd03.prod.outlook.com (2603:1096:4:c8::20) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3348.7 via Frontend Transport; Wed, 2 Sep 2020 15:13:42 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [14.142.151.118]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: e0206887-e0ab-4ea0-43f6-08d84f52c882
+X-MS-TrafficTypeDiagnostic: AM6PR04MB3957:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <AM6PR04MB395725B4E5BA6441F63D06C98E2F0@AM6PR04MB3957.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: iC+uudEziKxbEoHVH+lG9agJTAz/2/XoQ3zv544tF886wUTPCbjsj0d7vkNnSX0RkHDY82/qy8JlJAy+2URro9T4pIjZtlK0xV7NSGmvpFuEsInW7wRG7Slt5NT3kKx6IVG54Dx91D7yJfFONusgW3O/hontfEuzw/wnoZSCCdO6RMRIF2+FR1xzKd2+NAH6obiHq3G2D6PoD/e+kFZSY8bReLGjRdaWaY63scGFH60Dw9hQdaLxYmqP+fApoo4huMqbNShXwzWxXZZK0Z+qTlj4Mqa1/HQk8zyb99Ty4FZ11Lqyg2IXZsfn8gi4rrjPShdv2wADkha6D5UVyA6H6g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB6885.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(376002)(346002)(39860400002)(366004)(396003)(6486002)(52116002)(8936002)(55236004)(16576012)(36756003)(66556008)(9686003)(478600001)(66946007)(8676002)(66476007)(6666004)(5660300002)(4744005)(86362001)(2616005)(956004)(186003)(4326008)(26005)(2906002)(316002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: bzmN5cfFL6o0j2oWPlrKG3ReER+UVoRqmaxPsrTQGwFHSPaPgdt6OIPPONupzoIymq4Sdirri3mY0yU3lCHcX3xlzrvMASZG/+wz1TcBK0VS3SZg7crMNyDPqpvog0o/tTljvGUpPnAUMDSNzlvWpMKU4ke7Z0FRGC5LSLB9t3Ut846pB4WeOq6Rj4eKzkj2HWV8o96rIX70/wtlbiQGyQYISoLd3LvtI5VsNsdTtP8Ab4D5Rsw45cdzpQrJ+2iBlM74bGG2VT6yymoOGf0FwA6z5XCe5gvhyKHm2QY66z0/6T+tqCQ5Tf2a266nGZ+iNS5xC3G2uKMTtGMCghYdcA1GK8w8KkzLOj/6k/tCqGxlHzVMZutbYqnQdlgdFnSnDMOyRdg6N0D4e8pRnw6Pkp5yYGF8MoXakEIsjhNXOxj+ORZ5TLJjIRU5SFraB3sv4y2JZJvpOSxQhXVq75NB7KdP6v755iqMs/HVYn34ulO54dBaEaK1DvDzIR9FCEfx546tBrDyTXoDyzzr4FZrCuSf5Q5q1GQtTOIJkNrRhmeBgtp16lfzCQkKxLviksWClj3TwzeAl6VJYr6zKf+5N0u7SzhhZnrhU3JCYvdCD4KTRbO/dI9d5ywm0AyXG6DbZP/DI4HYTjw8tEClQAbvVg==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e0206887-e0ab-4ea0-43f6-08d84f52c882
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB6885.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2020 15:13:44.6979
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1ip1zP4knpBSThPDy4h7mAXPc2ERmYCyRHUkOw7qq26EThs3+O6uYla4XrIKFg5n1UOLqW8Z4iOHSwKFKCv6NDb1NxsacTz48pjNHjO0ODE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB3957
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 27 Aug 2020 at 15:44, Matthias Brugger <matthias.bgg@gmail.com> wrote:
->
->
->
-> On 12/11/2019 12:03, Pi-Hsun Shih wrote:
-> > From: Eddie Huang <eddie.huang@mediatek.com>
-> >
-> > Add scp node to mt8183 and mt8183-evb
-> >
-> > Signed-off-by: Erin Lo <erin.lo@mediatek.com>
-> > Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
-> > Signed-off-by: Eddie Huang <eddie.huang@mediatek.com>
->
-> Sorry I somehow oversaw this. Next time please don't doubt to ping me.
->
-> Bjorn, do I understand correctly that you don't send emails to the list
-> informing of the inclusion of a patch/series in your tree?
->
-> Anyway applied now to v5.9-next/dts64 :)
+From: Meenakshi Aggarwal <meenakshi.aggarwal@nxp.com>
 
-arm64 build dtbs failed on linux next 20200902.
+Add support for LX2162A, LX2162A is LX2160A based SoC.
 
-mt8183.dtsi:342.21-352.5: ERROR (phandle_references):
-/soc/scp@10500000: Reference to non-existent node or label
-"scp_mem_reserved"
+Signed-off-by: Meenakshi Aggarwal <meenakshi.aggarwal@nxp.com>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-build log,
-
-make -sk KBUILD_BUILD_USER=TuxBuild -C/linux ARCH=arm64
-CROSS_COMPILE=aarch64-linux-gnu- HOSTCC=gcc CC="sccache
-aarch64-linux-gnu-gcc" O=build dtbs
-#
-../arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14:
-Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges"
-property but its #address-cells (1) differs from / (2)
-../arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14:
-Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges"
-property but its #size-cells (1) differs from / (2)
-../arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14:
-Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges"
-property but its #address-cells (1) differs from / (2)
-../arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14:
-Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges"
-property but its #size-cells (1) differs from / (2)
-../arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14:
-Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges"
-property but its #address-cells (1) differs from / (2)
-../arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14:
-Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges"
-property but its #size-cells (1) differs from / (2)
-../arch/arm64/boot/dts/mediatek/mt8183.dtsi:342.21-352.5: ERROR
-(phandle_references): /soc/scp@10500000: Reference to non-existent
-node or label "scp_mem_reserved"
-
-
->
-> Thanks!
->
-> > ---
-> > Changes from v20 ... v14:
-> >   - No change.
-> >
-> > Changes from v13:
-> >   - Change the size of the cfg register region.
-> >
-> > Changes from v12 ... v10:
-> >   - No change.
-> >
-> > Changes from v9:
-> >   - Remove extra reserve-memory-vpu_share node.
-> >
-> > Changes from v8:
-> >   - New patch.
-> > ---
-> >   arch/arm64/boot/dts/mediatek/mt8183-evb.dts | 11 +++++++++++
-> >   arch/arm64/boot/dts/mediatek/mt8183.dtsi    | 12 ++++++++++++
-> >   2 files changed, 23 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-> > index 1fb195c683c3..ddb7a7ac9655 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-> > @@ -24,6 +24,17 @@ memory@40000000 {
-> >       chosen {
-> >               stdout-path = "serial0:921600n8";
-> >       };
-> > +
-> > +     reserved-memory {
-> > +             #address-cells = <2>;
-> > +             #size-cells = <2>;
-> > +             ranges;
-> > +             scp_mem_reserved: scp_mem_region {
-> > +                     compatible = "shared-dma-pool";
-> > +                     reg = <0 0x50000000 0 0x2900000>;
-> > +                     no-map;
-> > +             };
-> > +     };
-> >   };
-> >
-> >   &auxadc {
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > index 10b32471bc7b..e582f5e6691d 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > @@ -269,6 +269,18 @@ pwrap: pwrap@1000d000 {
-> >                       clock-names = "spi", "wrap";
-> >               };
-> >
-> > +             scp: scp@10500000 {
-> > +                     compatible = "mediatek,mt8183-scp";
-> > +                     reg = <0 0x10500000 0 0x80000>,
-> > +                           <0 0x105c0000 0 0x19080>;
-> > +                     reg-names = "sram", "cfg";
-> > +                     interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
-> > +                     clocks = <&infracfg CLK_INFRA_SCPSYS>;
-> > +                     clock-names = "main";
-> > +                     memory-region = <&scp_mem_reserved>;
-> > +                     status = "disabled";
-> > +             };
-> > +
-> >               systimer: timer@10017000 {
-> >                       compatible = "mediatek,mt8183-timer",
-> >                                    "mediatek,mt6765-timer";
-> >
-
-full build log,
-https://builds.tuxbuild.com/_IfeLhOWMWxIkRkmAtAwOQ/build.log
-
-
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 6da9d73..5c7b7dd 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -518,6 +518,7 @@ properties:
+           - enum:
+               - fsl,lx2160a-qds
+               - fsl,lx2160a-rdb
++              - fsl,lx2162a-qds
+           - const: fsl,lx2160a
+ 
+       - description: S32V234 based Boards
 -- 
-Linaro LKFT
-https://lkft.linaro.org
+2.7.4
+
