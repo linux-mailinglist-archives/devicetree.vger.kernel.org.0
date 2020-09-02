@@ -2,110 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A21F825B091
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 18:02:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C18C25B0B0
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 18:06:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726490AbgIBQBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 12:01:34 -0400
-Received: from foss.arm.com ([217.140.110.172]:41474 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726307AbgIBQBd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Sep 2020 12:01:33 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 24BFE101E;
-        Wed,  2 Sep 2020 09:01:32 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 23D893F66F;
-        Wed,  2 Sep 2020 09:01:31 -0700 (PDT)
-Date:   Wed, 2 Sep 2020 17:01:19 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Samuel Dionne-Riel <samuel@dionne-riel.com>
-Cc:     Marc Zyngier <maz@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: Boot failure on gru-scarlet-inx with 5.9-rc2
-Message-ID: <20200902160110.GA30014@e121166-lin.cambridge.arm.com>
-References: <20200829164920.7d28e01a@DUFFMAN>
- <65d88bdd0888a69849327501a2aad186@kernel.org>
- <20200831031838.2d6d76d9@DUFFMAN>
- <90731ebb54fe03003dce03bc7ec4872e@kernel.org>
- <20200831234542.295b1275@DUFFMAN>
- <5db50a8e5b251714cebe0a719ee9dc73@kernel.org>
- <20200901164249.GA15045@e121166-lin.cambridge.arm.com>
- <20200901143356.0425d9ba@DUFFMAN>
+        id S1728035AbgIBQGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 12:06:35 -0400
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:39537 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728022AbgIBQGP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 12:06:15 -0400
+Received: by mail-ed1-f67.google.com with SMTP id c10so5465089edk.6;
+        Wed, 02 Sep 2020 09:06:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=o/k/jl8kCbC36+2FeLOHphrZjREiZCdM+WriURHXorE=;
+        b=tslD+Vj+VwfqxW/voVbBn65F0Utb4fM3Kj4pnMb9z0F6/Q+Ryy5Xu0TSaXKJ1lQntY
+         JoFOj2phZYMbhzE48Y1LKge1S2x4seCBVKYIWUVjKQpRnOJs2/FgjDVy3hTBgZEAr97y
+         BwtX5rtB7x+k0HQEzPwRWXkRL6bG3gnTnG5IYjfs4wARLwckRyf6jVZZsIc6v1ixK7jR
+         6f9TTW1IoYn9O/c2xdw6M/b0BWYUcGjiX8dkOb7xwCqZLQomjhSTQZOjD6fkBVx/0Xob
+         LMOq5CuJKymfKos9h4Q5tosCgrUDogQJLOctFsdZnhoZmh+dp87v6OD0v1/BvNObe5S8
+         fWPg==
+X-Gm-Message-State: AOAM532XvBwUyNq65zpZv2PAqRkvvLZnF+mcawUuT8ssjlow96478v8V
+        uNaK+uka8X8nlBe/nBQyU10=
+X-Google-Smtp-Source: ABdhPJwJuyNgxyGPCkUCKgxVeWeN3ahgf+XnMGbzf/ZL2QQEUetIvvJw1gbkJlFGZoRrBdx+Cq2i1g==
+X-Received: by 2002:a50:d7d0:: with SMTP id m16mr772218edj.105.1599062772890;
+        Wed, 02 Sep 2020 09:06:12 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.106])
+        by smtp.googlemail.com with ESMTPSA id z5sm4657068ejm.111.2020.09.02.09.06.10
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 02 Sep 2020 09:06:12 -0700 (PDT)
+Date:   Wed, 2 Sep 2020 18:06:09 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Kukjin Kim <kgene@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sangbeom Kim <sbkim73@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        alsa-devel@alsa-project.org
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Inki Dae <inki.dae@samsung.com>
+Subject: Re: [PATCH 04/10] dt-bindings: mfd: syscon: Document Samsung Exynos
+ compatibles
+Message-ID: <20200902160609.GA21555@kozik-lap>
+References: <20200829142501.31478-1-krzk@kernel.org>
+ <20200829142501.31478-4-krzk@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200901143356.0425d9ba@DUFFMAN>
+In-Reply-To: <20200829142501.31478-4-krzk@kernel.org>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 01, 2020 at 02:33:56PM -0400, Samuel Dionne-Riel wrote:
-> On Tue, 1 Sep 2020 17:42:49 +0100
-> Lorenzo Pieralisi <lorenzo.pieralisi@arm.com> wrote:
+On Sat, Aug 29, 2020 at 04:24:55PM +0200, Krzysztof Kozlowski wrote:
+> Samsung Exynos SoCs use syscon for system registers so document its
+> compatibles.
 > 
-> > On Tue, Sep 01, 2020 at 04:37:42PM +0100, Marc Zyngier wrote:
-> > > On 2020-09-01 04:45, Samuel Dionne-Riel wrote:  
-> > > > -	if (pci_is_root_bus(bus->parent) && dev > 0)
-> > > > +	if (bus->primary == rockchip->root_bus_nr && dev > 0)  
-> > 
-> > Can you dump bus->primary when this condition is hit please ?
-> 
-> With the following diff
-> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
-> @@ -79,6 +79,8 @@ static int rockchip_pcie_valid_device(struct rockchip_pcie *rockchip,
->          * do not read more than one device on the bus directly attached
->          * to RC's downstream side.
->          */
-> +       printk("[!!] // bus->parent (%d)\n", bus->parent);
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 
-Please print a pointer as a pointer and print both bus and bus->parent.
+As pointed by Sylwester, I will send a follow up to remove other YAML
+file. This patch could be dropped.
 
-> +       printk("[!!] bus->primary (%d) == rockchip->root_bus_nr (%d) && dev (%d) > 0\n", bus->primary, rockchip->root_bus_nr, dev);
->         if (bus->primary == rockchip->root_bus_nr && dev > 0)
->                 return 0;
-> 
-> --
-> 
-> I get two kind of results
-> 
-> [    1.692913] [!!] // bus->parent (0)
-> [    1.692917] [!!] bus->primary (0) == rockchip->root_bus_nr (0) && dev (0) > 0
-> 
-> and
-> 
-> [    1.693055] [!!] // bus->parent (-256794624)
-> [    1.693058] [!!] bus->primary (0) == rockchip->root_bus_nr (0) && dev (0) > 0
-> 
+Best regards,
+Krzysztof
 
-Looks like this is the condition that pci_is_root_bus(bus->parent) is
-not hitting.
-
-[...]
-
-> > > > +	/* HACK; ~equiv to last param of
-> > > > pci_parse_request_of_pci_ranges */
-> > > > +	bus_res = (resource_list_first_type(&bridge->windows,
-> > > > IORESOURCE_MEM))->res;  
-> > 
-> > IORESOURCE_MEM ? I am a bit puzzled by this hack, what is it supposed
-> > to do ?
-> 
-> It's not really supposed to do anything. I only needed access to
-> bus_res for bus_res->start to keep as root_bus_nr. My complete lack of
-> familiarity with all of this meant that I simply borrowed something
-> that was in use in another function to give me the bus_res.
-
-You are accessing a resource IORESOURCE_MEM that has nothing to do
-with bus numbers.
-
-s/IORESOURCE_MEM/IORESOURCE_BUS
-
-should be better ;-)
-
-Lorenzo
