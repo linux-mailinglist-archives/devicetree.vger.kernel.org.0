@@ -2,130 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F0F925B215
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 18:52:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9156025B21E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 18:52:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726742AbgIBQvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 12:51:10 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:54248 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726526AbgIBQvK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 12:51:10 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 082Gp5Pi033319;
-        Wed, 2 Sep 2020 11:51:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599065465;
-        bh=dDTC0gpdXie8DL9+hkg/Fiz8VsxEy70PtTPaF9NGk88=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=MbZXF4kHAWsQrSOmCIKVq4M7gPmwVSHjYUy0LvUa0K1wiYX8R+md9/hnxngJrx/im
-         q5371/6H3GfnClaIE2TUPU5Zl8O10v6Mc7NcxK9UxW9DjlEd3Rxwn0MkxZ3pYwnltx
-         VO2LyhJUciRtsGOWOtSKDP2PKL2/9s1z7C4igTAE=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 082Gp4eq095150
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Sep 2020 11:51:05 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 2 Sep
- 2020 11:51:04 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 2 Sep 2020 11:51:04 -0500
-Received: from [10.250.34.112] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 082Gp4rc046690;
-        Wed, 2 Sep 2020 11:51:04 -0500
-Subject: Re: [PATCH 6/7] arm64: dts: ti: k3-*: Use generic adc for node names
-To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <t-kristo@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, <lokeshvutla@ti.com>,
-        <grygorii.strashko@ti.com>, <nsekhar@ti.com>
-References: <20200901223059.14801-1-nm@ti.com>
- <20200901223059.14801-7-nm@ti.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <60e6b790-360a-6eaf-03a3-5bb256adf215@ti.com>
-Date:   Wed, 2 Sep 2020 11:51:03 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1727088AbgIBQwy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 12:52:54 -0400
+Received: from mout.kundenserver.de ([212.227.126.130]:47729 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726742AbgIBQwv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 12:52:51 -0400
+Received: from buildfff.adridolf.com ([188.192.134.246]) by
+ mrelayeu.kundenserver.de (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis)
+ id 1N8GhM-1ki9qG2hou-0148ao; Wed, 02 Sep 2020 18:52:44 +0200
+From:   Adrian Schmutzler <freifunk@adrianschmutzler.de>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] ARM: dts: qcom: add additional DT labels in qcom-ipq8064.dtsi
+Date:   Wed,  2 Sep 2020 18:51:58 +0200
+Message-Id: <20200902165159.7733-1-freifunk@adrianschmutzler.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20200901223059.14801-7-nm@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:vS8tUETFjn0IRx8x+XCStfB8ARWiO6kwPhmjzJ4J63GrHhBhPp6
+ Fufc0fRol1yccyKcxDSh6+dCi84gyssTgFenSS9ho2clrRDFy4K3SJeFydhCA2ztVM0EHJf
+ YYSOpASvgA47bqIJ0AEbThXvJMHuBoCs/Ia+DKx70AfPyFQbmZyNnfvDdDDP9FYawAKx1C9
+ rU4AsGjE4gsJlDYNID7ZQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:tGraHwQjY2Q=:oYb316oOyU+0XC7vpU23FS
+ 5ZwwuQHslDTB5C1mfzDzv5XOlkYIIQJdce8GKIw5WGTCW4eLv6zl04O/nKNts8X0Ifel4fgAl
+ Q5RSOwgScaLCWzHSk1VQkL3ywh0KCzBhfi3zoBIHa1jCrwj+tEj4wx2XIKXRv9v28/ECOmEs+
+ 5zcluq/unqu/6DLjxna9Et3N7Z9Ii24TzMMrHvs6kHqDByxtenZuZ5Dfto5GKxvXmrmh4cZ9W
+ Ul1CiZN3A34njCaCKBCQWgwgbOI+KFSpPz3B1wyf5FC/wst64JVbOp5q/e4maQq3Y4UwvNGTf
+ vUmnSnAAZYvct3OQQnv/mjg2dGht/RLryA/TfZK5KKkj3cFKJkMxHqdel8i6a5JmqAtLb1+7j
+ qEz6qS8iZ/2r0gBW+yaoEiQqe4r+V2v7TKbYnPTEX4FsmXoLqYjMCHbZUpvFCAKlOW6+gQKiY
+ ArjU3jCGhVjhwvNYfxWOPVPy1yZONMn8MszEbTqI9yceU5gyqcPNBP3KZavYQ3HfkczFKjgrP
+ v7ceQOKBJ2ifEWbYG6mhz69qBboJKVixI2x27EB/6d7XKgckddv4FNYMujAaJxefsfPIJL7Hn
+ JLWsrR4wgzjwQkvHWqtFgPDr/F7y42sRkIIC72Y8R/rVFhvvt/8kpJGTjWA3bKrTu2GmeY2jn
+ wsTkfoKRBLQ/778L589cOXzRfO9b4fpu6zRn53TU10xnkI/hyXlWfkbw+HvPEoBGm2KC/Efci
+ j7BUXNEKIZtXRUyW14YlcyDQefzuZddnDN4r24RMRbJ83cZr9lrHFpFrqWpgxWNiGxYJzGERd
+ LlZNII9DhB7pzc9ZkNiHFVYHMCnNrH9iISFcc1sWpiv1XNzUYJGzqWDh6wjvKpGPWRcq8eksn
+ Qvh+w6rRjqvpVvwAziOw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/1/20 5:30 PM, Nishanth Menon wrote:
-> Use adc@ naming for nodes following standard conventions of device
-> tree (section 2.2.2 Generic Names recommendation in [1]).
-> 
-> [1] https://github.com/devicetree-org/devicetree-specification/tree/v0.3
-> 
-> Suggested-by: Suman Anna <s-anna@ti.com>
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi         | 4 ++--
->  arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 4 ++--
->  2 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> index 51ca4b4d4c21..6dfec68ac865 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> @@ -80,7 +80,7 @@
->  		#size-cells = <0>;
->  	};
->  
-> -	tscadc0: tscadc@40200000 {
-> +	tscadc0: adc@40200000 {
+This adds some additional DT labels which are handy when referring
+to the nodes in derived DTS(I) files. It will also make the
+definitions more consistent, e.g. by adding gsbi2_serial and
+gsbi5_serial where we previously "only" had gsbi4_serial defined.
 
-OK with these changes, since these seem to be only have the adc child nodes.
-This node is essentially a parent node for touchscreen and adc child nodes. The
-driver is currently looking for "tsc" on touchscreen child nodes, but none of
-the K3 SoCs have them atm.
+While at it, add missing spaces after some DT labels and remove one
+useless empty line.
 
-regards
-Suman
+Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
+---
+ arch/arm/boot/dts/qcom-ipq8064.dtsi | 23 +++++++++++------------
+ 1 file changed, 11 insertions(+), 12 deletions(-)
 
->  		compatible = "ti,am654-tscadc", "ti,am3359-tscadc";
->  		reg = <0x0 0x40200000 0x0 0x1000>;
->  		interrupts = <GIC_SPI 580 IRQ_TYPE_LEVEL_HIGH>;
-> @@ -98,7 +98,7 @@
->  		};
->  	};
->  
-> -	tscadc1: tscadc@40210000 {
-> +	tscadc1: adc@40210000 {
->  		compatible = "ti,am654-tscadc", "ti,am3359-tscadc";
->  		reg = <0x0 0x40210000 0x0 0x1000>;
->  		interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-> index 9ad0266598ad..81801f519a61 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-> @@ -211,7 +211,7 @@
->  		};
->  	};
->  
-> -	tscadc0: tscadc@40200000 {
-> +	tscadc0: adc@40200000 {
->  		compatible = "ti,am3359-tscadc";
->  		reg = <0x0 0x40200000 0x0 0x1000>;
->  		interrupts = <GIC_SPI 860 IRQ_TYPE_LEVEL_HIGH>;
-> @@ -230,7 +230,7 @@
->  		};
->  	};
->  
-> -	tscadc1: tscadc@40210000 {
-> +	tscadc1: adc@40210000 {
->  		compatible = "ti,am3359-tscadc";
->  		reg = <0x0 0x40210000 0x0 0x1000>;
->  		interrupts = <GIC_SPI 861 IRQ_TYPE_LEVEL_HIGH>;
-> 
+diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+index c51481405e7f..c51f9fb4a0eb 100644
+--- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
++++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+@@ -20,7 +20,7 @@
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 
+-		cpu@0 {
++		cpu0: cpu@0 {
+ 			compatible = "qcom,krait";
+ 			enable-method = "qcom,kpss-acc-v1";
+ 			device_type = "cpu";
+@@ -30,7 +30,7 @@
+ 			qcom,saw = <&saw0>;
+ 		};
+ 
+-		cpu@1 {
++		cpu1: cpu@1 {
+ 			compatible = "qcom,krait";
+ 			enable-method = "qcom,kpss-acc-v1";
+ 			device_type = "cpu";
+@@ -67,7 +67,7 @@
+ 			no-map;
+ 		};
+ 
+-		smem@41000000 {
++		smem: smem@41000000 {
+ 			reg = <0x41000000 0x200000>;
+ 			no-map;
+ 		};
+@@ -251,7 +251,7 @@
+ 
+ 			syscon-tcsr = <&tcsr>;
+ 
+-			serial@12490000 {
++			gsbi2_serial: serial@12490000 {
+ 				compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
+ 				reg = <0x12490000 0x1000>,
+ 				      <0x12480000 0x1000>;
+@@ -273,7 +273,6 @@
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 			};
+-
+ 		};
+ 
+ 		gsbi4: gsbi@16300000 {
+@@ -326,7 +325,7 @@
+ 
+ 			syscon-tcsr = <&tcsr>;
+ 
+-			serial@1a240000 {
++			gsbi5_serial: serial@1a240000 {
+ 				compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
+ 				reg = <0x1a240000 0x1000>,
+ 				      <0x1a200000 0x1000>;
+@@ -397,7 +396,7 @@
+ 			status = "disabled";
+ 		};
+ 
+-		sata@29000000 {
++		sata: sata@29000000 {
+ 			compatible = "qcom,ipq806x-ahci", "generic-ahci";
+ 			reg = <0x29000000 0x180>;
+ 
+@@ -720,7 +719,7 @@
+ 			regulator-always-on;
+ 		};
+ 
+-		sdcc1bam:dma@12402000 {
++		sdcc1bam: dma@12402000 {
+ 			compatible = "qcom,bam-v1.3.0";
+ 			reg = <0x12402000 0x8000>;
+ 			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+@@ -730,7 +729,7 @@
+ 			qcom,ee = <0>;
+ 		};
+ 
+-		sdcc3bam:dma@12182000 {
++		sdcc3bam: dma@12182000 {
+ 			compatible = "qcom,bam-v1.3.0";
+ 			reg = <0x12182000 0x8000>;
+ 			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
+@@ -740,13 +739,13 @@
+ 			qcom,ee = <0>;
+ 		};
+ 
+-		amba {
++		amba: amba {
+ 			compatible = "simple-bus";
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+ 
+-			sdcc@12400000 {
++			sdcc1: sdcc@12400000 {
+ 				status          = "disabled";
+ 				compatible      = "arm,pl18x", "arm,primecell";
+ 				arm,primecell-periphid = <0x00051180>;
+@@ -766,7 +765,7 @@
+ 				dma-names = "tx", "rx";
+ 			};
+ 
+-			sdcc@12180000 {
++			sdcc3: sdcc@12180000 {
+ 				compatible      = "arm,pl18x", "arm,primecell";
+ 				arm,primecell-periphid = <0x00051180>;
+ 				status          = "disabled";
+-- 
+2.20.1
 
