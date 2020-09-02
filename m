@@ -2,118 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CB5325B43D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 21:04:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7B9C25B457
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 21:18:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727949AbgIBTE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 15:04:57 -0400
-Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:37033 "EHLO
-        wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727894AbgIBTE5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 15:04:57 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.west.internal (Postfix) with ESMTP id 4E724FCA;
-        Wed,  2 Sep 2020 15:04:54 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Wed, 02 Sep 2020 15:04:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=UIxnX4c3cvkVCih8WXAhZh++fhZ
-        H2lstxce/AgcyQoQ=; b=AJKZvdUd2hz7jzsHrNCLB8F9hPKLifeW8Ovg5/yFd2t
-        XpN21E5ZqYufX6n8KZ0kv5KMMyz4hSmAGFtAglJUp7rK9mG18PAnhTpJniG9Q+w7
-        yS+fMtG09pybMflubjIvk0ttfxOZ25TMtdhQGuD9NKA47eutv9AV/2d1F8VTTQer
-        VFmjOF5OlugqlHyElkJrA4LYXZiEI10zQp0mh8HVPeQurKwv/avQaYCuC1ohMR3z
-        9LE0+W3KJFALG3IcOPkJSyZR0vf9cx7nbipyIqyVGvvFssXsEguRlsDl7/1XN91H
-        RN0P1wtMijIjMaDhPefcFUAEU1A0ikQlkbPFXmYqThw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=UIxnX4
-        c3cvkVCih8WXAhZh++fhZH2lstxce/AgcyQoQ=; b=nYV+dqD/xqacR59c0aEIVX
-        w21OygFMPvsHZ+wSSwyjfBirfUiycS2DkJ3spPXp5nYrtBXJqdPwiE7TEjHcCQil
-        EbImxL8Zv4F5VsTRuzveasbzzp+AxTMeVyGTjb/d2waBjUJXvKXaSRoo2iI8YvG0
-        sR+4cuAgLW8oJ96cd40QcDWPpF6M5iHKKheE0R9kjKJszZDkSeAK9hhlOsuV0sXw
-        tLa3lHvY/sJzXYwXQhxRPgE+dxc2x65xMzkucVMhKC8TTw8HAugm06UIFxGrfu4s
-        BfCSTVi5Ud96BxPKZdko4QS1gM5r80I3g/lQWmd0WOICHUMmOXf1HXNfijDdXxTQ
-        ==
-X-ME-Sender: <xms:0-xPX81_2pmSYCwjPMBPQbp6-bpPubcFntWpzHUK2Eu0vyb0HIVSdw>
-    <xme:0-xPX3G0zK_pHMTCBs19YydbT96GjrjRkoW3bCtimhgfVLkBQsROJRAzqGaRB4f1Z
-    O1K8OVA1d1Mmj6v3Io>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudefledgudeffecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheei
-    heegudenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtne
-    curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:0-xPX06y0hG23LP7_LMq8pEjF4P4SARltqMy1mQ52XqicUfHZXK96A>
-    <xmx:0-xPX11rsyv1zoMPKj5RWPjcA0KoCItSlmWAGmyF1FPUsHr2bap5CA>
-    <xmx:0-xPX_EI2qk5p6WephGhjAyuB5gZF5IaTDhUKpP9Upks5H_HnqhuTw>
-    <xmx:1exPX5EZ_sCdMNtmrFMDAa6dpLeRkCn7YBKIE3Xn5FYbHnue5VLc7POaFVA>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 329EF328005E;
-        Wed,  2 Sep 2020 15:04:51 -0400 (EDT)
-Date:   Wed, 2 Sep 2020 21:04:49 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     sboyd@kernel.org, mturquette@baylibre.com
-Cc:     Hoegeun Kwon <hoegeun.kwon@samsung.com>, nsaenzjulienne@suse.de,
-        eric@anholt.net, stefan.wahren@i2se.com,
-        dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
-        tim.gover@raspberrypi.com, kdasu.kdev@gmail.com,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-clk@vger.kernel.org, robh+dt@kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org, phil@raspberrypi.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/4] clk: bcm: rpi: Add register to control pixel bvb
- clk
-Message-ID: <20200902190449.qoao72lc4hdgv6m2@gilmour.lan>
-References: <20200901040759.29992-1-hoegeun.kwon@samsung.com>
- <CGME20200901040851epcas1p28f443c0e819bea756ebf9296491b32da@epcas1p2.samsung.com>
- <20200901040759.29992-2-hoegeun.kwon@samsung.com>
+        id S1727984AbgIBTSl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 15:18:41 -0400
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:45801 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726567AbgIBTSj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 15:18:39 -0400
+X-Originating-IP: 90.66.108.79
+Received: from localhost (lfbn-lyo-1-1932-79.w90-66.abo.wanadoo.fr [90.66.108.79])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 187FA1C0002;
+        Wed,  2 Sep 2020 19:18:36 +0000 (UTC)
+Date:   Wed, 2 Sep 2020 21:18:36 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Bastian Krause <bst@pengutronix.de>
+Cc:     linux-rtc@vger.kernel.org, Alessandro Zummo <a.zummo@towertech.it>,
+        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+        Arnaud Ebalard <arno@natisbad.org>,
+        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de
+Subject: Re: [PATCH 2/3] dt-bindings: rtc: add chargeable flag for rx8130
+Message-ID: <20200902191836.GP3204668@piout.net>
+References: <20200415163701.21989-1-bst@pengutronix.de>
+ <20200415163701.21989-2-bst@pengutronix.de>
+ <20200415185609.GP34509@piout.net>
+ <3d1ecd35-fe37-02e7-74d8-3f37c2197173@pengutronix.de>
+ <a492b6a0-b41c-a088-3ba1-f1448a074b34@pengutronix.de>
+ <20200825153248.GH2389103@piout.net>
+ <98fa7181-3ebe-d7c3-cfac-fee841c81e15@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="r53kpuqz3egnnm7b"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200901040759.29992-2-hoegeun.kwon@samsung.com>
+In-Reply-To: <98fa7181-3ebe-d7c3-cfac-fee841c81e15@pengutronix.de>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 26/08/2020 10:13:04+0200, Bastian Krause wrote:
+> >> Are you okay with that?
+> >>
+> > 
+> > I agree boolean should be avoided in RTC drivers because we need a way
+> > to express "don't change this value".
+> 
+> Alright.
+> 
+> >> Some more context:
+> >>
+> >> I originally tried to add a chargeable flag for rx8130. Prior to this
+> >> patch, there was no need to set "trickle-diode-disable" for this,
+> >> because the driver did not pass the chargeable flag to the RTC. With the
+> >> patch the default would have been to charge as long as
+> >> "trickle-diode-disable" is not there. So there's a change in behavior.
+> >>
+> > 
+> > Yes, IIRC, my point was simply to move the documentation for
+> > aux-voltage-chargeable to the generice rtc binding documentation,
+> > Documentation/devicetree/bindings/rtc/rtc.yaml
+> > 
+> > For now, you sould keep support for trickle-diode-disable but it has to be
+> > superseded by aux-voltage-chargeable if present. Is that more clear?
+> 
+> Yes, thanks for the clarification.
+> 
+> Should I set the deprecated flag for trickle-diode-disable in the
+> dt-binding yaml?
+> 
 
---r53kpuqz3egnnm7b
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+That's a good idea, yes.
 
-Hi Stephen, Mike,
 
-On Tue, Sep 01, 2020 at 01:07:56PM +0900, Hoegeun Kwon wrote:
-> To use QHD or higher, we need to modify the pixel_bvb_clk value. So
-> add register to control this clock.
->=20
-> Signed-off-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
-
-Reviewed-by: Maxime Ripard <mripard@kernel.org>
-
-Can you merge this patch through the clk tree?
-
-The rest will go through drm
-
-Thanks!
-Maxime
-
---r53kpuqz3egnnm7b
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX0/s0QAKCRDj7w1vZxhR
-xSj5AQCqraZ624rX3+422hwzvHAjXebcXXo/k5QtfouULAH9uAEA2hUPPx3QnSzt
-d+sIaCmCMaBIBO9JCuo1qwf1JJ6mAQA=
-=K0vZ
------END PGP SIGNATURE-----
-
---r53kpuqz3egnnm7b--
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
