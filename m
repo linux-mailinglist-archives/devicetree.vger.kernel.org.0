@@ -2,210 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19A0F25AA2B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 13:24:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A850225AAC5
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 14:03:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726285AbgIBLYD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 07:24:03 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:54367 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726183AbgIBLX5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 07:23:57 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20200902112354euoutp02aa252f46c02d3b1df2b9aca5a05699be~w87bUvt0t1397113971euoutp02r
-        for <devicetree@vger.kernel.org>; Wed,  2 Sep 2020 11:23:54 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20200902112354euoutp02aa252f46c02d3b1df2b9aca5a05699be~w87bUvt0t1397113971euoutp02r
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1599045834;
-        bh=OtSO6kCDRYzARjt52u8mNHXpNRyAs7EY5ZDWyY0I4u4=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=NkLqzdPKs6UYEvaWHE1TwMxARf8Y/8XaIF7mRlJHKy0wCLc+qTAjrJ8mslFjq7eT6
-         i4118r9JnMzQxqcIYrD8+SayCGCnSmdWC/e8feSLAijWxL+O6rrPTq18/eNvwN257p
-         nxHkgl8whKTIweqMlhdQ70i2Xy2tRpkQWtC+pWbQ=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20200902112353eucas1p2782d672dc8e626e6fe9f4e658edf778e~w87aZ8amE2679626796eucas1p2r;
-        Wed,  2 Sep 2020 11:23:53 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id A3.FD.05997.9C08F4F5; Wed,  2
-        Sep 2020 12:23:53 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20200902112352eucas1p1a409c435036274b5f6466ceff2b437cc~w87aHLjPq2822728227eucas1p1o;
-        Wed,  2 Sep 2020 11:23:52 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20200902112352eusmtrp1d22680c373f1eacedd592cc5d879c179~w87aGMMr_2475724757eusmtrp1L;
-        Wed,  2 Sep 2020 11:23:52 +0000 (GMT)
-X-AuditID: cbfec7f4-677ff7000000176d-38-5f4f80c980f5
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 87.9B.06017.8C08F4F5; Wed,  2
-        Sep 2020 12:23:52 +0100 (BST)
-Received: from [106.210.85.205] (unknown [106.210.85.205]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20200902112351eusmtip1e4fc0a16aed08cc448ebe5f4f51da2dd~w87YzDC-Q1814318143eusmtip1D;
-        Wed,  2 Sep 2020 11:23:51 +0000 (GMT)
-Subject: Re: [RFT 09/10] arm64: dts: exynos: Correct port of USB-C connector
- node on Exynos5433 TM2
-To:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sangbeom Kim <sbkim73@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        alsa-devel@alsa-project.org
-Cc:     Sylwester Nawrocki <snawrocki@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-From:   Andrzej Hajda <a.hajda@samsung.com>
-Message-ID: <021495a9-7a00-eb91-ddfa-885cc2fb5462@samsung.com>
-Date:   Wed, 2 Sep 2020 13:23:50 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
-        Thunderbird/68.12.0
+        id S1726654AbgIBMDv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 08:03:51 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:45907 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726177AbgIBMDr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 08:03:47 -0400
+X-UUID: 1b8ccfd47a7c409192883d82bb490922-20200902
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=DMolEQgcko1Hi3JfFgntu1uI44EPYKHXW5wUFW7a+48=;
+        b=SMr3bXOu9PWhs1WeLiZD8aOIYVrLc4096OxzB9UIVGCCONXuOogWRk1fa83SCR4UraUODQgn47tEVMNUFdZOqAauyNBkVFpAPl35okKFwu7msPrjY7pgFbBT4iT3QA0EMJZpT2gr1VbU+QqAo8zpY8JZ9fpW68Zs0wf4hvaGaes=;
+X-UUID: 1b8ccfd47a7c409192883d82bb490922-20200902
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <dongchun.zhu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1855598811; Wed, 02 Sep 2020 20:03:41 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 2 Sep 2020 20:03:38 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 2 Sep 2020 20:03:37 +0800
+From:   Dongchun Zhu <dongchun.zhu@mediatek.com>
+To:     <mchehab@kernel.org>, <andriy.shevchenko@linux.intel.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <sakari.ailus@linux.intel.com>, <drinkcat@chromium.org>,
+        <tfiga@chromium.org>, <matthias.bgg@gmail.com>,
+        <bingbu.cao@intel.com>
+CC:     <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <sj.huang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <louis.kuo@mediatek.com>, <shengnan.wang@mediatek.com>,
+        <dongchun.zhu@mediatek.com>
+Subject: [PATCH v14 0/2] media: i2c: Add support for OV02A10 sensor
+Date:   Wed, 2 Sep 2020 20:01:20 +0800
+Message-ID: <20200902120122.24456-1-dongchun.zhu@mediatek.com>
+X-Mailer: git-send-email 2.9.2
 MIME-Version: 1.0
-In-Reply-To: <4eb7d0d9-29e2-9162-4521-10e4422f9c71@samsung.com>
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUxTZxTH89znvoFWLhXtCRszdn7RREFnsmfZ0jlflrsvaoIfyIzWqlck
-        QjG9wsDMgHUKQ0EcYcMiiuBGqbFiKyBETEAUK9LOCWw4OlDUBQXf+qLi27hezPj2O+f/P8/5
-        n+ThsbaEjeVTzDski9mUqmcj6YbLL3zzPbmrjAkFvwmk0OuhSPf1NoqcKTvNkNJbd1jyZ/Bf
-        hhwNxJG3DYcwOdbuZUh36BFLDg49wMTnq+PIQOgSIuHufIq4hnoZcqP5CEvKfBcocqrdz5G9
-        Le0cuTiSx5Dr9iBF8u4OY+J2leIlM8W6gJUVW8KVtNhk83Oiy/EjK/b3nmfFh14vJzaGBxlx
-        YH8HJbpP5IhFZx1IDLg+Wj3l28gvNkupKZmSJd6wIXLrcKgcb6+IyXpe/wTlImdUAYrgQVgM
-        vuMHmQIUyWsFOwLb0ze0WgQR/PHs7oQSQFBdPIzej4T9hawq1CAIVZVSavEIgbuk+p1ruiCB
-        vaAWK0KM0MjAq9YgUgosFCLYE36KFRcrzIXX7j5WYY1gAE/5CKcwLcyBQI2TUniGsB4uX71N
-        q55o8By+M848HyF8CfdbzEobC7OgcfQIVlkH1mDtu9wgXOPhpTPAqrmXw9vBm5zK0+F+x9kJ
-        /hA6Sw7QKufAgP0HrA7nI6iva8Kq8Dn0e8dYZTEeD326OV5tfwWvgy85pQ3CNPhrNFrNMA1+
-        avgFq20N5O/Tqu7ZMNBVP/GgDn79PcQWI71t0mG2SdfYJl1j+39vJaIdSCdlyGnJkrzILH23
-        QDalyRnm5AWb0tNcaPyrdr7pCJ5Dza82tiGBR/qpmjLjSqOWMWXK2WltCHisj9Es7epcr9Vs
-        NmXvlCzpRktGqiS3oQ94Wq/TfFI1vE4rJJt2SNskabtkea9SfERsLirvW6b7u9ewwiA6a6IS
-        Xzz2z39cleTZtWaLNV67/59t5MD3RalTDXFLm2/8nD2j9esebmSZPf1kj9ylvWIrr7KeS1ou
-        tybsdvOxWb7aphX+vqLRtVTZkm+Koztmfxy3uGewIs+V5Zy3J2fEWhGNu6IOaRodn42dX22s
-        TdxU6bhX/6melreaFs7DFtn0Hwm3d2qmAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUhTYRTHee7dvbtaw9vUfFJTGRIUON182aOohR/q0gcT+lBoOS9609Bt
-        sTujlw+KFtp8SQPBptMgyxfwpc20sgXqytSaRWYUDRWNTFOL+ZJlmUuDffud8z8/DgcOhYvv
-        Er7UWbWO06rZHAnpLhj+M2APeZ5/TBnmWESozDaIodHXfRi6V91OoKrJaRK9W/pMoDrHXrTR
-        VYmjequNQKPLiyS6PjWHo5GRDiEaX34K0MpoMYZMU2MEevOolkTVI08w1Gq1C9FVi1WI+r8W
-        Eeh10xKGij59wZHZVIUf2s10OApIxrJyS8A8NNiFjKnlGsl8HHtMMgs2m5DpXpkgmPGSAYwx
-        N+Qx5Z0tgHGYApJ2JEtjtZpcHReUpeF1cZIUGZJLZdFIKo+IlsrCFadj5JGS0PjYDC7n7HlO
-        GxqfJs36slyDnzN6Xfhx/zvIB20eeuBGQToCrtjLSD1wp8T0HQDbbw/hW4EP7Kmf32ZPuD6m
-        3x6aB7Bp4obAGXjSHGzSN+POwIvuIeC38leEs8DpMgCnPluEW8oMgPdbp0inQtL74W/z+38s
-        ouPhYM1XoZMFdDB0NLZhTvamU+GL0pntmV1w8Ob05jqKcqMPwlmL2tnG6ShYZ57EtzgQds/X
-        brMPLFhqJiqA2OBiG1wUg4ticFFuAUEL8OJyeVWmipdLeVbF56ozpekalQls/kjXs7XOB0C/
-        cLwP0BSQ7BRVKxOVYoI9z19U9QFI4RIvUcLL4VSxKIO9eInTapTa3ByO7wORm7dV4r7e6ZrN
-        j1PrlLJImQJFyxThivAoJPERFdO9p8R0JqvjsjnuHKf972GUm28+iLV4RAr62QJrmnbNP652
-        qbE775c9sOtKcJJw460HF+JdPgADUhOOrrr7nWkOKmkpPbmmaMiOjir88LOEW09ZnDvxHqtf
-        ZZP8jMY7Hb3ZMttDyFE9jtLLQw+g/5sZgbu8uDLM2vg2JynNfCAx/8geq/lwIdzXKamYNcY0
-        Ji9LBHwWKzuAa3n2L7MKsL45AwAA
-X-CMS-MailID: 20200902112352eucas1p1a409c435036274b5f6466ceff2b437cc
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20200829142602eucas1p1ce457a8fddc6b1fba4bf8c08992fa0b3
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20200829142602eucas1p1ce457a8fddc6b1fba4bf8c08992fa0b3
-References: <20200829142501.31478-1-krzk@kernel.org>
-        <CGME20200829142602eucas1p1ce457a8fddc6b1fba4bf8c08992fa0b3@eucas1p1.samsung.com>
-        <20200829142501.31478-9-krzk@kernel.org>
-        <4eb7d0d9-29e2-9162-4521-10e4422f9c71@samsung.com>
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+SGVsbG8sDQoNClRoaXMgc2VyaWVzIGFkZHMgWUFNTCBEVCBiaW5kaW5nIGFuZCBWNEwyIHN1Yi1k
+ZXZpY2UgZHJpdmVyIGZvciBPbW5pdmlzaW9uJ3MNCk9WMDJBMTAgMi1tZWdhcGl4ZWwgMTAtYml0
+IFJBVyBDTU9TIDEvNSIgc2Vuc29yLCB3aGljaCBoYXMgYSBzaW5nbGUgTUlQSSBsYW5lDQppbnRl
+cmZhY2UgYW5kIHVzZXMgdGhlIEkyQyBidXMgZm9yIGNvbnRyb2wgYW5kIHRoZSBDU0ktMiBidXMg
+Zm9yIGRhdGEuDQoNClRoZSBkcml2ZXIgaXMgaW1wbGVtZW50ZWQgd2l0aCBWNEwyIGZyYW1ld29y
+ay4NCiAtIEFzeW5jIHJlZ2lzdGVyZWQgYXMgYSBWNEwyIHN1Yi1kZXZpY2UuDQogLSBBcyB0aGUg
+Zmlyc3QgY29tcG9uZW50IG9mIGNhbWVyYSBzeXN0ZW0gaW5jbHVkaW5nIFNlbmluZiwgSVNQIHBp
+cGVsaW5lLg0KIC0gQSBtZWRpYSBlbnRpdHkgdGhhdCBwcm92aWRlcyBvbmUgc291cmNlIHBhZCBp
+biBjb21tb24gYW5kIHR3byBmb3IgZHVhbC1jYW0uDQoNCkFsc28gdGhpcyBkcml2ZXIgc3VwcG9y
+dHMgZm9sbG93aW5nIGZlYXR1cmVzOg0KIC0gTWFudWFsIGV4cG9zdXJlIGFuZCBhbmFsb2cgZ2Fp
+biBjb250cm9sIHN1cHBvcnQNCiAtIFZlcnRpY2FsIGJsYW5raW5nIGNvbnRyb2wgc3VwcG9ydA0K
+IC0gVGVzdCBwYXR0ZXJuIHN1cHBvcnQNCiAtIE1lZGlhIGNvbnRyb2xsZXIgc3VwcG9ydA0KIC0g
+UnVudGltZSBQTSBzdXBwb3J0DQogLSBTdXBwb3J0IHJlc29sdXRpb246IDE2MDB4MTIwMCBhdCAz
+MEZQUw0KIA0KUHJldmlvdXMgdmVyc2lvbnMgb2YgdGhpcyBwYXRjaC1zZXQgY2FuIGJlIGZvdW5k
+IGhlcmU6DQogdjEzOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1tZWRpYS8yMDIwMDcx
+MDEwMTg1MC40NjA0LTEtZG9uZ2NodW4uemh1QG1lZGlhdGVrLmNvbS8NCiB2MTI6IGh0dHBzOi8v
+bG9yZS5rZXJuZWwub3JnL2xpbnV4LW1lZGlhLzIwMjAwNzAyMTE1MjIzLjIxNTA3LTEtZG9uZ2No
+dW4uemh1QG1lZGlhdGVrLmNvbS8NCiB2MTE6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4
+LW1lZGlhLzIwMjAwNjMwMDI0OTQyLjIwODkxLTEtZG9uZ2NodW4uemh1QG1lZGlhdGVrLmNvbS8N
+CiB2MTA6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LW1lZGlhLzIwMjAwNjE1MTIyOTM3
+LjE4OTY1LTMtZG9uZ2NodW4uemh1QG1lZGlhdGVrLmNvbS8NCiB2MDk6IGh0dHBzOi8vbG9yZS5r
+ZXJuZWwub3JnL2xpbnV4LW1lZGlhLzIwMjAwNTIzMDg0MTAzLjMxMjc2LTEtZG9uZ2NodW4uemh1
+QG1lZGlhdGVrLmNvbS8NCiB2MDg6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LW1lZGlh
+LzIwMjAwNTA5MDgwNjI3LjIzMjIyLTEtZG9uZ2NodW4uemh1QG1lZGlhdGVrLmNvbS8NCiB2MDc6
+IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LW1lZGlhLzIwMjAwNDMwMDgwOTI0LjExNDAt
+MS1kb25nY2h1bi56aHVAbWVkaWF0ZWsuY29tLw0KIHYwNjogaHR0cHM6Ly9sb3JlLmtlcm5lbC5v
+cmcvbGludXgtbWVkaWEvMjAxOTEyMTExMTI4NDkuMTY3MDUtMS1kb25nY2h1bi56aHVAbWVkaWF0
+ZWsuY29tLw0KIHYwNTogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtbWVkaWEvMjAxOTEx
+MDQxMDU3MTMuMjQzMTEtMS1kb25nY2h1bi56aHVAbWVkaWF0ZWsuY29tLw0KIHYwNDogaHR0cHM6
+Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtbWVkaWEvMjAxOTA5MDcwOTI3MjguMjM4OTctMS1kb25n
+Y2h1bi56aHVAbWVkaWF0ZWsuY29tLw0KIHYwMzogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGlu
+dXgtbWVkaWEvMjAxOTA4MTkwMzQzMzEuMTMwOTgtMS1kb25nY2h1bi56aHVAbWVkaWF0ZWsuY29t
+Lw0KIHYwMjogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtbWVkaWEvMjAxOTA3MDQwODQ2
+NTEuMzEwNS0xLWRvbmdjaHVuLnpodUBtZWRpYXRlay5jb20vDQogdjAxOiBodHRwczovL2xvcmUu
+a2VybmVsLm9yZy9saW51eC1tZWRpYS8yMDE5MDUyMzEwMjIwNC4yNDExMi0xLWRvbmdjaHVuLnpo
+dUBtZWRpYXRlay5jb20vDQoNCkNoYW5nZXMgb2YgdjE0IG1haW5seSBhZGRyZXNzIGNvbW1lbnRz
+IGZyb20gVG9tYXN6IGFuZCBTYWthcmkuDQpDb21wYXJlZCB0byB2MTM6DQogLSBGaXggaW1wZXJm
+ZWN0aW9ucyBpbiBEVA0KIC0gVXNlIGFuIGFycmF5IHByb3BlcnR5ICJvdnRpLG1pcGktY2xvY2st
+dm9sdGFnZSIgdG8gaW5kaWNhdGUgTUlQSSBUWCBzcGVlZA0KIC0gQWRkIHRoZSBoYW5kbGVyIHRv
+IHRoZSBvcHRpb25hbCBwcm9wZXJ0eSAib3Z0aSxtaXBpLWNsb2NrLXZvbHRhZ2UiIGluIGRyaXZl
+cg0KDQpQbGVhc2UgaGVscCB0byByZXZpZXcgdGhpcyBwYXRjaC4NClRoYW5rcy4NCg0KRG9uZ2No
+dW4gWmh1ICgyKToNCiAgbWVkaWE6IGR0LWJpbmRpbmdzOiBtZWRpYTogaTJjOiBEb2N1bWVudCBP
+VjAyQTEwIGJpbmRpbmdzDQogIG1lZGlhOiBpMmM6IEFkZCBPVjAyQTEwIGltYWdlIHNlbnNvciBk
+cml2ZXINCg0KIC4uLi9iaW5kaW5ncy9tZWRpYS9pMmMvb3Z0aSxvdjAyYTEwLnlhbWwgICAgICAg
+ICAgIHwgIDE2MSArKysNCiBNQUlOVEFJTkVSUyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICB8ICAgIDggKw0KIGRyaXZlcnMvbWVkaWEvaTJjL0tjb25maWcgICAgICAgICAg
+ICAgICAgICAgICAgICAgIHwgICAxMyArDQogZHJpdmVycy9tZWRpYS9pMmMvTWFrZWZpbGUgICAg
+ICAgICAgICAgICAgICAgICAgICAgfCAgICAxICsNCiBkcml2ZXJzL21lZGlhL2kyYy9vdjAyYTEw
+LmMgICAgICAgICAgICAgICAgICAgICAgICB8IDEwODMgKysrKysrKysrKysrKysrKysrKysNCiA1
+IGZpbGVzIGNoYW5nZWQsIDEyNjYgaW5zZXJ0aW9ucygrKQ0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBE
+b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVkaWEvaTJjL292dGksb3YwMmExMC55
+YW1sDQogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvbWVkaWEvaTJjL292MDJhMTAuYw0KDQot
+LSANCjIuOS4yDQo=
 
-On 31.08.2020 14:50, Marek Szyprowski wrote:
-> Hi Krzysztof,
->
-> On 29.08.2020 16:25, Krzysztof Kozlowski wrote:
->> The USB-C connector bindings require port@0.  Such port was already
->> described in DTS but outside of the connector itself.  Put it into
->> proper place to fix dtbs_check warnings like:
->>
->>     arch/arm64/boot/dts/exynos/exynos5433-tm2.dt.yaml: musb_connector: ports: 'port@0' is a required property
->>
->> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> I'm not sure if topic should be about USB-C, I will call it simply USB
-> connector node. TM2(e) uses Samsung's 11-pin micro USB 2.0 connector,
-> which has nothing in common with USB Type-C.
->
-> Anyway, this patch breaks DWC3 (tested in Device mode) driver operation,
-> so something has to be somehow adjusted or fixed. Added CC Andrzej
-> Hajda, who actually worked on this.
->
->> ---
->>
->> Not tested on HQ. Please kindly review and test.
->>
->> Best regards,
->> Krzysztof
->> ---
->>    .../boot/dts/exynos/exynos5433-tm2-common.dtsi    | 15 +++++++--------
->>    1 file changed, 7 insertions(+), 8 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
->> index 6246cce2a15e..bab6c1addd5f 100644
->> --- a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
->> +++ b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
->> @@ -871,6 +871,13 @@
->>    					#address-cells = <1>;
->>    					#size-cells = <0>;
->>    
->> +					port@0 {
->> +						reg = <0>;
->> +						muic_to_usb: endpoint {
->> +							remote-endpoint = <&usb_to_muic>;
->> +						};
->> +					};
->> +
-
-
-According to not-yet-yaml documentation of dt-bindings (patch 05/10):
-> -Required nodes:
-> -- any data bus to the connector should be modeled using the OF graph bindings
-> -  specified in bindings/graph.txt, unless the bus is between parent node and
-> -  the connector.
-
-This is 'unless' case - muic is parent of the connector, so the port 0 is not necessary.
-
-
->>    					port@3 {
->>    						reg = <3>;
->>    						musb_con_to_mhl: endpoint {
->> @@ -879,14 +886,6 @@
->>    					};
->>    				};
->>    			};
->> -
->> -			ports {
->> -				port {
->> -					muic_to_usb: endpoint {
->> -						remote-endpoint = <&usb_to_muic>;
->> -					};
->> -				};
-
-
-And this port belongs to MUIC - it describes connection between USB-HOST 
-and MUIC, it has nothing to do with the connector, and is necessary.
-
-
-Regards
-
-Andrzej
-
-
->> -			};
->>    		};
->>    
->>    		regulators {
-> Best regards
