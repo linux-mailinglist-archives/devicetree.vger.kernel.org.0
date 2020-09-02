@@ -2,75 +2,410 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FA6C25B21C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 18:52:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CA9E25B224
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 18:54:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726310AbgIBQwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 12:52:53 -0400
-Received: from mout.kundenserver.de ([212.227.126.134]:42755 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726467AbgIBQwv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 12:52:51 -0400
-Received: from buildfff.adridolf.com ([188.192.134.246]) by
- mrelayeu.kundenserver.de (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis)
- id 1MYedH-1k8H3n3bf9-00Vd7Z; Wed, 02 Sep 2020 18:52:44 +0200
-From:   Adrian Schmutzler <freifunk@adrianschmutzler.de>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] ARM: dts: qcom: remove commented mmc-ddr-1_8v for sdcc3
-Date:   Wed,  2 Sep 2020 18:51:59 +0200
-Message-Id: <20200902165159.7733-2-freifunk@adrianschmutzler.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200902165159.7733-1-freifunk@adrianschmutzler.de>
-References: <20200902165159.7733-1-freifunk@adrianschmutzler.de>
+        id S1727088AbgIBQyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 12:54:11 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:54562 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726623AbgIBQyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 12:54:10 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 082Gs61g034067;
+        Wed, 2 Sep 2020 11:54:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599065646;
+        bh=3+kvWoX2zueh8ydq//SEq809w9v+V6DO2zilRewNSEg=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=PEYeuScsxgxkLDqs32ye/6/JaPOqVAzAV5mrreNyOokie1MRL3Dg9ipipbc+0MxHL
+         MEvDpkvdAYXB1fjIxzVOMDbmd1j3i/qoFbq+tF9aRQ3Ems3uMoUna4HYHNO67qJrDe
+         AaymjB5N+MaY8+7h+xTiTQg1oo140tUFcSje+xa0=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 082Gs6a0013929
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 2 Sep 2020 11:54:06 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 2 Sep
+ 2020 11:54:06 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 2 Sep 2020 11:54:06 -0500
+Received: from [10.250.34.112] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 082Gs5jG052821;
+        Wed, 2 Sep 2020 11:54:05 -0500
+Subject: Re: [PATCH 7/7] arm64: dts: ti: k3-*: Fix up node_name_chars_strict
+ errors
+To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <t-kristo@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, <lokeshvutla@ti.com>,
+        <grygorii.strashko@ti.com>, <nsekhar@ti.com>
+References: <20200901223059.14801-1-nm@ti.com>
+ <20200901223059.14801-8-nm@ti.com>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <7fbf0ee5-0c7e-ae18-fa8a-bbdc6e9da926@ti.com>
+Date:   Wed, 2 Sep 2020 11:54:05 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:eoj5L3YYb23t4BdVNP7rzmbK9HUIg7FQUhwepVLrO3/vAiXwMO1
- mmbfxJ9BqMbHIAM3SupAfa42tr2Qw7L8uq5jEYf4TA1nNYXTtoT/nR53QeOQ7Vb7IeOZgkx
- 24Cf6ukbZ8cKRh6x4A8s5yrcHgJuQdE32TLZtHpiRg+uzkVxMqmXTUjw+FpCTdhlbgLN+IW
- ptXGGAgaMdMQsuDQYWK7Q==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:H8UhXfaI/ng=:LvXsXRdXQTxXk7CSxK7lc7
- F3/6fAgRrxFYiYeQdjVKhBUzOB0p9RxQgDCDR+ClO3mIr399WDcaoWz8gYjn1Gz9Ve49VOz3T
- pO3Jv4H90Eu5EqiwShHaO9az5POHDm1MlsOik+e+GptdX6yATfoChck9wxLvCp4dpAO5lZO1r
- CWWF1XtdK9VI8og0+LCI/Vli16qyS91qRybMOs46svcfscXFz+tIWXJsHfPFK1ZRVDJJP2bn5
- 1rS+UL2QsY+O+gezz6ffaJQSQib3lV2ENlepp1PdS62kW0U5K0ESve/bvsbsImgUhEKwpkwxH
- O+ogiPkzhJ7HEwuYM6FI2xpiC9ElEWXcpqfPQ7hCuh46YsHFB78xeGLZLRaDU01ZivB1ZO9xx
- mCS5rj82yApCqsoEzEWhbe9+xk6KufR4g8+9iF1lYnqDfZ3LNKGGgE7QpFj+71nD8fWwiRjm/
- KK3E06G5iFyn3UgCTRQQwvmY7gXIxupc+k8qxAiTqvs2PEe64nmXgknJsV8a5kMP3Js59lqj3
- FEGRlua6ndVc9LKwKUq0qnWK7f0KQExAEfoJeuFkQFydGaGpC6MiK8aiEKJIfoKqhqIyQrVzH
- G4Pzq1Tq5z45Vx/NLsoZyBJn20TBa9sKgy3facapfX5/j8STV3YqMKMZ+AAcdlGLlIUTPLqHh
- khpyolU2u8qq7eXjPdmb3ZzMuAil7P4xWzkNOaY5VA+PJpMYyNJKLFkw+MZ6zkn21C5eGaP7Y
- EVO2KruHhJ+9SVYxM8X2SbFtkrKpOMCNHtMq1PkWh9oxeB+KxVex/1wlhhDd+VSjCXpC9yZhq
- Er1Kxqc0BnncYyQZzaCoTZoqjGUAmGbPPaL1pQKfjuLSwg1tYH2aZw9/Py6n5Ltx88weVvP0M
- pBJoAPW8kZNCDbVlp4JA==
+In-Reply-To: <20200901223059.14801-8-nm@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This property appears to be commented out, so we can remove it
-as well.
+On 9/1/20 5:30 PM, Nishanth Menon wrote:
+> Building with W=2 throws up a bunch of easy to fixup errors..
+> node_name_chars_strict is one of them.. Knock those out.
+> 
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi       |  6 +++---
+>  arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi        |  4 ++--
+>  arch/arm64/boot/dts/ti/k3-am654-base-board.dts | 16 ++++++++--------
+>  .../dts/ti/k3-am654-industrial-thermal.dtsi    | 12 ++++++------
+>  .../boot/dts/ti/k3-j721e-common-proc-board.dts | 18 +++++++++---------
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi      |  6 +++---
+>  .../arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi |  2 +-
+>  arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi    |  2 +-
+>  8 files changed, 33 insertions(+), 33 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> index 9c96e3f58c86..ff3e38408dbc 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> @@ -305,7 +305,7 @@
+>  		no-1-8-v;
+>  	};
+>  
+> -	scm_conf: scm_conf@100000 {
+> +	scm_conf: scm-conf@100000 {
+>  		compatible = "syscon", "simple-mfd";
+>  		reg = <0 0x00100000 0 0x1c000>;
+>  		#address-cells = <1>;
+> @@ -344,7 +344,7 @@
+>  					<0x4090 0x3>; /* SERDES1 lane select */
+>  		};
+>  
+> -		dss_oldi_io_ctrl: dss_oldi_io_ctrl@41E0 {
+> +		dss_oldi_io_ctrl: dss-oldi-io-ctrl@41E0 {
+>  			compatible = "syscon";
+>  			reg = <0x0000041E0 0x14>;
 
-Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
----
- arch/arm/boot/dts/qcom-ipq8064.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+We should %s/41E0/41e0/, but that change is not directly associated with the
+patch subject line. Perhaps, an additional patch? Remember seeing similar
+warning on some downstream crypto nodes, but strangely I am not seeing on these
+upstream nodes.
 
-diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-index c51f9fb4a0eb..c4667dff613e 100644
---- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-@@ -778,7 +778,6 @@
- 				cap-sd-highspeed;
- 				cap-mmc-highspeed;
- 				max-frequency   = <192000000>;
--				#mmc-ddr-1_8v;
- 				sd-uhs-sdr104;
- 				sd-uhs-ddr50;
- 				vqmmc-supply = <&vsdcc_fixed>;
--- 
-2.20.1
+Otherwise,
+Reviewed-by: Suman Anna <s-anna@ti.com>
+
+regards
+Suman
+
+>  		};
+> @@ -445,7 +445,7 @@
+>  		ti,interrupt-ranges = <0 392 32>;
+>  	};
+>  
+> -	main_navss {
+> +	main-navss {
+>  		compatible = "simple-mfd";
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+> index 6dfec68ac865..435e51019287 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+> @@ -6,7 +6,7 @@
+>   */
+>  
+>  &cbass_mcu {
+> -	mcu_conf: scm_conf@40f00000 {
+> +	mcu_conf: scm-conf@40f00000 {
+>  		compatible = "syscon", "simple-mfd";
+>  		reg = <0x0 0x40f00000 0x0 0x20000>;
+>  		#address-cells = <1>;
+> @@ -116,7 +116,7 @@
+>  		};
+>  	};
+>  
+> -	mcu_navss {
+> +	mcu-navss {
+>  		compatible = "simple-mfd";
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> index 86c9074cb070..d12dd89f3405 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> @@ -29,7 +29,7 @@
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+>  		ranges;
+> -		secure_ddr: secure_ddr@9e800000 {
+> +		secure_ddr: secure-ddr@9e800000 {
+>  			reg = <0 0x9e800000 0 0x01800000>; /* for OP-TEE */
+>  			alignment = <0x1000>;
+>  			no-map;
+> @@ -70,14 +70,14 @@
+>  		>;
+>  	};
+>  
+> -	push_button_pins_default: push_button__pins_default {
+> +	push_button_pins_default: push-button-pins-default {
+>  		pinctrl-single,pins = <
+>  			AM65X_WKUP_IOPAD(0x0030, PIN_INPUT, 7) /* (R5) WKUP_GPIO0_24 */
+>  			AM65X_WKUP_IOPAD(0x003c, PIN_INPUT, 7) /* (P2) WKUP_GPIO0_27 */
+>  		>;
+>  	};
+>  
+> -	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-pins_default {
+> +	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-pins-default {
+>  		pinctrl-single,pins = <
+>  			AM65X_WKUP_IOPAD(0x0000, PIN_OUTPUT, 0) /* (V1) MCU_OSPI0_CLK */
+>  			AM65X_WKUP_IOPAD(0x0008, PIN_INPUT, 0)	 /* (U2) MCU_OSPI0_DQS */
+> @@ -93,13 +93,13 @@
+>  		>;
+>  	};
+>  
+> -	wkup_pca554_default: wkup_pca554_default {
+> +	wkup_pca554_default: wkup-pca554-default {
+>  		pinctrl-single,pins = <
+>  			AM65X_WKUP_IOPAD(0x0034, PIN_INPUT, 7) /* (T1) MCU_OSPI1_CLK.WKUP_GPIO0_25 */
+>  		>;
+>  	};
+>  
+> -	mcu_cpsw_pins_default: mcu_cpsw_pins_default {
+> +	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
+>  		pinctrl-single,pins = <
+>  			AM65X_WKUP_IOPAD(0x0058, PIN_OUTPUT, 0) /* (N4) MCU_RGMII1_TX_CTL */
+>  			AM65X_WKUP_IOPAD(0x005c, PIN_INPUT, 0) /* (N5) MCU_RGMII1_RX_CTL */
+> @@ -116,7 +116,7 @@
+>  		>;
+>  	};
+>  
+> -	mcu_mdio_pins_default: mcu_mdio1_pins_default {
+> +	mcu_mdio_pins_default: mcu-mdio1-pins-default {
+>  		pinctrl-single,pins = <
+>  			AM65X_WKUP_IOPAD(0x008c, PIN_OUTPUT, 0) /* (L1) MCU_MDIO0_MDC */
+>  			AM65X_WKUP_IOPAD(0x0088, PIN_INPUT, 0) /* (L4) MCU_MDIO0_MDIO */
+> @@ -167,7 +167,7 @@
+>  		>;
+>  	};
+>  
+> -	main_mmc1_pins_default: main_mmc1_pins_default {
+> +	main_mmc1_pins_default: main-mmc1-pins-default {
+>  		pinctrl-single,pins = <
+>  			AM65X_IOPAD(0x02d4, PIN_INPUT_PULLDOWN, 0) /* (C27) MMC1_CLK */
+>  			AM65X_IOPAD(0x02d8, PIN_INPUT_PULLUP, 0) /* (C28) MMC1_CMD */
+> @@ -180,7 +180,7 @@
+>  		>;
+>  	};
+>  
+> -	usb1_pins_default: usb1_pins_default {
+> +	usb1_pins_default: usb1-pins-default {
+>  		pinctrl-single,pins = <
+>  			AM65X_IOPAD(0x02c0, PIN_OUTPUT, 0) /* (AC8) USB1_DRVVBUS */
+>  		>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi b/arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi
+> index cdc3d40c3f60..9021c738056b 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi
+> @@ -2,13 +2,13 @@
+>  
+>  #include <dt-bindings/thermal/thermal.h>
+>  
+> -mpu0_thermal: mpu0_thermal {
+> +mpu0_thermal: mpu0-thermal {
+>  	polling-delay-passive = <250>; /* milliseconds */
+>  	polling-delay = <500>; /* milliseconds */
+>  	thermal-sensors = <&wkup_vtm0 0>;
+>  
+>  	trips {
+> -		mpu0_crit: mpu0_crit {
+> +		mpu0_crit: mpu0-crit {
+>  			temperature = <125000>; /* milliCelsius */
+>  			hysteresis = <2000>; /* milliCelsius */
+>  			type = "critical";
+> @@ -16,13 +16,13 @@ mpu0_thermal: mpu0_thermal {
+>  	};
+>  };
+>  
+> -mpu1_thermal: mpu1_thermal {
+> +mpu1_thermal: mpu1-thermal {
+>  	polling-delay-passive = <250>; /* milliseconds */
+>  	polling-delay = <500>; /* milliseconds */
+>  	thermal-sensors = <&wkup_vtm0 1>;
+>  
+>  	trips {
+> -		mpu1_crit: mpu1_crit {
+> +		mpu1_crit: mpu1-crit {
+>  			temperature = <125000>; /* milliCelsius */
+>  			hysteresis = <2000>; /* milliCelsius */
+>  			type = "critical";
+> @@ -30,13 +30,13 @@ mpu1_thermal: mpu1_thermal {
+>  	};
+>  };
+>  
+> -mcu_thermal: mcu_thermal {
+> +mcu_thermal: mcu-thermal {
+>  	polling-delay-passive = <250>; /* milliseconds */
+>  	polling-delay = <500>; /* milliseconds */
+>  	thermal-sensors = <&wkup_vtm0 2>;
+>  
+>  	trips {
+> -		mcu_crit: mcu_crit {
+> +		mcu_crit: mcu-crit {
+>  			temperature = <125000>; /* milliCelsius */
+>  			hysteresis = <2000>; /* milliCelsius */
+>  			type = "critical";
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> index c355692796a9..648267284582 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> @@ -86,13 +86,13 @@
+>  };
+>  
+>  &main_pmx0 {
+> -	sw10_button_pins_default: sw10_button_pins_default {
+> +	sw10_button_pins_default: sw10-button-pins-default {
+>  		pinctrl-single,pins = <
+>  			J721E_IOPAD(0x0, PIN_INPUT, 7) /* (AC18) EXTINTn.GPIO0_0 */
+>  		>;
+>  	};
+>  
+> -	main_mmc1_pins_default: main_mmc1_pins_default {
+> +	main_mmc1_pins_default: main-mmc1-pins-default {
+>  		pinctrl-single,pins = <
+>  			J721E_IOPAD(0x254, PIN_INPUT, 0) /* (R29) MMC1_CMD */
+>  			J721E_IOPAD(0x250, PIN_INPUT, 0) /* (P25) MMC1_CLK */
+> @@ -106,14 +106,14 @@
+>  		>;
+>  	};
+>  
+> -	main_usbss0_pins_default: main_usbss0_pins_default {
+> +	main_usbss0_pins_default: main-usbss0-pins-default {
+>  		pinctrl-single,pins = <
+>  			J721E_IOPAD(0x290, PIN_OUTPUT, 0) /* (U6) USB0_DRVVBUS */
+>  			J721E_IOPAD(0x210, PIN_INPUT, 7) /* (W3) MCAN1_RX.GPIO1_3 */
+>  		>;
+>  	};
+>  
+> -	main_usbss1_pins_default: main_usbss1_pins_default {
+> +	main_usbss1_pins_default: main-usbss1-pins-default {
+>  		pinctrl-single,pins = <
+>  			J721E_IOPAD(0x214, PIN_OUTPUT, 4) /* (V4) MCAN1_TX.USB1_DRVVBUS */
+>  		>;
+> @@ -153,7 +153,7 @@
+>  		>;
+>  	};
+>  
+> -	mcasp10_pins_default: mcasp10_pins_default {
+> +	mcasp10_pins_default: mcasp10-pins-default {
+>  		pinctrl-single,pins = <
+>  			J721E_IOPAD(0x158, PIN_OUTPUT_PULLDOWN, 12) /* (U23) RGMII5_TX_CTL.MCASP10_ACLKX */
+>  			J721E_IOPAD(0x15c, PIN_OUTPUT_PULLDOWN, 12) /* (U26) RGMII5_RX_CTL.MCASP10_AFSX */
+> @@ -167,7 +167,7 @@
+>  		>;
+>  	};
+>  
+> -	audi_ext_refclk2_pins_default: audi_ext_refclk2_pins_default {
+> +	audi_ext_refclk2_pins_default: audi-ext-refclk2-pins-default {
+>  		pinctrl-single,pins = <
+>  			J721E_IOPAD(0x1a4, PIN_OUTPUT, 3) /* (W26) RGMII6_RXC.AUDIO_EXT_REFCLK2 */
+>  		>;
+> @@ -175,7 +175,7 @@
+>  };
+>  
+>  &wkup_pmx0 {
+> -	sw11_button_pins_default: sw11_button_pins_default {
+> +	sw11_button_pins_default: sw11-button-pins-default {
+>  		pinctrl-single,pins = <
+>  			J721E_WKUP_IOPAD(0xcc, PIN_INPUT, 7) /* (G28) WKUP_GPIO0_7 */
+>  		>;
+> @@ -194,7 +194,7 @@
+>  		>;
+>  	};
+>  
+> -	mcu_cpsw_pins_default: mcu_cpsw_pins_default {
+> +	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
+>  		pinctrl-single,pins = <
+>  			J721E_WKUP_IOPAD(0x0058, PIN_OUTPUT, 0) /* MCU_RGMII1_TX_CTL */
+>  			J721E_WKUP_IOPAD(0x005c, PIN_INPUT, 0) /* MCU_RGMII1_RX_CTL */
+> @@ -211,7 +211,7 @@
+>  		>;
+>  	};
+>  
+> -	mcu_mdio_pins_default: mcu_mdio1_pins_default {
+> +	mcu_mdio_pins_default: mcu-mdio1-pins-default {
+>  		pinctrl-single,pins = <
+>  			J721E_WKUP_IOPAD(0x008c, PIN_OUTPUT, 0) /* MCU_MDIO0_MDC */
+>  			J721E_WKUP_IOPAD(0x0088, PIN_INPUT, 0) /* MCU_MDIO0_MDIO */
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> index 1d2a7c05b6f3..ea57d07777ba 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> @@ -86,7 +86,7 @@
+>  		ti,interrupt-ranges = <8 392 56>;
+>  	};
+>  
+> -	main_navss {
+> +	main-navss {
+>  		compatible = "simple-mfd";
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+> @@ -888,7 +888,7 @@
+>  		no-1-8-v;
+>  	};
+>  
+> -	usbss0: cdns_usb@4104000 {
+> +	usbss0: cdns-usb@4104000 {
+>  		compatible = "ti,j721e-usb";
+>  		reg = <0x00 0x4104000 0x00 0x100>;
+>  		dma-coherent;
+> @@ -918,7 +918,7 @@
+>  		};
+>  	};
+>  
+> -	usbss1: cdns_usb@4114000 {
+> +	usbss1: cdns-usb@4114000 {
+>  		compatible = "ti,j721e-usb";
+>  		reg = <0x00 0x4114000 0x00 0x100>;
+>  		dma-coherent;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> index 81801f519a61..03fa69c0a038 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> @@ -249,7 +249,7 @@
+>  		};
+>  	};
+>  
+> -	mcu_navss {
+> +	mcu-navss {
+>  		compatible = "simple-mfd";
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> index d69d90c8b5e3..5dc3ba739131 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> @@ -71,7 +71,7 @@
+>  };
+>  
+>  &wkup_pmx0 {
+> -	wkup_i2c0_pins_default: wkup_i2c0_pins_default {
+> +	wkup_i2c0_pins_default: wkup-i2c0-pins-default {
+>  		pinctrl-single,pins = <
+>  			J721E_WKUP_IOPAD(0xf8, PIN_INPUT_PULLUP, 0) /* (J25) WKUP_I2C0_SCL */
+>  			J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
+> 
 
