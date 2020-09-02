@@ -2,103 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FB0F25B348
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 20:00:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAAB325B356
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 20:06:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726686AbgIBSAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 14:00:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44994 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726397AbgIBSAI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 14:00:08 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 252D3C061244
-        for <devicetree@vger.kernel.org>; Wed,  2 Sep 2020 11:00:08 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kDX3D-0001GO-3u; Wed, 02 Sep 2020 20:00:03 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kDX3A-0000sJ-G7; Wed, 02 Sep 2020 20:00:00 +0200
-Date:   Wed, 2 Sep 2020 20:00:00 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
-Cc:     thierry.reding@gmail.com, lee.jones@linaro.org, kernel@axis.com,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, oliver@schinagl.nl
-Subject: Re: [PATCH 2/2] pwm: Add GPIO PWM driver
-Message-ID: <20200902180000.gvpdmybna4red2sx@pengutronix.de>
-References: <20200814155513.31936-1-vincent.whitchurch@axis.com>
- <20200814155513.31936-2-vincent.whitchurch@axis.com>
- <20200815075032.k2xyw75l56sbl7nx@pengutronix.de>
- <20200902121154.6bb5d5sqxwf2tmgt@axis.com>
+        id S1727884AbgIBSGV convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 2 Sep 2020 14:06:21 -0400
+Received: from mailoutvs22.siol.net ([185.57.226.213]:34409 "EHLO
+        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726567AbgIBSGR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 14:06:17 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTP id DC7AB526A96;
+        Wed,  2 Sep 2020 20:06:13 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at psrvmta09.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta09.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id JLXQv0_kZthx; Wed,  2 Sep 2020 20:06:13 +0200 (CEST)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTPS id 5A4CB526A97;
+        Wed,  2 Sep 2020 20:06:13 +0200 (CEST)
+Received: from kista.localnet (cpe1-5-97.cable.triera.net [213.161.5.97])
+        (Authenticated sender: jernej.skrabec@siol.net)
+        by mail.siol.net (Postfix) with ESMTPA id 8177A526A92;
+        Wed,  2 Sep 2020 20:06:12 +0200 (CEST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To:     peron.clem@gmail.com, Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com
+Subject: Re: [linux-sunxi] [PATCH 05/16] ASoc: sun4i-i2s: Add 20 and 24 bit support
+Date:   Wed, 02 Sep 2020 20:10:47 +0200
+Message-ID: <9148679.oVN3Z7rve9@kista>
+In-Reply-To: <1e320dfd-9388-54b2-dba9-7def0bf4bbad@sholland.org>
+References: <20200704113902.336911-1-peron.clem@gmail.com> <20200704113902.336911-6-peron.clem@gmail.com> <1e320dfd-9388-54b2-dba9-7def0bf4bbad@sholland.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="6qupgqorf2fz4jqr"
-Content-Disposition: inline
-In-Reply-To: <20200902121154.6bb5d5sqxwf2tmgt@axis.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Samuel!
 
---6qupgqorf2fz4jqr
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Dne petek, 10. julij 2020 ob 07:44:51 CEST je Samuel Holland napisal(a):
+> On 7/4/20 6:38 AM, Clément Péron wrote:
+> > From: Marcus Cooper <codekipper@gmail.com>
+> > 
+> > Extend the functionality of the driver to include support of 20 and
+> > 24 bits per sample.
+> > 
+> > Signed-off-by: Marcus Cooper <codekipper@gmail.com>
+> > Signed-off-by: Clément Péron <peron.clem@gmail.com>
+> > ---
+> > 
+> >  sound/soc/sunxi/sun4i-i2s.c | 11 +++++++++--
+> >  1 file changed, 9 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
+> > index f78167e152ce..bc7f9343bc7a 100644
+> > --- a/sound/soc/sunxi/sun4i-i2s.c
+> > +++ b/sound/soc/sunxi/sun4i-i2s.c
+> > @@ -577,6 +577,9 @@ static int sun4i_i2s_hw_params(struct
+> > snd_pcm_substream *substream,> 
+> >  	case 16:
+> >  		width = DMA_SLAVE_BUSWIDTH_2_BYTES;
+> >  		break;
+> > 
+> > +	case 32:
+> > +		width = DMA_SLAVE_BUSWIDTH_4_BYTES;
+> > +		break;
+> 
+> This breaks the sun4i variants, because sun4i_i2s_get_wss returns 4 for a 32
+> bit width, but it needs to return 3.
 
-Hello Vincent,
+I'm not sure what has WSS with physical width and DMA?
 
-On Wed, Sep 02, 2020 at 02:11:54PM +0200, Vincent Whitchurch wrote:
-> On Sat, Aug 15, 2020 at 09:50:32AM +0200, Uwe Kleine-K=F6nig wrote:
-> > On Fri, Aug 14, 2020 at 05:55:13PM +0200, Vincent Whitchurch wrote:
-> > > +static const struct pwm_ops pwm_gpio_ops =3D {
-> > > +	.owner =3D THIS_MODULE,
-> > > +	.apply =3D pwm_gpio_apply,
-> >=20
-> > Usually a .get_state callback is nice. Does it make sense to do
-> > something like:
-> >=20
-> > 	if (driver is up)
-> > 		report current setting
-> > 	else
-> > 		val =3D gpio_get_value()
-> > 		report(period=3D1, duty_cycle=3Dval, enabled=3Dval, polarity=3DNORMAL)
-> >=20
-> > ?
->=20
-> I implemented get_state() but I didn't do the gpio_get_value() thing
-> since the driver sets the gpio to a known value in probe().
+> 
+> As a side note, I wonder why we use the physical width (the spacing between
+> samples in RAM) to drive the slot width. S24_LE takes up 4 bytes per sample
+> in RAM, which we need for DMA. But I don't see why we would want to
+> transmit the padding over the wire. I would expect it to be transmitted the
+> same as S24_3LE (which has no padding). It did not matter before, because
+> the only supported format had no padding.
 
-This however is wrong, .probe() is not supposed to modify the output.
+Allwinner DMA engines support only 1, 2, 4 and sometimes 8 bytes for bus 
+width, so if sample is 24 bits in size, we have no other way but to transmit 
+padding too.
 
-Best regards
-Uwe
+Best regards,
+Jernej
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+> 
+> Regards,
+> Samuel
+> 
+> >  	default:
+> >  		dev_err(dai->dev, "Unsupported physical sample width: 
+%d\n",
+> >  		
+> >  			params_physical_width(params));
+> > 
+> > @@ -1063,6 +1066,10 @@ static int sun4i_i2s_dai_probe(struct snd_soc_dai
+> > *dai)> 
+> >  	return 0;
+> >  
+> >  }
+> > 
+> > +#define SUN4I_FORMATS	(SNDRV_PCM_FMTBIT_S16_LE | \
+> > +			 SNDRV_PCM_FMTBIT_S20_LE | \
+> > +			 SNDRV_PCM_FMTBIT_S24_LE)
+> > +
+> > 
+> >  static struct snd_soc_dai_driver sun4i_i2s_dai = {
+> >  
+> >  	.probe = sun4i_i2s_dai_probe,
+> >  	.capture = {
+> > 
+> > @@ -1070,14 +1077,14 @@ static struct snd_soc_dai_driver sun4i_i2s_dai = {
+> > 
+> >  		.channels_min = 1,
+> >  		.channels_max = 8,
+> >  		.rates = SNDRV_PCM_RATE_8000_192000,
+> > 
+> > -		.formats = SNDRV_PCM_FMTBIT_S16_LE,
+> > +		.formats = SUN4I_FORMATS,
+> > 
+> >  	},
+> >  	.playback = {
+> >  	
+> >  		.stream_name = "Playback",
+> >  		.channels_min = 1,
+> >  		.channels_max = 8,
+> >  		.rates = SNDRV_PCM_RATE_8000_192000,
+> > 
+> > -		.formats = SNDRV_PCM_FMTBIT_S16_LE,
+> > +		.formats = SUN4I_FORMATS,
+> > 
+> >  	},
+> >  	.ops = &sun4i_i2s_dai_ops,
+> >  	.symmetric_rates = 1,
 
---6qupgqorf2fz4jqr
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl9P3Z0ACgkQwfwUeK3K
-7AkAWgf8CaJSHXSDJHLXeccuVtuLMAI9klF8NshwoA489xmoj+fwyRxeT6cbxuez
-ZfiuOHTTo+Oh4KrdMnfogKgh2F+ddTLWOQikM2nuJ0d5pt2xR+KS4xzizjMTXEnd
-0kmgIPp4f/PdbsAdLRdG1CFggYMjthizbRqKmiS2qZjkS4GkgrpX39A5cKFZpwfP
-1wUNN/1VrGxeZNOFrEkiqdO6Fw6pbVR63M0g5uW6buwvaZYM8WP+unqdJruDHyiW
-ZNlLXInCRWO7N8OSegx88g/DaXpa7yluEUPXxxUGDr0z1B4+frFG2jW9BceC5PLs
-8/t74enGXwpeJ4KmmWz9SrZnkkdXcA==
-=iNyx
------END PGP SIGNATURE-----
 
---6qupgqorf2fz4jqr--
