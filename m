@@ -2,153 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAAB325B356
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 20:06:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B75825B37B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 20:12:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727884AbgIBSGV convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 2 Sep 2020 14:06:21 -0400
-Received: from mailoutvs22.siol.net ([185.57.226.213]:34409 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726567AbgIBSGR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 14:06:17 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id DC7AB526A96;
-        Wed,  2 Sep 2020 20:06:13 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at psrvmta09.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta09.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id JLXQv0_kZthx; Wed,  2 Sep 2020 20:06:13 +0200 (CEST)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id 5A4CB526A97;
-        Wed,  2 Sep 2020 20:06:13 +0200 (CEST)
-Received: from kista.localnet (cpe1-5-97.cable.triera.net [213.161.5.97])
-        (Authenticated sender: jernej.skrabec@siol.net)
-        by mail.siol.net (Postfix) with ESMTPA id 8177A526A92;
-        Wed,  2 Sep 2020 20:06:12 +0200 (CEST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
-To:     peron.clem@gmail.com, Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [linux-sunxi] [PATCH 05/16] ASoc: sun4i-i2s: Add 20 and 24 bit support
-Date:   Wed, 02 Sep 2020 20:10:47 +0200
-Message-ID: <9148679.oVN3Z7rve9@kista>
-In-Reply-To: <1e320dfd-9388-54b2-dba9-7def0bf4bbad@sholland.org>
-References: <20200704113902.336911-1-peron.clem@gmail.com> <20200704113902.336911-6-peron.clem@gmail.com> <1e320dfd-9388-54b2-dba9-7def0bf4bbad@sholland.org>
+        id S1727906AbgIBSMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 14:12:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46958 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726177AbgIBSMo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 14:12:44 -0400
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 992C0C061244;
+        Wed,  2 Sep 2020 11:12:43 -0700 (PDT)
+Received: by mail-pl1-x644.google.com with SMTP id s10so146192plp.1;
+        Wed, 02 Sep 2020 11:12:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=h3f9lrWEnIT8HUEopKzesuhjDoqNNwJ+zYjj81qDGgk=;
+        b=bhB4Utg1ATXtd2Dfd7kZCmepTMUzHRvLckIBrXX5TWBfUJ/erjfgy80A5/gWGYM2U9
+         ym4bihNrlVhUadMl6R1Xh6anLk9EciD/mSWAFd7ZcFgLO8rLWdLkS/8MSOUd+chNr4Ep
+         8n78vkuGH4YhGmYN7k2SJpkkbzUfqD3UCqnJ6VCUyd3z1cVIJhmKlZ568Fp8e+U4ttKQ
+         OFXfgrGiHVvLzhqZTvpdsKtRZh75uS5l0gIQaxcqt8bQQT6QnJBk62mkORcFUQyBQsPT
+         Km37lu8JEJ6OfJ42ZjMWTeQT9JyMMilEfzjhhNwPeILP7gwk2IYdb7tyqQoFRIfpgLYf
+         s3MQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=h3f9lrWEnIT8HUEopKzesuhjDoqNNwJ+zYjj81qDGgk=;
+        b=ChGxrApbmtIUQZpBLsEDip+PY4VZwroLnn0jgX6Nor1/cQUKJhX5tYhfiYMD6hosVn
+         y4PoCpTgslQI9ESLd2+llTaS7+7wxaKtLTD7GZlvUaa/rN0LD6umXNV/Po8YEybC80x3
+         ZHIkzreaPJhgNBIIjYNS3dHb1xyNPd8q1hW7hyHrKIHDE20Lelr1LEjVrL6aZfXIJKPZ
+         twQsb1u1ZYnORKpeU2I6UzqYcC36Ov5ATuaS+6skznXth7Ec9+MwSM2jeK26IP3+TaB6
+         vwtkZEsmQ+sDoUxplYFh7R1ZBR2jZwj7aD4g8KSQEBXEM5PlfoR8FaLs+dNc4u5y67eZ
+         jpcg==
+X-Gm-Message-State: AOAM531SSkbNZJ3pcM5EDtYuDnE8dAK9fUZFsQ1ucOxdYhoVOWD3FvQ3
+        fAvZr5aFxvm8PGSxg8lJUA2g2Myphxc=
+X-Google-Smtp-Source: ABdhPJw0Hl+6859WKV8nvo4KGjdx6+L+6AaUXsSU2feSqDzwvX7zAQRFPC5XKmyfeDam/8LzLXItLA==
+X-Received: by 2002:a17:90a:7084:: with SMTP id g4mr3002233pjk.116.1599070362994;
+        Wed, 02 Sep 2020 11:12:42 -0700 (PDT)
+Received: from localhost.localdomain (cpe-172-112-234-200.socal.res.rr.com. [172.112.234.200])
+        by smtp.gmail.com with ESMTPSA id u123sm148993pfb.209.2020.09.02.11.12.41
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 02 Sep 2020 11:12:42 -0700 (PDT)
+From:   lindsey.stanpoor@gmail.com
+To:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org, heiko@sntech.de,
+        balbi@kernel.org, cnemo@tutanota.com
+Subject: [PATCH v4 1/4] dt-bindings: usb: add rk3328 dwc3 docs
+Date:   Wed,  2 Sep 2020 11:12:31 -0700
+Message-Id: <20200902181234.13955-1-lindsey.stanpoor@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Samuel!
+From: Cameron Nemo <cnemo@tutanota.com>
 
-Dne petek, 10. julij 2020 ob 07:44:51 CEST je Samuel Holland napisal(a):
-> On 7/4/20 6:38 AM, Clément Péron wrote:
-> > From: Marcus Cooper <codekipper@gmail.com>
-> > 
-> > Extend the functionality of the driver to include support of 20 and
-> > 24 bits per sample.
-> > 
-> > Signed-off-by: Marcus Cooper <codekipper@gmail.com>
-> > Signed-off-by: Clément Péron <peron.clem@gmail.com>
-> > ---
-> > 
-> >  sound/soc/sunxi/sun4i-i2s.c | 11 +++++++++--
-> >  1 file changed, 9 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
-> > index f78167e152ce..bc7f9343bc7a 100644
-> > --- a/sound/soc/sunxi/sun4i-i2s.c
-> > +++ b/sound/soc/sunxi/sun4i-i2s.c
-> > @@ -577,6 +577,9 @@ static int sun4i_i2s_hw_params(struct
-> > snd_pcm_substream *substream,> 
-> >  	case 16:
-> >  		width = DMA_SLAVE_BUSWIDTH_2_BYTES;
-> >  		break;
-> > 
-> > +	case 32:
-> > +		width = DMA_SLAVE_BUSWIDTH_4_BYTES;
-> > +		break;
-> 
-> This breaks the sun4i variants, because sun4i_i2s_get_wss returns 4 for a 32
-> bit width, but it needs to return 3.
+Document compatible for dwc3 on the Rockchip rk3328 platform.
 
-I'm not sure what has WSS with physical width and DMA?
+Signed-off-by: Cameron Nemo <cnemo@tutanota.com>
+---
+ Documentation/devicetree/bindings/usb/dwc3.txt          | 1 +
+ Documentation/devicetree/bindings/usb/rockchip,dwc3.txt | 3 ++-
+ 2 files changed, 3 insertions(+), 1 deletion(-)
 
-> 
-> As a side note, I wonder why we use the physical width (the spacing between
-> samples in RAM) to drive the slot width. S24_LE takes up 4 bytes per sample
-> in RAM, which we need for DMA. But I don't see why we would want to
-> transmit the padding over the wire. I would expect it to be transmitted the
-> same as S24_3LE (which has no padding). It did not matter before, because
-> the only supported format had no padding.
-
-Allwinner DMA engines support only 1, 2, 4 and sometimes 8 bytes for bus 
-width, so if sample is 24 bits in size, we have no other way but to transmit 
-padding too.
-
-Best regards,
-Jernej
-
-> 
-> Regards,
-> Samuel
-> 
-> >  	default:
-> >  		dev_err(dai->dev, "Unsupported physical sample width: 
-%d\n",
-> >  		
-> >  			params_physical_width(params));
-> > 
-> > @@ -1063,6 +1066,10 @@ static int sun4i_i2s_dai_probe(struct snd_soc_dai
-> > *dai)> 
-> >  	return 0;
-> >  
-> >  }
-> > 
-> > +#define SUN4I_FORMATS	(SNDRV_PCM_FMTBIT_S16_LE | \
-> > +			 SNDRV_PCM_FMTBIT_S20_LE | \
-> > +			 SNDRV_PCM_FMTBIT_S24_LE)
-> > +
-> > 
-> >  static struct snd_soc_dai_driver sun4i_i2s_dai = {
-> >  
-> >  	.probe = sun4i_i2s_dai_probe,
-> >  	.capture = {
-> > 
-> > @@ -1070,14 +1077,14 @@ static struct snd_soc_dai_driver sun4i_i2s_dai = {
-> > 
-> >  		.channels_min = 1,
-> >  		.channels_max = 8,
-> >  		.rates = SNDRV_PCM_RATE_8000_192000,
-> > 
-> > -		.formats = SNDRV_PCM_FMTBIT_S16_LE,
-> > +		.formats = SUN4I_FORMATS,
-> > 
-> >  	},
-> >  	.playback = {
-> >  	
-> >  		.stream_name = "Playback",
-> >  		.channels_min = 1,
-> >  		.channels_max = 8,
-> >  		.rates = SNDRV_PCM_RATE_8000_192000,
-> > 
-> > -		.formats = SNDRV_PCM_FMTBIT_S16_LE,
-> > +		.formats = SUN4I_FORMATS,
-> > 
-> >  	},
-> >  	.ops = &sun4i_i2s_dai_ops,
-> >  	.symmetric_rates = 1,
-
-
-
+diff --git a/Documentation/devicetree/bindings/usb/dwc3.txt b/Documentation/devicetree/bindings/usb/dwc3.txt
+index d03edf9d3935..d625cd5966e9 100644
+--- a/Documentation/devicetree/bindings/usb/dwc3.txt
++++ b/Documentation/devicetree/bindings/usb/dwc3.txt
+@@ -25,6 +25,7 @@ Exception for clocks:
+     "ti,am437x-dwc3"
+     "ti,dwc3"
+     "ti,keystone-dwc3"
++    "rockchip,rk3328-dwc3"
+     "rockchip,rk3399-dwc3"
+     "xlnx,zynqmp-dwc3"
+ 
+diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt b/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
+index 94520493233b..b41f30a61be6 100644
+--- a/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
++++ b/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
+@@ -1,7 +1,8 @@
+ Rockchip SuperSpeed DWC3 USB SoC controller
+ 
+ Required properties:
+-- compatible:	should contain "rockchip,rk3399-dwc3" for rk3399 SoC
++- compatible:	should contain "rockchip,rk3328-dwc3" for rk3328 SoC
++		or "rockchip,rk3399-dwc3" for rk3399 SoC
+ - clocks:	A list of phandle + clock-specifier pairs for the
+ 		clocks listed in clock-names
+ - clock-names:	Should contain the following:
+-- 
+2.28.0
 
