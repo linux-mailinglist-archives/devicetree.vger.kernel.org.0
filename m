@@ -2,132 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4B2E25B6AA
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 00:49:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6CF625B6E5
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 01:00:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726586AbgIBWsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 18:48:55 -0400
-Received: from mail-eopbgr50080.outbound.protection.outlook.com ([40.107.5.80]:29666
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726828AbgIBWsx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Sep 2020 18:48:53 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RkYmVDJ9QMXtyvhx5IQ+2reWitzsA2hELGiV1jOzppuX0PfAPBbOaIXM7M7b9sfRGdRUSj1mRiofHxydTTFfGVOVAPKoJCa4XIkNBbYt8v2+oBfckvbpDgLvUS32k7lUoQRWqfR6ZHK+oMdLs+/YuuyCOGWtKjBlSq5ifyzdSrZ/TRrdC+RjVh6rZJXaVqHZVb6ERqhKWoqE8ue7l8dpc+tRrPNI/eWYcxRSsNK8lDh8Sf7Z9kiKhyAR6Wtf84kPS/jq28GOjIA/m+Rh3fkEu5HVu84lyZvlT9kf6PJn94fUgsAb0E2M80G1MrGAopZo9c16CTvsgZARtngOenp54w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=djP9nZSO0mPS+u1xb0QVGMh7kJhv+owi8Wkg5ZKlWrs=;
- b=lss2GfTQKrz7N4oxiDaCFQ095z7pq3xhFmLGAEPGRv2mvS5CAHKdzTg6uJebrJOcEO//r9cMdb3AJnb6+BKN5HFeB5BCuB9YUM4Ql6LUhbPrB+KYAEZK3wkJFlxhHvEwt5nDSlCrRgzo7SK9bzRzDmqpWwIgk3l7jkp9NGNWmMGoJKjgQtspzW0ucIbF5CnEKlu1V211OS/Rlu2XRTE4anV7JiZ0EUvX0dN16JTg4t8HtFMXWDI3nMr7zup80CX/1zvyyIHHxMEoRCw1yAy2yYpdtuch0Aj3I2ZICLWE8DKzi1bWkE8OWvJCRF2QuwsZRNP9W1Bd0mPMDTmN+Cplag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=djP9nZSO0mPS+u1xb0QVGMh7kJhv+owi8Wkg5ZKlWrs=;
- b=nyxMsTzMwCi5ExeV0HEzy5nVCKfv/DchoIAA0x36FFEL6OIZTPiV6fzPdTewRoUfLOakCR5vJvlqN6JlcEUja3owZ1qtmGJqWz7qe0PF424ZLtkVLF/vGbwDuyMCT8pD/TezlW0LnVBl1EdpX1xr6yQsgK8wiEV1BGvuo8/2EgQ=
-Received: from AM7PR04MB7157.eurprd04.prod.outlook.com (2603:10a6:20b:118::20)
- by AM6PR04MB6278.eurprd04.prod.outlook.com (2603:10a6:20b:be::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.15; Wed, 2 Sep
- 2020 22:48:49 +0000
-Received: from AM7PR04MB7157.eurprd04.prod.outlook.com
- ([fe80::1023:be8d:40c:efe1]) by AM7PR04MB7157.eurprd04.prod.outlook.com
- ([fe80::1023:be8d:40c:efe1%3]) with mapi id 15.20.3348.015; Wed, 2 Sep 2020
- 22:48:49 +0000
-From:   Peter Chen <peter.chen@nxp.com>
-To:     Roger Quadros <rogerq@ti.com>
-CC:     "balbi@kernel.org" <balbi@kernel.org>,
-        "pawell@cadence.com" <pawell@cadence.com>,
-        "kurahul@cadence.com" <kurahul@cadence.com>,
-        "nsekhar@ti.com" <nsekhar@ti.com>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/3] dt-bindings: usb: cdns,usb3: Add cdns,phyrst-a-enable
- property
-Thread-Topic: [PATCH 2/3] dt-bindings: usb: cdns,usb3: Add
- cdns,phyrst-a-enable property
-Thread-Index: AQHWetjF2mYsQKwgvU+3PPFGyTZfuKlL0I2AgAmTp4CAAJx0gA==
-Date:   Wed, 2 Sep 2020 22:48:49 +0000
-Message-ID: <20200902224829.GA11250@b29397-desktop>
-References: <20200825120059.12436-1-rogerq@ti.com>
- <20200825120059.12436-3-rogerq@ti.com> <20200827111343.GB5983@b29397-desktop>
- <08a7533f-b09e-f044-64e5-d709ae220599@ti.com>
-In-Reply-To: <08a7533f-b09e-f044-64e5-d709ae220599@ti.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: ti.com; dkim=none (message not signed)
- header.d=none;ti.com; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [119.31.174.67]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 7decf3bd-7cba-4ce5-8bb0-08d84f925b88
-x-ms-traffictypediagnostic: AM6PR04MB6278:
-x-microsoft-antispam-prvs: <AM6PR04MB6278904E2860F70064FDCACB8B2F0@AM6PR04MB6278.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3276;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: OVgzuSplbL9c3O+AXRzRDO0vqU9kWx9cp4VWzDpSidlTeyTkg+C+bKsYZ2Aa9cEvHNCZFJDZ2Gkntv1+QYmQ+z4+grTVa8rQgv0TmzeLJjnsHupsmSXuKn5hJNLHsduFJpW0quTJpIJS7otEcouuUCdN8zYIENVcU4EohAQEgNRtlVyuDYOTD13/z7cqlKExXe+ZLpSj5y/nm4xTs2tEeBsbEPCD1O0Ta6Txaw6xV+ce4CLJN4t77N1pUieFnEmbBQ8+9OBW3LDkAd5c2fO+1KQrE3zAnkwLPKfIoy/e30Fsdmx1N11c1iWX8Q7RzBGOwNd+vWhz3G6o+gn11PaFJT/lrPNxLlPPEIZUm+lGAzS/B8EgCs90jn7ZqqG3NyTm
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7157.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(7916004)(39860400002)(396003)(376002)(346002)(136003)(366004)(33656002)(316002)(44832011)(71200400001)(7416002)(8936002)(54906003)(5660300002)(8676002)(66446008)(66946007)(2906002)(9686003)(6512007)(91956017)(86362001)(186003)(6486002)(66476007)(6916009)(66556008)(53546011)(4326008)(478600001)(33716001)(1076003)(26005)(6506007)(64756008)(76116006)(142933001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: Ul5kDXXv2ZuuKF3anQf2mdiuS/jypO2aBtUE2FgRADFc4HssZ0+ocV1Px2imfGATFCtZ2bsc/W1Wou7sA0HB4RyGCkZBztQPguV8CffIzGi1BU9mPcgoGf8k5vgVQf2quir245E/AdX5colQhdC8TRkHAyhgF3d2xUL7HDNupg97glT6ycc97ntx5BfZ+eLR9CNE/A92Yem1jb/ystDDeJg2OffjdnirkfDCo/rX5F0JbjhAE90gt1lvSgl4s10HLVxT/YvGZOI3dLi3Ci7uCSNg160PhuCYCfKDYK8qhaGQSIiv0921J0CQLMYzmbywyZytdy4qvgWuMoeRnzTEqewgVmBboK9LZ4Jd8rkLkG7yWkaLYijm1+vwlFYjb+q02XIsp/4KjV1LE8dEYbWxb0cHKPZ9aT4Jkx+A7F0rph1MnStKLhq8VP93cV54AL6xOPMsqDumKZEzjOR5t1eHqXdDHGwQmanNyO3erKq6oomXqijQEWucKmKQES73Glqx2TnPi2g0144NAqMYXGFLxo/RlcMvMeFtMbtxlm/XfAfBJOHT3QXARCqbdRzyYp0ttQf064cUxf73UDJqNN1WBFnNCRmv3ljIKpg/xIlxej1ibie3dl/1dfLR/VNIUGShOx7UQcdzBy4WzCNlslZOEg==
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <8B379C6FED2430458D6C5B48169BE3BF@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S1726586AbgIBXAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 19:00:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34608 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727103AbgIBW7o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 18:59:44 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94327C061246
+        for <devicetree@vger.kernel.org>; Wed,  2 Sep 2020 15:59:44 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id i22so1014732eja.5
+        for <devicetree@vger.kernel.org>; Wed, 02 Sep 2020 15:59:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=K6cGerCxO46Qm24iFA5aZEL6UdjUDW3jjNLe5Ls8bmw=;
+        b=jGdZtAdc7CvPt+P2PuAbn91E6yyatAb+8jgjU+0k3SbWdjhBWYOEa+KKGF/DNvtW66
+         en6JA8kGE7oWpnaCF9TivIQ7+3Wq0KMsx0qHCQo9Z0s+0Hp789sEBg4fQNaaLg2TRPun
+         LHR6LIHcTsZo10OmpUpN2XpJpF5YaKSPfVhv0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=K6cGerCxO46Qm24iFA5aZEL6UdjUDW3jjNLe5Ls8bmw=;
+        b=MJOabxE/rXEw4fPTBsAjuqAKd7JchCLINbo5gPNER+fWRI9+1jpfdHi95uAEeGx/BB
+         OG5NKn5Ntde911O5YicThrE2Yw28li1P8xqg+dO1HLDPG/RotXKxm5A4JB6Ku444WlAp
+         UlK0BifJA8dJ8kD0J9cUS8t8XR30cANkVgvRPVOWAugxWUlxtcS6GMyc/iranqIa3kA5
+         gXKYlROlt4QqdH14/Cmk/yWZyv+MlpYzH4cu/7rQI8jDIgiqQc6QxkVLvZGeKIb6w34X
+         yKHVH7/P7ygjdqbS3UtoZ68itwS592iveKU/EaH2o4h42SCHiZ57KDuT4CSru/kspGji
+         EaUg==
+X-Gm-Message-State: AOAM531uneBgqxM5Yh8sbqfIh5tKJAvC2aMKeazbhboUkeyzIoch77lC
+        bpyCID4O+a9+dHZb2UBsjRFLYVFddSId7Q==
+X-Google-Smtp-Source: ABdhPJytfJHBgYe0kJTDT022A43kahhnIzHPzz2TnO/7q2ClUA8SFGhb0GEQboeFtOVFeS4mPlVA7Q==
+X-Received: by 2002:a17:906:cd0d:: with SMTP id oz13mr425654ejb.212.1599087582802;
+        Wed, 02 Sep 2020 15:59:42 -0700 (PDT)
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com. [209.85.221.43])
+        by smtp.gmail.com with ESMTPSA id a26sm988136ejk.66.2020.09.02.15.59.41
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Sep 2020 15:59:41 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id w5so1037018wrp.8
+        for <devicetree@vger.kernel.org>; Wed, 02 Sep 2020 15:59:41 -0700 (PDT)
+X-Received: by 2002:a5d:4e0b:: with SMTP id p11mr416596wrt.32.1599087580861;
+ Wed, 02 Sep 2020 15:59:40 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7157.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7decf3bd-7cba-4ce5-8bb0-08d84f925b88
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Sep 2020 22:48:49.1573
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RQlc2tD8jSUoN4UEZS87vWdhc/RIGx5f5gZZ9WDHbX8YS5ju7vk0uHggamSlOiANWjonNbWNw6Q9Jp3TXBY93w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB6278
+References: <1597380295-6297-1-git-send-email-wuxy@bitland.com.cn>
+ <1597380295-6297-5-git-send-email-wuxy@bitland.com.cn> <20200831174057.GO31019@paasikivi.fi.intel.com>
+In-Reply-To: <20200831174057.GO31019@paasikivi.fi.intel.com>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Thu, 3 Sep 2020 00:59:20 +0200
+X-Gmail-Original-Message-ID: <CAAFQd5ARYNVMjScuk5-w_z5Pt6jD=CPkCYG+rM2Znvt9j1Od6g@mail.gmail.com>
+Message-ID: <CAAFQd5ARYNVMjScuk5-w_z5Pt6jD=CPkCYG+rM2Znvt9j1Od6g@mail.gmail.com>
+Subject: Re: [PATCH V3 3/3] media: i2c: gc5035: Add GC5035 image sensor driver
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Xingyu Wu <wuxy@bitland.com.cn>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "shawnx.tu" <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        "dave.stevenson" <dave.stevenson@raspberrypi.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Cao Bing Bu <bingbu.cao@intel.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        Dongchun Zhu <dongchun.zhu@mediatek.com>,
+        Sj Huang <sj.huang@mediatek.com>,
+        darfur_liu <darfur_liu@gcoreinc.com>,
+        "hao.he7" <hao.he7@gmail.com>,
+        =?UTF-8?B?5L2V5rWpQjAzMjA1?= <hao.he@bitland.com.cn>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-09-02 16:28:31, Roger Quadros wrote:
-> Peter,
->=20
-> On 27/08/2020 14:14, Peter Chen wrote:
-> > On 20-08-25 15:00:58, Roger Quadros wrote:
-> > > Controller version 0x0002450D has USB2 PHY RX sensitivity issues
-> > > that needs to be worked around by enabling phyrst-a-enable bit
-> > > in PHYRST_CFG register.
-> > >=20
-> > > There is no way to distinguish between the controller version
-> > > before the device controller is started so we need to add this
-> > > DT property.
-> >=20
-> > Maybe you should say "There is no way to know controller version
-> > at host mode, but this workaround needs for both host and device
-> > mode, so we have to add this DT property", the same for the comments
-> > of your driver code patch.
->=20
-> I will reword it to
->=20
-> "There is no way to know controller version before device controller
-> is started and the workaround needs to be applied for both host and
-> device modes, so we add this DT property"
->=20
+Hi Sakari,
 
-After apply it, feel free add:
+On Mon, Aug 31, 2020 at 7:41 PM Sakari Ailus
+<sakari.ailus@linux.intel.com> wrote:
+>
+> Hi Xingyu,
+>
+> Thanks for the update. I've got a few more comments below.
+>
+> Do you happen to have some insight on what the OTP data contains and what
+> does the driver do with it?
+>
+> At least in principle the OTP data may be programmed for the customer so
+> the same sensor could contain something else what the driver expects to
+> find there.
+>
 
-Reviewed-by: Peter Chen <peter.chen@nxp.com>
+Thanks for the review. For anything without my reply, assume fixed. :)
 
-Please apply above for device party commit log as well.
+As far as I can see, the data is being read from an area that is
+supposed to be reserved for Galaxycore, so I'd assume it doesn't
+depend on the customer.
 
---=20
+[snip]
+> > diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+> > index da11036..aeaf594 100644
+> > --- a/drivers/media/i2c/Kconfig
+> > +++ b/drivers/media/i2c/Kconfig
+> > @@ -712,6 +712,18 @@ config VIDEO_APTINA_PLL
+> >  config VIDEO_SMIAPP_PLL
+> >       tristate
+> >
+> > +config VIDEO_GC5035
+> > +     tristate "Galaxycore GC5035 sensor support"
+> > +     depends on I2C && VIDEO_V4L2
+> > +     select MEDIA_CONTROLLER
+> > +     select VIDEO_V4L2_SUBDEV_API
+>
+> Add:
+>
+>         V4L2_FWNODE
+>         OF
 
-Thanks,
-Peter Chen=
+This driver doesn't depend on OF. It uses the firmware-independent
+property access API. (v4 I sent actually uses device_property_*()).
+
+[snip]
+> > +static int __gc5035_power_on(struct gc5035 *gc5035)
+> > +{
+> > +     struct device *dev = &gc5035->client->dev;
+> > +     int i, ret;
+> > +
+> > +     ret = clk_prepare_enable(gc5035->xvclk);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to enable xvclk\n");
+> > +             return ret;
+> > +     }
+> > +
+> > +     gpiod_set_value_cansleep(gc5035->reset_gpio, 1);
+> > +
+> > +     for (i = 0; i < GC5035_NUM_SUPPLIES; i++) {
+> > +             ret = regulator_enable(gc5035->supplies[i].consumer);
+> > +             if (ret) {
+> > +                     dev_err(dev, "Failed to enable %s: %d\n",
+> > +                             gc5035->supplies[i].supply, ret);
+> > +                     goto disable_reg_clk;
+>
+> Please use regulator_bulk_enable() here, and regulator_bulk_disable()
+> below.
+>
+
+This actually needs to have one of the regulators (iovdd) enabled
+before the other ones, but regulator_bulk_enable() is async. In v4 I
+used regulator_enable() for iovdd and regulator_bulk_enable() for the
+other two for optimal sequencing.
+
+Best regards,
+Tomasz
