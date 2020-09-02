@@ -2,89 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6224225AE00
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 16:58:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD5D525AE1D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 16:59:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727771AbgIBO5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 10:57:52 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:51498 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726947AbgIBN4z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 09:56:55 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 082DZqkm126151;
-        Wed, 2 Sep 2020 08:35:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599053752;
-        bh=+OataKjcHaS2/yUx/zgmwoW6NcsuC7JMXVcJUiQn8J0=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=xOrbSudmxkxw2W04FYoQyGdhwbMsMv63n2u26Dg3K5sNA516c7A/OQVuSBdZwQ1iQ
-         YWLRvFmkb9kt5/JTPpdM4zGtJwInR5rR0uKewhYSKGo0QMopK5lzQBoDAqXMmLE/Zl
-         DorswhPx6hzif6KlX8d2K7srl/MglzqaBmj7Cwko=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 082DZqqE056989
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Sep 2020 08:35:52 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 2 Sep
- 2020 08:35:52 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 2 Sep 2020 08:35:52 -0500
-Received: from lta0400828a.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 082DZiGB065816;
-        Wed, 2 Sep 2020 08:35:50 -0500
-From:   Roger Quadros <rogerq@ti.com>
-To:     <balbi@kernel.org>
-CC:     <pawell@cadence.com>, <kurahul@cadence.com>, <nsekhar@ti.com>,
-        <vigneshr@ti.com>, <robh+dt@kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Roger Quadros <rogerq@ti.com>
-Subject: [PATCH v2 2/3] dt-bindings: usb: cdns,usb3: Add cdns,phyrst-a-enable property
-Date:   Wed, 2 Sep 2020 16:35:42 +0300
-Message-ID: <20200902133543.17222-3-rogerq@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200902133543.17222-1-rogerq@ti.com>
-References: <20200902133543.17222-1-rogerq@ti.com>
+        id S1727998AbgIBO7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 10:59:18 -0400
+Received: from mga03.intel.com ([134.134.136.65]:50826 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726733AbgIBNv7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Sep 2020 09:51:59 -0400
+IronPort-SDR: /BA2RQo+m62KlN2ZSSVsd2aTVYlD1DMWxRuiDqxc/R2FKqb6S6QmqKOeWDSJLlc8YnI6nUAkux
+ Pt0V8Dt/ZBzA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9731"; a="157389715"
+X-IronPort-AV: E=Sophos;i="5.76,383,1592895600"; 
+   d="scan'208";a="157389715"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2020 06:51:53 -0700
+IronPort-SDR: P+aTxY/oGyABs3yhZTdeYQGh8ec6x91kIgFJPJ9zqoCHy5pgYy5nhSPfel8ln/ldcv36QcTZpe
+ 2CRDr0PwLsYA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,383,1592895600"; 
+   d="scan'208";a="331442343"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga008.jf.intel.com with ESMTP; 02 Sep 2020 06:51:48 -0700
+Received: from andy by smile with local (Exim 4.94)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1kDTAv-00Djiz-EK; Wed, 02 Sep 2020 16:51:45 +0300
+Date:   Wed, 2 Sep 2020 16:51:45 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
+Cc:     mchehab@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        sakari.ailus@linux.intel.com, drinkcat@chromium.org,
+        tfiga@chromium.org, matthias.bgg@gmail.com, bingbu.cao@intel.com,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
+Subject: Re: [PATCH v14 2/2] media: i2c: Add OV02A10 image sensor driver
+Message-ID: <20200902135145.GO1891694@smile.fi.intel.com>
+References: <20200902120122.24456-1-dongchun.zhu@mediatek.com>
+ <20200902120122.24456-3-dongchun.zhu@mediatek.com>
+ <20200902134421.GN1891694@smile.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200902134421.GN1891694@smile.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Controller version 0x0002450D has USB2 PHY RX sensitivity issues
-that needs to be worked around by enabling phyrst-a-enable bit
-in PHYRST_CFG register.
+On Wed, Sep 02, 2020 at 04:44:21PM +0300, Andy Shevchenko wrote:
+> On Wed, Sep 02, 2020 at 08:01:22PM +0800, Dongchun Zhu wrote:
 
-There is no way to know controller version before device controller
-is started and the workaround needs to be applied for both host and
-device modes, so we add this DT property.
+> > +	ret = fwnode_property_read_u32(dev_fwnode(dev), "rotation", &rotation);
 
-Signed-off-by: Roger Quadros <rogerq@ti.com>
----
- Documentation/devicetree/bindings/usb/cdns,usb3.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+> > +	ret = fwnode_property_read_u32_array(dev_fwnode(dev),
 
-diff --git a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
-index 7bc0263accee..e670adc955e1 100644
---- a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
-+++ b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
-@@ -58,6 +58,10 @@ properties:
-       buffers expressed in KB
-     $ref: /schemas/types.yaml#/definitions/uint32
- 
-+  cdns,phyrst-a-enable:
-+    description: Enable resetting of PHY if Rx fail is detected
-+    type: boolean
-+
- required:
-   - compatible
-   - reg
+> > +		fwnode_property_read_u32_array(dev_fwnode(dev),
+
+> > +	ret = fwnode_property_read_u32(dev_fwnode(dev), "clock-frequency",
+
+
+Btw, can somebody explain, why it's fwnode API and not direct use of device property API?
+
+In all above cases I see no reason why not to use device property API directly.
+
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+With Best Regards,
+Andy Shevchenko
+
 
