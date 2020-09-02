@@ -2,108 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8FFF25A5D1
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 08:52:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA77325A5EA
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 08:59:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726312AbgIBGw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 02:52:26 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:59917 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726144AbgIBGwZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 02:52:25 -0400
-Received: from [88.147.20.154] (port=44912 helo=[192.168.77.66])
-        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1kDMd5-000Com-EF; Wed, 02 Sep 2020 08:52:23 +0200
-Subject: Re: [PATCH v5 2/3] dt-bindings: media: imx274: Add optional input
- clock and supplies
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com,
-        sakari.ailus@iki.fi, hverkuil@xs4all.nl, jacopo+renesas@jmondi.org,
-        leonl@leopardimaging.com, robh+dt@kernel.org, lgirdwood@gmail.com,
-        broonie@kernel.org
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <1599012278-10203-1-git-send-email-skomatineni@nvidia.com>
- <1599012278-10203-3-git-send-email-skomatineni@nvidia.com>
- <7ce6003c-a27d-5831-66a1-832db0114188@lucaceresoli.net>
-Message-ID: <09270110-39ca-7232-0848-c5c338de8552@lucaceresoli.net>
-Date:   Wed, 2 Sep 2020 08:52:19 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726167AbgIBG7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 02:59:05 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:13744 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726130AbgIBG7E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 02:59:04 -0400
+X-UUID: 119f0345a88c4236a3efd4bbda9cf244-20200902
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=hTLcyNYyBPWJYX2Mc3Z8w8kIsOdBU9WJXUAKmauSMIk=;
+        b=rYA9GFWeBpUrANWsPKg5hciadlHGfWgnVuiexqjjlFIJxgDFMiwrr41/YSNdasHZMKacInal3/WJTPKDYoHDN+w3IQcHKAAhSoyYrsgbfxC4ubXdkF6+lLOPdVAmvI6J5Wc9SahuE9LDTcxkZr4ITG9M7mUU27xuQ5vklgXQk3M=;
+X-UUID: 119f0345a88c4236a3efd4bbda9cf244-20200902
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <mark-pk.tsai@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1716032037; Wed, 02 Sep 2020 14:59:02 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 2 Sep 2020 14:59:00 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 2 Sep 2020 14:59:00 +0800
+From:   Mark-PK Tsai <mark-pk.tsai@mediatek.com>
+To:     <maz@kernel.org>, Daniel Palmer <daniel@0x0f.com>
+CC:     <alix.wu@mediatek.com>, <devicetree@vger.kernel.org>,
+        <jason@lakedaemon.net>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <mark-pk.tsai@mediatek.com>,
+        <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
+        <tglx@linutronix.de>, <yj.chiang@mediatek.com>
+Subject: Re: [PATCH v2 1/2] irqchip: irq-mst: Add MStar interrupt controller support
+Date:   Wed, 2 Sep 2020 14:59:00 +0800
+Message-ID: <20200902065900.2804-1-mark-pk.tsai@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <ec3dd6b7664d647b2dc27926539eadda@kernel.org>
+References: <ec3dd6b7664d647b2dc27926539eadda@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <7ce6003c-a27d-5831-66a1-832db0114188@lucaceresoli.net>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi again...
+RnJvbTogTWFyYyBaeW5naWVyIDxtYXpAa2VybmVsLm9yZz4NCg0KPk9uIDIwMjAtMDgtMjAgMTM6
+MzYsIERhbmllbCBQYWxtZXIgd3JvdGU6DQo+PiBIaSBNYXJrLVBLLCBNYXJjDQo+PiANCj4+IEkn
+bSBub3Qgc3VyZSB0aGlzIHdpbGwgYmUgdGhlIGZpbmFsIHZlcnNpb24gYnV0IEknbSBnb2luZyB0
+byB0cnkgdG8NCj4+IGludGVncmF0ZSB0aGlzIHdpdGggbXkgY3VycmVudCBNU3Rhci9TaWdtYVN0
+YXIgdHJlZSBvdmVyIHRoZSB3ZWVrZW5kDQo+PiBhbmQgdGhlbiBJIGd1ZXNzIEkgY2FuIGdpdmUg
+dGhpcyBhIHRlc3RlZC1ieT8NCj4NCj5UaGF0J2QgYmUgZ29vZC4NCj4NCj4+IEFzc3VtaW5nIHRo
+aXMgdmVyc2lvbiBvciB0aGUgbmV4dCBpcyBhY2NlcHRhYmxlIGNhbiBJIGp1c3QgZm9sbG93IHVw
+DQo+PiB3aXRoIGEgc21hbGwgcGF0Y2ggdG8gYWRkIHRoZSBpbnN0YW5jZXMgSSBuZWVkIGluIG15
+IGR0c2kgb3Igc2hvdWxkIEkNCj4+IHdhaXQgdW50aWwgaXQncyBtZXJnZWQgYmVmb3JlIGRvaW5n
+IHRoYXQ/DQo+DQo+Tm8gbmVlZCB0byB3YWl0LCBhbHRob3VnaCB0aGUgcGxhdGZvcm0tc3BlY2lm
+aWMgZGV0YWlscyBzaG91bGQgZ28NCj52aWEgdGhlIGFybS1zb2MgdHJlZS4NCj4NCj5JJ20gbm90
+IGdvaW5nIHRvIHJldmlldyB0aGUgbmV3IHZlcnNpb24gYmVmb3JlIG5leHQgd2VlayBhbnl3YXkN
+Cj4oSSdtIG1ha2luZyBhIHBvaW50IGluIHJldmlld2luZyBhbnkgZ2l2ZW4gc2VyaWVzIGF0IG1v
+c3Qgb25jZQ0KPmEgd2VlaykuDQo+DQo+ICAgICAgICAgTS4NCj4tLSANCj5KYXp6IGlzIG5vdCBk
+ZWFkLiBJdCBqdXN0IHNtZWxscyBmdW5ueS4uLg0KDQpJJ3ZlIHBvc3QgdGhlIHBhdGNoIHYzWzFd
+IGFuZCB0aGUgZHJpdmVyIGlzIHNhbWUgYXMgdjIuDQpUaGUgZGlmZmVyZW5jZSBpcyB0aGF0IEkg
+YWRkIHRoZSB0ZXN0LWJ5IGxhYmVsIGJ5IERhbmllbCBhbmQgYWRkDQphbiBlbnRyeSBpbiBNQUlO
+VEFJTkVSUyBmb3IgbXN0LWludGMuDQoNClBsZWFzZSByZXZpZXcgaXQgYW5kIGxldCBtZSBrbm93
+IGlmIHlvdSBoYXZlIGFueSBzdWdnZXN0aW9ucy4NClRoYW5rcy4NCg0KWzFdIGh0dHBzOi8vbG9y
+ZS5rZXJuZWwub3JnL2xrbWwvMjAyMDA5MDIwNjMzNDQuMTg1Mi0yLW1hcmstcGsudHNhaUBtZWRp
+YXRlay5jb20v
 
-On 02/09/20 08:46, Luca Ceresoli wrote:
-> Hi Sowjanya,
-> 
-> On 02/09/20 04:04, Sowjanya Komatineni wrote:
->> This patch adds IMX274 optional external clock input and voltage
->> supplies to device tree bindings.
->>
->> Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
->> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->> ---
->>  .../devicetree/bindings/media/i2c/sony,imx274.yaml  | 21 +++++++++++++++++++++
->>  1 file changed, 21 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
->> index 7ae47a6..57e7176 100644
->> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
->> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
->> @@ -25,6 +25,27 @@ properties:
->>    reset-gpios:
->>      maxItems: 1
->>  
->> +  clocks:
->> +    maxItems: 1
->> +    description: Reference to the sensor input clock
->> +
->> +  clock-names:
->> +    maxItems: 1
->> +    items:
->> +      - const: inck
-> 
-> I think this can be simpler:
-> 
->   clock-names:
->     maxItems: 1
->     items:
->       - const: inck
-
-Which is equal to the original... copy-paste-and-forgot.
-
-Here's the simplified form, for real:
-
-  clocks:
-    maxItems: 1
-  clock-names:
-    const: inck
-
-As in:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml?h=v5.9-rc3#n90
-
-
--- 
-Luca
