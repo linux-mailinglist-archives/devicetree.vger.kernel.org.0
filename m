@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B82C25B385
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 20:14:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9948F25B38B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 20:16:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726310AbgIBSOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 14:14:49 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:45272 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726247AbgIBSOt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 14:14:49 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 082IEjVR105945;
-        Wed, 2 Sep 2020 13:14:45 -0500
+        id S1727884AbgIBSQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 14:16:19 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:37020 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726247AbgIBSQS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 14:16:18 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 082IGEve057006;
+        Wed, 2 Sep 2020 13:16:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599070485;
-        bh=VkCOVQ5uxVARjNX9T8FosOrt2wUqD7roXG4iCY1NK5A=;
+        s=ti-com-17Q1; t=1599070574;
+        bh=RpxqYHRaG0XyjrJcEF0T02Xh9a9IE8YwRxpfTIOcgSc=;
         h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=eKQfDg0FbSTqqwSic1qeN80TJ5pHAxhSF7NyYGlQW5KR2hTRlQ7wHPc2OJuGUx4p/
-         Ldmj2lAhcueZrFCsXmD0WE1fX6zAva3dFHGhHdyBdwPyjH05xsEU4hQVK3XHgPhe9v
-         V4W2Tno3P7krltiD1PTJ8P9P3vilKpktrHLriOyw=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 082IEiBJ002659
+        b=XFDgAjeGFN7GJOYP4FTBwrFo7/T9/C5YbpYdcLcKaGp2Q3sjDbjv2HshR8ys49ijN
+         aZm7kfT8LhI8l9gYbpEfZkMWPnm2bmIWmurOhkjA/+9HYcAZ+leonMglUSaLOUo4fe
+         KiziS7IwoqY0z1J4NtL6w4wC8BJ3CGVYYQ0i0lCk=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 082IGE4B087512
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Sep 2020 13:14:44 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 2 Sep 2020 13:16:14 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 2 Sep
- 2020 13:14:44 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ 2020 13:16:13 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 2 Sep 2020 13:14:44 -0500
+ Frontend Transport; Wed, 2 Sep 2020 13:16:13 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 082IEi7v045986;
-        Wed, 2 Sep 2020 13:14:44 -0500
-Date:   Wed, 2 Sep 2020 13:14:39 -0500
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 082IGDLD107933;
+        Wed, 2 Sep 2020 13:16:13 -0500
+Date:   Wed, 2 Sep 2020 13:16:13 -0500
 From:   Nishanth Menon <nm@ti.com>
 To:     Suman Anna <s-anna@ti.com>
 CC:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <t-kristo@ti.com>,
-        "J, KEERTHY" <j-keerthy@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         Vignesh Raghavendra <vigneshr@ti.com>, <lokeshvutla@ti.com>,
         <grygorii.strashko@ti.com>, <nsekhar@ti.com>
-Subject: Re: [PATCH 5/7] arm64: dts: ti: k3-am65-wakeup: Use generic
- temperature-sensor for node name
-Message-ID: <20200902181439.ywzxknv3vb7fcfeo@akan>
+Subject: Re: [PATCH 7/7] arm64: dts: ti: k3-*: Fix up node_name_chars_strict
+ errors
+Message-ID: <20200902181613.mrffnxy4klc5l75d@akan>
 References: <20200901223059.14801-1-nm@ti.com>
- <20200901223059.14801-6-nm@ti.com>
- <1cdb8cb1-3a08-423d-ba34-299ac1a4b9b4@ti.com>
+ <20200901223059.14801-8-nm@ti.com>
+ <7fbf0ee5-0c7e-ae18-fa8a-bbdc6e9da926@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <1cdb8cb1-3a08-423d-ba34-299ac1a4b9b4@ti.com>
+In-Reply-To: <7fbf0ee5-0c7e-ae18-fa8a-bbdc6e9da926@ti.com>
 User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
@@ -62,47 +61,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11:55-20200902, Suman Anna wrote:
+On 11:54-20200902, Suman Anna wrote:
 > On 9/1/20 5:30 PM, Nishanth Menon wrote:
-> > Use temperature-sensor@ naming for nodes following standard conventions of device
-> > tree (section 2.2.2 Generic Names recommendation in [1]).
+> > Building with W=2 throws up a bunch of easy to fixup errors..
+> > node_name_chars_strict is one of them.. Knock those out.
 > > 
-> > [1] https://github.com/devicetree-org/devicetree-specification/tree/v0.3
-> > 
-> > Suggested-by: Suman Anna <s-anna@ti.com>
-> > Suggested-by: Vignesh Raghavendra <vigneshr@ti.com>
 > > Signed-off-by: Nishanth Menon <nm@ti.com>
 > > ---
-> >  arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >  arch/arm64/boot/dts/ti/k3-am65-main.dtsi       |  6 +++---
+> >  arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi        |  4 ++--
+> >  arch/arm64/boot/dts/ti/k3-am654-base-board.dts | 16 ++++++++--------
+> >  .../dts/ti/k3-am654-industrial-thermal.dtsi    | 12 ++++++------
+> >  .../boot/dts/ti/k3-j721e-common-proc-board.dts | 18 +++++++++---------
+> >  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi      |  6 +++---
+> >  .../arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi |  2 +-
+> >  arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi    |  2 +-
+> >  8 files changed, 33 insertions(+), 33 deletions(-)
 > > 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-> > index bb498be2f0a4..ed42f13e7663 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-> > @@ -95,7 +95,7 @@
-> >  		clock-names = "gpio";
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> > index 9c96e3f58c86..ff3e38408dbc 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> > @@ -305,7 +305,7 @@
+> >  		no-1-8-v;
 > >  	};
 > >  
-> > -	wkup_vtm0: thermal@42050000 {
-> > +	wkup_vtm0: temperature-sensor@42050000 {
+> > -	scm_conf: scm_conf@100000 {
+> > +	scm_conf: scm-conf@100000 {
+> >  		compatible = "syscon", "simple-mfd";
+> >  		reg = <0 0x00100000 0 0x1c000>;
+> >  		#address-cells = <1>;
+> > @@ -344,7 +344,7 @@
+> >  					<0x4090 0x3>; /* SERDES1 lane select */
+> >  		};
+> >  
+> > -		dss_oldi_io_ctrl: dss_oldi_io_ctrl@41E0 {
+> > +		dss_oldi_io_ctrl: dss-oldi-io-ctrl@41E0 {
+> >  			compatible = "syscon";
+> >  			reg = <0x0000041E0 0x14>;
 > 
-> There has been a suggestion to use something like thermal-sensor during the
-> bindings review, but it is better to use this standard node name.
+> We should %s/41E0/41e0/, but that change is not directly associated with the
+> patch subject line. Perhaps, an additional patch? Remember seeing similar
+> warning on some downstream crypto nodes, but strangely I am not seeing on these
+> upstream nodes.
 
-Yes - I did notice it as well, and then picked up the recommendation
-straight from 0.3 spec itself.
-> 
-> Reviewed-by: Suman Anna <s-anna@ti.com>
-> 
-> regards
-> Suman
-> 
-> >  		compatible = "ti,am654-vtm";
-> >  		reg = <0x42050000 0x25c>;
-> >  		power-domains = <&k3_pds 80 TI_SCI_PD_EXCLUSIVE>;
-> > 
-> 
+yeah - probably a separate patch, but thanks, i can fix it as well(will
+check if there are similar ones around as well).
 
 -- 
 Regards,
