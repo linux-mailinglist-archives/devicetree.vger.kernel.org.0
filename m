@@ -2,95 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C5C025B17C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 18:23:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D7B725B1BD
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 18:32:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726446AbgIBQXf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 12:23:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60662 "EHLO mail.kernel.org"
+        id S1727784AbgIBQco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 12:32:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39664 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726247AbgIBQXe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Sep 2020 12:23:34 -0400
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+        id S1726247AbgIBQcn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Sep 2020 12:32:43 -0400
+Received: from kozik-lap.mshome.net (unknown [194.230.155.106])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 039A420FC3;
-        Wed,  2 Sep 2020 16:23:34 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 446D420758;
+        Wed,  2 Sep 2020 16:32:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599063814;
-        bh=RJITFA13mQCqYxoOB5UPOQVnK4Vx480+dtACmh6ut/o=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=X2W8hvQFB4ALK9iv68uHX+G1jHVkBtqL72qdB3KH1GQfSk07N39TEWUrf4X+EKoU7
-         vu4w/Sn1BNuBJK+hmrEdjtCqAt7dJpo5MAGOixqbkc2tzltTA1OAapRjqDJAvDV/px
-         o99CjILlylsFoibtHn/r1/fMRVKFXhQuJuBaKSUc=
-Received: by mail-ed1-f42.google.com with SMTP id q21so5546558edv.1;
-        Wed, 02 Sep 2020 09:23:33 -0700 (PDT)
-X-Gm-Message-State: AOAM532+4TGw+XwAnoNyqF9GzoYjiE9qvpMog7s/c+GCcS0IZM46hTht
-        Qw9+08O18yZWjHBqmi213QXXsN/79YPVN6xtBRU=
-X-Google-Smtp-Source: ABdhPJzUU8aJWJbuyjEWTDBzeTSsYZUP7N9/p6dhBdP07EBrMjqVyaYzkDcmRbTXkPN8IbfThl9NYXrG39SJOGiVlIE=
-X-Received: by 2002:a05:6402:180a:: with SMTP id g10mr878676edy.18.1599063812518;
- Wed, 02 Sep 2020 09:23:32 -0700 (PDT)
-MIME-Version: 1.0
-References: <20191112110330.179649-1-pihsun@chromium.org> <20191112110330.179649-5-pihsun@chromium.org>
- <2abf8fdd-7b7c-73b0-beea-9c9ac56869dc@gmail.com> <CA+G9fYt9AujG6gyfeV5AaAv0EgggUfGT1jow8DJjVfetVWV3EA@mail.gmail.com>
-In-Reply-To: <CA+G9fYt9AujG6gyfeV5AaAv0EgggUfGT1jow8DJjVfetVWV3EA@mail.gmail.com>
+        s=default; t=1599064363;
+        bh=yCZ82wEQrcGfe6X5PNectLGO+bsmwuVhlJTUr6FnevA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=pNQOe7N6kEGzUzeNy/aBiwiLLg08GkywQ3zNqjWxeh94oya0il2et8wGxmZVAjGhZ
+         CzirKd/Q4jS1/95OuRk3BYnfaHFCmC+HlTMk/r2FGG8VFVF2rwRoNPGrZT51YbkYwZ
+         OO+i+zyhE5MTi86q8As86xeJAmW/AqTLgnOPWVsA=
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Wed, 2 Sep 2020 18:23:20 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPeV9zCg4v0kBfToGdJSxswbKtT16LVYADALpYRHqWXBOg@mail.gmail.com>
-Message-ID: <CAJKOXPeV9zCg4v0kBfToGdJSxswbKtT16LVYADALpYRHqWXBOg@mail.gmail.com>
-Subject: Re: [PATCH v21 4/4] arm64: dts: mt8183: add scp node
-To:     Naresh Kamboju <naresh.kamboju@linaro.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Linux-Next Mailing List <linux-next@vger.kernel.org>,
-        Pi-Hsun Shih <pihsun@chromium.org>,
-        Erin Lo <erin.lo@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Anders Roxell <anders.roxell@linaro.org>,
-        lkft-triage@lists.linaro.org,
-        Stephen Rothwell <sfr@canb.auug.org.au>
-Content-Type: text/plain; charset="UTF-8"
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH] arm64: dts: imx8mm-var-som: Add 32.768 kHz clock to PMIC
+Date:   Wed,  2 Sep 2020 18:32:23 +0200
+Message-Id: <20200902163223.17784-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Sep 2020 at 16:45, Naresh Kamboju <naresh.kamboju@linaro.org> wrote:
->
-> On Thu, 27 Aug 2020 at 15:44, Matthias Brugger <matthias.bgg@gmail.com> wrote:
-> >
-> >
-> >
-> > On 12/11/2019 12:03, Pi-Hsun Shih wrote:
-> > > From: Eddie Huang <eddie.huang@mediatek.com>
-> > >
-> > > Add scp node to mt8183 and mt8183-evb
-> > >
-> > > Signed-off-by: Erin Lo <erin.lo@mediatek.com>
-> > > Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
-> > > Signed-off-by: Eddie Huang <eddie.huang@mediatek.com>
-> >
-> > Sorry I somehow oversaw this. Next time please don't doubt to ping me.
-> >
-> > Bjorn, do I understand correctly that you don't send emails to the list
-> > informing of the inclusion of a patch/series in your tree?
-> >
-> > Anyway applied now to v5.9-next/dts64 :)
->
-> arm64 build dtbs failed on linux next 20200902.
+The ROHM BD71847 PMIC has a 32.768 kHz clock.  Adding necessary parent
+allows to probe the bd718x7 clock driver fixing boot errors:
 
-I just hit it as well... I wish the kernel was built after applying
-patches... it would make the next a better place.
+    bd718xx-clk bd71847-clk.1.auto: No parent clk found
+    bd718xx-clk: probe of bd71847-clk.1.auto failed with error -22
 
-Best regards,
-Krzysztof
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+ arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
+index baef13d67554..7f74fba58aeb 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
+@@ -175,6 +175,10 @@
+ 		interrupts = <8 GPIO_ACTIVE_LOW>;
+ 		rohm,reset-snvs-powered;
+ 
++		#clock-cells = <0>;
++		clocks = <&osc_32k 0>;
++		clock-output-names = "clk-32k-out";
++
+ 		regulators {
+ 			buck1_reg: BUCK1 {
+ 				regulator-name = "buck1";
+-- 
+2.17.1
+
