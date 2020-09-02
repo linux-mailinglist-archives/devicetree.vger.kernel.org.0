@@ -2,70 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BA4D25B51F
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 22:11:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9244725B5EF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 23:37:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726479AbgIBULf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 16:11:35 -0400
-Received: from mail-ej1-f68.google.com ([209.85.218.68]:41302 "EHLO
-        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726226AbgIBULe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 16:11:34 -0400
-Received: by mail-ej1-f68.google.com with SMTP id lo4so462739ejb.8;
-        Wed, 02 Sep 2020 13:11:32 -0700 (PDT)
+        id S1726523AbgIBVdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 17:33:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49672 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726377AbgIBVdw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 17:33:52 -0400
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9355C061244;
+        Wed,  2 Sep 2020 14:33:52 -0700 (PDT)
+Received: by mail-pg1-x543.google.com with SMTP id u13so384091pgh.1;
+        Wed, 02 Sep 2020 14:33:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HWoZ9gSaMASNiVIiMLFlBXVKhhMlezf7hmycIYQmTtU=;
+        b=cFESmkLD8yy831D2HFGzsgZm1mQg4ISvI8BOdLP+P8yZ/C6xowW505VKvlJqBz/vBO
+         50lzVLV0N6745Q4r/pxWyTiamMiIvT2s+/8NqsdN+9HLVBV9Kr/4PKLAQNZtCBkM41/q
+         1rpnDR5HWwVqo+enwEtBct61BTcGrL+IbqWwOz+aKREHvfZQg5wkbbw03UrGZi+hHNCt
+         /sPt0NkgoCAgv8bE1+Cd6gueATIwYTPIlfOq8ThACXU++wfI9d+UGaKT3a1vMrpHsDUb
+         ip/BqjMSopzHCB7M8iD14tVNDq4oRSzD6NN1huxNk+syl+P+YhdWIAtbq5cr33ssIfha
+         ShpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=/QIIG488RewWIV6fZ1YyUiiA1gfOjB33gWTwgLTvdpk=;
-        b=pQMDzUC7/Ld9YlcneUfTBickEGtC/OLxk1CGfO6gLt/x3XkYv2BSmyim20uvkmlmd4
-         TQK7hJ25jyiR7ybxvACVzcoBVfMcjPoo1xuy53pJLpZQ1Tq1boGfCj0ydnSIrGH5d+1H
-         vWUY0YhGcWoDOiWFK+4JABegqpxpiym9wMm2iggS5XvMWvHNfYVWQixkIO432gWTxVNb
-         f/sI2fOfb77PaF9NjQskERR7rkRnZF/of/RM8jqybKRCK/MgRI0bowQivWh4OnzD7ZgJ
-         zUsPK1v6RoGxlz3h2sFF6/k4gW0GK3IHapHCfx6BbDCHsvJBHxNnxX8IXFWVs5SAJDoD
-         iSqA==
-X-Gm-Message-State: AOAM531/07t+Kh2m1X72ocJpwQBMX/FcwZmxGdiQUoJO+VV2YFiW5HIL
-        JlTbEM2E8dxtT7SryaPOsDo=
-X-Google-Smtp-Source: ABdhPJz2DxULA55daC+aYgKP0v9NC+Adj2VVDd/+P9M5UwP8nqX6GSc+9O+cvMhJsAm+Th1nwnA0xg==
-X-Received: by 2002:a17:906:1542:: with SMTP id c2mr1810821ejd.533.1599077491970;
-        Wed, 02 Sep 2020 13:11:31 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.106])
-        by smtp.googlemail.com with ESMTPSA id yh29sm628951ejb.0.2020.09.02.13.11.30
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 02 Sep 2020 13:11:31 -0700 (PDT)
-Date:   Wed, 2 Sep 2020 22:11:28 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Jonathan Bakker <xc-racer2@live.ca>
-Cc:     kgene@kernel.org, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: s5pv210: Enable audio on Aries boards
-Message-ID: <20200902201128.GA29361@kozik-lap>
-References: <BN6PR04MB0660CFA802E03E73D58029CCCB2F0@BN6PR04MB0660.namprd04.prod.outlook.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HWoZ9gSaMASNiVIiMLFlBXVKhhMlezf7hmycIYQmTtU=;
+        b=JriCVnkZyqCrugRLllAg2DCU2MIe8dQ8caXkciyUUeQkDJ1h4y2HHSGLvqlccz/TEE
+         DQ3fjbzUZpFE8kFOv9HucBOB2koEaIRPxRaupYnhrPKva5xdbfxMjrqQQjdc/7jiBAQr
+         3Ujxhn5yArPgVPSPkFWqG6G/kuvaXU6apyCrSr6komN2E09U7dRVF5iKnbY5f0EB3eLy
+         YVFW6DJzEonOHb5tvEtAClv1QyFhT+A1aW2AcR0hjjpo/1IC1i0Lwmg0tziZ+k8T+H0Y
+         bgqerlTl5VYjV5ptgL9Dl/zSpmTvjwe77YBC3hOr+EKmB747UEjUCr+xbeNEC38nFIVt
+         nU6g==
+X-Gm-Message-State: AOAM533BFe4uaUVuq2pOXEjgZ2cjDRkiiKvljg7gmU3J8y6US/zOednO
+        e3LrNooS1WnVFIfWBTOuKTqYJMb8HVM=
+X-Google-Smtp-Source: ABdhPJw3TDRUc4jlzjW63Njr42xrqCuWybdXD7zNqVCo++TulE5gKF0qplMJh58PIrKAhX3LGGSSig==
+X-Received: by 2002:a17:902:8c83:: with SMTP id t3mr374229plo.150.1599082431739;
+        Wed, 02 Sep 2020 14:33:51 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id g5sm466881pfh.168.2020.09.02.14.33.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Sep 2020 14:33:51 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     netdev@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>, andrew@lunn.ch,
+        adam.rudzinski@arf.net.pl, m.felsch@pengutronix.de,
+        hkallweit1@gmail.com, richard.leitner@skidata.com,
+        zhengdejin5@gmail.com, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, kuba@kernel.org, robh+dt@kernel.org
+Subject: [RFC net-next 0/2] net: phy: Support enabling clocks prior to bus probe
+Date:   Wed,  2 Sep 2020 14:33:45 -0700
+Message-Id: <20200902213347.3177881-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <BN6PR04MB0660CFA802E03E73D58029CCCB2F0@BN6PR04MB0660.namprd04.prod.outlook.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 01, 2020 at 05:38:58PM -0700, Jonathan Bakker wrote:
-> Both the galaxys and the fascinate4g have a wm8994 codec,
-> but they differ slightly in their jack detection and micbias
-> configuration.
-> 
-> Signed-off-by: Jonathan Bakker <xc-racer2@live.ca>
-> ---
->  arch/arm/boot/dts/s5pv210-aries.dtsi      | 10 +++
->  arch/arm/boot/dts/s5pv210-fascinate4g.dts | 98 +++++++++++++++++++++++
->  arch/arm/boot/dts/s5pv210-galaxys.dts     | 85 ++++++++++++++++++++
+Hi all,
 
-Thanks, applied.
+This patch series takes care of enabling the Ethernet PHY clocks in
+DT-based systems (we have no way to do it for ACPI, and ACPI would
+likely keep all of this hardware enabled anyway).
 
-Best regards,
-Krzysztof
+Please test on your respective platforms, mine still seems to have
+a race condition that I am tracking down as it looks like we are not
+waiting long enough post clock enable.
+
+The check on the clock reference count is necessary to avoid an
+artificial bump of the clock reference count and to support the unbind
+-> bind of the PHY driver. We could solve it in different ways.
+
+Comments and test results welcome!
+
+Florian Fainelli (2):
+  net: phy: Support enabling clocks prior to bus probe
+  net: phy: bcm7xxx: request and manage GPHY clock
+
+ drivers/net/phy/bcm7xxx.c    | 29 ++++++++++++-
+ drivers/net/phy/phy_device.c |  6 ++-
+ drivers/of/of_mdio.c         | 84 ++++++++++++++++++++++++++++++++++++
+ include/linux/of_mdio.h      |  7 +++
+ include/linux/phy.h          | 12 ++++++
+ 5 files changed, 136 insertions(+), 2 deletions(-)
+
+-- 
+2.25.1
 
