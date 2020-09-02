@@ -2,104 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3BF025B320
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 19:45:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FB0F25B348
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 20:00:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726493AbgIBRpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 13:45:16 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:52892 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726355AbgIBRpQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 13:45:16 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 082HjBPq063683;
-        Wed, 2 Sep 2020 12:45:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599068711;
-        bh=YR8+4Y2NaPDsev1k+nCcCTn0vlAW0kNUzsYCCQAXhlk=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Gf1h3sAqJ2PWr5aP2bT/dg/9TPdh8SmlBpL9XD03XXW+WctBoW12ftNorVeIkZbpq
-         RVTZSqGi+rEyuqpPRjmBpn33Sevocx2X+dA4eNp4gOeENOGc12YDOUBQBzLd6v2C7o
-         uxjlzUh9f2zP4CLmBMGWmL0IoRo8ZPhjxhGbFGM0=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 082HjBxW005373;
-        Wed, 2 Sep 2020 12:45:11 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 2 Sep
- 2020 12:45:11 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 2 Sep 2020 12:45:11 -0500
-Received: from [10.250.34.112] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 082HjACV020018;
-        Wed, 2 Sep 2020 12:45:11 -0500
-Subject: Re: [PATCH 2/7] arm64: dts: ti: k3-am65*: Use generic clock for
- serdes clock name
-To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <t-kristo@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, <lokeshvutla@ti.com>,
-        <grygorii.strashko@ti.com>, <nsekhar@ti.com>
-References: <20200901223059.14801-1-nm@ti.com>
- <20200901223059.14801-3-nm@ti.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <762671ff-d78a-95aa-2817-62d3ebed104e@ti.com>
-Date:   Wed, 2 Sep 2020 12:45:05 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726686AbgIBSAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 14:00:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44994 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726397AbgIBSAI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 14:00:08 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 252D3C061244
+        for <devicetree@vger.kernel.org>; Wed,  2 Sep 2020 11:00:08 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kDX3D-0001GO-3u; Wed, 02 Sep 2020 20:00:03 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kDX3A-0000sJ-G7; Wed, 02 Sep 2020 20:00:00 +0200
+Date:   Wed, 2 Sep 2020 20:00:00 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
+Cc:     thierry.reding@gmail.com, lee.jones@linaro.org, kernel@axis.com,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, oliver@schinagl.nl
+Subject: Re: [PATCH 2/2] pwm: Add GPIO PWM driver
+Message-ID: <20200902180000.gvpdmybna4red2sx@pengutronix.de>
+References: <20200814155513.31936-1-vincent.whitchurch@axis.com>
+ <20200814155513.31936-2-vincent.whitchurch@axis.com>
+ <20200815075032.k2xyw75l56sbl7nx@pengutronix.de>
+ <20200902121154.6bb5d5sqxwf2tmgt@axis.com>
 MIME-Version: 1.0
-In-Reply-To: <20200901223059.14801-3-nm@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="6qupgqorf2fz4jqr"
+Content-Disposition: inline
+In-Reply-To: <20200902121154.6bb5d5sqxwf2tmgt@axis.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/1/20 5:30 PM, Nishanth Menon wrote:
-> Use clock@ naming for nodes following standard conventions of device
-> tree (section 2.2.2 Generic Names recommendation in [1]).
-> 
-> [1] https://github.com/devicetree-org/devicetree-specification/tree/v0.3
-> 
-> Suggested-by: Suman Anna <s-anna@ti.com>
-> Signed-off-by: Nishanth Menon <nm@ti.com>
 
-Acked-by: Suman Anna <s-anna@ti.com>
+--6qupgqorf2fz4jqr
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> ---
->  arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> index 336d09d6fec7..03e28fc256de 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> @@ -327,12 +327,12 @@
->  			reg = <0x00000210 0x4>;
->  		};
->  
-> -		serdes0_clk: serdes_clk@4080 {
-> +		serdes0_clk: clock@4080 {
->  			compatible = "syscon";
->  			reg = <0x00004080 0x4>;
->  		};
->  
-> -		serdes1_clk: serdes_clk@4090 {
-> +		serdes1_clk: clock@4090 {
->  			compatible = "syscon";
->  			reg = <0x00004090 0x4>;
->  		};
-> 
+Hello Vincent,
 
-Btw, there is also ehrpwm_tbclk alongside these nodes which is currently defined
-as a syscon, but is actually a clock.
+On Wed, Sep 02, 2020 at 02:11:54PM +0200, Vincent Whitchurch wrote:
+> On Sat, Aug 15, 2020 at 09:50:32AM +0200, Uwe Kleine-K=F6nig wrote:
+> > On Fri, Aug 14, 2020 at 05:55:13PM +0200, Vincent Whitchurch wrote:
+> > > +static const struct pwm_ops pwm_gpio_ops =3D {
+> > > +	.owner =3D THIS_MODULE,
+> > > +	.apply =3D pwm_gpio_apply,
+> >=20
+> > Usually a .get_state callback is nice. Does it make sense to do
+> > something like:
+> >=20
+> > 	if (driver is up)
+> > 		report current setting
+> > 	else
+> > 		val =3D gpio_get_value()
+> > 		report(period=3D1, duty_cycle=3Dval, enabled=3Dval, polarity=3DNORMAL)
+> >=20
+> > ?
+>=20
+> I implemented get_state() but I didn't do the gpio_get_value() thing
+> since the driver sets the gpio to a known value in probe().
 
-regards
-Suman
+This however is wrong, .probe() is not supposed to modify the output.
 
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--6qupgqorf2fz4jqr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl9P3Z0ACgkQwfwUeK3K
+7AkAWgf8CaJSHXSDJHLXeccuVtuLMAI9klF8NshwoA489xmoj+fwyRxeT6cbxuez
+ZfiuOHTTo+Oh4KrdMnfogKgh2F+ddTLWOQikM2nuJ0d5pt2xR+KS4xzizjMTXEnd
+0kmgIPp4f/PdbsAdLRdG1CFggYMjthizbRqKmiS2qZjkS4GkgrpX39A5cKFZpwfP
+1wUNN/1VrGxeZNOFrEkiqdO6Fw6pbVR63M0g5uW6buwvaZYM8WP+unqdJruDHyiW
+ZNlLXInCRWO7N8OSegx88g/DaXpa7yluEUPXxxUGDr0z1B4+frFG2jW9BceC5PLs
+8/t74enGXwpeJ4KmmWz9SrZnkkdXcA==
+=iNyx
+-----END PGP SIGNATURE-----
+
+--6qupgqorf2fz4jqr--
