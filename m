@@ -2,93 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4CB425A4FD
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 07:23:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31CC125A514
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 07:35:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726515AbgIBFXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 01:23:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41480 "EHLO
+        id S1726311AbgIBFfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 01:35:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726193AbgIBFXP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 01:23:15 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 338C8C061245
-        for <devicetree@vger.kernel.org>; Tue,  1 Sep 2020 22:23:15 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id o68so2199405pfg.2
-        for <devicetree@vger.kernel.org>; Tue, 01 Sep 2020 22:23:15 -0700 (PDT)
+        with ESMTP id S1725774AbgIBFfj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 01:35:39 -0400
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C6A5C061244;
+        Tue,  1 Sep 2020 22:35:39 -0700 (PDT)
+Received: by mail-pl1-x642.google.com with SMTP id s10so1298955plp.1;
+        Tue, 01 Sep 2020 22:35:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=BVhFJ3Y+hjMqVUpwLbS9tGUo0xITtak6uttEh+ZRoAE=;
-        b=fCMQSPyR6dqJGAxuqwQ3iQwXVR9XO4k3BEgkYmAL5kNppciYkogCXaku4r8hyC64bt
-         EZgv2mebMFjGNTKx160KdU6YvcouTOBGBmSc6F5OlDUF2Oq1Inqt/CgxEy9nvcrk6V+8
-         aLwxx5q0gIWPmlB7Tggypgri2EfouqVjjRT0LsobAcllcgxhv6CBt4ITtwjl6EjTjj+S
-         xtwaQGnH0XJrSHndj9J78HeG1wKqYpCNKKf+hCEZlS6LV+4vH2GF2GKFGM1Ne+jOJz0e
-         vUNGObEpeMOZ3EwWchFNgj+56ykk4/Aekxm8ChJXEyhj/zZ2gHWiwEd4srfTqJIXVuvW
-         38gA==
+         :content-disposition:in-reply-to;
+        bh=eQPR30zGfRfeAaiqiFgod4rMnLiD9w7BcMVmHoMNe6I=;
+        b=pDzQpqINV8Bc/bc9VIOK+95xcXunbQUoqiHZ+g1Vc3u4naR3uz/81aNSPNi1S+iJim
+         UBo+xMuLI+Axtc0qbjDY4xwBG7Egssp2GVM3vJQyO70DNYOGvfvHyzuMpItR+9DoCNSh
+         ZybDEywUInFXMB168+RHJTmC9Z+U2cd06klj41JAsLqICHz/WqLzhVcAwsVsI6K48YSb
+         M+rbaDf1Z6T6kbuSNTp+av9JNHNpJhOKjjh8by8n/vOawHBNvmgAL6fNGVTUjOZdQ/QO
+         IdPHLOjiR1DnXBqU9nUG89pDZVl18svEvfipP9r92UEVblcenJdTAgk5rphfQD4PSVnc
+         1DJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=BVhFJ3Y+hjMqVUpwLbS9tGUo0xITtak6uttEh+ZRoAE=;
-        b=EjcnB2Rshya54Ms6dmNZHwuafiqyhm0FmS+JMXZNkzbV+I0ZvnY63zSICzlw1FUyTF
-         H3Ox5r/pTh/8sL6BRHvLodlisM+wuQTc0woo8E293qFsqHYKfMiYq/FAQTUzqFEWWotV
-         otDOGRiUHoEJwmpvNcfs68mCI1XvZyymZFj8l/7tzA+hY3FIsm1hWcVJu97AUmupeYfd
-         ePbAi48SK8O0Jnwcd2Akjp58QiJ3AMVTSY318ESV8v8yp2eNVIhA2c/9JpxEYpb1NtMp
-         yTPYzmgCRUpLIYuCRTWr1gxhzdQzfmsKj7k/vIHvBOihopxe8z31t0qEytGKMW3wkY0T
-         iPDQ==
-X-Gm-Message-State: AOAM533TNrtwIPufU5VI2dikrP3f5/tm2rb4plO7LFINHahNSnqL45Vz
-        h+0QM4yHV4NyNGsJVwmgqr36vQ==
-X-Google-Smtp-Source: ABdhPJyVAj5bq2ZIy1KPMkq6FyhzjG9cOtRfI0Si6VHtWCcizDPw0evcn9d4QROXifoq9jqPssZ7jw==
-X-Received: by 2002:a63:e741:: with SMTP id j1mr629326pgk.422.1599024194547;
-        Tue, 01 Sep 2020 22:23:14 -0700 (PDT)
-Received: from localhost ([122.167.135.199])
-        by smtp.gmail.com with ESMTPSA id l24sm3848694pff.20.2020.09.01.22.23.12
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 01 Sep 2020 22:23:13 -0700 (PDT)
-Date:   Wed, 2 Sep 2020 10:53:08 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        linux-pm@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Rafael Wysocki <rjw@rjwysocki.net>,
-        Stephen Boyd <sboyd@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] ARM: tegra: Pass multiple versions in
- opp-supported-hw property
-Message-ID: <20200902052308.jvdbkyjuawfihea3@vireshk-i7>
-References: <cover.1598442485.git.viresh.kumar@linaro.org>
- <b13f1b112532fe0189d1f7bbb50903d9e1defb07.1598442485.git.viresh.kumar@linaro.org>
- <b0763074-859f-fccb-dde4-03d1a50ea021@gmail.com>
- <20200831043908.mtw4dglybcmcabjb@vireshk-i7>
- <0da380c2-9161-d450-afd2-4b159c8cfb7d@gmail.com>
- <20200831084111.6udzvrdonxgzju4l@vireshk-i7>
- <cbfa012b-8f50-e460-972c-c51fa52bb858@gmail.com>
- <20200831110408.a6lwivim4w4jtkdc@vireshk-i7>
- <603071ec-6ae4-7e34-26e4-f64065b01ee0@gmail.com>
+         :mime-version:content-disposition:in-reply-to;
+        bh=eQPR30zGfRfeAaiqiFgod4rMnLiD9w7BcMVmHoMNe6I=;
+        b=kZhtOxK4FzMQf3gVQCeLo9OHelBe/n44LBiT85KA1NY7d5zM8NNEwKuXt7/ZGNsY75
+         i0NflS54iYAbpnU8clmyPeRQUMpC8Lr4kjZrvP5TYH7b6Rn4ZxEUZrnSM2VOSw9cS1TW
+         LNp6g3IkrZkSd7xPeXzvOq5aCrjqkrmPeH/8xPza9HveF3zpRe6R32vpjaSVcQ6JWetv
+         I6r1aYTu1qfsZ9MpLPmOrDwSx/dRb5s6xgGXpHFMqPb0LgglN6rNvrqMtXtK13KaSjs/
+         HdHO9YXvxLlxA7FxAYXNBrkT4kOwRN0xQDwyOFPXJEACMQN70pNCyFB6FgjWr4CpoC4d
+         y30A==
+X-Gm-Message-State: AOAM530g/igO96W/8pt0VNmum1BXApGrTqPoIqheifx8IDl4z5toZQgE
+        G2Cw3aZxYA9d8fESXqYt27I=
+X-Google-Smtp-Source: ABdhPJyNlWT8JPI8rqixhq9HIg8+D7+aDTjHXMIKLbUrx9Nv2GXMWOXm0vv/86Ne5hHQSHaeBIzS1Q==
+X-Received: by 2002:a17:90b:1916:: with SMTP id mp22mr737220pjb.132.1599024938457;
+        Tue, 01 Sep 2020 22:35:38 -0700 (PDT)
+Received: from localhost ([2401:fa00:8f:203:a6ae:11ff:fe11:4b46])
+        by smtp.gmail.com with ESMTPSA id in12sm3154140pjb.29.2020.09.01.22.35.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Sep 2020 22:35:37 -0700 (PDT)
+Date:   Wed, 2 Sep 2020 14:35:35 +0900
+From:   Sergey Senozhatsky <sergey.senozhatsky.work@gmail.com>
+To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
+Cc:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        mchehab@kernel.org, andriy.shevchenko@linux.intel.com,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        sakari.ailus@linux.intel.com, drinkcat@chromium.org,
+        tfiga@chromium.org, matthias.bgg@gmail.com, bingbu.cao@intel.com,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
+Subject: Re: [PATCH V10 2/2] media: i2c: dw9768: Add DW9768 VCM driver
+Message-ID: <20200902053535.GC2264887@google.com>
+References: <20200703080404.29770-1-dongchun.zhu@mediatek.com>
+ <20200703080404.29770-3-dongchun.zhu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <603071ec-6ae4-7e34-26e4-f64065b01ee0@gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20200703080404.29770-3-dongchun.zhu@mediatek.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01-09-20, 16:21, Dmitry Osipenko wrote:
-> IIUC, there is no fixed formula for Tegra, at least I don't see it. For
-> example, if you'll take a look at the 1300MHz OPP of Tegra30, then you
-> could see that this freq has a lot of voltages each depending on
-> specific combination of SPEEDO+PROCESS versions.
+On (20/07/03 16:04), Dongchun Zhu wrote:
+[..]
+> +static int dw9768_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct dw9768 *dw9768;
+> +	unsigned int i;
+> +	int ret;
+> +
+> +	dw9768 = devm_kzalloc(dev, sizeof(*dw9768), GFP_KERNEL);
+> +	if (!dw9768)
+> +		return -ENOMEM;
+> +
+> +	/* Initialize subdev */
+> +	v4l2_i2c_subdev_init(&dw9768->sd, client, &dw9768_ops);
+> +
+[..]
+> +	dw9768->sd.entity.function = MEDIA_ENT_F_LENS;
+> +
+> +	pm_runtime_enable(dev);
+> +	if (!pm_runtime_enabled(dev)) {
+> +		ret = dw9768_runtime_resume(dev);
+> +		if (ret < 0) {
+> +			dev_err(dev, "failed to power on: %d\n", ret);
+> +			goto err_clean_entity;
+> +		}
+> +	}
+> +
+> +	ret = v4l2_async_register_subdev(&dw9768->sd);
+> +	if (ret < 0) {
+> +		dev_err(dev, "failed to register V4L2 subdev: %d", ret);
+> +		goto err_power_off;
+> +	}
 
-Right, it may not be worth it to clean this up :)
+I would expect to see a slightly different order here: first set
+everything up, then expose the device to PM subsystem.
 
--- 
-viresh
+[..]
+> +static int dw9768_remove(struct i2c_client *client)
+> +{
+> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> +	struct dw9768 *dw9768 = sd_to_dw9768(sd);
+> +
+> +	v4l2_async_unregister_subdev(&dw9768->sd);
+> +	v4l2_ctrl_handler_free(&dw9768->ctrls);
+> +	media_entity_cleanup(&dw9768->sd.entity);
+> +	pm_runtime_disable(&client->dev);
+> +	if (!pm_runtime_status_suspended(&client->dev))
+> +		dw9768_runtime_suspend(&client->dev);
+> +	pm_runtime_set_suspended(&client->dev);
+
+Ditto. Shall we first disable PM (so that we won't get any unexpected
+PM callbacks) and then destroy the device?
+
+	-ss
