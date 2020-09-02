@@ -2,99 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99D1C25A803
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 10:48:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE76425A837
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 11:03:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726726AbgIBIsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 04:48:25 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:37915 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726446AbgIBIsY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 04:48:24 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0828lxdr005740;
-        Wed, 2 Sep 2020 10:48:06 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=bsrtrM02fgWv2bRv4Bhe+o5W+4DzyVAwKGr6eUnXvqA=;
- b=IqU0htvZikfnFJyrcTNf3wI9NrajXvq7CIFzK5I4g2CBL/5xdG1pcO1MsCy+6j3a4vPp
- tYsqEjVyXAHqVT9n35yK8lp+yC6kMlfE4JCPTXQ/oBauVr3Lci+9UbU4bHN+IQoksHqh
- 5krdDcD0xE31fPJj+1+wm+zZZdlB0pBsrohZXH3IQbZ4fTtaLIm+KuHSjW+XWi6KWrx+
- ri3CkTSNC6RrCiSIOK4VmHxh5+jPmxmczjZleBVdJ3wjm2yaEeTtFokyyR+9R4F61c8s
- JVjoAfIByuQJDJIko7IfeKER9jGLgbfLGeLHxeuMtH+TEmdQLAhw7FQpPqRVZrV8+zs6 CQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 337cg1mg4v-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 02 Sep 2020 10:48:06 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9EF4010003E;
-        Wed,  2 Sep 2020 10:48:05 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8F2E12A7D62;
-        Wed,  2 Sep 2020 10:48:05 +0200 (CEST)
-Received: from localhost (10.75.127.47) by SFHDAG3NODE2.st.com (10.75.127.8)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 2 Sep 2020 10:48:05
- +0200
-From:   Amelie Delaunay <amelie.delaunay@st.com>
-To:     Minas Harutyunyan <hminas@synopsys.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>
-CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>,
-        Amelie Delaunay <amelie.delaunay@st.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [RESEND PATCH v5 3/3] usb: dwc2: don't use ID/Vbus detection if usb-role-switch on STM32MP15 SoCs
-Date:   Wed, 2 Sep 2020 10:48:00 +0200
-Message-ID: <20200902084800.12105-4-amelie.delaunay@st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200902084800.12105-1-amelie.delaunay@st.com>
-References: <20200902084800.12105-1-amelie.delaunay@st.com>
+        id S1726637AbgIBJDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 05:03:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47032 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726528AbgIBJDh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 05:03:37 -0400
+Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com [IPv6:2607:f8b0:4864:20::e43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0504AC061246
+        for <devicetree@vger.kernel.org>; Wed,  2 Sep 2020 02:03:36 -0700 (PDT)
+Received: by mail-vs1-xe43.google.com with SMTP id x203so2158428vsc.11
+        for <devicetree@vger.kernel.org>; Wed, 02 Sep 2020 02:03:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FFV82M/6u73GqedIKaydXrEwLHTHCWqg1HfMv/IVCCs=;
+        b=VZzoNgJoW9pVvA92M/1zKgvhm4xk1DywhQbKr9lziWr2euc7xr7tJqZ7BV3F/7mBJe
+         Rmi5STwCgT2WSV4eEldILAKBitUAPowEDgRa/Q2ABJz5ba4q+r3+spzDSFyor3Rhdn6H
+         ej0ejV3kcN029m/W+Y0vu38NG7P+7Wp8He8+AbEMlArg2sNq05tNxqKEHeu7J+ZVDFLl
+         mjnYOinwdHXOv8naM4Hzpmxan4ss9+v9lUC81Gg4dy1bJ7rF8jf/wmAzXdKlZVnmjqmi
+         3yAIZwjpvP4EZ0xlfoa1K8iiJFMZurKo5lfU3hqX1jqHjJdZjS3KO0vEIUqHL188eslq
+         uTTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FFV82M/6u73GqedIKaydXrEwLHTHCWqg1HfMv/IVCCs=;
+        b=SQBS37gk7/gFjwHEjwHkTb3prMMT1W5hS/9Z40ojX/Lj3JwpkWupjYp5LnZRFZWwjx
+         cpdHnwmQw0r88LSCm2LIX8vyNrxfPdSgoxDgVmWBiGYr7+yhyuFhozdfy4jv/yoPphM1
+         m/VsD4Q0o2kn1XarKZNlvd/xAm3SSC3qYd+l2JgHloZgTaYH32/WEb7vFXSIiiq3OsYk
+         dkEOLn5gNlglqutrXplli4S7/R9L7DEURHxSXzWDncpkQ1d8E+XpLIxbfxri3xxarh4C
+         JGKboJkJDU96tMdaT3eECVSRzft3GwChHPOUlZ15I1rapetK8fm3QIUitC2nmop5HNfO
+         NlTw==
+X-Gm-Message-State: AOAM531TXHK0qjSeQYdcsvaDQTlquNttxb0VanBf5+JfcgZsSXj5/89+
+        meYjRuPVUM3V9yN/VsWI774gRRfrFPp0vnQpgUax/A==
+X-Google-Smtp-Source: ABdhPJwsRg1A+IZemgbWMk9SB448rUC9bgen53U3T2+v8AYT3LANtcX7wdMKlegnvUy0kMb/FNEB0pRyZk8gx49TIgM=
+X-Received: by 2002:a67:b44a:: with SMTP id c10mr4491532vsm.35.1599037416050;
+ Wed, 02 Sep 2020 02:03:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG5NODE3.st.com (10.75.127.15) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-09-02_03:2020-09-02,2020-09-02 signatures=0
+References: <1598520783-25250-1-git-send-email-chun-hung.wu@mediatek.com>
+In-Reply-To: <1598520783-25250-1-git-send-email-chun-hung.wu@mediatek.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 2 Sep 2020 11:02:59 +0200
+Message-ID: <CAPDyKFp+RKTcssd-zpiOnvfNsv5=7b8mtEw645JQ+MLmH-XGhg@mail.gmail.com>
+Subject: Re: [PATCH v1 0/2] mmc: cqhci: Add pre_enable() and post_disable()
+ hook function
+To:     Chun-Hung Wu <chun-hung.wu@mediatek.com>
+Cc:     =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Al Cooper <alcooperx@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Mao Yong <yong.mao@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Pan Bian <bianpan2016@163.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Allison Randal <allison@lohutok.net>,
+        Mathieu Malaterre <malat@debian.org>,
+        Asutosh Das <asutoshd@codeaurora.org>,
+        Ritesh Harjani <riteshh@codeaurora.org>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Kuohong Wang <kuohong.wang@mediatek.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>, wsd_upstream@mediatek.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If usb-role-switch is present in the device tree, it means that ID and Vbus
-signals are not connected to the OTG controller but to an external
-component (GPIOs, Type-C controller). In this configuration, usb role
-switch is used to force valid sessions on STM32MP15 SoCs.
+On Thu, 27 Aug 2020 at 11:33, Chun-Hung Wu <chun-hung.wu@mediatek.com> wrote:
+>
+> This series provides MediaTek cqhci implementations as below:
+>   - Add cqhci_host_ops->pre_enable() and cqhci_host_ops->post_disable()
+>   - Implement MediaTek's hook functions
+>
+> Chun-Hung Wu (2):
+>   mmc: cqhci: add new cqhci_host_ops pre_enable() and post_disable()
+>   mmc: mediatek: add pre_enable() and post_disable() hook function
+>
+>  drivers/mmc/host/cqhci.c  |    6 ++++++
+>  drivers/mmc/host/cqhci.h  |    2 ++
+>  drivers/mmc/host/mtk-sd.c |   22 ++++++++++++++++++++++
+>  3 files changed, 30 insertions(+)
+>
+> --
+> 1.7.9.5
 
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
----
-Changes in v5:
-- Use device_property_read_bool instead of of_read_property_bool
----
- drivers/usb/dwc2/params.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Applied for next, thanks!
 
-diff --git a/drivers/usb/dwc2/params.c b/drivers/usb/dwc2/params.c
-index a3611cdd1dea..50df72f32b4c 100644
---- a/drivers/usb/dwc2/params.c
-+++ b/drivers/usb/dwc2/params.c
-@@ -185,7 +185,7 @@ static void dwc2_set_stm32mp15_hsotg_params(struct dwc2_hsotg *hsotg)
- 	struct dwc2_core_params *p = &hsotg->params;
- 
- 	p->otg_cap = DWC2_CAP_PARAM_NO_HNP_SRP_CAPABLE;
--	p->activate_stm_id_vb_detection = true;
-+	p->activate_stm_id_vb_detection = !device_property_read_bool(hsotg->dev, "usb-role-switch");
- 	p->host_rx_fifo_size = 440;
- 	p->host_nperio_tx_fifo_size = 256;
- 	p->host_perio_tx_fifo_size = 256;
--- 
-2.17.1
-
+Kind regards
+Uffe
