@@ -2,116 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7FEB25B752
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 01:29:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E89025B75A
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 01:32:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726523AbgIBX3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 19:29:53 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:38112 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726310AbgIBX3w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 19:29:52 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 082NTg7N023002;
-        Wed, 2 Sep 2020 18:29:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599089382;
-        bh=5ismlKMcchJg6W6QoumUCgvbzAC8BXk4SjpAViJ4qts=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=T+if4hZPcBLlHYJ6RddogpPBKvM+LOIs76Kcmmi5a7euud7ZIX0A3u6rSz+Q0MYxS
-         YM/ns7UgKhc+OZkWjq/7VBP9DQWEV3HfnHpCfXbL6+pCLX8c5R4IcFRKpfGNdXiDVm
-         9f5vBGDdAgy/4z7sSoVAQ7yzdxWYcHk29EUV/kTo=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 082NTgES068502
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Sep 2020 18:29:42 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 2 Sep
- 2020 18:29:42 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 2 Sep 2020 18:29:42 -0500
-Received: from [10.250.34.112] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 082NTfUQ128253;
-        Wed, 2 Sep 2020 18:29:41 -0500
-Subject: Re: [v4,4/4] arm64: dts: mt8192: add infracfg_rst node
-To:     Crystal Guo <crystal.guo@mediatek.com>, <p.zabel@pengutronix.de>,
-        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>
-CC:     <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <seiya.wang@mediatek.com>, <stanley.chu@mediatek.com>,
-        <yingjoe.chen@mediatek.com>, <fan.chen@mediatek.com>,
-        <yong.liang@mediatek.com>
-References: <20200817030324.5690-1-crystal.guo@mediatek.com>
- <20200817030324.5690-5-crystal.guo@mediatek.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <211bd78f-3b70-1e65-eea9-75cc73a3dfdd@ti.com>
-Date:   Wed, 2 Sep 2020 18:29:41 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726814AbgIBXb1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 19:31:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39520 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726800AbgIBXbU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 19:31:20 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 825F9C061246
+        for <devicetree@vger.kernel.org>; Wed,  2 Sep 2020 16:31:18 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id e23so1114773eja.3
+        for <devicetree@vger.kernel.org>; Wed, 02 Sep 2020 16:31:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=T4yXzW6yLaOrjJCWDznrsqD2chk3J8tmvftWN4ofhYI=;
+        b=Xtu9LFAQ1AsuRSYENiMC1JSVEyn/r84YRw+kVkrqLSiwzEk18vBQ5Bw6DIZQQeRd55
+         LwGAzvYyrHms38I0HNnvqPlCsNjOV90RlA80Ze+BfYhdDY0nXTs1o69yz0AgVedqqGFx
+         qXajRu4qWBN9/Y/EfquKUuZx+dOtEt11KYUCc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=T4yXzW6yLaOrjJCWDznrsqD2chk3J8tmvftWN4ofhYI=;
+        b=bSNtmPx10I6ZgTFipZ+dGKyDBwnzVVw7CXZmuTilV/AU/mSBPvIRhoqg9Cg3cPQeR4
+         HuP6KjyfxCCQdkwRJX9+iuQdlllkDpckmNI56q86DUrTjIAbdIa9N6zJZk6WOhB0RvTQ
+         8hvy+YXuPrc6vAiClsqrJe5WFNZAKV0si11EuuTBF/RVBHpzgnFAjhcPf46PeS8XBER8
+         QsuLUkBoREaQrfXXmBSkS/dfl2i8Q7sGHcics6FRSzQ4PVkN0I9VksgLf6y8XVSEWBYb
+         y1dw+BzZTfOC4oVVRsF0zCYRNfHtySoPVDp7Weg19/zxYddx09+0gw3RxmQRdYbRJb5l
+         nCSA==
+X-Gm-Message-State: AOAM533srseopat4fsWNX5Fla7Hp1+hQlRvbasy3qvvkk7/kwycCRbCN
+        W+QoHbRCaAEfxaXWGP6r437VC5g7Lqlzfw==
+X-Google-Smtp-Source: ABdhPJzrZLTZvVZdwpV4aQClonPuvdXCxv/mc4+DYiCebdmd2sEpVCbncYJyYtDwpKgFz9fCZ9VEAg==
+X-Received: by 2002:a17:906:48d6:: with SMTP id d22mr533725ejt.462.1599089477118;
+        Wed, 02 Sep 2020 16:31:17 -0700 (PDT)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
+        by smtp.gmail.com with ESMTPSA id k10sm1065564ejj.108.2020.09.02.16.31.15
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Sep 2020 16:31:16 -0700 (PDT)
+Received: by mail-wr1-f49.google.com with SMTP id z4so1119636wrr.4
+        for <devicetree@vger.kernel.org>; Wed, 02 Sep 2020 16:31:15 -0700 (PDT)
+X-Received: by 2002:adf:d0cb:: with SMTP id z11mr495865wrh.192.1599089475406;
+ Wed, 02 Sep 2020 16:31:15 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200817030324.5690-5-crystal.guo@mediatek.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20200902224813.14283-1-tfiga@chromium.org> <20200902224813.14283-3-tfiga@chromium.org>
+In-Reply-To: <20200902224813.14283-3-tfiga@chromium.org>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Thu, 3 Sep 2020 01:30:55 +0200
+X-Gmail-Original-Message-ID: <CAAFQd5D3+yXv9iwfWwStxqUOrec3g0WjFF6ko-xRA=ejcNmhSQ@mail.gmail.com>
+Message-ID: <CAAFQd5D3+yXv9iwfWwStxqUOrec3g0WjFF6ko-xRA=ejcNmhSQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] media: dt-bindings: media: i2c: Add bindings for GC5035
+To:     Linux Media Mailing List <linux-media@vger.kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hao He <hao.he@bitland.com.cn>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Xingyu Wu <wuxy@bitland.com.cn>,
+        Dongchun Zhu <dongchun.zhu@mediatek.com>,
+        Sj Huang <sj.huang@mediatek.com>,
+        darfur_liu <darfur_liu@gcoreinc.com>,
+        "hao.he7" <hao.he7@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Crystal,
+Self-review,
 
-On 8/16/20 10:03 PM, Crystal Guo wrote:
-> add infracfg_rst node which is for MT8192 platform
-> 
-> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
-
-I understand you are posting these together for complete reference, but driver
-subsystem maintainers typically don't pick dts patches. In anycase, can you
-clarify if your registers are self-clearing registers?
-
-regards
-Suman
-
+On Thu, Sep 3, 2020 at 12:48 AM Tomasz Figa <tfiga@chromium.org> wrote:
+>
+> Add YAML device tree bindings for Galaxycore Inc. GC5035 imaging sensor.
+>
+> Signed-off-by: Tomasz Figa <tfiga@chromium.org>
 > ---
->  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 11 ++++++++++-
->  1 file changed, 10 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index 931e1ca17220..a0cb9904706b 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -10,6 +10,7 @@
->  #include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
->  #include <dt-bindings/power/mt8192-power.h>
-> +#include <dt-bindings/reset/ti-syscon.h>
->  
->  / {
->  	compatible = "mediatek,mt8192";
-> @@ -219,9 +220,17 @@
->  		};
->  
->  		infracfg: infracfg@10001000 {
-> -			compatible = "mediatek,mt8192-infracfg", "syscon";
-> +			compatible = "mediatek,mt8192-infracfg", "syscon", "simple-mfd";
->  			reg = <0 0x10001000 0 0x1000>;
->  			#clock-cells = <1>;
-> +
-> +			infracfg_rst: reset-controller {
-> +				compatible = "mediatek,infra-reset", "ti,syscon-reset";
-> +				#reset-cells = <1>;
-> +				ti,reset-bits = <
-> +					0x140 15 0x144 15 0 0 (ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* 0: pcie */
-> +				>;
-> +			};
->  		};
->  
->  		pericfg: pericfg@10003000 {
-> 
+>  .../devicetree/bindings/media/i2c/gc5035.yaml | 142 ++++++++++++++++++
+>  1 file changed, 142 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/gc5035.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/media/i2c/gc5035.yaml b/Documentation/devicetree/bindings/media/i2c/gc5035.yaml
+> new file mode 100644
+> index 000000000000..cf8cc3b581cf
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/gc5035.yaml
+> @@ -0,0 +1,142 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (c) 2019 MediaTek Inc.
 
+Copyright 2020 Google LLC.
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/gc5035.yaml
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Galaxycore Inc. GC5035 CMOS Sensor Device Tree Bindings
+> +
+> +maintainers:
+> +  - Tomasz Figa <tfiga@chromium.org>
+> +
+> +description: |-
+> +  The Galaxycore Inc. GC5035 is a 5 megapixel, 1/5 inch CMOS 10-bit Bayer image
+> +  sensor that delivers 2592x1944 at 30fps. This chip is programmable through
+> +  an I2C interface. The image output is available via a MIPI CSI-2 interface.
+> +
+> +properties:
+> +  compatible:
+> +    const: galaxycore,gc5035
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    description:
+> +      Input clock for the sensor.
+> +    items:
+> +      - const: inclk
+
+Typo: mclk.
+
+> +
+> +  clock-frequency:
+> +    description:
+> +      Frequency of the inclk clock in Hz.
+
+mclk
+
+> +
+> +  iovdd-supply:
+> +    description:
+> +      Regulator driving the I/O power rail.
+> +
+> +  avdd28-supply:
+> +    description:
+> +      Regulator driving the analog power rail.
+> +
+> +  dvdd12-supply:
+> +    description:
+> +      Regulator driving the digital power rail.
+> +
+> +  resetb-gpios:
+> +    description:
+> +      The GPIO pin that drives the RESETB signal, controlling sensor reset.
+> +      The RESETB signal must be driven low to activate the reset, so the
+> +      GPIO_ACTIVE_LOW flag should be given by default.
+> +
+> +  pwdn-gpios:
+> +    description:
+> +      The GPIO pin that drives the PWDN signal, controlling sensor power-down
+> +      mode. The PWDN signal must be driven low to activate the power-down
+> +      mode, so the GPIO_ACTIVE_LOW flag should be given by default.
+> +
+> +  port:
+> +    type: object
+> +    additionalProperties: false
+> +    description:
+> +      A node containing an output port node with an endpoint definition
+> +      as documented in
+> +      Documentation/devicetree/bindings/media/video-interfaces.txt
+> +
+> +    properties:
+> +      endpoint:
+> +        type: object
+> +        additionalProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            items:
+> +              - const: 1
+> +              - const: 2
+> +
+> +          link-frequencies: true
+> +          remote-endpoint: true
+> +
+> +        required:
+> +          - data-lanes
+> +          - link-frequencies
+> +          - remote-endpoint
+> +
+> +    required:
+> +      - endpoint
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - clock-frequency
+> +  - iovdd-supply
+> +  - avdd28-supply
+> +  - dvdd12-supply
+> +  - resetb-gpios
+> +  - pwdn-gpios
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        gc5035: camera@10 {
+> +            compatible = "galaxycore,gc5035";
+> +            reg = <0x10>;
+> +
+> +            reset-gpios = <&pio 111 GPIO_ACTIVE_LOW>;
+> +            pwdn-gpios = <&pio 112 GPIO_ACTIVE_LOW>;
+> +            pinctrl-names = "default";
+> +            pinctrl-0 = <&clk_24m_cam>;
+> +
+> +            clocks = <&cam_osc>;
+> +            clock-names = "inclk";
+
+mclk
+
+Best regards,
+Tomasz
