@@ -2,105 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C53A225A874
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 11:17:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 859E125A87C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 11:19:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726210AbgIBJR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 05:17:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49170 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726140AbgIBJR1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 05:17:27 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 651CAC061244;
-        Wed,  2 Sep 2020 02:17:26 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id g4so3929508wrs.5;
-        Wed, 02 Sep 2020 02:17:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=K4YsaDFC3Pt4ZknV5E5TYlw0op731bQlj4z6J8XbD9o=;
-        b=e56ChxsFl3Oaxk5No/V0xghZwXJmc+Hu0yfeeV/sfFexFl+dFaZfJxj5nphuqu1i/I
-         VV5c2zFcWDhpLikL1qEWkynHM16+wtMH/OC71fKvOewVluFVyzshMchZWXKntFb1nvEB
-         LdUDNQ3tbrUtI/dLC4lqj3tOks4XjlNIEnml9CET6Z7Pag4pAMv431PEd43yBaU4Y/TH
-         TAVdYqHNOtSguDXUpY/At+QUanwVnBbJrsfIJyYuq8p0USVNq1t3R3VptI/r5cm6Us0T
-         LIC+EWXEpyqd2I3TtIqn/fiCjrL/yyF83aVQEJA5V+oDnkjXyxm3aRS22ZplEuTWJ6yg
-         PX4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=K4YsaDFC3Pt4ZknV5E5TYlw0op731bQlj4z6J8XbD9o=;
-        b=ZQAgDjh5aXiRtGlBFaeliyY8osM6olD/nJ1omA/0fP1R0Lufh0FgcKFAAmkwc8wxl8
-         jfTQsE+Xotszmu2vH51h9XSA86W+i4UjrA2Zm2FvJcQa8dN+sGIceA96DcIKj7+9erS8
-         l4aJaP+emXOwfH/phoihjD5Po2mmBJXWcHuLksD20Uu8oQnsMRJ9sKKctQgLjhTIoKS1
-         uXHtZi42jNm6luBVjf/eeLTHzdiWBg8v9sMWh71/Bill6usQP8D6CjsCGiq5mpwUF8Mk
-         AzSiY/I1csK7fapcFdKs8zj0cg3hS4ge4mcSbZ3ZwbN6haaMp4OX1637+7vF4k5Sg43y
-         HfHg==
-X-Gm-Message-State: AOAM532wP25PK3efALeqoC7iJx1aEsegDxPZk5at8SXZ9mq1PUABecJI
-        nbmbtFadf7RRZEFhrnyqXH8=
-X-Google-Smtp-Source: ABdhPJziga6cVnGwqodUAGTuzDSoW5dwcnCBj0weg4cfDUXNmX8rvlXqTeMVVRIW4jd65+tmx+jdFw==
-X-Received: by 2002:adf:eb0a:: with SMTP id s10mr6214329wrn.83.1599038245240;
-        Wed, 02 Sep 2020 02:17:25 -0700 (PDT)
-Received: from Red.localdomain ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
-        by smtp.googlemail.com with ESMTPSA id j7sm6335778wrw.35.2020.09.02.02.17.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Sep 2020 02:17:24 -0700 (PDT)
-From:   Corentin Labbe <clabbe.montjoie@gmail.com>
-To:     davem@davemloft.net, herbert@gondor.apana.org.au,
-        mripard@kernel.org, robh+dt@kernel.org, robh@kernel.org,
-        wens@csie.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com, m.cerveny@computer.org,
-        Corentin Labbe <clabbe.montjoie@gmail.com>
-Subject: [PATCH] dt-bindings: crypto: Specify that allwinner,sun8i-a33-crypto needs reset
-Date:   Wed,  2 Sep 2020 11:17:16 +0200
-Message-Id: <20200902091716.22650-1-clabbe.montjoie@gmail.com>
-X-Mailer: git-send-email 2.26.2
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726173AbgIBJTi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 05:19:38 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:49234 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726210AbgIBJTi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 05:19:38 -0400
+X-IronPort-AV: E=Sophos;i="5.76,381,1592838000"; 
+   d="scan'208";a="55959941"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 02 Sep 2020 18:19:30 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 9B48842786AE;
+        Wed,  2 Sep 2020 18:19:28 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Subject: [PATCH v2] dt-bindings: timer: renesas,cmt: Document r8a7742 CMT support
+Date:   Wed,  2 Sep 2020 10:19:27 +0100
+Message-Id: <20200902091927.32211-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When adding allwinner,sun8i-a33-crypto, I forgot to add that it needs reset.
-Furthermore, there are no need to use items to list only one compatible
-in compatible list.
+Document SoC specific compatible strings for r8a7742. No driver change
+is needed as the fallback strings will activate the right code.
 
-Fixes: f81547ba7a98 ("dt-bindings: crypto: add new compatible for A33 SS")
-Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- .../bindings/crypto/allwinner,sun4i-a10-crypto.yaml        | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+v1->v2
+* Reabsed the patch on top YAML conversion
+* Restored the Acks
+---
+ Documentation/devicetree/bindings/timer/renesas,cmt.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
-index fc823572bcff..1075f0e75368 100644
---- a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
-+++ b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
-@@ -23,8 +23,7 @@ properties:
+diff --git a/Documentation/devicetree/bindings/timer/renesas,cmt.yaml b/Documentation/devicetree/bindings/timer/renesas,cmt.yaml
+index 7e4dc5623da8..762b65094292 100644
+--- a/Documentation/devicetree/bindings/timer/renesas,cmt.yaml
++++ b/Documentation/devicetree/bindings/timer/renesas,cmt.yaml
+@@ -39,6 +39,7 @@ properties:
        - items:
-           - const: allwinner,sun7i-a20-crypto
-           - const: allwinner,sun4i-a10-crypto
--      - items:
--          - const: allwinner,sun8i-a33-crypto
-+      - const: allwinner,sun8i-a33-crypto
- 
-   reg:
-     maxItems: 1
-@@ -59,7 +58,9 @@ if:
-   properties:
-     compatible:
-       contains:
--        const: allwinner,sun6i-a31-crypto
-+        oneOf:
-+          - const: allwinner,sun6i-a31-crypto
-+          - const: allwinner,sun8i-a33-crypto
- 
- then:
-   required:
+           - enum:
+               - renesas,r8a73a4-cmt0      # 32-bit CMT0 on R-Mobile APE6
++              - renesas,r8a7742-cmt0      # 32-bit CMT0 on RZ/G1H
+               - renesas,r8a7743-cmt0      # 32-bit CMT0 on RZ/G1M
+               - renesas,r8a7744-cmt0      # 32-bit CMT0 on RZ/G1N
+               - renesas,r8a7745-cmt0      # 32-bit CMT0 on RZ/G1E
+@@ -53,6 +54,7 @@ properties:
+       - items:
+           - enum:
+               - renesas,r8a73a4-cmt1      # 48-bit CMT1 on R-Mobile APE6
++              - renesas,r8a7742-cmt1      # 48-bit CMT1 on RZ/G1H
+               - renesas,r8a7743-cmt1      # 48-bit CMT1 on RZ/G1M
+               - renesas,r8a7744-cmt1      # 48-bit CMT1 on RZ/G1N
+               - renesas,r8a7745-cmt1      # 48-bit CMT1 on RZ/G1E
 -- 
-2.26.2
+2.17.1
 
