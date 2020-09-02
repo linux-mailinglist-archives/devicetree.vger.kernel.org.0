@@ -2,30 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A62D25A8BE
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 11:39:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25F7825A8EE
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 11:50:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726226AbgIBJjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 05:39:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50306 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726124AbgIBJjU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Sep 2020 05:39:20 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DEAF32078B;
-        Wed,  2 Sep 2020 09:39:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599039560;
-        bh=rz2YWRkFtHiLU3bmkGJDyuxnYo1QLy/1GAkH2TvuQy4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TTaELI0X+vFIqmDdOPtbaZhwErfWjpQ0RAy/MwmQCOc8QmzTqk8EUYhTSW0i9260Q
-         0Vu8qjH5yjQjwzJGRCOgC1RzcZ9DxGa4IIleV0Ptm0EUXUWS7ir/A80wCULZcRWJtR
-         jQQE4bTv8OZul/4HnR41sT+Yh21vk47YRIXH6CE0=
-Date:   Wed, 2 Sep 2020 10:38:39 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
+        id S1726140AbgIBJuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 05:50:44 -0400
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:39654 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726173AbgIBJuo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 05:50:44 -0400
+Received: by mail-ed1-f66.google.com with SMTP id c10so4289303edk.6;
+        Wed, 02 Sep 2020 02:50:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=v+z/Iz5Kt6N55tJf/v6lifigRsgJrV4tsPh9oDDZNS8=;
+        b=teJwk/G3J/3EBOB/BF4/tc8a3KH75FC580ApKCo82n6CTgV8bXCDM7yxOPQt27kmRV
+         DEMqQEgoQPBNp1StyEhLxcNJFoQfalBePffHAgS+6wtWTxjepXy8rINtLCwG0FKCD7EP
+         xVzuxj4k8Ijpj+tsoQqD9vGkfFY7pAu0n8CW/cF0cTgtwFrk6VIdJUyp5GRVXyXmv5M3
+         NnjfjVszi6AlPDc71MPINl8sC/SHyR30Wg/OI65A8KoAiKE327WCQBPBg6R+pQvUNKIS
+         vsXJl5K+yJsWvj6LYgiymKFWOWDGltyGu1aXdT/aKDmvYD9VHxscek7FE1q6oMehn1aE
+         8bGQ==
+X-Gm-Message-State: AOAM532/uzABT7Bd0guPPFPqXfaBGR3LJ33ddW6KgTRK9QdAWqOkbCRA
+        ullqMT0flZUBxDX92aa4oLwfxVJiM5vtyw==
+X-Google-Smtp-Source: ABdhPJwQBzxHKXtb9qVKUc/ANdcVm79cQo5uAcpJOq0mP2c85DCaM8X3t+UdeH1e6u4Wj8v9CTgd2g==
+X-Received: by 2002:a50:cc92:: with SMTP id q18mr5778693edi.159.1599040240771;
+        Wed, 02 Sep 2020 02:50:40 -0700 (PDT)
+Received: from pi3 ([194.230.155.106])
+        by smtp.googlemail.com with ESMTPSA id d23sm3740363ejj.74.2020.09.02.02.50.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Sep 2020 02:50:40 -0700 (PDT)
+Date:   Wed, 2 Sep 2020 11:50:38 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Mark Brown <broonie@kernel.org>
 Cc:     Sangbeom Kim <sbkim73@samsung.com>,
         Sylwester Nawrocki <s.nawrocki@samsung.com>,
         Liam Girdwood <lgirdwood@gmail.com>,
@@ -33,52 +43,35 @@ Cc:     Sangbeom Kim <sbkim73@samsung.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH 1/2] dt-bindings: sound: midas-audio: Correct parsing
  sound-dai phandles
-Message-ID: <20200902093839.GA6162@sirena.org.uk>
+Message-ID: <20200902095038.GA14284@pi3>
 References: <20200830112633.6732-1-krzk@kernel.org>
  <20200901110349.GC6262@sirena.org.uk>
  <20200902091038.GB13726@pi3>
+ <20200902093839.GA6162@sirena.org.uk>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="HlL+5n6rz5pIUxbD"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200902091038.GB13726@pi3>
-X-Cookie: Prices higher in Alaska and Hawaii.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200902093839.GA6162@sirena.org.uk>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Sep 02, 2020 at 10:38:39AM +0100, Mark Brown wrote:
+> On Wed, Sep 02, 2020 at 11:10:38AM +0200, Krzysztof Kozlowski wrote:
+> > On Tue, Sep 01, 2020 at 12:03:49PM +0100, Mark Brown wrote:
+> 
+> > > Please submit patches using subject lines reflecting the style for the
+> > > subsystem, this makes it easier for people to identify relevant patches.
+> 
+> > The usual prefix for bindings is "dt-bindings: ..." so I wonder what
+> > type of prefix you expect:
+> > 1. ASoC: dt-bindings: ...
+> 
+> This.  Bindings aren't a separate subsystem.
 
---HlL+5n6rz5pIUxbD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Sure, thanks!
 
-On Wed, Sep 02, 2020 at 11:10:38AM +0200, Krzysztof Kozlowski wrote:
-> On Tue, Sep 01, 2020 at 12:03:49PM +0100, Mark Brown wrote:
+Best regards,
+Krzysztof
 
-> > Please submit patches using subject lines reflecting the style for the
-> > subsystem, this makes it easier for people to identify relevant patches.
-
-> The usual prefix for bindings is "dt-bindings: ..." so I wonder what
-> type of prefix you expect:
-> 1. ASoC: dt-bindings: ...
-
-This.  Bindings aren't a separate subsystem.
-
---HlL+5n6rz5pIUxbD
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9PaB4ACgkQJNaLcl1U
-h9C8/Af/RVJ7XZs6bEQHCNhy0ziMmQZGspvtRHWnmX5UKETH//1s3kNWWwFDZiSW
-sCUAusHo+BU1ZkDIjWW+jmdlz+brViZjKjGyiwP2OHyjC1l50v5SfBUappHthFKq
-Z8H+fIgTVcCC2VF4XTWkOvzNZKBYmplCbB2QrwSARpH/FG9xwfs5DXOTTjx+eYz1
-ui/iHHGilY4jpTT/qCN5aOKvnUYPimbNISqviYmYt5+zgABexoq3pDGHra1M7kHS
-Sv9ghpXtt/BBqb3eNrE8ITot5fOXQ4uD7UMbCECk4XkqFB/fJPLW06LfV0qqu4Ej
-6Ba2iB6hEEoMX4MGcgDNpYkcFYOybQ==
-=sHL4
------END PGP SIGNATURE-----
-
---HlL+5n6rz5pIUxbD--
