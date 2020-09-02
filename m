@@ -2,100 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BE1F25B37D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 20:13:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B82C25B385
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 20:14:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726310AbgIBSM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 14:12:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46960 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727946AbgIBSMr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 14:12:47 -0400
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E1A4C061245;
-        Wed,  2 Sep 2020 11:12:47 -0700 (PDT)
-Received: by mail-pf1-x443.google.com with SMTP id o68so100993pfg.2;
-        Wed, 02 Sep 2020 11:12:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=fbE2EUKf0dDLSVGA9OtlMJM3jKWz2OtHZG+cbWW1EL4=;
-        b=aFaTkRn3zQxjMusTi+ps6zxErseC+lODmABkMhmreSjKkO+Q0RTfSjbysZ76viWYw9
-         1ifooaitbz0ScX9rJZ8O7BHLglA+i4SF95xhL0HcBnCJV67Wnxmv2IBQQYNcyhVzEK2j
-         ldwRgLblDjwmQafROVxYajTOSA7B7OAIHHtvQBIENAxOVC7NU/olpFo+qWKXd0zNL/w1
-         ZITuUNbLYODeREV0JG+T93B5p/f+WdXVueyFslItxdwareKCmwwPraCgAdkiOyzRSgA/
-         q7ZMsRpltne8yvmRjcA3Aj4WH7x/uj8qz5bWtvT+FAxHTTB/nUFA6LJ3vbuTw//dyDO+
-         tRqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=fbE2EUKf0dDLSVGA9OtlMJM3jKWz2OtHZG+cbWW1EL4=;
-        b=K64lSr11dfwiB+gMBfRJKVPFETRYNoyRBnmhD0EeL4Otz41Z2GT5uH2Zghd3r0cKCU
-         cKnZCx9dj4q2jkcSDBjaEhPfnvu16JzCHMnINQvmGnoxXHnvTAzmVgxupVWIv7oSwcNo
-         TX30poMq3FsgyR7l0382BKk1lGFNPoT49zKc6iSFQWDiUi5pXsu8+qhOUva78NL98T2y
-         t+78o0Bfltb+YBGdHwB7iUka2PjK1gzdq3Jq4HwuQMg/8uYJFJLAKArETTHos6IU+cN5
-         ljAmBnupLzsCHHkPbCExZLUw/aHkveNILrq5iJG4aCH4iRjedw1gtsJuuvWvvohEfF+E
-         4U4w==
-X-Gm-Message-State: AOAM53138+HJOeJIqdb7uyqpGzDZaGy9cPUA2OLSTxSIT/1dyw6vGHKV
-        +kB1+W5nwN4syjtEe94X7JBGKRnhacE=
-X-Google-Smtp-Source: ABdhPJwmA4fxLfM8pxgx4LqnAQ1g0nJtb0xAFYxTvFhDlnWTdFtJqRHDCGzaD4UVPJyph4XlEMIYIw==
-X-Received: by 2002:a62:7551:: with SMTP id q78mr4415121pfc.140.1599070366505;
-        Wed, 02 Sep 2020 11:12:46 -0700 (PDT)
-Received: from localhost.localdomain (cpe-172-112-234-200.socal.res.rr.com. [172.112.234.200])
-        by smtp.gmail.com with ESMTPSA id u123sm148993pfb.209.2020.09.02.11.12.45
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 02 Sep 2020 11:12:46 -0700 (PDT)
-From:   lindsey.stanpoor@gmail.com
-To:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org, heiko@sntech.de,
-        balbi@kernel.org, cnemo@tutanota.com
-Subject: [PATCH v4 4/4] arm64: dts: rockchip: enable rk3328-rock64 usb3 nodes
-Date:   Wed,  2 Sep 2020 11:12:34 -0700
-Message-Id: <20200902181234.13955-4-lindsey.stanpoor@gmail.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200902181234.13955-1-lindsey.stanpoor@gmail.com>
-References: <20200902181234.13955-1-lindsey.stanpoor@gmail.com>
+        id S1726310AbgIBSOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 14:14:49 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:45272 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726247AbgIBSOt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 14:14:49 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 082IEjVR105945;
+        Wed, 2 Sep 2020 13:14:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599070485;
+        bh=VkCOVQ5uxVARjNX9T8FosOrt2wUqD7roXG4iCY1NK5A=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=eKQfDg0FbSTqqwSic1qeN80TJ5pHAxhSF7NyYGlQW5KR2hTRlQ7wHPc2OJuGUx4p/
+         Ldmj2lAhcueZrFCsXmD0WE1fX6zAva3dFHGhHdyBdwPyjH05xsEU4hQVK3XHgPhe9v
+         V4W2Tno3P7krltiD1PTJ8P9P3vilKpktrHLriOyw=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 082IEiBJ002659
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 2 Sep 2020 13:14:44 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 2 Sep
+ 2020 13:14:44 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 2 Sep 2020 13:14:44 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 082IEi7v045986;
+        Wed, 2 Sep 2020 13:14:44 -0500
+Date:   Wed, 2 Sep 2020 13:14:39 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Suman Anna <s-anna@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <t-kristo@ti.com>,
+        "J, KEERTHY" <j-keerthy@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, <lokeshvutla@ti.com>,
+        <grygorii.strashko@ti.com>, <nsekhar@ti.com>
+Subject: Re: [PATCH 5/7] arm64: dts: ti: k3-am65-wakeup: Use generic
+ temperature-sensor for node name
+Message-ID: <20200902181439.ywzxknv3vb7fcfeo@akan>
+References: <20200901223059.14801-1-nm@ti.com>
+ <20200901223059.14801-6-nm@ti.com>
+ <1cdb8cb1-3a08-423d-ba34-299ac1a4b9b4@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1cdb8cb1-3a08-423d-ba34-299ac1a4b9b4@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Cameron Nemo <cnemo@tutanota.com>
+On 11:55-20200902, Suman Anna wrote:
+> On 9/1/20 5:30 PM, Nishanth Menon wrote:
+> > Use temperature-sensor@ naming for nodes following standard conventions of device
+> > tree (section 2.2.2 Generic Names recommendation in [1]).
+> > 
+> > [1] https://github.com/devicetree-org/devicetree-specification/tree/v0.3
+> > 
+> > Suggested-by: Suman Anna <s-anna@ti.com>
+> > Suggested-by: Vignesh Raghavendra <vigneshr@ti.com>
+> > Signed-off-by: Nishanth Menon <nm@ti.com>
+> > ---
+> >  arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
+> > index bb498be2f0a4..ed42f13e7663 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
+> > @@ -95,7 +95,7 @@
+> >  		clock-names = "gpio";
+> >  	};
+> >  
+> > -	wkup_vtm0: thermal@42050000 {
+> > +	wkup_vtm0: temperature-sensor@42050000 {
+> 
+> There has been a suggestion to use something like thermal-sensor during the
+> bindings review, but it is better to use this standard node name.
 
-Enable USB3 nodes for the rk3328-based PINE Rock64 board.
+Yes - I did notice it as well, and then picked up the recommendation
+straight from 0.3 spec itself.
+> 
+> Reviewed-by: Suman Anna <s-anna@ti.com>
+> 
+> regards
+> Suman
+> 
+> >  		compatible = "ti,am654-vtm";
+> >  		reg = <0x42050000 0x25c>;
+> >  		power-domains = <&k3_pds 80 TI_SCI_PD_EXCLUSIVE>;
+> > 
+> 
 
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-Signed-off-by: Cameron Nemo <cnemo@tutanota.com>
----
- arch/arm64/boot/dts/rockchip/rk3328-rock64.dts | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-index 86cfb5c50a94..0cbf59efcef0 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-@@ -384,6 +384,15 @@ &usb20_otg {
- 	status = "okay";
- };
- 
-+&usbdrd3 {
-+	status = "okay";
-+};
-+
-+&usbdrd_dwc3 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
- &usb_host0_ehci {
- 	status = "okay";
- };
 -- 
-2.28.0
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
