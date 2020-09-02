@@ -2,236 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E693425A6EB
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 09:40:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 230BC25A738
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 09:59:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726323AbgIBHjs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 03:39:48 -0400
-Received: from mga05.intel.com ([192.55.52.43]:58983 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726386AbgIBHjr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Sep 2020 03:39:47 -0400
-IronPort-SDR: w+sVhTIR1FU5l1omH1VmLyEgSFzooiCH8IBbgzigadxBZd28xPW40WX5NmM/SbsfTS2YuXWulX
- FDvw2+MkORpw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9731"; a="242163301"
-X-IronPort-AV: E=Sophos;i="5.76,381,1592895600"; 
-   d="scan'208";a="242163301"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2020 00:39:41 -0700
-IronPort-SDR: RgTVMExpPOjXZ/Qzf+arWf4VKdtTDlfMfqNaZTssL6deE9F0GdvBHabkRQdLGrO5SyJn3VJ8tA
- jHWKUDfXq6DQ==
-X-IronPort-AV: E=Sophos;i="5.76,381,1592895600"; 
-   d="scan'208";a="282226772"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2020 00:39:37 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 34752207AD; Wed,  2 Sep 2020 10:39:35 +0300 (EEST)
-Date:   Wed, 2 Sep 2020 10:39:35 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] media: imx258: Get clock from device properties
- and enable it via runtime PM
-Message-ID: <20200902073935.GD32646@paasikivi.fi.intel.com>
-References: <1599031090-21608-1-git-send-email-krzk@kernel.org>
- <1599031090-21608-3-git-send-email-krzk@kernel.org>
+        id S1726426AbgIBH7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 03:59:11 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:58048 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726586AbgIBH6w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 03:58:52 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0827ldTA002930;
+        Wed, 2 Sep 2020 09:57:17 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=zt14ziy4OTTPyQeA+zhrodnOKfhhzc5gP1zGODBiazA=;
+ b=uUUYzTOVb8DO2xvv/x53D7ok3TQpAJbCsuUq3N1NkRQZbf0mkq1s4pAWFj5LBhc6Jvme
+ SnHRBhvzcDdl+ls3TlbKaLa2WZh6FHNqK8oohJi2p/aQ+VEF7SElcfz4wM5/vS9b7mSu
+ RNHLP6q96wScOGAWHrGIX1pfFFOIaYQHuHc4TsgIMjvryM7UZJeZ9ZeZlHYyHtOnupgh
+ iYBtIBe6KzPi0cGaLSQWcrakSV1n95AduNjcduG2VZh1dlASGK7LV6fVHsApkcGlA/zv
+ 3lrog+CUB4UgKFzKkbyKmKTtn+oTJdLkYfQf+DPlMhT7Vuwa4yS5fKbiERQ3zxMgdJWI uw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 337csvv4t7-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 02 Sep 2020 09:57:17 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2BA2F10002A;
+        Wed,  2 Sep 2020 09:57:15 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 080F5212FB9;
+        Wed,  2 Sep 2020 09:57:15 +0200 (CEST)
+Received: from localhost (10.75.127.46) by SFHDAG3NODE2.st.com (10.75.127.8)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 2 Sep 2020 09:57:14
+ +0200
+From:   Amelie Delaunay <amelie.delaunay@st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Amelie Delaunay <amelie.delaunay@st.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
+Subject: [RESEND PATCH v2 0/6] Add STUSB160x Type-C port controller support
+Date:   Wed, 2 Sep 2020 09:57:01 +0200
+Message-ID: <20200902075707.9052-1-amelie.delaunay@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1599031090-21608-3-git-send-email-krzk@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG1NODE1.st.com (10.75.127.1) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-09-02_03:2020-09-02,2020-09-02 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+This series adds support for STMicroelectronics STUSB160x Type-C port
+controllers [1].
+STUSB160x driver requires to get power operation mode via device tree,
+that's why this series also adds the optional DT property power-opmode
+for usb-c-connector to select the power operation mode capability and
+a function to convert the power operation mode string into power
+operation mode value.
+This driver has been tested on stm32mp157c-dk2 [2], which has a Type-C
+connector managed by STUSB1600, and connected to USB OTG controller. 
 
-Thanks for the update.
+[1] https://www.st.com/en/interfaces-and-transceivers/usb-type-c-and-power-delivery-controllers.html
+[2] https://www.st.com/en/evaluation-tools/stm32mp157c-dk2.html
 
-On Wed, Sep 02, 2020 at 09:18:10AM +0200, Krzysztof Kozlowski wrote:
-> The IMX258 sensor driver checked in device properties for a
-> clock-frequency property which actually does not mean that the clock is
-> really running such frequency or is it even enabled.
-> 
-> Get the provided clock and check it frequency.  If none is provided,
-> fall back to old property.
-> 
-> Enable the clock when accessing the IMX258 registers and when streaming
-> starts with runtime PM.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> ---
-> 
-> Changes since v1:
-> 1. Use runtime PM for clock toggling
-> ---
->  drivers/media/i2c/imx258.c | 68 ++++++++++++++++++++++++++++++++++++++++------
->  1 file changed, 59 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-> index c20bac9b00ec..ee38dafb8450 100644
-> --- a/drivers/media/i2c/imx258.c
-> +++ b/drivers/media/i2c/imx258.c
-> @@ -2,6 +2,7 @@
->  // Copyright (C) 2018 Intel Corporation
->  
->  #include <linux/acpi.h>
-> +#include <linux/clk.h>
->  #include <linux/delay.h>
->  #include <linux/i2c.h>
->  #include <linux/module.h>
-> @@ -68,6 +69,9 @@
->  #define REG_CONFIG_MIRROR_FLIP		0x03
->  #define REG_CONFIG_FLIP_TEST_PATTERN	0x02
->  
-> +/* Input clock frequency in Hz */
-> +#define IMX258_INPUT_CLOCK_FREQ		19200000
-> +
->  struct imx258_reg {
->  	u16 address;
->  	u8 val;
-> @@ -610,6 +614,8 @@ struct imx258 {
->  
->  	/* Streaming on/off */
->  	bool streaming;
-> +
-> +	struct clk *clk;
->  };
->  
->  static inline struct imx258 *to_imx258(struct v4l2_subdev *_sd)
-> @@ -972,6 +978,27 @@ static int imx258_stop_streaming(struct imx258 *imx258)
->  	return 0;
->  }
->  
-> +static int imx258_power_on(struct device *dev)
-> +{
-> +	struct imx258 *imx258 = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(imx258->clk);
-> +	if (ret)
-> +		dev_err(dev, "failed to enable clock\n");
-> +
-> +	return ret;
-> +}
-> +
-> +static int imx258_power_off(struct device *dev)
-> +{
-> +	struct imx258 *imx258 = dev_get_drvdata(dev);
-> +
-> +	clk_disable_unprepare(imx258->clk);
-> +
-> +	return 0;
-> +}
-> +
->  static int imx258_set_stream(struct v4l2_subdev *sd, int enable)
->  {
->  	struct imx258 *imx258 = to_imx258(sd);
-> @@ -1201,9 +1228,27 @@ static int imx258_probe(struct i2c_client *client)
->  	int ret;
->  	u32 val = 0;
->  
-> -	device_property_read_u32(&client->dev, "clock-frequency", &val);
-> -	if (val != 19200000)
-> -		return -EINVAL;
-> +	imx258 = devm_kzalloc(&client->dev, sizeof(*imx258), GFP_KERNEL);
-> +	if (!imx258)
-> +		return -ENOMEM;
-> +
-> +	dev_set_drvdata(&client->dev, imx258);
-
-This you cannot do --- it'll be overwritten by v4l2_i2c_subdev_init().
-
-> +
-> +	imx258->clk = devm_clk_get_optional(&client->dev, NULL);
-> +	if (!imx258->clk) {
-
-You can move declaration of val here (I think).
-
-> +		dev_info(&client->dev, "no clock provided, using clock-frequency property\n");
-
-As this is showing up on all ACPI based systems, I guess dev_dbg() would be
-more appropriate.
-
-Please also wrap lines over 80 if they reasonably can be.
-
-> +
-> +		device_property_read_u32(&client->dev, "clock-frequency", &val);
-> +		if (val != IMX258_INPUT_CLOCK_FREQ)
-> +			return -EINVAL;
-> +	} else if (IS_ERR(imx258->clk)) {
-> +		return dev_err_probe(&client->dev, PTR_ERR(imx258->clk), "error getting clock\n");
-> +	} else {
-> +		if (clk_get_rate(imx258->clk) != IMX258_INPUT_CLOCK_FREQ) {
-> +			dev_err(&client->dev, "input clock frequency not supported\n");
-> +			return -EINVAL;
-> +		}
-> +	}
->  
->  	/*
->  	 * Check that the device is mounted upside down. The driver only
-> @@ -1213,24 +1258,25 @@ static int imx258_probe(struct i2c_client *client)
->  	if (ret || val != 180)
->  		return -EINVAL;
->  
-> -	imx258 = devm_kzalloc(&client->dev, sizeof(*imx258), GFP_KERNEL);
-> -	if (!imx258)
-> -		return -ENOMEM;
-> -
->  	/* Initialize subdev */
->  	v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
->  
-> +	/* Will be powered off via pm_runtime_idle */
-> +	ret = imx258_power_on(&client->dev);
-> +	if (ret)
-> +		return ret;
-> +
->  	/* Check module identity */
->  	ret = imx258_identify_module(imx258);
->  	if (ret)
-> -		return ret;
-> +		goto error_identify;
->  
->  	/* Set default mode to max resolution */
->  	imx258->cur_mode = &supported_modes[0];
->  
->  	ret = imx258_init_controls(imx258);
->  	if (ret)
-> -		return ret;
-> +		goto error_identify;
->  
->  	/* Initialize subdev */
->  	imx258->sd.internal_ops = &imx258_internal_ops;
-> @@ -1260,6 +1306,9 @@ static int imx258_probe(struct i2c_client *client)
->  error_handler_free:
->  	imx258_free_controls(imx258);
->  
-> +error_identify:
-> +	imx258_power_off(&client->dev);
-> +
->  	return ret;
->  }
->  
-> @@ -1280,6 +1329,7 @@ static int imx258_remove(struct i2c_client *client)
->  
->  static const struct dev_pm_ops imx258_pm_ops = {
->  	SET_SYSTEM_SLEEP_PM_OPS(imx258_suspend, imx258_resume)
-> +	SET_RUNTIME_PM_OPS(imx258_power_off, imx258_power_on, NULL)
->  };
->  
->  #ifdef CONFIG_ACPI
+Amelie Delaunay (6):
+  dt-bindings: connector: add power-opmode optional property to
+    usb-connector
+  usb: typec: add typec_find_pwr_opmode
+  dt-bindings: usb: Add DT bindings for STUSB160x Type-C controller
+  usb: typec: add support for STUSB160x Type-C controller family
+  ARM: dts: stm32: add STUSB1600 Type-C using I2C4 on stm32mp15xx-dkx
+  ARM: multi_v7_defconfig: enable STUSB160X Type-C port controller
+    support
+---
+Changes in v2:
+- power-opmode DT property description updated.
+---
+ .../bindings/connector/usb-connector.yaml     |  20 +
+ .../devicetree/bindings/usb/st,stusb160x.yaml |  85 ++
+ arch/arm/boot/dts/stm32mp15-pinctrl.dtsi      |   7 +
+ arch/arm/boot/dts/stm32mp15xx-dkx.dtsi        |  38 +
+ arch/arm/configs/multi_v7_defconfig           |   2 +
+ drivers/usb/typec/Kconfig                     |  12 +
+ drivers/usb/typec/Makefile                    |   1 +
+ drivers/usb/typec/class.c                     |  15 +
+ drivers/usb/typec/stusb160x.c                 | 875 ++++++++++++++++++
+ include/linux/usb/typec.h                     |   1 +
+ 10 files changed, 1056 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/st,stusb160x.yaml
+ create mode 100644 drivers/usb/typec/stusb160x.c
 
 -- 
-Sakari Ailus
+2.17.1
+
