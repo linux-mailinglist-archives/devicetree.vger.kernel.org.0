@@ -2,117 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 089BA25B003
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 17:48:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8327D25B013
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 17:49:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728483AbgIBPsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 11:48:02 -0400
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:45574 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728571AbgIBPre (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 11:47:34 -0400
-Received: from pps.filterd (m0098404.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 082FW52j046432;
-        Wed, 2 Sep 2020 11:47:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=B9HMMIYxV7dLKsUViztHWLvJvaoop/tt7LeMtRlkEdg=;
- b=j/L2kevaqTtg0L2RSlXvTdVbe+bR5FpGm3jSl3XkfCeJYMtWlz4wTp6ho1KQ7ifeuYss
- JhzRrfLNCMor+uQiL3FlIUBJ0UtFGbxHPonJa1PJlFPUCo1B/l5mcqCSAdoShdaKiN14
- OI+qbcqPndA51Ome97Nwjj/oOiiMsE4D/6gJgsRMCeKq2amt5Z3C1V7WlrDOkWBcH5It
- zEXxwgkzWsOftYzMqm/qny+zP9gR6LVkAT9kQgJRt/b4e7mj2+75aYFypfh5nWvf2P5Z
- 8RJjuQUKgDS9zDlhCs7RjyWonF3AcReiB2nm12t4AXCs1ZbrdROeyXXH6jXqBZ2sjTka Fw== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 33ae37rh9x-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 02 Sep 2020 11:47:23 -0400
-Received: from m0098404.ppops.net (m0098404.ppops.net [127.0.0.1])
-        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 082FgMtE113019;
-        Wed, 2 Sep 2020 11:47:22 -0400
-Received: from ppma01wdc.us.ibm.com (fd.55.37a9.ip4.static.sl-reverse.com [169.55.85.253])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 33ae37rh8u-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 02 Sep 2020 11:47:22 -0400
-Received: from pps.filterd (ppma01wdc.us.ibm.com [127.0.0.1])
-        by ppma01wdc.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 082FlK8B021110;
-        Wed, 2 Sep 2020 15:47:20 GMT
-Received: from b03cxnp08025.gho.boulder.ibm.com (b03cxnp08025.gho.boulder.ibm.com [9.17.130.17])
-        by ppma01wdc.us.ibm.com with ESMTP id 337en990f3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 02 Sep 2020 15:47:20 +0000
-Received: from b03ledav004.gho.boulder.ibm.com (b03ledav004.gho.boulder.ibm.com [9.17.130.235])
-        by b03cxnp08025.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 082FlGsH34472356
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 2 Sep 2020 15:47:16 GMT
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 5785C78064;
-        Wed,  2 Sep 2020 15:47:19 +0000 (GMT)
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id CA4E67806B;
-        Wed,  2 Sep 2020 15:47:18 +0000 (GMT)
-Received: from [9.211.74.86] (unknown [9.211.74.86])
-        by b03ledav004.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Wed,  2 Sep 2020 15:47:18 +0000 (GMT)
-Subject: Re: [PATCH 2/5] input: misc: Add IBM Operation Panel driver
-To:     Wolfram Sang <wsa@kernel.org>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        linux-i2c@vger.kernel.org, joel@jms.id.au, andrew@aj.id.au,
-        benh@kernel.crashing.org, brendanhiggins@google.com,
-        dmitry.torokhov@gmail.com, robh+dt@kernel.org
-References: <20200820161152.22751-1-eajames@linux.ibm.com>
- <20200820161152.22751-3-eajames@linux.ibm.com>
- <20200901061108.GB1148@ninjato>
-From:   Eddie James <eajames@linux.ibm.com>
-Message-ID: <796de8d4-6771-a8da-ea93-6e7e08aa93b0@linux.ibm.com>
-Date:   Wed, 2 Sep 2020 10:47:18 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        id S1728401AbgIBPsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 11:48:53 -0400
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:34090 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726380AbgIBPsv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 11:48:51 -0400
+Received: by mail-ed1-f67.google.com with SMTP id q21so5431750edv.1;
+        Wed, 02 Sep 2020 08:48:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=25BrYDkb4I/zfoyKcwfjx4o/YRMeDib3DPF5ryd2jrY=;
+        b=oJfFRmLNxWmAvtif2KXjvhAUc+x+e3fiFEbqamCkYeWn12B/cnKt6213V4YR/LFcvo
+         TzvB73D9HHUdeKqyuaQLx5jZErJ7rHrSS8f6gdUsR6zMwd6SydRJBoQ3PqT7zAfIl35T
+         sV4NbGJj9Lgd+TVaYWorYeeweF+ynv+Jtm3HB7nZ7dtJwmOUYO+AEHcekpZEjbDOoTRP
+         HtnLyEFlxyBD9jtqSIeRFlVYsvn8d3wBLMYoHzwEx3aJGLOSzA8J83KfKWGlyOFcT8Jw
+         1n3F0efu+WK/1vpgnqJsKUqyolBMSoF07m1ZNME3lr6h9wG4XAHeUD+4/V0cz24YCNVU
+         TxOw==
+X-Gm-Message-State: AOAM5319AgQo0YmjdT64EJBNcmRPKDAUua8OximjcvoH5ZcSYKKQiVI2
+        ETKcT8vo/GaOxk1AU7uGJVc=
+X-Google-Smtp-Source: ABdhPJyOr19mAVgDdQqKqdQcQlhxjLl5c+AwMZYRoKvZUU35wrmZXDj8yOg7lapvI4vsZNgh0bClog==
+X-Received: by 2002:aa7:da16:: with SMTP id r22mr736126eds.132.1599061728604;
+        Wed, 02 Sep 2020 08:48:48 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.106])
+        by smtp.googlemail.com with ESMTPSA id s7sm3100909ejd.103.2020.09.02.08.48.47
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 02 Sep 2020 08:48:48 -0700 (PDT)
+Date:   Wed, 2 Sep 2020 17:48:45 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Denis GNUtoo Carikli <GNUtoo@cyberdimension.org>,
+        Simon Shields <simon@lineageos.org>
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>
+Subject: Re: [PATCH 24/33] ARM: dts: exynos: Correct compatible of fixed
+ clocks in Midas boards
+Message-ID: <20200902154845.GE21503@kozik-lap>
+References: <20200830135200.24304-1-krzk@kernel.org>
+ <20200830135200.24304-24-krzk@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20200901061108.GB1148@ninjato>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-09-02_09:2020-09-02,2020-09-02 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- spamscore=0 bulkscore=0 phishscore=0 lowpriorityscore=0 clxscore=1011
- mlxlogscore=999 malwarescore=0 priorityscore=1501 adultscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2009020144
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200830135200.24304-24-krzk@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, Aug 30, 2020 at 03:51:51PM +0200, Krzysztof Kozlowski wrote:
+> The fixed clocks implemented by Samsung clock drivers use only one
+> compatible so drop the additional "fixed-clock" to fix dtbs_check
+> warnings like:
+> 
+>   arch/arm/boot/dts/exynos4412-i9300.dt.yaml: xxti: compatible:0: 'fixed-clock' was expected
+>     From schema: Documentation/devicetree/bindings/clock/fixed-clock.yaml
+>   arch/arm/boot/dts/exynos4412-i9300.dt.yaml: xxti: compatible: ['samsung,clock-xxti', 'fixed-clock'] is too long
+>   arch/arm/boot/dts/exynos4412-i9300.dt.yaml: xxti: compatible: Additional items are not allowed ('fixed-clock' was unexpected)
+>   arch/arm/boot/dts/exynos4412-i9300.dt.yaml: xxti: '#clock-cells' is a required property
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  arch/arm/boot/dts/exynos4412-midas.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
-On 9/1/20 1:11 AM, Wolfram Sang wrote:
->> +	switch (event) {
->> +	case I2C_SLAVE_STOP:
->> +		command_size = panel->idx;
->> +		fallthrough;
->> +	case I2C_SLAVE_WRITE_REQUESTED:
->> +		panel->idx = 0;
->> +		break;
->> +	case I2C_SLAVE_WRITE_RECEIVED:
->> +		if (panel->idx < sizeof(panel->command))
->> +			panel->command[panel->idx++] = *val;
->> +		else
->> +			dev_dbg(&panel->input->dev, "command truncated\n");
-> Just double checking: Do you really want to process truncated commands?
-> Since you detect the state here, you could also choose to reject such
-> commands?
+Applied 24-33.
 
+Best regards,
+Krzysztof
 
-Yes I suppose not. It could still be a valid command with extra bytes, 
-but unlikely, so probably better not to handle it.
-
-
-Thanks,
-
-Eddie
-
-
->
