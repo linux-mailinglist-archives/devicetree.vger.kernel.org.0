@@ -2,71 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D7B725B1BD
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 18:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F0F925B215
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 18:52:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727784AbgIBQco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 12:32:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39664 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726247AbgIBQcn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Sep 2020 12:32:43 -0400
-Received: from kozik-lap.mshome.net (unknown [194.230.155.106])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 446D420758;
-        Wed,  2 Sep 2020 16:32:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599064363;
-        bh=yCZ82wEQrcGfe6X5PNectLGO+bsmwuVhlJTUr6FnevA=;
-        h=From:To:Cc:Subject:Date:From;
-        b=pNQOe7N6kEGzUzeNy/aBiwiLLg08GkywQ3zNqjWxeh94oya0il2et8wGxmZVAjGhZ
-         CzirKd/Q4jS1/95OuRk3BYnfaHFCmC+HlTMk/r2FGG8VFVF2rwRoNPGrZT51YbkYwZ
-         OO+i+zyhE5MTi86q8As86xeJAmW/AqTLgnOPWVsA=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH] arm64: dts: imx8mm-var-som: Add 32.768 kHz clock to PMIC
-Date:   Wed,  2 Sep 2020 18:32:23 +0200
-Message-Id: <20200902163223.17784-1-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
+        id S1726742AbgIBQvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 12:51:10 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:54248 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726526AbgIBQvK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 12:51:10 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 082Gp5Pi033319;
+        Wed, 2 Sep 2020 11:51:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599065465;
+        bh=dDTC0gpdXie8DL9+hkg/Fiz8VsxEy70PtTPaF9NGk88=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=MbZXF4kHAWsQrSOmCIKVq4M7gPmwVSHjYUy0LvUa0K1wiYX8R+md9/hnxngJrx/im
+         q5371/6H3GfnClaIE2TUPU5Zl8O10v6Mc7NcxK9UxW9DjlEd3Rxwn0MkxZ3pYwnltx
+         VO2LyhJUciRtsGOWOtSKDP2PKL2/9s1z7C4igTAE=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 082Gp4eq095150
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 2 Sep 2020 11:51:05 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 2 Sep
+ 2020 11:51:04 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 2 Sep 2020 11:51:04 -0500
+Received: from [10.250.34.112] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 082Gp4rc046690;
+        Wed, 2 Sep 2020 11:51:04 -0500
+Subject: Re: [PATCH 6/7] arm64: dts: ti: k3-*: Use generic adc for node names
+To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <t-kristo@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, <lokeshvutla@ti.com>,
+        <grygorii.strashko@ti.com>, <nsekhar@ti.com>
+References: <20200901223059.14801-1-nm@ti.com>
+ <20200901223059.14801-7-nm@ti.com>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <60e6b790-360a-6eaf-03a3-5bb256adf215@ti.com>
+Date:   Wed, 2 Sep 2020 11:51:03 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20200901223059.14801-7-nm@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ROHM BD71847 PMIC has a 32.768 kHz clock.  Adding necessary parent
-allows to probe the bd718x7 clock driver fixing boot errors:
+On 9/1/20 5:30 PM, Nishanth Menon wrote:
+> Use adc@ naming for nodes following standard conventions of device
+> tree (section 2.2.2 Generic Names recommendation in [1]).
+> 
+> [1] https://github.com/devicetree-org/devicetree-specification/tree/v0.3
+> 
+> Suggested-by: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi         | 4 ++--
+>  arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 4 ++--
+>  2 files changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+> index 51ca4b4d4c21..6dfec68ac865 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+> @@ -80,7 +80,7 @@
+>  		#size-cells = <0>;
+>  	};
+>  
+> -	tscadc0: tscadc@40200000 {
+> +	tscadc0: adc@40200000 {
 
-    bd718xx-clk bd71847-clk.1.auto: No parent clk found
-    bd718xx-clk: probe of bd71847-clk.1.auto failed with error -22
+OK with these changes, since these seem to be only have the adc child nodes.
+This node is essentially a parent node for touchscreen and adc child nodes. The
+driver is currently looking for "tsc" on touchscreen child nodes, but none of
+the K3 SoCs have them atm.
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+regards
+Suman
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-index baef13d67554..7f74fba58aeb 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-@@ -175,6 +175,10 @@
- 		interrupts = <8 GPIO_ACTIVE_LOW>;
- 		rohm,reset-snvs-powered;
- 
-+		#clock-cells = <0>;
-+		clocks = <&osc_32k 0>;
-+		clock-output-names = "clk-32k-out";
-+
- 		regulators {
- 			buck1_reg: BUCK1 {
- 				regulator-name = "buck1";
--- 
-2.17.1
+>  		compatible = "ti,am654-tscadc", "ti,am3359-tscadc";
+>  		reg = <0x0 0x40200000 0x0 0x1000>;
+>  		interrupts = <GIC_SPI 580 IRQ_TYPE_LEVEL_HIGH>;
+> @@ -98,7 +98,7 @@
+>  		};
+>  	};
+>  
+> -	tscadc1: tscadc@40210000 {
+> +	tscadc1: adc@40210000 {
+>  		compatible = "ti,am654-tscadc", "ti,am3359-tscadc";
+>  		reg = <0x0 0x40210000 0x0 0x1000>;
+>  		interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> index 9ad0266598ad..81801f519a61 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> @@ -211,7 +211,7 @@
+>  		};
+>  	};
+>  
+> -	tscadc0: tscadc@40200000 {
+> +	tscadc0: adc@40200000 {
+>  		compatible = "ti,am3359-tscadc";
+>  		reg = <0x0 0x40200000 0x0 0x1000>;
+>  		interrupts = <GIC_SPI 860 IRQ_TYPE_LEVEL_HIGH>;
+> @@ -230,7 +230,7 @@
+>  		};
+>  	};
+>  
+> -	tscadc1: tscadc@40210000 {
+> +	tscadc1: adc@40210000 {
+>  		compatible = "ti,am3359-tscadc";
+>  		reg = <0x0 0x40210000 0x0 0x1000>;
+>  		interrupts = <GIC_SPI 861 IRQ_TYPE_LEVEL_HIGH>;
+> 
 
