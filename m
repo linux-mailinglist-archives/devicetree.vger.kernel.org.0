@@ -2,231 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDD5525A6E3
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 09:37:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E693425A6EB
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 09:40:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726268AbgIBHho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 03:37:44 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:37210 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726144AbgIBHho (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 03:37:44 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0827bakB010415;
-        Wed, 2 Sep 2020 02:37:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599032256;
-        bh=ioADAJbmdIrRMleIHtaIauggnI8c0YtChaGlXSHM/lw=;
-        h=Subject:From:To:CC:References:Date:In-Reply-To;
-        b=El+yaWgP+gQY7V1tM2WUYE0nDXqTVGMtciB/3sFL1qT3Lqvfxck2AFA6UUg1Elqni
-         gvW7wTY7BeEqwmz6osRaLTyzc1djAvQgQOEkaHjSZvsfYvtqfefgCXITaXGl7mJ/+T
-         hPpCawnKyJ6hAw82Zdy2KbUwdCG+FKfZ4omUhmaY=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0827bard015843
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Sep 2020 02:37:36 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 2 Sep
- 2020 02:37:36 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 2 Sep 2020 02:37:36 -0500
-Received: from [10.250.232.147] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0827bXKs035768;
-        Wed, 2 Sep 2020 02:37:34 -0500
-Subject: Re: [RESEND PATCH 1/2] arm64: dts: ti: k3-j721e-main: Add PCIe device
- tree nodes
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>
-CC:     Tero Kristo <t-kristo@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20200901140628.8800-1-kishon@ti.com>
- <20200901140628.8800-2-kishon@ti.com> <20200901145204.ayybrzqjcfhiqnfq@akan>
- <5f23246a-a9d7-495d-a4ec-d392ad95a450@ti.com>
-Message-ID: <4b17cace-09d5-af8c-6e7f-9358cfdceb4d@ti.com>
-Date:   Wed, 2 Sep 2020 13:07:33 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726323AbgIBHjs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 03:39:48 -0400
+Received: from mga05.intel.com ([192.55.52.43]:58983 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726386AbgIBHjr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Sep 2020 03:39:47 -0400
+IronPort-SDR: w+sVhTIR1FU5l1omH1VmLyEgSFzooiCH8IBbgzigadxBZd28xPW40WX5NmM/SbsfTS2YuXWulX
+ FDvw2+MkORpw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9731"; a="242163301"
+X-IronPort-AV: E=Sophos;i="5.76,381,1592895600"; 
+   d="scan'208";a="242163301"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2020 00:39:41 -0700
+IronPort-SDR: RgTVMExpPOjXZ/Qzf+arWf4VKdtTDlfMfqNaZTssL6deE9F0GdvBHabkRQdLGrO5SyJn3VJ8tA
+ jHWKUDfXq6DQ==
+X-IronPort-AV: E=Sophos;i="5.76,381,1592895600"; 
+   d="scan'208";a="282226772"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2020 00:39:37 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 34752207AD; Wed,  2 Sep 2020 10:39:35 +0300 (EEST)
+Date:   Wed, 2 Sep 2020 10:39:35 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] media: imx258: Get clock from device properties
+ and enable it via runtime PM
+Message-ID: <20200902073935.GD32646@paasikivi.fi.intel.com>
+References: <1599031090-21608-1-git-send-email-krzk@kernel.org>
+ <1599031090-21608-3-git-send-email-krzk@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <5f23246a-a9d7-495d-a4ec-d392ad95a450@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1599031090-21608-3-git-send-email-krzk@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Krzysztof,
 
-On 02/09/20 10:24 am, Kishon Vijay Abraham I wrote:
-> Hi Nishanth,
-> 
-> On 01/09/20 8:22 pm, Nishanth Menon wrote:
->> On 19:36-20200901, Kishon Vijay Abraham I wrote:
->>> Add PCIe device tree node (both RC and EP) for the four
->>> PCIe instances here.
->>>
->>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
->>> ---
->>>   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 218 ++++++++++++++++++++++
->>>   arch/arm64/boot/dts/ti/k3-j721e.dtsi      |   5 +-
->>>   2 files changed, 222 insertions(+), 1 deletion(-)
->>
->>
->> Did you look at the diff of the dtbs_check before and after this
->> series? I see: https://pastebin.ubuntu.com/p/9fyfrTjx9M/
-> 
-> I didn't see any errors when I checked for individual bindings
-> a0393678@a0393678-ssd:~/repos/linux$ mkconfig64 dtbs_check 
-> DT_SCHEMA_FILES="Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml" 
-> 
->    SCHEMA  Documentation/devicetree/bindings/processed-schema.yaml
->    DTC     arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
->    DTC     arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
->    CHECK   arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
->    CHECK   arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
-> a0393678@a0393678-ssd:~/repos/linux$ mkconfig64 dtbs_check 
-> DT_SCHEMA_FILES="Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml" 
-> 
->    SCHEMA  Documentation/devicetree/bindings/processed-schema.yaml
->    DTC     arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
->    DTC     arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
->    CHECK   arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
->    CHECK   arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
+Thanks for the update.
 
-Can you give hint on why I get ranges is too long error
-https://pastebin.ubuntu.com/p/cPm2tg3dcV/ which I give mkconfig64 
-dtbs_check but don't see an error when I include "DT_SCHEMA_FILES"?
+On Wed, Sep 02, 2020 at 09:18:10AM +0200, Krzysztof Kozlowski wrote:
+> The IMX258 sensor driver checked in device properties for a
+> clock-frequency property which actually does not mean that the clock is
+> really running such frequency or is it even enabled.
+> 
+> Get the provided clock and check it frequency.  If none is provided,
+> fall back to old property.
+> 
+> Enable the clock when accessing the IMX258 registers and when streaming
+> starts with runtime PM.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> 
+> ---
+> 
+> Changes since v1:
+> 1. Use runtime PM for clock toggling
+> ---
+>  drivers/media/i2c/imx258.c | 68 ++++++++++++++++++++++++++++++++++++++++------
+>  1 file changed, 59 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
+> index c20bac9b00ec..ee38dafb8450 100644
+> --- a/drivers/media/i2c/imx258.c
+> +++ b/drivers/media/i2c/imx258.c
+> @@ -2,6 +2,7 @@
+>  // Copyright (C) 2018 Intel Corporation
+>  
+>  #include <linux/acpi.h>
+> +#include <linux/clk.h>
+>  #include <linux/delay.h>
+>  #include <linux/i2c.h>
+>  #include <linux/module.h>
+> @@ -68,6 +69,9 @@
+>  #define REG_CONFIG_MIRROR_FLIP		0x03
+>  #define REG_CONFIG_FLIP_TEST_PATTERN	0x02
+>  
+> +/* Input clock frequency in Hz */
+> +#define IMX258_INPUT_CLOCK_FREQ		19200000
+> +
+>  struct imx258_reg {
+>  	u16 address;
+>  	u8 val;
+> @@ -610,6 +614,8 @@ struct imx258 {
+>  
+>  	/* Streaming on/off */
+>  	bool streaming;
+> +
+> +	struct clk *clk;
+>  };
+>  
+>  static inline struct imx258 *to_imx258(struct v4l2_subdev *_sd)
+> @@ -972,6 +978,27 @@ static int imx258_stop_streaming(struct imx258 *imx258)
+>  	return 0;
+>  }
+>  
+> +static int imx258_power_on(struct device *dev)
+> +{
+> +	struct imx258 *imx258 = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(imx258->clk);
+> +	if (ret)
+> +		dev_err(dev, "failed to enable clock\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static int imx258_power_off(struct device *dev)
+> +{
+> +	struct imx258 *imx258 = dev_get_drvdata(dev);
+> +
+> +	clk_disable_unprepare(imx258->clk);
+> +
+> +	return 0;
+> +}
+> +
+>  static int imx258_set_stream(struct v4l2_subdev *sd, int enable)
+>  {
+>  	struct imx258 *imx258 = to_imx258(sd);
+> @@ -1201,9 +1228,27 @@ static int imx258_probe(struct i2c_client *client)
+>  	int ret;
+>  	u32 val = 0;
+>  
+> -	device_property_read_u32(&client->dev, "clock-frequency", &val);
+> -	if (val != 19200000)
+> -		return -EINVAL;
+> +	imx258 = devm_kzalloc(&client->dev, sizeof(*imx258), GFP_KERNEL);
+> +	if (!imx258)
+> +		return -ENOMEM;
+> +
+> +	dev_set_drvdata(&client->dev, imx258);
 
-Thanks
-Kishon
+This you cannot do --- it'll be overwritten by v4l2_i2c_subdev_init().
 
->>
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi 
->>> b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->>> index 00a36a14efe7..a36909d8b8c3 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->>> @@ -28,6 +28,26 @@
->>>           #size-cells = <1>;
->>>           ranges = <0x0 0x0 0x00100000 0x1c000>;
->>> +        pcie0_ctrl: pcie-ctrl@4070 {
->> https://github.com/devicetree-org/devicetree-specification/releases/download/v0.3/devicetree-specification-v0.3.pdf 
->>
->> Section 2.2.2: why not use syscon@4070 and so on?
-> 
-> okay, will change to generic name.
->>
->>> +            compatible = "syscon";
->>> +            reg = <0x00004070 0x4>;
->>> +        };
->>> +
->>> +        pcie1_ctrl: pcie-ctrl@4074 {
->>> +            compatible = "syscon";
->>> +            reg = <0x00004074 0x4>;
->>> +        };
->>> +
->>> +        pcie2_ctrl: pcie-ctrl@4078 {
->>> +            compatible = "syscon";
->>> +            reg = <0x00004078 0x4>;
->>> +        };
->>> +
->>> +        pcie3_ctrl: pcie-ctrl@407c {
->>> +            compatible = "syscon";
->>> +            reg = <0x0000407c 0x4>;
->>> +        };
->>> +
->>>           serdes_ln_ctrl: serdes-ln-ctrl@4080 {
->>>               compatible = "mmio-mux";
->>>               reg = <0x00004080 0x50>;
->>> @@ -576,6 +596,204 @@
->>>           };
->>>       };
->>> +    pcie0_rc: pcie@2900000 {
->>> +        compatible = "ti,j721e-pcie-host";
->>> +        reg = <0x00 0x02900000 0x00 0x1000>,
->>> +              <0x00 0x02907000 0x00 0x400>,
->>> +              <0x00 0x0d000000 0x00 0x00800000>,
->>> +              <0x00 0x10000000 0x00 0x00001000>;
->>> +        reg-names = "intd_cfg", "user_cfg", "reg", "cfg";
->>> +        interrupt-names = "link_state";
->>> +        interrupts = <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
->>> +        device_type = "pci";
->>> +        ti,syscon-pcie-ctrl = <&pcie0_ctrl>;
->>> +        max-link-speed = <3>;
->>> +        num-lanes = <2>;
->>> +        power-domains = <&k3_pds 239 TI_SCI_PD_EXCLUSIVE>;
->>> +        clocks = <&k3_clks 239 1>;
->>> +        clock-names = "fck";
->>> +        #address-cells = <3>;
->>> +        #size-cells = <2>;
->>> +        bus-range = <0x0 0xf>;
->>> +        vendor-id = <0x104c>;
->>> +        device-id = <0xb00d>;
->>> +        msi-map = <0x0 &gic_its 0x0 0x10000>;
->>> +        dma-coherent;
->>> +        ranges = <0x01000000 0x0 0x10001000 0x0 0x10001000 0x0 
->>> 0x0010000>,
->>> +             <0x02000000 0x0 0x10011000 0x0 0x10011000 0x0 0x7fef000>;
->>> +        dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
->>> +    };
->>> +
->>> +    pcie0_ep: pcie-ep@2900000 {
->> Not related to this patch, but just a suggestion: pcie-ep -> do we
->> need to add that to the Generic names in DT spec?
->>
->> [...]
->>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi 
->>> b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
->>> index f787aa73aaae..eeb02115b966 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
->>> @@ -132,9 +132,12 @@
->>>                <0x00 0x06400000 0x00 0x06400000 0x00 0x00400000>, /* 
->>> USBSS1 */
->>>                <0x00 0x01000000 0x00 0x01000000 0x00 0x0af02400>, /* 
->>> Most peripherals */
->>>                <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>, /* 
->>> MAIN NAVSS */
->>> -             <0x00 0x0d000000 0x00 0x0d000000 0x00 0x01000000>, /* 
->>> PCIe Core*/
->>> +             <0x00 0x0d000000 0x00 0x0d000000 0x00 0x01800000>, /* 
->>> PCIe Core*/
->>> +             <0x00 0x0e000000 0x00 0x0e000000 0x00 0x01800000>, /* 
->>> PCIe Core*/
->>>                <0x00 0x10000000 0x00 0x10000000 0x00 0x10000000>, /* 
->>> PCIe DAT */
->>                                         ^^
->>                                     should be PCIe1?
->> Just because you are introducing PCIe2,3 in this patch, the net result
->> does'nt look consistent? Also might want to cover this change in the
->> $commit_message.
-> 
-> yeah, we could have a separate patch for this change.
-> 
-> Thanks
-> Kishon
-> 
->> [...]
->>>                <0x00 0x64800000 0x00 0x64800000 0x00 0x00800000>, /* 
->>> C71 */
->>> +             <0x44 0x00000000 0x44 0x00000000 0x00 0x08000000>, /* 
->>> PCIe2 DAT */
->>> +             <0x44 0x10000000 0x44 0x10000000 0x00 0x08000000>, /* 
->>> PCIe3 DAT */
->>>                <0x4d 0x80800000 0x4d 0x80800000 0x00 0x00800000>, /* 
->>> C66_0 */
->>>                <0x4d 0x81800000 0x4d 0x81800000 0x00 0x00800000>, /* 
->>> C66_1 */
->>>                <0x4e 0x20000000 0x4e 0x20000000 0x00 0x00080000>, /* 
->>> GPU */
->>> -- 
->>> 2.17.1
->>>
->>
+> +
+> +	imx258->clk = devm_clk_get_optional(&client->dev, NULL);
+> +	if (!imx258->clk) {
+
+You can move declaration of val here (I think).
+
+> +		dev_info(&client->dev, "no clock provided, using clock-frequency property\n");
+
+As this is showing up on all ACPI based systems, I guess dev_dbg() would be
+more appropriate.
+
+Please also wrap lines over 80 if they reasonably can be.
+
+> +
+> +		device_property_read_u32(&client->dev, "clock-frequency", &val);
+> +		if (val != IMX258_INPUT_CLOCK_FREQ)
+> +			return -EINVAL;
+> +	} else if (IS_ERR(imx258->clk)) {
+> +		return dev_err_probe(&client->dev, PTR_ERR(imx258->clk), "error getting clock\n");
+> +	} else {
+> +		if (clk_get_rate(imx258->clk) != IMX258_INPUT_CLOCK_FREQ) {
+> +			dev_err(&client->dev, "input clock frequency not supported\n");
+> +			return -EINVAL;
+> +		}
+> +	}
+>  
+>  	/*
+>  	 * Check that the device is mounted upside down. The driver only
+> @@ -1213,24 +1258,25 @@ static int imx258_probe(struct i2c_client *client)
+>  	if (ret || val != 180)
+>  		return -EINVAL;
+>  
+> -	imx258 = devm_kzalloc(&client->dev, sizeof(*imx258), GFP_KERNEL);
+> -	if (!imx258)
+> -		return -ENOMEM;
+> -
+>  	/* Initialize subdev */
+>  	v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
+>  
+> +	/* Will be powered off via pm_runtime_idle */
+> +	ret = imx258_power_on(&client->dev);
+> +	if (ret)
+> +		return ret;
+> +
+>  	/* Check module identity */
+>  	ret = imx258_identify_module(imx258);
+>  	if (ret)
+> -		return ret;
+> +		goto error_identify;
+>  
+>  	/* Set default mode to max resolution */
+>  	imx258->cur_mode = &supported_modes[0];
+>  
+>  	ret = imx258_init_controls(imx258);
+>  	if (ret)
+> -		return ret;
+> +		goto error_identify;
+>  
+>  	/* Initialize subdev */
+>  	imx258->sd.internal_ops = &imx258_internal_ops;
+> @@ -1260,6 +1306,9 @@ static int imx258_probe(struct i2c_client *client)
+>  error_handler_free:
+>  	imx258_free_controls(imx258);
+>  
+> +error_identify:
+> +	imx258_power_off(&client->dev);
+> +
+>  	return ret;
+>  }
+>  
+> @@ -1280,6 +1329,7 @@ static int imx258_remove(struct i2c_client *client)
+>  
+>  static const struct dev_pm_ops imx258_pm_ops = {
+>  	SET_SYSTEM_SLEEP_PM_OPS(imx258_suspend, imx258_resume)
+> +	SET_RUNTIME_PM_OPS(imx258_power_off, imx258_power_on, NULL)
+>  };
+>  
+>  #ifdef CONFIG_ACPI
+
+-- 
+Sakari Ailus
