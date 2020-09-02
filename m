@@ -2,335 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55EBB25A2DA
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 04:05:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B813B25A3BF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 05:05:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726144AbgIBCFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Sep 2020 22:05:17 -0400
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:8553 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726312AbgIBCFL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 22:05:11 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5f4efda80000>; Tue, 01 Sep 2020 19:04:24 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Tue, 01 Sep 2020 19:05:11 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Tue, 01 Sep 2020 19:05:11 -0700
-Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 2 Sep
- 2020 02:05:10 +0000
-Received: from hqnvemgw03.nvidia.com (10.124.88.68) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Wed, 2 Sep 2020 02:05:10 +0000
-Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.173.243]) by hqnvemgw03.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5f4efdd60000>; Tue, 01 Sep 2020 19:05:10 -0700
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <sakari.ailus@iki.fi>,
-        <hverkuil@xs4all.nl>, <jacopo+renesas@jmondi.org>,
-        <luca@lucaceresoli.net>, <leonl@leopardimaging.com>,
-        <robh+dt@kernel.org>, <lgirdwood@gmail.com>, <broonie@kernel.org>
-CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v5 3/3] media: i2c: imx274: Add IMX274 power on and off sequence
-Date:   Tue, 1 Sep 2020 19:04:38 -0700
-Message-ID: <1599012278-10203-4-git-send-email-skomatineni@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1599012278-10203-1-git-send-email-skomatineni@nvidia.com>
-References: <1599012278-10203-1-git-send-email-skomatineni@nvidia.com>
-X-NVConfidentiality: public
+        id S1726193AbgIBDFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Sep 2020 23:05:34 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:56280 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726174AbgIBDFb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Sep 2020 23:05:31 -0400
+X-UUID: 112333ac71ac4379aae85c4ceb33100c-20200902
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=jfIIm6tENvdGpct6biW2eJvqIKrDoiDyyQ/L8G7febQ=;
+        b=sI9UiaMFAQPk/hDkzx6OoBhhmTyvH3FkyKIfJlhYYx0raHtlUOHOHSE1avsyeK2uxM9fyGDrnA8gz37fJtT9mIjxNiJ+wm0HOCRnNO0+okMvZaB7y0+zP70sgwAnfb4GndH5e3b4Uid+a8g1GmORs3g8DsIbKvJ49921yPxRKno=;
+X-UUID: 112333ac71ac4379aae85c4ceb33100c-20200902
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <crystal.guo@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1352025062; Wed, 02 Sep 2020 11:05:26 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 2 Sep
+ 2020 11:05:25 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 2 Sep 2020 11:05:24 +0800
+Message-ID: <1599015827.30048.22.camel@mhfsdcap03>
+Subject: Re: [v4,0/4] introduce TI reset controller for MT8192 SoC
+From:   Crystal Guo <crystal.guo@mediatek.com>
+To:     Rob Herring <robh@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "s-anna@ti.com" <s-anna@ti.com>, "afd@ti.com" <afd@ti.com>
+CC:     srv_heupstream <srv_heupstream@mediatek.com>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Seiya Wang =?UTF-8?Q?=28=E7=8E=8B=E8=BF=BA=E5=90=9B=29?= 
+        <seiya.wang@mediatek.com>,
+        Stanley Chu =?UTF-8?Q?=28=E6=9C=B1=E5=8E=9F=E9=99=9E=29?= 
+        <stanley.chu@mediatek.com>,
+        Yingjoe Chen =?UTF-8?Q?=28=E9=99=B3=E8=8B=B1=E6=B4=B2=29?= 
+        <Yingjoe.Chen@mediatek.com>,
+        Fan Chen =?UTF-8?Q?=28=E9=99=B3=E5=87=A1=29?= 
+        <fan.chen@mediatek.com>,
+        "Yong Liang =?UTF-8?Q?=28=E6=A2=81=E5=8B=87=29?=" 
+        <Yong.Liang@mediatek.com>
+Date:   Wed, 2 Sep 2020 11:03:47 +0800
+In-Reply-To: <5065a23627a34212aa62df646dbf00ee@mtkmbs05n1.mediatek.inc>
+References: <20200817030324.5690-1-crystal.guo@mediatek.com>
+         <5065a23627a34212aa62df646dbf00ee@mtkmbs05n1.mediatek.inc>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1599012264; bh=Fo0dSLSBxHdyK4wk4Zr34TiHPEYYdx/ygCkJVXWEX7k=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=g/PzepUtbrpVrBIwo/hXB8UxT7K8zp6Bq/5DaZWT9LTzm1MF6yXYQjeLO99wW/JOv
-         Mi1ua5IuMTq5aqjScmIoYa9lrU2jfZumzQwoRXlbz0g8d0IzwpwaZVgcAP0lfooip6
-         YaY3SYebGudqr+SSGH/QfY59kbdSTUTXL7l6z/re2OhPKXwQelxo+hwgySneo5M/lV
-         DtBNXEJRcSP1txVdiOnGd/+KDaV0eIQMqA44IlbXi91Rkms8MqNlJOgs97lbBWcgMX
-         418ydikjmWImPISgotjzXeVZo9NRE44yX4wprZZa4yiHijvnqZ4G1DQ5CEJoR0iWGi
-         AJ4x9dXwLEJKw==
+X-TM-SNTS-SMTP: 8812CB25358BC3F220BEE59098E36044C2C506DE8C77D12AA6E5A2061D7E66462000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IMX274 has VANA analog 2.8V supply, VDIG digital core 1.8V supply,
-and VDDL digital io 1.2V supply which are optional based on camera
-module design.
-
-IMX274 also need external 24Mhz clock and is optional based on
-camera module design.
-
-This patch adds support for IMX274 power on and off to enable and
-disable these supplies and external clock.
-
-Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
-Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
----
- drivers/media/i2c/imx274.c | 134 ++++++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 131 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/media/i2c/imx274.c b/drivers/media/i2c/imx274.c
-index a4b9dfd..79bfac3c6 100644
---- a/drivers/media/i2c/imx274.c
-+++ b/drivers/media/i2c/imx274.c
-@@ -18,7 +18,9 @@
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/of_gpio.h>
-+#include <linux/pm_runtime.h>
- #include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
- #include <linux/slab.h>
- #include <linux/v4l2-mediabus.h>
- #include <linux/videodev2.h>
-@@ -131,6 +133,15 @@
- #define IMX274_TABLE_WAIT_MS			0
- #define IMX274_TABLE_END			1
- 
-+/* regulator supplies */
-+static const char * const imx274_supply_names[] = {
-+	"vddl",  /* IF (1.2V) supply */
-+	"vdig",  /* Digital Core (1.8V) supply */
-+	"vana",  /* Analog (2.8V) supply */
-+};
-+
-+#define IMX274_NUM_SUPPLIES ARRAY_SIZE(imx274_supply_names)
-+
- /*
-  * imx274 I2C operation related structure
-  */
-@@ -501,6 +512,8 @@ struct imx274_ctrls {
-  * @frame_rate: V4L2 frame rate structure
-  * @regmap: Pointer to regmap structure
-  * @reset_gpio: Pointer to reset gpio
-+ * @supplies: List of analog and digital supply regulators
-+ * @inck: Pointer to sensor input clock
-  * @lock: Mutex structure
-  * @mode: Parameters for the selected readout mode
-  */
-@@ -514,6 +527,8 @@ struct stimx274 {
- 	struct v4l2_fract frame_interval;
- 	struct regmap *regmap;
- 	struct gpio_desc *reset_gpio;
-+	struct regulator_bulk_data supplies[IMX274_NUM_SUPPLIES];
-+	struct clk *inck;
- 	struct mutex lock; /* mutex lock for operations */
- 	const struct imx274_mode *mode;
- };
-@@ -767,6 +782,75 @@ static void imx274_reset(struct stimx274 *priv, int rst)
- 	usleep_range(IMX274_RESET_DELAY1, IMX274_RESET_DELAY2);
- }
- 
-+/*
-+ * imx274_power_on - Function called to power on the sensor
-+ * @imx274: Pointer to device structure
-+ */
-+static int imx274_power_on(struct device *dev)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-+	struct stimx274 *imx274 = to_imx274(sd);
-+	int ret;
-+
-+	/* keep sensor in reset before power on */
-+	imx274_reset(imx274, 0);
-+
-+	ret = clk_prepare_enable(imx274->inck);
-+	if (ret) {
-+		dev_err(&imx274->client->dev,
-+			"Failed to enable input clock: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = regulator_bulk_enable(IMX274_NUM_SUPPLIES, imx274->supplies);
-+	if (ret) {
-+		dev_err(&imx274->client->dev,
-+			"Failed to enable regulators: %d\n", ret);
-+		goto fail_reg;
-+	}
-+
-+	usleep_range(1, 2);
-+	imx274_reset(imx274, 1);
-+
-+	return 0;
-+
-+fail_reg:
-+	regulator_bulk_disable(IMX274_NUM_SUPPLIES, imx274->supplies);
-+	clk_disable_unprepare(imx274->inck);
-+	return ret;
-+}
-+
-+/*
-+ * imx274_power_off - Function called to power off the sensor
-+ * @imx274: Pointer to device structure
-+ */
-+static int imx274_power_off(struct device *dev)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-+	struct stimx274 *imx274 = to_imx274(sd);
-+
-+	imx274_reset(imx274, 0);
-+
-+	regulator_bulk_disable(IMX274_NUM_SUPPLIES, imx274->supplies);
-+
-+	clk_disable_unprepare(imx274->inck);
-+
-+	return 0;
-+}
-+
-+static int imx274_get_regulators(struct device *dev, struct stimx274 *imx274)
-+{
-+	unsigned int i;
-+
-+	for (i = 0; i < IMX274_NUM_SUPPLIES; i++)
-+		imx274->supplies[i].supply = imx274_supply_names[i];
-+
-+	return devm_regulator_bulk_get(dev, IMX274_NUM_SUPPLIES,
-+					imx274->supplies);
-+}
-+
- /**
-  * imx274_s_ctrl - This is used to set the imx274 V4L2 controls
-  * @ctrl: V4L2 control to be set
-@@ -781,6 +865,9 @@ static int imx274_s_ctrl(struct v4l2_ctrl *ctrl)
- 	struct stimx274 *imx274 = to_imx274(sd);
- 	int ret = -EINVAL;
- 
-+	if (!pm_runtime_get_if_in_use(&imx274->client->dev))
-+		return 0;
-+
- 	dev_dbg(&imx274->client->dev,
- 		"%s : s_ctrl: %s, value: %d\n", __func__,
- 		ctrl->name, ctrl->val);
-@@ -811,6 +898,8 @@ static int imx274_s_ctrl(struct v4l2_ctrl *ctrl)
- 		break;
- 	}
- 
-+	pm_runtime_put(&imx274->client->dev);
-+
- 	return ret;
- }
- 
-@@ -1327,6 +1416,13 @@ static int imx274_s_stream(struct v4l2_subdev *sd, int on)
- 	mutex_lock(&imx274->lock);
- 
- 	if (on) {
-+		ret = pm_runtime_get_sync(&imx274->client->dev);
-+		if (ret < 0) {
-+			pm_runtime_put_noidle(&imx274->client->dev);
-+			mutex_unlock(&imx274->lock);
-+			return ret;
-+		}
-+
- 		/* load mode registers */
- 		ret = imx274_mode_regs(imx274);
- 		if (ret)
-@@ -1362,6 +1458,7 @@ static int imx274_s_stream(struct v4l2_subdev *sd, int on)
- 		ret = imx274_write_table(imx274, imx274_stop);
- 		if (ret)
- 			goto fail;
-+		pm_runtime_put(&imx274->client->dev);
- 	}
- 
- 	mutex_unlock(&imx274->lock);
-@@ -1369,6 +1466,7 @@ static int imx274_s_stream(struct v4l2_subdev *sd, int on)
- 	return 0;
- 
- fail:
-+	pm_runtime_put(&imx274->client->dev);
- 	mutex_unlock(&imx274->lock);
- 	dev_err(&imx274->client->dev, "s_stream failed\n");
- 	return ret;
-@@ -1834,6 +1932,14 @@ static int imx274_probe(struct i2c_client *client)
- 
- 	mutex_init(&imx274->lock);
- 
-+	imx274->inck = devm_clk_get_optional(&client->dev, "inck");
-+	ret = imx274_get_regulators(&client->dev, imx274);
-+	if (ret) {
-+		dev_err(&client->dev,
-+			"Failed to get power regulators, err: %d\n", ret);
-+		return ret;
-+	}
-+
- 	/* initialize format */
- 	imx274->mode = &imx274_modes[IMX274_DEFAULT_BINNING];
- 	imx274->crop.width = IMX274_MAX_WIDTH;
-@@ -1881,15 +1987,23 @@ static int imx274_probe(struct i2c_client *client)
- 		goto err_me;
- 	}
- 
--	/* pull sensor out of reset */
--	imx274_reset(imx274, 1);
-+	/* power on the sensor */
-+	ret = imx274_power_on(&client->dev);
-+	if (ret < 0) {
-+		dev_err(&client->dev,
-+			"%s : imx274 power on failed\n", __func__);
-+		goto err_me;
-+	}
-+
-+	pm_runtime_set_active(&client->dev);
-+	pm_runtime_enable(&client->dev);
- 
- 	/* initialize controls */
- 	ret = v4l2_ctrl_handler_init(&imx274->ctrls.handler, 4);
- 	if (ret < 0) {
- 		dev_err(&client->dev,
- 			"%s : ctrl handler init Failed\n", __func__);
--		goto err_me;
-+		goto err_disable_rpm;
- 	}
- 
- 	imx274->ctrls.handler.lock = &imx274->lock;
-@@ -1951,11 +2065,16 @@ static int imx274_probe(struct i2c_client *client)
- 		goto err_ctrls;
- 	}
- 
-+	pm_runtime_idle(&client->dev);
-+
- 	dev_info(&client->dev, "imx274 : imx274 probe success !\n");
- 	return 0;
- 
- err_ctrls:
- 	v4l2_ctrl_handler_free(&imx274->ctrls.handler);
-+err_disable_rpm:
-+	pm_runtime_disable(&client->dev);
-+	pm_runtime_set_suspended(&client->dev);
- err_me:
- 	media_entity_cleanup(&sd->entity);
- err_regmap:
-@@ -1973,14 +2092,23 @@ static int imx274_remove(struct i2c_client *client)
- 
- 	v4l2_async_unregister_subdev(sd);
- 	v4l2_ctrl_handler_free(&imx274->ctrls.handler);
-+
-+	pm_runtime_disable(&client->dev);
-+	pm_runtime_set_suspended(&client->dev);
-+
- 	media_entity_cleanup(&sd->entity);
- 	mutex_destroy(&imx274->lock);
- 	return 0;
- }
- 
-+static const struct dev_pm_ops imx274_pm_ops = {
-+	SET_RUNTIME_PM_OPS(imx274_power_off, imx274_power_on, NULL)
-+};
-+
- static struct i2c_driver imx274_i2c_driver = {
- 	.driver = {
- 		.name	= DRIVER_NAME,
-+		.pm = &imx274_pm_ops,
- 		.of_match_table	= imx274_of_id_table,
- 	},
- 	.probe_new	= imx274_probe,
--- 
-2.7.4
+SGkgUm9iLCBQaGlsaXBwLCBNYXR0aGlhcyBhbmQgYWxsDQoNCkdlbnRsZSBwaW5nIGZvciB0aGlz
+IHBhdGNoIHNldC4NCg0KVGhhbmtzDQpDcnlzdGFsDQoNCj4gDQo+IC0tLS0tT3JpZ2luYWwgTWVz
+c2FnZS0tLS0tDQo+IEZyb206IENyeXN0YWwgR3VvIFttYWlsdG86Y3J5c3RhbC5ndW9AbWVkaWF0
+ZWsuY29tXQ0KPiBTZW50OiBNb25kYXksIEF1Z3VzdCAxNywgMjAyMCAxMTowMyBBTQ0KPiBUbzog
+cC56YWJlbEBwZW5ndXRyb25peC5kZTsgcm9iaCtkdEBrZXJuZWwub3JnOyBtYXR0aGlhcy5iZ2dA
+Z21haWwuY29tDQo+IENjOiBzcnZfaGV1cHN0cmVhbTsgbGludXgtbWVkaWF0ZWtAbGlzdHMuaW5m
+cmFkZWFkLm9yZzsgbGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnOyBsaW51eC1r
+ZXJuZWxAdmdlci5rZXJuZWwub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgcy1hbm5h
+QHRpLmNvbTsgYWZkQHRpLmNvbTsgU2VpeWEgV2FuZyAo546L6L+65ZCbKTsgU3RhbmxleSBDaHUg
+KOacseWOn+mZnik7IFlpbmdqb2UgQ2hlbiAo6Zmz6Iux5rSyKTsgRmFuIENoZW4gKOmZs+WHoSk7
+IFlvbmcgTGlhbmcgKOaigeWLhykNCj4gU3ViamVjdDogW3Y0LDAvNF0gaW50cm9kdWNlIFRJIHJl
+c2V0IGNvbnRyb2xsZXIgZm9yIE1UODE5MiBTb0MNCj4gDQo+IHY0Og0KPiBmaXggdHlwb3Mgb24g
+djMgY29tbWl0IG1lc3NhZ2UuDQo+IA0KPiB2MzoNCj4gMS4gcmV2ZXJ0IHYyIGNoYW5nZXMuDQo+
+IDIuIGFkZCAncmVzZXQtZHVyYXRpb24tdXMnIHByb3BlcnR5IHRvIGRlY2xhcmUgYSBtaW5pbXVt
+IGRlbGF5LCB3aGljaCBuZWVkcyB0byBiZSB3YWl0ZWQgYmV0d2VlbiBhc3NlcnQgYW5kIGRlYXNz
+ZXJ0Lg0KPiAzLiBhZGQgJ21lZGlhdGVrLGluZnJhLXJlc2V0JyB0byBjb21wYXRpYmxlLg0KPiAN
+Cj4gDQo+IHYyIGNoYW5nZXM6DQo+IGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gv
+MTE2OTczNzEvDQo+IDEuIGFkZCAnYXNzZXJ0LWRlYXNzZXJ0LXRvZ2V0aGVyJyBwcm9wZXJ0eSB0
+byBpbnRyb2R1Y2UgYSBuZXcgcmVzZXQgaGFuZGxlciwgd2hpY2ggYWxsb3dzIGRldmljZSB0byBk
+byBzZXJpYWxpemVkIGFzc2VydCBhbmQgZGVhc3NlcnQgb3BlcmF0aW9ucyBpbiBhIHNpbmdsZSBz
+dGVwIGJ5ICdyZXNldCcgbWV0aG9kLg0KPiAyLiBhZGQgJ3VwZGF0ZS1mb3JjZScgcHJvcGVydHkg
+dG8gaW50cm9kdWNlIGZvcmNlLXVwZGF0ZSBtZXRob2QsIHdoaWNoIGZvcmNlcyB0aGUgd3JpdGUg
+b3BlcmF0aW9uIGluIGNhc2UgdGhlIHJlYWQgYWxyZWFkeSBoYXBwZW5zIHRvIHJldHVybiB0aGUg
+Y29ycmVjdCB2YWx1ZS4NCj4gMy4gYWRkICdnZW5lcmljLXJlc2V0JyB0byBjb21wYXRpYmxlDQo+
+IA0KPiB2MSBjaGFuZ2VzOg0KPiBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3BhdGNoLzEx
+NjkwNTIzLw0KPiBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3BhdGNoLzExNjkwNTI3Lw0K
+PiANCj4gQ3J5c3RhbCBHdW8gKDQpOg0KPiAgIGR0LWJpbmRpbmc6IHJlc2V0LWNvbnRyb2xsZXI6
+IHRpOiBhZGQgcmVzZXQtZHVyYXRpb24tdXMgcHJvcGVydHkNCj4gICBkdC1iaW5kaW5nOiByZXNl
+dC1jb250cm9sbGVyOiB0aTogYWRkICdtZWRpYXRlayxpbmZyYS1yZXNldCcgdG8NCj4gICAgIGNv
+bXBhdGlibGUNCj4gICByZXNldC1jb250cm9sbGVyOiB0aTogaW50cm9kdWNlIGEgbmV3IHJlc2V0
+IGhhbmRsZXINCj4gICBhcm02NDogZHRzOiBtdDgxOTI6IGFkZCBpbmZyYWNmZ19yc3Qgbm9kZQ0K
+PiANCj4gIC4uLi9iaW5kaW5ncy9yZXNldC90aS1zeXNjb24tcmVzZXQudHh0ICAgICAgICB8ICA2
+ICsrKysrDQo+ICBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi5kdHNpICAgICAg
+fCAxMSArKysrKysrLQ0KPiAgZHJpdmVycy9yZXNldC9yZXNldC10aS1zeXNjb24uYyAgICAgICAg
+ICAgICAgIHwgMjYgKysrKysrKysrKysrKysrKystLQ0KPiAgMyBmaWxlcyBjaGFuZ2VkLCA0MCBp
+bnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQ0KPiANCj4gDQo+ICoqKioqKioqKioqKioqKioq
+KioqKk1FRElBVEVLIENvbmZpZGVudGlhbC9JbnRlcm5hbCBVc2UqKioqKioqKioqKioqKioqKioq
+KioNCg0K
 
