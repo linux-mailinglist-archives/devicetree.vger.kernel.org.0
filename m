@@ -2,101 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA67425A541
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 07:59:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28EF925A583
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 08:25:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726140AbgIBF72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 01:59:28 -0400
-Received: from Galois.linutronix.de ([193.142.43.55]:44782 "EHLO
-        galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725774AbgIBF71 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 01:59:27 -0400
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1599026365;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=G2DtcQZHiBztwViPAkP9SEgvU8iSvhfwyZ7xLX0oKsM=;
-        b=Dc9RdkXiFO8JbqFMOr8j2muc3LOsNllnmeyag8dgRvaH2MhfI5lNl/Zl1yaEJ564dOq/Y+
-        6vMHyP6ekSghpHS/tB6JBJ051b//F9eFv09bOG0RZLJOWMw/DXivQqLkY6Kww0dq4QccCT
-        IGaxKAqqAgNEM7v8hcVT4noLADHMZup86BK1YYzGpdgHVre3LNWGfSMo86LglvS+eWcYMs
-        PyGQcje9iIptdD5c0xwVi+4BI9ELjKNedL8aiC8KxMHvhCjV+1BNY7m6RdaHcql0tqNBP9
-        PR91/eecpCSgkDSG6pEgFqTMmSjCnwIN1mWZVxjgx5XR86iti649s14HGQRUUw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1599026365;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=G2DtcQZHiBztwViPAkP9SEgvU8iSvhfwyZ7xLX0oKsM=;
-        b=pBt1gXIr07Z3eWoySTRdqCSB98BxEJMxdaZ74t/WrFe8mT0mKtIDMjRjBgJNp6SwPjEMQp
-        nK9anSRWCifr1aBw==
-To:     David Miller <davem@davemloft.net>, richardcochran@gmail.com
-Cc:     andrew@lunn.ch, olteanv@gmail.com, vivien.didelot@gmail.com,
-        f.fainelli@gmail.com, kuba@kernel.org, netdev@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        bigeasy@linutronix.de, kamil.alkhouri@hs-offenburg.de,
-        ilias.apalodimas@linaro.org
-Subject: Re: [PATCH v4 2/7] net: dsa: Add DSA driver for Hirschmann Hellcreek switches
-In-Reply-To: <20200901.115338.1041117882209940166.davem@davemloft.net>
-References: <20200901142243.2jrurmfmh6znosxd@skbuf> <20200901155945.GG2403519@lunn.ch> <20200901163610.GD22807@hoboy> <20200901.115338.1041117882209940166.davem@davemloft.net>
-Date:   Wed, 02 Sep 2020 07:59:12 +0200
-Message-ID: <87zh68afdb.fsf@kurt>
+        id S1726355AbgIBGZX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 02:25:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44066 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726140AbgIBGZX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Sep 2020 02:25:23 -0400
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D4384207EA;
+        Wed,  2 Sep 2020 06:25:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599027922;
+        bh=OJSpVQ5c8EF99vvALEkF5NCOboYU11I4INM1qljBWAk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=cx7V3lN0x/HJn8KyFIInMt5KfkyaJCTldKREtwcqUlfsZvC6DVn1jss0trGfjrR4L
+         v35JrKSKPDZ5kRg51D2bplQkOUUEu50JpIzclruONxWogIYddV+3uNatU9Xky1Kvf0
+         nwPVPCx3YD7AnovHok7owct+V5+ZBhc33Ez3GXzo=
+Received: by mail-ej1-f45.google.com with SMTP id nw23so5001068ejb.4;
+        Tue, 01 Sep 2020 23:25:21 -0700 (PDT)
+X-Gm-Message-State: AOAM533bPaodKwUxVfRXkymCeJ1ZzI4U4ulEN7tCtoGPL7IV+F5/hkqy
+        FkbU/6qons1MbzK/NFxA4WzsPFtbUCvvHFoFC98=
+X-Google-Smtp-Source: ABdhPJyiySgzLF6YcdaOO3ZsW9BLeguC234fHAFv7x9K7DmVJH5VctW7LNW5MlD4LKdDfgXG0WPH27dKjVqXE8SyjSo=
+X-Received: by 2002:a17:906:9356:: with SMTP id p22mr4697123ejw.119.1599027920394;
+ Tue, 01 Sep 2020 23:25:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
+References: <20200828160053.6064-1-krzk@kernel.org> <20200828160053.6064-3-krzk@kernel.org>
+ <20200831090859.GF31019@paasikivi.fi.intel.com>
+In-Reply-To: <20200831090859.GF31019@paasikivi.fi.intel.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Wed, 2 Sep 2020 08:25:09 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPe6+vBfnTUXq4DdSmk3e-xaaCEZabD3u=LOaKH773Kc1w@mail.gmail.com>
+Message-ID: <CAJKOXPe6+vBfnTUXq4DdSmk3e-xaaCEZabD3u=LOaKH773Kc1w@mail.gmail.com>
+Subject: Re: [PATCH 3/3] media: imx258: Get clock from device properties and
+ enable it
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Yeh, Andy" <andy.yeh@intel.com>,
+        "Chiang, Alan" <alanx.chiang@intel.com>,
+        "Chen, Jason" <jasonx.z.chen@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
-
-On Tue Sep 01 2020, David Miller wrote:
-> From: Richard Cochran <richardcochran@gmail.com>
-> Date: Tue, 1 Sep 2020 09:36:10 -0700
+On Mon, 31 Aug 2020 at 11:09, Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
 >
->> On Tue, Sep 01, 2020 at 05:59:45PM +0200, Andrew Lunn wrote:
->>> Maybe, at the moment, RTNL is keeping things atomic. But that is
->>> because there is no HWMON, or MDIO bus. Those sort of operations don't
->>> take the RTNL, and so would be an issue. I've also never audited the
->>> network stack to check RTNL really is held at all the network stack
->>> entry points to a DSA driver. It would be an interesting excesses to
->>> scatter some ASSERT_RTNL() in a DSA driver and see what happens.
->>=20
->> Device drivers really aught to protect their state and their devices'
->> state from concurrent access.
+> Hi Krzysztof,
 >
-> Completely agreed.
+> Thanks for the patchset.
+>
+> On Fri, Aug 28, 2020 at 06:00:53PM +0200, Krzysztof Kozlowski wrote:
+> > The IMX258 sensor driver checked in device properties for a
+> > clock-frequency property which actually does not mean that the clock is
+> > really running such frequency or is it even enabled.
+> >
+> > Get the provided clock and check it frequency.  If none is provided,
+> > fall back to old property.
+> >
+> > Enable the clock when accessing the IMX258 registers and when streaming
+> > starts.
+> >
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > ---
+> >  drivers/media/i2c/imx258.c | 107 ++++++++++++++++++++++++++++++-------
+> >  1 file changed, 87 insertions(+), 20 deletions(-)
+> >
+> > diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
+> > index c20bac9b00ec..4d763dcabb1d 100644
+> > --- a/drivers/media/i2c/imx258.c
+> > +++ b/drivers/media/i2c/imx258.c
+> > @@ -2,6 +2,7 @@
+> >  // Copyright (C) 2018 Intel Corporation
+> >
+> >  #include <linux/acpi.h>
+> > +#include <linux/clk.h>
+> >  #include <linux/delay.h>
+> >  #include <linux/i2c.h>
+> >  #include <linux/module.h>
+> > @@ -68,6 +69,9 @@
+> >  #define REG_CONFIG_MIRROR_FLIP               0x03
+> >  #define REG_CONFIG_FLIP_TEST_PATTERN 0x02
+> >
+> > +/* Input clock frequency in Hz */
+> > +#define IMX258_INPUT_CLOCK_FREQ              19200000
+> > +
+> >  struct imx258_reg {
+> >       u16 address;
+> >       u8 val;
+> > @@ -610,6 +614,8 @@ struct imx258 {
+> >
+> >       /* Streaming on/off */
+> >       bool streaming;
+> > +
+> > +     struct clk *clk;
+> >  };
+> >
+> >  static inline struct imx258 *to_imx258(struct v4l2_subdev *_sd)
+> > @@ -747,6 +753,12 @@ static int imx258_set_ctrl(struct v4l2_ctrl *ctrl)
+> >       if (pm_runtime_get_if_in_use(&client->dev) == 0)
+> >               return 0;
+> >
+> > +     ret = clk_prepare_enable(imx258->clk);
+> > +     if (ret) {
+> > +             dev_err(&client->dev, "failed to enable clock\n");
+> > +             goto out;
+> > +     }
+> > +
+> >       switch (ctrl->id) {
+> >       case V4L2_CID_ANALOGUE_GAIN:
+> >               ret = imx258_write_reg(imx258, IMX258_REG_ANALOG_GAIN,
+> > @@ -779,6 +791,8 @@ static int imx258_set_ctrl(struct v4l2_ctrl *ctrl)
+> >               break;
+> >       }
+> >
+> > +out:
+> > +     clk_disable_unprepare(imx258->clk);
+> >       pm_runtime_put(&client->dev);
+> >
+> >       return ret;
+> > @@ -972,10 +986,40 @@ static int imx258_stop_streaming(struct imx258 *imx258)
+> >       return 0;
+> >  }
+> >
+> > +static int imx258_power_on(struct imx258 *imx258)
+> > +{
+> > +     struct i2c_client *client = v4l2_get_subdevdata(&imx258->sd);
+> > +     int ret;
+> > +
+> > +     ret = pm_runtime_get_sync(&client->dev);
+> > +     if (ret < 0)
+> > +             goto err;
+>
+> Please continue to use runtime PM directly, and move the clock control to
+> runtime PM callbacks (apart from probe and remove).
 
-OK. So I'll keep the locking as is.
+Runtime PM comes with its own overhead and using it for just toggling
+clock is slightly waste of cycle but if this is preferred I can do it.
 
-Since I have to have to prepare another version due to the compiler
-warnings, I'll wait a bit for more comments and send the next version
-after.
-
-Thanks,
-Kurt
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl9PNLAACgkQeSpbgcuY
-8Ka72A//T43wAj1saWZmigcl2adbajYE8guEWofJY+m6T2lGnWgrb6vtpeS+85LJ
-0DORtHw63zuUDwYh4Zn9+nCuLUI3BrZsNoSsp9TrOau6apdfUKAS+oOFfPFxtyhg
-kxAJjW/rcKFtCD8K4UDuFBp5+kF2l6916Y4WjVXr0AJZ9BIUqdRP6Yh6qIRzqR14
-Xw6GhX6LMFZynrbiFZV7Yc5T2tDag/Jr+dil8JkDRxFCxX/zyeu51w084i3KuWQJ
-g+AL0yyxLt5LeC/0Wf5pULnwyxtwMUOXtmHn/kldWckz16u/EdxVbSA8TvHXzV5v
-HYBy2fHIKCHfAfLxR9+PGTW1DSTtZ9XlwPzv71kfoR/p6klcjIXSN/4a97fOlsSn
-+1aliYEzuvRvotd5CwtG3NyFtDxSlOPlwNmFD3uraGPYETG2L6Lih7Rf2sokVpIO
-wXZIgFgMn2HA1kgk/hiSFwMf+pZStk8Nn4pnEvGyz2HQy/rAMGG/4FSvTF0Z1nBu
-w7QT2ufmZMCrYNdc8MeM/OLQvRQ3CSDm9AhdMTub6pKWtqZB1ZeR9sPv0wg6vJou
-oZJRsljtmTcySq/0NtEdPJFhsJ+UUnjuAj4M0sIjB5MdaUgseNBvbCJpxRZv/ldD
-bEMbxQr+KZFsT+QZMylB143Ff/87sa2Ewj9c+K+KqQKs+sJDfxo=
-=l1Qh
------END PGP SIGNATURE-----
---=-=-=--
+Best regards,
+Krzysztof
