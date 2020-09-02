@@ -2,128 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31CC125A514
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 07:35:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BCAF25A518
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 07:36:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726311AbgIBFfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 01:35:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43374 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725774AbgIBFfj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 01:35:39 -0400
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C6A5C061244;
-        Tue,  1 Sep 2020 22:35:39 -0700 (PDT)
-Received: by mail-pl1-x642.google.com with SMTP id s10so1298955plp.1;
-        Tue, 01 Sep 2020 22:35:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=eQPR30zGfRfeAaiqiFgod4rMnLiD9w7BcMVmHoMNe6I=;
-        b=pDzQpqINV8Bc/bc9VIOK+95xcXunbQUoqiHZ+g1Vc3u4naR3uz/81aNSPNi1S+iJim
-         UBo+xMuLI+Axtc0qbjDY4xwBG7Egssp2GVM3vJQyO70DNYOGvfvHyzuMpItR+9DoCNSh
-         ZybDEywUInFXMB168+RHJTmC9Z+U2cd06klj41JAsLqICHz/WqLzhVcAwsVsI6K48YSb
-         M+rbaDf1Z6T6kbuSNTp+av9JNHNpJhOKjjh8by8n/vOawHBNvmgAL6fNGVTUjOZdQ/QO
-         IdPHLOjiR1DnXBqU9nUG89pDZVl18svEvfipP9r92UEVblcenJdTAgk5rphfQD4PSVnc
-         1DJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=eQPR30zGfRfeAaiqiFgod4rMnLiD9w7BcMVmHoMNe6I=;
-        b=kZhtOxK4FzMQf3gVQCeLo9OHelBe/n44LBiT85KA1NY7d5zM8NNEwKuXt7/ZGNsY75
-         i0NflS54iYAbpnU8clmyPeRQUMpC8Lr4kjZrvP5TYH7b6Rn4ZxEUZrnSM2VOSw9cS1TW
-         LNp6g3IkrZkSd7xPeXzvOq5aCrjqkrmPeH/8xPza9HveF3zpRe6R32vpjaSVcQ6JWetv
-         I6r1aYTu1qfsZ9MpLPmOrDwSx/dRb5s6xgGXpHFMqPb0LgglN6rNvrqMtXtK13KaSjs/
-         HdHO9YXvxLlxA7FxAYXNBrkT4kOwRN0xQDwyOFPXJEACMQN70pNCyFB6FgjWr4CpoC4d
-         y30A==
-X-Gm-Message-State: AOAM530g/igO96W/8pt0VNmum1BXApGrTqPoIqheifx8IDl4z5toZQgE
-        G2Cw3aZxYA9d8fESXqYt27I=
-X-Google-Smtp-Source: ABdhPJyNlWT8JPI8rqixhq9HIg8+D7+aDTjHXMIKLbUrx9Nv2GXMWOXm0vv/86Ne5hHQSHaeBIzS1Q==
-X-Received: by 2002:a17:90b:1916:: with SMTP id mp22mr737220pjb.132.1599024938457;
-        Tue, 01 Sep 2020 22:35:38 -0700 (PDT)
-Received: from localhost ([2401:fa00:8f:203:a6ae:11ff:fe11:4b46])
-        by smtp.gmail.com with ESMTPSA id in12sm3154140pjb.29.2020.09.01.22.35.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Sep 2020 22:35:37 -0700 (PDT)
-Date:   Wed, 2 Sep 2020 14:35:35 +0900
-From:   Sergey Senozhatsky <sergey.senozhatsky.work@gmail.com>
-To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
-Cc:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        mchehab@kernel.org, andriy.shevchenko@linux.intel.com,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        sakari.ailus@linux.intel.com, drinkcat@chromium.org,
-        tfiga@chromium.org, matthias.bgg@gmail.com, bingbu.cao@intel.com,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
-Subject: Re: [PATCH V10 2/2] media: i2c: dw9768: Add DW9768 VCM driver
-Message-ID: <20200902053535.GC2264887@google.com>
-References: <20200703080404.29770-1-dongchun.zhu@mediatek.com>
- <20200703080404.29770-3-dongchun.zhu@mediatek.com>
+        id S1726285AbgIBFgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 01:36:25 -0400
+Received: from mail29.static.mailgun.info ([104.130.122.29]:19914 "EHLO
+        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725774AbgIBFgY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 01:36:24 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1599024984; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=Ji73SYobjua5kOTQythFn0xAJRkAQsD505nfnZi/Ywk=; b=EiaDVic3f40znoT9uB4LuFaRlfR/VcPpaiP5VRPS6LwmwYZ9cnUnJQyH3X555Ut2Y9vrWVDs
+ Iu6Wsh/Q6MZXnzaWEybkLk37vP9WQTBm+f15BTKpKm1fyXPwLvTJ/y+qPAf1CSmC4zWvF3j7
+ OoGCIimJ0+jfm2PyLp4Hm2L1azc=
+X-Mailgun-Sending-Ip: 104.130.122.29
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 5f4f2f4cd7b4e26913b82f51 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 02 Sep 2020 05:36:12
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 83463C43391; Wed,  2 Sep 2020 05:36:12 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.3 required=2.0 tests=ALL_TRUSTED,NICE_REPLY_A,
+        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [192.168.1.16] (unknown [61.1.229.146])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id EFBFBC433C6;
+        Wed,  2 Sep 2020 05:36:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org EFBFBC433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=rnayak@codeaurora.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Add 'sustainable_power' for CPU
+ thermal zones
+To:     Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+References: <20200813113030.1.I89c33c4119eaffb986b1e8c1bc6f0e30267089cd@changeid>
+ <20200901170745.GA3419728@google.com>
+ <CAD=FV=Xv0FLtWWcQcRy7p2LPNdDtSjdarsvNHRHaLkWwABnwJw@mail.gmail.com>
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+Message-ID: <8ad0589e-102d-7523-899f-0ebe85b7d2b8@codeaurora.org>
+Date:   Wed, 2 Sep 2020 11:06:06 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200703080404.29770-3-dongchun.zhu@mediatek.com>
+In-Reply-To: <CAD=FV=Xv0FLtWWcQcRy7p2LPNdDtSjdarsvNHRHaLkWwABnwJw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On (20/07/03 16:04), Dongchun Zhu wrote:
-[..]
-> +static int dw9768_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct dw9768 *dw9768;
-> +	unsigned int i;
-> +	int ret;
-> +
-> +	dw9768 = devm_kzalloc(dev, sizeof(*dw9768), GFP_KERNEL);
-> +	if (!dw9768)
-> +		return -ENOMEM;
-> +
-> +	/* Initialize subdev */
-> +	v4l2_i2c_subdev_init(&dw9768->sd, client, &dw9768_ops);
-> +
-[..]
-> +	dw9768->sd.entity.function = MEDIA_ENT_F_LENS;
-> +
-> +	pm_runtime_enable(dev);
-> +	if (!pm_runtime_enabled(dev)) {
-> +		ret = dw9768_runtime_resume(dev);
-> +		if (ret < 0) {
-> +			dev_err(dev, "failed to power on: %d\n", ret);
-> +			goto err_clean_entity;
-> +		}
-> +	}
-> +
-> +	ret = v4l2_async_register_subdev(&dw9768->sd);
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to register V4L2 subdev: %d", ret);
-> +		goto err_power_off;
-> +	}
 
-I would expect to see a slightly different order here: first set
-everything up, then expose the device to PM subsystem.
+> * In terms of the numbers here, I believe that you're claiming that we
+> can dissipate 768 mW * 6 + 1202 mW * 2 = ~7 Watts of power.  My memory
+> of how much power we could dissipate in previous laptops I worked on
+> is a little fuzzy, but that doesn't seem insane for a passively-cooled
+> laptop.  However, I think someone could conceivably put this chip in a
+> smaller form factor.  In such a case, it seems like we'd want these
+> things to sum up to ~2000 (if it would ever make sense for someone to
+> put this chip in a phone) or ~4000 (if it would ever make sense for
+> someone to put this chip in a small tablet).  It seems possible that,
+> to achieve this, we might have to tweak the
+> "dynamic-power-coefficient".
 
-[..]
-> +static int dw9768_remove(struct i2c_client *client)
-> +{
-> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-> +	struct dw9768 *dw9768 = sd_to_dw9768(sd);
-> +
-> +	v4l2_async_unregister_subdev(&dw9768->sd);
-> +	v4l2_ctrl_handler_free(&dw9768->ctrls);
-> +	media_entity_cleanup(&dw9768->sd.entity);
-> +	pm_runtime_disable(&client->dev);
-> +	if (!pm_runtime_status_suspended(&client->dev))
-> +		dw9768_runtime_suspend(&client->dev);
-> +	pm_runtime_set_suspended(&client->dev);
+DPC values are calculated (at a SoC) by actually measuring max power at various
+frequency/voltage combinations by running things like dhrystone.
+How would the max power a SoC can generate depend on form factors?
+How much it can dissipate sure is, but then I am not super familiar how
+thermal frameworks end up using DPC for calculating power dissipated,
+I am guessing they don't.
+  
+> I don't know how much thought was put
+> into those numbers, but the fact that the little cores have a super
+> round 100 for their dynamic-power-coefficient makes me feel like they
+> might have been more schwags than anything.  Rajendra maybe knows?
 
-Ditto. Shall we first disable PM (so that we won't get any unexpected
-PM callbacks) and then destroy the device?
+FWIK, the values are always scaled and normalized to 100 for silver and
+then used to derive the relative DPC number for gold. If you see the DPC
+for silver cores even on sdm845 is a 100.
+Again these are not estimations but based on actual power measurements.
 
-	-ss
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
