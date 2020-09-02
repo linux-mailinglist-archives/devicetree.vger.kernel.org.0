@@ -2,98 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDD0525AD00
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 16:27:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC0B525AE07
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 16:58:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728047AbgIBO0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 10:26:46 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:47498 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728035AbgIBOYJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 10:24:09 -0400
-Received: from [88.147.20.154] (port=49114 helo=melee.dev.aim)
-        by hostingweb31.netsons.net with esmtpa (Exim 4.93)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1kDTfU-0002rt-0V; Wed, 02 Sep 2020 16:23:20 +0200
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Luca Ceresoli <luca@lucaceresoli.net>, Keerthy <j-keerthy@ti.com>,
-        Axel Lin <axel.lin@ingics.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v5 3/3] mfd: lp87565: add LP87524-Q1 variant
-Date:   Wed,  2 Sep 2020 16:22:59 +0200
-Message-Id: <20200902142259.28349-4-luca@lucaceresoli.net>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200902142259.28349-1-luca@lucaceresoli.net>
-References: <20200902142259.28349-1-luca@lucaceresoli.net>
+        id S1727835AbgIBO5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 10:57:52 -0400
+Received: from wnew1-smtp.messagingengine.com ([64.147.123.26]:47037 "EHLO
+        wnew1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726933AbgIBN4U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 09:56:20 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.west.internal (Postfix) with ESMTP id B29D1E92;
+        Wed,  2 Sep 2020 09:24:40 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Wed, 02 Sep 2020 09:24:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=S1KV3nI64hhT/mKCf1wfItxnVYO
+        BuX2wNhthrjSZo+s=; b=Yx44iNqenHJ2AzlLxKapbjobi4SWwDo0jvM7+dSERrR
+        JXonAEumDUROGJ53H0VGYIVLmsYmurcaTQEoU/Az6TpvpbCtdpOg7MwPCEBXTGae
+        yfIVSFlCFQAPJ7og14tmWqm34R3RkGA9gnll0zAahWVZuQXn7bwa++19NpTXhOIb
+        rNWZKQoz5xlc16X435hs34zdUpL8k/JeBmqLiqC4S6oj4fsdKyF9aOOK5WtVQyc5
+        TZLTDf48SuEO95jsmUjnMgb4PJG6qMbGnwPA/FBTvrsqdR9tOk4eJUZevK44GWnA
+        gFb6O9iFP+OLlz95mxIeTr8Vpoel8cZHzpvhgtn58bQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=S1KV3n
+        I64hhT/mKCf1wfItxnVYOBuX2wNhthrjSZo+s=; b=SMritBNmBee+ty0P4Vhzmo
+        vTpXHT0HkcLN8F+sNBgPW377vu+LJ0wnoJ7TJR8pfEqSm8GneIWm3qqXnRjrasv2
+        IWCqeVtqigVOIDE2FMI281N71wMVan3pKuOU97e8m6LPET0Fc7RPiNCO4FdoR1Rx
+        mRAt41870d5P0r1qzHoq53ukhQYSx8QLT8Ik3mAvo/M36sTm1uAODRQ6xdwY+R//
+        dLrs9mRtQ1kWzDj7K1u6AmNX5UQQYxWVu1MdqmNr0z6cKlCJRpMoOqfwDA1agkI7
+        YpbeIG1RhaGdkLGobj2663x0rifWF2T/MVEh1AcN1TE9EltnbB6w8QZYfFrsVhGQ
+        ==
+X-ME-Sender: <xms:FJ1PX1O4T2jAdVdl0dY1CPCz4s7Wz3xrdeQhKNgtx7-53rkyF8Ok2g>
+    <xme:FJ1PX38pBjib1A3Yt_yKkPpOqRseEyqY9nWuvjfqhYFUtX0KKC7YptBTHjx8jPPpm
+    FFJh1Z21BtQ-GQyoWU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudefledgieegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpeffhffvuffkfhggtggujgesghdtre
+    ertddtvdenucfhrhhomhepofgrgihimhgvucftihhprghrugcuoehmrgigihhmvgestggv
+    rhhnohdrthgvtghhqeenucggtffrrghtthgvrhhnpeelkeeghefhuddtleejgfeljeffhe
+    ffgfeijefhgfeufefhtdevteegheeiheegudenucfkphepledtrdekledrieekrdejieen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigih
+    hmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:FJ1PX0QdXL5HHA7gAZCBIDRGeUKub0ELcTOF_Ms1embGqORBFFuSww>
+    <xmx:FJ1PXxv6Fgd_54pfhl3xcuxAcsVukTxdHeSyFZD3xEtc0XRNomZ2cQ>
+    <xmx:FJ1PX9eDpOAu1C8yGT7Am2bLaGjq5QGBf_CTgJW6pxIBkYfd5pXE2g>
+    <xmx:GJ1PX57XGox0HtNz24ymlFX37h_Rx419G43Fy2k20OlEGQFCL7ZJS0A6554>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 34A673280063;
+        Wed,  2 Sep 2020 09:24:36 -0400 (EDT)
+Date:   Wed, 2 Sep 2020 15:24:34 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Corentin Labbe <clabbe.montjoie@gmail.com>
+Cc:     davem@davemloft.net, herbert@gondor.apana.org.au,
+        robh+dt@kernel.org, robh@kernel.org, wens@csie.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com, m.cerveny@computer.org
+Subject: Re: [PATCH] dt-bindings: crypto: Specify that
+ allwinner,sun8i-a33-crypto needs reset
+Message-ID: <20200902132434.qpevlbyx5wgq4daj@gilmour.lan>
+References: <20200902091716.22650-1-clabbe.montjoie@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="lesihmyf7bejvih5"
+Content-Disposition: inline
+In-Reply-To: <20200902091716.22650-1-clabbe.montjoie@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the LP87524B/J/P-Q1 Four 4-MHz Buck Converter. This is a
-variant of the LP87565 having 4 single-phase outputs and up to 10 A of
-total output current.
 
-Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
-Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+--lesihmyf7bejvih5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
----
+On Wed, Sep 02, 2020 at 11:17:16AM +0200, Corentin Labbe wrote:
+> When adding allwinner,sun8i-a33-crypto, I forgot to add that it needs res=
+et.
+> Furthermore, there are no need to use items to list only one compatible
+> in compatible list.
+>=20
+> Fixes: f81547ba7a98 ("dt-bindings: crypto: add new compatible for A33 SS")
+> Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+> ---
+>  .../bindings/crypto/allwinner,sun4i-a10-crypto.yaml        | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10=
+-crypto.yaml b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10=
+-crypto.yaml
+> index fc823572bcff..1075f0e75368 100644
+> --- a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto=
+=2Eyaml
+> +++ b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto=
+=2Eyaml
+> @@ -23,8 +23,7 @@ properties:
+>        - items:
+>            - const: allwinner,sun7i-a20-crypto
+>            - const: allwinner,sun4i-a10-crypto
+> -      - items:
+> -          - const: allwinner,sun8i-a33-crypto
+> +      - const: allwinner,sun8i-a33-crypto
+> =20
+>    reg:
+>      maxItems: 1
+> @@ -59,7 +58,9 @@ if:
+>    properties:
+>      compatible:
+>        contains:
+> -        const: allwinner,sun6i-a31-crypto
+> +        oneOf:
+> +          - const: allwinner,sun6i-a31-crypto
+> +          - const: allwinner,sun8i-a33-crypto
 
-Changes in v5: none
+Even though it works, an enum would be best here
 
-Changes in v4: none
+Maxime
 
-Changes in v3: none
+--lesihmyf7bejvih5
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Changes in v2:
- - replace "regulator" -> "mfd" in subject line (Lee Jones)
- - add Acked-for-MFD-by: from Lee Jones
----
- drivers/mfd/lp87565.c       | 4 ++++
- include/linux/mfd/lp87565.h | 1 +
- 2 files changed, 5 insertions(+)
+-----BEGIN PGP SIGNATURE-----
 
-diff --git a/drivers/mfd/lp87565.c b/drivers/mfd/lp87565.c
-index 2268be9113f1..9c21483d9653 100644
---- a/drivers/mfd/lp87565.c
-+++ b/drivers/mfd/lp87565.c
-@@ -26,6 +26,10 @@ static const struct mfd_cell lp87565_cells[] = {
- 
- static const struct of_device_id of_lp87565_match_table[] = {
- 	{ .compatible = "ti,lp87565", },
-+	{
-+		.compatible = "ti,lp87524-q1",
-+		.data = (void *)LP87565_DEVICE_TYPE_LP87524_Q1,
-+	},
- 	{
- 		.compatible = "ti,lp87565-q1",
- 		.data = (void *)LP87565_DEVICE_TYPE_LP87565_Q1,
-diff --git a/include/linux/mfd/lp87565.h b/include/linux/mfd/lp87565.h
-index 43716aca46fa..d44ddfb6bb63 100644
---- a/include/linux/mfd/lp87565.h
-+++ b/include/linux/mfd/lp87565.h
-@@ -14,6 +14,7 @@
- 
- enum lp87565_device_type {
- 	LP87565_DEVICE_TYPE_UNKNOWN	= 0,
-+	LP87565_DEVICE_TYPE_LP87524_Q1,
- 	LP87565_DEVICE_TYPE_LP87561_Q1,
- 	LP87565_DEVICE_TYPE_LP87565_Q1,
- };
--- 
-2.28.0
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX0+dEgAKCRDj7w1vZxhR
+xU0kAQCaTwLCXsqCEwANF758p9F7IT1H11DgVKytNwdpoVbCNAEA27d6vz1r1Ke6
+6V2UM0Ao1xcmpQ3fTSAvvAv2VQJagwg=
+=30nP
+-----END PGP SIGNATURE-----
 
+--lesihmyf7bejvih5--
