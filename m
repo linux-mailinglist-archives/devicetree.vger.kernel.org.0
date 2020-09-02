@@ -2,202 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBC2925A4BF
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 06:54:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BBC125A4C9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 07:05:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726140AbgIBEy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 00:54:56 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:51534 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725808AbgIBEyz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 00:54:55 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0824sm79014751;
-        Tue, 1 Sep 2020 23:54:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599022488;
-        bh=w2iauvTkD+P1VkcMZ0fYC+zoLEESxxiRJVPTkakJ4qM=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=cSJtUtL1C7HwPhLVtKwRsA4LI24Im5sdvLnrZEidzdExFxENdjaLjG9WXWFU310dT
-         vycIdXASeghzE3+i/5nsY2nFvCZ+BBZTVnW9zuG9y8JDbVH1hj43ha43xGVtmgB8Eq
-         0B5VFtZaLuSwCyW9wUUlBHnro1TqyGPeA1N1Lywo=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0824smKo031079
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 1 Sep 2020 23:54:48 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 1 Sep
- 2020 23:54:48 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 1 Sep 2020 23:54:48 -0500
-Received: from [10.250.232.147] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0824sgm6036815;
-        Tue, 1 Sep 2020 23:54:43 -0500
-Subject: Re: [RESEND PATCH 1/2] arm64: dts: ti: k3-j721e-main: Add PCIe device
- tree nodes
-To:     Nishanth Menon <nm@ti.com>
-CC:     Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20200901140628.8800-1-kishon@ti.com>
- <20200901140628.8800-2-kishon@ti.com> <20200901145204.ayybrzqjcfhiqnfq@akan>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <5f23246a-a9d7-495d-a4ec-d392ad95a450@ti.com>
-Date:   Wed, 2 Sep 2020 10:24:41 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726285AbgIBFFz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 01:05:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38828 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726140AbgIBFFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 01:05:54 -0400
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11572C061244;
+        Tue,  1 Sep 2020 22:05:52 -0700 (PDT)
+Received: by mail-pg1-x536.google.com with SMTP id 31so1923190pgy.13;
+        Tue, 01 Sep 2020 22:05:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=3L6vzknseRmTv7NN9xZcxpHNrmoOWjCAy8Z0FPY0LmA=;
+        b=Bsdl47SWREhTgA94H7ygDHrhHYuYaRc9HkwxgwJgRiWTQyonLA/IdDzYVnrQw9pVTg
+         kuMC4I1q0jgDZnNOPM5+tOz7EMvgtPJI4GJ6DiAv5q/yCGSKo6pfBE+DMQU5BhqMXtFU
+         ZvaWyNIaDzbZoZlIERQTZnmQIMkIo6DQ+anL/ia8hMxXBUSpIVErL1uTAOFNkTtEXaYq
+         ibrVCpNSUiH79+UKfm4G13mwSJY9l5SaDYya15mYEdg4oKzOKn92HMx2KBZldmbt1mx8
+         1B732PMr373O/GOmfYZ4+6fJ+4rH2QvGjwvyWuXaS0Gag13Fk3xE0++0PemA+oBILQkL
+         m06g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=3L6vzknseRmTv7NN9xZcxpHNrmoOWjCAy8Z0FPY0LmA=;
+        b=RlkvWj2noM2XusoXyuZ2pc+sBleHKe98FerrDkaAo0LLFW2lEtM3GdCMO5LOfZO/Iu
+         1FI2TS30iBCICFBFJ+5dhQhOGERwhAqXStb2VMTgF0fYNdtm8FYZzACiTckg3V9Kgzvv
+         MTAQ/KSOWb7aLM+z5ToLNYfcCx1L13WdYdjxO8lf+pIH+0FOI3LJ/JGc/RzapAov94Qs
+         yEzr72sOaAAcIs3HNYkJKb/bxmwj4hHFabIaUVsQJ/JTkCB+v4S+mb4U88DxChhso4Qm
+         Q+Fw39RHgzvl0NlvriCXxmvZz3eWbkloW2P1UIk7oPsyzIDAHbptgTyO1Niymq8MG6gK
+         t13Q==
+X-Gm-Message-State: AOAM5302WY3bMWb3imGFQwx0Ir4yPUd3Z0Rhw7Zda5aZ2i+zGO86z0tG
+        w26d43fSdKAdgn6Tv8kT3awsHwsjo7Y=
+X-Google-Smtp-Source: ABdhPJzpWBO7YE9/suJUIVC9P4e7EIhGDDcXhL3tBvNDOfUG479BrgK8h67jwfVbvO3chlWZpKWE6A==
+X-Received: by 2002:a63:6d4c:: with SMTP id i73mr601401pgc.63.1599023151237;
+        Tue, 01 Sep 2020 22:05:51 -0700 (PDT)
+Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
+        by smtp.gmail.com with ESMTPSA id k17sm4056335pfg.99.2020.09.01.22.05.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Sep 2020 22:05:50 -0700 (PDT)
+Subject: Re: [PATCH 4/5] net: phy: smsc: add phy refclk in support
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        zhengdejin5@gmail.com, richard.leitner@skidata.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+References: <20200831134836.20189-1-m.felsch@pengutronix.de>
+ <20200831134836.20189-5-m.felsch@pengutronix.de>
+ <2993e0ed-ebe9-fd85-4650-7e53c15cfe34@gmail.com>
+ <20200901082413.cjnmy3s4lb5pfhv5@pengutronix.de>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <a4be65e9-64b6-81a0-4042-34cd024a137b@gmail.com>
+Date:   Tue, 1 Sep 2020 22:05:42 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.1.1
 MIME-Version: 1.0
-In-Reply-To: <20200901145204.ayybrzqjcfhiqnfq@akan>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+In-Reply-To: <20200901082413.cjnmy3s4lb5pfhv5@pengutronix.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
 
-On 01/09/20 8:22 pm, Nishanth Menon wrote:
-> On 19:36-20200901, Kishon Vijay Abraham I wrote:
->> Add PCIe device tree node (both RC and EP) for the four
->> PCIe instances here.
->>
->> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 218 ++++++++++++++++++++++
->>   arch/arm64/boot/dts/ti/k3-j721e.dtsi      |   5 +-
->>   2 files changed, 222 insertions(+), 1 deletion(-)
-> 
-> 
-> Did you look at the diff of the dtbs_check before and after this
-> series? I see: https://pastebin.ubuntu.com/p/9fyfrTjx9M/
 
-I didn't see any errors when I checked for individual bindings
-a0393678@a0393678-ssd:~/repos/linux$ mkconfig64 dtbs_check 
-DT_SCHEMA_FILES="Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml"
-   SCHEMA  Documentation/devicetree/bindings/processed-schema.yaml
-   DTC     arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
-   DTC     arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
-   CHECK   arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
-   CHECK   arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
-a0393678@a0393678-ssd:~/repos/linux$ mkconfig64 dtbs_check 
-DT_SCHEMA_FILES="Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml"
-   SCHEMA  Documentation/devicetree/bindings/processed-schema.yaml
-   DTC     arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
-   DTC     arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
-   CHECK   arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
-   CHECK   arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
-> 
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->> index 00a36a14efe7..a36909d8b8c3 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->> @@ -28,6 +28,26 @@
->>   		#size-cells = <1>;
->>   		ranges = <0x0 0x0 0x00100000 0x1c000>;
->>   
->> +		pcie0_ctrl: pcie-ctrl@4070 {
-> https://github.com/devicetree-org/devicetree-specification/releases/download/v0.3/devicetree-specification-v0.3.pdf
-> Section 2.2.2: why not use syscon@4070 and so on?
+On 9/1/2020 1:24 AM, Marco Felsch wrote:
+> Create :) Can you provide me a link? What I can say for now is: This
+> solution was used by the micrel driver too and it seems to work. I
+> wanted to keep the change smaller/more local because the current
+> upstream state is: SMSC-Phy <-> FEC-Host ==> IRQ broken. If your patch
+> fixes this too in a more general matter I'm fine with it and we can drop
+> this patch but we should fix this as soon as possible.
 
-okay, will change to generic name.
-> 
->> +			compatible = "syscon";
->> +			reg = <0x00004070 0x4>;
->> +		};
->> +
->> +		pcie1_ctrl: pcie-ctrl@4074 {
->> +			compatible = "syscon";
->> +			reg = <0x00004074 0x4>;
->> +		};
->> +
->> +		pcie2_ctrl: pcie-ctrl@4078 {
->> +			compatible = "syscon";
->> +			reg = <0x00004078 0x4>;
->> +		};
->> +
->> +		pcie3_ctrl: pcie-ctrl@407c {
->> +			compatible = "syscon";
->> +			reg = <0x0000407c 0x4>;
->> +		};
->> +
->>   		serdes_ln_ctrl: serdes-ln-ctrl@4080 {
->>   			compatible = "mmio-mux";
->>   			reg = <0x00004080 0x50>;
->> @@ -576,6 +596,204 @@
->>   		};
->>   	};
->>   
->> +	pcie0_rc: pcie@2900000 {
->> +		compatible = "ti,j721e-pcie-host";
->> +		reg = <0x00 0x02900000 0x00 0x1000>,
->> +		      <0x00 0x02907000 0x00 0x400>,
->> +		      <0x00 0x0d000000 0x00 0x00800000>,
->> +		      <0x00 0x10000000 0x00 0x00001000>;
->> +		reg-names = "intd_cfg", "user_cfg", "reg", "cfg";
->> +		interrupt-names = "link_state";
->> +		interrupts = <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
->> +		device_type = "pci";
->> +		ti,syscon-pcie-ctrl = <&pcie0_ctrl>;
->> +		max-link-speed = <3>;
->> +		num-lanes = <2>;
->> +		power-domains = <&k3_pds 239 TI_SCI_PD_EXCLUSIVE>;
->> +		clocks = <&k3_clks 239 1>;
->> +		clock-names = "fck";
->> +		#address-cells = <3>;
->> +		#size-cells = <2>;
->> +		bus-range = <0x0 0xf>;
->> +		vendor-id = <0x104c>;
->> +		device-id = <0xb00d>;
->> +		msi-map = <0x0 &gic_its 0x0 0x10000>;
->> +		dma-coherent;
->> +		ranges = <0x01000000 0x0 0x10001000 0x0 0x10001000 0x0 0x0010000>,
->> +			 <0x02000000 0x0 0x10011000 0x0 0x10011000 0x0 0x7fef000>;
->> +		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
->> +	};
->> +
->> +	pcie0_ep: pcie-ep@2900000 {
-> Not related to this patch, but just a suggestion: pcie-ep -> do we
-> need to add that to the Generic names in DT spec?
-> 
-> [...]
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
->> index f787aa73aaae..eeb02115b966 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
->> @@ -132,9 +132,12 @@
->>   			 <0x00 0x06400000 0x00 0x06400000 0x00 0x00400000>, /* USBSS1 */
->>   			 <0x00 0x01000000 0x00 0x01000000 0x00 0x0af02400>, /* Most peripherals */
->>   			 <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>, /* MAIN NAVSS */
->> -			 <0x00 0x0d000000 0x00 0x0d000000 0x00 0x01000000>, /* PCIe Core*/
->> +			 <0x00 0x0d000000 0x00 0x0d000000 0x00 0x01800000>, /* PCIe Core*/
->> +			 <0x00 0x0e000000 0x00 0x0e000000 0x00 0x01800000>, /* PCIe Core*/
->>   			 <0x00 0x10000000 0x00 0x10000000 0x00 0x10000000>, /* PCIe DAT */
-> 										^^
-> 									should be PCIe1?
-> Just because you are introducing PCIe2,3 in this patch, the net result
-> does'nt look consistent? Also might want to cover this change in the
-> $commit_message.
+Still working on it, I found a platform where there were some timing 
+problems and am looking into it.
 
-yeah, we could have a separate patch for this change.
-
-Thanks
-Kishon
-
-> [...]
->>   			 <0x00 0x64800000 0x00 0x64800000 0x00 0x00800000>, /* C71 */
->> +			 <0x44 0x00000000 0x44 0x00000000 0x00 0x08000000>, /* PCIe2 DAT */
->> +			 <0x44 0x10000000 0x44 0x10000000 0x00 0x08000000>, /* PCIe3 DAT */
->>   			 <0x4d 0x80800000 0x4d 0x80800000 0x00 0x00800000>, /* C66_0 */
->>   			 <0x4d 0x81800000 0x4d 0x81800000 0x00 0x00800000>, /* C66_1 */
->>   			 <0x4e 0x20000000 0x4e 0x20000000 0x00 0x00080000>, /* GPU */
->> -- 
->> 2.17.1
->>
-> 
+If your SMSC changes are so important and critical, get them applied to 
+the "net" tree, your patch posting makes no mention of which netdev tree 
+you are targeting.
+-- 
+Florian
