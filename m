@@ -2,175 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2AE125A83C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 11:04:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CF8325A848
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 11:04:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726791AbgIBJD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 05:03:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47080 "EHLO
+        id S1726726AbgIBJE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 05:04:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726669AbgIBJDr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 05:03:47 -0400
-Received: from mail-ua1-x943.google.com (mail-ua1-x943.google.com [IPv6:2607:f8b0:4864:20::943])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E0A1C061249
-        for <devicetree@vger.kernel.org>; Wed,  2 Sep 2020 02:03:47 -0700 (PDT)
-Received: by mail-ua1-x943.google.com with SMTP id z12so1334093uam.12
-        for <devicetree@vger.kernel.org>; Wed, 02 Sep 2020 02:03:47 -0700 (PDT)
+        with ESMTP id S1726722AbgIBJDu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 05:03:50 -0400
+Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com [IPv6:2607:f8b0:4864:20::e43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83429C06125F
+        for <devicetree@vger.kernel.org>; Wed,  2 Sep 2020 02:03:49 -0700 (PDT)
+Received: by mail-vs1-xe43.google.com with SMTP id o184so2185730vsc.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Sep 2020 02:03:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=G7z93t1Etv3+Y7YRGqoitCZfELcgVcpVmZuSYiiuAMc=;
-        b=ZNr7dTiMyg6AJhHsdVCwXw5CQaH02wnOnH42Zr5wVBHqxb0354fDvNOiMNx6Lmc0hE
-         QvUDEGEWKwtU63Sv5gfBy3asdk4Xo6wqAh6SE5d/9t3h1Fxsg32wfjXT/7xiodD5G5pZ
-         0EKEDKEi/A7o5IvEbPeol4SFl6PQFNNTja+vjlcRop0AWOnZ6JXzH6BbUGiJylF0O1Lx
-         PgOOwKbmHa4RJS0q13zHAf5qCeEB1iseAEndTs3QjRUXhEGIRfelydA6FGU1BnRoV/bw
-         KjsQoPeNLOw3BNLzdxNjYZpjA3Mq+Ou8H87Ud5PLEAhDNMXtemEaevQudQWIQhnvouuq
-         3ypg==
+        bh=Ew8uPftzd7rZEwyKmHbAQ1uIc01gvs5Er2gSjYfu7W8=;
+        b=wOfT6RjWKK9Cg08Nc5h2tPkm+jRI7/v3eKlCGASt8OfijrkTGiscXmoX8NyAqTFy2x
+         t8mxemk7NUQGcOapBDBtIwgX+s7T+aMA7Isp1w44mxKk6ATRf3yvQn0EXwJpxb4wkiRY
+         Zeh+pnFgy1Hlpxau2tEjagoxu23SnPstE5T+wd9RiN1dSuAWlyyLZPcBhVsJKNJFHIsh
+         9DbTFjdf5ZE3a++HkXY9hQRc6g9tWl6fKc8giGuYZwKs9tOi+OBd7WvS9N7IZ21R0HfL
+         M4euvKPWeZeSVeBlExbHJB09fiU6fWabTVlxt4CbIbW7hfxqfjDIA3cmCY9M9abnRu6y
+         KcrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=G7z93t1Etv3+Y7YRGqoitCZfELcgVcpVmZuSYiiuAMc=;
-        b=k2Y9PqKkH9oIKEs4s648IshxiLspMXAc/DoCfdVFMkpAM8SogZl1mIvxSPkI1518fq
-         PtduSijkDvCZV/sT42MhMXodgu7LxJ7sBw6n8qn08Asn9pR/VJ/ottp1pE1KhOb9f/u+
-         /ARR53EvQv/kLMZzkJf2vAQbiyG3W/P1xX1SaktQ6yTBdC7je+pWAT+vuFIJeY+1gbAI
-         NyV1392WjitYApddQF8qdUkS/rkIv1UgPHGqbhtZDuBEj/l3b2niRjrAmZRORrHGIsaH
-         XAl/dB1x4skKRO663/wlyOwGocGUW8jjnWYiqEfhUuS63jd1PSI7Ucr0GljpURghssnI
-         ymFg==
-X-Gm-Message-State: AOAM533LnBSrQEPBEuj9oOrIPzM9fAjmnFm4IH2aZUDZ0eI3btuu6kvs
-        sGBLedOfZW1bwog8D/0FDHUELnOSVdwapLuIEjjLXQ==
-X-Google-Smtp-Source: ABdhPJyTJjkE0DbQ9blDWav98w+X2eEv5Ao+aqHbo6v8vW6kAJ3iH1xM8Vn6niOHiZAqARCskMhgKTsCoqH+TsHxDac=
-X-Received: by 2002:a9f:2722:: with SMTP id a31mr4520715uaa.100.1599037426432;
- Wed, 02 Sep 2020 02:03:46 -0700 (PDT)
+        bh=Ew8uPftzd7rZEwyKmHbAQ1uIc01gvs5Er2gSjYfu7W8=;
+        b=lkcgsRcmFAz1ib176d4ZjSTkquXNA+cpUahaT6skJsDIstbxhEjsTrjky7qLXgNbDj
+         fTJ8uX0HsT1i5FWs2JHBWlwyeObjjTq1hNK7jhxXY5mhCes1aK26HAIOHID1q3qUALo5
+         07W2HdAzIqe0j7R4I1ZHY38NRRByBNuZcOfE1UczCz2clrf3vy03A1euU6wlmlxHmdNh
+         bLh+wR0lOSIwQZKBV0Es18ielJ/V3cC0EVZuyD3wkQr0/8zRhu1FtpsKUAHKNabnETjs
+         WfHPFcuOEKU92gmJ8yjH4/Bpcb6UpwNO5OyzXilhtBfovp1cWZqDrIxkkbND4UlIFqOe
+         6w+w==
+X-Gm-Message-State: AOAM532bdJLV5Qsea5E3Se3V/GavqSYMZVg0V38wN/wuucU0CwEAAfJ2
+        VS7rBtPr08hMTsOFP4N6D2pcc55D+7VHNpom/gZ/mw==
+X-Google-Smtp-Source: ABdhPJypfiJBpPKqO5parBohEkYTMjyGzwzAwZxO6TYjuaHX2IfAFD06OB4IGnxO8uyCU9sql8Or1PQuWxYknwgZ2nk=
+X-Received: by 2002:a05:6102:5a:: with SMTP id k26mr4959457vsp.52.1599037428764;
+ Wed, 02 Sep 2020 02:03:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200829062505.4642-1-krzk@kernel.org>
-In-Reply-To: <20200829062505.4642-1-krzk@kernel.org>
+References: <20200831161147.13515-1-krzk@kernel.org> <20200831161147.13515-2-krzk@kernel.org>
+In-Reply-To: <20200831161147.13515-2-krzk@kernel.org>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 2 Sep 2020 11:03:09 +0200
-Message-ID: <CAPDyKFrVLZUXEV6pCa6aPJFtFsZ4xv9mtcycUQ1-XHyGOqKi+A@mail.gmail.com>
-Subject: Re: [PATCH v4] dt-bindings: mmc: fsl-imx-esdhc: Fix i.MX 8 compatible matching
+Date:   Wed, 2 Sep 2020 11:03:12 +0200
+Message-ID: <CAPDyKFrwABSPKq9w9Mm=6COsFPuf18MYbuC_KffSgWyMJa+AWA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: mmc: mmc-pwreq-simple: Accept more than
+ one reset GPIO
 To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>,
         DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 29 Aug 2020 at 08:25, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Mon, 31 Aug 2020 at 18:11, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >
-> The i.MX 8 DTSes use two compatibles so update the binding to fix
-> dtbs_check warnings like:
+> There might be multiple reset GPIOs but dtschema has trouble parsing it
+> if there are no maxItems:
 >
->   arch/arm64/boot/dts/freescale/imx8mn-evk.dt.yaml: mmc@30b40000:
->     compatible: ['fsl,imx8mn-usdhc', 'fsl,imx7d-usdhc'] is too long
->     From schema: Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
->
->   arch/arm64/boot/dts/freescale/imx8mn-evk.dt.yaml: mmc@30b40000:
->     compatible: Additional items are not allowed ('fsl,imx7d-usdhc' was unexpected)
->
->   arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dt.yaml: mmc@30b40000:
->     compatible: ['fsl,imx8mn-usdhc', 'fsl,imx7d-usdhc'] is too long
+>   arch/arm/boot/dts/exynos5250-snow.dt.yaml: mmc3_pwrseq: reset-gpios: [[20, 2, 1], [20, 1, 1]] is too long
+>     From schema: Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml
 >
 > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml b/Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml
+> index 449215444723..8d625f903856 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml
+> @@ -20,6 +20,8 @@ properties:
+>
+>    reset-gpios:
+>      minItems: 1
+> +    # Put some limit to avoid false warnings
+> +    maxItems: 32
+
+Not sure what number to pick. I guess two should be enough, but on the
+other hand it doesn't really matter.
+
+>      description:
+>        contains a list of GPIO specifiers. The reset GPIOs are asserted
+>        at initialization and prior we start the power up procedure of the card.
+> --
+> 2.17.1
+>
 
 Applied for next, thanks!
 
 Kind regards
 Uffe
-
-
->
-> ---
->
-> Changes since v3:
-> 1. Fix also example in Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml
->
-> Changes since v2:
-> 1. Remove moved compatibles.
->
-> Changes since v1:
-> 1. Handle also fsl,imx8mm-usdhc and fsl,imx8qxp-usdhc
-> ---
->  .../bindings/clock/imx8qxp-lpcg.yaml          |  2 +-
->  .../bindings/mmc/fsl-imx-esdhc.yaml           | 37 ++++++++++---------
->  2 files changed, 21 insertions(+), 18 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml b/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml
-> index 1d5e9bcce4c8..33f3010f48c3 100644
-> --- a/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml
-> +++ b/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml
-> @@ -62,7 +62,7 @@ examples:
->      };
->
->      mmc@5b010000 {
-> -        compatible = "fsl,imx8qxp-usdhc";
-> +        compatible = "fsl,imx8qxp-usdhc", "fsl,imx7d-usdhc";
->          interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>;
->          reg = <0x5b010000 0x10000>;
->          clocks = <&conn_lpcg IMX_CONN_LPCG_SDHC0_IPG_CLK>,
-> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> index 10b45966f1b8..e71d13c2d109 100644
-> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> @@ -21,23 +21,26 @@ description: |
->
->  properties:
->    compatible:
-> -    enum:
-> -      - fsl,imx25-esdhc
-> -      - fsl,imx35-esdhc
-> -      - fsl,imx51-esdhc
-> -      - fsl,imx53-esdhc
-> -      - fsl,imx6q-usdhc
-> -      - fsl,imx6sl-usdhc
-> -      - fsl,imx6sx-usdhc
-> -      - fsl,imx6ull-usdhc
-> -      - fsl,imx7d-usdhc
-> -      - fsl,imx7ulp-usdhc
-> -      - fsl,imx8mq-usdhc
-> -      - fsl,imx8mm-usdhc
-> -      - fsl,imx8mn-usdhc
-> -      - fsl,imx8mp-usdhc
-> -      - fsl,imx8qm-usdhc
-> -      - fsl,imx8qxp-usdhc
-> +    oneOf:
-> +      - enum:
-> +          - fsl,imx25-esdhc
-> +          - fsl,imx35-esdhc
-> +          - fsl,imx51-esdhc
-> +          - fsl,imx53-esdhc
-> +          - fsl,imx6q-usdhc
-> +          - fsl,imx6sl-usdhc
-> +          - fsl,imx6sx-usdhc
-> +          - fsl,imx6ull-usdhc
-> +          - fsl,imx7d-usdhc
-> +          - fsl,imx7ulp-usdhc
-> +      - items:
-> +          - enum:
-> +              - fsl,imx8mm-usdhc
-> +              - fsl,imx8mn-usdhc
-> +              - fsl,imx8mp-usdhc
-> +              - fsl,imx8mq-usdhc
-> +              - fsl,imx8qxp-usdhc
-> +          - const: fsl,imx7d-usdhc
->
->    reg:
->      maxItems: 1
-> --
-> 2.17.1
->
