@@ -2,245 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93A1925B6F0
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 01:02:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D7FF25B740
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 01:26:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727030AbgIBXCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 19:02:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35028 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726922AbgIBXCU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 19:02:20 -0400
-Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA21CC061249
-        for <devicetree@vger.kernel.org>; Wed,  2 Sep 2020 16:02:19 -0700 (PDT)
-Received: by mail-pj1-x1042.google.com with SMTP id k15so517330pji.3
-        for <devicetree@vger.kernel.org>; Wed, 02 Sep 2020 16:02:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Gbp5El4soX0C+z5m/RfNuwNwoyYLjPi9BYBBMtXuagI=;
-        b=VHrtybD/4A+hThtZJJM/UIQBWBqgk3/Kq2K/593d1Pt86pNw5OYN+Ttakg1m0TmRld
-         ZN76GvHAIUBIGEiKhgRnnxuUO2g9lhiRiOaB2wLXGxEO1WAIsqTv8CasswoYn4RuQhHN
-         Tu5YFQZ7CjusKZDXn7DaYh4MrjDKPFtP1j3zA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Gbp5El4soX0C+z5m/RfNuwNwoyYLjPi9BYBBMtXuagI=;
-        b=S3rASm/9JvIhdZ2T7isfw7+oiGgaPOBHVi9YYryBzrPdv3wmw3FWDA2PBYjAFMj0Oq
-         X3cPrS0lIaDQGwqaE7M1X0jSvc74Qa9hDeqSflCEq2KNO8RgsKd4Rb4+gXH23xoCaBV2
-         dc3eYP05juoDgnG/9gDhDEI7RQ5gR24ojOfnYczb9Ekt+EGzwAYyfnk24HGu5YsStZo0
-         VrV62RHyH3J6tVOX5p8VM+G4MTaoajJLvHRU6HqgZ4Rn0Eg85GlRKawlmi0bDAlS1ujo
-         n6Bvv1g79qT7Yb4OUfHmnf3W0cEC2UQsPwc4IXkpeDnJoqueXFBkcscf0t1NlRHqDepy
-         eOFA==
-X-Gm-Message-State: AOAM533RfNhi3y32ii6QaqEHzvgz6jRZOVP5FmeTcDWxmTHUxB5fNlgc
-        8YfITMgD94x2u3xpdwnkQw6Uzw==
-X-Google-Smtp-Source: ABdhPJzIGBjJr716uSgGwRW5r6DiwwvYEBE9tldApiGh+jcAT9uGnxkArdr3pX4uCQ8bWMRwFHzKNA==
-X-Received: by 2002:a17:90b:408b:: with SMTP id jb11mr57676pjb.164.1599087739364;
-        Wed, 02 Sep 2020 16:02:19 -0700 (PDT)
-Received: from smtp.gmail.com ([2620:15c:202:1:3e52:82ff:fe6c:83ab])
-        by smtp.gmail.com with ESMTPSA id x12sm410277pjq.43.2020.09.02.16.02.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Sep 2020 16:02:18 -0700 (PDT)
-From:   Stephen Boyd <swboyd@chromium.org>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Jeykumar Sankaran <jsanka@codeaurora.org>,
-        Chandan Uddaraju <chandanu@codeaurora.org>,
-        Vara Reddy <varar@codeaurora.org>,
-        Tanmay Shah <tanmay@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Sandeep Maheswaram <sanm@codeaurora.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Rob Clark <robdclark@chromium.org>
-Subject: [PATCH v2 01/10] dt-bindings: phy: qcom,qmp-usb3-dp: Add DP phy information
-Date:   Wed,  2 Sep 2020 16:02:06 -0700
-Message-Id: <20200902230215.3452712-2-swboyd@chromium.org>
-X-Mailer: git-send-email 2.28.0.402.g5ffc5be6b7-goog
-In-Reply-To: <20200902230215.3452712-1-swboyd@chromium.org>
-References: <20200902230215.3452712-1-swboyd@chromium.org>
+        id S1726528AbgIBX0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 19:26:20 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:37782 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726312AbgIBX0Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 19:26:16 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 082NQ0C5022347;
+        Wed, 2 Sep 2020 18:26:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599089160;
+        bh=HlAs1wgxV8DXY4mBeHgZx/mwNEWUVkjB7NzPw810ZHI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=yGg2rh9Pr23KfE3TOCb4MWQLWIBp6pJrxqWekCjjbl1sjaH6TbLojmkRDEzaJke4e
+         gxtcr5dsqEIWpvE8TnJDMdGgbdrSpFJPtY+KkvMuPT00ioz0BfBMBAZnVl5TEeyNDi
+         AS4VlsadUXUYBbFC1lXZLpDy1cuw5Yxv1ImoR/rM=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 082NQ0Pm062378
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 2 Sep 2020 18:26:00 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 2 Sep
+ 2020 18:25:59 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 2 Sep 2020 18:25:59 -0500
+Received: from [10.250.34.112] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 082NPwxZ121283;
+        Wed, 2 Sep 2020 18:25:59 -0500
+Subject: Re: [v4,2/4] dt-binding: reset-controller: ti: add
+ 'mediatek,infra-reset' to compatible
+To:     Crystal Guo <crystal.guo@mediatek.com>,
+        Rob Herring <robh@kernel.org>
+CC:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?UTF-8?B?U2VpeWEgV2FuZyAo546L6L+65ZCbKQ==?= 
+        <seiya.wang@mediatek.com>,
+        =?UTF-8?B?U3RhbmxleSBDaHUgKOacseWOn+mZnik=?= 
+        <stanley.chu@mediatek.com>,
+        =?UTF-8?B?WWluZ2pvZSBDaGVuICjpmbPoi7HmtLIp?= 
+        <Yingjoe.Chen@mediatek.com>,
+        =?UTF-8?B?RmFuIENoZW4gKOmZs+WHoSk=?= <fan.chen@mediatek.com>,
+        =?UTF-8?B?WW9uZyBMaWFuZyAo5qKB5YuHKQ==?= <Yong.Liang@mediatek.com>
+References: <20200817030324.5690-1-crystal.guo@mediatek.com>
+ <20200817030324.5690-3-crystal.guo@mediatek.com>
+ <20200825190219.GA1125997@bogus> <1598440183.30048.14.camel@mhfsdcap03>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <6c292056-1cb1-bc6c-0422-46e047dcf08f@ti.com>
+Date:   Wed, 2 Sep 2020 18:25:58 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1598440183.30048.14.camel@mhfsdcap03>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This binding only describes the USB phy inside the USB3 + DP "combo"
-phy. Add information for the DP phy and describe the sub-nodes that
-represent the DP and USB3 phys that exist inside the combo wrapper.
-Remove reg-names from required properties because it isn't required nor
-used by the kernel driver.
+Hi Rob,
 
-Cc: Jeykumar Sankaran <jsanka@codeaurora.org>
-Cc: Chandan Uddaraju <chandanu@codeaurora.org>
-Cc: Vara Reddy <varar@codeaurora.org>
-Cc: Tanmay Shah <tanmay@codeaurora.org>
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Manu Gautam <mgautam@codeaurora.org>
-Cc: Sandeep Maheswaram <sanm@codeaurora.org>
-Cc: Douglas Anderson <dianders@chromium.org>
-Cc: Sean Paul <seanpaul@chromium.org>
-Cc: Jonathan Marek <jonathan@marek.ca>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: <devicetree@vger.kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Rob Clark <robdclark@chromium.org>
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
----
- .../bindings/phy/qcom,qmp-usb3-dp-phy.yaml    | 91 +++++++++++++++++--
- 1 file changed, 81 insertions(+), 10 deletions(-)
+On 8/26/20 6:09 AM, Crystal Guo wrote:
+> On Wed, 2020-08-26 at 03:02 +0800, Rob Herring wrote:
+>> On Mon, Aug 17, 2020 at 11:03:22AM +0800, Crystal Guo wrote:
+>>> The TI syscon reset controller provides a common reset management,
+>>> and is suitable for MTK SoCs. Add compatible 'mediatek,infra-reset',
+>>> which denotes to use ti reset-controller driver directly.
+>>>
+>>> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/reset/ti-syscon-reset.txt | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt b/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt
+>>> index ab041032339b..5a0e9365b51b 100644
+>>> --- a/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt
+>>> +++ b/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt
+>>> @@ -25,6 +25,7 @@ Required properties:
+>>>  			    "ti,k2l-pscrst"
+>>>  			    "ti,k2hk-pscrst"
+>>>  			    "ti,syscon-reset"
+>>> +			    "mediatek,infra-reset", "ti,syscon-reset"
+>>
+>> You need your own binding doc. If you can use the same driver then fine, 
+>> but that's a separate issue. There's also reset-simple driver if you 
+>> have just array of 32-bit registers with a bit per reset.
+>>
+>> Don't repeat 'ti,reset-bits' either.
+> 
+> Do you mean I should add a Mediatek reset binding doc, although Mediatek
+> reuse the TI reset controller directly?
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
-index ef8ae9f73092..4154f5748d39 100644
---- a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
-@@ -17,13 +17,15 @@ properties:
-       - qcom,sdm845-qmp-usb3-phy
-   reg:
-     items:
--      - description: Address and length of PHY's common serdes block.
-+      - description: Address and length of PHY's USB serdes block.
-       - description: Address and length of the DP_COM control block.
-+      - description: Address and length of PHY's DP serdes block.
- 
-   reg-names:
-     items:
--      - const: reg-base
-+      - const: usb
-       - const: dp_com
-+      - const: dp
- 
-   "#clock-cells":
-     enum: [ 1, 2 ]
-@@ -74,16 +76,74 @@ properties:
- 
- #Required nodes:
- patternProperties:
--  "^phy@[0-9a-f]+$":
-+  "^usb3-phy@[0-9a-f]+$":
-     type: object
-     description:
--      Each device node of QMP phy is required to have as many child nodes as
--      the number of lanes the PHY has.
-+      The USB3 PHY.
-+
-+    properties:
-+      reg:
-+        items:
-+          - description: Address and length of TX.
-+          - description: Address and length of RX.
-+          - description: Address and length of PCS.
-+          - description: Address and length of TX2.
-+          - description: Address and length of RX2.
-+          - description: Address and length of pcs_misc.
-+
-+      clocks:
-+        items:
-+          - description: pipe clock
-+
-+      clock-names:
-+        items:
-+          - const: pipe0
-+
-+      clock-output-names:
-+        items:
-+          - const: usb3_phy_pipe_clk_src
-+
-+      '#clock-cells':
-+        const: 0
-+
-+      '#phy-cells':
-+        const: 0
-+
-+    required:
-+      - reg
-+      - clocks
-+      - clock-names
-+      - '#clock-cells'
-+      - '#phy-cells'
-+
-+  "^dp-phy@[0-9a-f]+$":
-+    type: object
-+    description:
-+      The DP PHY.
-+
-+    properties:
-+      reg:
-+        items:
-+          - description: Address and length of TX.
-+          - description: Address and length of RX.
-+          - description: Address and length of PCS.
-+          - description: Address and length of TX2.
-+          - description: Address and length of RX2.
-+
-+      '#clock-cells':
-+        const: 1
-+
-+      '#phy-cells':
-+        const: 0
-+
-+    required:
-+      - reg
-+      - '#clock-cells'
-+      - '#phy-cells'
- 
- required:
-   - compatible
-   - reg
--  - reg-names
-   - "#clock-cells"
-   - "#address-cells"
-   - "#size-cells"
-@@ -103,12 +163,13 @@ examples:
-     usb_1_qmpphy: phy-wrapper@88e9000 {
-         compatible = "qcom,sdm845-qmp-usb3-phy";
-         reg = <0x088e9000 0x18c>,
--              <0x088e8000 0x10>;
--        reg-names = "reg-base", "dp_com";
-+              <0x088e8000 0x10>,
-+              <0x088ea000 0x40>;
-+        reg-names = "usb", "dp_com", "dp";
-         #clock-cells = <1>;
-         #address-cells = <1>;
-         #size-cells = <1>;
--        ranges = <0x0 0x088e9000 0x1000>;
-+        ranges = <0x0 0x088e9000 0x2000>;
- 
-         clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
-                  <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>,
-@@ -123,7 +184,7 @@ examples:
-         vdda-phy-supply = <&vdda_usb2_ss_1p2>;
-         vdda-pll-supply = <&vdda_usb2_ss_core>;
- 
--        phy@200 {
-+        usb3-phy@200 {
-             reg = <0x200 0x128>,
-                   <0x400 0x200>,
-                   <0xc00 0x218>,
-@@ -136,4 +197,14 @@ examples:
-             clock-names = "pipe0";
-             clock-output-names = "usb3_phy_pipe_clk_src";
-         };
-+
-+        dp-phy@88ea200 {
-+            reg = <0xa200 0x200>,
-+                  <0xa400 0x200>,
-+                  <0xaa00 0x200>,
-+                  <0xa600 0x200>,
-+                  <0xa800 0x200>;
-+            #clock-cells = <1>;
-+            #phy-cells = <0>;
-+        };
-     };
--- 
-Sent by a computer, using git, on the internet
+Hmm, how do you envision not repeating the same bits in a separate binding?
+Does it help if I convert this to YAML first without a ti, prefix in the file name?
+
+The usage philosophy definitely was to use a <soc-compatible> followed by the
+<generic-compatible>. This is how all of our reset nodes were added as well.
+
+Looks like Andrew may have misinterpreted your comment [1] during the original
+binding and changed "syscon-reset" to "ti,syscon-reset" in the final version [2].
+
+regards
+Suman
+
+[1] https://lore.kernel.org/patchwork/comment/876688/
+[2] https://lore.kernel.org/patchwork/patch/693172/
+
+> 
+> Best Regards
+> Crystal
+>>
+>>>   - #reset-cells		: Should be 1. Please see the reset consumer node below
+>>>  			  for usage details
+>>>   - ti,reset-bits	: Contains the reset control register information
+>>> -- 
+>>> 2.18.0
+> 
 
