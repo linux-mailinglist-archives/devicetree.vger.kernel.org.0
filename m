@@ -2,110 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2973625ABE1
-	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 15:14:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F4B525AC13
+	for <lists+devicetree@lfdr.de>; Wed,  2 Sep 2020 15:30:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726942AbgIBNNX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 09:13:23 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:19153 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727004AbgIBNKG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Sep 2020 09:10:06 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1599052205; h=Message-ID: Subject: Cc: To: From: Date:
- Content-Transfer-Encoding: Content-Type: MIME-Version: Sender;
- bh=wBdcPQ/YNiU+WDkJLplCJsZAXQvmVTWpdtx6qvH+ZwA=; b=CoROBpd0t1cS72xXDdGxo9xx260kroQR1Mrgi/qkAC1rx+pVh3Rx92u4HwGIlEKn1pw90vde
- c7DpyW2z58UGLyU2n+qpkwTXcWDAVe1AKSo4R53KnQAc/FAC172Je0gy1lvosOBTOMXsXUPz
- ez6ZQMUAykkP/YTxqxCcFPTnhyY=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 5f4f99964f13e63f04e63663 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 02 Sep 2020 13:09:42
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id B9C55C43395; Wed,  2 Sep 2020 13:09:41 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 10DB5C433C9;
-        Wed,  2 Sep 2020 13:09:41 +0000 (UTC)
+        id S1727037AbgIBNaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 09:30:02 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:35864 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726293AbgIBN2z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 09:28:55 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 082DSZUE026423;
+        Wed, 2 Sep 2020 08:28:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599053315;
+        bh=vQI22dfT496+KMI35oF7DTRni+ONmCVmidN8Fb1B6+0=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=o6XRI5IHSlSq6IaNK6ejdynXOQ4iGHZeZdFOzKOYghxXfXBoyXag8B2B21u4ZY0zm
+         ork3hupljrMbFs8CAklrPjWxvbn1wxgtIb8LrDJ9aq6pv/t9N3+QWTN2qAcXrmcby4
+         jvBqMn5CRpgIYbfPVbPLwhwR6fwkX9vgUMXbTkoU=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 082DSZRN095336
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 2 Sep 2020 08:28:35 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 2 Sep
+ 2020 08:28:34 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 2 Sep 2020 08:28:34 -0500
+Received: from [192.168.2.14] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 082DSW0D080726;
+        Wed, 2 Sep 2020 08:28:32 -0500
+Subject: Re: [PATCH 2/3] dt-bindings: usb: cdns,usb3: Add cdns,phyrst-a-enable
+ property
+To:     Peter Chen <peter.chen@nxp.com>
+CC:     "balbi@kernel.org" <balbi@kernel.org>,
+        "pawell@cadence.com" <pawell@cadence.com>,
+        "kurahul@cadence.com" <kurahul@cadence.com>,
+        "nsekhar@ti.com" <nsekhar@ti.com>,
+        "vigneshr@ti.com" <vigneshr@ti.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20200825120059.12436-1-rogerq@ti.com>
+ <20200825120059.12436-3-rogerq@ti.com> <20200827111343.GB5983@b29397-desktop>
+From:   Roger Quadros <rogerq@ti.com>
+Message-ID: <08a7533f-b09e-f044-64e5-d709ae220599@ti.com>
+Date:   Wed, 2 Sep 2020 16:28:31 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+In-Reply-To: <20200827111343.GB5983@b29397-desktop>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Date:   Wed, 02 Sep 2020 18:39:41 +0530
-From:   skakit@codeaurora.org
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        gregkh@linuxfoundation.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, akashast@codeaurora.org,
-        rojay@codeaurora.org, msavaliy@qti.qualcomm.com
-Subject: Re: [PATCH V3 1/3] arm64: dts: sc7180: Add wakeup support over UART
- RX
-Message-ID: <e073ccd4fe47ab7e1a61fb201c9f5d84@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
+Peter,
 
-On 2020-08-21 21:56, Matthias Kaehlcke wrote:
-> On Thu, Aug 20, 2020 at 07:21:05PM +0530, satya priya wrote:
->> Add the necessary pinctrl and interrupts to make UART
->> wakeup capable.
->> 
->> Signed-off-by: satya priya <skakit@codeaurora.org>
->> Reviewed-by: Akash Asthana <akashast@codeaurora.org>
+On 27/08/2020 14:14, Peter Chen wrote:
+> On 20-08-25 15:00:58, Roger Quadros wrote:
+>> Controller version 0x0002450D has USB2 PHY RX sensitivity issues
+>> that needs to be worked around by enabling phyrst-a-enable bit
+>> in PHYRST_CFG register.
+>>
+>> There is no way to distinguish between the controller version
+>> before the device controller is started so we need to add this
+>> DT property.
+> 
+> Maybe you should say "There is no way to know controller version
+> at host mode, but this workaround needs for both host and device
+> mode, so we have to add this DT property", the same for the comments
+> of your driver code patch.
+
+I will reword it to
+
+"There is no way to know controller version before device controller
+is started and the workaround needs to be applied for both host and
+device modes, so we add this DT property"
+
+cheers,
+-roger
+
+> 
+> Peter
+>>
+>> Signed-off-by: Roger Quadros <rogerq@ti.com>
 >> ---
->> Changes in V2:
->>  - As per Matthias's comment added wakeup support for all the UARTs
->>    of SC7180.
->> 
->> Changes in V3:
->>  - No change.
->> 
->>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 98 
->> ++++++++++++++++++++++++++++++------
->>  1 file changed, 84 insertions(+), 14 deletions(-)
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi 
->> b/arch/arm64/boot/dts/qcom/sc7180.dtsi
->> index d46b383..855b13e 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
->> 
->> ...
->> 
->> +			qup_uart0_sleep: qup-uart0-sleep {
->> +				pinmux {
->> +					pins = "gpio34", "gpio35",
->> +					       "gpio36", "gpio37";
->> +					function = "gpio";
+>>   Documentation/devicetree/bindings/usb/cdns,usb3.yaml | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+>> index 7bc0263accee..e670adc955e1 100644
+>> --- a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+>> @@ -58,6 +58,10 @@ properties:
+>>         buffers expressed in KB
+>>       $ref: /schemas/types.yaml#/definitions/uint32
+>>   
+>> +  cdns,phyrst-a-enable:
+>> +    description: Enable resetting of PHY if Rx fail is detected
+>> +    type: boolean
+>> +
+>>   required:
+>>     - compatible
+>>     - reg
+>> -- 
+>> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+>> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+>>
 > 
-> What is the reason that the GPIO function needs to be selected in sleep 
-> mode
-> to support wakeup?
-> 
-> This should be explained in the commit message unless it is evident.
 
-When QUP function is selected in sleep state, RTS/RFR is pulled high as 
-soon as we enter suspend and not receiving wakeup bytes from BT SoC to 
-wakeup device. Whereas in GPIO mode it is staying low and receiving 
-data.
-
-Thanks,
-Satya Priya
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
