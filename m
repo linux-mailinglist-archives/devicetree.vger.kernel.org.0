@@ -2,199 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8073425C092
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 13:49:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C24A25C0AF
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 14:01:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728721AbgICLtY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 07:49:24 -0400
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:58409 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728676AbgICLsq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 07:48:46 -0400
-X-Originating-IP: 2.224.242.101
-Received: from uno.lan (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 42FD01BF212;
-        Thu,  3 Sep 2020 11:48:06 +0000 (UTC)
-From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
-To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>, mchehab@kernel.org,
-        sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
-        laurent.pinchart@ideasonboard.com,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v4 1/3] dt-bindings: media: mt9v111: Convert to json-schema
-Date:   Thu,  3 Sep 2020 13:51:41 +0200
-Message-Id: <20200903115143.13717-2-jacopo+renesas@jmondi.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200903115143.13717-1-jacopo+renesas@jmondi.org>
-References: <20200903115143.13717-1-jacopo+renesas@jmondi.org>
+        id S1728676AbgICL7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 07:59:35 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:37790 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728646AbgICL7Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 07:59:16 -0400
+Received: by mail-ot1-f68.google.com with SMTP id 37so2442294oto.4;
+        Thu, 03 Sep 2020 04:59:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9ImNPfe7CCahb0OVlVwJzlrDCDsuxJrxvrkCtfeRX6E=;
+        b=cdqMLjRA/mbdU6rkFPcQBa/Z+1kkBpUc0pXWz+wutZb4q6pzTx+dPxD48ZAqN1SvXA
+         /RDUh5t61SDy8hSNragnrhBlWqzLLag9HrIs1ojuXaI1z6757v5OqUO+4Yh+mXl6jB3k
+         XdbmyR0ltogzORZshcWLu/FPki0Dkk2cuhV4pD7pmrQs/B15jPhFJRx9OWZtb6firV/s
+         2Is66E/9nKFQkeApRs1uH3EIUTI/E+R7a/sqVSErf0oBPUgDkXRy8CYyAIg3uVMQe1Me
+         35chlc5JZugrW6qiBHcja5k0cZrExRGa/QLQvFoG19bIt5y0Uq89y59drTH1FU7T7mU8
+         QrAw==
+X-Gm-Message-State: AOAM532Gk0X431ImfwteHN0d4JYYvZYNA0TB428DUVOs+N/TaIp7Lt1h
+        JZVITaPYoLdvNsTkM0BN2yBy0jGb3pKwSCtFWi4AMvOOa3A=
+X-Google-Smtp-Source: ABdhPJxVMGiJTBSxcKTjbAnuB4JjiObB+hMYFGLmWixYQnn1WNtT3AEXJ9StsQu0r70/kt1B0UdLSv0+rEtB5Fin9K4=
+X-Received: by 2002:a9d:162:: with SMTP id 89mr1340662otu.250.1599134355136;
+ Thu, 03 Sep 2020 04:59:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200825162718.5838-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20200825162718.5838-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20200825162718.5838-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 3 Sep 2020 13:59:04 +0200
+Message-ID: <CAMuHMdXm9D8-bg3XdGqD7AKe2vMiZLNWENH3A0w-b7j=qZS=pA@mail.gmail.com>
+Subject: Re: [PATCH 2/4] ARM: dts: r8a7742-iwg21d-q7: Add SPI NOR support
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the mt9v111 bindings document to json-schema and update
-the MAINTAINERS file accordingly.
+Hi Prabhakar,
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
----
- .../bindings/media/i2c/aptina,mt9v111.txt     | 46 ------------
- .../bindings/media/i2c/aptina,mt9v111.yaml    | 75 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 76 insertions(+), 47 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt
- create mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
+On Tue, Aug 25, 2020 at 6:28 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Add support for the SPI NOR device which is connected to MSIOF0 interface
+> on the iWave RainboW-G21d-q7 board.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt b/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt
-deleted file mode 100644
-index bd896e9f67d1..000000000000
---- a/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt
-+++ /dev/null
-@@ -1,46 +0,0 @@
--* Aptina MT9V111 CMOS sensor
------------------------------
--
--The Aptina MT9V111 is a 1/4-Inch VGA-format digital image sensor with a core
--based on Aptina MT9V011 sensor and an integrated Image Flow Processor (IFP).
--
--The sensor has an active pixel array of 640x480 pixels and can output a number
--of image resolution and formats controllable through a simple two-wires
--interface.
--
--Required properties:
----------------------
--
--- compatible: shall be "aptina,mt9v111".
--- clocks: reference to the system clock input provider.
--
--Optional properties:
----------------------
--
--- enable-gpios: output enable signal, pin name "OE#". Active low.
--- standby-gpios: low power state control signal, pin name "STANDBY".
--  Active high.
--- reset-gpios: chip reset signal, pin name "RESET#". Active low.
--
--The device node must contain one 'port' child node with one 'endpoint' child
--sub-node for its digital output video port, in accordance with the video
--interface bindings defined in:
--Documentation/devicetree/bindings/media/video-interfaces.txt
--
--Example:
----------
--
--        &i2c1 {
--                camera@48 {
--                        compatible = "aptina,mt9v111";
--                        reg = <0x48>;
--
--                        clocks = <&camera_clk>;
--
--                        port {
--                                mt9v111_out: endpoint {
--                                        remote-endpoint = <&ceu_in>;
--                                };
--                        };
--                };
--        };
-diff --git a/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml b/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
-new file mode 100644
-index 000000000000..ff9546e95d05
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
-@@ -0,0 +1,75 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/aptina,mt9v111.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Aptina MT9V111 CMOS sensor
-+
-+maintainers:
-+  - Jacopo Mondi <jacopo@jmondi.org>
-+
-+description: |
-+  The Aptina MT9V111 is a 1/4-Inch VGA-format digital image sensor with a core
-+  based on Aptina MT9V011 sensor and an integrated Image Flow Processor (IFP).
-+
-+  The sensor has an active pixel array of 640x480 pixels and can output a number
-+  of image resolutions and formats controllable through a simple two-wires
-+  interface.
-+
-+properties:
-+  compatible:
-+    const: aptina,mt9v111
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  enable-gpios:
-+    description: Enable signal, pin name "OE#". Active low.
-+    maxItems: 1
-+
-+  standby-gpios:
-+    description: |
-+      Low power state control signal, pin name "STANDBY". Active high.
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description: Chip reset signal, pin name "RESET#". Active low.
-+    maxItems: 1
-+
-+  port:
-+    type: object
-+    description: |
-+      Output video port. See ../video-interfaces.txt.
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        camera@48 {
-+            compatible = "aptina,mt9v111";
-+            reg = <0x48>;
-+            clocks = <&camera_clk>;
-+
-+            port {
-+                mt9v111_out: endpoint {
-+                    remote-endpoint = <&ceu_in>;
-+                };
-+            };
-+        };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4f786d18e16e..3f8f093268b7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11806,7 +11806,7 @@ M:	Jacopo Mondi <jacopo@jmondi.org>
- L:	linux-media@vger.kernel.org
- S:	Maintained
- T:	git git://linuxtv.org/media_tree.git
--F:	Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt
-+F:	Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
- F:	drivers/media/i2c/mt9v111.c
- 
- MULTIFUNCTION DEVICES (MFD)
+> --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
+> +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
+> @@ -220,6 +220,32 @@
+>         status = "okay";
+>  };
+>
+> +&msiof0 {
+> +       pinctrl-0 = <&msiof0_pins>;
+> +       pinctrl-names = "default";
+> +       cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
+> +
+> +       status = "okay";
+> +
+> +       flash1: flash@0 {
+> +               compatible = "sst,sst25vf016b", "jedec,spi-nor";
+> +               reg = <0>;
+> +               spi-max-frequency = <50000000>;
+> +               m25p,fast-read;
+> +
+> +               partitions {
+> +                       compatible = "fixed-partitions";
+> +                       #address-cells = <1>;
+> +                       #size-cells = <1>;
+> +
+> +                       partition@0 {
+> +                               label = "user";
+> +                               reg = <0x00000000 0x00200000>;
+> +                       };
+> +               };
+> +       };
+> +};
+> +
+>  &pci0 {
+>         pinctrl-0 = <&usb0_pins>;
+>         pinctrl-names = "default";
+> @@ -266,6 +292,11 @@
+>                 function = "i2c2";
+>         };
+>
+> +       msiof0_pins: msiof0 {
+> +               groups = "msiof0_clk", "msiof0_tx", "msiof0_rx";
+
+I think you're missing "msiof0_sync", connected to SPI_CS0#?
+
+With that fixed:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+> +               function = "msiof0";
+> +       };
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.28.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
