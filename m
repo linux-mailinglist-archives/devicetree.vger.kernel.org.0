@@ -2,93 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4372225C6F5
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 18:35:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCDD425C6D8
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 18:31:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726368AbgICQfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 12:35:10 -0400
-Received: from mail-il1-f195.google.com ([209.85.166.195]:37689 "EHLO
-        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726292AbgICQfE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 12:35:04 -0400
-Received: by mail-il1-f195.google.com with SMTP id b17so3273200ilh.4;
-        Thu, 03 Sep 2020 09:35:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iIfLZ14oR+6kVVplGeYdY3QZelcTYNmiPq+fUE3RZP4=;
-        b=sCXDsd1ndeUvn1hXSgDSo19yqG+ius/m2Q8eEq8Ijmi/0ZymIEpV4Qr04VxMYXxvai
-         jiQ9+4bRiEXwJD8jnYBGJ0KpGaEMrY+jG95/YGxYecqLav/vc6JPC28i8NV2tyLoq94M
-         eAgpj+MIuGyGgcJfz9bG6UxHD/VaI09s7DhyigBbMPJSiOyp+hSA/H5Ga8Rpm0HKc+M4
-         Xt9f8egzb57xyYNSHI38HYUBcwJy90c9n3C1jHD4DCGOSjMhXzRsQ6bQw1nJRH3JfYe1
-         t0pkJGUktfbePMOKpTvreMGaBnJ/aTbKEc5GDnEG68cToJP40gHePjVTcz0eD3nfFp/J
-         AnKQ==
-X-Gm-Message-State: AOAM530wOJeeqzDm+ItcB239Kol+ghldG3Yb965ijzHK9n+II+aiMCRy
-        5RLm+mPFbp34z3Erv+ZLVw==
-X-Google-Smtp-Source: ABdhPJzAEffp2WonM7repJTb9yyQNn/3Nmi+Nn/JwPHkxriL04JXnRwvW1ue7iajeKEDm4+9ErJo6Q==
-X-Received: by 2002:a05:6e02:1141:: with SMTP id o1mr1095908ill.275.1599150902693;
-        Thu, 03 Sep 2020 09:35:02 -0700 (PDT)
-Received: from xps15 ([64.188.179.249])
-        by smtp.gmail.com with ESMTPSA id w70sm1713310ilk.87.2020.09.03.09.35.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Sep 2020 09:35:02 -0700 (PDT)
-Received: (nullmailer pid 2909825 invoked by uid 1000);
-        Thu, 03 Sep 2020 16:34:58 -0000
-Date:   Thu, 3 Sep 2020 10:34:58 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Lars-Peter Clausen <lars@metafoo.de>, linux-pm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Amit Kucheria <amitk@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>
-Subject: Re: [PATCH v2 1/9] dt-bindings: thermal: qcom: add adc-thermal
- monitor bindings
-Message-ID: <20200903163458.GA2909612@bogus>
-References: <20200903132109.1914011-1-dmitry.baryshkov@linaro.org>
- <20200903132109.1914011-2-dmitry.baryshkov@linaro.org>
+        id S1728633AbgICQbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 12:31:46 -0400
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:33289 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726292AbgICQbp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 12:31:45 -0400
+X-Originating-IP: 2.224.242.101
+Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id BC3CD60002;
+        Thu,  3 Sep 2020 16:31:39 +0000 (UTC)
+Date:   Thu, 3 Sep 2020 18:35:25 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
+        sakari.ailus@iki.fi, hverkuil@xs4all.nl, jacopo+renesas@jmondi.org,
+        luca@lucaceresoli.net, leonl@leopardimaging.com,
+        robh+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 2/3] dt-bindings: media: imx274: Add optional input
+ clock and supplies
+Message-ID: <20200903163525.p5z2adhp4wq453bs@uno.localdomain>
+References: <1599012278-10203-1-git-send-email-skomatineni@nvidia.com>
+ <1599012278-10203-3-git-send-email-skomatineni@nvidia.com>
+ <20200903125542.nxiafnysatoexken@uno.localdomain>
+ <d3a1843c-5d73-cfa6-9611-405b905ddcd1@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200903132109.1914011-2-dmitry.baryshkov@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d3a1843c-5d73-cfa6-9611-405b905ddcd1@nvidia.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 03 Sep 2020 16:21:01 +0300, Dmitry Baryshkov wrote:
-> Add bindings for thermal monitor, part of Qualcomm PMIC5 chips. It is a
-> close counterpart of VADC part of those PMICs.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../bindings/thermal/qcom-spmi-adc-tm5.yaml   | 142 ++++++++++++++++++
->  1 file changed, 142 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
-> 
+Hi Sowjanya,
 
+On Thu, Sep 03, 2020 at 09:05:27AM -0700, Sowjanya Komatineni wrote:
+>
+> On 9/3/20 5:55 AM, Jacopo Mondi wrote:
+> > Hello Sowjanya,
+> >
+> > On Tue, Sep 01, 2020 at 07:04:37PM -0700, Sowjanya Komatineni wrote:
+> > > This patch adds IMX274 optional external clock input and voltage
+> > > supplies to device tree bindings.
+> > >
+> > > Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
+> > > Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> > > ---
+> > >   .../devicetree/bindings/media/i2c/sony,imx274.yaml  | 21 +++++++++++++++++++++
+> > >   1 file changed, 21 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
+> > > index 7ae47a6..57e7176 100644
+> > > --- a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
+> > > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
+> > > @@ -25,6 +25,27 @@ properties:
+> > >     reset-gpios:
+> > >       maxItems: 1
+> > >
+> > I just sent an update to my json-schema conversion of this bindings
+> > document (not yet on patchwork, sorry) and Sakari pointed me to the
+> > fact in between my v2 and my v4 this patch from you went in:
+> > 4ea3273d24b ("dt-bindings: media: imx274: Add optional input clock and supplies")
+> >
+> > I should probably now update my bindings conversion patch, basically
+> > taking in what you've done here, but I would have one question.
+> >
+> > > +  clocks:
+> > > +    maxItems: 1
+> > > +    description: Reference to the sensor input clock
+> > > +
+> > > +  clock-names:
+> > > +    maxItems: 1
+> > > +    items:
+> > > +      - const: inck
+> > > +
+> > > +  vana-supply:
+> > > +    description:
+> > > +      Analog voltage supply, 2.8 volts
+> > > +
+> > > +  vdig-supply:
+> > > +    description:
+> > > +      Digital IO voltage supply, 1.8 volts
+> > > +
+> > > +  vddl-supply:
+> > > +    description:
+> > > +      Digital core voltage supply, 1.2 volts
+> > 4ea3273d24b introduced these regulators as VANA-supply, VDIG-supply
+> > and VDDL-supply (please note the upper-case names). This version uses
+> > lower-case ones instead. Is this intentional ? The driver currently
+> > does not parse any of these if I'm not mistaken, but as the bindings
+> > in textual form defines an ABI which should be preserved during the
+> > conversion to json-schema, should these be kept in upper-case ?
+> >
+> > Thanks
+> >     j
+>
+> Yes, based on feedback lower case was recommended. So, changed to use
+> lower-case names.
+>
+> These properties were not used by driver currently and from my prior series
+> only dt-binding got merged as  no feedback was received on it for all prior
+> versions.
+>
+> So, should be ok to change to lower-case as there properties are introduced
+> now and driver update using these properties is under review
+>
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Well, I see that patch went in v5.9-rc1, so it will be part of v5.9.
 
-Error: Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.example.dts:23.24-25 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1366: dt_binding_check] Error 2
+If the bindings update goes in in v5.10 (or whatever comes after v5.9)
+then we have a problem, as the DTB created for v5.9 won't work anymore
+on any later version, and that should not happen. Alternatively, a fix
+for the next -rc release could be fast-tracked, but you would
+need to synchronize with the dt maintainers for that and make a patch
+for the existing .txt bindings file.
 
+If the name change happens in the yaml file and one release is made
+with the old names, then we're stuck with those forever and ever, if I
+got the situation right.
 
-See https://patchwork.ozlabs.org/patch/1356633
+Please check with the dt and media maintainers, or they can comment
+here if they glance through these lines.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
+Thanks
+  j
 
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-
-Please check and re-submit.
-
+> > > +
+> > >     port:
+> > >       type: object
+> > >       description: |
+> > > --
+> > > 2.7.4
+> > >
