@@ -2,145 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 973AD25CC51
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 23:34:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 233E125CC7F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 23:42:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728382AbgICVeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 17:34:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45118 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726323AbgICVd5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 17:33:57 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C83DC061244;
-        Thu,  3 Sep 2020 14:33:56 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 899A456E;
-        Thu,  3 Sep 2020 23:33:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1599168832;
-        bh=c5PHZQTxFN2DfGIKhuJIfs1J02Rl5lH57MCUm+zIwdI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YrH64JwSixNNpJ9C/lFysuvisHp1Reh8U2ad1rIxRc+yYl1zrzKTNafSzAi/wkbXt
-         d8rQGMpvceeKFMNBUO+PnMm2sTj2Zc0rkLhecVb/mqvf8ioU2EnnD5y+0jcTRLR9vl
-         rT19WDxxYUnb30iQPpOebXuOmxzn8Vyge7XUxGYQ=
-Date:   Fri, 4 Sep 2020 00:33:29 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jacopo Mondi <jacopo+renesas@jmondi.org>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org,
-        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>, mchehab@kernel.org,
-        sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
-        linux-renesas-soc@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v4 3/3] dt-bindings: media: ov772x: Document endpoint
- props
-Message-ID: <20200903213329.GG6492@pendragon.ideasonboard.com>
-References: <20200903131029.18334-1-jacopo+renesas@jmondi.org>
- <20200903131029.18334-4-jacopo+renesas@jmondi.org>
+        id S1727065AbgICVmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 17:42:43 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:41564 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726528AbgICVmn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Sep 2020 17:42:43 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1kDx0B-00D6rQ-0C; Thu, 03 Sep 2020 23:42:39 +0200
+Date:   Thu, 3 Sep 2020 23:42:38 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        netdev <netdev@vger.kernel.org>, adam.rudzinski@arf.net.pl,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Richard Leitner <richard.leitner@skidata.com>,
+        Dejin Zheng <zhengdejin5@gmail.com>,
+        devicetree@vger.kernel.org, Sascha Hauer <kernel@pengutronix.de>,
+        Jakub Kicinski <kuba@kernel.org>
+Subject: Re: [PATCH net-next 1/3] net: phy: Support enabling clocks prior to
+ bus probe
+Message-ID: <20200903214238.GF3112546@lunn.ch>
+References: <20200903043947.3272453-1-f.fainelli@gmail.com>
+ <20200903043947.3272453-2-f.fainelli@gmail.com>
+ <CAL_JsqL=XLJo9nrX+AMs41QvA3qpW6zoyB8qNwRx3V-+U-+uLg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200903131029.18334-4-jacopo+renesas@jmondi.org>
+In-Reply-To: <CAL_JsqL=XLJo9nrX+AMs41QvA3qpW6zoyB8qNwRx3V-+U-+uLg@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
+On Thu, Sep 03, 2020 at 03:28:22PM -0600, Rob Herring wrote:
+> What if a device requires clocks enabled in a certain order or timing?
+> It's not just clocks, you could have some GPIOs or a regulator that
+> need enabling first. It's device specific, so really needs a per
+> device solution. This is not just an issue with MDIO. I think we
+> really need some sort of pre-probe hook in the driver model in order
+> to do any non-discoverable init for discoverable buses.
 
-Thank you for the patch.
+Hi Rob
 
-On Thu, Sep 03, 2020 at 03:10:29PM +0200, Jacopo Mondi wrote:
-> Document endpoint properties for the parallel bus type and
-> add them to the example.
-> 
-> Specify a few constraints:
-> - If the bus type is BT.656 no hsync or vsycn polarities can be
+How do you solve the chicken/egg of knowing what device specific init
+is needed before you can discover what device you have on the bus?
 
-s/vsycn/vsync/
+> Or perhaps forcing probe when there are devices defined in DT if
+> they're not discovered by normal means.
 
->   specified.
-> - If the bus width is 10 bits, not data-shift can be applied.
-> 
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> ---
->  .../bindings/media/i2c/ovti,ov772x.yaml       | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-> index 406e9cd463a2..c596cbd1e92d 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-> @@ -52,6 +52,45 @@ properties:
->            bus-type:
->              enum: [5, 6]
->  
-> +          bus-width:
-> +            enum: [8, 10]
-> +            default: 10
-> +
-> +          data-shift:
-> +            enum: [0, 2]
-> +            default: 0
-> +
-> +          hsync-active:
-> +            enum: [0, 1]
-> +            default: 1
-> +
-> +          vsync-active:
-> +            enum: [0, 1]
-> +            default: 1
-> +
-> +          pclk-sample:
-> +            enum: [0, 1]
-> +            default: 1
-> +
-> +        allOf:
-> +          - if:
-> +              properties:
-> +                bus-type:
-> +                  const: 6
-> +            then:
-> +                properties:
-> +                  hsync-active: false
-> +                  vsync-active: false
-> +
+The PHY subsystem has this. You came specify in DT the ID of the
+device which we would normally read during bus discovery. The correct
+driver is then loaded and probed. But it is good practice to avoid
+this. OEMs are known to change the PHY in order to perform cost
+optimisation. So we prefer to do discover and do the right thing if
+the PHY has changed.
 
-This should eventually end up in video-interfaces.yaml. I don't mind
-keeping it here in the meantime. Same for the hsync-active, vsync-active
-and pclk-sample enum, they should end up in video-interfaces.yaml.
+As for GPIOS and regulators, i expect this code will expand pretty
+soon after being merged to handle those. There are users wanting
+it. We already have some standard properties defined, in terms of
+gpios, delay while off, delay after turning it on. As for ordering, i
+guess it would make sense to enable the clocks and then hit it with a
+reset? If there is a device which cannot be handled like this, it can
+always hard code its ID in device tree, and fully control its
+resources in the driver.
 
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> +          - if:
-> +              properties:
-> +                bus-width:
-> +                  const: 10
-> +            then:
-> +                properties:
-> +                  data-shift:
-> +                    const: 0
-> +
->          required:
->            - remote-endpoint
->            - bus-type
-> @@ -85,6 +124,11 @@ examples:
->              port {
->                  ov772x_0: endpoint {
->                      bus-type = <5>;
-> +                    vsync-active = <0>;
-> +                    hsync-active = <0>;
-> +                    pclk-sample = <0>;
-> +                    bus-width = <8>;
-> +                    data-shift = <0>;
->                      remote-endpoint = <&vcap1_in0>;
->                  };
->              };
-
--- 
-Regards,
-
-Laurent Pinchart
+	  Andrew
