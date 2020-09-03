@@ -2,82 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBB5625C37C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 16:52:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3822425C29F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 16:30:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729115AbgICOwi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 10:52:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33526 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729051AbgICONC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 10:13:02 -0400
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EF02C061246;
-        Thu,  3 Sep 2020 06:59:30 -0700 (PDT)
-Received: by mail-pg1-x544.google.com with SMTP id l191so2213930pgd.5;
-        Thu, 03 Sep 2020 06:59:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=opMlPiV+qCTrqLMIUDes4VFrVPPiEfzlnZNFmTYgBrE=;
-        b=RqnQpRCHxdVOqQO86jG/T5EgLn0Sqfo7uj2+YjDPaNtZLjTb5An74Jh5Zl2fPuHHEv
-         yGtyZ2DPzshB8kUjV9kM/QwyIOS63AeOSSAq5PK+lalg1Zz9qpKjyCR611kz7dgFD4tn
-         iWKbtTyRRdhFUvlHknvyev6zle2PeudCOgNUQnPOdFMZh+kJPBa71RkIcq6UUwoG+8EZ
-         4Z7hh2VnWiUhZxmdBd9U3fbJd5oIHZMbkAhj8PPZqL1BeOomg3csex4LS8mpdpxUCvlQ
-         7CBWfOTo7l/yMKb9CeZEquaLo8bBg8abCAuNsbQNhGN9slJmVMj1qhkgFBHk+HUyuvQO
-         /mrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=opMlPiV+qCTrqLMIUDes4VFrVPPiEfzlnZNFmTYgBrE=;
-        b=Z1ltWpl1sFaKpLplKp1rCokeUEueauvFcy+0+k+OgMK8fvcr1vPiRwU/8G1QFAqHxz
-         nHEUK3r/xh7OkP6Soqpmy5DzXREAOgezt+M4tdebyKlPEPxRWYt5AM8kzIh11rQ/HOvd
-         lLqtXVLPLJBjo2aTd00t7IcpfiN5BtxNVCguzvqNOrg71HUpBgYHF8ju12ibvcT2ixzr
-         zQN+WRNXX2qWp9mZn5XmsOM7gh2EHVrekjWPjjogoOakoXOuRbDYob81+MVH/BM1netk
-         dge+OjjcQc07nOYt7sJPH4tZg3X141toJf/fB/HKIrkcgCREDYjV4L4JatPC+BhG/rOa
-         PTmQ==
-X-Gm-Message-State: AOAM531QIlIZBdlhTC00ZibhIPlsOeXmnqDZptW6AiC6yEpovvQoL/vN
-        k0nqo3jDMoJlmMwITPfY96EMcl0QkAwlhitz4/8=
-X-Google-Smtp-Source: ABdhPJxpf4/VgVQE4XDqwhc38ETZmIKw3GLkPuTdNcyypXPRXxpk7cDONZDlW3U24ckzCr7rNoXp/yktfBHEQfx/zTk=
-X-Received: by 2002:a63:c543:: with SMTP id g3mr3127878pgd.203.1599141569482;
- Thu, 03 Sep 2020 06:59:29 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200903130950.6274-1-nish.malpani25@gmail.com>
- <20200903130950.6274-4-nish.malpani25@gmail.com> <CAHp75VfReT-EjCV=cW8mV1MmoMPPdY9q1scoPwbD_DEHpQHd3g@mail.gmail.com>
- <CAEtfd9ZPkyk9_GV3h-CXFT_j=PYU66SHoYaaE7tytQxb+Q5rVA@mail.gmail.com>
-In-Reply-To: <CAEtfd9ZPkyk9_GV3h-CXFT_j=PYU66SHoYaaE7tytQxb+Q5rVA@mail.gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 3 Sep 2020 16:59:12 +0300
-Message-ID: <CAHp75Vc2UhW5yDhXs0RJZUmXABAqTX12N1NA3CWeSirHWfPCng@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] iio: gyro: adxrs290: Add debugfs register access support
-To:     Nishant Malpani <nish.malpani25@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Bogdan, Dragos" <dragos.bogdan@analog.com>,
-        Darius <darius.berghe@analog.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1729322AbgICOak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 10:30:40 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:54668 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729336AbgICO23 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 10:28:29 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dafna)
+        with ESMTPSA id 9F6EC29AB6D
+From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+To:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        matthias.bgg@gmail.com, robh+dt@kernel.org
+Cc:     enric.balletbo@collabora.com, kernel@collabora.com,
+        dafna3@gmail.com, Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+Subject: [PATCH] arm64: dts: mt8173-elm: fix supported values for regulator-allowed-modes of da9211
+Date:   Thu,  3 Sep 2020 16:28:19 +0200
+Message-Id: <20200903142819.24487-1-dafna.hirschfeld@collabora.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 3, 2020 at 4:57 PM Nishant Malpani <nish.malpani25@gmail.com> wrote:
-> On Thu, Sep 3, 2020 at 6:55 PM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
+According to the datasheet the allowed modes for the da9211
+regulator are sync and auto mode. This should be changed in the
+devicetree. This also fix an error message
+'BUCKA: invalid regulator-allowed-modes element 0'
+since value 0 is invalid.
 
-...
+Fixes: 689b937beddeb ("arm64: dts: mediatek: add mt8173 elm and hana board")
+Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-> Umm, I'm sorry, I don't see why'd it be favourable for us to do it
-> this way. Also, I *think* Jonathan is fine with how it's being done
-> now.
-
-I have no strong opinion, so whatever Jonathan thinks better.
-
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+index 1fe5dac24ba1..1a51879d5c6f 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+@@ -5,6 +5,7 @@
+ 
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/input/linux-event-codes.h>
++#include <dt-bindings/regulator/dlg,da9211-regulator.h>
+ #include <dt-bindings/gpio/gpio.h>
+ #include "mt8173.dtsi"
+ 
+@@ -293,7 +294,8 @@
+ 				regulator-max-microamp  = <4400000>;
+ 				regulator-ramp-delay = <10000>;
+ 				regulator-always-on;
+-				regulator-allowed-modes = <0 1>;
++				regulator-allowed-modes = <DA9211_BUCK_MODE_SYNC
++							   DA9211_BUCK_MODE_AUTO>;
+ 			};
+ 
+ 			da9211_vgpu_reg: BUCKB {
 -- 
-With Best Regards,
-Andy Shevchenko
+2.17.1
+
