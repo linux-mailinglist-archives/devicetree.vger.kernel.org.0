@@ -2,143 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCDD425C6D8
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 18:31:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 556C725C711
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 18:40:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728633AbgICQbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 12:31:46 -0400
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:33289 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726292AbgICQbp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 12:31:45 -0400
-X-Originating-IP: 2.224.242.101
-Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id BC3CD60002;
-        Thu,  3 Sep 2020 16:31:39 +0000 (UTC)
-Date:   Thu, 3 Sep 2020 18:35:25 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
-        sakari.ailus@iki.fi, hverkuil@xs4all.nl, jacopo+renesas@jmondi.org,
-        luca@lucaceresoli.net, leonl@leopardimaging.com,
-        robh+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] dt-bindings: media: imx274: Add optional input
- clock and supplies
-Message-ID: <20200903163525.p5z2adhp4wq453bs@uno.localdomain>
-References: <1599012278-10203-1-git-send-email-skomatineni@nvidia.com>
- <1599012278-10203-3-git-send-email-skomatineni@nvidia.com>
- <20200903125542.nxiafnysatoexken@uno.localdomain>
- <d3a1843c-5d73-cfa6-9611-405b905ddcd1@nvidia.com>
+        id S1728344AbgICQkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 12:40:23 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:45341 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728145AbgICQkW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 12:40:22 -0400
+Received: by mail-io1-f68.google.com with SMTP id u126so3550520iod.12;
+        Thu, 03 Sep 2020 09:40:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8sPTNyLMjAX2vzuFXiQYDjjubKf1msEl5Z2p+ZrZ6Lo=;
+        b=RxwyD3vB90lreMZb5R4zdoJoSB45C8dNzCoC8cnfYJdmK+j5G4bUQP8RCtjZIRawTN
+         5H8SngmeA2PN/6OaJnQgWMDkdmzz8hsdsawZ8YU8PCFgr1V2L/nl0SIxbkgR/bC4lKxU
+         PSdWWhnfT6lMOypSNsigV1LD8Ap7divPtUdv37VvmNgC4HUCwuGwH7dY5Xd7w9gHs4eU
+         DVoeD3PR6z23l3RDd7DsZzaWFb+4jfi2Qw4of464KKW/yCyTkv49sUtdRdtaB7YvtNGI
+         FRQUchcr87ITLEb5lgGXJgXNcSP80FaN50IR64m3HadFFGYu31zssSwhunlqXUXtrOl3
+         m9tg==
+X-Gm-Message-State: AOAM533Q/MpCGRl0QV8KmEXvFTipEuWIqD8cJQ6cKwH6iwxnf6B+9aKZ
+        Ki9bmAp0UH5J6u3KNpofgA==
+X-Google-Smtp-Source: ABdhPJy+YQ71xhPo9LDk5kKZzDhFUMEpp0nFRwbZF6cszIsV6tyvnefl2UlOOTqSdDoevgNCPnDj9g==
+X-Received: by 2002:a02:9986:: with SMTP id a6mr1953790jal.28.1599151221270;
+        Thu, 03 Sep 2020 09:40:21 -0700 (PDT)
+Received: from xps15 ([64.188.179.249])
+        by smtp.gmail.com with ESMTPSA id m3sm1777806ill.57.2020.09.03.09.40.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Sep 2020 09:40:20 -0700 (PDT)
+Received: (nullmailer pid 2921054 invoked by uid 1000);
+        Thu, 03 Sep 2020 16:40:19 -0000
+Date:   Thu, 3 Sep 2020 10:40:19 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Wolfram Sang <wolfram@the-dreams.de>,
+        Dong Aisheng <aisheng.dong@nxp.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org
+Subject: Re: [PATCH 3/7] dt-bindings: mailbox: fsl,mu: Use
+ unevaluatedProperties
+Message-ID: <20200903164019.GA2920343@bogus>
+References: <20200829111800.2786-1-krzk@kernel.org>
+ <20200829111800.2786-3-krzk@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d3a1843c-5d73-cfa6-9611-405b905ddcd1@nvidia.com>
+In-Reply-To: <20200829111800.2786-3-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sowjanya,
+On Sat, Aug 29, 2020 at 01:17:56PM +0200, Krzysztof Kozlowski wrote:
+> Additional properties actually might appear (e.g. power-domains) so use
+> unevaluatedProperties to fix dtbs_check warnings like:
+> 
+>   arch/arm64/boot/dts/freescale/imx8qxp-mek.dt.yaml:
+>     mailbox@5d280000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/mailbox/fsl,mu.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Thu, Sep 03, 2020 at 09:05:27AM -0700, Sowjanya Komatineni wrote:
->
-> On 9/3/20 5:55 AM, Jacopo Mondi wrote:
-> > Hello Sowjanya,
-> >
-> > On Tue, Sep 01, 2020 at 07:04:37PM -0700, Sowjanya Komatineni wrote:
-> > > This patch adds IMX274 optional external clock input and voltage
-> > > supplies to device tree bindings.
-> > >
-> > > Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
-> > > Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-> > > ---
-> > >   .../devicetree/bindings/media/i2c/sony,imx274.yaml  | 21 +++++++++++++++++++++
-> > >   1 file changed, 21 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-> > > index 7ae47a6..57e7176 100644
-> > > --- a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-> > > @@ -25,6 +25,27 @@ properties:
-> > >     reset-gpios:
-> > >       maxItems: 1
-> > >
-> > I just sent an update to my json-schema conversion of this bindings
-> > document (not yet on patchwork, sorry) and Sakari pointed me to the
-> > fact in between my v2 and my v4 this patch from you went in:
-> > 4ea3273d24b ("dt-bindings: media: imx274: Add optional input clock and supplies")
-> >
-> > I should probably now update my bindings conversion patch, basically
-> > taking in what you've done here, but I would have one question.
-> >
-> > > +  clocks:
-> > > +    maxItems: 1
-> > > +    description: Reference to the sensor input clock
-> > > +
-> > > +  clock-names:
-> > > +    maxItems: 1
-> > > +    items:
-> > > +      - const: inck
-> > > +
-> > > +  vana-supply:
-> > > +    description:
-> > > +      Analog voltage supply, 2.8 volts
-> > > +
-> > > +  vdig-supply:
-> > > +    description:
-> > > +      Digital IO voltage supply, 1.8 volts
-> > > +
-> > > +  vddl-supply:
-> > > +    description:
-> > > +      Digital core voltage supply, 1.2 volts
-> > 4ea3273d24b introduced these regulators as VANA-supply, VDIG-supply
-> > and VDDL-supply (please note the upper-case names). This version uses
-> > lower-case ones instead. Is this intentional ? The driver currently
-> > does not parse any of these if I'm not mistaken, but as the bindings
-> > in textual form defines an ABI which should be preserved during the
-> > conversion to json-schema, should these be kept in upper-case ?
-> >
-> > Thanks
-> >     j
->
-> Yes, based on feedback lower case was recommended. So, changed to use
-> lower-case names.
->
-> These properties were not used by driver currently and from my prior series
-> only dt-binding got merged as  no feedback was received on it for all prior
-> versions.
->
-> So, should be ok to change to lower-case as there properties are introduced
-> now and driver update using these properties is under review
->
-
-Well, I see that patch went in v5.9-rc1, so it will be part of v5.9.
-
-If the bindings update goes in in v5.10 (or whatever comes after v5.9)
-then we have a problem, as the DTB created for v5.9 won't work anymore
-on any later version, and that should not happen. Alternatively, a fix
-for the next -rc release could be fast-tracked, but you would
-need to synchronize with the dt maintainers for that and make a patch
-for the existing .txt bindings file.
-
-If the name change happens in the yaml file and one release is made
-with the old names, then we're stuck with those forever and ever, if I
-got the situation right.
-
-Please check with the dt and media maintainers, or they can comment
-here if they glance through these lines.
-
-Thanks
-  j
-
-> > > +
-> > >     port:
-> > >       type: object
-> > >       description: |
-> > > --
-> > > 2.7.4
-> > >
+NAK. See https://lore.kernel.org/r/CAL_JsqKPXJxsHPS34_TCf9bwgKxZNSV4mvQR-WKRnknQVtGGxQ@mail.gmail.com/
