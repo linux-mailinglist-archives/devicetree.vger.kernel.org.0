@@ -2,83 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 538E925C6EE
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 18:34:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4372225C6F5
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 18:35:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727065AbgICQeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 12:34:18 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:44597 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726327AbgICQeQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 12:34:16 -0400
-Received: by mail-io1-f66.google.com with SMTP id g128so3530683iof.11;
-        Thu, 03 Sep 2020 09:34:15 -0700 (PDT)
+        id S1726368AbgICQfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 12:35:10 -0400
+Received: from mail-il1-f195.google.com ([209.85.166.195]:37689 "EHLO
+        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726292AbgICQfE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 12:35:04 -0400
+Received: by mail-il1-f195.google.com with SMTP id b17so3273200ilh.4;
+        Thu, 03 Sep 2020 09:35:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=6gSOm8OgxiG97XEUzZRkUwS5JBrdCqtaN4okFjD6uNs=;
-        b=AeXxkflCHi6WcQ06hguC2s76W5HuIpNxebvzfNRX4/gcUmQZ0vO/xJq1b/NZHd4qfv
-         zX6WwMYmqCgOVHqj7ewKuVUC9U3jUUyh15sC1CRaNqrPHDS5h2zrjmpJLinrH68OfsTV
-         AQxARg0Vl09u4OD4goDi+UbAIRLgBUGmaSuH+Fow69m/0Ki5VvbZHr12IC85Sys13LVS
-         ZfDZvfcUPuzzRejedd2IkYTzl2Pgsu6DggqgMIAzXaa1QVSNhqw70ZTvdnHHgIDKiLYZ
-         aEMpx9mykrpdzNwOsQM389r4MjlPxz7Qx4C/Y0ElgwLq3WY7Fd1vVQVKtTF0NmTzhwg8
-         xg6w==
-X-Gm-Message-State: AOAM533II7vtZPvSLmGnbeUhWu8bp2S8R7A7eVdu0yCpc5CtBR9VY0Ws
-        v5LLWKowG2KMPl5e8UKDZhUpTmgzFxPp
-X-Google-Smtp-Source: ABdhPJwxRGPAz0UbJQIhgX/WsF8U50D3/9nCBzjWTC2j9ZsdYhNO0FtVXG94pcYyvliB2Qlj2/005A==
-X-Received: by 2002:a02:1a83:: with SMTP id 125mr4190077jai.48.1599150855558;
-        Thu, 03 Sep 2020 09:34:15 -0700 (PDT)
+        bh=iIfLZ14oR+6kVVplGeYdY3QZelcTYNmiPq+fUE3RZP4=;
+        b=sCXDsd1ndeUvn1hXSgDSo19yqG+ius/m2Q8eEq8Ijmi/0ZymIEpV4Qr04VxMYXxvai
+         jiQ9+4bRiEXwJD8jnYBGJ0KpGaEMrY+jG95/YGxYecqLav/vc6JPC28i8NV2tyLoq94M
+         eAgpj+MIuGyGgcJfz9bG6UxHD/VaI09s7DhyigBbMPJSiOyp+hSA/H5Ga8Rpm0HKc+M4
+         Xt9f8egzb57xyYNSHI38HYUBcwJy90c9n3C1jHD4DCGOSjMhXzRsQ6bQw1nJRH3JfYe1
+         t0pkJGUktfbePMOKpTvreMGaBnJ/aTbKEc5GDnEG68cToJP40gHePjVTcz0eD3nfFp/J
+         AnKQ==
+X-Gm-Message-State: AOAM530wOJeeqzDm+ItcB239Kol+ghldG3Yb965ijzHK9n+II+aiMCRy
+        5RLm+mPFbp34z3Erv+ZLVw==
+X-Google-Smtp-Source: ABdhPJzAEffp2WonM7repJTb9yyQNn/3Nmi+Nn/JwPHkxriL04JXnRwvW1ue7iajeKEDm4+9ErJo6Q==
+X-Received: by 2002:a05:6e02:1141:: with SMTP id o1mr1095908ill.275.1599150902693;
+        Thu, 03 Sep 2020 09:35:02 -0700 (PDT)
 Received: from xps15 ([64.188.179.249])
-        by smtp.gmail.com with ESMTPSA id c85sm1722831ilg.10.2020.09.03.09.34.13
+        by smtp.gmail.com with ESMTPSA id w70sm1713310ilk.87.2020.09.03.09.35.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Sep 2020 09:34:14 -0700 (PDT)
-Received: (nullmailer pid 2908721 invoked by uid 1000);
-        Thu, 03 Sep 2020 16:34:12 -0000
-Date:   Thu, 3 Sep 2020 10:34:12 -0600
+        Thu, 03 Sep 2020 09:35:02 -0700 (PDT)
+Received: (nullmailer pid 2909825 invoked by uid 1000);
+        Thu, 03 Sep 2020 16:34:58 -0000
+Date:   Thu, 3 Sep 2020 10:34:58 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Tomasz Figa <tfiga@chromium.org>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        hao.he7@gmail.com, Xingyu Wu <wuxy@bitland.com.cn>,
-        linux-media@vger.kernel.org, drinkcat@chromium.org,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hao He <hao.he@bitland.com.cn>, sj.huang@mediatek.com,
-        dongchun.zhu@mediatek.com, darfur_liu@gcoreinc.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] media: dt-bindings: media: i2c: Add bindings for
- GC5035
-Message-ID: <20200903163412.GA2907310@bogus>
-References: <20200902224813.14283-1-tfiga@chromium.org>
- <20200902224813.14283-3-tfiga@chromium.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-pm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Amit Kucheria <amitk@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>
+Subject: Re: [PATCH v2 1/9] dt-bindings: thermal: qcom: add adc-thermal
+ monitor bindings
+Message-ID: <20200903163458.GA2909612@bogus>
+References: <20200903132109.1914011-1-dmitry.baryshkov@linaro.org>
+ <20200903132109.1914011-2-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200902224813.14283-3-tfiga@chromium.org>
+In-Reply-To: <20200903132109.1914011-2-dmitry.baryshkov@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 02 Sep 2020 22:48:11 +0000, Tomasz Figa wrote:
-> Add YAML device tree bindings for Galaxycore Inc. GC5035 imaging sensor.
+On Thu, 03 Sep 2020 16:21:01 +0300, Dmitry Baryshkov wrote:
+> Add bindings for thermal monitor, part of Qualcomm PMIC5 chips. It is a
+> close counterpart of VADC part of those PMICs.
 > 
-> Signed-off-by: Tomasz Figa <tfiga@chromium.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../devicetree/bindings/media/i2c/gc5035.yaml | 142 ++++++++++++++++++
+>  .../bindings/thermal/qcom-spmi-adc-tm5.yaml   | 142 ++++++++++++++++++
 >  1 file changed, 142 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/gc5035.yaml
+>  create mode 100644 Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/gc5035.yaml: $id: 'http://devicetree.org/schemas/media/i2c/gc5035.yaml' does not match 'http://devicetree.org/schemas/.*\\.yaml#'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/gc5035.yaml: ignoring, error in schema: $id
-warning: no schema found in file: ./Documentation/devicetree/bindings/media/i2c/gc5035.yaml
+Error: Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.example.dts:23.24-25 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1366: dt_binding_check] Error 2
 
 
-See https://patchwork.ozlabs.org/patch/1356170
+See https://patchwork.ozlabs.org/patch/1356633
 
 If you already ran 'make dt_binding_check' and didn't see the above
 error(s), then make sure dt-schema is up to date:
