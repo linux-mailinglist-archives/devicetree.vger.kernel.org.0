@@ -2,217 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F58F25C48D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:12:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F03DB25C50D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:21:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729328AbgICPMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 11:12:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42716 "EHLO
+        id S1729059AbgICPVt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 11:21:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728938AbgICPMY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 11:12:24 -0400
-Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com [IPv6:2607:f8b0:4864:20::e41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64C0EC061244
-        for <devicetree@vger.kernel.org>; Thu,  3 Sep 2020 08:12:24 -0700 (PDT)
-Received: by mail-vs1-xe41.google.com with SMTP id y194so1937103vsc.4
-        for <devicetree@vger.kernel.org>; Thu, 03 Sep 2020 08:12:24 -0700 (PDT)
+        with ESMTP id S1728529AbgICPVq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 11:21:46 -0400
+Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FE93C061244;
+        Thu,  3 Sep 2020 08:21:46 -0700 (PDT)
+Received: by mail-pj1-x1042.google.com with SMTP id 2so1694221pjx.5;
+        Thu, 03 Sep 2020 08:21:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=uHHFcLkNIiLQVYAmzZVXK/8zYSVt92+5Mj2OyGqnr44=;
-        b=f5lXKRIfpN00TGVuZxIfdV9H3qnF8TmP65/poNjN0T9TDjw7nQcbCflqOuFJlLmpQz
-         0Y50XwJ36wb0Ulw8l1sk6RZ2MYbYtp83gX4mKir2BKvubnvcTrJ/veh4yaWdNl2WPQAZ
-         N4p+/n8J/cxtR6uioKGnXQIcjSdtXZZ4Y+two=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=gKlCn1zLPHMOHEFTF0w8cCWcR9YJBOeQ0/988P+XVAs=;
+        b=pguJZyx1Fe8J33COxXS6yhOla23lvH4Poh6gpcfsWu/NOao4Xm1BIly0Q6hZnK5Y2S
+         5Bp2RGeF9fq8cCeIwXkEDrstJGII1WbFZGdft4Hr4JQew30e1Yqs1RcFtMaF/ePelByh
+         pJ8cZ3aXwKP3z5GXTRUVBS3ZUT1ViYvcNh+exyQod2fuJDGzyvPxkXeV04q6C7IOa0tC
+         27AfE5J/OeAlCVk1jZ8Wf38cSjyi0FLzPTYmSgjeqa0A2KC7V2+GJfmhslL+/Bvjl2+f
+         5G0bR+7zWf7ic7N+FyRFbZcpuJbchpkZupiyHu8cAJjFq7I5ZfCOMY1F+Db7H7KhIvFe
+         Bacg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uHHFcLkNIiLQVYAmzZVXK/8zYSVt92+5Mj2OyGqnr44=;
-        b=schIHrBfq17G65QrT7zl7cjm4lInnp6CmiBDgvWrEox1eb37nedaXqftyxm6gKMV+C
-         8MFtdSb79CCKCKWduAyvwdh+W6tOohdk68CZ2ZsolJx7JCW4WFispo2QEiaq83X5IIjr
-         7m+jWLpVH9IItjp4eNBVW5/M0nToC2H/Wmuj+HgQH7+wh60E3TP4B0dpFLhERyelNJWh
-         /87XoU6epEitP1QuyENOayAI6bnW14DNLULThsJhjzPyg4NZ2jyfXLDW6OrZXqoBfnMn
-         vHFqfgv/xPcQYlWzSeuxgD617gFpRKahyokmP9qvMQFq25+Un+hxQKvoXMXKI6EujVWf
-         OwBg==
-X-Gm-Message-State: AOAM532FEp7koWGreSYitVR+McVwXHpIXztw4oWnwLbiAoT6mrRIz4Xe
-        1Gt4jB6Mp9CbYDo5ex6CkYZGcYABojqS4w==
-X-Google-Smtp-Source: ABdhPJzVJHseD8xIwW2HCvcNrtxZWvlFQXwCewKL8E1xhi4jzmZ1gEUDVT0DCCq9kwx5o/j2kFdscQ==
-X-Received: by 2002:a67:1001:: with SMTP id 1mr2260507vsq.23.1599145943079;
-        Thu, 03 Sep 2020 08:12:23 -0700 (PDT)
-Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
-        by smtp.gmail.com with ESMTPSA id v3sm407493uaj.12.2020.09.03.08.12.21
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=gKlCn1zLPHMOHEFTF0w8cCWcR9YJBOeQ0/988P+XVAs=;
+        b=g1e15gtaO1h+DKYIm69DOJu2J0s4iO1REx7jkmodt3pTbO5UQq4disviqE+BmeRL2j
+         mV8/o8HQSq9TRmgaAhCRbD7OG6ESfrVDBorFSio7l90yUC0rEMP+tX2AeG7lDAp677hr
+         jXodWeCrYyjEIFL9DeBPhnaD7xUcIOQConWVqlQlw5id1XfZo7/MA6cYr7usEYtR2yXd
+         ye4POHFoQr3OY9XT31P/pmCAkLSIai4R68mIcYKPfkT9awiYw+/CMvSkYshLS687FDvP
+         e5ljSbuRUBsn9Eo7hf4K1hjkrFl4907hzOM7ANWYcJPtm3JfBjYFGKPbSix7ehppdqcN
+         Grxw==
+X-Gm-Message-State: AOAM532/eCbtWKAtM1i6YEDfdL6wZSpotSul2A30RILvCYwo5oYMSKta
+        7npUSCkuPnKt83jM6Mvy8HXFDvODmHjYYA==
+X-Google-Smtp-Source: ABdhPJzuEOPBzSkG5akflrDNr6nx2Z37h7j/UI07+87qFm/mMyytjpk3C9oyw+w99if0TgwI4ihjsw==
+X-Received: by 2002:a17:90a:d597:: with SMTP id v23mr3604367pju.24.1599146505622;
+        Thu, 03 Sep 2020 08:21:45 -0700 (PDT)
+Received: from [10.230.30.107] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id a19sm3606635pfn.10.2020.09.03.08.21.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Sep 2020 08:12:21 -0700 (PDT)
-Received: by mail-vs1-f46.google.com with SMTP id o184so1951844vsc.0
-        for <devicetree@vger.kernel.org>; Thu, 03 Sep 2020 08:12:21 -0700 (PDT)
-X-Received: by 2002:a67:c595:: with SMTP id h21mr1856369vsk.12.1599145941020;
- Thu, 03 Sep 2020 08:12:21 -0700 (PDT)
+        Thu, 03 Sep 2020 08:21:44 -0700 (PDT)
+Subject: Re: [RFC net-next 2/2] net: phy: bcm7xxx: request and manage GPHY
+ clock
+To:     =?UTF-8?Q?Adam_Rudzi=c5=84ski?= <adam.rudzinski@arf.net.pl>,
+        Andrew Lunn <andrew@lunn.ch>
+Cc:     netdev@vger.kernel.org, m.felsch@pengutronix.de,
+        hkallweit1@gmail.com, richard.leitner@skidata.com,
+        zhengdejin5@gmail.com, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, kuba@kernel.org, robh+dt@kernel.org
+References: <20200902213347.3177881-1-f.fainelli@gmail.com>
+ <20200902213347.3177881-3-f.fainelli@gmail.com>
+ <20200902222030.GJ3050651@lunn.ch>
+ <7696bf30-9d7b-ecc9-041d-7d899dd07915@gmail.com>
+ <77088212-ac93-9454-d3a0-c2eb61b5c3e0@arf.net.pl>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <26a8a508-6108-035a-1416-01cff51a930a@gmail.com>
+Date:   Thu, 3 Sep 2020 08:21:43 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.1.1
 MIME-Version: 1.0
-References: <20200813113030.1.I89c33c4119eaffb986b1e8c1bc6f0e30267089cd@changeid>
- <20200901170745.GA3419728@google.com> <CAD=FV=Xv0FLtWWcQcRy7p2LPNdDtSjdarsvNHRHaLkWwABnwJw@mail.gmail.com>
- <8ad0589e-102d-7523-899f-0ebe85b7d2b8@codeaurora.org> <CAD=FV=XKUEQP3gyE8E2UOE12qKYwzgMp0eNeYjCp0DxPDACSMQ@mail.gmail.com>
- <6693eed6-9a6b-48c8-e56e-acdde9cf9ffe@codeaurora.org> <f77d9b24-dbca-cea0-2ef8-3c5cf0c2f2dd@codeaurora.org>
- <20200903121710.GG3419728@google.com>
-In-Reply-To: <20200903121710.GG3419728@google.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 3 Sep 2020 08:12:07 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WgR6wniyMGkPS3FJVXiHGCdubpELo01zYHYQ6oS-dL7g@mail.gmail.com>
-Message-ID: <CAD=FV=WgR6wniyMGkPS3FJVXiHGCdubpELo01zYHYQ6oS-dL7g@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Add 'sustainable_power' for CPU
- thermal zones
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Amit Kucheria <amit.kucheria@linaro.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <77088212-ac93-9454-d3a0-c2eb61b5c3e0@arf.net.pl>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Thu, Sep 3, 2020 at 5:17 AM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> Hi Rajendra,
->
-> On Thu, Sep 03, 2020 at 11:00:52AM +0530, Rajendra Nayak wrote:
-> >
-> > On 9/3/2020 10:14 AM, Rajendra Nayak wrote:
-> > >
-> > > On 9/2/2020 9:02 PM, Doug Anderson wrote:
-> > > > Hi,
-> > > >
-> > > > On Tue, Sep 1, 2020 at 10:36 PM Rajendra Nayak <rnayak@codeaurora.org> wrote:
-> > > > >
-> > > > >
-> > > > > > * In terms of the numbers here, I believe that you're claiming that we
-> > > > > > can dissipate 768 mW * 6 + 1202 mW * 2 = ~7 Watts of power.  My memory
-> > > > > > of how much power we could dissipate in previous laptops I worked on
-> > > > > > is a little fuzzy, but that doesn't seem insane for a passively-cooled
-> > > > > > laptop.  However, I think someone could conceivably put this chip in a
-> > > > > > smaller form factor.  In such a case, it seems like we'd want these
-> > > > > > things to sum up to ~2000 (if it would ever make sense for someone to
-> > > > > > put this chip in a phone) or ~4000 (if it would ever make sense for
-> > > > > > someone to put this chip in a small tablet).  It seems possible that,
-> > > > > > to achieve this, we might have to tweak the
-> > > > > > "dynamic-power-coefficient".
-> > > > >
-> > > > > DPC values are calculated (at a SoC) by actually measuring max power at various
-> > > > > frequency/voltage combinations by running things like dhrystone.
-> > > > > How would the max power a SoC can generate depend on form factors?
-> > > > > How much it can dissipate sure is, but then I am not super familiar how
-> > > > > thermal frameworks end up using DPC for calculating power dissipated,
-> > > > > I am guessing they don't.
-> > > > >
-> > > > > > I don't know how much thought was put
-> > > > > > into those numbers, but the fact that the little cores have a super
-> > > > > > round 100 for their dynamic-power-coefficient makes me feel like they
-> > > > > > might have been more schwags than anything.  Rajendra maybe knows?
-> > > > >
-> > > > > FWIK, the values are always scaled and normalized to 100 for silver and
-> > > > > then used to derive the relative DPC number for gold. If you see the DPC
-> > > > > for silver cores even on sdm845 is a 100.
-> > > > > Again these are not estimations but based on actual power measurements.
-> > > >
-> > > > The scaling to 100 doesn't seem to match how the thermal framework is
-> > > > using them.  Take a look at of_cpufreq_cooling_register().  It takes
-> > > > the "dynamic-power-coefficient" and passes it as "capacitance" into
-> > > > __cpufreq_cooling_register().  That's eventually used to compute
-> > > > power, which is documented in the code to be in mW.
-> > > >
-> > > > power = (u64)capacitance * freq_mhz * voltage_mv * voltage_mv;
-> > > > do_div(power, 1000000000);
-> > > >
-> > > > /* power is stored in mW */
-> > > > freq_table[i].power = power;
-> > > >
-> > > > That's used together with "sustainable-power", which is the attribute
-> > > > that Matthias is trying to set.  That value is documented to be in mW
-> > > > as well.
-> > > >
-> > > > ...so if the silver cores are always scaled to 100 regardless of how
-> > > > much power they actually draw then it'll be impossible to actually
-> > > > think about "sustainable-power" as a mW value.  Presumably we either
-> > > > need to accept that fact (and ideally document it) or we need to
-> > > > change the values for silver / gold cores (we could still keep the
-> > > > relative values the same and just scale them).
-> > >
-> > > That sounds reasonable (still keep the relative values and scale them)
-> > > I'll get back on what those scaled numbers would look like, and try to
-> > > get some sense of why this scaling to 100 was done (like you said
-> > > I don't see any documentation on this), but I see atleast a few other non-qcom
-> > > SoCs doing this too in mainline (like rockchip/rk3399)
-
-I don't think I was too closely involved in these numbers on rk3399,
-but as far as I can tell the 100 number came from:
-
-https://crrev.com/c/364003
-
-...interestingly enough the number _wasn't_ scaled to 100 (but was a
-number close to 100) and then was changed to scale to 100.  That makes
-it seem like 100, though awfully round, was at least based loosely on
-fact for rk3399.
-
-In any case, the devicetree bindings make it pretty clear that this
-value should be based in reality and not some bogus number.
 
 
-> > On second thoughts, why wouldn't a relative 'sustainable-power' value work?
-> > On every device, one would need to do the exercise that Matthias did to come
-> > up with the OPP at which we can sustain max CPU/GPU loads anyway.
->
-> You assume that a thermal zone only has cooling devices of a the same type (or
-> with the same fake unit for power consumption). This falls apart when multiple
-> types are used, which is common.
->
-> Also sustainable power is only a derived value, the lying already starts in
-> the energy model, which is used by EAS, so a fake unit could cause further
-> problems.
->
-> > I mean even if we do change the DPC values to match actual power, Matthias would
-> > still observe that we can sustain at the very same OPP and not any different.
-> > Its just that the mW values that are passed to kernel are relative and not
-> > absolute. My worry is that perhaps no SoC vendor wants to put these absolute numbers
-> > out.
->
-> This is pretty much 'security' by obscurity. It would be relatively easy to
-> measure actual power consumption at different CPU speeds and derive the DPC
-> values from that.
+On 9/2/2020 11:00 PM, Adam Rudziński wrote:
+> 
+> W dniu 2020-09-03 o 04:13, Florian Fainelli pisze:
+>>
+>>
+>> On 9/2/2020 3:20 PM, Andrew Lunn wrote:
+>>>> +    priv->clk = devm_clk_get_optional(&phydev->mdio.dev, "sw_gphy");
+>>>> +    if (IS_ERR(priv->clk))
+>>>> +        return PTR_ERR(priv->clk);
+>>>> +
+>>>> +    /* To get there, the mdiobus registration logic already enabled 
+>>>> our
+>>>> +     * clock otherwise we would not have probed this device since 
+>>>> we would
+>>>> +     * not be able to read its ID. To avoid artificially bumping up 
+>>>> the
+>>>> +     * clock reference count, only do the clock enable from a 
+>>>> phy_remove ->
+>>>> +     * phy_probe path (driver unbind, then rebind).
+>>>> +     */
+>>>> +    if (!__clk_is_enabled(priv->clk))
+>>>> +        ret = clk_prepare_enable(priv->clk);
+>>>
+>>> This i don't get. The clock subsystem does reference counting. So what
+>>> i would expect to happen is that during scanning of the bus, phylib
+>>> enables the clock and keeps it enabled until after probe. To keep
+>>> things balanced, phylib would disable the clock after probe.
+>>
+>> That would be fine, although it assumes that the individual PHY 
+>> drivers have obtained the clocks and called clk_prepare_enable(), 
+>> which is a fair assumption I suppose.
+>>
+>>>
+>>> If the driver wants the clock enabled all the time, it can enable it
+>>> in the probe method. The common clock framework will then have two
+>>> reference counts for the clock, so that when the probe exists, and
+>>> phylib disables the clock, the CCF keeps the clock ticking. The PHY
+>>> driver can then disable the clock in .remove.
+>>
+>> But then the lowest count you will have is 1, which will lead to the 
+>> clock being left on despite having unbound the PHY driver from the 
+>> device (->remove was called). This does not allow saving any power 
+>> unfortunately.
+>>
+>>>
+>>> There are some PHYs which will enumerate with the clock disabled. They
+>>> only need it ticking for packet transfer. Such PHY drivers can enable
+>>> the clock only when needed in order to save some power when the
+>>> interface is administratively down.
+>>
+>> Then the best approach would be for the OF scanning code to enable all 
+>> clocks reference by the Ethernet PHY node (like it does in the 
+>> proposed patch), since there is no knowledge of which clock is 
+>> necessary and all must be assumed to be critical for MDIO bus 
+>> scanning. Right before drv->probe() we drop all resources reference 
+>> counts, and from there on ->probe() is assumed to manage the necessary 
+>> clocks.
+>>
+>> It looks like another solution may be to use the assigned-clocks 
+>> property which will take care of assigning clock references to devices 
+>> and having those applied as soon as the clock provider is available.
+> 
+> Hi Guys,
+> 
+> I've just realized that a PHY may also have a reset signal connected. 
+> The reset signal may be controlled by the dedicated peripheral or by GPIO.
 
-Right, I was going to say that.  Specifically:
+There is already support for such a thing within 
+drivers/net/phy/mdio_bus.c though it assumes we could bind the PHY 
+device to its driver already.
 
-* Anyone that actually gets one of these chips can just measure it
-pretty trivially.  Run the core at a certain speed and measure with
-the smart battery.  Run at a different speed and measure again.
+> 
+> In general terms, there might be a set of control signals needed to 
+> enable the PHY. It seems that the clock and the reset would be the 
+> typical useful options.
+> 
+> Going further with my imagination of how evil the hardware design could 
+> be, in general the signals for the PHY may have some relations to other 
+> control signals.
+> 
+> I think that from the software point of view this comes down to 
+> assumption that the PHY is to be controlled "driver only knows how".
 
-* Presumably the power consumption of different types of cores in
-Qualcomm SoCs of the same generation is roughly equivalent.  So I
-could go and grab a Pixel 4a and put AOSP on it and measure the power
-consumption and presumably get pretty close numbers for big and little
-power coefficients.  I don't know for sure if Pixel 4a's SoC is
-officially the same generation but I'd bet it's close.
+That is all well and good as long as we can actually bind the PHY device 
+which its driver, and right now this means that we either have:
 
-* Presumably someone would be able to get a pretty good guess by
-figuring out the form factor and working backwards.  It sounds as if
-thermal dissipation (in terms of Watts) for various form factor
-devices is somewhat standard.  Maybe this is more so for phones /
-tablets than laptops which might have bigger heat pipes or active
-cooling, but still.  Someone could do the math pretty easily.
+- a compatible string in Device Tree which is of the form 
+ethernet-phy-id%4x.%4x (see of_get_phy_id) which means that we *know* 
+already which PHY we have and we avoid doing reads of MII_PHYSID1 and 
+MII_PHYSID2. This is a Linux implementation detail that should not have 
+to be known to systems designer IMHO
 
-I guess if you're really worried about protecting this then you can
-delay posting it for brand new chipsets using a new type of technology
-until product is almost ready to ship, but for sc7180 it doesn't feel
-like this is something worth fighting about.
+- a successful read of MII_PHYSID1 and MII_PHYSID2 (or an equivalent for 
+the clause 45 PHYs) that allows us to know what PHY device we have, 
+which is something that needs to happen eventually.
 
--Doug
+The problem is when there are essential resources such as clocks, 
+regulators, reset signals that must be enabled, respectively de-asserted 
+in order for a successful MDIO read of MII_PHYSID1 and MII_PHYSID2 to 
+succeed.
+
+There is no driver involvement at that stage because we have no 
+phy_device to bind it to *yet*. Depending on what we read from 
+MII_PHYSID1/PHY_ID2 we will either successfully bind to the Generic PHY 
+driver (assuming we did not read all Fs) or not and we will return 
+-ENODEV and then it is game over.
+
+This is the chicken and egg problem that this patch series is 
+addressing, for clocks, because we can retrieve clock devices with just 
+a device_node reference.
+
+It is absolutely reasonable to design systems whereby the boot loader is 
+not initializing or using the Ethernet PHY devices, or if it did, put 
+them back into reset/low power state after use and before transitioning 
+to the OS. This is not only a clean transition, it may also be the only 
+way to meet a certain power target as you cannot know or assume that the 
+OS will also make use of these resources. This is even more true if 
+there is dynamic power negotiation (MHL or USB Type-C for instance).
+-- 
+Florian
