@@ -2,100 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DE6125C2BB
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 16:34:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FADF25C2C4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 16:35:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729337AbgICOeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 10:34:02 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:36038 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729341AbgICOd7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 10:33:59 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 083DKlfr025250;
-        Thu, 3 Sep 2020 08:20:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599139247;
-        bh=4GrWfo0x9VaoTlHZ4MXy0UbyWsGLrveedBvC8mQZtsM=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=BPgR5+66VnJ5ylJ5c9OnQ2nwCKazBoquhfXAYiH3QVObLetpMwNlfUstG2gfcgKUr
-         CK4VYRimnhRQ02hEIef3WlHZAErQwFyNbWv1VKOiu73VmsgSkxwp0gJM0MgdBju8Au
-         Ep2ZBeqXHsVt0F0/Wi+3FWYuehjQQqvYOdsY0rzk=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 083DKlZM062073
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 3 Sep 2020 08:20:47 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 3 Sep
- 2020 08:20:46 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 3 Sep 2020 08:20:46 -0500
-Received: from [10.250.235.166] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 083DKg6V128723;
-        Thu, 3 Sep 2020 08:20:43 -0500
-Subject: Re: [PATCH V2 7/8] arm64: dts: ti: k3-am65-wakeup: Use generic
- temperature-sensor for node name
-To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <t-kristo@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>,
-        <lokeshvutla@ti.com>, <grygorii.strashko@ti.com>, <nsekhar@ti.com>
-References: <20200901223059.14801-1-nm@ti.com>
- <20200903130015.21361-8-nm@ti.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-Message-ID: <340f59bf-f7f3-866d-ad61-74a1143c5f5b@ti.com>
-Date:   Thu, 3 Sep 2020 18:50:42 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1729174AbgICOfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 10:35:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35784 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729081AbgICO1a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 10:27:30 -0400
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61295C061261
+        for <devicetree@vger.kernel.org>; Thu,  3 Sep 2020 06:21:20 -0700 (PDT)
+Received: by mail-lf1-x144.google.com with SMTP id y11so1896144lfl.5
+        for <devicetree@vger.kernel.org>; Thu, 03 Sep 2020 06:21:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=x8TcLLpTMK/7uUIKDqPfjBp8nQFpQtMgJOajM5MyUVQ=;
+        b=iKF0sB/PkVkOpriRtZPA6ZaTXtQR9Xy+C94WfQx2HefwEjzpp5TFVDARTyYs3jDElM
+         DrLvkjqSjtpLhOp5SA9WEtFXpehUTxpATMx543udaHwwHxfw3n3dPwTG2zJVe5oQqziF
+         LBEnOAlpyhkMZBLwiHt1w6Tg06nv50Tl5Z3rFVtz8evCLEj6fFRt8nNxYe7qq6+7zXYm
+         7UuEAw2d86l1KoAfYolEqO8CwhsaF2weEa5hWPQ08zGFsQ3k99fuQo5RNXDaMjjfVCqh
+         IgmdyobfnWeRFFmpDczahkiC8LpMHm7szXnTowgmBxT1wcslBj0f6sry11y2U/hBpvPd
+         G3CQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=x8TcLLpTMK/7uUIKDqPfjBp8nQFpQtMgJOajM5MyUVQ=;
+        b=KSW0Yncy6cMyqbyTHIOlXMen7RMucYFo+qG505aIFfQ23zwl8Q8XMCVdPK7ADbo9cz
+         cjthz6pqOVa9UeL0x31frnL+95g9TqO1Kys+4ctOqd4b0ffwDxfKANcbs5ywWUarGuXH
+         FFXf+ZEeBcPEBKPfY1XqZISkSLVkWaz7dQVpAy8qg7uuigHSTNnPmqC89jNtSAbi40jd
+         q8T2B6rA41IIDOIe16YP7ytTQ88xV53+Zs+UlOuM5eYz0raZjNTYxgELuvG//741tlXJ
+         tyNfkOLGNS3kmUzYj6Y20Gxc8PhUVM5Oh7jn7lr3EcIpN9k2uPwIDr+eVK873c0pxhmp
+         4lOQ==
+X-Gm-Message-State: AOAM530kFCSEJ3huARWVJv43cEW8S9K3zYi/R0rcASljSSu23YcaJ7+H
+        tOCNcWo4dHr6ERhDsX4HNcJ24A==
+X-Google-Smtp-Source: ABdhPJzB7ZiRNfU7Oms45iJVJfA/vqzPh3W4c9GPdqfnnilznvz6AX/vO5ju49GYdvYM9p6OSgbyOQ==
+X-Received: by 2002:a19:418e:: with SMTP id o136mr1257809lfa.145.1599139278593;
+        Thu, 03 Sep 2020 06:21:18 -0700 (PDT)
+Received: from eriador.lan ([188.162.64.138])
+        by smtp.gmail.com with ESMTPSA id e23sm584220lfj.80.2020.09.03.06.21.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Sep 2020 06:21:18 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+Subject: [PATCH v2 1/9] dt-bindings: thermal: qcom: add adc-thermal monitor bindings
+Date:   Thu,  3 Sep 2020 16:21:01 +0300
+Message-Id: <20200903132109.1914011-2-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200903132109.1914011-1-dmitry.baryshkov@linaro.org>
+References: <20200903132109.1914011-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20200903130015.21361-8-nm@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add bindings for thermal monitor, part of Qualcomm PMIC5 chips. It is a
+close counterpart of VADC part of those PMICs.
 
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ .../bindings/thermal/qcom-spmi-adc-tm5.yaml   | 142 ++++++++++++++++++
+ 1 file changed, 142 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
 
-On 9/3/20 6:30 PM, Nishanth Menon wrote:
-> Use temperature-sensor@ naming for nodes following standard conventions of device
-> tree (section 2.2.2 Generic Names recommendation in [1]).
-> 
-> [1] https://github.com/devicetree-org/devicetree-specification/tree/v0.3
-> 
-> Suggested-by: Suman Anna <s-anna@ti.com>
-> Suggested-by: Vignesh Raghavendra <vigneshr@ti.com>
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
-> Reviewed-by: Suman Anna <s-anna@ti.com>
+diff --git a/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+new file mode 100644
+index 000000000000..94aaf3720b9f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+@@ -0,0 +1,142 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/thermal/qcom-spmi-adc-tm5.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm's SPMI PMIC ADC-TM
++maintainers:
++  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
++
++properties:
++  compatible:
++    const: qcom,spmi-adc-tm5
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  "#thermal-sensor-cells":
++    const: 1
++    description:
++      Number of cells required to uniquely identify the thermal sensors. Since
++      we have multiple sensors this is set to 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  io-channels:
++    description:
++      From common IIO binding. Used to pipe PMIC ADC channel to thermal monitor
++
++  io-channel-names:
++    description:
++      From common IIO binding. Names each of IIO channels. The name should
++      be equal to the sensor's subnode name.
++
++  qcom,avg-samples:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Number of samples to be used for measurement.
++    enum:
++      - 1
++      - 2
++      - 4
++      - 8
++      - 16
++    default: 1
++
++  qcom,decimation:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: This parameter is used to decrease ADC sampling rate.
++    enum:
++      - 250
++      - 420
++      - 840
++    default: 840
++
++patternProperties:
++  "^([-a-z0-9]*)@[0-9]+$":
++    type: object
++    description:
++      Represent one thermal sensor.
++
++    properties:
++      reg:
++        description: Specify the sensor channel.
++        maxItems: 1
++
++      qcom,adc-channel:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: Corresponding ADC channel ID.
++
++      qcom,ratiometric:
++        $ref: /schemas/types.yaml#/definitions/flag
++        description:
++          Channel calibration type.
++          If this property is specified VADC will use the VDD reference
++          (1.875V) and GND for channel calibration. If property is not found,
++          channel will be calibrated with 0V and 1.25V reference channels,
++          also known as absolute calibration.
++
++      qcom,hw-settle-time:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: Time between AMUX getting configured and the ADC starting conversion.
++
++      qcom,pre-scaling:
++        $ref: /schemas/types.yaml#/definitions/uint32-array
++        description: Used for scaling the channel input signal before the signal is fed to VADC. See qcom,spi-vadc specification for the list of possible values.
++        minItems: 2
++        maxItems: 2
++
++    required:
++      - reg
++      - qcom,adc-channel
++
++    additionalProperties:
++      false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - "#address-cells"
++  - "#size-cells"
++  - "#thermal-sensor-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++        pm8150b_adc: adc@3100 {
++            compatible = "qcom,spmi-adc5";
++            /* Other propreties are omitted */
++            conn-therm@4f {
++                reg = <ADC5_AMUX_THM3_100K_PU>;
++                qcom,ratiometric;
++                qcom,hw-settle-time = <200>;
++            };
++        };
++
++        pm8150b_adc_tm: adc-tm@3500 {
++            compatible = "qcom,spmi-adc-tm5";
++            reg = <0x3500>;
++            interrupts = <0x2 0x35 0x0 IRQ_TYPE_EDGE_RISING>;
++            #thermal-sensor-cells = <1>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++            io-channels = <&pm8150b_adc ADC5_AMUX_THM3_100K_PU>;
++            io-channel-names = "conn-therm";
++
++            conn-therm@0 {
++                reg = <0>;
++                qcom,adc-channel = <ADC5_AMUX_THM3_100K_PU>;
++                qcom,ratiometric;
++                qcom,hw-settle-time = <200>;
++            };
++        };
++...
+-- 
+2.28.0
 
-Acked-by: Vignesh Raghavendra <vigneshr@ti.com>
-
-> ---
-> Changes:
-> v2: None (picked acks/reviews)
-> v1: https://lore.kernel.org/linux-arm-kernel/20200901223059.14801-6-nm@ti.com/
-> 
->  arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-> index bb498be2f0a4..ed42f13e7663 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-> @@ -95,7 +95,7 @@
->  		clock-names = "gpio";
->  	};
->  
-> -	wkup_vtm0: thermal@42050000 {
-> +	wkup_vtm0: temperature-sensor@42050000 {
->  		compatible = "ti,am654-vtm";
->  		reg = <0x42050000 0x25c>;
->  		power-domains = <&k3_pds 80 TI_SCI_PD_EXCLUSIVE>;
-> 
