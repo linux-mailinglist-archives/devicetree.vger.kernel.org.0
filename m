@@ -2,166 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 033E925C4D0
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:18:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2035525C4E6
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:20:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728458AbgICPS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 11:18:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36762 "EHLO
+        id S1728901AbgICPU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 11:20:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728625AbgICLcD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 07:32:03 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 506DFC061244;
-        Thu,  3 Sep 2020 04:00:35 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id m6so2767866wrn.0;
-        Thu, 03 Sep 2020 04:00:35 -0700 (PDT)
+        with ESMTP id S1728548AbgICL1B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 07:27:01 -0400
+Received: from mail-yb1-xb42.google.com (mail-yb1-xb42.google.com [IPv6:2607:f8b0:4864:20::b42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB2F1C061246;
+        Thu,  3 Sep 2020 04:18:28 -0700 (PDT)
+Received: by mail-yb1-xb42.google.com with SMTP id h20so1939061ybj.8;
+        Thu, 03 Sep 2020 04:18:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:references:in-reply-to:subject:date:message-id
-         :mime-version:content-transfer-encoding:thread-index
-         :content-language;
-        bh=SE22zCSVEAoxI5J9vYZxU5jk2PTxW8rlRt79/vsQVMc=;
-        b=XHOo/wjgMIAcFXOEpJ8LD3JeyIS06RbRzdhJHQUNQryAsL5MqI9KCGWsJDlWGw6Hww
-         0r1qNVory+ouhS3YefBZ3bC51Wemkyd5AZ/T2v3yonZYSLyRjebFpnAJaRXEFjXiWSK/
-         DUUTknp8LIhWqVy8rhgEG9QW/cAssbuWgMFTs1OW7xUnSOUXWh1vBvG4/utmhUmshssd
-         ZolOYsiKduKgb0bRlz0wzBCTQfC/r6haJPeN3CvbPf70QjElIk39PqgeTz7KA4Ts2JVK
-         7t/MN3sATXo6IDk0wOjGSMRLimJGPLXCz3gIfStJcaNtRUWwumRdA8PcXB/BBbd6Devf
-         o0Mw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=vSTdiuU7UW8q2OVQi9q+98jV2wni9irf58KIjeuCLZE=;
+        b=l23jQ5rFCiIyga1ZOrbBcnNyWnB9gGbwRMVitiYAhAKXGULvVU1UksrMHHDstOCrli
+         L/MsoQI3hPI1M6BSun/jbMy0j7qljuwZplYaXKFETuH7yEduLZZv3sb4nUDnWsKjqs6H
+         X+ucJJFhk96Alf4w4WeUVcsklvBI5i4mIETEx48aydiOCb4ynwBV6NUWyYQeGuMxo227
+         Ap/8BZ/yYPSnQENMXdjvelgOeIHCTYjCQdXBQU+elhlBYhd35+KaTbfJLFXOEdFf/x4U
+         vIbQ+VtBD5P1XUMM34xhXOmHVyWiEDwa5mS4w3ny/ndWa0XoO6hdDMM2TSsiorBkU9Bk
+         e9hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:references:in-reply-to:subject:date
-         :message-id:mime-version:content-transfer-encoding:thread-index
-         :content-language;
-        bh=SE22zCSVEAoxI5J9vYZxU5jk2PTxW8rlRt79/vsQVMc=;
-        b=QTgzdgoYHeT45eXk00gc8Bc4McewHo3odEFQSSeUJ59oYewiSQfrCgkNJ4hvgPFuff
-         C4uPqc6vlpFGWpux7uN700of+KA1UoW7IBdPaloyxi12K/e5UGmvrIoo3yteHVLFEzfD
-         9Oz8SrYHosODRAKCatImudy9W5MwZX+K+ayu7HBc7NIMTzMR9+AK+R2YQ6qmFLoH8AIR
-         HmUYSWUcwvcp3/ap+iCp2tfVNPxihflKV4Bn0/zp5dfAvC0xXKqznatWudos8aMLoTQ5
-         USgFvd01UnssCMgOr+ay/4trHbRR8vsNr00GP77ofmr+lI031xmj56wTaV8+ovLsU62Z
-         PBGg==
-X-Gm-Message-State: AOAM5314cMMjEe/AAPItmX83AERq3F8O1MXHhU0QJE8LX2RcTxD5NZgN
-        IaHmu2sQNujaRfmal91xAGXnnSKkHuxTyg==
-X-Google-Smtp-Source: ABdhPJzT2JR3cqHJJ+PeIDEiZWnus85LDjLyqQxGZLcJGgQ0N86n6iNc76LXufOFcTVgGQkidXI/BA==
-X-Received: by 2002:adf:e7ce:: with SMTP id e14mr1741534wrn.43.1599130833155;
-        Thu, 03 Sep 2020 04:00:33 -0700 (PDT)
-Received: from AnsuelXPS ([5.170.166.111])
-        by smtp.gmail.com with ESMTPSA id s5sm3876136wrm.33.2020.09.03.04.00.31
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 03 Sep 2020 04:00:32 -0700 (PDT)
-From:   <ansuelsmth@gmail.com>
-To:     "'Sibi Sankar'" <sibis@codeaurora.org>,
-        "'Viresh Kumar'" <viresh.kumar@linaro.org>
-Cc:     <vincent.guittot@linaro.org>, <saravanak@google.com>,
-        "'Sudeep Holla'" <sudeep.holla@arm.com>,
-        "'Rafael J. Wysocki'" <rjw@rjwysocki.net>,
-        "'Rob Herring'" <robh+dt@kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20200821140026.19643-1-ansuelsmth@gmail.com> <20200824104053.kpjpwzl2iw3lpg2m@vireshk-i7> <b339e01f9d1e955137120daa06d26228@codeaurora.org> <039d01d67f6a$188700d0$49950270$@gmail.com> <20200903065314.y3ynhwydahaeg6o6@vireshk-i7> <6dc62d231c776b2cdfdc36cfe36e4140@codeaurora.org>
-In-Reply-To: <6dc62d231c776b2cdfdc36cfe36e4140@codeaurora.org>
-Subject: R: R: [RFC PATCH v3 0/2] Add Krait Cache Scaling support
-Date:   Thu, 3 Sep 2020 13:00:27 +0200
-Message-ID: <01f201d681e1$70ff1bc0$52fd5340$@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=vSTdiuU7UW8q2OVQi9q+98jV2wni9irf58KIjeuCLZE=;
+        b=O1bMFNDhrl1tGlJJXWswytqahTBOCmk8aO50D8nxkQhomSAws7nNwn1/qGkydpzIbn
+         nUJmFM1YrigN/b1Tem+WOh5wTPEBi/f3JFlmwwX137M1vu+Fw8ckGmYReBQVcG3zM/Fk
+         +RrNfZRRDbQziAtL8dMLb9m7GIHaDSzM65K13bMzvVSSxNcAcH4cKAvmiLFSttbwExbR
+         vymOwZ/19tmOvPvGKYqpTxRca0hGdKYlTc5phqSsszGpROisgYYUZtAqzdFOZaOn5unR
+         OGphqIEqgcSqBMtZScUTWVKXutG5/C8aTeknFlKUOh4nQd4+Oaxj8ztTzkRbVsCBFNPE
+         aEWQ==
+X-Gm-Message-State: AOAM531iXyS8/WSxty0VYnxA08e4BjubYtwmXTF7pbhH/vs74OXHp3W5
+        0waupDdXQXKK6v++xa0+burKHirnM2Lu1DYv49g=
+X-Google-Smtp-Source: ABdhPJzVF1YWU0hFuTeXXBWlQUQXW13GtCNpXXV/WX/2S85bIjmuraoJzeRVrhZaoiJXYKvUCHyFvwpP1gI72OwwzXU=
+X-Received: by 2002:a25:dc0c:: with SMTP id y12mr1834334ybe.395.1599131908024;
+ Thu, 03 Sep 2020 04:18:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="iso-8859-1"
+References: <20200825162718.5838-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20200825162718.5838-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdVVvDEq-GSsPDrx09TCfGCWkNQvGYrNWP4gK2=63G2z1w@mail.gmail.com>
+In-Reply-To: <CAMuHMdVVvDEq-GSsPDrx09TCfGCWkNQvGYrNWP4gK2=63G2z1w@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Thu, 3 Sep 2020 12:18:01 +0100
+Message-ID: <CA+V-a8sqVGHHQ0ayH7CvKANyCpsFPBy6OuqoGQHPS7iOX20rCg@mail.gmail.com>
+Subject: Re: [PATCH 1/4] ARM: dts: r8a7742-iwg21d-q7: Enable PCIe Controller
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQHE1KUT8lrzCHz2sVzN5qwVSE5wCwFurxwcAoW98xABeMrvawKX8ba/Aay9QdupLIiWEA==
-Content-Language: it
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Geert,
 
+Thank you for the review.
 
-> -----Messaggio originale-----
-> Da: sibis=3Dcodeaurora.org@mg.codeaurora.org
-> <sibis=3Dcodeaurora.org@mg.codeaurora.org> Per conto di Sibi Sankar
-> Inviato: gioved=EC 3 settembre 2020 09:13
-> A: Viresh Kumar <viresh.kumar@linaro.org>
-> Cc: ansuelsmth@gmail.com; vincent.guittot@linaro.org;
-> saravanak@google.com; 'Sudeep Holla' <sudeep.holla@arm.com>; 'Rafael =
-J.
-> Wysocki' <rjw@rjwysocki.net>; 'Rob Herring' <robh+dt@kernel.org>; =
-linux-
-> pm@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org
-> Oggetto: Re: R: [RFC PATCH v3 0/2] Add Krait Cache Scaling support
->=20
-> On 2020-09-03 12:23, Viresh Kumar wrote:
-> > On 31-08-20, 09:41, ansuelsmth@gmail.com wrote:
-> >> On 31-08-20, Sibi wrote:
-> >> > On 2020-08-24 16:10, Viresh Kumar wrote:
-> >> > > +Vincent/Saravana/Sibi
-> >> > >
-> >> > > On 21-08-20, 16:00, Ansuel Smith wrote:
-> >> > >> This adds Krait Cache scaling support using the cpufreq =
-notifier.
-> >> > >> I have some doubt about where this should be actually placed =
-(clk
-> or
-> >> > >> cpufreq)?
-> >> > >> Also the original idea was to create a dedicated cpufreq =
-driver
-(like
-> >> > >> it's done in
-> >> > >> the codeaurora qcom repo) by copying the cpufreq-dt driver and
-> adding
-> >> > >> the cache
-> >> > >> scaling logic but i still don't know what is better. Have a =
-very
-> >> > >> similar driver or
-> >> > >> add a dedicated driver only for the cache using the cpufreq
-notifier
-> >> > >> and do the
-> >> > >> scale on every freq transition.
-> >> > >> Thanks to everyone who will review or answer these questions.
-> >> > >
-> >> > > Saravana was doing something with devfreq to solve such issues =
-if I
-> >> > > wasn't mistaken.
-> >> > >
-> >> > > Sibi ?
-> >> >
-> >> > IIRC the final plan was to create a devfreq device
-> >> > and devfreq-cpufreq based governor to scale them, this
-> >> > way one can switch to a different governor if required.
-> >>
-> >> So in this case I should convert this patch to a devfreq driver-
+On Thu, Sep 3, 2020 at 11:18 AM Geert Uytterhoeven <geert@linux-m68k.org> w=
+rote:
+>
+> Hi Prabhakar,
+>
+> On Tue, Aug 25, 2020 at 6:28 PM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > Enable PCIe Controller and set PCIe bus clock frequency.
 > >
-> > I think this should happen nevertheless. You are doing DVFS for a
-> > device which isn't a CPU and devfreq looks to be the right place of
-> > doing so.
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
+>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-devel for v5.10.
+>
+> One thing to double-check below.
+>
+> > --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
+> > +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
+> > @@ -238,6 +238,18 @@
+> >         /* status =3D "okay"; */
+> >  };
 > >
-> >> Isn't overkill to use a governor for such a task?
-> >> (3 range based on the cpufreq?)
-> >
-> > I am not sure about the governor part here, maybe it won't be =
-required
-> > ?
->=20
-> Yeah I don't see it being needed in ^^
-> case as well. I just mentioned them as
-> an advantage in case you wanted to switch
-> to a different governor in the future.
->=20
-> https://lore.kernel.org/lkml/d0bc8877-6d41-f54e-1c4c-
-> 2fadbb9dcd0b@samsung.com/
->=20
-> A devfreq governor tracking cpufreq was
-> generally accepted but using a cpufreq
-> notifier to achieve that was discouraged.
->=20
+> > +&pcie_bus_clk {
+> > +       clock-frequency =3D <100000000>;
+> > +};
+> > +
+> > +&pciec {
+> > +       /* SW2[6] determines which connector is activated
+> > +        * ON =3D PCIe X4 (connector-J7)
+> > +        * OFF =3D mini-PCIe (connector-J26)
+>
+> The table on page 14 says it's the other way around.
+>
+> According to the CBTL02042ABQ datasheet, PCIe_SEL =3D low
+> selects the first channel (PCIe x4), while PCIe_SEL =3D high selects the
+> second channel (mini-PCIe).
+> Enabling the switch ties the signal low, so the table must be wrong.
+>
+Referring to [1] page 3:
 
-I read the patch discussion and it looks like at the very end they
-lost interest in pushing it. That would very fit what I need here so
-I'm asking how should I proceed? Keep the cpufreq notifier?
-Introduce a dedicated governor? Ask them to resume the pushing or
-try to include the changes to the passive governor by myself?=20
+SEL =3D LOW: A=E2=86=94B
+SEL =3D HIGH: A=E2=86=94C
 
+And as per the schematic iW-PREJD-CS-01-R2.0-REL1.5.pdf channel B is
+J7 (PCIe X 4) and channel C is J26 (mini PCIe slot).
+
+Enabling the switch SW2[6] (ON) ties SEL to LOW -> channel B is J7 (PCIe X =
+4)
+Disabling the switch SW2[6] (OFF) ties SEL to HIGH -> channel C is J26
+(mini PCIe)
+
+Also iW-PREJD-CS-01-R2.0-REL1.5.pdf page 14 (General purpose table DIP
+Switch) mentions the above.
+
+[1] https://www.mouser.co.uk/datasheet/2/302/CBTL02042A_CBTL02042B-1126164.=
+pdf
+
+Cheers,
+Prabhakar
+
+> > +        */
+> > +       status =3D "okay";
+> > +};
+> > +
+> >  &pfc {
+> >         avb_pins: avb {
+> >                 groups =3D "avb_mdio", "avb_gmii";
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
 > --
-> Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-> a Linux Foundation Collaborative Project.
-
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
