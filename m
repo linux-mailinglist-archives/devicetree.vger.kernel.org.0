@@ -2,54 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A12B25C6CC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 18:30:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF49D25C6DE
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 18:32:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726990AbgICQaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 12:30:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54742 "EHLO
+        id S1728422AbgICQc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 12:32:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726368AbgICQ36 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 12:29:58 -0400
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 345D7C061244;
-        Thu,  3 Sep 2020 09:29:58 -0700 (PDT)
-Received: by mail-pf1-x441.google.com with SMTP id b124so2718388pfg.13;
-        Thu, 03 Sep 2020 09:29:58 -0700 (PDT)
+        with ESMTP id S1726327AbgICQc0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 12:32:26 -0400
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 404A2C061244;
+        Thu,  3 Sep 2020 09:32:25 -0700 (PDT)
+Received: by mail-pj1-x1041.google.com with SMTP id np15so3951907pjb.0;
+        Thu, 03 Sep 2020 09:32:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Nq4Y4LX++M/uKa3i+1xjIY2hdYC3sQ5Emz4iH0w5Bus=;
-        b=HD97Fsc/y+B5kjeKHMOlfqvQFt2ZqCaTNLJdBLLowG4rLTC9o2fAaZR72bRPaUWUiR
-         kVPlVX+7qIC88NDSnRh8AstE8oPgDHIqJp6l+cY+TN7qnxLi2iFrjH9CVUhpQrJ9D23c
-         4LHISM9suprt5snYB5byAWoIqtSh/jr1z9+wTfJMc6XXR+Uu6bQplypKppzWTXxdMFX+
-         vbOGqAZiuALSlgByVapbwi/1jlPkcsGa20K4q9HMiKDuq5sOPLPvtj1EZD+4iEsoQBaF
-         pSL0CSg6oLr9SiQ+ll11FISz5JQMFOcBXeRVcSYj5rym6SfEX/gW/w1ZEY4yqmqOeM9V
-         m7Kw==
+        bh=OrbbM9DgLdnxe1+euwEacdEqAbrZFxcjaO4/M3jujnM=;
+        b=IUjymj0/UHYW6IMRtHbsrn6e3DcUG7cIiYyWIzYS2D0E2oBsojdlwI20ybI1X51hqG
+         QxS7mZObFOLhRLD2duuRVx/vKmC4NUUoGo1A+SUu6lWDuY4r6B0iLxo2cyLyleNzE+YL
+         hRqnMu4Kgl1aUkrPtxUcjDx23xnhrHkEHkNWwTiAc59Vi84PhpaVJgFa0AlSHInBRB5D
+         rdWNALNNVByl9yGxQZGgU7/UPzT8fKVGsreuldQI1Dv13nmOFY7c6+SQVIpJUwDRfcCH
+         b9H3U7xlZgfvadKj1RMinLmFStXwStM5iZRobhzI0bxo9Utm8rkKVFoTY79C5hQHqhqn
+         FMkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=Nq4Y4LX++M/uKa3i+1xjIY2hdYC3sQ5Emz4iH0w5Bus=;
-        b=gT057NgWTUA8TdXiSREHtnk1e5s8Yse4jpG14l5M3hmfrj+WZg2hzFGEoNQf6oUWQP
-         /vC6MSei+3Fbzb3DHL3KSWqNjdn7EmTJTDCpORVBf57DzYTopHqcpTubzuTX240KXnQQ
-         QJF4ZpAUfOrnk0cweEiQz4xhzJQD4+i8mH+IkNcaCibW6L79vSBUgi8JuujDm7m5Dhvn
-         z43nIfwB/aub5Uc4VxVG4Wmr9GWJFMns+/f96mIFpufVJxX/7FyEZMJJ2+dbiXRCorBw
-         VAG1Hqu806H+AIxuUDOr4mzO2eMbIDwQRsH9tuYN4vrSehsDx1KjAxJ38FL8I+9B8foF
-         j3MQ==
-X-Gm-Message-State: AOAM533GsCAsPmjufe/wuQWkTZSvMfHxBv0FwPPCng9qZffFPV0Rc7Uq
-        W2QwJyDkNowhKSQFQbV3rXY=
-X-Google-Smtp-Source: ABdhPJwom6O7abQjGJ0fwb74pAHB+lr2SSA77td5Qq18sKhO6li039UwtDx+7980GEHYmNSQTdNcOA==
-X-Received: by 2002:a17:902:7083:: with SMTP id z3mr4673238plk.187.1599150597535;
-        Thu, 03 Sep 2020 09:29:57 -0700 (PDT)
+        bh=OrbbM9DgLdnxe1+euwEacdEqAbrZFxcjaO4/M3jujnM=;
+        b=jPzZQ5Qz9JwQzr5VwDYsjIqSizFpZoiYWcRC+Ou5guZG6QAh3Apwm3EaTftB+uhLkf
+         OSJsMbi4E4mvjIKm1MdtUKWPgWqE6OCzZTK13zwLRpGZnZ0/H3+gdoy1oJ9veOBacD0q
+         AUp2eK3S/0yW8gG1HPUOfCUrLV853/BHEr6bUv6VBKHjYTMfNKJQxCRczx/U48avgb5U
+         XvENBU0jJQv7eo45TlnXSYFEgOU6pmNIAyX8pzPPSOE5IewlYipQyJls3liC3KZkKVTL
+         G0xKUGa5yS2ZBe3ygmHW1muYJm0PigXhBK+p3b5n/ndDAGAjMppwp4tFLZDz+XNSvzXE
+         9nqA==
+X-Gm-Message-State: AOAM532DtO7vz2Y9zsrd/z2YBbMGdBxaOujaGNsXol8O8Bi+1Qo/aeV/
+        t6p0ZzN0IICkMwDXvFLP3l5hyVc3EVw=
+X-Google-Smtp-Source: ABdhPJycN1aKoSoawdEpEEDqOzxI/pTlR7295SDkrS1slo2Cre6TmhVDQSycptAG69QgHHiiMGz0NA==
+X-Received: by 2002:a17:90b:3717:: with SMTP id mg23mr4090514pjb.42.1599150744730;
+        Thu, 03 Sep 2020 09:32:24 -0700 (PDT)
 Received: from [10.230.30.107] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id y7sm3674852pfm.68.2020.09.03.09.29.55
+        by smtp.gmail.com with ESMTPSA id d13sm3724864pfq.118.2020.09.03.09.32.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Sep 2020 09:29:56 -0700 (PDT)
-Subject: Re: [PATCH v4 7/7] dt-bindings: net: dsa: Add documentation for
- Hellcreek switches
+        Thu, 03 Sep 2020 09:32:24 -0700 (PDT)
+Subject: Re: [PATCH v4 5/7] net: dsa: hellcreek: Add PTP status LEDs
 To:     Kurt Kanzenbach <kurt@linutronix.de>, Andrew Lunn <andrew@lunn.ch>,
         Vivien Didelot <vivien.didelot@gmail.com>
 Cc:     "David S. Miller" <davem@davemloft.net>,
@@ -60,14 +59,14 @@ Cc:     "David S. Miller" <davem@davemloft.net>,
         Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
         ilias.apalodimas@linaro.org, Vladimir Oltean <olteanv@gmail.com>
 References: <20200901125014.17801-1-kurt@linutronix.de>
- <20200901125014.17801-8-kurt@linutronix.de>
+ <20200901125014.17801-6-kurt@linutronix.de>
 From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <8470fd08-2a22-23b2-4735-a600ee2ea06b@gmail.com>
-Date:   Thu, 3 Sep 2020 09:29:54 -0700
+Message-ID: <c8e43260-1535-6171-b9e6-f2593178a3e2@gmail.com>
+Date:   Thu, 3 Sep 2020 09:32:21 -0700
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Firefox/78.0 Thunderbird/78.1.1
 MIME-Version: 1.0
-In-Reply-To: <20200901125014.17801-8-kurt@linutronix.de>
+In-Reply-To: <20200901125014.17801-6-kurt@linutronix.de>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -79,9 +78,30 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 9/1/2020 5:50 AM, Kurt Kanzenbach wrote:
-> Add basic documentation and example.
+> The switch has two controllable I/Os which are usually connected to LEDs. This
+> is useful to immediately visually see the PTP status.
+> 
+> These provide two signals:
+> 
+>   * is_gm
+> 
+>     This LED can be activated if the current device is the grand master in that
+>     PTP domain.
+> 
+>   * sync_good
+> 
+>     This LED can be activated if the current device is in sync with the network
+>     time.
+> 
+> Expose these via the LED framework to be controlled via user space
+> e.g. linuxptp.
 > 
 > Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+
+There appears to be quite some boilerplate code to deal with the default 
+trigger, default LED label that could presumably live in the LED 
+subsystem, nonetheless:
 
 Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
 -- 
