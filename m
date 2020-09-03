@@ -2,75 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7118225C896
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 20:14:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B75325C8D1
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 20:38:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729083AbgICSOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 14:14:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39292 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729031AbgICSOi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Sep 2020 14:14:38 -0400
-Received: from localhost.localdomain (unknown [194.230.155.106])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D235C20DD4;
-        Thu,  3 Sep 2020 18:14:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599156878;
-        bh=5b3Egfm+10MTau1tfMtMDO2dK/Gow5RosvWsPo2xF0o=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=pYLFRJoATh3RydGMt1khMfDZm21rtcbKjrJvbuVtJJq8tmJ4fTNqlXzhoUENsPInk
-         UV7keYdSR7lmKcJE0y5olYVM9zLcXu3eE9qV4mLmiAZJlWxe1EmCOsAzyW0exUX+kI
-         MHXBf2BJJ2IDWm4d7f7C33O+hSLnpf2TthUOaW1I=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-Subject: [PATCH v2 3/3] ARM: dts: exynos: Add assigned clock parent to CMU in Exynos5422 Odroid XU3
-Date:   Thu,  3 Sep 2020 20:14:25 +0200
-Message-Id: <20200903181425.5015-3-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200903181425.5015-1-krzk@kernel.org>
-References: <20200903181425.5015-1-krzk@kernel.org>
+        id S1728525AbgICSiD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 14:38:03 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:33856 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726678AbgICSiB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 14:38:01 -0400
+Received: by mail-lj1-f196.google.com with SMTP id v23so4992571ljd.1;
+        Thu, 03 Sep 2020 11:38:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition:user-agent;
+        bh=G8YdvudDKsl+XH0TOF/XGHJYZCEazEGmxSJA0OmXFOE=;
+        b=oK6rdLfEyiFBHF7I1UbuUdVAe7OHA843VoZ7QpJwfTdtBONwAUIXaGLDRhKC35Mc7N
+         bJl2DArHRwBNBZlBoElDBfYQ+eshSO07yIZJROYse3meFBnos4uIW8ZxhTBPBGwAFRLJ
+         zBE0VQfdtn0Eh7Lg0TamoUoX6+HUySoM1ja1U8CSK3tA9cWlORrusAGxFDCpTeI9cl2E
+         k8CQ5IHg6QXAfCHCd1wm39JFPv9MTJ+fHms2Dd8o5GQvmU+oyF1fi88Ic7SCqQItZPKK
+         2ej6yGd3nXgZkxHCjUwlRurw1uynVaLqkNOjxvY7vp8/ploJIA9UGhBya23Iddh/7pEJ
+         jLrw==
+X-Gm-Message-State: AOAM533Az1HRA75t38SXpsqqqQ34uAMOyUFeHWbgtlVbfxeN0lkeqqkf
+        hZ5a+leenCPys5QCo3grQzcfBUPtGiK3yQ==
+X-Google-Smtp-Source: ABdhPJxHC3DyCh/w3nbKS4ojbn/lt46EVnDBhoQzvoXwfFDpjIXFa/OHkrq/dv9VF4Gckx1SBxgo2A==
+X-Received: by 2002:a2e:9d04:: with SMTP id t4mr2007184lji.293.1599158279199;
+        Thu, 03 Sep 2020 11:37:59 -0700 (PDT)
+Received: from localhost.localdomain (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
+        by smtp.gmail.com with ESMTPSA id w4sm765396ljm.50.2020.09.03.11.37.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Sep 2020 11:37:58 -0700 (PDT)
+Date:   Thu, 3 Sep 2020 21:37:51 +0300
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+To:     mazziesaccount@gmail.com
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-power@fi.rohmeurope.com
+Subject: [PATCH 0/4] Support regulator ON/OFF by PMIC state machine.
+Message-ID: <cover.1599029334.git.matti.vaittinen@fi.rohmeurope.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 78a68acf3d33 ("ARM: dts: exynos: Switch to dedicated Odroid XU3
-sound card binding") added assigned clocks under sound device node.
+Support regulator enable/disable via BD718(37/47/50) PMIC state machine.
 
-However the dtschema expects "clocks" property if "assigned-clocks" are
-used.  Add reference to input clock, the parent used in
-"assigned-clock-parents" to silence the dtschema warnings:
+The ROHM BD718(37/47/50) PMICs are mainly used for powering i.MX8 based
+systems. On some setups the i.MX8 SoC uses a IO line to suspend the
+system. These PMICs support this via PMIC internal HW state machine
+which can be toggled for example by the PMIC_STBY_REQ IO-pin.
 
-  arch/arm/boot/dts/exynos5422-odroidxu3.dt.yaml: sound: 'clocks' is a dependency of 'assigned-clocks'
+Regulators can be controlled either by this state machine or by SW via
+I2C. This patch series allows mixed control model by adding a
+device-tree property which is intended to be used to leave some of the
+regulators under HW state machine control while allowing other to be
+still controlled using the driver. The driver can also be used to set
+voltages levels for all regulators no matter if enable/disable state is
+controlled by SW or HW.
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- arch/arm/boot/dts/exynos5422-odroidxu3-audio.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3-audio.dtsi b/arch/arm/boot/dts/exynos5422-odroidxu3-audio.dtsi
-index c3c2d85267da..44467a10c3b8 100644
---- a/arch/arm/boot/dts/exynos5422-odroidxu3-audio.dtsi
-+++ b/arch/arm/boot/dts/exynos5422-odroidxu3-audio.dtsi
-@@ -29,6 +29,11 @@
- 			"HiFi Playback", "Mixer DAI TX",
- 			"Mixer DAI RX", "HiFi Capture";
- 
-+		clocks = <&clock CLK_FOUT_EPLL>,
-+			 <&clock CLK_MOUT_EPLL>,
-+			 <&clock CLK_MOUT_MAU_EPLL>,
-+			 <&clock CLK_MAU_EPLL>,
-+			 <&clock_audss EXYNOS_MOUT_AUDSS>;
- 		assigned-clocks = <&clock CLK_MOUT_EPLL>,
- 				<&clock CLK_MOUT_MAU_EPLL>,
- 				<&clock CLK_MOUT_USER_MAU_EPLL>,
+Matti Vaittinen (4):
+  regulator: bd718x7 initialize regulator config only once
+  dt-bindings: regulator: bd71837: add property for omitting ON/OFF
+    control
+  dt-bindings: regulator: bd71847: add property for omitting ON/OFF
+    control
+  regulator: bd718x7 fix regulator states at SUSPEND
+
+ .../regulator/rohm,bd71837-regulator.yaml     |  11 +
+ .../regulator/rohm,bd71847-regulator.yaml     |  11 +
+ drivers/regulator/bd718x7-regulator.c         | 422 +++++++++++-------
+ 3 files changed, 293 insertions(+), 151 deletions(-)
+
 -- 
-2.17.1
+2.21.0
 
+
+-- 
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =] 
