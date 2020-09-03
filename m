@@ -2,152 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8D8525C2CF
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 16:36:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C14B25C3A4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 16:55:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729307AbgICOgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 10:36:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40886 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729337AbgICOfq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Sep 2020 10:35:46 -0400
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5FB97206EF;
-        Thu,  3 Sep 2020 14:35:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599143745;
-        bh=MhbRvwWJNnHywACtnbf5ET9sjfMsgb9V61rFSq5rdyY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=1T0430uD2S79+kbERCTjKsRHOpH+UDiH9qgJtRgAQ7SJ0tZIRKM1C5b23z5dMAtR9
-         YLWNTxTFnOMKeCSmOBWX6uHi+ngM/ZfnKxifHH5tCZ992BpWUTRQ5i3QsoiuDCwW3o
-         DnGXdsGsXR0nCmwv3Rg2IiSUhN2n+1I/YIzaQoeI=
-Received: by mail-ot1-f52.google.com with SMTP id 109so2922288otv.3;
-        Thu, 03 Sep 2020 07:35:45 -0700 (PDT)
-X-Gm-Message-State: AOAM531zCMqM6PRLbZ6/NcESRsjk7iG2ZhQBq5Qywg76COGgb4EAxYO/
-        VkCIs+HvYOQGqsVk7MmkD4BkBx7g+Kg1F8aI3Q==
-X-Google-Smtp-Source: ABdhPJyHlJEdw5VHQQUgODncJ0OYkDXMPEq4Rvj2LgMEWbIkezHrTYKZ3HU8dnFCvqRioNojcf6d52vGY/GYDWNxQ5E=
-X-Received: by 2002:a05:6830:1008:: with SMTP id a8mr1743810otp.107.1599143744629;
- Thu, 03 Sep 2020 07:35:44 -0700 (PDT)
+        id S1729276AbgICOzl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 10:55:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40066 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729272AbgICOzH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 10:55:07 -0400
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09737C061244;
+        Thu,  3 Sep 2020 07:55:04 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id z9so3214666wmk.1;
+        Thu, 03 Sep 2020 07:55:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qe0IUMor49oE5XMAhnvv6mSoLAEeSax8zKoliUVr2L0=;
+        b=gi+okfXZCeX/IlzkMiCpZlg//ifHFRP21IdCT++z0wG14P5iGcFqn7N8v7NoUbSfOj
+         0tdSg6dbh5QAllC9EGec1pc7B/9FgTuraemtgTRnFf+4tTch2YhAKIi4AaoCdrkMGHUI
+         vtZiL8FY/zNy00AWcclqs/KmK4dauPB3Xo+R2RSXE6STv35I00R7K2tTlJ7hxXccITUs
+         7DlcgbQ1xpJDGNM8xywp06F0rPGou/oUqllkktUpn481sIWoZgMGmwGbuNZXXCKmo6/Y
+         c9rZ8SABVtYrhgbttUHtmrgS6QFCitd0Gkg//8buqscEJJdLWCSSjn29g5mXQtE5xe2n
+         iOdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qe0IUMor49oE5XMAhnvv6mSoLAEeSax8zKoliUVr2L0=;
+        b=qmdXksnIQsqLy64i+weItKbYF5QJjr3W3zIqvZYV80uw47K7leVTUqIiD06OoicH8Z
+         9tY/ZsjtBqTyc61K9NLij+jAesbDDY5S0exHdBWViVVb5Ix0isHTgI/coDyFh8gj+Ay/
+         n7AZvC39NrTJQIrU0aZUR4VxOAm1YdnMqsz7akR+NhC8n9f3tTSdCJRDDNv9DIy4Ydeq
+         Iiz1iEZ50ePwo7IauJp4zukDE4zy9XLQLmnqrJe5qcHTrGeY2vq8DoYRFx/pNegvW/o5
+         UMYbzYuEjJKw+bZeFuoUGcbpGVniit/FBe0xd/cJFVd1w5/lYISSIGhGxjR9kybIivhd
+         B0og==
+X-Gm-Message-State: AOAM533+kMh4IYIP+qv4KXHPkLG7jgh5lci7q3vkmFtliYlCyCkbVcUv
+        uBEt30V3cU0QK2UcQbH3TOQ=
+X-Google-Smtp-Source: ABdhPJzp7FadRwfFn2uumKx32iCq68f9e/8XCNGw/dcsrbaamHNjyN/I4Ew0UOBPtpUZdHtUwQk7ig==
+X-Received: by 2002:a1c:2983:: with SMTP id p125mr2887798wmp.21.1599144900930;
+        Thu, 03 Sep 2020 07:55:00 -0700 (PDT)
+Received: from Red.localdomain ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id l8sm5124266wrx.22.2020.09.03.07.54.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Sep 2020 07:55:00 -0700 (PDT)
+From:   Corentin Labbe <clabbe.montjoie@gmail.com>
+To:     davem@davemloft.net, herbert@gondor.apana.org.au,
+        mripard@kernel.org, robh+dt@kernel.org, robh@kernel.org,
+        wens@csie.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com, m.cerveny@computer.org,
+        Corentin Labbe <clabbe.montjoie@gmail.com>
+Subject: [PATCH v2] dt-bindings: crypto: Specify that allwinner,sun8i-a33-crypto needs reset
+Date:   Thu,  3 Sep 2020 16:54:45 +0200
+Message-Id: <20200903145445.31779-1-clabbe.montjoie@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20200829164920.7d28e01a@DUFFMAN> <65d88bdd0888a69849327501a2aad186@kernel.org>
- <20200831031838.2d6d76d9@DUFFMAN> <90731ebb54fe03003dce03bc7ec4872e@kernel.org>
- <20200831234542.295b1275@DUFFMAN> <5db50a8e5b251714cebe0a719ee9dc73@kernel.org>
- <20200901164249.GA15045@e121166-lin.cambridge.arm.com> <20200901143356.0425d9ba@DUFFMAN>
- <20200902160110.GA30014@e121166-lin.cambridge.arm.com> <20200902234756.60e4c4f6@DUFFMAN>
- <20200903091901.GA9386@e121166-lin.cambridge.arm.com>
-In-Reply-To: <20200903091901.GA9386@e121166-lin.cambridge.arm.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 3 Sep 2020 08:35:33 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJwH3ZKWKYeSJYKZhaU7x59H0t=AM4nWDSmRZuSY0-DGA@mail.gmail.com>
-Message-ID: <CAL_JsqJwH3ZKWKYeSJYKZhaU7x59H0t=AM4nWDSmRZuSY0-DGA@mail.gmail.com>
-Subject: Re: Boot failure on gru-scarlet-inx with 5.9-rc2
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     Samuel Dionne-Riel <samuel@dionne-riel.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 3, 2020 at 3:19 AM Lorenzo Pieralisi
-<lorenzo.pieralisi@arm.com> wrote:
->
-> On Wed, Sep 02, 2020 at 11:47:56PM -0400, Samuel Dionne-Riel wrote:
-> > On Wed, 2 Sep 2020 17:01:19 +0100
-> > Lorenzo Pieralisi <lorenzo.pieralisi@arm.com> wrote:
-> >
-> > > On Tue, Sep 01, 2020 at 02:33:56PM -0400, Samuel Dionne-Riel wrote:
-> > >
-> > > Please print a pointer as a pointer and print both bus and
-> > > bus->parent.
-> >
-> > Hopefully pointer as a pointer is %px. Not sure what else, if that's
-> > wrong please tell.
-> >
-> > ---
-> > @@ -79,6 +79,8 @@ static int rockchip_pcie_valid_device(struct rockchip_pcie *rockchip,
-> >          * do not read more than one device on the bus directly attached
-> >          * to RC's downstream side.
-> >          */
-> > +       printk("[!!] // bus (%px) bus->parent (%px)\n", bus, bus->parent);
-> > +       printk("[!!] bus->primary (%d) == rockchip->root_bus_nr (%d) && dev (%d) > 0\n", bus->primary, rockchip->root_bus_nr, dev);
-> >         if (bus->primary == rockchip->root_bus_nr && dev > 0)
-> >                 return 0;
-> >
-> > --
-> >
-> > Again, two values, verified with a bit of set and `sort -u`.
-> >
-> > [    1.691266] [!!] // bus (ffff0000ef9ab800) bus->parent (0000000000000000)
-> > [    1.691271] [!!] bus->primary (0) == rockchip->root_bus_nr (0) && dev (0) > 0
-> >
-> > and
-> >
-> > [    1.697156] [!!] // bus (ffff0000ef9ac000) bus->parent (ffff0000ef9ab800)
-> > [    1.697160] [!!] bus->primary (0) == rockchip->root_bus_nr (0) && dev (0) > 0
-> >
-> > First instance of each shown here. Last time I don't think it was.
->
-> Ok I think I understand what the problem is.
->
-> Can you give this patch a shot please ? I think we are dereferencing
-> a NULL pointer if bus is the root bus and dev == 0, we can rewrite
-> the check if this patch fixes the issue.
+When adding allwinner,sun8i-a33-crypto, I forgot to add that it needs reset.
+Furthermore, there are no need to use items to list only one compatible
+in compatible list.
 
-Indeed. I checked all the other cases of pci_is_root_bus(bus->parent)
-and they should be fine because they are only reached if !root_bus.
+Fixes: f81547ba7a98 ("dt-bindings: crypto: add new compatible for A33 SS")
+Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+---
+Change since v1:
+- use an enum for adding allwinner,sun8i-a33-crypto to "reset list"
 
-I would restructure the check like this instead:
+ .../bindings/crypto/allwinner,sun4i-a10-crypto.yaml        | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/pci/controller/pcie-rockchip-host.c
-b/drivers/pci/controller/pcie-rockchip-host.c
-index 0bb2fb3e8a0b..9b485bea8b92 100644
---- a/drivers/pci/controller/pcie-rockchip-host.c
-+++ b/drivers/pci/controller/pcie-rockchip-host.c
-@@ -72,14 +72,14 @@ static int rockchip_pcie_valid_device(struct
-rockchip_pcie *rockchip,
-                                      struct pci_bus *bus, int dev)
- {
-        /* access only one slot on each root port */
--       if (pci_is_root_bus(bus) && dev > 0)
--               return 0;
--
--       /*
--        * do not read more than one device on the bus directly attached
--        * to RC's downstream side.
--        */
--       if (pci_is_root_bus(bus->parent) && dev > 0)
-+       if (pci_is_root_bus(bus))
-+               if (dev > 0)
-+                       return 0;
-+       else if (pci_is_root_bus(bus->parent) && dev > 0)
-+               /*
-+                * do not read more than one device on the bus directly attached
-+                * to RC's downstream side.
-+                */
-                return 0;
+diff --git a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
+index fc823572bcff..279f4a2e1dd7 100644
+--- a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
++++ b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
+@@ -23,8 +23,7 @@ properties:
+       - items:
+           - const: allwinner,sun7i-a20-crypto
+           - const: allwinner,sun4i-a10-crypto
+-      - items:
+-          - const: allwinner,sun8i-a33-crypto
++      - const: allwinner,sun8i-a33-crypto
+ 
+   reg:
+     maxItems: 1
+@@ -59,7 +58,9 @@ if:
+   properties:
+     compatible:
+       contains:
+-        const: allwinner,sun6i-a31-crypto
++        enum:
++          - const: allwinner,sun6i-a31-crypto
++          - const: allwinner,sun8i-a33-crypto
+ 
+ then:
+   required:
+-- 
+2.26.2
 
-        return 1;
-
-
->
-> -- >8 --
-> diff --git a/drivers/pci/controller/pcie-rockchip-host.c b/drivers/pci/controller/pcie-rockchip-host.c
-> index 0bb2fb3e8a0b..72beda87b47f 100644
-> --- a/drivers/pci/controller/pcie-rockchip-host.c
-> +++ b/drivers/pci/controller/pcie-rockchip-host.c
-> @@ -79,7 +79,7 @@ static int rockchip_pcie_valid_device(struct rockchip_pcie *rockchip,
->          * do not read more than one device on the bus directly attached
->          * to RC's downstream side.
->          */
-> -       if (pci_is_root_bus(bus->parent) && dev > 0)
-> +       if (bus->parent && pci_is_root_bus(bus->parent) && dev > 0)
->                 return 0;
->
->         return 1;
