@@ -2,96 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FBF425C452
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:08:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D7E325C424
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:04:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729181AbgICPIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 11:08:37 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:50186 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728947AbgICN6P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 09:58:15 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 083DOEAN107415;
-        Thu, 3 Sep 2020 08:24:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599139454;
-        bh=EcU5sNHWfjTOyGcbOYeypp2bM4hBc053FDywI/zCZgI=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=eQcxtvqnZRKreSf0Vaxnunri+IKr+JeTETEHDlG3TGHQUc0M0Mn73C+q8Vv1namqZ
-         jZ1xow4jSsm6s+OODwzn6yKM0UsJqVYz1A8eR+d0Kg1MSwmw3ayHAYGW8JOscxQtj/
-         By5Vv8GASjI1iQNpg8F4N9ttfpt3hp8vKZnKTdPU=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 083DOEAr006875
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 3 Sep 2020 08:24:14 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 3 Sep
- 2020 08:24:13 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 3 Sep 2020 08:24:13 -0500
-Received: from [10.250.71.39] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 083DODrj004638;
-        Thu, 3 Sep 2020 08:24:13 -0500
-Subject: Re: [PATCH V2 2/8] arm64: dts: ti: k3-am65-main: Use lower case
- hexadecimal
-To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <t-kristo@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, <lokeshvutla@ti.com>,
-        <grygorii.strashko@ti.com>, <nsekhar@ti.com>
-References: <20200901223059.14801-1-nm@ti.com>
- <20200903130015.21361-3-nm@ti.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <2875a2d5-2f1b-7579-4642-aec8dc829d5b@ti.com>
-Date:   Thu, 3 Sep 2020 08:24:12 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728897AbgICPEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 11:04:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59186 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729022AbgICN6S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 09:58:18 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7878C0619D3
+        for <devicetree@vger.kernel.org>; Thu,  3 Sep 2020 06:31:38 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id t10so3296349wrv.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Sep 2020 06:31:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1ZdEfEgmL9xMVW+zYcpKfDQO7HkBHnE+KMZRuI8Lf9k=;
+        b=d72daTpVXoFFKFMcoZerr4SN73VKG7KBahyo81SxAWwlnUIXnP4Hiu0wEqMahwIn2o
+         LGa/L5PaDhSKkW6A2aKmCvXUc1Y7CQlo1vIRokt4mjGZ/E8C0NkC8DFHdRcyR6zzGStq
+         jD2svGqpzvApSdfm4Yd9u3HDuCaTuayg11hPq4rk7boRhViVFGOwYD1DCSGWHHEQPuyv
+         Umy4g1qdPh5N+ALxnFjOayg/Yw5EsjlS2OOxZcPUTLLLIom3LVSgdN+akv4yZOHb/LFw
+         B4/tzmmeCZek/9PDbgTIoQnidxfXI7T4MJGG1/VXEKZXqpOHHbbuMB+oiIF9CfadmXbU
+         KNRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1ZdEfEgmL9xMVW+zYcpKfDQO7HkBHnE+KMZRuI8Lf9k=;
+        b=GaEGG4aji/W+tNNyzKcKNZyx/qYEhyYHHJgtC82EPe4BnSoyUFHJot8XjKJ91mHfJD
+         KAFfwPMnMxcavCYlJbyzKA+N5b4K6q1PAV+c2KtRz9Q30/Wj1li7F1IzWHZb038Yj18v
+         zVFP/f7QMfZW/adzBodQqJi2LlXNXQwLHC75xko3NDXQKPVTHL9iIW7t3Zwz9CJr9Xpo
+         xqX3pu/MRpkuBGg/SNb2o9eYgNekXzAoBVYmDCCKeIWUaqXNg7BI02zNcjkR9nFzrUR4
+         0Z3VwtNabhtbEgZBP5AbFvOM1exy+3qJ3jToZZYRQWAl8JDZ3pXan2x546pnjnZrhqoz
+         Cvgw==
+X-Gm-Message-State: AOAM533V0KbM+cF7aSGSsc5WryQrzpAMYBODrj5T8wSggTPfTXZu3onH
+        WSk3JSHLim+ZjRT5jn+IbjjGNQ==
+X-Google-Smtp-Source: ABdhPJwhjR2MLxPCogbMWCND1xPIuqqI6Vt+eUGTlk9kaW1cSI5oFWJ5vZON7txdbDjoS+wkK1t6og==
+X-Received: by 2002:a5d:5602:: with SMTP id l2mr2677121wrv.410.1599139896777;
+        Thu, 03 Sep 2020 06:31:36 -0700 (PDT)
+Received: from localhost.localdomain ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id b2sm4310768wmh.47.2020.09.03.06.31.35
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 03 Sep 2020 06:31:36 -0700 (PDT)
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+To:     linux-pm@vger.kernel.org, bjorn.andersson@linaro.org
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        sibis@codeaurora.org, mka@chromium.org, dianders@chromium.org,
+        georgi.djakov@linaro.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/7] interconnect: Introduce xlate_extended()
+Date:   Thu,  3 Sep 2020 16:31:27 +0300
+Message-Id: <20200903133134.17201-1-georgi.djakov@linaro.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-In-Reply-To: <20200903130015.21361-3-nm@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/3/20 8:00 AM, Nishanth Menon wrote:
-> Device tree convention uses lower case a-f for hexadecimals. Fix the
-> same.
-> 
-> Signed-off-by: Nishanth Menon <nm@ti.com>
+Currently the interconnect framework provides the xlate() callback for
+mapping the endpoints from phandle arguments in DT. This is implemented
+by the provider drivers. But the endpoints (or the path between the
+endpoints) might have an additional attributes, which should be parsed
+and populated. During previous discussions [1], it was suggested that
+adding more and more DT properties will not scale very well. So instead
+of adding DT properties, such data should be put into the 'interconnects'
+arguments.
 
-Acked-by: Suman Anna <s-anna@ti.com>
+This patchset is introducing a new xlate_extended() callback, which
+would allow the interconnect provider drivers to parse additional data
+(such as path tags) and allow the framework to make use of them.
 
-> ---
-> Change:
-> v2: - new
-> 
->  arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> index 76e0edc4ad5c..d53d1ead4bb6 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> @@ -344,9 +344,9 @@
->  					<0x4090 0x3>; /* SERDES1 lane select */
->  		};
->  
-> -		dss_oldi_io_ctrl: dss_oldi_io_ctrl@41E0 {
-> +		dss_oldi_io_ctrl: dss_oldi_io_ctrl@41e0 {
->  			compatible = "syscon";
-> -			reg = <0x0000041E0 0x14>;
-> +			reg = <0x0000041e0 0x14>;
->  		};
->  
->  		ehrpwm_tbclk: syscon@4140 {
-> 
+Thanks to Sibi for the preliminary feedback and testing this patchset
+on the sc7180 platform.
+
+The patchset is based on linux-next (next-20200903).
+
+Changelog:
+v3:
+* Rebase and update both dts patches as Doug reported that i missed to
+  update the cells for the GPU and also other stuff changed in DT recently.
+* Pick Rob's Reviewed-by
+
+v2: http://lore.kernel.org/r/20200806163126.22667-1-georgi.djakov@linaro.org
+* Add a patch to update the DT documentation, which i missed initially.
+* Minor changes in commit text of patch 1/7. (Sibi)
+* Remove a useless null check in patch 4/7. (Sibi)
+* Print a warning if the number of DT args is higher than what we expect
+  in patch 3/7. (Matthias)
+* Pick Reviewed-by/Tested-by tags.
+* TODO: Replace tag IDs with macros in patches 5/7 and 7/7 when [2] lands.
+
+v1: http://lore.kernel.org/r/20200723130942.28491-1-georgi.djakov@linaro.org
+
+[1] https://lore.kernel.org/linux-devicetree/20200519185836.GA469006@bogus/
+[2] https://lore.kernel.org/r/20200801033215.1440-2-mdtipton@codeaurora.org
+
+Georgi Djakov (5):
+  interconnect: Introduce xlate_extended() callback
+  dt-bindings: interconnect: Document the support of optional path tag
+  interconnect: qcom: Implement xlate_extended() to parse tags
+  interconnect: qcom: sdm845: Replace xlate with xlate_extended
+  arm64: dts: qcom: sdm845: Increase the number of interconnect cells
+
+Sibi Sankar (2):
+  interconnect: qcom: sc7180: Replace xlate with xlate_extended
+  arm64: dts: qcom: sc7180: Increase the number of interconnect cells
+
+ .../bindings/interconnect/interconnect.txt    |  24 +-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          | 218 +++++++++---------
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  48 ++--
+ drivers/interconnect/core.c                   |  73 ++++--
+ drivers/interconnect/qcom/icc-rpmh.c          |  27 +++
+ drivers/interconnect/qcom/icc-rpmh.h          |   1 +
+ drivers/interconnect/qcom/sc7180.c            |   2 +-
+ drivers/interconnect/qcom/sdm845.c            |   2 +-
+ include/linux/interconnect-provider.h         |  17 +-
+ 9 files changed, 251 insertions(+), 161 deletions(-)
 
