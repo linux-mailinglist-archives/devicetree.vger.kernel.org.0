@@ -2,88 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1445A25C86D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 20:04:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AE5525C87A
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 20:09:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729055AbgICSEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 14:04:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36694 "EHLO mail.kernel.org"
+        id S1726025AbgICSJF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 14:09:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37858 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728419AbgICSEQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Sep 2020 14:04:16 -0400
-Received: from localhost.localdomain (unknown [194.230.155.106])
+        id S1728312AbgICSJE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Sep 2020 14:09:04 -0400
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1537D20716;
-        Thu,  3 Sep 2020 18:04:12 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id D6C732078E;
+        Thu,  3 Sep 2020 18:09:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599156255;
-        bh=M/bUGa4+5MJQO1H2/94D6MztczIs+L3ZMGG4rxczDRY=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=dSuth1Xcu2mR6W60CDiFo6xBHvTnYdE2RuZ1UBFjiYVLyAtnwajOCWKR2YiBnIl1B
-         OT4qYsIBRuzbqwpXwMFZt/JPHehgzo+i2aPQJZgVQ8a2LhvtynqZf5qdu+2kja09Vn
-         q3YnNkvC9Xh1ns5aMLRflQvbavAtAw7cae6zzRFk=
+        s=default; t=1599156544;
+        bh=nPiDyoWWJzvm42z4eUx7TC5eLYWJUkO9RtvWj3RGC4o=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=LFz7ff7jI2wl8OKdb3dNWcGVE0rVk3n6ETlCP3GG74voSOa6MneV8+myrf0nV/Zef
+         0JehuZ/+B0CpcMryGcvXEvezk5TOPTZBUJ8RTTPjyF4Qng70D2tVA2i5ZWGTowb/E4
+         /337Yq/B4PC/K4TPEzuivLLOqhK6VHTaZj/wmpVM=
+Received: by mail-ej1-f49.google.com with SMTP id e23so5152956eja.3;
+        Thu, 03 Sep 2020 11:09:03 -0700 (PDT)
+X-Gm-Message-State: AOAM531x7lITjeY2zkXZ6Oby0QDZdsFzYfkgYvOzL+VNu0NKXkO+EH+1
+        x09mPBQtvErUdhkDNsDbpZvdukb0lMmxjiU2U38=
+X-Google-Smtp-Source: ABdhPJzc1QCdeTf82nUVf10J2Sk2Ur7ILSjfNO9a+DoLfgN1J37o5UYUSobBWE4r8Ye675Mp9s0eKdYwWTi5/JRf1sI=
+X-Received: by 2002:a17:906:af53:: with SMTP id ly19mr3296148ejb.503.1599156542378;
+ Thu, 03 Sep 2020 11:09:02 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200830112633.6732-1-krzk@kernel.org> <159897179515.47719.6003518135515395142.b4-ty@kernel.org>
+ <20200903164738.GA2929052@bogus> <20200903172645.GC4771@sirena.org.uk> <CAL_JsqL+_5Lc5vwtqnCZd6Tz9eB1m_oy2r3gtv0cbwBwKTU=dw@mail.gmail.com>
+In-Reply-To: <CAL_JsqL+_5Lc5vwtqnCZd6Tz9eB1m_oy2r3gtv0cbwBwKTU=dw@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Kamil Konieczny <k.konieczny@samsung.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-crypto@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] crypto: s5p-sss - Pass error from clk_get and reduce verbosity on deferral
-Date:   Thu,  3 Sep 2020 20:04:00 +0200
-Message-Id: <20200903180400.2865-3-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200903180400.2865-1-krzk@kernel.org>
-References: <20200903180400.2865-1-krzk@kernel.org>
+Date:   Thu, 3 Sep 2020 20:08:51 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPe2XpciJtGAFq8c7E=7wrrzK0XUrquDCaNQK+u-2yLByQ@mail.gmail.com>
+Message-ID: <CAJKOXPe2XpciJtGAFq8c7E=7wrrzK0XUrquDCaNQK+u-2yLByQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: sound: midas-audio: Correct parsing
+ sound-dai phandles
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Sangbeom Kim <sbkim73@samsung.com>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pass the error directly from devm_clk_get() to describe the real reason,
-instead of fixed ENOENT.  Do not print error messages on deferred probe.
+On Thu, 3 Sep 2020 at 19:49, Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Sep 3, 2020 at 11:27 AM Mark Brown <broonie@kernel.org> wrote:
+> >
+> > On Thu, Sep 03, 2020 at 10:47:38AM -0600, Rob Herring wrote:
+> >
+> > > > [2/2] ASoC: odroid: Use unevaluatedProperties
+> > > >       commit: a57307ca6b661e16f9435a25f376ac277c3de697
+> >
+> > > This one should be reverted/dropped too. Patch 1 is fine.
+> >
+> > There are others?  What's the issue with them?  It'd be easiest if you
+> > could send patches doing whatever reverts you're looking for.
+>
+> Just 1 other you picked up. See "ASoC: samsung-i2s: Use
+> unevaluatedProperties". Patches adding the missing properties (and
+> restoring 'additionalProperties' on these 2 if not reverted) is the
+> correct change.
+>
+> I've gone thru and NAKed all of the others so more don't get picked up.
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- drivers/crypto/s5p-sss.c | 15 +++++++--------
- 1 file changed, 7 insertions(+), 8 deletions(-)
+Ah, my bad... Mark, I can send a follow up which restores the
+additionalProperties (so kind of revert of the second patch) and fixes
+the warning. Other way is that you just drop it and I will send a
+correct fix later.
 
-diff --git a/drivers/crypto/s5p-sss.c b/drivers/crypto/s5p-sss.c
-index f67f1e22ecd1..e83145c43b18 100644
---- a/drivers/crypto/s5p-sss.c
-+++ b/drivers/crypto/s5p-sss.c
-@@ -2201,11 +2201,10 @@ static int s5p_aes_probe(struct platform_device *pdev)
- 	}
- 
- 	pdata->clk = devm_clk_get(dev, variant->clk_names[0]);
--	if (IS_ERR(pdata->clk)) {
--		dev_err(dev, "failed to find secss clock %s\n",
--			variant->clk_names[0]);
--		return -ENOENT;
--	}
-+	if (IS_ERR(pdata->clk))
-+		return dev_err_probe(dev, PTR_ERR(pdata->clk),
-+				     "failed to find secss clock %s\n",
-+				     variant->clk_names[0]);
- 
- 	err = clk_prepare_enable(pdata->clk);
- 	if (err < 0) {
-@@ -2217,9 +2216,9 @@ static int s5p_aes_probe(struct platform_device *pdev)
- 	if (variant->clk_names[1]) {
- 		pdata->pclk = devm_clk_get(dev, variant->clk_names[1]);
- 		if (IS_ERR(pdata->pclk)) {
--			dev_err(dev, "failed to find clock %s\n",
--				variant->clk_names[1]);
--			err = -ENOENT;
-+			err = dev_err_probe(dev, PTR_ERR(pdata->pclk),
-+					    "failed to find clock %s\n",
-+					    variant->clk_names[1]);
- 			goto err_clk;
- 		}
- 
--- 
-2.17.1
+Sorry for the mess.
 
+Best regards,
+Krzysztpf
