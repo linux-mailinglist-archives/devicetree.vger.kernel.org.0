@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 131E125C58B
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:38:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23B1125C586
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:38:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726368AbgICPi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 11:38:29 -0400
+        id S1728304AbgICPiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 11:38:21 -0400
 Received: from fllv0015.ext.ti.com ([198.47.19.141]:59884 "EHLO
         fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728494AbgICPiZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 11:38:25 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 083D0M4v043852;
+        with ESMTP id S1726368AbgICPiU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 11:38:20 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 083D0M1G043860;
         Thu, 3 Sep 2020 08:00:22 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
         s=ti-com-17Q1; t=1599138022;
-        bh=3ErMb7axqI3TRtkdw9SxX8yrDCtno5nBT9qvPSppG10=;
+        bh=3UnrmFd1UMtNAPC3bqLE3uCixOBOTPJ7m2wRMDZjtV4=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=clqUkEe8SXi5s6LjKV4o0ChllNf9eJp401BE5S7ZGUveFe7UylPpFTOjV/n5b/0DC
-         dwVZydUpxh78M54s3BaHOwsyu2tL90QFHlZ6glRLCnK/AqdwnkjGffa0h92mmEgxYD
-         PRe8BsZE+KBOlSrZJbU41Dqw92ZtiHACy0htC69k=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 083D0MNw097462
+        b=Xm6NdHNQ9qMpxmsEgxNjcB+Woz0I80fIWI7Eu6IkWIY4aEw/3Hcy4oDiUvI73JuQ4
+         EkDihg1tuoIxW2wsCNQLh/XU8L2mAlr/fwIQBhf8RcE2bZPy85l9oM/iF+/v05HwtM
+         PeXbnzL0Io64qLXhrCVqX04qlnFiRJf2zTdgLEGA=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 083D0MSV028026
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
         Thu, 3 Sep 2020 08:00:22 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 3 Sep
- 2020 08:00:21 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ 2020 08:00:22 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 3 Sep 2020 08:00:21 -0500
+ Frontend Transport; Thu, 3 Sep 2020 08:00:22 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 083D0LgZ084897;
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 083D0LCj125605;
         Thu, 3 Sep 2020 08:00:21 -0500
 From:   Nishanth Menon <nm@ti.com>
 To:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <t-kristo@ti.com>
@@ -43,9 +43,9 @@ CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         Vignesh Raghavendra <vigneshr@ti.com>, <lokeshvutla@ti.com>,
         <grygorii.strashko@ti.com>, <nsekhar@ti.com>,
         Nishanth Menon <nm@ti.com>
-Subject: [PATCH V2 0/8] arm64: dts: ti: k3-*: Squash up node_name_chars_strict warnings + hex usage
-Date:   Thu, 3 Sep 2020 08:00:07 -0500
-Message-ID: <20200903130015.21361-1-nm@ti.com>
+Subject: [PATCH V2 2/8] arm64: dts: ti: k3-am65-main: Use lower case hexadecimal
+Date:   Thu, 3 Sep 2020 08:00:09 -0500
+Message-ID: <20200903130015.21361-3-nm@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200901223059.14801-1-nm@ti.com>
 References: <20200901223059.14801-1-nm@ti.com>
@@ -57,51 +57,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Device tree convention uses lower case a-f for hexadecimals. Fix the
+same.
 
-This is a respin of v2 of the series posted as [1].
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+Change:
+v2: - new
 
-As part of this cleanup, I ran a cross check of nodes that are
-part of K3 as of right now, Vs what is "generic" definition as per 0.3
-dt specification [2].
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Changes in v2:
-- Based off 20200903
-- Picked up Acks and reviewed-by from previous versions (please comment
-  if you disagree).
-- Dropped tsadc rename [3] based on review
-- Added 2 patches to fixup hexadecimal usage caught as part of review
-- few additional fixups.
-
-
-Nishanth Menon (8):
-  arm64: dts: ti: k3-j721e: Use lower case hexadecimal
-  arm64: dts: ti: k3-am65-main: Use lower case hexadecimal
-  arm64: dts: ti: k3-am65*: Use generic gpio for node names
-  arm64: dts: ti: k3-am65*: Use generic clock for syscon clock names
-  arm64: dts: ti: k3-*: Use generic pinctrl for node names
-  arm64: dts: ti: k3-am65-base-board Use generic camera for node name
-    instead of ov5640
-  arm64: dts: ti: k3-am65-wakeup: Use generic temperature-sensor for
-    node name
-  arm64: dts: ti: k3-*: Fix up node_name_chars_strict warnings
-
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi      | 22 +++++++++----------
- arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi       |  4 ++--
- arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi    |  6 ++---
- .../arm64/boot/dts/ti/k3-am654-base-board.dts | 18 +++++++--------
- .../dts/ti/k3-am654-industrial-thermal.dtsi   | 12 +++++-----
- .../dts/ti/k3-j721e-common-proc-board.dts     | 18 +++++++--------
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     |  8 +++----
- .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |  4 ++--
- arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi   |  2 +-
- arch/arm64/boot/dts/ti/k3-j721e.dtsi          |  2 +-
- 10 files changed, 48 insertions(+), 48 deletions(-)
-
-[1] v1: https://lore.kernel.org/linux-arm-kernel/20200901223059.14801-1-nm@ti.com/
-[2] https://pastebin.ubuntu.com/p/Z5zGQydH3G/
-[3] https://lore.kernel.org/linux-arm-kernel/9fb2f8f4-5eeb-6190-9cbf-b28084c58a8f@ti.com/
-
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+index 76e0edc4ad5c..d53d1ead4bb6 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+@@ -344,9 +344,9 @@
+ 					<0x4090 0x3>; /* SERDES1 lane select */
+ 		};
+ 
+-		dss_oldi_io_ctrl: dss_oldi_io_ctrl@41E0 {
++		dss_oldi_io_ctrl: dss_oldi_io_ctrl@41e0 {
+ 			compatible = "syscon";
+-			reg = <0x0000041E0 0x14>;
++			reg = <0x0000041e0 0x14>;
+ 		};
+ 
+ 		ehrpwm_tbclk: syscon@4140 {
 -- 
 2.17.1
 
