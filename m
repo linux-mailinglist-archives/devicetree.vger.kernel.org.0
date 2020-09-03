@@ -2,75 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED5DE25C838
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 19:49:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D151225C865
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 20:04:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726678AbgICRtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 13:49:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58790 "EHLO mail.kernel.org"
+        id S1728358AbgICSEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 14:04:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36554 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726025AbgICRti (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Sep 2020 13:49:38 -0400
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        id S1726678AbgICSEI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Sep 2020 14:04:08 -0400
+Received: from localhost.localdomain (unknown [194.230.155.106])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A80822072A;
-        Thu,  3 Sep 2020 17:49:37 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id DA14420716;
+        Thu,  3 Sep 2020 18:04:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599155377;
-        bh=PwReb1wR+sXRrMZqogs7x9Vmd4V3JF81RZqSgbUS1AE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=qhrzzXdXDKnCyd4Ckt/77e8sctFd5/zYPH/VxgZ1/a3GPpMD09GHyD0nzB2isro/N
-         CLCo7KfDkZiv70y2C0tz52eyPXiISAUHCs3HVDSAjhHtv9ku6kQjyGOED0vwfNgQqd
-         MwMREmEHc0mscFdXBzHIH18iNkgdgAaOuIbmvTb4=
-Received: by mail-oi1-f178.google.com with SMTP id r64so3966612oib.6;
-        Thu, 03 Sep 2020 10:49:37 -0700 (PDT)
-X-Gm-Message-State: AOAM530a7JrKhwk//yTG0z8WbINBEzgv4lqDuQBTYICY2P+cehIbc48J
-        piQ8yNgJn6SYDSONU8s6+ZcadNb65JFlisDUbg==
-X-Google-Smtp-Source: ABdhPJxcXEUSmdKY5Vsvo/Ra42Hgg8KjgnWOfsPDJWq3O7EXceTqI+C/z4ChNMurrb2zF+obJSMgWjL333ToKOp8kaE=
-X-Received: by 2002:aca:1711:: with SMTP id j17mr2842660oii.152.1599155376930;
- Thu, 03 Sep 2020 10:49:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200830112633.6732-1-krzk@kernel.org> <159897179515.47719.6003518135515395142.b4-ty@kernel.org>
- <20200903164738.GA2929052@bogus> <20200903172645.GC4771@sirena.org.uk>
-In-Reply-To: <20200903172645.GC4771@sirena.org.uk>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 3 Sep 2020 11:49:25 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL+_5Lc5vwtqnCZd6Tz9eB1m_oy2r3gtv0cbwBwKTU=dw@mail.gmail.com>
-Message-ID: <CAL_JsqL+_5Lc5vwtqnCZd6Tz9eB1m_oy2r3gtv0cbwBwKTU=dw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: sound: midas-audio: Correct parsing
- sound-dai phandles
-To:     Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Sangbeom Kim <sbkim73@samsung.com>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        s=default; t=1599156248;
+        bh=P4D7LHg3zV2WYkumu6IlVHebD/yFLzaR9+3encueUSU=;
+        h=From:To:Subject:Date:From;
+        b=nZgcK63sN7PkGNKn2shlb2wOwcpxA6BZpNsr1FGp8DsmEBrHh88l0VP8zR/dhl1vU
+         S6COWRVr+YMM7rxj9bd5dkZO6NOm6laPQjFZePuSsxKbIf9U/3uHoIV4PvspOIlVHJ
+         dVTc/bF0RPDi7yW4JWm9k66v1c9x35eVacY0aWGI=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Kamil Konieczny <k.konieczny@samsung.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-crypto@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/3] dt-bindings: crypto: slimsss: Correct a typo in compatible
+Date:   Thu,  3 Sep 2020 20:03:58 +0200
+Message-Id: <20200903180400.2865-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 3, 2020 at 11:27 AM Mark Brown <broonie@kernel.org> wrote:
->
-> On Thu, Sep 03, 2020 at 10:47:38AM -0600, Rob Herring wrote:
->
-> > > [2/2] ASoC: odroid: Use unevaluatedProperties
-> > >       commit: a57307ca6b661e16f9435a25f376ac277c3de697
->
-> > This one should be reverted/dropped too. Patch 1 is fine.
->
-> There are others?  What's the issue with them?  It'd be easiest if you
-> could send patches doing whatever reverts you're looking for.
+Correct a typo in the compatible - missing trailing 's'.
 
-Just 1 other you picked up. See "ASoC: samsung-i2s: Use
-unevaluatedProperties". Patches adding the missing properties (and
-restoring 'additionalProperties' on these 2 if not reverted) is the
-correct change.
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+ Documentation/devicetree/bindings/crypto/samsung-slimsss.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I've gone thru and NAKed all of the others so more don't get picked up.
+diff --git a/Documentation/devicetree/bindings/crypto/samsung-slimsss.yaml b/Documentation/devicetree/bindings/crypto/samsung-slimsss.yaml
+index 04fe5dfa794a..7743eae049ab 100644
+--- a/Documentation/devicetree/bindings/crypto/samsung-slimsss.yaml
++++ b/Documentation/devicetree/bindings/crypto/samsung-slimsss.yaml
+@@ -19,7 +19,7 @@ description: |+
+ properties:
+   compatible:
+     items:
+-      - const: samsung,exynos5433-slim-ss
++      - const: samsung,exynos5433-slim-sss
+ 
+   reg:
+     maxItems: 1
+-- 
+2.17.1
 
-
-Rob
