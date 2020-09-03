@@ -2,166 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1DC825C47F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:11:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31BE825C41D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:04:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728756AbgICM2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 08:28:45 -0400
-Received: from szxga06-in.huawei.com ([45.249.212.32]:48950 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728565AbgICM2k (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Sep 2020 08:28:40 -0400
-Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.58])
-        by Forcepoint Email with ESMTP id 7C657E04B63EC1F09FCD;
-        Thu,  3 Sep 2020 20:28:32 +0800 (CST)
-Received: from thunder-town.china.huawei.com (10.174.177.253) by
- DGGEMS412-HUB.china.huawei.com (10.3.19.212) with Microsoft SMTP Server id
- 14.3.487.0; Thu, 3 Sep 2020 20:28:24 +0800
-From:   Zhen Lei <thunder.leizhen@huawei.com>
-To:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-CC:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>
-Subject: [PATCH 3/3] ARM: dts: add SD5203 dts
-Date:   Thu, 3 Sep 2020 20:27:34 +0800
-Message-ID: <20200903122734.2369-4-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
-In-Reply-To: <20200903122734.2369-1-thunder.leizhen@huawei.com>
-References: <20200903122734.2369-1-thunder.leizhen@huawei.com>
+        id S1729161AbgICPDx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 11:03:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59174 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728604AbgICN60 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 09:58:26 -0400
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EDF7C061245;
+        Thu,  3 Sep 2020 06:09:57 -0700 (PDT)
+Received: by mail-pf1-x444.google.com with SMTP id b124so2273984pfg.13;
+        Thu, 03 Sep 2020 06:09:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7yX/ZjF2stJ6zUIzoHq+EMwZnUipKPIbfJHG6QJz9JI=;
+        b=JMwsTCzvrDQwLOmw0ccOnaZRQRTV23TxWHlyGWHxhGyNOvv90fQ59WY4fkFveHVDAe
+         sOAQy6zWgkUVpfRBNhWJNLz3p1njhOR/qhontH61eeeoafNS+jVRsV0Ftz9v5q+TO9sK
+         mcMuljRxqvLjJw4lQa0YgCsAGyQ3Mm+DDWh4SehY/Z0D91ozKvnAgoqLhGfx8q7f+51H
+         AFREE4dBDL1ndnOQuAnDfgHi+4/d7ArS4cpZ9SA1egc9P2RP9u60TwLpKeTXsYlZQBTe
+         166I4cx1yDGBlm3V7htEnicJfpUrxKJ/ZxDh0gKMmbyBZi/ngFXDCFl3Q8FPxQmcH665
+         yvFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7yX/ZjF2stJ6zUIzoHq+EMwZnUipKPIbfJHG6QJz9JI=;
+        b=MHQZlCfnwidSCEFEQYT5G82q5JeBp8eJQnzirUl8Eo9GTeh13hoVtxpBtkTCD7XRt0
+         QDXr2nKiSkKve+0BVqaw9dQGAzbHH2RJz61/Zd9S2mBlENvUZsij6zqMUOgcgeC5aF5z
+         ah99JBUHw0/W0wd2z5GKkIg4hKbN6MgrEWKeK3xwcborGnrUiIJIYvwR1z/nMgKrX59p
+         TRKdEr6mSa5eQgBt9jsKXOEANRPKIG/EBiEWSHRQUstBQ/T5K+kBs2NCzm4UHOVuXJvk
+         Qmq1SrOcAhn7B3+rDYH1F0nILTKU2X+qQBouyCtXdfbpIu2xydaM1AY6tYKqKbO/MpoD
+         fLyA==
+X-Gm-Message-State: AOAM530xfk+QIcN+cwdexuwsE1sB2YiLH6U8nyMexW1ZjlVCpZHZ9OMu
+        7fsj2nUtml7jAutcy2qLsrs=
+X-Google-Smtp-Source: ABdhPJx1bWyYPq8pBWWBnVHh8UHHaCZRjqVBVgevzkBqhZX8o6P0nKReuy0aotNxP7BMmgS8hNP1rw==
+X-Received: by 2002:a62:ea01:: with SMTP id t1mr3763933pfh.125.1599138596606;
+        Thu, 03 Sep 2020 06:09:56 -0700 (PDT)
+Received: from nish-HP-Pavilion ([2409:4072:6085:e35d:a526:a3b6:4686:f6fb])
+        by smtp.gmail.com with ESMTPSA id x22sm3145297pfn.41.2020.09.03.06.09.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Sep 2020 06:09:56 -0700 (PDT)
+From:   Nishant Malpani <nish.malpani25@gmail.com>
+To:     jic23@kernel.org, robh+dt@kernel.org
+Cc:     dragos.bogdan@analog.com, darius.berghe@analog.com,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, andy.shevchenko@gmail.com,
+        Nishant Malpani <nish.malpani25@gmail.com>
+Subject: [PATCH v2 0/3] iio: gyro: adxrs290: Add triggered buffer & debugfs support
+Date:   Thu,  3 Sep 2020 18:39:47 +0530
+Message-Id: <20200903130950.6274-1-nish.malpani25@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.174.177.253]
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kefeng Wang <wangkefeng.wang@huawei.com>
+Introduce DATA_RDY trigger for triggered buffer setup; this enables continuous
+data capture. Additionally, add support for direct register access using the debugfs 
+iio interface. 
 
-Add sd5203.dts for Hisilicon SD5203 SoC platform.
+The device-tree bindings documentation illustrates an example of using a GPIO irq
+line to trigger a data capture.
 
-Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
----
- arch/arm/boot/dts/Makefile   |  2 +
- arch/arm/boot/dts/sd5203.dts | 90 ++++++++++++++++++++++++++++++++++++
- 2 files changed, 92 insertions(+)
- create mode 100644 arch/arm/boot/dts/sd5203.dts
+Nishant Malpani (3):
+  iio: gyro: adxrs290: Add triggered buffer support
+  dt-bindings: iio: gyro: adxrs290: Add interrupts support
+  iio: gyro: adxrs290: Add debugfs register access support
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 4572db3fa5ae..1d1262df5c55 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -357,6 +357,8 @@ dtb-$(CONFIG_ARCH_MPS2) += \
- 	mps2-an399.dtb
- dtb-$(CONFIG_ARCH_MOXART) += \
- 	moxart-uc7112lx.dtb
-+dtb-$(CONFIG_ARCH_SD5203) += \
-+	sd5203.dtb
- dtb-$(CONFIG_SOC_IMX1) += \
- 	imx1-ads.dtb \
- 	imx1-apf9328.dtb
-diff --git a/arch/arm/boot/dts/sd5203.dts b/arch/arm/boot/dts/sd5203.dts
-new file mode 100644
-index 000000000000..99da46072f72
---- /dev/null
-+++ b/arch/arm/boot/dts/sd5203.dts
-@@ -0,0 +1,90 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2020 Hisilicon Limited.
-+ *
-+ * DTS file for Hisilicon SD5203 Board
-+ */
-+
-+/dts-v1/;
-+
-+/ {
-+	model = "Hisilicon SD5203";
-+	compatible = "hisilicon,sd5203";
-+	interrupt-parent = <&vic>;
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	chosen {
-+		bootargs="console=ttyS0,9600 earlycon=uart8250,mmio32,0x1600d000";
-+	};
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	cpu {
-+		compatible = "arm,arm926ej-s";
-+		device_type = "cpu";
-+	};
-+
-+	memory@30000000 {
-+		device_type = "memory";
-+		reg = <0x30000000 0x8000000>;
-+	};
-+
-+	soc {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "simple-bus";
-+		ranges;
-+
-+		vic: interrupt-controller@10130000 {
-+			compatible = "hisilicon,sd5203-vic";
-+			reg = <0x10130000 0x1000>;
-+			interrupt-controller;
-+			#interrupt-cells = <1>;
-+		};
-+
-+		refclk125mhz: refclk125mhz {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <125000000>;
-+		};
-+
-+		timer0: timer@16002000 {
-+			compatible = "arm,sp804", "arm,primecell";
-+			reg = <0x16002000 0x1000>;
-+			interrupts = <4>;
-+			clocks = <&refclk125mhz>;
-+			clock-names = "apb_pclk";
-+		};
-+
-+		timer1: timer@16003000 {
-+			compatible = "arm,sp804", "arm,primecell";
-+			reg = <0x16003000 0x1000>;
-+			interrupts = <5>;
-+			clocks = <&refclk125mhz>;
-+			clock-names = "apb_pclk";
-+		};
-+
-+		uart0: serial@1600D000 {
-+			compatible = "snps,dw-apb-uart";
-+			reg = <0x1600D000 0x1000>;
-+			bus_id = "uart0";
-+			clocks = <&refclk125mhz>;
-+			clock-names = "apb_pclk";
-+			reg-shift = <2>;
-+			interrupts = <17>;
-+		};
-+
-+		uart1: serial@1600C000 {
-+			compatible = "snps,dw-apb-uart";
-+			reg = <0x1600C000 0x1000>;
-+			clocks = <&refclk125mhz>;
-+			clock-names = "apb_pclk";
-+			reg-shift = <2>;
-+			interrupts = <16>;
-+			status = "disabled";
-+		};
-+	};
-+};
+ .../bindings/iio/gyroscope/adi,adxrs290.yaml  |   7 +
+ drivers/iio/gyro/Kconfig                      |   2 +
+ drivers/iio/gyro/adxrs290.c                   | 284 +++++++++++++++++-
+ 3 files changed, 279 insertions(+), 14 deletions(-)
+
 -- 
-2.26.0.106.g9fadedd
-
+2.20.1
 
