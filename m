@@ -2,149 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2B3725B960
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 05:48:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79A1725B9D1
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 06:39:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728217AbgICDsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 23:48:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50442 "EHLO
+        id S1725851AbgICEjy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 00:39:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726776AbgICDsE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 23:48:04 -0400
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com [IPv6:2607:f8b0:4864:20::742])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33E03C061244
-        for <devicetree@vger.kernel.org>; Wed,  2 Sep 2020 20:48:04 -0700 (PDT)
-Received: by mail-qk1-x742.google.com with SMTP id w12so1890268qki.6
-        for <devicetree@vger.kernel.org>; Wed, 02 Sep 2020 20:48:04 -0700 (PDT)
+        with ESMTP id S1725843AbgICEjx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 00:39:53 -0400
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45855C061244;
+        Wed,  2 Sep 2020 21:39:53 -0700 (PDT)
+Received: by mail-pf1-x442.google.com with SMTP id k15so1207989pfc.12;
+        Wed, 02 Sep 2020 21:39:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dionne-riel-com.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ltnD3f7HjD2+w0pdmZya1OptZlkQr+uyCb04jevIv4c=;
-        b=lgHo1ju3UR6gi4QXqDYGyUrbKc1+gBfxhvCm+aXUAhzRuH6FYoAh+BAGKWsJlxQFfT
-         AplBWGM43eVPQkD6w52YfxYBje9gYrnek2/TqLITDgasLCePVqvkueoeIh/SeRmTU/q2
-         Jv8Ox/q/S0tJIOzz+hUwz3cVbenB4B5PnpdYdMZJcRiV4HrsW9cbWlK8sSLdNz2G1/ny
-         +q4uwyaGEiA6XkkslpzoYGDBmD8Vi+DfuCjCz9qm5FWFAvOl6SOyk485qbPSBC5ITCJQ
-         uEE3WPQMPUCfsKXv2gYktNc+R7yVWdTvxYhE2ua5SVEAzJRtnHXIaoLAqv8jd0zgAkTb
-         Rp1Q==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bBAwYh7KGiwK459fhijOjtPafXM5aZ06REwJK/5M7uQ=;
+        b=Re6Yw7ahpzcR2kblJ6CsFoaO0fCLe1sMKih0xqUYOO2uhY+tMrunxfxPE9mZRlD7N4
+         CgepBE1pdzG++kWq+0uF1dBRXL1dd/6vKNdRrqLmL65X4F3Qc6aPcA4oCv8JTexDqVd9
+         2oxKZ2zmIkKBgEFIWsIuFXqm2PK17F5KGYZP0/gSPNpH8m78FjzcNsUF9tigDgUZApFl
+         nWHbvtpKSBtKKKLs5dAb5fG1uLrrzuRKf55a5JVgyvN1e32xFMoq5X40wxzSiQXHibsc
+         3/TvAzCOmjRS0i3ZVVAqwYdxCVbmlzyheqIRPpy2CBgH8SGJ1bDLmQMXEjvyVHzzu8Yw
+         Lqcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ltnD3f7HjD2+w0pdmZya1OptZlkQr+uyCb04jevIv4c=;
-        b=FwfDM7d9pVoTssfZRv8TYI161SysREqRaZgCML5H0wkZi8iSMIQvvmCvP9NrQdjs3s
-         SyBPDShIqt7qXishGOb7uWJvMsh18Pp4M7sk2GwTdD/APyuKAQkv9ZAN/jQ1TgfbzFHn
-         yZx4WUw3RMgBDaT0SluSluXF0UORoLnEXJ6jomZjeJBw9SHfHg0uMlJtG9uJ2/3G+uDM
-         FaO87KW+I+6frjrHZJMinBJexIrZTzctw0/ZOENBialHEMY/YOwPeLGZsThoEbjO3qvh
-         N8tHLTbhBMrn2NrnaXNnYkBOTDDVlqzoc+B3+SiF9nwP/BTxUbZS1P+Pq/6XqxnDTXew
-         aS3A==
-X-Gm-Message-State: AOAM532fKhr6oYf6Rv4nwnFk8E3Lia70xNrkHFiBKC29DSdxotQXsFQD
-        SC7z/EMtJ6k8c8eUqmfw/vBFUQ==
-X-Google-Smtp-Source: ABdhPJxMCPmYqhPFNnjlNpKrmGcUQlsXZc/Tyugh4NkRtWsiEYkHpu09DB1AsLX9WA7xQi8wBLFjyQ==
-X-Received: by 2002:a37:ad08:: with SMTP id f8mr1242667qkm.207.1599104881401;
-        Wed, 02 Sep 2020 20:48:01 -0700 (PDT)
-Received: from DUFFMAN (135-23-195-85.cpe.pppoe.ca. [135.23.195.85])
-        by smtp.gmail.com with ESMTPSA id m17sm1393902qkn.45.2020.09.02.20.48.00
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bBAwYh7KGiwK459fhijOjtPafXM5aZ06REwJK/5M7uQ=;
+        b=pzDWBnm/zKYbPqmRp9j63Zqs0GEsOkhtrBHfKCkY5pG04A4WqcN3tAXyW23WK+FUIz
+         iHjU/ztbq8YxT/t9wEOyx/+/r6OXQuhag86iLkY/bw6FZNShpDoMql/fecZSkuZM4+IM
+         TyqJ8CoKTBoBywPuL+82+GJlKynS33owb/hmDrbJKp+JrghINxeuEP4cfu7D+lGV2Fss
+         Ei1/bwiduTOsxOu9/IX8Jy9VtmmXlbhI33davPH00+Vli2+i7th3MTAFKIT5gtAho+3C
+         K1q9bXCEwPrYmNjkpyCBkMI6E5kbBewDHmq0RIZSJPKmlpv3z5WN11+0vRLZXGP8xtYA
+         QhDA==
+X-Gm-Message-State: AOAM533Qb+NvmA90oct8PsTPRfIBZ35YQdfXnTatrYr4iCoxvBtNhW6G
+        elavPRcz832NaS7+LuvQm40fAVTlf4I=
+X-Google-Smtp-Source: ABdhPJxCrISfOFBHV3qMEueAIYia7U0plyqd4d1sDOSWL9Y9kBeVqsHj8/21kiX0WrG8VGhnncSF4g==
+X-Received: by 2002:a17:902:7048:: with SMTP id h8mr1834305plt.225.1599107992167;
+        Wed, 02 Sep 2020 21:39:52 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id u63sm1251805pfu.34.2020.09.02.21.39.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Sep 2020 20:48:01 -0700 (PDT)
-Date:   Wed, 2 Sep 2020 23:47:56 -0400
-From:   Samuel Dionne-Riel <samuel@dionne-riel.com>
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     Marc Zyngier <maz@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: Boot failure on gru-scarlet-inx with 5.9-rc2
-Message-ID: <20200902234756.60e4c4f6@DUFFMAN>
-In-Reply-To: <20200902160110.GA30014@e121166-lin.cambridge.arm.com>
-References: <20200829164920.7d28e01a@DUFFMAN>
-        <65d88bdd0888a69849327501a2aad186@kernel.org>
-        <20200831031838.2d6d76d9@DUFFMAN>
-        <90731ebb54fe03003dce03bc7ec4872e@kernel.org>
-        <20200831234542.295b1275@DUFFMAN>
-        <5db50a8e5b251714cebe0a719ee9dc73@kernel.org>
-        <20200901164249.GA15045@e121166-lin.cambridge.arm.com>
-        <20200901143356.0425d9ba@DUFFMAN>
-        <20200902160110.GA30014@e121166-lin.cambridge.arm.com>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        Wed, 02 Sep 2020 21:39:51 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     netdev@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>, andrew@lunn.ch,
+        adam.rudzinski@arf.net.pl, m.felsch@pengutronix.de,
+        hkallweit1@gmail.com, richard.leitner@skidata.com,
+        zhengdejin5@gmail.com, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, kuba@kernel.org, robh+dt@kernel.org
+Subject: [PATCH net-next 0/3] net: phy: Support enabling clocks prior to bus probe
+Date:   Wed,  2 Sep 2020 21:39:44 -0700
+Message-Id: <20200903043947.3272453-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Sep 2020 17:01:19 +0100
-Lorenzo Pieralisi <lorenzo.pieralisi@arm.com> wrote:
+Hi all,
 
-> On Tue, Sep 01, 2020 at 02:33:56PM -0400, Samuel Dionne-Riel wrote:
-> 
-> Please print a pointer as a pointer and print both bus and
-> bus->parent.
+This patch series takes care of enabling the Ethernet PHY clocks in
+DT-based systems (we have no way to do it for ACPI, and ACPI would
+likely keep all of this hardware enabled anyway).
 
-Hopefully pointer as a pointer is %px. Not sure what else, if that's
-wrong please tell.
+Please test on your respective platforms, mine still seems to have
+a race condition that I am tracking down as it looks like we are not
+waiting long enough post clock enable.
 
----
-@@ -79,6 +79,8 @@ static int rockchip_pcie_valid_device(struct rockchip_pcie *rockchip,
-         * do not read more than one device on the bus directly attached
-         * to RC's downstream side.
-         */
-+       printk("[!!] // bus (%px) bus->parent (%px)\n", bus, bus->parent);
-+       printk("[!!] bus->primary (%d) == rockchip->root_bus_nr (%d) && dev (%d) > 0\n", bus->primary, rockchip->root_bus_nr, dev);
-        if (bus->primary == rockchip->root_bus_nr && dev > 0)
-                return 0;
- 
---
+The check on the clock reference count is necessary to avoid an
+artificial bump of the clock reference count and to support the unbind
+-> bind of the PHY driver. We could solve it in different ways.
 
-Again, two values, verified with a bit of set and `sort -u`.
+Comments and test results welcome!
 
-[    1.691266] [!!] // bus (ffff0000ef9ab800) bus->parent (0000000000000000)
-[    1.691271] [!!] bus->primary (0) == rockchip->root_bus_nr (0) && dev (0) > 0
+Changes since RFC:
 
-and
+- resolved the timing hazard on ARCH_BRCMSTB platforms, the resource
+  enabling for these platforms needs to happen *right before* the
+  dummy BMSR read which is needed to work around a flaw in the internal
+  Gigabit PHYs MDIO logic, doing this after would not work. This means
+  that we need to enable resources during bus->reset for those specific
+  platforms.
 
-[    1.697156] [!!] // bus (ffff0000ef9ac000) bus->parent (ffff0000ef9ab800)
-[    1.697160] [!!] bus->primary (0) == rockchip->root_bus_nr (0) && dev (0) > 0
+- export of_mdiobus_device_enable_resources() for other drivers to use
+  (like mdio-bcm-unimac), would they need it
 
-First instance of each shown here. Last time I don't think it was.
+- added boolean to keep track of resources being already enabled
 
-> > +       printk("[!!] bus->primary (%d) == rockchip->root_bus_nr
-> > (%d) && dev (%d) > 0\n", bus->primary, rockchip->root_bus_nr, dev);
-> > if (bus->primary == rockchip->root_bus_nr && dev > 0) return 0;
-> > 
-> > --
-> > 
-> > I get two kind of results
-> > 
-> > [    1.692913] [!!] // bus->parent (0)
-> > [    1.692917] [!!] bus->primary (0) == rockchip->root_bus_nr (0)
-> > && dev (0) > 0
-> > 
-> > and
-> > 
-> > [    1.693055] [!!] // bus->parent (-256794624)
-> > [    1.693058] [!!] bus->primary (0) == rockchip->root_bus_nr (0)
-> > && dev (0) > 0 
-> 
-> Looks like this is the condition that pci_is_root_bus(bus->parent) is
-> not hitting.
-> 
+- disable resources just before calling drv->probe() so as to let PHY
+  drivers manage resources with a normal reference count
 
+Florian Fainelli (3):
+  net: phy: Support enabling clocks prior to bus probe
+  net: phy: mdio-bcm-unimac: Enable GPHY resources during bus reset
+  net: phy: bcm7xxx: request and manage GPHY clock
 
-
-> You are accessing a resource IORESOURCE_MEM that has nothing to do
-> with bus numbers.
-> 
-> s/IORESOURCE_MEM/IORESOURCE_BUS
-> 
-> should be better ;-)
-
-At least correct, rather than luckily working.
-
-
-Thanks, as always, anything I missed, or need more precisions, do ask.
+ drivers/net/mdio/mdio-bcm-unimac.c | 10 ++++
+ drivers/net/phy/bcm7xxx.c          | 18 +++++-
+ drivers/net/phy/phy_device.c       | 15 ++++-
+ drivers/of/of_mdio.c               | 95 ++++++++++++++++++++++++++++++
+ include/linux/of_mdio.h            | 16 +++++
+ include/linux/phy.h                | 13 ++++
+ 6 files changed, 165 insertions(+), 2 deletions(-)
 
 -- 
-Samuel Dionne-Riel
+2.25.1
+
