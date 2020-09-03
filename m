@@ -2,204 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B19D25BBD6
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 09:40:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6953B25BC95
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 10:13:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726855AbgICHkd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 03:40:33 -0400
-Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:60797 "EHLO
+        id S1727857AbgICING (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 04:13:06 -0400
+Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:43523 "EHLO
         wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726686AbgICHkb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 03:40:31 -0400
+        by vger.kernel.org with ESMTP id S1728341AbgICIB6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 04:01:58 -0400
 Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.west.internal (Postfix) with ESMTP id C890CB01;
-        Thu,  3 Sep 2020 03:40:28 -0400 (EDT)
+        by mailnew.west.internal (Postfix) with ESMTP id 89ECBB0C;
+        Thu,  3 Sep 2020 04:01:56 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Thu, 03 Sep 2020 03:40:29 -0400
+  by compute4.internal (MEProxy); Thu, 03 Sep 2020 04:01:57 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=3d+fTLgpTQcvjVM12OzE052YfvZ
-        PoumZnCP7vT0BNTc=; b=myWiETMlIlUWHiTv8WnuXR+IYKbfeY5RfHZzjkLV+Xw
-        vOJYm7vw+zvumPkFdHPXWFtkzhTYSTTd0kc6GrkplI4ro5xwGlVFKwTKqL6jra1X
-        ksTvu1GJCw0OMAelGSu1027OYyKQ3kBURhut6zWOaxQfFjr8GlcY8lBvxPNqzMtK
-        OUGZeAYHEmTpCkcZhosndWdeEoOKeOFu53O8EXVO+Tr4dFCir9889Qe1u5Uvg/c1
-        TI26DKLLToqDDNovI8WA/o22S9QZub5mhlrJF27B32oa6Gf8IKWigG8fYNu7ORL0
-        u1CsM+fhrutvTxQq7l52RBAsbBGUHfPKY1jS0tXI8Kw==
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=py/HFNMsgUXYCTmIYyvvsGZkCY
+        Sn6IaCWXI677zKMcI=; b=fmpYYQDt+s8ZfUzgd8vbUlzg6b4h8TnyTEEaRzaIPU
+        Ls4zArBkLvOttAmqi+IqXRdeWjwADgpKGwwIAnjG7Sgz3HV01b6nDEUexAmxX+Dg
+        /tQQdJ11nVc+vgbVjXsSzibUqUkBbCrbYuZAZFq01neBdgzf/L6fH165S3IdLIzJ
+        thClAPGUQBlPDeImzgim3YKzOTZ451lfDWyBiyfQd3OPHrs3NHKtsZHt4LvCsvfH
+        bZIundKaLGVq0s3MT0g4cmxHWsjryTnoaI4Rvw+EPdmzwe8ko7Y2DnfT7ca7leiW
+        LmvqB1963Zdmrg80XtwcuUXp2XOAEXg+Q316xDYGoV4g==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=3d+fTL
-        gpTQcvjVM12OzE052YfvZPoumZnCP7vT0BNTc=; b=t8qsS6P2vWW1REZJvCGNSX
-        pl+k4eLlBP1UE8HWUavDheeb/zxkwmSlFYeSGsvk2ur7ajehHxmyBh6HsxfT0MTi
-        nFwP/PWOXjXKxj/z0XBSr1lbAUNYXhVRRRa0q9QKX/Ay1bndTmlUSrTr3Mv6tqRg
-        tANMq//E+NVwezpXe9BybmRJ8g/ws8isYuYOH0xt9sc8aKKf6ZP6mxjQ/p/dT7f3
-        JoVGPXZUtrGj6moTYiCmcOLj35IsjjIxhqgapxa9SOIZe8iL9Zi8yI/cWnZWxJk0
-        HF/RZCc3Nm9WIzf1B2PXx2YlfVkXHDBDjDD6wIj0mWJgHPfs0s7pQlec9/TFcfUA
-        ==
-X-ME-Sender: <xms:6J1QXzSLhYLxfFGknODb2Ae788cK4MRv0U__qoHhytLcNehHxF7T9g>
-    <xme:6J1QX0wZ00GfzX-DW7jTfsMiazYVBF7irVylDdk8drpqpT46dWVqtG1I_Kidt37sM
-    4mW4mcntfl6uilkk8g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudegtddguddvfecutefuodetggdotefrod
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=py/HFNMsgUXYCTmIY
+        yvvsGZkCYSn6IaCWXI677zKMcI=; b=eSzz7ea/S9wkH4B2wmR5c5KlVS0XWuIip
+        JYKk4s0ernnF1qbVW4LTDbYqTOvirMsFRIDJYOipwa7f7taADGYw44uiBctzskhH
+        O+vNtSWCAw9O/g8IOsxoZOUBbQ6P/yIjttOPw9EI9CnOBiQi5f4m4QmgC2c8mm/7
+        fD1zJa6D39zv6w/y7e5J4WwqHR5ihSqYWIcOOF92R64t0tvwdnXkVSA/phuixdFD
+        X3HN39ly7tAkQBk9+2q8bhjAvY+FBN9VYBXSrqvGoTHxsSlYTePpPsP/84metdNn
+        lrNXhah+mATWNYDxIXtsHhdlSmtRqB2QPyyKPg0TndSBwacItOULQ==
+X-ME-Sender: <xms:8qJQX2VTp7focK-0je4sIo40BFtZybAq8FzsENJbfmud5WJECm7-Nw>
+    <xme:8qJQXylcPUYyH0vIgv76Xj19H6qv_agG9qBxl4gMFYLZ2VAyHJcOgVt9QaATs-X1Y
+    bVi6zQ02ujZgU66ZAI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudegtddguddviecutefuodetggdotefrod
     ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
     necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtjeenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeetledvveffgeeuheejtdegteekueetjeevgfeivefgieegkedtieelgeeh
-    gfetheenucffohhmrghinhepsghoohhtlhhinhdrtghomhdprghlshgrqdhprhhojhgvtg
-    htrdhorhhgnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgep
-    tdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:6J1QX41lDOEAKklcccok3PNTKENVssFgMkCkLSLaNvr9uiQRf7otdQ>
-    <xmx:6J1QXzBXYx56KO9G0c2dZiPyU8blePa1PPP7wOuwfvb0n6u7BlmuCA>
-    <xmx:6J1QX8gDJW05sUPuBsSsEmZYgl8HEB7XuS5a6E4dHUBtVH_Ssefv9w>
-    <xmx:7J1QX9Z3lVLD5oQ8MuHNjreGVonrk0LKnURgO8FmaqAX-A6Vheti1zbGe6M>
+    enucfjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeetvefhtdejleduffeiffegfeegueeghffggeekueetiefgjeefjeekudejheel
+    gfenucffohhmrghinheprhgrshhpsggvrhhrhihpihdrtghomhenucfkphepledtrdekle
+    drieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhr
+    ohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:8qJQX6ZrGYRokdfbSNOO6aSYNNYaIiamplAg9I_74SfnYQ-CtgNpXA>
+    <xmx:8qJQX9VldYvZ7vFPPg8LTP93h0K-k4E0frwFugOxvg99Usc476lRXg>
+    <xmx:8qJQXwl-Ga2WM8U06-VDku4MA2PTYf8PPt-KiFEZgaoewCOA0gtjOw>
+    <xmx:9KJQX-ng7ro8ow7PKuhVwT00oEh4QvNTCGdj3DIdMPDvs_yjzCAAqygMcgc>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 6B68C328005D;
-        Thu,  3 Sep 2020 03:40:24 -0400 (EDT)
-Date:   Thu, 3 Sep 2020 09:40:23 +0200
+        by mail.messagingengine.com (Postfix) with ESMTPA id 74C933280064;
+        Thu,  3 Sep 2020 04:01:54 -0400 (EDT)
 From:   Maxime Ripard <maxime@cerno.tech>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>,
-        peron.clem@gmail.com, Chen-Yu Tsai <wens@csie.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Eric Anholt <eric@anholt.net>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-rpi-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [linux-sunxi] [PATCH 05/16] ASoc: sun4i-i2s: Add 20 and 24 bit
- support
-Message-ID: <20200903074023.jccqp45br3er4h3g@gilmour.lan>
-References: <20200704113902.336911-1-peron.clem@gmail.com>
- <20200704113902.336911-6-peron.clem@gmail.com>
- <1e320dfd-9388-54b2-dba9-7def0bf4bbad@sholland.org>
- <9148679.oVN3Z7rve9@kista>
- <fd714cb6-3650-1eb9-616d-33c00f1442eb@sholland.org>
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
+        Kamal Dasu <kdasu.kdev@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Subject: [PATCH v5 00/80] drm/vc4: Support BCM2711 Display Pipeline
+Date:   Thu,  3 Sep 2020 10:00:32 +0200
+Message-Id: <cover.dddc064d8bb83e46744336af67dcb13139e5747d.1599120059.git-series.maxime@cerno.tech>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="hf5an3s4qg2ib7h7"
-Content-Disposition: inline
-In-Reply-To: <fd714cb6-3650-1eb9-616d-33c00f1442eb@sholland.org>
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi everyone,
 
---hf5an3s4qg2ib7h7
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Here's a (pretty long) series to introduce support in the VC4 DRM driver
+for the display pipeline found in the BCM2711 (and thus the RaspberryPi 4).
 
-On Wed, Sep 02, 2020 at 09:22:33PM -0500, Samuel Holland wrote:
-> On 9/2/20 1:10 PM, Jernej =C5=A0krabec wrote:
-> > Hi Samuel!
-> >=20
-> > Dne petek, 10. julij 2020 ob 07:44:51 CEST je Samuel Holland napisal(a):
-> >> On 7/4/20 6:38 AM, Cl=C3=A9ment P=C3=A9ron wrote:
-> >>> From: Marcus Cooper <codekipper@gmail.com>
-> >>>
-> >>> Extend the functionality of the driver to include support of 20 and
-> >>> 24 bits per sample.
-> >>>
-> >>> Signed-off-by: Marcus Cooper <codekipper@gmail.com>
-> >>> Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
-> >>> ---
-> >>>
-> >>>  sound/soc/sunxi/sun4i-i2s.c | 11 +++++++++--
-> >>>  1 file changed, 9 insertions(+), 2 deletions(-)
-> >>>
-> >>> diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
-> >>> index f78167e152ce..bc7f9343bc7a 100644
-> >>> --- a/sound/soc/sunxi/sun4i-i2s.c
-> >>> +++ b/sound/soc/sunxi/sun4i-i2s.c
-> >>> @@ -577,6 +577,9 @@ static int sun4i_i2s_hw_params(struct
-> >>> snd_pcm_substream *substream,>=20
-> >>>  	case 16:
-> >>>  		width =3D DMA_SLAVE_BUSWIDTH_2_BYTES;
-> >>>  		break;
-> >>>
-> >>> +	case 32:
-> >>> +		width =3D DMA_SLAVE_BUSWIDTH_4_BYTES;
-> >>> +		break;
-> >>
-> >> This breaks the sun4i variants, because sun4i_i2s_get_wss returns 4 fo=
-r a 32
-> >> bit width, but it needs to return 3.
-> >=20
-> > I'm not sure what has WSS with physical width and DMA?
->=20
-> This is the change where creating a S24_LE stream no longer fails with -E=
-INVAL.
-> So this is the change where userspace stops downsampling 24-bit audio sou=
-rces.
-> So this is the change where playback of 24-bit audio sources breaks, beca=
-use WSS
-> is programmed wrong.
->=20
-> >> As a side note, I wonder why we use the physical width (the spacing be=
-tween
-> >> samples in RAM) to drive the slot width. S24_LE takes up 4 bytes per s=
-ample
-> >> in RAM, which we need for DMA. But I don't see why we would want to
-> >> transmit the padding over the wire. I would expect it to be transmitte=
-d the
-> >> same as S24_3LE (which has no padding). It did not matter before, beca=
-use
-> >> the only supported format had no padding.
-> >=20
-> > Allwinner DMA engines support only 1, 2, 4 and sometimes 8 bytes for bu=
-s=20
-> > width, so if sample is 24 bits in size, we have no other way but to tra=
-nsmit=20
-> > padding too.
->=20
-> I understand why we do 4 byte DMA from RAM <=3D> I2S FIFO; that was not my
-> question. I'm referring to the actual wire format (FIFO <=3D> PCM_DIN/DOU=
-T). The
-> sample is already truncated from 32 bits to 24 bits in the FIFO -- that's=
- what
-> TXIM and RXOM in FIFO_CTRL control.
->=20
-> If a sample is 24 bits wide, why would we send 32 BCLKs for every LRCK? I=
- would
-> expect the slot width to match the sample resolution by default. But yet =
-we have
-> this code in the driver:
->=20
->     unsigned int word_size =3D params_width(params);
->     unsigned int slot_width =3D params_physical_width(params);
->=20
-> I think slot_width should be the same as word_size, and I suggest changin=
-g it
-> before adding 20/24-bit support.
+The main differences are that there's two HDMI controllers and that there's
+more pixelvalve now. Those pixelvalve come with a mux in the HVS that still
+have only 3 FIFOs. Both of those differences are breaking a bunch of
+expectations in the driver, so we first need a good bunch of cleanup and
+reworks to introduce support for the new controllers.
 
-Generally speaking, the slot width doesn't necessarily match the
-physical width. With TDM for example you may very well have slots
-larger than their samples.
+Similarly, the HDMI controller has all its registers shuffled and split in
+multiple controllers now, so we need a bunch of changes to support this as
+well.
 
-That being said, S24 is explicitly a format where you send a sample of
-24 bits in a 32-bit word (in the lowest three bytes, little endian)
+Only the HDMI support is enabled for now (even though the DPI and DSI
+outputs have been tested too).
 
-See:
-https://elixir.bootlin.com/linux/v5.9-rc3/source/sound/core/pcm_misc.c#L75
-https://mailman.alsa-project.org/pipermail/alsa-devel/2013-April/061073.html
-
-24 bits of data over three bytes like you suggest is S24_3LE
-
+Let me know if you have any comments
 Maxime
 
---hf5an3s4qg2ib7h7
-Content-Type: application/pgp-signature; name="signature.asc"
+Cc: bcm-kernel-feedback-list@broadcom.com
+Cc: devicetree@vger.kernel.org
+Cc: Kamal Dasu <kdasu.kdev@gmail.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>
 
------BEGIN PGP SIGNATURE-----
+Changes from v4:
+  - Rebased on top of next-20200828
+  - Collected the various tags
+  - Fixed some issues with 4k support and dual output (thanks Hoegeun!)
+  - Fixed typos in commit logs (thanks Dave!)
+  - Split the csc setup hook into its own patch again
+  - Added the CEC clock to the DT binding
+  - Fixed the DT binding example
+  - Reduced the number of calls to of_device_is_compatible in vc4_kms_load
+  - Added back the check for the state commit in our commit hook
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX1Cd5wAKCRDj7w1vZxhR
-xQAeAP9vjuO9Y3b+CKzmLOQ15SsDQDnKlVOEAQ0bmzds+Gn3dgEAvPzB50hkYbu/
-m3XNc7Nyk17Y4tBWmLWyuoQ8IodG1QM=
-=gvkH
------END PGP SIGNATURE-----
+Changes from v3:
+  - Rebased on top of next-20200708
+  - Added a name to the HDMI audio codec component
+  - Only disable the BCM2711 HDMI pixelvalves at boot
+  - Fixed an error in the HVS binding
+  - Fix a framebuffer size condition that was inverted
+  - Changed the channel allocation algorithm using Eric's suggestion
+  - Always write the muxing values instead of updating if needed
+  - Improved a bit the hvs_available_channels comment in the structure
+  - Change atomic_complete_commit code to use for_each_new_crtc_in_state
+  - Change the muxing code to take into account disparities between the
+    BCM2711 and previous SoCs.
+  - Only change the clock rate on BCM2711 during a modeset
+  - Fix a crash at atomic_disable
+  - Use clk_set_min_rate for the core clock too
+  - Add a few defines, and simplify the FIFO level stuff
+  - Reordered the patches according to Eric's reviews
+  - Fixed a regression with VID_CTL setting on RPI3
 
---hf5an3s4qg2ib7h7--
+Changes from v2:
+  - Rebased on top of next-20200526
+  - Split the firmware clock series away
+  - Removed the stuck pixel (with all the subsequent pixels being shifted
+    by one
+  - Fixed the writeback issue too.
+  - Fix the dual output
+  - Fixed the return value of phy_get_cp_current
+  - Enhanced the comment on the reset delay
+  - Increase the max width and height
+  - Made a proper Kconfig option for the DVP clock driver
+  - Fixed the alsa card name collision
+
+Changes from v1:
+  - Rebased on top of 5.7-rc1
+  - Run checkpatch
+  - Added audio support
+  - Fixed some HDMI timeouts
+  - Swiched to clk_hw_register_gate_parent_data
+  - Reorder Kconfig symbols in drivers/i2c/busses
+  - Make the firmware clocks a child of the firmware node
+  - Switch DVP clock driver to clk_hw interface
+  - constify raspberrypi_clk_data in raspberrypi_clock_property
+  - Don't mark firmware clocks as IGNORE_UNUSED
+  - Change from reset_ms to reset_us in reset-simple, and add a bit more
+    comments
+  - Remove generic clk patch to test if a NULL pointer is returned
+  - Removed misleading message in the is_prepared renaming patch commit
+    message
+  - Constify HDMI controller variants
+  - Fix a bug in the allocation size of the clk data array
+  - Added a mention in the DT binding conversion patches about the breakage
+  - Merged a few fixes from kbuild
+  - Fixed a few bisection and CEC build issues
+  - Collected Acked-by and Reviewed-by
+  - Change Dave email address to raspberrypi.com
+
+Dave Stevenson (7):
+  drm/vc4: Add support for the BCM2711 HVS5
+  drm/vc4: plane: Change LBM alignment constraint on LBM
+  drm/vc4: plane: Optimize the LBM allocation size
+  drm/vc4: hdmi: Use reg-names to retrieve the HDMI audio registers
+  drm/vc4: hdmi: Reset audio infoframe on encoder_enable if previously streaming
+  drm/vc4: hdmi: Set the b-frame marker to the match ALSA's default.
+  drm/vc4: hdmi: Add audio-related callbacks
+
+Hoegeun Kwon (1):
+  drm/vc4: hdmi: Add pixel BVB clock control
+
+Maxime Ripard (72):
+  dt-bindings: display: Add support for the BCM2711 HVS
+  drm/vc4: hvs: Boost the core clock during modeset
+  drm/vc4: plane: Create more planes
+  drm/vc4: crtc: Deal with different number of pixel per clock
+  drm/vc4: crtc: Use a shared interrupt
+  drm/vc4: crtc: Move the cob allocation outside of bind
+  drm/vc4: crtc: Rename HVS channel to output
+  drm/vc4: crtc: Use local chan variable
+  drm/vc4: crtc: Enable and disable the PV in atomic_enable / disable
+  drm/vc4: kms: Convert to for_each_new_crtc_state
+  drm/vc4: crtc: Assign output to channel automatically
+  drm/vc4: crtc: Add FIFO depth to vc4_crtc_data
+  drm/vc4: crtc: Add function to compute FIFO level bits
+  drm/vc4: crtc: Rename HDMI encoder type to HDMI0
+  drm/vc4: crtc: Add HDMI1 encoder type
+  drm/vc4: crtc: Disable color management for HVS5
+  drm/vc4: crtc: Turn pixelvalve reset into a function
+  drm/vc4: crtc: Move PV dump to config_pv
+  drm/vc4: crtc: Move HVS init and close to a function
+  drm/vc4: crtc: Move the HVS gamma LUT setup to our init function
+  drm/vc4: hvs: Make sure our channel is reset
+  drm/vc4: crtc: Remove mode_set_nofb
+  drm/vc4: crtc: Remove redundant pixelvalve reset
+  drm/vc4: crtc: Move HVS channel init before the PV initialisation
+  drm/vc4: encoder: Add finer-grained encoder callbacks
+  drm/vc4: crtc: Add a delay after disabling the PixelValve output
+  drm/vc4: crtc: Clear the PixelValve FIFO on disable
+  drm/vc4: crtc: Clear the PixelValve FIFO during configuration
+  drm/vc4: hvs: Make the stop_channel function public
+  drm/vc4: hvs: Introduce a function to get the assigned FIFO
+  drm/vc4: crtc: Move the CRTC disable out
+  drm/vc4: drv: Disable the CRTC at boot time
+  dt-bindings: display: vc4: pv: Add BCM2711 pixel valves
+  drm/vc4: crtc: Add BCM2711 pixelvalves
+  drm/vc4: hdmi: Use debugfs private field
+  drm/vc4: hdmi: Move structure to header
+  drm/vc4: hdmi: rework connectors and encoders
+  drm/vc4: hdmi: Remove DDC argument to connector_init
+  drm/vc4: hdmi: Rename hdmi to vc4_hdmi
+  drm/vc4: hdmi: Move accessors to vc4_hdmi
+  drm/vc4: hdmi: Use local vc4_hdmi directly
+  drm/vc4: hdmi: Add container_of macros for encoders and connectors
+  drm/vc4: hdmi: Pass vc4_hdmi to CEC code
+  drm/vc4: hdmi: Retrieve the vc4_hdmi at unbind using our device
+  drm/vc4: hdmi: Remove vc4_dev hdmi pointer
+  drm/vc4: hdmi: Remove vc4_hdmi_connector
+  drm/vc4: hdmi: Introduce resource init and variant
+  drm/vc4: hdmi: Implement a register layout abstraction
+  drm/vc4: hdmi: Add reset callback
+  drm/vc4: hdmi: Add PHY init and disable function
+  drm/vc4: hdmi: Add PHY RNG enable / disable function
+  drm/vc4: hdmi: Add a CSC setup callback
+  drm/vc4: hdmi: Add a set_timings callback
+  drm/vc4: hdmi: Store the encoder type in the variant structure
+  drm/vc4: hdmi: Deal with multiple debugfs files
+  drm/vc4: hdmi: Move CEC init to its own function
+  drm/vc4: hdmi: Add CEC support flag
+  drm/vc4: hdmi: Remove unused CEC_CLOCK_DIV define
+  drm/vc4: hdmi: Rename drm_encoder pointer in mode_valid
+  drm/vc4: hdmi: Adjust HSM clock rate depending on pixel rate
+  drm/vc4: hdmi: Use clk_set_min_rate instead
+  drm/vc4: hdmi: Deal with multiple ALSA cards
+  drm/vc4: hdmi: Remove register dumps in enable
+  drm/vc4: hdmi: Always recenter the HDMI FIFO
+  drm/vc4: hdmi: Implement finer-grained hooks
+  drm/vc4: hdmi: Do the VID_CTL configuration at once
+  drm/vc4: hdmi: Switch to blank pixels when disabled
+  drm/vc4: hdmi: Support the BCM2711 HDMI controllers
+  dt-bindings: display: vc4: hdmi: Add BCM2711 HDMI controllers bindings
+  dt-bindings: display: vc4: Document BCM2711 VC5
+  drm/vc4: drv: Support BCM2711
+  ARM: dts: bcm2711: Enable the display pipeline
+
+ Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml        |  117 +++++-
+ Documentation/devicetree/bindings/display/brcm,bcm2835-hvs.yaml         |   18 +-
+ Documentation/devicetree/bindings/display/brcm,bcm2835-pixelvalve0.yaml |    5 +-
+ Documentation/devicetree/bindings/display/brcm,bcm2835-vc4.yaml         |    1 +-
+ arch/arm/boot/dts/bcm2711-rpi-4-b.dts                                   |   48 ++-
+ arch/arm/boot/dts/bcm2711.dtsi                                          |  122 ++++-
+ drivers/gpu/drm/vc4/Makefile                                            |    1 +-
+ drivers/gpu/drm/vc4/vc4_crtc.c                                          |  354 +++++++++++----
+ drivers/gpu/drm/vc4/vc4_drv.c                                           |    5 +-
+ drivers/gpu/drm/vc4/vc4_drv.h                                           |   43 +-
+ drivers/gpu/drm/vc4/vc4_hdmi.c                                          | 1650 +++++++++++++++++++++++++++++++++++++++++++-----------------------------
+ drivers/gpu/drm/vc4/vc4_hdmi.h                                          |  184 ++++++++-
+ drivers/gpu/drm/vc4/vc4_hdmi_phy.c                                      |  520 +++++++++++++++++++++++-
+ drivers/gpu/drm/vc4/vc4_hdmi_regs.h                                     |  442 +++++++++++++++++++-
+ drivers/gpu/drm/vc4/vc4_hvs.c                                           |  269 +++++++-----
+ drivers/gpu/drm/vc4/vc4_kms.c                                           |  229 +++++++++-
+ drivers/gpu/drm/vc4/vc4_plane.c                                         |  222 +++++++---
+ drivers/gpu/drm/vc4/vc4_regs.h                                          |  177 +++-----
+ drivers/gpu/drm/vc4/vc4_txp.c                                           |    4 +-
+ 19 files changed, 3406 insertions(+), 1005 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
+ create mode 100644 drivers/gpu/drm/vc4/vc4_hdmi.h
+ create mode 100644 drivers/gpu/drm/vc4/vc4_hdmi_phy.c
+ create mode 100644 drivers/gpu/drm/vc4/vc4_hdmi_regs.h
+
+base-commit: 20c0f70ad7bf5aaf2e22ef974867d0708373fe93
+-- 
+git-series 0.9.1
