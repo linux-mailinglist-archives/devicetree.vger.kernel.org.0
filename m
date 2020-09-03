@@ -2,146 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C905825C623
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 18:06:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DED625C639
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 18:10:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728701AbgICQGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 12:06:20 -0400
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:14666 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728454AbgICQGU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 12:06:20 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5f51146d0000>; Thu, 03 Sep 2020 09:06:05 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Thu, 03 Sep 2020 09:06:19 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Thu, 03 Sep 2020 09:06:19 -0700
-Received: from [10.2.173.243] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 3 Sep
- 2020 16:06:18 +0000
-Subject: Re: [PATCH v5 2/3] dt-bindings: media: imx274: Add optional input
- clock and supplies
-To:     Jacopo Mondi <jacopo@jmondi.org>
-CC:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <sakari.ailus@iki.fi>, <hverkuil@xs4all.nl>,
-        <jacopo+renesas@jmondi.org>, <luca@lucaceresoli.net>,
-        <leonl@leopardimaging.com>, <robh+dt@kernel.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1599012278-10203-1-git-send-email-skomatineni@nvidia.com>
- <1599012278-10203-3-git-send-email-skomatineni@nvidia.com>
- <20200903125542.nxiafnysatoexken@uno.localdomain>
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-Message-ID: <d3a1843c-5d73-cfa6-9611-405b905ddcd1@nvidia.com>
-Date:   Thu, 3 Sep 2020 09:05:27 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728701AbgICQK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 12:10:28 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:35034 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727065AbgICQK1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 12:10:27 -0400
+Received: by mail-il1-f194.google.com with SMTP id l4so3157741ilq.2;
+        Thu, 03 Sep 2020 09:10:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ub/YDXcxHDsGS0dDuXZfKNg7N1487AgGtWs2ISNYV0w=;
+        b=KO3s42VYbzabC5gmMd9r54DJ0SZxApw7havc6vUUF8c+m0HBQkdS9PSyAKB1PvDkhH
+         xPVchF6YkwfTjUy2QW+KIRmp26MfNammQVt8hiqwWeqax2zvOH/ZH0XEAPFjKbSUtZWr
+         AOpUEc4c6F6JWeM+1A2MLCuAxyxhmEV2KGkFrMvNduXNfnbwFsfx6Gc60eAgd/wkj91M
+         rE371is2dFvMLtLDT3LCfU5Su/RIXy0cKVOq4qJJu2ahtsSYg6UW3K+lCPCM9AP84OqA
+         G3zYj5tkqP/XuTz53YdQMGFYXpUyzDiACbiWAYHPWJs5RXXGISbcMRlFcdmuGF11Xijv
+         VHJQ==
+X-Gm-Message-State: AOAM531ISQGDoCUQVwcz0dk4IVQUZ5k0hjqgIIeLmvaXVlw+sIZktbYE
+        YW4NaVXWeok470OX/Zxf6Q==
+X-Google-Smtp-Source: ABdhPJxLZ9ZiPkSL+rOvAxAf3g+LEBXr7Jjhv24bCXU19LypWZMrwzhwOhCFPx9l8w9NZ9RW+7oU5Q==
+X-Received: by 2002:a92:7991:: with SMTP id u139mr3437463ilc.62.1599149426172;
+        Thu, 03 Sep 2020 09:10:26 -0700 (PDT)
+Received: from xps15 ([64.188.179.249])
+        by smtp.gmail.com with ESMTPSA id c7sm1610386ilk.49.2020.09.03.09.10.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Sep 2020 09:10:25 -0700 (PDT)
+Received: (nullmailer pid 2870752 invoked by uid 1000);
+        Thu, 03 Sep 2020 16:10:22 -0000
+Date:   Thu, 3 Sep 2020 10:10:22 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Lee Jones <lee.jones@linaro.org>, linux-leds@vger.kernel.org,
+        linux-tegra@vger.kernel.org, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] dt-bindings: mfd: Add ENE KB930 Embedded
+ Controller binding
+Message-ID: <20200903161022.GA2707794@bogus>
+References: <20200830185356.5365-1-digetx@gmail.com>
+ <20200830185356.5365-2-digetx@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20200903125542.nxiafnysatoexken@uno.localdomain>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1599149165; bh=bxXTsuZ7FZDcM2mjf0tGRKm9GbyC5hRsiKLW8EcqMBs=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=CDq+fjcmsDn7/zTxc+bjGS/Qqr7CyvtVyyCgcPbD9gc46SJBcuGH0I+sK2LrB5wzT
-         3wV/j4FQrKlNv9tmXyfaJ/Hrg2ExW+bZGMwSdn2TpumCiHtvh9eu49jAqVEsCF2Wtk
-         6KRzVdDHUYc4axK1Ew6zszGtItYp/aOrktlIJAAQxfFhtiHMMCOBpcM2l916M3CVJN
-         S/TMceh950Dd5hrJ+omQe8/i6tVaRxbOpI70dOvOQXsHQkFcL3eC99El20xsaVsllJ
-         owz+a7Vw7NdD9NUZAsl1K8xiEc+p++5nfUGzG0vXR/tzCiwr6doElHia8Z95JRxvIA
-         4K5rrGDOcgTsw==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200830185356.5365-2-digetx@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, 30 Aug 2020 21:53:51 +0300, Dmitry Osipenko wrote:
+> Add binding document for the ENE KB930 Embedded Controller.
+> 
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  .../devicetree/bindings/mfd/ene-kb930.yaml    | 66 +++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/ene-kb930.yaml
+> 
 
-On 9/3/20 5:55 AM, Jacopo Mondi wrote:
-> Hello Sowjanya,
->
-> On Tue, Sep 01, 2020 at 07:04:37PM -0700, Sowjanya Komatineni wrote:
->> This patch adds IMX274 optional external clock input and voltage
->> supplies to device tree bindings.
->>
->> Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
->> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->> ---
->>   .../devicetree/bindings/media/i2c/sony,imx274.yaml  | 21 +++++++++++++=
-++++++++
->>   1 file changed, 21 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yam=
-l b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
->> index 7ae47a6..57e7176 100644
->> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
->> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
->> @@ -25,6 +25,27 @@ properties:
->>     reset-gpios:
->>       maxItems: 1
->>
-> I just sent an update to my json-schema conversion of this bindings
-> document (not yet on patchwork, sorry) and Sakari pointed me to the
-> fact in between my v2 and my v4 this patch from you went in:
-> 4ea3273d24b ("dt-bindings: media: imx274: Add optional input clock and su=
-pplies")
->
-> I should probably now update my bindings conversion patch, basically
-> taking in what you've done here, but I would have one question.
->
->> +  clocks:
->> +    maxItems: 1
->> +    description: Reference to the sensor input clock
->> +
->> +  clock-names:
->> +    maxItems: 1
->> +    items:
->> +      - const: inck
->> +
->> +  vana-supply:
->> +    description:
->> +      Analog voltage supply, 2.8 volts
->> +
->> +  vdig-supply:
->> +    description:
->> +      Digital IO voltage supply, 1.8 volts
->> +
->> +  vddl-supply:
->> +    description:
->> +      Digital core voltage supply, 1.2 volts
-> 4ea3273d24b introduced these regulators as VANA-supply, VDIG-supply
-> and VDDL-supply (please note the upper-case names). This version uses
-> lower-case ones instead. Is this intentional ? The driver currently
-> does not parse any of these if I'm not mistaken, but as the bindings
-> in textual form defines an ABI which should be preserved during the
-> conversion to json-schema, should these be kept in upper-case ?
->
-> Thanks
->     j
 
-Yes, based on feedback lower case was recommended. So, changed to use=20
-lower-case names.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-These properties were not used by driver currently and from my prior=20
-series only dt-binding got merged as=C2=A0 no feedback was received on it f=
-or=20
-all prior versions.
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/ene-kb930.example.dt.yaml: battery-cell: 'operating-range-celsius' does not match any of the regexes: '^ocv-capacity-table-[0-9]+$', 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/supply/battery.yaml
 
-So, should be ok to change to lower-case as there properties are=20
-introduced now and driver update using these properties is under review
 
->> +
->>     port:
->>       type: object
->>       description: |
->> --
->> 2.7.4
->>
+See https://patchwork.ozlabs.org/patch/1354004
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
+
