@@ -2,63 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC11525C42E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:05:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 424CB25C46D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:10:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729211AbgICPEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 11:04:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59180 "EHLO
+        id S1728969AbgICPKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 11:10:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729014AbgICN6P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 09:58:15 -0400
-Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CED08C061249;
-        Thu,  3 Sep 2020 06:10:14 -0700 (PDT)
-Received: by mail-pg1-x541.google.com with SMTP id h12so2098016pgm.7;
-        Thu, 03 Sep 2020 06:10:14 -0700 (PDT)
+        with ESMTP id S1728937AbgICN5y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 09:57:54 -0400
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8F98C06123D
+        for <devicetree@vger.kernel.org>; Thu,  3 Sep 2020 06:21:29 -0700 (PDT)
+Received: by mail-lj1-x242.google.com with SMTP id w14so3683215ljj.4
+        for <devicetree@vger.kernel.org>; Thu, 03 Sep 2020 06:21:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=/WIT3+UL+FpungvYV1D9IfW97J9W5tsesmZlOnRL4KU=;
-        b=qE6o2n8HJKYzr8LQaFzdJ57s8ECaNNIEBAKj+FvAXWdE+VE/mTIGhjc4Qg4zlvXooF
-         s7PLRYxjyADHCtuiPGQ7aryX95MmnRUj8GlEn8M+qW1Vqac7RM+TAFtNZZnjTUlILZbr
-         n9WUYcuXzPQyao1h0l7bXfN3uVvH10bfG/RxxTBugi38UTqmzBO4RkjFvJJ1ieGMrx1r
-         vEg7/JHmsKK2WQYAZumSLzZFWRFiJl+8/3eGdCa6oFziFGQkJXbAEfwMLwriWQFCnh3L
-         zHXJmVCa8f2oqPOTdWqCc7Iq8Uxf20oK56b2aUOJ6k5u/kuJQUHbub6wVWxBtp2paj92
-         pi4Q==
+        bh=AXk2DRDPFaxpsHdzRe63wBIuTTXve+FKPVYE5CUnDo4=;
+        b=Oawjzr9vgHJvnLOxj5UJZV4sEvTPNZD09yISgS21ZAJA1uMxM0YVj7ZeiqGBT3Klwt
+         nHiOV5EdlXBTfBvouAlPLYCRAS9D1CEcS7Aow4dIIFTWA1Q+lH9oQGPgK1HGRjxXZI1m
+         tRqCeZ0bMDRJBnt9ZUd7O5eRzTBC4Gv3EXkxeEMyMCx+Ub9eVNwxu2C+hEXjDQokhl/f
+         Q6C2aiwVzh8f58ewvJJVAxoYyduzCWjBkq18EiE8+t5u3K7ZhKitMoea5u+jCJdc1dKM
+         pkVZPB+dnnZWrSEdYHm0XGU/81gTlOYpjgq6ZQPjQZcfLEImOFcyevKHN2qyUEdWUT1U
+         cXIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=/WIT3+UL+FpungvYV1D9IfW97J9W5tsesmZlOnRL4KU=;
-        b=ksqpTF44Hzu0MjGFc09TwnSDYD9rYNGrFYa8uTKdb9ecpAu/K0XX72FJfya5RttpnW
-         svI88iAicil1uQ+YO8XGYTcnZ47XIKSVjCaPDZsZoYKOUsO4JJGFzwD8Fiza5qL4y07c
-         pdBRlg/q12ZZT6Qm8h3t2eZ++TK/3BuIemOLbU52VYvktAjapNZkqGbgk60GguUjJY0u
-         CsM+OzKRcMftTOeE//3BWidTBbn+Qbodk2LNW8opjSESkH45MTLHvJqLJVcsR0lmMgUh
-         +ALKxandphQ7IFR5L8tg27QySKEh0/wNbxSBcZXh22j24AxP+ano+cWW7tUQks7rS82D
-         SPlA==
-X-Gm-Message-State: AOAM533aEEkUuWiJmgCS5VyBFf4J+dG6jGsWnzyssKrsjq2ku+m3k1zH
-        vredohjE55242g/eWfeY/u8=
-X-Google-Smtp-Source: ABdhPJwninxVNGhpsTohv0jmInMy1KARspw9LnVSe+jAaMtNOlAQj38XIlfkUm5bYScFOYFA/RnRcw==
-X-Received: by 2002:a63:fb4a:: with SMTP id w10mr2877677pgj.114.1599138614380;
-        Thu, 03 Sep 2020 06:10:14 -0700 (PDT)
-Received: from nish-HP-Pavilion ([2409:4072:6085:e35d:a526:a3b6:4686:f6fb])
-        by smtp.gmail.com with ESMTPSA id d20sm2538270pjv.39.2020.09.03.06.10.12
+        bh=AXk2DRDPFaxpsHdzRe63wBIuTTXve+FKPVYE5CUnDo4=;
+        b=M8tdPY2bURRq/Agj2hhJAtz95cs939NN5oolymqOqTAYNvR9Lme4/AyBKZIW4xHW9M
+         okCVVU6TRjd15oUKW2bxLnmiO0kCUynBtzdn538RBOcqsrLsr7kqJNJHxehSx/CjK6SF
+         LEORZ0D+e/UhBFwdOaHka6RtzpwZCsmNA+wwpnm+f3pGuU8ehWmxIp1CekdluXkbLWs1
+         +xz+RMw6ExH4iu2a4HLURJss+scogxfRivpAa1SeAWg/pGhPaVLhOKI5fKvMhjxvMH3+
+         IlirE9qnOuH/oEgk9/eFAQp9aSCJEVPehkticG4uV79Xmd3oTlIDDFy/AmO9yEVWQHgR
+         9u6w==
+X-Gm-Message-State: AOAM531ASBUUgddsisQ1jgre+3MNv8KnK3Rug9LZhXXCUjdTpeaODzjp
+        9px64DtVBnR1Zbg7gSkHpiDJVyKysFrvYQ==
+X-Google-Smtp-Source: ABdhPJxpYZE3X4d30GKvZel54/zbb76gwu/P3GTWbd0QDstXkqBieq1IDsexJWonUMfJdWJelFPuzg==
+X-Received: by 2002:a2e:7216:: with SMTP id n22mr1332916ljc.37.1599139288299;
+        Thu, 03 Sep 2020 06:21:28 -0700 (PDT)
+Received: from eriador.lan ([188.162.64.138])
+        by smtp.gmail.com with ESMTPSA id e23sm584220lfj.80.2020.09.03.06.21.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Sep 2020 06:10:13 -0700 (PDT)
-From:   Nishant Malpani <nish.malpani25@gmail.com>
-To:     jic23@kernel.org, robh+dt@kernel.org
-Cc:     dragos.bogdan@analog.com, darius.berghe@analog.com,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, andy.shevchenko@gmail.com,
-        Nishant Malpani <nish.malpani25@gmail.com>
-Subject: [PATCH v2 3/3] iio: gyro: adxrs290: Add debugfs register access support
-Date:   Thu,  3 Sep 2020 18:39:50 +0530
-Message-Id: <20200903130950.6274-4-nish.malpani25@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200903130950.6274-1-nish.malpani25@gmail.com>
-References: <20200903130950.6274-1-nish.malpani25@gmail.com>
+        Thu, 03 Sep 2020 06:21:27 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+Subject: [PATCH v2 5/9] iio: adc: qcom-spmi-adc5: fix driver name
+Date:   Thu,  3 Sep 2020 16:21:05 +0300
+Message-Id: <20200903132109.1914011-6-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200903132109.1914011-1-dmitry.baryshkov@linaro.org>
+References: <20200903132109.1914011-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -66,54 +73,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Extend support to read/write byte data from/to the device using
-debugfs iio interface.
+Remove superfluous '.c' from qcom-spmi-adc5 device driver name.
 
-Signed-off-by: Nishant Malpani <nish.malpani25@gmail.com>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
+ drivers/iio/adc/qcom-spmi-adc5.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-No changes in v2
----
- drivers/iio/gyro/adxrs290.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
-
-diff --git a/drivers/iio/gyro/adxrs290.c b/drivers/iio/gyro/adxrs290.c
-index 4099b8917d3e..132fd16789f0 100644
---- a/drivers/iio/gyro/adxrs290.c
-+++ b/drivers/iio/gyro/adxrs290.c
-@@ -434,6 +434,24 @@ static int adxrs290_read_avail(struct iio_dev *indio_dev,
- 	}
- }
+diff --git a/drivers/iio/adc/qcom-spmi-adc5.c b/drivers/iio/adc/qcom-spmi-adc5.c
+index 30b8867b31e4..c2da8f068b87 100644
+--- a/drivers/iio/adc/qcom-spmi-adc5.c
++++ b/drivers/iio/adc/qcom-spmi-adc5.c
+@@ -919,7 +919,7 @@ static int adc5_probe(struct platform_device *pdev)
  
-+static int adxrs290_reg_access(struct iio_dev *indio_dev, unsigned int reg,
-+			       unsigned int writeval, unsigned int *readval)
-+{
-+	struct adxrs290_state *st = iio_priv(indio_dev);
-+	int ret;
-+
-+	if (!readval)
-+		return adxrs290_spi_write_reg(st->spi, reg, writeval);
-+
-+	ret = spi_w8r8(st->spi, ADXRS290_READ_REG(reg));
-+	if (ret < 0)
-+		return ret;
-+
-+	*readval = ret;
-+
-+	return 0;
-+}
-+
- static int adxrs290_data_rdy_trigger_set_state(struct iio_trigger *trig, bool state)
- {
- 	struct iio_dev *indio_dev = iio_trigger_get_drvdata(trig);
-@@ -546,6 +564,7 @@ static const struct iio_info adxrs290_info = {
- 	.read_raw = &adxrs290_read_raw,
- 	.write_raw = &adxrs290_write_raw,
- 	.read_avail = &adxrs290_read_avail,
-+	.debugfs_reg_access = &adxrs290_reg_access,
- };
- 
- static int adxrs290_probe_trigger(struct iio_dev *indio_dev)
+ static struct platform_driver adc5_driver = {
+ 	.driver = {
+-		.name = "qcom-spmi-adc5.c",
++		.name = "qcom-spmi-adc5",
+ 		.of_match_table = adc5_match_table,
+ 	},
+ 	.probe = adc5_probe,
 -- 
-2.20.1
+2.28.0
 
