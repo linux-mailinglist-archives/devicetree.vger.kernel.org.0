@@ -2,130 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A45525B89B
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 04:13:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E02825B8B9
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 04:22:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726523AbgICCNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 22:13:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36088 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726177AbgICCNl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 22:13:41 -0400
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D891C061244;
-        Wed,  2 Sep 2020 19:13:39 -0700 (PDT)
-Received: by mail-pf1-x442.google.com with SMTP id c142so943836pfb.7;
-        Wed, 02 Sep 2020 19:13:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=epj8lPbKNU/j4OEf9AnfwYoi5ZNUxWpbPOU9JH2CNvk=;
-        b=O6jTk2W03DUJN9BHD4tv2NFKTkm4QfY0gdsN1q511yMpPdr8MzsPCHZ+py5xUwAzKz
-         NmlcaQj2ATHyqxdqCKHmS7rOynf4MmG5NnpZPVOq+vcNBv4CH/KGrBZjqaxowmlBMm8f
-         xWWyBPer6t/lIQ2YMWn3QGz7Tekv+/fiARPxZEBJZ1/O+xZ5tL2AmanPYENyOil32uaC
-         xn1sBTU+DZfMMMp6XnJgAx2/EBtG/SV/c7tOduvJcz0QHktB0JvD4azisrV9mGenB8S/
-         RfzaMLQ78PeyH2Kf0RrtZ8VhXtg3UBWYddSZpSyV+06fiAxMC2GuilXx3/itOUVaWKcP
-         zYAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=epj8lPbKNU/j4OEf9AnfwYoi5ZNUxWpbPOU9JH2CNvk=;
-        b=uXT2vHgiVG6MfRgirMrHkgOQkRqCbbRsE52rxCLbd5sV5+twIxMYFDqid99Hj5QGkD
-         /vNl9o76jsmU8/rRfwzpbZdIu+K/HmL6Tdez5GpREvUIFz7MwK7mrNRzIxy7K9Vy/gmg
-         8Do+gQXuzyFApohH1YnYTzAg1400LDp/kN4UFIs+z1FEZ4yKFlW1ayRK/r2A29H48FSx
-         4+IXfJWtE6Ziuun3LiQto8xUhcHnAPOrbLMMZLn1UVotTMUDUp8gmuWZ7GVxOWfXiCe+
-         oPXnhYIPwQpMyDPciC0ifU1CTlG1VqwKKCqG6CxtEbm47GUZRgk9VBEnCo632EKgNHOH
-         PwMQ==
-X-Gm-Message-State: AOAM5317MkzWOxnW1T41WlxpG1uHsfRqglh0TZgCzDXbFNqbkipfXBI1
-        bhAiFurb9hkb2bccbng+QlA=
-X-Google-Smtp-Source: ABdhPJwtY1G/9Gm2aR2+u5W638AJD7BFrQ7Tc9LUDapwky5KZzA9JxKuL3oT97oNiYFUndc3200U8w==
-X-Received: by 2002:a65:4208:: with SMTP id c8mr825623pgq.266.1599099213641;
-        Wed, 02 Sep 2020 19:13:33 -0700 (PDT)
-Received: from [10.230.30.107] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id s24sm625150pgv.55.2020.09.02.19.13.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Sep 2020 19:13:32 -0700 (PDT)
-Subject: Re: [RFC net-next 2/2] net: phy: bcm7xxx: request and manage GPHY
- clock
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     netdev@vger.kernel.org, adam.rudzinski@arf.net.pl,
-        m.felsch@pengutronix.de, hkallweit1@gmail.com,
-        richard.leitner@skidata.com, zhengdejin5@gmail.com,
-        devicetree@vger.kernel.org, kernel@pengutronix.de, kuba@kernel.org,
-        robh+dt@kernel.org
-References: <20200902213347.3177881-1-f.fainelli@gmail.com>
- <20200902213347.3177881-3-f.fainelli@gmail.com>
- <20200902222030.GJ3050651@lunn.ch>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <7696bf30-9d7b-ecc9-041d-7d899dd07915@gmail.com>
-Date:   Wed, 2 Sep 2020 19:13:30 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.1.1
+        id S1726526AbgICCWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 22:22:39 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:56015 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726177AbgICCWi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 22:22:38 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id CBCB058012E;
+        Wed,  2 Sep 2020 22:22:36 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Wed, 02 Sep 2020 22:22:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        subject:to:cc:references:from:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=Z
+        HA9Ys3BbFE/uK3mH/P+4binR9tHt/5auQFE5N/VEm0=; b=UzcvB9eY6ycvjTjhV
+        WwTnXWT54TlevB6RLGw7acGaDmeskyXA5dcl+AXs2KFel9Xu8ZW91OO5gokvoQEb
+        zivH2O4QcO1GkP3YGZTyxpG6U5va3Vd/QfQ2vRlcJhRkfa/UJsu3NeklgonwOB6A
+        Mv+ysNCLiF0DAk2o5Llzz+6iGuR+/qpNXEhKqhmHkFOPRRg71+fqc3TQ5ZFbjA8s
+        R6gXI4JesAytjW0D5W9eodwEuGBN0i3A8BCrtow9yervRe7hP7zHKAHiFWzRjVt+
+        +8fx0Lu0+4DpBoU3Si7QDdtAwwcjWBtGv6nTvZR6FBDHfJa1NxFAbsXarwUQ7uMR
+        mvhCg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=ZHA9Ys3BbFE/uK3mH/P+4binR9tHt/5auQFE5N/VE
+        m0=; b=kCjx+/FXNJqGJx61GurAtrQrD3mCorm0S1vRvhGowKWZNZfJ7aM/9TGkT
+        tGAO9nEWiB/TxAGpQ3Xo03Bvd+lVerHFT+R6+uFFTWMEfmC5OVKloqKZb21A8T/4
+        F/HfDXUDHliLuqZzaXZwghjFKkA20r/cQguj4pqadm8GAalR1X8u5JibrwT5aXsx
+        DmvS2ck7cuiqgLpBUv+8nXe6nQU2mdVvMP6yB32a9oE6NoOKmwF8kIqiPJgnOC+t
+        fml/J4PmjFJBrtq8Mt0EcYdCiVc8r4Iw5vPnZXLMNykFaz4GMwgUA0HgMrexJgh5
+        08GmtrMeQg3wQnSa4YvMnjFCS2scg==
+X-ME-Sender: <xms:alNQX4wEEHX0uGS-GN4SuW7TSVpTqmQSPXm53bSeHX4yaehzFhm0uA>
+    <xme:alNQX8TT7RxT0akP6ndzYeo7vZvO-kw2j3xYRrIvzAC6o5H7VThq1l7Dw9jNbcX1x
+    1ODqZHKJHju5mbvCA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudegtddgheejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepgfelkeduveejtdejhfeiledvhfeggeeiieeklefhfeefffffffeg
+    udetteelieejnecukfhppeejtddrudefhedrudegkedrudehudenucevlhhushhtvghruf
+    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgr
+    nhgurdhorhhg
+X-ME-Proxy: <xmx:a1NQX6WalSV9vioGk7RoQzkRnPFRdEOgieAyO3oEhNNE_4b5eHnd5w>
+    <xmx:a1NQX2iColSFeiEwRrHtOTOBO8Iw7GBm0RTF6TTyCNHSPrfP7ITo8w>
+    <xmx:a1NQX6C6fq6_ADG_NFR_ab4Y4vDN90X2fntsA_xaBmK6qdkpbkLT0g>
+    <xmx:bFNQX268XgzMR4ag7dujTr-he2aEqYSBqQzmE3SimjNteIkDOVhC8Q>
+Received: from [192.168.50.169] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 6A1043280063;
+        Wed,  2 Sep 2020 22:22:34 -0400 (EDT)
+Subject: Re: [linux-sunxi] [PATCH 05/16] ASoc: sun4i-i2s: Add 20 and 24 bit
+ support
+To:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@siol.net>,
+        peron.clem@gmail.com, Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com
+References: <20200704113902.336911-1-peron.clem@gmail.com>
+ <20200704113902.336911-6-peron.clem@gmail.com>
+ <1e320dfd-9388-54b2-dba9-7def0bf4bbad@sholland.org>
+ <9148679.oVN3Z7rve9@kista>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <fd714cb6-3650-1eb9-616d-33c00f1442eb@sholland.org>
+Date:   Wed, 2 Sep 2020 21:22:33 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-In-Reply-To: <20200902222030.GJ3050651@lunn.ch>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <9148679.oVN3Z7rve9@kista>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 9/2/2020 3:20 PM, Andrew Lunn wrote:
->> +	priv->clk = devm_clk_get_optional(&phydev->mdio.dev, "sw_gphy");
->> +	if (IS_ERR(priv->clk))
->> +		return PTR_ERR(priv->clk);
->> +
->> +	/* To get there, the mdiobus registration logic already enabled our
->> +	 * clock otherwise we would not have probed this device since we would
->> +	 * not be able to read its ID. To avoid artificially bumping up the
->> +	 * clock reference count, only do the clock enable from a phy_remove ->
->> +	 * phy_probe path (driver unbind, then rebind).
->> +	 */
->> +	if (!__clk_is_enabled(priv->clk))
->> +		ret = clk_prepare_enable(priv->clk);
+On 9/2/20 1:10 PM, Jernej Škrabec wrote:
+> Hi Samuel!
 > 
-> This i don't get. The clock subsystem does reference counting. So what
-> i would expect to happen is that during scanning of the bus, phylib
-> enables the clock and keeps it enabled until after probe. To keep
-> things balanced, phylib would disable the clock after probe.
-
-That would be fine, although it assumes that the individual PHY drivers 
-have obtained the clocks and called clk_prepare_enable(), which is a 
-fair assumption I suppose.
-
+> Dne petek, 10. julij 2020 ob 07:44:51 CEST je Samuel Holland napisal(a):
+>> On 7/4/20 6:38 AM, Clément Péron wrote:
+>>> From: Marcus Cooper <codekipper@gmail.com>
+>>>
+>>> Extend the functionality of the driver to include support of 20 and
+>>> 24 bits per sample.
+>>>
+>>> Signed-off-by: Marcus Cooper <codekipper@gmail.com>
+>>> Signed-off-by: Clément Péron <peron.clem@gmail.com>
+>>> ---
+>>>
+>>>  sound/soc/sunxi/sun4i-i2s.c | 11 +++++++++--
+>>>  1 file changed, 9 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
+>>> index f78167e152ce..bc7f9343bc7a 100644
+>>> --- a/sound/soc/sunxi/sun4i-i2s.c
+>>> +++ b/sound/soc/sunxi/sun4i-i2s.c
+>>> @@ -577,6 +577,9 @@ static int sun4i_i2s_hw_params(struct
+>>> snd_pcm_substream *substream,> 
+>>>  	case 16:
+>>>  		width = DMA_SLAVE_BUSWIDTH_2_BYTES;
+>>>  		break;
+>>>
+>>> +	case 32:
+>>> +		width = DMA_SLAVE_BUSWIDTH_4_BYTES;
+>>> +		break;
+>>
+>> This breaks the sun4i variants, because sun4i_i2s_get_wss returns 4 for a 32
+>> bit width, but it needs to return 3.
 > 
-> If the driver wants the clock enabled all the time, it can enable it
-> in the probe method. The common clock framework will then have two
-> reference counts for the clock, so that when the probe exists, and
-> phylib disables the clock, the CCF keeps the clock ticking. The PHY
-> driver can then disable the clock in .remove.
+> I'm not sure what has WSS with physical width and DMA?
 
-But then the lowest count you will have is 1, which will lead to the 
-clock being left on despite having unbound the PHY driver from the 
-device (->remove was called). This does not allow saving any power 
-unfortunately.
+This is the change where creating a S24_LE stream no longer fails with -EINVAL.
+So this is the change where userspace stops downsampling 24-bit audio sources.
+So this is the change where playback of 24-bit audio sources breaks, because WSS
+is programmed wrong.
 
+>> As a side note, I wonder why we use the physical width (the spacing between
+>> samples in RAM) to drive the slot width. S24_LE takes up 4 bytes per sample
+>> in RAM, which we need for DMA. But I don't see why we would want to
+>> transmit the padding over the wire. I would expect it to be transmitted the
+>> same as S24_3LE (which has no padding). It did not matter before, because
+>> the only supported format had no padding.
 > 
-> There are some PHYs which will enumerate with the clock disabled. They
-> only need it ticking for packet transfer. Such PHY drivers can enable
-> the clock only when needed in order to save some power when the
-> interface is administratively down.
+> Allwinner DMA engines support only 1, 2, 4 and sometimes 8 bytes for bus 
+> width, so if sample is 24 bits in size, we have no other way but to transmit 
+> padding too.
 
-Then the best approach would be for the OF scanning code to enable all 
-clocks reference by the Ethernet PHY node (like it does in the proposed 
-patch), since there is no knowledge of which clock is necessary and all 
-must be assumed to be critical for MDIO bus scanning. Right before 
-drv->probe() we drop all resources reference counts, and from there on 
-->probe() is assumed to manage the necessary clocks.
+I understand why we do 4 byte DMA from RAM <=> I2S FIFO; that was not my
+question. I'm referring to the actual wire format (FIFO <=> PCM_DIN/DOUT). The
+sample is already truncated from 32 bits to 24 bits in the FIFO -- that's what
+TXIM and RXOM in FIFO_CTRL control.
 
-It looks like another solution may be to use the assigned-clocks 
-property which will take care of assigning clock references to devices 
-and having those applied as soon as the clock provider is available.
--- 
-Florian
+If a sample is 24 bits wide, why would we send 32 BCLKs for every LRCK? I would
+expect the slot width to match the sample resolution by default. But yet we have
+this code in the driver:
+
+    unsigned int word_size = params_width(params);
+    unsigned int slot_width = params_physical_width(params);
+
+I think slot_width should be the same as word_size, and I suggest changing it
+before adding 20/24-bit support.
+
+> Best regards,
+> Jernej
+
+Regards,
+Samuel
+
+>>>  	default:
+>>>  		dev_err(dai->dev, "Unsupported physical sample width: 
+> %d\n",
+>>>  		
+>>>  			params_physical_width(params));
+>>>
+>>> @@ -1063,6 +1066,10 @@ static int sun4i_i2s_dai_probe(struct snd_soc_dai
+>>> *dai)> 
+>>>  	return 0;
+>>>  
+>>>  }
+>>>
+>>> +#define SUN4I_FORMATS	(SNDRV_PCM_FMTBIT_S16_LE | \
+>>> +			 SNDRV_PCM_FMTBIT_S20_LE | \
+>>> +			 SNDRV_PCM_FMTBIT_S24_LE)
+>>> +
+>>>
+>>>  static struct snd_soc_dai_driver sun4i_i2s_dai = {
+>>>  
+>>>  	.probe = sun4i_i2s_dai_probe,
+>>>  	.capture = {
+>>>
+>>> @@ -1070,14 +1077,14 @@ static struct snd_soc_dai_driver sun4i_i2s_dai = {
+>>>
+>>>  		.channels_min = 1,
+>>>  		.channels_max = 8,
+>>>  		.rates = SNDRV_PCM_RATE_8000_192000,
+>>>
+>>> -		.formats = SNDRV_PCM_FMTBIT_S16_LE,
+>>> +		.formats = SUN4I_FORMATS,
+>>>
+>>>  	},
+>>>  	.playback = {
+>>>  	
+>>>  		.stream_name = "Playback",
+>>>  		.channels_min = 1,
+>>>  		.channels_max = 8,
+>>>  		.rates = SNDRV_PCM_RATE_8000_192000,
+>>>
+>>> -		.formats = SNDRV_PCM_FMTBIT_S16_LE,
+>>> +		.formats = SUN4I_FORMATS,
+>>>
+>>>  	},
+>>>  	.ops = &sun4i_i2s_dai_ops,
+>>>  	.symmetric_rates = 1,
+> 
+> 
+> 
+> 
+
