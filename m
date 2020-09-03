@@ -2,81 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3563925C809
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 19:27:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED5DE25C838
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 19:49:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726368AbgICR12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 13:27:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47308 "EHLO mail.kernel.org"
+        id S1726678AbgICRtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 13:49:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58790 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726327AbgICR11 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Sep 2020 13:27:27 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726025AbgICRti (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Sep 2020 13:49:38 -0400
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9A3EB20716;
-        Thu,  3 Sep 2020 17:27:26 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id A80822072A;
+        Thu,  3 Sep 2020 17:49:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599154047;
-        bh=t7zI8sJOTQOeS2rxXIac2iDol/sgkY7O7+T2zmbo2EU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=M5hpYffGkuaMwxeTg9w9yZBkfc5QohnUY1fywyCxQFvedeIfmMNVy6dlYf+KeHGgf
-         RAuk19dUK92EJE+p+Rqp6q1j86iOxf7p12QqYEo89f+4JtAJ5qiiZjpx/k67B4110u
-         yXa1mNMsIMsAwr7FfApwH5UHFeS3Kym9lSfm7s1Y=
-Date:   Thu, 3 Sep 2020 18:26:45 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        alsa-devel@alsa-project.org, Sangbeom Kim <sbkim73@samsung.com>,
-        devicetree@vger.kernel.org
+        s=default; t=1599155377;
+        bh=PwReb1wR+sXRrMZqogs7x9Vmd4V3JF81RZqSgbUS1AE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=qhrzzXdXDKnCyd4Ckt/77e8sctFd5/zYPH/VxgZ1/a3GPpMD09GHyD0nzB2isro/N
+         CLCo7KfDkZiv70y2C0tz52eyPXiISAUHCs3HVDSAjhHtv9ku6kQjyGOED0vwfNgQqd
+         MwMREmEHc0mscFdXBzHIH18iNkgdgAaOuIbmvTb4=
+Received: by mail-oi1-f178.google.com with SMTP id r64so3966612oib.6;
+        Thu, 03 Sep 2020 10:49:37 -0700 (PDT)
+X-Gm-Message-State: AOAM530a7JrKhwk//yTG0z8WbINBEzgv4lqDuQBTYICY2P+cehIbc48J
+        piQ8yNgJn6SYDSONU8s6+ZcadNb65JFlisDUbg==
+X-Google-Smtp-Source: ABdhPJxcXEUSmdKY5Vsvo/Ra42Hgg8KjgnWOfsPDJWq3O7EXceTqI+C/z4ChNMurrb2zF+obJSMgWjL333ToKOp8kaE=
+X-Received: by 2002:aca:1711:: with SMTP id j17mr2842660oii.152.1599155376930;
+ Thu, 03 Sep 2020 10:49:36 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200830112633.6732-1-krzk@kernel.org> <159897179515.47719.6003518135515395142.b4-ty@kernel.org>
+ <20200903164738.GA2929052@bogus> <20200903172645.GC4771@sirena.org.uk>
+In-Reply-To: <20200903172645.GC4771@sirena.org.uk>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 3 Sep 2020 11:49:25 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL+_5Lc5vwtqnCZd6Tz9eB1m_oy2r3gtv0cbwBwKTU=dw@mail.gmail.com>
+Message-ID: <CAL_JsqL+_5Lc5vwtqnCZd6Tz9eB1m_oy2r3gtv0cbwBwKTU=dw@mail.gmail.com>
 Subject: Re: [PATCH 1/2] dt-bindings: sound: midas-audio: Correct parsing
  sound-dai phandles
-Message-ID: <20200903172645.GC4771@sirena.org.uk>
-References: <20200830112633.6732-1-krzk@kernel.org>
- <159897179515.47719.6003518135515395142.b4-ty@kernel.org>
- <20200903164738.GA2929052@bogus>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="YD3LsXFS42OYHhNZ"
-Content-Disposition: inline
-In-Reply-To: <20200903164738.GA2929052@bogus>
-X-Cookie: Murphy was an optimist.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+To:     Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Sangbeom Kim <sbkim73@samsung.com>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Sep 3, 2020 at 11:27 AM Mark Brown <broonie@kernel.org> wrote:
+>
+> On Thu, Sep 03, 2020 at 10:47:38AM -0600, Rob Herring wrote:
+>
+> > > [2/2] ASoC: odroid: Use unevaluatedProperties
+> > >       commit: a57307ca6b661e16f9435a25f376ac277c3de697
+>
+> > This one should be reverted/dropped too. Patch 1 is fine.
+>
+> There are others?  What's the issue with them?  It'd be easiest if you
+> could send patches doing whatever reverts you're looking for.
 
---YD3LsXFS42OYHhNZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Just 1 other you picked up. See "ASoC: samsung-i2s: Use
+unevaluatedProperties". Patches adding the missing properties (and
+restoring 'additionalProperties' on these 2 if not reverted) is the
+correct change.
 
-On Thu, Sep 03, 2020 at 10:47:38AM -0600, Rob Herring wrote:
+I've gone thru and NAKed all of the others so more don't get picked up.
 
-> > [2/2] ASoC: odroid: Use unevaluatedProperties
-> >       commit: a57307ca6b661e16f9435a25f376ac277c3de697
 
-> This one should be reverted/dropped too. Patch 1 is fine.
-
-There are others?  What's the issue with them?  It'd be easiest if you
-could send patches doing whatever reverts you're looking for.
-
---YD3LsXFS42OYHhNZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9RJ1UACgkQJNaLcl1U
-h9CFKQf+M6HSYRnla25/KN5u8rIphL3ZtnOOib9oxzgBC9uVZRtuYXAlFG8B5xt8
-olwrYznTD37kK/648QMGn2O+Y9ajhunKSoNMkOb6MmUc124BVRO+2+R+46nmzNRC
-XG0lzmhsGxrv2ECStqXP0fQKQLF4AwxUwo/Hsn+P+lusvTTA4zmHJxMpYDj+1QkX
-5n71UCRjRztsHXoO2kLTYlrtJmasMeMerrojLo92V4IvhBWc0z7cqr5aDqJVPG9l
-swgffAEkPJCqdm6cIckr4r40p59mOELz0eokuujYvdXlhkWgEvOjsPdxv8VpwsYj
-KNOdRpg8ssqWMoQQ/rccJO4wIKe4xA==
-=/qnV
------END PGP SIGNATURE-----
-
---YD3LsXFS42OYHhNZ--
+Rob
