@@ -2,91 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2A0825C2B8
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 16:34:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EED0325C2AF
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 16:33:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729148AbgICOd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 10:33:57 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:36038 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729341AbgICOdu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 10:33:50 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 083D0NVM018319;
-        Thu, 3 Sep 2020 08:00:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599138023;
-        bh=3WdqRH7hTSfO8BTYjThSQo+m44HNLMlp2WI2YV7/76c=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=byoFJPFWXfmo3+n972rHKHRH2cG8v7MExByiiOPl/+lSrBX4LgG4fKhw/cPzk3XiZ
-         SpH+BGK5n9jAl6UBetQHyhsAMSxBPqOdoTtrxHaiOGTMz7Sri9jf9pvFCQVCiJFeMB
-         oSExMZmsU2yOQfRWGT5UqCJhwo6UWL1aUpRgL0jI=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 083D0NaT104182;
-        Thu, 3 Sep 2020 08:00:23 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 3 Sep
- 2020 08:00:22 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 3 Sep 2020 08:00:22 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 083D0MTw061658;
-        Thu, 3 Sep 2020 08:00:22 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <t-kristo@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>, <lokeshvutla@ti.com>,
-        <grygorii.strashko@ti.com>, <nsekhar@ti.com>,
-        Nishanth Menon <nm@ti.com>
-Subject: [PATCH V2 7/8] arm64: dts: ti: k3-am65-wakeup: Use generic temperature-sensor for node name
-Date:   Thu, 3 Sep 2020 08:00:14 -0500
-Message-ID: <20200903130015.21361-8-nm@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200901223059.14801-1-nm@ti.com>
-References: <20200901223059.14801-1-nm@ti.com>
+        id S1729276AbgICOc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 10:32:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36496 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729343AbgICOcH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 10:32:07 -0400
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71A18C061244;
+        Thu,  3 Sep 2020 06:20:24 -0700 (PDT)
+Received: by mail-pf1-x444.google.com with SMTP id u128so2318381pfb.6;
+        Thu, 03 Sep 2020 06:20:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tAstEE7xW6ixGXMVKxjeyJUh3HVzf2XVOU1fodROD9k=;
+        b=sp5V/JNxeuZwW41J3Nt/ItaHN+ymHSD1609wWjH35AIvOnMn3Q8XyuVjRXF/qWZHVc
+         Bf7sNg7i0ZlTYb2w8bzz8kq6c17Y8EaLnxvitxVeibBQpYuBybZyI1u1NtbYFCMuSr6A
+         dWYBMdpRR9jkLQGMsKFOC34Q1F/Ga8JtdKqAHOcwhHWZbnLO1PWhI/zzKfOEH/39UKCW
+         YEuVE+M+fl1hk9KbNh5pIuqrx385OMMdoETaHbg460CYMaf0ruom85rn+CF1t+jKtV3I
+         NLYh0uTVIXDPBXoNSDTBPE8ZtwewdFaBNY8TxbTDmDlUCMhlvkiHA5z9xz4IQTvuQm4A
+         9Q6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tAstEE7xW6ixGXMVKxjeyJUh3HVzf2XVOU1fodROD9k=;
+        b=S+XHPbtgOb78Y7f3syZrq5eHaqAyMXiBBY138nwRo0q/k2LHcImF3hEHAlkFnrySHi
+         M38qyKIRoMpUf/IRo3FSRxYO9VJh05pPvKFwSYs2EXM4JtR3b97Chr2grFKh25C3aDyC
+         Y+RhRzXQZUjXCQ+p7oWzrj+qiH0KiM8EJrNl/FDfuS0T0pTRsD9kHMrRPSz1n9VxxIp9
+         QDV/tP6Z08UKLbmi+hpcLsc1bKcpwtgNy6JUqzHuN8I8KQTHC2qrcDW4z0Joj5Du4LA6
+         v9AqVfFOlthe11UBFQxaLbygYH8GTOOoQsnFJ419UBP9UkWD0UtMepW2uwlpJnSW5R7c
+         6MFA==
+X-Gm-Message-State: AOAM5339uWcwevlh5sdCggm5p9b+fHBaVr/vgTQ9XPpWZEe9pVZmBClN
+        cekRyAu1RElzsHHx2qGf1t6LOiYKReAbGkJMORs=
+X-Google-Smtp-Source: ABdhPJxvCqZfPwguDJuOSLvVm0bhXx1T/QU/L/L588R/Ui4F94yMIF1O6k3OR5G7YZqzuWcFAitepuvit4LisR6/978=
+X-Received: by 2002:aa7:942a:: with SMTP id y10mr2786604pfo.68.1599139221898;
+ Thu, 03 Sep 2020 06:20:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20200903130950.6274-1-nish.malpani25@gmail.com> <20200903130950.6274-2-nish.malpani25@gmail.com>
+In-Reply-To: <20200903130950.6274-2-nish.malpani25@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 3 Sep 2020 16:20:04 +0300
+Message-ID: <CAHp75Vc4hgvgoHrPaxDikqmAoqjpfOwPFTM-AvNvR3Ep=dQEfg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] iio: gyro: adxrs290: Add triggered buffer support
+To:     Nishant Malpani <nish.malpani25@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Bogdan, Dragos" <dragos.bogdan@analog.com>,
+        darius.berghe@analog.com,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use temperature-sensor@ naming for nodes following standard conventions of device
-tree (section 2.2.2 Generic Names recommendation in [1]).
+On Thu, Sep 3, 2020 at 4:10 PM Nishant Malpani <nish.malpani25@gmail.com> wrote:
+>
+> Provide a way for continuous data capture by setting up buffer support. The
+> data ready signal exposed at the SYNC pin of the ADXRS290 is exploited as
+> a hardware interrupt which triggers to fill the buffer.
+>
+> Triggered buffer setup was tested with both hardware trigger (DATA_RDY) and
+> software triggers (sysfs-trig & hrtimer).
 
-[1] https://github.com/devicetree-org/devicetree-specification/tree/v0.3
+...
 
-Suggested-by: Suman Anna <s-anna@ti.com>
-Suggested-by: Vignesh Raghavendra <vigneshr@ti.com>
-Signed-off-by: Nishanth Menon <nm@ti.com>
-Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
-Reviewed-by: Suman Anna <s-anna@ti.com>
----
-Changes:
-v2: None (picked acks/reviews)
-v1: https://lore.kernel.org/linux-arm-kernel/20200901223059.14801-6-nm@ti.com/
+> +static int adxrs290_set_mode(struct iio_dev *indio_dev, enum adxrs290_mode mode)
+> +{
+> +       struct adxrs290_state *st = iio_priv(indio_dev);
+> +       int val, ret;
+> +
+> +       if (st->mode == mode) {
 
- arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> +               ret = 0;
+> +               goto done;
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-index bb498be2f0a4..ed42f13e7663 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-@@ -95,7 +95,7 @@
- 		clock-names = "gpio";
- 	};
- 
--	wkup_vtm0: thermal@42050000 {
-+	wkup_vtm0: temperature-sensor@42050000 {
- 		compatible = "ti,am654-vtm";
- 		reg = <0x42050000 0x25c>;
- 		power-domains = <&k3_pds 80 TI_SCI_PD_EXCLUSIVE>;
+Unlocking the not locked mutex is not good. Have you followed the
+Submitting Patches Checklist? It in particular suggests few debug
+options, like LOCKDEP, to be enabled.
+
+> +       }
+> +
+> +       mutex_lock(&st->lock);
+> +
+> +       ret = spi_w8r8(st->spi, ADXRS290_READ_REG(ADXRS290_REG_POWER_CTL));
+> +       if (ret < 0)
+> +               goto done;
+> +
+> +       val = ret;
+> +
+> +       switch (mode) {
+> +       case ADXRS290_MODE_STANDBY:
+> +               val &= ~ADXRS290_MEASUREMENT;
+> +               break;
+> +       case ADXRS290_MODE_MEASUREMENT:
+> +               val |= ADXRS290_MEASUREMENT;
+> +               break;
+> +       default:
+> +               ret = -EINVAL;
+> +               goto done;
+> +       }
+> +
+> +       ret = adxrs290_spi_write_reg(st->spi,
+> +                                    ADXRS290_REG_POWER_CTL,
+> +                                    val);
+> +       if (ret < 0) {
+> +               dev_err(&st->spi->dev, "unable to set mode: %d\n", ret);
+> +               goto done;
+> +       }
+> +
+> +       /* update cached mode */
+> +       st->mode = mode;
+> +
+
+> +done:
+
+Much better to call it out_unlock. It will help eliminate the mistakes
+like above.
+
+> +       mutex_unlock(&st->lock);
+> +       return ret;
+> +}
+
+...
+
+
+What about
+
+  ret = -EINVAL;
+
+>         switch (mask) {
+>         case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
+>                 lpf_idx = adxrs290_find_match(adxrs290_lpf_3db_freq_hz_table,
+>                                               ARRAY_SIZE(adxrs290_lpf_3db_freq_hz_table),
+>                                               val, val2);
+> -               if (lpf_idx < 0)
+> -                       return -EINVAL;
+
+> +               if (lpf_idx < 0) {
+
+> +                       ret = -EINVAL;
+> +                       break;
+> +               }
+
+Simple
+  break;
+
+and so on?
+
+> +
+>                 /* caching the updated state of the low-pass filter */
+>                 st->lpf_3db_freq_idx = lpf_idx;
+>                 /* retrieving the current state of the high-pass filter */
+>                 hpf_idx = st->hpf_3db_freq_idx;
+> -               return adxrs290_set_filter_freq(indio_dev, lpf_idx, hpf_idx);
+> +               ret = adxrs290_set_filter_freq(indio_dev, lpf_idx, hpf_idx);
+> +               break;
+> +
+>         case IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY:
+>                 hpf_idx = adxrs290_find_match(adxrs290_hpf_3db_freq_hz_table,
+>                                               ARRAY_SIZE(adxrs290_hpf_3db_freq_hz_table),
+>                                               val, val2);
+> -               if (hpf_idx < 0)
+> -                       return -EINVAL;
+> +               if (hpf_idx < 0) {
+> +                       ret = -EINVAL;
+> +                       break;
+> +               }
+> +
+>                 /* caching the updated state of the high-pass filter */
+>                 st->hpf_3db_freq_idx = hpf_idx;
+>                 /* retrieving the current state of the low-pass filter */
+>                 lpf_idx = st->lpf_3db_freq_idx;
+> -               return adxrs290_set_filter_freq(indio_dev, lpf_idx, hpf_idx);
+> +               ret = adxrs290_set_filter_freq(indio_dev, lpf_idx, hpf_idx);
+> +               break;
+> +
+> +       default:
+> +               ret = -EINVAL;
+> +               break;
+>         }
+>
+> -       return -EINVAL;
+> +       iio_device_release_direct_mode(indio_dev);
+> +       return ret;
+>  }
+
+...
+
+> +static irqreturn_t adxrs290_trigger_handler(int irq, void *p)
+> +{
+
+> +       /* exercise a bulk data capture starting from reg DATAX0... */
+> +       ret = spi_write_then_read(st->spi, &tx, sizeof(tx), st->buffer.channels,
+> +                                 sizeof(st->buffer.channels));
+> +       if (ret < 0)
+> +               goto done;
+> +
+> +       iio_push_to_buffers_with_timestamp(indio_dev, &st->buffer,
+> +                                          pf->timestamp);
+> +
+> +done:
+
+out_unlock_notify:
+
+> +       mutex_unlock(&st->lock);
+> +       iio_trigger_notify_done(indio_dev->trig);
+> +
+> +       return IRQ_HANDLED;
+> +}
+
+...
+
+> +static int adxrs290_probe_trigger(struct iio_dev *indio_dev)
+> +{
+> +       struct adxrs290_state *st = iio_priv(indio_dev);
+> +       int ret;
+
+> +       if (!st->spi->irq) {
+> +               dev_info(&st->spi->dev, "no irq, using polling\n");
+> +               return 0;
+> +       }
+
+Wouldn't it be better to have this check outside of the function?
+And taking this into account...
+
+> +}
+
+...
+
+> +       ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
+> +                                             &iio_pollfunc_store_time,
+> +                                             &adxrs290_trigger_handler, NULL);
+> +       if (ret < 0)
+> +               return dev_err_probe(&spi->dev, ret,
+> +                                    "iio triggered buffer setup failed\n");
+
+...do you really have to set up a trigger buffer w/o trigger being probed?
+
+> +       ret = adxrs290_probe_trigger(indio_dev);
+> +       if (ret < 0)
+> +               return ret;
+
 -- 
-2.17.1
-
+With Best Regards,
+Andy Shevchenko
