@@ -2,123 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C69D625C421
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:04:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D923E25C43E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:07:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729367AbgICPEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 11:04:06 -0400
-Received: from mx1.tq-group.com ([62.157.118.193]:9827 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728924AbgICN6U (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Sep 2020 09:58:20 -0400
-IronPort-SDR: PwSSrpM7beoRNGtbZuYVQYarDacF81+BP6yekLAu15x7XInnZ+j5yvbR+RmcJR4SgQGfMy3QxF
- +W1I13/hf7uv7PgjkRcXItnriXG56d2qnPNvuMDwP5TT2rKbRL87qo0YrJWVdCrbqnXg6xRfzf
- doKCClYldLzMX+mQPBcJnZA6Dvz+zQ5Lr1GCrroAPKS8Mx4cGGhMgKw87yxskV3KabPuiYNNeU
- HK/iHvecc8tGVcNFPfxJ45nNmcCZWPMtDaZYSvhFb43LTmeJBpaYKI6cYWI22gusuFIG8S9n+2
- A1k=
-X-IronPort-AV: E=Sophos;i="5.76,386,1592863200"; 
-   d="scan'208";a="13721334"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 03 Sep 2020 15:40:44 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 03 Sep 2020 15:40:44 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 03 Sep 2020 15:40:44 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1599140444; x=1630676444;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=PSRtsYjMIeQn6kkIpSqi/xNdAKBtKRUGER2IFcNijQk=;
-  b=N8JPB2+7SiBeJrScJn+KM0GUbsfIXmUgpzkMlhWMhmo/yN4YxwRQf3cI
-   HTBh2bWXK+2czsdjHkI4rSjEsXwlqaboxcmdup/N/drxkqC902yTb+js2
-   PzhqWK+fPzszJlEd0Wg6Q/zcY2gguuBaQxmEhVUJUyyT27Xe6fsWd5nu/
-   9NajEiQBmfnR/TSAaDJ020PyEaO5xl7rKZ8DkteUnsQBqF6Ic7ETDyavR
-   ZnFZwsOBGLjv2K17N+0YrJTYmf0gJTj828ci3wlmlHqctSn7GAKCwkZoT
-   Pkei9rNfLTeZ6hNJG2GAZEBNxq9lm/6C4hygxryfJbFqRpQykxDmuuwAo
-   Q==;
-IronPort-SDR: zDp6qokfh+UZ5a3ETjcvlv4kekHz7nAQLLDIdpowFcBTrgZGK7bVWsZawcpM6af3jkn2ZirSL+
- xiYF4B0FjTeQEOaqUrbDsjYDlp5zzNTt8x6A2qaU9TbnTj+m+d4F507FtMUS8rYhkK0r0FcaZ2
- 3R3juBoV0vLvMpOzGa/ATiyM1uMEndtaz8TpDz+FLFU2/ic8Szsk318uheKdvVFW6bqVK1t0m7
- S++Z/We4I3MD7SRVT8cjBv34z3oZ3hm9NGMIgVKwU7J9voCKjrdHBBdawFMa00QeAu3dx5F4qY
- xn8=
-X-IronPort-AV: E=Sophos;i="5.76,386,1592863200"; 
-   d="scan'208";a="13721333"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 03 Sep 2020 15:40:43 +0200
-Received: from schifferm-ubuntu4 (unknown [10.117.49.26])
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id C88BD280065;
-        Thu,  3 Sep 2020 15:40:43 +0200 (CEST)
-Message-ID: <ce08696b6bf2b3eaa84d6f056f47a8240c7479f4.camel@ew.tq-group.com>
-Subject: Re: spi-imx: correct interpretation of num-cs DT property?
-From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Date:   Thu, 03 Sep 2020 15:40:43 +0200
-In-Reply-To: <20200903132241.GB4771@sirena.org.uk>
-References: <ecfa135b7b83a31bed821ec0740ab3cf1d39da15.camel@ew.tq-group.com>
-         <20200903132241.GB4771@sirena.org.uk>
+        id S1729293AbgICPFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 11:05:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59170 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728972AbgICN6P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 09:58:15 -0400
+Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com [IPv6:2607:f8b0:4864:20::843])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 967D6C061A1C;
+        Thu,  3 Sep 2020 06:47:01 -0700 (PDT)
+Received: by mail-qt1-x843.google.com with SMTP id v54so1900791qtj.7;
+        Thu, 03 Sep 2020 06:47:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/1zUgRbLsFEeGpq6qPl8QkF9aFlbywUVunqjqh+DadA=;
+        b=NS2xjIIrgMfG6fHEkZ2tKgZsiB5c5jufyPfDsrWkkwsQN3aGPVImUNFhAU5pGZLCVW
+         QzqhTd5yZ4gU172X0vyk+/QuRFMGBiRgtOiKi5CY015MLf69W+BClpzrzmeAUF5WVSB1
+         PDCjSM9xIe1N0/IcaukeQuoG3ka1as/5AFZpDwj+Q9Ut492IVbHApZOeotauloT5kpjB
+         GZyPBAtm19+QrckGNRl2zp/5ubJ1GShk8D6BL+zdizaZ+7F12WAcnSf/ATrUMhvn6lzu
+         wvSHNpwhoUk1yAZHZ1wIo3Wswjp71n2q3t3FedngCX5szlU4oQEsQAszBcaUzkrcyY+M
+         j7+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/1zUgRbLsFEeGpq6qPl8QkF9aFlbywUVunqjqh+DadA=;
+        b=MsPVV0rGp96ja4orVwyE4mvdVbiLBDpqH6xAF/4AeYHV7Ja+cKSV/FTyFCROj6P3uy
+         LHfeLLf6QURteSWphRpMb0X51MSKjjzl2Kcu+Dq2mIy34iprxIdajlX5Mwn9Oj6+sim4
+         5kwMn9Rb64+ep8lRH1zkgm6P57VTHbhr48h/sfp0SJ0wgnX+EXtziZztjGkjI83pb7uo
+         xFASIQjCiO1u7Kni1paRm6yw/LIR7AjsnBQm2FOdRe2vik4Q26/DyENJYa9zD0UHydos
+         hdTyKb0wjxiAWqfBFEdbtyRw2FAk2UAY4tZSNiaxwfB6TJu6xANcn5VMGtCFfwkLntUZ
+         +4ng==
+X-Gm-Message-State: AOAM533+VyRVBppJa8UvvgtRXNMNcanE3QAGRSuDzGHhYrZYcUmhgTis
+        wwtUthJ52gy/2cnrm1IDX/Ee8PhXElA4dZjHxsI=
+X-Google-Smtp-Source: ABdhPJwoqGp8Nybiy91lZwd8lFz0++lRfOZmaGZN+trRIggnRVcc6FYSxM1ILF1U+GxJLSEoRDvmszFmunBsMrdB7uE=
+X-Received: by 2002:aed:26c4:: with SMTP id q62mr3567362qtd.64.1599140820713;
+ Thu, 03 Sep 2020 06:47:00 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200903130950.6274-1-nish.malpani25@gmail.com>
+ <20200903130950.6274-2-nish.malpani25@gmail.com> <CAHp75Vc4hgvgoHrPaxDikqmAoqjpfOwPFTM-AvNvR3Ep=dQEfg@mail.gmail.com>
+In-Reply-To: <CAHp75Vc4hgvgoHrPaxDikqmAoqjpfOwPFTM-AvNvR3Ep=dQEfg@mail.gmail.com>
+From:   Nishant Malpani <nish.malpani25@gmail.com>
+Date:   Thu, 3 Sep 2020 19:16:48 +0530
+Message-ID: <CAEtfd9YioLi=Nr0tMjombhdhyLy_65XUok_viH9_9CPKTz5+5w@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] iio: gyro: adxrs290: Add triggered buffer support
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Bogdan, Dragos" <dragos.bogdan@analog.com>,
+        Darius <darius.berghe@analog.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2020-09-03 at 14:22 +0100, Mark Brown wrote:
-> * PGP Signed by an unknown key
-> 
-> On Thu, Sep 03, 2020 at 11:22:20AM +0200, Matthias Schiffer wrote:
-> 
-> > - If num-cs is set, use that
-> > - If num-cs is unset, use the number of cs-gpios
-> > - If num-cs is unset and no cs-gpios are defined, use a driver-
-> > provided 
-> > default (which is 3 for spi-imx; this matches the number of native
-> > CS
-> > pins in older implementations of this SPI controller; i.MX6 and
-> > newer
-> > support up to 4)
-> 
-> That sounds like what's expected, though we coould just skip the
-> first
-> step.
-> 
-> > Also, would it make sense to add num-cs to all DTS files for boards
-> > that actually use fewer than 3 CS pins?
-> 
-> No, it was never a good idea to have that property in the first place
-> and there should be no case where it helps anything.
+Hello,
 
+Thanks for the review, Andy.
 
-Oh, thank you for the clarification.
+...
 
-As currently no in-tree DTs use the num-cs property for spi-imx and
-it's not documented, should support for it be dropped from the driver
-altogether?
+On Thu, Sep 3, 2020 at 6:50 PM Andy Shevchenko
+<andy.shevchenko@gmail.com> wrote:
+>
+> On Thu, Sep 3, 2020 at 4:10 PM Nishant Malpani <nish.malpani25@gmail.com> wrote:
+> >
+> > Provide a way for continuous data capture by setting up buffer support. The
+> > data ready signal exposed at the SYNC pin of the ADXRS290 is exploited as
+> > a hardware interrupt which triggers to fill the buffer.
+> >
+> > Triggered buffer setup was tested with both hardware trigger (DATA_RDY) and
+> > software triggers (sysfs-trig & hrtimer).
+>
+> ...
+>
+> > +static int adxrs290_set_mode(struct iio_dev *indio_dev, enum adxrs290_mode mode)
+> > +{
+> > +       struct adxrs290_state *st = iio_priv(indio_dev);
+> > +       int val, ret;
+> > +
+> > +       if (st->mode == mode) {
+>
+> > +               ret = 0;
+> > +               goto done;
+>
+> Unlocking the not locked mutex is not good. Have you followed the
+> Submitting Patches Checklist? It in particular suggests few debug
+> options, like LOCKDEP, to be enabled.
+>
 
+Yikes, silly me. Thanks for the suggestion. Will fix this in v3.
 
-> 
-> > At the moment, the num-cs property is not explicitly documented for
-> > the
-> > spi-imx driver, although the driver understands it. I also
-> > suggested to
-> > add this to the docs, which Fabio didn't deem a good idea (I don't
-> > quite understand the reasoning here - isn't num-cs generally a
-> > useful
-> > property to have?)
-> 
-> Could you explain what benefit you would expect having num-cs to
-> offer?
-> 
-> * Unknown Key
-> * 0x5D5487D0
+> > +       }
+> > +
+> > +       mutex_lock(&st->lock);
+> > +
+> > +       ret = spi_w8r8(st->spi, ADXRS290_READ_REG(ADXRS290_REG_POWER_CTL));
+> > +       if (ret < 0)
+> > +               goto done;
+> > +
+> > +       val = ret;
+> > +
+> > +       switch (mode) {
+> > +       case ADXRS290_MODE_STANDBY:
+> > +               val &= ~ADXRS290_MEASUREMENT;
+> > +               break;
+> > +       case ADXRS290_MODE_MEASUREMENT:
+> > +               val |= ADXRS290_MEASUREMENT;
+> > +               break;
+> > +       default:
+> > +               ret = -EINVAL;
+> > +               goto done;
+> > +       }
+> > +
+> > +       ret = adxrs290_spi_write_reg(st->spi,
+> > +                                    ADXRS290_REG_POWER_CTL,
+> > +                                    val);
+> > +       if (ret < 0) {
+> > +               dev_err(&st->spi->dev, "unable to set mode: %d\n", ret);
+> > +               goto done;
+> > +       }
+> > +
+> > +       /* update cached mode */
+> > +       st->mode = mode;
+> > +
+>
+> > +done:
+>
+> Much better to call it out_unlock. It will help eliminate the mistakes
+> like above.
+>
 
+Yes, makes sense.
+
+> > +       mutex_unlock(&st->lock);
+> > +       return ret;
+> > +}
+>
+> ...
+>
+>
+> What about
+>
+>   ret = -EINVAL;
+>
+> >         switch (mask) {
+> >         case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
+> >                 lpf_idx = adxrs290_find_match(adxrs290_lpf_3db_freq_hz_table,
+> >                                               ARRAY_SIZE(adxrs290_lpf_3db_freq_hz_table),
+> >                                               val, val2);
+> > -               if (lpf_idx < 0)
+> > -                       return -EINVAL;
+>
+> > +               if (lpf_idx < 0) {
+>
+> > +                       ret = -EINVAL;
+> > +                       break;
+> > +               }
+>
+> Simple
+>   break;
+>
+> and so on?
+>
+
+Umm, sure would save us a few lines but it seems to me like we are
+trading off readability here. If no one agrees, will change it the way
+you pointed out.
+
+> > +
+> >                 /* caching the updated state of the low-pass filter */
+> >                 st->lpf_3db_freq_idx = lpf_idx;
+> >                 /* retrieving the current state of the high-pass filter */
+> >                 hpf_idx = st->hpf_3db_freq_idx;
+> > -               return adxrs290_set_filter_freq(indio_dev, lpf_idx, hpf_idx);
+> > +               ret = adxrs290_set_filter_freq(indio_dev, lpf_idx, hpf_idx);
+> > +               break;
+> > +
+> >         case IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY:
+> >                 hpf_idx = adxrs290_find_match(adxrs290_hpf_3db_freq_hz_table,
+> >                                               ARRAY_SIZE(adxrs290_hpf_3db_freq_hz_table),
+> >                                               val, val2);
+> > -               if (hpf_idx < 0)
+> > -                       return -EINVAL;
+> > +               if (hpf_idx < 0) {
+> > +                       ret = -EINVAL;
+> > +                       break;
+> > +               }
+> > +
+> >                 /* caching the updated state of the high-pass filter */
+> >                 st->hpf_3db_freq_idx = hpf_idx;
+> >                 /* retrieving the current state of the low-pass filter */
+> >                 lpf_idx = st->lpf_3db_freq_idx;
+> > -               return adxrs290_set_filter_freq(indio_dev, lpf_idx, hpf_idx);
+> > +               ret = adxrs290_set_filter_freq(indio_dev, lpf_idx, hpf_idx);
+> > +               break;
+> > +
+> > +       default:
+> > +               ret = -EINVAL;
+> > +               break;
+> >         }
+> >
+> > -       return -EINVAL;
+> > +       iio_device_release_direct_mode(indio_dev);
+> > +       return ret;
+> >  }
+>
+> ...
+>
+> > +static irqreturn_t adxrs290_trigger_handler(int irq, void *p)
+> > +{
+>
+> > +       /* exercise a bulk data capture starting from reg DATAX0... */
+> > +       ret = spi_write_then_read(st->spi, &tx, sizeof(tx), st->buffer.channels,
+> > +                                 sizeof(st->buffer.channels));
+> > +       if (ret < 0)
+> > +               goto done;
+> > +
+> > +       iio_push_to_buffers_with_timestamp(indio_dev, &st->buffer,
+> > +                                          pf->timestamp);
+> > +
+> > +done:
+>
+> out_unlock_notify:
+>
+
+Okay.
+
+> > +       mutex_unlock(&st->lock);
+> > +       iio_trigger_notify_done(indio_dev->trig);
+> > +
+> > +       return IRQ_HANDLED;
+> > +}
+>
+> ...
+>
+> > +static int adxrs290_probe_trigger(struct iio_dev *indio_dev)
+> > +{
+> > +       struct adxrs290_state *st = iio_priv(indio_dev);
+> > +       int ret;
+>
+> > +       if (!st->spi->irq) {
+> > +               dev_info(&st->spi->dev, "no irq, using polling\n");
+> > +               return 0;
+> > +       }
+>
+> Wouldn't it be better to have this check outside of the function?
+
+I think this function making an early exit makes more sense. The
+CHIP_probe() looks less "noisy" that way.
+
+> And taking this into account...
+>
+> > +}
+>
+> ...
+>
+> > +       ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
+> > +                                             &iio_pollfunc_store_time,
+> > +                                             &adxrs290_trigger_handler, NULL);
+> > +       if (ret < 0)
+> > +               return dev_err_probe(&spi->dev, ret,
+> > +                                    "iio triggered buffer setup failed\n");
+>
+> ...do you really have to set up a trigger buffer w/o trigger being probed?
+>
+
+I suppose one can use software triggers like hrtimer and sysfs-trig...
+
+With regards,
+Nishant Malpani
+
+> > +       ret = adxrs290_probe_trigger(indio_dev);
+> > +       if (ret < 0)
+> > +               return ret;
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
