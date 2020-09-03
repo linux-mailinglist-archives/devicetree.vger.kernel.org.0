@@ -2,84 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5EFC25C73E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 18:43:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DA8225C74D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 18:45:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728321AbgICQnX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 12:43:23 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:40380 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728085AbgICQnW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 12:43:22 -0400
-Received: by mail-io1-f68.google.com with SMTP id j2so3614440ioj.7;
-        Thu, 03 Sep 2020 09:43:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Vm4YZ0rV7T1k22Okll5l0Zfn2qIEM+/b9DI6foS5uOU=;
-        b=eIdixNMwVA1BSVf5r8j4q5hPyRPL52EpoEaisYI4aQUKS3ZJtjD4a6baafk9ylTD3A
-         dA+WKOa0RclbuptiyB/EgsU6F0Gc9NqkJ6i8Ffs278hHSpakjmPIJ+UI0G3Pd6IAzkDA
-         d84bU5urrpfRhGrjrz053Gq0NnMbY4DC+t1ebJpAuVYLR2GOnwxux16w+E5YWKesckt1
-         krBb6UoMjv2AFFSHBIpeSTsjork0r0K0YCUlSNOkHq6NZKPULBczPeThK5KrXNqG2+/Z
-         jV30eQu7NCj1+m5rstb6V1m/VutonmTEnPE1tgveaqpm+ncsNBxiGzKFaFtU4lZ0g4Qm
-         kcUg==
-X-Gm-Message-State: AOAM530monXh5Ei5z5cNobpSQRdBRSXcHOno1JSBzqK9FkDZvJ2WaPcT
-        TdxEf5dW28Lw+OnQ4kGomA==
-X-Google-Smtp-Source: ABdhPJxdGWvSm91m5o4p27kxDEJ3BksNrLtWiBafKboKccHq8iHXL8Nu/05NN9zEgfjXFSxDiBv6CA==
-X-Received: by 2002:a02:834a:: with SMTP id w10mr4193188jag.63.1599151401695;
-        Thu, 03 Sep 2020 09:43:21 -0700 (PDT)
-Received: from xps15 ([64.188.179.249])
-        by smtp.gmail.com with ESMTPSA id w12sm1483444ioa.8.2020.09.03.09.43.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Sep 2020 09:43:21 -0700 (PDT)
-Received: (nullmailer pid 2925553 invoked by uid 1000);
-        Thu, 03 Sep 2020 16:43:19 -0000
-Date:   Thu, 3 Sep 2020 10:43:19 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Kukjin Kim <kgene@kernel.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sangbeom Kim <sbkim73@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        alsa-devel@alsa-project.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Inki Dae <inki.dae@samsung.com>
-Subject: Re: [PATCH 06/10] dt-bindings: sound: samsung-i2s: Use
- unevaluatedProperties
-Message-ID: <20200903164319.GA2925151@bogus>
-References: <20200829142501.31478-1-krzk@kernel.org>
- <20200829142501.31478-6-krzk@kernel.org>
+        id S1728422AbgICQpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 12:45:19 -0400
+Received: from smtprelay0252.hostedemail.com ([216.40.44.252]:47136 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728145AbgICQpS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 12:45:18 -0400
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay05.hostedemail.com (Postfix) with ESMTP id 76A551802926E;
+        Thu,  3 Sep 2020 16:45:15 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,,RULES_HIT:41:355:379:408:599:973:988:989:1260:1277:1311:1313:1314:1345:1359:1381:1437:1515:1516:1518:1534:1542:1593:1594:1711:1730:1747:1777:1792:2194:2199:2393:2559:2562:2828:3138:3139:3140:3141:3142:3354:3622:3865:3866:3867:3868:3872:3874:4037:4321:4362:5007:7754:7901:8957:10004:10226:10400:10466:10848:11026:11232:11473:11658:11914:12043:12048:12296:12297:12438:12740:12760:12895:13161:13229:13255:13439:14096:14097:14181:14346:14659:14721:21080:21627:21966:21990:30012:30014:30034:30054:30091,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:2,LUA_SUMMARY:none
+X-HE-Tag: tree80_350539c270ab
+X-Filterd-Recvd-Size: 3682
+Received: from XPS-9350.home (unknown [47.151.133.149])
+        (Authenticated sender: joe@perches.com)
+        by omf15.hostedemail.com (Postfix) with ESMTPA;
+        Thu,  3 Sep 2020 16:45:13 +0000 (UTC)
+Message-ID: <6b225c10b6c71ffbc79c236b64dcc83fc33cc21b.camel@perches.com>
+Subject: Re: [PATCH 2/3] media: Add support for the AM/FM radio chip KT0913
+ from KT Micro.
+From:   Joe Perches <joe@perches.com>
+To:     Santiago Hormazabal <santiagohssl@gmail.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-kernel@vger.kernel.org
+Date:   Thu, 03 Sep 2020 09:45:12 -0700
+In-Reply-To: <20200831220601.20794-3-santiagohssl@gmail.com>
+References: <20200831220601.20794-1-santiagohssl@gmail.com>
+         <20200831220601.20794-3-santiagohssl@gmail.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.36.4-0ubuntu1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200829142501.31478-6-krzk@kernel.org>
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 29, 2020 at 04:24:57PM +0200, Krzysztof Kozlowski wrote:
-> Additional properties actually might appear (e.g. power-domains) so use
-> unevaluatedProperties to fix dtbs_check warnings like:
-> 
->   arch/arm64/boot/dts/exynos/exynos5433-tm2.dt.yaml: i2s@11440000:
->     Additional properties are not allowed ('power-domains', '#address-cells', 'interrupts', '#size-cells' were unexpected)
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> ---
->  Documentation/devicetree/bindings/sound/samsung-i2s.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+On Mon, 2020-08-31 at 19:06 -0300, Santiago Hormazabal wrote:
+> This chip requires almost no support components and can used over I2C.
+> The driver uses the I2C bus and exposes the controls as a V4L2 radio.
+> Tested with a module that contains this chip (from SZZSJDZ.com,
+> part number ZJ-801B, even tho the company seems defunct now), and an H2+
+> AllWinner SoC running a kernel built off 07d999f of the media_tree.
 
-NAK. See https://lore.kernel.org/r/CAL_JsqKPXJxsHPS34_TCf9bwgKxZNSV4mvQR-WKRnknQVtGGxQ@mail.gmail.com/
+Thanks.
+
+style trivia:
+
+[]
+> diff --git a/drivers/media/radio/radio-kt0913.c b/drivers/media/radio/radio-kt0913.c
+[]
+> +static const struct reg_sequence kt0913_init_regs_to_defaults[] = {
+> +	/* Standby disabled, volume 0dB */
+> +	{ KT0913_REG_RXCFG, 0x881f },
+
+These might be more legible on single lines,
+ignoring the 80 column limits.
+
+> +	/* FM Channel spacing = 50kHz, Right & Left unmuted */
+> +	{ KT0913_REG_SEEK, 0x000b },
+
+etc...
+
+[]
+
+> +static int __kt0913_set_fm_frequency(struct kt0913_device *radio,
+> +				     unsigned int frequency)
+> +{
+> +	return regmap_write(radio->regmap, KT0913_REG_TUNE,
+> +		KT0913_TUNE_FMTUNE_ON | (frequency / KT0913_FMCHAN_MUL));
+
+It might be nicer to align multi-line statements to the
+open parenthesis.
+
+[]
+
+> +static int __kt0913_set_au_gain(struct kt0913_device *radio, s32 gain)
+> +{
+> +	switch (gain) {
+> +	case 6:
+> +		return regmap_update_bits(radio->regmap,
+> +			KT0913_REG_AMSYSCFG, KT0913_AMSYSCFG_AU_GAIN_MASK,
+> +			KT0913_AMSYSCFG_AU_GAIN_6DB);
+> +	case 3:
+> +		return regmap_update_bits(radio->regmap,
+> +			KT0913_REG_AMSYSCFG, KT0913_AMSYSCFG_AU_GAIN_MASK,
+> +			KT0913_AMSYSCFG_AU_GAIN_3DB);
+> +	case 0:
+> +		return regmap_update_bits(radio->regmap,
+> +			KT0913_REG_AMSYSCFG, KT0913_AMSYSCFG_AU_GAIN_MASK,
+> +			KT0913_AMSYSCFG_AU_GAIN_0DB);
+> +	case -3:
+> +		return regmap_update_bits(radio->regmap,
+> +			KT0913_REG_AMSYSCFG, KT0913_AMSYSCFG_AU_GAIN_MASK,
+> +			KT0913_AMSYSCFG_AU_GAIN_MIN_3DB);
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+
+It's generally more legible to write this with an intermediate
+variable holding the changed value.  It's also most commonly
+smaller object code.
+
+static int __kt0913_set_au_gain(struct kt0913_device *radio, s32 gain)
+{
+	int val;
+
+	switch (gain) {
+	case 6:
+		val = KT0913_AMSYSCFG_AU_GAIN_6DB;
+		break;
+	case 3:
+		val = KT0913_AMSYSCFG_AU_GAIN_3DB;
+		break;
+	case 0:
+		val = KT0913_AMSYSCFG_AU_GAIN_0DB;
+		break;
+	case -3:
+		val = KT0913_AMSYSCFG_AU_GAIN_MIN_3DB;
+		break;
+	default:
+		return -EINVAL;
+	}
+
+	return regmap_update_bits(radio->regmap, KT0913_REG_AMSYSCFG,
+				  KT0913_AMSYSCFG_AU_GAIN_MASK, val);
+}
+
+
