@@ -2,54 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01A2325BD3F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 10:27:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED3AF25BD4F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 10:30:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728288AbgICI1W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 04:27:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60056 "EHLO mail.kernel.org"
+        id S1726479AbgICIa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 04:30:59 -0400
+Received: from muru.com ([72.249.23.125]:41858 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725984AbgICI1V (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Sep 2020 04:27:21 -0400
-Received: from localhost (unknown [122.171.179.172])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E96F0208C7;
-        Thu,  3 Sep 2020 08:27:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599121640;
-        bh=AbWFhSZrSoYx6Fp+YWywGEU0EqwcOSISwNIHxOF/xrE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CShokF7yy0Q2skhvanCrcL8gLouFzuDy52Ps63kiiLEPBULkR4dAY07e/OXPSjQ7P
-         ZSxHU3SPp8vlg1wgh8K38DKz5BwfSbZr+YX3tMCaMdGrGsJJP/bNiEJEIFtJOPfJkm
-         +4gDX0yPWjBuP/oVs6/UAKME6cI9pQWKJtTwVoo4=
-Date:   Thu, 3 Sep 2020 13:57:16 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Subject: Re: [RESEND PATCH v2] dt-bindings: renesas,rcar-dmac: Document
- r8a7742 support
-Message-ID: <20200903082716.GM2639@vkoul-mobl>
-References: <20200903073813.4490-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S1726025AbgICIa6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Sep 2020 04:30:58 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 988F880F1;
+        Thu,  3 Sep 2020 08:30:54 +0000 (UTC)
+Date:   Thu, 3 Sep 2020 11:31:29 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Stefan Agner <stefan@agner.ch>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org
+Subject: Re: [PATCH 3/6] ARM: dts: am335x: lxm: Fix PCA9539 GPIO expander
+ properties
+Message-ID: <20200903083129.GA2782@atomide.com>
+References: <20200829094024.31842-1-krzk@kernel.org>
+ <20200829094024.31842-3-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200903073813.4490-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20200829094024.31842-3-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03-09-20, 08:38, Lad Prabhakar wrote:
-> Renesas RZ/G SoC also have the R-Car gen2/3 compatible DMA controllers.
-> Document RZ/G1H (also known as R8A7742) SoC bindings.
+* Krzysztof Kozlowski <krzk@kernel.org> [200829 09:40]:
+> The PCA9539 GPIO expander requires GPIO controller properties to operate
+> properly.
 
-Applied, thanks
+Best to merge this with the rest of the series:
 
--- 
-~Vinod
+Acked-by: Tony Lindgren <tony@atomide.com>
