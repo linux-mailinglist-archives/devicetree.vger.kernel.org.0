@@ -2,76 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2CE425C26C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 16:24:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FFA425C2B7
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 16:33:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729291AbgICOYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 10:24:36 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:49124 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729148AbgICOWX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 10:22:23 -0400
+        id S1729362AbgICOd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 10:33:56 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:36038 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729148AbgICOdd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 10:33:33 -0400
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 083E2QIY062119;
-        Thu, 3 Sep 2020 09:02:26 -0500
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 083D0OZ6018328;
+        Thu, 3 Sep 2020 08:00:24 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599141746;
-        bh=n6y75OS1VKW/QZMhxyG+JtFUMIMKwkz1G/LzqW6xNhs=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=QnNkJ2PeK2Zup/wCo0uVNkzGrkfqz16k5ZfnZtDiypOm04kN0nsdHkGob83a9LiOZ
-         +92x+c1/FoUqx1RUJbOXcrDEfZeeLVKzd2xm0Af1jORBu6zK2oakZ+5bXltWlTLfBa
-         cW8NJLE1q9VEml4k8fQM6GaVy5Ghg5mEchKwCzrE=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 083E2Q1o127486
+        s=ti-com-17Q1; t=1599138024;
+        bh=/yOirMKwPqR9EzI08+WHG1fSfuoVSyvD2ZyHsHRKpdg=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=t+TSXVkT7t1+WZtGQerz890bIJn7UgOgLe0Xf1ESmyoCV1KGXh98aGe+vrXEJDu7x
+         f6vg2/t6PwRKKt4SsmAKvm6eACRHFlT+TIgFH/b+ViBk8ELleXzyWSIEnQzZ4aGTCs
+         KT1Knv5rOt0sSCevx/uOaBcwbWEnRg+J9S7Ye5HI=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 083D0OYM028052
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 3 Sep 2020 09:02:26 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 3 Sep 2020 08:00:24 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 3 Sep
- 2020 09:02:26 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ 2020 08:00:21 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 3 Sep 2020 09:02:26 -0500
-Received: from [10.24.69.20] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 083E2JXZ097877;
-        Thu, 3 Sep 2020 09:02:21 -0500
-Subject: Re: [PATCH V2 2/8] arm64: dts: ti: k3-am65-main: Use lower case
- hexadecimal
-To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <t-kristo@ti.com>
+ Frontend Transport; Thu, 3 Sep 2020 08:00:21 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 083D0LcK084901;
+        Thu, 3 Sep 2020 08:00:21 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <t-kristo@ti.com>
 CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <grygorii.strashko@ti.com>, <nsekhar@ti.com>
+        Vignesh Raghavendra <vigneshr@ti.com>, <lokeshvutla@ti.com>,
+        <grygorii.strashko@ti.com>, <nsekhar@ti.com>,
+        Nishanth Menon <nm@ti.com>
+Subject: [PATCH V2 1/8] arm64: dts: ti: k3-j721e: Use lower case hexadecimal
+Date:   Thu, 3 Sep 2020 08:00:08 -0500
+Message-ID: <20200903130015.21361-2-nm@ti.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200901223059.14801-1-nm@ti.com>
 References: <20200901223059.14801-1-nm@ti.com>
- <20200903130015.21361-3-nm@ti.com>
-From:   Lokesh Vutla <lokeshvutla@ti.com>
-Message-ID: <602d859b-c495-b58f-98c5-d49982344d2e@ti.com>
-Date:   Thu, 3 Sep 2020 19:32:18 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
 MIME-Version: 1.0
-In-Reply-To: <20200903130015.21361-3-nm@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Device tree convention uses lower case a-f for hexadecimals. Fix the
+same.
 
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+Change:
+v2: - new
 
-On 03/09/20 6:30 pm, Nishanth Menon wrote:
-> Device tree convention uses lower case a-f for hexadecimals. Fix the
-> same.
-> 
-> Signed-off-by: Nishanth Menon <nm@ti.com>
+ arch/arm64/boot/dts/ti/k3-j721e.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
-
-Thanks and regards,
-Lokesh
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+index f787aa73aaae..1bb8235d9ffb 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+@@ -127,7 +127,7 @@
+ 		ranges = <0x00 0x00100000 0x00 0x00100000 0x00 0x00020000>, /* ctrl mmr */
+ 			 <0x00 0x00600000 0x00 0x00600000 0x00 0x00031100>, /* GPIO */
+ 			 <0x00 0x00900000 0x00 0x00900000 0x00 0x00012000>, /* serdes */
+-			 <0x00 0x00A40000 0x00 0x00A40000 0x00 0x00000800>, /* timesync router */
++			 <0x00 0x00a40000 0x00 0x00a40000 0x00 0x00000800>, /* timesync router */
+ 			 <0x00 0x06000000 0x00 0x06000000 0x00 0x00400000>, /* USBSS0 */
+ 			 <0x00 0x06400000 0x00 0x06400000 0x00 0x00400000>, /* USBSS1 */
+ 			 <0x00 0x01000000 0x00 0x01000000 0x00 0x0af02400>, /* Most peripherals */
+-- 
+2.17.1
 
