@@ -2,186 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1AB725BE77
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 11:30:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1340725BEB0
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 11:55:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728084AbgICJai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 05:30:38 -0400
-Received: from mail29.static.mailgun.info ([104.130.122.29]:35305 "EHLO
-        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728157AbgICJaf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 05:30:35 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1599125433; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=V17ZsaD5D2v/6h9zbhOSana048DQtYuDfWpBwCQbkzU=; b=CaltHU269tOPyhTZAUKPUD7iKJzL1sv+9Ekg3a2n4DO7luJE/xW5JgbenEISCqLl+oh8lcka
- QdnhvKCBjcyvPSKl31Rln054pWJQc9RDzoLtqd0rMf2u9oAEReD6zXckpxPB0e591zieX+Cd
- 6KIFO9EOT+dFpa1QmScM3qHe+Ao=
-X-Mailgun-Sending-Ip: 104.130.122.29
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 5f50b78d698ee477d1af4190 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 03 Sep 2020 09:29:49
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 3F15FC4339C; Thu,  3 Sep 2020 09:29:49 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.4 required=2.0 tests=ALL_TRUSTED,NICE_REPLY_A,
-        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [10.131.172.121] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 06E20C433C9;
-        Thu,  3 Sep 2020 09:29:43 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 06E20C433C9
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=srivasam@codeaurora.org
-Subject: Re: [PATCH v3 3/5] ASoC: qcom: Add support for lpass hdmi driver
-To:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
-        alsa-devel@alsa-project.org, bgoswami@codeaurora.org,
-        bjorn.andersson@linaro.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, lgirdwood@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        perex@perex.cz, plai@codeaurora.org, robh+dt@kernel.org,
-        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
-        tiwai@suse.com
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-References: <1598855964-1042-1-git-send-email-srivasam@codeaurora.org>
- <1598855964-1042-4-git-send-email-srivasam@codeaurora.org>
- <159894579447.334488.1604209140945740724@swboyd.mtv.corp.google.com>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited
-Message-ID: <36672d15-78bf-ffe7-71a3-4a7ed8664149@codeaurora.org>
-Date:   Thu, 3 Sep 2020 14:59:41 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.2.1
+        id S1726855AbgICJz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 05:55:26 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:34818 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726025AbgICJzZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 05:55:25 -0400
+Received: by mail-ot1-f66.google.com with SMTP id i4so2170784ota.2;
+        Thu, 03 Sep 2020 02:55:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Mxd/4nV94gENPbWr5vineBXcIlKgMjAz5Ru6u3+1SJw=;
+        b=udVVrKLEFnOJSFTTFK3eOTARvNFUhMnnbYdTo+Fu2cVx64k9nCnhTYNWdRjjjerStU
+         mKBP5s3R6G1JTDiJSpgbTL/v4/024K0GLvwqnvCv/91KCRXrGa+TRNbsbca35rmLdWM0
+         9qPA33m+rIoOpffyQOEBSfJPjoSBL9LLm31+Rsn0UCYgvLCHjwTNmNZyJkraPz2d4K++
+         Vbs6LoIFqmGy6kcMI8GRDfY6SaKdAF+Y14B5KbgVvLCie0rGtfKHDO4x+TT/KwQiX/rU
+         9uExa3oivsGBECuP70ySd5OBa/fv0LomYDh6FD823I88ctaR6YvnILetPxyc8oFdJQCd
+         2ZUQ==
+X-Gm-Message-State: AOAM530pteMaHF8OFGJeW78KI58j5U/az4sZXa5Tgu0Ks5PJXswIZETv
+        P8ymOZFMfbHDU/wa6vlhgJe3qh9xciIJOVK/Sl8=
+X-Google-Smtp-Source: ABdhPJyeSRbUKtD7sMTdA7aGWTBEJsisVjdfNr+DMP4gt47zwDTvJkxLTdEJb/z3SByYoU7/hwDepBj6YbI2sQOaBTw=
+X-Received: by 2002:a9d:1b62:: with SMTP id l89mr948617otl.145.1599126923013;
+ Thu, 03 Sep 2020 02:55:23 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <159894579447.334488.1604209140945740724@swboyd.mtv.corp.google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+References: <20200825141805.27105-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20200825141805.27105-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20200825141805.27105-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 3 Sep 2020 11:55:11 +0200
+Message-ID: <CAMuHMdVgO+nkudF_W9oUfqD=Z5dWX2HME5jcTQqA1DsGm3+nrQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iommu: renesas,ipmmu-vmsa: Add r8a7742 support
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Stephen for your time for review!!!
-
-On 9/1/2020 1:06 PM, Stephen Boyd wrote:
-> Quoting Srinivasa Rao Mandadapu (2020-08-30 23:39:22)
->> diff --git a/sound/soc/qcom/lpass-hdmi.c b/sound/soc/qcom/lpass-hdmi.c
->> new file mode 100644
->> index 0000000..7e18113
->> --- /dev/null
->> +++ b/sound/soc/qcom/lpass-hdmi.c
->> @@ -0,0 +1,684 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
-> [...]
->> +
->> +static int lpass_hdmi_daiops_hw_params(struct snd_pcm_substream *substream,
->> +               struct snd_pcm_hw_params *params, struct snd_soc_dai *dai)
->> +{
-> [...]
->> +       data_format = LPASS_DATA_FORMAT_LINEAR;
->> +       ch_sts_buf0 = (((data_format << LPASS_DATA_FORMAT_SHIFT) & LPASS_DATA_FORMAT_MASK)
->> +                               | ((sampling_freq << LPASS_FREQ_BIT_SHIFT) & LPASS_FREQ_BIT_MASK));
->> +       ch_sts_buf1 = (word_length) & LPASS_WORDLENGTH_MASK;
->> +
->> +       ret = regmap_field_write(drvdata->tx_ctl->soft_reset, LPASS_TX_CTL_RESET);
->> +       if (ret) {
->> +               dev_err(dai->dev, "%s error writing to softreset enable : %d\n",
-> All of these strings bloat the kernel image. Can we just return ret
-> instead and if something goes wrong we can use a debug patch to figure
-> out which register write failed? Would a register write even fail to
-> begin with?
-Will remove wherever possible.
+On Tue, Aug 25, 2020 at 4:19 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Document RZ/G1H (R8A7742) SoC bindings.
 >
->> +                                       __func__, ret);
->> +               return ret;
->> +       }
->> +
->> +       ret = regmap_field_write(drvdata->tx_ctl->soft_reset, LPASS_TX_CTL_CLEAR);
->> +       if (ret) {
->> +               dev_err(dai->dev, "%s error writing to softreset disable : %d\n",
->> +                                       __func__, ret);
->> +               return ret;
->> +       }
->> +
->> +       ret = regmap_field_write(drvdata->legacy->legacy_en,
->> +                               LPASS_HDMITX_LEGACY_DISABLE);
->> +       if (ret) {
->> +               dev_err(dai->dev, "%s error writing to legacy_en field : %d\n",
->> +                                       __func__, ret);
->> +               return ret;
->> +       }
->> +
-> [...]
->>   #define LPAIF_DMACTL_REG(v, chan, dir) __LPAIF_DMA_REG(v, chan, dir, CTL)
->>   #define LPAIF_DMABASE_REG(v, chan, dir) __LPAIF_DMA_REG(v, chan, dir, BASE)
->> diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
->> index df692ed..607f4c4 100644
->> --- a/sound/soc/qcom/lpass-platform.c
->> +++ b/sound/soc/qcom/lpass-platform.c
->> @@ -553,7 +702,21 @@ static irqreturn_t lpass_platform_lpaif_irq(int irq, void *data)
->>   
->>          /* Handle per channel interrupts */
->>          for (chan = 0; chan < LPASS_MAX_DMA_CHANNELS; chan++) {
->> -               if (irqs & LPAIF_IRQ_ALL(chan) && drvdata->substream[chan]) {
->> +               switch (v->id) {
->> +               case HDMI_INTERFACE:
->> +                       val = LPAIF_IRQ_HDMI_REQ_ON_PRELOAD(chan) |
->> +                               LPAIF_IRQ_HDMI_METADONE |
->> +                               LPAIF_IRQ_HDMI_SDEEP_AUD_DIS(chan);
->> +                       break;
->> +               case I2S_INTERFACE:
->> +                       val = 0;
->> +                       break;
->> +               default:
->> +                       pr_err("%s: invalid  %d interface\n", __func__, v->id);
-> Any reason we can't use dev_err() here?
-
-It's interrupt handler. Here dev variable is not available.
-
-So we shall remove print as per your previous comment or keep as it is.
-
+> No driver change is needed due to the fallback compatible value
+> "renesas,ipmmu-vmsa".
 >
->> +                       return -EINVAL;
->> +               }
->> +               if (irqs & (LPAIF_IRQ_ALL(chan) | val)
->> +                       && drvdata->substream[chan]) {
->>                          rv = lpass_dma_interrupt_handler(
->>                                                  drvdata->substream[chan],
->>                                                  drvdata, chan, irqs);
->> @@ -644,15 +807,15 @@ int asoc_qcom_lpass_platform_register(struct platform_device *pdev)
->>   
->>          /* ensure audio hardware is disabled */
->>          ret = regmap_write(drvdata->lpaif_map,
->> -                       LPAIF_IRQEN_REG(v, LPAIF_IRQ_PORT_HOST), 0);
->> +                       IRQ_EN(v, LPAIF_IRQ_PORT_HOST), 0);
->>          if (ret) {
->>                  dev_err(&pdev->dev, "error writing to irqen reg: %d\n", ret);
->>                  return ret;
->>          }
->>   
->>          ret = devm_request_irq(&pdev->dev, drvdata->lpaif_irq,
->> -                       lpass_platform_lpaif_irq, IRQF_TRIGGER_RISING,
->> -                       "lpass-irq-lpaif", drvdata);
->> +               lpass_platform_lpaif_irq, IRQF_TRIGGER_RISING,
-> Can we use the irq flags from the firmware, i.e. whatever the DT or ACPI
-> tables say?
-okay.
->
->> +               pdev->name, drvdata);
->>          if (ret) {
->>                  dev_err(&pdev->dev, "irq request failed: %d\n", ret);
->>                  return ret;
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
