@@ -2,117 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 907D125C0F5
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 14:27:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15BF725C0D4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 14:19:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728794AbgICM0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 08:26:38 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:35156 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728756AbgICMZQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 08:25:16 -0400
-Received: by mail-ot1-f65.google.com with SMTP id i4so2526229ota.2;
-        Thu, 03 Sep 2020 05:25:15 -0700 (PDT)
+        id S1728387AbgICMS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 08:18:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43682 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728604AbgICMRz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 08:17:55 -0400
+Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9108EC061246
+        for <devicetree@vger.kernel.org>; Thu,  3 Sep 2020 05:17:12 -0700 (PDT)
+Received: by mail-pj1-x1043.google.com with SMTP id q1so1386791pjd.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Sep 2020 05:17:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=/BKi2i04xBQBPBh/3OfYq0JRpU2M+He5BM3tljwdBCM=;
+        b=CFa0qij2VAf/49RV/zrVX3ncNvnawUqzeGRhAyqR73uvVwsZ6hAeWDUGsG1iks33Yw
+         qw1Yl03RYYHbFFHCzQ0PRzupwQJvkCqZwMICNDOSfgLGE/O4ELoNyjbaPL1hw8vg5FA8
+         8yW4KCkJAbe23y5BhusonlRTSxbSsaG+8h7/E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yoH8otJKneHhR+opHL4Qe3/H5myYYwGysCvobqpQrFU=;
-        b=qNuPrdImKETtHEhctvhPOLQv3LzCc1JEWOBIulpHGKUcGGBbTaadJ5kJT0HrJVkeQL
-         RM4iLwqrLubl33Q5LTHZYEh3sPVKS1DvfJpL1MTvrK/6ZF99xitJy3rrtC+NgPKCcz6I
-         SUcHDNWIXE2Cj6KWNx6PfuWaTkPRrASdtPmJPQRAuTvC8u8MF5Tsuuo8iWW+CcqMPIil
-         aKUOP1z8yIhM9av/R9dj6LDSV0bCLorNoC84vMqufqCPV6u3gDR1tdbdE3ZY4PzdGrTR
-         qXCq+5/oEfnzCTtQl/SQKaqeIS+VA0wJVrG+gr5O6E0s0nlqYtPKgZrk/add/yhcHd37
-         N2gQ==
-X-Gm-Message-State: AOAM531SThgdb9mwXJ/39HtCR+9cMifM6jzAuLG5BFSMQsDYLlpVFIzU
-        31cYS4tQDe9cd1uxtjOQfp5fUvlvnsrGpLLnRQt9d90JplY=
-X-Google-Smtp-Source: ABdhPJx6avH3C2TKsyCvh/3I9dhPX40IElmyXMkGAOAO9ix8cDNZKHbE66NR+61my3IRjdnIpw+n+bSrWEBHgpegwSk=
-X-Received: by 2002:a9d:1b62:: with SMTP id l89mr1331699otl.145.1599135265698;
- Thu, 03 Sep 2020 05:14:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200825162718.5838-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20200825162718.5838-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20200825162718.5838-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 3 Sep 2020 14:14:14 +0200
-Message-ID: <CAMuHMdUbxtb+Yg=3dgRXWXn2k2tGYcmVzbS-n6rLM0QAJrfo-A@mail.gmail.com>
-Subject: Re: [PATCH 3/4] ARM: dts: r8a7742-iwg21d-q7: Add can0 support to
- carrier board
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=/BKi2i04xBQBPBh/3OfYq0JRpU2M+He5BM3tljwdBCM=;
+        b=HkFQrBbcIJskfisu/lzagju9pZ6auv5xoIovpbx/MTOv82EI7TEhATgt7aNKhpr+nG
+         3u4LsH1EQq4yHbEAmJ+5omhaGaLjaoAJzM3/bxm8vJHylftx4lCTvpLhumGqydQ3mf2Y
+         3Mo5BxSCPEqTAnK3ZlZk/DdTGJsqcST62W9R/oU6yF2c3XaB3c9P5zHOa+YTm9SO+fRM
+         osEUTFrxScUOlu4JB32Wd3e6M3lOC6XE1T4qvLyFpjwTZ6IxTI6sOX8KD8GRqbJxbXmx
+         MflvoUNcxPGbfo/cEBl7bTIES+PFUuRAgncVXi4fG9JPhdkSuDoDe1SC3rCCQmZzCBPY
+         3dmg==
+X-Gm-Message-State: AOAM531h2ey476R/FLCnDz9xv6cXQEw2oSxEf0HiRGDT/BrzGptE3aND
+        xbLi+LGYSxoZ/JUThjRlxIuCAA==
+X-Google-Smtp-Source: ABdhPJyRNKcBgEX/LHFE+6DRGovh0X2K5LHGwdLni0au93gA95eaRzC4WEulWXQDvMWRqPJEHgWOjA==
+X-Received: by 2002:a17:90a:858a:: with SMTP id m10mr2854307pjn.185.1599135431975;
+        Thu, 03 Sep 2020 05:17:11 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id q201sm3130842pfq.80.2020.09.03.05.17.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Sep 2020 05:17:11 -0700 (PDT)
+Date:   Thu, 3 Sep 2020 05:17:10 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Add 'sustainable_power' for
+ CPU thermal zones
+Message-ID: <20200903121710.GG3419728@google.com>
+References: <20200813113030.1.I89c33c4119eaffb986b1e8c1bc6f0e30267089cd@changeid>
+ <20200901170745.GA3419728@google.com>
+ <CAD=FV=Xv0FLtWWcQcRy7p2LPNdDtSjdarsvNHRHaLkWwABnwJw@mail.gmail.com>
+ <8ad0589e-102d-7523-899f-0ebe85b7d2b8@codeaurora.org>
+ <CAD=FV=XKUEQP3gyE8E2UOE12qKYwzgMp0eNeYjCp0DxPDACSMQ@mail.gmail.com>
+ <6693eed6-9a6b-48c8-e56e-acdde9cf9ffe@codeaurora.org>
+ <f77d9b24-dbca-cea0-2ef8-3c5cf0c2f2dd@codeaurora.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f77d9b24-dbca-cea0-2ef8-3c5cf0c2f2dd@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+Hi Rajendra,
 
-On Tue, Aug 25, 2020 at 6:28 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> This patch enables CAN0 interface exposed through connector J20 on the
-> carrier board.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
+On Thu, Sep 03, 2020 at 11:00:52AM +0530, Rajendra Nayak wrote:
+> 
+> On 9/3/2020 10:14 AM, Rajendra Nayak wrote:
+> > 
+> > On 9/2/2020 9:02 PM, Doug Anderson wrote:
+> > > Hi,
+> > > 
+> > > On Tue, Sep 1, 2020 at 10:36 PM Rajendra Nayak <rnayak@codeaurora.org> wrote:
+> > > > 
+> > > > 
+> > > > > * In terms of the numbers here, I believe that you're claiming that we
+> > > > > can dissipate 768 mW * 6 + 1202 mW * 2 = ~7 Watts of power.  My memory
+> > > > > of how much power we could dissipate in previous laptops I worked on
+> > > > > is a little fuzzy, but that doesn't seem insane for a passively-cooled
+> > > > > laptop.  However, I think someone could conceivably put this chip in a
+> > > > > smaller form factor.  In such a case, it seems like we'd want these
+> > > > > things to sum up to ~2000 (if it would ever make sense for someone to
+> > > > > put this chip in a phone) or ~4000 (if it would ever make sense for
+> > > > > someone to put this chip in a small tablet).  It seems possible that,
+> > > > > to achieve this, we might have to tweak the
+> > > > > "dynamic-power-coefficient".
+> > > > 
+> > > > DPC values are calculated (at a SoC) by actually measuring max power at various
+> > > > frequency/voltage combinations by running things like dhrystone.
+> > > > How would the max power a SoC can generate depend on form factors?
+> > > > How much it can dissipate sure is, but then I am not super familiar how
+> > > > thermal frameworks end up using DPC for calculating power dissipated,
+> > > > I am guessing they don't.
+> > > > 
+> > > > > I don't know how much thought was put
+> > > > > into those numbers, but the fact that the little cores have a super
+> > > > > round 100 for their dynamic-power-coefficient makes me feel like they
+> > > > > might have been more schwags than anything.  Rajendra maybe knows?
+> > > > 
+> > > > FWIK, the values are always scaled and normalized to 100 for silver and
+> > > > then used to derive the relative DPC number for gold. If you see the DPC
+> > > > for silver cores even on sdm845 is a 100.
+> > > > Again these are not estimations but based on actual power measurements.
+> > > 
+> > > The scaling to 100 doesn't seem to match how the thermal framework is
+> > > using them.  Take a look at of_cpufreq_cooling_register().  It takes
+> > > the "dynamic-power-coefficient" and passes it as "capacitance" into
+> > > __cpufreq_cooling_register().  That's eventually used to compute
+> > > power, which is documented in the code to be in mW.
+> > > 
+> > > power = (u64)capacitance * freq_mhz * voltage_mv * voltage_mv;
+> > > do_div(power, 1000000000);
+> > > 
+> > > /* power is stored in mW */
+> > > freq_table[i].power = power;
+> > > 
+> > > That's used together with "sustainable-power", which is the attribute
+> > > that Matthias is trying to set.  That value is documented to be in mW
+> > > as well.
+> > > 
+> > > ...so if the silver cores are always scaled to 100 regardless of how
+> > > much power they actually draw then it'll be impossible to actually
+> > > think about "sustainable-power" as a mW value.  Presumably we either
+> > > need to accept that fact (and ideally document it) or we need to
+> > > change the values for silver / gold cores (we could still keep the
+> > > relative values the same and just scale them).
+> > 
+> > That sounds reasonable (still keep the relative values and scale them)
+> > I'll get back on what those scaled numbers would look like, and try to
+> > get some sense of why this scaling to 100 was done (like you said
+> > I don't see any documentation on this), but I see atleast a few other non-qcom
+> > SoCs doing this too in mainline (like rockchip/rk3399)
+> 
+> On second thoughts, why wouldn't a relative 'sustainable-power' value work?
+> On every device, one would need to do the exercise that Matthias did to come
+> up with the OPP at which we can sustain max CPU/GPU loads anyway.
 
-According to my schematics, the CAN port on J20 has its signals named
-CAN0_[RT]XD on the carrier board, but connected to CAN1[RT]X (GP4_[67])
-on the SoM.
+You assume that a thermal zone only has cooling devices of a the same type (or
+with the same fake unit for power consumption). This falls apart when multiple
+types are used, which is common.
 
-Or am I looking at the wrong file?
+Also sustainable power is only a derived value, the lying already starts in
+the energy model, which is used by EAS, so a fake unit could cause further
+problems.
 
-> --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
-> +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
-> @@ -198,6 +198,13 @@
->         };
->  };
->
-> +&can0 {
+> I mean even if we do change the DPC values to match actual power, Matthias would
+> still observe that we can sustain at the very same OPP and not any different.
+> Its just that the mW values that are passed to kernel are relative and not
+> absolute. My worry is that perhaps no SoC vendor wants to put these absolute numbers
+> out.
 
-can1
-
-> +       pinctrl-0 = <&can0_pins>;
-
-can1_pins
-
-> +       pinctrl-names = "default";
-> +
-> +       status = "okay";
-> +};
-> +
->  &cmt0 {
->         status = "okay";
->  };
-
-> @@ -287,6 +303,11 @@
->                 function = "tpu0";
->         };
->
-> +       can0_pins: can0 {
-> +               groups = "can0_data_d";
-
-can1_data_b
-
-> +               function = "can0";
-> +       };
-> +
->         i2c2_pins: i2c2 {
->                 groups = "i2c2_b";
->                 function = "i2c2";
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+This is pretty much 'security' by obscurity. It would be relatively easy to
+measure actual power consumption at different CPU speeds and derive the DPC
+values from that.
