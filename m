@@ -2,105 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB5A525BEF4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 12:19:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AA9B25BF27
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 12:37:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726967AbgICKTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 06:19:00 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:34568 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726479AbgICKS5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 06:18:57 -0400
-Received: by mail-oi1-f195.google.com with SMTP id z22so2609053oid.1;
-        Thu, 03 Sep 2020 03:18:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/K2TceG+YMiMk03lA1/MkZv11rftVfSaLBq2a+jxQc8=;
-        b=qaaBS6RtHt1XYsqBC1a7I57NwwAEXblT8/S9by8t2/hUFF0xKlgoJv6z2P7QMLw7AX
-         Y0XXBb/XwDLGowjUZvpiRNjceI1s5ZWDXm0YIQKaULmI11vEXkWuoI5T8g67Bn626I6S
-         pujx5ZtFZLfR9uXLSi+EAuxNV1UCN8Q6Rb0xcbZbnEdiJJtSatq9omYuUOyodHGbtpxn
-         qLvw0ATUW6qjizwkzGp99dQpOMlVcojra82vEp/79Xp4/5CRrKda8E70ZdGLzisoRzXl
-         1zHXjtjIlu8xnQ5y3sTuBmzP2o+q2xhOSUpmbuKbQULdS5gC0+lbCArp3ayXsXoL031A
-         jjeQ==
-X-Gm-Message-State: AOAM5319hro6XSn7ACOjCMX5KEGuGI9UVKfdaqMNG5b2/dJ/JRUUhGqv
-        IPAFiLxfHdsA8xUume6SV4Hpp7DW79BRlJaUBY+rQG2fP0A=
-X-Google-Smtp-Source: ABdhPJygFHNDUkjk3+rmdBnoZmAJdF/YWtr4NhfoiZrjCH9Eq7jvuwgTPXwEDXAMPSmAWyXJS+rtQBViBj54DoQym+g=
-X-Received: by 2002:aca:52d6:: with SMTP id g205mr1540672oib.54.1599128336542;
- Thu, 03 Sep 2020 03:18:56 -0700 (PDT)
+        id S1726162AbgICKhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 06:37:11 -0400
+Received: from mo-csw1516.securemx.jp ([210.130.202.155]:34272 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726293AbgICKhL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 06:37:11 -0400
+Received: by mo-csw.securemx.jp (mx-mo-csw1516) id 083AanZf025005; Thu, 3 Sep 2020 19:36:50 +0900
+X-Iguazu-Qid: 34tMd2lTh3bNiiFngA
+X-Iguazu-QSIG: v=2; s=0; t=1599129409; q=34tMd2lTh3bNiiFngA; m=yfx5tZuaGPpIcb54aw33BqY59ofmVGV8uHIvgpiLVes=
+Received: from imx12.toshiba.co.jp (imx12.toshiba.co.jp [61.202.160.132])
+        by relay.securemx.jp (mx-mr1513) id 083AampL037729;
+        Thu, 3 Sep 2020 19:36:48 +0900
+Received: from enc02.toshiba.co.jp ([61.202.160.51])
+        by imx12.toshiba.co.jp  with ESMTP id 083AamnJ018789;
+        Thu, 3 Sep 2020 19:36:48 +0900 (JST)
+Received: from hop101.toshiba.co.jp ([133.199.85.107])
+        by enc02.toshiba.co.jp  with ESMTP id 083AaltQ027249;
+        Thu, 3 Sep 2020 19:36:47 +0900
+From:   Punit Agrawal <punit1.agrawal@toshiba.co.jp>
+To:     Ben Levinsky <ben.levinsky@xilinx.com>
+Cc:     stefanos@xilinx.com, michals@xilinx.com, michael.auchter@ni.com,
+        devicetree@vger.kernel.org, emooring@xilinx.com,
+        mathieu.poirier@linaro.org, linux-remoteproc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, jliang@xilinx.com,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v11 3/5] firmware: xilinx: Add RPU configuration APIs
+References: <20200902165846.3366-1-ben.levinsky@xilinx.com>
+        <20200902165846.3366-4-ben.levinsky@xilinx.com>
+Date:   Thu, 03 Sep 2020 19:36:46 +0900
+In-Reply-To: <20200902165846.3366-4-ben.levinsky@xilinx.com> (Ben Levinsky's
+        message of "Wed, 2 Sep 2020 09:58:44 -0700")
+X-TSB-HOP: ON
+Message-ID: <87zh67p2o1.fsf@kokedama.swc.toshiba.co.jp>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.3 (gnu/linux)
 MIME-Version: 1.0
-References: <20200825162718.5838-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20200825162718.5838-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20200825162718.5838-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 3 Sep 2020 12:18:45 +0200
-Message-ID: <CAMuHMdVVvDEq-GSsPDrx09TCfGCWkNQvGYrNWP4gK2=63G2z1w@mail.gmail.com>
-Subject: Re: [PATCH 1/4] ARM: dts: r8a7742-iwg21d-q7: Enable PCIe Controller
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+Hi Ben,
 
-On Tue, Aug 25, 2020 at 6:28 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Enable PCIe Controller and set PCIe bus clock frequency.
+Noticed some issues while going through the code. A couple of queries
+below.
+
+Ben Levinsky <ben.levinsky@xilinx.com> writes:
+
+> This patch adds APIs to access to configure RPU and its
+> processor-specific memory.
 >
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.10.
-
-One thing to double-check below.
-
-> --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
-> +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
-> @@ -238,6 +238,18 @@
->         /* status = "okay"; */
->  };
+> That is query the run-time mode of RPU as either split or lockstep as well
+> as API to set this mode. In addition add APIs to access configuration of
+> the RPUs' tightly coupled memory (TCM).
 >
-> +&pcie_bus_clk {
-> +       clock-frequency = <100000000>;
-> +};
+> Signed-off-by: Ben Levinsky <ben.levinsky@xilinx.com>
+> ---
+> v3:
+> - add xilinx-related platform mgmt fn's instead of wrapping around
+>   function pointer in xilinx eemi ops struct
+> v4:
+> - add default values for enums
+> v9:
+> - update commit message
+> - for zynqmp_pm_set_tcm_config and zynqmp_pm_get_rpu_mode update docs for
+>   expected output, arguments as well removing unused args
+> - remove unused fn zynqmp_pm_get_node_status
+> v11:
+> - update usage of zynqmp_pm_get_rpu_mode to return rpu mode in enum
+> - update zynqmp_pm_set_tcm_config and zynqmp_pm_set_rpu_mode arguments to remove unused args
+> ---
+>  drivers/firmware/xilinx/zynqmp.c     | 59 ++++++++++++++++++++++++++++
+>  include/linux/firmware/xlnx-zynqmp.h | 18 +++++++++
+>  2 files changed, 77 insertions(+)
+>
+> diff --git a/drivers/firmware/xilinx/zynqmp.c b/drivers/firmware/xilinx/zynqmp.c
+> index a966ee956573..807e404589f8 100644
+> --- a/drivers/firmware/xilinx/zynqmp.c
+> +++ b/drivers/firmware/xilinx/zynqmp.c
+> @@ -846,6 +846,65 @@ int zynqmp_pm_release_node(const u32 node)
+>  }
+>  EXPORT_SYMBOL_GPL(zynqmp_pm_release_node);
+>  
+> +/**
+> + * zynqmp_pm_get_rpu_mode() - Get RPU mode
+> + * @node_id:	Node ID of the device
+> + * @rpu_mode:	return by reference value
+> + *		either split or lockstep
+> + *
+> + * Return:	return 0 on success or error+reason.
+> + *		if success, then  rpu_mode will be set
+> + *		to current rpu mode.
+> + */
+> +int zynqmp_pm_get_rpu_mode(u32 node_id, enum rpu_oper_mode *rpu_mode)
+> +{
+> +	u32 ret_payload[PAYLOAD_ARG_CNT];
+> +	int ret;
 > +
-> +&pciec {
-> +       /* SW2[6] determines which connector is activated
-> +        * ON = PCIe X4 (connector-J7)
-> +        * OFF = mini-PCIe (connector-J26)
+> +	ret = zynqmp_pm_invoke_fn(PM_IOCTL, node_id,
+> +				  IOCTL_GET_RPU_OPER_MODE, 0, 0, ret_payload);
+> +	if (ret < 0)
+> +		(void)rpu_mode;
 
-The table on page 14 says it's the other way around.
+There seems to be something missing from this statement. What is
+expected from "(void)rpu_mode" here.
 
-According to the CBTL02042ABQ datasheet, PCIe_SEL = low
-selects the first channel (PCIe x4), while PCIe_SEL = high selects the
-second channel (mini-PCIe).
-Enabling the switch ties the signal low, so the table must be wrong.
-
-> +        */
-> +       status = "okay";
-> +};
+> +	else
+> +		*rpu_mode = ret_payload[0];
 > +
->  &pfc {
->         avb_pins: avb {
->                 groups = "avb_mdio", "avb_gmii";
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(zynqmp_pm_get_rpu_mode);
+> +
+> +/**
+> + * zynqmp_pm_set_rpu_mode() - Set RPU mode
+> + * @node_id:	Node ID of the device
+> + * @arg1:	Argument 1 to requested IOCTL call. This is expeted to
+> + *              to be value from enum rpu_oper_mode
+> + *
+> + * This function is used to set RPU mode to split or lockstep
+> + *
+> + * Return: Returns status, either success or error+reason
+> + */
+> +int zynqmp_pm_set_rpu_mode(u32 node_id, u32 arg1)
 
-Gr{oetje,eeting}s,
+If arg1 is expected to be "enum rpu_oper_mode" please have the function
+argument reflect that and do any conversion needed inside the function.
 
-                        Geert
+> +{
+> +	return zynqmp_pm_invoke_fn(PM_IOCTL, node_id,
+> +				   IOCTL_SET_RPU_OPER_MODE, arg1, 0, NULL);
+> +}
+> +EXPORT_SYMBOL_GPL(zynqmp_pm_set_rpu_mode);
+> +
+> +/**
+> + * zynqmp_pm_set_tcm_config - configure TCM
+> + * @arg1:	Argument 1 to requested IOCTL call
+> + *              either PM_RPU_TCM_COMB or PM_RPU_TCM_SPLIT
+> + *
+> + * This function is used to set RPU mode to split or combined
+> + *
+> + * Return: status: 0 for success, else failure
+> + */
+> +int zynqmp_pm_set_tcm_config(u32 node_id, u32 arg1)
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Same comment as above - with the appropriate enum ofcourse.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks,
+Punit
+
+> +{
+> +	return zynqmp_pm_invoke_fn(PM_IOCTL, node_id,
+> +				   IOCTL_TCM_COMB_CONFIG, arg1, 0, NULL);
+> +}
+> +EXPORT_SYMBOL_GPL(zynqmp_pm_set_tcm_config);
+> +
+>  /**
+>   * zynqmp_pm_force_pwrdwn - PM call to request for another PU or subsystem to
+>   *             be powered down forcefully
+
+[...]
+
