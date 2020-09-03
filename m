@@ -2,91 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9814525C0FB
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 14:29:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4010E25C112
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 14:34:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728871AbgICM27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 08:28:59 -0400
-Received: from szxga07-in.huawei.com ([45.249.212.35]:57448 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728843AbgICM2k (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Sep 2020 08:28:40 -0400
-Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.59])
-        by Forcepoint Email with ESMTP id AFCE63F9BEBA75A3CE5D;
-        Thu,  3 Sep 2020 20:28:32 +0800 (CST)
-Received: from thunder-town.china.huawei.com (10.174.177.253) by
- DGGEMS412-HUB.china.huawei.com (10.3.19.212) with Microsoft SMTP Server id
- 14.3.487.0; Thu, 3 Sep 2020 20:28:24 +0800
-From:   Zhen Lei <thunder.leizhen@huawei.com>
-To:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-CC:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>
-Subject: [PATCH 2/3] ARM: debug: add UART early console support for SD5203
-Date:   Thu, 3 Sep 2020 20:27:33 +0800
-Message-ID: <20200903122734.2369-3-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
-In-Reply-To: <20200903122734.2369-1-thunder.leizhen@huawei.com>
-References: <20200903122734.2369-1-thunder.leizhen@huawei.com>
+        id S1728878AbgICMdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 08:33:51 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:43657 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728685AbgICMco (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 08:32:44 -0400
+Received: by mail-ot1-f66.google.com with SMTP id v16so2499503otp.10;
+        Thu, 03 Sep 2020 05:32:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=can7pBcZYDul0Yv961+RYr27uzFiovUj2L4qqu06vo4=;
+        b=m0at/2ZddyPOrGauz8Gik9j7DIC1dBfoT9idULCGENTPwCcWJcRmA8up5jC3ZEtz+G
+         hp/s36QaYWVnK6h78VXGRtowL0MvGKs+LJujLgp9a5hndSKjQ7ct6wHs8GB4NtIEfpdB
+         IbihvUZzu4JVsY8fTin9i/YYnkYYzQ+p9wuHTvq7ckMi3UYDaKrxnk4LqCkLEZdvEC6e
+         mkw0msAD9irWXrQHUB/KTaveirn9L7B3lv8RT0CSWf+LCm6Xt1x+fgkhoGpxAut8heKD
+         o2tp5MCr16PEY7rbMwTer1Ru67k1KcY7AwuTFUFFs8xsTrog/lVf3b2A3ifjjQRuYijy
+         pfng==
+X-Gm-Message-State: AOAM532xBakKRoNlzv4q1UFNZ/iCX1cQ1TseWex00otlESEZSqaSAiD4
+        /kL7NsPhclU8mB15oCBassTfwK4t1mA9gZZ3T3a6eLcg
+X-Google-Smtp-Source: ABdhPJx6ZN6dIKCLmZa8/h6JuRl/a8sbPFsQdsiD7b3k8qmpNJCRyue7gicu/8dRp3YgYp1zte94/1mVNN5TwHZSEPk=
+X-Received: by 2002:a9d:1b62:: with SMTP id l89mr1387866otl.145.1599136328504;
+ Thu, 03 Sep 2020 05:32:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.174.177.253]
-X-CFilter-Loop: Reflected
+References: <20200827145315.26261-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20200827145315.26261-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20200827145315.26261-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 3 Sep 2020 14:31:57 +0200
+Message-ID: <CAMuHMdWs-K=i7Z7fcsWTPj0N_eqs03KUGL6msiCyQXd6v2tq0g@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: r8a774e1: Add FDP1 device nodes
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kefeng Wang <wangkefeng.wang@huawei.com>
+On Thu, Aug 27, 2020 at 4:53 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> From: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+>
+> Add FDP1 device nodes to R8A774E1 (RZ/G2H) SoC dtsi.
+>
+> Signed-off-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Add support of early console for SD5203.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.10.
 
-Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
----
- arch/arm/Kconfig.debug | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+Gr{oetje,eeting}s,
 
-diff --git a/arch/arm/Kconfig.debug b/arch/arm/Kconfig.debug
-index 80000a66a4e3..d27a7764c3bf 100644
---- a/arch/arm/Kconfig.debug
-+++ b/arch/arm/Kconfig.debug
-@@ -1086,6 +1086,14 @@ choice
- 		  on SA-11x0 UART ports. The kernel will check for the first
- 		  enabled UART in a sequence 3-1-2.
- 
-+	config DEBUG_SD5203_UART
-+		bool "Hisilicon SD5203 Debug UART"
-+		depends on ARCH_SD5203
-+		select DEBUG_UART_8250
-+		help
-+		  Say Y here if you want kernel low-level debugging support
-+		  on SD5203 UART.
-+
- 	config DEBUG_SOCFPGA_UART0
- 		depends on ARCH_SOCFPGA
- 		bool "Use SOCFPGA UART0 for low-level debug"
-@@ -1639,6 +1647,7 @@ config DEBUG_UART_PHYS
- 	default 0x11006000 if DEBUG_MT6589_UART0
- 	default 0x11009000 if DEBUG_MT8135_UART3
- 	default 0x16000000 if DEBUG_INTEGRATOR
-+	default 0x1600d000 if DEBUG_SD5203_UART
- 	default 0x18000300 if DEBUG_BCM_5301X
- 	default 0x18000400 if DEBUG_BCM_HR2
- 	default 0x18010000 if DEBUG_SIRFATLAS7_UART0
-@@ -1841,7 +1850,7 @@ config DEBUG_UART_VIRT
- 	default 0xfec60000 if DEBUG_SIRFPRIMA2_UART1
- 	default 0xfec90000 if DEBUG_RK32_UART2
- 	default 0xfed0c000 if DEBUG_DAVINCI_DA8XX_UART1
--	default 0xfed0d000 if DEBUG_DAVINCI_DA8XX_UART2
-+	default 0xfed0d000 if DEBUG_DAVINCI_DA8XX_UART2 || DEBUG_SD5203_UART
- 	default 0xfed60000 if DEBUG_RK29_UART0
- 	default 0xfed64000 if DEBUG_RK29_UART1 || DEBUG_RK3X_UART2
- 	default 0xfed68000 if DEBUG_RK29_UART2 || DEBUG_RK3X_UART3
+                        Geert
+
 -- 
-2.26.0.106.g9fadedd
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
