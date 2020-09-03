@@ -2,68 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 002AF25C9C4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 21:54:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEDB225C9E8
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 22:02:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729308AbgICTxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 15:53:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50064 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729292AbgICTxv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Sep 2020 15:53:51 -0400
-Received: from localhost.localdomain (unknown [194.230.155.106])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C14FC20716;
-        Thu,  3 Sep 2020 19:53:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599162831;
-        bh=P0rEj1OHJTcAo/AOa1NwkT4HC3i3MhAMkpa8XH0S4GU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=fWyC5sgxtPTHg2IGBaQETV9Xks0QoKTb8mCF6PeZ/xPxaoB16XI+u5XCH8dVF4V3n
-         nkNykxrJFPWf5Lafv8bGkY6rQ0CdZFNPoEY4Viuk0JCrQ43oMvUhrQCRpu4OuQQNk7
-         pUzog0XenOrNnl9MBl27RM2XC3BPFDLt1MtjFqhk=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v2 3/3] MAINTAINERS: Add dt-bindings to mailbox entry
-Date:   Thu,  3 Sep 2020 21:53:25 +0200
-Message-Id: <20200903195325.5394-3-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200903195325.5394-1-krzk@kernel.org>
-References: <20200903195325.5394-1-krzk@kernel.org>
+        id S1729393AbgICUCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 16:02:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59304 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729336AbgICUCo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 16:02:44 -0400
+Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1FFDC061244;
+        Thu,  3 Sep 2020 13:02:43 -0700 (PDT)
+Received: by mail-io1-xd44.google.com with SMTP id b16so4713615ioj.4;
+        Thu, 03 Sep 2020 13:02:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fGULVC05C5sCXhEYpC/+9Z2Ga4C2yVjc8ZyDOioAvkU=;
+        b=EdP0J4d67KA9Z04eQwpbg4AXblH4icfhJzxrgoDtGi1drJDGJZ6A1Cc4lOOZIzbNQ7
+         I5oHurAQmm31BoHE99b0/vAeN27X5keXUvspjNeUF3NExOMeX8nHcTYWD66/Ve4AIA6r
+         SNdpPYGHzM1H5zjZLGS2JkojrO7wAYpaoASrSbD73tj0yV8MHn9anwOlaR9JvBpuuBSH
+         dwVFzH8iIlZSc6AL7/IDSjNNK0Y5jutH+tWMLDjsgRlCbgcvmitZdBDP5TADNPhsTkcK
+         0m8KsTKjWyKXWMNKR8FcDXiyc4WQ8gIqNigZkMFg376s4xEo45c5wIz8GCbZI5LlCaxG
+         90kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fGULVC05C5sCXhEYpC/+9Z2Ga4C2yVjc8ZyDOioAvkU=;
+        b=rK6MjSWyicxvppK0oiiK42ZRsUNpafoJcIYle9/Bk47eVX5sd5Mv+vwowf1lZ58CAi
+         cq9TfMkAZWYfPgZ+WJNLb2yrdbYl8uEosMkF2r2dCuJfGi8XihDWxtUp/N/G9B4Q+agg
+         hM5bvyjDBG/B/IszmjjQEjeJRsWWIySH0gkaMlt69kJ/qrL9N4iubKVuzOZc1TrmBJKY
+         IRwO2+xp6wubomYj2pdJye++qoKynfxd9OLaI5Mne9Q906B5+DhezZbj2ZbIYwui7mz+
+         C4R+/k30ljuacoTxBuXUes1VhSGfUISCDKDZeCaeGjruy/hxVIrUZLOQyUlRqwy1lQkO
+         UYmQ==
+X-Gm-Message-State: AOAM530g7JSJz505dl4SlrYmS4S6DAxr9vmkcoRCK3HVmFwNYNAOehoy
+        1/LPNlLlaS3BRUPNzUoqgGKVe4z9QcD+NdY/CBk=
+X-Google-Smtp-Source: ABdhPJw2fUBB+yaKwX5FZLc8HuO05Z9/+K7Ld3VyqD0BtRUWO7C/9O2RbrunRj9dOgQNqO3na4R8IxFkbgn6AW3k32k=
+X-Received: by 2002:a6b:908:: with SMTP id t8mr4535957ioi.124.1599163362945;
+ Thu, 03 Sep 2020 13:02:42 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200426104115.22630-4-peron.clem@gmail.com> <20200428081321.ht3el26yqhsnyfm4@gilmour.lan>
+ <CAJiuCcdVs_drs40Q6537BYfz24F7NmC6B8S5-Lt4V4ggs-FXWA@mail.gmail.com>
+ <20200429123529.y24dpy63wxq7uvkt@gilmour.lan> <CAJiuCcfXqizcq_JuXRCsqEqM2562cr1SGJ0pmy07jcJxAXojOw@mail.gmail.com>
+ <20200430084600.samghw4zxb5zdbez@gilmour.lan> <CAJiuCcf_LHrJ6QdZgH8HyN6TRiT+GiD+t4UggFCrz-VwVHXV6w@mail.gmail.com>
+ <20200504120942.lnrxnnmykqnvw3fb@gilmour.lan> <CAJiuCceF340FiLvyeXNZtvqftQMAmk=MtFDLT_9696ix+eH1Yw@mail.gmail.com>
+ <20200729143927.47f5tbuaob4ph3lp@gilmour.lan> <20200729151548.GB5612@sirena.org.uk>
+In-Reply-To: <20200729151548.GB5612@sirena.org.uk>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Thu, 3 Sep 2020 22:02:31 +0200
+Message-ID: <CAJiuCcdf=TNLPTUPzHP9NzPHqdxG06TRDkQfONY+ScK0DV_v5w@mail.gmail.com>
+Subject: Re: [PATCH v3 3/7] ASoC: sun4i-i2s: Add support for H6 I2S
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Maxime Ripard <maxime@cerno.tech>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Marcus Cooper <codekipper@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Cover the dt-bindings of mailbox drivers by mailbox maintainers entry.
+Hi Maxime,
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+On Wed, 29 Jul 2020 at 17:16, Mark Brown <broonie@kernel.org> wrote:
+>
+> On Wed, Jul 29, 2020 at 04:39:27PM +0200, Maxime Ripard wrote:
+>
+> > It really looks like the polarity of LRCK is fine though. The first word
+> > is sent with LRCK low, and then high, so we have channel 0 and then
+> > channel 1 which seems to be the proper ordering?
+>
+> Yes, that's normal.
 
----
+Thank you very much for this test.
 
-Changes since v1:
-1. New patch
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+So I will revert the following commit:
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bb0cb31d323b..d3d8dedbaf22 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10417,6 +10417,7 @@ MAILBOX API
- M:	Jassi Brar <jassisinghbrar@gmail.com>
- L:	linux-kernel@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/mailbox/
- F:	drivers/mailbox/
- F:	include/linux/mailbox_client.h
- F:	include/linux/mailbox_controller.h
--- 
-2.17.1
+ASoC: sun4i-i2s: Fix the LRCK polarity
 
+https://github.com/clementperon/linux/commit/dd657eae8164f7e4bafe8b875031a7c6c50646a9
+
+Regards,
+Clement
