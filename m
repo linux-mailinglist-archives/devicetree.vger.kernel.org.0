@@ -2,111 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F7DC25BA0F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 07:25:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F5E425BA25
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 07:35:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725943AbgICFZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 01:25:22 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:38180 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725919AbgICFZV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 01:25:21 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0835PGpK106044;
-        Thu, 3 Sep 2020 00:25:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599110716;
-        bh=gBdMuSqpoJW5+xK4b3xBor8GR+5z9HkxD1LroMmwd0o=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=nCwvJHb4cTIgz0czU5mwtGvPzqf1BZmnb1+bCRwz7FDsyvkjnwBvq9ktjxwy0g0jA
-         ftWz4SrnKDvDDodTw8/luxIb45MNHjMTfmigipDi0H7LElAFpxyR46Ay1I5Ocy7QNI
-         54sTyMrVhG7QeSmhlH0JR8V6yH3DjxT1uqo0GO0s=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0835PGM4080260;
-        Thu, 3 Sep 2020 00:25:16 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 3 Sep
- 2020 00:25:14 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 3 Sep 2020 00:25:15 -0500
-Received: from [10.250.235.166] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0835PBC9061764;
-        Thu, 3 Sep 2020 00:25:12 -0500
-Subject: Re: [PATCH 6/7] arm64: dts: ti: k3-*: Use generic adc for node names
-To:     Nishanth Menon <nm@ti.com>, Suman Anna <s-anna@ti.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <t-kristo@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <lokeshvutla@ti.com>,
-        <grygorii.strashko@ti.com>, <nsekhar@ti.com>
-References: <20200901223059.14801-1-nm@ti.com>
- <20200901223059.14801-7-nm@ti.com>
- <60e6b790-360a-6eaf-03a3-5bb256adf215@ti.com>
- <20200902181820.nlvl3pfzeh4agzzi@akan>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-Message-ID: <9fb2f8f4-5eeb-6190-9cbf-b28084c58a8f@ti.com>
-Date:   Thu, 3 Sep 2020 10:55:11 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1727057AbgICFft (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 01:35:49 -0400
+Received: from mail29.static.mailgun.info ([104.130.122.29]:13831 "EHLO
+        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727004AbgICFfs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 01:35:48 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1599111347; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: References: Cc: To: From:
+ Subject: Sender; bh=QxLbEY4fPM95K18HKZ88A52NMY5/8p3x1bABMOpDSXY=; b=fTwMEAEyTS/BR9dnLuZlamx+XwRNaySM3WDsbv44JVtORCXLJTewO91Fvn6xUCiizYk3xWlf
+ /OikTG1C4wWLuEu6leVRJThD8p0b6yJ5hfaIzW4p7Na57WPEsrQsTBkro4tKJH5qbQ0Lt+a4
+ qNqVLcYNgG2BnI0nlnpjKTX7xmM=
+X-Mailgun-Sending-Ip: 104.130.122.29
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 5f507f94be06707b345a92d8 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 03 Sep 2020 05:31:00
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id EF05CC4339C; Thu,  3 Sep 2020 05:30:59 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.4 required=2.0 tests=ALL_TRUSTED,NICE_REPLY_A,
+        SPF_NONE,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [192.168.1.16] (unknown [61.3.23.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D24E1C433C6;
+        Thu,  3 Sep 2020 05:30:55 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D24E1C433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=rnayak@codeaurora.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Add 'sustainable_power' for CPU
+ thermal zones
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+References: <20200813113030.1.I89c33c4119eaffb986b1e8c1bc6f0e30267089cd@changeid>
+ <20200901170745.GA3419728@google.com>
+ <CAD=FV=Xv0FLtWWcQcRy7p2LPNdDtSjdarsvNHRHaLkWwABnwJw@mail.gmail.com>
+ <8ad0589e-102d-7523-899f-0ebe85b7d2b8@codeaurora.org>
+ <CAD=FV=XKUEQP3gyE8E2UOE12qKYwzgMp0eNeYjCp0DxPDACSMQ@mail.gmail.com>
+ <6693eed6-9a6b-48c8-e56e-acdde9cf9ffe@codeaurora.org>
+Message-ID: <f77d9b24-dbca-cea0-2ef8-3c5cf0c2f2dd@codeaurora.org>
+Date:   Thu, 3 Sep 2020 11:00:52 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <20200902181820.nlvl3pfzeh4agzzi@akan>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <6693eed6-9a6b-48c8-e56e-acdde9cf9ffe@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
 
-On 9/2/20 11:48 PM, Nishanth Menon wrote:
-> On 11:51-20200902, Suman Anna wrote:
->> On 9/1/20 5:30 PM, Nishanth Menon wrote:
->>> Use adc@ naming for nodes following standard conventions of device
->>> tree (section 2.2.2 Generic Names recommendation in [1]).
->>>
->>> [1] https://github.com/devicetree-org/devicetree-specification/tree/v0.3
->>>
->>> Suggested-by: Suman Anna <s-anna@ti.com>
->>> Signed-off-by: Nishanth Menon <nm@ti.com>
->>> ---
->>>  arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi         | 4 ++--
->>>  arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 4 ++--
->>>  2 files changed, 4 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
->>> index 51ca4b4d4c21..6dfec68ac865 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
->>> @@ -80,7 +80,7 @@
->>>  		#size-cells = <0>;
->>>  	};
->>>  
->>> -	tscadc0: tscadc@40200000 {
->>> +	tscadc0: adc@40200000 {
+On 9/3/2020 10:14 AM, Rajendra Nayak wrote:
+> 
+> On 9/2/2020 9:02 PM, Doug Anderson wrote:
+>> Hi,
 >>
->> OK with these changes, since these seem to be only have the adc child nodes.
->> This node is essentially a parent node for touchscreen and adc child nodes. The
->> driver is currently looking for "tsc" on touchscreen child nodes, but none of
->> the K3 SoCs have them atm.
+>> On Tue, Sep 1, 2020 at 10:36 PM Rajendra Nayak <rnayak@codeaurora.org> wrote:
+>>>
+>>>
+>>>> * In terms of the numbers here, I believe that you're claiming that we
+>>>> can dissipate 768 mW * 6 + 1202 mW * 2 = ~7 Watts of power.  My memory
+>>>> of how much power we could dissipate in previous laptops I worked on
+>>>> is a little fuzzy, but that doesn't seem insane for a passively-cooled
+>>>> laptop.  However, I think someone could conceivably put this chip in a
+>>>> smaller form factor.  In such a case, it seems like we'd want these
+>>>> things to sum up to ~2000 (if it would ever make sense for someone to
+>>>> put this chip in a phone) or ~4000 (if it would ever make sense for
+>>>> someone to put this chip in a small tablet).  It seems possible that,
+>>>> to achieve this, we might have to tweak the
+>>>> "dynamic-power-coefficient".
+>>>
+>>> DPC values are calculated (at a SoC) by actually measuring max power at various
+>>> frequency/voltage combinations by running things like dhrystone.
+>>> How would the max power a SoC can generate depend on form factors?
+>>> How much it can dissipate sure is, but then I am not super familiar how
+>>> thermal frameworks end up using DPC for calculating power dissipated,
+>>> I am guessing they don't.
+>>>
+>>>> I don't know how much thought was put
+>>>> into those numbers, but the fact that the little cores have a super
+>>>> round 100 for their dynamic-power-coefficient makes me feel like they
+>>>> might have been more schwags than anything.  Rajendra maybe knows?
+>>>
+>>> FWIK, the values are always scaled and normalized to 100 for silver and
+>>> then used to derive the relative DPC number for gold. If you see the DPC
+>>> for silver cores even on sdm845 is a 100.
+>>> Again these are not estimations but based on actual power measurements.
 >>
+>> The scaling to 100 doesn't seem to match how the thermal framework is
+>> using them.  Take a look at of_cpufreq_cooling_register().  It takes
+>> the "dynamic-power-coefficient" and passes it as "capacitance" into
+>> __cpufreq_cooling_register().  That's eventually used to compute
+>> power, which is documented in the code to be in mW.
+>>
+>> power = (u64)capacitance * freq_mhz * voltage_mv * voltage_mv;
+>> do_div(power, 1000000000);
+>>
+>> /* power is stored in mW */
+>> freq_table[i].power = power;
+>>
+>> That's used together with "sustainable-power", which is the attribute
+>> that Matthias is trying to set.  That value is documented to be in mW
+>> as well.
+>>
+>> ...so if the silver cores are always scaled to 100 regardless of how
+>> much power they actually draw then it'll be impossible to actually
+>> think about "sustainable-power" as a mW value.  Presumably we either
+>> need to accept that fact (and ideally document it) or we need to
+>> change the values for silver / gold cores (we could still keep the
+>> relative values the same and just scale them).
 > 
-> 
-> Vignesh: are you ok with this, care to comment?
-> 
+> That sounds reasonable (still keep the relative values and scale them)
+> I'll get back on what those scaled numbers would look like, and try to
+> get some sense of why this scaling to 100 was done (like you said
+> I don't see any documentation on this), but I see atleast a few other non-qcom
+> SoCs doing this too in mainline (like rockchip/rk3399)
 
-On K3 SoCs, ADC IP is reuse from AM335x but just lacks resistive
-touchscreen interfaces. So, existing AM335x ADC driver is being reused
-for K3 devices as well. Unfortunately, ADC driver cannot be used as
-standalone and is dependent on MFD parent to be present...
-Above node represents the MFD parent and ADC itself is the child node
-(see arch/arm64/boot/dts/ti/k3-am654-base-board.dts). So, I recommend
-that we keep this node's name as tscadc in order to avoid having same
-name for parent and child node which will be quite confusing.
+On second thoughts, why wouldn't a relative 'sustainable-power' value work?
+On every device, one would need to do the exercise that Matthias did to come
+up with the OPP at which we can sustain max CPU/GPU loads anyway.
+I mean even if we do change the DPC values to match actual power, Matthias would
+still observe that we can sustain at the very same OPP and not any different.
+Its just that the mW values that are passed to kernel are relative and not
+absolute. My worry is that perhaps no SoC vendor wants to put these absolute numbers
+out.
 
-Regards
-Vignesh
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
