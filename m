@@ -2,149 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C7AB25B9E8
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 06:49:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F7DC25BA0F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 07:25:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725943AbgICEtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 00:49:52 -0400
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:42411 "EHLO
-        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725843AbgICEtw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 00:49:52 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 315275C01AA;
-        Thu,  3 Sep 2020 00:49:51 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute3.internal (MEProxy); Thu, 03 Sep 2020 00:49:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm3; bh=05SWJLotmdvCJDcdh94+gFiA3KVL9br
-        7SHzW1A/LNHc=; b=kXlyMg0jXkUa1i2ofTbAwVaAj9DFM5AtFXJDQRZXdqfYkvk
-        nvN9D+0p+cgAS3UiJo8COubV/avjqdAokQlbSOYU6MjEZGYFDxsy3f71lG+qrjPc
-        MMSvviZv4tS6atHXRYlQ9ccPyy8ZTTC/7uF3wVTo7G4ZiLIlxI7hSigdYrWFs4MD
-        fJILlrdakPOfz2qpl4qRXAletL3N27PnrUOaUD3wxS7/TJRNQMPfab2AO+AMz3x8
-        D+KZ9FKCvtRH+XUmKU3rjLKPWMoqGRJpn6oHBJieeyQ6lZA3P0pyZy1XNDM214xy
-        KdchMaPptiyh8ilw1v8cUwOWRv+DUBWE1/hW8Bw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=05SWJL
-        otmdvCJDcdh94+gFiA3KVL9br7SHzW1A/LNHc=; b=mqV49qp/V+MD0gF+OoFs4F
-        0Mcx7VvKlP6VMnxEHcaYUOiMjhh+ZiUibt99oqlBGjTvs/1aySgSN9PQzgjsTHS2
-        MBR7IWHDIXQTMfvk6nlGrrzWtPx/8coInYi1OP82yaMG4TVFAKlfbHRjSIIJQbch
-        ixrUZ5aipB+E4NiPwlnhbiQJismfASrmdfX9NSdxGHzukDM6ScUG3/UA0pEVGClC
-        2jV68Bl6UoWY7CzqjCXdJViObwYN/GXQqdD9q9i9LkxixlJETJKyOQ56oJmFuZSU
-        Tl0nCsmfG4hqKL+0V492YY1TQ5CDbbTG+kuWLzLwayeN7qimUMpFMQLXnO5GJpAg
-        ==
-X-ME-Sender: <xms:7nVQXzCwkTJrQ88albNexYNykRne8x1YN06NE6p2rhoQkKRu0yyj0g>
-    <xme:7nVQX5hAicAUztC2kqdbYvN3SaIhpdrMvYxRXzD8hm6RWkoPrybmtEn-doqmMa1TC
-    l3HSJU8jCrOzkiWFQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudegtddgkeekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhephefhfeekgfekudevheffheeihedujeefjeevjeefudfgfeeutdeuvdeh
-    hfevueffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    eprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:7nVQX-lo-Z1nTIH6FBib3_b8IqBCIiJv0yHDvvminbKSeQBuO2hv4Q>
-    <xmx:7nVQX1xtImFjN6MgSqSfxLMrjct7wYJ9a2kzcsv3tvZmKlBXJ__jSQ>
-    <xmx:7nVQX4T8_B4XQVhHZkPk7UmBK8k9c7qWUoDcSmE6Mu-h58R1ycIclA>
-    <xmx:73VQX-doZbbqCZFIxkNmQNo5jRxamnw59mBoj2J5kXIswCjPCc7ADw>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 45478E00DF; Thu,  3 Sep 2020 00:49:50 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.3.0-257-g770afc8-fm-20200903.002-g770afc8a
-Mime-Version: 1.0
-Message-Id: <d1fb6ecb-6343-40b9-b05c-dfb73e8bb058@www.fastmail.com>
-In-Reply-To: <20200728025527.174503-3-joel@jms.id.au>
-References: <20200728025527.174503-1-joel@jms.id.au>
- <20200728025527.174503-3-joel@jms.id.au>
-Date:   Thu, 03 Sep 2020 14:19:29 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Joel Stanley" <joel@jms.id.au>, linux-fsi@lists.ozlabs.org,
-        "Rob Herring" <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        "Eddie James" <eajames@linux.ibm.com>
-Subject: Re: [PATCH 2/5] fsi: aspeed: Support cabled FSI
-Content-Type: text/plain
+        id S1725943AbgICFZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 01:25:22 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:38180 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725919AbgICFZV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 01:25:21 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0835PGpK106044;
+        Thu, 3 Sep 2020 00:25:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599110716;
+        bh=gBdMuSqpoJW5+xK4b3xBor8GR+5z9HkxD1LroMmwd0o=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=nCwvJHb4cTIgz0czU5mwtGvPzqf1BZmnb1+bCRwz7FDsyvkjnwBvq9ktjxwy0g0jA
+         ftWz4SrnKDvDDodTw8/luxIb45MNHjMTfmigipDi0H7LElAFpxyR46Ay1I5Ocy7QNI
+         54sTyMrVhG7QeSmhlH0JR8V6yH3DjxT1uqo0GO0s=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0835PGM4080260;
+        Thu, 3 Sep 2020 00:25:16 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 3 Sep
+ 2020 00:25:14 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 3 Sep 2020 00:25:15 -0500
+Received: from [10.250.235.166] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0835PBC9061764;
+        Thu, 3 Sep 2020 00:25:12 -0500
+Subject: Re: [PATCH 6/7] arm64: dts: ti: k3-*: Use generic adc for node names
+To:     Nishanth Menon <nm@ti.com>, Suman Anna <s-anna@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <t-kristo@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <lokeshvutla@ti.com>,
+        <grygorii.strashko@ti.com>, <nsekhar@ti.com>
+References: <20200901223059.14801-1-nm@ti.com>
+ <20200901223059.14801-7-nm@ti.com>
+ <60e6b790-360a-6eaf-03a3-5bb256adf215@ti.com>
+ <20200902181820.nlvl3pfzeh4agzzi@akan>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <9fb2f8f4-5eeb-6190-9cbf-b28084c58a8f@ti.com>
+Date:   Thu, 3 Sep 2020 10:55:11 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20200902181820.nlvl3pfzeh4agzzi@akan>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Nishanth,
 
+On 9/2/20 11:48 PM, Nishanth Menon wrote:
+> On 11:51-20200902, Suman Anna wrote:
+>> On 9/1/20 5:30 PM, Nishanth Menon wrote:
+>>> Use adc@ naming for nodes following standard conventions of device
+>>> tree (section 2.2.2 Generic Names recommendation in [1]).
+>>>
+>>> [1] https://github.com/devicetree-org/devicetree-specification/tree/v0.3
+>>>
+>>> Suggested-by: Suman Anna <s-anna@ti.com>
+>>> Signed-off-by: Nishanth Menon <nm@ti.com>
+>>> ---
+>>>  arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi         | 4 ++--
+>>>  arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 4 ++--
+>>>  2 files changed, 4 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+>>> index 51ca4b4d4c21..6dfec68ac865 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+>>> +++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+>>> @@ -80,7 +80,7 @@
+>>>  		#size-cells = <0>;
+>>>  	};
+>>>  
+>>> -	tscadc0: tscadc@40200000 {
+>>> +	tscadc0: adc@40200000 {
+>>
+>> OK with these changes, since these seem to be only have the adc child nodes.
+>> This node is essentially a parent node for touchscreen and adc child nodes. The
+>> driver is currently looking for "tsc" on touchscreen child nodes, but none of
+>> the K3 SoCs have them atm.
+>>
+> 
+> 
+> Vignesh: are you ok with this, care to comment?
+> 
 
-On Tue, 28 Jul 2020, at 12:25, Joel Stanley wrote:
-> Some FSI capable systems have internal FSI signals, and some have
-> external cabled FSI. Software can detect which machine this is by
-> reading a jumper GPIO, and also control which pins the signals are
-> routed to through a mux GPIO.
-> 
-> This attempts to find the GPIOs at probe time. If they are not present
-> in the device tree the driver will not error and continue as before.
-> 
-> The mux GPIO is owned by the FSI driver to ensure it is not modified at
-> runtime. The routing jumper obtained as non-exclusive to allow other
-> software to inspect it's state.
-> 
-> Signed-off-by: Joel Stanley <joel@jms.id.au>
-> ---
->  drivers/fsi/fsi-master-aspeed.c | 46 +++++++++++++++++++++++++++++++++
->  1 file changed, 46 insertions(+)
-> 
-> diff --git a/drivers/fsi/fsi-master-aspeed.c b/drivers/fsi/fsi-master-aspeed.c
-> index 2b8ca72baeb5..c282de76e6e7 100644
-> --- a/drivers/fsi/fsi-master-aspeed.c
-> +++ b/drivers/fsi/fsi-master-aspeed.c
-> @@ -13,6 +13,7 @@
->  #include <linux/regmap.h>
->  #include <linux/slab.h>
->  #include <linux/iopoll.h>
-> +#include <linux/gpio/consumer.h>
->  
->  #include "fsi-master.h"
->  
-> @@ -417,6 +418,45 @@ static int aspeed_master_init(struct 
-> fsi_master_aspeed *aspeed)
->  	return 0;
->  }
->  
-> +static int tacoma_cabled_fsi_fixup(struct device *dev)
-> +{
-> +	struct gpio_desc *routing_gpio, *mux_gpio;
-> +	int gpio;
-> +
-> +	/*
-> +	 * The routing GPIO is a jumper indicating we should mux for the
-> +	 * externally connected FSI cable.
-> +	 */
-> +	routing_gpio = devm_gpiod_get_optional(dev, "fsi-routing",
-> +			GPIOD_IN | GPIOD_FLAGS_BIT_NONEXCLUSIVE);
-> +	if (IS_ERR(routing_gpio))
-> +		return PTR_ERR(routing_gpio);
-> +	if (!routing_gpio)
-> +		return 0;
-> +
-> +	mux_gpio = devm_gpiod_get_optional(dev, "fsi-mux", GPIOD_ASIS);
-> +	if (IS_ERR(mux_gpio))
-> +		return PTR_ERR(mux_gpio);
-> +	if (!mux_gpio)
-> +		return 0;
-> +
-> +	gpio = gpiod_get_value(routing_gpio);
-> +	if (gpio < 0)
-> +		return gpio;
-> +
-> +	/* If the routing GPIO is high we should set the mux to low. */
-> +	if (gpio) {
-> +		gpiod_direction_output(mux_gpio, 0);
-> +		dev_info(dev, "FSI configured for external cable\n");
-> +	} else {
-> +		gpiod_direction_output(mux_gpio, 1);
-> +	}
+On K3 SoCs, ADC IP is reuse from AM335x but just lacks resistive
+touchscreen interfaces. So, existing AM335x ADC driver is being reused
+for K3 devices as well. Unfortunately, ADC driver cannot be used as
+standalone and is dependent on MFD parent to be present...
+Above node represents the MFD parent and ADC itself is the child node
+(see arch/arm64/boot/dts/ti/k3-am654-base-board.dts). So, I recommend
+that we keep this node's name as tscadc in order to avoid having same
+name for parent and child node which will be quite confusing.
 
-I haven't checked this logic against the hardware but the rest of the patch 
-looks okay.
-
-Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
+Regards
+Vignesh
