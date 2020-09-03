@@ -2,75 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12AF025C6BF
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 18:27:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A12B25C6CC
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 18:30:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728597AbgICQ1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 12:27:34 -0400
-Received: from mail-il1-f195.google.com ([209.85.166.195]:37508 "EHLO
-        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728401AbgICQ1b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 12:27:31 -0400
-Received: by mail-il1-f195.google.com with SMTP id b17so3232840ilh.4;
-        Thu, 03 Sep 2020 09:27:30 -0700 (PDT)
+        id S1726990AbgICQaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 12:30:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54742 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726368AbgICQ36 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 12:29:58 -0400
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 345D7C061244;
+        Thu,  3 Sep 2020 09:29:58 -0700 (PDT)
+Received: by mail-pf1-x441.google.com with SMTP id b124so2718388pfg.13;
+        Thu, 03 Sep 2020 09:29:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Nq4Y4LX++M/uKa3i+1xjIY2hdYC3sQ5Emz4iH0w5Bus=;
+        b=HD97Fsc/y+B5kjeKHMOlfqvQFt2ZqCaTNLJdBLLowG4rLTC9o2fAaZR72bRPaUWUiR
+         kVPlVX+7qIC88NDSnRh8AstE8oPgDHIqJp6l+cY+TN7qnxLi2iFrjH9CVUhpQrJ9D23c
+         4LHISM9suprt5snYB5byAWoIqtSh/jr1z9+wTfJMc6XXR+Uu6bQplypKppzWTXxdMFX+
+         vbOGqAZiuALSlgByVapbwi/1jlPkcsGa20K4q9HMiKDuq5sOPLPvtj1EZD+4iEsoQBaF
+         pSL0CSg6oLr9SiQ+ll11FISz5JQMFOcBXeRVcSYj5rym6SfEX/gW/w1ZEY4yqmqOeM9V
+         m7Kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=9G98cfjW4ih1yFceyrDYIPmmPkqEkBCla9yvtnV5LIE=;
-        b=lntn1xn3wyOiHo1vH0X1kaZqX2fI1GiLVXRz7N/WsGQGGP7vxCZYHSNvSKbRJZAyKa
-         /DD/Q6gNEkYi9rkqsTtRUhoMMVAQ98WV+7zuuGz/b5nF/3xUxxFmH3wJyfSqYATxiDxi
-         2RHHfBZ9359h+8jmEMyunoMNLJG/4ngb8wHehQCO+M9yD+hahDONZGvFRTxoG+NjaXW6
-         jOmY/6eOgiPK6aS8He5ieWkI2/zkDVGOltY7Mjf6k65gsuyPWM4k+bqKJkfqnxM7fA0w
-         0Lgs5Wx2eB6bDjFet6U8BaibVrhongXF9ToQKXWY8DeLFk146T7/o7YpGXoipIRp7sOX
-         ZgMA==
-X-Gm-Message-State: AOAM530jhPJwYrBuBvvh40Rx48xMI2bB3afrNtIZTleLylWsr6M6YbdA
-        O8Ij9EKNq9UDU3MtYFbo3Q==
-X-Google-Smtp-Source: ABdhPJxxbct2d3ddoVws+fKjDW+qICkONjrnKzFv1HfUla5MUydvbOOhCB8mdR0rnejmvu5DfbUdBQ==
-X-Received: by 2002:a92:1597:: with SMTP id 23mr3977476ilv.206.1599150449960;
-        Thu, 03 Sep 2020 09:27:29 -0700 (PDT)
-Received: from xps15 ([64.188.179.249])
-        by smtp.gmail.com with ESMTPSA id c7sm1631160ilk.49.2020.09.03.09.27.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Sep 2020 09:27:29 -0700 (PDT)
-Received: (nullmailer pid 2898742 invoked by uid 1000);
-        Thu, 03 Sep 2020 16:27:27 -0000
-Date:   Thu, 3 Sep 2020 10:27:27 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kurt Kanzenbach <kurt@linutronix.de>
-Cc:     Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        ilias.apalodimas@linaro.org,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Nq4Y4LX++M/uKa3i+1xjIY2hdYC3sQ5Emz4iH0w5Bus=;
+        b=gT057NgWTUA8TdXiSREHtnk1e5s8Yse4jpG14l5M3hmfrj+WZg2hzFGEoNQf6oUWQP
+         /vC6MSei+3Fbzb3DHL3KSWqNjdn7EmTJTDCpORVBf57DzYTopHqcpTubzuTX240KXnQQ
+         QJF4ZpAUfOrnk0cweEiQz4xhzJQD4+i8mH+IkNcaCibW6L79vSBUgi8JuujDm7m5Dhvn
+         z43nIfwB/aub5Uc4VxVG4Wmr9GWJFMns+/f96mIFpufVJxX/7FyEZMJJ2+dbiXRCorBw
+         VAG1Hqu806H+AIxuUDOr4mzO2eMbIDwQRsH9tuYN4vrSehsDx1KjAxJ38FL8I+9B8foF
+         j3MQ==
+X-Gm-Message-State: AOAM533GsCAsPmjufe/wuQWkTZSvMfHxBv0FwPPCng9qZffFPV0Rc7Uq
+        W2QwJyDkNowhKSQFQbV3rXY=
+X-Google-Smtp-Source: ABdhPJwom6O7abQjGJ0fwb74pAHB+lr2SSA77td5Qq18sKhO6li039UwtDx+7980GEHYmNSQTdNcOA==
+X-Received: by 2002:a17:902:7083:: with SMTP id z3mr4673238plk.187.1599150597535;
+        Thu, 03 Sep 2020 09:29:57 -0700 (PDT)
+Received: from [10.230.30.107] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id y7sm3674852pfm.68.2020.09.03.09.29.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Sep 2020 09:29:56 -0700 (PDT)
 Subject: Re: [PATCH v4 7/7] dt-bindings: net: dsa: Add documentation for
  Hellcreek switches
-Message-ID: <20200903162727.GA2898615@bogus>
+To:     Kurt Kanzenbach <kurt@linutronix.de>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
+        ilias.apalodimas@linaro.org, Vladimir Oltean <olteanv@gmail.com>
 References: <20200901125014.17801-1-kurt@linutronix.de>
  <20200901125014.17801-8-kurt@linutronix.de>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <8470fd08-2a22-23b2-4735-a600ee2ea06b@gmail.com>
+Date:   Thu, 3 Sep 2020 09:29:54 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.1.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 In-Reply-To: <20200901125014.17801-8-kurt@linutronix.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 01 Sep 2020 14:50:14 +0200, Kurt Kanzenbach wrote:
+
+
+On 9/1/2020 5:50 AM, Kurt Kanzenbach wrote:
 > Add basic documentation and example.
 > 
 > Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
-> ---
->  .../bindings/net/dsa/hellcreek.yaml           | 127 ++++++++++++++++++
->  1 file changed, 127 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/hellcreek.yaml
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
