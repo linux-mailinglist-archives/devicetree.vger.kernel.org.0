@@ -2,173 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8E2A25B762
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 01:40:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A45525B89B
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 04:13:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726377AbgIBXko (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 19:40:44 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:58268 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726310AbgIBXko (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 19:40:44 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 082NeUfk061757;
-        Wed, 2 Sep 2020 18:40:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599090030;
-        bh=BFbzFeJpfcaC6ycaf4eZClFigSVdESVAB5glK64fSDw=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=DXxDiC6zHHq3/4GkD5eKFXhhia0zcyCk6W9P2W7ahuO56qpqpRtTnwP4Wv3T0Irsi
-         orCV1XB9pxji1b3LegMI8OO9432U5YNH0JeIZnS/7BnOPlSiwIXvRufYKvjg7FQP/A
-         0Po+cNMcrA6g3+Jmh34JsJo+Gf9bdynE17JtAhzM=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 082NeUX1040689
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Sep 2020 18:40:30 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 2 Sep
- 2020 18:40:29 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 2 Sep 2020 18:40:29 -0500
-Received: from [10.250.34.112] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 082NeTBX025309;
-        Wed, 2 Sep 2020 18:40:29 -0500
-Subject: Re: [v4,3/4] reset-controller: ti: introduce a new reset handler
-To:     Crystal Guo <crystal.guo@mediatek.com>, <p.zabel@pengutronix.de>,
-        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>
-CC:     <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <seiya.wang@mediatek.com>, <stanley.chu@mediatek.com>,
-        <yingjoe.chen@mediatek.com>, <fan.chen@mediatek.com>,
-        <yong.liang@mediatek.com>
-References: <20200817030324.5690-1-crystal.guo@mediatek.com>
- <20200817030324.5690-4-crystal.guo@mediatek.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <3a5decee-5f31-e27d-a120-1f835241a87c@ti.com>
-Date:   Wed, 2 Sep 2020 18:40:24 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726523AbgICCNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 22:13:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36088 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726177AbgICCNl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 22:13:41 -0400
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D891C061244;
+        Wed,  2 Sep 2020 19:13:39 -0700 (PDT)
+Received: by mail-pf1-x442.google.com with SMTP id c142so943836pfb.7;
+        Wed, 02 Sep 2020 19:13:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=epj8lPbKNU/j4OEf9AnfwYoi5ZNUxWpbPOU9JH2CNvk=;
+        b=O6jTk2W03DUJN9BHD4tv2NFKTkm4QfY0gdsN1q511yMpPdr8MzsPCHZ+py5xUwAzKz
+         NmlcaQj2ATHyqxdqCKHmS7rOynf4MmG5NnpZPVOq+vcNBv4CH/KGrBZjqaxowmlBMm8f
+         xWWyBPer6t/lIQ2YMWn3QGz7Tekv+/fiARPxZEBJZ1/O+xZ5tL2AmanPYENyOil32uaC
+         xn1sBTU+DZfMMMp6XnJgAx2/EBtG/SV/c7tOduvJcz0QHktB0JvD4azisrV9mGenB8S/
+         RfzaMLQ78PeyH2Kf0RrtZ8VhXtg3UBWYddSZpSyV+06fiAxMC2GuilXx3/itOUVaWKcP
+         zYAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=epj8lPbKNU/j4OEf9AnfwYoi5ZNUxWpbPOU9JH2CNvk=;
+        b=uXT2vHgiVG6MfRgirMrHkgOQkRqCbbRsE52rxCLbd5sV5+twIxMYFDqid99Hj5QGkD
+         /vNl9o76jsmU8/rRfwzpbZdIu+K/HmL6Tdez5GpREvUIFz7MwK7mrNRzIxy7K9Vy/gmg
+         8Do+gQXuzyFApohH1YnYTzAg1400LDp/kN4UFIs+z1FEZ4yKFlW1ayRK/r2A29H48FSx
+         4+IXfJWtE6Ziuun3LiQto8xUhcHnAPOrbLMMZLn1UVotTMUDUp8gmuWZ7GVxOWfXiCe+
+         oPXnhYIPwQpMyDPciC0ifU1CTlG1VqwKKCqG6CxtEbm47GUZRgk9VBEnCo632EKgNHOH
+         PwMQ==
+X-Gm-Message-State: AOAM5317MkzWOxnW1T41WlxpG1uHsfRqglh0TZgCzDXbFNqbkipfXBI1
+        bhAiFurb9hkb2bccbng+QlA=
+X-Google-Smtp-Source: ABdhPJwtY1G/9Gm2aR2+u5W638AJD7BFrQ7Tc9LUDapwky5KZzA9JxKuL3oT97oNiYFUndc3200U8w==
+X-Received: by 2002:a65:4208:: with SMTP id c8mr825623pgq.266.1599099213641;
+        Wed, 02 Sep 2020 19:13:33 -0700 (PDT)
+Received: from [10.230.30.107] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id s24sm625150pgv.55.2020.09.02.19.13.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Sep 2020 19:13:32 -0700 (PDT)
+Subject: Re: [RFC net-next 2/2] net: phy: bcm7xxx: request and manage GPHY
+ clock
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     netdev@vger.kernel.org, adam.rudzinski@arf.net.pl,
+        m.felsch@pengutronix.de, hkallweit1@gmail.com,
+        richard.leitner@skidata.com, zhengdejin5@gmail.com,
+        devicetree@vger.kernel.org, kernel@pengutronix.de, kuba@kernel.org,
+        robh+dt@kernel.org
+References: <20200902213347.3177881-1-f.fainelli@gmail.com>
+ <20200902213347.3177881-3-f.fainelli@gmail.com>
+ <20200902222030.GJ3050651@lunn.ch>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <7696bf30-9d7b-ecc9-041d-7d899dd07915@gmail.com>
+Date:   Wed, 2 Sep 2020 19:13:30 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.1.1
 MIME-Version: 1.0
-In-Reply-To: <20200817030324.5690-4-crystal.guo@mediatek.com>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20200902222030.GJ3050651@lunn.ch>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Crystal,
 
-On 8/16/20 10:03 PM, Crystal Guo wrote:
-> Introduce ti_syscon_reset() to integrate assert and deassert together.
-> If some modules need do serialized assert and deassert operations
-> to reset itself, reset_control_reset can be called for convenience.
 
-There are multiple changes in this same patch. I think you should split this
-functionality away from the change for the regmap_update_bits() to
-regmap_write_bits(), similar to what you have done in your v2 Patch 4.
+On 9/2/2020 3:20 PM, Andrew Lunn wrote:
+>> +	priv->clk = devm_clk_get_optional(&phydev->mdio.dev, "sw_gphy");
+>> +	if (IS_ERR(priv->clk))
+>> +		return PTR_ERR(priv->clk);
+>> +
+>> +	/* To get there, the mdiobus registration logic already enabled our
+>> +	 * clock otherwise we would not have probed this device since we would
+>> +	 * not be able to read its ID. To avoid artificially bumping up the
+>> +	 * clock reference count, only do the clock enable from a phy_remove ->
+>> +	 * phy_probe path (driver unbind, then rebind).
+>> +	 */
+>> +	if (!__clk_is_enabled(priv->clk))
+>> +		ret = clk_prepare_enable(priv->clk);
+> 
+> This i don't get. The clock subsystem does reference counting. So what
+> i would expect to happen is that during scanning of the bus, phylib
+> enables the clock and keeps it enabled until after probe. To keep
+> things balanced, phylib would disable the clock after probe.
+
+That would be fine, although it assumes that the individual PHY drivers 
+have obtained the clocks and called clk_prepare_enable(), which is a 
+fair assumption I suppose.
 
 > 
-> Such as reset-qcom-aoss.c, it integrates assert and deassert together
-> by 'reset' method. MTK Socs also need this method to perform reset.
+> If the driver wants the clock enabled all the time, it can enable it
+> in the probe method. The common clock framework will then have two
+> reference counts for the clock, so that when the probe exists, and
+> phylib disables the clock, the CCF keeps the clock ticking. The PHY
+> driver can then disable the clock in .remove.
+
+But then the lowest count you will have is 1, which will lead to the 
+clock being left on despite having unbound the PHY driver from the 
+device (->remove was called). This does not allow saving any power 
+unfortunately.
+
 > 
-> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
-> ---
->  drivers/reset/reset-ti-syscon.c | 26 ++++++++++++++++++++++++--
->  1 file changed, 24 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/reset/reset-ti-syscon.c b/drivers/reset/reset-ti-syscon.c
-> index a2635c21db7f..08289342f9af 100644
-> --- a/drivers/reset/reset-ti-syscon.c
-> +++ b/drivers/reset/reset-ti-syscon.c
-> @@ -15,6 +15,7 @@
->   * GNU General Public License for more details.
->   */
->  
-> +#include <linux/delay.h>
->  #include <linux/mfd/syscon.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> @@ -56,6 +57,7 @@ struct ti_syscon_reset_data {
->  	struct regmap *regmap;
->  	struct ti_syscon_reset_control *controls;
->  	unsigned int nr_controls;
-> +	unsigned int reset_duration_us;
->  };
->  
->  #define to_ti_syscon_reset_data(rcdev)	\
-> @@ -89,7 +91,7 @@ static int ti_syscon_reset_assert(struct reset_controller_dev *rcdev,
->  	mask = BIT(control->assert_bit);
->  	value = (control->flags & ASSERT_SET) ? mask : 0x0;
->  
-> -	return regmap_update_bits(data->regmap, control->assert_offset, mask, value);
-> +	return regmap_write_bits(data->regmap, control->assert_offset, mask, value);
->  }
->  
->  /**
-> @@ -120,7 +122,7 @@ static int ti_syscon_reset_deassert(struct reset_controller_dev *rcdev,
->  	mask = BIT(control->deassert_bit);
->  	value = (control->flags & DEASSERT_SET) ? mask : 0x0;
->  
-> -	return regmap_update_bits(data->regmap, control->deassert_offset, mask, value);
-> +	return regmap_write_bits(data->regmap, control->deassert_offset, mask, value);
->  }
->  
->  /**
-> @@ -158,9 +160,26 @@ static int ti_syscon_reset_status(struct reset_controller_dev *rcdev,
->  		!(control->flags & STATUS_SET);
->  }
->  
-> +static int ti_syscon_reset(struct reset_controller_dev *rcdev,
-> +				  unsigned long id)
-> +{
-> +	struct ti_syscon_reset_data *data = to_ti_syscon_reset_data(rcdev);
-> +	int ret;
-> +
-> +	ret = ti_syscon_reset_assert(rcdev, id);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (data->reset_duration_us)
-> +		usleep_range(data->reset_duration_us, data->reset_duration_us * 2);
-> +
-> +	return ti_syscon_reset_deassert(rcdev, id);
+> There are some PHYs which will enumerate with the clock disabled. They
+> only need it ticking for packet transfer. Such PHY drivers can enable
+> the clock only when needed in order to save some power when the
+> interface is administratively down.
 
-I echo Philipp's comments [1] from your original v1 series about this. We don't
-need a property to distinguish this, but you could add a flag using match data
-and Mediatek compatible, and use that within this function, or optionally set
-this ops based on compatible (whatever is preferred by Philipp).
+Then the best approach would be for the OF scanning code to enable all 
+clocks reference by the Ethernet PHY node (like it does in the proposed 
+patch), since there is no knowledge of which clock is necessary and all 
+must be assumed to be critical for MDIO bus scanning. Right before 
+drv->probe() we drop all resources reference counts, and from there on 
+->probe() is assumed to manage the necessary clocks.
 
-regards
-Suman
-
-[1] https://patchwork.kernel.org/comment/23519193/
-
-> +}
-> +
->  static const struct reset_control_ops ti_syscon_reset_ops = {
->  	.assert		= ti_syscon_reset_assert,
->  	.deassert	= ti_syscon_reset_deassert,
-> +	.reset		= ti_syscon_reset,
->  	.status		= ti_syscon_reset_status,
->  };
->  
-> @@ -204,6 +223,9 @@ static int ti_syscon_reset_probe(struct platform_device *pdev)
->  		controls[i].flags = be32_to_cpup(list++);
->  	}
->  
-> +	of_property_read_u32(pdev->dev.of_node,	"reset-duration-us",
-> +				&data->reset_duration_us);
-> +
->  	data->rcdev.ops = &ti_syscon_reset_ops;
->  	data->rcdev.owner = THIS_MODULE;
->  	data->rcdev.of_node = np;
-> 
-
+It looks like another solution may be to use the assigned-clocks 
+property which will take care of assigning clock references to devices 
+and having those applied as soon as the clock provider is available.
+-- 
+Florian
