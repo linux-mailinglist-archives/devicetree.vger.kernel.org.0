@@ -2,195 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF74325C402
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:02:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C69D625C421
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:04:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729161AbgICPBp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 11:01:45 -0400
-Received: from esa1.microchip.iphmx.com ([68.232.147.91]:18985 "EHLO
-        esa1.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728908AbgICOFq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 10:05:46 -0400
+        id S1729367AbgICPEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 11:04:06 -0400
+Received: from mx1.tq-group.com ([62.157.118.193]:9827 "EHLO mx1.tq-group.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728924AbgICN6U (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Sep 2020 09:58:20 -0400
+IronPort-SDR: PwSSrpM7beoRNGtbZuYVQYarDacF81+BP6yekLAu15x7XInnZ+j5yvbR+RmcJR4SgQGfMy3QxF
+ +W1I13/hf7uv7PgjkRcXItnriXG56d2qnPNvuMDwP5TT2rKbRL87qo0YrJWVdCrbqnXg6xRfzf
+ doKCClYldLzMX+mQPBcJnZA6Dvz+zQ5Lr1GCrroAPKS8Mx4cGGhMgKw87yxskV3KabPuiYNNeU
+ HK/iHvecc8tGVcNFPfxJ45nNmcCZWPMtDaZYSvhFb43LTmeJBpaYKI6cYWI22gusuFIG8S9n+2
+ A1k=
+X-IronPort-AV: E=Sophos;i="5.76,386,1592863200"; 
+   d="scan'208";a="13721334"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 03 Sep 2020 15:40:44 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 03 Sep 2020 15:40:44 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 03 Sep 2020 15:40:44 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1599141945; x=1630677945;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1599140444; x=1630676444;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=tufrlju2N8kPk+K67Lk/SfPvZ6txZC58fe+RJ5RoN/0=;
-  b=GLb3QYuzSeuidqWigg0MP8IVtYCNtb9iRzaIebAH8M7vKya1mtd2bIdP
-   o/h5ONrRYwj8B3owzc7TzpSmkllxmpaTHJps/Gg6gRiFaEDwG6sa+Y80L
-   CVGYQ4s7ry5aV740Nd0UgiWylX3vJC91M+HgOEEcRRJfYVp3XNjHqmCJc
-   nfsgJo+GduMeMfW78iDPZ+0yod+nN8qVuh4nNIHjpAu0+atYpSQKjt5pl
-   ZZByUwh/UrMTysZSA0YXLGOYu6g1qv4Vy5A6/hOr3oBFwIeK8BT22UNjm
-   dVIWAM9jCaXODKC07XwX6IHV9TDdMD6ePEDG7zMc7SVlSbRE6Z19QmVBr
-   g==;
-IronPort-SDR: sig/PtixE42DZ+VMd8xVLG7fD07MXzJwlWexLPbtcG9WP/StKOn7JXJH8MLdNfxHMlYeg8OhsY
- BEfi9qmi5RaAtqA6dC6h/59MXezeWlnrpN8t1pgONvkrXfb/WVc/VzvL/0JDN3Jsn5JXtWapre
- HcAzdVN0emyUVlVpA82KDK8Q+asXjRxEP5U2oFtRQ/9EpHnWPfbXx7DKpJEREAsb+ttFeKuAeJ
- hmLDQij9aPchAq/v0VFU+2h0GzRLWhn548SBVybXRKEJw+Z1FIM4wti6uOL3oLH/+d5ljyfeqx
- DUY=
-X-IronPort-AV: E=Sophos;i="5.76,386,1592895600"; 
-   d="scan'208";a="94283355"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 03 Sep 2020 06:35:54 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 3 Sep 2020 06:35:12 -0700
-Received: from soft-dev15.microsemi.net (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Thu, 3 Sep 2020 06:35:10 -0700
-From:   Lars Povlsen <lars.povlsen@microchip.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-CC:     Lars Povlsen <lars.povlsen@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: [PATCH v2 3/3] arm64: dts: sparx5: Add SGPIO devices
-Date:   Thu, 3 Sep 2020 15:35:28 +0200
-Message-ID: <20200903133528.8595-4-lars.povlsen@microchip.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200903133528.8595-1-lars.povlsen@microchip.com>
-References: <20200903133528.8595-1-lars.povlsen@microchip.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+  bh=PSRtsYjMIeQn6kkIpSqi/xNdAKBtKRUGER2IFcNijQk=;
+  b=N8JPB2+7SiBeJrScJn+KM0GUbsfIXmUgpzkMlhWMhmo/yN4YxwRQf3cI
+   HTBh2bWXK+2czsdjHkI4rSjEsXwlqaboxcmdup/N/drxkqC902yTb+js2
+   PzhqWK+fPzszJlEd0Wg6Q/zcY2gguuBaQxmEhVUJUyyT27Xe6fsWd5nu/
+   9NajEiQBmfnR/TSAaDJ020PyEaO5xl7rKZ8DkteUnsQBqF6Ic7ETDyavR
+   ZnFZwsOBGLjv2K17N+0YrJTYmf0gJTj828ci3wlmlHqctSn7GAKCwkZoT
+   Pkei9rNfLTeZ6hNJG2GAZEBNxq9lm/6C4hygxryfJbFqRpQykxDmuuwAo
+   Q==;
+IronPort-SDR: zDp6qokfh+UZ5a3ETjcvlv4kekHz7nAQLLDIdpowFcBTrgZGK7bVWsZawcpM6af3jkn2ZirSL+
+ xiYF4B0FjTeQEOaqUrbDsjYDlp5zzNTt8x6A2qaU9TbnTj+m+d4F507FtMUS8rYhkK0r0FcaZ2
+ 3R3juBoV0vLvMpOzGa/ATiyM1uMEndtaz8TpDz+FLFU2/ic8Szsk318uheKdvVFW6bqVK1t0m7
+ S++Z/We4I3MD7SRVT8cjBv34z3oZ3hm9NGMIgVKwU7J9voCKjrdHBBdawFMa00QeAu3dx5F4qY
+ xn8=
+X-IronPort-AV: E=Sophos;i="5.76,386,1592863200"; 
+   d="scan'208";a="13721333"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 03 Sep 2020 15:40:43 +0200
+Received: from schifferm-ubuntu4 (unknown [10.117.49.26])
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id C88BD280065;
+        Thu,  3 Sep 2020 15:40:43 +0200 (CEST)
+Message-ID: <ce08696b6bf2b3eaa84d6f056f47a8240c7479f4.camel@ew.tq-group.com>
+Subject: Re: spi-imx: correct interpretation of num-cs DT property?
+From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Date:   Thu, 03 Sep 2020 15:40:43 +0200
+In-Reply-To: <20200903132241.GB4771@sirena.org.uk>
+References: <ecfa135b7b83a31bed821ec0740ab3cf1d39da15.camel@ew.tq-group.com>
+         <20200903132241.GB4771@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds SGPIO devices for the Sparx5 SoC and configures it for the
-applicable reference boards.
+On Thu, 2020-09-03 at 14:22 +0100, Mark Brown wrote:
+> * PGP Signed by an unknown key
+> 
+> On Thu, Sep 03, 2020 at 11:22:20AM +0200, Matthias Schiffer wrote:
+> 
+> > - If num-cs is set, use that
+> > - If num-cs is unset, use the number of cs-gpios
+> > - If num-cs is unset and no cs-gpios are defined, use a driver-
+> > provided 
+> > default (which is 3 for spi-imx; this matches the number of native
+> > CS
+> > pins in older implementations of this SPI controller; i.MX6 and
+> > newer
+> > support up to 4)
+> 
+> That sounds like what's expected, though we coould just skip the
+> first
+> step.
+> 
+> > Also, would it make sense to add num-cs to all DTS files for boards
+> > that actually use fewer than 3 CS pins?
+> 
+> No, it was never a good idea to have that property in the first place
+> and there should be no case where it helps anything.
 
-Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
----
- arch/arm64/boot/dts/microchip/sparx5.dtsi     | 52 +++++++++++++++++++
- .../boot/dts/microchip/sparx5_pcb125.dts      |  5 ++
- .../dts/microchip/sparx5_pcb134_board.dtsi    |  5 ++
- .../dts/microchip/sparx5_pcb135_board.dtsi    |  5 ++
- 4 files changed, 67 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-index 5408486b4d3b..3cbf8824a545 100644
---- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-@@ -232,6 +232,22 @@ si2_pins: si2-pins {
- 				function = "si2";
- 			};
- 
-+			sgpio0_pins: sgpio-pins {
-+				pins = "GPIO_0", "GPIO_1", "GPIO_2", "GPIO_3";
-+				function = "sg0";
-+			};
-+
-+			sgpio1_pins: sgpio1-pins {
-+				pins = "GPIO_4", "GPIO_5", "GPIO_12", "GPIO_13";
-+				function = "sg1";
-+			};
-+
-+			sgpio2_pins: sgpio2-pins {
-+				pins = "GPIO_30", "GPIO_31", "GPIO_32",
-+				       "GPIO_33";
-+				function = "sg2";
-+			};
-+
- 			uart_pins: uart-pins {
- 				pins = "GPIO_10", "GPIO_11";
- 				function = "uart";
-@@ -262,6 +278,42 @@ emmc_pins: emmc-pins {
- 			};
- 		};
- 
-+		sgpio0: gpio@61101036c {
-+			compatible = "microchip,sparx5-sgpio";
-+			status = "disabled";
-+			clocks = <&sys_clk>;
-+			pinctrl-0 = <&sgpio0_pins>;
-+			pinctrl-names = "default";
-+			reg = <0x6 0x1101036c 0x100>;
-+			gpio-controller;
-+			gpio-ranges = <&sgpio0 0 0 192>;
-+			#gpio-cells = <4>;
-+		};
-+
-+		sgpio1: gpio@611010484 {
-+			compatible = "microchip,sparx5-sgpio";
-+			status = "disabled";
-+			clocks = <&sys_clk>;
-+			pinctrl-0 = <&sgpio1_pins>;
-+			pinctrl-names = "default";
-+			reg = <0x6 0x11010484 0x100>;
-+			gpio-controller;
-+			gpio-ranges = <&sgpio1 0 0 192>;
-+			#gpio-cells = <4>;
-+		};
-+
-+		sgpio2: gpio@61101059c {
-+			compatible = "microchip,sparx5-sgpio";
-+			status = "disabled";
-+			clocks = <&sys_clk>;
-+			pinctrl-0 = <&sgpio2_pins>;
-+			pinctrl-names = "default";
-+			reg = <0x6 0x1101059c 0x100>;
-+			gpio-controller;
-+			gpio-ranges = <&sgpio2 0 0 192>;
-+			#gpio-cells = <4>;
-+		};
-+
- 		i2c0: i2c@600101000 {
- 			compatible = "snps,designware-i2c";
- 			status = "disabled";
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts b/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
-index 6b2da7c7520c..9baa085d7861 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
-@@ -69,6 +69,11 @@ spi-flash@9 {
- 	};
- };
- 
-+&sgpio0 {
-+	status = "okay";
-+	microchip,sgpio-port-ranges = <0 23>;
-+};
-+
- &i2c1 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi b/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-index 35984785d611..65336be31fd9 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-@@ -54,6 +54,11 @@ spi-flash@9 {
- 	};
- };
- 
-+&sgpio2 {
-+	status = "okay";
-+        microchip,sgpio-port-ranges = <0 0 11 31>;
-+};
-+
- &gpio {
- 	i2cmux_pins_i: i2cmux-pins-i {
- 	       pins = "GPIO_16", "GPIO_17", "GPIO_18", "GPIO_19",
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi b/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-index 7de66806b14b..5ea2d0910c2b 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-@@ -67,6 +67,11 @@ spi-flash@9 {
- 	};
- };
- 
-+&sgpio2 {
-+	status = "okay";
-+	microchip,sgpio-port-ranges = <0 0 16 18 28 31>;
-+};
-+
- &axi {
- 	i2c0_imux: i2c0-imux@0 {
- 		compatible = "i2c-mux-pinctrl";
--- 
-2.27.0
+Oh, thank you for the clarification.
+
+As currently no in-tree DTs use the num-cs property for spi-imx and
+it's not documented, should support for it be dropped from the driver
+altogether?
+
+
+> 
+> > At the moment, the num-cs property is not explicitly documented for
+> > the
+> > spi-imx driver, although the driver understands it. I also
+> > suggested to
+> > add this to the docs, which Fabio didn't deem a good idea (I don't
+> > quite understand the reasoning here - isn't num-cs generally a
+> > useful
+> > property to have?)
+> 
+> Could you explain what benefit you would expect having num-cs to
+> offer?
+> 
+> * Unknown Key
+> * 0x5D5487D0
 
