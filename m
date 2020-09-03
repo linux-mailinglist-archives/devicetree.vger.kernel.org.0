@@ -2,114 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B82425CCBE
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 23:50:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1066325CCB3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 23:50:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726891AbgICVur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 17:50:47 -0400
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:36804 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726397AbgICVur (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 17:50:47 -0400
-Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 083LWoJv082071;
-        Thu, 3 Sep 2020 17:50:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=references : from : to :
- cc : subject : in-reply-to : date : message-id : mime-version :
- content-type; s=pp1; bh=cjkaZttb2w3H/rGwt9YR9Ok/v2RDmTY8uBKhTtcgvf8=;
- b=BFnnjKPkWcf0MwUvuY69O4iOrHafazQ5JEnpGXXxrampiGmP8661HO4reWhgbVhi+sbN
- rHyRTctCr9yp4CRAEcoyuMTfnUu1CFo+Dh2m+PC1sB5kcsbl2Uc/CwT3Whc/H951cyBV
- BGKigKA8NMAb+GHxO3I0l7a1Io38vi3FwXVOIdqX7kWVMgDMRBDZziUn6e3WLL6EExkq
- PSzEIdl+7ip10LMwWQGaRfLQ3J/N28msekZnJ63LzPx1063J91+HpKf74AbJPCRzo8Ds
- 6z+FPdc7SW7Pk2FvQKAbNAL2MnRX2YZ1rrEnoTG7Jk/OO+LdOPce/rZoUOEwH79Pd/zl +Q== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 33b7cft33c-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 03 Sep 2020 17:50:16 -0400
-Received: from m0098410.ppops.net (m0098410.ppops.net [127.0.0.1])
-        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 083LZR35086960;
-        Thu, 3 Sep 2020 17:50:15 -0400
-Received: from ppma04dal.us.ibm.com (7a.29.35a9.ip4.static.sl-reverse.com [169.53.41.122])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 33b7cft32n-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 03 Sep 2020 17:50:14 -0400
-Received: from pps.filterd (ppma04dal.us.ibm.com [127.0.0.1])
-        by ppma04dal.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 083Llwvc002343;
-        Thu, 3 Sep 2020 21:50:13 GMT
-Received: from b03cxnp07028.gho.boulder.ibm.com (b03cxnp07028.gho.boulder.ibm.com [9.17.130.15])
-        by ppma04dal.us.ibm.com with ESMTP id 339tmvdfft-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 03 Sep 2020 21:50:13 +0000
-Received: from b03ledav006.gho.boulder.ibm.com (b03ledav006.gho.boulder.ibm.com [9.17.130.237])
-        by b03cxnp07028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 083LoCDm38142216
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 3 Sep 2020 21:50:12 GMT
-Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 28C5FC6055;
-        Thu,  3 Sep 2020 21:50:12 +0000 (GMT)
-Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 48AD6C6057;
-        Thu,  3 Sep 2020 21:50:05 +0000 (GMT)
-Received: from morokweng.localdomain (unknown [9.211.155.22])
-        by b03ledav006.gho.boulder.ibm.com (Postfix) with ESMTPS;
-        Thu,  3 Sep 2020 21:50:04 +0000 (GMT)
-References: <20200901195029.30039-1-nramas@linux.microsoft.com>
- <20200901195029.30039-3-nramas@linux.microsoft.com>
-User-agent: mu4e 1.4.10; emacs 27.1
-From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
-To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Cc:     zohar@linux.ibm.com, robh@kernel.org, gregkh@linuxfoundation.org,
-        james.morse@arm.com, catalin.marinas@arm.com, sashal@kernel.org,
-        will@kernel.org, mpe@ellerman.id.au, benh@kernel.crashing.org,
-        paulus@samba.org, robh+dt@kernel.org, frowand.list@gmail.com,
-        vincenzo.frascino@arm.com, mark.rutland@arm.com,
-        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
-        pasha.tatashin@soleen.com, allison@lohutok.net,
-        kstewart@linuxfoundation.org, takahiro.akashi@linaro.org,
-        tglx@linutronix.de, masahiroy@kernel.org, bhsharma@redhat.com,
-        mbrugger@suse.com, hsinyi@chromium.org, tao.li@vivo.com,
-        christophe.leroy@c-s.fr, linux-integrity@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com
-Subject: Re: [PATCH v5 2/3] arm64: Store IMA log information in kimage used
- for kexec
-In-reply-to: <20200901195029.30039-3-nramas@linux.microsoft.com>
-Date:   Thu, 03 Sep 2020 18:50:02 -0300
-Message-ID: <87v9guy1h1.fsf@morokweng.localdomain>
+        id S1729390AbgICVuO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 17:50:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47626 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729312AbgICVuM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 17:50:12 -0400
+Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE978C061244;
+        Thu,  3 Sep 2020 14:50:07 -0700 (PDT)
+Received: by mail-pj1-x1044.google.com with SMTP id gf14so2095832pjb.5;
+        Thu, 03 Sep 2020 14:50:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=r7Tgg9fh7R0oiGADlmNoq8hG+/+fXAk6S6qW0ozfjnY=;
+        b=PFY/FTQSv4gn1ON7S+i7H5hdVNh34mvVfIbqZaJD4ekQof7nXBISRDQHHRDHmJ9gL7
+         6LNnUzyaaG78Tw4DBGfFjBDH0Pzj3X3Ho6DPtQQsOg+LUINBF+gAKxkBGyNQ5i+FTqSs
+         BGKtsDS0zLYBHqQAZdo7BNF3nDvwabTdvIzpc9qF++kk7rizN/2TYS6d8Z2vCqrECw5x
+         E8uebwVgh7njY0Eqc/B/1A/tDexpikI2lqPZK28Y5Gm9jkqikz1Q/x/isNnrKprI84Uw
+         uwFGR/HtjptWpCKJyX/oGr1UDxiwEDP+hPgFZpypwvvQwAlON1mmCmBIdHHUxK9f96FQ
+         L/Iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=r7Tgg9fh7R0oiGADlmNoq8hG+/+fXAk6S6qW0ozfjnY=;
+        b=K3qzJnWKqD9STnW6DVE3woA+e429Jsvv3OSvC2KDsjqLumdJaGYt8iGhUt2DoPYLcH
+         D3aW+pTEnUmo0sW8L4gcBPW86JZajODMNcE1WEwVtd2OsLlRtjRoD0HXSogRzedFV5ZQ
+         vMqHA6LRVEnzwPodqzysDOJZJS7fzGInhKk7W+vtfxrwQMN/vizLcuab/voms+VE1xWb
+         k9g1y56z9vaDHfGVD0uGfq3qgBjZGrMx0km0RV+RCfpAs6Fxevf8R/3NjqImij3rtlo1
+         Nl4d4Dpw3mMs2XeG0wxpQSikKlBVdsVExxGUqhGDJZc70MLLboHHrESOvAywD9JFjBzv
+         GgGg==
+X-Gm-Message-State: AOAM531QjdCTgCAyW3UJTyH2ljDkqPZ0gdeZQpZfD4pyqC7ifQ5I+niR
+        KnysAWMzizCTKjn7qFWePvM=
+X-Google-Smtp-Source: ABdhPJwBNIZpP8HG3Au66qMjwtVggOKD6S/kSnpzZXyj19Qm7Gvanr8kpUr712HT2GiNdHee6SYz2w==
+X-Received: by 2002:a17:90a:1fca:: with SMTP id z10mr5060502pjz.209.1599169807406;
+        Thu, 03 Sep 2020 14:50:07 -0700 (PDT)
+Received: from [10.230.30.107] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id t63sm3478502pgt.50.2020.09.03.14.50.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Sep 2020 14:50:06 -0700 (PDT)
+Subject: Re: [PATCH net-next 1/3] net: phy: Support enabling clocks prior to
+ bus probe
+To:     Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>
+Cc:     netdev <netdev@vger.kernel.org>, adam.rudzinski@arf.net.pl,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Richard Leitner <richard.leitner@skidata.com>,
+        Dejin Zheng <zhengdejin5@gmail.com>,
+        devicetree@vger.kernel.org, Sascha Hauer <kernel@pengutronix.de>,
+        Jakub Kicinski <kuba@kernel.org>
+References: <20200903043947.3272453-1-f.fainelli@gmail.com>
+ <20200903043947.3272453-2-f.fainelli@gmail.com>
+ <CAL_JsqL=XLJo9nrX+AMs41QvA3qpW6zoyB8qNwRx3V-+U-+uLg@mail.gmail.com>
+ <20200903214238.GF3112546@lunn.ch>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <885abb40-cf1c-b464-bf09-08c7235410ef@gmail.com>
+Date:   Thu, 3 Sep 2020 14:50:05 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.1.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-09-03_14:2020-09-03,2020-09-03 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
- mlxscore=0 phishscore=0 suspectscore=0 mlxlogscore=781 impostorscore=0
- lowpriorityscore=0 malwarescore=0 spamscore=0 priorityscore=1501
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2009030189
+In-Reply-To: <20200903214238.GF3112546@lunn.ch>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
 
-> Address and size of the buffer containing the IMA measurement log need
-> to be passed from the current kernel to the next kernel on kexec.
->
-> Add address and size fields to "struct kimage_arch" for ARM64 platform
-> to hold the address and size of the IMA measurement log buffer.
-> Define an architecture specific function for ARM64 namely
-> arch_ima_add_kexec_buffer() that will set the address and size of
-> the current kernel's IMA buffer to be passed to the next kernel on kexec.
->
-> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
-> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
-> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-> Reported-by: kernel test robot <lkp@intel.com> warning: no previous prototype for 'arch_ima_add_kexec_buffer' [-Wmissing-prototypes]
+On 9/3/2020 2:42 PM, Andrew Lunn wrote:
+> On Thu, Sep 03, 2020 at 03:28:22PM -0600, Rob Herring wrote:
+>> What if a device requires clocks enabled in a certain order or timing?
+>> It's not just clocks, you could have some GPIOs or a regulator that
+>> need enabling first. It's device specific, so really needs a per
+>> device solution. This is not just an issue with MDIO. I think we
+>> really need some sort of pre-probe hook in the driver model in order
+>> to do any non-discoverable init for discoverable buses.
+> 
+> Hi Rob
+> 
+> How do you solve the chicken/egg of knowing what device specific init
+> is needed before you can discover what device you have on the bus?
 
-Reviewed-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
+For MDIO since we have a fixed number of devices on the bus, we could 
+pre-populate the MDIO map for all addresses, and free up the devices 
+that we did not probe.
+
+When using DT we can first parse the address, create a mdio_device 
+there, and then turn on clocks/regulators/GPIOs whatever since we now 
+have a device reference. Only then do we bind the device with its driver.
+
+If we are using the DT scanning loop because the node did not provide a 
+"reg" property, then the PHY must be in a functional state to be probed, 
+we cannot guess what we do not know.
+
+All of this uses MDIO implementation knowledge though.
+
+> 
+>> Or perhaps forcing probe when there are devices defined in DT if
+>> they're not discovered by normal means.
+> 
+> The PHY subsystem has this. You came specify in DT the ID of the
+> device which we would normally read during bus discovery. The correct
+> driver is then loaded and probed. But it is good practice to avoid
+> this. OEMs are known to change the PHY in order to perform cost
+> optimisation. So we prefer to do discover and do the right thing if
+> the PHY has changed.
+> 
+> As for GPIOS and regulators, i expect this code will expand pretty
+> soon after being merged to handle those. There are users wanting
+> it. We already have some standard properties defined, in terms of
+> gpios, delay while off, delay after turning it on. As for ordering, i
+> guess it would make sense to enable the clocks and then hit it with a
+> reset? If there is a device which cannot be handled like this, it can
+> always hard code its ID in device tree, and fully control its
+> resources in the driver.
+> 
+> 	  Andrew
+> 
 
 -- 
-Thiago Jung Bauermann
-IBM Linux Technology Center
+Florian
