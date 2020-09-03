@@ -2,100 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C35725CB5F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 22:41:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE64825CB7E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 22:49:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729791AbgICUlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 16:41:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37104 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729786AbgICUlL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 16:41:11 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEB76C061244;
-        Thu,  3 Sep 2020 13:41:09 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id o21so4176785wmc.0;
-        Thu, 03 Sep 2020 13:41:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mrU1rx4DoUlTOdrRXtpUbhFHv5BIOESXnbIc518rU7M=;
-        b=MwJh0ba9LTlgXQwl4QboXQ76MOQ0rLLNtmteRWvQkrvDd6nR1LVtTmJ6RAy5Gx++gm
-         QF+5gW+RPKKRQ6eDtNL8IQzwU09XB16k6BfoanO3mvVcTYqap7FR+3xhwgJmLG+bx7E3
-         h8oL0igq6eMYaBYEwelwEC0hUm7j+2GUsVfdyVdEu4xggPb8kBrO+hVOZ2Ofuvh+6zIZ
-         PzJImZg9EioD+K9PJ3VPgSrUnpbfVGTrmhR+k2zzNf2auwlgjRgFp3JFBDZeJ7MYACsI
-         O3LAQ5eucH8mqpUDk8pC2UOjDIk3/LEkTMQnKV1H2qWdajoJrrotk2/Fhd7rPrmwv8kH
-         MJgQ==
+        id S1729172AbgICUtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 16:49:04 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:39476 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728397AbgICUtD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 16:49:03 -0400
+Received: by mail-wm1-f67.google.com with SMTP id b79so4157839wmb.4;
+        Thu, 03 Sep 2020 13:49:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mrU1rx4DoUlTOdrRXtpUbhFHv5BIOESXnbIc518rU7M=;
-        b=XIhd+JDx9g70oQbkL4FWXSKzoI+ruQzVTf0djztGbeeJy1YI7uo7sMwENOJmwzdZbX
-         Vhgn1lDpecbI/FYB5gT+zBfvx0wYPkmcU5QVvyCVm4XDl17xdbeWPltLNZzuVV9MZY1S
-         VUzb5ougMTDHO26Ivt1cZy9WzRfTfUThdHTO2Cg4ifomR+V8KJTs0+ETaZneZrQn0/hP
-         UnZfAgTZEpks6EiftTvMd+4jWP0bA9LZ6EZKkI2AY8ZqZRSq1NnGU6XRnhNLqgRiZ24+
-         e0hj5UijGQfs1USxO7JKozBRJ+2upcpZDQSxg9CUR2U92PFwbLs6b7MZSUeFsd967EoY
-         29mQ==
-X-Gm-Message-State: AOAM530uaMLrmo33OOSvxJX62pYlVgDYLIn082vJsi4EWa93Okiy+4gq
-        hyWUix6K0E5PTlzic5a0Q1J7ifbbOpb5XM4TjR0=
-X-Google-Smtp-Source: ABdhPJwcEvQI2hy8KlNi4cFWdaPY6wx3E4A//S4RPk8hHM64my+uYjNkEGS7lEdY8Cax3pD+uZebq7KPMavqLirSIZE=
-X-Received: by 2002:a1c:9d4b:: with SMTP id g72mr4347546wme.68.1599165668282;
- Thu, 03 Sep 2020 13:41:08 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=TTR4ZevWbBTzzWBk5Ftm+jdBL57hcsdTyw/U1bSsOcE=;
+        b=r691mwlEN1DZRFY5CzBJjooZAKjA+OIV1MMR7EI1j3jj/s+AqooIGCUEWQexXAycWg
+         FXCQkxO+osEOBsBvKDnbOxYpOU7g5g6gOM39OsWTr2xk6ZeiMMTnfFKbbnmht4dm4vad
+         zdu8v2V+/ftDGnv7v9zMxdRxSKE9u1I0M30BO05AmUk03fGsi46pWHH9mCDUSXg88fte
+         KcT42HaACAncF68B+pBsoeOBWVAQ/Z0QkVuR/pcMjuhJdp0wyJwBbruxR5EwMRXKiBwC
+         u0vZUTv14+3otg7wiA4HErum/PH+r6SxkuKXFxCb8HxFf1oXzH+b+metDE7XBBuviO3Z
+         TyIw==
+X-Gm-Message-State: AOAM533rDYF9NMRM9QwHgnpycG+ts3BpcVmuJP52CyvYhq2Y1+8qq2+v
+        wa+5mts6m6+SwACxxyllBFQ=
+X-Google-Smtp-Source: ABdhPJxbAqG+Z7hrWdt6vHYFdCHeNv0eFaCop/ZdMBXFkp4runoehm2xwhF/xenMGGhJzuf0hgPGCg==
+X-Received: by 2002:a1c:234d:: with SMTP id j74mr4123561wmj.157.1599166139821;
+        Thu, 03 Sep 2020 13:48:59 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.106])
+        by smtp.googlemail.com with ESMTPSA id j7sm6108628wrs.11.2020.09.03.13.48.57
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 03 Sep 2020 13:48:58 -0700 (PDT)
+Date:   Thu, 3 Sep 2020 22:48:56 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>
+Subject: Re: [PATCH 01/13] ARM: dts: exynos: Correct compatible for Exynos5
+ GIC
+Message-ID: <20200903204856.GA20285@kozik-lap>
+References: <20200901075417.22481-1-krzk@kernel.org>
+ <20200901075417.22481-2-krzk@kernel.org>
 MIME-Version: 1.0
-References: <20200815163514.11631-1-hauke@hauke-m.de>
-In-Reply-To: <20200815163514.11631-1-hauke@hauke-m.de>
-From:   Rahul Bedarkar <rahulbedarkar89@gmail.com>
-Date:   Fri, 4 Sep 2020 02:10:56 +0530
-Message-ID: <CA+NV+Vn=+o-u-A24YVbpzmDo6HLeepmu0-wqVd_Eyt0URhtQGw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] MIPS: DTS: img: marduk: Add SPI NAND flash
-To:     Hauke Mehrtens <hauke@hauke-m.de>
-Cc:     tsbogend@alpha.franken.de, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        james.hartley@sondrel.com, wigyori@uid0.hu
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200901075417.22481-2-krzk@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 15, 2020 at 10:05 PM Hauke Mehrtens <hauke@hauke-m.de> wrote:
->
-> Add Gigadevice GD5F4GQ4UCYIGT SPI NAND flash to the device tree.
->
-> The NAND flash chip is connected with quad SPI, but reading currently
-> fails in quad SPI mode.
->
-
-I think dual RX and quad TX should work.
-https://github.com/CreatorDev/openwrt/blob/ci40/target/linux/pistachio/dts/pistachio/pistachio_marduk_common.dtsi#L203
-
-> Signed-off-by: Hauke Mehrtens <hauke@hauke-m.de>
-
-Reviewed-by: Rahul Bedarkar <rahulbedarkar89@gmail.com>
-
+On Tue, Sep 01, 2020 at 09:54:05AM +0200, Krzysztof Kozlowski wrote:
+> Exynos5250 and Exynso54xx SoCs have ARM GIC 400.  Correct the
+> compatibles to match dtschema and fix the dtbs_check warnings like:
+> 
+>   arch/arm/boot/dts/exynos5420-peach-pit.dt.yaml: interrupt-controller@10481000:
+>     compatible: ['arm,gic-400', 'arm,cortex-a15-gic', 'arm,cortex-a9-gic']
+>     is not valid under any of the given schemas
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->  arch/mips/boot/dts/img/pistachio_marduk.dts | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/arch/mips/boot/dts/img/pistachio_marduk.dts b/arch/mips/boot/dts/img/pistachio_marduk.dts
-> index bf69da96dc8b..ea11a21b133b 100644
-> --- a/arch/mips/boot/dts/img/pistachio_marduk.dts
-> +++ b/arch/mips/boot/dts/img/pistachio_marduk.dts
-> @@ -88,6 +88,12 @@
->                 reg = <0>;
->                 spi-max-frequency = <50000000>;
->         };
-> +
-> +       flash@1 {
-> +               compatible = "spi-nand";
-> +               reg = <1>;
-> +               spi-max-frequency = <50000000>;
-> +       };
->  };
->
->  &uart0 {
-> --
-> 2.20.1
->
+>  arch/arm/boot/dts/exynos5.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+
+Applied 1-10.
+
+Best regards,
+Krzysztof
+
