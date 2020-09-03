@@ -2,211 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E02825B8B9
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 04:22:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2B3725B960
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 05:48:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726526AbgICCWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Sep 2020 22:22:39 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:56015 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726177AbgICCWi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 22:22:38 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id CBCB058012E;
-        Wed,  2 Sep 2020 22:22:36 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Wed, 02 Sep 2020 22:22:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        subject:to:cc:references:from:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=Z
-        HA9Ys3BbFE/uK3mH/P+4binR9tHt/5auQFE5N/VEm0=; b=UzcvB9eY6ycvjTjhV
-        WwTnXWT54TlevB6RLGw7acGaDmeskyXA5dcl+AXs2KFel9Xu8ZW91OO5gokvoQEb
-        zivH2O4QcO1GkP3YGZTyxpG6U5va3Vd/QfQ2vRlcJhRkfa/UJsu3NeklgonwOB6A
-        Mv+ysNCLiF0DAk2o5Llzz+6iGuR+/qpNXEhKqhmHkFOPRRg71+fqc3TQ5ZFbjA8s
-        R6gXI4JesAytjW0D5W9eodwEuGBN0i3A8BCrtow9yervRe7hP7zHKAHiFWzRjVt+
-        +8fx0Lu0+4DpBoU3Si7QDdtAwwcjWBtGv6nTvZR6FBDHfJa1NxFAbsXarwUQ7uMR
-        mvhCg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=ZHA9Ys3BbFE/uK3mH/P+4binR9tHt/5auQFE5N/VE
-        m0=; b=kCjx+/FXNJqGJx61GurAtrQrD3mCorm0S1vRvhGowKWZNZfJ7aM/9TGkT
-        tGAO9nEWiB/TxAGpQ3Xo03Bvd+lVerHFT+R6+uFFTWMEfmC5OVKloqKZb21A8T/4
-        F/HfDXUDHliLuqZzaXZwghjFKkA20r/cQguj4pqadm8GAalR1X8u5JibrwT5aXsx
-        DmvS2ck7cuiqgLpBUv+8nXe6nQU2mdVvMP6yB32a9oE6NoOKmwF8kIqiPJgnOC+t
-        fml/J4PmjFJBrtq8Mt0EcYdCiVc8r4Iw5vPnZXLMNykFaz4GMwgUA0HgMrexJgh5
-        08GmtrMeQg3wQnSa4YvMnjFCS2scg==
-X-ME-Sender: <xms:alNQX4wEEHX0uGS-GN4SuW7TSVpTqmQSPXm53bSeHX4yaehzFhm0uA>
-    <xme:alNQX8TT7RxT0akP6ndzYeo7vZvO-kw2j3xYRrIvzAC6o5H7VThq1l7Dw9jNbcX1x
-    1ODqZHKJHju5mbvCA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudegtddgheejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepgfelkeduveejtdejhfeiledvhfeggeeiieeklefhfeefffffffeg
-    udetteelieejnecukfhppeejtddrudefhedrudegkedrudehudenucevlhhushhtvghruf
-    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgr
-    nhgurdhorhhg
-X-ME-Proxy: <xmx:a1NQX6WalSV9vioGk7RoQzkRnPFRdEOgieAyO3oEhNNE_4b5eHnd5w>
-    <xmx:a1NQX2iColSFeiEwRrHtOTOBO8Iw7GBm0RTF6TTyCNHSPrfP7ITo8w>
-    <xmx:a1NQX6C6fq6_ADG_NFR_ab4Y4vDN90X2fntsA_xaBmK6qdkpbkLT0g>
-    <xmx:bFNQX268XgzMR4ag7dujTr-he2aEqYSBqQzmE3SimjNteIkDOVhC8Q>
-Received: from [192.168.50.169] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 6A1043280063;
-        Wed,  2 Sep 2020 22:22:34 -0400 (EDT)
-Subject: Re: [linux-sunxi] [PATCH 05/16] ASoc: sun4i-i2s: Add 20 and 24 bit
- support
-To:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@siol.net>,
-        peron.clem@gmail.com, Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-References: <20200704113902.336911-1-peron.clem@gmail.com>
- <20200704113902.336911-6-peron.clem@gmail.com>
- <1e320dfd-9388-54b2-dba9-7def0bf4bbad@sholland.org>
- <9148679.oVN3Z7rve9@kista>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <fd714cb6-3650-1eb9-616d-33c00f1442eb@sholland.org>
-Date:   Wed, 2 Sep 2020 21:22:33 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        id S1728217AbgICDsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Sep 2020 23:48:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50442 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726776AbgICDsE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Sep 2020 23:48:04 -0400
+Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com [IPv6:2607:f8b0:4864:20::742])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33E03C061244
+        for <devicetree@vger.kernel.org>; Wed,  2 Sep 2020 20:48:04 -0700 (PDT)
+Received: by mail-qk1-x742.google.com with SMTP id w12so1890268qki.6
+        for <devicetree@vger.kernel.org>; Wed, 02 Sep 2020 20:48:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dionne-riel-com.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=ltnD3f7HjD2+w0pdmZya1OptZlkQr+uyCb04jevIv4c=;
+        b=lgHo1ju3UR6gi4QXqDYGyUrbKc1+gBfxhvCm+aXUAhzRuH6FYoAh+BAGKWsJlxQFfT
+         AplBWGM43eVPQkD6w52YfxYBje9gYrnek2/TqLITDgasLCePVqvkueoeIh/SeRmTU/q2
+         Jv8Ox/q/S0tJIOzz+hUwz3cVbenB4B5PnpdYdMZJcRiV4HrsW9cbWlK8sSLdNz2G1/ny
+         +q4uwyaGEiA6XkkslpzoYGDBmD8Vi+DfuCjCz9qm5FWFAvOl6SOyk485qbPSBC5ITCJQ
+         uEE3WPQMPUCfsKXv2gYktNc+R7yVWdTvxYhE2ua5SVEAzJRtnHXIaoLAqv8jd0zgAkTb
+         Rp1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=ltnD3f7HjD2+w0pdmZya1OptZlkQr+uyCb04jevIv4c=;
+        b=FwfDM7d9pVoTssfZRv8TYI161SysREqRaZgCML5H0wkZi8iSMIQvvmCvP9NrQdjs3s
+         SyBPDShIqt7qXishGOb7uWJvMsh18Pp4M7sk2GwTdD/APyuKAQkv9ZAN/jQ1TgfbzFHn
+         yZx4WUw3RMgBDaT0SluSluXF0UORoLnEXJ6jomZjeJBw9SHfHg0uMlJtG9uJ2/3G+uDM
+         FaO87KW+I+6frjrHZJMinBJexIrZTzctw0/ZOENBialHEMY/YOwPeLGZsThoEbjO3qvh
+         N8tHLTbhBMrn2NrnaXNnYkBOTDDVlqzoc+B3+SiF9nwP/BTxUbZS1P+Pq/6XqxnDTXew
+         aS3A==
+X-Gm-Message-State: AOAM532fKhr6oYf6Rv4nwnFk8E3Lia70xNrkHFiBKC29DSdxotQXsFQD
+        SC7z/EMtJ6k8c8eUqmfw/vBFUQ==
+X-Google-Smtp-Source: ABdhPJxMCPmYqhPFNnjlNpKrmGcUQlsXZc/Tyugh4NkRtWsiEYkHpu09DB1AsLX9WA7xQi8wBLFjyQ==
+X-Received: by 2002:a37:ad08:: with SMTP id f8mr1242667qkm.207.1599104881401;
+        Wed, 02 Sep 2020 20:48:01 -0700 (PDT)
+Received: from DUFFMAN (135-23-195-85.cpe.pppoe.ca. [135.23.195.85])
+        by smtp.gmail.com with ESMTPSA id m17sm1393902qkn.45.2020.09.02.20.48.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Sep 2020 20:48:01 -0700 (PDT)
+Date:   Wed, 2 Sep 2020 23:47:56 -0400
+From:   Samuel Dionne-Riel <samuel@dionne-riel.com>
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     Marc Zyngier <maz@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: Boot failure on gru-scarlet-inx with 5.9-rc2
+Message-ID: <20200902234756.60e4c4f6@DUFFMAN>
+In-Reply-To: <20200902160110.GA30014@e121166-lin.cambridge.arm.com>
+References: <20200829164920.7d28e01a@DUFFMAN>
+        <65d88bdd0888a69849327501a2aad186@kernel.org>
+        <20200831031838.2d6d76d9@DUFFMAN>
+        <90731ebb54fe03003dce03bc7ec4872e@kernel.org>
+        <20200831234542.295b1275@DUFFMAN>
+        <5db50a8e5b251714cebe0a719ee9dc73@kernel.org>
+        <20200901164249.GA15045@e121166-lin.cambridge.arm.com>
+        <20200901143356.0425d9ba@DUFFMAN>
+        <20200902160110.GA30014@e121166-lin.cambridge.arm.com>
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <9148679.oVN3Z7rve9@kista>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/2/20 1:10 PM, Jernej Škrabec wrote:
-> Hi Samuel!
+On Wed, 2 Sep 2020 17:01:19 +0100
+Lorenzo Pieralisi <lorenzo.pieralisi@arm.com> wrote:
+
+> On Tue, Sep 01, 2020 at 02:33:56PM -0400, Samuel Dionne-Riel wrote:
 > 
-> Dne petek, 10. julij 2020 ob 07:44:51 CEST je Samuel Holland napisal(a):
->> On 7/4/20 6:38 AM, Clément Péron wrote:
->>> From: Marcus Cooper <codekipper@gmail.com>
->>>
->>> Extend the functionality of the driver to include support of 20 and
->>> 24 bits per sample.
->>>
->>> Signed-off-by: Marcus Cooper <codekipper@gmail.com>
->>> Signed-off-by: Clément Péron <peron.clem@gmail.com>
->>> ---
->>>
->>>  sound/soc/sunxi/sun4i-i2s.c | 11 +++++++++--
->>>  1 file changed, 9 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
->>> index f78167e152ce..bc7f9343bc7a 100644
->>> --- a/sound/soc/sunxi/sun4i-i2s.c
->>> +++ b/sound/soc/sunxi/sun4i-i2s.c
->>> @@ -577,6 +577,9 @@ static int sun4i_i2s_hw_params(struct
->>> snd_pcm_substream *substream,> 
->>>  	case 16:
->>>  		width = DMA_SLAVE_BUSWIDTH_2_BYTES;
->>>  		break;
->>>
->>> +	case 32:
->>> +		width = DMA_SLAVE_BUSWIDTH_4_BYTES;
->>> +		break;
->>
->> This breaks the sun4i variants, because sun4i_i2s_get_wss returns 4 for a 32
->> bit width, but it needs to return 3.
+> Please print a pointer as a pointer and print both bus and
+> bus->parent.
+
+Hopefully pointer as a pointer is %px. Not sure what else, if that's
+wrong please tell.
+
+---
+@@ -79,6 +79,8 @@ static int rockchip_pcie_valid_device(struct rockchip_pcie *rockchip,
+         * do not read more than one device on the bus directly attached
+         * to RC's downstream side.
+         */
++       printk("[!!] // bus (%px) bus->parent (%px)\n", bus, bus->parent);
++       printk("[!!] bus->primary (%d) == rockchip->root_bus_nr (%d) && dev (%d) > 0\n", bus->primary, rockchip->root_bus_nr, dev);
+        if (bus->primary == rockchip->root_bus_nr && dev > 0)
+                return 0;
+ 
+--
+
+Again, two values, verified with a bit of set and `sort -u`.
+
+[    1.691266] [!!] // bus (ffff0000ef9ab800) bus->parent (0000000000000000)
+[    1.691271] [!!] bus->primary (0) == rockchip->root_bus_nr (0) && dev (0) > 0
+
+and
+
+[    1.697156] [!!] // bus (ffff0000ef9ac000) bus->parent (ffff0000ef9ab800)
+[    1.697160] [!!] bus->primary (0) == rockchip->root_bus_nr (0) && dev (0) > 0
+
+First instance of each shown here. Last time I don't think it was.
+
+> > +       printk("[!!] bus->primary (%d) == rockchip->root_bus_nr
+> > (%d) && dev (%d) > 0\n", bus->primary, rockchip->root_bus_nr, dev);
+> > if (bus->primary == rockchip->root_bus_nr && dev > 0) return 0;
+> > 
+> > --
+> > 
+> > I get two kind of results
+> > 
+> > [    1.692913] [!!] // bus->parent (0)
+> > [    1.692917] [!!] bus->primary (0) == rockchip->root_bus_nr (0)
+> > && dev (0) > 0
+> > 
+> > and
+> > 
+> > [    1.693055] [!!] // bus->parent (-256794624)
+> > [    1.693058] [!!] bus->primary (0) == rockchip->root_bus_nr (0)
+> > && dev (0) > 0 
 > 
-> I'm not sure what has WSS with physical width and DMA?
-
-This is the change where creating a S24_LE stream no longer fails with -EINVAL.
-So this is the change where userspace stops downsampling 24-bit audio sources.
-So this is the change where playback of 24-bit audio sources breaks, because WSS
-is programmed wrong.
-
->> As a side note, I wonder why we use the physical width (the spacing between
->> samples in RAM) to drive the slot width. S24_LE takes up 4 bytes per sample
->> in RAM, which we need for DMA. But I don't see why we would want to
->> transmit the padding over the wire. I would expect it to be transmitted the
->> same as S24_3LE (which has no padding). It did not matter before, because
->> the only supported format had no padding.
-> 
-> Allwinner DMA engines support only 1, 2, 4 and sometimes 8 bytes for bus 
-> width, so if sample is 24 bits in size, we have no other way but to transmit 
-> padding too.
-
-I understand why we do 4 byte DMA from RAM <=> I2S FIFO; that was not my
-question. I'm referring to the actual wire format (FIFO <=> PCM_DIN/DOUT). The
-sample is already truncated from 32 bits to 24 bits in the FIFO -- that's what
-TXIM and RXOM in FIFO_CTRL control.
-
-If a sample is 24 bits wide, why would we send 32 BCLKs for every LRCK? I would
-expect the slot width to match the sample resolution by default. But yet we have
-this code in the driver:
-
-    unsigned int word_size = params_width(params);
-    unsigned int slot_width = params_physical_width(params);
-
-I think slot_width should be the same as word_size, and I suggest changing it
-before adding 20/24-bit support.
-
-> Best regards,
-> Jernej
-
-Regards,
-Samuel
-
->>>  	default:
->>>  		dev_err(dai->dev, "Unsupported physical sample width: 
-> %d\n",
->>>  		
->>>  			params_physical_width(params));
->>>
->>> @@ -1063,6 +1066,10 @@ static int sun4i_i2s_dai_probe(struct snd_soc_dai
->>> *dai)> 
->>>  	return 0;
->>>  
->>>  }
->>>
->>> +#define SUN4I_FORMATS	(SNDRV_PCM_FMTBIT_S16_LE | \
->>> +			 SNDRV_PCM_FMTBIT_S20_LE | \
->>> +			 SNDRV_PCM_FMTBIT_S24_LE)
->>> +
->>>
->>>  static struct snd_soc_dai_driver sun4i_i2s_dai = {
->>>  
->>>  	.probe = sun4i_i2s_dai_probe,
->>>  	.capture = {
->>>
->>> @@ -1070,14 +1077,14 @@ static struct snd_soc_dai_driver sun4i_i2s_dai = {
->>>
->>>  		.channels_min = 1,
->>>  		.channels_max = 8,
->>>  		.rates = SNDRV_PCM_RATE_8000_192000,
->>>
->>> -		.formats = SNDRV_PCM_FMTBIT_S16_LE,
->>> +		.formats = SUN4I_FORMATS,
->>>
->>>  	},
->>>  	.playback = {
->>>  	
->>>  		.stream_name = "Playback",
->>>  		.channels_min = 1,
->>>  		.channels_max = 8,
->>>  		.rates = SNDRV_PCM_RATE_8000_192000,
->>>
->>> -		.formats = SNDRV_PCM_FMTBIT_S16_LE,
->>> +		.formats = SUN4I_FORMATS,
->>>
->>>  	},
->>>  	.ops = &sun4i_i2s_dai_ops,
->>>  	.symmetric_rates = 1,
-> 
-> 
-> 
+> Looks like this is the condition that pci_is_root_bus(bus->parent) is
+> not hitting.
 > 
 
+
+
+> You are accessing a resource IORESOURCE_MEM that has nothing to do
+> with bus numbers.
+> 
+> s/IORESOURCE_MEM/IORESOURCE_BUS
+> 
+> should be better ;-)
+
+At least correct, rather than luckily working.
+
+
+Thanks, as always, anything I missed, or need more precisions, do ask.
+
+-- 
+Samuel Dionne-Riel
