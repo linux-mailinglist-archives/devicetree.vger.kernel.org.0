@@ -2,321 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83D1E25C3CD
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 16:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5966525C369
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 16:51:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729010AbgICOIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 10:08:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60904 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729096AbgICOHw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 10:07:52 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B6C8C0619C9
-        for <devicetree@vger.kernel.org>; Thu,  3 Sep 2020 06:21:39 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id z17so1862856lfi.12
-        for <devicetree@vger.kernel.org>; Thu, 03 Sep 2020 06:21:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=V7/RoZUDbSidbaVmS9FeqN+fWeyUR1JKVWNxeicmHMg=;
-        b=zEWstPZ31aBryWxYNemcI3JoczurqsIM+kowklx4XBCk00IVh/93S1NcSLqpa8dESZ
-         iIyASHxbXJswE7RfL5pxrCIFdVShNGxkSCTpYifIDBG9byHWzuDDJwxOuAP25A2x/EZ7
-         yyDic2OOU7DpPvzVjfeEX4wAAhWZfZ/vKO/0xhaI2Wdhx3CAVMUpu3zHPtLe0+SSdQhe
-         ORBQo6jKrVIMZ4Eyk/B/nfD4PaETNV2pEDSIc+XHroBqNiGmxlY82t8PmnxS0E5mmQR3
-         thibgp7bjY7uHBPJ2sM8nBg9kMTRAW3Tfz9tz85nhMbyP4oe2w96+4I8//6+5ECGgKhn
-         zGjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=V7/RoZUDbSidbaVmS9FeqN+fWeyUR1JKVWNxeicmHMg=;
-        b=YBG9dGwDWJjld+XNE9LuFTe95dgoUm+wE4SC4gK9Chl+Dn6Qyh8THzutcLuejp8FJd
-         jbmTRU+2Er8uQktKXTwwwHhZjKr1m8jA9gkvgAIL899QsqY9V/9LBXyN7kt3R0KC8lj+
-         +X5xV+UKA1KlDk0sqsrfbW90wclJP6CgXf8aleEo+bW0kHzQhSa8LmoO2aEfmPm/FnCG
-         j8W5Mvd+jS8G3wQ0Z+1QGNLGJzMk8d9lx49XFdqY2yV0VDHLXEP69v1rrvBzIVPBgHAm
-         FDW9wIaiWGbLt2yrnBbkQMtp9YVEOf2XcBZoD08SJEOgiunrNuRhdFM4B/u1NXYnnzlE
-         xBlQ==
-X-Gm-Message-State: AOAM53014kJWkLh3N/LxjmqpJPgDke8MxoHeGfKrmR3l3tjSxqbC+a0V
-        7I9iWukOQIzJx7tS4uqJc3SmAg==
-X-Google-Smtp-Source: ABdhPJwJHC6RwnosYTlCNIMZruGq97X9zWxdMV8v4PXrUw4KhG99TMUWZdIe92dYoflftgWkWzCLxA==
-X-Received: by 2002:a19:4ad8:: with SMTP id x207mr1273135lfa.73.1599139297531;
-        Thu, 03 Sep 2020 06:21:37 -0700 (PDT)
-Received: from eriador.lan ([188.162.64.138])
-        by smtp.gmail.com with ESMTPSA id e23sm584220lfj.80.2020.09.03.06.21.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Sep 2020 06:21:36 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: [PATCH v2 9/9] arm64: dts: sm8250-mtp: add thermal zones using pmic's adc-tm5
-Date:   Thu,  3 Sep 2020 16:21:09 +0300
-Message-Id: <20200903132109.1914011-10-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200903132109.1914011-1-dmitry.baryshkov@linaro.org>
-References: <20200903132109.1914011-1-dmitry.baryshkov@linaro.org>
+        id S1729207AbgICOvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 10:51:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56616 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729234AbgICOP1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Sep 2020 10:15:27 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BB4D6206EB;
+        Thu,  3 Sep 2020 13:23:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599139402;
+        bh=uxrMI+2jcG7Rhw4PCRtsAWbNUWIO2z+gwQ/cr3AcOcg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=P8ytrwH16XsbRuGogX7XR0cM8l3saDTV7V6rLJqztA3BTdEm8sKCVMgP9+guQw5oh
+         oX9mOY7DAMKky8hGQ1SKM2O4XgfH9OYRZknrqyBOiFB1S6jyiBp4KzSrTKAj5L+IxY
+         Km69Z3dSrT+aWrT+Mz5zDXcBLLs6dyRRrDBlQyfs=
+Date:   Thu, 3 Sep 2020 14:22:41 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: spi-imx: correct interpretation of num-cs DT property?
+Message-ID: <20200903132241.GB4771@sirena.org.uk>
+References: <ecfa135b7b83a31bed821ec0740ab3cf1d39da15.camel@ew.tq-group.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ADZbWkCsHQ7r3kzd"
+Content-Disposition: inline
+In-Reply-To: <ecfa135b7b83a31bed821ec0740ab3cf1d39da15.camel@ew.tq-group.com>
+X-Cookie: Murphy was an optimist.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Port thermal zones definitions from msm-4.19 tree. Enable and add
-channel configuration to PMIC's ADC-TM definitions. Declare thermal
-zones and respective trip points.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250-mtp.dts | 217 ++++++++++++++++++++++++
- 1 file changed, 217 insertions(+)
+--ADZbWkCsHQ7r3kzd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-index 6894f8490dae..4db5c1e4269e 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-@@ -24,6 +24,104 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	thermal-zones {
-+		xo-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150_adc_tm 0>;
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		skin-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150_adc_tm 1>;
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		mmw-pa1 {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150_adc_tm 2>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		conn-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150b_adc_tm 0>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		camera-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150l_adc_tm 0>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		skin-msm-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150l_adc_tm 1>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		mmw-pa2 {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150l_adc_tm 2>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+	};
-+
- 	vph_pwr: vph-pwr-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vph_pwr";
-@@ -358,6 +456,125 @@ &cdsp {
- 	firmware-name = "qcom/sm8250/cdsp.mbn";
- };
- 
-+&pm8150_adc {
-+	xo-therm@4c {
-+		reg = <ADC5_XO_THERM_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	skin-therm@4d {
-+		reg = <ADC5_AMUX_THM1_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	pa-therm1@4e {
-+		reg = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150b_adc {
-+	conn-therm@4f {
-+		reg = <ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150l_adc {
-+	camera-flash-therm@4d {
-+		reg = <ADC5_AMUX_THM1_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	skin-msm-therm@4e {
-+		reg = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	pa-therm2@4f {
-+		reg = <ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150_adc_tm {
-+	status = "okay";
-+	io-channels = <&pm8150_adc ADC5_XO_THERM_100K_PU>,
-+			<&pm8150_adc ADC5_AMUX_THM1_100K_PU>,
-+			<&pm8150_adc ADC5_AMUX_THM2_100K_PU>;
-+	io-channel-names = "xo-therm", "skin-therm", "pa-therm1";
-+
-+	xo-therm@0 {
-+		reg = <0>;
-+		qcom,adc-channel = <ADC5_XO_THERM_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	skin-therm@1 {
-+		reg = <1>;
-+		qcom,adc-channel = <ADC5_AMUX_THM1_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	pa-therm1@2 {
-+		reg = <2>;
-+		qcom,adc-channel = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150b_adc_tm {
-+	status = "okay";
-+	io-channels = <&pm8150b_adc ADC5_AMUX_THM3_100K_PU>;
-+	io-channel-names = "conn-therm";
-+
-+	conn-therm@0 {
-+		reg = <0>;
-+		qcom,adc-channel = <ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150l_adc_tm {
-+	status = "okay";
-+	io-channels = <&pm8150l_adc ADC5_AMUX_THM1_100K_PU>,
-+			<&pm8150l_adc ADC5_AMUX_THM2_100K_PU>,
-+			<&pm8150l_adc ADC5_AMUX_THM3_100K_PU>;
-+	io-channel-names = "camera-flash-therm", "skin-msm-therm", "pa-therm2";
-+
-+	camera-flash-therm@0 {
-+		reg = <0>;
-+		qcom,adc-channel = <ADC5_AMUX_THM1_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	skin-msm-therm@1 {
-+		reg = <1>;
-+		qcom,adc-channel = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	pa-therm2@2 {
-+		reg = <2>;
-+		qcom,adc-channel = <ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
- &qupv3_id_1 {
- 	status = "okay";
- };
--- 
-2.28.0
+On Thu, Sep 03, 2020 at 11:22:20AM +0200, Matthias Schiffer wrote:
 
+> - If num-cs is set, use that
+> - If num-cs is unset, use the number of cs-gpios
+> - If num-cs is unset and no cs-gpios are defined, use a driver-provided=
+=20
+> default (which is 3 for spi-imx; this matches the number of native CS
+> pins in older implementations of this SPI controller; i.MX6 and newer
+> support up to 4)
+
+That sounds like what's expected, though we coould just skip the first
+step.
+
+> Also, would it make sense to add num-cs to all DTS files for boards
+> that actually use fewer than 3 CS pins?
+
+No, it was never a good idea to have that property in the first place
+and there should be no case where it helps anything.
+
+> At the moment, the num-cs property is not explicitly documented for the
+> spi-imx driver, although the driver understands it. I also suggested to
+> add this to the docs, which Fabio didn't deem a good idea (I don't
+> quite understand the reasoning here - isn't num-cs generally a useful
+> property to have?)
+
+Could you explain what benefit you would expect having num-cs to offer?
+
+--ADZbWkCsHQ7r3kzd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9Q7iAACgkQJNaLcl1U
+h9DI4Qf+IFmOS7dEEhxYZrT/kDf0F1Z6Kj6qTImRT4ImOPc1hhlzs6e9o2HxAj95
+SfPAinxGHrl9ClrK2J8e4XG7xxu+UNfom6FGwma3oz0nhwPJ+kJx6LaQYDdEdCYc
+mgK3XD+n87gwKoS4DdbZxpFTdAE2XR+ngKlDJUdhYmlWxKgGZuWzJfw4ehTZlqbg
+Rvgr9CY+AT6mKFDq9dZS2AxFXpD5LLqOHj4XX25MjpWS9AdSjWuWyop24WbvF2nj
+YJqrMqto0ygGJdW94+ugGz2T+82EOI6Bm17NcpYzXHcSFT7d97GCC2kQbTQmIDql
+1sAVyODUHKz5reRHSSFsIebJiRJSjQ==
+=CrVc
+-----END PGP SIGNATURE-----
+
+--ADZbWkCsHQ7r3kzd--
