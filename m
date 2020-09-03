@@ -2,112 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A395D25CB91
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 22:57:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EE8D25CB98
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 22:58:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726323AbgICU5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 16:57:46 -0400
-Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:45821 "EHLO
+        id S1726323AbgICU65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 16:58:57 -0400
+Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:46951 "EHLO
         wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726088AbgICU5p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 16:57:45 -0400
+        by vger.kernel.org with ESMTP id S1726088AbgICU64 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 16:58:56 -0400
 Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.west.internal (Postfix) with ESMTP id A9C25EBC;
-        Thu,  3 Sep 2020 16:57:43 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Thu, 03 Sep 2020 16:57:44 -0400
+        by mailnew.west.internal (Postfix) with ESMTP id A707BEC7;
+        Thu,  3 Sep 2020 16:58:54 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Thu, 03 Sep 2020 16:58:55 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=7xx2c+sURY2BGLNN4PINqRBclr9
-        XFzFHQ6iOqlHyL/E=; b=Aa5DMMRrbjGVB7O78paeHjAcMcuE3VSjemEERDLYO8m
-        6um7dmOKlNqWoVzfXLgP6aRQ/nL26kK7PtNYQ4Xy6zoqDcvRYaCEdGwcgmw9dPLr
-        VTgWwg7kgbtP3oel2lU1s6uqH5K2xoQ/n2cURuHL6rS3o/XO+ZpMpIE7bN6GZbMn
-        MVhN1k+xThBbA5GD1VGI63Eu/ayGD9IKjjDxSLM3KnumRWovxtYkwcieHksCy/Oe
-        ws9C8/Z8VTMwOol64EmSUDN0QB3uhPmdiV7QQIwDVyFhkOwBf+FxghY0TqNV02LI
-        01gF4juWRM03K7r080Wq3Bv11OzvbRbjSq9hBHBvNpA==
+        :content-type:in-reply-to; s=fm3; bh=VwxK7QroUxSvB5XSFFWIZuc3sg2
+        iHrKhE1ibkbUE2jI=; b=kaAYVjpVfI2zt0FEA9hLZs2AJlQ34nNhGLX6/6CCzsn
+        86d/hqmwwLcFpORvk/XzLnAWT0DRhb7gaDEy7rEculzXeXdK/acD/bG2+Fbc7P3H
+        qCl77rWvDp7eCENzxaIcrxbFkGJewXhpo4UdYXn4v8W/almc0Uxpg6heec6DrZPJ
+        KJjv7F5wy/ec5mVaVCQrWtGYjHLGwmpaBF1XYfjVFBLpmiBERKF7kpazcLFnPR1l
+        p8GLp16T9x3JJqh99bGs0F6vVwavkFC/puPbejl8fX3Aar0edMWZqb7366kHcZGa
+        GyIovwwxUF6wf61NhLWS+BpoWzb4KJI0ld+FO35OT7w==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=7xx2c+
-        sURY2BGLNN4PINqRBclr9XFzFHQ6iOqlHyL/E=; b=b2QNltio4/RPP3JKHAkMrp
-        wrIS3Qp35QbrpaCiS38VD+1OBiCZX0CSgDuNMfWn1hvvbbRaxRFjx5vNYnbSv6HJ
-        xj4/fxOywREePlYj/T9uVOAzM4+1Cwk2M1eQymJnWr36w0jGbeZ699sHKQ8Ngfb7
-        +ZEZt1lnDWrtZJgiRGUF7tcdhzoe2naW3Svrt46kriNPZQCqZqprzVtu5MXhwaUy
-        sUlbQhFjdLZ/2orkAj7nKKltSmJl9jaw+xbPFOdJtiKFWD2YRwTOgqeUYI20ZC12
-        +298NjS4IxOgDDyGYxKjjNE+SwjxkLBnc8Zc5CmMffD8RIm9DH60JH1dskx+MvpQ
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=VwxK7Q
+        roUxSvB5XSFFWIZuc3sg2iHrKhE1ibkbUE2jI=; b=imnAfMHYZQvPJefQiiNTWu
+        OV8c6MzWKCvYWL1NR7gRebuvx69vPz12mXaIWTf3ZYXCwOr3+b84dqT12jv8e+kP
+        QcWcieNiAV3xi8BPu5i/bAeihFE9SJU1oJrLLYDYx4U7mf6Xw0pmtNBPif0AZzdZ
+        hStgKhAazmw14Jy0U8pmNg4HI2rzVHuRgxHnAm0eierZMwjW7ngEH6cGfuobXP/j
+        TUT9InSAxO5mhBOckCmS+E60b44I/o/pnNHmlaVUg/xXc0lw2d6hlf0mANKOaQV4
+        3iH/++plLCZrOqlEmpq8DkCG+XaOxLR/PXETD41bU4Y/s02vLLYV9meiiuvuWo4w
         ==
-X-ME-Sender: <xms:xVhRXxjCm6r1tCIN1HtYKG7k_qtkIKI9k7rpAusVr8OMvSWLKv4nMA>
-    <xme:xVhRX2BQyZqqFejYyfukF74HDH8WqayTVExiXIrDPHOaRVSOOVoVj_xc4n3kRgaL-
-    PSk2E8iFB7aMeb5l-0>
+X-ME-Sender: <xms:DVlRX2UpGHtqR86oT_wWmrdqkihvJFYhQ6sn66f7Cok5zhUe14HzQw>
+    <xme:DVlRXyl6jCVnbBauNKahWIgfMWeZLHT3CQ1bBJMuKCEB0XlyA87lP9670WUi6Jmzn
+    NMEV6IcOUlyJMgKoAo>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudeguddgudehjecutefuodetggdotefrod
     ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
     necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
     enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihi
     mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeduvdduhfekkeehgffftefflefgffdtheffudffgeevteffheeuiedvvdej
-    vdfgveenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtne
-    curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:xVhRXxHRzRXNCI0aMtcKIBktnk3ChjEHqZIwJlfJkx3RiAD-y-uzmg>
-    <xmx:xVhRX2S2BvHIgUnn9IpWfTupyg_A__TT3BnBsP3wVXa76k6X0KLD5Q>
-    <xmx:xVhRX-xELcAVnIE3LwDwq9nyaibYrlrJvIvNeaMjZBRnAgXSAk4dUg>
-    <xmx:x1hRXzrqXnGkVGSfM5_915DTstig_aeLw-XMgvLtvSbJAxdmpC8QArpXB-s>
+    htthgvrhhnpeetgfejtdelgeffffeitdfhtddvfeeijeffteelkefhledvvefggfdujeeg
+    ieeghfenucffohhmrghinhepghhithhhuhgsrdgtohhmnecukfhppeeltddrkeelrdeike
+    drjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhep
+    mhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:DVlRX6YxvVUhMIsL56aRp57nzY_7m4dxdwDF7ElxsQArBTCPrjwYCw>
+    <xmx:DVlRX9WzFHpKtpaqiZWI7uocjM-GMXzwJBDZC3DEjb4AmpoU9B9oxg>
+    <xmx:DVlRXwm0AU8ggWRCDcdavdaKMC8RTew-bUFhQGdYxC1sOfoEkb0RIA>
+    <xmx:DllRX5daUZfHprawJieS9Oxs15ms0GAGlDUVL0O87nBddtefOiEwqz1RaJ4>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id A19873280063;
-        Thu,  3 Sep 2020 16:57:41 -0400 (EDT)
-Date:   Thu, 3 Sep 2020 22:57:39 +0200
+        by mail.messagingengine.com (Postfix) with ESMTPA id 273C33060060;
+        Thu,  3 Sep 2020 16:58:53 -0400 (EDT)
+Date:   Thu, 3 Sep 2020 22:58:51 +0200
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
+Cc:     Mark Brown <broonie@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jaroslav Kysela <perex@perex.cz>,
         Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        linux-sunxi@googlegroups.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 01/20] Revert "ASoC: sun4i-i2s: Fix the LRCK polarity"
-Message-ID: <20200903205739.43dnsu7du6m44u5c@gilmour.lan>
-References: <20200903203034.1057334-1-peron.clem@gmail.com>
- <20200903203034.1057334-2-peron.clem@gmail.com>
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Marcus Cooper <codekipper@gmail.com>
+Subject: Re: [PATCH v3 3/7] ASoC: sun4i-i2s: Add support for H6 I2S
+Message-ID: <20200903205851.gdnpthserywsxrbs@gilmour.lan>
+References: <CAJiuCcdVs_drs40Q6537BYfz24F7NmC6B8S5-Lt4V4ggs-FXWA@mail.gmail.com>
+ <20200429123529.y24dpy63wxq7uvkt@gilmour.lan>
+ <CAJiuCcfXqizcq_JuXRCsqEqM2562cr1SGJ0pmy07jcJxAXojOw@mail.gmail.com>
+ <20200430084600.samghw4zxb5zdbez@gilmour.lan>
+ <CAJiuCcf_LHrJ6QdZgH8HyN6TRiT+GiD+t4UggFCrz-VwVHXV6w@mail.gmail.com>
+ <20200504120942.lnrxnnmykqnvw3fb@gilmour.lan>
+ <CAJiuCceF340FiLvyeXNZtvqftQMAmk=MtFDLT_9696ix+eH1Yw@mail.gmail.com>
+ <20200729143927.47f5tbuaob4ph3lp@gilmour.lan>
+ <20200729151548.GB5612@sirena.org.uk>
+ <CAJiuCcdf=TNLPTUPzHP9NzPHqdxG06TRDkQfONY+ScK0DV_v5w@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="p6v5j2ugxblige7u"
+        protocol="application/pgp-signature"; boundary="5oio2pfekr4xg52a"
 Content-Disposition: inline
-In-Reply-To: <20200903203034.1057334-2-peron.clem@gmail.com>
+In-Reply-To: <CAJiuCcdf=TNLPTUPzHP9NzPHqdxG06TRDkQfONY+ScK0DV_v5w@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---p6v5j2ugxblige7u
+--5oio2pfekr4xg52a
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi
-
-On Thu, Sep 03, 2020 at 10:30:15PM +0200, Cl=E9ment P=E9ron wrote:
-> This reverts commit dd657eae8164f7e4bafe8b875031a7c6c50646a9.
+On Thu, Sep 03, 2020 at 10:02:31PM +0200, Cl=E9ment P=E9ron wrote:
+> Hi Maxime,
 >=20
-> There was a misinterpretation of the analysis using a scope.
-> After rechecking this using a logical analyzer the LRCK polarity is
-> fine.
+> On Wed, 29 Jul 2020 at 17:16, Mark Brown <broonie@kernel.org> wrote:
+> >
+> > On Wed, Jul 29, 2020 at 04:39:27PM +0200, Maxime Ripard wrote:
+> >
+> > > It really looks like the polarity of LRCK is fine though. The first w=
+ord
+> > > is sent with LRCK low, and then high, so we have channel 0 and then
+> > > channel 1 which seems to be the proper ordering?
+> >
+> > Yes, that's normal.
+>=20
+> Thank you very much for this test.
+>=20
+> So I will revert the following commit:
+>=20
+> ASoC: sun4i-i2s: Fix the LRCK polarity
+>=20
+> https://github.com/clementperon/linux/commit/dd657eae8164f7e4bafe8b875031=
+a7c6c50646a9
 
-Yes, it's fine indeed, so there's no need to change anything?
+Like I said, the current code is working as expected with regard to the
+LRCK polarity. The issue is that the samples are delayed and start to be
+transmitted on the wrong phase of the signal.
+
+But the LRCK polarity is fine.
 
 Maxime
 
---p6v5j2ugxblige7u
+--5oio2pfekr4xg52a
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX1FYwwAKCRDj7w1vZxhR
-xbBKAQCBV+rE9UZoCrdpdAa3jQ9KOPalRBYJ5WnRoj1MUDwpXwEAi95nCcuHlPwE
-O/UMdDgPQbAc4AnYf7asF/A+X7ZbSg4=
-=kbla
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX1FZCwAKCRDj7w1vZxhR
+xWQVAQDmT/g2buALylg6CCaeD1ezTtMOaioshw6NnfrtEevsQAEApNN0CLywNAjR
+fL54Dcath7my334lJ2MhPvnoA5PHLQY=
+=euKd
 -----END PGP SIGNATURE-----
 
---p6v5j2ugxblige7u--
+--5oio2pfekr4xg52a--
