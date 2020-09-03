@@ -2,141 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5511825BB2F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 08:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7506125BB06
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 08:30:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725943AbgICGmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 02:42:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48802 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725919AbgICGmH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 02:42:07 -0400
-X-Greylist: delayed 2467 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 02 Sep 2020 23:42:06 PDT
-Received: from ipv6.s19.hekko.net.pl (ipv6.s19.hekko.net.pl [IPv6:2a02:1778:113::19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEA79C061244
-        for <devicetree@vger.kernel.org>; Wed,  2 Sep 2020 23:42:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=arf.net.pl;
-         s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
-        Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=rp4ty/SErBOyZ1HZAUPWFuRqlNEUexFqPy4aYRBOPiI=; b=bWJh0/UkolNhardo3R7qOqOZ05
-        4dzV13GcuedwmFDwPcBoO4jC/dNgE+lT5y5IZMv1bxCGvLg4Uch7fdl5/6zEe1ScFNpWkOAbukj8e
-        NjunvZcqfdKGV9gs3KtkyGN0mwpr+w6KDzOSAXosVkolvgkVzopjNB1H9DonZb25ZsxzR7UWI2NPo
-        poRel4kC1wou8GbOLlg854qTA9gmK9Z5x9LeJaNtNnOyEjF8JzBsrLaZJeeSLemfUlcFt+PeVVhyO
-        3f8qDBWoakcsphkx8hHBmDZXyVwDUO0YF9z7tTOMjDWAbybALxLyqI9rts27/wZ7eH8Zs1vXeH86R
-        UdYa1naA==;
-Received: from 188.147.96.44.nat.umts.dynamic.t-mobile.pl ([188.147.96.44] helo=[192.168.8.103])
-        by s19.hekko.net.pl with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.92.3)
-        (envelope-from <adam.rudzinski@arf.net.pl>)
-        id 1kDiJ7-001Wcs-3L; Thu, 03 Sep 2020 08:01:13 +0200
-Subject: Re: [RFC net-next 2/2] net: phy: bcm7xxx: request and manage GPHY
- clock
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>
-Cc:     netdev@vger.kernel.org, m.felsch@pengutronix.de,
-        hkallweit1@gmail.com, richard.leitner@skidata.com,
-        zhengdejin5@gmail.com, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, kuba@kernel.org, robh+dt@kernel.org
-References: <20200902213347.3177881-1-f.fainelli@gmail.com>
- <20200902213347.3177881-3-f.fainelli@gmail.com>
- <20200902222030.GJ3050651@lunn.ch>
- <7696bf30-9d7b-ecc9-041d-7d899dd07915@gmail.com>
-From:   =?UTF-8?Q?Adam_Rudzi=c5=84ski?= <adam.rudzinski@arf.net.pl>
-Message-ID: <77088212-ac93-9454-d3a0-c2eb61b5c3e0@arf.net.pl>
-Date:   Thu, 3 Sep 2020 08:00:45 +0200
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1725967AbgICGau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 02:30:50 -0400
+Received: from mga17.intel.com ([192.55.52.151]:12741 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725919AbgICGau (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Sep 2020 02:30:50 -0400
+IronPort-SDR: i1oxDGt4k5KE9EG3KCUfj5UcEp+iHG78eExBNHZx4QZppcawUfD/r0AcZZm4CXt7VmcODRdUtA
+ k7mfJLBw9chg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9732"; a="137578471"
+X-IronPort-AV: E=Sophos;i="5.76,385,1592895600"; 
+   d="scan'208";a="137578471"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2020 23:30:49 -0700
+IronPort-SDR: pjZ7tQiDH/pCeyrz+Pdq6Kot+MmMA25BcyAf0ohtVbNOLyFSScDOLezfgHo03oP1a9txzijsuT
+ nIOW6kZKD3QQ==
+X-IronPort-AV: E=Sophos;i="5.76,385,1592895600"; 
+   d="scan'208";a="477934111"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2020 23:30:45 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 08AB72034D; Thu,  3 Sep 2020 09:30:43 +0300 (EEST)
+Date:   Thu, 3 Sep 2020 09:30:42 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Tomasz Figa <tfiga@chromium.org>
+Cc:     Xingyu Wu <wuxy@bitland.com.cn>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "shawnx.tu" <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        "dave.stevenson" <dave.stevenson@raspberrypi.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Cao Bing Bu <bingbu.cao@intel.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        Dongchun Zhu <dongchun.zhu@mediatek.com>,
+        Sj Huang <sj.huang@mediatek.com>,
+        darfur_liu <darfur_liu@gcoreinc.com>,
+        "hao.he7" <hao.he7@gmail.com>,
+        =?utf-8?B?5L2V5rWpQjAzMjA1?= <hao.he@bitland.com.cn>
+Subject: Re: [PATCH V3 3/3] media: i2c: gc5035: Add GC5035 image sensor driver
+Message-ID: <20200903063042.GH32646@paasikivi.fi.intel.com>
+References: <1597380295-6297-1-git-send-email-wuxy@bitland.com.cn>
+ <1597380295-6297-5-git-send-email-wuxy@bitland.com.cn>
+ <20200831174057.GO31019@paasikivi.fi.intel.com>
+ <CAAFQd5ARYNVMjScuk5-w_z5Pt6jD=CPkCYG+rM2Znvt9j1Od6g@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <7696bf30-9d7b-ecc9-041d-7d899dd07915@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: pl
-X-Authenticated-Id: ar@arf.net.pl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAAFQd5ARYNVMjScuk5-w_z5Pt6jD=CPkCYG+rM2Znvt9j1Od6g@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Tomasz,
 
-W dniu 2020-09-03 o 04:13, Florian Fainelli pisze:
->
->
-> On 9/2/2020 3:20 PM, Andrew Lunn wrote:
->>> +    priv->clk = devm_clk_get_optional(&phydev->mdio.dev, "sw_gphy");
->>> +    if (IS_ERR(priv->clk))
->>> +        return PTR_ERR(priv->clk);
->>> +
->>> +    /* To get there, the mdiobus registration logic already enabled 
->>> our
->>> +     * clock otherwise we would not have probed this device since 
->>> we would
->>> +     * not be able to read its ID. To avoid artificially bumping up 
->>> the
->>> +     * clock reference count, only do the clock enable from a 
->>> phy_remove ->
->>> +     * phy_probe path (driver unbind, then rebind).
->>> +     */
->>> +    if (!__clk_is_enabled(priv->clk))
->>> +        ret = clk_prepare_enable(priv->clk);
->>
->> This i don't get. The clock subsystem does reference counting. So what
->> i would expect to happen is that during scanning of the bus, phylib
->> enables the clock and keeps it enabled until after probe. To keep
->> things balanced, phylib would disable the clock after probe.
->
-> That would be fine, although it assumes that the individual PHY 
-> drivers have obtained the clocks and called clk_prepare_enable(), 
-> which is a fair assumption I suppose.
->
->>
->> If the driver wants the clock enabled all the time, it can enable it
->> in the probe method. The common clock framework will then have two
->> reference counts for the clock, so that when the probe exists, and
->> phylib disables the clock, the CCF keeps the clock ticking. The PHY
->> driver can then disable the clock in .remove.
->
-> But then the lowest count you will have is 1, which will lead to the 
-> clock being left on despite having unbound the PHY driver from the 
-> device (->remove was called). This does not allow saving any power 
-> unfortunately.
->
->>
->> There are some PHYs which will enumerate with the clock disabled. They
->> only need it ticking for packet transfer. Such PHY drivers can enable
->> the clock only when needed in order to save some power when the
->> interface is administratively down.
->
-> Then the best approach would be for the OF scanning code to enable all 
-> clocks reference by the Ethernet PHY node (like it does in the 
-> proposed patch), since there is no knowledge of which clock is 
-> necessary and all must be assumed to be critical for MDIO bus 
-> scanning. Right before drv->probe() we drop all resources reference 
-> counts, and from there on ->probe() is assumed to manage the necessary 
-> clocks.
->
-> It looks like another solution may be to use the assigned-clocks 
-> property which will take care of assigning clock references to devices 
-> and having those applied as soon as the clock provider is available.
+On Thu, Sep 03, 2020 at 12:59:20AM +0200, Tomasz Figa wrote:
+> Hi Sakari,
+> 
+> On Mon, Aug 31, 2020 at 7:41 PM Sakari Ailus
+> <sakari.ailus@linux.intel.com> wrote:
+> >
+> > Hi Xingyu,
+> >
+> > Thanks for the update. I've got a few more comments below.
+> >
+> > Do you happen to have some insight on what the OTP data contains and what
+> > does the driver do with it?
+> >
+> > At least in principle the OTP data may be programmed for the customer so
+> > the same sensor could contain something else what the driver expects to
+> > find there.
+> >
+> 
+> Thanks for the review. For anything without my reply, assume fixed. :)
+> 
+> As far as I can see, the data is being read from an area that is
+> supposed to be reserved for Galaxycore, so I'd assume it doesn't
+> depend on the customer.
 
-Hi Guys,
+Sounds good.
 
-I've just realized that a PHY may also have a reset signal connected. 
-The reset signal may be controlled by the dedicated peripheral or by GPIO.
+> 
+> [snip]
+> > > diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+> > > index da11036..aeaf594 100644
+> > > --- a/drivers/media/i2c/Kconfig
+> > > +++ b/drivers/media/i2c/Kconfig
+> > > @@ -712,6 +712,18 @@ config VIDEO_APTINA_PLL
+> > >  config VIDEO_SMIAPP_PLL
+> > >       tristate
+> > >
+> > > +config VIDEO_GC5035
+> > > +     tristate "Galaxycore GC5035 sensor support"
+> > > +     depends on I2C && VIDEO_V4L2
+> > > +     select MEDIA_CONTROLLER
+> > > +     select VIDEO_V4L2_SUBDEV_API
+> >
+> > Add:
+> >
+> >         V4L2_FWNODE
+> >         OF
+> 
+> This driver doesn't depend on OF. It uses the firmware-independent
+> property access API. (v4 I sent actually uses device_property_*()).
 
-In general terms, there might be a set of control signals needed to 
-enable the PHY. It seems that the clock and the reset would be the 
-typical useful options.
+Yes, this is even better.
 
-Going further with my imagination of how evil the hardware design could 
-be, in general the signals for the PHY may have some relations to other 
-control signals.
+> 
+> [snip]
+> > > +static int __gc5035_power_on(struct gc5035 *gc5035)
+> > > +{
+> > > +     struct device *dev = &gc5035->client->dev;
+> > > +     int i, ret;
+> > > +
+> > > +     ret = clk_prepare_enable(gc5035->xvclk);
+> > > +     if (ret < 0) {
+> > > +             dev_err(dev, "Failed to enable xvclk\n");
+> > > +             return ret;
+> > > +     }
+> > > +
+> > > +     gpiod_set_value_cansleep(gc5035->reset_gpio, 1);
+> > > +
+> > > +     for (i = 0; i < GC5035_NUM_SUPPLIES; i++) {
+> > > +             ret = regulator_enable(gc5035->supplies[i].consumer);
+> > > +             if (ret) {
+> > > +                     dev_err(dev, "Failed to enable %s: %d\n",
+> > > +                             gc5035->supplies[i].supply, ret);
+> > > +                     goto disable_reg_clk;
+> >
+> > Please use regulator_bulk_enable() here, and regulator_bulk_disable()
+> > below.
+> >
+> 
+> This actually needs to have one of the regulators (iovdd) enabled
+> before the other ones, but regulator_bulk_enable() is async. In v4 I
+> used regulator_enable() for iovdd and regulator_bulk_enable() for the
+> other two for optimal sequencing.
 
-I think that from the software point of view this comes down to 
-assumption that the PHY is to be controlled "driver only knows how".
+Ack.
 
-Best regards,
-Adam
-
+-- 
+Sakari Ailus
