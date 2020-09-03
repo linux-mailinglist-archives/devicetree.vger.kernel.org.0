@@ -2,116 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3872B25C50A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:21:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FE0825C4D2
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:19:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728473AbgICPVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 11:21:44 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:57382 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728454AbgICLYX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 07:24:23 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 083BNmZu073910;
-        Thu, 3 Sep 2020 06:23:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599132228;
-        bh=NQo7vUhMynuWKGR7nysjqjeboPuk+AK5YMlGBnTcHWU=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=Zu9icTeSjqIxCdXj+48f6EVVaFLF196A1IfPMbjhblFy+GXWToUbLUJPfEzvd+NH6
-         P1XILBLc96enbD1fCX07hha5ybwgfWgiI07TPFTw7a1Mpy6AKvv9ZauqwbIEmlbxwv
-         WHWPNuJ0ID7eKlyzAnVDxV9h/xrAb8YQrrXHf/uQ=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 083BNmth100340;
-        Thu, 3 Sep 2020 06:23:48 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 3 Sep
- 2020 06:23:48 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 3 Sep 2020 06:23:48 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 083BNmhR079007;
-        Thu, 3 Sep 2020 06:23:48 -0500
-Date:   Thu, 3 Sep 2020 06:23:48 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-CC:     Suman Anna <s-anna@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <t-kristo@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <lokeshvutla@ti.com>,
-        <grygorii.strashko@ti.com>, <nsekhar@ti.com>
-Subject: Re: [PATCH 6/7] arm64: dts: ti: k3-*: Use generic adc for node names
-Message-ID: <20200903112348.dcj7b7zytgdt6pjv@akan>
-References: <20200901223059.14801-1-nm@ti.com>
- <20200901223059.14801-7-nm@ti.com>
- <60e6b790-360a-6eaf-03a3-5bb256adf215@ti.com>
- <20200902181820.nlvl3pfzeh4agzzi@akan>
- <9fb2f8f4-5eeb-6190-9cbf-b28084c58a8f@ti.com>
+        id S1728584AbgICLaX convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 3 Sep 2020 07:30:23 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:35416 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728480AbgICL34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 07:29:56 -0400
+Received: by mail-ot1-f68.google.com with SMTP id i4so2384106ota.2;
+        Thu, 03 Sep 2020 04:29:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=wtryLyCP/92BUYkFWZmJhsJCVcQxjl0iR9C8GWL/It8=;
+        b=uAvLTw7YyFkrpWozAnFJu3DySggPIhtiTRYcLiPAxNYYmohgUimeDgTm2DSPqTQbUt
+         o4XTArVbiKALxi295LCXR7nVSa/3LWg/tsgET+/2Vi7tBRtTss3RajVSaDnFEeYeYbzb
+         pN3SedK9Q2u5/5mkJrfwdus8DYhNhwjFUw89I47uGtnHFNrB8DXftn3X4R5+Yn95nq8S
+         yFMum5sk/PzMbRmpu3n90g1eke5qHFtcaiUZU1Qx484lqweUHzjAuATm1tq0HKITonDJ
+         fMXGhUwg011jHouEMvh0wHjytpoXYsKNKWkKxZfdw7o6mrN8DqQQ2/BZD1gx6gBV6wUT
+         cZrQ==
+X-Gm-Message-State: AOAM533xkP2pZdyqtNZvR7Jv1401vPiB2J6Kb+OZ8Qy9RH+hQ1kW9UJZ
+        XeTECuGy7LfND8PSBghXy2xp52LQMFJvfPwWV3Q=
+X-Google-Smtp-Source: ABdhPJzzuTSaYdIsnjPYCU0FIyHFDgPSktyUp4zTrC7K//wdWR2qY9Pjq6aHqvfTunNgQ3ArrHzx1UfMR87mxLw9BCk=
+X-Received: by 2002:a9d:1b62:: with SMTP id l89mr1203878otl.145.1599132594627;
+ Thu, 03 Sep 2020 04:29:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <9fb2f8f4-5eeb-6190-9cbf-b28084c58a8f@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20200825162718.5838-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20200825162718.5838-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdVVvDEq-GSsPDrx09TCfGCWkNQvGYrNWP4gK2=63G2z1w@mail.gmail.com> <CA+V-a8sqVGHHQ0ayH7CvKANyCpsFPBy6OuqoGQHPS7iOX20rCg@mail.gmail.com>
+In-Reply-To: <CA+V-a8sqVGHHQ0ayH7CvKANyCpsFPBy6OuqoGQHPS7iOX20rCg@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 3 Sep 2020 13:29:43 +0200
+Message-ID: <CAMuHMdUAKeXWD=G0ifNkMehtdvZATyyiudPL103gp5nY-XMufA@mail.gmail.com>
+Subject: Re: [PATCH 1/4] ARM: dts: r8a7742-iwg21d-q7: Enable PCIe Controller
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10:55-20200903, Vignesh Raghavendra wrote:
-> Hi Nishanth,
-> 
-> On 9/2/20 11:48 PM, Nishanth Menon wrote:
-> > On 11:51-20200902, Suman Anna wrote:
-> >> On 9/1/20 5:30 PM, Nishanth Menon wrote:
-> >>> Use adc@ naming for nodes following standard conventions of device
-> >>> tree (section 2.2.2 Generic Names recommendation in [1]).
-> >>>
-> >>> [1] https://github.com/devicetree-org/devicetree-specification/tree/v0.3
-> >>>
-> >>> Suggested-by: Suman Anna <s-anna@ti.com>
-> >>> Signed-off-by: Nishanth Menon <nm@ti.com>
-> >>> ---
-> >>>  arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi         | 4 ++--
-> >>>  arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 4 ++--
-> >>>  2 files changed, 4 insertions(+), 4 deletions(-)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> >>> index 51ca4b4d4c21..6dfec68ac865 100644
-> >>> --- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> >>> +++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> >>> @@ -80,7 +80,7 @@
-> >>>  		#size-cells = <0>;
-> >>>  	};
-> >>>  
-> >>> -	tscadc0: tscadc@40200000 {
-> >>> +	tscadc0: adc@40200000 {
-> >>
-> >> OK with these changes, since these seem to be only have the adc child nodes.
-> >> This node is essentially a parent node for touchscreen and adc child nodes. The
-> >> driver is currently looking for "tsc" on touchscreen child nodes, but none of
-> >> the K3 SoCs have them atm.
-> >>
-> > 
-> > 
-> > Vignesh: are you ok with this, care to comment?
-> > 
-> 
-> On K3 SoCs, ADC IP is reuse from AM335x but just lacks resistive
-> touchscreen interfaces. So, existing AM335x ADC driver is being reused
-> for K3 devices as well. Unfortunately, ADC driver cannot be used as
-> standalone and is dependent on MFD parent to be present...
-> Above node represents the MFD parent and ADC itself is the child node
-> (see arch/arm64/boot/dts/ti/k3-am654-base-board.dts). So, I recommend
-> that we keep this node's name as tscadc in order to avoid having same
-> name for parent and child node which will be quite confusing.
+Hi Prabhakar,
 
+On Thu, Sep 3, 2020 at 1:18 PM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Thu, Sep 3, 2020 at 11:18 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Tue, Aug 25, 2020 at 6:28 PM Lad Prabhakar
+> > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > > Enable PCIe Controller and set PCIe bus clock frequency.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
+> >
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > i.e. will queue in renesas-devel for v5.10.
+> >
+> > One thing to double-check below.
+> >
+> > > --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
+> > > +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
+> > > @@ -238,6 +238,18 @@
+> > >         /* status = "okay"; */
+> > >  };
+> > >
+> > > +&pcie_bus_clk {
+> > > +       clock-frequency = <100000000>;
+> > > +};
+> > > +
+> > > +&pciec {
+> > > +       /* SW2[6] determines which connector is activated
+> > > +        * ON = PCIe X4 (connector-J7)
+> > > +        * OFF = mini-PCIe (connector-J26)
+> >
+> > The table on page 14 says it's the other way around.
+> >
+> > According to the CBTL02042ABQ datasheet, PCIe_SEL = low
+> > selects the first channel (PCIe x4), while PCIe_SEL = high selects the
+> > second channel (mini-PCIe).
+> > Enabling the switch ties the signal low, so the table must be wrong.
+> >
+> Referring to [1] page 3:
+>
+> SEL = LOW: A↔B
+> SEL = HIGH: A↔C
+>
+> And as per the schematic iW-PREJD-CS-01-R2.0-REL1.5.pdf channel B is
+> J7 (PCIe X 4) and channel C is J26 (mini PCIe slot).
+>
+> Enabling the switch SW2[6] (ON) ties SEL to LOW -> channel B is J7 (PCIe X 4)
+> Disabling the switch SW2[6] (OFF) ties SEL to HIGH -> channel C is J26
+> (mini PCIe)
+>
+> Also iW-PREJD-CS-01-R2.0-REL1.5.pdf page 14 (General purpose table DIP
+> Switch) mentions the above.
 
-Thanks for your feedback. I will drop this patch.
+Oh right, I looked at the old document, and they fixed it in the newer one.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
