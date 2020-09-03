@@ -2,124 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E39D25B9DC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 06:42:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 024CA25B9E4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 06:49:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725919AbgICEm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 00:42:58 -0400
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:33095 "EHLO
-        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725851AbgICEm5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 00:42:57 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 5AF695C010D;
-        Thu,  3 Sep 2020 00:42:56 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute3.internal (MEProxy); Thu, 03 Sep 2020 00:42:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm3; bh=em2gJ9qv2xaShz9T9qAmKSzyXIMr3uD
-        xP9oDgcz1OBc=; b=K3vW7dmxebVbx2mlGf9mZ9zrgvsttX/8tMwUxsC0XM9+RWN
-        u8paQVDMbD+4MM/4JysPAiHOqt/2JZfuWG8qywledeeaAGQDzWjLsaTQmSZCtruR
-        c0IzrG0x+p4gOoXXYATcDMmLjatoQT/fCToxMpTDyKidFmBCO/zOySHT9RTWlTqc
-        GnDqGcLImDVhGmr94UyMWrHZbOJG+a7hmmHEwy+FDiLaZBet/ykRDv18UJLxaBv1
-        voN3CLVijkw+xYSNxogYeNbMNYmN6aaYGG6zYOmGh8tbudHlHmnMLtr/Ar89zDzz
-        hzzB48oRa17eSGOVrUXWjx1NMsHz7qo/hiKnO8g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=em2gJ9
-        qv2xaShz9T9qAmKSzyXIMr3uDxP9oDgcz1OBc=; b=gD6XvDqkN9/mt8hFDcN1yR
-        m6Sma7YJroztK2r/UODvU26B89CRJViHz0/krCNIZCf2l8PqOCyqfXEg5DXjVFf+
-        Bnivd4sZSaWlcX516tBO8gsb89SVUOjT8e+8SlzgCAhvd8cHLUok55QJg8MPKnty
-        kWrvgQsBYdoT1auRGDM5nyu8PsuTcUiEpJlSDFjJ5IL8SNL3oEWpVRYZhKkp2BcP
-        xk4dWueIR9QmunZenmyb78Fp9r2LIyXGqrxZydlvzTx/hiW+r2Kr44POm81Gq/OY
-        nsiDb+j4+qAt+R5/dkOSaG+c0UW6YNoHLxReSGiQkR510omFV1TV0Nu5thiiN5ig
-        ==
-X-ME-Sender: <xms:T3RQXyCZITgrp0Kmm3yzrWpU3jezM6yAQM1VDU-2SskDSNgQOvD20g>
-    <xme:T3RQX8gOV0fecFMHqAzPKrk0bPz3swZzTGOdtNDApytVky7scfVULIAki2bO-gJR2
-    QIkj_2QmVOxlq1etw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudegtddgkeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhephefhfeekgfekudevheffheeihedujeefjeevjeefudfgfeeutdeuvdeh
-    hfevueffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    eprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:T3RQX1lTGZ84TAjB3DSnaf3agocqoQEvS4woLPvF8o17YQ7jUwWQCw>
-    <xmx:T3RQXwzfmcflE5PKaVf7QYiUGu6yQlAQZaT-bN6rQsnIuQj7klnMCg>
-    <xmx:T3RQX3SEPH7jvkTmx8aXIEIJQbwimI4e4DZbgIunGpE8gDvy7juI2w>
-    <xmx:UHRQXxfg0FW9cvVRN4NxFIoxPpkQrxgxpc10Jgf2blmF7SuiedvRRw>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 0417CE00DF; Thu,  3 Sep 2020 00:42:55 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.3.0-257-g770afc8-fm-20200903.002-g770afc8a
-Mime-Version: 1.0
-Message-Id: <a612a4f9-fbd8-4df1-8ce4-5adf611e87b5@www.fastmail.com>
-In-Reply-To: <20200728025527.174503-2-joel@jms.id.au>
-References: <20200728025527.174503-1-joel@jms.id.au>
- <20200728025527.174503-2-joel@jms.id.au>
-Date:   Thu, 03 Sep 2020 14:12:34 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Joel Stanley" <joel@jms.id.au>, linux-fsi@lists.ozlabs.org,
-        "Rob Herring" <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        "Eddie James" <eajames@linux.ibm.com>
-Subject: Re: [PATCH 1/5] dt-bindings: fsi: Document gpios
-Content-Type: text/plain
+        id S1725843AbgICEog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 00:44:36 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:64223 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725943AbgICEoe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Sep 2020 00:44:34 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1599108273; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=ftkGbh57Ihlyx7nnlZm+CHZ5OqaLFHhzv7H1SqWL91w=; b=gX8x2Kc53ni1re6q6Cdn1GxMtI2RF/hcghmBTWG1bgOG1GvyjJ3vI58ge9sq0SKgl9pr2RMC
+ +k4rDBj/ViN+xKmYjuloOrJN6kjlUg9YZdyLG4c+Xydt9z/rZE9t+7kwHUjEJrYp2j6/SyQ0
+ pelIr8s+kiw5NTlkfqUUCcYupY8=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 5f5074a373afa3417e0a90ab (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 03 Sep 2020 04:44:19
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 54F24C433CA; Thu,  3 Sep 2020 04:44:18 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.3 required=2.0 tests=ALL_TRUSTED,NICE_REPLY_A,
+        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [192.168.1.16] (unknown [61.3.23.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 109F8C433C9;
+        Thu,  3 Sep 2020 04:44:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 109F8C433C9
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=rnayak@codeaurora.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Add 'sustainable_power' for CPU
+ thermal zones
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+References: <20200813113030.1.I89c33c4119eaffb986b1e8c1bc6f0e30267089cd@changeid>
+ <20200901170745.GA3419728@google.com>
+ <CAD=FV=Xv0FLtWWcQcRy7p2LPNdDtSjdarsvNHRHaLkWwABnwJw@mail.gmail.com>
+ <8ad0589e-102d-7523-899f-0ebe85b7d2b8@codeaurora.org>
+ <CAD=FV=XKUEQP3gyE8E2UOE12qKYwzgMp0eNeYjCp0DxPDACSMQ@mail.gmail.com>
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+Message-ID: <6693eed6-9a6b-48c8-e56e-acdde9cf9ffe@codeaurora.org>
+Date:   Thu, 3 Sep 2020 10:14:10 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
+MIME-Version: 1.0
+In-Reply-To: <CAD=FV=XKUEQP3gyE8E2UOE12qKYwzgMp0eNeYjCp0DxPDACSMQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On Tue, 28 Jul 2020, at 12:25, Joel Stanley wrote:
-> The FSI master has some associated GPIOs that may be present on some
-> hardware configurations.
+On 9/2/2020 9:02 PM, Doug Anderson wrote:
+> Hi,
 > 
-> Signed-off-by: Joel Stanley <joel@jms.id.au>
-> ---
->  .../devicetree/bindings/fsi/fsi-master-aspeed.txt    | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+> On Tue, Sep 1, 2020 at 10:36 PM Rajendra Nayak <rnayak@codeaurora.org> wrote:
+>>
+>>
+>>> * In terms of the numbers here, I believe that you're claiming that we
+>>> can dissipate 768 mW * 6 + 1202 mW * 2 = ~7 Watts of power.  My memory
+>>> of how much power we could dissipate in previous laptops I worked on
+>>> is a little fuzzy, but that doesn't seem insane for a passively-cooled
+>>> laptop.  However, I think someone could conceivably put this chip in a
+>>> smaller form factor.  In such a case, it seems like we'd want these
+>>> things to sum up to ~2000 (if it would ever make sense for someone to
+>>> put this chip in a phone) or ~4000 (if it would ever make sense for
+>>> someone to put this chip in a small tablet).  It seems possible that,
+>>> to achieve this, we might have to tweak the
+>>> "dynamic-power-coefficient".
+>>
+>> DPC values are calculated (at a SoC) by actually measuring max power at various
+>> frequency/voltage combinations by running things like dhrystone.
+>> How would the max power a SoC can generate depend on form factors?
+>> How much it can dissipate sure is, but then I am not super familiar how
+>> thermal frameworks end up using DPC for calculating power dissipated,
+>> I am guessing they don't.
+>>
+>>> I don't know how much thought was put
+>>> into those numbers, but the fact that the little cores have a super
+>>> round 100 for their dynamic-power-coefficient makes me feel like they
+>>> might have been more schwags than anything.  Rajendra maybe knows?
+>>
+>> FWIK, the values are always scaled and normalized to 100 for silver and
+>> then used to derive the relative DPC number for gold. If you see the DPC
+>> for silver cores even on sdm845 is a 100.
+>> Again these are not estimations but based on actual power measurements.
 > 
-> diff --git 
-> a/Documentation/devicetree/bindings/fsi/fsi-master-aspeed.txt 
-> b/Documentation/devicetree/bindings/fsi/fsi-master-aspeed.txt
-> index b758f91914f7..a513e65ec0c9 100644
-> --- a/Documentation/devicetree/bindings/fsi/fsi-master-aspeed.txt
-> +++ b/Documentation/devicetree/bindings/fsi/fsi-master-aspeed.txt
-> @@ -12,6 +12,13 @@ Required properties:
->   - pinctrl-0: phandle to pinctrl node
->   - pinctrl-names: pinctrl state
->  
-> +Optional properties:
-> + - cfam-reset-gpios: GPIO for CFAM reset
-> +
-> + - fsi-routing-gpios: GPIO for setting the FSI mux (internal or cabled)
-> + - fsi-mux-gpios: GPIO for detecting the desired FSI mux state
-> +
-> +
-
-Is the double-linebreak intentional? Anyway:
-
-Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
-
->  Examples:
->  
->      fsi-master {
-> @@ -21,4 +28,9 @@ Examples:
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_fsi1_default>;
->  	clocks = <&syscon ASPEED_CLK_GATE_FSICLK>;
-> +
-> +	fsi-routing-gpios = <&gpio0 ASPEED_GPIO(Q, 7) GPIO_ACTIVE_HIGH>;
-> +	fsi-mux-gpios = <&gpio0 ASPEED_GPIO(B, 0) GPIO_ACTIVE_HIGH>;
-> +
-> +	cfam-reset-gpios = <&gpio0 ASPEED_GPIO(Q, 0) GPIO_ACTIVE_LOW>;
->      };
-> -- 
-> 2.27.0
+> The scaling to 100 doesn't seem to match how the thermal framework is
+> using them.  Take a look at of_cpufreq_cooling_register().  It takes
+> the "dynamic-power-coefficient" and passes it as "capacitance" into
+> __cpufreq_cooling_register().  That's eventually used to compute
+> power, which is documented in the code to be in mW.
 > 
->
+> power = (u64)capacitance * freq_mhz * voltage_mv * voltage_mv;
+> do_div(power, 1000000000);
+> 
+> /* power is stored in mW */
+> freq_table[i].power = power;
+> 
+> That's used together with "sustainable-power", which is the attribute
+> that Matthias is trying to set.  That value is documented to be in mW
+> as well.
+> 
+> ...so if the silver cores are always scaled to 100 regardless of how
+> much power they actually draw then it'll be impossible to actually
+> think about "sustainable-power" as a mW value.  Presumably we either
+> need to accept that fact (and ideally document it) or we need to
+> change the values for silver / gold cores (we could still keep the
+> relative values the same and just scale them).
+
+That sounds reasonable (still keep the relative values and scale them)
+I'll get back on what those scaled numbers would look like, and try to
+get some sense of why this scaling to 100 was done (like you said
+I don't see any documentation on this), but I see atleast a few other non-qcom
+SoCs doing this too in mainline (like rockchip/rk3399)
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
