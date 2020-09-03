@@ -2,81 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6565125C433
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:05:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 172AA25C457
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 17:09:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729043AbgICPFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 11:05:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59176 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728915AbgICN6P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 09:58:15 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB6D6C061A1E;
-        Thu,  3 Sep 2020 06:47:49 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id t7so3072274ljo.13;
-        Thu, 03 Sep 2020 06:47:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5IkJp9DRjjctTj4yQaRDfSKfYFKp/SZ4X/D7aiQqs+Q=;
-        b=OnTWGDupQD64VHCo/u9bL3+tiNJ2NIkF8cEeaaUnpJtO+P5kIqiefJgSrYjSAQ5HNz
-         zeZtIlycu0wL7LRVTip4mNsbSL1hjnsVQEy3zWE+B9sY0LapBpVzZ/+6gq0+JI2rTzur
-         SBDI4jkqc1RDp0gU221csn3ICYPAs7/r3jbJJ2jCXgnk31nJa6gCUjusVXjew91854Cx
-         UC7hqH6NpMzOZjQxrwc4mz8GE38Uq+Ok+vzFLgGL+us/CIBLsKjg2VKtv61aFhhZyBso
-         EXC2FT9JfKzqZznmrEBwWWyWJzHOUy/eo74s4PB33Ikc0gU12EboYZ8LlFOb8rQad+Jn
-         bfjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5IkJp9DRjjctTj4yQaRDfSKfYFKp/SZ4X/D7aiQqs+Q=;
-        b=Z0ZUtXrV2MDsVBZAOhNc2YdJaVKC53nepDeDd/DF1Er8EspOsXMwGge8Rii7ocx8Mc
-         16IcBJF5L2Dg2tiuffMdNxKzoLQ+5BiRULeHFbzlskF9TkJVMeHXtvsnY3HcWYj1D6Iq
-         RrFqnLr4Jf2xsesQ2tGiwjhLZh5XO7Mqz+PyWtbZnpZ3KpaR8YDywUyriGA6MOcSCGqm
-         YpzRA3Cr/dY3iQ0oiH54i7I/IprQe3e42YbFr7hN1b8vUUwdrx0wZD1zwEdo2etFiNe3
-         wU+3/xI4gv5r+Jj8lCQ8h7X2O0UDxYBrhIqktFBj8lqhej2tux10a79eR0Gc3myc/wDL
-         t48w==
-X-Gm-Message-State: AOAM530Zz3mttMqOkfhK/C5UagCs5hF0Uiv9WibnSgaGsCpYbc5YU/mR
-        j5M+7/1mHroUXUblfNsypD29f7imqqo3RnXBtc8=
-X-Google-Smtp-Source: ABdhPJwDdx3G0+9vSDmc/QFH9b0DWyx8r/HgJprZSkOT+jjXTTPq0AkqkkBKi/OhQnVgbF2lp97G9/OB66Ez2GN9K3o=
-X-Received: by 2002:a2e:1417:: with SMTP id u23mr1438912ljd.44.1599140866369;
- Thu, 03 Sep 2020 06:47:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <ecfa135b7b83a31bed821ec0740ab3cf1d39da15.camel@ew.tq-group.com>
- <20200903132241.GB4771@sirena.org.uk> <ce08696b6bf2b3eaa84d6f056f47a8240c7479f4.camel@ew.tq-group.com>
-In-Reply-To: <ce08696b6bf2b3eaa84d6f056f47a8240c7479f4.camel@ew.tq-group.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Thu, 3 Sep 2020 10:47:34 -0300
-Message-ID: <CAOMZO5DDhSJHj_PN4ckzYedV3mvNC1=+RvNT6TM2s-rE5iHxcQ@mail.gmail.com>
-Subject: Re: spi-imx: correct interpretation of num-cs DT property?
-To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1729033AbgICPIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 11:08:35 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:46337 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729503AbgICPFh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 11:05:37 -0400
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 03 Sep 2020 08:05:34 -0700
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 03 Sep 2020 08:05:32 -0700
+Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 03 Sep 2020 20:35:05 +0530
+Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
+        id 91B144433; Thu,  3 Sep 2020 20:35:04 +0530 (IST)
+From:   satya priya <skakit@codeaurora.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>, gregkh@linuxfoundation.org,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, akashast@codeaurora.org,
+        rojay@codeaurora.org, msavaliy@qti.qualcomm.com,
+        satya priya <skakit@codeaurora.org>
+Subject: [PATCH V4 0/4] Add wakeup support over UART RX
+Date:   Thu,  3 Sep 2020 20:34:54 +0530
+Message-Id: <1599145498-20707-1-git-send-email-skakit@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
+Changes in V2:
+ - As per Matthias's comment added wakeup support for all the UARTs
+   of SC7180.
+ - Added sleep state in sc7180-idp.dts file.
+ - Modify the if check in set_mctrl API in serial driver to avoid
+   making RFR high during suspend.
 
-On Thu, Sep 3, 2020 at 10:40 AM Matthias Schiffer
-<matthias.schiffer@ew.tq-group.com> wrote:
+Changes in V3:
+ - As per Matthias's comments modify the idp dts pin config to keep
+   only the required pin settings.
+ - Remove the extra parentheses from serial driver patch.
 
-> As currently no in-tree DTs use the num-cs property for spi-imx and
-> it's not documented, should support for it be dropped from the driver
-> altogether?
+Changes in V4:
+ - As per Matthias's comments, change the commit text to mention why
+   GPIO function needs to be selected in sleep.
+ - Add separate patch for improvements made in pin conf settings.
 
-Yes, it makes sense to drop num-cs support from the spi-imx driver.
+satya priya (4):
+  arm64: dts: sc7180: Add wakeup support over UART RX
+  arm64: dts: qcom: sc7180: Improve the pin config settings for CTS and
+    TX
+  arm64: dts: qcom: sc7180: Add sleep pin ctrl for BT UART
+  tty: serial: qcom_geni_serial: Fix the UART wakeup issue
 
-Care to send a patch?
+ arch/arm64/boot/dts/qcom/sc7180-idp.dts | 51 ++++++++++++++---
+ arch/arm64/boot/dts/qcom/sc7180.dtsi    | 98 ++++++++++++++++++++++++++++-----
+ drivers/tty/serial/qcom_geni_serial.c   |  2 +-
+ 3 files changed, 128 insertions(+), 23 deletions(-)
 
-Thanks
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
+
