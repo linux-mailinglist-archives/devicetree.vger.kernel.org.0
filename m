@@ -2,92 +2,276 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20E9A25C349
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 16:48:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC47225C302
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 16:42:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729432AbgICOsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 10:48:35 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:41268 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728871AbgICOse (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 10:48:34 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 083DNn7s114942;
-        Thu, 3 Sep 2020 08:23:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599139429;
-        bh=Sv1rjptrB/D2VFs2GCeWi3Odnsbw5rU6WNrwMZKxhHs=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=v+6dHNu8LnhbD273WhVSkGuVpfpGe72WGQvK3jqyxZGTrLOZTw6HpUJbBg9gFtjJC
-         L15FaEd+2TOZxGO3cgyQk3R9C07r2pUrCp71Ghq7tT/Gc3nPtz/NWQOk+VDMhZFVsU
-         gA1KZsPu96NDaitpF0SOs1px9DPBzGkyQJQy9Y8k=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 083DNnsT012472;
-        Thu, 3 Sep 2020 08:23:49 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 3 Sep
- 2020 08:23:49 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 3 Sep 2020 08:23:49 -0500
-Received: from [10.250.71.39] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 083DNnMN023770;
-        Thu, 3 Sep 2020 08:23:49 -0500
-Subject: Re: [PATCH V2 1/8] arm64: dts: ti: k3-j721e: Use lower case
- hexadecimal
-To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <t-kristo@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, <lokeshvutla@ti.com>,
-        <grygorii.strashko@ti.com>, <nsekhar@ti.com>
-References: <20200901223059.14801-1-nm@ti.com>
- <20200903130015.21361-2-nm@ti.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <39ebf70b-6ecb-3586-8786-fd2ce43c2e00@ti.com>
-Date:   Thu, 3 Sep 2020 08:23:48 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1729323AbgICOmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 10:42:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37272 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729379AbgICOgy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 10:36:54 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D23FBC0619E5
+        for <devicetree@vger.kernel.org>; Thu,  3 Sep 2020 06:31:39 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id v4so2898866wmj.5
+        for <devicetree@vger.kernel.org>; Thu, 03 Sep 2020 06:31:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=89sbNvX6ByvD6Ay+Fn+uPrui3FWgVd/+bGNAilB1it4=;
+        b=lJyZRId8ESKK6KkiXPxRWmfFHTNRw2ZnCPgVk03k7H66kDAafI3H5NU6WUPG0qZpst
+         UTtIyUNJI0w15ad0L3gxxAQwtsvw+irnMVJUsJCx5UVAT2u9Cqxs1hBq8J+1YMEOF+XG
+         BjjiwRaBCvk/EDZbpXVUGIC6Ks5ZVlHJWB1qKdxdD8fBUinnymUliE4JbZHmtEmkCPOp
+         a2k5qp/xwDEhxnKHT8h4H44LsHTHBmXp6AxAbvixk4kGFV+3edJDJcx0Jp+RULLMb4mc
+         MTTxgYXY4ae6HbLWSfhiuOk43aXJxQkyanTUTR3p/2UJsYX55R0Il5uSr6qkQNSDU8C6
+         0efQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=89sbNvX6ByvD6Ay+Fn+uPrui3FWgVd/+bGNAilB1it4=;
+        b=tdc2mOaLKh3HeJa8+ATYm90kWxoh7op+S1HTJUHBQ5qbMEdcHHpUZBWnRwrdNFj01z
+         S8oQphOwTUi9vblj+F/+1cGgHVcoUpcITW7uabWYA6CZCDF9alTDBSTH3jARRDustXsJ
+         mxp4tr+o4UM0Qx8OoKtWrmdaQTje/TVOTNS01I0SZoPzhVil9zlLKYG4TsE1nzEqbOrT
+         //Ozm6e/4A1MJgU/NX69FEi8ZCwh+gi/KdJSzZDh39Pihu0Zyu/ynhwjUcISm32LOl0E
+         oTJBzyPj9wFtW5E0FimSFSLq0tlo7OHZh/u/M79tU2pjqaz7mQjHQOtOhCMg4lIMOHOk
+         T4Hw==
+X-Gm-Message-State: AOAM530VrwUFfu/8i2/n3MRUztLn7jKyFiWnATYAJwWJ1wR/PHGBYLg0
+        y9zPsJVu18eefNTYRrlsEavtaw==
+X-Google-Smtp-Source: ABdhPJyfvP3P/tSoS90CdR8DQNrmqnV6zZcTVXF3ffD6Mb+vujH+IBAPqt1kxcpHx3Qn+ScLCe+TQQ==
+X-Received: by 2002:a05:600c:2cc1:: with SMTP id l1mr2499601wmc.78.1599139898076;
+        Thu, 03 Sep 2020 06:31:38 -0700 (PDT)
+Received: from localhost.localdomain ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id b2sm4310768wmh.47.2020.09.03.06.31.36
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 03 Sep 2020 06:31:37 -0700 (PDT)
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+To:     linux-pm@vger.kernel.org, bjorn.andersson@linaro.org
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        sibis@codeaurora.org, mka@chromium.org, dianders@chromium.org,
+        georgi.djakov@linaro.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/7] interconnect: Introduce xlate_extended() callback
+Date:   Thu,  3 Sep 2020 16:31:28 +0300
+Message-Id: <20200903133134.17201-2-georgi.djakov@linaro.org>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20200903133134.17201-1-georgi.djakov@linaro.org>
+References: <20200903133134.17201-1-georgi.djakov@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20200903130015.21361-2-nm@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/3/20 8:00 AM, Nishanth Menon wrote:
-> Device tree convention uses lower case a-f for hexadecimals. Fix the
-> same.
-> 
-> Signed-off-by: Nishanth Menon <nm@ti.com>
+Currently there is the xlate() callback, which is used by providers for
+mapping the nodes from phandle arguments. That's fine for simple mappings,
+but the phandle arguments could contain an additional data, such as tag
+information. Let's create another callback xlate_extended() for the cases
+where providers want also populate the path tag data.
 
-Acked-by: Suman Anna <s-anna@ti.com>
+Tested-by: Sibi Sankar <sibis@codeaurora.org>
+Reviewed-by: Sibi Sankar <sibis@codeaurora.org>
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Tested-by: Matthias Kaehlcke <mka@chromium.org>
+Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
+---
+ drivers/interconnect/core.c           | 73 ++++++++++++++++++---------
+ include/linux/interconnect-provider.h | 17 ++++++-
+ 2 files changed, 65 insertions(+), 25 deletions(-)
 
-> ---
-> Change:
-> v2: - new
-> 
->  arch/arm64/boot/dts/ti/k3-j721e.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> index f787aa73aaae..1bb8235d9ffb 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> @@ -127,7 +127,7 @@
->  		ranges = <0x00 0x00100000 0x00 0x00100000 0x00 0x00020000>, /* ctrl mmr */
->  			 <0x00 0x00600000 0x00 0x00600000 0x00 0x00031100>, /* GPIO */
->  			 <0x00 0x00900000 0x00 0x00900000 0x00 0x00012000>, /* serdes */
-> -			 <0x00 0x00A40000 0x00 0x00A40000 0x00 0x00000800>, /* timesync router */
-> +			 <0x00 0x00a40000 0x00 0x00a40000 0x00 0x00000800>, /* timesync router */
->  			 <0x00 0x06000000 0x00 0x06000000 0x00 0x00400000>, /* USBSS0 */
->  			 <0x00 0x06400000 0x00 0x06400000 0x00 0x00400000>, /* USBSS1 */
->  			 <0x00 0x01000000 0x00 0x01000000 0x00 0x0af02400>, /* Most peripherals */
-> 
-
+diff --git a/drivers/interconnect/core.c b/drivers/interconnect/core.c
+index befd111049c0..6ccf55818e68 100644
+--- a/drivers/interconnect/core.c
++++ b/drivers/interconnect/core.c
+@@ -336,12 +336,13 @@ EXPORT_SYMBOL_GPL(of_icc_xlate_onecell);
+  * Looks for interconnect provider under the node specified by @spec and if
+  * found, uses xlate function of the provider to map phandle args to node.
+  *
+- * Returns a valid pointer to struct icc_node on success or ERR_PTR()
++ * Returns a valid pointer to struct icc_node_data on success or ERR_PTR()
+  * on failure.
+  */
+-struct icc_node *of_icc_get_from_provider(struct of_phandle_args *spec)
++struct icc_node_data *of_icc_get_from_provider(struct of_phandle_args *spec)
+ {
+ 	struct icc_node *node = ERR_PTR(-EPROBE_DEFER);
++	struct icc_node_data *data = NULL;
+ 	struct icc_provider *provider;
+ 
+ 	if (!spec)
+@@ -349,14 +350,33 @@ struct icc_node *of_icc_get_from_provider(struct of_phandle_args *spec)
+ 
+ 	mutex_lock(&icc_lock);
+ 	list_for_each_entry(provider, &icc_providers, provider_list) {
+-		if (provider->dev->of_node == spec->np)
+-			node = provider->xlate(spec, provider->data);
+-		if (!IS_ERR(node))
+-			break;
++		if (provider->dev->of_node == spec->np) {
++			if (provider->xlate_extended) {
++				data = provider->xlate_extended(spec, provider->data);
++				if (!IS_ERR(data)) {
++					node = data->node;
++					break;
++				}
++			} else {
++				node = provider->xlate(spec, provider->data);
++				if (!IS_ERR(node))
++					break;
++			}
++		}
+ 	}
+ 	mutex_unlock(&icc_lock);
+ 
+-	return node;
++	if (IS_ERR(node))
++		return ERR_CAST(node);
++
++	if (!data) {
++		data = kzalloc(sizeof(*data), GFP_KERNEL);
++		if (!data)
++			return ERR_PTR(-ENOMEM);
++		data->node = node;
++	}
++
++	return data;
+ }
+ EXPORT_SYMBOL_GPL(of_icc_get_from_provider);
+ 
+@@ -403,7 +423,7 @@ EXPORT_SYMBOL_GPL(devm_of_icc_get);
+ struct icc_path *of_icc_get_by_index(struct device *dev, int idx)
+ {
+ 	struct icc_path *path;
+-	struct icc_node *src_node, *dst_node;
++	struct icc_node_data *src_data, *dst_data;
+ 	struct device_node *np;
+ 	struct of_phandle_args src_args, dst_args;
+ 	int ret;
+@@ -441,39 +461,46 @@ struct icc_path *of_icc_get_by_index(struct device *dev, int idx)
+ 
+ 	of_node_put(dst_args.np);
+ 
+-	src_node = of_icc_get_from_provider(&src_args);
++	src_data = of_icc_get_from_provider(&src_args);
+ 
+-	if (IS_ERR(src_node)) {
+-		if (PTR_ERR(src_node) != -EPROBE_DEFER)
++	if (IS_ERR(src_data)) {
++		if (PTR_ERR(src_data) != -EPROBE_DEFER)
+ 			dev_err(dev, "error finding src node: %ld\n",
+-				PTR_ERR(src_node));
+-		return ERR_CAST(src_node);
++				PTR_ERR(src_data));
++		return ERR_CAST(src_data);
+ 	}
+ 
+-	dst_node = of_icc_get_from_provider(&dst_args);
++	dst_data = of_icc_get_from_provider(&dst_args);
+ 
+-	if (IS_ERR(dst_node)) {
+-		if (PTR_ERR(dst_node) != -EPROBE_DEFER)
++	if (IS_ERR(dst_data)) {
++		if (PTR_ERR(dst_data) != -EPROBE_DEFER)
+ 			dev_err(dev, "error finding dst node: %ld\n",
+-				PTR_ERR(dst_node));
+-		return ERR_CAST(dst_node);
++				PTR_ERR(dst_data));
++		kfree(src_data);
++		return ERR_CAST(dst_data);
+ 	}
+ 
+ 	mutex_lock(&icc_lock);
+-	path = path_find(dev, src_node, dst_node);
++	path = path_find(dev, src_data->node, dst_data->node);
+ 	mutex_unlock(&icc_lock);
+ 	if (IS_ERR(path)) {
+ 		dev_err(dev, "%s: invalid path=%ld\n", __func__, PTR_ERR(path));
+-		return path;
++		goto free_icc_data;
+ 	}
+ 
++	if (src_data->tag && src_data->tag == dst_data->tag)
++		icc_set_tag(path, src_data->tag);
++
+ 	path->name = kasprintf(GFP_KERNEL, "%s-%s",
+-			       src_node->name, dst_node->name);
++			       src_data->node->name, dst_data->node->name);
+ 	if (!path->name) {
+ 		kfree(path);
+-		return ERR_PTR(-ENOMEM);
++		path = ERR_PTR(-ENOMEM);
+ 	}
+ 
++free_icc_data:
++	kfree(src_data);
++	kfree(dst_data);
+ 	return path;
+ }
+ EXPORT_SYMBOL_GPL(of_icc_get_by_index);
+@@ -975,7 +1002,7 @@ int icc_provider_add(struct icc_provider *provider)
+ {
+ 	if (WARN_ON(!provider->set))
+ 		return -EINVAL;
+-	if (WARN_ON(!provider->xlate))
++	if (WARN_ON(!provider->xlate && !provider->xlate_extended))
+ 		return -EINVAL;
+ 
+ 	mutex_lock(&icc_lock);
+diff --git a/include/linux/interconnect-provider.h b/include/linux/interconnect-provider.h
+index 4735518de515..4d535fddd5d3 100644
+--- a/include/linux/interconnect-provider.h
++++ b/include/linux/interconnect-provider.h
+@@ -14,6 +14,17 @@
+ struct icc_node;
+ struct of_phandle_args;
+ 
++/**
++ * struct icc_node_data - icc node data
++ *
++ * @node: icc node
++ * @tag: tag
++ */
++struct icc_node_data {
++	struct icc_node *node;
++	u32 tag;
++};
++
+ /**
+  * struct icc_onecell_data - driver data for onecell interconnect providers
+  *
+@@ -39,6 +50,7 @@ struct icc_node *of_icc_xlate_onecell(struct of_phandle_args *spec,
+  * @pre_aggregate: pointer to device specific function that is called
+  *		   before the aggregation begins (optional)
+  * @xlate: provider-specific callback for mapping nodes from phandle arguments
++ * @xlate_extended: vendor-specific callback for mapping node data from phandle arguments
+  * @dev: the device this interconnect provider belongs to
+  * @users: count of active users
+  * @inter_set: whether inter-provider pairs will be configured with @set
+@@ -52,6 +64,7 @@ struct icc_provider {
+ 			 u32 peak_bw, u32 *agg_avg, u32 *agg_peak);
+ 	void (*pre_aggregate)(struct icc_node *node);
+ 	struct icc_node* (*xlate)(struct of_phandle_args *spec, void *data);
++	struct icc_node_data* (*xlate_extended)(struct of_phandle_args *spec, void *data);
+ 	struct device		*dev;
+ 	int			users;
+ 	bool			inter_set;
+@@ -105,7 +118,7 @@ void icc_node_del(struct icc_node *node);
+ int icc_nodes_remove(struct icc_provider *provider);
+ int icc_provider_add(struct icc_provider *provider);
+ int icc_provider_del(struct icc_provider *provider);
+-struct icc_node *of_icc_get_from_provider(struct of_phandle_args *spec);
++struct icc_node_data *of_icc_get_from_provider(struct of_phandle_args *spec);
+ 
+ #else
+ 
+@@ -157,7 +170,7 @@ static inline int icc_provider_del(struct icc_provider *provider)
+ 	return -ENOTSUPP;
+ }
+ 
+-static inline struct icc_node *of_icc_get_from_provider(struct of_phandle_args *spec)
++static inline struct icc_node_data *of_icc_get_from_provider(struct of_phandle_args *spec)
+ {
+ 	return ERR_PTR(-ENOTSUPP);
+ }
