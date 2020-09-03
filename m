@@ -2,125 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCA6F25CC83
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 23:43:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D14225CC8D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 23:45:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726679AbgICVn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 17:43:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46656 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726397AbgICVn6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 17:43:58 -0400
-Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E809EC061244;
-        Thu,  3 Sep 2020 14:43:57 -0700 (PDT)
-Received: by mail-pg1-x541.google.com with SMTP id 67so3147951pgd.12;
-        Thu, 03 Sep 2020 14:43:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=V92xY93ay3p0tLda42GkDjEmnhwDliz8N8pgqvhF7+s=;
-        b=PHLvIm5hbFhCvXRs5BO3wMJXfUzjPaYHinZGP2t4oDLxmZLr5d0uc1cfjQ3F5Nlsjz
-         ikcNbeLx2DiM4+gUit9sJJVAzRBlHSRjLXxJlH4+fi16aruapsRZmi6sL8KmzXXcELCw
-         1Z5nMKuxOAd7S6wxYiZzfh6ABVQwxK7dUqlLrwoZbl8l2sgtSKfk8jYiW0nAwhJKt4+B
-         mw+vJA9xOY4vYmpPMP6qwLrm4vXuQi0fmkkc4jduayiicGEqFD6ux12XeQM/djWWe2MA
-         VwMQ6/vYBuU7lJjuCfT61+5gKh7D93JGzD1Ja0SmAVaXnwfeLUydp7AAeLsLSwIe+qBH
-         GRaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=V92xY93ay3p0tLda42GkDjEmnhwDliz8N8pgqvhF7+s=;
-        b=aY06q2fHgIaq4AbFHtuhUBzBsT5xwa4oOihiGlq5jBpBdB0nKh0lkyU8jetlSV5nBV
-         KkiWA3yQ1Wv0VhVO0AXBoc6URBt821wM5iAp2Broj2Ut7T2KS7MD2+HbnwMwSl9bE9y5
-         Xhi9PmbMlqYW7BQ9OWyN8fX5cGmOKmfwI6rdwUZYwDVOqU8obVmBlZ2qyWdISWtmrTJV
-         csBUULNBT4iT8vRIEgT/2Y1uGcW/c0JZzyyI+1QpQNIouShfQnoWBGfImdQaOp761dcV
-         /4Unc3NkUl2EuspU+D6TxwGaKR4tydazoxiUbGFvoM6DP27DwL3WYw9qbOihB7Nah+fg
-         s/EA==
-X-Gm-Message-State: AOAM531K+s6yv6oyOnerFHpD6JHSea07Aq/23LlvExp/xHfSN1Vaosxa
-        akQTanAsIpA0ZmIjyWxDEaoVM4Gy+eU=
-X-Google-Smtp-Source: ABdhPJz56lxf/BZ3Hci/rmQB2r24HK425lMwQc6QHK0uz12aCTLgCj9IZpjeNmfZrETxtAesujlZPw==
-X-Received: by 2002:a62:4dc1:: with SMTP id a184mr5773414pfb.203.1599169437285;
-        Thu, 03 Sep 2020 14:43:57 -0700 (PDT)
-Received: from [10.230.30.107] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id r144sm4608323pfc.63.2020.09.03.14.43.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Sep 2020 14:43:56 -0700 (PDT)
-Subject: Re: [PATCH net-next 1/3] net: phy: Support enabling clocks prior to
- bus probe
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     netdev <netdev@vger.kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        adam.rudzinski@arf.net.pl, Marco Felsch <m.felsch@pengutronix.de>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Richard Leitner <richard.leitner@skidata.com>,
-        Dejin Zheng <zhengdejin5@gmail.com>,
-        devicetree@vger.kernel.org, Sascha Hauer <kernel@pengutronix.de>,
-        Jakub Kicinski <kuba@kernel.org>
-References: <20200903043947.3272453-1-f.fainelli@gmail.com>
- <20200903043947.3272453-2-f.fainelli@gmail.com>
- <CAL_JsqL=XLJo9nrX+AMs41QvA3qpW6zoyB8qNwRx3V-+U-+uLg@mail.gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <81972e9c-c664-08b4-a9f2-636df3cd801d@gmail.com>
-Date:   Thu, 3 Sep 2020 14:43:54 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.1.1
+        id S1729184AbgICVpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 17:45:05 -0400
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:64584 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728037AbgICVpE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 17:45:04 -0400
+Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 083LWo9g082046;
+        Thu, 3 Sep 2020 17:44:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=references : from : to :
+ cc : subject : in-reply-to : date : message-id : mime-version :
+ content-type; s=pp1; bh=AJJtyDkK71KAtXDoyagJ/qdb1oShYkeR15uEJJIJ9Qk=;
+ b=SG5ZKBSyCKdVvkN9Eym4ccOJN5g1/5u2KtTUC8fvLqcIHlJX7u/hgyugadPKKoXa8wD4
+ 5Vx6mEIbXFvuNkgVGZUJDRvmVNcb8mXiJGok6eAHKvy9wJt8cBShb7YNKkBBoB04MFFo
+ WFWUDJs+Yq+2ju0uQ1/YtxMcdKUmOQHyHa+CqFnm3ClARnX6bFnbZ2htM/kGc4Ke2FGV
+ 6Ucwm6yTvm1U3FBlArU/UVBvZfhtOfkHDxkb6B4Xp3WjIm5/W9SGBmPKUyzsQbm3B4OI
+ +vjz9R5KbCWZImvU5O1SRw5k/p4FmnLCp75yDQFDaicCn/eVDQCgKTM+8xJky5PFq2IX rA== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 33b7cfsxv4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 03 Sep 2020 17:44:09 -0400
+Received: from m0098410.ppops.net (m0098410.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 083LX7j8082506;
+        Thu, 3 Sep 2020 17:44:09 -0400
+Received: from ppma03wdc.us.ibm.com (ba.79.3fa9.ip4.static.sl-reverse.com [169.63.121.186])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 33b7cfsxur-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 03 Sep 2020 17:44:09 -0400
+Received: from pps.filterd (ppma03wdc.us.ibm.com [127.0.0.1])
+        by ppma03wdc.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 083LgspW030969;
+        Thu, 3 Sep 2020 21:44:07 GMT
+Received: from b01cxnp23032.gho.pok.ibm.com (b01cxnp23032.gho.pok.ibm.com [9.57.198.27])
+        by ppma03wdc.us.ibm.com with ESMTP id 337en9tu7h-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 03 Sep 2020 21:44:07 +0000
+Received: from b01ledav006.gho.pok.ibm.com (b01ledav006.gho.pok.ibm.com [9.57.199.111])
+        by b01cxnp23032.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 083Li7dQ52232452
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 3 Sep 2020 21:44:07 GMT
+Received: from b01ledav006.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 5EFDAAC05B;
+        Thu,  3 Sep 2020 21:44:07 +0000 (GMT)
+Received: from b01ledav006.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id A1774AC059;
+        Thu,  3 Sep 2020 21:43:57 +0000 (GMT)
+Received: from morokweng.localdomain (unknown [9.211.155.22])
+        by b01ledav006.gho.pok.ibm.com (Postfix) with ESMTPS;
+        Thu,  3 Sep 2020 21:43:57 +0000 (GMT)
+References: <20200901195029.30039-1-nramas@linux.microsoft.com>
+ <20200901195029.30039-2-nramas@linux.microsoft.com>
+User-agent: mu4e 1.4.10; emacs 27.1
+From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
+To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Cc:     zohar@linux.ibm.com, robh@kernel.org, gregkh@linuxfoundation.org,
+        james.morse@arm.com, catalin.marinas@arm.com, sashal@kernel.org,
+        will@kernel.org, mpe@ellerman.id.au, benh@kernel.crashing.org,
+        paulus@samba.org, robh+dt@kernel.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        kstewart@linuxfoundation.org, takahiro.akashi@linaro.org,
+        tglx@linutronix.de, masahiroy@kernel.org, bhsharma@redhat.com,
+        mbrugger@suse.com, hsinyi@chromium.org, tao.li@vivo.com,
+        christophe.leroy@c-s.fr, linux-integrity@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com
+Subject: Re: [PATCH v5 1/3] powerpc: Refactor kexec functions to move arch
+ independent code to IMA
+In-reply-to: <20200901195029.30039-2-nramas@linux.microsoft.com>
+Date:   Thu, 03 Sep 2020 18:43:54 -0300
+Message-ID: <87y2lqy1r9.fsf@morokweng.localdomain>
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqL=XLJo9nrX+AMs41QvA3qpW6zoyB8qNwRx3V-+U-+uLg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-09-03_14:2020-09-03,2020-09-03 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
+ mlxscore=0 phishscore=0 suspectscore=2 mlxlogscore=771 impostorscore=0
+ lowpriorityscore=0 malwarescore=0 spamscore=0 priorityscore=1501
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2009030189
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
 
-On 9/3/2020 2:28 PM, Rob Herring wrote:
-> On Wed, Sep 2, 2020 at 10:39 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
->>
->> Some Ethernet PHYs may require that their clock, which typically drives
->> their logic to respond to reads on the MDIO bus be enabled before
->> issusing a MDIO bus scan.
->>
->> We have a chicken and egg problem though which is that we cannot enable
->> a given Ethernet PHY's device clock until we have a phy_device instance
->> create and called the driver's probe function. This will not happen
->> unless we are successful in probing the PHY device, which requires its
->> clock(s) to be turned on.
->>
->> For DT based systems we can solve this by using of_clk_get() which
->> operates on a device_node reference, and make sure that all clocks
->> associaed with the node are enabled prior to doing any reads towards the
->> device. In order to avoid drivers having to know the a priori reference
->> count of the resources, we drop them back to 0 right before calling
->> ->probe() which is then supposed to manage the resources normally.
-> 
-> What if a device requires clocks enabled in a certain order or timing?
-> It's not just clocks, you could have some GPIOs or a regulator that
-> need enabling first. It's device specific, so really needs a per
-> device solution. This is not just an issue with MDIO. I think we
-> really need some sort of pre-probe hook in the driver model in order
-> to do any non-discoverable init for discoverable buses. Or perhaps
-> forcing probe when there are devices defined in DT if they're not
-> discovered by normal means.
+> The functions ima_get_kexec_buffer() and ima_free_kexec_buffer() that
+> handle carrying forward the IMA measurement logs on kexec for powerpc
+> do not have architecture specific code, but they are currently defined
+> for powerpc only.
+>
+> Move these functions to IMA subsystem so that it can be used for other
+> architectures as well. A later patch in this series will use these
+> functions for carrying forward the IMA measurement log for ARM64.
+>
+> Define FDT_PROP_IMA_KEXEC_BUFFER for the chosen node, namely
+> "linux,ima-kexec-buffer", that is added to the DTB to hold
+> the address and the size of the memory reserved to carry
+> the IMA measurement log.
+>
+> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
 
-I like the pre-probe hook idea, and there are other devices that I have 
-access to that would benefit from that, like PCIe end-points that 
-require regulators to be turned on in order for them to be discoverable.
+do_get_kexec_buffer() is still duplicated in generic code and powerpc
+code. It's a small and simple function though, so not really a problem.
 
-For MDIO we might actually be able to create the backing device 
-reference without having read the device ID yet, provided that we know 
-its address on the bus, which DT can tell us.
+I think you'll need to move over remove_ima_buffer() if you agree with
+the comment I'll make on patch 3, in which case the powerpc-specific
+do_get_kexec_buffer() can be removed.
 
-Bartosz attempted to do that not so long ago and we sort of stalled 
-there, too:
+Reviewed-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
 
-https://lkml.org/lkml/2020/6/22/253
-
-Let me see if I can just add a pre-probe hook, make use of it in the 
-MDIO layer, and we see how we can apply it to other subsystems?
 -- 
-Florian
+Thiago Jung Bauermann
+IBM Linux Technology Center
