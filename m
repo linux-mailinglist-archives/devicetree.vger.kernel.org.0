@@ -2,155 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7506125BB06
-	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 08:30:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CCBD25BB43
+	for <lists+devicetree@lfdr.de>; Thu,  3 Sep 2020 08:53:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725967AbgICGau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 02:30:50 -0400
-Received: from mga17.intel.com ([192.55.52.151]:12741 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725919AbgICGau (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Sep 2020 02:30:50 -0400
-IronPort-SDR: i1oxDGt4k5KE9EG3KCUfj5UcEp+iHG78eExBNHZx4QZppcawUfD/r0AcZZm4CXt7VmcODRdUtA
- k7mfJLBw9chg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9732"; a="137578471"
-X-IronPort-AV: E=Sophos;i="5.76,385,1592895600"; 
-   d="scan'208";a="137578471"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2020 23:30:49 -0700
-IronPort-SDR: pjZ7tQiDH/pCeyrz+Pdq6Kot+MmMA25BcyAf0ohtVbNOLyFSScDOLezfgHo03oP1a9txzijsuT
- nIOW6kZKD3QQ==
-X-IronPort-AV: E=Sophos;i="5.76,385,1592895600"; 
-   d="scan'208";a="477934111"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2020 23:30:45 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 08AB72034D; Thu,  3 Sep 2020 09:30:43 +0300 (EEST)
-Date:   Thu, 3 Sep 2020 09:30:42 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Tomasz Figa <tfiga@chromium.org>
-Cc:     Xingyu Wu <wuxy@bitland.com.cn>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        "shawnx.tu" <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        "dave.stevenson" <dave.stevenson@raspberrypi.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Cao Bing Bu <bingbu.cao@intel.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Dongchun Zhu <dongchun.zhu@mediatek.com>,
-        Sj Huang <sj.huang@mediatek.com>,
-        darfur_liu <darfur_liu@gcoreinc.com>,
-        "hao.he7" <hao.he7@gmail.com>,
-        =?utf-8?B?5L2V5rWpQjAzMjA1?= <hao.he@bitland.com.cn>
-Subject: Re: [PATCH V3 3/3] media: i2c: gc5035: Add GC5035 image sensor driver
-Message-ID: <20200903063042.GH32646@paasikivi.fi.intel.com>
-References: <1597380295-6297-1-git-send-email-wuxy@bitland.com.cn>
- <1597380295-6297-5-git-send-email-wuxy@bitland.com.cn>
- <20200831174057.GO31019@paasikivi.fi.intel.com>
- <CAAFQd5ARYNVMjScuk5-w_z5Pt6jD=CPkCYG+rM2Znvt9j1Od6g@mail.gmail.com>
+        id S1727794AbgICGxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 02:53:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50504 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726022AbgICGxT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 02:53:19 -0400
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A409C061246
+        for <devicetree@vger.kernel.org>; Wed,  2 Sep 2020 23:53:19 -0700 (PDT)
+Received: by mail-pg1-x543.google.com with SMTP id g29so1351969pgl.2
+        for <devicetree@vger.kernel.org>; Wed, 02 Sep 2020 23:53:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=xHx59Kc0fj+SU2ePT6xEUvz7NPe3tqHc1i2XcwEDs+Y=;
+        b=JNfXGJzozbWYeHWf2PYzDgPhBhfvYOR2UYqy7SloT/XlLEjGfapyF5snCEAO/uishI
+         CqWUNTc1vNGodba2rYLzuFAUZZCU0bCFr5/EFwsxD/1/DOaMURyfLDLB08Y/AYrAJmak
+         DFFtjkOL1Ky1yL4Vz++1SHPhp+LOKe1KZCGIORom+xB2HtJ+RgBx/9fZJH/pHFbn4GQh
+         4vPxPNFLFA6dFHYSuLJ6Hy2DRebkSATSqb40gDQTb724VcvXsrhcRSDT2dwlZbknIZqY
+         ukgoDtmQsk8rfomr7/D1MtlnKUxToBph1zKcDI956uaHVwDh3iDEeI32lp/mZQTMNq25
+         6qAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=xHx59Kc0fj+SU2ePT6xEUvz7NPe3tqHc1i2XcwEDs+Y=;
+        b=Tn4GYe5pqBD2R8jHy9cL/Mx7CJ7AdBGqrW1OQVxEt9mLOrTHsn3pC/yQJbvAY660gP
+         bUobfMvD6Y2SiWOIUGC9JYyc4d9xIB65zO9SZ8Fal0uPUS8qCzsWsr9ZDMDsbTBC2qo1
+         BPnr9H6tzUT798HOdxKeJ0uCMO6YWHKqNTsxwqidJmcjjblJctEuDDbbo0YYo9heSdZ3
+         HK0si0FhsBfRmrgFeSVIpDLN91ZTgXia5KwUqe6YWA2ZaKOEQ1EIkAJUvh+Z4/OOxUR7
+         ie+x6V1yoAp1AnNYalZO4U6KkDTmN1Z+HfeWp11gGRhpPu/ZrmqPm5yoDlczfnZhiaiB
+         naNg==
+X-Gm-Message-State: AOAM530E7dwFrDmx1w+bgUpH2T1WeNeuZTY7nR2oXJ2nGt/yPJMQYoAt
+        tmUwIsTqdQ/6av1w8kihDXmX3Q==
+X-Google-Smtp-Source: ABdhPJwfjYiSXMyvm2VlezoTqGO5XqHG/HH+RdLIKD5CPb5y26URaJi8etuNmI++djlaKbA7swZBbQ==
+X-Received: by 2002:a63:e010:: with SMTP id e16mr1711737pgh.202.1599115998350;
+        Wed, 02 Sep 2020 23:53:18 -0700 (PDT)
+Received: from localhost ([122.167.135.199])
+        by smtp.gmail.com with ESMTPSA id l21sm1419055pgb.35.2020.09.02.23.53.16
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 02 Sep 2020 23:53:17 -0700 (PDT)
+Date:   Thu, 3 Sep 2020 12:23:14 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     ansuelsmth@gmail.com
+Cc:     'Sibi Sankar' <sibis@codeaurora.org>, vincent.guittot@linaro.org,
+        saravanak@google.com, 'Sudeep Holla' <sudeep.holla@arm.com>,
+        "'Rafael J. Wysocki'" <rjw@rjwysocki.net>,
+        'Rob Herring' <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: R: [RFC PATCH v3 0/2] Add Krait Cache Scaling support
+Message-ID: <20200903065314.y3ynhwydahaeg6o6@vireshk-i7>
+References: <20200821140026.19643-1-ansuelsmth@gmail.com>
+ <20200824104053.kpjpwzl2iw3lpg2m@vireshk-i7>
+ <b339e01f9d1e955137120daa06d26228@codeaurora.org>
+ <039d01d67f6a$188700d0$49950270$@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAAFQd5ARYNVMjScuk5-w_z5Pt6jD=CPkCYG+rM2Znvt9j1Od6g@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <039d01d67f6a$188700d0$49950270$@gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomasz,
-
-On Thu, Sep 03, 2020 at 12:59:20AM +0200, Tomasz Figa wrote:
-> Hi Sakari,
-> 
-> On Mon, Aug 31, 2020 at 7:41 PM Sakari Ailus
-> <sakari.ailus@linux.intel.com> wrote:
-> >
-> > Hi Xingyu,
-> >
-> > Thanks for the update. I've got a few more comments below.
-> >
-> > Do you happen to have some insight on what the OTP data contains and what
-> > does the driver do with it?
-> >
-> > At least in principle the OTP data may be programmed for the customer so
-> > the same sensor could contain something else what the driver expects to
-> > find there.
-> >
-> 
-> Thanks for the review. For anything without my reply, assume fixed. :)
-> 
-> As far as I can see, the data is being read from an area that is
-> supposed to be reserved for Galaxycore, so I'd assume it doesn't
-> depend on the customer.
-
-Sounds good.
-
-> 
-> [snip]
-> > > diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
-> > > index da11036..aeaf594 100644
-> > > --- a/drivers/media/i2c/Kconfig
-> > > +++ b/drivers/media/i2c/Kconfig
-> > > @@ -712,6 +712,18 @@ config VIDEO_APTINA_PLL
-> > >  config VIDEO_SMIAPP_PLL
-> > >       tristate
+On 31-08-20, 09:41, ansuelsmth@gmail.com wrote:
+> On 31-08-20, Sibi wrote:
+> > On 2020-08-24 16:10, Viresh Kumar wrote:
+> > > +Vincent/Saravana/Sibi
 > > >
-> > > +config VIDEO_GC5035
-> > > +     tristate "Galaxycore GC5035 sensor support"
-> > > +     depends on I2C && VIDEO_V4L2
-> > > +     select MEDIA_CONTROLLER
-> > > +     select VIDEO_V4L2_SUBDEV_API
-> >
-> > Add:
-> >
-> >         V4L2_FWNODE
-> >         OF
+> > > On 21-08-20, 16:00, Ansuel Smith wrote:
+> > >> This adds Krait Cache scaling support using the cpufreq notifier.
+> > >> I have some doubt about where this should be actually placed (clk or
+> > >> cpufreq)?
+> > >> Also the original idea was to create a dedicated cpufreq driver (like
+> > >> it's done in
+> > >> the codeaurora qcom repo) by copying the cpufreq-dt driver and adding
+> > >> the cache
+> > >> scaling logic but i still don't know what is better. Have a very
+> > >> similar driver or
+> > >> add a dedicated driver only for the cache using the cpufreq notifier
+> > >> and do the
+> > >> scale on every freq transition.
+> > >> Thanks to everyone who will review or answer these questions.
+> > >
+> > > Saravana was doing something with devfreq to solve such issues if I
+> > > wasn't mistaken.
+> > >
+> > > Sibi ?
+> > 
+> > IIRC the final plan was to create a devfreq device
+> > and devfreq-cpufreq based governor to scale them, this
+> > way one can switch to a different governor if required.
 > 
-> This driver doesn't depend on OF. It uses the firmware-independent
-> property access API. (v4 I sent actually uses device_property_*()).
+> So in this case I should convert this patch to a devfreq driver- 
 
-Yes, this is even better.
+I think this should happen nevertheless. You are doing DVFS for a
+device which isn't a CPU and devfreq looks to be the right place of
+doing so.
 
-> 
-> [snip]
-> > > +static int __gc5035_power_on(struct gc5035 *gc5035)
-> > > +{
-> > > +     struct device *dev = &gc5035->client->dev;
-> > > +     int i, ret;
-> > > +
-> > > +     ret = clk_prepare_enable(gc5035->xvclk);
-> > > +     if (ret < 0) {
-> > > +             dev_err(dev, "Failed to enable xvclk\n");
-> > > +             return ret;
-> > > +     }
-> > > +
-> > > +     gpiod_set_value_cansleep(gc5035->reset_gpio, 1);
-> > > +
-> > > +     for (i = 0; i < GC5035_NUM_SUPPLIES; i++) {
-> > > +             ret = regulator_enable(gc5035->supplies[i].consumer);
-> > > +             if (ret) {
-> > > +                     dev_err(dev, "Failed to enable %s: %d\n",
-> > > +                             gc5035->supplies[i].supply, ret);
-> > > +                     goto disable_reg_clk;
-> >
-> > Please use regulator_bulk_enable() here, and regulator_bulk_disable()
-> > below.
-> >
-> 
-> This actually needs to have one of the regulators (iovdd) enabled
-> before the other ones, but regulator_bulk_enable() is async. In v4 I
-> used regulator_enable() for iovdd and regulator_bulk_enable() for the
-> other two for optimal sequencing.
+> Isn't overkill to use a governor for such a task?
+> (3 range based on the cpufreq?)
 
-Ack.
+I am not sure about the governor part here, maybe it won't be required
+?
 
 -- 
-Sakari Ailus
+viresh
