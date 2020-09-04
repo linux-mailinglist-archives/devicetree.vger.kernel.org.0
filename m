@@ -2,165 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20F5925D311
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 09:58:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EB8525D316
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 09:59:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726151AbgIDH6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 03:58:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54750 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726127AbgIDH6j (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Sep 2020 03:58:39 -0400
-Received: from mail.kernel.org (ip5f5ad59b.dynamic.kabel-deutschland.de [95.90.213.155])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A3079206A5;
-        Fri,  4 Sep 2020 07:58:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599206318;
-        bh=4+iNod7Uo26SD/Kth/Kwqrml+qOis9Dkl2izVRfMBxY=;
-        h=From:To:Cc:Subject:Date:From;
-        b=2JjBzGQKCrRqVtg+dWgWUeUjgArki0zSI4c89zEL5U08sJxdRyYMpd/42UUPz0lSe
-         37iK58c/nyMv76Jfnfqe45IU3rrxfXWFFXkG/YqkkYUijpl09SnozDfRRROedwajdN
-         EoITskH0GH+s6053+xSJikx9aYCHvoM8aE2t7wyg=
-Received: from mchehab by mail.kernel.org with local (Exim 4.94)
-        (envelope-from <mchehab@kernel.org>)
-        id 1kE6cG-005OV3-6V; Fri, 04 Sep 2020 09:58:36 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: phy: convert phy-hi3660-usb3.txt to yaml
-Date:   Fri,  4 Sep 2020 09:58:34 +0200
-Message-Id: <edfeafe6b5a60a84d08095fb380f32e61af46d40.1599206213.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.26.2
+        id S1726151AbgIDH7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 03:59:37 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:49601 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728118AbgIDH7Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 03:59:24 -0400
+X-Originating-IP: 93.34.118.233
+Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 144031BF206;
+        Fri,  4 Sep 2020 07:59:15 +0000 (UTC)
+Date:   Fri, 4 Sep 2020 10:03:02 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        mchehab@kernel.org, sakari.ailus@linux.intel.com,
+        hverkuil-cisco@xs4all.nl, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v4 0/3] dt-bindings: media: i2c: Convert 3 sensor bindings
+Message-ID: <20200904080302.47yshw6z6n33xh7k@uno.localdomain>
+References: <20200903115143.13717-1-jacopo+renesas@jmondi.org>
+ <20200903211420.GF6492@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200903211420.GF6492@pendragon.ideasonboard.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Hisilicon Kirin 960 USB3 PHY bindings to DT schema
-format using json-schema.
+Hi Laurent,
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
+On Fri, Sep 04, 2020 at 12:14:20AM +0300, Laurent Pinchart wrote:
+> Hi Jacopo,
+>
+> On Thu, Sep 03, 2020 at 01:51:40PM +0200, Jacopo Mondi wrote:
+> > I know I've sent the previous version first as part of a longer list of patches,
+> > later individually, and now grouped together again. Sorry for the fuss, hope
+> > it's not too confusing.
+> >
+> > These three sensor bindings conversions go together as they all happen in a
+> > single patch, so I deemed it was easier to just group them.
+> >
+> > In v4 after finalizing the discussion with Laurent and Rob on how to handle
+> > of-graph endpoint, I have dropped them from mt9v111 and imx274. For imx214 as I
+> > have endpoint properties to document I have also documented 'endpoint' (not
+> > mandatory) and 'remote-endpoint' (mandatory). Hope I got the outcome of the
+> > discussion right. For imx214 I also took in Laurent's suggestion on how to
+> > document the 'data-lanes' supported values.
+>
+> I think you can drop remote-endpoint, it will be defined in
+> of-graph.yaml. Apart from that, it sounds good to me.
+>
 
-Rob,
+Will I ever get this right ? Should we record the policy to document
+endpoints until we don't have an of-graph.yaml to avoid other to have
+go through 5 iterations to do it right ?
 
-As I'm about to submit a patch series with the phy interface for Kirin 970,
-let's first convert the Kirin 960 USB3 PHY binding, as it is close enough 
-to the PHY interface bindins for Kirin 970.
+On this patch:
+I owe an updated to the imx274 patch but I'm waiting for this
+discussion to get somewhere (you're welcome to step-in :)
+https://patchwork.linuxtv.org/project/linux-media/patch/1599012278-10203-3-git-send-email-skomatineni@nvidia.com/
 
- .../bindings/phy/hisilicon,hi3660-usb3.yaml   | 60 +++++++++++++++++++
- .../bindings/phy/phy-hi3660-usb3.txt          | 26 --------
- 2 files changed, 60 insertions(+), 26 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml
- delete mode 100644 Documentation/devicetree/bindings/phy/phy-hi3660-usb3.txt
+Then I'll re-send a v5
 
-diff --git a/Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml b/Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml
-new file mode 100644
-index 000000000000..c2e073e26190
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml
-@@ -0,0 +1,60 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/hisilicon,hi3660-usb3.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Hisilicon Kirin 960 USB PHY
-+
-+maintainers:
-+  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-+description: |+
-+  Bindings for USB3 PHY on HiSilicon Kirin 960.
-+
-+properties:
-+  compatible:
-+    const: hisilicon,hi3660-usb-phy
-+
-+  "#phy-cells":
-+    const: 0
-+
-+  hisilicon,pericrg-syscon:
-+    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    description: phandle of syscon used to control iso refclk.
-+
-+  hisilicon,pctrl-syscon:
-+    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    description: phandle of syscon used to control usb tcxo.
-+
-+  hisilicon,eye-diagram-param:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Eye diagram for phy.
-+
-+required:
-+  - compatible
-+  - hisilicon,pericrg-syscon
-+  - hisilicon,pctrl-syscon
-+  - hisilicon,eye-diagram-param
-+  - "#phy-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    bus {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      usb3_otg_bc: usb3_otg_bc@ff200000 {
-+        compatible = "syscon", "simple-mfd";
-+        reg = <0x0 0xff200000 0x0 0x1000>;
-+
-+        usb-phy {
-+          compatible = "hisilicon,hi3660-usb-phy";
-+          #phy-cells = <0>;
-+          hisilicon,pericrg-syscon = <&crg_ctrl>;
-+          hisilicon,pctrl-syscon = <&pctrl>;
-+          hisilicon,eye-diagram-param = <0x22466e4>;
-+        };
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/phy/phy-hi3660-usb3.txt b/Documentation/devicetree/bindings/phy/phy-hi3660-usb3.txt
-deleted file mode 100644
-index e88ba7d92dcb..000000000000
---- a/Documentation/devicetree/bindings/phy/phy-hi3660-usb3.txt
-+++ /dev/null
-@@ -1,26 +0,0 @@
--Hisilicon hi3660 USB PHY
-------------------------
--
--Required properties:
--- compatible: should be "hisilicon,hi3660-usb-phy"
--- #phy-cells: must be 0
--- hisilicon,pericrg-syscon: phandle of syscon used to control phy.
--- hisilicon,pctrl-syscon: phandle of syscon used to control phy.
--- hisilicon,eye-diagram-param: parameter set for phy
--Refer to phy/phy-bindings.txt for the generic PHY binding properties
--
--This is a subnode of usb3_otg_bc register node.
--
--Example:
--	usb3_otg_bc: usb3_otg_bc@ff200000 {
--		compatible = "syscon", "simple-mfd";
--		reg = <0x0 0xff200000 0x0 0x1000>;
--
--		usb-phy {
--			compatible = "hisilicon,hi3660-usb-phy";
--			#phy-cells = <0>;
--			hisilicon,pericrg-syscon = <&crg_ctrl>;
--			hisilicon,pctrl-syscon = <&pctrl>;
--			hisilicon,eye-diagram-param = <0x22466e4>;
--		};
--	};
--- 
-2.26.2
-
-
+> > Individual maintainers cc-ed per-patch.
+> >
+> > Jacopo Mondi (3):
+> >   dt-bindings: media: mt9v111: Convert to json-schema
+> >   dt-bindings: media: imx274: Convert to json-schema
+> >   dt-bindings: media: imx214: Convert to json-schema
+> >
+> >  .../bindings/media/i2c/aptina,mt9v111.txt     |  46 ------
+> >  .../bindings/media/i2c/aptina,mt9v111.yaml    |  75 ++++++++++
+> >  .../devicetree/bindings/media/i2c/imx274.txt  |  38 -----
+> >  .../bindings/media/i2c/sony,imx214.txt        |  53 -------
+> >  .../bindings/media/i2c/sony,imx214.yaml       | 137 ++++++++++++++++++
+> >  .../bindings/media/i2c/sony,imx274.yaml       |  59 ++++++++
+> >  MAINTAINERS                                   |   6 +-
+> >  7 files changed, 274 insertions(+), 140 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/imx274.txt
+> >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx214.txt
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
