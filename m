@@ -2,147 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D14125E0AC
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 19:24:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B20D25E0C6
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 19:30:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726109AbgIDRYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 13:24:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59168 "EHLO
+        id S1727044AbgIDRaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 13:30:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725984AbgIDRYj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 13:24:39 -0400
-Received: from mail-yb1-xb42.google.com (mail-yb1-xb42.google.com [IPv6:2607:f8b0:4864:20::b42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B11FC061244;
-        Fri,  4 Sep 2020 10:24:39 -0700 (PDT)
-Received: by mail-yb1-xb42.google.com with SMTP id x2so4910742ybf.12;
-        Fri, 04 Sep 2020 10:24:39 -0700 (PDT)
+        with ESMTP id S1726842AbgIDRaF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 13:30:05 -0400
+Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com [IPv6:2607:f8b0:4864:20::841])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3683C061245
+        for <devicetree@vger.kernel.org>; Fri,  4 Sep 2020 10:30:04 -0700 (PDT)
+Received: by mail-qt1-x841.google.com with SMTP id n18so5250622qtw.0
+        for <devicetree@vger.kernel.org>; Fri, 04 Sep 2020 10:30:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HBnolezTElMG3DPNCT0X2miQ6xV0AeQAGXqt2ZRlAS4=;
-        b=pzpG0aWb2xH0/LYQzXWoFkg3lHCNMR4zgmUKPkAZLpvxi6VJbalfUoh36yrYjCcgSF
-         Fu3BR9H5biF1rgC1bUfrDs//yjDyZgHb/nZ8LXofgV0x3m81Scbf3tWA8m72rzdRh7we
-         qOM8JlsnZC7okrToVOVu77FCXWSnihR7LlaVW5wgsKXxtYwePg/qHxJXDdq324u7X7nE
-         XXotiWEDEedvO41JyUyQyf4sJKIKw2Q0gyIptS5sTLgBUAqbDtbnmXeGQndQI46M5nLt
-         uJLx5SOgNsSpFNH/0pDIBQS9HA7nE1fWBE97TEVKT/ITowkJSWR94ay4zngxCY3r47YX
-         azyg==
+        d=marek-ca.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DsXwsK4zCY7HkfSZjqg83ys549zTUY/sWT0C9/KbzMc=;
+        b=wn2eFHmE1kWbL2a8K8Yh+La67pFCOUsumdtML9qwrvWmq+yGf8nat6Qh+6sMJkEA8e
+         sq+oefUn+dYVfq0NzuFeab96xkK+5E4EfjJHloESInKi/fg91TCu4/F6vbtGlLWLD4eR
+         77i8FbuucNnLVjYwQ6yy8uHQhC7Swb2QqhPH4IZiwNfTpTIc9PFtuYl9li7QEneBtCF0
+         YX4kLuhatJjgHf1OdeaKm+I8b4oPmHDaPmRhkz9KvRtIVRYSvaE5F1QcYTNeytaibc+U
+         MfLIA9JMlDAE3fIOGTmyu4Td3L+ctfG1jsBj1+xrTSspKo4ZJd/UB+gG4TtpAu8pydVj
+         bQcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HBnolezTElMG3DPNCT0X2miQ6xV0AeQAGXqt2ZRlAS4=;
-        b=ufZueNzjTeuqzC0Hmeu3I9p6x3+GGLJbTWWLd82AFdK+Oc5rxmbxC9IFg7WgHsDMzu
-         nzEgh4+9OhEnuzB8enHW0W+d4RM29k7kMXU6wfMjoiJxfftYP2kc3ATLo5cuyWd2QR2B
-         uS/2DjsQcgk3eDiAvCc8dOr1S4+7jqdCLecpzf58uZi+wjpwDwzLACt3S5SFz/P3gNpD
-         hMAt/G+TbTgZ4QrzJzXdu7pZ7hxD6oIS/NOsD5xUfQobCBnnjb+dNDLpsOeQh9y3d27x
-         KNf/tDJYzheSRgiID8v/vBgc4iITs8i4FRmn+MVQQZRYBa3UB5xaF9BaQUvDvsjAjpD+
-         t6Sw==
-X-Gm-Message-State: AOAM532G2aIytFI2hw4JML+7/+DtkOmvHO8ZHPp0UqfnaRjWTzh4YDzn
-        hMDZdniTxBAKlmYxJ+CZ0hJNrpA5N3BhNW3WYiU=
-X-Google-Smtp-Source: ABdhPJxwKhTzY9vinoG67Ge0rXX5teef5N78CegffiHZm3jy/a5wyIUPzflHeDMrSP7T1EK9XMElRlnD+XErf6s44vg=
-X-Received: by 2002:a25:ab91:: with SMTP id v17mr10932172ybi.76.1599240277482;
- Fri, 04 Sep 2020 10:24:37 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DsXwsK4zCY7HkfSZjqg83ys549zTUY/sWT0C9/KbzMc=;
+        b=Y+Dm5r9bhPrNVrPUKnal3KqdS554UT8kfwGWN8CMnLagMUU4d0njT59GXzmJZ56/ZB
+         9UTN9Xu0RSVUZPRFkDfV4qkexiixqvB/VgFFwNZ0XogVsYFGC0B1AArzq4XHdFs/AI45
+         mxoGIe7mRip0l9iPPnbBAVXRFNZG/I8D9Hb2UjIn+B85AqG6LH/7Kcok/sFL0zJ5+BDa
+         pe5ewyCFWpNHuKkdcYJ6Ms7oBVADuxR8SoeLC9nq1Jr/6MKHdMFVXNkwdx2hSAyrFHVq
+         uIGUOBPDHRAMH/oYJkWD1QigYxCKyQtPll6zenHNnJJhJONIKYX98JuH8ZnubYtWxEex
+         zbuA==
+X-Gm-Message-State: AOAM531mOedqHu6rv23YoVkuH2cfPC8pRPbEm9YEPNMSlumFa7b/7N3O
+        VqLrS5JkDSdz89V76JDec16pNQ==
+X-Google-Smtp-Source: ABdhPJwqgJ2k4b0aRGXeq53bb2KuhyjL7osl5nkksXjBIvFgVuAWNuDStYVzQTlFUxGZYemuzcTynQ==
+X-Received: by 2002:ac8:b46:: with SMTP id m6mr9497558qti.72.1599240603664;
+        Fri, 04 Sep 2020 10:30:03 -0700 (PDT)
+Received: from localhost.localdomain ([147.253.86.153])
+        by smtp.gmail.com with ESMTPSA id i66sm5103330qkc.63.2020.09.04.10.30.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Sep 2020 10:30:03 -0700 (PDT)
+From:   Jonathan Marek <jonathan@marek.ca>
+To:     freedreno@lists.freedesktop.org
+Cc:     AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        dri-devel@lists.freedesktop.org (open list:DRM DRIVER FOR MSM ADRENO
+        GPU), Harigovindan P <harigovi@codeaurora.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Jordan Crouse <jcrouse@codeaurora.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Krzysztof Wilczynski <kw@linux.com>,
+        linux-arm-msm@vger.kernel.org (open list:DRM DRIVER FOR MSM ADRENO GPU),
+        linux-kernel@vger.kernel.org (open list),
+        Rob Clark <robdclark@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>,
+        zhengbin <zhengbin13@huawei.com>
+Subject: [PATCH 0/3] drm/msm/dsi: support SM8150 and SM8250
+Date:   Fri,  4 Sep 2020 13:28:35 -0400
+Message-Id: <20200904172859.25633-1-jonathan@marek.ca>
+X-Mailer: git-send-email 2.26.1
 MIME-Version: 1.0
-References: <20200825162718.5838-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20200825162718.5838-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXm9D8-bg3XdGqD7AKe2vMiZLNWENH3A0w-b7j=qZS=pA@mail.gmail.com>
-In-Reply-To: <CAMuHMdXm9D8-bg3XdGqD7AKe2vMiZLNWENH3A0w-b7j=qZS=pA@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 4 Sep 2020 18:24:11 +0100
-Message-ID: <CA+V-a8to=PY2_4gHh6V33mRVXJC4QGJzEg2q2NVWzot9TmXAtA@mail.gmail.com>
-Subject: Re: [PATCH 2/4] ARM: dts: r8a7742-iwg21d-q7: Add SPI NOR support
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Add support for SM8150 and SM8250 DSI.
 
-Thank you for the review.
+Note I haven't tested SM8150 recently, but DSI is almost identical to SM8250.
 
-On Thu, Sep 3, 2020 at 12:59 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Tue, Aug 25, 2020 at 6:28 PM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > Add support for the SPI NOR device which is connected to MSIOF0 interface
-> > on the iWave RainboW-G21d-q7 board.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
->
-> > --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
-> > +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
-> > @@ -220,6 +220,32 @@
-> >         status = "okay";
-> >  };
-> >
-> > +&msiof0 {
-> > +       pinctrl-0 = <&msiof0_pins>;
-> > +       pinctrl-names = "default";
-> > +       cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
-> > +
-> > +       status = "okay";
-> > +
-> > +       flash1: flash@0 {
-> > +               compatible = "sst,sst25vf016b", "jedec,spi-nor";
-> > +               reg = <0>;
-> > +               spi-max-frequency = <50000000>;
-> > +               m25p,fast-read;
-> > +
-> > +               partitions {
-> > +                       compatible = "fixed-partitions";
-> > +                       #address-cells = <1>;
-> > +                       #size-cells = <1>;
-> > +
-> > +                       partition@0 {
-> > +                               label = "user";
-> > +                               reg = <0x00000000 0x00200000>;
-> > +                       };
-> > +               };
-> > +       };
-> > +};
-> > +
-> >  &pci0 {
-> >         pinctrl-0 = <&usb0_pins>;
-> >         pinctrl-names = "default";
-> > @@ -266,6 +292,11 @@
-> >                 function = "i2c2";
-> >         };
-> >
-> > +       msiof0_pins: msiof0 {
-> > +               groups = "msiof0_clk", "msiof0_tx", "msiof0_rx";
->
-> I think you're missing "msiof0_sync", connected to SPI_CS0#?
->
-Agreed will fix that and post a v2.
+Jonathan Marek (3):
+  drm/msm/dsi: remove unused clk_pre/clk_post in msm_dsi_dphy_timing
+  drm/msm/dsi: add DSI config for sm8150 and sm8250
+  drm/msm/dsi: add support for 7nm DSI PHY/PLL
 
-Cheers,
-Prabhakar
+ .../devicetree/bindings/display/msm/dsi.txt   |   6 +-
+ drivers/gpu/drm/msm/Kconfig                   |   7 +
+ drivers/gpu/drm/msm/Makefile                  |   2 +
+ drivers/gpu/drm/msm/dsi/dsi.h                 |   2 +
+ drivers/gpu/drm/msm/dsi/dsi.xml.h             | 423 ++++++++
+ drivers/gpu/drm/msm/dsi/dsi_cfg.c             |   5 +-
+ drivers/gpu/drm/msm/dsi/dsi_cfg.h             |   2 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.c         | 102 ++
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.h         |   6 +-
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c     | 255 +++++
+ drivers/gpu/drm/msm/dsi/pll/dsi_pll.c         |   4 +
+ drivers/gpu/drm/msm/dsi/pll/dsi_pll.h         |  10 +
+ drivers/gpu/drm/msm/dsi/pll/dsi_pll_7nm.c     | 902 ++++++++++++++++++
+ 13 files changed, 1721 insertions(+), 5 deletions(-)
+ create mode 100644 drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
+ create mode 100644 drivers/gpu/drm/msm/dsi/pll/dsi_pll_7nm.c
 
-> With that fixed:
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->
-> > +               function = "msiof0";
-> > +       };
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+-- 
+2.26.1
+
