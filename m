@@ -2,204 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 384B525D15E
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 08:30:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 478AB25D14C
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 08:28:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728588AbgIDG3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 02:29:08 -0400
-Received: from Galois.linutronix.de ([193.142.43.55]:58774 "EHLO
-        galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728443AbgIDG2J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 02:28:09 -0400
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1599200887;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=kFt6GdZKxXVNkygdt0pTgRmnYHuzdaXIHEYjNFB3SK8=;
-        b=S6vJFGYkGJRyfBoHvh4tsoGiwQfmrxkCm5tvdcyGlA8HXMjFL4UxNZXPoxSQ71pYkCPm1h
-        EI0odXXEzFqqo3NWlbHFlD0NNjfDA8Aq6Onr/4qHyAKtA5IplCQWfuoj785sKRb2sDc2nY
-        c7uqS88ys6G3cB4ONtCetlUF7E1iPsAjHmoULf0yBryK0mmMKbP71pKzYHudPHK+Lkz+yU
-        UVBDWTftjZVaJ/mAasDVxYUDUdQqWoK9qO9tF0DH75scuJT1sJw57UrTx/krIGkt8HfDyc
-        mgTLDzTmapYfFSZFugL8rmJx8GFxqzSAmt1UgSR99JlyWc9PsIzkth5tWnZlcQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1599200887;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=kFt6GdZKxXVNkygdt0pTgRmnYHuzdaXIHEYjNFB3SK8=;
-        b=m8BcgdpsnMl+cKBYGtM8QhU0j73uWAS3P/6ReE4wocYzxXtFDCzKjRNq2+fuqCu+m2iVr1
-        4swBs1d6A2tmp4Cw==
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        ilias.apalodimas@linaro.org, Vladimir Oltean <olteanv@gmail.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v5 7/7] dt-bindings: net: dsa: Add documentation for Hellcreek switches
-Date:   Fri,  4 Sep 2020 08:27:39 +0200
-Message-Id: <20200904062739.3540-8-kurt@linutronix.de>
-In-Reply-To: <20200904062739.3540-1-kurt@linutronix.de>
-References: <20200904062739.3540-1-kurt@linutronix.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1729698AbgIDG21 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 02:28:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46630 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729655AbgIDG2Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Sep 2020 02:28:25 -0400
+Received: from kozik-lap.mshome.net (unknown [194.230.155.106])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 79F0E2086A;
+        Fri,  4 Sep 2020 06:28:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599200905;
+        bh=vxbLV+STRC09+mFwG0u3yWhMHTkrX3R2cxAN/HKppaU=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=WdqpqBOm2sg9Qwtl/ZfcUKIgBHuopJLJsmafOFYSGUakRkeLEv2FYktecnDyqbfJA
+         0sPDwwemqQaGOLvxw/G4FsGRejm8PGj9c3yoXe5qzy2w8l2gIfmTmDiCua3teVdXGo
+         Bc8ZJb9pwC25+hUEK4ALb+Cvgk7AI51Qe/R9wCRY=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v2 11/14] arm64: dts: imx8mq-sr-som: Align pin configuration group names with schema
+Date:   Fri,  4 Sep 2020 08:27:40 +0200
+Message-Id: <20200904062743.6273-11-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200904062743.6273-1-krzk@kernel.org>
+References: <20200904062743.6273-1-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic documentation and example.
+Device tree schema expects pin configuration groups to end with 'grp'
+suffix, otherwise dtbs_check complain with a warning like:
 
-Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+    ... do not match any of the regexes: 'grp$', 'pinctrl-[0-9]+'
+
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- .../bindings/net/dsa/hellcreek.yaml           | 127 ++++++++++++++++++
- 1 file changed, 127 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/dsa/hellcreek.yaml
+ arch/arm64/boot/dts/freescale/imx8mq-sr-som.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/hellcreek.yaml b/Documentation/devicetree/bindings/net/dsa/hellcreek.yaml
-new file mode 100644
-index 000000000000..e26c5a2a360b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/dsa/hellcreek.yaml
-@@ -0,0 +1,127 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/dsa/hellcreek.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Hirschmann Hellcreek TSN Switch Device Tree Bindings
-+
-+allOf:
-+  - $ref: dsa.yaml#
-+
-+maintainers:
-+  - Andrew Lunn <andrew@lunn.ch>
-+  - Florian Fainelli <f.fainelli@gmail.com>
-+  - Vivien Didelot <vivien.didelot@gmail.com>
-+  - Kurt Kanzenbach <kurt@linutronix.de>
-+
-+description:
-+  The Hellcreek TSN Switch IP is a 802.1Q Ethernet compliant switch. It supports
-+  the Precision Time Protocol, Hardware Timestamping as well the Time Aware
-+  Shaper.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: hirschmann,hellcreek-de1soc-r1
-+
-+  reg:
-+    description:
-+      The physical base address and size of TSN and PTP memory base
-+    minItems: 2
-+    maxItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: tsn
-+      - const: ptp
-+
-+  leds:
-+    type: object
-+    properties:
-+      '#address-cells':
-+        const: 1
-+      '#size-cells':
-+        const: 0
-+
-+    patternProperties:
-+      "^led@[01]$":
-+          type: object
-+          description: Hellcreek leds
-+          $ref: ../../leds/common.yaml#
-+
-+          properties:
-+            reg:
-+              items:
-+                - enum: [0, 1]
-+              description: Led number
-+
-+            label: true
-+
-+            default-state: true
-+
-+          required:
-+            - reg
-+
-+          additionalProperties: false
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - ethernet-ports
-+  - leds
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+        switch0: switch@ff240000 {
-+            compatible = "hirschmann,hellcreek-de1soc-r1";
-+            reg = <0xff240000 0x1000>,
-+                  <0xff250000 0x1000>;
-+            reg-names = "tsn", "ptp";
-+            dsa,member = <0 0>;
-+
-+            ethernet-ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    reg = <0>;
-+                    label = "cpu";
-+                    ethernet = <&gmac0>;
-+                };
-+
-+                port@2 {
-+                    reg = <2>;
-+                    label = "lan0";
-+                    phy-handle = <&phy1>;
-+                };
-+
-+                port@3 {
-+                    reg = <3>;
-+                    label = "lan1";
-+                    phy-handle = <&phy2>;
-+                };
-+            };
-+
-+            leds {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                led@0 {
-+                    reg = <0>;
-+                    label = "sync_good";
-+                    default-state = "on";
-+                };
-+
-+                led@1 {
-+                    reg = <1>;
-+                    label = "is_gm";
-+                    default-state = "off";
-+                };
-+            };
-+        };
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-sr-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-sr-som.dtsi
+index 404c46671b96..0187890a90c5 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-sr-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq-sr-som.dtsi
+@@ -275,7 +275,7 @@
+ 		>;
+ 	};
+ 
+-	pinctrl_usdhc1_100mhz: usdhc1grp100mhz {
++	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
+ 		fsl,pins = <
+ 			MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x8d
+ 			MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD			0xcd
+@@ -292,7 +292,7 @@
+ 		>;
+ 	};
+ 
+-	pinctrl_usdhc1_200mhz: usdhc1grp200mhz {
++	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
+ 		fsl,pins = <
+ 			MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x9f
+ 			MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD			0xdf
 -- 
-2.20.1
+2.17.1
 
