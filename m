@@ -2,83 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BFC3825D59A
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 12:04:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE09025D5CE
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 12:17:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729928AbgIDKEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 06:04:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35472 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726114AbgIDKEY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Sep 2020 06:04:24 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 817E320791;
-        Fri,  4 Sep 2020 10:04:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599213864;
-        bh=KA8LW7OmlzmLuUoHRv+s+AdmVu8ZMwzNtfZQyvHEiZ8=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=jZCJkTkSYk/8/vG/dVhc8ZrWVZV18s6iyb/jSsvK0G/8+7Bs5Xo+6pdlvtXoH4dc5
-         +9gsLqx+cImtzKcuz6lBYxDHP/XdceWFEF7FCJyUmbhtS4z3N5zxRlgKo2am6SiHYD
-         iONXVuEs1KDl4sgZUq7vRkGhjtdA+LIWU4VUYd+o=
-Date:   Fri, 04 Sep 2020 11:03:42 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        mazziesaccount@gmail.com
-Cc:     Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-power@fi.rohmeurope.com
-In-Reply-To: <cover.1599029334.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1599029334.git.matti.vaittinen@fi.rohmeurope.com>
-Subject: Re: [PATCH 0/4] Support regulator ON/OFF by PMIC state machine.
-Message-Id: <159921382244.42249.7240077218868198055.b4-ty@kernel.org>
+        id S1729941AbgIDKRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 06:17:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49564 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729863AbgIDKRw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 06:17:52 -0400
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD7F4C061245
+        for <devicetree@vger.kernel.org>; Fri,  4 Sep 2020 03:17:50 -0700 (PDT)
+Received: by mail-ot1-x342.google.com with SMTP id v16so5384736otp.10
+        for <devicetree@vger.kernel.org>; Fri, 04 Sep 2020 03:17:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=endlessm-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=lPxZaTNtW5YIeyR3xGRRL/xoA1G8FPiEJM8B82fslQU=;
+        b=Le2zSKkazZ1gO39eGYsVx4cem55qd/DC6Q2blFPKTBoy+7nOudrnvnkzDCECzwXeT2
+         3sWv7LSDa51geVMtEujv6z6cfikZCLGNCMOhlNw+e+BADnCYCsvFG/epFABwLkq7gu5M
+         E4AduSqpE2wPwQlvZLNdbJL6vnzIovrTzUMYAm/QdlfErhvvZUIm1Z0MPiiF8mFPh6Rf
+         hvLUweTbmvvsxYkzQISGX9j5KRehBC9NYmyDBLv7/mZ2xoRyEMxUxHEWrcvb2Fu/QknF
+         wWbHZ2tt+z6ucf/sG8PXoX/ewHJty2MDYnjESaQKFcKGFdgZiRhKT7QEuygCAcLMgCKa
+         m8oQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=lPxZaTNtW5YIeyR3xGRRL/xoA1G8FPiEJM8B82fslQU=;
+        b=hrojb8g0nXvxX2rWSJmjmL3HhJnCVFk1J4UYKjSSUU0M5ew+zpN8W4YXLpttKNU2LL
+         sZZISG3jnWlj6lDRw2+vdaSpCockA8hi8d1UpEksDtzsFwJSCXCdjWJ6I87rdZGtvj6a
+         HGakqxYcjkGVUBI4kcD+JqvDx5MJ07wK5FqDoWop52G6af1pREs946pTYQZcvXJ+Wh0m
+         uFX3/hj5X8BXJ2nEMjd3Z7e/AgOWulWdMXxpikS2iXtDnVpGQzfCoVmqNN/8hjM7zEfd
+         rypUKTUwvClTYkUFKJPkcs1K5Ixs2MX84Tu/9/wyJcZl1YcQggNxouKbhg2GVILkSZez
+         gytQ==
+X-Gm-Message-State: AOAM530gJW3OQj3wnfepZUjnJNVSC2IZuIdmzdlYihotjLqSw0Vp4vF4
+        ZvMdp1geVB0tezRxyj62Lap1VnYAkcTkuCCqyRDdug==
+X-Google-Smtp-Source: ABdhPJweP2lCtEYjkHQWlo8QD4Vq+0WurSxnsElGAWHdmPXCihLvVJ8RSL9d2TT9bD+gTRC7lnVmzXCKaHLVS1Y6hf8=
+X-Received: by 2002:a05:6830:1e22:: with SMTP id t2mr240631otr.100.1599214668457;
+ Fri, 04 Sep 2020 03:17:48 -0700 (PDT)
+MIME-Version: 1.0
+From:   Jian-Hong Pan <jian-hong@endlessm.com>
+Date:   Fri, 4 Sep 2020 18:16:16 +0800
+Message-ID: <CAPpJ_efY2=qmaAtuYVfWhZNBhzTAtAxm9CS5jb_sTpca97jkpA@mail.gmail.com>
+Subject: Re: [PATCH v5 00/80] drm/vc4: Support BCM2711 Display Pipeline
+To:     maxime@cerno.tech
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, eric@anholt.net,
+        kdasu.kdev@gmail.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        nsaenzjulienne@suse.de, p.zabel@pengutronix.de,
+        phil@raspberrypi.com, robh+dt@kernel.org, sboyd@kernel.org,
+        tim.gover@raspberrypi.com,
+        Linux Upstreaming Team <linux@endlessm.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 3 Sep 2020 21:37:51 +0300, Matti Vaittinen wrote:
-> Support regulator enable/disable via BD718(37/47/50) PMIC state machine.
-> 
-> The ROHM BD718(37/47/50) PMICs are mainly used for powering i.MX8 based
-> systems. On some setups the i.MX8 SoC uses a IO line to suspend the
-> system. These PMICs support this via PMIC internal HW state machine
-> which can be toggled for example by the PMIC_STBY_REQ IO-pin.
-> 
-> [...]
+Hi Maxime,
 
-Applied to
+Thanks for version 5 patch series!
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+I applied it based on linux-next tag next-20200828 and build it with
+the config [1] to test on RPi 4
+However, It fails to get HDMI state machine clock and pixel bcb clock.
+Then, vc4-drm probes failed. Full dmseg [2]:
 
-Thanks!
+[    2.552675] [drm:vc5_hdmi_init_resources] *ERROR* Failed to get
+HDMI state machine clock
+[    2.557974] raspberrypi-firmware soc:firmware: Attached to firmware
+from 2020-06-01T13:23:40
+[    2.567612] of_clk_hw_onecell_get: invalid index 14
+[    2.567636] [drm:vc5_hdmi_init_resources] *ERROR* Failed to get
+pixel bvb clock
+[    2.567664] vc4-drm gpu: failed to bind fef00700.hdmi (ops vc4_hdmi_ops): -2
+[    2.567731] vc4-drm gpu: master bind failed: -2
+[    2.567755] vc4-drm: probe of gpu failed with error -2
 
-[1/4] regulator: bd718x7 initialize regulator config only once
-      commit: df9db2541a82ec18c474942a93729420d37fac81
-[2/4] regulator: bd71837: add property for omitting ON/OFF control
-      commit: 4788c692bec76dc33c646a07a4aaf7e2dd60091e
-[3/4] regulator: bd71847: add property for omitting ON/OFF control
-      commit: 6656d4462c7ac5ca0bc5d5a8a91a8c98f0fd1409
-[4/4] regulator: bd718x7 fix regulator states at SUSPEND
-      commit: 1d848d681c4d4e148193b699a6e5f222e8621519
+I decompile bcm2711-rpi-4-b.dtb.  Both hdmi@7ef00700 and hdmi@7ef05700
+show the clocks member.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+hdmi@7ef00700 {
+        compatible = "brcm,bcm2711-hdmi0";
+        reg = <0x7ef00700 0x300 0x7ef00300 0x200 0x7ef00f00 0x80
+0x7ef00f80 0x80 0x7ef01b00 0x200 0x7ef01f00 0x400 0x7ef00200 0x80
+0x7ef04300 0x100 0x7ef20000 0x100>;
+        reg-names = "hdmi\0dvp\0phy\0rm\0packet\0metadata\0csc\0cec\0hd";
+        clock-names = "hdmi\0bvb\0audio\0cec";
+        resets = <0x17 0x00>;
+        ddc = <0x18>;
+        dmas = <0x19 0x0a>;
+        dma-names = "audio-rx";
+        status = "okay";
+        clocks = <0x10 0x0d 0x10 0x0e 0x17 0x00 0x1a>;
+};
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+hdmi@7ef05700 {
+        compatible = "brcm,bcm2711-hdmi1";
+        reg = <0x7ef05700 0x300 0x7ef05300 0x200 0x7ef05f00 0x80
+0x7ef05f80 0x80 0x7ef06b00 0x200 0x7ef06f00 0x400 0x7ef00280 0x80
+0x7ef09300 0x100 0x7ef20000 0x100>;
+        reg-names = "hdmi\0dvp\0phy\0rm\0packet\0metadata\0csc\0cec\0hd";
+        ddc = <0x1b>;
+        clock-names = "hdmi\0bvb\0audio\0cec";
+        resets = <0x17 0x01>;
+        dmas = <0x19 0x11>;
+        dma-names = "audio-rx";
+        status = "okay";
+        clocks = <0x10 0x0d 0x10 0x0e 0x17 0x01 0x1a>;
+};
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Also re-check runtime device tree, they are the same values as mentioned above:
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+$ xxd /proc/device-tree/soc/hdmi@7ef00700/clocks
+00000000: 0000 0010 0000 000d 0000 0010 0000 000e  ................
+00000010: 0000 0017 0000 0000 0000 001a            ............
+$ xxd /proc/device-tree/soc/hdmi@7ef05700/clocks
+00000000: 0000 0010 0000 000d 0000 0010 0000 000e  ................
+00000010: 0000 0017 0000 0001 0000 001a            ............
 
-Thanks,
-Mark
+Do I miss something?
+
+[1]: https://gist.github.com/starnight/649ea5a8384313f0354aca504f78ad70#file-config
+[2]: https://gist.github.com/starnight/649ea5a8384313f0354aca504f78ad70#file-dmesg-log
+
+Jian-Hong Pan
