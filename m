@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB78225E151
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 20:08:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7546925E155
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 20:09:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726114AbgIDSI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 14:08:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37774 "EHLO
+        id S1726791AbgIDSJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 14:09:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726047AbgIDSIz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 14:08:55 -0400
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB8E9C061244
-        for <devicetree@vger.kernel.org>; Fri,  4 Sep 2020 11:08:54 -0700 (PDT)
-Received: by mail-pl1-x641.google.com with SMTP id m15so413821pls.8
-        for <devicetree@vger.kernel.org>; Fri, 04 Sep 2020 11:08:54 -0700 (PDT)
+        with ESMTP id S1726360AbgIDSI6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 14:08:58 -0400
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39704C061244
+        for <devicetree@vger.kernel.org>; Fri,  4 Sep 2020 11:08:58 -0700 (PDT)
+Received: by mail-pf1-x441.google.com with SMTP id v196so5049798pfc.1
+        for <devicetree@vger.kernel.org>; Fri, 04 Sep 2020 11:08:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Vzdf81iezfmu4wvC29MoXNkCDvJVBLYXkjv5GQ8JBzg=;
-        b=AY5OpA7EQVxVAQ2BRX17UsK93kzal14AKuR6K16pVMKsOYoO8PkFnqa4VfSl/adDAt
-         XJ1kq1MbD9UwAc8cTVRUKWrp8Hb49mM2XqEEwqy8vpbmhJ6sw8TLcsWbJogpfNM8eFhz
-         OaFfs98t3oVzsTtMaiEPwPi48rdYUP/ydXtDc=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=VR8GNVs/4QhnhespfyktUk1pNIw2OaOAjoA98mpiYlI=;
+        b=XEjxaSkJBRR+Nw65OrveDE7+DhOIyYNNraHHcuxii2UG8l+JWdFCrP2biFNSD8SJLt
+         iPpvc/c18znjeUqOgilXudlTLABnQxCGUa233Zz7pHeEFnFh/Ygh4hEFUPEM3OK82AlB
+         GtyNiZFiOZX6nfJJ0FnGEnxtA1aACnAzqAeUY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Vzdf81iezfmu4wvC29MoXNkCDvJVBLYXkjv5GQ8JBzg=;
-        b=MsrMv0dutxROu2zdoSuebFxAMZhSSnV4lzIEWJ9yF5usHE4mu3qVjL/yRFrIWOszIz
-         F/lbQzWp5GYLWpq0ekOMTWLyDRdO2EP1BPgRgYDPnYGteGx5yVuc2A6z+EIoBoNOjQr4
-         XvWVmgWoK9d3V9vNUT3Or28EvHb0GyZnG1uZmVDeQ6mJXm7lc7czpfLsUUVkDYNORA3W
-         xv3ILN/cEJLiu9NPkvx4VWtXXuBoXtCJYmz59WKB667nvQdInLpXehZYNNWofwndVxsV
-         eX3dxd0xcU46njfnBMKxE5CKAjeh/wv7z/jbWPKeLk9aaEyWrMpfDNpI+BQVdqBXj+Oh
-         1IsA==
-X-Gm-Message-State: AOAM5329vwY9r2V6alQYJKTDYQQIKgGIEQ2YbmqnU6h9OmehfO6te01O
-        6Tq5vMa42y6DLGKf/CR8fVSOCw==
-X-Google-Smtp-Source: ABdhPJz+WOCZ/I5jjFzcU51vGXw5nkCE8i7D62RQZfF3tj0lru20q/i+6dduujH2uY1P2mruBR1a2Q==
-X-Received: by 2002:a17:90a:5a48:: with SMTP id m8mr9275714pji.181.1599242934113;
-        Fri, 04 Sep 2020 11:08:54 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=VR8GNVs/4QhnhespfyktUk1pNIw2OaOAjoA98mpiYlI=;
+        b=XosjlJo5UZPk5pxH/jcs8GAW1B35vjpd6HO7m8gpdoau7V+2Z7z5aiPFHU9mv3nDb1
+         RVxpxLNADFTXNxJ5T0R5iBPFOZyAf1WIBTDyKhH9zeLaGF3TFAaN5TwRiLJqX7g07Xcj
+         bMDMi3l8E0DE0n8IrsB8H3pNSoa7vjtexR2OCubRDXDj/6rzJMkoPUzBE450T8u6A8Am
+         jr8BmlGUo3c+DbGDJlVglArNRNFp9Ec25FED1vJcu7p23cyOyMF2ABaQUgHTVmqngr5l
+         pP6uivdNuQKI63xxfrngiPH3Q1ZRfK9fmMPKNqKqjouGCAv6asZf9oIeQOFfv78Efn+v
+         d4Kg==
+X-Gm-Message-State: AOAM532wG0TLaUSekl/D41St0jICqkD8/44/8X1bb/uh1UGw0DdyN1ks
+        G8g9Gl51ZGXwEbRdoQhg5ACv+g==
+X-Google-Smtp-Source: ABdhPJxCodZ5I7hCe8TfVPMYqQ+obWSOHN+ol2zsrB4TMir8vNQYBz2HIJbl5PnGjUbOhMTC7eVnSQ==
+X-Received: by 2002:a63:5c1a:: with SMTP id q26mr8341714pgb.223.1599242937733;
+        Fri, 04 Sep 2020 11:08:57 -0700 (PDT)
 Received: from localhost.localdomain ([2405:201:c809:c7d5:b9ea:24bf:6b2b:1eee])
-        by smtp.gmail.com with ESMTPSA id 131sm7448281pfy.5.2020.09.04.11.08.49
+        by smtp.gmail.com with ESMTPSA id 131sm7448281pfy.5.2020.09.04.11.08.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Sep 2020 11:08:53 -0700 (PDT)
+        Fri, 04 Sep 2020 11:08:57 -0700 (PDT)
 From:   Jagan Teki <jagan@amarulasolutions.com>
 To:     Thierry Reding <thierry.reding@gmail.com>,
         David Airlie <airlied@linux.ie>,
@@ -53,10 +53,12 @@ Cc:     Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-amarula@amarulasolutions.com,
         Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Yes Optoelectronics
-Date:   Fri,  4 Sep 2020 23:38:19 +0530
-Message-Id: <20200904180821.302194-1-jagan@amarulasolutions.com>
+Subject: [PATCH 2/3] dt-bindings: display: simple: Add YTC700TLAG-05-201C
+Date:   Fri,  4 Sep 2020 23:38:20 +0530
+Message-Id: <20200904180821.302194-2-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200904180821.302194-1-jagan@amarulasolutions.com>
+References: <20200904180821.302194-1-jagan@amarulasolutions.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -64,26 +66,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add vendor dt-bindings for Yes Optoelectronics Co.,Ltd.
+Add dt-bindings for YTC700TLAG-05-201C 7" TFT LCD panel from
+Yes Optoelectronics Co.,Ltd.
 
 Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 9aeab66be85f..15a6a8e7260d 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1167,6 +1167,8 @@ patternProperties:
-     description: Shenzhen Xunlong Software CO.,Limited
-   "^xylon,.*":
-     description: Xylon
-+  "^yes-optoelectronics,.*":
-+    description: Yes Optoelectronics Co.,Ltd.
-   "^yna,.*":
-     description: YSH & ATIL
-   "^yones-toptech,.*":
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index f629d04f7737..3e12b32897e0 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -268,6 +268,8 @@ properties:
+       - vxt,vl050-8048nt-c01
+         # Winstar Display Corporation 3.5" QVGA (320x240) TFT LCD panel
+       - winstar,wf35ltiacd
++        # Yes Optoelectronics YTC700TLAG-05-201C 7" TFT LCD panel
++      - yes-optoelectronics,ytc700tlag-05-201c
+ 
+   backlight: true
+   enable-gpios: true
 -- 
 2.25.1
 
