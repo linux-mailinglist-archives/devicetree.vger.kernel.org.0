@@ -2,118 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E773725E31B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 22:55:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53CF325E33F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 23:20:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727951AbgIDUy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 16:54:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35034 "EHLO
+        id S1727923AbgIDVT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 17:19:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727855AbgIDUyz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 16:54:55 -0400
-Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69346C061244;
-        Fri,  4 Sep 2020 13:54:55 -0700 (PDT)
-Received: by mail-pj1-x1043.google.com with SMTP id s2so3581079pjr.4;
-        Fri, 04 Sep 2020 13:54:55 -0700 (PDT)
+        with ESMTP id S1726842AbgIDVT5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 17:19:57 -0400
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55A55C061244;
+        Fri,  4 Sep 2020 14:19:56 -0700 (PDT)
+Received: by mail-ed1-x541.google.com with SMTP id b12so7351401edz.11;
+        Fri, 04 Sep 2020 14:19:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=abXcuEUelaj9kxffdNgxgkoV1UDpFrtIAbheN4tXg6Y=;
-        b=MjUD9XGWDb7ARm4xrJcPEGBgTYvNRkRiSvqGhEaTKOrW4rBB8sVqG5MBbkI2phyN4o
-         7yTnbqjZuzkMyRqA4TUdFNdY178yzkzMtMfYe4arAzhh5ijFxM3YJJKYma+LPUu7KzGS
-         y5hkFicJD2hpdlLwheSREDDWfa+dHThrj0wkaHdE9v5aCh/xV9ZrNuejO0jgTW0+9Ue2
-         Uk7Rsih6iAlijQDhjF/QSEQ6/nFOCYcILDLNXz0VEssEl83d6hc0QuHoGs/8gncjOdN5
-         zFEhLFfj8V+X+vGa4BFAs7bDHelStmIVZtVc5icOgvtlcS183C3ZahUsEktjCa3OaW5r
-         YlQg==
+        bh=PmCaRLCTAG/kmWdD9xhmm1twB/GyQXRnE8I2Xt9164E=;
+        b=rrD9KItVcJ9AekdtlqoWZ2hZqNXLPRZaWiQ225yVwNhEqIyDjOWbWynt90RPNzyv5W
+         Fqd1SBLTp/Amd1lXCTTvnazqtSgTyppzQ93gG5X5rLI3v0cWOIVipZvrAlNwd2ntQGxX
+         WMs7ouVjb5qdL+Qlgp/c8QkydNdOrYaxvMRb/QBSdwXPgKDBJyj5+ZCzxZjEGVZvEQ5U
+         G42i0z+0EjTkr7kntkUKHRI540HzLiDPIBtfpsW4STgsqp5bhM6jIrwYwJ9+wrgQyA//
+         NFn1MvyVmvMo4UdMkQHLYXIje4R4UfDwnTdfHxg4gnCrPwNH+h16Fbcoh4WufeiWkL4e
+         oM0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=abXcuEUelaj9kxffdNgxgkoV1UDpFrtIAbheN4tXg6Y=;
-        b=QVx1/dD7I2dtwJUXEIq+8IwQGrVFDyBVIM+FTUOclrqjZMiu5xfPEj8D+oJEBjO1Wy
-         zx/Vo7q7sNOvM7G0ZrnVTB2gL126qPnQbgMLOD11CBzyeFp+D8I1ZRbwGf4hIAeqcihq
-         SWcQoX+FnfXXLRFSuL7N591N1POmQ4Uwrm4+69huxDCh/LuuXp/4HfVaer6S644D4P1Y
-         cmUCukpdVkRHUVIRNXP0ToDhxGyIm3PUgECR9hwsOX1R3kB1DtPSYFMDDBejAAkNetbz
-         7PV4IeoXVwZYKJ9H/6vg33+JfcGasXOOIO7OQP9fV2sjeLaKXlgFAnuMf6wJMt3v9Y7Z
-         ZcdQ==
-X-Gm-Message-State: AOAM530RPCmtOWaTY/I8ToxbVywDhc1RMHxzaDwPF4GaHiLf/RKJbBrT
-        Y7b6rLzAMyBh62uGJqU1iMQ=
-X-Google-Smtp-Source: ABdhPJxJ6ot2ilr+8tMqsPOWyHdLeHwQu3tqvkP5f90llfzb9zNv6wMSwMXT9HDCVhojW1D3lJE95w==
-X-Received: by 2002:a17:90a:890b:: with SMTP id u11mr9534847pjn.114.1599252894971;
-        Fri, 04 Sep 2020 13:54:54 -0700 (PDT)
-Received: from [10.230.30.107] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id y203sm7807877pfb.58.2020.09.04.13.54.53
+        bh=PmCaRLCTAG/kmWdD9xhmm1twB/GyQXRnE8I2Xt9164E=;
+        b=cmMDx2PqKb0dC+dM6+y8s68n6tJG1rew81zrBi9svVthBpFVS4ahOu85PXkaKYnJyN
+         cGYojbiITm/jgiLbD2KVuZgoY9VatPMbAjn5wvf714CsVhjsWZJcjOv+lDAdzj2b3iLa
+         MR/lgt7tju+eFleqdEKKT6UhNFuf3QD0vnR6/Fv1BBvYqYc3LG8jRapZ+gyotaSQzoJZ
+         4ghfsxG8Hrxbktt9RJ8OFtt0F669BnmKFgpJAqPzcFZ+i3385iVQzJAYCEfV371oShu2
+         cTy6D0iah6M2/YXwSJzgyLabr93J5IjMwqu/MlH960wnwCWDld+o6Z7ZKeKW/AaJ11Sg
+         qb6g==
+X-Gm-Message-State: AOAM533JOGrLu1ROFhiOenlbZpQHp+hFxcqnh0osWga+a4diWTlwwjM4
+        58Me88hjuslaprUGv/nHtJ2D7xdoRIM=
+X-Google-Smtp-Source: ABdhPJw5J8mAeiucryvbiqHYLVez9Ru6Wea2Je6AD9XAo/09RuSwWCEsRk10VbvkXSmf4Dcn+GgRgg==
+X-Received: by 2002:a50:8f44:: with SMTP id 62mr10764084edy.351.1599254393614;
+        Fri, 04 Sep 2020 14:19:53 -0700 (PDT)
+Received: from ?IPv6:2a01:110f:b59:fd00:2cc7:8a97:41d3:d848? ([2a01:110f:b59:fd00:2cc7:8a97:41d3:d848])
+        by smtp.gmail.com with ESMTPSA id v13sm7144750ejq.59.2020.09.04.14.19.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Sep 2020 13:54:54 -0700 (PDT)
-Subject: Re: [PATCH v2 3/6] ARM: dts: NSP: Fix SP804 compatible node
-To:     =?UTF-8?Q?Andr=c3=a9_Przywara?= <andre.przywara@arm.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Haojian Zhuang <haojian.zhuang@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com
-References: <20200828142018.43298-1-andre.przywara@arm.com>
- <20200828142018.43298-4-andre.przywara@arm.com>
- <73b35bcd-0e8c-0f62-ed2b-e0c64261f930@gmail.com>
- <c97c1472-c308-27e2-ce68-30bc82b96aae@gmail.com>
- <98cdc873-e36a-c47d-6eaf-cc4e023f977c@arm.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <8d428e29-9931-2b15-a150-6b0fc90c3ba8@gmail.com>
-Date:   Fri, 4 Sep 2020 13:54:52 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.2.1
+        Fri, 04 Sep 2020 14:19:53 -0700 (PDT)
+Subject: Re: [PATCH v2 0/2] leds: pwm: Make automatic labels work
+To:     Alexander Dahl <ada@thorsis.com>, linux-leds@vger.kernel.org
+Cc:     Alexander Dahl <post@lespocky.de>, devicetree@vger.kernel.org,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+References: <20200831210232.28052-1-post@lespocky.de>
+ <a8f9068b-d78d-3ba5-6747-f79ed8e641bd@gmail.com> <2019500.FJf2EgCAKA@ada>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Message-ID: <107cc1b1-501c-4946-facf-a437c1dfbf7a@gmail.com>
+Date:   Fri, 4 Sep 2020 23:19:50 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <98cdc873-e36a-c47d-6eaf-cc4e023f977c@arm.com>
+In-Reply-To: <2019500.FJf2EgCAKA@ada>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Alexander,
 
-
-On 9/3/2020 6:04 PM, André Przywara wrote:
-> On 02/09/2020 00:04, Florian Fainelli wrote:
+On 9/4/20 9:53 AM, Alexander Dahl wrote:
+> Hi Jacek,
 > 
-> Hi Florian,
-> 
-> sorry, the mail got swamped in my inbox...
-> 
->> On 8/28/2020 10:12 AM, Florian Fainelli wrote:
->>> On 8/28/20 7:20 AM, Andre Przywara wrote:
->>>> The DT binding for SP804 requires to have an "arm,primecell" compatible
->>>> string.
->>>> Add this string so that the Linux primecell bus driver picks the device
->>>> up and activates the clock.
->>>>
->>>> Fixes: a0efb0d28b77 ("ARM: dts: NSP: Add SP804 Support to DT")
->>>> Tested-by: Florian Fainelli <f.fainelli@gmail.com>
->>>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
->>>
->>> This looks fine, however there is a ccbtimer1 instance that you missed,
->>> can you resubmit with it included?
->>>
->>> With that:
->>>
->>> Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+> Am Dienstag, 1. September 2020, 23:08:09 CEST schrieb Jacek Anaszewski:
+>> Hi Alexander,
 >>
->> Andre are you going to resubmit a patch with the second instance
->> (ccbtimer1) fixed as well, or should I take care of that while applying
->> the patch? Either way is fine, just let me know.
+>> Thanks for the v2.
+>>
+>> On 8/31/20 11:02 PM, Alexander Dahl wrote:
+>>> Hei hei,
+>>>
+>>> for leds-gpio you can use the properties 'function' and 'color' in the
+>>> devicetree node and omit 'label', the label is constructed
+>>> automatically.  This is a common feature supposed to be working for all
+>>> LED drivers.  However it did not yet work for the 'leds-pwm' driver.
+>>> This series fixes the driver and takes the opportunity to update the
+>>> dt-bindings accordingly.
+>>>
+>>> v1: based on v5.9-rc2, backport on v5.4.59 tested and working
+>>>
+>>> v2: based on v5.9-rc3, added the dt-bindings update patch
+>>>
+>>> Greets
+>>> Alex
+>>>
+>>> Alexander Dahl (2):
+>>>     leds: pwm: Allow automatic labels for DT based devices
+>>>     dt-bindings: leds: Convert pwm to yaml
+>>>    
+>>>    .../devicetree/bindings/leds/leds-pwm.txt     | 50 -----------
+>>>    .../devicetree/bindings/leds/leds-pwm.yaml    | 85 +++++++++++++++++++
+>>>    drivers/leds/leds-pwm.c                       |  9 +-
+>>>    3 files changed, 93 insertions(+), 51 deletions(-)
+>>>    delete mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.txt
+>>>    create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.yaml
+>>
+>> For both patches:
+>>
+>> Acked-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
 > 
-> So I was waiting for more comments, but there was nothing so far that
-> justifies a new version. So would you mind fixing this while applying? I
-> must have indeed missed this instance while diffing before and after.
+> I'd like to make a v3 and change the license of the .yaml file to "(GPL-2.0-
+> only OR BSD-2-Clause)" as suggested by checkpatch and [1].  Can I keep your
+> Acked-by for that?
 
-Applied and fixed up the ccbtimer1 node, thanks.
+Go ahead.
+
+> Besides: those suggestions are obviously valid for new bindings.  What about
+> old bindings (.txt), which had no explicit SPDX tag or license note before?
+> What license would apply there?  Is the .yaml file technically new, when it
+> was mostly just converted from .txt?
+
+I don't know what was the rationale behind adding license to
+DT bindings, probably Rob will be able to share some details.
+
+Possibly the fact that DT examples can be now compile-tested
+makes some difference here.
+
 -- 
-Florian
+Best regards,
+Jacek Anaszewski
