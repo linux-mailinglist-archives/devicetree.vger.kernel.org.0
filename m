@@ -2,87 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90CDF25CFCA
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 05:26:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5FD225D02C
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 06:04:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729572AbgIDD0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 23:26:04 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:34198 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729554AbgIDD0A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 23:26:00 -0400
-X-UUID: 43fdaa7ccd6a4e4b992e6270e1318647-20200904
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=MgYZSn5dO120VGKzJXvetFyHicODTuH1UC+5Qr8NQKo=;
-        b=RfFQcZ/956mQaCGQB8khZaUU64zSLA4lYxxs/0i+gC/TuB2wxWY1YlcCtXGUNtkKMhIQm1tZMo29EqPXPNLGv3Xz57DGpdqkCuVuQt7Cc9XdgSfeQVs3h/ORocY9PlmB+V7Bx1ALyaK0eLEoicHa8kEsXGcTR/I0Cltbxx+z8pw=;
-X-UUID: 43fdaa7ccd6a4e4b992e6270e1318647-20200904
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <dongchun.zhu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1034218313; Fri, 04 Sep 2020 11:25:54 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 4 Sep
- 2020 11:25:52 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 4 Sep 2020 11:25:50 +0800
-Message-ID: <1599189850.4733.26.camel@mhfsdcap03>
-Subject: Re: [PATCH v14 1/2] media: dt-bindings: media: i2c: Document
- OV02A10 bindings
-From:   Dongchun Zhu <dongchun.zhu@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <robh+dt@kernel.org>, <linux-media@vger.kernel.org>,
-        <mark.rutland@arm.com>, <shengnan.wang@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <andriy.shevchenko@linux.intel.com>, <matthias.bgg@gmail.com>,
-        <devicetree@vger.kernel.org>, <sj.huang@mediatek.com>,
-        <sakari.ailus@linux.intel.com>, <louis.kuo@mediatek.com>,
-        <drinkcat@chromium.org>, <tfiga@chromium.org>,
-        <srv_heupstream@mediatek.com>, <mchehab@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <bingbu.cao@intel.com>,
-        <dongchun.zhu@mediatek.com>, <matrix.zhu@aliyun.com>
-Date:   Fri, 4 Sep 2020 11:24:10 +0800
-In-Reply-To: <20200903161346.GA2875415@bogus>
-References: <20200902120122.24456-1-dongchun.zhu@mediatek.com>
-         <20200902120122.24456-2-dongchun.zhu@mediatek.com>
-         <20200903161346.GA2875415@bogus>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726032AbgIDEEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 00:04:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48686 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725765AbgIDEEO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 00:04:14 -0400
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2885C061244;
+        Thu,  3 Sep 2020 21:04:13 -0700 (PDT)
+Received: by mail-pg1-x544.google.com with SMTP id m5so3649121pgj.9;
+        Thu, 03 Sep 2020 21:04:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=4TCgYr5ncOjL+8eCE97Mxvf9/nlILupNJJJIRFrFPFw=;
+        b=iJ7e2l0kpSaubm6rNet1cEma2crCXb5n1BZmK2vWNwNjtDExxl4oypxJ4+NGXhKfTx
+         I4cM1ODTkWKoywWzJZN1o0n5W5Cn7Y18C5yj3eqHVL8Ic9DSd3cP8AslHlPVsBosTjRI
+         J+Bq7CoFxuqiBiuk+sZpuyhz3j0xMHzOz+i+ZCo2Br7/iKcVDFW0fHxWYWWX6bwZUGS3
+         FU33fbT5KLTMgA1yTOkpvpXNdDfyh+N7reglegYeqe1uk8LREWpLK9DWyyoM2IurqFvs
+         FklKHKam4Rkql9yJ5L7uo4yboCPkii6/B41AWGxNCXqFOF9r2eIjB90OCemAv+Ptvlbh
+         d+3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=4TCgYr5ncOjL+8eCE97Mxvf9/nlILupNJJJIRFrFPFw=;
+        b=e6suy8K4RfzJ/VnpJWYyH4q3+bDzswQmmO9lY30JLaGV+1FUozP9C0AfFpa8GPM7WB
+         WBTaysjNNjQXLjBJy/xznw7QnhOAdAc1aLV777EvIDjljjIAeZ3v/hQpJdHo1ehqGOZF
+         owlvFhWz6W6jBsTHfxAifytkaqfeWD6HxnVsrwqL7uDnx4wdMdaZK+S9/1afZLwgzWqC
+         G0unUPkd0v7mYvvj6O0wKdIm9F7IPwC7NNrggi46qjkOOoVUe1lYQ5DNkRI2mQi07bzM
+         J+OClm5S2q+I8a9b0ZMSWG4Oj+rG+XmauCbok9zOz6t2OEMXNMsh2WzSJzIt5FGXpbrR
+         Gz2A==
+X-Gm-Message-State: AOAM532+3j9qYlLJWO7Kti2ybw5hbYaA/lM9nxU6V2C73dGeqt27/J+6
+        j9JDOhKR7GT+F6MiWPMJIh8=
+X-Google-Smtp-Source: ABdhPJxHw1Z+bTsmuQRlhAKQ79sZNlRFyo7Y4G4qgoPJmPxXqEeY/KJflmEw43bSJSSmP3lZjsUBow==
+X-Received: by 2002:a63:60e:: with SMTP id 14mr5582133pgg.343.1599192253444;
+        Thu, 03 Sep 2020 21:04:13 -0700 (PDT)
+Received: from [10.230.30.107] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id y3sm3991853pjg.8.2020.09.03.21.04.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Sep 2020 21:04:12 -0700 (PDT)
+Subject: Re: [PATCH net-next 0/3] net: phy: Support enabling clocks prior to
+ bus probe
+To:     netdev@vger.kernel.org
+Cc:     andrew@lunn.ch, adam.rudzinski@arf.net.pl, m.felsch@pengutronix.de,
+        hkallweit1@gmail.com, richard.leitner@skidata.com,
+        zhengdejin5@gmail.com, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, kuba@kernel.org, robh+dt@kernel.org
+References: <20200903043947.3272453-1-f.fainelli@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <cc6fc0f6-d4ae-9fa1-052d-6ab8e00ab32f@gmail.com>
+Date:   Thu, 3 Sep 2020 21:04:11 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.1.1
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: A7ECABCC12E377294537EB3BB11E063BA24C5E44B727A27FB45E9077160807172000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20200903043947.3272453-1-f.fainelli@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGVsbG8gUm9iLA0KDQpUaGFua3MgZm9yIHRoZSByZXZpZXcuDQoNCk9uIFRodSwgMjAyMC0wOS0w
-MyBhdCAxMDoxMyAtMDYwMCwgUm9iIEhlcnJpbmcgd3JvdGU6DQo+IE9uIFdlZCwgMDIgU2VwIDIw
-MjAgMjA6MDE6MjEgKzA4MDAsIERvbmdjaHVuIFpodSB3cm90ZToNCj4gPiBBZGQgWUFNTCBkZXZp
-Y2UgdHJlZSBiaW5kaW5nIGZvciBPVjAyQTEwIENNT1MgaW1hZ2Ugc2Vuc29yLA0KPiA+IGFuZCB0
-aGUgcmVsZXZhbnQgTUFJTlRBSU5FUlMgZW50cmllcy4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5
-OiBEb25nY2h1biBaaHUgPGRvbmdjaHVuLnpodUBtZWRpYXRlay5jb20+DQo+ID4gLS0tDQo+ID4g
-IC4uLi9iaW5kaW5ncy9tZWRpYS9pMmMvb3Z0aSxvdjAyYTEwLnlhbWwgICAgICAgICAgIHwgMTYx
-ICsrKysrKysrKysrKysrKysrKysrKw0KPiA+ICBNQUlOVEFJTkVSUyAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICB8ICAgNyArDQo+ID4gIDIgZmlsZXMgY2hhbmdlZCwgMTY4
-IGluc2VydGlvbnMoKykNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2
-aWNldHJlZS9iaW5kaW5ncy9tZWRpYS9pMmMvb3Z0aSxvdjAyYTEwLnlhbWwNCj4gPiANCj4gDQo+
-IA0KPiBNeSBib3QgZm91bmQgZXJyb3JzIHJ1bm5pbmcgJ21ha2UgZHRfYmluZGluZ19jaGVjaycg
-b24geW91ciBwYXRjaDoNCj4gDQo+IEVycm9yOiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvbWVkaWEvaTJjL292dGksb3YwMmExMC5leGFtcGxlLmR0czoyOC40NS00NiBzeW50YXgg
-ZXJyb3INCj4gRkFUQUwgRVJST1I6IFVuYWJsZSB0byBwYXJzZSBpbnB1dCB0cmVlDQo+IG1ha2Vb
-MV06ICoqKiBbc2NyaXB0cy9NYWtlZmlsZS5saWI6MzQyOiBEb2N1bWVudGF0aW9uL2RldmljZXRy
-ZWUvYmluZGluZ3MvbWVkaWEvaTJjL292dGksb3YwMmExMC5leGFtcGxlLmR0LnlhbWxdIEVycm9y
-IDENCj4gbWFrZVsxXTogKioqIFdhaXRpbmcgZm9yIHVuZmluaXNoZWQgam9icy4uLi4NCj4gbWFr
-ZTogKioqIFtNYWtlZmlsZToxMzY2OiBkdF9iaW5kaW5nX2NoZWNrXSBFcnJvciAyDQo+IA0KPiAN
-Cj4gU2VlIGh0dHBzOi8vcGF0Y2h3b3JrLm96bGFicy5vcmcvcGF0Y2gvMTM1NTcyMw0KPiANCj4g
-SWYgeW91IGFscmVhZHkgcmFuICdtYWtlIGR0X2JpbmRpbmdfY2hlY2snIGFuZCBkaWRuJ3Qgc2Vl
-IHRoZSBhYm92ZQ0KPiBlcnJvcihzKSwgdGhlbiBtYWtlIHN1cmUgZHQtc2NoZW1hIGlzIHVwIHRv
-IGRhdGU6DQo+IA0KPiBwaXAzIGluc3RhbGwgZ2l0K2h0dHBzOi8vZ2l0aHViLmNvbS9kZXZpY2V0
-cmVlLW9yZy9kdC1zY2hlbWEuZ2l0QG1hc3RlciAtLXVwZ3JhZGUNCj4gDQo+IFBsZWFzZSBjaGVj
-ayBhbmQgcmUtc3VibWl0Lg0KPiANCg0KU28gbXVjaCBzb3JyeSBmb3IgdGhlIG1pc3Rha2UgSSd2
-ZSBtYWRlLg0KSSBmb3Jnb3QgdG8gaW5jbHVkZSB0aGUgaGVhZGVyIGZpbGUgJ2R0LWJpbmRpbmdz
-L2dwaW8vZ3Bpby5oJy4NClRoaXMgd291bGQgYmUgZml4ZWQgaW4gbmV4dCByZWxlYXNlIDotKQ0K
-DQoNCg==
 
+
+On 9/2/2020 9:39 PM, Florian Fainelli wrote:
+> Hi all,
+> 
+> This patch series takes care of enabling the Ethernet PHY clocks in
+> DT-based systems (we have no way to do it for ACPI, and ACPI would
+> likely keep all of this hardware enabled anyway).
+> 
+> Please test on your respective platforms, mine still seems to have
+> a race condition that I am tracking down as it looks like we are not
+> waiting long enough post clock enable.
+> 
+> The check on the clock reference count is necessary to avoid an
+> artificial bump of the clock reference count and to support the unbind
+> -> bind of the PHY driver. We could solve it in different ways.
+> 
+> Comments and test results welcome!
+
+Andrew, while we figure out a proper way to support this with the Linux 
+device driver model, would you be opposed in a single patch to 
+drivers/net/mdio/mdio-bcm-unimac.c which takes care of enabling the 
+PHY's clock during bus->reset just for the sake of getting those systems 
+to work, and later on we move over to the pre-probe mechanism?
+
+That would allow me to continue working with upstream kernels on these 
+systems without carrying a big pile of patches.
+-- 
+Florian
