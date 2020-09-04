@@ -2,81 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A31025D82A
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 13:58:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFAAD25D84A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 14:02:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729741AbgIDL63 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 07:58:29 -0400
-Received: from mail-oo1-f68.google.com ([209.85.161.68]:38531 "EHLO
-        mail-oo1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726171AbgIDL62 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 07:58:28 -0400
-Received: by mail-oo1-f68.google.com with SMTP id r10so117670oor.5;
-        Fri, 04 Sep 2020 04:58:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=C9tCEIkRGQnaztUyMojleGF3hkNEd1n8iupS20opO6o=;
-        b=h5oN929J5JNGRTmPlSOxYO2B454CW6n4f700rAoCQVTdg+LLTeCqWO00QnTKg7SzUl
-         GoS9HjRgZSOjABC7ccfRPJ6N8WjCy6mz+BGKampDbVIwpi9SL72qQAiJJnb4WutrVf7r
-         YUBAX0FSS/qmK5fimEHLJoJYxFx+DVx8/Sdehs9UGv8dRXvWCLW/fqHqLz71BKXasksA
-         NcrKD8XlA8vw4RjuqsOvUFZEFys9KI4yEiQc9KD3R3hDLst3MBEl4y7Zarskz7phidqt
-         7il3I1YtrG4A1T8+9uRL6oXPV4jRvKJssqSY3WFznLNlhipJ7VEhqoWUCBeac9Xbf6nf
-         BsIQ==
-X-Gm-Message-State: AOAM532sArEUnlkrWFm0DB5sH98CWQVW/yzzdOCz28naBdhHrNww0uwo
-        PKg3xHQ7fdykQBwrEVlrkciyYDMr4eRPYx1e40E=
-X-Google-Smtp-Source: ABdhPJyIzaQmNZ7IdOnSLRQ7vsc5EVSjIxYs25WB+EnmqwRm8oqhovoYW7RqbPoq1qtt2EAxQHHzr+4JEP/OmKaFHZ0=
-X-Received: by 2002:a4a:4201:: with SMTP id h1mr5484812ooj.1.1599220707324;
- Fri, 04 Sep 2020 04:58:27 -0700 (PDT)
+        id S1730055AbgIDMBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 08:01:44 -0400
+Received: from mout.gmx.net ([212.227.17.20]:60721 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728588AbgIDMBh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Sep 2020 08:01:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1599220869;
+        bh=FT13C0ebJTxXE8wqcoPUKihv4j2mIvTpRNrXVWEUsZo=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=VdK4aqwnvEzkJZy0Odb4qneBQFsuRJgMyhgvrHREkpAVAwUuQWU31uIpa9+4Uk02+
+         LHGeE4kB5sbNhkd3tr9vB091c7hsMfQGnUEmHTouAk5srp/asL0oQhsFImk9qKjFWU
+         DuedyXBNYT2zGNYyi31OKv1IJnNDVAQbG03MKKdQ=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [217.61.147.193] ([217.61.147.193]) by web-mail.gmx.net
+ (3c-app-gmx-bs07.server.lan [172.19.170.56]) (via HTTP); Fri, 4 Sep 2020
+ 14:01:09 +0200
 MIME-Version: 1.0
-References: <20200904103851.3946-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20200904103851.3946-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20200904103851.3946-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 4 Sep 2020 13:58:16 +0200
-Message-ID: <CAMuHMdWuQzPAPi46FEF2yzQww=6rbX469fQFm3X0XaGnBSzfMQ@mail.gmail.com>
-Subject: Re: [PATCH 3/3] misc: pci_endpoint_test: Add Device ID for RZ/G2H
- PCIe controller
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+Message-ID: <trinity-0d5c85ee-1f7f-44ee-9e5c-6349d4edb3d3-1599220869440@3c-app-gmx-bs07>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Frank Wunderlich <linux@fw-web.de>
+Cc:     linux-mediatek@lists.infradead.org,
+        Alex Ryabchenko <d3adme4t@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        chunkuang.hu@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Aw: [PATCH] arm: dts: mt7623: add lima related regulator
+Content-Type: text/plain; charset=UTF-8
+Date:   Fri, 4 Sep 2020 14:01:09 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <20200831143937.28259-1-linux@fw-web.de>
+References: <20200831143937.28259-1-linux@fw-web.de>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:Zdcm2VtIlFuzIg9+2N4g48+JIQEWJ90Ozh5sFswZjRYm38b1Nq1kEi9atHNr1ObC+tCy0
+ TJfkljY75fRhxXVJ1KSRT/xfiSE90L69s8Klm5vrENXG5PNU27+Int6fZUXBQZBM96Pd9za6NHKz
+ 1WP3CqvfFZ96IGCXt0kcpTNWQbByYDrSWYYQleP05HinLLgChqPMbEMBJ83pElU1HCshWtym8oHK
+ 0FCuGdva1vxhNuHkYPtcHIBV4D2yX1loE2pnseKbeYKGTOHHUVQxEH7HgQ1laM4QH+EHIStOwPH7
+ 1A=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:q4A+iZp4si4=:Aj6oa9ix1kGaFT+HdJfD3f
+ W6/eJcn7F8dSsaiJRG/FeYXvf23b8+5lYbBKzlsS6nDbbGIk0bfkNhSgFTC2kO+GOh9kB1cIf
+ qUd/c2nLTyX9VAQ0sSjvbDdO4IfNEF3gD7cK+xVPzn3rN4zzSewX3bj8rKF8L6zyIFa5lemd6
+ QwRWZZxzftMrB7duyjC7AX6Vla/UnfyH6yAAEXn8F8G6OgjHK1EivMUYuq48S+p6tCVj0VbAq
+ T4Mef4D0KvZAQAFJ2GLNl1JvdIF75Go6ERLjnbSZrJTG3rlx3BhrWs4QBJzok3eMiQHVQ5wH5
+ CBH3QAG03cnyZqz4IWS6Mpm+9f1ZU8dISj5dVmGwHOVaAE/cAyy3i9tuoTj/MDuMSQugzT1xJ
+ d57cm8zVsKUwQxccE9AP2VhxGLovnGmDuePfY7qnjql9G344j+dQnqQeyl0eFKsf728SPE+Wn
+ +0XUsj2knHpNczCN3waISDfEXWTJ+TJ5xDOylJp+BjZwBsW8SDvOqtyV6w6GvRsczRB6GBrGA
+ bNioBZf61uUzdKUGOHySqiKosptEKGgTPtD2kr4ZjzL7bIy0EMlRgpzRcunVWnDUPtOraKPxW
+ murolT6ixoHgFkUPWAGnut7+Z3NzIkKumNfYXJBSJwyigA7hqK6qlxXwB9aY1chiJlGXtztK2
+ R/RDHG5MGwbO+7Oq4jJhGet1cHSD3yk6G4FlXUu2bMQV/qYYJu+w81B4+oKDijDZAJLE=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 4, 2020 at 12:40 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Add Renesas R8A774E1 in pci_device_id table so that pci-epf-test
-> can be used for testing PCIe EP on RZ/G2H.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+this Patch is now Part of my hdmi-series v6
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=343565
 
-Gr{oetje,eeting}s,
+so comments please to this series
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+regards Frank
