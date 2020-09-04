@@ -2,73 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DC5E25DCE7
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 17:11:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7508725DCF2
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 17:14:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730607AbgIDPLt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 11:11:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57188 "EHLO mail.kernel.org"
+        id S1730300AbgIDPOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 11:14:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58042 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730220AbgIDPLt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Sep 2020 11:11:49 -0400
+        id S1730204AbgIDPOT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Sep 2020 11:14:19 -0400
 Received: from kozik-lap.mshome.net (unknown [194.230.155.106])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 628C22073B;
-        Fri,  4 Sep 2020 15:11:47 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id CF1DE2074D;
+        Fri,  4 Sep 2020 15:14:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599232308;
-        bh=JZ4eSwyutwPbx/K38OfUbGJt+IvpOFygmGAFH4BK5MI=;
+        s=default; t=1599232458;
+        bh=B8VIGNVugApvS63IRKs5y0LcQBmAErxWczKo8XZhL3E=;
         h=From:To:Cc:Subject:Date:From;
-        b=uwK8OiImRJL5gm4FDZIvMdGK0vLCRQ/lvRyiequ8KuI+0eKuM4TxOxYpJaOjaFJ+2
-         Y9Q6F82zhIQbutwGIMb6+oRbx1aqzha6Nd1YXmuzMCKukJqz0zCRrlQS9Coy0otsNT
-         qjvwFiffKZAa299HXNwBHLxL+8LT2F+i6pBtNRFQ=
+        b=efxZLcTDb6RMP3WaE8v3lLXhlKq8jt9P1CXm0IaKely0oz6qj5SBOBAYHe+VH3XrW
+         vY+p0Uo4NaTk+lFAuinT0pCEEDV5of23YNjJNu34lm4AcUq6FbMJToXdE7Dhzgz5YH
+         Tej/UJJCsDloL9dtc9Btpbla0q/U4825nrFY8WWw=
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: [GIT PULL] dt-bindings: gpio: fsl-imx-gpio: Cleanup for v5.10
-Date:   Fri,  4 Sep 2020 17:11:39 +0200
-Message-Id: <20200904151139.18715-1-krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Wolfram Sang <wolfram@the-dreams.de>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v2 1/4] dt-bindings: i2c: imx-lpi2c: Add properties and use unevaluatedProperties
+Date:   Fri,  4 Sep 2020 17:14:08 +0200
+Message-Id: <20200904151411.18973-1-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+Additional properties actually might appear (e.g. power-domains) so
+describe all typical and use unevaluatedProperties to fix dtbs_check
+warnings like:
 
-These were on the list for some time. They got review from Rob so I guess they
-are good to go via subsystem tree.
+  arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dt.yaml: i2c@5a800000:
+    'assigned-clock-rates', 'assigned-clocks', 'clock-names', 'power-domains' do not match any of the regexes: 'pinctrl-[0-9]+'
 
-Best regards,
-Krzysztof
+  arch/arm64/boot/dts/freescale/imx8qxp-colibri-eval-v3.dt.yaml: i2c@5a800000:
+    'touchscreen@2c' does not match any of the regexes: 'pinctrl-[0-9]+'
 
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-The following changes since commit 9123e3a74ec7b934a4a099e98af6a61c2f80bbf5:
+---
 
-  Linux 5.9-rc1 (2020-08-16 13:04:57 -0700)
+Changes since v1:
+1. Add more properties and include /schemas/i2c/i2c-controller.yaml#
+---
+ .../bindings/i2c/i2c-imx-lpi2c.yaml           | 19 +++++++++++++++++--
+ 1 file changed, 17 insertions(+), 2 deletions(-)
 
-are available in the Git repository at:
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml b/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
+index ac0bc5dd64d6..e5cfd08faa07 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
++++ b/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
+@@ -9,6 +9,9 @@ title: Freescale Low Power Inter IC (LPI2C) for i.MX
+ maintainers:
+   - Anson Huang <Anson.Huang@nxp.com>
+ 
++allOf:
++  - $ref: /schemas/i2c/i2c-controller.yaml#
++
+ properties:
+   compatible:
+     enum:
+@@ -16,29 +19,41 @@ properties:
+       - fsl,imx8qxp-lpi2c
+       - fsl,imx8qm-lpi2c
+ 
++  '#address-cells': true
++  '#size-cells': true
++
+   reg:
+     maxItems: 1
+ 
+   interrupts:
+     maxItems: 1
+ 
++  assigned-clock-rates: true
++  assigned-clocks: true
++  clock-frequency: true
++
++  clock-names:
++    maxItems: 1
++
+   clocks:
+     maxItems: 1
+ 
++  power-domains: true
++
+ required:
+   - compatible
+   - reg
+   - interrupts
+   - clocks
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+     #include <dt-bindings/clock/imx7ulp-clock.h>
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+ 
+-    lpi2c7@40a50000 {
++    i2c@40a50000 {
+         compatible = "fsl,imx7ulp-lpi2c";
+         reg = <0x40A50000 0x10000>;
+         interrupt-parent = <&intc>;
+-- 
+2.17.1
 
-  https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git tags/imx-gpio-5.10
-
-for you to fetch changes up to 8c0aa567146b1df5e74f732cd4c2aee376d8c082:
-
-  dt-bindings: gpio: fsl-imx-gpio: Add power-domains (2020-09-04 17:04:38 +0200)
-
-----------------------------------------------------------------
-NXP i.MX GPIO bindings for v5.10
-
-Few NXP i.MX GPIO controller bindings cleanup.
-
-----------------------------------------------------------------
-Krzysztof Kozlowski (4):
-      dt-bindings: gpio: fsl-imx-gpio: Add i.MX 8 compatibles
-      dt-bindings: gpio: fsl-imx-gpio: Add gpio-ranges property
-      dt-bindings: gpio: fsl-imx-gpio: Add parsing of hogs
-      dt-bindings: gpio: fsl-imx-gpio: Add power-domains
-
- .../devicetree/bindings/gpio/fsl-imx-gpio.yaml     | 43 +++++++++++++++++++---
- 1 file changed, 37 insertions(+), 6 deletions(-)
