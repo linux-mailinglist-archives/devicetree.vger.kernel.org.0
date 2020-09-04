@@ -2,88 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0299925DCB7
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 17:04:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F79225DCD3
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 17:07:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730202AbgIDPD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 11:03:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37296 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729942AbgIDPD6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 11:03:58 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3237BC061244
-        for <devicetree@vger.kernel.org>; Fri,  4 Sep 2020 08:03:58 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=localhost)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1kEDFh-00045v-PT; Fri, 04 Sep 2020 17:03:45 +0200
-Message-ID: <38c8ba6d1ca4e982626bbaefbec620fdce2cd024.camel@pengutronix.de>
-Subject: Re: [PATCH 10/13] arm64: dts: imx8mq: Add missing interrupts to GPC
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Russell King <linux+etnaviv@armlinux.org.uk>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Li Yang <leoyang.li@nxp.com>,
-        Robert Chiras <robert.chiras@nxp.com>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org
-Date:   Fri, 04 Sep 2020 17:04:04 +0200
-In-Reply-To: <20200904145312.10960-11-krzk@kernel.org>
-References: <20200904145312.10960-1-krzk@kernel.org>
-         <20200904145312.10960-11-krzk@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5-1.1 
+        id S1730137AbgIDPH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 11:07:27 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:53100 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729942AbgIDPH0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 11:07:26 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 91A36540;
+        Fri,  4 Sep 2020 17:07:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1599232037;
+        bh=X0YQbw4OTDSt/IN0wXScJwAz8YgomfEBzwBnEmStsQc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DHdCJbhZlJ9pm/HqUcOPK1EYkDm2wqnp+lFtXvPuQGFpdvhPCWx8/tnO1lYyIxhdR
+         b12j6xEtj5QssGe+etVyz+H7YepMM1IB7gejyDuh3/RieNTX3EtRxs09YD8DRQmKB7
+         kiui5HzUa2dsCxckJH8TcGRvUFfjJ3BjxnbYG1uw=
+Date:   Fri, 4 Sep 2020 18:06:50 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org,
+        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>, mchehab@kernel.org,
+        sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
+        linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v4 2/3] dt-bindings: media: ov772x: Make bus-type
+ mandatory
+Message-ID: <20200904150650.GD7518@pendragon.ideasonboard.com>
+References: <20200903131029.18334-1-jacopo+renesas@jmondi.org>
+ <20200903131029.18334-3-jacopo+renesas@jmondi.org>
+ <20200904080535.ppmaarnusrnjr4xt@uno.localdomain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200904080535.ppmaarnusrnjr4xt@uno.localdomain>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fr, 2020-09-04 at 16:53 +0200, Krzysztof Kozlowski wrote:
-> The i.MX General Power Controller v2 device node was missing interrupts
-> property necessary to route its interrupt to GIC.  This also fixes the
-> dbts_check warnings like:
-> 
->   arch/arm64/boot/dts/freescale/imx8mq-evk.dt.yaml: gpc@303a0000:
->     {'compatible': ... '$nodename': ['gpc@303a0000']} is not valid under any of the given schemas
->   arch/arm64/boot/dts/freescale/imx8mq-evk.dt.yaml: gpc@303a0000: 'interrupts' is a required property
-> 
-> Fixes: fdbcc04da246 ("arm64: dts: imx8mq: add GPC power domains")
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Hi Jacopo,
 
-Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
-
-> ---
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 1 +
->  1 file changed, 1 insertion(+)
+On Fri, Sep 04, 2020 at 10:05:35AM +0200, Jacopo Mondi wrote:
+> On Thu, Sep 03, 2020 at 03:10:28PM +0200, Jacopo Mondi wrote:
+> > In order to establish required properties based on the selected
+> > bus type, make the 'bus-type' property mandatory. As this change
+> > documents an endpoint property, also document the 'remote-endpoint'
+> > one now that the 'endpoint' schema has been expanded.
+> >
+> > Binary compatibility with existing DTB is kept as the driver does not
+> > enforce the property to be present, and shall fall-back to default
+> > parallel bus configuration, which was the only supported bus type, if
+> > the property is not specified.
+> >
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> > ---
+> >  .../bindings/media/i2c/ovti,ov772x.yaml       | 20 +++++++++++++++++++
+> >  1 file changed, 20 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+> > index e7e2d31fcc23..406e9cd463a2 100644
+> > --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+> > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+> > @@ -41,6 +41,25 @@ properties:
+> >      description: |
+> >        Video output port. See ../video-interfaces.txt.
+> >
+> > +    properties:
+> > +      endpoint:
+> > +        type: object
+> > +
+> > +        properties:
+> > +          remote-endpoint:
+> > +            description: See ../video-interfaces.txt
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index aad3b9f2f35c..5e0e7d0f1bc4 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -623,6 +623,7 @@
->  			gpc: gpc@303a0000 {
->  				compatible = "fsl,imx8mq-gpc";
->  				reg = <0x303a0000 0x10000>;
-> +				interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
->  				interrupt-parent = <&gic>;
->  				interrupt-controller;
->  				#interrupt-cells = <3>;
+> So I guess the same as you suggested for imx214 applies here (drop
+> remote-endpoint)
 
+Correct. And you should then replace additionalProperties: false with
+unevaluatedProperties: false.
+
+> > +
+> > +          bus-type:
+> > +            enum: [5, 6]
+> > +
+> > +        required:
+> > +          - remote-endpoint
+> > +          - bus-type
+> > +
+> > +        additionalProperties: false
+> > +
+> > +    additionalProperties: false
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > @@ -65,6 +84,7 @@ examples:
+> >
+> >              port {
+> >                  ov772x_0: endpoint {
+> > +                    bus-type = <5>;
+> >                      remote-endpoint = <&vcap1_in0>;
+> >                  };
+> >              };
+
+-- 
+Regards,
+
+Laurent Pinchart
