@@ -2,31 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E98625DC77
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 16:54:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F16F25DC90
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 16:58:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730868AbgIDOyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 10:54:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49624 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730849AbgIDOyh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Sep 2020 10:54:37 -0400
-Received: from kozik-lap.mshome.net (unknown [194.230.155.106])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7DB4320770;
-        Fri,  4 Sep 2020 14:54:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599231276;
-        bh=acFLAnqkE86HeCOtNctPMq/uQTqTdSMzshdLBUt2XLQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=A8loe0i7Vb5Ga3aEbMBJ0L38GtsqZUHqeV/NiHs6RiB6w9Hx4HMS9f+VI74X7XOEw
-         RQh6OYFXQ6IiRZ9yejJ5WbnVxrwuotKVHI7ECofFJvGn5Ri25GQHNmOEfoIeR99JwW
-         6W5mVGsqul0iQYKLD/vW+yTRai9PW7tKE7dl0PYI=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
+        id S1730344AbgIDO6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 10:58:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36456 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730204AbgIDO6n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 10:58:43 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B62AC061244
+        for <devicetree@vger.kernel.org>; Fri,  4 Sep 2020 07:58:43 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=localhost)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1kEDAY-00038C-T1; Fri, 04 Sep 2020 16:58:26 +0200
+Message-ID: <b8a54ab935d8a56e056f4e333d60a1a47e4604cc.camel@pengutronix.de>
+Subject: Re: [PATCH 01/13] dt-bindings: power: fsl,imx-gpcv2: Document
+ interrupt controller properties
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
-        Lucas Stach <l.stach@pengutronix.de>,
         Russell King <linux+etnaviv@armlinux.org.uk>,
         Christian Gmeiner <christian.gmeiner@gmail.com>,
         Lee Jones <lee.jones@linaro.org>,
@@ -41,41 +40,51 @@ To:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
         linux-arm-kernel@lists.infradead.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH 13/13] arm64: dts: imx8mq-librem5: Add interrupt-names to ti,tps6598x
-Date:   Fri,  4 Sep 2020 16:53:12 +0200
-Message-Id: <20200904145312.10960-14-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200904145312.10960-1-krzk@kernel.org>
+Date:   Fri, 04 Sep 2020 16:58:44 +0200
+In-Reply-To: <20200904145312.10960-2-krzk@kernel.org>
 References: <20200904145312.10960-1-krzk@kernel.org>
+         <20200904145312.10960-2-krzk@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5-1.1 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ti,tps6598x binding requires interrupt-names property.  The driver
-does not really use it but the hardware could have more interrupt lines
-connected.  This fixes dtbs_check warning:
+On Fr, 2020-09-04 at 16:53 +0200, Krzysztof Kozlowski wrote:
+> The i.MX General Power Controller v2 is also an interrupt controller so
+> document additional properties to fix dtbs_check warnings like:
+> 
+>   arch/arm64/boot/dts/freescale/imx8mq-evk.dt.yaml: gpc@303a0000:
+>     '#interrupt-cells', 'interrupt-controller' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-  arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dt.yaml: usb-pd@3f: 'interrupt-names' is a required property
+Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-index a78584086fa9..56295dd2fa8f 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-@@ -605,6 +605,7 @@
- 		pinctrl-0 = <&pinctrl_typec>, <&pinctrl_tcpc>;
- 		interrupt-parent = <&gpio1>;
- 		interrupts = <10 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-names = "irq";
- 
- 		connector {
- 			ports {
--- 
-2.17.1
+> ---
+>  Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
+> index bde09a0b2da3..a96e6dbf1858 100644
+> --- a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
+> +++ b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
+> @@ -33,6 +33,10 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  interrupt-controller: true
+> +  '#interrupt-cells':
+> +    const: 3
+> +
+>    pgc:
+>      type: object
+>      description: list of power domains provided by this controller.
 
