@@ -2,184 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 032AD25CD80
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 00:28:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFB9425CEF0
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 03:05:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729502AbgICW1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 18:27:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53390 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728666AbgICW1W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 18:27:22 -0400
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9350EC061244
-        for <devicetree@vger.kernel.org>; Thu,  3 Sep 2020 15:27:22 -0700 (PDT)
-Received: by mail-qk1-x72e.google.com with SMTP id g72so4627338qke.8
-        for <devicetree@vger.kernel.org>; Thu, 03 Sep 2020 15:27:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=VnL3R1v8CTVriwJIqi1WnqU9teq6FSMSn+l/wAbEFwk=;
-        b=iuWu0OmiFD90d5QkClxiUiwP8APLv0M9gWVOeooMRM2Dxmu1bO0v18LCdbRF225H7O
-         kCio2dfQpuSBWGn7saM3dLwaWBL1/RWFsio/0pqWAafq7mrJRD0CmaW+DktYOSYd/YqV
-         Gy4AYxH/QvM1C/nSKUuhOaNcUr4i+hI/ykSyNzNODnZyLO5Av4J5mrd9MJU1x94Qxgh/
-         cax787yj+UMTSQlm3SfJf2YE6aPyUQHfywq4xKoMtJ3BTjzu7ymnb7d1NxXsSUUueD4x
-         X64zrFU8Dtw0iuCaXcYaNB3VmMkYCNbkoo8k7UZiWfLL96XkuA6uVzS8H2sevRddTQ06
-         AhmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=VnL3R1v8CTVriwJIqi1WnqU9teq6FSMSn+l/wAbEFwk=;
-        b=YoEx1PEtQlaWr+NUhTm77WAHEpgpHEgSLIdxMef4RcluHYZ7ZfSe5wsEv5ZcaRQFmR
-         ZuzXH8+iqMurxtXVJt1mm5XMW6cTU7KNktT1/dW8KOLlWfZ8nrbG7Jw/95QLF8VseZnV
-         HqjZOImgnk+mr3dPatbSzPgj48SYCiIerPi3YqR7B33C4pD+rwkiFP+SCjSatnqoceH6
-         CRfsrWDBbPKHhoxX2ET1nzUKdr9Jg0sRgUqH1FguAO+DiCFCj8LHTuuJ6/PeVIl5nZZ1
-         M/KXwtDE2az6oh+IlfXRFWqnbD++pNGlrYrRBuxhRLGMesAfuJkCSl6TI3H2vBJ5TN5i
-         e1ww==
-X-Gm-Message-State: AOAM531Zk4e9uty67eVgetv0bAA7wic5sbi0rI4jYoYHBprdO8VuyKeR
-        E37nUu5DGFyHoSLQ7oHCbUr3nQ==
-X-Google-Smtp-Source: ABdhPJw8qjuV9VdYzh9/7C3jiqur+p4pync+TFIU66TMdPE/HeIFbW3FOqdpEuxhoX+MLStrD/IXjQ==
-X-Received: by 2002:a37:9a85:: with SMTP id c127mr4143330qke.139.1599172040160;
-        Thu, 03 Sep 2020 15:27:20 -0700 (PDT)
-Received: from localhost.localdomain ([147.253.86.153])
-        by smtp.gmail.com with ESMTPSA id y30sm3217157qth.7.2020.09.03.15.27.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Sep 2020 15:27:19 -0700 (PDT)
-From:   Jonathan Marek <jonathan@marek.ca>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 5/7] dt-bindings: clock: Introduce QCOM SM8250 display clock bindings
-Date:   Thu,  3 Sep 2020 18:26:13 -0400
-Message-Id: <20200903222620.27448-6-jonathan@marek.ca>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20200903222620.27448-1-jonathan@marek.ca>
-References: <20200903222620.27448-1-jonathan@marek.ca>
+        id S1728107AbgIDBFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 21:05:00 -0400
+Received: from foss.arm.com ([217.140.110.172]:42970 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725787AbgIDBE7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Sep 2020 21:04:59 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CA83F101E;
+        Thu,  3 Sep 2020 18:04:57 -0700 (PDT)
+Received: from [192.168.2.22] (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7728F3F68F;
+        Thu,  3 Sep 2020 18:04:56 -0700 (PDT)
+Subject: Re: [PATCH v2 3/6] ARM: dts: NSP: Fix SP804 compatible node
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Haojian Zhuang <haojian.zhuang@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com
+References: <20200828142018.43298-1-andre.przywara@arm.com>
+ <20200828142018.43298-4-andre.przywara@arm.com>
+ <73b35bcd-0e8c-0f62-ed2b-e0c64261f930@gmail.com>
+ <c97c1472-c308-27e2-ce68-30bc82b96aae@gmail.com>
+From:   =?UTF-8?Q?Andr=c3=a9_Przywara?= <andre.przywara@arm.com>
+Autocrypt: addr=andre.przywara@arm.com; prefer-encrypt=mutual; keydata=
+ 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
+ i4aIXCH3Wv6K
+Organization: ARM Ltd.
+Message-ID: <98cdc873-e36a-c47d-6eaf-cc4e023f977c@arm.com>
+Date:   Fri, 4 Sep 2020 02:04:35 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <c97c1472-c308-27e2-ce68-30bc82b96aae@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for display clock controller for
-Qualcomm Technology Inc's SM8250 SoCs.
+On 02/09/2020 00:04, Florian Fainelli wrote:
 
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
----
- .../bindings/clock/qcom,dispcc.yaml           |  4 +-
- .../dt-bindings/clock/qcom,dispcc-sm8250.h    | 66 +++++++++++++++++++
- 2 files changed, 69 insertions(+), 1 deletion(-)
- create mode 100644 include/dt-bindings/clock/qcom,dispcc-sm8250.h
+Hi Florian,
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc.yaml
-index 5b5c7fa6375e..0b905a4e9ada 100644
---- a/Documentation/devicetree/bindings/clock/qcom,dispcc.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,dispcc.yaml
-@@ -11,12 +11,13 @@ maintainers:
- 
- description: |
-   Qualcomm display clock control module which supports the clocks, resets and
--  power domains on SDM845/SC7180/SM8150.
-+  power domains on SDM845/SC7180/SM8150/SM8250.
- 
-   See also:
-     dt-bindings/clock/qcom,dispcc-sdm845.h
-     dt-bindings/clock/qcom,dispcc-sc7180.h
-     dt-bindings/clock/qcom,dispcc-sm8150.h
-+    dt-bindings/clock/qcom,dispcc-sm8250.h
- 
- properties:
-   compatible:
-@@ -24,6 +25,7 @@ properties:
-       - qcom,sdm845-dispcc
-       - qcom,sc7180-dispcc
-       - qcom,sm8150-dispcc
-+      - qcom,sm8250-dispcc
- 
-   # NOTE: sdm845.dtsi existed for quite some time and specified no clocks.
-   # The code had to use hardcoded mechanisms to find the input clocks.
-diff --git a/include/dt-bindings/clock/qcom,dispcc-sm8250.h b/include/dt-bindings/clock/qcom,dispcc-sm8250.h
-new file mode 100644
-index 000000000000..fdaca6ad5c85
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,dispcc-sm8250.h
-@@ -0,0 +1,66 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
-+ */
-+
-+#ifndef _DT_BINDINGS_CLK_QCOM_DISP_CC_SM8250_H
-+#define _DT_BINDINGS_CLK_QCOM_DISP_CC_SM8250_H
-+
-+/* DISP_CC clock registers */
-+#define DISP_CC_MDSS_AHB_CLK			0
-+#define DISP_CC_MDSS_AHB_CLK_SRC		1
-+#define DISP_CC_MDSS_BYTE0_CLK			2
-+#define DISP_CC_MDSS_BYTE0_CLK_SRC		3
-+#define DISP_CC_MDSS_BYTE0_DIV_CLK_SRC		4
-+#define DISP_CC_MDSS_BYTE0_INTF_CLK		5
-+#define DISP_CC_MDSS_BYTE1_CLK			6
-+#define DISP_CC_MDSS_BYTE1_CLK_SRC		7
-+#define DISP_CC_MDSS_BYTE1_DIV_CLK_SRC		8
-+#define DISP_CC_MDSS_BYTE1_INTF_CLK		9
-+#define DISP_CC_MDSS_DP_AUX1_CLK		10
-+#define DISP_CC_MDSS_DP_AUX1_CLK_SRC		11
-+#define DISP_CC_MDSS_DP_AUX_CLK			12
-+#define DISP_CC_MDSS_DP_AUX_CLK_SRC		13
-+#define DISP_CC_MDSS_DP_LINK1_CLK		14
-+#define DISP_CC_MDSS_DP_LINK1_CLK_SRC		15
-+#define DISP_CC_MDSS_DP_LINK1_DIV_CLK_SRC	16
-+#define DISP_CC_MDSS_DP_LINK1_INTF_CLK		17
-+#define DISP_CC_MDSS_DP_LINK_CLK		18
-+#define DISP_CC_MDSS_DP_LINK_CLK_SRC		19
-+#define DISP_CC_MDSS_DP_LINK_DIV_CLK_SRC	20
-+#define DISP_CC_MDSS_DP_LINK_INTF_CLK		21
-+#define DISP_CC_MDSS_DP_PIXEL1_CLK		22
-+#define DISP_CC_MDSS_DP_PIXEL1_CLK_SRC		23
-+#define DISP_CC_MDSS_DP_PIXEL2_CLK		24
-+#define DISP_CC_MDSS_DP_PIXEL2_CLK_SRC		25
-+#define DISP_CC_MDSS_DP_PIXEL_CLK		26
-+#define DISP_CC_MDSS_DP_PIXEL_CLK_SRC		27
-+#define DISP_CC_MDSS_ESC0_CLK			28
-+#define DISP_CC_MDSS_ESC0_CLK_SRC		29
-+#define DISP_CC_MDSS_ESC1_CLK			30
-+#define DISP_CC_MDSS_ESC1_CLK_SRC		31
-+#define DISP_CC_MDSS_MDP_CLK			32
-+#define DISP_CC_MDSS_MDP_CLK_SRC		33
-+#define DISP_CC_MDSS_MDP_LUT_CLK		34
-+#define DISP_CC_MDSS_NON_GDSC_AHB_CLK		35
-+#define DISP_CC_MDSS_PCLK0_CLK			36
-+#define DISP_CC_MDSS_PCLK0_CLK_SRC		37
-+#define DISP_CC_MDSS_PCLK1_CLK			38
-+#define DISP_CC_MDSS_PCLK1_CLK_SRC		39
-+#define DISP_CC_MDSS_ROT_CLK			40
-+#define DISP_CC_MDSS_ROT_CLK_SRC		41
-+#define DISP_CC_MDSS_RSCC_AHB_CLK		42
-+#define DISP_CC_MDSS_RSCC_VSYNC_CLK		43
-+#define DISP_CC_MDSS_VSYNC_CLK			44
-+#define DISP_CC_MDSS_VSYNC_CLK_SRC		45
-+#define DISP_CC_PLL0				46
-+#define DISP_CC_PLL1				47
-+
-+/* DISP_CC Reset */
-+#define DISP_CC_MDSS_CORE_BCR			0
-+#define DISP_CC_MDSS_RSCC_BCR			1
-+
-+/* DISP_CC GDSCR */
-+#define MDSS_GDSC				0
-+
-+#endif
--- 
-2.26.1
+sorry, the mail got swamped in my inbox...
 
+> On 8/28/2020 10:12 AM, Florian Fainelli wrote:
+>> On 8/28/20 7:20 AM, Andre Przywara wrote:
+>>> The DT binding for SP804 requires to have an "arm,primecell" compatible
+>>> string.
+>>> Add this string so that the Linux primecell bus driver picks the device
+>>> up and activates the clock.
+>>>
+>>> Fixes: a0efb0d28b77 ("ARM: dts: NSP: Add SP804 Support to DT")
+>>> Tested-by: Florian Fainelli <f.fainelli@gmail.com>
+>>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+>>
+>> This looks fine, however there is a ccbtimer1 instance that you missed,
+>> can you resubmit with it included?
+>>
+>> With that:
+>>
+>> Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+> 
+> Andre are you going to resubmit a patch with the second instance
+> (ccbtimer1) fixed as well, or should I take care of that while applying
+> the patch? Either way is fine, just let me know.
+
+So I was waiting for more comments, but there was nothing so far that
+justifies a new version. So would you mind fixing this while applying? I
+must have indeed missed this instance while diffing before and after.
+
+Many thanks!
+Andre.
