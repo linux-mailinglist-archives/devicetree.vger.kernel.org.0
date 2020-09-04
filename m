@@ -2,149 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6731225DFA1
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 18:17:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8CC425DFC0
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 18:24:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727869AbgIDQRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 12:17:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48758 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726304AbgIDQRB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 12:17:01 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22557C061244
-        for <devicetree@vger.kernel.org>; Fri,  4 Sep 2020 09:17:01 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id s13so6559454wmh.4
-        for <devicetree@vger.kernel.org>; Fri, 04 Sep 2020 09:17:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=FWk3qVSr7VGifs60LnXL8P2UIqTUMmu89eotjh18HA8=;
-        b=duGjMiYDurbAFlsmF2zT3FDS+RxxrgtsawWMtijuXHwZK+Fo1alN7hoZhK4btSdefi
-         yvoKS6N4sdY/6xk5ExFmo0Vbijv6Mjv6LzTGDOmxl+RqLLK/A4Es/1fbDI33lDN3myG/
-         wufHWYj+8Ts08o6j3WmVcYNI6t2S7MOQfE0lVISwQHlDwS04j1BDHdWu70jx6sokndeL
-         1MF2uZTguxpxMy4JHYyosywABiW6fFeTbBuZPz+fJqNOwSLNdTSfrbV5OQTkwGdmPOCp
-         b/jmkP5wrSkomwdY8fJcYp+bxLv9xAXj0A9GX0CeWaQI5w2ZRyvshN1qQLsknyQ4pUWg
-         NX+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=FWk3qVSr7VGifs60LnXL8P2UIqTUMmu89eotjh18HA8=;
-        b=uR1B8EAuaNI8h9EqLCuZ1VVAcJYgQDnfJClkNhL+Tjagfu/mcvQXC3sd7fKC7JaRDh
-         oGHai5L3sP6mOxTEvKXUIOuDuzJeoTpArmM5+7srRBG/MYT05LeLMcGCh983hb6/4wTs
-         SAgpvBBGFs3ZosM6i0hUQ3hVd/YMg25OFRGmJ7LtZCwNknN5c8wZ5bp7+5qr3vkY/fp3
-         SMnSUiJiAcRjEEDJCgKUaSKzYQ8o0CFEeQ1rMSWSYCWbn9eDScXLl3bVdSityictAFE2
-         KgG7R2kOj+jOGWbYCJwDZ4udXOaWRThGJHuESXu069xs/PfmgpUr9DAdzwPbbjsfUF6a
-         Zt0A==
-X-Gm-Message-State: AOAM5330VJkFZ61rb1iyeDfNJGGverr14Wk/6TdVnNls43Cx0nDCBDB8
-        RRXvOjxNOT3iBxh7wQSx/UM74g==
-X-Google-Smtp-Source: ABdhPJzUqXDH+qk0EuubbmJKx2M6DzZGUVc61Fkr0PNo8RNjgbB4iQwbqWcR7WrQTW70j4gqOjXsuA==
-X-Received: by 2002:a05:600c:245:: with SMTP id 5mr8525601wmj.33.1599236219600;
-        Fri, 04 Sep 2020 09:16:59 -0700 (PDT)
-Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
-        by smtp.gmail.com with ESMTPSA id d3sm5129543wrr.84.2020.09.04.09.16.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Sep 2020 09:16:58 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     khilman@baylibre.com, devicetree@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH RESEND 1/2] dt-bindings: power: amlogic,meson-ee-pwrc: add Amlogic AXG power controller bindings
-Date:   Fri,  4 Sep 2020 18:16:53 +0200
-Message-Id: <20200904161654.24141-2-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200904161654.24141-1-narmstrong@baylibre.com>
-References: <20200904161654.24141-1-narmstrong@baylibre.com>
+        id S1726047AbgIDQYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 12:24:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60420 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725984AbgIDQYh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Sep 2020 12:24:37 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C209D2067C;
+        Fri,  4 Sep 2020 16:24:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599236677;
+        bh=NAOttNi68dxtCKh5TVKg8sTqUmu57wOh79f7YPBx69A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CYBhS4JDiuXs0mCoO/vaMRF73YWXpersz+FpF0smRVDdj7C9Ct+RwCWCL3X2yFNpp
+         7RuUQEAMeqFGccOyhwlo/nsrxfWtbcHDQIrarHS1M3nKpBWnXBaE8LuoBBGgKq6XxP
+         NCq1YqJ3YwJNIFyhB0NyeT4pw3aHQdww+TdLgZFw=
+Date:   Fri, 4 Sep 2020 17:23:55 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc:     Maxime Ripard <maxime@cerno.tech>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org,
+        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com, Takashi Iwai <tiwai@suse.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>, peron.clem@gmail.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [linux-sunxi] [PATCH 05/16] ASoc: sun4i-i2s: Add 20 and 24 bit
+ support
+Message-ID: <20200904162355.GA49830@sirena.org.uk>
+References: <20200704113902.336911-1-peron.clem@gmail.com>
+ <20200704113902.336911-6-peron.clem@gmail.com>
+ <1e320dfd-9388-54b2-dba9-7def0bf4bbad@sholland.org>
+ <9148679.oVN3Z7rve9@kista>
+ <fd714cb6-3650-1eb9-616d-33c00f1442eb@sholland.org>
+ <20200903074023.jccqp45br3er4h3g@gilmour.lan>
+ <20200904161649.GL10899@ediswmail.ad.cirrus.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="dDRMvlgZJXvWKvBx"
+Content-Disposition: inline
+In-Reply-To: <20200904161649.GL10899@ediswmail.ad.cirrus.com>
+X-Cookie: Restaurant package, not for resale.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the bindings of the Power Controller found in the Amlogic AXG SoCs.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../bindings/power/amlogic,meson-ee-pwrc.yaml | 23 +++++++++++++++++--
- include/dt-bindings/power/meson-axg-power.h   | 14 +++++++++++
- 2 files changed, 35 insertions(+), 2 deletions(-)
- create mode 100644 include/dt-bindings/power/meson-axg-power.h
+--dDRMvlgZJXvWKvBx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
-index 4f524f822e84..d30f85cc395e 100644
---- a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
-+++ b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
-@@ -27,6 +27,7 @@ properties:
-       - amlogic,meson8b-pwrc
-       - amlogic,meson8m2-pwrc
-       - amlogic,meson-gxbb-pwrc
-+      - amlogic,meson-axg-pwrc
-       - amlogic,meson-g12a-pwrc
-       - amlogic,meson-sm1-pwrc
- 
-@@ -42,11 +43,11 @@ properties:
-       - const: vapb
- 
-   resets:
--    minItems: 11
-+    minItems: 5
-     maxItems: 12
- 
-   reset-names:
--    minItems: 11
-+    minItems: 5
-     maxItems: 12
- 
-   "#power-domain-cells":
-@@ -107,6 +108,24 @@ allOf:
-         - resets
-         - reset-names
- 
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - amlogic,meson-axg-pwrc
-+    then:
-+      properties:
-+        reset-names:
-+          items:
-+            - const: viu
-+            - const: venc
-+            - const: vcbus
-+            - const: vencl
-+            - const: vid_lock
-+      required:
-+        - resets
-+        - reset-names
-+
-   - if:
-       properties:
-         compatible:
-diff --git a/include/dt-bindings/power/meson-axg-power.h b/include/dt-bindings/power/meson-axg-power.h
-new file mode 100644
-index 000000000000..e5243884b249
---- /dev/null
-+++ b/include/dt-bindings/power/meson-axg-power.h
-@@ -0,0 +1,14 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/*
-+ * Copyright (c) 2020 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+
-+#ifndef _DT_BINDINGS_MESON_AXG_POWER_H
-+#define _DT_BINDINGS_MESON_AXG_POWER_H
-+
-+#define PWRC_AXG_VPU_ID			0
-+#define PWRC_AXG_ETHERNET_MEM_ID	1
-+#define PWRC_AXG_AUDIO_ID		2
-+
-+#endif
--- 
-2.22.0
+On Fri, Sep 04, 2020 at 04:16:49PM +0000, Charles Keepax wrote:
 
+> My understanding is physical_width refers to the in memory
+> representation, but shouldn't be used to control the slot width
+> on the bus. If not specified otherwise (say through the set_tdm
+> callback), and if the appropriate BCLK is supported, then the slot
+> should be just large enough to hold the data.
+
+Indeed.  The framework isn't great here in tying the memory and wire
+formats together, ideally there would be more support for them being
+unrelated without DPCM.
+
+--dDRMvlgZJXvWKvBx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9SahoACgkQJNaLcl1U
+h9Aivgf9FE+zKg/2HauJXtYNKTV6F5tpg9YlM9zZm1mgrfejgquDBl3k34Y9d14k
+4p2wjhqoKPTGoY7Y33weRBkyBmk9KcLMfQaZRO84B1W0h1/AgaTVY8hgUbucsDld
+X0x3qA/ejP71NUBv1yNuMVVmhwISIg7WLJONku57+1KvdsciUFLgqcK1lesXV/hO
+lpemO67BlytBjZKc71yFEQtFEelOOdZmbe1GGDQtDP6wEtlzzbuJuyw9qLQBAfwC
+Ron6ds5hgj+K0tk7jdrtOzoW5GGN2U3d+cXn0gmQax72PwEefzjIBAR7n0TAAPcV
+Mh3pFSi3xyQSRAv64SY2qiJFAt8TBw==
+=ZBOH
+-----END PGP SIGNATURE-----
+
+--dDRMvlgZJXvWKvBx--
