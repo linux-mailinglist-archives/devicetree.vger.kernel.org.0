@@ -2,181 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA9B425D3BD
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 10:34:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31E1525D406
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 10:55:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728118AbgIDIeL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 04:34:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33414 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726151AbgIDIeK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 04:34:10 -0400
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29C70C061244;
-        Fri,  4 Sep 2020 01:34:07 -0700 (PDT)
-Received: by mail-lj1-x243.google.com with SMTP id s205so6962677lja.7;
-        Fri, 04 Sep 2020 01:34:07 -0700 (PDT)
+        id S1729893AbgIDIzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 04:55:43 -0400
+Received: from esa1.microchip.iphmx.com ([68.232.147.91]:63110 "EHLO
+        esa1.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726575AbgIDIzl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 04:55:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1599209741; x=1630745741;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=d6f7YL2OKhwDdKRk1U2kHqWvAbfZy1bmjZUOIS8/UNQ=;
+  b=AJBFD2WygGvfstVXLIOeMQ+vVw6Kg7CMIeYn+DncaUNr6Gnv7bSxSNd2
+   du0XF5wsl90VjOaOXT0KB1S4poUMDtaZMrh5qL4PtLCSlNRPUXWE6k4/2
+   w7hvxJE4rqb8goq122oK+4hy1iyAy59TPzZSk1PPoWrV+CmaMSUhvsOuM
+   EDNZMtx4Q5XRKguROmosJMUbu5UQ2+zyu+fMq8SwPP2FJFLxqGV4TXBWs
+   iGMIBPvd04RFNjjzaO3cLL8vHbMIt77NNASXQSB3Vxn46FqVedwPMlyow
+   FYXGk+UImO2PjlF0z/0HAX73QnjMT99gMeRPtGk8NaiuJt0ZZiO0+cr1G
+   A==;
+IronPort-SDR: 7HhQMYrOoqZvi6ER8Jyhp+oEDQmDX+/2/CxaYnvKjdBAPyx5YQDZy3kbiQ6J3WQkNuI6HwaIca
+ HxEgIJe0CNMu1VDdfJCUQf2Aefp9I4+mSLL96Wx0f+eQUnewyNCT4hm5bt21Yo4FoDnbj0h915
+ Gk236FJpr9tdd/JNHAkFE1AXBNf33IKz64/baTQsAhILZqC/9LOi4V2W42m/J6CWyFnHMe67qj
+ 7v8PAiIGupivTMTRPMxp+85XlfXMLltDUmQXonjZeHkHhmpurmUfLoXEq5/z3lP/3dsuYARx8l
+ z4w=
+X-IronPort-AV: E=Sophos;i="5.76,389,1592895600"; 
+   d="scan'208";a="94410736"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Sep 2020 01:55:40 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Fri, 4 Sep 2020 01:55:31 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3
+ via Frontend Transport; Fri, 4 Sep 2020 01:55:31 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PZzzSx1BWovzvWSI5xPK1Vgows6teu/3BwpjbdMScV46TZC89Pl7IJumY8W4zdyhhE7c4zaTzB9C+4NfmWM8Lycog0mBLwwEAp9vfhsVTvwButHRUE9f8AgsnIpwbGZ4HI7vPMInU/5igRCj1Iq0e0cFFExuD43DIa9xAEwdrpCGHlZHyOYS3HLIwleIyyBnFt3TDMKRjlf++D/eJxfdi1hmntrcGiEwD0rCP7o63OxmlKiTzHwkQh8FRIzCtio/3TVP8x4sTGh9FWTH6imI8b7pFVlPqGyv9cuumxKpz6XXxa70QyQB5kinyDE4L9UeB2n/IDFMHqgoIHgh7Eay/A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=d6f7YL2OKhwDdKRk1U2kHqWvAbfZy1bmjZUOIS8/UNQ=;
+ b=Ih3Zn7+LZX5M4VHJQA5nW4FdfUujP6y74jaLS+BDMXtTLl98yur+57HcMJDqiqvFwCcrF2ruh3sSCUcZ/QcW8ifF9CkPB+yTkHNZ5jvgSk1Q/SGwLZnebaZ8/FXwIXeI3jGeKmtKH9AomKpB4kS2Jr9og7+IErXqcV1ODsr4EBQBpMsszVp/RNRmaCj+76b9WJMPIblYiohpznmbdCFUORto/a6L9OhT8QuXEEGqt78dpYLlIjFz3Lu62DDXMXDRWno/0rIA9hbo0DwQlE0IBeh/MSJxTW8vGwtlRvzDj8VavnZgl9xeu5+Q06PKxPU7jyP74Ki5G8SzdQpSrfQazA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=rO+8dFM6+CySLVuYpUE9JcayB5tROzwwLjKQ4GSNTpE=;
-        b=OUacaBU4KUZCGSxwpzCBKjANVzYzSsbeUJXMcT9vVNlaxC/Ivys7B2SITAesW3r5b6
-         veCy6gxCXeopfK4Z+GQVyQQ4EZ8zfqehYzw75F7gfQSm3z2bxCz9hexrtEdUWzvSx2eq
-         hY4/oodj1HwY0Rp0YIIDLx16O03ux++C1j8p6UoNv2kPDIV0Rcj83DUj5NJEVejyZgWR
-         Q7zawiy5853rrcYRBQozmr/Sys+4OfAcrdIWuC/UA0AatqUJerFGHgj02FXeKFdwfr3e
-         xFOWPDum4ySXTjdggQ6Ax7C3D5Hxs+KxoLkY9dZ8oT3LBySdDNB8TPv1xGytCpSjYsFB
-         YIEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=rO+8dFM6+CySLVuYpUE9JcayB5tROzwwLjKQ4GSNTpE=;
-        b=OP72l88suL84E6KZlo0aVcaww8sxh4EqSEsA8p87Qlq1omLAkcYAIw0jjx6PJuwwRM
-         KGo/aiMlOB28S8vvujR3/8dg8iCR2dfC5o3/9NDydhAuNM4vrP2rXfDrCmJ83p5sfFtv
-         +tA69Qmvysuv8/zHi/LRKXdszHe1b7fGBlu8QvcLv1gWnvXYxWdWEh+0JULxzipUka8a
-         GZrTFUJddJSwfM8hG8oQQo6OFh4BvdUNLom20+Dl/NoC3xMdSoJ8ptRAgWc5QjcaRXLk
-         JLV+dfeatXHCFgh7s/jOA34U0pqVT7vL4SPjhw4SNjzZn7TVh0+ti3R5p3lW5g835rYV
-         kDdw==
-X-Gm-Message-State: AOAM530VjBfDTqm3PBcILhrNJyYMtyyCdJEFAeoA1R4UJ6UHAqM0PLRi
-        SWehSmLdMcxUiiRpAcg5mr4TXQaApAn+vQ==
-X-Google-Smtp-Source: ABdhPJw7O6p6no+oEvoKbIFoYR6Y2rIj+qxM7DNV4ZKdwvTu8/Vg0ta95TjHKiH+hU17sUyzLb+HsQ==
-X-Received: by 2002:a2e:71a:: with SMTP id 26mr3381332ljh.198.1599208445293;
-        Fri, 04 Sep 2020 01:34:05 -0700 (PDT)
-Received: from ?IPv6:2a00:1fa0:4b4:8b5e:bc57:27d1:fcc8:28b8? ([2a00:1fa0:4b4:8b5e:bc57:27d1:fcc8:28b8])
-        by smtp.gmail.com with ESMTPSA id h11sm1132851ljc.60.2020.09.04.01.34.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Sep 2020 01:34:04 -0700 (PDT)
-Subject: Re: [PATCH v9 2/4] dt-bindings: usb: Add Qualcomm PMIC type C
- controller dt-binding
-To:     Wesley Cheng <wcheng@codeaurora.org>, sboyd@kernel.org,
-        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        jackp@codeaurora.org
-References: <20200904082223.25563-1-wcheng@codeaurora.org>
- <0101017458361303-16620b87-c433-4c00-a061-b1e688363539-000000@us-west-2.amazonses.com>
-From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Organization: Brain-dead Software
-Message-ID: <1147af8f-68c6-ecea-7527-f59db3a87d17@gmail.com>
-Date:   Fri, 4 Sep 2020 11:33:37 +0300
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
-MIME-Version: 1.0
-In-Reply-To: <0101017458361303-16620b87-c433-4c00-a061-b1e688363539-000000@us-west-2.amazonses.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=d6f7YL2OKhwDdKRk1U2kHqWvAbfZy1bmjZUOIS8/UNQ=;
+ b=b9ZvJxqv3cZz86g7fYlWgswj+ikSW5S5shEsu18tJ8kDf2aw95YHp4GwlHvnE7MJY484yAAzRT24VgvCthidkIVNSpnVJAz331+z1z+MTrN5U2MNJXZmQrpwRPpi0zaP4FVaVPMrzxY64mdGB+h3DUdJTqHVK9XhErsjoBJQFY4=
+Received: from CY4PR1101MB2341.namprd11.prod.outlook.com
+ (2603:10b6:903:b1::22) by CY4PR11MB0070.namprd11.prod.outlook.com
+ (2603:10b6:910:78::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.23; Fri, 4 Sep
+ 2020 08:55:31 +0000
+Received: from CY4PR1101MB2341.namprd11.prod.outlook.com
+ ([fe80::c57b:e93f:98a8:c654]) by CY4PR1101MB2341.namprd11.prod.outlook.com
+ ([fe80::c57b:e93f:98a8:c654%11]) with mapi id 15.20.3348.016; Fri, 4 Sep 2020
+ 08:55:30 +0000
+From:   <Codrin.Ciubotariu@microchip.com>
+To:     <wsa@kernel.org>
+CC:     <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <robh+dt@kernel.org>,
+        <Ludovic.Desroches@microchip.com>, <Nicolas.Ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <linux@armlinux.org.uk>,
+        <kamel.bouhara@bootlin.com>
+Subject: Re: Re: Re: [RFC PATCH 4/4] i2c: at91: Move to generic GPIO bus
+ recovery
+Thread-Topic: Re: Re: [RFC PATCH 4/4] i2c: at91: Move to generic GPIO bus
+ recovery
+Thread-Index: AQHWRkUH28LN6vyz50q8ydS45lftAKklUoAAgAF6cgCAI4blAIAOUeWA
+Date:   Fri, 4 Sep 2020 08:55:30 +0000
+Message-ID: <15466c95-f1ea-63a4-1429-24d9b7567c1c@microchip.com>
+References: <20200619141904.910889-1-codrin.ciubotariu@microchip.com>
+ <20200619141904.910889-5-codrin.ciubotariu@microchip.com>
+ <20200802170820.GC10193@kunai>
+ <65890aab-1d19-7e7e-abff-3c6ee05c8ade@microchip.com>
+ <20200826061444.GB1081@ninjato>
+In-Reply-To: <20200826061444.GB1081@ninjato>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=microchip.com;
+x-originating-ip: [84.232.220.208]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 28e66f7c-3827-41e6-6e1c-08d850b04712
+x-ms-traffictypediagnostic: CY4PR11MB0070:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CY4PR11MB007080ED110C76346A3059A5E72D0@CY4PR11MB0070.namprd11.prod.outlook.com>
+x-bypassexternaltag: True
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Wekr7cd6G+K2YkGbZPNSuPkg1ecUq+JRk7OS4ppKCHm6ufE7e+zle59FXdYEf/c//SsF1xqPX4geG9Mlfnre5IWDENux8pta2HKoIVASIpTySpim+Qexko330bxJxc4PdzMgIWrfu7xVb72WqjH8UyzrJtn9FGD4FiOHdgcWBFzdJfQF/MOx03Mh2/P+nbXTushEH0q7p1NlhsO7mNPYs62YiczZSIzH4noYi18J16MfrxS75R1WRmcohv5/qj7sWyn0Dh4neBwdlVRUp/NP+ALwty4BO5KinhqBcAbK8lFyYlI8vE6qVH0wl7cM0tFXuyxK2QiAoY4KCxWVo37cMZ3bImlF09V5VLJQ/6hfmAm//nuIpYD8XCfmvh7/hgC0qrLAGVtg2WB+FvrXniDmLw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR1101MB2341.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(376002)(366004)(396003)(346002)(39860400002)(66556008)(64756008)(6512007)(66446008)(76116006)(91956017)(6916009)(66476007)(66946007)(6486002)(83380400001)(8936002)(478600001)(4326008)(8676002)(2616005)(5660300002)(31686004)(53546011)(86362001)(26005)(31696002)(186003)(54906003)(71200400001)(2906002)(316002)(6506007)(36756003)(41533002)(43740500002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: ClxthGaQVqoXf+ggxkPZORNQbRPiMriKDCo9IowgilMVs9Trt3FQQuhEGIliID8wH2ODtDu9OXFaEnNoS8zatWMeR6Zh7IY2+YilkNCJ7q3BPgcdPszwVzB69ePWUkGwhVRKpM3yT1YcxQ6ECp72hKP/If1R502cebG8oPTWTwoAK0ku0QbVNht4zMAZ9qv7r3W2H8KF+4xVEYexSBMRsSQQOjO6Dh5qOWLEcdb8X78kVSIGfQ4etZsBAQZmeLJWtl91AYVZTVCg+VZpX5NokGH8sGOdk4/pC0O4SH51ZfSRJL7/3ppsw8hvCEB7NVkg/GFxrpK0XxzDS/YOyXwB5W6X53xFXe6qByaMW3Udy1F6eOU9jdVGLpmsYYxHijLpXJO0AEmf43LGn9fP+d3INohw+76JHFcM1T7nQHpDrLt0b+l8JwRBkeuHJUYY/tpA6UyaJFFHbUKXBeM6Vf5L2kzgTJv4y37aUjsEM0H0w9ac2pKr89Lzb6HOn68TNYiwqiTa8XbsRD6jmFyYIgL25c0EW1QVB2GPOLWSDlB/J4cV3sOo1JH6IZZmh/yN6RxqG3Bfth/duvvVEhdddHVk7E+sLydcpkbuMBkbLIdJUWTNBkaLfA9qwucZ+K4GSFX6ZGag2+iFSNQ2U4hBFOMBCQ==
+Content-Type: text/plain; charset="Windows-1252"
+Content-ID: <F03D349C753B32459467A66588A5B40D@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR1101MB2341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 28e66f7c-3827-41e6-6e1c-08d850b04712
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Sep 2020 08:55:30.8592
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: LM00InGX560ruvvsdhtkuJ7WhcbmOHyZrmC3m16cj/t/Sk3h8RvuGDq6ZPCoYRopqXxBWa+14y+G7EUBD0aDUZpAnMkNTBbOepaXzz8SR3Q=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB0070
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04.09.2020 11:22, Wesley Cheng wrote:
+On 26.08.2020 09:14, Wolfram Sang wrote:
+>=20
+>> Thanks, this would be great! I tested this on a sam9x60, with the HW
+>> feature for the 9 pulses disabled, with a picky audio codec as I2C devic=
+e.
+>> Please let me know of the result.
+>=20
+> I can't make use of the feature on the platform I had in mind, sadly. It
+> doesn't really support switching from/to GPIO pinctrl states. If that
+> ever changes, I will add bus recovery for that controller, but I think
+> this is low priority.
 
-> Introduce the dt-binding for enabling USB type C orientation and role
-> detection using the PM8150B.  The driver will be responsible for receiving
-> the interrupt at a state change on the CC lines, reading the
-> orientation/role, and communicating this information to the remote
-> clients, which can include a role switch node and a type C switch.
-> 
-> Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
-> ---
->   .../bindings/usb/qcom,pmic-typec.yaml         | 108 ++++++++++++++++++
->   1 file changed, 108 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml b/Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
-> new file mode 100644
-> index 000000000000..8582ab6a3cc4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
-> @@ -0,0 +1,108 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/usb/qcom,pmic-typec.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Qualcomm PMIC based USB type C Detection Driver
-> +
-> +maintainers:
-> +  - Wesley Cheng <wcheng@codeaurora.org>
-> +
-> +description: |
-> +  Qualcomm PMIC Type C Detect
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,pm8150b-usb-typec
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: Type C base address
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description: CC change interrupt from PMIC
-> +
-> +  connector:
-> +    $ref: /connector/usb-connector.yaml#
-> +    description: Connector type for remote endpoints
-> +    type: object
-> +
-> +    properties:
-> +      compatible:
-> +        enum:
-> +          - usb-c-connector
-> +
-> +      power-role: true
-> +      data-role: true
-> +
-> +      ports:
-> +        description: Remote endpoint connections
-> +        type: object
-> +
-> +        properties:
-> +          port@1:
-> +            description: Remote endpoints for the Super Speed path
-> +            type: object
-> +
-> +            properties:
-> +              endpoint@0:
-> +                description: Connection to USB type C mux node
-> +                type: object
-> +
-> +              endpoint@1:
-> +                description: Connection to role switch node
-> +                type: object
-> +
-> +    required:
-> +      - compatible
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - connector
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    pm8150b {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        pm8150b_typec: typec@1500 {
+The pinmux driver needs to have strict set to false, otherwise the=20
+switching is not available, not at this time at least. Perhaps there is=20
+room for improvement here, because the I2C bus is not using the pins=20
+while we are doing GPIO recovery.
 
-    Shouldn't we call it "usb-typec@1500" for more clarity?
+>=20
+> On the good side, there are patches which make i2c-mv64xxx another user
+> of your new mechanism, so everything is well, I think.
+>=20
 
-> +            compatible = "qcom,pm8150b-usb-typec";
-> +            reg = <0x1500>;
-> +            interrupts = <0x2 0x15 0x5 IRQ_TYPE_EDGE_RISING>;
-[...]
+I saw them, I will try to take a look.
+I am not sure I'll have time the next week to work on what you asked me=20
+regarding sh_mobile and PXA, but I will look into it the week after that.
+Sorry about my delayed reply, I was on vacation.
 
-MBR, Sergei
+Best regards,
+Codrin
