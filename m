@@ -2,112 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED2AA25E1DF
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 21:19:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CABB225E204
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 21:39:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727821AbgIDTTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 15:19:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48568 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727949AbgIDTTC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 15:19:02 -0400
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9FECC061245
-        for <devicetree@vger.kernel.org>; Fri,  4 Sep 2020 12:19:01 -0700 (PDT)
-Received: by mail-pl1-x641.google.com with SMTP id y6so1591066plk.10
-        for <devicetree@vger.kernel.org>; Fri, 04 Sep 2020 12:19:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=qRMPP9LxKZUNiuhnbNUkYFs55rCgA//jb+vd/Rx6Ht0=;
-        b=eEwr7rjOHjYc90SI75Z6Ut+MR+UIR8SjsReg4Nh+bkkNtf3q6mhsZe/DOfXcHbnOjz
-         drKjfYKMQUPR1vGqcPN3Bl+y6ed/X+LsPKZVQsSpKrtVddmpMBN0zhjmooYpjO8cxUyh
-         k3zKOVzfP8YdEHI1VaORIAtYLL2AQ6r2WUqAs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=qRMPP9LxKZUNiuhnbNUkYFs55rCgA//jb+vd/Rx6Ht0=;
-        b=Q+2dcE5wnUTsmA2T4h1yD0+5ywwTlgBHU8wnwigYpnVrx9H00F8sxG6V6hH4i5fSwO
-         Kj/Cquz3k3Lh7Qoli9ZeWUJfceMDODu8AtIrIAeRV9Oyz8E5pfGRjL8TSdFYoAq05jvh
-         BGIzsQ0Utp7KiaS9xY9Zl+u03KImIcMOyU6hkAtvOpvSSnJJekxjoGnzTup0tlKPHSEr
-         OEbF7GJvuX193jD/ZcOhxfLMVRnrT3gifh2MRaN3zQdHWr3Owo2X7RngamfSrSuNq75C
-         sZqx28Ks/s47vBqhW6pm/hSdTfMve8GWz9liMSdvS5cEe7T04mqPkLK9VYINdmFfcvqp
-         XVig==
-X-Gm-Message-State: AOAM530gK+5S8CZllsetNArJ25XhaRBVuAXtoR2vD7jX92ZTfnpWDKau
-        YLyNtgQwjdzS65xX7gMOvtReuQ==
-X-Google-Smtp-Source: ABdhPJzUuILtE+Lwd5POY+0Lfp6RXonJmBryQBkbG0RS+y2jdm+w1JLUsyQMiNXyvqjHmoi1pWFsZg==
-X-Received: by 2002:a17:902:be08:b029:d0:5c75:38da with SMTP id r8-20020a170902be08b02900d05c7538damr9927728pls.1.1599247140913;
-        Fri, 04 Sep 2020 12:19:00 -0700 (PDT)
-Received: from localhost.localdomain ([2405:201:c809:c7d5:b9ea:24bf:6b2b:1eee])
-        by smtp.gmail.com with ESMTPSA id t4sm5986001pje.56.2020.09.04.12.18.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Sep 2020 12:19:00 -0700 (PDT)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Tom Cubie <tom@radxa.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-amarula@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH 3/3] arm64: dts: rk3399-rock-pi-4c: Enable Display Port
-Date:   Sat,  5 Sep 2020 00:48:30 +0530
-Message-Id: <20200904191830.387296-4-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200904191830.387296-1-jagan@amarulasolutions.com>
-References: <20200904191830.387296-1-jagan@amarulasolutions.com>
+        id S1727855AbgIDTjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 15:39:15 -0400
+Received: from eu-shark2.inbox.eu ([195.216.236.82]:43848 "EHLO
+        eu-shark2.inbox.eu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726221AbgIDTjP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 15:39:15 -0400
+X-Greylist: delayed 320 seconds by postgrey-1.27 at vger.kernel.org; Fri, 04 Sep 2020 15:39:14 EDT
+Received: from eu-shark2.inbox.eu (localhost [127.0.0.1])
+        by eu-shark2-out.inbox.eu (Postfix) with ESMTP id E5A8A14CABA;
+        Fri,  4 Sep 2020 22:33:51 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mail.ee; s=20150108;
+        t=1599248031; bh=ubICt9xksEEhwxkgC0Mdeef1nGy2ibTY1aiD6wEybEU=;
+        h=Date:From:To:Cc:Subject;
+        b=hePSwgnrh3GZhnc0bnnelG38+iLEHuCovnNgH5pWcD4KiXA+X/ztCDnvnvZm98B/h
+         AafnB9yzGrl7ls5o6K+pDjfgjJSV5aEY6SdCcHU+uHSzy4KtlM3CE9N0jNQoKAeqRS
+         jzruNl6Z2szipMVmuPgJMwvLWqzkUdndjLT9gjRQ=
+Received: from mail.inbox.eu (eu-pop1 [127.0.0.1])
+        by eu-shark2-in.inbox.eu (Postfix) with ESMTP id C528D14CAB9;
+        Fri,  4 Sep 2020 22:33:51 +0300 (EEST)
+Received: from hp15 (unknown [185.176.221.195])
+        (Authenticated sender: arzamas-16@mail.ee)
+        by mail.inbox.eu (Postfix) with ESMTPA id 0563A1BE00DE;
+        Fri,  4 Sep 2020 22:33:49 +0300 (EEST)
+Date:   Fri, 4 Sep 2020 22:33:45 +0300
+From:   Boris Lysov <arzamas-16@mail.ee>
+To:     linux-i2c@vger.kernel.org
+Cc:     qii.wang@mediatek.com, robh+dt@kernel.org, matthias.bgg@gmail.com,
+        devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: i2c: i2c-mt65xx: Update binding example
+Message-ID: <20200904223345.3daea5ad@hp15>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: OK
+X-ESPOL: 6N1mkZY9ZDPk1R69OhvTBA4ysStOWvPn+eak0RRcgAiJPFLiYg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable Display Port on ROCK Pi 4C board.
+Example uses values for MT6589 SoC, but MT6577 was specified in "compatible" property.
 
-Unlike, other RK3399 platforms with accessing DP Altmode
-via Type-C connector, the display Port on ROCK Pi 4C is
-accessible via physical display port connector by means
-of Type-C Virtual PD extcon configuration.
-
-Enable support for it.
-
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+Signed-off-by: Boris Lysov <arzamas-16@mail.ee>
 ---
- .../boot/dts/rockchip/rk3399-rock-pi-4c.dts      | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
-index 4c7ebb1c5d2d..19a648add355 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
-@@ -11,6 +11,22 @@
- / {
- 	model = "Radxa ROCK Pi 4C";
- 	compatible = "radxa,rockpi4c", "radxa,rockpi4", "rockchip,rk3399";
-+
-+	virtual_pd: virtual-pd {
-+		compatible = "linux,extcon-usbc-virtual-pd";
-+		det-gpios = <&gpio4 RK_PD1 GPIO_ACTIVE_LOW>;	/* DP_HPD */
-+		vpd-data-role = "display-port";
-+		vpd-super-speed;
-+	};
-+};
-+
-+&cdn_dp {
-+	extcon = <&virtual_pd>;
-+	status = "okay";
-+};
-+
-+&tcphy0 {
-+	extcon = <&virtual_pd>;
- };
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
+index 7f0194fdd0cc..acf3d4d28b98 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
++++ b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
+@@ -36,7 +36,7 @@ Optional properties:
+ Example:
  
- &sdio0 {
+ 	i2c0: i2c@1100d000 {
+-			compatible = "mediatek,mt6577-i2c";
++			compatible = "mediatek,mt6589-i2c";
+ 			reg = <0x1100d000 0x70>,
+ 			      <0x11000300 0x80>;
+ 			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_LOW>;
 -- 
-2.25.1
-
+2.28.0
