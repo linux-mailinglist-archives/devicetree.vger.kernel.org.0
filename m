@@ -2,204 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB36025D0DB
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 07:24:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3805125D104
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 07:54:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725892AbgIDFYE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 01:24:04 -0400
-Received: from mo-csw1516.securemx.jp ([210.130.202.155]:36476 "EHLO
-        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725812AbgIDFYD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 01:24:03 -0400
-Received: by mo-csw.securemx.jp (mx-mo-csw1516) id 0845Nl96029789; Fri, 4 Sep 2020 14:23:48 +0900
-X-Iguazu-Qid: 34tKqQuZ1rIRQCAdQl
-X-Iguazu-QSIG: v=2; s=0; t=1599197027; q=34tKqQuZ1rIRQCAdQl; m=bHQnvnj8fj43z0qYHRT5DlNboUVTf+5Eg7zcdr7Odyo=
-Received: from imx2.toshiba.co.jp (imx2.toshiba.co.jp [106.186.93.51])
-        by relay.securemx.jp (mx-mr1510) id 0845Nk86011100;
-        Fri, 4 Sep 2020 14:23:46 +0900
-Received: from enc03.toshiba.co.jp ([106.186.93.13])
-        by imx2.toshiba.co.jp  with ESMTP id 0845NkFC025197;
-        Fri, 4 Sep 2020 14:23:46 +0900 (JST)
-Received: from hop001.toshiba.co.jp ([133.199.164.63])
-        by enc03.toshiba.co.jp  with ESMTP id 0845Njao027360;
-        Fri, 4 Sep 2020 14:23:45 +0900
-From:   Punit Agrawal <punit1.agrawal@toshiba.co.jp>
-To:     Ben Levinsky <ben.levinsky@xilinx.com>
-Cc:     stefanos@xilinx.com, michals@xilinx.com,
-        devicetree@vger.kernel.org, emooring@xilinx.com,
-        michael.auchter@ni.com, mathieu.poirier@linaro.org,
-        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jliang@xilinx.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v12 3/5] firmware: xilinx: Add RPU configuration APIs
-References: <20200903212310.17990-1-ben.levinsky@xilinx.com>
-        <20200903212310.17990-4-ben.levinsky@xilinx.com>
-Date:   Fri, 04 Sep 2020 14:23:44 +0900
-X-TSB-HOP: ON
-Message-ID: <87imcup127.fsf@kokedama.swc.toshiba.co.jp>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.3 (gnu/linux)
+        id S1726621AbgIDFyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 01:54:04 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:60806 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725812AbgIDFyC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 01:54:02 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0845rjLP115317;
+        Fri, 4 Sep 2020 00:53:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599198825;
+        bh=MdmoxK2AeCCqej9xs0bxxv1OBv8ANR9M3r35yVubq2s=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=KF7I1vpZblhqUvzvqPDfcc5ojQRfe0fri66/dNK0eCxj7EcMxE8xoV0fzh1i0j96z
+         1NYjejsCdRJjtexH5w+A+LZoeuu5c1y4eKByCTTmdoIMplTwsHmjgj5/CTzm5Bed3t
+         +55tDZ+y+Qxy6jRZlBUWgnoJZAtEBM8w7cZY6D3Y=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0845rjpx089883
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 4 Sep 2020 00:53:45 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 4 Sep
+ 2020 00:53:44 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 4 Sep 2020 00:53:44 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0845reXd081865;
+        Fri, 4 Sep 2020 00:53:41 -0500
+Subject: Re: [PATCH v9 2/3] drm: bridge: Add support for Cadence MHDP8546
+ DPI/DP bridge
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     Swapnil Jakhade <sjakhade@cadence.com>,
+        <dri-devel@lists.freedesktop.org>, <airlied@linux.ie>,
+        <daniel@ffwll.ch>, <robh+dt@kernel.org>, <a.hajda@samsung.com>,
+        <narmstrong@baylibre.com>, <jonas@kwiboo.se>,
+        <jernej.skrabec@siol.net>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <mparab@cadence.com>,
+        <yamonkar@cadence.com>, <jsarha@ti.com>, <nsekhar@ti.com>,
+        <praneeth@ti.com>, <nikhil.nd@ti.com>
+References: <1598862215-10222-1-git-send-email-sjakhade@cadence.com>
+ <1598862215-10222-3-git-send-email-sjakhade@cadence.com>
+ <71452de7-80e7-0144-4802-e3370c00854b@ti.com>
+ <20200904022948.GE9369@pendragon.ideasonboard.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+Message-ID: <ae3b4dfb-72a7-2734-e104-7fa5b24d81f5@ti.com>
+Date:   Fri, 4 Sep 2020 08:53:40 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20200904022948.GE9369@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ben,
+Hi,
 
-Thanks for addressing the comments on the previous version. One comment
-below.
+On 04/09/2020 05:29, Laurent Pinchart wrote:
 
-Ben Levinsky <ben.levinsky@xilinx.com> writes:
+>> Laurent mentioned that atomic_check should not change state. Note that
+>> cdns_mhdp_validate_mode_params also changes state, as it calculates tu_size, vs and line_thresh.
+> 
+> .atomic_check() isn't allowed to change any global state, which means
+> both hardware state and data in cdns_mhdp_device. The drm_bridge_state
+> (and thus the cdns_mhdp_bridge_state) can be modified as it stores the
+> state for the atomic commit being checked.
+> 
+>> There seems to be issues with mode changes, but I think the first step would be to clarify the
+>> related code a bit. cdns_mhdp_validate_mode_params() is misnamed, I think it should be renamed to
+>> calculate_tu or something like that.
+>>
+>> cdns_mhdp_bandwidth_ok() should take display_fmt or bpp as a parameter, as currently it digs that up
+>> from the current state.
+>>
+>> Probably cdns_mhdp_validate_mode_params() would be better if it doesn't write the result to the
+>> state, but returns the values. That way it could also be used to verify if suitable settings can be
+>> found, without changing the state.
+> 
+> This use case is actually a very good example of proper usage of the
+> atomic state :-) .atomic_check() has to perform computations to verify
+> the atomic commit, and storing the results in the commit's state
+> prevents duplicating the same calculation at .atomic_commit() time.
 
-> This patch adds APIs to access to configure RPU and its
-> processor-specific memory.
->
-> That is query the run-time mode of RPU as either split or lockstep as well
-> as API to set this mode. In addition add APIs to access configuration of
-> the RPUs' tightly coupled memory (TCM).
->
-> Signed-off-by: Ben Levinsky <ben.levinsky@xilinx.com>
-> ---
-> v3:
-> - add xilinx-related platform mgmt fn's instead of wrapping around
->   function pointer in xilinx eemi ops struct
-> v4:
-> - add default values for enums
-> v9:
-> - update commit message
-> - for zynqmp_pm_set_tcm_config and zynqmp_pm_get_rpu_mode update docs for
->   expected output, arguments as well removing unused args
-> - remove unused fn zynqmp_pm_get_node_status
-> v11:
-> - update usage of zynqmp_pm_get_rpu_mode to return rpu mode in enum
-> - update zynqmp_pm_set_tcm_config and zynqmp_pm_set_rpu_mode arguments to remove unused args
-> v12:
-> - in drivers/firmware/zynqmp.c, update zynqmp_pm_set_rpu_mode so rpu_mode
->   is only set if no error
-> - update args for zynqmp_pm_set_rpu_mode, zynqmp_pm_set_tcm_config fn arg's to
->   reflect what is expected in the function and the usage in
->   zynqmp_r5_remoteproc accordingly
-> ---
->  drivers/firmware/xilinx/zynqmp.c     | 60 ++++++++++++++++++++++++++++
->  include/linux/firmware/xlnx-zynqmp.h | 18 +++++++++
->  2 files changed, 78 insertions(+)
->
-> diff --git a/drivers/firmware/xilinx/zynqmp.c b/drivers/firmware/xilinx/zynqmp.c
-> index a966ee956573..916a0b15ab33 100644
-> --- a/drivers/firmware/xilinx/zynqmp.c
-> +++ b/drivers/firmware/xilinx/zynqmp.c
-> @@ -846,6 +846,66 @@ int zynqmp_pm_release_node(const u32 node)
->  }
->  EXPORT_SYMBOL_GPL(zynqmp_pm_release_node);
->  
-> +/**
-> + * zynqmp_pm_get_rpu_mode() - Get RPU mode
-> + * @node_id:	Node ID of the device
-> + * @rpu_mode:	return by reference value
-> + *		either split or lockstep
-> + *
-> + * Return:	return 0 on success or error+reason.
-> + *		if success, then  rpu_mode will be set
-> + *		to current rpu mode.
-> + */
-> +int zynqmp_pm_get_rpu_mode(u32 node_id, enum rpu_oper_mode *rpu_mode)
-> +{
-> +	u32 ret_payload[PAYLOAD_ARG_CNT];
-> +	int ret;
-> +
-> +	ret = zynqmp_pm_invoke_fn(PM_IOCTL, node_id,
-> +				  IOCTL_GET_RPU_OPER_MODE, 0, 0, ret_payload);
-> +
-> +	/* only set rpu_mode if no error */
-> +	*rpu_mode = ret_payload[0];
+Yes, you're right.
 
-The comment and the statement do not match. rpu_mode is being
-un-conditionally set even if there is an error.
+But it's still not good, as cdns_mhdp_validate_mode_params uses link details to do the calculations,
+but we do link training only later and thus the calculations are invalid.
 
-It's not clear which is correct - the code or the comment?
+cdns_mhdp_validate_mode_params is also called from the HPD interrupt, and there it changes the
+current bridge state. link_mutex is being held in every place where cdns_mhdp_validate_mode_params
+is called, so I guess it's fine.
 
-Other than that, the rest of the patch looks fine.
+ Tomi
 
-Thanks,
-Punit
-
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(zynqmp_pm_get_rpu_mode);
-> +
-> +/**
-> + * zynqmp_pm_set_rpu_mode() - Set RPU mode
-> + * @node_id:	Node ID of the device
-> + * @rpu_mode:	Argument 1 to requested IOCTL call. either split or lockstep
-> + *
-> + *		This function is used to set RPU mode to split or
-> + *		lockstep
-> + *
-> + * Return:	Returns status, either success or error+reason
-> + */
-> +int zynqmp_pm_set_rpu_mode(u32 node_id, enum rpu_oper_mode rpu_mode)
-> +{
-> +	return zynqmp_pm_invoke_fn(PM_IOCTL, node_id,
-> +				   IOCTL_SET_RPU_OPER_MODE, (u32)rpu_mode,
-> +				   0, NULL);
-> +}
-> +EXPORT_SYMBOL_GPL(zynqmp_pm_set_rpu_mode);
-> +
-> +/**
-> + * zynqmp_pm_set_tcm_config - configure TCM
-> + * @tcm_mode:	Argument 1 to requested IOCTL call
-> + *              either PM_RPU_TCM_COMB or PM_RPU_TCM_SPLIT
-> + *
-> + * This function is used to set RPU mode to split or combined
-> + *
-> + * Return: status: 0 for success, else failure
-> + */
-> +int zynqmp_pm_set_tcm_config(u32 node_id, enum rpu_tcm_comb tcm_mode)
-> +{
-> +	return zynqmp_pm_invoke_fn(PM_IOCTL, node_id,
-> +				   IOCTL_TCM_COMB_CONFIG, (u32)tcm_mode, 0,
-> +				   NULL);
-> +}
-> +EXPORT_SYMBOL_GPL(zynqmp_pm_set_tcm_config);
-> +
->  /**
->   * zynqmp_pm_force_pwrdwn - PM call to request for another PU or subsystem to
->   *             be powered down forcefully
-> diff --git a/include/linux/firmware/xlnx-zynqmp.h b/include/linux/firmware/xlnx-zynqmp.h
-> index 6241c5ac51b3..79aa2fcbcd54 100644
-> --- a/include/linux/firmware/xlnx-zynqmp.h
-> +++ b/include/linux/firmware/xlnx-zynqmp.h
-> @@ -385,6 +385,9 @@ int zynqmp_pm_request_wake(const u32 node,
->  			   const bool set_addr,
->  			   const u64 address,
->  			   const enum zynqmp_pm_request_ack ack);
-> +int zynqmp_pm_get_rpu_mode(u32 node_id, enum rpu_oper_mode *rpu_mode);
-> +int zynqmp_pm_set_rpu_mode(u32 node_id, u32 arg1);
-> +int zynqmp_pm_set_tcm_config(u32 node_id, u32 arg1);
->  #else
->  static inline struct zynqmp_eemi_ops *zynqmp_pm_get_eemi_ops(void)
->  {
-> @@ -549,6 +552,21 @@ static inline int zynqmp_pm_request_wake(const u32 node,
->  {
->  	return -ENODEV;
->  }
-> +
-> +static inline int zynqmp_pm_get_rpu_mode(u32 node_id, enum rpu_oper_mode *rpu_mode)
-> +{
-> +	return -ENODEV;
-> +}
-> +
-> +static inline int zynqmp_pm_set_rpu_mode(u32 node_id, u32 arg1)
-> +{
-> +	return -ENODEV;
-> +}
-> +
-> +static inline int zynqmp_pm_set_tcm_config(u32 node_id, u32 arg1)
-> +{
-> +	return -ENODEV;
-> +}
->  #endif
->  
->  #endif /* __FIRMWARE_ZYNQMP_H__ */
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
