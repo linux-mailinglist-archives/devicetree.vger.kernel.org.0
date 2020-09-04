@@ -2,146 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDC5B25D776
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 13:35:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A94525D760
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 13:32:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730158AbgIDLdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 07:33:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59616 "EHLO
+        id S1730069AbgIDLcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 07:32:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729297AbgIDLX7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 07:23:59 -0400
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AF9CC061247
-        for <devicetree@vger.kernel.org>; Fri,  4 Sep 2020 04:12:35 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id mm21so3035670pjb.4
-        for <devicetree@vger.kernel.org>; Fri, 04 Sep 2020 04:12:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=+wP+hTfHw3tFWF69FWuDIBtcVlOWelrnovHW8JL/Z34=;
-        b=EFpav4wUW88JS+tQ/U0d9ZsC0A4R0fvGWc05kBkPJdEehiMUnpD6XarbOJkUr6Mbhi
-         A8yngsVXQnUILWJX0qID9Ez4BEoyXPQX/5IxHzvhdbbbWe6/sg1+4jx6jkPW86zXhMuh
-         XcQc/JDhaDnMO8UftkA7ImE5+2Iud+Q5wPJog6XHSKxMglZvDjhoSElUpl+RLXkElY6W
-         abs/79kUVSlVY2YiYsa8qioTtpkulT0AHQcUbWd0O39mhAS+aclTbeATSBGiVenPDUNp
-         +IDKyS9HSMSPrcT7leE7NhJZE/QXL0xYZ3z+fNjHIRjocTlwoDs/XXxFVDPFUIUEOH2x
-         1GBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=+wP+hTfHw3tFWF69FWuDIBtcVlOWelrnovHW8JL/Z34=;
-        b=jeXhHz62JOIauESnM3Gxelhxzz0GpatVeRi8k3xR/7tjGdUB7rHvC15OlgBPyxSkA4
-         J8+biGYFxY8CbeTpX5QoabtoHR+p6sbYfDWWdJBW7PbxbUJ80yXTmH8qz4kogqgofo8w
-         FeIbz4/BuAZ4pXQTyW5yCfOfk3pSwzp6J1vXoHKiTFiJq+hJbI1SxoQe5WDNoYSb8X+x
-         zY6uCdJmKEwe2ed5IwQEc69kvZ1FLZ0MHbEPeFeMmwh16nAhP0jn+7j2XAFIm6ptZeJ7
-         XvWMYX3KTIIUXN0Aeq++2Lj0V9G6F/MzRvUoOeamSpIdDrVZ486YpFcYcLuqYJfjkVDe
-         V9Bg==
-X-Gm-Message-State: AOAM533J3u21bkWRLTjT6iUblAP9woX+wmRIsCG6dGluj1z89pErCKUI
-        TU21pgQI/UCH9HbdV2r9VlD6
-X-Google-Smtp-Source: ABdhPJxzQziJffgqrKM2Bdo+9xFsr0/Mrl5dmbLD/H9MMnY6rkl08uJ6vsvMXWeeQzFvVFEhyaeO1Q==
-X-Received: by 2002:a17:90b:693:: with SMTP id m19mr7452832pjz.111.1599217953011;
-        Fri, 04 Sep 2020 04:12:33 -0700 (PDT)
-Received: from mani ([103.59.133.81])
-        by smtp.gmail.com with ESMTPSA id r144sm6874730pfc.63.2020.09.04.04.12.28
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 04 Sep 2020 04:12:32 -0700 (PDT)
-Date:   Fri, 4 Sep 2020 16:42:23 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH v2 6/9] iio: adc: qcom-spmi-adc5: use
- of_device_get_match_data
-Message-ID: <20200904111223.GB4056@mani>
-References: <20200903132109.1914011-1-dmitry.baryshkov@linaro.org>
- <20200903132109.1914011-7-dmitry.baryshkov@linaro.org>
+        with ESMTP id S1730010AbgIDLb6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 07:31:58 -0400
+X-Greylist: delayed 6918 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 04 Sep 2020 04:21:25 PDT
+Received: from theia.8bytes.org (8bytes.org [IPv6:2a01:238:4383:600:38bc:a715:4b6d:a889])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A532CC061262;
+        Fri,  4 Sep 2020 04:21:24 -0700 (PDT)
+Received: by theia.8bytes.org (Postfix, from userid 1000)
+        id 6B8533D5; Fri,  4 Sep 2020 13:21:19 +0200 (CEST)
+Date:   Fri, 4 Sep 2020 13:21:18 +0200
+From:   Joerg Roedel <joro@8bytes.org>
+To:     Miles Chen <miles.chen@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, wsd_upstream@mediatek.com,
+        Yong Wu <yong.wu@mediatek.com>,
+        Chao Hao <chao.hao@mediatek.com>,
+        Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        David Hildenbrand <david@redhat.com>,
+        Christoph Hellwig <hch@lst.de>, Rob Herring <robh@kernel.org>
+Subject: Re: [RESEND PATCHv5] iommu/mediatek: check 4GB mode by reading
+ infracfg
+Message-ID: <20200904112117.GC16609@8bytes.org>
+References: <20200904104038.4979-1-miles.chen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200903132109.1914011-7-dmitry.baryshkov@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20200904104038.4979-1-miles.chen@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 0903, Dmitry Baryshkov wrote:
-> Use of_device_get_match_data() instead of hand-coding it manually.
+On Fri, Sep 04, 2020 at 06:40:38PM +0800, Miles Chen wrote:
+> In previous discussion [1] and [2], we found that it is risky to
+> use max_pfn or totalram_pages to tell if 4GB mode is enabled.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/iio/adc/qcom-spmi-adc5.c | 16 +++++-----------
->  1 file changed, 5 insertions(+), 11 deletions(-)
+> Check 4GB mode by reading infracfg register, remove the usage
+> of the un-exported symbol max_pfn.
 > 
-> diff --git a/drivers/iio/adc/qcom-spmi-adc5.c b/drivers/iio/adc/qcom-spmi-adc5.c
-> index c2da8f068b87..0ac0b81bab7d 100644
-> --- a/drivers/iio/adc/qcom-spmi-adc5.c
-> +++ b/drivers/iio/adc/qcom-spmi-adc5.c
-> @@ -14,6 +14,7 @@
->  #include <linux/math64.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> +#include <linux/of_device.h>
->  #include <linux/platform_device.h>
->  #include <linux/regmap.h>
->  #include <linux/slab.h>
-> @@ -807,8 +808,6 @@ static int adc5_get_dt_data(struct adc5_chip *adc, struct device_node *node)
->  	struct adc5_channel_prop prop, *chan_props;
->  	struct device_node *child;
->  	unsigned int index = 0;
-> -	const struct of_device_id *id;
-> -	const struct adc5_data *data;
->  	int ret;
->  
->  	adc->nchannels = of_get_available_child_count(node);
-> @@ -827,24 +826,19 @@ static int adc5_get_dt_data(struct adc5_chip *adc, struct device_node *node)
->  
->  	chan_props = adc->chan_props;
->  	iio_chan = adc->iio_chans;
-> -	id = of_match_node(adc5_match_table, node);
-> -	if (id)
-> -		data = id->data;
-> -	else
-> -		data = &adc5_data_pmic;
-> -	adc->data = data;
-> +	adc->data = of_device_get_match_data(adc->dev);
-
-I think you're missing the else condition to fallback to default dev data incase
-the device is not part of of_device_id.
-
-Thanks,
-Mani
-
->  
->  	for_each_available_child_of_node(node, child) {
-> -		ret = adc5_get_dt_channel_data(adc, &prop, child, data);
-> +		ret = adc5_get_dt_channel_data(adc, &prop, child, adc->data);
->  		if (ret) {
->  			of_node_put(child);
->  			return ret;
->  		}
->  
->  		prop.scale_fn_type =
-> -			data->adc_chans[prop.channel].scale_fn_type;
-> +			adc->data->adc_chans[prop.channel].scale_fn_type;
->  		*chan_props = prop;
-> -		adc_chan = &data->adc_chans[prop.channel];
-> +		adc_chan = &adc->data->adc_chans[prop.channel];
->  
->  		iio_chan->channel = prop.channel;
->  		iio_chan->datasheet_name = prop.datasheet_name;
-> -- 
-> 2.28.0
+> This is a step towards building mtk_iommu as a kernel module.
 > 
+> [1] https://lore.kernel.org/lkml/20200603161132.2441-1-miles.chen@mediatek.com/
+> [2] https://lore.kernel.org/lkml/20200604080120.2628-1-miles.chen@mediatek.com/
+> [3] https://lore.kernel.org/lkml/20200715205120.GA778876@bogus/
+
+Applied, thanks.
