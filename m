@@ -2,68 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0C8625E39E
-	for <lists+devicetree@lfdr.de>; Sat,  5 Sep 2020 00:17:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F6A825E3B3
+	for <lists+devicetree@lfdr.de>; Sat,  5 Sep 2020 00:29:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728061AbgIDWRM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 18:17:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57124 "EHLO mail.kernel.org"
+        id S1728076AbgIDW31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 18:29:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41384 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727923AbgIDWRM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Sep 2020 18:17:12 -0400
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+        id S1728012AbgIDW31 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Sep 2020 18:29:27 -0400
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7D15B2087C;
-        Fri,  4 Sep 2020 22:17:11 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6AA67208C7;
+        Fri,  4 Sep 2020 22:29:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599257831;
-        bh=bX7jsLYv1sDhwAMVdGB1HKc5fPOJWIv3JMZCsUQRhXU=;
+        s=default; t=1599258566;
+        bh=+8dgVfOXgmURomqOzPuR2s0d+0XktF+kVIZ4JamC1Yk=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=RwJC9bb4ri2PkLMqdpflMpGBF1HicyiBsYa66hrWum4tFvjyg2bPeqy/0VfbNT59B
-         sTM9wWrQjCVwmWSFz7woQsPVMySzrz8BpZZ53IzjSxPPmeAghZQYWfaokFj4OhgatP
-         M4EgLx5jFGKV2ZBztosmHIrKvS37OYm0sAQuT/b4=
-Received: by mail-oi1-f182.google.com with SMTP id x19so7965259oix.3;
-        Fri, 04 Sep 2020 15:17:11 -0700 (PDT)
-X-Gm-Message-State: AOAM532QhwA/gwhcj1srmi+XEiJ7jFsFE4vUahEj2HvmkCUnDlhuJsBl
-        qAR+ZxJOl7GRARoEm5rhCycc+t0UFDMxs4cVhA==
-X-Google-Smtp-Source: ABdhPJyUka2+LqTrKWWh2vZG6IjAbbBF7qEafdcyvuFmBaPyXr4hS/jGoe947KhJRNFwDqFgdvppdJC40GjGpFmIYPU=
-X-Received: by 2002:a54:4197:: with SMTP id 23mr6662831oiy.106.1599257830894;
- Fri, 04 Sep 2020 15:17:10 -0700 (PDT)
+        b=FPfVtLk3VgVy9YY2bppjWvDV2nvJ00oTy/jZPGsp1pSsT+kcmQKDELrZFVKOe/MW4
+         zJ45aqs0sB4ogJLfi9CwwVOS1v0zgXZFL4fluzz0xaGojKmgqLJSTmIwDbIBjLZCDs
+         e36mpUibGpzlRequFLGXPuBTspvr9u7SNO8bieYo=
+Received: by mail-ot1-f53.google.com with SMTP id g96so7253810otb.12;
+        Fri, 04 Sep 2020 15:29:26 -0700 (PDT)
+X-Gm-Message-State: AOAM530HI8S9w97j5PgXqi3vtRBxS4qaUMIMg4IDLgsN+4mUyfAvzmGg
+        1lBYOqogNOdrbP+dn0+qOhkmDJ2fNHZwlCDxBg==
+X-Google-Smtp-Source: ABdhPJyg8Cu0lq2UsQBYhJV227Jo2feqOcJKLxrdCLPxr9lVLm9MUPpbfMcEDGy7OIP/8N+4iwU7/9VeNN4vhk5EUSE=
+X-Received: by 2002:a9d:7f84:: with SMTP id t4mr7261177otp.192.1599258565768;
+ Fri, 04 Sep 2020 15:29:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200904213730.3467899-1-f.fainelli@gmail.com> <20200904213730.3467899-2-f.fainelli@gmail.com>
-In-Reply-To: <20200904213730.3467899-2-f.fainelli@gmail.com>
+References: <20200904152404.20636-1-krzk@kernel.org> <20200904152404.20636-14-krzk@kernel.org>
+In-Reply-To: <20200904152404.20636-14-krzk@kernel.org>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 4 Sep 2020 16:16:59 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+EXvKkFoKgFA4gh7e-PPt0wLHHm3nR1RCqtubBTaj+dw@mail.gmail.com>
-Message-ID: <CAL_Jsq+EXvKkFoKgFA4gh7e-PPt0wLHHm3nR1RCqtubBTaj+dw@mail.gmail.com>
-Subject: Re: [PATCH net-next v2 1/2] of: Export of_remove_property() to modules
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     netdev <netdev@vger.kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>
+Date:   Fri, 4 Sep 2020 16:29:14 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKOkerY14qc-7e5721Xsp0k6jm9oh1U1Lr-3SZA0HFgjw@mail.gmail.com>
+Message-ID: <CAL_JsqKOkerY14qc-7e5721Xsp0k6jm9oh1U1Lr-3SZA0HFgjw@mail.gmail.com>
+Subject: Re: [PATCH v3 13/14] dt-bindings: mtd: nand-controller: Fix matching
+ with size-cells==1
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-clk <linux-clk@vger.kernel.org>, devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Guenter Roeck <linux@roeck-us.net>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 4, 2020 at 3:37 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
+On Fri, Sep 4, 2020 at 9:25 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >
-> We will need to remove some OF properties in drivers/net/dsa/bcm_sf2.c
-> with a subsequent commit. Export of_remove_property() to modules so we
-> can keep bcm_sf2 modular and provide an empty stub for when CONFIG_OF is
-> disabled to maintain the ability to compile test.
+> Most of Freescale/NXP GPMI device trees use size-cells==1 (even when
+> actually not needed except few boards).  This fixes dtbs_check warnings
+> like:
 >
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+>     arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dt.yaml: nand-controller@33002000: #size-cells:0:0: 0 was expected
+>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->  drivers/of/base.c  | 1 +
->  include/linux/of.h | 5 +++++
->  2 files changed, 6 insertions(+)
+>  Documentation/devicetree/bindings/mtd/nand-controller.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> index 40fc5b0b2b8c..0879e1108837 100644
+> --- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> @@ -34,7 +34,10 @@ properties:
+>      const: 1
+>
+>    "#size-cells":
+> -    const: 0
+> +    description:
+> +      Depends on your controller. Put zero unless you need a mapping between CS
+> +      lines and dedicated memory regions.
+> +    enum: [0, 1]
 
-Acked-by: Rob Herring <robh@kernel.org>
+Humm, seems that was to describe partitions, but the expectation of
+the nand binding is describing nand chips. It seems the nand chips are
+never described and on 1 board even has partitions. I think you should
+fix the dts to move 'partition@N' nodes under 'partitions' which is
+preferred and needed if you ever describe nand chips. And then fix
+'#size-cells' to be 0.
+
+Rob
