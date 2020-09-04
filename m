@@ -2,127 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A218125CFB3
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 05:18:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4842825CFBF
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 05:23:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729538AbgIDDSq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 23:18:46 -0400
-Received: from wnew1-smtp.messagingengine.com ([64.147.123.26]:54097 "EHLO
-        wnew1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729528AbgIDDSp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 23:18:45 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.west.internal (Postfix) with ESMTP id 6FD431284;
-        Thu,  3 Sep 2020 23:18:43 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Thu, 03 Sep 2020 23:18:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        subject:to:cc:references:from:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=d
-        aya0oYspjG9Gt00RdJSVZlyB/j1e0iHqyBf8JDOAHI=; b=qH0x9AqWShHLGvJbB
-        7WcnSKZuR70hZW8ewBHikke14/RXA8iKU/mEzz0GIrLcaBzADVkQO5lzqnRi8mYm
-        Xy00p/D0HT0UmACc1lGMyuGbGt2yg1RYNX5Kkf6BV6hYerXKMbCD5ZrB3jup7Q7w
-        iE4VSpaSVXDpndzBYdxK4dR9M2hdc2JXXQX5eqOpuuOMxmyASfk4lPsQRNkQAzY7
-        9A9DckA8bFLWaDa8/SaelMBPxQSwl4FNutnLFMYq23qmVTvSz5OQB43KhwUCD007
-        n87tBPRbzG1E0SSfvTaH1wR2MmELcMJXHvjF1ldAafJePKDJZbCLIknt9vmYSLul
-        +jLFQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=daya0oYspjG9Gt00RdJSVZlyB/j1e0iHqyBf8JDOA
-        HI=; b=iGBdKFsC7cY4mTqOmEfFlQKxEdwHyo1tR7qFwoMoacPY7KvfRFKQGb2fo
-        OfLo138V2tSHV9tMGKGYna31Q5n0MnZekdwrIS3DTaSJw/fvRlBUhHAa82FEOT+v
-        7Y44RuqcZU/22xfJFaDHBRfCTlwPvcl7gj7Z4f+F8DeHrwYZ/IzGBU6x5WrWRwpv
-        oVrcWmnQYUJa4OKDErzDyHmeO0plOzB4RgCbLR5mtlDYZ9eGVegyjOsB3AOsa/EZ
-        bZhsGVr3VmI/x0NUAj3sGpzqy52GlXTmL3Y7+KBhQy0vTSrDFw1ToMfX/uJYMneq
-        01erHy6INxtw4C9A++lTMSEzNunyA==
-X-ME-Sender: <xms:ErJRX56UYu_vQFidW29eL1TaTHtWJrt8O7yvn0EpgZ6tslVOizgTSw>
-    <xme:ErJRX25XHcw6Q65G_OWOfyyo84-0xsJ5-pW9tUxJVY7k9nJMS8nGSdIIHMwEey4jd
-    m5Dr09dsGrifu85cA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudegvddgieelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepgfelkeduveejtdejhfeiledvhfeggeeiieeklefhfeefffffffeg
-    udetteelieejnecukfhppeejtddrudefhedrudegkedrudehudenucevlhhushhtvghruf
-    hiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgr
-    nhgurdhorhhg
-X-ME-Proxy: <xmx:ErJRXwdm0znDTekQkNpFRQKbhtAKv3wpFUv2oOzFO8zqvcmj0TS_nw>
-    <xmx:ErJRXyInBPKHnNQ5vu1Ha2kaImMh0C6LIlQaLxxooKZZv_I3vojWcQ>
-    <xmx:ErJRX9L5iJJURgSbz473jBhbVTvc7YfkTP_ECs06ZMhEX0NV4Eoojw>
-    <xmx:E7JRX3CAaQ_5Az1QgjcryG6sjtQ9nSOqGLhE0CbjaIDwHdDRSHcbucvrBQU>
-Received: from [192.168.50.169] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 546CF328005A;
-        Thu,  3 Sep 2020 23:18:41 -0400 (EDT)
-Subject: Re: [PATCH v2 03/20] ASoC: sun4i-i2s: Adjust LRCLK width
-To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        linux-sunxi@googlegroups.com, linux-arm-kernel@lists.infradead.org,
-        Maxime Ripard <maxime@cerno.tech>
-References: <20200903203034.1057334-1-peron.clem@gmail.com>
- <20200903203034.1057334-4-peron.clem@gmail.com>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <e4c5eb23-e932-148c-5da6-90584c95cc81@sholland.org>
-Date:   Thu, 3 Sep 2020 22:18:41 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        id S1729726AbgIDDXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 23:23:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42352 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729684AbgIDDXF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 23:23:05 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4F9FC061246
+        for <devicetree@vger.kernel.org>; Thu,  3 Sep 2020 20:23:04 -0700 (PDT)
+Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 9E07D84488;
+        Fri,  4 Sep 2020 15:23:02 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1599189782;
+        bh=SYPM5NmO2oFScs3sCrM5DJmQkLy/qPNPYboTphS/uI8=;
+        h=From:To:Cc:Subject:Date;
+        b=LavJHK0Atihlh25m8bejpmJ0sJAKAx77eAo7BPQ2rAa/2e0WClbU4VnpdMYS1OGfX
+         bKjK7Jic0OFFdYvLqIOMARnUDPLgPk9RvveRSIXhH4KVTne1c2HifM7IdNnmMsdHWE
+         n/6r/yOTAP621L4r/ox3+GvTeD+teJth+QtvydrfK+SnS8EPduKzZbiyRVh0Yj0NNH
+         jl/zPPccSmXOENKJ+J06wGR6zgIkaMybiaHFf2TLgZTIDBx+MCWxGwNGyhPMaQ/v3i
+         HBJEkEpoxLaYc7p6aI1ft+bycmvEHvbFY7temOm0YA5xoPeugKbRaOzx/Dh8p1YPLO
+         IHJSU3Rj2t6JA==
+Received: from smtp (Not Verified[10.32.16.33]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
+        id <B5f51b3120000>; Fri, 04 Sep 2020 15:23:02 +1200
+Received: from hamishm-dl.ws.atlnz.lc (hamishm-dl.ws.atlnz.lc [10.33.24.30])
+        by smtp (Postfix) with ESMTP id AECFB13EEBA;
+        Fri,  4 Sep 2020 15:22:57 +1200 (NZST)
+Received: by hamishm-dl.ws.atlnz.lc (Postfix, from userid 1133)
+        id 00B942A06EA; Fri,  4 Sep 2020 15:22:57 +1200 (NZST)
+From:   Hamish Martin <hamish.martin@alliedtelesis.co.nz>
+To:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        stern@rowland.harvard.edu
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Hamish Martin <hamish.martin@alliedtelesis.co.nz>
+Subject: [PATCH 0/2] usb: ohci: Per-port overcurrent protection
+Date:   Fri,  4 Sep 2020 15:22:45 +1200
+Message-Id: <20200904032247.11345-1-hamish.martin@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-In-Reply-To: <20200903203034.1057334-4-peron.clem@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+x-atlnz-ls: pat
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Clément,
+Add a dt-binding to select per-port overcurrent protection mode so handle
+spurious overcurrent events from unconnected ports.
 
-On 9/3/20 3:30 PM, Clément Péron wrote:
-> From: Marcus Cooper <codekipper@gmail.com>
-> 
-> Some codecs such as i2s based HDMI audio and the Pine64 DAC require
-> a different amount of bit clocks per frame than what is calculated
-> by the sample width. Use the values obtained by the tdm slot bindings
-> to adjust the LRCLK width accordingly.
-> 
-> Signed-off-by: Marcus Cooper <codekipper@gmail.com>
-> Signed-off-by: Clément Péron <peron.clem@gmail.com>
-> Acked-by: Maxime Ripard <maxime@cerno.tech>
-> ---
->  sound/soc/sunxi/sun4i-i2s.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
-> index acf24f512f2c..1b4482b0f4af 100644
-> --- a/sound/soc/sunxi/sun4i-i2s.c
-> +++ b/sound/soc/sunxi/sun4i-i2s.c
-> @@ -478,6 +478,9 @@ static int sun8i_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
->  		return -EINVAL;
->  	}
->  
-> +	if (i2s->slot_width)
-> +		lrck_period = i2s->slot_width;
-> +
+Hamish Martin (2):
+  usb: ohci: Add per-port overcurrent quirk
+  dt-bindings: usb: generic-ohci: Document per-port-overcurrent property
 
-Same as patch 2, this duplicates logic in sun4i_i2s_hw_params, and would need to
-be multiplied by `slots` for PCM (DSP_A/B) mode.
+ Documentation/devicetree/bindings/usb/generic-ohci.yaml | 5 +++++
+ drivers/usb/host/ohci-hcd.c                             | 4 ++++
+ drivers/usb/host/ohci-platform.c                        | 3 +++
+ drivers/usb/host/ohci.h                                 | 1 +
+ 4 files changed, 13 insertions(+)
 
-Regards,
-Samuel
-
->  	regmap_update_bits(i2s->regmap, SUN4I_I2S_FMT0_REG,
->  			   SUN8I_I2S_FMT0_LRCK_PERIOD_MASK,
->  			   SUN8I_I2S_FMT0_LRCK_PERIOD(lrck_period));
-> 
+--=20
+2.28.0
 
