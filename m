@@ -2,85 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37E6B25DDDF
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 17:36:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D048325DDE4
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 17:37:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726922AbgIDPgE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 11:36:04 -0400
-Received: from foss.arm.com ([217.140.110.172]:52800 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726898AbgIDPgD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Sep 2020 11:36:03 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 584A8113E;
-        Fri,  4 Sep 2020 08:36:01 -0700 (PDT)
-Received: from [192.168.2.22] (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 05A223F66F;
-        Fri,  4 Sep 2020 08:35:58 -0700 (PDT)
-Subject: Re: [PATCH 00/10] dt-bindings: Convert SP805 to Json-schema (and fix
- users)
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Guenter Roeck <linux@roeck-us.net>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Chanho Min <chanho.min@lge.com>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Wei Xu <xuwei5@hisilicon.com>
-References: <20200828130602.42203-1-andre.przywara@arm.com>
- <19c6a67e-48f0-c0b6-3653-32a5a1f09e07@gmail.com>
- <CACRpkdbMbNd87145iwdL7=x501cvgU7wiZXNLF456sn6WvoodQ@mail.gmail.com>
- <302c54fd-5183-c8d0-7038-f6e60c7bb056@gmail.com>
-From:   =?UTF-8?Q?Andr=c3=a9_Przywara?= <andre.przywara@arm.com>
-Organization: ARM Ltd.
-Message-ID: <26416b9b-d390-d7df-ee1f-8ec7ca08ba72@arm.com>
-Date:   Fri, 4 Sep 2020 16:35:37 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        id S1726194AbgIDPhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 11:37:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42512 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726032AbgIDPhk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 11:37:40 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EED35C061244;
+        Fri,  4 Sep 2020 08:37:39 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id b124so4781552pfg.13;
+        Fri, 04 Sep 2020 08:37:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Vd6OOKG0PfWJEUpTEF2TMExH9RlBGmQuVQFRBrWjino=;
+        b=cgKvsflvWTCMfOLrHfz71Re/gJ3TZ283cVzrJpsTKeejXn2IF7mPUxJ5BrdeY9sf7l
+         XbPrODnD0SWVfUQ4exIlAegHCTq7qyfxXt5EfXjaIB4pXrZmjc/tCJl/ZYMdLl4fDVMQ
+         G1fK3FEsMK00DPrwdhvp9fzKUETGt9Qwyunc13u7+IXbnysYu2Eutq4msi7gaWLlReLl
+         tzDgsAQcz8xlo8276fWzPZOS2h0pQ7skf8LShYtQTfgnKXGyszx9+8B9XIerI98z0pc9
+         dYuNdjJWjG3bKRKCcQaaB1IZQgyczoo81LS8ZyoW80y+0b/ctu/eFqVyYXAcm75bJ+uL
+         gB/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Vd6OOKG0PfWJEUpTEF2TMExH9RlBGmQuVQFRBrWjino=;
+        b=QgWzj3eteIe1YC3McyF9Ps3syCOY8S1IMpddsKJtznWZq5/DZvM3oD/YMmztT1AU56
+         gwz9d1bJlv4Y3iMktE8VY/DWV7Sdgdm5zq7kVE5SFudRp5hv71nEmm1V7pDoUYldWFyy
+         xoSL2hqFaUW3iVJlXSPIgYRaR9PjCyW9flEV5IImOIsAx6+i+uzDRzESlpSOpWdNggZg
+         OkMD3QOiQRGYs+5Jx/VxJgPF8YsgLYC6rvWTzzUlDZiBIbX2QTt0Otkr7dUYOYbcOkgJ
+         jNtO1zRuPiZYTZH23AaGX0USbaoHkjKh2bf4Q1pMwfQ55KMgd/ajaMyM+4fGsFaWlSNA
+         hGGA==
+X-Gm-Message-State: AOAM530btxkKbgxYQ+BPa3tbGUj+Uf6NrsUjyWurM4aRjrA1LPNleEv0
+        ybJF4fjfUdioMX8pd+rJ7ic=
+X-Google-Smtp-Source: ABdhPJzGU3JS+O5pTGXzLexEvVxWwmTZS0r6jPAg0L0OZdIP1PjCPK2sUmZcGxujbB21TU/l7h9g3A==
+X-Received: by 2002:a63:fb4a:: with SMTP id w10mr7518439pgj.114.1599233859325;
+        Fri, 04 Sep 2020 08:37:39 -0700 (PDT)
+Received: from [10.230.30.107] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id q127sm6939370pfb.61.2020.09.04.08.37.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Sep 2020 08:37:38 -0700 (PDT)
+Subject: Re: [PATCH net-next 3/3] net: phy: bcm7xxx: request and manage GPHY
+ clock
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     netdev@vger.kernel.org, andrew@lunn.ch, adam.rudzinski@arf.net.pl,
+        hkallweit1@gmail.com, richard.leitner@skidata.com,
+        zhengdejin5@gmail.com, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, kuba@kernel.org, robh+dt@kernel.org
+References: <20200903043947.3272453-1-f.fainelli@gmail.com>
+ <20200903043947.3272453-4-f.fainelli@gmail.com>
+ <20200904061558.s2s33nfof6itt24y@pengutronix.de>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <ccfa67f5-d3dd-26a6-1bb8-9772e2434d82@gmail.com>
+Date:   Fri, 4 Sep 2020 08:37:30 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.2.1
 MIME-Version: 1.0
-In-Reply-To: <302c54fd-5183-c8d0-7038-f6e60c7bb056@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200904061558.s2s33nfof6itt24y@pengutronix.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/09/2020 16:29, Florian Fainelli wrote:
 
-Hi,
 
-> On 9/4/2020 1:58 AM, Linus Walleij wrote:>> On Fri, Aug 28, 2020 at 9:34 PM Florian Fainelli
->> <f.fainelli@gmail.com> wrote:
->>> On 8/28/20 6:05 AM, Andre Przywara wrote:
->>
->>> What is the plan for merging this series? Should Rob pick up all changes
->>> or since those are non critical changes, should we just leave it to the
->>> SoC maintainers to pick up the changes in their tree?
->>
->> What about André just send a pull request to the ARM SoC maintainers
->> for the whole thing?
+On 9/3/2020 11:15 PM, Marco Felsch wrote:
+> Hi Florian,
 > 
-> I already applied some of the patches, if we got that route please CC me
-> so I can drop them from my local queue. Thanks
+> On 20-09-02 21:39, Florian Fainelli wrote:
+>> The internal Gigabit PHY on Broadcom STB chips has a digital clock which
+>> drives its MDIO interface among other things, the driver now requests
+>> and manage that clock during .probe() and .remove() accordingly.
+>>
+>> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+>> ---
+>>   drivers/net/phy/bcm7xxx.c | 18 +++++++++++++++++-
+>>   1 file changed, 17 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/net/phy/bcm7xxx.c b/drivers/net/phy/bcm7xxx.c
+>> index 692048d86ab1..f0ffcdcaef03 100644
+>> --- a/drivers/net/phy/bcm7xxx.c
+>> +++ b/drivers/net/phy/bcm7xxx.c
+>> @@ -11,6 +11,7 @@
+>>   #include "bcm-phy-lib.h"
+>>   #include <linux/bitops.h>
+>>   #include <linux/brcmphy.h>
+>> +#include <linux/clk.h>
+>>   #include <linux/mdio.h>
+>>   
+>>   /* Broadcom BCM7xxx internal PHY registers */
+>> @@ -39,6 +40,7 @@
+>>   
+>>   struct bcm7xxx_phy_priv {
+>>   	u64	*stats;
+>> +	struct clk *clk;
+>>   };
+>>   
+>>   static int bcm7xxx_28nm_d0_afe_config_init(struct phy_device *phydev)
+>> @@ -534,7 +536,19 @@ static int bcm7xxx_28nm_probe(struct phy_device *phydev)
+>>   	if (!priv->stats)
+>>   		return -ENOMEM;
+>>   
+>> -	return 0;
+>> +	priv->clk = devm_clk_get_optional(&phydev->mdio.dev, NULL);
+> 
+> Since the clock is binded to the mdio-dev here..
+> 
+>> +	if (IS_ERR(priv->clk))
+>> +		return PTR_ERR(priv->clk);
+>> +
+>> +	return clk_prepare_enable(priv->clk);
+> 
+> clould we use devm_add_action_or_reset() here so we don't have to
+> register the .remove() hook?
 
-I would for sure drop these from any PR.
+Maybe, more on that below.
 
-Rob, are you happy with the actual binding conversion? If you are
-willing to take it as it is (Viresh has already acked), I could then
-split off the DT fixes and either chase the maintainers or send ARM SoC
-a PR. But this really depends on the binding being good.
+> 
+>> +}
+>> +
+>> +static void bcm7xxx_28nm_remove(struct phy_device *phydev)
+>> +{
+>> +	struct bcm7xxx_phy_priv *priv = phydev->priv;
+>> +
+>> +	clk_disable_unprepare(priv->clk);
+>> +	devm_clk_put(&phydev->mdio.dev, priv->clk);
+> 
+> Is this really necessary? The devm_clk_get_optional() function already
+> registers the devm_clk_release() hook.
 
-Cheers,
-Andre.
+Yes, because you can unbind the PHY driver from sysfs, and if you want 
+to bind that driver again, which will call .probe() again, you must undo 
+strictly everything that .probe() did. The embedded mdio_device does not 
+go away, so there will be no automatic freeing of resources. Using 
+devm_* may be confusing, so using just the plain clk_get() and clk_put() 
+may be clearer here.
+-- 
+Florian
