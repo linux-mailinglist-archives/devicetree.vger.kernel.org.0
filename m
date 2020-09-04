@@ -2,125 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFB9425CEF0
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 03:05:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACD0125CF68
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 04:30:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728107AbgIDBFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 21:05:00 -0400
-Received: from foss.arm.com ([217.140.110.172]:42970 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725787AbgIDBE7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Sep 2020 21:04:59 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CA83F101E;
-        Thu,  3 Sep 2020 18:04:57 -0700 (PDT)
-Received: from [192.168.2.22] (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7728F3F68F;
-        Thu,  3 Sep 2020 18:04:56 -0700 (PDT)
-Subject: Re: [PATCH v2 3/6] ARM: dts: NSP: Fix SP804 compatible node
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Haojian Zhuang <haojian.zhuang@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com
-References: <20200828142018.43298-1-andre.przywara@arm.com>
- <20200828142018.43298-4-andre.przywara@arm.com>
- <73b35bcd-0e8c-0f62-ed2b-e0c64261f930@gmail.com>
- <c97c1472-c308-27e2-ce68-30bc82b96aae@gmail.com>
-From:   =?UTF-8?Q?Andr=c3=a9_Przywara?= <andre.przywara@arm.com>
-Autocrypt: addr=andre.przywara@arm.com; prefer-encrypt=mutual; keydata=
- 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
- i4aIXCH3Wv6K
-Organization: ARM Ltd.
-Message-ID: <98cdc873-e36a-c47d-6eaf-cc4e023f977c@arm.com>
-Date:   Fri, 4 Sep 2020 02:04:35 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        id S1729513AbgIDCaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 22:30:15 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:42706 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729507AbgIDCaO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 22:30:14 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 85D26540;
+        Fri,  4 Sep 2020 04:30:11 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1599186611;
+        bh=3IhAp6iiTQb1VIkwNiG2ixLcKMYBNgk+LZRubUP8PCw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lRcg68qSD5iYxtgkBuIVFRvJRfhUMvWKvU3HZyFB2v6AWSmK9IzjnnOl5o4J3w1ic
+         swiLpzMA9uttHRDEkkhSHKyZ8vQZmlXrwm948O2PAHfZK1K+Yi274qHQZEKDcsBcsT
+         um8P7GYinkLDmsvDgYhWubWdAb8OeV00+fQVWg78=
+Date:   Fri, 4 Sep 2020 05:29:48 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
+Cc:     Swapnil Jakhade <sjakhade@cadence.com>,
+        dri-devel@lists.freedesktop.org, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, a.hajda@samsung.com, narmstrong@baylibre.com,
+        jonas@kwiboo.se, jernej.skrabec@siol.net,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mparab@cadence.com, yamonkar@cadence.com, jsarha@ti.com,
+        nsekhar@ti.com, praneeth@ti.com, nikhil.nd@ti.com
+Subject: Re: [PATCH v9 2/3] drm: bridge: Add support for Cadence MHDP8546
+ DPI/DP bridge
+Message-ID: <20200904022948.GE9369@pendragon.ideasonboard.com>
+References: <1598862215-10222-1-git-send-email-sjakhade@cadence.com>
+ <1598862215-10222-3-git-send-email-sjakhade@cadence.com>
+ <71452de7-80e7-0144-4802-e3370c00854b@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <c97c1472-c308-27e2-ce68-30bc82b96aae@gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+In-Reply-To: <71452de7-80e7-0144-4802-e3370c00854b@ti.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/09/2020 00:04, Florian Fainelli wrote:
+Hi Tomi,
 
-Hi Florian,
-
-sorry, the mail got swamped in my inbox...
-
-> On 8/28/2020 10:12 AM, Florian Fainelli wrote:
->> On 8/28/20 7:20 AM, Andre Przywara wrote:
->>> The DT binding for SP804 requires to have an "arm,primecell" compatible
->>> string.
->>> Add this string so that the Linux primecell bus driver picks the device
->>> up and activates the clock.
->>>
->>> Fixes: a0efb0d28b77 ("ARM: dts: NSP: Add SP804 Support to DT")
->>> Tested-by: Florian Fainelli <f.fainelli@gmail.com>
->>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
->>
->> This looks fine, however there is a ccbtimer1 instance that you missed,
->> can you resubmit with it included?
->>
->> With that:
->>
->> Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+On Tue, Sep 01, 2020 at 10:46:03AM +0300, Tomi Valkeinen wrote:
+> Hi Swapnil,
 > 
-> Andre are you going to resubmit a patch with the second instance
-> (ccbtimer1) fixed as well, or should I take care of that while applying
-> the patch? Either way is fine, just let me know.
+> On 31/08/2020 11:23, Swapnil Jakhade wrote:
+> 
+> > +static int cdns_mhdp_validate_mode_params(struct cdns_mhdp_device *mhdp,
+> > +					  const struct drm_display_mode *mode,
+> > +					  struct drm_bridge_state *bridge_state)
+> > +{
+> > +	u32 tu_size = 30, line_thresh1, line_thresh2, line_thresh = 0;
+> > +	u32 rate, vs, vs_f, required_bandwidth, available_bandwidth;
+> > +	struct cdns_mhdp_bridge_state *state;
+> > +	int pxlclock;
+> > +	u32 bpp;
+> > +
+> > +	state = to_cdns_mhdp_bridge_state(bridge_state);
+> > +
+> > +	pxlclock = mode->crtc_clock;
+> > +
+> > +	/* Get rate in MSymbols per second per lane */
+> > +	rate = mhdp->link.rate / 1000;
+> > +
+> > +	bpp = cdns_mhdp_get_bpp(&mhdp->display_fmt);
+> 
+> None of the above are used when calling cdns_mhdp_bandwidth_ok(). For clarity, I'd move the above
+> lines a bit closer to where they are needed, as currently it makes me think the above values are
+> used when checking the bandwidth.
+> 
+> > +	if (!cdns_mhdp_bandwidth_ok(mhdp, mode, mhdp->link.num_lanes,
+> > +				    mhdp->link.rate)) {
+> > +		dev_err(mhdp->dev, "%s: Not enough BW for %s (%u lanes at %u Mbps)\n",
+> > +			__func__, mode->name, mhdp->link.num_lanes,
+> > +			mhdp->link.rate / 100);
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	/* find optimal tu_size */
+> > +	required_bandwidth = pxlclock * bpp / 8;
+> > +	available_bandwidth = mhdp->link.num_lanes * rate;
+> > +	do {
+> > +		tu_size += 2;
+> > +
+> > +		vs_f = tu_size * required_bandwidth / available_bandwidth;
+> > +		vs = vs_f / 1000;
+> > +		vs_f = vs_f % 1000;
+> > +		/* Downspreading is unused currently */
+> > +	} while ((vs == 1 || ((vs_f > 850 || vs_f < 100) && vs_f != 0) ||
+> > +		 tu_size - vs < 2) && tu_size < 64);
+> > +
+> > +	if (vs > 64) {
+> > +		dev_err(mhdp->dev,
+> > +			"%s: No space for framing %s (%u lanes at %u Mbps)\n",
+> > +			__func__, mode->name, mhdp->link.num_lanes,
+> > +			mhdp->link.rate / 100);
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	if (vs == tu_size)
+> > +		vs = tu_size - 1;
+> > +
+> > +	line_thresh1 = ((vs + 1) << 5) * 8 / bpp;
+> > +	line_thresh2 = (pxlclock << 5) / 1000 / rate * (vs + 1) - (1 << 5);
+> > +	line_thresh = line_thresh1 - line_thresh2 / mhdp->link.num_lanes;
+> > +	line_thresh = (line_thresh >> 5) + 2;
+> > +
+> > +	state->vs = vs;
+> > +	state->tu_size = tu_size;
+> > +	state->line_thresh = line_thresh;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int cdns_mhdp_atomic_check(struct drm_bridge *bridge,
+> > +				  struct drm_bridge_state *bridge_state,
+> > +				  struct drm_crtc_state *crtc_state,
+> > +				  struct drm_connector_state *conn_state)
+> > +{
+> > +	struct cdns_mhdp_device *mhdp = bridge_to_mhdp(bridge);
+> > +	const struct drm_display_mode *mode = &crtc_state->adjusted_mode;
+> > +	int ret;
+> > +
+> > +	mutex_lock(&mhdp->link_mutex);
+> > +
+> > +	if (!mhdp->plugged) {
+> > +		mhdp->link.rate = mhdp->host.link_rate;
+> > +		mhdp->link.num_lanes = mhdp->host.lanes_cnt;
+> > +	}
+> > +
+> > +	ret = cdns_mhdp_validate_mode_params(mhdp, mode, bridge_state);
+> > +
+> > +	mutex_unlock(&mhdp->link_mutex);
+> > +
+> > +	return ret;
+> > +}
+> 
+> Laurent mentioned that atomic_check should not change state. Note that
+> cdns_mhdp_validate_mode_params also changes state, as it calculates tu_size, vs and line_thresh.
 
-So I was waiting for more comments, but there was nothing so far that
-justifies a new version. So would you mind fixing this while applying? I
-must have indeed missed this instance while diffing before and after.
+.atomic_check() isn't allowed to change any global state, which means
+both hardware state and data in cdns_mhdp_device. The drm_bridge_state
+(and thus the cdns_mhdp_bridge_state) can be modified as it stores the
+state for the atomic commit being checked.
 
-Many thanks!
-Andre.
+> There seems to be issues with mode changes, but I think the first step would be to clarify the
+> related code a bit. cdns_mhdp_validate_mode_params() is misnamed, I think it should be renamed to
+> calculate_tu or something like that.
+> 
+> cdns_mhdp_bandwidth_ok() should take display_fmt or bpp as a parameter, as currently it digs that up
+> from the current state.
+> 
+> Probably cdns_mhdp_validate_mode_params() would be better if it doesn't write the result to the
+> state, but returns the values. That way it could also be used to verify if suitable settings can be
+> found, without changing the state.
+
+This use case is actually a very good example of proper usage of the
+atomic state :-) .atomic_check() has to perform computations to verify
+the atomic commit, and storing the results in the commit's state
+prevents duplicating the same calculation at .atomic_commit() time.
+
+> The are two issues I see with some testing, which are probably related.
+> 
+> The first one is that if I run kmstest with a new mode, I see tu-size & co being calculated. But the
+> calculation happens before link training, which doesn't make sense. So I think what's done here is
+> that atomic_check causes tu-size calculations, then atomic_enable does link training and enables the
+> video.
+> 
+> The second happens when my monitor fails with the first CR after power-on, and the driver drops
+> number-of-lanes to 2. It goes like this:
+> 
+> The driver is loaded. Based on EDID, fbdev is created with 1920x1200. Link training is done, which
+> has the CR issue, and because of that the actual mode that we get is 1280x960. I get a proper
+> picture here, so far so good.
+> 
+> Then if I run kmstest, it only allows 1280x960 as the link doesn't support higher modes (that's ok).
+> It the does link training and gets a 4 lane link, and enables 1280x960. But the picture is not ok.
+> 
+> If I then exit kmstest, it goes back to fbdev, but now that picture is broken also.
+> 
+> Running kmstest again gives me 1920x1200 (as the link has been 4 lane now), and the picture is fine.
+> 
+> I think the above suggests that the driver is not properly updating all the registers based on the
+> new mode and link. I tried adding cdns_mhdp_validate_mode_params() call to
+> cdns_mhdp_atomic_enable(), so that tu-size etc will be calculated, but that did not fix the problem.
+
+-- 
+Regards,
+
+Laurent Pinchart
