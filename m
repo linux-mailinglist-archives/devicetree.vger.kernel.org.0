@@ -2,89 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD00425E342
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 23:23:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA0A425E362
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 23:38:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727923AbgIDVXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 17:23:36 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:56938 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726842AbgIDVXf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Sep 2020 17:23:35 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1kEJB4-00015W-HH; Fri, 04 Sep 2020 23:23:22 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
+        id S1728024AbgIDVhf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 17:37:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41576 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727020AbgIDVhf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 17:37:35 -0400
+Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28E0AC061244;
+        Fri,  4 Sep 2020 14:37:34 -0700 (PDT)
+Received: by mail-pj1-x1042.google.com with SMTP id u3so393699pjr.3;
+        Fri, 04 Sep 2020 14:37:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7SJkf0fEsg+CIwOBocv+Ie7I+/HiaubEmwfVmeKBTyU=;
+        b=f4zYjhQl5VcS2ltHtJnUQTqcdvSciVZB6DwQ/Qo3JL6kGoDdAum1r6jRT56W3qlis8
+         tZzqBDc2m17j0DlBWbLhrW6oPODg3RhIUzxaU6TfOUjbDFvRfZHB0JHAmTHfUN1UU0Nb
+         v1x4AKjzfgDzRC74DXiU7DBftcs8VmrFf5MF4/eKon/ZmJV5aJ5vDYJiL6uA7yDsRBFk
+         +6O3inGyDYwNjcfg8YNm4eKjdO1vjtjsXADQV/yCoslMj8HkukBFBA/0XCgAOUmBVUJd
+         GEULkVhugh8TO8Gm212nVPbrm/32wpxxETBExV43lF43J0WtTGpiVkbwl6EiilzzdEkw
+         Amww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7SJkf0fEsg+CIwOBocv+Ie7I+/HiaubEmwfVmeKBTyU=;
+        b=QbAcfkaMugq2s6lSMri7khUQoTw4/SUvHbginvIIJomvrlgNTztAYYLGS9FqimlEKW
+         F8N3gVb1rk2nqmu95F68IuR+Yj6+9tpRtEL0O5LONFs86jdjA2VOAUzuQ+jDprD2R6so
+         8OjojKDtI4uJnTA9TFzWGf4d4ZF4z2u/H3T6OOFPS4D/3Myrrmb+RGTanKsNiMcmpg1f
+         Fcss87rQpWvBTDEEV2Ho81RKfu4mX/AWo3E3WPR6gUswsPMwzS0vA+Hy3XxPuJ71TMD0
+         ZjWH9GTVPwAuP16UoXl+sq2tcQYqmidCevrXocoKp1LUPKtRTkOM2qQq3h8ii2vQKrjc
+         oz6A==
+X-Gm-Message-State: AOAM532y/Mf3qKs1ivER7GjP+zwo+qWG/gMM0orMVHurIVaCduk8tDxh
+        LY+YavU1BC2JGtJcMmW0Qb0g3venKqM=
+X-Google-Smtp-Source: ABdhPJxmanxSUUqNOpAeyYhRcCczHo6b85vNqzmXsXTyWJYE0ry3wXZR9IF9K9xgjhlH6QqA4JScDg==
+X-Received: by 2002:a17:90a:d812:: with SMTP id a18mr10003156pjv.228.1599255453572;
+        Fri, 04 Sep 2020 14:37:33 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id d17sm1255093pgn.56.2020.09.04.14.37.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Sep 2020 14:37:32 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     netdev@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Tom Cubie <tom@radxa.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-amarula@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: Re: [PATCH 0/3] extcon: Add Type-C Virtual PD
-Date:   Fri, 04 Sep 2020 23:23:21 +0200
-Message-ID: <6955091.ERBjKZ0CLf@diego>
-In-Reply-To: <20200904191830.387296-1-jagan@amarulasolutions.com>
-References: <20200904191830.387296-1-jagan@amarulasolutions.com>
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org (open list),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE)
+Subject: [PATCH net-next v2 0/2] net: dsa: bcm_sf2: Ensure MDIO diversion is used
+Date:   Fri,  4 Sep 2020 14:37:28 -0700
+Message-Id: <20200904213730.3467899-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jagan,
+Changes in v2:
 
-Am Freitag, 4. September 2020, 21:18:27 CEST schrieb Jagan Teki:
-> USB Type-C protocol supports various modes of operations
-> includes PD, USB3, and Altmode. If the platform design
-> supports a Type-C connector then configuring these modes
-> can be done via enumeration.
-> 
-> However, there are some platforms that design these modes
-> of operations as separate protocol connectors like design
-> Display Port from on-chip USB3 controller. So accessing
-> Type-C Altmode Display Port via onboard Display Port 
-> connector instead of a Type-C connector.
->  
-> These kinds of platforms require an explicit extcon driver
-> in order to handle Power Delivery and Port Detection.
-> 
-> This series support this Type-C Virtual PD and enable the
-> same in ROCK Pi 4C SBC.
-> 
-> Any inputs?
+- export of_update_property() to permit building bcm_sf2 as a module
+- provided a better explanation of the problem being solved after
+  explaining it to Andrew during the v1 review
 
-I tend to disagree on the design via an extcon.
+Florian Fainelli (2):
+  of: Export of_remove_property() to modules
+  net: dsa: bcm_sf2: Ensure that MDIO diversion is used
 
-That the Rockchip rk3399 currently carries that extcon thingy is unfortunate
-and only works for ChromeOS devices based on the rk3399.
+ drivers/net/dsa/bcm_sf2.c | 31 +++++++++++++++++++++++++++++--
+ drivers/of/base.c         |  1 +
+ include/linux/of.h        |  5 +++++
+ 3 files changed, 35 insertions(+), 2 deletions(-)
 
-The kernel now has a real type-c framework so we should not extend this
-extcon hack any further, because that will make it even harder to roll back
-later. Also simply because other Rockchip boards currently can't really make
-use of type-c due to this, as they use the fsusb302 phys directly connected.
-
-ChromeOS actually spend some time to make the cros-ec pd part of the type-c
-framework if I remember correctly, so a viable battle plan would be to:
-
-(1) move the Rockchip type-c phy driver to actually be part of the type-c
-    framework, with the extcon being a deprecated fallback for old DTs.
-(2) implement your gpio-altmode as part of the type-c framework
-    (which may even already exist)
-
-
-In short, please don't extend the rk3399 type-c extcon hack.
-
-Thanks
-Heiko
-
-
-
+-- 
+2.25.1
 
