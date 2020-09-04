@@ -2,98 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EB8525D316
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 09:59:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0379E25D324
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 10:01:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726151AbgIDH7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 03:59:37 -0400
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:49601 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728118AbgIDH7Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 03:59:24 -0400
-X-Originating-IP: 93.34.118.233
-Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 144031BF206;
-        Fri,  4 Sep 2020 07:59:15 +0000 (UTC)
-Date:   Fri, 4 Sep 2020 10:03:02 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        mchehab@kernel.org, sakari.ailus@linux.intel.com,
-        hverkuil-cisco@xs4all.nl, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v4 0/3] dt-bindings: media: i2c: Convert 3 sensor bindings
-Message-ID: <20200904080302.47yshw6z6n33xh7k@uno.localdomain>
-References: <20200903115143.13717-1-jacopo+renesas@jmondi.org>
- <20200903211420.GF6492@pendragon.ideasonboard.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200903211420.GF6492@pendragon.ideasonboard.com>
+        id S1726425AbgIDIBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 04:01:22 -0400
+Received: from mail.thorsis.com ([92.198.35.195]:59513 "EHLO mail.thorsis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726151AbgIDIBW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Sep 2020 04:01:22 -0400
+X-Greylist: delayed 489 seconds by postgrey-1.27 at vger.kernel.org; Fri, 04 Sep 2020 04:01:21 EDT
+Received: from localhost (localhost [127.0.0.1])
+        by mail.thorsis.com (Postfix) with ESMTP id 2AD1B3DE3;
+        Fri,  4 Sep 2020 09:53:11 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
+Received: from mail.thorsis.com ([127.0.0.1])
+        by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 8-Cjt87alBaX; Fri,  4 Sep 2020 09:53:11 +0200 (CEST)
+Received: by mail.thorsis.com (Postfix, from userid 109)
+        id 0BB554128; Fri,  4 Sep 2020 09:53:10 +0200 (CEST)
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NO_RECEIVED,
+        NO_RELAYS autolearn=unavailable autolearn_force=no version=3.4.2
+From:   Alexander Dahl <ada@thorsis.com>
+To:     linux-leds@vger.kernel.org
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Alexander Dahl <post@lespocky.de>, devicetree@vger.kernel.org,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] leds: pwm: Make automatic labels work
+Date:   Fri, 04 Sep 2020 09:53:03 +0200
+Message-ID: <2019500.FJf2EgCAKA@ada>
+In-Reply-To: <a8f9068b-d78d-3ba5-6747-f79ed8e641bd@gmail.com>
+References: <20200831210232.28052-1-post@lespocky.de> <a8f9068b-d78d-3ba5-6747-f79ed8e641bd@gmail.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+Hi Jacek,
 
-On Fri, Sep 04, 2020 at 12:14:20AM +0300, Laurent Pinchart wrote:
-> Hi Jacopo,
->
-> On Thu, Sep 03, 2020 at 01:51:40PM +0200, Jacopo Mondi wrote:
-> > I know I've sent the previous version first as part of a longer list of patches,
-> > later individually, and now grouped together again. Sorry for the fuss, hope
-> > it's not too confusing.
-> >
-> > These three sensor bindings conversions go together as they all happen in a
-> > single patch, so I deemed it was easier to just group them.
-> >
-> > In v4 after finalizing the discussion with Laurent and Rob on how to handle
-> > of-graph endpoint, I have dropped them from mt9v111 and imx274. For imx214 as I
-> > have endpoint properties to document I have also documented 'endpoint' (not
-> > mandatory) and 'remote-endpoint' (mandatory). Hope I got the outcome of the
-> > discussion right. For imx214 I also took in Laurent's suggestion on how to
-> > document the 'data-lanes' supported values.
->
-> I think you can drop remote-endpoint, it will be defined in
-> of-graph.yaml. Apart from that, it sounds good to me.
->
+Am Dienstag, 1. September 2020, 23:08:09 CEST schrieb Jacek Anaszewski:
+> Hi Alexander,
+> 
+> Thanks for the v2.
+> 
+> On 8/31/20 11:02 PM, Alexander Dahl wrote:
+> > Hei hei,
+> > 
+> > for leds-gpio you can use the properties 'function' and 'color' in the
+> > devicetree node and omit 'label', the label is constructed
+> > automatically.  This is a common feature supposed to be working for all
+> > LED drivers.  However it did not yet work for the 'leds-pwm' driver.
+> > This series fixes the driver and takes the opportunity to update the
+> > dt-bindings accordingly.
+> > 
+> > v1: based on v5.9-rc2, backport on v5.4.59 tested and working
+> > 
+> > v2: based on v5.9-rc3, added the dt-bindings update patch
+> > 
+> > Greets
+> > Alex
+> > 
+> > Alexander Dahl (2):
+> >    leds: pwm: Allow automatic labels for DT based devices
+> >    dt-bindings: leds: Convert pwm to yaml
+> >   
+> >   .../devicetree/bindings/leds/leds-pwm.txt     | 50 -----------
+> >   .../devicetree/bindings/leds/leds-pwm.yaml    | 85 +++++++++++++++++++
+> >   drivers/leds/leds-pwm.c                       |  9 +-
+> >   3 files changed, 93 insertions(+), 51 deletions(-)
+> >   delete mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.txt
+> >   create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.yaml
+> 
+> For both patches:
+> 
+> Acked-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
 
-Will I ever get this right ? Should we record the policy to document
-endpoints until we don't have an of-graph.yaml to avoid other to have
-go through 5 iterations to do it right ?
+I'd like to make a v3 and change the license of the .yaml file to "(GPL-2.0-
+only OR BSD-2-Clause)" as suggested by checkpatch and [1].  Can I keep your 
+Acked-by for that?
 
-On this patch:
-I owe an updated to the imx274 patch but I'm waiting for this
-discussion to get somewhere (you're welcome to step-in :)
-https://patchwork.linuxtv.org/project/linux-media/patch/1599012278-10203-3-git-send-email-skomatineni@nvidia.com/
+Besides: those suggestions are obviously valid for new bindings.  What about 
+old bindings (.txt), which had no explicit SPDX tag or license note before?  
+What license would apply there?  Is the .yaml file technically new, when it 
+was mostly just converted from .txt?
 
-Then I'll re-send a v5
+Greets
+Alex
 
-> > Individual maintainers cc-ed per-patch.
-> >
-> > Jacopo Mondi (3):
-> >   dt-bindings: media: mt9v111: Convert to json-schema
-> >   dt-bindings: media: imx274: Convert to json-schema
-> >   dt-bindings: media: imx214: Convert to json-schema
-> >
-> >  .../bindings/media/i2c/aptina,mt9v111.txt     |  46 ------
-> >  .../bindings/media/i2c/aptina,mt9v111.yaml    |  75 ++++++++++
-> >  .../devicetree/bindings/media/i2c/imx274.txt  |  38 -----
-> >  .../bindings/media/i2c/sony,imx214.txt        |  53 -------
-> >  .../bindings/media/i2c/sony,imx214.yaml       | 137 ++++++++++++++++++
-> >  .../bindings/media/i2c/sony,imx274.yaml       |  59 ++++++++
-> >  MAINTAINERS                                   |   6 +-
-> >  7 files changed, 274 insertions(+), 140 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.txt
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/imx274.txt
-> >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx214.txt
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
->
-> --
-> Regards,
->
-> Laurent Pinchart
+[1] https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html
+
+
+
