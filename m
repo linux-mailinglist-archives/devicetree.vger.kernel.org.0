@@ -2,183 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE70B25D6DD
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 12:53:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3F0325D721
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 13:25:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728263AbgIDKxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 06:53:25 -0400
-Received: from foss.arm.com ([217.140.110.172]:48300 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726171AbgIDKxR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Sep 2020 06:53:17 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B1A31101E;
-        Fri,  4 Sep 2020 03:53:15 -0700 (PDT)
-Received: from [10.57.40.122] (unknown [10.57.40.122])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 659D43F71F;
-        Fri,  4 Sep 2020 03:53:12 -0700 (PDT)
-Subject: Re: [RFC 00/10] Add USB support for Hikey 970
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        John Stultz <john.stultz@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>, Vinod Koul <vkoul@kernel.org>,
+        id S1730160AbgIDLZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 07:25:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59628 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730044AbgIDLXp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 07:23:45 -0400
+Received: from mxwww.masterlogin.de (mxwww.masterlogin.de [IPv6:2a03:2900:1:1::a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9687EC06123F
+        for <devicetree@vger.kernel.org>; Fri,  4 Sep 2020 04:11:04 -0700 (PDT)
+Received: from mxout1.routing.net (unknown [192.168.10.81])
+        by backup.mxwww.masterlogin.de (Postfix) with ESMTPS id 213FB2C48A
+        for <devicetree@vger.kernel.org>; Fri,  4 Sep 2020 11:00:49 +0000 (UTC)
+Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
+        by mxout1.routing.net (Postfix) with ESMTP id 1407E4026B;
+        Fri,  4 Sep 2020 11:00:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1599217229;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=DXWunT6/1oNeLvT/FMsXBR2HIErDGDCvRZEkb2LPbhU=;
+        b=mbfzMJdQ5aIC4rkeOeCzXpVZ4rxaoYZIYGpWAvoU0cVbfERXsjipPqZWVy1yY9CjS3k5yN
+        0JVVKhL9gdwN9bTa5lcZK4bDOjUTUFonAdLrjEWoN8gRVSqnRNzUCJmfTHh3gpoEvxitb1
+        imA54I3xXc9FhWom/zIHN2K2gttkXYI=
+Received: from localhost.localdomain (fttx-pool-217.61.147.193.bambit.de [217.61.147.193])
+        by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 2B322360469;
+        Fri,  4 Sep 2020 11:00:28 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     linux-mediatek@lists.infradead.org,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         Kishon Vijay Abraham I <kishon@ti.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh@kernel.org>, Yu Chen <chenyu56@huawei.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Wei Xu <xuwei5@hisilicon.com>
-References: <cover.1599214329.git.mchehab+huawei@kernel.org>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <84b7dfcd-05e9-53b2-e0a0-b03105937eb3@arm.com>
-Date:   Fri, 4 Sep 2020 11:53:10 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>
+Subject: [PATCH v6 0/4] make hdmi work on bananapi-r2
+Date:   Fri,  4 Sep 2020 12:59:58 +0200
+Message-Id: <20200904110002.88966-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <cover.1599214329.git.mchehab+huawei@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-09-04 11:23, Mauro Carvalho Chehab wrote:
-> This RFC adds what seems to be needed for USB to work with Hikey 970.
-> While this driver works fine on Kernel 4.9 and 4.19, there's a hack there,
-> in the form of some special binding logic under dwg3 driver,  that seems to
->   be just adding some delay,  and doing some different initializations at
-> PM (basically, disabling autosuspend).
-> 
-> With upstream Kernel, however, I'm getting a hard to track
-> Kernel panic:
-> 
-> [    1.837458] SError Interrupt on CPU0, code 0xbf000002 -- SError
-> [    1.837462] CPU: 0 PID: 74 Comm: kworker/0:1 Not tainted 5.8.0+ #205
-> [    1.837463] Hardware name: HiKey970 (DT)
-> [    1.837465] Workqueue: events deferred_probe_work_func
-> [    1.837467] pstate: 20000005 (nzCv daif -PAN -UAO BTYPE=--)
-> [    1.837468] pc : _raw_spin_unlock_irqrestore+0x18/0x50
-> [    1.837469] lr : regmap_unlock_spinlock+0x14/0x20
-> [    1.837470] sp : ffff8000124dba60
-> [    1.837471] x29: ffff8000124dba60 x28: 0000000000000000
-> [    1.837474] x27: ffff0001b7e854c8 x26: ffff80001204ea18
-> [    1.837476] x25: 0000000000000005 x24: ffff800011f918f8
-> [    1.837479] x23: ffff800011fbb588 x22: ffff0001b7e40e00
-> [    1.837481] x21: 0000000000000100 x20: 0000000000000000
-> [    1.837483] x19: ffff0001b767ec00 x18: 00000000ff10c000
-> [    1.837485] x17: 0000000000000002 x16: 0000b0740fdb9950
-> [    1.837488] x15: ffff8000116c1198 x14: ffffffffffffffff
-> [    1.837490] x13: 0000000000000030 x12: 0101010101010101
-> [    1.837493] x11: 0000000000000020 x10: ffff0001bf17d130
-> [    1.837495] x9 : 0000000000000000 x8 : ffff0001b6938080
-> [    1.837497] x7 : 0000000000000000 x6 : 000000000000003f
-> [    1.837500] x5 : 0000000000000000 x4 : 0000000000000000
-> [    1.837502] x3 : ffff80001096a880 x2 : 0000000000000000
-> [    1.837505] x1 : ffff0001b7e40e00 x0 : 0000000100000001
-> [    1.837507] Kernel panic - not syncing: Asynchronous SError Interrupt
-> [    1.837509] CPU: 0 PID: 74 Comm: kworker/0:1 Not tainted 5.8.0+ #205
-> [    1.837510] Hardware name: HiKey970 (DT)
-> [    1.837511] Workqueue: events deferred_probe_work_func
-> [    1.837513] Call trace:
-> [    1.837514]  dump_backtrace+0x0/0x1e0
-> [    1.837515]  show_stack+0x18/0x24
-> [    1.837516]  dump_stack+0xc0/0x11c
-> [    1.837517]  panic+0x15c/0x324
-> [    1.837518]  nmi_panic+0x8c/0x90
-> [    1.837519]  arm64_serror_panic+0x78/0x84
-> [    1.837520]  do_serror+0x158/0x15c
-> [    1.837521]  el1_error+0x84/0x100
-> [    1.837522]  _raw_spin_unlock_irqrestore+0x18/0x50
-> [    1.837523]  regmap_write+0x58/0x80
-> [    1.837524]  hi3660_reset_deassert+0x28/0x34
-> [    1.837526]  reset_control_deassert+0x50/0x260
-> [    1.837527]  reset_control_deassert+0xf4/0x260
-> [    1.837528]  dwc3_probe+0x5dc/0xe6c
-> [    1.837529]  platform_drv_probe+0x54/0xb0
-> [    1.837530]  really_probe+0xe0/0x490
-> [    1.837531]  driver_probe_device+0xf4/0x160
-> [    1.837532]  __device_attach_driver+0x8c/0x114
-> [    1.837533]  bus_for_each_drv+0x78/0xcc
-> [    1.837534]  __device_attach+0x108/0x1a0
-> [    1.837535]  device_initial_probe+0x14/0x20
-> [    1.837537]  bus_probe_device+0x98/0xa0
-> [    1.837538]  deferred_probe_work_func+0x88/0xe0
-> [    1.837539]  process_one_work+0x1cc/0x350
-> [    1.837540]  worker_thread+0x2c0/0x470
-> [    1.837541]  kthread+0x154/0x160
-> [    1.837542]  ret_from_fork+0x10/0x30
-> [    1.837569] SMP: stopping secondary CPUs
-> [    1.837570] Kernel Offset: 0x1d0000 from 0xffff800010000000
-> [    1.837571] PHYS_OFFSET: 0x0
-> [    1.837572] CPU features: 0x240002,20882004
-> [    1.837573] Memory Limit: none
-> 
-> I suspect that the driver works downstream because of the extra
-> delay of probing an additional driver, as porting such driver
-> to upstream sometimes makes this driver to work. So, it could
-> be due to some race condition.
-> 
-> The problem could also be due to something wrong at DT,
-> as, with the additional driver, the DT bindings are different.
-> 
-> As I'm not familiar about the Serror error mechanism on ARM,
-> I'm wondering if someone could give me some hint about how
-> can I identify what's happening here.  Due to the panic(), I
-> can't check what wrong happened there. Not sure if it would
-> be safe to just hack the error handling part of Serror, in order
-> to let the boot to finish.
+From: Frank Wunderlich <frank-w@public-files.de>
 
-As one of my colleagues so wonderfully puts it, SError is effectively 
-"part of the SoC has fallen off" - it's an asynchronous notification of 
-some serious error condition external to the CPU. In this case, it seems 
-quite likely from trying to access a hardware block before it's powered 
-up or has finished its reset cycle, and so some CPU access is raising an 
-error in the interconnect instead of completing as expected.
+This Patch-Series adds missing Patches/Bugfixes to get hdmi working
+on BPI-R2
 
-Robin.
+v5->v6:
+ - drop parts already merged to mediatek-drm-next
+ - include lima-regulator-patch
+ - rebase on changes in mediatek-drm-next tree (hdmi/hdmi-phy patches)
+ - fix compatible of hdmi0 because of changes in hdmi-driver
+v4->v5:
+ - rebased on 5.9-rc1
+ - move existing display-related dts nodes to new mt7623n.dtsi
+   because mt7623a does not have gpu
+ - add new display nodes to this new dtsi
+v3->v4:
+ - fix removed const in "add ddp routing for mt7623"
+ - change subjects to "drm/mediatek:..."
+ - add documentation for mt7623-* compatibles
+ - dropped redundant display_components node (mmsys compatible)
+ - add reviewd-by collected in v3
+v2->v3:
+ - use own mmsys-routing for mt7623 instead of code getting different
+   routing from dts
+ - remove ddp routing bls -> dpi from bpir2/rfb dts
+ - updated some commit-Messages as suggested by CK Hu
+v1->v2:
+ - using get_possible_crtc API instead of hardcoded
+ - drop unused dts-nodes
+ - refine commit-messages as far as i can :)
+   "config component output by device node port" is needed to fix a WARN_ON()
+   "fix boot up for 720 and 480 but 1080" fixes flickering, 
+     which may cause also some resolutions not working on some TFT
 
-> PS.: the driver/misc hisi_hikey_usb driver on this series came
-> from the John Stultz Hikey 960 tree.
-> 
-> Thanks!
-> Mauro
-> 
-> Mauro Carvalho Chehab (7):
->    phy: hisilicon: phy-hi3670-usb3: use a consistent namespace
->    phy: hisilicon: phy-hi3670-usb3: fix coding style
->    phy: hisilicon: phy-hi3670-usb3: change some DT properties
->    dt-bindings: phy: convert phy-kirin970-usb3.txt to yaml
->    MAINTAINERS: add myself as maintainer for Kirin 970 USB PHY
->    misc: hisi_hikey_usb: add support for Hikey 970
->    dts: hisilicon: add support for USB3 on Hikey 970
-> 
-> Yu Chen (3):
->    phy: hisilicon: add USB physical layer for Kirin 3670
->    phy: hisilicon: phy-hi3670-usb3: fix some issues at the init code
->    misc: hisi_hikey_usb: Driver to support onboard USB gpio hub on
->      Hikey960
-> 
->   .../bindings/phy/hisilicon,hi3670-usb3.yaml   |  72 ++
->   MAINTAINERS                                   |  16 +-
->   .../boot/dts/hisilicon/hi3670-hikey970.dts    | 103 +++
->   arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  49 ++
->   drivers/misc/Kconfig                          |   9 +
->   drivers/misc/Makefile                         |   1 +
->   drivers/misc/hisi_hikey_usb.c                 | 272 +++++++
->   drivers/phy/hisilicon/Kconfig                 |  10 +
->   drivers/phy/hisilicon/Makefile                |   1 +
->   drivers/phy/hisilicon/phy-hi3670-usb3.c       | 671 ++++++++++++++++++
->   10 files changed, 1203 insertions(+), 1 deletion(-)
->   create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
->   create mode 100644 drivers/misc/hisi_hikey_usb.c
->   create mode 100644 drivers/phy/hisilicon/phy-hi3670-usb3.c
-> 
+Alex Ryabchenko (1):
+  arm: dts: mt7623: add lima related regulator
+
+Frank Wunderlich (1):
+  arm: dts: mt7623: move display nodes to separate mt7623n.dtsi
+
+Ryder Lee (1):
+  arm: dts: mt7623: add display subsystem related device nodes
+
+chunhui dai (1):
+  drm/mediatek: disable tmds on mt2701
+
+ arch/arm/boot/dts/mt7623.dtsi                 | 123 -------
+ arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts |  87 ++++-
+ arch/arm/boot/dts/mt7623n-rfb-emmc.dts        |  74 ++++-
+ arch/arm/boot/dts/mt7623n.dtsi                | 306 ++++++++++++++++++
+ drivers/phy/mediatek/phy-mtk-hdmi-mt2701.c    |   1 +
+ drivers/phy/mediatek/phy-mtk-hdmi.c           |   3 +
+ drivers/phy/mediatek/phy-mtk-hdmi.h           |   1 +
+ 7 files changed, 469 insertions(+), 126 deletions(-)
+ create mode 100644 arch/arm/boot/dts/mt7623n.dtsi
+
+-- 
+2.25.1
+
