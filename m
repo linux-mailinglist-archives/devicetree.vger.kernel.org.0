@@ -2,111 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3567E25DAAD
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 15:56:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DBC925DAC5
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 15:59:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730597AbgIDN42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 09:56:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55066 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730632AbgIDN4S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 09:56:18 -0400
-Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05315C061244;
-        Fri,  4 Sep 2020 06:56:14 -0700 (PDT)
-Received: by mail-pj1-x1043.google.com with SMTP id mm21so3233694pjb.4;
-        Fri, 04 Sep 2020 06:56:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pHS0OvNcUu22bKVNpK0d+GADbMdPHqwo2X75O5rIZno=;
-        b=VfxkyQAiqVBk5fj5X7YOl1ZV7uG3cDScXBkjSYTxTJ/cgIbrTmyOEy3FzYQ50s3ZCj
-         diEaFubYWxKAsBRLO3xL/T/bH0ErdNjjDlNm/eQ+L1+DnlO67T79Kk82b8gW9x7P3+N5
-         k7izw3zLTqxZezUJjtdbuJPxV6ifOBMPULkvrVZlKsNoDLzi3D5Aj0bJCkqR8bz6GjwU
-         SNwx1X+yU9opmmJ49q2zQhM16wwPKcHrwwvndAwroJcTzXWtb5Wrz+bdY/Xlg9BzZe3a
-         sASa/HXljYKIJEl1o1SXvfWVAjV/VTJU+YFIz/G2co9vcg6SkPEPjvAmUshVdblO/g0n
-         n5yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pHS0OvNcUu22bKVNpK0d+GADbMdPHqwo2X75O5rIZno=;
-        b=qNpXcuNtsda6mrpYSGxNW1y9kECUzmPed02ioYDC928HKhA/NtKkVgNmON71In8Igv
-         jeWS2XtUf4TDyG8acpRg85EuvMcC492OyopgvgM6Om7N2wWIEz6UNv8JOMWtW6Hmz1hV
-         ccODfSaHHYrPwz2a1aAEY/RBDKkW+GW9IzXkHfgtOyXnlovzhDBRoLe7sYB8JUaSzKeN
-         nZ64nz74v4cXyLC5WfozvrerElabX7FqJgrPH4dFxS+TLKX3arzIXWThFPz7cltw8HNH
-         jWccNPN8tjXYgwJNNQo29fmGAa0S7VRDkAnCIxy0GUG9peKtxbvmhgtkDCACzxReLX+p
-         rSXQ==
-X-Gm-Message-State: AOAM531QkWRt0/ehjaheE6aAP4VeNauiBRR09jBMFZ8y155XSe98TtRU
-        6zGhihROJDje64pK7bZk3+3cSj52OqRmtYwtNtk=
-X-Google-Smtp-Source: ABdhPJwfDAE9oHcskAwcGQ9AKqYjIave8/BxWdL4hnwucBsyEsQiRYaLBcEhmhRNd1MhbYtbVhVrgwycKquIaba8YRY=
-X-Received: by 2002:a17:902:ea86:: with SMTP id x6mr8794264plb.131.1599227773397;
- Fri, 04 Sep 2020 06:56:13 -0700 (PDT)
+        id S1730371AbgIDN7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 09:59:08 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:43008 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730504AbgIDN65 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Sep 2020 09:58:57 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1kECEv-00DCfh-1Y; Fri, 04 Sep 2020 15:58:53 +0200
+Date:   Fri, 4 Sep 2020 15:58:53 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     netdev@vger.kernel.org, adam.rudzinski@arf.net.pl,
+        m.felsch@pengutronix.de, hkallweit1@gmail.com,
+        richard.leitner@skidata.com, zhengdejin5@gmail.com,
+        devicetree@vger.kernel.org, kernel@pengutronix.de, kuba@kernel.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH net-next 0/3] net: phy: Support enabling clocks prior to
+ bus probe
+Message-ID: <20200904135853.GN3112546@lunn.ch>
+References: <20200903043947.3272453-1-f.fainelli@gmail.com>
+ <cc6fc0f6-d4ae-9fa1-052d-6ab8e00ab32f@gmail.com>
 MIME-Version: 1.0
-References: <20200902120122.24456-1-dongchun.zhu@mediatek.com>
- <20200902120122.24456-3-dongchun.zhu@mediatek.com> <20200902134421.GN1891694@smile.fi.intel.com>
- <20200902135145.GO1891694@smile.fi.intel.com> <1599226354.4733.69.camel@mhfsdcap03>
-In-Reply-To: <1599226354.4733.69.camel@mhfsdcap03>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 4 Sep 2020 16:55:56 +0300
-Message-ID: <CAHp75VezE2iGBarXke4P9z31SmymBgPH5fwoknt9vBfFTw0u=w@mail.gmail.com>
-Subject: Re: [PATCH v14 2/2] media: i2c: Add OV02A10 image sensor driver
-To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Bingbu Cao <bingbu.cao@intel.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Sj Huang <sj.huang@mediatek.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Louis Kuo <louis.kuo@mediatek.com>,
-        =?UTF-8?B?U2hlbmduYW4gV2FuZyAo546L5Zyj55S3KQ==?= 
-        <shengnan.wang@mediatek.com>, matrix.zhu@aliyun.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cc6fc0f6-d4ae-9fa1-052d-6ab8e00ab32f@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 4, 2020 at 4:38 PM Dongchun Zhu <dongchun.zhu@mediatek.com> wrote:
-> On Wed, 2020-09-02 at 16:51 +0300, Andy Shevchenko wrote:
-> > On Wed, Sep 02, 2020 at 04:44:21PM +0300, Andy Shevchenko wrote:
-> > > On Wed, Sep 02, 2020 at 08:01:22PM +0800, Dongchun Zhu wrote:
-> >
-> > > > + ret = fwnode_property_read_u32(dev_fwnode(dev), "rotation", &rotation);
-> >
-> > > > + ret = fwnode_property_read_u32_array(dev_fwnode(dev),
-> >
-> > > > +         fwnode_property_read_u32_array(dev_fwnode(dev),
-> >
-> > > > + ret = fwnode_property_read_u32(dev_fwnode(dev), "clock-frequency",
-> >
-> >
-> > Btw, can somebody explain, why it's fwnode API and not direct use of device property API?
-> >
-> > In all above cases I see no reason why not to use device property API directly.
-> >
->
-> From the fwnode API's usage:
-> @fwnode: Firmware node to get the property of.
->
-> It seems dev_fwnode(dev) could return dev->of_node->fwnode if CONFIG_OF
-> is enabled, or return dev->fwnode if not.
+On Thu, Sep 03, 2020 at 09:04:11PM -0700, Florian Fainelli wrote:
+> 
+> 
+> On 9/2/2020 9:39 PM, Florian Fainelli wrote:
+> > Hi all,
+> > 
+> > This patch series takes care of enabling the Ethernet PHY clocks in
+> > DT-based systems (we have no way to do it for ACPI, and ACPI would
+> > likely keep all of this hardware enabled anyway).
+> > 
+> > Please test on your respective platforms, mine still seems to have
+> > a race condition that I am tracking down as it looks like we are not
+> > waiting long enough post clock enable.
+> > 
+> > The check on the clock reference count is necessary to avoid an
+> > artificial bump of the clock reference count and to support the unbind
+> > -> bind of the PHY driver. We could solve it in different ways.
+> > 
+> > Comments and test results welcome!
+> 
+> Andrew, while we figure out a proper way to support this with the Linux
+> device driver model, would you be opposed in a single patch to
+> drivers/net/mdio/mdio-bcm-unimac.c which takes care of enabling the PHY's
+> clock during bus->reset just for the sake of getting those systems to work,
+> and later on we move over to the pre-probe mechanism?
+> 
+> That would allow me to continue working with upstream kernels on these
+> systems without carrying a big pile of patches.
 
-So?..
+We do have quite a need for the proper solution. I wouldn't want you
+dropping the proper solution because you have a hack in place.
 
-Shouldn't be the above an equivalent to device_property_*(dev, ...)?
+Please add a comment: "HORRIBLE TEMPORARY HACK", to give you
+motivation to remove it again :-)
 
--- 
-With Best Regards,
-Andy Shevchenko
+   Andrew
