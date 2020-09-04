@@ -2,167 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 378D625DFE0
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 18:38:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F122425E020
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 18:47:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726092AbgIDQiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 12:38:15 -0400
-Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:42746 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725966AbgIDQiP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 12:38:15 -0400
-X-Greylist: delayed 1255 seconds by postgrey-1.27 at vger.kernel.org; Fri, 04 Sep 2020 12:38:14 EDT
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 084GGI3M007925;
-        Fri, 4 Sep 2020 11:16:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- content-transfer-encoding : in-reply-to; s=PODMain02222019;
- bh=76FaaRrunFbexsou6fbys/9Meax+ywrGh7TuEp7aeyM=;
- b=lJJQ9wzRikUdH7JNwcF0swFR31NWj5uTxZI5DpMGFCffiwecVIpPPIT5rSh0i2dtAskP
- N0koC/Q3n0LJrqm+k+lqlhubVlux3pqy6sX3Bzov+QwgVdxJ6JdA+zIamnyuwVJC3GJh
- GhriNiO/UsdtlcATF9jp28FJeWznV88C0c32XzWwGw5HkzTGy9SFlhzklHDlRMCmHPml
- qsYeUWdWWqb1DZWxmBIZHxPf0W5gCOQMio8usc8C+QRdgzAuauU0XlSDIIg9rTeMIbWG
- ne5GyS5IYBaWkPpBkfNardRSSXbOCLcrC2b6dzdt7uDsknrtaL+5I/qM7Y7ORm8fZSf+ wQ== 
-Received: from ediex01.ad.cirrus.com ([87.246.76.36])
-        by mx0b-001ae601.pphosted.com with ESMTP id 337keqhmut-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Fri, 04 Sep 2020 11:16:51 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Fri, 4 Sep 2020
- 17:16:49 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
- Transport; Fri, 4 Sep 2020 17:16:49 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 609552C3;
-        Fri,  4 Sep 2020 16:16:49 +0000 (UTC)
-Date:   Fri, 4 Sep 2020 16:16:49 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-CC:     Samuel Holland <samuel@sholland.org>, <devicetree@vger.kernel.org>,
-        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>,
-        <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
-        <linux-sunxi@googlegroups.com>, Takashi Iwai <tiwai@suse.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>, Mark Brown <broonie@kernel.org>,
-        <peron.clem@gmail.com>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [linux-sunxi] [PATCH 05/16] ASoc: sun4i-i2s: Add 20 and 24 bit
- support
-Message-ID: <20200904161649.GL10899@ediswmail.ad.cirrus.com>
-References: <20200704113902.336911-1-peron.clem@gmail.com>
- <20200704113902.336911-6-peron.clem@gmail.com>
- <1e320dfd-9388-54b2-dba9-7def0bf4bbad@sholland.org>
- <9148679.oVN3Z7rve9@kista>
- <fd714cb6-3650-1eb9-616d-33c00f1442eb@sholland.org>
- <20200903074023.jccqp45br3er4h3g@gilmour.lan>
+        id S1726722AbgIDQrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 12:47:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53362 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726063AbgIDQq7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 12:46:59 -0400
+Received: from mail-qv1-xf44.google.com (mail-qv1-xf44.google.com [IPv6:2607:f8b0:4864:20::f44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6D04C061244;
+        Fri,  4 Sep 2020 09:46:59 -0700 (PDT)
+Received: by mail-qv1-xf44.google.com with SMTP id ef16so3308640qvb.8;
+        Fri, 04 Sep 2020 09:46:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=TBpouKohZ4xnNFvQAORhEKmSrdyDNk10oVx1FtC9Bws=;
+        b=EgsDNr8jq4DF077DE8FFLRkR59IU61+j8V/Ka9V7oYrWIFPZmMCFtBwfask+T/m7M7
+         ABkQRjkqmQNhqKh2VT7i4UJ/Wt90Z38MeTrYGvULyHJ82SQ6PsuQNCiKdiLa9nveFUpl
+         R04cMMdDGxXDTRPRVqK11KOxC3g2sVS1/0YvzjlCoZCwTT0+M1Yo/uJWYoNvcaH8IrzS
+         D4wFxN5u+Z5lTv8jIxdDc9Kz7W6pwsymzzpENZP0uaCYmJuezDkqwdXmmIDXl+AlvX5a
+         XlvvIg2z5oM4vk2ffrT0qm6Rw0F7DcmoUiFJgFt2a2LOiExIWcNVg47MKAjj5MqzSRpP
+         R2uA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=TBpouKohZ4xnNFvQAORhEKmSrdyDNk10oVx1FtC9Bws=;
+        b=g+tYxbV7BsPwjGudb6bg1xkdjgCdRJZ3foys09dQqAsd2x7tRwrDgwAx97+Vl8/mbZ
+         bQynJ/see74USOaLKE0Ox1CTRO70zYkEAxSgDNlAClvFF65S3K75K5L/p03WJWos1hUc
+         UypN5BbFj8wiaNqR1Zt1YBLFwre0Z0C9IJNweflNa/5oXQbEawnvhmseJq8/peFprbGX
+         OmxLHqQJHE0bvhoi4VXJKkpQ9x+pePUl8/0ARupETlmRgKtBuT47Nt11B4pZpBVM2tDr
+         L6eu6MqkCzokc2VcA1i5Mc2055fWBDoO7aKzJOR3NJKauGeyvHWMVwlMn5Jpv7TJMc2Z
+         mRyg==
+X-Gm-Message-State: AOAM532BTdTavX90ZfYt2gBt2cfvLkZ9OYZC04qLvZ/71b3HbTu4E8Bm
+        7DHP9v184aI+Pmc9wbZx6nbxj3oajrhkUs0/SvY=
+X-Google-Smtp-Source: ABdhPJwyy/xhHl+JQi8gUbkrBFV9qdIEd42p3ahcLsVYoc0LxBY3nBUW4K/0j87szLhObsiHhZk2WUEKzePSgoAinVs=
+X-Received: by 2002:ad4:4ae9:: with SMTP id cp9mr8657659qvb.96.1599238018778;
+ Fri, 04 Sep 2020 09:46:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200903074023.jccqp45br3er4h3g@gilmour.lan>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 malwarescore=0
- adultscore=0 priorityscore=1501 spamscore=0 mlxlogscore=999
- lowpriorityscore=0 suspectscore=0 impostorscore=0 mlxscore=0 clxscore=1011
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2009040141
+References: <20200817220238.603465-1-robdclark@gmail.com> <20200904091117.GH6714@8bytes.org>
+In-Reply-To: <20200904091117.GH6714@8bytes.org>
+From:   Rob Clark <robdclark@gmail.com>
+Date:   Fri, 4 Sep 2020 09:47:45 -0700
+Message-ID: <CAF6AEGtFoUQZv3HOpjXckExvXGVsqgPVe-rjq+wLXWM9+pjWkA@mail.gmail.com>
+Subject: Re: [PATCH 00/20] iommu/arm-smmu + drm/msm: per-process GPU pgtables
+To:     Joerg Roedel <joro@8bytes.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Will Deacon <will@kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Vivek Gautam <vivek.gautam@codeaurora.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Rob Clark <robdclark@chromium.org>,
+        Akhil P Oommen <akhilpo@codeaurora.org>,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Ben Dooks <ben.dooks@codethink.co.uk>,
+        Brian Masney <masneyb@onstation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Emil Velikov <emil.velikov@collabora.com>,
+        Eric Anholt <eric@anholt.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hanna Hawa <hannah@marvell.com>,
+        Joerg Roedel <jroedel@suse.de>,
+        John Stultz <john.stultz@linaro.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Jordan Crouse <jcrouse@codeaurora.org>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        "moderated list:ARM SMMU DRIVERS" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Pritesh Raithatha <praithatha@nvidia.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Sharat Masetty <smasetty@codeaurora.org>,
+        Shawn Guo <shawn.guo@linaro.org>, Takashi Iwai <tiwai@suse.de>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Wambui Karuga <wambui.karugax@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 03, 2020 at 09:40:23AM +0200, Maxime Ripard wrote:
-> On Wed, Sep 02, 2020 at 09:22:33PM -0500, Samuel Holland wrote:
-> > On 9/2/20 1:10 PM, Jernej Škrabec wrote:
-> > > Hi Samuel!
-> > > 
-> > > Dne petek, 10. julij 2020 ob 07:44:51 CEST je Samuel Holland napisal(a):
-> > >> On 7/4/20 6:38 AM, Clément Péron wrote:
-> > >>> From: Marcus Cooper <codekipper@gmail.com>
-> > >>>
-> > >>> Extend the functionality of the driver to include support of 20 and
-> > >>> 24 bits per sample.
-> > >>>
-> > >>> Signed-off-by: Marcus Cooper <codekipper@gmail.com>
-> > >>> Signed-off-by: Clément Péron <peron.clem@gmail.com>
-> > >>> ---
-> > >>>
-> > >>>  sound/soc/sunxi/sun4i-i2s.c | 11 +++++++++--
-> > >>>  1 file changed, 9 insertions(+), 2 deletions(-)
-> > >>>
-> > >>> diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
-> > >>> index f78167e152ce..bc7f9343bc7a 100644
-> > >>> --- a/sound/soc/sunxi/sun4i-i2s.c
-> > >>> +++ b/sound/soc/sunxi/sun4i-i2s.c
-> > >>> @@ -577,6 +577,9 @@ static int sun4i_i2s_hw_params(struct
-> > >>> snd_pcm_substream *substream,> 
-> > >>>  	case 16:
-> > >>>  		width = DMA_SLAVE_BUSWIDTH_2_BYTES;
-> > >>>  		break;
-> > >>>
-> > >>> +	case 32:
-> > >>> +		width = DMA_SLAVE_BUSWIDTH_4_BYTES;
-> > >>> +		break;
-> > >>
-> > >> This breaks the sun4i variants, because sun4i_i2s_get_wss returns 4 for a 32
-> > >> bit width, but it needs to return 3.
-> > > 
-> > > I'm not sure what has WSS with physical width and DMA?
-> > 
-> > This is the change where creating a S24_LE stream no longer fails with -EINVAL.
-> > So this is the change where userspace stops downsampling 24-bit audio sources.
-> > So this is the change where playback of 24-bit audio sources breaks, because WSS
-> > is programmed wrong.
-> > 
-> > >> As a side note, I wonder why we use the physical width (the spacing between
-> > >> samples in RAM) to drive the slot width. S24_LE takes up 4 bytes per sample
-> > >> in RAM, which we need for DMA. But I don't see why we would want to
-> > >> transmit the padding over the wire. I would expect it to be transmitted the
-> > >> same as S24_3LE (which has no padding). It did not matter before, because
-> > >> the only supported format had no padding.
-> > > 
-> > > Allwinner DMA engines support only 1, 2, 4 and sometimes 8 bytes for bus 
-> > > width, so if sample is 24 bits in size, we have no other way but to transmit 
-> > > padding too.
-> > 
-> > I understand why we do 4 byte DMA from RAM <=> I2S FIFO; that was not my
-> > question. I'm referring to the actual wire format (FIFO <=> PCM_DIN/DOUT). The
-> > sample is already truncated from 32 bits to 24 bits in the FIFO -- that's what
-> > TXIM and RXOM in FIFO_CTRL control.
-> > 
-> > If a sample is 24 bits wide, why would we send 32 BCLKs for every LRCK? I would
-> > expect the slot width to match the sample resolution by default. But yet we have
-> > this code in the driver:
-> > 
-> >     unsigned int word_size = params_width(params);
-> >     unsigned int slot_width = params_physical_width(params);
-> > 
-> > I think slot_width should be the same as word_size, and I suggest changing it
-> > before adding 20/24-bit support.
-> 
-> Generally speaking, the slot width doesn't necessarily match the
-> physical width. With TDM for example you may very well have slots
-> larger than their samples.
-> 
-> That being said, S24 is explicitly a format where you send a sample of
-> 24 bits in a 32-bit word (in the lowest three bytes, little endian)
-> 
-> See:
-> https://elixir.bootlin.com/linux/v5.9-rc3/source/sound/core/pcm_misc.c#L75
-> https://mailman.alsa-project.org/pipermail/alsa-devel/2013-April/061073.html
-> 
-> 24 bits of data over three bytes like you suggest is S24_3LE
-> 
+On Fri, Sep 4, 2020 at 2:11 AM Joerg Roedel <joro@8bytes.org> wrote:
+>
+> On Mon, Aug 17, 2020 at 03:01:25PM -0700, Rob Clark wrote:
+> > Jordan Crouse (12):
+> >   iommu/arm-smmu: Pass io-pgtable config to implementation specific
+> >     function
+> >   iommu/arm-smmu: Add support for split pagetables
+> >   iommu/arm-smmu: Prepare for the adreno-smmu implementation
+> >   iommu/arm-smmu-qcom: Add implementation for the adreno GPU SMMU
+> >   dt-bindings: arm-smmu: Add compatible string for Adreno GPU SMMU
+> >   drm/msm: Add a context pointer to the submitqueue
+> >   drm/msm: Drop context arg to gpu->submit()
+> >   drm/msm: Set the global virtual address range from the IOMMU domain
+> >   drm/msm: Add support to create a local pagetable
+> >   drm/msm: Add support for private address space instances
+> >   drm/msm/a6xx: Add support for per-instance pagetables
+> >   arm: dts: qcom: sm845: Set the compatible string for the GPU SMMU
+> >
+> > Rob Clark (8):
+> >   drm/msm: remove dangling submitqueue references
+> >   iommu: add private interface for adreno-smmu
+> >   drm/msm/gpu: add dev_to_gpu() helper
+> >   drm/msm: set adreno_smmu as gpu's drvdata
+> >   iommu/arm-smmu: constify some helpers
+> >   arm: dts: qcom: sc7180: Set the compatible string for the GPU SMMU
+> >   iommu/arm-smmu: add a way for implementations to influence SCTLR
+> >   drm/msm: show process names in gem_describe
+>
+> Can the DRM parts be merged independently from the IOMMU parts or does
+> this need to be queued together? If it needs to be together I defer the
+> decission to Will through which tree this should go.
+>
 
-My understanding is physical_width refers to the in memory
-representation, but shouldn't be used to control the slot width
-on the bus. If not specified otherwise (say through the set_tdm
-callback), and if the appropriate BCLK is supported, then the slot
-should be just large enough to hold the data.
+Hi,
 
-Thanks,
-Charles
+v16 of this series re-ordered the patches and has some notes at the
+top of the cover letter[1] about a potential way to land it.. tl;dr:
+the drm parts can and adreno-smmu-priv.h can go independently of
+iommu.  And the first four iommu patches can go in independently of
+drm.  But the last two iommu patches have a dependency on the drm
+patches.
+
+Note that I'll send one more revision of the series shortly (I have a
+small fixup for one of the drm patches for an issue found in testing,
+and Bjorn had some suggestions about "iommu/arm-smmu: Prepare for the
+adreno-smmu implementation" that I need to look at.
+
+BR,
+-R
+
+[1] https://lkml.org/lkml/2020/9/1/1469
