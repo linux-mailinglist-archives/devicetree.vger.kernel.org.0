@@ -2,69 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E7F225E247
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 22:02:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5807025E2B3
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 22:26:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727865AbgIDUB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 16:01:59 -0400
-Received: from gw.c-home.cz ([89.24.150.100]:41761 "EHLO dmz.c-home.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726441AbgIDUB6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Sep 2020 16:01:58 -0400
-Received: from ubuntu1804.c-home.cz (unifi.c-home.cz [192.168.1.239])
-        by dmz.c-home.cz (8.14.4+Sun/8.14.4) with ESMTP id 084K1EdE002405;
-        Fri, 4 Sep 2020 22:01:30 +0200 (CEST)
-From:   Martin Cerveny <m.cerveny@computer.org>
-To:     devicetree@vger.kernel.org
-Cc:     Martin Cerveny <m.cerveny@computer.org>,
-        Chen-Yu Tsai <wens@csie.org>, devel@driverdev.osuosl.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH 6/6] ARM: dts: sun8i: v3s: Add video engine node
-Date:   Fri,  4 Sep 2020 22:01:12 +0200
-Message-Id: <20200904200112.5563-7-m.cerveny@computer.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200904200112.5563-1-m.cerveny@computer.org>
-References: <20200904200112.5563-1-m.cerveny@computer.org>
+        id S1727986AbgIDU0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 16:26:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58914 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726135AbgIDU0c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 16:26:32 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBC43C061244
+        for <devicetree@vger.kernel.org>; Fri,  4 Sep 2020 13:26:31 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kEIHs-0006ZU-BG; Fri, 04 Sep 2020 22:26:20 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kEIHq-0003uC-F4; Fri, 04 Sep 2020 22:26:18 +0200
+Date:   Fri, 4 Sep 2020 22:26:18 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     "G Jaya Kumaran, Vineetha" <vineetha.g.jaya.kumaran@intel.com>
+Cc:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Wan Mohamad, Wan Ahmad Zainie" 
+        <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
+Subject: Re: [PATCH v5 1/2] pwm: Add PWM driver for Intel Keem Bay
+Message-ID: <20200904202618.m72jkoco75zunabi@pengutronix.de>
+References: <1598437559-25828-1-git-send-email-vineetha.g.jaya.kumaran@intel.com>
+ <1598437559-25828-2-git-send-email-vineetha.g.jaya.kumaran@intel.com>
+ <20200902062543.hf5resp6yci2zojc@pengutronix.de>
+ <SN6PR11MB257504DDA3FA499D6740FD0FF62D0@SN6PR11MB2575.namprd11.prod.outlook.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="jszovevqpqvewkzk"
+Content-Disposition: inline
+In-Reply-To: <SN6PR11MB257504DDA3FA499D6740FD0FF62D0@SN6PR11MB2575.namprd11.prod.outlook.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allwinner V3S SoC has a video engine.
-Add a node for it.
 
-Signed-off-by: Martin Cerveny <m.cerveny@computer.org>
----
- arch/arm/boot/dts/sun8i-v3s.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+--jszovevqpqvewkzk
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v3s.dtsi
-index 3f18866fb..3fb01dc1a 100644
---- a/arch/arm/boot/dts/sun8i-v3s.dtsi
-+++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
-@@ -195,6 +195,16 @@
- 			};
- 		};
- 
-+		video-codec@1c0e000 {
-+			compatible = "allwinner,sun8i-v3s-video-engine";
-+			reg = <0x01c0e000 0x1000>;
-+			clocks = <&ccu CLK_BUS_VE>, <&ccu CLK_VE>,
-+				 <&ccu CLK_DRAM_VE>;
-+			clock-names = "ahb", "mod", "ram";
-+			resets = <&ccu RST_BUS_VE>;
-+			interrupts = <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
-+			allwinner,sram = <&ve_sram 1>;
-+		};
- 
- 		mmc0: mmc@1c0f000 {
- 			compatible = "allwinner,sun7i-a20-mmc";
--- 
-2.17.1
+Hello,
 
+On Fri, Sep 04, 2020 at 09:42:37AM +0000, G Jaya Kumaran, Vineetha wrote:
+> > > +	clk_rate =3D clk_get_rate(priv->clk);
+> >=20
+> > clk_get_rate() must only be called when the clock is enabled. Unless I =
+miss
+> > something this isn't ensured here.
+>=20
+> My understanding is this would not be a problem, as according to
+> databook, the GPIO block clock is auto-enabled, and also we are not
+> doing any disabling in the driver for it.=20
+
+It might not be a problem on your hardware today. But this is an API
+requirement.
+
+> > > +	 * The upper 16 bits of the KMB_PWM_HIGHLOW_OFFSET register contain
+> > > +	 * the high time of the waveform, while the last 16 bits contain
+> > > +	 * the low time of the waveform, in terms of clock cycles.
+> > > +	 *
+> > > +	 * high time =3D clock rate * duty cycle
+> > > +	 * low time =3D  clock rate * (period - duty cycle)
+> > > +	 *
+> > > +	 * e.g. For period 50us, duty cycle 30us, and clock rate 500MHz:
+> > > +	 * high time =3D 500MHz * 30us =3D 0x3A98
+> > > +	 * low time =3D 500MHz * 20us =3D 0x2710
+> > > +	 * Value written to KMB_PWM_HIGHLOW_OFFSET =3D 0x3A982710
+> > > +	 */
+> > > +
+> > > +	clk_rate =3D clk_get_rate(priv->clk);
+> > > +
+> > > +	/* Configure waveform high time */
+> > > +	div =3D clk_rate * state->duty_cycle;
+> >=20
+> > Since v5.9-rc1 (commit a9d887dc1c60ed67f2271d66560cdcf864c4a578)
+> > state->duty_cycle is a 64 bit type. So div being unsigned long isn't
+> > big enough on some platforms.
+>=20
+> div is 64-bit here, so I guess I can keep it as is?
+
+unsigned long isn't 64 bits wide on all platforms.
+
+> > > +	/* Ensure enable bit for each channel is cleared at boot */
+> > > +	for (ch =3D 0; ch < KMB_TOTAL_PWM_CHANNELS; ch++)
+> > > +		keembay_pwm_disable(priv, ch);
+> >=20
+> > .probe() is not supposed to change the state of the PWM.
+> >=20
+>=20
+> Sorry, I think misunderstood one of your comments in V2 and added this.
+> The reset value of the enable bit (and all other bits) in the LEADIN regi=
+ster is 0, so this may not be needed.=20
+> If it's ok, I'll remove it.
+
+I think the right approach is to set the LEADIN register to 0 in
+=2Eapply().
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--jszovevqpqvewkzk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl9SoucACgkQwfwUeK3K
+7AntWwgAhOeMJs7mvcbn6ZZDIBuBPD9Y8wdR2y8jpfmLEwkJvNUjtsiq5oZSkwM1
+ToJWsEx/aOV0TOv67Vm9BDAN+ts7TlHO8qrij5g3FurpOROVDB3bq7HXES5rteaK
+W37XDECgdQpE4tt6W2QrGQMk5r6eyD2+KpekP610KOSu7fhYhQcT1VhbspsuLcha
+qgQMHW/eWyfk84kNV6Zgb0XvjzBYARZVqe6SMNTIUvPyy1kuuRBGRK857O54hK9x
+YH5KDaxVuB5fPK63t7nKA0YzLTDz1HRCBtNIFyaz8mCpmT49Xs0IZ+7YdZNrxKV2
+M1EicEw5f1GmolpKnA0ieKatoiycRg==
+=mACI
+-----END PGP SIGNATURE-----
+
+--jszovevqpqvewkzk--
