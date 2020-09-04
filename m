@@ -2,171 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B76C325CFA3
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 05:11:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64C5425CFB0
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 05:17:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729723AbgIDDLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Sep 2020 23:11:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40508 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729692AbgIDDK4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 23:10:56 -0400
-Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com [IPv6:2607:f8b0:4864:20::841])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C249C06125F
-        for <devicetree@vger.kernel.org>; Thu,  3 Sep 2020 20:10:54 -0700 (PDT)
-Received: by mail-qt1-x841.google.com with SMTP id k25so2720156qtu.4
-        for <devicetree@vger.kernel.org>; Thu, 03 Sep 2020 20:10:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=9FeyMPX2ym39zTofXtT3Ie7eSdDscnW/zN+nSIbkxbk=;
-        b=db3/8iW0YSOOpJ9PRWYydw7qDOPh+V4Ggge5oMydh+3WWgYNTweHdr4hvCoiKK+0FK
-         tIMUWaejgZM7CWw76fyYpwnXX+IUWmc5ZoqRNxOjfpsf85BPrHhPtSkYK8V5OjE6yXcG
-         w2AFOP0PSifzabk7kLJ9pKTZj6oFOp8AxY1END3qoxbCUCrhYVLh8Z6mcH/x+W9l/5bT
-         A7benu3NqekPupELzMN3t0dQrreEiF+wPO0y1EcbuAu23nddHCiFCY5wbO6IpUUwSkNq
-         9Ls2ne8JWYSVK7WK5A5ewlmAGYJyO2/+SU8KHTQYDov4YwcBrdawOA50WsSlGo/yA083
-         xmdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=9FeyMPX2ym39zTofXtT3Ie7eSdDscnW/zN+nSIbkxbk=;
-        b=RD9QyMqq0mYOnLUBsaZcIYfx2Cml+/RHhRa3vlIAOqj35wIAjtFWcx+YOO9vK1oXRj
-         0KnPX70xVIukqnqdYrRJfwcakf5lJuIIfwlZqIhwRzZcj/gAZ05nrCZnB+kLh8tJwxLM
-         1vV7CSGahvaiPmSpTuWHkxro5JzmGarjvdQnj3aOoWt6cr8TQWGgo7IqZWrSXeyd8sfd
-         +DPQO5FwCnCVH4GYFVE7u8c+R9nSR83ba0SYmoW/zQemW1V3KecWLNGd1CwbGjE5VOKV
-         CgfK/WN5eyh52nlXu8urJYPUzIdBxlk84LD3g46ItjUS8vKME70CwTNBCkyVQpUv+90f
-         DgrQ==
-X-Gm-Message-State: AOAM531/DLk6SZqeVtEEkLwR+Bz5kiFJs0//OG3cQMT7UYbiib38jd0X
-        l6Ve/U76Ual/8zshENP2N3u/nw==
-X-Google-Smtp-Source: ABdhPJzS+j+uNwV/2v0X923k7X6DWo03FrAHH6ldcb1z1Hl6oIBNIfHiPTaqa1YVEvMGv9ZJzKKG4A==
-X-Received: by 2002:ac8:474a:: with SMTP id k10mr6524626qtp.115.1599189053862;
-        Thu, 03 Sep 2020 20:10:53 -0700 (PDT)
-Received: from localhost.localdomain ([147.253.86.153])
-        by smtp.gmail.com with ESMTPSA id x59sm3481063qte.14.2020.09.03.20.10.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Sep 2020 20:10:53 -0700 (PDT)
-From:   Jonathan Marek <jonathan@marek.ca>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 3/5] dt-bindings: clock: add SM8250 QCOM video clock bindings
-Date:   Thu,  3 Sep 2020 23:09:52 -0400
-Message-Id: <20200904030958.13325-4-jonathan@marek.ca>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20200904030958.13325-1-jonathan@marek.ca>
-References: <20200904030958.13325-1-jonathan@marek.ca>
+        id S1729538AbgIDDQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Sep 2020 23:16:58 -0400
+Received: from wnew1-smtp.messagingengine.com ([64.147.123.26]:50743 "EHLO
+        wnew1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729528AbgIDDQ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Sep 2020 23:16:56 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.west.internal (Postfix) with ESMTP id 1BAEB11DB;
+        Thu,  3 Sep 2020 23:16:55 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Thu, 03 Sep 2020 23:16:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        subject:to:cc:references:from:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=+
+        z1Kb4Um0CPctRz1L04iCmmEs7XyrQXGEhgGFCnYXJQ=; b=m0e4m83UmKy2lFD5u
+        ePD7rpLOYh69eKx1kFwv4Kbp302ri/dLo7IxUPS0JqPCZtDBggv0wL6nbVLh3/aE
+        L9uTid45kqLHBi0S84K60BSZlGbfNVa6+m67fKgGA79ZJ06CnCNMe2iOapDFJwYr
+        QnjntpmDTUk1DuSSUCH+oHW6IG10IFXSum7NjNfn+MAeIVqo0CRPK9mXK/04JGif
+        QcHgtEZ3D4Q4wUNfDrj8coNZ21PYdCf5W3z19hluqM5G4R5SYRdaVZgGVcVgrTIt
+        SgpZZCvp1TKK0BwJ3hbNCIg83MbeHHsDhIiuflAqBpVRhYSAWLgo77MSUb1rAl0+
+        ufd/w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=+z1Kb4Um0CPctRz1L04iCmmEs7XyrQXGEhgGFCnYX
+        JQ=; b=tqOQwF6Atg707GjaJqRaOCQROw4uI+GNBekdYdvysmtg2n8RE1+yb8nhx
+        w+jQgMCSa40UhH4MmWhxy6C4tfsKcfuLNiN+k4GZKwSmBqLACw05xeVHh0ByJW9Z
+        QCI3nBWv0rgbO8awBgY8wQhMKUy9LAfusHHknn7eGOx/cqZtkY65MuI4Ah25MjAr
+        eB3Vnj7pE7AtWoZXd7KeSE5pJitOPl5jp2ULeBXpKRLceji+TDctSH7UeJrY0eWO
+        EypHbEaUzH92vE1P9cbf9GO9inXCAjgBx20IFyDykdD72BTD1AzccT9f9NYG0f5x
+        R8Fcg2Fz+qfx7G8HBY4Vm6/X+KmxQ==
+X-ME-Sender: <xms:o7FRX-8zRMmqJWZ-9TI67rgp60tHb6ciPFwJfWYCHL3jQELz0M2BFA>
+    <xme:o7FRX-vy_GLnnTRsh2BeSf1YkGP-Sa4FGFYnajdB4kGJRfd7ZsAGdsAH43Dyi1vqt
+    -6rFf2qH3PfgUaOeg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudegvddgieelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepgfelkeduveejtdejhfeiledvhfeggeeiieeklefhfeefffffffeg
+    udetteelieejnecukfhppeejtddrudefhedrudegkedrudehudenucevlhhushhtvghruf
+    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgr
+    nhgurdhorhhg
+X-ME-Proxy: <xmx:o7FRX0Do9hlsmovC_eU8IjPC4yX2w7VYw3JtLcODYobgN6AmiyRaYA>
+    <xmx:o7FRX2fPrcLmw2038-z5eWKP0faG9BaDV3KXCe1HXyh_UOe0F-IEqA>
+    <xmx:o7FRXzOdj80tW9trTBakrHx8Fz0N-khbEnFBPs-Q3NYa92YQhYBTZQ>
+    <xmx:prFRXwnEx2XycvrSkeVGpuIk9czO4mZkAI66oivPbjbrKtv8K9_sDPi5Dt4>
+Received: from [192.168.50.169] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id B4D9E328005D;
+        Thu,  3 Sep 2020 23:16:50 -0400 (EDT)
+Subject: Re: [PATCH v2 02/20] ASoC: sun4i-i2s: Add support for H6 I2S
+To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        linux-sunxi@googlegroups.com, linux-arm-kernel@lists.infradead.org
+References: <20200903203034.1057334-1-peron.clem@gmail.com>
+ <20200903203034.1057334-3-peron.clem@gmail.com>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <7259829d-142e-b518-52a7-6fef388b27d2@sholland.org>
+Date:   Thu, 3 Sep 2020 22:16:50 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
+In-Reply-To: <20200903203034.1057334-3-peron.clem@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for video clock controller for SM8250 SoCs.
+Clément,
 
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
----
- .../bindings/clock/qcom,videocc.yaml          |  8 +++-
- .../dt-bindings/clock/qcom,videocc-sm8250.h   | 42 +++++++++++++++++++
- 2 files changed, 49 insertions(+), 1 deletion(-)
- create mode 100644 include/dt-bindings/clock/qcom,videocc-sm8250.h
+On 9/3/20 3:30 PM, Clément Péron wrote:
+> From: Jernej Skrabec <jernej.skrabec@siol.net>
+> 
+> H6 I2S is very similar to that in H3, except it supports up to 16
+> channels.
+> 
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> Signed-off-by: Marcus Cooper <codekipper@gmail.com>
+> Signed-off-by: Clément Péron <peron.clem@gmail.com>
+> ---
+>  sound/soc/sunxi/sun4i-i2s.c | 221 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 221 insertions(+)
+> 
+> diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
+> index fabff7bcccbc..acf24f512f2c 100644
+> --- a/sound/soc/sunxi/sun4i-i2s.c
+> +++ b/sound/soc/sunxi/sun4i-i2s.c
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
-index d04f5bd28dde..66a6066ae353 100644
---- a/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
-@@ -11,12 +11,13 @@ maintainers:
- 
- description: |
-   Qualcomm video clock control module which supports the clocks, resets and
--  power domains on SDM845/SC7180/SM8150.
-+  power domains on SDM845/SC7180/SM8150/SM8250.
- 
-   See also:
-     dt-bindings/clock/qcom,videocc-sdm845.h
-     dt-bindings/clock/qcom,videocc-sc7180.h
-     dt-bindings/clock/qcom,videocc-sm8150.h
-+    dt-bindings/clock/qcom,videocc-sm8250.h
- 
- properties:
-   compatible:
-@@ -24,14 +25,19 @@ properties:
-       - qcom,sdm845-videocc
-       - qcom,sc7180-videocc
-       - qcom,sm8150-videocc
-+      - qcom,sm8250-videocc
- 
-   clocks:
-+    minItems: 1
-     items:
-       - description: Board XO source
-+      - description: Board XO source, always-on (required by sm8250 only)
- 
-   clock-names:
-+    minItems: 1
-     items:
-       - const: bi_tcxo
-+      - const: bi_tcxo_ao
- 
-   '#clock-cells':
-     const: 1
-diff --git a/include/dt-bindings/clock/qcom,videocc-sm8250.h b/include/dt-bindings/clock/qcom,videocc-sm8250.h
-new file mode 100644
-index 000000000000..d5867fe320c7
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,videocc-sm8250.h
-@@ -0,0 +1,42 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
-+ */
-+
-+#ifndef _DT_BINDINGS_CLK_QCOM_VIDEO_CC_SM8250_H
-+#define _DT_BINDINGS_CLK_QCOM_VIDEO_CC_SM8250_H
-+
-+/* VIDEO_CC clocks */
-+#define VIDEO_CC_AHB_CLK		0
-+#define VIDEO_CC_AHB_CLK_SRC		1
-+#define VIDEO_CC_MVS0_CLK		2
-+#define VIDEO_CC_MVS0_CLK_SRC		3
-+#define VIDEO_CC_MVS0_DIV_CLK_SRC	4
-+#define VIDEO_CC_MVS0C_CLK		5
-+#define VIDEO_CC_MVS0C_DIV2_DIV_CLK_SRC	6
-+#define VIDEO_CC_MVS1_CLK		7
-+#define VIDEO_CC_MVS1_CLK_SRC		8
-+#define VIDEO_CC_MVS1_DIV2_CLK		9
-+#define VIDEO_CC_MVS1_DIV_CLK_SRC	10
-+#define VIDEO_CC_MVS1C_CLK		11
-+#define VIDEO_CC_MVS1C_DIV2_DIV_CLK_SRC	12
-+#define VIDEO_CC_XO_CLK			13
-+#define VIDEO_CC_XO_CLK_SRC		14
-+#define VIDEO_CC_PLL0			15
-+#define VIDEO_CC_PLL1			16
-+
-+/* VIDEO_CC resets */
-+#define VIDEO_CC_CVP_INTERFACE_BCR	0
-+#define VIDEO_CC_CVP_MVS0_BCR		1
-+#define VIDEO_CC_MVS0C_CLK_ARES		2
-+#define VIDEO_CC_CVP_MVS0C_BCR		3
-+#define VIDEO_CC_CVP_MVS1_BCR		4
-+#define VIDEO_CC_MVS1C_CLK_ARES		5
-+#define VIDEO_CC_CVP_MVS1C_BCR		6
-+
-+#define MVS0C_GDSC			0
-+#define MVS1C_GDSC			1
-+#define MVS0_GDSC			2
-+#define MVS1_GDSC			3
-+
-+#endif
--- 
-2.26.1
+[snip]
 
+> @@ -474,6 +489,65 @@ static int sun8i_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
+>  	return 0;
+>  }
+>  
+> +static int sun50i_h6_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
+> +				      const struct snd_pcm_hw_params *params)
+> +{
+> +	unsigned int channels = params_channels(params);
+> +	unsigned int slots = channels;
+> +	unsigned int lrck_period;
+> +
+> +	if (i2s->slots)
+> +		slots = i2s->slots;
+> +
+> +	/* Map the channels for playback and capture */
+> +	regmap_write(i2s->regmap, SUN50I_H6_I2S_TX_CHAN_MAP1_REG, 0x76543210);
+> +	regmap_write(i2s->regmap, SUN50I_H6_I2S_RX_CHAN_MAP1_REG, 0x76543210);
+> +
+> +	/* Configure the channels */
+> +	regmap_update_bits(i2s->regmap, SUN8I_I2S_TX_CHAN_SEL_REG,
+> +			   SUN50I_H6_I2S_TX_CHAN_SEL_MASK,
+> +			   SUN50I_H6_I2S_TX_CHAN_SEL(channels));
+> +	regmap_update_bits(i2s->regmap, SUN50I_H6_I2S_RX_CHAN_SEL_REG,
+> +			   SUN50I_H6_I2S_TX_CHAN_SEL_MASK,
+> +			   SUN50I_H6_I2S_TX_CHAN_SEL(channels));
+> +
+> +	regmap_update_bits(i2s->regmap, SUN8I_I2S_CHAN_CFG_REG,
+> +			   SUN8I_I2S_CHAN_CFG_TX_SLOT_NUM_MASK,
+> +			   SUN8I_I2S_CHAN_CFG_TX_SLOT_NUM(channels));
+> +	regmap_update_bits(i2s->regmap, SUN8I_I2S_CHAN_CFG_REG,
+> +			   SUN8I_I2S_CHAN_CFG_RX_SLOT_NUM_MASK,
+> +			   SUN8I_I2S_CHAN_CFG_RX_SLOT_NUM(channels));
+> +
+> +	switch (i2s->format & SND_SOC_DAIFMT_FORMAT_MASK) {
+> +	case SND_SOC_DAIFMT_DSP_A:
+> +	case SND_SOC_DAIFMT_DSP_B:
+> +	case SND_SOC_DAIFMT_LEFT_J:
+> +	case SND_SOC_DAIFMT_RIGHT_J:
+
+These cases don't match the documentation: LEFT_J and RIGHT_J are documented to
+behave like I2S (lrck_period == slot_width), not like DSP_A/B (lrck_period ==
+slot_width * slots).
+
+> +		lrck_period = params_physical_width(params) * slots;
+> +		break;
+> +
+> +	case SND_SOC_DAIFMT_I2S:
+> +		lrck_period = params_physical_width(params);
+> +		break;
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (i2s->slot_width)
+> +		lrck_period = i2s->slot_width;
+
+Here, i2s->slot_width is the number of bits for each slot, but in PCM mode, you
+need to multiply by the number of slots, like above.
+
+Also, there is already logic in sun4i_i2s_hw_params to use i2s->slot_width and
+i2s->slots. You could avoid the duplication by passing slot_width/slots as
+parameters to set_chan_cfg.
+
+Regards,
+Samuel
+
+> +
+> +	regmap_update_bits(i2s->regmap, SUN4I_I2S_FMT0_REG,
+> +			   SUN8I_I2S_FMT0_LRCK_PERIOD_MASK,
+> +			   SUN8I_I2S_FMT0_LRCK_PERIOD(lrck_period));
+> +
+> +	regmap_update_bits(i2s->regmap, SUN8I_I2S_TX_CHAN_SEL_REG,
+> +			   SUN50I_H6_I2S_TX_CHAN_EN_MASK,
+> +			   SUN50I_H6_I2S_TX_CHAN_EN(channels));
+> +
+> +	return 0;
+> +}
+> +
+>  static int sun4i_i2s_hw_params(struct snd_pcm_substream *substream,
+>  			       struct snd_pcm_hw_params *params,
+>  			       struct snd_soc_dai *dai)
+
+[snip]
