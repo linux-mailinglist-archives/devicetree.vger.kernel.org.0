@@ -2,122 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2703225D13F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 08:28:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADB6725D150
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 08:30:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726597AbgIDG2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 02:28:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46038 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726089AbgIDG17 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Sep 2020 02:27:59 -0400
-Received: from kozik-lap.mshome.net (unknown [194.230.155.106])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4B574206A5;
-        Fri,  4 Sep 2020 06:27:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599200878;
-        bh=Xmoe2FnEQ6TTzKPtCuOetJANkq2kohb1mBIp4SOjZdU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=LUit8UXbLL7NXIEUr0VkH3PblkoudQJPLrTrv3ktsztBOykoMohGVRhhzvoQvLhNk
-         PWxw1HTKtI6Bew8Dzu5WBuprHXLIHpjdAJM2nG3Cs8PcqBvo4wfg3aLV6FB3Uhz0sN
-         RTGOh4Csht4mOt/inDZhSY4YXI/F3q/tm+gQNJoA=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v2 03/14] arm64: dts: imx8mm-evk: Align pin configuration group names with schema
+        id S1728658AbgIDG2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 02:28:10 -0400
+Received: from Galois.linutronix.de ([193.142.43.55]:58676 "EHLO
+        galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728167AbgIDG2E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 02:28:04 -0400
+From:   Kurt Kanzenbach <kurt@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1599200881;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=FAh6u+MQ4MCx8OJAPKt7iX+YCAPZK7IAimf2m4wGKlY=;
+        b=OWIBExzj51zlz5XGzgBViZ0AfeVJcUPL6cGnP5DSZX1jDgDc6p+XIaiMYZ6hEjembUahmK
+        oaBtkq54KwVP2LpCtEFXC1OTo/hTeSK5I/XH2UpdvqmXWasfZcuyLwUnyzwCqOGxEhNzGZ
+        EBHIz5E+X0ykttxQf+/StXSCOJACIvGu0q5uUrn7rJhXT6vhWuVoOAJmNotJfNZvUV17+A
+        +ob4sItQXlyorVSSMmb3wt2fGUC/HYTZyg0n7q/KI0MZwAP7OM8i2oCVTKvdOLTU+Qi6LK
+        TjAFBP5n4FlQ2g/5KgTW7rsKkxg8jPgvi8IC8PMwK4DjVt8pE9u+6jZO5jRHsg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1599200881;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=FAh6u+MQ4MCx8OJAPKt7iX+YCAPZK7IAimf2m4wGKlY=;
+        b=PJB3Z2fq16V00Rk+IaQoknI3rFVpX9litA/CXdxYLAgDZCd7fcDA7LTFxPj2ywXH0dByyX
+        PeK5BX9L40YafgBg==
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
+        ilias.apalodimas@linaro.org, Vladimir Oltean <olteanv@gmail.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>
+Subject: [PATCH v5 0/7] Hirschmann Hellcreek DSA driver
 Date:   Fri,  4 Sep 2020 08:27:32 +0200
-Message-Id: <20200904062743.6273-3-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200904062743.6273-1-krzk@kernel.org>
-References: <20200904062743.6273-1-krzk@kernel.org>
+Message-Id: <20200904062739.3540-1-kurt@linutronix.de>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Device tree schema expects pin configuration groups to end with 'grp'
-suffix, otherwise dtbs_check complain with a warning like:
+Hi,
 
-    ... do not match any of the regexes: 'grp$', 'pinctrl-[0-9]+'
+this series adds a DSA driver for the Hirschmann Hellcreek TSN switch
+IP. Characteristics of that IP:
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- arch/arm64/boot/dts/freescale/imx8mm-evk.dts | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ * Full duplex Ethernet interface at 100/1000 Mbps on three ports
+ * IEEE 802.1Q-compliant Ethernet Switch
+ * IEEE 802.1Qbv Time-Aware scheduling support
+ * IEEE 1588 and IEEE 802.1AS support
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-index 1c39a2b90ee1..27e54583a8e4 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-@@ -456,13 +456,13 @@
- 		>;
- 	};
- 
--	pinctrl_pmic: pmicirq {
-+	pinctrl_pmic: pmicirqgrp {
- 		fsl,pins = <
- 			MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3		0x41
- 		>;
- 	};
- 
--	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmc {
-+	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
- 		fsl,pins = <
- 			MX8MM_IOMUXC_SD2_RESET_B_GPIO2_IO19	0x41
- 		>;
-@@ -490,7 +490,7 @@
- 		>;
- 	};
- 
--	pinctrl_usdhc2_gpio: usdhc2grpgpio {
-+	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
- 		fsl,pins = <
- 			MX8MM_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x1c4
- 		>;
-@@ -508,7 +508,7 @@
- 		>;
- 	};
- 
--	pinctrl_usdhc2_100mhz: usdhc2grp100mhz {
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
- 		fsl,pins = <
- 			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x194
- 			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d4
-@@ -520,7 +520,7 @@
- 		>;
- 	};
- 
--	pinctrl_usdhc2_200mhz: usdhc2grp200mhz {
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
- 		fsl,pins = <
- 			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x196
- 			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d6
-@@ -548,7 +548,7 @@
- 		>;
- 	};
- 
--	pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
- 		fsl,pins = <
- 			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x194
- 			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d4
-@@ -564,7 +564,7 @@
- 		>;
- 	};
- 
--	pinctrl_usdhc3_200mhz: usdhc3grp200mhz {
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
- 		fsl,pins = <
- 			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x196
- 			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d6
+That IP is used e.g. in
+
+ https://www.arrow.com/en/campaigns/arrow-kairos
+
+Due to the hardware setup the switch driver is implemented using DSA. A special
+tagging protocol is leveraged. Furthermore, this driver supports PTP and
+hardware timestamping.
+
+This work is part of the AccessTSN project: https://www.accesstsn.com/
+
+The previous versions can be found here:
+
+ * https://lkml.kernel.org/netdev/20200618064029.32168-1-kurt@linutronix.de/
+ * https://lkml.kernel.org/netdev/20200710113611.3398-1-kurt@linutronix.de/
+ * https://lkml.kernel.org/netdev/20200723081714.16005-1-kurt@linutronix.de/
+ * https://lkml.kernel.org/netdev/20200820081118.10105-1-kurt@linutronix.de/
+ * https://lkml.kernel.org/netdev/20200901125014.17801-1-kurt@linutronix.de/
+
+Changes since v4:
+
+ * Fix W=1 compiler warnings (kernel test robot)
+ * Add tags
+
+Changes since v3:
+
+ * Drop TAPRIO support (David Miller)
+   => Switch to mutexes due to the lack of hrtimers
+ * Use more specific compatible strings and add platform data (Andrew Lunn)
+ * Fix Kconfig ordering (Andrew Lunn)
+
+Changes since v2:
+
+ * Make it compile by getting all requirements merged first (Jakub Kicinski, David Miller)
+ * Use "tsn" for TSN register set (Rob Herring)
+ * Fix DT binding issues (Rob Herring)
+
+Changes since v1:
+
+ * Code simplifications (Florian Fainelli, Vladimir Oltean)
+ * Fix issues with hellcreek.yaml bindings (Florian Fainelli)
+ * Clear reserved field in ptp v2 event messages (Richard Cochran)
+ * Make use of generic ptp parsing function (Richard Cochran, Vladimir Oltean)
+ * Fix Kconfig (Florian Fainelli)
+ * Add tags (Florian Fainelli, Rob Herring, Richard Cochran) 
+
+Changes since RFC ordered by reviewers:
+
+ * Andrew Lunn
+   * Use dev_dbg for debug messages
+   * Get rid of __ function names where possible
+   * Use reverse xmas tree variable ordering
+   * Remove redundant/useless checks
+   * Improve comments e.g. for PTP
+   * Fix Kconfig ordering
+   * Make LED handling more generic and provide info via DT
+   * Setup advertisement of PHYs according to hardware
+   * Drop debugfs patch
+ * Jakub Kicinski
+   * Fix compiler warnings
+ * Florian Fainelli
+   * Switch to YAML DT bindings
+ * Richard Cochran
+   * Fix typo
+   * Add missing NULL checks
+
+Kamil Alkhouri (2):
+  net: dsa: hellcreek: Add PTP clock support
+  net: dsa: hellcreek: Add support for hardware timestamping
+
+Kurt Kanzenbach (5):
+  net: dsa: Add tag handling for Hirschmann Hellcreek switches
+  net: dsa: Add DSA driver for Hirschmann Hellcreek switches
+  net: dsa: hellcreek: Add PTP status LEDs
+  dt-bindings: Add vendor prefix for Hirschmann
+  dt-bindings: net: dsa: Add documentation for Hellcreek switches
+
+ .../bindings/net/dsa/hellcreek.yaml           |  127 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ drivers/net/dsa/Kconfig                       |    2 +
+ drivers/net/dsa/Makefile                      |    1 +
+ drivers/net/dsa/hirschmann/Kconfig            |    9 +
+ drivers/net/dsa/hirschmann/Makefile           |    5 +
+ drivers/net/dsa/hirschmann/hellcreek.c        | 1262 +++++++++++++++++
+ drivers/net/dsa/hirschmann/hellcreek.h        |  282 ++++
+ .../net/dsa/hirschmann/hellcreek_hwtstamp.c   |  479 +++++++
+ .../net/dsa/hirschmann/hellcreek_hwtstamp.h   |   58 +
+ drivers/net/dsa/hirschmann/hellcreek_ptp.c    |  452 ++++++
+ drivers/net/dsa/hirschmann/hellcreek_ptp.h    |   76 +
+ .../platform_data/hirschmann-hellcreek.h      |   22 +
+ include/net/dsa.h                             |    2 +
+ net/dsa/Kconfig                               |    6 +
+ net/dsa/Makefile                              |    1 +
+ net/dsa/tag_hellcreek.c                       |  101 ++
+ 17 files changed, 2887 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/hellcreek.yaml
+ create mode 100644 drivers/net/dsa/hirschmann/Kconfig
+ create mode 100644 drivers/net/dsa/hirschmann/Makefile
+ create mode 100644 drivers/net/dsa/hirschmann/hellcreek.c
+ create mode 100644 drivers/net/dsa/hirschmann/hellcreek.h
+ create mode 100644 drivers/net/dsa/hirschmann/hellcreek_hwtstamp.c
+ create mode 100644 drivers/net/dsa/hirschmann/hellcreek_hwtstamp.h
+ create mode 100644 drivers/net/dsa/hirschmann/hellcreek_ptp.c
+ create mode 100644 drivers/net/dsa/hirschmann/hellcreek_ptp.h
+ create mode 100644 include/linux/platform_data/hirschmann-hellcreek.h
+ create mode 100644 net/dsa/tag_hellcreek.c
+
 -- 
-2.17.1
+2.20.1
 
