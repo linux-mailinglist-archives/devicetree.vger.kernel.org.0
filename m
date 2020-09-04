@@ -2,73 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50CE625DA9B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 15:55:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCB6A25DA02
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 15:36:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730722AbgIDNyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 09:54:46 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:48078 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1730714AbgIDNyn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 09:54:43 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 084DMWMg007079;
-        Fri, 4 Sep 2020 15:23:00 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=7fozBuXU3Cbd4IFH/r62M8Ur8q8NxDDJWRTMXFRdk9g=;
- b=B/uuqjBhphDFCBQDV0YZoyLJb26WBFQ7nuxgfZcET3bLpTQmOe16OKEnlmANxUp2XYfv
- pQY0xw9iUPHzvgOVB3Z19Mu7cFt1cir8jRp5JPswQQC+F4VK7Z/yhR5Ir9YCp1NjTwDL
- 9GBkMmUGUQHWrN1520J2qkUOOOqYnDXd0JALna2iDWmZLP9CQvuLj8pGcR/CwDnQ8QxB
- 3eSWYMl13z7TSUERhjQ+bbVkK0OUWSFvPp6KrLyccvYlMBeFLXOb9pjUImlS/1RCd4Do
- +XZEcuVabiv0P5dld/kwoz6vfJasT8GHYaxV5LP2JNiwXgq1IWkOzPGixZCl5L+SwLvT kA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 337dwhsvhc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 04 Sep 2020 15:23:00 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 90C4410002A;
-        Fri,  4 Sep 2020 15:22:59 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag6node2.st.com [10.75.127.17])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 76B172AD2B4;
-        Fri,  4 Sep 2020 15:22:59 +0200 (CEST)
-Received: from localhost (10.75.127.49) by SFHDAG6NODE2.st.com (10.75.127.17)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 4 Sep 2020 15:22:59
- +0200
-From:   Christophe Kerello <christophe.kerello@st.com>
-To:     <robh+dt@kernel.org>, <alexandre.torgue@st.com>,
-        <linux@armlinux.org.uk>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Christophe Kerello <christophe.kerello@st.com>
-Subject: [PATCH 0/2] add FMC2 EBI controller support
-Date:   Fri, 4 Sep 2020 15:20:41 +0200
-Message-ID: <1599225643-5558-1-git-send-email-christophe.kerello@st.com>
-X-Mailer: git-send-email 1.9.1
+        id S1730531AbgIDNgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 09:36:13 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:17224 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1730486AbgIDNeb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 09:34:31 -0400
+X-UUID: 7b857da086b7497398ecea8b9af73aa2-20200904
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=WiFHXErEj76BZNPxRjW3J4xmOmUT5inytUFEOkb4Kqs=;
+        b=Xl4IikklDNaK8lCAI+EVmIa5pSyVCFBvi+tEWQvWkgzlNsO9F+/ewaYXKskUddRZgshjDAp87aQStlh8X7IKM68IzEvSueGpsPKK175lGRrn7SgwySb1MEWYWmSHUHDSWTGyg+RFaQU3G1frqrmbU0ab7BaDCH8UeFZlqh2T9fE=;
+X-UUID: 7b857da086b7497398ecea8b9af73aa2-20200904
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <dongchun.zhu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 460020713; Fri, 04 Sep 2020 21:34:16 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N2.mediatek.inc
+ (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 4 Sep
+ 2020 21:34:15 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 4 Sep 2020 21:34:14 +0800
+Message-ID: <1599226354.4733.69.camel@mhfsdcap03>
+Subject: Re: [PATCH v14 2/2] media: i2c: Add OV02A10 image sensor driver
+From:   Dongchun Zhu <dongchun.zhu@mediatek.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CC:     <mchehab@kernel.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <sakari.ailus@linux.intel.com>, <drinkcat@chromium.org>,
+        <tfiga@chromium.org>, <matthias.bgg@gmail.com>,
+        <bingbu.cao@intel.com>, <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <sj.huang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <louis.kuo@mediatek.com>, <shengnan.wang@mediatek.com>,
+        <dongchun.zhu@mediatek.com>, <matrix.zhu@aliyun.com>
+Date:   Fri, 4 Sep 2020 21:32:34 +0800
+In-Reply-To: <20200902135145.GO1891694@smile.fi.intel.com>
+References: <20200902120122.24456-1-dongchun.zhu@mediatek.com>
+         <20200902120122.24456-3-dongchun.zhu@mediatek.com>
+         <20200902134421.GN1891694@smile.fi.intel.com>
+         <20200902135145.GO1891694@smile.fi.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG8NODE1.st.com (10.75.127.22) To SFHDAG6NODE2.st.com
- (10.75.127.17)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-09-04_07:2020-09-04,2020-09-04 signatures=0
+X-TM-SNTS-SMTP: 386AAC2586955A2B46CD605CFB58BE67C464E85DE164D539730FF46DA6DFEAE12000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patchset enables FMC2 EBI support on STM32MP1 SOCs.
-
-Christophe Kerello (2):
-  ARM: multi_v7_defconfig: add FMC2 EBI controller support
-  ARM: dts: stm32: add FMC2 EBI support for stm32mp157c
-
- arch/arm/boot/dts/stm32mp151.dtsi     | 43 +++++++++++++++++++++++------------
- arch/arm/boot/dts/stm32mp157c-ev1.dts | 16 +++++++------
- arch/arm/configs/multi_v7_defconfig   |  1 +
- 3 files changed, 39 insertions(+), 21 deletions(-)
-
--- 
-1.9.1
+T24gV2VkLCAyMDIwLTA5LTAyIGF0IDE2OjUxICswMzAwLCBBbmR5IFNoZXZjaGVua28gd3JvdGU6
+DQo+IE9uIFdlZCwgU2VwIDAyLCAyMDIwIGF0IDA0OjQ0OjIxUE0gKzAzMDAsIEFuZHkgU2hldmNo
+ZW5rbyB3cm90ZToNCj4gPiBPbiBXZWQsIFNlcCAwMiwgMjAyMCBhdCAwODowMToyMlBNICswODAw
+LCBEb25nY2h1biBaaHUgd3JvdGU6DQo+IA0KPiA+ID4gKwlyZXQgPSBmd25vZGVfcHJvcGVydHlf
+cmVhZF91MzIoZGV2X2Z3bm9kZShkZXYpLCAicm90YXRpb24iLCAmcm90YXRpb24pOw0KPiANCj4g
+PiA+ICsJcmV0ID0gZndub2RlX3Byb3BlcnR5X3JlYWRfdTMyX2FycmF5KGRldl9md25vZGUoZGV2
+KSwNCj4gDQo+ID4gPiArCQlmd25vZGVfcHJvcGVydHlfcmVhZF91MzJfYXJyYXkoZGV2X2Z3bm9k
+ZShkZXYpLA0KPiANCj4gPiA+ICsJcmV0ID0gZndub2RlX3Byb3BlcnR5X3JlYWRfdTMyKGRldl9m
+d25vZGUoZGV2KSwgImNsb2NrLWZyZXF1ZW5jeSIsDQo+IA0KPiANCj4gQnR3LCBjYW4gc29tZWJv
+ZHkgZXhwbGFpbiwgd2h5IGl0J3MgZndub2RlIEFQSSBhbmQgbm90IGRpcmVjdCB1c2Ugb2YgZGV2
+aWNlIHByb3BlcnR5IEFQST8NCj4gDQo+IEluIGFsbCBhYm92ZSBjYXNlcyBJIHNlZSBubyByZWFz
+b24gd2h5IG5vdCB0byB1c2UgZGV2aWNlIHByb3BlcnR5IEFQSSBkaXJlY3RseS4NCj4gDQoNCkZy
+b20gdGhlIGZ3bm9kZSBBUEkncyB1c2FnZToNCkBmd25vZGU6IEZpcm13YXJlIG5vZGUgdG8gZ2V0
+IHRoZSBwcm9wZXJ0eSBvZi4NCg0KSXQgc2VlbXMgZGV2X2Z3bm9kZShkZXYpIGNvdWxkIHJldHVy
+biBkZXYtPm9mX25vZGUtPmZ3bm9kZSBpZiBDT05GSUdfT0YNCmlzIGVuYWJsZWQsIG9yIHJldHVy
+biBkZXYtPmZ3bm9kZSBpZiBub3QuDQoNCg0KDQo=
 
