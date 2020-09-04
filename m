@@ -2,108 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3F7825D12C
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 08:19:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 749D725D13B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 08:27:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726114AbgIDGTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 02:19:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41058 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725812AbgIDGT3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 02:19:29 -0400
-Received: from ipv6.s19.hekko.net.pl (ipv6.s19.hekko.net.pl [IPv6:2a02:1778:113::19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64824C061244;
-        Thu,  3 Sep 2020 23:19:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=arf.net.pl;
-         s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
-        Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=abh6SdwpbRfiKw2Rr/PwbvIz6rOaeyGz0EhknyPj+oI=; b=sygc+bhTEJeFYnLbVZfhxNRm4w
-        8ncYzVekHrpM45B5+DSg7BK0A4dlu1ssVwWZVza3Qjle3qNZ55eEsDN46YIFKQBD2J9N8k6QvQwTz
-        X0cde95xvtbwmPxL5wN4ZAEkMVOdIPzGSArHd+Rq8m6wTVcfx03bX4790FCkMJFziRSd71WNBiI0N
-        QavIrUE52uaF465mP7LW9N30c9EMfwChTzXCtfeoKcwkFz6ONRfwNym+jN/fwlSZ/8FoCelG8Xtve
-        u00LHN1zS6zkhbhNRLeFfA8G1UXkxNn8VZpnl/d5DZB24tWk4BO1ICX6KAV2hr/SSIdMjAJpdQiG4
-        QBMC5K9A==;
-Received: from 188.147.96.44.nat.umts.dynamic.t-mobile.pl ([188.147.96.44] helo=[192.168.8.103])
-        by s19.hekko.net.pl with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.92.3)
-        (envelope-from <adam.rudzinski@arf.net.pl>)
-        id 1kE54I-00ArwX-QS; Fri, 04 Sep 2020 08:19:27 +0200
-Subject: Re: [PATCH net-next 0/3] net: phy: Support enabling clocks prior to
- bus probe
-To:     Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org
-Cc:     andrew@lunn.ch, m.felsch@pengutronix.de, hkallweit1@gmail.com,
-        richard.leitner@skidata.com, zhengdejin5@gmail.com,
-        devicetree@vger.kernel.org, kernel@pengutronix.de, kuba@kernel.org,
-        robh+dt@kernel.org
-References: <20200903043947.3272453-1-f.fainelli@gmail.com>
- <cc6fc0f6-d4ae-9fa1-052d-6ab8e00ab32f@gmail.com>
-From:   =?UTF-8?Q?Adam_Rudzi=c5=84ski?= <adam.rudzinski@arf.net.pl>
-Message-ID: <307b343b-2e8d-cb20-c22f-0e80acdf1dc9@arf.net.pl>
-Date:   Fri, 4 Sep 2020 08:19:16 +0200
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
-MIME-Version: 1.0
-In-Reply-To: <cc6fc0f6-d4ae-9fa1-052d-6ab8e00ab32f@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: pl
-X-Authenticated-Id: ar@arf.net.pl
+        id S1726114AbgIDG1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 02:27:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45898 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726089AbgIDG1x (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Sep 2020 02:27:53 -0400
+Received: from kozik-lap.mshome.net (unknown [194.230.155.106])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D4DBF206A5;
+        Fri,  4 Sep 2020 06:27:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599200873;
+        bh=oEcLyFzzzoRu+O9dRmWrcqh+WugXQFGAASOZgfojBhE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=lwEBE2V0Y22WSHX8j7GoS6YpYrVChK9aLG8TltSEzFJ/KudNRH3OOh0zQ21MvA219
+         3o7tq73F8f7+3l24eLtYe88cMlt/UYLE6Ho7ieuni7SPJ5Y5u04HKayerBm5Mm4wcn
+         s3G4EMtHxghAWY1coT+2C7N2tNpHkiPDuWJxy1N0=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v2 01/14] arm64: dts: imx8mm-beacon: Align pin configuration group names with schema
+Date:   Fri,  4 Sep 2020 08:27:30 +0200
+Message-Id: <20200904062743.6273-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Device tree schema expects pin configuration groups to end with 'grp'
+suffix.  This fixes dtbs_check warnings like:
 
-W dniu 2020-09-04 o 06:04, Florian Fainelli pisze:
->
->
-> On 9/2/2020 9:39 PM, Florian Fainelli wrote:
->> Hi all,
->>
->> This patch series takes care of enabling the Ethernet PHY clocks in
->> DT-based systems (we have no way to do it for ACPI, and ACPI would
->> likely keep all of this hardware enabled anyway).
->>
->> Please test on your respective platforms, mine still seems to have
->> a race condition that I am tracking down as it looks like we are not
->> waiting long enough post clock enable.
->>
->> The check on the clock reference count is necessary to avoid an
->> artificial bump of the clock reference count and to support the unbind
->> -> bind of the PHY driver. We could solve it in different ways.
->>
->> Comments and test results welcome!
->
-> Andrew, while we figure out a proper way to support this with the 
-> Linux device driver model, would you be opposed in a single patch to 
-> drivers/net/mdio/mdio-bcm-unimac.c which takes care of enabling the 
-> PHY's clock during bus->reset just for the sake of getting those 
-> systems to work, and later on we move over to the pre-probe mechanism?
->
-> That would allow me to continue working with upstream kernels on these 
-> systems without carrying a big pile of patches.
+  pinctrl@30330000: 'pcal6414-gpio', 'pmicirq', 'usdhc1grp100mhz', 'usdhc1grp200mhz', 'usdhc1grpgpio',
+    'usdhc2grp100mhz', 'usdhc2grp200mhz', 'usdhc2grpgpio', 'usdhc3grp100mhz', 'usdhc3grp200mhz'
+    do not match any of the regexes: 'grp$', 'pinctrl-[0-9]+'
 
-Just a bunch of questions.
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+ .../boot/dts/freescale/imx8mm-beacon-baseboard.dtsi  |  8 ++++----
+ arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi | 12 ++++++------
+ 2 files changed, 10 insertions(+), 10 deletions(-)
 
-Actually, why is it necessary to have a full MDIO bus scan already 
-during probing peripherals?
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
+index 5b5af8b381df..d6b9dedd168f 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
+@@ -210,7 +210,7 @@
+ 		>;
+ 	};
+ 
+-	pinctrl_pcal6414: pcal6414-gpio {
++	pinctrl_pcal6414: pcal6414-gpiogrp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_SAI2_MCLK_GPIO4_IO27		0x19
+ 		>;
+@@ -240,7 +240,7 @@
+ 		>;
+ 	};
+ 
+-	pinctrl_usdhc2_gpio: usdhc2grpgpio {
++	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_SD2_CD_B_USDHC2_CD_B	0x41
+ 			MX8MM_IOMUXC_SD2_RESET_B_GPIO2_IO19	0x41
+@@ -259,7 +259,7 @@
+ 		>;
+ 	};
+ 
+-	pinctrl_usdhc2_100mhz: usdhc2grp100mhz {
++	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK	0x194
+ 			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD	0x1d4
+@@ -271,7 +271,7 @@
+ 		>;
+ 	};
+ 
+-	pinctrl_usdhc2_200mhz: usdhc2grp200mhz {
++	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK	0x196
+ 			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD	0x1d6
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+index 620a124dfb5f..502faf6144b0 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+@@ -290,7 +290,7 @@
+ 			>;
+ 		};
+ 
+-		pinctrl_pmic: pmicirq {
++		pinctrl_pmic: pmicirqgrp {
+ 			fsl,pins = <
+ 				MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3		0x41
+ 			>;
+@@ -309,7 +309,7 @@
+ 			>;
+ 		};
+ 
+-		pinctrl_usdhc1_gpio: usdhc1grpgpio {
++		pinctrl_usdhc1_gpio: usdhc1gpiogrp {
+ 			fsl,pins = <
+ 				MX8MM_IOMUXC_SD1_RESET_B_GPIO2_IO10	0x41
+ 			>;
+@@ -326,7 +326,7 @@
+ 			>;
+ 		};
+ 
+-		pinctrl_usdhc1_100mhz: usdhc1grp100mhz {
++		pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
+ 			fsl,pins = <
+ 				MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x194
+ 				MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d4
+@@ -337,7 +337,7 @@
+ 			>;
+ 		};
+ 
+-		pinctrl_usdhc1_200mhz: usdhc1grp200mhz {
++		pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
+ 			fsl,pins = <
+ 				MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x196
+ 				MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d6
+@@ -364,7 +364,7 @@
+ 			>;
+ 		};
+ 
+-		pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
++		pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
+ 			fsl,pins = <
+ 				MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x194
+ 				MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d4
+@@ -380,7 +380,7 @@
+ 			>;
+ 		};
+ 
+-		pinctrl_usdhc3_200mhz: usdhc3grp200mhz {
++		pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
+ 			fsl,pins = <
+ 				MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x196
+ 				MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d6
+-- 
+2.17.1
 
-If during probing the peripherals enable their resources (like clocks), 
-what's wrong in having the full MDIO bus scan after probing of all 
-peripherals is complete (and all peripherals are up)?
-
-Also, what's wrong in letting the MDIO bus scan find only some PHYs in 
-the first go, and then letting each driver instance (of particular 
-peripheral) initiate scan only for its specific PHY, if it was not found 
-yet?
-(Is it thatof_mdio.h provides public function of_mdiobus_register, but 
-not something similar to add only specific devices/phys without 
-destroying the existing state?)
-I'd say that it is not necessary to have a PHY getting found before it 
-is needed to setup the complete interface.
-
-Best regards,
-Adam
