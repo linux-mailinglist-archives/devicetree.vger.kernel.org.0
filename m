@@ -2,181 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B479F25D6F7
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 13:03:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B02B525D725
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 13:26:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729797AbgIDLDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 07:03:34 -0400
-Received: from a27-187.smtp-out.us-west-2.amazonses.com ([54.240.27.187]:47640
-        "EHLO a27-187.smtp-out.us-west-2.amazonses.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730072AbgIDLCi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 07:02:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=zsmsymrwgfyinv5wlfyidntwsjeeldzt; d=codeaurora.org; t=1599217356;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding;
-        bh=Q7ONTmdE5O3zyLoRbKjUDWi27jlQPvzVzwB8xEHuo3M=;
-        b=J6FS+dv1NpbNINcarhMsi794OnIO2mUwN9SoQvJ7A39UuMwwAojgeVBGm1EK5uTe
-        jAoo3zfZ5HppVXofuJeKEKEbHp5PEODY0LyQ0mQVE5Y/jGvGVHk4wo32vTNpkCSXrfT
-        0nSF0aKKG3RTqO524NuJiozJT3rdkR4axQ6OTU+o=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1599217356;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID;
-        bh=Q7ONTmdE5O3zyLoRbKjUDWi27jlQPvzVzwB8xEHuo3M=;
-        b=OnyXS8r632k1aNkqKxNnhwpx9LeCYmkYDx+29gxeOOn/d5IwZOIY8LtZ27ow0sLY
-        QYYkr/tcJta4LiTClQE0lM5FRwz/89VUFVF7JEZSX7eLXEOaexaFpqGnyQ0K36gjPeO
-        V84IXwNCvUd6QWVrvegKgQAJsgiy90oqXYv+zQj0=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.5 required=2.0 tests=ALL_TRUSTED,NICE_REPLY_A,
-        SPF_FAIL,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D1056C43222
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-Subject: Re: [PATCH v3 2/5] ASoC: dt-bindings: Add dt binding for lpass hdmi
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-References: <1598855964-1042-1-git-send-email-srivasam@codeaurora.org>
- <1598855964-1042-3-git-send-email-srivasam@codeaurora.org>
- <0aa914dd-6a6e-208d-d29f-214a84dfd8a2@linaro.org>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited
-Message-ID: <0101017458c84d4b-5236b891-5a8c-4edb-8ff3-bd1ceac88928-000000@us-west-2.amazonses.com>
-Date:   Fri, 4 Sep 2020 11:02:36 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.2.1
+        id S1730212AbgIDL0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 07:26:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59910 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730106AbgIDLYk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 07:24:40 -0400
+Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4BD1C061258
+        for <devicetree@vger.kernel.org>; Fri,  4 Sep 2020 04:14:12 -0700 (PDT)
+Received: by mail-pj1-x1043.google.com with SMTP id 2so3034067pjx.5
+        for <devicetree@vger.kernel.org>; Fri, 04 Sep 2020 04:14:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=y4D5QqTSbmVc6Z1rVkpfPCOl/RfvgQ90k2+QfztdFL4=;
+        b=wwKqZv7n64y+bz4qrAYwYIFyWmfpKyZ+ZSRmT7qg6WRa5nhTimv7yBBNky31B0T1n+
+         D+rvIOXleKJB2z26EFzwyxH+mk4be2ViJoIYeX7PWg6+0PEQ+C+l4TklZfUZ9It+cdM1
+         y5FDUgsqghgQAQc4I9ilo9Z87woY2ugqE2osVq2HHpj/3VqKzIN2WuRvmDwDJ+72O7de
+         NzXtZzsddxKlhsR8V83nSXldAN63nCQ82LojTP4QGAY+EOGAJk5MIHUqVvRI5v+1k0di
+         QN9svkXgB4cRbjU9ZAil57PUdzHZ9CpY8QVcWC/y4L9XFG+4+LE3mOlNMVTRZsSmOqbT
+         WOhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=y4D5QqTSbmVc6Z1rVkpfPCOl/RfvgQ90k2+QfztdFL4=;
+        b=eZqBiaVXfwmToo4tBEO0R9ZuQUwUV1lMa2WV03kfL9FiDgiforZTIPsNZ2y7GGGCsr
+         gJVzK6YIsLMB0vtoZL9hfmzEmPmmjWpJM0SVEVNaEeQoYydOKE4MnBivIROMpO46DprZ
+         5qLgZKW9ce0mGw5JNmHlmxgY+QN4y01/ESwBJjLSJzL8/HpY0Yw3CE8G3ko3zGetr1Qb
+         GupOx6W9CS3GhcQ8BGBzn+3i7PbgQ85ppG+BzOlTpiTHxvOIzqBUIcqGzcRR2JUqwGJR
+         2synyys82UJzNC+WDg2cuX+GTe43G2zVsqsyxbU3KBLTynqTUJe8ejAZlrdT+QiXUtmf
+         zqng==
+X-Gm-Message-State: AOAM532+K1S+Gnl0EccflX66k4VA+lyk2c30AFwvvMewmmo2SHfHtVzg
+        ywPHYTPg4Wj5QSgebHwskvAQ
+X-Google-Smtp-Source: ABdhPJwwQO9ZxO0/SNtTrps/GYoiHfp/tCzVWaEff7uxDvKLINgm0WMDTYotC/fwPXBTR7vFyJxcbw==
+X-Received: by 2002:a17:90a:bd0e:: with SMTP id y14mr7662871pjr.13.1599218051178;
+        Fri, 04 Sep 2020 04:14:11 -0700 (PDT)
+Received: from mani ([103.59.133.81])
+        by smtp.gmail.com with ESMTPSA id s23sm5018691pjr.7.2020.09.04.04.14.07
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 04 Sep 2020 04:14:10 -0700 (PDT)
+Date:   Fri, 4 Sep 2020 16:44:02 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+Subject: Re: [PATCH v2 5/9] iio: adc: qcom-spmi-adc5: fix driver name
+Message-ID: <20200904111402.GC4056@mani>
+References: <20200903132109.1914011-1-dmitry.baryshkov@linaro.org>
+ <20200903132109.1914011-6-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <0aa914dd-6a6e-208d-d29f-214a84dfd8a2@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-SES-Outgoing: 2020.09.04-54.240.27.187
-Feedback-ID: 1.us-west-2.CZuq2qbDmUIuT3qdvXlRHZZCpfZqZ4GtG9v3VKgRyF0=:AmazonSES
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200903132109.1914011-6-dmitry.baryshkov@linaro.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Srinivas For Review!!!
+On 0903, Dmitry Baryshkov wrote:
+> Remove superfluous '.c' from qcom-spmi-adc5 device driver name.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-On 9/4/2020 4:11 PM, Srinivas Kandagatla wrote:
->
->
-> On 31/08/2020 07:39, Srinivasa Rao Mandadapu wrote:
->> From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
->>
->> Adds bindings for lpass hdmi interface
->> which can support audio path over dp.
->>
->> Signed-off-by: Srinivasa Rao <srivasam@codeaurora.org>
->> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
->> ---
->>   .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  | 51 
->> ++++++++++++++++++++--
->>   1 file changed, 47 insertions(+), 4 deletions(-)
->>
->> diff --git 
->> a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml 
->> b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
->> index 09c9bd2..7c2ac0c 100644
->> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
->> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
->> @@ -22,6 +22,7 @@ properties:
->>         - qcom,lpass-cpu
->>         - qcom,apq8016-lpass-cpu
->>         - qcom,sc7180-lpass-cpu
->> +      - qcom,sc7180-lpass-hdmi
->
-> Why do we need a new compatible per interface, IMO, you should just 
-> use the existing compatible.
-> Or please explain the reasons why we need this?
-Two compatible strings are used because iommu's are different for I2S 
-and HDMI.
->
->>       reg:
->>       maxItems: 1
->> @@ -60,10 +61,12 @@ properties:
->>       const: 0
->>     patternProperties:
->> -  "(^mi2s-[0-9a-f]$|mi2s)":
->> +  "^dai@[0-9a-f]$":
->>       type: object
->> -    description: Required properties for each DAI
->> -
->> +    description: |
->> +      LPASS CPU dai node for each I2S device. Bindings of each node
->> +      depends on the specific driver providing the functionality and
->> +      properties.
->>       properties:
->>         reg:
->>           maxItems: 1
->> @@ -145,6 +148,22 @@ allOf:
->>           - iommus
->>           - power-domains
->>   +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: qcom,sc7180-lpass-hdmi
->> +    then:
->> +      properties:
->> +        clock-names:
->> +          items:
->> +            - const: pcnoc-sway-clk
->> +            - const: audio-core
->> +            - const: pcnoc-mport-clk
->> +      required:
->> +        - iommus
->> +        - power-domains
->> +
->>   examples:
->>     - |
->>       #include <dt-bindings/sound/sc7180-lpass.h>
->> @@ -178,12 +197,36 @@ examples:
->>               #address-cells = <1>;
->>               #size-cells = <0>;
->>               /* Optional to set different MI2S SD lines */
->> -            mi2s-primary@0 {
->> +            dai@mi2s-primary {
->>                   reg = <MI2S_PRIMARY>;
->>                   qcom,playback-sd-lines = <1>;
->>                   qcom,capture-sd-lines = <0>;
->>               };
->>           };
->> +
->> +        lpassh@62d87000 {
->> +            compatible = "qcom,sc7180-lpass-hdmi";
->> +
->> +            reg = <0 0x62d87000 0 0x68000>;
->> +
->> +            iommus = <&apps_smmu 0x1032 0>;
->> +
->> +            power-domains = <&lpass_hm 0>;
->> +
->> +            clocks = <&gcc 131>,
->> +                 <&lpasscc 6>,
->> +                 <&lpasscc 10>;
->> +
->> +            clock-names = "pcnoc-sway-clk", "audio-core",
->> +                          "pcnoc-mport-clk";
->> +
->> +            #sound-dai-cells = <1>;
->> +
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +
->> +            interrupts = <0 268 1>;
->> +        };
->>       };
->>     ...
->>
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+Please add Fixes tag, with that:
 
+Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+Thanks,
+Mani
+
+> ---
+>  drivers/iio/adc/qcom-spmi-adc5.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iio/adc/qcom-spmi-adc5.c b/drivers/iio/adc/qcom-spmi-adc5.c
+> index 30b8867b31e4..c2da8f068b87 100644
+> --- a/drivers/iio/adc/qcom-spmi-adc5.c
+> +++ b/drivers/iio/adc/qcom-spmi-adc5.c
+> @@ -919,7 +919,7 @@ static int adc5_probe(struct platform_device *pdev)
+>  
+>  static struct platform_driver adc5_driver = {
+>  	.driver = {
+> -		.name = "qcom-spmi-adc5.c",
+> +		.name = "qcom-spmi-adc5",
+>  		.of_match_table = adc5_match_table,
+>  	},
+>  	.probe = adc5_probe,
+> -- 
+> 2.28.0
+> 
