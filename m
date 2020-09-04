@@ -2,68 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CABB225E204
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 21:39:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 230F725E24F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 22:02:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727855AbgIDTjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 15:39:15 -0400
-Received: from eu-shark2.inbox.eu ([195.216.236.82]:43848 "EHLO
-        eu-shark2.inbox.eu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726221AbgIDTjP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 15:39:15 -0400
-X-Greylist: delayed 320 seconds by postgrey-1.27 at vger.kernel.org; Fri, 04 Sep 2020 15:39:14 EDT
-Received: from eu-shark2.inbox.eu (localhost [127.0.0.1])
-        by eu-shark2-out.inbox.eu (Postfix) with ESMTP id E5A8A14CABA;
-        Fri,  4 Sep 2020 22:33:51 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mail.ee; s=20150108;
-        t=1599248031; bh=ubICt9xksEEhwxkgC0Mdeef1nGy2ibTY1aiD6wEybEU=;
-        h=Date:From:To:Cc:Subject;
-        b=hePSwgnrh3GZhnc0bnnelG38+iLEHuCovnNgH5pWcD4KiXA+X/ztCDnvnvZm98B/h
-         AafnB9yzGrl7ls5o6K+pDjfgjJSV5aEY6SdCcHU+uHSzy4KtlM3CE9N0jNQoKAeqRS
-         jzruNl6Z2szipMVmuPgJMwvLWqzkUdndjLT9gjRQ=
-Received: from mail.inbox.eu (eu-pop1 [127.0.0.1])
-        by eu-shark2-in.inbox.eu (Postfix) with ESMTP id C528D14CAB9;
-        Fri,  4 Sep 2020 22:33:51 +0300 (EEST)
-Received: from hp15 (unknown [185.176.221.195])
-        (Authenticated sender: arzamas-16@mail.ee)
-        by mail.inbox.eu (Postfix) with ESMTPA id 0563A1BE00DE;
-        Fri,  4 Sep 2020 22:33:49 +0300 (EEST)
-Date:   Fri, 4 Sep 2020 22:33:45 +0300
-From:   Boris Lysov <arzamas-16@mail.ee>
-To:     linux-i2c@vger.kernel.org
-Cc:     qii.wang@mediatek.com, robh+dt@kernel.org, matthias.bgg@gmail.com,
-        devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: i2c: i2c-mt65xx: Update binding example
-Message-ID: <20200904223345.3daea5ad@hp15>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: OK
-X-ESPOL: 6N1mkZY9ZDPk1R69OhvTBA4ysStOWvPn+eak0RRcgAiJPFLiYg==
+        id S1728022AbgIDUCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 16:02:03 -0400
+Received: from gw.c-home.cz ([89.24.150.100]:41769 "EHLO dmz.c-home.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727921AbgIDUCC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Sep 2020 16:02:02 -0400
+Received: from ubuntu1804.c-home.cz (unifi.c-home.cz [192.168.1.239])
+        by dmz.c-home.cz (8.14.4+Sun/8.14.4) with ESMTP id 084K1Ed8002405;
+        Fri, 4 Sep 2020 22:01:19 +0200 (CEST)
+From:   Martin Cerveny <m.cerveny@computer.org>
+To:     devicetree@vger.kernel.org
+Cc:     Martin Cerveny <m.cerveny@computer.org>,
+        Chen-Yu Tsai <wens@csie.org>, devel@driverdev.osuosl.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH 0/6] ARM: dts: sun8i: v3s: Enable video decoder
+Date:   Fri,  4 Sep 2020 22:01:06 +0200
+Message-Id: <20200904200112.5563-1-m.cerveny@computer.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Example uses values for MT6589 SoC, but MT6577 was specified in "compatible" property.
+First patch extends cedrus capability to all decoders
+because V3s missing MPEG2 decoder.
 
-Signed-off-by: Boris Lysov <arzamas-16@mail.ee>
----
- Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Next two patches add system control node (SRAM C1) and 
+next three patches add support for Cedrus VPU.
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
-index 7f0194fdd0cc..acf3d4d28b98 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
-@@ -36,7 +36,7 @@ Optional properties:
- Example:
- 
- 	i2c0: i2c@1100d000 {
--			compatible = "mediatek,mt6577-i2c";
-+			compatible = "mediatek,mt6589-i2c";
- 			reg = <0x1100d000 0x70>,
- 			      <0x11000300 0x80>;
- 			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_LOW>;
+Best regards,
+Martin
+
+Martin Cerveny (6):
+  media: cedrus: Register all codecs as capability
+  dt-bindings: sram: allwinner,sun4i-a10-system-control: Add V3s
+    compatibles
+  ARM: dts: sun8i: v3s: Add node for system control
+  media: cedrus: Add support for V3s
+  media: allwinner,sun4i-a10-video-engine: Add V3s compatible
+  ARM: dts: sun8i: v3s: Add video engine node
+
+ .../allwinner,sun4i-a10-video-engine.yaml     |  1 +
+ .../allwinner,sun4i-a10-system-control.yaml   |  6 ++++
+ arch/arm/boot/dts/sun8i-v3s.dtsi              | 33 +++++++++++++++++++
+ drivers/staging/media/sunxi/cedrus/cedrus.c   | 28 +++++++++++++++-
+ drivers/staging/media/sunxi/cedrus/cedrus.h   |  2 ++
+ .../staging/media/sunxi/cedrus/cedrus_video.c |  2 ++
+ 6 files changed, 71 insertions(+), 1 deletion(-)
+
 -- 
-2.28.0
+2.17.1
+
