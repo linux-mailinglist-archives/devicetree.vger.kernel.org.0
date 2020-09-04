@@ -2,172 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 97EF025D695
-	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 12:41:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE70B25D6DD
+	for <lists+devicetree@lfdr.de>; Fri,  4 Sep 2020 12:53:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730228AbgIDKln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Sep 2020 06:41:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53122 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730211AbgIDKlN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Sep 2020 06:41:13 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 781E6C061246
-        for <devicetree@vger.kernel.org>; Fri,  4 Sep 2020 03:41:12 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id o5so6194671wrn.13
-        for <devicetree@vger.kernel.org>; Fri, 04 Sep 2020 03:41:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=kyJg8idy+PjAE57kGmkS0ZoaAYxlqusadYf8SACjX04=;
-        b=sYm0PXTPk5fJ6nKnctZpW0txiiXbd6A6TN9TxriYAGrOs7WULA6uKZ7UH7+eczEnWw
-         aDHeYvfvAxsruBMjO2UMYARCy7RE8RFPwhAGzTrJ/hOvDp+kjwCOjsFsWlE/8AycPBmo
-         mYiKosDA7Prf8L/E0GGH911LUE33CWluHR8hYYB4RhVXGgQuqKh5yU0TrOTbJCquL1lR
-         4cq4H/XEG/3BnJmbOH3AsW7Q54PkO8C6HxY8W4GiPapu7rtxSAq3bUA218a7BlOiENJZ
-         yYVTUHFmYhUjSklJ8pl4rEkxH5dHSInIZhEOXTspfcNPJaYqi1yQIc51LbA0G3/QLJHM
-         0bAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=kyJg8idy+PjAE57kGmkS0ZoaAYxlqusadYf8SACjX04=;
-        b=T0DewqiKQ/uwU9L7AZ4i4SaUCpvg5sJAajacoLD7H7YyGsNcxGxXV5vNfJRMrBM3u7
-         8gOYz87jR4kpk5vhH0XMB8Y5PRq+z1tKBlnmiEI76L/3R258plzI2t9DLOClIfxH+Z0C
-         w9FAwwgzk4MnVMmJ8aV0XhrwsU3PCrfBJ8zECeJxVRIeuu/qT7ehaMfoVpRLtOWDJ5RM
-         LpDWHdzCxuThlVsZVlo8vCjObZhLyP5HMzzTDp4EXClXztLSX3CPo3pLitXAFc1Ile1Q
-         OyiBC0ERUNbUciS6HisMXeyiouIMRAZFeUTleAaRwfVOIct61dAWyiiEgRvOgfBl2U6F
-         f6aQ==
-X-Gm-Message-State: AOAM531I2VYrvktF9C9ujxF+1eaCo3msaWstL18pNHcx+/T2oXnv+UE0
-        QG4N7pJjCS+ip5hce2VpMJqZrQ==
-X-Google-Smtp-Source: ABdhPJwcM/mvRUa1x6LP8GowZ/iDgM47WaAX67i0UXgUblW5EME1WshkbRtkPmA9S3/tyM1Y/cvb9A==
-X-Received: by 2002:a5d:4e44:: with SMTP id r4mr2651863wrt.338.1599216071002;
-        Fri, 04 Sep 2020 03:41:11 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id q3sm19804440wmq.1.2020.09.04.03.41.09
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 04 Sep 2020 03:41:10 -0700 (PDT)
-Subject: Re: [PATCH v3 3/5] ASoC: qcom: Add support for lpass hdmi driver
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-References: <1598855964-1042-1-git-send-email-srivasam@codeaurora.org>
- <1598855964-1042-4-git-send-email-srivasam@codeaurora.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <ac1f0b9a-8e07-464c-b0df-6b8e5665a632@linaro.org>
-Date:   Fri, 4 Sep 2020 11:41:09 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1728263AbgIDKxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Sep 2020 06:53:25 -0400
+Received: from foss.arm.com ([217.140.110.172]:48300 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726171AbgIDKxR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Sep 2020 06:53:17 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B1A31101E;
+        Fri,  4 Sep 2020 03:53:15 -0700 (PDT)
+Received: from [10.57.40.122] (unknown [10.57.40.122])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 659D43F71F;
+        Fri,  4 Sep 2020 03:53:12 -0700 (PDT)
+Subject: Re: [RFC 00/10] Add USB support for Hikey 970
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        John Stultz <john.stultz@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh@kernel.org>, Yu Chen <chenyu56@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Wei Xu <xuwei5@hisilicon.com>
+References: <cover.1599214329.git.mchehab+huawei@kernel.org>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <84b7dfcd-05e9-53b2-e0a0-b03105937eb3@arm.com>
+Date:   Fri, 4 Sep 2020 11:53:10 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <1598855964-1042-4-git-send-email-srivasam@codeaurora.org>
+In-Reply-To: <cover.1599214329.git.mchehab+huawei@kernel.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 31/08/2020 07:39, Srinivasa Rao Mandadapu wrote:
-> From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+On 2020-09-04 11:23, Mauro Carvalho Chehab wrote:
+> This RFC adds what seems to be needed for USB to work with Hikey 970.
+> While this driver works fine on Kernel 4.9 and 4.19, there's a hack there,
+> in the form of some special binding logic under dwg3 driver,  that seems to
+>   be just adding some delay,  and doing some different initializations at
+> PM (basically, disabling autosuspend).
 > 
-> Upadate lpass cpu and platform driver to support audio over dp.
-> Also add lpass-hdmi.c and lpass-hdmi.h.
+> With upstream Kernel, however, I'm getting a hard to track
+> Kernel panic:
 > 
-> Signed-off-by: Srinivasa Rao <srivasam@codeaurora.org>
-> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-> ---
->   sound/soc/qcom/Kconfig           |   5 +
->   sound/soc/qcom/Makefile          |   2 +
->   sound/soc/qcom/lpass-apq8016.c   |   1 +
->   sound/soc/qcom/lpass-cpu.c       |  64 ++--
->   sound/soc/qcom/lpass-hdmi.c      | 684 +++++++++++++++++++++++++++++++++++++++
->   sound/soc/qcom/lpass-hdmi.h      | 129 ++++++++
->   sound/soc/qcom/lpass-ipq806x.c   |   1 +
->   sound/soc/qcom/lpass-lpaif-reg.h |  48 ++-
->   sound/soc/qcom/lpass-platform.c  | 287 ++++++++++++----
->   sound/soc/qcom/lpass.h           |  88 ++++-
->   10 files changed, 1225 insertions(+), 84 deletions(-)
->   create mode 100644 sound/soc/qcom/lpass-hdmi.c
->   create mode 100644 sound/soc/qcom/lpass-hdmi.h
+> [    1.837458] SError Interrupt on CPU0, code 0xbf000002 -- SError
+> [    1.837462] CPU: 0 PID: 74 Comm: kworker/0:1 Not tainted 5.8.0+ #205
+> [    1.837463] Hardware name: HiKey970 (DT)
+> [    1.837465] Workqueue: events deferred_probe_work_func
+> [    1.837467] pstate: 20000005 (nzCv daif -PAN -UAO BTYPE=--)
+> [    1.837468] pc : _raw_spin_unlock_irqrestore+0x18/0x50
+> [    1.837469] lr : regmap_unlock_spinlock+0x14/0x20
+> [    1.837470] sp : ffff8000124dba60
+> [    1.837471] x29: ffff8000124dba60 x28: 0000000000000000
+> [    1.837474] x27: ffff0001b7e854c8 x26: ffff80001204ea18
+> [    1.837476] x25: 0000000000000005 x24: ffff800011f918f8
+> [    1.837479] x23: ffff800011fbb588 x22: ffff0001b7e40e00
+> [    1.837481] x21: 0000000000000100 x20: 0000000000000000
+> [    1.837483] x19: ffff0001b767ec00 x18: 00000000ff10c000
+> [    1.837485] x17: 0000000000000002 x16: 0000b0740fdb9950
+> [    1.837488] x15: ffff8000116c1198 x14: ffffffffffffffff
+> [    1.837490] x13: 0000000000000030 x12: 0101010101010101
+> [    1.837493] x11: 0000000000000020 x10: ffff0001bf17d130
+> [    1.837495] x9 : 0000000000000000 x8 : ffff0001b6938080
+> [    1.837497] x7 : 0000000000000000 x6 : 000000000000003f
+> [    1.837500] x5 : 0000000000000000 x4 : 0000000000000000
+> [    1.837502] x3 : ffff80001096a880 x2 : 0000000000000000
+> [    1.837505] x1 : ffff0001b7e40e00 x0 : 0000000100000001
+> [    1.837507] Kernel panic - not syncing: Asynchronous SError Interrupt
+> [    1.837509] CPU: 0 PID: 74 Comm: kworker/0:1 Not tainted 5.8.0+ #205
+> [    1.837510] Hardware name: HiKey970 (DT)
+> [    1.837511] Workqueue: events deferred_probe_work_func
+> [    1.837513] Call trace:
+> [    1.837514]  dump_backtrace+0x0/0x1e0
+> [    1.837515]  show_stack+0x18/0x24
+> [    1.837516]  dump_stack+0xc0/0x11c
+> [    1.837517]  panic+0x15c/0x324
+> [    1.837518]  nmi_panic+0x8c/0x90
+> [    1.837519]  arm64_serror_panic+0x78/0x84
+> [    1.837520]  do_serror+0x158/0x15c
+> [    1.837521]  el1_error+0x84/0x100
+> [    1.837522]  _raw_spin_unlock_irqrestore+0x18/0x50
+> [    1.837523]  regmap_write+0x58/0x80
+> [    1.837524]  hi3660_reset_deassert+0x28/0x34
+> [    1.837526]  reset_control_deassert+0x50/0x260
+> [    1.837527]  reset_control_deassert+0xf4/0x260
+> [    1.837528]  dwc3_probe+0x5dc/0xe6c
+> [    1.837529]  platform_drv_probe+0x54/0xb0
+> [    1.837530]  really_probe+0xe0/0x490
+> [    1.837531]  driver_probe_device+0xf4/0x160
+> [    1.837532]  __device_attach_driver+0x8c/0x114
+> [    1.837533]  bus_for_each_drv+0x78/0xcc
+> [    1.837534]  __device_attach+0x108/0x1a0
+> [    1.837535]  device_initial_probe+0x14/0x20
+> [    1.837537]  bus_probe_device+0x98/0xa0
+> [    1.837538]  deferred_probe_work_func+0x88/0xe0
+> [    1.837539]  process_one_work+0x1cc/0x350
+> [    1.837540]  worker_thread+0x2c0/0x470
+> [    1.837541]  kthread+0x154/0x160
+> [    1.837542]  ret_from_fork+0x10/0x30
+> [    1.837569] SMP: stopping secondary CPUs
+> [    1.837570] Kernel Offset: 0x1d0000 from 0xffff800010000000
+> [    1.837571] PHYS_OFFSET: 0x0
+> [    1.837572] CPU features: 0x240002,20882004
+> [    1.837573] Memory Limit: none
 > 
-> diff --git a/sound/soc/qcom/Kconfig b/sound/soc/qcom/Kconfig
-> index a607ace..509584c 100644
-> --- a/sound/soc/qcom/Kconfig
-> +++ b/sound/soc/qcom/Kconfig
-> @@ -12,6 +12,10 @@ config SND_SOC_LPASS_CPU
->   	tristate
->   	select REGMAP_MMIO
->   
-> +config SND_SOC_LPASS_HDMI
-> +	tristate
-> +	select REGMAP_MMIO
-> +
->   config SND_SOC_LPASS_PLATFORM
->   	tristate
->   	select REGMAP_MMIO
-> @@ -30,6 +34,7 @@ config SND_SOC_LPASS_SC7180
->   	tristate
->   	select SND_SOC_LPASS_CPU
->   	select SND_SOC_LPASS_PLATFORM
-> +	select SND_SOC_LPASS_HDMI
->   
->   config SND_SOC_STORM
->   	tristate "ASoC I2S support for Storm boards"
-> diff --git a/sound/soc/qcom/Makefile b/sound/soc/qcom/Makefile
-> index 7972c94..0bd90d7 100644
-> --- a/sound/soc/qcom/Makefile
-> +++ b/sound/soc/qcom/Makefile
-> @@ -1,12 +1,14 @@
->   # SPDX-License-Identifier: GPL-2.0
->   # Platform
->   snd-soc-lpass-cpu-objs := lpass-cpu.o
-> +snd-soc-lpass-hdmi-objs := lpass-hdmi.o
->   snd-soc-lpass-platform-objs := lpass-platform.o
->   snd-soc-lpass-ipq806x-objs := lpass-ipq806x.o
->   snd-soc-lpass-apq8016-objs := lpass-apq8016.o
->   snd-soc-lpass-sc7180-objs := lpass-sc7180.o
->   
->   obj-$(CONFIG_SND_SOC_LPASS_CPU) += snd-soc-lpass-cpu.o
-> +obj-$(CONFIG_SND_SOC_LPASS_HDMI) += snd-soc-lpass-hdmi.o
->   obj-$(CONFIG_SND_SOC_LPASS_PLATFORM) += snd-soc-lpass-platform.o
->   obj-$(CONFIG_SND_SOC_LPASS_IPQ806X) += snd-soc-lpass-ipq806x.o
->   obj-$(CONFIG_SND_SOC_LPASS_APQ8016) += snd-soc-lpass-apq8016.o
-> diff --git a/sound/soc/qcom/lpass-apq8016.c b/sound/soc/qcom/lpass-apq8016.c
-> index 5c8ae22..a1bc7e2 100644
-> --- a/sound/soc/qcom/lpass-apq8016.c
-> +++ b/sound/soc/qcom/lpass-apq8016.c
-> @@ -289,6 +289,7 @@ static struct lpass_variant apq8016_data = {
->   	.exit			= apq8016_lpass_exit,
->   	.alloc_dma_channel	= apq8016_lpass_alloc_dma_channel,
->   	.free_dma_channel	= apq8016_lpass_free_dma_channel,
-> +	.id			= I2S_INTERFACE,
+> I suspect that the driver works downstream because of the extra
+> delay of probing an additional driver, as porting such driver
+> to upstream sometimes makes this driver to work. So, it could
+> be due to some race condition.
+> 
+> The problem could also be due to something wrong at DT,
+> as, with the additional driver, the DT bindings are different.
+> 
+> As I'm not familiar about the Serror error mechanism on ARM,
+> I'm wondering if someone could give me some hint about how
+> can I identify what's happening here.  Due to the panic(), I
+> can't check what wrong happened there. Not sure if it would
+> be safe to just hack the error handling part of Serror, in order
+> to let the boot to finish.
 
-Before going into detail review, I see real issue in the overall 
-approach here to add new interface to exiting lpass!!
+As one of my colleagues so wonderfully puts it, SError is effectively 
+"part of the SoC has fallen off" - it's an asynchronous notification of 
+some serious error condition external to the CPU. In this case, it seems 
+quite likely from trying to access a hardware block before it's powered 
+up or has finished its reset cycle, and so some CPU access is raising an 
+error in the interconnect instead of completing as expected.
 
-Intention of struct lpass_variant is to address differences between SoCs 
-or different lpass versions. But you should not duplicate this and use 
-it for addressing differences between each lpass interfaces!
+Robin.
 
-All the dai related register offsets should still go in to this 
-structure and driver should be able to know which dai its talking to 
-based on snd_soc_dai_driver id and select correct register offset.
-
-Also on the other note, can you please split the patch if possible so 
-that it will be easy for review. Specially I would like to see header 
-file changes specific to adding new interface to be separate then 
-followed by the actual interface implementation  and then the user.
-
-I also see some unrelated changes like changing buffer sizes, which 
-should go into different patch!
-
---srini
+> PS.: the driver/misc hisi_hikey_usb driver on this series came
+> from the John Stultz Hikey 960 tree.
+> 
+> Thanks!
+> Mauro
+> 
+> Mauro Carvalho Chehab (7):
+>    phy: hisilicon: phy-hi3670-usb3: use a consistent namespace
+>    phy: hisilicon: phy-hi3670-usb3: fix coding style
+>    phy: hisilicon: phy-hi3670-usb3: change some DT properties
+>    dt-bindings: phy: convert phy-kirin970-usb3.txt to yaml
+>    MAINTAINERS: add myself as maintainer for Kirin 970 USB PHY
+>    misc: hisi_hikey_usb: add support for Hikey 970
+>    dts: hisilicon: add support for USB3 on Hikey 970
+> 
+> Yu Chen (3):
+>    phy: hisilicon: add USB physical layer for Kirin 3670
+>    phy: hisilicon: phy-hi3670-usb3: fix some issues at the init code
+>    misc: hisi_hikey_usb: Driver to support onboard USB gpio hub on
+>      Hikey960
+> 
+>   .../bindings/phy/hisilicon,hi3670-usb3.yaml   |  72 ++
+>   MAINTAINERS                                   |  16 +-
+>   .../boot/dts/hisilicon/hi3670-hikey970.dts    | 103 +++
+>   arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  49 ++
+>   drivers/misc/Kconfig                          |   9 +
+>   drivers/misc/Makefile                         |   1 +
+>   drivers/misc/hisi_hikey_usb.c                 | 272 +++++++
+>   drivers/phy/hisilicon/Kconfig                 |  10 +
+>   drivers/phy/hisilicon/Makefile                |   1 +
+>   drivers/phy/hisilicon/phy-hi3670-usb3.c       | 671 ++++++++++++++++++
+>   10 files changed, 1203 insertions(+), 1 deletion(-)
+>   create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
+>   create mode 100644 drivers/misc/hisi_hikey_usb.c
+>   create mode 100644 drivers/phy/hisilicon/phy-hi3670-usb3.c
+> 
