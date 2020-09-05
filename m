@@ -2,54 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 617E825E5E5
-	for <lists+devicetree@lfdr.de>; Sat,  5 Sep 2020 09:02:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF52925E5F5
+	for <lists+devicetree@lfdr.de>; Sat,  5 Sep 2020 09:20:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726065AbgIEHCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Sep 2020 03:02:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53004 "EHLO mail.kernel.org"
+        id S1726302AbgIEHUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Sep 2020 03:20:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54144 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725818AbgIEHCk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 5 Sep 2020 03:02:40 -0400
+        id S1725818AbgIEHUK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 5 Sep 2020 03:20:10 -0400
 Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5EF1F206B5;
-        Sat,  5 Sep 2020 07:02:08 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id C056320760;
+        Sat,  5 Sep 2020 07:20:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599289360;
-        bh=Q03gpUTD+ItXovuZ926XLppjFN6H1ht+Re/yp7B5QUI=;
+        s=default; t=1599290409;
+        bh=maligWyu2rsKm0ydVFPC4p+dMXWBEXpFFDpVZnTLus8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WPf+9cD5I+h2On16GS2JVIPaPk4fZ1KJ1oZlkeBRSOsy4x+6Z4frnHVhjy1fwd1mI
-         DwNf1yybGDoo2p0l9qjxAbSf5a6fvYD49o4P+WrSS6skk6rmGzsxq1uDDtsrqdOD2D
-         PY41YJAU64vrj12Rvot7r5nHKNzr8Qszq5p5VF4A=
-Date:   Sat, 5 Sep 2020 15:01:42 +0800
+        b=0xvkDx6adp64WeaSKLXjckrcivtNcZHvXo4Lzw5ebM26Jcqs1Z4dgBsBpri0GYNyT
+         8g5TNOEZNc4Sed8pPM+GH7eVBe+fyehR3TMyCv68LcTbEZlQ+a6TQi7yBDoefNZeGu
+         32PjxuZnZxbieyi5PiSGL6dkarFbrVkrwT8K2rKM=
+Date:   Sat, 5 Sep 2020 15:20:03 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Robin Gong <yibin.gong@nxp.com>
-Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        Anson.Huang@nxp.com, kernel@pengutronix.de, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 RESEND] ARM64: dts: imx8mp: correct sdma1 clk setting
-Message-ID: <20200905070140.GH9261@dragon>
-References: <1598955709-28688-1-git-send-email-yibin.gong@nxp.com>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>
+Subject: Re: [PATCH v1 2/3] dt-bindings: arm: fsl: add Plymovent M2M board
+Message-ID: <20200905072002.GI9261@dragon>
+References: <20200901093736.29316-1-o.rempel@pengutronix.de>
+ <20200901093736.29316-3-o.rempel@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1598955709-28688-1-git-send-email-yibin.gong@nxp.com>
+In-Reply-To: <20200901093736.29316-3-o.rempel@pengutronix.de>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 01, 2020 at 06:21:49PM +0800, Robin Gong wrote:
-> Correct sdma1 ahb clk, otherwise wrong 1:1 clk ratio will be chosed so
-> that sdma1 function broken. sdma1 should use 1:2 clk, while sdma2/3 use
-> 1:1.
+On Tue, Sep 01, 2020 at 11:37:34AM +0200, Oleksij Rempel wrote:
+> Add Plymovent Group BV M2M iMX6dl based board
 > 
-> Fixes: 6d9b8d20431f ("arm64: dts: freescale: Add i.MX8MP dtsi support")
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index 6da9d734cdb7..5ecd3dd6ff23 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -176,6 +176,7 @@ properties:
+>                - kontron,imx6dl-samx6i     # Kontron i.MX6 Solo SMARC Module
+>                - prt,prtrvt                # Protonic RVT board
+>                - prt,prtvt7                # Protonic VT7 board
+> +              - ply,plym2m                # Plymovent M2M board
 
-Applied, thanks.
+'l' goes before 'r'.
+
+Shawn
+
+>                - technexion,imx6dl-pico-dwarf   # TechNexion i.MX6DL Pico-Dwarf
+>                - technexion,imx6dl-pico-hobbit  # TechNexion i.MX6DL Pico-Hobbit
+>                - technexion,imx6dl-pico-nymph   # TechNexion i.MX6DL Pico-Nymph
+> -- 
+> 2.28.0
+> 
