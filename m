@@ -2,481 +2,428 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 440F825E5FB
-	for <lists+devicetree@lfdr.de>; Sat,  5 Sep 2020 09:30:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3138825E606
+	for <lists+devicetree@lfdr.de>; Sat,  5 Sep 2020 09:54:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726261AbgIEHaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Sep 2020 03:30:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55566 "EHLO mail.kernel.org"
+        id S1726261AbgIEHy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Sep 2020 03:54:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56988 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725818AbgIEHav (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 5 Sep 2020 03:30:51 -0400
+        id S1726065AbgIEHy1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 5 Sep 2020 03:54:27 -0400
 Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 521C0206E7;
-        Sat,  5 Sep 2020 07:30:48 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1B68920760;
+        Sat,  5 Sep 2020 07:54:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599291050;
-        bh=+E+o/KIGnMt/xKMzSjtjY9uiubGBsGgPjxsqUWHMtUY=;
+        s=default; t=1599292466;
+        bh=ZoCxCzhyH5PWfIrPdsAkm3KPRt8Z8QvNMRXjsz+xV+k=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BBDGNXjNREU+VUwHxtIwuinttTIcOA7fhxSGmFZIJngYmi9pdIR7UqNK78+aTwVRL
-         Vp7HQ/AvsIjXmFMjv60Y9KFIvx12nEAU1IE5IwfFaC7jM34kRdshq8rU7LpHsWh+8B
-         XmjxorHmhHxkbJZh/bXjz46EMZZ8WXj4DZi/YgRE=
-Date:   Sat, 5 Sep 2020 15:30:45 +0800
+        b=Oj2+k4zF0yDZ9GwzyWXm2kMk6iPgSpdRnB9Fq8K1z78Qb6oJlG7mTsALx4eJ8/nom
+         jPeHyhFcEYa21tQFjULS5X7889ahhi2hlPgxaY1ThEqsieK5VOiTacELZf45F0JzZZ
+         NSRMPko/l4csV5igrCLTl38H2qlkhxmq8Lu6mWtI=
+Date:   Sat, 5 Sep 2020 15:54:20 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        David Jander <david@protonic.nl>, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH v1 3/3] ARM: dts: add Plymovent M2M board
-Message-ID: <20200905073041.GJ9261@dragon>
-References: <20200901093736.29316-1-o.rempel@pengutronix.de>
- <20200901093736.29316-4-o.rempel@pengutronix.de>
+To:     meenakshi.aggarwal@nxp.com
+Cc:     robh+dt@kernel.org, V.sethi@nxp.com, leoyang.li@nxp.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Kuldeep Singh <kuldeep.singh@nxp.com>
+Subject: Re: [PATCH 2/2] arm64: dts: lx2160a: add device tree for lx2162aqds
+ board
+Message-ID: <20200905075419.GN9261@dragon>
+References: <1599059610-7570-1-git-send-email-meenakshi.aggarwal@nxp.com>
+ <1599059610-7570-2-git-send-email-meenakshi.aggarwal@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200901093736.29316-4-o.rempel@pengutronix.de>
+In-Reply-To: <1599059610-7570-2-git-send-email-meenakshi.aggarwal@nxp.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 01, 2020 at 11:37:35AM +0200, Oleksij Rempel wrote:
-> Plymovent M2M is a control interface produced for the Plymovent filter
-> systems.
+On Wed, Sep 02, 2020 at 08:43:30PM +0530, meenakshi.aggarwal@nxp.com wrote:
+> From: Meenakshi Aggarwal <meenakshi.aggarwal@nxp.com>
 > 
-> Signed-off-by: David Jander <david@protonic.nl>
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Add device tree support for LX2162AQDS board.
+> LX2162A has same die as of LX2160A with different packaging.
+> 
+> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+> Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
+> Signed-off-by: Meenakshi Aggarwal <meenakshi.aggarwal@nxp.com>
 > ---
->  arch/arm/boot/dts/Makefile          |   1 +
->  arch/arm/boot/dts/imx6dl-plym2m.dts | 394 ++++++++++++++++++++++++++++
->  2 files changed, 395 insertions(+)
->  create mode 100644 arch/arm/boot/dts/imx6dl-plym2m.dts
+>  arch/arm64/boot/dts/freescale/Makefile            |   1 +
+>  arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dts | 336 ++++++++++++++++++++++
+>  2 files changed, 337 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dts
 > 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 4572db3fa5ae..3c3811fd8613 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -455,6 +455,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
->  	imx6dl-pico-hobbit.dtb \
->  	imx6dl-pico-nymph.dtb \
->  	imx6dl-pico-pi.dtb \
-> +	imx6dl-plym2m.dtb \
->  	imx6dl-prtrvt.dtb \
->  	imx6dl-prtvt7.dtb \
->  	imx6dl-rex-basic.dtb \
-> diff --git a/arch/arm/boot/dts/imx6dl-plym2m.dts b/arch/arm/boot/dts/imx6dl-plym2m.dts
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index a39f0a1..ab9fbd3 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -27,6 +27,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-clearfog-cx.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-honeycomb.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-qds.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-rdb.dtb
+> +dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2162a-qds.dtb
+>  
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dts
 > new file mode 100644
-> index 000000000000..affa663c3ffe
+> index 0000000..a81c6a4
 > --- /dev/null
-> +++ b/arch/arm/boot/dts/imx6dl-plym2m.dts
-> @@ -0,0 +1,394 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-> +// SPDX-FileCopyrightText: 2014 Protonic Holland
-> +// SPDX-FileCopyrightText: 2020 Oleksij Rempel <kernel@pengutronix.de>, Pengutronix
+> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dts
+> @@ -0,0 +1,336 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +//
+> +// Device Tree file for LX2162AQDS
+> +//
+> +// Copyright 2020 NXP
 > +
 > +/dts-v1/;
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include "imx6dl.dtsi"
+> +
+> +#include "fsl-lx2160a.dtsi"
 > +
 > +/ {
-> +	model = "Plymovent M2M board";
-> +	compatible = "ply,plym2m", "fsl,imx6dl";
+> +	model = "NXP Layerscape LX2162AQDS";
+> +	compatible = "nxp,lx2162a-qds", "fsl,lx2160a";
+> +
+> +	aliases {
+> +		crypto = &crypto;
+> +		serial0 = &uart0;
+> +	};
 > +
 > +	chosen {
-> +		stdout-path = &uart4;
+> +		stdout-path = "serial0:115200n8";
 > +	};
 > +
-> +	backlight: backlight {
-> +		compatible = "pwm-backlight";
-> +		pwms = <&pwm1 0 500000 0>;
-> +		brightness-levels = <0 1000>;
-> +		num-interpolated-steps = <20>;
-> +		default-brightness-level = <19>;
-> +		power-supply = <&reg_12v0>;
+> +	sb_3v3: regulator-sb3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "MC34717-3.3VSB";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+
+I do not see any point to have regulator-boot-on or regulator-always-on
+for a regulator that doesn't have on/off control.
+
 > +	};
 > +
-> +	display {
-> +		compatible = "fsl,imx-parallel-display";
-> +		pinctrl-0 = <&pinctrl_ipu1_disp>;
-> +		pinctrl-names = "default";
-> +		#address-cells = <1>;
+> +	mdio-mux-1 {
+> +		compatible = "mdio-mux-multiplexer";
+> +		mux-controls = <&mux 0>;
+> +		mdio-parent-bus = <&emdio1>;
+> +		#address-cells=<1>;
 > +		#size-cells = <0>;
 > +
-> +		port@0 {
-> +			reg = <0>;
+> +		mdio@0 { /* On-board RTL8211F PHY #1 RGMII1*/
+> +			reg = <0x00>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
 > +
-> +			display_in: endpoint {
-> +				remote-endpoint = <&ipu1_di0_disp0>;
+> +			rgmii_phy1: ethernet-phy@1 {
+> +				compatible = "ethernet-phy-id001c.c916";
+> +				reg = <0x1>;
+> +				eee-broken-1000t;
 > +			};
 > +		};
 > +
-> +		port@1 {
-> +			reg = <1>;
-> +
-> +			display_out: endpoint {
-> +				remote-endpoint = <&panel_in>;
-> +			};
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_leds>;
-> +
-> +		led-debug {
-> +			function = LED_FUNCTION_STATUS;
-> +			gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +	};
-> +
-> +	panel {
-> +		compatible = "edt,etm0700g0bdh6";
-> +		backlight = <&backlight>;
-> +		power-supply = <&reg_3v3>;
-> +
-> +		port {
-> +			panel_in: endpoint {
-> +				remote-endpoint = <&display_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	clk50m_phy: phy_clock {
+> +		mdio@8 { /* On-board RTL8211F PHY #2 RGMII2*/
 
-We prefer to use hyphen over underscore in node name.
+Missing one space before closing comment.
 
 Shawn
 
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <50000000>;
+> +			reg = <0x8>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			rgmii_phy2: ethernet-phy@2 {
+> +				compatible = "ethernet-phy-id001c.c916";
+> +				reg = <0x2>;
+> +				eee-broken-1000t;
+> +			};
+> +		};
+> +
+> +		mdio@18 { /* Slot #1 */
+> +			reg = <0x18>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		mdio@19 { /* Slot #2 */
+> +			reg = <0x19>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		mdio@1a { /* Slot #3 */
+> +			reg = <0x1a>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		mdio@1b { /* Slot #4 */
+> +			reg = <0x1b>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		mdio@1c { /* Slot #5 */
+> +			reg = <0x1c>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		mdio@1d { /* Slot #6 */
+> +			reg = <0x1d>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		mdio@1e { /* Slot #7 */
+> +			reg = <0x1e>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		mdio@1f { /* Slot #8 */
+> +			reg = <0x1f>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
 > +	};
 > +
-> +	reg_3v3: regulator-3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "3v3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +	};
-> +
-> +	reg_5v0: regulator-5v0 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "5v0";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +	};
-> +
-> +	reg_12v0: regulator-12v0 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "12v0";
-> +		regulator-min-microvolt = <12000000>;
-> +		regulator-max-microvolt = <12000000>;
-> +	};
-> +};
-> +
-> +&can1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_can1>;
-> +	xceiver-supply = <&reg_5v0>;
-> +	status = "okay";
-> +};
-> +
-> +&ecspi1 {
-> +	cs-gpios = <&gpio3 19 GPIO_ACTIVE_LOW>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_ecspi1>;
-> +	status = "okay";
-> +
-> +	flash@0 {
-> +		compatible = "jedec,spi-nor";
-> +		reg = <0>;
-> +		spi-max-frequency = <20000000>;
-> +	};
-> +};
-> +
-> +&fec {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_enet>;
-> +	phy-mode = "rmii";
-> +	clocks = <&clks IMX6QDL_CLK_ENET>,
-> +		 <&clks IMX6QDL_CLK_ENET>,
-> +		 <&clk50m_phy>;
-> +	clock-names = "ipg", "ahb", "ptp";
-> +	status = "okay";
-> +
-> +	mdio {
-> +		#address-cells = <1>;
+> +	mdio-mux-2 {
+> +		compatible = "mdio-mux-multiplexer";
+> +		mux-controls = <&mux 1>;
+> +		mdio-parent-bus = <&emdio2>;
+> +		#address-cells=<1>;
 > +		#size-cells = <0>;
 > +
-> +		/* Microchip KSZ8081RNA PHY */
-> +		rgmii_phy: ethernet-phy@0 {
-> +			reg = <0>;
-> +			interrupts-extended = <&gpio5 23 IRQ_TYPE_LEVEL_LOW>;
-> +			reset-gpios = <&gpio5 22 GPIO_ACTIVE_LOW>;
-> +			reset-assert-us = <10000>;
-> +			reset-deassert-us = <300>;
+> +		mdio@0 { /* Slot #1 (secondary EMI) */
+> +			reg = <0x00>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		mdio@1 { /* Slot #2 (secondary EMI) */
+> +			reg = <0x01>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		mdio@2 { /* Slot #3 (secondary EMI) */
+> +			reg = <0x02>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		mdio@3 { /* Slot #4 (secondary EMI) */
+> +			reg = <0x03>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		mdio@4 { /* Slot #5 (secondary EMI) */
+> +			reg = <0x04>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		mdio@5 { /* Slot #6 (secondary EMI) */
+> +			reg = <0x05>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		mdio@6 { /* Slot #7 (secondary EMI) */
+> +			reg = <0x06>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		mdio@7 { /* Slot #8 (secondary EMI) */
+> +			reg = <0x07>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
 > +		};
 > +	};
 > +};
 > +
-> +&gpio1 {
-> +	gpio-line-names =
-> +		"CAN1_TERM", "SD1_CD", "", "", "", "", "", "",
-> +		"DEBUG_0", "", "", "", "", "", "", "",
-> +		"", "", "", "", "", "", "", "",
-> +		"", "", "", "", "", "", "", "";
-> +};
-> +
-> +&gpio2 {
-> +	gpio-line-names =
-> +		"", "", "", "", "", "", "", "",
-> +		"", "", "", "", "", "", "", "",
-> +		"", "", "", "", "", "", "", "",
-> +		"", "", "ECSPI2_SS0", "", "", "", "TSC_BUSY", "";
-> +};
-> +
-> +&gpio3 {
-> +	gpio-line-names =
-> +		"", "", "", "", "", "", "", "",
-> +		"", "", "", "", "", "", "", "",
-> +		"", "", "", "ECSPI1_SS1", "TSC_PENIRQ", "", "", "",
-> +		"", "", "", "", "", "", "", "";
-> +};
-> +
-> +&gpio4 {
-> +	gpio-line-names =
-> +		"", "", "", "", "", "", "", "",
-> +		"", "", "", "", "CAN1_SR", "", "", "",
-> +		"", "", "", "", "", "", "", "",
-> +		"", "", "", "", "", "", "", "";
-> +};
-> +
-> +&gpio5 {
-> +	gpio-line-names =
-> +		"", "", "", "", "", "", "", "",
-> +		"", "", "", "", "", "", "", "",
-> +		"", "", "", "", "", "", "ETH_RESET", "ETH_INTRP",
-> +		"", "", "", "", "", "", "", "";
-> +};
-> +
-> +&i2c1 {
-> +	clock-frequency = <100000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c1>;
-> +	status = "okay";
-> +
-> +	/* additional i2c devices are added automatically by the boot loader */
-> +};
-> +
-> +&i2c3 {
-> +	clock-frequency = <100000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c3>;
-> +	status = "okay";
-> +
-> +	temperature-sensor@70 {
-> +		compatible = "ti,tmp103";
-> +		reg = <0x70>;
-> +	};
-> +};
-> +
-> +&ipu1_di0_disp0 {
-> +	remote-endpoint = <&display_in>;
-> +};
-> +
-> +&pwm1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_pwm1>;
+> +&crypto {
 > +	status = "okay";
 > +};
 > +
-> +&uart4 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart4>;
+> +&dpmac17 {
+> +	phy-handle = <&rgmii_phy1>;
+> +	phy-connection-type = "rgmii-id";
+> +};
+> +
+> +&dpmac18 {
+> +	phy-handle = <&rgmii_phy2>;
+> +	phy-connection-type = "rgmii-id";
+> +};
+> +
+> +&dspi0 {
+> +	status = "okay";
+> +
+> +	dflash0: flash@0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>;
+> +		spi-max-frequency = <1000000>;
+> +	};
+> +};
+> +
+> +&dspi1 {
+> +	status = "okay";
+> +
+> +	dflash1: flash@0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>;
+> +		spi-max-frequency = <1000000>;
+> +	};
+> +};
+> +
+> +&dspi2 {
+> +	status = "okay";
+> +
+> +	dflash2: flash@0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>;
+> +		spi-max-frequency = <1000000>;
+> +	};
+> +};
+> +
+> +&emdio1 {
 > +	status = "okay";
 > +};
 > +
-> +&usbphynop1 {
-> +	status = "disabled";
-> +};
-> +
-> +&usbphynop2 {
-> +	status = "disabled";
-> +};
-> +
-> +&usbotg {
-> +	phy_type = "utmi";
-> +	dr_mode = "host";
-> +	disable-over-current;
+> +&emdio2 {
 > +	status = "okay";
 > +};
 > +
-> +&usdhc1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usdhc1>;
-> +	cd-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
-> +	no-1-8-v;
-> +	disable-wp;
-> +	cap-sd-highspeed;
-> +	no-mmc;
-> +	no-sdio;
+> +&esdhc0 {
 > +	status = "okay";
 > +};
 > +
-> +&usdhc3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usdhc3>;
-> +	bus-width = <8>;
-> +	no-1-8-v;
-> +	non-removable;
-> +	no-sd;
-> +	no-sdio;
+> +&esdhc1 {
 > +	status = "okay";
 > +};
 > +
-> +&iomuxc {
-> +	pinctrl_can1: can1grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_KEY_ROW2__FLEXCAN1_RX		0x1b000
-> +			MX6QDL_PAD_KEY_COL2__FLEXCAN1_TX		0x3008
-> +			/* CAN1_SR */
-> +			MX6QDL_PAD_KEY_COL3__GPIO4_IO12			0x13008
-> +			/* CAN1_TERM */
-> +			MX6QDL_PAD_GPIO_0__GPIO1_IO00			0x1b088
-> +		>;
+> +&fspi {
+> +	status = "okay";
+> +
+> +	mt35xu512aba0: flash@0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		compatible = "jedec,spi-nor";
+> +		m25p,fast-read;
+> +		spi-max-frequency = <50000000>;
+> +		reg = <0>;
+> +		spi-rx-bus-width = <8>;
+> +		spi-tx-bus-width = <8>;
+> +	};
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +
+> +	fpga@66 {
+> +		compatible = "fsl,lx2160aqds-fpga", "fsl,fpga-qixis-i2c",
+> +			     "simple-mfd";
+> +		reg = <0x66>;
+> +
+> +		mux: mux-controller {
+> +			compatible = "reg-mux";
+> +			#mux-control-cells = <1>;
+> +			mux-reg-masks = <0x54 0xf8>, /* 0: reg 0x54, bits 7:3 */
+> +					<0x54 0x07>; /* 1: reg 0x54, bit 2:0 */
+> +		};
 > +	};
 > +
-> +	pinctrl_ecspi1: ecspi1grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_EIM_D17__ECSPI1_MISO			0x1b000
-> +			MX6QDL_PAD_EIM_D18__ECSPI1_MOSI			0x3008
-> +			MX6QDL_PAD_EIM_D16__ECSPI1_SCLK			0x3008
-> +			/* CS */
-> +			MX6QDL_PAD_EIM_D19__GPIO3_IO19			0x3008
-> +		>;
-> +	};
+> +	i2c-mux@77 {
+> +		compatible = "nxp,pca9547";
+> +		reg = <0x77>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
 > +
-> +	pinctrl_enet: enetgrp {
-> +		fsl,pins = <
-> +			/* MX6QDL_ENET_PINGRP4 */
-> +			MX6QDL_PAD_ENET_MDC__ENET_MDC			0x1b0b0
-> +			MX6QDL_PAD_ENET_MDIO__ENET_MDIO			0x1b0b0
-> +			MX6QDL_PAD_ENET_RXD0__ENET_RX_DATA0		0x1b0b0
-> +			MX6QDL_PAD_ENET_RXD1__ENET_RX_DATA1		0x1b0b0
-> +			MX6QDL_PAD_ENET_RX_ER__ENET_RX_ER		0x1b0b0
-> +			MX6QDL_PAD_ENET_TX_EN__ENET_TX_EN		0x1b0b0
-> +			MX6QDL_PAD_ENET_TXD0__ENET_TX_DATA0		0x1b0b0
-> +			MX6QDL_PAD_ENET_TXD1__ENET_TX_DATA1		0x1b0b0
-> +			MX6QDL_PAD_ENET_CRS_DV__ENET_RX_EN		0x1b0b0
+> +		i2c@2 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0x2>;
 > +
-> +			MX6QDL_PAD_GPIO_16__ENET_REF_CLK		0x1b0b0
-> +			/* Phy reset */
-> +			MX6QDL_PAD_CSI0_DAT4__GPIO5_IO22		0x1b0b0
-> +			/* nINTRP */
-> +			MX6QDL_PAD_CSI0_DAT5__GPIO5_IO23		0x1b0b0
-> +		>;
-> +	};
+> +			power-monitor@40 {
+> +				compatible = "ti,ina220";
+> +				reg = <0x40>;
+> +				shunt-resistor = <500>;
+> +			};
 > +
-> +	pinctrl_i2c1: i2c1grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_CSI0_DAT8__I2C1_SDA			0x4001f8b1
-> +			MX6QDL_PAD_CSI0_DAT9__I2C1_SCL			0x4001f8b1
-> +		>;
-> +	};
+> +			power-monitor@41 {
+> +				compatible = "ti,ina220";
+> +				reg = <0x41>;
+> +				shunt-resistor = <1000>;
+> +			};
+> +		};
 > +
-> +	pinctrl_i2c3: i2c3grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_GPIO_5__I2C3_SCL			0x4001b8b1
-> +			MX6QDL_PAD_GPIO_6__I2C3_SDA			0x4001b8b1
-> +		>;
-> +	};
+> +		i2c@3 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0x3>;
 > +
-> +	pinctrl_ipu1_disp: ipudisp1grp {
-> +		fsl,pins = <
-> +			/* DSE 0x30 => 25 Ohm, 0x20 => 37 Ohm, 0x10 => 75 Ohm */
-> +			MX6QDL_PAD_DI0_DISP_CLK__IPU1_DI0_DISP_CLK	0x30
-> +			MX6QDL_PAD_DI0_PIN15__IPU1_DI0_PIN15		0x30
-> +			MX6QDL_PAD_DI0_PIN2__IPU1_DI0_PIN02		0x30
-> +			MX6QDL_PAD_DI0_PIN3__IPU1_DI0_PIN03		0x30
-> +			MX6QDL_PAD_DISP0_DAT0__IPU1_DISP0_DATA00	0x30
-> +			MX6QDL_PAD_DISP0_DAT1__IPU1_DISP0_DATA01	0x30
-> +			MX6QDL_PAD_DISP0_DAT2__IPU1_DISP0_DATA02	0x30
-> +			MX6QDL_PAD_DISP0_DAT3__IPU1_DISP0_DATA03	0x30
-> +			MX6QDL_PAD_DISP0_DAT4__IPU1_DISP0_DATA04	0x30
-> +			MX6QDL_PAD_DISP0_DAT5__IPU1_DISP0_DATA05	0x30
-> +			MX6QDL_PAD_DISP0_DAT6__IPU1_DISP0_DATA06	0x30
-> +			MX6QDL_PAD_DISP0_DAT7__IPU1_DISP0_DATA07	0x30
-> +			MX6QDL_PAD_DISP0_DAT8__IPU1_DISP0_DATA08	0x30
-> +			MX6QDL_PAD_DISP0_DAT9__IPU1_DISP0_DATA09	0x30
-> +			MX6QDL_PAD_DISP0_DAT10__IPU1_DISP0_DATA10	0x30
-> +			MX6QDL_PAD_DISP0_DAT11__IPU1_DISP0_DATA11	0x30
-> +			MX6QDL_PAD_DISP0_DAT12__IPU1_DISP0_DATA12	0x30
-> +			MX6QDL_PAD_DISP0_DAT13__IPU1_DISP0_DATA13	0x30
-> +			MX6QDL_PAD_DISP0_DAT14__IPU1_DISP0_DATA14	0x30
-> +			MX6QDL_PAD_DISP0_DAT15__IPU1_DISP0_DATA15	0x30
-> +			MX6QDL_PAD_DISP0_DAT16__IPU1_DISP0_DATA16	0x30
-> +			MX6QDL_PAD_DISP0_DAT17__IPU1_DISP0_DATA17	0x30
-> +		>;
-> +	};
+> +			temperature-sensor@4c {
+> +				compatible = "nxp,sa56004";
+> +				reg = <0x4c>;
+> +				vcc-supply = <&sb_3v3>;
+> +			};
 > +
-> +	pinctrl_leds: ledsgrp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_GPIO_8__GPIO1_IO08			0x1b0b0
-> +		>;
+> +			rtc@51 {
+> +				compatible = "nxp,pcf2129";
+> +				reg = <0x51>;
+> +			};
+> +		};
 > +	};
+> +};
 > +
-> +	pinctrl_pwm1: pwm1grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_GPIO_9__PWM1_OUT			0x8
-> +		>;
-> +	};
+> +&sata0 {
+> +	status = "okay";
+> +};
 > +
-> +	pinctrl_uart4: uart4grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_KEY_COL0__UART4_TX_DATA		0x1b0b1
-> +			MX6QDL_PAD_KEY_ROW0__UART4_RX_DATA		0x1b0b1
-> +		>;
-> +	};
+> +&sata1 {
+> +	status = "okay";
+> +};
 > +
-> +	pinctrl_usdhc1: usdhc1grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_SD1_CMD__SD1_CMD			0x170f9
-> +			MX6QDL_PAD_SD1_CLK__SD1_CLK			0x100f9
-> +			MX6QDL_PAD_SD1_DAT0__SD1_DATA0			0x170f9
-> +			MX6QDL_PAD_SD1_DAT1__SD1_DATA1			0x170f9
-> +			MX6QDL_PAD_SD1_DAT2__SD1_DATA2			0x170f9
-> +			MX6QDL_PAD_SD1_DAT3__SD1_DATA3			0x170f9
-> +			MX6QDL_PAD_GPIO_1__GPIO1_IO01			0x1b0b0
-> +		>;
-> +	};
+> +&sata2 {
+> +	status = "okay";
+> +};
 > +
-> +	pinctrl_usdhc3: usdhc3grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_SD3_CMD__SD3_CMD			0x17099
-> +			MX6QDL_PAD_SD3_CLK__SD3_CLK			0x10099
-> +			MX6QDL_PAD_SD3_DAT0__SD3_DATA0			0x17099
-> +			MX6QDL_PAD_SD3_DAT1__SD3_DATA1			0x17099
-> +			MX6QDL_PAD_SD3_DAT2__SD3_DATA2			0x17099
-> +			MX6QDL_PAD_SD3_DAT3__SD3_DATA3			0x17099
-> +			MX6QDL_PAD_SD3_DAT4__SD3_DATA4			0x17099
-> +			MX6QDL_PAD_SD3_DAT5__SD3_DATA5			0x17099
-> +			MX6QDL_PAD_SD3_DAT6__SD3_DATA6			0x17099
-> +			MX6QDL_PAD_SD3_DAT7__SD3_DATA7			0x17099
-> +			MX6QDL_PAD_SD3_RST__SD3_RESET			0x1b0b1
-> +		>;
-> +	};
+> +&sata3 {
+> +	status = "okay";
+> +};
+> +
+> +&uart0 {
+> +	status = "okay";
+> +};
+> +
+> +&uart1 {
+> +	status = "okay";
+> +};
+> +
+> +&usb0 {
+> +	status = "okay";
 > +};
 > -- 
-> 2.28.0
+> 2.7.4
 > 
