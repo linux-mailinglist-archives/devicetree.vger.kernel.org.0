@@ -2,199 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CCC225E6CF
-	for <lists+devicetree@lfdr.de>; Sat,  5 Sep 2020 11:44:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D89325E757
+	for <lists+devicetree@lfdr.de>; Sat,  5 Sep 2020 13:49:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726591AbgIEJoo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Sep 2020 05:44:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39588 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726372AbgIEJom (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Sep 2020 05:44:42 -0400
-Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60AC9C061244;
-        Sat,  5 Sep 2020 02:44:42 -0700 (PDT)
-Received: by mail-io1-xd41.google.com with SMTP id r9so9552432ioa.2;
-        Sat, 05 Sep 2020 02:44:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=MRAOg+eYaa2rEsb3DX+nTvExN1Y8ZloMTYBxu2WO+Og=;
-        b=P7SZq3diaIqpOcHQNTbt285fzLsPKCXGaGACEZpnnaDtyRNjG7brmP+FENF8JvhrQh
-         K4VgQs8XIqs2AyysPXUUVASiC9DV8Bs2StFORdMsYxe96+bOL/nd0Dx8h6o5tODfc18T
-         CCWlvEgZFp/lgB8lGeAV41IucRWGlJyPDBlc0tpxTfMfcimJJNjTK1qI1K222nfE2Zcg
-         fm9sUFsCplDn3sSMwuFTYgKecfqBxTCDFJUq7r/DHqx0ZjSGg82n/o9T1+bBRS1BuE06
-         W6GIYrnA+9f8uLqBuRliozk12JNtRc+f9R5+Hk2Bh0EX83qW8F/OhI1YcScDzC7bVjHs
-         uZOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=MRAOg+eYaa2rEsb3DX+nTvExN1Y8ZloMTYBxu2WO+Og=;
-        b=psTR9Jho5kFuB0Cyf0nuOWxG3oMlA/+PHlxZ5nSv8dB2dVCQ4UDNoR2H00yt/atexm
-         swK7Yh/xAfzTS2/aBfdJWa4RvzvuPAfnlN014o66QBpjY3mna72tgnrXTBCDAsDyWXBF
-         2o+9DVPWXhafqxGBRnyBkRHvTasyBmP1kPlKlqLnhL4QWFCVDeVdtlum9fUlp6RRrOP5
-         onTn1BDc8VTt97fLoxn8xbU++uWgz73RNhl1SOrbPUJrxMHNWdF0oAMOVt7k1RDyc8od
-         96Nd8X7p3bWcS8LNMvp3bqEOGBvRicXnAQYwVin85dUhAGxpfVi1j+o5TjHB+KfBIDHR
-         owWA==
-X-Gm-Message-State: AOAM5310wkaNKm10XbU3ESBSw5PX2u7WFFl3RGopT8Z0H1qOJ0E2H8r8
-        RIXJ8XNC8nPTZA3iCeFDgx3ek66JMfyuw0e7IC4=
-X-Google-Smtp-Source: ABdhPJyXfvK1S863k7/77Ze1ILkQ4pn0uoDYrNx4ieLIKuFYPgjXVZsg68a5vnb//UDFJVFIlHWJ43gpZjQFmNJGfcE=
-X-Received: by 2002:a6b:e017:: with SMTP id z23mr10805226iog.101.1599299081475;
- Sat, 05 Sep 2020 02:44:41 -0700 (PDT)
+        id S1728464AbgIELt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Sep 2020 07:49:56 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:53388 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726491AbgIELtz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 5 Sep 2020 07:49:55 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id 6D8F6FB03;
+        Sat,  5 Sep 2020 13:49:52 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id h1Oeo-a0KcPD; Sat,  5 Sep 2020 13:49:49 +0200 (CEST)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 2433B45B81; Sat,  5 Sep 2020 13:49:49 +0200 (CEST)
+Date:   Sat, 5 Sep 2020 13:49:49 +0200
+From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
+To:     Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+Cc:     Lucas Stach <l.stach@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        lukas@mntmn.com
+Subject: Re: [PATCH v9 0/5] Add support for iMX8MQ Display Controller
+ Subsystem
+Message-ID: <20200905114949.GA111526@bogon.m.sigxcpu.org>
+References: <20200731081836.3048-1-laurentiu.palcu@oss.nxp.com>
+ <20200731085429.GD12560@bogon.m.sigxcpu.org>
 MIME-Version: 1.0
-References: <20200903203034.1057334-1-peron.clem@gmail.com>
- <20200903203034.1057334-3-peron.clem@gmail.com> <7259829d-142e-b518-52a7-6fef388b27d2@sholland.org>
-In-Reply-To: <7259829d-142e-b518-52a7-6fef388b27d2@sholland.org>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Sat, 5 Sep 2020 11:44:30 +0200
-Message-ID: <CAJiuCcew35XzvA0gW=rq57RE3Oqxsa6y1UyeBJ+1HPoK4fyWgQ@mail.gmail.com>
-Subject: Re: [PATCH v2 02/20] ASoC: sun4i-i2s: Add support for H6 I2S
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200731085429.GD12560@bogon.m.sigxcpu.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Samuel,
+Hi Laurentiu,
+On Fri, Jul 31, 2020 at 10:54:29AM +0200, Guido Günther wrote:
+> Hi,
+> On Fri, Jul 31, 2020 at 11:18:28AM +0300, Laurentiu Palcu wrote:
+> > From: Laurentiu Palcu <laurentiu.palcu@nxp.com>
+> > 
+> > Hi,
+> > 
+> > This patchset adds initial DCSS support for iMX8MQ chip. Initial support
+> > includes only graphics plane support (no video planes), no HDR10 capabilities,
+> > no graphics decompression (only linear, tiled and super-tiled buffers allowed).
+> > 
+> > Support for the rest of the features will be added incrementally, in subsequent
+> > patches.
+> > 
+> > The patchset was tested with both HDP driver (in the downstream tree) and the upstream
+> > MIPI-DSI driver (with a couple of patches on top, to make it work correctly with DCSS).
+> > 
+> > Thanks,
+> > Laurentiu
+> > 
+> > Changes in v9:
+> >  * Fixed a compilation issue found by Guido in his setup: 'select
+> >    VIDEOMODE_HELPERS' was missing from Kconfig;
+> >  * Use imx8mq-clock.h in the bindings file so one can understand what
+> >    those clock values mean;
+> >  * no other changes done. Couldn't address the hang Guido reported as
+> >    it's not happening in my setup. However, in my tree, there are some
+> >    extra NWL and ADV patches applied on top of upstream ones... Also,
+> >    removing them and testing only with upstream, even if there's no
+> >    image out, does not produce a hang... :/
+> 
+> I don't think this should hold up merging.
 
-On Fri, 4 Sep 2020 at 05:16, Samuel Holland <samuel@sholland.org> wrote:
->
-> Cl=C3=A9ment,
->
-> On 9/3/20 3:30 PM, Cl=C3=A9ment P=C3=A9ron wrote:
-> > From: Jernej Skrabec <jernej.skrabec@siol.net>
-> >
-> > H6 I2S is very similar to that in H3, except it supports up to 16
-> > channels.
-> >
-> > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> > Signed-off-by: Marcus Cooper <codekipper@gmail.com>
-> > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
-> > ---
-> >  sound/soc/sunxi/sun4i-i2s.c | 221 ++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 221 insertions(+)
-> >
-> > diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
-> > index fabff7bcccbc..acf24f512f2c 100644
-> > --- a/sound/soc/sunxi/sun4i-i2s.c
-> > +++ b/sound/soc/sunxi/sun4i-i2s.c
->
-> [snip]
->
-> > @@ -474,6 +489,65 @@ static int sun8i_i2s_set_chan_cfg(const struct sun=
-4i_i2s *i2s,
-> >       return 0;
-> >  }
-> >
-> > +static int sun50i_h6_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
-> > +                                   const struct snd_pcm_hw_params *par=
-ams)
-> > +{
-> > +     unsigned int channels =3D params_channels(params);
-> > +     unsigned int slots =3D channels;
-> > +     unsigned int lrck_period;
-> > +
-> > +     if (i2s->slots)
-> > +             slots =3D i2s->slots;
-> > +
-> > +     /* Map the channels for playback and capture */
-> > +     regmap_write(i2s->regmap, SUN50I_H6_I2S_TX_CHAN_MAP1_REG, 0x76543=
-210);
-> > +     regmap_write(i2s->regmap, SUN50I_H6_I2S_RX_CHAN_MAP1_REG, 0x76543=
-210);
-> > +
-> > +     /* Configure the channels */
-> > +     regmap_update_bits(i2s->regmap, SUN8I_I2S_TX_CHAN_SEL_REG,
-> > +                        SUN50I_H6_I2S_TX_CHAN_SEL_MASK,
-> > +                        SUN50I_H6_I2S_TX_CHAN_SEL(channels));
-> > +     regmap_update_bits(i2s->regmap, SUN50I_H6_I2S_RX_CHAN_SEL_REG,
-> > +                        SUN50I_H6_I2S_TX_CHAN_SEL_MASK,
-> > +                        SUN50I_H6_I2S_TX_CHAN_SEL(channels));
-> > +
-> > +     regmap_update_bits(i2s->regmap, SUN8I_I2S_CHAN_CFG_REG,
-> > +                        SUN8I_I2S_CHAN_CFG_TX_SLOT_NUM_MASK,
-> > +                        SUN8I_I2S_CHAN_CFG_TX_SLOT_NUM(channels));
-> > +     regmap_update_bits(i2s->regmap, SUN8I_I2S_CHAN_CFG_REG,
-> > +                        SUN8I_I2S_CHAN_CFG_RX_SLOT_NUM_MASK,
-> > +                        SUN8I_I2S_CHAN_CFG_RX_SLOT_NUM(channels));
-> > +
-> > +     switch (i2s->format & SND_SOC_DAIFMT_FORMAT_MASK) {
-> > +     case SND_SOC_DAIFMT_DSP_A:
-> > +     case SND_SOC_DAIFMT_DSP_B:
-> > +     case SND_SOC_DAIFMT_LEFT_J:
-> > +     case SND_SOC_DAIFMT_RIGHT_J:
->
-> These cases don't match the documentation: LEFT_J and RIGHT_J are documen=
-ted to
-> behave like I2S (lrck_period =3D=3D slot_width), not like DSP_A/B (lrck_p=
-eriod =3D=3D
-> slot_width * slots).
->
-> > +             lrck_period =3D params_physical_width(params) * slots;
-> > +             break;
-> > +
-> > +     case SND_SOC_DAIFMT_I2S:
-> > +             lrck_period =3D params_physical_width(params);
-> > +             break;
-> > +
-> > +     default:
-> > +             return -EINVAL;
-> > +     }
-> > +
-> > +     if (i2s->slot_width)
-> > +             lrck_period =3D i2s->slot_width;
->
-> Here, i2s->slot_width is the number of bits for each slot, but in PCM mod=
-e, you
-you mean TDM here right?
+And i retested your v9 series on next-20200903 on a librem5 devkit and
+it works. Looking back I spotted an error in my clock configuration, so
 
-> need to multiply by the number of slots, like above.
->
-> Also, there is already logic in sun4i_i2s_hw_params to use i2s->slot_widt=
-h and
-> i2s->slots. You could avoid the duplication by passing slot_width/slots a=
-s
-> parameters to set_chan_cfg.
+Tested-by: Guido Günther <agx@sigxcpu.org>
 
-Thanks for the catch, I will fix this.
+Cheers,
+ -- Guido
 
-Regards,
-Clement
-
->
-> Regards,
-> Samuel
->
-> > +
-> > +     regmap_update_bits(i2s->regmap, SUN4I_I2S_FMT0_REG,
-> > +                        SUN8I_I2S_FMT0_LRCK_PERIOD_MASK,
-> > +                        SUN8I_I2S_FMT0_LRCK_PERIOD(lrck_period));
-> > +
-> > +     regmap_update_bits(i2s->regmap, SUN8I_I2S_TX_CHAN_SEL_REG,
-> > +                        SUN50I_H6_I2S_TX_CHAN_EN_MASK,
-> > +                        SUN50I_H6_I2S_TX_CHAN_EN(channels));
-> > +
-> > +     return 0;
-> > +}
-> > +
-> >  static int sun4i_i2s_hw_params(struct snd_pcm_substream *substream,
-> >                              struct snd_pcm_hw_params *params,
-> >                              struct snd_soc_dai *dai)
->
-> [snip]
+> Cheers,
+>  -- Guido
+> 
+> > 
+> > Changes in v8:
+> >  * Removed 'select RESET_CONTROLLER" from Kconfig as Philipp pointed
+> >    out. SRC is not used in DCSS driver;
+> >  * Nothing else changed;
+> > 
+> > Changes in v7:
+> >  * Added a patch to initialize the connector using the drm_bridge_connector
+> >    API as Sam suggested. Tested it using NWL_DSI and ADV7535 with
+> >    Guido's patch [1] applied and one fix for ADV [2]. Also, some extra
+> >    patches for ADV and NWL were needed, from our downstream tree, which
+> >    will be upstreamed soon by their author;
+> >  * Rest of the patches are untouched;
+> > 
+> > [1] https://lists.freedesktop.org/archives/dri-devel/2020-July/273025.html
+> > [2] https://lists.freedesktop.org/archives/dri-devel/2020-July/273132.html
+> > 
+> > Changes in v6:
+> >  * Addressed Rob's comment and added "additionalProperties: false" at
+> >    the end of the bindings' properties. However, this change surfaced
+> >    an issue with the assigned-clock* properties not being documented in
+> >    the properties section. Added the descriptions and the bindings patch
+> >    will need another review;
+> >  * Added an entry for DCSS driver in the MAINTAINERS file;
+> >  * Removed the component framework patch altogether;
+> > 
+> > Changes in v5:
+> >  * Rebased to latest;
+> >  * Took out component framework support and made it a separate patch so
+> >    that people can still test with HDP driver, which makes use of it.
+> >    But the idea is to get rid of it once HDP driver's next versions
+> >    will remove component framework as well;
+> >  * Slight improvement to modesetting: avoid cutting off the pixel clock
+> >    if the new mode and the old one are equal. Also, in this case, is
+> >    not necessary to wait for DTG to shut off. This would allow to switch
+> >    from 8b RGB to 12b YUV422, for example, with no interruptions (at least
+> >    from DCSS point of view);
+> >  * Do not fire off CTXLD when going to suspend, unless it still has
+> >    entries that need to be committed to DCSS;
+> >  * Addressed Rob's comments on bindings;
+> > 
+> > Changes in v4:
+> >  * Addressed Lucas and Philipp's comments:
+> >    * Added DRM_KMS_CMA_HELPER dependency in Kconfig;
+> >    * Removed usage of devm_ functions since I'm already doing all the
+> >      clean-up in the submodules_deinit();
+> >    * Moved the drm_crtc_arm_vblank_event() in dcss_crtc_atomic_flush();
+> >    * Removed en_completion variable from dcss_crtc since this was
+> >      introduced mainly to avoid vblank timeout warnings which were fixed
+> >      by arming the vblank event in flush() instead of begin();
+> >    * Removed clks_on and irq_enabled flags since all the calls to
+> >      enabling/disabling clocks and interrupts were balanced;
+> >    * Removed the custom atomic_commit callback and used the DRM core
+> >      helper and, in the process, got rid of a workqueue that wasn't
+> >      necessary anymore;
+> >    * Fixed some minor DT binding issues flagged by Philipp;
+> >    * Some other minor changes suggested by Lucas;
+> >  * Removed YUV formats from the supported formats as these cannot work
+> >    without the HDR10 module CSCs and LUTs. Will add them back when I
+> >    will add support for video planes;
+> > 
+> > Changes in v3:
+> >  * rebased to latest linux-next and made it compile as drmP.h was
+> >    removed;
+> >  * removed the patch adding the VIDEO2_PLL clock. It's already applied;
+> >  * removed an unnecessary 50ms sleep in the dcss_dtg_sync_set();
+> >  * fixed a a spurious hang reported by Lukas Hartmann and encountered
+> >    by me several times;
+> >  * mask DPR and DTG interrupts by default, as they may come enabled from
+> >    U-boot;
+> > 
+> > Changes in v2:
+> >  * Removed '0x' in node's unit-address both in DT and yaml;
+> >  * Made the address region size lowercase, to be consistent;
+> >  * Removed some left-over references to P010;
+> >  * Added a Kconfig dependency of DRM && ARCH_MXC. This will also silence compilation
+> >    issues reported by kbuild for other architectures;
+> > 
+> > 
+> > Laurentiu Palcu (5):
+> >   drm/imx: compile imx directory by default
+> >   drm/imx: Add initial support for DCSS on iMX8MQ
+> >   drm/imx/dcss: use drm_bridge_connector API
+> >   MAINTAINERS: Add entry for i.MX 8MQ DCSS driver
+> >   dt-bindings: display: imx: add bindings for DCSS
+> > 
+> >  .../bindings/display/imx/nxp,imx8mq-dcss.yaml | 108 +++
+> >  MAINTAINERS                                   |   8 +
+> >  drivers/gpu/drm/Makefile                      |   2 +-
+> >  drivers/gpu/drm/imx/Kconfig                   |   2 +
+> >  drivers/gpu/drm/imx/Makefile                  |   1 +
+> >  drivers/gpu/drm/imx/dcss/Kconfig              |   9 +
+> >  drivers/gpu/drm/imx/dcss/Makefile             |   6 +
+> >  drivers/gpu/drm/imx/dcss/dcss-blkctl.c        |  70 ++
+> >  drivers/gpu/drm/imx/dcss/dcss-crtc.c          | 219 +++++
+> >  drivers/gpu/drm/imx/dcss/dcss-ctxld.c         | 424 +++++++++
+> >  drivers/gpu/drm/imx/dcss/dcss-dev.c           | 325 +++++++
+> >  drivers/gpu/drm/imx/dcss/dcss-dev.h           | 177 ++++
+> >  drivers/gpu/drm/imx/dcss/dcss-dpr.c           | 562 ++++++++++++
+> >  drivers/gpu/drm/imx/dcss/dcss-drv.c           | 138 +++
+> >  drivers/gpu/drm/imx/dcss/dcss-dtg.c           | 409 +++++++++
+> >  drivers/gpu/drm/imx/dcss/dcss-kms.c           | 198 +++++
+> >  drivers/gpu/drm/imx/dcss/dcss-kms.h           |  44 +
+> >  drivers/gpu/drm/imx/dcss/dcss-plane.c         | 405 +++++++++
+> >  drivers/gpu/drm/imx/dcss/dcss-scaler.c        | 826 ++++++++++++++++++
+> >  drivers/gpu/drm/imx/dcss/dcss-ss.c            | 180 ++++
+> >  20 files changed, 4112 insertions(+), 1 deletion(-)
+> >  create mode 100644 Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.yaml
+> >  create mode 100644 drivers/gpu/drm/imx/dcss/Kconfig
+> >  create mode 100644 drivers/gpu/drm/imx/dcss/Makefile
+> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-blkctl.c
+> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-crtc.c
+> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-ctxld.c
+> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dev.c
+> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dev.h
+> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dpr.c
+> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-drv.c
+> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dtg.c
+> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-kms.c
+> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-kms.h
+> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-plane.c
+> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-scaler.c
+> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-ss.c
+> > 
+> > -- 
+> > 2.23.0
+> > 
