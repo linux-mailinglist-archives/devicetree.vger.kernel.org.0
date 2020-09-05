@@ -2,219 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D89325E757
-	for <lists+devicetree@lfdr.de>; Sat,  5 Sep 2020 13:49:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 578C625E7E6
+	for <lists+devicetree@lfdr.de>; Sat,  5 Sep 2020 15:34:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728464AbgIELt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Sep 2020 07:49:56 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:53388 "EHLO honk.sigxcpu.org"
+        id S1728336AbgIENe0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Sep 2020 09:34:26 -0400
+Received: from mout.gmx.net ([212.227.17.21]:46607 "EHLO mout.gmx.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726491AbgIELtz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 5 Sep 2020 07:49:55 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 6D8F6FB03;
-        Sat,  5 Sep 2020 13:49:52 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id h1Oeo-a0KcPD; Sat,  5 Sep 2020 13:49:49 +0200 (CEST)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 2433B45B81; Sat,  5 Sep 2020 13:49:49 +0200 (CEST)
-Date:   Sat, 5 Sep 2020 13:49:49 +0200
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To:     Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-Cc:     Lucas Stach <l.stach@pengutronix.de>,
+        id S1726302AbgIENeU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 5 Sep 2020 09:34:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1599312791;
+        bh=X1JDHzlfCU+ENBN8/vZv+W5ToAriCbagxrRnZa4rg4o=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=kqdI1zVLoU5y3EfpwgRA1BDh4J0yUqBLRGr4sWg+olhwiwry59OqCiN6WnYbOeCFa
+         SnhcPcpXkC5dPR6eXqAXZ2h6CVrwraE/9nc0jqVv1hV56Pdl7x/nO89+rHJ7pI8qz/
+         wOaha/I05g5I2D90hV7ygGFwrXoMYEljsc9neK+4=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([5.146.195.151]) by mail.gmx.com (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MBDnC-1kQ9Av1Vug-00CfCO; Sat, 05
+ Sep 2020 15:33:11 +0200
+From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     linux-kernel@vger.kernel.org
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        lukas@mntmn.com
-Subject: Re: [PATCH v9 0/5] Add support for iMX8MQ Display Controller
- Subsystem
-Message-ID: <20200905114949.GA111526@bogon.m.sigxcpu.org>
-References: <20200731081836.3048-1-laurentiu.palcu@oss.nxp.com>
- <20200731085429.GD12560@bogon.m.sigxcpu.org>
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Josua Mayer <josua.mayer@jm0.eu>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>
+Subject: [PATCH v2 00/10] Netronix embedded controller driver for Kobo and Tolino ebook readers
+Date:   Sat,  5 Sep 2020 15:32:20 +0200
+Message-Id: <20200905133230.1014581-1-j.neuschaefer@gmx.net>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200731085429.GD12560@bogon.m.sigxcpu.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:62bYLLM6POKbq+fOwuftSVMbihyuuRYmQtF18cpq0SrmlLm0khW
+ 5OA0mdlU64S2+frZGjmJzDs/OoG19cGkL5pmLCv0o3zX49yFoC/PR22iROGxQA5hb7fYVaA
+ nhmQN+3Qvy+JGI4L/uvQ6ihKJTWSsWNze3rIK3YTLKKCS50ahtCGR7bNNVJA5Kb7fXRLDBv
+ 9mdRHu0y44h3vUJR5lhog==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:fg1zqR7bC9o=:hie2Q9J9itFryKJun2EHb6
+ w26FfeniqaZ9EH+mb9+9d3wreGPWx7J9rfuJ+LjKoRI4Yn+hlUOAn9LVRlajPVwHJxSH9PewR
+ fazsTWPLE6pUzHYhks0qaf9hskxJNOcbbAYRKS7ekah5J+V3Th4BP+3f7VwUGmBhf5Qsc13Cs
+ uUJfwBcanZ6nRamOZ6v+0gbw5chkTPjdGH/YUTeF0d7WTArIHn4SK4B8t23/N2nhfT1hcaRCr
+ k3q0NzHBOR75cITlj+ORu0qkcDy/lanjoMn1VWaFKXOUpSJUc8HDpvXZVjchUTG8WkKSSIf8Z
+ wdv6ncOhGg+TfeM0f0i0WWENbnkBxs4dwtgpYJ2Mtj+mysfJ4W9ii5KSkKlLZYNieA11zFmNA
+ BxGN+hH5Dkp8xBj5qpQ8E1MU1nw/TNB8dzP4J7K5fsKnK2pgOrX9+5l0nkUsSHbqJzgZV/gPT
+ cGvlLhW6kSZfpMK1jJk+l1JP1gGTXZRXMMAlfGsXsyQ/JLni7cNZQwErLjnnEMpdNZ/62cpt3
+ xxSFB/Kd7LbTFtIhHpE8Fh8nJ/7YpSIqLPGXxa9LBoB1GW/upN9X0cWzmKZJ7kVlPbP2oOv0E
+ XAigo+BI1DKJ4eoFghw4J2ZTLcvhgYc/hG5T5FHA6CumfuAtoPlwuKfk7ka7ufHQUXvIYqt7F
+ BzKhIYp5icEE1VQQzzxbVVDTMwkyNOjcyOKcma9knTjVgvtfwbWkFpR7pPhheAtVG3S5GoOqE
+ ZvDr09N8PgatP5Fum41PORDcQxVRRhICdvmS2VsbSORW/5tIXSLF4pG5WGNKktQU5eoZIsWtS
+ U+0Leuyk7MbAqrUeRAHUtun4C+SiCgvQPhsCSJ1eCNRu9Rx51y9qYD49iSUxOB35HYM/uIT1y
+ Fux+dOO7oswgNGbSd42YFMHkmA7ZvFbF7MITkUdQlKRErHTb6xKuyhYmOTPg3WrCLKJ0nCM+X
+ B38srR3CQgacumjKwVBmEO4kT3K50iIqi4laehetl12YLyIpasa4EocSMtcU+dEpTX/UVKXEu
+ JHSWT08FnxAiuIsHoTGsKS1POxJTRCbP4i5RF2m6BN3RKldJHlVr47cfTT7cUqnPcWLKyoz9P
+ A6X3hEzItB1YOtII2q2MTCP51b2tSClbvNIPoWdn2HTYkY5l3ODH0qqrSQ4JunZxUupnzg1D7
+ fLdF0Ddzx7so9MVwDVZmTHDW+MG0pdlIGzBD3E8GWYiW1FBg2aDuva5r3xGAnZ8JeLj8ifVim
+ YooW/KrRY9YRC1xGBbLpqySBih66011jGmTCTcA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurentiu,
-On Fri, Jul 31, 2020 at 10:54:29AM +0200, Guido Günther wrote:
-> Hi,
-> On Fri, Jul 31, 2020 at 11:18:28AM +0300, Laurentiu Palcu wrote:
-> > From: Laurentiu Palcu <laurentiu.palcu@nxp.com>
-> > 
-> > Hi,
-> > 
-> > This patchset adds initial DCSS support for iMX8MQ chip. Initial support
-> > includes only graphics plane support (no video planes), no HDR10 capabilities,
-> > no graphics decompression (only linear, tiled and super-tiled buffers allowed).
-> > 
-> > Support for the rest of the features will be added incrementally, in subsequent
-> > patches.
-> > 
-> > The patchset was tested with both HDP driver (in the downstream tree) and the upstream
-> > MIPI-DSI driver (with a couple of patches on top, to make it work correctly with DCSS).
-> > 
-> > Thanks,
-> > Laurentiu
-> > 
-> > Changes in v9:
-> >  * Fixed a compilation issue found by Guido in his setup: 'select
-> >    VIDEOMODE_HELPERS' was missing from Kconfig;
-> >  * Use imx8mq-clock.h in the bindings file so one can understand what
-> >    those clock values mean;
-> >  * no other changes done. Couldn't address the hang Guido reported as
-> >    it's not happening in my setup. However, in my tree, there are some
-> >    extra NWL and ADV patches applied on top of upstream ones... Also,
-> >    removing them and testing only with upstream, even if there's no
-> >    image out, does not produce a hang... :/
-> 
-> I don't think this should hold up merging.
+This patchset adds basic support for the embedded controller found on
+older ebook reader boards designed by/with the ODM Netronix Inc.[1] and
+sold by Kobo or Tolino, for example the Kobo Aura and the Tolino Shine.
+These drivers are based on information contained in the vendor kernel
+sources, but in order to all information in a single place, I documented
+the register interface of the EC on GitHub[2].
 
-And i retested your v9 series on next-20200903 on a librem5 devkit and
-it works. Looking back I spotted an error in my clock configuration, so
+As previously, I'm not sure I got the YAML DT bindings right. I have
+included the plain text DT bindings for reference, in the patch
+descriptions where they are relevant.
 
-Tested-by: Guido Günther <agx@sigxcpu.org>
+[1]: http://www.netronixinc.com/products.aspx?ID=3D1
+[2]: https://github.com/neuschaefer/linux/wiki/Netronix-MSP430-embedded-co=
+ntroller
 
-Cheers,
- -- Guido
 
-> Cheers,
->  -- Guido
-> 
-> > 
-> > Changes in v8:
-> >  * Removed 'select RESET_CONTROLLER" from Kconfig as Philipp pointed
-> >    out. SRC is not used in DCSS driver;
-> >  * Nothing else changed;
-> > 
-> > Changes in v7:
-> >  * Added a patch to initialize the connector using the drm_bridge_connector
-> >    API as Sam suggested. Tested it using NWL_DSI and ADV7535 with
-> >    Guido's patch [1] applied and one fix for ADV [2]. Also, some extra
-> >    patches for ADV and NWL were needed, from our downstream tree, which
-> >    will be upstreamed soon by their author;
-> >  * Rest of the patches are untouched;
-> > 
-> > [1] https://lists.freedesktop.org/archives/dri-devel/2020-July/273025.html
-> > [2] https://lists.freedesktop.org/archives/dri-devel/2020-July/273132.html
-> > 
-> > Changes in v6:
-> >  * Addressed Rob's comment and added "additionalProperties: false" at
-> >    the end of the bindings' properties. However, this change surfaced
-> >    an issue with the assigned-clock* properties not being documented in
-> >    the properties section. Added the descriptions and the bindings patch
-> >    will need another review;
-> >  * Added an entry for DCSS driver in the MAINTAINERS file;
-> >  * Removed the component framework patch altogether;
-> > 
-> > Changes in v5:
-> >  * Rebased to latest;
-> >  * Took out component framework support and made it a separate patch so
-> >    that people can still test with HDP driver, which makes use of it.
-> >    But the idea is to get rid of it once HDP driver's next versions
-> >    will remove component framework as well;
-> >  * Slight improvement to modesetting: avoid cutting off the pixel clock
-> >    if the new mode and the old one are equal. Also, in this case, is
-> >    not necessary to wait for DTG to shut off. This would allow to switch
-> >    from 8b RGB to 12b YUV422, for example, with no interruptions (at least
-> >    from DCSS point of view);
-> >  * Do not fire off CTXLD when going to suspend, unless it still has
-> >    entries that need to be committed to DCSS;
-> >  * Addressed Rob's comments on bindings;
-> > 
-> > Changes in v4:
-> >  * Addressed Lucas and Philipp's comments:
-> >    * Added DRM_KMS_CMA_HELPER dependency in Kconfig;
-> >    * Removed usage of devm_ functions since I'm already doing all the
-> >      clean-up in the submodules_deinit();
-> >    * Moved the drm_crtc_arm_vblank_event() in dcss_crtc_atomic_flush();
-> >    * Removed en_completion variable from dcss_crtc since this was
-> >      introduced mainly to avoid vblank timeout warnings which were fixed
-> >      by arming the vblank event in flush() instead of begin();
-> >    * Removed clks_on and irq_enabled flags since all the calls to
-> >      enabling/disabling clocks and interrupts were balanced;
-> >    * Removed the custom atomic_commit callback and used the DRM core
-> >      helper and, in the process, got rid of a workqueue that wasn't
-> >      necessary anymore;
-> >    * Fixed some minor DT binding issues flagged by Philipp;
-> >    * Some other minor changes suggested by Lucas;
-> >  * Removed YUV formats from the supported formats as these cannot work
-> >    without the HDR10 module CSCs and LUTs. Will add them back when I
-> >    will add support for video planes;
-> > 
-> > Changes in v3:
-> >  * rebased to latest linux-next and made it compile as drmP.h was
-> >    removed;
-> >  * removed the patch adding the VIDEO2_PLL clock. It's already applied;
-> >  * removed an unnecessary 50ms sleep in the dcss_dtg_sync_set();
-> >  * fixed a a spurious hang reported by Lukas Hartmann and encountered
-> >    by me several times;
-> >  * mask DPR and DTG interrupts by default, as they may come enabled from
-> >    U-boot;
-> > 
-> > Changes in v2:
-> >  * Removed '0x' in node's unit-address both in DT and yaml;
-> >  * Made the address region size lowercase, to be consistent;
-> >  * Removed some left-over references to P010;
-> >  * Added a Kconfig dependency of DRM && ARCH_MXC. This will also silence compilation
-> >    issues reported by kbuild for other architectures;
-> > 
-> > 
-> > Laurentiu Palcu (5):
-> >   drm/imx: compile imx directory by default
-> >   drm/imx: Add initial support for DCSS on iMX8MQ
-> >   drm/imx/dcss: use drm_bridge_connector API
-> >   MAINTAINERS: Add entry for i.MX 8MQ DCSS driver
-> >   dt-bindings: display: imx: add bindings for DCSS
-> > 
-> >  .../bindings/display/imx/nxp,imx8mq-dcss.yaml | 108 +++
-> >  MAINTAINERS                                   |   8 +
-> >  drivers/gpu/drm/Makefile                      |   2 +-
-> >  drivers/gpu/drm/imx/Kconfig                   |   2 +
-> >  drivers/gpu/drm/imx/Makefile                  |   1 +
-> >  drivers/gpu/drm/imx/dcss/Kconfig              |   9 +
-> >  drivers/gpu/drm/imx/dcss/Makefile             |   6 +
-> >  drivers/gpu/drm/imx/dcss/dcss-blkctl.c        |  70 ++
-> >  drivers/gpu/drm/imx/dcss/dcss-crtc.c          | 219 +++++
-> >  drivers/gpu/drm/imx/dcss/dcss-ctxld.c         | 424 +++++++++
-> >  drivers/gpu/drm/imx/dcss/dcss-dev.c           | 325 +++++++
-> >  drivers/gpu/drm/imx/dcss/dcss-dev.h           | 177 ++++
-> >  drivers/gpu/drm/imx/dcss/dcss-dpr.c           | 562 ++++++++++++
-> >  drivers/gpu/drm/imx/dcss/dcss-drv.c           | 138 +++
-> >  drivers/gpu/drm/imx/dcss/dcss-dtg.c           | 409 +++++++++
-> >  drivers/gpu/drm/imx/dcss/dcss-kms.c           | 198 +++++
-> >  drivers/gpu/drm/imx/dcss/dcss-kms.h           |  44 +
-> >  drivers/gpu/drm/imx/dcss/dcss-plane.c         | 405 +++++++++
-> >  drivers/gpu/drm/imx/dcss/dcss-scaler.c        | 826 ++++++++++++++++++
-> >  drivers/gpu/drm/imx/dcss/dcss-ss.c            | 180 ++++
-> >  20 files changed, 4112 insertions(+), 1 deletion(-)
-> >  create mode 100644 Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.yaml
-> >  create mode 100644 drivers/gpu/drm/imx/dcss/Kconfig
-> >  create mode 100644 drivers/gpu/drm/imx/dcss/Makefile
-> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-blkctl.c
-> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-crtc.c
-> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-ctxld.c
-> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dev.c
-> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dev.h
-> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dpr.c
-> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-drv.c
-> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dtg.c
-> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-kms.c
-> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-kms.h
-> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-plane.c
-> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-scaler.c
-> >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-ss.c
-> > 
-> > -- 
-> > 2.23.0
-> > 
+Changes in v2:
+- Moved txt DT bindings to patch descriptions and removed patch 1/10
+  "DT bindings in plain text format"
+- New patch 7/10 "rtc: Introduce RTC_TIMESTAMP_END_2255"
+- Rebased on 5.9-rc3
+- Various other changes which are documented in each patch
+
+v1:
+- https://lore.kernel.org/lkml/20200620223915.1311485-1-j.neuschaefer@gmx.=
+net/
+
+
+Jonathan Neusch=C3=A4fer (10):
+  dt-bindings: Add vendor prefix for Netronix, Inc.
+  dt-bindings: mfd: Add binding for Netronix's embedded controller
+  mfd: Add base driver for Netronix embedded controller
+  dt-bindings: pwm: Add bindings for PWM function in Netronix EC
+  pwm: ntxec: Add driver for PWM function in Netronix EC
+  dt-bindings: rtc: Add bindings for Netronix embedded controller RTC
+  rtc: Introduce RTC_TIMESTAMP_END_2255
+  rtc: New driver for RTC in Netronix embedded controller
+  MAINTAINERS: Add entry for Netronix embedded controller
+  ARM: dts: imx50-kobo-aura: Add Netronix embedded controller
+
+ .../bindings/mfd/netronix,ntxec.yaml          |  83 +++++++
+ .../bindings/pwm/netronix,ntxec-pwm.yaml      |  33 +++
+ .../bindings/rtc/netronix,ntxec-rtc.yaml      |  27 +++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |  11 +
+ arch/arm/boot/dts/imx50-kobo-aura.dts         |  27 ++-
+ drivers/mfd/Kconfig                           |   7 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/ntxec.c                           | 216 ++++++++++++++++++
+ drivers/pwm/Kconfig                           |   8 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-ntxec.c                       | 160 +++++++++++++
+ drivers/rtc/Kconfig                           |   8 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-ntxec.c                       | 130 +++++++++++
+ include/linux/mfd/ntxec.h                     |  24 ++
+ include/linux/rtc.h                           |   1 +
+ 17 files changed, 739 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/netronix,ntxec.y=
+aml
+ create mode 100644 Documentation/devicetree/bindings/pwm/netronix,ntxec-p=
+wm.yaml
+ create mode 100644 Documentation/devicetree/bindings/rtc/netronix,ntxec-r=
+tc.yaml
+ create mode 100644 drivers/mfd/ntxec.c
+ create mode 100644 drivers/pwm/pwm-ntxec.c
+ create mode 100644 drivers/rtc/rtc-ntxec.c
+ create mode 100644 include/linux/mfd/ntxec.h
+
+=2D-
+2.28.0
+
