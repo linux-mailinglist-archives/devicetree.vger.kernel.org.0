@@ -2,53 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3B1225E5D9
-	for <lists+devicetree@lfdr.de>; Sat,  5 Sep 2020 08:30:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4081425E5DC
+	for <lists+devicetree@lfdr.de>; Sat,  5 Sep 2020 08:33:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726381AbgIEGaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Sep 2020 02:30:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51040 "EHLO mail.kernel.org"
+        id S1726372AbgIEGdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Sep 2020 02:33:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51362 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726372AbgIEGaM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 5 Sep 2020 02:30:12 -0400
+        id S1726302AbgIEGdu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 5 Sep 2020 02:33:50 -0400
 Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CFAEB2137B;
-        Sat,  5 Sep 2020 06:29:59 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 50CD920797;
+        Sat,  5 Sep 2020 06:33:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599287412;
-        bh=3v7tjiil+/lOK2HaRN3Iq9+cyNNktXKS2d/L12rTzgM=;
+        s=default; t=1599287630;
+        bh=DkiN4BIVM2LBbBhYkzEGJY7JO3S/lgk2nSlNdy+ZmFI=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=x9CLCV9/YkeB9avrskkZb5VGz/NwomKzQRTh/hPacgpcCZt09Vi7K+ryJy9rr3riu
-         Bg/Z7+p5cNk3QV+QHZcFP75ybyCOaIDRpkKKccgSC53lZN8gIAricdFaq07RZQoJNf
-         zAjGOANvppl/sxYJlSJugd/furBl0jyNwcHCMBMU=
-Date:   Sat, 5 Sep 2020 14:29:38 +0800
+        b=mr4LJKG68sPzOx6Iyd7wkyVlD/iSTpAoe0AZ37psKInGyf6ZuH2Y7y4Hm8YHsBYuv
+         WqIcKVGh8UoNybyouv2ExHHJ+xO7RdiInP8ba0FuAWvjNJKLNVBpgh125154vHDe7n
+         6z3xotl+cnB1UHgxLRipblrKO/4c1yq3hh2NkdIo=
+Date:   Sat, 5 Sep 2020 14:33:14 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Jacky Bai <ping.bai@nxp.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>
 Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        devicetree@vger.kernel.org
-Subject: Re: [RESEND PATCH v2 1/3] dt-bindings: arm: fsl: Add imx8mm ddr4 evk
- board
-Message-ID: <20200905062935.GE9261@dragon>
-References: <1598865254-20248-1-git-send-email-ping.bai@nxp.com>
+        linux-imx@nxp.com, kernel@pengutronix.de,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: imx6qdl: move iomuxc compatible assignment out
+ of root node
+Message-ID: <20200905063313.GF9261@dragon>
+References: <20200831132749.3902-1-m.felsch@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1598865254-20248-1-git-send-email-ping.bai@nxp.com>
+In-Reply-To: <20200831132749.3902-1-m.felsch@pengutronix.de>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 31, 2020 at 05:14:12PM +0800, Jacky Bai wrote:
-> Add entry for i.MX8MM DDR4 EVK board and update
-> the comments for imx8mm-evk as it is populated
-> with LPDDR4.
+On Mon, Aug 31, 2020 at 03:27:49PM +0200, Marco Felsch wrote:
+> The common imx6qdl.dtsi already defines the iomuxc phandle. Make use of
+> it in the imx6dl.dtsi and imx6q.dtsi.
 > 
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 
-Applied all, thanks.
+Applied, thanks.
