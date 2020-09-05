@@ -2,90 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D23B725E65A
-	for <lists+devicetree@lfdr.de>; Sat,  5 Sep 2020 10:15:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C22B525E696
+	for <lists+devicetree@lfdr.de>; Sat,  5 Sep 2020 10:46:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728371AbgIEIPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Sep 2020 04:15:03 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:64526 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728313AbgIEIPD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Sep 2020 04:15:03 -0400
-X-UUID: c21189dd011046be8692aee744fdc952-20200905
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=bDFMxyBvv5aUYhv7Kw0G7oECaVz+/jg2a4bXq4Hhva0=;
-        b=a+wIi4Nc3EGRTPeJVYaoYckJEJiq0OXkHavdbGezQsjFB6Y7sMXt5Rj0RFn/XwkSySJfiBbO/aaIFTzmE+cRzteanZqz+wdinwr+pL09s+/QHy+a2i7UbbMgFhVRoDFcTU01eLxZWLqi0UEi9exHfdg8r+O0N0L6b6/rLSxUYrQ=;
-X-UUID: c21189dd011046be8692aee744fdc952-20200905
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 826668872; Sat, 05 Sep 2020 16:14:56 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sat, 5 Sep 2020 16:14:48 +0800
-Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 5 Sep 2020 16:14:48 +0800
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-CC:     Will Deacon <will@kernel.org>, Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>, <yong.wu@mediatek.com>,
-        <youlin.pei@mediatek.com>, Nicolas Boichat <drinkcat@chromium.org>,
-        <anan.sun@mediatek.com>, <chao.hao@mediatek.com>,
-        <ming-fan.chen@mediatek.com>
-Subject: [PATCH v2 23/23] memory: mtk-smi: Add mt8192 support
-Date:   Sat, 5 Sep 2020 16:09:20 +0800
-Message-ID: <20200905080920.13396-24-yong.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20200905080920.13396-1-yong.wu@mediatek.com>
-References: <20200905080920.13396-1-yong.wu@mediatek.com>
+        id S1726403AbgIEIqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Sep 2020 04:46:36 -0400
+Received: from mout.gmx.net ([212.227.17.20]:46537 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726372AbgIEIqg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 5 Sep 2020 04:46:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1599295555;
+        bh=eix5yRMvEp6sJh7Rs0RgjDhlP2OHRcoVgdliMP0dXoE=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=SICGyzFZzBt8eAG6IBdOujo+77f0mR9q9triWlN0duEh8aKrsoZeup0fORhW5MwQu
+         SXiEFVCl22duHHMfq4M7BByUsSgDNRs+LtVdy+/YnBmu9zD2/h+yGFLylB+ESluLGG
+         Gnkt0uiAKOVE4jaBFYwwwGa4O1Nm7VKDve6q1a4U=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [185.76.98.35] ([185.76.98.35]) by web-mail.gmx.net
+ (3c-app-gmx-bap15.server.lan [172.19.172.85]) (via HTTP); Sat, 5 Sep 2020
+ 10:45:54 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 73EDEEB69FD905FCD3F8B384323A8BA6F12431163B00FB918134C6D1A1253C4C2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Message-ID: <trinity-03089c68-65a5-4572-95c3-c75b9f7e330a-1599295554893@3c-app-gmx-bap15>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Landen Chao <landen.chao@mediatek.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        opensource@vdorst.com, dqfext@gmail.com,
+        Landen Chao <landen.chao@mediatek.com>
+Subject: Aw: [PATCH net-next v3 0/6] net-next: dsa: mt7530: add support for
+ MT7531
+Content-Type: text/plain; charset=UTF-8
+Date:   Sat, 5 Sep 2020 10:45:54 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <cover.1599228079.git.landen.chao@mediatek.com>
+References: <cover.1599228079.git.landen.chao@mediatek.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:MMt5CpznMQ6UwycKDY4nf8k4bJDTcA9TPyAL5cJ4hZazWapBftjA95dt/HPJGwzEahN66
+ oWrPR3jwRP8mU4AAiDQnJJLY7m0uC0+fRTItnuV5exivHEEvVPkI2xxo/FVi4T45cgXGW4F40+D9
+ 1rRqURX+4M7x4G7YJ/LDZfTvw6nNvCiCs0882yDk/J1D9l3iD+Wuu4l8sGGeXeVxlbUPUiaIfnnF
+ E3JeEECHuEDd2743H+pyJiSFr0HEbIy1iX1R404LpXTW/uP6LG1QpaKPAaY6ocZGFe/NWJ3KAKK/
+ qc=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:6yCDQ4p7V2Y=:JuebgaHEhNUX3hAMYwU2gF
+ d8uHh70z8sfSWNUbe432CyizKB9xZiWabYmF/7zgDcRrt6W+QF5iE4JwyrGtGrNIktpwSdVD8
+ xldm8vNQHqW70vvMEnvrB4tnvgQWZAjD8D8eWKp4Bd6dzFuSKd3rwo+j7XaR3NbIDuL6PJK4U
+ WnJbg08OJoNb7Ba4UVsZNA44JguMMfc64yapCKLwRHbBfHoVXeEn2HEnZu6ocF1+B82DaDtEV
+ nVk8MFBQjNr0DMVjcNKJPu5G6O8wHPObSgbe63jTw2ICc3a/iMQYu0AFsXj/8cixUirvQNgeM
+ SwN/BB635DM/s5f081c7Z6kqKmvnUGlnGMidwtRsmjSgNW1G3qqzODg0tQ6NMGTlGxPMZepXb
+ LXJnr5EnSUjpZWA/peV305xuJN2x7SpXFoijPMtZVcE0uFMyNpLqargnFHKj0h+b32aESbAia
+ wdnmzShB6ZiLkJL1GZSWEV51DBok5ldQD8RxczczSWWL45Sc82XER1cRLX5E1luVHIbil0bK5
+ OiYHnYp7g9W8szLqN8azU28h1/hnkzGRB+IGO74zpy6vG6uk8FBaY3C/nfKNAEQEEXMzDkbOZ
+ 27t+ze5DIuLH7YRY48dVeUfqgpnQ/FlDdtX7lJD/7ZiCESziQmNjQgLKmuLXS9RRh1Nld8LG1
+ 5rbxDWRUv6crPBqzFWN2PnZ2UgBdz5zX9Iw/q6BWVTc1cJGfkPWrqQ/YoWC8IuPCSF2I=
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QWRkIG10ODE5MiBzbWkgc3VwcG9ydC4NCg0KU2lnbmVkLW9mZi1ieTogWW9uZyBXdSA8eW9uZy53
-dUBtZWRpYXRlay5jb20+DQotLS0NCiBkcml2ZXJzL21lbW9yeS9tdGstc21pLmMgfCAxOSArKysr
-KysrKysrKysrKysrKysrDQogMSBmaWxlIGNoYW5nZWQsIDE5IGluc2VydGlvbnMoKykNCg0KZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvbWVtb3J5L210ay1zbWkuYyBiL2RyaXZlcnMvbWVtb3J5L210ay1z
-bWkuYw0KaW5kZXggZTk0Yzk5Y2EyODgzLi4wZWMzZWZmNGQ5MmQgMTAwNjQ0DQotLS0gYS9kcml2
-ZXJzL21lbW9yeS9tdGstc21pLmMNCisrKyBiL2RyaXZlcnMvbWVtb3J5L210ay1zbWkuYw0KQEAg
-LTI2MSw2ICsyNjEsMTAgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBtdGtfc21pX2xhcmJfZ2VuIG10
-a19zbWlfbGFyYl9tdDgxODMgPSB7DQogCQkJCSAgICAgIC8qIElQVTAgfCBJUFUxIHwgQ0NVICov
-DQogfTsNCiANCitzdGF0aWMgY29uc3Qgc3RydWN0IG10a19zbWlfbGFyYl9nZW4gbXRrX3NtaV9s
-YXJiX210ODE5MiA9IHsNCisJLmNvbmZpZ19wb3J0ICAgICAgICAgICAgICAgID0gbXRrX3NtaV9s
-YXJiX2NvbmZpZ19wb3J0X2dlbjJfZ2VuZXJhbCwNCit9Ow0KKw0KIHN0YXRpYyBjb25zdCBzdHJ1
-Y3Qgb2ZfZGV2aWNlX2lkIG10a19zbWlfbGFyYl9vZl9pZHNbXSA9IHsNCiAJew0KIAkJLmNvbXBh
-dGlibGUgPSAibWVkaWF0ZWssbXQ4MTczLXNtaS1sYXJiIiwNCkBAIC0yODIsNiArMjg2LDEwIEBA
-IHN0YXRpYyBjb25zdCBzdHJ1Y3Qgb2ZfZGV2aWNlX2lkIG10a19zbWlfbGFyYl9vZl9pZHNbXSA9
-IHsNCiAJCS5jb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE4My1zbWktbGFyYiIsDQogCQkuZGF0
-YSA9ICZtdGtfc21pX2xhcmJfbXQ4MTgzDQogCX0sDQorCXsNCisJCS5jb21wYXRpYmxlID0gIm1l
-ZGlhdGVrLG10ODE5Mi1zbWktbGFyYiIsDQorCQkuZGF0YSA9ICZtdGtfc21pX2xhcmJfbXQ4MTky
-DQorCX0sDQogCXt9DQogfTsNCiANCkBAIC00MjEsNiArNDI5LDEzIEBAIHN0YXRpYyBjb25zdCBz
-dHJ1Y3QgbXRrX3NtaV9jb21tb25fcGxhdCBtdGtfc21pX2NvbW1vbl9tdDgxODMgPSB7DQogCQkg
-ICAgRl9NTVUxX0xBUkIoNyksDQogfTsNCiANCitzdGF0aWMgY29uc3Qgc3RydWN0IG10a19zbWlf
-Y29tbW9uX3BsYXQgbXRrX3NtaV9jb21tb25fbXQ4MTkyID0gew0KKwkuZ2VuICAgICAgPSBNVEtf
-U01JX0dFTjIsDQorCS5oYXNfZ2FscyA9IHRydWUsDQorCS5idXNfc2VsICA9IEZfTU1VMV9MQVJC
-KDEpIHwgRl9NTVUxX0xBUkIoMikgfCBGX01NVTFfTEFSQig1KSB8DQorCQkgICAgRl9NTVUxX0xB
-UkIoNiksDQorfTsNCisNCiBzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCBtdGtfc21p
-X2NvbW1vbl9vZl9pZHNbXSA9IHsNCiAJew0KIAkJLmNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4
-MTczLXNtaS1jb21tb24iLA0KQEAgLTQ0Miw2ICs0NTcsMTAgQEAgc3RhdGljIGNvbnN0IHN0cnVj
-dCBvZl9kZXZpY2VfaWQgbXRrX3NtaV9jb21tb25fb2ZfaWRzW10gPSB7DQogCQkuY29tcGF0aWJs
-ZSA9ICJtZWRpYXRlayxtdDgxODMtc21pLWNvbW1vbiIsDQogCQkuZGF0YSA9ICZtdGtfc21pX2Nv
-bW1vbl9tdDgxODMsDQogCX0sDQorCXsNCisJCS5jb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE5
-Mi1zbWktY29tbW9uIiwNCisJCS5kYXRhID0gJm10a19zbWlfY29tbW9uX210ODE5MiwNCisJfSwN
-CiAJe30NCiB9Ow0KIA0KLS0gDQoyLjE4LjANCg==
+tested full series on Bananapi-r64 (mt7531) running iperf3-server
+
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.00  sec  1.09 GBytes   939 Mbits/sec    0             send=
+er
+[  5]   0.00-10.01  sec  1.09 GBytes   935 Mbits/sec                  rece=
+iver
+
+reverse mode (-R)
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.01  sec  1.10 GBytes   941 Mbits/sec    0             send=
+er
+[  5]   0.00-10.00  sec  1.09 GBytes   939 Mbits/sec                  rece=
+iver
+
+similar to bananapi-r2 (mt7530)
+
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.00  sec  1.09 GBytes   938 Mbits/sec    0             send=
+er
+[  5]   0.00-10.01  sec  1.09 GBytes   936 Mbits/sec                  rece=
+iver
+
+reverse-mode:
+
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.01  sec  1.05 GBytes   905 Mbits/sec  14533             se=
+nder <<<<<<<<<<<
+[  5]   0.00-10.00  sec  1.05 GBytes   905 Mbits/sec                  rece=
+iver
+
+on last test i see iperf3 has ~30%cpu load and also ksoftirqd (using debia=
+n buster), so i tried opening server on my Laptop and running iperf -c on =
+BPI-R2 with similar result
+
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.00  sec  1.03 GBytes   886 Mbits/sec  13990             se=
+nder
+[  5]   0.00-10.00  sec  1.03 GBytes   885 Mbits/sec                  rece=
+iver
+
+in dmesg of both devices only DSA-Messages (nonfatal error -95 setting MTU=
+ on port) because of missing port_change_mtu callback. here i got a patch,=
+ but had not yet time to setup environment for testing jumbo-frames too. B=
+ut this just as side-note
+
+regards Frank
 
