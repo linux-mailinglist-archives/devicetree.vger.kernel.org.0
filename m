@@ -2,122 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C22B525E696
-	for <lists+devicetree@lfdr.de>; Sat,  5 Sep 2020 10:46:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CCC225E6CF
+	for <lists+devicetree@lfdr.de>; Sat,  5 Sep 2020 11:44:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726403AbgIEIqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Sep 2020 04:46:36 -0400
-Received: from mout.gmx.net ([212.227.17.20]:46537 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726372AbgIEIqg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 5 Sep 2020 04:46:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1599295555;
-        bh=eix5yRMvEp6sJh7Rs0RgjDhlP2OHRcoVgdliMP0dXoE=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=SICGyzFZzBt8eAG6IBdOujo+77f0mR9q9triWlN0duEh8aKrsoZeup0fORhW5MwQu
-         SXiEFVCl22duHHMfq4M7BByUsSgDNRs+LtVdy+/YnBmu9zD2/h+yGFLylB+ESluLGG
-         Gnkt0uiAKOVE4jaBFYwwwGa4O1Nm7VKDve6q1a4U=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [185.76.98.35] ([185.76.98.35]) by web-mail.gmx.net
- (3c-app-gmx-bap15.server.lan [172.19.172.85]) (via HTTP); Sat, 5 Sep 2020
- 10:45:54 +0200
+        id S1726591AbgIEJoo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Sep 2020 05:44:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39588 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726372AbgIEJom (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Sep 2020 05:44:42 -0400
+Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60AC9C061244;
+        Sat,  5 Sep 2020 02:44:42 -0700 (PDT)
+Received: by mail-io1-xd41.google.com with SMTP id r9so9552432ioa.2;
+        Sat, 05 Sep 2020 02:44:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=MRAOg+eYaa2rEsb3DX+nTvExN1Y8ZloMTYBxu2WO+Og=;
+        b=P7SZq3diaIqpOcHQNTbt285fzLsPKCXGaGACEZpnnaDtyRNjG7brmP+FENF8JvhrQh
+         K4VgQs8XIqs2AyysPXUUVASiC9DV8Bs2StFORdMsYxe96+bOL/nd0Dx8h6o5tODfc18T
+         CCWlvEgZFp/lgB8lGeAV41IucRWGlJyPDBlc0tpxTfMfcimJJNjTK1qI1K222nfE2Zcg
+         fm9sUFsCplDn3sSMwuFTYgKecfqBxTCDFJUq7r/DHqx0ZjSGg82n/o9T1+bBRS1BuE06
+         W6GIYrnA+9f8uLqBuRliozk12JNtRc+f9R5+Hk2Bh0EX83qW8F/OhI1YcScDzC7bVjHs
+         uZOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=MRAOg+eYaa2rEsb3DX+nTvExN1Y8ZloMTYBxu2WO+Og=;
+        b=psTR9Jho5kFuB0Cyf0nuOWxG3oMlA/+PHlxZ5nSv8dB2dVCQ4UDNoR2H00yt/atexm
+         swK7Yh/xAfzTS2/aBfdJWa4RvzvuPAfnlN014o66QBpjY3mna72tgnrXTBCDAsDyWXBF
+         2o+9DVPWXhafqxGBRnyBkRHvTasyBmP1kPlKlqLnhL4QWFCVDeVdtlum9fUlp6RRrOP5
+         onTn1BDc8VTt97fLoxn8xbU++uWgz73RNhl1SOrbPUJrxMHNWdF0oAMOVt7k1RDyc8od
+         96Nd8X7p3bWcS8LNMvp3bqEOGBvRicXnAQYwVin85dUhAGxpfVi1j+o5TjHB+KfBIDHR
+         owWA==
+X-Gm-Message-State: AOAM5310wkaNKm10XbU3ESBSw5PX2u7WFFl3RGopT8Z0H1qOJ0E2H8r8
+        RIXJ8XNC8nPTZA3iCeFDgx3ek66JMfyuw0e7IC4=
+X-Google-Smtp-Source: ABdhPJyXfvK1S863k7/77Ze1ILkQ4pn0uoDYrNx4ieLIKuFYPgjXVZsg68a5vnb//UDFJVFIlHWJ43gpZjQFmNJGfcE=
+X-Received: by 2002:a6b:e017:: with SMTP id z23mr10805226iog.101.1599299081475;
+ Sat, 05 Sep 2020 02:44:41 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <trinity-03089c68-65a5-4572-95c3-c75b9f7e330a-1599295554893@3c-app-gmx-bap15>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Landen Chao <landen.chao@mediatek.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+References: <20200903203034.1057334-1-peron.clem@gmail.com>
+ <20200903203034.1057334-3-peron.clem@gmail.com> <7259829d-142e-b518-52a7-6fef388b27d2@sholland.org>
+In-Reply-To: <7259829d-142e-b518-52a7-6fef388b27d2@sholland.org>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Sat, 5 Sep 2020 11:44:30 +0200
+Message-ID: <CAJiuCcew35XzvA0gW=rq57RE3Oqxsa6y1UyeBJ+1HPoK4fyWgQ@mail.gmail.com>
+Subject: Re: [PATCH v2 02/20] ASoC: sun4i-i2s: Add support for H6 I2S
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        opensource@vdorst.com, dqfext@gmail.com,
-        Landen Chao <landen.chao@mediatek.com>
-Subject: Aw: [PATCH net-next v3 0/6] net-next: dsa: mt7530: add support for
- MT7531
-Content-Type: text/plain; charset=UTF-8
-Date:   Sat, 5 Sep 2020 10:45:54 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <cover.1599228079.git.landen.chao@mediatek.com>
-References: <cover.1599228079.git.landen.chao@mediatek.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:MMt5CpznMQ6UwycKDY4nf8k4bJDTcA9TPyAL5cJ4hZazWapBftjA95dt/HPJGwzEahN66
- oWrPR3jwRP8mU4AAiDQnJJLY7m0uC0+fRTItnuV5exivHEEvVPkI2xxo/FVi4T45cgXGW4F40+D9
- 1rRqURX+4M7x4G7YJ/LDZfTvw6nNvCiCs0882yDk/J1D9l3iD+Wuu4l8sGGeXeVxlbUPUiaIfnnF
- E3JeEECHuEDd2743H+pyJiSFr0HEbIy1iX1R404LpXTW/uP6LG1QpaKPAaY6ocZGFe/NWJ3KAKK/
- qc=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:6yCDQ4p7V2Y=:JuebgaHEhNUX3hAMYwU2gF
- d8uHh70z8sfSWNUbe432CyizKB9xZiWabYmF/7zgDcRrt6W+QF5iE4JwyrGtGrNIktpwSdVD8
- xldm8vNQHqW70vvMEnvrB4tnvgQWZAjD8D8eWKp4Bd6dzFuSKd3rwo+j7XaR3NbIDuL6PJK4U
- WnJbg08OJoNb7Ba4UVsZNA44JguMMfc64yapCKLwRHbBfHoVXeEn2HEnZu6ocF1+B82DaDtEV
- nVk8MFBQjNr0DMVjcNKJPu5G6O8wHPObSgbe63jTw2ICc3a/iMQYu0AFsXj/8cixUirvQNgeM
- SwN/BB635DM/s5f081c7Z6kqKmvnUGlnGMidwtRsmjSgNW1G3qqzODg0tQ6NMGTlGxPMZepXb
- LXJnr5EnSUjpZWA/peV305xuJN2x7SpXFoijPMtZVcE0uFMyNpLqargnFHKj0h+b32aESbAia
- wdnmzShB6ZiLkJL1GZSWEV51DBok5ldQD8RxczczSWWL45Sc82XER1cRLX5E1luVHIbil0bK5
- OiYHnYp7g9W8szLqN8azU28h1/hnkzGRB+IGO74zpy6vG6uk8FBaY3C/nfKNAEQEEXMzDkbOZ
- 27t+ze5DIuLH7YRY48dVeUfqgpnQ/FlDdtX7lJD/7ZiCESziQmNjQgLKmuLXS9RRh1Nld8LG1
- 5rbxDWRUv6crPBqzFWN2PnZ2UgBdz5zX9Iw/q6BWVTc1cJGfkPWrqQ/YoWC8IuPCSF2I=
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-tested full series on Bananapi-r64 (mt7531) running iperf3-server
+Hi Samuel,
 
-[ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-10.00  sec  1.09 GBytes   939 Mbits/sec    0             send=
-er
-[  5]   0.00-10.01  sec  1.09 GBytes   935 Mbits/sec                  rece=
-iver
+On Fri, 4 Sep 2020 at 05:16, Samuel Holland <samuel@sholland.org> wrote:
+>
+> Cl=C3=A9ment,
+>
+> On 9/3/20 3:30 PM, Cl=C3=A9ment P=C3=A9ron wrote:
+> > From: Jernej Skrabec <jernej.skrabec@siol.net>
+> >
+> > H6 I2S is very similar to that in H3, except it supports up to 16
+> > channels.
+> >
+> > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> > Signed-off-by: Marcus Cooper <codekipper@gmail.com>
+> > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> > ---
+> >  sound/soc/sunxi/sun4i-i2s.c | 221 ++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 221 insertions(+)
+> >
+> > diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
+> > index fabff7bcccbc..acf24f512f2c 100644
+> > --- a/sound/soc/sunxi/sun4i-i2s.c
+> > +++ b/sound/soc/sunxi/sun4i-i2s.c
+>
+> [snip]
+>
+> > @@ -474,6 +489,65 @@ static int sun8i_i2s_set_chan_cfg(const struct sun=
+4i_i2s *i2s,
+> >       return 0;
+> >  }
+> >
+> > +static int sun50i_h6_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
+> > +                                   const struct snd_pcm_hw_params *par=
+ams)
+> > +{
+> > +     unsigned int channels =3D params_channels(params);
+> > +     unsigned int slots =3D channels;
+> > +     unsigned int lrck_period;
+> > +
+> > +     if (i2s->slots)
+> > +             slots =3D i2s->slots;
+> > +
+> > +     /* Map the channels for playback and capture */
+> > +     regmap_write(i2s->regmap, SUN50I_H6_I2S_TX_CHAN_MAP1_REG, 0x76543=
+210);
+> > +     regmap_write(i2s->regmap, SUN50I_H6_I2S_RX_CHAN_MAP1_REG, 0x76543=
+210);
+> > +
+> > +     /* Configure the channels */
+> > +     regmap_update_bits(i2s->regmap, SUN8I_I2S_TX_CHAN_SEL_REG,
+> > +                        SUN50I_H6_I2S_TX_CHAN_SEL_MASK,
+> > +                        SUN50I_H6_I2S_TX_CHAN_SEL(channels));
+> > +     regmap_update_bits(i2s->regmap, SUN50I_H6_I2S_RX_CHAN_SEL_REG,
+> > +                        SUN50I_H6_I2S_TX_CHAN_SEL_MASK,
+> > +                        SUN50I_H6_I2S_TX_CHAN_SEL(channels));
+> > +
+> > +     regmap_update_bits(i2s->regmap, SUN8I_I2S_CHAN_CFG_REG,
+> > +                        SUN8I_I2S_CHAN_CFG_TX_SLOT_NUM_MASK,
+> > +                        SUN8I_I2S_CHAN_CFG_TX_SLOT_NUM(channels));
+> > +     regmap_update_bits(i2s->regmap, SUN8I_I2S_CHAN_CFG_REG,
+> > +                        SUN8I_I2S_CHAN_CFG_RX_SLOT_NUM_MASK,
+> > +                        SUN8I_I2S_CHAN_CFG_RX_SLOT_NUM(channels));
+> > +
+> > +     switch (i2s->format & SND_SOC_DAIFMT_FORMAT_MASK) {
+> > +     case SND_SOC_DAIFMT_DSP_A:
+> > +     case SND_SOC_DAIFMT_DSP_B:
+> > +     case SND_SOC_DAIFMT_LEFT_J:
+> > +     case SND_SOC_DAIFMT_RIGHT_J:
+>
+> These cases don't match the documentation: LEFT_J and RIGHT_J are documen=
+ted to
+> behave like I2S (lrck_period =3D=3D slot_width), not like DSP_A/B (lrck_p=
+eriod =3D=3D
+> slot_width * slots).
+>
+> > +             lrck_period =3D params_physical_width(params) * slots;
+> > +             break;
+> > +
+> > +     case SND_SOC_DAIFMT_I2S:
+> > +             lrck_period =3D params_physical_width(params);
+> > +             break;
+> > +
+> > +     default:
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     if (i2s->slot_width)
+> > +             lrck_period =3D i2s->slot_width;
+>
+> Here, i2s->slot_width is the number of bits for each slot, but in PCM mod=
+e, you
+you mean TDM here right?
 
-reverse mode (-R)
-[ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-10.01  sec  1.10 GBytes   941 Mbits/sec    0             send=
-er
-[  5]   0.00-10.00  sec  1.09 GBytes   939 Mbits/sec                  rece=
-iver
+> need to multiply by the number of slots, like above.
+>
+> Also, there is already logic in sun4i_i2s_hw_params to use i2s->slot_widt=
+h and
+> i2s->slots. You could avoid the duplication by passing slot_width/slots a=
+s
+> parameters to set_chan_cfg.
 
-similar to bananapi-r2 (mt7530)
+Thanks for the catch, I will fix this.
 
-[ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-10.00  sec  1.09 GBytes   938 Mbits/sec    0             send=
-er
-[  5]   0.00-10.01  sec  1.09 GBytes   936 Mbits/sec                  rece=
-iver
+Regards,
+Clement
 
-reverse-mode:
-
-[ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-10.01  sec  1.05 GBytes   905 Mbits/sec  14533             se=
-nder <<<<<<<<<<<
-[  5]   0.00-10.00  sec  1.05 GBytes   905 Mbits/sec                  rece=
-iver
-
-on last test i see iperf3 has ~30%cpu load and also ksoftirqd (using debia=
-n buster), so i tried opening server on my Laptop and running iperf -c on =
-BPI-R2 with similar result
-
-[ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-10.00  sec  1.03 GBytes   886 Mbits/sec  13990             se=
-nder
-[  5]   0.00-10.00  sec  1.03 GBytes   885 Mbits/sec                  rece=
-iver
-
-in dmesg of both devices only DSA-Messages (nonfatal error -95 setting MTU=
- on port) because of missing port_change_mtu callback. here i got a patch,=
- but had not yet time to setup environment for testing jumbo-frames too. B=
-ut this just as side-note
-
-regards Frank
-
+>
+> Regards,
+> Samuel
+>
+> > +
+> > +     regmap_update_bits(i2s->regmap, SUN4I_I2S_FMT0_REG,
+> > +                        SUN8I_I2S_FMT0_LRCK_PERIOD_MASK,
+> > +                        SUN8I_I2S_FMT0_LRCK_PERIOD(lrck_period));
+> > +
+> > +     regmap_update_bits(i2s->regmap, SUN8I_I2S_TX_CHAN_SEL_REG,
+> > +                        SUN50I_H6_I2S_TX_CHAN_EN_MASK,
+> > +                        SUN50I_H6_I2S_TX_CHAN_EN(channels));
+> > +
+> > +     return 0;
+> > +}
+> > +
+> >  static int sun4i_i2s_hw_params(struct snd_pcm_substream *substream,
+> >                              struct snd_pcm_hw_params *params,
+> >                              struct snd_soc_dai *dai)
+>
+> [snip]
