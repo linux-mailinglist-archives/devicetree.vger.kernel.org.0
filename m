@@ -2,87 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6201D25E916
-	for <lists+devicetree@lfdr.de>; Sat,  5 Sep 2020 18:42:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 791F825E94C
+	for <lists+devicetree@lfdr.de>; Sat,  5 Sep 2020 19:32:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726468AbgIEQm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Sep 2020 12:42:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46942 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726568AbgIEQm5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Sep 2020 12:42:57 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE28FC061245
-        for <devicetree@vger.kernel.org>; Sat,  5 Sep 2020 09:42:56 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kEbHA-000352-Ow; Sat, 05 Sep 2020 18:42:52 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kEbH7-00082T-8g; Sat, 05 Sep 2020 18:42:49 +0200
-Date:   Sat, 5 Sep 2020 18:42:49 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
-Cc:     thierry.reding@gmail.com, lee.jones@linaro.org, kernel@axis.com,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, oliver@schinagl.nl
-Subject: Re: [PATCH v2 0/2] GPIO PWM driver
-Message-ID: <20200905164249.5vy23gizpwstbs5c@pengutronix.de>
-References: <20200902121236.20514-1-vincent.whitchurch@axis.com>
+        id S1728297AbgIERcd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Sep 2020 13:32:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60174 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726568AbgIERc0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 5 Sep 2020 13:32:26 -0400
+Received: from localhost.localdomain (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BDD7720760;
+        Sat,  5 Sep 2020 17:32:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599327145;
+        bh=VJbbUOHm/wDdpxA6B8EADdFSUNkp83wX1xGSNCC6UUw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=SKDWpTI7IKhQMWv5zXJZSfOqpAkhX8dXSBEtfXoyjPgnlU5YigTJ+Jj2M012uo9T+
+         wCG//tPg7/LeyQTzDUb70w/LDktnjP9cz7ozeTFx04+SysfF1MkLoW/O477d0unIUe
+         YB45kYyIvrF8jcEet7xkL0Rqt2UFw2uNIDPSb/VM=
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: [PATCH 00/20] dt-bindings:iio:adc: Another set of yaml conversions.
+Date:   Sat,  5 Sep 2020 18:29:44 +0100
+Message-Id: <20200905173004.216081-1-jic23@kernel.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="p74bra2ilrxvtnn5"
-Content-Disposition: inline
-In-Reply-To: <20200902121236.20514-1-vincent.whitchurch@axis.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
---p74bra2ilrxvtnn5
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+It is somewhat easier to do these all at once as then the yaml syntax
+knowledge builds up and Rob once said he preferred to review them
+in groups. Hence here are 20 binding conversions to enjoy.
 
-Hello Vincent,
+There are 2 other bindings currently awaiting v2 review and it may
+take a while to convert over the remaining IIO ADC ones as they
+are mostly the complex cases. There are also quite a few drivers
+that have undocumented bindings. I plan to do a sweep for those once
+yaml conversions are finished.
 
-On Wed, Sep 02, 2020 at 02:12:34PM +0200, Vincent Whitchurch wrote:
-> v2:
->  - [..]
->  - Stop PWM before unregister
+For maintainers, I've mostly gone with the original author of the
+txt file. If anyone wants to claim responsibility for any or
+reject it then that is great.  I'll act as backup maintainer
+for all of these by default anyway.
 
-I didn't take the time yet to look at v2, but just spotted this which is
-wrong. .remove() is not supposed to modify the output. (If the PWM is
-still running in .remove() this is either because it was running at
-bootup and was never modified or is a bug in the consumer code.)
+There are a few places I think we could look to tighten the binding
+definitions if we wish. Hopefully this will be a good layer to build on.
 
-Best regards
-Uwe
+Thanks,
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+Jonathan
 
---p74bra2ilrxvtnn5
-Content-Type: application/pgp-signature; name="signature.asc"
+Jonathan Cameron (20):
+  dt-bindings:iio:adc:fsl,vf610-adc conversion to yaml.
+  dt-bindings:iio:adc:ti,twl4030-madc yaml conversion
+  dt-bindings:iio:adc:st,stmpe-adc yaml conversion
+  dt-bindings:iio:adc: aspeed,ast2400 yaml conversion
+  dt-bindings:iio:adc:marvell,berlin2-adc yaml conversion
+  dt-bindings:iio:adc:sprd,sc2720-adc yaml conversion.
+  dt-bindings:iio:adc:nuvoton,nau7802 yaml conversion
+  dt-bindings:iio:adc:nuvoton,npcm750-adc yaml conversion
+  dt-bindings:iio:adc:nxp,lpc1850-adc yaml conversion
+  dt-bindings:iio:adc:lpc3220-adc yaml conversion
+  dt-bindings:iio:adc:motorola,cpcap-adc yaml conversion
+  dt-bindings:iio:adc:dlg,da9150-gpadc yaml conversion
+  dt-bindings:iio:adc:cosmic,10001-adc yaml conversion
+  dt-bindings:iio:adc:adi,ad7949 yaml conversion
+  dt-bindings:iio:adc:ad7768-1 yaml conversion
+  dt-bindings:iio:adc:ti,ads1015 yaml conversion
+  dt-bindings:iio:adc:holt,hi8435 yaml conversion
+  dt-bindings:iio:adc:amlogic,meson-saradc yaml conversion
+  dt-bindings:iio:adc:fsl,imx7d-adc yaml conversion
+  dt-bindings:iio:adc:fsl,imx25-gcq yaml conversion
 
------BEGIN PGP SIGNATURE-----
+ .../devicetree/bindings/iio/adc/ad7949.txt    |  16 --
+ .../bindings/iio/adc/adi,ad7768-1.txt         |  41 -----
+ .../bindings/iio/adc/adi,ad7768-1.yaml        |  89 +++++++++++
+ .../bindings/iio/adc/adi,ad7949.yaml          |  57 +++++++
+ .../devicetree/bindings/iio/adc/ads1015.txt   |  73 ---------
+ .../bindings/iio/adc/amlogic,meson-saradc.txt |  48 ------
+ .../iio/adc/amlogic,meson-saradc.yaml         | 145 ++++++++++++++++++
+ .../bindings/iio/adc/aspeed,ast2400-adc.yaml  |  54 +++++++
+ .../bindings/iio/adc/aspeed_adc.txt           |  22 ---
+ .../bindings/iio/adc/berlin2_adc.txt          |  19 ---
+ .../bindings/iio/adc/cc10001_adc.txt          |  22 ---
+ .../bindings/iio/adc/cosmic,10001-adc.yaml    |  59 +++++++
+ .../devicetree/bindings/iio/adc/cpcap-adc.txt |  17 --
+ .../bindings/iio/adc/da9150-gpadc.txt         |  16 --
+ .../bindings/iio/adc/dlg,da9150-gpadc.yaml    |  33 ++++
+ .../bindings/iio/adc/fsl,imx25-gcq.txt        |  57 -------
+ .../bindings/iio/adc/fsl,imx25-gcq.yaml       | 129 ++++++++++++++++
+ .../bindings/iio/adc/fsl,imx7d-adc.yaml       |  62 ++++++++
+ .../bindings/iio/adc/fsl,vf610-adc.yaml       |  81 ++++++++++
+ .../devicetree/bindings/iio/adc/hi8435.txt    |  21 ---
+ .../bindings/iio/adc/holt,hi8435.yaml         |  49 ++++++
+ .../devicetree/bindings/iio/adc/imx7d-adc.txt |  24 ---
+ .../bindings/iio/adc/lpc1850-adc.txt          |  20 ---
+ .../bindings/iio/adc/lpc32xx-adc.txt          |  21 ---
+ .../bindings/iio/adc/marvell,berlin2-adc.yaml |  50 ++++++
+ .../bindings/iio/adc/motorola,cpcap-adc.yaml  |  51 ++++++
+ .../bindings/iio/adc/nuvoton,nau7802.yaml     |  50 ++++++
+ .../bindings/iio/adc/nuvoton,npcm-adc.txt     |  26 ----
+ .../bindings/iio/adc/nuvoton,npcm750-adc.yaml |  64 ++++++++
+ .../bindings/iio/adc/nuvoton-nau7802.txt      |  18 ---
+ .../bindings/iio/adc/nxp,lpc1850-adc.yaml     |  61 ++++++++
+ .../bindings/iio/adc/nxp,lpc3220-adc.yaml     |  50 ++++++
+ .../bindings/iio/adc/sprd,sc2720-adc.yaml     |  72 +++++++++
+ .../bindings/iio/adc/sprd,sc27xx-adc.txt      |  40 -----
+ .../bindings/iio/adc/st,stmpe-adc.yaml        |  45 ++++++
+ .../devicetree/bindings/iio/adc/stmpe-adc.txt |  21 ---
+ .../bindings/iio/adc/ti,ads1015.yaml          | 113 ++++++++++++++
+ .../bindings/iio/adc/ti,twl4030-madc.yaml     |  48 ++++++
+ .../bindings/iio/adc/twl4030-madc.txt         |  24 ---
+ .../devicetree/bindings/iio/adc/vf610-adc.txt |  36 -----
+ 40 files changed, 1362 insertions(+), 582 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/ad7949.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/ads1015.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/aspeed,ast2400-adc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/aspeed_adc.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/berlin2_adc.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/cc10001_adc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/cosmic,10001-adc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/cpcap-adc.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/da9150-gpadc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/dlg,da9150-gpadc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/fsl,imx25-gcq.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/fsl,imx25-gcq.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/fsl,imx7d-adc.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/fsl,vf610-adc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/hi8435.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/holt,hi8435.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/imx7d-adc.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/lpc1850-adc.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/lpc32xx-adc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/marvell,berlin2-adc.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/motorola,cpcap-adc.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton,nau7802.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton,npcm-adc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton,npcm750-adc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton-nau7802.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,lpc1850-adc.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,lpc3220-adc.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/sprd,sc27xx-adc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/st,stmpe-adc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/stmpe-adc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,twl4030-madc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/twl4030-madc.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/vf610-adc.txt
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl9TwAYACgkQwfwUeK3K
-7AkSEAf/ZbYnLOLryZ7z7mnXU755+BxYQTl0h+xZqlEvQz9jALh+B5Ygb/zBKFuo
-cFSmSLeWSZg+TiBlar4GbF3yCZNZUaOvJ46WIdvM/jBHb6yyFL/iVOTskaQstU1R
-fhH4aC/pTr/d4uaD3hbDqHKhlW49Bl78bufQneeLdUqcpYRcTgRa2w4KylgY/MmX
-c37IjX6LKJsY/hjD70qpAta9BS9AwzebPiAqyv9SLMlp5iO5fizIE1XJiaLjzxrx
-4CCW1Du15+o39QkS7u0FbtLj9zlLq8K/CfEM0REy4pQePcT/OnxV4BW9zwaSmgGh
-FQqZuOkT+WrS4pk0/pqwYFWwhqZ9VQ==
-=sSDB
------END PGP SIGNATURE-----
+-- 
+2.28.0
 
---p74bra2ilrxvtnn5--
