@@ -2,140 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB7BA25EE1D
-	for <lists+devicetree@lfdr.de>; Sun,  6 Sep 2020 16:23:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C51325EE2E
+	for <lists+devicetree@lfdr.de>; Sun,  6 Sep 2020 16:30:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728894AbgIFOW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Sep 2020 10:22:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57514 "EHLO mail.kernel.org"
+        id S1728962AbgIFOZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Sep 2020 10:25:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58236 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728891AbgIFOV5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 6 Sep 2020 10:21:57 -0400
-Received: from localhost.localdomain (unknown [194.230.155.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1728956AbgIFOY7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 6 Sep 2020 10:24:59 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id ED2CB2080A;
-        Sun,  6 Sep 2020 14:21:54 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 623082080A;
+        Sun,  6 Sep 2020 14:24:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599402117;
-        bh=Yfm4K/YBgu9cciVqK5uLID5d3xhCSI8ollTmhI7pFOA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=bi+GHytMd1KAyNF80myj0dpn168NNyPU8sk1iAlHJhNIOS//+KpCcnTFQvQR5YnPH
-         3ZoPfRZbw3LCwRGnafjse3+GKHVszekkY5w88u1QRzRuY2g4kXGn0WY2Uauxn8EP54
-         VGyWuDLfkFsDksELqv8jY/tiXzoBjuee+q7RReGQ=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-Subject: [PATCH v3 3/3] ARM: dts: exynos: Add clocks sound node in Exynos5422 Odroid XU4
-Date:   Sun,  6 Sep 2020 16:21:46 +0200
-Message-Id: <20200906142146.21266-3-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200906142146.21266-1-krzk@kernel.org>
-References: <20200906142146.21266-1-krzk@kernel.org>
+        s=default; t=1599402299;
+        bh=06V45EMdGaN9yTRsyCZ4Mrb5+S2PGIlyBvgPv8ULiAY=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Rp6IUSgFEQAhH/DEh2a3bdjMwuyP/XF3fkCY4RPMX438ITSGybr9UlXRdNFzy72Hv
+         F4Xvml2tGhSS4/8AB56gnF0ktfRzoH0jzBkNNIMuwCfC2ImgOgZ310+WCjempC55/z
+         A68aMPTsvO2HKhiqQ4ss4qr/qPOCZ/H18cGXTZmQ=
+Date:   Sun, 6 Sep 2020 15:24:52 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+Subject: Re: [PATCH v2 5/9] iio: adc: qcom-spmi-adc5: fix driver name
+Message-ID: <20200906152452.58f322db@archlinux>
+In-Reply-To: <20200904111402.GC4056@mani>
+References: <20200903132109.1914011-1-dmitry.baryshkov@linaro.org>
+        <20200903132109.1914011-6-dmitry.baryshkov@linaro.org>
+        <20200904111402.GC4056@mani>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The dtschema expects "clocks" property if "assigned-clocks" are used.
-Add reference to all parent clocks to silence the dtbs_check warnings.
+On Fri, 4 Sep 2020 16:44:02 +0530
+Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> On 0903, Dmitry Baryshkov wrote:
+> > Remove superfluous '.c' from qcom-spmi-adc5 device driver name.
+> > 
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>  
+> 
+> Please add Fixes tag, with that:
+> 
+> Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Ouch.  Technically this is ABI change, but given I'd hope anyone using
+the name would have noticed the .c was odd and shouting about it I guess
+no one is using it.
 
----
+Could you pull this to the front of v3 (with fixes tag) so I can pick it up
+for stable without having to deal with fuzz etc.
 
-Changes since v2:
-1. Move clock properties to i2s, just like Sylwester Nawrocki did for
-   Odroid XU3.
----
- arch/arm/boot/dts/exynos5422-odroidxu4.dts | 60 ++++++++++------------
- 1 file changed, 27 insertions(+), 33 deletions(-)
+Thanks,
 
-diff --git a/arch/arm/boot/dts/exynos5422-odroidxu4.dts b/arch/arm/boot/dts/exynos5422-odroidxu4.dts
-index 892d389d6d09..ddd55d3bcadd 100644
---- a/arch/arm/boot/dts/exynos5422-odroidxu4.dts
-+++ b/arch/arm/boot/dts/exynos5422-odroidxu4.dts
-@@ -35,30 +35,6 @@
- 
- 		samsung,audio-routing = "I2S Playback", "Mixer DAI TX";
- 
--		assigned-clocks = <&clock CLK_MOUT_EPLL>,
--				<&clock CLK_MOUT_MAU_EPLL>,
--				<&clock CLK_MOUT_USER_MAU_EPLL>,
--				<&clock_audss EXYNOS_MOUT_AUDSS>,
--				<&clock_audss EXYNOS_MOUT_I2S>,
--				<&clock_audss EXYNOS_DOUT_SRP>,
--				<&clock_audss EXYNOS_DOUT_AUD_BUS>,
--				<&clock_audss EXYNOS_DOUT_I2S>;
--
--		assigned-clock-parents = <&clock CLK_FOUT_EPLL>,
--				<&clock CLK_MOUT_EPLL>,
--				<&clock CLK_MOUT_MAU_EPLL>,
--				<&clock CLK_MAU_EPLL>,
--				<&clock_audss EXYNOS_MOUT_AUDSS>;
--
--		assigned-clock-rates = <0>,
--				<0>,
--				<0>,
--				<0>,
--				<0>,
--				<196608001>,
--				<(196608002 / 2)>,
--				<196608000>;
--
- 		cpu {
- 			sound-dai = <&i2s0 0>, <&i2s0 1>;
- 		};
-@@ -69,17 +45,35 @@
- 	};
- };
- 
--&clock_audss {
--	assigned-clocks = <&clock_audss EXYNOS_DOUT_SRP>,
--			  <&clock CLK_FOUT_EPLL>;
--	assigned-clock-rates = <(196608000 / 256)>,
--			       <196608000>;
--};
--
- &i2s0 {
- 	status = "okay";
--	assigned-clocks = <&i2s0 CLK_I2S_RCLK_SRC>;
--	assigned-clock-parents = <&clock_audss EXYNOS_SCLK_I2S>;
-+
-+	assigned-clocks = <&clock CLK_MOUT_EPLL>,
-+			  <&clock CLK_MOUT_MAU_EPLL>,
-+			  <&clock CLK_MOUT_USER_MAU_EPLL>,
-+			  <&clock_audss EXYNOS_MOUT_AUDSS>,
-+			  <&clock_audss EXYNOS_MOUT_I2S>,
-+			  <&i2s0 CLK_I2S_RCLK_SRC>,
-+			  <&clock_audss EXYNOS_DOUT_SRP>,
-+			  <&clock_audss EXYNOS_DOUT_AUD_BUS>,
-+			  <&clock_audss EXYNOS_DOUT_I2S>;
-+
-+	assigned-clock-parents = <&clock CLK_FOUT_EPLL>,
-+				 <&clock CLK_MOUT_EPLL>,
-+				 <&clock CLK_MOUT_MAU_EPLL>,
-+				 <&clock CLK_MAU_EPLL>,
-+				 <&clock_audss EXYNOS_MOUT_AUDSS>,
-+				 <&clock_audss EXYNOS_SCLK_I2S>;
-+
-+	assigned-clock-rates = <0>,
-+			       <0>,
-+			       <0>,
-+			       <0>,
-+			       <0>,
-+			       <0>,
-+			       <196608001>,
-+			       <(196608002 / 2)>,
-+			       <196608000>;
- };
- 
- &pwm {
--- 
-2.17.1
+Jonathan
+
+> 
+> Thanks,
+> Mani
+> 
+> > ---
+> >  drivers/iio/adc/qcom-spmi-adc5.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/iio/adc/qcom-spmi-adc5.c b/drivers/iio/adc/qcom-spmi-adc5.c
+> > index 30b8867b31e4..c2da8f068b87 100644
+> > --- a/drivers/iio/adc/qcom-spmi-adc5.c
+> > +++ b/drivers/iio/adc/qcom-spmi-adc5.c
+> > @@ -919,7 +919,7 @@ static int adc5_probe(struct platform_device *pdev)
+> >  
+> >  static struct platform_driver adc5_driver = {
+> >  	.driver = {
+> > -		.name = "qcom-spmi-adc5.c",
+> > +		.name = "qcom-spmi-adc5",
+> >  		.of_match_table = adc5_match_table,
+> >  	},
+> >  	.probe = adc5_probe,
+> > -- 
+> > 2.28.0
+> >   
 
