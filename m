@@ -2,165 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78C9725EDB1
-	for <lists+devicetree@lfdr.de>; Sun,  6 Sep 2020 14:09:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3772825EDB5
+	for <lists+devicetree@lfdr.de>; Sun,  6 Sep 2020 14:13:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726342AbgIFMJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Sep 2020 08:09:48 -0400
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:50543 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725788AbgIFMJf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Sep 2020 08:09:35 -0400
-Received: from webmail.gandi.net (webmail15.sd4.0x35.net [10.200.201.15])
-        (Authenticated sender: contact@artur-rojek.eu)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPA id EFD411BF203;
-        Sun,  6 Sep 2020 12:09:28 +0000 (UTC)
+        id S1726342AbgIFMNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Sep 2020 08:13:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48046 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725788AbgIFMMd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 6 Sep 2020 08:12:33 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DAD39208B3;
+        Sun,  6 Sep 2020 12:12:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599394347;
+        bh=HFKdzPHzYBn8BaCn/wLBKbhxR+qq5E7Ro8VGTwHbrkI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=1cxI7NsvcMXbIaC+Y44U2oLEepR/q92T/PHchhs4pni1AYjN2px3n14K9NSuxR53P
+         6+eJbM+wJ37JPhv0QtiRHSRJQOoD5DrGwBNWyBgmbm+/muTFG0L89vUegZcd/oyPcp
+         Xu9oMXjhrULB0NrJsgkG4SpZUn5KjTpnRUDoBhuU=
+Date:   Sun, 6 Sep 2020 13:12:21 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>
+Subject: Re: [PATCH 18/20] dt-bindings:iio:adc:amlogic,meson-saradc yaml
+ conversion
+Message-ID: <20200906131221.22eae986@archlinux>
+In-Reply-To: <CAFBinCD9BqANmYKSCaHf8U3r9RMtGCFCu4_afNo4T8WJnpMkUA@mail.gmail.com>
+References: <20200905173004.216081-1-jic23@kernel.org>
+        <20200905173004.216081-19-jic23@kernel.org>
+        <CAFBinCD9BqANmYKSCaHf8U3r9RMtGCFCu4_afNo4T8WJnpMkUA@mail.gmail.com>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Date:   Sun, 06 Sep 2020 14:09:28 +0200
-From:   Artur Rojek <contact@artur-rojek.eu>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        linux-input <linux-input@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v9 2/2] input: joystick: Add ADC attached joystick driver.
-In-Reply-To: <CAHp75VfixOwpVSXoG1MqaZR2nmgEKumyKW8etLsRj1g=YjgiKw@mail.gmail.com>
-References: <20200905163403.64390-1-contact@artur-rojek.eu>
- <20200905163403.64390-2-contact@artur-rojek.eu>
- <CAHp75VfixOwpVSXoG1MqaZR2nmgEKumyKW8etLsRj1g=YjgiKw@mail.gmail.com>
-Message-ID: <2f2047e7ada6fcb70489ea6e5917e20a@artur-rojek.eu>
-X-Sender: contact@artur-rojek.eu
-User-Agent: Roundcube Webmail/1.3.15
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+On Sun, 6 Sep 2020 12:00:02 +0200
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 
-thanks for the review, replies inline.
+> Hi Jonathan,
+> 
+> On Sat, Sep 5, 2020 at 7:32 PM Jonathan Cameron <jic23@kernel.org> wrote:
+> >
+> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> >
+> > This binding is non trivial due to the range of different parts
+> > supported having several subtle quirks.  
+> thank you for working on this!
+> 
+> > I am far from sure I have these correct. For example:
+> > 1) Can we have the clock adc_sel without adc_clk?  
+> adc_sel and adc_clk only exist on GXBB and newer
+> Meson8, Meson8b and Meson8m2 have these clocks built into the SAR ADC IP block
 
-On 2020-09-06 11:22, Andy Shevchenko wrote:
-> On Sat, Sep 5, 2020 at 7:34 PM Artur Rojek <contact@artur-rojek.eu> 
-> wrote:
->> 
->> Add a driver for joystick devices connected to ADC controllers
->> supporting the Industrial I/O subsystem.
+Ah. That makes sense.
+
 > 
-> ...
+> > 2) I haven't restricted the amlogic,hhi-sysctrl to only
+> >    be present on the relevant parts if nvmem stuff also is, but
+> >    it would seem to be rather odd if it were otherwise.  
+> yes, I think we can restrict this later
 > 
->> +static int adc_joystick_handle(const void *data, void *private)
->> +{
->> +       struct adc_joystick *joy = private;
->> +       enum iio_endian endianness;
->> +       int bytes, msb, val, idx, i;
->> +       bool sign;
->> +
->> +       bytes = joy->chans[0].channel->scan_type.storagebits >> 3;
->> +
->> +       for (i = 0; i < joy->num_chans; ++i) {
->> +               idx = joy->chans[i].channel->scan_index;
->> +               endianness = 
->> joy->chans[i].channel->scan_type.endianness;
->> +               msb = joy->chans[i].channel->scan_type.realbits - 1;
+> [...]
+> > +        adc@9680 {
+> > +            compatible = "amlogic,meson8b-saradc", "amlogic,meson-saradc";
+> > +            #io-channel-cells = <1>;
+> > +            reg = <0x0 0x9680 0x0 0x34>;
+> > +            interrupts = <GIC_SPI 73 IRQ_TYPE_EDGE_RISING>;
+> > +            clocks = <&xtal>,
+> > +                <&clkc CLKID_SAR_ADC>,
+> > +                <&clkc CLKID_SAR_ADC_CLK>,
+> > +                <&clkc CLKID_SAR_ADC_SEL>;
+> > +            clock-names = "clkin", "core";  
+> CLKID_SAR_ADC_CLK and CLKID_SAR_ADC_SEL should not be in this Meson8b example
 > 
->> +               sign = (tolower(joy->chans[i].channel->scan_type.sign) 
->> == 's');
+> I have attached a patch for this as well as for making the clock
+> selection more restrictive (to catch errors like this). feel free to
+> include it in your patch if you think that it improves things
+
+Great thanks. I'll roll your patch into this for v2.
+
+Thanks,
+
+Jonathan
+
 > 
-> Redundant parentheses.
 > 
->> +               switch (bytes) {
->> +               case 1:
->> +                       val = ((const u8 *)data)[idx];
->> +                       break;
->> +               case 2:
-> 
->> +                       if (endianness == IIO_BE)
->> +                               val = be16_to_cpu(((const __be16 
->> *)data)[idx]);
->> +                       else if (endianness == IIO_LE)
->> +                               val = le16_to_cpu(((const __le16 
->> *)data)[idx]);
->> +                       else /* IIO_CPU */
->> +                               val = ((const u16 *)data)[idx];
->> +                       break;
-> 
-> Hmm... I don't like explicit castings to restricted types. On top of
-> that is it guaranteed that pointer to data will be aligned?
-The buffer comes from the IIO core, it is aligned to the sample size.
-> As a solution for the first two I would recommend to use
-> get_unaligned_be16() / get_unaligned_le16().
-> The last one is an interesting case and if data can be unaligned needs
-> to be fixed.
-> 
->> +               default:
->> +                       return -EINVAL;
->> +               }
->> +
->> +               val >>= joy->chans[i].channel->scan_type.shift;
->> +               if (sign)
->> +                       val = sign_extend32(val, msb);
->> +               else
-> 
->> +                       val &= GENMASK(msb, 0);
-> 
-> It includes msb. Is it expected?
-Yes, that's expected as `msb = joy->chans[i].channel->scan_type.realbits 
-- 1`.
-> 
->> +               input_report_abs(joy->input, joy->axes[i].code, val);
->> +       }
->> +
->> +       input_sync(joy->input);
->> +
->> +       return 0;
->> +}
-> 
-> ...
-> 
->> +static int adc_joystick_open(struct input_dev *dev)
-> 
->> +static void adc_joystick_close(struct input_dev *dev)
-> 
-> Just wondering if this is protected against object lifetime cases.
-Can you clarify that in more details?
-> 
-> ...
-> 
->> +err:
-> 
-> err_fwnode_put: ?
-> 
->> +       fwnode_handle_put(child);
->> +       return ret;
-> 
-> ...
-> 
->> +       /* Count how many channels we got. NULL terminated. */
->> +       for (i = 0; joy->chans[i].indio_dev; ++i) {
->> +               bits = joy->chans[i].channel->scan_type.storagebits;
->> +               if (!bits || (bits > 16)) {
->> +                       dev_err(dev, "Unsupported channel storage 
->> size\n");
-> 
->> +                       return -EINVAL;
-> 
-> -ERANGE?
-> 
->> +               }
->> +               if (bits != 
->> joy->chans[0].channel->scan_type.storagebits) {
->> +                       dev_err(dev, "Channels must have equal storage 
->> size\n");
->> +                       return -EINVAL;
->> +               }
->> +       }
+> Best regards,
+> Martin
+
