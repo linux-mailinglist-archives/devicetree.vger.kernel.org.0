@@ -2,103 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3772825EDB5
-	for <lists+devicetree@lfdr.de>; Sun,  6 Sep 2020 14:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0C7925EDCE
+	for <lists+devicetree@lfdr.de>; Sun,  6 Sep 2020 14:44:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726342AbgIFMNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Sep 2020 08:13:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48046 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725788AbgIFMMd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 6 Sep 2020 08:12:33 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DAD39208B3;
-        Sun,  6 Sep 2020 12:12:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599394347;
-        bh=HFKdzPHzYBn8BaCn/wLBKbhxR+qq5E7Ro8VGTwHbrkI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=1cxI7NsvcMXbIaC+Y44U2oLEepR/q92T/PHchhs4pni1AYjN2px3n14K9NSuxR53P
-         6+eJbM+wJ37JPhv0QtiRHSRJQOoD5DrGwBNWyBgmbm+/muTFG0L89vUegZcd/oyPcp
-         Xu9oMXjhrULB0NrJsgkG4SpZUn5KjTpnRUDoBhuU=
-Date:   Sun, 6 Sep 2020 13:12:21 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [PATCH 18/20] dt-bindings:iio:adc:amlogic,meson-saradc yaml
- conversion
-Message-ID: <20200906131221.22eae986@archlinux>
-In-Reply-To: <CAFBinCD9BqANmYKSCaHf8U3r9RMtGCFCu4_afNo4T8WJnpMkUA@mail.gmail.com>
-References: <20200905173004.216081-1-jic23@kernel.org>
-        <20200905173004.216081-19-jic23@kernel.org>
-        <CAFBinCD9BqANmYKSCaHf8U3r9RMtGCFCu4_afNo4T8WJnpMkUA@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1728807AbgIFMoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Sep 2020 08:44:20 -0400
+Received: from mail-ej1-f68.google.com ([209.85.218.68]:33962 "EHLO
+        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728726AbgIFMoN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Sep 2020 08:44:13 -0400
+Received: by mail-ej1-f68.google.com with SMTP id gr14so13212086ejb.1;
+        Sun, 06 Sep 2020 05:44:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=ralIEjNoFtwj5RBf8iVIO+7hQNji8TPKqkwx5rPMfW8=;
+        b=YPYDFJCMCRd7MkA0WiDlq0TqsrOCQUV3Yq4cgTFpOJaIsZC+axyRnRcFP0CydQuy2a
+         8ogjIx2PrvU735a+asGRN3JVN/cMF9rtttRKJh6oYk1HfcgUbHFbV3GK9SiAntbl9vZV
+         JI+6x0WvFYLGBNrlHHogJzpcMEdlF6+GghbILKXXDYKKjexDSR7wyiWNEDYAWCqtKYT1
+         8+EWyw/xf2cnjr0E6g1eqzrdphggHnkH6PCQcYq3FC+kYaQ+Ou1OyuNbm/1H5Zsk5axn
+         6USN+x3y8yOw8KwFfYbEC5iGoFPj4IPj4ZqmoXq2nr5ovux8SlO9Q/5QIqqw9RFztR7Q
+         8kbg==
+X-Gm-Message-State: AOAM5313cKTagmdX9I3fFycW6i/zfIw1tZF2iSba2YuOAvfa8Ehc7cig
+        okPNigLBr6FZDvuPDuSjveXGcy35V+Q=
+X-Google-Smtp-Source: ABdhPJzA6dUBJEnmsFqsm7+L48vhwErR8Th/TvoUyATAz1Bfovh0eQUU0X1hyJaz8BYw7hNVPwUa7w==
+X-Received: by 2002:a17:907:2168:: with SMTP id rl8mr16195778ejb.308.1599396250643;
+        Sun, 06 Sep 2020 05:44:10 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.174])
+        by smtp.googlemail.com with ESMTPSA id p12sm11877066ejb.42.2020.09.06.05.44.09
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 06 Sep 2020 05:44:09 -0700 (PDT)
+Date:   Sun, 6 Sep 2020 14:44:07 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Sylwester Nawrocki <snawrocki@kernel.org>
+Subject: Re: [PATCH v2 1/3] ARM: dts: exynos: Add assigned clock parent to
+ CMU in Exynos3250
+Message-ID: <20200906124407.GA4829@kozik-lap>
+References: <CGME20200903181437eucas1p16b97d1c425672700bac7ece19084584c@eucas1p1.samsung.com>
+ <20200903181425.5015-1-krzk@kernel.org>
+ <4bc2ea2e-65a2-6c0b-9557-5777e359241a@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <4bc2ea2e-65a2-6c0b-9557-5777e359241a@samsung.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 6 Sep 2020 12:00:02 +0200
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
-
-> Hi Jonathan,
+On Fri, Sep 04, 2020 at 08:47:10AM +0200, Marek Szyprowski wrote:
+> Hi Krzysztof,
 > 
-> On Sat, Sep 5, 2020 at 7:32 PM Jonathan Cameron <jic23@kernel.org> wrote:
+> On 03.09.2020 20:14, Krzysztof Kozlowski wrote:
+> > Commit 52005dece527 ("ARM: dts: Add assigned clock parents to CMU node
+> > for exynos3250") added assigned clocks under Clock Management Unit to
+> > fix hangs when accessing ISP registers.
 > >
-> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > However the dtschema expects "clocks" property if "assigned-clocks" are
+> > used.  Add reference to input clock, the parent used in
+> > "assigned-clock-parents" to silence the dtschema warnings:
 > >
-> > This binding is non trivial due to the range of different parts
-> > supported having several subtle quirks.  
-> thank you for working on this!
+> >    arch/arm/boot/dts/exynos3250-artik5-eval.dt.yaml: clock-controller@10030000: 'clocks' is a dependency of 'assigned-clocks'
+> >
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> >
+> > ---
+> >
+> > Changes since v1:
+> > 1. Add clocks property.
+> >
+> > This is a v2 for:
+> > https://lore.kernel.org/linux-samsung-soc/20200901101534.GE23793@kozik-lap/T/#me85ac382b847dadbc3f6ebf30e94e70b5df1ebb6
+> > ---
+> >   arch/arm/boot/dts/exynos3250.dtsi | 1 +
+> >   1 file changed, 1 insertion(+)
+> >
+> > diff --git a/arch/arm/boot/dts/exynos3250.dtsi b/arch/arm/boot/dts/exynos3250.dtsi
+> > index a1e93fb7f694..89b160280469 100644
+> > --- a/arch/arm/boot/dts/exynos3250.dtsi
+> > +++ b/arch/arm/boot/dts/exynos3250.dtsi
+> > @@ -214,6 +214,7 @@
+> >   			compatible = "samsung,exynos3250-cmu";
+> >   			reg = <0x10030000 0x20000>;
+> >   			#clock-cells = <1>;
+> > +			clocks = <&cmu CLK_FIN_PLL>;
 > 
-> > I am far from sure I have these correct. For example:
-> > 1) Can we have the clock adc_sel without adc_clk?  
-> adc_sel and adc_clk only exist on GXBB and newer
-> Meson8, Meson8b and Meson8m2 have these clocks built into the SAR ADC IP block
+> This is not a correct input clock for this CMU. Please assign it to 
+> xusbxti, xxti or xtcxo in the respective board dts, as this is a board 
+> property.
 
-Ah. That makes sense.
+Makes sense, although all this is kind of a hack as neither the bindings
+nor the driver take the input clock.
 
-> 
-> > 2) I haven't restricted the amlogic,hhi-sysctrl to only
-> >    be present on the relevant parts if nvmem stuff also is, but
-> >    it would seem to be rather odd if it were otherwise.  
-> yes, I think we can restrict this later
-> 
-> [...]
-> > +        adc@9680 {
-> > +            compatible = "amlogic,meson8b-saradc", "amlogic,meson-saradc";
-> > +            #io-channel-cells = <1>;
-> > +            reg = <0x0 0x9680 0x0 0x34>;
-> > +            interrupts = <GIC_SPI 73 IRQ_TYPE_EDGE_RISING>;
-> > +            clocks = <&xtal>,
-> > +                <&clkc CLKID_SAR_ADC>,
-> > +                <&clkc CLKID_SAR_ADC_CLK>,
-> > +                <&clkc CLKID_SAR_ADC_SEL>;
-> > +            clock-names = "clkin", "core";  
-> CLKID_SAR_ADC_CLK and CLKID_SAR_ADC_SEL should not be in this Meson8b example
-> 
-> I have attached a patch for this as well as for making the clock
-> selection more restrictive (to catch errors like this). feel free to
-> include it in your patch if you think that it improves things
 
-Great thanks. I'll roll your patch into this for v2.
-
-Thanks,
-
-Jonathan
+Best regards,
+Krzysztof
 
 > 
+> >   			assigned-clocks = <&cmu CLK_MOUT_ACLK_400_MCUISP_SUB>,
+> >   					  <&cmu CLK_MOUT_ACLK_266_SUB>;
+> >   			assigned-clock-parents = <&cmu CLK_FIN_PLL>,
 > 
-> Best regards,
-> Martin
-
+> Best regards
+> -- 
+> Marek Szyprowski, PhD
+> Samsung R&D Institute Poland
+> 
