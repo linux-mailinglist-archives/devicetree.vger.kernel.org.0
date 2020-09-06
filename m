@@ -2,300 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 652F825F0B6
-	for <lists+devicetree@lfdr.de>; Sun,  6 Sep 2020 23:32:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54AC325F104
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 01:09:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726787AbgIFVbf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Sep 2020 17:31:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56592 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726733AbgIFVbe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Sep 2020 17:31:34 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B197C061574;
-        Sun,  6 Sep 2020 14:31:33 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id c15so13390547wrs.11;
-        Sun, 06 Sep 2020 14:31:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=leXpO4dZKfWGnyatr8x9GJCEB3suQ62ChMaZn0NX3fM=;
-        b=PZv7XD/GenGLkf8AezTjlrpH1y4v1aFApcX/yxttEoF5w+w5GyA4WCKJgciODBx0nV
-         wSj8Z+a7fAHgTGr2StfPAiUApvcWzE0SUzHzqVdH5Md8EpcBalUnFjYKDqIon/GGhmBU
-         K6rkAHbuhWIIG+q/16JyjstbRPFkonovK2MHKGDbA1FZtT7P1D/0fZo0uOMJcG6mOnhP
-         L1x+1HbPt6pEVve3og2Pq64vcP4h4lLcrkiAjg6IggbVRDkSWyQg3tEvN1ygTCG+mQKo
-         fytFaBvRc0YJ+zSI/xYhloFPxsteuNoPJOMesH3sH2E6lUOJtKIs7T3LjHbn2RYGk5my
-         ySPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=leXpO4dZKfWGnyatr8x9GJCEB3suQ62ChMaZn0NX3fM=;
-        b=QADJIDML0blsB1Ve6AaUbRwI3prycNlmX1IjXIJ+0u4U3E14ge76m5lc3SK52lJG/2
-         daoVGyfN2hovMINQJhoqWSk66C+wdPx5WNnjL4gRIT7m4Nnxr8/h9JayYRs/0x5WQ0Oo
-         TFfuvGBf36UL8wyiOVMX99mXSkK1RI5vCiSEQeQT1I/QIsbc7/imyMIFjX+it6EqyWYV
-         Hob2odIba8Q/K0iAgZmb9zf1yaj5ce5+G/maQIKPglTxWrECNzCtealHc7DdaZLSSIAD
-         wLCt3FTuAzXROOBi1Y9020pZSFivpgZauLy2PrIsfAnMFkLlqrqBqlFxEtVHWhE2ejGA
-         kkmw==
-X-Gm-Message-State: AOAM533phHm/HCX/djeb3M4Fc/hiQzPLjP6pL3hm/7RS9kDchIbUwKDL
-        fDhMKaKyfaK8phsM3o/pRTI=
-X-Google-Smtp-Source: ABdhPJzll7ODPpnwXsxXWe4Cc/hoJ76QoGWtcpj/XklKVD/bWVGKYgydJJqBo/p/EUrE9aGCHav8Zw==
-X-Received: by 2002:adf:f846:: with SMTP id d6mr19757466wrq.56.1599427891497;
-        Sun, 06 Sep 2020 14:31:31 -0700 (PDT)
-Received: from localhost ([91.92.14.102])
-        by smtp.gmail.com with ESMTPSA id a10sm22418388wmj.38.2020.09.06.14.31.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Sep 2020 14:31:30 -0700 (PDT)
-From:   Iskren Chernev <iskren.chernev@gmail.com>
-To:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Jonathan Bakker <xc-racer2@live.ca>,
-        Vladimir Barinov <vladimir.barinov@cogentembedded.com>,
-        Iskren Chernev <iskren.chernev@gmail.com>
-Subject: [PATCH v4 7/7] power: supply: max17040: Support soc alert
-Date:   Mon,  7 Sep 2020 00:30:56 +0300
-Message-Id: <20200906213056.2161410-8-iskren.chernev@gmail.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200906213056.2161410-1-iskren.chernev@gmail.com>
-References: <20200906213056.2161410-1-iskren.chernev@gmail.com>
+        id S1726349AbgIFXJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Sep 2020 19:09:00 -0400
+Received: from mo-csw1516.securemx.jp ([210.130.202.155]:56272 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726165AbgIFXI7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Sep 2020 19:08:59 -0400
+Received: by mo-csw.securemx.jp (mx-mo-csw1516) id 086N8JEo008509; Mon, 7 Sep 2020 08:08:19 +0900
+X-Iguazu-Qid: 34tKSwRU9BYuHzn0in
+X-Iguazu-QSIG: v=2; s=0; t=1599433699; q=34tKSwRU9BYuHzn0in; m=bg21Vh1RzUmSRhTK3yMtiq8vAOBYj5w0yNVeDAf2yio=
+Received: from imx12.toshiba.co.jp (imx12.toshiba.co.jp [61.202.160.132])
+        by relay.securemx.jp (mx-mr1513) id 086N8GRS018624;
+        Mon, 7 Sep 2020 08:08:17 +0900
+Received: from enc02.toshiba.co.jp ([61.202.160.51])
+        by imx12.toshiba.co.jp  with ESMTP id 086N8GUn005737;
+        Mon, 7 Sep 2020 08:08:16 +0900 (JST)
+Received: from hop101.toshiba.co.jp ([133.199.85.107])
+        by enc02.toshiba.co.jp  with ESMTP id 086N8Gcd003321;
+        Mon, 7 Sep 2020 08:08:16 +0900
+Date:   Mon, 7 Sep 2020 08:08:06 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Olof Johansson <olof@lixom.net>,
+        punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@misterjones.org>
+Subject: Re: [PATCH v3 0/8] Add Toshiba Visconti ARM64 Platform support
+X-TSB-HOP: ON
+Message-ID: <20200906230806.GA3003239@toshiba.co.jp>
+References: <20200831081025.2721320-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <CAK8P3a2xD-zp3ov=3vobSSAmyfvPCMe0mGgP3F7mZkk8WieUpw@mail.gmail.com>
+ <20200831224122.i5tau3atlty4ikeu@toshiba.co.jp>
+ <CAK8P3a2O_-jiiRe41Dci3yAsN7s==u5b_fHGsXh6m6y-Ki7WAQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAK8P3a2O_-jiiRe41Dci3yAsN7s==u5b_fHGsXh6m6y-Ki7WAQ@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-max17048 and max17049 support SOC alerts (interrupts when battery
-capacity changes by +/- 1%). At the moment the driver polls for changes
-every second. Using the alerts removes the need for polling.
+Hi,
 
-Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
-Tested-by: Jonathan Bakker <xc-racer2@live.ca>
----
- drivers/power/supply/max17040_battery.c | 82 ++++++++++++++++++++++---
- 1 file changed, 73 insertions(+), 9 deletions(-)
+Thanks for your comment.
 
-diff --git a/drivers/power/supply/max17040_battery.c b/drivers/power/supply/max17040_battery.c
-index 6ead2fded6a96..1c4cb7ddc785c 100644
---- a/drivers/power/supply/max17040_battery.c
-+++ b/drivers/power/supply/max17040_battery.c
-@@ -25,6 +25,7 @@
- #define MAX17040_MODE	0x06
- #define MAX17040_VER	0x08
- #define MAX17040_CONFIG	0x0C
-+#define MAX17040_STATUS	0x1A
- #define MAX17040_CMD	0xFE
- 
- 
-@@ -33,7 +34,10 @@
- #define MAX17040_RCOMP_DEFAULT  0x9700
- 
- #define MAX17040_ATHD_MASK		0x3f
-+#define MAX17040_ALSC_MASK		0x40
- #define MAX17040_ATHD_DEFAULT_POWER_UP	4
-+#define MAX17040_STATUS_HD_MASK		0x1000
-+#define MAX17040_STATUS_SC_MASK		0x2000
- #define MAX17040_CFG_RCOMP_MASK		0xff00
- 
- enum chip_id {
-@@ -55,6 +59,7 @@ struct chip_data {
- 	u16 vcell_div;
- 	u8  has_low_soc_alert;
- 	u8  rcomp_bytes;
-+	u8  has_soc_alert;
- };
- 
- static struct chip_data max17040_family[] = {
-@@ -65,6 +70,7 @@ static struct chip_data max17040_family[] = {
- 		.vcell_div = 1,
- 		.has_low_soc_alert = 0,
- 		.rcomp_bytes = 2,
-+		.has_soc_alert = 0,
- 	},
- 	[ID_MAX17041] = {
- 		.reset_val = 0x0054,
-@@ -73,6 +79,7 @@ static struct chip_data max17040_family[] = {
- 		.vcell_div = 1,
- 		.has_low_soc_alert = 0,
- 		.rcomp_bytes = 2,
-+		.has_soc_alert = 0,
- 	},
- 	[ID_MAX17043] = {
- 		.reset_val = 0x0054,
-@@ -81,6 +88,7 @@ static struct chip_data max17040_family[] = {
- 		.vcell_div = 1,
- 		.has_low_soc_alert = 1,
- 		.rcomp_bytes = 1,
-+		.has_soc_alert = 0,
- 	},
- 	[ID_MAX17044] = {
- 		.reset_val = 0x0054,
-@@ -89,6 +97,7 @@ static struct chip_data max17040_family[] = {
- 		.vcell_div = 1,
- 		.has_low_soc_alert = 1,
- 		.rcomp_bytes = 1,
-+		.has_soc_alert = 0,
- 	},
- 	[ID_MAX17048] = {
- 		.reset_val = 0x5400,
-@@ -97,6 +106,7 @@ static struct chip_data max17040_family[] = {
- 		.vcell_div = 8,
- 		.has_low_soc_alert = 1,
- 		.rcomp_bytes = 1,
-+		.has_soc_alert = 1,
- 	},
- 	[ID_MAX17049] = {
- 		.reset_val = 0x5400,
-@@ -105,6 +115,7 @@ static struct chip_data max17040_family[] = {
- 		.vcell_div = 4,
- 		.has_low_soc_alert = 1,
- 		.rcomp_bytes = 1,
-+		.has_soc_alert = 1,
- 	},
- 	[ID_MAX17058] = {
- 		.reset_val = 0x5400,
-@@ -113,6 +124,7 @@ static struct chip_data max17040_family[] = {
- 		.vcell_div = 8,
- 		.has_low_soc_alert = 1,
- 		.rcomp_bytes = 1,
-+		.has_soc_alert = 0,
- 	},
- 	[ID_MAX17059] = {
- 		.reset_val = 0x5400,
-@@ -121,6 +133,7 @@ static struct chip_data max17040_family[] = {
- 		.vcell_div = 4,
- 		.has_low_soc_alert = 1,
- 		.rcomp_bytes = 1,
-+		.has_soc_alert = 0,
- 	},
- };
- 
-@@ -156,6 +169,12 @@ static int max17040_set_low_soc_alert(struct max17040_chip *chip, u32 level)
- 			MAX17040_ATHD_MASK, level);
- }
- 
-+static int max17040_set_soc_alert(struct max17040_chip *chip, bool enable)
-+{
-+	return regmap_update_bits(chip->regmap, MAX17040_CONFIG,
-+			MAX17040_ALSC_MASK, enable ? MAX17040_ALSC_MASK : 0);
-+}
-+
- static int max17040_set_rcomp(struct max17040_chip *chip, u16 rcomp)
- {
- 	u16 mask = chip->data.rcomp_bytes == 2 ?
-@@ -300,11 +319,33 @@ static void max17040_work(struct work_struct *work)
- 	max17040_queue_work(chip);
- }
- 
-+/* Returns true if alert cause was SOC change, not low SOC */
-+static bool max17040_handle_soc_alert(struct max17040_chip *chip)
-+{
-+	bool ret = true;
-+	u32 data;
-+
-+	regmap_read(chip->regmap, MAX17040_STATUS, &data);
-+
-+	if (data & MAX17040_STATUS_HD_MASK) {
-+		// this alert was caused by low soc
-+		ret = false;
-+	}
-+	if (data & MAX17040_STATUS_SC_MASK) {
-+		// soc change bit -- deassert to mark as handled
-+		regmap_write(chip->regmap, MAX17040_STATUS,
-+				data & ~MAX17040_STATUS_SC_MASK);
-+	}
-+
-+	return ret;
-+}
-+
- static irqreturn_t max17040_thread_handler(int id, void *dev)
- {
- 	struct max17040_chip *chip = dev;
- 
--	dev_warn(&chip->client->dev, "IRQ: Alert battery low level");
-+	if (!(chip->data.has_soc_alert && max17040_handle_soc_alert(chip)))
-+		dev_warn(&chip->client->dev, "IRQ: Alert battery low level\n");
- 
- 	/* read registers */
- 	max17040_check_changes(chip);
-@@ -428,6 +469,7 @@ static int max17040_probe(struct i2c_client *client,
- 	struct power_supply_config psy_cfg = {};
- 	struct max17040_chip *chip;
- 	enum chip_id chip_id;
-+	bool enable_irq = false;
- 	int ret;
- 
- 	if (!i2c_check_functionality(adapter, I2C_FUNC_SMBUS_BYTE))
-@@ -478,6 +520,27 @@ static int max17040_probe(struct i2c_client *client,
- 			return ret;
- 		}
- 
-+		enable_irq = true;
-+	}
-+
-+	if (client->irq && chip->data.has_soc_alert) {
-+		ret = max17040_set_soc_alert(chip, 1);
-+		if (ret) {
-+			dev_err(&client->dev,
-+				"Failed to set SOC alert: err %d\n", ret);
-+			return ret;
-+		}
-+		enable_irq = true;
-+	} else {
-+		/* soc alerts negate the need for polling */
-+		INIT_DEFERRABLE_WORK(&chip->work, max17040_work);
-+		ret = devm_add_action(&client->dev, max17040_stop_work, chip);
-+		if (ret)
-+			return ret;
-+		max17040_queue_work(chip);
-+	}
-+
-+	if (enable_irq) {
- 		ret = max17040_enable_alert_irq(chip);
- 		if (ret) {
- 			client->irq = 0;
-@@ -486,12 +549,6 @@ static int max17040_probe(struct i2c_client *client,
- 		}
- 	}
- 
--	INIT_DEFERRABLE_WORK(&chip->work, max17040_work);
--	ret = devm_add_action(&client->dev, max17040_stop_work, chip);
--	if (ret)
--		return ret;
--	max17040_queue_work(chip);
--
- 	return 0;
- }
- 
-@@ -502,7 +559,11 @@ static int max17040_suspend(struct device *dev)
- 	struct i2c_client *client = to_i2c_client(dev);
- 	struct max17040_chip *chip = i2c_get_clientdata(client);
- 
--	cancel_delayed_work(&chip->work);
-+	if (client->irq && chip->data.has_soc_alert)
-+		// disable soc alert to prevent wakeup
-+		max17040_set_soc_alert(chip, 0);
-+	else
-+		cancel_delayed_work(&chip->work);
- 
- 	if (client->irq && device_may_wakeup(dev))
- 		enable_irq_wake(client->irq);
-@@ -518,7 +579,10 @@ static int max17040_resume(struct device *dev)
- 	if (client->irq && device_may_wakeup(dev))
- 		disable_irq_wake(client->irq);
- 
--	max17040_queue_work(chip);
-+	if (client->irq && chip->data.has_soc_alert)
-+		max17040_set_soc_alert(chip, 1);
-+	else
-+		max17040_queue_work(chip);
- 
- 	return 0;
- }
--- 
-2.28.0
+On Tue, Sep 01, 2020 at 09:50:56AM +0200, Arnd Bergmann wrote:
+> On Tue, Sep 1, 2020 at 12:41 AM Nobuhiro Iwamatsu
+> <nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
+> > On Mon, Aug 31, 2020 at 11:19:02AM +0200, Arnd Bergmann wrote:
+> > > On Mon, Aug 31, 2020 at 10:10 AM Nobuhiro Iwamatsu
+> > > <nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
+> > > >
+> > > > Visconti is a series of Toshiba's SoCs targeting image processing
+> > > > applications[0]. These set of patches adds support for Visconti5 a Arm
+> > > > v8 based SoC.
+> > > >
+> > > > The series add minimal support for the Visconti5 SoC and the TMPV7708 RM
+> > > > main board. Peripherals such as UART, SPI, I2c and timer use Arm's
+> > > > IP and work with the existing kernel drivers in the tree. The series
+> > > > includes a pinctrl driver to select appropriate functions on the pins.
+> > >
+> > > The arch/arm64 series looks all reasonable to me, nice work!
+> > >
+> > > Once the review from the DT and pinctrl maintainers is completed
+> > > and you have received their Acked-by or Reviewed-by tags, please
+> > > send the series with those tags to soc@kernel.org for inclusion, keeping
+> > > everyone else on Cc.
+> > >
+> > > I'd leave it up to Linus Walleij whether he wants to merge the pinctrl driver
+> > > through his subsystem tree, or whether we should pick it up through
+> > > the soc tree, either way works for the initial merge. For any updates to
+> > > the pinctrl driver and additional subsystem support (clk, media, ...)
+> > > in later releases there is no need to Cc the SoC maintainers as those
+> > > should just get merged through the subsystem while we take care
+> > > of the DT files.
+> >
+> > Thank you for the explanation. I will do that.
+> > BTW, I searched the process for this but I couldn't find any detailed
+> > documentation. Could you tell me if you know?
+> 
+> We never documented this well, sorry about that.
+> 
 
+No problem.
+
+> Generally speaking, if you only have small updates (a few patches
+> at a time), feel free to send those patches to soc@kernel.org once
+> you consider them ready for inclusion.
+> 
+> On 32-bit architectures as well as the more widely used 64-bit
+> platforms with many .dts files, please send pull requests that group
+> the patches into logical topics. Once you are listed in the
+> MAINTAINERS file and you want to host a git tree on git.kernel.org
+> for that purpose, you can apply for a kernel.org account and
+> send pull request from there as well as have the tree integrated
+> into linux-next for earlier testing. On the more specialized platforms
+> without third-party machine support in the kernel, that is usually not
+> necessary.
+> 
+> In either case, patches and pull requests should be based on
+> an early -rc tag from mainline Linux (normally -rc1) and get sent
+> between -rc1 and roughly -rc5 for new features. Bug fixes can
+> be sent at any time regardless of the current -rc, with a balance
+> between sending them quickly and collecting multiple of them
+> into a pull request to reduce the number of merges. Please let
+> us know whether bug fixes should be applied only at the next
+> merge window, on current kernels, or backported to previous
+> releases, using the "Fixes:"  and "Cc: stable@vger.kernel.org"
+> tags as appropriate. The default is to backport bug fixes as far
+> back as they apply, unless there is a reason not to.
+> 
+
+Thank you for the detailed explanation.
+The above explanation was very useful.
+
+>      Arnd
+> 
+
+Best regards,
+  Nobuhiro
