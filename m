@@ -2,63 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C12D25EF71
-	for <lists+devicetree@lfdr.de>; Sun,  6 Sep 2020 20:10:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66EF725F065
+	for <lists+devicetree@lfdr.de>; Sun,  6 Sep 2020 21:52:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729146AbgIFSJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Sep 2020 14:09:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54098 "EHLO
+        id S1726245AbgIFTv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Sep 2020 15:51:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729137AbgIFSJw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Sep 2020 14:09:52 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A37CC061575
-        for <devicetree@vger.kernel.org>; Sun,  6 Sep 2020 11:09:51 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id s13so11390794wmh.4
-        for <devicetree@vger.kernel.org>; Sun, 06 Sep 2020 11:09:51 -0700 (PDT)
+        with ESMTP id S1726165AbgIFTvZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Sep 2020 15:51:25 -0400
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BA08C061573;
+        Sun,  6 Sep 2020 12:51:23 -0700 (PDT)
+Received: by mail-lj1-x244.google.com with SMTP id k25so1077320ljk.0;
+        Sun, 06 Sep 2020 12:51:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=kumt6xPsCDUuNyx6USsuuQtWS1PyP3Rmwiip0oO6sZA=;
-        b=NEj8UwN8yasyL4TZ1RQ6+S5zY6HtOe3KksHAaj1N4LVkekAMp2+cXNNujH7LCX4PhY
-         olauxi2xPneYW/ZDDVpBuMw98JfGBx7sVYFtUBYTj2hmkiGRz308vh+sq0+AxdyaSy9U
-         /CHl1bg25LdFRzU43OyCvAnHbes89mnUtpKzJv84Zi7g4TtRcu5dU0phMSLef/9lexMn
-         hVMxfI6zYcDNWXZX1mpT8hxGMOvfBwQa5MwQu+WWra3jrGXHAWh6fIPMIyRUXfxpVduA
-         ZaWtDtJyjRehtSqemZEbXwnA7ziVAQ4P09YgeiPkFrPfIWplDMG85yf4KGFfbgC/V0Mx
-         vs5w==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KKOOgijjR/92Dyk3rP5J/nsEG2qLUBoxqdTru9X+hgI=;
+        b=lFFOmnBe2UZCUQKrBPxMkjUS4KBZG9dLjwTtEYeXoNaZE0tSNH3zkX5ZAyzDQ5rTUJ
+         C+NuFRwWxLEB5dZLrqQW0ucODz9NpBUDPtDxih8F05CDK29OfgFanQDAheLqoW4pSiEO
+         s9Mckd6SrWobS33yGOc3GdQ1Ck/r8l4+fgdWBMTi3R8gMNsHkPHmJ6dP6rKrPfmYX6sC
+         L0O6ovOLJp8Y8ulVjnboJDV2K3NWwHZpm2mglrFag70/TakY41NaDYbSYHk/8z3GepaW
+         WjLMZJnkNV4GeVkDZS/FBJWQD7/BtTGTB1qkXVLJYqw5n5WQDZ8uKkK1fO5MDHtxMqnU
+         AdTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=kumt6xPsCDUuNyx6USsuuQtWS1PyP3Rmwiip0oO6sZA=;
-        b=jGjUEj3XmXz+3OJW9yHwUpXLfbBmZieezDrQxTdsBoC7LKk6SX0TExooJemy5JOyfm
-         dCWDjQsuiynS6+eevz9x1NzEaDzm5iZQuGT3B4F+Gu38LKqym40IlEBhL5+SqrJo5X4g
-         4Km9C1G5xpz4r72lXkaoyBm5trVipitEzW7l0Q+NPxSOkGDm+OyfDL2U4t2EZbQR7c3y
-         7362J0kVmTCxRkmhd9iJTLtL5BNzRyuMRgbbtDBQfXd69X6b5smjgFTSeGymmeCbdRit
-         PRweXj27jWiSg/qY7ugQV9D28spDQ19Ev+wwCNfpd7zmEUTFX9DUoXA/R6wGT0/pwFbu
-         T7YA==
-X-Gm-Message-State: AOAM5322+ypfW/U7AAOkSuJkabiFQ+HQuFww9iaxHi7EDE6/gIbVhXuB
-        N7x9aD9mMCtZp2UHHPMuiRcFAA==
-X-Google-Smtp-Source: ABdhPJw+Umfe+hF29nj4Wke2ReLCF+37Go/9KRaICoq/knhxVIsJkqpp5l7hb+oG6GtpEn0t9Zal9A==
-X-Received: by 2002:a1c:9c0b:: with SMTP id f11mr16769412wme.0.1599415789890;
-        Sun, 06 Sep 2020 11:09:49 -0700 (PDT)
-Received: from localhost.localdomain (208.19.23.93.rev.sfr.net. [93.23.19.208])
-        by smtp.gmail.com with ESMTPSA id s11sm24593937wrt.43.2020.09.06.11.09.48
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KKOOgijjR/92Dyk3rP5J/nsEG2qLUBoxqdTru9X+hgI=;
+        b=udewuvjashe4+cfDliWqRjTTo45l9q3IQkkLKeFy2V2TjsOzezC2Tx+TttdEfu9nua
+         RBGN9LZTWfeQfIP2YFi5o6BwsjbuufsX1h5AwEkhs96a/3yH44mponEvSF32PAI7zclp
+         uQNjBlIaD73Rzfm6alom1LXNeOTolXW20Uh+YVeRAlliQpa1xT5IsABRFMJcvrLcZ6ML
+         otDIO3tmNfm0fPiMzYtpQSwCROLiB0zoy2MRbKUmSJBQqw/pidwA+5lEGNA4dEqYMbTu
+         KMiUIXMLzaPxEmBjV4ZDbT5ILG8ia4+Lw4Om23mSYJv/l/fsxyBMgHEe9C79L18Xr5ds
+         PR4g==
+X-Gm-Message-State: AOAM530I5aqg2cLI2B+TA3I7JimxXpn2mafHAyNPfWsQ0/3nBovV3/dI
+        caNfo/C2COjjV67TrtqzjF9PqN/YI1M=
+X-Google-Smtp-Source: ABdhPJzAEdF4AUFyTVhOHqZygcOU4OH4QMk+olkQY9XA4FzMWKvcUKQi62sBm06iwGewygR7RrGPcg==
+X-Received: by 2002:a2e:8182:: with SMTP id e2mr8707788ljg.142.1599421882162;
+        Sun, 06 Sep 2020 12:51:22 -0700 (PDT)
+Received: from localhost.localdomain (109-252-170-211.dynamic.spd-mgts.ru. [109.252.170.211])
+        by smtp.gmail.com with ESMTPSA id b7sm4942574lfq.36.2020.09.06.12.51.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Sep 2020 11:09:49 -0700 (PDT)
-From:   Fabien Parent <fparent@baylibre.com>
-To:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Sun, 06 Sep 2020 12:51:21 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Lubomir Rintel <lkundrak@v3.sk>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-leds@vger.kernel.org, linux-pm@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org, krzk@kernel.org,
-        Fabien Parent <fparent@baylibre.com>
-Subject: [PATCH 2/2] memory: mtk-smi: add support for MT8167
-Date:   Sun,  6 Sep 2020 20:09:38 +0200
-Message-Id: <20200906180938.1117526-2-fparent@baylibre.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200906180938.1117526-1-fparent@baylibre.com>
-References: <20200906180938.1117526-1-fparent@baylibre.com>
+Subject: [PATCH v3 0/5] Introduce Embedded Controller driver for Acer A500
+Date:   Sun,  6 Sep 2020 22:50:58 +0300
+Message-Id: <20200906195103.1347-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -66,75 +68,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the SMI IP on MT8167
+Hello!
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
----
- drivers/memory/mtk-smi.c | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+This series adds support for the Embedded Controller which is found on
+Acer Iconia Tab A500 (Android tablet device).
 
-diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
-index c21262502581..691e4c344cf8 100644
---- a/drivers/memory/mtk-smi.c
-+++ b/drivers/memory/mtk-smi.c
-@@ -19,6 +19,9 @@
- /* mt8173 */
- #define SMI_LARB_MMU_EN		0xf00
- 
-+/* mt8167 */
-+#define MT8167_SMI_LARB_MMU_EN	0xfc0
-+
- /* mt2701 */
- #define REG_SMI_SECUR_CON_BASE		0x5c0
- 
-@@ -179,6 +182,13 @@ static void mtk_smi_larb_config_port_mt8173(struct device *dev)
- 	writel(*larb->mmu, larb->base + SMI_LARB_MMU_EN);
- }
- 
-+static void mtk_smi_larb_config_port_mt8167(struct device *dev)
-+{
-+	struct mtk_smi_larb *larb = dev_get_drvdata(dev);
-+
-+	writel(*larb->mmu, larb->base + MT8167_SMI_LARB_MMU_EN);
-+}
-+
- static void mtk_smi_larb_config_port_gen1(struct device *dev)
- {
- 	struct mtk_smi_larb *larb = dev_get_drvdata(dev);
-@@ -226,6 +236,11 @@ static const struct mtk_smi_larb_gen mtk_smi_larb_mt8173 = {
- 	.config_port = mtk_smi_larb_config_port_mt8173,
- };
- 
-+static const struct mtk_smi_larb_gen mtk_smi_larb_mt8167 = {
-+	/* mt8167 do not need the port in larb */
-+	.config_port = mtk_smi_larb_config_port_mt8167,
-+};
-+
- static const struct mtk_smi_larb_gen mtk_smi_larb_mt2701 = {
- 	.port_in_larb = {
- 		LARB0_PORT_OFFSET, LARB1_PORT_OFFSET,
-@@ -254,6 +269,10 @@ static const struct mtk_smi_larb_gen mtk_smi_larb_mt8183 = {
- };
- 
- static const struct of_device_id mtk_smi_larb_of_ids[] = {
-+	{
-+		.compatible = "mediatek,mt8167-smi-larb",
-+		.data = &mtk_smi_larb_mt8167
-+	},
- 	{
- 		.compatible = "mediatek,mt8173-smi-larb",
- 		.data = &mtk_smi_larb_mt8173
-@@ -418,6 +437,10 @@ static const struct of_device_id mtk_smi_common_of_ids[] = {
- 		.compatible = "mediatek,mt8173-smi-common",
- 		.data = &mtk_smi_common_gen2,
- 	},
-+	{
-+		.compatible = "mediatek,mt8167-smi-common",
-+		.data = &mtk_smi_common_gen2,
-+	},
- 	{
- 		.compatible = "mediatek,mt2701-smi-common",
- 		.data = &mtk_smi_common_gen1,
+The Embedded Controller is ENE KB930 and it's running firmware customized
+for the A500. The firmware interface may be reused by some other sibling
+Acer tablets, although none of those tablets are supported in upstream yet.
+Please review and apply, thanks in advance!
+
+Changelog:
+
+v3: - Rebased on a recent linux-next. Fixed new merge conflict and dropped
+      "regmap: Use flexible sleep" patch because it's already applied.
+
+v2: - Factored out KB930 device-tree binding into a separate file, like it
+      was suggested by Lubomir Rintel.
+
+    - Switched to use regmap API like it was suggested by Lubomir Rintel.
+
+    - Added patch "regmap: Use flexible sleep" which allows not to hog
+      CPU while LED is switching state.
+
+    - Corrected MODULE_LICENSE to use "GPL" in all patches.
+
+    - Corrected MFD driver Kconfig entry like it was suggested by
+      Lubomir Rintel, it now depends on I2C.
+
+    - Switched to use I2C probe_new() in the MFD driver.
+
+    - Renamed the global pm_off variable, like it was suggested by
+      Lubomir Rintel and Lee Jones.
+
+    - Dropped serial number from the battery driver because I realized
+      that it's not a battery serial, but a device serial.
+
+    - Battery driver now uses dev_err_probe(), like it was suggested by
+      Sebastian Reichel.
+
+    - Dropped legacy LED_ON usage from the LED driver and renamed the
+      LEDs, like it was suggested by Pavel Machek. I also checked whether
+      LED-name customization via device-tree could be needed by other
+      potentially compatible devices and it shouldn't be needed, anyways it
+      won't be difficult to extend the code even if I'm wrong.
+
+Dmitry Osipenko (5):
+  dt-bindings: mfd: Add ENE KB930 Embedded Controller binding
+  mfd: Add driver for Embedded Controller found on Acer Iconia Tab A500
+  power: supply: Add battery gauge driver for Acer Iconia Tab A500
+  leds: Add driver for Acer Iconia Tab A500
+  ARM: tegra: acer-a500: Add Embedded Controller
+
+ .../devicetree/bindings/mfd/ene-kb930.yaml    |  66 ++++
+ .../boot/dts/tegra20-acer-a500-picasso.dts    |  17 +
+ drivers/leds/Kconfig                          |   7 +
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-acer-a500.c                 | 129 ++++++++
+ drivers/mfd/Kconfig                           |  12 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/acer-ec-a500.c                    | 203 ++++++++++++
+ drivers/power/supply/Kconfig                  |   6 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/acer_a500_battery.c      | 297 ++++++++++++++++++
+ 11 files changed, 740 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/ene-kb930.yaml
+ create mode 100644 drivers/leds/leds-acer-a500.c
+ create mode 100644 drivers/mfd/acer-ec-a500.c
+ create mode 100644 drivers/power/supply/acer_a500_battery.c
+
 -- 
-2.28.0
+2.27.0
 
