@@ -2,539 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 603A925F2B2
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 07:46:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EA2025F2C3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 07:48:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726949AbgIGFq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 01:46:26 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:44618 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726914AbgIGFqR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Sep 2020 01:46:17 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 286BB1A16B7;
-        Mon,  7 Sep 2020 07:46:12 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id C1A281A0FB4;
-        Mon,  7 Sep 2020 07:46:06 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 67311402F2;
-        Mon,  7 Sep 2020 07:45:55 +0200 (CEST)
-From:   Zhiqiang Hou <Zhiqiang.Hou@nxp.com>
-To:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, bhelgaas@google.com,
-        robh+dt@kernel.org, shawnguo@kernel.org, leoyang.li@nxp.com,
-        lorenzo.pieralisi@arm.com, gustavo.pimentel@synopsys.com
-Cc:     minghuan.Lian@nxp.com, mingkai.hu@nxp.com, roy.zang@nxp.com,
-        Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-Subject: [PATCH 7/7] PCI: layerscape: Add power management support
-Date:   Mon,  7 Sep 2020 13:38:01 +0800
-Message-Id: <20200907053801.22149-8-Zhiqiang.Hou@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200907053801.22149-1-Zhiqiang.Hou@nxp.com>
-References: <20200907053801.22149-1-Zhiqiang.Hou@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726810AbgIGFsa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 01:48:30 -0400
+Received: from mail-co1nam11on2056.outbound.protection.outlook.com ([40.107.220.56]:10145
+        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726722AbgIGFs1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 01:48:27 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=N7vGKJll2bJUuJ7q5uef+gugcl+nEGbdFfEp2R5+9OvO6aaMvjztg94m2cJVE9O16YPIegiglFWMtoEQVSmwif/GU21quQDOTYmzraWar0yX1rXg3IiYua19z/xWgUun8OpXX57waOGiFffpcx7oJEec/LA1OfFXSoyDuwzXratPOR96QQwUzbJhc8VIn4gBztSJY7GaK1n1ujmp0RtnKrjg8mjDz1JUslf6fQVwmW23P2y3eGoZQbt2bwosCibHX+hMLoEhWU91cM3Zu2DD4P819d6v0dONGSvFOxp4ukj8W9o19TRiMLADARxn6BqPsSnUvewP6DOUnS3YsOQKPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sOtC9iz/E6eVHS/3efJ/OmCc8WXcDySAiruMK6Cl6T0=;
+ b=BtP6n+P0bkb8dBta7yUC3PepNgVqVI7JHEXopjA7ypR7onWTT5BOwl2N9lz4btlvLS6Y6LViw6amh2KiyVS9X+ji7oEW5ynoON6o5ErORHLadeIxyYD2yYbOrJrC3CD26vCvCU+o8oY4oAhWGZ9h9DwSTgs7EfK23YMG4YVkoccxOb9iWd/422Gg2aF7vvFJANGBOL3jDbqAd1M74Xid3fnrPdbvkiA/coVNnWAMrR59QaxFM0puTOl+bk72jeEXemUUhSLJdD0PBRDiEXnYcv67Lir0xNjNojHC7r0OVvR1UrQdFQMMycP/vRPcs36lOk2Yb7ppspiD0fI9m5aCaQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=openfive.com; dmarc=pass action=none header.from=sifive.com;
+ dkim=pass header.d=sifive.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sifive.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sOtC9iz/E6eVHS/3efJ/OmCc8WXcDySAiruMK6Cl6T0=;
+ b=nB6M4BtK7ubsXlZnsgmci+TospRKjhGBwNlz7utzCtvTIS8gMy/v/zpseZqbmN2/jC8MptK8mol/KP3DpioNcMUlYK87ntH8sJKD8HQF/VYCUZX6igC61ZRsGistkL9D/GPwswqcc94qyeRILEOuoLqGBCxU7kSyj0MzeiTa3vM=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=sifive.com;
+Received: from BN6PR1301MB2020.namprd13.prod.outlook.com
+ (2603:10b6:405:34::34) by BN6PR13MB1569.namprd13.prod.outlook.com
+ (2603:10b6:404:119::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.7; Mon, 7 Sep
+ 2020 05:48:24 +0000
+Received: from BN6PR1301MB2020.namprd13.prod.outlook.com
+ ([fe80::4596:33b0:db2c:dea]) by BN6PR1301MB2020.namprd13.prod.outlook.com
+ ([fe80::4596:33b0:db2c:dea%3]) with mapi id 15.20.3370.011; Mon, 7 Sep 2020
+ 05:48:24 +0000
+From:   Yash Shah <yash.shah@sifive.com>
+To:     robh+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
+        bp@alien8.de, mchehab@kernel.org, tony.luck@intel.com
+Cc:     aou@eecs.berkeley.edu, james.morse@arm.com, rrichter@marvell.com,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org,
+        sachin.ghadi@sifive.com, Yash Shah <yash.shah@sifive.com>
+Subject: [PATCH v2 0/3] SiFive DDR controller and EDAC support 
+Date:   Mon,  7 Sep 2020 11:17:56 +0530
+Message-Id: <1599457679-8947-1-git-send-email-yash.shah@sifive.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: BM1PR01CA0141.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:b00:40::35) To BN6PR1301MB2020.namprd13.prod.outlook.com
+ (2603:10b6:405:34::34)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from osubuntu003.open-silicon.com (159.117.144.156) by BM1PR01CA0141.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:40::35) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3348.15 via Frontend Transport; Mon, 7 Sep 2020 05:48:20 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [159.117.144.156]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a93c577d-70ff-4c69-1a6a-08d852f1a289
+X-MS-TrafficTypeDiagnostic: BN6PR13MB1569:
+X-LD-Processed: 22f88e9d-ae0d-4ed9-b984-cdc9be1529f1,ExtAddr
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BN6PR13MB156943207B40DD32DF78DAD682280@BN6PR13MB1569.namprd13.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 1pVHTiy95vfEcJ8oB/q1mIB2H7wTEEinQJaYNi5yI4speQHN9x1HqaUE4SEYmntDC3/UV1j2PuOjyQgSV29gxWINZwHD7FUd8XsAnNHP0TKKTIrzO9Ph9noC+eqapUs7m9qsQLknLrtjrcE9M1HdIGPwjlOXvuMUNBUJEIBDb+W6rfhEUtyis83Op+uHTgXBgCXdTV4kwQol+KrpL0KpKitwLncS7lOSC4JZF8Ko8L68CoAKP13Jk9GK1pfQruU8312I3sKysKMICfilEewIF+0gsLd1M4h6YuUekxRAKVGK6Cs8Hq8ivVoYUHEPgYPwLyOkJzBiBoW3fOda/ETzBw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR1301MB2020.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(6029001)(376002)(396003)(136003)(366004)(39840400004)(346002)(83380400001)(44832011)(5660300002)(6506007)(2906002)(36756003)(6512007)(4326008)(6666004)(16526019)(186003)(8676002)(316002)(2616005)(956004)(52116002)(8936002)(6486002)(26005)(66476007)(107886003)(66556008)(66946007)(83170400001)(7416002)(478600001)(4743002)(42882007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: QqKYom2F9Tlf2ghh7lcRK/VsbTDnZwAywqfIUYLVohQu/AWbrsEmw98VFsNeuGe4+qErMY3/D0HDtUUpPfoAE6cch+Ykow9s/6ECWjWVPfyCpn8JhcDoxZeQMCOk58D4YP0EXW2tGvtdeTvRRVE0LZQf8eZkqOMKAqaN88D30zs4R2WYz4+kkEnXKc8CnthmJvDP+ni8Vqt7f38dTNClysm6cfK5KMMdIvuQXKPHbIBraF2yFm69r/AKxBkMl85Xt7vxHg0QASm4qi13mfv7HUZv6V2cR2+BEhYYD1KmMONWdg1shbVcHaMr/N8G0kVl6IL5PWC8+ySHFyO3CQUjmdAMUZ4u240baI44TY4Fsd0EeWVeL6qixWxxBXZtTDa6Fe728VZ8vHYQbCCCp7xrIw2Ucl/Xbr2xZpENRsHsQZBUaebsA+vEJqnm5z76Yx4gR7Sjz27VKPVUupd/FS8W+lEy8nCY565CFVOx2I77XgBoo2I4IFhzbhn9qCjzVtOaNMgK7xKopIOVr9kvnYgvwY5eObRKF1DDrVSymSG2FbUVybvBmddjcwykL2xZVRM+oPztXNiilNnd3taveBdH87QaXkxfb2R2alJb1UJeTJzfo3aaxyUKDyds/PjXME30qEroLnI4MKKngLCzEOq0NQ==
+X-OriginatorOrg: sifive.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a93c577d-70ff-4c69-1a6a-08d852f1a289
+X-MS-Exchange-CrossTenant-AuthSource: BN6PR1301MB2020.namprd13.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2020 05:48:24.2634
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 22f88e9d-ae0d-4ed9-b984-cdc9be1529f1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PeSSBTUR6HQlAyQ07UAmEHWbhsmS5iLKLXM3ZtqZQNxzvWFR9uM9CqjYbeqd79XV74KcElykbkyW0X3ucy6KYA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR13MB1569
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+The series add supports for SiFive DDR controller driver. This driver
+is use to manage the Cadence DDR controller present in SiFive SoCs.
+Currently it manages only the EDAC feature of the DDR controller.
+The series also adds Memory controller EDAC support for SiFive platform.
+It register for notifier event from SiFive DDR controller driver.
 
-Add PME_Turn_Off/PME_TO_Ack handshake sequence, and finally
-put the PCIe controller into D3 state after the L2/L3 ready
-state transition process completion.
+The series is tested and based on Linux v5.8.
 
-Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
----
- drivers/pci/controller/dwc/pci-layerscape.c  | 384 ++++++++++++++++++-
- drivers/pci/controller/dwc/pcie-designware.h |   1 +
- 2 files changed, 383 insertions(+), 2 deletions(-)
+For testing on Hifive Unleashed:
+1. Enable the ECC bit of DDR controller during DDR initialization
+2. Erase the entire DRAM in bootloader stage
+3. Using FWC feature of DDR controller force ecc error to test
 
-diff --git a/drivers/pci/controller/dwc/pci-layerscape.c b/drivers/pci/controller/dwc/pci-layerscape.c
-index be404c16bcbe..ca9ea07f77c1 100644
---- a/drivers/pci/controller/dwc/pci-layerscape.c
-+++ b/drivers/pci/controller/dwc/pci-layerscape.c
-@@ -3,13 +3,16 @@
-  * PCIe host controller driver for Freescale Layerscape SoCs
-  *
-  * Copyright (C) 2014 Freescale Semiconductor.
-+ * Copyright 2020 NXP
-  *
-  * Author: Minghuan Lian <Minghuan.Lian@freescale.com>
-  */
- 
-+#include <linux/delay.h>
- #include <linux/kernel.h>
- #include <linux/interrupt.h>
- #include <linux/init.h>
-+#include <linux/iopoll.h>
- #include <linux/of_pci.h>
- #include <linux/of_platform.h>
- #include <linux/of_irq.h>
-@@ -27,17 +30,66 @@
- #define PCIE_ABSERR		0x8d0 /* Bridge Slave Error Response Register */
- #define PCIE_ABSERR_SETTING	0x9401 /* Forward error of non-posted request */
- 
-+#define PCIE_PM_SCR		0x44
-+#define PCIE_PM_SCR_PMEPS_D0	0x0
-+#define PCIE_PM_SCR_PMEPS_D3	0x3
-+
-+#define PCIE_LNKCTL		0x80  /* PCIe link ctrl Register */
-+
-+/* PF Message Command Register */
-+#define LS_PCIE_PF_MCR		0x2c
-+#define PF_MCR_PTOMR		BIT(0)
-+#define PF_MCR_EXL2S		BIT(1)
-+
-+/* LS1021A PEXn PM Write Control Register */
-+#define SCFG_PEXPMWRCR(idx)	(0x5c + (idx) * 0x64)
-+#define PMXMTTURNOFF		BIT(31)
-+#define SCFG_PEXSFTRSTCR	0x190
-+#define PEXSR(idx)		BIT(idx)
-+
-+/* LS1043A PEX PME control register */
-+#define SCFG_PEXPMECR		0x144
-+#define PEXPME(idx)		BIT(31 - (idx) * 4)
-+
-+/* LS1043A PEX LUT debug register */
-+#define LS_PCIE_LDBG	0x7fc
-+#define LDBG_SR		BIT(30)
-+#define LDBG_WE		BIT(31)
-+
- #define PCIE_IATU_NUM		6
- 
-+#define LS_PCIE_IS_L2(v)	\
-+	(((v) & PORT_LOGIC_LTSSM_STATE_MASK) == PORT_LOGIC_LTSSM_STATE_L2)
-+
-+struct ls_pcie;
-+
-+struct ls_pcie_host_pm_ops {
-+	int (*pm_init)(struct ls_pcie *pcie);
-+	void (*send_turn_off_message)(struct ls_pcie *pcie);
-+	void (*exit_from_l2)(struct ls_pcie *pcie);
-+};
-+
- struct ls_pcie_drvdata {
-+	const u32 pf_off;
-+	const u32 lut_off;
- 	const struct dw_pcie_host_ops *ops;
-+	const struct ls_pcie_host_pm_ops *pm_ops;
- };
- 
- struct ls_pcie {
- 	struct dw_pcie *pci;
- 	const struct ls_pcie_drvdata *drvdata;
-+	void __iomem *pf_base;
-+	void __iomem *lut_base;
-+	bool big_endian;
-+	bool ep_presence;
-+	bool pm_support;
-+	struct regmap *scfg;
-+	int index;
- };
- 
-+#define ls_pcie_lut_readl_addr(addr)	ls_pcie_lut_readl(pcie, addr)
-+#define ls_pcie_pf_readl_addr(addr)	ls_pcie_pf_readl(pcie, addr)
- #define to_ls_pcie(x)	dev_get_drvdata((x)->dev)
- 
- static bool ls_pcie_is_bridge(struct ls_pcie *pcie)
-@@ -86,6 +138,208 @@ static void ls_pcie_fix_error_response(struct ls_pcie *pcie)
- 	iowrite32(PCIE_ABSERR_SETTING, pci->dbi_base + PCIE_ABSERR);
- }
- 
-+static u32 ls_pcie_lut_readl(struct ls_pcie *pcie, u32 off)
-+{
-+	if (pcie->big_endian)
-+		return ioread32be(pcie->lut_base + off);
-+
-+	return ioread32(pcie->lut_base + off);
-+}
-+
-+static void ls_pcie_lut_writel(struct ls_pcie *pcie, u32 off, u32 val)
-+{
-+	if (pcie->big_endian)
-+		return iowrite32be(val, pcie->lut_base + off);
-+
-+	return iowrite32(val, pcie->lut_base + off);
-+
-+}
-+
-+static u32 ls_pcie_pf_readl(struct ls_pcie *pcie, u32 off)
-+{
-+	if (pcie->big_endian)
-+		return ioread32be(pcie->pf_base + off);
-+
-+	return ioread32(pcie->pf_base + off);
-+}
-+
-+static void ls_pcie_pf_writel(struct ls_pcie *pcie, u32 off, u32 val)
-+{
-+	if (pcie->big_endian)
-+		return iowrite32be(val, pcie->pf_base + off);
-+
-+	return iowrite32(val, pcie->pf_base + off);
-+
-+}
-+
-+static void ls_pcie_send_turnoff_msg(struct ls_pcie *pcie)
-+{
-+	u32 val;
-+	int ret;
-+
-+	val = ls_pcie_pf_readl(pcie, LS_PCIE_PF_MCR);
-+	val |= PF_MCR_PTOMR;
-+	ls_pcie_pf_writel(pcie, LS_PCIE_PF_MCR, val);
-+
-+	ret = readx_poll_timeout(ls_pcie_pf_readl_addr, LS_PCIE_PF_MCR,
-+				 val, !(val & PF_MCR_PTOMR), 100, 10000);
-+	if (ret)
-+		dev_info(pcie->pci->dev, "poll turn off message timeout\n");
-+}
-+
-+static void ls1021a_pcie_send_turnoff_msg(struct ls_pcie *pcie)
-+{
-+	u32 val;
-+
-+	if (!pcie->scfg) {
-+		dev_dbg(pcie->pci->dev, "SYSCFG is NULL\n");
-+		return;
-+	}
-+
-+	/* Send Turn_off message */
-+	regmap_read(pcie->scfg, SCFG_PEXPMWRCR(pcie->index), &val);
-+	val |= PMXMTTURNOFF;
-+	regmap_write(pcie->scfg, SCFG_PEXPMWRCR(pcie->index), val);
-+
-+	mdelay(10);
-+
-+	/* Clear Turn_off message */
-+	regmap_read(pcie->scfg, SCFG_PEXPMWRCR(pcie->index), &val);
-+	val &= ~PMXMTTURNOFF;
-+	regmap_write(pcie->scfg, SCFG_PEXPMWRCR(pcie->index), val);
-+}
-+
-+static void ls1043a_pcie_send_turnoff_msg(struct ls_pcie *pcie)
-+{
-+	u32 val;
-+
-+	if (!pcie->scfg) {
-+		dev_dbg(pcie->pci->dev, "SYSCFG is NULL\n");
-+		return;
-+	}
-+
-+	/* Send Turn_off message */
-+	regmap_read(pcie->scfg, SCFG_PEXPMECR, &val);
-+	val |= PEXPME(pcie->index);
-+	regmap_write(pcie->scfg, SCFG_PEXPMECR, val);
-+
-+	mdelay(10);
-+
-+	/* Clear Turn_off message */
-+	regmap_read(pcie->scfg, SCFG_PEXPMECR, &val);
-+	val &= ~PEXPME(pcie->index);
-+	regmap_write(pcie->scfg, SCFG_PEXPMECR, val);
-+}
-+
-+static void ls_pcie_exit_from_l2(struct ls_pcie *pcie)
-+{
-+	u32 val;
-+	int ret;
-+
-+	val = ls_pcie_pf_readl(pcie, LS_PCIE_PF_MCR);
-+	val |= PF_MCR_EXL2S;
-+	ls_pcie_pf_writel(pcie, LS_PCIE_PF_MCR, val);
-+
-+	ret = readx_poll_timeout(ls_pcie_pf_readl_addr, LS_PCIE_PF_MCR,
-+				 val, !(val & PF_MCR_EXL2S), 100, 10000);
-+	if (ret)
-+		dev_info(pcie->pci->dev, "poll exit L2 state timeout\n");
-+}
-+
-+static void ls_pcie_retrain_link(struct ls_pcie *pcie)
-+{
-+	struct dw_pcie *pci = pcie->pci;
-+	u32 val;
-+
-+	val = dw_pcie_readw_dbi(pci, PCIE_LNKCTL);
-+	val |= PCI_EXP_LNKCTL_RL;
-+	dw_pcie_writew_dbi(pci, PCIE_LNKCTL, val);
-+}
-+
-+static void ls1021a_pcie_exit_from_l2(struct ls_pcie *pcie)
-+{
-+	u32 val;
-+
-+	regmap_read(pcie->scfg, SCFG_PEXSFTRSTCR, &val);
-+	val |= PEXSR(pcie->index);
-+	regmap_write(pcie->scfg, SCFG_PEXSFTRSTCR, val);
-+
-+	regmap_read(pcie->scfg, SCFG_PEXSFTRSTCR, &val);
-+	val &= ~PEXSR(pcie->index);
-+	regmap_write(pcie->scfg, SCFG_PEXSFTRSTCR, val);
-+
-+	mdelay(1);
-+
-+	ls_pcie_retrain_link(pcie);
-+}
-+static void ls1043a_pcie_exit_from_l2(struct ls_pcie *pcie)
-+{
-+	u32 val;
-+
-+	val = ls_pcie_lut_readl(pcie, LS_PCIE_LDBG);
-+	val |= LDBG_WE;
-+	ls_pcie_lut_writel(pcie, LS_PCIE_LDBG, val);
-+
-+	val = ls_pcie_lut_readl(pcie, LS_PCIE_LDBG);
-+	val |= LDBG_SR;
-+	ls_pcie_lut_writel(pcie, LS_PCIE_LDBG, val);
-+
-+	val = ls_pcie_lut_readl(pcie, LS_PCIE_LDBG);
-+	val &= ~LDBG_SR;
-+	ls_pcie_lut_writel(pcie, LS_PCIE_LDBG, val);
-+
-+	val = ls_pcie_lut_readl(pcie, LS_PCIE_LDBG);
-+	val &= ~LDBG_WE;
-+	ls_pcie_lut_writel(pcie, LS_PCIE_LDBG, val);
-+
-+	mdelay(1);
-+
-+	ls_pcie_retrain_link(pcie);
-+}
-+
-+static int ls1021a_pcie_pm_init(struct ls_pcie *pcie)
-+{
-+	struct device *dev = pcie->pci->dev;
-+	u32 index[2];
-+	int ret;
-+
-+	pcie->scfg = syscon_regmap_lookup_by_phandle(dev->of_node,
-+						     "fsl,pcie-scfg");
-+	if (IS_ERR(pcie->scfg)) {
-+		ret = PTR_ERR(pcie->scfg);
-+		dev_err(dev, "No syscfg phandle specified\n");
-+		pcie->scfg = NULL;
-+		return ret;
-+	}
-+
-+	ret = of_property_read_u32_array(dev->of_node, "fsl,pcie-scfg",
-+					 index, 2);
-+	if (ret) {
-+		pcie->scfg = NULL;
-+		return ret;
-+	}
-+
-+	pcie->index = index[1];
-+
-+	return 0;
-+}
-+
-+static int ls_pcie_pm_init(struct ls_pcie *pcie)
-+{
-+	return 0;
-+}
-+
-+static void ls_pcie_set_dstate(struct ls_pcie *pcie, u32 dstate)
-+{
-+	struct dw_pcie *pci = pcie->pci;
-+	u32 val;
-+
-+	val = dw_pcie_readw_dbi(pci, PCIE_PM_SCR);
-+	val &= ~PCI_PM_CTRL_STATE_MASK;
-+	val |= dstate;
-+	dw_pcie_writew_dbi(pci, PCIE_PM_SCR, val);
-+}
-+
- static int ls_pcie_host_init(struct pcie_port *pp)
- {
- 	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-@@ -133,20 +387,52 @@ static int ls_pcie_msi_host_init(struct pcie_port *pp)
- 	return 0;
- }
- 
-+static struct ls_pcie_host_pm_ops ls1021a_pcie_host_pm_ops = {
-+	.pm_init = &ls1021a_pcie_pm_init,
-+	.send_turn_off_message = &ls1021a_pcie_send_turnoff_msg,
-+	.exit_from_l2 = &ls1021a_pcie_exit_from_l2,
-+};
-+
-+static struct ls_pcie_host_pm_ops ls1043a_pcie_host_pm_ops = {
-+	.pm_init = &ls1021a_pcie_pm_init,
-+	.send_turn_off_message = &ls1043a_pcie_send_turnoff_msg,
-+	.exit_from_l2 = &ls1043a_pcie_exit_from_l2,
-+};
-+
-+static struct ls_pcie_host_pm_ops ls_pcie_host_pm_ops = {
-+	.pm_init = &ls_pcie_pm_init,
-+	.send_turn_off_message = &ls_pcie_send_turnoff_msg,
-+	.exit_from_l2 = &ls_pcie_exit_from_l2,
-+};
-+
- static const struct dw_pcie_host_ops ls_pcie_host_ops = {
- 	.host_init = ls_pcie_host_init,
- 	.msi_host_init = ls_pcie_msi_host_init,
- };
- 
-+static const struct ls_pcie_drvdata ls1021a_drvdata = {
-+	.ops = &ls_pcie_host_ops,
-+	.pm_ops = &ls1021a_pcie_host_pm_ops,
-+};
-+
-+static const struct ls_pcie_drvdata ls1043a_drvdata = {
-+	.ops = &ls_pcie_host_ops,
-+	.lut_off = 0x10000,
-+	.pm_ops = &ls1043a_pcie_host_pm_ops,
-+};
-+
- static const struct ls_pcie_drvdata layerscape_drvdata = {
- 	.ops = &ls_pcie_host_ops,
-+	.lut_off = 0x80000,
-+	.pf_off = 0xc0000,
-+	.pm_ops = &ls_pcie_host_pm_ops,
- };
- 
- static const struct of_device_id ls_pcie_of_match[] = {
- 	{ .compatible = "fsl,ls1012a-pcie", .data = &layerscape_drvdata },
--	{ .compatible = "fsl,ls1021a-pcie", .data = &layerscape_drvdata },
-+	{ .compatible = "fsl,ls1021a-pcie", .data = &ls1021a_drvdata },
- 	{ .compatible = "fsl,ls1028a-pcie", .data = &layerscape_drvdata },
--	{ .compatible = "fsl,ls1043a-pcie", .data = &layerscape_drvdata },
-+	{ .compatible = "fsl,ls1043a-pcie", .data = &ls1043a_drvdata },
- 	{ .compatible = "fsl,ls1046a-pcie", .data = &layerscape_drvdata },
- 	{ .compatible = "fsl,ls2080a-pcie", .data = &layerscape_drvdata },
- 	{ .compatible = "fsl,ls2085a-pcie", .data = &layerscape_drvdata },
-@@ -170,6 +456,15 @@ static int __init ls_add_pcie_port(struct ls_pcie *pcie)
- 		return ret;
- 	}
- 
-+	if (dw_pcie_link_up(pci)) {
-+		dev_dbg(pci->dev, "Endpoint is present\n");
-+		pcie->ep_presence = true;
-+	}
-+
-+	if (pcie->drvdata->pm_ops && pcie->drvdata->pm_ops->pm_init &&
-+	    !pcie->drvdata->pm_ops->pm_init(pcie))
-+		pcie->pm_support = true;
-+
- 	return 0;
- }
- 
-@@ -200,6 +495,14 @@ static int __init ls_pcie_probe(struct platform_device *pdev)
- 	if (IS_ERR(pci->dbi_base))
- 		return PTR_ERR(pci->dbi_base);
- 
-+	pcie->big_endian = of_property_read_bool(dev->of_node, "big-endian");
-+
-+	if (pcie->drvdata->lut_off)
-+		pcie->lut_base = pci->dbi_base + pcie->drvdata->lut_off;
-+
-+	if (pcie->drvdata->pf_off)
-+		pcie->pf_base = pci->dbi_base + pcie->drvdata->pf_off;
-+
- 	if (!ls_pcie_is_bridge(pcie))
- 		return -ENODEV;
- 
-@@ -212,11 +515,88 @@ static int __init ls_pcie_probe(struct platform_device *pdev)
- 	return 0;
- }
- 
-+static bool ls_pcie_pm_check(struct ls_pcie *pcie)
-+{
-+	if (!pcie->ep_presence) {
-+		dev_dbg(pcie->pci->dev, "Endpoint isn't present\n");
-+		return false;
-+	}
-+
-+	if (!pcie->pm_support)
-+		return false;
-+
-+	return true;
-+}
-+
-+#ifdef CONFIG_PM_SLEEP
-+static int ls_pcie_suspend_noirq(struct device *dev)
-+{
-+	struct ls_pcie *pcie = dev_get_drvdata(dev);
-+	struct dw_pcie *pci = pcie->pci;
-+	u32 val;
-+	int ret;
-+
-+	if (!ls_pcie_pm_check(pcie))
-+		return 0;
-+
-+	pcie->drvdata->pm_ops->send_turn_off_message(pcie);
-+
-+	/* 10ms timeout to check L2 ready */
-+	ret = readl_poll_timeout(pci->dbi_base + PCIE_PORT_DEBUG0,
-+				 val, LS_PCIE_IS_L2(val), 100, 10000);
-+	if (ret) {
-+		dev_err(dev, "PCIe link enter L2 timeout! ltssm = 0x%x\n", val);
-+		return ret;
-+	}
-+
-+	ls_pcie_set_dstate(pcie, PCIE_PM_SCR_PMEPS_D3);
-+
-+	return 0;
-+}
-+
-+static int ls_pcie_resume_noirq(struct device *dev)
-+{
-+	struct ls_pcie *pcie = dev_get_drvdata(dev);
-+	struct dw_pcie *pci = pcie->pci;
-+	int ret;
-+
-+	if (!ls_pcie_pm_check(pcie))
-+		return 0;
-+
-+	ls_pcie_set_dstate(pcie, PCIE_PM_SCR_PMEPS_D0);
-+
-+	pcie->drvdata->pm_ops->exit_from_l2(pcie);
-+
-+	/* delay 10ms to access EP */
-+	mdelay(10);
-+
-+	ret = ls_pcie_host_init(&pci->pp);
-+	if (ret) {
-+		dev_err(dev, "ls_pcie_host_init failed! ret = 0x%x\n", ret);
-+		return ret;
-+	}
-+
-+	ret = dw_pcie_wait_for_link(pci);
-+	if (ret) {
-+		dev_err(dev, "wait link up timeout! ret = 0x%x\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+#endif /* CONFIG_PM_SLEEP */
-+
-+static const struct dev_pm_ops ls_pcie_pm_ops = {
-+	SET_NOIRQ_SYSTEM_SLEEP_PM_OPS(ls_pcie_suspend_noirq,
-+				      ls_pcie_resume_noirq)
-+};
-+
- static struct platform_driver ls_pcie_driver = {
- 	.driver = {
- 		.name = "layerscape-pcie",
- 		.of_match_table = ls_pcie_of_match,
- 		.suppress_bind_attrs = true,
-+		.pm = &ls_pcie_pm_ops,
- 	},
- };
- builtin_platform_driver_probe(ls_pcie_driver, ls_pcie_probe);
-diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-index f911760dcc69..1f2fd03d1eba 100644
---- a/drivers/pci/controller/dwc/pcie-designware.h
-+++ b/drivers/pci/controller/dwc/pcie-designware.h
-@@ -46,6 +46,7 @@
- #define PCIE_PORT_DEBUG0		0x728
- #define PORT_LOGIC_LTSSM_STATE_MASK	0x1f
- #define PORT_LOGIC_LTSSM_STATE_L0	0x11
-+#define PORT_LOGIC_LTSSM_STATE_L2	0x15
- #define PCIE_PORT_DEBUG1		0x72C
- #define PCIE_PORT_DEBUG1_LINK_UP		BIT(4)
- #define PCIE_PORT_DEBUG1_LINK_IN_TRAINING	BIT(29)
+Changes in v2:
+Incorporate below changes in EDAC patch as suggested by Borislav Petkov
+- Replace all ifdeffery with if(IS_ENABLED(CONFIG_...))
+- A few textual changes in patch description and code
+
+Yash Shah (3):
+  dt-bindings: riscv: Add DT documentation for DDR Controller in SiFive
+    SoCs
+  soc: sifive: Add SiFive specific Cadence DDR controller driver
+  EDAC/sifive: Add EDAC support for Memory Controller in SiFive SoCs
+
+ .../devicetree/bindings/riscv/sifive-ddr.yaml      |  41 ++++
+ drivers/edac/Kconfig                               |   2 +-
+ drivers/edac/sifive_edac.c                         | 119 +++++++++++-
+ drivers/soc/sifive/Kconfig                         |   6 +
+ drivers/soc/sifive/Makefile                        |   3 +-
+ drivers/soc/sifive/sifive_ddr.c                    | 207 +++++++++++++++++++++
+ include/soc/sifive/sifive_ddr.h                    |  73 ++++++++
+ 7 files changed, 447 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/riscv/sifive-ddr.yaml
+ create mode 100644 drivers/soc/sifive/sifive_ddr.c
+ create mode 100644 include/soc/sifive/sifive_ddr.h
+
 -- 
-2.17.1
+2.7.4
 
