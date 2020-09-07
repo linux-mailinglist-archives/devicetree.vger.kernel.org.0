@@ -2,129 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EB2D25F563
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 10:35:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FB3D25F5A5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 10:50:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728283AbgIGIfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 04:35:37 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:48915 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728320AbgIGIfe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 04:35:34 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20200907083530euoutp02ec1db59901ecb674f3a0216208887079~yc20_Jnvq3212832128euoutp02o
-        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 08:35:30 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20200907083530euoutp02ec1db59901ecb674f3a0216208887079~yc20_Jnvq3212832128euoutp02o
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1599467730;
-        bh=5eUqfqOe8KGV5WESEo8yTEImYqkmT94n8f1isYRbGf4=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=NeNlj47YxY0RenF7NKJ+DqOisirtTWY3apIWH8D2PYIzEYShIRXMBwXsGDVo3ljBq
-         gr48kyvpYc/kGhZ21fwg7fOaMIYsj9qReIHMO7DxpXZewV2QSVIinJn1fVySSFskh2
-         68aVh7qRwSON6+XmeASU43Oh+piRptTI+4W6PHOc=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20200907083530eucas1p237c4cbc69058f967d229bfa4b86a248c~yc20ndh810572005720eucas1p2J;
-        Mon,  7 Sep 2020 08:35:30 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id B4.4C.05997.2D0F55F5; Mon,  7
-        Sep 2020 09:35:30 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20200907083530eucas1p20417143367abaf397e2145aeccf4f623~yc20Vibeq1868418684eucas1p2k;
-        Mon,  7 Sep 2020 08:35:30 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20200907083530eusmtrp26a357786861b079524ee9d055f7bdd53~yc20U0uU-0775907759eusmtrp2g;
-        Mon,  7 Sep 2020 08:35:30 +0000 (GMT)
-X-AuditID: cbfec7f4-677ff7000000176d-1f-5f55f0d2ecbf
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 76.27.06017.1D0F55F5; Mon,  7
-        Sep 2020 09:35:29 +0100 (BST)
-Received: from [106.210.123.115] (unknown [106.210.123.115]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20200907083529eusmtip1e49293f67772ae653c3a7a58cd3fd7e9~yc2zpkSL12715127151eusmtip1i;
-        Mon,  7 Sep 2020 08:35:29 +0000 (GMT)
-Subject: Re: [PATCH v2 1/3] ARM: dts: exynos: Add assigned clock parent to
- CMU in Exynos3250
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
-Message-ID: <b092ef9e-b403-751e-22c3-65aa840267e6@samsung.com>
-Date:   Mon, 7 Sep 2020 10:35:28 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
-        Thunderbird/68.12.0
+        id S1727989AbgIGIuh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 04:50:37 -0400
+Received: from mout.gmx.net ([212.227.17.21]:44261 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727921AbgIGIuh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 04:50:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1599468599;
+        bh=yIFXqy7te6Dvn3pYvMyPkuWrR4YLQ/+MWx//ZLlZYaY=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=bRo8iPrwMHC0DJe/haJ3kaxpNWARu+Ri/j9suBTgbTZ0RHtJjXSwlVqCmePSq/iZX
+         ekUsSWyyf/38cfwUQqjR1VpJvU5yP5xyQlRtIEk6N74ctL2ARkQydFwimyEepkM3vL
+         NdLKIXyAMkjvyLKQSsnShIFu4ySqg7A3QDr4f/9A=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [185.76.97.104] ([185.76.97.104]) by web-mail.gmx.net
+ (3c-app-gmx-bs77.server.lan [172.19.170.225]) (via HTTP); Mon, 7 Sep 2020
+ 10:49:59 +0200
 MIME-Version: 1.0
-In-Reply-To: <20200906124407.GA4829@kozik-lap>
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrPKsWRmVeSWpSXmKPExsWy7djP87qXPoTGG+xYL2gx/8g5Vov+x6+Z
-        Lc6f38BusenxNVaLy7vmsFnMOL+PyWLtkbvsFq17j7BbtD99yezA6bFpVSebx+Yl9R59W1Yx
-        enzeJBfAEsVlk5Kak1mWWqRvl8CV8fh0WcEFjoonOztYGhh/sXUxcnJICJhIPDp8g7mLkYtD
-        SGAFo8SRBUdYIJwvjBLPnrxjh3A+M0rsmLmAFaale/cMVojEckaJ1ivvoVo+Mkr8XvccbLCw
-        QJzEwcbvQO0cHCICERLbV4JNYhb4zijxtG0/WA2bgKFE79E+RhCbV8BO4t+8lSwgNouAisTC
-        y31gtijQnGOnHrFA1AhKnJz5BMzmFNCTuPbpNNgcZgFxiVtP5jNB2PIS29/OAXtIQmATu8SV
-        qTdYIM52kVjXuoEJwhaWeHV8CzuELSPxfydIM0hDM6NEz+7b7BDOBEaJ+8cXMEJUWUvcOQcK
-        Mw6gFZoS63fpQ4QdJRYvOAr2pYQAn8SNt4IQR/BJTNo2nRkizCvR0SYEUa0i8XvVdKgTpCS6
-        n/xnmcCoNAvJa7OQvDMLyTuzEPYuYGRZxSieWlqcm55abJSXWq5XnJhbXJqXrpecn7uJEZiM
-        Tv87/mUH464/SYcYBTgYlXh4X4iHxguxJpYVV+YeYpTgYFYS4XU6ezpOiDclsbIqtSg/vqg0
-        J7X4EKM0B4uSOK/xopexQgLpiSWp2ampBalFMFkmDk6pBsYZk+tsAlg2umwO0pp3pN+69ebj
-        VlMBM6fJzMa+ci8vMHJbyoeGOHlLr8i/UffOa+FUpb2/djt1HWZPn3k5eV7/PjYP49uzJXwF
-        FrModMVsO6qs47vmlFpVd9s8yXvrD9jLsUc9vSlUoPjmRPPype7rgr7MfrNwz7KCzi8qVxkW
-        +osy1+8OOqjEUpyRaKjFXFScCADXSpoCQgMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrAIsWRmVeSWpSXmKPExsVy+t/xu7oXP4TGG3w7ZGMx/8g5Vov+x6+Z
-        Lc6f38BusenxNVaLy7vmsFnMOL+PyWLtkbvsFq17j7BbtD99yezA6bFpVSebx+Yl9R59W1Yx
-        enzeJBfAEqVnU5RfWpKqkJFfXGKrFG1oYaRnaGmhZ2RiqWdobB5rZWSqpG9nk5Kak1mWWqRv
-        l6CX8fh0WcEFjoonOztYGhh/sXUxcnJICJhIdO+ewdrFyMUhJLCUUWLlmhlMXYwcQAkpifkt
-        ShA1whJ/rnWxQdS8Z5SY23uAHSQhLBAnsebEShYQW0QgQuL1nXtgNrPAd0aJswuZIBoeMEpM
-        2rSAESTBJmAo0Xu0D8zmFbCT+DcPoplFQEVi4eU+MFsUaOiZnhdsEDWCEidnPgGLcwroSVz7
-        dJoNYoG6xJ95l5ghbHGJW0/mM0HY8hLb385hnsAoNAtJ+ywkLbOQtMxC0rKAkWUVo0hqaXFu
-        em6xkV5xYm5xaV66XnJ+7iZGYOxtO/Zzyw7GrnfBhxgFOBiVeHhfiIfGC7EmlhVX5h5ilOBg
-        VhLhdTp7Ok6INyWxsiq1KD++qDQntfgQoynQcxOZpUST84FpIa8k3tDU0NzC0tDc2NzYzEJJ
-        nLdD4GCMkEB6YklqdmpqQWoRTB8TB6dUA+NeVuZp4il+Jtyiroe8QvvM+6fW3b9u4ZKQ7uV1
-        2Ur5cZfhRG2XstW/IpN+1LHqHaqwFo6adNT29RUd2dJf6mu19/7mXeeUvSxEf48uu/f9jMIk
-        oxVzak0DGRNWfjZWqH2RcE/CJvDVRMHr2ReVDcwbe/c9t9V0MnOwnHd41RZnIwaln44TlViK
-        MxINtZiLihMB2NFKB9MCAAA=
-X-CMS-MailID: 20200907083530eucas1p20417143367abaf397e2145aeccf4f623
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20200903181437eucas1p16b97d1c425672700bac7ece19084584c
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20200903181437eucas1p16b97d1c425672700bac7ece19084584c
-References: <CGME20200903181437eucas1p16b97d1c425672700bac7ece19084584c@eucas1p1.samsung.com>
-        <20200903181425.5015-1-krzk@kernel.org>
-        <4bc2ea2e-65a2-6c0b-9557-5777e359241a@samsung.com>
-        <20200906124407.GA4829@kozik-lap>
+Message-ID: <trinity-b698e161-35b7-44f9-bcec-836d9e5d0fb4-1599468599322@3c-app-gmx-bs77>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Landen Chao <landen.chao@mediatek.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, dqfext@gmail.com,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, Sean Wang <sean.wang@mediatek.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>, opensource@vdorst.com,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Frank Wunderlich <frank-w@public-files.de>
+Subject: Aw: [PATCH net-next v3 0/6] net-next: dsa: mt7530: add support for
+ MT7531
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 7 Sep 2020 10:49:59 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <trinity-03089c68-65a5-4572-95c3-c75b9f7e330a-1599295554893@3c-app-gmx-bap15>
+References: <cover.1599228079.git.landen.chao@mediatek.com>
+ <trinity-03089c68-65a5-4572-95c3-c75b9f7e330a-1599295554893@3c-app-gmx-bap15>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:5M30BJ8gJxoqt26/8TkrNWB7b+NM0kRlZhPhhBoI5O2cy17TFMaA3mzeqE2Si0IMOtAEq
+ Yz28gdLhQIT/CnxJADDM7S3yER2A3ls5lzRhGXPDMMPUB4kwiXD7YqdE71sMTNHrvCtsCH4pKzse
+ gc4k9Z6AFc2NuKA8yAN0jUeoZOINsxiEm2H6OtwllW2QNYVcLa7nmyfM00yYUU1lnH0qDj5VkPRi
+ H3o0M+b+uHBZXEGActBnRvDg6GCh9zhj6JQaP1xD3yjQ5oI1CQ/714bUH8j9cNau9TO+Y4ErKuqF
+ z8=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:mtESfRCsrx0=:U0gdxCOgB6lC8cs3snZAic
+ uQrccbrevnkwZ/3MHYlHZiZZJhEcnzvP5Wm0RORcEs11npiY3NPS17Qed7VydsvDCLFvdvHG7
+ 6f1JEpkf7LM7P/bup6s1kEkb0tfm7jZM47NGrT6dWzPx4TN5cOQuQa/39iqXJVSpXscrq3tVS
+ s20dYnyFWAE7d1F3UvgOT8XLl2WPmgOlYByKdaCcKwzTPg8bnO/QPvc0ydvQI1OHBd5XLLb3a
+ Z55Fll+AbBq+4dnaIg6CO0sMNzkbGePwt1Ab85UMj/U9Sh24esFF6I8Nv2qMc1JNgUofRD0TI
+ JJpODQma6JDKRKs9WRdYvw273DC9cw3VkzyaP3kWnbC/MgmYqAYIrn77r5docseWZMhHJK6tS
+ 68uaWlNTfRZtJ+6rVgrkBNmwxX/hZC1SQDGGEGNHVoKQmvvqnCysz4VIunkLVJMeMEuahUL9f
+ nCGCUICkn7QHvFFY7smcp37LvrS5blNi4Vnv9OnN6z+mFjR7hkfAmz9CLIHdZwSg/WRjDRmBH
+ 5fpuhk7zomTx5e6zLoqjEziRflvCxv4wjpP5N0fpGp+ngGXV+P+YBEjyPmmOYgygF6Q2IHxhf
+ rqTeIHK0MQuS7BUX+bGDXPM/0YGsnUBmwygI10uWAaN/tmXtIClAxa1G/4SAwAwOuoyFff3Xo
+ egW/qOXvRKuLR2HwzMSbQt7jFPqCBaJ1/TfNUp/k2r/hToD56B9etzJhDWVT+FideUKQ=
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06.09.2020 14:44, Krzysztof Kozlowski wrote:
->>> diff --git a/arch/arm/boot/dts/exynos3250.dtsi b/arch/arm/boot/dts/exynos3250.dtsi
->>> index a1e93fb7f694..89b160280469 100644
->>> --- a/arch/arm/boot/dts/exynos3250.dtsi
->>> +++ b/arch/arm/boot/dts/exynos3250.dtsi
->>> @@ -214,6 +214,7 @@
->>>   			compatible = "samsung,exynos3250-cmu";
->>>   			reg = <0x10030000 0x20000>;
->>>   			#clock-cells = <1>;
->>> +			clocks = <&cmu CLK_FIN_PLL>;
->> This is not a correct input clock for this CMU. Please assign it to 
->> xusbxti, xxti or xtcxo in the respective board dts, as this is a board 
->> property.
+Hi
 
-> Makes sense, although all this is kind of a hack as neither the bindings
-> nor the driver take the input clock.
+> Gesendet: Samstag, 05. September 2020 um 10:45 Uhr
+> Von: "Frank Wunderlich" <frank-w@public-files.de>
+> similar to bananapi-r2 (mt7530)
+...
+> reverse-mode:
+>
+> [ ID] Interval           Transfer     Bitrate         Retr
+> [  5]   0.00-10.01  sec  1.05 GBytes   905 Mbits/sec  14533             =
+sender <<<<<<<<<<<
+> [  5]   0.00-10.00  sec  1.05 GBytes   905 Mbits/sec                  re=
+ceiver
 
-I think we should update the bindings so possible input clocks
-to the CMU are documented for all SoCs. This is actually a bug 
-in the clock controller DT bindings that the input clocks are
-missing. Then the driver would handle both the old and the 
-updated bindings but the "clocks" property would be documented 
-as mandatory. I will try to have a look at this. 
+these retransmitts are caused by missing pause-statement in devicetree of =
+bananapi-r2. I got them with mainline driver too.
+
+After fixing it [1], i got the expected results with these mt7531-Patches:
+
+iperf3-client on r2
+
+normal mode:
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.00  sec  1.10 GBytes   943 Mbits/sec    0             send=
+er
+[  5]   0.00-10.00  sec  1.10 GBytes   941 Mbits/sec                  rece=
+iver
+
+reverse mode:
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.00  sec  1.09 GBytes   939 Mbits/sec    0             send=
+er
+[  5]   0.00-10.00  sec  1.09 GBytes   937 Mbits/sec                  rece=
+iver
+
+Tested-By: Frank Wunderlich <frank-w@public-files.de>
+
+[1] https://patchwork.kernel.org/patch/11760003/
+
+regards Frank
