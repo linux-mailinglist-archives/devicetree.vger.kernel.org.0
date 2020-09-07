@@ -2,126 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2307C25FF5C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 18:31:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39F912600D6
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 18:55:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729843AbgIGQaf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 12:30:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42584 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729846AbgIGOZu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 10:25:50 -0400
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6C21C061574
-        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 07:25:49 -0700 (PDT)
-Received: by mail-lj1-x243.google.com with SMTP id b19so16316329lji.11
-        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 07:25:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=hVM3Bwa+7CBJ1tm/Y8nBpr8saRwPz4svplyjBBrsC0U=;
-        b=uOj4oOeWuxxaOC3HiEmLRokBFD2dg7nD1Pl4YXtz7g4VAxKf1FMy8miJkKwkZe9LAT
-         xzxye6K/Bk5OHtZ98rqpxm/YaCQhrhfulRoJoealMpHCYsSDKPrIjL782JpI792BfNJH
-         Z1bxAJ9YP/+aZEbgwAV2/NM2D0sewEHFqEn1d5hL15DZyck5+AH5kuNPqDFtqobndW4q
-         kqcRMHkAMintNj6zTEb+qQKL1supzKdRvXIYPA64AJL+dKfCvgfdARuLodImftyU/JcB
-         d+u9lJqZiw8hXMILJNLkpJ/kAPeTFBR37LGdQA16PFdzc6KrD5Rft9Z6D8+Oj6Ja/5uS
-         TIgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=hVM3Bwa+7CBJ1tm/Y8nBpr8saRwPz4svplyjBBrsC0U=;
-        b=auBjAiLZMYLuPFHovH6A0k7DAKO4DCv6IKgEpr2CKhwngYWF31nEed4y2FOokHBXRJ
-         i3ZxrnQ5Dyg2YItZgfBwf0Ip3GHS8/AAnYggZkpWmmqjC33fwJAdRKh2kzRp9A/8Dtc3
-         fLLKSPulriqpBELCXr/6BVtRJV5mtR48rTFFCys960zjCj0kyO0lRnYuEUuofU3OqpWl
-         cSljR7YTEjWhf9OeIyRcv6jzJZO3AGhCJIfoHnoVMJvh/8MiFRS0StmVFGwZkWCWuaa7
-         CHA11AhHcGQc/7k3Sf8gXMjmftyZZG9U5fMAevEGmR9qrC8tdC7RCr22VC+yh//5zf1k
-         3NFg==
-X-Gm-Message-State: AOAM530lO4BLBs15PD8tvenF6sllyOoahVIDq5lD/UZwlccLHnT5VSEJ
-        /lwNsTQBGsGfroGApinV0Yl6oQ==
-X-Google-Smtp-Source: ABdhPJygP+SYAnnRaMnSoWu4qiJ84OSHZbWcft2WovB1SA5iKRJc85ubCtTQ2w1xI5K+uszGHMBeCg==
-X-Received: by 2002:a2e:7e12:: with SMTP id z18mr9706298ljc.388.1599488748047;
-        Mon, 07 Sep 2020 07:25:48 -0700 (PDT)
-Received: from [192.168.1.211] ([188.162.64.144])
-        by smtp.gmail.com with ESMTPSA id f25sm5577940ljn.29.2020.09.07.07.25.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Sep 2020 07:25:47 -0700 (PDT)
-Subject: Re: [PATCH v2 0/7] SM8150 and SM8250 dispcc drivers
-To:     Jonathan Marek <jonathan@marek.ca>, linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>
-References: <20200903222620.27448-1-jonathan@marek.ca>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <fd5fbe73-e2a5-d877-743c-ad7cc6110483@linaro.org>
-Date:   Mon, 7 Sep 2020 17:25:45 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1731160AbgIGQzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 12:55:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48030 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730747AbgIGQeR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 12:34:17 -0400
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 521BE21D81;
+        Mon,  7 Sep 2020 16:34:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599496453;
+        bh=yvfnzkumOLeNZfCzoJKHdy3baNkUPfQBaVECQlvIDrA=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=etrGPQeyPcHjSpgEcR+PlSFbfXWGYHsXxQIOSzVkezrKr4qQdTne/sn+U0NoSDUD1
+         /HfliiNxUqjWmKXk1zf51Wat1aHeegDICiOgV/kWQe3mdLgAqPxff8MxqxwdCu7NHh
+         YeYkW2vyNNavrNk33jWmbq4L5W6NaEY7DyGSPhfA=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Evgeniy Didin <Evgeniy.Didin@synopsys.com>,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Alexey Brodkin <abrodkin@synopsys.com>,
+        Vineet Gupta <vgupta@synopsys.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-snps-arc@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.4 34/43] ARC: [plat-hsdk]: Switch ethernet phy-mode to rgmii-id
+Date:   Mon,  7 Sep 2020 12:33:20 -0400
+Message-Id: <20200907163329.1280888-34-sashal@kernel.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200907163329.1280888-1-sashal@kernel.org>
+References: <20200907163329.1280888-1-sashal@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20200903222620.27448-1-jonathan@marek.ca>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/09/2020 01:26, Jonathan Marek wrote:
-> Add display clock drivers required to get DSI and DP displays working on
-> SM8150 and SM8250 SoCs.
-> 
-> Derived from downstream drivers. Notable changes compared to downstream:
->   - EDP clks removed (nothing uses these even in downstream it seems)
->   - freq_tbl values for dp_link clk is in Hz and not kHz
+From: Evgeniy Didin <Evgeniy.Didin@synopsys.com>
 
+[ Upstream commit 26907eb605fbc3ba9dbf888f21d9d8d04471271d ]
 
-On SM8250:
-Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+HSDK board has Micrel KSZ9031, recent commit
+bcf3440c6dd ("net: phy: micrel: add phy-mode support for the KSZ9031 PHY")
+caused a breakdown of Ethernet.
+Using 'phy-mode = "rgmii"' is not correct because accodring RGMII
+specification it is necessary to have delay on RX (PHY to MAX)
+which is not generated in case of "rgmii".
+Using "rgmii-id" adds necessary delay and solves the issue.
 
-> 
-> v2:
->   - updated dts example to reflect the change (first patch)
->   - updated config_ctl_hi1_val in sm8250 dispcc to latest downstream
-> 
-> Jonathan Marek (7):
->    dt-bindings: clock: sdm845-dispcc: same name for dp_phy clocks as
->      sc7180
->    arm64: dts: qcom: sdm845-dispcc: same name for dp_phy clocks as sc7180
->    dt-bindings: clock: combine qcom,sdm845-dispcc and qcom,sc7180-dispcc
->    dt-bindings: clock: Introduce QCOM SM8150 display clock bindings
->    dt-bindings: clock: Introduce QCOM SM8250 display clock bindings
->    clk: qcom: Add display clock controller driver for SM8150
->    clk: qcom: Add display clock controller driver for SM8250
-> 
->   ...om,sdm845-dispcc.yaml => qcom,dispcc.yaml} |   30 +-
->   .../bindings/clock/qcom,sc7180-dispcc.yaml    |   86 --
->   arch/arm64/boot/dts/qcom/sdm845.dtsi          |    4 +-
->   drivers/clk/qcom/Kconfig                      |   18 +
->   drivers/clk/qcom/Makefile                     |    2 +
->   drivers/clk/qcom/dispcc-sm8150.c              | 1152 +++++++++++++++++
->   drivers/clk/qcom/dispcc-sm8250.c              | 1100 ++++++++++++++++
->   .../dt-bindings/clock/qcom,dispcc-sm8150.h    |   69 +
->   .../dt-bindings/clock/qcom,dispcc-sm8250.h    |   66 +
->   9 files changed, 2428 insertions(+), 99 deletions(-)
->   rename Documentation/devicetree/bindings/clock/{qcom,sdm845-dispcc.yaml => qcom,dispcc.yaml} (75%)
->   delete mode 100644 Documentation/devicetree/bindings/clock/qcom,sc7180-dispcc.yaml
->   create mode 100644 drivers/clk/qcom/dispcc-sm8150.c
->   create mode 100644 drivers/clk/qcom/dispcc-sm8250.c
->   create mode 100644 include/dt-bindings/clock/qcom,dispcc-sm8150.h
->   create mode 100644 include/dt-bindings/clock/qcom,dispcc-sm8250.h
-> 
+Also adding name of PHY placed on HSDK board.
 
+Signed-off-by: Evgeniy Didin <Evgeniy.Didin@synopsys.com>
+Cc: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+Cc: Alexey Brodkin <abrodkin@synopsys.com>
+Signed-off-by: Vineet Gupta <vgupta@synopsys.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arc/boot/dts/hsdk.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/arch/arc/boot/dts/hsdk.dts b/arch/arc/boot/dts/hsdk.dts
+index 5d64a5a940ee6..dcaa44e408ace 100644
+--- a/arch/arc/boot/dts/hsdk.dts
++++ b/arch/arc/boot/dts/hsdk.dts
+@@ -210,7 +210,7 @@ gmac: ethernet@8000 {
+ 			reg = <0x8000 0x2000>;
+ 			interrupts = <10>;
+ 			interrupt-names = "macirq";
+-			phy-mode = "rgmii";
++			phy-mode = "rgmii-id";
+ 			snps,pbl = <32>;
+ 			snps,multicast-filter-bins = <256>;
+ 			clocks = <&gmacclk>;
+@@ -228,7 +228,7 @@ mdio {
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 				compatible = "snps,dwmac-mdio";
+-				phy0: ethernet-phy@0 {
++				phy0: ethernet-phy@0 { /* Micrel KSZ9031 */
+ 					reg = <0>;
+ 				};
+ 			};
 -- 
-With best wishes
-Dmitry
+2.25.1
+
