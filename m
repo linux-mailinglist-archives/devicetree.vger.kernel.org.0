@@ -2,152 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C5E0260203
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:16:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4A162601EA
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:14:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730456AbgIGRQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 13:16:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45516 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729731AbgIGOFQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Sep 2020 10:05:16 -0400
-Received: from saruman (91-155-214-58.elisa-laajakaista.fi [91.155.214.58])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B35A12064B;
-        Mon,  7 Sep 2020 14:04:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599487481;
-        bh=43vQhSIdl0+3eXxBWtFTpn4oJEVlsfZOH+X1/8xm4zQ=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=g8KKUImy+BP8HbHX3vY2vbd58JExwtSgOTzmtbPmx4VtaTqYadL3dfzH2A8U3jQlt
-         xAu/ObxyPT56Ox/HLThXLuVuOxi9tyEZZfIOhombzJWIHBBDqAk5NByUjS4D3pUonU
-         0Y1SAB/dT+5eClcuKvTVF+APb7HAhefzPRSjMqJE=
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Yu Chen <chenyu56@huawei.com>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        john.stultz@linaro.org, suzhuangluan@hisilicon.com,
-        kongfei@hisilicon.com, liuyu712@hisilicon.com,
-        wanghu17@hisilicon.com, butao@hisilicon.com, chenyao11@huawei.com,
-        fangshengzhou@hisilicon.com, lipengcheng8@huawei.com,
-        songxiaowei@hisilicon.com, xuyiping@hisilicon.com,
-        xuyoujun4@huawei.com, yudongbin@hisilicon.com,
-        zangleigang@hisilicon.com,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Binghui Wang <wangbinghui@hisilicon.com>
-Subject: Re: [PATCH v6 04/13] usb: dwc3: Add splitdisable quirk for
- Hisilicon Kirin Soc
-In-Reply-To: <20200907150631.70e1bce0@coco.lan>
-References: <20190420064019.57522-1-chenyu56@huawei.com>
- <20190420064019.57522-5-chenyu56@huawei.com>
- <20200907150631.70e1bce0@coco.lan>
-Date:   Mon, 07 Sep 2020 17:04:31 +0300
-Message-ID: <874ko9of80.fsf@kernel.org>
+        id S1731120AbgIGROS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 13:14:18 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:53288 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729591AbgIGOOz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 10:14:55 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 087EESMf108833;
+        Mon, 7 Sep 2020 09:14:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599488068;
+        bh=+A4v9Ak7dOI4FDfhBTSwxdeBG9OaXxayC7pbYW8Zdy4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=gNuZ6q1FmpTUxRbd9zraMHGj9s8AgCVw81F+bArwSf/Iok/CEyV7d6FO/knauI+Xc
+         r3APlfGPKN8pE+l7Owmr8cDYjGAIWRP8e9rrtXifa8UELtwGbX8a/BnjQyPUgQXVXx
+         l4Pm7J0xMYyrJAlM+wihQzNPorcymbcIeNJxBZAI=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 087EESeR107111;
+        Mon, 7 Sep 2020 09:14:28 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 7 Sep
+ 2020 09:14:27 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 7 Sep 2020 09:14:27 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 087EERug041718;
+        Mon, 7 Sep 2020 09:14:27 -0500
+Date:   Mon, 7 Sep 2020 09:14:27 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Lokesh Vutla <lokeshvutla@ti.com>
+CC:     Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Sekhar Nori <nsekhar@ti.com>, Suman Anna <s-anna@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+Subject: Re: [PATCH v2 0/4] arm64: Initial support for Texas Instrument's
+ J7200 Platform
+Message-ID: <20200907141427.ti6r3h6namv2hezw@akan>
+References: <20200827065144.17683-1-lokeshvutla@ti.com>
+ <de8d64eb-05fd-ed7d-61b8-1d8e13649ae8@ti.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha256; protocol="application/pgp-signature"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <de8d64eb-05fd-ed7d-61b8-1d8e13649ae8@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+On 17:32-20200907, Lokesh Vutla wrote:
+> Hi,
+> 
+> On 27/08/20 12:21 pm, Lokesh Vutla wrote:
+> > This series adds initial support for latest new SoC, J7200, from Texas Instruments.
+> > 
+> > The J7200 SoC is a part of the K3 Multicore SoC architecture platform.
+> > It is targeted for for automotive gateway, vehicle compute systems,
+> > Vehicle-to-Vehicle (V2V) and Vehicle-to-Everything (V2X) applications.
+> > The SoC aims to meet the complex processing needs of modern embedded products.
+> > 
+> > See J7200 Technical Reference Manual (SPRUIU1, June 2020)
+> > for further details: https://www.ti.com/lit/pdf/spruiu1
+> > 
+> > Changes since v1:
+> > - Swapped Patch 1 and 2 as suggested by Nishanth.
+> > - Added description for each SoC in yaml bindings.
+> > 
+> > Testing:
+> > - ./scripts/checkpatch --strict
+> > 	- Few warningns about Line length exceeding 100 columns.
+> > 	  But these are corresponding to comments
+> > - v8make dtbs_check
+> > - DT_SCHEMA_FLAGS="-u"
+> >   DT_SCHEMA_FILES="Documentation/devicetree/bindings/arm/ti/k3.yaml"
+> >   v8make dtbs_check
+> > - DT_SCHEMA_FLAGS="-u"
+> >   DT_SCHEMA_FILES="Documentation/devicetree/bindings/arm/ti/k3.yaml"
+> >   v8make dt_binding_check
+> 
+> This series has been lying around for soo long with no major comments. It will
+> be nice to get this merged. I understand we are waiting for Acks on yaml
+> documentation but it would be bad to miss a merge window for a new platform
+> because we are waiting for Acks on yaml conversion.
 
+I do require Rob / DT maintainer to ack the DT yaml conversion and the
+j7200 binding addition.
 
-Hi Mauro,
+Besides yaml and compatibility acks, there are a few ancillary
+comments to fix up.. Kconfig -> I think we should either stay with
+status quo and create a new config option per SoC OR rename the
+config to be generic (using j7200 with j721e SoC config is not very
+consistent). In addition, around the stuff that is going to next in
+parallel, the dts is generating additional warnings as well (DSS
+etc). I think it might be easier if we wait for DT maintainer ack on
+bindings prior to giving further cosmetic comments (To allow for any
+additional changes to come in to -next).
 
-Mauro Carvalho Chehab <mchehab+huawei@kernel.org> writes:
-
-> Hi Felipe/Greg,
->
-> What's the status of this patch?=20
-
-to be frank, I don't think I have this in my inbox anymore.
-
-> I tested here, together with the Hikey 970 phy RFC patches I sent
-> last week.
->
-> Without this patch, the USB HID driver receives -EPROTO from
-> submitted URBs, causing it to enter into an endless reset cycle
-> on every 500 ms, at the hid_io_error() logic.
-
-> Tested-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
->
-> If you prefer, I can re-submit this one with my SOB.
-
-Please do, but since you're changing device tree, I need Rob's acked-by.
-
-> Thanks,
-> Mauro
->
-> Em Sat, 20 Apr 2019 14:40:10 +0800
-> Yu Chen <chenyu56@huawei.com> escreveu:
->
->> SPLIT_BOUNDARY_DISABLE should be set for DesignWare USB3 DRD Core
->> of Hisilicon Kirin Soc when dwc3 core act as host.
-
-is this Kirin-specific or is this something that we should do a revision
-check? Why does it affect only Hikey kirin? What's the dwc3 revision on
-that SoC (grep SNPSID /sys/kernel/debugfs/*dwc3/regdump)?
-
->> @@ -1825,10 +1834,27 @@ static int dwc3_resume(struct device *dev)
->>=20=20
->>  	return 0;
->>  }
->> +
->> +static void dwc3_complete(struct device *dev)
->> +{
->> +	struct dwc3	*dwc =3D dev_get_drvdata(dev);
->> +	u32		reg;
->> +
->> +	if (dwc->current_dr_role =3D=3D DWC3_GCTL_PRTCAP_HOST &&
->> +			dwc->dis_split_quirk) {
->> +		dev_dbg(dwc->dev, "set DWC3_GUCTL3_SPLITDISABLE\n");
-
-no more dev_dbg() should be added. This driver relies exclusively on
-tracepoints for debugging.
-
->> +		reg =3D dwc3_readl(dwc->regs, DWC3_GUCTL3);
->> +		reg |=3D DWC3_GUCTL3_SPLITDISABLE;
->> +		dwc3_writel(dwc->regs, DWC3_GUCTL3, reg);
->> +	}
->> +}
->> +#else
->> +#define dwc3_complete NULL
->>  #endif /* CONFIG_PM_SLEEP */
->>=20=20
->>  static const struct dev_pm_ops dwc3_dev_pm_ops =3D {
->>  	SET_SYSTEM_SLEEP_PM_OPS(dwc3_suspend, dwc3_resume)
->> +	.complete =3D dwc3_complete,
-
-why is this done on complete? Why can't it be done at the end of
-dwc3_resume()?
-
-=2D-=20
-balbi
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQJFBAEBCAAvFiEElLzh7wn96CXwjh2IzL64meEamQYFAl9WPe8RHGJhbGJpQGtl
-cm5lbC5vcmcACgkQzL64meEamQZWyg/+LSkAFDUcHpgZ1Z3VDh+wv/KQkud9pmoE
-VkCPKqYGL5kG9kAQaHpB03tenK4Y9rSA4UVdG5fODhcqrcHe/3irBZeJ+/TVxnDd
-FD4aZmDNCmcHYBE09GqXTpGQAdBxApkNaFgLzIdNJq4ydCHd8Eb9qQeVskZQCtpi
-emWTBKOTAJyl9WMlifucJqH9A/IKqb8oMrUxaBqRSAbKjLzki4HEZ3Z3MZ9ivHnY
-w0bo69HybeVAMI2QqUAQ2JY26GpbnsdJhTL6fGwGPjnrHqoEY0d+7D0RTQinYcxG
-LXeA2Ote9sOE02rGm0Vh+3isF8fsf+GJ1odDi7IsjJR//upPtoPBXtWBJd6w9vsI
-M6clI4UaWrQoK2JZ7HqislIqqO1yms0BgUMx4NuuL+7GOzYCcO23/hFgC8Lb7/xm
-936q25tJM91Ipgl62fa5XRAcxg8MkyDS5aRbRwQBr7Q+v3hABXIxSKoWtJP8L7TV
-9OGcZoChy3uEz5NokYlp2qo0BoKmj8a0/CdkdCEr7RAIn7DMaOhg21T9zomgo6wM
-/1zbJTeZlhLabPEUMEm2w38RH5A7D/ZyHkYAqZHuCKUwKfLK4AFTMlHyZKVJOVXd
-uGsglmA1e4jWqojDI0SVdYTPiZrBRX44DX0qzvc0GNMxPOLs+dKL/R1/b1JY2iOR
-rAZZ8gVV7BY=
-=fXYk
------END PGP SIGNATURE-----
---=-=-=--
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
