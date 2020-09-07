@@ -2,108 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 809F325F8A5
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 12:40:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 153C925F8B9
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 12:45:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728424AbgIGKkm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 06:40:42 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:58264 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728685AbgIGKie (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 06:38:34 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 087AcTRg055826;
-        Mon, 7 Sep 2020 05:38:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599475109;
-        bh=2zTPOjt2DxVUHrxW1zXAaSYEgEGwudkN9PPctHgbrFM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=sSg2vrRFFlRIDnAOi4mSPVvJsQSFX7+4xHpjYXFuZij7qeDj9gMTpwzBXOlxp8qC/
-         JSwypAsQQKjzxX86Lp5tXuUD0P90outdb4HJ+d82Qoc4fllAEWOMCzlLaued2fNBOy
-         VrkEJWO0NjF7ZbOvbDO85rLeUuYI5F07aenwrnd4=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 087AcTcK112035
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Sep 2020 05:38:29 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 7 Sep
- 2020 05:38:29 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 7 Sep 2020 05:38:29 -0500
-Received: from lta0400828a.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 087AcCOu085251;
-        Mon, 7 Sep 2020 05:38:27 -0500
-From:   Roger Quadros <rogerq@ti.com>
-To:     <t-kristo@ti.com>, <nm@ti.com>
-CC:     <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <nsekhar@ti.com>,
-        <kishon@ti.com>, Roger Quadros <rogerq@ti.com>
-Subject: [PATCH 6/6] arm64: dts: ti: k3-j7200-common-proc-board: Add USB support
-Date:   Mon, 7 Sep 2020 13:38:10 +0300
-Message-ID: <20200907103810.9870-7-rogerq@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200907103810.9870-1-rogerq@ti.com>
-References: <20200907103810.9870-1-rogerq@ti.com>
+        id S1728622AbgIGKpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 06:45:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38626 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728509AbgIGKpO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 06:45:14 -0400
+Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4EA0C20768;
+        Mon,  7 Sep 2020 10:45:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599475513;
+        bh=7SHeUOONq1ESlkt5d2PJb9hKuT6Sg1Zy90mIQgARjc8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=saSQ18vTUtNhzccz1D42hswaeJ/JG3pqskOgBdVKbUrDRqCgAmyTM2cE+rVwerkGU
+         UEW1yFzPqmb1xWRwyEsIgasJr302eB5SMc2FdwzamRbNzyHXHZG1q7/sr66DR4BQ6V
+         KiD8Hp9RfmNjP6CcLqtPERdD2Ib3++PPEDHfED8g=
+Date:   Mon, 7 Sep 2020 11:45:09 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, alisaidi@amazon.com, tsahee@amazon.com,
+        harb@amperecomputing.com, tuanphan@os.amperecomputing.com,
+        james.yang@arm.com
+Subject: Re: [PATCH 2/2] perf: Add Arm CMN-600 PMU driver
+Message-ID: <20200907104508.GC11970@willie-the-truck>
+References: <cover.1596631695.git.robin.murphy@arm.com>
+ <7f184a18890ef20632eae98b6c105c36f4eb0cd3.1596631695.git.robin.murphy@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7f184a18890ef20632eae98b6c105c36f4eb0cd3.1596631695.git.robin.murphy@arm.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable USB0 port in high-speed (2.0) mode.
+On Wed, Aug 05, 2020 at 01:56:50PM +0100, Robin Murphy wrote:
+> Initial driver for PMU event counting on the Arm CMN-600 interconnect.
+> CMN sports an obnoxiously complex distributed PMU system as part of
+> its debug and trace features, which can do all manner of things like
+> sampling, cross-triggering and generating CoreSight trace. This driver
+> covers the PMU functionality, plus the relevant aspects of watchpoints
+> for simply counting matching flits.
+> 
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> ---
+>  Documentation/admin-guide/perf/arm-cmn.rst |   65 +
+>  Documentation/admin-guide/perf/index.rst   |    1 +
+>  drivers/perf/Kconfig                       |    7 +
+>  drivers/perf/Makefile                      |    1 +
+>  drivers/perf/arm-cmn.c                     | 1653 ++++++++++++++++++++
+>  5 files changed, 1727 insertions(+)
+>  create mode 100644 Documentation/admin-guide/perf/arm-cmn.rst
+>  create mode 100644 drivers/perf/arm-cmn.c
 
-The board uses lane 3 of SERDES for USB. Set the mux
-accordingly.
+I'm assuming some of the folks on cc care about this, so it would be great
+to get some reviews, tested-bys and comments on the questions in the cover
+letter.
 
-Signed-off-by: Roger Quadros <rogerq@ti.com>
----
- .../dts/ti/k3-j7200-common-proc-board.dts     | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
+Cheers,
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-index 0ecaba600704..f4b6a5abb1b5 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-@@ -42,6 +42,12 @@
- 			J721E_IOPAD(0xe4, PIN_INPUT, 8) /* (V1) TIMER_IO0.MMC1_SDCD */
- 		>;
- 	};
-+
-+	main_usbss0_pins_default: main_usbss0_pins_default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x120, PIN_OUTPUT, 0) /* (T4) USB0_DRVVBUS */
-+		>;
-+	};
- };
- 
- &wkup_uart0 {
-@@ -145,3 +151,19 @@
- 	idle-states = <SERDES0_LANE0_PCIE1_LANE0>, <SERDES0_LANE1_PCIE1_LANE1>,
- 		      <SERDES0_LANE2_QSGMII_LANE1>, <SERDES0_LANE3_IP4_UNUSED>;
- };
-+
-+&usb_serdes_mux {
-+	idle-states = <1>; /* USB0 to SERDES lane 3 */
-+};
-+
-+&usbss0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_usbss0_pins_default>;
-+	ti,vbus-divider;
-+	ti,usb2-only;
-+};
-+
-+&usb0 {
-+	dr_mode = "otg";
-+	maximum-speed = "high-speed";
-+};
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-
+Will
