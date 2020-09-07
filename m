@@ -2,100 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5BC525FA03
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 13:58:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE3C425FA21
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 14:06:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729172AbgIGL6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 07:58:20 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:48822 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729184AbgIGL6R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 07:58:17 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 087BsUxr038164;
-        Mon, 7 Sep 2020 06:54:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599479670;
-        bh=7+EDL59N1vzKLk7OP38P/jtVYpuOIQC7iGq1qPqi3KM=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=vCF4/+S4z/SpKTh7ZZX+AH2G+EDLch2wMtvjYZY0bjt3/Bpft5C8anLlxem6mjIc+
-         Xj470AzvZIXI8SqGGGCaTQc6aq3OA4p8s/zbgg5xQpeXvroiLyQXeVwMtEI6+v1taI
-         upitOwTBzsHH0YGm8Vp+wY3vMlDtPiYfVUWOYFK4=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 087BsU79089613
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Sep 2020 06:54:30 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 7 Sep
- 2020 06:54:30 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 7 Sep 2020 06:54:30 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 087BsU7f084829;
-        Mon, 7 Sep 2020 06:54:30 -0500
-Date:   Mon, 7 Sep 2020 06:54:30 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <t-kristo@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>, <lokeshvutla@ti.com>,
-        <grygorii.strashko@ti.com>, <nsekhar@ti.com>
-Subject: Re: [PATCH V2 0/8] arm64: dts: ti: k3-*: Squash up
- node_name_chars_strict warnings + hex usage
-Message-ID: <20200907115430.rmhaubsyho6pgszh@akan>
-References: <20200901223059.14801-1-nm@ti.com>
- <20200903130015.21361-1-nm@ti.com>
+        id S1729216AbgIGMFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 08:05:42 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:7994 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1729202AbgIGMEq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 08:04:46 -0400
+X-UUID: 529d1217da3e4244981d96877a43f4e6-20200907
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=jhDPNB9+vtJ6LoKzs9IKtElOMJeIUaNjylq+XlEhZ+Y=;
+        b=SsHDLSmtBQFCII6+YWeebGl1wA3dIO//9d1WdWhowduk46i4H2AOpHuZ3v/og5vgpqc0HbZBR4CNTwPyrSOQ+bfr4J7mEMRHCtjfZf6CudQz7EU6sJmROttxYKHXyMbfVV6R9mAJLNGtCnCACyed0KYTR7QgPsAZBJuWVpGIm1Q=;
+X-UUID: 529d1217da3e4244981d96877a43f4e6-20200907
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1742256838; Mon, 07 Sep 2020 20:04:26 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 7 Sep 2020 20:04:22 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 7 Sep 2020 20:04:23 +0800
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        <davem@davemloft.net>, <linux-pci@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Sj Huang <sj.huang@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>
+Subject: [PATCH 1/3] dt-bindings: Add YAML schemas for Gen3 PCIe controller
+Date:   Mon, 7 Sep 2020 20:01:16 +0800
+Message-ID: <20200907120118.11667-1-jianjun.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200903130015.21361-1-nm@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08:00-20200903, Nishanth Menon wrote:
-> Hi,
-> 
-> This is a respin of v2 of the series posted as [1].
-> 
-> As part of this cleanup, I ran a cross check of nodes that are
-> part of K3 as of right now, Vs what is "generic" definition as per 0.3
-> dt specification [2].
-> 
-> Changes in v2:
-> - Based off 20200903
-> - Picked up Acks and reviewed-by from previous versions (please comment
->   if you disagree).
-> - Dropped tsadc rename [3] based on review
-> - Added 2 patches to fixup hexadecimal usage caught as part of review
-> - few additional fixups.
-I have applied the following to branch ti-k3-next on [1].
+QWRkIFlBTUwgc2NoZW1hcyBkb2N1bWVudGF0aW9uIGZvciBHZW4zIFBDSWUgY29udHJvbGxlciBv
+bg0KTWVkaWFUZWsgU29Dcy4NCg0KQ2hhbmdlLUlkOiBJMmEwMjJjNzI5MWM3ZTdlMTYxYjNhN2U4
+YmNlMjg3ODFlMGYwOWI5MA0KU2lnbmVkLW9mZi1ieTogSmlhbmp1biBXYW5nIDxqaWFuanVuLndh
+bmdAbWVkaWF0ZWsuY29tPg0KLS0tDQogLi4uL2JpbmRpbmdzL3BjaS9tZWRpYXRlay1wY2llLWdl
+bjMueWFtbCAgICAgIHwgMTU4ICsrKysrKysrKysrKysrKysrKw0KIDEgZmlsZSBjaGFuZ2VkLCAx
+NTggaW5zZXJ0aW9ucygrKQ0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2Rldmlj
+ZXRyZWUvYmluZGluZ3MvcGNpL21lZGlhdGVrLXBjaWUtZ2VuMy55YW1sDQoNCmRpZmYgLS1naXQg
+YS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGNpL21lZGlhdGVrLXBjaWUtZ2Vu
+My55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BjaS9tZWRpYXRlay1w
+Y2llLWdlbjMueWFtbA0KbmV3IGZpbGUgbW9kZSAxMDA2NDQNCmluZGV4IDAwMDAwMDAwMDAwMC4u
+MTA4ZDI5MjU5YzA1DQotLS0gL2Rldi9udWxsDQorKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRy
+ZWUvYmluZGluZ3MvcGNpL21lZGlhdGVrLXBjaWUtZ2VuMy55YW1sDQpAQCAtMCwwICsxLDE1OCBA
+QA0KKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wIE9SIEJTRC0yLUNsYXVzZSkN
+CislWUFNTCAxLjINCistLS0NCiskaWQ6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9zY2hlbWFzL3Bj
+aS9tZWRpYXRlay1wY2llLWdlbjMueWFtbCMNCiskc2NoZW1hOiBodHRwOi8vZGV2aWNldHJlZS5v
+cmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMNCisNCit0aXRsZTogR2VuMyBQQ0llIGNvbnRyb2xs
+ZXIgb24gTWVkaWFUZWsgU29Dcw0KKw0KK21haW50YWluZXJzOg0KKyAgLSBKaWFuanVuIFdhbmcg
+PGppYW5qdW4ud2FuZ0BtZWRpYXRlay5jb20+DQorDQorYWxsT2Y6DQorICAtICRyZWY6IC9zY2hl
+bWFzL3BjaS9wY2ktYnVzLnlhbWwjDQorDQorcHJvcGVydGllczoNCisgIGNvbXBhdGlibGU6DQor
+ICAgIG9uZU9mOg0KKyAgICAgIC0gY29uc3Q6IG1lZGlhdGVrLGdlbjMtcGNpZQ0KKyAgICAgIC0g
+Y29uc3Q6IG1lZGlhdGVrLG10ODE5Mi1wY2llDQorDQorICBkZXZpY2VfdHlwZToNCisgICAgY29u
+c3Q6IHBjaQ0KKw0KKyAgIiNhZGRyZXNzLWNlbGxzIjoNCisgICAgY29uc3Q6IDMNCisNCisgICIj
+c2l6ZS1jZWxscyI6DQorICAgIGNvbnN0OiAyDQorDQorICByZWc6DQorICAgIGl0ZW1zOg0KKyAg
+ICAgIC0gZGVzY3JpcHRpb246IENvbnRyb2xsZXIgY29udHJvbCBhbmQgc3RhdHVzIHJlZ2lzdGVy
+cy4NCisNCisgIHJlZy1uYW1lczoNCisgICAgaXRlbXM6DQorICAgICAgLSBjb25zdDogcGNpZS1t
+YWMNCisNCisgIGludGVycnVwdHM6DQorICAgIG1heEl0ZW1zOiAxDQorDQorICBidXMtcmFuZ2U6
+DQorICAgIGRlc2NyaXB0aW9uOiBSYW5nZSBvZiBidXMgbnVtYmVycyBhc3NvY2lhdGVkIHdpdGgg
+dGhpcyBjb250cm9sbGVyLg0KKw0KKyAgcmFuZ2VzOg0KKyAgICBtaW5JdGVtczogMQ0KKyAgICBt
+YXhJdGVtczogOA0KKw0KKyAgcmVzZXRzOg0KKyAgICBtaW5JdGVtczogMQ0KKyAgICBtYXhJdGVt
+czogMg0KKw0KKyAgcmVzZXQtbmFtZXM6DQorICAgIGFueU9mOg0KKyAgICAgIC0gY29uc3Q6IG1h
+Yy1yc3QNCisgICAgICAtIGNvbnN0OiBwaHktcnN0DQorDQorICBjbG9ja3M6DQorICAgIG1heEl0
+ZW1zOiA1DQorDQorICBhc3NpZ25lZC1jbG9ja3M6DQorICAgIG1heEl0ZW1zOiAxDQorDQorICBh
+c3NpZ25lZC1jbG9jay1wYXJlbnRzOg0KKyAgICBtYXhJdGVtczogMQ0KKw0KKyAgcGh5czoNCisg
+ICAgbWF4SXRlbXM6IDENCisNCisgIHBoeS1uYW1lczoNCisgICAgY29uc3Q6IHBjaWUtcGh5DQor
+DQorICAnI2ludGVycnVwdC1jZWxscyc6DQorICAgIGNvbnN0OiAxDQorDQorICBpbnRlcnJ1cHQt
+bWFwLW1hc2s6DQorICAgIGRlc2NyaXB0aW9uOiBTdGFuZGFyZCBQQ0kgSVJRIG1hcHBpbmcgcHJv
+cGVydGllcy4NCisNCisgIGludGVycnVwdC1tYXA6DQorICAgIGRlc2NyaXB0aW9uOiBTdGFuZGFy
+ZCBQQ0kgSVJRIG1hcHBpbmcgcHJvcGVydGllcy4NCisNCisgIGxlZ2FjeS1pbnRlcnJ1cHQtY29u
+dHJvbGxlcjoNCisgICAgZGVzY3JpcHRpb246IEludGVycnVwdCBjb250cm9sbGVyIG5vZGUgZm9y
+IGhhbmRsaW5nIGxlZ2FjeSBQQ0kgaW50ZXJydXB0cy4NCisgICAgdHlwZTogb2JqZWN0DQorICAg
+IHByb3BlcnRpZXM6DQorICAgICAgIiNhZGRyZXNzLWNlbGxzIjoNCisgICAgICAgIGNvbnN0OiAw
+DQorICAgICAgIiNpbnRlcnJ1cHQtY2VsbHMiOg0KKyAgICAgICAgY29uc3Q6IDENCisgICAgICBp
+bnRlcnJ1cHQtY29udHJvbGxlcjogdHJ1ZQ0KKw0KKyAgICByZXF1aXJlZDoNCisgICAgICAtICIj
+YWRkcmVzcy1jZWxscyINCisgICAgICAtICIjaW50ZXJydXB0LWNlbGxzIg0KKyAgICAgIC0gaW50
+ZXJydXB0LWNvbnRyb2xsZXINCisNCityZXF1aXJlZDoNCisgIC0gY29tcGF0aWJsZQ0KKyAgLSBk
+ZXZpY2VfdHlwZQ0KKyAgLSAiI2FkZHJlc3MtY2VsbHMiDQorICAtICIjc2l6ZS1jZWxscyINCisg
+IC0gcmVnDQorICAtIHJlZy1uYW1lcw0KKyAgLSBidXMtcmFuZ2UNCisgIC0gaW50ZXJydXB0cw0K
+KyAgLSByYW5nZXMNCisgIC0gY2xvY2tzDQorICAtICcjaW50ZXJydXB0LWNlbGxzJw0KKyAgLSBp
+bnRlcnJ1cHQtbWFwDQorICAtIGludGVycnVwdC1tYXAtbWFzaw0KKyAgLSBsZWdhY3ktaW50ZXJy
+dXB0LWNvbnRyb2xsZXINCisNCithZGRpdGlvbmFsUHJvcGVydGllczogZmFsc2UNCisNCitleGFt
+cGxlczoNCisgIC0gfA0KKyAgICAjaW5jbHVkZSA8ZHQtYmluZGluZ3MvaW50ZXJydXB0LWNvbnRy
+b2xsZXIvYXJtLWdpYy5oPg0KKyAgICAjaW5jbHVkZSA8ZHQtYmluZGluZ3MvaW50ZXJydXB0LWNv
+bnRyb2xsZXIvaXJxLmg+DQorDQorICAgIGJ1cyB7DQorICAgICAgICAjYWRkcmVzcy1jZWxscyA9
+IDwyPjsNCisgICAgICAgICNzaXplLWNlbGxzID0gPDI+Ow0KKw0KKyAgICAgICAgcGNpZTogcGNp
+ZUAxMTIzMDAwMCB7DQorICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxOTIt
+cGNpZSI7DQorICAgICAgICAgICAgZGV2aWNlX3R5cGUgPSAicGNpIjsNCisgICAgICAgICAgICAj
+YWRkcmVzcy1jZWxscyA9IDwzPjsNCisgICAgICAgICAgICAjc2l6ZS1jZWxscyA9IDwyPjsNCisg
+ICAgICAgICAgICByZWcgPSA8MHgwMCAweDExMjMwMDAwIDB4MDAgMHg0MDAwPjsNCisgICAgICAg
+ICAgICByZWctbmFtZXMgPSAicGNpZS1tYWMiOw0KKyAgICAgICAgICAgIGludGVycnVwdHMgPSA8
+R0lDX1NQSSAyNTEgSVJRX1RZUEVfTEVWRUxfSElHSCAwPjsNCisgICAgICAgICAgICBidXMtcmFu
+Z2UgPSA8MHgwMCAweGZmPjsNCisgICAgICAgICAgICByYW5nZXMgPSA8MHg4MjAwMDAwMCAweDAw
+IDB4MTIwMDAwMDAgMHgwMCAweDEyMDAwMDAwIDB4MDAgMHgxMDAwMDAwPjsNCisgICAgICAgICAg
+ICBjbG9ja3MgPSA8JmluZnJhY2ZnIDQwPiwNCisgICAgICAgICAgICAgICAgICAgICA8JmluZnJh
+Y2ZnIDQzPiwNCisgICAgICAgICAgICAgICAgICAgICA8JmluZnJhY2ZnIDk3PiwNCisgICAgICAg
+ICAgICAgICAgICAgICA8JmluZnJhY2ZnIDk5PiwNCisgICAgICAgICAgICAgICAgICAgICA8Jmlu
+ZnJhY2ZnIDExMT47DQorICAgICAgICAgICAgYXNzaWduZWQtY2xvY2tzID0gPCZ0b3Bja2dlbiA1
+MD47DQorICAgICAgICAgICAgYXNzaWduZWQtY2xvY2stcGFyZW50cyA9IDwmdG9wY2tnZW4gOTE+
+Ow0KKw0KKyAgICAgICAgICAgIHBoeXMgPSA8JnBjaWVwaHk+Ow0KKyAgICAgICAgICAgIHBoeS1u
+YW1lcyA9ICJwY2llLXBoeSI7DQorICAgICAgICAgICAgcmVzZXRzID0gPCZpbmZyYWNmZ19yc3Qg
+MD47DQorICAgICAgICAgICAgcmVzZXQtbmFtZXMgPSAicGh5LXJzdCI7DQorDQorICAgICAgICAg
+ICAgI2ludGVycnVwdC1jZWxscyA9IDwxPjsNCisgICAgICAgICAgICBpbnRlcnJ1cHQtbWFwLW1h
+c2sgPSA8MCAwIDAgMHg3PjsNCisgICAgICAgICAgICBpbnRlcnJ1cHQtbWFwID0gPDAgMCAwIDEg
+JnBjaWVfaW50YyAwPiwNCisgICAgICAgICAgICAgICAgICAgICAgICAgICAgPDAgMCAwIDIgJnBj
+aWVfaW50YyAxPiwNCisgICAgICAgICAgICAgICAgICAgICAgICAgICAgPDAgMCAwIDMgJnBjaWVf
+aW50YyAyPiwNCisgICAgICAgICAgICAgICAgICAgICAgICAgICAgPDAgMCAwIDQgJnBjaWVfaW50
+YyAzPjsNCisgICAgICAgICAgICBwY2llX2ludGM6IGxlZ2FjeS1pbnRlcnJ1cHQtY29udHJvbGxl
+ciB7DQorICAgICAgICAgICAgICAgICAgICAgICNhZGRyZXNzLWNlbGxzID0gPDA+Ow0KKyAgICAg
+ICAgICAgICAgICAgICAgICAjaW50ZXJydXB0LWNlbGxzID0gPDE+Ow0KKyAgICAgICAgICAgICAg
+ICAgICAgICBpbnRlcnJ1cHQtY29udHJvbGxlcjsNCisgICAgICAgICAgICB9Ow0KKyAgICAgICAg
+fTsNCisgICAgfTsNCi0tIA0KMi4xOC4wDQo=
 
-[1/8] arm64: dts: ti: k3-j721e: Use lower case hexadecimal
-      commit: 1aedefe13ba263d0d7d1cfbb38aadebbd5bab34e
-[2/8] arm64: dts: ti: k3-am65-main: Use lower case hexadecimal
-      commit: 05e393c596c4495d79f0cbeacb0f0a0e0b6f89d5
-[3/8] arm64: dts: ti: k3-am65*: Use generic gpio for node names
-      commit: 91e5f404e42bc189bb0e447d30041de737ad24bf
-[4/8] arm64: dts: ti: k3-am65*: Use generic clock for syscon clock names
-      commit: 86e67b591e6d993d98567143451883a5618c196e
-[5/8] arm64: dts: ti: k3-*: Use generic pinctrl for node names
-      commit: dcccf77067e4274953e8944d9730bb7ae2964c28
-[6/8] arm64: dts: ti: k3-am65-base-board Use generic camera for node name instead of ov5640
-      commit: 4c19fb9ce266561ab122880a02e873ee8c3668e4
-[7/8] arm64: dts: ti: k3-am65-wakeup: Use generic temperature-sensor for node name
-      commit: 9a8ecd414322ceb377cecb4795e3f3d7d7020952
-[8/8] arm64: dts: ti: k3-*: Fix up node_name_chars_strict warnings
-      commit: e5c956c4f36cdd59e775f2285af9a1683374c5a5
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
