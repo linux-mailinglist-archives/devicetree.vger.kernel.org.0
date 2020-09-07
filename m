@@ -2,70 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D31B125F928
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 13:18:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BEAA25F94F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 13:24:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728529AbgIGLRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 07:17:55 -0400
-Received: from a27-18.smtp-out.us-west-2.amazonses.com ([54.240.27.18]:52592
-        "EHLO a27-18.smtp-out.us-west-2.amazonses.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728421AbgIGLRt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 07:17:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=zsmsymrwgfyinv5wlfyidntwsjeeldzt; d=codeaurora.org; t=1599476582;
-        h=MIME-Version:Content-Type:Content-Transfer-Encoding:Date:From:To:Cc:Subject:In-Reply-To:References:Message-ID;
-        bh=c0tNUJLjtjf1p27IOiKG5JMFWiohn2Olzu4gHEom3VE=;
-        b=LJOHZ7N0slacmMGeV5fWRQCDPluWMQfIvyu6MzN/Q6Z7Vt9xpw64Zi8v4McsclFF
-        bWU9ZNET5+Sf99UNiBt+ffMXRwSo0n1NzRV3T6ojbXlfe1oqBv3FWWP6te7efBb3rnV
-        CRD9/GYf4pXek/9hYiwDPWZ35RDaLTuRt6JtJGoU=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1599476582;
-        h=MIME-Version:Content-Type:Content-Transfer-Encoding:Date:From:To:Cc:Subject:In-Reply-To:References:Message-ID:Feedback-ID;
-        bh=c0tNUJLjtjf1p27IOiKG5JMFWiohn2Olzu4gHEom3VE=;
-        b=jEbmGErHYRTd08w1Yn0ZJejS6BTiIEzvrOhfXXG5D11rAS9B6wfzRuiVyEpBBoDs
-        DB0WxyY0B9IAv0D703o4f0ycOrVCS5H6X8q0emGjd0ddS+LDIW+BFHVye50lt8Oizgw
-        a5EDvYuRs6OZ/8LPZJ6db5EJX0gakTrcty+vU34U=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
+        id S1728980AbgIGLYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 07:24:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42588 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728941AbgIGLXA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 07:23:00 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AE82C0617B9
+        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 04:10:33 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id z9so13820877wmk.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 04:10:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=AaJv1mu5ukB/CIcMyJjiUkroua19/SVkAvuVAHfagew=;
+        b=GxsVYEWAqcHsbTP7ldWw3XMCSUXXkLDNAViB7TZMo3ZdMOGcqOqxNnbyfEhbNIoRUM
+         46jE43/CA1WYcTx4AqrwiYOz/01itWTgB+EffYBiHX4xig9Tao2uLgSoQlTWbshlEH2j
+         0FPQtFZmsYMXrHjWZYDF7JSkI/IY3sQoSn06lAxsA6tikxN+NkDDlOpLMHVtlLgOYAYV
+         xgbWw8OmqH0UulxQdF141iVs1KUGrOXXXpCC5sd7enVwNSdfwFHhGpWtBP9A9yn3fHsC
+         BfpBBqMkntjTpjaS26AU1P7IzvA6Yq1idSLklbk8e6YWdhVWF0Gjyo9IT4YixZjMlBYI
+         jWQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=AaJv1mu5ukB/CIcMyJjiUkroua19/SVkAvuVAHfagew=;
+        b=sLTya/Tct6k6f+XV9RO6NPBJeiisYkOG30nXc6iRNEx1BIwi/fVmkRy3JFfZXnnRkt
+         Qb0YZwF4qd4AgsltA/ozi8pALZ+Tz/0NWBJ2i3F61bfaASt/NN+/rxvwTbY8vpJ4fUqH
+         VbDrfI7/5Nj8A5m3+gk8TxBJJrKxfVGKxXCTVEmpf7ih9n6BG4LnBLo+xIY+PA8TgQgk
+         NaFa1VSS97XU0rZLECj5SkBoW5MP4AQiiThnH+uLpG+2ME6ej4DswmJaGk9wSKrd4C1V
+         wbJJJrDBwKILQ581o6qqqRJz/o1DuUm9k5553DhyPE/mc4WvO9Lq3hrjayJce9xWmztb
+         14jA==
+X-Gm-Message-State: AOAM532YcpFWvplU8UMuC/Sc7j3kBenG7nfBmL0l9SlhMGqR7gd+ZOwQ
+        63Js0vclYfzUWJOyKfiB2Oi53Q==
+X-Google-Smtp-Source: ABdhPJxBVx0IfuJV1VVAaaxBYLauf53V/lzKaqIwtKzsD1pKBa6yHb2u7PSmJhqIF4DQRqGalb1VWA==
+X-Received: by 2002:a7b:cb4e:: with SMTP id v14mr21097200wmj.140.1599477031712;
+        Mon, 07 Sep 2020 04:10:31 -0700 (PDT)
+Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
+        by smtp.gmail.com with ESMTPSA id u13sm19922111wrm.77.2020.09.07.04.10.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Sep 2020 04:10:31 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     thierry.reding@gmail.com, sam@ravnborg.org,
+        devicetree@vger.kernel.org
+Cc:     dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add Shanghai Top Display Optolelectronics vendor prefix
+Date:   Mon,  7 Sep 2020 13:10:25 +0200
+Message-Id: <20200907111027.21933-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20200907111027.21933-1-narmstrong@baylibre.com>
+References: <20200907111027.21933-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 7 Sep 2020 11:03:02 +0000
-From:   akolli@codeaurora.org
-To:     Kalle Valo <kvalo@codeaurora.org>
-Cc:     ath11k@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-wireless@vger.kernel.org
-Subject: Re: [PATCH v6 0/3] ath11k: Add IPQ6018 support
-In-Reply-To: <877dt552q1.fsf@codeaurora.org>
-References: <1598287470-1871-1-git-send-email-akolli@codeaurora.org>
- <877dt552q1.fsf@codeaurora.org>
-Message-ID: <01010174683bc855-68c24953-aad8-4e8f-be57-2ef8f25891e0-000000@us-west-2.amazonses.com>
-X-Sender: akolli@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
-X-SES-Outgoing: 2020.09.07-54.240.27.18
-Feedback-ID: 1.us-west-2.CZuq2qbDmUIuT3qdvXlRHZZCpfZqZ4GtG9v3VKgRyF0=:AmazonSES
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-09-07 15:27, Kalle Valo wrote:
-> Anilkumar Kolli <akolli@codeaurora.org> writes:
-> 
->> IPQ6018 has a 5G radio and 2G radio with 2x2
->> and shares IPQ8074 configuration.
->> 
->> Tested on: IPQ6018 WLAN.HK.2.2-02134-QCAHKSWPL_SILICONZ-1
->> Tested on: IPQ8074 WLAN.HK.2.4.0.1-00009-QCAHKSWPL_SILICONZ-1
-> 
-> I don't store the cover letters to git, so please move the Tested-on
-> tags to actual patches so that they are properly archived.
+Shanghai Top Display Optolelectronics Co., Ltd  is a display manufacturer
+from Shanghai.
+Web site of the company: http://www.shtdo.com/
 
-Sure.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Thanks
-Anil
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index a1e4356cf522..4e9dfb352c68 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1078,6 +1078,8 @@ patternProperties:
+     description: TPK U.S.A. LLC
+   "^tplink,.*":
+     description: TP-LINK Technologies Co., Ltd.
++  "^tdo,.*":
++    description: Shangai Top Display Optoelectronics Co., Ltd
+   "^tpo,.*":
+     description: TPO
+   "^tq,.*":
+-- 
+2.22.0
+
