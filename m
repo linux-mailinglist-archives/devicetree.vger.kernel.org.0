@@ -2,68 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBA7625FA55
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 14:18:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C88E325FA8F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 14:36:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729191AbgIGMSy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 08:18:54 -0400
-Received: from foss.arm.com ([217.140.110.172]:34408 "EHLO foss.arm.com"
+        id S1728792AbgIGMeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 08:34:44 -0400
+Received: from mga18.intel.com ([134.134.136.126]:34181 "EHLO mga18.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729254AbgIGMSu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Sep 2020 08:18:50 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7F84F143B;
-        Mon,  7 Sep 2020 05:18:46 -0700 (PDT)
-Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.195.35])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 669803F66E;
-        Mon,  7 Sep 2020 05:18:45 -0700 (PDT)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     soc@kernel.org
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        Wei Xu <xuwei5@hisilicon.com>, Chanho Min <chanho.min@lge.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 6/6] ARM: dts: hisilicon: Fix SP805 clocks
-Date:   Mon,  7 Sep 2020 13:18:31 +0100
-Message-Id: <20200907121831.242281-7-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200907121831.242281-1-andre.przywara@arm.com>
-References: <20200907121831.242281-1-andre.przywara@arm.com>
+        id S1729186AbgIGMdk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 08:33:40 -0400
+IronPort-SDR: /m9ZbdO4zbC53238hSJlIbGsz/q+eC/KXPVA8frrw175BFAUej+ok/19OidiYERI7Ayziqt43c
+ oUFTgEMvmIXA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9736"; a="145705343"
+X-IronPort-AV: E=Sophos;i="5.76,401,1592895600"; 
+   d="scan'208";a="145705343"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2020 05:33:39 -0700
+IronPort-SDR: BWi0P5a0/LbMmyJhLsF+GjyZTREr1uVm+6uKHSy7XSrV0pYYr2TRXvXCOZuQ5zirT2FT5r2KQB
+ EOnd7na1fHag==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,401,1592895600"; 
+   d="scan'208";a="333150609"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga008.jf.intel.com with ESMTP; 07 Sep 2020 05:33:36 -0700
+Received: from andy by smile with local (Exim 4.94)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1kFGL0-00EwvE-0k; Mon, 07 Sep 2020 15:33:34 +0300
+Date:   Mon, 7 Sep 2020 15:33:34 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     vineetha.g.jaya.kumaran@intel.com
+Cc:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        robh+dt@kernel.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, wan.ahmad.zainie.wan.mohamad@intel.com,
+        vijayakannan.ayyathurai@intel.com, mgross@linux.intel.com,
+        lakshmi.bai.raja.subramanian@intel.com
+Subject: Re: [PATCH v6 1/2] pwm: Add PWM driver for Intel Keem Bay
+Message-ID: <20200907123334.GF1891694@smile.fi.intel.com>
+References: <1599480470-5932-1-git-send-email-vineetha.g.jaya.kumaran@intel.com>
+ <1599480470-5932-2-git-send-email-vineetha.g.jaya.kumaran@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1599480470-5932-2-git-send-email-vineetha.g.jaya.kumaran@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SP805 DT binding requires two clocks to be specified, but
-Hisilicon platform DTs currently only specify one clock.
+On Mon, Sep 07, 2020 at 08:07:49PM +0800, vineetha.g.jaya.kumaran@intel.com wrote:
+> From: "Lai, Poey Seng" <poey.seng.lai@intel.com>
+> 
+> The Intel Keem Bay SoC requires PWM support.
+> Add the pwm-keembay driver to enable this.
 
-In practice, Linux would pick a clock named "apb_pclk" for the bus
-clock, and the Linux and U-Boot SP805 driver would use the first clock
-to derive the actual watchdog counter frequency.
+Hadn't I given a tag already? If so, where is it?
 
-Since currently both are the very same clock, we can just double the
-clock reference, and add the correct clock-names, to match the binding.
+> Co-developed-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
+> Signed-off-by: Lai, Poey Seng <poey.seng.lai@intel.com>
+> Signed-off-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- arch/arm/boot/dts/hisi-x5hd2.dtsi | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/hisi-x5hd2.dtsi b/arch/arm/boot/dts/hisi-x5hd2.dtsi
-index 3ee7967c202d..e2dbf1d8a67b 100644
---- a/arch/arm/boot/dts/hisi-x5hd2.dtsi
-+++ b/arch/arm/boot/dts/hisi-x5hd2.dtsi
-@@ -370,8 +370,9 @@
- 				arm,primecell-periphid = <0x00141805>;
- 				reg = <0xa2c000 0x1000>;
- 				interrupts = <0 29 4>;
--				clocks = <&clock HIX5HD2_WDG0_RST>;
--				clock-names = "apb_pclk";
-+				clocks = <&clock HIX5HD2_WDG0_RST>,
-+					 <&clock HIX5HD2_WDG0_RST>;
-+				clock-names = "wdog_clk", "apb_pclk";
- 			};
- 		};
- 
 -- 
-2.17.1
+With Best Regards,
+Andy Shevchenko
+
 
