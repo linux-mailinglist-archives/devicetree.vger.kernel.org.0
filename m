@@ -2,200 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 930C425F4E0
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 10:19:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EB2D25F563
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 10:35:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727999AbgIGITG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 04:19:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42260 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727992AbgIGISf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 04:18:35 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67E00C061756
-        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 01:18:35 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id a9so13295973wmm.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 01:18:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=/0HsauPurP4GLwNBopn5TZUsUZJKLkyzLDWrJr/4s5U=;
-        b=J66KLzlOYfq63rz/EDI2/aR4JNB6BbshNVdCF0X7BoOXx8o3cPwwoD4FA2dtwXw66D
-         jIQX9rFkKLZQ9wB/HmiYiMdhuY4afx3UkS2sDyJnZu0cMaNbusqbjiQIaKGtQQuXz/aa
-         USbX4T2elF97eM1fMje7fNj8+x9bGo1er6L1qzB42H+G5T3xhG7wbmSuRMy4NbGjnGP8
-         d8HEDEEl/qOiT2DY8wQmCwFr4N1VqNLmqeCNyDoHy6g+yjWDcH5WQuUuOsQRrzFxUOaZ
-         DnkA/kuikMDBtrB6ybir6wiFs8/gED3EDAbZlYM+oj1M8wV5mSGFFw49l7vloRbfEFTX
-         L+zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=/0HsauPurP4GLwNBopn5TZUsUZJKLkyzLDWrJr/4s5U=;
-        b=ZQnN4tdpuqmq9vFG1RY8NSL+dQEhNLfFhkrB9FugRreS25UnCMd/uyRatRw6pkRJ8W
-         8BQ0PEByJYi0RHcQTtLcFOZf4h27lwiHSbj2hMDrDOOZ97iMZNmykpGmVwGzy4rVui7I
-         4ROE0VB/idr43P9CBdQYd+VLg3uTdRy0peSkpRLonu6ZvBvojpPJIkycBHDob3nBYQDU
-         hfxw09Cl85bggSS+A8Wc7Kf6KOc/zHKtTNQnzHaNresWLa0si+dK7i/KXe6xgIteAB4p
-         NOZ1Idyx/XSjJUG6F5zbIF8v3/825YFP3G/HM/qVe+subFWmAbPWiZUQEVKKR0jwq+7C
-         yjvg==
-X-Gm-Message-State: AOAM532yv5pRwOIqyJ70XIs+TAzw0oi9P9HfeK2xRglTgQG7jxypKQtN
-        ddbad8txklzgK9Z+zFf0G6ibV2460DGxhcOV
-X-Google-Smtp-Source: ABdhPJwT5w0cdNog5hvbeofOd9g2nUaa5JeJ2ZchwmHJ7pv5qSRDx2+v0cWfcXr2DTx0d7DcEDFbEA==
-X-Received: by 2002:a7b:cd05:: with SMTP id f5mr19294990wmj.116.1599466713146;
-        Mon, 07 Sep 2020 01:18:33 -0700 (PDT)
-Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
-        by smtp.gmail.com with ESMTPSA id q186sm28032205wma.45.2020.09.07.01.18.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Sep 2020 01:18:32 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     daniel@ffwll.ch, devicetree@vger.kernel.org
-Cc:     dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH 2/6] dt-bindings: display: add Amlogic MIPI DSI Host Controller bindings
-Date:   Mon,  7 Sep 2020 10:18:21 +0200
-Message-Id: <20200907081825.1654-3-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200907081825.1654-1-narmstrong@baylibre.com>
-References: <20200907081825.1654-1-narmstrong@baylibre.com>
+        id S1728283AbgIGIfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 04:35:37 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:48915 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728320AbgIGIfe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 04:35:34 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20200907083530euoutp02ec1db59901ecb674f3a0216208887079~yc20_Jnvq3212832128euoutp02o
+        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 08:35:30 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20200907083530euoutp02ec1db59901ecb674f3a0216208887079~yc20_Jnvq3212832128euoutp02o
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1599467730;
+        bh=5eUqfqOe8KGV5WESEo8yTEImYqkmT94n8f1isYRbGf4=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=NeNlj47YxY0RenF7NKJ+DqOisirtTWY3apIWH8D2PYIzEYShIRXMBwXsGDVo3ljBq
+         gr48kyvpYc/kGhZ21fwg7fOaMIYsj9qReIHMO7DxpXZewV2QSVIinJn1fVySSFskh2
+         68aVh7qRwSON6+XmeASU43Oh+piRptTI+4W6PHOc=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20200907083530eucas1p237c4cbc69058f967d229bfa4b86a248c~yc20ndh810572005720eucas1p2J;
+        Mon,  7 Sep 2020 08:35:30 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id B4.4C.05997.2D0F55F5; Mon,  7
+        Sep 2020 09:35:30 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20200907083530eucas1p20417143367abaf397e2145aeccf4f623~yc20Vibeq1868418684eucas1p2k;
+        Mon,  7 Sep 2020 08:35:30 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20200907083530eusmtrp26a357786861b079524ee9d055f7bdd53~yc20U0uU-0775907759eusmtrp2g;
+        Mon,  7 Sep 2020 08:35:30 +0000 (GMT)
+X-AuditID: cbfec7f4-677ff7000000176d-1f-5f55f0d2ecbf
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 76.27.06017.1D0F55F5; Mon,  7
+        Sep 2020 09:35:29 +0100 (BST)
+Received: from [106.210.123.115] (unknown [106.210.123.115]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20200907083529eusmtip1e49293f67772ae653c3a7a58cd3fd7e9~yc2zpkSL12715127151eusmtip1i;
+        Mon,  7 Sep 2020 08:35:29 +0000 (GMT)
+Subject: Re: [PATCH v2 1/3] ARM: dts: exynos: Add assigned clock parent to
+ CMU in Exynos3250
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Sylwester Nawrocki <snawrocki@kernel.org>
+From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
+Message-ID: <b092ef9e-b403-751e-22c3-65aa840267e6@samsung.com>
+Date:   Mon, 7 Sep 2020 10:35:28 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+        Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200906124407.GA4829@kozik-lap>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrPKsWRmVeSWpSXmKPExsWy7djP87qXPoTGG+xYL2gx/8g5Vov+x6+Z
+        Lc6f38BusenxNVaLy7vmsFnMOL+PyWLtkbvsFq17j7BbtD99yezA6bFpVSebx+Yl9R59W1Yx
+        enzeJBfAEsVlk5Kak1mWWqRvl8CV8fh0WcEFjoonOztYGhh/sXUxcnJICJhIPDp8g7mLkYtD
+        SGAFo8SRBUdYIJwvjBLPnrxjh3A+M0rsmLmAFaale/cMVojEckaJ1ivvoVo+Mkr8XvccbLCw
+        QJzEwcbvQO0cHCICERLbV4JNYhb4zijxtG0/WA2bgKFE79E+RhCbV8BO4t+8lSwgNouAisTC
+        y31gtijQnGOnHrFA1AhKnJz5BMzmFNCTuPbpNNgcZgFxiVtP5jNB2PIS29/OAXtIQmATu8SV
+        qTdYIM52kVjXuoEJwhaWeHV8CzuELSPxfydIM0hDM6NEz+7b7BDOBEaJ+8cXMEJUWUvcOQcK
+        Mw6gFZoS63fpQ4QdJRYvOAr2pYQAn8SNt4IQR/BJTNo2nRkizCvR0SYEUa0i8XvVdKgTpCS6
+        n/xnmcCoNAvJa7OQvDMLyTuzEPYuYGRZxSieWlqcm55abJSXWq5XnJhbXJqXrpecn7uJEZiM
+        Tv87/mUH464/SYcYBTgYlXh4X4iHxguxJpYVV+YeYpTgYFYS4XU6ezpOiDclsbIqtSg/vqg0
+        J7X4EKM0B4uSOK/xopexQgLpiSWp2ampBalFMFkmDk6pBsYZk+tsAlg2umwO0pp3pN+69ebj
+        VlMBM6fJzMa+ci8vMHJbyoeGOHlLr8i/UffOa+FUpb2/djt1HWZPn3k5eV7/PjYP49uzJXwF
+        FrModMVsO6qs47vmlFpVd9s8yXvrD9jLsUc9vSlUoPjmRPPype7rgr7MfrNwz7KCzi8qVxkW
+        +osy1+8OOqjEUpyRaKjFXFScCADXSpoCQgMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrAIsWRmVeSWpSXmKPExsVy+t/xu7oXP4TGG3w7ZGMx/8g5Vov+x6+Z
+        Lc6f38BusenxNVaLy7vmsFnMOL+PyWLtkbvsFq17j7BbtD99yezA6bFpVSebx+Yl9R59W1Yx
+        enzeJBfAEqVnU5RfWpKqkJFfXGKrFG1oYaRnaGmhZ2RiqWdobB5rZWSqpG9nk5Kak1mWWqRv
+        l6CX8fh0WcEFjoonOztYGhh/sXUxcnJICJhIdO+ewdrFyMUhJLCUUWLlmhlMXYwcQAkpifkt
+        ShA1whJ/rnWxQdS8Z5SY23uAHSQhLBAnsebEShYQW0QgQuL1nXtgNrPAd0aJswuZIBoeMEpM
+        2rSAESTBJmAo0Xu0D8zmFbCT+DcPoplFQEVi4eU+MFsUaOiZnhdsEDWCEidnPgGLcwroSVz7
+        dJoNYoG6xJ95l5ghbHGJW0/mM0HY8hLb385hnsAoNAtJ+ywkLbOQtMxC0rKAkWUVo0hqaXFu
+        em6xkV5xYm5xaV66XnJ+7iZGYOxtO/Zzyw7GrnfBhxgFOBiVeHhfiIfGC7EmlhVX5h5ilOBg
+        VhLhdTp7Ok6INyWxsiq1KD++qDQntfgQoynQcxOZpUST84FpIa8k3tDU0NzC0tDc2NzYzEJJ
+        nLdD4GCMkEB6YklqdmpqQWoRTB8TB6dUA+NeVuZp4il+Jtyiroe8QvvM+6fW3b9u4ZKQ7uV1
+        2Ur5cZfhRG2XstW/IpN+1LHqHaqwFo6adNT29RUd2dJf6mu19/7mXeeUvSxEf48uu/f9jMIk
+        oxVzak0DGRNWfjZWqH2RcE/CJvDVRMHr2ReVDcwbe/c9t9V0MnOwnHd41RZnIwaln44TlViK
+        MxINtZiLihMB2NFKB9MCAAA=
+X-CMS-MailID: 20200907083530eucas1p20417143367abaf397e2145aeccf4f623
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20200903181437eucas1p16b97d1c425672700bac7ece19084584c
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20200903181437eucas1p16b97d1c425672700bac7ece19084584c
+References: <CGME20200903181437eucas1p16b97d1c425672700bac7ece19084584c@eucas1p1.samsung.com>
+        <20200903181425.5015-1-krzk@kernel.org>
+        <4bc2ea2e-65a2-6c0b-9557-5777e359241a@samsung.com>
+        <20200906124407.GA4829@kozik-lap>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Amlogic AXg SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a), with a custom
-glue managing the IP resets, clock and data input similar to the DW-HDMI Glue on other
-Amlogic SoCs.
+On 06.09.2020 14:44, Krzysztof Kozlowski wrote:
+>>> diff --git a/arch/arm/boot/dts/exynos3250.dtsi b/arch/arm/boot/dts/exynos3250.dtsi
+>>> index a1e93fb7f694..89b160280469 100644
+>>> --- a/arch/arm/boot/dts/exynos3250.dtsi
+>>> +++ b/arch/arm/boot/dts/exynos3250.dtsi
+>>> @@ -214,6 +214,7 @@
+>>>   			compatible = "samsung,exynos3250-cmu";
+>>>   			reg = <0x10030000 0x20000>;
+>>>   			#clock-cells = <1>;
+>>> +			clocks = <&cmu CLK_FIN_PLL>;
+>> This is not a correct input clock for this CMU. Please assign it to 
+>> xusbxti, xxti or xtcxo in the respective board dts, as this is a board 
+>> property.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../display/amlogic,meson-dw-mipi-dsi.yaml    | 115 ++++++++++++++++++
- 1 file changed, 115 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml
+> Makes sense, although all this is kind of a hack as neither the bindings
+> nor the driver take the input clock.
 
-diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml
-new file mode 100644
-index 000000000000..6177f45ea1a6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml
-@@ -0,0 +1,115 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2020 BayLibre, SAS
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/display/amlogic,meson-dw-mipi-dsi.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Amlogic specific extensions to the Synopsys Designware MIPI DSI Host Controller
-+
-+maintainers:
-+  - Neil Armstrong <narmstrong@baylibre.com>
-+
-+description: |
-+  The Amlogic Meson Synopsys Designware Integration is composed of
-+  - A Synopsys DesignWare MIPI DSI Host Controller IP
-+  - A TOP control block controlling the Clocks & Resets of the IP
-+
-+allOf:
-+  - $ref: dsi-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - amlogic,meson-axg-dw-mipi-dsi
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 2
-+
-+  clock-names:
-+    minItems: 2
-+    items:
-+      - const: pclk
-+      - const: px_clk
-+      - const: meas_clk
-+
-+  resets:
-+    minItems: 1
-+
-+  reset-names:
-+    items:
-+      - const: top
-+
-+  phys:
-+    minItems: 1
-+
-+  phy-names:
-+    items:
-+      - const: dphy
-+
-+  ports:
-+    type: object
-+
-+    properties:
-+      port@0:
-+        type: object
-+        description: Input node to receive pixel data.
-+      port@1:
-+        type: object
-+        description: DSI output node to panel.
-+
-+    required:
-+      - port@0
-+      - port@1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - resets
-+  - reset-names
-+  - phys
-+  - phy-names
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    dsi@7000 {
-+          compatible = "amlogic,meson-axg-dw-mipi-dsi";
-+          reg = <0x6000 0x400>;
-+          resets = <&reset_top>;
-+          reset-names = "top";
-+          clocks = <&clk_pclk>, <&clk_px>;
-+          clock-names = "pclk", "px_clk";
-+          phys = <&mipi_dphy>;
-+          phy-names = "dphy";
-+
-+          ports {
-+              #address-cells = <1>;
-+              #size-cells = <0>;
-+
-+              /* VPU VENC Input */
-+              mipi_dsi_venc_port: port@0 {
-+                  reg = <0>;
-+
-+                  mipi_dsi_in: endpoint {
-+                       remote-endpoint = <&dpi_out>;
-+                  };
-+              };
-+
-+              /* DSI Output */
-+              mipi_dsi_panel_port: port@1 {
-+                  reg = <1>;
-+
-+                  mipi_out_panel: endpoint {
-+                      remote-endpoint = <&mipi_in_panel>;
-+                  };
-+              };
-+          };
-+    };
--- 
-2.22.0
-
+I think we should update the bindings so possible input clocks
+to the CMU are documented for all SoCs. This is actually a bug 
+in the clock controller DT bindings that the input clocks are
+missing. Then the driver would handle both the old and the 
+updated bindings but the "clocks" property would be documented 
+as mandatory. I will try to have a look at this. 
