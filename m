@@ -2,84 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 159A925FC5F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 16:56:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 203FF25FC79
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 17:00:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730076AbgIGO41 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 7 Sep 2020 10:56:27 -0400
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:41665 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730068AbgIGO4Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 10:56:25 -0400
-X-Originating-IP: 91.224.148.103
-Received: from xps13 (unknown [91.224.148.103])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 4ED6660006;
-        Mon,  7 Sep 2020 14:56:14 +0000 (UTC)
-Date:   Mon, 7 Sep 2020 16:56:13 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Cc:     linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, richard@nod.at, vigneshr@ti.com,
-        arnd@arndb.de, brendanhiggins@google.com, tglx@linutronix.de,
-        boris.brezillon@collabora.com, anders.roxell@linaro.org,
-        masonccyang@mxic.com.tw, robh+dt@kernel.org,
-        linux-mips@vger.kernel.org, hauke.mehrtens@intel.com,
-        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com
-Subject: Re: [RESEND PATCH v12 2/2] mtd: rawnand: Add NAND controller
- support on Intel LGM SoC
-Message-ID: <20200907165613.79f44c58@xps13>
-In-Reply-To: <20200907152025.66c18f5e@xps13>
-References: <20200817052709.47035-1-vadivel.muruganx.ramuthevar@linux.intel.com>
-        <20200817052709.47035-3-vadivel.muruganx.ramuthevar@linux.intel.com>
-        <20200907152025.66c18f5e@xps13>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1730072AbgIGO7c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 10:59:32 -0400
+Received: from netrider.rowland.org ([192.131.102.5]:48433 "HELO
+        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with SMTP id S1730116AbgIGO7B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 10:59:01 -0400
+Received: (qmail 763064 invoked by uid 1000); 7 Sep 2020 10:59:00 -0400
+Date:   Mon, 7 Sep 2020 10:59:00 -0400
+From:   "stern@rowland.harvard.edu" <stern@rowland.harvard.edu>
+To:     Hamish Martin <Hamish.Martin@alliedtelesis.co.nz>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/2] usb: ohci: Add per-port overcurrent quirk
+Message-ID: <20200907145900.GC762136@rowland.harvard.edu>
+References: <20200904032247.11345-1-hamish.martin@alliedtelesis.co.nz>
+ <20200904032247.11345-2-hamish.martin@alliedtelesis.co.nz>
+ <20200904154517.GB694058@rowland.harvard.edu>
+ <9ba7b4dda9ef40e3c4c9b3f1c33075e04601ef61.camel@alliedtelesis.co.nz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9ba7b4dda9ef40e3c4c9b3f1c33075e04601ef61.camel@alliedtelesis.co.nz>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Miquel Raynal <miquel.raynal@bootlin.com> wrote on Mon, 7 Sep 2020
-15:20:25 +0200:
-
-> Hi Murugan,
+On Mon, Sep 07, 2020 at 01:50:10AM +0000, Hamish Martin wrote:
+> Hi Alan,
 > 
-> A few more comments below, but I guess the driver looks better now.
+> Thanks for your quick feedback. My replies are inline below.
 > 
-> > +struct ebu_nand_controller {
-> > +	struct nand_controller controller;
-> > +	struct nand_chip chip;
-> > +	struct device *dev;
-> > +	void __iomem *ebu;
-> > +	void __iomem *hsnand;
-> > +	struct dma_chan *dma_tx;
-> > +	struct dma_chan *dma_rx;
-> > +	struct completion dma_access_complete;
-> > +	unsigned long clk_rate;
-> > +	struct clk *clk;
-> > +	u32 nd_para0;
-> > +	u8 cs_num;
-> > +	struct ebu_nand_cs cs[MAX_CS];
-> > +};
-> > +
-> > +static inline struct ebu_nand_controller *nand_to_ebu(struct nand_chip *chip)
-> > +{
-> > +	return container_of(chip, struct ebu_nand_controller, chip);
-> > +}
-> > +
-> > +static u8 ebu_nand_readb(struct nand_chip *chip)  
+> On Fri, 2020-09-04 at 11:45 -0400, Alan Stern wrote:
+> > On Fri, Sep 04, 2020 at 03:22:46PM +1200, Hamish Martin wrote:
+> > > Some integrated OHCI controller hubs do not expose all ports of the
+> > > hub
+> > > to pins on the SoC. In some cases the unconnected ports generate
+> > > spurious overcurrent events. For example the Broadcom 56060/Ranger
+> > > 2 SoC
+> > > contains a nominally 3 port hub but only the first port is wired.
+> > > 
+> > > Default behaviour for ohci-platform driver is to use "ganged"
+> > > overcurrent protection mode. This leads to the spurious overcurrent
+> > > events affecting all ports in the hub.
+> > > 
+> > > Allow this to be rectified by specifying per-port overcurrent
+> > > protection
+> > > mode via the device tree.
+> > > 
+> > > Signed-off-by: Hamish Martin <hamish.martin@alliedtelesis.co.nz>
+> > > ---
+> > >  drivers/usb/host/ohci-hcd.c      | 4 ++++
+> > >  drivers/usb/host/ohci-platform.c | 3 +++
+> > >  drivers/usb/host/ohci.h          | 1 +
+> > >  3 files changed, 8 insertions(+)
+> > > 
+> > > diff --git a/drivers/usb/host/ohci-hcd.c b/drivers/usb/host/ohci-
+> > > hcd.c
+> > > index dd37e77dae00..01e3d75e29d9 100644
+> > > --- a/drivers/usb/host/ohci-hcd.c
+> > > +++ b/drivers/usb/host/ohci-hcd.c
+> > > @@ -687,6 +687,10 @@ static int ohci_run (struct ohci_hcd *ohci)
+> > >  		val |= RH_A_NPS;
+> > >  		ohci_writel (ohci, val, &ohci->regs->roothub.a);
+> > >  	}
+> > > +	if (ohci->flags & OHCI_QUIRK_PER_PORT_OC) {
+> > > +		val |= RH_A_OCPM;
+> > > +		ohci_writel(ohci, val, &ohci->regs->roothub.a);
+> > > +	}
+> > 
+> > I don't think this is right, for two reasons.  First, isn't per-port 
+> > overcurrent protection the default?
 > 
-> Can't you prefix with intel_ instead of ebu_ ?
+> Not as far as I understand the current code. Just above where my patch
+> applies, the RH_A_OCPM (and RH_A_PSM) bits are explicitly cleared in
+> 'val' with:
+>     val &= ~(RH_A_PSM | RH_A_OCPM);
+> 
+> This, coupled with the OHCI_QUIRK_HUB_POWER being set by virtue of the
+> 'distrust_firmware' module param defaulting true, reads to me like the
+> default is for ganged over-current protection. And that is my
+> experience in this case. 
 
-Actually not, as the IP is shared with MIPS IIUC, just ignore this
-comment.
+You're right about that.  I hadn't noticed before; it makes little sense 
+to have a quirk that defaults to true.
 
-Thanks,
-Miquèl
+It's not easy to tell the full story from the kernel history; that 
+module parameter predates the Git era.  I did learn that it was modified 
+in 2.6.3-rc3 and goes back even farther: see
+
+	https://marc.info/?l=linux-usb-devel&m=110628457424684&w=2
+
+> If none of the quirks are selected then all of the fiddling with 'val'
+> never gets written to 'ohci->regs->roothub.a'
+> 
+> I'd appreciate your reading of that analysis because I'm by no means
+> sure of it.
+> 
+> > 
+> > Second, RH_A_OCPM doesn't do anything unless RH_A_NOCP is clear.
+> 
+> Correct, and that is my mistake. If I progress to a v2 of this patch I
+> will update accordingly.
+
+Shall we try changing the parameter's default value?  The USB subsystem 
+is a lot more mature and reliable now than it was back in 2004.
+
+Alan Stern
