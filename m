@@ -2,138 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 092C925F60E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 11:11:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1301E25F61A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 11:17:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728093AbgIGJLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 05:11:43 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:47850 "EHLO inva021.nxp.com"
+        id S1728135AbgIGJRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 05:17:00 -0400
+Received: from foss.arm.com ([217.140.110.172]:58306 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727953AbgIGJLm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Sep 2020 05:11:42 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id B34AE200E39;
-        Mon,  7 Sep 2020 11:11:40 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id A6488200D95;
-        Mon,  7 Sep 2020 11:11:40 +0200 (CEST)
-Received: from localhost (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 907C72036B;
-        Mon,  7 Sep 2020 11:11:40 +0200 (CEST)
-Date:   Mon, 7 Sep 2020 12:11:40 +0300
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Anson Huang <anson.huang@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fugang Duan <fugang.duan@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH v2 16/17] arm64: dts: imx8mp: Add media_blk_ctrl node
-Message-ID: <20200907091140.xh5vnag342odvmao@fsr-ub1664-175>
-References: <1597406966-13740-1-git-send-email-abel.vesa@nxp.com>
- <1597406966-13740-17-git-send-email-abel.vesa@nxp.com>
- <CAA+hA=S_wdoZvCPamW2F1Vs73t4fgnQa8LouUwzq2Vfpz3SDCg@mail.gmail.com>
- <20200819203734.zbndyvf534xey5xy@fsr-ub1664-175>
- <CAA+hA=S6j71M-Bjbkm1C+q6Ke7xGUX3K0TosKwWJ=tegFaBGsQ@mail.gmail.com>
+        id S1727122AbgIGJRA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 05:17:00 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B82691FB;
+        Mon,  7 Sep 2020 02:16:58 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 06F793F66E;
+        Mon,  7 Sep 2020 02:16:54 -0700 (PDT)
+Date:   Mon, 7 Sep 2020 10:16:49 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Jim Quinlan <james.quinlan@broadcom.com>
+Cc:     Christoph Hellwig <hch@lst.de>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" 
+        <linux-pci@vger.kernel.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Robin Murphy <robin.murphy@arm.com>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>,
+        "open list:DRM DRIVERS FOR ALLWINNER A10" 
+        <dri-devel@lists.freedesktop.org>, Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "H. Peter Anvin" <hpa@zytor.com>,
+        "open list:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        Joerg Roedel <jroedel@suse.de>,
+        Julien Grall <julien.grall@arm.com>,
+        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>,
+        "moderated list:ARM PORT" <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:ALLWINNER A10 CSI DRIVER" <linux-media@vger.kernel.org>,
+        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
+        <linux-remoteproc@vger.kernel.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        "open list:SUPERH" <linux-sh@vger.kernel.org>,
+        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Stefano Stabellini <sstabellini@kernel.org>
+Subject: Re: [PATCH v11 00/11] PCI: brcmstb: enable PCIe for STB chips
+Message-ID: <20200907091649.GA6428@e121166-lin.cambridge.arm.com>
+References: <20200824193036.6033-1-james.quinlan@broadcom.com>
+ <b19bc982-a0c4-c6ff-d8f5-650f2b3a83c8@gmail.com>
+ <20200827063517.GA4637@lst.de>
+ <CA+-6iNy3U9pO0Bykzgvb9n9fcsBi6FiatLdpA1s0HgQNWZ49mg@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAA+hA=S6j71M-Bjbkm1C+q6Ke7xGUX3K0TosKwWJ=tegFaBGsQ@mail.gmail.com>
-User-Agent: NeoMutt/20180622
-X-Virus-Scanned: ClamAV using ClamSMTP
+In-Reply-To: <CA+-6iNy3U9pO0Bykzgvb9n9fcsBi6FiatLdpA1s0HgQNWZ49mg@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-08-20 09:31:27, Dong Aisheng wrote:
-> Hi Rob, Stephen,
-> 
-> On Thu, Aug 20, 2020 at 4:37 AM Abel Vesa <abel.vesa@nxp.com> wrote:
+On Thu, Aug 27, 2020 at 09:29:59AM -0400, Jim Quinlan wrote:
+> On Thu, Aug 27, 2020 at 2:35 AM Christoph Hellwig <hch@lst.de> wrote:
 > >
-> > On 20-08-18 19:34:14, Dong Aisheng wrote:
-> > > On Fri, Aug 14, 2020 at 8:12 PM Abel Vesa <abel.vesa@nxp.com> wrote:
-> > > >
-> > > > Some of the features of the media_ctrl will be used by some
-> > > > different drivers in a way those drivers will know best, so adding the
-> > > > syscon compatible we allow those to do just that. Only the resets
-> > > > and the clocks are registered bit the clk-blk-ctrl driver.
-> > > >
-> > > > Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> > > > ---
-> > > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 16 ++++++++++++++++
-> > > >  1 file changed, 16 insertions(+)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > index dede0ae..2d6d213 100644
-> > > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > @@ -736,6 +736,22 @@
-> > > >                         };
-> > > >                 };
-> > > >
-> > > > +               aips4: bus@32c00000 {
-> > > > +                       compatible = "simple-bus";
-> > > > +                       reg = <0x32c00000 0x400000>;
-> > > > +                       #address-cells = <1>;
-> > > > +                       #size-cells = <1>;
-> > > > +                       ranges;
-> > > > +
-> > > > +                       media_blk_ctrl: clock-controller@32ec0000 {
+> > On Tue, Aug 25, 2020 at 10:40:27AM -0700, Florian Fainelli wrote:
+> > > Hi,
 > > >
-> > > For this combo device, maybe we can directly name it as blk-ctrl@32ec0000.
-> > > Rob, do you think if we can do that?
+> > > On 8/24/2020 12:30 PM, Jim Quinlan wrote:
+> > >>
+> > >> Patchset Summary:
+> > >>    Enhance a PCIe host controller driver.  Because of its unusual design
+> > >>    we are foced to change dev->dma_pfn_offset into a more general role
+> > >>    allowing multiple offsets.  See the 'v1' notes below for more info.
 > > >
+> > > We are version 11 and counting, and it is not clear to me whether there is
+> > > any chance of getting these patches reviewed and hopefully merged for the
+> > > 5.10 merge window.
+> > >
+> > > There are a lot of different files being touched, so what would be the
+> > > ideal way of routing those changes towards inclusion?
 > >
-> > I think it was Stephen who suggested we change it to clock-controller in the
-> > last's version thread.
-> >
-> > TBH, I agree with you here, since it makes more sense to be called blk-ctrl
-> > provided that this is not really just a clock controller.
-> >
-> 
-> How do you think?
-> 
+> > FYI, I offered to take the dma-mapping bits through the dma-mapping tree.
+> > I have a bit of a backlog, but plan to review and if Jim is ok with that
+> > apply the current version.
+> Sounds good to me.
 
-Stephen, can you give us an argument for leaving it as clock-controller ?
+Hi Jim,
 
-> Regards
-> Aisheng
-> 
-> > > > +                               compatible = "fsl,imx8mp-media-blk-ctrl", "syscon";
-> > > > +                               reg = <0x32ec0000 0x10000>;
-> > > > +
-> > >
-> > > Remove unnecessary blank line
-> > >
-> >
-> > Will do.
-> >
-> > > Otherwise:
-> > > Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
-> > >
-> > > Regards
-> > > Aisheng
-> > >
-> > > > +                               #clock-cells = <1>;
-> > > > +                               #reset-cells = <1>;
-> > > > +                       };
-> > > > +               };
-> > > > +
-> > > >                 aips5: bus@30c00000 {
-> > > >                         compatible = "fsl,aips-bus", "simple-bus";
-> > > >                         reg = <0x30c00000 0x400000>;
-> > > > --
-> > > > 2.7.4
-> > > >
+is the dependency now solved ? Should we review/take this series as
+is for v5.10 through the PCI tree ?
+
+Thanks,
+Lorenzo
