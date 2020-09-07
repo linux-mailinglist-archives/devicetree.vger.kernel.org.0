@@ -2,76 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5042525F4AD
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 10:11:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABAFE25F4CB
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 10:17:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728021AbgIGILi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 04:11:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41128 "EHLO
+        id S1727773AbgIGIRZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 04:17:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728013AbgIGIL1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 04:11:27 -0400
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59D93C061573;
-        Mon,  7 Sep 2020 01:11:25 -0700 (PDT)
-Received: by mail-lj1-x241.google.com with SMTP id c2so14980290ljj.12;
-        Mon, 07 Sep 2020 01:11:25 -0700 (PDT)
+        with ESMTP id S1726928AbgIGIRZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 04:17:25 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0D9EC061573
+        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 01:17:24 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id l9so13283951wme.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 01:17:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=4x3b3Gg53/QoChOehhMF0HfM7H2Z3AdxYrpI7W1n9qE=;
-        b=Md1mHM1kyVpP0mk0VYqAYn4fVEwETn8IrrU57eD9JgwPSCvRGvuR4z7iXsKq/ff7Z9
-         BfxXgAhw2qtM6coqRxOf3hLvgManA7O6UZ5PlVSimFIylom5zXMI5/HCs4QWc0nDICQm
-         H5jLTG/FW9+nzqXE3BP8IhcJ2qSBOy4QYmtzaIVoSmj7MzIre+u2C+N+ayY6+Oao3l2Y
-         9uZO/kAEga6Vlqwk/0R23sFack6m6FXyESjHrsimE4sHgHlFxtz6ks6FQeC1un8Gjx+k
-         qMd+L3G7H2eaf4uryLfFtmIBHyTHDOtZYwTBeY9pMRb2R87JtyweHej5v6eNvrGTaQR1
-         IpQg==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=e3Ta+K0mK8PpGvlCwRAXKhWKCtC3zo1Ck8yWJNQiAbc=;
+        b=N60YE/qv46tYYNcmpPR8FroUI42HP4mXIwHEKFuWaGPimLjJ9X3TifejU9aqxqqk8B
+         aE2FD/IljOK8O1Py57X18zSa7Q5k211I0qCnq7Urb7sSDcd8kX4aPn6DY1luVHtH4eHD
+         FAw4gW7HXAtpTkTtBGw/V3hgmAypm+uug7M1ttHV6PbBictZ/TGCrnAjHm6QCAKIrnNc
+         YMMVxDv5HKOtnlgM/RUdgkfSEnwOdBR1bOozmHY9Zhu3cpQ+uxZh5/Owv+Im8bBCJs0P
+         CRhUs+rjqD+24Cxv7SEUdOnAcSz9GbvwH0Sz85YrrMl/O21+QjRNM2D9LTm+AfdpDxz/
+         nHxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=4x3b3Gg53/QoChOehhMF0HfM7H2Z3AdxYrpI7W1n9qE=;
-        b=jXFdxznEUI4MBfypi4jJYTUESFCllPTrjut5+mIObBS7QygQHRqL8m3snSY4aV3dpT
-         euzBLVh03KKVEfZQ7t9uTBwWKBunZOeLcwDpaInRy2iktbwP1FbpXBVH/BsE/qs3zfIo
-         juupd8AmtFhJNvvnEykRPStDvWZ5LxlShKsMmCuOYvWqY5M24Pw35adZX92pUlscSGHu
-         6q9VLtm5mMvSTw9inZuYde1+KExrCqdFg6kk+Z91hbA+5fVL6bJy30/WpGEYo154sWD0
-         FJNAXvr1nzLMIfM5Ne5kZjvblRj+jyZV97dBMNZN+sS5vfymDyZZHTw+2lfwmQpRiflW
-         8SDA==
-X-Gm-Message-State: AOAM530k8iSQAe6SisChbxL78QyeDz7niJLL/7XU9IfIqIPa9PcUX/F6
-        H7oNwHL5ClswzDDXe9XEY+M=
-X-Google-Smtp-Source: ABdhPJxloq4EW+hzTQXi0U2oQmgMwFgecmA1KwBfS3QQnusRm/qLZRha65WS4RBSHkMjDTN1iTT34Q==
-X-Received: by 2002:a2e:7307:: with SMTP id o7mr9537858ljc.323.1599466283823;
-        Mon, 07 Sep 2020 01:11:23 -0700 (PDT)
-Received: from ?IPv6:2a00:1fa0:6a2:89f3:b416:2a89:c3ba:d276? ([2a00:1fa0:6a2:89f3:b416:2a89:c3ba:d276])
-        by smtp.gmail.com with ESMTPSA id n21sm6422769ljc.89.2020.09.07.01.11.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Sep 2020 01:11:23 -0700 (PDT)
-Subject: Re: [PATCH 4/9] arm64: dts: renesas: r8a77961: Add FCP device nodes
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=e3Ta+K0mK8PpGvlCwRAXKhWKCtC3zo1Ck8yWJNQiAbc=;
+        b=UBiPEz1oSaC/N/PafMlkEeUEWkEtLNy056NSLI2fV4AhfFsgZ5rnC/IU9uoaDUoIgr
+         VLnn5Hdrt04EihEm2sbmAIBW39CtuK1WfvQQYWHw+xzHhQNETnJAbc4/anSoJF4I3y6o
+         Ily0P9fo6dDemUphQRMU+DWdLics8R8wtVz7AhanHUFpo/HgXvtMQOfuRXaPs6vqOVmY
+         F4zvXBBYjGnqOWDmD2WOr2CPaeo07NLzl6MVJ2Zwhor17M9lLdNoDGe3l6zz1+eEj2Q3
+         f5yh0IWNjvqZyEZ73k/UliMSdJrmCzskTYqXaiviSeA3A5DS90D8hppvccebS9SGBuGH
+         W7KQ==
+X-Gm-Message-State: AOAM533HMxknO+kNPAqB7LKTDMeVMNnDmymmXGD7fmaslt5I/laS/5T1
+        y6ePT+pDVpQRM9f4CHqWyWVMNA==
+X-Google-Smtp-Source: ABdhPJzqlqQ/xXSxZ0lbww5TZ6AZTnF7NA2XnTh1An/jnwbvuMzqoK0s9KMICLsQ2iJA4xPkNvSEbg==
+X-Received: by 2002:a1c:3bd7:: with SMTP id i206mr19701901wma.162.1599466643283;
+        Mon, 07 Sep 2020 01:17:23 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id u17sm25259954wmm.4.2020.09.07.01.17.21
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 07 Sep 2020 01:17:22 -0700 (PDT)
+Subject: Re: [PATCH v2 0/4] soundwire: qcom: add support for mmio soundwire
+ master
+To:     Jonathan Marek <jonathan@marek.ca>, linux-arm-msm@vger.kernel.org
+Cc:     "moderated list:SOUNDWIRE SUBSYSTEM" <alsa-devel@alsa-project.org>,
+        Andy Gross <agross@kernel.org>,
+        Bard Liao <yung-chuan.liao@linux.intel.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Laurent <laurent.pinchart@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     Magnus <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux-DT <devicetree@vger.kernel.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        "(Renesas) shimoda" <yoshihiro.shimoda.uh@renesas.com>,
-        dri-devel@lists.freedesktop.org
-References: <87sgbu70tq.wl-kuninori.morimoto.gx@renesas.com>
- <87mu2270se.wl-kuninori.morimoto.gx@renesas.com>
-From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Organization: Brain-dead Software
-Message-ID: <45210ed5-bc34-990f-b92f-0ec5aadd2488@gmail.com>
-Date:   Mon, 7 Sep 2020 11:11:20 +0300
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        Sanyog Kale <sanyog.r.kale@intel.com>,
+        Vinod Koul <vkoul@kernel.org>
+References: <20200905173905.16541-1-jonathan@marek.ca>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <ec241abf-c1e1-8b2d-a0bb-93a60241330c@linaro.org>
+Date:   Mon, 7 Sep 2020 09:17:21 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <87mu2270se.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <20200905173905.16541-1-jonathan@marek.ca>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -80,16 +78,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07.09.2020 5:58, Kuninori Morimoto wrote:
 
-> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+
+On 05/09/2020 18:39, Jonathan Marek wrote:
+> This adds initial support for soundwire device on sm8250.
 > 
-> This patch adds FCP device nodes for R-Car M3-W+ (r8a77961) SoC.
-> This patch is test on R-Car M3-W+ Salvator-XS board.
+> Tested with the "wsa" sdw device, which is simpler than the others.
+> 
+> v2 addresses some feedback, but I kept this series as simple as possible.
+> In particular, I didn't implement CMD_NACKED from FIFO_STATUS, because
+> the downstream driver doesn't define this bit, so I can't implement it.
+> Soundwire works without it and It shouldn't be difficult to implement later.
+> 
+> Jonathan Marek (4):
+>    soundwire: qcom: fix abh/ahb typo
+>    soundwire: qcom: avoid dependency on CONFIG_SLIMBUS
+>    soundwire: qcom: add support for mmio soundwire master devices
+>    soundwire: qcom: add v1.5.1 compatible
+> 
+Hi Jonathan,
+I have tested these patches on RB5 with WSA8810 and they work fine.
 
-    Was tested?
+I can try to add support to command ignored in future, but for now these 
+look good to me!
 
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-[...]
 
-MBR, Sergei
+Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Tested-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+
+
+Thanks,
+srini
+
+>   .../bindings/soundwire/qcom,sdw.txt           |  1 +
+>   drivers/soundwire/Kconfig                     |  2 +-
+>   drivers/soundwire/qcom.c                      | 38 +++++++++++++++++--
+>   3 files changed, 36 insertions(+), 5 deletions(-)
+> 
