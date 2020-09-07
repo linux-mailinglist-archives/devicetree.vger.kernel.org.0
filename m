@@ -2,98 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE50025F7C8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 12:20:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8220B25F847
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 12:30:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728780AbgIGKUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 06:20:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32790 "EHLO
+        id S1728811AbgIGK3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 06:29:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728806AbgIGKTx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 06:19:53 -0400
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC99DC061573
-        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 03:19:52 -0700 (PDT)
-Received: by mail-ej1-x643.google.com with SMTP id z22so17504925ejl.7
-        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 03:19:52 -0700 (PDT)
+        with ESMTP id S1728946AbgIGK2P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 06:28:15 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDE02C061755;
+        Mon,  7 Sep 2020 03:28:14 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id f18so8406157pfa.10;
+        Mon, 07 Sep 2020 03:28:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=sedeRDWMoezcviADR+g7IKIn4HgyZAL0BcEk2Cj9tZo=;
-        b=cwvYwi93Xujue0A27C22FmNrzTQWwpz6kGMpuy/j7b6GdGIeyuXjDFj4uvrkKbdMY1
-         wbzjtDiqdlQmXOUvl4vMZNCWJr/AQNzh4Zu796aKup9VgeQiLwEoIessiz3aRLIUwBS1
-         9nsjDL1bBTLClspl35thzutNjbZzhMCEMlBqNKATLqC3N432Uvi09vIXMAiBO3sv5rma
-         olhEyAbmkK3XBVmDzm5Hg2wHMk5hJpY308RsaAVmF0Q4qZfb+piv6BiawJB8ErACdDaq
-         b990X8S6pYUZrMF1qTPyawdpeq8c/otVnBPgB8GanDxRpq73TqLDwyedooU3I0JK4GWL
-         fpJA==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=CBAjwcA4hZoU/siThfOYzyCueHpWs1VgxUUUg5ulGQ0=;
+        b=kWqWj4O3Jx+m/ssQOZ00iU5lgeVEeWpcUrqXYL85RfPgNlQOAHeVGJUBJrIj7jBCtf
+         Y8NUcg6GsAsYi52Ok9Hu8fHOIPS3jlhSN7tWtHiiuJ/AnKemrTnRg75Q7OsNL+/4VQl1
+         +MmpZ6VzwgQek0rakGYay0eoe7GsmhNpUrwjCqraEM+10asJoZje0gFbdxgymQ8KR41A
+         2zsU8Nu51mzG2zGfG+3XTSZbHBx3tTZ1fy6ALPtverMG+1l5utw4Zpl/XvPhpgjQPYki
+         p/fjAXU2ocxRc6vmVzjz4YX0dxXuBLxYQ8sbAtUodxEsZvPtAr5B9/SR6f3NTCp/2K9d
+         ht4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=sedeRDWMoezcviADR+g7IKIn4HgyZAL0BcEk2Cj9tZo=;
-        b=FkLCJb/kGMmoCmvO3W5hL3xT6pBTR0zmXQmuq2/hbdlZFDFrCeysqWl5wSbt8scdsB
-         AiGZ0dRZOJt3a68um7nSvMccTCXHn57DEeqNUhbwR4SybVyFOtOJgxaNBuUimfloOdMT
-         yWJ4eu/VM7Mgs3TkrlvWdTuc+5e4cMcOQs0TPuDR9j1/iUjvMrD+o5UJ2eQWfutE64/T
-         ddpE+WRa9FYZUVNLqVvVWZyTcDhB4/EUJ99aXfx6DG4OKHDjK8y5ooRcoc68P1b0dPzO
-         6FGVyGRgNuGLfWJ6MDYOZlkpYH5JqQVMVB5MCZxqmO3aNe0z+gpA20guClTyAZ7FoInE
-         3ofg==
-X-Gm-Message-State: AOAM533RqIwSkyhPxxux4UIEJhxj3Z94Faar3j/9EHmsQeuPA0o1RvKJ
-        Bs47YtKlCbW/xaaKcPmMT6kWCw==
-X-Google-Smtp-Source: ABdhPJwOUdKroG6QpMUeWOaEu37lfkcf9Z+8t4vcgTfcefFW6hh8pBRW9lP+6y7DW71SXqzxffL9hA==
-X-Received: by 2002:a17:906:f6c9:: with SMTP id jo9mr20007781ejb.233.1599473991581;
-        Mon, 07 Sep 2020 03:19:51 -0700 (PDT)
-Received: from localhost.localdomain (dh207-98-39.xnet.hr. [88.207.98.39])
-        by smtp.googlemail.com with ESMTPSA id q11sm14423160eds.16.2020.09.07.03.19.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Sep 2020 03:19:50 -0700 (PDT)
-From:   Robert Marko <robert.marko@sartura.hr>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>
-Subject: [PATCH] arm: dts: IPQ4019: add SDHCI VQMMC LDO node
-Date:   Mon,  7 Sep 2020 12:19:37 +0200
-Message-Id: <20200907101937.10155-1-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.26.2
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=CBAjwcA4hZoU/siThfOYzyCueHpWs1VgxUUUg5ulGQ0=;
+        b=DdCEcvNFcoPRGC3I3zScAcqtbLXjzS25cmXcYIz3NdameRiqCOW5Qlcu4kNhra99Oe
+         JgJeN0qquICC4lTtCI7KQu+gSIHIsBGUF9Eykp8/63Iuan/Flulqxyy3+OzDepIxrFRm
+         uEtHKZfkh0ZvxRwoADuU4EfRG99I2E+4oKHkJxyyYb7PUMiBldHQxImnBjIFi9fssXZs
+         wotvFWqc3yNBG/qsGuFL3psreaR01906MbVudWLzOOtZ6csTt/0rJbL+nogIrnXNWwUz
+         6BTD54O7H0WAQDzcZIJnpT1Hct61xrAGBGD13RmAqrVokUZvgu8Hmy6h9bCKGlOYoRax
+         0J1g==
+X-Gm-Message-State: AOAM531ekoYOMx+8iWOqpCP72kQe80GREASTOt/FP+3YO22IVaFoLK5Y
+        aVHDQ8/GTq9mWOS+cxoV5fy1S5Et0+w=
+X-Google-Smtp-Source: ABdhPJyz0ak7cYr71ekRNjFYcWrCNQYPqc6H+PRwgl7o7v2SVn0qNSINzfq7opvN8pkv0zZXhPtn+Q==
+X-Received: by 2002:a05:6a00:1688:: with SMTP id k8mr19948800pfc.33.1599474494511;
+        Mon, 07 Sep 2020 03:28:14 -0700 (PDT)
+Received: from localhost.localdomain ([2402:7500:568:81bf:545f:f984:753e:4bcc])
+        by smtp.gmail.com with ESMTPSA id q193sm15009717pfq.127.2020.09.07.03.28.11
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 07 Sep 2020 03:28:14 -0700 (PDT)
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+To:     jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
+        matthias.bgg@gmail.com
+Cc:     dmurphy@ti.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        gene_chen@richtek.com, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Subject: [PATCH v3 0/2] leds: mt6360: Add LED driver for MT6360
+Date:   Mon,  7 Sep 2020 18:27:37 +0800
+Message-Id: <1599474459-20853-1-git-send-email-gene.chen.richtek@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since we now have driver for the SDHCI VQMMC LDO needed
-for I/0 voltage levels lets introduce the necessary node for it.
+In-Reply-To: 
 
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-Cc: Luka Perkov <luka.perkov@sartura.hr>
----
- arch/arm/boot/dts/qcom-ipq4019.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+This patch series add MT6360 LED support contains driver and binding document
 
-diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-index 6741a1972e55..7774dbd3cec7 100644
---- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-@@ -211,6 +211,16 @@ tlmm: pinctrl@1000000 {
- 			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		vqmmc: regulator@1948000 {
-+			compatible = "qcom,vqmmc-ipq4019-regulator";
-+			reg = <0x01948000 0x4>;
-+			regulator-name = "vqmmc";
-+			regulator-min-microvolt = <1500000>;
-+			regulator-max-microvolt = <3000000>;
-+			regulator-always-on;
-+			status = "disabled";
-+		};
-+
- 		sdhci: sdhci@7824900 {
- 			compatible = "qcom,sdhci-msm-v4";
- 			reg = <0x7824900 0x11c>, <0x7824000 0x800>;
--- 
-2.26.2
+Gene Chen (2)
+ leds: mt6360: Add LED driver for MT6360
+ dt-bindings: leds: Add bindings for MT6360 LED
+
+ Documentation/devicetree/bindings/leds/leds-mt6360.yaml |  105 ++
+ drivers/leds/Kconfig                                    |   11 
+ drivers/leds/Makefile                                   |    1 
+ drivers/leds/leds-mt6360.c                              |  681 ++++++++++++++++
+ 4 files changed, 798 insertions(+)
+
+changelogs between v1 & v2
+ - add led driver with mfd
+
+changelogs between v2 & v3
+ - independent add led driver
+ - add dt-binding document
+ - refactor macros definition for easy to debug
+ - parse device tree by fwnode
+ - use devm*ext to register led class device
 
