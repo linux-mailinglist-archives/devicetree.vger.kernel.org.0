@@ -2,81 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3872425F73B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 12:06:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A60FF25F75C
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 12:09:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728451AbgIGKGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 06:06:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58864 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728404AbgIGKGP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 06:06:15 -0400
-Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E2FDC061574
-        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 03:06:15 -0700 (PDT)
-Received: by mail-io1-xd44.google.com with SMTP id r25so2447082ioj.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 03:06:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=v0OvTuxE+/iMswMQTjQb/bjlIs084TlMlRT8WNmVF+Y=;
-        b=1NqE+sdR4ONCLnZ5XhFqnlHSfQVFov4iy/cT+yyxmAzy5+YCr/Ul9KigmS858zeHof
-         veerpBJ8XhqPoT84DSedPKvLdYY3GqAGqRsEkjV+NU9bChBpBNA1NZNkxENzA7KPM1cJ
-         YbNZSDGYeZOwNGjxpWRPNef161HXLK7nWTU8e4wLNPz62F/si1Y2ll6mGdGWppAmk1hR
-         XDf6BujzOkpGItyYi/ysU1ESNG0WrA8+8+xAtGfGZlmB8cW9STc/iJZZuljVuRxIfSg+
-         PhJx7H8iMDclSVWwaOTyu7KmLReNaaaD0MY9P/+s2Gt3YrLzIKH9AUN2tCQZJViElB9G
-         Vc5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=v0OvTuxE+/iMswMQTjQb/bjlIs084TlMlRT8WNmVF+Y=;
-        b=JmPNsR81MrhQGScB+kRISpZeoq0aTIxbLU6eiyQlCtcHdFysO6mVKvcZlo8Qwc3oA7
-         o7g1pzotJ1K69J0t6awxsYuVGvUFB38oIhn9TK0nYoyRHc3NhHntf8LlYQQ2QvGpLgZN
-         JLSI5b3TSnfzmZ2Npk6bK3KoEY2Z/pSo43yRHlPGdaQjTwg5NhNppcHen0Yviss/uPpk
-         sGORqxHLLm210R8le/lWwmulPjXSAOoqJTOY22tu9hezF3yigPArD8C39BwmG4mMZesB
-         uwuw+UGIGlG54Yg/gxKm65Gt+0JLB0NDRATf7p/3ayaBWyuGRV+Gkv6uCaJ73T1lRSdb
-         VTwA==
-X-Gm-Message-State: AOAM531VIk0jU0Yc4Nc5aIrI4X9ac4O5L6k03ciiO1B+y0/+28IFEB9v
-        k8olOrW65YBryUPDW8fkkNR6pj1FR2cTV5rm/vXEkw==
-X-Google-Smtp-Source: ABdhPJw52QuX8XyBkW5w5YSCJbnGbo22v3h5joTjE50AnRXJMICHttb6i5OzXghJCZwUuJmPrBvIE2wQCbUxcbTWSzI=
-X-Received: by 2002:a5d:80d6:: with SMTP id h22mr2869058ior.154.1599473174144;
- Mon, 07 Sep 2020 03:06:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200906151928.881209-1-fparent@baylibre.com> <20200906151928.881209-3-fparent@baylibre.com>
- <1599450232.27773.13.camel@mhfsdcap03>
-In-Reply-To: <1599450232.27773.13.camel@mhfsdcap03>
-From:   Fabien Parent <fparent@baylibre.com>
-Date:   Mon, 7 Sep 2020 12:06:03 +0200
-Message-ID: <CAOwMV_wXM9Tt-NhKQ05juvj06reD70AXUNzqWTEMeAgqcmnO0g@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] iommu/mediatek: add support for MT8167
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     iommu@lists.linux-foundation.org,
-        DTML <devicetree@vger.kernel.org>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, joro@8bytes.org,
+        id S1728424AbgIGKJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 06:09:08 -0400
+Received: from foss.arm.com ([217.140.110.172]:59534 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728317AbgIGKJH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 06:09:07 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8F4FA30E;
+        Mon,  7 Sep 2020 03:09:06 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9312B3F66E;
+        Mon,  7 Sep 2020 03:09:04 -0700 (PDT)
+Date:   Mon, 7 Sep 2020 11:09:02 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        miles.chen@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+        Magnus Damm <magnus.damm@gmail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH 0/5] Add PCIe EP nodes on RZ/G2[EMN]
+Message-ID: <20200907100902.GF6428@e121166-lin.cambridge.arm.com>
+References: <20200814173037.17822-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200814173037.17822-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > +static const struct mtk_iommu_plat_data mt8167_data = {
-> > +     .m4u_plat     = M4U_MT8167,
-> > +     .flags        = HAS_4GB_MODE | RESET_AXI | HAS_LEGACY_IVRP_PADDR,
->
-> The 4GB mode flow was improved at[1] which has just been applied.
->
-> If you add 4gb_mode flag but don't have "mt8167-infracfg", the probe may
-> be failed.
+On Fri, Aug 14, 2020 at 06:30:32PM +0100, Lad Prabhakar wrote:
+> Hi All,
+> 
+> This patch series adds support for PCIe EP nodes to Renesas r8a774a1,
+> r8a774b1 and r8a774c0 SoC's.
+> 
+> Patches are based on top of [1].
+> 
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/helgaas/
+>     pci.git/log/?h=next
+> 
+> Cheers,
+> Prabhakar
+> 
+> Lad Prabhakar (5):
+>   dt-bindings: pci: rcar-pci-ep: Document r8a774a1 and r8a774b1
+>   misc: pci_endpoint_test: Add Device ID for RZ/G2M and RZ/G2N PCIe
+>     controllers
+>   arm64: dts: renesas: r8a774a1: Add PCIe EP nodes
+>   arm64: dts: renesas: r8a774b1: Add PCIe EP nodes
+>   arm64: dts: renesas: r8a774c0: Add PCIe EP node
+> 
+>  .../devicetree/bindings/pci/rcar-pci-ep.yaml  |  7 +++-
+>  arch/arm64/boot/dts/renesas/r8a774a1.dtsi     | 38 +++++++++++++++++++
+>  arch/arm64/boot/dts/renesas/r8a774b1.dtsi     | 38 +++++++++++++++++++
+>  arch/arm64/boot/dts/renesas/r8a774c0.dtsi     | 19 ++++++++++
+>  drivers/misc/pci_endpoint_test.c              |  7 +++-
+>  5 files changed, 105 insertions(+), 4 deletions(-)
 
-Looking back at the datasheet I don't think HAS_4GB_MODE should have
-been enabled for MT8167 anyway. I just removed it and retested the
-patch. I will fix it in v4. Thanks
+I can take the first two patches but the dts changes should be routed
+and posted to arm-soc.
 
-> [1]
-> https://lore.kernel.org/linux-iommu/20200904112117.GC16609@8bytes.org/T/#m613e9926735d07ad004fddbbcedaa50b5afacca1
+Lorenzo
