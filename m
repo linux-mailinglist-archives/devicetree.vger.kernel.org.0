@@ -2,113 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB2C226038B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:51:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9E542603CB
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:54:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729132AbgIGRu7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 13:50:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46290 "EHLO
+        id S1730958AbgIGRyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 13:54:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729201AbgIGRuw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 13:50:52 -0400
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77D09C061575;
-        Mon,  7 Sep 2020 10:50:51 -0700 (PDT)
-Received: by mail-ed1-x544.google.com with SMTP id g4so13541585edk.0;
-        Mon, 07 Sep 2020 10:50:51 -0700 (PDT)
+        with ESMTP id S1729184AbgIGRyu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 13:54:50 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1D47C061573;
+        Mon,  7 Sep 2020 10:54:47 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id z4so16616432wrr.4;
+        Mon, 07 Sep 2020 10:54:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=gGQvma3nuTyV30O0fS82yIIMXNwAZqpMzL1inVOBxj4=;
-        b=XGCwG1Z2WhE6UQB2Gd6Nad0mHac2b18Vnwv77jPr3By13c0IMK8gvuclW1VW9fS+h3
-         0HHSOTlUH7fEEO4FG0AuejAaxBO+WFqITVDW2mZroL1v0GuZdPSK6GV0iOJKaryKVgHd
-         lE8KfZeXi7K9OqhuBCAJbMDTvd8sIJTU/I0z4UbVhVM4L9EuSIcl0KBxkMyLjtsvRl+c
-         vc6wer6PEzK1iTS/sOdY5NdC2KSDhTWZMDvfdDHEjFUYj9o/9++fxqUrvRRUOQdcpQpG
-         KSWZZVIp73AZjXJ20PoYB0SDmKQ+boxjhPE/+MPjSFM7Ucfcr3DI4fQo8SSQ3I7h2FDU
-         ryVw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FbRc5khqS8fj5sPJsPlmiUlETyEoMORWYslwTB7qr70=;
+        b=fDz8WphjtGoceLUkrGnnfBAOwDy5R8rTqCFJt4PTP+rBKl/C5XoRukYIkF3G2w9elx
+         PUVLJejK4SzQ1ZTR2pTmWD5lXLdGtREDcihYsHauYv5JcWGJVGgsm5R1GYZzAcqiyIDY
+         3Q0NdERNA8RYIyQOUcJgMPbzEL0UY5iYojbeYCK0cxWshQbnGuYTE3N1bT6dviE2kz5Z
+         zTHwoeoMIgvH7wk25c8sP2Mvqn9yz9F0nPn8jjADAbpHgcKEiF3qH/dKpN0xhcKwYKVa
+         CcUSK8s8myoplLJskSpusJcfIODFVnjlx7CAZPakyHWbCVmCt1dXr1HtLDUDpB82i7q+
+         TMEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=gGQvma3nuTyV30O0fS82yIIMXNwAZqpMzL1inVOBxj4=;
-        b=ZGO6lNOrw4tgS58NQG3PBp5lLn492FunmVVa31qWt34T1U0q9cJmkbdLwWWAn3dumr
-         +sn5xSOeeaoiZ/90KUoy7OwDM6ZY/q9Uw72LhAKLNzU0We/3PTgMo9blvfExfeK7vtms
-         1a9b781Ok6is1UqFIfRaPxvhW5kyrfosYyRH7lmciS23WJmKZ7Y4Wwv/lLhE5+66gQ24
-         0b75f3JBgeX92GNzE2pUvJu37Rq/WJmrf8rQ8Bu64lmQSYzsSfJDVyOU09GoEfbQ6Nf8
-         +RwH3kIiu69ihcQEH2ZcS5NqkAF4CqSAAPoPdW75RXph5Ya5YJuDaSkbjxZGfSL7IQVj
-         CRfA==
-X-Gm-Message-State: AOAM530mH4BB+jnvAIA9j//TQUBYd8LnHfBU62/E9EsiYu5HQW/TWXqy
-        ygpp4hDzyC7v2Yvc5KixS37vP+qFMLyrvw==
-X-Google-Smtp-Source: ABdhPJyIYPLmgopLV56/2IHBu3wOSWeGmQ5jBx1w5BHnUPJhoC7ADTfKz8tjYbv+NpZMrwQo5Sstww==
-X-Received: by 2002:aa7:d296:: with SMTP id w22mr22982033edq.327.1599501049279;
-        Mon, 07 Sep 2020 10:50:49 -0700 (PDT)
-Received: from bcbook.internal (a89-183-24-75.net-htp.de. [89.183.24.75])
-        by smtp.gmail.com with ESMTPSA id bm2sm13423993edb.30.2020.09.07.10.50.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Sep 2020 10:50:48 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: marvell: espressobin: Add ethernet switch
- aliases
-To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Jason Cooper <jason@lakedaemon.net>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tomasz Maciej Nowak <tmn505@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20200907112718.5994-1-pali@kernel.org>
- <3ec54259-4bfe-8462-e8d5-083fc009707a@gmail.com>
- <20200907172303.GA3254313@lunn.ch> <20200907173534.aoupftjkxgcftfqo@pali>
- <f8cce9af-372b-f2bc-ea09-e1516367cb90@gmail.com>
- <20200907174705.clknw4375smvt47o@pali>
-From:   Andre Heider <a.heider@gmail.com>
-Message-ID: <97cce972-201f-dc54-644d-37bbbf369632@gmail.com>
-Date:   Mon, 7 Sep 2020 19:50:47 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.2.1
+        bh=FbRc5khqS8fj5sPJsPlmiUlETyEoMORWYslwTB7qr70=;
+        b=VExl44I8++okZ87a7TkqakrZWyoPKvIzVe4qzbQM6KOVNaWytbw4DbvYxGJENa69+C
+         FNltfkaehuxWlZIv6DFZztDRPuvibWBniAW0eeizg1ktQHQom5g/UXx+2vdGb/22XfFt
+         +bWz2iSprLVFch4Fo7ZnyvqNGWIWLR251BFt7QjYuVCE4u+nSaumQQOegGkkStxObENU
+         ROFSVAV7Lh14kFQiXJUsBiZSlHlFDf/BMsUdko1bum8Vt0ARY5gMuuM9JK0N0Ymg7RYe
+         i06g/SxFRUZn6fUIq5xcoPEKdJA8obSLTa4swH/sO9rh0bpawx7ho9rizxLCbMOhwwwt
+         6jQA==
+X-Gm-Message-State: AOAM533hB8OHNElj3wx2K5Y4Vz6BtToSDekSVJJ6hJTho6ediKJO2E3J
+        sHEOgTeh4dvj3aE5Z7maHiU=
+X-Google-Smtp-Source: ABdhPJyJbIrC0i02kkLyImI7fa2gKNv0JlxUJcUkpnOxEI7wSgKZ5W7ljdSo3sEUeo0nn22qV5Ktcg==
+X-Received: by 2002:a5d:4645:: with SMTP id j5mr22359726wrs.230.1599501286489;
+        Mon, 07 Sep 2020 10:54:46 -0700 (PDT)
+Received: from Red.localdomain ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id f6sm29049995wro.5.2020.09.07.10.54.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Sep 2020 10:54:45 -0700 (PDT)
+From:   Corentin Labbe <clabbe.montjoie@gmail.com>
+To:     davem@davemloft.net, herbert@gondor.apana.org.au,
+        mripard@kernel.org, robh+dt@kernel.org, wens@csie.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com, m.cerveny@computer.org,
+        Corentin Labbe <clabbe.montjoie@gmail.com>
+Subject: [PATCH v3] dt-bindings: crypto: Specify that allwinner,sun8i-a33-crypto needs reset
+Date:   Mon,  7 Sep 2020 19:54:37 +0200
+Message-Id: <20200907175437.4464-1-clabbe.montjoie@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <20200907174705.clknw4375smvt47o@pali>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: de-DE
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/09/2020 19:47, Pali Rohár wrote:
-> On Monday 07 September 2020 19:43:08 Andre Heider wrote:
->> On 07/09/2020 19:35, Pali Rohár wrote:
->>> On Monday 07 September 2020 19:23:03 Andrew Lunn wrote:
->>>>> My dts-foo is a little rusty, but now that you labeled the ports in the
->>>>> .dtsi, can this whole "switch0" block reduced to something like:
->>>>>
->>>>> &switch0port1 {
->>>>> 	label = "lan1";
->>>>> };
->>>>>
->>>>> &switch0port3 {
->>>>> 	label = "wan";
->>>>> };
->>>>
->>>> Probably yes.
->>>>
->>>> But that is definitely too much for stable.
->>>
->>> Yes, this suggested change is not for stable, but looks like a nice
->>> cleanup. So it could be done in followup patch.
->>>
->>> Andre, are you going to prepare and test this followup change?
->>
->> I can prep the patch if you like, but the suggested cleanup only affects the
->> v7 dts files. I don't have that hardware version to test it, so could only
->> send an untested patch.
-> 
-> As a result of this cleanup should be binary DTB file for V7 with same
-> structure as DTB file without such cleanup patch, right? And this test
-> (structure / content of compiled file) does not need particular hardware.
+When adding allwinner,sun8i-a33-crypto, I forgot to add that it needs reset.
+Furthermore, there are no need to use items to list only one compatible
+in compatible list.
 
-Ok, will do.
+Fixes: f81547ba7a98 ("dt-bindings: crypto: add new compatible for A33 SS")
+Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+---
+Change since v2:
+- fixed enum syntax
+
+Change since v1:
+- use an enum for adding allwinner,sun8i-a33-crypto to "reset list"
+
+ .../bindings/crypto/allwinner,sun4i-a10-crypto.yaml        | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
+index fc823572bcff..90c6d039b91b 100644
+--- a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
++++ b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
+@@ -23,8 +23,7 @@ properties:
+       - items:
+           - const: allwinner,sun7i-a20-crypto
+           - const: allwinner,sun4i-a10-crypto
+-      - items:
+-          - const: allwinner,sun8i-a33-crypto
++      - const: allwinner,sun8i-a33-crypto
+ 
+   reg:
+     maxItems: 1
+@@ -59,7 +58,9 @@ if:
+   properties:
+     compatible:
+       contains:
+-        const: allwinner,sun6i-a31-crypto
++        enum:
++          - allwinner,sun6i-a31-crypto
++          - allwinner,sun8i-a33-crypto
+ 
+ then:
+   required:
+-- 
+2.26.2
 
