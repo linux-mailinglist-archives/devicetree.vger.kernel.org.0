@@ -2,76 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB26625FC41
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 16:49:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A82CE25FC55
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 16:54:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729982AbgIGOr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 10:47:59 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:45997 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729661AbgIGOrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 10:47:48 -0400
-Received: by mail-oi1-f195.google.com with SMTP id d189so13744969oig.12;
-        Mon, 07 Sep 2020 07:47:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QcjiiAfx+9k9N5nfOR2G/TrS6pvq+Cvo4vzFD0ysl/k=;
-        b=MwaqAuEEw7q/sR6nExBQUc3HwYHaFcnMhsS25KrKyII/cMr7jCU5liMJKQ6/Xg8wFI
-         3/DS7SnwX92vHlNzsft69T27eYmivyjNtiUksW0C/7N3XCjfCOuRpa1g806FMzi+wgvT
-         HQCaV22/q1vKBdNQfZe23a0tGiiTw2YGQ9xrJpydwWgdKc/tlQYsYZxyQBCqPZLQrkss
-         mhc3PA1G4AblJqXuYNQJ0viP7MQtqUsfb5P1DxE7/AuLrfJ59wP+PVpQU9pB2GNm0HmL
-         fijpd6bkB3yHSSfvc7QfhkKzKD/6TGLBRMrCJ8LHgTynmhSbUH3dyFKnmqIta5/x0s2M
-         fr1A==
-X-Gm-Message-State: AOAM531aqJnKRRkNeaHsnZvvW1fIirVRwbb+vwlZyoucNit0QqBJUB2E
-        3tCk1iGewaSPodUmYwDJ667HloQCJDipNSJA2bQ=
-X-Google-Smtp-Source: ABdhPJyY+mdyDZV49zKGIPNu9C6xRs+fpbm9lxoTKNZqCdCFCV/vcvj1uvGnRbxs8d7YoKMermrp1Bu/17LgaaygxOw=
-X-Received: by 2002:aca:52d6:: with SMTP id g205mr12624421oib.54.1599490065211;
- Mon, 07 Sep 2020 07:47:45 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200907144509.8861-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20200907144509.8861-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20200907144509.8861-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 7 Sep 2020 16:47:34 +0200
-Message-ID: <CAMuHMdWGG+7dnrKxeA3S_g01jk3fSO_n2uP1-r0R279VF5TVcQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: media: renesas,vin: Add device tree
- support for r8a7742
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        id S1729883AbgIGOxj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 10:53:39 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:41638 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730049AbgIGOwb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 10:52:31 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 087EqR5k083985;
+        Mon, 7 Sep 2020 09:52:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599490347;
+        bh=SKjEARJSEdZouxBFx9iMfSktRPFzjW/EAp3EiPowD5g=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=zBLox/2D6xSZrodBqQ6+1kl8lnUMriOJqCD2tlEOTsTVoFYepFJ2W7WDSVQPnjp4T
+         fgEwgh1N8cCfQyhA5x7NsroLMl24xfct4qBYLhppzmuf1LPmxssh/BUimtxDVjO3U7
+         BwOAuQCd2/pmtD5RfHfGNrTpNRAA5KtlvpxCy5YE=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 087EqQ5a034660;
+        Mon, 7 Sep 2020 09:52:27 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 7 Sep
+ 2020 09:52:26 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 7 Sep 2020 09:52:26 -0500
+Received: from lta0400828a.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 087EqEEP010923;
+        Mon, 7 Sep 2020 09:52:24 -0500
+From:   Roger Quadros <rogerq@ti.com>
+To:     <t-kristo@ti.com>, <nm@ti.com>
+CC:     <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
         <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        <linux-arm-kernel@lists.infradead.org>, <nsekhar@ti.com>,
+        <kishon@ti.com>, Roger Quadros <rogerq@ti.com>
+Subject: [PATCH v2 4/6] arm64: dts: ti: k3-j7200-main: Add USB controller
+Date:   Mon, 7 Sep 2020 17:52:11 +0300
+Message-ID: <20200907145213.30788-5-rogerq@ti.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200907145213.30788-1-rogerq@ti.com>
+References: <20200907145213.30788-1-rogerq@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 7, 2020 at 4:46 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Add compatible string for r8a7742. No driver change is needed as
-> "renesas,rcar-gen2-vin" will activate the right code.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+j7200 has on USB controller instance. Add that.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Roger Quadros <rogerq@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 30 +++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+index af9e8e46b49e..c64bf652f0d2 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+@@ -331,4 +331,34 @@
+ 		no-1-8-v;
+ 		dma-coherent;
+ 	};
++
++	usbss0: cdns-usb@4104000 {
++		compatible = "ti,j721e-usb";
++		reg = <0x00 0x4104000 0x00 0x100>;
++		dma-coherent;
++		power-domains = <&k3_pds 288 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&k3_clks 288 12>, <&k3_clks 288 3>;
++		clock-names = "ref", "lpm";
++		assigned-clocks = <&k3_clks 288 12>;	/* USB2_REFCLK */
++		assigned-clock-parents = <&k3_clks 288 13>; /* HFOSC0 */
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		usb0: usb@6000000 {
++			compatible = "cdns,usb3";
++			reg = <0x00 0x6000000 0x00 0x10000>,
++			      <0x00 0x6010000 0x00 0x10000>,
++			      <0x00 0x6020000 0x00 0x10000>;
++			reg-names = "otg", "xhci", "dev";
++			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,	/* irq.0 */
++				     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,	/* irq.6 */
++				     <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;	/* otgirq.0 */
++			interrupt-names = "host",
++					  "peripheral",
++					  "otg";
++			maximum-speed = "super-speed";
++			dr_mode = "otg";
++		};
++	};
+ };
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
