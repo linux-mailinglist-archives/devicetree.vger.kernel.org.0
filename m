@@ -2,130 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E854225FF68
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 18:31:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0299925FF60
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 18:31:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729831AbgIGQbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 12:31:45 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:52962 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729690AbgIGOXp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 10:23:45 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 087ENTOZ013858;
-        Mon, 7 Sep 2020 09:23:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599488609;
-        bh=vOt5jgEVI5IP+P9UtdrVL509eExBOW74aWC6FEjb+Ms=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=QMX+0gMoJGX9c4bZFtbLZ12SZeQaaeAqeF04GCGaR8mwLdSYZm38q5QpW0q4vVEJK
-         seryiNxaDCxa2jEHoQJt0Q8Oq2fDDztBwpJzSpOhGVyMUBiP4pc/sJ3nbKy9sDda7h
-         948s74VICdKZ+x7OsYHdz6JKgHXZgp/JUJOkAOlo=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 087ENT1I053179
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Sep 2020 09:23:29 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 7 Sep
- 2020 09:23:29 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 7 Sep 2020 09:23:29 -0500
-Received: from [10.24.69.20] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 087ENJNp087360;
-        Mon, 7 Sep 2020 09:23:24 -0500
-Subject: Re: [PATCH v2 0/4] arm64: Initial support for Texas Instrument's
- J7200 Platform
-To:     Nishanth Menon <nm@ti.com>
-CC:     Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Sekhar Nori <nsekhar@ti.com>, Suman Anna <s-anna@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-References: <20200827065144.17683-1-lokeshvutla@ti.com>
- <de8d64eb-05fd-ed7d-61b8-1d8e13649ae8@ti.com>
- <20200907141427.ti6r3h6namv2hezw@akan>
-From:   Lokesh Vutla <lokeshvutla@ti.com>
-Message-ID: <9d8d6980-0b22-da45-52af-474c6d96c873@ti.com>
-Date:   Mon, 7 Sep 2020 19:53:19 +0530
+        id S1730595AbgIGQbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 12:31:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42352 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729751AbgIGOYW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 10:24:22 -0400
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2458EC061786
+        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 07:24:21 -0700 (PDT)
+Received: by mail-lj1-x243.google.com with SMTP id w3so16333415ljo.5
+        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 07:24:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=c3o7vSrPtfVLY+L0kjQIwvaz2ovSHjf+IEqBu3OCb/o=;
+        b=ZfsQVh5sOFI6WXpScSWpbNwdBgiRHlDc06CeoPETYDVo+zJ2ZfpvWawcA10tLMKKD9
+         KXZ1Uvms4FAp8JxcirPU3z6GhpGTlnOK1EZ6D0+CZNjDsZm8WZFPHPlX9+1edSK5LOVb
+         s4cXB5Rw1O8xiYBKLdol3oQMaZOCHO4uolymrxNK1Xv5zLDX55nfQDY7dZxoIfRxoTqr
+         AvbaMT0+vfuRN3JXo1OAcDTmPRmS34ql8nFZKAiKqucLL5+UJ9MdfJMTZRAmqLDMkDEW
+         WWS6JlMemfEFb6yXqAF9NK8gplj4KJ58tMQcA1mFVxOSQnSg9dvyflu+8f1BhLcNmLyx
+         Gw7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=c3o7vSrPtfVLY+L0kjQIwvaz2ovSHjf+IEqBu3OCb/o=;
+        b=ifXlzKk4V6/JIm983SZiVE5sHPZPhJSUmMmlKuBtsvx0Fy+8ACzQ+tOOvNoDqFGgIf
+         HbRMghEOVWRrPCaxwjdBWmlfj0AmAzeuo53YhylVQxyx7LpnCacbSgMYx2GAKHi4ROp6
+         mNqRnMb2Jz1InI53ZaZbBsJ9GcPGsA6DB+PbBBVjVcoWHH9SL372a1U0A0SDmOkKswC/
+         79gSGjWo69rocCi/MrkqK/ucQGkZAjzw+fkQrU33rbG7r5MNbVdTPT7Hbv2HhHCUEVfL
+         J7HSxxyWAHz8d21iklrFmAUewqnW37uikda2aT0zR0145W8oU8TQ5nvwB+KbQGrHLAVx
+         ZRGw==
+X-Gm-Message-State: AOAM530rv9bC9ItJUEgG1r2LC+TuBZIeN11+DDzLMZ4YyBpU4xGR9Boz
+        6WYHUYfjorbtfFRQrFpmJNq2fg==
+X-Google-Smtp-Source: ABdhPJziSj5qaeVTYIzqn7mGp3GSDS6K4Y8Yf+iGVKSihjNsDajXJdMvFBL//9rql7id5+Q2WjAVlQ==
+X-Received: by 2002:a2e:97c1:: with SMTP id m1mr10319433ljj.289.1599488657317;
+        Mon, 07 Sep 2020 07:24:17 -0700 (PDT)
+Received: from [192.168.1.211] ([188.162.64.144])
+        by smtp.gmail.com with ESMTPSA id t14sm7558507lfp.77.2020.09.07.07.24.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Sep 2020 07:24:16 -0700 (PDT)
+Subject: Re: [PATCH 0/3] drm/msm/dsi: support SM8150 and SM8250
+To:     Jonathan Marek <jonathan@marek.ca>, freedreno@lists.freedesktop.org
+Cc:     AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <dri-devel@lists.freedesktop.org>,
+        Harigovindan P <harigovi@codeaurora.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Jordan Crouse <jcrouse@codeaurora.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Krzysztof Wilczynski <kw@linux.com>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>,
+        zhengbin <zhengbin13@huawei.com>
+References: <20200904172859.25633-1-jonathan@marek.ca>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Message-ID: <87a45d1e-328b-99f5-4990-d4746a24c864@linaro.org>
+Date:   Mon, 7 Sep 2020 17:24:14 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <20200907141427.ti6r3h6namv2hezw@akan>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20200904172859.25633-1-jonathan@marek.ca>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 07/09/20 7:44 pm, Nishanth Menon wrote:
-> On 17:32-20200907, Lokesh Vutla wrote:
->> Hi,
->>
->> On 27/08/20 12:21 pm, Lokesh Vutla wrote:
->>> This series adds initial support for latest new SoC, J7200, from Texas Instruments.
->>>
->>> The J7200 SoC is a part of the K3 Multicore SoC architecture platform.
->>> It is targeted for for automotive gateway, vehicle compute systems,
->>> Vehicle-to-Vehicle (V2V) and Vehicle-to-Everything (V2X) applications.
->>> The SoC aims to meet the complex processing needs of modern embedded products.
->>>
->>> See J7200 Technical Reference Manual (SPRUIU1, June 2020)
->>> for further details: https://www.ti.com/lit/pdf/spruiu1
->>>
->>> Changes since v1:
->>> - Swapped Patch 1 and 2 as suggested by Nishanth.
->>> - Added description for each SoC in yaml bindings.
->>>
->>> Testing:
->>> - ./scripts/checkpatch --strict
->>> 	- Few warningns about Line length exceeding 100 columns.
->>> 	  But these are corresponding to comments
->>> - v8make dtbs_check
->>> - DT_SCHEMA_FLAGS="-u"
->>>   DT_SCHEMA_FILES="Documentation/devicetree/bindings/arm/ti/k3.yaml"
->>>   v8make dtbs_check
->>> - DT_SCHEMA_FLAGS="-u"
->>>   DT_SCHEMA_FILES="Documentation/devicetree/bindings/arm/ti/k3.yaml"
->>>   v8make dt_binding_check
->>
->> This series has been lying around for soo long with no major comments. It will
->> be nice to get this merged. I understand we are waiting for Acks on yaml
->> documentation but it would be bad to miss a merge window for a new platform
->> because we are waiting for Acks on yaml conversion.
+On 04/09/2020 20:28, Jonathan Marek wrote:
+> Add support for SM8150 and SM8250 DSI.
 > 
-> I do require Rob / DT maintainer to ack the DT yaml conversion and the
-> j7200 binding addition.
+> Note I haven't tested SM8150 recently, but DSI is almost identical to SM8250.
+
+On SM8250:
+Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
 > 
-> Besides yaml and compatibility acks, there are a few ancillary
-> comments to fix up.. Kconfig -> I think we should either stay with
-> status quo and create a new config option per SoC OR rename the
-> config to be generic (using j7200 with j721e SoC config is not very
-
-Please suggest your preference here. I guess separate defconfig for J7200?
-
-> consistent). In addition, around the stuff that is going to next in
-> parallel, the dts is generating additional warnings as well (DSS
-
-hmm..there is no DSS being added in this series. There is one checkpatch warning for PATCH 1:
-
-WARNING: DT binding docs and includes should be a separate patch. See: Documentation/devicetree/bindings/submitting-patches.rst
-
-This can be ignored.
-
-
-> etc). I think it might be easier if we wait for DT maintainer ack on
-> bindings prior to giving further cosmetic comments (To allow for any
-> additional changes to come in to -next).
+> Jonathan Marek (3):
+>    drm/msm/dsi: remove unused clk_pre/clk_post in msm_dsi_dphy_timing
+>    drm/msm/dsi: add DSI config for sm8150 and sm8250
+>    drm/msm/dsi: add support for 7nm DSI PHY/PLL
 > 
-okay.
+>   .../devicetree/bindings/display/msm/dsi.txt   |   6 +-
+>   drivers/gpu/drm/msm/Kconfig                   |   7 +
+>   drivers/gpu/drm/msm/Makefile                  |   2 +
+>   drivers/gpu/drm/msm/dsi/dsi.h                 |   2 +
+>   drivers/gpu/drm/msm/dsi/dsi.xml.h             | 423 ++++++++
+>   drivers/gpu/drm/msm/dsi/dsi_cfg.c             |   5 +-
+>   drivers/gpu/drm/msm/dsi/dsi_cfg.h             |   2 +
+>   drivers/gpu/drm/msm/dsi/phy/dsi_phy.c         | 102 ++
+>   drivers/gpu/drm/msm/dsi/phy/dsi_phy.h         |   6 +-
+>   drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c     | 255 +++++
+>   drivers/gpu/drm/msm/dsi/pll/dsi_pll.c         |   4 +
+>   drivers/gpu/drm/msm/dsi/pll/dsi_pll.h         |  10 +
+>   drivers/gpu/drm/msm/dsi/pll/dsi_pll_7nm.c     | 902 ++++++++++++++++++
+>   13 files changed, 1721 insertions(+), 5 deletions(-)
+>   create mode 100644 drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
+>   create mode 100644 drivers/gpu/drm/msm/dsi/pll/dsi_pll_7nm.c
+> 
 
-Thanks and regards,
-Lokesh
+
+-- 
+With best wishes
+Dmitry
