@@ -2,150 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55CC22606E9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 00:28:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE012260701
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 00:41:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728053AbgIGW2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 18:28:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34266 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727945AbgIGW2e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 18:28:34 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A4BBC061573
-        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 15:28:33 -0700 (PDT)
-Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 15CDA80719;
-        Tue,  8 Sep 2020 10:28:27 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1599517707;
-        bh=hq3UBKJjR4w5dei1/EYSWkIx6PwOdHQYg/BXGe7rHOY=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To;
-        b=xnzJg0FSSMPFQw42G0gnMIRoZScndWGdc85g5Y2xwJSNNidRxFdACeHqTyCwRPbLK
-         HiFLprABCKX33TEqaYPVnD7TT5tzSHaCpbEWRIjPQQdMjd7yLJgZBrq6HEBWnfJeE1
-         88fApydIvNU5H26DtVo4BPJXurTIMGu4w9kU3MJ1fQw2jefEL2ltV/96OBv+Ud9/Yw
-         CBV21GXzfoXPjAsLqeasz9OpcFVETnyH+6BN0UB3LXrbeTyauluTnETcVR1aVN2VHE
-         VENRlRictnQhX1wpESK9TPl6n0+AoC8Td9eEQW1gV3p5zBvELkZ+lqAv3qM4tqfzdW
-         bkVnq65yTZqMw==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[10.32.16.77]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
-        id <B5f56b40b0001>; Tue, 08 Sep 2020 10:28:27 +1200
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
- (TLS) id 15.0.1497.2; Tue, 8 Sep 2020 10:28:26 +1200
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.006; Tue, 8 Sep 2020 10:28:26 +1200
-From:   Hamish Martin <Hamish.Martin@alliedtelesis.co.nz>
-To:     "stern@rowland.harvard.edu" <stern@rowland.harvard.edu>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] usb: ohci: Add per-port overcurrent quirk
-Thread-Topic: [PATCH 1/2] usb: ohci: Add per-port overcurrent quirk
-Thread-Index: AQHWgmqw+C7I38zeeUyVpdiHcFIeNalX1saAgAPNqgCAANxmAIAAfZIA
-Date:   Mon, 7 Sep 2020 22:28:26 +0000
-Message-ID: <d4523ef1d68202f492fc646455d67e0d4dee4898.camel@alliedtelesis.co.nz>
-References: <20200904032247.11345-1-hamish.martin@alliedtelesis.co.nz>
-         <20200904032247.11345-2-hamish.martin@alliedtelesis.co.nz>
-         <20200904154517.GB694058@rowland.harvard.edu>
-         <9ba7b4dda9ef40e3c4c9b3f1c33075e04601ef61.camel@alliedtelesis.co.nz>
-         <20200907145900.GC762136@rowland.harvard.edu>
-In-Reply-To: <20200907145900.GC762136@rowland.harvard.edu>
-Accept-Language: en-NZ, en-US
+        id S1728200AbgIGWlN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 18:41:13 -0400
+Received: from mail-co1nam11olkn2090.outbound.protection.outlook.com ([40.92.18.90]:42881
+        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728009AbgIGWlL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 18:41:11 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TFavTg1SCXuvzFROZ4cjcMUSeBQbw2VceugzXSe7eZFgyDDE5ALzkambhVovNJX7ivAbgNDzBZjS+hqHXsA7PB1yQSxCs9BAdWCUmZqeVMTQfBmQwD5bNfXDMjmnoLUuadkEa6VajhW1P2Vvs4iBvh8aIeOW2rNtoCEWVduu3BaRArI9cUxTMBc4sJJX9mTqU9rpzDgWzEm48p3vdF06g8gK7lQBhe+Cw7a+breY4wUYwFv3ramazlrvj4q/IvE8zccg2qQpnGxBXq0h3SSLsUc+OeQ1t0nrEAU6xo+bYhQxNlLmjBrtsOzoI8TkUU72tux8nHyQSPIKKnwonZmwXQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GRExTv/r0jt75NUN4wLR0vmpEbWkfjPxOwls1eIkL8A=;
+ b=NdJt1RLguoMUmhoxpc1RbgvxRAW3lnNlEM6EvMpLXMn19ia5nAwfOeMrPioyWFr9oYCXsQIF2A9WEj9faSalOY2dYXDWE2XCpxRPMDBCnlFGlOdKs1nrEmVac0uFn+0h2krah0K2b6Q+MNcfS3PuhLoaVcQgveiXSDRpogg0U7CDqOqvjw0pi1F/dZTEzYPIyXXWhz5efDfuOAB0Ewj2WpzGt/n4tfGk5e7e7QjI8Ni4tAVIQD0ibO55klCv3LkS/wuORLAS2QvBGT0+sHO4gxkit4eYI+E4pvMYT/onpu4vmVCCfsPMKSfvXXY9NuNZglMhHH+jyAcfRui6AUQXSw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from BN4PR13CA0018.namprd13.prod.outlook.com (2603:10b6:403:3::28)
+ by BYAPR21MB1304.namprd21.prod.outlook.com (2603:10b6:a03:106::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.8; Mon, 7 Sep
+ 2020 22:41:09 +0000
+Received: from BN7NAM10FT057.eop-nam10.prod.protection.outlook.com
+ (2603:10b6:403:3:cafe::b) by BN4PR13CA0018.outlook.office365.com
+ (2603:10b6:403:3::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.9 via Frontend
+ Transport; Mon, 7 Sep 2020 22:41:09 +0000
+Received: from BN6PR04MB0660.namprd04.prod.outlook.com
+ (2a01:111:e400:7e8f::4c) by BN7NAM10FT057.mail.protection.outlook.com
+ (2a01:111:e400:7e8f::403) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.16 via Frontend
+ Transport; Mon, 7 Sep 2020 22:41:09 +0000
+X-IncomingTopHeaderMarker: OriginalChecksum:3D45B78D509E6EA68637F698206A0CA6FB000EF3A8AF48A802964261280DF684;UpperCasedChecksum:96F1B62A48ADCFCAF4B3F525C0EBAE4C7D6D9801C304B87C5293C21DA771C240;SizeAsReceived:9288;Count:48
+Received: from BN6PR04MB0660.namprd04.prod.outlook.com
+ ([fe80::303b:a75b:d03e:bd04]) by BN6PR04MB0660.namprd04.prod.outlook.com
+ ([fe80::303b:a75b:d03e:bd04%3]) with mapi id 15.20.3348.019; Mon, 7 Sep 2020
+ 22:41:09 +0000
+Subject: Re: [RFT 08/25] ARM: dts: s5pv210: remove dedicated 'audio-subsystem'
+ node
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
+References: <20200907161141.31034-1-krzk@kernel.org>
+ <20200907161141.31034-9-krzk@kernel.org>
+From:   Jonathan Bakker <xc-racer2@live.ca>
+Message-ID: <BN6PR04MB0660C8AFE24B3F2A35A63D09CB280@BN6PR04MB0660.namprd04.prod.outlook.com>
+Date:   Mon, 7 Sep 2020 15:41:04 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+In-Reply-To: <20200907161141.31034-9-krzk@kernel.org>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [2001:df5:b000:24:f8a2:c861:f25b:236e]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <8D8EAEE37611BA4D8F8FD73E0A566F06@atlnz.lc>
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: CO1PR15CA0091.namprd15.prod.outlook.com
+ (2603:10b6:101:21::11) To BN6PR04MB0660.namprd04.prod.outlook.com
+ (2603:10b6:404:d9::21)
+X-Microsoft-Original-Message-ID: <b3e3b653-b321-e0a1-88bf-f1e5e53fa8bb@live.ca>
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2001:569:fb68:9c00:8067:f823:1e15:7520] (2001:569:fb68:9c00:8067:f823:1e15:7520) by CO1PR15CA0091.namprd15.prod.outlook.com (2603:10b6:101:21::11) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.15 via Frontend Transport; Mon, 7 Sep 2020 22:41:06 +0000
+X-Microsoft-Original-Message-ID: <b3e3b653-b321-e0a1-88bf-f1e5e53fa8bb@live.ca>
+X-TMN:  [EBm6ODzve/MpF4k2M9ZDgIJAU2LpnNWk6dgBSUFuJIMqnUrurQRro6tIbdbMqeMj]
+X-MS-PublicTrafficType: Email
+X-IncomingHeaderCount: 48
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-Correlation-Id: 5f6b10da-f27c-4bd2-11e4-08d8537f1d36
+X-MS-TrafficTypeDiagnostic: BYAPR21MB1304:
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: sowg6x0/31ecKhXX4YATkn2c0lEB7do/J7DSYfLDeouf0gDqBdw208lo1BlxixlNDb1ZfFN/mlm1L5YfeECqL0GISfSeQauWPfKaA9Y/jVXGSt/TUDTJb6ZS6Ffr5V3uYxgvkYMqyAYkC665BZciAAe51q/wK39n9DLQtlEBPenbDnfJ7lWehLj11pBf5iJw4Kf/glVN+E4KjLzGXY13jA==
+X-MS-Exchange-AntiSpam-MessageData: veWzlhB1n69xrFCf4O+bzgm3k9izoJ81iraDzJGI88bedsdQol24/yp8+8v7z2xj4TkuATVc9DgHKjUlyucxTYNHFcXCgkB8KvQ3QskV552LfMN1cTPDjAdhfq7wuLFe0aGGHg/CXphp/6qFxpvpZzL/fYHPeHOarD5a+9K92TgiaFLSfva9bzE27PmZIC0iM7MYo6iSR7vIH/FEPr515w==
+X-OriginatorOrg: sct-15-20-3174-0-msonline-outlook-fb0b2.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5f6b10da-f27c-4bd2-11e4-08d8537f1d36
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2020 22:41:09.2168
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-AuthSource: BN7NAM10FT057.eop-nam10.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR21MB1304
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIwLTA5LTA3IGF0IDEwOjU5IC0wNDAwLCBzdGVybkByb3dsYW5kLmhhcnZhcmQu
-ZWR1IHdyb3RlOg0KPiBPbiBNb24sIFNlcCAwNywgMjAyMCBhdCAwMTo1MDoxMEFNICswMDAwLCBI
-YW1pc2ggTWFydGluIHdyb3RlOg0KPiA+IEhpIEFsYW4sDQo+ID4gDQo+ID4gVGhhbmtzIGZvciB5
-b3VyIHF1aWNrIGZlZWRiYWNrLiBNeSByZXBsaWVzIGFyZSBpbmxpbmUgYmVsb3cuDQo+ID4gDQo+
-ID4gT24gRnJpLCAyMDIwLTA5LTA0IGF0IDExOjQ1IC0wNDAwLCBBbGFuIFN0ZXJuIHdyb3RlOg0K
-PiA+ID4gT24gRnJpLCBTZXAgMDQsIDIwMjAgYXQgMDM6MjI6NDZQTSArMTIwMCwgSGFtaXNoIE1h
-cnRpbiB3cm90ZToNCj4gPiA+ID4gU29tZSBpbnRlZ3JhdGVkIE9IQ0kgY29udHJvbGxlciBodWJz
-IGRvIG5vdCBleHBvc2UgYWxsIHBvcnRzIG9mDQo+ID4gPiA+IHRoZQ0KPiA+ID4gPiBodWINCj4g
-PiA+ID4gdG8gcGlucyBvbiB0aGUgU29DLiBJbiBzb21lIGNhc2VzIHRoZSB1bmNvbm5lY3RlZCBw
-b3J0cw0KPiA+ID4gPiBnZW5lcmF0ZQ0KPiA+ID4gPiBzcHVyaW91cyBvdmVyY3VycmVudCBldmVu
-dHMuIEZvciBleGFtcGxlIHRoZSBCcm9hZGNvbQ0KPiA+ID4gPiA1NjA2MC9SYW5nZXINCj4gPiA+
-ID4gMiBTb0MNCj4gPiA+ID4gY29udGFpbnMgYSBub21pbmFsbHkgMyBwb3J0IGh1YiBidXQgb25s
-eSB0aGUgZmlyc3QgcG9ydCBpcw0KPiA+ID4gPiB3aXJlZC4NCj4gPiA+ID4gDQo+ID4gPiA+IERl
-ZmF1bHQgYmVoYXZpb3VyIGZvciBvaGNpLXBsYXRmb3JtIGRyaXZlciBpcyB0byB1c2UgImdhbmdl
-ZCINCj4gPiA+ID4gb3ZlcmN1cnJlbnQgcHJvdGVjdGlvbiBtb2RlLiBUaGlzIGxlYWRzIHRvIHRo
-ZSBzcHVyaW91cw0KPiA+ID4gPiBvdmVyY3VycmVudA0KPiA+ID4gPiBldmVudHMgYWZmZWN0aW5n
-IGFsbCBwb3J0cyBpbiB0aGUgaHViLg0KPiA+ID4gPiANCj4gPiA+ID4gQWxsb3cgdGhpcyB0byBi
-ZSByZWN0aWZpZWQgYnkgc3BlY2lmeWluZyBwZXItcG9ydCBvdmVyY3VycmVudA0KPiA+ID4gPiBw
-cm90ZWN0aW9uDQo+ID4gPiA+IG1vZGUgdmlhIHRoZSBkZXZpY2UgdHJlZS4NCj4gPiA+ID4gDQo+
-ID4gPiA+IFNpZ25lZC1vZmYtYnk6IEhhbWlzaCBNYXJ0aW4gPGhhbWlzaC5tYXJ0aW5AYWxsaWVk
-dGVsZXNpcy5jby5ueg0KPiA+ID4gPiA+DQo+ID4gPiA+IC0tLQ0KPiA+ID4gPiAgZHJpdmVycy91
-c2IvaG9zdC9vaGNpLWhjZC5jICAgICAgfCA0ICsrKysNCj4gPiA+ID4gIGRyaXZlcnMvdXNiL2hv
-c3Qvb2hjaS1wbGF0Zm9ybS5jIHwgMyArKysNCj4gPiA+ID4gIGRyaXZlcnMvdXNiL2hvc3Qvb2hj
-aS5oICAgICAgICAgIHwgMSArDQo+ID4gPiA+ICAzIGZpbGVzIGNoYW5nZWQsIDggaW5zZXJ0aW9u
-cygrKQ0KPiA+ID4gPiANCj4gPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvdXNiL2hvc3Qvb2hj
-aS1oY2QuYw0KPiA+ID4gPiBiL2RyaXZlcnMvdXNiL2hvc3Qvb2hjaS0NCj4gPiA+ID4gaGNkLmMN
-Cj4gPiA+ID4gaW5kZXggZGQzN2U3N2RhZTAwLi4wMWUzZDc1ZTI5ZDkgMTAwNjQ0DQo+ID4gPiA+
-IC0tLSBhL2RyaXZlcnMvdXNiL2hvc3Qvb2hjaS1oY2QuYw0KPiA+ID4gPiArKysgYi9kcml2ZXJz
-L3VzYi9ob3N0L29oY2ktaGNkLmMNCj4gPiA+ID4gQEAgLTY4Nyw2ICs2ODcsMTAgQEAgc3RhdGlj
-IGludCBvaGNpX3J1biAoc3RydWN0IG9oY2lfaGNkDQo+ID4gPiA+ICpvaGNpKQ0KPiA+ID4gPiAg
-CQl2YWwgfD0gUkhfQV9OUFM7DQo+ID4gPiA+ICAJCW9oY2lfd3JpdGVsIChvaGNpLCB2YWwsICZv
-aGNpLT5yZWdzLQ0KPiA+ID4gPiA+cm9vdGh1Yi5hKTsNCj4gPiA+ID4gIAl9DQo+ID4gPiA+ICsJ
-aWYgKG9oY2ktPmZsYWdzICYgT0hDSV9RVUlSS19QRVJfUE9SVF9PQykgew0KPiA+ID4gPiArCQl2
-YWwgfD0gUkhfQV9PQ1BNOw0KPiA+ID4gPiArCQlvaGNpX3dyaXRlbChvaGNpLCB2YWwsICZvaGNp
-LT5yZWdzLT5yb290aHViLmEpOw0KPiA+ID4gPiArCX0NCj4gPiA+IA0KPiA+ID4gSSBkb24ndCB0
-aGluayB0aGlzIGlzIHJpZ2h0LCBmb3IgdHdvIHJlYXNvbnMuICBGaXJzdCwgaXNuJ3QgcGVyLQ0K
-PiA+ID4gcG9ydCANCj4gPiA+IG92ZXJjdXJyZW50IHByb3RlY3Rpb24gdGhlIGRlZmF1bHQ/DQo+
-ID4gDQo+ID4gTm90IGFzIGZhciBhcyBJIHVuZGVyc3RhbmQgdGhlIGN1cnJlbnQgY29kZS4gSnVz
-dCBhYm92ZSB3aGVyZSBteQ0KPiA+IHBhdGNoDQo+ID4gYXBwbGllcywgdGhlIFJIX0FfT0NQTSAo
-YW5kIFJIX0FfUFNNKSBiaXRzIGFyZSBleHBsaWNpdGx5IGNsZWFyZWQNCj4gPiBpbg0KPiA+ICd2
-YWwnIHdpdGg6DQo+ID4gICAgIHZhbCAmPSB+KFJIX0FfUFNNIHwgUkhfQV9PQ1BNKTsNCj4gPiAN
-Cj4gPiBUaGlzLCBjb3VwbGVkIHdpdGggdGhlIE9IQ0lfUVVJUktfSFVCX1BPV0VSIGJlaW5nIHNl
-dCBieSB2aXJ0dWUgb2YNCj4gPiB0aGUNCj4gPiAnZGlzdHJ1c3RfZmlybXdhcmUnIG1vZHVsZSBw
-YXJhbSBkZWZhdWx0aW5nIHRydWUsIHJlYWRzIHRvIG1lIGxpa2UNCj4gPiB0aGUNCj4gPiBkZWZh
-dWx0IGlzIGZvciBnYW5nZWQgb3Zlci1jdXJyZW50IHByb3RlY3Rpb24uIEFuZCB0aGF0IGlzIG15
-DQo+ID4gZXhwZXJpZW5jZSBpbiB0aGlzIGNhc2UuIA0KPiANCj4gWW91J3JlIHJpZ2h0IGFib3V0
-IHRoYXQuICBJIGhhZG4ndCBub3RpY2VkIGJlZm9yZTsgaXQgbWFrZXMgbGl0dGxlDQo+IHNlbnNl
-IA0KPiB0byBoYXZlIGEgcXVpcmsgdGhhdCBkZWZhdWx0cyB0byB0cnVlLg0KPiANCj4gSXQncyBu
-b3QgZWFzeSB0byB0ZWxsIHRoZSBmdWxsIHN0b3J5IGZyb20gdGhlIGtlcm5lbCBoaXN0b3J5OyB0
-aGF0IA0KPiBtb2R1bGUgcGFyYW1ldGVyIHByZWRhdGVzIHRoZSBHaXQgZXJhLiAgSSBkaWQgbGVh
-cm4gdGhhdCBpdCB3YXMNCj4gbW9kaWZpZWQgDQo+IGluIDIuNi4zLXJjMyBhbmQgZ29lcyBiYWNr
-IGV2ZW4gZmFydGhlcjogc2VlDQo+IA0KPiAJaHR0cHM6Ly9tYXJjLmluZm8vP2w9bGludXgtdXNi
-LWRldmVsJm09MTEwNjI4NDU3NDI0Njg0Jnc9Mg0KPiANCj4gPiBJZiBub25lIG9mIHRoZSBxdWly
-a3MgYXJlIHNlbGVjdGVkIHRoZW4gYWxsIG9mIHRoZSBmaWRkbGluZyB3aXRoDQo+ID4gJ3ZhbCcN
-Cj4gPiBuZXZlciBnZXRzIHdyaXR0ZW4gdG8gJ29oY2ktPnJlZ3MtPnJvb3RodWIuYScNCj4gPiAN
-Cj4gPiBJJ2QgYXBwcmVjaWF0ZSB5b3VyIHJlYWRpbmcgb2YgdGhhdCBhbmFseXNpcyBiZWNhdXNl
-IEknbSBieSBubw0KPiA+IG1lYW5zDQo+ID4gc3VyZSBvZiBpdC4NCj4gPiANCj4gPiA+IA0KPiA+
-ID4gU2Vjb25kLCBSSF9BX09DUE0gZG9lc24ndCBkbyBhbnl0aGluZyB1bmxlc3MgUkhfQV9OT0NQ
-IGlzIGNsZWFyLg0KPiA+IA0KPiA+IENvcnJlY3QsIGFuZCB0aGF0IGlzIG15IG1pc3Rha2UuIElm
-IEkgcHJvZ3Jlc3MgdG8gYSB2MiBvZiB0aGlzDQo+ID4gcGF0Y2ggSQ0KPiA+IHdpbGwgdXBkYXRl
-IGFjY29yZGluZ2x5Lg0KPiANCj4gU2hhbGwgd2UgdHJ5IGNoYW5naW5nIHRoZSBwYXJhbWV0ZXIn
-cyBkZWZhdWx0IHZhbHVlPyAgVGhlIFVTQg0KPiBzdWJzeXN0ZW0gDQo+IGlzIGEgbG90IG1vcmUg
-bWF0dXJlIGFuZCByZWxpYWJsZSBub3cgdGhhbiBpdCB3YXMgYmFjayBpbiAyMDA0Lg0KDQpUaGF0
-IGRvZXNuJ3QgcmVhbGx5IGhlbHAgbWUgaW4gbXkgcGFydGljdWxhciBjYXNlLiBJIHRyaWVkIHR1
-cm5pbmcgdGhlDQpwYXJhbSBvZmYgYW5kIHRoYXQganVzdCBsZWFkcyB0byB0aGUgcm9vdGh1Yi5h
-IHJlZyBub3QgYmVpbmcgbW9kaWZpZWQNCmF0IGFsbCAoYW5kIGdhbmdlZCBvdmVyLWN1cnJlbnQg
-cHJvdGVjdGlvbiBiZWluZyBsZWZ0IGluIHBsYWNlKS4NCg0KU28sIEkgZ3Vlc3MgSSdtIHN0aWxs
-IGJhY2sgdG8gbXkgb3JpZ2luYWwgaWRlYSBvZiBhZGRpbmcgYSBuZXcgcXVpcmsNCihwZXJoYXBz
-IHF1aXJrIGlzIG5vdCB0aGUgYmVzdCBuYW1lIGZvciBpdCBpbiB0aGlzIGNhc2UpIHRoYXQgYWxs
-b3dzDQp0aGUgcGVyLXBvcnQgb3Zlci1jdXJyZW50IHRvIGJlIHNlbGVjdGVkLg0KSWYgeW91IHdv
-dWxkIHJhdGhlciB0aGF0IHRoaXMgbm90IGJlIGEgcXVpcmsgYW5kIEkgcmV3b3JrIHRoZSBjb2Rl
-IHN1Y2gNCnRoYXQgaWYgbm8gb3RoZXIgcXVpcmtzIGFyZSBzZWxlY3RlZCB0aGVuIHdlIGNvbmZp
-Z3VyZSBmb3IgcGVyLXBvcnQNCm92ZXItY3VycmVudCBhcyB0aGUgZGVmYXVsdCB0aGVuIEkgY2Fu
-IGRvIHRoYXQgdG9vLiBJZiB5b3UgZXhwZWN0IHBlci0NCnBvcnQgb3Zlci1jdXJyZW50IHRvIGJl
-IHRoZSBkZWZhdWx0IHRoZW4gZXhwbGljaXQgY29kZSB0aGF0IGVuZm9yY2VzDQp0aGF0IG1pZ2h0
-IGJlIGJlc3QuDQoNCldoYXQncyB0aGUgYmVzdCBhcHByb2FjaD8NCg0KVGhhbmtzLA0KSGFtaXNo
-IE0NCg0KPiANCj4gQWxhbiBTdGVybg0K
+Audio still works for me on the Galaxy S.
+
+Tested-by: Jonathan Bakker <xc-racer2@live.ca>
+
+Thanks,
+Jonathan
+
+On 2020-09-07 9:11 a.m., Krzysztof Kozlowski wrote:
+> The 'audio-subsystem' node is an artificial creation, not representing
+> real hardware.  The hardware is described by its nodes - AUDSS clock
+> controller and I2S0.
+> 
+> Remove the 'audio-subsystem' node along with its undocumented compatible
+> to fix dtbs_check warnings like:
+> 
+>   audio-subsystem: $nodename:0: 'audio-subsystem' does not match '^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  arch/arm/boot/dts/s5pv210.dtsi | 65 +++++++++++++++-------------------
+>  1 file changed, 29 insertions(+), 36 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/s5pv210.dtsi b/arch/arm/boot/dts/s5pv210.dtsi
+> index 46221a5c8ce5..2871351ab907 100644
+> --- a/arch/arm/boot/dts/s5pv210.dtsi
+> +++ b/arch/arm/boot/dts/s5pv210.dtsi
+> @@ -223,43 +223,36 @@
+>  			status = "disabled";
+>  		};
+>  
+> -		audio-subsystem {
+> -			compatible = "samsung,s5pv210-audss", "simple-bus";
+> -			#address-cells = <1>;
+> -			#size-cells = <1>;
+> -			ranges;
+> -
+> -			clk_audss: clock-controller@eee10000 {
+> -				compatible = "samsung,s5pv210-audss-clock";
+> -				reg = <0xeee10000 0x1000>;
+> -				clock-names = "hclk", "xxti",
+> -						"fout_epll",
+> -						"sclk_audio0";
+> -				clocks = <&clocks DOUT_HCLKP>, <&xxti>,
+> -						<&clocks FOUT_EPLL>,
+> -						<&clocks SCLK_AUDIO0>;
+> -				#clock-cells = <1>;
+> -			};
+> +		clk_audss: clock-controller@eee10000 {
+> +			compatible = "samsung,s5pv210-audss-clock";
+> +			reg = <0xeee10000 0x1000>;
+> +			clock-names = "hclk", "xxti",
+> +				      "fout_epll",
+> +				      "sclk_audio0";
+> +			clocks = <&clocks DOUT_HCLKP>, <&xxti>,
+> +				 <&clocks FOUT_EPLL>,
+> +				 <&clocks SCLK_AUDIO0>;
+> +			#clock-cells = <1>;
+> +		};
+>  
+> -			i2s0: i2s@eee30000 {
+> -				compatible = "samsung,s5pv210-i2s";
+> -				reg = <0xeee30000 0x1000>;
+> -				interrupt-parent = <&vic2>;
+> -				interrupts = <16>;
+> -				dma-names = "rx", "tx", "tx-sec";
+> -				dmas = <&pdma1 9>, <&pdma1 10>, <&pdma1 11>;
+> -				clock-names = "iis",
+> -						"i2s_opclk0",
+> -						"i2s_opclk1";
+> -				clocks = <&clk_audss CLK_I2S>,
+> -						<&clk_audss CLK_I2S>,
+> -						<&clk_audss CLK_DOUT_AUD_BUS>;
+> -				samsung,idma-addr = <0xc0010000>;
+> -				pinctrl-names = "default";
+> -				pinctrl-0 = <&i2s0_bus>;
+> -				#sound-dai-cells = <0>;
+> -				status = "disabled";
+> -			};
+> +		i2s0: i2s@eee30000 {
+> +			compatible = "samsung,s5pv210-i2s";
+> +			reg = <0xeee30000 0x1000>;
+> +			interrupt-parent = <&vic2>;
+> +			interrupts = <16>;
+> +			dma-names = "rx", "tx", "tx-sec";
+> +			dmas = <&pdma1 9>, <&pdma1 10>, <&pdma1 11>;
+> +			clock-names = "iis",
+> +				      "i2s_opclk0",
+> +				      "i2s_opclk1";
+> +			clocks = <&clk_audss CLK_I2S>,
+> +				 <&clk_audss CLK_I2S>,
+> +				 <&clk_audss CLK_DOUT_AUD_BUS>;
+> +			samsung,idma-addr = <0xc0010000>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&i2s0_bus>;
+> +			#sound-dai-cells = <0>;
+> +			status = "disabled";
+>  		};
+>  
+>  		i2s1: i2s@e2100000 {
+> 
