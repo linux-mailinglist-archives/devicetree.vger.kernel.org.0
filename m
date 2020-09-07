@@ -2,138 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B059426032C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:45:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74D55260328
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:45:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729447AbgIGRpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 13:45:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45212 "EHLO
+        id S1731380AbgIGRoc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 13:44:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731378AbgIGRoL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 13:44:11 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D09FC061796
-        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 10:44:05 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id a9so14897148wmm.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 10:44:05 -0700 (PDT)
+        with ESMTP id S1731469AbgIGRoW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 13:44:22 -0400
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B6E1C061573;
+        Mon,  7 Sep 2020 10:44:22 -0700 (PDT)
+Received: by mail-ed1-x542.google.com with SMTP id g4so13526816edk.0;
+        Mon, 07 Sep 2020 10:44:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TtLg9Y4dgEBmAcytToxU0LrQsMgfNF7OgoEHJZ2Q+vw=;
-        b=A0Stn/cyvojbDX7w3lzbvMIO7gTwe43sZAGbFpuAEdS5sHSClH8/IZ2AifZ+YY+VOX
-         UVwM/aA+6tWtgJSEoCDO1PW617SUSIQB8k6b0bPqqeB7dxfGKJQUxNBeFtcQo9e3Ascw
-         6zhcNnrpuccjT086HR4puL61ghnrcI3EOoQm8=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=AKtE0f3df7stLoOpg6l1Dc/R8Dgd/mB97dSaL3OrIPw=;
+        b=YNwlXdbPXE0UJdb1nCQVOqATN2iWszAu1rl+rnqPTZLoJBxKgNxrlwbVj9Uv1NXHIn
+         nZAbLfNkYv4/COWXQLR05TCpsNSDVzvkEaBjUezt3YqpfbofrO53hLSE9i2/OUY0yfUk
+         aM/s4B1xRhzRDtkKEM5tV6Pa+BcPV0WyAFfq6wOKzYNkDcY8qHi5qJk0faJtAo8A5ZqG
+         4AX/1nmXtUsas8S5QUrkDKgkrrrBrAvkN0Pi9ZdrtPLvX8REjGs6Vw9VCo6HaUjGuj2w
+         C9R5KoZZ2UrevHnYMO/uYdGOjsBP7ddxY+W7DEyldYco2ay78NxJiiilIi7fCCq9kH5P
+         0/rA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TtLg9Y4dgEBmAcytToxU0LrQsMgfNF7OgoEHJZ2Q+vw=;
-        b=NBHY6hgENbWoyTre4/k/PBazoacm8D6pnVFdUFKRKvdtwUeWiNQJA5YftwyCNl03Mr
-         Hv5TgFzzvgTCWFbvXD+WRjHNZp6+RDn39cgIp+XPZAKZqGyFICfVqSQrqdJFI8/4V9w0
-         ONumPG/TE3ghhKi0kYAohIeGfou9wdh5qqiN4kjajOtYHYphH6weHD4FLoBj4CzHNd0/
-         NtbiI63mSCCi7hqiGPAF3XahE6PljgSU2suN9/TiFvw50QSfj9OGsDCsR2ICGl04xGgE
-         I5659MaT5gfJgDyw2In/5sTr+IVU0zuk6lkePB6BC8LHBbxNWVtnAk1oWUs6qNngTXwr
-         W3lg==
-X-Gm-Message-State: AOAM5318qAxSP3BC2cFTHE0gaX0fZbqxmwSXuIKRqPWSQZi09xERb/LG
-        bx2SP2q/4UjsEoJCeAQU4lATAsWq0nfPYDQgj6mFrA==
-X-Google-Smtp-Source: ABdhPJyNQsBm1Y3/ieHSfjO664M9CBhnY/ZnuJjayy1tYR+ob0ku/Wpd26F5nf8H2/xl9/84D4TcAGvzrj4IPjrxwfU=
-X-Received: by 2002:a1c:bad5:: with SMTP id k204mr408820wmf.111.1599500642170;
- Mon, 07 Sep 2020 10:44:02 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=AKtE0f3df7stLoOpg6l1Dc/R8Dgd/mB97dSaL3OrIPw=;
+        b=k7a/CPu04Ut08ckneJIGyBdSMJFQIYg3q1MyQwBROMQIUxM5aUxpfQn+rYv0ooj3OL
+         OVCR5RL5qqZEAZYmG12Gbj1fd2mWPxk+fvs/KkBiBa3F508IU8simtB0ZA/42EQYJq79
+         6/M5WwpIiv2PBVF2/cAgmmlR7i07aJAF+xOZBg9HolBY7Pr7tawPPLqgev3FPXN4nwFj
+         HrOVIr54/8BNiDFn053YWx4QG9spqO1MGXPKCgZSew2rxFFJCmu98M8z192N+lfODK9A
+         05rN22Zg5EbYj6XC6zy/WdINUmK4yHgIoV0l/ikgWCdPUZRf0MD7QtPDBbRo2R2uSuWl
+         7Uqg==
+X-Gm-Message-State: AOAM533/OZ4K8muNVxCMs8Mehk/C/Av62L6eFvQP+nAEyHffbs1iONIP
+        S+dYhe+7vemNwHay4IdpUoyZ/oUWsBmNbA==
+X-Google-Smtp-Source: ABdhPJyIVQAd1ibjCqlfSC4NnSs5F3EYyXoYchNzk4W9Yrd1xOME9VDIBgcuxR2fKAJeYpSobINVHA==
+X-Received: by 2002:aa7:ce97:: with SMTP id y23mr23412501edv.128.1599500660739;
+        Mon, 07 Sep 2020 10:44:20 -0700 (PDT)
+Received: from bcbook.internal (a89-183-24-75.net-htp.de. [89.183.24.75])
+        by smtp.gmail.com with ESMTPSA id dt8sm15377533ejc.113.2020.09.07.10.44.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Sep 2020 10:44:20 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: marvell: espressobin: Add ethernet switch
+ aliases
+To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>
+Cc:     Jason Cooper <jason@lakedaemon.net>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tomasz Maciej Nowak <tmn505@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20200907112718.5994-1-pali@kernel.org>
+ <3ec54259-4bfe-8462-e8d5-083fc009707a@gmail.com>
+ <20200907174200.yqojaguthi6khn3v@pali>
+From:   Andre Heider <a.heider@gmail.com>
+Message-ID: <9c0e3c31-866d-d53a-5a5c-d66e2da27f6c@gmail.com>
+Date:   Mon, 7 Sep 2020 19:44:19 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.2.1
 MIME-Version: 1.0
-References: <20200824193036.6033-1-james.quinlan@broadcom.com>
- <b19bc982-a0c4-c6ff-d8f5-650f2b3a83c8@gmail.com> <20200827063517.GA4637@lst.de>
- <CA+-6iNy3U9pO0Bykzgvb9n9fcsBi6FiatLdpA1s0HgQNWZ49mg@mail.gmail.com> <20200907091649.GA6428@e121166-lin.cambridge.arm.com>
-In-Reply-To: <20200907091649.GA6428@e121166-lin.cambridge.arm.com>
-From:   Jim Quinlan <james.quinlan@broadcom.com>
-Date:   Mon, 7 Sep 2020 13:43:23 -0400
-Message-ID: <CA+-6iNzoz3pM2pJksXogeuou6wB9W-59rN-amCLERFLuY5zLMg@mail.gmail.com>
-Subject: Re: [PATCH v11 00/11] PCI: brcmstb: enable PCIe for STB chips
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     Christoph Hellwig <hch@lst.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" 
-        <linux-pci@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>,
-        "open list:DRM DRIVERS FOR ALLWINNER A10" 
-        <dri-devel@lists.freedesktop.org>, Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        "open list:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Joerg Roedel <jroedel@suse.de>,
-        Julien Grall <julien.grall@arm.com>,
-        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>,
-        "moderated list:ARM PORT" <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:ALLWINNER A10 CSI DRIVER" <linux-media@vger.kernel.org>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "open list:SUPERH" <linux-sh@vger.kernel.org>,
-        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Stefano Stabellini <sstabellini@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20200907174200.yqojaguthi6khn3v@pali>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 7, 2020 at 5:16 AM Lorenzo Pieralisi
-<lorenzo.pieralisi@arm.com> wrote:
->
-> On Thu, Aug 27, 2020 at 09:29:59AM -0400, Jim Quinlan wrote:
-> > On Thu, Aug 27, 2020 at 2:35 AM Christoph Hellwig <hch@lst.de> wrote:
-> > >
-> > > On Tue, Aug 25, 2020 at 10:40:27AM -0700, Florian Fainelli wrote:
-> > > > Hi,
-> > > >
-> > > > On 8/24/2020 12:30 PM, Jim Quinlan wrote:
-> > > >>
-> > > >> Patchset Summary:
-> > > >>    Enhance a PCIe host controller driver.  Because of its unusual design
-> > > >>    we are foced to change dev->dma_pfn_offset into a more general role
-> > > >>    allowing multiple offsets.  See the 'v1' notes below for more info.
-> > > >
-> > > > We are version 11 and counting, and it is not clear to me whether there is
-> > > > any chance of getting these patches reviewed and hopefully merged for the
-> > > > 5.10 merge window.
-> > > >
-> > > > There are a lot of different files being touched, so what would be the
-> > > > ideal way of routing those changes towards inclusion?
-> > >
-> > > FYI, I offered to take the dma-mapping bits through the dma-mapping tree.
-> > > I have a bit of a backlog, but plan to review and if Jim is ok with that
-> > > apply the current version.
-> > Sounds good to me.
->
-> Hi Jim,
->
-> is the dependency now solved ? Should we review/take this series as
-> is for v5.10 through the PCI tree ?
-Hello Lorenzo,
+On 07/09/2020 19:42, Pali Rohár wrote:
+> On Monday 07 September 2020 19:13:41 Andre Heider wrote:
+>>> @@ -120,7 +124,7 @@
+>>>    			#address-cells = <1>;
+>>>    			#size-cells = <0>;
+>>> -			port@0 {
+>>> +			switch0port0: port@0 {
+>>
+>> This label is unused it seems.
+> 
+> Yes, it is unused, but I defined labels for all ports so it would be
+> clean that ports are indexed from zero and not from one. Also it looks
+> inconsistent if some of DSA ports have labels and some does not.
 
-We are still working out a regression with the DMA offset commit on
-the RaspberryPi.  Nicolas has found the root cause and we are now
-devising a solution.
+Alright, sounds good:
+Reviewed-by: Andre Heider <a.heider@gmail.com>
 
-Thanks,
-Jim Quinlan
-Broadcom STB
+> 
+>>
+>>>    				reg = <0>;
+>>>    				label = "cpu";
+>>>    				ethernet = <&eth0>;
+>>> @@ -131,19 +135,19 @@
+>>>    				};
+>>>    			};
+>>> -			port@1 {
+>>> +			switch0port1: port@1 {
+>>>    				reg = <1>;
+>>>    				label = "wan";
+>>>    				phy-handle = <&switch0phy0>;
+>>>    			};
+>>> -			port@2 {
+>>> +			switch0port2: port@2 {
+>>>    				reg = <2>;
+>>>    				label = "lan0";
+>>>    				phy-handle = <&switch0phy1>;
+>>>    			};
+>>> -			port@3 {
+>>> +			switch0port3: port@3 {
+>>>    				reg = <3>;
+>>>    				label = "lan1";
+>>>    				phy-handle = <&switch0phy2>;
+>>>
+>>
 
->
-> Thanks,
-> Lorenzo
