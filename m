@@ -2,260 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75E6225F206
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 05:17:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D894725F222
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 05:45:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726496AbgIGDRv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Sep 2020 23:17:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52720 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726389AbgIGDRr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Sep 2020 23:17:47 -0400
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64A73C061573;
-        Sun,  6 Sep 2020 20:17:47 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id s2so5773486pjr.4;
-        Sun, 06 Sep 2020 20:17:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=TbyyXAL0ZVIbCvfJHraKbkMH1ceMJBrC0mewpz/V3M4=;
-        b=QEgo4t+kj1Q9tKC9RCn0PimdSizTSr24mv0V79sv+bs0Er7Dpzk9sVgI1q2cb7wsDS
-         ykjHdcLhwVSYLFmSaL2LN640Av0li4OqTKjGkOMn750rFcBtytUPdkbpIOgIQdY8rTYB
-         5M3GkYJiN+wHWQo40s4MRBTGNKOG/iRcEzCp6hoHAgw5awcjqMBCQrixwk+dXiX8F1f6
-         cp04T9ZJIIi7DCiD1LOA1D93s/eF8vZbg7gfm220h0KzdpkBIPnKwisPpX9Nqv4m/MWz
-         j8pJTzpfvPhVnfgCmB/i0bR6epD+oqH5tJi2TxgiM2SiFJv7xScrW5tc42xYZFEtZrWZ
-         kPaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=TbyyXAL0ZVIbCvfJHraKbkMH1ceMJBrC0mewpz/V3M4=;
-        b=uK2EWrL0NFeFRXe4aXe5lHCtxQnKoe2MjY4nchW2WV94k+Hih1aCvSN8aBJfPZNpdP
-         BbGch+yKHdWxy6SoDlKD1cxuRcmMq2Y5x1ibGLqOvBpP+WLwMhUHdyTsJXL1FgXmpVLK
-         J34BL04PQ97aWOzyf+SOGNli3SZYIk/MZzL4rS/ZujxNlbitzzp8SqCOGF6QbLb5Uhe+
-         rj6Fxau2zoDBKHMipH1qannW5jac7YTraK6WIlIBMOdInAPE9oAra7fyNL3q4ePQTCqr
-         I+/jQtPawPwVCOFNSSuT4Ed+oTkC4NgXC4aWmEagEviWc2SzVQ2O4ahYP5/LJsOYU+AK
-         kGNQ==
-X-Gm-Message-State: AOAM531NocgnBN4os4dyfWz1lFeW1hXm8Y91okSZFWAOkZ8mClDPytPx
-        FrKagbUkp1LA1MZ3/FocYjw=
-X-Google-Smtp-Source: ABdhPJyb+hGF5Kdu8DGX3L2+gIol8/bJnLOZrWwLTtvbjQPNQpnHWYU4VqxEfYMi84hucmWtA7qAtA==
-X-Received: by 2002:a17:90a:858a:: with SMTP id m10mr17713984pjn.185.1599448666153;
-        Sun, 06 Sep 2020 20:17:46 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id y13sm6608675pfr.141.2020.09.06.20.17.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Sep 2020 20:17:45 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM BCM7XXX ARM
-        ARCHITECTURE),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 2/2] bus: brcmstb_gisb: Add support for breakpoint interrupts
-Date:   Sun,  6 Sep 2020 20:17:24 -0700
-Message-Id: <20200907031724.3512099-3-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200907031724.3512099-1-f.fainelli@gmail.com>
-References: <20200907031724.3512099-1-f.fainelli@gmail.com>
+        id S1726286AbgIGDpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Sep 2020 23:45:11 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:59474 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726278AbgIGDpK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Sep 2020 23:45:10 -0400
+X-UUID: 4749b9027edb4ec4a3dcb522a6b9a3ce-20200907
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=+kQMFZtTwzN5g3ipj6RMOu9cz09zTtXs8Jvc7SvBRYE=;
+        b=Ei/MDmmYIlxQ6eMkoRim98t3V6iyykR81POfDmFima10X4k+i9Ln0zRDpt44gt5vh67c5M1qpydfs61pAa3aNtGHWT0HaFBHCTBQWKbZ2WrhLERE9jZr9TVYmRFPFdhKoV9QAto56ns80AmZmvtu8ib0zxkP3verGSFCiKZ4WAk=;
+X-UUID: 4749b9027edb4ec4a3dcb522a6b9a3ce-20200907
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1702638041; Mon, 07 Sep 2020 11:45:07 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS32N1.mediatek.inc
+ (172.27.4.71) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 7 Sep
+ 2020 11:45:05 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 7 Sep 2020 11:45:06 +0800
+Message-ID: <1599450198.27773.12.camel@mhfsdcap03>
+Subject: Re: [PATCH v3 1/3] dt-bindings: iommu: Add binding for MediaTek
+ MT8167 IOMMU
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Fabien Parent <fparent@baylibre.com>
+CC:     <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <joro@8bytes.org>,
+        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>,
+        Rob Herring <robh@kernel.org>
+Date:   Mon, 7 Sep 2020 11:43:18 +0800
+In-Reply-To: <20200906151928.881209-1-fparent@baylibre.com>
+References: <20200906151928.881209-1-fparent@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-TM-SNTS-SMTP: 870868C0E752BB5D53643B5CAD2F078C8B2CECA589AC935CFAB57F2A2BDFD3EB2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-GISB breakpoint interrupts can be raised when a breakpoint has been
-enabled to match a specific master and/or GISB register address. Being
-able to print a message, similar to those done during target abort or
-timeout greatly helps debug systems.
-
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
----
- drivers/bus/brcmstb_gisb.c | 96 +++++++++++++++++++++++++++++++++++++-
- 1 file changed, 95 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/bus/brcmstb_gisb.c b/drivers/bus/brcmstb_gisb.c
-index 7579439971e3..7355fa2cb439 100644
---- a/drivers/bus/brcmstb_gisb.c
-+++ b/drivers/bus/brcmstb_gisb.c
-@@ -30,8 +30,22 @@
- #define  ARB_ERR_CAP_STATUS_WRITE	(1 << 1)
- #define  ARB_ERR_CAP_STATUS_VALID	(1 << 0)
- 
-+#define  ARB_BP_CAP_CLEAR		(1 << 0)
-+#define  ARB_BP_CAP_STATUS_PROT_SHIFT	14
-+#define  ARB_BP_CAP_STATUS_TYPE		(1 << 13)
-+#define  ARB_BP_CAP_STATUS_RSP_SHIFT	10
-+#define  ARB_BP_CAP_STATUS_MASK		GENMASK(1, 0)
-+#define  ARB_BP_CAP_STATUS_BS_SHIFT	2
-+#define  ARB_BP_CAP_STATUS_WRITE	(1 << 1)
-+#define  ARB_BP_CAP_STATUS_VALID	(1 << 0)
-+
- enum {
- 	ARB_TIMER,
-+	ARB_BP_CAP_CLR,
-+	ARB_BP_CAP_HI_ADDR,
-+	ARB_BP_CAP_ADDR,
-+	ARB_BP_CAP_STATUS,
-+	ARB_BP_CAP_MASTER,
- 	ARB_ERR_CAP_CLR,
- 	ARB_ERR_CAP_HI_ADDR,
- 	ARB_ERR_CAP_ADDR,
-@@ -41,6 +55,11 @@ enum {
- 
- static const int gisb_offsets_bcm7038[] = {
- 	[ARB_TIMER]		= 0x00c,
-+	[ARB_BP_CAP_CLR]	= 0x014,
-+	[ARB_BP_CAP_HI_ADDR]	= -1,
-+	[ARB_BP_CAP_ADDR]	= 0x0b8,
-+	[ARB_BP_CAP_STATUS]	= 0x0c0,
-+	[ARB_BP_CAP_MASTER]	= -1,
- 	[ARB_ERR_CAP_CLR]	= 0x0c4,
- 	[ARB_ERR_CAP_HI_ADDR]	= -1,
- 	[ARB_ERR_CAP_ADDR]	= 0x0c8,
-@@ -50,6 +69,11 @@ static const int gisb_offsets_bcm7038[] = {
- 
- static const int gisb_offsets_bcm7278[] = {
- 	[ARB_TIMER]		= 0x008,
-+	[ARB_BP_CAP_CLR]	= 0x01c,
-+	[ARB_BP_CAP_HI_ADDR]	= -1,
-+	[ARB_BP_CAP_ADDR]	= 0x220,
-+	[ARB_BP_CAP_STATUS]	= 0x230,
-+	[ARB_BP_CAP_MASTER]	= 0x234,
- 	[ARB_ERR_CAP_CLR]	= 0x7f8,
- 	[ARB_ERR_CAP_HI_ADDR]	= -1,
- 	[ARB_ERR_CAP_ADDR]	= 0x7e0,
-@@ -59,6 +83,11 @@ static const int gisb_offsets_bcm7278[] = {
- 
- static const int gisb_offsets_bcm7400[] = {
- 	[ARB_TIMER]		= 0x00c,
-+	[ARB_BP_CAP_CLR]	= 0x014,
-+	[ARB_BP_CAP_HI_ADDR]	= -1,
-+	[ARB_BP_CAP_ADDR]	= 0x0b8,
-+	[ARB_BP_CAP_STATUS]	= 0x0c0,
-+	[ARB_BP_CAP_MASTER]	= 0x0c4,
- 	[ARB_ERR_CAP_CLR]	= 0x0c8,
- 	[ARB_ERR_CAP_HI_ADDR]	= -1,
- 	[ARB_ERR_CAP_ADDR]	= 0x0cc,
-@@ -68,6 +97,11 @@ static const int gisb_offsets_bcm7400[] = {
- 
- static const int gisb_offsets_bcm7435[] = {
- 	[ARB_TIMER]		= 0x00c,
-+	[ARB_BP_CAP_CLR]	= 0x014,
-+	[ARB_BP_CAP_HI_ADDR]	= -1,
-+	[ARB_BP_CAP_ADDR]	= 0x158,
-+	[ARB_BP_CAP_STATUS]	= 0x160,
-+	[ARB_BP_CAP_MASTER]	= 0x164,
- 	[ARB_ERR_CAP_CLR]	= 0x168,
- 	[ARB_ERR_CAP_HI_ADDR]	= -1,
- 	[ARB_ERR_CAP_ADDR]	= 0x16c,
-@@ -77,6 +111,11 @@ static const int gisb_offsets_bcm7435[] = {
- 
- static const int gisb_offsets_bcm7445[] = {
- 	[ARB_TIMER]		= 0x008,
-+	[ARB_BP_CAP_CLR]	= 0x010,
-+	[ARB_BP_CAP_HI_ADDR]	= -1,
-+	[ARB_BP_CAP_ADDR]	= 0x1d8,
-+	[ARB_BP_CAP_STATUS]	= 0x1e0,
-+	[ARB_BP_CAP_MASTER]	= 0x1e4,
- 	[ARB_ERR_CAP_CLR]	= 0x7e4,
- 	[ARB_ERR_CAP_HI_ADDR]	= 0x7e8,
- 	[ARB_ERR_CAP_ADDR]	= 0x7ec,
-@@ -125,6 +164,16 @@ static u64 gisb_read_address(struct brcmstb_gisb_arb_device *gdev)
- 	return value;
- }
- 
-+static u64 gisb_read_bp_address(struct brcmstb_gisb_arb_device *gdev)
-+{
-+	u64 value;
-+
-+	value = gisb_read(gdev, ARB_BP_CAP_ADDR);
-+	value |= (u64)gisb_read(gdev, ARB_BP_CAP_HI_ADDR) << 32;
-+
-+	return value;
-+}
-+
- static void gisb_write(struct brcmstb_gisb_arb_device *gdev, u32 val, int reg)
- {
- 	int offset = gdev->gisb_offsets[reg];
-@@ -259,6 +308,41 @@ static irqreturn_t brcmstb_gisb_tea_handler(int irq, void *dev_id)
- 	return IRQ_HANDLED;
- }
- 
-+static irqreturn_t brcmstb_gisb_bp_handler(int irq, void *dev_id)
-+{
-+	struct brcmstb_gisb_arb_device *gdev = dev_id;
-+	const char *m_name;
-+	u32 bp_status;
-+	u64 arb_addr;
-+	u32 master;
-+	char m_fmt[11];
-+
-+	bp_status = gisb_read(gdev, ARB_BP_CAP_STATUS);
-+
-+	/* Invalid captured address, bail out */
-+	if (!(bp_status & ARB_BP_CAP_STATUS_VALID))
-+		return IRQ_HANDLED;
-+
-+	/* Read the address and master */
-+	arb_addr = gisb_read_bp_address(gdev);
-+	master = gisb_read(gdev, ARB_BP_CAP_MASTER);
-+
-+	m_name = brcmstb_gisb_master_to_str(gdev, master);
-+	if (!m_name) {
-+		snprintf(m_fmt, sizeof(m_fmt), "0x%08x", master);
-+		m_name = m_fmt;
-+	}
-+
-+	pr_crit("GISB: breakpoint at 0x%llx [%c], core: %s\n",
-+		arb_addr, bp_status & ARB_BP_CAP_STATUS_WRITE ? 'W' : 'R',
-+		m_name);
-+
-+	/* clear the GISB error */
-+	gisb_write(gdev, ARB_ERR_CAP_CLEAR, ARB_ERR_CAP_CLR);
-+
-+	return IRQ_HANDLED;
-+}
-+
- /*
-  * Dump out gisb errors on die or panic.
-  */
-@@ -317,13 +401,14 @@ static int __init brcmstb_gisb_arb_probe(struct platform_device *pdev)
- 	struct brcmstb_gisb_arb_device *gdev;
- 	const struct of_device_id *of_id;
- 	struct resource *r;
--	int err, timeout_irq, tea_irq;
-+	int err, timeout_irq, tea_irq, bp_irq;
- 	unsigned int num_masters, j = 0;
- 	int i, first, last;
- 
- 	r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	timeout_irq = platform_get_irq(pdev, 0);
- 	tea_irq = platform_get_irq(pdev, 1);
-+	bp_irq = platform_get_irq(pdev, 2);
- 
- 	gdev = devm_kzalloc(&pdev->dev, sizeof(*gdev), GFP_KERNEL);
- 	if (!gdev)
-@@ -356,6 +441,15 @@ static int __init brcmstb_gisb_arb_probe(struct platform_device *pdev)
- 	if (err < 0)
- 		return err;
- 
-+	/* Interrupt is optional */
-+	if (bp_irq > 0) {
-+		err = devm_request_irq(&pdev->dev, bp_irq,
-+				       brcmstb_gisb_bp_handler, 0, pdev->name,
-+				       gdev);
-+		if (err < 0)
-+			return err;
-+	}
-+
- 	/* If we do not have a valid mask, assume all masters are enabled */
- 	if (of_property_read_u32(dn, "brcm,gisb-arb-master-mask",
- 				&gdev->valid_mask))
--- 
-2.25.1
+T24gU3VuLCAyMDIwLTA5LTA2IGF0IDE3OjE5ICswMjAwLCBGYWJpZW4gUGFyZW50IHdyb3RlOg0K
+PiBUaGlzIGNvbW1pdCBhZGRzIElPTU1VIGJpbmRpbmcgZG9jdW1lbnRhdGlvbiBhbmQgbGFyYiBw
+b3J0IGRlZmluaXRpb25zDQo+IGZvciB0aGUgTVQ4MTY3IFNvQy4NCj4gDQo+IFNpZ25lZC1vZmYt
+Ynk6IEZhYmllbiBQYXJlbnQgPGZwYXJlbnRAYmF5bGlicmUuY29tPg0KPiBBY2tlZC1ieTogUm9i
+IEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz4NCj4gLS0tDQo+IA0KPiBWMzogQWRkZWQgbXQ4MTY3
+LWxhcmItcG9ydC5oIGZpbGUgZm9yIGlvbW11IHBvcnQgZGVmaW5pdGlvbnMNCj4gVjI6IG5vIGNo
+YW5nZQ0KPiANCj4gLS0tDQo+ICAuLi4vYmluZGluZ3MvaW9tbXUvbWVkaWF0ZWssaW9tbXUudHh0
+ICAgICAgICAgfCAgMSArDQo+ICBpbmNsdWRlL2R0LWJpbmRpbmdzL21lbW9yeS9tdDgxNjctbGFy
+Yi1wb3J0LmggfCA0OSArKysrKysrKysrKysrKysrKysrDQo+ICAyIGZpbGVzIGNoYW5nZWQsIDUw
+IGluc2VydGlvbnMoKykNCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBpbmNsdWRlL2R0LWJpbmRpbmdz
+L21lbW9yeS9tdDgxNjctbGFyYi1wb3J0LmgNCj4gDQo+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0
+aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaW9tbXUvbWVkaWF0ZWssaW9tbXUudHh0IGIvRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2lvbW11L21lZGlhdGVrLGlvbW11LnR4dA0KPiBp
+bmRleCBjMWNjZDg1ODJlYjIuLmY3YTM0OGY0OGUwZCAxMDA2NDQNCj4gLS0tIGEvRG9jdW1lbnRh
+dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2lvbW11L21lZGlhdGVrLGlvbW11LnR4dA0KPiArKysg
+Yi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaW9tbXUvbWVkaWF0ZWssaW9tbXUu
+dHh0DQo+IEBAIC02MSw2ICs2MSw3IEBAIFJlcXVpcmVkIHByb3BlcnRpZXM6DQo+ICAJIm1lZGlh
+dGVrLG10Njc3OS1tNHUiIGZvciBtdDY3Nzkgd2hpY2ggdXNlcyBnZW5lcmF0aW9uIHR3byBtNHUg
+SFcuDQo+ICAJIm1lZGlhdGVrLG10NzYyMy1tNHUiLCAibWVkaWF0ZWssbXQyNzAxLW00dSIgZm9y
+IG10NzYyMyB3aGljaCB1c2VzDQo+ICAJCQkJCQkgICAgIGdlbmVyYXRpb24gb25lIG00dSBIVy4N
+Cj4gKwkibWVkaWF0ZWssbXQ4MTY3LW00dSIgZm9yIG10ODE2NyB3aGljaCB1c2VzIGdlbmVyYXRp
+b24gdHdvIG00dSBIVy4NCj4gIAkibWVkaWF0ZWssbXQ4MTczLW00dSIgZm9yIG10ODE3MyB3aGlj
+aCB1c2VzIGdlbmVyYXRpb24gdHdvIG00dSBIVy4NCj4gIAkibWVkaWF0ZWssbXQ4MTgzLW00dSIg
+Zm9yIG10ODE4MyB3aGljaCB1c2VzIGdlbmVyYXRpb24gdHdvIG00dSBIVy4NCj4gIC0gcmVnIDog
+bTR1IHJlZ2lzdGVyIGJhc2UgYW5kIHNpemUuDQoNClBsZWFzZSBhbHNvIGFkZCB0aGlzIGxpbmUg
+aW4gdGhlIGlvbW11LWNlbGxzIHByb3BlcnR5Og0KDQogICAgIGR0LWJpbmRpbmdzL21lbW9yeS9t
+dDgxNjctbGFyYi1wb3J0LmggZm9yIG10ODE2Ny4NCg0KPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9k
+dC1iaW5kaW5ncy9tZW1vcnkvbXQ4MTY3LWxhcmItcG9ydC5oIGIvaW5jbHVkZS9kdC1iaW5kaW5n
+cy9tZW1vcnkvbXQ4MTY3LWxhcmItcG9ydC5oDQo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+IGlu
+ZGV4IDAwMDAwMDAwMDAwMC4uNGRkNDRkMTAzN2E3DQo+IC0tLSAvZGV2L251bGwNCj4gKysrIGIv
+aW5jbHVkZS9kdC1iaW5kaW5ncy9tZW1vcnkvbXQ4MTY3LWxhcmItcG9ydC5oDQo+IEBAIC0wLDAg
+KzEsNDkgQEANCj4gKy8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wICovDQo+ICsv
+Kg0KPiArICogQ29weXJpZ2h0IChjKSAyMDIwIEJheUxpYnJlLCBTQVMNCj4gKyAqIEF1dGhvcjog
+RmFiaWVuIFBhcmVudCA8ZnBhcmVudEBiYXlsaWJyZS5jb20+DQoNCklmIEknbSBub3Qgd3Jvbmcs
+IHRoZSBmaXJzdCB2ZXJzaW9uIHdhcyBjcmVhdGVkIGJ5Og0KIEhvbmdodWkgWmhhbmcgPGhvbmdo
+dWkuemhhbmdAbWVkaWF0ZWsuY29tPg0KDQp0aGUgb3JpZ2luYWwgYXV0aG9yIHNob3VsZCBiZSBr
+ZXB0Lg0KDQo+ICsgKi8NCj4gKyNpZm5kZWYgX19EVFNfSU9NTVVfUE9SVF9NVDgxNjdfSA0KPiAr
+I2RlZmluZSBfX0RUU19JT01NVV9QT1JUX01UODE2N19IDQo+ICsNCj4gKyNkZWZpbmUgTVRLX000
+VV9JRChsYXJiLCBwb3J0KQkJKCgobGFyYikgPDwgNSkgfCAocG9ydCkpDQo+ICsNCj4gKyNkZWZp
+bmUgTTRVX0xBUkIwX0lECQkJMA0KPiArI2RlZmluZSBNNFVfTEFSQjFfSUQJCQkxDQo+ICsjZGVm
+aW5lIE00VV9MQVJCMl9JRAkJCTINCj4gKw0KPiArLyogbGFyYjAgKi8NCj4gKyNkZWZpbmUgTTRV
+X1BPUlRfRElTUF9PVkwwCQlNVEtfTTRVX0lEKE00VV9MQVJCMF9JRCwgMCkNCj4gKyNkZWZpbmUg
+TTRVX1BPUlRfRElTUF9SRE1BMAkJTVRLX000VV9JRChNNFVfTEFSQjBfSUQsIDEpDQo+ICsjZGVm
+aW5lIE00VV9QT1JUX0RJU1BfV0RNQTAJCU1US19NNFVfSUQoTTRVX0xBUkIwX0lELCAyKQ0KPiAr
+I2RlZmluZSBNNFVfUE9SVF9ESVNQX1JETUExCQlNVEtfTTRVX0lEKE00VV9MQVJCMF9JRCwgMykN
+Cj4gKyNkZWZpbmUgTTRVX1BPUlRfTURQX1JETUEJCU1US19NNFVfSUQoTTRVX0xBUkIwX0lELCA0
+KQ0KPiArI2RlZmluZSBNNFVfUE9SVF9NRFBfV0RNQQkJTVRLX000VV9JRChNNFVfTEFSQjBfSUQs
+IDUpDQo+ICsjZGVmaW5lIE00VV9QT1JUX01EUF9XUk9UCQlNVEtfTTRVX0lEKE00VV9MQVJCMF9J
+RCwgNikNCj4gKyNkZWZpbmUgTTRVX1BPUlRfRElTUF9GQUtFCQlNVEtfTTRVX0lEKE00VV9MQVJC
+MF9JRCwgNykNCj4gKw0KPiArLyogSU1HIGxhcmIxKi8NCj4gKyNkZWZpbmUgTTRVX1BPUlRfQ0FN
+X0lNR08JCU1US19NNFVfSUQoTTRVX0xBUkIxX0lELCAwKQ0KPiArI2RlZmluZSBNNFVfUE9SVF9D
+QU1fSU1HMk8JCU1US19NNFVfSUQoTTRVX0xBUkIxX0lELCAxKQ0KPiArI2RlZmluZSBNNFVfUE9S
+VF9DQU1fTFNDSQkJTVRLX000VV9JRChNNFVfTEFSQjFfSUQsIDIpDQo+ICsjZGVmaW5lIE00VV9Q
+T1JUX0NBTV9FU0ZLTwkJTVRLX000VV9JRChNNFVfTEFSQjFfSUQsIDMpDQo+ICsjZGVmaW5lIE00
+VV9QT1JUX0NBTV9BQU8JCU1US19NNFVfSUQoTTRVX0xBUkIxX0lELCA0KQ0KPiArI2RlZmluZSBN
+NFVfUE9SVF9WRU5DX1JFQwkJTVRLX000VV9JRChNNFVfTEFSQjFfSUQsIDUpDQo+ICsjZGVmaW5l
+IE00VV9QT1JUX1ZFTkNfQlNETUEJCU1US19NNFVfSUQoTTRVX0xBUkIxX0lELCA2KQ0KPiArI2Rl
+ZmluZSBNNFVfUE9SVF9WRU5DX1JEX0NPTVYJCU1US19NNFVfSUQoTTRVX0xBUkIxX0lELCA3KQ0K
+PiArI2RlZmluZSBNNFVfUE9SVF9DQU1fSU1HSQkJTVRLX000VV9JRChNNFVfTEFSQjFfSUQsIDgp
+DQo+ICsjZGVmaW5lIE00VV9QT1JUX1ZFTkNfQ1VSX0xVTUEJCU1US19NNFVfSUQoTTRVX0xBUkIx
+X0lELCA5KQ0KPiArI2RlZmluZSBNNFVfUE9SVF9WRU5DX0NVUl9DSFJPTUEJTVRLX000VV9JRChN
+NFVfTEFSQjFfSUQsIDEwKQ0KPiArI2RlZmluZSBNNFVfUE9SVF9WRU5DX1JFRl9MVU1BCQlNVEtf
+TTRVX0lEKE00VV9MQVJCMV9JRCwgMTEpDQo+ICsjZGVmaW5lIE00VV9QT1JUX1ZFTkNfUkVGX0NI
+Uk9NQQlNVEtfTTRVX0lEKE00VV9MQVJCMV9JRCwgMTIpDQo+ICsNCj4gKy8qIFZERUMgbGFyYjIq
+Lw0KPiArI2RlZmluZSBNNFVfUE9SVF9IV19WREVDX01DX0VYVAkJTVRLX000VV9JRChNNFVfTEFS
+QjJfSUQsIDApDQo+ICsjZGVmaW5lIE00VV9QT1JUX0hXX1ZERUNfUFBfRVhUCQlNVEtfTTRVX0lE
+KE00VV9MQVJCMl9JRCwgMSkNCj4gKyNkZWZpbmUgTTRVX1BPUlRfSFdfVkRFQ19WTERfRVhUCU1U
+S19NNFVfSUQoTTRVX0xBUkIyX0lELCAyKQ0KPiArI2RlZmluZSBNNFVfUE9SVF9IV19WREVDX0FW
+Q19NVl9FWFQJTVRLX000VV9JRChNNFVfTEFSQjJfSUQsIDMpDQo+ICsjZGVmaW5lIE00VV9QT1JU
+X0hXX1ZERUNfUFJFRF9SRF9FWFQJTVRLX000VV9JRChNNFVfTEFSQjJfSUQsIDQpDQo+ICsjZGVm
+aW5lIE00VV9QT1JUX0hXX1ZERUNfUFJFRF9XUl9FWFQJTVRLX000VV9JRChNNFVfTEFSQjJfSUQs
+IDUpDQo+ICsjZGVmaW5lIE00VV9QT1JUX0hXX1ZERUNfUFBXUkFQX0VYVAlNVEtfTTRVX0lEKE00
+VV9MQVJCMl9JRCwgNikNCj4gKw0KPiArI2VuZGlmDQoNCg==
 
