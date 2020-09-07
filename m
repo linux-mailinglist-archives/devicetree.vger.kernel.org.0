@@ -2,79 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8059B25F9E4
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 13:51:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5BC525FA03
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 13:58:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729085AbgIGLu7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 07:50:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46916 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729160AbgIGLui (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 07:50:38 -0400
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4ED0C061574
-        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 04:50:37 -0700 (PDT)
-Received: by mail-lj1-x243.google.com with SMTP id n25so4859718ljj.4
-        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 04:50:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OprOp2em24X5m4o3PUof0yAN4YU+uTpPGAtCtWvXlNA=;
-        b=NaTzQpnWPET6m3hR4pMK+Fv+kYVcmvBc6HSvONrngdeQJAY5jSkF4I7Rh04pSSR5JH
-         f3s0qTUgVu8be6iyHOy5mo9ylnHUElRgWhD/DigPwM7XyshB28wNYN7Z+Zs1cZ3Wwc/P
-         muwbagslDBfXwYh1+Fb6Lh8Nl0efiAfVx3EWChUD1IgdKa86sd+l7Y04ox7i7MY4jwty
-         HGLaf1ULo8tpy3SATPrT9caiKm+MvfFuAbhI/acNo40ltH6M1kNuSjyeu6rRY3MUPB9R
-         uRaP0Qb09D7AbVkgl5uDt/qBs/jUl3yFSUjc8BpBcqOQBKmFXWO+SBJEL9ziVzUmJDsQ
-         OzXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OprOp2em24X5m4o3PUof0yAN4YU+uTpPGAtCtWvXlNA=;
-        b=QqBQ4pCBwgC1T5fmXjYF7ecdoTKGfVNYsEExk9j9Po4zncliDgS0QaGawp8zquwIfV
-         I1i4Z6rfXQvt68wWeFsMGbeEt6wBzeybVgQc5UHLM8P0pvSNehJnKc01KVpmbg78Gm9T
-         gCc+awuR4UaAbfcZFzMK0zq8i2ifkSlHrdu1a7bkMP3o7APtOW9pqiulaH+FVwPuMMW+
-         AUl0bll4vJ3RfN2XA80rvpYklPsjlDX9Tq0zyhU3qgx6qb+ARpxhrm3iofDn8mVxpoex
-         WwyKQgua32OzK215VP+QBixRSM7EAwCpgdPdpoYMbW77KajrKNP4qrSr21onMx5D8jiS
-         7VfA==
-X-Gm-Message-State: AOAM532ngbVAnVxbrr0sGZyZsZNn7zHpXpZpSLqSiuIAmxClWD1hHNsI
-        M+lU79CPOd9IGMerVNvw/X6asJsQBg37hPTOOZm6zw==
-X-Google-Smtp-Source: ABdhPJwvpzbst+CDx7Bzy8imZV6B8N4xGrr79yQL6ltKSsY4hsLQN+7461X7PW78zu3yPdvlRnWCw9G/oLrn1pHgrlU=
-X-Received: by 2002:a2e:9d04:: with SMTP id t4mr10548159lji.293.1599479433311;
- Mon, 07 Sep 2020 04:50:33 -0700 (PDT)
+        id S1729172AbgIGL6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 07:58:20 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:48822 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729184AbgIGL6R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 07:58:17 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 087BsUxr038164;
+        Mon, 7 Sep 2020 06:54:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599479670;
+        bh=7+EDL59N1vzKLk7OP38P/jtVYpuOIQC7iGq1qPqi3KM=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=vCF4/+S4z/SpKTh7ZZX+AH2G+EDLch2wMtvjYZY0bjt3/Bpft5C8anLlxem6mjIc+
+         Xj470AzvZIXI8SqGGGCaTQc6aq3OA4p8s/zbgg5xQpeXvroiLyQXeVwMtEI6+v1taI
+         upitOwTBzsHH0YGm8Vp+wY3vMlDtPiYfVUWOYFK4=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 087BsU79089613
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 7 Sep 2020 06:54:30 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 7 Sep
+ 2020 06:54:30 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 7 Sep 2020 06:54:30 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 087BsU7f084829;
+        Mon, 7 Sep 2020 06:54:30 -0500
+Date:   Mon, 7 Sep 2020 06:54:30 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <t-kristo@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>, <lokeshvutla@ti.com>,
+        <grygorii.strashko@ti.com>, <nsekhar@ti.com>
+Subject: Re: [PATCH V2 0/8] arm64: dts: ti: k3-*: Squash up
+ node_name_chars_strict warnings + hex usage
+Message-ID: <20200907115430.rmhaubsyho6pgszh@akan>
+References: <20200901223059.14801-1-nm@ti.com>
+ <20200903130015.21361-1-nm@ti.com>
 MIME-Version: 1.0
-References: <20200812195020.13568-1-dmurphy@ti.com> <20200812195020.13568-7-dmurphy@ti.com>
- <CACRpkdY1pCcUONFhEXeyXa3f+JFB=Wg1nSB-qRJF5njM=L+CVw@mail.gmail.com> <f253bf11-3422-4f49-fce3-ac6b51d91c25@ti.com>
-In-Reply-To: <f253bf11-3422-4f49-fce3-ac6b51d91c25@ti.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 7 Sep 2020 13:50:22 +0200
-Message-ID: <CACRpkdbSWdkZzHZ65jqz3=u=zLH1xivx_7+kwKDvK+58FKP0Ww@mail.gmail.com>
-Subject: Re: [PATCH v33 6/6] ARM: dts: ste-href: Add reg property to the
- LP5521 channel nodes
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
-        =?UTF-8?B?TWFyZWsgQmVow7pu?= <marek.behun@nic.cz>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20200903130015.21361-1-nm@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 28, 2020 at 8:39 PM Dan Murphy <dmurphy@ti.com> wrote:
+On 08:00-20200903, Nishanth Menon wrote:
+> Hi,
+> 
+> This is a respin of v2 of the series posted as [1].
+> 
+> As part of this cleanup, I ran a cross check of nodes that are
+> part of K3 as of right now, Vs what is "generic" definition as per 0.3
+> dt specification [2].
+> 
+> Changes in v2:
+> - Based off 20200903
+> - Picked up Acks and reviewed-by from previous versions (please comment
+>   if you disagree).
+> - Dropped tsadc rename [3] based on review
+> - Added 2 patches to fixup hexadecimal usage caught as part of review
+> - few additional fixups.
+I have applied the following to branch ti-k3-next on [1].
 
-> > I don't knof if I should just apply these two patches or if there are
-> > dependencies that need to go in first. I guess yes?
->
-> I believe all dependencies have been met for these
+[1/8] arm64: dts: ti: k3-j721e: Use lower case hexadecimal
+      commit: 1aedefe13ba263d0d7d1cfbb38aadebbd5bab34e
+[2/8] arm64: dts: ti: k3-am65-main: Use lower case hexadecimal
+      commit: 05e393c596c4495d79f0cbeacb0f0a0e0b6f89d5
+[3/8] arm64: dts: ti: k3-am65*: Use generic gpio for node names
+      commit: 91e5f404e42bc189bb0e447d30041de737ad24bf
+[4/8] arm64: dts: ti: k3-am65*: Use generic clock for syscon clock names
+      commit: 86e67b591e6d993d98567143451883a5618c196e
+[5/8] arm64: dts: ti: k3-*: Use generic pinctrl for node names
+      commit: dcccf77067e4274953e8944d9730bb7ae2964c28
+[6/8] arm64: dts: ti: k3-am65-base-board Use generic camera for node name instead of ov5640
+      commit: 4c19fb9ce266561ab122880a02e873ee8c3668e4
+[7/8] arm64: dts: ti: k3-am65-wakeup: Use generic temperature-sensor for node name
+      commit: 9a8ecd414322ceb377cecb4795e3f3d7d7020952
+[8/8] arm64: dts: ti: k3-*: Fix up node_name_chars_strict warnings
+      commit: e5c956c4f36cdd59e775f2285af9a1683374c5a5
 
-OK I applied this patch to the Ux500 tree!
-
-Yours,
-Linus Walleij
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
