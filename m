@@ -2,93 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EEFD25FEFA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 18:25:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E854225FF68
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 18:31:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730582AbgIGQZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 12:25:28 -0400
-Received: from a27-11.smtp-out.us-west-2.amazonses.com ([54.240.27.11]:36162
-        "EHLO a27-11.smtp-out.us-west-2.amazonses.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730333AbgIGQZW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 12:25:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=zsmsymrwgfyinv5wlfyidntwsjeeldzt; d=codeaurora.org; t=1599495922;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:MIME-Version:Content-Type;
-        bh=uC6aquUmIjDpwEsVJnaHXWj+WFYelQTAusJJrY1BpCc=;
-        b=c7/0AXxmyuCR8uJeBK277Uk60P2jzFf2mJfxLR8kt3el9wVK0eqLH0ArDeFoECad
-        Hu+hs6fO6Mvqos5warmSdxTjqob6I5GakgMR64NtqGurh6Mi0nuCjvhz4SP4539AOkk
-        9Na3xnomZN/NxfsyseNJvPUQB1nHOxRnSh2SrrJk=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1599495922;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:MIME-Version:Content-Type:Feedback-ID;
-        bh=uC6aquUmIjDpwEsVJnaHXWj+WFYelQTAusJJrY1BpCc=;
-        b=ZQ+WkNJGzQwO9d1MhIMEdKjTE78YOqQ+tT9IhV0akVNcZV+Sree0FTG517qDe5dw
-        +eyYIjmU20BedvCKm8Vg/3ZStXhkgaHsnocPqTIskOb6TTvqUNugUMO75y6Ek/D/wWB
-        3n4PqbHtu9Z6yk/1L9nNoJk4wxzqlIi/KpnrM9YU=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3E5C5C560C8
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kvalo@codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     akolli@codeaurora.org
-Cc:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
-        ath11k@lists.infradead.org
-Subject: Re: [PATCH v6 2/3] ath11k: copy ce service configs to hw_params
-References: <1598287470-1871-1-git-send-email-akolli@codeaurora.org>
-        <1598287470-1871-3-git-send-email-akolli@codeaurora.org>
-        <87363t52nj.fsf@codeaurora.org>
-        <010101746838d751-613bfbba-7cfe-496c-9244-41fc2262f665-000000@us-west-2.amazonses.com>
-Date:   Mon, 7 Sep 2020 16:25:22 +0000
-In-Reply-To: <010101746838d751-613bfbba-7cfe-496c-9244-41fc2262f665-000000@us-west-2.amazonses.com>
-        (akolli@codeaurora.org's message of "Mon, 7 Sep 2020 10:59:49 +0000")
-Message-ID: <010101746962e1ce-dcf1c48c-efdc-4f9f-b28b-7839697630ce-000000@us-west-2.amazonses.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
+        id S1729831AbgIGQbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 12:31:45 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:52962 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729690AbgIGOXp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 10:23:45 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 087ENTOZ013858;
+        Mon, 7 Sep 2020 09:23:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599488609;
+        bh=vOt5jgEVI5IP+P9UtdrVL509eExBOW74aWC6FEjb+Ms=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=QMX+0gMoJGX9c4bZFtbLZ12SZeQaaeAqeF04GCGaR8mwLdSYZm38q5QpW0q4vVEJK
+         seryiNxaDCxa2jEHoQJt0Q8Oq2fDDztBwpJzSpOhGVyMUBiP4pc/sJ3nbKy9sDda7h
+         948s74VICdKZ+x7OsYHdz6JKgHXZgp/JUJOkAOlo=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 087ENT1I053179
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 7 Sep 2020 09:23:29 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 7 Sep
+ 2020 09:23:29 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 7 Sep 2020 09:23:29 -0500
+Received: from [10.24.69.20] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 087ENJNp087360;
+        Mon, 7 Sep 2020 09:23:24 -0500
+Subject: Re: [PATCH v2 0/4] arm64: Initial support for Texas Instrument's
+ J7200 Platform
+To:     Nishanth Menon <nm@ti.com>
+CC:     Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Sekhar Nori <nsekhar@ti.com>, Suman Anna <s-anna@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+References: <20200827065144.17683-1-lokeshvutla@ti.com>
+ <de8d64eb-05fd-ed7d-61b8-1d8e13649ae8@ti.com>
+ <20200907141427.ti6r3h6namv2hezw@akan>
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+Message-ID: <9d8d6980-0b22-da45-52af-474c6d96c873@ti.com>
+Date:   Mon, 7 Sep 2020 19:53:19 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-SES-Outgoing: 2020.09.07-54.240.27.11
-Feedback-ID: 1.us-west-2.CZuq2qbDmUIuT3qdvXlRHZZCpfZqZ4GtG9v3VKgRyF0=:AmazonSES
+In-Reply-To: <20200907141427.ti6r3h6namv2hezw@akan>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-akolli@codeaurora.org writes:
 
-> On 2020-09-07 15:28, Kalle Valo wrote:
->> Anilkumar Kolli <akolli@codeaurora.org> writes:
+
+On 07/09/20 7:44 pm, Nishanth Menon wrote:
+> On 17:32-20200907, Lokesh Vutla wrote:
+>> Hi,
 >>
->>> No functional changes, added target ce service configurations to
->>> hw_params.
+>> On 27/08/20 12:21 pm, Lokesh Vutla wrote:
+>>> This series adds initial support for latest new SoC, J7200, from Texas Instruments.
 >>>
->>> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
->>
->> [...]
->>
->>> --- a/drivers/net/wireless/ath/ath11k/core.c
->>> +++ b/drivers/net/wireless/ath/ath11k/core.c
->>> @@ -812,12 +812,6 @@ int ath11k_core_init(struct ath11k_base *ab)
->>>  		return ret;
->>>  	}
+>>> The J7200 SoC is a part of the K3 Multicore SoC architecture platform.
+>>> It is targeted for for automotive gateway, vehicle compute systems,
+>>> Vehicle-to-Vehicle (V2V) and Vehicle-to-Everything (V2X) applications.
+>>> The SoC aims to meet the complex processing needs of modern embedded products.
 >>>
->>> -	ret = ath11k_init_hw_params(ab);
->>> -	if (ret) {
->>> -		ath11k_err(ab, "failed to get hw params %d\n", ret);
->>> -		return ret;
->>> -	}
+>>> See J7200 Technical Reference Manual (SPRUIU1, June 2020)
+>>> for further details: https://www.ti.com/lit/pdf/spruiu1
+>>>
+>>> Changes since v1:
+>>> - Swapped Patch 1 and 2 as suggested by Nishanth.
+>>> - Added description for each SoC in yaml bindings.
+>>>
+>>> Testing:
+>>> - ./scripts/checkpatch --strict
+>>> 	- Few warningns about Line length exceeding 100 columns.
+>>> 	  But these are corresponding to comments
+>>> - v8make dtbs_check
+>>> - DT_SCHEMA_FLAGS="-u"
+>>>   DT_SCHEMA_FILES="Documentation/devicetree/bindings/arm/ti/k3.yaml"
+>>>   v8make dtbs_check
+>>> - DT_SCHEMA_FLAGS="-u"
+>>>   DT_SCHEMA_FILES="Documentation/devicetree/bindings/arm/ti/k3.yaml"
+>>>   v8make dt_binding_check
 >>
->> This is very suspicious.
->
-> ath11k_core_pre_init() is calling ath11k_init_hw_params(), again
-> calling same function in ath11k_core_init() is not needed.
->
-> Will send this as a new patch ?
+>> This series has been lying around for soo long with no major comments. It will
+>> be nice to get this merged. I understand we are waiting for Acks on yaml
+>> documentation but it would be bad to miss a merge window for a new platform
+>> because we are waiting for Acks on yaml conversion.
+> 
+> I do require Rob / DT maintainer to ack the DT yaml conversion and the
+> j7200 binding addition.
+> 
+> Besides yaml and compatibility acks, there are a few ancillary
+> comments to fix up.. Kconfig -> I think we should either stay with
+> status quo and create a new config option per SoC OR rename the
+> config to be generic (using j7200 with j721e SoC config is not very
 
-Yes, please send this in a new patch with a proper commit log explaining
-the situation.
+Please suggest your preference here. I guess separate defconfig for J7200?
 
--- 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+> consistent). In addition, around the stuff that is going to next in
+> parallel, the dts is generating additional warnings as well (DSS
+
+hmm..there is no DSS being added in this series. There is one checkpatch warning for PATCH 1:
+
+WARNING: DT binding docs and includes should be a separate patch. See: Documentation/devicetree/bindings/submitting-patches.rst
+
+This can be ignored.
+
+
+> etc). I think it might be easier if we wait for DT maintainer ack on
+> bindings prior to giving further cosmetic comments (To allow for any
+> additional changes to come in to -next).
+> 
+okay.
+
+Thanks and regards,
+Lokesh
