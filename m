@@ -2,118 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDB8426038F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:51:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D7A4260382
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:50:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729207AbgIGRvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 13:51:22 -0400
-Received: from mga12.intel.com ([192.55.52.136]:27580 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729197AbgIGMJ2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Sep 2020 08:09:28 -0400
-IronPort-SDR: d+GOdd1IOIXAxfuz0ea3kxiBBNbArkKJzoUYIs+mg3NALdwdnb5KpvPazcBmebCYsw7alUXUuq
- Q+onYDM3uBqg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9736"; a="137510250"
-X-IronPort-AV: E=Sophos;i="5.76,401,1592895600"; 
-   d="scan'208";a="137510250"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2020 05:09:25 -0700
-IronPort-SDR: YrpUto9u+wGBRh6zH4Nvu3BVnVTAt8O+ErPcssP1SJih6tnBdiYdZfso0elePasXrdbnaYGdEo
- m+dGRNdhMNzA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,401,1592895600"; 
-   d="scan'208";a="328068181"
-Received: from vgjayaku-ilbpg7.png.intel.com ([10.88.227.96])
-  by fmsmga004.fm.intel.com with ESMTP; 07 Sep 2020 05:09:23 -0700
-From:   vineetha.g.jaya.kumaran@intel.com
-To:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        robh+dt@kernel.org
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        wan.ahmad.zainie.wan.mohamad@intel.com,
-        andriy.shevchenko@linux.intel.com,
-        vijayakannan.ayyathurai@intel.com, mgross@linux.intel.com,
-        lakshmi.bai.raja.subramanian@intel.com
-Subject: [PATCH v6 2/2] dt-bindings: pwm: keembay: Add bindings for Intel Keem Bay PWM
-Date:   Mon,  7 Sep 2020 20:07:50 +0800
-Message-Id: <1599480470-5932-3-git-send-email-vineetha.g.jaya.kumaran@intel.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1599480470-5932-1-git-send-email-vineetha.g.jaya.kumaran@intel.com>
-References: <1599480470-5932-1-git-send-email-vineetha.g.jaya.kumaran@intel.com>
+        id S1729253AbgIGRuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 13:50:08 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:48951 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1729235AbgIGMKw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 08:10:52 -0400
+X-UUID: a2e268fb05e348028d30b6335d481ecd-20200907
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=mWs1TicmUihewvCBjVKC06mEcTl47586ruiLpRjWtf0=;
+        b=hGj+mUvBalskvKSo2aDFF6vMpETfhHsIqHQJKehDbZu9UTTvOzpigKiCwf3R8VA81xvV0hT9ACxY3/7Rep4N69Cf9Qx88grS36ZuAf+zaloaQuKOrf05U26M73j5mDXNOUwbsE+qELEIIHqhQtskXPhZa2Ps3ldT+rtUKvdtJdg=;
+X-UUID: a2e268fb05e348028d30b6335d481ecd-20200907
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 972947843; Mon, 07 Sep 2020 20:10:49 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 7 Sep 2020 20:10:45 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 7 Sep 2020 20:10:45 +0800
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        <davem@davemloft.net>, <linux-pci@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Sj Huang <sj.huang@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>
+Subject: [v1,0/3] PCI: mediatek: Add new generation controller support
+Date:   Mon, 7 Sep 2020 20:08:49 +0800
+Message-ID: <20200907120852.12090-1-jianjun.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "Vineetha G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>
-
-Add PWM Device Tree bindings documentation for the Intel Keem Bay SoC.
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-Signed-off-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
----
- .../devicetree/bindings/pwm/intel,keembay-pwm.yaml | 47 ++++++++++++++++++++++
- 1 file changed, 47 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
-
-diff --git a/Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml b/Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
-new file mode 100644
-index 00000000..a374334
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2020 Intel Corporation
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/intel,keembay-pwm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Intel Keem Bay PWM Device Tree Bindings
-+
-+maintainers:
-+  - Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - intel,keembay-pwm
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  "#pwm-cells":
-+    const: 2
-+
-+required:
-+ - compatible
-+ - reg
-+ - clocks
-+ - '#pwm-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #define KEEM_BAY_A53_GPIO
-+
-+    pwm@203200a0 {
-+      compatible = "intel,keembay-pwm";
-+      reg = <0x203200a0 0xe8>;
-+      clocks = <&scmi_clk KEEM_BAY_A53_GPIO>;
-+      #pwm-cells = <2>;
-+    };
--- 
-1.9.1
+VGhlc2Ugc2VyaWVzIHBhdGNoZXMgYWRkIHBjaWUtbWVkaWF0ZWstZ2VuMy5jIGFuZCBkdC1iaW5k
+aW5ncyBmaWxlIHRvDQpzdXBwb3J0IG5ldyBnZW5lcmF0aW9uIFBDSWUgY29udHJvbGxlci4NCg0K
+Smlhbmp1biBXYW5nICgzKToNCiAgZHQtYmluZGluZ3M6IEFkZCBZQU1MIHNjaGVtYXMgZm9yIEdl
+bjMgUENJZSBjb250cm9sbGVyDQogIFBDSTogbWVkaWF0ZWs6IEFkZCBuZXcgZ2VuZXJhdGlvbiBj
+b250cm9sbGVyIHN1cHBvcnQNCiAgTUFJTlRBSU5FUlM6IHVwZGF0ZSBlbnRyeSBmb3IgTWVkaWFU
+ZWsgUENJZSBjb250cm9sbGVyDQoNCiAuLi4vYmluZGluZ3MvcGNpL21lZGlhdGVrLXBjaWUtZ2Vu
+My55YW1sICAgICAgfCAgMTU4ICsrKw0KIE1BSU5UQUlORVJTICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICB8ICAgIDEgKw0KIGRyaXZlcnMvcGNpL2NvbnRyb2xsZXIvS2NvbmZpZyAg
+ICAgICAgICAgICAgICB8ICAgMTQgKw0KIGRyaXZlcnMvcGNpL2NvbnRyb2xsZXIvTWFrZWZpbGUg
+ICAgICAgICAgICAgICB8ICAgIDEgKw0KIGRyaXZlcnMvcGNpL2NvbnRyb2xsZXIvcGNpZS1tZWRp
+YXRlay1nZW4zLmMgICB8IDEwNjMgKysrKysrKysrKysrKysrKysNCiA1IGZpbGVzIGNoYW5nZWQs
+IDEyMzcgaW5zZXJ0aW9ucygrKQ0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvcGNpL21lZGlhdGVrLXBjaWUtZ2VuMy55YW1sDQogY3JlYXRlIG1v
+ZGUgMTAwNjQ0IGRyaXZlcnMvcGNpL2NvbnRyb2xsZXIvcGNpZS1tZWRpYXRlay1nZW4zLmMNCg0K
+LS0gDQoyLjI1LjENCg==
 
