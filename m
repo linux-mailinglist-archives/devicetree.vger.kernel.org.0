@@ -2,87 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1C7A25F6A4
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 11:38:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28DDC25F6D9
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 11:49:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728421AbgIGJif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 05:38:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54492 "EHLO
+        id S1728402AbgIGJtx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 05:49:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728402AbgIGJiT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 05:38:19 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE156C061756
-        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 02:38:17 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id w2so13717851wmi.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 02:38:17 -0700 (PDT)
+        with ESMTP id S1728375AbgIGJtw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 05:49:52 -0400
+Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com [IPv6:2607:f8b0:4864:20::e43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36E5DC061575
+        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 02:49:49 -0700 (PDT)
+Received: by mail-vs1-xe43.google.com with SMTP id s62so7050636vsc.7
+        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 02:49:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=GVroTBa/RDLMNit62OYeyl1hwDTywX684KnqperhLJ0=;
-        b=x5OvvQUkQ4I2LoNSkzzhx7+W8bsO/ZK+grYryhcNhh2GnuOJrKUI34PxB9IXwKoDn+
-         LqVt4VbSrgEe98AjCzT96WwDVHuu0/mNSVlEya8GiGHMHcSG+2AMkpA386+kpcihAp4u
-         EX+sgczSwYvRJhXtSGmezYLMwX7W28/HD6mPBUfhr+KuYnXst8uMh0zIx2c7jWDHkYFo
-         0M9SjCWO6dLVIZLuqNRTK5x//eBcgk9dpQJiF+yktcvQULZ6OVLkRCVrXTyioRktnzTK
-         AGeTw11CRE0Val89BCKJ8+vuSyEzVlOaaFy5v2F/6TKcVsf91yhH26LyDBO6iXYsqa37
-         8Wrg==
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=kzqniENsjTGrtzwAWBHSHJGSg8nw3GAQdgvThPSbJ54=;
+        b=lgt+hVRje3zM3OoS3Ku0gij9Z2FNqL4Q2eL2dP9ugcLQ8yXwOh4Izl2xR9RXzYZ+Bb
+         Dzk+Jpag7luj6P1fy0WNpX0N8bNHwKYowOzaoYtlmVO/eu8lNPmQzJSTET+8DH7Z1gMn
+         Bm6ta2zrhJY+7vT0JmpuDWThOYVxtu3kSbBYptL1cutlrJIM7b6i8Su+JPd426asO0Ef
+         Yv248jGQz9bG5PXf+EQKLHzaeegMaOpkpjbiHAVAZMUHofeINGf9Ah1JEkcn/V95/YI7
+         MMN2cSA1B1FIalr7gj9+lmD50nAlldWEo10HHysYmgRgdl1ga/951vKObcatTpZmhgoj
+         iKGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=GVroTBa/RDLMNit62OYeyl1hwDTywX684KnqperhLJ0=;
-        b=fDTHX8H7afUb6vl+J/VWUq5VU7F8/R/oJTkIEn6XHTySrdnZWBHOlebax+IielMwzs
-         joNWuhzDGqIeHV4jFkhkuVlMUvq9NR2m6xIpllKwZbEfLggbcLXKmTKjTNOHdmoJP0W8
-         YHOqUl7Xths4jMHLbkzeqOCB3JC8Tw9xAt4KHiPec0ltzEK2MzlmoordkbbPG+ZwsxLV
-         TBVGpUld88xL/nJow4T7Bz/BZas3RzNEbyLk3I++ZcpxzsVg1/PhNYLdGIibJEwqzNt0
-         nhPACLnBXY0VXQZsqxS9I5PdbcS3ykDx5OtCMltS2jVLUbULC89U17bb9ZiJU04DD8P1
-         Zlyg==
-X-Gm-Message-State: AOAM530/Z2WGx6kJvOLd8T0nKF47k35NpgHvVdg//eVQqn/6PePz6E9s
-        iLYvlGtAYOk6KWGTOxz7JH17+w==
-X-Google-Smtp-Source: ABdhPJy6RXmzUtHiqGSQ+Zn7a1yFtQEiNWhWQFBWPvR3QOL3F52xazfR89nrTNoJVR99ebtMkMS+bA==
-X-Received: by 2002:a1c:a746:: with SMTP id q67mr21016967wme.128.1599471496274;
-        Mon, 07 Sep 2020 02:38:16 -0700 (PDT)
-Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
-        by smtp.gmail.com with ESMTPSA id n17sm25170687wrw.0.2020.09.07.02.38.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Sep 2020 02:38:15 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     jbrunet@baylibre.com, devicetree@vger.kernel.org
-Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH 2/4] dt-bindings: clk: axg-clkc: add MIPI DSI Host clock binding
-Date:   Mon,  7 Sep 2020 11:38:08 +0200
-Message-Id: <20200907093810.6585-3-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200907093810.6585-1-narmstrong@baylibre.com>
-References: <20200907093810.6585-1-narmstrong@baylibre.com>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=kzqniENsjTGrtzwAWBHSHJGSg8nw3GAQdgvThPSbJ54=;
+        b=K9JGntrkbTHVcjiJScXRpD8xmP2zdTV7eRVuMjwTpfTLCRILGwZdMzNc+c0TMK+N8p
+         tqen1C96tM1mrLlT24nUvkoQlQKY9Wxkf3ZF1hJhjLqcu5cWmr79KM4xOXZKYDKWqtxE
+         ojanMgt1eeYCX8qN77xomzxPr0pOyWKnH4qrwuS/GGSppmpGEyth566jpqTqXnp6z8Gb
+         jIiDQkv1syoeWtCqc8rZmF6Bf203QpMidlyO2MHcVERASeUf/vp5Jjgi42n6prKJXZIA
+         zWOV48V+mjJfr+KKOxbW4DXtWKTy85E4Cxa0Yv1F3MbsKAelDFs5fWY5duJjqDr89nIE
+         DxMw==
+X-Gm-Message-State: AOAM530BYEF+aL1WyruIG9BDxbNaEwKcM8dk8mZ2mrtw1Emkeix+Xf5u
+        YF7NPBKjSwAzDJcvdVZSt6Fyo+HJyndeWe69iW8=
+X-Google-Smtp-Source: ABdhPJx8PojsLgdRgE71v9E302mF7xFfVc7IMt5FPfbixgvWz6NIHuz8qE7EwZvPNxXY2iP3Mdhs2eOra/xmLzCKnu4=
+X-Received: by 2002:a05:6102:372:: with SMTP id f18mr1701368vsa.8.1599472188809;
+ Mon, 07 Sep 2020 02:49:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:ab0:184c:0:0:0:0:0 with HTTP; Mon, 7 Sep 2020 02:49:48 -0700 (PDT)
+Reply-To: mrs.maddalenanicholaus@gmail.com
+From:   "Mrs. Maddalena Nicholaus" <dickksonpaulchambers@gmail.com>
+Date:   Mon, 7 Sep 2020 10:49:48 +0100
+Message-ID: <CAJTqzoiwvgnwH09Mvr+gaFeMnfawc7j-PuPSaMKXhh6n2sVzWQ@mail.gmail.com>
+Subject: =?UTF-8?B?R3LDvMOfZSBMaWViZXI=?=
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the clock ID for the MIPI DSI Host clock.
+Gr=C3=BC=C3=9Fe Lieber,
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- include/dt-bindings/clock/axg-clkc.h | 1 +
- 1 file changed, 1 insertion(+)
+Ich schreibe diesen Brief mit Tr=C3=A4nen und Trauer und bitte wegen meines
+Gesundheitszustands in London um Hilfe. Ich bin Frau Maddalena
+Nicholaus, eine 85-j=C3=A4hrige finnische Staatsb=C3=BCrgerin. Ich war eine
+Waise, adoptiert von meinem verstorbenen Vater Engr. Joakim Nicholaus,
+Vorsitzender und CEO von JNicholaus Oil and Gas Services. Nach dem Tod
+meines Vaters folgte ich diesem Beispiel und beschloss zu heiraten,
+weil ich sein einziges Kind war.
 
-diff --git a/include/dt-bindings/clock/axg-clkc.h b/include/dt-bindings/clock/axg-clkc.h
-index 281df3e0f131..e2749dbc74b8 100644
---- a/include/dt-bindings/clock/axg-clkc.h
-+++ b/include/dt-bindings/clock/axg-clkc.h
-@@ -96,5 +96,6 @@
- #define CLKID_VCLK2_DIV6			130
- #define CLKID_VCLK2_DIV12			131
- #define CLKID_CTS_ENCL				133
-+#define CLKID_VDIN_MEAS				136
- 
- #endif /* __AXG_CLKC_H */
--- 
-2.22.0
+Bei mir wurde eine isch=C3=A4mische Herzkrankheit diagnostiziert, die mich
+viel kostete, und die Komplikationen betrafen alle Teile meines
+K=C3=B6rpers und meiner Gehirnzellen. Erst vor 5 Tagen sagten britische
+=C3=84rzte, dass ich jederzeit sterben k=C3=B6nnte, weil mein Zustand einen
+kritischen Punkt erreicht hatte und sich in einer lebensbedrohlichen
+Phase befand. Nachdem ich etwas =C3=BCber meine Gesundheit erfahren hatte,
+beschloss ich, Ihre Hilfe / Kooperation zu nutzen, um mein
+14,5-Millionen-Dollar-Erbe f=C3=BCr den Bau eines Waisenhauses in meinem
+Ged=C3=A4chtnis zu nutzen.
 
+Ich habe diese mutige Entscheidung getroffen, weil ich keinen Ehemann,
+keine Familie oder Kinder habe, um Geld zu hinterlassen, wenn ich weg
+bin. Wenn Sie interessiert sind, k=C3=B6nnen Sie 30% des Gesamtbetrags f=C3=
+=BCr
+Hilfe nehmen und den Rest in meinen Erinnerungen verwenden, um
+Waisenh=C3=A4user zu bauen. Wenn Sie interessiert sind, kontaktieren Sie
+mich bitte bald f=C3=BCr weitere Informationen. Ich werde die
+Hinterlegungsbescheinigung und die Sterbeurkunde meines Vaters zur
+Genehmigung sowie der Bank vorlegen, um Sie als rechtm=C3=A4=C3=9Figen Empf=
+=C3=A4nger
+des Geldes in meinem Namen zu identifizieren.
+
+Ich habe diese Nachricht aus dem Englischen =C3=BCbersetzt, damit Sie mich
+verstehen. Sie k=C3=B6nnen auf Englisch zur=C3=BCckschreiben, wenn Sie vers=
+tehen
+oder noch auf Deutsch
+
+Ich freue mich auf Ihre schnelle Antwort.
+
+Sch=C3=B6ne Gr=C3=BC=C3=9Fe
+Frau Maddalena Nicholaus.
