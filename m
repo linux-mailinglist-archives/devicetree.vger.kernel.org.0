@@ -2,132 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54AC325F104
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 01:09:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3636725F17A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 03:30:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726349AbgIFXJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Sep 2020 19:09:00 -0400
-Received: from mo-csw1516.securemx.jp ([210.130.202.155]:56272 "EHLO
-        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726165AbgIFXI7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Sep 2020 19:08:59 -0400
-Received: by mo-csw.securemx.jp (mx-mo-csw1516) id 086N8JEo008509; Mon, 7 Sep 2020 08:08:19 +0900
-X-Iguazu-Qid: 34tKSwRU9BYuHzn0in
-X-Iguazu-QSIG: v=2; s=0; t=1599433699; q=34tKSwRU9BYuHzn0in; m=bg21Vh1RzUmSRhTK3yMtiq8vAOBYj5w0yNVeDAf2yio=
-Received: from imx12.toshiba.co.jp (imx12.toshiba.co.jp [61.202.160.132])
-        by relay.securemx.jp (mx-mr1513) id 086N8GRS018624;
-        Mon, 7 Sep 2020 08:08:17 +0900
-Received: from enc02.toshiba.co.jp ([61.202.160.51])
-        by imx12.toshiba.co.jp  with ESMTP id 086N8GUn005737;
-        Mon, 7 Sep 2020 08:08:16 +0900 (JST)
-Received: from hop101.toshiba.co.jp ([133.199.85.107])
-        by enc02.toshiba.co.jp  with ESMTP id 086N8Gcd003321;
-        Mon, 7 Sep 2020 08:08:16 +0900
-Date:   Mon, 7 Sep 2020 08:08:06 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Olof Johansson <olof@lixom.net>,
-        punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@misterjones.org>
-Subject: Re: [PATCH v3 0/8] Add Toshiba Visconti ARM64 Platform support
-X-TSB-HOP: ON
-Message-ID: <20200906230806.GA3003239@toshiba.co.jp>
-References: <20200831081025.2721320-1-nobuhiro1.iwamatsu@toshiba.co.jp>
- <CAK8P3a2xD-zp3ov=3vobSSAmyfvPCMe0mGgP3F7mZkk8WieUpw@mail.gmail.com>
- <20200831224122.i5tau3atlty4ikeu@toshiba.co.jp>
- <CAK8P3a2O_-jiiRe41Dci3yAsN7s==u5b_fHGsXh6m6y-Ki7WAQ@mail.gmail.com>
+        id S1726651AbgIGBaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Sep 2020 21:30:07 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:36414 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726620AbgIGBaF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Sep 2020 21:30:05 -0400
+X-UUID: ccd8c52124f14886a9bbf999c88e3ed6-20200907
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=TgnMLc6W6HXqtA9fqTYfDPNEoYo39SkQDD2kUs7sHYg=;
+        b=gIRH+tfsdYpZAHUS9Dpz8ofNTjRGePsmL7ydBVzDWeiP5ju0BNLWETDsSBxw5X1WjZaOxipQmSkwBm/VR0Uq7syb1As3VpO+oxfOtZFqhQ61SR+53Vxo8K2r3+1YkhOn6R5ZBGbn0tclLj+RZKzULUKxAQTKMUSangzOtIsssWk=;
+X-UUID: ccd8c52124f14886a9bbf999c88e3ed6-20200907
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <qii.wang@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 674471685; Mon, 07 Sep 2020 09:29:57 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS32DR.mediatek.inc
+ (172.27.6.104) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 7 Sep
+ 2020 09:29:54 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 7 Sep 2020 09:29:51 +0800
+Message-ID: <1599442087.25719.2.camel@mhfsdcap03>
+Subject: Re: [PATCH] dt-bindings: i2c: i2c-mt65xx: Update binding example
+From:   Qii Wang <qii.wang@mediatek.com>
+To:     Boris Lysov <arzamas-16@mail.ee>
+CC:     <linux-i2c@vger.kernel.org>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>, <devicetree@vger.kernel.org>
+Date:   Mon, 7 Sep 2020 09:28:07 +0800
+In-Reply-To: <20200904223345.3daea5ad@hp15>
+References: <20200904223345.3daea5ad@hp15>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAK8P3a2O_-jiiRe41Dci3yAsN7s==u5b_fHGsXh6m6y-Ki7WAQ@mail.gmail.com>
+X-TM-SNTS-SMTP: FD92D2E6DA5294274C41022820C3C6026CA7D0C81EF6E1B85EAA24DD0C25AD0C2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+T24gRnJpLCAyMDIwLTA5LTA0IGF0IDIyOjMzICswMzAwLCBCb3JpcyBMeXNvdiB3cm90ZToNCj4g
+RXhhbXBsZSB1c2VzIHZhbHVlcyBmb3IgTVQ2NTg5IFNvQywgYnV0IE1UNjU3NyB3YXMgc3BlY2lm
+aWVkIGluICJjb21wYXRpYmxlIiBwcm9wZXJ0eS4NCj4gDQoNCldoeSBkbyB5b3UgdGhpbmsgdGhl
+IGV4YW1wbGUgaXMgTVQ2NTg5IFNvQywgbm90IE1UNjU3Nz8NCg0KPiBTaWduZWQtb2ZmLWJ5OiBC
+b3JpcyBMeXNvdiA8YXJ6YW1hcy0xNkBtYWlsLmVlPg0KPiAtLS0NCj4gIERvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9pMmMvaTJjLW10NjV4eC50eHQgfCAyICstDQo+ICAxIGZpbGUg
+Y2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkNCj4gDQo+IGRpZmYgLS1naXQg
+YS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaTJjL2kyYy1tdDY1eHgudHh0IGIv
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2kyYy9pMmMtbXQ2NXh4LnR4dA0KPiBp
+bmRleCA3ZjAxOTRmZGQwY2MuLmFjZjNkNGQyOGI5OCAxMDA2NDQNCj4gLS0tIGEvRG9jdW1lbnRh
+dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2kyYy9pMmMtbXQ2NXh4LnR4dA0KPiArKysgYi9Eb2N1
+bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaTJjL2kyYy1tdDY1eHgudHh0DQo+IEBAIC0z
+Niw3ICszNiw3IEBAIE9wdGlvbmFsIHByb3BlcnRpZXM6DQo+ICBFeGFtcGxlOg0KPiAgDQo+ICAJ
+aTJjMDogaTJjQDExMDBkMDAwIHsNCj4gLQkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2NTc3
+LWkyYyI7DQo+ICsJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10NjU4OS1pMmMiOw0KPiAgCQkJ
+cmVnID0gPDB4MTEwMGQwMDAgMHg3MD4sDQo+ICAJCQkgICAgICA8MHgxMTAwMDMwMCAweDgwPjsN
+Cj4gIAkJCWludGVycnVwdHMgPSA8R0lDX1NQSSA0NCBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KDQo=
 
-Thanks for your comment.
-
-On Tue, Sep 01, 2020 at 09:50:56AM +0200, Arnd Bergmann wrote:
-> On Tue, Sep 1, 2020 at 12:41 AM Nobuhiro Iwamatsu
-> <nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
-> > On Mon, Aug 31, 2020 at 11:19:02AM +0200, Arnd Bergmann wrote:
-> > > On Mon, Aug 31, 2020 at 10:10 AM Nobuhiro Iwamatsu
-> > > <nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
-> > > >
-> > > > Visconti is a series of Toshiba's SoCs targeting image processing
-> > > > applications[0]. These set of patches adds support for Visconti5 a Arm
-> > > > v8 based SoC.
-> > > >
-> > > > The series add minimal support for the Visconti5 SoC and the TMPV7708 RM
-> > > > main board. Peripherals such as UART, SPI, I2c and timer use Arm's
-> > > > IP and work with the existing kernel drivers in the tree. The series
-> > > > includes a pinctrl driver to select appropriate functions on the pins.
-> > >
-> > > The arch/arm64 series looks all reasonable to me, nice work!
-> > >
-> > > Once the review from the DT and pinctrl maintainers is completed
-> > > and you have received their Acked-by or Reviewed-by tags, please
-> > > send the series with those tags to soc@kernel.org for inclusion, keeping
-> > > everyone else on Cc.
-> > >
-> > > I'd leave it up to Linus Walleij whether he wants to merge the pinctrl driver
-> > > through his subsystem tree, or whether we should pick it up through
-> > > the soc tree, either way works for the initial merge. For any updates to
-> > > the pinctrl driver and additional subsystem support (clk, media, ...)
-> > > in later releases there is no need to Cc the SoC maintainers as those
-> > > should just get merged through the subsystem while we take care
-> > > of the DT files.
-> >
-> > Thank you for the explanation. I will do that.
-> > BTW, I searched the process for this but I couldn't find any detailed
-> > documentation. Could you tell me if you know?
-> 
-> We never documented this well, sorry about that.
-> 
-
-No problem.
-
-> Generally speaking, if you only have small updates (a few patches
-> at a time), feel free to send those patches to soc@kernel.org once
-> you consider them ready for inclusion.
-> 
-> On 32-bit architectures as well as the more widely used 64-bit
-> platforms with many .dts files, please send pull requests that group
-> the patches into logical topics. Once you are listed in the
-> MAINTAINERS file and you want to host a git tree on git.kernel.org
-> for that purpose, you can apply for a kernel.org account and
-> send pull request from there as well as have the tree integrated
-> into linux-next for earlier testing. On the more specialized platforms
-> without third-party machine support in the kernel, that is usually not
-> necessary.
-> 
-> In either case, patches and pull requests should be based on
-> an early -rc tag from mainline Linux (normally -rc1) and get sent
-> between -rc1 and roughly -rc5 for new features. Bug fixes can
-> be sent at any time regardless of the current -rc, with a balance
-> between sending them quickly and collecting multiple of them
-> into a pull request to reduce the number of merges. Please let
-> us know whether bug fixes should be applied only at the next
-> merge window, on current kernels, or backported to previous
-> releases, using the "Fixes:"  and "Cc: stable@vger.kernel.org"
-> tags as appropriate. The default is to backport bug fixes as far
-> back as they apply, unless there is a reason not to.
-> 
-
-Thank you for the detailed explanation.
-The above explanation was very useful.
-
->      Arnd
-> 
-
-Best regards,
-  Nobuhiro
