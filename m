@@ -2,73 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4940F260141
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:02:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DC652601BF
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:12:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730119AbgIGRCe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 13:02:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47368 "EHLO mail.kernel.org"
+        id S1731190AbgIGRMR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 13:12:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39298 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730683AbgIGQdb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Sep 2020 12:33:31 -0400
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        id S1731183AbgIGRMM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 13:12:12 -0400
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6D28021775;
-        Mon,  7 Sep 2020 16:33:30 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7DA43217A0;
+        Mon,  7 Sep 2020 17:12:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599496411;
-        bh=yMbMn15d5ZsiLdDFzu3UAxbc1BWdVwiu6fvD5PtYG3U=;
-        h=From:To:Cc:Subject:Date:From;
-        b=mrkucNY3C0HMttDSUlfdbjGVeP1fAoeqxTd6kN57tRYv/LN5Sp39tnB6ssl3wztAH
-         GxmJXXNjzkd2JE5Sf3Jy48+1gddVUcP0YuH1fGYkz0mwi2Bm4Ki/1b5wwtqMMvdxQC
-         vZ6/1gm8f+83XXYJfKiITfKfsQ1mI6N5Wc9cHb4k=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Vineet Gupta <vgupta@synopsys.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-snps-arc@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.4 01/43] ARC: HSDK: wireup perf irq
-Date:   Mon,  7 Sep 2020 12:32:47 -0400
-Message-Id: <20200907163329.1280888-1-sashal@kernel.org>
-X-Mailer: git-send-email 2.25.1
+        s=default; t=1599498731;
+        bh=DPat3ZlRzIlx3pGvdlS9ov4+JwXoTqRT6aH65lpZpUw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=hDIxuj2XhhhEEqVgjAA3HcCmq5ToR/R66AcQtmotmjrIDZak1xnhMwZhFXqG9mJVl
+         7gx4HAq0nxoE/XiAVFScPLr9HnUwWyEzmXGrGcVisKN4f76KZkCiy8vk4j7HSLwCIM
+         zLC88dGIlGzNeTM4sDs8L5lj74Oyn5DD+fXSDc78=
+Received: by mail-ed1-f46.google.com with SMTP id c10so13404467edk.6;
+        Mon, 07 Sep 2020 10:12:11 -0700 (PDT)
+X-Gm-Message-State: AOAM5305R91HP1SniJPOH1bTem9grAExEjciNUjX+7V/6HqighDmuHdT
+        PdUIZMn73wB0QGOc2EIEL6LBB88HMaZwNRGeh9Y=
+X-Google-Smtp-Source: ABdhPJzMyTdkAJy73PxNoZs+gNdlcqSGeh07/2bjshW3rB0M3t0yIQeyrq5QnkZWdasM4Y6BXvKIZqTmLZdf4IZC5FI=
+X-Received: by 2002:aa7:da16:: with SMTP id r22mr23231660eds.132.1599498730074;
+ Mon, 07 Sep 2020 10:12:10 -0700 (PDT)
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+References: <20200907161141.31034-1-krzk@kernel.org> <20200907161141.31034-3-krzk@kernel.org>
+ <20200907173819.00005a48@Huawei.com>
+In-Reply-To: <20200907173819.00005a48@Huawei.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Mon, 7 Sep 2020 19:11:57 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPe0W_+hN=pk9F5O61w7riYuBhmK3=JvrYzDY8LU7xvH4A@mail.gmail.com>
+Message-ID: <CAJKOXPe0W_+hN=pk9F5O61w7riYuBhmK3=JvrYzDY8LU7xvH4A@mail.gmail.com>
+Subject: Re: [PATCH 02/25] dt-bindings: iio: adc: exynos-adc: require second
+ interrupt with touch screen
+To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc:     Kukjin Kim <kgene@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Jonathan Bakker <xc-racer2@live.ca>,
+        =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-iio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vineet Gupta <vgupta@synopsys.com>
+On Mon, 7 Sep 2020 at 18:39, Jonathan Cameron
+<Jonathan.Cameron@huawei.com> wrote:
+>
+> On Mon,  7 Sep 2020 18:11:18 +0200
+> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> > The ADC in S3C/S5P/Exynos SoCs can be used also for handling touch
+> > screen.  In such case the second interrupt is required.  This second
+> > interrupt can be anyway provided, even without touch screens.  This
+> > fixes dtbs_check warnings like:
+> >
+> >   arch/arm/boot/dts/s5pv210-aquila.dt.yaml: adc@e1700000: interrupts: [[23], [24]] is too long
+> >
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+>
+> Acked-by: Jonathan Cameron <Jonathan.Cameron@huwei.com>
+>
+> Or I can pick this up through the IIO tree if that makes sense.
+> I doubt anything else will touch this binding this cycle, so either
+> way works for me.
 
-[ Upstream commit fe81d927b78c4f0557836661d32e41ebc957b024 ]
+Let's wait for Rob's review and then if you could, please pick it up.
 
-Newer version of HSDK aka HSDK-4xD (with dual issue HS48x4 CPU) wired up
-the perf interrupt, so enable that in DT.
-This is OK for old HSDK where this irq is ignored because pct irq is not
-wired up in hardware.
-
-Signed-off-by: Vineet Gupta <vgupta@synopsys.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arc/boot/dts/hsdk.dts | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arc/boot/dts/hsdk.dts b/arch/arc/boot/dts/hsdk.dts
-index 9acbeba832c0b..5d64a5a940ee6 100644
---- a/arch/arc/boot/dts/hsdk.dts
-+++ b/arch/arc/boot/dts/hsdk.dts
-@@ -88,6 +88,8 @@ idu_intc: idu-interrupt-controller {
- 
- 	arcpct: pct {
- 		compatible = "snps,archs-pct";
-+		interrupt-parent = <&cpu_intc>;
-+		interrupts = <20>;
- 	};
- 
- 	/* TIMER0 with interrupt for clockevent */
--- 
-2.25.1
-
+Best regards,
+Krzysztof
