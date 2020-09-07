@@ -2,172 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD3FF2605D1
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 22:40:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44597260607
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 23:05:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726916AbgIGUky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 16:40:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44516 "EHLO
+        id S1727784AbgIGVFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 17:05:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728078AbgIGUkx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 16:40:53 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B40AC061755;
-        Mon,  7 Sep 2020 13:40:51 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 7F83A2911A7
-Received: by jupiter.universe (Postfix, from userid 1000)
-        id 0E8EA480118; Mon,  7 Sep 2020 22:40:47 +0200 (CEST)
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        =?UTF-8?q?Myl=C3=A8ne=20Josserand?= 
-        <mylene.josserand@collabora.com>, Rob Herring <robh+dt@kernel.org>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: [PATCHv2 4/4] Input: rotary-encoder - Add gpio as push button
-Date:   Mon,  7 Sep 2020 22:40:45 +0200
-Message-Id: <20200907204045.95530-5-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200907204045.95530-1-sebastian.reichel@collabora.com>
-References: <20200907204045.95530-1-sebastian.reichel@collabora.com>
+        with ESMTP id S1727769AbgIGVFI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 17:05:08 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4E62C061575
+        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 14:05:07 -0700 (PDT)
+Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 23DA980719;
+        Tue,  8 Sep 2020 09:04:54 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1599512694;
+        bh=2o4BAsLs2duPVFnx5tJT1CeBpaPWP7Bjhar4MZ290gA=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To;
+        b=NuWMxZEvMeKbI7JByXFxGpsz3+IKUnvAhdrcLBzikbaYvCcP+pe+goClIbjqDbTQ+
+         BcvVZN+j3yhASqjlFJrITRMpsrTTpts6bT3WYfL5LRsPmAdVNvoyq0i620L6KRT593
+         17k7Q/VlciTV669N89eA4LUXOPUZhEVFxCMTQjez+gFodz8SOaEoVqYGdMyq9wPtcE
+         4DKT2WAQyOeh0oVyJ7Hm52X2wE2QQwEbhuN5ZDpTf8Hh1BVyP7cCI/rXfg1nXOErNz
+         puC1W2lExiDNd/lJOmOKrD7DBuwfqWQSqjMy2nyh4qI/UpAOl6akjFZHDF9d1StCC1
+         mA3d9mrQWwEJQ==
+Received: from svr-chch-ex1.atlnz.lc (Not Verified[10.32.16.77]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
+        id <B5f56a0760000>; Tue, 08 Sep 2020 09:04:54 +1200
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
+ svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
+ (TLS) id 15.0.1497.2; Tue, 8 Sep 2020 09:04:48 +1200
+Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
+ svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
+ 15.00.1497.006; Tue, 8 Sep 2020 09:04:48 +1200
+From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     "jason@lakedaemon.net" <jason@lakedaemon.net>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/3] ARM: dts: Remove non-existent i2c1 from 98dx3236
+Thread-Topic: [PATCH 2/3] ARM: dts: Remove non-existent i2c1 from 98dx3236
+Thread-Index: AQHWhMBx9UPh5FBBykunMtOiHpEnW6lciSsAgABZMwA=
+Date:   Mon, 7 Sep 2020 21:04:48 +0000
+Message-ID: <36712d90-6bfe-8965-22b1-6b6dd460116d@alliedtelesis.co.nz>
+References: <20200907024149.20001-1-chris.packham@alliedtelesis.co.nz>
+ <20200907024149.20001-3-chris.packham@alliedtelesis.co.nz>
+ <20200907154532.GY3112546@lunn.ch>
+In-Reply-To: <20200907154532.GY3112546@lunn.ch>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.32.1.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <7792CDCDA1D5F04087248E37E719BDB9@atlnz.lc>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Mylène Josserand <mylene.josserand@collabora.com>
-
-Add the support of a gpio that can be defined as a push button.
-Thanks to that, it is possible to emit a keycode in case of a
-"push" event, if the rotary supports that.
-
-The keycode to emit is defined using "linux,code" property
-(such as in gpio-keys).
-
-Signed-off-by: Mylène Josserand <mylene.josserand@collabora.com>
-[code cleanup to current standards and renamed some properties]
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- .../bindings/input/rotary-encoder.yaml        | 21 +++++++++
- drivers/input/misc/rotary_encoder.c           | 43 +++++++++++++++++++
- 2 files changed, 64 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/input/rotary-encoder.yaml b/Documentation/devicetree/bindings/input/rotary-encoder.yaml
-index 5b60ea86bd62..682fee104004 100644
---- a/Documentation/devicetree/bindings/input/rotary-encoder.yaml
-+++ b/Documentation/devicetree/bindings/input/rotary-encoder.yaml
-@@ -74,6 +74,24 @@ properties:
-       need to be passed.
-     type: boolean
- 
-+  push-gpios:
-+    description: GPIO used as a detection of a push from the rotary-encoder.
-+    maxItems: 1
-+
-+  linux,push-code:
-+    description:
-+      keycode to emit with the push-gpio of this rotary encoder.
-+      If not specified defaults to <28> == KEY_ENTER.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 28
-+
-+  linux,push-type:
-+    description:
-+      Specify event type this button/key generates.
-+      If not specified defaults to <1> == EV_KEY.
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    default: 1
-+
- required:
-   - compatible
-   - gpios
-@@ -97,4 +115,7 @@ examples:
-             linux,axis = <ABS_Y>;
-             rotary-encoder,encoding = "binary";
-             rotary-encoder,rollover;
-+            push-gpios = <&gpio 23 GPIO_ACTIVE_HIGH>;
-+            linux,push-code = <KEY_ENTER>;
-+            linux,push-type = <EV_KEY>;
-     };
-diff --git a/drivers/input/misc/rotary_encoder.c b/drivers/input/misc/rotary_encoder.c
-index 16ad86fad7cb..484042a5afa0 100644
---- a/drivers/input/misc/rotary_encoder.c
-+++ b/drivers/input/misc/rotary_encoder.c
-@@ -47,12 +47,33 @@ struct rotary_encoder {
- 
- 	unsigned int *irq;
- 
-+	struct gpio_desc *push_gpio;
-+	unsigned int push_code;
-+	unsigned int push_type;
-+
- 	bool armed;
- 	signed char dir;	/* 1 - clockwise, -1 - CCW */
- 
- 	unsigned int last_stable;
- };
- 
-+static irqreturn_t rotary_push_irq(int irq, void *dev_id)
-+{
-+	struct rotary_encoder *encoder = dev_id;
-+	int val;
-+
-+	mutex_lock(&encoder->access_mutex);
-+
-+	val = gpiod_get_value_cansleep(encoder->push_gpio);
-+
-+	input_report_key(encoder->input, encoder->push_code, val);
-+	input_sync(encoder->input);
-+
-+	mutex_unlock(&encoder->access_mutex);
-+
-+	return IRQ_HANDLED;
-+}
-+
- static unsigned int rotary_encoder_get_state(struct rotary_encoder *encoder)
- {
- 	int i;
-@@ -248,6 +269,16 @@ static int rotary_encoder_probe(struct platform_device *pdev)
- 		return -EINVAL;
- 	}
- 
-+	encoder->push_gpio = devm_gpiod_get_optional(dev, "push", GPIOD_IN);
-+	if (IS_ERR(encoder->push_gpio))
-+		return dev_err_probe(dev, PTR_ERR(encoder->push_gpio), "failed to get push-gpio\n");
-+
-+	encoder->push_code = KEY_ENTER;
-+	device_property_read_u32(dev, "linux,push-code", &encoder->push_code);
-+
-+	encoder->push_type = EV_KEY;
-+	device_property_read_u32(dev, "linux,push-type", &encoder->push_type);
-+
- 	input = devm_input_allocate_device(dev);
- 	if (!input)
- 		return -ENOMEM;
-@@ -304,6 +335,18 @@ static int rotary_encoder_probe(struct platform_device *pdev)
- 		}
- 	}
- 
-+	if (encoder->push_gpio) {
-+		input_set_capability(encoder->input, encoder->push_type, encoder->push_code);
-+		err = devm_request_threaded_irq(dev, gpiod_to_irq(encoder->push_gpio),
-+						NULL, rotary_push_irq,
-+						IRQF_TRIGGER_RISING |
-+						IRQF_TRIGGER_FALLING |
-+						IRQF_ONESHOT,
-+						DRV_NAME, encoder);
-+		if (err)
-+			return dev_err_probe(dev, err, "unable to request push IRQ\n");
-+	}
-+
- 	err = input_register_device(input);
- 	if (err) {
- 		dev_err(dev, "failed to register input device\n");
--- 
-2.28.0
-
+DQpPbiA4LzA5LzIwIDM6NDUgYW0sIEFuZHJldyBMdW5uIHdyb3RlOg0KPiBPbiBNb24sIFNlcCAw
+NywgMjAyMCBhdCAwMjo0MTo0OFBNICsxMjAwLCBDaHJpcyBQYWNraGFtIHdyb3RlOg0KPj4gVGhl
+IHN3aXRjaGVzIHdpdGggaW50ZWdyYXRlZCBDUFVzIGhhdmUgb25seSBnb3QgYSBzaW5nbGUgaTJj
+IGNvbnRyb2xsZXIuDQo+PiBUaGUgaW5jb3JyZWN0bHkgZ2FpbmVkIG9uZSB3aGVuIHRoZXkgd2Vy
+ZSBzcGxpdCBmcm9tIHRoZSBBcm1hZGEtWFAuDQpTb21lb25lIHBvaW50ZWQgb3V0IGEgc21hbGwg
+Z3JhbW1vIGluc3RlYWQgb2YgIlRoZSBpbmNvcnJlY3RseSIgaXQgDQpzaG91bGQgYmUgIlRoZXkg
+aW5jb3JyZWN0bHkiLiBJcyBpdCB3b3J0aCBtZSBzZW5kaW5nIGEgdjIganVzdCB0byBmaXggdGhh
+dD8NCj4+DQo+PiBGaXhlczogNDNlMjhiYTg3NzA4ICgiQVJNOiBkdHM6IFVzZSBhcm1hZGEtMzcw
+LXhwIGFzIGEgYmFzZSBmb3IgYXJtYWRhLXhwLTk4ZHgzMjM2IikNCj4+IFNpZ25lZC1vZmYtYnk6
+IENocmlzIFBhY2toYW0gPGNocmlzLnBhY2toYW1AYWxsaWVkdGVsZXNpcy5jby5uej4NCj4gUmV2
+aWV3ZWQtYnk6IEFuZHJldyBMdW5uIDxhbmRyZXdAbHVubi5jaD4NCj4NCj4gICAgICBBbmRyZXc=
