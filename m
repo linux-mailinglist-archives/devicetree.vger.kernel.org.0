@@ -2,79 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54D9325F774
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 12:14:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8D9F25F7FB
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 12:24:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728395AbgIGKO4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 06:14:56 -0400
-Received: from foss.arm.com ([217.140.110.172]:59700 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728243AbgIGKOz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Sep 2020 06:14:55 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 40919D6E;
-        Mon,  7 Sep 2020 03:14:55 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 448E63F66E;
-        Mon,  7 Sep 2020 03:14:53 -0700 (PDT)
-Date:   Mon, 7 Sep 2020 11:14:50 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH 0/5] Add PCIe EP nodes on RZ/G2[EMN]
-Message-ID: <20200907101450.GG6428@e121166-lin.cambridge.arm.com>
-References: <20200814173037.17822-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S1728726AbgIGKYW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 06:24:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60572 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728790AbgIGKQ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 06:16:59 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E921C061574
+        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 03:16:58 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id m6so15238354wrn.0
+        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 03:16:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=o7KIQGaZLRrmrAAlxdI4JNMVSiQlEJ8fSUoBN8I+Xf8=;
+        b=i4VYynakNDb2WI/pIy79r9zqh8yP1EVq+qeDo4qGHXp6XQgH1ROgPsIkGIWc1nFutG
+         5jepqFgTB+vcAG3t2zeStqop0UdEX6MXpv3tB4Cj5b2RssOnT5VPAs1aaE0/iAPESeiM
+         OtPy1xSO8kcCtXB6IN5xY34elUra0SQkPrXuB2zC/spDCmucT9x7TD8xqwMmk6SaCJ49
+         ml7kphiRwIc4RFi1AROi2GqTNj5g5K9jB4exHnQ0wfWRrKFdDqtGIJrO8dydH53ntpFX
+         aY5rfeEj8/CF7dhqCYZaECerEPGZi5FMVpZheuA3v2emjVRQOMpBu3njhrdBDCRBPeVt
+         O/4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=o7KIQGaZLRrmrAAlxdI4JNMVSiQlEJ8fSUoBN8I+Xf8=;
+        b=SSMZkeMeG4RcCXkYqY9L/RbUNfqKh/NawgWXPFciTUiMPYlfDZXEVpG0zWHgaLZMgO
+         Nf/FMbaP+88A8owa5D7hI3cu75f9gr+Z2Jmi8O7gETbu+2b2MR6aOV2tWClpalqJIVtY
+         p5DIfUS8XoS4KPUin30rnuVMiiV+dfH9XB/WhCfD8jc4DyAeNj54PmUkUEL05f5xjNgx
+         hvBpDj/Pt7mpHT9sNXrQy6vn4hGQix6rfL5xpWClBF7aFYa7R52N/Qbkq8BuqMqvD5U7
+         2dzZK0TnXvERvdJ98bUP8IGJTzVk1ehDaWS50QI/Go4uMPuQT2JydkrF8xXNRBvrnmii
+         R11g==
+X-Gm-Message-State: AOAM530Y7YEU22WIkJUwFP7FUpPyfnxLnK9YP4+t44IV/Fjmt/lQ5XJM
+        MUWENwQLxbuwtfmqQBObA/xMGg==
+X-Google-Smtp-Source: ABdhPJzoP9v7yuMPfMOlA8vMx95R4j+MIfrbjA33m48SJ7NXSflBVbFFQtTensuBMDC6CFNSOjR9aQ==
+X-Received: by 2002:adf:f4c6:: with SMTP id h6mr20427607wrp.310.1599473816656;
+        Mon, 07 Sep 2020 03:16:56 -0700 (PDT)
+Received: from localhost.localdomain (122.105.23.93.rev.sfr.net. [93.23.105.122])
+        by smtp.gmail.com with ESMTPSA id j7sm28728689wrw.35.2020.09.07.03.16.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Sep 2020 03:16:56 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Cc:     joro@8bytes.org, robh+dt@kernel.org, matthias.bgg@gmail.com,
+        yong.wu@mediatek.com, miles.chen@mediatek.com,
+        Fabien Parent <fparent@baylibre.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v4 1/3] dt-bindings: iommu: Add binding for MediaTek MT8167 IOMMU
+Date:   Mon,  7 Sep 2020 12:16:47 +0200
+Message-Id: <20200907101649.1573134-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200814173037.17822-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 14, 2020 at 06:30:32PM +0100, Lad Prabhakar wrote:
-> Hi All,
-> 
-> This patch series adds support for PCIe EP nodes to Renesas r8a774a1,
-> r8a774b1 and r8a774c0 SoC's.
-> 
-> Patches are based on top of [1].
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/helgaas/
->     pci.git/log/?h=next
-> 
-> Cheers,
-> Prabhakar
-> 
-> Lad Prabhakar (5):
->   dt-bindings: pci: rcar-pci-ep: Document r8a774a1 and r8a774b1
->   misc: pci_endpoint_test: Add Device ID for RZ/G2M and RZ/G2N PCIe
->     controllers
->   arm64: dts: renesas: r8a774a1: Add PCIe EP nodes
->   arm64: dts: renesas: r8a774b1: Add PCIe EP nodes
->   arm64: dts: renesas: r8a774c0: Add PCIe EP node
-> 
->  .../devicetree/bindings/pci/rcar-pci-ep.yaml  |  7 +++-
->  arch/arm64/boot/dts/renesas/r8a774a1.dtsi     | 38 +++++++++++++++++++
->  arch/arm64/boot/dts/renesas/r8a774b1.dtsi     | 38 +++++++++++++++++++
->  arch/arm64/boot/dts/renesas/r8a774c0.dtsi     | 19 ++++++++++
->  drivers/misc/pci_endpoint_test.c              |  7 +++-
->  5 files changed, 105 insertions(+), 4 deletions(-)
+This commit adds IOMMU binding documentation and larb port definitions
+for the MT8167 SoC.
 
-I took the first two patches in pci/rcar, thanks.
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
 
-Lorenzo
+V4:
+	* Added path to mt8167 larb header file
+	* Added Honghui Zhang in copyright header
+V3: Added mt8167-larb-port.h file for iommu port definitions
+V2: no change
+
+---
+ .../bindings/iommu/mediatek,iommu.txt         |  2 +
+ include/dt-bindings/memory/mt8167-larb-port.h | 51 +++++++++++++++++++
+ 2 files changed, 53 insertions(+)
+ create mode 100644 include/dt-bindings/memory/mt8167-larb-port.h
+
+diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.txt b/Documentation/devicetree/bindings/iommu/mediatek,iommu.txt
+index c1ccd8582eb2..ac949f7fe3d4 100644
+--- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.txt
++++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.txt
+@@ -61,6 +61,7 @@ Required properties:
+ 	"mediatek,mt6779-m4u" for mt6779 which uses generation two m4u HW.
+ 	"mediatek,mt7623-m4u", "mediatek,mt2701-m4u" for mt7623 which uses
+ 						     generation one m4u HW.
++	"mediatek,mt8167-m4u" for mt8167 which uses generation two m4u HW.
+ 	"mediatek,mt8173-m4u" for mt8173 which uses generation two m4u HW.
+ 	"mediatek,mt8183-m4u" for mt8183 which uses generation two m4u HW.
+ - reg : m4u register base and size.
+@@ -80,6 +81,7 @@ Required properties:
+ 	dt-binding/memory/mt2701-larb-port.h for mt2701, mt7623
+ 	dt-binding/memory/mt2712-larb-port.h for mt2712,
+ 	dt-binding/memory/mt6779-larb-port.h for mt6779,
++	dt-binding/memory/mt8167-larb-port.h for mt8167,
+ 	dt-binding/memory/mt8173-larb-port.h for mt8173, and
+ 	dt-binding/memory/mt8183-larb-port.h for mt8183.
+ 
+diff --git a/include/dt-bindings/memory/mt8167-larb-port.h b/include/dt-bindings/memory/mt8167-larb-port.h
+new file mode 100644
+index 000000000000..000fb299a408
+--- /dev/null
++++ b/include/dt-bindings/memory/mt8167-larb-port.h
+@@ -0,0 +1,51 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright (c) 2020 MediaTek Inc.
++ * Copyright (c) 2020 BayLibre, SAS
++ * Author: Honghui Zhang <honghui.zhang@mediatek.com>
++ * Author: Fabien Parent <fparent@baylibre.com>
++ */
++#ifndef __DTS_IOMMU_PORT_MT8167_H
++#define __DTS_IOMMU_PORT_MT8167_H
++
++#define MTK_M4U_ID(larb, port)		(((larb) << 5) | (port))
++
++#define M4U_LARB0_ID			0
++#define M4U_LARB1_ID			1
++#define M4U_LARB2_ID			2
++
++/* larb0 */
++#define M4U_PORT_DISP_OVL0		MTK_M4U_ID(M4U_LARB0_ID, 0)
++#define M4U_PORT_DISP_RDMA0		MTK_M4U_ID(M4U_LARB0_ID, 1)
++#define M4U_PORT_DISP_WDMA0		MTK_M4U_ID(M4U_LARB0_ID, 2)
++#define M4U_PORT_DISP_RDMA1		MTK_M4U_ID(M4U_LARB0_ID, 3)
++#define M4U_PORT_MDP_RDMA		MTK_M4U_ID(M4U_LARB0_ID, 4)
++#define M4U_PORT_MDP_WDMA		MTK_M4U_ID(M4U_LARB0_ID, 5)
++#define M4U_PORT_MDP_WROT		MTK_M4U_ID(M4U_LARB0_ID, 6)
++#define M4U_PORT_DISP_FAKE		MTK_M4U_ID(M4U_LARB0_ID, 7)
++
++/* larb1*/
++#define M4U_PORT_CAM_IMGO		MTK_M4U_ID(M4U_LARB1_ID, 0)
++#define M4U_PORT_CAM_IMG2O		MTK_M4U_ID(M4U_LARB1_ID, 1)
++#define M4U_PORT_CAM_LSCI		MTK_M4U_ID(M4U_LARB1_ID, 2)
++#define M4U_PORT_CAM_ESFKO		MTK_M4U_ID(M4U_LARB1_ID, 3)
++#define M4U_PORT_CAM_AAO		MTK_M4U_ID(M4U_LARB1_ID, 4)
++#define M4U_PORT_VENC_REC		MTK_M4U_ID(M4U_LARB1_ID, 5)
++#define M4U_PORT_VENC_BSDMA		MTK_M4U_ID(M4U_LARB1_ID, 6)
++#define M4U_PORT_VENC_RD_COMV		MTK_M4U_ID(M4U_LARB1_ID, 7)
++#define M4U_PORT_CAM_IMGI		MTK_M4U_ID(M4U_LARB1_ID, 8)
++#define M4U_PORT_VENC_CUR_LUMA		MTK_M4U_ID(M4U_LARB1_ID, 9)
++#define M4U_PORT_VENC_CUR_CHROMA	MTK_M4U_ID(M4U_LARB1_ID, 10)
++#define M4U_PORT_VENC_REF_LUMA		MTK_M4U_ID(M4U_LARB1_ID, 11)
++#define M4U_PORT_VENC_REF_CHROMA	MTK_M4U_ID(M4U_LARB1_ID, 12)
++
++/* larb2*/
++#define M4U_PORT_HW_VDEC_MC_EXT		MTK_M4U_ID(M4U_LARB2_ID, 0)
++#define M4U_PORT_HW_VDEC_PP_EXT		MTK_M4U_ID(M4U_LARB2_ID, 1)
++#define M4U_PORT_HW_VDEC_VLD_EXT	MTK_M4U_ID(M4U_LARB2_ID, 2)
++#define M4U_PORT_HW_VDEC_AVC_MV_EXT	MTK_M4U_ID(M4U_LARB2_ID, 3)
++#define M4U_PORT_HW_VDEC_PRED_RD_EXT	MTK_M4U_ID(M4U_LARB2_ID, 4)
++#define M4U_PORT_HW_VDEC_PRED_WR_EXT	MTK_M4U_ID(M4U_LARB2_ID, 5)
++#define M4U_PORT_HW_VDEC_PPWRAP_EXT	MTK_M4U_ID(M4U_LARB2_ID, 6)
++
++#endif
+-- 
+2.28.0
+
