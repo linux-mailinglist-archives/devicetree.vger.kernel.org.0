@@ -2,434 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3281D25F45E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 09:55:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE1C425F466
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 09:56:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726928AbgIGHzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 03:55:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38732 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726833AbgIGHzu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 03:55:50 -0400
-Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EB79C061573
-        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 00:55:50 -0700 (PDT)
-Received: by mail-ot1-x344.google.com with SMTP id h17so10793007otr.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 00:55:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8l3HdfvFFlg25xL80aV31J/YxBU6SNi/Ihwz855dcI8=;
-        b=Ujds6QtIFfqeM8lZRxE3GfbHyylbq7j51G3m+rDpEBam1mg/ke8/9rcyStExWg4uUm
-         f/p8vVGB9obAib7SkEzfUAN9VoJJM4LBqztUooRsDDEZ/KZg01TX47AEplmLJkqkwohe
-         P7YPQV1ID63g7YxBA0xqVRYdwpEFARXIj0aKBKZvlvrve3RKQGKIY1nHU1wvQHWzDyuZ
-         m4YG2qQknk1CffmAUeUw4qoncsgblC4r/+EY8Z5NqqxGlfRkHayDnQhujmn1HToVO7eX
-         66dUFBerLflhPL6wIOJ/T0xXA97Hnqvc8uEfvIVbjDV9Su6DDSG5D1NGUThIvQFU0PH8
-         NA8Q==
+        id S1727884AbgIGH4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 03:56:04 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:45072 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727847AbgIGHz7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 03:55:59 -0400
+Received: by mail-oi1-f195.google.com with SMTP id d189so12821566oig.12;
+        Mon, 07 Sep 2020 00:55:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=8l3HdfvFFlg25xL80aV31J/YxBU6SNi/Ihwz855dcI8=;
-        b=QLRFxJJSvwqn3Zsov4etubrQGxaG+0fYceQdJdfAHwWgEs29GN8Et/7hCasvg8qG/z
-         h9nmiWfPLm8Zrp2NM1FoysRivYWchdr1EP/b+CUzQPKSOnbGKgo62Hvz6DN//wR3MmBP
-         wsZ3MUy0T6+qZGtLoJRK1P/shtso1OzEL9+fAnQubDgJpW/+AS+zDptX4ObQXUrcpXa9
-         bf/zquHP/4mgXc10mifyATVU4/PlPF/pNRP8dO3BwbaUd+oA9p7Re52GNySU4sIgwXmH
-         4jnFoto5pgR3zReXmlGk8eplA6DZ6udjGVEvUcmTNkmN3Nn6aNmNDrsfp+0PFj2pSscS
-         jrgg==
-X-Gm-Message-State: AOAM530f0vYHmJotpBgUN5iHZ1uKPzBYq/9Oh1ZLb+udtDxLF5UPB3GH
-        lvU5wA9/HeW/VKQcyfYD6QwCN1vzCCmoXkRxKmc4BQ==
-X-Google-Smtp-Source: ABdhPJze4FEGniAGUYEPfyktClilgd3L9yq2t2yIwrXqFRFc1CSeU86UgVrmS3zYwBJ6v9wlfswYnIR90VDdPh5GIDo=
-X-Received: by 2002:a9d:2014:: with SMTP id n20mr1960154ota.248.1599465349134;
- Mon, 07 Sep 2020 00:55:49 -0700 (PDT)
+        bh=uuBwypJmHWQd5+fhA+Qi5ygJwZd3WxmHZlgvS26xGCM=;
+        b=GtOSW2MJgduv5NPEDLskPJLOojRpBiRg3hHAx5UNhBY8LlJ6aKraRwa1+s/vMj7xZF
+         etwr8rUWgVySyHcNTzD6seOgivEmMWPRaobsPpAnrJK/fU7eQAefoTZU1KP6IyuIMJxh
+         FRCSEF85pvpMvMfrLKt/ohLojmPph3+T6obI40Qod5NYHBwqdPA8vNVv6xUXWdUYpByw
+         zJr+m8IXEqAeptEMmLgXx33H/ERFocolgAG8uAuz+MeUW25kDQc299VI8AG41S1OykwV
+         TtDMq4RAcWqQtrVC0qc+1/E50u+sZIXhZPbMYbN2Bm6XhOBSqFtBdjtrSfaseFSgfUxK
+         1qmw==
+X-Gm-Message-State: AOAM5334dcRNXxsfmCCWQhh+9zZiGg4u0z3FBRlBWq9TRXYxpUDYzlDP
+        e+4Hgc6WCKSq5amCKXgS8EdaLAc0QK2J3Tov0rs=
+X-Google-Smtp-Source: ABdhPJw7BBFktIEQUB+STV6VUKMgajK/DnzWMIBlXP6kmOSIVV2532SU9YvqzAL5tzHBtDMz4jSG1EpLv2CV/1B5P6o=
+X-Received: by 2002:aca:52d6:: with SMTP id g205mr11714334oib.54.1599465358239;
+ Mon, 07 Sep 2020 00:55:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200829170923.29949-1-sudeep.holla@arm.com> <20200829170923.29949-7-sudeep.holla@arm.com>
-In-Reply-To: <20200829170923.29949-7-sudeep.holla@arm.com>
-From:   Fuad Tabba <tabba@google.com>
-Date:   Mon, 7 Sep 2020 08:55:13 +0100
-Message-ID: <CA+EHjTwYm--tOGjFq0aqP_bsBPu+f1hGTYrVxsuqLw-4K+QJMA@mail.gmail.com>
-Subject: Re: [PATCH 6/9] firmware: arm_ffa: Add initial Arm FFA driver support
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel-team@android.com, Will Deacon <will@kernel.org>,
-        tsoni@quicinc.com, pratikp@quicinc.com
+References: <20200825162718.5838-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20200825162718.5838-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdXkGBfwNOwd5-=U3wg6U0O+3BErbXuybbuytgzsCmZqRQ@mail.gmail.com> <CA+V-a8uT8d8P8REuXcW9qtCxM84DH+Q4LXZnVTYhT--kswKF=g@mail.gmail.com>
+In-Reply-To: <CA+V-a8uT8d8P8REuXcW9qtCxM84DH+Q4LXZnVTYhT--kswKF=g@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 7 Sep 2020 09:55:46 +0200
+Message-ID: <CAMuHMdW+JBd2iu4BsQHdEV=4dt7mh_14TyHLMQcywAJVPFZZCg@mail.gmail.com>
+Subject: Re: [PATCH 4/4] ARM: dts: r8a7742-iwg21d-q7: Enable SD2 LED indication
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sudeep,
+Hi Prabhakar,
 
-I understand that this is an RFC, but I have a few suggestions about
-how the FF-A interface code might be structured.  See below.
+On Fri, Sep 4, 2020 at 7:15 PM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Thu, Sep 3, 2020 at 1:20 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Tue, Aug 25, 2020 at 6:28 PM Lad Prabhakar
+> > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > > Add support for LED trigger on SD2 interface.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
+> >
+> > > --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
+> > > +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
+> > > @@ -63,6 +63,16 @@
+> > >                 enable-gpios = <&gpio3 11 GPIO_ACTIVE_HIGH>;
+> > >         };
+> > >
+> > > +       leds {
+> > > +               compatible = "gpio-leds";
+> > > +
+> > > +               sdhi2_led {
+> > > +                       label = "sdio-led";
+> > > +                       gpios = <&gpio5 22 GPIO_ACTIVE_LOW>;
+> >
+> > GPIO_ACTIVE_HIGH?
+> >
+> > The LED is driven by an NPN transistor, with the LED between 3.3V and
+> > the transistor's collector.
 
-On Sat, Aug 29, 2020 at 6:09 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
+Oops, 3.3V is not VCC_3V3, but SD_3V3, so it is not always-on, but
+controlled by SDIO_PWR.
+
+> I did try with GPIO_ACTIVE_HIGH and it didn't work as expected. To
+> make sure I can control the LED through sysfs I deleted the node from
+> DTS and exported the pin GP5_22 (858) and writing the value "out"
+> direction and setting the values 0/1 to value did not toggle the SDIO
+> LED as expected and it stayed OFF all the time.
+
+Hence when SDIO_PWR is turned off, you cannot control the LED just by
+toggling GP5_22.
+
+> Looks like there is some information missing in the schematics.
 >
-> This just add a basic driver that sets up the transport(e.g. SMCCC),
-> checks the FFA version implemented, get the partition ID for self and
-> sets up the Tx/Rx buffers for communication.
+> I did some experiments. I completely removed the SDHI, LED and
+> regulator  nodes and  booted the system and exported GP1_27 (989) and
+> wrote values 0/1  and this toggled the SDIO_LED.
 >
-> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> ---
->  drivers/firmware/arm_ffa/Makefile |   3 +-
->  drivers/firmware/arm_ffa/common.h |  23 +++
->  drivers/firmware/arm_ffa/driver.c | 288 ++++++++++++++++++++++++++++++
->  3 files changed, 313 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/firmware/arm_ffa/common.h
->  create mode 100644 drivers/firmware/arm_ffa/driver.c
+> U-boot sets the below, so in u-boot the SDIO_LED is ON:
+>     gpio_direction_output(GPIO_GP_1_27, 0); /* power on */
+>     gpio_set_value(GPIO_GP_1_27, 0);
+>     gpio_direction_output(GPIO_GP_5_22, 0); /* LED  */
+>     gpio_set_value(GPIO_GP_5_22, 1);
+>     gpio_direction_output(GPIO_GP_1_8, 0); /* 1: 3.3V, 0: 1.8V*/
+>     gpio_set_value(GPIO_GP_1_8, 1);
 >
-> diff --git a/drivers/firmware/arm_ffa/Makefile b/drivers/firmware/arm_ffa/Makefile
-> index fadb325ee888..1a9bd2bf8752 100644
-> --- a/drivers/firmware/arm_ffa/Makefile
-> +++ b/drivers/firmware/arm_ffa/Makefile
-> @@ -1,3 +1,4 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -obj-$(CONFIG_ARM_FFA_TRANSPORT) = ffa-bus.o
-> +obj-$(CONFIG_ARM_FFA_TRANSPORT) = ffa-bus.o ffa-driver.o
->  ffa-bus-y = bus.o
-> +ffa-driver-y = driver.o
-> diff --git a/drivers/firmware/arm_ffa/common.h b/drivers/firmware/arm_ffa/common.h
-> new file mode 100644
-> index 000000000000..720c8425dfd6
-> --- /dev/null
-> +++ b/drivers/firmware/arm_ffa/common.h
-> @@ -0,0 +1,23 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (C) 2020 ARM Ltd.
-> + */
-> +
-> +#ifndef _FFA_COMMON_H
-> +#define _FFA_COMMON_H
-> +
-> +#include <linux/arm-smccc.h>
-> +#include <linux/err.h>
-> +
-> +typedef struct arm_smccc_v1_2_res ffa_res_t;
-> +
-> +typedef ffa_res_t
-> +(ffa_fn)(unsigned long, unsigned long, unsigned long, unsigned long,
-> +        unsigned long, unsigned long, unsigned long, unsigned long);
-> +
-> +static inline int __init ffa_transport_init(ffa_fn **invoke_ffa_fn)
-> +{
-> +       return -EOPNOTSUPP;
-> +}
-> +
-> +#endif /* _FFA_COMMON_H */
-> diff --git a/drivers/firmware/arm_ffa/driver.c b/drivers/firmware/arm_ffa/driver.c
-> new file mode 100644
-> index 000000000000..3670ba400f89
-> --- /dev/null
-> +++ b/drivers/firmware/arm_ffa/driver.c
-> @@ -0,0 +1,288 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Arm Firmware Framework for ARMv8-A(FFA) interface driver
-> + *
-> + * The Arm FFA specification[1] describes a software architecture to
-> + * leverages the virtualization extension to isolate software images
-> + * provided by an ecosystem of vendors from each other and describes
-> + * interfaces that standardize communication between the various software
-> + * images including communication between images in the Secure world and
-> + * Normal world. Any Hypervisor could use the FFA interfaces to enable
-> + * communication between VMs it manages.
-> + *
-> + * The Hypervisor a.k.a Partition managers in FFA terminology can assign
-> + * system resources(Memory regions, Devices, CPU cycles) to the partitions
-> + * and manage isolation amongst them.
-> + *
-> + * [1] https://developer.arm.com/docs/den0077/latest
-> + *
-> + * Copyright (C) 2020 Arm Ltd.
-> + */
-> +
-> +#define DRIVER_NAME "ARM FF-A"
-> +#define pr_fmt(fmt) DRIVER_NAME ": " fmt
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/slab.h>
-> +#include <linux/arm_ffa.h>
-> +
-> +#include "common.h"
-> +
-> +#define FFA_SMC(calling_convention, func_num)                          \
-> +       ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL, (calling_convention),   \
-> +                          ARM_SMCCC_OWNER_STANDARD, (func_num))
-> +
-> +#define FFA_SMC_32(func_num)   FFA_SMC(ARM_SMCCC_SMC_32, (func_num))
-> +#define FFA_SMC_64(func_num)   FFA_SMC(ARM_SMCCC_SMC_64, (func_num))
-> +
-> +#define FFA_ERROR                      FFA_SMC_32(0x60)
-> +#define FFA_SUCCESS                    FFA_SMC_32(0x61)
-> +#define FFA_INTERRUPT                  FFA_SMC_32(0x62)
-> +#define FFA_VERSION                    FFA_SMC_32(0x63)
-> +#define FFA_FEATURES                   FFA_SMC_32(0x64)
-> +#define FFA_RX_RELEASE                 FFA_SMC_32(0x65)
-> +#define FFA_RXTX_MAP                   FFA_SMC_32(0x66)
-> +#define FFA_RXTX_UNMAP                 FFA_SMC_32(0x67)
-> +#define FFA_PARTITION_INFO_GET         FFA_SMC_32(0x68)
-> +#define FFA_ID_GET                     FFA_SMC_32(0x69)
-> +#define FFA_MSG_POLL                   FFA_SMC_32(0x6A)
-> +#define FFA_MSG_WAIT                   FFA_SMC_32(0x6B)
-> +#define FFA_YIELD                      FFA_SMC_32(0x6C)
-> +#define FFA_RUN                                FFA_SMC_32(0x6D)
-> +#define FFA_MSG_SEND                   FFA_SMC_32(0x6E)
-> +#define FFA_MSG_SEND_DIRECT_REQ                FFA_SMC_32(0x6F)
-> +#define FFA_FN64_MSG_SEND_DIRECT_REQ   FFA_SMC_64(0x6F)
-> +#define FFA_MSG_SEND_DIRECT_RESP       FFA_SMC_32(0x70)
-> +#define FFA_FN64_MSG_SEND_DIRECT_RESP  FFA_SMC_64(0x70)
-> +#define FFA_MEM_DONATE                 FFA_SMC_32(0x71)
-> +#define FFA_FN64_MEM_DONATE            FFA_SMC_32(0x71)
-> +#define FFA_MEM_LEND                   FFA_SMC_32(0x72)
-> +#define FFA_FN64_MEM_LEND              FFA_SMC_32(0x72)
-> +#define FFA_MEM_SHARE                  FFA_SMC_32(0x73)
-> +#define FFA_FN64_MEM_SHARE             FFA_SMC_64(0x73)
-> +#define FFA_MEM_RETRIEVE_REQ           FFA_SMC_32(0x74)
-> +#define FFA_FN64_MEM_RETRIEVE_REQ      FFA_SMC_64(0x74)
-> +#define FFA_MEM_RETRIEVE_RESP          FFA_SMC_32(0x75)
-> +#define FFA_MEM_RELINQUISH             FFA_SMC_32(0x76)
-> +#define FFA_MEM_RECLAIM                        FFA_SMC_32(0x77)
-> +#define FFA_MEM_OP_PAUSE               FFA_SMC_32(0x78)
-> +#define FFA_MEM_OP_RESUME              FFA_SMC_32(0x79)
-> +#define FFA_MEM_FRAG_RX                        FFA_SMC_32(0x7A)
-> +#define FFA_MEM_FRAG_TX                        FFA_SMC_32(0x7B)
-> +#define FFA_NORMAL_WORLD_RESUME                FFA_SMC_32(0x7C)
-> +
-> +/*
-> + * For some calls it is necessary to use SMC64 to pass or return 64-bit values.
-> + * For such calls FFA_FN_NATIVE(name) will choose the appropriate
-> + * (native-width) function ID.
-> + */
-> +#ifdef CONFIG_64BIT
-> +#define FFA_FN_NATIVE(name)    FFA_FN64_##name
-> +#else
-> +#define FFA_FN_NATIVE(name)    FFA_##name
-> +#endif
-> +
-> +/* FFA error codes. */
-> +#define FFA_RET_SUCCESS            (0)
-> +#define FFA_RET_NOT_SUPPORTED      (-1)
-> +#define FFA_RET_INVALID_PARAMETERS (-2)
-> +#define FFA_RET_NO_MEMORY          (-3)
-> +#define FFA_RET_BUSY               (-4)
-> +#define FFA_RET_INTERRUPTED        (-5)
-> +#define FFA_RET_DENIED             (-6)
-> +#define FFA_RET_RETRY              (-7)
-> +#define FFA_RET_ABORTED            (-8)
-> +
-> +#define MAJOR_VERSION_MASK     GENMASK(30, 16)
-> +#define MINOR_VERSION_MASK     GENMASK(15, 0)
-> +#define MAJOR_VERSION(x)       (u16)(FIELD_GET(MAJOR_VERSION_MASK, (x)))
-> +#define MINOR_VERSION(x)       (u16)(FIELD_GET(MINOR_VERSION_MASK, (x)))
-> +#define PACK_VERSION_INFO(major, minor)                        \
-> +       (FIELD_PREP(MAJOR_VERSION_MASK, (major)) |      \
-> +        FIELD_PREP(MINOR_VERSION_MASK, (minor)))
-> +#define FFA_VERSION_1_0        PACK_VERSION_INFO(1, 0)
-> +#define FFA_MIN_VERSION        FFA_VERSION_1_0
-> +#define FFA_DRIVER_VERSION     FFA_VERSION_1_0
-> +
-> +#define SENDER_ID_MASK         GENMASK(31, 16)
-> +#define RECEIVER_ID_MASK       GENMASK(15, 0)
-> +#define SENDER_ID(x)           (u16)(FIELD_GET(SENDER_ID_MASK, (x)))
-> +#define RECEIVER_ID(x)         (u16)(FIELD_GET(RECEIVER_ID_MASK, (x)))
-> +#define PACK_TARGET_INFO(s, r)         \
-> +       (FIELD_PREP(SENDER_ID_MASK, (s)) | FIELD_PREP(RECEIVER_ID_MASK, (r)))
-> +
-> +/**
-> + * FF-A specification mentions explicitly about '4K pages'. This should
-> + * not be confused with the kernel PAGE_SIZE, which is the translation
-> + * granule kernel is configured and may be one among 4K, 16K and 64K.
-> + */
-> +#define FFA_PAGE_SIZE          SZ_4K
-> +/* Keeping RX TX buffer size as 64K for now */
-> +#define RXTX_BUFFER_SIZE       SZ_64K
-
-The code/definitions above will be reused in other parts that deal
-will FF-A (e.g., support for FF-A in KVM itself), so it might be good
-to have it in a common header.  I was wondering if it might even be a
-good idea to reuse the Hafnium headers here (assuming I understand
-licensing right):
-https://review.trustedfirmware.org/plugins/gitiles/hafnium/hafnium/+/refs/heads/master/inc/vmapi/hf/ffa.h
-
-
-> +
-> +static ffa_fn *invoke_ffa_fn;
-> +
-> +static const int ffa_linux_errmap[] = {
-> +       /* better than switch case as long as return value is continuous */
-> +       0,              /* FFA_RET_SUCCESS */
-> +       -EOPNOTSUPP,    /* FFA_RET_NOT_SUPPORTED */
-> +       -EINVAL,        /* FFA_RET_INVALID_PARAMETERS */
-> +       -ENOMEM,        /* FFA_RET_NO_MEMORY */
-> +       -EBUSY,         /* FFA_RET_BUSY */
-> +       -EINTR,         /* FFA_RET_INTERRUPTED */
-> +       -EACCES,        /* FFA_RET_DENIED */
-> +       -EAGAIN,        /* FFA_RET_RETRY */
-> +       -ECANCELED,     /* FFA_RET_ABORTED */
-> +};
-> +
-> +static inline int ffa_to_linux_errno(int errno)
-> +{
-> +       if (errno < FFA_RET_SUCCESS && errno >= FFA_RET_ABORTED)
-> +               return ffa_linux_errmap[-errno];
-> +       return -EINVAL;
-> +}
-
-Hardcoding the range check to be bound by FFA_RET_ABORTED could cause
-some issues in the future if more error codes are added.  It might be
-safer to check against the number of elements in ffa_linux_errmap.
-
-> +
-> +struct ffa_drv_info {
-> +       u32 version;
-> +       u16 vm_id;
-> +       struct mutex rx_lock; /* lock to protect Rx buffer */
-> +       struct mutex tx_lock; /* lock to protect Tx buffer */
-> +       void *rx_buffer;
-> +       void *tx_buffer;
-> +};
-> +
-> +static struct ffa_drv_info *drv_info;
-> +
-> +static int ffa_version_check(u32 *version)
-> +{
-> +       ffa_res_t ver;
-> +
-> +       ver = invoke_ffa_fn(FFA_VERSION, FFA_DRIVER_VERSION, 0, 0, 0, 0, 0, 0);
-> +
-> +       if (ver.a0 == FFA_RET_NOT_SUPPORTED) {
-> +               pr_info("FFA_VERSION returned not supported\n");
-> +               return -EOPNOTSUPP;
-> +       }
-> +
-> +       if (ver.a0 < FFA_MIN_VERSION || ver.a0 > FFA_DRIVER_VERSION) {
-> +               pr_err("Incompatible version %d.%d found\n",
-> +                      MAJOR_VERSION(ver.a0), MINOR_VERSION(ver.a0));
-> +               return -EINVAL;
-> +       }
-> +
-> +       *version = ver.a0;
-> +       pr_info("Version %d.%d found\n", MAJOR_VERSION(ver.a0),
-> +               MINOR_VERSION(ver.a0));
-> +       return 0;
-> +}
-> +
-> +static int ffa_rxtx_map(phys_addr_t tx_buf, phys_addr_t rx_buf, u32 pg_cnt)
-> +{
-> +       ffa_res_t ret;
-> +
-> +       ret = invoke_ffa_fn(FFA_RXTX_MAP, tx_buf, rx_buf, pg_cnt, 0, 0, 0, 0);
-> +
-> +       if (ret.a0 == FFA_ERROR)
-> +               return ffa_to_linux_errno((int)ret.a2);
-> +
-> +       return 0;
-> +}
-> +
-> +static int ffa_rxtx_unmap(u16 vm_id)
-> +{
-> +       ffa_res_t ret;
-> +
-> +       ret = invoke_ffa_fn(FFA_RXTX_UNMAP, vm_id, 0, 0, 0, 0, 0, 0);
-> +
-> +       if (ret.a0 == FFA_ERROR)
-> +               return ffa_to_linux_errno((int)ret.a2);
-> +
-> +       return 0;
-> +}
-> +
-> +#define VM_ID_MASK     GENMASK(15, 0)
-> +static int ffa_id_get(u16 *vm_id)
-> +{
-> +       ffa_res_t id;
-> +
-> +       id = invoke_ffa_fn(FFA_ID_GET, 0, 0, 0, 0, 0, 0, 0);
-> +
-> +       if (id.a0 == FFA_ERROR)
-> +               return ffa_to_linux_errno((int)id.a2);
-> +
-> +       *vm_id = FIELD_GET(VM_ID_MASK, (id.a2));
-> +
-> +       return 0;
-> +}
-> +
-> +static int __init ffa_init(void)
-> +{
-> +       int ret;
-> +
-> +       ret = ffa_transport_init(&invoke_ffa_fn);
-> +       if (ret)
-> +               return ret;
-> +
-> +       drv_info = kzalloc(sizeof(*drv_info), GFP_KERNEL);
-> +       if (!drv_info)
-> +               return -ENOMEM;
-> +
-> +       ret = ffa_version_check(&drv_info->version);
-> +       if (ret)
-> +               goto free_drv_info;
-> +
-> +       if (ffa_id_get(&drv_info->vm_id)) {
-> +               pr_err("failed to obtain VM id for self\n");
-> +               ret = -ENODEV;
-> +               goto free_drv_info;
-> +       }
-> +
-> +       drv_info->rx_buffer = alloc_pages_exact(RXTX_BUFFER_SIZE, GFP_KERNEL);
-> +       if (!drv_info->rx_buffer) {
-> +               ret = -ENOMEM;
-> +               goto free_pages;
-> +       }
-> +
-> +       drv_info->tx_buffer = alloc_pages_exact(RXTX_BUFFER_SIZE, GFP_KERNEL);
-> +       if (!drv_info->tx_buffer) {
-> +               ret = -ENOMEM;
-> +               goto free_pages;
-> +       }
-> +
-> +       ret = ffa_rxtx_map(virt_to_phys(drv_info->tx_buffer),
-> +                          virt_to_phys(drv_info->rx_buffer),
-> +                          RXTX_BUFFER_SIZE / FFA_PAGE_SIZE);
-> +       if (ret) {
-> +               pr_err("failed to register FFA RxTx buffers\n");
-> +               goto free_pages;
-> +       }
-> +
-> +       mutex_init(&drv_info->rx_lock);
-> +       mutex_init(&drv_info->tx_lock);
-> +
-> +       return 0;
-> +free_pages:
-> +       if (drv_info->tx_buffer)
-> +               free_pages_exact(drv_info->tx_buffer, RXTX_BUFFER_SIZE);
-> +       free_pages_exact(drv_info->rx_buffer, RXTX_BUFFER_SIZE);
-> +free_drv_info:
-> +       kfree(drv_info);
-> +       return ret;
-> +}
-> +module_init(ffa_init);
-> +
-> +static void __exit ffa_exit(void)
-> +{
-> +       ffa_rxtx_unmap(drv_info->vm_id);
-> +       free_pages_exact(drv_info->tx_buffer, RXTX_BUFFER_SIZE);
-> +       free_pages_exact(drv_info->rx_buffer, RXTX_BUFFER_SIZE);
-> +       kfree(drv_info);
-> +}
-> +module_exit(ffa_exit);
-> +
-> +MODULE_ALIAS("arm-ffa");
-> +MODULE_AUTHOR("Sudeep Holla <sudeep.holla@arm.com>");
-> +MODULE_DESCRIPTION("Arm FF-A interface driver");
-> +MODULE_LICENSE("GPL v2");
-> --
-> 2.17.1
+> So in comparison we would need a hog node as below (and with this the
+> LED triggers correctly as expected),
 >
+> &gpio5 {
+>     sdio-led-gpio {
+>         gpio-hog;
+>         gpios = <22 GPIO_ACTIVE_HIGH>;
+>         output-high;
+>         line-name = "sdio-led-gpio";
+>     };
+> };
+>
+> Let me know if you are OK with the above.
 
-Cheers,
-/fuad
+The above means the LED is always lit when SDIO_PWR is enabled.
+While I agree that's some kind of SD activity indicator, probably it's less
+fine-grained than using the mmc1 trigger?
+I assume the mmc1 trigger is only activated when SDIO_PWR is enabled.
+Are you sure this doesn't work?
+Perhaps your kernel was missing SD trigger support, or "mmc1" is the
+wrong SD instance?
+
+> Looks like the SDIO_PWR is tied up with an SDIO_LED pin and the
+> information is missing from schematics.
+
+No, I think we just misread the schematics.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
