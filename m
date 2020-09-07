@@ -2,88 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A624260736
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 01:48:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D454260747
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 01:55:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727119AbgIGXsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 19:48:40 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:59732 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727058AbgIGXsj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 19:48:39 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 087NmYJq022598;
-        Mon, 7 Sep 2020 18:48:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599522514;
-        bh=xNbX/ATBF1fCmBFZkzD9B4HTOPwp1XWxwdPYzdAUKkU=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=R8YV+GWxGOullnv811HoqwpeOx5UWTJYtQLfYfqYufmTAyHPFv/BQeSYQeuae7Dfu
-         HU9Lr9hjQVPZ8A7bbMvTYhGIB32PLlBAIqLa9lND/bCc4Yk/3uu/n+m/UrKAn9V8uU
-         Wn3zJslLkzCBFxDJXdqJzGlvAGT8qSH1v4kzdrSo=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 087NmY7P017107;
-        Mon, 7 Sep 2020 18:48:34 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 7 Sep
- 2020 18:48:34 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 7 Sep 2020 18:48:34 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 087NmXv6102495;
-        Mon, 7 Sep 2020 18:48:33 -0500
-Date:   Mon, 7 Sep 2020 18:48:33 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Lokesh Vutla <lokeshvutla@ti.com>
-CC:     Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Sekhar Nori <nsekhar@ti.com>, Suman Anna <s-anna@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-Subject: Re: [PATCH v2 0/4] arm64: Initial support for Texas Instrument's
- J7200 Platform
-Message-ID: <20200907234833.r376hhl64q55gd7o@akan>
-References: <20200827065144.17683-1-lokeshvutla@ti.com>
- <de8d64eb-05fd-ed7d-61b8-1d8e13649ae8@ti.com>
- <20200907141427.ti6r3h6namv2hezw@akan>
- <9d8d6980-0b22-da45-52af-474c6d96c873@ti.com>
+        id S1727769AbgIGXzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 19:55:46 -0400
+Received: from mail-bn7nam10olkn2011.outbound.protection.outlook.com ([40.92.40.11]:9344
+        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727058AbgIGXzp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 19:55:45 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=G6RZ0iJvg6CRQ3je10GVhx0kQVwC9QnSVtOLDt46QvL2wf8yHDAz2+1N5/vaZiu7IqgFgfxM0xCX2byBW40H22pUr+64JDKkpVSvlr2KcdPM9/R4/AnegpNHbR4Nd2ccdQk+UmASsOTkln9NedWEtpvvNF3CzoEJno1UE5/WGlmizSkwh/hKUMkDxrZXcOgtNvsfexniHJYEGXZ5VftAV7VUX7Tya6AAsdd3btiLzmVembjtWyvgQAuhA4aDfSLBpq/GjjC2KbTzigpWZSNZvfn7WlpLguHK6yp3rPyzDGKvzJNA4w/YfvqeeD2K4hQYffpKwZIxnYHfJDU6jCa1Qg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yhp5kpm+xJHMQu6zDkcK7rgQ/52TPIfbtiJo9pP4fuE=;
+ b=PmJc6ZKrVlSwwwMB+Wp905I+/tM3QADKVFXtQhKw+bT5N5Q2y6QYJhTNSOFM+8DiQGmN7tvzoY/J8r2lVNkx800B7usSOzqw0gHZauDICNxsP+PUHR4xGdMkuXm6J0vrI2a88M1B1oGYIbHglFAqUZs8srfh4F7vCz6BTvdmzqslrL/8uqCxrnE76cYzBNNsD9xKJF1XqkjsuGUw/FY8gTe4mjfe5eYYFYanwxwrvttaUodeYLA+5h4Tae6R1F61/jRHnpF3fpLMgf25K7j8oQtlfaov54HNcsj7H/FeHBSaz+uUZW+LGcb8XfXILsqBT0LwKvtSRDXdc0K4UlR6DQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from BN7NAM10FT047.eop-nam10.prod.protection.outlook.com
+ (2a01:111:e400:7e8f::40) by
+ BN7NAM10HT080.eop-nam10.prod.protection.outlook.com (2a01:111:e400:7e8f::108)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.16; Mon, 7 Sep
+ 2020 23:55:42 +0000
+Received: from BN6PR04MB0660.namprd04.prod.outlook.com
+ (2a01:111:e400:7e8f::50) by BN7NAM10FT047.mail.protection.outlook.com
+ (2a01:111:e400:7e8f::126) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.24 via Frontend
+ Transport; Mon, 7 Sep 2020 23:55:42 +0000
+X-IncomingTopHeaderMarker: OriginalChecksum:0614694EEEB9EEFAC7799501BF9DF3CEAC7E4D039BC2D5F554942613E41C340D;UpperCasedChecksum:8D13EE74243F57BEBE248144F76506505741DE9B57F485FDD1A5207AC64B4CEA;SizeAsReceived:9289;Count:48
+Received: from BN6PR04MB0660.namprd04.prod.outlook.com
+ ([fe80::303b:a75b:d03e:bd04]) by BN6PR04MB0660.namprd04.prod.outlook.com
+ ([fe80::303b:a75b:d03e:bd04%3]) with mapi id 15.20.3348.019; Mon, 7 Sep 2020
+ 23:55:31 +0000
+Subject: Re: [RFT 09/25] ARM: dts: s5pv210: fix number of I2S DAI cells
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
+References: <20200907161141.31034-1-krzk@kernel.org>
+ <20200907161141.31034-10-krzk@kernel.org>
+From:   Jonathan Bakker <xc-racer2@live.ca>
+Message-ID: <BN6PR04MB0660D9B0D0B5FB4F40CF2769CB280@BN6PR04MB0660.namprd04.prod.outlook.com>
+Date:   Mon, 7 Sep 2020 16:55:26 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+In-Reply-To: <20200907161141.31034-10-krzk@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: CO1PR15CA0047.namprd15.prod.outlook.com
+ (2603:10b6:101:1f::15) To BN6PR04MB0660.namprd04.prod.outlook.com
+ (2603:10b6:404:d9::21)
+X-Microsoft-Original-Message-ID: <b3120e9e-c16a-7fc0-1a61-58463210ee8e@live.ca>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <9d8d6980-0b22-da45-52af-474c6d96c873@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2001:569:fb68:9c00:8067:f823:1e15:7520] (2001:569:fb68:9c00:8067:f823:1e15:7520) by CO1PR15CA0047.namprd15.prod.outlook.com (2603:10b6:101:1f::15) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.15 via Frontend Transport; Mon, 7 Sep 2020 23:55:28 +0000
+X-Microsoft-Original-Message-ID: <b3120e9e-c16a-7fc0-1a61-58463210ee8e@live.ca>
+X-TMN:  [/GJJJ0TDLeNVslWPYdc+YyZHrn2aQ5+Q+VyUnIFd9X7i3j11xOYL9RYXJ7cvP1ZY]
+X-MS-PublicTrafficType: Email
+X-IncomingHeaderCount: 48
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-Correlation-Id: bcfbf58f-a31c-4904-ddde-08d8538980bd
+X-MS-TrafficTypeDiagnostic: BN7NAM10HT080:
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ztdrQdlJQKL1UXQnGMLcFlcBApkGOhpeNml0PKBGzmnitpKG9zGN3F5UnoULtrYaV4ABNctjXHNS1SZsP+8Z2wegVjTr+56x/j2ppfufjrbL6KNNZvX4bbwjdzzHczZbmLdTDzbd+2lEOkyyV8w1nIZrnXxRNjcMnvQre8BraD/vBu0TVBBEON37QSvb3pzIo9kjvPXTAYpYj44xIAuXaA==
+X-MS-Exchange-AntiSpam-MessageData: 1a7k1vPztP0sjQ46N9+A2p+DXlz8r1tfjy9tWfutZCMqf8FfkwA7C+5sxgXWHXoi+G/wLViswcY4eePATQX95mXcrKtFNlYYxxKGRHsQJDvR7H7c8cCvLZJKrpOPpGFgT2leRFRbBJLhPrTLeyo1h9Wn2a4++Ua76e4mPVuAtt8+ihIepmxUVl/xYYsABN/5X+BnvNthGc28WEUN/kqXxg==
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bcfbf58f-a31c-4904-ddde-08d8538980bd
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2020 23:55:31.1615
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-AuthSource: BN7NAM10FT047.eop-nam10.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7NAM10HT080
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19:53-20200907, Lokesh Vutla wrote:
+Sadly, this is causing issues for me.  The machine driver is no longer probing correctly
+on the Galaxy S.
 
-[... I should have responded to the correct patch..]
-> > Besides yaml and compatibility acks, there are a few ancillary
-> > comments to fix up.. Kconfig -> I think we should either stay with
-> > status quo and create a new config option per SoC OR rename the
-> > config to be generic (using j7200 with j721e SoC config is not very
+The failing call in sound/soc/samsung/aries_wm8994.c is
+
+	/* Set CPU of_node for BT DAI */
+	aries_dai[2].cpus->of_node = of_parse_phandle(cpu,
+			"sound-dai", 1);
+
+where cpus->of_node is not set properly.  Which is definitely weird because it doesn't
+look like this should affect that.
+
+Let me know if there's any specific test that you want me to do.
+
+Thanks,
+Jonathan
+
+
+On 2020-09-07 9:11 a.m., Krzysztof Kozlowski wrote:
+> The bindings describe I2S DAI has 1 cells.  This makes especially sense
+> for i2s0 which registers two DAIs.  Adjust the cells to fix dtbs_check
+> warnings like:
 > 
-> Please suggest your preference here. I guess separate defconfig for J7200?
-
-
-I was just scanning through remaining arm64 additions to see what others have
-done. We seem to have two options here:
-a) Just use ARCH_K3 and no specific SoC configs
-b) Specific SoC configs 
-In both cases, use += instead of \ to incrementally add dtbs
-
-We have been going with (b) so far, Tero: any specific preference here?
-
-(a) has the aspect of simplicity and reduced dependencies.
-(b) Allows downstream kernels to save just a little bit and focus purely
-    on SoC of interest.
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+>   i2s@e2100000: #sound-dai-cells:0:0: 1 was expected
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  arch/arm/boot/dts/s5pv210-fascinate4g.dts | 2 +-
+>  arch/arm/boot/dts/s5pv210-galaxys.dts     | 2 +-
+>  arch/arm/boot/dts/s5pv210.dtsi            | 6 +++---
+>  3 files changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/s5pv210-fascinate4g.dts b/arch/arm/boot/dts/s5pv210-fascinate4g.dts
+> index ca064359dd30..a6dc8a173af1 100644
+> --- a/arch/arm/boot/dts/s5pv210-fascinate4g.dts
+> +++ b/arch/arm/boot/dts/s5pv210-fascinate4g.dts
+> @@ -102,7 +102,7 @@
+>  		pinctrl-0 = <&headset_det &earpath_sel>;
+>  
+>  		cpu {
+> -			sound-dai = <&i2s0>, <&bt_codec>;
+> +			sound-dai = <&i2s0 0>, <&bt_codec>;
+>  		};
+>  
+>  		codec {
+> diff --git a/arch/arm/boot/dts/s5pv210-galaxys.dts b/arch/arm/boot/dts/s5pv210-galaxys.dts
+> index 560f830b6f6b..0eba06f56ac7 100644
+> --- a/arch/arm/boot/dts/s5pv210-galaxys.dts
+> +++ b/arch/arm/boot/dts/s5pv210-galaxys.dts
+> @@ -132,7 +132,7 @@
+>  		pinctrl-0 = <&headset_det &earpath_sel>;
+>  
+>  		cpu {
+> -			sound-dai = <&i2s0>, <&bt_codec>;
+> +			sound-dai = <&i2s0 0>, <&bt_codec>;
+>  		};
+>  
+>  		codec {
+> diff --git a/arch/arm/boot/dts/s5pv210.dtsi b/arch/arm/boot/dts/s5pv210.dtsi
+> index 2871351ab907..96e667ba1c3f 100644
+> --- a/arch/arm/boot/dts/s5pv210.dtsi
+> +++ b/arch/arm/boot/dts/s5pv210.dtsi
+> @@ -251,7 +251,7 @@
+>  			samsung,idma-addr = <0xc0010000>;
+>  			pinctrl-names = "default";
+>  			pinctrl-0 = <&i2s0_bus>;
+> -			#sound-dai-cells = <0>;
+> +			#sound-dai-cells = <1>;
+>  			status = "disabled";
+>  		};
+>  
+> @@ -266,7 +266,7 @@
+>  			clocks = <&clocks CLK_I2S1>, <&clocks SCLK_AUDIO1>;
+>  			pinctrl-names = "default";
+>  			pinctrl-0 = <&i2s1_bus>;
+> -			#sound-dai-cells = <0>;
+> +			#sound-dai-cells = <1>;
+>  			status = "disabled";
+>  		};
+>  
+> @@ -281,7 +281,7 @@
+>  			clocks = <&clocks CLK_I2S2>, <&clocks SCLK_AUDIO2>;
+>  			pinctrl-names = "default";
+>  			pinctrl-0 = <&i2s2_bus>;
+> -			#sound-dai-cells = <0>;
+> +			#sound-dai-cells = <1>;
+>  			status = "disabled";
+>  		};
+>  
+> 
