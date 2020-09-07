@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FA7C25FA37
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 14:12:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0153725FA59
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 14:19:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729248AbgIGMLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 08:11:34 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:3714 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729238AbgIGMK6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 08:10:58 -0400
-X-UUID: 1234c8e3ab9f4b2293c8ae9cf58e7298-20200907
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=3Ts95OagkB8HioiMDNRF+4vLVq463WgaXrfur7KeqjM=;
-        b=tlTv8LQipVyz1T7lFlPM3zYv92H+lpXZi9MpWmQC56nYcGITxXRg4Lq4LjPlSqBQwg26qz6qFd+5tQCB1lERY1pIgf3DlV6NoJCK78a8505Q6B6WmTMOnu0QSKyjcZoiQqnQpJDLUyYUyrxpv6RQOPGv/bpV2/HgxdKawWNEQw4=;
-X-UUID: 1234c8e3ab9f4b2293c8ae9cf58e7298-20200907
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <jianjun.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1168662045; Mon, 07 Sep 2020 20:10:56 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 7 Sep 2020 20:10:53 +0800
-Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 7 Sep 2020 20:10:53 +0800
-From:   Jianjun Wang <jianjun.wang@mediatek.com>
-To:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        <davem@davemloft.net>, <linux-pci@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Sj Huang <sj.huang@mediatek.com>,
-        Jianjun Wang <jianjun.wang@mediatek.com>
-Subject: [v1,3/3] MAINTAINERS: update entry for MediaTek PCIe controller
-Date:   Mon, 7 Sep 2020 20:08:52 +0800
-Message-ID: <20200907120852.12090-4-jianjun.wang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20200907120852.12090-1-jianjun.wang@mediatek.com>
-References: <20200907120852.12090-1-jianjun.wang@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S1729241AbgIGMTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 08:19:30 -0400
+Received: from foss.arm.com ([217.140.110.172]:34330 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729303AbgIGMSo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 08:18:44 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9D7EE1045;
+        Mon,  7 Sep 2020 05:18:38 -0700 (PDT)
+Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.195.35])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 830213F66E;
+        Mon,  7 Sep 2020 05:18:37 -0700 (PDT)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     soc@kernel.org
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        Wei Xu <xuwei5@hisilicon.com>, Chanho Min <chanho.min@lge.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/6] ARM/arm64: dts: Fix SP804/SP805 users
+Date:   Mon,  7 Sep 2020 13:18:25 +0100
+Message-Id: <20200907121831.242281-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QWRkIG1haW50YWluZXIgZm9yIE1lZGlhVGVrIFBDSWUgY29udHJvbGxlciBkcml2ZXIuDQoNCkFj
-a2VkLWJ5OiBSeWRlciBMZWUgPHJ5ZGVyLmxlZUBtZWRpYXRlay5jb20+DQpTaWduZWQtb2ZmLWJ5
-OiBKaWFuanVuIFdhbmcgPGppYW5qdW4ud2FuZ0BtZWRpYXRlay5jb20+DQotLS0NCiBNQUlOVEFJ
-TkVSUyB8IDEgKw0KIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQ0KDQpkaWZmIC0tZ2l0
-IGEvTUFJTlRBSU5FUlMgYi9NQUlOVEFJTkVSUw0KaW5kZXggZGVhYWZiNjE3MzYxLi41YzYxMTA0
-Njg1MjYgMTAwNjQ0DQotLS0gYS9NQUlOVEFJTkVSUw0KKysrIGIvTUFJTlRBSU5FUlMNCkBAIC0x
-MzQ1OSw2ICsxMzQ1OSw3IEBAIEY6CWRyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtaGlz
-dGIuYw0KIA0KIFBDSUUgRFJJVkVSIEZPUiBNRURJQVRFSw0KIE06CVJ5ZGVyIExlZSA8cnlkZXIu
-bGVlQG1lZGlhdGVrLmNvbT4NCitNOglKaWFuanVuIFdhbmcgPGppYW5qdW4ud2FuZ0BtZWRpYXRl
-ay5jb20+DQogTDoJbGludXgtcGNpQHZnZXIua2VybmVsLm9yZw0KIEw6CWxpbnV4LW1lZGlhdGVr
-QGxpc3RzLmluZnJhZGVhZC5vcmcNCiBTOglTdXBwb3J0ZWQNCi0tIA0KMi4yNS4xDQo=
+Those are the remaining patches of the SP804/SP805 DT fixes. [1][2]
+ARM, Broadcom and Freescale have their respective fixes queued through
+their maintainers already, but I haven't heard back from LG or HiSilicon
+so far.
+So can those patches be taken through armsoc directly?
+---------------------
+
+Some DTs in the kernel tree were not conforming to the SP804 and SP805
+binding.
+Fix those DTs to correctly describe the clocks, while making sure that
+the devices stay functional with the current Linux driver.
+
+Thanks,
+Andre
+
+[1] http://lkml.iu.edu/hypermail/linux/kernel/2008.3/07072.html
+[2] http://lkml.iu.edu/hypermail/linux/kernel/2008.3/07167.html
+
+Andre Przywara (6):
+  ARM: dts: hisilicon: Fix SP804 users
+  ARM: dts: nspire: Fix SP804 users
+  arm64: dts: lg: Fix SP804 users
+  arm64: dts: hisilicon: Fix SP805 clocks
+  arm64: dts: lg: Fix SP805 clocks
+  ARM: dts: hisilicon: Fix SP805 clocks
+
+ arch/arm/boot/dts/hi3620.dtsi             | 30 +++++++++++++++--------
+ arch/arm/boot/dts/hip04.dtsi              |  4 +--
+ arch/arm/boot/dts/hisi-x5hd2.dtsi         |  5 ++--
+ arch/arm/boot/dts/nspire.dtsi             | 12 ++++++---
+ arch/arm64/boot/dts/hisilicon/hi3660.dtsi | 10 +++++---
+ arch/arm64/boot/dts/hisilicon/hi6220.dtsi |  5 ++--
+ arch/arm64/boot/dts/lg/lg1312.dtsi        | 10 ++++----
+ arch/arm64/boot/dts/lg/lg1313.dtsi        | 10 ++++----
+ 8 files changed, 52 insertions(+), 34 deletions(-)
+
+-- 
+2.17.1
 
