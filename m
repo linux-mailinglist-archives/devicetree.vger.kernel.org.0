@@ -2,54 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 939A126020E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:18:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C5E0260203
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:16:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729737AbgIGRRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 13:17:50 -0400
-Received: from Galois.linutronix.de ([193.142.43.55]:48876 "EHLO
-        galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729746AbgIGOD2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 10:03:28 -0400
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1599487319;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=5lmwZ+UmDmXW6q4mpPvjAmh+0skTtrOGymKCZhnIYJ8=;
-        b=W8S0eT6tKopAU6ELl+WkbfEE7UIYmuQfiFexZL8AR19WILxURui57K3zTf12x9F2DfUfli
-        pZj8tJtjSCmSyAAIn0okwK1MCLRgwGQzD26CECSZEDJ9NnrrPjFGJuFS/7bJmtCGSJtk5O
-        X1y4E1DQI3dd+lyK546mO91Ne4SOALZis5R814A5fdY/h8SC6D3X1OnMuAqjVo0USSEmlD
-        GigSuwqd56N1hfiNGpSYhCJumzFCgHlZ7K+IxKEH7m8kEvBdWiluOzI0BVe8tE58bYQinZ
-        hKcBDnSqXWhm8UhcDHglF1E7gIR21xZne0yK+rQg02CRAXAGI6UW/XDUOShELw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1599487319;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=5lmwZ+UmDmXW6q4mpPvjAmh+0skTtrOGymKCZhnIYJ8=;
-        b=q/1Hguw4CZZluVRp11XgEidyL4dXWpnKFxuIiGPvhrRXoSWk/Z7o0x4me1QsuRjMePdOA7
-        We5tGcjCkvb/zBCQ==
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        ilias.apalodimas@linaro.org
-Subject: Re: [PATCH v5 2/7] net: dsa: Add DSA driver for Hirschmann Hellcreek switches
-In-Reply-To: <20200907132109.234ha7xst37dtqcj@skbuf>
-References: <20200904062739.3540-1-kurt@linutronix.de> <20200904062739.3540-3-kurt@linutronix.de> <20200905204235.f6b5til4sc3hoglr@skbuf> <875z8qazq2.fsf@kurt> <20200907104821.kvu7bxvzwazzg7cv@skbuf> <87eendah1c.fsf@kurt> <20200907132109.234ha7xst37dtqcj@skbuf>
-Date:   Mon, 07 Sep 2020 16:01:57 +0200
-Message-ID: <87a6y1adnu.fsf@kurt>
+        id S1730456AbgIGRQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 13:16:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45516 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729731AbgIGOFQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 10:05:16 -0400
+Received: from saruman (91-155-214-58.elisa-laajakaista.fi [91.155.214.58])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B35A12064B;
+        Mon,  7 Sep 2020 14:04:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599487481;
+        bh=43vQhSIdl0+3eXxBWtFTpn4oJEVlsfZOH+X1/8xm4zQ=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=g8KKUImy+BP8HbHX3vY2vbd58JExwtSgOTzmtbPmx4VtaTqYadL3dfzH2A8U3jQlt
+         xAu/ObxyPT56Ox/HLThXLuVuOxi9tyEZZfIOhombzJWIHBBDqAk5NByUjS4D3pUonU
+         0Y1SAB/dT+5eClcuKvTVF+APb7HAhefzPRSjMqJE=
+From:   Felipe Balbi <balbi@kernel.org>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Yu Chen <chenyu56@huawei.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        john.stultz@linaro.org, suzhuangluan@hisilicon.com,
+        kongfei@hisilicon.com, liuyu712@hisilicon.com,
+        wanghu17@hisilicon.com, butao@hisilicon.com, chenyao11@huawei.com,
+        fangshengzhou@hisilicon.com, lipengcheng8@huawei.com,
+        songxiaowei@hisilicon.com, xuyiping@hisilicon.com,
+        xuyoujun4@huawei.com, yudongbin@hisilicon.com,
+        zangleigang@hisilicon.com,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Binghui Wang <wangbinghui@hisilicon.com>
+Subject: Re: [PATCH v6 04/13] usb: dwc3: Add splitdisable quirk for
+ Hisilicon Kirin Soc
+In-Reply-To: <20200907150631.70e1bce0@coco.lan>
+References: <20190420064019.57522-1-chenyu56@huawei.com>
+ <20190420064019.57522-5-chenyu56@huawei.com>
+ <20200907150631.70e1bce0@coco.lan>
+Date:   Mon, 07 Sep 2020 17:04:31 +0300
+Message-ID: <874ko9of80.fsf@kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
+        micalg=pgp-sha256; protocol="application/pgp-signature"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -59,99 +57,97 @@ X-Mailing-List: devicetree@vger.kernel.org
 Content-Type: text/plain
 Content-Transfer-Encoding: quoted-printable
 
-On Mon Sep 07 2020, Vladimir Oltean wrote:
-> On Mon, Sep 07, 2020 at 02:49:03PM +0200, Kurt Kanzenbach wrote:
->> On Mon Sep 07 2020, Vladimir Oltean wrote:
->> > On Mon, Sep 07, 2020 at 08:05:25AM +0200, Kurt Kanzenbach wrote:
->> >> Well, that depends on whether hellcreek_vlan_add() is called for
->> >> creating that vlan interfaces. In general: As soon as both ports are
->> >> members of the same vlan that traffic is switched.
->> >
->> > That's indeed what I would expect.
->> > Not only that, but with your pvid-based setup, you only ensure port
->> > separation for untagged traffic anyway.
->>
->> Why? Tagged traffic is dropped unless the vlan is configured somehow. By
->> default, I've configured vlan 2 and 3 to reflect the port separation for
->> DSA. At reset the ports aren't members of any vlan.
->>
->
-> Wait, so what is the out-of-reset state of "ptcfg & HR_PTCFG_INGRESSFLT"?
 
-No, ingress filtering is not set by default. But, still the ports are by
-default not members of any vlan. So, I thought the traffic will be
-dropped as well. I'll check that.=20
+Hi Mauro,
 
-> If it is filtering by default (and even if it isn't, but you can make
-> it), then I suppose you can keep it like that, and try to model your
-> ports something like this:
->
-> - force "ethtool -k swpN | grep rx-vlan-filter" to return "on (fixed)".
-> - enforce a check that in standalone mode, you can't have an 8021q upper
->   interface with the same VLAN ID on more than 1 port at the same time.
->   This will be the only way in which you can terminate VLAN traffic on
->   standalone ports.
->
-> If you do this, I think you should be compliant with the stack.
+Mauro Carvalho Chehab <mchehab+huawei@kernel.org> writes:
 
-OK, great. I'll look into it.
+> Hi Felipe/Greg,
+>
+> What's the status of this patch?=20
 
->> OK. when a new driver should set the flag, then I'll set it. So, all
->> vlan requests programming requests should be "buffered" and executed
->> when vlan filtering is enabled? What is it good for?
->
-> It is good for correct functionality of the hardware, I don't get the
-> question? If your driver makes private use of VLAN tags beyond what the
-> upper layers ask for, then it should keep track of them.
+to be frank, I don't think I have this in my inbox anymore.
 
-OK.
+> I tested here, together with the Hikey 970 phy RFC patches I sent
+> last week.
+>
+> Without this patch, the USB HID driver receives -EPROTO from
+> submitted URBs, causing it to enter into an endless reset cycle
+> on every 500 ms, at the hid_io_error() logic.
 
-> DSA has, in the past, ignored VLAN switchdev operations from the
-> bridge when not in vlan_filtering mode, for unknown reasons. This is
-> known to break some command sequences (see below), so the consensus at
-> the time was to stop doing that, and introduce this temporary
-> compatibility flag.
+> Tested-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 >
-> Some tests to make sure you're passing are:
->
-> 1. Statically creating an 802.1Q bridge:
->
-> ip link add br0 type bridge vlan_filtering 1
-> ip link set swp1 master br0
-> ip link set swp2 master br0
->
-> 2. Dynamically turning an 802.1D bridge into an 802.1Q bridge:
->
-> ip link add br0 type bridge
-> ip link set swp1 master br0
-> ip link set swp2 master br0
-> ip link set br0 type bridge vlan_filtering 1
-> # at this moment in time, if you don't have
-> # configure_vlan_while_not_filtering =3D true, then the VLAN tables of
-> # swp1 and swp2 will be missing the default_pvid (by default 1) of br0.
+> If you prefer, I can re-submit this one with my SOB.
 
-Yes, OK. I've observed this behavior myself and was confused about it.
+Please do, but since you're changing device tree, I need Rob's acked-by.
 
-Thanks,
-Kurt
+> Thanks,
+> Mauro
+>
+> Em Sat, 20 Apr 2019 14:40:10 +0800
+> Yu Chen <chenyu56@huawei.com> escreveu:
+>
+>> SPLIT_BOUNDARY_DISABLE should be set for DesignWare USB3 DRD Core
+>> of Hisilicon Kirin Soc when dwc3 core act as host.
+
+is this Kirin-specific or is this something that we should do a revision
+check? Why does it affect only Hikey kirin? What's the dwc3 revision on
+that SoC (grep SNPSID /sys/kernel/debugfs/*dwc3/regdump)?
+
+>> @@ -1825,10 +1834,27 @@ static int dwc3_resume(struct device *dev)
+>>=20=20
+>>  	return 0;
+>>  }
+>> +
+>> +static void dwc3_complete(struct device *dev)
+>> +{
+>> +	struct dwc3	*dwc =3D dev_get_drvdata(dev);
+>> +	u32		reg;
+>> +
+>> +	if (dwc->current_dr_role =3D=3D DWC3_GCTL_PRTCAP_HOST &&
+>> +			dwc->dis_split_quirk) {
+>> +		dev_dbg(dwc->dev, "set DWC3_GUCTL3_SPLITDISABLE\n");
+
+no more dev_dbg() should be added. This driver relies exclusively on
+tracepoints for debugging.
+
+>> +		reg =3D dwc3_readl(dwc->regs, DWC3_GUCTL3);
+>> +		reg |=3D DWC3_GUCTL3_SPLITDISABLE;
+>> +		dwc3_writel(dwc->regs, DWC3_GUCTL3, reg);
+>> +	}
+>> +}
+>> +#else
+>> +#define dwc3_complete NULL
+>>  #endif /* CONFIG_PM_SLEEP */
+>>=20=20
+>>  static const struct dev_pm_ops dwc3_dev_pm_ops =3D {
+>>  	SET_SYSTEM_SLEEP_PM_OPS(dwc3_suspend, dwc3_resume)
+>> +	.complete =3D dwc3_complete,
+
+why is this done on complete? Why can't it be done at the end of
+dwc3_resume()?
+
+=2D-=20
+balbi
 
 --=-=-=
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl9WPVUACgkQeSpbgcuY
-8KZ6bw/+IQmb02UbQGGTBSPWRHx7aY33LrPV+SdvLni5E5FHY/DEtvRjaauE3Ckl
-rEovJs4dRYKR5CaaAhwOlBueqjeJm5AsP6wMZYoux1sO/zOqJr6cejYscI5zQgPG
-3DBnOxOvHuO2Ya7++jPE5ZRgQvAL4B4K5hvq8rSLgNRPUWRnmKkWMCVagdLkXsgh
-sTIbkYMPRMOGuPAUKICxQwVXQv5kZKooFzQeQ6DsQu2xCalpV6KXFcsMo3E91v5d
-MXf4mJ5JBc4xJbPysmw30PH1gBfhtebz9lWzK+PS+EihnEJ8LeVuNMq1tEWkQbdV
-LTzRdb115koqRfD2Vhw4BPq562rTjHbodi0gJZhwGo5FzXdnQI6CqrFnyScjN96q
-1NjSYpvBsR2YwyQp5vq+nMx0wvgIx+E6jsh+dI9vYQo5rLigGDJF5ECFZSvL5nN6
-lSuwyq2fLd01QR3sEfbXoMENqC1bnUAdNjTMR47CJGEhI1YxblKXKBdeBV49pUsE
-HKYHxVp8hDnKSbV5sQ1geifKeVSBEinUc1K7PR7U+afQTkfLzC7PmPDX91m6IWru
-j730MnN6x2kDB5AsuEJsypPimYSc/XKGE0zVEuDuKH3QpocCRMjX6IEd98Y1PSBo
-TBtXkF9u0W54wI3qqj8oIm0Qy3N9F0C7HogM8xsUUtfePI1JUL8=
-=ZiYz
+iQJFBAEBCAAvFiEElLzh7wn96CXwjh2IzL64meEamQYFAl9WPe8RHGJhbGJpQGtl
+cm5lbC5vcmcACgkQzL64meEamQZWyg/+LSkAFDUcHpgZ1Z3VDh+wv/KQkud9pmoE
+VkCPKqYGL5kG9kAQaHpB03tenK4Y9rSA4UVdG5fODhcqrcHe/3irBZeJ+/TVxnDd
+FD4aZmDNCmcHYBE09GqXTpGQAdBxApkNaFgLzIdNJq4ydCHd8Eb9qQeVskZQCtpi
+emWTBKOTAJyl9WMlifucJqH9A/IKqb8oMrUxaBqRSAbKjLzki4HEZ3Z3MZ9ivHnY
+w0bo69HybeVAMI2QqUAQ2JY26GpbnsdJhTL6fGwGPjnrHqoEY0d+7D0RTQinYcxG
+LXeA2Ote9sOE02rGm0Vh+3isF8fsf+GJ1odDi7IsjJR//upPtoPBXtWBJd6w9vsI
+M6clI4UaWrQoK2JZ7HqislIqqO1yms0BgUMx4NuuL+7GOzYCcO23/hFgC8Lb7/xm
+936q25tJM91Ipgl62fa5XRAcxg8MkyDS5aRbRwQBr7Q+v3hABXIxSKoWtJP8L7TV
+9OGcZoChy3uEz5NokYlp2qo0BoKmj8a0/CdkdCEr7RAIn7DMaOhg21T9zomgo6wM
+/1zbJTeZlhLabPEUMEm2w38RH5A7D/ZyHkYAqZHuCKUwKfLK4AFTMlHyZKVJOVXd
+uGsglmA1e4jWqojDI0SVdYTPiZrBRX44DX0qzvc0GNMxPOLs+dKL/R1/b1JY2iOR
+rAZZ8gVV7BY=
+=fXYk
 -----END PGP SIGNATURE-----
 --=-=-=--
