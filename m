@@ -2,113 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AAB5C25FF38
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 18:29:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3187725FF33
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 18:29:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729891AbgIGQ34 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 12:29:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42894 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729868AbgIGO2k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 10:28:40 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F472C0617A4
-        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 07:27:46 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7] helo=dude.pengutronix.de.)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <bst@pengutronix.de>)
-        id 1kFI7U-0003nx-8Y; Mon, 07 Sep 2020 16:27:44 +0200
-From:   Bastian Krause <bst@pengutronix.de>
-To:     linux-rtc@vger.kernel.org
-Cc:     devicetree@vger.kernel.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnaud Ebalard <arno@natisbad.org>,
-        Marek Vasut <marex@denx.de>, kernel@pengutronix.de,
-        Bastian Krause <bst@pengutronix.de>
-Subject: [PATCH 8/8] rtc: ds1307: enable rx8130's backup battery, make it chargeable optionally
-Date:   Mon,  7 Sep 2020 16:27:27 +0200
-Message-Id: <20200907142727.26472-9-bst@pengutronix.de>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200907142727.26472-1-bst@pengutronix.de>
-References: <20200907142727.26472-1-bst@pengutronix.de>
+        id S1729895AbgIGQ3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 12:29:36 -0400
+Received: from lhrrgout.huawei.com ([185.176.76.210]:2776 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729796AbgIGObm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 10:31:42 -0400
+Received: from lhreml724-chm.china.huawei.com (unknown [172.18.7.107])
+        by Forcepoint Email with ESMTP id AC54F340F250ED2A2380;
+        Mon,  7 Sep 2020 15:31:40 +0100 (IST)
+Received: from [127.0.0.1] (10.47.2.208) by lhreml724-chm.china.huawei.com
+ (10.201.108.75) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Mon, 7 Sep 2020
+ 15:31:39 +0100
+Subject: Re: [PATCH 2/2] perf: Add Arm CMN-600 PMU driver
+To:     Robin Murphy <robin.murphy@arm.com>, <will@kernel.org>,
+        <mark.rutland@arm.com>, <linux-arm-kernel@lists.infradead.org>
+CC:     <devicetree@vger.kernel.org>, <tuanphan@os.amperecomputing.com>,
+        <tsahee@amazon.com>, <harb@amperecomputing.com>,
+        <james.yang@arm.com>, <alisaidi@amazon.com>
+References: <cover.1596631695.git.robin.murphy@arm.com>
+ <7f184a18890ef20632eae98b6c105c36f4eb0cd3.1596631695.git.robin.murphy@arm.com>
+ <512b3de2-9ece-baaf-ef93-246a8af9464f@huawei.com>
+ <c8803e30-7b67-bdb1-30ac-fe1137e4bd93@arm.com>
+From:   John Garry <john.garry@huawei.com>
+Message-ID: <4d0960ef-7a8c-2d8f-da15-04548354e325@huawei.com>
+Date:   Mon, 7 Sep 2020 15:29:02 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.2
 MIME-Version: 1.0
+In-Reply-To: <c8803e30-7b67-bdb1-30ac-fe1137e4bd93@arm.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: bst@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Originating-IP: [10.47.2.208]
+X-ClientProxiedBy: lhreml726-chm.china.huawei.com (10.201.108.77) To
+ lhreml724-chm.china.huawei.com (10.201.108.75)
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ds1307 charger infrastructure now allows to add a rx8130 charger
-setup that..
+>>
+>> I had a quick look at the TRM (nearly 1000 pages, wow) for this IP, 
+>> and could not see anything obvious to know the implementation id 
+>> (similar problem to SMMU PMCG today). Do you know if there is anything 
+>> appropiate? Is por_hnf_ppu_iidr any use here?
+> 
+> Note that PPU is a distinct thing with its own architecture (apparently 
+> https://developer.arm.com/documentation/den0051/latest/ if you're 
+> interested), so that particular IIDR is merely describing the 
+> implementation of the PPU interface, which AFAICS is not necessarily 
+> unique to CMN-600. In terms of the PMU and CMN overall there is no 
+> architecture to speak of, the implementation just is what it is :)
+> 
+> I'd expect that some future interconnect IPs are likely to be similar 
+> enough to share most of this driver, but those should get their own 
+> top-level compatibles since they will not be CMN-600. Thus I don't 
+> believe that identification is going to be too much of a concern.
+> 
+>> Just a couple of more questions for now...
+>>
+>> [snip]
+>>
+>>> +
+>>> +static struct attribute *arm_cmn_event_attrs[] = {
+>>> +    CMN_EVENT_DTC(cycles),
+>>> +
 
-- does not depend on trickle-resistor-ohms
-- does not use DS13XX_TRICKLE_CHARGER_MAGIC trickle-charge select (TCS)
-  bits
-- keeps previous no-charge behavior for device trees without
-  aux-voltage-chargeable
+[...]
 
-Make that happen.
+>>> +
+>>> +    NULL
+>>> +};
+>>
+>> Just wondering how does "perf list" look when you have multiple 
+>> instances of the device in the system?
+> 
+> Probably a giant mess, since I assume every (relevant) event should be 
+> listed for each instance, much like CPU events on big.LITTLE systems, 
+> and uncore events on many others (certainly most of the xgene_pmu events 
+> on my eMAG workstation are repeated up to 8 times).
 
-Signed-off-by: Bastian Krause <bst@pengutronix.de>
----
-Based on:
-- https://lore.kernel.org/linux-rtc/20200415163701.21989-1-bst@pengutronix.de/
-- https://lore.kernel.org/linux-rtc/20200415163701.21989-3-bst@pengutronix.de/
+Yeah, so that's one thing we would solve with my "system PMU" perf 
+support, such that we can have a single per-event alias listed for 
+instances of that PMU.
 
-Changes since then:
-- use chager_reg (called trickle_charger_reg before patch 4/8)
-- use charger setup function to set backup battery enable bit, charge
-  bit optionally (introduced by patch 5/8)
----
- drivers/rtc/rtc-ds1307.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+So out of curiousity, for the big.LITTLE systems which you have seen 
+with this issue, which cores do they have?
 
-diff --git a/drivers/rtc/rtc-ds1307.c b/drivers/rtc/rtc-ds1307.c
-index 9bf1822a989f..1fe0c2df2578 100644
---- a/drivers/rtc/rtc-ds1307.c
-+++ b/drivers/rtc/rtc-ds1307.c
-@@ -122,6 +122,9 @@ enum ds_type {
- #define RX8130_REG_FLAG_AF		BIT(3)
- #define RX8130_REG_CONTROL0		0x1e
- #define RX8130_REG_CONTROL0_AIE		BIT(3)
-+#define RX8130_REG_CONTROL1		0x1f
-+#define RX8130_REG_CONTROL1_INIEN	BIT(4)
-+#define RX8130_REG_CONTROL1_CHGEN	BIT(5)
- 
- #define MCP794XX_REG_CONTROL		0x07
- #	define MCP794XX_BIT_ALM0_EN	0x10
-@@ -536,6 +539,16 @@ static u8 do_trickle_setup_ds1339(struct ds1307 *ds1307, u32 ohms, bool diode)
- 	return setup;
- }
- 
-+static u8 do_trickle_setup_rx8130(struct ds1307 *ds1307, u32 ohms, bool diode)
-+{
-+	/* make sure that the backup battery is enabled */
-+	u8 setup = RX8130_REG_CONTROL1_INIEN;
-+	if (diode)
-+		setup |= RX8130_REG_CONTROL1_CHGEN;
-+
-+	return setup;
-+}
-+
- static irqreturn_t rx8130_irq(int irq, void *dev_id)
- {
- 	struct ds1307           *ds1307 = dev_id;
-@@ -1024,6 +1037,8 @@ static const struct chip_desc chips[last_ds_type] = {
- 		.offset		= 0x10,
- 		.irq_handler = rx8130_irq,
- 		.rtc_ops = &rx8130_rtc_ops,
-+		.trickle_charger_reg = RX8130_REG_CONTROL1,
-+		.do_trickle_setup = &do_trickle_setup_rx8130,
- 	},
- 	[m41t0] = {
- 		.rtc_ops	= &m41txx_rtc_ops,
--- 
-2.28.0
+> 
+>> [snip]
 
+>>> +    };
+>>> +
+>>> +    if (atomic_fetch_inc(&id) == 0) {
+>>> +        name = "arm_cmn";
+>>> +    } else {
+>>> +        name = devm_kasprintf(cmn->dev, GFP_KERNEL, "arm_cmn_%d", 
+>>> atomic_read(&id));
+>>
+>> How is userspace supposed to know which device is which when we have 
+>> multiple instances? I mean, doesn't this depend on arbitary probe 
+>> ordering?
+> 
+> Right, I had it in my head that there should be enough information in 
+> sysfs to link the PMU device back to its parent platform device, but 
+> apparently that isn't the case :(
+> 
+> Furthermore, you've now got me thinking I might want to rejig the naming 
+> scheme anyway - if I did have two instances named "foo" and "foo_1", is 
+> perf tool going to interpret "-e foo/event/" as specifying a common 
+> prefix and create the event on both PMUs even if I only wanted it on the 
+> first one?
+
+It should just create the event on the PMU "foo", and not also "foo_1". 
+I think.
+
+As for naming, as you know, for the SMMUv3 PMU driver we suffixed the HW 
+base register address for the name - not ideal, but at least which PMU 
+is which can be determined from userspace. Or for this driver case, 
+maybe ACPI _UID could be used instead.
+
+Thanks,
+john
