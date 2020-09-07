@@ -2,82 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A669625F399
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 09:10:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EF0C25F3E7
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 09:25:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726424AbgIGHKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 03:10:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59950 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726384AbgIGHKG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 03:10:06 -0400
-Received: from mxwww.masterlogin.de (mxwww.masterlogin.de [IPv6:2a03:2900:1:1::a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0197C061573
-        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 00:10:05 -0700 (PDT)
-Received: from mxout4.routing.net (unknown [192.168.10.112])
-        by backup.mxwww.masterlogin.de (Postfix) with ESMTPS id 1A0352C4A2;
-        Mon,  7 Sep 2020 07:06:00 +0000 (UTC)
-Received: from mxbox1.masterlogin.de (unknown [192.168.10.88])
-        by mxout4.routing.net (Postfix) with ESMTP id C6DDA100464;
-        Mon,  7 Sep 2020 07:05:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1599462351;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=onds+3xjlybr9ir+dspQaREPX8BcKz9b6Gb01qJhOFw=;
-        b=H5v+1OSy2SHAT35gF1NOqNI/Nsr0lePa9HK8oKtewbND1nF9q0vTk+lVDySS6ZzsFqxFEk
-        3oOhrkJEC221bZiTPbqm5AIfdliiOxe1gzMqu6gV0QJsk7Q9eFe9KT3HAfnsQURtpr7+i7
-        HvKWKZepAeamq+bGyuDGtG5Gk/sY81M=
-Received: from localhost.localdomain (fttx-pool-185.76.97.104.bambit.de [185.76.97.104])
-        by mxbox1.masterlogin.de (Postfix) with ESMTPSA id 09C90401D3;
-        Mon,  7 Sep 2020 07:05:51 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Landen Chao <landen.chao@mediatek.com>,
-        Qingfang DENG <dqfext@gmail.com>,
-        =?UTF-8?q?Ren=C3=A9=20van=20Dorst?= <opensource@vdorst.com>,
-        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        stable@vger.kernel.org
-Subject: [PATCH] arm: dts: mt7623: add missing pause for switchport
-Date:   Mon,  7 Sep 2020 09:05:17 +0200
-Message-Id: <20200907070517.51715-1-linux@fw-web.de>
-X-Mailer: git-send-email 2.25.1
+        id S1726901AbgIGHZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 03:25:56 -0400
+Received: from mga14.intel.com ([192.55.52.115]:30922 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726422AbgIGHZ4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 03:25:56 -0400
+IronPort-SDR: lgOO3hWUxi/1H93nBNgTxabjuscYQ0QwLnwio3b6fEtqELkiPoFBmwcV5NKT0MjTfAVugkhffR
+ g24/5H6qVwgw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9736"; a="157230084"
+X-IronPort-AV: E=Sophos;i="5.76,401,1592895600"; 
+   d="scan'208";a="157230084"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2020 00:25:55 -0700
+IronPort-SDR: gMnuKmvulw1ma0Oz55zxirLkE65wgpB6LgqRu06Lc08ddIDw9pROLgYUgyrLtzgtuJlETwozlP
+ Vd9T307B6qoQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,401,1592895600"; 
+   d="scan'208";a="340736982"
+Received: from linux.intel.com ([10.54.29.200])
+  by FMSMGA003.fm.intel.com with ESMTP; 07 Sep 2020 00:25:55 -0700
+Received: from [10.214.170.27] (mreddy3x-MOBL.gar.corp.intel.com [10.214.170.27])
+        by linux.intel.com (Postfix) with ESMTP id 1D30E58077A;
+        Mon,  7 Sep 2020 00:25:51 -0700 (PDT)
+Subject: Re: [PATCH v5 1/2] dt-bindings: dma: Add bindings for intel LGM SOC
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     dmaengine@vger.kernel.org, vkoul@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, chuanhua.lei@linux.intel.com,
+        malliamireddy009@gmail.com
+References: <cover.1597381889.git.mallikarjunax.reddy@linux.intel.com>
+ <68c77fd2ffb477aa4a52a58f8a26bfb191d3c5d1.1597381889.git.mallikarjunax.reddy@linux.intel.com>
+ <20200814203222.GA2674896@bogus>
+ <7cdc0587-8b4f-4360-a303-1541c9ad57b2@linux.intel.com>
+ <354cc7a4-de2f-1ed4-882d-3a285f565a26@ti.com>
+From:   "Reddy, MallikarjunaX" <mallikarjunax.reddy@linux.intel.com>
+Message-ID: <327e291d-7a49-ae1e-d5a3-55953e312ce5@linux.intel.com>
+Date:   Mon, 7 Sep 2020 15:25:51 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
+In-Reply-To: <354cc7a4-de2f-1ed4-882d-3a285f565a26@ti.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Wunderlich <frank-w@public-files.de>
 
-port6 of mt7530 switch (= cpu port 0) on bananapi-r2 misses pause option
-which causes rx drops on running iperf.
+On 9/4/2020 2:31 PM, Peter Ujfalusi wrote:
+>
+> On 18/08/2020 10.00, Reddy, MallikarjunaX wrote:
+>> Hi Rob,
+>> Thanks for your valuable comments. Please see my comments inline..
+>>
+>> On 8/15/2020 4:32 AM, Rob Herring wrote:
+>>> On Fri, Aug 14, 2020 at 01:26:09PM +0800, Amireddy Mallikarjuna reddy
+>>> wrote:
+>>>> Add DT bindings YAML schema for DMA controller driver
+>>>> of Lightning Mountain(LGM) SoC.
+>>>>
+>>>> Signed-off-by: Amireddy Mallikarjuna reddy
+>>>> <mallikarjunax.reddy@linux.intel.com>
+>>>> ---
+>>>> v1:
+>>>> - Initial version.
+>>>>
+>>>> v2:
+>>>> - Fix bot errors.
+>>>>
+>>>> v3:
+>>>> - No change.
+>>>>
+>>>> v4:
+>>>> - Address Thomas langer comments
+>>>>     - use node name pattern as dma-controller as in common binding.
+>>>>     - Remove "_" (underscore) in instance name.
+>>>>     - Remove "port-" and "chan-" in attribute name for both
+>>>> 'dma-ports' & 'dma-channels' child nodes.
+>>>>
+>>>> v5:
+>>>> - Moved some of the attributes in 'dma-ports' & 'dma-channels' child
+>>>> nodes to dma client/consumer side as cells in 'dmas' properties.
+>>>> ---
+>>>>    .../devicetree/bindings/dma/intel,ldma.yaml        | 319
+>>>> +++++++++++++++++++++
+>>>>    1 file changed, 319 insertions(+)
+>>>>    create mode 100644
+>>>> Documentation/devicetree/bindings/dma/intel,ldma.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/dma/intel,ldma.yaml
+>>>> b/Documentation/devicetree/bindings/dma/intel,ldma.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..9beaf191a6de
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/dma/intel,ldma.yaml
+>>>> @@ -0,0 +1,319 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/dma/intel,ldma.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Lightning Mountain centralized low speed DMA and high speed
+>>>> DMA controllers.
+>>>> +
+>>>> +maintainers:
+>>>> +  - chuanhua.lei@intel.com
+>>>> +  - mallikarjunax.reddy@intel.com
+>>>> +
+>>>> +allOf:
+>>>> +  - $ref: "dma-controller.yaml#"
+>>>> +
+>>>> +properties:
+>>>> + $nodename:
+>>>> +   pattern: "^dma-controller(@.*)?$"
+>>>> +
+>>>> + "#dma-cells":
+>>>> +   const: 1
+>>> Example says 3.
+>> OK, i will fix it.
+> It would help if you would add description of what is the meaning of the
+> individual cell.
+I am already prepared the patch by addressing previous comments and just 
+before sending i received your review comment. :-)
 
-Cc: stable@vger.kernel.org
-Fixes: f4ff257cd160 ("arm: dts: mt7623: add support for Bananapi R2 (BPI-R2) board")
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
-index 2b760f90f38c..5375c6699843 100644
---- a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
-+++ b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
-@@ -192,6 +192,7 @@ port@6 {
- 					fixed-link {
- 						speed = <1000>;
- 						full-duplex;
-+						pause;
- 					};
- 				};
- 			};
--- 
-2.25.1
-
+Let me Edit , include the description and prepare the patch again.
+>
+> - Péter
+>
+> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+>
