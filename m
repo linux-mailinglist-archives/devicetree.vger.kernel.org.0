@@ -2,568 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 663F3260273
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:26:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76B4826024B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:22:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729451AbgIGRZz convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 7 Sep 2020 13:25:55 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:34247 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729538AbgIGNUv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 09:20:51 -0400
-X-Originating-IP: 91.224.148.103
-Received: from xps13 (unknown [91.224.148.103])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 9485620007;
-        Mon,  7 Sep 2020 13:20:27 +0000 (UTC)
-Date:   Mon, 7 Sep 2020 15:20:25 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Cc:     linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, richard@nod.at, vigneshr@ti.com,
-        arnd@arndb.de, brendanhiggins@google.com, tglx@linutronix.de,
-        boris.brezillon@collabora.com, anders.roxell@linaro.org,
-        masonccyang@mxic.com.tw, robh+dt@kernel.org,
-        linux-mips@vger.kernel.org, hauke.mehrtens@intel.com,
-        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com
-Subject: Re: [RESEND PATCH v12 2/2] mtd: rawnand: Add NAND controller
- support on Intel LGM SoC
-Message-ID: <20200907152025.66c18f5e@xps13>
-In-Reply-To: <20200817052709.47035-3-vadivel.muruganx.ramuthevar@linux.intel.com>
-References: <20200817052709.47035-1-vadivel.muruganx.ramuthevar@linux.intel.com>
-        <20200817052709.47035-3-vadivel.muruganx.ramuthevar@linux.intel.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1729503AbgIGRWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 13:22:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36584 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729682AbgIGNrY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 09:47:24 -0400
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44792C061574;
+        Mon,  7 Sep 2020 06:21:13 -0700 (PDT)
+Received: by mail-ed1-x544.google.com with SMTP id g4so12836534edk.0;
+        Mon, 07 Sep 2020 06:21:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=iblI3l/A3N9uapFrVsraod4LpexgkASbLVXO0EuF+qM=;
+        b=JHvy0XH5e+VWE+X0gCEfss9ZWjxdMtQatWoB2ZPxrIhYw65vfnhUNqTdcVF3zm84de
+         pMd6TNQAPDvM9oen4v7Swd1FskVvWARVBTQ7h1mjH+hlk0x1EveLDMXfhPlrABuW8Y29
+         o7eG+vWAAIYUcHAxZcgbVD4/57tpEa5yYscPTvTqGEjRGTkvEdtPfWBI4UPPV9YKSkAi
+         9srOPdY+BFcFj6IGGCJ0jYrMHdgYH3LqLvFE/veuC4ESqM/ucZlsNQVshCZ/POfM8lHz
+         oe6NvGzIwQbItWomuZO1rDJSTjqJepVYNlHHQMISdhh+w9H2qAwVkzaV7x2vezScumN+
+         s6cA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=iblI3l/A3N9uapFrVsraod4LpexgkASbLVXO0EuF+qM=;
+        b=IgJpyD2FiarAY0MNdka3r9VOl8ZjGs9plX+XXFm4f4DmtN5HjS6Rn8YEnKwHgfywBP
+         7lBbrlkrXOMXJJg/Eei1noKuMw4NhTtsmzs+gQX/lQvzydhOSfDuwSq2SM9/vjONIG4b
+         zL81B9HBp6IVhViYqDAWU7c+gpmgVh+TBeREGjbUYKms/2yMesLZyj36/XgUo7JlUT7B
+         9cFpwAIi270z49axeHmfeoq2QBGPsQ/DSqXKKk/ttPzkR+buvxzFdeF4crwQOYSOmQ1u
+         71yvDgSWKAVatS/2foyDHjY7b3TIOWxwRLErHcx5K/M1NXN6TBigUPyfQ4Pfj8ocUs84
+         F6wA==
+X-Gm-Message-State: AOAM5333T5MJqWsoe1cG21awjMXNtbJo4xh4L77s7ghx9m3PSY4mbsL2
+        K5wkl1JPM2epedH/JvpBueA=
+X-Google-Smtp-Source: ABdhPJzSsti/UlHJt2xsGh4lrdGkqi4/I/ENq0sQo6yK/XwaiJLRv+tcMCdw2/LYLN+aAHKcgM7n5g==
+X-Received: by 2002:a05:6402:12d1:: with SMTP id k17mr21232834edx.323.1599484871894;
+        Mon, 07 Sep 2020 06:21:11 -0700 (PDT)
+Received: from skbuf ([188.25.217.212])
+        by smtp.gmail.com with ESMTPSA id y14sm15263157eje.10.2020.09.07.06.21.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Sep 2020 06:21:11 -0700 (PDT)
+Date:   Mon, 7 Sep 2020 16:21:09 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Kurt Kanzenbach <kurt@linutronix.de>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
+        ilias.apalodimas@linaro.org
+Subject: Re: [PATCH v5 2/7] net: dsa: Add DSA driver for Hirschmann Hellcreek
+ switches
+Message-ID: <20200907132109.234ha7xst37dtqcj@skbuf>
+References: <20200904062739.3540-1-kurt@linutronix.de>
+ <20200904062739.3540-3-kurt@linutronix.de>
+ <20200905204235.f6b5til4sc3hoglr@skbuf>
+ <875z8qazq2.fsf@kurt>
+ <20200907104821.kvu7bxvzwazzg7cv@skbuf>
+ <87eendah1c.fsf@kurt>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87eendah1c.fsf@kurt>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Murugan,
+On Mon, Sep 07, 2020 at 02:49:03PM +0200, Kurt Kanzenbach wrote:
+> On Mon Sep 07 2020, Vladimir Oltean wrote:
+> > On Mon, Sep 07, 2020 at 08:05:25AM +0200, Kurt Kanzenbach wrote:
+> >> Well, that depends on whether hellcreek_vlan_add() is called for
+> >> creating that vlan interfaces. In general: As soon as both ports are
+> >> members of the same vlan that traffic is switched.
+> >
+> > That's indeed what I would expect.
+> > Not only that, but with your pvid-based setup, you only ensure port
+> > separation for untagged traffic anyway.
+>
+> Why? Tagged traffic is dropped unless the vlan is configured somehow. By
+> default, I've configured vlan 2 and 3 to reflect the port separation for
+> DSA. At reset the ports aren't members of any vlan.
+>
 
-A few more comments below, but I guess the driver looks better now.
+Wait, so what is the out-of-reset state of "ptcfg & HR_PTCFG_INGRESSFLT"?
+If it is filtering by default (and even if it isn't, but you can make
+it), then I suppose you can keep it like that, and try to model your
+ports something like this:
 
-> +struct ebu_nand_controller {
-> +	struct nand_controller controller;
-> +	struct nand_chip chip;
-> +	struct device *dev;
-> +	void __iomem *ebu;
-> +	void __iomem *hsnand;
-> +	struct dma_chan *dma_tx;
-> +	struct dma_chan *dma_rx;
-> +	struct completion dma_access_complete;
-> +	unsigned long clk_rate;
-> +	struct clk *clk;
-> +	u32 nd_para0;
-> +	u8 cs_num;
-> +	struct ebu_nand_cs cs[MAX_CS];
-> +};
-> +
-> +static inline struct ebu_nand_controller *nand_to_ebu(struct nand_chip *chip)
-> +{
-> +	return container_of(chip, struct ebu_nand_controller, chip);
-> +}
-> +
-> +static u8 ebu_nand_readb(struct nand_chip *chip)
+- force "ethtool -k swpN | grep rx-vlan-filter" to return "on (fixed)".
+- enforce a check that in standalone mode, you can't have an 8021q upper
+  interface with the same VLAN ID on more than 1 port at the same time.
+  This will be the only way in which you can terminate VLAN traffic on
+  standalone ports.
 
-Can't you prefix with intel_ instead of ebu_ ?
+If you do this, I think you should be compliant with the stack.
 
-> +{
-> +	struct ebu_nand_controller *ebu_host = nand_get_controller_data(chip);
-> +	void __iomem *nand_wait = ebu_host->ebu + EBU_WAIT;
-> +	u8 cs_num = ebu_host->cs_num;
-> +	u32 stat;
-> +	int ret;
-> +	u8 val;
-> +
-> +	val = readb(ebu_host->cs[cs_num].chipaddr + HSNAND_CS_OFFS);
-> +
-> +	ret = readl_poll_timeout(nand_wait, stat, stat & EBU_WAIT_WR_C,
-> +				 20, 1000);
+> We could also skip the initial VLAN configuration completely. At the end
+> of the day it's a TSN switch and the user will setup the vlan
+> configuration anyway.
+>
 
-If you do this operation each time a byte is read/written, you probable
-want to shrink the polling delay a little bit, to 1 or even 0.
+Hmm, a driver is supposed to be use case agnostic.
+I know people who are using a 5-port TSN switch (not this one) as a
+1-port SGMII-to-RMII electrical adapter, with some hardware-accelerated
+shaping.
+I think it would be good if you could maintain a sane mode of operation
+in standalone mode, it tends to come in as useful at times.
 
-> +	if (ret)
-> +		dev_warn(ebu_host->dev,
-> +			 "ebu nand write timeout. nand_wait(0x%p)=0x%x\n",
-> +			 nand_wait, readl(nand_wait));
-> +
-> +	return val;
+> > I don't think you even need to call hellcreek_vlan_add() for VID 100
+> > to be switched between ports, because your .port_vlan_filtering
+> > callback does not in fact disable VLAN awareness, it just configures
+> > the ports to not drop unknown VLANs. So, arguably, VLAN classification
+> > is still performed. An untagged packet is classified to the PVID, a
+> > tagged packet is classified to the VID in the packet. So tagged
+> > packets bypass the separation.
+> >
+> > So, I think that's not ok. I think the only proper way to solve this is
+> > to inform the IP designers that VLANs are no substitute for a port
+> > forwarding matrix (a lookup table that answers the question "can port i
+> > forward to port j"). Switch ports that are individually addressable by
+> > the network stack are a fundamental assumption of the switchdev
+> > framework.
+>
+> As I said before, there is no port forwarding matrix. There are only
+> vlans and the fdb. There's also a global flag for setting vlan unaware
+> mode and a port option for vlan tag required. That's it. I guess, we
+> have to deal with it somehow.
+>
 
-You should not return val if ret is !0 I guess
+Yes, understood. But it's quite a strange omission.
 
-> +}
-> +
-> +static void ebu_nand_writeb(struct nand_chip *chip, u32 offset, u8 value)
-> +{
-> +	struct ebu_nand_controller *ebu_host = nand_get_controller_data(chip);
-> +	void __iomem *nand_wait = ebu_host->ebu + EBU_WAIT;
-> +	u8 cs_num = ebu_host->cs_num;
-> +	u32 stat;
-> +	int ret;
-> +
-> +	writeb(value, ebu_host->cs[cs_num].chipaddr + offset);
-> +
-> +	ret = readl_poll_timeout(nand_wait, stat, stat & EBU_WAIT_WR_C,
-> +				 20, 1000);
+> >
+> >> > I remember asking in Message-ID: <20200716082935.snokd33kn52ixk5h@skbuf>
+> >> > whether it would be possible for you to set
+> >> > ds->configure_vlan_while_not_filtering = true during hellcreek_setup.
+> >> > Did anything unexpected happen while trying that?
+> >>
+> >> No, that comment got lost.
+> >>
+> >> So looking at the flag: Does it mean the driver can receive vlan
+> >> configurations when a bridge without vlan filtering is used? That might
+> >> be problematic as this driver uses vlans for the port separation by
+> >> default. This is undone when vlan filtering is set to 1 meaning vlan
+> >> configurations can be received without any problems.
+> >
+> > Yes.
+> > Generally speaking, the old DSA behavior is something that we're trying
+> > to get rid of, once all drivers set the option to true. So a new driver
+> > should not rely on it even if it needs something like that.
+>
+> OK. when a new driver should set the flag, then I'll set it. So, all
+> vlan requests programming requests should be "buffered" and executed
+> when vlan filtering is enabled? What is it good for?
 
-Here as well
+It is good for correct functionality of the hardware, I don't get the
+question? If your driver makes private use of VLAN tags beyond what the
+upper layers ask for, then it should keep track of them. DSA has, in the
+past, ignored VLAN switchdev operations from the bridge when not in
+vlan_filtering mode, for unknown reasons. This is known to break some
+command sequences (see below), so the consensus at the time was to stop
+doing that, and introduce this temporary compatibility flag.
 
-> +	if (ret)
-> +		dev_warn(ebu_host->dev,
-> +			 "ebu nand write timeout. nand_wait(0x%p)=0x%x\n",
-> +			 nand_wait, readl(nand_wait));
+Some tests to make sure you're passing are:
 
-If this can fail, then the helper should return an error and be treated.
+1. Statically creating an 802.1Q bridge:
 
-> +}
-> +
-> +static void ebu_read_buf(struct nand_chip *chip, u_char *buf, unsigned int len)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < len; i++)
-> +		buf[i] = ebu_nand_readb(chip);
-> +}
-> +
-> +static void ebu_write_buf(struct nand_chip *chip, const u_char *buf, int len)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < len; i++)
-> +		ebu_nand_writeb(chip, HSNAND_CS_OFFS, buf[i]);
-> +}
-> +
-> +static void ebu_nand_disable(struct nand_chip *chip)
-> +{
-> +	struct ebu_nand_controller *ebu_host = nand_get_controller_data(chip);
-> +
-> +	writel(0, ebu_host->ebu + EBU_CON);
-> +}
-> +
-> +static void ebu_select_chip(struct nand_chip *chip)
-> +{
-> +	struct ebu_nand_controller *ebu_host = nand_get_controller_data(chip);
-> +	void __iomem *nand_con = ebu_host->ebu + EBU_CON;
-> +	u32 cs = ebu_host->cs_num;
-> +
-> +	writel(EBU_CON_NANDM_EN | EBU_CON_CSMUX_E_EN | EBU_CON_CS_P_LOW |
-> +	       EBU_CON_SE_P_LOW | EBU_CON_WP_P_LOW | EBU_CON_PRE_P_LOW |
-> +	       EBU_CON_IN_CS_S(cs) | EBU_CON_OUT_CS_S(cs) |
-> +	       EBU_CON_LAT_EN_CS_P, nand_con);
-> +}
-> +
-> +static void ebu_nand_setup_timing(struct ebu_nand_controller *ctrl,
-> +				  const struct nand_sdr_timings *timings)
-> +{
-> +	unsigned int rate = clk_get_rate(ctrl->clk) / 1000000;
-> +	unsigned int period = DIV_ROUND_UP(1000000, rate);
-> +	u32 trecov, thold, twrwait, trdwait;
-> +	u32 reg = 0;
-> +
-> +	trecov = DIV_ROUND_UP(max(timings->tREA_max, timings->tREH_min),
-> +			      period);
-> +	reg |= EBU_BUSCON_RECOVC(trecov);
-> +
-> +	thold = DIV_ROUND_UP(max(timings->tDH_min, timings->tDS_min), period);
-> +	reg |= EBU_BUSCON_HOLDC(thold);
-> +
-> +	trdwait = DIV_ROUND_UP(max(timings->tRC_min, timings->tREH_min),
-> +			       period);
-> +	reg |= EBU_BUSCON_WAITRDC(trdwait);
-> +
-> +	twrwait = DIV_ROUND_UP(max(timings->tWC_min, timings->tWH_min), period);
-> +	reg |= EBU_BUSCON_WAITWRC(twrwait);
-> +
-> +	reg |= EBU_BUSCON_CMULT_V4 | EBU_BUSCON_BCGEN_CS | EBU_BUSCON_ALEC |
-> +		EBU_BUSCON_SETUP_EN;
-> +
-> +	writel(reg, ctrl->ebu + EBU_BUSCON(ctrl->cs_num));
-> +}
-> +
-> +static int ebu_nand_setup_data_interface(struct nand_chip *chip, int csline,
-> +					 const struct nand_data_interface *conf)
+ip link add br0 type bridge vlan_filtering 1
+ip link set swp1 master br0
+ip link set swp2 master br0
 
-I recently changed the naming around the data interface, please
-have a look at the recent commits and update the namings here as
-well.
+2. Dynamically turning an 802.1D bridge into an 802.1Q bridge:
 
-> +{
-> +	struct ebu_nand_controller *ctrl = nand_to_ebu(chip);
-> +	const struct nand_sdr_timings *timings;
-> +
-> +	timings = nand_get_sdr_timings(conf);
-> +	if (IS_ERR(timings))
-> +		return PTR_ERR(timings);
-> +
-> +	if (csline == NAND_DATA_IFACE_CHECK_ONLY)
-> +		return 0;
-> +
-> +	ebu_nand_setup_timing(ctrl, timings);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ebu_nand_ooblayout_ecc(struct mtd_info *mtd, int section,
-> +				  struct mtd_oob_region *oobregion)
-> +{
-> +	struct nand_chip *chip = mtd_to_nand(mtd);
-> +
-> +	if (section)
-> +		return -ERANGE;
-> +
-> +	oobregion->offset = HSNAND_ECC_OFFSET;
-> +	oobregion->length = chip->ecc.total;
-> +
-> +	return 0;
-> +}
-> +
-> +static int ebu_nand_ooblayout_free(struct mtd_info *mtd, int section,
-> +				   struct mtd_oob_region *oobregion)
-> +{
-> +	struct nand_chip *chip = mtd_to_nand(mtd);
-> +
-> +	if (section)
-> +		return -ERANGE;
-> +
-> +	oobregion->offset = chip->ecc.total + HSNAND_ECC_OFFSET;
-> +	oobregion->length = mtd->oobsize - oobregion->offset;
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct mtd_ooblayout_ops ebu_nand_ooblayout_ops = {
-> +	.ecc = ebu_nand_ooblayout_ecc,
-> +	.free = ebu_nand_ooblayout_free,
-> +};
-> +
-> +static void ebu_dma_rx_callback(void *cookie)
-> +{
-> +	struct ebu_nand_controller *ebu_host = cookie;
-> +
-> +	dmaengine_terminate_async(ebu_host->dma_rx);
-> +
-> +	complete(&ebu_host->dma_access_complete);
-> +}
-> +
-> +static void ebu_dma_tx_callback(void *cookie)
-> +{
-> +	struct ebu_nand_controller *ebu_host = cookie;
-> +
-> +	dmaengine_terminate_async(ebu_host->dma_tx);
-> +
-> +	complete(&ebu_host->dma_access_complete);
-> +}
-> +
-> +static int ebu_dma_start(struct ebu_nand_controller *ebu_host, u32 dir,
-> +			 const u8 *buf, u32 len)
-> +{
-> +	struct dma_async_tx_descriptor *tx;
-> +	struct completion *dma_completion;
-> +	dma_async_tx_callback callback;
-> +	struct dma_chan *chan;
-> +	dma_cookie_t cookie;
-> +	unsigned long flags = DMA_CTRL_ACK | DMA_PREP_INTERRUPT;
-> +	dma_addr_t buf_dma;
-> +	int ret;
-> +	u32 timeout;
-> +
-> +	if (dir == DMA_DEV_TO_MEM) {
-> +		chan = ebu_host->dma_rx;
-> +		dma_completion = &ebu_host->dma_access_complete;
-> +		callback = ebu_dma_rx_callback;
-> +	} else {
-> +		chan = ebu_host->dma_tx;
-> +		dma_completion = &ebu_host->dma_access_complete;
-> +		callback = ebu_dma_tx_callback;
-> +	}
-> +
-> +	buf_dma = dma_map_single(chan->device->dev, (void *)buf, len, dir);
-> +	if (dma_mapping_error(chan->device->dev, buf_dma)) {
-> +		dev_err(ebu_host->dev, "Failed to map DMA buffer\n");
-> +		ret = -EIO;
-> +		goto err_unmap;
-> +	}
-> +
-> +	tx = dmaengine_prep_slave_single(chan, buf_dma, len, dir, flags);
-> +	if (!tx)
-> +		return -ENXIO;
-> +
-> +	tx->callback = callback;
-> +	tx->callback_param = ebu_host;
-> +	cookie = tx->tx_submit(tx);
-> +
-> +	ret = dma_submit_error(cookie);
-> +	if (ret) {
-> +		dev_err(ebu_host->dev, "dma_submit_error %d\n", cookie);
-> +		ret = -EIO;
-> +		goto err_unmap;
-> +	}
-> +
-> +	init_completion(dma_completion);
-> +	dma_async_issue_pending(chan);
-> +
-> +	/* Wait DMA to finish the data transfer.*/
-> +	timeout =
-
-Don't break the line here
-
-> +	wait_for_completion_timeout(dma_completion, msecs_to_jiffies(1000));
-> +	if (!timeout) {
-> +		dev_err(ebu_host->dev, "I/O Error in DMA RX (status %d)\n",
-> +			dmaengine_tx_status(chan, cookie, NULL));
-> +		dmaengine_terminate_sync(chan);
-> +		ret = -ETIMEDOUT;
-> +		goto err_unmap;
-> +	}
-> +
-> +	return 0;
-> +
-> +err_unmap:
-> +	dma_unmap_single(ebu_host->dev, buf_dma, len, dir);
-> +
-> +	return ret;
-> +}
-> +
-> +static void ebu_nand_trigger(struct ebu_nand_controller *ebu_host,
-> +			     int page, u32 cmd)
-> +{
-> +	unsigned int val;
-> +
-> +	val = cmd | (page & 0xFF) << HSNAND_CTL1_ADDR_SHIFT;
-> +	writel(val, ebu_host->hsnand + HSNAND_CTL1);
-> +	val = (page & 0xFFFF00) >> 8 | HSNAND_CTL2_CYC_N_V5;
-> +	writel(val, ebu_host->hsnand + HSNAND_CTL2);
-> +
-> +	writel(ebu_host->nd_para0, ebu_host->hsnand + HSNAND_PARA0);
-> +
-> +	/* clear first, will update later */
-> +	writel(0xFFFFFFFF, ebu_host->hsnand + HSNAND_CMSG_0);
-> +	writel(0xFFFFFFFF, ebu_host->hsnand + HSNAND_CMSG_1);
-> +
-> +	writel(HSNAND_INT_MSK_CTL_WR_C,
-> +	       ebu_host->hsnand + HSNAND_INT_MSK_CTL);
-> +
-> +	val = cmd == NAND_CMD_READ0 ? HSNAND_CTL_RW_READ : HSNAND_CTL_RW_WRITE;
-
-I don't like this, prefer having a "read/write" boolean as a parameter.
-
-> +
-> +	writel(HSNAND_CTL_MSG_EN | HSNAND_CTL_CKFF_EN |
-> +	       HSNAND_CTL_ECC_OFF_V8TH | HSNAND_CTL_CE_SEL_CS(ebu_host->cs_num) |
-> +	       HSNAND_CTL_ENABLE_ECC | HSNAND_CTL_GO | val,
-> +	       ebu_host->hsnand + HSNAND_CTL);
-> +}
-> +
-> +static int ebu_nand_read_page_hwecc(struct nand_chip *chip, u8 *buf,
-> +				    int oob_required, int page)
-> +{
-> +	struct mtd_info *mtd = nand_to_mtd(chip);
-> +	struct ebu_nand_controller *ebu_host = nand_get_controller_data(chip);
-> +	int ret, x;
-> +
-> +	ebu_nand_trigger(ebu_host, page, NAND_CMD_READ0);
-> +
-> +	ret = ebu_dma_start(ebu_host, DMA_DEV_TO_MEM, buf, mtd->writesize);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (oob_required)
-> +		chip->ecc.read_oob(chip, page);
-> +
-> +	x = readl(ebu_host->hsnand + HSNAND_CTL);
-> +	x &= ~HSNAND_CTL_GO;
-> +	writel(x, ebu_host->hsnand + HSNAND_CTL);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ebu_nand_write_page_hwecc(struct nand_chip *chip, const u8 *buf,
-> +				     int oob_required, int page)
-> +{
-> +	struct mtd_info *mtd = nand_to_mtd(chip);
-> +	struct ebu_nand_controller *ebu_host = nand_get_controller_data(chip);
-> +	void __iomem *int_sta = ebu_host->hsnand + HSNAND_INT_STA;
-> +	int ret, val, x;
-> +	u32 reg;
-> +
-> +	ebu_nand_trigger(ebu_host, page, NAND_CMD_SEQIN);
-> +
-> +	ret = ebu_dma_start(ebu_host, DMA_MEM_TO_DEV, buf, mtd->writesize);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (oob_required) {
-> +		reg = (chip->oob_poi[3] << 24) | (chip->oob_poi[2] << 16) |
-> +			(chip->oob_poi[1] << 8) | chip->oob_poi[0];
-> +
-> +		writel(reg, ebu_host->hsnand + HSNAND_CMSG_0);
-> +
-> +		reg = (chip->oob_poi[7] << 24) | (chip->oob_poi[6] << 16) |
-> +			(chip->oob_poi[5] << 8) | chip->oob_poi[4];
-> +
-> +		writel(reg, ebu_host->hsnand + HSNAND_CMSG_1);
-> +	}
-> +
-> +	ret = readl_poll_timeout_atomic(int_sta, val,
-> +					!(val & HSNAND_INT_STA_WR_C), 10, 1000);
-> +	if (ret)
-> +		return -EIO;
-
-return ret ?
-
-> +
-> +	x = readl(ebu_host->hsnand + HSNAND_CTL);
-> +	x &= ~HSNAND_CTL_GO;
-> +	writel(x, ebu_host->hsnand + HSNAND_CTL);
-
-What is this? Looks like it deserves a helper with a nice name.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static const u8 ecc_strength[] = { 1, 1, 4, 8, 24, 32, 40, 60, };
-
-                                         ^ is this normal?
-
-> +
-> +static int ebu_nand_attach_chip(struct nand_chip *chip)
-> +{
-> +	struct mtd_info *mtd = nand_to_mtd(chip);
-> +	struct ebu_nand_controller *ebu_host = nand_get_controller_data(chip);
-> +	u32 ecc_steps, ecc_bytes, ecc_total, pagesize, pg_per_blk;
-> +	u32 ecc_strength_ds = chip->ecc.strength;
-> +	u32 ecc_size = chip->ecc.size;
-> +	u32 writesize = mtd->writesize;
-> +	u32 blocksize = mtd->erasesize;
-> +	int bch_algo, start, val;
-> +
-> +	if (chip->ecc.mode != NAND_ECC_HW)
-> +		return 0;
-> +
-> +	/* Default to an ECC size of 512 */
-> +	if (!chip->ecc.size)
-> +		chip->ecc.size = 512;
-> +
-> +	switch (ecc_size) {
-> +	case 512:
-> +		start = 1;
-> +		if (!ecc_strength_ds)
-> +			ecc_strength_ds = 4;
-> +		break;
-> +	case 1024:
-> +		start = 4;
-> +		if (!ecc_strength_ds)
-> +			ecc_strength_ds = 32;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* BCH ECC algorithm Settings for number of bits per 512B/1024B */
-> +	bch_algo = round_up(start + 1, 4);
-> +	for (val = start; val < bch_algo; val++) {
-> +		if (ecc_strength_ds == ecc_strength[val])
-> +			break;
-> +	}
-> +	if (val == bch_algo)
-> +		return -EINVAL;
-> +
-> +	if (ecc_strength_ds == 8)
-> +		ecc_bytes = 14;
-> +	else
-> +		ecc_bytes = DIV_ROUND_UP(ecc_strength_ds * fls(8 * ecc_size), 8);
-> +
-> +	ecc_steps = writesize / ecc_size;
-> +	ecc_total = ecc_steps * ecc_bytes;
-> +	if ((ecc_total + 8) > mtd->oobsize)
-> +		return -ERANGE;
-> +
-> +	chip->ecc.total = ecc_total;
-> +	pagesize = fls(writesize >> 11);
-> +	if (pagesize > HSNAND_PARA0_PAGE_V8192)
-> +		return -ERANGE;
-> +
-> +	pg_per_blk = fls((blocksize / writesize) >> 6) << 4;
-
-If << 4 is here to mean / 8, then I don't want a shift operation
-because it is highly unreadable and compilers know how to optimize
-this.
-
-> +	if (pg_per_blk > HSNAND_PARA0_PIB_V256)
-> +		return -ERANGE;
-> +
-> +	ebu_host->nd_para0 = pagesize | pg_per_blk | HSNAND_PARA0_BYP_EN_NP |
-> +			     HSNAND_PARA0_BYP_DEC_NP | HSNAND_PARA0_ADEP_EN |
-> +			     HSNAND_PARA0_TYPE_ONFI | (val << 29);
-> +
-> +	mtd_set_ooblayout(mtd, &ebu_nand_ooblayout_ops);
-> +	chip->ecc.read_page = ebu_nand_read_page_hwecc;
-> +	chip->ecc.write_page = ebu_nand_write_page_hwecc;
-> +
-> +	return 0;
-> +}
-> +
-> +static int ebu_nand_exec_op(struct nand_chip *chip,
-> +			    const struct nand_operation *op, bool check_only)
-> +{
-> +	struct ebu_nand_controller *ctrl = nand_to_ebu(chip);
-> +	const struct nand_op_instr *instr = NULL;
-> +	unsigned int op_id;
-> +	int i, time_out, ret = 0;
-> +	u32 stat;
-> +
-> +	if (check_only)
-> +		ebu_select_chip(chip);
-
-What is the point of selecting the chip if check_only is true?
-
-> +
-> +	for (op_id = 0; op_id < op->ninstrs; op_id++) {
-> +		instr = &op->instrs[op_id];
-> +
-> +		switch (instr->type) {
-> +		case NAND_OP_CMD_INSTR:
-> +			ebu_nand_writeb(chip, HSNAND_CLE_OFFS | HSNAND_CS_OFFS,
-> +					instr->ctx.cmd.opcode);
-> +			break;
-> +
-> +		case NAND_OP_ADDR_INSTR:
-> +			for (i = 0; i < instr->ctx.addr.naddrs; i++)
-> +				ebu_nand_writeb(chip,
-> +						HSNAND_ALE_OFFS | HSNAND_CS_OFFS,
-> +						instr->ctx.addr.addrs[i]);
-> +			break;
-> +
-> +		case NAND_OP_DATA_IN_INSTR:
-> +			ebu_read_buf(chip, instr->ctx.data.buf.in,
-> +				     instr->ctx.data.len);
-> +			break;
-> +
-> +		case NAND_OP_DATA_OUT_INSTR:
-> +			ebu_write_buf(chip, instr->ctx.data.buf.out,
-> +				      instr->ctx.data.len);
-> +			break;
-> +
-> +		case NAND_OP_WAITRDY_INSTR:
-> +			time_out = instr->ctx.waitrdy.timeout_ms * 1000;
-> +			ret = readl_poll_timeout(ctrl->ebu + EBU_WAIT,
-> +						 stat, stat & EBU_WAIT_RDBY,
-> +						 20, time_out);
-> +			break;
-> +		}
-> +	}
-> +
-> +	return ret;
-> +}
-
+ip link add br0 type bridge
+ip link set swp1 master br0
+ip link set swp2 master br0
+ip link set br0 type bridge vlan_filtering 1
+# at this moment in time, if you don't have
+# configure_vlan_while_not_filtering = true, then the VLAN tables of
+# swp1 and swp2 will be missing the default_pvid (by default 1) of br0.
 
 Thanks,
-Miquèl
+-Vladimir
