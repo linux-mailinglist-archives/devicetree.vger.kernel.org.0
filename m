@@ -2,170 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBE6A25FDCF
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 17:58:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19C4025FDAD
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 17:55:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730258AbgIGP6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 11:58:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58154 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730008AbgIGOuJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Sep 2020 10:50:09 -0400
-Received: from coco.lan (ip5f5ad5cf.dynamic.kabel-deutschland.de [95.90.213.207])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 650DE21532;
-        Mon,  7 Sep 2020 14:50:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599490208;
-        bh=ucJr+saLVcP0I55uqGtU5DQWyYXMW2U5WBZWrLtx+zk=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=jJTNEKN6B2ykUQfSlOxxOquiv+y2ri4qBpvBA0yy2WBHyYQ7U60vuSx9SEBF9QlBn
-         Ar+/7pK9BivK2eSYEDscpEZzduRbW2j7hxwiRljDzqT3vtxs/9Pq1T4PlIi/i4lUpu
-         MPpNKwTKS8Igkyfh9QzkF30mEKEu4P5RLAI0SoJo=
-Date:   Mon, 7 Sep 2020 16:50:00 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Felipe Balbi <balbi@kernel.org>, Yu Chen <chenyu56@huawei.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, john.stultz@linaro.org,
-        suzhuangluan@hisilicon.com, kongfei@hisilicon.com,
-        liuyu712@hisilicon.com, wanghu17@hisilicon.com,
-        butao@hisilicon.com, chenyao11@huawei.com,
-        fangshengzhou@hisilicon.com, lipengcheng8@huawei.com,
-        songxiaowei@hisilicon.com, xuyiping@hisilicon.com,
-        xuyoujun4@huawei.com, yudongbin@hisilicon.com,
-        zangleigang@hisilicon.com,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Binghui Wang <wangbinghui@hisilicon.com>
-Subject: Re: [PATCH v6 04/13] usb: dwc3: Add splitdisable quirk for
- Hisilicon Kirin Soc
-Message-ID: <20200907165000.7c42a6da@coco.lan>
-In-Reply-To: <874ko9of80.fsf@kernel.org>
-References: <20190420064019.57522-1-chenyu56@huawei.com>
-        <20190420064019.57522-5-chenyu56@huawei.com>
-        <20200907150631.70e1bce0@coco.lan>
-        <874ko9of80.fsf@kernel.org>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1730289AbgIGPyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 11:54:08 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:44492 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730014AbgIGOuq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 10:50:46 -0400
+Received: by mail-oi1-f193.google.com with SMTP id 185so13748344oie.11;
+        Mon, 07 Sep 2020 07:50:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=NocdxbzOwXFNFlWIr6/cqeHsmP04fNIWa9z1kM4h3ac=;
+        b=Sblszzmw/jDfgffc+vY7E+ulIz/1vCdo21SrsyrgcT9/aJEKxmw8SrkZTG3wWfi95d
+         DXsvDDtShIcmNeBCA4gDMDPNq2JR9ndB/JQcqioVvfaFaYk1bNKu0JMqPoQbaaFP0SLF
+         +wtTSB8rHy/pbudgWcuHszPQcLWs2vd5cD42c4DSRd/Dy96AS9TaZdot35RcXoR0z2aN
+         DQiHF5t7KJgrPAoZkRv3/0Rk/9+Qw+p9D+mG4qGekmJa1rDMryNcG+9S/cROjVL2gPc2
+         A05kwi6m+zgj6kzsJgRx7K42xsv6WjOMSdnOu1v6A9kp1z6lZC3LALCj59250G5QQCnR
+         yqUQ==
+X-Gm-Message-State: AOAM533R1Zh62R3h1WeKJupPHvGH5lZfUV5SDusDVFltt7SPtlXISWUV
+        aRV4AGvgIzyYxV8Bmd4GxbQEY82AsGheg4ONBV8=
+X-Google-Smtp-Source: ABdhPJxPEeOz9rD4CfjHYipCYAJC4QkIqyBMHvsKbLfrLvLKIyCWCxxTkUZb5VVmim8i5VZiOO3KPF8rJoL+7tO1GAQ=
+X-Received: by 2002:aca:b742:: with SMTP id h63mr12128676oif.148.1599490245942;
+ Mon, 07 Sep 2020 07:50:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <87sgbu70tq.wl-kuninori.morimoto.gx@renesas.com> <87r1re70sv.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87r1re70sv.wl-kuninori.morimoto.gx@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 7 Sep 2020 16:50:34 +0200
+Message-ID: <CAMuHMdVvnDLogOgQaASYLhFxNCq=eVpdZKV2J2eX=h5UzvNtfw@mail.gmail.com>
+Subject: Re: [PATCH 1/9] dt-bindings: display: renesas: du: Document the
+ r8a77961 bindings
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Laurent <laurent.pinchart@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Magnus <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux-DT <devicetree@vger.kernel.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Mon, 07 Sep 2020 17:04:31 +0300
-Felipe Balbi <balbi@kernel.org> escreveu:
+Hi Morimoto-san,
 
-> Hi Mauro,
-> 
-> Mauro Carvalho Chehab <mchehab+huawei@kernel.org> writes:
-> 
-> > Hi Felipe/Greg,
-> >
-> > What's the status of this patch?   
-> 
-> to be frank, I don't think I have this in my inbox anymore.
-> 
-> > I tested here, together with the Hikey 970 phy RFC patches I sent
-> > last week.
-> >
-> > Without this patch, the USB HID driver receives -EPROTO from
-> > submitted URBs, causing it to enter into an endless reset cycle
-> > on every 500 ms, at the hid_io_error() logic.  
-> 
-> > Tested-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> >
-> > If you prefer, I can re-submit this one with my SOB.  
-> 
-> Please do, but since you're changing device tree, I need Rob's acked-by.
+On Mon, Sep 7, 2020 at 4:58 AM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+>
+> Document the R-Car M3-W+ (R8A77961) SoC in the R-Car DU bindings.
+>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-Ok, I'll do that.
+Thanks for your patch!
 
-> > Thanks,
-> > Mauro
-> >
-> > Em Sat, 20 Apr 2019 14:40:10 +0800
-> > Yu Chen <chenyu56@huawei.com> escreveu:
-> >  
-> >> SPLIT_BOUNDARY_DISABLE should be set for DesignWare USB3 DRD Core
-> >> of Hisilicon Kirin Soc when dwc3 core act as host.  
-> 
-> is this Kirin-specific or is this something that we should do a revision
-> check? 
+> --- a/Documentation/devicetree/bindings/display/renesas,du.txt
+> +++ b/Documentation/devicetree/bindings/display/renesas,du.txt
+> @@ -18,6 +18,7 @@ Required Properties:
+>      - "renesas,du-r8a7794" for R8A7794 (R-Car E2) compatible DU
+>      - "renesas,du-r8a7795" for R8A7795 (R-Car H3) compatible DU
+>      - "renesas,du-r8a7796" for R8A7796 (R-Car M3-W) compatible DU
+> +    - "renesas,du-r8a77961" for R8A77961 (R-Car M3-W+) compatible DU
+>      - "renesas,du-r8a77965" for R8A77965 (R-Car M3-N) compatible DU
+>      - "renesas,du-r8a77970" for R8A77970 (R-Car V3M) compatible DU
+>      - "renesas,du-r8a77980" for R8A77980 (R-Car V3H) compatible DU
 
-I've no idea. I don't have any datasheets from this device.
+Looks good to me, but please also add an entry to the table below
+describing the port mappings.
 
-> Why does it affect only Hikey kirin? 
+Gr{oetje,eeting}s,
 
-As John Stultz didn't re-submit this one (and looking at the DT
-between Kirin 960 and 970 from the original Kernel 4.9 official
-drivers), I suspect that only Kirin 970 requires this quirk.
+                        Geert
 
-It could well be due to some Dwc3 revision, but it could also be due
-to some differences at the USB part of the SoC, as there are a
-few other things different between hikey 960 and 970: it has a
-different PHY driver, and there are also some differences at the
-USB HUB which is connected into it.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-On both devices, the USB physical ports are actually connected
-into a HUB. In the case of Hikey 970, the hub seems to be a
-TI TUSB8041 4-Port Hub:
-	
-	$ lsusb
-	Bus 002 Device 002: ID 0451:8140 Texas Instruments, Inc. TUSB8041 4-Port Hub
-	Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-	Bus 001 Device 004: ID 090c:1000 Silicon Motion, Inc. - Taiwan (formerly Feiya Technology Corp.) Flash Drive
-	Bus 001 Device 003: ID 413c:301a Dell Computer Corp. Dell MS116 Optical Mouse
-	Bus 001 Device 002: ID 0451:8142 Texas Instruments, Inc. TUSB8041 4-Port Hub
-	Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-
-> What's the dwc3 revision on
-> that SoC (grep SNPSID /sys/kernel/debugfs/*dwc3/regdump)?
-
-	GSNPSID = 0x33313130
-
-> 
-> >> @@ -1825,10 +1834,27 @@ static int dwc3_resume(struct device *dev)
-> >>  
-> >>  	return 0;
-> >>  }
-> >> +
-> >> +static void dwc3_complete(struct device *dev)
-> >> +{
-> >> +	struct dwc3	*dwc = dev_get_drvdata(dev);
-> >> +	u32		reg;
-> >> +
-> >> +	if (dwc->current_dr_role == DWC3_GCTL_PRTCAP_HOST &&
-> >> +			dwc->dis_split_quirk) {
-> >> +		dev_dbg(dwc->dev, "set DWC3_GUCTL3_SPLITDISABLE\n");  
-> 
-> no more dev_dbg() should be added. This driver relies exclusively on
-> tracepoints for debugging.
-
-Ok. 
-
-> 
-> >> +		reg = dwc3_readl(dwc->regs, DWC3_GUCTL3);
-> >> +		reg |= DWC3_GUCTL3_SPLITDISABLE;
-> >> +		dwc3_writel(dwc->regs, DWC3_GUCTL3, reg);
-> >> +	}
-> >> +}
-> >> +#else
-> >> +#define dwc3_complete NULL
-> >>  #endif /* CONFIG_PM_SLEEP */
-> >>  
-> >>  static const struct dev_pm_ops dwc3_dev_pm_ops = {
-> >>  	SET_SYSTEM_SLEEP_PM_OPS(dwc3_suspend, dwc3_resume)
-> >> +	.complete = dwc3_complete,  
-> 
-> why is this done on complete? Why can't it be done at the end of
-> dwc3_resume()?
-
-Again, no idea. I didn't actually tried to suspend/resume.
-
-Maybe the original author can shed a light on it.
-
-Thanks,
-Mauro
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
