@@ -2,65 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A25F2601E1
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:14:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70D6A2601D5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:13:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730748AbgIGROG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 13:14:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49550 "EHLO mail.kernel.org"
+        id S1730586AbgIGQcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 12:32:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46218 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729729AbgIGOUK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Sep 2020 10:20:10 -0400
-Received: from localhost (unknown [122.167.151.194])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1729797AbgIGQcW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 12:32:22 -0400
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7398A20714;
-        Mon,  7 Sep 2020 14:18:01 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6D910207DE;
+        Mon,  7 Sep 2020 16:32:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599488282;
-        bh=A/bIY1WckCrPgIOMj+IxDI6uQGFD84uO7r4OFtsQEjA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RA7qHpWqcT/wOyxkE9ohLbGlYvN/qrbtGw/RkZjV6AW5EMVtnMbYnmxQakUMQGOyU
-         lCRqmPMxHW5M0SBB0NQAXJk4O1/lZqk4gntcKdrWy34EbeXFtDpyT+aQ/SM8Q0w8rP
-         nA/oZWQ8f554p+mHA7NVB+GxE6eOKpDDX0HYzU9M=
-Date:   Mon, 7 Sep 2020 19:47:52 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Jonathan Marek <jonathan@marek.ca>
-Cc:     linux-arm-msm@vger.kernel.org,
-        "moderated list:SOUNDWIRE SUBSYSTEM" <alsa-devel@alsa-project.org>,
-        Andy Gross <agross@kernel.org>,
-        Bard Liao <yung-chuan.liao@linux.intel.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sanyog Kale <sanyog.r.kale@intel.com>
-Subject: Re: [PATCH v2 0/4] soundwire: qcom: add support for mmio soundwire
- master
-Message-ID: <20200907141752.GD2639@vkoul-mobl>
-References: <20200905173905.16541-1-jonathan@marek.ca>
+        s=default; t=1599496342;
+        bh=yMbMn15d5ZsiLdDFzu3UAxbc1BWdVwiu6fvD5PtYG3U=;
+        h=From:To:Cc:Subject:Date:From;
+        b=JOdAGy8l8uUcAxFkfU7N+my5e+yJCJi0F5UWgIe+1YHGwkoenVK4JHXFYuYEnqiFP
+         NvuPhQY97LZSUOKGNgFpaXYxkrE1tkJFCWqvuhZ1K9kEBSe4JPglNrhXHZzoO38Lkk
+         VNAkTdBXpnIIp6pzXTo9mM32L2HCuXijjlwDxyD8=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Vineet Gupta <vgupta@synopsys.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-snps-arc@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.8 01/53] ARC: HSDK: wireup perf irq
+Date:   Mon,  7 Sep 2020 12:31:27 -0400
+Message-Id: <20200907163220.1280412-1-sashal@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200905173905.16541-1-jonathan@marek.ca>
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05-09-20, 13:39, Jonathan Marek wrote:
-> This adds initial support for soundwire device on sm8250.
-> 
-> Tested with the "wsa" sdw device, which is simpler than the others.
-> 
-> v2 addresses some feedback, but I kept this series as simple as possible.
-> In particular, I didn't implement CMD_NACKED from FIFO_STATUS, because
-> the downstream driver doesn't define this bit, so I can't implement it.
-> Soundwire works without it and It shouldn't be difficult to implement later.
+From: Vineet Gupta <vgupta@synopsys.com>
 
-Applied all, thanks
+[ Upstream commit fe81d927b78c4f0557836661d32e41ebc957b024 ]
 
+Newer version of HSDK aka HSDK-4xD (with dual issue HS48x4 CPU) wired up
+the perf interrupt, so enable that in DT.
+This is OK for old HSDK where this irq is ignored because pct irq is not
+wired up in hardware.
+
+Signed-off-by: Vineet Gupta <vgupta@synopsys.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arc/boot/dts/hsdk.dts | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arc/boot/dts/hsdk.dts b/arch/arc/boot/dts/hsdk.dts
+index 9acbeba832c0b..5d64a5a940ee6 100644
+--- a/arch/arc/boot/dts/hsdk.dts
++++ b/arch/arc/boot/dts/hsdk.dts
+@@ -88,6 +88,8 @@ idu_intc: idu-interrupt-controller {
+ 
+ 	arcpct: pct {
+ 		compatible = "snps,archs-pct";
++		interrupt-parent = <&cpu_intc>;
++		interrupts = <20>;
+ 	};
+ 
+ 	/* TIMER0 with interrupt for clockevent */
 -- 
-~Vinod
+2.25.1
+
