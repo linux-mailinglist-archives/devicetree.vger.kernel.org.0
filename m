@@ -2,145 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 674B72606C5
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 00:03:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2451D2606D8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 00:20:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728020AbgIGWC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 18:02:59 -0400
-Received: from mail-bn7nam10olkn2067.outbound.protection.outlook.com ([40.92.40.67]:51660
-        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726446AbgIGWCy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Sep 2020 18:02:54 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oJaiOc7DQxbDBJCouWcfoLbzqRn4UtYBiZMGNoI7aprDDVqqaCcQKueQRVfzdbeCndBCqVnsw+KdwG0+14h4OItx8gCi3N8BjJsd3Zlqa2iAeRo2/zaBFqfsRwFMYd6/f9TiPBtrzTWBfpt2wSAah/+TkJsKrevTr0CE5voc70nBfXGeafqYBQegNrlmn9s83bDRX/OKKAkwHy+Zx/G5kIX3q7/Mgl31QmwSHHe/CTpcsttvZjlzlW4u+6P6NYQSH+FOd7OuwYV1mSLFecN74tdvezEa4Zi/eQ7GB3VFStEkwzwhAHhIZ5ERpGt0kqUtm8Pv+fy2MfpVDZFF6nKUig==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Aj3Bf8Td7rFVPDItt/LBjLSVbKjWQ3k265TWPYyekQE=;
- b=iaF0uCKuDCNTCpaa0ew1ybeXk5xpQpFLHVIGy+0u9OM1hrFsVgD9FqeIvhRj4kKlKNDoqlxlFM2aXrvAG2dC/uK7UoN0GjNSvxIkKYc2uo62t8aMN6fkWelY2VHiBFi/RmxYZYaLo4cqljIRU+S3iWmKQfUK0eW9FE4IGtwp7VX9k1ZOLY9Kd1RIK5VLF6mgBb/0KFdqTqxoLUaKIiDuiiaXXjj4HovjRMTVsjI7C+DSkiH10i4gN5BBwoDM36PfQ0pDV416CAaQTfyIKyXCWQ3LRoLZSswxsUgIsmDAl/XTHXr9zBwgsypqCISZ7xQHsTA6dp+Ek1Kv43T0e/mD8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-Received: from BN7NAM10FT016.eop-nam10.prod.protection.outlook.com
- (2a01:111:e400:7e8f::45) by
- BN7NAM10HT027.eop-nam10.prod.protection.outlook.com (2a01:111:e400:7e8f::449)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.16; Mon, 7 Sep
- 2020 22:02:52 +0000
-Received: from BN6PR04MB0660.namprd04.prod.outlook.com
- (2a01:111:e400:7e8f::4e) by BN7NAM10FT016.mail.protection.outlook.com
- (2a01:111:e400:7e8f::226) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.23 via Frontend
- Transport; Mon, 7 Sep 2020 22:02:52 +0000
-X-IncomingTopHeaderMarker: OriginalChecksum:402BFDDAE15266B5623DA8A7B7CF6BF860F4AEDE0419CD077C8CBF5158F92DB6;UpperCasedChecksum:F072DA42B4375454A06BF772BA6EECC23C7B4DA82B863A67112869AFE2FEEA36;SizeAsReceived:9286;Count:48
-Received: from BN6PR04MB0660.namprd04.prod.outlook.com
- ([fe80::303b:a75b:d03e:bd04]) by BN6PR04MB0660.namprd04.prod.outlook.com
- ([fe80::303b:a75b:d03e:bd04%3]) with mapi id 15.20.3348.019; Mon, 7 Sep 2020
- 22:02:46 +0000
-Subject: Re: [RFT 07/25] ARM: dts: s5pv210: move PMU node out of clock
- controller
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-References: <20200907161141.31034-1-krzk@kernel.org>
- <20200907161141.31034-8-krzk@kernel.org>
-From:   Jonathan Bakker <xc-racer2@live.ca>
-Message-ID: <BN6PR04MB0660C619C9C4BB2B583F5BC8CB280@BN6PR04MB0660.namprd04.prod.outlook.com>
-Date:   Mon, 7 Sep 2020 15:02:41 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <20200907161141.31034-8-krzk@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MWHPR17CA0082.namprd17.prod.outlook.com
- (2603:10b6:300:c2::20) To BN6PR04MB0660.namprd04.prod.outlook.com
- (2603:10b6:404:d9::21)
-X-Microsoft-Original-Message-ID: <db499891-c721-2c05-8474-2704a5e2601d@live.ca>
+        id S1726938AbgIGWT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 18:19:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51030 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726446AbgIGWT7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 18:19:59 -0400
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4D8FF2177B;
+        Mon,  7 Sep 2020 22:19:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599517198;
+        bh=swIGSxMN1jDi1c8fwD9FBdsPbQw6ciSZxqdF/TkV9Hs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=SRePmzTV+Gw+7ejZ5V2/+/3+ud4cxIYfIZWDTwq1yhlCIVmvNJWSzNn8fCV5oKLD3
+         0Jj7TCbJ0Ks8a3mOvr8bkYSfHUL04yghaz8QZe+jI3ffk6aOuKHX7JTzYIsoD0FMo9
+         yBNHWv2YVxV5VRdAggSdHLB/MFjHUIGGhRWHIk4Y=
+Received: by mail-ed1-f42.google.com with SMTP id q21so14017633edv.1;
+        Mon, 07 Sep 2020 15:19:58 -0700 (PDT)
+X-Gm-Message-State: AOAM5314wKUmGQOxsWx490DdD+qR4LNdY9ZIIGZqoKGB5gS09iS4Nqfr
+        D1tY5UfOP9YL7PAZ3j1sdcdqUI8e6BhW6b6qKA==
+X-Google-Smtp-Source: ABdhPJw0U71O9xX+kGgiTo+ISsow9OgeCF69V6CdeVmbppl0sXiRcIe81jcbLFmP95q2wZ92kN3RtTuWDcmb2e/43V0=
+X-Received: by 2002:aa7:dcd2:: with SMTP id w18mr24139741edu.288.1599517196951;
+ Mon, 07 Sep 2020 15:19:56 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2001:569:fb68:9c00:8067:f823:1e15:7520] (2001:569:fb68:9c00:8067:f823:1e15:7520) by MWHPR17CA0082.namprd17.prod.outlook.com (2603:10b6:300:c2::20) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.15 via Frontend Transport; Mon, 7 Sep 2020 22:02:43 +0000
-X-Microsoft-Original-Message-ID: <db499891-c721-2c05-8474-2704a5e2601d@live.ca>
-X-TMN:  [gFkUa/bI/KBUtRzSNTALzPm29qhHgzxvAJvOqZI4laV6W1B6y0jVh8vzwV+7zs+A]
-X-MS-PublicTrafficType: Email
-X-IncomingHeaderCount: 48
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-Correlation-Id: 4fb5a74f-4f1d-4b1d-01d6-08d85379c065
-X-MS-TrafficTypeDiagnostic: BN7NAM10HT027:
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uT2Ic+rehXHZhNiJB55B3NyAZcIVhuqGdGs4cFntUpqEbXSkCdokEfWIIJe/An7z5xrkG0x1/iiAeucPuQcwzex4WcnyroXvEirOFG5HAC7GrN7cPkPk7lPldc7qzWm+qSTXfMt34oV7V2SGDsODzJ+aLLmCyRndn+Ecd+xbgKzpZVWbkohojtOr38ozhO6K/gvrJoXeGYwcjb9uFpbHhg==
-X-MS-Exchange-AntiSpam-MessageData: k+Wl97Vp6KVLl7XBZ9lP3j1+jWkc4tr4EDTK3qAZOatA1PQ9uKI3wFkZqkB1rWWvqGYlDX3FVuxKIbSBNh3fl/hn4RbqbwlpSQKHmG0ybODKGsM1YKd1EaNU2Xib4NXqSVJpSDTNR0HU/L86AJwKxvh9G/ZwVf8cCn05lqrZChRA5oP1j/pUrIBg+WEQIAdSxrsWfayPAu/cZuElctsU9Q==
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4fb5a74f-4f1d-4b1d-01d6-08d85379c065
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2020 22:02:45.9727
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-AuthSource: BN7NAM10FT016.eop-nam10.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7NAM10HT027
+References: <20200907125646.1946282-1-fparent@baylibre.com>
+ <CAAOTY_9HYvxEygv-oz9wf+JjiSfp+Zn1u5okMftz3SncfK0G5A@mail.gmail.com> <CAOwMV_xEEt+m+LuL_3dF2J8rp4m4gn2T8AR5nGLi0sDoiOC=RQ@mail.gmail.com>
+In-Reply-To: <CAOwMV_xEEt+m+LuL_3dF2J8rp4m4gn2T8AR5nGLi0sDoiOC=RQ@mail.gmail.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Tue, 8 Sep 2020 06:19:43 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_9YE66Ta9Dw6AT45TwawLe1WpVMFcV2wownPYC7bG5cKg@mail.gmail.com>
+Message-ID: <CAAOTY_9YE66Ta9Dw6AT45TwawLe1WpVMFcV2wownPYC7bG5cKg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: mediatek: add bindings for MT8167 clocks
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-clk@vger.kernel.org,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, masahiroy@kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        CK Hu <ck.hu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        mars.cheng@mediatek.com, macpaul.lin@mediatek.com,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        mtk01761 <wendell.lin@mediatek.com>,
+        Owen Chen <owen.chen@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Works for me on the Galaxy S.
+Hi, Fabien:
 
-Tested-by: Jonathan Bakker <xc-racer2@live.ca>
+Fabien Parent <fparent@baylibre.com> =E6=96=BC 2020=E5=B9=B49=E6=9C=888=E6=
+=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=8812:05=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> Hi Chun-Kuang,
+>
+> > Why don't you add compatible of "mediatek,mt8167-mmsys"?
+>
+> I forgot to remove 'mmsys' from the commit message. I decided to add
+> the documentation as part of the series that add support for MT8167 to
+> drivers/soc/mediatek/mtk-mmsys.c.
+>
+> If you think it would be better to document it here I can add the
+> bindings in the V2.
 
-Thanks,
-Jonathan
+It's OK that you separate mmsys (main) and mmsys clock (sub) to
+different series.
+I just want to make sure nothing is missing.
 
-On 2020-09-07 9:11 a.m., Krzysztof Kozlowski wrote:
-> The Power Management Unit (PMU) is a separate device which has little
-> common with clock controller.  Moving it to one level up (from clock
-> controller child to SoC) allows to remove fake simple-bus compatible and
-> dtbs_check warnings like:
-> 
->   clock-controller@e0100000: $nodename:0:
->     'clock-controller@e0100000' does not match '^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> ---
->  arch/arm/boot/dts/s5pv210.dtsi | 13 +++++--------
->  1 file changed, 5 insertions(+), 8 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/s5pv210.dtsi b/arch/arm/boot/dts/s5pv210.dtsi
-> index 5c760a6d7955..46221a5c8ce5 100644
-> --- a/arch/arm/boot/dts/s5pv210.dtsi
-> +++ b/arch/arm/boot/dts/s5pv210.dtsi
-> @@ -92,19 +92,16 @@
->  		};
->  
->  		clocks: clock-controller@e0100000 {
-> -			compatible = "samsung,s5pv210-clock", "simple-bus";
-> +			compatible = "samsung,s5pv210-clock";
->  			reg = <0xe0100000 0x10000>;
->  			clock-names = "xxti", "xusbxti";
->  			clocks = <&xxti>, <&xusbxti>;
->  			#clock-cells = <1>;
-> -			#address-cells = <1>;
-> -			#size-cells = <1>;
-> -			ranges;
-> +		};
->  
-> -			pmu_syscon: syscon@e0108000 {
-> -				compatible = "samsung-s5pv210-pmu", "syscon";
-> -				reg = <0xe0108000 0x8000>;
-> -			};
-> +		pmu_syscon: syscon@e0108000 {
-> +			compatible = "samsung-s5pv210-pmu", "syscon";
-> +			reg = <0xe0108000 0x8000>;
->  		};
->  
->  		pinctrl0: pinctrl@e0200000 {
-> 
+Regards,
+Chun-Kuang.
