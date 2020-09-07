@@ -2,113 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B69E925F601
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 11:05:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 092C925F60E
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 11:11:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727122AbgIGJFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 05:05:41 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:48000 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728172AbgIGJFe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 05:05:34 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08795T0s104293;
-        Mon, 7 Sep 2020 04:05:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599469529;
-        bh=oqqlwcbv3fouh5qCGP/TfhQTQ5YU7HoNo3EsJlsszOA=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=CwDKkEMGZMgJAJkNgnN/D6upgs36OdXgVuPCP1imkQrN4VYvfQcSHXP9vjxqS6660
-         LIniVvgcD/J7VxzTQix7ALUI8wh20TYUIpA5ps2rLnqPKaqURfxcHp1ITO7/z+GNcK
-         mSYYH+4uCrffgjPxG9Z0IkgFfNPL+C++RTdS323A=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08795TLA103523
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Sep 2020 04:05:29 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 7 Sep
- 2020 04:05:29 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 7 Sep 2020 04:05:29 -0500
-Received: from a0230074-OptiPlex-7010.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08795LSp000843;
-        Mon, 7 Sep 2020 04:05:27 -0500
-From:   Faiz Abbas <faiz_abbas@ti.com>
-To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <robh+dt@kernel.org>, <nm@ti.com>, <t-kristo@ti.com>,
-        <faiz_abbas@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j7200-common-proc-board: Add support for eMMC and SD card
-Date:   Mon, 7 Sep 2020 14:35:20 +0530
-Message-ID: <20200907090520.25313-3-faiz_abbas@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200907090520.25313-1-faiz_abbas@ti.com>
-References: <20200907090520.25313-1-faiz_abbas@ti.com>
+        id S1728093AbgIGJLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 05:11:43 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:47850 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727953AbgIGJLm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 05:11:42 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id B34AE200E39;
+        Mon,  7 Sep 2020 11:11:40 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id A6488200D95;
+        Mon,  7 Sep 2020 11:11:40 +0200 (CEST)
+Received: from localhost (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 907C72036B;
+        Mon,  7 Sep 2020 11:11:40 +0200 (CEST)
+Date:   Mon, 7 Sep 2020 12:11:40 +0300
+From:   Abel Vesa <abel.vesa@nxp.com>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Mike Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Anson Huang <anson.huang@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fugang Duan <fugang.duan@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v2 16/17] arm64: dts: imx8mp: Add media_blk_ctrl node
+Message-ID: <20200907091140.xh5vnag342odvmao@fsr-ub1664-175>
+References: <1597406966-13740-1-git-send-email-abel.vesa@nxp.com>
+ <1597406966-13740-17-git-send-email-abel.vesa@nxp.com>
+ <CAA+hA=S_wdoZvCPamW2F1Vs73t4fgnQa8LouUwzq2Vfpz3SDCg@mail.gmail.com>
+ <20200819203734.zbndyvf534xey5xy@fsr-ub1664-175>
+ <CAA+hA=S6j71M-Bjbkm1C+q6Ke7xGUX3K0TosKwWJ=tegFaBGsQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA+hA=S6j71M-Bjbkm1C+q6Ke7xGUX3K0TosKwWJ=tegFaBGsQ@mail.gmail.com>
+User-Agent: NeoMutt/20180622
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the eMMC and SD card connected on the common
-processor board
+On 20-08-20 09:31:27, Dong Aisheng wrote:
+> Hi Rob, Stephen,
+> 
+> On Thu, Aug 20, 2020 at 4:37 AM Abel Vesa <abel.vesa@nxp.com> wrote:
+> >
+> > On 20-08-18 19:34:14, Dong Aisheng wrote:
+> > > On Fri, Aug 14, 2020 at 8:12 PM Abel Vesa <abel.vesa@nxp.com> wrote:
+> > > >
+> > > > Some of the features of the media_ctrl will be used by some
+> > > > different drivers in a way those drivers will know best, so adding the
+> > > > syscon compatible we allow those to do just that. Only the resets
+> > > > and the clocks are registered bit the clk-blk-ctrl driver.
+> > > >
+> > > > Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+> > > > ---
+> > > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 16 ++++++++++++++++
+> > > >  1 file changed, 16 insertions(+)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > > index dede0ae..2d6d213 100644
+> > > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > > @@ -736,6 +736,22 @@
+> > > >                         };
+> > > >                 };
+> > > >
+> > > > +               aips4: bus@32c00000 {
+> > > > +                       compatible = "simple-bus";
+> > > > +                       reg = <0x32c00000 0x400000>;
+> > > > +                       #address-cells = <1>;
+> > > > +                       #size-cells = <1>;
+> > > > +                       ranges;
+> > > > +
+> > > > +                       media_blk_ctrl: clock-controller@32ec0000 {
+> > >
+> > > For this combo device, maybe we can directly name it as blk-ctrl@32ec0000.
+> > > Rob, do you think if we can do that?
+> > >
+> >
+> > I think it was Stephen who suggested we change it to clock-controller in the
+> > last's version thread.
+> >
+> > TBH, I agree with you here, since it makes more sense to be called blk-ctrl
+> > provided that this is not really just a clock controller.
+> >
+> 
+> How do you think?
+> 
 
-sdhci0 is connected to an eMMC while sdhci1 is connected to the
-micro SD slot.
+Stephen, can you give us an argument for leaving it as clock-controller ?
 
-Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
----
- .../dts/ti/k3-j7200-common-proc-board.dts     | 28 +++++++++++++++++++
- 1 file changed, 28 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-index 26ad2e46009e..8e534ef8a3f5 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-@@ -28,6 +28,19 @@
- 			J721E_IOPAD(0xe0, PIN_INPUT_PULLUP, 3) /* (T3) EXT_REFCLK1.I2C1_SDA */
- 		>;
- 	};
-+
-+	main_mmc1_pins_default: main-mmc1-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x104, PIN_INPUT, 0) /* (M20) MMC1_CMD */
-+			J721E_IOPAD(0x100, PIN_INPUT, 0) /* (P21) MMC1_CLK */
-+			J721E_IOPAD(0xfc, PIN_INPUT, 0) /* (P25) MMC1_CLKLB */
-+			J721E_IOPAD(0xf8, PIN_INPUT, 0) /* (M19) MMC1_DAT0 */
-+			J721E_IOPAD(0xf4, PIN_INPUT, 0) /* (N21) MMC1_DAT1 */
-+			J721E_IOPAD(0xf0, PIN_INPUT, 0) /* (N20) MMC1_DAT2 */
-+			J721E_IOPAD(0xec, PIN_INPUT, 0) /* (N19) MMC1_DAT3 */
-+			J721E_IOPAD(0xe4, PIN_INPUT, 8) /* (V1) TIMER_IO0.MMC1_SDCD */
-+		>;
-+	};
- };
- 
- &wkup_uart0 {
-@@ -111,3 +124,18 @@
- 		#gpio-cells = <2>;
- 	};
- };
-+
-+&main_sdhci0 {
-+	/* eMMC */
-+	non-removable;
-+	ti,driver-strength-ohm = <50>;
-+	disable-wp;
-+};
-+
-+&main_sdhci1 {
-+	/* SD card */
-+	pinctrl-0 = <&main_mmc1_pins_default>;
-+	pinctrl-names = "default";
-+	ti,driver-strength-ohm = <50>;
-+	disable-wp;
-+};
--- 
-2.17.1
-
+> Regards
+> Aisheng
+> 
+> > > > +                               compatible = "fsl,imx8mp-media-blk-ctrl", "syscon";
+> > > > +                               reg = <0x32ec0000 0x10000>;
+> > > > +
+> > >
+> > > Remove unnecessary blank line
+> > >
+> >
+> > Will do.
+> >
+> > > Otherwise:
+> > > Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
+> > >
+> > > Regards
+> > > Aisheng
+> > >
+> > > > +                               #clock-cells = <1>;
+> > > > +                               #reset-cells = <1>;
+> > > > +                       };
+> > > > +               };
+> > > > +
+> > > >                 aips5: bus@30c00000 {
+> > > >                         compatible = "fsl,aips-bus", "simple-bus";
+> > > >                         reg = <0x30c00000 0x400000>;
+> > > > --
+> > > > 2.7.4
+> > > >
