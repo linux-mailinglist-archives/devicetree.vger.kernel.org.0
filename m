@@ -2,87 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 258F025FCD5
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 17:18:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B655725FD04
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 17:26:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730118AbgIGPSM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 11:18:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50652 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730046AbgIGPRy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 11:17:54 -0400
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF1BDC061573;
-        Mon,  7 Sep 2020 08:17:52 -0700 (PDT)
-Received: by mail-pj1-x1041.google.com with SMTP id b17so4489253pji.1;
-        Mon, 07 Sep 2020 08:17:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=WmxQ1TCWh9ErVx2o7p8NTViaLgMIqPcYEFusknZqwqI=;
-        b=t1cgqo7rKZqSJBgPGK8D56Ubf/mtwCDe1ZmLC6+tmdllzkFVR+ZoJEY3W0UuaK0VeG
-         5x6pKpNiYya7bk79v4Rjg+rNA5p/MTUOGknwieskyteX78UX0a4MIF5JBNgulsLZkose
-         0R2HBWg2w/BpJmYOX/Jp5AVKwewEhEYsR6v0+DvevJyIa84S5IsOxgPvP6jEcPO6eXRQ
-         mZSoJnevEBi92fp76Jzwcf36hZ/UuuD+zuyBWmrYwF0QjJPwXQocS83l8BsLjuRnNWjC
-         5QYai+9/Lk/avqm7Tu1q8AY2EwLF4swsi0FmiLpHcYEpjUaKN56XMyutuKyvSPbFZhgH
-         tQ4g==
+        id S1730089AbgIGPVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 11:21:06 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:45390 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730110AbgIGPSM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 11:18:12 -0400
+Received: by mail-ot1-f65.google.com with SMTP id g96so12474915otb.12;
+        Mon, 07 Sep 2020 08:18:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=WmxQ1TCWh9ErVx2o7p8NTViaLgMIqPcYEFusknZqwqI=;
-        b=nPae7tITWc990Yr7feP9VutTO5TFMBsuhNOodId75mwRBvgmB4Ks/T18AbBnO+s1NI
-         Z/hpkL0yKpZpU3OusvxHz/5xSVN98hKTXYcKRbO2KqHWSMDLqsGXj7L7H3iMSKWaFcNq
-         LrRWCY1uuaq/rGLCe2W7mL2di6n3MeX+x2+NOZTjnMnWUq2XH0MItZ2xqG5mb3yqwm29
-         vNNdYi6BvUts4kZkliSLbhnGUJz8ty7AcZUPDkLnv0Jyi9OjVP6be1DN3vN1AXKn3mAb
-         KoRyurkZoJUxCTZ+Wcp9jqmWcCGfs8OIFMScuK/apEShP2lM+RWqb+csOH2RjuSLGBdL
-         o70A==
-X-Gm-Message-State: AOAM533xzI83a1eDj11T7fIgFFvjySVhAFnVKhOUVslN0VKlShdzvXJz
-        mKJ88XkvOru+RbBg9Mvdr5tYe9IpGg4=
-X-Google-Smtp-Source: ABdhPJwIdV3RZW5cLJtksbg7hpSJsZniyydTuAeZPd2xB4V+NmxnZfBXPUjdHbh/2h/7NC1+I+IPJA==
-X-Received: by 2002:a17:90a:46cd:: with SMTP id x13mr4319600pjg.101.1599491872287;
-        Mon, 07 Sep 2020 08:17:52 -0700 (PDT)
-Received: from hoboy (c-73-241-114-122.hsd1.ca.comcast.net. [73.241.114.122])
-        by smtp.gmail.com with ESMTPSA id k4sm16698129pfp.189.2020.09.07.08.17.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Sep 2020 08:17:51 -0700 (PDT)
-Date:   Mon, 7 Sep 2020 08:17:49 -0700
-From:   Richard Cochran <richardcochran@gmail.com>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Kurt Kanzenbach <kurt@linutronix.de>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        ilias.apalodimas@linaro.org
-Subject: Re: [PATCH v5 2/7] net: dsa: Add DSA driver for Hirschmann Hellcreek
- switches
-Message-ID: <20200907151749.GB31299@hoboy>
-References: <20200904062739.3540-1-kurt@linutronix.de>
- <20200904062739.3540-3-kurt@linutronix.de>
- <20200905204235.f6b5til4sc3hoglr@skbuf>
- <875z8qazq2.fsf@kurt>
- <20200907104821.kvu7bxvzwazzg7cv@skbuf>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gMIeplfOIYBeXg87OauSkaEFjHQu8iny75rFp+6XgYU=;
+        b=KRyo3pvKPAiH5phfGpnu1n/NTdPVdoKLDVqZfEKiurv4sVTkTQsxh7zUe3fuS9kTe+
+         O7OHQE9iz7FtIotIN2ow07HSWtgSrUNUrXnAgY3GQWoTSdpUJulx0of0Lc+pf8dwVFzW
+         nOexLMbIg2R/tpfRHm3rse9F+VSGaQ/iHCZ8HYne4nVV8ONEMpD3u9V5zlz09I9Bl5QB
+         iHA5UrtWxcPaVbDcqj+fBsdSWGZVca/R+UthBxMu/0CAQwh7bcIVV4edK09GRzmGofby
+         wb0ixWWf9i4RGGOvJyZwPNt68sKUgE7jpyr6k4hNVr5I5njU3ImoLBnNn3U6RojBM3Co
+         DluQ==
+X-Gm-Message-State: AOAM53190KmjV9zOKd77vQC78uMfV2P4aqK0U6p7FCR9CME0yO48obhX
+        0U3Su/D5QiKYshxWgpcpyLcA7wfcgZLox4cNrEU/nc/G
+X-Google-Smtp-Source: ABdhPJwL+05hdkopa0MIF9W1CBL6HFgybeu9Ue4c2x0Be04LwhWuvb2GnT7UOxEe3ZGsazpwPHOPmCH2ltEbTRvSyOE=
+X-Received: by 2002:a9d:162:: with SMTP id 89mr15214661otu.250.1599491891261;
+ Mon, 07 Sep 2020 08:18:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200907104821.kvu7bxvzwazzg7cv@skbuf>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1599470390-29719-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <1599470390-29719-2-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <1599470390-29719-2-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 7 Sep 2020 17:17:59 +0200
+Message-ID: <CAMuHMdX9qr9Q0zAgNCS+iGtZf1J0DTg8DunX59j9YbC_g9VmWw@mail.gmail.com>
+Subject: Re: [PATCH 01/14] dt-bindings: arm: renesas: Document R-Car V3U SoC
+ DT bindings
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 07, 2020 at 01:48:21PM +0300, Vladimir Oltean wrote:
-> So, I think that's not ok. I think the only proper way to solve this is
-> to inform the IP designers that VLANs are no substitute for a port
-> forwarding matrix
+On Mon, Sep 7, 2020 at 11:20 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Add device tree bindings documentation for Renesas R-Car V3U
+> (r8a779a0).
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-Somebody should tell TI that.  (cpts anyone?)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.10.
 
-Thanks,
-Richard
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
