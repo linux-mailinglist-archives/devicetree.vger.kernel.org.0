@@ -2,96 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF19A2603EF
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:56:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14D682603C8
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:54:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728669AbgIGLUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 07:20:14 -0400
-Received: from a27-56.smtp-out.us-west-2.amazonses.com ([54.240.27.56]:60884
-        "EHLO a27-56.smtp-out.us-west-2.amazonses.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728637AbgIGLTq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 07:19:46 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=zsmsymrwgfyinv5wlfyidntwsjeeldzt; d=codeaurora.org; t=1599476512;
-        h=MIME-Version:Content-Type:Content-Transfer-Encoding:Date:From:To:Cc:Subject:In-Reply-To:References:Message-ID;
-        bh=AdrBOHvopvBC24w7JMdTjjLjR1rv8HjCN1EIJF8sPrU=;
-        b=m+rhQ4/2f/fz86slxkgkrphkXtsq0VNO1hWFEON7QWx9YeeazhArB/vmzyUE4Upt
-        U4CTCwZXIC6OcDO8YlbOtQ6f/DCBhEXnwDrkhTVuR7HUcaV/g3qz+EO8+8XNcmdHwRg
-        YooZWquG25aFHJO2on5gGcDvfxEQEUfLUBTuDlpc=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1599476512;
-        h=MIME-Version:Content-Type:Content-Transfer-Encoding:Date:From:To:Cc:Subject:In-Reply-To:References:Message-ID:Feedback-ID;
-        bh=AdrBOHvopvBC24w7JMdTjjLjR1rv8HjCN1EIJF8sPrU=;
-        b=QcEAKB5zBO86oo5jfgOg072w4fAFwL7H/xZ3XrZuNInHUdamn7dujMHe4FlDoNBn
-        YN8WlWg228TUYl+rAHBn0A6r9gr0feI9ehU70l0sjcKJEa9qHSRFu6jxC7y6LS9JhdD
-        pLHobeygz8MA044fzLRks/Ua2fkk52wijrfzr6bQ=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
+        id S1729344AbgIGRyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 13:54:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42556 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728867AbgIGLWb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 07:22:31 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96721C0613ED
+        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 04:02:27 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id w5so15345696wrp.8
+        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 04:02:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=njSxaAkrShaev6nBmwWk4gz2+gzrgoVD7cG8Ur2KLZY=;
+        b=FSI2tvGbCDcFLdRpiiybbNb4UiGRnVNftq8LrfnfRDbZB0bgyf9asszI7O09fQtHf4
+         9KfwujbHAzz7fG/ok96HkfFth+HZM/ApW1FO6/B9kQbkQkV36nEJusYnj617lJqxXJ7J
+         nuC3hhNe1MSis/mQWPeplAsiol7hpWBbi/PtTWjHqgzMSP5C/ZQLXxBoJDcSAgahQqI7
+         sUb5+pokelyqRhxVA7pNdJ3zigIsU0tv8VOwKEKykD4t0X/cbP19ikXXORFNMyv1QdaZ
+         6tDxptY4GLT04g1szxXUxU+VVoDoh9alnas+CpU1K8xynXhimcfV2PwMiyZPW1QoAve+
+         lgqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=njSxaAkrShaev6nBmwWk4gz2+gzrgoVD7cG8Ur2KLZY=;
+        b=PsLpNwn3DKe5BkELtbjLUn7MpTzebs7T7vgj8tx2//sQgPgijiSey6yIcrXwjLdN0D
+         8cQ9veiE8lFjlyNUSGM5/1FELJQ9JrQKC/zkGbcXMrlFY2KqZJAj5fHCf0qJchzo8LgR
+         nB2nlMab0O132w1rwll3fmGLA8Y8HOiFI8B845naU6MZjt3E7LzvtVfSp8Vkw2hssN6D
+         Kh4X8QopgM2a+XFu9u3pQS01lXTUyxc/vYEpVBaicKWBVqZccliXJJFvZPmuVuFkoCJm
+         lpkL/Mxf++pL+nG6Exw5z6DDjymUvNPrqtCkMGzPDOpzI8qG4YK9XvcvAGXYisDgTY4v
+         /9rg==
+X-Gm-Message-State: AOAM530h4R/FSsoN2Di8XRVVquG4IlTtLaXiUGOcu9yyrez6FdQlQdL1
+        Y6mivAtX4BEX8VCYzLY7Op3KEg==
+X-Google-Smtp-Source: ABdhPJzOyuMiOAWKozCxyMN8m5sL4WTHm2Ix5ZGgYp4lsJ5S1lIv8ykGUEEGNH299l5r2VPmDA+mgA==
+X-Received: by 2002:a5d:6912:: with SMTP id t18mr22168295wru.326.1599476546279;
+        Mon, 07 Sep 2020 04:02:26 -0700 (PDT)
+Received: from localhost.localdomain (122.105.23.93.rev.sfr.net. [93.23.105.122])
+        by smtp.gmail.com with ESMTPSA id 2sm28909545wrs.64.2020.09.07.04.02.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Sep 2020 04:02:25 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        linus.walleij@linaro.org, sean.wang@kernel.org,
+        Fabien Parent <fparent@baylibre.com>
+Subject: [PATCH 1/2] pinctrl: mt65xx: add OF bindings for MT8167
+Date:   Mon,  7 Sep 2020 13:02:20 +0200
+Message-Id: <20200907110221.1691168-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 7 Sep 2020 11:01:52 +0000
-From:   akolli@codeaurora.org
-To:     Kalle Valo <kvalo@codeaurora.org>
-Cc:     ath11k@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-wireless@vger.kernel.org
-Subject: Re: [PATCH v6 3/3] ath11k: add IPQ6018 support
-In-Reply-To: <87y2ll3nzh.fsf@codeaurora.org>
-References: <1598287470-1871-1-git-send-email-akolli@codeaurora.org>
- <1598287470-1871-4-git-send-email-akolli@codeaurora.org>
- <87y2ll3nzh.fsf@codeaurora.org>
-Message-ID: <01010174683ab719-82f5c599-a2e0-4697-9c14-9ce1c64608d5-000000@us-west-2.amazonses.com>
-X-Sender: akolli@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
-X-SES-Outgoing: 2020.09.07-54.240.27.56
-Feedback-ID: 1.us-west-2.CZuq2qbDmUIuT3qdvXlRHZZCpfZqZ4GtG9v3VKgRyF0=:AmazonSES
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-09-07 15:30, Kalle Valo wrote:
-> Anilkumar Kolli <akolli@codeaurora.org> writes:
-> 
->> IPQ6018 has one 5G and one 2G radio with 2x2,
->> shares ipq8074 configurations.
->> 
->> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
-> 
-> [...]
-> 
->> @@ -890,9 +995,15 @@ static int ath11k_ahb_probe(struct 
->> platform_device *pdev)
->>  		goto err_hal_srng_deinit;
->>  	}
->> 
->> -	ab->hw_params.svc_to_ce_map_len =
->> +	if (ab->hw_rev == ATH11K_HW_IPQ8074) {
->> +		ab->hw_params.svc_to_ce_map_len =
->>  			ARRAY_SIZE(target_service_to_ce_map_wlan_ipq8074);
->> -	ab->hw_params.svc_to_ce_map = target_service_to_ce_map_wlan_ipq8074;
->> +		ab->hw_params.svc_to_ce_map = 
->> target_service_to_ce_map_wlan_ipq8074;
->> +	} else if (ab->hw_rev == ATH11K_HW_IPQ6018) {
->> +		ab->hw_params.svc_to_ce_map_len =
->> +			ARRAY_SIZE(target_service_to_ce_map_wlan_ipq6018);
->> +		ab->hw_params.svc_to_ce_map = 
->> target_service_to_ce_map_wlan_ipq6018;
->> +	}
-> 
-> The idea of having ab->hw_params is to avoid the need for hw_rev
-> sprinkled all over the code, this here defeats the purpose. I recommend
-> checking if my proposal from an earlier version is implementable:
-> 
-> "You could copy the map arrays to hw.c, as an example see how
->  ath11k_hw_ring_mask_ipq8074 is implemented. That way we don't need any
->  new hw_rev checks."
+Add binding documentation of pinctrl-mt65xx for MT8167 SoC.
 
-Thanks for the details, will address and send in next patch set.
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+---
+ Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thanks
-Anil
+diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt
+index 205be98ae078..931a18cd1e23 100644
+--- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt
++++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt
+@@ -10,6 +10,7 @@ Required properties:
+ 	"mediatek,mt7623-pinctrl", compatible with mt7623 pinctrl.
+ 	"mediatek,mt8127-pinctrl", compatible with mt8127 pinctrl.
+ 	"mediatek,mt8135-pinctrl", compatible with mt8135 pinctrl.
++	"mediatek,mt8167-pinctrl", compatible with mt8167 pinctrl.
+ 	"mediatek,mt8173-pinctrl", compatible with mt8173 pinctrl.
+ 	"mediatek,mt8516-pinctrl", compatible with mt8516 pinctrl.
+ - pins-are-numbered: Specify the subnodes are using numbered pinmux to
+-- 
+2.28.0
+
