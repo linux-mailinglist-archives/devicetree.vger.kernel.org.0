@@ -2,101 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C82325FD96
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 17:53:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BDC225FD5A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 17:45:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730195AbgIGPvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 11:51:33 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:41482 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730152AbgIGPbW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 11:31:22 -0400
-Received: by mail-ot1-f68.google.com with SMTP id a65so12527451otc.8;
-        Mon, 07 Sep 2020 08:31:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bUcsfQOAo+ulI8N6sQJ5DSyXLs3OgmbFHyWfg6ytgJY=;
-        b=B727fH74HKnHNPeswteMep6ebNBY9qUSUUAvfVXNyQgx3BpbQ8N78GUjy0XgQBjNa5
-         QKIHoRxVv2wrTTt4nzvSz0TCfNI1qmT3t5tFoyaDW7r+4bKGkj43c+Z8ggdW0PUYOtyS
-         3bbMr1isMciVqiK0FXbtcbFzjFXN/JfXZxytrq+Bi6qcCfW+fLBRHm1iGYvBLW0UOBzK
-         qtboKOFw1ljVtb+j3kU8G0yy5syRckDLp9+MhCNYGJCuepcGFhkotNA7syHH/2j5m3uY
-         OTYGeJxIvBbJmNqXKbxgoT58M/UWiq/OahH9Re4OdfOYp2RqOT0QFP5KsBWx3SQo464N
-         /iHA==
-X-Gm-Message-State: AOAM530xnyKRGrcXAmiHSRWlY6knj3LuKkOc4rfwWhAM3rEFIjnAKlxZ
-        GR1l3Q2l6aw6LDoOqLUbJ4mSJSh0K/LtZGequ0c=
-X-Google-Smtp-Source: ABdhPJwx41RjYhxw7IAAm/QynytRpltpx/8vMIqhtjL/0QA4rA1pb9nsQKNZE0io406i9e+i987aep2inBQ2yOiTliM=
-X-Received: by 2002:a9d:1b62:: with SMTP id l89mr14587437otl.145.1599492679753;
- Mon, 07 Sep 2020 08:31:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <1599470390-29719-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <1599470390-29719-3-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <1599470390-29719-3-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 7 Sep 2020 17:31:08 +0200
-Message-ID: <CAMuHMdX_be=+3soDGQBxPGvjF5Ty40wDEPaki3Z=SwbDToPA3g@mail.gmail.com>
-Subject: Re: [PATCH 02/14] dt-bindings: arm: renesas: Document Renesas Falcon boards
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        id S1730194AbgIGPpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 11:45:16 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:47446 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730204AbgIGPoa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 11:44:30 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1kFJJB-00DdQh-6P; Mon, 07 Sep 2020 17:43:53 +0200
+Date:   Mon, 7 Sep 2020 17:43:53 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Cc:     Jason Cooper <jason@lakedaemon.net>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Tomasz Maciej Nowak <tmn505@gmail.com>,
+        Andre Heider <a.heider@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: marvell: espressobin: Add ethernet switch
+ aliases
+Message-ID: <20200907154353.GW3112546@lunn.ch>
+References: <20200907112718.5994-1-pali@kernel.org>
+ <20200907144228.GV3112546@lunn.ch>
+ <20200907145213.fwlyz4k6scible7x@pali>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200907145213.fwlyz4k6scible7x@pali>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
+> I would not say it is a "new feature". But rather that patch in this
+> email fixes issue that Linux kernel did not set correct MAC address for
+> DSA slave ports. I think it is something which could be backported also
+> to stable releases as "ignoring" vendor/factory MAC address is not
+> correct behavior.
 
-On Mon, Sep 7, 2020 at 11:20 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Add device tree bindings documentation for Renesas R-Car V3U
-> Falcon CPU and BreakOut boards.
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Hi Pali
 
-Thanks for your patch!
+The rules for stable are here:
 
-> --- a/Documentation/devicetree/bindings/arm/renesas.yaml
-> +++ b/Documentation/devicetree/bindings/arm/renesas.yaml
-> @@ -283,6 +283,9 @@ properties:
->
->        - description: R-Car V3U (R8A779A0)
->          items:
-> +          - enum:
-> +              - renesas,falcon-cpu # Falcon CPU board (RTP0RC779A0CPB0010S)
-> +              - renesas,falcon-breakout # Falcon BreakOut board (RTP0RC779A0BOB0010S)
->            - const: renesas,r8a779a0
+https://www.kernel.org/doc/html/v5.8/process/stable-kernel-rules.html
 
-How is this intended to be used?
+Do you think it fits?
 
-The above means its users should declare either
-
-    compatible = "renesas,falcon-cpu", "renesas,r8a779a0";
-
-or
-
-    compatible = "renesas,falcon-breakout", "renesas,r8a779a0";
-
-However, falcon-cpu.dtsi has just
-
-    compatible = "renesas,falcon-cpu";
-
-Who will use "renesas,falcon-breakout"?
-
->
->        - description: RZ/N1D (R9A06G032)
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+   Andrew
