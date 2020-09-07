@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8D9F25F7FB
+	by mail.lfdr.de (Postfix) with ESMTP id 3989925F7FA
 	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 12:24:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728726AbgIGKYW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 06:24:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60572 "EHLO
+        id S1728424AbgIGKYU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 06:24:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728790AbgIGKQ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 06:16:59 -0400
+        with ESMTP id S1728794AbgIGKRB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 06:17:01 -0400
 Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E921C061574
-        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 03:16:58 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id m6so15238354wrn.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 03:16:58 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E537FC061575
+        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 03:16:59 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id g4so15209339wrs.5
+        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 03:16:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=o7KIQGaZLRrmrAAlxdI4JNMVSiQlEJ8fSUoBN8I+Xf8=;
-        b=i4VYynakNDb2WI/pIy79r9zqh8yP1EVq+qeDo4qGHXp6XQgH1ROgPsIkGIWc1nFutG
-         5jepqFgTB+vcAG3t2zeStqop0UdEX6MXpv3tB4Cj5b2RssOnT5VPAs1aaE0/iAPESeiM
-         OtPy1xSO8kcCtXB6IN5xY34elUra0SQkPrXuB2zC/spDCmucT9x7TD8xqwMmk6SaCJ49
-         ml7kphiRwIc4RFi1AROi2GqTNj5g5K9jB4exHnQ0wfWRrKFdDqtGIJrO8dydH53ntpFX
-         aY5rfeEj8/CF7dhqCYZaECerEPGZi5FMVpZheuA3v2emjVRQOMpBu3njhrdBDCRBPeVt
-         O/4Q==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=a6r4qRpyiPjYoazUXrGcYGUllitYhB0RC4eGKhazF9E=;
+        b=VxIbSxKhSrWc+F+oc18qEnTOaZd41KDrz5frjSOA/RXEGtv8Rkpmq3MmHG5a3Ke2/6
+         qxO6UBZoWo74fLIBwgG12aBOvgWUFfo+dNHTaPST+7WpVEmKjhtqw/e7onJ5yiYoZR+Y
+         oLzYytplhw+JUDu4TMDVxz59bsx5yUvNQUFh+wCbrAJs8wNSMSP0ADg5yqkMd/JHk4NW
+         BT3MePh7FTSUT6DSBOvFRKhkY+G2S7YrM03g0hceBVZoyA8kGvIzPEyGKygq9Rx3jfEG
+         tIZjBwOwQonMxWYr9Y5d4Lb5cNx7LfNmZVGq7BWtx05JuotJ7L7ctpDHxGMa789PGlXA
+         TV9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=o7KIQGaZLRrmrAAlxdI4JNMVSiQlEJ8fSUoBN8I+Xf8=;
-        b=SSMZkeMeG4RcCXkYqY9L/RbUNfqKh/NawgWXPFciTUiMPYlfDZXEVpG0zWHgaLZMgO
-         Nf/FMbaP+88A8owa5D7hI3cu75f9gr+Z2Jmi8O7gETbu+2b2MR6aOV2tWClpalqJIVtY
-         p5DIfUS8XoS4KPUin30rnuVMiiV+dfH9XB/WhCfD8jc4DyAeNj54PmUkUEL05f5xjNgx
-         hvBpDj/Pt7mpHT9sNXrQy6vn4hGQix6rfL5xpWClBF7aFYa7R52N/Qbkq8BuqMqvD5U7
-         2dzZK0TnXvERvdJ98bUP8IGJTzVk1ehDaWS50QI/Go4uMPuQT2JydkrF8xXNRBvrnmii
-         R11g==
-X-Gm-Message-State: AOAM530Y7YEU22WIkJUwFP7FUpPyfnxLnK9YP4+t44IV/Fjmt/lQ5XJM
-        MUWENwQLxbuwtfmqQBObA/xMGg==
-X-Google-Smtp-Source: ABdhPJzoP9v7yuMPfMOlA8vMx95R4j+MIfrbjA33m48SJ7NXSflBVbFFQtTensuBMDC6CFNSOjR9aQ==
-X-Received: by 2002:adf:f4c6:: with SMTP id h6mr20427607wrp.310.1599473816656;
-        Mon, 07 Sep 2020 03:16:56 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=a6r4qRpyiPjYoazUXrGcYGUllitYhB0RC4eGKhazF9E=;
+        b=QRfMW7/QDJjlqt1Zj/mRl/g1Q6xp8uZ8IkNfrCnFDy1T2YjIDGU4ukxkNodQ8N6H0C
+         fvy53kPIM5jV3qc7Wpnnnlyx2hA1yVusQQCQeCdpClDA6h+bsh21eDAvrOedVqryyVI7
+         hqHIbQdI3K6tWmD+zOGvpHWc8oO5w2UnFoIE0Y1AXFMeL47W+Gmx3HqWIXwsTpQVL1lU
+         eACyhwYSleA6T8RhlusBdgafQEEzBDBEqrzQK5qBXjX4+V/kk2SBQf4APGT69opoX9/p
+         PFr7Xqjubchbdto2Xa8hfwbyTKb8Lcgv32U0py+tAkanYsSiMOrZxyKlwgrwng3lliwn
+         XOcg==
+X-Gm-Message-State: AOAM533GT0O62dXM/2SrhDwtuF6SfAFKrCFhJ/FD/Ojj6KN4QPDmn80K
+        rnKfTh2gEFFUDNqiBOFUriBjfQ==
+X-Google-Smtp-Source: ABdhPJx2mHI+LxUYgnUtc5wgXC9XjqJnZvPO9JK3D0PlntFtIsdK2B0n8vwCwkckPL2XhfzljaycXw==
+X-Received: by 2002:adf:e6c8:: with SMTP id y8mr22515101wrm.229.1599473818648;
+        Mon, 07 Sep 2020 03:16:58 -0700 (PDT)
 Received: from localhost.localdomain (122.105.23.93.rev.sfr.net. [93.23.105.122])
-        by smtp.gmail.com with ESMTPSA id j7sm28728689wrw.35.2020.09.07.03.16.54
+        by smtp.gmail.com with ESMTPSA id j7sm28728689wrw.35.2020.09.07.03.16.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Sep 2020 03:16:56 -0700 (PDT)
+        Mon, 07 Sep 2020 03:16:58 -0700 (PDT)
 From:   Fabien Parent <fparent@baylibre.com>
 To:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
 Cc:     joro@8bytes.org, robh+dt@kernel.org, matthias.bgg@gmail.com,
         yong.wu@mediatek.com, miles.chen@mediatek.com,
-        Fabien Parent <fparent@baylibre.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 1/3] dt-bindings: iommu: Add binding for MediaTek MT8167 IOMMU
-Date:   Mon,  7 Sep 2020 12:16:47 +0200
-Message-Id: <20200907101649.1573134-1-fparent@baylibre.com>
+        Fabien Parent <fparent@baylibre.com>
+Subject: [PATCH v4 2/3] iommu/mediatek: add flag for legacy ivrp paddr
+Date:   Mon,  7 Sep 2020 12:16:48 +0200
+Message-Id: <20200907101649.1573134-2-fparent@baylibre.com>
 X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200907101649.1573134-1-fparent@baylibre.com>
+References: <20200907101649.1573134-1-fparent@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -66,102 +67,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds IOMMU binding documentation and larb port definitions
-for the MT8167 SoC.
+Add a new flag in order to select which IVRP_PADDR format is used
+by an SoC.
 
 Signed-off-by: Fabien Parent <fparent@baylibre.com>
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Yong Wu <yong.wu@mediatek.com>
 ---
 
-V4:
-	* Added path to mt8167 larb header file
-	* Added Honghui Zhang in copyright header
-V3: Added mt8167-larb-port.h file for iommu port definitions
-V2: no change
+v4: no change
+v3: set LEGACY_IVRP_PADDR as a flag instead of platform data
+v2: new patch
 
 ---
- .../bindings/iommu/mediatek,iommu.txt         |  2 +
- include/dt-bindings/memory/mt8167-larb-port.h | 51 +++++++++++++++++++
- 2 files changed, 53 insertions(+)
- create mode 100644 include/dt-bindings/memory/mt8167-larb-port.h
+ drivers/iommu/mtk_iommu.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.txt b/Documentation/devicetree/bindings/iommu/mediatek,iommu.txt
-index c1ccd8582eb2..ac949f7fe3d4 100644
---- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.txt
-+++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.txt
-@@ -61,6 +61,7 @@ Required properties:
- 	"mediatek,mt6779-m4u" for mt6779 which uses generation two m4u HW.
- 	"mediatek,mt7623-m4u", "mediatek,mt2701-m4u" for mt7623 which uses
- 						     generation one m4u HW.
-+	"mediatek,mt8167-m4u" for mt8167 which uses generation two m4u HW.
- 	"mediatek,mt8173-m4u" for mt8173 which uses generation two m4u HW.
- 	"mediatek,mt8183-m4u" for mt8183 which uses generation two m4u HW.
- - reg : m4u register base and size.
-@@ -80,6 +81,7 @@ Required properties:
- 	dt-binding/memory/mt2701-larb-port.h for mt2701, mt7623
- 	dt-binding/memory/mt2712-larb-port.h for mt2712,
- 	dt-binding/memory/mt6779-larb-port.h for mt6779,
-+	dt-binding/memory/mt8167-larb-port.h for mt8167,
- 	dt-binding/memory/mt8173-larb-port.h for mt8173, and
- 	dt-binding/memory/mt8183-larb-port.h for mt8183.
+diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+index 785b228d39a6..b1f85a7e9346 100644
+--- a/drivers/iommu/mtk_iommu.c
++++ b/drivers/iommu/mtk_iommu.c
+@@ -116,6 +116,7 @@
+ #define OUT_ORDER_WR_EN			BIT(4)
+ #define HAS_SUB_COMM			BIT(5)
+ #define WR_THROT_EN			BIT(6)
++#define HAS_LEGACY_IVRP_PADDR		BIT(7)
  
-diff --git a/include/dt-bindings/memory/mt8167-larb-port.h b/include/dt-bindings/memory/mt8167-larb-port.h
-new file mode 100644
-index 000000000000..000fb299a408
---- /dev/null
-+++ b/include/dt-bindings/memory/mt8167-larb-port.h
-@@ -0,0 +1,51 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (c) 2020 MediaTek Inc.
-+ * Copyright (c) 2020 BayLibre, SAS
-+ * Author: Honghui Zhang <honghui.zhang@mediatek.com>
-+ * Author: Fabien Parent <fparent@baylibre.com>
-+ */
-+#ifndef __DTS_IOMMU_PORT_MT8167_H
-+#define __DTS_IOMMU_PORT_MT8167_H
-+
-+#define MTK_M4U_ID(larb, port)		(((larb) << 5) | (port))
-+
-+#define M4U_LARB0_ID			0
-+#define M4U_LARB1_ID			1
-+#define M4U_LARB2_ID			2
-+
-+/* larb0 */
-+#define M4U_PORT_DISP_OVL0		MTK_M4U_ID(M4U_LARB0_ID, 0)
-+#define M4U_PORT_DISP_RDMA0		MTK_M4U_ID(M4U_LARB0_ID, 1)
-+#define M4U_PORT_DISP_WDMA0		MTK_M4U_ID(M4U_LARB0_ID, 2)
-+#define M4U_PORT_DISP_RDMA1		MTK_M4U_ID(M4U_LARB0_ID, 3)
-+#define M4U_PORT_MDP_RDMA		MTK_M4U_ID(M4U_LARB0_ID, 4)
-+#define M4U_PORT_MDP_WDMA		MTK_M4U_ID(M4U_LARB0_ID, 5)
-+#define M4U_PORT_MDP_WROT		MTK_M4U_ID(M4U_LARB0_ID, 6)
-+#define M4U_PORT_DISP_FAKE		MTK_M4U_ID(M4U_LARB0_ID, 7)
-+
-+/* larb1*/
-+#define M4U_PORT_CAM_IMGO		MTK_M4U_ID(M4U_LARB1_ID, 0)
-+#define M4U_PORT_CAM_IMG2O		MTK_M4U_ID(M4U_LARB1_ID, 1)
-+#define M4U_PORT_CAM_LSCI		MTK_M4U_ID(M4U_LARB1_ID, 2)
-+#define M4U_PORT_CAM_ESFKO		MTK_M4U_ID(M4U_LARB1_ID, 3)
-+#define M4U_PORT_CAM_AAO		MTK_M4U_ID(M4U_LARB1_ID, 4)
-+#define M4U_PORT_VENC_REC		MTK_M4U_ID(M4U_LARB1_ID, 5)
-+#define M4U_PORT_VENC_BSDMA		MTK_M4U_ID(M4U_LARB1_ID, 6)
-+#define M4U_PORT_VENC_RD_COMV		MTK_M4U_ID(M4U_LARB1_ID, 7)
-+#define M4U_PORT_CAM_IMGI		MTK_M4U_ID(M4U_LARB1_ID, 8)
-+#define M4U_PORT_VENC_CUR_LUMA		MTK_M4U_ID(M4U_LARB1_ID, 9)
-+#define M4U_PORT_VENC_CUR_CHROMA	MTK_M4U_ID(M4U_LARB1_ID, 10)
-+#define M4U_PORT_VENC_REF_LUMA		MTK_M4U_ID(M4U_LARB1_ID, 11)
-+#define M4U_PORT_VENC_REF_CHROMA	MTK_M4U_ID(M4U_LARB1_ID, 12)
-+
-+/* larb2*/
-+#define M4U_PORT_HW_VDEC_MC_EXT		MTK_M4U_ID(M4U_LARB2_ID, 0)
-+#define M4U_PORT_HW_VDEC_PP_EXT		MTK_M4U_ID(M4U_LARB2_ID, 1)
-+#define M4U_PORT_HW_VDEC_VLD_EXT	MTK_M4U_ID(M4U_LARB2_ID, 2)
-+#define M4U_PORT_HW_VDEC_AVC_MV_EXT	MTK_M4U_ID(M4U_LARB2_ID, 3)
-+#define M4U_PORT_HW_VDEC_PRED_RD_EXT	MTK_M4U_ID(M4U_LARB2_ID, 4)
-+#define M4U_PORT_HW_VDEC_PRED_WR_EXT	MTK_M4U_ID(M4U_LARB2_ID, 5)
-+#define M4U_PORT_HW_VDEC_PPWRAP_EXT	MTK_M4U_ID(M4U_LARB2_ID, 6)
-+
-+#endif
+ #define MTK_IOMMU_HAS_FLAG(pdata, _x) \
+ 		((((pdata)->flags) & (_x)) == (_x))
+@@ -582,7 +583,7 @@ static int mtk_iommu_hw_init(const struct mtk_iommu_data *data)
+ 		F_INT_PRETETCH_TRANSATION_FIFO_FAULT;
+ 	writel_relaxed(regval, data->base + REG_MMU_INT_MAIN_CONTROL);
+ 
+-	if (data->plat_data->m4u_plat == M4U_MT8173)
++	if (MTK_IOMMU_HAS_FLAG(data->plat_data, HAS_LEGACY_IVRP_PADDR))
+ 		regval = (data->protect_base >> 1) | (data->enable_4GB << 31);
+ 	else
+ 		regval = lower_32_bits(data->protect_base) |
+@@ -818,7 +819,8 @@ static const struct mtk_iommu_plat_data mt6779_data = {
+ 
+ static const struct mtk_iommu_plat_data mt8173_data = {
+ 	.m4u_plat     = M4U_MT8173,
+-	.flags	      = HAS_4GB_MODE | HAS_BCLK | RESET_AXI,
++	.flags	      = HAS_4GB_MODE | HAS_BCLK | RESET_AXI |
++			HAS_LEGACY_IVRP_PADDR,
+ 	.inv_sel_reg  = REG_MMU_INV_SEL_GEN1,
+ 	.larbid_remap = {{0}, {1}, {2}, {3}, {4}, {5}}, /* Linear mapping. */
+ };
 -- 
 2.28.0
 
