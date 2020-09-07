@@ -2,100 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28DDC25F6D9
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 11:49:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA66E25F6ED
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 11:56:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728402AbgIGJtx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 05:49:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56292 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728375AbgIGJtw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 05:49:52 -0400
-Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com [IPv6:2607:f8b0:4864:20::e43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36E5DC061575
-        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 02:49:49 -0700 (PDT)
-Received: by mail-vs1-xe43.google.com with SMTP id s62so7050636vsc.7
-        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 02:49:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=kzqniENsjTGrtzwAWBHSHJGSg8nw3GAQdgvThPSbJ54=;
-        b=lgt+hVRje3zM3OoS3Ku0gij9Z2FNqL4Q2eL2dP9ugcLQ8yXwOh4Izl2xR9RXzYZ+Bb
-         Dzk+Jpag7luj6P1fy0WNpX0N8bNHwKYowOzaoYtlmVO/eu8lNPmQzJSTET+8DH7Z1gMn
-         Bm6ta2zrhJY+7vT0JmpuDWThOYVxtu3kSbBYptL1cutlrJIM7b6i8Su+JPd426asO0Ef
-         Yv248jGQz9bG5PXf+EQKLHzaeegMaOpkpjbiHAVAZMUHofeINGf9Ah1JEkcn/V95/YI7
-         MMN2cSA1B1FIalr7gj9+lmD50nAlldWEo10HHysYmgRgdl1ga/951vKObcatTpZmhgoj
-         iKGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=kzqniENsjTGrtzwAWBHSHJGSg8nw3GAQdgvThPSbJ54=;
-        b=K9JGntrkbTHVcjiJScXRpD8xmP2zdTV7eRVuMjwTpfTLCRILGwZdMzNc+c0TMK+N8p
-         tqen1C96tM1mrLlT24nUvkoQlQKY9Wxkf3ZF1hJhjLqcu5cWmr79KM4xOXZKYDKWqtxE
-         ojanMgt1eeYCX8qN77xomzxPr0pOyWKnH4qrwuS/GGSppmpGEyth566jpqTqXnp6z8Gb
-         jIiDQkv1syoeWtCqc8rZmF6Bf203QpMidlyO2MHcVERASeUf/vp5Jjgi42n6prKJXZIA
-         zWOV48V+mjJfr+KKOxbW4DXtWKTy85E4Cxa0Yv1F3MbsKAelDFs5fWY5duJjqDr89nIE
-         DxMw==
-X-Gm-Message-State: AOAM530BYEF+aL1WyruIG9BDxbNaEwKcM8dk8mZ2mrtw1Emkeix+Xf5u
-        YF7NPBKjSwAzDJcvdVZSt6Fyo+HJyndeWe69iW8=
-X-Google-Smtp-Source: ABdhPJx8PojsLgdRgE71v9E302mF7xFfVc7IMt5FPfbixgvWz6NIHuz8qE7EwZvPNxXY2iP3Mdhs2eOra/xmLzCKnu4=
-X-Received: by 2002:a05:6102:372:: with SMTP id f18mr1701368vsa.8.1599472188809;
- Mon, 07 Sep 2020 02:49:48 -0700 (PDT)
+        id S1728333AbgIGJ42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 05:56:28 -0400
+Received: from a27-188.smtp-out.us-west-2.amazonses.com ([54.240.27.188]:47772
+        "EHLO a27-188.smtp-out.us-west-2.amazonses.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728233AbgIGJ41 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 05:56:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+        s=zsmsymrwgfyinv5wlfyidntwsjeeldzt; d=codeaurora.org; t=1599472586;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:MIME-Version:Content-Type;
+        bh=EKtUKPB3gmnM0BbeYvDZjSYUc0HismSLiDOG12Akloc=;
+        b=S1enhPdk+4HQ9VskhNVxCTy3B7wN2XqJ3Emrqq8sPZ/KzGmRNul2qP4kPEGRPyUH
+        6+VrqgukQOmjBlJ6AwwPpcQL/Gk8NRgLEIr4tIx8i3Ranh6+JdZtEHY5A/yGhvx3vVs
+        Jtxm24V5zy2drGVm1xZmfdd7+okB2KgMAYXZRr6U=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+        s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1599472586;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:MIME-Version:Content-Type:Feedback-ID;
+        bh=EKtUKPB3gmnM0BbeYvDZjSYUc0HismSLiDOG12Akloc=;
+        b=emEEd/3mgW6MyuQCV3Nn2LItioAWkzP6kMDWReKuwndQ60NwfwfxgyyTviiflvXR
+        dB91jYJb7apKNsufzCEN9QRJTkS8FWLjXaaF2XE//AgSl7BGqpxF/In8Oc+0vvEgIMD
+        yVqTX+mFLGTYvzCndsiGy8yWEUNaEs6K31Co9FU0=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 13529C43387
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kvalo@codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     akolli@codeaurora.org
+Cc:     Julian Calaby <julian.calaby@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+Subject: Re: [PATCH v3 2/3] ath11k: copy ce service configs to hw_params
+References: <1592458104-2961-1-git-send-email-akolli@codeaurora.org>
+        <1592458104-2961-3-git-send-email-akolli@codeaurora.org>
+        <CAGRGNgV74fCD1gb=rXEe1BMN5+5stYeX3W6eKc4-do76TBmFqA@mail.gmail.com>
+        <34ed705f28b40fab493b8c888138e6a7@codeaurora.org>
+Date:   Mon, 7 Sep 2020 09:56:25 +0000
+In-Reply-To: <34ed705f28b40fab493b8c888138e6a7@codeaurora.org>
+        (akolli@codeaurora.org's message of "Fri, 19 Jun 2020 21:54:42 +0530")
+Message-ID: <0101017467feccbe-322cfbf1-f151-4ebe-aa6a-f6cd8791178d-000000@us-west-2.amazonses.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
-Received: by 2002:ab0:184c:0:0:0:0:0 with HTTP; Mon, 7 Sep 2020 02:49:48 -0700 (PDT)
-Reply-To: mrs.maddalenanicholaus@gmail.com
-From:   "Mrs. Maddalena Nicholaus" <dickksonpaulchambers@gmail.com>
-Date:   Mon, 7 Sep 2020 10:49:48 +0100
-Message-ID: <CAJTqzoiwvgnwH09Mvr+gaFeMnfawc7j-PuPSaMKXhh6n2sVzWQ@mail.gmail.com>
-Subject: =?UTF-8?B?R3LDvMOfZSBMaWViZXI=?=
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-SES-Outgoing: 2020.09.07-54.240.27.188
+Feedback-ID: 1.us-west-2.CZuq2qbDmUIuT3qdvXlRHZZCpfZqZ4GtG9v3VKgRyF0=:AmazonSES
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Gr=C3=BC=C3=9Fe Lieber,
+akolli@codeaurora.org writes:
 
-Ich schreibe diesen Brief mit Tr=C3=A4nen und Trauer und bitte wegen meines
-Gesundheitszustands in London um Hilfe. Ich bin Frau Maddalena
-Nicholaus, eine 85-j=C3=A4hrige finnische Staatsb=C3=BCrgerin. Ich war eine
-Waise, adoptiert von meinem verstorbenen Vater Engr. Joakim Nicholaus,
-Vorsitzender und CEO von JNicholaus Oil and Gas Services. Nach dem Tod
-meines Vaters folgte ich diesem Beispiel und beschloss zu heiraten,
-weil ich sein einziges Kind war.
+> On 2020-06-19 04:40, Julian Calaby wrote:
+>>
+>> On Thu, Jun 18, 2020 at 3:31 PM Anilkumar Kolli
+>> <akolli@codeaurora.org> wrote:
+>>>
+>>> @@ -950,6 +950,16 @@ static int ath11k_ahb_probe(struct
+>>> platform_device *pdev)
+>>>                 goto err_hal_srng_deinit;
+>>>         }
+>>>
+>>> +       ret = ath11k_init_hw_params(ab);
+>>> +       if (ret) {
+>>> +               ath11k_err(ab, "failed to get hw params %d\n", ret);
+>>> +               return ret;
+>>> +       }
+>>> +
+>>> +       ab->hw_params.svc_to_ce_map_len =
+>>> +
+>>> ARRAY_SIZE(target_service_to_ce_map_wlan_ipq8074);
+>>> +       ab->hw_params.svc_to_ce_map =
+>>> target_service_to_ce_map_wlan_ipq8074;
+>>
+>> I think you misunderstood my point about this, the point wasn't to
+>> copy the svc map to hw_params, but define it in hw_params:
+>>
+>> +       {
+>> +               .hw_rev = ATH11K_HW_IPQ6018,
+>> +               .name = "ipq6018 hw1.0",
+>> +               .fw = {
+>> +                       .dir = "IPQ6018/hw1.0",
+>> +                       .board_size = 256 * 1024,
+>> +                       .cal_size = 256 * 1024,
+>> +               },
+>> +               .max_radios = 2,
+>> +               .bdf_addr = 0x4ABC0000,
+>> +               .hw_ops = &ipq6018_ops,
+>> +               .svc_to_ce_map_len =
+>> ARRAY_SIZE(target_service_to_ce_map_wlan_ipq6018,
+>> +               .svc_to_ce_map = target_service_to_ce_map_wlan_ipq6018,
+>> +       },
+>>
+>> That completely eliminates special case code based on the hardware ID
+>> in the driver.
+>>
+> The static array of structures target_service_to_ce_map_wlan_ipq6018[]
+> is defined in ahb.c and hw_params are initialised in core.c, this will
+> not work. no?
 
-Bei mir wurde eine isch=C3=A4mische Herzkrankheit diagnostiziert, die mich
-viel kostete, und die Komplikationen betrafen alle Teile meines
-K=C3=B6rpers und meiner Gehirnzellen. Erst vor 5 Tagen sagten britische
-=C3=84rzte, dass ich jederzeit sterben k=C3=B6nnte, weil mein Zustand einen
-kritischen Punkt erreicht hatte und sich in einer lebensbedrohlichen
-Phase befand. Nachdem ich etwas =C3=BCber meine Gesundheit erfahren hatte,
-beschloss ich, Ihre Hilfe / Kooperation zu nutzen, um mein
-14,5-Millionen-Dollar-Erbe f=C3=BCr den Bau eines Waisenhauses in meinem
-Ged=C3=A4chtnis zu nutzen.
+You could move the map arrays to hw.c, as an example see how
+ath11k_hw_ring_mask_ipq8074 is implemented. That way we don't need any
+new hw_rev checks.
 
-Ich habe diese mutige Entscheidung getroffen, weil ich keinen Ehemann,
-keine Familie oder Kinder habe, um Geld zu hinterlassen, wenn ich weg
-bin. Wenn Sie interessiert sind, k=C3=B6nnen Sie 30% des Gesamtbetrags f=C3=
-=BCr
-Hilfe nehmen und den Rest in meinen Erinnerungen verwenden, um
-Waisenh=C3=A4user zu bauen. Wenn Sie interessiert sind, kontaktieren Sie
-mich bitte bald f=C3=BCr weitere Informationen. Ich werde die
-Hinterlegungsbescheinigung und die Sterbeurkunde meines Vaters zur
-Genehmigung sowie der Bank vorlegen, um Sie als rechtm=C3=A4=C3=9Figen Empf=
-=C3=A4nger
-des Geldes in meinem Namen zu identifizieren.
-
-Ich habe diese Nachricht aus dem Englischen =C3=BCbersetzt, damit Sie mich
-verstehen. Sie k=C3=B6nnen auf Englisch zur=C3=BCckschreiben, wenn Sie vers=
-tehen
-oder noch auf Deutsch
-
-Ich freue mich auf Ihre schnelle Antwort.
-
-Sch=C3=B6ne Gr=C3=BC=C3=9Fe
-Frau Maddalena Nicholaus.
+-- 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
