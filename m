@@ -2,95 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDBE7260050
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 18:47:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BD8E25FFF5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 18:42:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730688AbgIGQra (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 12:47:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48572 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730563AbgIGQfS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Sep 2020 12:35:18 -0400
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 72CC621D90;
-        Mon,  7 Sep 2020 16:35:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599496518;
-        bh=WhEs5l16HJrcxCVT8+jiGeRbizmKVAf1pNc6obzvIWI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=h+86teF0Tq5yU5FVZzhHSWAM/PL2f7P/2ys/sHl+Dzpw2IMGTcA9B0eq5br2vI92L
-         nUB54MEYlV00zRyIUwoyr5dhvPVT5es+7NbYpz+giZ72e1BTB7c/yuAVWQtywcz9Lh
-         yJkgX+CTwNx0fCAEBwXQ/rfNSuKjifmWFEDscMXo=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Evgeniy Didin <Evgeniy.Didin@synopsys.com>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Alexey Brodkin <abrodkin@synopsys.com>,
-        Vineet Gupta <vgupta@synopsys.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-snps-arc@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.14 13/17] ARC: [plat-hsdk]: Switch ethernet phy-mode to rgmii-id
-Date:   Mon,  7 Sep 2020 12:34:56 -0400
-Message-Id: <20200907163500.1281543-13-sashal@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200907163500.1281543-1-sashal@kernel.org>
-References: <20200907163500.1281543-1-sashal@kernel.org>
+        id S1730936AbgIGQmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 12:42:01 -0400
+Received: from lhrrgout.huawei.com ([185.176.76.210]:2778 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1730306AbgIGQj4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 12:39:56 -0400
+Received: from lhreml710-chm.china.huawei.com (unknown [172.18.7.107])
+        by Forcepoint Email with ESMTP id 5432B9CCF7EE259F5AD4;
+        Mon,  7 Sep 2020 17:39:53 +0100 (IST)
+Received: from localhost (10.52.124.38) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1913.5; Mon, 7 Sep 2020
+ 17:39:52 +0100
+Date:   Mon, 7 Sep 2020 17:38:19 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+CC:     Kukjin Kim <kgene@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Jonathan Bakker <xc-racer2@live.ca>,
+        =?UTF-8?Q?Pawe=C5=82?= Chmiel <pawel.mikolaj.chmiel@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH 02/25] dt-bindings: iio: adc: exynos-adc: require second
+ interrupt with touch screen
+Message-ID: <20200907173819.00005a48@Huawei.com>
+In-Reply-To: <20200907161141.31034-3-krzk@kernel.org>
+References: <20200907161141.31034-1-krzk@kernel.org>
+        <20200907161141.31034-3-krzk@kernel.org>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.52.124.38]
+X-ClientProxiedBy: lhreml709-chm.china.huawei.com (10.201.108.58) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Evgeniy Didin <Evgeniy.Didin@synopsys.com>
+On Mon,  7 Sep 2020 18:11:18 +0200
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-[ Upstream commit 26907eb605fbc3ba9dbf888f21d9d8d04471271d ]
+> The ADC in S3C/S5P/Exynos SoCs can be used also for handling touch
+> screen.  In such case the second interrupt is required.  This second
+> interrupt can be anyway provided, even without touch screens.  This
+> fixes dtbs_check warnings like:
+> 
+>   arch/arm/boot/dts/s5pv210-aquila.dt.yaml: adc@e1700000: interrupts: [[23], [24]] is too long
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-HSDK board has Micrel KSZ9031, recent commit
-bcf3440c6dd ("net: phy: micrel: add phy-mode support for the KSZ9031 PHY")
-caused a breakdown of Ethernet.
-Using 'phy-mode = "rgmii"' is not correct because accodring RGMII
-specification it is necessary to have delay on RX (PHY to MAX)
-which is not generated in case of "rgmii".
-Using "rgmii-id" adds necessary delay and solves the issue.
+Acked-by: Jonathan Cameron <Jonathan.Cameron@huwei.com>
 
-Also adding name of PHY placed on HSDK board.
+Or I can pick this up through the IIO tree if that makes sense.
+I doubt anything else will touch this binding this cycle, so either
+way works for me.
 
-Signed-off-by: Evgeniy Didin <Evgeniy.Didin@synopsys.com>
-Cc: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
-Cc: Alexey Brodkin <abrodkin@synopsys.com>
-Signed-off-by: Vineet Gupta <vgupta@synopsys.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arc/boot/dts/hsdk.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Jonathan
 
-diff --git a/arch/arc/boot/dts/hsdk.dts b/arch/arc/boot/dts/hsdk.dts
-index aeacea148793c..75aa3a8f9fdc9 100644
---- a/arch/arc/boot/dts/hsdk.dts
-+++ b/arch/arc/boot/dts/hsdk.dts
-@@ -163,7 +163,7 @@ ethernet@8000 {
- 			reg = <0x8000 0x2000>;
- 			interrupts = <10>;
- 			interrupt-names = "macirq";
--			phy-mode = "rgmii";
-+			phy-mode = "rgmii-id";
- 			snps,pbl = <32>;
- 			snps,multicast-filter-bins = <256>;
- 			clocks = <&gmacclk>;
-@@ -179,7 +179,7 @@ mdio {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				compatible = "snps,dwmac-mdio";
--				phy0: ethernet-phy@0 {
-+				phy0: ethernet-phy@0 { /* Micrel KSZ9031 */
- 					reg = <0>;
- 					ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
- 					ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
--- 
-2.25.1
+> ---
+>  .../bindings/iio/adc/samsung,exynos-adc.yaml      | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
+> index cc3c8ea6a894..89b4f9c252a6 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
+> @@ -41,7 +41,10 @@ properties:
+>      maxItems: 2
+>  
+>    interrupts:
+> -    maxItems: 1
+> +    description:
+> +      ADC interrupt followed by optional touchscreen interrupt.
+> +    minItems: 1
+> +    maxItems: 2
+>  
+>    "#io-channel-cells":
+>      const: 1
+> @@ -107,6 +110,16 @@ allOf:
+>            items:
+>              - const: adc
+>  
+> +  - if:
+> +      properties:
+> +        has-touchscreen:
+> +          true
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          minItems: 2
+> +          maxItems: 2
+> +
+>  examples:
+>    - |
+>      adc: adc@12d10000 {
+
 
