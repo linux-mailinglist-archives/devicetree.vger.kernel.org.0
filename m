@@ -2,122 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB8F325F678
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 11:29:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CB8325F6A9
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 11:38:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728316AbgIGJ3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 05:29:10 -0400
-Received: from foss.arm.com ([217.140.110.172]:58638 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728284AbgIGJ3J (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Sep 2020 05:29:09 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7F7C930E;
-        Mon,  7 Sep 2020 02:29:08 -0700 (PDT)
-Received: from bogus (unknown [10.57.10.112])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BF38B3F66E;
-        Mon,  7 Sep 2020 02:29:06 -0700 (PDT)
-Date:   Mon, 7 Sep 2020 10:29:00 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Fuad Tabba <tabba@google.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel-team@android.com, Will Deacon <will@kernel.org>,
-        tsoni@quicinc.com, pratikp@quicinc.com,
-        Sudeep Holla <sudeep.holla@arm.com>
-Subject: Re: [PATCH 6/9] firmware: arm_ffa: Add initial Arm FFA driver support
-Message-ID: <20200907092900.GA17330@bogus>
-References: <20200829170923.29949-1-sudeep.holla@arm.com>
- <20200829170923.29949-7-sudeep.holla@arm.com>
- <CA+EHjTwYm--tOGjFq0aqP_bsBPu+f1hGTYrVxsuqLw-4K+QJMA@mail.gmail.com>
+        id S1728308AbgIGJis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 05:38:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54482 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728253AbgIGJiS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 05:38:18 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79A92C061573
+        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 02:38:16 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id q9so13723696wmj.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 02:38:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=lY1f6BPUzB++HrA2WRJHkdA8MgAHqDCMG4dVPqyy2dw=;
+        b=GXRL2jcAHETtaAy+Yd8N2jg3wSJQNHn0HFB2TA7y/8aY0wUVjOXkzBJybLwaE7Mc2l
+         FAuf+CuUtSXhL5Vw5QoZU5/kDJsy6yFx8p7Jfz8m1CQRqHLCP9V9UgB9GsQBP4T8yshE
+         o14cpplTvFvxO7wc296KgfxPPbVuQ3lCmjTFKzyTRHAuyaQve1J+hnlUEDUj8GFOYX3W
+         +W/Mb+667M/roOs5/xmC25VNY5/7XDqHPWhGLYdRYhB2GT/Kb0sPOK/AxC/F5/nuQVg0
+         b0BNXAHTekSzhkqVKMR++HHawyTODucH8CZUphUSrPYAQTdhTqhh5otNZud+IwqZUzVM
+         QOww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=lY1f6BPUzB++HrA2WRJHkdA8MgAHqDCMG4dVPqyy2dw=;
+        b=Mjw69f0etXOvpB7VriaffAdJel2YQ+ior1VRy+zmIgLcV9FWzGQfjOFNXlkgst2VJp
+         9OtrgZuhdm8T/09sNhzkynVvMcYbKJ4b73vMxBitoUnHtq+NYZkoZ3wpzHLziJE1vs+r
+         ITlOE4wAI7uCIGzQCVjdnq6OnshIpP7Ord64MA8T2CDKamPoyfESEiLRrBRTvpnKQl2T
+         Eotyle3n+aJHzdQ4RVkmXaYpCjp4F+oV2oP0ZMQzQ2j+0hS0RG2tvArJBj0Wn66yGUiO
+         Ea+kOeyalnNJUct8FF9Wvmyia9zyF50UtBw9ReIHOs69fUzP7EseuNtJAGG6v8s37oke
+         /GgA==
+X-Gm-Message-State: AOAM530rCjhvJGQhQ3JlQlxfViEVFOuUzU0ZcT1wI2YLUb1qFeyDcqJ0
+        wu8esFrIxouV1Vd9aCkwm8EzNg==
+X-Google-Smtp-Source: ABdhPJxpmUTuMWXELB/h2Tver8381dpQKTFZfsyv5TkXWK3JfwYLS+IvAXEN1+5gehJPeOMWmvHZQw==
+X-Received: by 2002:a1c:7e16:: with SMTP id z22mr21381797wmc.117.1599471494913;
+        Mon, 07 Sep 2020 02:38:14 -0700 (PDT)
+Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
+        by smtp.gmail.com with ESMTPSA id n17sm25170687wrw.0.2020.09.07.02.38.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Sep 2020 02:38:14 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     jbrunet@baylibre.com, devicetree@vger.kernel.org
+Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH 1/4] dt-bindings: clk: axg-clkc: add Video Clocks
+Date:   Mon,  7 Sep 2020 11:38:07 +0200
+Message-Id: <20200907093810.6585-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20200907093810.6585-1-narmstrong@baylibre.com>
+References: <20200907093810.6585-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CA+EHjTwYm--tOGjFq0aqP_bsBPu+f1hGTYrVxsuqLw-4K+QJMA@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 07, 2020 at 08:55:13AM +0100, Fuad Tabba wrote:
-> Hi Sudeep,
-> 
-> I understand that this is an RFC, but I have a few suggestions about
-> how the FF-A interface code might be structured.  See below.
-> 
-> On Sat, Aug 29, 2020 at 6:09 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
-> >
-> > This just add a basic driver that sets up the transport(e.g. SMCCC),
-> > checks the FFA version implemented, get the partition ID for self and
-> > sets up the Tx/Rx buffers for communication.
-> >
-> > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> > ---
-> >  drivers/firmware/arm_ffa/Makefile |   3 +-
-> >  drivers/firmware/arm_ffa/common.h |  23 +++
-> >  drivers/firmware/arm_ffa/driver.c | 288 ++++++++++++++++++++++++++++++
-> >  3 files changed, 313 insertions(+), 1 deletion(-)
-> >  create mode 100644 drivers/firmware/arm_ffa/common.h
-> >  create mode 100644 drivers/firmware/arm_ffa/driver.c
-> >
+Add clock IDs for the video clocks.
 
-[...]
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ include/dt-bindings/clock/axg-clkc.h | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-> > +
-> > +/**
-> > + * FF-A specification mentions explicitly about '4K pages'. This should
-> > + * not be confused with the kernel PAGE_SIZE, which is the translation
-> > + * granule kernel is configured and may be one among 4K, 16K and 64K.
-> > + */
-> > +#define FFA_PAGE_SIZE          SZ_4K
-> > +/* Keeping RX TX buffer size as 64K for now */
-> > +#define RXTX_BUFFER_SIZE       SZ_64K
-> 
-> The code/definitions above will be reused in other parts that deal
-> will FF-A (e.g., support for FF-A in KVM itself), so it might be good
-> to have it in a common header.  I was wondering if it might even be a
-> good idea to reuse the Hafnium headers here (assuming I understand
-> licensing right):
-> https://review.trustedfirmware.org/plugins/gitiles/hafnium/hafnium/+/refs/heads/master/inc/vmapi/hf/ffa.h
-> 
-
-I know few DTS files have dual license, but I am not sure about the
-headers and other source. But I agree on a common header and forgot to
-mention that explicitly but I am aware of, that we not only need common
-header, but some of the functions may also be reused. I am keeping them
-in the driver for now. We can move once we the KVM part also starts
-shaping up(before or after one of then gets merged, doesn't matter much)
-
-> > +
-> > +static ffa_fn *invoke_ffa_fn;
-> > +
-> > +static const int ffa_linux_errmap[] = {
-> > +       /* better than switch case as long as return value is continuous */
-> > +       0,              /* FFA_RET_SUCCESS */
-> > +       -EOPNOTSUPP,    /* FFA_RET_NOT_SUPPORTED */
-> > +       -EINVAL,        /* FFA_RET_INVALID_PARAMETERS */
-> > +       -ENOMEM,        /* FFA_RET_NO_MEMORY */
-> > +       -EBUSY,         /* FFA_RET_BUSY */
-> > +       -EINTR,         /* FFA_RET_INTERRUPTED */
-> > +       -EACCES,        /* FFA_RET_DENIED */
-> > +       -EAGAIN,        /* FFA_RET_RETRY */
-> > +       -ECANCELED,     /* FFA_RET_ABORTED */
-> > +};
-> > +
-> > +static inline int ffa_to_linux_errno(int errno)
-> > +{
-> > +       if (errno < FFA_RET_SUCCESS && errno >= FFA_RET_ABORTED)
-> > +               return ffa_linux_errmap[-errno];
-> > +       return -EINVAL;
-> > +}
-> 
-> Hardcoding the range check to be bound by FFA_RET_ABORTED could cause
-> some issues in the future if more error codes are added.  It might be
-> safer to check against the number of elements in ffa_linux_errmap.
-> 
-
-Makes sense, will see how I can fix that.
-
+diff --git a/include/dt-bindings/clock/axg-clkc.h b/include/dt-bindings/clock/axg-clkc.h
+index fd1f938c38d1..281df3e0f131 100644
+--- a/include/dt-bindings/clock/axg-clkc.h
++++ b/include/dt-bindings/clock/axg-clkc.h
+@@ -72,5 +72,29 @@
+ #define CLKID_PCIE_CML_EN1			80
+ #define CLKID_MIPI_ENABLE			81
+ #define CLKID_GEN_CLK				84
++#define CLKID_VPU_0_SEL				92
++#define CLKID_VPU_0				93
++#define CLKID_VPU_1_SEL				95
++#define CLKID_VPU_1				96
++#define CLKID_VPU				97
++#define CLKID_VAPB_0_SEL			99
++#define CLKID_VAPB_0				100
++#define CLKID_VAPB_1_SEL			102
++#define CLKID_VAPB_1				103
++#define CLKID_VAPB_SEL				104
++#define CLKID_VAPB				105
++#define CLKID_VCLK				106
++#define CLKID_VCLK2				107
++#define CLKID_VCLK_DIV1				122
++#define CLKID_VCLK_DIV2				123
++#define CLKID_VCLK_DIV4				124
++#define CLKID_VCLK_DIV6				125
++#define CLKID_VCLK_DIV12			126
++#define CLKID_VCLK2_DIV1			127
++#define CLKID_VCLK2_DIV2			128
++#define CLKID_VCLK2_DIV4			129
++#define CLKID_VCLK2_DIV6			130
++#define CLKID_VCLK2_DIV12			131
++#define CLKID_CTS_ENCL				133
+ 
+ #endif /* __AXG_CLKC_H */
 -- 
-Regards,
-Sudeep
+2.22.0
+
