@@ -2,200 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0CB925FAF7
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 15:07:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E33225FB75
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 15:30:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729376AbgIGNHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 09:07:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54850 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729324AbgIGNGj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Sep 2020 09:06:39 -0400
-Received: from coco.lan (ip5f5ad5cf.dynamic.kabel-deutschland.de [95.90.213.207])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6AE722166E;
-        Mon,  7 Sep 2020 13:06:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599483998;
-        bh=plJYBTK5bUNxyxURzDCboq7ma2r5yOFIVgai1JrZhl8=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=mjQ7fmAG8j41NK4PC9LP/LDYfnLgHl5FoTrO3Rnj7J/aH6Yl3nkQstzwtEadHarbn
-         +GsSF9ViYV51wGytn7dmXXxtUyipWlqAN+3Q9dQHEaj8dkaXYKji0n8Muy5n6Ns/nH
-         bpZX+LFvxIx0f9aV/TdfJXHus5+lq1XvA8MQdfvY=
-Date:   Mon, 7 Sep 2020 15:06:31 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Felipe Balbi <balbi@kernel.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>
-Cc:     Yu Chen <chenyu56@huawei.com>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <john.stultz@linaro.org>, <suzhuangluan@hisilicon.com>,
-        <kongfei@hisilicon.com>, <liuyu712@hisilicon.com>,
-        <wanghu17@hisilicon.com>, <butao@hisilicon.com>,
-        <chenyao11@huawei.com>, <fangshengzhou@hisilicon.com>,
-        <lipengcheng8@huawei.com>, <songxiaowei@hisilicon.com>,
-        <xuyiping@hisilicon.com>, <xuyoujun4@huawei.com>,
-        <yudongbin@hisilicon.com>, <zangleigang@hisilicon.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Binghui Wang <wangbinghui@hisilicon.com>
-Subject: Re: [PATCH v6 04/13] usb: dwc3: Add splitdisable quirk for
- Hisilicon Kirin Soc
-Message-ID: <20200907150631.70e1bce0@coco.lan>
-In-Reply-To: <20190420064019.57522-5-chenyu56@huawei.com>
-References: <20190420064019.57522-1-chenyu56@huawei.com>
-        <20190420064019.57522-5-chenyu56@huawei.com>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1729543AbgIGNXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 09:23:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32916 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729407AbgIGNXM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 09:23:12 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD08CC061573
+        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 06:23:11 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id lo4so18203253ejb.8
+        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 06:23:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gw9lL2TvHDntCUhAnmDZSsRD6P570jc9dLDcigHjLqo=;
+        b=Tr/UEPlBz2fsDMLmFd0VCTGHcFQoc3bi3jh3lDW53ENl1TrQGuLEKeEciByE6ZA2WD
+         XSmZEXdGl7UtzQnOv0mi030b/ZpXsd3jp6njzQGgvSUCvjgszzE07oO7iR4juvN86L83
+         BBDqz5v7eDZQXHBAJ4NVL4rmU5c4uIBCozDxg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gw9lL2TvHDntCUhAnmDZSsRD6P570jc9dLDcigHjLqo=;
+        b=tj2ZrmkDgQu93m3Fp6Zc1vPNw7Uk1QZVTBfHMdKg1I1+PqaeZulweipOmeu38MG0V8
+         htmd5juA5TdUp3MO7k1loHUSAIT/nBL0NvxjuCcHFQEmbWr6BgLjFSHmiGf+F4VJ3AFC
+         V+mX1onQpGO/5rpNk3ZthH7I4OqX8QamzWOlpPPoCDViga0Ehv3Te/5CaA+00UkWB93N
+         rZ4d8syrulSTNNrcMCKdlMlEWNpXBrOYiTYYoo7rmnECSCmmAWJ3LO0Z0IHiYVTdMCq8
+         95sWzM3ss9zdA0jtYmYIBeMjMK/FmazduxLoheYpk0pVkEbu9/4091lDlS9qGnEX59il
+         +t/g==
+X-Gm-Message-State: AOAM531u1+NlwDBuKDHPDptVUORkCZSAae/0H0slzlFTWbzNcnzxNsJ7
+        wYrijn36enTOfw3col50Ro55QsoDVD5ohA==
+X-Google-Smtp-Source: ABdhPJxR9e5a9GEwu0OoWmLhOIaAU2nsSBMcomlJC43VswmBEAm44GcWAObDjl1M2u/KaE/QO6hbjQ==
+X-Received: by 2002:a17:907:b0b:: with SMTP id h11mr21448992ejl.330.1599484990278;
+        Mon, 07 Sep 2020 06:23:10 -0700 (PDT)
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com. [209.85.128.54])
+        by smtp.gmail.com with ESMTPSA id w11sm14800893edx.81.2020.09.07.06.23.09
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Sep 2020 06:23:10 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id c19so12319946wmd.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 06:23:09 -0700 (PDT)
+X-Received: by 2002:a1c:a5c8:: with SMTP id o191mr21337268wme.127.1599484528763;
+ Mon, 07 Sep 2020 06:15:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20200902120122.24456-1-dongchun.zhu@mediatek.com>
+ <20200902120122.24456-3-dongchun.zhu@mediatek.com> <20200902134421.GN1891694@smile.fi.intel.com>
+ <1599225767.4733.64.camel@mhfsdcap03> <CAHp75Ve8WNuCuRmFcXaZHLjHMGfsvM=69ii5g4H+NYud6N95eQ@mail.gmail.com>
+In-Reply-To: <CAHp75Ve8WNuCuRmFcXaZHLjHMGfsvM=69ii5g4H+NYud6N95eQ@mail.gmail.com>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Mon, 7 Sep 2020 15:15:17 +0200
+X-Gmail-Original-Message-ID: <CAAFQd5BH4NZrhg=abqc=P9Uzf+t4Davn4SP9i3QktS4Q05WtzA@mail.gmail.com>
+Message-ID: <CAAFQd5BH4NZrhg=abqc=P9Uzf+t4Davn4SP9i3QktS4Q05WtzA@mail.gmail.com>
+Subject: Re: [PATCH v14 2/2] media: i2c: Add OV02A10 image sensor driver
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Dongchun Zhu <dongchun.zhu@mediatek.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Bingbu Cao <bingbu.cao@intel.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Sj Huang <sj.huang@mediatek.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Louis Kuo <louis.kuo@mediatek.com>,
+        =?UTF-8?B?U2hlbmduYW4gV2FuZyAo546L5Zyj55S3KQ==?= 
+        <shengnan.wang@mediatek.com>, matrix.zhu@aliyun.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Felipe/Greg,
+On Fri, Sep 4, 2020 at 4:06 PM Andy Shevchenko
+<andy.shevchenko@gmail.com> wrote:
+>
+> On Fri, Sep 4, 2020 at 4:48 PM Dongchun Zhu <dongchun.zhu@mediatek.com> wrote:
+> > On Wed, 2020-09-02 at 16:44 +0300, Andy Shevchenko wrote:
+> > > On Wed, Sep 02, 2020 at 08:01:22PM +0800, Dongchun Zhu wrote:
+>
+> ...
+>
+> > > > +   struct i2c_client *client = to_i2c_client(dev);
+> > > > +   struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> > >
+> > >       struct v4l2_subdev *sd = dev_get_drvdata(dev);
+> > >
+> > > Same for the rest similar cases.
+> >
+> > We've discussed the issue in DW9768 V2.
+> >
+> > For V4L2 sub-device drivers, dev_get_drvdata() shouldn't be used
+> > directly.
+> >
+> > More details please check the Google Issue:
+> > https://partnerissuetracker.corp.google.com/issues/147957975
+>
+> This is not a public link. Can you remind me what was the issue?
+>
 
-What's the status of this patch? 
+v4l2-subdev framework uses dev drvdata for its own purposes. However,
+that problem was about the driver setting its own drvdata and having
+it overridden by the framework. There is nothing wrong in using
+dev_get_drvdata(), assuming the correct type is known and here it's
+guaranteed to be v4l2_subdev for the v4l2-subdev framework.
 
-I tested here, together with the Hikey 970 phy RFC patches I sent
-last week.
+In fact i2c_get_clientdata() [1] is just a wrapper that calls
+dev_get_drvdata(&client->dev).
 
-Without this patch, the USB HID driver receives -EPROTO from
-submitted URBs, causing it to enter into an endless reset cycle
-on every 500 ms, at the hid_io_error() logic.
+[1] https://elixir.bootlin.com/linux/v5.9-rc3/source/include/linux/i2c.h#L351
 
-Tested-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> ...
+>
+> > > > +   if (!bus_cfg.nr_of_link_frequencies) {
+> > > > +           dev_err(dev, "no link frequencies defined\n");
+> > > > +           ret = -EINVAL;
+> > > > +           goto check_hwcfg_error;
+> > > > +   }
+> > >
+> > > If it's 0, the below will break on 'if (j == 0)' with slightly different but
+> > > informative enough message. What do you keep above check for?
+> >
+> > I still prefer to the original version.
+> > If 'bus_cfg.nr_of_link_frequencies' is 0, shouldn't we directly return
+> > error?
+>
+> But that will happen anyway. I will leave this to Sakari and
+> maintainers to decide.
+>
 
-If you prefer, I can re-submit this one with my SOB.
+I agree with Andy on this. The check is redundant. In fact, the later
+error message is more meaningful, because it at least suggests a
+frequency that must be supported, while the earlier one only states
+the fact.
 
-Thanks,
-Mauro
-
-Em Sat, 20 Apr 2019 14:40:10 +0800
-Yu Chen <chenyu56@huawei.com> escreveu:
-
-> SPLIT_BOUNDARY_DISABLE should be set for DesignWare USB3 DRD Core
-> of Hisilicon Kirin Soc when dwc3 core act as host.
-> 
-> Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
-> Cc: Felipe Balbi <balbi@kernel.org>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: John Stultz <john.stultz@linaro.org>
-> Cc: Binghui Wang <wangbinghui@hisilicon.com>
-> Signed-off-by: Yu Chen <chenyu56@huawei.com>
-> ---
-> v4:
-> * Add dwc3_complete definition while CONFIG_PM_SLEEP does not defined.
-> * Add description for 'dis_split_quirk'.
-> ---
-> ---
->  drivers/usb/dwc3/core.c | 26 ++++++++++++++++++++++++++
->  drivers/usb/dwc3/core.h |  7 +++++++
->  2 files changed, 33 insertions(+)
-> 
-> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> index a1b126f90261..c3ef6bd2b0d4 100644
-> --- a/drivers/usb/dwc3/core.c
-> +++ b/drivers/usb/dwc3/core.c
-> @@ -117,6 +117,7 @@ static void __dwc3_set_mode(struct work_struct *work)
->  	struct dwc3 *dwc = work_to_dwc(work);
->  	unsigned long flags;
->  	int ret;
-> +	u32 reg;
->  
->  	if (dwc->dr_mode != USB_DR_MODE_OTG)
->  		return;
-> @@ -169,6 +170,11 @@ static void __dwc3_set_mode(struct work_struct *work)
->  			phy_set_mode(dwc->usb2_generic_phy, PHY_MODE_USB_HOST);
->  			phy_set_mode(dwc->usb3_generic_phy, PHY_MODE_USB_HOST);
->  			phy_calibrate(dwc->usb2_generic_phy);
-> +			if (dwc->dis_split_quirk) {
-> +				reg = dwc3_readl(dwc->regs, DWC3_GUCTL3);
-> +				reg |= DWC3_GUCTL3_SPLITDISABLE;
-> +				dwc3_writel(dwc->regs, DWC3_GUCTL3, reg);
-> +			}
->  		}
->  		break;
->  	case DWC3_GCTL_PRTCAP_DEVICE:
-> @@ -1306,6 +1312,9 @@ static void dwc3_get_properties(struct dwc3 *dwc)
->  	dwc->dis_metastability_quirk = device_property_read_bool(dev,
->  				"snps,dis_metastability_quirk");
->  
-> +	dwc->dis_split_quirk = device_property_read_bool(dev,
-> +				"snps,dis-split-quirk");
-> +
->  	dwc->lpm_nyet_threshold = lpm_nyet_threshold;
->  	dwc->tx_de_emphasis = tx_de_emphasis;
->  
-> @@ -1825,10 +1834,27 @@ static int dwc3_resume(struct device *dev)
->  
->  	return 0;
->  }
-> +
-> +static void dwc3_complete(struct device *dev)
-> +{
-> +	struct dwc3	*dwc = dev_get_drvdata(dev);
-> +	u32		reg;
-> +
-> +	if (dwc->current_dr_role == DWC3_GCTL_PRTCAP_HOST &&
-> +			dwc->dis_split_quirk) {
-> +		dev_dbg(dwc->dev, "set DWC3_GUCTL3_SPLITDISABLE\n");
-> +		reg = dwc3_readl(dwc->regs, DWC3_GUCTL3);
-> +		reg |= DWC3_GUCTL3_SPLITDISABLE;
-> +		dwc3_writel(dwc->regs, DWC3_GUCTL3, reg);
-> +	}
-> +}
-> +#else
-> +#define dwc3_complete NULL
->  #endif /* CONFIG_PM_SLEEP */
->  
->  static const struct dev_pm_ops dwc3_dev_pm_ops = {
->  	SET_SYSTEM_SLEEP_PM_OPS(dwc3_suspend, dwc3_resume)
-> +	.complete = dwc3_complete,
->  	SET_RUNTIME_PM_OPS(dwc3_runtime_suspend, dwc3_runtime_resume,
->  			dwc3_runtime_idle)
->  };
-> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-> index 1528d395b156..28475e301ad9 100644
-> --- a/drivers/usb/dwc3/core.h
-> +++ b/drivers/usb/dwc3/core.h
-> @@ -136,6 +136,7 @@
->  #define DWC3_GEVNTCOUNT(n)	(0xc40c + ((n) * 0x10))
->  
->  #define DWC3_GHWPARAMS8		0xc600
-> +#define DWC3_GUCTL3		0xc60c
->  #define DWC3_GFLADJ		0xc630
->  
->  /* Device Registers */
-> @@ -370,6 +371,9 @@
->  /* Global User Control Register 2 */
->  #define DWC3_GUCTL2_RST_ACTBITLATER		BIT(14)
->  
-> +/* Global User Control Register 3 */
-> +#define DWC3_GUCTL3_SPLITDISABLE		BIT(14)
-> +
->  /* Device Configuration Register */
->  #define DWC3_DCFG_DEVADDR(addr)	((addr) << 3)
->  #define DWC3_DCFG_DEVADDR_MASK	DWC3_DCFG_DEVADDR(0x7f)
-> @@ -1030,6 +1034,7 @@ struct dwc3_scratchpad_array {
->   * 	2	- No de-emphasis
->   * 	3	- Reserved
->   * @dis_metastability_quirk: set to disable metastability quirk.
-> + * @dis_split_quirk: set to disable split boundary.
->   * @imod_interval: set the interrupt moderation interval in 250ns
->   *                 increments or 0 to disable.
->   */
-> @@ -1216,6 +1221,8 @@ struct dwc3 {
->  
->  	unsigned		dis_metastability_quirk:1;
->  
-> +	unsigned		dis_split_quirk:1;
-> +
->  	u16			imod_interval;
->  };
->  
-
-
-
-Thanks,
-Mauro
+Best regards,
+Tomasz
