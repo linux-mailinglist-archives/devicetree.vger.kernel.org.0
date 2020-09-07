@@ -2,72 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF80925FDB8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 17:56:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C953C25FF4A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 18:30:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730223AbgIGP4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 11:56:42 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:25919 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1730213AbgIGP4l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 11:56:41 -0400
-X-IronPort-AV: E=Sophos;i="5.76,402,1592838000"; 
-   d="scan'208";a="56370979"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 08 Sep 2020 00:56:36 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id E4DC8400EA92;
-        Tue,  8 Sep 2020 00:56:34 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
+        id S1729862AbgIGQaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 12:30:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42894 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729864AbgIGO2b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 10:28:31 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8BDBC061574
+        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 07:27:45 -0700 (PDT)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7] helo=dude.pengutronix.de.)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <bst@pengutronix.de>)
+        id 1kFI7T-0003nx-U4; Mon, 07 Sep 2020 16:27:43 +0200
+From:   Bastian Krause <bst@pengutronix.de>
+To:     linux-rtc@vger.kernel.org
+Cc:     devicetree@vger.kernel.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Subject: [PATCH v2 3/3] ARM: dts: r8a7742-iwg21d-q7: Enable SD2 LED indication
-Date:   Mon,  7 Sep 2020 16:55:41 +0100
-Message-Id: <20200907155541.2011-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200907155541.2011-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20200907155541.2011-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Arnaud Ebalard <arno@natisbad.org>,
+        Marek Vasut <marex@denx.de>, kernel@pengutronix.de,
+        Bastian Krause <bst@pengutronix.de>
+Subject: [PATCH 0/8] rtc: expand charge support, implement rx8130 charging
+Date:   Mon,  7 Sep 2020 16:27:19 +0200
+Message-Id: <20200907142727.26472-1-bst@pengutronix.de>
+X-Mailer: git-send-email 2.28.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: bst@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for LED trigger on SD2 interface.
+In order to preserve previous RTC charging behavior while allowing to
+add new charging configurations this series adds the dt property
+aux-voltage-chargeable as a uint enum. It supersedes the
+trickle-diode-disable flag.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- arch/arm/boot/dts/r8a7742-iwg21d-q7.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Then the ds1307 driver's charging infrastructure is generalized:
 
-diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
-index 66881a473d6c..e45b502d61cb 100644
---- a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
-+++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
-@@ -63,6 +63,16 @@
- 		enable-gpios = <&gpio3 11 GPIO_ACTIVE_HIGH>;
- 	};
- 
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		sdhi2_led {
-+			label = "sdio-led";
-+			gpios = <&gpio5 22 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "mmc1";
-+		};
-+	};
-+
- 	lvds-receiver {
- 		compatible = "ti,ds90cf384a", "lvds-decoder";
- 		vcc-supply = <&vcc_3v3_tft1>;
+- support charging on 'aux-voltage-chargeable = <1>'
+- keep the previous charge default per chip
+- make trickle-resistor-ohms optional for charging
+- apply DS13XX_TRICKLE_CHARGER_MAGIC only conditionally
+
+This preparatory work allows to enable Epson's RX8130 backup
+battery and make it chargeable when 'aux-voltage-chargeable = <1>' is
+given.
+
+I decided to create a new series for this as the patches of previous
+efforts changed drastically:
+
+- https://lore.kernel.org/linux-rtc/20190628002151.4925-1-marex@denx.de/
+- https://lore.kernel.org/linux-rtc/20190905130336.10651-1-marex@denx.de/
+- https://lore.kernel.org/linux-rtc/98fa7181-3ebe-d7c3-cfac-fee841c81e15@pengutronix.de/T/
+
+Regards,
+Bastian
+
+Bastian Krause (8):
+  dt-bindings: rtc: let aux-voltage-chargeable supersede
+    trickle-diode-disable
+  dt-bindings: rtc: ds1307: let aux-voltage-chargeable supersede
+    trickle-diode-disable
+  dt-bindings: rtc: ds1307: add rx8130 aux-voltage-chargeable support
+  rtc: ds1307: apply DS13XX_TRICKLE_CHARGER_MAGIC only conditionally
+  rtc: ds1307: introduce requires_trickle_resistor per chip
+  rtc: ds1307: store previous charge default per chip
+  rtc: ds1307: consider aux-voltage-chargeable
+  rtc: ds1307: enable rx8130's backup battery, make it chargeable
+    optionally
+
+ .../devicetree/bindings/rtc/rtc-ds1307.txt    |  9 ++-
+ .../devicetree/bindings/rtc/rtc.yaml          | 10 ++++
+ drivers/rtc/rtc-ds1307.c                      | 58 +++++++++++++++++--
+ 3 files changed, 71 insertions(+), 6 deletions(-)
+
 -- 
-2.17.1
+2.28.0
 
