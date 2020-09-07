@@ -2,102 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB73A25FBED
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 16:18:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B72325FC17
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 16:29:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729661AbgIGOSA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 10:18:00 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:56810 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729788AbgIGORI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 10:17:08 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 087EFTVg053388;
-        Mon, 7 Sep 2020 09:15:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599488129;
-        bh=xUz4wObYEDdENZCNHUrCsFZ25ccgTnFTci7Yd+rcWYw=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=BorI95I0jkWvfjVGA5Ur5yA71XuioNLNRECHjBP6jMYdX+VZhh5z/lPsa3vX49BPw
-         iFy0nXnX+qcRrXeR8cHd1SALmKnsCVg81A+Vpjn1g+VB3t9QTC8Ug65nWqGJVuAR93
-         JzU8X7uyMg5b/+56W8A1o3pMVpXsF1W+j9Q/dgVg=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 087EFTtC035999
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Sep 2020 09:15:29 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 7 Sep
- 2020 09:15:27 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 7 Sep 2020 09:15:27 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 087EFRfd043562;
-        Mon, 7 Sep 2020 09:15:27 -0500
-Date:   Mon, 7 Sep 2020 09:15:27 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Roger Quadros <rogerq@ti.com>
-CC:     <t-kristo@ti.com>, <robh+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <nsekhar@ti.com>,
-        <kishon@ti.com>
-Subject: Re: [PATCH 0/6] arm64: dts: ti: Add USB support for J7200 EVM
-Message-ID: <20200907141527.x6gkvbji33r4q64p@akan>
-References: <20200907103810.9870-1-rogerq@ti.com>
+        id S1729882AbgIGO3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 10:29:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42896 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729863AbgIGO2b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 10:28:31 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B13F9C061786
+        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 07:27:45 -0700 (PDT)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7] helo=dude.pengutronix.de.)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <bst@pengutronix.de>)
+        id 1kFI7T-0003nx-VS; Mon, 07 Sep 2020 16:27:44 +0200
+From:   Bastian Krause <bst@pengutronix.de>
+To:     linux-rtc@vger.kernel.org
+Cc:     devicetree@vger.kernel.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnaud Ebalard <arno@natisbad.org>,
+        Marek Vasut <marex@denx.de>, kernel@pengutronix.de,
+        Bastian Krause <bst@pengutronix.de>
+Subject: [PATCH 1/8] dt-bindings: rtc: let aux-voltage-chargeable supersede trickle-diode-disable
+Date:   Mon,  7 Sep 2020 16:27:20 +0200
+Message-Id: <20200907142727.26472-2-bst@pengutronix.de>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200907142727.26472-1-bst@pengutronix.de>
+References: <20200907142727.26472-1-bst@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200907103810.9870-1-rogerq@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: bst@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13:38-20200907, Roger Quadros wrote:
-> Hi Tero/Nishanth,
-> 
-> This series adds USB2.0 support for the J7200 EVM.
-> 
-> Series is based on top of:
-> 
->     Faiz's MMC/SD support series
->     https://lore.kernel.org/lkml/20200907090520.25313-1-faiz_abbas@ti.com/
->     Lokesh's initial support series
->     https://patchwork.kernel.org/cover/11740039/
->     Vignesh's I2C support series
->     https://lore.kernel.org/patchwork/cover/1282152/
->     Vignesh's Hyperflash series
->     https://lore.kernel.org/patchwork/cover/1285326/
-> 
-> cheers,
-> -roger
-> 
-> Kishon Vijay Abraham I (1):
->   arm64: dts: ti: k3-j7200-common-proc-board: Configure the SERDES lane
->     function
-> 
-> Roger Quadros (5):
->   dt-bindings: mux-j7200-wiz: Add lane function defines
->   arm64: dts: ti: k3-j7200-main: Add SERDES lane control mux
->   arm64: dts: ti: k3-j7200-main.dtsi: Add USB to SERDES lane MUX
->   arm64: dts: ti: k3-j7200-main: Add USB controller
->   arm64: dts: ti: k3-j7200-common-proc-board: Add USB support
-> 
->  .../dts/ti/k3-j7200-common-proc-board.dts     | 28 ++++++++++
->  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 51 +++++++++++++++++++
->  include/dt-bindings/mux/mux-j7200-wiz.h       | 29 +++++++++++
->  3 files changed, 108 insertions(+)
->  create mode 100644 include/dt-bindings/mux/mux-j7200-wiz.h
-> 
+Some RTCs can be equipped with a chargeable battery or supercap.
+Every RTC allowing this whose driver's implement it are charged by
+default. To disable this the trickle-diode-disable flag exists.
 
-Too many warnings(W=2 and others) for me to look at this series
-closer.
+If a driver did not support charging and some time later one wants to
+add that feature, there is currently no way to do it without breaking
+dt backwards compatibility. RTCs on boards without the
+trickle-diode-disable flag in their device tree would suddenly charge
+their battery/supercap which is a change in behavior.
 
+Change that by introducing aux-voltage-chargeable, not as a flag but as
+a uint32 enum allowing to set "do not charge" (0) or "charge" (1). This
+dt property is optional, so we can now distinguish these cases.
+
+Care must be taken to support the old behavior for device trees without
+aux-voltage-chargeable nonetheless to stay compatible.
+
+Suggested-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Signed-off-by: Bastian Krause <bst@pengutronix.de>
+---
+In a previous series aux-voltage-chargeable was added as a ds1307 dt
+property. Discussions lead to turning that into a generic rtc dt
+property:
+https://lore.kernel.org/linux-rtc/98fa7181-3ebe-d7c3-cfac-fee841c81e15@pengutronix.de/T/
+---
+ Documentation/devicetree/bindings/rtc/rtc.yaml | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/rtc/rtc.yaml b/Documentation/devicetree/bindings/rtc/rtc.yaml
+index ee237b2ed66a..e895c772ce99 100644
+--- a/Documentation/devicetree/bindings/rtc/rtc.yaml
++++ b/Documentation/devicetree/bindings/rtc/rtc.yaml
+@@ -17,6 +17,15 @@ properties:
+   $nodename:
+     pattern: "^rtc(@.*|-[0-9a-f])*$"
+ 
++  aux-voltage-chargeable:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1]
++    description:
++      Tells whether the battery/supercap of the RTC (if any) is
++      chargeable or not:
++      0: not chargeable
++      1: chargeable
++
+   quartz-load-femtofarads:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description:
+@@ -35,6 +44,7 @@ properties:
+     description:
+       Do not use internal trickle charger diode. Should be given if
+       internal trickle charger diode should be disabled.
++    deprecated: true
+ 
+   trickle-resistor-ohms:
+     $ref: /schemas/types.yaml#/definitions/uint32
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.28.0
+
