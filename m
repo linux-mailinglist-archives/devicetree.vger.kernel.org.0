@@ -2,220 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BCE42260348
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:46:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 299A126034D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 19:47:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729392AbgIGRq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 13:46:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45674 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729380AbgIGRqx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 13:46:53 -0400
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF419C061573;
-        Mon,  7 Sep 2020 10:46:52 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id o16so7018007pjr.2;
-        Mon, 07 Sep 2020 10:46:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RUwwJmW415jdniBRnhCr71QvDhindSCif4v2x7+xATw=;
-        b=rAchZ6oxFaZRTKYKHVAu1BJZNZ8CqgEdPpcTyyM+gTIhqZWyRTywYlYvhvwWkriCla
-         vK/PrJ3tt+OGuxhpXdu+oZ8fSwIbAfbBHkSKmqL4PPRwkqXOu+KSyz6kGRVRwXXmz5d2
-         XW7eL1V2CGLn4AEDouT0dZX3KP4UF+2hJiOQjqamGlvXYfmzUdNyeX+niKkya0i8eGvC
-         Zw/NkqlE/xG6CYy/naDuKHO5ScSMtJbuIFGqZjUdZh8OkG0jiN4uf3zbaKtnTI75FWvf
-         5fVYEza7xlcgEfAjdaHFC/IEtBMeXOnpDALDheR+BXgWl2Zprwo6d7Mm4uj7Udhwa3Qj
-         bOfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RUwwJmW415jdniBRnhCr71QvDhindSCif4v2x7+xATw=;
-        b=Kfn3vjEJeNSYGAMGMQHTQG5BWXuVJVIvgI1BxCkgWYNYISN3usoSQcms5ZG3CwobJi
-         u71JS1J39nBDHLOeU7YJPnXpWo/kwRViISwOOxzRVVTXSU/Tcbkpzb1er4IA6tUdi6H2
-         RpkA2NZxVZIOviXU5SE77CmmpBrFdXvVnAmHX35+vb/p2ryQxCSFBVfK8uMKEGxGeJE4
-         FmeWGZQ9U9s9JWDjmM2OgJMpmlPfrFvNGpPx+YjejM0Xf6E7ntfjl1ySYyIQ+nWqHHyO
-         xooH9Ica5dXp8QoCnHULlSOdOHSCr+Dcx/NR2yQyigiCmhMKsQ4ShL/8nmjnCK22++bC
-         MCYA==
-X-Gm-Message-State: AOAM530DKsOGSlkV/tOP4K22AxUXBY9VrFAsAo4Hca6Lpxj34onpgBi7
-        fVhmz0rY090XJAGy8HT3xkFju/72Iz7mlX15ZnY=
-X-Google-Smtp-Source: ABdhPJzVnZk2IuUK4LHweduLHf6VK/djDPaGh2EANPzLRqhLVy1fm8I6Oyl2Axhqvudkojmk9o9mLgkwfY4Cf0r36zg=
-X-Received: by 2002:a17:902:7d8e:: with SMTP id a14mr6381974plm.224.1599500812402;
- Mon, 07 Sep 2020 10:46:52 -0700 (PDT)
+        id S1729353AbgIGRrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 13:47:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52650 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729396AbgIGRrJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 13:47:09 -0400
+Received: from pali.im (pali.im [31.31.79.79])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E90D5206E7;
+        Mon,  7 Sep 2020 17:47:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599500828;
+        bh=q8Itn2cHd3ckHrO+heD9TcNKbUw7qQ0g2d+sdj7DcEo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=oZbdYyHLOdO2oH+pjUHARSetGjw5yfzPVxe60BK2ZuHoCDEbbsxnpPJz5g0DEFUdf
+         ISA5KcU14uYZBjNyZ0QOXX/PBJE2czgwveSjk42TV57MEjGHZWvVR0/ID4uNMaAOGQ
+         yAUoIKO3mXE8d8HmCyit6ecbkupcZRzDlXVnM9pc=
+Received: by pali.im (Postfix)
+        id 0819B814; Mon,  7 Sep 2020 19:47:05 +0200 (CEST)
+Date:   Mon, 7 Sep 2020 19:47:05 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Andre Heider <a.heider@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, Jason Cooper <jason@lakedaemon.net>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tomasz Maciej Nowak <tmn505@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: marvell: espressobin: Add ethernet switch
+ aliases
+Message-ID: <20200907174705.clknw4375smvt47o@pali>
+References: <20200907112718.5994-1-pali@kernel.org>
+ <3ec54259-4bfe-8462-e8d5-083fc009707a@gmail.com>
+ <20200907172303.GA3254313@lunn.ch>
+ <20200907173534.aoupftjkxgcftfqo@pali>
+ <f8cce9af-372b-f2bc-ea09-e1516367cb90@gmail.com>
 MIME-Version: 1.0
-References: <20200905173004.216081-1-jic23@kernel.org> <20200905173004.216081-7-jic23@kernel.org>
-In-Reply-To: <20200905173004.216081-7-jic23@kernel.org>
-From:   Orson Zhai <orsonzhai@gmail.com>
-Date:   Tue, 8 Sep 2020 01:46:40 +0800
-Message-ID: <CA+H2tpE2-f7Sugi04hFwx4QrczufnE2gNHPzAoHWMwARgyOyLw@mail.gmail.com>
-Subject: Re: [PATCH 06/20] dt-bindings:iio:adc:sprd,sc2720-adc yaml conversion.
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f8cce9af-372b-f2bc-ea09-e1516367cb90@gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonathan,
+On Monday 07 September 2020 19:43:08 Andre Heider wrote:
+> On 07/09/2020 19:35, Pali Rohár wrote:
+> > On Monday 07 September 2020 19:23:03 Andrew Lunn wrote:
+> > > > My dts-foo is a little rusty, but now that you labeled the ports in the
+> > > > .dtsi, can this whole "switch0" block reduced to something like:
+> > > > 
+> > > > &switch0port1 {
+> > > > 	label = "lan1";
+> > > > };
+> > > > 
+> > > > &switch0port3 {
+> > > > 	label = "wan";
+> > > > };
+> > > 
+> > > Probably yes.
+> > > 
+> > > But that is definitely too much for stable.
+> > 
+> > Yes, this suggested change is not for stable, but looks like a nice
+> > cleanup. So it could be done in followup patch.
+> > 
+> > Andre, are you going to prepare and test this followup change?
+> 
+> I can prep the patch if you like, but the suggested cleanup only affects the
+> v7 dts files. I don't have that hardware version to test it, so could only
+> send an untested patch.
 
-On Sun, Sep 6, 2020 at 1:32 AM Jonathan Cameron <jic23@kernel.org> wrote:
->
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
->
-> I changed the name to reflect a specific part in line with normal
-> naming conventions. If there is a particularly strong reason to
-> keep the wild cards let me know.
-
-Why do we have to change the file name of 27xx ?
-
->
-> Otherwise this was a fairly simple conversion as part of converting
-> all the IIO bindings to yaml.
-
-Thanks for doing this for us.
-
--Orson
-
->
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Cc: Baolin Wang <baolin.wang7@gmail.com>
-> Cc: Orson Zhai <orsonzhai@gmail.com>
-> Cc: Chunyan Zhang <zhang.lyra@gmail.com>
-> ---
->  .../bindings/iio/adc/sprd,sc2720-adc.yaml     | 72 +++++++++++++++++++
->  .../bindings/iio/adc/sprd,sc27xx-adc.txt      | 40 -----------
->  2 files changed, 72 insertions(+), 40 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml b/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
-> new file mode 100644
-> index 000000000000..57df6439dd9d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/sprd,sc2720-adc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Spreadtrum SC27XX series PMICs ADC binding
-> +
-> +maintainers:
-> +  - Baolin Wang <baolin.wang7@gmail.com>
-> +
-> +description:
-> +  Supports the ADC found on these PMICs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sprd,sc2720-adc
-> +      - sprd,sc2721-adc
-> +      - sprd,sc2723-adc
-> +      - sprd,sc2730-adc
-> +      - sprd,sc2731-adc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#io-channel-cells":
-> +    const: 1
-> +
-> +  hwlocks:
-> +    maxItems: 1
-> +
-> +  nvmem-cells:
-> +    maxItems: 2
-> +
-> +  nvmem-cell-names:
-> +    items:
-> +      - const: big_scale_calib
-> +      - const: small_scale_calib
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - "#io-channel-cells"
-> +  - hwlocks
-> +  - nvmem-cells
-> +  - nvmem-cell-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    pmic {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        adc@480 {
-> +            compatible = "sprd,sc2731-adc";
-> +            reg = <0x480>;
-> +            interrupt-parent = <&sc2731_pmic>;
-> +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> +            #io-channel-cells = <1>;
-> +            hwlocks = <&hwlock 4>;
-> +            nvmem-cells = <&adc_big_scale>, <&adc_small_scale>;
-> +            nvmem-cell-names = "big_scale_calib", "small_scale_calib";
-> +        };
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/iio/adc/sprd,sc27xx-adc.txt b/Documentation/devicetree/bindings/iio/adc/sprd,sc27xx-adc.txt
-> deleted file mode 100644
-> index b4daa15dcf15..000000000000
-> --- a/Documentation/devicetree/bindings/iio/adc/sprd,sc27xx-adc.txt
-> +++ /dev/null
-> @@ -1,40 +0,0 @@
-> -Spreadtrum SC27XX series PMICs ADC binding
-> -
-> -Required properties:
-> -- compatible: Should be one of the following.
-> -       "sprd,sc2720-adc"
-> -       "sprd,sc2721-adc"
-> -       "sprd,sc2723-adc"
-> -       "sprd,sc2730-adc"
-> -       "sprd,sc2731-adc"
-> -- reg: The address offset of ADC controller.
-> -- interrupt-parent: The interrupt controller.
-> -- interrupts: The interrupt number for the ADC device.
-> -- #io-channel-cells: Number of cells in an IIO specifier.
-> -- hwlocks: Reference to a phandle of a hwlock provider node.
-> -- nvmem-cells: A phandle to the calibration cells provided by eFuse device.
-> -- nvmem-cell-names: Should be "big_scale_calib", "small_scale_calib".
-> -
-> -Example:
-> -
-> -       sc2731_pmic: pmic@0 {
-> -               compatible = "sprd,sc2731";
-> -               reg = <0>;
-> -               spi-max-frequency = <26000000>;
-> -               interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-> -               interrupt-controller;
-> -               #interrupt-cells = <2>;
-> -               #address-cells = <1>;
-> -               #size-cells = <0>;
-> -
-> -               pmic_adc: adc@480 {
-> -                       compatible = "sprd,sc2731-adc";
-> -                       reg = <0x480>;
-> -                       interrupt-parent = <&sc2731_pmic>;
-> -                       interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> -                       #io-channel-cells = <1>;
-> -                       hwlocks = <&hwlock 4>;
-> -                       nvmem-cells = <&adc_big_scale>, <&adc_small_scale>;
-> -                       nvmem-cell-names = "big_scale_calib", "small_scale_calib";
-> -               };
-> -       };
-> --
-> 2.28.0
->
+As a result of this cleanup should be binary DTB file for V7 with same
+structure as DTB file without such cleanup patch, right? And this test
+(structure / content of compiled file) does not need particular hardware.
