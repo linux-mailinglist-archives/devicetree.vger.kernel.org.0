@@ -2,205 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3DD825F2F0
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 08:05:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46AA025F301
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 08:10:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726278AbgIGGFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 02:05:41 -0400
-Received: from Galois.linutronix.de ([193.142.43.55]:46304 "EHLO
-        galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725803AbgIGGFk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 02:05:40 -0400
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1599458737;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=IQ9rQZvwaojnAND98zBS0Qjc2bcI20zafO8aAmRJIC8=;
-        b=SHWASEW/ddMLgVqEVez9FCIRid6H6k3eGCMwWSFIl202Lm1w6k91b24uP43AVRtNK5C2kR
-        9kASF0XaOCtCwDJvj/I5AvH7lvXDPcnZMTZHh+BkofchcO7Zxep1WIo0l92yoFTOtYC/8I
-        cUF6IFfs7AzWC6OxrcJyamPN+2zamf/cvnEQbSl73RISH9EaXP9kT9l9sIB6zuDxFBL1gw
-        HQavJCjt7z1OGUdugRijQNQb4OQU4Lmm+TEOq0zkNhE0CkPJdWcNpqS0pkheCh/XqUzzLU
-        U1nLLgKuE6rwE5Ow/wvVMe16OjhI0gqIvmUovCV9TTLiQo96ZKWmHqYaDRWEAg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1599458737;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=IQ9rQZvwaojnAND98zBS0Qjc2bcI20zafO8aAmRJIC8=;
-        b=Yp7hCd6GGAV8dX/EWzdjHCKi9Mp5D/LVxtNhGX2YSLSyqmdJGB7vMW5vJYfnlFBGj+19Et
-        VfJKV/C9tLgazBAw==
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        ilias.apalodimas@linaro.org
-Subject: Re: [PATCH v5 2/7] net: dsa: Add DSA driver for Hirschmann Hellcreek switches
-In-Reply-To: <20200905204235.f6b5til4sc3hoglr@skbuf>
-References: <20200904062739.3540-1-kurt@linutronix.de> <20200904062739.3540-3-kurt@linutronix.de> <20200905204235.f6b5til4sc3hoglr@skbuf>
-Date:   Mon, 07 Sep 2020 08:05:25 +0200
-Message-ID: <875z8qazq2.fsf@kurt>
+        id S1726341AbgIGGKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 02:10:06 -0400
+Received: from mail-ej1-f67.google.com ([209.85.218.67]:44350 "EHLO
+        mail-ej1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725803AbgIGGKG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 02:10:06 -0400
+Received: by mail-ej1-f67.google.com with SMTP id r7so3266499ejs.11;
+        Sun, 06 Sep 2020 23:10:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=GVokwuwCaSVBc9Gyn7b0LOXpcqkbxNYOMN+1IZzWnZQ=;
+        b=a/E5fKmAyHWIix6L1IW31pNLvcxTdToWINidap+0KcmBjq68Hhx6EC+MLnZ3Iv0nKu
+         LGT8SDT65dzLFvq4lmEcpnivS8uEhkZXehNbUtQiG7j3h3KSNg3ZVxQQiSH/HCaOqkds
+         I9ZE9KoHf2eWgIKSIB7JOtDHXgNK6W7eHiZRwEOWJaV01frOvckMeRnQDEAnWyP9SW+K
+         LxxPcBKdjx30SLeFCTyEigg9UYzHjpep0iKNQU0cqjiXUsEO8xApx73G5BhFZNI61yXm
+         /p6sYNeJcjBWHmrdiM92DID6TLHNTug2TChQadaD5FkhxOEvqwpzJiZW923LRtAA+4ph
+         I4wA==
+X-Gm-Message-State: AOAM531ZCzY/DJ6nK2AKirtVlNY4PbDLfXAq4PnodCCT8SHTY+h20F8w
+        MmbRxd2w5uB1/i0LC/BzvoWX17+N00s=
+X-Google-Smtp-Source: ABdhPJzM/GiqDDPUglZaYg3VUWUe0/dDHCWpXQ1+YwL2JZxA9p9bR+MKuStVCwG/XpSPy00N+WM4qQ==
+X-Received: by 2002:a17:906:a00d:: with SMTP id p13mr20408792ejy.535.1599459001754;
+        Sun, 06 Sep 2020 23:10:01 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.174])
+        by smtp.googlemail.com with ESMTPSA id r16sm14473271ejb.110.2020.09.06.23.09.59
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 06 Sep 2020 23:10:00 -0700 (PDT)
+Date:   Mon, 7 Sep 2020 08:09:58 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     linux-clk <linux-clk@vger.kernel.org>, devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v3 12/14] dt-bindings: mtd: gpmi-nand: Fix matching of
+ clocks on different SoCs
+Message-ID: <20200907060958.GA4525@kozik-lap>
+References: <20200904152404.20636-1-krzk@kernel.org>
+ <20200904152404.20636-13-krzk@kernel.org>
+ <CAL_Jsq+tGQhkqtQszOx7nvr1PR=YFz2p1=OnWQ8JxmSg4qNkHA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+tGQhkqtQszOx7nvr1PR=YFz2p1=OnWQ8JxmSg4qNkHA@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+On Fri, Sep 04, 2020 at 04:36:39PM -0600, Rob Herring wrote:
+> On Fri, Sep 4, 2020 at 9:25 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >
+> > Driver requires different amount of clocks for different SoCs.  Describe
+> > these requirements properly to fix dtbs_check warnings like:
+> >
+> >     arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dt.yaml: nand-controller@33002000: clock-names:1: 'gpmi_apb' was expected
+> >
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> >
+> > ---
+> >
+> > Changes since v1:
+> > 1. Do not require order of clocks (use pattern).
+> 
+> To the extent that you can, you should fix the order in dts files
+> first. If we just adjust the schemas to match the dts files, then
+> what's the point?
 
-On Sat Sep 05 2020, Vladimir Oltean wrote:
-> On Fri, Sep 04, 2020 at 08:27:34AM +0200, Kurt Kanzenbach wrote:
->> Add a basic DSA driver for Hirschmann Hellcreek switches. Those switches=
- are
->> implementing features needed for Time Sensitive Networking (TSN) such as=
- support
->> for the Time Precision Protocol and various shapers like the Time Aware =
-Shaper.
->>=20
->> This driver includes basic support for networking:
->>=20
->>  * VLAN handling
->>  * FDB handling
->>  * Port statistics
->>  * STP
->>  * Phylink
->>=20
->> Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
->> ---
->> +
->> +/* Default setup for DSA:
->> + *  VLAN 2: CPU and Port 1 egress untagged.
->> + *  VLAN 3: CPU and Port 2 egress untagged.
->> + */
->> +static int hellcreek_setup_vlan_membership(struct dsa_switch *ds, int p=
-ort,
->> +					   bool enabled)
->
-> If you use VLAN 2 and 3 for port separation, then how does the driver
-> deal with the following:
->
-> ip link add link swp1 name swp1.100 type vlan id 100
-> ip link add link swp2 name swp2.100 type vlan id 100
->
-> In this case, frames with VLAN 100 shouldn't leak from one port to the
-> other, will they?
+The DTSes do not have mixed order of clocks between each other, as fair
+as I remember. It was fix after Sasha Hauer comment that order is not
+necessarily good.
 
-Well, that depends on whether hellcreek_vlan_add() is called for
-creating that vlan interfaces. In general: As soon as both ports are
-members of the same vlan that traffic is switched.
+We have the clock-names property, why enforcing the order?
 
->
->> +{
->> +	int upstream =3D dsa_upstream_port(ds, port);
->> +	struct switchdev_obj_port_vlan vlan =3D {
->> +		.vid_begin =3D port,
->> +		.vid_end =3D port,
->> +	};
->> +	int err =3D 0;
->> +
->> +	/* The CPU port is implicitly configured by
->> +	 * configuring the front-panel ports
->> +	 */
->> +	if (!dsa_is_user_port(ds, port))
->> +		return 0;
->> +
->> +	/* Apply vid to port as egress untagged and port vlan id */
->> +	vlan.flags =3D BRIDGE_VLAN_INFO_UNTAGGED | BRIDGE_VLAN_INFO_PVID;
->> +	if (enabled)
->> +		hellcreek_vlan_add(ds, port, &vlan);
->> +	else
->> +		err =3D hellcreek_vlan_del(ds, port, &vlan);
->> +	if (err) {
->> +		dev_err(ds->dev, "Failed to apply VID %d to port %d: %d\n",
->> +			port, port, err);
->> +		return err;
->> +	}
->> +
->> +	/* Apply vid to cpu port as well */
->> +	vlan.flags =3D BRIDGE_VLAN_INFO_UNTAGGED;
->> +	if (enabled)
->> +		hellcreek_vlan_add(ds, upstream, &vlan);
->> +	else
->> +		err =3D hellcreek_vlan_del(ds, upstream, &vlan);
->> +	if (err) {
->> +		dev_err(ds->dev, "Failed to apply VID %d to port %d: %d\n",
->> +			port, port, err);
->> +		return err;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static void hellcreek_setup_ingressflt(struct hellcreek *hellcreek, int=
- port,
->> +				       bool enable)
->> +{
->> +	struct hellcreek_port *hellcreek_port =3D &hellcreek->ports[port];
->> +	u16 ptcfg;
->> +
->> +	mutex_lock(&hellcreek->reg_lock);
->> +
->> +	ptcfg =3D hellcreek_port->ptcfg;
->> +
->> +	if (enable)
->> +		ptcfg |=3D HR_PTCFG_INGRESSFLT;
->> +	else
->> +		ptcfg &=3D ~HR_PTCFG_INGRESSFLT;
->> +
->> +	hellcreek_select_port(hellcreek, port);
->> +	hellcreek_write(hellcreek, ptcfg, HR_PTCFG);
->> +	hellcreek_port->ptcfg =3D ptcfg;
->> +
->> +	mutex_unlock(&hellcreek->reg_lock);
->> +}
->> +
->> +static int hellcreek_vlan_filtering(struct dsa_switch *ds, int port,
->> +				    bool vlan_filtering)
->
-> I remember asking in Message-ID: <20200716082935.snokd33kn52ixk5h@skbuf>
-> whether it would be possible for you to set
-> ds->configure_vlan_while_not_filtering =3D true during hellcreek_setup.
-> Did anything unexpected happen while trying that?
+> 
+> > ---
+> >  .../devicetree/bindings/mtd/gpmi-nand.yaml    | 76 +++++++++++++++----
+> >  1 file changed, 61 insertions(+), 15 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/mtd/gpmi-nand.yaml b/Documentation/devicetree/bindings/mtd/gpmi-nand.yaml
+> > index 28ff8c581837..e08e0a50929e 100644
+> > --- a/Documentation/devicetree/bindings/mtd/gpmi-nand.yaml
+> > +++ b/Documentation/devicetree/bindings/mtd/gpmi-nand.yaml
+> > @@ -9,9 +9,6 @@ title: Freescale General-Purpose Media Interface (GPMI) binding
+> >  maintainers:
+> >    - Han Xu <han.xu@nxp.com>
+> >
+> > -allOf:
+> > -  - $ref: "nand-controller.yaml"
+> > -
+> >  description: |
+> >    The GPMI nand controller provides an interface to control the NAND
+> >    flash chips. The device tree may optionally contain sub-nodes
+> > @@ -58,22 +55,10 @@ properties:
+> >    clocks:
+> >      minItems: 1
+> >      maxItems: 5
+> > -    items:
+> > -      - description: SoC gpmi io clock
+> > -      - description: SoC gpmi apb clock
+> > -      - description: SoC gpmi bch clock
+> > -      - description: SoC gpmi bch apb clock
+> > -      - description: SoC per1 bch clock
+> >
+> >    clock-names:
+> >      minItems: 1
+> >      maxItems: 5
+> > -    items:
+> > -      - const: gpmi_io
+> > -      - const: gpmi_apb
+> > -      - const: gpmi_bch
+> > -      - const: gpmi_bch_apb
+> > -      - const: per1_bch
+> >
+> >    fsl,use-minimum-ecc:
+> >      type: boolean
+> > @@ -107,6 +92,67 @@ required:
+> >
+> >  unevaluatedProperties: false
+> >
+> > +allOf:
+> > +  - $ref: "nand-controller.yaml"
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - fsl,imx23-gpmi-nand
+> > +              - fsl,imx28-gpmi-nand
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          items:
+> > +            - description: SoC gpmi io clock
+> > +        clock-names:
+> > +          items:
+> > +            - const: gpmi_io
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - fsl,imx6q-gpmi-nand
+> > +              - fsl,imx6sx-gpmi-nand
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          items:
+> > +            - description: SoC gpmi io clock
+> > +            - description: SoC gpmi apb clock
+> > +            - description: SoC gpmi bch clock
+> > +            - description: SoC gpmi bch apb clock
+> > +            - description: SoC per1 bch clock
+> > +        clock-names:
+> > +          items:
+> > +            - pattern: "^(gpmi_(io|apb|bch|bch_apb)|per1_bch)$"
+> > +            - pattern: "^(gpmi_(io|apb|bch|bch_apb)|per1_bch)$"
+> > +            - pattern: "^(gpmi_(io|apb|bch|bch_apb)|per1_bch)$"
+> > +            - pattern: "^(gpmi_(io|apb|bch|bch_apb)|per1_bch)$"
+> > +            - pattern: "^(gpmi_(io|apb|bch|bch_apb)|per1_bch)$"
+> 
+> BTW, you can make 'items' a schema rather than a list to apply a
+> constraint to all entries:
+> 
+> maxItems: 5
+> items:
+>   pattern: "^(gpmi_(io|apb|bch|bch_apb)|per1_bch)$"
 
-No, that comment got lost.
+Right, I forgot about such syntax.
 
-So looking at the flag: Does it mean the driver can receive vlan
-configurations when a bridge without vlan filtering is used? That might
-be problematic as this driver uses vlans for the port separation by
-default. This is undone when vlan filtering is set to 1 meaning vlan
-configurations can be received without any problems.
+> 
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: fsl,imx7d-gpmi-nand
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          items:
+> > +            - description: SoC gpmi io clock
+> > +            - description: SoC gpmi bch apb clock
+> > +        clock-names:
+> > +          minItems: 2
+> > +          maxItems: 2
+> 
+> You can drop these. It's the default based on the size of 'items'.
 
-Thanks,
-Kurt
+Sure.
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> > +          items:
+> > +            - pattern: "^gpmi_(io|bch_apb)$"
+> > +            - pattern: "^gpmi_(io|bch_apb)$"
+> 
+> Surely here we can define the order.
 
------BEGIN PGP SIGNATURE-----
+Yes, but still the same question as before - do we want the order? Why
+enforcing it?
 
-iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl9VzaUACgkQeSpbgcuY
-8KZPEg//RykS40TAFVuMDei76HWDZDhFXmHSmd1CgdauhC0IIsFsN9DlyVrz8a17
-LzItMxsDnzIi3dUNGsA7TAcxyeL6VguUZzOQZV6bcauQJ5+9onbxprxPEQ3u8+ea
-ANMBUr0x5crEjy9PJmXcqpCzYoyxwTNHPVesHoAkNGU2evZKu6YHJjPGKuwLgsmd
-Zd08zpJQKXMKZC4UnNziFkiWjHZ0f7ge1D90EUZQYfTSLkYmRH3Y2AKgHWobR1Ng
-khIc4fg5+s5P2YyJ4lP0/2RPs1gCYFg93XqpmZaY+K/4mtGqfyKDQxb/cp/rFNjx
-SpCAie4kleWojT/4YPLbJ9oFoW+GmHydCbUaW2N0/LCc2SQcPt77t/iqH9bU6L/i
-a54+LQUQSdeRfDFFySrolYsBht5SWklsJeXlXF9KjSIimUjfAameHsoQfAjqqQBL
-Puw3HtU+sF7MnzL1rgM+1PdcKmVYYt7woBMrOx57us8eLYgHe9NS16Y8KHXBAU/y
-puobRjZYzWTOcMY8xQ7KFVrfomYJtAUueq7mfupUbZG91fDZZEi4v1Fq3vrAjKzL
-lBV+a4GpPtYfOfkPtZqoK46aWbn6AgZcwfrZJN8gW9z2tCDsOCl1V7ldhOIkwyQz
-f5qeo6UsiyR3hm+9dM8x+aGcsNmxg2UONMxkv5hrzD7W0qqGmzc=
-=FkPv
------END PGP SIGNATURE-----
---=-=-=--
+Best regards,
+Krzysztof
