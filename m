@@ -2,146 +2,308 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CFD425FAEE
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 15:03:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8242925FAE7
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 15:00:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729304AbgIGMua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 08:50:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55878 "EHLO
+        id S1729320AbgIGNAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 09:00:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729255AbgIGMtK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 08:49:10 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F063C061573;
-        Mon,  7 Sep 2020 05:49:07 -0700 (PDT)
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1599482944;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=wSCREh0pNY9JSAg70DitlNBTbCDJhi06/83bdxxq5sA=;
-        b=XVKMcknnSeZ8lX9ZlkpE0aPjZ5/SszUrtYohy6bkIBk+Qa1ebK16FohHosRi8ppDp6DXuw
-        4r3ehFKbQ3DfvkQXUiSbvxhMOWkH6NZJ7ZfF76PuPFc/LtzjxyvzPJjE3rx8VaWqblE5dI
-        9KNoCKZdcCYXDN+56YZkbJLAp6IWues8s8ItAwwFwjPqjDAMZfddHF+TOENNrQjl7tlpiR
-        RWQXP2qwm52E2F8s2Grv6knMRdHUbFB8xhQDHjGLd46KLufWUDNec5IcJmmTFllj/C/Gvl
-        deD17RN80+U3plL4tbPFYXOFZ8Z3zo3HfVcgKSHseVP0A9twK2r7irPoOx+gpQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1599482944;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=wSCREh0pNY9JSAg70DitlNBTbCDJhi06/83bdxxq5sA=;
-        b=kpIdtAeJLNYh/7di8g0+tCyprE9jO9n1U38sQ4lrvy6wrazEaR5VkbPCgzXmFTMGPYzhmO
-        Ts5t4spxv33gHrBQ==
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        ilias.apalodimas@linaro.org
-Subject: Re: [PATCH v5 2/7] net: dsa: Add DSA driver for Hirschmann Hellcreek switches
-In-Reply-To: <20200907104821.kvu7bxvzwazzg7cv@skbuf>
-References: <20200904062739.3540-1-kurt@linutronix.de> <20200904062739.3540-3-kurt@linutronix.de> <20200905204235.f6b5til4sc3hoglr@skbuf> <875z8qazq2.fsf@kurt> <20200907104821.kvu7bxvzwazzg7cv@skbuf>
-Date:   Mon, 07 Sep 2020 14:49:03 +0200
-Message-ID: <87eendah1c.fsf@kurt>
+        with ESMTP id S1729325AbgIGM5C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 08:57:02 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2C43C061573
+        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 05:56:51 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id z4so15726509wrr.4
+        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 05:56:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UCzAly/0nJVCfCDesjIWsuPixCCm9Upr/s0zYEfIO3o=;
+        b=BUFYxvRHRgKC5ncXH85VxOzRmvu5RblAUQSDL1NdiJ/Xkn/+okQNWorZtycgiLWKPE
+         aoHJ7A+tighMYuB1c3SjlYa7jmU5T+E1kpwVNXtY5JOOEBk9DC1AsHxavHwD5xmopRGh
+         FiSvsPcp/taYNnX960IWEM+AsNhKasxEFp4hOgEFGoz9GJInt6jNCldG6nIb7/fNPvC8
+         PCYS8+Swm/zJi553TMirU61YOXooAgqqfKaGcZA8TLcE6w6YtkqMePf5VadrHhfS5Ur8
+         ne24iPl4d3R9ADjL2trf8OVcnW5t8p/w6YdMhuhsU6mh909amvQPzeC/I3OlIUcGKm3/
+         XCRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UCzAly/0nJVCfCDesjIWsuPixCCm9Upr/s0zYEfIO3o=;
+        b=iEOqWrRE9q5TBeK6M+Khx02/u35yuF3/cwy2MLArul5URPRRXZOH+dHcBc0olt8hPw
+         DyDZsvafw383kIjiSEUxyCAYyS+qxR02pw4JrGhUVZ/nYxKkxz1LNUr5LuHKSdVh+AnM
+         5NPJIhDeoa1aMfRe3oX29vG0SuwqJRAb4hCiTDmergfCD6A8Fk8R1ekptUOkpgOmjsaD
+         sfodB/EvJ20LPO5cxtDNAr5H8YNcuNUBErGdeHJ9/dcNHSortDn+q6nBP207dX+RBjbh
+         H+h9RWVWLI7H16LY96Y+/lfigw1hdHXV40G7OahL3rioFUmIYWGvpA5N9E+xhxPnU4KU
+         oLpQ==
+X-Gm-Message-State: AOAM533LT95kDrVWjjYuUTUCbki6PlhUYt0UNNMiaYaFjTKgAM8bCNrH
+        zsaoxZo6BRRPjVPGimQahjekxw==
+X-Google-Smtp-Source: ABdhPJxhcZdfCuLpTThVNnmLYN235Mar/1UTcpUqAvP3ZFEZGRRqteFw+fGsTsmT+xY1mE7YxrH0RQ==
+X-Received: by 2002:a5d:620e:: with SMTP id y14mr23278493wru.371.1599483410542;
+        Mon, 07 Sep 2020 05:56:50 -0700 (PDT)
+Received: from localhost.localdomain (122.105.23.93.rev.sfr.net. [93.23.105.122])
+        by smtp.gmail.com with ESMTPSA id o4sm24845215wru.55.2020.09.07.05.56.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Sep 2020 05:56:49 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     enric.balletbo@collabora.com, krzk@kernel.org,
+        masahiroy@kernel.org, ck.hu@mediatek.com, owen.chen@mediatek.com,
+        macpaul.lin@mediatek.com, mars.cheng@mediatek.com,
+        wendell.lin@mediatek.com, matthias.bgg@gmail.com, sboyd@kernel.org,
+        robh+dt@kernel.org, Fabien Parent <fparent@baylibre.com>
+Subject: [PATCH 1/2] dt-bindings: clock: mediatek: add bindings for MT8167 clocks
+Date:   Mon,  7 Sep 2020 14:56:45 +0200
+Message-Id: <20200907125646.1946282-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
+Add binding documentation for topckgen, apmixedsys, infracfg, audsys,
+imgsys, mfgcfg, mmsys, vdecsys on MT8167 SoC.
 
-On Mon Sep 07 2020, Vladimir Oltean wrote:
-> On Mon, Sep 07, 2020 at 08:05:25AM +0200, Kurt Kanzenbach wrote:
->> Well, that depends on whether hellcreek_vlan_add() is called for
->> creating that vlan interfaces. In general: As soon as both ports are
->> members of the same vlan that traffic is switched.
->
-> That's indeed what I would expect.
-> Not only that, but with your pvid-based setup, you only ensure port
-> separation for untagged traffic anyway.
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+---
+ .../arm/mediatek/mediatek,apmixedsys.txt      |   1 +
+ .../bindings/arm/mediatek/mediatek,audsys.txt |   1 +
+ .../bindings/arm/mediatek/mediatek,imgsys.txt |   1 +
+ .../arm/mediatek/mediatek,infracfg.txt        |   1 +
+ .../bindings/arm/mediatek/mediatek,mfgcfg.txt |   1 +
+ .../arm/mediatek/mediatek,topckgen.txt        |   1 +
+ .../arm/mediatek/mediatek,vdecsys.txt         |   1 +
+ include/dt-bindings/clock/mt8167-clk.h        | 131 ++++++++++++++++++
+ 8 files changed, 138 insertions(+)
+ create mode 100644 include/dt-bindings/clock/mt8167-clk.h
 
-Why? Tagged traffic is dropped unless the vlan is configured somehow. By
-default, I've configured vlan 2 and 3 to reflect the port separation for
-DSA. At reset the ports aren't members of any vlan.
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,apmixedsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,apmixedsys.txt
+index bd7a0fa5801b..ea827e8763de 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,apmixedsys.txt
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,apmixedsys.txt
+@@ -15,6 +15,7 @@ Required Properties:
+ 	- "mediatek,mt7623-apmixedsys", "mediatek,mt2701-apmixedsys"
+ 	- "mediatek,mt7629-apmixedsys"
+ 	- "mediatek,mt8135-apmixedsys"
++	- "mediatek,mt8167-apmixedsys", "syscon"
+ 	- "mediatek,mt8173-apmixedsys"
+ 	- "mediatek,mt8183-apmixedsys", "syscon"
+ 	- "mediatek,mt8516-apmixedsys"
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt
+index 38309db115f5..b32d374193c7 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt
+@@ -11,6 +11,7 @@ Required Properties:
+ 	- "mediatek,mt6779-audio", "syscon"
+ 	- "mediatek,mt7622-audsys", "syscon"
+ 	- "mediatek,mt7623-audsys", "mediatek,mt2701-audsys", "syscon"
++	- "mediatek,mt8167-audiosys", "syscon"
+ 	- "mediatek,mt8183-audiosys", "syscon"
+ 	- "mediatek,mt8516-audsys", "syscon"
+ - #clock-cells: Must be 1
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,imgsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,imgsys.txt
+index 1e1f00718a7d..dce4c9241932 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,imgsys.txt
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,imgsys.txt
+@@ -12,6 +12,7 @@ Required Properties:
+ 	- "mediatek,mt6779-imgsys", "syscon"
+ 	- "mediatek,mt6797-imgsys", "syscon"
+ 	- "mediatek,mt7623-imgsys", "mediatek,mt2701-imgsys", "syscon"
++	- "mediatek,mt8167-imgsys", "syscon"
+ 	- "mediatek,mt8173-imgsys", "syscon"
+ 	- "mediatek,mt8183-imgsys", "syscon"
+ - #clock-cells: Must be 1
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.txt
+index 49a968be1a80..eb3523c7a7be 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.txt
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.txt
+@@ -16,6 +16,7 @@ Required Properties:
+ 	- "mediatek,mt7623-infracfg", "mediatek,mt2701-infracfg", "syscon"
+ 	- "mediatek,mt7629-infracfg", "syscon"
+ 	- "mediatek,mt8135-infracfg", "syscon"
++	- "mediatek,mt8167-infracfg", "syscon"
+ 	- "mediatek,mt8173-infracfg", "syscon"
+ 	- "mediatek,mt8183-infracfg", "syscon"
+ 	- "mediatek,mt8516-infracfg", "syscon"
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mfgcfg.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mfgcfg.txt
+index ad5f9d2f6818..054424fb64b4 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mfgcfg.txt
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mfgcfg.txt
+@@ -8,6 +8,7 @@ Required Properties:
+ - compatible: Should be one of:
+ 	- "mediatek,mt2712-mfgcfg", "syscon"
+ 	- "mediatek,mt6779-mfgcfg", "syscon"
++	- "mediatek,mt8167-mfgcfg", "syscon"
+ 	- "mediatek,mt8183-mfgcfg", "syscon"
+ - #clock-cells: Must be 1
+ 
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,topckgen.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,topckgen.txt
+index 9b0394cbbdc9..5ce7578cf274 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,topckgen.txt
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,topckgen.txt
+@@ -15,6 +15,7 @@ Required Properties:
+ 	- "mediatek,mt7623-topckgen", "mediatek,mt2701-topckgen"
+ 	- "mediatek,mt7629-topckgen"
+ 	- "mediatek,mt8135-topckgen"
++	- "mediatek,mt8167-topckgen", "syscon"
+ 	- "mediatek,mt8173-topckgen"
+ 	- "mediatek,mt8183-topckgen", "syscon"
+ 	- "mediatek,mt8516-topckgen"
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,vdecsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,vdecsys.txt
+index 7894558b7a1c..98195169176a 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,vdecsys.txt
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,vdecsys.txt
+@@ -11,6 +11,7 @@ Required Properties:
+ 	- "mediatek,mt6779-vdecsys", "syscon"
+ 	- "mediatek,mt6797-vdecsys", "syscon"
+ 	- "mediatek,mt7623-vdecsys", "mediatek,mt2701-vdecsys", "syscon"
++	- "mediatek,mt8167-vdecsys", "syscon"
+ 	- "mediatek,mt8173-vdecsys", "syscon"
+ 	- "mediatek,mt8183-vdecsys", "syscon"
+ - #clock-cells: Must be 1
+diff --git a/include/dt-bindings/clock/mt8167-clk.h b/include/dt-bindings/clock/mt8167-clk.h
+new file mode 100644
+index 000000000000..a96158edd817
+--- /dev/null
++++ b/include/dt-bindings/clock/mt8167-clk.h
+@@ -0,0 +1,131 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright (c) 2020 MediaTek Inc.
++ * Copyright (c) 2020 BayLibre, SAS.
++ * Author: James Liao <jamesjj.liao@mediatek.com>
++ *         Fabien Parent <fparent@baylibre.com>
++ */
++
++#ifndef _DT_BINDINGS_CLK_MT8167_H
++#define _DT_BINDINGS_CLK_MT8167_H
++
++/* MT8167 is based on MT8516 */
++#include <dt-bindings/clock/mt8516-clk.h>
++
++/* APMIXEDSYS */
++
++#define CLK_APMIXED_TVDPLL		(CLK_APMIXED_NR_CLK + 0)
++#define CLK_APMIXED_LVDSPLL		(CLK_APMIXED_NR_CLK + 1)
++#define CLK_APMIXED_HDMI_REF		(CLK_APMIXED_NR_CLK + 2)
++#define MT8167_CLK_APMIXED_NR_CLK	(CLK_APMIXED_NR_CLK + 3)
++
++/* TOPCKGEN */
++
++#define CLK_TOP_DSI0_LNTC_DSICK		(CLK_TOP_NR_CLK + 0)
++#define CLK_TOP_VPLL_DPIX		(CLK_TOP_NR_CLK + 1)
++#define CLK_TOP_LVDSTX_CLKDIG_CTS	(CLK_TOP_NR_CLK + 2)
++#define CLK_TOP_HDMTX_CLKDIG_CTS	(CLK_TOP_NR_CLK + 3)
++#define CLK_TOP_LVDSPLL			(CLK_TOP_NR_CLK + 4)
++#define CLK_TOP_LVDSPLL_D2		(CLK_TOP_NR_CLK + 5)
++#define CLK_TOP_LVDSPLL_D4		(CLK_TOP_NR_CLK + 6)
++#define CLK_TOP_LVDSPLL_D8		(CLK_TOP_NR_CLK + 7)
++#define CLK_TOP_MIPI_26M		(CLK_TOP_NR_CLK + 8)
++#define CLK_TOP_TVDPLL			(CLK_TOP_NR_CLK + 9)
++#define CLK_TOP_TVDPLL_D2		(CLK_TOP_NR_CLK + 10)
++#define CLK_TOP_TVDPLL_D4		(CLK_TOP_NR_CLK + 11)
++#define CLK_TOP_TVDPLL_D8		(CLK_TOP_NR_CLK + 12)
++#define CLK_TOP_TVDPLL_D16		(CLK_TOP_NR_CLK + 13)
++#define CLK_TOP_PWM_MM			(CLK_TOP_NR_CLK + 14)
++#define CLK_TOP_CAM_MM			(CLK_TOP_NR_CLK + 15)
++#define CLK_TOP_MFG_MM			(CLK_TOP_NR_CLK + 16)
++#define CLK_TOP_SPM_52M			(CLK_TOP_NR_CLK + 17)
++#define CLK_TOP_MIPI_26M_DBG		(CLK_TOP_NR_CLK + 18)
++#define CLK_TOP_SCAM_MM			(CLK_TOP_NR_CLK + 19)
++#define CLK_TOP_SMI_MM			(CLK_TOP_NR_CLK + 20)
++#define CLK_TOP_26M_HDMI_SIFM		(CLK_TOP_NR_CLK + 21)
++#define CLK_TOP_26M_CEC			(CLK_TOP_NR_CLK + 22)
++#define CLK_TOP_32K_CEC			(CLK_TOP_NR_CLK + 23)
++#define CLK_TOP_GCPU_B			(CLK_TOP_NR_CLK + 24)
++#define CLK_TOP_RG_VDEC			(CLK_TOP_NR_CLK + 25)
++#define CLK_TOP_RG_FDPI0		(CLK_TOP_NR_CLK + 26)
++#define CLK_TOP_RG_FDPI1		(CLK_TOP_NR_CLK + 27)
++#define CLK_TOP_RG_AXI_MFG		(CLK_TOP_NR_CLK + 28)
++#define CLK_TOP_RG_SLOW_MFG		(CLK_TOP_NR_CLK + 29)
++#define CLK_TOP_GFMUX_EMI1X_SEL		(CLK_TOP_NR_CLK + 30)
++#define CLK_TOP_CSW_MUX_MFG_SEL		(CLK_TOP_NR_CLK + 31)
++#define CLK_TOP_CAMTG_MM_SEL		(CLK_TOP_NR_CLK + 32)
++#define CLK_TOP_PWM_MM_SEL		(CLK_TOP_NR_CLK + 33)
++#define CLK_TOP_SPM_52M_SEL		(CLK_TOP_NR_CLK + 34)
++#define CLK_TOP_MFG_MM_SEL		(CLK_TOP_NR_CLK + 35)
++#define CLK_TOP_SMI_MM_SEL		(CLK_TOP_NR_CLK + 36)
++#define CLK_TOP_SCAM_MM_SEL		(CLK_TOP_NR_CLK + 37)
++#define CLK_TOP_VDEC_MM_SEL		(CLK_TOP_NR_CLK + 38)
++#define CLK_TOP_DPI0_MM_SEL		(CLK_TOP_NR_CLK + 39)
++#define CLK_TOP_DPI1_MM_SEL		(CLK_TOP_NR_CLK + 40)
++#define CLK_TOP_AXI_MFG_IN_SEL		(CLK_TOP_NR_CLK + 41)
++#define CLK_TOP_SLOW_MFG_SEL		(CLK_TOP_NR_CLK + 42)
++#define MT8167_CLK_TOP_NR_CLK		(CLK_TOP_NR_CLK + 43)
++
++/* MFGCFG */
++
++#define CLK_MFG_BAXI			0
++#define CLK_MFG_BMEM			1
++#define CLK_MFG_BG3D			2
++#define CLK_MFG_B26M			3
++#define CLK_MFG_NR_CLK			4
++
++/* MMSYS */
++
++#define CLK_MM_SMI_COMMON		0
++#define CLK_MM_SMI_LARB0		1
++#define CLK_MM_CAM_MDP			2
++#define CLK_MM_MDP_RDMA			3
++#define CLK_MM_MDP_RSZ0			4
++#define CLK_MM_MDP_RSZ1			5
++#define CLK_MM_MDP_TDSHP		6
++#define CLK_MM_MDP_WDMA			7
++#define CLK_MM_MDP_WROT			8
++#define CLK_MM_FAKE_ENG			9
++#define CLK_MM_DISP_OVL0		10
++#define CLK_MM_DISP_RDMA0		11
++#define CLK_MM_DISP_RDMA1		12
++#define CLK_MM_DISP_WDMA		13
++#define CLK_MM_DISP_COLOR		14
++#define CLK_MM_DISP_CCORR		15
++#define CLK_MM_DISP_AAL			16
++#define CLK_MM_DISP_GAMMA		17
++#define CLK_MM_DISP_DITHER		18
++#define CLK_MM_DISP_UFOE		19
++#define CLK_MM_DISP_PWM_MM		20
++#define CLK_MM_DISP_PWM_26M		21
++#define CLK_MM_DSI_ENGINE		22
++#define CLK_MM_DSI_DIGITAL		23
++#define CLK_MM_DPI0_ENGINE		24
++#define CLK_MM_DPI0_PXL			25
++#define CLK_MM_LVDS_PXL			26
++#define CLK_MM_LVDS_CTS			27
++#define CLK_MM_DPI1_ENGINE		28
++#define CLK_MM_DPI1_PXL			29
++#define CLK_MM_HDMI_PXL			30
++#define CLK_MM_HDMI_SPDIF		31
++#define CLK_MM_HDMI_ADSP_BCK		32
++#define CLK_MM_HDMI_PLL			33
++#define CLK_MM_NR_CLK			34
++
++/* IMGSYS */
++
++#define CLK_IMG_LARB1_SMI		0
++#define CLK_IMG_CAM_SMI			1
++#define CLK_IMG_CAM_CAM			2
++#define CLK_IMG_SEN_TG			3
++#define CLK_IMG_SEN_CAM			4
++#define CLK_IMG_VENC			5
++#define CLK_IMG_NR_CLK			6
++
++/* VDECSYS */
++
++#define CLK_VDEC_CKEN			0
++#define CLK_VDEC_LARB1_CKEN		1
++#define CLK_VDEC_NR_CLK			2
++
++#endif /* _DT_BINDINGS_CLK_MT8167_H */
+-- 
+2.28.0
 
-We could also skip the initial VLAN configuration completely. At the end
-of the day it's a TSN switch and the user will setup the vlan
-configuration anyway.
-
-> I don't think you even need to call hellcreek_vlan_add() for VID 100
-> to be switched between ports, because your .port_vlan_filtering
-> callback does not in fact disable VLAN awareness, it just configures
-> the ports to not drop unknown VLANs. So, arguably, VLAN classification
-> is still performed. An untagged packet is classified to the PVID, a
-> tagged packet is classified to the VID in the packet. So tagged
-> packets bypass the separation.
->
-> So, I think that's not ok. I think the only proper way to solve this is
-> to inform the IP designers that VLANs are no substitute for a port
-> forwarding matrix (a lookup table that answers the question "can port i
-> forward to port j"). Switch ports that are individually addressable by
-> the network stack are a fundamental assumption of the switchdev
-> framework.
-
-As I said before, there is no port forwarding matrix. There are only
-vlans and the fdb. There's also a global flag for setting vlan unaware
-mode and a port option for vlan tag required. That's it. I guess, we
-have to deal with it somehow.
-
->
->> > I remember asking in Message-ID: <20200716082935.snokd33kn52ixk5h@skbuf>
->> > whether it would be possible for you to set
->> > ds->configure_vlan_while_not_filtering = true during hellcreek_setup.
->> > Did anything unexpected happen while trying that?
->>
->> No, that comment got lost.
->>
->> So looking at the flag: Does it mean the driver can receive vlan
->> configurations when a bridge without vlan filtering is used? That might
->> be problematic as this driver uses vlans for the port separation by
->> default. This is undone when vlan filtering is set to 1 meaning vlan
->> configurations can be received without any problems.
->
-> Yes.
-> Generally speaking, the old DSA behavior is something that we're trying
-> to get rid of, once all drivers set the option to true. So a new driver
-> should not rely on it even if it needs something like that.
-
-OK. when a new driver should set the flag, then I'll set it. So, all
-vlan requests programming requests should be "buffered" and executed
-when vlan filtering is enabled? What is it good for?
-
-Thanks,
-Kurt
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl9WLD8ACgkQeSpbgcuY
-8KalchAAo8Fp+CjT6AQwdXwvGEDKmh45HMMQiumZmkKrpwUJXMOHoXjC2jz3DHk5
-rRAU+wq4FerngEkaHpGz7lJ6BXyDW7wISLb0LRUyZlLRL5u7pHnOPfMOuX09TIVJ
-i3r07/hU1u9s2nC7TUouLXmIgZZylOFJGa4KPotnPX5m21xH31dMsGs7MpZDcBwK
-RQB7jO+Vky5rYHq1fKxy0Aj1mHZssjs/RTiu0txwcn+f8YiURpwgygCm4Il0a1AM
-pjSoFMgcfTIe+uCdHjbZWmz8FPClEhJGABOB0RNsaC0mDBLOY2zQ3qfFRoEmYJiB
-S16hfxjp8epqdeggCSUI0KsOsprx1SQ10toCmFY1ovFud95LJwQZtfsCfL8ir954
-Hwj2KrhT/QokNgVWY3sB37Gd4pPviJreVFpHVM0lN4JSOFIv0LnxK8kKjRY8RiZo
-+DfEYQwDCsNxRCLBWtMesD9aKOFrj4zEpnoTUbeZWURQy9xh6Mn1HaiqYEEVFTjb
-ZCepEmJhOinJK4wSnqDycdjmib6Ajag47CMJ+IlmIOJWiE7rcVtk7tJj+CXP7cEd
-aW+bcGh2vWZzGCOTaFoyiHTwlT4OcgnWxMiPg2nq0x/LgIpi5GFuhTqrBLmhYt4S
-fenoW3voeP6XY8cXz5Hi13HFvG8dcuY/D7L+PYzWC61A0hSVClU=
-=2puc
------END PGP SIGNATURE-----
---=-=-=--
