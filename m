@@ -2,59 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A933C25F309
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 08:11:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BED8425F310
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 08:15:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726278AbgIGGLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 02:11:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51022 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725803AbgIGGLg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 02:11:36 -0400
-Received: from casper.infradead.org (casper.infradead.org [IPv6:2001:8b0:10b:1236::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A520BC061573;
-        Sun,  6 Sep 2020 23:11:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description;
-        bh=qfcALgvFzZYc/TWT3h5fMbHKeWOPoZL7AoIZsE93hQo=; b=dn2D9TiXe1LDIDlV1gQsXwiTjX
-        5dA9T1ojQpMSM5eJyXJPC+XIleTHAJp2xN8n4Vmxa+uPtaPXMLjwBNVaQlEc4JXjJ+AZXOTbktX1Q
-        HEYagLu5mM5tpQz68LbkspH8Rl/+4maOP1z4/Q7lR2Trde+6AdiJJSb84ctKey68868Mi7iBdCdG8
-        XSFe2xxB4SkRrx/qlOl1BPytAIMjYsImzjZ55XT9n4Q7Qw02TGYmMZNolsHpaXTDKr7iwPT1zlo1B
-        FGHOTlcrCQzMIopOcac4bS0lxYWGpeF4jxoWAdkIomOlLbKDeQbqw7VDbXSRnT7qSTKTzADqQfwTq
-        Sfv0OQoQ==;
-Received: from hch by casper.infradead.org with local (Exim 4.92.3 #3 (Red Hat Linux))
-        id 1kFANC-0003wC-UU; Mon, 07 Sep 2020 06:11:26 +0000
-Date:   Mon, 7 Sep 2020 07:11:26 +0100
-From:   Christoph Hellwig <hch@infradead.org>
-To:     Yash Shah <yash.shah@sifive.com>
-Cc:     robh+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
-        bp@alien8.de, mchehab@kernel.org, tony.luck@intel.com,
-        devicetree@vger.kernel.org, aou@eecs.berkeley.edu,
-        linux-kernel@vger.kernel.org, sachin.ghadi@sifive.com,
-        rrichter@marvell.com, james.morse@arm.com,
-        linux-riscv@lists.infradead.org, linux-edac@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] soc: sifive: Add SiFive specific Cadence DDR
- controller driver
-Message-ID: <20200907061126.GA14999@infradead.org>
-References: <1599457679-8947-1-git-send-email-yash.shah@sifive.com>
- <1599457679-8947-3-git-send-email-yash.shah@sifive.com>
+        id S1726278AbgIGGPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 02:15:43 -0400
+Received: from mail.intenta.de ([178.249.25.132]:28545 "EHLO mail.intenta.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725803AbgIGGPn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 02:15:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=intenta.de; s=dkim1;
+        h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:CC:To:From:Date; bh=DbMZrPNiSZyV/MGrBTAsouTip2qG5zxNYYBptBohLcI=;
+        b=ofaFQ0IGc3oT7MFp6707aqNPqhcxPZQo8FzwLBLxGFVPGTV/pCqJL5BXedj4Dv1QpWkux9EwcviR9PpO0dj6DQhvarZOBA33Xs0WcNJSBMDa/JTS7QvKKC+Z24PY+xYCOzxlEIqFe/Xh8kKlqExSqtgGCRjqh5SZ1HU7zErwAgCMms6hdH/MEBtzpGsvmiLfwmQR0x0XfrHGlgDdXk3YiIAl75lovCrrMGwut+8cU9crDR/PHIxJ3N/rFAzlbYHrQQsH2OoqFPAB6i5hl0h/Fk4OxTFThCQxf9mpU8IXjN6XhZ0Gw6PRogxYKmsKNdTGVEAWixXtwS5wxu2jy7u6/A==;
+Date:   Mon, 7 Sep 2020 08:15:33 +0200
+From:   Helmut Grohne <helmut.grohne@intenta.de>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>
+Subject: Re: [PATCH v2] net: dsa: microchip: look for phy-mode in port nodes
+Message-ID: <20200907061533.GA2727@laureti-dev>
+References: <20200824.153738.1423061044322742575.davem@davemloft.net>
+ <20200904081438.GA14387@laureti-dev>
+ <20200904135255.GM3112546@lunn.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <1599457679-8947-3-git-send-email-yash.shah@sifive.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by casper.infradead.org. See http://www.infradead.org/rpr.html
+In-Reply-To: <20200904135255.GM3112546@lunn.ch>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-ClientProxiedBy: ICSMA002.intenta.de (10.10.16.48) To ICSMA002.intenta.de
+ (10.10.16.48)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 07, 2020 at 11:17:58AM +0530, Yash Shah wrote:
-> Add a driver to manage the Cadence DDR controller present on SiFive SoCs
-> At present the driver manages the EDAC feature of the DDR controller.
-> Additional features may be added to the driver in future to control
-> other aspects of the DDR controller.
+Hi Andrew,
 
-So if this is a generic(ish) Cadence IP block shouldn't it be named
-Cadence and made generic?  Or is the frontend somehow SiFive specific?
+On Fri, Sep 04, 2020 at 03:52:55PM +0200, Andrew Lunn wrote:
+> > +			dev_warn(dev->dev,
+> > +				 "Using legacy switch \"phy-mode\" missing on port %d node. Please update your device tree.\n",
+
+This is inside ksz8795_port_setup.
+
+> That message seems mangled.
+
+I'm not sure that I understand what you are objecting to here.
+
+> > +			if (!p->interface) {
+> > +				if (dev->compat_interface) {
+> > +					dev_warn(dev->dev,
+> > +						 "Using legacy switch \"phy-mode\" missing on port %d node. Please update your device tree.\n",
+> > +						 i);
+
+This is inside ksz9477_config_cpu_port.
+
+> Same warning again.
+
+I guess that you believe the warning should only be issued in one place.
+The locations affect different chips driven by the same driver. I
+considered moving them to a common function, but figured that it was not
+worth tearing the code apart. In case a third chip would be supported by
+the driver, it would not need the compatibility code. It would start out
+using only the correct phy-mode property.
+
+Does that address your concern?
+
+Helmut
