@@ -2,70 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C88E325FA8F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 14:36:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52FE825FACD
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 14:56:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728792AbgIGMeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 08:34:44 -0400
-Received: from mga18.intel.com ([134.134.136.126]:34181 "EHLO mga18.intel.com"
+        id S1729386AbgIGM4b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 08:56:31 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:46950 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729186AbgIGMdk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Sep 2020 08:33:40 -0400
-IronPort-SDR: /m9ZbdO4zbC53238hSJlIbGsz/q+eC/KXPVA8frrw175BFAUej+ok/19OidiYERI7Ayziqt43c
- oUFTgEMvmIXA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9736"; a="145705343"
-X-IronPort-AV: E=Sophos;i="5.76,401,1592895600"; 
-   d="scan'208";a="145705343"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2020 05:33:39 -0700
-IronPort-SDR: BWi0P5a0/LbMmyJhLsF+GjyZTREr1uVm+6uKHSy7XSrV0pYYr2TRXvXCOZuQ5zirT2FT5r2KQB
- EOnd7na1fHag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,401,1592895600"; 
-   d="scan'208";a="333150609"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga008.jf.intel.com with ESMTP; 07 Sep 2020 05:33:36 -0700
-Received: from andy by smile with local (Exim 4.94)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1kFGL0-00EwvE-0k; Mon, 07 Sep 2020 15:33:34 +0300
-Date:   Mon, 7 Sep 2020 15:33:34 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     vineetha.g.jaya.kumaran@intel.com
-Cc:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        robh+dt@kernel.org, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, wan.ahmad.zainie.wan.mohamad@intel.com,
-        vijayakannan.ayyathurai@intel.com, mgross@linux.intel.com,
-        lakshmi.bai.raja.subramanian@intel.com
-Subject: Re: [PATCH v6 1/2] pwm: Add PWM driver for Intel Keem Bay
-Message-ID: <20200907123334.GF1891694@smile.fi.intel.com>
-References: <1599480470-5932-1-git-send-email-vineetha.g.jaya.kumaran@intel.com>
- <1599480470-5932-2-git-send-email-vineetha.g.jaya.kumaran@intel.com>
+        id S1729383AbgIGM4P (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 08:56:15 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1kFGgd-00Dc6L-QP; Mon, 07 Sep 2020 14:55:55 +0200
+Date:   Mon, 7 Sep 2020 14:55:55 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Helmut Grohne <helmut.grohne@intenta.de>
+Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH v2] net: dsa: microchip: look for phy-mode in port nodes
+Message-ID: <20200907125555.GO3164319@lunn.ch>
+References: <20200824.153738.1423061044322742575.davem@davemloft.net>
+ <20200904081438.GA14387@laureti-dev>
+ <20200904135255.GM3112546@lunn.ch>
+ <20200907061533.GA2727@laureti-dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1599480470-5932-2-git-send-email-vineetha.g.jaya.kumaran@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20200907061533.GA2727@laureti-dev>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 07, 2020 at 08:07:49PM +0800, vineetha.g.jaya.kumaran@intel.com wrote:
-> From: "Lai, Poey Seng" <poey.seng.lai@intel.com>
+On Mon, Sep 07, 2020 at 08:15:33AM +0200, Helmut Grohne wrote:
+> Hi Andrew,
 > 
-> The Intel Keem Bay SoC requires PWM support.
-> Add the pwm-keembay driver to enable this.
+> On Fri, Sep 04, 2020 at 03:52:55PM +0200, Andrew Lunn wrote:
+> > > +			dev_warn(dev->dev,
+> > > +				 "Using legacy switch \"phy-mode\" missing on port %d node. Please update your device tree.\n",
+> 
+> This is inside ksz8795_port_setup.
+> 
+> > That message seems mangled.
+> 
+> I'm not sure that I understand what you are objecting to here.
 
-Hadn't I given a tag already? If so, where is it?
+Hi Helmut
 
-> Co-developed-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
-> Signed-off-by: Lai, Poey Seng <poey.seng.lai@intel.com>
-> Signed-off-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
+The grammar seems wrong. 
 
--- 
-With Best Regards,
-Andy Shevchenko
+"Using legacy switch \"phy-mode\" because \"phy-mode\" missing from port %d node. "
+"Please update your device tree.\n"
 
-
+	Andrew
