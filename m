@@ -2,191 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E961C25F835
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 12:29:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9999D25F84F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 12:31:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728576AbgIGK25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 06:28:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34150 "EHLO
+        id S1728820AbgIGKbZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 06:31:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728723AbgIGK2X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 06:28:23 -0400
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2AE5C061574;
-        Mon,  7 Sep 2020 03:28:22 -0700 (PDT)
-Received: by mail-pj1-x1041.google.com with SMTP id b17so4153747pji.1;
-        Mon, 07 Sep 2020 03:28:22 -0700 (PDT)
+        with ESMTP id S1728941AbgIGK2K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 06:28:10 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85DB1C061573
+        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 03:28:09 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id lo4so17551234ejb.8
+        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 03:28:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=ITcGcXtzItjOscmK8N5fYW//0H9STvyX68vCXrrZF4w=;
-        b=A1OBEVDY4me2Wvsvyy2MUi/A8XkKv6ZdMG8s6KSj7lXomVYrF0aPZnCWGOfomJgwn/
-         ymT0CzWAuEP4wsFsOOm/VJ75BKHE0FJD5avQGluDjO0d6q/fxlhHKgvGJhRzIcF06X2a
-         lpwHBzJbUmfDHK0XWbYIM8yQZu+8MtML6lz6L4buDz0iJkV8BASxBkVE0EQzm1c8ULT6
-         88ZWckezYoRCBGPHL5a5RrS8KZGC6Q2wFuzD0J4vXfhdyAauqtvsCr1GZQPPSuFVL1gV
-         akwocGz2xp3FUrfLCOqDziTMJrVZwYZYnOfey2tzzVS/atgebz5zcgb+UHwxx8c3CMee
-         Ffsg==
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zC3AjkfkprEZqAAF7NrLvBA7iHOLdrgU623W0AvOrc8=;
+        b=xev6xkOJ3ERQwgt6zd2d2oVhYHp0aaQN+/YNUtlkUOMGMF2VXFkbu+9pSzDWQi4XwK
+         xiRo7rK9+zdGFIEjrIitRpwib9Tnt8MJ0Muzfjakz/vh5LZmf0a+8xElnG6wmoWUbPrB
+         RLdPZSvIY2uZ9wA3xlid8F/FztYI1KRLTZXxpq3m1XP7w/kyD7Vqa7gbQeHS+Ck4/yp0
+         EpiV2JG3qRp2csIp+UG9r83UYnOZsRvPkqHR9UxSu8YqcBJL8Zn1sokUpOu+7dC1O1rJ
+         zI7RybFJm0F2fz1U/82/DpY4P2SILSRC7nw/nxwnG7BI88LWOWm6y7Icjn+r+1UtW+49
+         A3dA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=ITcGcXtzItjOscmK8N5fYW//0H9STvyX68vCXrrZF4w=;
-        b=UeQlrc36hgCIR+sisFjNy0BYvY1PVTv/AuhZi+Wk2oz81c+tRlZ5f7ZCqL2lRNOh3t
-         t0z1+39fYziZI3/DdZN3H1gAK3oTBKZh3OBiP5p2/ltnYyKoj08Op83C8t0jnKz07Ip8
-         zeomU2AMi5LhYhp1doE/IvUXzLn/ltMRmnxh/MfVcPxKmfB4FdGKZCiNzWxPG3/m8de3
-         NJuPIblCeeY96T9DKTrsY1tL1wGbFH8YDzW1V4NwPpUa2BqPQQf5KHycA8Uz6gSFI8Cq
-         hllOX71q+UliMvFyfA/5mOHpQc0IZtYfnpML/4B+aARXa2BG4R+vYnGJ4ITntEISWg2q
-         2hOg==
-X-Gm-Message-State: AOAM532wreHw99stbZCxjuoAVwwWUgwfd0WtwjU4GXDdbe/Bhxos6ws7
-        YWFeKf4YkPBUO3armOCGBAU=
-X-Google-Smtp-Source: ABdhPJzh/5Ux08+E14zJum33L6vE0PTkNwSCLe9N4YM97WfgrNu5gy8gxWZNLimdh6e9D2KnG+RpYw==
-X-Received: by 2002:a17:90a:f198:: with SMTP id bv24mr20983093pjb.117.1599474502574;
-        Mon, 07 Sep 2020 03:28:22 -0700 (PDT)
-Received: from localhost.localdomain ([2402:7500:568:81bf:545f:f984:753e:4bcc])
-        by smtp.gmail.com with ESMTPSA id q193sm15009717pfq.127.2020.09.07.03.28.19
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 07 Sep 2020 03:28:22 -0700 (PDT)
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-To:     jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
-        matthias.bgg@gmail.com
-Cc:     dmurphy@ti.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        gene_chen@richtek.com, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, cy_huang@richtek.com,
-        benjamin.chao@mediatek.com
-Subject: [PATCH v3 2/2] dt-bindings: leds: Add bindings for MT6360 LED
-Date:   Mon,  7 Sep 2020 18:27:39 +0800
-Message-Id: <1599474459-20853-3-git-send-email-gene.chen.richtek@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1599474459-20853-1-git-send-email-gene.chen.richtek@gmail.com>
-References: <1599474459-20853-1-git-send-email-gene.chen.richtek@gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zC3AjkfkprEZqAAF7NrLvBA7iHOLdrgU623W0AvOrc8=;
+        b=K1/T48VlUdJn9CBI/43BvRDW/TB9ZjrZU/lYO4OE2a4NfJelUdJ25MWXyauZ+iO97g
+         vzflM+NEZBWj6aTdzutlVhn+8Y3MwMhzAs9lERR92LXLWurDSdNrfUlCGjKYcL8PhJrB
+         eqa3Uiy5bAnF0XjpqSbwZDF9OShw/Cbe1l+Ik0M/78ik85fScMTHrK4L4FH4wHa4u687
+         dfNnPWYWq2mX6O/IRsXoTGNOxDwnG/l4JzGInxRf7XkyOpih4xXpfT22LA3V27cp/Sb+
+         b5WoEB9J641j1CMZwIqZpIeXe6+gLNPronqPQdm+SJiMkCBtFBRqPTc1SxkGVr8Hl53G
+         REJw==
+X-Gm-Message-State: AOAM533cTT62WDBuICAoz1Y2d6Vorrc9QVQylPPf1j5R+YBRDH64r671
+        lk/wB5U9NHY6yu9gbl3TKyGTCw==
+X-Google-Smtp-Source: ABdhPJxnWiMooG/MtjMpEbVaVBmU0gLwXtAR25UcFbu/9ktwRSIUjbuBbod67GMd2Ea/Y26JYFdtVA==
+X-Received: by 2002:a17:906:9443:: with SMTP id z3mr21320271ejx.156.1599474488206;
+        Mon, 07 Sep 2020 03:28:08 -0700 (PDT)
+Received: from localhost.localdomain (dh207-98-39.xnet.hr. [88.207.98.39])
+        by smtp.googlemail.com with ESMTPSA id dm22sm14767031edb.49.2020.09.07.03.28.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Sep 2020 03:28:07 -0700 (PDT)
+From:   Robert Marko <robert.marko@sartura.hr>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Robert Marko <robert.marko@sartura.hr>,
+        John Crispin <john@phrozen.org>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Vinod Koul <vkoul@kernel.org>
+Subject: [RESEND PATCH v7] ARM: dts: qcom: ipq4019: add USB devicetree nodes
+Date:   Mon,  7 Sep 2020 12:28:02 +0200
+Message-Id: <20200907102802.11276-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Gene Chen <gene_chen@richtek.com>
+Since we now have driver for the USB PHY, lets add the necessary nodes to DTSI.
 
-Add bindings document for LED support on MT6360 PMIC
-
-Signed-off-by: Gene Chen <gene_chen@richtek.com>
+Signed-off-by: John Crispin <john@phrozen.org>
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+Cc: Luka Perkov <luka.perkov@sartura.hr>
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
 ---
- .../devicetree/bindings/leds/leds-mt6360.yaml      | 105 +++++++++++++++++++++
- 1 file changed, 105 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/leds/leds-mt6360.yaml
+ arch/arm/boot/dts/qcom-ipq4019.dtsi | 74 +++++++++++++++++++++++++++++
+ 1 file changed, 74 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-mt6360.yaml b/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
-new file mode 100644
-index 0000000..72914c6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
-@@ -0,0 +1,105 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/leds-mt6360.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+index 74d8e2c8e4b3..8b72a149bc33 100644
+--- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
++++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+@@ -605,5 +605,79 @@ ethphy4: ethernet-phy@4 {
+ 				reg = <4>;
+ 			};
+ 		};
 +
-+title: LED driver for MT6360 PMIC from MediaTek Integrated.
++		usb3_ss_phy: ssphy@9a000 {
++			compatible = "qcom,usb-ss-ipq4019-phy";
++			#phy-cells = <0>;
++			reg = <0x9a000 0x800>;
++			reg-names = "phy_base";
++			resets = <&gcc USB3_UNIPHY_PHY_ARES>;
++			reset-names = "por_rst";
++			status = "disabled";
++		};
 +
-+maintainers:
-+  - Gene Chen <gene_chen@richtek.com>
++		usb3_hs_phy: hsphy@a6000 {
++			compatible = "qcom,usb-hs-ipq4019-phy";
++			#phy-cells = <0>;
++			reg = <0xa6000 0x40>;
++			reg-names = "phy_base";
++			resets = <&gcc USB3_HSPHY_POR_ARES>, <&gcc USB3_HSPHY_S_ARES>;
++			reset-names = "por_rst", "srif_rst";
++			status = "disabled";
++		};
 +
-+description: |
-+  This module is part of the MT6360 MFD device.
-+  The LED controller is represented as a sub-node of the PMIC node on
-+  the device tree.
-+  This device has six current sinks.
++		usb3@8af8800 {
++			compatible = "qcom,dwc3";
++			reg = <0x8af8800 0x100>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			clocks = <&gcc GCC_USB3_MASTER_CLK>,
++				 <&gcc GCC_USB3_SLEEP_CLK>,
++				 <&gcc GCC_USB3_MOCK_UTMI_CLK>;
++			clock-names = "master", "sleep", "mock_utmi";
++			ranges;
++			status = "disabled";
 +
-+properties:
-+  compatible:
-+    const: mediatek,mt6360-led
++			dwc3@8a00000 {
++				compatible = "snps,dwc3";
++				reg = <0x8a00000 0xf8000>;
++				interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
++				phys = <&usb3_hs_phy>, <&usb3_ss_phy>;
++				phy-names = "usb2-phy", "usb3-phy";
++				dr_mode = "host";
++			};
++		};
 +
-+  "#address-cells":
-+    const: 1
++		usb2_hs_phy: hsphy@a8000 {
++			compatible = "qcom,usb-hs-ipq4019-phy";
++			#phy-cells = <0>;
++			reg = <0xa8000 0x40>;
++			reg-names = "phy_base";
++			resets = <&gcc USB2_HSPHY_POR_ARES>, <&gcc USB2_HSPHY_S_ARES>;
++			reset-names = "por_rst", "srif_rst";
++			status = "disabled";
++		};
 +
-+  "#size-cells":
-+    const: 0
++		usb2@60f8800 {
++			compatible = "qcom,dwc3";
++			reg = <0x60f8800 0x100>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			clocks = <&gcc GCC_USB2_MASTER_CLK>,
++				 <&gcc GCC_USB2_SLEEP_CLK>,
++				 <&gcc GCC_USB2_MOCK_UTMI_CLK>;
++			clock-names = "master", "sleep", "mock_utmi";
++			ranges;
++			status = "disabled";
 +
-+patternProperties:
-+  "^led@[0-5]$":
-+    type: object
-+    description: |
-+      Properties for a single LED.
-+
-+    properties:
-+      reg:
-+        description: Index of the LED.
-+        enum:
-+          - 0 # LED output INDICATOR1
-+          - 1 # LED output INDICATOR2
-+          - 2 # LED output INDICATOR3
-+          - 3 # LED output INDICATOR4
-+          - 4 # LED output FLED1
-+          - 5 # LED output FLED2
-+
-+required:
-+  - compatible
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+ - |
-+   #include <dt-bindings/leds/common.h>
-+   led-controller {
-+     compatible = "mediatek,mt6360-led";
-+     #address-cells = <1>;
-+     #size-cells = <0>;
-+
-+     led@0 {
-+       reg = <0>;
-+       function = LED_FUNCTION_INDICATOR;
-+       color = <LED_COLOR_ID_RED>;
-+       default-state = "off";
-+     };
-+     led@1 {
-+       reg = <1>;
-+       function = LED_FUNCTION_INDICATOR;
-+       color = <LED_COLOR_ID_GREEN>;
-+       default-state = "off";
-+     };
-+     led@2 {
-+       reg = <2>;
-+       function = LED_FUNCTION_INDICATOR;
-+       color = <LED_COLOR_ID_BLUE>;
-+       default-state = "off";
-+     };
-+     led@3 {
-+       reg = <3>;
-+       function = LED_FUNCTION_INDICATOR;
-+       color = <LED_COLOR_ID_AMBER>;
-+       default-state = "off";
-+     };
-+     led@4 {
-+       reg = <4>;
-+       function = LED_FUNCTION_FLASH;
-+       color = <LED_COLOR_ID_WHITE>;
-+       function-enumerator = <1>;
-+       default-state = "off";
-+       led-max-microamp = <200000>;
-+       flash-max-microamp = <500000>;
-+       flash-max-timeout-us = <1024000>;
-+     };
-+     led@5 {
-+       reg = <5>;
-+       function = LED_FUNCTION_FLASH;
-+       color = <LED_COLOR_ID_WHITE>;
-+       function-enumerator = <2>;
-+       default-state = "off";
-+       led-max-microamp = <200000>;
-+       flash-max-microamp = <500000>;
-+       flash-max-timeout-us = <1024000>;
-+     };
-+   };
-+...
++			dwc3@6000000 {
++				compatible = "snps,dwc3";
++				reg = <0x6000000 0xf8000>;
++				interrupts = <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>;
++				phys = <&usb2_hs_phy>;
++				phy-names = "usb2-phy";
++				dr_mode = "host";
++			};
++		};
+ 	};
+ };
 -- 
-2.7.4
+2.26.2
 
