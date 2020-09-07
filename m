@@ -2,116 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABAFE25F4CB
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 10:17:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8901125F4D8
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 10:18:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727773AbgIGIRZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 04:17:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42068 "EHLO
+        id S1728004AbgIGISj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 04:18:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726928AbgIGIRZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 04:17:25 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0D9EC061573
-        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 01:17:24 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id l9so13283951wme.3
-        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 01:17:24 -0700 (PDT)
+        with ESMTP id S1727983AbgIGISd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 04:18:33 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35665C061575
+        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 01:18:33 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id x23so3549358wmi.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 01:18:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=e3Ta+K0mK8PpGvlCwRAXKhWKCtC3zo1Ck8yWJNQiAbc=;
-        b=N60YE/qv46tYYNcmpPR8FroUI42HP4mXIwHEKFuWaGPimLjJ9X3TifejU9aqxqqk8B
-         aE2FD/IljOK8O1Py57X18zSa7Q5k211I0qCnq7Urb7sSDcd8kX4aPn6DY1luVHtH4eHD
-         FAw4gW7HXAtpTkTtBGw/V3hgmAypm+uug7M1ttHV6PbBictZ/TGCrnAjHm6QCAKIrnNc
-         YMMVxDv5HKOtnlgM/RUdgkfSEnwOdBR1bOozmHY9Zhu3cpQ+uxZh5/Owv+Im8bBCJs0P
-         CRhUs+rjqD+24Cxv7SEUdOnAcSz9GbvwH0Sz85YrrMl/O21+QjRNM2D9LTm+AfdpDxz/
-         nHxw==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=miWW6H6jXaFE/FyCEk5bY4nk7z7nkaDQEzvoX6DPlkA=;
+        b=jgO6nuaRnlo0R2OYFX2vcDkqIExJA3JJthDEk7bvwcmzptmlrdmL9LVBaBYN+tgFno
+         3Xy+PA6367n1pTE12o5y1KJC0pJan5XYQdAxgLIvpfe0/eYP3DeMjz+ck5qtw8SYM9qo
+         J0AaFTHJ0hi2U58MsHU8vsIOh8yMo6JhUTSVtPjedZCyBClJAtST6EI2aUNnERV67TZa
+         YxodpFCjL3Zli9Wgpg53hQ9fkU0GKZpETAQypmWG5MaFv9H51Mv0klk23hVicKOVW4iG
+         3DaIltmO1vFQnyrBIMtX5/Sg2ECwSDcurrC2TGyBfPUxu9o94hsBvBuknTsJsT/RjFZT
+         ZI1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=e3Ta+K0mK8PpGvlCwRAXKhWKCtC3zo1Ck8yWJNQiAbc=;
-        b=UBiPEz1oSaC/N/PafMlkEeUEWkEtLNy056NSLI2fV4AhfFsgZ5rnC/IU9uoaDUoIgr
-         VLnn5Hdrt04EihEm2sbmAIBW39CtuK1WfvQQYWHw+xzHhQNETnJAbc4/anSoJF4I3y6o
-         Ily0P9fo6dDemUphQRMU+DWdLics8R8wtVz7AhanHUFpo/HgXvtMQOfuRXaPs6vqOVmY
-         F4zvXBBYjGnqOWDmD2WOr2CPaeo07NLzl6MVJ2Zwhor17M9lLdNoDGe3l6zz1+eEj2Q3
-         f5yh0IWNjvqZyEZ73k/UliMSdJrmCzskTYqXaiviSeA3A5DS90D8hppvccebS9SGBuGH
-         W7KQ==
-X-Gm-Message-State: AOAM533HMxknO+kNPAqB7LKTDMeVMNnDmymmXGD7fmaslt5I/laS/5T1
-        y6ePT+pDVpQRM9f4CHqWyWVMNA==
-X-Google-Smtp-Source: ABdhPJzqlqQ/xXSxZ0lbww5TZ6AZTnF7NA2XnTh1An/jnwbvuMzqoK0s9KMICLsQ2iJA4xPkNvSEbg==
-X-Received: by 2002:a1c:3bd7:: with SMTP id i206mr19701901wma.162.1599466643283;
-        Mon, 07 Sep 2020 01:17:23 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id u17sm25259954wmm.4.2020.09.07.01.17.21
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 07 Sep 2020 01:17:22 -0700 (PDT)
-Subject: Re: [PATCH v2 0/4] soundwire: qcom: add support for mmio soundwire
- master
-To:     Jonathan Marek <jonathan@marek.ca>, linux-arm-msm@vger.kernel.org
-Cc:     "moderated list:SOUNDWIRE SUBSYSTEM" <alsa-devel@alsa-project.org>,
-        Andy Gross <agross@kernel.org>,
-        Bard Liao <yung-chuan.liao@linux.intel.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sanyog Kale <sanyog.r.kale@intel.com>,
-        Vinod Koul <vkoul@kernel.org>
-References: <20200905173905.16541-1-jonathan@marek.ca>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <ec241abf-c1e1-8b2d-a0bb-93a60241330c@linaro.org>
-Date:   Mon, 7 Sep 2020 09:17:21 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=miWW6H6jXaFE/FyCEk5bY4nk7z7nkaDQEzvoX6DPlkA=;
+        b=kwr87huWgSxsPfG+A9rW+dPloNVXLO575ORpNhETregQ3oSd0tXXfieq9YTBpK72by
+         qzqC0WlnarlAXbE9xfpKI68oBeoezGndlrCSaWCQtRX0+7NlN4NFKbHchz+tvAfFzlAh
+         4suy6SqREi2II03A43pV4NXqSxobP16BvdPO9S7KBbxAMmbkV7EvFa8tLYJovOVZfNMy
+         grz+NbAH/vYjVi6MP+VnEbONSs79DqKARVK8wVesVz40ByUrSimAsCO2d4Mwcq5QhCSw
+         iqhv+RoZ4kS5MkXTbuK/Y1O7Q9JZMOWIroNR2uwl+mbbxRtDma+GRTuj1aVAu0oqQl2/
+         mgaA==
+X-Gm-Message-State: AOAM5339BVJ4Ul4Nqa6s6h/9Hhe5omz5RzBhpVEsN7oAjmiwL5lfg9JL
+        gFympSIW3kQTQPik/LDOA3u5gA==
+X-Google-Smtp-Source: ABdhPJzt7+ODbEr1nL9IMe4B5idhevglKUu034LrO7TAnTPbUIolpz1hDb42Mq+Viw7CjTrnT2KwwQ==
+X-Received: by 2002:a1c:5605:: with SMTP id k5mr14600574wmb.142.1599466711691;
+        Mon, 07 Sep 2020 01:18:31 -0700 (PDT)
+Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
+        by smtp.gmail.com with ESMTPSA id q186sm28032205wma.45.2020.09.07.01.18.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Sep 2020 01:18:31 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     daniel@ffwll.ch, devicetree@vger.kernel.org
+Cc:     dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH 1/6] dt-bindings: display: amlogic,meson-vpu: add bindings for VPU found in AXG SoCs
+Date:   Mon,  7 Sep 2020 10:18:20 +0200
+Message-Id: <20200907081825.1654-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20200907081825.1654-1-narmstrong@baylibre.com>
+References: <20200907081825.1654-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20200905173905.16541-1-jonathan@marek.ca>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The Amlogic AXG SoC family has a downgraded VPU supporting only MIPI-DSI output
+after it's ENCL DPI encoder output.
 
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ .../bindings/display/amlogic,meson-vpu.yaml   | 36 +++++++++++++++++--
+ 1 file changed, 33 insertions(+), 3 deletions(-)
 
-On 05/09/2020 18:39, Jonathan Marek wrote:
-> This adds initial support for soundwire device on sm8250.
-> 
-> Tested with the "wsa" sdw device, which is simpler than the others.
-> 
-> v2 addresses some feedback, but I kept this series as simple as possible.
-> In particular, I didn't implement CMD_NACKED from FIFO_STATUS, because
-> the downstream driver doesn't define this bit, so I can't implement it.
-> Soundwire works without it and It shouldn't be difficult to implement later.
-> 
-> Jonathan Marek (4):
->    soundwire: qcom: fix abh/ahb typo
->    soundwire: qcom: avoid dependency on CONFIG_SLIMBUS
->    soundwire: qcom: add support for mmio soundwire master devices
->    soundwire: qcom: add v1.5.1 compatible
-> 
-Hi Jonathan,
-I have tested these patches on RB5 with WSA8810 and they work fine.
+diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
+index a8d202c9d004..e2e7d99d8ace 100644
+--- a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
++++ b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
+@@ -31,8 +31,10 @@ description: |
+ 
+   The Video Input Unit is in charge of the pixel scanout from the DDR memory.
+   It fetches the frames addresses, stride and parameters from the "Canvas" memory.
++  On the AXG family, the Video Input Unit direclty reads from DDR memory.
+   This part is also in charge of the CSC (Colorspace Conversion).
+   It can handle 2 OSD Planes and 2 Video Planes.
++  On the AXG family, only a single OSD plane without scalins is supported.
+ 
+   VPP: Video Post Processing
+   --------------------------
+@@ -49,11 +51,13 @@ description: |
+   The VENC is composed of the multiple pixel encoders
+    - ENCI : Interlace Video encoder for CVBS and Interlace HDMI
+    - ENCP : Progressive Video Encoder for HDMI
+-   - ENCL : LCD LVDS Encoder
++   - ENCL : LCD DPI Encoder
+   The VENC Unit gets a Pixel Clocks (VCLK) from a dedicated HDMI PLL and clock
+   tree and provides the scanout clock to the VPP and VIU.
+   The ENCI is connected to a single VDAC for Composite Output.
+   The ENCI and ENCP are connected to an on-chip HDMI Transceiver.
++  On the AXG and G12A family, the ENCL is connected to a DPI-to-DSI
++  transceiver.
+ 
+ properties:
+   compatible:
+@@ -65,6 +69,7 @@ properties:
+               - amlogic,meson-gxm-vpu # GXM (S912)
+           - const: amlogic,meson-gx-vpu
+       - enum:
++          - amlogic,meson-axg-vpu # AXG (A113D, A113X)
+           - amlogic,meson-g12a-vpu # G12A (S905X2, S905Y2, S905D2)
+ 
+   reg:
+@@ -92,6 +97,11 @@ properties:
+     description:
+       A port node pointing to the HDMI-TX port node.
+ 
++  port@2:
++    type: object
++    description:
++      A port node pointing to the DPI port node.
++
+   "#address-cells":
+     const: 1
+ 
+@@ -102,11 +112,31 @@ required:
+   - compatible
+   - reg
+   - interrupts
+-  - port@0
+-  - port@1
+   - "#address-cells"
+   - "#size-cells"
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          enum:
++            - amlogic,meson-gx-vpu
++            - amlogic,meson-g12a-vpu
++
++    then:
++      required:
++        - port@0
++        - port@1
++  - if:
++      properties:
++        compatible:
++          enum:
++            - amlogic,meson-axg-vpu
++
++    then:
++      required:
++        - port@2
++
+ additionalProperties: false
+ 
+ examples:
+-- 
+2.22.0
 
-I can try to add support to command ignored in future, but for now these 
-look good to me!
-
-
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Tested-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-
-
-Thanks,
-srini
-
->   .../bindings/soundwire/qcom,sdw.txt           |  1 +
->   drivers/soundwire/Kconfig                     |  2 +-
->   drivers/soundwire/qcom.c                      | 38 +++++++++++++++++--
->   3 files changed, 36 insertions(+), 5 deletions(-)
-> 
