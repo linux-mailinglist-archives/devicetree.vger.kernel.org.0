@@ -2,104 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B72325FC17
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 16:29:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DE4325FC3F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 16:48:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729882AbgIGO3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 10:29:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42896 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729863AbgIGO2b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 10:28:31 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B13F9C061786
-        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 07:27:45 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7] helo=dude.pengutronix.de.)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <bst@pengutronix.de>)
-        id 1kFI7T-0003nx-VS; Mon, 07 Sep 2020 16:27:44 +0200
-From:   Bastian Krause <bst@pengutronix.de>
-To:     linux-rtc@vger.kernel.org
-Cc:     devicetree@vger.kernel.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        id S1729924AbgIGOrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 10:47:52 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:10372 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1729957AbgIGOrM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 10:47:12 -0400
+X-IronPort-AV: E=Sophos;i="5.76,402,1592838000"; 
+   d="scan'208";a="56583841"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 07 Sep 2020 23:46:09 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 5E6B542FBA1A;
+        Mon,  7 Sep 2020 23:46:07 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Arnaud Ebalard <arno@natisbad.org>,
-        Marek Vasut <marex@denx.de>, kernel@pengutronix.de,
-        Bastian Krause <bst@pengutronix.de>
-Subject: [PATCH 1/8] dt-bindings: rtc: let aux-voltage-chargeable supersede trickle-diode-disable
-Date:   Mon,  7 Sep 2020 16:27:20 +0200
-Message-Id: <20200907142727.26472-2-bst@pengutronix.de>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200907142727.26472-1-bst@pengutronix.de>
-References: <20200907142727.26472-1-bst@pengutronix.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: bst@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Subject: [PATCH 2/2] ARM: dts: r8a7742: Add VIN DT nodes
+Date:   Mon,  7 Sep 2020 15:45:09 +0100
+Message-Id: <20200907144509.8861-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200907144509.8861-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20200907144509.8861-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some RTCs can be equipped with a chargeable battery or supercap.
-Every RTC allowing this whose driver's implement it are charged by
-default. To disable this the trickle-diode-disable flag exists.
+Add VIN[0123] instances found in the r8a7742 SoC.
 
-If a driver did not support charging and some time later one wants to
-add that feature, there is currently no way to do it without breaking
-dt backwards compatibility. RTCs on boards without the
-trickle-diode-disable flag in their device tree would suddenly charge
-their battery/supercap which is a change in behavior.
-
-Change that by introducing aux-voltage-chargeable, not as a flag but as
-a uint32 enum allowing to set "do not charge" (0) or "charge" (1). This
-dt property is optional, so we can now distinguish these cases.
-
-Care must be taken to support the old behavior for device trees without
-aux-voltage-chargeable nonetheless to stay compatible.
-
-Suggested-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Signed-off-by: Bastian Krause <bst@pengutronix.de>
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
-In a previous series aux-voltage-chargeable was added as a ds1307 dt
-property. Discussions lead to turning that into a generic rtc dt
-property:
-https://lore.kernel.org/linux-rtc/98fa7181-3ebe-d7c3-cfac-fee841c81e15@pengutronix.de/T/
----
- Documentation/devicetree/bindings/rtc/rtc.yaml | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ arch/arm/boot/dts/r8a7742.dtsi | 44 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/rtc/rtc.yaml b/Documentation/devicetree/bindings/rtc/rtc.yaml
-index ee237b2ed66a..e895c772ce99 100644
---- a/Documentation/devicetree/bindings/rtc/rtc.yaml
-+++ b/Documentation/devicetree/bindings/rtc/rtc.yaml
-@@ -17,6 +17,15 @@ properties:
-   $nodename:
-     pattern: "^rtc(@.*|-[0-9a-f])*$"
+diff --git a/arch/arm/boot/dts/r8a7742.dtsi b/arch/arm/boot/dts/r8a7742.dtsi
+index c62e26876f95..24647cf13c2b 100644
+--- a/arch/arm/boot/dts/r8a7742.dtsi
++++ b/arch/arm/boot/dts/r8a7742.dtsi
+@@ -1103,6 +1103,50 @@
+ 			status = "disabled";
+ 		};
  
-+  aux-voltage-chargeable:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1]
-+    description:
-+      Tells whether the battery/supercap of the RTC (if any) is
-+      chargeable or not:
-+      0: not chargeable
-+      1: chargeable
++		vin0: video@e6ef0000 {
++			compatible = "renesas,vin-r8a7742",
++				     "renesas,rcar-gen2-vin";
++			reg = <0 0xe6ef0000 0 0x1000>;
++			interrupts = <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 811>;
++			power-domains = <&sysc R8A7742_PD_ALWAYS_ON>;
++			resets = <&cpg 811>;
++			status = "disabled";
++		};
 +
-   quartz-load-femtofarads:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description:
-@@ -35,6 +44,7 @@ properties:
-     description:
-       Do not use internal trickle charger diode. Should be given if
-       internal trickle charger diode should be disabled.
-+    deprecated: true
- 
-   trickle-resistor-ohms:
-     $ref: /schemas/types.yaml#/definitions/uint32
++		vin1: video@e6ef1000 {
++			compatible = "renesas,vin-r8a7742",
++				     "renesas,rcar-gen2-vin";
++			reg = <0 0xe6ef1000 0 0x1000>;
++			interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 810>;
++			power-domains = <&sysc R8A7742_PD_ALWAYS_ON>;
++			resets = <&cpg 810>;
++			status = "disabled";
++		};
++
++		vin2: video@e6ef2000 {
++			compatible = "renesas,vin-r8a7742",
++				     "renesas,rcar-gen2-vin";
++			reg = <0 0xe6ef2000 0 0x1000>;
++			interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 809>;
++			power-domains = <&sysc R8A7742_PD_ALWAYS_ON>;
++			resets = <&cpg 809>;
++			status = "disabled";
++		};
++
++		vin3: video@e6ef3000 {
++			compatible = "renesas,vin-r8a7742",
++				     "renesas,rcar-gen2-vin";
++			reg = <0 0xe6ef3000 0 0x1000>;
++			interrupts = <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 808>;
++			power-domains = <&sysc R8A7742_PD_ALWAYS_ON>;
++			resets = <&cpg 808>;
++			status = "disabled";
++		};
++
+ 		rcar_sound: sound@ec500000 {
+ 			/*
+ 			 * #sound-dai-cells is required
 -- 
-2.28.0
+2.17.1
 
