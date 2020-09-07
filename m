@@ -2,281 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 017C625FB70
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 15:29:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E94C25FB77
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 15:31:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729469AbgIGN2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 09:28:45 -0400
-Received: from foss.arm.com ([217.140.110.172]:35736 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729506AbgIGN2S (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Sep 2020 09:28:18 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 088FE1045;
-        Mon,  7 Sep 2020 06:27:36 -0700 (PDT)
-Received: from [10.57.40.122] (unknown [10.57.40.122])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6E7FD3F66E;
-        Mon,  7 Sep 2020 06:27:34 -0700 (PDT)
-Subject: Re: [PATCH 2/2] perf: Add Arm CMN-600 PMU driver
-To:     John Garry <john.garry@huawei.com>, will@kernel.org,
-        mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, tuanphan@os.amperecomputing.com,
-        tsahee@amazon.com, harb@amperecomputing.com, james.yang@arm.com,
-        alisaidi@amazon.com
-References: <cover.1596631695.git.robin.murphy@arm.com>
- <7f184a18890ef20632eae98b6c105c36f4eb0cd3.1596631695.git.robin.murphy@arm.com>
- <512b3de2-9ece-baaf-ef93-246a8af9464f@huawei.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <c8803e30-7b67-bdb1-30ac-fe1137e4bd93@arm.com>
-Date:   Mon, 7 Sep 2020 14:27:33 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1729565AbgIGN32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 09:29:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33164 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729407AbgIGNYw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Sep 2020 09:24:52 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80174C061573
+        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 06:24:50 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id a9so14227299wmm.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 06:24:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:autocrypt:organization:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=IKRTwDbVsmXTAzdxN3hyZaGfI9/6c9DFQDx7XjqaewI=;
+        b=TXb+aYYh59B/Qapt3XC50g3Rw9De+LPI+noQ/CYGXFkrilfLCXITqKddUtJRMJAmVt
+         ct+uLViTc7SFC65mGLgKLwIkGsZhplGtAXDJbx2RdfwW/3HM6KcF1limKu+qUQqxRSMJ
+         fPHUJ+q3X3Gmz6z6Ha00QwIExgpffTYLBJQLehC0ggmymMUsXbGpCxNdGFrwiZfn1jjc
+         rvAHXxfw6Z1nhOZP1a08NRKXJKQfr/nEUsYd9Y8fuvRbEHm+rahjaHDcRDBonQNGL0GY
+         xPEFiDWcDJ6QrVj7eoxL/XOA7UXnSp4fYIxD1EhWVjpdJphk7sK+Z36zCessZ0WHvO6g
+         awpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=IKRTwDbVsmXTAzdxN3hyZaGfI9/6c9DFQDx7XjqaewI=;
+        b=prZgCJQfLaPIaozETWcfmD6JbfubfiRvgNtKwYolYhrY4eN6VVMS/aqJ6WzS4ilqwA
+         jz181xGzM4yF2sDLrkVYSK5n15X3CakBrrhujHmfAg5klm028dksd6UPNkHN6FFb3cEV
+         aBt0yu3Zn2sujU80XyQPSmpwCDrgMQ6h5/CDWvCSBEje4oESQkBuFU2GThsvbFGq8WV8
+         BMcnMHp+sQqXvcSWI56/b0+1b7iGzg4d9RdvUEezwNFAPgbbjkwBQY+kQLfQ6TjoSI8I
+         eI34NiWiU9iweWxkIv1+JTmHjcj/SmOX5fH4GzVSiOreRsAYfLyox5id4r9tArTI4joC
+         2dQQ==
+X-Gm-Message-State: AOAM530iOOm4U1dECx7Pls1GAbKr3i6gG9RZocTM7GXgVcwQuZoYuNfC
+        RzgPSXwKNr3mFxwTEM7Kv9wbcg==
+X-Google-Smtp-Source: ABdhPJxIvLhOQcVP0q0sW58n8NnEBJVdj/3cTCoVYv0gNJtoR3vlsfB8mDNHwWBx7PirCrvIPTbFow==
+X-Received: by 2002:a7b:cf30:: with SMTP id m16mr20675293wmg.0.1599485089059;
+        Mon, 07 Sep 2020 06:24:49 -0700 (PDT)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac? ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
+        by smtp.gmail.com with ESMTPSA id v3sm26967328wmh.6.2020.09.07.06.24.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Sep 2020 06:24:48 -0700 (PDT)
+Subject: Re: [PATCH v2 2/3] dt-bindings: display: panel: add TDO tl070wsh30
+ DSI panel bindings
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     thierry.reding@gmail.com, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20200907111027.21933-1-narmstrong@baylibre.com>
+ <20200907111027.21933-3-narmstrong@baylibre.com>
+ <20200907114552.GA526406@ravnborg.org>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <358ee0c3-fe1c-b9b6-9ed8-086f9d14afd9@baylibre.com>
+Date:   Mon, 7 Sep 2020 15:24:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <512b3de2-9ece-baaf-ef93-246a8af9464f@huawei.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200907114552.GA526406@ravnborg.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi John,
+Hi,
 
-On 2020-09-07 12:23, John Garry wrote:
-> On 05/08/2020 13:56, Robin Murphy wrote:
->> Initial driver for PMU event counting on the Arm CMN-600 interconnect.
->> CMN sports an obnoxiously complex distributed PMU system as part of
->> its debug and trace features, which can do all manner of things like
->> sampling, cross-triggering and generating CoreSight trace. This driver
->> covers the PMU functionality, plus the relevant aspects of watchpoints
->> for simply counting matching flits.
+On 07/09/2020 13:45, Sam Ravnborg wrote:
+> Hi Neil.
+> 
+> On Mon, Sep 07, 2020 at 01:10:26PM +0200, Neil Armstrong wrote:
+>> This add the bindings for the 1024*600 tl070wsh30 DSI panel.
+> 
+> The binding looks like a panel-simple-dsi.yaml candidate.
+> Only differen is enable-gpios versus reset-gpios
+
+This is the only difference, the panel only has a reset signal and no
+enable signal.
+
+But I can add a reset-gpios to panel-simple-dsi.yaml, would it be ok ?
+
+Neil
+
+> 
+> Could you check if we can use panel-simple-dsi-yaml.
+> 
+> 	Sam
+> 
 >>
-> 
-> Hi Robin,
-> 
-> I had a quick look at the TRM (nearly 1000 pages, wow) for this IP, and 
-> could not see anything obvious to know the implementation id (similar 
-> problem to SMMU PMCG today). Do you know if there is anything 
-> appropiate? Is por_hnf_ppu_iidr any use here?
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  .../display/panel/tdo,tl070wsh30.yaml         | 58 +++++++++++++++++++
+>>  1 file changed, 58 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/display/panel/tdo,tl070wsh30.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/panel/tdo,tl070wsh30.yaml b/Documentation/devicetree/bindings/display/panel/tdo,tl070wsh30.yaml
+>> new file mode 100644
+>> index 000000000000..20f4fdedfcb0
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/panel/tdo,tl070wsh30.yaml
+>> @@ -0,0 +1,58 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+>> +# Copyright 2020 BayLibre, SAS
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/display/panel/tdo,tl070wsh30.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: TDO TL070WSH30 DSI panel
+>> +
+>> +maintainers:
+>> +  - Neil Armstrong <narmstrong@baylibre.com>
+>> +
+>> +allOf:
+>> +  - $ref: panel-common.yaml#
+>> +
+>> +properties:
+>> +
+>> +  compatible:
+>> +    enum:
+>> +      - tdo,tl070wsh30
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +    description: DSI virtual channel
+>> +
+>> +  backlight: true
+>> +  reset-gpios: true
+>> +  port: true
+>> +  power-supply: true
+>> +
+>> +additionalProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - power-supply
+>> +  - reset-gpios
+>> +  - port
+>> +  - reg
+>> +
+>> +examples:
+>> +  - |
+>> +    dsi {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +      panel@0 {
+>> +        compatible = "tdo,tl070wsh30";
+>> +        reg = <0>;
+>> +        power-supply = <&vcc_lcd_reg>;
+>> +        backlight = <&panel_backlight>;
+>> +        reset-gpios = <&gpio_reset>;
+>> +
+>> +        port {
+>> +          panel: endpoint {
+>> +            remote-endpoint = <&mipi_dsi_out>;
+>> +          };
+>> +        };
+>> +      };
+>> +    };
+>> -- 
+>> 2.22.0
 
-Note that PPU is a distinct thing with its own architecture (apparently 
-https://developer.arm.com/documentation/den0051/latest/ if you're 
-interested), so that particular IIDR is merely describing the 
-implementation of the PPU interface, which AFAICS is not necessarily 
-unique to CMN-600. In terms of the PMU and CMN overall there is no 
-architecture to speak of, the implementation just is what it is :)
-
-I'd expect that some future interconnect IPs are likely to be similar 
-enough to share most of this driver, but those should get their own 
-top-level compatibles since they will not be CMN-600. Thus I don't 
-believe that identification is going to be too much of a concern.
-
-> Just a couple of more questions for now...
-> 
-> [snip]
-> 
->> +
->> +static struct attribute *arm_cmn_event_attrs[] = {
->> +    CMN_EVENT_DTC(cycles),
->> +
->> +    /*
->> +     * DVM node events conflict with HN-I events in the equivalent PMU
->> +     * slot, but our lazy short-cut of using the DTM counter index for
->> +     * the PMU index as well happens to avoid that by construction.
->> +     */
->> +    CMN_EVENT_DVM(rxreq_dvmop,    0x01),
->> +    CMN_EVENT_DVM(rxreq_dvmsync,    0x02),
->> +    CMN_EVENT_DVM(rxreq_dvmop_vmid_filtered, 0x03),
->> +    CMN_EVENT_DVM(rxreq_retried,    0x04),
->> +    _CMN_EVENT_DVM(rxreq_trk_occupancy_all, 0x05, 0),
->> +    _CMN_EVENT_DVM(rxreq_trk_occupancy_dvmop, 0x05, 1),
->> +    _CMN_EVENT_DVM(rxreq_trk_occupancy_dvmsync, 0x05, 2),
->> +
->> +    CMN_EVENT_HNF(cache_miss,    0x01),
->> +    CMN_EVENT_HNF(slc_sf_cache_access, 0x02),
->> +    CMN_EVENT_HNF(cache_fill,    0x03),
->> +    CMN_EVENT_HNF(pocq_retry,    0x04),
->> +    CMN_EVENT_HNF(pocq_reqs_recvd,    0x05),
->> +    CMN_EVENT_HNF(sf_hit,        0x06),
->> +    CMN_EVENT_HNF(sf_evictions,    0x07),
->> +    CMN_EVENT_HNF(dir_snoops_sent,    0x08),
->> +    CMN_EVENT_HNF(brd_snoops_sent,    0x09),
->> +    CMN_EVENT_HNF(slc_eviction,    0x0a),
->> +    CMN_EVENT_HNF(slc_fill_invalid_way, 0x0b),
->> +    CMN_EVENT_HNF(mc_retries,    0x0c),
->> +    CMN_EVENT_HNF(mc_reqs,        0x0d),
->> +    CMN_EVENT_HNF(qos_hh_retry,    0x0e),
->> +    _CMN_EVENT_HNF(qos_pocq_occupancy_all, 0x0f, 0),
->> +    _CMN_EVENT_HNF(qos_pocq_occupancy_read, 0x0f, 1),
->> +    _CMN_EVENT_HNF(qos_pocq_occupancy_write, 0x0f, 2),
->> +    _CMN_EVENT_HNF(qos_pocq_occupancy_atomic, 0x0f, 3),
->> +    _CMN_EVENT_HNF(qos_pocq_occupancy_stash, 0x0f, 4),
->> +    CMN_EVENT_HNF(pocq_addrhaz,    0x10),
->> +    CMN_EVENT_HNF(pocq_atomic_addrhaz, 0x11),
->> +    CMN_EVENT_HNF(ld_st_swp_adq_full, 0x12),
->> +    CMN_EVENT_HNF(cmp_adq_full,    0x13),
->> +    CMN_EVENT_HNF(txdat_stall,    0x14),
->> +    CMN_EVENT_HNF(txrsp_stall,    0x15),
->> +    CMN_EVENT_HNF(seq_full,        0x16),
->> +    CMN_EVENT_HNF(seq_hit,        0x17),
->> +    CMN_EVENT_HNF(snp_sent,        0x18),
->> +    CMN_EVENT_HNF(sfbi_dir_snp_sent, 0x19),
->> +    CMN_EVENT_HNF(sfbi_brd_snp_sent, 0x1a),
->> +    CMN_EVENT_HNF(snp_sent_untrk,    0x1b),
->> +    CMN_EVENT_HNF(intv_dirty,    0x1c),
->> +    CMN_EVENT_HNF(stash_snp_sent,    0x1d),
->> +    CMN_EVENT_HNF(stash_data_pull,    0x1e),
->> +    CMN_EVENT_HNF(snp_fwded,    0x1f),
->> +
->> +    CMN_EVENT_HNI(rrt_rd_occ_cnt_ovfl, 0x20),
->> +    CMN_EVENT_HNI(rrt_wr_occ_cnt_ovfl, 0x21),
->> +    CMN_EVENT_HNI(rdt_rd_occ_cnt_ovfl, 0x22),
->> +    CMN_EVENT_HNI(rdt_wr_occ_cnt_ovfl, 0x23),
->> +    CMN_EVENT_HNI(wdb_occ_cnt_ovfl,    0x24),
->> +    CMN_EVENT_HNI(rrt_rd_alloc,    0x25),
->> +    CMN_EVENT_HNI(rrt_wr_alloc,    0x26),
->> +    CMN_EVENT_HNI(rdt_rd_alloc,    0x27),
->> +    CMN_EVENT_HNI(rdt_wr_alloc,    0x28),
->> +    CMN_EVENT_HNI(wdb_alloc,    0x29),
->> +    CMN_EVENT_HNI(txrsp_retryack,    0x2a),
->> +    CMN_EVENT_HNI(arvalid_no_arready, 0x2b),
->> +    CMN_EVENT_HNI(arready_no_arvalid, 0x2c),
->> +    CMN_EVENT_HNI(awvalid_no_awready, 0x2d),
->> +    CMN_EVENT_HNI(awready_no_awvalid, 0x2e),
->> +    CMN_EVENT_HNI(wvalid_no_wready,    0x2f),
->> +    CMN_EVENT_HNI(txdat_stall,    0x30),
->> +    CMN_EVENT_HNI(nonpcie_serialization, 0x31),
->> +    CMN_EVENT_HNI(pcie_serialization, 0x32),
->> +
->> +    CMN_EVENT_XP(txflit_valid,    0x01),
->> +    CMN_EVENT_XP(txflit_stall,    0x02),
->> +    CMN_EVENT_XP(partial_dat_flit,    0x03),
->> +    /* We treat watchpoints as a special made-up class of XP events */
->> +    CMN_EVENT_ATTR(watchpoint_up, CMN_TYPE_WP, 0, 0),
->> +    CMN_EVENT_ATTR(watchpoint_down, CMN_TYPE_WP, 2, 0),
->> +
->> +    CMN_EVENT_SBSX(rd_req,        0x01),
->> +    CMN_EVENT_SBSX(wr_req,        0x02),
->> +    CMN_EVENT_SBSX(cmo_req,        0x03),
->> +    CMN_EVENT_SBSX(txrsp_retryack,    0x04),
->> +    CMN_EVENT_SBSX(txdat_flitv,    0x05),
->> +    CMN_EVENT_SBSX(txrsp_flitv,    0x06),
->> +    CMN_EVENT_SBSX(rd_req_trkr_occ_cnt_ovfl, 0x11),
->> +    CMN_EVENT_SBSX(wr_req_trkr_occ_cnt_ovfl, 0x12),
->> +    CMN_EVENT_SBSX(cmo_req_trkr_occ_cnt_ovfl, 0x13),
->> +    CMN_EVENT_SBSX(wdb_occ_cnt_ovfl, 0x14),
->> +    CMN_EVENT_SBSX(rd_axi_trkr_occ_cnt_ovfl, 0x15),
->> +    CMN_EVENT_SBSX(cmo_axi_trkr_occ_cnt_ovfl, 0x16),
->> +    CMN_EVENT_SBSX(arvalid_no_arready, 0x21),
->> +    CMN_EVENT_SBSX(awvalid_no_awready, 0x22),
->> +    CMN_EVENT_SBSX(wvalid_no_wready, 0x23),
->> +    CMN_EVENT_SBSX(txdat_stall,    0x24),
->> +    CMN_EVENT_SBSX(txrsp_stall,    0x25),
->> +
->> +    CMN_EVENT_RNID(s0_rdata_beats,    0x01),
->> +    CMN_EVENT_RNID(s1_rdata_beats,    0x02),
->> +    CMN_EVENT_RNID(s2_rdata_beats,    0x03),
->> +    CMN_EVENT_RNID(rxdat_flits,    0x04),
->> +    CMN_EVENT_RNID(txdat_flits,    0x05),
->> +    CMN_EVENT_RNID(txreq_flits_total, 0x06),
->> +    CMN_EVENT_RNID(txreq_flits_retried, 0x07),
->> +    CMN_EVENT_RNID(rrt_occ_ovfl,    0x08),
->> +    CMN_EVENT_RNID(wrt_occ_ovfl,    0x09),
->> +    CMN_EVENT_RNID(txreq_flits_replayed, 0x0a),
->> +    CMN_EVENT_RNID(wrcancel_sent,    0x0b),
->> +    CMN_EVENT_RNID(s0_wdata_beats,    0x0c),
->> +    CMN_EVENT_RNID(s1_wdata_beats,    0x0d),
->> +    CMN_EVENT_RNID(s2_wdata_beats,    0x0e),
->> +    CMN_EVENT_RNID(rrt_alloc,    0x0f),
->> +    CMN_EVENT_RNID(wrt_alloc,    0x10),
->> +    CMN_EVENT_RNID(rdb_unord,    0x11),
->> +    CMN_EVENT_RNID(rdb_replay,    0x12),
->> +    CMN_EVENT_RNID(rdb_hybrid,    0x13),
->> +    CMN_EVENT_RNID(rdb_ord,        0x14),
->> +
->> +    NULL
->> +};
-> 
-> Just wondering how does "perf list" look when you have multiple 
-> instances of the device in the system?
-
-Probably a giant mess, since I assume every (relevant) event should be 
-listed for each instance, much like CPU events on big.LITTLE systems, 
-and uncore events on many others (certainly most of the xgene_pmu events 
-on my eMAG workstation are repeated up to 8 times).
-
-> [snip]
-> 
->> +static int arm_cmn_probe(struct platform_device *pdev)
->> +{
->> +    struct arm_cmn *cmn;
->> +    const char *name;
->> +    static atomic_t id;
->> +    int err, rootnode;
->> +
->> +    cmn = devm_kzalloc(&pdev->dev, sizeof(*cmn), GFP_KERNEL);
->> +    if (!cmn)
->> +        return -ENOMEM;
->> +
->> +    cmn->dev = &pdev->dev;
->> +    platform_set_drvdata(pdev, cmn);
->> +
->> +    if (has_acpi_companion(cmn->dev))
->> +        rootnode = arm_cmn_acpi_probe(pdev, cmn);
->> +    else
->> +        rootnode = arm_cmn_of_probe(pdev, cmn);
->> +    if (rootnode < 0)
->> +        return rootnode;
->> +
->> +    err = arm_cmn_discover(cmn, rootnode);
->> +    if (err)
->> +        return err;
->> +
->> +    err = arm_cmn_init_dtcs(cmn);
->> +    if (err)
->> +        return err;
->> +
->> +    err = arm_cmn_init_irqs(cmn);
->> +    if (err)
->> +        return err;
->> +
->> +    cmn->cpu = raw_smp_processor_id();
->> +    cmn->pmu = (struct pmu) {
->> +        .module = THIS_MODULE,
->> +        .attr_groups = arm_cmn_attr_groups,
->> +        .capabilities = PERF_PMU_CAP_NO_EXCLUDE,
->> +        .task_ctx_nr = perf_invalid_context,
->> +        .pmu_enable = arm_cmn_pmu_enable,
->> +        .pmu_disable = arm_cmn_pmu_disable,
->> +        .event_init = arm_cmn_event_init,
->> +        .add = arm_cmn_event_add,
->> +        .del = arm_cmn_event_del,
->> +        .start = arm_cmn_event_start,
->> +        .stop = arm_cmn_event_stop,
->> +        .read = arm_cmn_event_read,
->> +        .start_txn = arm_cmn_start_txn,
->> +        .commit_txn = arm_cmn_commit_txn,
->> +        .cancel_txn = arm_cmn_end_txn,
->> +    };
->> +
->> +    if (atomic_fetch_inc(&id) == 0) {
->> +        name = "arm_cmn";
->> +    } else {
->> +        name = devm_kasprintf(cmn->dev, GFP_KERNEL, "arm_cmn_%d", 
->> atomic_read(&id));
-> 
-> How is userspace supposed to know which device is which when we have 
-> multiple instances? I mean, doesn't this depend on arbitary probe ordering?
-
-Right, I had it in my head that there should be enough information in 
-sysfs to link the PMU device back to its parent platform device, but 
-apparently that isn't the case :(
-
-Furthermore, you've now got me thinking I might want to rejig the naming 
-scheme anyway - if I did have two instances named "foo" and "foo_1", is 
-perf tool going to interpret "-e foo/event/" as specifying a common 
-prefix and create the event on both PMUs even if I only wanted it on the 
-first one?
-
-Robin.
