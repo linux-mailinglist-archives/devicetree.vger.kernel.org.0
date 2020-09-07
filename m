@@ -2,98 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 233F725FE5D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 18:14:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7DD925FEBB
+	for <lists+devicetree@lfdr.de>; Mon,  7 Sep 2020 18:22:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730457AbgIGQOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Sep 2020 12:14:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34096 "EHLO mail.kernel.org"
+        id S1729952AbgIGQV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Sep 2020 12:21:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33338 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730453AbgIGQOG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Sep 2020 12:14:06 -0400
-Received: from kozik-lap.mshome.net (unknown [194.230.155.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1730392AbgIGQNT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Sep 2020 12:13:19 -0400
+Received: from pali.im (pali.im [31.31.79.79])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2D1AB207DE;
-        Mon,  7 Sep 2020 16:14:02 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id B65F42177B;
+        Mon,  7 Sep 2020 16:13:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599495245;
-        bh=bwtOi8QElP0mGjZhVUaaYJrre3PcACxIN1rrV3SxlNw=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=UYSZxr7VgfQX85+efnx0NAZinxygKy1kqfcI7NL163KkguKnH6Q6dd6fGPoc7+E0Z
-         wxtyeFS25ChjYbXllL/KHWggeCnRQvDmF7P85PVn9/oUtIecD3rE+pknvEsLHJsstj
-         R5STZXc7cq6FhMu0OvpuG97q4DvqJIDNW8EpzziY=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+        s=default; t=1599495198;
+        bh=Y2BCiy3yY3A8EA1BKUV6pwWXEjyt+rKSZq5t8blyh7o=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=oDw/uPsjjNA0Nm8ITp0ewceSgTabCRG82GhfX4iODt2TB8ksREiRxLG0Klr+YyT5r
+         Tx8yTB23Y1DfHOLMa/6uLxGv8dvX3XlGjriewrClTrSx5s0nfdQlQ7oSVv4iieS7n3
+         MtXvWlBkiQ3srsYSH2cUrxvyZGUf1eACwVu5ebak=
+Received: by pali.im (Postfix)
+        id 670FC814; Mon,  7 Sep 2020 18:13:16 +0200 (CEST)
+Date:   Mon, 7 Sep 2020 18:13:16 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Jason Cooper <jason@lakedaemon.net>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Jonathan Bakker <xc-racer2@live.ca>,
-        =?UTF-8?q?Pawe=C5=82=20Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: [RFT 25/25] ARM: dts: s5pv210: align DMA channels with dtschema
-Date:   Mon,  7 Sep 2020 18:11:41 +0200
-Message-Id: <20200907161141.31034-26-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200907161141.31034-1-krzk@kernel.org>
-References: <20200907161141.31034-1-krzk@kernel.org>
+        Tomasz Maciej Nowak <tmn505@gmail.com>,
+        Andre Heider <a.heider@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: marvell: espressobin: Add ethernet switch
+ aliases
+Message-ID: <20200907161316.xd5svvahi5xusdlw@pali>
+References: <20200907112718.5994-1-pali@kernel.org>
+ <20200907144228.GV3112546@lunn.ch>
+ <20200907145213.fwlyz4k6scible7x@pali>
+ <20200907154353.GW3112546@lunn.ch>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200907154353.GW3112546@lunn.ch>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-dtschema expects DMA channels in specific order (tx, rx and tx-sec).
-The order actually should not matter because dma-names is used however
-let's make it aligned with dtschema to suppress warnings like:
+On Monday 07 September 2020 17:43:53 Andrew Lunn wrote:
+> > I would not say it is a "new feature". But rather that patch in this
+> > email fixes issue that Linux kernel did not set correct MAC address for
+> > DSA slave ports. I think it is something which could be backported also
+> > to stable releases as "ignoring" vendor/factory MAC address is not
+> > correct behavior.
+> 
+> Hi Pali
+> 
+> The rules for stable are here:
+> 
+> https://www.kernel.org/doc/html/v5.8/process/stable-kernel-rules.html
+> 
+> Do you think it fits?
+> 
+>    Andrew
 
-  i2s@eee30000: dma-names: ['rx', 'tx', 'tx-sec'] is not valid under any of the given schemas
-
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- arch/arm/boot/dts/s5pv210.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
-
-diff --git a/arch/arm/boot/dts/s5pv210.dtsi b/arch/arm/boot/dts/s5pv210.dtsi
-index 96e667ba1c3f..72fb9d9f7ba3 100644
---- a/arch/arm/boot/dts/s5pv210.dtsi
-+++ b/arch/arm/boot/dts/s5pv210.dtsi
-@@ -240,8 +240,8 @@
- 			reg = <0xeee30000 0x1000>;
- 			interrupt-parent = <&vic2>;
- 			interrupts = <16>;
--			dma-names = "rx", "tx", "tx-sec";
--			dmas = <&pdma1 9>, <&pdma1 10>, <&pdma1 11>;
-+			dma-names = "tx", "rx", "tx-sec";
-+			dmas = <&pdma1 10>, <&pdma1 9>, <&pdma1 11>;
- 			clock-names = "iis",
- 				      "i2s_opclk0",
- 				      "i2s_opclk1";
-@@ -260,8 +260,8 @@
- 			reg = <0xe2100000 0x1000>;
- 			interrupt-parent = <&vic2>;
- 			interrupts = <17>;
--			dma-names = "rx", "tx";
--			dmas = <&pdma1 12>, <&pdma1 13>;
-+			dma-names = "tx", "rx";
-+			dmas = <&pdma1 13>, <&pdma1 12>;
- 			clock-names = "iis", "i2s_opclk0";
- 			clocks = <&clocks CLK_I2S1>, <&clocks SCLK_AUDIO1>;
- 			pinctrl-names = "default";
-@@ -275,8 +275,8 @@
- 			reg = <0xe2a00000 0x1000>;
- 			interrupt-parent = <&vic2>;
- 			interrupts = <18>;
--			dma-names = "rx", "tx";
--			dmas = <&pdma1 14>, <&pdma1 15>;
-+			dma-names = "tx", "rx";
-+			dmas = <&pdma1 15>, <&pdma1 14>;
- 			clock-names = "iis", "i2s_opclk0";
- 			clocks = <&clocks CLK_I2S2>, <&clocks SCLK_AUDIO2>;
- 			pinctrl-names = "default";
--- 
-2.17.1
-
+Hello Andrew! I think it fits into those rules. As I wrote it fixes real
+bug that Linux kernel does not use correct MAC address for particular
+DSA slaves / ethernet ports. But if you or other people have opposite
+opinion I will of course respect it.
