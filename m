@@ -2,96 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09F4D261580
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 18:51:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B4F82615F7
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:00:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732053AbgIHQvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 12:51:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41926 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731909AbgIHQvJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 12:51:09 -0400
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B576E2137B;
-        Tue,  8 Sep 2020 16:51:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599583868;
-        bh=pW1S8wYQ7shAS4VTkFPTvct/ClWzUHOw3xWhbsYQUNo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=FgS6w9TKkNIumIokoiwznLHegSZ8da9H6/tyCUONyA8D6mS4MC5L9U2z22U5vpbaJ
-         F9LBw9H3U/ZQfNzWt6ceq2QpbMCME12qMJBPAnufXbEXaMdXUN5OQTdjSiBIy0r3bk
-         7U2jnKRg1UiTm9IReOgbeVZRQG6XO2kMrq5x8Ajs=
-Received: by mail-oo1-f51.google.com with SMTP id 4so4091291ooh.11;
-        Tue, 08 Sep 2020 09:51:08 -0700 (PDT)
-X-Gm-Message-State: AOAM5336w4FaUrgkkaZQMHIC9XcoaoO79MmlghHpn2rTwscnyo8U5huj
-        MQjZH4r+nvWe9apsBepBEXfpRVfNTTha4s0nQQ==
-X-Google-Smtp-Source: ABdhPJyVFdSAOgZ7160kEJoAezjYnztio3h9Ino2moi2r5NNuCCiGtHqBpSUtvivi5rsYhCBevOSckk/m/8RpCmF5Go=
-X-Received: by 2002:a4a:d306:: with SMTP id g6mr19090952oos.25.1599583867914;
- Tue, 08 Sep 2020 09:51:07 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200904152404.20636-1-krzk@kernel.org> <20200904152404.20636-13-krzk@kernel.org>
- <CAL_Jsq+tGQhkqtQszOx7nvr1PR=YFz2p1=OnWQ8JxmSg4qNkHA@mail.gmail.com> <20200907060958.GA4525@kozik-lap>
-In-Reply-To: <20200907060958.GA4525@kozik-lap>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 8 Sep 2020 10:50:56 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJZ=PxDxH-=GUUg7WadZrAKjYbtE0sQ8h9YDGOGx6Ykwg@mail.gmail.com>
-Message-ID: <CAL_JsqJZ=PxDxH-=GUUg7WadZrAKjYbtE0sQ8h9YDGOGx6Ykwg@mail.gmail.com>
-Subject: Re: [PATCH v3 12/14] dt-bindings: mtd: gpmi-nand: Fix matching of
- clocks on different SoCs
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-clk <linux-clk@vger.kernel.org>, devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        id S1731677AbgIHRAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 13:00:05 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:54612 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731857AbgIHQ77 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 12:59:59 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 088Gxs55044654;
+        Tue, 8 Sep 2020 11:59:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599584394;
+        bh=eBf6w022kym9Gayagub/BbqxkLdQOasz/QgGk92lONg=;
+        h=From:To:CC:Subject:Date;
+        b=Av7uVPpbX104mK/Ea36tAyR7aUK1YEnwACP7H7KCyJrQ6ZHJGdPLU5MOtonKLtFFY
+         PlALFh2N9E8pAevRPEmjnCFHoXtt2fu+xuywXK3XaDy2p5LLHTpGlycxDPxYADaQtI
+         /TAO2lVwUn90JtIIilqxRslRyKXEfXU7exhNYLm4=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 088GxsMi081261
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 8 Sep 2020 11:59:54 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 8 Sep
+ 2020 11:59:53 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 8 Sep 2020 11:59:53 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088GxquE111910;
+        Tue, 8 Sep 2020 11:59:53 -0500
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+CC:     Sekhar Nori <nsekhar@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        MTD Maling List <linux-mtd@lists.infradead.org>,
-        Linux PWM List <linux-pwm@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Guenter Roeck <linux@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Suman Anna <s-anna@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+Subject: [PATCH v2 0/4] arm64: dts: ti: k3-j7200: add dma and mcu cpsw
+Date:   Tue, 8 Sep 2020 19:59:38 +0300
+Message-ID: <20200908165942.32368-1-grygorii.strashko@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 7, 2020 at 12:10 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On Fri, Sep 04, 2020 at 04:36:39PM -0600, Rob Herring wrote:
-> > On Fri, Sep 4, 2020 at 9:25 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > >
-> > > Driver requires different amount of clocks for different SoCs.  Describe
-> > > these requirements properly to fix dtbs_check warnings like:
-> > >
-> > >     arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dt.yaml: nand-controller@33002000: clock-names:1: 'gpmi_apb' was expected
-> > >
-> > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > >
-> > > ---
-> > >
-> > > Changes since v1:
-> > > 1. Do not require order of clocks (use pattern).
-> >
-> > To the extent that you can, you should fix the order in dts files
-> > first. If we just adjust the schemas to match the dts files, then
-> > what's the point?
->
-> The DTSes do not have mixed order of clocks between each other, as fair
-> as I remember. It was fix after Sasha Hauer comment that order is not
-> necessarily good.
->
-> We have the clock-names property, why enforcing the order?
+Hi All,
 
-Because DT/OpenFirmware has always had a defined order for property
-values. '*-names' is just extra information.
+arm64: dts: ti: k3-j7200: add dma and mcu cpsw nodes
 
-Rob
+This series adds DT nodes for TI J7200 SoC
+- INTR/INTA, Ringacc and UDMA nodes for Main and MCU NAVSS, which are compatible
+  with J721E Soc, to enable DMA support
+- MCU CPSW2g DT nodes to enable networking
+
+This series depends on:
+ - [PATCH v2 0/4] arm64: Initial support for Texas Instrument's J7200 Platform [1]
+   from: Lokesh Vutla <lokeshvutla@ti.com>
+ - [PATCH] soc: ti: k3-socinfo: Add entry for J7200 [2]
+   from: Peter Ujfalusi <peter.ujfalusi@ti.com>
+ - [PATCH] dmaengine: ti: k3-udma: Use soc_device_match() for SoC dependent parameters [3]
+   from: Peter Ujfalusi <peter.ujfalusi@ti.com>
+
+[1] https://lore.kernel.org/linux-arm-kernel/20200827065144.17683-1-lokeshvutla@ti.com/T/#m141ae4d0dd818518c00c81806d689983d6e832e6
+[2] https://lore.kernel.org/patchwork/patch/1283230/
+[3] https://lore.kernel.org/lkml/20200904120009.30941-1-peter.ujfalusi@ti.com/
+
+Changes in v2:
+ - fixed DT build warnings (Nishanth Menon)
+
+v1: https://lore.kernel.org/patchwork/cover/1301067/
+
+Grygorii Strashko (3):
+  arm64: dts: ti: k3-j7200-main: add main navss cpts node
+  arm64: dts: ti: k3-j7200-mcu: add mcu cpsw nuss node
+  arm64: dts: ti: k3-j7200-common-proc-board: add mcu cpsw nuss pinmux
+    and phy defs
+
+Peter Ujfalusi (1):
+  arm64: dts: ti: k3-j7200: add DMA support
+
+ .../dts/ti/k3-j7200-common-proc-board.dts     |  45 +++++++
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     |  73 +++++++++++
+ .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 118 ++++++++++++++++++
+ 3 files changed, 236 insertions(+)
+
+-- 
+2.17.1
+
