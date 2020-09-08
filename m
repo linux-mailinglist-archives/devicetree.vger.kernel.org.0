@@ -2,95 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 050952621F4
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 23:30:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43BF6262205
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 23:41:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728971AbgIHVav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 17:30:51 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:36202 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728164AbgIHVau (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 17:30:50 -0400
-Received: by mail-io1-f66.google.com with SMTP id d190so974820iof.3;
-        Tue, 08 Sep 2020 14:30:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=tZ2tqeTxfdvHhXI4fYGCLG+ZG+/0E7uL33/3l5leCNU=;
-        b=i7zspWjDwFOU9ZdSsftLdoVhxt0DuIrjaUYJ5Y07vB2qcjgWLXxiZLn/d/sutKrulB
-         ePXx/BodmKDhvIO6fTJ0Ixoui7jDJikPfMZvm6vQeVzeqDnU5aSWGEuMr42AoJfSbLGT
-         ILq6FADYl17bMOWwGIShcpK75et9OXUlqwzEwJdLAoYet3/sbBWmApY7/upIB07r+3rg
-         H8xsTRmTFfLKncKs3qm95uYvpfuaoaVYDsliY2SOvm4dQe1szO8u5EOz4UMlTIMBJUsr
-         y5jEwTJHwAZ5I6IqBiA8D2PXWIX945s5Y0h2sExvs0EeyphfB2ENKSi64yKUFIxQ7t9T
-         wbkg==
-X-Gm-Message-State: AOAM530gUoMC76IY6qK+p/dYo+GDZkVHFeZFVLjMExY/WhwLRLsNByZB
-        gJCVgxvNunKiFc4nwYJD/EAsP5AfBk3P
-X-Google-Smtp-Source: ABdhPJwbYpkWxvkS0JzZDhjXoVmIf3BcFupaddawmTGlHFebiItQ6YyIOv77w6zWGeepGibLLVoAwA==
-X-Received: by 2002:a6b:700f:: with SMTP id l15mr780998ioc.168.1599600649372;
-        Tue, 08 Sep 2020 14:30:49 -0700 (PDT)
-Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id k14sm280985ioa.7.2020.09.08.14.30.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Sep 2020 14:30:48 -0700 (PDT)
-Received: (nullmailer pid 959278 invoked by uid 1000);
-        Tue, 08 Sep 2020 21:30:47 -0000
-Date:   Tue, 8 Sep 2020 15:30:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, Roger Quadros <rogerq@ti.com>,
-        ssantosh@kernel.org, devicetree@vger.kernel.org, praneeth@ti.com,
-        santosh.shilimkar@oracle.com, s-anna@ti.com, robh+dt@kernel.org,
-        tony@atomide.com, linux-omap@vger.kernel.org, lee.jones@linaro.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/7] dt-bindings: soc: ti: Add TI PRUSS bindings
-Message-ID: <20200908213047.GA959249@bogus>
-References: <1598020964-29877-1-git-send-email-grzegorz.jaszczyk@linaro.org>
- <1598020964-29877-2-git-send-email-grzegorz.jaszczyk@linaro.org>
+        id S1727935AbgIHVl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 17:41:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54892 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726434AbgIHVl2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 17:41:28 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9B66620759;
+        Tue,  8 Sep 2020 21:41:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599601287;
+        bh=yqVXwTfivLiGaQNirAdsTNu0RrcFPS4TRluVtIzQWlI=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=cIc2Y5rhPerVJiX8+oMEoSaPRWckEKKETETUBg9tlWzgKIbls/dfOM/H9fBaS7oF7
+         5/m92B9F46BE/2cYyP59+iCZqbUyxfAR8rmzCiE6W0hRrr9hRpQ8l4KW0JJb8CLLYP
+         U3PxBwsTg5Iqa9avLvIy3XmJDchr0UaXaOC9HHWU=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1598020964-29877-2-git-send-email-grzegorz.jaszczyk@linaro.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1599584848-15530-1-git-send-email-tdas@codeaurora.org>
+References: <1599584848-15530-1-git-send-email-tdas@codeaurora.org>
+Subject: Re: [PATCH v1 0/3] Add Camera clock controller driver for SC7180
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Taniya Das <tdas@codeaurora.org>
+Date:   Tue, 08 Sep 2020 14:41:26 -0700
+Message-ID: <159960128642.454335.17145528250119232852@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Aug 2020 16:42:38 +0200, Grzegorz Jaszczyk wrote:
-> This patch adds the bindings for the Programmable Real-Time Unit
-> and Industrial Communication Subsystem (PRU-ICSS) present on various
-> TI SoCs. The IP is present on multiple TI SoC architecture families
-> including the OMAP architecture SoCs such as AM33xx, AM437x and
-> AM57xx; and on a Keystone 2 architecture based 66AK2G SoC. It is
-> also present on the Davinci based OMAPL138 SoCs and K3 architecture
-> based AM65x and J721E SoCs as well.
-> 
-> The IP has a number of sub-modules some of which are represented as
-> their own devices. This binding covers only the top-level sub-system
-> devices, and some sub-modules like MDIO, MII_RT (Ethernet MII_RT module
-> with MII ports) and IEP (Industrial Ethernet Peripheral). The remaining
-> sub-modules bindings shall be defined in the respective driver
-> subsystem bindings folders. Couple of full examples have also been
-> added demonstrating the devices on AM335x and AM437x SoCs.
-> 
-> Signed-off-by: Suman Anna <s-anna@ti.com>
-> Signed-off-by: Roger Quadros <rogerq@ti.com>
-> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> ---
-> v1-v2 (requested by Rob):
-> - Add unit address pattern for all sub-nodes.
-> - Add "additionalProperties: false" to all sub-nodes and entire
->   description. This allow to catch and fix some issues like missing
->   "#address-cells" property description.
-> - Drop ranges description.
-> - Fix compatible name in example binding for AM43xx.
-> - Drop the *.yaml references from description as they are not merged yet
->   and therefore they can't be converted to $ref.
-> - Drop reviewed-by tag due to introduced changes.
-> ---
->  .../devicetree/bindings/soc/ti/ti,pruss.yaml       | 320 +++++++++++++++++++++
->  1 file changed, 320 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-> 
+Quoting Taniya Das (2020-09-08 10:07:25)
+> [v1]
+>  * Add support for Agera PLL which is used in the camera clock controller.
+>=20
+>  * Add driver support for camera clock controller for SC7180 and also
+>    update device tree bindings for the various clocks supported in the
+>    clock controller.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I got duplicate patches in my inbox. Is something broken on the
+codeaurora server?
