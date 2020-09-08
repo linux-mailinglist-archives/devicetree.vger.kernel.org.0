@@ -2,78 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30BB2262135
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:35:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73E1326213A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:37:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726484AbgIHUfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 16:35:17 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:40266 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725997AbgIHUfR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 16:35:17 -0400
-Received: by mail-io1-f67.google.com with SMTP id j2so782735ioj.7;
-        Tue, 08 Sep 2020 13:35:16 -0700 (PDT)
+        id S1729037AbgIHUhf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 16:37:35 -0400
+Received: from mail-il1-f195.google.com ([209.85.166.195]:36995 "EHLO
+        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726726AbgIHUhc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 16:37:32 -0400
+Received: by mail-il1-f195.google.com with SMTP id b17so224638ilh.4;
+        Tue, 08 Sep 2020 13:37:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=N8TMTkjL+HXBkd31RAbWRN3OkDrpVAsSr5h0Vt07iso=;
-        b=DqKfxY0IySEkqh6plyyANgifRxNeFE/KFbCRJJCkYDfzv7R/t2zvl8GKdxzMs5+vYc
-         etdpIpvlKub4FSPDY3c/k/tN88ai+QLwjfX0UuLxIja2z4rnJ5Ntc8OIdfBDSWRyODXN
-         VdyN0eFMqYj9UbYTh8GoZ+ucQABoUSa0+aL6FEH0qrt7uii1qbEHGoQ2tB/gKx/jNsap
-         RUog9KE4kTkAw+k1P8ABTTNyyVqydGWQaJ9Z66JYyxe4bpEV0JOQBFtd+CJ8+Aom0X2/
-         HtmAe1XpCyZsgp1osEbu53TR305SP+7w76uSlvcz3cyj/ZQDc4BtLntJA//0xoa+Zrxk
-         b+1g==
-X-Gm-Message-State: AOAM531ZQKDmJmmmLiomlk/1lKXvoowehpcy4cGtnGSI0VBCUV6ixrW2
-        BK786iZGlAldTVqLzODllnNbGflX/gzC
-X-Google-Smtp-Source: ABdhPJzNszEz/h0w+B+3k77krDbp4ZMOTh6PZpaxVniETcrMG+nXiWDeI6mT5xAMx5erE4/iZbmOUg==
-X-Received: by 2002:a05:6638:ec5:: with SMTP id q5mr760716jas.13.1599597315710;
-        Tue, 08 Sep 2020 13:35:15 -0700 (PDT)
+        bh=GEO2mEwTa2BqylVAGWSbETeCOTUBRxw5/MLADpDOoGg=;
+        b=fPm4ADyolRFARewi3hqmvtt2NE7KXNuc95uiM/7KKA9D1TsuhD8CszmeepA1hbMe1h
+         tSYj4KAOBTUMCv3OiBnLBRul3HxsihiYNGkk09GTqV8ygtpmKaqyGVyKarY/5p8p0fzL
+         GjkJuDOO3/vg4S4o+524UvZ46bsUvld26EVTG8LLaHkGoZ0NC/FsmyjIUMOBo8IJR295
+         D1oydl04LZixSIcfuvzPBYrtsRRQGVCfIbQHew9G2uAY1Qu3yh/OtEq2uPTQDkm0ZDPJ
+         nIttxjrJv6XhPtYTyUKDqt98EZcRkC44nld3jVMlgbcQ/W57Thpb93MAmjf1m0dyXtXi
+         29YQ==
+X-Gm-Message-State: AOAM532usdfH3H2E70YQHwU5/HkN6rPdum0Wt0Gz9KQIZPi9y7oX0hhB
+        +W6I8IIQkFpBQZB11FdCJ4/zbxBUECDu
+X-Google-Smtp-Source: ABdhPJw+t2qU979+AdZ8QjmxDAMMoLlZmNZjcpVp7EYdD0LSdmcKy9B0J62qeIINYSFwU668Ssd4nw==
+X-Received: by 2002:a92:6a0c:: with SMTP id f12mr501711ilc.213.1599597451673;
+        Tue, 08 Sep 2020 13:37:31 -0700 (PDT)
 Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id x24sm121100ilk.82.2020.09.08.13.35.14
+        by smtp.gmail.com with ESMTPSA id m15sm215036iow.9.2020.09.08.13.37.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Sep 2020 13:35:15 -0700 (PDT)
-Received: (nullmailer pid 870794 invoked by uid 1000);
-        Tue, 08 Sep 2020 20:35:14 -0000
-Date:   Tue, 8 Sep 2020 14:35:14 -0600
+        Tue, 08 Sep 2020 13:37:31 -0700 (PDT)
+Received: (nullmailer pid 875163 invoked by uid 1000);
+        Tue, 08 Sep 2020 20:37:29 -0000
+Date:   Tue, 8 Sep 2020 14:37:29 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Anilkumar Kolli <akolli@codeaurora.org>
-Cc:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
-        ath11k@lists.infradead.org
-Subject: Re: [PATCH v7 1/3] dt: bindings: net: update compatible for ath11k
-Message-ID: <20200908203514.GA870402@bogus>
-References: <1599551717-3801-1-git-send-email-akolli@codeaurora.org>
- <010101746cb6751a-ca300933-1174-4534-a01b-b1dbf1c1f305-000000@us-west-2.amazonses.com>
+To:     Eddie James <eajames@linux.ibm.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        linux-i2c@vger.kernel.org, joel@jms.id.au, andrew@aj.id.au,
+        benh@kernel.crashing.org, brendanhiggins@google.com,
+        dmitry.torokhov@gmail.com
+Subject: Re: [PATCH 1/5] dt-bindings: input: Add documentation for IBM
+ Operation Panel
+Message-ID: <20200908203729.GA872283@bogus>
+References: <20200820161152.22751-1-eajames@linux.ibm.com>
+ <20200820161152.22751-2-eajames@linux.ibm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <010101746cb6751a-ca300933-1174-4534-a01b-b1dbf1c1f305-000000@us-west-2.amazonses.com>
+In-Reply-To: <20200820161152.22751-2-eajames@linux.ibm.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 08 Sep 2020 07:55:31 +0000, Anilkumar Kolli wrote:
-> Add IPQ6018 wireless driver support,
-> its based on ath11k driver.
+On Thu, Aug 20, 2020 at 11:11:48AM -0500, Eddie James wrote:
+> Document the bindings for the IBM Operation Panel, which provides
+> a simple interface to control a server. It has a display and three
+> buttons.
+> Also update MAINTAINERS for the new file.
 > 
-> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
 > ---
-> V3:
->  - Use 'enum' rather than oneOf+const.
-> V4:
->  - removed oneOf, use just enum (Rob)
-> V5:
->  - Fixes errors in 'make dt_binding_check' (Rob)
+>  .../bindings/input/ibm,op-panel.yaml          | 38 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 +++
+>  2 files changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/ibm,op-panel.yaml
 > 
->  Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
+> diff --git a/Documentation/devicetree/bindings/input/ibm,op-panel.yaml b/Documentation/devicetree/bindings/input/ibm,op-panel.yaml
+> new file mode 100644
+> index 000000000000..86a32e8f3ef0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/ibm,op-panel.yaml
+> @@ -0,0 +1,38 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/ibm,op-panel.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: IBM Operation Panel
+> +
+> +maintainers:
+> +  - Eddie James <eajames@linux.ibm.com>
+> +
+> +description: |
+> +  The IBM Operation Panel provides a simple interface to control the connected
+> +  server. It has a display and three buttons: two directional arrows and one
+> +  'Enter' button.
+> +
+> +properties:
+> +  compatible:
+> +    const: ibm,op-panel
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
 
+additionalProperties: false
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+With that added,
 
-If a tag was not added on purpose, please state why and what changed.
-
+Reviewed-by: Rob Herring <robh@kernel.org>
