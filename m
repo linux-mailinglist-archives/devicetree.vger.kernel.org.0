@@ -2,72 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50439261E1B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 21:47:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98F15261E41
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 21:50:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732250AbgIHTrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 15:47:22 -0400
-Received: from mail-il1-f195.google.com ([209.85.166.195]:41278 "EHLO
-        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732466AbgIHTqZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 15:46:25 -0400
-Received: by mail-il1-f195.google.com with SMTP id w8so64366ilj.8;
-        Tue, 08 Sep 2020 12:46:24 -0700 (PDT)
+        id S1730916AbgIHTuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 15:50:07 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:33272 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726002AbgIHTs0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 15:48:26 -0400
+Received: by mail-il1-f194.google.com with SMTP id x2so111374ilm.0;
+        Tue, 08 Sep 2020 12:48:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=mxfloW/du0FtuXMc7fb1vC2lzA6jvn4y8s0XgOBsOH8=;
-        b=joOjemVdVg0rGYRBaxijCTLyXC1ABGQPRe2gGbBUAEeW+XdFTLbfsLdUrHUAMbqeHa
-         oANjBrc104blQkYAqloN0iea2d/qzIolkNLff/850DXgQqsWxBWc4IJltjG8eJtdFJnr
-         r2ujezMXMyzaIX2441IwVKZADWUpknZb1nzX/FhKUZ0kEZC21ZfwsqXhNAZ56z87SRrf
-         5OLc3+muMIirACPQfYHEIdXptd7YkCBrlMP4TZCLmd7LK2Be+aSPMy0bk7Qorm6r2Qvi
-         5lUIYdMA+4HtZpjmgLTkKZIoKjZ3g2jSrCUyoYwbz2XC5w5vz81wSDG4aJAPtwFXX5Z+
-         t2kQ==
-X-Gm-Message-State: AOAM531BCW2pmni1AlM7C/nchenW/oiYV+XC2M3LTPBLTN4NkzS9kRmQ
-        PCLP2GLl9vlSj2/KfFoyBw==
-X-Google-Smtp-Source: ABdhPJwfXlbhewMkiRkSXUg2HnOofi1QqFbxJeOtWC0GyonQWdvBxG98pU6ZFKLbPgzI9eeJYtTL3A==
-X-Received: by 2002:a92:6b04:: with SMTP id g4mr376411ilc.192.1599594384637;
-        Tue, 08 Sep 2020 12:46:24 -0700 (PDT)
+        bh=PlBmgS/sjuCEIQu1u5ZYl8mMPlH7KVu/qGuOumfaosA=;
+        b=Q6CeA5uBJtyvuRMItAyYfB19VI/txvSN9UevF7UwmdPVMahRfNfPwl2+TFZFJCkV9r
+         JXjYIy6dKZb1PFbuejaciJErxopKHXzcUgDGBSsy98Cv4TtD+2Ma/xk6gDnGG3oLt/t6
+         NMFOPNWix7fkalacRa36Dx4roUnhmZ1DeEf5IZzjSJpjQZcVY/up5/rDl2ABE3BpzL7d
+         z+EcdjLwgqCVogQvlWJ7x+pui5hO8rGSy4B/vcyY2Ir3kLaRMptI9i5CHh1b4unfiYU5
+         1KDxG/DSDkEjaedwF/MbpF15JaFvi/7eJ6NyQFeqBtX+nf9W3DkAm6eR4LUIOJvLYpcH
+         PRBg==
+X-Gm-Message-State: AOAM530besdD7lh11W8AKAqyHys60j7EBwPUPkhM1+j31zvkio6igfT5
+        7SfRLVXozETEksYUU5lAVg==
+X-Google-Smtp-Source: ABdhPJwN1OwrU3sDw8effHgraPgDprUoh6q/VhYkCUX+OIayZE87xKJpLW8f/hji5fWBS4UIu+vurg==
+X-Received: by 2002:a05:6e02:13aa:: with SMTP id h10mr370198ilo.212.1599594505051;
+        Tue, 08 Sep 2020 12:48:25 -0700 (PDT)
 Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id t10sm135379iog.49.2020.09.08.12.46.22
+        by smtp.gmail.com with ESMTPSA id l2sm102112ilk.19.2020.09.08.12.48.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Sep 2020 12:46:24 -0700 (PDT)
-Received: (nullmailer pid 788543 invoked by uid 1000);
-        Tue, 08 Sep 2020 19:46:22 -0000
-Date:   Tue, 8 Sep 2020 13:46:22 -0600
+        Tue, 08 Sep 2020 12:48:24 -0700 (PDT)
+Received: (nullmailer pid 791744 invoked by uid 1000);
+        Tue, 08 Sep 2020 19:48:21 -0000
+Date:   Tue, 8 Sep 2020 13:48:21 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        linux-leds@vger.kernel.org, Jonathan Hunter <jonathanh@nvidia.com>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-kernel@vger.kernel.org, Sebastian Reichel <sre@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        Dan Murphy <dmurphy@ti.com>
-Subject: Re: [PATCH v3 1/5] dt-bindings: mfd: Add ENE KB930 Embedded
- Controller binding
-Message-ID: <20200908194622.GA788479@bogus>
-References: <20200906195103.1347-1-digetx@gmail.com>
- <20200906195103.1347-2-digetx@gmail.com>
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     kishon@ti.com, linux-amlogic@lists.infradead.org,
+        repk@triplefau.lt, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: phy: amlogic,
+ meson-axg-mipi-pcie-analog: remove reg attribute
+Message-ID: <20200908194821.GA790974@bogus>
+References: <20200907073402.26674-1-narmstrong@baylibre.com>
+ <20200907073402.26674-2-narmstrong@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200906195103.1347-2-digetx@gmail.com>
+In-Reply-To: <20200907073402.26674-2-narmstrong@baylibre.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 06 Sep 2020 22:50:59 +0300, Dmitry Osipenko wrote:
-> Add binding document for the ENE KB930 Embedded Controller.
+On Mon, 07 Sep 2020 09:34:00 +0200, Neil Armstrong wrote:
+> The Amlogic AXG MIPI + PCIe Analog PHY should be a subnode of the hhi mfd
+> node like the axg-clkc node.
 > 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> Thus the reg attribute is not needed.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  .../devicetree/bindings/mfd/ene-kb930.yaml    | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/ene-kb930.yaml
+>  .../bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml      | 4 ----
+>  1 file changed, 4 deletions(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.example.dt.yaml: phy@0: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
+
+
+See https://patchwork.ozlabs.org/patch/1358643
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
+
