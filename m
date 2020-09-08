@@ -2,100 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B53D261092
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 13:20:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9056726109E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 13:24:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729913AbgIHLUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 07:20:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38996 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729969AbgIHLS0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 07:18:26 -0400
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A4D6C0613ED
-        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 04:18:22 -0700 (PDT)
-Received: by mail-pj1-x1041.google.com with SMTP id t7so4974217pjd.3
-        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 04:18:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=+yj7E7wqvb/129I+Etr+MWEdaS4FH4xTeleftUlUtU0=;
-        b=Hb/Gwn9Q/dtKSqnvZ8CsNoSc8NYoacrOTGentUWFuYZ//RBTfJZCyLOSWy3EEoxKDI
-         kixhwhlBZq4YpgWNwSiOzuMXgKVLUOLMjGvMRPGjYqGRxnWKHaGVDLaCsE9kqTH6JBd+
-         CuypC+LI0FACS3fjyRl0huAdpR6fGhldDovl5EgHkRYh7NIgDwklkaOAadhL4w5awKqb
-         fcKc0Kiya8KXN3Cxvi6DMeoXYx8qwSxIZ0PfNEE/pF1dh/himAYdEWSCv7Y3g8rCm5yk
-         3Kcm+ukMRsqtYIyJ+oujORqhgEAEFP3B/s1Y/ZjiSMZLek8wYEcmOzDzWT2TrLnC8jgU
-         ykuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=+yj7E7wqvb/129I+Etr+MWEdaS4FH4xTeleftUlUtU0=;
-        b=B88khZQdszatybZcHsUtxamkTrBT3nbGXDsLPz8ljBliZ6QOaYwl9v55TMtJcHpKxH
-         alPhViWxege8uIGI+jCwg/HC/72jWgF3/aMwzkauTJsQABAwL6MGOOrXIrs/sWKYdbSr
-         nphU5pC0wSMOIXfKWU+9XfpJVCGgh9AapxKxQl1Bg7jWIQB0lYcuMUqfOsXq8M24svF7
-         UxjOW1yRwGEpzZd2VsC8+it4DkMvTxaiwzEy16DHKWA8SRYO6q+G1YzdU60xhiZPQMaw
-         7KjLN1HI1neloemx680d8YT3bVUYM9le2GIIPGHP78phOmKHzD7lXJyNYvbR5njm+0rT
-         IvHg==
-X-Gm-Message-State: AOAM5305qGOrVCc+vSXgr0zELShHoRLvQ5lkklBa1cNo3+Kj7duyvADJ
-        iVX7VcO6vXWyusKJHrWq73CiVA==
-X-Google-Smtp-Source: ABdhPJw9bzz24JCxWhsSf3D3RLPNqdC6upw7cihvDBWKSthLxWatIl456zfxZ+IDAO52Lkc38DGmHQ==
-X-Received: by 2002:a17:90a:2e0f:: with SMTP id q15mr3551524pjd.49.1599563901563;
-        Tue, 08 Sep 2020 04:18:21 -0700 (PDT)
-Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id ie13sm16070458pjb.5.2020.09.08.04.18.20
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 08 Sep 2020 04:18:20 -0700 (PDT)
-Date:   Tue, 8 Sep 2020 16:48:13 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     rjw@rjwysocki.net, robh+dt@kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, amitk@kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        dmitry.baryshkov@linaro.org, tdas@codeaurora.org
-Subject: Re: [PATCH 5/7] cpufreq: qcom-hw: Use regmap for accessing hardware
- registers
-Message-ID: <20200908111813.bbgfxo5v7qt6ujpc@vireshk-i7>
-References: <20200908075716.30357-1-manivannan.sadhasivam@linaro.org>
- <20200908075716.30357-6-manivannan.sadhasivam@linaro.org>
- <20200908103444.5e526uawa45om6lt@vireshk-i7>
- <20200908111141.GB23095@mani>
+        id S1729794AbgIHLVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 07:21:45 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:32150 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1729372AbgIHLV2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 07:21:28 -0400
+X-UUID: cd19ca6877cb4c87a84d88385cff48e4-20200908
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=J6PetP5hY2T+2YPn7CjXIDc6ZgTmKvWDCgSOANgtWDU=;
+        b=RV4MIZfopVZVu1atLbAv7iS3QiYc90+A8iHdZINNf2k+aBQ9lKJqNDPAST3Q/YwhEQgwoFHMCYBdgX6o5fLfcDt8xSrNC+8Yy2Z64FYrkavqh+iQZ7mmmQVz8v7Hu8NCfBQtWtkQo+2Wqr6jCN1Ja3YrzdJOO5aRov2KH4KyydE=;
+X-UUID: cd19ca6877cb4c87a84d88385cff48e4-20200908
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <hector.yuan@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 687616419; Tue, 08 Sep 2020 19:21:25 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 8 Sep 2020 19:21:19 +0800
+Received: from [172.21.77.33] (172.21.77.33) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 8 Sep 2020 19:21:20 +0800
+Message-ID: <1599564080.2621.9.camel@mtkswgap22>
+Subject: Re: [PATCH v4 1/2] cpufreq: mediatek-hw: Add support for Mediatek
+ cpufreq HW driver
+From:   Hector Yuan <hector.yuan@mediatek.com>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+CC:     <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        "Rob Herring" <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <wsd_upstream@mediatek.com>
+Date:   Tue, 8 Sep 2020 19:21:20 +0800
+In-Reply-To: <20200908111331.rdvtrvttoapqxaib@vireshk-i7>
+References: <1599550547-27767-1-git-send-email-hector.yuan@mediatek.com>
+         <1599550547-27767-2-git-send-email-hector.yuan@mediatek.com>
+         <20200908102752.r2n6xvghl4fcdrcv@vireshk-i7>
+         <1599563425.2621.5.camel@mtkswgap22>
+         <20200908111331.rdvtrvttoapqxaib@vireshk-i7>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200908111141.GB23095@mani>
-User-Agent: NeoMutt/20180716-391-311a52
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08-09-20, 16:41, Manivannan Sadhasivam wrote:
-> On 0908, Viresh Kumar wrote:
-> > On 08-09-20, 13:27, Manivannan Sadhasivam wrote:
-> > > Use regmap for accessing cpufreq registers in hardware.
-> > 
-> > Why ? Please mention why a change is required in the log.
-> > 
-> 
-> Only because it is recommended to use regmap for abstracting the hw access.
+T24gVHVlLCAyMDIwLTA5LTA4IGF0IDE2OjQzICswNTMwLCBWaXJlc2ggS3VtYXIgd3JvdGU6DQo+
+IE9uIDA4LTA5LTIwLCAxOToxMCwgSGVjdG9yIFl1YW4gd3JvdGU6DQo+ID4gT0ssIEkgd2lsbCBk
+ZWZpbmUgdGhlIGNvcnJlc3BvbmRpbmcgZXhpdCBmdW5jdGlvbi4gDQo+IA0KPiBBbHNvIHBsZWFz
+ZSBhZGQgcmVtb3ZlKCkgY29ycmVzcG9uZGluZyB0byBwcm9iZSgpLg0KPiANCk9LLCB0aGFua3Mg
+Zm9yIHlvdXIga2luZCByZW1pbmRlci4NCg0K
 
-Yes it can be very useful in abstracting the hw access in case of
-busses like SPI/I2C, others, but in this case there is only one way of
-doing it with the exact same registers. I am not sure it is worth it
-here. FWIW, I have never played with regmaps personally, and so every
-chance I can be wrong here.
-
-> Moreover it handles the proper locking for us in the core (spinlock vs mutex).
-
-What locking do you need here ?
-
-> I've seen many subsystem maintainers prefer regmap over plain readl/writel
-> calls. I'll add the reason in commit log.
-
-I am not sure if it is worth it here.
-
--- 
-viresh
