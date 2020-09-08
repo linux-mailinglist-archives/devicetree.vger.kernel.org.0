@@ -2,83 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1726A262361
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 01:08:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1E0E262369
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 01:09:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728442AbgIHXIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 19:08:17 -0400
-Received: from mga09.intel.com ([134.134.136.24]:23747 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726657AbgIHXIP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 19:08:15 -0400
-IronPort-SDR: sunMVXiPIPkrUCoeesjT0POax4bf/8cq5LhTphUSeEGL7/ZFjsjM9mF2O5HNMCFZ1n9k6jBNJt
- 4MU+NrHooI0w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9738"; a="159206845"
-X-IronPort-AV: E=Sophos;i="5.76,407,1592895600"; 
-   d="scan'208";a="159206845"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Sep 2020 16:08:15 -0700
-IronPort-SDR: q6UN51X7VenEz3Y+y9fnqJfyw2upWD6sBpx2dbHg3eq05fLuIxX7yuYHKeoUTUns8a49ddqubt
- c/Rr13/4I6EA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,407,1592895600"; 
-   d="scan'208";a="504537182"
-Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
-  by fmsmga006.fm.intel.com with ESMTP; 08 Sep 2020 16:08:11 -0700
-From:   Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
-To:     dmaengine@vger.kernel.org, vkoul@kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, andriy.shevchenko@intel.com,
-        chuanhua.lei@linux.intel.com, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com, mallikarjunax.reddy@linux.intel.com,
-        malliamireddy009@gmail.com, peter.ujfalusi@ti.com
-Subject: [PATCH v6 0/2] Add Intel LGM soc DMA support
-Date:   Wed,  9 Sep 2020 07:07:32 +0800
-Message-Id: <cover.1599605765.git.mallikarjunax.reddy@linux.intel.com>
-X-Mailer: git-send-email 2.11.0
+        id S1729824AbgIHXJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 19:09:12 -0400
+Received: from linux.microsoft.com ([13.77.154.182]:43056 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726683AbgIHXJI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 19:09:08 -0400
+Received: from localhost.localdomain (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 67A2B209428E;
+        Tue,  8 Sep 2020 16:09:06 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 67A2B209428E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1599606547;
+        bh=1FU0V2+EIEqfixDFXSUBYWxqv2BRgH7mU49lrHeqLnc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=HH/+7Hl9UtUeFfVFiwAX/hI1xY98DArjwooFsotp8d2l17ruitgJwCgi+I6QydIDL
+         v6GhMqknT65djuEqzutNFZZqvhwrQvc4C0QGIAFZmrtZwZS63dB2FVdzOph/4/9snT
+         wPS5dbLbFHbny23g9nmvVCDpUTB7Yz511Uy6uWUY=
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+To:     zohar@linux.ibm.com, bauerman@linux.ibm.com, robh@kernel.org,
+        gregkh@linuxfoundation.org, james.morse@arm.com,
+        catalin.marinas@arm.com, sashal@kernel.org, will@kernel.org,
+        mpe@ellerman.id.au, benh@kernel.crashing.org, paulus@samba.org,
+        robh+dt@kernel.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        kstewart@linuxfoundation.org, takahiro.akashi@linaro.org,
+        tglx@linutronix.de, masahiroy@kernel.org, bhsharma@redhat.com,
+        mbrugger@suse.com, hsinyi@chromium.org, tao.li@vivo.com,
+        christophe.leroy@c-s.fr
+Cc:     linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, prsriva@linux.microsoft.com,
+        balajib@linux.microsoft.com
+Subject: [PATCH v6 0/3] Carry forward IMA measurement log on kexec on ARM64
+Date:   Tue,  8 Sep 2020 16:08:53 -0700
+Message-Id: <20200908230856.9799-1-nramas@linux.microsoft.com>
+X-Mailer: git-send-email 2.28.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DMA controller driver for Lightning Mountain(LGM) family of SoCs.
+On kexec file load Integrity Measurement Architecture(IMA) subsystem
+may verify the IMA signature of the kernel and initramfs, and measure
+it. The command line parameters passed to the kernel in the kexec call
+may also be measured by IMA. A remote attestation service can verify
+the measurement through the IMA log and the TPM PCR data. This can be
+achieved only if the IMA measurement log is carried over from
+the current kernel to the next kernel across the kexec call.
+However in the current implementation the IMA measurement logs are not
+carried over on ARM64 platforms. Therefore a remote attestation service
+cannot verify the authenticity of the running kernel on ARM64 platforms
+when the kernel is updated through the kexec system call.
 
-The main function of the DMA controller is the transfer of data from/to any
-DPlus compliant peripheral to/from the memory. A memory to memory copy
-capability can also be configured.
-This ldma driver is used for configure the device and channnels for data
-and control paths.
+This patch series adds support for carrying forward the IMA measurement
+log on kexec on ARM64. powerpc already supports carrying forward
+the IMA measurement log on kexec.
 
-These controllers provide DMA capabilities for a variety of on-chip
-devices such as SSC, HSNAND and GSWIP.
+This series refactors the platform independent code defined for powerpc
+such that it can be reused for ARM64 as well. A chosen node namely
+"linux,ima-kexec-buffer" is added to the DTB for ARM64 to hold
+the address and the size of the memory reserved to carry
+the IMA measurement log.
 
--------------
-Future Plans:
--------------
-LGM SOC also supports Hardware Memory Copy engine.
-The role of the HW Memory copy engine is to offload memory copy operations
-from the CPU.
+This patch series has been tested for ARM64 platform using QEMU.
+I would like help from the community for testing this change on powerpc.
+Thanks.
 
-Amireddy Mallikarjuna reddy (2):
-  dt-bindings: dma: Add bindings for intel LGM SOC
-  Add Intel LGM soc DMA support.
+This series is based on commit f4d51dffc6c0 ("Linux 5.9-rc4") in
+https://github.com/torvalds/linux "master" branch.
 
- .../devicetree/bindings/dma/intel,ldma.yaml        |  154 ++
- drivers/dma/Kconfig                                |    2 +
- drivers/dma/Makefile                               |    1 +
- drivers/dma/lgm/Kconfig                            |    9 +
- drivers/dma/lgm/Makefile                           |    2 +
- drivers/dma/lgm/lgm-dma.c                          | 1809 ++++++++++++++++++++
- include/linux/dma/lgm_dma.h                        |   27 +
- 7 files changed, 2004 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/dma/intel,ldma.yaml
- create mode 100644 drivers/dma/lgm/Kconfig
- create mode 100644 drivers/dma/lgm/Makefile
- create mode 100644 drivers/dma/lgm/lgm-dma.c
- create mode 100644 include/linux/dma/lgm_dma.h
+Changelog:
+
+v6:
+  - Remove any existing FDT_PROP_IMA_KEXEC_BUFFER property in the device
+    tree and also its corresponding memory reservation in the currently
+    running kernel.
+  - Moved the function remove_ima_buffer() defined for powerpc to IMA
+    and renamed the function to ima_remove_kexec_buffer(). Also, moved
+    delete_fdt_mem_rsv() from powerpc to IMA.
+
+v5:
+  - Merged get_addr_size_cells() and do_get_kexec_buffer() into a single
+    function when moving the arch independent code from powerpc to IMA
+  - Reverted the change to use FDT functions in powerpc code and added
+    back the original code in get_addr_size_cells() and
+    do_get_kexec_buffer() for powerpc.
+  - Added fdt_add_mem_rsv() for ARM64 to reserve the memory for
+    the IMA log buffer during kexec.
+  - Fixed the warning reported by kernel test bot for ARM64
+    arch_ima_add_kexec_buffer() - moved this function to a new file
+    namely arch/arm64/kernel/ima_kexec.c
+
+v4:
+  - Submitting the patch series on behalf of the original author
+    Prakhar Srivastava <prsriva@linux.microsoft.com>
+  - Moved FDT_PROP_IMA_KEXEC_BUFFER ("linux,ima-kexec-buffer") to
+    libfdt.h so that it can be shared by multiple platforms.
+
+v3:
+Breakup patches further into separate patches.
+  - Refactoring non architecture specific code out of powerpc
+  - Update powerpc related code to use fdt functions
+  - Update IMA buffer read related code to use of functions
+  - Add support to store the memory information of the IMA
+    measurement logs to be carried forward.
+  - Update the property strings to align with documented nodes
+    https://github.com/devicetree-org/dt-schema/pull/46
+
+v2:
+  Break patches into separate patches.
+  - Powerpc related Refactoring
+  - Updating the docuemntation for chosen node
+  - Updating arm64 to support IMA buffer pass
+
+v1:
+  Refactoring carrying over IMA measuremnet logs over Kexec. This patch
+    moves the non-architecture specific code out of powerpc and adds to
+    security/ima.(Suggested by Thiago)
+  Add Documentation regarding the ima-kexec-buffer node in the chosen
+    node documentation
+
+v0:
+  Add a layer of abstraction to use the memory reserved by device tree
+    for ima buffer pass.
+  Add support for ima buffer pass using reserved memory for arm64 kexec.
+    Update the arch sepcific code path in kexec file load to store the
+    ima buffer in the reserved memory. The same reserved memory is read
+    on kexec or cold boot.
+
+Lakshmi Ramasubramanian (3):
+  powerpc: Refactor kexec functions to move arch independent code to IMA
+  arm64: Store IMA log information in kimage used for kexec
+  arm64: Add IMA kexec buffer to DTB
+
+ arch/arm64/Kconfig                      |   1 +
+ arch/arm64/include/asm/ima.h            |  18 ++++
+ arch/arm64/include/asm/kexec.h          |   3 +
+ arch/arm64/kernel/Makefile              |   1 +
+ arch/arm64/kernel/ima_kexec.c           |  34 ++++++++
+ arch/arm64/kernel/machine_kexec_file.c  |  18 ++++
+ arch/powerpc/include/asm/ima.h          |  11 +--
+ arch/powerpc/include/asm/kexec.h        |   1 -
+ arch/powerpc/kexec/file_load.c          |  33 +-------
+ arch/powerpc/kexec/ima.c                | 104 +-----------------------
+ include/linux/ima.h                     |   2 +
+ include/linux/kexec.h                   |  11 +++
+ include/linux/libfdt.h                  |   3 +
+ security/integrity/ima/Makefile         |   3 +-
+ security/integrity/ima/ima.h            |   2 +
+ security/integrity/ima/ima_fdt.c        |  80 ++++++++++++++++++
+ security/integrity/ima/ima_kexec.c      |  58 +++++++++++++
+ security/integrity/ima/ima_kexec_file.c |  51 ++++++++++++
+ 18 files changed, 289 insertions(+), 145 deletions(-)
+ create mode 100644 arch/arm64/include/asm/ima.h
+ create mode 100644 arch/arm64/kernel/ima_kexec.c
+ create mode 100644 security/integrity/ima/ima_fdt.c
+ create mode 100644 security/integrity/ima/ima_kexec_file.c
 
 -- 
-2.11.0
+2.28.0
 
