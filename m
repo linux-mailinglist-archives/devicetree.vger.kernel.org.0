@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2F4126161F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:04:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14A6926172D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:27:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731781AbgIHRDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 13:03:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59278 "EHLO mail.kernel.org"
+        id S1731815AbgIHR13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 13:27:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57574 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731679AbgIHQTq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 12:19:46 -0400
+        id S1731724AbgIHQQb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 12:16:31 -0400
 Received: from localhost.localdomain (unknown [194.230.155.174])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BB95C23BF0;
-        Tue,  8 Sep 2020 15:03:28 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 685AD23C2F;
+        Tue,  8 Sep 2020 15:03:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599577415;
-        bh=CC7L87p3n6aStqWRlNrcH5ZsoqrdQ1XiSgGvIlyXZe8=;
+        s=default; t=1599577419;
+        bh=vz/rJ82lQGFmeFstvC9WgMiNuCiMsme+wQgrAQY1Ok0=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=0lrqHIXm4g/8GS5r4BM/6+eSqNBWrT34cKgW9tm6doThu89L85L5egs6V4vxs1yWB
-         lNmVKBN0+bt5fldqyY5R2Ty0wpOsF9EMrXZBe0EMZ58WONgZCDwDh4QhDVHH+sJdLY
-         Rf+aV2D1Ss3XYkAdH9zRVN3qz/dgWrn28TByR55E=
+        b=f83qnPfcbf2pWlWdEcVcmx6CZMFj90HQ1l+Hf2E1oKZvkzJjMGNSAFzhelsuw+UDN
+         lAaZerPbUxMmyAhJ1V4B5nhswe+6q96BWrGXQEh7hFtACQ67yCIirUZECc9WnV7jL2
+         m3y3kFPwAeZFwowJpLMjvBdBOHODdsCQCWw8n074=
 From:   Krzysztof Kozlowski <krzk@kernel.org>
 To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
@@ -45,9 +45,9 @@ To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
 Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH 4/8] arm64: dts: imx8mn: Correct interrupt flags in examples
-Date:   Tue,  8 Sep 2020 17:02:37 +0200
-Message-Id: <20200908150241.5771-4-krzk@kernel.org>
+Subject: [PATCH 5/8] arm64: dts: imx8mq: Correct interrupt flags in examples
+Date:   Tue,  8 Sep 2020 17:02:38 +0200
+Message-Id: <20200908150241.5771-5-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200908150241.5771-1-krzk@kernel.org>
 References: <20200908150241.5771-1-krzk@kernel.org>
@@ -72,44 +72,105 @@ Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Not tested on HW.
 ---
- arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts | 2 +-
- arch/arm64/boot/dts/freescale/imx8mn-evk.dts      | 3 ++-
- 2 files changed, 3 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts | 5 +++--
+ arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi       | 3 ++-
+ arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts       | 3 ++-
+ arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dts        | 3 ++-
+ 4 files changed, 9 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-index a1e5483dbbbe..9e12b5234692 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-@@ -55,7 +55,7 @@
- 		reg = <0x4b>;
- 		pinctrl-0 = <&pinctrl_pmic>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+index a80e53428c2f..7f728dea32ca 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+@@ -6,6 +6,7 @@
+ /dts-v1/;
+ 
+ #include "dt-bindings/input/input.h"
++#include <dt-bindings/interrupt-controller/irq.h>
+ #include "dt-bindings/pwm/pwm.h"
+ #include "dt-bindings/usb/pd.h"
+ #include "imx8mq.dtsi"
+@@ -60,7 +61,7 @@
+ 			label = "WWAN_WAKE";
+ 			gpios = <&gpio3 8 GPIO_ACTIVE_LOW>;
+ 			interrupt-parent = <&gpio3>;
+-			interrupts = <8 GPIO_ACTIVE_LOW>;
++			interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
+ 			wakeup-source;
+ 			linux,code = <KEY_PHONE>;
+ 		};
+@@ -288,7 +289,7 @@
+ 		#clock-cells = <0>;
+ 		clock-output-names = "pmic_clk";
  		interrupt-parent = <&gpio1>;
 -		interrupts = <3 GPIO_ACTIVE_LOW>;
 +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+ 		interrupt-names = "irq";
  		rohm,reset-snvs-powered;
  
- 		regulators {
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dts b/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
-index b846526a8d8b..707d8486b4d8 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
-@@ -7,6 +7,7 @@
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
+index c3e290703fe8..3c389c7ffb2c 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
+@@ -6,6 +6,7 @@
+ /dts-v1/;
  
- #include "imx8mn.dtsi"
- #include "imx8mn-evk.dtsi"
+ #include "dt-bindings/input/input.h"
++#include <dt-bindings/interrupt-controller/irq.h>
+ #include "dt-bindings/pwm/pwm.h"
+ #include "dt-bindings/usb/pd.h"
+ #include "imx8mq.dtsi"
+@@ -639,7 +640,7 @@
+ 		clock-names = "osc";
+ 		clock-output-names = "pmic_clk";
+ 		interrupt-parent = <&gpio1>;
+-		interrupts = <7 GPIO_ACTIVE_LOW>;
++		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
+ 		interrupt-names = "irq";
+ 		rohm,reset-snvs-powered;
+ 
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts b/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts
+index 3f541ddf0768..05fcea2fb402 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts
+@@ -6,6 +6,7 @@
+ /dts-v1/;
+ 
+ #include "imx8mq.dtsi"
 +#include <dt-bindings/interrupt-controller/irq.h>
  
  / {
- 	model = "NXP i.MX8MNano EVK board";
-@@ -19,7 +20,7 @@
- 		reg = <0x25>;
- 		pinctrl-0 = <&pinctrl_pmic>;
+ 	model = "Google i.MX8MQ Phanbell";
+@@ -125,7 +126,7 @@
+ 		clocks = <&pmic_osc>;
+ 		clock-output-names = "pmic_clk";
  		interrupt-parent = <&gpio1>;
 -		interrupts = <3 GPIO_ACTIVE_LOW>;
 +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
  
  		regulators {
- 			buck1: BUCK1{
+ 			buck1: BUCK1 {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dts b/arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dts
+index 59da96b7143f..84c3a143d87b 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dts
+@@ -9,6 +9,7 @@
+ /dts-v1/;
+ 
+ #include "imx8mq.dtsi"
++#include <dt-bindings/interrupt-controller/irq.h>
+ 
+ / {
+ 	model = "TechNexion PICO-PI-8M";
+@@ -70,7 +71,7 @@
+ 		clock-names = "osc";
+ 		clock-output-names = "pmic_clk";
+ 		interrupt-parent = <&gpio1>;
+-		interrupts = <3 GPIO_ACTIVE_LOW>;
++		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+ 		interrupt-names = "irq";
+ 
+ 		regulators {
 -- 
 2.17.1
 
