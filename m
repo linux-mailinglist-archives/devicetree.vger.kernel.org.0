@@ -2,83 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DF5726233D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 00:52:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74D27262350
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 01:01:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726708AbgIHWwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 18:52:40 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:45708 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726660AbgIHWwk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 18:52:40 -0400
-Received: by mail-io1-f67.google.com with SMTP id u126so1103827iod.12;
-        Tue, 08 Sep 2020 15:52:39 -0700 (PDT)
+        id S1727882AbgIHXBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 19:01:22 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:34803 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726657AbgIHXBV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 19:01:21 -0400
+Received: by mail-io1-f68.google.com with SMTP id m17so1203259ioo.1;
+        Tue, 08 Sep 2020 16:01:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=DUYMnk7PRl3sB9Bca/Be0LywxiUDpv8Bgnx3Ft4Wtmo=;
-        b=TNv9MDaEkWbznO0oTupeD1itQZB601AF49VxjF+AzVeicPj3M0g74Kh7+ApdVfJEP3
-         zq9ztXfUZSKCfdmqFMtHDypJYGwerHEPh65imoztmKHKdiVgvWwJjbYZEWFQ+8lqlNkb
-         T+9Klxezd3PbFth9F4mpPZo0Hvd2aV7cDPhSmmJHY/GjMBjxNuD9qsORMsYm2Bgp8gig
-         mXaR27nF6wP/oYA7MiSwvPqxy4HQDgcn9UKGtrIjhxc7/Nxtet4DOUo2cjl4znhDDoKg
-         uZlD4kdzapW0D6xRjqnlXWR6s5FspHERkrrqJWKrWdxndCQYSxNoC121LOJEQuShP0Jg
-         0T/w==
-X-Gm-Message-State: AOAM533iHBRQhHDZp+mkFgbV2uznBNIr/jxjSt8ec/UAuqwYjliW28HM
-        VC+kd+CdMGbUrjiW/nPQVIMcPollJ77Z
-X-Google-Smtp-Source: ABdhPJyLN1DM+y0pUvY2QC8gx3izn1RfXVEGuNZM0Hvtj4/2y0eMlPyTtpv68XKJRfspgZdLudDhvQ==
-X-Received: by 2002:a05:6638:3ea:: with SMTP id s10mr1302143jaq.2.1599605558989;
-        Tue, 08 Sep 2020 15:52:38 -0700 (PDT)
+        bh=m89In9DmPLFvZGgeKa+y2k8098Kswn69VDIHU75w5H4=;
+        b=Ksa6pz5rRbVbCBJZLoL3+NGUPRAVaVz79JbJqgXrX0r0iJoDRLNwI6bWDdGNxDGJiq
+         XwPN0/2NloTvFtqee2beDG34SlzeieEoi+4xFtPcnRleD+DvxGsqPZbSHaG0wUJMCqQA
+         78Xstz5naIswFfwytOjr+aIGfZcgUuwcPENYJBtowlGUz/3y2yyVFmToYGYb8e40BsZX
+         JtWUxyI7ovZv+A3kLr9JuEYkqXY2ePFmam1wW2MqwX5rA1MyV2SN/mLHRpGUuCRBt3Nx
+         s4ZWeyOBdqEJAUwgArU+3JW9nx4R6ewi32A0uj5NyPNgefbANAn9M0ibcVzgDJoXR3No
+         /3BQ==
+X-Gm-Message-State: AOAM5305AhiN2KJ1Sf6NsdaLXFfNU3zviT9JnYvgoJuG74aKLhlhbrM9
+        NedxQ1oXL6LEp17O2K/Duw==
+X-Google-Smtp-Source: ABdhPJzIrAPYwrTxeYyBssMDWjL0nXwlBTgg0SHWrsNuw4AiWN/2RL2jNeBp0V/VAeApkqjiImK6Cw==
+X-Received: by 2002:a05:6638:2647:: with SMTP id n7mr1355405jat.9.1599606078731;
+        Tue, 08 Sep 2020 16:01:18 -0700 (PDT)
 Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id 137sm394681ioc.20.2020.09.08.15.52.36
+        by smtp.gmail.com with ESMTPSA id l16sm387039ilc.3.2020.09.08.16.01.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Sep 2020 15:52:38 -0700 (PDT)
-Received: (nullmailer pid 1088092 invoked by uid 1000);
-        Tue, 08 Sep 2020 22:52:34 -0000
-Date:   Tue, 8 Sep 2020 16:52:34 -0600
+        Tue, 08 Sep 2020 16:01:18 -0700 (PDT)
+Received: (nullmailer pid 1102281 invoked by uid 1000);
+        Tue, 08 Sep 2020 23:01:16 -0000
+Date:   Tue, 8 Sep 2020 17:01:16 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Josh Cartwright <joshc@codeaurora.org>,
-        mauro.chehab@huawei.com, Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linuxarm@huawei.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: convert spmi.txt to spmi.yaml
-Message-ID: <20200908225234.GA1088015@bogus>
-References: <20200826061150.3eb96ab3@coco.lan>
- <ee4c4ca9f29a39f6af772b3a526a996176499da3.1598415179.git.mchehab+huawei@kernel.org>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     linux-clk@vger.kernel.org, m.szyprowski@samsung.com,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-samsung-soc@vger.kernel.org, Kukjin Kim <kgene@kernel.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, b.zolnierkie@samsung.com
+Subject: Re: [PATCH 1/3] clk: samsung: Add clk ID definitions for the CPU
+ parent clocks
+Message-ID: <20200908230116.GA1102229@bogus>
+References: <CGME20200826171539eucas1p2e999972d3e7dd6dd701e312548933e87@eucas1p2.samsung.com>
+ <20200826171529.23618-1-s.nawrocki@samsung.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ee4c4ca9f29a39f6af772b3a526a996176499da3.1598415179.git.mchehab+huawei@kernel.org>
+In-Reply-To: <20200826171529.23618-1-s.nawrocki@samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 26 Aug 2020 06:36:49 +0200, Mauro Carvalho Chehab wrote:
-> Convert the SPMI bus documentation to JSON/yaml.
+On Wed, 26 Aug 2020 19:15:27 +0200, Sylwester Nawrocki wrote:
+> Add clock ID definitions for the CPU parent clocks for SoCs
+> which don't have such definitions yet. This will allow us to
+> reference the parent clocks directly by cached struct clk_hw
+> pointers in the clock provider, rather than doing clk lookup
+> by name.
 > 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
 > ---
-> 
-> v2:
-> - addressed issues pointed by Rob;
-> - made clear that group ID is a future extension, that it is not
->   currently supported.
-> 
->  .../bindings/mfd/qcom,spmi-pmic.txt           |  2 +-
->  .../bindings/spmi/qcom,spmi-pmic-arb.txt      |  4 +-
->  .../devicetree/bindings/spmi/spmi.txt         | 41 ----------
->  .../devicetree/bindings/spmi/spmi.yaml        | 75 +++++++++++++++++++
->  4 files changed, 78 insertions(+), 44 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/spmi/spmi.txt
->  create mode 100644 Documentation/devicetree/bindings/spmi/spmi.yaml
+>  include/dt-bindings/clock/exynos5250.h | 4 +++-
+>  include/dt-bindings/clock/exynos5420.h | 5 +++++
+>  2 files changed, 8 insertions(+), 1 deletion(-)
 > 
 
-Applied, thanks!
+Acked-by: Rob Herring <robh@kernel.org>
