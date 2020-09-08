@@ -2,156 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CE8D260D2F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 10:14:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72953260D70
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 10:21:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729597AbgIHIOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 04:14:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39020 "EHLO
+        id S1729966AbgIHIVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 04:21:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729624AbgIHIOw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 04:14:52 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7BE6C061756
-        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 01:14:50 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id z9so16217983wmk.1
-        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 01:14:50 -0700 (PDT)
+        with ESMTP id S1729968AbgIHIVB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 04:21:01 -0400
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4C72C061756;
+        Tue,  8 Sep 2020 01:20:59 -0700 (PDT)
+Received: by mail-ed1-x541.google.com with SMTP id q21so15125672edv.1;
+        Tue, 08 Sep 2020 01:20:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=2l4ulTfYjNlFeRN+9AmUPudn6kXgV7e1zXVy9nKbsRk=;
-        b=e4CeBE11o3dS4jh5WtgwHvX/aVsAUVjNuZFptYv0FYAuqO1K98mRcanGrEOjNjYNFj
-         1B9gH057PfWPjo2QcMRrEZMg90NcPkJMcKVMvyDqhWkGR3PSfvFiGsld3X9Wck4HNBUv
-         Uz1InBHYi4s1FbO7LIIYnsOElzCrPVjFJnvoARcO7gCqxYsS4kSDssOgt6yv3aOgFqUh
-         bAQIDjH0Yi92yGMBsA0dpqV4vMOLuZy0WHY0SVfEuPK2ENzhsTbwoTlvongp9Gi2vvGK
-         TEH1KHEHxZnKwqCzYbY46VsbpquCRbEqwMWCV9Z/tnC6T4PkLE5+QXW4TOkCDzT1t9Jr
-         kDvA==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=63STSyHRLazmb7nSKR8rGI5k4M8WJtXmYGJdf9TDYBs=;
+        b=aVUgIyhAUnxSTk/UkOHy70pKspSNsP/kxLtvkI+yxJaokuR5x8I+MaN9uUZFSp0y2a
+         7P3rtQI1cTRnJ5X/u/Y81bLWpBFEr2EK9pttyGdLgsORjwv3RfirJb/Cop7jjHpQsY1v
+         LgFKUVqy2K0gKEY9hgW4SYLeKmebb6F1/XUozoPvXZEN+BtdDadcPTqAhqV0Fn/Ca3wk
+         TYUFsqRmRkGpgGaWOqHDkVmNHc9srWqRUvSFv2o7uhn0WmuSLvniwH8kg4bFDpk6C0Wt
+         d+tFB/nURlYwOFMEIYYrdw9i+sAnP54LQ5TtyHcZ6ZLQD/2MetkzY3FAvXwgVm2zeAW/
+         s6hA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=2l4ulTfYjNlFeRN+9AmUPudn6kXgV7e1zXVy9nKbsRk=;
-        b=B0Ch0TWQD7UKHSZSE49N2wQbOHc46JFO1skJar+G7oJnuGQTrH/b1yIqlQQZUiwGG7
-         16lZHDiOjfs+HtzskQJ8A0qcGuxPzH0uAbJtnAVDH5KgPukwdY5SPchpXnlCJq2SCG2P
-         m4rymjx1uQ6kcGuy5+DPVXlRqnsohk8NkNvrne8PceK/kV21zvlfmHwJOJzrFcYWDgzj
-         K+216r9heLzVCKTdlMUVr6W/gzbVCyat+SCdsio3SsZvjbFCYY+IaALVSCmgUq2zo96M
-         kGFaX+u7vJ93VkxNoXArmIQbg/gYbIuXVc5LDEMy9nQN1I5DtkVNBvKt8W9HAYq2CBQg
-         Yk0A==
-X-Gm-Message-State: AOAM5333CjGX9YsvNTWt0WU7Uxr0uED0oNrr6jzBad20yYk9E9afMZN9
-        jY/RS7bwLUem+O8STAf/+O7nxQ==
-X-Google-Smtp-Source: ABdhPJxaRvhQRn53vo1Vi/7ljVTSvQijQ2hYfTSSvgSycwVb16Ba3bhMyPCw6FZ7G3YrfyGiH7odlg==
-X-Received: by 2002:a1c:5641:: with SMTP id k62mr3330505wmb.13.1599552888802;
-        Tue, 08 Sep 2020 01:14:48 -0700 (PDT)
-Received: from dell ([91.110.221.204])
-        by smtp.gmail.com with ESMTPSA id 71sm33594957wrm.23.2020.09.08.01.14.47
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=63STSyHRLazmb7nSKR8rGI5k4M8WJtXmYGJdf9TDYBs=;
+        b=RkiVcTmB01o/MyuxMjxPx4TrGyU6EwoqQSul3mbsEZUEDkv0sYaT1XkdHGUN25eRu0
+         HHke41b/Ib9oKbvZps3zAd0PZzacoWj4MTZlCFdfiLrJ0KeAYfTrj8gJQzwD8bp7OsXU
+         i+3/8veNdmr0O22LMLmWFGNzri3pTNYVY6Sr72N8j4ODyLNVYvnCL0SBkHntoYlFpeW3
+         QgSNmU83QsalEAw2Ki0hOMMDtpIK5nUM6N4hD/pQhA50F8dvpxj/Sx2iWFkowup/twNz
+         trD1Pl45GbtM8AV8nqjzycsgHz/pXVMVxP53b8h+r02+uFRKeivI5HLv4ICOGSLYeR0C
+         iSsw==
+X-Gm-Message-State: AOAM533aH4TyljsQpgLayCUUz0XoTOrGxkpBIIiYG35cHgC+772Nk16U
+        cu5tNFOaHic8CK+Xj2be8eA=
+X-Google-Smtp-Source: ABdhPJw1KTXm9rLt7JG8xTpbt4XCQYBwwTuJs1QMGPu103vrbGICvY6QbNyT8rr3CfqsY+Z57kS59Q==
+X-Received: by 2002:aa7:c693:: with SMTP id n19mr26634894edq.101.1599553253064;
+        Tue, 08 Sep 2020 01:20:53 -0700 (PDT)
+Received: from localhost.localdomain ([188.24.159.61])
+        by smtp.gmail.com with ESMTPSA id g24sm13172326edy.51.2020.09.08.01.20.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Sep 2020 01:14:48 -0700 (PDT)
-Date:   Tue, 8 Sep 2020 09:14:45 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Josua Mayer <josua.mayer@jm0.eu>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>
-Subject: Re: [PATCH v2 05/10] pwm: ntxec: Add driver for PWM function in
- Netronix EC
-Message-ID: <20200908081445.GC4400@dell>
-References: <20200905133230.1014581-1-j.neuschaefer@gmx.net>
- <20200905133230.1014581-6-j.neuschaefer@gmx.net>
- <CAHp75VdUHoOyM3bObzhdfiqpne0AmSK_UakteTZxnjqJVrNV9A@mail.gmail.com>
+        Tue, 08 Sep 2020 01:20:52 -0700 (PDT)
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
+Cc:     parthiban@linumiz.com, Saravanan Sekar <sravanhome@gmail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org
+Subject: [PATCH v6 0/3] Add Actions Semi Owl family sirq support
+Date:   Tue,  8 Sep 2020 11:20:47 +0300
+Message-Id: <cover.1599552438.git.cristian.ciocaltea@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHp75VdUHoOyM3bObzhdfiqpne0AmSK_UakteTZxnjqJVrNV9A@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 05 Sep 2020, Andy Shevchenko wrote:
+This patch series adds support for the external interrupt controller
+(SIRQ) found in the Actions Semi Owl family of SoC's (S500, S700 and
+S900). The controller handles up to 3 external interrupt lines through
+dedicated SIRQ pins.
 
-> On Saturday, September 5, 2020, Jonathan Neuschäfer <j.neuschaefer@gmx.net>
-> wrote:
-> 
-> > The Netronix EC provides a PWM output which is used for the backlight
-> > on some ebook readers. This patches adds a driver for the PWM output.
-> >
-> > Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
-> > ---
-> >
-> > v2:
-> > - Various grammar and style improvements, as suggested by Uwe Kleine-König,
-> >   Lee Jones, and Alexandre Belloni
-> > - Switch to regmap
-> > - Prefix registers with NTXEC_REG_
-> > - Add help text to the Kconfig option
-> > - Use the .apply callback instead of the old API
-> > - Add a #define for the time base (125ns)
-> > - Don't change device state in .probe; this avoids multiple problems
-> > - Rework division and overflow check logic to perform divisions in 32 bits
-> > - Avoid setting duty cycle to zero, to work around a hardware quirk
-> > ---
-> >  drivers/pwm/Kconfig     |   8 ++
-> >  drivers/pwm/Makefile    |   1 +
-> >  drivers/pwm/pwm-ntxec.c | 160 ++++++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 169 insertions(+)
-> >  create mode 100644 drivers/pwm/pwm-ntxec.c
-> >
-> > diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> > index 7dbcf6973d335..7fd17c6cda95e 100644
-> > --- a/drivers/pwm/Kconfig
-> > +++ b/drivers/pwm/Kconfig
-> > @@ -350,6 +350,14 @@ config PWM_MXS
-> >           To compile this driver as a module, choose M here: the module
-> >           will be called pwm-mxs.
-> >
-> > +config PWM_NTXEC
-> > +       tristate "Netronix embedded controller PWM support"
-> 
-> 
-> 
-> 
-> > +       depends on MFD_NTXEC && OF
-> 
-> 
-> I don’t see need to reduce test coverage and use of the driver by sticking
-> with OF. Actually it’s not used.
+This is a rework of the patch series submitted some time ago by 
+Parthiban Nallathambi: 
+https://lore.kernel.org/lkml/20181126100356.2840578-1-pn@denx.de/
 
-If the device is only known to boot with OF, then it's pointless
-building it when !OF.  If you want to increase test coverage enable
-COMPILE_TEST instead.
+Please note I have dropped, for the moment, the S700 related patches 
+since I do not own a compatible hardware for testing. I'm using instead
+an S500 SoC based board for which I have already provided the initial
+support:
+https://lore.kernel.org/lkml/cover.1598621459.git.cristian.ciocaltea@gmail.com/
+
+Additionally, I have taken the authorship for the driver patch,
+considering the original code has been already modified to a great
+extent and I'm firmly committed to maintaining it in the long run.
+
+The SIRQ controller support is a prerequisite of the upcoming MFD
+driver for the Actions Semi ATC260x PMICs.
+
+Thanks and regards,
+Cristi
+
+Changes in v6:
+- Integrated binding doc related feedback from Rob and Marc
+- Updated cover letter to handle the authorship issue indicated by Mani
+- Rebased patch series on v5.9-rc4
+
+Changes in v5:
+- Integrated Marc's review (more details in the driver patch changelog)
+- Rebased patch series on v5.9-rc1
+
+Changes in v4:
+- Simplified the DTS structure:
+  * dropped 'actions,sirq-shared-reg' node, now the differentiation
+    between SoC variants is handled via the compatible property
+  * dropped 'actions,sirq-reg-offset', now controller base address in
+    DTS points to SIRQ0 register, so no additional information is
+    required for S500 and S700, while for S900 SoC the offsets of SIRQ1
+    and SIRQ2 regs are provided by the driver
+  * 'actions,ext-irq-range' was replaced with 'actions,ext-interrupts',
+    an array of the GIC interrupts triggered by the controller
+- Fixed wrong INTC_EXTCTL_TYPE_MASK definition
+- Removed redundant irq_fwspec checks in owl_sirq_domain_alloc()
+- Improved error handling in owl_sirq_of_init()
+- Added yaml binding document
+- Dropped S700 related DTS patches for lack of testing hardware:
+  * arm64: dts: actions: Add sirq node for Actions Semi S700
+  * arm64: dts: actions: s700-cubieboard7: Enable SIRQ
+- Updated MAINTAINERS
+- Rebased patchset on kernel v5.8
+- Cosmetic changes
+ * Ordered include statements alphabetically
+ * Added comment to owl_sirq_set_type() describing conversion of falling
+   edge or active low signals
+ * Replaced IRQF_TRIGGER_* with corresponding IRQ_TYPE_* variants
+ * Ensured data types and function naming are consistent regarding the
+   'owl_sirq' prefix
+
+Changes in v3 (Parthiban Nallathambi):
+- Set default operating frequency to 24MHz
+- Falling edge and Low Level interrupts translated to rising edge and high level
+- Introduced common function with lock handling for register read and write
+- Used direct GIC interrupt number for interrupt local hwirq and finding offset
+using DT entry (range) when registers are shared 
+- Changed irq_ack to irq_eoi
+- Added translation method for irq_domain_ops
+- Clearing interrupt pending based on bitmask for edge triggered
+- Added pinctrl definition for sirq for cubieboard7. This depends on,
+https://lore.kernel.org/patchwork/patch/1012859/
+
+Changes in v2 (Parthiban Nallathambi):
+- Added SIRQ as hierarchical chip
+        GIC <----> SIRQ <----> External interrupt controller/Child devices
+- Device binding updates with vendor prefix
+- Register sharing handled globally and common init sequence/data for all
+actions SoC family
+
+Cristian Ciocaltea (3):
+  dt-bindings: interrupt-controller: Add Actions SIRQ controller binding
+  irqchip: Add Actions Semi Owl SIRQ controller
+  MAINTAINERS: Add entries for Actions Semi Owl SIRQ controller
+
+ .../actions,owl-sirq.yaml                     |  65 ++++
+ MAINTAINERS                                   |   2 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-owl-sirq.c                | 359 ++++++++++++++++++
+ 4 files changed, 427 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/actions,owl-sirq.yaml
+ create mode 100644 drivers/irqchip/irq-owl-sirq.c
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.28.0
+
