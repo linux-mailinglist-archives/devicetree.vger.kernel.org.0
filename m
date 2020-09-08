@@ -2,142 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 997CE2619AF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 20:25:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 894B1261AF5
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 20:49:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729692AbgIHSZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 14:25:02 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:50582 "EHLO vps0.lunn.ch"
+        id S1730478AbgIHSta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 14:49:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48862 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730748AbgIHSWZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 14:22:25 -0400
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1kFiG4-00Dp7f-7W; Tue, 08 Sep 2020 20:22:20 +0200
-Date:   Tue, 8 Sep 2020 20:22:20 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Lukasz Stelmach <l.stelmach@samsung.com>
-Cc:     devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        b.zolnierkie@samsung.com, netdev@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        linux-arm-kernel@lists.infradead.org, m.szyprowski@samsung.com
-Subject: Re: [PATCH 1/3] net: ax88796c: ASIX AX88796C SPI Ethernet Adapter
- Driver
-Message-ID: <20200908182220.GA3290129@lunn.ch>
-References: <20200907181854.GD3254313@lunn.ch>
- <CGME20200908174935eucas1p2f24d79b234152148b060c45863e3efeb@eucas1p2.samsung.com>
- <dleftj8sdkqhun.fsf%l.stelmach@samsung.com>
+        id S1726623AbgIHSt2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 14:49:28 -0400
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EFB5E20936;
+        Tue,  8 Sep 2020 18:49:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599590968;
+        bh=/PlDYc73I5PrW5B6uIA1VQLp4BTV4oHIIammujpUcdc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=HmSGh740yu0BG3o8RZaACSnauoPWIiTMdYNbvbpK4Xfg6Qt9yp/9PbedxzmcGP1yU
+         gjizIm8AsQYWnKT1w1+JMCOEXMD/RPG6Jr9ca5fIF/zf5pk2X5m86NCTO0LFqcI8lB
+         P6LtCYENiYCraQuMzg/RpFnCp6zLi/BfcHykm6AI=
+Received: by mail-oo1-f44.google.com with SMTP id z1so4181677ooj.3;
+        Tue, 08 Sep 2020 11:49:27 -0700 (PDT)
+X-Gm-Message-State: AOAM532iPabKuWaYeillxffAAa72ppM/1YaQjXNc4X/BJpJ3VJsejRFm
+        VBevMGUBvyAQ9tAMiuD3W3e/aAsCAvODS9sabg==
+X-Google-Smtp-Source: ABdhPJya9363hct12OY48mS3oy3MugvGqPp1r0CFLg7IaMo8S66bOWAkKXuaqZ594ecf4YPBAZ2NNNnWHCf5O70mBZA=
+X-Received: by 2002:a4a:d38c:: with SMTP id i12mr3445oos.81.1599590967271;
+ Tue, 08 Sep 2020 11:49:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <dleftj8sdkqhun.fsf%l.stelmach@samsung.com>
+References: <20200817030324.5690-1-crystal.guo@mediatek.com>
+ <20200817030324.5690-3-crystal.guo@mediatek.com> <20200825190219.GA1125997@bogus>
+ <1598440183.30048.14.camel@mhfsdcap03> <6c292056-1cb1-bc6c-0422-46e047dcf08f@ti.com>
+In-Reply-To: <6c292056-1cb1-bc6c-0422-46e047dcf08f@ti.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 8 Sep 2020 12:49:16 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKuL7XM2CL3z0OQdRua5YJO2ZRdsoE3fdAH948mKGfWnA@mail.gmail.com>
+Message-ID: <CAL_JsqKuL7XM2CL3z0OQdRua5YJO2ZRdsoE3fdAH948mKGfWnA@mail.gmail.com>
+Subject: Re: [v4,2/4] dt-binding: reset-controller: ti: add
+ 'mediatek,infra-reset' to compatible
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Crystal Guo <crystal.guo@mediatek.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?UTF-8?B?U2VpeWEgV2FuZyAo546L6L+65ZCbKQ==?= 
+        <seiya.wang@mediatek.com>,
+        =?UTF-8?B?U3RhbmxleSBDaHUgKOacseWOn+mZnik=?= 
+        <stanley.chu@mediatek.com>,
+        =?UTF-8?B?WWluZ2pvZSBDaGVuICjpmbPoi7HmtLIp?= 
+        <Yingjoe.Chen@mediatek.com>,
+        =?UTF-8?B?RmFuIENoZW4gKOmZs+WHoSk=?= <fan.chen@mediatek.com>,
+        =?UTF-8?B?WW9uZyBMaWFuZyAo5qKB5YuHKQ==?= <Yong.Liang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 08, 2020 at 07:49:20PM +0200, Lukasz Stelmach wrote:
-> It was <2020-09-07 pon 20:18>, when Andrew Lunn wrote:
-> >> > On Tue, Aug 25, 2020 at 07:03:09PM +0200, Łukasz Stelmach wrote:
-> >> >> +++ b/drivers/net/ethernet/asix/ax88796c_ioctl.c
-> >> >
-> >> > This is an odd filename. The ioctl code is wrong anyway, but there is
-> >> > a lot more than ioctl in here. I suggest you give it a new name.
-> >> >
-> >> 
-> >> Sure, any suggestions?
+On Wed, Sep 2, 2020 at 5:26 PM Suman Anna <s-anna@ti.com> wrote:
+>
+> Hi Rob,
+>
+> On 8/26/20 6:09 AM, Crystal Guo wrote:
+> > On Wed, 2020-08-26 at 03:02 +0800, Rob Herring wrote:
+> >> On Mon, Aug 17, 2020 at 11:03:22AM +0800, Crystal Guo wrote:
+> >>> The TI syscon reset controller provides a common reset management,
+> >>> and is suitable for MTK SoCs. Add compatible 'mediatek,infra-reset',
+> >>> which denotes to use ti reset-controller driver directly.
+> >>>
+> >>> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
+> >>> ---
+> >>>  Documentation/devicetree/bindings/reset/ti-syscon-reset.txt | 1 +
+> >>>  1 file changed, 1 insertion(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt b/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt
+> >>> index ab041032339b..5a0e9365b51b 100644
+> >>> --- a/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt
+> >>> +++ b/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt
+> >>> @@ -25,6 +25,7 @@ Required properties:
+> >>>                         "ti,k2l-pscrst"
+> >>>                         "ti,k2hk-pscrst"
+> >>>                         "ti,syscon-reset"
+> >>> +                       "mediatek,infra-reset", "ti,syscon-reset"
+> >>
+> >> You need your own binding doc. If you can use the same driver then fine,
+> >> but that's a separate issue. There's also reset-simple driver if you
+> >> have just array of 32-bit registers with a bit per reset.
+> >>
+> >> Don't repeat 'ti,reset-bits' either.
 > >
-> > Sorry, i have forgotten what is actually contained. 
-> 
-> IOCTL handler (.ndo_do_ioctl), ethtool ops, and a bunch of hw control
-> functions.
-> 
-> > Does it even need to be a separate file?
-> 
-> It doesn't need, but I think it makes sense to keep ioctl and ethtool
-> stuff in a separate file. Some of the hw control function look like they
-> might change after using phylib.
+> > Do you mean I should add a Mediatek reset binding doc, although Mediatek
+> > reuse the TI reset controller directly?
+>
+> Hmm, how do you envision not repeating the same bits in a separate binding?
 
-<driver>_ethtool.c is a common file name.
+I mean 'ti,reset-bits' isn't really something that should have been in
+DT in the first place, but rather implied by the compatible string.
 
-> Good point. I need to figure out how to do it. Can you point (from the
-> top fou your head) a driver which does it for a simmilarly integrated
-> device?
+> Does it help if I convert this to YAML first without a ti, prefix in the file name?
 
-Being integrated or not makes no difference. The API usage is the
-same. drivers/net/usb/smsc95xx.c has an integrated PHY i think.
+No, I don't think this should be a shared binding. The driver may be
+able to be shared, but that's independent from the binding.
 
-> I am not arguing to keep the parameter at any cost, but I would really
-> like to know if there is a viable alternative for DT and ACPI. This chip
-> is for smaller systems which not necessarily implement advanced
-> bootloaders (and DT).
-
-What bootload is being used, if not uboot or bearbox?
-
-> According to module.h
-> 
-> /*
->  * Author(s), use "Name <email>" or just "Name", for multiple
->  * authors use multiple MODULE_AUTHOR() statements/lines.
->  */
-
-Thanks, did not know that.
-> >> >> +	struct net_device *ndev = ax_local->ndev;
-> >> >> +	int status;
-> >> >> +
-> >> >> +	do {
-> >> >> +		if (!(ax_local->checksum & AX_RX_CHECKSUM))
-> >> >> +			break;
-> >> >> +
-> >> >> +		/* checksum error bit is set */
-> >> >> +		if ((rxhdr->flags & RX_HDR3_L3_ERR) ||
-> >> >> +		    (rxhdr->flags & RX_HDR3_L4_ERR))
-> >> >> +			break;
-> >> >> +
-> >> >> +		if ((rxhdr->flags & RX_HDR3_L4_TYPE_TCP) ||
-> >> >> +		    (rxhdr->flags & RX_HDR3_L4_TYPE_UDP)) {
-> >> >> +			skb->ip_summed = CHECKSUM_UNNECESSARY;
-> >> >> +		}
-> >> >> +	} while (0);
-> >> >
-> >> >
-> >> > ??
-> >> >
-> >> 
-> >> if() break; Should I use goto?
-> >
-> > Sorry, i was too ambiguous. Why:
-> >
-> > do {
-> > } while (0);
-> >
-> > It is an odd construct.
-> 
-> As to "why" — you have correctly spotted, this is a vendor driver I am
-> porting. Although it's not like I am trying to avoid any changes, but
-> because this driver worked for us on older kernels (v3.10.9) I am trying
-> not to touch pieces which IMHO are good enough.
-
-My experience with vendor drivers is you nearly end up rewriting it to
-bring it up to mainline standards. I would suggest first setting up
-some automated tests, and then make lots of small changes, committed
-to git. You can then go backwards and find where regressions have been
-introduced and found by the automated tests. And then every so often
-squash it all together, ready for submission.
-
-> To avoid using do{}while(0) it requires either goto (instead of breaks),
-> nesting those if()s in one another or a humongous single if(). Neither
-> looks pretty and the last one is even less readable than
-> do()while.
-
-I removed too much context. Does anything useful happen afterwards?
-Maybe you can just use return? Or put that code into a helper which
-can use return rather than break?
-
-      Andrew
+Rob
