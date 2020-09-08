@@ -2,114 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74691262122
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:32:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1692262133
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:34:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726925AbgIHUb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 16:31:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41458 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728709AbgIHUby (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 16:31:54 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B60F1C061573
-        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 13:31:53 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id n14so126996pff.6
-        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 13:31:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=GinH/+WlUUwJ7OA+sMknkcAQqYifytKaKvguzz2CVE8=;
-        b=l21Kp+H0v8uAYf7toyEqNp3Cy4s11aUKhZNJtNGZTVsWzEe+4XQnEK6SNIaJHitQmE
-         gu0LHt6kxnMPygob8IiXd9ep45Ga6YVhpp9KCxHz+aHqmSm9f2FmAGW0zjo7cscXts8Q
-         ngeAx0qvGqsdpZhohbQBiqI0ba9dNBOtJO8tY=
+        id S1729822AbgIHUeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 16:34:06 -0400
+Received: from mail-il1-f195.google.com ([209.85.166.195]:46962 "EHLO
+        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726484AbgIHUeD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 16:34:03 -0400
+Received: by mail-il1-f195.google.com with SMTP id t16so165500ilf.13;
+        Tue, 08 Sep 2020 13:34:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=GinH/+WlUUwJ7OA+sMknkcAQqYifytKaKvguzz2CVE8=;
-        b=EO/NCS7ZfXgza4qJk+ckQEzKVnCukU4uMeYf7GBbTASTy0zG85GW2e9OWexL5CZMyl
-         4B2TcTL6OtwHEGBR9GktSjqdEe0+TNYuDqPniJGFEs+mmwNC4vkv1cUAItdr62yV5SPe
-         nKInKZpuEZTibgjhJfwo7yTinRAy7zt9T+f/2W+SDCObP49fd4FjSx1Z/WxAtp1+wuL0
-         B1O1tprJXo3KYRi5cNhv67If+pUk/tgAjHERAYZ1AZ81nhuLOZFHlk7uYt1j0JdG47hW
-         SjPiPx2Vn49oSRs+vDLkEzZ3dz+4yNWz3Dl5oTSQdwfXN6Ilyp2y7JXZCsiTHEKAX/Ia
-         KL6A==
-X-Gm-Message-State: AOAM530hHTqCbM3FxPIpcq4V/Oc0Q8AWmi3hLRD2CMzFoIb82h+jLxtC
-        ATogneCP6U/dmOzZo8HaBpSPOA==
-X-Google-Smtp-Source: ABdhPJxR1cfQbHMi4YHouw7fFkCUEVsDqRPvLhAz8c9yVtVO2T5nIYTRtwU1uGRh8JQFx6b5KMCvSg==
-X-Received: by 2002:a17:902:d206:b029:d0:cbe1:e711 with SMTP id t6-20020a170902d206b02900d0cbe1e711mr793068ply.31.1599597113155;
-        Tue, 08 Sep 2020 13:31:53 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:42b0:34ff:fe3d:58e6])
-        by smtp.gmail.com with ESMTPSA id y7sm113620pjn.54.2020.09.08.13.31.52
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=gleTakc4Nn6mTISuQkejPMu6ISZTqy+j8/Bxw7G61oU=;
+        b=GjlejI12ZPAigfezzb+Ei1pn2BgFccfWpBoB+G/F2P/3V3Xnh+pfH6y31JlvkUvrms
+         /3UEY3HQss/X3CpZdcaR9nzHzu7aOtmFMxsbcPOKDV9VxuM22L4uevkF9xooqPTrSCCD
+         uTAgk1H+1BLGAEdYgyNWxnbMm/yKfX2S4jWRERzWIxg/dURoKd6V5z2Ta4ZIBJpJrZ5z
+         j6RV9WHQao05fXOTnm7Df6tT87/xFJWYcgSdHC1t6w3RcT+w1G3Hgn6QLlkRNu/sV75f
+         yBJs5iri7/gNl2cT39YspXde+0BaHmLNAjGjQ+9/Zks0G0RdC//ZEo3scxfP2rInuQ7Y
+         n9sA==
+X-Gm-Message-State: AOAM533o3cVa8Wx3g7TY9JVV6lGiuLY4cvNN/Q5Ov5GXMPami+axClYd
+        fJU0yO1aV45DozlagpmSEQ==
+X-Google-Smtp-Source: ABdhPJzCHoj/ZvrJj7t400J/VsMUBFrd75e5tcT3ln+3OZZL67b775TNHUe3xKteGxNcW5bAkZ322A==
+X-Received: by 2002:a92:c049:: with SMTP id o9mr483817ilf.193.1599597242634;
+        Tue, 08 Sep 2020 13:34:02 -0700 (PDT)
+Received: from xps15 ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id k14sm217738ioa.7.2020.09.08.13.33.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Sep 2020 13:31:52 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     mka@chromium.org, swboyd@chromium.org,
-        Philip Chen <philipchen@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
+        Tue, 08 Sep 2020 13:34:02 -0700 (PDT)
+Received: (nullmailer pid 868500 invoked by uid 1000);
+        Tue, 08 Sep 2020 20:33:57 -0000
+Date:   Tue, 8 Sep 2020 14:33:57 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Cheng-Yi Chiang <cychiang@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
         Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: Add sc7180-lazor sku2
-Date:   Tue,  8 Sep 2020 13:31:17 -0700
-Message-Id: <20200908133037.1.Ia98a6b938453254e360c4a9fa253d2d6807dff3f@changeid>
-X-Mailer: git-send-email 2.28.0.526.ge36021eeef-goog
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>, dianders@chromium.org,
+        dgreid@chromium.org, tzungbi@chromium.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v7 2/3] ASoC: qcom: dt-bindings: Add sc7180 machine
+ bindings
+Message-ID: <20200908203357.GA861143@bogus>
+References: <20200907100039.1731457-1-cychiang@chromium.org>
+ <20200907100039.1731457-3-cychiang@chromium.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200907100039.1731457-3-cychiang@chromium.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new SKU variant.  This is a pick from the downstream tree that
-is the current source of truth for this platform.
+On Mon, Sep 07, 2020 at 06:00:38PM +0800, Cheng-Yi Chiang wrote:
+> Add devicetree bindings documentation file for sc7180 sound card.
+> 
+> Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
+> ---
+>  .../bindings/sound/qcom,sc7180.yaml           | 143 ++++++++++++++++++
+>  1 file changed, 143 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,sc7180.yaml b/Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
+> new file mode 100644
+> index 000000000000..ae809346ca80
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
+> @@ -0,0 +1,143 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/qcom,sc7180.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies Inc. SC7180 ASoC sound card driver
+> +
+> +maintainers:
+> +  - Rohit kumar <rohitkr@codeaurora.org>
+> +  - Cheng-Yi Chiang <cychiang@chromium.org>
+> +
+> +description:
+> +  This binding describes the SC7180 sound card which uses LPASS for audio.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sc7180-sndcard
+> +
+> +  audio-routing:
+> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> +    description:
+> +      A list of the connections between audio components. Each entry is a
+> +      pair of strings, the first being the connection's sink, the second
+> +      being the connection's source.
+> +
+> +  model:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: User specified audio sound card name
+> +
+> +  headset-jack:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: phandle of the codec for headset detection
+> +
+> +  hdmi-jack:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: phandle of the codec for hdmi jack detection
 
-Link: https://crrev.com/c/2386997
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+You already have links to these devices. Why duplicate it here? 
 
- arch/arm64/boot/dts/qcom/Makefile               |  1 +
- .../dts/qcom/sc7180-trogdor-lazor-r1-kb.dts     | 17 +++++++++++++++++
- 2 files changed, 18 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dts
+What if you had 2 headsets? This doesn't scale.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 5899101526a7..af5ff84889cb 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -21,6 +21,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r0.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1-kb.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1-lte.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dts
-new file mode 100644
-index 000000000000..c3f426c3c30a
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dts
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Lazor board device tree source
-+ *
-+ * Copyright 2020 Google LLC.
-+ */
-+
-+#include "sc7180-trogdor-lazor-r1.dts"
-+
-+/ {
-+	model = "Google Lazor (rev1+) with KB Backlight";
-+	compatible = "google,lazor-sku2", "qcom,sc7180";
-+};
-+
-+&keyboard_backlight {
-+	status = "okay";
-+};
--- 
-2.28.0.526.ge36021eeef-goog
-
+Rob
