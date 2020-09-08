@@ -2,152 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D3712615E2
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 18:58:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C7D22615C6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 18:56:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731875AbgIHQ6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 12:58:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59272 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731870AbgIHQUP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 12:20:15 -0400
-Received: from localhost.localdomain (unknown [194.230.155.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8297E22BF3;
-        Tue,  8 Sep 2020 14:59:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599577199;
-        bh=M1E3QlEcopkB9Ss9cwMDRhMIEQp6FQqI/zsyQ4VIOes=;
-        h=From:To:Cc:Subject:Date:From;
-        b=CCHK8NRNe+g16m0fl8p/+qr8DXPm6O+ZWmX5mXl9dowWRiVB5eqVd22tZ4QmhZme/
-         bectj1Ex58awbfrGqq2hFsweAsiG4LqEkbPv8OmAp2ECeWXGv8KxYZtjOVqW4yCqjC
-         aU0U4erElfxRY9UTBIXT8N1Hg/JhWY3O0Nb5sZaQ=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH] ASoC: dt-bindings:  Correct interrupt flags in examples
-Date:   Tue,  8 Sep 2020 16:59:54 +0200
-Message-Id: <20200908145954.4629-1-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
+        id S1731961AbgIHQ4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 12:56:17 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:55102 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731826AbgIHQXE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 12:23:04 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 088GMw96077993;
+        Tue, 8 Sep 2020 11:22:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599582178;
+        bh=SEM8rc44jwT/AQPHjWeLw3o/QxF7YSN0HPxJMxq2Lfg=;
+        h=From:To:CC:Subject:Date;
+        b=uLvpGsRiipcueyEhreLEig2uYffwo4OPx1Rdl6AobjzeLYM6qdm/FO47A/cxHZmRf
+         0+Yj6qVQ7MpVF32z6jDV74eh+HoosmNsJ8H7Kta6jLRtdnASAokgwew2aAN12PPDVy
+         rssS39itQtLGHvCZI0Yg6sf4VNTa5LwlvUZUJSzI=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 088GMwG4027133
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 8 Sep 2020 11:22:58 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 8 Sep
+ 2020 11:22:57 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 8 Sep 2020 11:22:57 -0500
+Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088GMqAn044781;
+        Tue, 8 Sep 2020 11:22:53 -0500
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <t-kristo@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Sekhar Nori <nsekhar@ti.com>, Suman Anna <s-anna@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH v3 0/5] arm64: Initial support for Texas Instrument's J7200 Platform
+Date:   Tue, 8 Sep 2020 21:52:47 +0530
+Message-ID: <20200908162252.17672-1-lokeshvutla@ti.com>
+X-Mailer: git-send-email 2.28.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
-These are simple defines so they could be used in DTS but they will not
-have the same meaning:
-1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
-2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
+This series adds initial support for latest new SoC, J7200, from Texas Instruments.
 
-Correct the interrupt flags, assuming the author of the code wanted some
-logical behavior behind the name "ACTIVE_xxx", this is:
-  ACTIVE_HIGH => IRQ_TYPE_LEVEL_HIGH
+The J7200 SoC is a part of the K3 Multicore SoC architecture platform.
+It is targeted for for automotive gateway, vehicle compute systems,
+Vehicle-to-Vehicle (V2V) and Vehicle-to-Everything (V2X) applications.
+The SoC aims to meet the complex processing needs of modern embedded products.
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- Documentation/devicetree/bindings/sound/max98090.txt | 2 +-
- Documentation/devicetree/bindings/sound/rt5640.txt   | 2 +-
- Documentation/devicetree/bindings/sound/rt5659.txt   | 2 +-
- Documentation/devicetree/bindings/sound/rt5665.txt   | 2 +-
- Documentation/devicetree/bindings/sound/rt5668.txt   | 2 +-
- Documentation/devicetree/bindings/sound/rt5677.txt   | 2 +-
- Documentation/devicetree/bindings/sound/rt5682.txt   | 2 +-
- 7 files changed, 7 insertions(+), 7 deletions(-)
+See J7200 Technical Reference Manual (SPRUIU1, June 2020)
+for further details: https://www.ti.com/lit/pdf/spruiu1
 
-diff --git a/Documentation/devicetree/bindings/sound/max98090.txt b/Documentation/devicetree/bindings/sound/max98090.txt
-index 7e1bbd5c27fd..39d640294c62 100644
---- a/Documentation/devicetree/bindings/sound/max98090.txt
-+++ b/Documentation/devicetree/bindings/sound/max98090.txt
-@@ -55,5 +55,5 @@ audio-codec@10 {
- 	compatible = "maxim,max98090";
- 	reg = <0x10>;
- 	interrupt-parent = <&gpio>;
--	interrupts = <TEGRA_GPIO(H, 4) GPIO_ACTIVE_HIGH>;
-+	interrupts = <TEGRA_GPIO(H, 4) IRQ_TYPE_LEVEL_HIGH>;
- };
-diff --git a/Documentation/devicetree/bindings/sound/rt5640.txt b/Documentation/devicetree/bindings/sound/rt5640.txt
-index e40e4893eed8..ff1228713f7e 100644
---- a/Documentation/devicetree/bindings/sound/rt5640.txt
-+++ b/Documentation/devicetree/bindings/sound/rt5640.txt
-@@ -88,7 +88,7 @@ rt5640 {
- 	compatible = "realtek,rt5640";
- 	reg = <0x1c>;
- 	interrupt-parent = <&gpio>;
--	interrupts = <TEGRA_GPIO(W, 3) GPIO_ACTIVE_HIGH>;
-+	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
- 	realtek,ldo1-en-gpios =
- 		<&gpio TEGRA_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
- };
-diff --git a/Documentation/devicetree/bindings/sound/rt5659.txt b/Documentation/devicetree/bindings/sound/rt5659.txt
-index 1766e0543fc5..56788f50b6cf 100644
---- a/Documentation/devicetree/bindings/sound/rt5659.txt
-+++ b/Documentation/devicetree/bindings/sound/rt5659.txt
-@@ -72,7 +72,7 @@ rt5659 {
- 	compatible = "realtek,rt5659";
- 	reg = <0x1b>;
- 	interrupt-parent = <&gpio>;
--	interrupts = <TEGRA_GPIO(W, 3) GPIO_ACTIVE_HIGH>;
-+	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
- 	realtek,ldo1-en-gpios =
- 		<&gpio TEGRA_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
- };
-diff --git a/Documentation/devicetree/bindings/sound/rt5665.txt b/Documentation/devicetree/bindings/sound/rt5665.txt
-index 8df170506986..f6ca96b4ce98 100644
---- a/Documentation/devicetree/bindings/sound/rt5665.txt
-+++ b/Documentation/devicetree/bindings/sound/rt5665.txt
-@@ -62,7 +62,7 @@ rt5659 {
- 	compatible = "realtek,rt5665";
- 	reg = <0x1b>;
- 	interrupt-parent = <&gpio>;
--	interrupts = <TEGRA_GPIO(W, 3) GPIO_ACTIVE_HIGH>;
-+	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
- 	realtek,ldo1-en-gpios =
- 		<&gpio TEGRA_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
- };
-diff --git a/Documentation/devicetree/bindings/sound/rt5668.txt b/Documentation/devicetree/bindings/sound/rt5668.txt
-index c88b96e7764b..a2b7e9a2f2f3 100644
---- a/Documentation/devicetree/bindings/sound/rt5668.txt
-+++ b/Documentation/devicetree/bindings/sound/rt5668.txt
-@@ -41,7 +41,7 @@ rt5668 {
- 	compatible = "realtek,rt5668b";
- 	reg = <0x1a>;
- 	interrupt-parent = <&gpio>;
--	interrupts = <TEGRA_GPIO(U, 6) GPIO_ACTIVE_HIGH>;
-+	interrupts = <TEGRA_GPIO(U, 6) IRQ_TYPE_LEVEL_HIGH>;
- 	realtek,ldo1-en-gpios =
- 		<&gpio TEGRA_GPIO(R, 2) GPIO_ACTIVE_HIGH>;
- 	realtek,dmic1-data-pin = <1>;
-diff --git a/Documentation/devicetree/bindings/sound/rt5677.txt b/Documentation/devicetree/bindings/sound/rt5677.txt
-index 1b3c13d206ff..da2430099181 100644
---- a/Documentation/devicetree/bindings/sound/rt5677.txt
-+++ b/Documentation/devicetree/bindings/sound/rt5677.txt
-@@ -64,7 +64,7 @@ rt5677 {
- 	compatible = "realtek,rt5677";
- 	reg = <0x2c>;
- 	interrupt-parent = <&gpio>;
--	interrupts = <TEGRA_GPIO(W, 3) GPIO_ACTIVE_HIGH>;
-+	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
- 
- 	gpio-controller;
- 	#gpio-cells = <2>;
-diff --git a/Documentation/devicetree/bindings/sound/rt5682.txt b/Documentation/devicetree/bindings/sound/rt5682.txt
-index ade1ece8b45f..707fa98d1310 100644
---- a/Documentation/devicetree/bindings/sound/rt5682.txt
-+++ b/Documentation/devicetree/bindings/sound/rt5682.txt
-@@ -58,7 +58,7 @@ rt5682 {
- 	compatible = "realtek,rt5682i";
- 	reg = <0x1a>;
- 	interrupt-parent = <&gpio>;
--	interrupts = <TEGRA_GPIO(U, 6) GPIO_ACTIVE_HIGH>;
-+	interrupts = <TEGRA_GPIO(U, 6) IRQ_TYPE_LEVEL_HIGH>;
- 	realtek,ldo1-en-gpios =
- 		<&gpio TEGRA_GPIO(R, 2) GPIO_ACTIVE_HIGH>;
- 	realtek,dmic1-data-pin = <1>;
+This series is based on the ti-k3-dts-next from Nishanth's tree[0].
+Boot log: https://pastebin.ubuntu.com/p/Ppng92TR9z/
+
+Changes since v2:
+- Update Makefile to build dtbs using CONFIG_ARCH_K3
+- use 0x00 in all places just to be consistent for all K3 devices
+- Fixed upper case to lower case in reg property.
+
+[0] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
+
+Lokesh Vutla (5):
+  arm64: dts: ti: Makefile: Use ARCH_K3 for building dtbs
+  dt-bindings: arm: ti: Convert K3 board/soc bindings to DT schema
+  dt-bindings: arm: ti: Add bindings for J7200 SoC
+  arm64: dts: ti: Add support for J7200 SoC
+  arm64: dts: ti: Add support for J7200 Common Processor Board
+
+ .../devicetree/bindings/arm/ti/k3.txt         |  26 ---
+ .../devicetree/bindings/arm/ti/k3.yaml        |  35 +++
+ MAINTAINERS                                   |   2 +-
+ arch/arm64/boot/dts/ti/Makefile               |   6 +-
+ .../dts/ti/k3-j7200-common-proc-board.dts     |  64 ++++++
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 199 ++++++++++++++++++
+ .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      |  84 ++++++++
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   |  29 +++
+ arch/arm64/boot/dts/ti/k3-j7200.dtsi          | 165 +++++++++++++++
+ 9 files changed, 581 insertions(+), 29 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/ti/k3.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/ti/k3.yaml
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j7200.dtsi
+
 -- 
-2.17.1
+2.28.0
 
