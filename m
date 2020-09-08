@@ -2,121 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A946261511
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 18:43:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BB4C2614BC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 18:35:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731964AbgIHQgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 12:36:43 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:51706 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732027AbgIHQbi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 12:31:38 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 088Caq2l101881;
-        Tue, 8 Sep 2020 07:36:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599568612;
-        bh=yE6h/TCCI1nr5Hwk2p595EtwXTIH9VDdBsXkMKKTFWA=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=dJmrpRIv/Jw2G79AVUgGNzWeslazPxYqLvhWM6FOoBSjTVLxI4e7DjvFMhHGSteIZ
-         bdut1T98FntyvxALagJ6MPiDXjpHufpg8kvWYKM9dupO3UC8BUzsIpShwb5xtg/Tso
-         5Bp6hu0U+YNXMl8SNckYFa/VnfmKYWuvDKPfWCI8=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088Caqj9102372;
-        Tue, 8 Sep 2020 07:36:52 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 8 Sep
- 2020 07:36:52 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 8 Sep 2020 07:36:52 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088Caq0J126769;
-        Tue, 8 Sep 2020 07:36:52 -0500
-Date:   Tue, 8 Sep 2020 07:36:51 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Roger Quadros <rogerq@ti.com>
-CC:     <t-kristo@ti.com>, <robh+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <nsekhar@ti.com>,
-        <kishon@ti.com>
-Subject: Re: [PATCH v2 6/6] arm64: dts: ti: k3-j7200-common-proc-board: Add
- USB support
-Message-ID: <20200908123651.yg54ht2z2esqdg4e@akan>
-References: <20200907145213.30788-1-rogerq@ti.com>
- <20200907145213.30788-7-rogerq@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200907145213.30788-7-rogerq@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1731884AbgIHQfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 12:35:10 -0400
+Received: from foss.arm.com ([217.140.110.172]:57700 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731643AbgIHQfG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 12:35:06 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 247A731B;
+        Tue,  8 Sep 2020 05:48:22 -0700 (PDT)
+Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 032873F73C;
+        Tue,  8 Sep 2020 05:48:19 -0700 (PDT)
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Andre Przywara <andre.przywara@arm.com>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Haojian Zhuang <haojian.zhuang@linaro.org>,
+        Ray Jui <rjui@broadcom.com>, Wei Xu <xuwei5@hisilicon.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Chanho Min <chanho.min@lge.com>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v2 0/6] dt-bindings: Convert SP804 to Json-schema (and fix users)
+Date:   Tue,  8 Sep 2020 13:48:17 +0100
+Message-Id: <159956909738.1981.16210146390528870384.b4-ty@arm.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200828142018.43298-1-andre.przywara@arm.com>
+References: <20200828142018.43298-1-andre.przywara@arm.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17:52-20200907, Roger Quadros wrote:
-> Enable USB0 port in high-speed (2.0) mode.
-
-
-Am I right that this is a choice forced by serdes mux configuration
-selection? Might be good to document it (default speed is super-speed).
-
+On Fri, 28 Aug 2020 15:20:12 +0100, Andre Przywara wrote:
+> This is the second attempt at converting the SP804 timer binding to yaml.
+> Compared to v1, I forbid additional properties, and included the primecell
+> binding. Also the clock-names property is now listed, although without
+> further requirements on the names. Changelog below.
 > 
-> The board uses lane 3 of SERDES for USB. Set the mux
-> accordingly.
+> --------------
+> The yaml conversion is done in the first patch, the remaining five fix
+> some DT users.
 > 
-> Signed-off-by: Roger Quadros <rogerq@ti.com>
-> ---
->  .../dts/ti/k3-j7200-common-proc-board.dts     | 22 +++++++++++++++++++
->  1 file changed, 22 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-> index 0ecaba600704..5ce3fddbd617 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-> @@ -42,6 +42,12 @@
->  			J721E_IOPAD(0xe4, PIN_INPUT, 8) /* (V1) TIMER_IO0.MMC1_SDCD */
->  		>;
->  	};
-> +
-> +	main_usbss0_pins_default: main-usbss0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721E_IOPAD(0x120, PIN_OUTPUT, 0) /* (T4) USB0_DRVVBUS */
-> +		>;
-> +	};
->  };
->  
->  &wkup_uart0 {
-> @@ -145,3 +151,19 @@
->  	idle-states = <SERDES0_LANE0_PCIE1_LANE0>, <SERDES0_LANE1_PCIE1_LANE1>,
->  		      <SERDES0_LANE2_QSGMII_LANE1>, <SERDES0_LANE3_IP4_UNUSED>;
->  };
-> +
-> +&usb_serdes_mux {
-> +	idle-states = <1>; /* USB0 to SERDES lane 3 */
-> +};
-> +
-> +&usbss0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_usbss0_pins_default>;
-> +	ti,vbus-divider;
-> +	ti,usb2-only;
-> +};
-> +
-> +&usb0 {
-> +	dr_mode = "otg";
-> +	maximum-speed = "high-speed";
-> +};
-> -- 
-> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-> 
+> [...]
 
--- 
+I have picked one patch for Arm Ltd boards/models.
+
+Applied to sudeep.holla/linux (for-next/juno), thanks!
+
+[1/1] ARM: dts: arm: Fix SP804 users
+      https://git.kernel.org/sudeep.holla/c/34a4591871
+
+--
+
 Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Sudeep
+
