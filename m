@@ -2,71 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D89B5262170
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:52:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E2C0262173
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:52:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728390AbgIHUwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 16:52:21 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:34373 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726699AbgIHUwV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 16:52:21 -0400
-Received: by mail-io1-f67.google.com with SMTP id m17so880814ioo.1;
-        Tue, 08 Sep 2020 13:52:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=JzepCYrGAGrYES9D47w2RisPkLkEF03INGsKvpBbxRY=;
-        b=KxAiqQo1sgQEYEPjNtOsyWyCSuEguB+4OMXrm4Ig7CZ9boaG2GezSaCw2u3V1Sle4A
-         b7nGOwJL/lxKDpl67n3FHOlyDEKvP4lZYkL7NkO+u1x4coMKmPncB+VHVY1DYSfAaHME
-         yBR6aDY6FkpmLe8o+FaJ1laJMwmfgqIVo1iUdcTts5JEIe4cUNTbC3HWG0f/OUykXdCz
-         ir/9/Wf0G1tIbR51P0surEZTG3WXgtyB8XB9iAz0T3fBVMsK3IDZFUlwckAPRnDEgvKS
-         zjqpGOvjEqXwEycNSZi8jmA/YiuujbWxgB92hX7i+UEyppJN9pLW/1y4aW9oqRYYOI74
-         nD8g==
-X-Gm-Message-State: AOAM533AHRazEO4NvO1h8d+VgKg1hQBkYChlCilLvaHmVSoJ+FHHsW/Y
-        STSc9+eDBSzDmj1M0/z+1A==
-X-Google-Smtp-Source: ABdhPJxLB3kOj8pf6Yly17ORHTH8WuKy2jZOn9ohFBy9irVHuogpqDPXWV9q86vA+IYz8U0MDdVCYg==
-X-Received: by 2002:a05:6638:22ba:: with SMTP id z26mr839301jas.55.1599598340138;
-        Tue, 08 Sep 2020 13:52:20 -0700 (PDT)
-Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id r8sm199831iot.51.2020.09.08.13.52.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Sep 2020 13:52:19 -0700 (PDT)
-Received: (nullmailer pid 898720 invoked by uid 1000);
-        Tue, 08 Sep 2020 20:52:17 -0000
-Date:   Tue, 8 Sep 2020 14:52:17 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Chris Brandt <chris.brandt@renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH] dt-bindings: pinctrl: renesas,rza2-pinctrl: Fix pin
- controller node name
-Message-ID: <20200908205217.GA898665@bogus>
-References: <20200821111127.3771-1-geert+renesas@glider.be>
+        id S1730354AbgIHUwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 16:52:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44894 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728709AbgIHUwi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 16:52:38 -0400
+Received: from earth.universe (dyndsl-091-096-059-215.ewe-ip-backbone.de [91.96.59.215])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E8D8A2098B;
+        Tue,  8 Sep 2020 20:52:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599598358;
+        bh=ao279NfKYOLBx5e5BhtMXAapL7y436+nyElVBLR4QNw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=guBdY5xhKG+Xoc1tEmDzX4YL4CPFl9o4OcC82DiG5QmAGIJN+Hasn/FC0YekbeU3n
+         xELzxCjVxLMGXkYde2SLdTTOpsFax5W7cf7NbHL9sBdD/kZx8mn2HNt/uXEmZOL8Lt
+         pPk35uNl1PSS9IMLfiB3orTXrnCaCMbjc29BVAQw=
+Received: by earth.universe (Postfix, from userid 1000)
+        id EC0C13C0C80; Tue,  8 Sep 2020 22:52:35 +0200 (CEST)
+Date:   Tue, 8 Sep 2020 22:52:35 +0200
+From:   Sebastian Reichel <sre@kernel.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH 02/20] dt-bindings:iio:adc:ti,twl4030-madc yaml conversion
+Message-ID: <20200908205235.aosbh2htudg34z52@earth.universe>
+References: <20200905173004.216081-1-jic23@kernel.org>
+ <20200905173004.216081-3-jic23@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="loa36x33czqo7ckg"
 Content-Disposition: inline
-In-Reply-To: <20200821111127.3771-1-geert+renesas@glider.be>
+In-Reply-To: <20200905173004.216081-3-jic23@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Aug 2020 13:11:27 +0200, Geert Uytterhoeven wrote:
-> According to Devicetree Specification v0.2 and later, Section "Generic
-> Names Recommendation", the node name for a pin controller device node
-> should be "pinctrl".
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> To be queued in sh-pfc for v5.10.
-> 
->  .../devicetree/bindings/pinctrl/renesas,rza2-pinctrl.yaml       | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+--loa36x33czqo7ckg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Sat, Sep 05, 2020 at 06:29:46PM +0100, Jonathan Cameron wrote:
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+>=20
+> Conversion from txt to yaml as part of a general move of IIO bindings
+> to the new format.
+>=20
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Cc: Sebastian Reichel <sre@kernel.org>
+> ---
+
+Acked-by: Sebastian Reichel <sre@kernel.org>
+
+-- Sebastian
+
+>  .../bindings/iio/adc/ti,twl4030-madc.yaml     | 48 +++++++++++++++++++
+>  .../bindings/iio/adc/twl4030-madc.txt         | 24 ----------
+>  2 files changed, 48 insertions(+), 24 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,twl4030-madc.ya=
+ml b/Documentation/devicetree/bindings/iio/adc/ti,twl4030-madc.yaml
+> new file mode 100644
+> index 000000000000..6781ad2f0f51
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/ti,twl4030-madc.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/ti,twl4030-madc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MADC subsystem in the TWL4030 power module
+> +
+> +maintainers:
+> +  - Sebastian Reichel <sre@kernel.org>
+> +
+> +description:
+> +  The MADC subsystem in the TWL4030 consists of a 10-bit ADC
+> +  combined with a 16-input analog multiplexer.
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,twl4030-madc
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  ti,system-uses-second-madc-irq:
+> +    type: boolean
+> +    description:
+> +      Set if the second madc irq register should be used, which is inten=
+ded
+> +      to be used  by Co-Processors (e.g. a modem).
+> +
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - interrupts
+> +  - "#io-channel-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    twl {
+> +        madc {
+> +            compatible =3D "ti,twl4030-madc";
+> +            interrupts =3D <3>;
+> +            #io-channel-cells =3D <1>;
+> +        };
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/iio/adc/twl4030-madc.txt b=
+/Documentation/devicetree/bindings/iio/adc/twl4030-madc.txt
+> deleted file mode 100644
+> index 6bdd21404b57..000000000000
+> --- a/Documentation/devicetree/bindings/iio/adc/twl4030-madc.txt
+> +++ /dev/null
+> @@ -1,24 +0,0 @@
+> -* TWL4030 Monitoring Analog to Digital Converter (MADC)
+> -
+> -The MADC subsystem in the TWL4030 consists of a 10-bit ADC
+> -combined with a 16-input analog multiplexer.
+> -
+> -Required properties:
+> -  - compatible: Should contain "ti,twl4030-madc".
+> -  - interrupts: IRQ line for the MADC submodule.
+> -  - #io-channel-cells: Should be set to <1>.
+> -
+> -Optional properties:
+> -  - ti,system-uses-second-madc-irq: boolean, set if the second madc irq =
+register
+> -				    should be used, which is intended to be used
+> -				    by Co-Processors (e.g. a modem).
+> -
+> -Example:
+> -
+> -&twl {
+> -	madc {
+> -		compatible =3D "ti,twl4030-madc";
+> -		interrupts =3D <3>;
+> -		#io-channel-cells =3D <1>;
+> -	};
+> -};
+> --=20
+> 2.28.0
+>=20
+
+--loa36x33czqo7ckg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl9X7wUACgkQ2O7X88g7
++pp1nw/6A7G647iaQZNZR/N0uxU5rit2o5rh9QyEgoauVJD7Jz6g9wXK0+DItzvR
+N2LF+kMXM1h9n+oT/7AUYsRGjVB6KfdmHn62XEcXU+YCGv+UlwYeM70IUDFhvCUC
+S2McX58u81MEprhYtKLafYb4N3rZDHPMoJ333Z+p9rSKoJpgIQeL+lJIKdihYFa2
+VKx54WIa+H95bcHN0afCjWq0OHikhewupj5mmWkRpLHMHsp/t7Xu5K+Kk8/BvVOW
+QpyOBHXn+JhTUicTWj3+fm05p1VIbtgo9a0Xq78ei4yt8kdFGg/BlBwc6F3/VwYM
+scLO02x18Wlnz15Hpk25v3XKISjcWc5Yup5zruX4VYTJ3LPXD8421qAiRapdlkOv
+X9v5CywJfPsomBI/Gx+GirlhY0LREjcRZP30qkdaulIrKxyC/znmDy5jtDBg8XR/
+uper5H0a+jGZWEbakwkhVNVxtIFoqruvJ4DcYHkWrVzDcZcUz99k/wpCEv+43gE4
+OfBZ8RaTMykzBN19n/duJe1pAcAmk7Jyfl4ZDISS6cbzY/tZFAswsuFhui8UPWV6
+63k8nCbuWh9cPTIKim5/6O6ljjb7iRT1NcrVjfys778acyinEHmLX34a+NL7gDlF
+Qc6Hh6F9/YElnKcTMlDYSNpJPiiDR3urCkqNkST6EfxStYy13z8=
+=dse5
+-----END PGP SIGNATURE-----
+
+--loa36x33czqo7ckg--
