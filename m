@@ -2,68 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BB4C2614BC
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 18:35:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D3712615E2
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 18:58:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731884AbgIHQfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 12:35:10 -0400
-Received: from foss.arm.com ([217.140.110.172]:57700 "EHLO foss.arm.com"
+        id S1731875AbgIHQ6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 12:58:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59272 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731643AbgIHQfG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 12:35:06 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 247A731B;
-        Tue,  8 Sep 2020 05:48:22 -0700 (PDT)
-Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 032873F73C;
-        Tue,  8 Sep 2020 05:48:19 -0700 (PDT)
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Haojian Zhuang <haojian.zhuang@linaro.org>,
-        Ray Jui <rjui@broadcom.com>, Wei Xu <xuwei5@hisilicon.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Chanho Min <chanho.min@lge.com>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v2 0/6] dt-bindings: Convert SP804 to Json-schema (and fix users)
-Date:   Tue,  8 Sep 2020 13:48:17 +0100
-Message-Id: <159956909738.1981.16210146390528870384.b4-ty@arm.com>
+        id S1731870AbgIHQUP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 12:20:15 -0400
+Received: from localhost.localdomain (unknown [194.230.155.174])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8297E22BF3;
+        Tue,  8 Sep 2020 14:59:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599577199;
+        bh=M1E3QlEcopkB9Ss9cwMDRhMIEQp6FQqI/zsyQ4VIOes=;
+        h=From:To:Cc:Subject:Date:From;
+        b=CCHK8NRNe+g16m0fl8p/+qr8DXPm6O+ZWmX5mXl9dowWRiVB5eqVd22tZ4QmhZme/
+         bectj1Ex58awbfrGqq2hFsweAsiG4LqEkbPv8OmAp2ECeWXGv8KxYZtjOVqW4yCqjC
+         aU0U4erElfxRY9UTBIXT8N1Hg/JhWY3O0Nb5sZaQ=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH] ASoC: dt-bindings:  Correct interrupt flags in examples
+Date:   Tue,  8 Sep 2020 16:59:54 +0200
+Message-Id: <20200908145954.4629-1-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200828142018.43298-1-andre.przywara@arm.com>
-References: <20200828142018.43298-1-andre.przywara@arm.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 Aug 2020 15:20:12 +0100, Andre Przywara wrote:
-> This is the second attempt at converting the SP804 timer binding to yaml.
-> Compared to v1, I forbid additional properties, and included the primecell
-> binding. Also the clock-names property is now listed, although without
-> further requirements on the names. Changelog below.
-> 
-> --------------
-> The yaml conversion is done in the first patch, the remaining five fix
-> some DT users.
-> 
-> [...]
+GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
+These are simple defines so they could be used in DTS but they will not
+have the same meaning:
+1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
+2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
 
-I have picked one patch for Arm Ltd boards/models.
+Correct the interrupt flags, assuming the author of the code wanted some
+logical behavior behind the name "ACTIVE_xxx", this is:
+  ACTIVE_HIGH => IRQ_TYPE_LEVEL_HIGH
 
-Applied to sudeep.holla/linux (for-next/juno), thanks!
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+ Documentation/devicetree/bindings/sound/max98090.txt | 2 +-
+ Documentation/devicetree/bindings/sound/rt5640.txt   | 2 +-
+ Documentation/devicetree/bindings/sound/rt5659.txt   | 2 +-
+ Documentation/devicetree/bindings/sound/rt5665.txt   | 2 +-
+ Documentation/devicetree/bindings/sound/rt5668.txt   | 2 +-
+ Documentation/devicetree/bindings/sound/rt5677.txt   | 2 +-
+ Documentation/devicetree/bindings/sound/rt5682.txt   | 2 +-
+ 7 files changed, 7 insertions(+), 7 deletions(-)
 
-[1/1] ARM: dts: arm: Fix SP804 users
-      https://git.kernel.org/sudeep.holla/c/34a4591871
-
---
-
-Regards,
-Sudeep
+diff --git a/Documentation/devicetree/bindings/sound/max98090.txt b/Documentation/devicetree/bindings/sound/max98090.txt
+index 7e1bbd5c27fd..39d640294c62 100644
+--- a/Documentation/devicetree/bindings/sound/max98090.txt
++++ b/Documentation/devicetree/bindings/sound/max98090.txt
+@@ -55,5 +55,5 @@ audio-codec@10 {
+ 	compatible = "maxim,max98090";
+ 	reg = <0x10>;
+ 	interrupt-parent = <&gpio>;
+-	interrupts = <TEGRA_GPIO(H, 4) GPIO_ACTIVE_HIGH>;
++	interrupts = <TEGRA_GPIO(H, 4) IRQ_TYPE_LEVEL_HIGH>;
+ };
+diff --git a/Documentation/devicetree/bindings/sound/rt5640.txt b/Documentation/devicetree/bindings/sound/rt5640.txt
+index e40e4893eed8..ff1228713f7e 100644
+--- a/Documentation/devicetree/bindings/sound/rt5640.txt
++++ b/Documentation/devicetree/bindings/sound/rt5640.txt
+@@ -88,7 +88,7 @@ rt5640 {
+ 	compatible = "realtek,rt5640";
+ 	reg = <0x1c>;
+ 	interrupt-parent = <&gpio>;
+-	interrupts = <TEGRA_GPIO(W, 3) GPIO_ACTIVE_HIGH>;
++	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
+ 	realtek,ldo1-en-gpios =
+ 		<&gpio TEGRA_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
+ };
+diff --git a/Documentation/devicetree/bindings/sound/rt5659.txt b/Documentation/devicetree/bindings/sound/rt5659.txt
+index 1766e0543fc5..56788f50b6cf 100644
+--- a/Documentation/devicetree/bindings/sound/rt5659.txt
++++ b/Documentation/devicetree/bindings/sound/rt5659.txt
+@@ -72,7 +72,7 @@ rt5659 {
+ 	compatible = "realtek,rt5659";
+ 	reg = <0x1b>;
+ 	interrupt-parent = <&gpio>;
+-	interrupts = <TEGRA_GPIO(W, 3) GPIO_ACTIVE_HIGH>;
++	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
+ 	realtek,ldo1-en-gpios =
+ 		<&gpio TEGRA_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
+ };
+diff --git a/Documentation/devicetree/bindings/sound/rt5665.txt b/Documentation/devicetree/bindings/sound/rt5665.txt
+index 8df170506986..f6ca96b4ce98 100644
+--- a/Documentation/devicetree/bindings/sound/rt5665.txt
++++ b/Documentation/devicetree/bindings/sound/rt5665.txt
+@@ -62,7 +62,7 @@ rt5659 {
+ 	compatible = "realtek,rt5665";
+ 	reg = <0x1b>;
+ 	interrupt-parent = <&gpio>;
+-	interrupts = <TEGRA_GPIO(W, 3) GPIO_ACTIVE_HIGH>;
++	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
+ 	realtek,ldo1-en-gpios =
+ 		<&gpio TEGRA_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
+ };
+diff --git a/Documentation/devicetree/bindings/sound/rt5668.txt b/Documentation/devicetree/bindings/sound/rt5668.txt
+index c88b96e7764b..a2b7e9a2f2f3 100644
+--- a/Documentation/devicetree/bindings/sound/rt5668.txt
++++ b/Documentation/devicetree/bindings/sound/rt5668.txt
+@@ -41,7 +41,7 @@ rt5668 {
+ 	compatible = "realtek,rt5668b";
+ 	reg = <0x1a>;
+ 	interrupt-parent = <&gpio>;
+-	interrupts = <TEGRA_GPIO(U, 6) GPIO_ACTIVE_HIGH>;
++	interrupts = <TEGRA_GPIO(U, 6) IRQ_TYPE_LEVEL_HIGH>;
+ 	realtek,ldo1-en-gpios =
+ 		<&gpio TEGRA_GPIO(R, 2) GPIO_ACTIVE_HIGH>;
+ 	realtek,dmic1-data-pin = <1>;
+diff --git a/Documentation/devicetree/bindings/sound/rt5677.txt b/Documentation/devicetree/bindings/sound/rt5677.txt
+index 1b3c13d206ff..da2430099181 100644
+--- a/Documentation/devicetree/bindings/sound/rt5677.txt
++++ b/Documentation/devicetree/bindings/sound/rt5677.txt
+@@ -64,7 +64,7 @@ rt5677 {
+ 	compatible = "realtek,rt5677";
+ 	reg = <0x2c>;
+ 	interrupt-parent = <&gpio>;
+-	interrupts = <TEGRA_GPIO(W, 3) GPIO_ACTIVE_HIGH>;
++	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
+ 
+ 	gpio-controller;
+ 	#gpio-cells = <2>;
+diff --git a/Documentation/devicetree/bindings/sound/rt5682.txt b/Documentation/devicetree/bindings/sound/rt5682.txt
+index ade1ece8b45f..707fa98d1310 100644
+--- a/Documentation/devicetree/bindings/sound/rt5682.txt
++++ b/Documentation/devicetree/bindings/sound/rt5682.txt
+@@ -58,7 +58,7 @@ rt5682 {
+ 	compatible = "realtek,rt5682i";
+ 	reg = <0x1a>;
+ 	interrupt-parent = <&gpio>;
+-	interrupts = <TEGRA_GPIO(U, 6) GPIO_ACTIVE_HIGH>;
++	interrupts = <TEGRA_GPIO(U, 6) IRQ_TYPE_LEVEL_HIGH>;
+ 	realtek,ldo1-en-gpios =
+ 		<&gpio TEGRA_GPIO(R, 2) GPIO_ACTIVE_HIGH>;
+ 	realtek,dmic1-data-pin = <1>;
+-- 
+2.17.1
 
