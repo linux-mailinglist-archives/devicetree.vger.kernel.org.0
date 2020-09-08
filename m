@@ -2,89 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FC7D261EC0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 21:55:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3CA1261EB6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 21:55:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730697AbgIHTzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 15:55:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51000 "EHLO
+        id S1731119AbgIHTyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 15:54:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730615AbgIHPhg (ORCPT
+        with ESMTP id S1730625AbgIHPhg (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 11:37:36 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7035C0A3BF8;
-        Tue,  8 Sep 2020 07:55:40 -0700 (PDT)
-Received: from [192.168.0.20] (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5AEAB47;
-        Tue,  8 Sep 2020 16:49:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1599576547;
-        bh=VZxVwE367zy4rnEIhb63fedqnKUY0kWbKadgCVRNRv0=;
-        h=Reply-To:Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=N0wpce4zDfPAHsgZads0/14dzBak9A0fu+bjbQ6s1Y6lSytdhL4L3h3IS5xIf5OOu
-         ppkmpwp78QggvOf4/EUoydmRywUQWczmGMMkERPe1zxPb8doIsnDfQDkw6HQenJSOB
-         NDHinoqWTFdTuaaI4LcXStCULWi+jI6ZQX6GhBew=
-Reply-To: kieran.bingham+renesas@ideasonboard.com
-Subject: Re: [PATCH v2 04/10] drm: rcar-du: Add r8a77961 support
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent <laurent.pinchart@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     Magnus <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux-DT <devicetree@vger.kernel.org>,
-        "(Renesas) shimoda" <yoshihiro.shimoda.uh@renesas.com>,
-        dri-devel@lists.freedesktop.org
-References: <87o8mhrtxo.wl-kuninori.morimoto.gx@renesas.com>
- <87imcprtw3.wl-kuninori.morimoto.gx@renesas.com>
-From:   Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Organization: Ideas on Board
-Message-ID: <e398fbd9-5dcc-5373-b23b-5bd80779bd30@ideasonboard.com>
-Date:   Tue, 8 Sep 2020 15:49:03 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mail-oo1-xc44.google.com (mail-oo1-xc44.google.com [IPv6:2607:f8b0:4864:20::c44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9214AC08C5EC
+        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 08:22:22 -0700 (PDT)
+Received: by mail-oo1-xc44.google.com with SMTP id y25so4027607oog.4
+        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 08:22:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=CprrL+/LROkbBW4cTs+E5TrRYY4E3igZX9G7gYG5Gl4=;
+        b=zG3DKyL6RXgfAjjpoboTVkZIXN5Fo0jl+wEIvuIS6f/wQa5E3MEqXwU0MPBfQTwmpX
+         PIWYFq2rOApmDnAx7ALcajzqFYix5izxCkh8ENVonvfOuRMqvTVgYGwjh6JekmGGsQjQ
+         U+RELVmxHHC2EzfoQsmzEL2LaEKM7MCrPQ/+dk6E8ejBrEwQgvjXUlBHwL1EF2LfkqXo
+         wbycaP/xkSOASRzjaIreLTblzn9I/uCE2UJUBwkhF2y8xwVjv5HBNA+Llcn7Xgbfb7kp
+         tBvpg2fSSsQ7wW0wpsAl6m1n+IkwH8Nvc8158uZrH8SvwjAh9v2CZKAym4Sru/Qx6/X3
+         MpoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=CprrL+/LROkbBW4cTs+E5TrRYY4E3igZX9G7gYG5Gl4=;
+        b=dscsTvqeBj8ie47Dwpjwrj0xGspBeI+U2iz5R4K+TmeSUllCk5lejZIvDlbAbcLw34
+         I9xndDJd0odZ9joTbrKXS5DzK803DpE+hAr0IaPRXf2RNV32mN4trEMKYtMBkec95JY9
+         qIyupLcEs/LA2Kg77q/rEUJKbNxDGKsM2zcaQGdIc2vjaaroo5QJ5wOl4LPXE6+aBnXV
+         IBeyKa3n6JWKTWhPZ06IiXrtp+7al6CG0mPoOTpQKNvl2iuoXJqULM1YteIE6TI1p2U3
+         nwdmPAywxS460fgtEOamDeyHskzZTf7nBOnOsAXlqnxmreUAmOI7KzgUL6UE2kyt9WD1
+         8dxw==
+X-Gm-Message-State: AOAM530ZsWLrZSahbDxVKHmmqD1XTXIBbIqgYDIvWgfywiu3NZ0XZsIA
+        Si4G24Amucn+II8/FG1Aolnnmg==
+X-Google-Smtp-Source: ABdhPJyRSWbxWbxc+Nc6O5jfLmJ6bOFuPEVvNRYkmmnnGx3lYrXWkZ5m8xRlhIrwn5wJXri3MKUwzA==
+X-Received: by 2002:a4a:a385:: with SMTP id s5mr18994033ool.8.1599578540364;
+        Tue, 08 Sep 2020 08:22:20 -0700 (PDT)
+Received: from yoga ([2605:6000:e5cb:c100:8898:14ff:fe6d:34e])
+        by smtp.gmail.com with ESMTPSA id y23sm3477818ooj.34.2020.09.08.08.22.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Sep 2020 08:22:19 -0700 (PDT)
+Date:   Tue, 8 Sep 2020 10:22:17 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     rjw@rjwysocki.net, viresh.kumar@linaro.org, robh+dt@kernel.org,
+        agross@kernel.org, amitk@kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, dmitry.baryshkov@linaro.org,
+        tdas@codeaurora.org
+Subject: Re: [PATCH 6/7] cpufreq: qcom-hw: Add cpufreq support for SM8250 SoC
+Message-ID: <20200908152217.GO3715@yoga>
+References: <20200908075716.30357-1-manivannan.sadhasivam@linaro.org>
+ <20200908075716.30357-7-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <87imcprtw3.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200908075716.30357-7-manivannan.sadhasivam@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Morimoto-san,
+On Tue 08 Sep 02:57 CDT 2020, Manivannan Sadhasivam wrote:
 
-On 08/09/2020 01:34, Kuninori Morimoto wrote:
+> SM8250 SoC uses EPSS block for carrying out the cpufreq duties. Hence, add
+> support for it in the driver with relevant of_match data.
 > 
-> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> 
-> This patch adds R-Car M3-W+ (R8A77961) support which has
-> compatible to R-Car M3-W (R8A77960).
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-With the "which is compatible with" as suggested-by Laurent:
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-
-> 
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 > ---
->  drivers/gpu/drm/rcar-du/rcar_du_drv.c | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/cpufreq/qcom-cpufreq-hw.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_drv.c b/drivers/gpu/drm/rcar-du/rcar_du_drv.c
-> index f53b0ec71085..64533cbdbef0 100644
-> --- a/drivers/gpu/drm/rcar-du/rcar_du_drv.c
-> +++ b/drivers/gpu/drm/rcar-du/rcar_du_drv.c
-> @@ -458,6 +458,7 @@ static const struct of_device_id rcar_du_of_table[] = {
->  	{ .compatible = "renesas,du-r8a7794", .data = &rcar_du_r8a7794_info },
->  	{ .compatible = "renesas,du-r8a7795", .data = &rcar_du_r8a7795_info },
->  	{ .compatible = "renesas,du-r8a7796", .data = &rcar_du_r8a7796_info },
-> +	{ .compatible = "renesas,du-r8a77961", .data = &rcar_du_r8a7796_info },
->  	{ .compatible = "renesas,du-r8a77965", .data = &rcar_du_r8a77965_info },
->  	{ .compatible = "renesas,du-r8a77970", .data = &rcar_du_r8a77970_info },
->  	{ .compatible = "renesas,du-r8a77980", .data = &rcar_du_r8a77970_info },
-> 
+> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
+> index de816bcafd33..c3c397cc3dc6 100644
+> --- a/drivers/cpufreq/qcom-cpufreq-hw.c
+> +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
+> @@ -285,8 +285,17 @@ static const struct qcom_cpufreq_soc_data qcom_soc_data = {
+>  	.lut_row_size = 32,
+>  };
+>  
+> +static const struct qcom_cpufreq_soc_data sm8250_soc_data = {
 
+Could it be that this is the "epss_soc_data" (i.e. not sm8250 specific)?
+(We should still use/include the platform specific compatible though).
+
+Regards,
+Bjorn
+
+> +	.reg_enable = 0x0,
+> +	.reg_freq_lut = 0x100,
+> +	.reg_volt_lut = 0x200,
+> +	.reg_perf_state = 0x320,
+> +	.lut_row_size = 4,
+> +};
+> +
+>  static const struct of_device_id qcom_cpufreq_hw_match[] = {
+>  	{ .compatible = "qcom,cpufreq-hw", .data = &qcom_soc_data },
+> +	{ .compatible = "qcom,sm8250-epss", .data = &sm8250_soc_data },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, qcom_cpufreq_hw_match);
+> -- 
+> 2.17.1
+> 
