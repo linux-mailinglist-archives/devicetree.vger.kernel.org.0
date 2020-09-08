@@ -2,213 +2,366 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F1602617FF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:46:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86D6D26182A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:50:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728647AbgIHRqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 13:46:50 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:44054 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732090AbgIHRqm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 13:46:42 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 088HkZkZ119442;
-        Tue, 8 Sep 2020 12:46:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599587195;
-        bh=pVNv1GoNjSmG+5ca2Hx2Q08E/omijdPc4/XHB2AvMIg=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=wBvsHrnDiQW5Wf3J0WFf0gCoX/OoCgO620ECCnNndB380eC4hvJI1n1NcO+I2V4E7
-         8L6EB2IXGv1qBGNV7Nrul5igBFdMSccoMX4XH8el0FXL5bX0xy92wO+wLprClcXUW2
-         T22vWYy9S5CCQTmg+r474pFF35zq6+BXEsNZD0XM=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088HkZOC055183;
-        Tue, 8 Sep 2020 12:46:35 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 8 Sep
- 2020 12:46:34 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 8 Sep 2020 12:46:34 -0500
-Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088HkYIL105413;
-        Tue, 8 Sep 2020 12:46:34 -0500
-Received: from localhost ([10.250.34.59])
-        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 088HkYP5040390;
-        Tue, 8 Sep 2020 12:46:34 -0500
-From:   Suman Anna <s-anna@ti.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S1731615AbgIHRts (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 13:49:48 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:51311 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732127AbgIHRtk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 13:49:40 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20200908174936euoutp02206dfe0dce1a3991cf7eaeaecc3b0ec0~y4D6A6Zt30693306933euoutp02g;
+        Tue,  8 Sep 2020 17:49:36 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20200908174936euoutp02206dfe0dce1a3991cf7eaeaecc3b0ec0~y4D6A6Zt30693306933euoutp02g
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1599587376;
+        bh=UWirAw/PFsj+9+rbZm46bA8bswKf6AzzRwj2qYkhOU4=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=f2ZXh2kM4yctoYdBrbTGpk+EOwiqX7UT4x/UXuP63HHU1u7BM8bn+IoLeDsLp8/Ox
+         mMSF0SmQ5H+nrhJR0CbJtcKn8Th9MIzeLhLp9U/FIaKUtQcRwPJeEcRnolgoukCmoq
+         a5q2dBLj1KHZA6PD2PN/5o6A4oe2GuT+iohIga/c=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20200908174936eucas1p280614e16132f3bfe0a297668a274efde~y4D5sbu0f0137701377eucas1p2H;
+        Tue,  8 Sep 2020 17:49:36 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id C7.6F.06456.034C75F5; Tue,  8
+        Sep 2020 18:49:36 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20200908174935eucas1p2f24d79b234152148b060c45863e3efeb~y4D5FtN6o0467204672eucas1p2k;
+        Tue,  8 Sep 2020 17:49:35 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20200908174935eusmtrp2a43233d918c3b59574a66b19ae4f2338~y4D5E6Q9p3114331143eusmtrp2Q;
+        Tue,  8 Sep 2020 17:49:35 +0000 (GMT)
+X-AuditID: cbfec7f2-7efff70000001938-d9-5f57c4306011
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 9C.71.06017.F24C75F5; Tue,  8
+        Sep 2020 18:49:35 +0100 (BST)
+Received: from localhost (unknown [106.120.51.46]) by eusmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20200908174935eusmtip22473873d3cabdf8b41531b3623ab96a9~y4D42haRK0753307533eusmtip2L;
+        Tue,  8 Sep 2020 17:49:35 +0000 (GMT)
+From:   Lukasz Stelmach <l.stelmach@samsung.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH v4 4/4] remoteproc: k3-r5: Add loading support for on-chip SRAM regions
-Date:   Tue, 8 Sep 2020 12:45:56 -0500
-Message-ID: <20200908174556.21277-5-s-anna@ti.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200908174556.21277-1-s-anna@ti.com>
-References: <20200908174556.21277-1-s-anna@ti.com>
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, b.zolnierkie@samsung.com,
+        m.szyprowski@samsung.com
+Subject: Re: [PATCH 1/3] net: ax88796c: ASIX AX88796C SPI Ethernet Adapter
+ Driver
+Date:   Tue, 08 Sep 2020 19:49:20 +0200
+In-Reply-To: <20200907181854.GD3254313@lunn.ch> (Andrew Lunn's message of
+        "Mon, 7 Sep 2020 20:18:54 +0200")
+Message-ID: <dleftj8sdkqhun.fsf%l.stelmach@samsung.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; boundary="=-=-="; micalg="pgp-sha256";
+        protocol="application/pgp-signature"
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SaUwTURSF8zoznaFaMhTUazVIqsa4URHUh4pb/DEaE9eIGqVUHdFIC7ag
+        YmJYBNwKSBEFQhSXKGIKWCsBtC4NQohKCwhqZDFgRAVXXICAyjg18d937z3nvnOTxxCKHkrJ
+        7NHH8Aa9NlIllZFl1f11M2dVhWpmNdm8sbPVQeAbOSUUzncmk/h8VR2FMzq7Cex0ltLYVZZO
+        YWtnM4UbK/OlOMd5V4Id2XaELVWtNK4uGI1T7FX0Ek+usbme4GzXXkg4a9FxKXfzcjxXUd4r
+        4dJtRYjrtfquobfIFu7kI/fs5w3qReGy3S8TO4no1GUHh74MUgkoJ+gE8mCADYKupjbqBJIx
+        CrYQQe09p0QsviEw5xYisehF8Kymgfxn6bDluAdXEQxmJpFi0YXg84MjwxOGkbL+YLFsEgw+
+        rB+crh2kBCZYBwHttxcL7M2uh0tNjwmBSXYy2J+elAjsweqgPtWOBJaz88DqukULPIoNBtvb
+        dlrse0Ft7mtS3KmDXGfP30DApjHQZ7qPxKTL4U3rD3dqb3hfY6NFHg+/K85LhJzAxkOWea7o
+        NSEoy+9z6xdAS92AVOSl8PBumlTUe8LzD17iu55gLjtLiG05HEtViOpJUJxxx71FCWnvC5Eo
+        4cDWHya0FWwSApdJfQr55f13TN5/x+QNOwh2KpRUqsX2dLhyoZsQOQSKiz+RBYgqQmP4WKMu
+        gjcG6PkD/katzhirj/DfEaWzouF/9+hXzddy9L1huwOxDFKNlIenh2oUlHa/MU7nQJOGN3WU
+        XnchJamP0vMqH/myJ4/CFPKd2rhDvCFKY4iN5I0ONI4hVWPkgRffbVOwEdoYfi/PR/OGf1MJ
+        46FMQF4a/rVZ6ZqTePjcUGYy0JpIzRLa17L6UOBJ+ysm1NS9bkbwBsvDX/YP+zZjdX3PGSrL
+        a6C8jzvWRE+YvXVlQ0rmG+Wqj+tX6NOD59ccdSjjLu8aV7A2oGt6ko8swzPCXNsWtzEkxvBz
+        ir9pcbZfVMPExN8cHpFSvS2kA8e3HB6rIo27tQHTCINR+wcu8xO/fwMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrGIsWRmVeSWpSXmKPExsVy+t/xe7r6R8LjDQ78UrE4f/cQs8XGGetZ
+        Leacb2GxmH/kHKtF/+PXzBbnz29gt7iwrY/VYtPja6wWl3fNYbOYcX4fk8WhqXsZLdYeuctu
+        cWyBmEXr3iPsDnwel69dZPbYsvImk8emVZ1sHpuX1Hvs3PGZyaNvyypGj8+b5ALYo/RsivJL
+        S1IVMvKLS2yVog0tjPQMLS30jEws9QyNzWOtjEyV9O1sUlJzMstSi/TtEvQybjc+Zi5oc6r4
+        +/EPawPjDJMuRk4OCQETiUdbZjB2MXJxCAksZZT4eKSVqYuRAyghJbFybjpEjbDEn2tdbBA1
+        TxklZn/8zw5SwyagJ7F2bQRIjYiAgsSUk39YQWqYBbYxS3xdOYkJJCEsECjxYN4pdhBbCKj+
+        /cVJjCA2i4CqxN4r3WA1nAK5Ehfb9oLFeQXMJTZd2ApWLypgKbHlxX12iLigxMmZT1hAbGaB
+        bImvq58zT2AUmIUkNQtJahbQecwCmhLrd+lDhLUlli18zQxh20qsW/eeZQEj6ypGkdTS4tz0
+        3GIjveLE3OLSvHS95PzcTYzAeN127OeWHYxd74IPMQpwMCrx8Cb0hccLsSaWFVfmHmJUARrz
+        aMPqC4xSLHn5ealKIrxOZ0/HCfGmJFZWpRblxxeV5qQWH2I0BfpzIrOUaHI+MMXklcQbmhqa
+        W1gamhubG5tZKInzdggcjBESSE8sSc1OTS1ILYLpY+LglGpgvPjoXWn/HBFeyRmrN+1/9V5C
+        9kT3yYbNGjsKVRe+P/k9+327ydnlVzjYHde1py//EnxycbthR/ks9bCWZ5lnI8Uv7Q8NP5cb
+        LbZ2w5Y3K5b+WTsh1MFoA6tHXpVrpOKKhRHiL6ZHZ+0oP7N0msu+xAfzEjb8TMlYGMHLv8H+
+        p0ew6/UGlaQ5tUosxRmJhlrMRcWJAMgJ/b35AgAA
+X-CMS-MailID: 20200908174935eucas1p2f24d79b234152148b060c45863e3efeb
+X-Msg-Generator: CA
+X-RootMTR: 20200908174935eucas1p2f24d79b234152148b060c45863e3efeb
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20200908174935eucas1p2f24d79b234152148b060c45863e3efeb
+References: <20200907181854.GD3254313@lunn.ch>
+        <CGME20200908174935eucas1p2f24d79b234152148b060c45863e3efeb@eucas1p2.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The K3 SoCs has various internal on-chip SRAM memories like the SRAM
-within the MCU domain or the shared MSMC RAM within NavSS that can be
-used for multiple purposes. One such purpose is to have the R5F cores
-use a portion of such on-chip SRAM for fast-access data or to directly
-execute code.
+--=-=-=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add support to the K3 R5 remoteproc driver to parse and support
-loading into such memories. The SRAM regions need to be mapped as
-normal non-cacheable memory to avoid kernel crashes when the remoteproc
-loader code uses the Arm64 memset library function (the "DC ZVA"
-instruction throws a alignment fault on device type memory).
+It was <2020-09-07 pon 20:18>, when Andrew Lunn wrote:
+>> > On Tue, Aug 25, 2020 at 07:03:09PM +0200, =C5=81ukasz Stelmach wrote:
+>> >> +++ b/drivers/net/ethernet/asix/ax88796c_ioctl.c
+>> >
+>> > This is an odd filename. The ioctl code is wrong anyway, but there is
+>> > a lot more than ioctl in here. I suggest you give it a new name.
+>> >
+>>=20
+>> Sure, any suggestions?
+>
+> Sorry, i have forgotten what is actually contained.=20
 
-These SRAM regions are completely optional as not all firmware images
-require these memories, and any such memory has to be reserved as such
-in the DTS files.
+IOCTL handler (.ndo_do_ioctl), ethtool ops, and a bunch of hw control
+functions.
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
----
-v4: No changes
-v3: https://patchwork.kernel.org/patch/11679329/
- - No code changes, picked up review tags
-v2: https://patchwork.kernel.org/patch/11632991/
-v1: https://patchwork.kernel.org/patch/11456373/
+> Does it even need to be a separate file?
 
- drivers/remoteproc/ti_k3_r5_remoteproc.c | 79 ++++++++++++++++++++++++
- 1 file changed, 79 insertions(+)
+It doesn't need, but I think it makes sense to keep ioctl and ethtool
+stuff in a separate file. Some of the hw control function look like they
+might change after using phylib.
 
-diff --git a/drivers/remoteproc/ti_k3_r5_remoteproc.c b/drivers/remoteproc/ti_k3_r5_remoteproc.c
-index a6b395ab47b6..d9307935441d 100644
---- a/drivers/remoteproc/ti_k3_r5_remoteproc.c
-+++ b/drivers/remoteproc/ti_k3_r5_remoteproc.c
-@@ -85,7 +85,9 @@ struct k3_r5_cluster {
-  * @dev: cached device pointer
-  * @rproc: rproc handle representing this core
-  * @mem: internal memory regions data
-+ * @sram: on-chip SRAM memory regions data
-  * @num_mems: number of internal memory regions
-+ * @num_sram: number of on-chip SRAM memory regions
-  * @reset: reset control handle
-  * @tsp: TI-SCI processor control handle
-  * @ti_sci: TI-SCI handle
-@@ -99,7 +101,9 @@ struct k3_r5_core {
- 	struct device *dev;
- 	struct rproc *rproc;
- 	struct k3_r5_mem *mem;
-+	struct k3_r5_mem *sram;
- 	int num_mems;
-+	int num_sram;
- 	struct reset_control *reset;
- 	struct ti_sci_proc *tsp;
- 	const struct ti_sci_handle *ti_sci;
-@@ -587,6 +591,18 @@ static void *k3_r5_rproc_da_to_va(struct rproc *rproc, u64 da, size_t len)
- 		}
- 	}
- 
-+	/* handle any SRAM regions using SoC-view addresses */
-+	for (i = 0; i < core->num_sram; i++) {
-+		dev_addr = core->sram[i].dev_addr;
-+		size = core->sram[i].size;
-+
-+		if (da >= dev_addr && ((da + len) <= (dev_addr + size))) {
-+			offset = da - dev_addr;
-+			va = core->sram[i].cpu_addr + offset;
-+			return (__force void *)va;
-+		}
-+	}
-+
- 	/* handle static DDR reserved memory regions */
- 	for (i = 0; i < kproc->num_rmems; i++) {
- 		dev_addr = kproc->rmem[i].dev_addr;
-@@ -1027,6 +1043,63 @@ static int k3_r5_core_of_get_internal_memories(struct platform_device *pdev,
- 	return 0;
- }
- 
-+static int k3_r5_core_of_get_sram_memories(struct platform_device *pdev,
-+					   struct k3_r5_core *core)
-+{
-+	struct device_node *np = pdev->dev.of_node;
-+	struct device *dev = &pdev->dev;
-+	struct device_node *sram_np;
-+	struct resource res;
-+	int num_sram;
-+	int i, ret;
-+
-+	num_sram = of_property_count_elems_of_size(np, "sram", sizeof(phandle));
-+	if (num_sram <= 0) {
-+		dev_dbg(dev, "device does not use reserved on-chip memories, num_sram = %d\n",
-+			num_sram);
-+		return 0;
-+	}
-+
-+	core->sram = devm_kcalloc(dev, num_sram, sizeof(*core->sram), GFP_KERNEL);
-+	if (!core->sram)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < num_sram; i++) {
-+		sram_np = of_parse_phandle(np, "sram", i);
-+		if (!sram_np)
-+			return -EINVAL;
-+
-+		if (!of_device_is_available(sram_np)) {
-+			of_node_put(sram_np);
-+			return -EINVAL;
-+		}
-+
-+		ret = of_address_to_resource(sram_np, 0, &res);
-+		of_node_put(sram_np);
-+		if (ret)
-+			return -EINVAL;
-+
-+		core->sram[i].bus_addr = res.start;
-+		core->sram[i].dev_addr = res.start;
-+		core->sram[i].size = resource_size(&res);
-+		core->sram[i].cpu_addr = devm_ioremap_wc(dev, res.start,
-+							 resource_size(&res));
-+		if (!core->sram[i].cpu_addr) {
-+			dev_err(dev, "failed to parse and map sram%d memory at %pad\n",
-+				i, &res.start);
-+			return -ENOMEM;
-+		}
-+
-+		dev_dbg(dev, "memory sram%d: bus addr %pa size 0x%zx va %pK da 0x%x\n",
-+			i, &core->sram[i].bus_addr,
-+			core->sram[i].size, core->sram[i].cpu_addr,
-+			core->sram[i].dev_addr);
-+	}
-+	core->num_sram = num_sram;
-+
-+	return 0;
-+}
-+
- static
- struct ti_sci_proc *k3_r5_core_of_get_tsp(struct device *dev,
- 					  const struct ti_sci_handle *sci)
-@@ -1142,6 +1215,12 @@ static int k3_r5_core_of_init(struct platform_device *pdev)
- 		goto err;
- 	}
- 
-+	ret = k3_r5_core_of_get_sram_memories(pdev, core);
-+	if (ret) {
-+		dev_err(dev, "failed to get sram memories, ret = %d\n", ret);
-+		goto err;
-+	}
-+
- 	ret = ti_sci_proc_request(core->tsp);
- 	if (ret < 0) {
- 		dev_err(dev, "ti_sci_proc_request failed, ret = %d\n", ret);
--- 
-2.28.0
+>> >> +u8 ax88796c_check_power(struct ax88796c_device *ax_local)
+>> >
+>> > bool ?
+>>=20
+>> OK.
+>>=20
+>> It appears, however, that 0 means OK and 1 !OK. Do you think changing to
+>> TRUE and FALSE (or FALSE and TRUE) is required?
+>
+> Or change the name, ax88796c_check_power_off()? I don't really care,
+> so long as it is logical and not surprising.
+>
 
+Good idea, thanks.
+
+>> >> +	AX_READ_STATUS(&ax_local->ax_spi, &ax_status);
+>> >> +	if (!(ax_status.status & AX_STATUS_READY)) {
+>> >> +
+>> >> +		/* AX88796C in power saving mode */
+>> >> +		AX_WAKEUP(&ax_local->ax_spi);
+>> >> +
+>> >> +		/* Check status */
+>> >> +		start_time =3D jiffies;
+>> >> +		do {
+>> >> +			if (time_after(jiffies, start_time + HZ/2)) {
+>> >> +				netdev_err(ax_local->ndev,
+>> >> +					"timeout waiting for wakeup"
+>> >> +					" from power saving\n");
+>> >> +				break;
+>> >> +			}
+>> >> +
+>> >> +			AX_READ_STATUS(&ax_local->ax_spi, &ax_status);
+>> >> +
+>> >> +		} while (!(ax_status.status & AX_STATUS_READY));
+>> >
+>> > include/linux/iopoll.h
+>> >
+>>=20
+>> Done. The result seems only slightly more elegant since the generic
+>> read_poll_timeout() needs to be employed.
+>
+> Often code like this has bugs in it, not correctly handling the
+> scheduler sleeping longer than expected. That is why i point people at
+> iopoll, no bugs, not elegance.
+>
+>> The manufacturer says
+>>=20
+>>     The AX88796C integrates on-chip Fast Ethernet MAC and PHY, [=E2=80=
+=A6]
+>>=20
+>> There is a single integrated PHY in this chip and no possiblity to
+>> connect external one. Do you think it makes sense in such case to
+>> introduce the additional layer of abstraction?
+>
+> Yes it does, because it then uses all the standard phylib code to
+> drive the PHY which many people understand, is well tested, etc. It
+> will make the MAC driver smaller and probably less buggy.
+>
+
+Good point. I need to figure out how to do it. Can you point (from the
+top fou your head) a driver which does it for a simmilarly integrated
+device?
+
+>> >> +static char *macaddr;
+>> >> +module_param(macaddr, charp, 0);
+>> >> +MODULE_PARM_DESC(macaddr, "MAC address");
+>> >
+>> > No Module parameters. You can get the MAC address from DT.
+>>=20
+>> What about systems without DT? Not every bootloader is sophisicated
+>> enough to edit DT before starting kernel. AX88786C is a chip that can be
+>> used in a variety of systems and I'd like to avoid too strong
+>> assumptions.
+>
+> There is also a standardised way to read it from ACPI. And you can set
+> it using ip link set. DaveM will likely NACK a module parameter.
+>
+
+I am not arguing to keep the parameter at any cost, but I would really
+like to know if there is a viable alternative for DT and ACPI. This chip
+is for smaller systems which not necessarily implement advanced
+bootloaders (and DT).
+
+>> >> +MODULE_AUTHOR("ASIX");
+>> >
+>> > Do you expect ASIX to support this?=20
+>>=20
+>> No.
+>>=20
+>> > You probably want to put your name here.
+>>=20
+>> I don't want to be considered as the only author and as far as I can
+>> tell being mentioned as an author does not imply being a
+>> maintainer. Do you think two MODULE_AUTHOR()s be OK?
+>
+> Can you have two? One with two names listed is O.K.
+>
+
+According to module.h
+
+/*
+ * Author(s), use "Name <email>" or just "Name", for multiple
+ * authors use multiple MODULE_AUTHOR() statements/lines.
+ */
+
+>> >> +
+>> >> +	phy_status =3D AX_READ(&ax_local->ax_spi, P0_PSCR);
+>> >> +	if (phy_status & PSCR_PHYLINK) {
+>> >> +
+>> >> +		ax_local->w_state =3D ax_nop;
+>> >> +		time_to_chk =3D 0;
+>> >> +
+>> >> +	} else if (!(phy_status & PSCR_PHYCOFF)) {
+>> >> +		/* The ethernet cable has been plugged */
+>> >> +		if (ax_local->w_state =3D=3D chk_cable) {
+>> >> +			if (netif_msg_timer(ax_local))
+>> >> +				netdev_info(ndev, "Cable connected\n");
+>> >> +
+>> >> +			ax_local->w_state =3D chk_link;
+>> >> +			ax_local->w_ticks =3D 0;
+>> >> +		} else {
+>> >> +			if (netif_msg_timer(ax_local))
+>> >> +				netdev_info(ndev, "Check media status\n");
+>> >> +
+>> >> +			if (++ax_local->w_ticks =3D=3D AX88796C_WATCHDOG_RESTART) {
+>> >> +				if (netif_msg_timer(ax_local))
+>> >> +					netdev_info(ndev, "Restart autoneg\n");
+>> >> +				ax88796c_mdio_write(ndev,
+>> >> +					ax_local->mii.phy_id, MII_BMCR,
+>> >> +					(BMCR_SPEED100 | BMCR_ANENABLE |
+>> >> +					BMCR_ANRESTART));
+>> >> +
+>> >> +				if (netif_msg_hw(ax_local))
+>> >> +					ax88796c_dump_phy_regs(ax_local);
+>> >> +				ax_local->w_ticks =3D 0;
+>> >> +			}
+>> >> +		}
+>> >> +	} else {
+>> >> +		if (netif_msg_timer(ax_local))
+>> >> +			netdev_info(ndev, "Check cable status\n");
+>> >> +
+>> >> +		ax_local->w_state =3D chk_cable;
+>> >> +	}
+>> >> +
+>> >> +	ax88796c_set_power_saving(ax_local, ax_local->ps_level);
+>> >> +
+>> >> +	if (time_to_chk)
+>> >> +		mod_timer(&ax_local->watchdog, jiffies + time_to_chk);
+>> >> +}
+>> >
+>> > This is not the normal use of a watchdog in network drivers. The
+>> > normal case is the network stack as asked the driver to do something,
+>> > normally a TX, and the driver has not reported the action has
+>> > completed.  The state of the cable should not make any
+>> > difference. This does not actually appear to do anything useful, like
+>> > kick the hardware to bring it back to life.
+>> >
+>>=20
+>> Maybe it's the naming that is a problem. Yes, it is not a watchdog, but
+>> rather a periodic housekeeping and it kicks hw if it can't negotiate
+>> the connection. The question is: should the settings be reset in such ca=
+se.
+>
+> Let see what is left once you convert to phylib.
+>
+
+OK.
+
+>> >> +	struct net_device *ndev =3D ax_local->ndev;
+>> >> +	int status;
+>> >> +
+>> >> +	do {
+>> >> +		if (!(ax_local->checksum & AX_RX_CHECKSUM))
+>> >> +			break;
+>> >> +
+>> >> +		/* checksum error bit is set */
+>> >> +		if ((rxhdr->flags & RX_HDR3_L3_ERR) ||
+>> >> +		    (rxhdr->flags & RX_HDR3_L4_ERR))
+>> >> +			break;
+>> >> +
+>> >> +		if ((rxhdr->flags & RX_HDR3_L4_TYPE_TCP) ||
+>> >> +		    (rxhdr->flags & RX_HDR3_L4_TYPE_UDP)) {
+>> >> +			skb->ip_summed =3D CHECKSUM_UNNECESSARY;
+>> >> +		}
+>> >> +	} while (0);
+>> >
+>> >
+>> > ??
+>> >
+>>=20
+>> if() break; Should I use goto?
+>
+> Sorry, i was too ambiguous. Why:
+>
+> do {
+> } while (0);
+>
+> It is an odd construct.
+
+As to "why" =E2=80=94 you have correctly spotted, this is a vendor driver I=
+ am
+porting. Although it's not like I am trying to avoid any changes, but
+because this driver worked for us on older kernels (v3.10.9) I am trying
+not to touch pieces which IMHO are good enough. Of course I don't mind
+suggestions from more experienced developers.
+
+To avoid using do{}while(0) it requires either goto (instead of breaks),
+nesting those if()s in one another or a humongous single if(). Neither
+looks pretty and the last one is even less readable than
+do()while.
+
+=2D-=20
+=C5=81ukasz Stelmach
+Samsung R&D Institute Poland
+Samsung Electronics
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEXpuyqjq9kGEVr9UQsK4enJilgBAFAl9XxCAACgkQsK4enJil
+gBC1Vgf9EkeOUgjfBRAojgMgssc8oHafP7l3gHzfL0atRhxZmAlFtXfse8R+CNl1
+dJqVKsRrEQRagmk/NUahcbGNhk9soWoV7GJ3w7cbzANgo8CPVXMjE8D5TkMc5+IZ
+PKA2gwQatrOkDCB5VyWIUaLuKs+VUwvtYgFvhzElsk0W7l6ZMzD80ldMbE5zo8KK
+b+/aUZTtGjEHnKrTy5p2XINVsjWMCj3Ymo/mZfrj97vKrsuM6O84v8UmCyjVvkNd
+ebFKfw1Tt2ufPDjFOT6kzVGixBlzKmaDPRwMBJDtCpPhEgf6qnTMQDPAUZ+EP63Z
+JfbNxAQMBBSY6U8jHGULU3fX4wg2XA==
+=og4m
+-----END PGP SIGNATURE-----
+--=-=-=--
