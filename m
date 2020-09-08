@@ -2,105 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 645B926217F
+	by mail.lfdr.de (Postfix) with ESMTP id 3DE0226217E
 	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:53:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730432AbgIHUxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 16:53:31 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:60896 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730425AbgIHUx0 (ORCPT
+        id S1730025AbgIHUxa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 16:53:30 -0400
+Received: from mail-il1-f193.google.com ([209.85.166.193]:45308 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730114AbgIHUx0 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 16:53:26 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 088KrNMu018749;
-        Tue, 8 Sep 2020 15:53:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599598403;
-        bh=pC5zpAJTBXlu/oSruNGiXQ+ayCSfyDddlcj1JxQybXE=;
-        h=Subject:To:References:From:Date:In-Reply-To;
-        b=y9WdigwF5wTvqtSVSdFyQlMn75eO2VnJq8Y9uCzkAUGOlk/lnvybpM8X9GddRWDoN
-         Og3o1fDSoCwKE8kvaup/lIMjg+8dhoYNgv6O7mPOwkiJDHaeYxgByzc7q9IEZwYTPu
-         LA6gf/escNXgdzgTYJpBrnGTXHn/UGsDNWDQpXk8=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 088KrNhO104076
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Sep 2020 15:53:23 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 8 Sep
- 2020 15:53:23 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 8 Sep 2020 15:53:23 -0500
-Received: from [10.250.38.37] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088KrNRO005070;
-        Tue, 8 Sep 2020 15:53:23 -0500
-Subject: Re: [PATCH 4/7] power: supply: bq27xxx: use BIT() for bit flags
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20200908201319.3567-1-krzk@kernel.org>
- <20200908201319.3567-4-krzk@kernel.org>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <af09a19d-3261-a1bb-4d38-e7f543648154@ti.com>
-Date:   Tue, 8 Sep 2020 15:53:23 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: by mail-il1-f193.google.com with SMTP id q6so221336ild.12;
+        Tue, 08 Sep 2020 13:53:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=D4zd9nYkhVJuhvgahq/dyIESgw7OrwqNF2xcvkGb3oA=;
+        b=HW+7a5BepnHyp8gc83ouOqVuEzTuDPhkyv4LEPtDWKpxt1GSkgqbgpfcGBQEFQLNQq
+         AAi3717yDThM3lJlZEq1yaYlNKD62S69/KJHDiS5hQv7X17tQn5jBbTgwIWnsIo+6cg5
+         P3xCnuQu+BneJxe9Z94mQ1tdvrwryWSNn99Vyy4NaM4d9r1PLueuCmNgkJdNexMvMtCZ
+         NqtLy9rFMRsOcGkIfdwaYwVzeoSibQt88jrauogjERFISUnqoU3/CM7KWtajeAh8Mhbc
+         XtraV+pC6ICVF3s3cnOzFXD3pjVlkDk+iouc/1Jk4PZ6jRU6pCECEBRKi44CsMnse/iI
+         Soxg==
+X-Gm-Message-State: AOAM531NOchLN3EMvMFmeKL563FiqKTABs5TiNzSotiWFi3PnrQN82G4
+        iKpSyjiIuKIovRq7GUk0Ww==
+X-Google-Smtp-Source: ABdhPJwn91P1U6BXedZqItCeJqUIbPJFo/NE2iCov8xmdElXwJI6fUk2ZHGPizmZ4E2yNwgo3U6nyw==
+X-Received: by 2002:a92:d906:: with SMTP id s6mr595831iln.152.1599598404868;
+        Tue, 08 Sep 2020 13:53:24 -0700 (PDT)
+Received: from xps15 ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id i14sm198645ilb.28.2020.09.08.13.53.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Sep 2020 13:53:24 -0700 (PDT)
+Received: (nullmailer pid 900544 invoked by uid 1000);
+        Tue, 08 Sep 2020 20:53:23 -0000
+Date:   Tue, 8 Sep 2020 14:53:23 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     devicetree@vger.kernel.org,
+        Chris Brandt <chris.brandt@renesas.com>,
+        linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
+Subject: Re: [PATCH] pinctrl: rza1: Switch to using "output-enable"
+Message-ID: <20200908205323.GA900491@bogus>
+References: <20200821111401.4021-1-geert+renesas@glider.be>
 MIME-Version: 1.0
-In-Reply-To: <20200908201319.3567-4-krzk@kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200821111401.4021-1-geert+renesas@glider.be>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof
-
-On 9/8/20 3:13 PM, Krzysztof Kozlowski wrote:
-> BIT() is a preferred way to toggle bit-like flags: no problems with 32/64
-> bit systems, less chances for mistakes.
->
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+On Fri, 21 Aug 2020 13:14:01 +0200, Geert Uytterhoeven wrote:
+> For pins requiring software driven IO output operations, the RZ/A1 Pin
+> Controller uses either the "output-high" or "output-low" DT property to
+> enable the corresponding output buffer.  The actual line value doesn't
+> matter, as it is ignored.
+> 
+> Commit 425562429d4f3b13 ("pinctrl: generic: Add output-enable property")
+> introduced a new DT property for this specific use case.
+> 
+> Update the RZ/A1 Pin Controller DT bindings and driver to use this new
+> property instead.  Preserve backwards compatibility with old DTBs in the
+> driver, as this comes at a very small cost.
+> 
+> Notes:
+>   - The DT binding examples already used the new property,
+>   - There are no upstream users of the old properties.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->   drivers/power/supply/bq27xxx_battery.c | 15 ++++++++-------
->   1 file changed, 8 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/power/supply/bq27xxx_battery.c b/drivers/power/supply/bq27xxx_battery.c
-> index 2deac3fbb036..e971af43dd45 100644
-> --- a/drivers/power/supply/bq27xxx_battery.c
-> +++ b/drivers/power/supply/bq27xxx_battery.c
-> @@ -847,13 +847,14 @@ static struct bq27xxx_dm_reg bq27621_dm_regs[] = {
->   
->   #define bq27z561_dm_regs 0
->   #define bq28z610_dm_regs 0
-> -
-> -#define BQ27XXX_O_ZERO	0x00000001
-> -#define BQ27XXX_O_OTDC	0x00000002 /* has OTC/OTD overtemperature flags */
-> -#define BQ27XXX_O_UTOT  0x00000004 /* has OT overtemperature flag */
-> -#define BQ27XXX_O_CFGUP	0x00000008
-> -#define BQ27XXX_O_RAM	0x00000010
-> -#define BQ27Z561_O_BITS	0x00000020
-> +#define bq34z100_dm_regs 0
-> +
-> +#define BQ27XXX_O_ZERO		BIT(0)
-> +#define BQ27XXX_O_OTDC		BIT(1) /* has OTC/OTD overtemperature flags */
-> +#define BQ27XXX_O_UTOT		BIT(2) /* has OT overtemperature flag */
-> +#define BQ27XXX_O_CFGUP		BIT(3)
-> +#define BQ27XXX_O_RAM		BIT(4)
-> +#define BQ27Z561_O_BITS		BIT(5)
->   
+> To be queued in sh-pfc for v5.10.
+> 
+>  .../devicetree/bindings/pinctrl/renesas,rza1-pinctrl.txt     | 5 ++---
+>  drivers/pinctrl/pinctrl-rza1.c                               | 3 ++-
+>  2 files changed, 4 insertions(+), 4 deletions(-)
+> 
 
-It seems you have added whitespaces that you submitted a patch to fix in 
-3/7.
-
-Also squash 3 and 4.
-
-Dan
-
+Acked-by: Rob Herring <robh@kernel.org>
