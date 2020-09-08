@@ -2,111 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4932B261D54
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 21:35:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC16A261EE8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 21:57:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731783AbgIHTfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 15:35:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53414 "EHLO
+        id S1730954AbgIHT5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 15:57:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730983AbgIHP5a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 11:57:30 -0400
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A21F4C061A26
-        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 08:30:02 -0700 (PDT)
-Received: by mail-lf1-x143.google.com with SMTP id d15so8519496lfq.11
-        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 08:30:02 -0700 (PDT)
+        with ESMTP id S1730569AbgIHPgT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 11:36:19 -0400
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81CA4C061364
+        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 08:35:58 -0700 (PDT)
+Received: by mail-ot1-x342.google.com with SMTP id c10so15184589otm.13
+        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 08:35:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
+        d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=Di/sRB46OQMighQk5dHQr7eSM0Xs2HG6mVJOqpHAQVA=;
-        b=wivPxHYd6n7P0VAEx89iYB0CDqiBmKAo8bMzcLJfB2IiCRpxk5jYQTa829s47y/wno
-         40r/qjNvtJXqW07sGgOhSY/HZAjUZxaTZhtMPSqKN9fEpuZ4CSnpLMNQuWlpJzLMM7fs
-         IjlQCq8zRJb/BaBSivOSB4R5Wwu4b1YYCM8rPodch7mYWFCK70cCGVs8t8TZjLu7WN1e
-         SiYzFROl6IUYKLWKvvO61Za6fBzGcFbxWI2+IBQ9rr45F6MlSdVG6CUeyWlEB/Wpi3UY
-         quha/AzAYYYLaGPkTLNp/jY5SKnnT236N0YwjedIYIuNHh+ogwxXas/gPuTCgKN9zRYj
-         CLJg==
+         :content-disposition:in-reply-to;
+        bh=/DW0Pv++fUgCZxfo9rYcn7qda+ZUC8ohqv27lkw1ucQ=;
+        b=G1KRjLzjqiJVs5Jo0i8Ep+KEXzN1G+zUkbUqGWsKVVHCcm4PnHAJE9Da81N4V7p0OC
+         Ch4wJ2osMI1Tu7nf379jWemywMcKIO8BKFsmN3R5vMvG5Tr/YnO6kRDUhDGO6sWOCTDY
+         MOwXmI+zGKnjiNNB5W+sZAdrA/ULr5l3r4utIgOL0g1hjbrZRUVN+QOzJIfDSiknfF8i
+         0TiMdv2Z719+Y9C9tk1SfTB2UPlKBN2SKrAFoWf5M26Cpli6K2ppX5riwg0b1kN+vFFC
+         rlpPwhGA7JRzWHskGvipioh/WSCllEZkW7c4TpRSGxnzv/aO7EgyugG8S89tRWDb6QXj
+         3Zog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Di/sRB46OQMighQk5dHQr7eSM0Xs2HG6mVJOqpHAQVA=;
-        b=iCp2X4gZQiWFYLwtt/aAaAEuL5paIkTZhn00ymccsy0+LBpynGvbkSIs3wksca5KnI
-         eZGSzoZ2Nkp/UuDEm/eZN0dtLhEWockfXr3/PlJF7khyxFicrQOAAsw7Yl6D79w376nA
-         sQQ7eBbG66cA4BhK1V/K1Bmj9VhG7vlosXzn0WRq8si2Rv1iExJAhae23cY7Ayy2bwOC
-         8T8BnifhlRTFsKxbstt/iB+YUU0Wsef7k7MVhiBbXSJZnYOvrYSt4A7uSn0T+EL79Of5
-         oSmpn8brhP6wRXJ1Iszk9uZHb7S0rhtRV5EKNTN3V9br/cOOkXIlaLrnrLJ/0q/y3r/V
-         wlXg==
-X-Gm-Message-State: AOAM5321AmYRoIgTrpXxsRkLLc4NbAxMoF1re7HnKQV+KklJaAlUPbbD
-        2sQQg26lF5moXMRYb8cgqjWt1g==
-X-Google-Smtp-Source: ABdhPJwjWseqWyMRsUahDpNm7GhAt9M3g9XoH9LfcntDMA996o6s40LVXSJbHhYXWYKWxabeQtFRwg==
-X-Received: by 2002:ac2:5327:: with SMTP id f7mr12488078lfh.8.1599579000908;
-        Tue, 08 Sep 2020 08:30:00 -0700 (PDT)
-Received: from localhost (h-209-203.A463.priv.bahnhof.se. [155.4.209.203])
-        by smtp.gmail.com with ESMTPSA id l4sm10066362ljg.42.2020.09.08.08.30.00
+         :mime-version:content-disposition:in-reply-to;
+        bh=/DW0Pv++fUgCZxfo9rYcn7qda+ZUC8ohqv27lkw1ucQ=;
+        b=Rk7ohTY7pSFKDJagvRVCuoAzC0P1m26Y+uYMmkMweYmGpRBzx0DEw819wZ1O2+0KRn
+         fFbn9K2sdndROBPS3I3OpI2m4Rfqi9FEQolmfBdlXsN5WW93eX+xFASWrGegupg/fHEW
+         EkFUuKKXi+MT3NFIRkLpnUiLX7XC3GNT+5RqN8Hv5iK5ZSIA4ACPG/eOjsgZfDnfwBSS
+         akAxt+QrfW+Epp2b9+JgcPbE3yUFN53gHwV5ydy08nXV+2ik1is4aqMxffK/WDXMNYB5
+         WGGphCARtEmZsZuyEIDZwlI1fLuwbHzCGd6u4CL4khExmvRTy833pl/T2Ey4QEXHhyy7
+         zO4A==
+X-Gm-Message-State: AOAM532oMK/O02qZWmocOjVuARHiR/d7CdLh61oCmzWnWTH1V/J5oJFm
+        WBsjndLzlD2Eo1al8y67EAIi7g==
+X-Google-Smtp-Source: ABdhPJzASL9cBRJCM2R8eqEuUTsxBq1o0FtmeN3bHyw1qVZM60i+l330TfHGLpPohTTmc3QpgtEwqw==
+X-Received: by 2002:a9d:21c4:: with SMTP id s62mr18414200otb.350.1599579357887;
+        Tue, 08 Sep 2020 08:35:57 -0700 (PDT)
+Received: from yoga ([2605:6000:e5cb:c100:8898:14ff:fe6d:34e])
+        by smtp.gmail.com with ESMTPSA id e7sm2948400otk.59.2020.09.08.08.35.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Sep 2020 08:30:00 -0700 (PDT)
-Date:   Tue, 8 Sep 2020 17:29:59 +0200
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Tue, 08 Sep 2020 08:35:57 -0700 (PDT)
+Date:   Tue, 8 Sep 2020 10:35:54 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     rjw@rjwysocki.net, viresh.kumar@linaro.org, robh+dt@kernel.org,
+        agross@kernel.org, amitk@kernel.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Subject: Re: [PATCH 0/2] Add VIN instances to r8a7742 SoC
-Message-ID: <20200908152959.GC2984648@oden.dyn.berto.se>
-References: <20200907144509.8861-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        linux-arm-msm@vger.kernel.org, dmitry.baryshkov@linaro.org,
+        tdas@codeaurora.org
+Subject: Re: [PATCH 7/7] cpufreq: qcom-hw: Use
+ devm_platform_ioremap_resource() to simplify code
+Message-ID: <20200908153554.GQ3715@yoga>
+References: <20200908075716.30357-1-manivannan.sadhasivam@linaro.org>
+ <20200908075716.30357-8-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200907144509.8861-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20200908075716.30357-8-manivannan.sadhasivam@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lad,
+On Tue 08 Sep 02:57 CDT 2020, Manivannan Sadhasivam wrote:
 
-Thanks for your work.
+> devm_platform_ioremap_resource() is the combination of
+> platform_get_resource() and devm_ioremap_resource(). Hence, use it to
+> simplify the code a bit.
+> 
 
-On 2020-09-07 15:45:07 +0100, Lad Prabhakar wrote:
-> Hi All,
-> 
-> This patch series adds support for VIN to r8a7742 (RZ/G1H) SoC.
-> 
-> Patches apply on top of [1].
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/geert/
->     renesas-devel.git/log/?h=renesas-arm-dt-for-v5.10
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-For the whole series,
-
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  drivers/cpufreq/qcom-cpufreq-hw.c | 11 +++--------
+>  1 file changed, 3 insertions(+), 8 deletions(-)
 > 
-> Cheers,
-> Prabhakar
-> 
-> Lad Prabhakar (2):
->   dt-bindings: media: renesas,vin: Add device tree support for r8a7742
->   ARM: dts: r8a7742: Add VIN DT nodes
-> 
->  .../bindings/media/renesas,vin.yaml           |  1 +
->  arch/arm/boot/dts/r8a7742.dtsi                | 44 +++++++++++++++++++
->  2 files changed, 45 insertions(+)
-> 
+> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
+> index c3c397cc3dc6..6eeeb2bd4dfa 100644
+> --- a/drivers/cpufreq/qcom-cpufreq-hw.c
+> +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
+> @@ -307,7 +307,6 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>  	struct of_phandle_args args;
+>  	struct device_node *cpu_np;
+>  	struct device *cpu_dev;
+> -	struct resource *res;
+>  	void __iomem *base;
+>  	struct qcom_cpufreq_data *data;
+>  	const struct of_device_id *match;
+> @@ -333,13 +332,9 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>  
+>  	index = args.args[0];
+>  
+> -	res = platform_get_resource(pdev, IORESOURCE_MEM, index);
+> -	if (!res)
+> -		return -ENODEV;
+> -
+> -	base = devm_ioremap(dev, res->start, resource_size(res));
+> -	if (!base)
+> -		return -ENOMEM;
+> +	base = devm_platform_ioremap_resource(pdev, index);
+> +	if (IS_ERR(base))
+> +		return PTR_ERR(base);
+>  
+>  	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+>  	if (!data) {
 > -- 
 > 2.17.1
 > 
-
--- 
-Regards,
-Niklas Söderlund
