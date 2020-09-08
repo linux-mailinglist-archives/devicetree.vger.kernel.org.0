@@ -2,101 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74ADE261F7A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:04:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 607352620C9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:15:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732549AbgIHUDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 16:03:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56614 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730424AbgIHPXw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 11:23:52 -0400
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D8A38221E8
-        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 12:08:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599566928;
-        bh=ltST+N2nkPHvcvm7JM5iKGeE+dIaJdibruzqpP8T40g=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=lvMYbcf2Ibl+iac3x1pKdiMwh0OR3WjP+192kCA8xya69fNPOeYR1yJxOTXQ+J+yc
-         ZxrTgF6czpTYAvCpXMIK7Lhl5AUBjmQvtpIQybs1OJUTe6q6j+e7omdFgoLTJi55jY
-         OuPkkXlHjmePtJck1Z9u25ED4sQIPfZQn/Xt3mH0=
-Received: by mail-ua1-f53.google.com with SMTP id i22so4400423uat.8
-        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 05:08:47 -0700 (PDT)
-X-Gm-Message-State: AOAM533yc59wlgjIpXwNPy7LFPidpB846tq11S/X+P74kzWIuneKjNgU
-        zm1lpYmC3LCACGMypdFutqZY0r/GmC7r/THBiYkV6A==
-X-Google-Smtp-Source: ABdhPJzn5o5SdhSG4SNzohoTwQqYAZp7JwVtypVBguxbjsJFGyTmhXrdBWjuiaFKPmjaiikdExbd/KIqXlbl31C3Bcg=
-X-Received: by 2002:ab0:136f:: with SMTP id h44mr12688533uae.60.1599566926910;
- Tue, 08 Sep 2020 05:08:46 -0700 (PDT)
+        id S1730324AbgIHUPK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 16:15:10 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:40718 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726801AbgIHPKl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 11:10:41 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 088CUDRA099188;
+        Tue, 8 Sep 2020 07:30:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599568213;
+        bh=ZlGhz4fcfvz0XlQMcLisz9jUHjYObz1xSQH6+ZJjyB8=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=uvYf7GokGdF/5EiCT9TmmHekygILpdPsfAEukLopyFVfzj3GlUVa5GuJRLxrANApU
+         pa5AXG1WF9ad18bZNBKNFl87MmFycHS737n8zwGFwAn7LS3dHpCzf56dtPiOhZi2bb
+         RURZzPSJR8MGbDfmRAGb1/jPaFHHRZyarmjGrwsg=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 088CUDf5024531
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 8 Sep 2020 07:30:13 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 8 Sep
+ 2020 07:30:13 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 8 Sep 2020 07:30:13 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088CUD5e031056;
+        Tue, 8 Sep 2020 07:30:13 -0500
+Date:   Tue, 8 Sep 2020 07:30:13 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Roger Quadros <rogerq@ti.com>
+CC:     <t-kristo@ti.com>, <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <nsekhar@ti.com>,
+        <kishon@ti.com>
+Subject: Re: [PATCH v2 2/6] arm64: dts: ti: k3-j7200-main: Add SERDES lane
+ control mux
+Message-ID: <20200908123013.jvim7rlokzvxdpse@akan>
+References: <20200907145213.30788-1-rogerq@ti.com>
+ <20200907145213.30788-3-rogerq@ti.com>
 MIME-Version: 1.0
-References: <20200908075716.30357-1-manivannan.sadhasivam@linaro.org>
- <20200908075716.30357-6-manivannan.sadhasivam@linaro.org> <20200908103444.5e526uawa45om6lt@vireshk-i7>
- <20200908111141.GB23095@mani> <20200908111813.bbgfxo5v7qt6ujpc@vireshk-i7> <CAHLCerMndYeEBOxtj8mV7OdOP9pufx+C7n1F9m+CFAneuh8DnA@mail.gmail.com>
-In-Reply-To: <CAHLCerMndYeEBOxtj8mV7OdOP9pufx+C7n1F9m+CFAneuh8DnA@mail.gmail.com>
-From:   Amit Kucheria <amitk@kernel.org>
-Date:   Tue, 8 Sep 2020 17:38:36 +0530
-X-Gmail-Original-Message-ID: <CAHLCerPm6MXr662CaA3zZm4fQ3dJ_StJt3Ehutc3xnc0L9wj3Q@mail.gmail.com>
-Message-ID: <CAHLCerPm6MXr662CaA3zZm4fQ3dJ_StJt3Ehutc3xnc0L9wj3Q@mail.gmail.com>
-Subject: Re: [PATCH 5/7] cpufreq: qcom-hw: Use regmap for accessing hardware registers
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Taniya Das <tdas@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20200907145213.30788-3-rogerq@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 8, 2020 at 5:18 PM Amit Kucheria <amitk@kernel.org> wrote:
->
-> On Tue, Sep 8, 2020 at 4:48 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> >
-> > On 08-09-20, 16:41, Manivannan Sadhasivam wrote:
-> > > On 0908, Viresh Kumar wrote:
-> > > > On 08-09-20, 13:27, Manivannan Sadhasivam wrote:
-> > > > > Use regmap for accessing cpufreq registers in hardware.
-> > > >
-> > > > Why ? Please mention why a change is required in the log.
-> > > >
-> > >
-> > > Only because it is recommended to use regmap for abstracting the hw access.
-> >
-> > Yes it can be very useful in abstracting the hw access in case of
-> > busses like SPI/I2C, others, but in this case there is only one way of
-> > doing it with the exact same registers. I am not sure it is worth it
-> > here. FWIW, I have never played with regmaps personally, and so every
-> > chance I can be wrong here.
->
-> One could handle the reg offsets through a struct initialisation, but
-> then you end up with lots of #defines for bitmasks and bits for each
-> version of the IP. And the core code becomes a bit convoluted IMO,
-> trying to handle the differences.
->
-> regmap hides the differences of the bit positions and register offsets
-> between several IP versions.
->
-> > > Moreover it handles the proper locking for us in the core (spinlock vs mutex).
-> >
-> > What locking do you need here ?
->
-> Right, locking isn't the main reason here.
+On 17:52-20200907, Roger Quadros wrote:
+> The SERDES lane control mux registers are present in the
+> CTRLMMR space.
+> 
+> Signed-off-by: Roger Quadros <rogerq@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> index 1702ac0bbf40..e72c7a0ccad5 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> @@ -18,6 +18,21 @@
+>  		};
+>  	};
+>  
+> +	scm_conf: scm-conf@100000 {
+> +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
+> +		reg = <0 0x00100000 0 0x1c000>;
 
-Having said this, perhaps this patch can be held back for now, since
-we're not yet using some of the features of regmap to abstract away
-bit fields and such.
+Just to stay consistent with j7200 stuff we are trying to keep clean:
 
-We don't strictly need it for just different register offsets.
+reg = <0x00 0x00100000 0x00 0x1c000>;
 
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x0 0x0 0x00100000 0x1c000>;
+
+ranges = <0x00 0x00 0x00100000 0x1c000>;
+
+> +
+> +		serdes_ln_ctrl: serdes-ln-ctrl@4080 {
+> +			compatible = "mmio-mux";
+> +			#mux-control-cells = <1>;
+> +			mux-reg-masks = <0x4080 0x3>, <0x4084 0x3>, /* SERDES0 lane0/1 select */
+> +					<0x4088 0x3>, <0x408c 0x3>; /* SERDES0 lane2/3 select */
+> +		};
+> +	};
+> +
+>  	gic500: interrupt-controller@1800000 {
+>  		compatible = "arm,gic-v3";
+>  		#address-cells = <2>;
+> -- 
+> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+> 
+
+-- 
 Regards,
-Amit
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
