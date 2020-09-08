@@ -2,43 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D1EC2615E6
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 18:58:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6288E2615E8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 18:58:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731872AbgIHQ6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 12:58:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57890 "EHLO mail.kernel.org"
+        id S1732111AbgIHQ6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 12:58:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59096 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731865AbgIHQUN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        id S1731866AbgIHQUN (ORCPT <rfc822;devicetree@vger.kernel.org>);
         Tue, 8 Sep 2020 12:20:13 -0400
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B8EF021D42
-        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 11:56:53 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8B17D221E7
+        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 12:10:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599566213;
-        bh=R6Ri+kN/CWed2DNBZP62StZ1wEMT9FRwzqJU/Z6NzJU=;
+        s=default; t=1599567012;
+        bh=lq9eTjrWEGZEa2yiJKmSBpUchaqnuHBGfVpng6L9Aqc=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=SWVtuNlaY3haAyUccxSNrLi9U6GD0Rq7hIeTqAhtRBaXTuYLkCgCZqUA4nZ4b9sy2
-         J1evluoWPMg7stsApZX/3qncZO1mNWBXD9CVvEwsdruxx+ZiOIIsxxz6cvnT/fSuNW
-         scht63IrgMsY+NhdHu/NdZcAl+7v8lOQtbBBUSg4=
-Received: by mail-vk1-f181.google.com with SMTP id x142so4001345vke.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 04:56:53 -0700 (PDT)
-X-Gm-Message-State: AOAM533BYiUNnyhA0Yfj4ocpIjyjqav/e00QSmZakpu1QvWKDKCeU4aE
-        akUKmJejS0vfeJ+R8hcD6GRrlDPegmFLVLkpejSArg==
-X-Google-Smtp-Source: ABdhPJzC9NJ3nazYOiolZObh2wDJpo80fd4t69qUL8OOXd0xqmJBeClHzrZjJMv74mozY0KNwsRwK1UkuUL26gb9exU=
-X-Received: by 2002:a1f:26cd:: with SMTP id m196mr420652vkm.7.1599566212846;
- Tue, 08 Sep 2020 04:56:52 -0700 (PDT)
+        b=2JBREKU6JRgGxsJ1r8Ce2Iju6vIu8ns/qPUApwNkh+GlxhyVWmZki8K1pkhPaBIMI
+         oIjpxoan1Owvg0lws/TNOUleSTdKu7+AxYmUfIWC1QVQyHVnrSntCmcm31oOP9BeIn
+         XhujwMCmWKaMS2a2Z8abpw9lH+pT866FkY6uho3Y=
+Received: by mail-ua1-f51.google.com with SMTP id v20so4981189ual.4
+        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 05:10:12 -0700 (PDT)
+X-Gm-Message-State: AOAM531OTLn8xBetUKay0ke08dFT6VDz9RiYXazl62eTMTY7cYWenADq
+        tPQmE3smP4H7bl6K282PcpttEWJfLlD10VT9oC1Zrw==
+X-Google-Smtp-Source: ABdhPJzVyQm6/6q5OjrV7nqU3MI7oMJGT7K1lFXypEJBdr8i/tOI9S8ZGFWCl5CSa7p27tf/aSMle29PYGnK5195eZQ=
+X-Received: by 2002:ab0:384a:: with SMTP id h10mr5065875uaw.77.1599567011727;
+ Tue, 08 Sep 2020 05:10:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200908075716.30357-1-manivannan.sadhasivam@linaro.org> <20200908075716.30357-2-manivannan.sadhasivam@linaro.org>
-In-Reply-To: <20200908075716.30357-2-manivannan.sadhasivam@linaro.org>
+References: <20200908075716.30357-1-manivannan.sadhasivam@linaro.org> <20200908075716.30357-7-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20200908075716.30357-7-manivannan.sadhasivam@linaro.org>
 From:   Amit Kucheria <amitk@kernel.org>
-Date:   Tue, 8 Sep 2020 17:26:42 +0530
-X-Gmail-Original-Message-ID: <CAHLCerNm_asVtBadWqRfEmhPRu3ARomM1bd+iJOOOcf0PzvWfQ@mail.gmail.com>
-Message-ID: <CAHLCerNm_asVtBadWqRfEmhPRu3ARomM1bd+iJOOOcf0PzvWfQ@mail.gmail.com>
-Subject: Re: [PATCH 1/7] dt-bindings: cpufreq: cpufreq-qcom-hw: Document
- SM8250 compatible
+Date:   Tue, 8 Sep 2020 17:40:00 +0530
+X-Gmail-Original-Message-ID: <CAHLCerNaf6hdC5etZoiq2pvvRt85CpD0yEW5_pcfpQKDjHk5Fw@mail.gmail.com>
+Message-ID: <CAHLCerNaf6hdC5etZoiq2pvvRt85CpD0yEW5_pcfpQKDjHk5Fw@mail.gmail.com>
+Subject: Re: [PATCH 6/7] cpufreq: qcom-hw: Add cpufreq support for SM8250 SoC
 To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
         Viresh Kumar <viresh.kumar@linaro.org>,
@@ -60,9 +59,8 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Tue, Sep 8, 2020 at 1:27 PM Manivannan Sadhasivam
 <manivannan.sadhasivam@linaro.org> wrote:
 >
-> Document the SM8250 SoC specific compatible for Qualcomm Cpufreq HW. The
-> hardware block which carries out CPUFreq operations on SM8250 SoC is
-> called EPSS.
+> SM8250 SoC uses EPSS block for carrying out the cpufreq duties. Hence, add
+> support for it in the driver with relevant of_match data.
 >
 > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
@@ -70,22 +68,31 @@ Reviewed-by: Amit Kucheria <amitk@kernel.org>
 
 
 > ---
->  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/cpufreq/qcom-cpufreq-hw.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 >
-> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
-> index 33856947c561..aea4ddb2b9e8 100644
-> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
-> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
-> @@ -8,7 +8,7 @@ Properties:
->  - compatible
->         Usage:          required
->         Value type:     <string>
-> -       Definition:     must be "qcom,cpufreq-hw".
-> +       Definition:     must be "qcom,cpufreq-hw" or "qcom,sm8250-epss".
+> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
+> index de816bcafd33..c3c397cc3dc6 100644
+> --- a/drivers/cpufreq/qcom-cpufreq-hw.c
+> +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
+> @@ -285,8 +285,17 @@ static const struct qcom_cpufreq_soc_data qcom_soc_data = {
+>         .lut_row_size = 32,
+>  };
 >
->  - clocks
->         Usage:          required
+> +static const struct qcom_cpufreq_soc_data sm8250_soc_data = {
+> +       .reg_enable = 0x0,
+> +       .reg_freq_lut = 0x100,
+> +       .reg_volt_lut = 0x200,
+> +       .reg_perf_state = 0x320,
+> +       .lut_row_size = 4,
+> +};
+> +
+>  static const struct of_device_id qcom_cpufreq_hw_match[] = {
+>         { .compatible = "qcom,cpufreq-hw", .data = &qcom_soc_data },
+> +       { .compatible = "qcom,sm8250-epss", .data = &sm8250_soc_data },
+>         {}
+>  };
+>  MODULE_DEVICE_TABLE(of, qcom_cpufreq_hw_match);
 > --
 > 2.17.1
 >
