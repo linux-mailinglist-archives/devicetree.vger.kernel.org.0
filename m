@@ -2,82 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A1BB260B5D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 08:57:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81656260B99
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 09:12:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728654AbgIHG5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 02:57:30 -0400
-Received: from mail-ed1-f47.google.com ([209.85.208.47]:43807 "EHLO
-        mail-ed1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728501AbgIHG52 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 02:57:28 -0400
-Received: by mail-ed1-f47.google.com with SMTP id n13so14848751edo.10;
-        Mon, 07 Sep 2020 23:57:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=umGp2mRac5tjGgvL1953FmzEeKMsaUQqM0ZLASNYOdw=;
-        b=N5fqJEZG7B7/XsNoynwNGrDwdYwKYI0k2+m058IJt7fmvML1HP74NBozLoAOSuJK1a
-         QPFpJVVmpyIlvq5Y0cI2TTLsDuegaDqEDlZwjQMCeEgs+4tQnMrxhQL8BKvRCMYTyszE
-         lFBbhusQq3/GjDc+QrmRifs8YIDN1mOAjgyQkPkNt8gkWt9+9O3I7yuzW1g29FiW33nK
-         9REI+OURjC44wtMREFGCFzB62qT90llzw7ot+twtQfDpBaBip1oDxdp2pSf4GI5LxiH2
-         MOKW/v7Y5/MRIqXnnGiWqXbbhOvkzZtJZN+G+YZro5cQXTsWexgcSPxyNP47RFaW1px/
-         xFHg==
-X-Gm-Message-State: AOAM533WY4OCuvvxLNCeQi+p5tOkd5iX618ycdMOipkav38oIAchdgBC
-        /5hum4UfFtx126vxWkw9SP0=
-X-Google-Smtp-Source: ABdhPJwQKk7dDYAUqS1F8cS+l02dQ8Fkn0v4UEjEo7y2l4To8N85pyzNNjSurB/LEnao9OgD3/0vtw==
-X-Received: by 2002:a05:6402:1859:: with SMTP id v25mr16745883edy.118.1599548245356;
-        Mon, 07 Sep 2020 23:57:25 -0700 (PDT)
-Received: from pi3 ([194.230.155.174])
-        by smtp.googlemail.com with ESMTPSA id r16sm8407822edc.57.2020.09.07.23.57.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Sep 2020 23:57:24 -0700 (PDT)
-Date:   Tue, 8 Sep 2020 08:57:22 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Jonathan Bakker <xc-racer2@live.ca>
-Cc:     Kukjin Kim <kgene@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        =?utf-8?B?UGF3ZcWC?= Chmiel <pawel.mikolaj.chmiel@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [RFT 25/25] ARM: dts: s5pv210: align DMA channels with dtschema
-Message-ID: <20200908065722.GD24227@pi3>
-References: <20200907161141.31034-1-krzk@kernel.org>
- <20200907161141.31034-26-krzk@kernel.org>
- <25178674-e4af-ba35-b7f0-42091208e0e8@live.ca>
- <BN6PR04MB06601A7FC9D1A697481EA37FCB290@BN6PR04MB0660.namprd04.prod.outlook.com>
+        id S1729103AbgIHHMj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 03:12:39 -0400
+Received: from szxga07-in.huawei.com ([45.249.212.35]:57900 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729077AbgIHHMj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 03:12:39 -0400
+Received: from DGGEMS413-HUB.china.huawei.com (unknown [172.30.72.59])
+        by Forcepoint Email with ESMTP id 74C229336373F58813A6;
+        Tue,  8 Sep 2020 15:12:36 +0800 (CST)
+Received: from thunder-town.china.huawei.com (10.174.177.253) by
+ DGGEMS413-HUB.china.huawei.com (10.3.19.213) with Microsoft SMTP Server id
+ 14.3.487.0; Tue, 8 Sep 2020 15:12:27 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Haoyu Lv <lvhaoyu@huawei.com>, Libin <huawei.libin@huawei.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
+Subject: [PATCH v2 0/3] irqchip: dw-apb-ictl: support hierarchy irq domain
+Date:   Tue, 8 Sep 2020 15:11:31 +0800
+Message-ID: <20200908071134.2578-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <BN6PR04MB06601A7FC9D1A697481EA37FCB290@BN6PR04MB0660.namprd04.prod.outlook.com>
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.177.253]
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 07, 2020 at 05:28:54PM -0700, Jonathan Bakker wrote:
-> Ah, I figured out why the dma stopped working.  In s5pv210-aries.dtsi the dma's for i2s0
-> are overriden to use pdma0 instead of pdma1.  That also needs changing for this to
-> work properly.
+v1 --> v2:
+According to Marc Zyngier's suggestion, discard adding an independent SD5203-VIC
+driver, but make the dw-apb-ictl irqchip driver to support hierarchy irq domain.
+It was originally available only for secondary interrupt controller, now it can
+also be used as primary interrupt controller. The related dt-bindings is updated
+appropriately.
 
-Indeed I missed this, thanks for review and tests.
+Add "Suggested-by: Marc Zyngier <maz@kernel.org>".
+Add "Tested-by: Haoyu Lv <lvhaoyu@huawei.com>".
 
-Best regards,
-Krzysztof
 
-> 
-> Thanks,
-> Jonathan
-> 
-> On 2020-09-07 5:17 p.m., Jonathan Bakker wrote:
-> > Initial testing on both an i9000 and an SGH-T959P are showing that the audio has
-> > stopped working with this.  I'm not 100% convinced as I've had DMA issues in the
-> > past.  However trying to play something just results in a hang after 1.5s while
-> > it works just fine without this patch.
-> > 
-> > Thanks,
-> > Jonathan
+v1:
+The interrupt controller of SD5203 SoC is VIC(vector interrupt controller), it's
+based on Synopsys DesignWare APB interrupt controller (dw_apb_ictl) IP, but it
+can not directly use dw_apb_ictl driver. The main reason is that VIC is used as
+primary interrupt controller and dw_apb_ictl driver worked for secondary
+interrupt controller. So add a new driver: "hisilicon,sd5203-vic".
+
+
+Zhen Lei (3):
+  irqchip: dw-apb-ictl: prepare for support hierarchy irq domain
+  irqchip: dw-apb-ictl: support hierarchy irq domain
+  dt-bindings: dw-apb-ictl: support hierarchy irq domain
+
+ .../interrupt-controller/snps,dw-apb-ictl.txt | 14 ++-
+ drivers/irqchip/Kconfig                       |  2 +-
+ drivers/irqchip/irq-dw-apb-ictl.c             | 91 +++++++++++++++++--
+ 3 files changed, 95 insertions(+), 12 deletions(-)
+
+-- 
+2.26.0.106.g9fadedd
+
+
