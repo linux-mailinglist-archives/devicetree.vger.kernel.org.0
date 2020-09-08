@@ -2,238 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBB4C260F48
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 12:07:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4268E260F9F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 12:26:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729037AbgIHKHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 06:07:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56324 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726801AbgIHKHm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 06:07:42 -0400
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA5FFC061573
-        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 03:07:41 -0700 (PDT)
-Received: by mail-pf1-x443.google.com with SMTP id n14so2610364pff.6
-        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 03:07:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=hU3oOvvnKV3sVS60ywXkD1wU0kB70X7AUVyTyZd2RY4=;
-        b=AJ5s0TM9s5OJw66KaolPB8BsjovKw8GrEqoKSEGdJRI8ZS3Xh22wOFQ72Jp5UEz9QT
-         QL14QkPFwkvl96bfp3dchyut4RLzlQqsVf5x1mwYYY1ZUo/vcJBg5evkvgZMdz+OZiFO
-         ejQuvUh9+00emp0HrgEBJePDPEjuP9ERlmDgq2vfWH8a+TJqz3lUit2tW6+d9KqCszKf
-         x3B0HD2+XG0KZZl3Ov/+RAv9oldBfoGC04efRlw9TosIeO3L9TtIjALv2b5zw/qnxOa2
-         effhj1ijvXKzFiSKxYItEwdlRgjXYWztCYzBFmRwBEPppenKGFSdDN0Sg7r4aaqZVssz
-         yk6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=hU3oOvvnKV3sVS60ywXkD1wU0kB70X7AUVyTyZd2RY4=;
-        b=IlbA0kQMj6gBX/5hnkCyBl+fZLZytDeLOy4QFSvhlqiwUdfcUzl4NtWKeVPp0PK4cn
-         og5KlMk+srGn2qB4DS46AJaRxoyUWt5bvoTYFZqwij2dSdeWhLdg1k9Nn5BcEMnKLSwz
-         FSaHu7Ko4hvPOBTKajmbdlQACF3JycooWTWNDOXiZyK2Uj6QOW/E1RVqM9qNA8Z9kLL3
-         hcMJdAig+M9Mb8QPuAXlOWiDgv0JVJIXoE2sSwAVJMsfSd5vh3v2OWLxU7CTid4Bul+d
-         lQGSatHiUyUR/fXqzQw0Cz0bVYjWICOegpsphin227VBJBbehlFoLZf8+zYdx4XJ2ksx
-         llug==
-X-Gm-Message-State: AOAM530bHjHr0jCOic8puqQT6ehC5dp1sScUA1OkFuZ2zwkyrp6R6r0h
-        IZwPArzRS8vGdVHNvCNXNYq8Mw==
-X-Google-Smtp-Source: ABdhPJweEpB8wgJ9j3N1o+hvbAzIUldosNCWC9AYOg0yuTLIAoB7iMZYQXNSkkxkjZQyFOSNJIhNnw==
-X-Received: by 2002:a65:6545:: with SMTP id a5mr20129366pgw.43.1599559661151;
-        Tue, 08 Sep 2020 03:07:41 -0700 (PDT)
-Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id s198sm14749540pgc.4.2020.09.08.03.07.39
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 08 Sep 2020 03:07:40 -0700 (PDT)
-Date:   Tue, 8 Sep 2020 15:37:33 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Hector Yuan <hector.yuan@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        wsd_upstream@mediatek.com
-Subject: Re: [PATCH v4 2/2] dt-bindings: cpufreq: add bindings for MediaTek
- cpufreq HW
-Message-ID: <20200908100733.pbizjorq3lmn7bew@vireshk-i7>
-References: <1599550547-27767-1-git-send-email-hector.yuan@mediatek.com>
- <1599550547-27767-3-git-send-email-hector.yuan@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1599550547-27767-3-git-send-email-hector.yuan@mediatek.com>
-User-Agent: NeoMutt/20180716-391-311a52
+        id S1729337AbgIHK0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 06:26:34 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:56116 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729414AbgIHK0H (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 06:26:07 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 960F22014ED;
+        Tue,  8 Sep 2020 12:26:05 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 868BA2011AF;
+        Tue,  8 Sep 2020 12:26:05 +0200 (CEST)
+Received: from fsr-ub1664-175.ea.freescale.net (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id D44EE20327;
+        Tue,  8 Sep 2020 12:26:04 +0200 (CEST)
+From:   Abel Vesa <abel.vesa@nxp.com>
+To:     Mike Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Anson Huang <anson.huang@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fugang Duan <fugang.duan@nxp.com>, devicetree@vger.kernel.org
+Cc:     NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk@vger.kernel.org, Abel Vesa <abel.vesa@nxp.com>
+Subject: [PATCH v3 00/14] Add BLK_CTL support for i.MX8MP
+Date:   Tue,  8 Sep 2020 13:24:37 +0300
+Message-Id: <1599560691-3763-1-git-send-email-abel.vesa@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08-09-20, 15:35, Hector Yuan wrote:
-> From: "Hector.Yuan" <hector.yuan@mediatek.com>
-> 
-> Add devicetree bindings for MediaTek HW driver.
-> 
-> Signed-off-by: Hector.Yuan <hector.yuan@mediatek.com>
-> ---
->  .../bindings/cpufreq/cpufreq-mediatek-hw.yaml      |  141 ++++++++++++++++++++
->  1 file changed, 141 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
-> new file mode 100644
-> index 0000000..5be5867
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
-> @@ -0,0 +1,141 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/cpufreq/cpufreq-mediatek-hw.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek's CPUFREQ Bindings
-> +
-> +maintainers:
-> +  - Hector Yuan <hector.yuan@mediatek.com>
-> +
-> +description:
-> +  CPUFREQ HW is a hardware engine used by MediaTek
-> +  SoCs to manage frequency in hardware. It is capable of controlling frequency
-> +  for multiple clusters.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,cpufreq-hw
+The BLK_CTL according to HW design is basically the wrapper of the entire
+function specific group of IPs and holds GPRs that usually cannot be placed
+into one specific IP from that group. Some of these GPRs are used to control
+some clocks, other some resets, others some very specific function that does
+not fit into clocks or resets. Since the clocks are registered using the i.MX
+clock subsystem API, the driver is placed into the clock subsystem, but it
+also registers the resets. For the other functionalities that other GPRs might
+have, the syscon is used.
 
-Missing "" here ?
+Changes since v2:
+ * Made the naming consistent with the RM: BLK_CTL (not BLK_CTRL)
+ * fixed the reset set procedure as discussed with Philipp Zabel
+ * removed the patch that includes the imx8mp-reset header in dtsi
+   as there is no user yet.
+ * added i.MX8MP specific blk_ctl driver as suggested by Aisheng Dong
 
-> +
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 2
-> +    description: |
-> +      Addresses and sizes for the memory of the HW bases in each frequency domain.
-> +
-> +  reg-names:
-> +    items:
-> +      - const: "freq-domain0"
-> +      - const: "freq-domain1"
-> +    description: |
-> +      Frequency domain name. i.e.
-> +      "freq-domain0", "freq-domain1".
-> +
-> +  "#freq-domain-cells":
-> +    const: 1
-> +    description: |
-> +      Number of cells in a freqency domain specifier.
-> +
-> +  mtk-freq-domain:
-> +    maxItems: 1
-> +    description: |
-> +      Define this cpu belongs to which frequency domain. i.e.
-> +      cpu0-3 belong to frequency domain0,
-> +      cpu4-6 belong to frequency domain1.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - "#freq-domain-cells"
-> +
-> +examples:
-> +  - |
-> +    cpus {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            cpu0: cpu@0 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-a55";
-> +                enable-method = "psci";
-> +                mtk-freq-domain = <&cpufreq_hw 0>;
-> +                reg = <0x000>;
-> +            };
-> +
-> +            cpu1: cpu@1 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-a55";
-> +                enable-method = "psci";
-> +                mtk-freq-domain = <&cpufreq_hw 0>;
-> +                reg = <0x100>;
-> +            };
-> +
-> +            cpu2: cpu@2 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-a55";
-> +                enable-method = "psci";
-> +                mtk-freq-domain = <&cpufreq_hw 0>;
-> +                reg = <0x200>;
-> +            };
-> +
-> +            cpu3: cpu@3 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-a55";
-> +                enable-method = "psci";
-> +                mtk-freq-domain = <&cpufreq_hw 0>;
-> +                reg = <0x300>;
-> +            };
-> +
-> +            cpu4: cpu@4 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-a55";
-> +                enable-method = "psci";
-> +                mtk-freq-domain = <&cpufreq_hw 1>;
-> +                reg = <0x400>;
-> +            };
-> +
-> +            cpu5: cpu@5 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-a55";
-> +                enable-method = "psci";
-> +                mtk-freq-domain = <&cpufreq_hw 1>;
-> +                reg = <0x500>;
-> +            };
-> +
-> +            cpu6: cpu@6 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-a75";
-> +                enable-method = "psci";
-> +                mtk-freq-domain = <&cpufreq_hw 1>;
-> +                reg = <0x600>;
-> +            };
-> +
-> +            cpu7: cpu@7 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-a75";
-> +                enable-method = "psci";
-> +                mtk-freq-domain = <&cpufreq_hw 1>;
-> +                reg = <0x700>;
-> +            };
-> +    };
-> +
-> +    /* ... */
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        cpufreq_hw: cpufreq@11bc00 {
-> +            compatible = "mediatek,cpufreq-hw";
-> +            reg = <0 0x11bc10 0 0x8c>,
-> +               <0 0x11bca0 0 0x8c>;
-> +            reg-names = "freq-domain0", "freq-domain1";
-> +            #freq-domain-cells = <1>;
-> +        };
-> +    };
-> +
-> +
-> +
-> +
+Abel Vesa (14):
+  dt-bindings: clocks: imx8mp: Rename audiomix ids clocks to
+    audio_blk_ctl
+  dt-bindings: reset: imx8mp: Add audio blk_ctl reset IDs
+  dt-bindings: clock: imx8mp: Add ids for the audio shared gate
+  dt-bindings: clock: imx8mp: Add media blk_ctl clock IDs
+  dt-bindings: reset: imx8mp: Add media blk_ctl reset IDs
+  dt-bindings: clock: imx8mp: Add hdmi blk_ctl clock IDs
+  dt-bindings: reset: imx8mp: Add hdmi blk_ctl reset IDs
+  clk: imx8mp: Add audio shared gate
+  Documentation: bindings: clk: Add bindings for i.MX BLK_CTL
+  clk: imx: Add generic blk-ctl driver
+  clk: imx: Add blk-ctl driver for i.MX8MP
+  arm64: dts: imx8mp: Add audio_blk_ctl node
+  arm64: dts: imx8mp: Add media_blk_ctl node
+  arm64: dts: imx8mp: Add hdmi_blk_ctl node
 
-I would need Ack from Rob for this.
+ .../devicetree/bindings/clock/fsl,imx-blk-ctl.yaml |  60 ++++
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi          |  37 +++
+ drivers/clk/imx/Makefile                           |   2 +-
+ drivers/clk/imx/clk-blk-ctl-imx8mp.c               | 313 +++++++++++++++++++++
+ drivers/clk/imx/clk-blk-ctl.c                      | 297 +++++++++++++++++++
+ drivers/clk/imx/clk-blk-ctl.h                      |  80 ++++++
+ drivers/clk/imx/clk-imx8mp.c                       |  12 +-
+ include/dt-bindings/clock/imx8mp-clock.h           | 200 +++++++++----
+ include/dt-bindings/reset/imx8mp-reset.h           |  45 +++
+ 9 files changed, 983 insertions(+), 63 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/fsl,imx-blk-ctl.yaml
+ create mode 100644 drivers/clk/imx/clk-blk-ctl-imx8mp.c
+ create mode 100644 drivers/clk/imx/clk-blk-ctl.c
+ create mode 100644 drivers/clk/imx/clk-blk-ctl.h
 
 -- 
-viresh
+2.7.4
+
