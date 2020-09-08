@@ -2,83 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBA622616DD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:21:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AEE826170C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:24:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731432AbgIHRVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 13:21:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56486 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731541AbgIHRVF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 13:21:05 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 53DF8206B5;
-        Tue,  8 Sep 2020 17:21:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599585664;
-        bh=Ja9hL6KF26G2I1GvZlGJGPbFxGYhbjPc5NzEgAnOSfU=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=11JAGinwUI6ZZ8FvZzaS1tGG+gQBE+k1ZhDNyE/n1ots5Wq3+3T2GJ0Kx7/eRikzG
-         63b4w5c2R85aI3LbkUfXHehRLL47tQQS6gAroQhXL+LQtFzIWuKarfG+Q9XCxmv97X
-         IVT03qfQQIp6VtlW9jUbmbLy+5F+he+Xpfm9pagM=
-Date:   Tue, 08 Sep 2020 18:20:20 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        id S1731884AbgIHRYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 13:24:37 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:33394 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727088AbgIHRUt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 13:20:49 -0400
+Received: by mail-ot1-f68.google.com with SMTP id m12so12557162otr.0;
+        Tue, 08 Sep 2020 10:20:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LdIU9vQqmEF6Wb9rgoYOmoAokt3YY8uLZ42vJELJPcw=;
+        b=DMubPtXSYBnklx8RsXBVhETybhtzSmPIOHQO5hh580TaRMWkvBZTXjmn6aucLI/D+D
+         fPGhtc/xW9ypHzBeTmp46o+DUD2h1pcgNnSIZblZrckhjae0CwUQVMzNzXmaOOWd0Ruk
+         HUWMtyItZFuVd8I344pdON/KT/RRIWvxhYW63EWn5zKA0fSw3BR2/bjGsHx/M1GleDyJ
+         C8CI1FNclKf9idd2jm7aY70x6MhvGak8xSG5VtKv3+f2U2ZffNJaUGTWrZiX93v3pA+o
+         2/6IU/fIlWqwWTJFtz25QXz0PFHjQ3CI8pybaxNoKQR5ntuRFz+PJ9VHDZ6nv32Ao1oa
+         XJ0g==
+X-Gm-Message-State: AOAM533iBFhCkpRo2603eVrJzvobEb98uKklaxfb8FpaXU4D9Z3fNcy5
+        rgYdRqSJDcVAUpdTLNuCCst4BmAwpgwd8TuWHtKIm5aLAN0=
+X-Google-Smtp-Source: ABdhPJyO0agHfnn+rc/8SvPGLV/RqefiUMhcCO/qMdmPNp8wfnxitD0ijBuDMlHxqhgSaEJAVSI8q0o3SM0n8A6n9Z4=
+X-Received: by 2002:a05:6830:1008:: with SMTP id a8mr53866otp.107.1599585648726;
+ Tue, 08 Sep 2020 10:20:48 -0700 (PDT)
+MIME-Version: 1.0
+References: <1599470390-29719-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <1599470390-29719-15-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <1599470390-29719-15-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 8 Sep 2020 19:20:37 +0200
+Message-ID: <CAMuHMdUXUvU5dPkBFdW_ZVhnBKpFEPVLD3mdOkhrmakZjCHErg@mail.gmail.com>
+Subject: Re: [PATCH 14/14] arm64: dts: renesas: Add Renesas Falcon boards support
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-In-Reply-To: <20200826095141.94017-1-stephan@gerhold.net>
-References: <20200826095141.94017-1-stephan@gerhold.net>
-Subject: Re: [PATCH v2 0/2] ASoC: qcom: common: Parse auxiliary devices from device tree
-Message-Id: <159958562064.16576.531530312246805516.b4-ty@kernel.org>
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 26 Aug 2020 11:51:39 +0200, Stephan Gerhold wrote:
-> In some cases we need to probe additional audio components that do
-> not appear as part of the DAI links specified in the device tree.
-> Examples for this are auxiliary devices such as analog amplifiers
-> or codecs.
-> 
-> The ASoC core provides a way to probe these components by adding
-> them to snd_soc_card->aux_dev.
-> 
-> [...]
+Hi Shimoda-san,
 
-Applied to
+On Mon, Sep 7, 2020 at 11:20 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Initial support for the Renesas Falcon CPU and BreakOut boards
+> support.
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Thanks for your patch!
 
-Thanks!
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/falcon-cpu.dtsi
+> @@ -0,0 +1,44 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device Tree Source for the Falcon CPU board
+> + *
+> + * Copyright (C) 2020 Renesas Electronics Corp.
+> + */
 
-[1/2] ASoC: dt-bindings: qcom: Document "aux-devs" property
-      commit: cdd3b8daf26e5eb2e97b6a37dfdb83597bcbdc52
-[2/2] ASoC: qcom: common: Parse auxiliary devices from device tree
-      commit: 1b839d3e15fd48e4278c83190725467713a5b3c6
+As this board contains the CPU, I had expected
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+    #include "r8a779a0.dtsi"
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+here.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+> +
+> +/ {
+> +       model = "Renesas Falcon CPU board";
+> +       compatible = "renesas,falcon-cpu";
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
++ renesas,r8a779a0.
 
-Thanks,
-Mark
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
