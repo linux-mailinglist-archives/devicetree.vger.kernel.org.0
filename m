@@ -2,88 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B05592616BA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:17:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBA622616DD
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:21:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728899AbgIHRRl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 13:17:41 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:44153 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731796AbgIHRRg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 13:17:36 -0400
-Received: by mail-oi1-f195.google.com with SMTP id 185so17143917oie.11;
-        Tue, 08 Sep 2020 10:17:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eMaXdkZMBIIa97R28ums/cRnzgAhqNzURS/+cjPBc4w=;
-        b=qZ2lSBbZIkeC6Wdjc89ZC/LTqtloM5jQRBY+1whRQPekay8nteN/sTzgIsHXJ4fbUv
-         /hCLFIo8cemAhDYp+Mcw2l2pGbspSzC0QujdSDC6gFZj6pOYNsrJYUv0QII6+CXeo/Uz
-         U1mcmn7VJ/eMZpgy+Dkx6GfeqQL++W6wqJOjataS1Eog5mZ0pRApyuFCcU4UGufT8cnM
-         aOldw8i0Q8KJpiXcKSj8gXDilEzhXK56Oa/qe+jyn49oOctCzjgFP3kJLqmipN05E8Wp
-         lwGBjwfxF02vwzSy8wYKk9sMewlyN3kZNh9E7zqfwyEri68OMB5O7pb+dRIvrOtrnGl5
-         EjaA==
-X-Gm-Message-State: AOAM533OugRtyD+KlcaTmswDEn45OLDCmSNHS8gIOlzDVQOJW8PpihlX
-        eEOQINalbawbu1iv5/JzsBjWk+tTLLCiIglIF3E=
-X-Google-Smtp-Source: ABdhPJwZRZiy2KvddjqTpOk8cZpBJ1snpxQFyOxOWUjTpOW/68C6SGRxIH6w/ZRMRsHo4QCGuTuigPE2kNBdlj9uDIk=
-X-Received: by 2002:aca:b742:: with SMTP id h63mr117820oif.148.1599585455970;
- Tue, 08 Sep 2020 10:17:35 -0700 (PDT)
-MIME-Version: 1.0
-References: <1599470390-29719-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <1599470390-29719-7-git-send-email-yoshihiro.shimoda.uh@renesas.com> <CAMuHMdVRco32Dm+UyN5OUpbhVcJCuCm-jNF6+R5=m74vqjEEoA@mail.gmail.com>
-In-Reply-To: <CAMuHMdVRco32Dm+UyN5OUpbhVcJCuCm-jNF6+R5=m74vqjEEoA@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 8 Sep 2020 19:17:25 +0200
-Message-ID: <CAMuHMdW8FQAVspRb_0ZuONgKLgPerPHs8uKZdnWGXe-sRov_fQ@mail.gmail.com>
-Subject: Re: [PATCH 06/14] dt-bindings: clock: renesas,cpg-mssr: Document r8a779a0
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        id S1731432AbgIHRVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 13:21:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56486 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731541AbgIHRVF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 13:21:05 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 53DF8206B5;
+        Tue,  8 Sep 2020 17:21:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599585664;
+        bh=Ja9hL6KF26G2I1GvZlGJGPbFxGYhbjPc5NzEgAnOSfU=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=11JAGinwUI6ZZ8FvZzaS1tGG+gQBE+k1ZhDNyE/n1ots5Wq3+3T2GJ0Kx7/eRikzG
+         63b4w5c2R85aI3LbkUfXHehRLL47tQQS6gAroQhXL+LQtFzIWuKarfG+Q9XCxmv97X
+         IVT03qfQQIp6VtlW9jUbmbLy+5F+he+Xpfm9pagM=
+Date:   Tue, 08 Sep 2020 18:20:20 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Liam Girdwood <lgirdwood@gmail.com>
+In-Reply-To: <20200826095141.94017-1-stephan@gerhold.net>
+References: <20200826095141.94017-1-stephan@gerhold.net>
+Subject: Re: [PATCH v2 0/2] ASoC: qcom: common: Parse auxiliary devices from device tree
+Message-Id: <159958562064.16576.531530312246805516.b4-ty@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 8, 2020 at 11:23 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> On Mon, Sep 7, 2020 at 11:20 AM Yoshihiro Shimoda
-> <yoshihiro.shimoda.uh@renesas.com> wrote:
-> > Add binding documentation for the R-Car V3U (R8A779A0) Clock Pulse
-> > Generator.
-> >
-> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
->
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->
-> > --- a/Documentation/devicetree/bindings/clock/renesas,cpg-mssr.yaml
-> > +++ b/Documentation/devicetree/bindings/clock/renesas,cpg-mssr.yaml
-> > @@ -47,6 +47,7 @@ properties:
-> >        - renesas,r8a77980-cpg-mssr # R-Car V3H
-> >        - renesas,r8a77990-cpg-mssr # R-Car E3
-> >        - renesas,r8a77995-cpg-mssr # R-Car D3
-> > +      - renesas,r8a779a0-cpg-mssr # R-Car V3U
-> >
-> >    reg:
-> >      maxItems: 1
-> > --
-> > 2.7.4
-> >
->
-> FIXME check clock-names
+On Wed, 26 Aug 2020 11:51:39 +0200, Stephan Gerhold wrote:
+> In some cases we need to probe additional audio components that do
+> not appear as part of the DAI links specified in the device tree.
+> Examples for this are auxiliary devices such as analog amplifiers
+> or codecs.
+> 
+> The ASoC core provides a way to probe these components by adding
+> them to snd_soc_card->aux_dev.
+> 
+> [...]
 
-Please ignore the FIXME (checked).
+Applied to
 
-Gr{oetje,eeting}s,
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-                        Geert
+Thanks!
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+[1/2] ASoC: dt-bindings: qcom: Document "aux-devs" property
+      commit: cdd3b8daf26e5eb2e97b6a37dfdb83597bcbdc52
+[2/2] ASoC: qcom: common: Parse auxiliary devices from device tree
+      commit: 1b839d3e15fd48e4278c83190725467713a5b3c6
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
