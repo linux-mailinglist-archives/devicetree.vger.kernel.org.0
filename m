@@ -2,139 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C4A2261FA8
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:05:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05B8326208B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:13:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730214AbgIHUFr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 16:05:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48186 "EHLO
+        id S1729941AbgIHUNE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 16:13:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730349AbgIHPV5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 11:21:57 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC8D4C09B054;
-        Tue,  8 Sep 2020 07:51:04 -0700 (PDT)
-Received: from [192.168.0.20] (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C25E53B;
-        Tue,  8 Sep 2020 16:50:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1599576660;
-        bh=/cK59t8GP4lrx2MFKT2wagK882I88lbeRzHoCNEQFE0=;
-        h=Reply-To:Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=igiBt8c/5Kly3IfGgFpTHUB70ymR5EPHC75hVQLiUtq5/3fbqoynTSd9QLplqWmMw
-         kBJLFfkiE+tCgekC8t3Hec7GCpG1VXqFThgwdfvDrhIKvD3XhxGiC0NpchBUIQijE+
-         DymYohoh1e2PpwFVic5aERuQQpuo9RkhAo0Qk2I0=
-Reply-To: kieran.bingham+renesas@ideasonboard.com
-Subject: Re: [PATCH v2 05/10] arm64: dts: renesas: r8a77961: Add FCP device
- nodes
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent <laurent.pinchart@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     Magnus <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux-DT <devicetree@vger.kernel.org>,
-        "(Renesas) shimoda" <yoshihiro.shimoda.uh@renesas.com>,
-        dri-devel@lists.freedesktop.org
-References: <87o8mhrtxo.wl-kuninori.morimoto.gx@renesas.com>
- <87h7s9rtvl.wl-kuninori.morimoto.gx@renesas.com>
-From:   Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Organization: Ideas on Board
-Message-ID: <cba5bbe0-0c68-0950-5cba-5fb10c9a51f4@ideasonboard.com>
-Date:   Tue, 8 Sep 2020 15:50:56 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        with ESMTP id S1729992AbgIHPLM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 11:11:12 -0400
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 557C8C0A88B7
+        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 07:58:24 -0700 (PDT)
+Received: by mail-ot1-x342.google.com with SMTP id a65so15081166otc.8
+        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 07:58:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=9gggthlY+o0JLKVW4bDabhGMPHFWypt8dqyEIpp5HBQ=;
+        b=YB1FIRYyzS+ivsL/x+45ExVO0WH4Is9QWS50BvdosbbeX3Gi9nCtUp3J82nNmljBY6
+         2JWQ8OutTr8NVlmEj5knAEd5QvGTHBgwJGuOKKBrxGLIqUrSTCfdGuVlSplWSBuVYG50
+         1gRt3j7MlGKO3Vgm/lbDnz/Rr6omJsM1OVD/v0oDJTX71dK7psTcnMmqtUpToxc8zybt
+         4ejNbNqpq110GFV6L5J6HSaFqA/UgkLEzxllqqnoKmQ4UbGu6gRzTXzpmg+clp3rTrUT
+         SlGD+3IhJ/dsetPuwDX0gLdqgHqVCPqxO1fgcGCW6gJcc09yKjpzpaQTKnrRam+Iva7t
+         vlcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9gggthlY+o0JLKVW4bDabhGMPHFWypt8dqyEIpp5HBQ=;
+        b=YrGmEk9eqNw+XlPaQd4BTqHQQ9NsXDVH4QPnYVKD9CIjPdhcbfitkNxIyV0KBobl6V
+         ITNKQn162/wvTZyErUZD33DQmFfnMZU1N3ctforaYvXrbRL6emQmyVu8fsEnTqJVyAjk
+         NB8LB1J5e297YeXFCbRQvDOAEN2moG/tZ5KumONRKclxROiHIAgFNUnkjswJpddEIBY1
+         Hv4nMFmUI6yCL1AAF1celR/QH/eBQmxCLnxc0pPuB3h55pYoLqxr0hEgFeaWDAezBF68
+         Seel2NO2LZrZZ1yBxLqwj81/rrLdJO3lveqM675qBysoMHIe27uNXU/p1/Zhh+0nR3Rd
+         3FJw==
+X-Gm-Message-State: AOAM532XYsqtRybUARJU0jcoWeQZOSPe5gs3fduE9FAjYOljRJdLRUIs
+        Ql9QxY4gKkPwDcXQtoFf0LqDHw==
+X-Google-Smtp-Source: ABdhPJwzWVepX/rnpXMX9hm2hay4q1Tqm8YqYT8JJBjjmrghpuG4jHcnsb8c87sfS0CmGWklIjZJNw==
+X-Received: by 2002:a9d:7590:: with SMTP id s16mr1860963otk.23.1599577104131;
+        Tue, 08 Sep 2020 07:58:24 -0700 (PDT)
+Received: from yoga ([2605:6000:e5cb:c100:8898:14ff:fe6d:34e])
+        by smtp.gmail.com with ESMTPSA id y24sm3515779ooq.38.2020.09.08.07.58.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Sep 2020 07:58:23 -0700 (PDT)
+Date:   Tue, 8 Sep 2020 09:58:19 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     rjw@rjwysocki.net, viresh.kumar@linaro.org, robh+dt@kernel.org,
+        agross@kernel.org, amitk@kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, dmitry.baryshkov@linaro.org,
+        tdas@codeaurora.org
+Subject: Re: [PATCH 1/7] dt-bindings: cpufreq: cpufreq-qcom-hw: Document
+ SM8250 compatible
+Message-ID: <20200908145819.GN3715@yoga>
+References: <20200908075716.30357-1-manivannan.sadhasivam@linaro.org>
+ <20200908075716.30357-2-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <87h7s9rtvl.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200908075716.30357-2-manivannan.sadhasivam@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Morimoto-san,
+On Tue 08 Sep 02:57 CDT 2020, Manivannan Sadhasivam wrote:
 
-On 08/09/2020 01:34, Kuninori Morimoto wrote:
+> Document the SM8250 SoC specific compatible for Qualcomm Cpufreq HW. The
+> hardware block which carries out CPUFreq operations on SM8250 SoC is
+> called EPSS.
 > 
-> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> 
-> This patch adds FCP device nodes for R-Car M3-W+ (r8a77961) SoC.
-> This patch was tested on R-Car M3-W+ Salvator-XS board.
-> 
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Please follow up, after this has been accepted, with a conversion of
+this binding to yaml.
+
+Regards,
+Bjorn
 
 > ---
->  arch/arm64/boot/dts/renesas/r8a77961.dtsi | 52 +++++++++++++++++++++++
->  1 file changed, 52 insertions(+)
+>  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-> index 0abfea0b27be..fe0db11b9cb9 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-> @@ -2004,6 +2004,58 @@ pciec1: pcie@ee800000 {
->  			status = "disabled";
->  		};
+> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
+> index 33856947c561..aea4ddb2b9e8 100644
+> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
+> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
+> @@ -8,7 +8,7 @@ Properties:
+>  - compatible
+>  	Usage:		required
+>  	Value type:	<string>
+> -	Definition:	must be "qcom,cpufreq-hw".
+> +	Definition:	must be "qcom,cpufreq-hw" or "qcom,sm8250-epss".
 >  
-> +		fcpf0: fcp@fe950000 {
-> +			compatible = "renesas,fcpf";
-> +			reg = <0 0xfe950000 0 0x200>;
-> +			clocks = <&cpg CPG_MOD 615>;
-> +			power-domains = <&sysc R8A77961_PD_A3VC>;
-> +			resets = <&cpg 615>;
-> +		};
-> +
-> +		fcpvb0: fcp@fe96f000 {
-> +			compatible = "renesas,fcpv";
-> +			reg = <0 0xfe96f000 0 0x200>;
-> +			clocks = <&cpg CPG_MOD 607>;
-> +			power-domains = <&sysc R8A77961_PD_A3VC>;
-> +			resets = <&cpg 607>;
-> +		};
-> +
-> +		fcpvi0: fcp@fe9af000 {
-> +			compatible = "renesas,fcpv";
-> +			reg = <0 0xfe9af000 0 0x200>;
-> +			clocks = <&cpg CPG_MOD 611>;
-> +			power-domains = <&sysc R8A77961_PD_A3VC>;
-> +			resets = <&cpg 611>;
-> +			iommus = <&ipmmu_vc0 19>;
-> +		};
-> +
-> +		fcpvd0: fcp@fea27000 {
-> +			compatible = "renesas,fcpv";
-> +			reg = <0 0xfea27000 0 0x200>;
-> +			clocks = <&cpg CPG_MOD 603>;
-> +			power-domains = <&sysc R8A77961_PD_ALWAYS_ON>;
-> +			resets = <&cpg 603>;
-> +			iommus = <&ipmmu_vi0 8>;
-> +		};
-> +
-> +		fcpvd1: fcp@fea2f000 {
-> +			compatible = "renesas,fcpv";
-> +			reg = <0 0xfea2f000 0 0x200>;
-> +			clocks = <&cpg CPG_MOD 602>;
-> +			power-domains = <&sysc R8A77961_PD_ALWAYS_ON>;
-> +			resets = <&cpg 602>;
-> +			iommus = <&ipmmu_vi0 9>;
-> +		};
-> +
-> +		fcpvd2: fcp@fea37000 {
-> +			compatible = "renesas,fcpv";
-> +			reg = <0 0xfea37000 0 0x200>;
-> +			clocks = <&cpg CPG_MOD 601>;
-> +			power-domains = <&sysc R8A77961_PD_ALWAYS_ON>;
-> +			resets = <&cpg 601>;
-> +			iommus = <&ipmmu_vi0 10>;
-> +		};
-> +
->  		csi20: csi2@fea80000 {
->  			reg = <0 0xfea80000 0 0x10000>;
->  			/* placeholder */
+>  - clocks
+>  	Usage:		required
+> -- 
+> 2.17.1
 > 
-
