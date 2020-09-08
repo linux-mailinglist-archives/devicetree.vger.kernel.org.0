@@ -2,168 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53F3426122E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 15:53:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18E3D261242
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 16:01:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729529AbgIHNp7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 09:45:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60862 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729781AbgIHNmN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 09:42:13 -0400
-Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CE5E32192A
-        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 11:56:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599566219;
-        bh=h3cv+RDjlk7wmtLDNSrx814csKm6m7ct3iSQIbcOg/E=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=IbjSqtIF1TJJuBu197Ffb0ftjzwrp79UjzhpZGFfYZQpPM4sW2yH/p0uJnTCwnLI9
-         Gc5uwheqxkQOIqwi/2gvYq07TlJD03asJMUVwx5qRErkhjFwvOL4vU26B9skjfZpul
-         7mizF9BQQCTsu8WVBP5h1HJHW7p0cYOcZ/te/4wI=
-Received: by mail-vk1-f174.google.com with SMTP id d2so1494150vkd.13
-        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 04:56:58 -0700 (PDT)
-X-Gm-Message-State: AOAM53134DTQcFTr6nM9zoF4Vmz7JuvrA10rNuu/VckeWb+VYvBKC5Hg
-        p1o2q4eADG0KXICWE+rFySEclz+pO7YcNu1pjrN1Dg==
-X-Google-Smtp-Source: ABdhPJxvKv+NiIR52wR1XowSSPT+PZ4GJxVsBTin1GaHc/2WNVEmYNU5vtdL9uz3C8HX7BrRbPPW5oa4vjLLPudWWH8=
-X-Received: by 2002:a1f:2507:: with SMTP id l7mr3434112vkl.35.1599566218024;
- Tue, 08 Sep 2020 04:56:58 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200908075716.30357-1-manivannan.sadhasivam@linaro.org> <20200908075716.30357-3-manivannan.sadhasivam@linaro.org>
-In-Reply-To: <20200908075716.30357-3-manivannan.sadhasivam@linaro.org>
-From:   Amit Kucheria <amitk@kernel.org>
-Date:   Tue, 8 Sep 2020 17:26:47 +0530
-X-Gmail-Original-Message-ID: <CAHLCerMXWsYX85RWYXqb7Ch9KXFsiR0H-Y-L-y68wdtyPFNnvA@mail.gmail.com>
-Message-ID: <CAHLCerMXWsYX85RWYXqb7Ch9KXFsiR0H-Y-L-y68wdtyPFNnvA@mail.gmail.com>
-Subject: Re: [PATCH 2/7] arm64: dts: qcom: sm8250: Add cpufreq hw node
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
+        id S1729851AbgIHOAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 10:00:48 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:59077 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729741AbgIHN7U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 09:59:20 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 4E264580441;
+        Tue,  8 Sep 2020 08:00:23 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Tue, 08 Sep 2020 08:00:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=A
+        t0ECiv86wOydFiONx1rKX74GnbiUZGiVwaMOztKjuk=; b=A28HdI8alVUfO+NGz
+        jhOSfc5vwRPeVN7GA2rcjgFsQTj4DmJjpoyrEQkyjXPCh3ig+997suzCFj225jSs
+        LIeEQWtGZev9qkXT288I3DiK25ASbo1vLbs+21RikvLtgfYvZJcLqnuWwVkkKZjV
+        kBIuYuOqUKkofKQ7/5qvIgUXphgJKKsh1GC2K8wV7VANnkV90ZCfKsQJ+WyggWSj
+        bEk/rdkOr5PrzRiAHdmPd7EAd6kV/ATbM9lgGss/QODATDhCzzsGwxQHTGHinFeB
+        p6GuTicJXU0TkVP+vI13kbKL8Tpa2zf47B+QJMZmUCXLsHqrJ7qSvWf4dgsSX40w
+        h1GYA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=At0ECiv86wOydFiONx1rKX74GnbiUZGiVwaMOztKj
+        uk=; b=dhghoUJmS7jVoxYnaqVEzRC1l/H3fLlqWDpRqZ+MysnqvW7+KIG3BEF2L
+        79nCo2PnEFKJCFGixMT6iyQYtYfujiYACHcKSVRWmyKRSVtSSOD9spYoMkQCxAjI
+        fuu32uUrij8KOA92gAPsDg4uMz+iTnJR3Qx/sOUG3/9dWaYbO4nnkRhYd8Sd/ebv
+        mehj32n2xTqDORYsIBS3q58wEnFCg2ScmAVMLzoILwbZ8wlhpTrg1VnRTInQT7ms
+        AcI8M8/qs+KBhM2uRhcIqMmfzlhP1uGMY7aozWmPavKmnHP/zIYDxP5LD5dNMHJ2
+        GX7R7lhLgdUgZdYHI7gKYEl+H+G3Q==
+X-ME-Sender: <xms:VnJXX9Snuh4Cse39j9YfRGTXSrPqxCxPAeYkDMDL2TQWOY0JWoHOQw>
+    <xme:VnJXX2wJqJ89WKHQlrOSPRKliK6E18tW7Ny8iUSWdNx0Nhkl1-rliKRfrvys2OLmR
+    6EDFwifw5WC5x7lNok>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudehfedgfedtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtugfgjgesthhqredttddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpefgjeettdejgffgffdvteeutdehtdehgeehueetkeefgefhtdetjeekledu
+    gedvudenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtne
+    curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:VnJXXy1j80EPqHy8o0z4n9Uud9Z1vczcgHt2eYwuUIsMgOlvFJZGXA>
+    <xmx:VnJXX1AUG3iZSUaVW69wOb0p4qmgeWVSwqTlOqtDSaVdwzDYZ9-f-w>
+    <xmx:VnJXX2hKy80dBWfVA0hBxnuXwHSqNVFVeMUADbN8CKENBj6PIFT4YA>
+    <xmx:V3JXX3bXx01SDa8CprDSFTPaGFIoJl2eQ0TFaUDkdyDdzLnkqJS8lw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id BE0F33280060;
+        Tue,  8 Sep 2020 08:00:21 -0400 (EDT)
+Date:   Tue, 8 Sep 2020 14:00:19 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Hoegeun Kwon <hoegeun.kwon@samsung.com>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Eric Anholt <eric@anholt.net>, devicetree@vger.kernel.org,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Kamal Dasu <kdasu.kdev@gmail.com>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Taniya Das <tdas@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        Phil Elwell <phil@raspberrypi.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 00/80] drm/vc4: Support BCM2711 Display Pipeline
+Message-ID: <20200908120019.3rmhzoijoijrbb7d@gilmour.lan>
+References: <CGME20200904071259epcas1p3de4209531c0bc5ed6ea9ef19827b6ed5@epcas1p3.samsung.com>
+ <cover.dddc064d8bb83e46744336af67dcb13139e5747d.1599120059.git-series.maxime@cerno.tech>
+ <cca5234f-e1e8-b642-048b-b710f402409d@samsung.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <cca5234f-e1e8-b642-048b-b710f402409d@samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 8, 2020 at 1:27 PM Manivannan Sadhasivam
-<manivannan.sadhasivam@linaro.org> wrote:
->
-> From: Bjorn Andersson <bjorn.andersson@linaro.org>
->
-> Add cpufreq HW device node to scale 4-Silver/3-Gold/1-Gold+ cores
-> on SM8250 SoCs.
->
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Hi Hoegeun,
 
+On Mon, Sep 07, 2020 at 08:49:12PM +0900, Hoegeun Kwon wrote:
+> On 9/3/20 5:00 PM, Maxime Ripard wrote:
+> > Hi everyone,
+> >
+> > Here's a (pretty long) series to introduce support in the VC4 DRM driver
+> > for the display pipeline found in the BCM2711 (and thus the RaspberryPi=
+ 4).
+> >
+> > The main differences are that there's two HDMI controllers and that the=
+re's
+> > more pixelvalve now. Those pixelvalve come with a mux in the HVS that s=
+till
+> > have only 3 FIFOs. Both of those differences are breaking a bunch of
+> > expectations in the driver, so we first need a good bunch of cleanup and
+> > reworks to introduce support for the new controllers.
+> >
+> > Similarly, the HDMI controller has all its registers shuffled and split=
+ in
+> > multiple controllers now, so we need a bunch of changes to support this=
+ as
+> > well.
+> >
+> > Only the HDMI support is enabled for now (even though the DPI and DSI
+> > outputs have been tested too).
+> >
+> > Let me know if you have any comments
+> > Maxime
+> >
+> > Cc: bcm-kernel-feedback-list@broadcom.com
+> > Cc: devicetree@vger.kernel.org
+> > Cc: Kamal Dasu <kdasu.kdev@gmail.com>
+> > Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Stephen Boyd <sboyd@kernel.org>
+> >
+> > Changes from v4:
+> >    - Rebased on top of next-20200828
+> >    - Collected the various tags
+> >    - Fixed some issues with 4k support and dual output (thanks Hoegeun!)
+>=20
+> Thanks for your v5 patchset.
+>=20
+> I tested all patches based on the next-20200812.
 
-Reviewed-by: Amit Kucheria <amitk@kernel.org>
+Thanks again for testing all the patches
 
+> Everything else is fine, but the dual hdmi modetest doesn't work well in =
+my
+> environment...
+>=20
+> In my environment, dsi is not connected, I have seen your answer[1].
 
-> ---
->  arch/arm64/boot/dts/qcom/sm8250.dtsi | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index e7d139e1a6ce..aafb46a26a9c 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -87,6 +87,7 @@
->                         reg = <0x0 0x0>;
->                         enable-method = "psci";
->                         next-level-cache = <&L2_0>;
-> +                       qcom,freq-domain = <&cpufreq_hw 0>;
->                         L2_0: l2-cache {
->                               compatible = "cache";
->                               next-level-cache = <&L3_0>;
-> @@ -102,6 +103,7 @@
->                         reg = <0x0 0x100>;
->                         enable-method = "psci";
->                         next-level-cache = <&L2_100>;
-> +                       qcom,freq-domain = <&cpufreq_hw 0>;
->                         L2_100: l2-cache {
->                               compatible = "cache";
->                               next-level-cache = <&L3_0>;
-> @@ -114,6 +116,7 @@
->                         reg = <0x0 0x200>;
->                         enable-method = "psci";
->                         next-level-cache = <&L2_200>;
-> +                       qcom,freq-domain = <&cpufreq_hw 0>;
->                         L2_200: l2-cache {
->                               compatible = "cache";
->                               next-level-cache = <&L3_0>;
-> @@ -126,6 +129,7 @@
->                         reg = <0x0 0x300>;
->                         enable-method = "psci";
->                         next-level-cache = <&L2_300>;
-> +                       qcom,freq-domain = <&cpufreq_hw 0>;
->                         L2_300: l2-cache {
->                               compatible = "cache";
->                               next-level-cache = <&L3_0>;
-> @@ -138,6 +142,7 @@
->                         reg = <0x0 0x400>;
->                         enable-method = "psci";
->                         next-level-cache = <&L2_400>;
-> +                       qcom,freq-domain = <&cpufreq_hw 1>;
->                         L2_400: l2-cache {
->                               compatible = "cache";
->                               next-level-cache = <&L3_0>;
-> @@ -150,6 +155,7 @@
->                         reg = <0x0 0x500>;
->                         enable-method = "psci";
->                         next-level-cache = <&L2_500>;
-> +                       qcom,freq-domain = <&cpufreq_hw 1>;
->                         L2_500: l2-cache {
->                               compatible = "cache";
->                               next-level-cache = <&L3_0>;
-> @@ -163,6 +169,7 @@
->                         reg = <0x0 0x600>;
->                         enable-method = "psci";
->                         next-level-cache = <&L2_600>;
-> +                       qcom,freq-domain = <&cpufreq_hw 1>;
->                         L2_600: l2-cache {
->                               compatible = "cache";
->                               next-level-cache = <&L3_0>;
-> @@ -175,6 +182,7 @@
->                         reg = <0x0 0x700>;
->                         enable-method = "psci";
->                         next-level-cache = <&L2_700>;
-> +                       qcom,freq-domain = <&cpufreq_hw 2>;
->                         L2_700: l2-cache {
->                               compatible = "cache";
->                               next-level-cache = <&L3_0>;
-> @@ -2076,6 +2084,20 @@
->                                 };
->                         };
->                 };
-> +
-> +               cpufreq_hw: cpufreq@18591000 {
-> +                       compatible = "qcom,sm8250-epss";
-> +                       reg = <0 0x18591000 0 0x1000>,
-> +                             <0 0x18592000 0 0x1000>,
-> +                             <0 0x18593000 0 0x1000>;
-> +                       reg-names = "freq-domain0", "freq-domain1",
-> +                                   "freq-domain2";
-> +
-> +                       clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
-> +                       clock-names = "xo", "alternate";
-> +
-> +                       #freq-domain-cells = <1>;
-> +               };
->         };
->
->         timer {
-> --
-> 2.17.1
->
+Can you share a bit more your setup? What monitors are being connected
+to each HDMI port? Do you hotplug any?
+
+Maxime
