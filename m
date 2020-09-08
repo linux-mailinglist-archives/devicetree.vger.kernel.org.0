@@ -2,151 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C461260EC3
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 11:36:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A18D260ECB
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 11:38:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728911AbgIHJf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 05:35:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51442 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728798AbgIHJfy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 05:35:54 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A271C061757
-        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 02:35:43 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id q9so16603321wmj.2
-        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 02:35:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=BeqWiKyy2q9h196I07hlm698YeqsB6n9xDnRMOn41fE=;
-        b=zRfCxghfDE520rmBsbZWLpRUQoNwbS7ZJswAcOp3EFCxZF/qxDkslg0bMkhEaPbnvQ
-         uQoIootj9J20mEuW52nBQncMupNt1Z/lrCEUp/hTHF2cbW4ze5phqMwUHXT88Onf6T6U
-         XPt1SuCD3Pnx/vROIgCZq2UKCI8XwvSjGmQKOioKp15LciAkortrb6a+oqK2wy+7ceiI
-         6hNREpWE+8PRikBCPMWWciaHI7emd+oSPkxLRmdsOyvZBcQbUOS4zc4yyIT4eFeywSTO
-         0Inzytl0SCyaQ4Yegfmjydgu/XZk4F5SHVzA2/rJ6rW8YxtvwaYnGVSSvD2+AazINpeM
-         5Kag==
+        id S1728705AbgIHJit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 05:38:49 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:38757 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727995AbgIHJis (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 05:38:48 -0400
+Received: by mail-ot1-f68.google.com with SMTP id y5so14306250otg.5;
+        Tue, 08 Sep 2020 02:38:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=BeqWiKyy2q9h196I07hlm698YeqsB6n9xDnRMOn41fE=;
-        b=RSU1p+mhQyxEDa3tizrAXUyM1hNIed9fLz96gA91M+sBEP80Jz9+rcnK0rbROxo2ny
-         HHgREuVdCPkBethMcsUDMBou5KePHtuTCBdSDg7FYCquA43DFYE7v9GhmnlZdr6+DJkX
-         94uFeQooohsCNJw7GsyoQYhaeC82Gl4y6Y5H4eRXc9T2QPl+h4wv1SDPxUvtPYY/ik5E
-         +OxCG1ewvJYBqdobomxVy0P3RGW+T0J00uG+RoYMdeE5blBoIPAQy1AUi37XA5aub2xU
-         rR/5UTNi1lK/Jb/ZmIalU3GOOXzKF7NyF3e7UwdcJ2fOqlAHk8F9RUQX1ivNNdovB4JW
-         LKGA==
-X-Gm-Message-State: AOAM531vzkc2XN8DCOiPJQINt537CMhodVRjUWkfVgY9S8SAKJjIoKCe
-        od/FEK9q0LfUfbydnIgMK7aNeQ==
-X-Google-Smtp-Source: ABdhPJwSGVcSB7tECrf90WTk449mkRJzFsiMZbiOsDL0m1RNcYjJzM6A1ZUkahuSc+wylUXYyogdpQ==
-X-Received: by 2002:a1c:7d0c:: with SMTP id y12mr3504117wmc.103.1599557742367;
-        Tue, 08 Sep 2020 02:35:42 -0700 (PDT)
-Received: from dell ([91.110.221.204])
-        by smtp.gmail.com with ESMTPSA id q12sm32786028wrp.17.2020.09.08.02.35.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Sep 2020 02:35:41 -0700 (PDT)
-Date:   Tue, 8 Sep 2020 10:35:38 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Josua Mayer <josua.mayer@jm0.eu>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>
-Subject: Re: [PATCH v2 05/10] pwm: ntxec: Add driver for PWM function in
- Netronix EC
-Message-ID: <20200908093538.GM4400@dell>
-References: <20200905133230.1014581-1-j.neuschaefer@gmx.net>
- <20200905133230.1014581-6-j.neuschaefer@gmx.net>
- <CAHp75VdUHoOyM3bObzhdfiqpne0AmSK_UakteTZxnjqJVrNV9A@mail.gmail.com>
- <20200908081445.GC4400@dell>
- <CAHp75Veb5nVasy28FSksf06eVVhC8N5hHsEPM-2YcFbMjZ5Rhw@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/Y6vLqp5sK1D0NIkdBwzr5/FdYN8Nrmu/GBXijD0ZA0=;
+        b=FaoMUFb3XMHpKLN/At+Za11PCCi0Ul97QLCICtMC8D363Z0UV4gtc85lBjrqmCqXQ+
+         fUZlcOGh0OS0JzhiXgqbMCAjbYDzLE1L+io/B1jkN8/k554iaD3bfDHtDTmCyDAn8iuc
+         lPaQ/kyl5p9RmniKt1amAY4g8d8wDdrxFStMFK158ITBUuDGDq4WLyZuTFWXnKILzSwe
+         1Q1dYEfNN0D+MSKEc9RIhkwtoGTcSsPqLx0lIn/TcfsiSgWRw7QHNCFIj0PHnwAw5rKD
+         jSK0FgeNrRTud/0xjxk86eI6/jbfePpF103mAKa36E25rSVFdmz6e3IGtln8Rbhhav/S
+         18Ew==
+X-Gm-Message-State: AOAM531QvphBQBAyZG9w9fJ7CQVkBM2kRNy7d8vLJoPgBWtr31V3FS5C
+        2Izw+2iE1hFo7ncTjRYELAMNTZy5QXkkg8T+R7c=
+X-Google-Smtp-Source: ABdhPJzqi44rDmKBbgV4lUYybG4HYsueVzA9IFuCpw9kBlpk92vj2+SHqGy7veo2Lqlz9CwKKgPCfLX4ZHdgFpT1CEQ=
+X-Received: by 2002:a9d:162:: with SMTP id 89mr17656285otu.250.1599557928030;
+ Tue, 08 Sep 2020 02:38:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHp75Veb5nVasy28FSksf06eVVhC8N5hHsEPM-2YcFbMjZ5Rhw@mail.gmail.com>
+References: <1599470390-29719-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <1599470390-29719-8-git-send-email-yoshihiro.shimoda.uh@renesas.com> <CAMuHMdVeHMXD-kwV4jqiv=pjU5Q==MJYKoY9C9ULc6re-dW+YQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdVeHMXD-kwV4jqiv=pjU5Q==MJYKoY9C9ULc6re-dW+YQ@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 8 Sep 2020 11:38:37 +0200
+Message-ID: <CAMuHMdXtSTN18LjHTWD-83qFzE+GsrerxU1Gs_rGNQ3jHB+8yg@mail.gmail.com>
+Subject: Re: [PATCH 07/14] dt-bindings: clock: Add r8a77961 CPG Core Clock Definitions
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 08 Sep 2020, Andy Shevchenko wrote:
+On Tue, Sep 8, 2020 at 11:23 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> On Mon, Sep 7, 2020 at 11:20 AM Yoshihiro Shimoda
+> <yoshihiro.shimoda.uh@renesas.com> wrote:
+> > --- /dev/null
+> > +++ b/include/dt-bindings/clock/r8a779a0-cpg-mssr.h
 
-> On Tue, Sep 8, 2020 at 11:14 AM Lee Jones <lee.jones@linaro.org> wrote:
-> > On Sat, 05 Sep 2020, Andy Shevchenko wrote:
-> > > On Saturday, September 5, 2020, Jonathan Neuschäfer <j.neuschaefer@gmx.net>
-> > > wrote:
-> 
-> ...
-> 
-> > > > +config PWM_NTXEC
-> > > > +       tristate "Netronix embedded controller PWM support"
-> > >
-> > >
-> > >
-> > >
-> > > > +       depends on MFD_NTXEC && OF
-> > >
-> > >
-> > > I don’t see need to reduce test coverage and use of the driver by sticking
-> > > with OF. Actually it’s not used.
-> >
-> > If the device is only known to boot with OF, then it's pointless
-> > building it when !OF.
-> 
-> No, it's not. As I pointed out the (compilation) test coverage is better.
+> > +#define R8A779A0_CLK_S1D1              9
+> > +#define R8A779A0_CLK_S1D2              10
+> > +#define R8A779A0_CLK_S1D4              11
+> > +#define R8A779A0_CLK_S1D8              12
+> > +#define R8A779A0_CLK_S1D12             13
+>
+> No S1D8 nor S1D12 in the table in Section 8.1.4 ("List of Clock Out")?
 
-No, it's a waste of disk space.
+But it is listed as a child of S1...
 
-Why would you knowingly compile something you know you can't use?
+Gr{oetje,eeting}s,
 
-That's the whole point of COMPILE_TEST.
-
-Note that when you want real coverage and you use `allyesconfig`
-and/or `allmodconfig` then CONFIG_OF is also enabled on platforms
-which support it.
-
-> > If you want to increase test coverage enable
-> > COMPILE_TEST instead.
-> 
-> It is one way to achieve that, yes;
-> 
->        depends on OF || COMPILE_TEST
->        depends on MFD_NTXEC
-
-This is better.
+                        Geert
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
