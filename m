@@ -2,66 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA8B3261294
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 16:23:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25C052612BC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 16:31:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729525AbgIHOW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 10:22:56 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:6257 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729988AbgIHOPu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 10:15:50 -0400
-X-UUID: 51970f2d630042fabf15de668d72185e-20200908
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=ZedMZfUFgLvexz8GKyj+hsZdPazQ9EjrZfeYaT0ZaBc=;
-        b=h7N4rGvPg3n4HrBGWAOOsN+Y5SXtHE+F+IhfvmOdQ45i60texspG7e/jP7W7Vod49lsgfaTq9VXBFo24W8gPR+W7MMYF5bdB9ZnHGAfDTNrLYeiYO+ZlYCK/2R/ZcVPADF1mHnUYTkXAqhrdBnzK8/oA+yA2CPc3c9ips0asMfg=;
-X-UUID: 51970f2d630042fabf15de668d72185e-20200908
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <fengping.yu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1609223649; Tue, 08 Sep 2020 20:08:27 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 8 Sep 2020 20:08:24 +0800
-Received: from localhost.localdomain (10.15.20.246) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 8 Sep 2020 20:08:23 +0800
-From:   Fengping Yu <fengping.yu@mediatek.com>
-To:     Yingjoe Chen <yingjoe.chen@mediatek.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
+        id S1729479AbgIHOam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 10:30:42 -0400
+Received: from foss.arm.com ([217.140.110.172]:54244 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729691AbgIHO1J (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 10:27:09 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 64D1D106F;
+        Tue,  8 Sep 2020 05:48:37 -0700 (PDT)
+Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id E995F3F73C;
+        Tue,  8 Sep 2020 05:48:34 -0700 (PDT)
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     devicetree@vger.kernel.org,
+        Andre Przywara <andre.przywara@arm.com>,
         Rob Herring <robh+dt@kernel.org>
-CC:     <linux-input@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v18] Add matrix keypad driver support for Mediatek SoCs 
-Date:   Tue, 8 Sep 2020 20:03:46 +0800
-Message-ID: <20200908120349.1685-1-fengping.yu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        linux-watchdog@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Ray Jui <rjui@broadcom.com>, Wei Xu <xuwei5@hisilicon.com>,
+        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Chanho Min <chanho.min@lge.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>
+Subject: Re: [PATCH 00/10] dt-bindings: Convert SP805 to Json-schema (and fix users)
+Date:   Tue,  8 Sep 2020 13:48:33 +0100
+Message-Id: <159956909739.1981.1445009961790432291.b4-ty@arm.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200828130602.42203-1-andre.przywara@arm.com>
+References: <20200828130602.42203-1-andre.przywara@arm.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpDaGFuZ2Ugc2luY2UgdjE3Og0KLSBtb2RpZnkgaG93IHRvIGdldCBrZXljb2RlIGluIGtleXBh
-ZCBpbnRlcnJ1cHQgaGFuZGxlcg0KLSByZXBsYWNlIHZhcmlhYmxlIHJldCBhcyBlcnJvciBpbiBw
-cm9iZSBmdW5jdGlvbg0KLSB1cGRhdGUga2V5cGFkLCBudW0tY29sdW1ucyBhbmQga2V5cGFkLCBu
-dW0tcm93cyBkZXNjcmlwdGlvaW4NCg0KZmVuZ3BpbmcueXUgKDMpOg0KICBkdC1iaW5kaW5nczog
-QWRkIGJpbmRpbmdzIGZvciBNZWRpYXRlayBtYXRyaXgga2V5cGFkDQogIGRyaXZlcnM6IGlucHV0
-OmtleWJvYXJkOiBBZGQgbXRrIGtleXBhZCBkcml2ZXINCiAgY29uZmlnczogZGVmY29uZmlnOiBB
-ZGQgQ09ORklHX0tFWUJPQVJEX01US19LUEQ9bQ0KDQogLi4uL2RldmljZXRyZWUvYmluZGluZ3Mv
-aW5wdXQvbXRrLWtwZC55YW1sICAgIHwgIDgzICsrKysrKysNCiBhcmNoL2FybTY0L2NvbmZpZ3Mv
-ZGVmY29uZmlnICAgICAgICAgICAgICAgICAgfCAgIDEgKw0KIGRyaXZlcnMvaW5wdXQva2V5Ym9h
-cmQvS2NvbmZpZyAgICAgICAgICAgICAgICB8ICAxMSArDQogZHJpdmVycy9pbnB1dC9rZXlib2Fy
-ZC9NYWtlZmlsZSAgICAgICAgICAgICAgIHwgICAxICsNCiBkcml2ZXJzL2lucHV0L2tleWJvYXJk
-L210ay1rcGQuYyAgICAgICAgICAgICAgfCAyMTggKysrKysrKysrKysrKysrKysrDQogNSBmaWxl
-cyBjaGFuZ2VkLCAzMTQgaW5zZXJ0aW9ucygrKQ0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaW5wdXQvbXRrLWtwZC55YW1sDQogY3JlYXRlIG1v
-ZGUgMTAwNjQ0IGRyaXZlcnMvaW5wdXQva2V5Ym9hcmQvbXRrLWtwZC5jDQoNCi0tDQoyLjE4LjAN
-Cg0K
+On Fri, 28 Aug 2020 14:05:52 +0100, Andre Przywara wrote:
+> This is an attempt to convert the SP805 watchdog DT binding to yaml.
+> This is done in the first patch, the remaining nine fix some DT users.
+> 
+> I couldn't test any of those DT files on actual machines, but tried
+> to make the changes in a way that would be transparent to at least the
+> Linux driver. The only other SP805 DT user I could find is U-Boot, which
+> seems to only use a very minimal subset of the binding (just the first
+> clock).
+> I only tried to fix those DTs that were easily and reliably fixable.
+> AFAICT, a missing primecell compatible string, for instance, would
+> prevent the Linux driver from probing the device at all, so I didn't
+> dare to touch those DTs at all. Missing clocks are equally fatal.
+> 
+> [...]
+
+I have picked 2 patches for Arm Ltd boards/models.
+
+Applied to sudeep.holla/linux (for-next/juno), thanks!
+
+[1/2] (korg_sudeep/for-next/juno, for-next/juno) arm64: dts: arm: Fix SP805 clock-names
+      https://git.kernel.org/sudeep.holla/c/b83ded8a31
+[2/2] ARM: dts: arm: Fix SP805 clocks
+      https://git.kernel.org/sudeep.holla/c/a894c6dd56
+
+--
+
+Regards,
+Sudeep
 
