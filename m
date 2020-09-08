@@ -2,94 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 576262609DB
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 07:14:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 693BB260A3E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 07:43:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728317AbgIHFO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 01:14:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39588 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725938AbgIHFOY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 01:14:24 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FB9DC061573
-        for <devicetree@vger.kernel.org>; Mon,  7 Sep 2020 22:14:24 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id k15so9952347pfc.12
-        for <devicetree@vger.kernel.org>; Mon, 07 Sep 2020 22:14:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=GA6Q87SXfiiRyiEUrF3DVxzLNnyqW4kCZ2nOXPNCBoQ=;
-        b=DIOIN0M1CLSFoy3Yo1MnXH3JBVqUEH7u6JJ0/EiwRGGfsRI00a9ga2LT4axQ/CALQv
-         4Ub6I31zTflE9byo89GvmfPf/c4i7I4de8x0k3md3AKKIvFZVCvSVP45i9tyPIFw+e1J
-         /C1tMAWwISPgMBH4Tc3wtONeO3qmoP/tYp4IjSdecTUEsqWoMURL3NkhMvzAf4UNa9CK
-         8aNw5bQptDUfmGLd7yhTS5lrMPwhHB0JC6abRCSno2tFBG/uxnuG+GA55fAFS4pY4EUJ
-         vSJQJ/s521x04RQVJ5cQSiQtVIP1iqVz5/CzBsumLd2vwaB2aKXtg2FBd6cnb7Sb7umZ
-         Ti8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=GA6Q87SXfiiRyiEUrF3DVxzLNnyqW4kCZ2nOXPNCBoQ=;
-        b=ZA3MYFIV7wtzpl5XlnfbN5di9qoR/gtFPeaCDD69STYPgxwbKJTO08XMohXNH+xiha
-         Ej5uh0Q9j8UwzN5BX03EljR28F5SsuXGzc6Sgyj6rdaU2PgdriwaLODgSywQWGcZkwqI
-         0bfzRHTGAu9/3eyG1QoN7IxzQNE4XduD+5pYHaq6dI/Gif1fj6T6y4NVha6ke61oMWG5
-         Pk3ubPTntE5eDPzIQlsFWGu6FI8ay+xwK2H8bQ2mDVZTNQi+84yfXD48ftD1xAqy8Nqq
-         lStcK0drPZiKIOvdA/gcRobBeAUTCJG+9GbhsPQ0uCr3NMuh2tMQpNlp43gEwE8kv0ie
-         3VhA==
-X-Gm-Message-State: AOAM530wqVEIa3YM6pXhBKViGA5ZKXGDrptqFjWM3xmuRPCDkipHk/cs
-        4dfQwQhQ/XM8KtQNKqLBLP0S/w==
-X-Google-Smtp-Source: ABdhPJzWWdFvxTcgmvwbeZhhaPBEwqOapZp0KsHGc4JYEcxUmmMfC+nTLqvQJ5QjGzfo38RFeoHqqg==
-X-Received: by 2002:a62:1592:: with SMTP id 140mr3940470pfv.215.1599542063985;
-        Mon, 07 Sep 2020 22:14:23 -0700 (PDT)
-Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id c3sm16708857pfo.120.2020.09.07.22.14.22
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 07 Sep 2020 22:14:23 -0700 (PDT)
-Date:   Tue, 8 Sep 2020 10:44:16 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Hector Yuan <hector.yuan@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Vinod Koul <vkoul@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Olof Johansson <olof@lixom.net>, wsd_upstream@mediatek.com
-Subject: Re: [PATCH v3] cpufreq: mediatek-hw: Add support for Mediatek
- cpufreq HW driver
-Message-ID: <20200908051416.na567g3mr7zbyr6h@vireshk-i7>
-References: <1598446913-24325-1-git-send-email-hector.yuan@mediatek.com>
- <1599532510.17707.4.camel@mtkswgap22>
+        id S1728658AbgIHFnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 01:43:11 -0400
+Received: from a27-21.smtp-out.us-west-2.amazonses.com ([54.240.27.21]:41672
+        "EHLO a27-21.smtp-out.us-west-2.amazonses.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728531AbgIHFnG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 01:43:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+        s=zsmsymrwgfyinv5wlfyidntwsjeeldzt; d=codeaurora.org; t=1599543785;
+        h=Content-Type:MIME-Version:Content-Transfer-Encoding:Subject:From:In-Reply-To:References:To:Cc:Message-Id:Date;
+        bh=X3Ta7jxOFA+EjtY0N2rZzMQAHngY/WbCfr2e6T5ZDZE=;
+        b=BoLJxJcJC2+WCODw0c59ZnQtuBMBQvSxqz6sMH/2tFLEOeWWmekzja7mI2aM1b8w
+        LkelL/q/OOoND2jER1KsR7TNH1a+3EN5Rxds84IH3Yd+9mAMTeJOy2KoGJ1Nx7359p8
+        YWX6mjeObm43L7UyG2jYlPLranSCGoXtmi9TzOMU=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+        s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1599543785;
+        h=Content-Type:MIME-Version:Content-Transfer-Encoding:Subject:From:In-Reply-To:References:To:Cc:Message-Id:Date:Feedback-ID;
+        bh=X3Ta7jxOFA+EjtY0N2rZzMQAHngY/WbCfr2e6T5ZDZE=;
+        b=D7+ST11GwHOGiEuORTdRwP1SgYa20E3Iuy9pBHYJm9JNopRtHaMhAm1il/Q4id01
+        A5fGiqRZ1eVb4Sh+2l4XQp/BVHWgMdLmSLCl9YvUHkAT+ozj9N+jBnSr8RXNQCJJump
+        VDU4QrmNSHXaMUl4pxvqAm/CtlvPEvH8yIMwawc0=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        MISSING_DATE,MISSING_MID,SPF_FAIL,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.0
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4BEF2C433C8
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kvalo@codeaurora.org
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1599532510.17707.4.camel@mtkswgap22>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH 1/2] dt: bindings: Add new regulator as optional property
+ for
+ WCN3990
+From:   Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1593194502-13164-2-git-send-email-pillair@codeaurora.org>
+References: <1593194502-13164-2-git-send-email-pillair@codeaurora.org>
+To:     Rakesh Pillai <pillair@codeaurora.org>
+Cc:     ath10k@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rakesh Pillai <pillair@codeaurora.org>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.5.2
+Message-ID: <010101746c3d3841-1d9fea9b-b289-4fed-bffa-3b348536d69e-000000@us-west-2.amazonses.com>
+Date:   Tue, 8 Sep 2020 05:43:05 +0000
+X-SES-Outgoing: 2020.09.08-54.240.27.21
+Feedback-ID: 1.us-west-2.CZuq2qbDmUIuT3qdvXlRHZZCpfZqZ4GtG9v3VKgRyF0=:AmazonSES
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08-09-20, 10:35, Hector Yuan wrote:
-> Hi, Sirs:
+Rakesh Pillai <pillair@codeaurora.org> wrote:
+
+> Add an additional regulator supply as an optional
+> property for WCN3990.
 > 
-> Please kindly let me know your review thoughts of this patch.
-> Appreciated.
+> Tested-on: WCN3990 hw1.0 SNOC WLAN.HL.3.1-01040-QCAHLSWMTPLZ-1
+> 
+> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Please don't send new patchsets in hurry, it isn't going to help any
-of us. V3 doesn't address all the review comments you received in V2
-and so there is no point reviewing it.
+2 patches applied to ath-next branch of ath.git, thanks.
 
-Please send a new version which addresses all the comments you got.
+8f1553694551 dt: bindings: Add new regulator as optional property for WCN3990
+9e69fe31ca9a ath10k: Add support for chain1 regulator supply voting
 
 -- 
-viresh
+https://patchwork.kernel.org/patch/11628309/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
