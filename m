@@ -2,97 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81EF8260FFA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 12:33:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CCDA260FF0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 12:32:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729422AbgIHKdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 06:33:41 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:56356 "EHLO inva021.nxp.com"
+        id S1729753AbgIHKcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 06:32:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38448 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729538AbgIHK0i (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 06:26:38 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id BED472011C6;
-        Tue,  8 Sep 2020 12:26:11 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id B1DC720025C;
-        Tue,  8 Sep 2020 12:26:11 +0200 (CEST)
-Received: from fsr-ub1664-175.ea.freescale.net (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 0B28120327;
-        Tue,  8 Sep 2020 12:26:11 +0200 (CEST)
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Anson Huang <anson.huang@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fugang Duan <fugang.duan@nxp.com>, devicetree@vger.kernel.org
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
+        id S1729935AbgIHK3B (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 06:29:01 -0400
+Received: from mail.kernel.org (ip5f5ad5ce.dynamic.kabel-deutschland.de [95.90.213.206])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2A51421556;
+        Tue,  8 Sep 2020 10:29:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599560940;
+        bh=IAB2OfIUn/8K8Wy7aR20s3fCv1Xzvg8uXkO3xarIgmc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=X0ZlHXUKM6AI/YSj2aXD1caXyfv3PBwkDkxvZVx9TyCFX+I8K5itKKDtYScVEGpoI
+         OYa5jLnt+73Ie2CgOh1OemrRozBTP8TkSripMGOm7Zn7YscOeeRuw2FW/BHOG84mYH
+         8kNInTsZUyarKkItX6o1GU5hry6cKHVUKpjWht5A=
+Received: from mchehab by mail.kernel.org with local (Exim 4.94)
+        (envelope-from <mchehab@kernel.org>)
+        id 1kFarx-00B3yB-WB; Tue, 08 Sep 2020 12:28:58 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vinod Koul <vkoul@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Yu Chen <chenyu56@huawei.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         linux-arm-kernel@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org, Abel Vesa <abel.vesa@nxp.com>
-Subject: [PATCH v3 08/14] clk: imx8mp: Add audio shared gate
-Date:   Tue,  8 Sep 2020 13:24:45 +0300
-Message-Id: <1599560691-3763-9-git-send-email-abel.vesa@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1599560691-3763-1-git-send-email-abel.vesa@nxp.com>
-References: <1599560691-3763-1-git-send-email-abel.vesa@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        Wei Xu <xuwei5@hisilicon.com>
+Subject: [PATCH 00/10] Add USB support for Hikey 970
+Date:   Tue,  8 Sep 2020 12:28:34 +0200
+Message-Id: <cover.1599559318.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the RM, the CCGR101 is shared for the following root clocks:
-- AUDIO_AHB_CLK_ROOT
-- AUDIO_AXI_CLK_ROOT
-- SAI2_CLK_ROOT
-- SAI3_CLK_ROOT
-- SAI5_CLK_ROOT
-- SAI6_CLK_ROOT
-- SAI7_CLK_ROOT
-- PDM_CLK_ROOT
+This series adds the phy layer needed by Kirin 970 SoC.
 
-Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
----
- drivers/clk/imx/clk-imx8mp.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+It also adds a GPIO USB3 HUB driver, that is meant to support
+the HUB which comes inside with HiKey 960 and 970 designs.
 
-diff --git a/drivers/clk/imx/clk-imx8mp.c b/drivers/clk/imx/clk-imx8mp.c
-index 12ce477..6812a01 100644
---- a/drivers/clk/imx/clk-imx8mp.c
-+++ b/drivers/clk/imx/clk-imx8mp.c
-@@ -17,6 +17,7 @@
- 
- static u32 share_count_nand;
- static u32 share_count_media;
-+static u32 share_count_audio;
- 
- static const char * const pll_ref_sels[] = { "osc_24m", "dummy", "dummy", "dummy", };
- static const char * const audio_pll1_bypass_sels[] = {"audio_pll1", "audio_pll1_ref_sel", };
-@@ -725,7 +726,16 @@ static int imx8mp_clocks_probe(struct platform_device *pdev)
- 	hws[IMX8MP_CLK_HDMI_ROOT] = imx_clk_hw_gate4("hdmi_root_clk", "hdmi_axi", ccm_base + 0x45f0, 0);
- 	hws[IMX8MP_CLK_TSENSOR_ROOT] = imx_clk_hw_gate4("tsensor_root_clk", "ipg_root", ccm_base + 0x4620, 0);
- 	hws[IMX8MP_CLK_VPU_ROOT] = imx_clk_hw_gate4("vpu_root_clk", "vpu_bus", ccm_base + 0x4630, 0);
--	hws[IMX8MP_CLK_AUDIO_ROOT] = imx_clk_hw_gate4("audio_root_clk", "ipg_root", ccm_base + 0x4650, 0);
-+
-+	hws[IMX8MP_CLK_AUDIO_AHB_ROOT] = imx_clk_hw_gate2_shared2("audio_ahb_root", "audio_ahb", ccm_base + 0x4650, 0, &share_count_audio);
-+	hws[IMX8MP_CLK_AUDIO_AXI_ROOT] = imx_clk_hw_gate2_shared2("audio_axi_root", "audio_axi", ccm_base + 0x4650, 0, &share_count_audio);
-+	hws[IMX8MP_CLK_SAI1_ROOT] = imx_clk_hw_gate2_shared2("sai1_root", "sai1", ccm_base + 0x4650, 0, &share_count_audio);
-+	hws[IMX8MP_CLK_SAI2_ROOT] = imx_clk_hw_gate2_shared2("sai2_root", "sai2", ccm_base + 0x4650, 0, &share_count_audio);
-+	hws[IMX8MP_CLK_SAI3_ROOT] = imx_clk_hw_gate2_shared2("sai3_root", "sai3", ccm_base + 0x4650, 0, &share_count_audio);
-+	hws[IMX8MP_CLK_SAI5_ROOT] = imx_clk_hw_gate2_shared2("sai5_root", "sai5", ccm_base + 0x4650, 0, &share_count_audio);
-+	hws[IMX8MP_CLK_SAI6_ROOT] = imx_clk_hw_gate2_shared2("sai6_root", "sai6", ccm_base + 0x4650, 0, &share_count_audio);
-+	hws[IMX8MP_CLK_SAI7_ROOT] = imx_clk_hw_gate2_shared2("sai7_root", "sai7", ccm_base + 0x4650, 0, &share_count_audio);
-+	hws[IMX8MP_CLK_PDM_ROOT] = imx_clk_hw_gate2_shared2("pdm_root", "pdm", ccm_base + 0x4650, 0, &share_count_audio);
- 
- 	hws[IMX8MP_CLK_ARM] = imx_clk_hw_cpu("arm", "arm_a53_core",
- 					     hws[IMX8MP_CLK_A53_CORE]->clk,
+The hub used on Hikey 970 is this one:
+	Bus 002 Device 002: ID 0451:8140 Texas Instruments, Inc. TUSB8041 4-Port Hub
+
+While it supports I2C, the driver for it just enables it, depending
+on the OTG mode.
+
+v3:
+- fixes a problem on the past series, where some changes went
+  to the wrong patch;
+- adds DTS and dt-bindinds required for Hikey 970 USB to work.
+
+For the dt-bindings to work properly, two patches already sent
+are required:
+   - a patch adding Hikey 970 to dwg3-of-simple driver;
+   - a quirks patch for dwc3, which is required for usbhid to work.
+    funny enough, such patch is not required by USB sticks.
+    I suspect that it affects only INT URB packets, but didn't
+    made any tests.
+
+Mauro Carvalho Chehab (7):
+  phy: hisilicon: phy-hi3670-usb3: use a consistent namespace
+  phy: hisilicon: phy-hi3670-usb3: fix coding style
+  phy: hisilicon: phy-hi3670-usb3: change some DT properties
+  dt-bindings: phy: convert phy-kirin970-usb3.txt to yaml
+  MAINTAINERS: add myself as maintainer for Kirin 970 USB PHY
+  misc: hisi_hikey_usb: add support for Hikey 970
+  dts: hisilicon: add support for USB3 on Hikey 970
+
+Yu Chen (3):
+  phy: hisilicon: add USB physical layer for Kirin 3670
+  phy: hisilicon: phy-hi3670-usb3: fix some issues at the init code
+  misc: hisi_hikey_usb: Driver to support onboard USB gpio hub on
+    Hikey960
+
+ .../bindings/phy/hisilicon,hi3670-usb3.yaml   |  72 ++
+ MAINTAINERS                                   |  16 +-
+ .../boot/dts/hisilicon/hi3670-hikey970.dts    | 102 +++
+ arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  58 ++
+ drivers/misc/Kconfig                          |   9 +
+ drivers/misc/Makefile                         |   1 +
+ drivers/misc/hisi_hikey_usb.c                 | 274 +++++++
+ drivers/phy/hisilicon/Kconfig                 |  10 +
+ drivers/phy/hisilicon/Makefile                |   1 +
+ drivers/phy/hisilicon/phy-hi3670-usb3.c       | 671 ++++++++++++++++++
+ 10 files changed, 1213 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
+ create mode 100644 drivers/misc/hisi_hikey_usb.c
+ create mode 100644 drivers/phy/hisilicon/phy-hi3670-usb3.c
+
 -- 
-2.7.4
+2.26.2
+
 
