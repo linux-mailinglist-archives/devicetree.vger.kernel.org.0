@@ -2,105 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3D9E261697
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:14:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9680026173C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:28:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731876AbgIHROg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 13:14:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59186 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731446AbgIHQTG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 12:19:06 -0400
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E6A4321D40
-        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 12:00:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599566456;
-        bh=1aTFK3wrKIl3Mo4Chtk/yn6JQv5X2Nyp1Ci6BW8SyI0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=l3NmDWCO06o9xiQuRZqEa1r4dhu8Fk0XNlEfYZ2OPW6IjL+knBlTdumSn2gJeJ0Jy
-         3+3rbadz9qkvaHqvMuKf8EDi3R9gdrZuatWdXWu00JxCAvnuDLaBOzoeUcOdZ7UQ3h
-         LnqAbDsjW2Bo7N0a0nfa1VVJyc+pKUAnF5IvD/F4=
-Received: by mail-vs1-f49.google.com with SMTP id e23so2821060vsk.2
-        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 05:00:55 -0700 (PDT)
-X-Gm-Message-State: AOAM533ftEgkSyBAWCSl1f0kS8dfd4OcPv6YMPs5s7iTqHkwyYYN9qwV
-        iS77k7GyLRUtOotGhnvOQyrjKA1JW2QMJ1bkvLO35w==
-X-Google-Smtp-Source: ABdhPJyYkWtg85XcWPeyawb3EFV2os5iuaBNJfXoSrodk+wDb1H3FBtK2+2Zl6YHEkrEqZ/LOKC+qbizNv8q7lZ0Xv0=
-X-Received: by 2002:a67:985:: with SMTP id 127mr13908841vsj.17.1599566455058;
- Tue, 08 Sep 2020 05:00:55 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200908075716.30357-1-manivannan.sadhasivam@linaro.org> <20200908075716.30357-8-manivannan.sadhasivam@linaro.org>
-In-Reply-To: <20200908075716.30357-8-manivannan.sadhasivam@linaro.org>
-From:   Amit Kucheria <amitk@kernel.org>
-Date:   Tue, 8 Sep 2020 17:30:44 +0530
-X-Gmail-Original-Message-ID: <CAHLCerPKahfGmj_vuuMXzUkqNZq+DVBLxkYqi5Q-D4ae4=8jFQ@mail.gmail.com>
-Message-ID: <CAHLCerPKahfGmj_vuuMXzUkqNZq+DVBLxkYqi5Q-D4ae4=8jFQ@mail.gmail.com>
-Subject: Re: [PATCH 7/7] cpufreq: qcom-hw: Use devm_platform_ioremap_resource()
- to simplify code
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
+        id S1731715AbgIHR2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 13:28:25 -0400
+Received: from mail-vi1eur05on2047.outbound.protection.outlook.com ([40.107.21.47]:52768
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1731707AbgIHQQD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 12:16:03 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CwQ34DZn6Pqp2qwL0R4TtENa0zKg0oMbpxIQIeFJvNq6dgfpwa8Z8yQS37R4oSoxEB8PDl9sR9pZzUZTdFDGrrmDUlhysaRY0jqlD51XMx60ptvLspKxWHIQxRBjUoEhDMN1+DuciK60XekhHKqXqzzrjkPlNr5FsN1H0mV7Jpe4xP4q6MrMrZgj18JFc+53voxy3RZwgrPngzQMHZHKSzzotRo/Z4x7n13cQ+UCWhwtum4j5j7FW0owRNTvFkzGqGVkSEuEh+L6ZTNhNgerHWCw2p87RwRJxacwz8GN2dADsyQc0xJWpvRr7q1YJx4Rt5tIqWfguEoQwq7cpBkh1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=q7veYResK+xShIKxiVLM9KqFFKbdh6r6JLbY4NRkdKA=;
+ b=NEbCJVcD7YDV/n3OPW5PBETQFtlG5TFrvekclkB+1H5vBNvstfJeu7EcHk61s5stJl9qiHDkU6KQ9GFqFMXeHnTQUCb0vJpyacIAniq70bqYfn0Vud6pxCzHN4Xqz3Eedh6ZSqp+m8jsS1HJibW0I0n8T38HjUrt3DRt8Rh92uZmRwgZJ/RTT1BROXs9nowfG+YfFzQncwGY8PyJXUc1T1FDD05HWQxwpTm9ndP1XS69Ff0wN4ObUpa+SnOUGx0xOrpGtYwpmVeJtLxDzwde+wxfSOR2y1ZDNIhAdK400H2P1VqZzduCIc/4MoCErNulscV+sunFJQdmwxgZX2LAUA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=diasemi.com; dmarc=pass action=none header.from=diasemi.com;
+ dkim=pass header.d=diasemi.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=dialogsemiconductor.onmicrosoft.com;
+ s=selector1-dialogsemiconductor-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=q7veYResK+xShIKxiVLM9KqFFKbdh6r6JLbY4NRkdKA=;
+ b=vGEXREOiMJAsNI+tdeUpX+ZlVAXEWp45Mhh/SaAP8VRvtYBPWr3ivyMM5coXKzO0gASJIa/oT8hqKW7T/3nyBLkit88zrUa2qUn47se4XVR6k1kyexsBE6GMqkNsazzyW16fEz05ECC2KNC3CFwvCg0AP1MiuXnqhPeDfddPLJk=
+Received: from AM7PR10MB3640.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:135::13)
+ by AM7PR10MB3192.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:109::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.15; Tue, 8 Sep
+ 2020 12:07:51 +0000
+Received: from AM7PR10MB3640.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::b96f:25df:bfa7:a0f7]) by AM7PR10MB3640.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::b96f:25df:bfa7:a0f7%6]) with mapi id 15.20.3348.019; Tue, 8 Sep 2020
+ 12:07:51 +0000
+From:   Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Taniya Das <tdas@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+Subject: RE: [PATCH 12/20] dt-bindings:iio:adc:dlg,da9150-gpadc yaml
+ conversion
+Thread-Topic: [PATCH 12/20] dt-bindings:iio:adc:dlg,da9150-gpadc yaml
+ conversion
+Thread-Index: AQHWg6qSjGzroNEmIEG+sjrNKzEHIaleqYFA
+Date:   Tue, 8 Sep 2020 12:07:51 +0000
+Message-ID: <AM7PR10MB3640E12A6CC1F226063F9C4680290@AM7PR10MB3640.EURPRD10.PROD.OUTLOOK.COM>
+References: <20200905173004.216081-1-jic23@kernel.org>
+ <20200905173004.216081-13-jic23@kernel.org>
+In-Reply-To: <20200905173004.216081-13-jic23@kernel.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=diasemi.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [165.225.80.85]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: ae9fbfc9-0d43-425c-e7b4-08d853efcfa2
+x-ms-traffictypediagnostic: AM7PR10MB3192:
+x-ms-exchange-sharedmailbox-routingagent-processed: True
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM7PR10MB319226DC63EEF7688DA8F822A7290@AM7PR10MB3192.EURPRD10.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:1468;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 653qlxdlKdyzaKBh0b/5HtUWL1O6faVQJTFSbGcGTMK+v7Xu9fqfnAAzM+Li5SSuI/Z95CDUqMgko/qXiF9EGXQj31EJCYWLsS4VqfE7UHwpkSgKrZfKHNhVd/8Gy7saosdBAmrk9vuZ+Jk3laJ8Vko8r0X513V+Uc8f4Tb6n1sKYhOyl120d7/YCCoMhyXWzbSQjNFg5entEyg+5mDqoO/YLFQ+3LH8FQ2+Ulw3ETnbvAUvHp+5bXCIYGF1naBgzAMygBv7cEccGQcFw759i1zCt/fAVcx85ior0PfiMsfCF9xYl4yshDxwhZV2V4wcbtDVt39Ho8orHrfLG8cGM2o+wsWHMXDjprFfTNJQ87lHiu1co4YPiqGNsh8xRWIE
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR10MB3640.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(366004)(64756008)(66946007)(66476007)(66446008)(5660300002)(66556008)(4326008)(76116006)(54906003)(186003)(110136005)(107886003)(55016002)(7696005)(52536014)(33656002)(9686003)(4744005)(71200400001)(55236004)(8936002)(6506007)(53546011)(2906002)(26005)(8676002)(86362001)(498600001)(142933001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: bNuzfo/p3mOf3SPVzEeyHlvVNAY5IcV8h7A07t5Z1tILmSHNHOswypi0DrZ794RrNUp0xkWQgHncxSgAuvAlIShbPZn7Rs86OxGF2dkdQU88ua0puqMVqvbWPB14rPck4Yewh8ATNZBI2tcVUJCFdiBGBXQVB+JZmTAngDhrJKXReBlb+BiU0v+LrhiChkleoXvSOgwAY/BYc9lvNhcnu7zYCZTJvatG3uW2AK1OqSAPTJQ0HP1CQkPN+Q1XuJ12j/yYgcsXXFtzLsQnBa328hgIYwHrYlY8Fwsm5iSSxJCi5z7z/OfOttcRZb7UHMeHncNfI6S3Hbfq6MJThsNyXJmB7c1fDMOH/RSzxgVF/9a4NzCSORnlzFbnBkdv16LRVaHucztBgJl/ywJjKH/X/QBCuv/AEqxgj6rh/811OBaJ8W1jmdoeDmmJ4z7yTD0vbxV110psvxY8+oYiA/8Pj9FoZev553ooivlSu0MhQXcyQoOJ0JGkqBgimYPgF/szDYv36IwOzpb3X5heIKy4zYzU9qr16hxSKNjoQm53CYwpLZdXr4ixIbQjWA3G22wjxseKE5FwYjE1ZP2hYNuCrAGb2MIchBSZrMSXhx9lJvIoy3YXj6szYNkPWNOid+bU4r2EtmEfU2S9iaB0Fk3nCA==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: diasemi.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR10MB3640.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae9fbfc9-0d43-425c-e7b4-08d853efcfa2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Sep 2020 12:07:51.7330
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 511e3c0e-ee96-486e-a2ec-e272ffa37b7c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Q2hybho5MiYijkbBsGBLJWUa/URTokEpxsVCuItXZ4RrMgnYxmROp494SEnMNonQENLseVKGUtKpAd/ZVHi/d+IvhK9KMjS1jDkXozvywFY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR10MB3192
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 8, 2020 at 1:27 PM Manivannan Sadhasivam
-<manivannan.sadhasivam@linaro.org> wrote:
->
-> devm_platform_ioremap_resource() is the combination of
-> platform_get_resource() and devm_ioremap_resource(). Hence, use it to
-> simplify the code a bit.
->
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+On 05 September 2020 18:30, Jonathan Cameron wrote:
 
-Reviewed-by: Amit Kucheria <amitk@kernel.org>
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+>=20
+> This is a small part of an MFD so perhaps ultimately it makes more
+> sense to document it with that MFD binding rather than separately.
+>=20
+> In the meantime it's a straightforward conversion from txt to yaml.
+>=20
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Cc: Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
 
-> ---
->  drivers/cpufreq/qcom-cpufreq-hw.c | 11 +++--------
->  1 file changed, 3 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
-> index c3c397cc3dc6..6eeeb2bd4dfa 100644
-> --- a/drivers/cpufreq/qcom-cpufreq-hw.c
-> +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
-> @@ -307,7 +307,6 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
->         struct of_phandle_args args;
->         struct device_node *cpu_np;
->         struct device *cpu_dev;
-> -       struct resource *res;
->         void __iomem *base;
->         struct qcom_cpufreq_data *data;
->         const struct of_device_id *match;
-> @@ -333,13 +332,9 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
->
->         index = args.args[0];
->
-> -       res = platform_get_resource(pdev, IORESOURCE_MEM, index);
-> -       if (!res)
-> -               return -ENODEV;
-> -
-> -       base = devm_ioremap(dev, res->start, resource_size(res));
-> -       if (!base)
-> -               return -ENOMEM;
-> +       base = devm_platform_ioremap_resource(pdev, index);
-> +       if (IS_ERR(base))
-> +               return PTR_ERR(base);
->
->         data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
->         if (!data) {
-> --
-> 2.17.1
->
+Acked-by: Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
