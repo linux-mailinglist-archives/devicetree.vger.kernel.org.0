@@ -2,75 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8ACD260DB6
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 10:38:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1761260DBD
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 10:39:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729911AbgIHIiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 04:38:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37072 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729564AbgIHIiv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 04:38:51 -0400
-Received: from [192.168.0.50] (89-70-52-201.dynamic.chello.pl [89.70.52.201])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0A582215A4;
-        Tue,  8 Sep 2020 08:38:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599554331;
-        bh=9MbsarOq+P/4I79z3A+fJ+J72iGu7faVW8HMRIAC4yg=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=ABlmjheudFWqMnnqN7fkj7Y8fpGWpqp+Q+5bztrxFGYwdt/wYgY/MV7PHBbVNqkon
-         YKpo8TUVTX6CKqR+9LMrE0vMFmrIIsUlMMIhexMaoFG+3MN9Tu7yuOd+G3uin4Mt/h
-         ku2dg3SQDqNkWUHQcVwN7jdxOTn9U8cssWk6hieU=
-Subject: Re: [RFT 09/25] ARM: dts: s5pv210: fix number of I2S DAI cells
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Jonathan Bakker <xc-racer2@live.ca>
-Cc:     Kukjin Kim <kgene@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-References: <20200907161141.31034-1-krzk@kernel.org>
- <20200907161141.31034-10-krzk@kernel.org>
- <BN6PR04MB0660D9B0D0B5FB4F40CF2769CB280@BN6PR04MB0660.namprd04.prod.outlook.com>
- <20200908065321.GB24227@pi3>
-From:   Sylwester Nawrocki <snawrocki@kernel.org>
-Message-ID: <48aa966f-d3b8-7e4a-36aa-aed4630d331a@kernel.org>
-Date:   Tue, 8 Sep 2020 10:38:46 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1730000AbgIHIjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 04:39:23 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:46709 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729564AbgIHIjX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 04:39:23 -0400
+Received: by mail-oi1-f196.google.com with SMTP id u126so15719631oif.13;
+        Tue, 08 Sep 2020 01:39:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=POiqaYaoAUFlSP8Jlp+klBMHqA1bPeB4kquw+mOG5lg=;
+        b=GvylSf1jW8PtKzdVyEaz1VYLIvSIGLDziWUgDb8AqbmR/Fhqgj65J/OvxZei2hdorg
+         D4QJ2gdMIg0HfJrZbZsm2hAnFG9+ep/bEahALPYRenk0xMW23omWNrOjdkCImAsXFQBu
+         mKczQi735a4Jtqc1kN7aH2X/2zKc6sf0Qz66qoqlMp9ThledHncLF4MHWj70I1UikVns
+         NWso9anOiQZhBiE6fJpXb+37jHRCZU8/xh/XwgpzkwEiJK9tIR3n5oauQil45quiSWDW
+         ACmd0SeXWPnO5L54PkZO3WPSTXeXDccbitbMt+n1aSzpS26Pa6E+5w2DISoRjLBhF2MM
+         aSrQ==
+X-Gm-Message-State: AOAM5310x4P/H7RbPSgwHaAD5oyTI2Rk1ru1l2TMRrGn65wiQFpdwSQe
+        QoPLUfOg3osdShx2ow3S+7qAHBakX6fdwGp4wbw=
+X-Google-Smtp-Source: ABdhPJwmIl+Skq4+GefAkl/Mk2+C6KwxolqGFtMCVsCCTBW6EIsC9P3UC2VVRLJjrcLc+EtXCGlS7JFdST15Xw5bn7A=
+X-Received: by 2002:aca:52d6:: with SMTP id g205mr1983953oib.54.1599554362262;
+ Tue, 08 Sep 2020 01:39:22 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200908065321.GB24227@pi3>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <1599470390-29719-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <1599470390-29719-5-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <1599470390-29719-5-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 8 Sep 2020 10:39:11 +0200
+Message-ID: <CAMuHMdW39X_N577GnuiJgnmc32y4bW-jCO0hhQtTWZeoTDvgeA@mail.gmail.com>
+Subject: Re: [PATCH 04/14] dt-bindings: power: Add r8a779a0 SYSC power domain definitions
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/8/20 08:53, Krzysztof Kozlowski wrote:
-> On Mon, Sep 07, 2020 at 04:55:26PM -0700, Jonathan Bakker wrote:
->> Sadly, this is causing issues for me.  The machine driver is no longer probing correctly
->> on the Galaxy S.
->>
->> The failing call in sound/soc/samsung/aries_wm8994.c is
->>
->> 	/* Set CPU of_node for BT DAI */
->> 	aries_dai[2].cpus->of_node = of_parse_phandle(cpu,
->> 			"sound-dai", 1);
->>
->> where cpus->of_node is not set properly.  Which is definitely weird because it doesn't
->> look like this should affect that.
->>
->> Let me know if there's any specific test that you want me to do.
-> Thanks for the tests. I wonder now if this was working before because
-> really my change should not break it... I'll think more about it.
+Hi Shimoda-san,
 
-I think of_parse_phandle_with_args() needs to be used instead of just
-of_parse_phandle() for that to work, as AFAICS the latter assumes the
-cells count == 0. We would need first to update the driver and then dts.
+Thanks for your patch!
+
+On Mon, Sep 7, 2020 at 11:20 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Adds power domain indices fpr R-Car V3U (r8a779a0).
+
+Add ... for
+
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+
+> --- /dev/null
+> +++ b/include/dt-bindings/power/r8a779a0-sysc.h
+> @@ -0,0 +1,61 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (C) 2020 Renesas Electronics Corp.
+> + */
+> +#ifndef __DT_BINDINGS_POWER_R8A779A0_SYSC_H__
+> +#define __DT_BINDINGS_POWER_R8A779A0_SYSC_H__
+> +
+> +/*
+> + * These power domain indices match the numbers of the interrupt bits
+> + * representing the power areas in the various Interrupt Registers
+> + * (e.g. SYSCISCR0, Interrupt Status/Clear Register 0)
+
+... match the Power Domain Register Numbers (PDR)?
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in for v5.10, in a branch shared by driver and DT.
+
+If you agree, I can fix the above while applying.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
