@@ -2,134 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C581C260C23
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 09:36:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2C68260C3F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 09:42:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729305AbgIHHgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 03:36:03 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:35023 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728759AbgIHHgB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 03:36:01 -0400
-X-UUID: 69998a3b23ce4643aa78f01e7cfdaa0a-20200908
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=CxyzFCyyAUAD9dzrQYeXJkejylJ8fCzMCpGiZ2fc9dM=;
-        b=ADMe/P0blLIvvBFOlW1DhlU/rn1DELwfX7mxFtdgY6KwnUVWXAEalPcNRNb7vVxOFFSpq342TTPWdpXMeWj5mgKlBevTzXmaJXZ0Tg88wpf1EgvxW7n1u05S69ErfJ7SPzwjMXuLxU0tJeMuzUReL7IimGkQAGUK92Iym1QoXlQ=;
-X-UUID: 69998a3b23ce4643aa78f01e7cfdaa0a-20200908
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <hector.yuan@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1114967565; Tue, 08 Sep 2020 15:35:57 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 8 Sep 2020 15:35:56 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 8 Sep 2020 15:35:56 +0800
-From:   Hector Yuan <hector.yuan@mediatek.com>
-To:     <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>,
-        <hector.yuan@mediatek.com>
-Subject: [PATCH v4 2/2] dt-bindings: cpufreq: add bindings for MediaTek cpufreq HW
-Date:   Tue, 8 Sep 2020 15:35:47 +0800
-Message-ID: <1599550547-27767-3-git-send-email-hector.yuan@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1599550547-27767-1-git-send-email-hector.yuan@mediatek.com>
-References: <1599550547-27767-1-git-send-email-hector.yuan@mediatek.com>
+        id S1729365AbgIHHmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 03:42:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53038 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729257AbgIHHl7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 03:41:59 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9643121D43;
+        Tue,  8 Sep 2020 07:41:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599550918;
+        bh=0sFcxpsr5mqPDK8Z4NS/wp2irUMhWlrviFcns3D7O+s=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ixmoKtht4S/r2Y1xA14j90zJJ2LCPr6tsVVRNJjYyEqd5Nr4Wlt4AQDmy8XtHNlLw
+         WPAdBpHOh4wZWZetPD0B/JZZkXqQuSa4U2blJ8Fftil4qcq371ikq1vGphznZ03a7I
+         E4wUBo4Lli2JYYYwwIKz0E+YnxtCS4CBVgXiif2A=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.92)
+        (envelope-from <maz@kernel.org>)
+        id 1kFYGK-009zSV-Kj; Tue, 08 Sep 2020 08:41:56 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 08 Sep 2020 08:41:56 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Haoyu Lv <lvhaoyu@huawei.com>, Libin <huawei.libin@huawei.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
+Subject: Re: [PATCH v2 2/3] irqchip: dw-apb-ictl: support hierarchy irq domain
+In-Reply-To: <20200908071134.2578-3-thunder.leizhen@huawei.com>
+References: <20200908071134.2578-1-thunder.leizhen@huawei.com>
+ <20200908071134.2578-3-thunder.leizhen@huawei.com>
+User-Agent: Roundcube Webmail/1.4.8
+Message-ID: <8f6e4cc51a53f580538b879cafcd06c3@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: thunder.leizhen@huawei.com, tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, sebastian.hesselbarth@gmail.com, lvhaoyu@huawei.com, huawei.libin@huawei.com, wangkefeng.wang@huawei.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogIkhlY3Rvci5ZdWFuIiA8aGVjdG9yLnl1YW5AbWVkaWF0ZWsuY29tPg0KDQpBZGQgZGV2
-aWNldHJlZSBiaW5kaW5ncyBmb3IgTWVkaWFUZWsgSFcgZHJpdmVyLg0KDQpTaWduZWQtb2ZmLWJ5
-OiBIZWN0b3IuWXVhbiA8aGVjdG9yLnl1YW5AbWVkaWF0ZWsuY29tPg0KLS0tDQogLi4uL2JpbmRp
-bmdzL2NwdWZyZXEvY3B1ZnJlcS1tZWRpYXRlay1ody55YW1sICAgICAgfCAgMTQxICsrKysrKysr
-KysrKysrKysrKysrDQogMSBmaWxlIGNoYW5nZWQsIDE0MSBpbnNlcnRpb25zKCspDQogY3JlYXRl
-IG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9jcHVmcmVxL2Nw
-dWZyZXEtbWVkaWF0ZWstaHcueWFtbA0KDQpkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL2NwdWZyZXEvY3B1ZnJlcS1tZWRpYXRlay1ody55YW1sIGIvRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2NwdWZyZXEvY3B1ZnJlcS1tZWRpYXRlay1ody55
-YW1sDQpuZXcgZmlsZSBtb2RlIDEwMDY0NA0KaW5kZXggMDAwMDAwMC4uNWJlNTg2Nw0KLS0tIC9k
-ZXYvbnVsbA0KKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2NwdWZyZXEv
-Y3B1ZnJlcS1tZWRpYXRlay1ody55YW1sDQpAQCAtMCwwICsxLDE0MSBAQA0KKyMgU1BEWC1MaWNl
-bnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKQ0KKyVZQU1MIDEu
-Mg0KKy0tLQ0KKyRpZDogaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvY3B1ZnJlcS9jcHVm
-cmVxLW1lZGlhdGVrLWh3LnlhbWwjDQorJHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUub3JnL21l
-dGEtc2NoZW1hcy9jb3JlLnlhbWwjDQorDQordGl0bGU6IE1lZGlhVGVrJ3MgQ1BVRlJFUSBCaW5k
-aW5ncw0KKw0KK21haW50YWluZXJzOg0KKyAgLSBIZWN0b3IgWXVhbiA8aGVjdG9yLnl1YW5AbWVk
-aWF0ZWsuY29tPg0KKw0KK2Rlc2NyaXB0aW9uOg0KKyAgQ1BVRlJFUSBIVyBpcyBhIGhhcmR3YXJl
-IGVuZ2luZSB1c2VkIGJ5IE1lZGlhVGVrDQorICBTb0NzIHRvIG1hbmFnZSBmcmVxdWVuY3kgaW4g
-aGFyZHdhcmUuIEl0IGlzIGNhcGFibGUgb2YgY29udHJvbGxpbmcgZnJlcXVlbmN5DQorICBmb3Ig
-bXVsdGlwbGUgY2x1c3RlcnMuDQorDQorcHJvcGVydGllczoNCisgIGNvbXBhdGlibGU6DQorICAg
-IGNvbnN0OiBtZWRpYXRlayxjcHVmcmVxLWh3DQorDQorICByZWc6DQorICAgIG1pbkl0ZW1zOiAx
-DQorICAgIG1heEl0ZW1zOiAyDQorICAgIGRlc2NyaXB0aW9uOiB8DQorICAgICAgQWRkcmVzc2Vz
-IGFuZCBzaXplcyBmb3IgdGhlIG1lbW9yeSBvZiB0aGUgSFcgYmFzZXMgaW4gZWFjaCBmcmVxdWVu
-Y3kgZG9tYWluLg0KKw0KKyAgcmVnLW5hbWVzOg0KKyAgICBpdGVtczoNCisgICAgICAtIGNvbnN0
-OiAiZnJlcS1kb21haW4wIg0KKyAgICAgIC0gY29uc3Q6ICJmcmVxLWRvbWFpbjEiDQorICAgIGRl
-c2NyaXB0aW9uOiB8DQorICAgICAgRnJlcXVlbmN5IGRvbWFpbiBuYW1lLiBpLmUuDQorICAgICAg
-ImZyZXEtZG9tYWluMCIsICJmcmVxLWRvbWFpbjEiLg0KKw0KKyAgIiNmcmVxLWRvbWFpbi1jZWxs
-cyI6DQorICAgIGNvbnN0OiAxDQorICAgIGRlc2NyaXB0aW9uOiB8DQorICAgICAgTnVtYmVyIG9m
-IGNlbGxzIGluIGEgZnJlcWVuY3kgZG9tYWluIHNwZWNpZmllci4NCisNCisgIG10ay1mcmVxLWRv
-bWFpbjoNCisgICAgbWF4SXRlbXM6IDENCisgICAgZGVzY3JpcHRpb246IHwNCisgICAgICBEZWZp
-bmUgdGhpcyBjcHUgYmVsb25ncyB0byB3aGljaCBmcmVxdWVuY3kgZG9tYWluLiBpLmUuDQorICAg
-ICAgY3B1MC0zIGJlbG9uZyB0byBmcmVxdWVuY3kgZG9tYWluMCwNCisgICAgICBjcHU0LTYgYmVs
-b25nIHRvIGZyZXF1ZW5jeSBkb21haW4xLg0KKw0KK3JlcXVpcmVkOg0KKyAgLSBjb21wYXRpYmxl
-DQorICAtIHJlZw0KKyAgLSByZWctbmFtZXMNCisgIC0gIiNmcmVxLWRvbWFpbi1jZWxscyINCisN
-CitleGFtcGxlczoNCisgIC0gfA0KKyAgICBjcHVzIHsNCisgICAgICAgICAgICAjYWRkcmVzcy1j
-ZWxscyA9IDwxPjsNCisgICAgICAgICAgICAjc2l6ZS1jZWxscyA9IDwwPjsNCisNCisgICAgICAg
-ICAgICBjcHUwOiBjcHVAMCB7DQorICAgICAgICAgICAgICAgIGRldmljZV90eXBlID0gImNwdSI7
-DQorICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNTUiOw0KKyAgICAg
-ICAgICAgICAgICBlbmFibGUtbWV0aG9kID0gInBzY2kiOw0KKyAgICAgICAgICAgICAgICBtdGst
-ZnJlcS1kb21haW4gPSA8JmNwdWZyZXFfaHcgMD47DQorICAgICAgICAgICAgICAgIHJlZyA9IDww
-eDAwMD47DQorICAgICAgICAgICAgfTsNCisNCisgICAgICAgICAgICBjcHUxOiBjcHVAMSB7DQor
-ICAgICAgICAgICAgICAgIGRldmljZV90eXBlID0gImNwdSI7DQorICAgICAgICAgICAgICAgIGNv
-bXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNTUiOw0KKyAgICAgICAgICAgICAgICBlbmFibGUtbWV0
-aG9kID0gInBzY2kiOw0KKyAgICAgICAgICAgICAgICBtdGstZnJlcS1kb21haW4gPSA8JmNwdWZy
-ZXFfaHcgMD47DQorICAgICAgICAgICAgICAgIHJlZyA9IDwweDEwMD47DQorICAgICAgICAgICAg
-fTsNCisNCisgICAgICAgICAgICBjcHUyOiBjcHVAMiB7DQorICAgICAgICAgICAgICAgIGRldmlj
-ZV90eXBlID0gImNwdSI7DQorICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAiYXJtLGNvcnRl
-eC1hNTUiOw0KKyAgICAgICAgICAgICAgICBlbmFibGUtbWV0aG9kID0gInBzY2kiOw0KKyAgICAg
-ICAgICAgICAgICBtdGstZnJlcS1kb21haW4gPSA8JmNwdWZyZXFfaHcgMD47DQorICAgICAgICAg
-ICAgICAgIHJlZyA9IDwweDIwMD47DQorICAgICAgICAgICAgfTsNCisNCisgICAgICAgICAgICBj
-cHUzOiBjcHVAMyB7DQorICAgICAgICAgICAgICAgIGRldmljZV90eXBlID0gImNwdSI7DQorICAg
-ICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNTUiOw0KKyAgICAgICAgICAg
-ICAgICBlbmFibGUtbWV0aG9kID0gInBzY2kiOw0KKyAgICAgICAgICAgICAgICBtdGstZnJlcS1k
-b21haW4gPSA8JmNwdWZyZXFfaHcgMD47DQorICAgICAgICAgICAgICAgIHJlZyA9IDwweDMwMD47
-DQorICAgICAgICAgICAgfTsNCisNCisgICAgICAgICAgICBjcHU0OiBjcHVANCB7DQorICAgICAg
-ICAgICAgICAgIGRldmljZV90eXBlID0gImNwdSI7DQorICAgICAgICAgICAgICAgIGNvbXBhdGli
-bGUgPSAiYXJtLGNvcnRleC1hNTUiOw0KKyAgICAgICAgICAgICAgICBlbmFibGUtbWV0aG9kID0g
-InBzY2kiOw0KKyAgICAgICAgICAgICAgICBtdGstZnJlcS1kb21haW4gPSA8JmNwdWZyZXFfaHcg
-MT47DQorICAgICAgICAgICAgICAgIHJlZyA9IDwweDQwMD47DQorICAgICAgICAgICAgfTsNCisN
-CisgICAgICAgICAgICBjcHU1OiBjcHVANSB7DQorICAgICAgICAgICAgICAgIGRldmljZV90eXBl
-ID0gImNwdSI7DQorICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNTUi
-Ow0KKyAgICAgICAgICAgICAgICBlbmFibGUtbWV0aG9kID0gInBzY2kiOw0KKyAgICAgICAgICAg
-ICAgICBtdGstZnJlcS1kb21haW4gPSA8JmNwdWZyZXFfaHcgMT47DQorICAgICAgICAgICAgICAg
-IHJlZyA9IDwweDUwMD47DQorICAgICAgICAgICAgfTsNCisNCisgICAgICAgICAgICBjcHU2OiBj
-cHVANiB7DQorICAgICAgICAgICAgICAgIGRldmljZV90eXBlID0gImNwdSI7DQorICAgICAgICAg
-ICAgICAgIGNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNzUiOw0KKyAgICAgICAgICAgICAgICBl
-bmFibGUtbWV0aG9kID0gInBzY2kiOw0KKyAgICAgICAgICAgICAgICBtdGstZnJlcS1kb21haW4g
-PSA8JmNwdWZyZXFfaHcgMT47DQorICAgICAgICAgICAgICAgIHJlZyA9IDwweDYwMD47DQorICAg
-ICAgICAgICAgfTsNCisNCisgICAgICAgICAgICBjcHU3OiBjcHVANyB7DQorICAgICAgICAgICAg
-ICAgIGRldmljZV90eXBlID0gImNwdSI7DQorICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAi
-YXJtLGNvcnRleC1hNzUiOw0KKyAgICAgICAgICAgICAgICBlbmFibGUtbWV0aG9kID0gInBzY2ki
-Ow0KKyAgICAgICAgICAgICAgICBtdGstZnJlcS1kb21haW4gPSA8JmNwdWZyZXFfaHcgMT47DQor
-ICAgICAgICAgICAgICAgIHJlZyA9IDwweDcwMD47DQorICAgICAgICAgICAgfTsNCisgICAgfTsN
-CisNCisgICAgLyogLi4uICovDQorDQorICAgIHNvYyB7DQorICAgICAgICAjYWRkcmVzcy1jZWxs
-cyA9IDwyPjsNCisgICAgICAgICNzaXplLWNlbGxzID0gPDI+Ow0KKw0KKyAgICAgICAgY3B1ZnJl
-cV9odzogY3B1ZnJlcUAxMWJjMDAgew0KKyAgICAgICAgICAgIGNvbXBhdGlibGUgPSAibWVkaWF0
-ZWssY3B1ZnJlcS1odyI7DQorICAgICAgICAgICAgcmVnID0gPDAgMHgxMWJjMTAgMCAweDhjPiwN
-CisgICAgICAgICAgICAgICA8MCAweDExYmNhMCAwIDB4OGM+Ow0KKyAgICAgICAgICAgIHJlZy1u
-YW1lcyA9ICJmcmVxLWRvbWFpbjAiLCAiZnJlcS1kb21haW4xIjsNCisgICAgICAgICAgICAjZnJl
-cS1kb21haW4tY2VsbHMgPSA8MT47DQorICAgICAgICB9Ow0KKyAgICB9Ow0KKw0KKw0KKw0KKw0K
-LS0gDQoxLjcuOS41DQo=
+On 2020-09-08 08:11, Zhen Lei wrote:
+> Add support to use dw-apb-ictl as primary interrupt controller.
+> 
+> Suggested-by: Marc Zyngier <maz@kernel.org>
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> Tested-by: Haoyu Lv <lvhaoyu@huawei.com>
+> ---
+>  drivers/irqchip/Kconfig           |  2 +-
+>  drivers/irqchip/irq-dw-apb-ictl.c | 75 +++++++++++++++++++++++++++++--
+>  2 files changed, 73 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
+> index bfc9719dbcdc..7c2d1c8fa551 100644
+> --- a/drivers/irqchip/Kconfig
+> +++ b/drivers/irqchip/Kconfig
+> @@ -148,7 +148,7 @@ config DAVINCI_CP_INTC
+>  config DW_APB_ICTL
+>  	bool
+>  	select GENERIC_IRQ_CHIP
+> -	select IRQ_DOMAIN
+> +	select IRQ_DOMAIN_HIERARCHY
+> 
+>  config FARADAY_FTINTC010
+>  	bool
+> diff --git a/drivers/irqchip/irq-dw-apb-ictl.c
+> b/drivers/irqchip/irq-dw-apb-ictl.c
+> index aa6214da0b1f..405861322596 100644
+> --- a/drivers/irqchip/irq-dw-apb-ictl.c
+> +++ b/drivers/irqchip/irq-dw-apb-ictl.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/irqchip/chained_irq.h>
+>  #include <linux/of_address.h>
+>  #include <linux/of_irq.h>
+> +#include <asm/exception.h>
+> 
+>  #define APB_INT_ENABLE_L	0x00
+>  #define APB_INT_ENABLE_H	0x04
+> @@ -26,6 +27,30 @@
+>  #define APB_INT_FINALSTATUS_H	0x34
+>  #define APB_INT_BASE_OFFSET	0x04
+> 
+> +/*
+> + * irq domain of the primary interrupt controller. Currently, only one 
+> is
+> + * supported.
 
+By definition, there is only one primary interrupt controller.
+
+> + */
+> +static struct irq_domain *dw_apb_ictl_irq_domain;
+> +
+> +static void __exception_irq_entry dw_apb_ictl_handle_irq(struct 
+> pt_regs *regs)
+> +{
+> +	struct irq_domain *d = dw_apb_ictl_irq_domain;
+> +	int n;
+> +
+> +	for (n = 0; n < d->revmap_size; n += 32) {
+> +		struct irq_chip_generic *gc = irq_get_domain_generic_chip(d, n);
+> +		u32 stat = readl_relaxed(gc->reg_base + APB_INT_FINALSTATUS_L);
+> +
+> +		while (stat) {
+> +			u32 hwirq = ffs(stat) - 1;
+> +
+> +			handle_domain_irq(d, hwirq, regs);
+> +			stat &= ~(1 << hwirq);
+
+nit: prefer BIT(hwirq)
+
+> +		}
+> +	}
+> +}
+> +
+>  static void dw_apb_ictl_handle_irq_cascaded(struct irq_desc *desc)
+>  {
+>  	struct irq_domain *d = irq_desc_get_handler_data(desc);
+> @@ -50,6 +75,30 @@ static void dw_apb_ictl_handle_irq_cascaded(struct
+> irq_desc *desc)
+>  	chained_irq_exit(chip, desc);
+>  }
+> 
+> +static int dw_apb_ictl_irq_domain_alloc(struct irq_domain *domain,
+> unsigned int virq,
+> +				unsigned int nr_irqs, void *arg)
+> +{
+> +	int i, ret;
+> +	irq_hw_number_t hwirq;
+> +	unsigned int type = IRQ_TYPE_NONE;
+> +	struct irq_fwspec *fwspec = arg;
+> +
+> +	ret = irq_domain_translate_onecell(domain, fwspec, &hwirq, &type);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for (i = 0; i < nr_irqs; i++)
+> +		irq_map_generic_chip(domain, virq + i, hwirq + i);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct irq_domain_ops dw_apb_ictl_irq_domain_ops = {
+> +	.translate = irq_domain_translate_onecell,
+> +	.alloc = dw_apb_ictl_irq_domain_alloc,
+> +	.free = irq_domain_free_irqs_top,
+> +};
+> +
+>  #ifdef CONFIG_PM
+>  static void dw_apb_ictl_resume(struct irq_data *d)
+>  {
+> @@ -78,11 +127,24 @@ static int __init dw_apb_ictl_init(struct 
+> device_node *np,
+>  	const struct irq_domain_ops *domain_ops = &irq_generic_chip_ops;
+>  	irq_flow_handler_t flow_handler = handle_level_irq;
+> 
+> +	if (dw_apb_ictl_irq_domain) {
+> +		pr_err("%pOF: a hierarchy irq domain is already exist.\n", np);
+> +		return -EBUSY;
+
+How can this happen?
+
+> +	}
+> +
+>  	/* Map the parent interrupt for the chained handler */
+>  	parent_irq = irq_of_parse_and_map(np, 0);
+>  	if (parent_irq <= 0) {
+> -		pr_err("%pOF: unable to parse irq\n", np);
+> -		return -EINVAL
+
+Checking for an output interrupt is not the way to check for a chained
+interrupt controller. That's what the parent device_node is for (no
+parent or parent == self denotes a primary controller).
+;
+> +		/* It's used as secondary interrupt controller */
+> +		if (of_find_property(np, "interrupts", NULL)) {
+> +			pr_err("%pOF: unable to parse irq\n", np);
+> +			return -EINVAL;
+> +		}
+> +
+> +		/* It's used as the primary interrupt controller */
+> +		parent_irq = 0;
+> +		domain_ops = &dw_apb_ictl_irq_domain_ops;
+> +		flow_handler = handle_fasteoi_irq;
+
+Why? This irqchip obviously doesn't support an EOI method since you
+setting it to a NOP callback below. From what I understand, this
+controller should use handle_level_irq, just like its chained version.
+
+>  	}
+> 
+>  	ret = of_address_to_resource(np, 0, &r);
+> @@ -145,10 +207,17 @@ static int __init dw_apb_ictl_init(struct 
+> device_node *np,
+>  		gc->chip_types[0].chip.irq_mask = irq_gc_mask_set_bit;
+>  		gc->chip_types[0].chip.irq_unmask = irq_gc_mask_clr_bit;
+>  		gc->chip_types[0].chip.irq_resume = dw_apb_ictl_resume;
+> +		if (!parent_irq)
+> +			gc->chip_types[0].chip.irq_eoi = irq_gc_noop;
+>  	}
+> 
+> -	irq_set_chained_handler_and_data(parent_irq,
+> +	if (parent_irq) {
+> +		irq_set_chained_handler_and_data(parent_irq,
+>  				dw_apb_ictl_handle_irq_cascaded, domain);
+> +	} else {
+> +		dw_apb_ictl_irq_domain = domain;
+> +		set_handle_irq(dw_apb_ictl_handle_irq);
+> +	}
+> 
+>  	return 0;
+
+Thanks,
+
+         M.
+-- 
+Jazz is not dead. It just smells funny...
