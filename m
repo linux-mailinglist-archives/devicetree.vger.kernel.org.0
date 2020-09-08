@@ -2,125 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 203A426165B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:10:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8D0A2616A9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:16:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732078AbgIHRJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 13:09:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50860 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731812AbgIHRJo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 13:09:44 -0400
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 75B6421924;
-        Tue,  8 Sep 2020 17:09:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599584983;
-        bh=6NFe0ymOhoqmib9dZ3TJK/YVGzpwyBIPD6QNXwYX8UY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=mEOZY60QPhE7P0G9fDleoicJlosE0kdMqazDE59cEpI3AaF6rOo+YSIy/7T94gwnn
-         ivR9jr/Ak+vHTJ5zLH7ZzWDIrqU30dceu/CPIMczpsa19WzNYdlxNgFDhPIBZ9qp6n
-         x2t59Sv1jfj1flMANuF+WxRHwsDvoi3XRzbx8fW4=
-Received: by mail-ot1-f46.google.com with SMTP id a65so15477445otc.8;
-        Tue, 08 Sep 2020 10:09:43 -0700 (PDT)
-X-Gm-Message-State: AOAM530iJ/UlHgWO6be21zDy72njzyuihZGKsSti0OHrB1BGXmw0Ttkr
-        CFDfkPSiTPfMkHIgM0JDy34OzLYvmN+eoKkVlw==
-X-Google-Smtp-Source: ABdhPJwHvRobpy4sNP5E9Yg1dDeCFskCK1HpqEtpykR12ltq7YM6SYurKbQYjTYNf+T1ZSWapNAMuvoOnGPsoD0q7yw=
-X-Received: by 2002:a9d:411:: with SMTP id 17mr45450otc.192.1599584982696;
- Tue, 08 Sep 2020 10:09:42 -0700 (PDT)
+        id S1731718AbgIHRQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 13:16:03 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:39126 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726353AbgIHRQA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 13:16:00 -0400
+Received: by mail-ot1-f65.google.com with SMTP id u25so15504868otq.6;
+        Tue, 08 Sep 2020 10:16:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VyUaB29YLE2hRzWLNAFVPVwBzdkigLUmsYyS9tgIxFU=;
+        b=kv7O7bQUpDlj3ukFdL4UvAFS1QJnHKqNrBA6KAJ3+sIOhUIHeWl1zFEwbWtW0rVdl1
+         hpcr4IYAHbKTJtVpwPfgFH59Dfr9Kn2VDR00vfsWBJCWJuiEEwHiF6GMe6aPNtLyoBnf
+         RTHNvdA4EaFMIN5d1l94H1/gfOBtYTyyvBI9hcKkQ1b8fIIVWi23oBTfxU3J5ld+NFI3
+         6YRxGyzHo8LDBwZCtpTuEFGaiclrxWyBZcH/a7RCM5GEWjzrlZREtlXe2ADHU9huATKg
+         fmimXvrLVqqglJYLOoBpC0zSKH1Oas75HcxN/VwJKFAVZr3oYsVtcZFd3OjkjF1uZ1z6
+         2cqw==
+X-Gm-Message-State: AOAM532CS84eGnXqbZjY9DEKslw1f4S1JByCkYdBE9a/NLOHAzd2Ova1
+        grey0gyb7pb1IlPNyVcl7HHZEc5imTYQicYY5A98LYXe
+X-Google-Smtp-Source: ABdhPJycHtFHs6e1+Igot3xZzgYBhzw/LJqU+Y/o4zhAgPPaYstOfa8XpTgPN6nDizq0N4qYjU4kqO8uhJvv9eduAGU=
+X-Received: by 2002:a9d:162:: with SMTP id 89mr63316otu.250.1599585359954;
+ Tue, 08 Sep 2020 10:15:59 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200830185356.5365-1-digetx@gmail.com> <20200830185356.5365-2-digetx@gmail.com>
- <20200903161022.GA2707794@bogus> <790dbb23-7422-887a-3f11-5ae55bb916fa@gmail.com>
- <CAL_Jsq+Ue72jJ9gurcG0f_R+gGVC77dErhgbKpB_p40buUewLg@mail.gmail.com> <40e34696-5af8-a3da-35f2-483a0dacd835@gmail.com>
-In-Reply-To: <40e34696-5af8-a3da-35f2-483a0dacd835@gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 8 Sep 2020 11:09:31 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+mE5gv6srBQgoNFehMx2RdxTpxeE9+y2uhfNGZAT_yFw@mail.gmail.com>
-Message-ID: <CAL_Jsq+mE5gv6srBQgoNFehMx2RdxTpxeE9+y2uhfNGZAT_yFw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/6] dt-bindings: mfd: Add ENE KB930 Embedded
- Controller binding
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Dan Murphy <dmurphy@ti.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>
+References: <1599470390-29719-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <1599470390-29719-14-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <1599470390-29719-14-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 8 Sep 2020 19:15:49 +0200
+Message-ID: <CAMuHMdXo2sTP7RmMvd0qquD7bmpPEE7suwvOc9QrnpckdYWm=w@mail.gmail.com>
+Subject: Re: [PATCH 13/14] arm64: dts: renesas: Add Renesas R8A779A0 SoC support
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 4, 2020 at 9:54 AM Dmitry Osipenko <digetx@gmail.com> wrote:
+Hi Shimoda-san,
+
+On Mon, Sep 7, 2020 at 11:20 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Add initial support for the Renesas R8A77990 (R-Car V3U) support.
 >
-> 04.09.2020 18:40, Rob Herring =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> > On Fri, Sep 4, 2020 at 6:07 AM Dmitry Osipenko <digetx@gmail.com> wrote=
-:
-> >>
-> >> 03.09.2020 19:10, Rob Herring =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> >>> On Sun, 30 Aug 2020 21:53:51 +0300, Dmitry Osipenko wrote:
-> >>>> Add binding document for the ENE KB930 Embedded Controller.
-> >>>>
-> >>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> >>>> ---
-> >>>>  .../devicetree/bindings/mfd/ene-kb930.yaml    | 66 ++++++++++++++++=
-+++
-> >>>>  1 file changed, 66 insertions(+)
-> >>>>  create mode 100644 Documentation/devicetree/bindings/mfd/ene-kb930.=
-yaml
-> >>>>
-> >>>
-> >>>
-> >>> My bot found errors running 'make dt_binding_check' on your patch:
-> >>>
-> >>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/=
-mfd/ene-kb930.example.dt.yaml: battery-cell: 'operating-range-celsius' does=
- not match any of the regexes: '^ocv-capacity-table-[0-9]+$', 'pinctrl-[0-9=
-]+'
-> >>>       From schema: /builds/robherring/linux-dt-review/Documentation/d=
-evicetree/bindings/power/supply/battery.yaml
-> >>>
-> >>>
-> >>> See https://patchwork.ozlabs.org/patch/1354004
-> >>>
-> >>> If you already ran 'make dt_binding_check' and didn't see the above
-> >>> error(s), then make sure dt-schema is up to date:
-> >>>
-> >>> pip3 install git+https://github.com/devicetree-org/dt-schema.git@mast=
-er --upgrade
-> >>>
-> >>> Please check and re-submit.
-> >>>
-> >>
-> >> Apparently bot uses outdated kernel.
-> >
-> > It's on v5.9-rc2. The scripts don't know your base/dependencies and
-> > neither did I because you didn't mention anything here. I do review
-> > the errors before spamming people.
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+
+Thanks for your patch!
+
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+
+> +       soc: soc {
+
+> +
+> +               sysc: system-controller@e6180000 {
+> +                       compatible = "renesas,r8a779a0-sysc";
+> +                       reg = <0 0xe6180000 0 0x3078>;
+
+Length 0x4000?
+
+> +                       #power-domain-cells = <1>;
+> +               };
+> +
+> +               scif0: serial@e6e60000 {
+> +                       compatible = "renesas,scif-r8a779a0",
+> +                                    "renesas,rcar-gen3-scif", "renesas,scif";
+> +                       reg = <0 0xe6e60000 0 64>;
+> +                       interrupts = <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&cpg CPG_MOD 702>,
+> +                                <&cpg CPG_CORE R8A779A0_CLK_S1D2>,
+> +                                <&scif_clk>;
+> +                       clock-names = "fck", "brg_int", "scif_clk";
+> +                       power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
+
+Missing resets property.
+
+> +                       status = "disabled";
+> +               };
+> +
+> +               gic: interrupt-controller@f1000000 {
+> +                       compatible = "arm,gic-v3";
+> +                       #interrupt-cells = <3>;
+> +                       #address-cells = <0>;
+> +                       interrupt-controller;
+> +                       reg = <0x0 0xf1000000 0 0x20000>,
+> +                             <0x0 0xf1060000 0 0x110000>;
+> +                       interrupts = <GIC_PPI 9
+> +                                     (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
+
+"GIC_CPU_MASK_SIMPLE(1)", as currently only one CPU core is used.
+
+> +                       power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
+> +               };
+> +
+> +               prr: chipid@fff00044 {
+> +                       compatible = "renesas,prr";
+> +                       reg = <0 0xfff00044 0 4>;
+> +               };
+> +       };
+> +
+> +       timer {
+> +               compatible = "arm,armv8-timer";
+> +               interrupts-extended = <&gic GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
+> +                                     <&gic GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
+> +                                     <&gic GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
+> +                                     <&gic GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>;
+
+"GIC_CPU_MASK_SIMPLE(1)" for all 4 interrupts (and in the future "8",
+not "2").
+
+> +       };
+> +};
+> --
+> 2.7.4
 >
-> The patches are based on the linux-next, hence nothing special here. My
-> expectation is that the bot should use the linux-next as well in order
-> to prevent such warnings. Is there any reason to why bot not using
-> linux-next?
 
-What the bot uses is not the issue. The issue is not stating what your
-dependencies are. linux-next is not a stable base. No patches to be
-applied should be based on linux-next because there's no maintainer
-that can take them if you consider anything in linux-next could be a
-dependency. Of course, you're probably just dependent on one
-maintainer's tree usually, but whose tree? Am I supposed to figure
-that out?
 
-linux-next is frequently broken with respect to binding checks, so it
-really doesn't work for the bot. I need a known good base.
 
-Rob
+--
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
