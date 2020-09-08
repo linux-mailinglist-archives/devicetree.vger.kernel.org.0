@@ -2,94 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74B8926224D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 00:01:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88DEA262293
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 00:22:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730064AbgIHWBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 18:01:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55240 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729961AbgIHWBe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 18:01:34 -0400
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE36DC061573;
-        Tue,  8 Sep 2020 15:01:33 -0700 (PDT)
-Received: by mail-lj1-x241.google.com with SMTP id c2so838461ljj.12;
-        Tue, 08 Sep 2020 15:01:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=JCz8UqzZZXReRQPrCXAqn/MtSI4k6tdII/zQ2UmwoQk=;
-        b=f1IIWICvOCg0UZtuYClNB9BcUCxsnWoE3xVpe4VpTp2B/FUfc9pUTiKKx/tE23IjIn
-         J5KatTg+G7cERA60W7U2qwuLgFIxCy4WBKuXv5nE+jUwqShZEd0pK9DnWi0w1I9+DLpE
-         3cchXtINfleeHFprtMfvD9TbAgVYUfs4JQq2hmyeDOPuR0pS4WvD6Dsi9x0Hbqb/bCzs
-         NACqig3MVoh74UA1GAY3J72v5/P+lZXx5VkNwQeghvD42dUyvJgnrqmqVSi21DVvS5yv
-         o/bM7+ONsVsHpb8WWV5QmPrgJzKbCf4SdxT8nt1rEXPS6sgJFKFIVub1i4Ei0SzVf1lX
-         BAEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=JCz8UqzZZXReRQPrCXAqn/MtSI4k6tdII/zQ2UmwoQk=;
-        b=gXKyHq12sVs397aEzZFadDI1ebdDlgWWW8CxJqR/cyhkWYoNfGPv7lQWRegmzr95ol
-         sjdPtVCQLSnWCPZWd4X/JZcE3HDkiyxZXj0CQqVsIWVSKDCsNRU4hLCvUzwumN2N5cr6
-         srO6T0r8x/cGTSPYy683+IeouQKH75utRphRnZAmk/NPighE2FrErXIl03clwXwlysKF
-         QieGhV/ukBTzQyVx+NA3j8oxVA3NgEEH3c9xzT+Yq0LZi+iFEhowMweUVNoXN9TiNlqk
-         33C04+aDkmy6UT0xCks5Z3j87DVtesIVExjmbJC/JZnhObjCjcYV2KjVA/149gXcIYME
-         gQyA==
-X-Gm-Message-State: AOAM5308hm1DVw4P0CqsQTsLFUEEAP2Mfxnh9sp3b739AfPJCNHueUEC
-        4z273WqnZymQ7Oa3GnQEnnDMv+aLDCo=
-X-Google-Smtp-Source: ABdhPJwnOgzNYoPB5eCE0GFByGdksNbNX/vvhO0BA9oM5XpFc+vQALNRgEuH0osDGTLkAca3I7wJKA==
-X-Received: by 2002:a2e:9d04:: with SMTP id t4mr285589lji.293.1599602492166;
-        Tue, 08 Sep 2020 15:01:32 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-170-211.dynamic.spd-mgts.ru. [109.252.170.211])
-        by smtp.googlemail.com with ESMTPSA id n14sm162405lfi.50.2020.09.08.15.01.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Sep 2020 15:01:31 -0700 (PDT)
-Subject: Re: [PATCH v1 4/6] dt-bindings: mfd: ene-kb3930: Add compatibles for
- KB930 and Acer A500
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lubomir Rintel <lkundrak@v3.sk>, Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20200823140846.19299-1-digetx@gmail.com>
- <20200823140846.19299-5-digetx@gmail.com>
- <20200823182050.GA210632@demiurge.local>
- <b91b96d2-89e1-feb7-a4d0-6fd19a173ab4@gmail.com>
- <20200823211629.GA240555@demiurge.local>
- <c536557c-de42-d6bd-890c-ef71ca0e3116@gmail.com>
- <20200908215352.GA989862@bogus>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <3150618f-21db-1974-8e00-1024b6529914@gmail.com>
-Date:   Wed, 9 Sep 2020 01:01:29 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1729971AbgIHWWl convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 8 Sep 2020 18:22:41 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:59330 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728463AbgIHWWf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 18:22:35 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id CDA7D1C0B7A; Wed,  9 Sep 2020 00:22:33 +0200 (CEST)
+Date:   Wed, 9 Sep 2020 00:22:32 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Gene Chen <gene.chen.richtek@gmail.com>
+Cc:     jacek.anaszewski@gmail.com, robh+dt@kernel.org,
+        matthias.bgg@gmail.com, dmurphy@ti.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        gene_chen@richtek.com, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Subject: Re: [PATCH v3 2/2] dt-bindings: leds: Add bindings for MT6360 LED
+Message-ID: <20200908222232.GB1005@bug>
+References: <1599474459-20853-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1599474459-20853-3-git-send-email-gene.chen.richtek@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20200908215352.GA989862@bogus>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <1599474459-20853-3-git-send-email-gene.chen.richtek@gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-09.09.2020 00:53, Rob Herring пишет:
-...
->> Alright, I don't mind to separate the bindings. Although, before doing
->> that, I'd want to get opinion from the device-tree experts, i.e. from
->> Rob Herring :)
->>
->> Rob, will it be fine to have separate bindings for each firmware version
->> of the ENE controller given that firmware is individual for every device
->> and given that FW has no compatibility with other devices?
+Hi!
+> From: Gene Chen <gene_chen@richtek.com>
 > 
-> Seems like separate bindings makes sense here.
+> Add bindings document for LED support on MT6360 PMIC
+> 
+> Signed-off-by: Gene Chen <gene_chen@richtek.com>
 
-Okay, thank you for the answers and for the review of the v3!
+Put this first in the series.
+
+Acked-by: Pavel Machek <pavel@ucw.cz>
+									Pavel
+-- 
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blog.html
