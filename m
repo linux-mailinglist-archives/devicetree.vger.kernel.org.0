@@ -2,115 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C013726207F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:12:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88E13261FF3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:08:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731057AbgIHUMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 16:12:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46394 "EHLO
+        id S1731528AbgIHUIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 16:08:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730114AbgIHPLR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 11:11:17 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4D55C08C5ED
-        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 08:11:08 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id k15so11173245pfc.12
-        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 08:11:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=DqQzdsNyVZxQfTKZQ3YstL3rPQCUat0ck3Wbh+a/dRg=;
-        b=A42L4iBc1CLoIwG4vjkgmHVXssQmnn3pAMqht8EDGn5jdLIp0DEMm5fr4fRpNNZ6GB
-         cYpBWQkG770jRLy7OaKNz1ax7PjmhebIMH94oOt0oJsVF+Dwlh/vxyjmbAEUSlWYeX7j
-         nrYDiolhDL3/k31KAqubdudhePJwyIK4M16TzYv5GMRUnXe56k6P77Mwl6Dvu7VEGcgq
-         bEapsJBiR0hlNw0O9U16OsSNqLJc2hWQmHmQZyXyzvMHCvFZEJxBP9L4835Zv9l944bW
-         h6pGAmzhouGRV/7qtqbJ86YEqHShEZKpc1wDIxcNthdw4Kb+uUMDhUZ4ixEXFRS0sHq7
-         pWog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=DqQzdsNyVZxQfTKZQ3YstL3rPQCUat0ck3Wbh+a/dRg=;
-        b=Lq8k7xHFVtQN3R2BxUme+qkqX7uX5KQM7guYYi8ONzLrOoGKDu3mdchVzYMT8+R62n
-         AmAxDA8C5CG+LLMVqfSYyKRO3moDJnV0F9U6pnxhYvs78M6Cy9xtzoUWPcsz0+b+ZxTd
-         MfvWDfJ/T2jFchB/2IXj6Wkfk0Mz9PE0hsa57f6fHQj6WmonW5nexZD5M5ZLLrNDJuGD
-         HN6yEvfQswhMg73n30+q6iG3woT8PuXYzWM30Br4F3CrZkpfYvvaVZnH5H9RsUZWcvHr
-         ZQ18EYqMVh3S3bE0Ih862HjFx3XqT2RU3CoqttiXqmPEp6kvnyS1/RVaKz/8A4xIyC2K
-         YrUQ==
-X-Gm-Message-State: AOAM531+TQjBT8oYqEZm8dvUVAW0ZdEAtr/cVOPpiFOAGkp9Anj7O8/B
-        jXoLy8j8/tUb08o5hM0oG3s+
-X-Google-Smtp-Source: ABdhPJygg2wc2pJ6EFNe7SN5QXwBrjuD9HtWHBZlXZcCYsz145npyX1ctKgCmabtN4zCr836QQoSxA==
-X-Received: by 2002:aa7:9201:0:b029:13e:d13d:a10c with SMTP id 1-20020aa792010000b029013ed13da10cmr1456521pfo.40.1599577868308;
-        Tue, 08 Sep 2020 08:11:08 -0700 (PDT)
-Received: from mani-NUC7i5DNKE ([2409:4072:6213:6149:cb0:8a44:a6a5:e3bd])
-        by smtp.gmail.com with ESMTPSA id t25sm15461220pgn.13.2020.09.08.08.11.03
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 08 Sep 2020 08:11:07 -0700 (PDT)
-Date:   Tue, 8 Sep 2020 20:40:58 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     rjw@rjwysocki.net, viresh.kumar@linaro.org, robh+dt@kernel.org,
-        agross@kernel.org, amitk@kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, dmitry.baryshkov@linaro.org,
-        tdas@codeaurora.org
-Subject: Re: [PATCH 1/7] dt-bindings: cpufreq: cpufreq-qcom-hw: Document
- SM8250 compatible
-Message-ID: <20200908151050.GC2352@mani-NUC7i5DNKE>
-References: <20200908075716.30357-1-manivannan.sadhasivam@linaro.org>
- <20200908075716.30357-2-manivannan.sadhasivam@linaro.org>
- <20200908145819.GN3715@yoga>
+        with ESMTP id S1730204AbgIHPTw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 11:19:52 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE9C1C0619EC;
+        Tue,  8 Sep 2020 08:13:32 -0700 (PDT)
+Received: from [192.168.0.20] (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8BC423B;
+        Tue,  8 Sep 2020 17:11:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1599577883;
+        bh=h9mUakxYmdFqKjR3d2mncvxhU+lwjQr60pkqM2gFibI=;
+        h=Reply-To:Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=KY4ff04dUI1/a/22sWx/eaKjlTgAeMmU46HECBs9/Ko+/zAdYDc2yGS+VwEPugUuB
+         boRoFcG0uUrlLjXGa53CibXvrcJwl4QGIbDST8fy0iMEpYjv9eP2dkVZ5IvwuAKJL/
+         KvRDIIWi0e9VDzIkjLJeOtdgl/+/XwyJZbtj6n8o=
+Reply-To: kieran.bingham+renesas@ideasonboard.com
+Subject: Re: [PATCH v2 07/10] arm64: dts: renesas: r8a77961: Add DU device
+ nodes
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent <laurent.pinchart@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>
+Cc:     Magnus <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux-DT <devicetree@vger.kernel.org>,
+        "(Renesas) shimoda" <yoshihiro.shimoda.uh@renesas.com>,
+        dri-devel@lists.freedesktop.org
+References: <87o8mhrtxo.wl-kuninori.morimoto.gx@renesas.com>
+ <87eendrtv1.wl-kuninori.morimoto.gx@renesas.com>
+From:   Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Organization: Ideas on Board
+Message-ID: <2e44fb1d-9eaf-ce6a-04d0-8c64f8b9bb5d@ideasonboard.com>
+Date:   Tue, 8 Sep 2020 16:11:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200908145819.GN3715@yoga>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <87eendrtv1.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 0908, Bjorn Andersson wrote:
-> On Tue 08 Sep 02:57 CDT 2020, Manivannan Sadhasivam wrote:
+Hi Morimoto-san,
+
+On 08/09/2020 01:35, Kuninori Morimoto wrote:
 > 
-> > Document the SM8250 SoC specific compatible for Qualcomm Cpufreq HW. The
-> > hardware block which carries out CPUFreq operations on SM8250 SoC is
-> > called EPSS.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 > 
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> This patch adds DU device nodes for R-Car M3-W+ (r8a77961) SoC.
+> This patch was tested on R-Car M3-W+ Salvator-XS board.
 > 
-> Please follow up, after this has been accepted, with a conversion of
-> this binding to yaml.
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+
+Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+
+
+> ---
+>  arch/arm64/boot/dts/renesas/r8a77961.dtsi | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+> index 423808b6cd58..c7fabd9e875b 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+> @@ -2165,8 +2165,19 @@ port@2 {
+>  		};
+>  
+>  		du: display@feb00000 {
+> +			compatible = "renesas,du-r8a77961";
+>  			reg = <0 0xfeb00000 0 0x70000>;
+> -			/* placeholder */
+> +			interrupts = <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cpg CPG_MOD 724>, <&cpg CPG_MOD 723>,
+> +				 <&cpg CPG_MOD 722>;
+> +			clock-names = "du.0", "du.1", "du.2";
+> +			resets = <&cpg 724>, <&cpg 722>;
+> +			reset-names = "du.0", "du.2";
+> +
+> +			renesas,vsps = <&vspd0 0>, <&vspd1 0>, <&vspd2 0>;
+> +			status = "disabled";
+>  
+>  			ports {
+>  				#address-cells = <1>;
 > 
 
-Sure.
-
-Thanks,
-Mani
-
-> Regards,
-> Bjorn
-> 
-> > ---
-> >  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
-> > index 33856947c561..aea4ddb2b9e8 100644
-> > --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
-> > +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
-> > @@ -8,7 +8,7 @@ Properties:
-> >  - compatible
-> >  	Usage:		required
-> >  	Value type:	<string>
-> > -	Definition:	must be "qcom,cpufreq-hw".
-> > +	Definition:	must be "qcom,cpufreq-hw" or "qcom,sm8250-epss".
-> >  
-> >  - clocks
-> >  	Usage:		required
-> > -- 
-> > 2.17.1
-> > 
