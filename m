@@ -2,40 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FE2B2615FB
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:00:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EC352615FD
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:00:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731881AbgIHRAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 13:00:14 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:47806 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731849AbgIHRAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 13:00:06 -0400
+        id S1731817AbgIHRAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 13:00:23 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:59642 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731940AbgIHRAV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 13:00:21 -0400
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 088H032E003661;
-        Tue, 8 Sep 2020 12:00:03 -0500
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 088H0GXr087891;
+        Tue, 8 Sep 2020 12:00:16 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599584403;
-        bh=QZWuH3KY1sKtXDptWtQX4dYKsXnLQg4YPCavbKV70cg=;
+        s=ti-com-17Q1; t=1599584416;
+        bh=PKOejH6vx5nLOnIDQFUSZ/d82lIDZbEh+49+G1IcozA=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=R0j7oOiOfAoeyB0UIzudIgJZHTQLHX+xtRRaWEcnlm/hbhdS/iE0prF/3nfi2MTfL
-         YsRbuSqbgE0AYDsSmR69F0g1HGsVOphG2IfdJFByh20oNezTLqdE47+qxJ2SHo0Kkf
-         qzLu7qdO9j7RBd+M/gORqsTYfCAIp3NiTNsV+dTg=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 088H02FC048821
+        b=E8nFWq2ARuL5/ZxMwPYAmIqWQhHJLkG4peHqXH8a513Angk1wFBDNGk87bwebP6AT
+         BLjuHF5LI98oL83Xa/yBW2IjvHrcs8z9ESwGhvRXW5Q2XmOWk0oNQeK171owMpFZto
+         EalEoG6E7lDiH3UhNMDTKTGPp0hbJCGmn1wE/E1k=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 088H0GvK049746
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Sep 2020 12:00:03 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 8 Sep 2020 12:00:16 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 8 Sep
- 2020 12:00:01 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ 2020 12:00:16 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 8 Sep 2020 12:00:01 -0500
+ Frontend Transport; Tue, 8 Sep 2020 12:00:16 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088H00bs031667;
-        Tue, 8 Sep 2020 12:00:01 -0500
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088H0FS4113858;
+        Tue, 8 Sep 2020 12:00:15 -0500
 From:   Grygorii Strashko <grygorii.strashko@ti.com>
 To:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
         Tero Kristo <t-kristo@ti.com>,
@@ -47,9 +47,9 @@ CC:     Sekhar Nori <nsekhar@ti.com>, <linux-kernel@vger.kernel.org>,
         Vignesh Raghavendra <vigneshr@ti.com>,
         Suman Anna <s-anna@ti.com>,
         Grygorii Strashko <grygorii.strashko@ti.com>
-Subject: [PATCH v2 1/4] arm64: dts: ti: k3-j7200: add DMA support
-Date:   Tue, 8 Sep 2020 19:59:39 +0300
-Message-ID: <20200908165942.32368-2-grygorii.strashko@ti.com>
+Subject: [PATCH v2 3/4] arm64: dts: ti: k3-j7200-mcu: add mcu cpsw nuss node
+Date:   Tue, 8 Sep 2020 19:59:41 +0300
+Message-ID: <20200908165942.32368-4-grygorii.strashko@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200908165942.32368-1-grygorii.strashko@ti.com>
 References: <20200908165942.32368-1-grygorii.strashko@ti.com>
@@ -61,146 +61,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peter Ujfalusi <peter.ujfalusi@ti.com>
+Add DT node for The TI j7200 MCU SoC Gigabit Ethernet two ports Switch
+subsystem (MCU CPSW NUSS).
 
-Add the intr, inta, ringacc and udmap nodes for main and mcu NAVSS.
-
-Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
 Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
 ---
- arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 61 +++++++++++++++++++
- .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 44 +++++++++++++
- 2 files changed, 105 insertions(+)
+ .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 74 +++++++++++++++++++
+ 1 file changed, 74 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-index 70c8f7e941fb..cc4ff380a7bc 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-@@ -45,6 +45,31 @@
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges = <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>;
-+		ti,sci-dev-id = <199>;
-+
-+		main_navss_intr: interrupt-controller1 {
-+			compatible = "ti,sci-intr";
-+			ti,intr-trigger-type = <4>;
-+			interrupt-controller;
-+			interrupt-parent = <&gic500>;
-+			#interrupt-cells = <1>;
-+			ti,sci = <&dmsc>;
-+			ti,sci-dev-id = <213>;
-+			ti,interrupt-ranges = <0 64 64>,
-+					      <64 448 64>,
-+					      <128 672 64>;
-+		};
-+
-+		main_udmass_inta: interrupt-controller@33d00000 {
-+			compatible = "ti,sci-inta";
-+			reg = <0x0 0x33d00000 0x0 0x100000>;
-+			interrupt-controller;
-+			interrupt-parent = <&main_navss_intr>;
-+			msi-controller;
-+			ti,sci = <&dmsc>;
-+			ti,sci-dev-id = <209>;
-+			ti,interrupt-ranges = <0 0 256>;
-+		};
- 
- 		secure_proxy_main: mailbox@32c00000 {
- 			compatible = "ti,am654-secure-proxy";
-@@ -56,6 +81,42 @@
- 			interrupt-names = "rx_011";
- 			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
- 		};
-+
-+		main_ringacc: ringacc@3c000000 {
-+			compatible = "ti,am654-navss-ringacc";
-+			reg =	<0x0 0x3c000000 0x0 0x400000>,
-+				<0x0 0x38000000 0x0 0x400000>,
-+				<0x0 0x31120000 0x0 0x100>,
-+				<0x0 0x33000000 0x0 0x40000>;
-+			reg-names = "rt", "fifos", "proxy_gcfg", "proxy_target";
-+			ti,num-rings = <1024>;
-+			ti,sci-rm-range-gp-rings = <0x1>; /* GP ring range */
-+			ti,sci = <&dmsc>;
-+			ti,sci-dev-id = <211>;
-+			msi-parent = <&main_udmass_inta>;
-+		};
-+
-+		main_udmap: dma-controller@31150000 {
-+			compatible = "ti,j721e-navss-main-udmap";
-+			reg =	<0x0 0x31150000 0x0 0x100>,
-+				<0x0 0x34000000 0x0 0x100000>,
-+				<0x0 0x35000000 0x0 0x100000>;
-+			reg-names = "gcfg", "rchanrt", "tchanrt";
-+			msi-parent = <&main_udmass_inta>;
-+			#dma-cells = <1>;
-+
-+			ti,sci = <&dmsc>;
-+			ti,sci-dev-id = <212>;
-+			ti,ringacc = <&main_ringacc>;
-+
-+			ti,sci-rm-range-tchan = <0x0d>, /* TX_CHAN */
-+						<0x0f>, /* TX_HCHAN */
-+						<0x10>; /* TX_UHCHAN */
-+			ti,sci-rm-range-rchan = <0x0a>, /* RX_CHAN */
-+						<0x0b>, /* RX_HCHAN */
-+						<0x0c>; /* RX_UHCHAN */
-+			ti,sci-rm-range-rflow = <0x00>; /* GP RFLOW */
-+		};
- 	};
- 
- 	main_pmx0: pinmux@11c000 {
 diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-index 670e4c7cd9fe..9ecb7e0c9cf7 100644
+index 9ecb7e0c9cf7..06cd6a80a499 100644
 --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
 +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-@@ -81,4 +81,48 @@
- 		clocks = <&k3_clks 149 2>;
- 		clock-names = "fclk";
+@@ -34,6 +34,20 @@
+ 		};
+ 	};
+ 
++	mcu_conf: syscon@40f00000 {
++		compatible = "syscon", "simple-mfd";
++		reg = <0x0 0x40f00000 0x0 0x20000>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0x0 0x0 0x40f00000 0x20000>;
++
++		phy_gmii_sel: phy@4040 {
++			compatible = "ti,am654-phy-gmii-sel";
++			reg = <0x4040 0x4>;
++			#phy-cells = <1>;
++		};
++	};
++
+ 	chipid@43000014 {
+ 		compatible = "ti,am654-chipid";
+ 		reg = <0x0 0x43000014 0x0 0x4>;
+@@ -125,4 +139,64 @@
+ 			ti,sci-rm-range-rflow = <0x00>; /* GP RFLOW */
+ 		};
  	};
 +
-+	cbass_mcu_navss: navss@28380000 {
-+		compatible = "simple-mfd";
++	mcu_cpsw: ethernet@46000000 {
++		compatible = "ti,j721e-cpsw-nuss";
 +		#address-cells = <2>;
 +		#size-cells = <2>;
-+		ranges;
++		reg = <0x0 0x46000000 0x0 0x200000>;
++		reg-names = "cpsw_nuss";
++		ranges = <0x0 0x0 0x0 0x46000000 0x0 0x200000>;
 +		dma-coherent;
-+		dma-ranges;
-+		ti,sci-dev-id = <232>;
++		clocks = <&k3_clks 18 21>;
++		clock-names = "fck";
++		power-domains = <&k3_pds 18 TI_SCI_PD_EXCLUSIVE>;
 +
-+		mcu_ringacc: ringacc@2b800000 {
-+			compatible = "ti,am654-navss-ringacc";
-+			reg =	<0x0 0x2b800000 0x0 0x400000>,
-+				<0x0 0x2b000000 0x0 0x400000>,
-+				<0x0 0x28590000 0x0 0x100>,
-+				<0x0 0x2a500000 0x0 0x40000>;
-+			reg-names = "rt", "fifos", "proxy_gcfg", "proxy_target";
-+			ti,num-rings = <286>;
-+			ti,sci-rm-range-gp-rings = <0x1>; /* GP ring range */
-+			ti,sci = <&dmsc>;
-+			ti,sci-dev-id = <235>;
-+			msi-parent = <&main_udmass_inta>;
++		dmas = <&mcu_udmap 0xf000>,
++		       <&mcu_udmap 0xf001>,
++		       <&mcu_udmap 0xf002>,
++		       <&mcu_udmap 0xf003>,
++		       <&mcu_udmap 0xf004>,
++		       <&mcu_udmap 0xf005>,
++		       <&mcu_udmap 0xf006>,
++		       <&mcu_udmap 0xf007>,
++		       <&mcu_udmap 0x7000>;
++		dma-names = "tx0", "tx1", "tx2", "tx3",
++			    "tx4", "tx5", "tx6", "tx7",
++			    "rx";
++
++		ethernet-ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			cpsw_port1: port@1 {
++				reg = <1>;
++				ti,mac-only;
++				label = "port1";
++				ti,syscon-efuse = <&mcu_conf 0x200>;
++				phys = <&phy_gmii_sel 1>;
++			};
 +		};
 +
-+		mcu_udmap: dma-controller@285c0000 {
-+			compatible = "ti,j721e-navss-mcu-udmap";
-+			reg =	<0x0 0x285c0000 0x0 0x100>,
-+				<0x0 0x2a800000 0x0 0x40000>,
-+				<0x0 0x2aa00000 0x0 0x40000>;
-+			reg-names = "gcfg", "rchanrt", "tchanrt";
-+			msi-parent = <&main_udmass_inta>;
-+			#dma-cells = <1>;
++		davinci_mdio: mdio@f00 {
++			compatible = "ti,cpsw-mdio","ti,davinci_mdio";
++			reg = <0x0 0xf00 0x0 0x100>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			clocks = <&k3_clks 18 21>;
++			clock-names = "fck";
++			bus_freq = <1000000>;
++		};
 +
-+			ti,sci = <&dmsc>;
-+			ti,sci-dev-id = <236>;
-+			ti,ringacc = <&mcu_ringacc>;
-+
-+			ti,sci-rm-range-tchan = <0x0d>, /* TX_CHAN */
-+						<0x0f>; /* TX_HCHAN */
-+			ti,sci-rm-range-rchan = <0x0a>, /* RX_CHAN */
-+						<0x0b>; /* RX_HCHAN */
-+			ti,sci-rm-range-rflow = <0x00>; /* GP RFLOW */
++		cpts@3d000 {
++			compatible = "ti,am65-cpts";
++			reg = <0x0 0x3d000 0x0 0x400>;
++			clocks = <&k3_clks 18 2>;
++			clock-names = "cpts";
++			interrupts-extended = <&gic500 GIC_SPI 858 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "cpts";
++			ti,cpts-ext-ts-inputs = <4>;
++			ti,cpts-periodic-outputs = <2>;
 +		};
 +	};
  };
