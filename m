@@ -2,85 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7115C261701
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:23:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76D14261721
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:26:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731742AbgIHRXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 13:23:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56982 "EHLO mail.kernel.org"
+        id S1731844AbgIHR03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 13:26:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58748 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731796AbgIHRVl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 13:21:41 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1731826AbgIHRZu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 13:25:50 -0400
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BC5392087D;
-        Tue,  8 Sep 2020 17:21:40 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id EAE0B21532;
+        Tue,  8 Sep 2020 17:25:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599585701;
-        bh=mew/1s10XgJXC00/umlnesRbXahPHHRAmBvVFROAPLE=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=W2mbYs0d4HETX7iuF+6ZhcuDIskL5R2jzkA4IEU3DYBWaRMKlWulzT718Jq/CvGdc
-         uD8S6RdWpVIXwk+kgafzhGmizd5JdQtDfXde/jUa+hW4pd3HwNWTNehIcBbE9ZEZlE
-         Vm113A/Z417I/RXVPEKdhZNgqjGNwDMduSAq9/qI=
-Date:   Tue, 08 Sep 2020 18:20:57 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Peter Rosin <peda@axentia.se>,
-        Lars Povlsen <lars.povlsen@microchip.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        linux-spi@vger.kernel.org
-In-Reply-To: <20200824203010.2033-1-lars.povlsen@microchip.com>
-References: <20200824203010.2033-1-lars.povlsen@microchip.com>
-Subject: Re: [PATCH v5 0/6] spi: Adding support for Microchip Sparx5 SoC
-Message-Id: <159958565716.16771.6460929787549553831.b4-ty@kernel.org>
+        s=default; t=1599585950;
+        bh=OkqeuIqrKR7bGs2ubOleM1hudzXsytRwrAN1s4XP4Ew=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=0xHHYNITz4itRKxva3t4URtYS103wLewnyrgiygYiKvhKVI7JeZpkP/yX2GV4GX/2
+         K4eQyyfFSccATam4yXejQzqCOWCX4Qw20q1/byuFbssHLnmIXN8zcZp/LGgZdCxAzc
+         1U8AzrQ4EONXky+XP2je6zf3U6yBH8nplFaczOZs=
+Received: by mail-oo1-f52.google.com with SMTP id z1so4124563ooj.3;
+        Tue, 08 Sep 2020 10:25:49 -0700 (PDT)
+X-Gm-Message-State: AOAM533c9Nco+s4z/pBgVg7SKB2T1vLRH4Stst9YKGZwU0/tmRRvi5ml
+        hvR1/a/N1XoG8xTlv10GcmTTm+kzJYbJRAibVA==
+X-Google-Smtp-Source: ABdhPJz3mC3Je19t37DdXhi+vmTjFLXH5RMTrow7KHwUv8p1SJN+XNllTeJU4l6nK8rRcXYxxrGxHfHxeWKrKZcLv8k=
+X-Received: by 2002:a4a:9d48:: with SMTP id f8mr18836211ook.50.1599585949221;
+ Tue, 08 Sep 2020 10:25:49 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200828130602.42203-1-andre.przywara@arm.com>
+ <20200828130602.42203-2-andre.przywara@arm.com> <CAL_Jsq+jjzFR0ZdFO5dEp2w2D2uzSAB9tdih9tnuN987LABbiA@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+jjzFR0ZdFO5dEp2w2D2uzSAB9tdih9tnuN987LABbiA@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 8 Sep 2020 11:25:38 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJfY=DTKeuGmkwn-tcDG_SAbHJqASH2zKgwU-78qqwxOw@mail.gmail.com>
+Message-ID: <CAL_JsqJfY=DTKeuGmkwn-tcDG_SAbHJqASH2zKgwU-78qqwxOw@mail.gmail.com>
+Subject: Re: [PATCH 01/10] dt-bindings: watchdog: sp-805: Convert to Json-schema
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Chanho Min <chanho.min@lge.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Wei Xu <xuwei5@hisilicon.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 Aug 2020 22:30:04 +0200, Lars Povlsen wrote:
-> The series add support for the Sparx5 SoC SPI controller in the
-> spi-dw-mmio.c spi driver.
-> 
-> v5 changes:
-> - rx-sample-delay-ns documentation changes from Rob Herring:
->  - Drop superfluous type $ref
->  - Add default value = 0
-> 
-> [...]
+On Tue, Sep 8, 2020 at 11:20 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Fri, Aug 28, 2020 at 7:06 AM Andre Przywara <andre.przywara@arm.com> wrote:
+> >
+> > Convert the ARM SP-805 watchdog IP DT binding over to Json-schema.
+> >
+> > A straight-forward conversion, but the requirement for providing two
+> > clocks got strengthened from "should" to "must".
+> >
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  .../bindings/watchdog/arm,sp805.txt           | 32 --------
+> >  .../bindings/watchdog/arm,sp805.yaml          | 75 +++++++++++++++++++
+> >  2 files changed, 75 insertions(+), 32 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/watchdog/arm,sp805.txt
+> >  create mode 100644 Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/watchdog/arm,sp805.txt b/Documentation/devicetree/bindings/watchdog/arm,sp805.txt
+> > deleted file mode 100644
+> > index bee6f1f0e41b..000000000000
+> > --- a/Documentation/devicetree/bindings/watchdog/arm,sp805.txt
+> > +++ /dev/null
+> > @@ -1,32 +0,0 @@
+> > -ARM AMBA Primecell SP805 Watchdog
+> > -
+> > -SP805 WDT is a ARM Primecell Peripheral and has a standard-id register that
+> > -can be used to identify the peripheral type, vendor, and revision.
+> > -This value can be used for driver matching.
+> > -
+> > -As SP805 WDT is a primecell IP, it follows the base bindings specified in
+> > -'arm/primecell.txt'
+> > -
+> > -Required properties:
+> > -- compatible:  Should be "arm,sp805" & "arm,primecell"
+> > -- reg:         Should contain location and length for watchdog timer register
+> > -- clocks:      Clocks driving the watchdog timer hardware. This list should be
+> > -               2 clocks. With 2 clocks, the order is wdog_clk, apb_pclk
+> > -               wdog_clk can be equal to or be a sub-multiple of the apb_pclk
+> > -               frequency
+> > -- clock-names: Shall be "wdog_clk" for first clock and "apb_pclk" for the
+> > -               second one
+> > -
+> > -Optional properties:
+> > -- interrupts:  Should specify WDT interrupt number
+> > -- timeout-sec: Should specify default WDT timeout in seconds. If unset, the
+> > -               default timeout is determined by the driver
+> > -
+> > -Example:
+> > -       watchdog@66090000 {
+> > -               compatible = "arm,sp805", "arm,primecell";
+> > -               reg = <0x66090000 0x1000>;
+> > -               interrupts = <GIC_SPI 406 IRQ_TYPE_LEVEL_HIGH>;
+> > -               clocks = <&wdt_clk>, <&apb_pclk>;
+> > -               clock-names = "wdog_clk", "apb_pclk";
+> > -       };
+> > diff --git a/Documentation/devicetree/bindings/watchdog/arm,sp805.yaml b/Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
+> > new file mode 100644
+> > index 000000000000..980e155d3387
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
+> > @@ -0,0 +1,75 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/watchdog/arm,sp805.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: ARM AMBA Primecell SP805 Watchdog
+> > +
+> > +maintainers:
+> > +  - Viresh Kumar <vireshk@kernel.org>
+> > +
+> > +description: |+
+> > +  The Arm SP805 IP implements a watchdog device, which triggers an interrupt
+> > +  after a configurable time period. If that interrupt has not been serviced
+> > +  when the next interrupt would be triggered, the reset signal is asserted.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/arm/primecell.yaml#
+>
+> Should also ref watchdog.yaml here.
 
-Applied to
+Actually, you should also drop primecell.yaml as that will get applied
+already with the 'arm,primecell' compatible match.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[1/3] spi: dw: Add support for RX sample delay register
-      commit: bac70b54ecb53b3d5af862dd4fcbaaad8f34ed23
-[2/3] spi: dw: Add Microchip Sparx5 support
-      commit: 53a09635ce56e3041fb3cbc7ceef8f5de28259a5
-[3/3] dt-bindings: snps, dw-apb-ssi: Add sparx5 support, plus rx-sample-delay-ns property
-      commit: 5ce78f4456a9b2cb103f5bad9e62636e8d086152
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Rob
