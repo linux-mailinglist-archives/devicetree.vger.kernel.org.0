@@ -2,97 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56BC8260EDE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 11:39:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4F2F260EE5
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 11:40:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728936AbgIHJjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 05:39:53 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:51895 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728886AbgIHJjx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 05:39:53 -0400
-X-Originating-IP: 90.66.108.79
-Received: from localhost (lfbn-lyo-1-1932-79.w90-66.abo.wanadoo.fr [90.66.108.79])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 0E8EA24000F;
-        Tue,  8 Sep 2020 09:39:46 +0000 (UTC)
-Date:   Tue, 8 Sep 2020 11:39:46 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
-Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        id S1729225AbgIHJkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 05:40:55 -0400
+Received: from szxga07-in.huawei.com ([45.249.212.35]:45942 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728798AbgIHJkw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 05:40:52 -0400
+Received: from DGGEMS411-HUB.china.huawei.com (unknown [172.30.72.58])
+        by Forcepoint Email with ESMTP id 3B11753A6107732905F0;
+        Tue,  8 Sep 2020 17:40:48 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.253) by DGGEMS411-HUB.china.huawei.com
+ (10.3.19.211) with Microsoft SMTP Server id 14.3.487.0; Tue, 8 Sep 2020
+ 17:40:37 +0800
+Subject: Re: [PATCH v2 2/3] irqchip: dw-apb-ictl: support hierarchy irq domain
+To:     Marc Zyngier <maz@kernel.org>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Josua Mayer <josua.mayer@jm0.eu>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>
-Subject: Re: [PATCH v2 07/10] rtc: Introduce RTC_TIMESTAMP_END_2255
-Message-ID: <20200908093946.GQ230586@piout.net>
-References: <20200905133230.1014581-1-j.neuschaefer@gmx.net>
- <20200905133230.1014581-8-j.neuschaefer@gmx.net>
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Haoyu Lv <lvhaoyu@huawei.com>, Libin <huawei.libin@huawei.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
+References: <20200908071134.2578-1-thunder.leizhen@huawei.com>
+ <20200908071134.2578-3-thunder.leizhen@huawei.com>
+ <8f6e4cc51a53f580538b879cafcd06c3@kernel.org>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <0e860ff8-3e72-1099-c28c-c5a0bc28f2c4@huawei.com>
+Date:   Tue, 8 Sep 2020 17:40:36 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+In-Reply-To: <8f6e4cc51a53f580538b879cafcd06c3@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200905133230.1014581-8-j.neuschaefer@gmx.net>
+X-Originating-IP: [10.174.177.253]
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/09/2020 15:32:27+0200, Jonathan Neusch�fer wrote:
-> Some RTCs store the year as an 8-bit number relative to the year 2000.
-> This results in a maximum timestamp of 2255-12-31 23:59:59.
-> 
-> Signed-off-by: Jonathan Neusch�fer <j.neuschaefer@gmx.net>
-> ---
-> 
-> v2:
-> - New patch
-> ---
->  include/linux/rtc.h | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/include/linux/rtc.h b/include/linux/rtc.h
-> index 22d1575e4991b..fcc086084a603 100644
-> --- a/include/linux/rtc.h
-> +++ b/include/linux/rtc.h
-> @@ -154,6 +154,7 @@ struct rtc_device {
->  #define RTC_TIMESTAMP_END_2079		3471292799LL /* 2079-12-31 23:59:59 */
->  #define RTC_TIMESTAMP_END_2099		4102444799LL /* 2099-12-31 23:59:59 */
->  #define RTC_TIMESTAMP_END_2199		7258118399LL /* 2199-12-31 23:59:59 */
-> +#define RTC_TIMESTAMP_END_2255		9025257599LL /* 2255-12-31 23:59:59 */
 
-Honestly, I wouldn't bother adding that one unless you have examples of
-other RTCs endng at the same date, I'm fine having the value and comment
-directly in the probe function.
 
->  #define RTC_TIMESTAMP_END_9999		253402300799LL /* 9999-12-31 23:59:59 */
+On 2020/9/8 15:41, Marc Zyngier wrote:
+> On 2020-09-08 08:11, Zhen Lei wrote:
+>> Add support to use dw-apb-ictl as primary interrupt controller.
+>>
+>> Suggested-by: Marc Zyngier <maz@kernel.org>
+>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>> Tested-by: Haoyu Lv <lvhaoyu@huawei.com>
+>> ---
+>>  drivers/irqchip/Kconfig           |  2 +-
+>>  drivers/irqchip/irq-dw-apb-ictl.c | 75 +++++++++++++++++++++++++++++--
+>>  2 files changed, 73 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
+>> index bfc9719dbcdc..7c2d1c8fa551 100644
+>> --- a/drivers/irqchip/Kconfig
+>> +++ b/drivers/irqchip/Kconfig
+>> @@ -148,7 +148,7 @@ config DAVINCI_CP_INTC
+>>  config DW_APB_ICTL
+>>      bool
+>>      select GENERIC_IRQ_CHIP
+>> -    select IRQ_DOMAIN
+>> +    select IRQ_DOMAIN_HIERARCHY
+>>
+>>  config FARADAY_FTINTC010
+>>      bool
+>> diff --git a/drivers/irqchip/irq-dw-apb-ictl.c
+>> b/drivers/irqchip/irq-dw-apb-ictl.c
+>> index aa6214da0b1f..405861322596 100644
+>> --- a/drivers/irqchip/irq-dw-apb-ictl.c
+>> +++ b/drivers/irqchip/irq-dw-apb-ictl.c
+>> @@ -17,6 +17,7 @@
+>>  #include <linux/irqchip/chained_irq.h>
+>>  #include <linux/of_address.h>
+>>  #include <linux/of_irq.h>
+>> +#include <asm/exception.h>
+>>
+>>  #define APB_INT_ENABLE_L    0x00
+>>  #define APB_INT_ENABLE_H    0x04
+>> @@ -26,6 +27,30 @@
+>>  #define APB_INT_FINALSTATUS_H    0x34
+>>  #define APB_INT_BASE_OFFSET    0x04
+>>
+>> +/*
+>> + * irq domain of the primary interrupt controller. Currently, only one is
+>> + * supported.
 > 
->  extern struct rtc_device *devm_rtc_device_register(struct device *dev,
-> --
-> 2.28.0
-> 
+> By definition, there is only one primary interrupt controller.
 
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+OK, I will delete the comment "Currently, only one is supported". Should I replace
+it with your commend above?
+
+> 
+>> + */
+>> +static struct irq_domain *dw_apb_ictl_irq_domain;
+>> +
+>> +static void __exception_irq_entry dw_apb_ictl_handle_irq(struct pt_regs *regs)
+>> +{
+>> +    struct irq_domain *d = dw_apb_ictl_irq_domain;
+>> +    int n;
+>> +
+>> +    for (n = 0; n < d->revmap_size; n += 32) {
+>> +        struct irq_chip_generic *gc = irq_get_domain_generic_chip(d, n);
+>> +        u32 stat = readl_relaxed(gc->reg_base + APB_INT_FINALSTATUS_L);
+>> +
+>> +        while (stat) {
+>> +            u32 hwirq = ffs(stat) - 1;
+>> +
+>> +            handle_domain_irq(d, hwirq, regs);
+>> +            stat &= ~(1 << hwirq);
+> 
+> nit: prefer BIT(hwirq)
+
+OK, I will correct it.
+
+> 
+>> +        }
+>> +    }
+>> +}
+>> +
+>>  static void dw_apb_ictl_handle_irq_cascaded(struct irq_desc *desc)
+>>  {
+>>      struct irq_domain *d = irq_desc_get_handler_data(desc);
+>> @@ -50,6 +75,30 @@ static void dw_apb_ictl_handle_irq_cascaded(struct
+>> irq_desc *desc)
+>>      chained_irq_exit(chip, desc);
+>>  }
+>>
+>> +static int dw_apb_ictl_irq_domain_alloc(struct irq_domain *domain,
+>> unsigned int virq,
+>> +                unsigned int nr_irqs, void *arg)
+>> +{
+>> +    int i, ret;
+>> +    irq_hw_number_t hwirq;
+>> +    unsigned int type = IRQ_TYPE_NONE;
+>> +    struct irq_fwspec *fwspec = arg;
+>> +
+>> +    ret = irq_domain_translate_onecell(domain, fwspec, &hwirq, &type);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    for (i = 0; i < nr_irqs; i++)
+>> +        irq_map_generic_chip(domain, virq + i, hwirq + i);
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static const struct irq_domain_ops dw_apb_ictl_irq_domain_ops = {
+>> +    .translate = irq_domain_translate_onecell,
+>> +    .alloc = dw_apb_ictl_irq_domain_alloc,
+>> +    .free = irq_domain_free_irqs_top,
+>> +};
+>> +
+>>  #ifdef CONFIG_PM
+>>  static void dw_apb_ictl_resume(struct irq_data *d)
+>>  {
+>> @@ -78,11 +127,24 @@ static int __init dw_apb_ictl_init(struct device_node *np,
+>>      const struct irq_domain_ops *domain_ops = &irq_generic_chip_ops;
+>>      irq_flow_handler_t flow_handler = handle_level_irq;
+>>
+>> +    if (dw_apb_ictl_irq_domain) {
+>> +        pr_err("%pOF: a hierarchy irq domain is already exist.\n", np);
+>> +        return -EBUSY;
+> 
+> How can this happen?
+
+Just afraid the users maybe define two primary interrupt controller nodes in dts
+by mistake, or maybe mixed with secondary interrupt controller nodes. But an error
+maybe reported before when parse devicetree nodes. So I'll just delete it.
+
+> 
+>> +    }
+>> +
+>>      /* Map the parent interrupt for the chained handler */
+>>      parent_irq = irq_of_parse_and_map(np, 0);
+>>      if (parent_irq <= 0) {
+>> -        pr_err("%pOF: unable to parse irq\n", np);
+>> -        return -EINVAL
+> 
+> Checking for an output interrupt is not the way to check for a chained
+> interrupt controller. That's what the parent device_node is for (no
+> parent or parent == self denotes a primary controller).
+
+OK, Thank you for the point. I will modify it.
+
+> ;
+>> +        /* It's used as secondary interrupt controller */
+>> +        if (of_find_property(np, "interrupts", NULL)) {
+>> +            pr_err("%pOF: unable to parse irq\n", np);
+>> +            return -EINVAL;
+>> +        }
+>> +
+>> +        /* It's used as the primary interrupt controller */
+>> +        parent_irq = 0;
+>> +        domain_ops = &dw_apb_ictl_irq_domain_ops;
+>> +        flow_handler = handle_fasteoi_irq;
+> 
+> Why? This irqchip obviously doesn't support an EOI method since you
+> setting it to a NOP callback below. From what I understand, this
+> controller should use handle_level_irq, just like its chained version.
+
+OK, I will try to use handle_level_irq().
+
+> 
+>>      }
+>>
+>>      ret = of_address_to_resource(np, 0, &r);
+>> @@ -145,10 +207,17 @@ static int __init dw_apb_ictl_init(struct device_node *np,
+>>          gc->chip_types[0].chip.irq_mask = irq_gc_mask_set_bit;
+>>          gc->chip_types[0].chip.irq_unmask = irq_gc_mask_clr_bit;
+>>          gc->chip_types[0].chip.irq_resume = dw_apb_ictl_resume;
+>> +        if (!parent_irq)
+>> +            gc->chip_types[0].chip.irq_eoi = irq_gc_noop;
+>>      }
+>>
+>> -    irq_set_chained_handler_and_data(parent_irq,
+>> +    if (parent_irq) {
+>> +        irq_set_chained_handler_and_data(parent_irq,
+>>                  dw_apb_ictl_handle_irq_cascaded, domain);
+>> +    } else {
+>> +        dw_apb_ictl_irq_domain = domain;
+>> +        set_handle_irq(dw_apb_ictl_handle_irq);
+>> +    }
+>>
+>>      return 0;
+> 
+> Thanks,
+> 
+>         M.
+
