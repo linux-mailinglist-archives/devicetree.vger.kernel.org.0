@@ -2,124 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B21C260B95
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 09:12:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73FA9260BC8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 09:19:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728759AbgIHHMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 03:12:02 -0400
-Received: from ozlabs.org ([203.11.71.1]:52799 "EHLO ozlabs.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728562AbgIHHMB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 03:12:01 -0400
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4BlxCz2bZGz9sTM;
-        Tue,  8 Sep 2020 17:11:59 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ellerman.id.au;
-        s=201909; t=1599549119;
-        bh=3efI13X54DGkzx1Rpyo+HHculy/7YIzgSvQGS5+rp/g=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=BZwweZaAxN7a6jnerLAXaBZoFLytkt/tL6r/PM4y2NNqhX7pFF/W4qDE3aTijEinf
-         9Vo+artcy0cFMJzsy88Gr+H5rpUix6v+Wj9LJla2XM6S0xOeqbTWL7duR5qxB+S/qd
-         7VNIjFhBEfBbVGh2fqixT4VauccNkm5mcCEXcue/P8mRouAyjpR7/ANc/qB+eJJbOq
-         vpc/Y4ooxWR03D6RkTk51BERHR7FNh29/QqNuPRHw0npG0IKOCgC2faSfYq2y4vXf2
-         liFj7+QORzjOBMmOx8oYVCkPB8MvgdxGTkuYnOIk0bdqf50XzO56hCXVnJBlRo0nhA
-         DD61e+2j+CEzg==
-From:   Michael Ellerman <mpe@ellerman.id.au>
-To:     Christian Lamparter <chunkeey@gmail.com>, linuxppc-dev@ozlabs.org
-Cc:     sfr@canb.auug.org.au,
-        "open list\:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Chris Blake <chrisrblake93@gmail.com>
-Subject: Re: [PATCH] powerpc/boot/dts: Fix dtc "pciex" warnings
-In-Reply-To: <d2652e63-b136-a805-fd6d-00584b64c772@gmail.com>
-References: <20200623130320.405852-1-mpe@ellerman.id.au> <d2652e63-b136-a805-fd6d-00584b64c772@gmail.com>
-Date:   Tue, 08 Sep 2020 17:11:58 +1000
-Message-ID: <87mu20spxd.fsf@mpe.ellerman.id.au>
+        id S1729315AbgIHHTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 03:19:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58486 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729143AbgIHHSQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 03:18:16 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 568B9C061757
+        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 00:18:14 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id z9so16065289wmk.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 00:18:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:autocrypt:organization:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=BnZLlR/MqannyWzL/NE/WCFqx90iIATvWssNkndAyuw=;
+        b=O0Fz0vqVen5yD+ixiiv6Iil1A9arYyZHXu45/ldMkIihqHbX6OTNifTm1rtv3DDvOW
+         WyAFYIb5x77WHNfLxod0m48U/xo74yrRuiwojICLINLDChoNBl0jPeScM/mx4yEFUTrU
+         bg/veOxJBJKVRO/i15Ev9WzsjplgPRjNY7yMQxJJT/gufQ5WKbo7qdYGwc8dtIme62VQ
+         3pPQDEtexpP1n1MZXPOQgBFDjTkxlPHHwpbhpAokREfd8TqVd2tpY+HkQPxD4Kn58KW2
+         TEhIWKbyAiUmfpbCT+kaCuunbLRett5rXNZ19Sk1dyaJCHwQInhoRQiXsFu2zNATHtDR
+         Y8PA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=BnZLlR/MqannyWzL/NE/WCFqx90iIATvWssNkndAyuw=;
+        b=TG8pJIm1Tyq3sUB6nSOTJvncBWRcjG3qSMYmTLoZ0wxLdNYIlzhID4WeHRogpaXqKn
+         aava07RnwixaYi5s9GRwRJs6KbyWu9D7EgAzCclg8YEvUOCmjHYUtG+VAWvTvufNDoB8
+         9xr7wdsf/vZgc5nUJPViLbNLfpHqP90YyXozp9pglZQLD9YW/zQTRWgKBYPSfQeAmMPh
+         xS4qI8YRD5R3obYIik1hdxb9eSSRGi7B5I9tvrsV4BMVE1CZRjCUMr49aOXDoap5aIuU
+         Kmh7YZRZqvqOOckW+tpDUQwem4Vg9Huw38/nmbZtie2CMlwJp9/w3TlGpBFA90xe3C9I
+         16aA==
+X-Gm-Message-State: AOAM531VrX4FT4mC9Kh8N6B6VNBrWYTKu4b6zC6+pDaOcEwztDbbq4EZ
+        +38RlDg5bCUAYzv8ZIBG9MGAPA==
+X-Google-Smtp-Source: ABdhPJzj1ecX+gU9LYQBG52HZN4YgLlObJ5QS6k25m00eZqK7euxQxVeZuSFQQDbipQ15acvDmqz+A==
+X-Received: by 2002:a1c:1fcc:: with SMTP id f195mr2744223wmf.127.1599549492849;
+        Tue, 08 Sep 2020 00:18:12 -0700 (PDT)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac? ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
+        by smtp.gmail.com with ESMTPSA id k8sm32317392wma.16.2020.09.08.00.18.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Sep 2020 00:18:12 -0700 (PDT)
+Subject: =?UTF-8?B?UmU6IOetlOWkjTogW1BBVENIIHYyIDYvNl0gZHJtL3BhbmVsOiBBZGQg?=
+ =?UTF-8?Q?Ilitek_ILI9341_DBI_panel_driver?=
+To:     Paul Cercueil <paul@crapouillou.net>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        =?UTF-8?B?5L2V5bCP6b6Z?= <Leon.He@unisoc.com>, od@zcrc.me,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <20200822163250.63664-1-paul@crapouillou.net>
+ <20200822163250.63664-7-paul@crapouillou.net>
+ <edf38d68214247f486db3cc1f81ec404@shmbx04.spreadtrum.com>
+ <COYVFQ.2IA7KFB6BF4C3@crapouillou.net>
+ <20200830191133.GB6043@pendragon.ideasonboard.com>
+ <20200830202822.GA950472@ravnborg.org> <5BHAGQ.KGFJ0K3OLEAO3@crapouillou.net>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <cf46c61b-1517-3009-cb92-a86e970dccc0@baylibre.com>
+Date:   Tue, 8 Sep 2020 09:18:10 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <5BHAGQ.KGFJ0K3OLEAO3@crapouillou.net>
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Christian Lamparter <chunkeey@gmail.com> writes:
-> On 2020-06-23 15:03, Michael Ellerman wrote:
->> With CONFIG_OF_ALL_DTBS=3Dy, as set by eg. allmodconfig, we see lots of
->> warnings about our dts files, such as:
+On 07/09/2020 14:57, Paul Cercueil wrote:
+> 
+> 
+> Le dim. 30 août 2020 à 22:28, Sam Ravnborg <sam@ravnborg.org> a écrit :
+>> Hi Laurent.
 >>
->>    arch/powerpc/boot/dts/glacier.dts:492.26-532.5:
->>    Warning (pci_bridge): /plb/pciex@d00000000: node name is not "pci"
->>    or "pcie"
+>>>  >
+>>>  > Please read the cover letter, it explains why it's done this way. The
+>>>  > whole point of this patchset is to merge DSI and DBI frameworks in a
+>>>  > way that can be maintained.
+>>>
+>>>  I think this proves the point that the proposed naming is confusing. At
+>>>  least a rename would be required.
 >>
->> The node name should not particularly matter, it's just a name, and
->> AFAICS there's no kernel code that cares whether nodes are *named*
->> "pciex" or "pcie". So shutup these warnings by converting to the name
->> dtc wants.
+>> Do you have any inputs on the amount of rename we are looking into.
+>> Is this a simple s/struct mipi_dsi_device/struct mipi_dxi_device/
+>> or something more?
 >>
->> As always there's some risk this could break something obscure that
->> does rely on the name, in which case we can revert.
->
-> Hmm, I noticed this when I was looking up why nobody commented
-> on my series of adding more devices to the APM82181/bluestone series:
->
-> <https://lore.kernel.org/linuxppc-dev/cover.1598124791.git.chunkeey@gmail=
-.com/>
-> (I'll post a v3 "soonish".)
->
->
-> Unfortunately yes. This patch will break uboot code in Meraki MX60(W) / M=
-X60.
->
->  > https://github.com/riptidewave93/meraki-uboot/blob/mx60w-20180413/boar=
-d/amcc/bluestone/bluestone.c#L1178
->
-> | if (!pci_available()) {
-> | =C2=A0=C2=A0=C2=A0 fdt_find_and_setprop(blob, "/plb/pciex@d00000000", "=
-status",
-> |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "disabled", sizeof("disabled"), 1);
-> | }
->
->
-> Backstory: There are two version of the Meraki MX60. The MX60
-> and the MX60W. The difference is that the MX60W has a populated
-> mini-pcie slot on the PCB for a >W<ireless card.
->
-> That said, this is not earth shattering.
+>> We should script the rename as it will tocuh a lot of files,
+>> and without a script we would chase this. But once it is scripted
+>> it would be trivial to perform.
+>>
+>> I did not look at this enough, but I had an idea that we
+>> would have do to a s/dsi/dxi/ in a lot of places.
+>>
+>> (dxi is my best proposal at the moment for something covering both dsi
+>> and dbi).
+> 
+> dcs?
+> 
+> Since DBI and DSI panels generally all use DCS commands.
 
-I'm happy to revert that hunk if you think any one is actually booting
-mainline on those.
+mipi_disp / mipi_display ? since it's all about mipi display interfaces
+with different transport protocols.
 
-cheers
+Neil
 
-> (In theory, this can also cause problems for the bluestone and canyonlands
-> dev boards that have the option to be configured as either dual sata or
-> pcie+sata.... But this is probably not a problem for customer boards)
->
-> OT: Please note that the plb, opb and ebc node paths (/plb/opb/ebc) are
-> hardcoded too :(. Amending the proper unit-addresses will lead to no-long=
-er
-> working DTBs as the "ranges" are missing.
->
-> Cheers,
-> Christian
->> Signed-off-by: Michael Ellerman <mpe@ellerman.id.au>
->> ---
->>
->> diff --git a/arch/powerpc/boot/dts/bluestone.dts b/arch/powerpc/boot/dts=
-/bluestone.dts
->> index cc965a1816b6..aa1ae94cd776 100644
->> --- a/arch/powerpc/boot/dts/bluestone.dts
->> +++ b/arch/powerpc/boot/dts/bluestone.dts
->> @@ -325,7 +325,7 @@ EMAC0: ethernet@ef600c00 {
->>   			};
->>   		};
->>=20=20=20
->> -		PCIE0: pciex@d00000000 {
->> +		PCIE0: pcie@d00000000 {
->>   			device_type =3D "pci";
->>   			#interrupt-cells =3D <1>;
->>   			#size-cells =3D <2>;
+> 
+> -Paul
+> 
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
