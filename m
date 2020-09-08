@@ -2,99 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C4C5260BA0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 09:12:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66561260B97
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 09:12:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728562AbgIHHMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 03:12:48 -0400
-Received: from szxga07-in.huawei.com ([45.249.212.35]:57894 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729028AbgIHHMk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 03:12:40 -0400
-Received: from DGGEMS413-HUB.china.huawei.com (unknown [172.30.72.59])
-        by Forcepoint Email with ESMTP id 69EFF89B22D7942ADF0F;
-        Tue,  8 Sep 2020 15:12:36 +0800 (CST)
-Received: from thunder-town.china.huawei.com (10.174.177.253) by
- DGGEMS413-HUB.china.huawei.com (10.3.19.213) with Microsoft SMTP Server id
- 14.3.487.0; Tue, 8 Sep 2020 15:12:29 +0800
-From:   Zhen Lei <thunder.leizhen@huawei.com>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-CC:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Haoyu Lv <lvhaoyu@huawei.com>, Libin <huawei.libin@huawei.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>
-Subject: [PATCH v2 3/3] dt-bindings: dw-apb-ictl: support hierarchy irq domain
-Date:   Tue, 8 Sep 2020 15:11:34 +0800
-Message-ID: <20200908071134.2578-4-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
-In-Reply-To: <20200908071134.2578-1-thunder.leizhen@huawei.com>
-References: <20200908071134.2578-1-thunder.leizhen@huawei.com>
+        id S1728998AbgIHHMF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 03:12:05 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:45750 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728562AbgIHHMF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 03:12:05 -0400
+Received: by mail-ot1-f68.google.com with SMTP id g96so13993933otb.12;
+        Tue, 08 Sep 2020 00:12:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=C0V7iYdgpPN4fUYPNX5tGemHEdFaxKKFAFhDqUNkrtE=;
+        b=UgHaWGokceK7hW3kYWRbRBmVgtPdZTagVQREV5r4qG9ZH3e0p8mtDRRgnMAKvV0iFA
+         c74PRHZXFHW+198TiJ4DXhA5SAT/8qEMBF3SeLgraYTTv+BS5tOFux26HoAnbcGGLsOF
+         ClJK/0RUQH7BXgcqgKO2sxp+W8/QcjNV4JTVW2ASmqBQlL2HK14vl1FpZicVqXM84L+s
+         IW6Lj3fFvvcXD9NKwG8VQhTdISvBYtxxUTwdYkPauHh7ZckqOehkpySsN8qA7JpK7Fgp
+         +Gf84yHKQkuQK/qrmoWR0pwM2P4NApUBsR4eoOsGNgXpF6WANMhIaWkdDHKqNBtMmuer
+         YoZQ==
+X-Gm-Message-State: AOAM533nOb9OEmYkSlqNcrm8yu4RYkVEwgLGfCocgM3a99tNd+qxL693
+        FoRk3zqrF+gkTmOyB+M9hMrbGBHbx+qz0OV1l+o=
+X-Google-Smtp-Source: ABdhPJyze+96GzaktHSUa5wW0UOTsqaHyeIxmAOpeZu032ahAxDRIukHSsQW5YwfM0O1DFuTFw/MQxDb9R2JP06TUV4=
+X-Received: by 2002:a9d:1b62:: with SMTP id l89mr16609912otl.145.1599549124239;
+ Tue, 08 Sep 2020 00:12:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.174.177.253]
-X-CFilter-Loop: Reflected
+References: <1599470390-29719-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <1599470390-29719-3-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <CAMuHMdX_be=+3soDGQBxPGvjF5Ty40wDEPaki3Z=SwbDToPA3g@mail.gmail.com> <TY2PR01MB3692F7496EE91E633E9EF68AD8290@TY2PR01MB3692.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY2PR01MB3692F7496EE91E633E9EF68AD8290@TY2PR01MB3692.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 8 Sep 2020 09:11:53 +0200
+Message-ID: <CAMuHMdUUqdqf0unaT5efUL-VmSD8Vh1PH69qOqiWZZFLmTGGDg@mail.gmail.com>
+Subject: Re: [PATCH 02/14] dt-bindings: arm: renesas: Document Renesas Falcon boards
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support to use dw-apb-ictl as primary interrupt controller.
+Hi Shimoda-san,
 
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
----
- .../interrupt-controller/snps,dw-apb-ictl.txt      | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
+On Tue, Sep 8, 2020 at 3:01 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> > From: Geert Uytterhoeven, Sent: Tuesday, September 8, 2020 12:31 AM
+> > On Mon, Sep 7, 2020 at 11:20 AM Yoshihiro Shimoda
+> > <yoshihiro.shimoda.uh@renesas.com> wrote:
+> > > Add device tree bindings documentation for Renesas R-Car V3U
+> > > Falcon CPU and BreakOut boards.
+> > >
+> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> >
+> > Thanks for your patch!
+> >
+> > > --- a/Documentation/devicetree/bindings/arm/renesas.yaml
+> > > +++ b/Documentation/devicetree/bindings/arm/renesas.yaml
+> > > @@ -283,6 +283,9 @@ properties:
+> > >
+> > >        - description: R-Car V3U (R8A779A0)
+> > >          items:
+> > > +          - enum:
+> > > +              - renesas,falcon-cpu # Falcon CPU board (RTP0RC779A0CPB0010S)
+> > > +              - renesas,falcon-breakout # Falcon BreakOut board (RTP0RC779A0BOB0010S)
+> > >            - const: renesas,r8a779a0
+> >
+> > How is this intended to be used?
+>
+> I intended to use "renesas,falcon-breakout", "renesas,falcon-cpu", "renesas,r8a779a0"
+> in the future. However, if so, I should fix the description like Kingfisher.
+>
+> > The above means its users should declare either
+> >
+> >     compatible = "renesas,falcon-cpu", "renesas,r8a779a0";
+> >
+> > or
+> >
+> >     compatible = "renesas,falcon-breakout", "renesas,r8a779a0";
+>
+> I understood it. I mistook the description...
+>
+> > However, falcon-cpu.dtsi has just
+> >
+> >     compatible = "renesas,falcon-cpu";
+> >
+> > Who will use "renesas,falcon-breakout"?
+>
+> I intended to add falcon-breakout.dtsi and the file intended to use
+> "renesas,falcon-breakout" like Kingfisher + ULCB in the future.
+>
+> However, I realized a combination between the cpu board and
+> the breakout board differs than ULCB + Kingfisher like below:
+>
+> - The ULCB without the Kingfisher can work.
+> -- So, some .dts files exist like r8a77951-ulcb.dts.
+> -- And, r8a77951-ulcb-kf.dts includes r8a77951-ulcb.dts for ULCB + Kingfisher.
+>
+> - The Falcon CPU board without the breakout board cannot work actually.
+> -- But, on this initial patch series enables the CPU board hardware (memory nodes & SCIF0) only.
+> -- The breakout board has some hardware like Ethernet and CAN.
+> -- The breakout board also has some connectors for sub boards.
+> -- So, I intended to add falcon-breakout.dtsi to support Ethernet in the future.
+>
+> In this case, I wonder if we should describe just "renesas,falcon" only
+> because we will not have r8a779a0-falcon-{cpu,breakout}.dts files.
+> But, what do you think?
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt b/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt
-index 086ff08322db..2db59df9408f 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt
-+++ b/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt
-@@ -2,7 +2,8 @@ Synopsys DesignWare APB interrupt controller (dw_apb_ictl)
- 
- Synopsys DesignWare provides interrupt controller IP for APB known as
- dw_apb_ictl. The IP is used as secondary interrupt controller in some SoCs with
--APB bus, e.g. Marvell Armada 1500.
-+APB bus, e.g. Marvell Armada 1500. It can also be used as primary interrupt
-+controller in some SoCs, e.g. Hisilicon SD5203.
- 
- Required properties:
- - compatible: shall be "snps,dw-apb-ictl"
-@@ -10,6 +11,8 @@ Required properties:
-   region starting with ENABLE_LOW register
- - interrupt-controller: identifies the node as an interrupt controller
- - #interrupt-cells: number of cells to encode an interrupt-specifier, shall be 1
-+
-+Additional required property when it's used as secondary interrupt controller:
- - interrupts: interrupt reference to primary interrupt controller
- 
- The interrupt sources map to the corresponding bits in the interrupt
-@@ -21,6 +24,7 @@ registers, i.e.
- - (optional) fast interrupts start at 64.
- 
- Example:
-+	/* dw_apb_ictl is used as secondary interrupt controller */
- 	aic: interrupt-controller@3000 {
- 		compatible = "snps,dw-apb-ictl";
- 		reg = <0x3000 0xc00>;
-@@ -29,3 +33,11 @@ Example:
- 		interrupt-parent = <&gic>;
- 		interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
- 	};
-+
-+	/* dw_apb_ictl is used as primary interrupt controller */
-+	vic: interrupt-controller@10130000 {
-+		compatible = "snps,dw-apb-ictl";
-+		reg = <0x10130000 0x1000>;
-+		interrupt-controller;
-+		#interrupt-cells = <1>;
-+	};
+What kind of connector does the Falcon CPU board have?
+Perhaps it can be plugged into another base board, too?
+
+What about modelling it like the iwave,g22m SoM, and the iwave,g22d
+SODIMM board?
+arch/arm/boot/dts/r8a7745-iwg*
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.26.0.106.g9fadedd
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
