@@ -2,283 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACB8D2620F9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:21:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1FE6262101
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:22:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729305AbgIHUVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 16:21:37 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:37472 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729037AbgIHUVf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 16:21:35 -0400
-Received: by mail-io1-f66.google.com with SMTP id y13so763487iow.4;
-        Tue, 08 Sep 2020 13:21:35 -0700 (PDT)
+        id S1730067AbgIHUWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 16:22:49 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:41865 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729037AbgIHUWq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 16:22:46 -0400
+Received: by mail-il1-f194.google.com with SMTP id w8so163782ilj.8;
+        Tue, 08 Sep 2020 13:22:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=mm/0h/U4Hk8WZoslYbu06tgoMG60luGtcEO7empM/LM=;
-        b=HsoPU5zE+Y5aOvmSofhpBotS2gTlBoUIcsoCACkVH3xnGG8YlErKoF1j15hTAOJtYY
-         ooxrOBIS7fsZoqpvr57fRFMWg5149Sb50SL4VCkW2m9C9dAUXGBP4CwXN/RLX8LpnUof
-         jRZDFphnImygR1IBHnEMvEPZ2IrjoMxWzlF/M/DVzQ6DqtwPKrp9UgWe2Nsl2633X8qJ
-         BFmLeY2fIWV+EWXwLBSMcrkBBZq3H2MYhn/Idm6ItCEqmtlUbrh+VYRODwS+62spEwpc
-         /eohNJf3OrqxDYoA/aVdGKzmgS5oksPQ9Gu4v4E/hZ6XpLH2bKU1YVOe/GKTc/eE1HNO
-         033Q==
-X-Gm-Message-State: AOAM530Xcw8NtUGPWVQYDNxTIN3ANH35mo/KTSE8jjRmtfDnjdOoMRfG
-        OlWSVKAFlYTmFvxO3KrrEg==
-X-Google-Smtp-Source: ABdhPJzUbzrN+RY+vhi1RmrWGIbRcEKWdSSpIQ2B/z7XSscUwOM2o8va4ubaqnTUUjSxZudsonpogg==
-X-Received: by 2002:a5e:820d:: with SMTP id l13mr566194iom.3.1599596494661;
-        Tue, 08 Sep 2020 13:21:34 -0700 (PDT)
+        bh=FyBg+zneb/9bLICg6AikBUsZJLGnZjc2gr6L785oVlk=;
+        b=g6L+CnxYQWMuCrI+mentW0hwIO6OqXgV10ZWvPYEiI79q8NJuLKx5yT3+GeOGuuKeH
+         lZJ41WQPOtBwde15n4t2AWvJSwdUXpE/6XEHv2qLc2cM68GgavnOwT8V63RUE9GB5LyP
+         ouYi+DqPL3EOeAh8jOIUtfxkCDVI5Mhq+mBvB6gkSXww3G+6Zb0pPIYdVc8sIfEIUUH2
+         thC8/FzYF2zJP0Lqr31F6TtGa0DvwmH4MvW8F+zoCdasMfVDrqMowi1pSsHsG4+2X2Lz
+         YXLWi22NsxVaNHjCIs9IlCMvxIJR3aDIFofxfkL+g+jHOjBAtTimNk+E9bLX8bzgcDiG
+         MKgg==
+X-Gm-Message-State: AOAM530X6dnEpbZ0N01nIt/hGRsmQCHXBR3fvBbCv7l6VfTCR9ulyfqT
+        7PJXl9P2W3pChJyU/rXTuw==
+X-Google-Smtp-Source: ABdhPJzKjobdOVbGN1AKT4M6mQrxwizh0B+r5cHWdQQ8JdV8THIbMUrGHkNFgA8KouLBk1bwdIMyCA==
+X-Received: by 2002:a05:6e02:14d:: with SMTP id j13mr444081ilr.245.1599596565286;
+        Tue, 08 Sep 2020 13:22:45 -0700 (PDT)
 Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id c12sm143227ilm.17.2020.09.08.13.21.32
+        by smtp.gmail.com with ESMTPSA id t3sm98815ilq.56.2020.09.08.13.22.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Sep 2020 13:21:34 -0700 (PDT)
-Received: (nullmailer pid 843613 invoked by uid 1000);
-        Tue, 08 Sep 2020 20:21:31 -0000
-Date:   Tue, 8 Sep 2020 14:21:31 -0600
+        Tue, 08 Sep 2020 13:22:44 -0700 (PDT)
+Received: (nullmailer pid 845596 invoked by uid 1000);
+        Tue, 08 Sep 2020 20:22:43 -0000
+Date:   Tue, 8 Sep 2020 14:22:43 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jianjun Wang <jianjun.wang@mediatek.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        davem@davemloft.net, linux-pci@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Sj Huang <sj.huang@mediatek.com>
-Subject: Re: [v1,1/3] dt-bindings: Add YAML schemas for Gen3 PCIe controller
-Message-ID: <20200908202131.GB795070@bogus>
-References: <20200907120852.12090-1-jianjun.wang@mediatek.com>
- <20200907120852.12090-2-jianjun.wang@mediatek.com>
+To:     Bastian Krause <bst@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-rtc@vger.kernel.org, Arnaud Ebalard <arno@natisbad.org>,
+        Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 1/8] dt-bindings: rtc: let aux-voltage-chargeable
+ supersede trickle-diode-disable
+Message-ID: <20200908202243.GA844020@bogus>
+References: <20200907142727.26472-1-bst@pengutronix.de>
+ <20200907142727.26472-2-bst@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200907120852.12090-2-jianjun.wang@mediatek.com>
+In-Reply-To: <20200907142727.26472-2-bst@pengutronix.de>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 07, 2020 at 08:08:50PM +0800, Jianjun Wang wrote:
-> Add YAML schemas documentation for Gen3 PCIe controller on
-> MediaTek SoCs.
-
-dt-bindings: PCI: mediatek: ... for the subject.
-
+On Mon, 07 Sep 2020 16:27:20 +0200, Bastian Krause wrote:
+> Some RTCs can be equipped with a chargeable battery or supercap.
+> Every RTC allowing this whose driver's implement it are charged by
+> default. To disable this the trickle-diode-disable flag exists.
 > 
-> Acked-by: Ryder Lee <ryder.lee@mediatek.com>
-> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> If a driver did not support charging and some time later one wants to
+> add that feature, there is currently no way to do it without breaking
+> dt backwards compatibility. RTCs on boards without the
+> trickle-diode-disable flag in their device tree would suddenly charge
+> their battery/supercap which is a change in behavior.
+> 
+> Change that by introducing aux-voltage-chargeable, not as a flag but as
+> a uint32 enum allowing to set "do not charge" (0) or "charge" (1). This
+> dt property is optional, so we can now distinguish these cases.
+> 
+> Care must be taken to support the old behavior for device trees without
+> aux-voltage-chargeable nonetheless to stay compatible.
+> 
+> Suggested-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Signed-off-by: Bastian Krause <bst@pengutronix.de>
 > ---
->  .../bindings/pci/mediatek-pcie-gen3.yaml      | 158 ++++++++++++++++++
->  1 file changed, 158 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> In a previous series aux-voltage-chargeable was added as a ds1307 dt
+> property. Discussions lead to turning that into a generic rtc dt
+> property:
+> https://lore.kernel.org/linux-rtc/98fa7181-3ebe-d7c3-cfac-fee841c81e15@pengutronix.de/T/
+> ---
+>  Documentation/devicetree/bindings/rtc/rtc.yaml | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> new file mode 100644
-> index 000000000000..108d29259c05
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> @@ -0,0 +1,158 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/mediatek-pcie-gen3.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Gen3 PCIe controller on MediaTek SoCs
-> +
-> +maintainers:
-> +  - Jianjun Wang <jianjun.wang@mediatek.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-bus.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: mediatek,gen3-pcie
-> +      - const: mediatek,mt8192-pcie
-> +
 
-> +  device_type:
-> +    const: pci
-> +
-> +  "#address-cells":
-> +    const: 3
-> +
-> +  "#size-cells":
-> +    const: 2
 
-Can drop these 3. Already in pci-bus.yaml.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> +
-> +  reg:
-> +    items:
-> +      - description: Controller control and status registers.
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 45, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 891, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.scanner.ScannerError: mapping values are not allowed in this context
+  in "<unicode string>", line 25, column 24
+make[1]: *** [Documentation/devicetree/bindings/Makefile:18: Documentation/devicetree/bindings/rtc/rtc.example.dts] Error 1
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/rtc/rtc.example.dts'
+make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/rtc/rtc.yaml:  mapping values are not allowed in this context
+  in "<unicode string>", line 25, column 24
+schemas/rtc/rtc.yaml: ignoring, error parsing file
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/rtc/rtc.yaml: ignoring, error parsing file
+warning: no schema found in file: ./Documentation/devicetree/bindings/rtc/rtc.yaml
+make: *** [Makefile:1366: dt_binding_check] Error 2
 
-Just 'maxItems: 1'. The description doesn't add any value.
 
-> +
-> +  reg-names:
-> +    items:
-> +      - const: pcie-mac
+See https://patchwork.ozlabs.org/patch/1358937
 
-Don't really need a name here.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
 
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  bus-range:
-> +    description: Range of bus numbers associated with this controller.
-> +
-> +  ranges:
-> +    minItems: 1
-> +    maxItems: 8
-> +
-> +  resets:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  reset-names:
-> +    anyOf:
-> +      - const: mac-rst
-> +      - const: phy-rst
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
 
-Doesn't the PHY's reset belong in the PHY node?
+Please check and re-submit.
 
-> +
-> +  clocks:
-> +    maxItems: 5
-> +
-> +  assigned-clocks:
-> +    maxItems: 1
-> +
-> +  assigned-clock-parents:
-> +    maxItems: 1
-> +
-> +  phys:
-> +    maxItems: 1
-> +
-> +  phy-names:
-> +    const: pcie-phy
-
-Not really a useful name and there's only one. Please drop.
-
-> +
-> +  '#interrupt-cells':
-> +    const: 1
-> +
-
-> +  interrupt-map-mask:
-> +    description: Standard PCI IRQ mapping properties.
-> +
-> +  interrupt-map:
-> +    description: Standard PCI IRQ mapping properties.
-
-Can drop these.
-
-> +
-> +  legacy-interrupt-controller:
-
-Just 'interrupt-controller'
-
-And don't copy the same bug of using 'of_get_next_child'. You should get 
-the child node by name.
-
-> +    description: Interrupt controller node for handling legacy PCI interrupts.
-> +    type: object
-> +    properties:
-> +      "#address-cells":
-> +        const: 0
-> +      "#interrupt-cells":
-> +        const: 1
-> +      interrupt-controller: true
-> +
-> +    required:
-> +      - "#address-cells"
-> +      - "#interrupt-cells"
-> +      - interrupt-controller
-
-       additionalProperties: false
-
-> +
-> +required:
-> +  - compatible
-
-> +  - device_type
-> +  - "#address-cells"
-> +  - "#size-cells"
-
-Don't need these, pci-bus.yaml already requires them.
-
-> +  - reg
-> +  - reg-names
-> +  - bus-range
-
-If the range is 0-0xff, then this isn't really required.
-
-> +  - interrupts
-> +  - ranges
-> +  - clocks
-> +  - '#interrupt-cells'
-> +  - interrupt-map
-> +  - interrupt-map-mask
-> +  - legacy-interrupt-controller
-> +
-> +additionalProperties: false
-
-unevaluatedProperties: false
-
-(Should be used when including a ref (pci-bus.yaml).)
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    bus {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        pcie: pcie@11230000 {
-> +            compatible = "mediatek,mt8192-pcie";
-> +            device_type = "pci";
-> +            #address-cells = <3>;
-> +            #size-cells = <2>;
-> +            reg = <0x00 0x11230000 0x00 0x4000>;
-> +            reg-names = "pcie-mac";
-> +            interrupts = <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH 0>;
-> +            bus-range = <0x00 0xff>;
-> +            ranges = <0x82000000 0x00 0x12000000 0x00 0x12000000 0x00 0x1000000>;
-> +            clocks = <&infracfg 40>,
-> +                     <&infracfg 43>,
-> +                     <&infracfg 97>,
-> +                     <&infracfg 99>,
-> +                     <&infracfg 111>;
-> +            assigned-clocks = <&topckgen 50>;
-> +            assigned-clock-parents = <&topckgen 91>;
-> +
-> +            phys = <&pciephy>;
-> +            phy-names = "pcie-phy";
-> +            resets = <&infracfg_rst 0>;
-> +            reset-names = "phy-rst";
-> +
-> +            #interrupt-cells = <1>;
-> +            interrupt-map-mask = <0 0 0 0x7>;
-> +            interrupt-map = <0 0 0 1 &pcie_intc 0>,
-> +                            <0 0 0 2 &pcie_intc 1>,
-> +                            <0 0 0 3 &pcie_intc 2>,
-> +                            <0 0 0 4 &pcie_intc 3>;
-> +            pcie_intc: legacy-interrupt-controller {
-> +                      #address-cells = <0>;
-> +                      #interrupt-cells = <1>;
-> +                      interrupt-controller;
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.25.1
