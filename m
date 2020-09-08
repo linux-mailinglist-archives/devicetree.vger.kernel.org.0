@@ -2,80 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 693BB260A3E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 07:43:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42BFA260A5B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 07:52:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728658AbgIHFnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 01:43:11 -0400
-Received: from a27-21.smtp-out.us-west-2.amazonses.com ([54.240.27.21]:41672
-        "EHLO a27-21.smtp-out.us-west-2.amazonses.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728531AbgIHFnG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 01:43:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=zsmsymrwgfyinv5wlfyidntwsjeeldzt; d=codeaurora.org; t=1599543785;
-        h=Content-Type:MIME-Version:Content-Transfer-Encoding:Subject:From:In-Reply-To:References:To:Cc:Message-Id:Date;
-        bh=X3Ta7jxOFA+EjtY0N2rZzMQAHngY/WbCfr2e6T5ZDZE=;
-        b=BoLJxJcJC2+WCODw0c59ZnQtuBMBQvSxqz6sMH/2tFLEOeWWmekzja7mI2aM1b8w
-        LkelL/q/OOoND2jER1KsR7TNH1a+3EN5Rxds84IH3Yd+9mAMTeJOy2KoGJ1Nx7359p8
-        YWX6mjeObm43L7UyG2jYlPLranSCGoXtmi9TzOMU=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1599543785;
-        h=Content-Type:MIME-Version:Content-Transfer-Encoding:Subject:From:In-Reply-To:References:To:Cc:Message-Id:Date:Feedback-ID;
-        bh=X3Ta7jxOFA+EjtY0N2rZzMQAHngY/WbCfr2e6T5ZDZE=;
-        b=D7+ST11GwHOGiEuORTdRwP1SgYa20E3Iuy9pBHYJm9JNopRtHaMhAm1il/Q4id01
-        A5fGiqRZ1eVb4Sh+2l4XQp/BVHWgMdLmSLCl9YvUHkAT+ozj9N+jBnSr8RXNQCJJump
-        VDU4QrmNSHXaMUl4pxvqAm/CtlvPEvH8yIMwawc0=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        MISSING_DATE,MISSING_MID,SPF_FAIL,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.0
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4BEF2C433C8
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kvalo@codeaurora.org
-Content-Type: text/plain; charset="utf-8"
+        id S1728740AbgIHFwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 01:52:32 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:41239 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728531AbgIHFwa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 01:52:30 -0400
+X-UUID: ce9e17ac8b57459482247ad4bb65b26e-20200908
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=zrrwNcnMPIRlU5Qw4X9J4deUAZZqqjlSu2mS7e67eO4=;
+        b=RtY0yWVrwUzjJg10Cb21GFHewHWBECdQfDstxSFLlq8NR9QxZvOKr+x1uDDpSk3LuWj135bWOMLnRQhPFGlpf/TNFhUbzKVtDh7ilOomp2C8TaFbxfr01xQrD17l/Iozv+7V886ShVZAErx+ylY2mA7mQ5xXIGhG/Dmt7/jz5VY=;
+X-UUID: ce9e17ac8b57459482247ad4bb65b26e-20200908
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <hector.yuan@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 73886558; Tue, 08 Sep 2020 13:52:26 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 8 Sep 2020 13:52:23 +0800
+Received: from [172.21.77.33] (172.21.77.33) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 8 Sep 2020 13:52:24 +0800
+Message-ID: <1599544344.17800.2.camel@mtkswgap22>
+Subject: Re: [PATCH v3] cpufreq: mediatek-hw: Add support for Mediatek
+ cpufreq HW driver
+From:   Hector Yuan <hector.yuan@mediatek.com>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+CC:     <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Vinod Koul <vkoul@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "Olof Johansson" <olof@lixom.net>, <wsd_upstream@mediatek.com>
+Date:   Tue, 8 Sep 2020 13:52:24 +0800
+In-Reply-To: <20200908051416.na567g3mr7zbyr6h@vireshk-i7>
+References: <1598446913-24325-1-git-send-email-hector.yuan@mediatek.com>
+         <1599532510.17707.4.camel@mtkswgap22>
+         <20200908051416.na567g3mr7zbyr6h@vireshk-i7>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH 1/2] dt: bindings: Add new regulator as optional property
- for
- WCN3990
-From:   Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1593194502-13164-2-git-send-email-pillair@codeaurora.org>
-References: <1593194502-13164-2-git-send-email-pillair@codeaurora.org>
-To:     Rakesh Pillai <pillair@codeaurora.org>
-Cc:     ath10k@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rakesh Pillai <pillair@codeaurora.org>
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.5.2
-Message-ID: <010101746c3d3841-1d9fea9b-b289-4fed-bffa-3b348536d69e-000000@us-west-2.amazonses.com>
-Date:   Tue, 8 Sep 2020 05:43:05 +0000
-X-SES-Outgoing: 2020.09.08-54.240.27.21
-Feedback-ID: 1.us-west-2.CZuq2qbDmUIuT3qdvXlRHZZCpfZqZ4GtG9v3VKgRyF0=:AmazonSES
+X-TM-SNTS-SMTP: 267856DCEFB91F9263896297BDB66F042192EFBF9467B861CC1DC02360CBEFF02000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rakesh Pillai <pillair@codeaurora.org> wrote:
-
-> Add an additional regulator supply as an optional
-> property for WCN3990.
-> 
-> Tested-on: WCN3990 hw1.0 SNOC WLAN.HL.3.1-01040-QCAHLSWMTPLZ-1
-> 
-> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
-
-2 patches applied to ath-next branch of ath.git, thanks.
-
-8f1553694551 dt: bindings: Add new regulator as optional property for WCN3990
-9e69fe31ca9a ath10k: Add support for chain1 regulator supply voting
-
--- 
-https://patchwork.kernel.org/patch/11628309/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+T24gVHVlLCAyMDIwLTA5LTA4IGF0IDEwOjQ0ICswNTMwLCBWaXJlc2ggS3VtYXIgd3JvdGU6DQo+
+IE9uIDA4LTA5LTIwLCAxMDozNSwgSGVjdG9yIFl1YW4gd3JvdGU6DQo+ID4gSGksIFNpcnM6DQo+
+ID4gDQo+ID4gUGxlYXNlIGtpbmRseSBsZXQgbWUga25vdyB5b3VyIHJldmlldyB0aG91Z2h0cyBv
+ZiB0aGlzIHBhdGNoLg0KPiA+IEFwcHJlY2lhdGVkLg0KPiANCj4gUGxlYXNlIGRvbid0IHNlbmQg
+bmV3IHBhdGNoc2V0cyBpbiBodXJyeSwgaXQgaXNuJ3QgZ29pbmcgdG8gaGVscCBhbnkNCj4gb2Yg
+dXMuIFYzIGRvZXNuJ3QgYWRkcmVzcyBhbGwgdGhlIHJldmlldyBjb21tZW50cyB5b3UgcmVjZWl2
+ZWQgaW4gVjINCj4gYW5kIHNvIHRoZXJlIGlzIG5vIHBvaW50IHJldmlld2luZyBpdC4NCj4gDQo+
+IFBsZWFzZSBzZW5kIGEgbmV3IHZlcnNpb24gd2hpY2ggYWRkcmVzc2VzIGFsbCB0aGUgY29tbWVu
+dHMgeW91IGdvdC4NCj4gDQpPSywgSSB3aWxsIHNlbmQgVjQgd2hpY2ggYWRkcmVzc2VzIGFsbCB0
+aGUgY29tbWVudHMuDQoNCg==
 
