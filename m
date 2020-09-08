@@ -2,80 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA3A8260EEC
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 11:43:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F0EC260EF3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 11:45:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728865AbgIHJnw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 05:43:52 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:44182 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728676AbgIHJnw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 05:43:52 -0400
-Received: by mail-ot1-f66.google.com with SMTP id a2so14278442otr.11;
-        Tue, 08 Sep 2020 02:43:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DVylAYpz8XDFuaEu7yZH1aasxebApZrD+5SWbgpcZUk=;
-        b=mEuM8t0FgUuG83xpStujov/diiB9ZkWYiY6rWIxleKrfalWnCG+Vq/dJkPMJAnjTjZ
-         qgETtD77ETclauqVj42RMRWnLvd6USXNJiaQg7ShiaXgwy6TQ4+SV4rnMPX2SwyQ+6xp
-         74CCCkpC+1e4Y2Iy58pXIu3S1epHp12z+5PXgzGKeOIxyQeBYU+Bv0WKknzMA52OXB9Q
-         pwJ94Z3ff52XewwPEXTVcXqTjzjQcAzFLDjk5paVaZCRtoXJ2XJr3UVGi1Fbj2jCv2zc
-         lLFg7JzgRCHgpTurDIfG7YzvgZ7kMdCtpkq5dslO1lsDyMV1DosnS6Z5lv3xnvwW+IWF
-         6vBA==
-X-Gm-Message-State: AOAM530HnXZH0RfUWKRb7s41c+77hnHfS/8YQxyTpxNF4fsMbZ+HTmND
-        RUzd8rX0nH7G0LtzqMSUP+lW6cgLNiiBE6KaztSpt06y
-X-Google-Smtp-Source: ABdhPJx2lND5DpgXrAjdqtxUk1CpbbWW/B/bbBMzzvcb1OAWPcj1T8Juti0rO4167CUXPYjZ5TqJ026w1Ebs/BvMAZQ=
-X-Received: by 2002:a05:6830:1008:: with SMTP id a8mr16160142otp.107.1599558231731;
- Tue, 08 Sep 2020 02:43:51 -0700 (PDT)
+        id S1728676AbgIHJpV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 05:45:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57832 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728591AbgIHJpU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 05:45:20 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3C4152076C;
+        Tue,  8 Sep 2020 09:45:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599558319;
+        bh=tfoO6sBrCFwjFEDiVadFmL4RK2FiO10DeRPjiK99h2U=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=n8/ttHz2cIWHhRQ34jw+ezIerfI/nf+9zyLGaoAyQ43agt6zo9p/VEu7kLupn4EkA
+         taepdfy8/ZEKf5DExEy2wkoU5gSHEMaPym6qlfrCgQvR0bew8CCrRDT6aItt0ZTx8Z
+         tW5ckCd+38b0UxEGz7M8a23U7Mz3SHp2E+MRcJKk=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.92)
+        (envelope-from <maz@kernel.org>)
+        id 1kFaBh-00A1El-C9; Tue, 08 Sep 2020 10:45:17 +0100
 MIME-Version: 1.0
-References: <1599470390-29719-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <1599470390-29719-10-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <1599470390-29719-10-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 8 Sep 2020 11:43:40 +0200
-Message-ID: <CAMuHMdXfpgM7zjwwc73NwJHw2cNgfh7uhnQZrDgU91R=Bg0GDQ@mail.gmail.com>
-Subject: Re: [PATCH 09/14] soc: renesas: identify R-Car V3U
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Date:   Tue, 08 Sep 2020 10:45:17 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Haoyu Lv <lvhaoyu@huawei.com>, Libin <huawei.libin@huawei.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
+Subject: Re: [PATCH v2 2/3] irqchip: dw-apb-ictl: support hierarchy irq domain
+In-Reply-To: <0e860ff8-3e72-1099-c28c-c5a0bc28f2c4@huawei.com>
+References: <20200908071134.2578-1-thunder.leizhen@huawei.com>
+ <20200908071134.2578-3-thunder.leizhen@huawei.com>
+ <8f6e4cc51a53f580538b879cafcd06c3@kernel.org>
+ <0e860ff8-3e72-1099-c28c-c5a0bc28f2c4@huawei.com>
+User-Agent: Roundcube Webmail/1.4.8
+Message-ID: <0622508a42d5a5b25582a6ebd69ec1d2@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: thunder.leizhen@huawei.com, tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, sebastian.hesselbarth@gmail.com, lvhaoyu@huawei.com, huawei.libin@huawei.com, wangkefeng.wang@huawei.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 7, 2020 at 11:20 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Add support for identifying the R-Car V3U (R8A779A0) SoC.
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+On 2020-09-08 10:40, Leizhen (ThunderTown) wrote:
+> On 2020/9/8 15:41, Marc Zyngier wrote:
+>> On 2020-09-08 08:11, Zhen Lei wrote:
+>>> Add support to use dw-apb-ictl as primary interrupt controller.
+>>> 
+>>> Suggested-by: Marc Zyngier <maz@kernel.org>
+>>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>>> Tested-by: Haoyu Lv <lvhaoyu@huawei.com>
+>>> ---
+>>>  drivers/irqchip/Kconfig           |  2 +-
+>>>  drivers/irqchip/irq-dw-apb-ictl.c | 75 
+>>> +++++++++++++++++++++++++++++--
+>>>  2 files changed, 73 insertions(+), 4 deletions(-)
+>>> 
+>>> diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
+>>> index bfc9719dbcdc..7c2d1c8fa551 100644
+>>> --- a/drivers/irqchip/Kconfig
+>>> +++ b/drivers/irqchip/Kconfig
+>>> @@ -148,7 +148,7 @@ config DAVINCI_CP_INTC
+>>>  config DW_APB_ICTL
+>>>      bool
+>>>      select GENERIC_IRQ_CHIP
+>>> -    select IRQ_DOMAIN
+>>> +    select IRQ_DOMAIN_HIERARCHY
+>>> 
+>>>  config FARADAY_FTINTC010
+>>>      bool
+>>> diff --git a/drivers/irqchip/irq-dw-apb-ictl.c
+>>> b/drivers/irqchip/irq-dw-apb-ictl.c
+>>> index aa6214da0b1f..405861322596 100644
+>>> --- a/drivers/irqchip/irq-dw-apb-ictl.c
+>>> +++ b/drivers/irqchip/irq-dw-apb-ictl.c
+>>> @@ -17,6 +17,7 @@
+>>>  #include <linux/irqchip/chained_irq.h>
+>>>  #include <linux/of_address.h>
+>>>  #include <linux/of_irq.h>
+>>> +#include <asm/exception.h>
+>>> 
+>>>  #define APB_INT_ENABLE_L    0x00
+>>>  #define APB_INT_ENABLE_H    0x04
+>>> @@ -26,6 +27,30 @@
+>>>  #define APB_INT_FINALSTATUS_H    0x34
+>>>  #define APB_INT_BASE_OFFSET    0x04
+>>> 
+>>> +/*
+>>> + * irq domain of the primary interrupt controller. Currently, only 
+>>> one is
+>>> + * supported.
+>> 
+>> By definition, there is only one primary interrupt controller.
+> 
+> OK, I will delete the comment "Currently, only one is supported".
+> Should I replace it with your commend above?
 
-> --- a/drivers/soc/renesas/Kconfig
-> +++ b/drivers/soc/renesas/Kconfig
-> @@ -272,6 +272,12 @@ config ARCH_R8A77995
->         help
->           This enables support for the Renesas R-Car D3 SoC.
->
-> +config ARCH_R8A779A0
-> +       bool "Renesas R-Car V3U SoC Platform"
+No, just delete it.
 
-Will update while applying to match Morimoto-san's Kconfig rework.
+Thanks,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.10.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+         M.
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Jazz is not dead. It just smells funny...
