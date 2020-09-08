@@ -2,168 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC24C262155
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:48:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B23726215C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:49:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730022AbgIHUsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 16:48:40 -0400
-Received: from mail-il1-f195.google.com ([209.85.166.195]:41391 "EHLO
-        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729993AbgIHUsj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 16:48:39 -0400
-Received: by mail-il1-f195.google.com with SMTP id w8so233215ilj.8;
-        Tue, 08 Sep 2020 13:48:38 -0700 (PDT)
+        id S1728572AbgIHUty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 16:49:54 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:43100 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726434AbgIHUtx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 16:49:53 -0400
+Received: by mail-io1-f67.google.com with SMTP id z25so807827iol.10;
+        Tue, 08 Sep 2020 13:49:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=L9u+1Lk2Z2W+mvjM22ziguVUQXZzuFNOokZobOUqdHY=;
-        b=s6Zm8lCgqbSkr1cUk2P0gc0vKcX4344bGRUSq6BYZdelIdHrFDnEg1MCUTOLu9gHr2
-         dZ2GYc8n9fpFkXuVw8X8OlZRi2fNuRm32UUs6RwQC1TDff0pNxzkddk2vjINcMnlG+PN
-         wfq+T2Ul9Ml6O8k1OCucFxf7k01gFAQ8om7I6u0hASQZiO0vsie6tGMq66xGWjU/hDa9
-         FDtGW92GVD0YUuIF5875NXVAIvSAS99jVL8LlsL7k60IYlzlVvjDLeIKyQzP8rPVpzqw
-         y2gzdL7q/5grZcksU+9YTey1NDLqO6Nl+068BW3PvMHt77DTGTiZ2YHTTrs4Ej77GDb8
-         ZDdw==
-X-Gm-Message-State: AOAM533nHV0k2Vwo0l+oi8LTlPNU1OfYGKOJTyfNIrrJPV82nANJ1t9z
-        nMTGSxuMr+WCCULZ8AI6xQ==
-X-Google-Smtp-Source: ABdhPJzo2UJov8PXXJW5aMJngdajRHVncAYkVsO/Xj9gWLtftWvWC98MARoq/mot6KY+pWdHIRsPnA==
-X-Received: by 2002:a05:6e02:ef1:: with SMTP id j17mr574189ilk.211.1599598118339;
-        Tue, 08 Sep 2020 13:48:38 -0700 (PDT)
+        bh=l6Ml6GUsFvFs2hmUbBhScVBvUaAujChY5id6z4NCBL4=;
+        b=sASPHLuGB9PHconzuB6LRRphRNUTCeg20ViM7IUJ8rUcocTCZzDbNFnpbXfAM+yxLK
+         Gb7nF1PYQu+bOlTNkTneEWRQLd2cg/y3eiPTaO1r5jj4hZDC/+9oClbhzvB8bQpSei8H
+         UEAhK1HFKQyMBtGO+8kxJY2zhd1XvSANM1owW88Qz+PYn3h5jcCCmz1K/j1wHII2anDD
+         3ROp5A2JwMT+QlL9LrrtEfBxqpZoCoL6b5aPMyaiXH7WpPjQAWTFBqI79QVrMe60dPT2
+         1pO2tFr86N0sRU++xIbx5jry7us/AUTZOHulcANs85qzrr3BuCmxJGeK6M361k0pCbaN
+         XK/g==
+X-Gm-Message-State: AOAM530pJy0Q/J2A0sWgqXAtN38lcahq0EuOXCVIOdi/6NETKSsdpXrH
+        EjRXeXgz8Lh3D2Sj/JkgjA==
+X-Google-Smtp-Source: ABdhPJyul47wGDEorl9zgNUus3MDtK7opu0OS0zlBS8occCySSRUeRKc5hrknvTvzMWAL0NLClcy2Q==
+X-Received: by 2002:a02:ccdb:: with SMTP id k27mr768174jaq.103.1599598192571;
+        Tue, 08 Sep 2020 13:49:52 -0700 (PDT)
 Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id u18sm135827iln.78.2020.09.08.13.48.36
+        by smtp.gmail.com with ESMTPSA id i10sm209529ioi.39.2020.09.08.13.49.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Sep 2020 13:48:37 -0700 (PDT)
-Received: (nullmailer pid 892637 invoked by uid 1000);
-        Tue, 08 Sep 2020 20:48:34 -0000
-Date:   Tue, 8 Sep 2020 14:48:34 -0600
+        Tue, 08 Sep 2020 13:49:52 -0700 (PDT)
+Received: (nullmailer pid 894747 invoked by uid 1000);
+        Tue, 08 Sep 2020 20:49:50 -0000
+Date:   Tue, 8 Sep 2020 14:49:50 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: microchip: atmel,at91rm9200-tcb: add
- atmel,tcb-pwm
-Message-ID: <20200908204834.GA886652@bogus>
-References: <20200820225546.2246517-1-alexandre.belloni@bootlin.com>
- <20200820225546.2246517-2-alexandre.belloni@bootlin.com>
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        srv_heupstream@mediatek.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: spmi: document binding for the
+ Mediatek SPMI controller
+Message-ID: <20200908204950.GA893759@bogus>
+References: <1598006677-7953-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1598006677-7953-2-git-send-email-hsin-hsiung.wang@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200820225546.2246517-2-alexandre.belloni@bootlin.com>
+In-Reply-To: <1598006677-7953-2-git-send-email-hsin-hsiung.wang@mediatek.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 21, 2020 at 12:55:43AM +0200, Alexandre Belloni wrote:
-> Move the TCB pwm nodes under their parent and move its documentation to the
-> main file.
+On Fri, Aug 21, 2020 at 06:44:36PM +0800, Hsin-Hsiung Wang wrote:
+> This adds documentation for the SPMI controller found on Mediatek SoCs.
 > 
-> Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
 > ---
-> Cc: Rob Herring <robh+dt@kernel.org>
-> 
->  .../devicetree/bindings/pwm/atmel-tcb-pwm.txt | 16 ----------
->  .../soc/microchip/atmel,at91rm9200-tcb.yaml   | 31 ++++++++++++++++++-
->  2 files changed, 30 insertions(+), 17 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pwm/atmel-tcb-pwm.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/atmel-tcb-pwm.txt b/Documentation/devicetree/bindings/pwm/atmel-tcb-pwm.txt
-> deleted file mode 100644
-> index 985fcc65f8c4..000000000000
-> --- a/Documentation/devicetree/bindings/pwm/atmel-tcb-pwm.txt
-> +++ /dev/null
-> @@ -1,16 +0,0 @@
-> -Atmel TCB PWM controller
-> -
-> -Required properties:
-> -- compatible: should be "atmel,tcb-pwm"
-> -- #pwm-cells: should be 3. See pwm.yaml in this directory for a description of
-> -  the cells format. The only third cell flag supported by this binding is
-> -  PWM_POLARITY_INVERTED.
-> -- tc-block: The Timer Counter block to use as a PWM chip.
+>  .../devicetree/bindings/spmi/spmi-mtk-pmif.txt     | 33 ++++++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spmi/spmi-mtk-pmif.txt
 
-What happened to 'tc-block'? Commit message should mention why it is 
-gone.
+Bindings are in DT schema format now. Please convert this.
 
-> -
-> -Example:
-> -
-> -pwm {
-> -	compatible = "atmel,tcb-pwm";
-> -	#pwm-cells = <3>;
-> -	tc-block = <1>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml b/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
-> index 55fffae05dcf..a51adfdb58f6 100644
-> --- a/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
-> +++ b/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
-> @@ -59,6 +59,7 @@ patternProperties:
->          items:
->            - enum:
->                - atmel,tcb-timer
-> +              - atmel,tcb-pwm
->                - microchip,tcb-capture
->        reg:
->          description:
-> @@ -68,11 +69,33 @@ patternProperties:
->  
->          minItems: 1
->          maxItems: 3
-> +    required:
-> +      - compatible
-> +      - reg
-> +
-> +  "^pwm@[0-2]$":
-> +    description: The timer block channels that are used as PWMs.
-> +    $ref: ../../pwm/pwm.yaml#
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        const: atmel,tcb-pwm
-> +      reg:
-> +        description:
-> +          TCB channel to use for this PWM.
-
-enum: [ 0, 1, 2 ]
-
-> +
-> +        maxItems: 1
-> +      "#pwm-cells":
-> +        description:
-> +          The only third cell flag supported by this binding is
-> +          PWM_POLARITY_INVERTED.
-> +        const: 3
->  
->      required:
->        - compatible
->        - reg
-
-       additionalProperties: false
-
->  
-> +
->  allOf:
->    - if:
->        properties:
-> @@ -158,7 +181,13 @@ examples:
->                          compatible = "atmel,tcb-timer";
->                          reg = <1>;
->                  };
-> -        };
-> +
-> +                pwm@2 {
-> +                        compatible = "atmel,tcb-pwm";
-> +                        reg = <2>;
-> +                        #pwm-cells = <3>;
-> +                };
-> +         };
->      /* TCB0 Capture with QDEC: */
->          timer@f800c000 {
->                  compatible = "atmel,at91rm9200-tcb", "simple-mfd", "syscon";
-> -- 
-> 2.26.2
-> 
+Rob
