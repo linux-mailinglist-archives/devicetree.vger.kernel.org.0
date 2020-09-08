@@ -2,74 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C407E260AA8
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 08:13:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE986260AAF
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 08:16:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728776AbgIHGNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 02:13:52 -0400
-Received: from mout.gmx.net ([212.227.15.19]:34653 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728775AbgIHGNt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 02:13:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1599545604;
-        bh=FtvlKZBcLfL0ZeBa4yq1cs6S15KNeaEEgYiZUVowl6I=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=j+jw864NiUmoSbdyiy0n/Y/cYEeJYNPiZ1fYd50O8pvUU+cdWu+B3xd1wJTfRz8O5
-         52QOkU7N4XxgFVYSLgNbwHBLL8qsOjLe0HZej2aITTpDBGVswKVcmmzctpShpwOYkw
-         c5hFh4zKsBOMUe2ehpvXUAmm4XB7ri2V1mnKxZK8=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [185.76.97.104] ([185.76.97.104]) by web-mail.gmx.net
- (3c-app-gmx-bs38.server.lan [172.19.170.90]) (via HTTP); Tue, 8 Sep 2020
- 08:13:24 +0200
+        id S1728903AbgIHGQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 02:16:05 -0400
+Received: from wnew1-smtp.messagingengine.com ([64.147.123.26]:45671 "EHLO
+        wnew1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728775AbgIHGQE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 02:16:04 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.west.internal (Postfix) with ESMTP id C7B1CC63;
+        Tue,  8 Sep 2020 02:16:00 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Tue, 08 Sep 2020 02:16:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=zJiWzEaieWUTkjd149kfcmDNEkV
+        tYQAGVUYM1KagiNw=; b=HRNaf0nqivK37YCvZIDh7RO8nzWh2/fDKBlD54LoaCB
+        0WuDvtZ+DlCtyd39yIGtuTYNwfdaba7UwxDdzJ+BptmBdUVpDH2/adAd2/RRqjOT
+        /GQlq2LhQ1KYWmf4epZ2f8UnVTUr+p43QHtLocXelJNBAXW2pidygl9UDqWcEXsX
+        zgO9kPmiY7rJoQaMRAYDwRdtqGlB9yBJMp+bJ9/fbsKcJB9a8iRVYSMHFcNkA5sn
+        bFyELdF8Mf239H5Xr/ART8E5NliiWGlrgNwWx9EtTthjsHuBsr2SycccMzOnqkFF
+        p/QXpI2L57GKQ12/2zA9AiaMoxCaBrnlplSvQjkptSw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=zJiWzE
+        aieWUTkjd149kfcmDNEkVtYQAGVUYM1KagiNw=; b=IlLCEqn+XhMyg6/XVGNmhN
+        LWk8MDd3GbNW1g/z9oIm0n8ew3PLMLnK78kvhx6ob6HIZjHn6J+UfyWag3ojzAq4
+        vqpRfG0gapKJMYDY5/96h5pjBY2SyLR7LYxn2fgDEakQb9kNxHH8T7aLlLVDhm75
+        7tBXP0Aes6TvM9chVc71v3tzQ3U20L4ygbBZdrpWZut7F/KR/J0yZjhZjBOmR00k
+        vuY6fTlUVjaHkd6F8D0q/qm8O5BqZACSMfb/VkyLojwPJJorGAaO3WRQXfCOKdS8
+        XaA6GlHykoAMpptk5k6upyGKl5ZbQ+t4KrWowRhm7OmE63sdIyuqzf/JVK0rRjcA
+        ==
+X-ME-Sender: <xms:niFXX_fz-lQYJtSWpVWcbIHXwYaPW-2fr_EmFiqS2A_gn_xIBDOUUw>
+    <xme:niFXX1PmswcgkPM5yObjWO9xiVfVJ1Ps6QtLQpo3g2dqi_TxJi3LQ7U_VbSg4H13O
+    PpXceE2A2xtIqM2Q8Q>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudehuddguddtgecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecunecujfgurhepfffhvffukfhfgggtuggjsehgtd
+    erredttddvnecuhfhrohhmpeforgigihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegt
+    vghrnhhordhtvggthheqnecuggftrfgrthhtvghrnhepleekgeehhfdutdeljefgleejff
+    ehfffgieejhffgueefhfdtveetgeehieehgedunecukfhppeeltddrkeelrdeikedrjeei
+    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgi
+    himhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:niFXX4j7ay4JwOVgMg4twDLEL9eckDyP0h33oIx1LfwTUCo_qknNzw>
+    <xmx:niFXXw-1Od6uGH8RcfgSCqIcnfnV2wzn97HSBDVb71cTwPRBml7pTQ>
+    <xmx:niFXX7tVVZ81ZuRyhDJyVBQ2ruZ7O6YFvqFIVByKAHETEmP8hxHXaQ>
+    <xmx:oCFXXxDWsNJ2_iVkJXv-LE6RR1Pn5GIvWILQNV1o_WVlkMMVK0Rz7-btApk>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 498C53280059;
+        Tue,  8 Sep 2020 02:15:58 -0400 (EDT)
+Date:   Tue, 8 Sep 2020 08:15:56 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Corentin Labbe <clabbe.montjoie@gmail.com>
+Cc:     davem@davemloft.net, herbert@gondor.apana.org.au,
+        robh+dt@kernel.org, wens@csie.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        m.cerveny@computer.org
+Subject: Re: [PATCH v3] dt-bindings: crypto: Specify that
+ allwinner,sun8i-a33-crypto needs reset
+Message-ID: <20200908061556.btaokh5ftxng7t7m@gilmour.lan>
+References: <20200907175437.4464-1-clabbe.montjoie@gmail.com>
 MIME-Version: 1.0
-Message-ID: <trinity-74abdbb2-2ddc-440a-85c8-97e80e9eb2ed-1599545604475@3c-app-gmx-bs38>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Chuanjia Liu <Chuanjia.Liu@mediatek.com>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        devicetree@vger.kernel.org, Ryder Lee <ryder.lee@mediatek.com>,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jianjun.wang@mediatek.com, Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org, yong.wu@mediatek.com,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Aw: Re: [PATCH v4 0/4] Split PCIe node to comply with hardware
- design
-Content-Type: text/plain; charset=UTF-8
-Date:   Tue, 8 Sep 2020 08:13:24 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <1596440772.7361.35.camel@mhfsdcap03>
-References: <20200721074915.14516-1-Chuanjia.Liu@mediatek.com>
- <1596440772.7361.35.camel@mhfsdcap03>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:i6KFmqNKBH4PPSKlvcjghT5P+X5pFNBaGxFipv86Hh4ReWRpG5btRSd5XiIXZJ19HB0fq
- lgu0117WGrFBfEeINB8o1KuUaaV7TDQ+uJfn2owNCVVBEH787lTai5JXTDzUs5z06ifZ6KkqM068
- CHEfY3tbNEchcofDgcxvyl1DyaeDsar+qW8RT1V4FwRahaaQCfEJSgVT4HuK6aL23QBZCK30Qbk6
- ADW5xYBonXsg7PVN/KC8zKrwMmW2+e+k2ZeFaiOGPrySBzn3oEwhiDFz5sdPNs7RNV7AY7gvORiL
- ls=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:UuOHfeuoCbE=:9+dhFkMTeCWaxGimh72pme
- AXCI9Y9xGHGWKFDqsMgQqnWZrJY2YqBq76iSi1YO5tOrNKXrTSX3uqbY8fS/jP1WX2iMC9DYR
- +pX7nJGZ40FTXl+MGsiXRhVx7EviYmeoLucDYKbSX/S39Sn6YJvoegAOFfuXo1QwVFnLRmp/c
- HbxmmPfLit37E7Bqz6XkNszj9lsQId47HEH05CJyWDSb28/ugBq0fUAcyb3m09PslVweJv1rk
- qHaZddgaFRHrenOpq3ypq4qmj9nIenbCmmTL5ghmu2r3TcThugrBUHf7qboUSVQjZCyAuqpED
- auxdiMgcwe5tZ2YpuQT8qmidOi4snmZkPdUhay9XVMrm/2QA1FjHUphWv9swexNLYN8vsJoga
- zpk41DbFHEhCt/jlWLMkGVk0/P5BhfwQg4jLzaHctQfs4dNGsv4IZsG6wLCISutSVE54Ljri6
- aWuaF03BXX/k7NJIQniJIajWZnD1CpRHj77qSLYH58vyIXl6UwgHqNZ45x0fgE8hmkYIw2KHW
- nzldWFN0Z734a4GtfYqmFYrUW5zpU/997Jcj4nUOvbxLIM42TgZ7k5KTc7fqCmMDiPO+Bhy06
- kKlLKUW+gz+xbE3KHJoWQVdvX1PAA/8wnqhPtKeOZdtbYUUvlwWBrpqL4Qp7DWrg2n9wDXPdS
- N6xjzIeB54WE6YbyD7LPBooLeXbpWBqIw3ypLvZNrWWcqtbeof5OMzbKHbash1xbryAE=
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="apfc6x6gq7uthf7s"
+Content-Disposition: inline
+In-Reply-To: <20200907175437.4464-1-clabbe.montjoie@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-i don't see this Patchset in 5.9-rc4
+--apfc6x6gq7uthf7s
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-is anything missing?
+On Mon, Sep 07, 2020 at 07:54:37PM +0200, Corentin Labbe wrote:
+> When adding allwinner,sun8i-a33-crypto, I forgot to add that it needs res=
+et.
+> Furthermore, there are no need to use items to list only one compatible
+> in compatible list.
+>=20
+> Fixes: f81547ba7a98 ("dt-bindings: crypto: add new compatible for A33 SS")
+> Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
 
-regards Frank
+Acked-by: Maxime Ripard <mripard@kernel.org>
+
+Thanks!
+Maxime
+
+--apfc6x6gq7uthf7s
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX1chnAAKCRDj7w1vZxhR
+xfUvAQD8xxLoH6fbnPJmX6BVcYssd2Qs2CpluJZqLpfeHJCOCAEA5LM0Mwzzrnhe
+e8swy3maWAsWSzz/kE7LwoDYMGUApAM=
+=z7iT
+-----END PGP SIGNATURE-----
+
+--apfc6x6gq7uthf7s--
