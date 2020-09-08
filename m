@@ -2,104 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3B2D261318
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 17:00:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 866D2261304
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 16:53:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730104AbgIHPAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 11:00:34 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:65530 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729455AbgIHOYv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 10:24:51 -0400
-X-UUID: 6177d6bd5e6a4603a7295c234df2c931-20200908
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=oQzZwJh3y7+kGJk/4w1rH1iequi645UjG2KFNV11C7k=;
-        b=uvFZrsevXgDGmwNjyt6oi0NaK0IJUJ/hmfn2VflP7ZXeZ4eOMGUMM9A5a2yk6fl00pS0o18v75RSOUk17I5B0kfy9Q/4oBcC360CvxIlhClbwFLgZW9c3/OS4DIhWJf9WhvvUXCSsfuKDD/DeUNbfI8WUylMtz/rGnMUDYOiUl0=;
-X-UUID: 6177d6bd5e6a4603a7295c234df2c931-20200908
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <crystal.guo@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1413091755; Tue, 08 Sep 2020 21:28:50 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 8 Sep
- 2020 21:28:48 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 8 Sep 2020 21:28:48 +0800
-Message-ID: <1599571618.14806.7.camel@mhfsdcap03>
-Subject: Re: [v4,4/4] arm64: dts: mt8192: add infracfg_rst node
-From:   Crystal Guo <crystal.guo@mediatek.com>
-To:     Suman Anna <s-anna@ti.com>
-CC:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Seiya Wang =?UTF-8?Q?=28=E7=8E=8B=E8=BF=BA=E5=90=9B=29?= 
-        <seiya.wang@mediatek.com>,
-        Stanley Chu =?UTF-8?Q?=28=E6=9C=B1=E5=8E=9F=E9=99=9E=29?= 
-        <stanley.chu@mediatek.com>,
-        Yingjoe Chen =?UTF-8?Q?=28=E9=99=B3=E8=8B=B1=E6=B4=B2=29?= 
-        <Yingjoe.Chen@mediatek.com>,
-        Fan Chen =?UTF-8?Q?=28=E9=99=B3=E5=87=A1=29?= 
-        <fan.chen@mediatek.com>,
-        "Yong Liang =?UTF-8?Q?=28=E6=A2=81=E5=8B=87=29?=" 
-        <Yong.Liang@mediatek.com>
-Date:   Tue, 8 Sep 2020 21:26:58 +0800
-In-Reply-To: <211bd78f-3b70-1e65-eea9-75cc73a3dfdd@ti.com>
-References: <20200817030324.5690-1-crystal.guo@mediatek.com>
-         <20200817030324.5690-5-crystal.guo@mediatek.com>
-         <211bd78f-3b70-1e65-eea9-75cc73a3dfdd@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1729799AbgIHOxk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 10:53:40 -0400
+Received: from foss.arm.com ([217.140.110.172]:54242 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729670AbgIHO0F (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 10:26:05 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2126B1684;
+        Tue,  8 Sep 2020 07:16:31 -0700 (PDT)
+Received: from ubuntu.arm.com (unknown [10.57.13.108])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 80CE83F73C;
+        Tue,  8 Sep 2020 07:16:30 -0700 (PDT)
+From:   Nicola Mazzucato <nicola.mazzucato@arm.com>
+To:     devicetree@vger.kernel.org
+Cc:     nicola.mazzucato@arm.com
+Subject: [PATCH] dt-bindings: arm: Add devicetree binding for cpu-performance-dependencies
+Date:   Tue,  8 Sep 2020 15:17:14 +0100
+Message-Id: <20200908141714.7194-1-nicola.mazzucato@arm.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: E2B71D7CF58B128302A1F43348A6FECCA6782FE097627415268B005A7ADAC0792000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIwLTA5LTAzIGF0IDA3OjI5ICswODAwLCBTdW1hbiBBbm5hIHdyb3RlOg0KPiBI
-aSBDcnlzdGFsLA0KPiANCj4gT24gOC8xNi8yMCAxMDowMyBQTSwgQ3J5c3RhbCBHdW8gd3JvdGU6
-DQo+ID4gYWRkIGluZnJhY2ZnX3JzdCBub2RlIHdoaWNoIGlzIGZvciBNVDgxOTIgcGxhdGZvcm0N
-Cj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBDcnlzdGFsIEd1byA8Y3J5c3RhbC5ndW9AbWVkaWF0
-ZWsuY29tPg0KPiANCj4gSSB1bmRlcnN0YW5kIHlvdSBhcmUgcG9zdGluZyB0aGVzZSB0b2dldGhl
-ciBmb3IgY29tcGxldGUgcmVmZXJlbmNlLCBidXQgZHJpdmVyDQo+IHN1YnN5c3RlbSBtYWludGFp
-bmVycyB0eXBpY2FsbHkgZG9uJ3QgcGljayBkdHMgcGF0Y2hlcy4gSW4gYW55Y2FzZSwgY2FuIHlv
-dQ0KPiBjbGFyaWZ5IGlmIHlvdXIgcmVnaXN0ZXJzIGFyZSBzZWxmLWNsZWFyaW5nIHJlZ2lzdGVy
-cz8NCj4gDQo+IHJlZ2FyZHMNCj4gU3VtYW4NCj4gDQpIaSBTdW1hbiwNCg0KVGhhbmtzIGZvciB5
-b3VyIHJlcGx5Lg0KT3VyIHJlc2V0IHJlZ2lzdGVycyBhcmUgbm90IHNlbGYtY2xlYXJpbmcsIGl0
-IG5lZWRzIHRvIHNldCB0aGUgY2xlYXIgYml0DQp0byAxIHRvIGNsZWFyIHRoZSByZWxhdGVkIGJp
-dC4NCkFuZCBzaG91bGQgSSBzZXBhcmF0ZSB0aGlzIGR0cyBwYXRjaCBmcm9tIHRoZSBwYXRjaCBz
-ZXRzPw0KDQpyZWdhcmRzDQpDcnlzdGFsDQo+ID4gLS0tDQo+ID4gIGFyY2gvYXJtNjQvYm9vdC9k
-dHMvbWVkaWF0ZWsvbXQ4MTkyLmR0c2kgfCAxMSArKysrKysrKysrLQ0KPiA+ICAxIGZpbGUgY2hh
-bmdlZCwgMTAgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiA+IA0KPiA+IGRpZmYgLS1n
-aXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi5kdHNpIGIvYXJjaC9hcm02
-NC9ib290L2R0cy9tZWRpYXRlay9tdDgxOTIuZHRzaQ0KPiA+IGluZGV4IDkzMWUxY2ExNzIyMC4u
-YTBjYjk5MDQ3MDZiIDEwMDY0NA0KPiA+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0
-ZWsvbXQ4MTkyLmR0c2kNCj4gPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210
-ODE5Mi5kdHNpDQo+ID4gQEAgLTEwLDYgKzEwLDcgQEANCj4gPiAgI2luY2x1ZGUgPGR0LWJpbmRp
-bmdzL2ludGVycnVwdC1jb250cm9sbGVyL2lycS5oPg0KPiA+ICAjaW5jbHVkZSA8ZHQtYmluZGlu
-Z3MvcGluY3RybC9tdDgxOTItcGluZnVuYy5oPg0KPiA+ICAjaW5jbHVkZSA8ZHQtYmluZGluZ3Mv
-cG93ZXIvbXQ4MTkyLXBvd2VyLmg+DQo+ID4gKyNpbmNsdWRlIDxkdC1iaW5kaW5ncy9yZXNldC90
-aS1zeXNjb24uaD4NCj4gPiAgDQo+ID4gIC8gew0KPiA+ICAJY29tcGF0aWJsZSA9ICJtZWRpYXRl
-ayxtdDgxOTIiOw0KPiA+IEBAIC0yMTksOSArMjIwLDE3IEBADQo+ID4gIAkJfTsNCj4gPiAgDQo+
-ID4gIAkJaW5mcmFjZmc6IGluZnJhY2ZnQDEwMDAxMDAwIHsNCj4gPiAtCQkJY29tcGF0aWJsZSA9
-ICJtZWRpYXRlayxtdDgxOTItaW5mcmFjZmciLCAic3lzY29uIjsNCj4gPiArCQkJY29tcGF0aWJs
-ZSA9ICJtZWRpYXRlayxtdDgxOTItaW5mcmFjZmciLCAic3lzY29uIiwgInNpbXBsZS1tZmQiOw0K
-PiA+ICAJCQlyZWcgPSA8MCAweDEwMDAxMDAwIDAgMHgxMDAwPjsNCj4gPiAgCQkJI2Nsb2NrLWNl
-bGxzID0gPDE+Ow0KPiA+ICsNCj4gPiArCQkJaW5mcmFjZmdfcnN0OiByZXNldC1jb250cm9sbGVy
-IHsNCj4gPiArCQkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssaW5mcmEtcmVzZXQiLCAidGksc3lz
-Y29uLXJlc2V0IjsNCj4gPiArCQkJCSNyZXNldC1jZWxscyA9IDwxPjsNCj4gPiArCQkJCXRpLHJl
-c2V0LWJpdHMgPSA8DQo+ID4gKwkJCQkJMHgxNDAgMTUgMHgxNDQgMTUgMCAwIChBU1NFUlRfU0VU
-IHwgREVBU1NFUlRfU0VUIHwgU1RBVFVTX05PTkUpIC8qIDA6IHBjaWUgKi8NCj4gPiArCQkJCT47
-DQo+ID4gKwkJCX07DQo+ID4gIAkJfTsNCj4gPiAgDQo+ID4gIAkJcGVyaWNmZzogcGVyaWNmZ0Ax
-MDAwMzAwMCB7DQo+ID4gDQo+IA0KDQo=
+Currently, there is an assumption that the performance domains as provided
+by the SCMI protocol should be mirroring the exact implementation in
+hardware, for example, the clock domains, which are a typical type of
+performance domains.
+
+By design, an SCMI performance domain defines the granularity of
+performance controls, it does not describe any underlying hardware
+dependencies (although they may match in many cases).
+
+As a consequence, in platforms where hardware may have the ability to
+control cpu performance at different granularity and choose to describe
+fine-grained performance control through SCMI performance domains, there
+is currently no way for OSPM to discover the actual cpu hardware
+dependencies. Inevitably, software components that rely on this missing
+description will cease to work.
+
+Thus, there is a need for a new description of hardware dependencies where
+the performance level is coordinated by hardware (or firmware) since these
+dependency domains might be larger than the SCMI performance domains.
+
+This new optional binding will provide visibility to OSPM on any hardware
+or firmware coordination of performance requests and enable more
+accurate assumptions about performance and performance side-effects of
+requesting performance level changers. This is essential information for
+OSPM thermal and energy management frameworks.
+
+There are two main reasons to support this new addition:
+
+1) Per-cpu control & SCMI performance domains
+
+Same as explained above. Some platforms would like to make aggregation
+decisions in firmware and want to describe themselves as having per-cpu
+control. In order to continue to make sane decisions in the OSPM layer,
+we need to know about the underlying connections.
+
+With this optional binding, we provide performance dependencies
+information to OSPM for sets of CPUs while the h/w coordinates the
+performance level for each cpu.
+
+2) ACPI
+
+With respect to performance, ACPI describes two main types of coordination
+that may take place in system when logical processors are required to
+transition to a different power/performance state. These two types are
+software coordination (SW) and hardware coordination (HW). In the first
+one, OSPM is in charge of handling such transitions while preserving the
+integrity of the entire system. In the latter case, the h/w is responsible
+for ensuring correct operations.
+
+In the HW coordination, OSPM can control each processor as if they were all
+independent each other. However, platforms can use ACPI defined interfaces
+to group CPUs to create so called "dependency domain". Such interface is
+the _PSD method. Users in kernel that need to know dependencies among
+cores, can retrieve such information via _PSD [1].
+
+If the same system needs to work with dt + SCMI, we will have all the
+controls, but we are missing the information performance level coordination
+in hardware/firmware.
+This new dt binding provides the missing bits.
+
+[1]ACPI Specification, version 6.3 - 8.3 Power, Performance, and Throttling
+State Dependencies
+
+Signed-off-by: Nicola Mazzucato <nicola.mazzucato@arm.com>
+---
+ .../bindings/arm/cpu-perf-dependencies.yaml   | 45 +++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/cpu-perf-dependencies.yaml
+
+diff --git a/Documentation/devicetree/bindings/arm/cpu-perf-dependencies.yaml b/Documentation/devicetree/bindings/arm/cpu-perf-dependencies.yaml
+new file mode 100644
+index 000000000000..3b8cf7e29982
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/cpu-perf-dependencies.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/cpu-perf-dependencies.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: CPU Performance Dependencies
++
++maintainers:
++  - Nicola Mazzucato <nicola.mazzucato@arm.com>
++
++description: |+
++  This optional node provides information to OSPM of cpu performance
++  dependencies.
++  Each list represents a set of CPUs which have performance level
++  dependencies and can assumed to be roughly at the same performance
++  level coordinated by hardware and/or firmware.
++  Example: Describing CPUs in the same clock domain.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - arm,cpu-perf-dependencies
++
++  cpu-perf-affinity:
++    $ref: '/schemas/types.yaml#/definitions/phandle'
++    description: |
++      Specifies a list of phandles to CPU nodes corresponding to a set of CPUs
++      which have performance affinity.
++
++examples:
++  - |
++    cpu-performance-dependencies {
++        compatible = "arm,cpu-perf-dependencies";
++        cpu-perf-domain0 {
++            cpu-perf-affinity = <&CPU0>, <&CPU1>, <&CPU2>, <&CPU3>;
++        }
++        cpu-perf-domain1 {
++            cpu-perf-affinity = <&CPU4>, <&CPU5>, <&CPU6>;
++        }
++        cpu-perf-domain2 {
++            cpu-perf-affinity = <&CPU7>;
++        }
++    };
+-- 
+2.27.0
 
