@@ -2,112 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 607352620C9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:15:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0272262073
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:12:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730324AbgIHUPK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 16:15:10 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:40718 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726801AbgIHPKl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 11:10:41 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 088CUDRA099188;
-        Tue, 8 Sep 2020 07:30:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599568213;
-        bh=ZlGhz4fcfvz0XlQMcLisz9jUHjYObz1xSQH6+ZJjyB8=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=uvYf7GokGdF/5EiCT9TmmHekygILpdPsfAEukLopyFVfzj3GlUVa5GuJRLxrANApU
-         pa5AXG1WF9ad18bZNBKNFl87MmFycHS737n8zwGFwAn7LS3dHpCzf56dtPiOhZi2bb
-         RURZzPSJR8MGbDfmRAGb1/jPaFHHRZyarmjGrwsg=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 088CUDf5024531
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Sep 2020 07:30:13 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 8 Sep
- 2020 07:30:13 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 8 Sep 2020 07:30:13 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088CUD5e031056;
-        Tue, 8 Sep 2020 07:30:13 -0500
-Date:   Tue, 8 Sep 2020 07:30:13 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Roger Quadros <rogerq@ti.com>
-CC:     <t-kristo@ti.com>, <robh+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <nsekhar@ti.com>,
-        <kishon@ti.com>
-Subject: Re: [PATCH v2 2/6] arm64: dts: ti: k3-j7200-main: Add SERDES lane
- control mux
-Message-ID: <20200908123013.jvim7rlokzvxdpse@akan>
-References: <20200907145213.30788-1-rogerq@ti.com>
- <20200907145213.30788-3-rogerq@ti.com>
+        id S1730227AbgIHPNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 11:13:30 -0400
+Received: from mga03.intel.com ([134.134.136.65]:58970 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730106AbgIHPLw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 11:11:52 -0400
+IronPort-SDR: iysYzGTVlrCO21GH6pdDwRLcvrg2KC1KMNeGLQJbsicE7TdweZm+h7V/RKesJZTB/UrAMJUMI+
+ gVg09E7ehyoA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9737"; a="158151634"
+X-IronPort-AV: E=Sophos;i="5.76,405,1592895600"; 
+   d="scan'208";a="158151634"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Sep 2020 06:29:51 -0700
+IronPort-SDR: 6R3AzQjOcRIsdsz6fyEAXD/ifodzSuwmdsKH7KoS9y5ZxDAI+8yV154nTGA5wfuSmGHgzJQqBY
+ EY0lmkrqArDw==
+X-IronPort-AV: E=Sophos;i="5.76,405,1592895600"; 
+   d="scan'208";a="304091179"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Sep 2020 06:29:48 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 8FDA2205C8; Tue,  8 Sep 2020 16:29:46 +0300 (EEST)
+Date:   Tue, 8 Sep 2020 16:29:46 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        Leon Luo <leonl@leopardimaging.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        laurent.pinchart@ideasonboard.com,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] dt-bindings: media: imx274: Convert to json-schema
+Message-ID: <20200908132945.GA19532@paasikivi.fi.intel.com>
+References: <20200903115143.13717-1-jacopo+renesas@jmondi.org>
+ <20200903115143.13717-3-jacopo+renesas@jmondi.org>
+ <20200903122331.GJ32646@paasikivi.fi.intel.com>
+ <20200903124831.okjegcpk7n7sshsn@uno.localdomain>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200907145213.30788-3-rogerq@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20200903124831.okjegcpk7n7sshsn@uno.localdomain>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17:52-20200907, Roger Quadros wrote:
-> The SERDES lane control mux registers are present in the
-> CTRLMMR space.
+Hi Jacopo,
+
+On Thu, Sep 03, 2020 at 02:48:31PM +0200, Jacopo Mondi wrote:
+> Hi Sakari
 > 
-> Signed-off-by: Roger Quadros <rogerq@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
+> On Thu, Sep 03, 2020 at 03:23:31PM +0300, Sakari Ailus wrote:
+> > Hi Jacopo,
+> >
+> > Thanks for the update.
+> >
+> > On Thu, Sep 03, 2020 at 01:51:42PM +0200, Jacopo Mondi wrote:
+> > > Convert the imx274 bindings document to json-schema and update
+> > > the MAINTAINERS file accordingly.
+> > >
+> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> > > ---
+> > >  .../devicetree/bindings/media/i2c/imx274.txt  | 38 ------------
+> > >  .../bindings/media/i2c/sony,imx274.yaml       | 59 +++++++++++++++++++
+> > >  MAINTAINERS                                   |  2 +-
+> > >  3 files changed, 60 insertions(+), 39 deletions(-)
+> > >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/imx274.txt
+> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/i2c/imx274.txt b/Documentation/devicetree/bindings/media/i2c/imx274.txt
+> > > deleted file mode 100644
+> > > index 0727079d2410..000000000000
+> > > --- a/Documentation/devicetree/bindings/media/i2c/imx274.txt
+> > > +++ /dev/null
+> > > @@ -1,38 +0,0 @@
+> > > -* Sony 1/2.5-Inch 8.51Mp CMOS Digital Image Sensor
+> > > -
+> > > -The Sony imx274 is a 1/2.5-inch CMOS active pixel digital image sensor with
+> > > -an active array size of 3864H x 2202V. It is programmable through I2C
+> > > -interface. The I2C address is fixed to 0x1a as per sensor data sheet.
+> > > -Image data is sent through MIPI CSI-2, which is configured as 4 lanes
+> > > -at 1440 Mbps.
+> > > -
+> > > -
+> > > -Required Properties:
+> > > -- compatible: value should be "sony,imx274" for imx274 sensor
+> > > -- reg: I2C bus address of the device
+> > > -
+> > > -Optional Properties:
+> > > -- reset-gpios: Sensor reset GPIO
+> > > -- clocks: Reference to the input clock.
+> > > -- clock-names: Should be "inck".
+> > > -- VANA-supply: Sensor 2.8v analog supply.
+> > > -- VDIG-supply: Sensor 1.8v digital core supply.
+> > > -- VDDL-supply: Sensor digital IO 1.2v supply.
+> > > -
+> > > -The imx274 device node should contain one 'port' child node with
+> > > -an 'endpoint' subnode. For further reading on port node refer to
+> > > -Documentation/devicetree/bindings/media/video-interfaces.txt.
+> > > -
+> > > -Example:
+> > > -	sensor@1a {
+> > > -		compatible = "sony,imx274";
+> > > -		reg = <0x1a>;
+> > > -		#address-cells = <1>;
+> > > -		#size-cells = <0>;
+> > > -		reset-gpios = <&gpio_sensor 0 0>;
+> > > -		port {
+> > > -			sensor_out: endpoint {
+> > > -				remote-endpoint = <&csiss_in>;
+> > > -			};
+> > > -		};
+> > > -	};
+> > > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
+> > > new file mode 100644
+> > > index 000000000000..f757ce380cb2
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
+> > > @@ -0,0 +1,59 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/media/i2c/sony,imx274.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Sony 1/2.5-Inch 8.51MP CMOS Digital Image Sensor
+> > > +
+> > > +maintainers:
+> > > +  - Leon Luo <leonl@leopardimaging.com>
+> > > +
+> > > +description: |
+> > > +  The Sony IMX274 is a 1/2.5-inch CMOS active pixel digital image sensor with an
+> > > +  active array size of 3864H x 2202V. It is programmable through I2C interface.
+> > > +  Image data is sent through MIPI CSI-2, which is configured as 4 lanes at 1440
+> > > +  Mbps.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: sony,imx274
+> > > +
+> > > +  reg:
+> > > +    const: 0x1a
+> > > +
+> > > +  reset-gpios:
+> > > +    maxItems: 1
+> > > +
+> > > +  port:
+> > > +    type: object
+> > > +    description: |
+> > > +      Output video port. See ../video-interfaces.txt.
+> > > +
+> >
+> > What happened to the supplies and the clocks?
+> >
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> index 1702ac0bbf40..e72c7a0ccad5 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> @@ -18,6 +18,21 @@
->  		};
->  	};
->  
-> +	scm_conf: scm-conf@100000 {
-> +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
-> +		reg = <0 0x00100000 0 0x1c000>;
-
-Just to stay consistent with j7200 stuff we are trying to keep clean:
-
-reg = <0x00 0x00100000 0x00 0x1c000>;
-
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x0 0x0 0x00100000 0x1c000>;
-
-ranges = <0x00 0x00 0x00100000 0x1c000>;
-
-> +
-> +		serdes_ln_ctrl: serdes-ln-ctrl@4080 {
-> +			compatible = "mmio-mux";
-> +			#mux-control-cells = <1>;
-> +			mux-reg-masks = <0x4080 0x3>, <0x4084 0x3>, /* SERDES0 lane0/1 select */
-> +					<0x4088 0x3>, <0x408c 0x3>; /* SERDES0 lane2/3 select */
-> +		};
-> +	};
-> +
->  	gic500: interrupt-controller@1800000 {
->  		compatible = "arm,gic-v3";
->  		#address-cells = <2>;
-> -- 
-> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+> AH!
 > 
+> 74ea3273d24b ("dt-bindings: media: imx274: Add optional input clock and supplies")
+> went in a release later than my v2. From there I kep carrying on what
+> I had in the yaml file in v3 and v4 without noticing the original
+> bindings in textual form had changed in between!
+
+Yes, it was merged via Rob's tree apparently, and now is in media tree,
+too. I wasn't quite expecting that.
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Sakari Ailus
