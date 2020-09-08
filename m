@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C503260FDF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 12:31:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D39C1261002
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 12:35:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728971AbgIHKbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 06:31:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59898 "EHLO
+        id S1729650AbgIHKfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 06:35:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729395AbgIHKbQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 06:31:16 -0400
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F3CDC061757
-        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 03:31:06 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id gf14so7803102pjb.5
-        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 03:31:06 -0700 (PDT)
+        with ESMTP id S1729573AbgIHKer (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 06:34:47 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8271EC061756
+        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 03:34:47 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id 5so9746485pgl.4
+        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 03:34:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=hDRXaJuAS9TrZFMby+Qmnh+jZXgmePanO+HwLWR2Ouc=;
-        b=JUNp1uaI61meRUQXI/pPS8i8XWPkyXDB/8gSgV8A6qz47wi+XYpf3wBpin+bMYWZ+t
-         cXCoI7gS85mL2iuWpMmMF+lFwrFGoW0hbe4YosLpaeVuXE2RLuugSLCIA7tPVorN27BI
-         EYViljfOFlpod2U5565AODj6f6FTpOjnyHYqSeXmWyWWWJpMB6kevRVVYFy12WT7Rmgx
-         /v95pXPu7P0MldjXLXVywF7HMTqTu7WZHLvivAE6CLJU0OL0Khx930DKTDhi2Lj6LYF6
-         L56r7Y6k+Set2fHI9vZ0VYUomxZqN4ldYmxifMT9Glxh2RFoDy1WmOQ/LBxWQAjR09Fg
-         Ci/g==
+        bh=2nCi8zy7QuQkZMR6IxuyCp5GD0A3R6OZW47abt1o2sE=;
+        b=JR7BTrwJhzX7Mfr1dyfJa8McktGcJbt+Q/yWlCstYdZe6ZP+AbvN60k9wgL+5/Pk3P
+         1Ha3q+LLnrT4pfCJ92nARvsTbKg/JiTQmqCqhZIIZR25oymECHGZb7MgrLHsdFuQVzdN
+         ngYcf0iR33Bd27uwKMpzwWP+dw4i2XLgtky8KXsRKt28cgWlM2oox8/EPjvn/T7H2pA4
+         gNTG+hIaTDVzhVFkXyekNim/O+eVUgQIgedGcF5qT7oBqHihA0sWw9ly4YBqGE45M9HL
+         tl5iqkEOAkbz4NtfqESltSy64RcY+X72jFGfknInIeeYPpgliCklRG5wZeZ9LGLGMGco
+         rALw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=hDRXaJuAS9TrZFMby+Qmnh+jZXgmePanO+HwLWR2Ouc=;
-        b=DbgAZeVa/Ezmd0u6bPTPsG1ytiWwnDsaYkoeTHF+UEcau1S3rB+O0kL/RxEMSafu/7
-         WecCt9etRz99eEZXGx7x7r0YdLBMhZZOktt1hy9nISWBYwdIrH4++/OoAECzNkUgMjPp
-         Mfc2N5koGtdB9G4hl0JnR40AbhgzAx27DOgA/5JjAK/BnJOtu51cyjPP8qOEyX2RNstQ
-         tPRDcD7oInDvOh+6PIdZzWc8gXNkTcblJSr8wOFbfBQ617u2SYlGgQp0Xeu1PECacuS4
-         /9MMBWvo0U4zYdXqwh04k94Fgfyn6ITOv06ia7AsmS/S/4MXn7wOOAAs3iKYnVpoaPFx
-         jn3w==
-X-Gm-Message-State: AOAM530uZjc+BbVl7wAT7hbMkbCnMjV0YTg4vjfnB5tn3yt42b/DDKf1
-        jBNO5n0EYcN4maEL2WG+IV+lLQ==
-X-Google-Smtp-Source: ABdhPJzNSCfBkbg+11agkjtxy3qwtXxyhK1sMEZKc5BFdUxTxh6wxYIwtLvqzDkOUFK7HlxQ+qQTKw==
-X-Received: by 2002:a17:90a:db05:: with SMTP id g5mr3543257pjv.22.1599561065932;
-        Tue, 08 Sep 2020 03:31:05 -0700 (PDT)
+        bh=2nCi8zy7QuQkZMR6IxuyCp5GD0A3R6OZW47abt1o2sE=;
+        b=BT5vVpxz59aifkmK92zQXnWZXgaD8bbDJWLdp3BQ13s3GlROkUHs89oaT5QWl5bbhB
+         deGkTA8ThZOk7UMO32SAVfm+b8GFvotFUSsRV8+RxdXgBUB2KT/VxY2PvPflKCnLxsQR
+         q8GQNGxvSDSQ10vqkYGHy0/tMwImMtSp5UrumLUU/SAA3Nz2qTk6gG1q05jRkuEkGPkb
+         Uk++wmiwYJ5gnbFSK4jb8lIXT9OPjyFp2V9oLf4Sg3l4tgX0DRyBVwfNUiyhaVe9zZwN
+         xyv0zODUfBPtuT142tLDwk3lzoeO31Pdtvag/E0gq6fz85Me3tpsxKM1HcKrTxbmseA2
+         E0yg==
+X-Gm-Message-State: AOAM531DhZJ5w8iszvvtXHMcQugXMbkdXEUM1cChjH4eg+zdCK1Lg5CD
+        eVoV14J42EZj3QDYL2Ot1s+jOA==
+X-Google-Smtp-Source: ABdhPJxYAK1Zi7MXGpBWBuIGleqFscf/lAKVmLVtd3LYQAY3bDRZjWZ/jyNlrvWNehd/7EMXc8I+mA==
+X-Received: by 2002:a63:485c:: with SMTP id x28mr169704pgk.289.1599561286562;
+        Tue, 08 Sep 2020 03:34:46 -0700 (PDT)
 Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id x3sm18002984pfo.95.2020.09.08.03.31.04
+        by smtp.gmail.com with ESMTPSA id a15sm9887130pfi.119.2020.09.08.03.34.45
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 08 Sep 2020 03:31:05 -0700 (PDT)
-Date:   Tue, 8 Sep 2020 16:01:03 +0530
+        Tue, 08 Sep 2020 03:34:45 -0700 (PDT)
+Date:   Tue, 8 Sep 2020 16:04:44 +0530
 From:   Viresh Kumar <viresh.kumar@linaro.org>
 To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 Cc:     rjw@rjwysocki.net, robh+dt@kernel.org, agross@kernel.org,
@@ -55,15 +55,15 @@ Cc:     rjw@rjwysocki.net, robh+dt@kernel.org, agross@kernel.org,
         linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         dmitry.baryshkov@linaro.org, tdas@codeaurora.org
-Subject: Re: [PATCH 3/7] cpufreq: qcom-hw: Make use of cpufreq driver_data
- for passing pdev
-Message-ID: <20200908103103.4mfewgmn5xl7mou6@vireshk-i7>
+Subject: Re: [PATCH 5/7] cpufreq: qcom-hw: Use regmap for accessing hardware
+ registers
+Message-ID: <20200908103444.5e526uawa45om6lt@vireshk-i7>
 References: <20200908075716.30357-1-manivannan.sadhasivam@linaro.org>
- <20200908075716.30357-4-manivannan.sadhasivam@linaro.org>
+ <20200908075716.30357-6-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200908075716.30357-4-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20200908075716.30357-6-manivannan.sadhasivam@linaro.org>
 User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -71,16 +71,155 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 08-09-20, 13:27, Manivannan Sadhasivam wrote:
-> Get rid of global_pdev pointer and make use of cpufreq driver_data for
-> passing the reference of pdev. This aligns with what other cpufreq drivers
-> are doing.
-> 
+> Use regmap for accessing cpufreq registers in hardware.
+
+Why ? Please mention why a change is required in the log.
+
 > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->  drivers/cpufreq/qcom-cpufreq-hw.c | 11 ++++++-----
->  1 file changed, 6 insertions(+), 5 deletions(-)
-
-Applied. Thanks.
+>  drivers/cpufreq/qcom-cpufreq-hw.c | 55 ++++++++++++++++++++++++++-----
+>  1 file changed, 47 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
+> index 41853db7c9b8..de816bcafd33 100644
+> --- a/drivers/cpufreq/qcom-cpufreq-hw.c
+> +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/of_address.h>
+>  #include <linux/of_platform.h>
+>  #include <linux/pm_opp.h>
+> +#include <linux/regmap.h>
+>  #include <linux/slab.h>
+>  
+>  #define LUT_MAX_ENTRIES			40U
+> @@ -32,6 +33,7 @@ struct qcom_cpufreq_soc_data {
+>  
+>  struct qcom_cpufreq_data {
+>  	void __iomem *base;
+> +	struct regmap *regmap;
+>  	const struct qcom_cpufreq_soc_data *soc_data;
+>  };
+>  
+> @@ -85,8 +87,11 @@ static int qcom_cpufreq_hw_target_index(struct cpufreq_policy *policy,
+>  	struct qcom_cpufreq_data *data = policy->driver_data;
+>  	const struct qcom_cpufreq_soc_data *soc_data = data->soc_data;
+>  	unsigned long freq = policy->freq_table[index].frequency;
+> +	int ret;
+>  
+> -	writel_relaxed(index, data->base + soc_data->reg_perf_state);
+> +	ret = regmap_write(data->regmap, soc_data->reg_perf_state, index);
+> +	if (ret)
+> +		return ret;
+>  
+>  	if (icc_scaling_enabled)
+>  		qcom_cpufreq_set_bw(policy, freq);
+> @@ -102,6 +107,7 @@ static unsigned int qcom_cpufreq_hw_get(unsigned int cpu)
+>  	const struct qcom_cpufreq_soc_data *soc_data;
+>  	struct cpufreq_policy *policy;
+>  	unsigned int index;
+> +	int ret;
+>  
+>  	policy = cpufreq_cpu_get_raw(cpu);
+>  	if (!policy)
+> @@ -110,7 +116,10 @@ static unsigned int qcom_cpufreq_hw_get(unsigned int cpu)
+>  	data = policy->driver_data;
+>  	soc_data = data->soc_data;
+>  
+> -	index = readl_relaxed(data->base + soc_data->reg_perf_state);
+> +	ret = regmap_read(data->regmap, soc_data->reg_perf_state, &index);
+> +	if (ret)
+> +		return 0;
+> +
+>  	index = min(index, LUT_MAX_ENTRIES - 1);
+>  
+>  	return policy->freq_table[index].frequency;
+> @@ -123,9 +132,12 @@ static unsigned int qcom_cpufreq_hw_fast_switch(struct cpufreq_policy *policy,
+>  	const struct qcom_cpufreq_soc_data *soc_data = data->soc_data;
+>  	unsigned int index;
+>  	unsigned long freq;
+> +	int ret;
+>  
+>  	index = policy->cached_resolved_idx;
+> -	writel_relaxed(index, data->base + soc_data->reg_perf_state);
+> +	ret = regmap_write(data->regmap, soc_data->reg_perf_state, index);
+> +	if (ret)
+> +		return 0;
+>  
+>  	freq = policy->freq_table[index].frequency;
+>  	arch_set_freq_scale(policy->related_cpus, freq,
+> @@ -171,14 +183,24 @@ static int qcom_cpufreq_hw_read_lut(struct device *cpu_dev,
+>  	}
+>  
+>  	for (i = 0; i < LUT_MAX_ENTRIES; i++) {
+> -		data = readl_relaxed(drv_data->base + soc_data->reg_freq_lut +
+> -				      i * soc_data->lut_row_size);
+> +		ret = regmap_read(drv_data->regmap, soc_data->reg_freq_lut +
+> +				  i * soc_data->lut_row_size, &data);
+> +		if (ret) {
+> +			kfree(table);
+> +			return ret;
+> +		}
+> +
+>  		src = FIELD_GET(LUT_SRC, data);
+>  		lval = FIELD_GET(LUT_L_VAL, data);
+>  		core_count = FIELD_GET(LUT_CORE_COUNT, data);
+>  
+> -		data = readl_relaxed(drv_data->base + soc_data->reg_volt_lut +
+> -				      i * soc_data->lut_row_size);
+> +		ret = regmap_read(drv_data->regmap, soc_data->reg_volt_lut +
+> +				  i * soc_data->lut_row_size, &data);
+> +		if (ret) {
+> +			kfree(table);
+> +			return ret;
+> +		}
+> +
+>  		volt = FIELD_GET(LUT_VOLT, data) * 1000;
+>  
+>  		if (src)
+> @@ -248,6 +270,13 @@ static void qcom_get_related_cpus(int index, struct cpumask *m)
+>  	}
+>  }
+>  
+> +static struct regmap_config qcom_cpufreq_regmap = {
+> +	.reg_bits = 32,
+> +	.reg_stride = 4,
+> +	.val_bits = 32,
+> +	.fast_io = true,
+> +};
+> +
+>  static const struct qcom_cpufreq_soc_data qcom_soc_data = {
+>  	.reg_enable = 0x0,
+>  	.reg_freq_lut = 0x110,
+> @@ -274,6 +303,7 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>  	struct qcom_cpufreq_data *data;
+>  	const struct of_device_id *match;
+>  	int ret, index;
+> +	u32 val;
+>  
+>  	cpu_dev = get_cpu_device(policy->cpu);
+>  	if (!cpu_dev) {
+> @@ -316,9 +346,18 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>  
+>  	data->soc_data = match->data;
+>  	data->base = base;
+> +	data->regmap = devm_regmap_init_mmio(dev, base, &qcom_cpufreq_regmap);
+> +	if (IS_ERR(data->regmap)) {
+> +		ret = PTR_ERR(data->regmap);
+> +		goto error;
+> +	}
+>  
+>  	/* HW should be in enabled state to proceed */
+> -	if (!(readl_relaxed(base + data->soc_data->reg_enable) & 0x1)) {
+> +	ret = regmap_read(data->regmap, data->soc_data->reg_enable, &val);
+> +	if (ret)
+> +		goto error;
+> +
+> +	if (!(val & 0x1)) {
+>  		dev_err(dev, "Domain-%d cpufreq hardware not enabled\n", index);
+>  		ret = -ENODEV;
+>  		goto error;
+> -- 
+> 2.17.1
 
 -- 
 viresh
