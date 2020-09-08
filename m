@@ -2,78 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74D27262350
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 01:01:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5745E26235A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 01:05:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727882AbgIHXBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 19:01:22 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:34803 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726657AbgIHXBV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 19:01:21 -0400
-Received: by mail-io1-f68.google.com with SMTP id m17so1203259ioo.1;
-        Tue, 08 Sep 2020 16:01:19 -0700 (PDT)
+        id S1728954AbgIHXFY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 19:05:24 -0400
+Received: from mail-il1-f193.google.com ([209.85.166.193]:36667 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726657AbgIHXFY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 19:05:24 -0400
+Received: by mail-il1-f193.google.com with SMTP id p13so559620ils.3;
+        Tue, 08 Sep 2020 16:05:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=m89In9DmPLFvZGgeKa+y2k8098Kswn69VDIHU75w5H4=;
-        b=Ksa6pz5rRbVbCBJZLoL3+NGUPRAVaVz79JbJqgXrX0r0iJoDRLNwI6bWDdGNxDGJiq
-         XwPN0/2NloTvFtqee2beDG34SlzeieEoi+4xFtPcnRleD+DvxGsqPZbSHaG0wUJMCqQA
-         78Xstz5naIswFfwytOjr+aIGfZcgUuwcPENYJBtowlGUz/3y2yyVFmToYGYb8e40BsZX
-         JtWUxyI7ovZv+A3kLr9JuEYkqXY2ePFmam1wW2MqwX5rA1MyV2SN/mLHRpGUuCRBt3Nx
-         s4ZWeyOBdqEJAUwgArU+3JW9nx4R6ewi32A0uj5NyPNgefbANAn9M0ibcVzgDJoXR3No
-         /3BQ==
-X-Gm-Message-State: AOAM5305AhiN2KJ1Sf6NsdaLXFfNU3zviT9JnYvgoJuG74aKLhlhbrM9
-        NedxQ1oXL6LEp17O2K/Duw==
-X-Google-Smtp-Source: ABdhPJzIrAPYwrTxeYyBssMDWjL0nXwlBTgg0SHWrsNuw4AiWN/2RL2jNeBp0V/VAeApkqjiImK6Cw==
-X-Received: by 2002:a05:6638:2647:: with SMTP id n7mr1355405jat.9.1599606078731;
-        Tue, 08 Sep 2020 16:01:18 -0700 (PDT)
+        bh=/qeqE/5fPzRv3YsJ66Yy8YazV/xbUggNlRPkCJRA0bA=;
+        b=MhrCfIi4c7NwDcTW8chKtWpsLVVW1UHnw7zL2MywIAM1XkCyWaaMUYNFindw4Zgy4O
+         j9RIxvawBB5welx0TW3np/bbZGWaOOJ0x3K25fUrQWIynXa5o+lzeUor4MjAhxqffDDo
+         dDK6awCoLx7HQ3CmzcjS//93Bvft34W5gKBGxwAEXYDVpd2PKJKrmuK2BDtiGWcv9x45
+         y+gVSr7GIhIpsCZKM0sj07Irqjmfrg5dfMkxhJNizx+T2SbOSE7vjawxWTQ8Fow8OIeA
+         i933SI/YLwYcVPnchVQ24ZFa+r24gdIIHgvAmCSCgvSefOecJfI3lv1MSgqMLnPbE3dP
+         WUug==
+X-Gm-Message-State: AOAM530jtjE3A/9U7XkGT1kz92R4U6VlCyMB6DP0qTxjKJkhhQH2V3jC
+        CQIfih8rSunCFTXTXDPvig==
+X-Google-Smtp-Source: ABdhPJypClO7IsDzE/xubvRHVl36SEZhjCvZo/KL6SE1PsR7GzOL7aa0mOKH4UtHDf4daBKwVdq/9Q==
+X-Received: by 2002:a92:c009:: with SMTP id q9mr1098800ild.73.1599606323035;
+        Tue, 08 Sep 2020 16:05:23 -0700 (PDT)
 Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id l16sm387039ilc.3.2020.09.08.16.01.17
+        by smtp.gmail.com with ESMTPSA id k2sm372555ioj.2.2020.09.08.16.05.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Sep 2020 16:01:18 -0700 (PDT)
-Received: (nullmailer pid 1102281 invoked by uid 1000);
-        Tue, 08 Sep 2020 23:01:16 -0000
-Date:   Tue, 8 Sep 2020 17:01:16 -0600
+        Tue, 08 Sep 2020 16:05:22 -0700 (PDT)
+Received: (nullmailer pid 1108505 invoked by uid 1000);
+        Tue, 08 Sep 2020 23:05:20 -0000
+Date:   Tue, 8 Sep 2020 17:05:20 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     linux-clk@vger.kernel.org, m.szyprowski@samsung.com,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-samsung-soc@vger.kernel.org, Kukjin Kim <kgene@kernel.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, b.zolnierkie@samsung.com
-Subject: Re: [PATCH 1/3] clk: samsung: Add clk ID definitions for the CPU
- parent clocks
-Message-ID: <20200908230116.GA1102229@bogus>
-References: <CGME20200826171539eucas1p2e999972d3e7dd6dd701e312548933e87@eucas1p2.samsung.com>
- <20200826171529.23618-1-s.nawrocki@samsung.com>
+To:     Manish Narani <manish.narani@xilinx.com>
+Cc:     gregkh@linuxfoundation.org, michal.simek@xilinx.com,
+        balbi@kernel.org, p.zabel@pengutronix.de,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        git@xilinx.com
+Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc3-xilinx: Add documentation for
+ Versal DWC3 Controller
+Message-ID: <20200908230520.GA1102401@bogus>
+References: <1598467441-124203-1-git-send-email-manish.narani@xilinx.com>
+ <1598467441-124203-2-git-send-email-manish.narani@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200826171529.23618-1-s.nawrocki@samsung.com>
+In-Reply-To: <1598467441-124203-2-git-send-email-manish.narani@xilinx.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 26 Aug 2020 19:15:27 +0200, Sylwester Nawrocki wrote:
-> Add clock ID definitions for the CPU parent clocks for SoCs
-> which don't have such definitions yet. This will allow us to
-> reference the parent clocks directly by cached struct clk_hw
-> pointers in the clock provider, rather than doing clk lookup
-> by name.
+On Thu, Aug 27, 2020 at 12:14:00AM +0530, Manish Narani wrote:
+> Add documentation for Versal DWC3 controller. Add required property
+> 'reg' for the same. Also add optional properties for snps,dwc3.
 > 
-> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+> Signed-off-by: Manish Narani <manish.narani@xilinx.com>
 > ---
->  include/dt-bindings/clock/exynos5250.h | 4 +++-
->  include/dt-bindings/clock/exynos5420.h | 5 +++++
->  2 files changed, 8 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/usb/dwc3-xilinx.txt          | 12 +++++++++++-
+>  1 file changed, 11 insertions(+), 1 deletion(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt b/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
+> index 4aae5b2cef56..dd41ed831411 100644
+> --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
+> +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
+> @@ -1,7 +1,8 @@
+>  Xilinx SuperSpeed DWC3 USB SoC controller
+>  
+>  Required properties:
+> -- compatible:	Should contain "xlnx,zynqmp-dwc3"
+> +- compatible:	May contain "xlnx,zynqmp-dwc3" or "xlnx,versal-dwc3"
+> +- reg:		Base address and length of the register control block
+>  - clocks:	A list of phandles for the clocks listed in clock-names
+>  - clock-names:	Should contain the following:
+>    "bus_clk"	 Master/Core clock, have to be >= 125 MHz for SS
+> @@ -13,12 +14,19 @@ Required child node:
+>  A child node must exist to represent the core DWC3 IP block. The name of
+>  the node is not important. The content of the node is defined in dwc3.txt.
+>  
+> +Optional properties for snps,dwc3:
+> +- dma-coherent:	Enable this flag if CCI is enabled in design. Adding this
+> +		flag configures Global SoC bus Configuration Register and
+> +		Xilinx USB 3.0 IP - USB coherency register to enable CCI.
+> +- interrupt-names: This property provides the names of the interrupt ids used
 
-Acked-by: Rob Herring <robh@kernel.org>
+You have to define what the names are. 'dwc_usb3' seems pretty pointless 
+if only 1 name.
+
+> +
+>  Example device node:
+>  
+>  		usb@0 {
+>  			#address-cells = <0x2>;
+>  			#size-cells = <0x1>;
+>  			compatible = "xlnx,zynqmp-dwc3";
+> +			reg = <0x0 0xff9d0000 0x0 0x100>;
+>  			clock-names = "bus_clk" "ref_clk";
+>  			clocks = <&clk125>, <&clk125>;
+>  			ranges;
+> @@ -26,7 +34,9 @@ Example device node:
+>  			dwc3@fe200000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x0 0xfe200000 0x40000>;
+> +				interrupt-name = "dwc_usb3";
+>  				interrupts = <0x0 0x41 0x4>;
+>  				dr_mode = "host";
+> +				dma-coherent;
+>  			};
+>  		};
+> -- 
+> 2.17.1
+> 
