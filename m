@@ -2,79 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50819260FAF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 12:27:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 702DF260F9C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 12:26:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729712AbgIHK1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 06:27:16 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:45774 "EHLO inva020.nxp.com"
+        id S1729434AbgIHKZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 06:25:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35910 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729605AbgIHK0q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 06:26:46 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 5C6081A0347;
-        Tue,  8 Sep 2020 12:26:16 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 4EE191A0332;
-        Tue,  8 Sep 2020 12:26:16 +0200 (CEST)
-Received: from fsr-ub1664-175.ea.freescale.net (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 940082036D;
-        Tue,  8 Sep 2020 12:26:15 +0200 (CEST)
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Anson Huang <anson.huang@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fugang Duan <fugang.duan@nxp.com>, devicetree@vger.kernel.org
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org, Abel Vesa <abel.vesa@nxp.com>
-Subject: [PATCH v3 14/14] arm64: dts: imx8mp: Add hdmi_blk_ctl node
-Date:   Tue,  8 Sep 2020 13:24:51 +0300
-Message-Id: <1599560691-3763-15-git-send-email-abel.vesa@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1599560691-3763-1-git-send-email-abel.vesa@nxp.com>
-References: <1599560691-3763-1-git-send-email-abel.vesa@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1729414AbgIHKZw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 06:25:52 -0400
+Received: from localhost (unknown [122.182.239.242])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C4E6B20672;
+        Tue,  8 Sep 2020 10:25:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599560752;
+        bh=wWnN8wIGdEYRQeyZKiDo3zvwQLQ/nImIw3EzYlJq4Rc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=W75xSdOthz2YfDEqQ6Y6fTbdMUTwjPxK0P2ioDuwOlLUrb69hyZtEjVEJe5FlKoYZ
+         iBHcF6xvQUmBzXQfFQ6ZQXidFYF0sZBO7q3nOJnCILx3TK8iROksvMSgiVcCpUVVap
+         qBO2ld5YB33YTuIOcp8OqGeAXBCmZVybvxHk6bZA=
+Date:   Tue, 8 Sep 2020 15:55:48 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Roger Quadros <rogerq@ti.com>
+Cc:     kishon@ti.com, nsekhar@ti.com, vigneshr@ti.com,
+        jan.kiszka@siemens.com, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5] dt-binding: phy: convert ti,omap-usb2 to YAML
+Message-ID: <20200908102548.GD77521@vkoul-mobl>
+References: <20200831142130.21836-1-rogerq@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200831142130.21836-1-rogerq@ti.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some of the features of the hdmi_ctl will be used by some
-different drivers in a way those drivers will know best, so adding the
-syscon compatible we allow those to do just that. Only the resets
-and the clocks are registered bit the clk-blk-ctl driver.
+On 31-08-20, 17:21, Roger Quadros wrote:
+> Move ti,omap-usb2 to its own YAML schema.
 
-Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+Applied, thanks
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 3a5ccef..0cf4fa1 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -749,6 +749,13 @@
- 				#clock-cells = <1>;
- 				#reset-cells = <1>;
- 			};
-+
-+			hdmi_blk_ctl: clock-controller@32fc0000 {
-+				compatible = "fsl,imx8mp-hdmi-blk-ctl", "syscon";
-+				reg = <0x32fc0000 0x1000>;
-+				#clock-cells = <1>;
-+				#reset-cells = <1>;
-+			};
- 		};
- 
- 		aips5: bus@30c00000 {
 -- 
-2.7.4
-
+~Vinod
