@@ -2,133 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0CDD260C1B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 09:33:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E941260C20
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 09:35:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729299AbgIHHdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 03:33:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48708 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729229AbgIHHdg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 03:33:36 -0400
-Received: from pali.im (pali.im [31.31.79.79])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D8F1E218AC;
-        Tue,  8 Sep 2020 07:33:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599550416;
-        bh=PVSSlZ7Uaf8BkjWldKCFBALWWbApIq8zDDF8hQ5P0tk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VaselhRfYKFR7jx3vh6moUnhaMD7gSgAEyQEgiqk7aW9rmkZ4yYb+4kGU4tjPfnXI
-         syIkg3Ahe1Zb/Phl3r5TwMHTlr1hcVt0HlevnPJiI0aj+zpIGgtoWgo0L3+fNL9V4u
-         i7SZDaKVgrGxQ/L/D+LcAwozWhhlTTsxt5LQ/SMA=
-Received: by pali.im (Postfix)
-        id 9D231617; Tue,  8 Sep 2020 09:33:33 +0200 (CEST)
-Date:   Tue, 8 Sep 2020 09:33:33 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Andre Heider <a.heider@gmail.com>
-Cc:     Jason Cooper <jason@lakedaemon.net>, Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tomasz Maciej Nowak <tmn505@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: marvell: espressobin: Simplify v7 ethernet
- port labeling
-Message-ID: <20200908073333.i4mpjfcay42kkhq5@pali>
-References: <20200908073050.535919-1-a.heider@gmail.com>
+        id S1729252AbgIHHfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 03:35:55 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:45193 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1729190AbgIHHfz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 03:35:55 -0400
+X-UUID: ae21a226dfcb4941a56d39e028f66fea-20200908
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=hbb4qHCvH9B4+P53YMJXs/+DzoBkaX6B2n9wmkiuJ2o=;
+        b=jPMYkV0kjsIzzOpYXxT30YR2KWkxzE4+5AAY+PjTptrRiS6wHZn9K33FfGNDon5stDB1eqwK3/exxWDV7T5REONp4zxPAmTcTRTs8PJKtV6t6KhheI4NcwD6k1HbzrPQxPMMN4rp2GLFXmXp503XuOIssXbuU4D16XAoG0KwV/A=;
+X-UUID: ae21a226dfcb4941a56d39e028f66fea-20200908
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <hector.yuan@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 911027175; Tue, 08 Sep 2020 15:35:53 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 8 Sep 2020 15:35:50 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 8 Sep 2020 15:35:51 +0800
+From:   Hector Yuan <hector.yuan@mediatek.com>
+To:     <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>,
+        <hector.yuan@mediatek.com>
+Subject: [PATCH v4] cpufreq: mediatek-hw: Add support for Mediatek cpufreq HW driver
+Date:   Tue, 8 Sep 2020 15:35:45 +0800
+Message-ID: <1599550547-27767-1-git-send-email-hector.yuan@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200908073050.535919-1-a.heider@gmail.com>
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tuesday 08 September 2020 09:30:50 Andre Heider wrote:
-> Now that the switch ports have a label in the .dtsi, simplify the whole
-> "switch0" block for the v7 dts files.
-> 
-> Signed-off-by: Andre Heider <a.heider@gmail.com>
+VGhpcyBwYXRjaCBkZXBlbmRzIG9uIHRoZSBNVDY3OTkgRFRTIHBhdGNoIHN1Ym1pdHRlZCBieSBI
+YW5rcyBDaGVuDQogaHR0cHM6Ly9sa21sLm9yZy9sa21sLzIwMjAvOC80LzEwOTQNCg0KDQpIZWN0
+b3IuWXVhbiAoMik6DQogIGNwdWZyZXE6IG1lZGlhdGVrLWh3OiBBZGQgc3VwcG9ydCBmb3IgTWVk
+aWF0ZWsgY3B1ZnJlcSBIVyBkcml2ZXINCiAgZHQtYmluZGluZ3M6IGNwdWZyZXE6IGFkZCBiaW5k
+aW5ncyBmb3IgTWVkaWFUZWsgY3B1ZnJlcSBIVw0KDQogLi4uL2JpbmRpbmdzL2NwdWZyZXEvY3B1
+ZnJlcS1tZWRpYXRlay1ody55YW1sICAgICAgfCAgMTQxICsrKysrKysrKysNCiBkcml2ZXJzL2Nw
+dWZyZXEvS2NvbmZpZy5hcm0gICAgICAgICAgICAgICAgICAgICAgICB8ICAgMTIgKw0KIGRyaXZl
+cnMvY3B1ZnJlcS9NYWtlZmlsZSAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgICAgMSArDQog
+ZHJpdmVycy9jcHVmcmVxL21lZGlhdGVrLWNwdWZyZXEtaHcuYyAgICAgICAgICAgICAgfCAgMjk0
+ICsrKysrKysrKysrKysrKysrKysrDQogNCBmaWxlcyBjaGFuZ2VkLCA0NDggaW5zZXJ0aW9ucygr
+KQ0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
+Y3B1ZnJlcS9jcHVmcmVxLW1lZGlhdGVrLWh3LnlhbWwNCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJp
+dmVycy9jcHVmcmVxL21lZGlhdGVrLWNwdWZyZXEtaHcuYw==
 
-Thank you, looks good!
-
-Reviewed-by: Pali Rohár <pali@kernel.org>
-
-> ---
-> 
-> This goes on top of Pali's patch:
-> "arm64: dts: marvell: espressobin: Add ethernet switch aliases"
-> 
-> The resulting .dtb files are the same.
-> 
->  .../armada-3720-espressobin-v7-emmc.dts        | 18 +++++-------------
->  .../dts/marvell/armada-3720-espressobin-v7.dts | 18 +++++-------------
->  2 files changed, 10 insertions(+), 26 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
-> index 215d2f702623..61d49d6a2a2a 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
-> @@ -28,20 +28,12 @@ aliases {
->  	};
->  };
->  
-> -&switch0 {
-> -	ports {
-> -		switch0port1: port@1 {
-> -			reg = <1>;
-> -			label = "lan1";
-> -			phy-handle = <&switch0phy0>;
-> -		};
-> +&switch0port1 {
-> +	label = "lan1";
-> +};
->  
-> -		switch0port3: port@3 {
-> -			reg = <3>;
-> -			label = "wan";
-> -			phy-handle = <&switch0phy2>;
-> -		};
-> -	};
-> +&switch0port3 {
-> +	label = "wan";
->  };
->  
->  /* U11 */
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
-> index b6f4af8ebafb..44dbe9a21cc7 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
-> @@ -27,18 +27,10 @@ aliases {
->  	};
->  };
->  
-> -&switch0 {
-> -	ports {
-> -		switch0port1: port@1 {
-> -			reg = <1>;
-> -			label = "lan1";
-> -			phy-handle = <&switch0phy0>;
-> -		};
-> +&switch0port1 {
-> +	label = "lan1";
-> +};
->  
-> -		switch0port3: port@3 {
-> -			reg = <3>;
-> -			label = "wan";
-> -			phy-handle = <&switch0phy2>;
-> -		};
-> -	};
-> +&switch0port3 {
-> +	label = "wan";
->  };
-> -- 
-> 2.28.0
-> 
