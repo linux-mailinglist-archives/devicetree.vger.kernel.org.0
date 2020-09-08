@@ -2,104 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C087260ACA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 08:20:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF1A1260ADD
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 08:23:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728922AbgIHGUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 02:20:15 -0400
-Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:44301 "EHLO
-        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726787AbgIHGUO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 02:20:14 -0400
+        id S1728776AbgIHGXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 02:23:34 -0400
+Received: from wnew1-smtp.messagingengine.com ([64.147.123.26]:42643 "EHLO
+        wnew1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728009AbgIHGXb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 02:23:31 -0400
 Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id DEF1ED60;
-        Tue,  8 Sep 2020 02:20:12 -0400 (EDT)
+        by mailnew.west.internal (Postfix) with ESMTP id 5B965D31;
+        Tue,  8 Sep 2020 02:23:30 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Tue, 08 Sep 2020 02:20:13 -0400
+  by compute4.internal (MEProxy); Tue, 08 Sep 2020 02:23:31 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=cA+1FFkzRN/i815ushS2Yuoq14C
-        CTHDuKJOCWTVbj6g=; b=OLhvtTqz7N/y+06PZChc7Om8Yeqr6zXeenyhdVKBVj3
-        u38WNrGXfdtrid9HSnA2dobRf8cbw2xNm4s3sivfRfo1q/GVIih+joDWgvI3P6mj
-        3Dy1po5/Mhdvd9MMvJdNaiz9DhYzoKmfwAJMnEIzPkLG/BvxR7r37plOgM5Lve/d
-        1CFfXRtxxR27hSHLScf7DXLAqTSvRhpPfmO++Hn1JO55JnUQP8K73FJwbx9D/N34
-        9LA8pou+kRt9vc6pCAVK4xq3Zi4Tj9eAj7kVBtt/7eDRI7SaY7djoxQOxQN7n6F3
-        H2EEBhZOmDzOFHZZP1yqT3MQFK7VHt0YQPVXNLzX2sQ==
+        :content-type:in-reply-to; s=fm3; bh=8PeJUwpZWqv0vmkZd7YAC2nu4o8
+        KiLCP0IQDcIlnSOo=; b=ZuF+MoBRPeJv/T6zjra7/jOdL5LsazsWA6d2xxmB0Pb
+        R7WPMM4onVuWLRbFYKVFiDAQfSp8mIcXPdkNuo3iEHpOPx58Lw9BVnexpT6i43KR
+        gGTirBBDiZ2y/RD4bVpjeVYLM6ceEapi9PQ6skZnx+hbn9+aL+SEmh0ENvV+Cv5J
+        DUZi+t0R80p463Kr4msD0LHGcCQDCkziK2l67GkzkuN8lD6lgFfj3agEBCs7wQu6
+        PP2Q5d8bwYZrNrsSlmGk2V7E4YpKpqRC1m07QS/9ogZpvjnFCGxQHb7kNO5p50Q2
+        iMlv23fASXV0OzGuUWU1pqBDaRFr2R4AgkzxfDq+Z/g==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=cA+1FF
-        kzRN/i815ushS2Yuoq14CCTHDuKJOCWTVbj6g=; b=igXWE9laB1QOzhOZHUpbU9
-        x4hovbxY+ke58l4usd/5kxkMDMzTzYMDN+G+pH7daPHlkhUcHlzrqyj9Ah67Q0Yg
-        uqhEL5pquXohfTl/Ab5K9lcEAsnHXT8nPKI7oZG7QpFr/HVhSLcvYKuGmQ8aH375
-        /M+dUzW4DBfaXE/ubxPxz9TdP211fe4ICsJw6H85i5/DjvZIAxJmap3vD/vtF5PK
-        iWFK51L/PPda7cWRM3JDY84SBGqRnvzrTHXdOLycAxRrYRxKeqzSxm0k4+I5SYxI
-        ggxB0CGZ8clDUPCpy5Fk9f0Q9hgdpDlGvxRKbhK0fnMAfA60eTTYtA3fYiiCsNbw
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=8PeJUw
+        pZWqv0vmkZd7YAC2nu4o8KiLCP0IQDcIlnSOo=; b=GTZf36Cany/gjRwOXn7Ic7
+        uQLF77zuPvk5r4fut2E7gGmf3H1s7bzZFo9lbvY9zzlucSzMiCjoHTLstla6QzBE
+        pmBN7Podzt5RDzSelNcfuXTtYBpyZpCCiG2m+hWwndspCZGGbhNrzWPyVTuFFq+e
+        VZwhz6cGzqBmX36xKkmmcyACtgxmyvDppa4QX69WYr34FnR6GzE7pJeJwK5KTusE
+        Y/JdCjjWxEbhobBJ0yx+Rn/dB6hm7yUmSXOv5yZJmJW1tUNH3MrhjOc2i07rLSZX
+        Ou5CqKYc9AScW3mKXDy6mDfVI4JzxyuYFoBs7SOBKW+cU71kVnLay793GpRuyfPQ
         ==
-X-ME-Sender: <xms:nCJXX6qVYNJwycDIDgnMbRbwoyB2rZyOZ9i9anMh_AogTdCS6R8tVA>
-    <xme:nCJXX4qRRAYyV9-CBzZ2sLhEHQuu3eJFWS-1ePfywZLy1ZX2uynGlz94rRIPm4y0H
-    s7Rl-b8PuqlYmEgBYw>
+X-ME-Sender: <xms:YCNXX2UgErBiRdbujEhwkEIsRdNlQh46_OYzYA0GFNnSObo6kvaLSg>
+    <xme:YCNXXyml5PsQO6HK6Oc-Mx8Xj1dOsbi5w2FA5JygQosZWVNZh8KhwnJ2z0N8Rfom5
+    PUs_RUoJD_WMSKMOnU>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudehuddguddthecutefuodetggdotefrod
     ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
     necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
     enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
     mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
     htthgvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheei
-    heegudenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedune
+    heegudenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedvne
     curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:nCJXX_NLjBTGU8VBMDcLMrnUHs1BQkVVR79WdMe28TIMu--Ecp_FhA>
-    <xmx:nCJXX54U4M6OYn3p0p6Xj6rjefSma5rgEotF9KFouvk3d36jD0XnzQ>
-    <xmx:nCJXX55_2qm965HsROD-BuHtWPzqDi6H4fqBxhBnEUkLPTvM61ht9g>
-    <xmx:nCJXX3TDy7UrTez7lK9aI1QC6LgvlaF709_bwmbR3QDIKZnrq7y5fw>
+X-ME-Proxy: <xmx:YCNXX6aA6XP7FcQ7vAnSs84CykRxh6pIDAEmJkG_0Ezltc18Bwe_cA>
+    <xmx:YCNXX9VW7PVPnu24SXyGTD6cazPERfiK-GsiUJ312VOSz9MdP5GcYA>
+    <xmx:YCNXXwkbRAobrRfVg_mtQB0ELVx1gyOrEXZSh90RpTxkd8AT-J7W9g>
+    <xmx:YSNXX67eMQSUQGB8SVRgN3mCY746la5Pt9qVueY9EUQo23vpsvxV3jGRLOk>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 2BC30328005D;
-        Tue,  8 Sep 2020 02:20:12 -0400 (EDT)
-Date:   Tue, 8 Sep 2020 08:20:11 +0200
+        by mail.messagingengine.com (Postfix) with ESMTPA id 7A28F3280059;
+        Tue,  8 Sep 2020 02:23:28 -0400 (EDT)
+Date:   Tue, 8 Sep 2020 08:23:27 +0200
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Martin Cerveny <m.cerveny@computer.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v3 0/2] ARM: dts: sun8i: v3s: Enable crypto engine
-Message-ID: <20200908062011.srcgzg6q4t6up4na@gilmour.lan>
-References: <20200907162458.23730-1-m.cerveny@computer.org>
+Cc:     devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        devel@driverdev.osuosl.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 0/6] ARM: dts: sun8i: v3s: Enable video decoder
+Message-ID: <20200908062327.7o4abjnosvghtafy@gilmour.lan>
+References: <20200904200112.5563-1-m.cerveny@computer.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="snpgtitq7enspzex"
+        protocol="application/pgp-signature"; boundary="yeunpu5qtdhq4w3a"
 Content-Disposition: inline
-In-Reply-To: <20200907162458.23730-1-m.cerveny@computer.org>
+In-Reply-To: <20200904200112.5563-1-m.cerveny@computer.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---snpgtitq7enspzex
+--yeunpu5qtdhq4w3a
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 07, 2020 at 06:24:56PM +0200, Martin Cerveny wrote:
-> Add support for crypto engine (sun4i-ss) for Allwinner V3s.
-> Functionality like A33 so add only compatible and enable
-> in device tree.
->=20
-> Regards.
+Hi,
 
-Applied, thanks
+On Fri, Sep 04, 2020 at 10:01:06PM +0200, Martin Cerveny wrote:
+> First patch extends cedrus capability to all decoders
+> because V3s missing MPEG2 decoder.
+>=20
+> Next two patches add system control node (SRAM C1) and=20
+> next three patches add support for Cedrus VPU.
+
+How was it tested?
+
 Maxime
 
---snpgtitq7enspzex
+--yeunpu5qtdhq4w3a
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX1cimwAKCRDj7w1vZxhR
-xR+EAP41cPkvcWKRNEhE+APLq613AP29gYkthszjAn4FjVddMgEAxbtS3EOJF7/I
-MP+hzIEbCVi6XA1iQuBNAihkYJHpAws=
-=OS+M
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX1cjXwAKCRDj7w1vZxhR
+xV8GAP0cNYAAAy/pw2iH4/pxcs9qpz9Yq4xEwKOO219Fvk4puwD9EU7b+Q9/2v/p
+2OT6tPxEesH157Xx1P4yiIB53HjDIQs=
+=Kt/J
 -----END PGP SIGNATURE-----
 
---snpgtitq7enspzex--
+--yeunpu5qtdhq4w3a--
