@@ -2,212 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47E842616E2
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:21:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7115C261701
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:23:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731756AbgIHRV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 13:21:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56412 "EHLO mail.kernel.org"
+        id S1731742AbgIHRXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 13:23:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56982 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728643AbgIHRUw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 13:20:52 -0400
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1731796AbgIHRVl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 13:21:41 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C697221924;
-        Tue,  8 Sep 2020 17:20:51 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id BC5392087D;
+        Tue,  8 Sep 2020 17:21:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599585651;
-        bh=qJw7qTW8sm4UzUgyNcs+J5DGwug32eonDnzevDjI8II=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=PO5JNwXw5QbIuu/2RcDr0bbx7ZRzu2Y5qqEYxKk+cMJTbCZWGXrXryK1XiV7DO/h2
-         yEMYiTExVead0rncQ7oGzITXa9RgcVq1Z0JbOVxzCJnJ3swB/L3W0vpZTp8TzB9RxE
-         mLxcAmKAl3SfFk1rGVjQzGNsblf9wGM/uW0mjJv4=
-Received: by mail-ot1-f45.google.com with SMTP id c10so15495951otm.13;
-        Tue, 08 Sep 2020 10:20:51 -0700 (PDT)
-X-Gm-Message-State: AOAM532/4o/0A5g0Z73XgdibTZm+WXuKTX2jtGL/CYvgJAJrkQwA8hlH
-        uwVs8vYhkXso+sTbl/4c1367IVb3ugnvyqKKUA==
-X-Google-Smtp-Source: ABdhPJyvfyNrPjsoWHvCG23p12ZjQDxYACacWE/DdrBGJM1e/5IFpmq/yWxgunlZEazC1D1a52yjOXSbSDklAC/HUH0=
-X-Received: by 2002:a9d:411:: with SMTP id 17mr84031otc.192.1599585651032;
- Tue, 08 Sep 2020 10:20:51 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200828130602.42203-1-andre.przywara@arm.com> <20200828130602.42203-2-andre.przywara@arm.com>
-In-Reply-To: <20200828130602.42203-2-andre.przywara@arm.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 8 Sep 2020 11:20:39 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+jjzFR0ZdFO5dEp2w2D2uzSAB9tdih9tnuN987LABbiA@mail.gmail.com>
-Message-ID: <CAL_Jsq+jjzFR0ZdFO5dEp2w2D2uzSAB9tdih9tnuN987LABbiA@mail.gmail.com>
-Subject: Re: [PATCH 01/10] dt-bindings: watchdog: sp-805: Convert to Json-schema
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Chanho Min <chanho.min@lge.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Wei Xu <xuwei5@hisilicon.com>
-Content-Type: text/plain; charset="UTF-8"
+        s=default; t=1599585701;
+        bh=mew/1s10XgJXC00/umlnesRbXahPHHRAmBvVFROAPLE=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=W2mbYs0d4HETX7iuF+6ZhcuDIskL5R2jzkA4IEU3DYBWaRMKlWulzT718Jq/CvGdc
+         uD8S6RdWpVIXwk+kgafzhGmizd5JdQtDfXde/jUa+hW4pd3HwNWTNehIcBbE9ZEZlE
+         Vm113A/Z417I/RXVPEKdhZNgqjGNwDMduSAq9/qI=
+Date:   Tue, 08 Sep 2020 18:20:57 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Peter Rosin <peda@axentia.se>,
+        Lars Povlsen <lars.povlsen@microchip.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        linux-spi@vger.kernel.org
+In-Reply-To: <20200824203010.2033-1-lars.povlsen@microchip.com>
+References: <20200824203010.2033-1-lars.povlsen@microchip.com>
+Subject: Re: [PATCH v5 0/6] spi: Adding support for Microchip Sparx5 SoC
+Message-Id: <159958565716.16771.6460929787549553831.b4-ty@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 28, 2020 at 7:06 AM Andre Przywara <andre.przywara@arm.com> wrote:
->
-> Convert the ARM SP-805 watchdog IP DT binding over to Json-schema.
->
-> A straight-forward conversion, but the requirement for providing two
-> clocks got strengthened from "should" to "must".
->
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  .../bindings/watchdog/arm,sp805.txt           | 32 --------
->  .../bindings/watchdog/arm,sp805.yaml          | 75 +++++++++++++++++++
->  2 files changed, 75 insertions(+), 32 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/arm,sp805.txt
->  create mode 100644 Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
->
-> diff --git a/Documentation/devicetree/bindings/watchdog/arm,sp805.txt b/Documentation/devicetree/bindings/watchdog/arm,sp805.txt
-> deleted file mode 100644
-> index bee6f1f0e41b..000000000000
-> --- a/Documentation/devicetree/bindings/watchdog/arm,sp805.txt
-> +++ /dev/null
-> @@ -1,32 +0,0 @@
-> -ARM AMBA Primecell SP805 Watchdog
-> -
-> -SP805 WDT is a ARM Primecell Peripheral and has a standard-id register that
-> -can be used to identify the peripheral type, vendor, and revision.
-> -This value can be used for driver matching.
-> -
-> -As SP805 WDT is a primecell IP, it follows the base bindings specified in
-> -'arm/primecell.txt'
-> -
-> -Required properties:
-> -- compatible:  Should be "arm,sp805" & "arm,primecell"
-> -- reg:         Should contain location and length for watchdog timer register
-> -- clocks:      Clocks driving the watchdog timer hardware. This list should be
-> -               2 clocks. With 2 clocks, the order is wdog_clk, apb_pclk
-> -               wdog_clk can be equal to or be a sub-multiple of the apb_pclk
-> -               frequency
-> -- clock-names: Shall be "wdog_clk" for first clock and "apb_pclk" for the
-> -               second one
-> -
-> -Optional properties:
-> -- interrupts:  Should specify WDT interrupt number
-> -- timeout-sec: Should specify default WDT timeout in seconds. If unset, the
-> -               default timeout is determined by the driver
-> -
-> -Example:
-> -       watchdog@66090000 {
-> -               compatible = "arm,sp805", "arm,primecell";
-> -               reg = <0x66090000 0x1000>;
-> -               interrupts = <GIC_SPI 406 IRQ_TYPE_LEVEL_HIGH>;
-> -               clocks = <&wdt_clk>, <&apb_pclk>;
-> -               clock-names = "wdog_clk", "apb_pclk";
-> -       };
-> diff --git a/Documentation/devicetree/bindings/watchdog/arm,sp805.yaml b/Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
-> new file mode 100644
-> index 000000000000..980e155d3387
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/arm,sp805.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM AMBA Primecell SP805 Watchdog
-> +
-> +maintainers:
-> +  - Viresh Kumar <vireshk@kernel.org>
-> +
-> +description: |+
-> +  The Arm SP805 IP implements a watchdog device, which triggers an interrupt
-> +  after a configurable time period. If that interrupt has not been serviced
-> +  when the next interrupt would be triggered, the reset signal is asserted.
-> +
-> +allOf:
-> +  - $ref: /schemas/arm/primecell.yaml#
+On Mon, 24 Aug 2020 22:30:04 +0200, Lars Povlsen wrote:
+> The series add support for the Sparx5 SoC SPI controller in the
+> spi-dw-mmio.c spi driver.
+> 
+> v5 changes:
+> - rx-sample-delay-ns documentation changes from Rob Herring:
+>  - Drop superfluous type $ref
+>  - Add default value = 0
+> 
+> [...]
 
-Should also ref watchdog.yaml here.
+Applied to
 
-> +
-> +# Need a custom select here or 'arm,primecell' will match on lots of nodes
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: arm,sp805
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: arm,sp805
-> +      - const: arm,primecell
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description: |
-> +      Clocks driving the watchdog timer hardware. The first clock is used
-> +      for the actual watchdog counter. The second clock drives the register
-> +      interface.
-> +    minItems: 2
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: wdog_clk
-> +      - const: apb_pclk
-> +
-> +  timeout-sec:
-> +    description: |
-> +      Should specify default WDT timeout in seconds. If unset, the default
-> +      timeout is determined by the driver.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-You can drop this as it is part of watchdog.yaml.
+Thanks!
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
+[1/3] spi: dw: Add support for RX sample delay register
+      commit: bac70b54ecb53b3d5af862dd4fcbaaad8f34ed23
+[2/3] spi: dw: Add Microchip Sparx5 support
+      commit: 53a09635ce56e3041fb3cbc7ceef8f5de28259a5
+[3/3] dt-bindings: snps, dw-apb-ssi: Add sparx5 support, plus rx-sample-delay-ns property
+      commit: 5ce78f4456a9b2cb103f5bad9e62636e8d086152
 
-Add:
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-unevaluatedProperties: false
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    watchdog@66090000 {
-> +        compatible = "arm,sp805", "arm,primecell";
-> +        reg = <0x66090000 0x1000>;
-> +        interrupts = <GIC_SPI 406 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&wdt_clk>, <&apb_pclk>;
-> +        clock-names = "wdog_clk", "apb_pclk";
-> +    };
-> --
-> 2.17.1
->
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
