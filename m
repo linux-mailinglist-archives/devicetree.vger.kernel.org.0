@@ -2,85 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 249BC262181
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:54:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 357C8262185
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:54:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728390AbgIHUy2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 16:54:28 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:55778 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726642AbgIHUy2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 16:54:28 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 088KsQs8107270;
-        Tue, 8 Sep 2020 15:54:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599598466;
-        bh=E+9QQ1DscF13tPkWOq65brrJgmxAQwKmqNygQNuWZ/c=;
-        h=Subject:To:References:From:Date:In-Reply-To;
-        b=QhUQEaQePJl8Cw2nDK49nFeiH2sQmJRJL4lMhm/bobWMHZin3GbNtTSNn3UCTr2gf
-         oliyLXD0KvuR/ezNitAOkL3A3rCcirmlDvTSm8N774Kj86AnkREdYs7Lc+dowb7ttp
-         T+G24QFvgx+npn0ViuUI6PB0ThbsRHQpn7GUB3cY=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 088KsQND031826
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Sep 2020 15:54:26 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 8 Sep
- 2020 15:54:26 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 8 Sep 2020 15:54:26 -0500
-Received: from [10.250.38.37] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088KsQmm046976;
-        Tue, 8 Sep 2020 15:54:26 -0500
-Subject: Re: [PATCH 2/7] power: supply: bq27xxx: report "not charging" on all
- types
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20200908201319.3567-1-krzk@kernel.org>
- <20200908201319.3567-2-krzk@kernel.org>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <33361ba9-51df-3b09-6744-9806cdf166db@ti.com>
-Date:   Tue, 8 Sep 2020 15:54:26 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1730131AbgIHUyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 16:54:54 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:36700 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726642AbgIHUyx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 16:54:53 -0400
+Received: by mail-io1-f66.google.com with SMTP id d190so871705iof.3;
+        Tue, 08 Sep 2020 13:54:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=TAfTU+qJ3BFt0wPmSMTsikEhkhFnp28t/4mY2C5m4ks=;
+        b=reYMpUzxLRlTOwEtdI/nz/9Hg8vfKj0OCMGufcxQkWvxPIWB1gKYjf+Hh/buZUHdEb
+         RUh4F3tn4jlt+YkBY6By+CANnEJ47g2SuOAHhpQPcrlbVM5yS3Xfzx3nhrNgrPbc1+cX
+         rqx390lyBZ/aeu81n2Tn3sjq5KLlaGkASauQfKH1THjSa7WZFO/dnqQzZopWzE5i7/nW
+         1sXxaXOZq7CE9tk2V1iBt9nmBxBItBjo3V7PAfL2e1/BW/3J1hFMEu80TBUKXj5k36ws
+         l+E4BzQ66p+lO/qDO2IXd87yMXQxRST6t6ajh3g1Ud409u5v/pDI/zUQRAECnJA8dnh7
+         hblA==
+X-Gm-Message-State: AOAM532ONASeYBVYmU3hpNtjMsgL80nmWSm0MliOmBmsTqKR1Y/7y5oP
+        gr1BWORJUdn9DEmt7chHsA==
+X-Google-Smtp-Source: ABdhPJz8tPhrbce/2/W7SICVXUb+Dxim4VKGv7E0diU+q2TOwJRxn+wJzzhwISJjnxN0n8orxMpIag==
+X-Received: by 2002:a02:bb8d:: with SMTP id g13mr903244jan.21.1599598491950;
+        Tue, 08 Sep 2020 13:54:51 -0700 (PDT)
+Received: from xps15 ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id i14sm200394ilb.28.2020.09.08.13.54.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Sep 2020 13:54:51 -0700 (PDT)
+Received: (nullmailer pid 902907 invoked by uid 1000);
+        Tue, 08 Sep 2020 20:54:50 -0000
+Date:   Tue, 8 Sep 2020 14:54:50 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     linux-renesas-soc@vger.kernel.org,
+        Chris Brandt <chris.brandt@renesas.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
+Subject: Re: [PATCH] dt-bindings: pinctrl: rza1: Convert to json-schema
+Message-ID: <20200908205450.GA902850@bogus>
+References: <20200821111956.4989-1-geert+renesas@glider.be>
 MIME-Version: 1.0
-In-Reply-To: <20200908201319.3567-2-krzk@kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200821111956.4989-1-geert+renesas@glider.be>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof
+On Fri, 21 Aug 2020 13:19:56 +0200, Geert Uytterhoeven wrote:
+> Convert the Renesas RZ/A1 combined Pin and GPIO controller Device Tree
+> binding documentation to json-schema.
+> 
+> Rename "rza1-pinctrl" to "rza1-ports", to match the compatible value
+> scheme.
+> Use "pinctrl" generic node name.
+> Drop generic and consumer examples, as they do not belong here.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> Note: "phandle: true" is needed because dt-schema does not add it
+>       automatically to subnodes.
+> 
+> This depends on "[PATCH] pinctrl: rza1: Switch to using "output-enable".
+> To be queued in sh-pfc for v5.10.
+> ---
+>  .../bindings/pinctrl/renesas,rza1-pinctrl.txt | 222 ------------------
+>  .../bindings/pinctrl/renesas,rza1-ports.yaml  | 190 +++++++++++++++
+>  2 files changed, 190 insertions(+), 222 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rza1-pinctrl.txt
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rza1-ports.yaml
+> 
 
-On 9/8/20 3:13 PM, Krzysztof Kozlowski wrote:
-> Commit 6f24ff97e323 ("power: supply: bq27xxx_battery: Add the
-> BQ27Z561 Battery monitor") and commit d74534c27775 ("power:
-> bq27xxx_battery: Add support for additional bq27xxx family devices")
-> added support for new device types by copying most of the code and
-> adding necessary quirks.
->
-> However they did not copy the code in bq27xxx_battery_status()
-> responsible for returning POWER_SUPPLY_STATUS_NOT_CHARGING.
->
-> Unify the bq27xxx_battery_status() so for all types when charger is
-> supplied, it will return "not charging" status.
-
-If this is a fix then please populate the Fixes tag.
-
-But not sure how both commits are tied here
-
-Dan
-
-
+Reviewed-by: Rob Herring <robh@kernel.org>
