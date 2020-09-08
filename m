@@ -2,135 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AA662619E9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 20:28:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C317626192A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 20:08:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731669AbgIHS2X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 14:28:23 -0400
-Received: from foss.arm.com ([217.140.110.172]:56900 "EHLO foss.arm.com"
+        id S1731656AbgIHSIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 14:08:25 -0400
+Received: from mx2.suse.de ([195.135.220.15]:57860 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731396AbgIHQKZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 12:10:25 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 038A215DB;
-        Tue,  8 Sep 2020 06:26:35 -0700 (PDT)
-Received: from bogus (unknown [10.57.10.112])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 98FA43F73C;
-        Tue,  8 Sep 2020 06:26:32 -0700 (PDT)
-Date:   Tue, 8 Sep 2020 14:26:26 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC] dt-bindings: mailbox: add doorbell support to ARM MHU
-Message-ID: <20200908132602.GA27241@bogus>
-References: <CABb+yY27Ngb0C-onkU2qyt=uKgG4iVrcv8hGkC+anypQbTRA1w@mail.gmail.com>
- <20200605045645.GD12397@bogus>
- <CABb+yY2YZ99NjHYNi0=KLGFDsVUeJmqiJD3E25Chwk-THJV4iw@mail.gmail.com>
- <20200605085830.GA32372@bogus>
- <CABb+yY2TR7tuMx6u8yah6mO2GwZ5SWYOO80EQRL-i=ybgn=Wog@mail.gmail.com>
- <20200610093334.yznxl2esv5ht27ns@vireshk-i7>
- <20200611100027.GB18781@bogus>
- <CABb+yY1OwVB+uk+0w+D-4Xy46iYn8tPZYBZ0qjrzQFLA6SaTvw@mail.gmail.com>
- <20200612052853.nds4iycie6ldjnnr@vireshk-i7>
- <CAK8P3a0nVOR7YYSZaKmzm3WsUZLgOqL7yZq+f0Dfnn2=16AkLA@mail.gmail.com>
+        id S1731322AbgIHQLo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 12:11:44 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 892F8B74F;
+        Tue,  8 Sep 2020 16:11:39 +0000 (UTC)
+Message-ID: <7367c17489ef7d5bc24c0452c9887663f938344b.camel@suse.de>
+Subject: Re: [PATCH v2 0/4] drm/vc4: Support HDMI QHD or higher output
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Hoegeun Kwon <hoegeun.kwon@samsung.com>, eric@anholt.net,
+        maxime@cerno.tech, stefan.wahren@i2se.com,
+        dave.stevenson@raspberrypi.com
+Cc:     devicetree@vger.kernel.org, tim.gover@raspberrypi.com,
+        sboyd@kernel.org, mturquette@baylibre.com, kdasu.kdev@gmail.com,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-clk@vger.kernel.org, robh+dt@kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org, phil@raspberrypi.com,
+        linux-arm-kernel@lists.infradead.org
+Date:   Tue, 08 Sep 2020 18:11:36 +0200
+In-Reply-To: <20200901040759.29992-1-hoegeun.kwon@samsung.com>
+References: <CGME20200901040850epcas1p2150ea195dfb20b46d6421af63b1f5129@epcas1p2.samsung.com>
+         <20200901040759.29992-1-hoegeun.kwon@samsung.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-KMxdxbhMfC1Bf45kOePp"
+User-Agent: Evolution 3.36.5 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAK8P3a0nVOR7YYSZaKmzm3WsUZLgOqL7yZq+f0Dfnn2=16AkLA@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 08, 2020 at 11:14:50AM +0200, Arnd Bergmann wrote:
-> Picking up the old thread again after and getting pinged by multiple
-> colleagues about it (thanks!) reading through the history.
-> 
-> On Fri, Jun 12, 2020 at 7:29 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> >
-> > On 11-06-20, 19:34, Jassi Brar wrote:
-> > > In the first post in this thread, Viresh lamented that mailbox
-> > > introduces "a few ms" delay in the scheduler path.
-> > > Your own tests show that is certainly not the case -- average is the
-> > > same as proposed virtual channels 50-100us, the best case is 3us vs
-> > > 53us for virtual channels.
-> >
-> > Hmmm, I am not sure where is the confusion here Jassi. There are two
-> > things which are very very different from each other.
-> >
-> > - Time taken by the mailbox framework (and remote for acknowledging
-> >   it) for completion of a single request, this can be 3us to 100s of
-> >   us. This is clear for everyone. THIS IS NOT THE PROBLEM.
-> >
-> > - Delay introduced by few of such requests on the last one, i.e. 5
-> >   normal requests followed by an important one (like DVFS), the last
-> >   one needs to wait for the first 5 to finish first. THIS IS THE
-> >   PROBLEM.
-> 
-> Earlier, Jassi also commented "Linux does not provide real-time
-> guarantees", which to me is what actually causes the issue here:
-> 
-> Linux having timeouts when communicating to the firmware means
-> that it relies on the hardware and firmware having real-time behavior
-> even when not providing real-time guarantees to its processes.
-> 
-> When comparing the two usage models, it's clear that the minimum
-> latency for a message delivery is always at least the time time
-> to process an interrupt, plus at least one expensive MMIO read
-> and one less expensive posted MMIO write for an Ack. If we
-> have a doorbell plus out-of-band message, we need an extra
-> DMA barrier and a read from coherent memory, both of which can
-> be noticeable. As soon as messages are queued in the current
-> model, the maximum latency increases by a potentially unbounded
-> number of round-trips, while in the doorbell model that problem
-> does not exist, so I agree that we need to handle both modes
-> in the kernel deal with all existing hardware as well as firmware
-> that requires low-latency communication.
-> 
-> It also sounds like that debate is already settled because there
-> are platforms using both modes, and in the kernel we usually
-> end up supporting the platforms that our users have, whether
-> we think it's a good idea or not.
->
 
-Thanks for the nice summary of the discussion so far.
+--=-KMxdxbhMfC1Bf45kOePp
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> The only questions that I see in need of being answered are:
-> 
-> 1. Should the binding use just different "#mbox-cells" values or
->    also different "compatible" strings to tell that difference?
+On Tue, 2020-09-01 at 13:07 +0900, Hoegeun Kwon wrote:
+> Hi everyone,
+>=20
+> There is a problem that the output does not work at a resolution
+> exceeding FHD. To solve this, we need to adjust the bvb clock at a
+> resolution exceeding FHD.
+>=20
+> Rebased on top of next-20200708 and [1].
+>=20
+> [1] : [PATCH v4 00/78] drm/vc4: Support BCM2711 Display Pipeline (Maxime'=
+s patchset)
+>=20
+> Changes from v1:
+>   - Added dt-bindings documents
+>   - Change patch order, first fix driver and then device tree
+>=20
+> Hoegeun Kwon (4):
+>   clk: bcm: rpi: Add register to control pixel bvb clk
+>   drm/vc4: hdmi: Add pixel bvb clock control
+>   dt-bindings: display: vc4: hdmi: Add bvb clock-names property
+>   ARM: dts: bcm2711: Add bvb clock for hdmi-pixel
+>=20
+>  .../bindings/display/brcm,bcm2711-hdmi.yaml   | 12 ++++++---
+>  arch/arm/boot/dts/bcm2711-rpi-4-b.dts         |  6 +++--
+>  drivers/clk/bcm/clk-raspberrypi.c             |  1 +
+>  drivers/gpu/drm/vc4/vc4_hdmi.c                | 25 +++++++++++++++++++
+>  drivers/gpu/drm/vc4/vc4_hdmi.h                |  1 +
+>  5 files changed, 39 insertions(+), 6 deletions(-)
 
-I initially proposed latter, but Rob preferred the former which
-makes sense for the reasons you have mentioned below.
+Small note to anyone reviewing this, patches 3 & 4 where squashed into this
+series: https://lkml.org/lkml/2020/9/3/219
 
-> 2. Should one driver try to handle both modes or should there
->    be two drivers?
->
-> It sounds like Jassi strongly prefers separate drivers, which
-> would make separate compatible strings the more practical
-> approach.
-
-Indeed.
-
-> While the argument can be made that a single
-> piece of hardware should only have one DT description,
-> the counter-argument would be that the behavior described
-> by the DT here is made up by both the hardware and the
-> firmware behind it, and they are in fact different.
->
-
-I am too fine either way.
-
---
 Regards,
-Sudeep
+Nicolas
+
+
+--=-KMxdxbhMfC1Bf45kOePp
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl9XrTgACgkQlfZmHno8
+x/4bVwf+N7uuI1uhrijPKBHw/kVDjkfpbhhO78uXdO7AwTDOGvasQGmyTwz6rZLo
+nWSHBPD+B8UnmdaSPbBqKpt2b1hDcxCYAh6jdWvd2hwUiX4zzu0dQFrzg+JqVL6n
+7YsL6yIteSo5kBxBnWNZ6XZBCjIsgbXSplVQY2EAEqOhyhD47c1jr9wkam899PE3
+L3s0Qlox7zAGWI9IE9OJoS+pATo2+wyMrUjx8nlSs7ygUP1WCUOnVII6dCJusTXP
+iD5J/IoO/c9VQHa68m9VQUorEW3KG4P0v4I5gCB8dRtSiPXN30bpZZqysWBb1aiv
+uJ0vrxKphu9teKjIoBXxEHl4vBfy0g==
+=2yE8
+-----END PGP SIGNATURE-----
+
+--=-KMxdxbhMfC1Bf45kOePp--
+
