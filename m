@@ -2,86 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C48EB260A9D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 08:11:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C407E260AA8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 08:13:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728893AbgIHGLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 02:11:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51022 "EHLO mail.kernel.org"
+        id S1728776AbgIHGNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 02:13:52 -0400
+Received: from mout.gmx.net ([212.227.15.19]:34653 "EHLO mout.gmx.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728654AbgIHGLW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 02:11:22 -0400
-Received: from saruman (91-155-214-58.elisa-laajakaista.fi [91.155.214.58])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 884342166E;
-        Tue,  8 Sep 2020 06:11:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599545481;
-        bh=NGnTRbMnwMKN2xt6hmTyWPxnCTo3R/+8tWl4r6eWj8k=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=vG5uwtBXYMzyrxnayYHInbAuHP/Txyp3ATmi4IjBEAkEaW+lQovUkiguvSSS50Cbj
-         N/RauU71sQ0tGZYaVhuPZYkjLweTTiYuBxMfMXsEKNm+lEcuK2wc8zqiUrLJIuJ75i
-         pqe7nYQFwD4QD6sVFuca4dY5f+1OlB5kK/EQ/b5w=
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Roger Quadros <rogerq@ti.com>
-Cc:     pawell@cadence.com, kurahul@cadence.com, nsekhar@ti.com,
-        vigneshr@ti.com, robh+dt@kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Roger Quadros <rogerq@ti.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: usb: Convert cdns-usb3.txt to YAML
- schema
-In-Reply-To: <20200902133543.17222-2-rogerq@ti.com>
-References: <20200902133543.17222-1-rogerq@ti.com>
- <20200902133543.17222-2-rogerq@ti.com>
-Date:   Tue, 08 Sep 2020 09:11:14 +0300
-Message-ID: <87o8mgn6gt.fsf@kernel.org>
+        id S1728775AbgIHGNt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 02:13:49 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1599545604;
+        bh=FtvlKZBcLfL0ZeBa4yq1cs6S15KNeaEEgYiZUVowl6I=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=j+jw864NiUmoSbdyiy0n/Y/cYEeJYNPiZ1fYd50O8pvUU+cdWu+B3xd1wJTfRz8O5
+         52QOkU7N4XxgFVYSLgNbwHBLL8qsOjLe0HZej2aITTpDBGVswKVcmmzctpShpwOYkw
+         c5hFh4zKsBOMUe2ehpvXUAmm4XB7ri2V1mnKxZK8=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [185.76.97.104] ([185.76.97.104]) by web-mail.gmx.net
+ (3c-app-gmx-bs38.server.lan [172.19.170.90]) (via HTTP); Tue, 8 Sep 2020
+ 08:13:24 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha256; protocol="application/pgp-signature"
+Message-ID: <trinity-74abdbb2-2ddc-440a-85c8-97e80e9eb2ed-1599545604475@3c-app-gmx-bs38>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Chuanjia Liu <Chuanjia.Liu@mediatek.com>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        devicetree@vger.kernel.org, Ryder Lee <ryder.lee@mediatek.com>,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        jianjun.wang@mediatek.com, Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org, yong.wu@mediatek.com,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Aw: Re: [PATCH v4 0/4] Split PCIe node to comply with hardware
+ design
+Content-Type: text/plain; charset=UTF-8
+Date:   Tue, 8 Sep 2020 08:13:24 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <1596440772.7361.35.camel@mhfsdcap03>
+References: <20200721074915.14516-1-Chuanjia.Liu@mediatek.com>
+ <1596440772.7361.35.camel@mhfsdcap03>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:i6KFmqNKBH4PPSKlvcjghT5P+X5pFNBaGxFipv86Hh4ReWRpG5btRSd5XiIXZJ19HB0fq
+ lgu0117WGrFBfEeINB8o1KuUaaV7TDQ+uJfn2owNCVVBEH787lTai5JXTDzUs5z06ifZ6KkqM068
+ CHEfY3tbNEchcofDgcxvyl1DyaeDsar+qW8RT1V4FwRahaaQCfEJSgVT4HuK6aL23QBZCK30Qbk6
+ ADW5xYBonXsg7PVN/KC8zKrwMmW2+e+k2ZeFaiOGPrySBzn3oEwhiDFz5sdPNs7RNV7AY7gvORiL
+ ls=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:UuOHfeuoCbE=:9+dhFkMTeCWaxGimh72pme
+ AXCI9Y9xGHGWKFDqsMgQqnWZrJY2YqBq76iSi1YO5tOrNKXrTSX3uqbY8fS/jP1WX2iMC9DYR
+ +pX7nJGZ40FTXl+MGsiXRhVx7EviYmeoLucDYKbSX/S39Sn6YJvoegAOFfuXo1QwVFnLRmp/c
+ HbxmmPfLit37E7Bqz6XkNszj9lsQId47HEH05CJyWDSb28/ugBq0fUAcyb3m09PslVweJv1rk
+ qHaZddgaFRHrenOpq3ypq4qmj9nIenbCmmTL5ghmu2r3TcThugrBUHf7qboUSVQjZCyAuqpED
+ auxdiMgcwe5tZ2YpuQT8qmidOi4snmZkPdUhay9XVMrm/2QA1FjHUphWv9swexNLYN8vsJoga
+ zpk41DbFHEhCt/jlWLMkGVk0/P5BhfwQg4jLzaHctQfs4dNGsv4IZsG6wLCISutSVE54Ljri6
+ aWuaF03BXX/k7NJIQniJIajWZnD1CpRHj77qSLYH58vyIXl6UwgHqNZ45x0fgE8hmkYIw2KHW
+ nzldWFN0Z734a4GtfYqmFYrUW5zpU/997Jcj4nUOvbxLIM42TgZ7k5KTc7fqCmMDiPO+Bhy06
+ kKlLKUW+gz+xbE3KHJoWQVdvX1PAA/8wnqhPtKeOZdtbYUUvlwWBrpqL4Qp7DWrg2n9wDXPdS
+ N6xjzIeB54WE6YbyD7LPBooLeXbpWBqIw3ypLvZNrWWcqtbeof5OMzbKHbash1xbryAE=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
-
-
 Hi,
 
+i don't see this Patchset in 5.9-rc4
 
-Roger Quadros <rogerq@ti.com> writes:
-> Converts cdns-usb3.txt to YAML schema cdns,usb3.yaml
->
-> Signed-off-by: Roger Quadros <rogerq@ti.com>
-> ---
->  .../devicetree/bindings/usb/cdns,usb3.yaml    | 89 +++++++++++++++++++
->  .../devicetree/bindings/usb/cdns-usb3.txt     | 45 ----------
+is anything missing?
 
-Rob, should I wait for your Ack on yaml conversions?
-=2D-=20
-balbi
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQJFBAEBCAAvFiEElLzh7wn96CXwjh2IzL64meEamQYFAl9XIIIRHGJhbGJpQGtl
-cm5lbC5vcmcACgkQzL64meEamQYKiRAAicIudE5HGASs4Yp4QH0UF4VvVIE+3F3l
-UuKJANBsRK56cEmdkuJ5j9UKU3L0M2lU1BozvaVrJqGvw9Yn2AfjL9CMFjrL9n7B
-xpmeII5a4voUIWXZDrVx0kwAIjA7zG89pjcovaGzMXvCl8Jfb6ckR6QcNXwTbwc4
-VrpmEKr4nmrC03XKFbxkBLlMMyqg9E4nUSiLWrRbiG9SjlZIPPajHSRcn9NA3uqi
-0ivXaLSJynfjjudx6K2s1zC3TWgytW8uRjSiZpWZja6ewGk1nDHjFWAwEjGO7kC2
-w+zo7moXousOwjSgytGqoQcpUkQLaaJa5ZAT1KN3SH1aDuVK23lN9G+v5Q3TE9RG
-aYWySxBkAItgrY5OaDOmsPfyKSbqcfgVuIvJZW0H+E1RnlB+OUI4C38vVfyt++4K
-HEd3OGjG/rJtBsCNLb3aRMpHqhpFbMyF/XELcTFFzctaJgvVnQSwLn4q0kbpZFGP
-b0aLUD/pFIUnHYuL+cU8HClzsQIwoHIyRtmAkMT02awW62vLcdg5oa7x2fzNucf6
-s+exKaZZSgsYaeqk+KuoGxSOrEgIxa1w6XSRqmHDS54e6bMyLWTPtS+IanmzURmA
-ydugTajDnSD9Tiw05z9nMCFdKYVTecXas4BqgIfZK2yRBACJXsco+86uT5Fo20od
-+NuhWc7AIX8=
-=NHm0
------END PGP SIGNATURE-----
---=-=-=--
+regards Frank
