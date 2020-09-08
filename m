@@ -2,78 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77993262189
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:55:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 050952621F4
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 23:30:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728631AbgIHUzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 16:55:52 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:35668 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726642AbgIHUzr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 16:55:47 -0400
-Received: by mail-il1-f193.google.com with SMTP id l4so281146ilq.2;
-        Tue, 08 Sep 2020 13:55:46 -0700 (PDT)
+        id S1728971AbgIHVav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 17:30:51 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:36202 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728164AbgIHVau (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 17:30:50 -0400
+Received: by mail-io1-f66.google.com with SMTP id d190so974820iof.3;
+        Tue, 08 Sep 2020 14:30:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=nfoTboIDwK0iw35fBQIuhBzxvfbrupgvXgVfTa2BgQ8=;
-        b=bGUaE7MPk6B+eg3nOjMwFtX3ra4NHuJvvkoGS5uJtvq8XWJAGYyGyWpaUoWWwXZtGT
-         1GoGq2tSQpl2/VDGh1D/PTMt342x2FixVYvPufGc4T7ldQqKRBSMxcahhnHN2WGS7MPp
-         saPmyQqDe4QJpmhWNei9a7OVupH9lgRGQybmLjc663Zl62tZrt5X4Ve3sGZco3BlBJBn
-         xu6eRbMCU/bNylfkOLF3JopUlap8MLtvFQ7CGGQNbQz2jRw1+2tok3bAGNy7sqElSe8z
-         Ej1x3FkY7HmJkrxAasfth5bASnLptmTA6rppoNVfq7Zdii8wrC6Lj3PpxsKsuJa7UibC
-         sjYA==
-X-Gm-Message-State: AOAM531JXogbmHdY+kZhFiEhCMsWFF9WQ69pul6a1gI6nu+3n5gESHsA
-        4yStXu46iKVCX2V+ZC4Ea2BSO+CG6wDk
-X-Google-Smtp-Source: ABdhPJyDobg3VfPnL+v8xk/87+oRkF2mNyM0IdSCX1Qvrp2/N8/MOSN7toLxARAPbRe94si6HqDaCg==
-X-Received: by 2002:a92:d605:: with SMTP id w5mr573113ilm.12.1599598545986;
-        Tue, 08 Sep 2020 13:55:45 -0700 (PDT)
+        bh=tZ2tqeTxfdvHhXI4fYGCLG+ZG+/0E7uL33/3l5leCNU=;
+        b=i7zspWjDwFOU9ZdSsftLdoVhxt0DuIrjaUYJ5Y07vB2qcjgWLXxiZLn/d/sutKrulB
+         ePXx/BodmKDhvIO6fTJ0Ixoui7jDJikPfMZvm6vQeVzeqDnU5aSWGEuMr42AoJfSbLGT
+         ILq6FADYl17bMOWwGIShcpK75et9OXUlqwzEwJdLAoYet3/sbBWmApY7/upIB07r+3rg
+         H8xsTRmTFfLKncKs3qm95uYvpfuaoaVYDsliY2SOvm4dQe1szO8u5EOz4UMlTIMBJUsr
+         y5jEwTJHwAZ5I6IqBiA8D2PXWIX945s5Y0h2sExvs0EeyphfB2ENKSi64yKUFIxQ7t9T
+         wbkg==
+X-Gm-Message-State: AOAM530gUoMC76IY6qK+p/dYo+GDZkVHFeZFVLjMExY/WhwLRLsNByZB
+        gJCVgxvNunKiFc4nwYJD/EAsP5AfBk3P
+X-Google-Smtp-Source: ABdhPJwbYpkWxvkS0JzZDhjXoVmIf3BcFupaddawmTGlHFebiItQ6YyIOv77w6zWGeepGibLLVoAwA==
+X-Received: by 2002:a6b:700f:: with SMTP id l15mr780998ioc.168.1599600649372;
+        Tue, 08 Sep 2020 14:30:49 -0700 (PDT)
 Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id t10sm211805iog.49.2020.09.08.13.55.45
+        by smtp.gmail.com with ESMTPSA id k14sm280985ioa.7.2020.09.08.14.30.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Sep 2020 13:55:45 -0700 (PDT)
-Received: (nullmailer pid 904435 invoked by uid 1000);
-        Tue, 08 Sep 2020 20:55:44 -0000
-Date:   Tue, 8 Sep 2020 14:55:44 -0600
+        Tue, 08 Sep 2020 14:30:48 -0700 (PDT)
+Received: (nullmailer pid 959278 invoked by uid 1000);
+        Tue, 08 Sep 2020 21:30:47 -0000
+Date:   Tue, 8 Sep 2020 15:30:47 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-gpio@vger.kernel.org,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH] dt-bindings: pinctrl: rzn1: Convert to json-schema
-Message-ID: <20200908205544.GA904382@bogus>
-References: <20200821112059.5133-1-geert+renesas@glider.be>
+To:     Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, Roger Quadros <rogerq@ti.com>,
+        ssantosh@kernel.org, devicetree@vger.kernel.org, praneeth@ti.com,
+        santosh.shilimkar@oracle.com, s-anna@ti.com, robh+dt@kernel.org,
+        tony@atomide.com, linux-omap@vger.kernel.org, lee.jones@linaro.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/7] dt-bindings: soc: ti: Add TI PRUSS bindings
+Message-ID: <20200908213047.GA959249@bogus>
+References: <1598020964-29877-1-git-send-email-grzegorz.jaszczyk@linaro.org>
+ <1598020964-29877-2-git-send-email-grzegorz.jaszczyk@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200821112059.5133-1-geert+renesas@glider.be>
+In-Reply-To: <1598020964-29877-2-git-send-email-grzegorz.jaszczyk@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Aug 2020 13:20:59 +0200, Geert Uytterhoeven wrote:
-> Convert the Renesas RZ/N1 Pin controller Device Tree binding
-> documentation to json-schema.
+On Fri, 21 Aug 2020 16:42:38 +0200, Grzegorz Jaszczyk wrote:
+> This patch adds the bindings for the Programmable Real-Time Unit
+> and Industrial Communication Subsystem (PRU-ICSS) present on various
+> TI SoCs. The IP is present on multiple TI SoC architecture families
+> including the OMAP architecture SoCs such as AM33xx, AM437x and
+> AM57xx; and on a Keystone 2 architecture based 66AK2G SoC. It is
+> also present on the Davinci based OMAPL138 SoCs and K3 architecture
+> based AM65x and J721E SoCs as well.
 > 
-> Use "pinctrl" generic node name.
-> Drop generic and consumer examples, as they do not belong here.
+> The IP has a number of sub-modules some of which are represented as
+> their own devices. This binding covers only the top-level sub-system
+> devices, and some sub-modules like MDIO, MII_RT (Ethernet MII_RT module
+> with MII ports) and IEP (Industrial Ethernet Peripheral). The remaining
+> sub-modules bindings shall be defined in the respective driver
+> subsystem bindings folders. Couple of full examples have also been
+> added demonstrating the devices on AM335x and AM437x SoCs.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Roger Quadros <rogerq@ti.com>
+> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
 > ---
-> Note: "phandle: true" is needed because dt-schema does not add it
->       automatically to subnodes.
-> 
-> To be queued in sh-pfc for v5.10.
+> v1-v2 (requested by Rob):
+> - Add unit address pattern for all sub-nodes.
+> - Add "additionalProperties: false" to all sub-nodes and entire
+>   description. This allow to catch and fix some issues like missing
+>   "#address-cells" property description.
+> - Drop ranges description.
+> - Fix compatible name in example binding for AM43xx.
+> - Drop the *.yaml references from description as they are not merged yet
+>   and therefore they can't be converted to $ref.
+> - Drop reviewed-by tag due to introduced changes.
 > ---
->  .../bindings/pinctrl/renesas,rzn1-pinctrl.txt | 153 ------------------
->  .../pinctrl/renesas,rzn1-pinctrl.yaml         | 129 +++++++++++++++
->  2 files changed, 129 insertions(+), 153 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rzn1-pinctrl.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rzn1-pinctrl.yaml
+>  .../devicetree/bindings/soc/ti/ti,pruss.yaml       | 320 +++++++++++++++++++++
+>  1 file changed, 320 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
