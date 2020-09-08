@@ -2,70 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7B9D260ECE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 11:39:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56BC8260EDE
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 11:39:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728911AbgIHJjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 05:39:12 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:45919 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727995AbgIHJjL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 05:39:11 -0400
-Received: by mail-ot1-f67.google.com with SMTP id g96so14274334otb.12;
-        Tue, 08 Sep 2020 02:39:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=M93+1fX+KeKKW9ageQq4fHrBTowEiDfykj/07rsl8l0=;
-        b=CGP0REQgjXDg2ZtL6xlh5GT7ulUPi7iwgdNMwziW/KUtXYP4SQtZWpxft8ETuc6mGB
-         3Ur3MhT3x2zd9ghFsRjXKqUjKjzTkRJjNIRoo3Do+3v5DtsgBwQm8cGaVrzhmjzf0eSe
-         yFxmB92nXveZ5RgyMxVVUB+yFiJ/Q6SUvLm2+QK6T+1VQ1q9q0lmm98sg5VpOxVsf5Pm
-         HxfpxPhhKD/m+C0X+lAOcpIRFt2MJ+BfcPkkUlxBtK93cenyTMsd4dElRVFs/EktTAgb
-         pVJmqvAENSWgJ+qpxzhnswnxWksrAT0mentUKOlJj2YZS6lq28Y16QKxYPC8v1FIa7oh
-         qMQg==
-X-Gm-Message-State: AOAM531sURDPUumUSKQ8G0K6/EsdOGYJbCUtzC3Z7qOeK/kNhpxwNI1A
-        xVuu4tc1BH0a9KutmKVO/lKs/AWs8iJ5A8I6gu4=
-X-Google-Smtp-Source: ABdhPJzPP0irCTq9mSUUbcCXLB8Sz83zvFb5qqcJbvuhCXDIhS8pTrOl8vZmkPa3z4BqjvihqxHIF9XxcLH/At/n0eY=
-X-Received: by 2002:a05:6830:1008:: with SMTP id a8mr16151015otp.107.1599557951215;
- Tue, 08 Sep 2020 02:39:11 -0700 (PDT)
-MIME-Version: 1.0
-References: <1599470390-29719-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <1599470390-29719-9-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <1599470390-29719-9-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 8 Sep 2020 11:39:00 +0200
-Message-ID: <CAMuHMdWNxHdG8kFWG0fZuCFPFKkbfiVcP-xoCwZCy+w8vMaLag@mail.gmail.com>
-Subject: Re: [PATCH 08/14] dt-bindings: serial: renesas,scif: Document
- r8a779a0 bindings
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        id S1728936AbgIHJjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 05:39:53 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:51895 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728886AbgIHJjx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 05:39:53 -0400
+X-Originating-IP: 90.66.108.79
+Received: from localhost (lfbn-lyo-1-1932-79.w90-66.abo.wanadoo.fr [90.66.108.79])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 0E8EA24000F;
+        Tue,  8 Sep 2020 09:39:46 +0000 (UTC)
+Date:   Tue, 8 Sep 2020 11:39:46 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
+Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Josua Mayer <josua.mayer@jm0.eu>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>
+Subject: Re: [PATCH v2 07/10] rtc: Introduce RTC_TIMESTAMP_END_2255
+Message-ID: <20200908093946.GQ230586@piout.net>
+References: <20200905133230.1014581-1-j.neuschaefer@gmx.net>
+ <20200905133230.1014581-8-j.neuschaefer@gmx.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200905133230.1014581-8-j.neuschaefer@gmx.net>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 7, 2020 at 11:20 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> R-Car V3U (R8A779A0) SoC also has the R-Car Gen3 compatible
-> SCIF ports, so document the SoC specific bindings.
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+On 05/09/2020 15:32:27+0200, Jonathan Neuschäfer wrote:
+> Some RTCs store the year as an 8-bit number relative to the year 2000.
+> This results in a maximum timestamp of 2255-12-31 23:59:59.
+> 
+> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
+> ---
+> 
+> v2:
+> - New patch
+> ---
+>  include/linux/rtc.h | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/include/linux/rtc.h b/include/linux/rtc.h
+> index 22d1575e4991b..fcc086084a603 100644
+> --- a/include/linux/rtc.h
+> +++ b/include/linux/rtc.h
+> @@ -154,6 +154,7 @@ struct rtc_device {
+>  #define RTC_TIMESTAMP_END_2079		3471292799LL /* 2079-12-31 23:59:59 */
+>  #define RTC_TIMESTAMP_END_2099		4102444799LL /* 2099-12-31 23:59:59 */
+>  #define RTC_TIMESTAMP_END_2199		7258118399LL /* 2199-12-31 23:59:59 */
+> +#define RTC_TIMESTAMP_END_2255		9025257599LL /* 2255-12-31 23:59:59 */
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Honestly, I wouldn't bother adding that one unless you have examples of
+other RTCs endng at the same date, I'm fine having the value and comment
+directly in the probe function.
 
-Gr{oetje,eeting}s,
-
-                        Geert
+>  #define RTC_TIMESTAMP_END_9999		253402300799LL /* 9999-12-31 23:59:59 */
+> 
+>  extern struct rtc_device *devm_rtc_device_register(struct device *dev,
+> --
+> 2.28.0
+> 
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
