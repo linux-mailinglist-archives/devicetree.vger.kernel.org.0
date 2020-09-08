@@ -2,113 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 894B1261AF5
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 20:49:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97293261B07
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 20:52:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730478AbgIHSta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 14:49:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48862 "EHLO mail.kernel.org"
+        id S1731369AbgIHSvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 14:51:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50268 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726623AbgIHSt2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 14:49:28 -0400
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+        id S1731340AbgIHSvQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 14:51:16 -0400
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EFB5E20936;
-        Tue,  8 Sep 2020 18:49:27 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 34B672145D;
+        Tue,  8 Sep 2020 18:51:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599590968;
-        bh=/PlDYc73I5PrW5B6uIA1VQLp4BTV4oHIIammujpUcdc=;
+        s=default; t=1599591076;
+        bh=rvDSCZvFRJ66ihgClWK76JHomlIvsS1g+T/SMib0umM=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=HmSGh740yu0BG3o8RZaACSnauoPWIiTMdYNbvbpK4Xfg6Qt9yp/9PbedxzmcGP1yU
-         gjizIm8AsQYWnKT1w1+JMCOEXMD/RPG6Jr9ca5fIF/zf5pk2X5m86NCTO0LFqcI8lB
-         P6LtCYENiYCraQuMzg/RpFnCp6zLi/BfcHykm6AI=
-Received: by mail-oo1-f44.google.com with SMTP id z1so4181677ooj.3;
-        Tue, 08 Sep 2020 11:49:27 -0700 (PDT)
-X-Gm-Message-State: AOAM532iPabKuWaYeillxffAAa72ppM/1YaQjXNc4X/BJpJ3VJsejRFm
-        VBevMGUBvyAQ9tAMiuD3W3e/aAsCAvODS9sabg==
-X-Google-Smtp-Source: ABdhPJya9363hct12OY48mS3oy3MugvGqPp1r0CFLg7IaMo8S66bOWAkKXuaqZ594ecf4YPBAZ2NNNnWHCf5O70mBZA=
-X-Received: by 2002:a4a:d38c:: with SMTP id i12mr3445oos.81.1599590967271;
- Tue, 08 Sep 2020 11:49:27 -0700 (PDT)
+        b=yWhrHS3OaHQKIXLtXl/3PqXpcHs1osUNt7jXkd8Xn2GhWTEoDbR1haU7D8WFUom9x
+         Ohgi+U2+srPsDvjwhloOatHxq/YfBtA7jcTnL1T16ztSmpFsE/YpwjVRwnSeA9QgBS
+         sVLvXC7AWIWKSDnvmIZixB75xvPYx7qL9Pq0Peu4=
+Received: by mail-ot1-f52.google.com with SMTP id 60so118643otw.3;
+        Tue, 08 Sep 2020 11:51:16 -0700 (PDT)
+X-Gm-Message-State: AOAM5320l/bjzJCYxBzRhZNmJ3Uake7u79QarAnlrFQ+2Qzs7vR9Q6yL
+        L//8okSUm75sVbtIbXDTivKdwgBu8qvJjFV66w==
+X-Google-Smtp-Source: ABdhPJzzsAvOaaljadNcHpgbxTqCs+adpWfZ02pFKHSsMEMcvlU/v9W9Zbxnn3nCzVOy+k0EXol3VOtmmA9i/wf9ekc=
+X-Received: by 2002:a9d:6b0d:: with SMTP id g13mr331886otp.129.1599591075501;
+ Tue, 08 Sep 2020 11:51:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200817030324.5690-1-crystal.guo@mediatek.com>
- <20200817030324.5690-3-crystal.guo@mediatek.com> <20200825190219.GA1125997@bogus>
- <1598440183.30048.14.camel@mhfsdcap03> <6c292056-1cb1-bc6c-0422-46e047dcf08f@ti.com>
-In-Reply-To: <6c292056-1cb1-bc6c-0422-46e047dcf08f@ti.com>
+References: <20200810152219.6254-1-biju.das.jz@bp.renesas.com>
+ <20200810152219.6254-2-biju.das.jz@bp.renesas.com> <20200824230458.GA3489164@bogus>
+ <20200901102714.GC5821@pendragon.ideasonboard.com>
+In-Reply-To: <20200901102714.GC5821@pendragon.ideasonboard.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 8 Sep 2020 12:49:16 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKuL7XM2CL3z0OQdRua5YJO2ZRdsoE3fdAH948mKGfWnA@mail.gmail.com>
-Message-ID: <CAL_JsqKuL7XM2CL3z0OQdRua5YJO2ZRdsoE3fdAH948mKGfWnA@mail.gmail.com>
-Subject: Re: [v4,2/4] dt-binding: reset-controller: ti: add
- 'mediatek,infra-reset' to compatible
-To:     Suman Anna <s-anna@ti.com>
-Cc:     Crystal Guo <crystal.guo@mediatek.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?B?U2VpeWEgV2FuZyAo546L6L+65ZCbKQ==?= 
-        <seiya.wang@mediatek.com>,
-        =?UTF-8?B?U3RhbmxleSBDaHUgKOacseWOn+mZnik=?= 
-        <stanley.chu@mediatek.com>,
-        =?UTF-8?B?WWluZ2pvZSBDaGVuICjpmbPoi7HmtLIp?= 
-        <Yingjoe.Chen@mediatek.com>,
-        =?UTF-8?B?RmFuIENoZW4gKOmZs+WHoSk=?= <fan.chen@mediatek.com>,
-        =?UTF-8?B?WW9uZyBMaWFuZyAo5qKB5YuHKQ==?= <Yong.Liang@mediatek.com>
+Date:   Tue, 8 Sep 2020 12:51:04 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJtPMah6WskUc08JAhGskSM+cFJa4pRJKAyuqqBOKPhxQ@mail.gmail.com>
+Message-ID: <CAL_JsqJtPMah6WskUc08JAhGskSM+cFJa4pRJKAyuqqBOKPhxQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: bridge: lvds-codec: Document
+ vcc-supply property
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 2, 2020 at 5:26 PM Suman Anna <s-anna@ti.com> wrote:
+On Tue, Sep 1, 2020 at 4:27 AM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
 >
 > Hi Rob,
 >
-> On 8/26/20 6:09 AM, Crystal Guo wrote:
-> > On Wed, 2020-08-26 at 03:02 +0800, Rob Herring wrote:
-> >> On Mon, Aug 17, 2020 at 11:03:22AM +0800, Crystal Guo wrote:
-> >>> The TI syscon reset controller provides a common reset management,
-> >>> and is suitable for MTK SoCs. Add compatible 'mediatek,infra-reset',
-> >>> which denotes to use ti reset-controller driver directly.
-> >>>
-> >>> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
-> >>> ---
-> >>>  Documentation/devicetree/bindings/reset/ti-syscon-reset.txt | 1 +
-> >>>  1 file changed, 1 insertion(+)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt b/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt
-> >>> index ab041032339b..5a0e9365b51b 100644
-> >>> --- a/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt
-> >>> +++ b/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt
-> >>> @@ -25,6 +25,7 @@ Required properties:
-> >>>                         "ti,k2l-pscrst"
-> >>>                         "ti,k2hk-pscrst"
-> >>>                         "ti,syscon-reset"
-> >>> +                       "mediatek,infra-reset", "ti,syscon-reset"
-> >>
-> >> You need your own binding doc. If you can use the same driver then fine,
-> >> but that's a separate issue. There's also reset-simple driver if you
-> >> have just array of 32-bit registers with a bit per reset.
-> >>
-> >> Don't repeat 'ti,reset-bits' either.
+> On Mon, Aug 24, 2020 at 05:04:58PM -0600, Rob Herring wrote:
+> > On Mon, Aug 10, 2020 at 04:22:17PM +0100, Biju Das wrote:
+> > > Document optional vcc-supply property that may be used as VCC source.
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > ---
+> > > New patch Ref: Ref:https://patchwork.kernel.org/patch/11705819/
+> > > ---
+> > >  .../devicetree/bindings/display/bridge/lvds-codec.yaml         | 3 +++
+> > >  1 file changed, 3 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+> > > index 68951d56ebba..3248be31eceb 100644
+> > > --- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+> > > +++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+> > > @@ -79,6 +79,9 @@ properties:
+> > >        The GPIO used to control the power down line of this device.
+> > >      maxItems: 1
+> > >
+> > > +  vcc-supply:
+> > > +    maxItems: 1
 > >
-> > Do you mean I should add a Mediatek reset binding doc, although Mediatek
-> > reuse the TI reset controller directly?
+> > Probably should be 'power-supply' to align with the 'simple' panels.
+> > That's also to signify there's only 1 supply. Using 'vcc' would
+> > encourage adding 'vdd-supply', 'vddio-supply', etc. A second supply I'll
+> > NAK because at that point it's not a simple bridge with no configuration
+> > (it's arguably already there).
 >
-> Hmm, how do you envision not repeating the same bits in a separate binding?
+> Fully agreed.
+>
+> Do I get your Ab or Rb line with s/vcc/power/ and the commit message
+> updated to
+>
+>     dt-bindings: display: bridge: lvds-codec: Document power-supply property
+>
+>     Document optional power-supply property that may be used to specify the
+>     regulator powering up the device.
+>
+> ?
 
-I mean 'ti,reset-bits' isn't really something that should have been in
-DT in the first place, but rather implied by the compatible string.
+Yes, if not too late.
 
-> Does it help if I convert this to YAML first without a ti, prefix in the file name?
-
-No, I don't think this should be a shared binding. The driver may be
-able to be shared, but that's independent from the binding.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
