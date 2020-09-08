@@ -2,238 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EF2B26134F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 17:17:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB57F261353
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 17:18:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730180AbgIHPRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 11:17:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52588 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730260AbgIHPRR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 11:17:17 -0400
-Received: from localhost.localdomain (unknown [194.230.155.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 92A0323C83;
-        Tue,  8 Sep 2020 15:03:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599577426;
-        bh=dF9JbGnyyk7xqZjhxCmQG69CTL0Od4Gh5eFNR9iVXO0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=mrd6MXiQPlUWRKz7PGyUl2YdUhvffv/wQCkxVE1PeBZy36/PObpjCWUnn7RmzwjjQ
-         lCkcldVVu4haNcLHn8EVqrQzKNcAUr4bz37hZYenhKE5a6bieNAkTRdR8ZT6J4rod2
-         1YFt5nXwhBBi9FgSV8ITB7QtuptxffZUGFqI5Wa8=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Adam Ford <aford173@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Robin Gong <yibin.gong@nxp.com>,
-        Alifer Moraes <alifer.wsdm@gmail.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Vitor Massaru Iha <vitor@massaru.org>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Rajan Vaja <rajan.vaja@xilinx.com>,
-        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH 6/8] arm64: dts: rk3399: Correct interrupt flags in examples
-Date:   Tue,  8 Sep 2020 17:02:39 +0200
-Message-Id: <20200908150241.5771-6-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200908150241.5771-1-krzk@kernel.org>
-References: <20200908150241.5771-1-krzk@kernel.org>
+        id S1730293AbgIHPSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 11:18:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47040 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730274AbgIHPQu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 11:16:50 -0400
+Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A56AFC004593
+        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 08:03:40 -0700 (PDT)
+Received: by mail-pj1-x1042.google.com with SMTP id n3so8855644pjq.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 08:03:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=YnSMm4ogisR5W8OzFSgC2w8o0qTW3G5f4K1/tGLIEYA=;
+        b=VB4HA7ZYUddQ/czN0QR6hFOtLPOVBlc7yLlibZ8LGNe7lrh/c+qET5DMkAXLxTmt7c
+         2My3M29VqYQtJyC2HUJaeqWuSn+14HZLUiuedh3TdzD9kopJC9AfijVLH4nCSa4SzDr7
+         CyzRiOKsGvrjC/qzkt0HKNyrW6VRexUTgx+p1tuEC0nso2zv0fhCkNFmuqGKI6ZYrPG1
+         R4PSFPcQyjzmbmpJNvZBSXlLgo6rkjfVad941h7r8FI3PqAb3aU7MvPrNtHPe/fULAlV
+         AzbextZqwrYLgzq9E47RsEi0rt0YEJvllqQkaID87k25MLGjR0sydF6xl/dg04qRjQ8n
+         zaKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=YnSMm4ogisR5W8OzFSgC2w8o0qTW3G5f4K1/tGLIEYA=;
+        b=uJYTPg0+o8Cvkd54I2XdkZEBCNuQZWp8uadzWJ2TYHr5svtk2jT+MCggLa9zPl+i6H
+         i+e9vLYQD6oRUAxhkFr19RWC3uzu7WDxcb8S3fBX++MCmoNqdjUcTEyCmyD2zTb25NxW
+         KxXMIFOiQ2O1Ie5RISbWRmiFuzTlcKYUFpNQZ0yLLPpxE8MRSBg2kLQdEvy4XcgIFC4f
+         yRL+IzJ8QE4uc/n9VD9dy3xhks2PkAfzlWscCnkFU4J9527DjihFL6FavaXDCT4G1q/a
+         MeeaGAai+NUN2HdHO3nvmWGVy0lKZsVvduNoVxJmVFF/fHzdSHNk9QEWRNBNKVMOBTs1
+         SHyg==
+X-Gm-Message-State: AOAM532Sk2qTbOH/p5obcycijIbbvljdQzqJI9Sr7Zug9If3j9w9oIf5
+        H6k+d5a23pcJ9+hGRsD+XAyt
+X-Google-Smtp-Source: ABdhPJwaSMvsTZUDr7jKf0C5tA5mVnmNXNN7uyn6m0m5LM0pEXGmuIkqRDs+yGpf3+HmM9uGWPhsig==
+X-Received: by 2002:a17:90b:4b82:: with SMTP id lr2mr4319741pjb.184.1599577419882;
+        Tue, 08 Sep 2020 08:03:39 -0700 (PDT)
+Received: from mani-NUC7i5DNKE ([2409:4072:6213:6149:94b7:eeb3:82a5:2b53])
+        by smtp.gmail.com with ESMTPSA id a18sm4160368pgw.50.2020.09.08.08.03.34
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 08 Sep 2020 08:03:39 -0700 (PDT)
+Date:   Tue, 8 Sep 2020 20:33:30 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Amit Kucheria <amitk@kernel.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Taniya Das <tdas@codeaurora.org>
+Subject: Re: [PATCH 5/7] cpufreq: qcom-hw: Use regmap for accessing hardware
+ registers
+Message-ID: <20200908150321.GA2352@mani-NUC7i5DNKE>
+References: <20200908075716.30357-1-manivannan.sadhasivam@linaro.org>
+ <20200908075716.30357-6-manivannan.sadhasivam@linaro.org>
+ <20200908103444.5e526uawa45om6lt@vireshk-i7>
+ <20200908111141.GB23095@mani>
+ <20200908111813.bbgfxo5v7qt6ujpc@vireshk-i7>
+ <CAHLCerMndYeEBOxtj8mV7OdOP9pufx+C7n1F9m+CFAneuh8DnA@mail.gmail.com>
+ <CAHLCerPm6MXr662CaA3zZm4fQ3dJ_StJt3Ehutc3xnc0L9wj3Q@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHLCerPm6MXr662CaA3zZm4fQ3dJ_StJt3Ehutc3xnc0L9wj3Q@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
-These are simple defines so they could be used in DTS but they will not
-have the same meaning:
-1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
-2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
+On 0908, Amit Kucheria wrote:
+> On Tue, Sep 8, 2020 at 5:18 PM Amit Kucheria <amitk@kernel.org> wrote:
+> >
+> > On Tue, Sep 8, 2020 at 4:48 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> > >
+> > > On 08-09-20, 16:41, Manivannan Sadhasivam wrote:
+> > > > On 0908, Viresh Kumar wrote:
+> > > > > On 08-09-20, 13:27, Manivannan Sadhasivam wrote:
+> > > > > > Use regmap for accessing cpufreq registers in hardware.
+> > > > >
+> > > > > Why ? Please mention why a change is required in the log.
+> > > > >
+> > > >
+> > > > Only because it is recommended to use regmap for abstracting the hw access.
+> > >
+> > > Yes it can be very useful in abstracting the hw access in case of
+> > > busses like SPI/I2C, others, but in this case there is only one way of
+> > > doing it with the exact same registers. I am not sure it is worth it
+> > > here. FWIW, I have never played with regmaps personally, and so every
+> > > chance I can be wrong here.
+> >
+> > One could handle the reg offsets through a struct initialisation, but
+> > then you end up with lots of #defines for bitmasks and bits for each
+> > version of the IP. And the core code becomes a bit convoluted IMO,
+> > trying to handle the differences.
+> >
+> > regmap hides the differences of the bit positions and register offsets
+> > between several IP versions.
+> >
+> > > > Moreover it handles the proper locking for us in the core (spinlock vs mutex).
+> > >
+> > > What locking do you need here ?
+> >
+> > Right, locking isn't the main reason here.
+> 
+> Having said this, perhaps this patch can be held back for now, since
+> we're not yet using some of the features of regmap to abstract away
+> bit fields and such.
+> 
 
-Correct the interrupt flags, assuming the author of the code wanted some
-logical behavior behind the name "ACTIVE_xxx", this is:
-  ACTIVE_HIGH => IRQ_TYPE_LEVEL_HIGH
+Okay. Dropping this patch for now (in v2)!
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Thanks,
+Mani
 
----
-
-Not tested on HW.
----
- arch/arm64/boot/dts/rockchip/rk3399-firefly.dts      | 3 ++-
- arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts   | 3 ++-
- arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi | 3 ++-
- arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts    | 3 ++-
- arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts     | 3 ++-
- arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts   | 2 +-
- arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts   | 2 +-
- arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi     | 3 ++-
- 8 files changed, 14 insertions(+), 8 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts b/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
-index 6db18808b9c5..095d615950ca 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
-@@ -5,6 +5,7 @@
- 
- /dts-v1/;
- #include <dt-bindings/input/linux-event-codes.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/pwm/pwm.h>
- #include "rk3399.dtsi"
- #include "rk3399-opp.dtsi"
-@@ -676,7 +677,7 @@
- 		reg = <1>;
- 		compatible = "brcm,bcm4329-fmac";
- 		interrupt-parent = <&gpio0>;
--		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
-+		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
- 		interrupt-names = "host-wake";
- 		brcm,drive-strength = <5>;
- 		pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-index 341d074ed996..25cb807bcfa6 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-@@ -2,6 +2,7 @@
- /dts-v1/;
- #include <dt-bindings/pwm/pwm.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
- #include "rk3399.dtsi"
- #include "rk3399-opp.dtsi"
- 
-@@ -623,7 +624,7 @@
- 		compatible = "brcm,bcm4329-fmac";
- 		reg = <1>;
- 		interrupt-parent = <&gpio0>;
--		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
-+		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
- 		interrupt-names = "host-wake";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&wifi_host_wake_l>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
-index e36837c04dc7..89dae74989bb 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
-@@ -6,6 +6,7 @@
- 
- /dts-v1/;
- #include <dt-bindings/input/linux-event-codes.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/pwm/pwm.h>
- #include "rk3399.dtsi"
- #include "rk3399-opp.dtsi"
-@@ -662,7 +663,7 @@
- 		reg = <1>;
- 		compatible = "brcm,bcm4329-fmac";
- 		interrupt-parent = <&gpio0>;
--		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
-+		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
- 		interrupt-names = "host-wake";
- 		brcm,drive-strength = <5>;
- 		pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts b/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
-index 1fa80ac15464..113a71256171 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
-@@ -5,6 +5,7 @@
- 
- /dts-v1/;
- #include <dt-bindings/input/linux-event-codes.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/pwm/pwm.h>
- #include "rk3399.dtsi"
- #include "rk3399-opp.dtsi"
-@@ -503,7 +504,7 @@
- 		compatible = "brcm,bcm4329-fmac";
- 		reg = <1>;
- 		interrupt-parent = <&gpio0>;
--		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
-+		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
- 		interrupt-names = "host-wake";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&wifi_host_wake_l>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
-index 6163ae8063a7..ae81fb9d363c 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
-@@ -7,6 +7,7 @@
- 
- #include "dt-bindings/pwm/pwm.h"
- #include "dt-bindings/input/input.h"
-+#include <dt-bindings/interrupt-controller/irq.h>
- #include "rk3399.dtsi"
- #include "rk3399-opp.dtsi"
- 
-@@ -691,7 +692,7 @@
- 		reg = <1>;
- 		compatible = "brcm,bcm4329-fmac";
- 		interrupt-parent = <&gpio0>;
--		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
-+		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
- 		interrupt-names = "host-wake";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&wifi_host_wake_l>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
-index f0055ce2fda0..7df4e698b1c0 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
-@@ -19,7 +19,7 @@
- 		compatible = "brcm,bcm4329-fmac";
- 		reg = <1>;
- 		interrupt-parent = <&gpio0>;
--		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
-+		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
- 		interrupt-names = "host-wake";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&wifi_host_wake_l>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
-index 4c7ebb1c5d2d..887a29898617 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
-@@ -20,7 +20,7 @@
- 		compatible = "brcm,bcm4329-fmac";
- 		reg = <1>;
- 		interrupt-parent = <&gpio0>;
--		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
-+		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
- 		interrupt-names = "host-wake";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&wifi_host_wake_l>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
-index 5e3ac589bc54..9a4cd799edde 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
-@@ -7,6 +7,7 @@
- 
- #include "rk3399.dtsi"
- #include "rk3399-opp.dtsi"
-+#include <dt-bindings/interrupt-controller/irq.h>
- 
- / {
- 	sdio_pwrseq: sdio-pwrseq {
-@@ -522,7 +523,7 @@
- 		compatible = "brcm,bcm4329-fmac";
- 		reg = <1>;
- 		interrupt-parent = <&gpio0>;
--		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
-+		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
- 		interrupt-names = "host-wake";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&wifi_host_wake_l>;
--- 
-2.17.1
-
+> We don't strictly need it for just different register offsets.
+> 
+> Regards,
+> Amit
