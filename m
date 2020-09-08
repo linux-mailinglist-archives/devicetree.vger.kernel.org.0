@@ -2,101 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0945A260D6E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 10:21:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B56F260DA3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 10:35:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730000AbgIHIVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 04:21:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39972 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729967AbgIHIU7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 04:20:59 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B223C061573;
-        Tue,  8 Sep 2020 01:20:58 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id l63so15068755edl.9;
-        Tue, 08 Sep 2020 01:20:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=TfJihMsMhRJ/+S5wdJVUFID0QqKRghvIoFnr9LgeHsI=;
-        b=q3m7oZW45fffzPqJmgfA9l81+hLXs6Lbw5ThJJ/lwl7N4Js5b0kL7tHKaKZcYldxh8
-         poGRL9GAZwEoI7kzriXsF6H1dTijCreMpUftiDECooMIkAC+THREmKVEuli9jm6pa01x
-         6m51OfsGV/Nk11D6ur+z0mo3UJpV3+JD4eFmw7F3Zlsj4nDsFRTgnkTTkHKuBYMOiZDr
-         TT87/4SWcFk+CpIKyKHCPrMoydfSW9iliTdwArtRqzVa3OsMuIqlB7ennQoXL9YOJ/6E
-         C6h5fLA97jEAK/JiDddiw8JDvyOB95LEl/JLplAjW8/kWWX8tV7E4Tfu3fUUqH5NofTS
-         E9pA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=TfJihMsMhRJ/+S5wdJVUFID0QqKRghvIoFnr9LgeHsI=;
-        b=khghjaWuyhsVV8tsaQSoG9kYEvcJsDfPXXFYyrsxfeR3U04KLRjSUZT9Bo+3He2Mun
-         u97xPXBglG2SQUqZ/kNQUuSk85Q4CLqV6BOyVqQA7IGjXbD/6M3fAZv+cXdCSTmYtbu4
-         J3yJsl07axwcC703n6puB9wNU38M+OMIJX2AJjExfSRoEw4Z8FB1F/BqKQZDxMbMigSc
-         p6A6I13gn0PSaN9JBCA4UUb/wZFBWF+UIImqT41fQrGwL4RuKKHwHEpKjdr8Ck8asep2
-         nN8KSj25CGgTX1isJ+svEe6wipkwhsdxfA5lBtk5VN0WwIgNoLIpUIdack+uqKylDZqa
-         IHgA==
-X-Gm-Message-State: AOAM530pvLmxr5D4x8LAVsbuYWmOLiC4/v5GkjkNCsuKO5lfvf9fxMhC
-        yKuFhs6gNb8iGTIMoAlDnmo=
-X-Google-Smtp-Source: ABdhPJyHgy9EZgTDSot0DQpBYTdm6PENWHy7FxF+KT3GvFHw9Y6Q3lrC6p1eskmu9Kz7LCUJUGIqPQ==
-X-Received: by 2002:a50:8062:: with SMTP id 89mr25090547eda.241.1599553257078;
-        Tue, 08 Sep 2020 01:20:57 -0700 (PDT)
-Received: from localhost.localdomain ([188.24.159.61])
-        by smtp.gmail.com with ESMTPSA id g24sm13172326edy.51.2020.09.08.01.20.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Sep 2020 01:20:56 -0700 (PDT)
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
-Cc:     parthiban@linumiz.com, Saravanan Sekar <sravanhome@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org
-Subject: [PATCH v6 3/3] MAINTAINERS: Add entries for Actions Semi Owl SIRQ controller
-Date:   Tue,  8 Sep 2020 11:20:50 +0300
-Message-Id: <fa752e22bfcd0fb490b7b423b62a5c4be5bdd0dd.1599552438.git.cristian.ciocaltea@gmail.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <cover.1599552438.git.cristian.ciocaltea@gmail.com>
-References: <cover.1599552438.git.cristian.ciocaltea@gmail.com>
+        id S1729734AbgIHIfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 04:35:20 -0400
+Received: from mail.alarsen.net ([144.76.18.233]:57426 "EHLO mail.alarsen.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729629AbgIHIfT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 04:35:19 -0400
+X-Greylist: delayed 386 seconds by postgrey-1.27 at vger.kernel.org; Tue, 08 Sep 2020 04:35:18 EDT
+Received: from oscar.alarsen.net (unknown [IPv6:2001:470:1f0b:246:b440:f8d3:1c0c:d20c])
+        by joe.alarsen.net (Postfix) with ESMTPS id C72DC2B80B87;
+        Tue,  8 Sep 2020 10:28:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alarsen.net; s=joe;
+        t=1599553730; bh=vAMC3BpR+mvYVqZXlzgmRJWrQUKXzqY7hp9gqzLPC+M=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=kMpihx1Mn0lZF+E26HcrGXm3wEl1wM3kQy9vMh0OgkdaWmym0/RAttcriMqnUNx+Q
+         onTCxRAk4kQFdU4k5nSd+5wUEG3XWrGMOplq2HqO9QooG+jtDochhQkAddnZU6i3BM
+         A7l1QtSqSgTV0VKpPpD0wi38Cf+6S8QGZy0DmSts=
+Received: from oscar.localnet (localhost [IPv6:::1])
+        by oscar.alarsen.net (Postfix) with ESMTP id 98F8327C02A7;
+        Tue,  8 Sep 2020 10:28:50 +0200 (CEST)
+From:   Anders Larsen <al@alarsen.net>
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     thierry.reding@gmail.com, sam@ravnborg.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: vendor-prefixes: Add Shanghai Top Display Optolelectronics vendor prefix
+Date:   Tue, 08 Sep 2020 10:28:50 +0200
+Message-ID: <14178277.p4ol7qMFiq@alarsen.net>
+In-Reply-To: <20200908075421.17344-2-narmstrong@baylibre.com>
+References: <20200908075421.17344-1-narmstrong@baylibre.com> <20200908075421.17344-2-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entries for Actions Semi Owl SIRQ controller binding and driver.
+On Tuesday, 2020-09-08 09:54 Neil Armstrong wrote:
+> Shanghai Top Display Optolelectronics Co., Ltd  is a display manufacturer
+> from Shanghai.
+> Web site of the company: http://www.shtdo.com/
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index a1e4356cf522..4e9dfb352c68 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -1078,6 +1078,8 @@ patternProperties:
+>      description: TPK U.S.A. LLC
+>    "^tplink,.*":
+>      description: TP-LINK Technologies Co., Ltd.
+> +  "^tdo,.*":
+> +    description: Shangai Top Display Optoelectronics Co., Ltd
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+Please keep the list sorted alphabetically as requested in line 25 of the file.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9544eec4eff2..04c75815fac6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1525,6 +1525,7 @@ F:	Documentation/devicetree/bindings/arm/actions.yaml
- F:	Documentation/devicetree/bindings/clock/actions,owl-cmu.txt
- F:	Documentation/devicetree/bindings/dma/owl-dma.txt
- F:	Documentation/devicetree/bindings/i2c/i2c-owl.txt
-+F:	Documentation/devicetree/bindings/interrupt-controller/actions,owl-sirq.yaml
- F:	Documentation/devicetree/bindings/mmc/owl-mmc.yaml
- F:	Documentation/devicetree/bindings/pinctrl/actions,*
- F:	Documentation/devicetree/bindings/power/actions,owl-sps.txt
-@@ -1536,6 +1537,7 @@ F:	drivers/clk/actions/
- F:	drivers/clocksource/timer-owl*
- F:	drivers/dma/owl-dma.c
- F:	drivers/i2c/busses/i2c-owl.c
-+F:	drivers/irqchip/irq-owl-sirq.c
- F:	drivers/mmc/host/owl-mmc.c
- F:	drivers/pinctrl/actions/*
- F:	drivers/soc/actions/
--- 
-2.28.0
+>    "^tpo,.*":
+>      description: TPO
+>    "^tq,.*":
+
+Cheers
+Anders
+
 
