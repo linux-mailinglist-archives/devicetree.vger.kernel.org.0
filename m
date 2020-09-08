@@ -2,92 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7A582616C0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:18:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA32C26160B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:01:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730168AbgIHRSH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 13:18:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58438 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731701AbgIHQSD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 12:18:03 -0400
-Received: from localhost.localdomain (unknown [194.230.155.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5700723CCD;
-        Tue,  8 Sep 2020 15:03:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599577457;
-        bh=r+iOPiiCSkXns7k2RkP8i4/NmDfyYnNqQ4In2aeIt3Q=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=jJHkf7usnzFhyUf/Fa5vOLIFVRp2+pRE6BGupDSAWWzz+DSInpH5BCytIfrTFGo0Q
-         vx/aeXNSevkKQNd2DIv3WBOUOUD92maIqkcwcrrzBEP+w6EJTxRQTzY4Cwr/omuHNC
-         ygi6WNQsotLEetkIwpcPi3Vk+CjEr2ASBaPLKfzA=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Adam Ford <aford173@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Robin Gong <yibin.gong@nxp.com>,
-        Alifer Moraes <alifer.wsdm@gmail.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Vitor Massaru Iha <vitor@massaru.org>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Rajan Vaja <rajan.vaja@xilinx.com>,
-        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH 7/8] arm64: dts: zynqmp-zcu100-revC: Correct interrupt flags in examples
-Date:   Tue,  8 Sep 2020 17:02:40 +0200
-Message-Id: <20200908150241.5771-7-krzk@kernel.org>
+        id S1731946AbgIHRAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 13:00:20 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:54858 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731843AbgIHRAM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 13:00:12 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 088H09L0044873;
+        Tue, 8 Sep 2020 12:00:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599584409;
+        bh=uXZMCP36lOtJZX1b2XkDr6j9kDkZTjkNJiSHuJFdBJs=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=ia4CnDqcIX6sj3iaKAVh5DGFks7W9LnxsOhJrTu0F3X6dN+t1BYeFG08uGCza96t4
+         I3wCJcfIysf03yF7SGTUH4hufmi7XHVQWnjJmf7tqCoaJQDvY6XagUkwFEbdDsOoS2
+         o5QFAnCTVu3raAUKaYutCOfcgxlrI/ZdSMCm9a1o=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088H09iC115505;
+        Tue, 8 Sep 2020 12:00:09 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 8 Sep
+ 2020 12:00:09 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 8 Sep 2020 12:00:09 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088H078A033059;
+        Tue, 8 Sep 2020 12:00:08 -0500
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+CC:     Sekhar Nori <nsekhar@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Suman Anna <s-anna@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+Subject: [PATCH v2 2/4] arm64: dts: ti: k3-j7200-main: add main navss cpts node
+Date:   Tue, 8 Sep 2020 19:59:40 +0300
+Message-ID: <20200908165942.32368-3-grygorii.strashko@ti.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200908150241.5771-1-krzk@kernel.org>
-References: <20200908150241.5771-1-krzk@kernel.org>
+In-Reply-To: <20200908165942.32368-1-grygorii.strashko@ti.com>
+References: <20200908165942.32368-1-grygorii.strashko@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
-These are simple defines so they could be used in DTS but they will not
-have the same meaning:
-1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
-2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
+Add DT node for Main NAVSS CPTS module.
 
-Correct the interrupt flags, assuming the author of the code wanted some
-logical behavior behind the name "ACTIVE_xxx", this is:
-  ACTIVE_LOW => IRQ_TYPE_LEVEL_LOW
-
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-
+Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
 ---
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-Not tested on HW.
----
- arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
-index d60110ad8367..c9460693f4e9 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
-@@ -186,7 +186,7 @@
- 				compatible = "ti,tps65086";
- 				reg = <0x5e>;
- 				interrupt-parent = <&gpio>;
--				interrupts = <77 GPIO_ACTIVE_LOW>;
-+				interrupts = <77 IRQ_TYPE_LEVEL_LOW>;
- 				#gpio-cells = <2>;
- 				gpio-controller;
- 			};
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+index cc4ff380a7bc..822c062e25c8 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+@@ -117,6 +117,18 @@
+ 						<0x0c>; /* RX_UHCHAN */
+ 			ti,sci-rm-range-rflow = <0x00>; /* GP RFLOW */
+ 		};
++
++		cpts@310d0000 {
++			compatible = "ti,j721e-cpts";
++			reg = <0x0 0x310d0000 0x0 0x400>;
++			reg-names = "cpts";
++			clocks = <&k3_clks 201 1>;
++			clock-names = "cpts";
++			interrupts-extended = <&main_navss_intr 391>;
++			interrupt-names = "cpts";
++			ti,cpts-periodic-outputs = <6>;
++			ti,cpts-ext-ts-inputs = <8>;
++		};
+ 	};
+ 
+ 	main_pmx0: pinmux@11c000 {
 -- 
 2.17.1
 
