@@ -2,172 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05584260FEF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 12:32:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C503260FDF
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 12:31:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729557AbgIHKcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 06:32:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38446 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729922AbgIHK3B (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 06:29:01 -0400
-Received: from mail.kernel.org (ip5f5ad5ce.dynamic.kabel-deutschland.de [95.90.213.206])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2CC02215A4;
-        Tue,  8 Sep 2020 10:29:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599560940;
-        bh=y+HaSJ5DamzNsnw7uVNpEE+xv+fRAimb14ck/lGaCO4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=lSq0Q9dqsCCBHCarEORSXoEs3FtROB6Ygd1MTjKb8HvqoQvMaDf8wMnF1fhkFPVje
-         5Wy4YWbLd8Nd1AIM39WX9k3knCACr0Ftm9zdIdulu8/ofP41Qd3JsiHWyuqYgobz9Z
-         gaiLJQlHj3r4rvMZ3wuGgJ+YNTP8mnsnB86o7mjw=
-Received: from mchehab by mail.kernel.org with local (Exim 4.94)
-        (envelope-from <mchehab@kernel.org>)
-        id 1kFary-00B3yN-7Q; Tue, 08 Sep 2020 12:28:58 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 06/10] dt-bindings: phy: convert phy-kirin970-usb3.txt to yaml
-Date:   Tue,  8 Sep 2020 12:28:40 +0200
-Message-Id: <a3c1f065f2ae72c76bc88e923a67ec79f965e615.1599559318.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <cover.1599559318.git.mchehab+huawei@kernel.org>
-References: <cover.1599559318.git.mchehab+huawei@kernel.org>
+        id S1728971AbgIHKbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 06:31:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59898 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729395AbgIHKbQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 06:31:16 -0400
+Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F3CDC061757
+        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 03:31:06 -0700 (PDT)
+Received: by mail-pj1-x1044.google.com with SMTP id gf14so7803102pjb.5
+        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 03:31:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=hDRXaJuAS9TrZFMby+Qmnh+jZXgmePanO+HwLWR2Ouc=;
+        b=JUNp1uaI61meRUQXI/pPS8i8XWPkyXDB/8gSgV8A6qz47wi+XYpf3wBpin+bMYWZ+t
+         cXCoI7gS85mL2iuWpMmMF+lFwrFGoW0hbe4YosLpaeVuXE2RLuugSLCIA7tPVorN27BI
+         EYViljfOFlpod2U5565AODj6f6FTpOjnyHYqSeXmWyWWWJpMB6kevRVVYFy12WT7Rmgx
+         /v95pXPu7P0MldjXLXVywF7HMTqTu7WZHLvivAE6CLJU0OL0Khx930DKTDhi2Lj6LYF6
+         L56r7Y6k+Set2fHI9vZ0VYUomxZqN4ldYmxifMT9Glxh2RFoDy1WmOQ/LBxWQAjR09Fg
+         Ci/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=hDRXaJuAS9TrZFMby+Qmnh+jZXgmePanO+HwLWR2Ouc=;
+        b=DbgAZeVa/Ezmd0u6bPTPsG1ytiWwnDsaYkoeTHF+UEcau1S3rB+O0kL/RxEMSafu/7
+         WecCt9etRz99eEZXGx7x7r0YdLBMhZZOktt1hy9nISWBYwdIrH4++/OoAECzNkUgMjPp
+         Mfc2N5koGtdB9G4hl0JnR40AbhgzAx27DOgA/5JjAK/BnJOtu51cyjPP8qOEyX2RNstQ
+         tPRDcD7oInDvOh+6PIdZzWc8gXNkTcblJSr8wOFbfBQ617u2SYlGgQp0Xeu1PECacuS4
+         /9MMBWvo0U4zYdXqwh04k94Fgfyn6ITOv06ia7AsmS/S/4MXn7wOOAAs3iKYnVpoaPFx
+         jn3w==
+X-Gm-Message-State: AOAM530uZjc+BbVl7wAT7hbMkbCnMjV0YTg4vjfnB5tn3yt42b/DDKf1
+        jBNO5n0EYcN4maEL2WG+IV+lLQ==
+X-Google-Smtp-Source: ABdhPJzNSCfBkbg+11agkjtxy3qwtXxyhK1sMEZKc5BFdUxTxh6wxYIwtLvqzDkOUFK7HlxQ+qQTKw==
+X-Received: by 2002:a17:90a:db05:: with SMTP id g5mr3543257pjv.22.1599561065932;
+        Tue, 08 Sep 2020 03:31:05 -0700 (PDT)
+Received: from localhost ([122.181.54.133])
+        by smtp.gmail.com with ESMTPSA id x3sm18002984pfo.95.2020.09.08.03.31.04
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 08 Sep 2020 03:31:05 -0700 (PDT)
+Date:   Tue, 8 Sep 2020 16:01:03 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     rjw@rjwysocki.net, robh+dt@kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, amitk@kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        dmitry.baryshkov@linaro.org, tdas@codeaurora.org
+Subject: Re: [PATCH 3/7] cpufreq: qcom-hw: Make use of cpufreq driver_data
+ for passing pdev
+Message-ID: <20200908103103.4mfewgmn5xl7mou6@vireshk-i7>
+References: <20200908075716.30357-1-manivannan.sadhasivam@linaro.org>
+ <20200908075716.30357-4-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200908075716.30357-4-manivannan.sadhasivam@linaro.org>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use the new YAML for this physical layer.
+On 08-09-20, 13:27, Manivannan Sadhasivam wrote:
+> Get rid of global_pdev pointer and make use of cpufreq driver_data for
+> passing the reference of pdev. This aligns with what other cpufreq drivers
+> are doing.
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  drivers/cpufreq/qcom-cpufreq-hw.c | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- .../bindings/phy/hisilicon,hi3670-usb3.yaml   | 72 +++++++++++++++++++
- .../bindings/phy/phy-hi3670-usb3.txt          | 25 -------
- 2 files changed, 72 insertions(+), 25 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
- delete mode 100644 Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
+Applied. Thanks.
 
-diff --git a/Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml b/Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
-new file mode 100644
-index 000000000000..125a5d6546ae
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/hisilicon,hi3670-usb3.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Hisilicon Kirin970 USB PHY
-+
-+maintainers:
-+  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-+description: |+
-+  Bindings for USB3 PHY on HiSilicon Kirin 970.
-+
-+properties:
-+  compatible:
-+    const: hisilicon,hi3670-usb-phy
-+
-+  "#phy-cells":
-+    const: 0
-+
-+  hisilicon,pericrg-syscon:
-+    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    description: phandle of syscon used to control iso refclk.
-+
-+  hisilicon,pctrl-syscon:
-+    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    description: phandle of syscon used to control usb tcxo.
-+
-+  hisilicon,sctrl-syscon:
-+    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    description: phandle of syscon used to control phy deep sleep.
-+
-+  hisilicon,eye-diagram-param:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Eye diagram for phy.
-+
-+  hisilicon,tx-vboost-lvl:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: TX level vboost for phy.
-+
-+required:
-+  - compatible
-+  - hisilicon,pericrg-syscon
-+  - hisilicon,pctrl-syscon
-+  - hisilicon,sctrl-syscon
-+  - hisilicon,eye-diagram-param
-+  - hisilicon,tx-vboost-lvl
-+  - "#phy-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    bus {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      usb3_otg_bc: usb3_otg_bc@ff200000 {
-+        compatible = "syscon", "simple-mfd";
-+        reg = <0x0 0xff200000 0x0 0x1000>;
-+
-+        usb_phy {
-+          compatible = "hisilicon,hi3670-usb-phy";
-+          #phy-cells = <0>;
-+          hisilicon,pericrg-syscon = <&crg_ctrl>;
-+          hisilicon,pctrl-syscon = <&pctrl>;
-+          hisilicon,sctrl-syscon = <&sctrl>;
-+          hisilicon,eye-diagram-param = <0xfdfee4>;
-+          hisilicon,tx-vboost-lvl = <0x5>;
-+        };
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt b/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
-deleted file mode 100644
-index 2fb27cb8beaf..000000000000
---- a/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--Hisilicon Kirin970 usb PHY
-------------------------
--
--Required properties:
--- compatible: should be "hisilicon,hi3670-usb-phy"
--- #phy-cells: must be 0
--- hisilicon,pericrg-syscon: phandle of syscon used to control phy.
--- hisilicon,pctrl-syscon: phandle of syscon used to control phy.
--- hisilicon,sctrl-syscon: phandle of syscon used to control phy.
--- hisilicon,usb31-misc-syscon: phandle of syscon used to control phy.
--- eye-diagram-param: parameter set for phy
--- usb3-phy-tx-vboost-lvl: parameter set for phy
--Refer to phy/phy-bindings.txt for the generic PHY binding properties
--
--Example:
--	usb_phy: usbphy {
--		compatible = "hisilicon,hi3670-usb-phy";
--		#phy-cells = <0>;
--		hisilicon,pericrg-syscon = <&crg_ctrl>;
--		hisilicon,pctrl-syscon = <&pctrl>;
--		hisilicon,sctrl-syscon = <&sctrl>;
--		hisilicon,usb31-misc-syscon = <&usb31_misc>;
--		eye-diagram-param = <0xFDFEE4>;
--		usb3-phy-tx-vboost-lvl = <0x5>;
--	};
 -- 
-2.26.2
-
+viresh
