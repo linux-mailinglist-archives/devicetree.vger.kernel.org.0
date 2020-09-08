@@ -2,94 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AEE826170C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:24:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47E842616E2
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:21:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731884AbgIHRYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 13:24:37 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:33394 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727088AbgIHRUt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 13:20:49 -0400
-Received: by mail-ot1-f68.google.com with SMTP id m12so12557162otr.0;
-        Tue, 08 Sep 2020 10:20:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LdIU9vQqmEF6Wb9rgoYOmoAokt3YY8uLZ42vJELJPcw=;
-        b=DMubPtXSYBnklx8RsXBVhETybhtzSmPIOHQO5hh580TaRMWkvBZTXjmn6aucLI/D+D
-         fPGhtc/xW9ypHzBeTmp46o+DUD2h1pcgNnSIZblZrckhjae0CwUQVMzNzXmaOOWd0Ruk
-         HUWMtyItZFuVd8I344pdON/KT/RRIWvxhYW63EWn5zKA0fSw3BR2/bjGsHx/M1GleDyJ
-         C8CI1FNclKf9idd2jm7aY70x6MhvGak8xSG5VtKv3+f2U2ZffNJaUGTWrZiX93v3pA+o
-         2/6IU/fIlWqwWTJFtz25QXz0PFHjQ3CI8pybaxNoKQR5ntuRFz+PJ9VHDZ6nv32Ao1oa
-         XJ0g==
-X-Gm-Message-State: AOAM533iBFhCkpRo2603eVrJzvobEb98uKklaxfb8FpaXU4D9Z3fNcy5
-        rgYdRqSJDcVAUpdTLNuCCst4BmAwpgwd8TuWHtKIm5aLAN0=
-X-Google-Smtp-Source: ABdhPJyO0agHfnn+rc/8SvPGLV/RqefiUMhcCO/qMdmPNp8wfnxitD0ijBuDMlHxqhgSaEJAVSI8q0o3SM0n8A6n9Z4=
-X-Received: by 2002:a05:6830:1008:: with SMTP id a8mr53866otp.107.1599585648726;
- Tue, 08 Sep 2020 10:20:48 -0700 (PDT)
+        id S1731756AbgIHRV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 13:21:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56412 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728643AbgIHRUw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 13:20:52 -0400
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C697221924;
+        Tue,  8 Sep 2020 17:20:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599585651;
+        bh=qJw7qTW8sm4UzUgyNcs+J5DGwug32eonDnzevDjI8II=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=PO5JNwXw5QbIuu/2RcDr0bbx7ZRzu2Y5qqEYxKk+cMJTbCZWGXrXryK1XiV7DO/h2
+         yEMYiTExVead0rncQ7oGzITXa9RgcVq1Z0JbOVxzCJnJ3swB/L3W0vpZTp8TzB9RxE
+         mLxcAmKAl3SfFk1rGVjQzGNsblf9wGM/uW0mjJv4=
+Received: by mail-ot1-f45.google.com with SMTP id c10so15495951otm.13;
+        Tue, 08 Sep 2020 10:20:51 -0700 (PDT)
+X-Gm-Message-State: AOAM532/4o/0A5g0Z73XgdibTZm+WXuKTX2jtGL/CYvgJAJrkQwA8hlH
+        uwVs8vYhkXso+sTbl/4c1367IVb3ugnvyqKKUA==
+X-Google-Smtp-Source: ABdhPJyvfyNrPjsoWHvCG23p12ZjQDxYACacWE/DdrBGJM1e/5IFpmq/yWxgunlZEazC1D1a52yjOXSbSDklAC/HUH0=
+X-Received: by 2002:a9d:411:: with SMTP id 17mr84031otc.192.1599585651032;
+ Tue, 08 Sep 2020 10:20:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <1599470390-29719-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <1599470390-29719-15-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <1599470390-29719-15-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 8 Sep 2020 19:20:37 +0200
-Message-ID: <CAMuHMdUXUvU5dPkBFdW_ZVhnBKpFEPVLD3mdOkhrmakZjCHErg@mail.gmail.com>
-Subject: Re: [PATCH 14/14] arm64: dts: renesas: Add Renesas Falcon boards support
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+References: <20200828130602.42203-1-andre.przywara@arm.com> <20200828130602.42203-2-andre.przywara@arm.com>
+In-Reply-To: <20200828130602.42203-2-andre.przywara@arm.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 8 Sep 2020 11:20:39 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+jjzFR0ZdFO5dEp2w2D2uzSAB9tdih9tnuN987LABbiA@mail.gmail.com>
+Message-ID: <CAL_Jsq+jjzFR0ZdFO5dEp2w2D2uzSAB9tdih9tnuN987LABbiA@mail.gmail.com>
+Subject: Re: [PATCH 01/10] dt-bindings: watchdog: sp-805: Convert to Json-schema
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Chanho Min <chanho.min@lge.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Wei Xu <xuwei5@hisilicon.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
-
-On Mon, Sep 7, 2020 at 11:20 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Initial support for the Renesas Falcon CPU and BreakOut boards
-> support.
+On Fri, Aug 28, 2020 at 7:06 AM Andre Przywara <andre.przywara@arm.com> wrote:
 >
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-
-Thanks for your patch!
-
+> Convert the ARM SP-805 watchdog IP DT binding over to Json-schema.
+>
+> A straight-forward conversion, but the requirement for providing two
+> clocks got strengthened from "should" to "must".
+>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  .../bindings/watchdog/arm,sp805.txt           | 32 --------
+>  .../bindings/watchdog/arm,sp805.yaml          | 75 +++++++++++++++++++
+>  2 files changed, 75 insertions(+), 32 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/arm,sp805.txt
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/watchdog/arm,sp805.txt b/Documentation/devicetree/bindings/watchdog/arm,sp805.txt
+> deleted file mode 100644
+> index bee6f1f0e41b..000000000000
+> --- a/Documentation/devicetree/bindings/watchdog/arm,sp805.txt
+> +++ /dev/null
+> @@ -1,32 +0,0 @@
+> -ARM AMBA Primecell SP805 Watchdog
+> -
+> -SP805 WDT is a ARM Primecell Peripheral and has a standard-id register that
+> -can be used to identify the peripheral type, vendor, and revision.
+> -This value can be used for driver matching.
+> -
+> -As SP805 WDT is a primecell IP, it follows the base bindings specified in
+> -'arm/primecell.txt'
+> -
+> -Required properties:
+> -- compatible:  Should be "arm,sp805" & "arm,primecell"
+> -- reg:         Should contain location and length for watchdog timer register
+> -- clocks:      Clocks driving the watchdog timer hardware. This list should be
+> -               2 clocks. With 2 clocks, the order is wdog_clk, apb_pclk
+> -               wdog_clk can be equal to or be a sub-multiple of the apb_pclk
+> -               frequency
+> -- clock-names: Shall be "wdog_clk" for first clock and "apb_pclk" for the
+> -               second one
+> -
+> -Optional properties:
+> -- interrupts:  Should specify WDT interrupt number
+> -- timeout-sec: Should specify default WDT timeout in seconds. If unset, the
+> -               default timeout is determined by the driver
+> -
+> -Example:
+> -       watchdog@66090000 {
+> -               compatible = "arm,sp805", "arm,primecell";
+> -               reg = <0x66090000 0x1000>;
+> -               interrupts = <GIC_SPI 406 IRQ_TYPE_LEVEL_HIGH>;
+> -               clocks = <&wdt_clk>, <&apb_pclk>;
+> -               clock-names = "wdog_clk", "apb_pclk";
+> -       };
+> diff --git a/Documentation/devicetree/bindings/watchdog/arm,sp805.yaml b/Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
+> new file mode 100644
+> index 000000000000..980e155d3387
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/falcon-cpu.dtsi
-> @@ -0,0 +1,44 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree Source for the Falcon CPU board
-> + *
-> + * Copyright (C) 2020 Renesas Electronics Corp.
-> + */
+> +++ b/Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/arm,sp805.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ARM AMBA Primecell SP805 Watchdog
+> +
+> +maintainers:
+> +  - Viresh Kumar <vireshk@kernel.org>
+> +
+> +description: |+
+> +  The Arm SP805 IP implements a watchdog device, which triggers an interrupt
+> +  after a configurable time period. If that interrupt has not been serviced
+> +  when the next interrupt would be triggered, the reset signal is asserted.
+> +
+> +allOf:
+> +  - $ref: /schemas/arm/primecell.yaml#
 
-As this board contains the CPU, I had expected
-
-    #include "r8a779a0.dtsi"
-
-here.
+Should also ref watchdog.yaml here.
 
 > +
-> +/ {
-> +       model = "Renesas Falcon CPU board";
-> +       compatible = "renesas,falcon-cpu";
+> +# Need a custom select here or 'arm,primecell' will match on lots of nodes
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: arm,sp805
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: arm,sp805
+> +      - const: arm,primecell
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: |
+> +      Clocks driving the watchdog timer hardware. The first clock is used
+> +      for the actual watchdog counter. The second clock drives the register
+> +      interface.
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: wdog_clk
+> +      - const: apb_pclk
+> +
+> +  timeout-sec:
+> +    description: |
+> +      Should specify default WDT timeout in seconds. If unset, the default
+> +      timeout is determined by the driver.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-+ renesas,r8a779a0.
+You can drop this as it is part of watchdog.yaml.
 
-Gr{oetje,eeting}s,
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
 
-                        Geert
+Add:
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+unevaluatedProperties: false
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    watchdog@66090000 {
+> +        compatible = "arm,sp805", "arm,primecell";
+> +        reg = <0x66090000 0x1000>;
+> +        interrupts = <GIC_SPI 406 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&wdt_clk>, <&apb_pclk>;
+> +        clock-names = "wdog_clk", "apb_pclk";
+> +    };
+> --
+> 2.17.1
+>
