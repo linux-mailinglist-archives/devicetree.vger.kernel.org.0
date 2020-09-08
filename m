@@ -2,143 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4794F261604
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:01:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A12CA261675
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 19:11:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731897AbgIHRBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 13:01:16 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:54954 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731640AbgIHRAW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 13:00:22 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 088H0Jwn045048;
-        Tue, 8 Sep 2020 12:00:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599584419;
-        bh=FmjuH099uiCn3rXvAwwFQmzrrjb4VVYs4/lLE60Nv/I=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=wLd1vsznDaoSAfqoAKw5uf4m8BsVf2wTtxENbY85IvdHhy9iJwcg3Hv6Bepb7NXjl
-         /uq8HIrmP1KPzWtr40fG/QeXFsDjLr5mZRkRAeBElplLmVZSlSTC95fq+qlZW54PGW
-         OlLSd2PGepNC5PzLf0uOjXSNbszcjJBgo/qngars=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 088H0J4g082815
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Sep 2020 12:00:19 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 8 Sep
- 2020 12:00:19 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 8 Sep 2020 12:00:19 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088H0Iwq112786;
-        Tue, 8 Sep 2020 12:00:18 -0500
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-CC:     Sekhar Nori <nsekhar@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Suman Anna <s-anna@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-Subject: [PATCH v2 4/4] arm64: dts: ti: k3-j7200-common-proc-board: add mcu cpsw nuss pinmux and phy defs
-Date:   Tue, 8 Sep 2020 19:59:42 +0300
-Message-ID: <20200908165942.32368-5-grygorii.strashko@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200908165942.32368-1-grygorii.strashko@ti.com>
-References: <20200908165942.32368-1-grygorii.strashko@ti.com>
+        id S1728585AbgIHRKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 13:10:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49722 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732070AbgIHRHH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 13:07:07 -0400
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8409721D1B
+        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 17:07:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599584825;
+        bh=YnJRsJUG1pSW75HhPkDqFEpQnLbYGnKtTbKpi28dmLo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=WlhLwMSx0iwCqa8K3DJcD/KhLX8X+kUPN0Q76NNXA4e9e0P2AQk6NfTsRdyYZYYw7
+         bIJRCogunOkjudd91T3Ji1HMrpxMrzItxVIf/qrLN40efCcjJI8IeOoZtwEYb7QxL1
+         IuaDXCzPyBTRTvH8Y4YFWGqnt3e1tjDnrV4vOLdU=
+Received: by mail-vs1-f48.google.com with SMTP id b16so9418031vsl.6
+        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 10:07:05 -0700 (PDT)
+X-Gm-Message-State: AOAM531uvjYePj9nr3KeZeUxRUWotorQLM9L2eCChnJA+woz3AoOYqRG
+        ZqmkAX+7RF6+7oL+3yap4lN5Z4J4qWqpIAKgss3hrw==
+X-Google-Smtp-Source: ABdhPJzDh4z5smAq+NO3nlyaPUB6zWghkiwltuG1BO8M1na3KvNjpxAboIuZLLXfHc5OZyl+pxScVD25k1EO2UK82qc=
+X-Received: by 2002:a67:7fd0:: with SMTP id a199mr90272vsd.98.1599584824457;
+ Tue, 08 Sep 2020 10:07:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20200908075716.30357-1-manivannan.sadhasivam@linaro.org>
+ <20200908075716.30357-5-manivannan.sadhasivam@linaro.org> <CAHLCerP7frrGyUBKbcurKhpkuGtJZjB+D82smnJ5U5CeL2bQgA@mail.gmail.com>
+ <20200908150945.GB2352@mani-NUC7i5DNKE>
+In-Reply-To: <20200908150945.GB2352@mani-NUC7i5DNKE>
+From:   Amit Kucheria <amitk@kernel.org>
+Date:   Tue, 8 Sep 2020 22:36:53 +0530
+X-Gmail-Original-Message-ID: <CAHLCerN+sfk5bOg6-Exgdy+fWJO4e29qRYkaycjWbG3MoZFikg@mail.gmail.com>
+Message-ID: <CAHLCerN+sfk5bOg6-Exgdy+fWJO4e29qRYkaycjWbG3MoZFikg@mail.gmail.com>
+Subject: Re: [PATCH 4/7] cpufreq: qcom-hw: Make use of of_match data for
+ offsets and row size
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Taniya Das <tdas@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The TI j7200 EVM base board has TI DP83867 PHY connected to external CPSW
-NUSS Port 1 in rgmii-rxid mode.
+On Tue, Sep 8, 2020 at 8:40 PM Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
+>
+> On 0908, Amit Kucheria wrote:
+> > On Tue, Sep 8, 2020 at 1:27 PM Manivannan Sadhasivam
+> > <manivannan.sadhasivam@linaro.org> wrote:
+> > >
+> > > For preparing the driver to handle further SoC revisions, let's use the
+> > > of_match data for getting the device specific offsets and row size instead
+> > > of defining them globally.
+> > >
+> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> >
+> >
+> >
+> > > ---
+> > >  drivers/cpufreq/qcom-cpufreq-hw.c | 96 +++++++++++++++++++++----------
+> > >  1 file changed, 66 insertions(+), 30 deletions(-)
+> > >
+> > > diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
+> > > index ccea34f61152..41853db7c9b8 100644
+> > > --- a/drivers/cpufreq/qcom-cpufreq-hw.c
+> > > +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
+> > > @@ -19,15 +19,21 @@
+> > >  #define LUT_L_VAL                      GENMASK(7, 0)
+> > >  #define LUT_CORE_COUNT                 GENMASK(18, 16)
+> > >  #define LUT_VOLT                       GENMASK(11, 0)
+> > > -#define LUT_ROW_SIZE                   32
+> > >  #define CLK_HW_DIV                     2
+> > >  #define LUT_TURBO_IND                  1
+> > >
+> > > -/* Register offsets */
+> > > -#define REG_ENABLE                     0x0
+> > > -#define REG_FREQ_LUT                   0x110
+> > > -#define REG_VOLT_LUT                   0x114
+> > > -#define REG_PERF_STATE                 0x920
+> > > +struct qcom_cpufreq_soc_data {
+> > > +       u32 reg_enable;
+> > > +       u32 reg_freq_lut;
+> > > +       u32 reg_volt_lut;
+> > > +       u32 reg_perf_state;
+> > > +       u8 lut_row_size;
+> > > +};
+> > > +
+> > > +struct qcom_cpufreq_data {
+> > > +       void __iomem *base;
+> > > +       const struct qcom_cpufreq_soc_data *soc_data;
+> > > +};
+> > >
+> > >  static unsigned long cpu_hw_rate, xo_rate;
+> > >  static bool icc_scaling_enabled;
+> > > @@ -76,10 +82,11 @@ static int qcom_cpufreq_update_opp(struct device *cpu_dev,
+> > >  static int qcom_cpufreq_hw_target_index(struct cpufreq_policy *policy,
+> > >                                         unsigned int index)
+> > >  {
+> > > -       void __iomem *perf_state_reg = policy->driver_data;
+> > > +       struct qcom_cpufreq_data *data = policy->driver_data;
+> > > +       const struct qcom_cpufreq_soc_data *soc_data = data->soc_data;
+> > >         unsigned long freq = policy->freq_table[index].frequency;
+> > >
+> > > -       writel_relaxed(index, perf_state_reg);
+> > > +       writel_relaxed(index, data->base + soc_data->reg_perf_state);
+> > >
+> > >         if (icc_scaling_enabled)
+> > >                 qcom_cpufreq_set_bw(policy, freq);
+> > > @@ -91,7 +98,8 @@ static int qcom_cpufreq_hw_target_index(struct cpufreq_policy *policy,
+> > >
+> > >  static unsigned int qcom_cpufreq_hw_get(unsigned int cpu)
+> > >  {
+> > > -       void __iomem *perf_state_reg;
+> > > +       struct qcom_cpufreq_data *data;
+> > > +       const struct qcom_cpufreq_soc_data *soc_data;
+> > >         struct cpufreq_policy *policy;
+> > >         unsigned int index;
+> > >
+> > > @@ -99,9 +107,10 @@ static unsigned int qcom_cpufreq_hw_get(unsigned int cpu)
+> > >         if (!policy)
+> > >                 return 0;
+> > >
+> > > -       perf_state_reg = policy->driver_data;
+> > > +       data = policy->driver_data;
+> > > +       soc_data = data->soc_data;
+> > >
+> > > -       index = readl_relaxed(perf_state_reg);
+> > > +       index = readl_relaxed(data->base + soc_data->reg_perf_state);
+> > >         index = min(index, LUT_MAX_ENTRIES - 1);
+> > >
+> > >         return policy->freq_table[index].frequency;
+> > > @@ -110,12 +119,13 @@ static unsigned int qcom_cpufreq_hw_get(unsigned int cpu)
+> > >  static unsigned int qcom_cpufreq_hw_fast_switch(struct cpufreq_policy *policy,
+> > >                                                 unsigned int target_freq)
+> > >  {
+> > > -       void __iomem *perf_state_reg = policy->driver_data;
+> > > +       struct qcom_cpufreq_data *data = policy->driver_data;
+> > > +       const struct qcom_cpufreq_soc_data *soc_data = data->soc_data;
+> > >         unsigned int index;
+> > >         unsigned long freq;
+> > >
+> > >         index = policy->cached_resolved_idx;
+> > > -       writel_relaxed(index, perf_state_reg);
+> > > +       writel_relaxed(index, data->base + soc_data->reg_perf_state);
+> > >
+> > >         freq = policy->freq_table[index].frequency;
+> > >         arch_set_freq_scale(policy->related_cpus, freq,
+> > > @@ -125,8 +135,7 @@ static unsigned int qcom_cpufreq_hw_fast_switch(struct cpufreq_policy *policy,
+> > >  }
+> > >
+> > >  static int qcom_cpufreq_hw_read_lut(struct device *cpu_dev,
+> > > -                                   struct cpufreq_policy *policy,
+> > > -                                   void __iomem *base)
+> > > +                                   struct cpufreq_policy *policy)
+> > >  {
+> > >         u32 data, src, lval, i, core_count, prev_freq = 0, freq;
+> > >         u32 volt;
+> > > @@ -134,6 +143,8 @@ static int qcom_cpufreq_hw_read_lut(struct device *cpu_dev,
+> > >         struct dev_pm_opp *opp;
+> > >         unsigned long rate;
+> > >         int ret;
+> > > +       struct qcom_cpufreq_data *drv_data = policy->driver_data;
+> > > +       const struct qcom_cpufreq_soc_data *soc_data = drv_data->soc_data;
+> > >
+> > >         table = kcalloc(LUT_MAX_ENTRIES + 1, sizeof(*table), GFP_KERNEL);
+> > >         if (!table)
+> > > @@ -160,14 +171,14 @@ static int qcom_cpufreq_hw_read_lut(struct device *cpu_dev,
+> > >         }
+> > >
+> > >         for (i = 0; i < LUT_MAX_ENTRIES; i++) {
+> > > -               data = readl_relaxed(base + REG_FREQ_LUT +
+> > > -                                     i * LUT_ROW_SIZE);
+> > > +               data = readl_relaxed(drv_data->base + soc_data->reg_freq_lut +
+> > > +                                     i * soc_data->lut_row_size);
+> > >                 src = FIELD_GET(LUT_SRC, data);
+> > >                 lval = FIELD_GET(LUT_L_VAL, data);
+> > >                 core_count = FIELD_GET(LUT_CORE_COUNT, data);
+> > >
+> > > -               data = readl_relaxed(base + REG_VOLT_LUT +
+> > > -                                     i * LUT_ROW_SIZE);
+> > > +               data = readl_relaxed(drv_data->base + soc_data->reg_volt_lut +
+> > > +                                     i * soc_data->lut_row_size);
+> > >                 volt = FIELD_GET(LUT_VOLT, data) * 1000;
+> > >
+> > >                 if (src)
+> > > @@ -237,6 +248,20 @@ static void qcom_get_related_cpus(int index, struct cpumask *m)
+> > >         }
+> > >  }
+> > >
+> > > +static const struct qcom_cpufreq_soc_data qcom_soc_data = {
+> >
+> > rename this to sdm845_soc_data?
+> >
+>
+> Nah, this is not specific to SDM845. Atleast in mainline, there are 3 SoCs
+> using this compatible.
+>
+> > Or even better, maybe just use the IP version number for this IP block
+> > so that all SoCs using that IP version can use this struct?
+> >
+>
+> Since the SoCs are using the same compatible it makes sense to use the same
+> name for the of_data. I don't think it is a good idea to use different name
+> for the of_data since the differentiation has to happen at compatible level.
 
-Hence, add pinmux and Ethernet PHY configuration for TI j7200 SoC MCU
-Gigabit Ethernet two ports Switch subsystem (CPSW NUSS).
+You are using the name sm8250_soc_data in a subsequent patch, though ;-)
 
-Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
----
- .../dts/ti/k3-j7200-common-proc-board.dts     | 45 +++++++++++++++++++
- 1 file changed, 45 insertions(+)
+So I think it would make sense for compatible "qcom,cpufreq-hw" to use
+data "osm_soc_data" and compatible "qcom,sm8250-epss" to use data
+"epss_soc_data" as suggested by Bjorn.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-index e27069317c4e..f7e6b9b5ef5f 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include "k3-j7200-som-p0.dtsi"
-+#include <dt-bindings/net/ti-dp83867.h>
- 
- / {
- 	chosen {
-@@ -14,6 +15,32 @@
- 	};
- };
- 
-+&wkup_pmx0 {
-+	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0x0068, PIN_OUTPUT, 0) /* MCU_RGMII1_TX_CTL */
-+			J721E_WKUP_IOPAD(0x006c, PIN_INPUT, 0) /* MCU_RGMII1_RX_CTL */
-+			J721E_WKUP_IOPAD(0x0070, PIN_OUTPUT, 0) /* MCU_RGMII1_TD3 */
-+			J721E_WKUP_IOPAD(0x0074, PIN_OUTPUT, 0) /* MCU_RGMII1_TD2 */
-+			J721E_WKUP_IOPAD(0x0078, PIN_OUTPUT, 0) /* MCU_RGMII1_TD1 */
-+			J721E_WKUP_IOPAD(0x007c, PIN_OUTPUT, 0) /* MCU_RGMII1_TD0 */
-+			J721E_WKUP_IOPAD(0x0088, PIN_INPUT, 0) /* MCU_RGMII1_RD3 */
-+			J721E_WKUP_IOPAD(0x008c, PIN_INPUT, 0) /* MCU_RGMII1_RD2 */
-+			J721E_WKUP_IOPAD(0x0090, PIN_INPUT, 0) /* MCU_RGMII1_RD1 */
-+			J721E_WKUP_IOPAD(0x0094, PIN_INPUT, 0) /* MCU_RGMII1_RD0 */
-+			J721E_WKUP_IOPAD(0x0080, PIN_INPUT, 0) /* MCU_RGMII1_TXC */
-+			J721E_WKUP_IOPAD(0x0084, PIN_INPUT, 0) /* MCU_RGMII1_RXC */
-+		>;
-+	};
-+
-+	mcu_mdio_pins_default: mcu-mdio1-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0x009c, PIN_OUTPUT, 0) /* (L1) MCU_MDIO0_MDC */
-+			J721E_WKUP_IOPAD(0x0098, PIN_INPUT, 0) /* (L4) MCU_MDIO0_MDIO */
-+		>;
-+	};
-+};
-+
- &wkup_uart0 {
- 	/* Wakeup UART is used by System firmware */
- 	status = "disabled";
-@@ -62,3 +89,21 @@
- 	/* UART not brought out */
- 	status = "disabled";
- };
-+
-+&mcu_cpsw {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_cpsw_pins_default &mcu_mdio_pins_default>;
-+};
-+
-+&davinci_mdio {
-+	phy0: ethernet-phy@0 {
-+		reg = <0>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+	};
-+};
-+
-+&cpsw_port1 {
-+	phy-mode = "rgmii-rxid";
-+	phy-handle = <&phy0>;
-+};
--- 
-2.17.1
+Regards,
+Amit
 
+
+>
+> > > +       .reg_enable = 0x0,
+> > > +       .reg_freq_lut = 0x110,
+> > > +       .reg_volt_lut = 0x114,
+> > > +       .reg_perf_state = 0x920,
+> > > +       .lut_row_size = 32,
+> > > +};
+> > > +
+> > > +static const struct of_device_id qcom_cpufreq_hw_match[] = {
+> > > +       { .compatible = "qcom,cpufreq-hw", .data = &qcom_soc_data },
+> > > +       {}
+> > > +};
