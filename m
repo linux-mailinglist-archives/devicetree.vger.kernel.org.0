@@ -2,147 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEEB0261DC8
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 21:42:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98F3A261DFE
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 21:45:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730957AbgIHTm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 15:42:27 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:57872 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730883AbgIHPws (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 11:52:48 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 088Fq14c088766;
-        Tue, 8 Sep 2020 10:52:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599580321;
-        bh=cEZvkRsnogXi5jTE+0zv4VJY5SU4FT/ctE+ghwX1lDc=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Li+lGF6ijYlqqJT5GnJRrEVr/c1Pe0AMHxr51idLzgohIplXR1C+pNvKKjXzsBerY
-         uzHNpZo9/DSHZFoBXkUntm/sM6FEispHbx/TUDYeQd9VOTy5+FawgCKjk4Z3Fvn5Me
-         dJf+5oPLfpBlESQoIlEotsqaN0h+1qkBSVQx1HgQ=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 088Fq1D0074408
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Sep 2020 10:52:01 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 8 Sep
- 2020 10:52:00 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 8 Sep 2020 10:52:00 -0500
-Received: from [10.250.34.59] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088Fq0cq120219;
-        Tue, 8 Sep 2020 10:52:00 -0500
-Subject: Re: [v4,4/4] arm64: dts: mt8192: add infracfg_rst node
-To:     Crystal Guo <crystal.guo@mediatek.com>
-CC:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?B?U2VpeWEgV2FuZyAo546L6L+65ZCbKQ==?= 
-        <seiya.wang@mediatek.com>,
-        =?UTF-8?B?U3RhbmxleSBDaHUgKOacseWOn+mZnik=?= 
-        <stanley.chu@mediatek.com>,
-        =?UTF-8?B?WWluZ2pvZSBDaGVuICjpmbPoi7HmtLIp?= 
-        <Yingjoe.Chen@mediatek.com>,
-        =?UTF-8?B?RmFuIENoZW4gKOmZs+WHoSk=?= <fan.chen@mediatek.com>,
-        =?UTF-8?B?WW9uZyBMaWFuZyAo5qKB5YuHKQ==?= <Yong.Liang@mediatek.com>
-References: <20200817030324.5690-1-crystal.guo@mediatek.com>
- <20200817030324.5690-5-crystal.guo@mediatek.com>
- <211bd78f-3b70-1e65-eea9-75cc73a3dfdd@ti.com>
- <1599571618.14806.7.camel@mhfsdcap03>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <77432990-4a0e-e8cd-5dec-772ea9110630@ti.com>
-Date:   Tue, 8 Sep 2020 10:51:55 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1731528AbgIHTo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 15:44:56 -0400
+Received: from mail-il1-f193.google.com ([209.85.166.193]:35529 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730379AbgIHTou (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 15:44:50 -0400
+Received: by mail-il1-f193.google.com with SMTP id l4so91938ilq.2;
+        Tue, 08 Sep 2020 12:44:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=a3xtBC39CZgwRvTtp6n/epd2lOGTmsGabfSGcJrY4g4=;
+        b=WXiAgrsNgvhTnIVOFD2XGXr5RLoyf1Mz0nApdRXQRhktli630KkfghvEkiPmMBtde6
+         G825JiecEi5Ipf5jVVRCXqvz2uIFVoGiFTpmmRzY/JAizuYChoRRJLqxdn9HvxfbB8zd
+         X1zNjKfp29FoL49Y6xhAXYy23QZ4DYsYkHuyflx+e4YjYYUUvcVcLs9VhVVRvdJF1//W
+         HAtfE/YTzZs4QTjAL7zyeqpnNo0JSR7j+il8ZtM7bnMviggMj45ms5p5+PezAyRjoLHZ
+         YcT4HBvFYlyqxTUbz9csEzxRykA1ZFJ4cigWrjURS9AM7N6eOlAzPde0DFlCqQrmg6YW
+         eDvw==
+X-Gm-Message-State: AOAM530qcXvqCJ7exNd8OD8SGcjgdwWqWM+BtXNRkhwDAl6cSaiO+peM
+        buwBH593HOMX5WVL9R2UPQ==
+X-Google-Smtp-Source: ABdhPJwiaJHc9+2FWqhHmrwfZkXwadVWnnvvrWUJptsGOLlriuemrrJR2l1thSDKawc2KsZf8qiJaQ==
+X-Received: by 2002:a05:6e02:ca3:: with SMTP id 3mr353955ilg.227.1599594289150;
+        Tue, 08 Sep 2020 12:44:49 -0700 (PDT)
+Received: from xps15 ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id u17sm65547ilb.44.2020.09.08.12.44.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Sep 2020 12:44:48 -0700 (PDT)
+Received: (nullmailer pid 785807 invoked by uid 1000);
+        Tue, 08 Sep 2020 19:44:47 -0000
+Date:   Tue, 8 Sep 2020 13:44:47 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Antoine Tenart <antoine.tenart@free-electrons.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 05/20] dt-bindings:iio:adc:marvell,berlin2-adc yaml
+ conversion
+Message-ID: <20200908194447.GA784758@bogus>
+References: <20200905173004.216081-1-jic23@kernel.org>
+ <20200905173004.216081-6-jic23@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <1599571618.14806.7.camel@mhfsdcap03>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200905173004.216081-6-jic23@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/8/20 8:26 AM, Crystal Guo wrote:
-> On Thu, 2020-09-03 at 07:29 +0800, Suman Anna wrote:
->> Hi Crystal,
->>
->> On 8/16/20 10:03 PM, Crystal Guo wrote:
->>> add infracfg_rst node which is for MT8192 platform
->>>
->>> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
->>
->> I understand you are posting these together for complete reference, but driver
->> subsystem maintainers typically don't pick dts patches. In anycase, can you
->> clarify if your registers are self-clearing registers?
->>
->> regards
->> Suman
->>
-> Hi Suman,
+On Sat, 05 Sep 2020 18:29:49 +0100, Jonathan Cameron wrote:
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 > 
-> Thanks for your reply.
-> Our reset registers are not self-clearing, it needs to set the clear bit
-> to 1 to clear the related bit.
-> And should I separate this dts patch from the patch sets?
-
-Typically yes, but will leave it upto Philipp and Mediatek DT maintainers.
-
-regards
-Suman
-
+> Part of a general move of IIO bindings over to yaml.
 > 
-> regards
-> Crystal
->>> ---
->>>  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 11 ++++++++++-
->>>  1 file changed, 10 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
->>> index 931e1ca17220..a0cb9904706b 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
->>> @@ -10,6 +10,7 @@
->>>  #include <dt-bindings/interrupt-controller/irq.h>
->>>  #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
->>>  #include <dt-bindings/power/mt8192-power.h>
->>> +#include <dt-bindings/reset/ti-syscon.h>
->>>  
->>>  / {
->>>  	compatible = "mediatek,mt8192";
->>> @@ -219,9 +220,17 @@
->>>  		};
->>>  
->>>  		infracfg: infracfg@10001000 {
->>> -			compatible = "mediatek,mt8192-infracfg", "syscon";
->>> +			compatible = "mediatek,mt8192-infracfg", "syscon", "simple-mfd";
->>>  			reg = <0 0x10001000 0 0x1000>;
->>>  			#clock-cells = <1>;
->>> +
->>> +			infracfg_rst: reset-controller {
->>> +				compatible = "mediatek,infra-reset", "ti,syscon-reset";
->>> +				#reset-cells = <1>;
->>> +				ti,reset-bits = <
->>> +					0x140 15 0x144 15 0 0 (ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* 0: pcie */
->>> +				>;
->>> +			};
->>>  		};
->>>  
->>>  		pericfg: pericfg@10003000 {
->>>
->>
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Cc: Antoine Tenart <antoine.tenart@free-electrons.com>
+> ---
+>  .../bindings/iio/adc/berlin2_adc.txt          | 19 -------
+>  .../bindings/iio/adc/marvell,berlin2-adc.yaml | 50 +++++++++++++++++++
+>  2 files changed, 50 insertions(+), 19 deletions(-)
 > 
+
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+./Documentation/devicetree/bindings/iio/adc/marvell,berlin2-adc.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/iio/adc/marvell,berlin2-adc.yaml#
+
+
+See https://patchwork.ozlabs.org/patch/1358086
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
 
