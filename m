@@ -2,100 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 165C8260F0D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 11:55:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBB4C260F48
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 12:07:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728709AbgIHJzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 05:55:39 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:40400 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728798AbgIHJzi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 05:55:38 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0889tWag121642;
-        Tue, 8 Sep 2020 04:55:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599558932;
-        bh=/WVMwnfmaojk6zh6M1fbb3D/yfnAjVDfwaKQq5TPu4E=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=TaxgCbh9EQHV7HXoyeZ0ms/9mdAVCuKP0/XgR0PypvsTfyPVwZnGnQQn8uzTeHYen
-         p8Xs/Sd1sZeh8ra2/vKpFMONOvsLobJIhUF0rIk0PiAWvHe/4l4wKMJX1VdrqZ0Klj
-         u53TL6ZBvP3aybDLn5zCo+S1Pz4hISTaTbs3vIxw=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0889tWqY067516
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Sep 2020 04:55:32 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 8 Sep
- 2020 04:55:32 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 8 Sep 2020 04:55:32 -0500
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0889tUst020783;
-        Tue, 8 Sep 2020 04:55:30 -0500
-Subject: Re: [PATCH v2 0/4] arm64: Initial support for Texas Instrument's
- J7200 Platform
-To:     Nishanth Menon <nm@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Sekhar Nori <nsekhar@ti.com>, Suman Anna <s-anna@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-References: <20200827065144.17683-1-lokeshvutla@ti.com>
- <de8d64eb-05fd-ed7d-61b8-1d8e13649ae8@ti.com>
- <20200907141427.ti6r3h6namv2hezw@akan>
- <9d8d6980-0b22-da45-52af-474c6d96c873@ti.com>
- <20200907234833.r376hhl64q55gd7o@akan>
-From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <d89cf38a-da57-b1ca-dc80-0c2cca2ada38@ti.com>
-Date:   Tue, 8 Sep 2020 12:55:29 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1729037AbgIHKHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 06:07:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56324 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726801AbgIHKHm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 06:07:42 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA5FFC061573
+        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 03:07:41 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id n14so2610364pff.6
+        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 03:07:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=hU3oOvvnKV3sVS60ywXkD1wU0kB70X7AUVyTyZd2RY4=;
+        b=AJ5s0TM9s5OJw66KaolPB8BsjovKw8GrEqoKSEGdJRI8ZS3Xh22wOFQ72Jp5UEz9QT
+         QL14QkPFwkvl96bfp3dchyut4RLzlQqsVf5x1mwYYY1ZUo/vcJBg5evkvgZMdz+OZiFO
+         ejQuvUh9+00emp0HrgEBJePDPEjuP9ERlmDgq2vfWH8a+TJqz3lUit2tW6+d9KqCszKf
+         x3B0HD2+XG0KZZl3Ov/+RAv9oldBfoGC04efRlw9TosIeO3L9TtIjALv2b5zw/qnxOa2
+         effhj1ijvXKzFiSKxYItEwdlRgjXYWztCYzBFmRwBEPppenKGFSdDN0Sg7r4aaqZVssz
+         yk6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=hU3oOvvnKV3sVS60ywXkD1wU0kB70X7AUVyTyZd2RY4=;
+        b=IlbA0kQMj6gBX/5hnkCyBl+fZLZytDeLOy4QFSvhlqiwUdfcUzl4NtWKeVPp0PK4cn
+         og5KlMk+srGn2qB4DS46AJaRxoyUWt5bvoTYFZqwij2dSdeWhLdg1k9Nn5BcEMnKLSwz
+         FSaHu7Ko4hvPOBTKajmbdlQACF3JycooWTWNDOXiZyK2Uj6QOW/E1RVqM9qNA8Z9kLL3
+         hcMJdAig+M9Mb8QPuAXlOWiDgv0JVJIXoE2sSwAVJMsfSd5vh3v2OWLxU7CTid4Bul+d
+         lQGSatHiUyUR/fXqzQw0Cz0bVYjWICOegpsphin227VBJBbehlFoLZf8+zYdx4XJ2ksx
+         llug==
+X-Gm-Message-State: AOAM530bHjHr0jCOic8puqQT6ehC5dp1sScUA1OkFuZ2zwkyrp6R6r0h
+        IZwPArzRS8vGdVHNvCNXNYq8Mw==
+X-Google-Smtp-Source: ABdhPJweEpB8wgJ9j3N1o+hvbAzIUldosNCWC9AYOg0yuTLIAoB7iMZYQXNSkkxkjZQyFOSNJIhNnw==
+X-Received: by 2002:a65:6545:: with SMTP id a5mr20129366pgw.43.1599559661151;
+        Tue, 08 Sep 2020 03:07:41 -0700 (PDT)
+Received: from localhost ([122.181.54.133])
+        by smtp.gmail.com with ESMTPSA id s198sm14749540pgc.4.2020.09.08.03.07.39
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 08 Sep 2020 03:07:40 -0700 (PDT)
+Date:   Tue, 8 Sep 2020 15:37:33 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Hector Yuan <hector.yuan@mediatek.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        wsd_upstream@mediatek.com
+Subject: Re: [PATCH v4 2/2] dt-bindings: cpufreq: add bindings for MediaTek
+ cpufreq HW
+Message-ID: <20200908100733.pbizjorq3lmn7bew@vireshk-i7>
+References: <1599550547-27767-1-git-send-email-hector.yuan@mediatek.com>
+ <1599550547-27767-3-git-send-email-hector.yuan@mediatek.com>
 MIME-Version: 1.0
-In-Reply-To: <20200907234833.r376hhl64q55gd7o@akan>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1599550547-27767-3-git-send-email-hector.yuan@mediatek.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/09/2020 02:48, Nishanth Menon wrote:
-> On 19:53-20200907, Lokesh Vutla wrote:
+On 08-09-20, 15:35, Hector Yuan wrote:
+> From: "Hector.Yuan" <hector.yuan@mediatek.com>
 > 
-> [... I should have responded to the correct patch..]
->>> Besides yaml and compatibility acks, there are a few ancillary
->>> comments to fix up.. Kconfig -> I think we should either stay with
->>> status quo and create a new config option per SoC OR rename the
->>> config to be generic (using j7200 with j721e SoC config is not very
->>
->> Please suggest your preference here. I guess separate defconfig for J7200?
+> Add devicetree bindings for MediaTek HW driver.
 > 
+> Signed-off-by: Hector.Yuan <hector.yuan@mediatek.com>
+> ---
+>  .../bindings/cpufreq/cpufreq-mediatek-hw.yaml      |  141 ++++++++++++++++++++
+>  1 file changed, 141 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
 > 
-> I was just scanning through remaining arm64 additions to see what others have
-> done. We seem to have two options here:
-> a) Just use ARCH_K3 and no specific SoC configs
-> b) Specific SoC configs
-> In both cases, use += instead of \ to incrementally add dtbs
-> 
-> We have been going with (b) so far, Tero: any specific preference here?
-> 
-> (a) has the aspect of simplicity and reduced dependencies.
-> (b) Allows downstream kernels to save just a little bit and focus purely
->      on SoC of interest.
+> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+> new file mode 100644
+> index 0000000..5be5867
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+> @@ -0,0 +1,141 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/cpufreq/cpufreq-mediatek-hw.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek's CPUFREQ Bindings
+> +
+> +maintainers:
+> +  - Hector Yuan <hector.yuan@mediatek.com>
+> +
+> +description:
+> +  CPUFREQ HW is a hardware engine used by MediaTek
+> +  SoCs to manage frequency in hardware. It is capable of controlling frequency
+> +  for multiple clusters.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,cpufreq-hw
 
-If possible, I think we should aim for a) at least for now. We have the 
-soc type detection code in place anyways that can be used on driver 
-level. Creating compile time flags should be avoided imo as much as 
-possible and just go with runtime detection. I can't see why saving 
-maybe a megabyte of memory with SoC specific kernels would be of any 
-importance on K3 arch with the memory amounts we have in our disposal.
+Missing "" here ?
 
--Tero
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+> +
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 2
+> +    description: |
+> +      Addresses and sizes for the memory of the HW bases in each frequency domain.
+> +
+> +  reg-names:
+> +    items:
+> +      - const: "freq-domain0"
+> +      - const: "freq-domain1"
+> +    description: |
+> +      Frequency domain name. i.e.
+> +      "freq-domain0", "freq-domain1".
+> +
+> +  "#freq-domain-cells":
+> +    const: 1
+> +    description: |
+> +      Number of cells in a freqency domain specifier.
+> +
+> +  mtk-freq-domain:
+> +    maxItems: 1
+> +    description: |
+> +      Define this cpu belongs to which frequency domain. i.e.
+> +      cpu0-3 belong to frequency domain0,
+> +      cpu4-6 belong to frequency domain1.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - "#freq-domain-cells"
+> +
+> +examples:
+> +  - |
+> +    cpus {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            cpu0: cpu@0 {
+> +                device_type = "cpu";
+> +                compatible = "arm,cortex-a55";
+> +                enable-method = "psci";
+> +                mtk-freq-domain = <&cpufreq_hw 0>;
+> +                reg = <0x000>;
+> +            };
+> +
+> +            cpu1: cpu@1 {
+> +                device_type = "cpu";
+> +                compatible = "arm,cortex-a55";
+> +                enable-method = "psci";
+> +                mtk-freq-domain = <&cpufreq_hw 0>;
+> +                reg = <0x100>;
+> +            };
+> +
+> +            cpu2: cpu@2 {
+> +                device_type = "cpu";
+> +                compatible = "arm,cortex-a55";
+> +                enable-method = "psci";
+> +                mtk-freq-domain = <&cpufreq_hw 0>;
+> +                reg = <0x200>;
+> +            };
+> +
+> +            cpu3: cpu@3 {
+> +                device_type = "cpu";
+> +                compatible = "arm,cortex-a55";
+> +                enable-method = "psci";
+> +                mtk-freq-domain = <&cpufreq_hw 0>;
+> +                reg = <0x300>;
+> +            };
+> +
+> +            cpu4: cpu@4 {
+> +                device_type = "cpu";
+> +                compatible = "arm,cortex-a55";
+> +                enable-method = "psci";
+> +                mtk-freq-domain = <&cpufreq_hw 1>;
+> +                reg = <0x400>;
+> +            };
+> +
+> +            cpu5: cpu@5 {
+> +                device_type = "cpu";
+> +                compatible = "arm,cortex-a55";
+> +                enable-method = "psci";
+> +                mtk-freq-domain = <&cpufreq_hw 1>;
+> +                reg = <0x500>;
+> +            };
+> +
+> +            cpu6: cpu@6 {
+> +                device_type = "cpu";
+> +                compatible = "arm,cortex-a75";
+> +                enable-method = "psci";
+> +                mtk-freq-domain = <&cpufreq_hw 1>;
+> +                reg = <0x600>;
+> +            };
+> +
+> +            cpu7: cpu@7 {
+> +                device_type = "cpu";
+> +                compatible = "arm,cortex-a75";
+> +                enable-method = "psci";
+> +                mtk-freq-domain = <&cpufreq_hw 1>;
+> +                reg = <0x700>;
+> +            };
+> +    };
+> +
+> +    /* ... */
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        cpufreq_hw: cpufreq@11bc00 {
+> +            compatible = "mediatek,cpufreq-hw";
+> +            reg = <0 0x11bc10 0 0x8c>,
+> +               <0 0x11bca0 0 0x8c>;
+> +            reg-names = "freq-domain0", "freq-domain1";
+> +            #freq-domain-cells = <1>;
+> +        };
+> +    };
+> +
+> +
+> +
+> +
+
+I would need Ack from Rob for this.
+
+-- 
+viresh
