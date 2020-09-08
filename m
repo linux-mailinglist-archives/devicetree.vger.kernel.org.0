@@ -2,77 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E339261DAB
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 21:40:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BA6E261EBB
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 21:55:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731011AbgIHTks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 15:40:48 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:38570 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732145AbgIHTkr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 15:40:47 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 088DBCkM071411;
-        Tue, 8 Sep 2020 08:11:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599570672;
-        bh=K94NpLuLcZamDWncDjL+O9SnQmyRZwOM566OjMmwI8s=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=nolUPczBc80bVbwUoHTexGdtQQavmAZ/mMiHL+BPc7iW6DVpJnZSD/DDAUm6ecjJI
-         OWB7CAjb4c1ZVQgmXZHD44D1uYIwPga6S7phqFKeEY0en3Mzpd0n5Ks2m4ZGW+Cezc
-         K1KEoXvkK9sQOOnsluGUpm7rFT1v194PYikLiVx4=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088DBCT8024364;
-        Tue, 8 Sep 2020 08:11:12 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 8 Sep
- 2020 08:11:12 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 8 Sep 2020 08:11:12 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088DBAii065838;
-        Tue, 8 Sep 2020 08:11:11 -0500
-Subject: Re: [PATCH v2 1/4] dt-bindings: display: ti,am65x-dss: add missing
- properties to dt-schema
-To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>
-References: <20200827083045.76356-1-tomi.valkeinen@ti.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-Message-ID: <673547ac-51d9-bb8d-d001-c289e08568a6@ti.com>
-Date:   Tue, 8 Sep 2020 16:11:10 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1732470AbgIHTy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 15:54:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51008 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730622AbgIHPhg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 11:37:36 -0400
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29107C061258
+        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 06:16:08 -0700 (PDT)
+Received: by mail-qv1-xf2a.google.com with SMTP id di5so7713549qvb.13
+        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 06:16:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=marek-ca.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=K6nXsix6OgnB440V2dVZFg3CDm1Av9Lyz63Xse3HaT8=;
+        b=X2h00nEKklHqm/sfVWNm2gHs6SXZJ3uPJgyn4w5AOnAxneEAq69OtrJMDl/ALcM4V7
+         bchFGlvBV9xW8617ZkfFmWS5X7XUNEf3YhX7bSh/rzBt06aOXVseXlXftRytg1ROhzg6
+         0O/fMdn7kySDxRvkcu1m1C9AWgICEGu8/9NdmiAO14CDJRrxD9mGxkjO0qrrr/hVppNH
+         8zEYavt7YJGqwPtP+GYYM+1/cwXph77Dw+PdkA6u8Yt52LyQdnknfx2Zq7gD5f1LZmKv
+         lgxFRYDlBsm5rYpdb8UZMtZjyFdluwhsGB1XEl2oHuz940/DsFdRWkCkdZPjZeuYHGyv
+         xsnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=K6nXsix6OgnB440V2dVZFg3CDm1Av9Lyz63Xse3HaT8=;
+        b=txzDmUkrN1/UnYNZwU1igmxI0Z7bn4vf8dIPq4b+EKWvYxffoeOF8mKB+mVFqiNDOH
+         QXdDQNBV+IBrRi506gRg9E6BpdPtEwQY38WWBsrXgor9cwaV4kGCcARlW8OH5LGbZGGF
+         ueEgLSnwxMugjrzookKKpvW4YrLT2/HyEqCY7rPFjK2qfV5c41jVVU1HD+pCuEqZIJCq
+         7HirtDazOB4hkH8BVlN4gJwb/luGVTjYJ3XIl3r0IZZTPbVIuuRRYhJohoQOo4mr9eGA
+         ag/If6GnZqmIOpgT339jeXjXw+tH1nSamShCwRt4E1lc+sa4B7i4Njd7nF+YB3l5EFSb
+         eo+Q==
+X-Gm-Message-State: AOAM530ceUyytBGFq7haDJJdF9Qtwb9La3uF9xeILutosmajsMiDQ0qn
+        5KOiqqRTM5uTYncz4xgeSORLxA==
+X-Google-Smtp-Source: ABdhPJz2YoVk7KQVpRhnJ1zexjKzF7PA0rYZEGBr5ECURFh5Vu41aroQ01kJnVB98FRfsvp1eyAP4w==
+X-Received: by 2002:ad4:4594:: with SMTP id x20mr49890qvu.4.1599570966352;
+        Tue, 08 Sep 2020 06:16:06 -0700 (PDT)
+Received: from localhost.localdomain ([147.253.86.153])
+        by smtp.gmail.com with ESMTPSA id i66sm14392017qkc.63.2020.09.08.06.16.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Sep 2020 06:16:05 -0700 (PDT)
+From:   Jonathan Marek <jonathan@marek.ca>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v2] arm64: dts: qcom: add sm8250 fastrpc nodes
+Date:   Tue,  8 Sep 2020 09:15:00 -0400
+Message-Id: <20200908131500.19891-1-jonathan@marek.ca>
+X-Mailer: git-send-email 2.26.1
 MIME-Version: 1.0
-In-Reply-To: <20200827083045.76356-1-tomi.valkeinen@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob, Tero, Nishanth,
+Add fastrpc nodes for sDSP, cDSP, and aDSP.
 
-On 27/08/2020 11:30, Tomi Valkeinen wrote:
-> Add assigned-clocks, assigned-clock-parents and dma-coherent optional
-> properties.
-> 
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> ---
->  .../devicetree/bindings/display/ti/ti,am65x-dss.yaml  | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+---
+v2: rebase without audio dts nodes, changed "dsps" to "sdsp"
 
-Any comments to this and the rest of the series?
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 115 ++++++++++++++++++++++++++-
+ 1 file changed, 113 insertions(+), 2 deletions(-)
 
- Tomi
-
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index d223a2a14f2d..8ca544b47190 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -1282,8 +1282,35 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
+ 				mboxes = <&ipcc IPCC_CLIENT_SLPI
+ 						IPCC_MPROC_SIGNAL_GLINK_QMP>;
+ 
+-				label = "lpass";
++				label = "slpi";
+ 				qcom,remote-pid = <3>;
++
++				fastrpc {
++					compatible = "qcom,fastrpc";
++					qcom,glink-channels = "fastrpcglink-apps-dsp";
++					label = "sdsp";
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					compute-cb@1 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <1>;
++						iommus = <&apps_smmu 0x0541 0x0>;
++					};
++
++					compute-cb@2 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <2>;
++						iommus = <&apps_smmu 0x0542 0x0>;
++					};
++
++					compute-cb@3 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <3>;
++						iommus = <&apps_smmu 0x0543 0x0>;
++						/* note: shared-cb = <4> in downstream */
++					};
++				};
+ 			};
+ 		};
+ 
+@@ -1320,8 +1347,66 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
+ 				mboxes = <&ipcc IPCC_CLIENT_CDSP
+ 						IPCC_MPROC_SIGNAL_GLINK_QMP>;
+ 
+-				label = "lpass";
++				label = "cdsp";
+ 				qcom,remote-pid = <5>;
++
++				fastrpc {
++					compatible = "qcom,fastrpc";
++					qcom,glink-channels = "fastrpcglink-apps-dsp";
++					label = "cdsp";
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					compute-cb@1 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <1>;
++						iommus = <&apps_smmu 0x1001 0x0460>;
++					};
++
++					compute-cb@2 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <2>;
++						iommus = <&apps_smmu 0x1002 0x0460>;
++					};
++
++					compute-cb@3 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <3>;
++						iommus = <&apps_smmu 0x1003 0x0460>;
++					};
++
++					compute-cb@4 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <4>;
++						iommus = <&apps_smmu 0x1004 0x0460>;
++					};
++
++					compute-cb@5 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <5>;
++						iommus = <&apps_smmu 0x1005 0x0460>;
++					};
++
++					compute-cb@6 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <6>;
++						iommus = <&apps_smmu 0x1006 0x0460>;
++					};
++
++					compute-cb@7 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <7>;
++						iommus = <&apps_smmu 0x1007 0x0460>;
++					};
++
++					compute-cb@8 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <8>;
++						iommus = <&apps_smmu 0x1008 0x0460>;
++					};
++
++					/* note: secure cb9 in downstream */
++				};
+ 			};
+ 		};
+ 
+@@ -2178,6 +2263,32 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
+ 
+ 				label = "lpass";
+ 				qcom,remote-pid = <2>;
++
++				fastrpc {
++					compatible = "qcom,fastrpc";
++					qcom,glink-channels = "fastrpcglink-apps-dsp";
++					label = "adsp";
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					compute-cb@3 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <3>;
++						iommus = <&apps_smmu 0x1803 0x0>;
++					};
++
++					compute-cb@4 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <4>;
++						iommus = <&apps_smmu 0x1804 0x0>;
++					};
++
++					compute-cb@5 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <5>;
++						iommus = <&apps_smmu 0x1805 0x0>;
++					};
++				};
+ 			};
+ 		};
+ 
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+2.26.1
+
