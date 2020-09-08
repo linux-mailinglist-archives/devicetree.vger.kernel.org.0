@@ -2,92 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9D4E260C57
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 09:47:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BFE5260C91
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 09:54:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729257AbgIHHrh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 03:47:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57554 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728786AbgIHHrg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 03:47:36 -0400
-Received: from pali.im (pali.im [31.31.79.79])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B33A121D43;
-        Tue,  8 Sep 2020 07:47:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599551255;
-        bh=mEjPx2kedNNVqke8gtYjeHgXCKotuHFDn/V8y6HlZ4Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=f05USdwn0f1N/tYFfRQflIZ44UF4bl++1ybwuP/jMBwPoZ4JO27SKYcqk2fhGKEZV
-         Sj9FpRwd1T/Cgv00szHFLQ1eE8VOMwcdEK0CcBY5oIAX5IHoV7xtHeCyciJ/GACYl5
-         uev7/0I+rwa5h2HsYRv7DJUr863O2i1t+SOWIwao=
-Received: by pali.im (Postfix)
-        id 4FA59617; Tue,  8 Sep 2020 09:47:33 +0200 (CEST)
-Date:   Tue, 8 Sep 2020 09:47:33 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Jason Cooper <jason@lakedaemon.net>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tomasz Maciej Nowak <tmn505@gmail.com>,
-        Andre Heider <a.heider@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: marvell: espressobin: Add ethernet switch
- aliases
-Message-ID: <20200908074733.f33pwtreojzobivq@pali>
-References: <20200907112718.5994-1-pali@kernel.org>
- <20200907144228.GV3112546@lunn.ch>
- <20200907145213.fwlyz4k6scible7x@pali>
- <20200907154353.GW3112546@lunn.ch>
- <20200907161316.xd5svvahi5xusdlw@pali>
- <20200907172345.GB3254313@lunn.ch>
+        id S1729746AbgIHHyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 03:54:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35804 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729466AbgIHHya (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 03:54:30 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA3E2C061755
+        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 00:54:29 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id a9so16159879wmm.2
+        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 00:54:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=AaJv1mu5ukB/CIcMyJjiUkroua19/SVkAvuVAHfagew=;
+        b=yj9Ik1ndq3jW04GwKrFOI8D/lPSZVkGcU3uzyMVspnynRbQKdFBJN4BFNiIapGRwnR
+         vZYjfZ0jXsdmJWS2xNWLvFAWOvA/GkMFUOAaaTEjv4YuNA7igfTuaSL5w/Sx2MUcPs1w
+         9pykHkjdFNrAQGds+Fr60lNduf7ESa5KsiloGG7zLHXEXWpDE2FP7wi44xCKbV+GuJhI
+         Haax/tWmOAxnKiL294A24g/1CrLCj+/h9S9lPochIfNWS6onPfaA+hmH/Ua5nIQz7BG3
+         mCQZSq/T9x96bj+Wrq7sDzE8UmwxlOhooZ9aKAii8BJ36d4YcmdyiDE/E869lL1S5Vt7
+         txiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=AaJv1mu5ukB/CIcMyJjiUkroua19/SVkAvuVAHfagew=;
+        b=L9p/94oEbMifuoCiMA+yGx+xRblPuDfZFNjk2pUjJQf4wdX/W50d903bc0Ge/2abaM
+         5G04clmUbq+oYzGEtNt9A9SZltD0SOG4XtgTMS0JMhMnbVNjOl0NBVNToAwwXmSkxhV+
+         hJgwi9FPHhHFDEnA0J7rWafo/p5SZxkya5vyzzz8TULRrBeGKXbvT1/faiUm9DRe4zOd
+         98fxwCva8rnYnWl45nlFuqGVcrHa/pWfqLJhljyvUQGKue21jO60ih86AOgDQGjBBm+W
+         b3fd9GJrOxlaRR4MycbIinCfRYRsZKoP1S5PS9qvqMWX55ALlWxDGFI5xAPrbw4p7Qxc
+         UTgg==
+X-Gm-Message-State: AOAM5308nwT8qaqG4WHrJcm6EDvPQ0GifKtefZZ/Raws8zxnjzBh7VQK
+        mXbFV9jOTLNoJRyl44LIIJ7XGAS8krplwisP
+X-Google-Smtp-Source: ABdhPJzELndZXOBjcc+iB86Na+d7gpW0eUl7Xb0Mcmpwvh1mxirZqv7irrBgH24N13Nm09Gk9voTNQ==
+X-Received: by 2002:a1c:7215:: with SMTP id n21mr3241141wmc.154.1599551668340;
+        Tue, 08 Sep 2020 00:54:28 -0700 (PDT)
+Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
+        by smtp.gmail.com with ESMTPSA id f14sm33788291wrv.72.2020.09.08.00.54.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Sep 2020 00:54:27 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     thierry.reding@gmail.com, sam@ravnborg.org,
+        devicetree@vger.kernel.org
+Cc:     dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH v3 1/4] dt-bindings: vendor-prefixes: Add Shanghai Top Display Optolelectronics vendor prefix
+Date:   Tue,  8 Sep 2020 09:54:18 +0200
+Message-Id: <20200908075421.17344-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20200908075421.17344-1-narmstrong@baylibre.com>
+References: <20200908075421.17344-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200907172345.GB3254313@lunn.ch>
-User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday 07 September 2020 19:23:45 Andrew Lunn wrote:
-> On Mon, Sep 07, 2020 at 06:13:16PM +0200, Pali Rohár wrote:
-> > On Monday 07 September 2020 17:43:53 Andrew Lunn wrote:
-> > > > I would not say it is a "new feature". But rather that patch in this
-> > > > email fixes issue that Linux kernel did not set correct MAC address for
-> > > > DSA slave ports. I think it is something which could be backported also
-> > > > to stable releases as "ignoring" vendor/factory MAC address is not
-> > > > correct behavior.
-> > > 
-> > > Hi Pali
-> > > 
-> > > The rules for stable are here:
-> > > 
-> > > https://www.kernel.org/doc/html/v5.8/process/stable-kernel-rules.html
-> > > 
-> > > Do you think it fits?
-> > > 
-> > >    Andrew
-> > 
-> > Hello Andrew! I think it fits into those rules. As I wrote it fixes real
-> > bug that Linux kernel does not use correct MAC address for particular
-> > DSA slaves / ethernet ports.
-> 
-> O.K, then:
-> 
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> 
->     Andrew
+Shanghai Top Display Optolelectronics Co., Ltd  is a display manufacturer
+from Shanghai.
+Web site of the company: http://www.shtdo.com/
 
-Ok! Andrew, I would like to ask another question, how to correctly
-define that this patch depends on a2c7023f7075c? I specified it in
-human-readable part of commit description, but for backporting it would
-also need some machine-readable format. So patch would not be
-occasionally backported to older/stable kernel where a2c7023f7075c is
-not available.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index a1e4356cf522..4e9dfb352c68 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1078,6 +1078,8 @@ patternProperties:
+     description: TPK U.S.A. LLC
+   "^tplink,.*":
+     description: TP-LINK Technologies Co., Ltd.
++  "^tdo,.*":
++    description: Shangai Top Display Optoelectronics Co., Ltd
+   "^tpo,.*":
+     description: TPO
+   "^tq,.*":
+-- 
+2.22.0
+
