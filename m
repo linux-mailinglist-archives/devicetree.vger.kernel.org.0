@@ -2,174 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0138F261339
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 17:12:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EF2B26134F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 17:17:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729753AbgIHPLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 11:11:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46560 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729614AbgIHPKl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 11:10:41 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C508AC0A3BFD;
-        Tue,  8 Sep 2020 07:56:51 -0700 (PDT)
-Received: from [192.168.0.20] (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9A5F53B;
-        Tue,  8 Sep 2020 16:56:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1599577010;
-        bh=NGdIGQYHgvOnBu350R3owi+GaFcb1QuAKzhjqhy8r+A=;
-        h=Reply-To:Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=trUskd4tAYZHuRs76pPaud1uOe7aXS4bBD0DEF39D91utJ1YNaxtoogdOFpex29XZ
-         dWrBLUO7niI6EsuApWegVcEocPI/DN+Ej3N/V5D8Aq+9+DBc6u7h1g+wd2qkwiAAL/
-         pF/hchx6QQhdiiJkiUxRr5l/4K2xzMxiCqPQ5EGg=
-Reply-To: kieran.bingham+renesas@ideasonboard.com
-Subject: Re: [PATCH v2 06/10] arm64: dts: renesas: r8a77961: Add VSP device
- nodes
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent <laurent.pinchart@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     Magnus <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux-DT <devicetree@vger.kernel.org>,
-        "(Renesas) shimoda" <yoshihiro.shimoda.uh@renesas.com>,
-        dri-devel@lists.freedesktop.org
-References: <87o8mhrtxo.wl-kuninori.morimoto.gx@renesas.com>
- <87ft7trtvd.wl-kuninori.morimoto.gx@renesas.com>
-From:   Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Organization: Ideas on Board
-Message-ID: <1ca68a4d-3974-71ce-9f42-93aa3ac99c19@ideasonboard.com>
-Date:   Tue, 8 Sep 2020 15:56:46 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <87ft7trtvd.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+        id S1730180AbgIHPRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 11:17:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52588 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730260AbgIHPRR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 11:17:17 -0400
+Received: from localhost.localdomain (unknown [194.230.155.174])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 92A0323C83;
+        Tue,  8 Sep 2020 15:03:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599577426;
+        bh=dF9JbGnyyk7xqZjhxCmQG69CTL0Od4Gh5eFNR9iVXO0=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=mrd6MXiQPlUWRKz7PGyUl2YdUhvffv/wQCkxVE1PeBZy36/PObpjCWUnn7RmzwjjQ
+         lCkcldVVu4haNcLHn8EVqrQzKNcAUr4bz37hZYenhKE5a6bieNAkTRdR8ZT6J4rod2
+         1YFt5nXwhBBi9FgSV8ITB7QtuptxffZUGFqI5Wa8=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Adam Ford <aford173@gmail.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Robin Gong <yibin.gong@nxp.com>,
+        Alifer Moraes <alifer.wsdm@gmail.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        Vitor Massaru Iha <vitor@massaru.org>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Rajan Vaja <rajan.vaja@xilinx.com>,
+        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH 6/8] arm64: dts: rk3399: Correct interrupt flags in examples
+Date:   Tue,  8 Sep 2020 17:02:39 +0200
+Message-Id: <20200908150241.5771-6-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200908150241.5771-1-krzk@kernel.org>
+References: <20200908150241.5771-1-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Morimoto-san,
+GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
+These are simple defines so they could be used in DTS but they will not
+have the same meaning:
+1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
+2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
 
-On 08/09/2020 01:34, Kuninori Morimoto wrote:
-> 
-> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> 
-> This patch adds VSP device nodes for R-Car M3-W+ (r8a77961) SoC.
-> This patch was tested on R-Car M3-W+ Salvator-XS board.
-> 
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Correct the interrupt flags, assuming the author of the code wanted some
+logical behavior behind the name "ACTIVE_xxx", this is:
+  ACTIVE_HIGH => IRQ_TYPE_LEVEL_HIGH
 
-Thanks, I think this is better now you've sorted the nodes.
-It's nicer having the paired FCP/VSP nodes adjacent I think.
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+---
 
+Not tested on HW.
+---
+ arch/arm64/boot/dts/rockchip/rk3399-firefly.dts      | 3 ++-
+ arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts   | 3 ++-
+ arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi | 3 ++-
+ arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts    | 3 ++-
+ arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts     | 3 ++-
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts   | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts   | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi     | 3 ++-
+ 8 files changed, 14 insertions(+), 8 deletions(-)
 
-> ---
->  arch/arm64/boot/dts/renesas/r8a77961.dtsi | 55 +++++++++++++++++++++++
->  1 file changed, 55 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-> index fe0db11b9cb9..423808b6cd58 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-> @@ -2012,6 +2012,17 @@ fcpf0: fcp@fe950000 {
->  			resets = <&cpg 615>;
->  		};
->  
-> +		vspb: vsp@fe960000 {
-> +			compatible = "renesas,vsp2";
-> +			reg = <0 0xfe960000 0 0x8000>;
-> +			interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&cpg CPG_MOD 626>;
-> +			power-domains = <&sysc R8A77961_PD_A3VC>;
-> +			resets = <&cpg 626>;
-> +
-> +			renesas,fcp = <&fcpvb0>;
-> +		};
-> +
->  		fcpvb0: fcp@fe96f000 {
->  			compatible = "renesas,fcpv";
->  			reg = <0 0xfe96f000 0 0x200>;
-> @@ -2020,6 +2031,17 @@ fcpvb0: fcp@fe96f000 {
->  			resets = <&cpg 607>;
->  		};
->  
-> +		vspi0: vsp@fe9a0000 {
-> +			compatible = "renesas,vsp2";
-> +			reg = <0 0xfe9a0000 0 0x8000>;
-> +			interrupts = <GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&cpg CPG_MOD 631>;
-> +			power-domains = <&sysc R8A77961_PD_A3VC>;
-> +			resets = <&cpg 631>;
-> +
-> +			renesas,fcp = <&fcpvi0>;
-> +		};
-> +
->  		fcpvi0: fcp@fe9af000 {
->  			compatible = "renesas,fcpv";
->  			reg = <0 0xfe9af000 0 0x200>;
-> @@ -2029,6 +2051,17 @@ fcpvi0: fcp@fe9af000 {
->  			iommus = <&ipmmu_vc0 19>;
->  		};
->  
-> +		vspd0: vsp@fea20000 {
-> +			compatible = "renesas,vsp2";
-> +			reg = <0 0xfea20000 0 0x5000>;
-> +			interrupts = <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&cpg CPG_MOD 623>;
-> +			power-domains = <&sysc R8A77961_PD_ALWAYS_ON>;
-> +			resets = <&cpg 623>;
-> +
-> +			renesas,fcp = <&fcpvd0>;
-> +		};
-> +
->  		fcpvd0: fcp@fea27000 {
->  			compatible = "renesas,fcpv";
->  			reg = <0 0xfea27000 0 0x200>;
-> @@ -2038,6 +2071,17 @@ fcpvd0: fcp@fea27000 {
->  			iommus = <&ipmmu_vi0 8>;
->  		};
->  
-> +		vspd1: vsp@fea28000 {
-> +			compatible = "renesas,vsp2";
-> +			reg = <0 0xfea28000 0 0x5000>;
-> +			interrupts = <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&cpg CPG_MOD 622>;
-> +			power-domains = <&sysc R8A77961_PD_ALWAYS_ON>;
-> +			resets = <&cpg 622>;
-> +
-> +			renesas,fcp = <&fcpvd1>;
-> +		};
-> +
->  		fcpvd1: fcp@fea2f000 {
->  			compatible = "renesas,fcpv";
->  			reg = <0 0xfea2f000 0 0x200>;
-> @@ -2047,6 +2091,17 @@ fcpvd1: fcp@fea2f000 {
->  			iommus = <&ipmmu_vi0 9>;
->  		};
->  
-> +		vspd2: vsp@fea30000 {
-> +			compatible = "renesas,vsp2";
-> +			reg = <0 0xfea30000 0 0x5000>;
-> +			interrupts = <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&cpg CPG_MOD 621>;
-> +			power-domains = <&sysc R8A77961_PD_ALWAYS_ON>;
-> +			resets = <&cpg 621>;
-> +
-> +			renesas,fcp = <&fcpvd2>;
-> +		};
-> +
->  		fcpvd2: fcp@fea37000 {
->  			compatible = "renesas,fcpv";
->  			reg = <0 0xfea37000 0 0x200>;
-> 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts b/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
+index 6db18808b9c5..095d615950ca 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
+@@ -5,6 +5,7 @@
+ 
+ /dts-v1/;
+ #include <dt-bindings/input/linux-event-codes.h>
++#include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/pwm/pwm.h>
+ #include "rk3399.dtsi"
+ #include "rk3399-opp.dtsi"
+@@ -676,7 +677,7 @@
+ 		reg = <1>;
+ 		compatible = "brcm,bcm4329-fmac";
+ 		interrupt-parent = <&gpio0>;
+-		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
++		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-names = "host-wake";
+ 		brcm,drive-strength = <5>;
+ 		pinctrl-names = "default";
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
+index 341d074ed996..25cb807bcfa6 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
+@@ -2,6 +2,7 @@
+ /dts-v1/;
+ #include <dt-bindings/pwm/pwm.h>
+ #include <dt-bindings/input/input.h>
++#include <dt-bindings/interrupt-controller/irq.h>
+ #include "rk3399.dtsi"
+ #include "rk3399-opp.dtsi"
+ 
+@@ -623,7 +624,7 @@
+ 		compatible = "brcm,bcm4329-fmac";
+ 		reg = <1>;
+ 		interrupt-parent = <&gpio0>;
+-		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
++		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-names = "host-wake";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&wifi_host_wake_l>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
+index e36837c04dc7..89dae74989bb 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
+@@ -6,6 +6,7 @@
+ 
+ /dts-v1/;
+ #include <dt-bindings/input/linux-event-codes.h>
++#include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/pwm/pwm.h>
+ #include "rk3399.dtsi"
+ #include "rk3399-opp.dtsi"
+@@ -662,7 +663,7 @@
+ 		reg = <1>;
+ 		compatible = "brcm,bcm4329-fmac";
+ 		interrupt-parent = <&gpio0>;
+-		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
++		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-names = "host-wake";
+ 		brcm,drive-strength = <5>;
+ 		pinctrl-names = "default";
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts b/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
+index 1fa80ac15464..113a71256171 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
+@@ -5,6 +5,7 @@
+ 
+ /dts-v1/;
+ #include <dt-bindings/input/linux-event-codes.h>
++#include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/pwm/pwm.h>
+ #include "rk3399.dtsi"
+ #include "rk3399-opp.dtsi"
+@@ -503,7 +504,7 @@
+ 		compatible = "brcm,bcm4329-fmac";
+ 		reg = <1>;
+ 		interrupt-parent = <&gpio0>;
+-		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
++		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-names = "host-wake";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&wifi_host_wake_l>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
+index 6163ae8063a7..ae81fb9d363c 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
+@@ -7,6 +7,7 @@
+ 
+ #include "dt-bindings/pwm/pwm.h"
+ #include "dt-bindings/input/input.h"
++#include <dt-bindings/interrupt-controller/irq.h>
+ #include "rk3399.dtsi"
+ #include "rk3399-opp.dtsi"
+ 
+@@ -691,7 +692,7 @@
+ 		reg = <1>;
+ 		compatible = "brcm,bcm4329-fmac";
+ 		interrupt-parent = <&gpio0>;
+-		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
++		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-names = "host-wake";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&wifi_host_wake_l>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
+index f0055ce2fda0..7df4e698b1c0 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
+@@ -19,7 +19,7 @@
+ 		compatible = "brcm,bcm4329-fmac";
+ 		reg = <1>;
+ 		interrupt-parent = <&gpio0>;
+-		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
++		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-names = "host-wake";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&wifi_host_wake_l>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
+index 4c7ebb1c5d2d..887a29898617 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
+@@ -20,7 +20,7 @@
+ 		compatible = "brcm,bcm4329-fmac";
+ 		reg = <1>;
+ 		interrupt-parent = <&gpio0>;
+-		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
++		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-names = "host-wake";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&wifi_host_wake_l>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
+index 5e3ac589bc54..9a4cd799edde 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
+@@ -7,6 +7,7 @@
+ 
+ #include "rk3399.dtsi"
+ #include "rk3399-opp.dtsi"
++#include <dt-bindings/interrupt-controller/irq.h>
+ 
+ / {
+ 	sdio_pwrseq: sdio-pwrseq {
+@@ -522,7 +523,7 @@
+ 		compatible = "brcm,bcm4329-fmac";
+ 		reg = <1>;
+ 		interrupt-parent = <&gpio0>;
+-		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
++		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-names = "host-wake";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&wifi_host_wake_l>;
+-- 
+2.17.1
 
