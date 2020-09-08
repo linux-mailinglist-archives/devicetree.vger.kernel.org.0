@@ -2,97 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BFB32615BA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 18:55:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09F4D261580
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 18:51:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731816AbgIHQza (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 12:55:30 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:46724 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732022AbgIHQsf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 12:48:35 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 088GmQLS000952;
-        Tue, 8 Sep 2020 11:48:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599583706;
-        bh=heepsa3H5CzTMHxVpknOIi6tT91C85/dF829wuRvsyY=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=HdRvKRoadIt2fB72f8D/9zcjFfVFpaKl082AgM46toOypH0t9hxNQQWc0YNUeyCFm
-         lE0c+2HPmVi9iQvq/9Tltq4sLIGo95x5+igRtzO7RFphkqnevkD9r+/IkH1KDwd2+Z
-         XZT+brkcpwG1NBWPEq9WddPv2i6e0UvZ4acCxlhE=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088GmQoY098138;
-        Tue, 8 Sep 2020 11:48:26 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 8 Sep
- 2020 11:48:25 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 8 Sep 2020 11:48:25 -0500
-Received: from [10.250.34.59] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088GmPpd010912;
-        Tue, 8 Sep 2020 11:48:25 -0500
-Subject: Re: [PATCH v3 1/5] arm64: dts: ti: Makefile: Use ARCH_K3 for building
- dtbs
-To:     Lokesh Vutla <lokeshvutla@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>
-CC:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-References: <20200908162252.17672-1-lokeshvutla@ti.com>
- <20200908162252.17672-2-lokeshvutla@ti.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <e18882ae-f6b2-7dd8-15ee-aa719888c91f@ti.com>
-Date:   Tue, 8 Sep 2020 11:48:20 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1732053AbgIHQvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 12:51:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41926 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731909AbgIHQvJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 12:51:09 -0400
+Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B576E2137B;
+        Tue,  8 Sep 2020 16:51:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599583868;
+        bh=pW1S8wYQ7shAS4VTkFPTvct/ClWzUHOw3xWhbsYQUNo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=FgS6w9TKkNIumIokoiwznLHegSZ8da9H6/tyCUONyA8D6mS4MC5L9U2z22U5vpbaJ
+         F9LBw9H3U/ZQfNzWt6ceq2QpbMCME12qMJBPAnufXbEXaMdXUN5OQTdjSiBIy0r3bk
+         7U2jnKRg1UiTm9IReOgbeVZRQG6XO2kMrq5x8Ajs=
+Received: by mail-oo1-f51.google.com with SMTP id 4so4091291ooh.11;
+        Tue, 08 Sep 2020 09:51:08 -0700 (PDT)
+X-Gm-Message-State: AOAM5336w4FaUrgkkaZQMHIC9XcoaoO79MmlghHpn2rTwscnyo8U5huj
+        MQjZH4r+nvWe9apsBepBEXfpRVfNTTha4s0nQQ==
+X-Google-Smtp-Source: ABdhPJyVFdSAOgZ7160kEJoAezjYnztio3h9Ino2moi2r5NNuCCiGtHqBpSUtvivi5rsYhCBevOSckk/m/8RpCmF5Go=
+X-Received: by 2002:a4a:d306:: with SMTP id g6mr19090952oos.25.1599583867914;
+ Tue, 08 Sep 2020 09:51:07 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200908162252.17672-2-lokeshvutla@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20200904152404.20636-1-krzk@kernel.org> <20200904152404.20636-13-krzk@kernel.org>
+ <CAL_Jsq+tGQhkqtQszOx7nvr1PR=YFz2p1=OnWQ8JxmSg4qNkHA@mail.gmail.com> <20200907060958.GA4525@kozik-lap>
+In-Reply-To: <20200907060958.GA4525@kozik-lap>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 8 Sep 2020 10:50:56 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJZ=PxDxH-=GUUg7WadZrAKjYbtE0sQ8h9YDGOGx6Ykwg@mail.gmail.com>
+Message-ID: <CAL_JsqJZ=PxDxH-=GUUg7WadZrAKjYbtE0sQ8h9YDGOGx6Ykwg@mail.gmail.com>
+Subject: Re: [PATCH v3 12/14] dt-bindings: mtd: gpmi-nand: Fix matching of
+ clocks on different SoCs
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-clk <linux-clk@vger.kernel.org>, devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Guenter Roeck <linux@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/8/20 11:22 AM, Lokesh Vutla wrote:
-> To allow lesser dependency and better maintainability use CONFIG_ARCH_K3
-> for building dtbs for all K3 based devices. This is as per the
-> discussion in [0].
-> 
-> [0] https://lore.kernel.org/linux-arm-kernel/20200908112534.t5bgrjf7y3a6l2ss@akan/
-> 
-> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/Makefile | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 05c0bebf65d4..e7bfb16fa816 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -6,6 +6,6 @@
->  # Copyright (C) 2016-2018 Texas Instruments Incorporated - https://www.ti.com/
+On Mon, Sep 7, 2020 at 12:10 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On Fri, Sep 04, 2020 at 04:36:39PM -0600, Rob Herring wrote:
+> > On Fri, Sep 4, 2020 at 9:25 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > >
+> > > Driver requires different amount of clocks for different SoCs.  Describe
+> > > these requirements properly to fix dtbs_check warnings like:
+> > >
+> > >     arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dt.yaml: nand-controller@33002000: clock-names:1: 'gpmi_apb' was expected
+> > >
+> > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > >
+> > > ---
+> > >
+> > > Changes since v1:
+> > > 1. Do not require order of clocks (use pattern).
+> >
+> > To the extent that you can, you should fix the order in dts files
+> > first. If we just adjust the schemas to match the dts files, then
+> > what's the point?
+>
+> The DTSes do not have mixed order of clocks between each other, as fair
+> as I remember. It was fix after Sasha Hauer comment that order is not
+> necessarily good.
+>
+> We have the clock-names property, why enforcing the order?
 
-Please update the Copyright to use 2020, like 2016-2020. Minor comment, so can
-be fixed up while applying.
+Because DT/OpenFirmware has always had a defined order for property
+values. '*-names' is just extra information.
 
-regards
-Suman
-
->  #
->  
-> -dtb-$(CONFIG_ARCH_K3_AM6_SOC) += k3-am654-base-board.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
->  
-> -dtb-$(CONFIG_ARCH_K3_J721E_SOC) += k3-j721e-common-proc-board.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
-> 
-
+Rob
