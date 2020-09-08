@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B264826207D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:12:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5349A26207E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:12:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730114AbgIHUMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 16:12:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51630 "EHLO mail.kernel.org"
+        id S1730715AbgIHUMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 16:12:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51646 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729779AbgIHPLR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        id S1729789AbgIHPLR (ORCPT <rfc822;devicetree@vger.kernel.org>);
         Tue, 8 Sep 2020 11:11:17 -0400
 Received: from localhost.localdomain (unknown [194.230.155.174])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9E23422581;
-        Tue,  8 Sep 2020 15:03:17 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 175F823D99;
+        Tue,  8 Sep 2020 15:04:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599577403;
-        bh=dQl/cv3asrxqvHBK6gxEvrP1nC+3QbFJgNA48nB7Uoo=;
+        s=default; t=1599577464;
+        bh=YKA5ZQ6xQuK7/axErohadLOOxrTTzusock+I6lSVols=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=A/jetl4YqGIgX07RNuKDFdrZLQGTKYBnINjj5B4mRI2vXEygwV3rCLmz41YfJPep6
-         L9jVVpaJ3sp5zcHyDGREZ0R3PXKWnsnI/2QP7bxxe+2/n2KbKd+uPOkSrwngs7lm2u
-         fzCp6KhUt7yH2uVEO4II8MfFxR+9QyCjsef2yzco=
+        b=gsYDhSvt5XQoUSq0sd5XwiHacUheT0WHPxvKefh917Asncn0qCMXgo2WpxOewfDjz
+         Kyu5lWSGvvVTxaFceSLEA6eDfpEp1OxHdDD8VI/QIYPzTeeKKCYhi6LEBUFepnA1zx
+         r3Ta+kp0THQPcnZjE3RrWs4vPERyWSJzqaP3GwgA=
 From:   Krzysztof Kozlowski <krzk@kernel.org>
 To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
@@ -45,9 +45,9 @@ To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
 Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH 2/8] ARM: dts: rk3188: Correct interrupt flags in examples
-Date:   Tue,  8 Sep 2020 17:02:35 +0200
-Message-Id: <20200908150241.5771-2-krzk@kernel.org>
+Subject: [PATCH 8/8] arm64: dts: imx8mm-var-som-symphony: Drop unused gpioledgrp
+Date:   Tue,  8 Sep 2020 17:02:41 +0200
+Message-Id: <20200908150241.5771-8-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200908150241.5771-1-krzk@kernel.org>
 References: <20200908150241.5771-1-krzk@kernel.org>
@@ -56,45 +56,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
-These are simple defines so they could be used in DTS but they will not
-have the same meaning:
-1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
-2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
-
-Correct the interrupt flags without affecting the code:
-  ACTIVE_HIGH => IRQ_TYPE_NONE
+The gpioledgrp in iomux is not used, so it can be dropped.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-
 ---
+ arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts | 6 ------
+ 1 file changed, 6 deletions(-)
 
-Not tested on HW.
----
- arch/arm/boot/dts/rk3188-bqedison2qc.dts | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/rk3188-bqedison2qc.dts b/arch/arm/boot/dts/rk3188-bqedison2qc.dts
-index 66a0ff196eb1..b191347894f6 100644
---- a/arch/arm/boot/dts/rk3188-bqedison2qc.dts
-+++ b/arch/arm/boot/dts/rk3188-bqedison2qc.dts
-@@ -7,6 +7,7 @@
- /dts-v1/;
- #include <dt-bindings/i2c/i2c.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
- #include "rk3188.dtsi"
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
+index b84d94e10c26..fbf321cdcf16 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
+@@ -193,12 +193,6 @@
+ 		>;
+ 	};
  
- / {
-@@ -479,7 +480,7 @@
- 		reg = <1>;
- 		compatible = "brcm,bcm4329-fmac";
- 		interrupt-parent = <&gpio3>;
--		interrupts = <RK_PD2 GPIO_ACTIVE_HIGH>;
-+		interrupts = <RK_PD2 IRQ_TYPE_NONE>;
- 		interrupt-names = "host-wake";
- 		brcm,drive-strength = <5>;
- 		pinctrl-names = "default";
+-	pinctrl_gpio_led: gpioledgrp {
+-		fsl,pins = <
+-			MX8MM_IOMUXC_NAND_READY_B_GPIO3_IO16	0x19
+-		>;
+-	};
+-
+ 	pinctrl_i2c2: i2c2grp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_I2C2_SCL_I2C2_SCL		0x400001c3
 -- 
 2.17.1
 
