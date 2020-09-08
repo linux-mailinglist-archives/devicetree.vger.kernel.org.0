@@ -2,155 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 866D2261304
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 16:53:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD94C261331
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 17:08:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729799AbgIHOxk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 10:53:40 -0400
-Received: from foss.arm.com ([217.140.110.172]:54242 "EHLO foss.arm.com"
+        id S1728936AbgIHPIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 11:08:02 -0400
+Received: from foss.arm.com ([217.140.110.172]:54574 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729670AbgIHO0F (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 10:26:05 -0400
+        id S1729691AbgIHPGX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 11:06:23 -0400
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2126B1684;
-        Tue,  8 Sep 2020 07:16:31 -0700 (PDT)
-Received: from ubuntu.arm.com (unknown [10.57.13.108])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 80CE83F73C;
-        Tue,  8 Sep 2020 07:16:30 -0700 (PDT)
-From:   Nicola Mazzucato <nicola.mazzucato@arm.com>
-To:     devicetree@vger.kernel.org
-Cc:     nicola.mazzucato@arm.com
-Subject: [PATCH] dt-bindings: arm: Add devicetree binding for cpu-performance-dependencies
-Date:   Tue,  8 Sep 2020 15:17:14 +0100
-Message-Id: <20200908141714.7194-1-nicola.mazzucato@arm.com>
-X-Mailer: git-send-email 2.27.0
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4CA921682;
+        Tue,  8 Sep 2020 07:09:03 -0700 (PDT)
+Received: from bogus (unknown [10.57.10.112])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4059F3F73C;
+        Tue,  8 Sep 2020 07:09:01 -0700 (PDT)
+Date:   Tue, 8 Sep 2020 15:08:51 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Amit Kucheria <amitk@kernel.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Taniya Das <tdas@codeaurora.org>
+Subject: Re: [PATCH 5/7] cpufreq: qcom-hw: Use regmap for accessing hardware
+ registers
+Message-ID: <20200908140842.GA17621@bogus>
+References: <20200908075716.30357-1-manivannan.sadhasivam@linaro.org>
+ <20200908075716.30357-6-manivannan.sadhasivam@linaro.org>
+ <20200908103444.5e526uawa45om6lt@vireshk-i7>
+ <20200908111141.GB23095@mani>
+ <20200908111813.bbgfxo5v7qt6ujpc@vireshk-i7>
+ <CAHLCerMndYeEBOxtj8mV7OdOP9pufx+C7n1F9m+CFAneuh8DnA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHLCerMndYeEBOxtj8mV7OdOP9pufx+C7n1F9m+CFAneuh8DnA@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently, there is an assumption that the performance domains as provided
-by the SCMI protocol should be mirroring the exact implementation in
-hardware, for example, the clock domains, which are a typical type of
-performance domains.
+On Tue, Sep 08, 2020 at 05:18:35PM +0530, Amit Kucheria wrote:
+> On Tue, Sep 8, 2020 at 4:48 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> >
+> > On 08-09-20, 16:41, Manivannan Sadhasivam wrote:
+> > > On 0908, Viresh Kumar wrote:
+> > > > On 08-09-20, 13:27, Manivannan Sadhasivam wrote:
+> > > > > Use regmap for accessing cpufreq registers in hardware.
+> > > >
+> > > > Why ? Please mention why a change is required in the log.
+> > > >
+> > >
+> > > Only because it is recommended to use regmap for abstracting the hw access.
+> >
+> > Yes it can be very useful in abstracting the hw access in case of
+> > busses like SPI/I2C, others, but in this case there is only one way of
+> > doing it with the exact same registers. I am not sure it is worth it
+> > here. FWIW, I have never played with regmaps personally, and so every
+> > chance I can be wrong here.
+> 
+> One could handle the reg offsets through a struct initialisation, but
+> then you end up with lots of #defines for bitmasks and bits for each
+> version of the IP. And the core code becomes a bit convoluted IMO,
+> trying to handle the differences.
+> 
+> regmap hides the differences of the bit positions and register offsets
+> between several IP versions.
+> 
+> > > Moreover it handles the proper locking for us in the core (spinlock vs mutex).
+> >
+> > What locking do you need here ?
+> 
+> Right, locking isn't the main reason here.
 
-By design, an SCMI performance domain defines the granularity of
-performance controls, it does not describe any underlying hardware
-dependencies (although they may match in many cases).
+If that is the case, IMO it is better to set disable_lock or something
+in config especially as this regmap_write is used in qcom_cpufreq_hw_fast_switch
 
-As a consequence, in platforms where hardware may have the ability to
-control cpu performance at different granularity and choose to describe
-fine-grained performance control through SCMI performance domains, there
-is currently no way for OSPM to discover the actual cpu hardware
-dependencies. Inevitably, software components that rely on this missing
-description will cease to work.
-
-Thus, there is a need for a new description of hardware dependencies where
-the performance level is coordinated by hardware (or firmware) since these
-dependency domains might be larger than the SCMI performance domains.
-
-This new optional binding will provide visibility to OSPM on any hardware
-or firmware coordination of performance requests and enable more
-accurate assumptions about performance and performance side-effects of
-requesting performance level changers. This is essential information for
-OSPM thermal and energy management frameworks.
-
-There are two main reasons to support this new addition:
-
-1) Per-cpu control & SCMI performance domains
-
-Same as explained above. Some platforms would like to make aggregation
-decisions in firmware and want to describe themselves as having per-cpu
-control. In order to continue to make sane decisions in the OSPM layer,
-we need to know about the underlying connections.
-
-With this optional binding, we provide performance dependencies
-information to OSPM for sets of CPUs while the h/w coordinates the
-performance level for each cpu.
-
-2) ACPI
-
-With respect to performance, ACPI describes two main types of coordination
-that may take place in system when logical processors are required to
-transition to a different power/performance state. These two types are
-software coordination (SW) and hardware coordination (HW). In the first
-one, OSPM is in charge of handling such transitions while preserving the
-integrity of the entire system. In the latter case, the h/w is responsible
-for ensuring correct operations.
-
-In the HW coordination, OSPM can control each processor as if they were all
-independent each other. However, platforms can use ACPI defined interfaces
-to group CPUs to create so called "dependency domain". Such interface is
-the _PSD method. Users in kernel that need to know dependencies among
-cores, can retrieve such information via _PSD [1].
-
-If the same system needs to work with dt + SCMI, we will have all the
-controls, but we are missing the information performance level coordination
-in hardware/firmware.
-This new dt binding provides the missing bits.
-
-[1]ACPI Specification, version 6.3 - 8.3 Power, Performance, and Throttling
-State Dependencies
-
-Signed-off-by: Nicola Mazzucato <nicola.mazzucato@arm.com>
----
- .../bindings/arm/cpu-perf-dependencies.yaml   | 45 +++++++++++++++++++
- 1 file changed, 45 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/cpu-perf-dependencies.yaml
-
-diff --git a/Documentation/devicetree/bindings/arm/cpu-perf-dependencies.yaml b/Documentation/devicetree/bindings/arm/cpu-perf-dependencies.yaml
-new file mode 100644
-index 000000000000..3b8cf7e29982
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/cpu-perf-dependencies.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/cpu-perf-dependencies.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: CPU Performance Dependencies
-+
-+maintainers:
-+  - Nicola Mazzucato <nicola.mazzucato@arm.com>
-+
-+description: |+
-+  This optional node provides information to OSPM of cpu performance
-+  dependencies.
-+  Each list represents a set of CPUs which have performance level
-+  dependencies and can assumed to be roughly at the same performance
-+  level coordinated by hardware and/or firmware.
-+  Example: Describing CPUs in the same clock domain.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - arm,cpu-perf-dependencies
-+
-+  cpu-perf-affinity:
-+    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    description: |
-+      Specifies a list of phandles to CPU nodes corresponding to a set of CPUs
-+      which have performance affinity.
-+
-+examples:
-+  - |
-+    cpu-performance-dependencies {
-+        compatible = "arm,cpu-perf-dependencies";
-+        cpu-perf-domain0 {
-+            cpu-perf-affinity = <&CPU0>, <&CPU1>, <&CPU2>, <&CPU3>;
-+        }
-+        cpu-perf-domain1 {
-+            cpu-perf-affinity = <&CPU4>, <&CPU5>, <&CPU6>;
-+        }
-+        cpu-perf-domain2 {
-+            cpu-perf-affinity = <&CPU7>;
-+        }
-+    };
 -- 
-2.27.0
-
+Regards,
+Sudeep
