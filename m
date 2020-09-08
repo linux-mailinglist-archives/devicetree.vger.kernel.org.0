@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B23726215C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:49:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D89B5262170
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 22:52:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728572AbgIHUty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 16:49:54 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:43100 "EHLO
+        id S1728390AbgIHUwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 16:52:21 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:34373 "EHLO
         mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726434AbgIHUtx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 16:49:53 -0400
-Received: by mail-io1-f67.google.com with SMTP id z25so807827iol.10;
-        Tue, 08 Sep 2020 13:49:52 -0700 (PDT)
+        with ESMTP id S1726699AbgIHUwV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 16:52:21 -0400
+Received: by mail-io1-f67.google.com with SMTP id m17so880814ioo.1;
+        Tue, 08 Sep 2020 13:52:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=l6Ml6GUsFvFs2hmUbBhScVBvUaAujChY5id6z4NCBL4=;
-        b=sASPHLuGB9PHconzuB6LRRphRNUTCeg20ViM7IUJ8rUcocTCZzDbNFnpbXfAM+yxLK
-         Gb7nF1PYQu+bOlTNkTneEWRQLd2cg/y3eiPTaO1r5jj4hZDC/+9oClbhzvB8bQpSei8H
-         UEAhK1HFKQyMBtGO+8kxJY2zhd1XvSANM1owW88Qz+PYn3h5jcCCmz1K/j1wHII2anDD
-         3ROp5A2JwMT+QlL9LrrtEfBxqpZoCoL6b5aPMyaiXH7WpPjQAWTFBqI79QVrMe60dPT2
-         1pO2tFr86N0sRU++xIbx5jry7us/AUTZOHulcANs85qzrr3BuCmxJGeK6M361k0pCbaN
-         XK/g==
-X-Gm-Message-State: AOAM530pJy0Q/J2A0sWgqXAtN38lcahq0EuOXCVIOdi/6NETKSsdpXrH
-        EjRXeXgz8Lh3D2Sj/JkgjA==
-X-Google-Smtp-Source: ABdhPJyul47wGDEorl9zgNUus3MDtK7opu0OS0zlBS8occCySSRUeRKc5hrknvTvzMWAL0NLClcy2Q==
-X-Received: by 2002:a02:ccdb:: with SMTP id k27mr768174jaq.103.1599598192571;
-        Tue, 08 Sep 2020 13:49:52 -0700 (PDT)
+        bh=JzepCYrGAGrYES9D47w2RisPkLkEF03INGsKvpBbxRY=;
+        b=KxAiqQo1sgQEYEPjNtOsyWyCSuEguB+4OMXrm4Ig7CZ9boaG2GezSaCw2u3V1Sle4A
+         b7nGOwJL/lxKDpl67n3FHOlyDEKvP4lZYkL7NkO+u1x4coMKmPncB+VHVY1DYSfAaHME
+         yBR6aDY6FkpmLe8o+FaJ1laJMwmfgqIVo1iUdcTts5JEIe4cUNTbC3HWG0f/OUykXdCz
+         ir/9/Wf0G1tIbR51P0surEZTG3WXgtyB8XB9iAz0T3fBVMsK3IDZFUlwckAPRnDEgvKS
+         zjqpGOvjEqXwEycNSZi8jmA/YiuujbWxgB92hX7i+UEyppJN9pLW/1y4aW9oqRYYOI74
+         nD8g==
+X-Gm-Message-State: AOAM533AHRazEO4NvO1h8d+VgKg1hQBkYChlCilLvaHmVSoJ+FHHsW/Y
+        STSc9+eDBSzDmj1M0/z+1A==
+X-Google-Smtp-Source: ABdhPJxLB3kOj8pf6Yly17ORHTH8WuKy2jZOn9ohFBy9irVHuogpqDPXWV9q86vA+IYz8U0MDdVCYg==
+X-Received: by 2002:a05:6638:22ba:: with SMTP id z26mr839301jas.55.1599598340138;
+        Tue, 08 Sep 2020 13:52:20 -0700 (PDT)
 Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id i10sm209529ioi.39.2020.09.08.13.49.51
+        by smtp.gmail.com with ESMTPSA id r8sm199831iot.51.2020.09.08.13.52.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Sep 2020 13:49:52 -0700 (PDT)
-Received: (nullmailer pid 894747 invoked by uid 1000);
-        Tue, 08 Sep 2020 20:49:50 -0000
-Date:   Tue, 8 Sep 2020 14:49:50 -0600
+        Tue, 08 Sep 2020 13:52:19 -0700 (PDT)
+Received: (nullmailer pid 898720 invoked by uid 1000);
+        Tue, 08 Sep 2020 20:52:17 -0000
+Date:   Tue, 8 Sep 2020 14:52:17 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        srv_heupstream@mediatek.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: spmi: document binding for the
- Mediatek SPMI controller
-Message-ID: <20200908204950.GA893759@bogus>
-References: <1598006677-7953-1-git-send-email-hsin-hsiung.wang@mediatek.com>
- <1598006677-7953-2-git-send-email-hsin-hsiung.wang@mediatek.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Chris Brandt <chris.brandt@renesas.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH] dt-bindings: pinctrl: renesas,rza2-pinctrl: Fix pin
+ controller node name
+Message-ID: <20200908205217.GA898665@bogus>
+References: <20200821111127.3771-1-geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1598006677-7953-2-git-send-email-hsin-hsiung.wang@mediatek.com>
+In-Reply-To: <20200821111127.3771-1-geert+renesas@glider.be>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 21, 2020 at 06:44:36PM +0800, Hsin-Hsiung Wang wrote:
-> This adds documentation for the SPMI controller found on Mediatek SoCs.
+On Fri, 21 Aug 2020 13:11:27 +0200, Geert Uytterhoeven wrote:
+> According to Devicetree Specification v0.2 and later, Section "Generic
+> Names Recommendation", the node name for a pin controller device node
+> should be "pinctrl".
 > 
-> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  .../devicetree/bindings/spmi/spmi-mtk-pmif.txt     | 33 ++++++++++++++++++++++
->  1 file changed, 33 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spmi/spmi-mtk-pmif.txt
+> To be queued in sh-pfc for v5.10.
+> 
+>  .../devicetree/bindings/pinctrl/renesas,rza2-pinctrl.yaml       | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-Bindings are in DT schema format now. Please convert this.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
