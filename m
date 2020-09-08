@@ -2,74 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B56F260DA3
-	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 10:35:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8ACD260DB6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Sep 2020 10:38:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729734AbgIHIfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 04:35:20 -0400
-Received: from mail.alarsen.net ([144.76.18.233]:57426 "EHLO mail.alarsen.net"
+        id S1729911AbgIHIiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 04:38:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37072 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729629AbgIHIfT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Sep 2020 04:35:19 -0400
-X-Greylist: delayed 386 seconds by postgrey-1.27 at vger.kernel.org; Tue, 08 Sep 2020 04:35:18 EDT
-Received: from oscar.alarsen.net (unknown [IPv6:2001:470:1f0b:246:b440:f8d3:1c0c:d20c])
-        by joe.alarsen.net (Postfix) with ESMTPS id C72DC2B80B87;
-        Tue,  8 Sep 2020 10:28:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alarsen.net; s=joe;
-        t=1599553730; bh=vAMC3BpR+mvYVqZXlzgmRJWrQUKXzqY7hp9gqzLPC+M=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=kMpihx1Mn0lZF+E26HcrGXm3wEl1wM3kQy9vMh0OgkdaWmym0/RAttcriMqnUNx+Q
-         onTCxRAk4kQFdU4k5nSd+5wUEG3XWrGMOplq2HqO9QooG+jtDochhQkAddnZU6i3BM
-         A7l1QtSqSgTV0VKpPpD0wi38Cf+6S8QGZy0DmSts=
-Received: from oscar.localnet (localhost [IPv6:::1])
-        by oscar.alarsen.net (Postfix) with ESMTP id 98F8327C02A7;
-        Tue,  8 Sep 2020 10:28:50 +0200 (CEST)
-From:   Anders Larsen <al@alarsen.net>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     thierry.reding@gmail.com, sam@ravnborg.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: vendor-prefixes: Add Shanghai Top Display Optolelectronics vendor prefix
-Date:   Tue, 08 Sep 2020 10:28:50 +0200
-Message-ID: <14178277.p4ol7qMFiq@alarsen.net>
-In-Reply-To: <20200908075421.17344-2-narmstrong@baylibre.com>
-References: <20200908075421.17344-1-narmstrong@baylibre.com> <20200908075421.17344-2-narmstrong@baylibre.com>
+        id S1729564AbgIHIiv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Sep 2020 04:38:51 -0400
+Received: from [192.168.0.50] (89-70-52-201.dynamic.chello.pl [89.70.52.201])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0A582215A4;
+        Tue,  8 Sep 2020 08:38:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599554331;
+        bh=9MbsarOq+P/4I79z3A+fJ+J72iGu7faVW8HMRIAC4yg=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=ABlmjheudFWqMnnqN7fkj7Y8fpGWpqp+Q+5bztrxFGYwdt/wYgY/MV7PHBbVNqkon
+         YKpo8TUVTX6CKqR+9LMrE0vMFmrIIsUlMMIhexMaoFG+3MN9Tu7yuOd+G3uin4Mt/h
+         ku2dg3SQDqNkWUHQcVwN7jdxOTn9U8cssWk6hieU=
+Subject: Re: [RFT 09/25] ARM: dts: s5pv210: fix number of I2S DAI cells
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Jonathan Bakker <xc-racer2@live.ca>
+Cc:     Kukjin Kim <kgene@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
+References: <20200907161141.31034-1-krzk@kernel.org>
+ <20200907161141.31034-10-krzk@kernel.org>
+ <BN6PR04MB0660D9B0D0B5FB4F40CF2769CB280@BN6PR04MB0660.namprd04.prod.outlook.com>
+ <20200908065321.GB24227@pi3>
+From:   Sylwester Nawrocki <snawrocki@kernel.org>
+Message-ID: <48aa966f-d3b8-7e4a-36aa-aed4630d331a@kernel.org>
+Date:   Tue, 8 Sep 2020 10:38:46 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+In-Reply-To: <20200908065321.GB24227@pi3>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tuesday, 2020-09-08 09:54 Neil Armstrong wrote:
-> Shanghai Top Display Optolelectronics Co., Ltd  is a display manufacturer
-> from Shanghai.
-> Web site of the company: http://www.shtdo.com/
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index a1e4356cf522..4e9dfb352c68 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -1078,6 +1078,8 @@ patternProperties:
->      description: TPK U.S.A. LLC
->    "^tplink,.*":
->      description: TP-LINK Technologies Co., Ltd.
-> +  "^tdo,.*":
-> +    description: Shangai Top Display Optoelectronics Co., Ltd
+On 9/8/20 08:53, Krzysztof Kozlowski wrote:
+> On Mon, Sep 07, 2020 at 04:55:26PM -0700, Jonathan Bakker wrote:
+>> Sadly, this is causing issues for me.  The machine driver is no longer probing correctly
+>> on the Galaxy S.
+>>
+>> The failing call in sound/soc/samsung/aries_wm8994.c is
+>>
+>> 	/* Set CPU of_node for BT DAI */
+>> 	aries_dai[2].cpus->of_node = of_parse_phandle(cpu,
+>> 			"sound-dai", 1);
+>>
+>> where cpus->of_node is not set properly.  Which is definitely weird because it doesn't
+>> look like this should affect that.
+>>
+>> Let me know if there's any specific test that you want me to do.
+> Thanks for the tests. I wonder now if this was working before because
+> really my change should not break it... I'll think more about it.
 
-Please keep the list sorted alphabetically as requested in line 25 of the file.
-
->    "^tpo,.*":
->      description: TPO
->    "^tq,.*":
-
-Cheers
-Anders
-
-
+I think of_parse_phandle_with_args() needs to be used instead of just
+of_parse_phandle() for that to work, as AFAICS the latter assumes the
+cells count == 0. We would need first to update the driver and then dts.
