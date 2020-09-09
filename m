@@ -2,402 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A487263182
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 18:16:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E48A263150
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 18:07:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730967AbgIIQQc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 12:16:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54032 "EHLO
+        id S1730937AbgIIQHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 12:07:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730996AbgIIQMt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 12:12:49 -0400
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2F61C061344;
-        Wed,  9 Sep 2020 06:48:51 -0700 (PDT)
-Received: by mail-pg1-x542.google.com with SMTP id u13so2127771pgh.1;
-        Wed, 09 Sep 2020 06:48:51 -0700 (PDT)
+        with ESMTP id S1730180AbgIIQHi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 12:07:38 -0400
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93B84C0612A3
+        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 07:43:06 -0700 (PDT)
+Received: by mail-lj1-x241.google.com with SMTP id k25so3859782ljg.9
+        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 07:43:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4HvDFPexsr3s8vYjArlu6gd3N2WqfJ+OIg8egu/XCac=;
-        b=J72MnFFZPk8u2206qNOtZ8zlPYgrR+X7pVkPWdPhSDSmCOfDa0MEJnRcCwc5XFw0mm
-         Sb1lV3OennBIkiQRhc1R9Cqh98lBtOaDVB+fAUD+z3jcJIBgQ+Oh/oqMMqSJJm1WVdD9
-         14VbNIjhy1+L+Uj5j7VEF9gFJyNVZKbjv4K7dQom9wlg+yNZhsFThmEKa+XBh0dg9f5W
-         19K0E481CVGu3OHopl8TAG3T7AASPx7+BNMyuozy8TwCOs9JHgphikRfA3TPcsQBkMnh
-         ggETmYwWv//F/4g6KmFxUq5LFmeDeHnVgtvaWehFZqCyo+/+kL+okh/+UiDa3eBd+AaW
-         wCcQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=yMvVXpSpVGDfdX14bLkO7U8LOBlYVmYuUOGPXx5qIqI=;
+        b=QQ9REk01gK8HMw9gq+R0GrwFAdnxdqqge4xTp6/7MQehjUS9y+wbanI6/644+8Jnoj
+         x0nJwH1JzaP99Y4Hk5xD20aNtEKBUGH0vq49poqM4naz0TVy8S/HlIIcdrZP2oqOeOH3
+         zNdU0CdhhsfgfqUeeFUekq/yFA4pUaabVp4C+U6M876Z7NXB9goGBQ3vVPEoweS3CBYC
+         aOvRW9r2zP4QTK8f3VY3ESF1+nLxm7MK5IODm0FOMDFG6p7h0/3cDGbRhTaYZrxxZpNL
+         A1NwBLGGTbORcve/wW4AtG16KNmL0sZ60qAoC2gqAPDu7L0zJJcEUQJ74JYoO0hjCH6j
+         IORw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4HvDFPexsr3s8vYjArlu6gd3N2WqfJ+OIg8egu/XCac=;
-        b=gOd+9JyN/jSl8wdefoSxgaSHu9OElxQCcbCz7/fG98EHUFjyXXBCiNgfqIrIlxfS0O
-         qYdEiOka+sDjCtVbt7U3GBBw7zFMe0BMZSiMugSgxtVsr3UepmL3q2OTVCB2eokIhv4g
-         Ce9TPcO4jrytFGjMfQFlG3ZXkhbVeuEHJyOPtdnFkOyF9ajeH4xXHhcpHgss8XKz488r
-         96MB8E9tE8OQy8kcOmTfCWurp32j3c6MFQ4pJHI62QAy8vBdjCzVksflpUtdWO+rOc7X
-         kfzw1tWBnRbrdMU2SMawLYoezg3oj7hyHeaKVb8euqusAFCV7LRp7NxXSdeKcBFGkefU
-         mcaQ==
-X-Gm-Message-State: AOAM531dN9pvz0GJgprt+osMLPmeClXDAqqwlJokF8i0ngtUxBlVwf90
-        dlC4qWsyLmpwOIrYmptbHBXMeBIybN/b2yrVUOU=
-X-Google-Smtp-Source: ABdhPJwjGN/noYtRq/MK1sDgwwqkVhBVfELDCJ83d3DmuK7PnZsQ3TAXDjKUtQ6RdtWZMOqD40lzOcLYlIZiBWGiE+k=
-X-Received: by 2002:aa7:800c:: with SMTP id j12mr889318pfi.130.1599659331306;
- Wed, 09 Sep 2020 06:48:51 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=yMvVXpSpVGDfdX14bLkO7U8LOBlYVmYuUOGPXx5qIqI=;
+        b=Reklh0wZ20MUfQaH6JJUOPOUdPGr5rYhID2yDdGV6UfCFWrLljYFaYeNW7b1gWyss/
+         kbJ6XRJUgZ+eZsiWLNAtPV7cnYwPX7MxyvJbPSjysVy7YWk5/ePiNj2hk1jcCcgyTUTL
+         KFEHQiyKGOfoCJhpK6nUV8xZ+iye0P8kf6Dl6ZJchiaeXmSz/tD0LVVkQODaR8KGV8Ne
+         H/5NfTwGsePU5sFSbUsZ1UDaa0VeLZk5RdbluIs4cQL2YGToSNasq79/HZmVsOEUDkGL
+         lWtjPpomQftdiM9SKMdT0oV5TOfWgpqb+covFERi5KeenSRQVzLZWOkVVBQlkibdD3pP
+         BzLg==
+X-Gm-Message-State: AOAM5306S2PxjKc7ctFORlQoCtaiE7cx6+vS5mZjyF8HkimGmtSMjZHM
+        L0EBph8GwfL6fY6b6lfRozMYWw==
+X-Google-Smtp-Source: ABdhPJxXHYgt5utpdo1iDhw6xcrA0sfYrG3fGr8zUuYpZCCfG44ZvKKajKg2fIEZzIw61sghcU/i2A==
+X-Received: by 2002:a2e:b4f5:: with SMTP id s21mr2161986ljm.270.1599662580464;
+        Wed, 09 Sep 2020 07:43:00 -0700 (PDT)
+Received: from eriador.lan ([188.162.64.155])
+        by smtp.gmail.com with ESMTPSA id t12sm621665lfk.26.2020.09.09.07.42.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Sep 2020 07:42:59 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v3 02/10] dt-bindings: thermal: qcom: add adc-thermal monitor bindings
+Date:   Wed,  9 Sep 2020 17:42:40 +0300
+Message-Id: <20200909144248.54327-3-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200909144248.54327-1-dmitry.baryshkov@linaro.org>
+References: <20200909144248.54327-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-References: <1599474459-20853-1-git-send-email-gene.chen.richtek@gmail.com> <1599474459-20853-2-git-send-email-gene.chen.richtek@gmail.com>
-In-Reply-To: <1599474459-20853-2-git-send-email-gene.chen.richtek@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 9 Sep 2020 16:48:33 +0300
-Message-ID: <CAHp75VdLDvoQicP1nLnjOiit6qjaw9n7+LuJ-J3MtaoHUOa_2g@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] leds: mt6360: Add LED driver for MT6360
-To:     Gene Chen <gene.chen.richtek@gmail.com>
-Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, cy_huang@richtek.com,
-        benjamin.chao@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 7, 2020 at 1:31 PM Gene Chen <gene.chen.richtek@gmail.com> wrote:
->
-> From: Gene Chen <gene_chen@richtek.com>
->
-> Add MT6360 LED driver include 2-channel Flash LED with torch/strobe mode,
-> and 4-channel RGB LED support Register/Flash/Breath Mode
-
-I'm wondering why you don't use struct led_classdev_flash.
-
-...
-
-> +//
-> +// Copyright (C) 2020 MediaTek Inc.
-> +//
-
-Do you really need these two // lines?
-
-...
-
-> +enum {
-> +       MT6360_LED_ISNK1 = 0,
-> +       MT6360_LED_ISNK2,
-> +       MT6360_LED_ISNK3,
-> +       MT6360_LED_ISNK4,
-> +       MT6360_LED_FLASH1,
-> +       MT6360_LED_FLASH2,
-
-> +       MT6360_MAX_LEDS,
-
-No comma for terminator entry.
-
-> +};
-
-...
-
-> +#define MT6360_ISNK_MASK               0x1F
-
-GENMASK()
-
-...
-
-> +#define MT6360_ITORCH_MIN              25000
-> +#define MT6360_ITORCH_STEP             12500
-> +#define MT6360_ITORCH_MAX              400000
-> +#define MT6360_ISTRB_MIN               50000
-> +#define MT6360_ISTRB_STEP              12500
-> +#define MT6360_ISTRB_MAX               1500000
-> +#define MT6360_STRBTO_MIN              64000
-> +#define MT6360_STRBTO_STEP             32000
-> +#define MT6360_STRBTO_MAX              2432000
-
-Add unit suffixes, please.
-
-...
-
-> +#define FLED_TORCH_FLAG_MASK           0x0c
-
-> +#define FLED_STROBE_FLAG_MASK          0x03
-
-GENMASK()
-
-...
-
-> +       dev_dbg(lcdev->dev, "[%d] brightness %d\n", led->led_no, level);
-
-Not production noise.
-
-...
-
-> +       ret = regmap_update_bits(priv->regmap, MT6360_REG_RGBEN, enable_mask, val);
-> +       if (ret)
-> +               return ret;
-> +
-> +       return 0;
-
-return regmap...
-
-> +       u32 val = (level) ? MT6360_FLCSEN_MASK(led->led_no) : 0;
-
-Why parens?
-
-...
-
-> +       dev_dbg(lcdev->dev, "[%d] brightness %d\n", led->led_no, level);
-
-Noise.
-
-...
-
-> +       if (priv->fled_strobe_used) {
-> +               dev_warn(lcdev->dev, "Please disable strobe first [%d]\n", priv->fled_strobe_used);
-> +               return -EINVAL;
-
-Hmm... Shouldn't be guaranteed by some framework?
-
-...
-
-> +               curr = prev & (~BIT(led->led_no));
-
-Too many parens.
-
-...
-
-> +static int mt6360_strobe_brightness_set(struct led_classdev_flash *fl_cdev, u32 brightness)
-> +{
-> +       struct mt6360_led *led = container_of(fl_cdev, struct mt6360_led, flash);
-> +       struct led_classdev *lcdev = &fl_cdev->led_cdev;
-> +
-
-> +       dev_dbg(lcdev->dev, "[%d] strobe brightness %d\n", led->led_no, brightness);
-
-Noise. Point of this entire function?
-
-> +       return 0;
-> +}
-
-...
-
-> +       dev_dbg(lcdev->dev, "[%d] strobe state %d\n", led->led_no, state);
-
-Noise.
-
-If you wish to do it right, add trace events to the framework.
-
-...
-
-> +       if (priv->fled_torch_used) {
-
-> +               dev_warn(lcdev->dev, "Please disable torch first [0x%x]\n", priv->fled_torch_used);
-
-Again, why the warning? Can this be a part of the framework?
-
-> +               return -EINVAL;
-> +       }
-
-...
-
-> +               curr = prev & (~BIT(led->led_no));
-
-Too many parens.
-
-...
-
-> +       if (!prev && curr)
-> +               usleep_range(5000, 6000);
-> +       else if (prev && !curr)
-> +               udelay(500);
-
-These delays must be explained.
-
-...
-
-> +       if (led->led_no == MT6360_LED_FLASH1) {
-> +               strobe_timeout_mask = MT6360_FLED1STRBTO_MASK;
-> +               fled_short_mask = MT6360_FLED1SHORT_MASK;
-
-> +
-
-Redundant blank line.
-
-> +       } else {
-> +               strobe_timeout_mask = MT6360_FLED2STRBTO_MASK;
-> +               fled_short_mask = MT6360_FLED2SHORT_MASK;
-> +       }
-
-...
-
-> +static int mt6360_flash_external_strobe_set(struct v4l2_flash *v4l2_flash, bool enable)
-> +{
-> +       struct led_classdev_flash *flash = v4l2_flash->fled_cdev;
-> +       struct mt6360_led *led = container_of(flash, struct mt6360_led, flash);
-> +       struct mt6360_priv *priv = led->priv;
-
-> +       u32 enable_mask = MT6360_FLCSEN_MASK(led->led_no);
-
-enable_mask -> mask
-  u32 value = enable ? mask : 0;
-
-> +       int ret;
-> +
-> +       ret = regmap_update_bits(priv->regmap, MT6360_REG_FLEDEN, enable_mask,
-
-> +                                enable ? enable_mask : 0);
-
-  ret =  ... mask, value);
-
-> +       if (ret)
-> +               return ret;
-> +
-> +       if (enable)
-> +               priv->fled_strobe_used |= BIT(led->led_no);
-> +       else
-> +               priv->fled_strobe_used &= (~BIT(led->led_no));
-
-Too many parens.
-
-> +
-> +       return 0;
-> +}
-
-...
-
-> +       s->val = s->max = (s->min) + (lcdev->max_brightness - 1) * s->step;
-
-Ditto.
-
-...
-
-> +static void clamp_align(u32 *v, u32 min, u32 max, u32 step)
-
-Can we keep a similar API, i.e. return a new value rather than update old?
-
-> +{
-
-> +       *v = clamp_val(*v, min, max);
-
-I would rather use a temporary variable (and it actually will be
-required with above).
-
-> +       if (step > 1)
-> +               *v = (*v - min) / step * step + min;
-
-Sounds like open coded rounddown().
-
-> +}
-
-...
-
-> +       lcdev->max_brightness = (val - MT6360_ITORCH_MIN) / MT6360_ITORCH_STEP + 1;
-
-DIV_ROUND_UP(val - MT6360_ITORCH_MIN, MT6360_ITORCH_STEP) ?
-
-...
-
-> +static int mt6360_init_common_properties(struct mt6360_led *led, struct led_init_data *init_data)
-> +{
-> +       const char *str;
-> +
-> +       if (!fwnode_property_read_string(init_data->fwnode, "default-state", &str)) {
-> +               if (!strcmp(str, "on"))
-> +                       led->default_state = STATE_ON;
-> +               else if (!strcmp(str, "keep"))
-> +                       led->default_state = STATE_KEEP;
-
-> +               else
-
-I wouldn't allow some garbage to be off.
-
-> +                       led->default_state = STATE_OFF;
-> +       }
-
-What about
-
-static const char * const states = { "on", "keep", "off" };
-
-int ret;
-
-ret = match_string(states, ARRAY_SIZE(states), str);
-if (ret)
- ...
-
-default_state = ret;
-
-?
-
-> +       return 0;
-> +}
-
-...
-
-> +static int mt6360_led_probe(struct platform_device *pdev)
-> +{
-> +       struct mt6360_priv *priv;
-> +       struct fwnode_handle *child;
-> +       int i, ret;
-> +
-
-> +       priv->regmap = dev_get_regmap(pdev->dev.parent, NULL);
-> +       if (!priv->regmap) {
-> +               dev_err(&pdev->dev, "Failed to get parent regmap\n");
-> +               return -ENODEV;
-> +       }
-
-...
-
-> +out:
-
-out_flash_leds_release: ?
-
-> +       for (i = MT6360_LED_FLASH1; i <= MT6360_LED_FLASH2; i++) {
-> +               struct mt6360_led *led = priv->leds[i];
-> +
-> +               if (led && led->v4l2_flash)
-> +                       v4l2_flash_release(led->v4l2_flash);
-> +
-> +       }
-
-...
-
-> +static int mt6360_led_remove(struct platform_device *pdev)
-> +{
-> +       struct mt6360_priv *priv = platform_get_drvdata(pdev);
-> +       int i;
-> +
-> +       for (i = MT6360_LED_FLASH1; i <= MT6360_LED_FLASH2; i++) {
-> +               struct mt6360_led *led = priv->leds[i];
-> +
-> +               if (led && led->v4l2_flash)
-> +                       v4l2_flash_release(led->v4l2_flash);
-> +
-> +       }
-
-Looks like a code duplication.
-
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct of_device_id __maybe_unused mt6360_led_of_id[] = {
-> +       { .compatible = "mediatek,mt6360-led", },
-
-> +       {},
-
-No need comma.
-
-> +};
-
-
+Add bindings for thermal monitor, part of Qualcomm PMIC5 chips. It is a
+close counterpart of VADC part of those PMICs.
+
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ .../bindings/thermal/qcom-spmi-adc-tm5.yaml   | 141 ++++++++++++++++++
+ 1 file changed, 141 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+
+diff --git a/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+new file mode 100644
+index 000000000000..b3818357808b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+@@ -0,0 +1,141 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/thermal/qcom-spmi-adc-tm5.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm's SPMI PMIC ADC-TM
++maintainers:
++  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
++
++properties:
++  compatible:
++    const: qcom,spmi-adc-tm5
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  "#thermal-sensor-cells":
++    const: 1
++    description:
++      Number of cells required to uniquely identify the thermal sensors. Since
++      we have multiple sensors this is set to 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  qcom,avg-samples:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Number of samples to be used for measurement.
++    enum:
++      - 1
++      - 2
++      - 4
++      - 8
++      - 16
++    default: 1
++
++  qcom,decimation:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: This parameter is used to decrease ADC sampling rate.
++            Quicker measurements can be made by reducing decimation ratio.
++    enum:
++      - 250
++      - 420
++      - 840
++    default: 840
++
++patternProperties:
++  "^([-a-z0-9]*)@[0-9]+$":
++    type: object
++    description:
++      Represent one thermal sensor.
++
++    properties:
++      reg:
++        description: Specify the sensor channel.
++        maxItems: 1
++
++      io-channels:
++        description:
++          From common IIO binding. Used to pipe PMIC ADC channel to thermal monitor
++
++      qcom,adc-channel:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: Corresponding ADC channel ID.
++
++      qcom,ratiometric:
++        $ref: /schemas/types.yaml#/definitions/flag
++        description:
++          Channel calibration type.
++          If this property is specified VADC will use the VDD reference
++          (1.875V) and GND for channel calibration. If property is not found,
++          channel will be calibrated with 0V and 1.25V reference channels,
++          also known as absolute calibration.
++
++      qcom,hw-settle-time:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: Time between AMUX getting configured and the ADC starting conversion.
++
++      qcom,pre-scaling:
++        $ref: /schemas/types.yaml#/definitions/uint32-array
++        description: Used for scaling the channel input signal before the
++          signal is fed to VADC. See qcom,spi-vadc specification for the list
++          of possible values.
++        minItems: 2
++        maxItems: 2
++
++    required:
++      - reg
++      - qcom,adc-channel
++
++    additionalProperties:
++      false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - "#address-cells"
++  - "#size-cells"
++  - "#thermal-sensor-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++        #include <dt-bindings/iio/qcom,spmi-vadc.h>
++        #include <dt-bindings/interrupt-controller/irq.h>
++        pm8150b_adc: adc@3100 {
++            compatible = "qcom,spmi-adc5";
++            /* Other propreties are omitted */
++            conn-therm@4f {
++                reg = <ADC5_AMUX_THM3_100K_PU>;
++                qcom,ratiometric;
++                qcom,hw-settle-time = <200>;
++            };
++        };
++
++        pm8150b_adc_tm: adc-tm@3500 {
++            compatible = "qcom,spmi-adc-tm5";
++            reg = <0x3500>;
++            interrupts = <0x2 0x35 0x0 IRQ_TYPE_EDGE_RISING>;
++            #thermal-sensor-cells = <1>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            conn-therm@0 {
++                reg = <0>;
++                io-channels = <&pm8150b_adc ADC5_AMUX_THM3_100K_PU>;
++                qcom,adc-channel = <ADC5_AMUX_THM3_100K_PU>;
++                qcom,ratiometric;
++                qcom,hw-settle-time = <200>;
++            };
++        };
++...
 -- 
-With Best Regards,
-Andy Shevchenko
+2.28.0
+
