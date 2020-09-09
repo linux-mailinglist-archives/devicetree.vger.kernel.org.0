@@ -2,143 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB6B3262BA7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 11:20:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D54B262BAF
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 11:22:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726226AbgIIJUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 05:20:52 -0400
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:43396 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725917AbgIIJUw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 05:20:52 -0400
-Received: by mail-ed1-f66.google.com with SMTP id n13so1886316edo.10;
-        Wed, 09 Sep 2020 02:20:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=PNmAfjU4H8Zs5sT50QV1b9clmpM+rEqrxgMSd1310HY=;
-        b=DLA3Vrq01UT2vsRpkdsbBH1ScpPCezhLJy8R0iucwWzvHO232sc4JrgI17NyaiILZW
-         SlE9yesYUJwJmUGb9jzqjWQxkrVbPRy5FPy8cesarw+lFXqPXj5112jPohaAoUkbWdqp
-         bzhZUMuimnjbBfD3zfwaKxQImKwVCEElsvQZoeiwdFOSSAt/2r//LbGKq28vZZLLDryB
-         iHiCJacpKKdIB8B1oHM0ndwdKJDrXjQo36XTTnZhAT+Zw68YeIsMCOdISp6lPNmic8pV
-         vlywY9GzgAWKxyhYAyc+RKkio+CT6MdSuLdWFM3hy6NvMr/7t/AHV/tJk1f128KaN1jl
-         n0Vg==
-X-Gm-Message-State: AOAM5325QuZpnTNH4h9koyPuGiwhfSZJj3foRZHBSPn0eKREf7VaoEnW
-        k4/c41kaluMPsgtyZs/95aw=
-X-Google-Smtp-Source: ABdhPJyvE1fotHFbZZdQmEQ+CwuYf7b6JGPrd//NJAWkJjBm7V86ddJ0cwro1l4DBy1w1oj1V485DQ==
-X-Received: by 2002:a50:e70e:: with SMTP id a14mr3019138edn.93.1599643250032;
-        Wed, 09 Sep 2020 02:20:50 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.174])
-        by smtp.googlemail.com with ESMTPSA id r15sm1435034edv.94.2020.09.09.02.20.48
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 09 Sep 2020 02:20:49 -0700 (PDT)
-Date:   Wed, 9 Sep 2020 11:20:47 +0200
-From:   "krzk@kernel.org" <krzk@kernel.org>
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "tharvey@gateworks.com" <tharvey@gateworks.com>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "rjones@gateworks.com" <rjones@gateworks.com>
-Subject: Re: [PATCH] dt-bindings: mfd: Correct interrupt flags in examples
-Message-ID: <20200909092047.GA4184@kozik-lap>
-References: <20200908145900.4423-1-krzk@kernel.org>
- <5ea2a75a873b6291962f6b6a7949e9d185187911.camel@fi.rohmeurope.com>
- <20200909081716.GA11775@kozik-lap>
- <745c815f716fa8245f17cb2e189529e382df63da.camel@fi.rohmeurope.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <745c815f716fa8245f17cb2e189529e382df63da.camel@fi.rohmeurope.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S1726426AbgIIJWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 05:22:30 -0400
+Received: from mail.thorsis.com ([92.198.35.195]:42873 "EHLO mail.thorsis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726708AbgIIJW3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Sep 2020 05:22:29 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.thorsis.com (Postfix) with ESMTP id 2D8D5356E;
+        Wed,  9 Sep 2020 11:22:27 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
+Received: from mail.thorsis.com ([127.0.0.1])
+        by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id enPhrRHJ5ZnP; Wed,  9 Sep 2020 11:22:27 +0200 (CEST)
+Received: by mail.thorsis.com (Postfix, from userid 109)
+        id 0EC1F3DEB; Wed,  9 Sep 2020 11:22:26 +0200 (CEST)
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NO_RECEIVED,
+        NO_RELAYS autolearn=unavailable autolearn_force=no version=3.4.2
+From:   Alexander Dahl <ada@thorsis.com>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     linux-leds@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Alexander Dahl <post@lespocky.de>, devicetree@vger.kernel.org,
+        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] leds: pwm: Make automatic labels work
+Date:   Wed, 09 Sep 2020 11:22:18 +0200
+Message-ID: <1670070.OCB1Fln39h@ada>
+In-Reply-To: <20200909090033.GD10891@amd>
+References: <20200831210232.28052-1-post@lespocky.de> <2019500.FJf2EgCAKA@ada> <20200909090033.GD10891@amd>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 09, 2020 at 08:57:36AM +0000, Vaittinen, Matti wrote:
-> Hello Krzysztof,
+Hello Pavel,
+
+Am Mittwoch, 9. September 2020, 11:00:33 CEST schrieb Pavel Machek:
+> Hi!
 > 
-> On Wed, 2020-09-09 at 10:17 +0200, krzk@kernel.org wrote:
-> > On Wed, Sep 09, 2020 at 06:30:44AM +0000, Vaittinen, Matti wrote:
-> > > On Tue, 2020-09-08 at 16:59 +0200, Krzysztof Kozlowski wrote:
-> > > > GPIO_ACTIVE_x flags are not correct in the context of interrupt
-> > > > flags.
-> > > > These are simple defines so they could be used in DTS but they
-> > > > will
-> > > > not
-> > > > have the same meaning:
-> > > > 1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
-> > > > 2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
+> > > > for leds-gpio you can use the properties 'function' and 'color' in the
+> > > > devicetree node and omit 'label', the label is constructed
+> > > > automatically.  This is a common feature supposed to be working for
+> > > > all
+> > > > LED drivers.  However it did not yet work for the 'leds-pwm' driver.
+> > > > This series fixes the driver and takes the opportunity to update the
+> > > > dt-bindings accordingly.
 > > > > 
-> > > > Correct the interrupt flags, assuming the author of the code
-> > > > wanted
-> > > > some
-> > > > logical behavior behind the name "ACTIVE_xxx", this is:
-> > > >   ACTIVE_LOW => IRQ_TYPE_LEVEL_LOW
+> > > > v1: based on v5.9-rc2, backport on v5.4.59 tested and working
 > > > > 
-> > > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > > > v2: based on v5.9-rc3, added the dt-bindings update patch
+> > > > 
+> > > > Greets
+> > > > Alex
+> > > > 
+> > > > Alexander Dahl (2):
+> > > >    leds: pwm: Allow automatic labels for DT based devices
+> > > >    dt-bindings: leds: Convert pwm to yaml
+> > > >   
+> > > >   .../devicetree/bindings/leds/leds-pwm.txt     | 50 -----------
+> > > >   .../devicetree/bindings/leds/leds-pwm.yaml    | 85
+> > > >   +++++++++++++++++++
+> > > >   drivers/leds/leds-pwm.c                       |  9 +-
+> > > >   3 files changed, 93 insertions(+), 51 deletions(-)
+> > > >   delete mode 100644
+> > > >   Documentation/devicetree/bindings/leds/leds-pwm.txt
+> > > >   create mode 100644
+> > > >   Documentation/devicetree/bindings/leds/leds-pwm.yaml
 > > > 
-> > > For BD70528:
-> > > Acked-By: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> > > For both patches:
 > > > 
-> > > > ---
-> > > >  Documentation/devicetree/bindings/mfd/act8945a.txt          | 2
-> > > > +-
-> > > >  Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml    | 3
-> > > > ++-
-> > > >  Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt | 2
-> > > > +-
-> > > >  3 files changed, 4 insertions(+), 3 deletions(-)
-> > > > 
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd70528-
-> > > > pmic.txt b/Documentation/devicetree/bindings/mfd/rohm,bd70528-
-> > > > pmic.txt
-> > > > index c3c02ce73cde..386eec06cf08 100644
-> > > > --- a/Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt
-> > > > +++ b/Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt
-> > > > @@ -39,7 +39,7 @@ pmic: pmic@4b {
-> > > >  	compatible = "rohm,bd70528";
-> > > >  	reg = <0x4b>;
-> > > >  	interrupt-parent = <&gpio1>;
-> > > > -	interrupts = <29 GPIO_ACTIVE_LOW>;
-> > > > +	interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
-> > > 
-> > > This is how it should have been from the beginning :) Thanks!
+> > > Acked-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
 > > 
-> > I start to wonder now. It seems some boards do not configure a pull
-> > up
-> > there, so IRQ_TYPE_LEVEL_LOW is wrong - causes the line to stay in
-> > low
-> > state.  But actually this maybe is a problem of missing pull up, not
-> > the
-> > IRQ flag?
+> > I'd like to make a v3 and change the license of the .yaml file to
+> > "(GPL-2.0- only OR BSD-2-Clause)" as suggested by checkpatch and [1]. 
+> > Can I keep your Acked-by for that?
+> > 
+> > Besides: those suggestions are obviously valid for new bindings.  What
+> > about old bindings (.txt), which had no explicit SPDX tag or license note
+> > before? What license would apply there?  Is the .yaml file technically
+> > new, when it was mostly just converted from .txt?
 > 
-> The BD70528 is designed so that it will use level active interrupts -
-> and line is pulled down when IRQ is active. Thus the example should
-> have IRQ_TYPE_LEVEL_LOW - and your fix is correct.
-> 
-> After that being said - I can't comment on actual board using BD70528
-> (or other ROHM ICs) - even less I can comment boards using other ICs.
-> 
-> After that being said - it's not a rare mistake to configure level
-> active IRQs to be triggered at edge - it actually works most of the
-> time - untill they deadlock at the race of generating new IRQ between
-> reading the status and acking the line... I've debugged way too many
-> such cases...
-> 
-> Anyways, for BD70528 DTS example your fix looks correct. Thanks.
+> If it is based on previous .txt binding, you have to respect previous
+> author's license. That probably means GPL-2.0 only.
 
-Thanks. I found this error in multiple DTS files - most probably a copy
-paste from example or from evalkit (e.g. imx8mm-evk.dts). The trouble is
-that I don't have the schematics for them and at least in one hardware
-(Variscite VAR-SOM-MX8M which I am using) it looks like logic got
-reversed...
+Probably?
 
-Best regards,
-Krzysztof
+> Alternatively, you can contact original author(s) to get permission to
+> relicense under (GPL-2.0-only OR BSD-2-Clause).
+
+Judging from your feedback on v3, there will be a v4 anyways, so I contacted 
+Peter Ujfalusi, who added the original .txt binding back in 2012 (merged in 
+2013).
+
+Thanks for your feedback
+Alex
+
+
 
