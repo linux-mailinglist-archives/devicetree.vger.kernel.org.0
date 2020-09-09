@@ -2,132 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7846426298A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 10:06:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02E5026299F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 10:10:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729993AbgIIIGZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 04:06:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35004 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728347AbgIIIGJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 04:06:09 -0400
-Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23EC4C061755
-        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 01:06:09 -0700 (PDT)
-Received: by mail-pg1-x541.google.com with SMTP id m8so1516535pgi.3
-        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 01:06:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jVlYlbWkozbz0sLJ6S/+BIlF4v5FRp4qwtHLHAvdMQ8=;
-        b=Jbdhf4gHp3pe7ZAg6MfN+hmU7XutrDtvHYeWgzZC69kwrslIzxW3C5cjPf9rdszvVs
-         IlpM/YR2tNGDZg3yTGtyhT7TFvneCjyhGgODs4OAECJ+6GHWMFzU+tbdmCPJtFaUGmnq
-         1aG+i5wU/AK9VW/a8k5N6GsGYvM5QgSw6ixoM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jVlYlbWkozbz0sLJ6S/+BIlF4v5FRp4qwtHLHAvdMQ8=;
-        b=H0elce6wth1U8gPMwawmKhDrM7WzAiujdtwgzjHuckclRdfDRRkK+vB/B7iyXLzJYG
-         NVvL07Inf25PUDVyPIqjF1fLOjh3IrLSLnmBbQUHCdvxc+oBEKEYh74fKsSdu2BWKD99
-         8GV2usVbunrkMW0GRdPm/x16UObNTR2KgySNdkPMg0WzgE4E9/HQUfxtjoAtw5BvbQC8
-         9YbjTbnnimu3wOhHA4yXO5nVIJWcNUMId3B3EF48en74GJl8whAeu5wXd+FMawcv8DVg
-         Csj6b+965kcoTjJXGezXTP/oO+8tMoNR5YTyRHrectewfQpgeucZHEJvY0gWLmKPFwsL
-         qYmw==
-X-Gm-Message-State: AOAM530rtZC817rbSF9hvE+RX9zI4rOZeg2M8szX8q6c0AR+epa9E5KP
-        O0xs4EoHCuWjZBpnEpAA75X49A==
-X-Google-Smtp-Source: ABdhPJzwx8jiPPdem7eCjQdoXrfB3KZxZs1HdZ8y27DOvo/H7K6FuYkhAgGi5eOJxtphcwcCI89QLA==
-X-Received: by 2002:a63:5c66:: with SMTP id n38mr2053035pgm.217.1599638768656;
-        Wed, 09 Sep 2020 01:06:08 -0700 (PDT)
-Received: from kafuu-chino.c.googlers.com.com (105.219.229.35.bc.googleusercontent.com. [35.229.219.105])
-        by smtp.googlemail.com with ESMTPSA id d8sm1260489pjs.47.2020.09.09.01.06.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Sep 2020 01:06:08 -0700 (PDT)
-From:   Pi-Hsun Shih <pihsun@chromium.org>
-Cc:     Pi-Hsun Shih <pihsun@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support),
-        linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] arm64: dts: mt8183-kukui: add scp node
-Date:   Wed,  9 Sep 2020 16:05:58 +0800
-Message-Id: <20200909080558.2409470-1-pihsun@chromium.org>
-X-Mailer: git-send-email 2.28.0.526.ge36021eeef-goog
+        id S1726169AbgIIIKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 04:10:53 -0400
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:14002 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725917AbgIIIKv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 04:10:51 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5f588d810000>; Wed, 09 Sep 2020 01:08:33 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Wed, 09 Sep 2020 01:10:47 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Wed, 09 Sep 2020 01:10:47 -0700
+Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 9 Sep
+ 2020 08:10:45 +0000
+Received: from rnnvemgw01.nvidia.com (10.128.109.123) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Wed, 9 Sep 2020 08:10:45 +0000
+Received: from jckuo-lt.nvidia.com (Not Verified[10.19.100.126]) by rnnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5f588e030000>; Wed, 09 Sep 2020 01:10:44 -0700
+From:   JC Kuo <jckuo@nvidia.com>
+To:     <gregkh@linuxfoundation.org>, <thierry.reding@gmail.com>,
+        <robh@kernel.org>, <jonathanh@nvidia.com>, <kishon@ti.com>
+CC:     <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <nkristam@nvidia.com>, JC Kuo <jckuo@nvidia.com>
+Subject: [PATCH v3 00/15] Tegra XHCI controller ELPG support
+Date:   Wed, 9 Sep 2020 16:10:26 +0800
+Message-ID: <20200909081041.3190157-1-jckuo@nvidia.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+X-NVConfidentiality: public
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1599638913; bh=OnE1M57BnQjNFIR97nMj22Gyn8Dt1hz3QZatowFVODA=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         MIME-Version:X-NVConfidentiality:Content-Transfer-Encoding:
+         Content-Type;
+        b=E7Jlqwq5oHFMQou6t7BQOp4HY7WXDW84tEsUIvUbgchzf5L97+sgXIOn8WEgS4heL
+         WpxzoAYkZUGO8UF/r3ZMzeWRIgOZZDnjyvmiMG55u9e27nTFhm1nDxGoayUxedlAAN
+         HCGt5E44AC92ACMNiIFLZarNYG30o808rXuGBIlzhf5SHZZ7dH51t0vk9IJHUvKGb0
+         EJKFTnVqXrd7QogM5zEMukNjEMCX7TZ9pDDGetXdLoO1til+C3cLbFcqatteZh9eVA
+         Pxu0Lw6CP5jmDy5ZtHwmxLd9jaoRUrH9sL6gtjJTop+zW9t/7HUJ0UUB8PLAmFHft4
+         brPE8YnJ1cQ5g==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add scp node to mt8183-kukui
+Tegra XHCI controler can be placed in ELPG (Engine Level PowerGated)
+state for power saving when all of the connected USB devices are in
+suspended state. This patch series includes clk, phy and pmc changes
+that are required for properly place controller in ELPG and bring
+controller out of ELPG.
 
-Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
----
- .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
+JC Kuo (15):
+  clk: tegra: Add PLLE HW power sequencer control
+  clk: tegra: Don't enable PLLE HW sequencer at init
+  phy: tegra: xusb: Move usb3 port init for Tegra210
+  phy: tegra: xusb: tegra210: Do not reset UPHY PLL
+  phy: tegra: xusb: Rearrange UPHY init on Tegra210
+  phy: tegra: xusb: Add Tegra210 lane_iddq operation
+  phy: tegra: xusb: Add sleepwalk and suspend/resume
+  soc/tegra: pmc: Provide usb sleepwalk register map
+  arm64: tegra210: XUSB PADCTL add "nvidia,pmc" prop
+  phy: tegra: xusb: Add wake/sleepwalk for Tegra210
+  phy: tegra: xusb: Tegra210 host mode VBUS control
+  phy: tegra: xusb: Add wake/sleepwalk for Tegra186
+  arm64: tegra210/tegra186/tegra194: XUSB PADCTL irq
+  usb: host: xhci-tegra: Unlink power domain devices
+  xhci: tegra: Enable ELPG for runtime/system PM
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-index f0a070535b34..85f7c33ba446 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-@@ -90,6 +90,18 @@ pp3300_alw: regulator6 {
- 		regulator-max-microvolt = <3300000>;
- 	};
- 
-+	reserved_memory: reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		scp_mem_reserved: scp_mem_region {
-+			compatible = "shared-dma-pool";
-+			reg = <0 0x50000000 0 0x2900000>;
-+			no-map;
-+		};
-+	};
-+
- 	max98357a: codec0 {
- 		compatible = "maxim,max98357a";
- 		sdmode-gpios = <&pio 175 0>;
-@@ -524,6 +536,13 @@ pins_clk {
- 		};
- 	};
- 
-+	scp_pins: scp {
-+		pins_scp_uart {
-+			pinmux = <PINMUX_GPIO110__FUNC_TP_URXD1_AO>,
-+				 <PINMUX_GPIO112__FUNC_TP_UTXD1_AO>;
-+		};
-+	};
-+
- 	spi0_pins: spi0 {
- 		pins_spi{
- 			pinmux = <PINMUX_GPIO85__FUNC_SPI0_MI>,
-@@ -651,6 +670,17 @@ pins_wifi_wakeup {
- 	};
- };
- 
-+&scp {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&scp_pins>;
-+
-+	cros_ec {
-+		compatible = "google,cros-ec-rpmsg";
-+		mtk,rpmsg-name = "cros-ec-rpmsg";
-+	};
-+};
-+
- &soc_data {
- 	status = "okay";
- };
--- 
-2.28.0.526.ge36021eeef-goog
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi |    1 +
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi |    1 +
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi |    2 +
+ drivers/clk/tegra/clk-pll.c              |   12 -
+ drivers/clk/tegra/clk-tegra210.c         |   51 +
+ drivers/phy/tegra/xusb-tegra186.c        |  626 +++++++
+ drivers/phy/tegra/xusb-tegra210.c        | 1968 +++++++++++++++++-----
+ drivers/phy/tegra/xusb.c                 |   81 +-
+ drivers/phy/tegra/xusb.h                 |   21 +-
+ drivers/soc/tegra/pmc.c                  |   95 ++
+ drivers/usb/host/xhci-tegra.c            |  572 +++++--
+ include/linux/clk/tegra.h                |    2 +
+ include/linux/phy/tegra/xusb.h           |    8 +
+ 13 files changed, 2907 insertions(+), 533 deletions(-)
+
+--=20
+2.25.1
 
