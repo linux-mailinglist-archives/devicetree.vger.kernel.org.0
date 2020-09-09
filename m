@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56604262E3D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 13:55:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF697262E49
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 14:04:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727804AbgIILzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 07:55:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40146 "EHLO
+        id S1727900AbgIIMEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 08:04:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728954AbgIILmN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 07:42:13 -0400
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14B42C061786
-        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 04:41:37 -0700 (PDT)
-Received: by mail-lf1-x143.google.com with SMTP id d15so1391051lfq.11
-        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 04:41:37 -0700 (PDT)
+        with ESMTP id S1730168AbgIIMCf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 08:02:35 -0400
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDFA2C061573
+        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 04:38:37 -0700 (PDT)
+Received: by mail-lj1-x241.google.com with SMTP id v23so3115785ljd.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 04:38:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=9QFqZ8T4Z8Uwssi88QoBtFjRyO2k2yhi/Ck4LHpw7Qk=;
-        b=bndKyFALCwNbpGG6biL5LEJoMyzVE3/sE7fOKzM0bdlDG5LYKrVzIyaoIPdR2j3xo9
-         ++yPbukmQM8z67YpiR6rloFUdCvnbCIQIwtrfXT11Y3f8mIL6IxU4Ws1RsASWnWA1VXr
-         Jk4QHqNo+AhOG+O7PZKZxH/j0N9bJZKi7cSrxQvpusImfogn4uS06eckyz/qrYsyCO1t
-         Isn93zwFT14OXhtBmKB6DgUDDY8TndPFTtlvWtMdxc40O0hECK8K5IDySLim670nVZDx
-         QhGxOUNiRKJRcPSHjXp2Ggt2pgO9wX7XRbPen0Din2y0bZ5+oALUJdnSVu7jg6Plf+RZ
-         KGQg==
+        bh=9TRB6Tic1GvoiGHPifsUtG58oe6V1YvsitjQ6KJ/66o=;
+        b=emliJK5rA3zlTRxM+50luD9JVQB0ZPuvNY685ZMFxWp093fTPI0cJqm8aTAbNsIiTz
+         2ds0tcD3ClYK8rjenrmcTXJOSVRgu7vkGfdKXf5zBJHCYJlZnHthW81lKRdcw2KUhJ6S
+         xjec6W8J4CK6kt7lSeqSbOI6n/zS7Q2YLGb1zoQgu4LmMmmwMhWwMiHED8UtEuyJ3pI/
+         nje9lEDTdBZn54St/XUWCZkAMJhHArjPQyOHTT2d9xuNX6jbP/FN+FIfxw0dRd/B0hFI
+         7cROlmz53FPr1jZDSK4O8YLelfhkSbWRC5sNHFNzmFsV1D31DecSDQvKgqGrD61dKzUW
+         Gbew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=9QFqZ8T4Z8Uwssi88QoBtFjRyO2k2yhi/Ck4LHpw7Qk=;
-        b=pbbKR2TQaE0UHHDj4eHAUReGmOmt33YJVH1Rw3YGsZOFdMTgwnyImzzzBEx9r/z+An
-         8XIi611HUsMTQhsAwXfmOr32tU5hI/5vBhHLsed0ZTlBufIL1fm2Lz+amBmFlvprSxJL
-         ZkRwbiQzPx9M/68jssLf1GTddfSFZGNw0V4Fft7qWWCTRAqQjjb4+I7gapZTisNIMsD1
-         XwPlXsPlW2TzL4/PMacMbeByLt+8+A2y0acTeKIpATToaOJ5zerSqr5Z7T9A6Dl9ID7I
-         yCxO1kE6WJXCe2ThquS97wve3mQxBlaCQYjCKNjNnYRSiJOZhuivj0XVuzoRK/D6uz49
-         +erA==
-X-Gm-Message-State: AOAM533oh7jEV+DPO5dqhzmaQX/fM0NEVEmROwLkCgsgASYDQLeAiFCw
-        6po8A18VpYF0/zk16OvFytVt19124qlvYraovv18mA==
-X-Google-Smtp-Source: ABdhPJx1689AN6ZBjH9cFKkBhgvwX3Sn72kLkZELmRxndnnmRkhFO6EY5qp4HI+dRiZKRBpPZpNKfjqIAxtiWfATgOw=
-X-Received: by 2002:ac2:5541:: with SMTP id l1mr1734063lfk.89.1599651696103;
- Wed, 09 Sep 2020 04:41:36 -0700 (PDT)
+        bh=9TRB6Tic1GvoiGHPifsUtG58oe6V1YvsitjQ6KJ/66o=;
+        b=uiY+wnv2CYQcEINbArLOEotYGt8BNuVFWGC5bX/MqeMJ04urIVvDbJxGnxeE65fHdB
+         FLnjEc7Ub6l9nYTufscCGpwiJt8kBjJUUIfLhpiOVEO1LFSyUYBGC1o/bN7WCtC4nWLp
+         zECN5o5QRZQ9QkD7jHWbIQhqgxfK7Htq9KIZk30QZbrJqkwZje85jXD/92uyBp9MayNZ
+         7ZE5l9unoVShzBSOYHCJPGtZliaQi5MnuAy2Akozi0D45ufqL3xXklGPnqms+qC2EZAL
+         700lwYZRs8T5HnVmS+hlzclke4ZMOzY8AqCIl2h54xJkHs9nvxzfUvNCmW5TzEo5D2w+
+         CE4w==
+X-Gm-Message-State: AOAM530xJ1wQ3o61Q2Nf9PAEnl/5IplKsZhdJ4hSWzSsE+XJ0aaSZwxr
+        opJz0cWwzFbbGSPOLHd872gjKzy//p1fDYUwAlMkhg==
+X-Google-Smtp-Source: ABdhPJxzR/ZCIG9jECMBKx/8boudGCTyC6bXc41iHHQbYiHLiewFVe1Xa8ySlp8DVpYdpTLW5W3ulcJ/fOZNxZYlnqk=
+X-Received: by 2002:a2e:810e:: with SMTP id d14mr1827296ljg.100.1599651516160;
+ Wed, 09 Sep 2020 04:38:36 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200822163250.63664-1-paul@crapouillou.net> <20200822163250.63664-2-paul@crapouillou.net>
-In-Reply-To: <20200822163250.63664-2-paul@crapouillou.net>
+References: <20200822163250.63664-1-paul@crapouillou.net> <20200822163250.63664-7-paul@crapouillou.net>
+In-Reply-To: <20200822163250.63664-7-paul@crapouillou.net>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 9 Sep 2020 13:41:24 +0200
-Message-ID: <CACRpkdZmiar+2RrMb8=2UdyH83_8KQD0VvX2oWcBezmCdVwzzQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/6] dt-bindings: display: Document NewVision NV3052C
- DT node
+Date:   Wed, 9 Sep 2020 13:38:25 +0200
+Message-ID: <CACRpkdY8GnpK_Xiz6zRtj0G_LPKpLiopMsHR=9M3DU56eZMVzA@mail.gmail.com>
+Subject: Re: [PATCH v2 6/6] drm/panel: Add Ilitek ILI9341 DBI panel driver
 To:     Paul Cercueil <paul@crapouillou.net>
 Cc:     Thierry Reding <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
@@ -73,26 +72,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Paul,
+
+just a drive-by comment:
+
 On Sat, Aug 22, 2020 at 6:33 PM Paul Cercueil <paul@crapouillou.net> wrote:
 
-> Add documentation for the Device Tree node for LCD panels based on the
-> NewVision NV3052C controller.
->
-> v2: - Support backlight property
->     - Add *-supply properties for the 5 different power supplies.
->       Either they must all be present, or 'power-supply' must be
->       present.
->     - Reword description to avoid confusion about 'driver'
->     - Use 4-space indent in example
->
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> +       gpiod_set_value_cansleep(priv->reset_gpiod, 0);
+> +       usleep_range(20, 1000);
+> +       gpiod_set_value_cansleep(priv->reset_gpiod, 1);
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+This implies that the reset line is active low.
 
-> +            reset-gpios = <&gpe 2 GPIO_ACTIVE_LOW>;
+I would specify in the DT GPIO handle that it is active low
+and invert the above.
 
-This has the right polarity but the code in patch 6
-seems to use a device tree that does not?
+So:
+
+reset-gpios = <&gpio 4 GPIO_ACTIVE_LOW>;
+
+gpiod_set_value_cansleep(priv->reset_gpiod, 1);
+usleep_range(20, 1000);
+gpiod_set_value_cansleep(priv->reset_gpiod, 0);
+
+> +       priv->reset_gpiod = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> +       if (IS_ERR(priv->reset_gpiod)) {
+> +               dev_err(dev, "Couldn't get our reset GPIO\n");
+> +               return PTR_ERR(priv->reset_gpiod);
+> +       }
+
+This would then fetch the GPIO as asserted (device in reset)
+unless changed, but that may be the right thing to do actually.
+
+> +static const struct ili9341_pdata yx240qv29_pdata = {
+> +       .mode = { DRM_SIMPLE_MODE(240, 320, 37, 49) },
+> +       .width_mm = 0, // TODO
+> +       .height_mm = 0, // TODO
+
+When nothing else works and data sheets are incomplete I
+just take out a ruler and measure on the actual device.
 
 Yours,
 Linus Walleij
